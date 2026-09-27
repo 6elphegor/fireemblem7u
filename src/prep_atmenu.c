@@ -667,3 +667,75 @@ void AtMenu_EnableDisp(void)
 {
     SetDispEnable(1, 1, 1, 1, 1);
 }
+
+void AtMenu_LockGame(struct ProcAtMenu * proc)
+{
+    if (!CheckInLinkArena())
+    {
+        LockGame();
+        LockBmDisplay();
+    }
+}
+
+void AtMenu_UnlockGame(struct ProcAtMenu * proc)
+{
+    if (!CheckInLinkArena())
+    {
+        UnlockBmDisplay();
+        UnlockGame();
+    }
+}
+
+void StartPrepAtMenu(void)
+{
+    Proc_Start(ProcScr_AtMenu, PROC_TREE_3);
+}
+
+void StartPrepAtMenuWithConfig(void)
+{
+    Proc_Start(ProcScr_AtMenu, PROC_TREE_3);
+    RemoveSomeUnitItems();
+    ResetSioPidPool();
+}
+
+// view of ChapterInfo 0x86..0x87 as an array (chapterdata.h declares merchantPosX, merchantPosXInHectorStory)
+struct ChapterInfoMerchantView {
+    u8 pad[0x86];
+    u8 merchantPos[2];
+};
+
+bool HasConvoyAccess_(int kind)
+{
+    int i;
+
+    switch (kind)
+    {
+    case 0:
+        for (i = 1; i < 0x40; i++)
+        {
+            struct Unit * unit = GetUnit(i);
+
+            if (UNIT_IS_VALID(unit) && (UNIT_CATTRIBUTES(unit) & CA_SUPPLY))
+                return TRUE;
+        }
+        break;
+
+    case 1:
+        if (CheckInLinkArena())
+            break;
+
+        if (((struct ChapterInfoMerchantView const *) GetChapterInfo(gPlaySt.chapterIndex))->merchantPos[gPlaySt.chapterModeIndex == 3 ? 1 : 0] == 0xFF)
+            break;
+
+        for (i = 1; i < 0x40; i++)
+        {
+            struct Unit * unit = GetUnit(i);
+
+            if (UNIT_IS_VALID(unit) && (UNIT_CATTRIBUTES(unit) & CA_SUPPLY))
+                return TRUE;
+        }
+        break;
+    }
+
+    return FALSE;
+}

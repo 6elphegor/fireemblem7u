@@ -170,7 +170,7 @@ void AtMenu_LockGame(struct ProcAtMenu *proc);
 void AtMenu_UnlockGame(struct ProcAtMenu *proc);
 // StartPrepAtMenu
 // StartPrepAtMenuWithConfig
-bool HasConvoyAccess_(void);
+bool HasConvoyAccess_(int kind);
 // sub_0808EF94
 // sub_0808EFFC
 // sub_808F970
