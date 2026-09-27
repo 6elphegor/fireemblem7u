@@ -79,13 +79,13 @@ _080A12D0:
 	bl ReadChapterStats
 	ldr r1, _080A1370 @ =0x00001924
 	adds r0, r6, r1
-	bl sub_0809E9DC
+	bl ReadSupplyItems
 	ldr r2, _080A1374 @ =0x00001F1C
 	adds r0, r6, r2
-	bl sub_0809E99C
+	bl ReadPermanentFlags
 	ldr r1, _080A1378 @ =0x00001F24
 	adds r0, r6, r1
-	bl sub_0809E974
+	bl ReadChapterFlags
 	ldr r2, _080A137C @ =0x00001724
 	adds r0, r6, r2
 	bl ReadTraps

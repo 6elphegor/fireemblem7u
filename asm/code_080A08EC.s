@@ -52,11 +52,11 @@ _080A093C:
 	movs r1, #0xf3
 	lsls r1, r1, #3
 	adds r0, r7, r1
-	bl sub_0809E9DC
+	bl ReadSupplyItems
 	movs r1, #0xd8
 	lsls r1, r1, #4
 	adds r0, r7, r1
-	bl sub_0809E99C
+	bl ReadPermanentFlags
 	movs r1, #0x86
 	lsls r1, r1, #4
 	adds r0, r7, r1

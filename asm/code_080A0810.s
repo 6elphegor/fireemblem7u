@@ -63,7 +63,7 @@ _080A0870:
 	movs r1, #0xf3
 	lsls r1, r1, #3
 	adds r0, r7, r1
-	bl sub_0809E9C4
+	bl WriteSupplyItems
 	movs r1, #0x86
 	lsls r1, r1, #4
 	adds r0, r7, r1
@@ -77,7 +77,7 @@ _080A0870:
 	movs r1, #0xd8
 	lsls r1, r1, #4
 	adds r0, r7, r1
-	bl sub_0809E954
+	bl WritePermanentFlags
 	ldr r0, _080A08E8 @ =0x00011217
 	str r0, [sp]
 	mov r0, sp
