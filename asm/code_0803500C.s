@@ -18,7 +18,7 @@ sub_0803500C: @ 0x0803500C
 	.align 2, 0
 _08035024: .4byte 0x0203A8EC
 _08035028:
-	bl sub_080375B8
+	bl AiTryExecScriptA
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
