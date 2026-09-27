@@ -451,8 +451,79 @@ void ModeSelectSpriteDraw_Init(struct ModeSelectSpriteDrawProc * proc)
     return;
 }
 
-void ModeSelectSpriteDraw_Loop(struct ModeSelectSpriteDrawProc * proc);
-ASM_FUNC("asm/nonmatching/code_080A79A4.s");
+void ModeSelectSpriteDraw_Loop(struct ModeSelectSpriteDrawProc * proc)
+{
+    s32 i;
+
+    if (proc->unk_3c != 0)
+    {
+        for (i = 0; i < proc->unk_40; i++)
+        {
+            s32 angle = ((proc->unk_3e >> 4) + i * proc->unk_44 + 0x28);
+            s32 x = (proc->unk_34 << 0xc) + (SIN_Q12(angle) * 0x46);
+            s32 y = (((proc->unk_38 << 0xc) + (COS_Q12(angle) * 0x1c)) >> 0xc) - 0x10;
+
+            sub_08054E10(&gUnk_0201E8D4[i], x >> 0xc, y);
+
+            sub_080A793C(i, (proc->unk_3e >> 4) + i * proc->unk_44);
+        }
+    }
+
+    BgAffinRotScaling(2, proc->unk_3e, 0, 0, 0x160, 0x160);
+    BgAffinScaling(2, 0x280, 0x100);
+    BgAffinAnchoring(2, proc->unk_34, proc->unk_38, 0x4c, 0x4c);
+
+    gUnk_Savemenu_02000001 = sub_080A86A0(8, 8, 0x10, 0x10, proc->unk_48);
+
+    if (proc->unk_4c == 0)
+    {
+        proc->unk_48 += 8;
+
+        if (proc->unk_48 >= 0x400)
+        {
+            proc->unk_4c = 1;
+        }
+    }
+    else
+    {
+        proc->unk_48 -= 8;
+
+        if (proc->unk_48 <= 0)
+        {
+            proc->unk_4c = 0;
+        }
+    }
+
+    if (proc->unk_4e & 2)
+    {
+        DisplayFrozenUiHandExt(108, (proc->unk_4d & 1) * 16 + 104, 0xbc0);
+    }
+    else
+    {
+        DisplayUiHandExt(108, proc->unk_4d * 16 + 104, 0xbc0);
+    }
+
+    PutSpriteExt(0xd, 0, 8, Sprite_ModeSelect_Mode, OAM2_PAL(11));
+    PutSpriteExt(0xd, 20, 28, Sprite_ModeSelect_Select, OAM2_PAL(11));
+    PutSpriteExt(0xd, 40, 64, Sprite_ModeSelect_Change, OAM2_PAL(11));
+
+    if ((proc->unk_2c >> 2 & 1) == 0)
+    {
+        PutSpriteExt(0xd, 8, 130, Sprite_ModeSelect_PressStart, OAM2_PAL(11));
+    }
+
+    if (proc->unk_2c != 0)
+    {
+        proc->unk_2c++;
+    }
+
+    PutSpriteExt(0xd, 108, 24, Sprite_ModeSelect_ChapterRange, OAM2_PAL(10));
+
+    sub_080A73F8(proc->unk_30);
+    proc->unk_30++;
+
+    return;
+}
 
 
 // clang-format off
