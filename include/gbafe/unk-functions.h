@@ -591,7 +591,7 @@ void StartBoxDialogueExt(int x, int y, int msgId, u16* unkA, int unkB, ProcPtr p
 // CgText_808F0EC
 // StartCgText
 // EndCgText
-bool sub_80886E0(void);
+bool sub_08087D58(void);
 // sub_80886FC
 // CgText_ClearSpriteText
 // sub_08087DE0

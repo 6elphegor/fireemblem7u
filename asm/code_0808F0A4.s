@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0808F0A4
-sub_0808F0A4: @ 0x0808F0A4
+	thumb_func_start AtUnkMenu_Reinitialize
+AtUnkMenu_Reinitialize: @ 0x0808F0A4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
