@@ -69,6 +69,7 @@ void sub_080B6C14(void);
 void sub_080B6C8C(void);
 void sub_080B6D64(void);
 void sub_080B6FB8(int chapter, char const * str);
+void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr);
 void sub_080B6DD4(void);
 void sub_080B7408(struct EpilogueProc * proc);
 void sub_080B74B4(ProcPtr proc);
@@ -683,7 +684,32 @@ void sub_080B7A0C(struct EpilogueProc * proc)
     SetOnHBlankA(NULL);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B7A24.s");
+void sub_080B7A24(struct EpilogueProc * proc)
+{
+    if ((s16) (proc->timer % 72) == 0)
+    {
+        int row = (s16) (proc->unk_46 / 24);
+        sub_080B70B4(gEpilogueEntCount - 1, row % 10, row % 10, &proc->str);
+    }
+
+    if ((gpKeySt->held & A_BUTTON) && (s16) (proc->timer % 3) == 0)
+        proc->timer += 3;
+    else
+        proc->timer++;
+
+    proc->unk_46 = proc->timer / 3;
+
+    if (proc->unk_46 == 0xD8)
+    {
+        SetBlendConfig(0, 0x10, 0, 0);
+        SetBlendTargetA(0, 0, 0, 0, 0);
+        SetBlendTargetB(1, 1, 1, 1, 1);
+        gDispIo.blend_ct.target2_enable_bd = 1;
+
+        Proc_Break(proc);
+        proc->timer = 0;
+    }
+}
 void sub_080B7B18(struct EpilogueProc * proc)
 {
     proc->timer++;
