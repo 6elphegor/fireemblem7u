@@ -847,7 +847,7 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? EfxThunderOBJMain
 // ??? StartSpellAnimFire
 // ??? StartSpellAnimElfire
-// ??? sub_080583C8
+// ??? Loop6C_efxFire
 // ??? NewEfxFireBG
 // ??? sub_8058D18
 // ??? NewEfxFireOBJ
