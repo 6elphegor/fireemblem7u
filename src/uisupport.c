@@ -953,7 +953,40 @@ int GetSupportScreenPartnerCount(int charId)
 
     return gCharacterData[charId - 1].pSupportData->count;
 }
-ASM_FUNC("asm/nonmatching/code_0809C544.s");
+void DrawSupportSubScreenSprites(struct SubScreenProc * proc)
+{
+    u16 oam2;
+    int i;
+    int x;
+    int y;
+
+    PutSpriteExt(4, (proc->x + 128) & 0x1FF, 10, Sprite_08CC593C, 0x380);
+    PutSpriteExt(4, (proc->x + 168) & 0x1FF, 10, Sprite_08CC5944, 0x380);
+    PutSpriteExt(4, (proc->x + 200) & 0x1FF, 10, Sprite_08CC5952, 0x380);
+    PutSpriteExt(4, (proc->x + 32) & 0x1FF, 80, Sprite_08CC5960, 0xE280);
+    PutSpriteExt(4, (proc->x + 160) & 0x1FF, 144, Sprite_08CC596E, 0xE280);
+
+    x = (proc->x + 112) & 0x1FF;
+    y = proc->y + 22;
+
+    for (i = 0; i < proc->partnerCount; i++)
+    {
+        oam2 = 0xc000;
+
+        if (proc->partnerState[i] == 0)
+            oam2 = 0xd000;
+
+        if (proc->partnerState[i] == 2)
+            oam2 = 0xf000;
+
+        oam2 |= 0xc00;
+        PutUnitSpriteForClassId(0, x, y + i * 16, oam2, proc->partnerClassId[i]);
+    }
+
+    PutSpriteExt(4, (proc->x + 8) & 0x1FF, 144, Sprite_08CC4FC4, 0x2bc0);
+
+    SyncUnitSpriteSheet();
+}
 void DrawSupportSubScreenUnitPartnerText(struct SubScreenProc * proc, int idx)
 {
     int _y;
