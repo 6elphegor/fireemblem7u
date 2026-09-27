@@ -1253,13 +1253,13 @@ void StartFinScreen(ProcPtr parent); // FE7J sub_80B9C0C
 // sub_80B9DAC
 // HandleTurnRecordText
 // TurnRecord_Loop_Main
-// sub_080B96FC
-// sub_080B9B38
+// PlayerRank_PutSprites
+// PlayerRank_Init
 // PlayerRank_StartScreen
 // PlayerRankFlash_FadeIn
 // PlayerRankFlash_FadeOut
 // StartPlayerRankFlash
-// sub_080B9E58
+// PlayerRank_LoopLetters
 // PlayerRank_WaitForKey
 // sub_80BAA80
 // PlayerRank_CheckMode

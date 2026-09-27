@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B9B38
-sub_080B9B38: @ 0x080B9B38
+	thumb_func_start PlayerRank_Init
+PlayerRank_Init: @ 0x080B9B38
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -210,7 +210,7 @@ _080B9CFE:
 	lsrs r4, r0, #0x10
 	cmp r4, #5
 	bls _080B9CFE
-	ldr r0, _080B9D4C @ =sub_080B96FC
+	ldr r0, _080B9D4C @ =PlayerRank_PutSprites
 	adds r1, r5, #0
 	bl StartParallelWorker
 	ldr r0, _080B9D50 @ =0x085DFAB0
@@ -232,5 +232,5 @@ _080B9CFE:
 	bx r0
 	.align 2, 0
 _080B9D48: .4byte 0x020230A0
-_080B9D4C: .4byte sub_080B96FC
+_080B9D4C: .4byte PlayerRank_PutSprites
 _080B9D50: .4byte 0x085DFAB0

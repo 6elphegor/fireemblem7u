@@ -77,6 +77,19 @@ struct PlayerRankFlashProc {
     /* 58 */ int pal;
 };
 
+struct PlayerRankProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int idx;
+    /* 30 */ int timer;
+    /* 34 */ STRUCT_PAD(0x34, 0x3A);
+    /* 3A */ u8 ranks[6];
+    /* 40 */ u8 counts[6];
+    /* 46 */ u8 unk_46[6];
+    /* 4C */ u16 scales[6];
+};
+
+void StartPlayerRankFlash(int pal, ProcPtr parent);
+
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankUnk_08CEEB84[];
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankFlash[];
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankScreen[];
@@ -976,7 +989,19 @@ void EndingFog_Init(struct EndingTurnRecordProc * proc)
     proc->unk_4c = 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B9128.s");
+void EndingFog_Loop(struct EndingTurnRecordProc * proc)
+{
+    int x;
+    int y;
+
+    proc->unk_4c++;
+
+    y = proc->unk_4c;
+    x = y * 3;
+
+    SetBgOffset(2, x / 8, y / 4);
+}
+
 void TurnRecord_Init(struct EndingTurnRecordProc * proc)
 {
     proc->yPos = 0;
@@ -1098,6 +1123,7 @@ void StartPlayerRankFlash(int pal, ProcPtr parent)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B9E58.s");
+
 void PlayerRank_WaitForKey(ProcPtr proc)
 {
     if (gpKeySt->pressed & (A_BUTTON | B_BUTTON | START_BUTTON))

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B9E58
-sub_080B9E58: @ 0x080B9E58
+	thumb_func_start PlayerRank_LoopLetters
+PlayerRank_LoopLetters: @ 0x080B9E58
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r3, [r4, #0x30]

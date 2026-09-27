@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B96FC
-sub_080B96FC: @ 0x080B96FC
+	thumb_func_start PlayerRank_PutSprites
+PlayerRank_PutSprites: @ 0x080B96FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
