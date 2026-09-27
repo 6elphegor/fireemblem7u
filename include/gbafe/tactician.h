@@ -57,6 +57,7 @@ void TactInfo_UpdateSaveData(struct ProcTactInfo *proc);
 void TactInfo_CheckParticipantDialogue(struct ProcTactInfo *proc);
 void TactInfo_HandleCheckParticipantPrompt(struct ProcTactInfo *proc);
 void StartTacticianInfo(ProcPtr parent);
+void sub_080A6D9C(ProcPtr parent); // FE7J StartTacticianInfo
 int TactGetMsg_Blood(int index);
 int TactGetMsg_Birth(int index);
 int TactGetMsg_Gender(int index);

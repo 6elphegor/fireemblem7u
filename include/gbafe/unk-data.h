@@ -2288,9 +2288,9 @@ extern struct ProcCmd ProcScr_StartWorldMapEvent[];
 // ??? gUnk_08DB7DD0
 // ??? gUnk_08DB7E28
 // ??? gUnk_08DB7E70
-extern struct ProcCmd ProcScr_Unk_08DB7EB0[];
-extern struct ProcCmd ProcScr_Unk_08DB8048[];
-extern struct ProcCmd ProcScr_Unk_08DB8088[];
+extern struct ProcCmd ProcScr_Unk_08CEDEE4[];
+extern struct ProcCmd ProcScr_Unk_08CEE084[];
+extern struct ProcCmd ProcScr_Unk_08CEE0C4[];
 // ??? gUnk_08DB8118
 // ??? gUnk_08DB85EC
 // ??? gUnk_08DB85F4
