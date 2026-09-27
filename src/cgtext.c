@@ -8,6 +8,10 @@ extern u16 CONST_DATA gSprite_08CC3020[];
 extern u16 CONST_DATA gSprite_08CC3034[];
 extern u16 CONST_DATA gSprite_08CC3048[];
 extern u16 CONST_DATA gSprite_08CC305C[];
+extern int CONST_DATA gTextIds_AskExit[];
+extern int CONST_DATA gTextIds_YesNo[];
+
+void StartTalkWaitForInputUnk(ProcPtr parent, int x, int y, int z);
 
 void SetCgTextFlags(int flags)
 {
@@ -689,7 +693,197 @@ void sub_808F5C8(struct CgTextMainProc * proc)
     PutSpriteExt(
         2, OAM1_X(x + ix * 0x20), OAM0_Y(y + iy * 0x10), Sprite_32x16, proc->palId + ix * 4 + iy * 64 + oam2Maybe);
 }
-ASM_FUNC("asm/nonmatching/code_08088380.s");
+void CgTextInterpreter_Loop_Main(struct CgTextInterpreterProc * proc)
+{
+    u16 faceDisp;
+    int i;
+
+    struct CgTextMainProc * parent = proc->proc_parent;
+
+    int numCharsVisible = parent->numCharsVisible;
+
+    if ((gpKeySt->pressed & (DPAD_ANY | A_BUTTON | B_BUTTON)) && !(GetCgTextFlags() & CG_TEXT_FLAG_5))
+    {
+        parent->unk_60 = 1;
+        numCharsVisible = INT8_MAX;
+    }
+    else
+    {
+        if (parent->pauseTimer > 0)
+        {
+            parent->pauseTimer--;
+            return;
+        }
+
+        parent->pauseTimer = parent->displaySpeed;
+    }
+
+    SetTextFont(parent->pFont);
+
+    faceDisp = GetFaceDispById(0) | FACE_DISP_TALK_1;
+    SetFaceBlinkControlById(0, 3);
+
+    for (i = 0; i < numCharsVisible; i++)
+    {
+        switch (*parent->str)
+        {
+        case 0x18: // [Yes]
+            parent->thIndex++;
+
+            StartYesNoChoice(
+                (GetCgTextFlags() & CG_TEXT_FLAG_9) ? gTextIds_AskExit : gTextIds_YesNo,
+                parent->pTexts[parent->thIndex],
+                parent->x * 8,
+                (parent->y + parent->thIndex * 2) * 8,
+                0xb, 1, proc);
+
+            parent->str++;
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x19: // [No]
+            parent->thIndex++;
+
+            StartYesNoChoice(
+                (GetCgTextFlags() & CG_TEXT_FLAG_9) ? gTextIds_AskExit : gTextIds_YesNo,
+                parent->pTexts[parent->thIndex],
+                parent->x * 8,
+                (parent->y + parent->thIndex * 2) * 8,
+                0xb, 2, proc);
+
+            parent->str++;
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x00: // [X]
+            if (GetCgTextFlags() & CG_TEXT_FLAG_2)
+            {
+                ClearCgTextFlag(CG_TEXT_FLAG_2);
+                Proc_Goto(parent, 4);
+            }
+            else
+            {
+                Proc_Goto(parent, 0);
+            }
+
+            Proc_Goto(proc, 99);
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x01: // [NL]
+            parent->str++;
+
+            if (parent->thIndex + 1 >= parent->boxHeight / 2)
+            {
+                parent->unk_5f = 1;
+                Proc_Goto(proc, 1);
+                goto end;
+            }
+
+            parent->thIndex++;
+            continue;
+
+        case 0x04: // [...]
+            parent->pauseTimer += 8;
+            parent->str++;
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x05: // [....]
+            parent->pauseTimer += 16;
+            parent->str++;
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x06: // [.....]
+            parent->pauseTimer += 32;
+            parent->str++;
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x07: // [......]
+            parent->pauseTimer += 64;
+            parent->str++;
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x16: // [ToggleMouthMove]
+            parent->str++;
+            faceDisp &= ~FACE_DISP_SMILE;
+            continue;
+
+        case 0x17: // [ToggleSmile]
+            parent->str++;
+            faceDisp |= FACE_DISP_SMILE;
+            continue;
+
+        case 0x02: // [2NL]
+            parent->str++;
+
+            if (*parent->str == 0x01) // [NL]
+                parent->str++;
+
+            if (GetCgTextFlags() & CG_TEXT_FLAG_3)
+            {
+                Proc_Goto(proc, 2);
+            }
+            else
+            {
+                parent->unk_5f = parent->thIndex + 1;
+                Proc_Goto(proc, 1);
+            }
+
+            faceDisp &= ~FACE_DISP_TALK_1;
+            goto end;
+
+        case 0x03: // [A]
+            faceDisp &= ~FACE_DISP_TALK_1;
+            parent->str++;
+
+            if (GetCgTextFlags() & CG_TEXT_FLAG_8)
+            {
+                StartTalkWaitForInputUnk(
+                    proc, parent->x * 8 + parent->textWidth + 4, parent->y * 8 + parent->textHeight + 8, 0x400);
+            }
+            else
+            {
+                StartTalkWaitForInput(
+                    (struct Proc *)proc, parent->x * 8 + parent->textWidth + 4, parent->y * 8 + parent->textHeight + 8);
+            }
+
+            GetCgTextDimensions(parent->str, &parent->textWidth, &parent->textHeight);
+            goto end;
+
+        case 0x80:
+            parent->str++;
+
+            if (*parent->str == 0x21) // [ToggleRed]
+                parent->unk_5e = 1 - parent->unk_5e;
+
+            parent->str++;
+            continue;
+        }
+
+        if (parent->unk_5e != 0)
+            Text_SetColor(parent->pTexts[parent->thIndex], 0xc);
+        else
+            Text_SetColor(parent->pTexts[parent->thIndex], 0xb);
+
+        parent->str = Text_DrawCharacter(parent->pTexts[parent->thIndex], parent->str);
+
+        {
+            int delay = GetTextPrintDelay();
+
+            if ((delay != 1 || (GetGameTime() & delay)) && !(GetCgTextFlags() & CG_TEXT_FLAG_4) && !parent->unk_60)
+                PlaySoundEffect(0x38E);
+        }
+    }
+
+end:
+    parent->unk_60 = 0;
+    SetTextFont(NULL);
+    SetFaceDispById(0, faceDisp);
+}
 void sub_808FEA4(int * src, int x, int y)
 {
     int i;
