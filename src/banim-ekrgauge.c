@@ -54,6 +54,24 @@ extern const u8 AnimSprite_EkrGaugeWtaDown2[];
 void EnableEkrGauge(void);
 void DisableEkrGauge(void);
 void ModDec(s16 val, u16 buf[]);
+extern const u8 Tsa_EkrGaugeLeft[];
+extern const u8 Tsa_EkrGaugeRight[];
+extern s16 gBanimMaxHP[2];
+extern s16 gBanimWtaBonus[2];
+extern u8 gUnk_Banim_02016DC8[];
+extern u16 gUnk_Banim_02016E48[];
+extern u16 gUnk_Banim_02017048[];
+extern u16 gUnk_Banim_02017248[];
+extern u16 gUnk_Banim_02017448[];
+extern const u8 AnimSprite_EkrGaugeHpNum[];
+extern const u8 AnimSprite_EkrGaugeHpBar[];
+extern const u8 AnimSprite_EkrGaugeName[];
+extern const u8 AnimSprite_EkrGaugeStatsL[];
+extern const u8 AnimSprite_EkrGaugeStatsR[];
+extern const u8 AnimSprite_EkrGaugeWeapon[];
+s16 EkrEfxIsUnitHittedNow(int pos);
+void sub_0804C118(void * _src, void * _dst);
+void sub_0804C504(struct EkrGaugeStruct1 * buf, int a, int b);
 
 void sub_0804C118(void * _src, void * _dst)
 {
@@ -256,4 +274,436 @@ void sub_0804C504(struct EkrGaugeStruct1 * buf, int a, int b)
     }
 }
 
+#if NONMATCHING
+void ekrGaugeMain(struct ProcEkrGauge * proc)
+{
+    struct Anim AStack_130;
+    u16 auStack_e8[12];
+    u16 local_d0[4];
+    struct AnimSpriteData auStack_c8[8];
+    s16 r4;
+    s32 r6;
+    s32 r7;
+    s32 r8;
+    s32 r9;
+    s16 r7_;
+    s16 r6_;
+    s16 r8_;
+    s16 sp_d4;
+    s32 hp_changed;
+    s32 spDC;
+    s32 x;
+    s32 y;
+    s32 clk;
+    s16 uVar8;
+    s16 sVar16;
+    s16 sVar5;
+    s16 uVar15;
+
+    hp_changed = 0;
+    clk = DivRem(GetGameTime() / 8, 3);
+
+    if (proc->valid == 1)
+        return;
+
+    if (proc->battle_init == 0) {
+
+        r4 = proc->unk3A >> 3;
+        r7 = (r4 << 5) + 0x1A0;
+
+        if (r7 < 0)
+            r7 = 0;
+
+        r6 = r4 + 7;
+        if (r6 > 7)
+            r6 = 7;
+
+        r8 = (7 - r6) * 30;
+
+        switch (gEkrDistanceType) {
+            case 0:
+            case 1:
+            case 2:
+                r9 = 0;
+                spDC = 15;
+                break;
+
+            case 3:
+            case 4:
+            default:
+                spDC = 8;
+                r9 = 8;
+                break;
+        }
+
+        FillBGRect(gBg0Tm + 0x1A0, 30, 8, 0, 0x9F);
+
+        if (0 == proc->unk4C) {
+            EfxTmCpyBG(Tsa_EkrGaugeLeft + r8, gBg0Tm + r7 + r9, 15, r6, -1, -1);
+            sub_0806693C(gBg0Tm + r7 + r9, 15, r6, 2, 0x80);
+        }
+
+        if (0 == proc->unk50) {
+            EfxTmCpyBG(Tsa_EkrGaugeRight + r8, gBg0Tm + r7 + spDC, 16, r6, -1, -1);
+            sub_0806693C(gBg0Tm + r7 + spDC, 16, r6, 3, 0x80);
+        }
+
+        EnableBgSync(BG0_SYNC_BIT);
+    }
+
+    if ((s16)gEkrGaugeHpBak[0] != gEkrGaugeHp[0])
+        hp_changed = 1;
+
+    if ((s16)gEkrGaugeHpBak[1] != gEkrGaugeHp[1])
+        hp_changed = 1;
+
+    gEkrGaugeHpBak[0] = gEkrGaugeHp[0];
+    gEkrGaugeHpBak[1] = gEkrGaugeHp[1];
+
+    r7_ = gEkrGaugeHp[0];
+    r6_ = gBanimMaxHP[0];
+    r8_ = gEkrGaugeHp[1];
+    sp_d4 = gBanimMaxHP[1];
+
+    switch (gEkrDistanceType) {
+        case 3:
+            if (gBanimValid[EKR_POS_L] == 1) {
+                x = proc->unk32 + 0x38;
+            } else {
+                x = proc->unk32 - 0x38;
+            }
+            break;
+
+        case 0:
+        case 1:
+        case 2:
+            x = proc->unk32;
+            break;
+
+        case 4:
+        default:
+            x = proc->unk32 - 0x38;
+            break;
+    }
+
+    if (proc->battle_init == 0) {
+        y = proc->unk3A & 0xFFF8;
+    } else {
+        y = proc->unk3A;
+    }
+
+    local_d0[0] = Div(gEkrGaugeHp[0], 10);
+    local_d0[1] = gEkrGaugeHp[0] - local_d0[0] * 10;
+
+    if (local_d0[0] == 0) {
+        local_d0[0] = 0xb;
+    }
+
+    local_d0[2] = Div(gEkrGaugeHp[1], 10);
+    local_d0[3] = gEkrGaugeHp[1] - local_d0[2] * 10;
+
+    if (local_d0[2] == 0) {
+        local_d0[2] = 0xb;
+    }
+
+    if (gEkrGaugeHp[0] > 0x50) {
+        local_d0[0] = 0xc;
+        local_d0[1] = 0xc;
+    }
+
+    if (gEkrGaugeHp[1] > 0x50) {
+        local_d0[2] = 0xc;
+        local_d0[3] = 0xc;
+    }
+
+    if (hp_changed == 1) {
+        s32 i;
+        s32 j;
+
+        CpuFastFill(0, gUnk_Banim_02016DC8, 0x80);
+
+        for (i = 0; i < 2; i++) {
+            for (j = 0; j < 2; j++) {
+                CpuCopy16(
+                    Img_EkrGaugeNumbers + local_d0[i * 2 + j] * 0x10,
+                    (u16 *)gUnk_Banim_02016DC8 + ((i * 0x20) + (j * 0x10)),
+                    0x20
+                );
+            }
+        }
+
+        RegisterDataMove(gUnk_Banim_02016DC8 + 0x00, (void *)0x060139C0, 0x40);
+        RegisterDataMove((u16 *)gUnk_Banim_02016DC8 + 0x20, (void *)0x06013DC0, 0x40);
+    }
+
+    AStack_130.oam2Base = 0x51CE;
+    AStack_130.oam2Base |= proc->unk44;
+
+    AStack_130.xPosition = x + 9;
+    AStack_130.yPosition = y + 0x91;
+    AStack_130.state2 = 0;
+
+    if (EkrEfxIsUnitHittedNow(EKR_POS_L) != 1) {
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeHpNum;
+        AStack_130.oamBase = 0;
+    } else {
+        AStack_130.pSpriteData = auStack_c8;
+        AStack_130.oamBase = 0x200;
+        AStack_130.xPosition = AStack_130.xPosition - 8;
+        AStack_130.yPosition = AStack_130.yPosition - 8;
+        BanimUpdateSpriteRotScale((void *)AnimSprite_EkrGaugeHpNum, auStack_c8, 0x100, 0x80, 1);
+    }
+
+    if (proc->unk4C == 0) {
+        AnimDisplay(&AStack_130);
+    }
+
+    AStack_130.oamBase = 0;
+
+    AStack_130.oam2Base = 0x61EE;
+    AStack_130.oam2Base |= proc->unk44;
+
+    AStack_130.xPosition = x + 0x81;
+    AStack_130.yPosition = y + 0x91;
+    AStack_130.state2 = 0;
+
+    if (EkrEfxIsUnitHittedNow(EKR_POS_R) != 1) {
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeHpNum;
+        AStack_130.oamBase = 0;
+    } else {
+        AStack_130.pSpriteData = auStack_c8;
+        AStack_130.oamBase = 0x200;
+        AStack_130.xPosition = AStack_130.xPosition - 8;
+        AStack_130.yPosition = AStack_130.yPosition - 8;
+        BanimUpdateSpriteRotScale((void *)AnimSprite_EkrGaugeHpNum, auStack_c8, 0x100, 0x80, 1);
+    }
+
+    if (proc->unk50 == 0) {
+        AnimDisplay(&AStack_130);
+    }
+
+    uVar15 = (r7_ - 0x28);
+    uVar8 = (r6_ - 0x28);
+    sVar16 = (r7_);
+    sVar5 = (r6_);
+
+    if (uVar15 > 0x28)
+        uVar15 = 0x28;
+
+    if (uVar8 > 0x28)
+        uVar8 = 0x28;
+
+    if (uVar15 < 0)
+        uVar15 = 0;
+
+    if (uVar8 < 0)
+        uVar8 = 0;
+
+    if (sVar16 > 0x28)
+        sVar16 = 0x28;
+
+    if (sVar5 > 0x28)
+        sVar5 = 0x28;
+
+    AStack_130.oam2Base = 0xb000;
+    AStack_130.oam2Base |= proc->unk44;
+
+    AStack_130.oamBase = 0;
+    AStack_130.xPosition = x + 0x1d;
+    AStack_130.pSpriteData = AnimSprite_EkrGaugeHpBar;
+
+    if (proc->unk4C == 0) {
+        if (uVar8 != 0) {
+            sub_08066CA0(auStack_e8, uVar15, uVar8);
+            if (hp_changed == 1) {
+                sub_0804C118(auStack_e8, gUnk_Banim_02016E48);
+            }
+
+            AStack_130.yPosition = y + 0x8e;
+            AStack_130.oam2Base &= 0xfc00;
+            AStack_130.oam2Base |= 0;
+            AStack_130.state2 = 0;
+
+            AnimDisplay(&AStack_130);
+        }
+
+        sub_08066CA0(auStack_e8, sVar16, sVar5);
+
+        if (hp_changed == 1) {
+            sub_0804C118(auStack_e8, gUnk_Banim_02017248);
+        }
+
+        if (uVar8 != 0) {
+            AStack_130.yPosition = y + 0x95;
+        } else {
+            AStack_130.yPosition = y + 0x91;
+        }
+
+        AStack_130.oam2Base &= 0xfc00;
+        AStack_130.oam2Base |= 0x20;
+        AStack_130.state2 = 0;
+
+        AnimDisplay(&AStack_130);
+    }
+
+    uVar15 = (r8_ - 0x28);
+    uVar8 = (sp_d4 - 0x28);
+    sVar16 = (r8_);
+    sVar5 = (sp_d4);
+
+    if (uVar15 > 0x28)
+        uVar15 = 0x28;
+
+    if (uVar8 > 0x28)
+        uVar8 = 0x28;
+
+    if (uVar15 < 0)
+        uVar15 = 0;
+
+    if (uVar8 < 0)
+        uVar8 = 0;
+
+    if (sVar16 > 0x28)
+        sVar16 = 0x28;
+
+    if (sVar5 > 0x28)
+        sVar5 = 0x28;
+
+    AStack_130.oam2Base = 0xc000;
+    AStack_130.oam2Base |= proc->unk44;
+
+    AStack_130.oamBase = 0;
+    AStack_130.xPosition = x + 0x95;
+    AStack_130.pSpriteData = AnimSprite_EkrGaugeHpBar;
+
+    if (proc->unk50 == 0) {
+        if (uVar8 != 0) {
+            sub_08066CA0(auStack_e8, uVar15, uVar8);
+            if (hp_changed == 1) {
+                sub_0804C118(auStack_e8, gUnk_Banim_02017048);
+            }
+
+            AStack_130.yPosition = y + 0x8e;
+            AStack_130.oam2Base &= 0xfc00;
+            AStack_130.oam2Base |= 0x10;
+            AStack_130.state2 = 0;
+
+            AnimDisplay(&AStack_130);
+        }
+
+        sub_08066CA0(auStack_e8, sVar16, sVar5);
+
+        if (hp_changed == 1) {
+            sub_0804C118(auStack_e8, gUnk_Banim_02017448);
+        }
+
+        if (uVar8 != 0) {
+            AStack_130.yPosition = y + 0x95;
+        } else {
+            AStack_130.yPosition = y + 0x91;
+        }
+
+        AStack_130.oam2Base &= 0xfc00;
+        AStack_130.oam2Base |= 0x30;
+        AStack_130.state2 = 0;
+
+        AnimDisplay(&AStack_130);
+    }
+
+    if (hp_changed == 1) {
+        RegisterDataMove((void *)gUnk_Banim_02016E48, (void *)0x06013000, 0x800);
+    }
+
+    if (proc->unk4C == 0) {
+        AStack_130.oamBase = 0;
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeName;
+        AStack_130.oam2Base = 0x51D0;
+        AStack_130.oam2Base |= proc->unk44;
+
+        AStack_130.xPosition = x + 0xf;
+        AStack_130.yPosition = y + 0x70;
+        AStack_130.state2 = 0;
+        AnimDisplay(&AStack_130);
+        AStack_130.oamBase = 0;
+
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeStatsL;
+        AStack_130.oam2Base = 0x51C0;
+        AStack_130.oam2Base |= proc->unk44;
+
+        AStack_130.xPosition = x + 0x65;
+        AStack_130.yPosition = y + 0x78;
+        AStack_130.state2 = 0;
+        AnimDisplay(&AStack_130);
+    }
+
+    if (proc->unk50 == 0) {
+        AStack_130.oamBase = 0;
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeName;
+        AStack_130.oam2Base = 0x61F0;
+        AStack_130.oam2Base |= proc->unk44;
+
+        AStack_130.xPosition = x + 0xd7;
+        AStack_130.yPosition = y + 0x70;
+        AStack_130.state2 = 0;
+        AnimDisplay(&AStack_130);
+
+        AStack_130.oamBase = 0;
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeStatsR;
+        AStack_130.oam2Base = 0x61C0;
+        AStack_130.oam2Base |= proc->unk44;
+
+        AStack_130.xPosition = x + 0x87;
+        AStack_130.yPosition = y + 0x78;
+        AStack_130.state2 = 0;
+        AnimDisplay(&AStack_130);
+    }
+
+    if (proc->unk4C == 0) {
+        AStack_130.oamBase = 0;
+        if (gBanimWtaBonus[0] != 0) {
+            sub_0804C504((void *)&AStack_130, gBanimWtaBonus[0], clk);
+            AStack_130.oam2Base = 0x1ca;
+            AStack_130.oam2Base |= proc->unk44;
+
+            AStack_130.xPosition = x + 0x35;
+            AStack_130.yPosition = y + 0x7a;
+            AStack_130.state2 = 0;
+            AnimDisplay(&AStack_130);
+        }
+
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeWeapon;
+        AStack_130.oam2Base = 0xD1DC;
+        AStack_130.oam2Base |= proc->unk44;
+
+        AStack_130.xPosition = x + 0x2b;
+        AStack_130.yPosition = y + 0x7a;
+        AStack_130.state2 = 0;
+        AnimDisplay(&AStack_130);
+    }
+
+    if (proc->unk50 == 0) {
+        AStack_130.oamBase = 0;
+        if (gBanimWtaBonus[1] != 0) {
+            sub_0804C504((void *)&AStack_130, gBanimWtaBonus[1], clk);
+            AStack_130.oam2Base = 0x1ca;
+            AStack_130.oam2Base |= proc->unk44;
+
+            AStack_130.xPosition = x + 0x84;
+            AStack_130.yPosition = y + 0x7a;
+            AStack_130.state2 = 0;
+            AnimDisplay(&AStack_130);
+        }
+
+        AStack_130.pSpriteData = AnimSprite_EkrGaugeWeapon;
+        AStack_130.oam2Base = 0xE1DE;
+        AStack_130.oam2Base |= proc->unk44;
+
+        AStack_130.xPosition = x + 0x7a;
+        AStack_130.yPosition = y + 0x7a;
+        AStack_130.state2 = 0;
+        AnimDisplay(&AStack_130);
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_0804C550.s");
+#endif
