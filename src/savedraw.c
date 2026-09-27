@@ -33,3 +33,21 @@ void sub_080A4E58(void)
 
     EnableBgSync(BG3_SYNC_BIT);
 }
+
+ASM_FUNC("asm/nonmatching/code_080A4F74.s");
+ASM_FUNC("asm/nonmatching/code_080A503C.s");
+ASM_FUNC("asm/nonmatching/code_080A5084.s");
+ASM_FUNC("asm/nonmatching/code_080A50CC.s");
+ASM_FUNC("asm/nonmatching/code_080A5108.s");
+ASM_FUNC("asm/nonmatching/code_080A511C.s");
+ASM_FUNC("asm/nonmatching/code_080A5130.s");
+ASM_FUNC("asm/nonmatching/code_080A5148.s");
+ASM_FUNC("asm/nonmatching/code_080A5214.s");
+ASM_FUNC("asm/nonmatching/code_080A5420.s");
+ASM_FUNC("asm/nonmatching/code_080A54C8.s");
+ASM_FUNC("asm/nonmatching/code_080A5514.s");
+ASM_FUNC("asm/nonmatching/code_080A5590.s");
+ASM_FUNC("asm/nonmatching/code_080A560C.s");
+ASM_FUNC("asm/nonmatching/code_080A5748.s");
+ASM_FUNC("asm/nonmatching/code_080A5818.s");
+ASM_FUNC("asm/nonmatching/code_080A5C48.s");

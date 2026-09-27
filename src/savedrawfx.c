@@ -51,3 +51,23 @@ ProcPtr StartSpinRotation(ProcPtr parent)
     proc->savedraw = parent;
     return proc;
 }
+
+ASM_FUNC("asm/nonmatching/code_080A5CF8.s");
+ASM_FUNC("asm/nonmatching/code_080A5D2C.s");
+ASM_FUNC("asm/nonmatching/code_080A5E8C.s");
+ASM_FUNC("asm/nonmatching/code_080A5EAC.s");
+ASM_FUNC("asm/nonmatching/code_080A5EDC.s");
+ASM_FUNC("asm/nonmatching/code_080A5EF0.s");
+ASM_FUNC("asm/nonmatching/code_080A5F18.s");
+ASM_FUNC("asm/nonmatching/code_080A5F98.s");
+ASM_FUNC("asm/nonmatching/code_080A5FD0.s");
+ASM_FUNC("asm/nonmatching/code_080A6004.s");
+ASM_FUNC("asm/nonmatching/code_080A6018.s");
+ASM_FUNC("asm/nonmatching/code_080A602C.s");
+ASM_FUNC("asm/nonmatching/code_080A6114.s");
+ASM_FUNC("asm/nonmatching/code_080A6184.s");
+ASM_FUNC("asm/nonmatching/code_080A6220.s");
+ASM_FUNC("asm/nonmatching/code_080A6238.s");
+ASM_FUNC("asm/nonmatching/code_080A6334.s");
+ASM_FUNC("asm/nonmatching/code_080A6368.s");
+ASM_FUNC("asm/nonmatching/code_080A6384.s");
