@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmcontainer.h"
 #include "gbafe/prep_sallycursor.h"
 
 // Preparations map screen (FE8U: prep_sallycursor.c)

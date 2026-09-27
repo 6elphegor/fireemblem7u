@@ -78,3 +78,4 @@
 #include "gbafe/bmtarget.h"
 #include "gbafe/bmmenu.h"
 #include "gbafe/bmitemuse.h"
+#include "gbafe/bmcontainer.h"

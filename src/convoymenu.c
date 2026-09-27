@@ -8,8 +8,6 @@ extern const struct MenuDef gConvoyMenuDef;
 
 struct MenuProc * StartLockingMenu(const struct MenuDef * def, ProcPtr parent);
 void EndMenuItemPanel(void);
-s8 HasConvoyAccess(void);
-int AddItemToConvoy(int item);
 void NewPopup2_SendItem(ProcPtr parent, int item);
 void NewPopup2_DropItem(ProcPtr parent, int item);
 int ItemSelectMenu_TextDraw(struct MenuProc * menu, struct MenuItemProc * item);

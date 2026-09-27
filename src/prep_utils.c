@@ -1,6 +1,5 @@
 #include "gbafe.h"
 
-#include "gbafe/bmcontainer.h"
 #include "gbafe/bmarena.h"
 struct ViewCounterProc
 {

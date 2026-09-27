@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmcontainer.h"
 
 int GetGold(void);
 void EndMenuScrollBar(void);

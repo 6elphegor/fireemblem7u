@@ -1,7 +1,6 @@
 #include "gbafe.h"
 
 char * MsgExpandWithArticle(int a, int b, s8 c);
-u16 * GetConvoyItemArray(void);
 int GetGold(void);
 
 extern u8 CONST_DATA ItemEffectiveness_08C97ED2[];
