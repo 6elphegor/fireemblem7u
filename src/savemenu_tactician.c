@@ -368,8 +368,25 @@ void TactInfo_UpdateSaveData(struct ProcTactInfo *proc)
 	WriteGameSave(ReadLastGameSaveId());
 }
 
-void TactInfo_CheckParticipantDialogue(struct ProcTactInfo *proc);
-ASM_FUNC("asm/nonmatching/code_080A6CD0.s");
+void TactInfo_CheckParticipantDialogue(struct ProcTactInfo *proc)
+{
+	if (gPlaySt.chapterModeIndex == 1) {
+		Proc_Goto(proc, PL_TACTINFO_0);
+		return;
+	}
+
+	InitBgs(NULL);
+	ApplySystemObjectsGraphics();
+	SetBlendNone();
+	SetDispEnable(1, 1, 1, 1, 1);
+
+	/**
+	 * 軍師を参加させますか？
+	 */
+	StartBoxDialogueExt(0x38, 0x20, 0x794, OBJ_VRAM0 + 0x6000, 0xD, proc);
+	SetDialogueBoxConfig(0xF0);
+	SetTalkChoiceResult(TALK_RESULT_NO);
+}
 
 
 void TactInfo_HandleCheckParticipantPrompt(struct ProcTactInfo *proc)
