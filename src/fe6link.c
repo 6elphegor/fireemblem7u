@@ -3,6 +3,18 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+extern const u8 gUnknown_081D245C[];
+extern const u16 gUnknown_081D26E0[];
+extern const u8 gUnknown_081D2700[];
+extern const u16 gUnknown_081D2B1C[];
+extern const u8 gUnknown_081D258C[];
+extern const u8 gUnknown_081D2628[];
+extern const u8 gUnknown_081CE25C[];
+extern const u8 gUnknown_081D1DF8[];
+extern const u16 gUnknown_081D235C[];
+extern const u8 gFe6LinkMultiBootImage[];
+extern const u8 gFe6LinkMultiBootImageEnd[];
+
 extern struct MultiBootParam gMultiBootParam;
 extern u8 * gMultiBootSrcp;
 extern int gMultiBootLength;
@@ -91,14 +103,84 @@ extern u8 gUnk_Sio_02000C1C[];
 void ReadFe6LinkSaveInfo(void * buf);
 
 extern u8 gUnk_Sio_02000C00[];
-extern const char gUnknown_081D546C[]; // "END"
 
 void sub_0800530C(int a, int b, const char * str);
 void SoundVSyncOn_rev01(void);
 void SoundVSyncOff_rev01(void);
 void LoadHelpBoxGfx(void * vram, int palId);
 
-ASM_FUNC("asm/nonmatching/code_080431E0.s");
+void Sio_DrawFe6CommImage(struct Fe6LinkProc * proc)
+{
+    int i;
+    u16 * tm;
+
+    u16 bgConfig[] =
+    {
+        0x0000, 0x6000, 0,
+        0x0000, 0x6800, 0,
+        0x0000, 0x7000, 0,
+        0x8000, 0x7800, 0,
+    };
+
+    InitBgs(bgConfig);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    sub_08047CA8();
+
+    Decompress(gUnknown_081D245C, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
+    ApplyPalette(gUnknown_081D26E0, 4);
+
+    Decompress(gUnknown_081D2700, (void *)0x06014000);
+    ApplyPalette(gUnknown_081D2B1C, 0x13);
+
+    TmApplyTsa_thm(gBg1Tm, gUnknown_081D258C, 0x4060);
+    TmApplyTsa_thm(gBg1Tm + TM_OFFSET(0, 17), gUnknown_081D2628, 0x4060);
+
+    Decompress(gUnknown_081CE25C, (void *)(GetBgChrOffset(BG_3) + 0x06000000));
+
+    Decompress(gUnknown_081D1DF8, gBg3Tm);
+    ApplyPalettes(gUnknown_081D235C, 7, 8);
+
+    tm = gBg3Tm;
+
+    for (i = 0; i < 0x280; i++)
+        *tm++ += 0x7000;
+
+    Proc_Start(ProcScr_08B99870, proc);
+
+    SetTextFont(&Font_0203DB64);
+    InitSystemTextFont();
+    ResetTextFont();
+
+    InitText(&gSioTexts[0], 24);
+    ClearText(&gSioTexts[0]);
+    Text_InsertDrawString(&gSioTexts[0], 0, 0, DecodeMsg(0x118D));
+    PutText(&gSioTexts[0], gBg0Tm + TM_OFFSET(7, 18));
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG3_SYNC_BIT);
+
+    SetBgOffset(0, 0, 4);
+
+    SetBlendAlpha(8, 8);
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    SoundVSyncOff_rev01();
+
+    gMultiBootSrcp = (u8 *)gFe6LinkMultiBootImage;
+    gMultiBootLength = gFe6LinkMultiBootImageEnd - gFe6LinkMultiBootImage;
+    gMultiBootParam.masterp = (u8 *)gFe6LinkMultiBootImage;
+    gMultiBootParam.server_type = 0;
+
+    MultiBootInit(&gMultiBootParam);
+
+    gSioSt->playerStatus[0] = 4;
+    proc->unk_64 = 0;
+}
 void FE6Link_Loop(struct Fe6LinkProc * proc)
 {
     int i;
@@ -199,7 +281,7 @@ void FE6Link_OnEnd(void)
 }
 void sub_08043604(void)
 {
-    sub_0800530C(8, 16, gUnknown_081D546C);
+    sub_0800530C(8, 16, "END");
 }
 bool sub_08043618(void * data)
 {
