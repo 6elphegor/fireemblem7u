@@ -3,6 +3,20 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+struct Fe6LinkMsgEnt
+{
+    /* 00 */ u16 msg;
+    /* 02 */ u16 unk_02;
+};
+
+extern const struct Fe6LinkMsgEnt gUnknown_08B99894[];
+extern struct Text gUnk_Sio_02000C40[];
+extern struct Text gUnk_Sio_02000C58;
+extern const u8 gUnknown_081D2B3C[];
+extern const u16 gUnknown_081D3598[];
+
+void sub_08043828(struct Text * th, int a, int b, int color);
+
 extern struct ProcCmd CONST_DATA ProcScr_08B9998C[];
 extern struct ProcCmd CONST_DATA ProcScr_08B99870[];
 extern struct ProcCmd CONST_DATA ProcScr_08B999D8[];
@@ -12,7 +26,10 @@ void sub_080ACA90(ProcPtr proc);
 struct Fe6LinkProc
 {
     /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x44);
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ int unk_2c[3];
+    /* 38 */ s16 unk_38[3];
+    /* 3E */ s16 unk_3e[3];
     /* 44 */ int unk_44;
     /* 48 */ int unk_48;
     /* 4C */ int unk_4c;
@@ -181,8 +198,28 @@ bool sub_08043788(void * data)
 }
 ASM_FUNC("asm/nonmatching/code_08043798.s");
 ASM_FUNC("asm/nonmatching/code_08043828.s");
-ASM_FUNC("asm/nonmatching/code_0804397C.s");
-ASM_FUNC("asm/nonmatching/code_080439D0.s");
+void sub_0804397C(struct Text * th, int color, int idx)
+{
+    const struct Fe6LinkMsgEnt * table = gUnknown_08B99894;
+    const struct Fe6LinkMsgEnt * ent = &table[idx];
+    int flag = ent->unk_02;
+    int x;
+
+    sub_08043828(th, flag, 1, color);
+
+    x = (0x46 - GetStringTextLen(DecodeMsg(ent->msg))) / 2;
+
+    if (flag == 0)
+        x -= 0x20;
+
+    Text_InsertDrawString(th, x + 0x28, color, DecodeMsg(ent->msg));
+}
+void sub_080439D0(struct Text * th)
+{
+    Text_InsertDrawString(th, 0, 0, DecodeMsg(0x1191));
+    Text_InsertDrawString(th, 0x80, 0, DecodeMsg(1));
+    Text_InsertDrawString(th, 0xB0, 0, DecodeMsg(2));
+}
 ASM_FUNC("asm/nonmatching/code_08043A14.s");
 ASM_FUNC("asm/nonmatching/code_08043B1C.s");
 ASM_FUNC("asm/nonmatching/code_08043C0C.s");
