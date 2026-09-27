@@ -560,7 +560,7 @@ void StartTrapDamageMapAnim(void)
 
 void PostTrapExecFlag(void)
 {
-    if (CheckChapterFlag(0x65))
+    if (CheckPermanentFlag(0x65))
         StartEvent(gEvent_GameOver);
 }
 

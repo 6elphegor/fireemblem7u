@@ -97,11 +97,11 @@ bool sub_08079104(void);
 // nullsub_67
 // nullsub_68
 // SetChapterFlag
-// CheckPermanentFlag
+// CheckChapterFlag
 // ClearChapterFlag
 void ResetChapterFlags(void);
 // SetPermanentFlag
-// CheckChapterFlag
+// CheckPermanentFlag
 // ClearPermanentFlag
 void ResetPermanentFlags(void);
 void SetFlag(int flag);

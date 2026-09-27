@@ -162,8 +162,8 @@ extern struct HardBonusLevelEnt const gHardBonusLevelList[];
 extern u8 const gUnk_08CA0538[];
 
 int IsTutorialDisabled(void);
-bool8 CheckChapterFlag(int flag);
-bool CheckPermanentFlag(int flag);
+bool8 CheckPermanentFlag(int flag);
+bool CheckChapterFlag(int flag);
 
 void sub_0800ADB8(void);
 void sub_0800F028(u8 mapChangeId);
@@ -1653,7 +1653,7 @@ void SetChapterFlag(int flag)
     gChapterFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
 }
 
-bool CheckPermanentFlag(int flag)
+bool CheckChapterFlag(int flag)
 {
     if (flag == 0)
         return FALSE;
@@ -1700,7 +1700,7 @@ void SetPermanentFlag(int flag)
     gPermanentFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
 }
 
-bool8 CheckChapterFlag(int flag)
+bool8 CheckPermanentFlag(int flag)
 {
     if (flag < 100 || flag == 100)
         return FALSE;
@@ -1748,9 +1748,9 @@ void SetFlag(int flag)
 bool CheckFlag(int flag)
 {
     if (flag < 100)
-        return CheckPermanentFlag(flag);
-    else
         return CheckChapterFlag(flag);
+    else
+        return CheckPermanentFlag(flag);
 }
 
 void ClearFlag(int flag)
