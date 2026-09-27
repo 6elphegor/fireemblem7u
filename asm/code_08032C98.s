@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08032C98
-sub_08032C98: @ 0x08032C98
+	thumb_func_start StatusHealEffect_PalSpriteAnim_Init
+StatusHealEffect_PalSpriteAnim_Init: @ 0x08032C98
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r2, #0

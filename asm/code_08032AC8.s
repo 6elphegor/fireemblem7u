@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08032AC8
-sub_08032AC8: @ 0x08032AC8
+	thumb_func_start StatusHealEffect_OverlayBg_Loop
+StatusHealEffect_OverlayBg_Loop: @ 0x08032AC8
 	push {r4, lr}
 	ldr r1, _08032AF8 @ =0x0202BBB8
 	ldr r0, _08032AFC @ =0x03004690

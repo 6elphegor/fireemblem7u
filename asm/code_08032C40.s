@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08032C40
-sub_08032C40: @ 0x08032C40
+	thumb_func_start StatusHealEffect_BlendSpriteAnim_Loop
+StatusHealEffect_BlendSpriteAnim_Loop: @ 0x08032C40
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r2, [r4, #0x2c]

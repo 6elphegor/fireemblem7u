@@ -182,9 +182,9 @@ void StartUnitInventoryInfoWindow(ProcPtr parent);
 void StartSubtitleHelp(ProcPtr parent, const char * str);
 void RefreshUnitStealInventoryInfoWindow(struct Unit * unit);
 s8 IsItemStealable(int item);
-void sub_08031DFC(ProcPtr parent);   /* StartUnitHpInfoWindow */
-void sub_0803202C(ProcPtr parent);   /* RefreshUnitTakeRescueInfoWindows */
-void sub_080321E0(ProcPtr parent);   /* StartUnitGiveInfoWindows */
+void StartUnitHpInfoWindow(ProcPtr parent);   /* StartUnitHpInfoWindow */
+void RefreshUnitTakeRescueInfoWindows(ProcPtr parent);   /* RefreshUnitTakeRescueInfoWindows */
+void StartUnitGiveInfoWindows(ProcPtr parent);   /* StartUnitGiveInfoWindows */
 void RefreshUnitHpInfoWindow(struct Unit * unit);
 void RefreshUnitRescueInfoWindows(struct Unit * unit);
 void RefreshUnitGiveInfoWindows(struct Unit * unit);

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080331B0
-sub_080331B0: @ 0x080331B0
+	thumb_func_start TrapDamageDisplay_Watch
+TrapDamageDisplay_Watch: @ 0x080331B0
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x4c
