@@ -127,9 +127,6 @@ SECTIONS
         build/src/eventscr2.o(.text);
         build/src/eventscr3.o(.text);
         build/src/eventscr4.o(.text);
-        build/asm/code_0800FD90.o(.text);
-        build/asm/code_0800FE18.o(.text);
-        build/asm/code_0800FE80.o(.text);
         build/asm/code_0800FEF0.o(.text);
         build/asm/code_0800FF94.o(.text);
         build/asm/code_0800FFD0.o(.text);

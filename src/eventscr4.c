@@ -58,6 +58,10 @@ bool IsTactFemale(void);
 void StartNoBoxTalk(ProcPtr parent);
 void StartTutorialCursors(int kind);
 void SetkeyStIgnoredMask(int mask);
+void StartEventWarpAnim(ProcPtr parent, int x, int y, s8 kind, s8 flag);
+void StartWarpEffect_08020A64(ProcPtr parent, int x, int y, s8 kind);
+int sub_080B6278(int x);
+int sub_080B6288(int y);
 
 extern struct FaceVramEnt CONST_DATA gFaceConfig_08B91AB8[];
 extern EventScr CONST_DATA EventScr_08B91AD8[];
@@ -1067,4 +1071,58 @@ int sub_0800FD7C(struct EventProc * proc)
     proc->script_start = script;
 
     return EVENT_CMDRET_JUMPED;
+}
+
+int EventCD_Warp(struct EventProc * proc)
+{
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    u16 y_raw = EVT_ARG_U16(proc, 3);
+    int y = y_raw & 0x8000 ? -1 : y_raw;
+    int kind = proc->script[2];
+    u16 skipped = proc->flags & EVENT_FLAG_SKIPPED;
+
+    if (skipped)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+        StartEventWarpAnim(proc, x, y, kind, skipped);
+    else
+        StartEventWarpAnim(proc, x, y, kind, 1);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_0800FE18(struct EventProc * proc)
+{
+    int kind = proc->script[2];
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+    u16 skipped;
+    int x, y;
+
+    if ((skipped = proc->flags & EVENT_FLAG_SKIPPED))
+        return EVENT_CMDRET_CONTINUE;
+
+    x = unit->xPos;
+    y = unit->yPos;
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+        StartEventWarpAnim(proc, x, y, kind, skipped);
+    else
+        StartEventWarpAnim(proc, x, y, kind, 1);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_0800FE80(struct EventProc * proc)
+{
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    u16 y_raw = EVT_ARG_U16(proc, 3);
+    int y = y_raw & 0x8000 ? -1 : y_raw;
+    int kind = proc->script[2];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    StartWarpEffect_08020A64(proc, sub_080B6278(x) - 0x10, sub_080B6288(y) - 0x28, kind);
+    return EVENT_CMDRET_YIELD;
 }
