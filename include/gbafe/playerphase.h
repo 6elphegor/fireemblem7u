@@ -91,7 +91,7 @@ void GetMovementScriptFromPath(void);
 void MU_SetDefaultFacing_Auto(void);                            // SetAutoMuDefaultFacing
 bool MuExistsActive(void);
 void SetAutoMuMoveScript(u8 const * script);
-bool sub_08026064(int x, int y);                               // IsUnitSpriteHoverEnabledAt
+bool IsUnitSpriteHoverEnabledAt(int x, int y);                               // IsUnitSpriteHoverEnabledAt
 void sub_08032770(ProcPtr proc);
 void sub_08078FC8(void);                                        // TryCallSelectEvents
 s8 sub_08079004(void);                                          // StartAfterUnitMovedEvent

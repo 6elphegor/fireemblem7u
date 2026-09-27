@@ -71,6 +71,17 @@ extern u16 CONST_DATA sSprite_StatusUpIcon[];
 void * memcpy(void * dst, const void * src, unsigned long n);
 u8 GetUnitSpriteHideFlag(struct Unit * unit);
 
+extern int gMapSpriteSwitchHoverTimer;
+
+extern u16 CONST_DATA sSprite_16x16_Blend[];
+extern u16 CONST_DATA sSprite_16x32_Blend[];
+extern u16 CONST_DATA sSprite_32x32_Blend[];
+extern u16 CONST_DATA sSprite_16x16_Window[];
+extern u16 CONST_DATA sSprite_16x32_Window[];
+extern u16 CONST_DATA sSprite_32x32_Window[];
+
+int GetClassSMSId(int jid);
+
 void IncUnitSpriteSyncFlag(void)
 {
     gSMSSyncFlag++;
@@ -846,4 +857,246 @@ void PutUnitSpriteIconsOam(void)
             PutOamHiRam(OAM1_X(0x200 + x + 9), OAM0_Y(0x100 + y + 7), Sprite_8x8, 0x811);
         }
     }
+}
+
+void ResetUnitSpriteHoverCursor(void)
+{
+    gBmSt.cursor_previous.x = -1;
+}
+
+void ResetUnitSpriteHover(void)
+{
+    gMapSpriteSwitchHoverTimer = 0;
+}
+
+ASM_FUNC("asm/nonmatching/code_08025FA8.s");
+
+bool IsUnitSpriteHoverEnabledAt(int x, int y)
+{
+    struct Unit * unit = GetUnit(gBmMapUnit[y][x]);
+
+    if (!unit)
+        return FALSE;
+
+    if (unit->state & US_UNSELECTABLE)
+        return FALSE;
+
+    if (UNIT_FACTION(unit) != FACTION_BLUE)
+        return FALSE;
+
+    if (unit->statusIndex != UNIT_STATUS_BERSERK && unit->statusIndex != UNIT_STATUS_SLEEP)
+        return TRUE;
+
+    return FALSE;
+}
+
+void PutUnitSprite(int layer, int x, int y, struct Unit * unit)
+{
+    u32 id = GetUnitSMSId(unit);
+    int chr = UseUnitSprite(id);
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -32 || y > DISPLAY_HEIGHT)
+        return;
+
+    switch (GetInfo(id).size)
+    {
+    case UNIT_ICON_SIZE_16x16:
+        PutSprite(layer, x, y, Sprite_16x16, (GetUnitDisplayedSpritePalette(unit) & 0xf) * 0x1000 + 0x880 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_16x32:
+        PutSprite(layer, x, y - 16, Sprite_16x32, (GetUnitDisplayedSpritePalette(unit) & 0xf) * 0x1000 + 0x880 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_32x32:
+        PutSprite(layer, x - 8, y - 16, Sprite_32x32, (GetUnitDisplayedSpritePalette(unit) & 0xf) * 0x1000 + 0x880 + chr);
+        break;
+    }
+}
+
+void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class)
+{
+    u32 id = GetClassSMSId(class);
+    int chr = UseUnitSprite(id) + 0x80;
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -32 || y > DISPLAY_HEIGHT)
+        return;
+
+    switch (GetInfo(id).size)
+    {
+    case UNIT_ICON_SIZE_16x16:
+        PutSprite(layer, x, y, Sprite_16x16, oam2 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_16x32:
+        PutSprite(layer, x, y - 16, Sprite_16x32, oam2 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_32x32:
+        PutSprite(layer, x - 8, y - 16, Sprite_32x32, oam2 + chr);
+        break;
+    }
+}
+
+void sub_08026250(int layer, int x, int y, int class)
+{
+    u32 id = GetClassSMSId(class);
+    int chr = UseUnitSprite(id) + 0x80;
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -32 || y > DISPLAY_HEIGHT)
+        return;
+
+    switch (GetInfo(id).size)
+    {
+    case UNIT_ICON_SIZE_16x16:
+        PutSpriteExt(layer, x, y + OAM0_WINDOW, Sprite_16x16, chr);
+        break;
+
+    case UNIT_ICON_SIZE_16x32:
+        PutSpriteExt(layer, x, OAM0_Y(y - 16) + OAM0_WINDOW, Sprite_16x32, chr);
+        break;
+
+    case UNIT_ICON_SIZE_32x32:
+        PutSpriteExt(layer, OAM1_X(x - 8), OAM0_Y(y - 16) + OAM0_WINDOW, Sprite_32x32, chr);
+        break;
+    }
+}
+
+void sub_08026308(int layer, int x, int y, u16 oam2, int class, int idx)
+{
+    u32 id = GetClassSMSId(class);
+    int chr = gSomeSMSLookupTable[idx] + 1;
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -32 || y > DISPLAY_HEIGHT)
+        return;
+
+    switch (GetInfo(id).size)
+    {
+    case UNIT_ICON_SIZE_16x16:
+    case UNIT_ICON_SIZE_16x32:
+        PutSprite(layer, x, y - 16, Sprite_16x32, (oam2) + chr);
+        break;
+
+    case UNIT_ICON_SIZE_32x32:
+        PutSprite(layer, x - 8, y - 16, Sprite_32x32, (oam2) + chr);
+        break;
+    }
+}
+
+void sub_080263A0(int layer, int x, int y, int oam2, struct Unit * unit)
+{
+    u32 id = GetUnitSMSId(unit);
+    int chr = UseUnitSprite(id) + 0x80;
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -32 || y > DISPLAY_HEIGHT)
+        return;
+
+    switch (GetInfo(id).size)
+    {
+    case UNIT_ICON_SIZE_16x16:
+        PutSprite(layer, x, y, Sprite_16x16, oam2 + (GetUnitSpritePalette(unit) & 0xf) * 0x1000 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_16x32:
+        PutSprite(layer, x, y - 16, Sprite_16x32, oam2 + (GetUnitSpritePalette(unit) & 0xf) * 0x1000 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_32x32:
+        PutSprite(layer, x - 8, y - 16, Sprite_32x32, oam2 + (GetUnitSpritePalette(unit) & 0xf) * 0x1000 + chr);
+        break;
+    }
+}
+
+void PutBlendWindowUnitSprite(int layer, int x, int y, int oam2, struct Unit * unit)
+{
+    u32 id = GetUnitSMSId(unit);
+    int chr = UseUnitSprite(id) + 0x80;
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -32 || y > DISPLAY_HEIGHT)
+        return;
+
+    switch (GetInfo(id).size)
+    {
+    case UNIT_ICON_SIZE_16x16:
+        PutSprite(layer, x, y, sSprite_16x16_Blend, oam2 + chr);
+        PutSprite(layer, x, y, sSprite_16x16_Window, oam2 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_16x32:
+        PutSprite(layer, x, y - 16, sSprite_16x32_Blend, oam2 + chr);
+        PutSprite(layer, x, y - 16, sSprite_16x32_Window, oam2 + chr);
+        break;
+
+    case UNIT_ICON_SIZE_32x32:
+        PutSprite(layer, x - 8, y - 16, sSprite_32x32_Blend, oam2 + chr);
+        PutSprite(layer, x - 8, y - 16, sSprite_32x32_Window, oam2 + chr);
+        break;
+    }
+}
+
+void ClearUnitSpriteHandles(void)
+{
+    gSMSHandleArray[0].pNext = NULL;
+}
+
+void HideUnitSprite(struct Unit * unit)
+{
+    if (!unit)
+        RefreshUnitSprites();
+
+    if (!unit->pMapSpriteHandle)
+        return;
+
+    unit->pMapSpriteHandle->config |= 0x80;
+}
+
+void ShowUnitSprite(struct Unit * unit)
+{
+    if (!unit->pMapSpriteHandle)
+        return;
+
+    unit->pMapSpriteHandle->config &= ~(0x80);
+}
+
+u8 GetUnitSpriteHideFlag(struct Unit * unit)
+{
+    if (!unit->pMapSpriteHandle)
+        return 0x80;
+
+    return unit->pMapSpriteHandle->config & 0x80;
+}
+
+void sub_080265C0(u32 (*r8)[1][1], int r5, int r9, int d)
+{
+    int i, j;
+    int r6 = sTornOutPixelLut[d];
+
+    for (i = 0; i < r9; i++)
+    {
+        for (j = 0; j < r5; j++)
+        {
+            u32 ip = ~(0xf << ((r6 & 7) << 2));
+            r8[8 * j][0x100 * i][r6 >> 3] &= ip;
+        }
+    }
+
+    return;
 }

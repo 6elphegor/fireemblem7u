@@ -26,10 +26,10 @@ void RefreshUnitSprites(void);
 void PutUnitSpritesOam(void);
 // ??? PutChapterMarkedTileIconOam
 void PutUnitSpriteIconsOam(void);
-// ??? sub_08025F8C
+// ??? ResetUnitSpriteHoverCursor
 // ??? sub_8026428
 void UnitSpriteHoverUpdate(void);
-// ??? sub_08026064
+// ??? IsUnitSpriteHoverEnabledAt
 // ??? PutUnitSprite
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 // ??? PutUnitSpriteForClassId
