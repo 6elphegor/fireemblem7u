@@ -113,7 +113,131 @@ void sub_808EB0C(struct CgTextMainProc * proc)
         Decompress(gUnknown_0819D174, (void *)0x06017A00);
     }
 }
-ASM_FUNC("asm/nonmatching/code_08087690.s");
+void CgText_Init(struct CgTextMainProc * proc)
+{
+    int i;
+    int x;
+    int y;
+
+    int width = 0;
+    int height = 0;
+
+    proc->pauseTimer = 0;
+    proc->blendAmt = 0;
+
+    if (GetCgTextFlags() >> 0xb & 7)
+        proc->displaySpeed = ((GetCgTextFlags() >> 0xb) & 7) - 1;
+    else
+        proc->displaySpeed = GetTextPrintDelay();
+
+    proc->unk_60 = 0;
+
+    proc->numCharsVisible = (proc->displaySpeed != 0) ? 1 : INT8_MAX;
+
+    proc->thIndex = 0;
+    proc->unk_5e = 0;
+
+    sub_808EB0C(proc);
+
+    if ((proc->boxWidth < 0) || (proc->boxHeight < 0))
+    {
+        SetTextFontGlyphs(TEXT_GLYPHS_TALK);
+        GetCgTextBoxDimensions(proc->str, &width, &height);
+        SetTextFontGlyphs(TEXT_GLYPHS_SYSTEM);
+
+        proc->boxWidth = (width + 7) / 8;
+        proc->boxHeight = height / 8;
+    }
+
+    if (!(GetCgTextFlags() & CG_TEXT_FLAG_0))
+    {
+        y = proc->y - proc->boxHeight - 1;
+
+        if (GetCgTextFlags() & CG_TEXT_FLAG_1)
+        {
+            x = proc->x - proc->boxWidth - 2;
+            PutTalkBubbleTm(
+                GetCgTextBg(GetCgTextFlags()), proc->x - proc->boxWidth - 2, proc->y - proc->boxHeight - 1,
+                proc->boxWidth + 2, proc->boxHeight + 2);
+
+            if (!(GetCgTextFlags() & CG_TEXT_FLAG_10))
+            {
+                int kind = (GetCgTextFlags() & CG_TEXT_FLAG_18) ? 5 : 3;
+                PutTalkBubbleTail(GetCgTextBg(GetCgTextFlags()), proc->x - 1, proc->y - 2, kind);
+            }
+        }
+        else
+        {
+            x = proc->x + 1;
+            PutTalkBubbleTm(
+                GetCgTextBg(GetCgTextFlags()), proc->x + 1, proc->y - proc->boxHeight - 1,
+                proc->boxWidth + 2, proc->boxHeight + 2);
+
+            if (!(GetCgTextFlags() & CG_TEXT_FLAG_10))
+            {
+                int kind = (GetCgTextFlags() & CG_TEXT_FLAG_18) ? 5 : 2;
+                PutTalkBubbleTail(GetCgTextBg(GetCgTextFlags()), proc->x, proc->y - 2, kind);
+            }
+        }
+
+        if (GetCgTextFlags() & CG_TEXT_FLAG_16)
+        {
+            u16 * bg = GetBgTilemap(GetCgTextBg(GetCgTextFlags()));
+            TmFillRect_thm(bg + y * 0x20 + x, proc->unk_61 + 6, 0, 0);
+        }
+
+        EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+    }
+
+    sub_808F3D8(proc);
+    StartParallelWorker(sub_808F5C8, proc);
+
+    SetTextFont(proc->pFont);
+    SetTextFontGlyphs(TEXT_GLYPHS_TALK);
+
+    for (i = 0; i <= proc->boxHeight / 2; i++)
+    {
+        InitSpriteText(proc->pTexts[i]);
+        Text_SetColor(proc->pTexts[i], 0xb);
+    }
+
+    CgText_ClearSpriteText(proc);
+    SetTextFont(NULL);
+
+    if (GetCgTextFlags() & CG_TEXT_FLAG_0)
+    {
+        Proc_Goto(proc, 3);
+    }
+    else
+    {
+        if (GetCgTextFlags() & CG_TEXT_FLAG_7)
+        {
+            SetCgTextBlendAlpha(0x10, 1);
+            Proc_Goto(proc, 3);
+        }
+        else
+        {
+            SetCgTextBlendAlpha(0, 0x10);
+        }
+
+        if (GetCgTextFlags() & CG_TEXT_FLAG_16)
+            gCgTextSt.unk_48_00 = proc->y - 5;
+        else
+            gCgTextSt.unk_48_00 = proc->y - 1;
+
+        gCgTextSt.unk_48_05 = proc->boxHeight + proc->y + 1;
+
+        SetCgTextBlendControl(1 << GetCgTextBg(GetCgTextFlags()), 1 << GetCgTextBg(GetCgTextFlags()) ^ 0x1f);
+
+        if (!(GetCgTextFlags() & CG_TEXT_FLAG_19))
+        {
+            SetOnHBlankB(NULL);
+            SetOnHBlankB(CgText_OnHBlank);
+        }
+    }
+
+    SetBgOffset(GetCgTextBg(GetCgTextFlags()), 0, 0);
+}
 void CgText_InitBlendAmt(struct CgTextMainProc * proc)
 {
     proc->blendAmt = 0;
