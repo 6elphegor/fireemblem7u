@@ -2791,3 +2791,7 @@ sMsgString = 0x0202A5B4;
 sActiveMsg = 0x0202B5B4;
 gMsgTable = 0x08B808AC;
 gArticleStrTable = 0x08B928A4;
+gSprite_UiSpinningArrows_Horizontal = 0x08CE4A28;
+gSprite_UiSpinningArrows_Vertical = 0x08CE4A36;
+gProcScr_UiSpinningArrows = 0x08CE4A40;
+Img_SpinningArrow = 0x0840D150;

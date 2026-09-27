@@ -1437,14 +1437,7 @@ SECTIONS
         build/src/savemenu_modeselect.o(.text);
         build/src/scrolling_util.o(.text);
         build/src/cursor-hand.o(.text);
-        build/asm/code_080A8B08.o(.text);
-        build/asm/code_080A8B28.o(.text);
-        build/asm/code_080A8CD4.o(.text);
-        build/asm/code_080A8CE8.o(.text);
-        build/asm/code_080A8D54.o(.text);
-        build/asm/code_080A8D70.o(.text);
-        build/asm/code_080A8D98.o(.text);
-        build/asm/code_080A8DD0.o(.text);
+        build/src/spinning_arrow.o(.text);
         build/src/sysutil.o(.text);
         build/asm/code_080AAAA8.o(.text);
         build/asm/code_080AABD0.o(.text);
