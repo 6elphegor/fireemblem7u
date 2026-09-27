@@ -56,7 +56,7 @@ $(ELF): $(C_OBJS) build/asm.a build/data.o build/fe7u.ld $(LAYOUT) symbols.ld
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
-build/src/mu.o: CFLAGS += -O0
+build/src/mu.o build/src/bmshop.o: CFLAGS += -O0
 build/src/agb-sram.o: CFLAGS += -O1
 
 build/src/%.o: src/%.c
