@@ -21,7 +21,7 @@ u8 SaveMenuModifySaveSlot(u8 slot, int a, int b);
 s8 SaveMenuTryMoveSaveSlotCursor(struct SaveMenuProc * proc, int dir);
 void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, int flag);
 void SaveMenuWriteNewGame(struct SaveMenuProc * proc);
-void sub_080A3CAC(struct SaveMenuProc * proc);
+void ExecSaveMenuMiscOption(struct SaveMenuProc * proc);
 s8 sub_080A6220(struct SaveMenuProc * proc);
 s8 sub_080A474C(struct SaveMenuProc * proc, int direction);
 void sub_080A4830(int x, int y, int msgId, ProcPtr parent);
@@ -164,7 +164,7 @@ void SaveMenu_StartHelpBox(struct SaveMenuProc * proc)
 }
 
 
-int sub_080A3474(int slot)
+int LoadSaveMenuHelpText(int slot)
 {
     struct PlaySt playSt;
 
@@ -208,7 +208,7 @@ bool SaveMenuPostChapterHandleHelpBox(struct SaveMenuProc * proc)
     }
     else if (gpKeySt->pressed & R_BUTTON)
     {
-        switch (sub_080A3474(proc->copy_from_id))
+        switch (LoadSaveMenuHelpText(proc->copy_from_id))
         {
         case 0:
             PlaySoundEffect(0x38C);
@@ -250,7 +250,7 @@ void SaveMenuPutChapterTitle(struct SaveMenuProc * proc)
             PutChapterTitleGfx(((0xB40 * 0x20 + (0x800 * (u32) i)) & 0x1FFFF) / 0x20, -1);
     }
 }
-void sub_080A3630(void)
+void SaveMenu_Init(void)
 {
     InitBgs(BgConfig_SaveMenu);
     ResetText();
@@ -499,7 +499,7 @@ void SaveMenuWriteNewGame(struct SaveMenuProc * proc)
 
     WriteNewGameSave(proc->copy_from_id, isDifficult, mode);
 }
-void sub_080A3CAC(struct SaveMenuProc * proc)
+void ExecSaveMenuMiscOption(struct SaveMenuProc * proc)
 {
     if (proc->unk_36 == 0)
     {
@@ -615,7 +615,7 @@ void sub_080A3CAC(struct SaveMenuProc * proc)
     SaveMenuDrawSubSelBox(proc, 0);
     SaveMenu_StartHelpBox(proc);
 }
-void sub_080A3E98(struct SaveMenuProc * proc)
+void SaveMenu_SaveSlotSelectLoop(struct SaveMenuProc * proc)
 {
     proc->unk_2E = 5;
 
@@ -663,7 +663,7 @@ void sub_080A3E98(struct SaveMenuProc * proc)
         case 0x02:
             if (proc->unk_3F != (u8) -1)
             {
-                sub_080A3CAC(proc);
+                ExecSaveMenuMiscOption(proc);
                 return;
             }
 
@@ -689,13 +689,13 @@ void sub_080A3E98(struct SaveMenuProc * proc)
                 break;
 
             PlaySoundEffect(0x38A);
-            sub_080A3CAC(proc);
+            ExecSaveMenuMiscOption(proc);
             return;
 
         case 0x04:
         case 0x08:
         case 0x40:
-            sub_080A3CAC(proc);
+            ExecSaveMenuMiscOption(proc);
             return;
 
         default:
@@ -736,16 +736,16 @@ void sub_080A3E98(struct SaveMenuProc * proc)
         Proc_Goto(proc, 4);
     }
 }
-void sub_080A40EC(struct SaveMenuProc * proc)
+void _ExecSaveMenuMiscOption(struct SaveMenuProc * proc)
 {
-    sub_080A3CAC(proc);
+    ExecSaveMenuMiscOption(proc);
 }
 void SaveMenuRegisterSlotSelected(struct SaveMenuProc * proc)
 {
     proc->unk_2E = 6;
     proc->anim_clock = 0;
 }
-void sub_080A4108(struct SaveMenuProc * proc)
+void SaveMenuWaitSlotBoxScrolling(struct SaveMenuProc * proc)
 {
     if (proc->anim_clock == 8)
     {
@@ -832,7 +832,7 @@ void sub_080A4108(struct SaveMenuProc * proc)
 
     proc->anim_clock++;
 }
-void sub_080A43E0(struct SaveMenuProc * proc)
+void SaveMenuScrollSlot(struct SaveMenuProc * proc)
 {
     int unk;
 
@@ -845,7 +845,7 @@ void sub_080A43E0(struct SaveMenuProc * proc)
     if (proc->anim_clock == 0xe)
         Proc_Break(proc);
 }
-void sub_080A4428(struct SaveMenuProc * proc)
+void SaveMenuScrollBackToMain(struct SaveMenuProc * proc)
 {
     int unk;
 
@@ -1084,7 +1084,7 @@ void sub_080A4850(struct SaveMenuProc * proc)
                     return;
                 }
 
-                sub_080A3CAC(proc);
+                ExecSaveMenuMiscOption(proc);
                 return;
             }
 
@@ -1102,7 +1102,7 @@ void sub_080A4850(struct SaveMenuProc * proc)
                     return;
                 }
 
-                sub_080A3CAC(proc);
+                ExecSaveMenuMiscOption(proc);
                 return;
             }
 
@@ -1135,7 +1135,7 @@ void sub_080A4A0C(struct SaveMenuProc * proc)
     StartSqMask(proc, 1, 2);
     Proc_Break(proc);
 }
-void sub_080A4A24(struct SaveMenuProc * proc)
+void PostSaveMenuHandler(struct SaveMenuProc * proc)
 {
     if (proc->approc != NULL)
         EndSpriteAnimProc(proc->approc);
@@ -1178,7 +1178,7 @@ void sub_080A4A24(struct SaveMenuProc * proc)
         SetNextGameAction(0);
     }
 }
-void sub_080A4ADC(struct SaveMenuProc * proc)
+void SaveMenuStartExtraMiscScreen(struct SaveMenuProc * proc)
 {
     proc->action_flag = 0x20;
 
@@ -1227,7 +1227,7 @@ void SaveMenuPostExtraMiscScreen(struct SaveMenuProc * proc)
         return;
     }
 }
-void sub_080A4B7C(struct SaveMenuProc * proc)
+void SaveMenu_ResetLcdFormDifficulty(struct SaveMenuProc * proc)
 {
     proc->anim_clock = 0;
 
@@ -1273,7 +1273,7 @@ void sub_080A4C34(struct SaveMenuProc * proc)
     if (proc->anim_clock == 0x10)
         Proc_Break(proc);
 }
-void sub_080A4C94(struct SaveMenuProc * proc)
+void SaveMenu_ReloadScreenFormDifficulty(struct SaveMenuProc * proc)
 {
     SetBgOffset(1, 0, 0);
     TmFill(gBg1Tm, 0);
@@ -1304,24 +1304,24 @@ void sub_080A4C94(struct SaveMenuProc * proc)
         proc->unk_2F = 0xdc;
     }
 }
-void sub_080A4D54(struct SaveMenuProc * proc)
+void SaveMenu_PostDifficultHandler(struct SaveMenuProc * proc)
 {
     if (proc->unk_2A == 3)
         Proc_Goto(proc, 2);
     else
         Proc_Goto(proc, 5);
 }
-void sub_080A4D74(struct SaveMenuProc * proc)
+void SaveMenuSlotSelDrawSprite(struct SaveMenuProc * proc)
 {
     if (!(proc->action_flag & 0x10))
         StartHelpPromptSprite(0xc0, 8, proc);
 }
-void sub_080A4D94(struct SaveMenuProc * proc)
+void SaveMenuStartBonusClaim(struct SaveMenuProc * proc)
 {
     if (proc->unk_35 == 0x20)
         sub_080A511C(proc);
 }
-void sub_080A4DA8(void)
+void SaveMenu_EndHelpPromptSprite(void)
 {
     EndHelpPromptSprite();
 }

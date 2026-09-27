@@ -77,7 +77,7 @@ u8 SaveMenuIndexToValidBitfile(u8 byte, int num);
 u8 SaveMenuGetBitfileByMask(u8 byte1, u8 byte2);
 u8 BitfileToIndex(u8 byte);
 void SaveMenu_StartHelpBox(struct SaveMenuProc * proc);
-int sub_080A3474(int slot);
+int LoadSaveMenuHelpText(int slot);
 bool SaveMenuPostChapterHandleHelpBox(struct SaveMenuProc * proc);
 void SaveMenuPutChapterTitle(struct SaveMenuProc * proc);
 // ??? SaveMenu_Init
@@ -88,13 +88,13 @@ void SaveMenuPutChapterTitle(struct SaveMenuProc * proc);
 // ??? SaveMenu_080A465C
 // ??? Loop6C_savemenu
 // ??? SaveMenuWriteNewGame
-// ??? sub_080A3CAC
-// ??? sub_080A3E98
+// ??? ExecSaveMenuMiscOption
+// ??? SaveMenu_SaveSlotSelectLoop
 // ??? sub_80A4D64
 // ??? SaveMenuRegisterSlotSelected
-// ??? sub_080A4108
-// ??? sub_080A43E0
-// ??? sub_080A4428
+// ??? SaveMenuWaitSlotBoxScrolling
+// ??? SaveMenuScrollSlot
+// ??? SaveMenuScrollBackToMain
 // ??? sub_080A4478
 // ??? sub_080A44C0
 // ??? sub_080A4504
@@ -112,13 +112,13 @@ void SaveMenuPutChapterTitle(struct SaveMenuProc * proc);
 // ??? sub_80A57A8
 // ??? sub_80A57BC
 // ??? SaveMenuPostExtraMiscScreen
-// ??? sub_080A4B7C
+// ??? SaveMenu_ResetLcdFormDifficulty
 // ??? sub_080A4BD8
 // ??? sub_080A4C34
-// ??? sub_080A4C94
-// ??? sub_080A4D54
-// ??? sub_080A4D74
-// ??? sub_080A4D94
+// ??? SaveMenu_ReloadScreenFormDifficulty
+// ??? SaveMenu_PostDifficultHandler
+// ??? SaveMenuSlotSelDrawSprite
+// ??? SaveMenuStartBonusClaim
 // ??? sub_80A5A94
 void StartMainMenu(/* TODO */);
 // ??? sub_080A4DEC
