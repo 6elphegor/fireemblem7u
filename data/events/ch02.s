@@ -7,14 +7,14 @@
 
 	.global EvList_Ch02_Turn
 EvList_Ch02_Turn:
-	TURN 0, EventScr_Ch02_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_08CA929C, 1, 0, 0, 0
+	TURN 0, EventScr_Ch02_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CA929C, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch02_TutorialD
 EvList_Ch02_TutorialD:
-	TURN 0, EventScr_08CA9300, 2, 0, 0, 0
-	TURN 0, EventScr_08CA933C, 3, 0, 0, 0
+	TURN 0, EventScr_08CA9300, 2, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CA933C, 3, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch02_Character
@@ -119,7 +119,7 @@ MoveScr_08CA9058:
 	.global EventScr_Ch02_Beginning
 EventScr_Ch02_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	LOU1 Units_08CC5DC8
 	LOU1 Units_08CC5DE8
 	ENUN
@@ -197,7 +197,7 @@ EventScr_Ch02_Beginning:
 	ENTER_MAP
 	TEX1 MSG_885                             @ I beg your pardon, milady. Are you headed east?
 	CLEAN
-	ASMC 0x08018889
+	ASMC sub_08018888
 	MOVE CHARACTER_LYN_TUTORIAL, 0, 4
 	ENUN
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CA9050
@@ -206,8 +206,8 @@ EventScr_Ch02_Beginning:
 	MOVE_BLUE_OR_SCR CHARACTER_KENT_TUTORIAL, 0x10, 1, 5, MoveScr_08CA9054
 	MOVE_BLUE_OR_SCR CHARACTER_SAIN_TUTORIAL, 0x10, 1, 3, MoveScr_08CA9058
 	ENUN
-	ASMC 0x0807A7D9
-	ASMC 0x0807CF69
+	ASMC HideAllAlliesExceptLeader
+	ASMC sub_0807CF68
 	REMA
 	ENDA
 
@@ -219,7 +219,7 @@ EventScr_08CA929C:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_886, 5           @ The three buildings to the south are homes . You
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	TEX1 MSG_887                             @ Shall I take the lead? All right. Tell me what y
 	CLEAN
@@ -237,7 +237,7 @@ EventScr_08CA9300:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_89F, 5           @ You should know something about fortresses . For
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA
 	ENDA
@@ -248,7 +248,7 @@ EventScr_08CA933C:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8A0, 5           @ This chapter's goal is to seize the throne . The
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA
 	ENDA
@@ -302,20 +302,20 @@ EventScr_08CA93E0:
 EventScr_08CA9418:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_LYN_TUTORIAL
 	TEX1 MSG_888                             @ I'm going to visit that home, right? Just point
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 7
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA0A5C
 	STAL 8
 	TUTORIAL_TEXT 56, 56, MSG_889            @ You want me to visit that home, right? I underst
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -328,20 +328,20 @@ EventScr_08CA9418:
 EventScr_08CA94BC:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_SAIN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_SAIN_TUTORIAL
 	TEX1_BY_GENDER MSG_88D, MSG_88E          @ It's my turn to speak with the locals, is it? Th / Please, I would like to help out however I can.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 9
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA0A64
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 52, 56, MSG_890, MSG_891 @ I'm next, am I? Well, I'm ready to go! / It's my turn next? I'm ready to go!
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x5F
@@ -356,7 +356,7 @@ EventScr_08CA94BC:
 EventScr_08CA9578:
 	EVBIT_SILENTSKIP
 	IFUA 1, 0xA, CHARACTER_KENT_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_SAIN_TUTORIAL
 	IFET 5, 0x77
 	TEX1 MSG_899                             @ Ah, would you like me to visit that home? Then o
@@ -367,7 +367,7 @@ EventScr_08CA9578:
 	CLEAN
 	LABEL 6
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xB
 	GOTO 9
 	LABEL 0xA
@@ -375,17 +375,17 @@ EventScr_08CA9578:
 	TUTORIAL_CURSORS AreaList_08CA0A6C
 	STAL 8
 	TUTORIAL_TEXT 52, 56, MSG_89A            @ I'm next to move, am I not? I await your command
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	ENUT 0xD
 	GOTO 0x10
 	LABEL 0xF
 	TUTORIAL_CURSORS AreaList_08CA0A64
 	STAL 8
 	TUTORIAL_TEXT 52, 56, MSG_892            @ I believe that I am next. I await your command.
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	ENUT 0xC
 	LABEL 0x10
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x5F
@@ -402,8 +402,8 @@ EventScr_08CA96A8:
 	TUTORIAL_CURSORS AreaList_08CA0A5C
 	STAL 8
 	TUTORIAL_TEXT 52, 56, MSG_88A            @ First, I'm going to visit that home, right? Well
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xE
 	EVBIT_YESSKIP
 	REMA
@@ -415,8 +415,8 @@ EventScr_08CA96E4:
 	TUTORIAL_CURSORS AreaList_08CA0A64
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 48, 56, MSG_893, MSG_894 @ It's my turn to speak with the locals, isn't it? / Please, I would like to help out however I can.
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xF
 	EVBIT_YESSKIP
 	REMA
@@ -429,15 +429,15 @@ EventScr_08CA9724:
 	TUTORIAL_CURSORS AreaList_08CA0A6C
 	STAL 8
 	TUTORIAL_TEXT 52, 56, MSG_89B            @ Am I not supposed to visit that home? Please, gi
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	GOTO 6
 	LABEL 5
 	TUTORIAL_CURSORS AreaList_08CA0A64
 	STAL 8
 	TUTORIAL_TEXT 52, 56, MSG_895            @ Yes, I await your orders. I understand I am to v
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 6
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x10
 	EVBIT_YESSKIP
 	REMA
@@ -446,7 +446,7 @@ EventScr_08CA9724:
 	.global EventScr_08CA97A4
 EventScr_08CA97A4:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	MENU_OVERRIDE_CLEAR
 	IFET 5, 0x77
@@ -454,7 +454,7 @@ EventScr_08CA97A4:
 	CURF CHARACTER_SAIN_TUTORIAL
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_88B, 5           @ Next, send Sain to visit another home. Start by
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	IFDIFF 1, 0x63
 	ENUT 8
@@ -466,7 +466,7 @@ EventScr_08CA97A4:
 	CURF CHARACTER_KENT_TUTORIAL
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_88C, 5           @ Now, send Kent to visit the next home. First, se
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x33
 	IFDIFF 1, 0x63
 	ENUT 0xA
@@ -482,7 +482,7 @@ EventScr_08CA987C:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_896, 5           @ Remember, your mounted units possess the ability
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	ENUT 0x16
 	LABEL 0x32
 	REMA
@@ -491,13 +491,13 @@ EventScr_08CA987C:
 	.global EventScr_08CA98B8
 EventScr_08CA98B8:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IFET 0x63, 0x76
 	IFTU 0x32
 	CURF CHARACTER_KENT_TUTORIAL
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_898, 5           @ Finally, let's send Kent to visit the remaining
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	ENUT 0xA
 	MENU_OVERRIDE_HIDE 0x71
@@ -513,7 +513,7 @@ EventScr_08CA991C:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_897, 5           @ Remember, your mounted units possess the ability
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA
 	ENDA
@@ -524,7 +524,7 @@ EventScr_08CA9960:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8A3, 5           @ Sometimes, you'll get items after defeating enem
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA
 	ENDA
@@ -536,7 +536,7 @@ EventScr_Ch02_Ending:
 	STAL 0x40
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOU1 Units_08CC5DC8
 	MOVE_INSTANT CHARACTER_LYN_TUTORIAL, 11, 2
 	MOVE_INSTANT CHARACTER_KENT_TUTORIAL, 10, 5
@@ -566,7 +566,7 @@ EventScr_Ch02_Ending:
 	TEX2 MSG_8A6                             @ The sword... It's...glowing. Ah. Hm... It's the
 	FAWI 0x10
 	EXIT_MAP
-	ASMC 0x0800ECFD
+	ASMC ClearTalk
 	SOUN 0x2DA
 	STAL 0x20
 	CG_BACG 2
@@ -580,7 +580,7 @@ EventScr_Ch02_Ending:
 	STAL3 0x3C
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	BACG 0x4F
 	FADU 4
 	ENTER_MAP
@@ -605,7 +605,7 @@ EventScr_Ch02_Ending:
 	CLEAR_ON_SKIP_ASM
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA CHAPTER_0B, 2, 0x10
 	STAL 0x80
 	MUSC 0x53

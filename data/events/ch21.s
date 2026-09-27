@@ -7,27 +7,27 @@
 
 	.global EvList_Ch21_Turn
 EvList_Ch21_Turn:
-	TURN 0, EventScr_08CB7C24, 1, 0, 0, 0
-	TURN 0, EventScr_08CB7CB4, 5, 0, 0, 0
-	TURN 0x20, EventScr_08CB7D38, 1, 0x63, 0, 0
-	TURN 0x21, EventScr_08CB7DDC, 1, 0x63, 0, 0
-	TURN 0x22, EventScr_08CB7E80, 1, 0x63, 0, 0
+	TURN 0, EventScr_08CB7C24, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CB7CB4, 5, 0, FACTION_BLUE, 0
+	TURN 0x20, EventScr_08CB7D38, 1, 0x63, FACTION_BLUE, 0
+	TURN 0x21, EventScr_08CB7DDC, 1, 0x63, FACTION_BLUE, 0
+	TURN 0x22, EventScr_08CB7E80, 1, 0x63, FACTION_BLUE, 0
 	AFEV 0xB, EventScr_08CB7C88, 7
 	AFEV 0xD, EventScr_08CB7C9C, 0xC
-	TURN 0, EventScr_08CD5330, 5, 7, 0, 2
-	TURN 0, EventScr_08CD5344, 9, 0xC, 0, 2
-	TURN 0, EventScr_08CD5358, 2, 5, 0, 2
-	TURN 0, EventScr_08CD5394, 2, 3, 0, 2
-	TURN 0, EventScr_08CD5330, 5, 7, 0, 5
-	TURN 0, EventScr_08CD5344, 9, 0xC, 0, 5
-	TURN 0, EventScr_08CD5358, 2, 5, 0, 5
-	TURN 0, EventScr_08CD5394, 2, 3, 0, 5
+	TURN 0, EventScr_08CD5330, 5, 7, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD5344, 9, 0xC, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD5358, 2, 5, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD5394, 2, 3, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD5330, 5, 7, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD5344, 9, 0xC, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD5358, 2, 5, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD5394, 2, 3, FACTION_BLUE, 5
 	EVLIST_END
 
 	.global EvList_Ch21_Character
 EvList_Ch21_Character:
 	CHAR 7, EventScr_08CB80EC, CHARACTER_FARINA, CHARACTER_HECTOR, 0
-	CHAR_ASM 8, EventScr_08CB81D4, CHARACTER_HECTOR, CHARACTER_FARINA, 0x0807D425
+	CHAR_ASM 8, EventScr_08CB81D4, CHARACTER_HECTOR, CHARACTER_FARINA, sub_0807D424
 	CHAR 9, EventScr_08CB82A4, CHARACTER_FLORINA, CHARACTER_FARINA, 3, 0, 0, 0xD
 	CHAR 9, EventScr_08CB82A4, CHARACTER_FARINA, CHARACTER_FLORINA, 3, 0, 0, 0xD
 	CHAR 0xA, EventScr_08CB82C0, CHARACTER_FIORA, CHARACTER_FARINA, 3, 0, 0, 0xD
@@ -86,7 +86,7 @@ EventScr_Ch21_Beginning:
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_CBB                             @ You there, open the cell. Lady Sonia? Bu-But...t
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	STAL 0x3C
 	TEX1 MSG_CBC                             @ Oho... Aren't you a lovely one? I pray you'll fo
@@ -96,12 +96,12 @@ EventScr_Ch21_Beginning:
 	STAL 8
 	LOU1 Units_08CD5234
 	ENUN
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 0x11, 0x14
 	MOVE_SPEED CHARACTER_ELIWOOD, 11, 14, 0x10
 	MOVE_SPEED CHARACTER_HECTOR, 12, 15, 0x10
 	MOVE_SPEED CHARACTER_LYN, 11, 16, 0x10
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_SPEED CHARACTER_TACTICIAN, 14, 15, 0x10
 	ENUN
 	MUSC 0x3AC
@@ -130,7 +130,7 @@ EventScr_08CB7C24:
 	LOU2 Units_Ch21_Player
 	ENUN
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFDEPLOYED 0, 7, CHARACTER_FIORA
 	IFDEPLOYED 0, 7, CHARACTER_FLORINA
 	MUEN 4
@@ -168,7 +168,7 @@ EventScr_08CB7CB4:
 
 	.global EventScr_08CB7CD8
 EventScr_08CB7CD8:
-	IFAT 9, 0x0807A2F1
+	IFAT 9, sub_0807A2F0
 	ENUF 0xF
 	LABEL 9
 	REMA
@@ -176,7 +176,7 @@ EventScr_08CB7CD8:
 
 	.global EventScr_08CB7CF8
 EventScr_08CB7CF8:
-	IFAT 9, 0x0807A2F1
+	IFAT 9, sub_0807A2F0
 	ENUF 0x13
 	LABEL 9
 	REMA
@@ -184,7 +184,7 @@ EventScr_08CB7CF8:
 
 	.global EventScr_08CB7D18
 EventScr_08CB7D18:
-	IFAT 9, 0x0807A2F1
+	IFAT 9, sub_0807A2F0
 	ENUF 0x17
 	LABEL 9
 	REMA
@@ -341,8 +341,8 @@ EventScr_08CB7FCC:
 
 	.global EventScr_08CB8050
 EventScr_08CB8050:
-	IFAT 9, 0x0807A435
-	IFAF 9, 0x0807A2F1
+	IFAT 9, sub_0807A434
+	IFAF 9, sub_0807A2F0
 	JUMP EventScr_08CB7FCC
 	LABEL 9
 	ENUF 0x1B
@@ -351,8 +351,8 @@ EventScr_08CB8050:
 
 	.global EventScr_08CB8084
 EventScr_08CB8084:
-	IFAT 9, 0x0807A435
-	IFAF 9, 0x0807A2F1
+	IFAT 9, sub_0807A434
+	IFAF 9, sub_0807A2F0
 	JUMP EventScr_08CB7FCC
 	LABEL 9
 	ENUF 0x1C
@@ -361,8 +361,8 @@ EventScr_08CB8084:
 
 	.global EventScr_08CB80B8
 EventScr_08CB80B8:
-	IFAT 9, 0x0807A435
-	IFAF 9, 0x0807A2F1
+	IFAT 9, sub_0807A434
+	IFAF 9, sub_0807A2F0
 	JUMP EventScr_08CB7FCC
 	LABEL 9
 	ENUF 0x1D
@@ -375,8 +375,8 @@ EventScr_08CB80EC:
 	MUSI
 	TEX1 MSG_CC4                             @ Say, excuse me! Yes, you, the grim-faced one! Me
 	CHAI CHARACTER_FARINA, 0x303
-	IFAF 3, 0x0807D3F9
-	TEX2_IF_ASM 0x0807A3B9, MSG_CC6, MSG_CC5 @ What should I do... Hey, ! You decide. Should we / What should I do...
+	IFAF 3, sub_0807D3F8
+	TEX2_IF_ASM sub_0807A3B8, MSG_CC6, MSG_CC5 @ What should I do... Hey, ! You decide. Should we / What should I do...
 	TEXTEND
 	STAL 0x3C
 	IFYN 4
@@ -386,20 +386,20 @@ EventScr_08CB80EC:
 	CLEAN
 	GOTO 9
 	LABEL 4
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	TEX2 MSG_CC7
 	TEX2 MSG_CC9                             @ No way! You're not worth it. Oh, too bad. I'll t
 	CLEAN
 	GOTO 9
 	LABEL 5
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	TEX2 MSG_CC7
 	MUSS 0x42
 	TEX2 MSG_CCC                             @ Here it is: 20,000 gold. You've no complaints, d
 	MURE 6
 	CLEAN
 	ENUT 0xC
-	ASMC 0x0807D415
+	ASMC sub_0807D414
 	LABEL 9
 	MUNO
 	EVBIT_YESSKIP
@@ -411,20 +411,20 @@ EventScr_08CB81D4:
 	EVBIT_NOTEXTSKIP
 	MUSI
 	TEX1 MSG_CCA                             @ What's this? Have you come to your senses?
-	IFAF 4, 0x0807D3F9
-	TEX2_IF_ASM 0x0807A3B9, MSG_CC6, MSG_CCB @ What should I do... Hey, ! You decide. Should we / Now, what to do...
+	IFAF 4, sub_0807D3F8
+	TEX2_IF_ASM sub_0807A3B8, MSG_CC6, MSG_CCB @ What should I do... Hey, ! You decide. Should we / Now, what to do...
 	IFYN 4
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	TEX2 MSG_CC7
 	MUSC 0x42
 	TEX2 MSG_CCC                             @ Here it is: 20,000 gold. You've no complaints, d
 	CLEAN
 	ENUT 0xD
 	CHANGE_FACTION CHARACTER_FARINA, 0
-	ASMC 0x0807D415
+	ASMC sub_0807D414
 	GOTO 9
 	LABEL 4
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	TEX2 MSG_CC7
 	TEX2 MSG_CCD                             @ So you're just looking, are you? Think you can h
 	CLEAN
@@ -476,12 +476,12 @@ EventScr_08CB82DC:
 
 	.global EventScr_Ch21_Ending
 EventScr_Ch21_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUSC 0x38
 	STAL 0x3C
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x1C
 	FADU 4
 	ENTER_MAP

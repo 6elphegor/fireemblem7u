@@ -7,46 +7,46 @@
 
 	.global EvList_Ch1F_Turn
 EvList_Ch1F_Turn:
-	TURN 0, EventScr_08CB6A84, 1, 0, 0, 0
-	TURN 0xB, EventScr_08CB6B7C, 2, 0, 0, 0
-	TURN 0, EventScr_08CD3A70, 4, 0, 0, 1
-	TURN 0, EventScr_08CD3A70, 8, 0, 0, 1
-	TURN 0, EventScr_08CD3AAC, 6, 0, 0, 1
-	TURN 0, EventScr_08CD3AC0, 5, 0, 0, 1
-	TURN 0, EventScr_08CD3AE8, 8, 0, 0, 1
-	TURN 0, EventScr_08CD3B10, 7, 0, 0, 1
-	TURN 0, EventScr_08CD3B10, 9, 0, 0, 1
-	TURN 0, EventScr_08CD3A84, 4, 0, 0, 2
-	TURN 0, EventScr_08CD3A84, 8, 0, 0, 2
-	TURN 0, EventScr_08CD3AAC, 4, 6, 0, 2
-	TURN 0, EventScr_08CD3AC0, 5, 0, 0, 2
-	TURN 0, EventScr_08CD3AE8, 8, 9, 0, 2
-	TURN 0, EventScr_08CD3B10, 7, 0, 0, 2
-	TURN 0, EventScr_08CD3B10, 9, 0, 0, 2
-	TURN 0, EventScr_08CD3AC0, 0xA, 0xB, 0, 2
-	TURN 0, EventScr_08CD3AD4, 7, 0, 0, 2
-	TURN 0, EventScr_08CD3AFC, 8, 9, 0, 2
-	TURN 0, EventScr_08CD3A70, 2, 0, 0, 5
-	TURN 0, EventScr_08CD3A70, 6, 0, 0, 5
-	TURN 0, EventScr_08CD3A70, 0xA, 0, 0, 5
-	TURN 0, EventScr_08CD3B10, 3, 0, 0, 5
-	TURN 0, EventScr_08CD3B10, 5, 0, 0, 5
-	TURN 0, EventScr_08CD3B10, 7, 0, 0, 5
-	TURN 0, EventScr_08CD3B10, 9, 0, 0, 5
-	TURN 0, EventScr_08CD3AC0, 4, 5, 0, 5
-	TURN 0, EventScr_08CD3A98, 3, 0, 0, 5
-	TURN 0, EventScr_08CD3AD4, 4, 0, 0, 5
-	TURN 0, EventScr_08CD3AE8, 7, 8, 0, 5
-	TURN 0, EventScr_08CD3A70, 3, 4, 0, 3
-	TURN 0, EventScr_08CD3A70, 7, 8, 0, 3
-	TURN 0, EventScr_08CD3AAC, 5, 6, 0, 3
-	TURN 0, EventScr_08CD3A84, 3, 4, 0, 4
-	TURN 0, EventScr_08CD3A84, 7, 8, 0, 4
-	TURN 0, EventScr_08CD3AAC, 3, 6, 0, 4
-	TURN 0, EventScr_08CD3AC0, 9, 0xB, 0, 4
-	TURN 0, EventScr_08CD3AD4, 6, 7, 0, 4
-	TURN 0, EventScr_08CD3AE8, 9, 0, 0, 4
-	TURN 0, EventScr_08CD3AFC, 7, 9, 0, 4
+	TURN 0, EventScr_08CB6A84, 1, 0, FACTION_BLUE, 0
+	TURN 0xB, EventScr_08CB6B7C, 2, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CD3A70, 4, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD3A70, 8, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD3AAC, 6, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD3AC0, 5, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD3AE8, 8, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD3B10, 7, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD3B10, 9, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD3A84, 4, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3A84, 8, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3AAC, 4, 6, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3AC0, 5, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3AE8, 8, 9, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3B10, 7, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3B10, 9, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3AC0, 0xA, 0xB, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3AD4, 7, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3AFC, 8, 9, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD3A70, 2, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3A70, 6, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3A70, 0xA, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3B10, 3, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3B10, 5, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3B10, 7, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3B10, 9, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3AC0, 4, 5, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3A98, 3, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3AD4, 4, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3AE8, 7, 8, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD3A70, 3, 4, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD3A70, 7, 8, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD3AAC, 5, 6, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD3A84, 3, 4, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD3A84, 7, 8, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD3AAC, 3, 6, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD3AC0, 9, 0xB, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD3AD4, 6, 7, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD3AE8, 9, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD3AFC, 7, 9, FACTION_BLUE, 4
 	EVLIST_END
 
 	.global EvList_Ch1F_Character
@@ -138,7 +138,7 @@ EventScr_Ch1F_Beginning:
 	FADE_FROM_OPENING
 	LOU1 Units_08CD38E8
 	LOU1_ALIVE Units_08CD3958
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOU1 Units_08CD3988
 	ENUN
 	STAL 0x40
@@ -155,7 +155,7 @@ EventScr_Ch1F_Beginning:
 	TEX2 MSG_C68                             @ Rest assured, even if I fail, I will not reveal
 	CLEAN
 	UNIT_CAM_ON
-	IFAF 2, 0x08079EFD
+	IFAF 2, sub_08079EFC
 	MOVE_SCR CHARACTER_PENT, MoveScr_08CB6701
 	STAL 8
 	MOVE_SCR CHARACTER_LOUISE, MoveScr_08CB670B
@@ -207,8 +207,8 @@ EventScr_Ch1F_Beginning:
 	BACG 8
 	FADU 0x10
 	ENTER_MAP
-	TEX1_IF_ASM 0x08079EED, MSG_C6C, MSG_C6B @ This waiting is hard. There must be something we / I can't take this waiting. There must be somethi
-	IFAF 1, 0x0807A3B9
+	TEX1_IF_ASM sub_08079EEC, MSG_C6C, MSG_C6B @ This waiting is hard. There must be something we / I can't take this waiting. There must be somethi
+	IFAF 1, sub_0807A3B8
 	FADI 0x10
 	EXIT_MAP
 	BACG 8
@@ -283,7 +283,7 @@ EventScr_Ch1F_Beginning:
 EventScr_08CB6A84:
 	LOU2_BY_MODE Units_Ch1F_Player, Units_Ch1F_PlayerHard, Units_Ch1F_Player, Units_Ch1F_PlayerHard
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFHM 5
 	IFDEPLOYED 0, 7, CHARACTER_HEATH
 	MUEN 4
@@ -475,13 +475,13 @@ EventScr_08CB6DB8:
 
 	.global EventScr_Ch1F_Ending
 EventScr_Ch1F_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUSC 0x16
 	STAL 0x40
 	MUSI
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	BACG 0x41
 	FADU 4
 	ENTER_MAP
@@ -509,7 +509,7 @@ EventScr_Ch1F_Ending:
 	TEX1 MSG_C8B                             @ ...As I suspected. They're not the gang of thugs
 	IFTEXTSKIP 0xA
 	MUSC 0x52
-	ASMC2 0x0807C2C1
+	ASMC2 StartQuintessenceStealEffect
 	STAL 0x20
 	FADE_START
 	SOUN 0x2EE
@@ -518,16 +518,16 @@ EventScr_Ch1F_Ending:
 	FADE_STEPS 0xFFFFFFFF, 0x20, 0x80201A0
 	FADE_STEPS 0xFFFFFFFF, 0x20, 0x10040100
 	FADE_END
-	ASMC2 0x0807C2ED
+	ASMC2 QuintessenceFx_Goto_C
 	STAL 0x10
-	ASMC 0x0807C305
+	ASMC EndQuintessenceStealEffect
 	TEX2 MSG_C8C                             @ ...Uwaa ...... ...... Impossible... Not a sound.
 	LABEL 0xA
 	MUEN 6
 	FADI 4
 	EXIT_MAP
 	STAL 0x10
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	STAL 0x10
 	FADU 0x10
 	ENTER_MAP

@@ -7,46 +7,46 @@
 
 	.global EvList_Ch25_Turn
 EvList_Ch25_Turn:
-	TURN 0, EventScr_08CBA1E0, 1, 0, 0, 0
-	TURN 0, EventScr_08CBA2B8, 1, 0, 0x40, 0
-	TURN 0, EventScr_Ch25_Ending, 0x10, 0, 0, 0
-	TURN 0, EventScr_08CD9348, 2, 0, 0, 1
-	TURN 0, EventScr_08CD935C, 3, 0, 0, 1
-	TURN 0, EventScr_08CD9384, 5, 0, 0, 1
-	TURN 0, EventScr_08CD9384, 9, 0, 0, 1
-	TURN 0, EventScr_08CD9398, 6, 0, 0, 1
-	TURN 0, EventScr_08CD93C0, 8, 0, 0, 1
-	TURN 0, EventScr_08CD93D4, 5, 0, 0, 1
-	TURN 0, EventScr_08CBA430, 0xC, 0, 0, 1
-	TURN 0, EventScr_08CD9384, 0xC, 0xE, 0, 1
-	TURN 0, EventScr_08CD9384, 5, 0, 0, 2
-	TURN 0, EventScr_08CD9384, 9, 0, 0, 2
-	TURN 0, EventScr_08CD9398, 6, 0, 0, 2
-	TURN 0, EventScr_08CD93C0, 8, 0, 0, 2
-	TURN 0, EventScr_08CD93D4, 5, 0, 0, 2
-	TURN 0, EventScr_08CBA430, 0xC, 0, 0, 2
-	TURN 0, EventScr_08CD9384, 0xC, 0xE, 0, 2
-	TURN 0, EventScr_08CD9384, 7, 0, 0, 2
-	TURN 0, EventScr_08CD93AC, 4, 0, 0, 2
-	TURN 0, EventScr_08CD93AC, 7, 0, 0, 2
-	TURN 0, EventScr_08CBA4A0, 3, 0, 0, 2
-	TURN 0, EventScr_08CBA4E4, 9, 0, 0, 2
-	TURN 0, EventScr_08CD9370, 2, 4, 0, 2
-	TURN 0, EventScr_08CD93E8, 4, 5, 0, 5
-	TURN 0, EventScr_08CD9398, 5, 6, 0, 5
-	TURN 0, EventScr_08CD9384, 5, 0, 0, 5
-	TURN 0, EventScr_08CD93C0, 7, 8, 0, 5
-	TURN 0, EventScr_08CD9384, 8, 9, 0, 5
-	TURN 0, EventScr_08CD9384, 0xB, 0xE, 0, 5
-	TURN 0, EventScr_08CBA430, 0xC, 0, 0, 5
-	TURN 0, EventScr_08CD935C, 2, 3, 0, 3
-	TURN 0, EventScr_08CD9370, 2, 5, 0, 4
-	TURN 0, EventScr_08CD93AC, 4, 0, 0, 4
-	TURN 0, EventScr_08CD9384, 6, 7, 0, 4
-	TURN 0, EventScr_08CD93AC, 7, 0, 0, 4
-	TURN 0, EventScr_08CBA4A0, 3, 0, 0, 4
-	TURN 0, EventScr_08CBA4E4, 9, 0, 0, 4
-	TURN 0, EventScr_08CBA540, 0xD, 0, 0, 4
+	TURN 0, EventScr_08CBA1E0, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CBA2B8, 1, 0, FACTION_GREEN, 0
+	TURN 0, EventScr_Ch25_Ending, 0x10, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CD9348, 2, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD935C, 3, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD9384, 5, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD9384, 9, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD9398, 6, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD93C0, 8, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD93D4, 5, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CBA430, 0xC, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD9384, 0xC, 0xE, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD9384, 5, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD9384, 9, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD9398, 6, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD93C0, 8, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD93D4, 5, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CBA430, 0xC, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD9384, 0xC, 0xE, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD9384, 7, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD93AC, 4, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD93AC, 7, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CBA4A0, 3, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CBA4E4, 9, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD9370, 2, 4, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD93E8, 4, 5, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD9398, 5, 6, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD9384, 5, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD93C0, 7, 8, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD9384, 8, 9, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD9384, 0xB, 0xE, FACTION_BLUE, 5
+	TURN 0, EventScr_08CBA430, 0xC, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD935C, 2, 3, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD9370, 2, 5, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD93AC, 4, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD9384, 6, 7, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD93AC, 7, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CBA4A0, 3, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CBA4E4, 9, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CBA540, 0xD, 0, FACTION_BLUE, 4
 	EVLIST_END
 
 	.global EvList_Ch25_Character
@@ -254,7 +254,7 @@ EventScr_Ch25_Beginning:
 	CLEAN
 	CAM1_POS 0xF, 4
 	LOU1 Units_08CD90C8
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOU1 Units_08CD9108
 	ENUN
 	MURE 6
@@ -273,7 +273,7 @@ EventScr_08CBA1E0:
 	LOU1_BY_MODE 0, Units_08CD90A8, 0, Units_08CD90A8
 	MAC_INSTANT 8
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFHM 5
 	IFDEPLOYED 0, 7, CHARACTER_HARKEN
 	MUEN 4
@@ -434,14 +434,14 @@ EventScr_08CBA540:
 
 	.global EventScr_Ch25_Ending
 EventScr_Ch25_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUEN 1
 	UNIT_CAM_OFF
 	VCBF 0
 	STAL 0x40
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOAD_UNIT CHARACTER_ZEPHIEL, CLASS_PRINCE_4D, 0xE, 0x10
 	CAM2_POS 0xD, 0x10
 	BACG 0x13
@@ -455,7 +455,7 @@ EventScr_Ch25_Ending:
 	STAL 0x3C
 	LOU1 Units_08CD9238
 	ENUN
-	IFAF 0xC, 0x08079DCD
+	IFAF 0xC, sub_08079DCC
 	IFEF 0xC, 8
 	IFET 0xC, 0x82
 	ENUT 9
@@ -482,7 +482,7 @@ EventScr_Ch25_Ending:
 	IFET 0x15, 2
 	TEX1 MSG_D8E                             @ Ursula... Limste--my lady Limstella. I am prepar
 	IFTEXTSKIP 0x63
-	ASMC2 0x0807C2C1
+	ASMC2 StartQuintessenceStealEffect
 	STAL 0x20
 	FADE_START
 	SOUN 0x2EE
@@ -491,16 +491,16 @@ EventScr_Ch25_Ending:
 	FADE_STEPS 0xFFFFFFFF, 0x20, 0x80201A0
 	FADE_STEPS 0xFFFFFFFF, 0x20, 0x10040100
 	FADE_END
-	ASMC2 0x0807C2ED
+	ASMC2 QuintessenceFx_Goto_C
 	STAL 0x10
-	ASMC 0x0807C305
+	ASMC EndQuintessenceStealEffect
 	TEX2 MSG_D8F                             @ ...Urrg... ...... ...... This is quite excellent
 	LABEL 0x63
 	MUEN 4
 	FADI 4
 	EXIT_MAP
 	STAL 0x10
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	GOTO 0x16
 	LABEL 0x15
 	TEX1 MSG_D90                             @ Ursula... Beyond hearing so soon? ... ...... Thi
@@ -516,8 +516,8 @@ EventScr_Ch25_Ending:
 	FADU 4
 	ENTER_MAP
 	TEX1 MSG_D91                             @ ...What could His Majesty be thinking? Detaining
-	IFAF 3, 0x08079ECD
-	IFAF 3, 0x08079EDD
+	IFAF 3, sub_08079ECC
+	IFAF 3, sub_08079EDC
 	MURE 6
 	FADI 0x10
 	EXIT_MAP
@@ -543,8 +543,8 @@ EventScr_Ch25_Ending:
 	MUSC 0x3A7
 	FADU 4
 	ENTER_MAP
-	IFAF 5, 0x08079ECD
-	IFAF 5, 0x08079EDD
+	IFAF 5, sub_08079ECC
+	IFAF 5, sub_08079EDC
 	TEX1 MSG_D95                             @ Well, that's that, huh? ...... Lord Pent, Lady L
 	GOTO 6
 	LABEL 5
@@ -564,7 +564,7 @@ EventScr_Ch25_Ending:
 	EXIT_MAP
 	STAL 0x20
 	MUSC 0x38
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA 0x3C, 0, 0
 	LOU1 Units_08CD9238
 	ENUN
@@ -590,9 +590,9 @@ EventScr_Ch25_Ending:
 	FADU 0x80
 	ENTER_MAP
 	STAL 2
-	ASMC 0x08015591
+	ASMC ApplySystemObjectsGraphics
 	TUTORIAL_TEXT 0, 0, MSG_D9A, 7           @ Accept side quest?
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	EVBIT_YESSKIP
 	IFYN 7
 	UNIT_SET_STATE CHARACTER_JAFFAR, 0x10000

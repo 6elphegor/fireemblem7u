@@ -7,23 +7,23 @@
 
 	.global EvList_Ch13_Turn
 EvList_Ch13_Turn:
-	TURN 0, EventScr_08CB0A5C, 1, 0, 0, 0
-	TURN 0, EventScr_08CCAB40, 3, 4, 0, 1
-	TURN 0, EventScr_08CCAB68, 6, 0, 0, 1
-	TURN 0, EventScr_08CCAB7C, 5, 6, 0, 1
-	TURN 0, EventScr_08CCAB90, 0xA, 0xD, 0, 1
-	TURN 0, EventScr_08CCAB54, 3, 4, 0, 2
-	TURN 0, EventScr_08CCAB68, 6, 0, 0, 2
-	TURN 0, EventScr_08CCAB7C, 5, 6, 0, 2
-	TURN 0, EventScr_08CCABA4, 0xA, 0xD, 0, 2
-	TURN 0, EventScr_08CCAB40, 2, 4, 0, 3
-	TURN 0, EventScr_08CCAB68, 5, 6, 0, 3
-	TURN 0, EventScr_08CCAB7C, 5, 6, 0, 3
-	TURN 0, EventScr_08CCAB90, 9, 0xD, 0, 3
-	TURN 0, EventScr_08CCAB54, 2, 4, 0, 4
-	TURN 0, EventScr_08CCAB68, 5, 6, 0, 4
-	TURN 0, EventScr_08CCAB7C, 4, 6, 0, 4
-	TURN 0, EventScr_08CCABA4, 9, 0xD, 0, 4
+	TURN 0, EventScr_08CB0A5C, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CCAB40, 3, 4, FACTION_BLUE, 1
+	TURN 0, EventScr_08CCAB68, 6, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CCAB7C, 5, 6, FACTION_BLUE, 1
+	TURN 0, EventScr_08CCAB90, 0xA, 0xD, FACTION_BLUE, 1
+	TURN 0, EventScr_08CCAB54, 3, 4, FACTION_BLUE, 2
+	TURN 0, EventScr_08CCAB68, 6, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CCAB7C, 5, 6, FACTION_BLUE, 2
+	TURN 0, EventScr_08CCABA4, 0xA, 0xD, FACTION_BLUE, 2
+	TURN 0, EventScr_08CCAB40, 2, 4, FACTION_BLUE, 3
+	TURN 0, EventScr_08CCAB68, 5, 6, FACTION_BLUE, 3
+	TURN 0, EventScr_08CCAB7C, 5, 6, FACTION_BLUE, 3
+	TURN 0, EventScr_08CCAB90, 9, 0xD, FACTION_BLUE, 3
+	TURN 0, EventScr_08CCAB54, 2, 4, FACTION_BLUE, 4
+	TURN 0, EventScr_08CCAB68, 5, 6, FACTION_BLUE, 4
+	TURN 0, EventScr_08CCAB7C, 4, 6, FACTION_BLUE, 4
+	TURN 0, EventScr_08CCABA4, 9, 0xD, FACTION_BLUE, 4
 	EVLIST_END
 
 	.global EvList_Ch13_Character
@@ -136,10 +136,10 @@ EventScr_Ch13_Beginning:
 	LABEL 0x37
 	LOU1 Units_08CCA8A8
 	LABEL 0x38
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 1, 0
 	ENUN
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	FADU 4
 	ENTER_MAP
 	BROWN_TEXTBOX MSG_5DF, 16, 12            @ Castle Caelin
@@ -177,7 +177,7 @@ EventScr_Ch13_Beginning:
 	MOVE_SPEED CHARACTER_ELIWOOD, 3, 3, 0x10
 	MOVE_SPEED CHARACTER_HECTOR, 2, 3, 0xE
 	MOVE_SPEED CHARACTER_MARCUS, 1, 4, 0x12
-	IFAF 0x33, 0x0807A3B9
+	IFAF 0x33, sub_0807A3B8
 	MOVE_SPEED CHARACTER_TACTICIAN, 1, 2, 0x10
 	LABEL 0x33
 	MOVE_INSTANT CHARACTER_FLORINA, 7, 13
@@ -200,10 +200,10 @@ EventScr_Ch13_Beginning:
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_AAA                             @ I've spotted the enemy... Why are their archers
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	TEX1 MSG_AAB                             @ Lord Eliwood, look! Up there! A pegasus knight!
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG_FADE 0xB, 2
 	CG_TEXT MSG_AAC, 1                       @ Florina Lord Eliwood!
@@ -262,11 +262,11 @@ EventScr_08CB0A5C:
 	LOU1 Units_08CCA8A8
 	LABEL 0x38
 	ENUN
-	ASMC 0x0807D021
+	ASMC sub_0807D020
 	MOVE_INSTANT CHARACTER_FLORINA, 4, 5
 	MOVE_INSTANT CHARACTER_KENT, 20, 14
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFHM 5
 	IFDEPLOYED 0, 7, CHARACTER_ERK
 	MUEN 4
@@ -416,7 +416,7 @@ EventScr_08CB0CD4:
 	BACG 1
 	FADU 0x10
 	ENTER_MAP
-	IFAF 5, 0x0807A3B9
+	IFAF 5, sub_0807A3B8
 	IFET 5, 0x11
 	ENUT 0x11
 	TEX1_BY_RANK 3, MsgList_08CB0CC8
@@ -438,7 +438,7 @@ EventScr_08CB0D40:
 	FADU 0x10
 	ENTER_MAP
 	IFUA 1, 1, CHARACTER_LYN
-	IFAT 2, 0x0807D095
+	IFAT 2, sub_0807D094
 	TEX1 MSG_AB9                             @ Castle Caelin's been seized by Marquess Laus's m
 	GOTO 5
 	LABEL 1
@@ -464,7 +464,7 @@ EventScr_08CB0DD0:
 	FADU 0x10
 	ENTER_MAP
 	IFUA 1, 1, CHARACTER_LYN
-	IFAT 2, 0x0807D095
+	IFAT 2, sub_0807D094
 	TEX1 MSG_ABC                             @ Marquess Laus's man, the one called Bauker... He
 	GOTO 5
 	LABEL 1
@@ -483,15 +483,15 @@ EventScr_08CB0DD0:
 
 	.global EventScr_Ch13_Ending
 EventScr_Ch13_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUSC 0x38
 	STAL 0x3C
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	CAM1_POS 0x15, 3
 	LOU1 Units_08CCAA38
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 0x13, 5
 	ENUN
 	BACG 0xE
@@ -499,7 +499,7 @@ EventScr_Ch13_Ending:
 	ENTER_MAP
 	TEX1 MSG_ACC                             @ Commander Bauker... He was a fierce enemy. Lyndi
 	TEX2 MSG_ACD                             @ This is Lyndis. She's Lord Hausen's granddaughte
-	IFAF 6, 0x0807A3B9
+	IFAF 6, sub_0807A3B8
 	MUEN 4
 	FADI 4
 	EXIT_MAP
@@ -509,13 +509,13 @@ EventScr_Ch13_Ending:
 	FADU 4
 	ENTER_MAP
 	TEX1 MSG_ACE                             @ ! Is it really you, ? So good to see you! Have y
-	SKIP_IFN_ASM 1, 0x08079E4D
+	SKIP_IFN_ASM 1, sub_08079E4C
 	TEX2 MSG_ACF                             @ Well met, . Good to see you again.
-	SKIP_IFN_ASM 1, 0x08079E6D
+	SKIP_IFN_ASM 1, sub_08079E6C
 	TEX2_BY_GENDER MSG_AD0, MSG_AD1          @ Well! This really is a pleasant surprise! / ! Ah... You still take my breath away!
-	SKIP_IFN_ASM 1, 0x08079E8D
+	SKIP_IFN_ASM 1, sub_08079E8C
 	TEX2 MSG_AD2                             @ Hello, ! Has it really been a year?
-	SKIP_IFN_ASM 1, 0x08079EAD
+	SKIP_IFN_ASM 1, sub_08079EAC
 	TEX2 MSG_AD3                             @ What's wrong, Florina? You needn't hide back the
 	TEX2 MSG_AD4                             @ Everyone who remained in Caelin speaks of you fo
 	LABEL 6

@@ -7,7 +7,7 @@
 
 	.global EvList_Ch28_Turn
 EvList_Ch28_Turn:
-	TURN 0, EventScr_08CBC9D0, 1, 0, 0, 0
+	TURN 0, EventScr_08CBC9D0, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch28_Character
@@ -49,7 +49,7 @@ ChapterEvents_Ch28:
 EventScr_Ch28_Beginning:
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA CHAPTER_2F, 0xD, 6
 	LOU1 Units_08CDC1AC
 	ENUN
@@ -66,7 +66,7 @@ EventScr_Ch28_Beginning:
 	FAWI 4
 	EXIT_MAP
 	STAL 0x40
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	CG_BACG 0x11
 	FAWU 4
@@ -82,7 +82,7 @@ EventScr_Ch28_Beginning:
 	STAL 0x40
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA 0x3E, 0, 0
 	STAL 0x20
 	FADU 4
@@ -110,7 +110,7 @@ EventScr_Ch28_Beginning:
 EventScr_08CBC9D0:
 	LOU2_BY_MODE Units_Ch28_Player, Units_Ch28_PlayerHard, Units_Ch28_Player, Units_Ch28_PlayerHard
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFDEPLOYED 0, 7, CHARACTER_HECTOR
 	MUEN 4
 	CAM1 CHARACTER_HECTOR
@@ -124,7 +124,7 @@ EventScr_08CBC9D0:
 
 	.global EventScr_08CBCA30
 EventScr_08CBCA30:
-	IFAF 9, 0x0807A2F1
+	IFAF 9, sub_0807A2F0
 	IFUA 0, 9, CHARACTER_ELIWOOD
 	JUMP EventScr_Ch28_Ending
 	LABEL 9
@@ -135,13 +135,13 @@ EventScr_08CBCA30:
 
 	.global EventScr_Ch28_Ending
 EventScr_Ch28_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	UNIT_CAM_OFF
 	MUSC 0x3A8
 	FADI 4
 	EXIT_MAP
 	STAL 0x40
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	MOVE_INSTANT CHARACTER_ELIWOOD, 8, 3
 	CAM2_POS 8, 0
 	FADU 4
@@ -149,7 +149,7 @@ EventScr_Ch28_Ending:
 	CAM1_POS 6, 4
 	WARP_POS 6, 4, 1
 	LOAD_UNIT CHARACTER_ATHOS, CLASS_ARCHSAGE, 6, 4
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	CURF CHARACTER_ELIWOOD
 	TEX1 MSG_E02                             @ ...You have stood your guard for so, so long. I'
 	CLEAN
@@ -204,7 +204,7 @@ EventScr_Ch28_Ending:
 	STAL 0x20
 	GOTO 0xC
 	LABEL 0xB
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	LABEL 0xC
 	CLEAN
@@ -213,7 +213,7 @@ EventScr_Ch28_Ending:
 	ENUN
 	TEX1 MSG_E08                             @ Lord Athos, who was that man? So you were able t
 	CLEAN
-	ASMC 0x0807D891
+	ASMC sub_0807D890
 	TEX1 MSG_E09                             @ Look! Above the altar! A sword... Take it! It be
 	CLEAN
 	STAL 0x40
@@ -222,11 +222,11 @@ EventScr_Ch28_Ending:
 	MOVE_SPEED CHARACTER_ATHOS, 6, 3, 0xA
 	ENUN
 	STAL 0x3C
-	ASMC 0x0807D8D5
+	ASMC sub_0807D8D4
 	STAL 0x3C
 	SOUN SONG_269
 	STAL 0x64
-	ASMC 0x08021165
+	ASMC EndEmitStars
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x56
@@ -238,11 +238,11 @@ EventScr_Ch28_Ending:
 	EVBIT_NOSKIP_SLOW_NGP
 	MUEN 6
 	STAL 0x3C
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA 0x3E, 0, 0
 	MUSC 0x3A4
 	LOU1 Units_08CDC21C
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 7, 4
 	ENUN
 	FADU 4
@@ -272,7 +272,7 @@ EventScr_Ch28_Ending:
 
 	.global EventScr_08CC0EC0
 EventScr_08CC0EC0:
-	TEX1_IF_ASM 0x0807EEFD, MSG_E00, MSG_E01 @ ...... ...I don't understand... you seem....fami / ...The seal... ... protecting ...Beyond my power
+	TEX1_IF_ASM IsAnyLordInCombat, MSG_E00, MSG_E01 @ ...... ...I don't understand... you seem....fami / ...The seal... ... protecting ...Beyond my power
 	CLEAN
 	REMA
 	ENDA

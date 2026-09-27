@@ -7,14 +7,14 @@
 
 	.global EvList_Ch01_Turn
 EvList_Ch01_Turn:
-	TURN 0, EventScr_Ch01_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_08CA83E4, 1, 0, 0, 0
+	TURN 0, EventScr_Ch01_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CA83E4, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch01_TutorialD
 EvList_Ch01_TutorialD:
-	TURN 0, EventScr_08CA845C, 2, 0, 0, 0
-	TURN 0, EventScr_08CA849C, 3, 0, 0, 0
+	TURN 0, EventScr_08CA845C, 2, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CA849C, 3, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch01_Character
@@ -95,7 +95,7 @@ EvList_Ch01_TutorialC:
 
 	.global EvList_Ch01_Misc
 EvList_Ch01_Misc:
-	ASME 0, EventScr_Ch01_Ending, 0x08079FE9
+	ASME 0, EventScr_Ch01_Ending, sub_08079FE8
 	AFEV 0x1E, EventScr_08CA85FC, 8
 	AFEV 0x1F, EventScr_08CA8790, 9
 	AFEV 0x20, EventScr_08CA888C, 0xA
@@ -183,7 +183,7 @@ EventScr_08CA83E4:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_844, 5           @ Blue units are allies . Direct them on the field
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	CURF CHARACTER_SAIN_TUTORIAL
 	LABEL 0x32
 	ENUT 7
@@ -216,7 +216,7 @@ EventScr_08CA849C:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_865, 5           @ To give away an item, use the trade command. Tra
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	ENUT 0xF
 	MENU_OVERRIDE_HIDE 0x71
@@ -228,20 +228,20 @@ EventScr_08CA849C:
 EventScr_08CA84F8:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_SAIN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_SAIN_TUTORIAL
 	TEX1_BY_GENDER MSG_845, MSG_846          @ Direct my arm! / Sain is your faithful servant! Command me!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 8
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA0808
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 16, MSG_847, MSG_848 @ Attack ! Move me to a space next to my foe ! / Attack ! Move me to a space next to my foe !
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -255,8 +255,8 @@ EventScr_08CA85A0:
 	TUTORIAL_CURSORS AreaList_08CA0808
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 16, MSG_849, MSG_84A @ Move me up next to the enemy ! / Move me up next to the enemy !
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x11
 	REMA
 	ENDA
@@ -277,7 +277,7 @@ EventScr_08CA85E8:
 	.global EventScr_08CA85FC
 EventScr_08CA85FC:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	TEX1 MSG_84B                             @ Whoa! I missed!? Sain! Why aren't you using your
 	CLEAN
@@ -292,7 +292,7 @@ EventScr_08CA85FC:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_84D, 5           @ Weapons possess a unique hierarchy. Swords best
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	MENU_OVERRIDE_CLEAR
 	MENU_OVERRIDE_HIDE 0x71
@@ -303,18 +303,18 @@ EventScr_08CA85FC:
 EventScr_08CA8688:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_KENT_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_KENT_TUTORIAL
 	TEX1 MSG_84E                             @ Command me to attack!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 9
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA0810
 	STAL 0x32
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -328,7 +328,7 @@ EventScr_08CA871C:
 	EVBIT_SILENTSKIP
 	TUTORIAL_CURSORS AreaList_08CA0810
 	STAL 0x32
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x12
 	REMA
 	ENDA
@@ -342,11 +342,11 @@ BattleScr_08CA8740:
 	.global EventScr_08CA874C
 EventScr_08CA874C:
 	EVBIT_SILENTSKIP
-	ASMC 0x0804AAC1
+	ASMC FreezeMenu
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_84F            @ The enemy wields an axe. Use a sword for my atta
-	ASMC_WAIT2 0x08083181
-	ASMC 0x0804AAE1
+	ASMC_WAIT2 BoxTalkActive
+	ASMC ResumeMenu
 	FIGHT_OVERRIDE BattleScr_08CA8740
 	MENU_OVERRIDE_DISABLE 0x49
 	REMA
@@ -368,13 +368,13 @@ EventScr_08CA87BC:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xA
 	GOTO 9
 	LABEL 1
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_851            @ I must be next to the enemy!
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -402,8 +402,8 @@ EventScr_08CA8854:
 	TUTORIAL_CURSORS AreaList_08CA0818
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_852            @ I want to fight! I must be closer to my foe!
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x13
 	REMA
 	ENDA
@@ -420,12 +420,12 @@ EventScr_08CA888C:
 EventScr_08CA88A4:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_SAIN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_SAIN_TUTORIAL
 	TEX1_BY_GENDER MSG_856, MSG_857          @ I failed you once before, but give me another ch / I'll show you my worth this time. Let me take up
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xC
 	GOTO 9
 	LABEL 1
@@ -443,8 +443,8 @@ EventScr_08CA8928:
 	TUTORIAL_CURSORS AreaList_08CA0820
 	STAL 8
 	TUTORIAL_TEXT 112, 80, MSG_858           @ Move next to the enemy and attack!
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x14
 	REMA
 	ENDA
@@ -458,11 +458,11 @@ BattleScr_08CA8960:
 	.global EventScr_08CA896C
 EventScr_08CA896C:
 	EVBIT_SILENTSKIP
-	ASMC 0x0804AAC1
+	ASMC FreezeMenu
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 64, MSG_859, MSG_85A @ Axe-wielding foes should be met with swords. Bra / Axe-wielding foes should be met with swords. Bra
-	ASMC_WAIT2 0x08083181
-	ASMC 0x0804AAE1
+	ASMC_WAIT2 BoxTalkActive
+	ASMC ResumeMenu
 	FIGHT_OVERRIDE BattleScr_08CA8960
 	REMA
 	ENDA
@@ -470,14 +470,14 @@ EventScr_08CA896C:
 	.global EventScr_08CA89AC
 EventScr_08CA89AC:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	TEX1 MSG_85B                             @ Gah! Sain! Are you all right? Yes. Yes, I am. I
 	CLEAN
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_85C, 5           @ Each type of terrain has unique characteristics.
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	STAL 0x20
 	CURF CHARACTER_KENT_TUTORIAL
@@ -492,12 +492,12 @@ EventScr_08CA89AC:
 EventScr_08CA8A20:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_KENT_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_KENT_TUTORIAL
 	TEX1 MSG_85E                             @ Direct me to attack! I'm ready, and I'm able!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xD
 	GOTO 9
 	LABEL 1
@@ -515,8 +515,8 @@ EventScr_08CA8AA0:
 	TUTORIAL_CURSORS AreaList_08CA0828
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_85F            @ Move me next to the enemy .
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x15
 	REMA
 	ENDA
@@ -530,11 +530,11 @@ BattleScr_08CA8AD8:
 	.global EventScr_08CA8AE4
 EventScr_08CA8AE4:
 	EVBIT_SILENTSKIP
-	ASMC 0x0804AAC1
+	ASMC FreezeMenu
 	STAL 8
 	TUTORIAL_TEXT 40, 64, MSG_860            @ Let's use my sword to attack !
-	ASMC_WAIT2 0x08083181
-	ASMC 0x0804AAE1
+	ASMC_WAIT2 BoxTalkActive
+	ASMC ResumeMenu
 	FIGHT_OVERRIDE BattleScr_08CA8AD8
 	REMA
 	ENDA
@@ -542,7 +542,7 @@ EventScr_08CA8AE4:
 	.global EventScr_08CA8B20
 EventScr_08CA8B20:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	TEX1 MSG_861                             @ It seems like a wise decision to leave that band
 	CLEAN
@@ -556,19 +556,19 @@ EventScr_08CA8B54:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xE
 	GOTO 9
 	LABEL 1
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_862            @ For my part, if I'm going to take care of the ot
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0830
 	STAL 0x32
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_863            @ That looks good. Let's move there, !
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x64
@@ -581,7 +581,7 @@ EventScr_08CA8BF4:
 	EVBIT_SILENTSKIP
 	TUTORIAL_CURSORS AreaList_08CA0830
 	STAL 0x32
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x16
 	REMA
 	ENDA
@@ -598,12 +598,12 @@ EventScr_08CA8C18:
 EventScr_08CA8C30:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_SAIN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_SAIN_TUTORIAL
 	TEX1_BY_GENDER MSG_868, MSG_869          @ I must use the vulnerary and put my lady's mind / I mustn't worry my lady any longer. Come, ! Dire
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0x10
 	GOTO 9
 	LABEL 1
@@ -611,10 +611,10 @@ EventScr_08CA8C30:
 	CURF CHARACTER_SAIN_TUTORIAL
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 16, MSG_866, MSG_867 @ I can't keep such a generous offer waiting! The / I can't keep such a generous offer waiting! The
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0838
 	STAL 0x32
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x5F
 	MENU_OVERRIDE_HIDE 0x63
@@ -629,10 +629,10 @@ EventScr_08CA8CF0:
 	TUTORIAL_CURSORS AreaList_08CA0838
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 16, MSG_86A, MSG_86B @ Move me next to her! I implore you! / Move me next to her! Heed my wishes!
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0x17
-	IFAT 7, 0x0807CEFD
+	IFAT 7, sub_0807CEFC
 	MENU_OVERRIDE_HIDE 0x63
 	GOTO 8
 	LABEL 7
@@ -647,29 +647,29 @@ EventScr_08CA8D5C:
 	IFET 5, 0x25
 	IFTU 0x32
 	IGNORE_KEYS 0x0
-	ASMC 0x0804AAC1
+	ASMC FreezeMenu
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_86C, 1         @ Now select the trade command. Sain's and Lyn's p
-	ASMC_WAIT2 0x08083181
-	ASMC 0x0804AAE1
+	ASMC_WAIT2 BoxTalkActive
+	ASMC ResumeMenu
 	IGNORE_KEYS 0x102
 	LABEL 0x32
 	ENUT 0x25
 	LABEL 5
-	IFAT 0x33, 0x0807CEFD
+	IFAT 0x33, sub_0807CEFC
 	IGNORE_KEYS 0x0
 	GOTO 0x37
 	LABEL 0x33
 	MENU_OVERRIDE_CLEAR
-	IFAF 0x34, 0x0807CF11
+	IFAF 0x34, sub_0807CF10
 	MENU_OVERRIDE_HIDE 0x36
 	MENU_OVERRIDE_HIDE 0x67
 	IFTU 0x37
-	ASMC 0x0804AAC1
+	ASMC FreezeMenu
 	STAL 8
 	TUTORIAL_TEXT 36, 40, MSG_86D, 1         @ Sain can now use Lyn's vulnerary . Select the vu
-	ASMC_WAIT2 0x08083181
-	ASMC 0x0804AAE1
+	ASMC_WAIT2 BoxTalkActive
+	ASMC ResumeMenu
 	GOTO 0x37
 	LABEL 0x34
 	MENU_OVERRIDE_HIDE 0x63
@@ -692,21 +692,21 @@ EventScr_08CA8E84:
 	ENUT 0x17
 	ENUT 0x1D
 	ENUT 0x26
-	IFAF 0xA, 0x0807A49D
+	IFAF 0xA, sub_0807A49C
 	IFTU 0x32
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_871, 5           @ Mission goals change from chapter to chapter. Th
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	GOTO 0xB
 	LABEL 0xA
 	IFTU 0x33
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_86E, 5           @ Furthermore, mounted units have the unique abili
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x33
-	IFAF 0x34, 0x0807CF2D
+	IFAF 0x34, sub_0807CF2C
 	TEX1_BY_GENDER MSG_86F, MSG_870          @ Ah, much better! Thanks, ! And you have my grati / Ah, much better! You have my gratitude, lovely l
 	CLEAN
 	LABEL 0x34
@@ -724,12 +724,12 @@ EventScr_Ch01_Ending:
 	STAL 0x40
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x22
 	FADU 4
 	ENTER_MAP
 	TEX1 MSG_874                             @ That's the last of them! Fantastic work, !
-	ASMC 0x0800ECFD
+	ASMC ClearTalk
 	BACG_FADE 1, 2
 	STAL 0x40
 	CG_TEXT MSG_875, 1                       @ Lyn And now for these knights of Lycia. You were

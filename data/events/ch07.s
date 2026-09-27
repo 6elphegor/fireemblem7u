@@ -7,7 +7,7 @@
 
 	.global EvList_Ch07_Turn
 EvList_Ch07_Turn:
-	TURN 0, EventScr_08CACBB4, 1, 0, 0, 0
+	TURN 0, EventScr_08CACBB4, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch07_TutorialD
@@ -99,7 +99,7 @@ MoveScr_08CAC9F8:
 	.global EventScr_Ch07_Beginning
 EventScr_Ch07_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	CAM1_POS 0, 0
 	FADE_FROM_OPENING
 	STAL 0x20
@@ -174,13 +174,13 @@ EventScr_Ch07_Beginning:
 	ENTER_MAP
 	TEX1 MSG_983                             @ Huh? Who do you think you are? Lyn! Let the boy'
 	CLEAN
-	ASMC 0x08018889
+	ASMC sub_08018888
 	IFTU 0x32
 	MUSC 0x49
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_984, 5           @ Starting with this chapter, you'll be able to us
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA_PREP
 	ENDA
@@ -214,7 +214,7 @@ EventScr_08CACBB4:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_987, 5           @ The monk Lucius has joined your group. Monks are
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	IFDIFF 1, 0x63
 	ENUT 6
@@ -312,20 +312,20 @@ EventScr_08CACDC4:
 EventScr_08CACE04:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LUCIUS
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_LUCIUS
 	TEX1 MSG_988                             @ , isn't it? I am Lucius. I await your orders.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 7
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA1334
 	STAL 8
 	TUTORIAL_TEXT 40, 16, MSG_989            @ You wish for me to attack the shaman? Very well.
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x5F
@@ -341,20 +341,20 @@ EventScr_08CACE04:
 EventScr_08CACEC0:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_NILS
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_NILS
 	TEX1 MSG_98D                             @ ? I'm Nils! I'd like to perform for you, so give
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 8
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA133C
 	STAL 8
 	TUTORIAL_TEXT 60, 48, MSG_98E            @ You'd like me to play for Lucius, right?
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x64
@@ -371,8 +371,8 @@ EventScr_08CACF6C:
 	TUTORIAL_CURSORS AreaList_08CA1334
 	STAL 8
 	TUTORIAL_TEXT 40, 16, MSG_98A            @ I beg your pardon, but I would prefer to attack
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 9
 	EVBIT_YESSKIP
 	REMA
@@ -385,8 +385,8 @@ EventScr_08CACFAC:
 	TUTORIAL_CURSORS AreaList_08CA133C
 	STAL 8
 	TUTORIAL_TEXT 60, 48, MSG_98F            @ I have to be next to him, so he can hear my tune
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xA
 	EVBIT_YESSKIP
 	REMA
@@ -395,7 +395,7 @@ EventScr_08CACFAC:
 	.global EventScr_08CACFEC
 EventScr_08CACFEC:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	STAL 0x40
 	CURF CHARACTER_NILS
@@ -404,7 +404,7 @@ EventScr_08CACFEC:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_98C, 5           @ It's time to see what Nils can do. The music pla
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	MENU_OVERRIDE_CLEAR
 	MENU_OVERRIDE_HIDE 0x71
@@ -414,14 +414,14 @@ EventScr_08CACFEC:
 	.global EventScr_08CAD054
 EventScr_08CAD054:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	TEX1 MSG_990                             @ What do you think? That was lovely... Invigorati
 	CLEAN
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_991, 5           @ Through the power of Nils's music , Lucius can m
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	MENU_OVERRIDE_CLEAR
 	REMA
@@ -434,14 +434,14 @@ EventScr_Ch07_Ending:
 	STAL 0x40
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x3C
 	FADU 4
 	ENTER_MAP
 	TEX1 MSG_99B                             @ Nils! Where's your sister? Ninian! Ninian... She
 	MUEN 4
 	TEX2 MSG_99C                             @ Are you looking for this girl here?
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	MUSC SONG_3D
 	BACG_FADE 6, 4
@@ -482,7 +482,7 @@ EventScr_Ch07_Ending:
 	STAL 0x10
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0800ECFD
+	ASMC ClearTalk
 	EVBIT_NOTEXTSKIP
 	BACG 0x5B
 	FADU 0x10
@@ -490,12 +490,12 @@ EventScr_Ch07_Ending:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_9A4, 5           @ When you fulfill certain conditions, side quests
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	STAL 2
-	ASMC 0x08015591
+	ASMC ApplySystemObjectsGraphics
 	TUTORIAL_TEXT 0, 0, MSG_9A5, 7           @ Embark on side quest?
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	EVBIT_YESSKIP
 	FADI 0x10
 	EXIT_MAP

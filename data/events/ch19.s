@@ -7,7 +7,7 @@
 
 	.global EvList_Ch19_Turn
 EvList_Ch19_Turn:
-	TURN 0, EventScr_08CB3880, 1, 0, 0, 0
+	TURN 0, EventScr_08CB3880, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch19_Character
@@ -61,10 +61,10 @@ MoveScr_08CB3584:
 
 	.global EventScr_Ch19_Beginning
 EventScr_Ch19_Beginning:
-	ASMC 0x0807AA75
+	ASMC sub_0807AA74
 	VCWF 0
 	LOMA 0x35, 0, 0xE
-	ASMC 0x08024CE1
+	ASMC ApplyUnitSpriteSepiaPalette
 	FADU 2
 	ENTER_MAP
 	STAL 0x40
@@ -117,17 +117,17 @@ EventScr_Ch19_Beginning:
 	ENUN
 	LOU1 Units_08CCEAE0
 	ENUN
-	SKIP_IFN_ASM 3, 0x0807A3B9
+	SKIP_IFN_ASM 3, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 1, 0x10
 	MOVE CHARACTER_TACTICIAN, 1, 15
 	ENUN
 	TEX1 MSG_B98                             @ Lyndis! Is Ninian well? ...What is it? I'm not s
-	TEX2_IF_ASM 0x0807A3B9, MSG_B9A, MSG_B99 @ He's too nice for his own good. You agree with m / I can't believe you. You're too kind for your ow
+	TEX2_IF_ASM sub_0807A3B8, MSG_B9A, MSG_B99 @ He's too nice for his own good. You agree with m / I can't believe you. You're too kind for your ow
 	CLEAN
 	WARP_POS 10, 14, 1
 	LOU1 Units_08CCEB50
 	ENUN
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	MOVE_SPEED CHARACTER_TEODOR, 4, 14, 0x10
 	ENUN
 	MUSC 0x4F
@@ -138,7 +138,7 @@ EventScr_Ch19_Beginning:
 	STAL 0x20
 	MOVE_SPEED CHARACTER_ELIWOOD, 2, 14, 8
 	MOVE_SPEED CHARACTER_LYN, 3, 14, 8
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_SPEED CHARACTER_TACTICIAN, 2, 15, 8
 	ENUN
 	TEX1 MSG_B9C                             @ What is this place? It's a ruin from the Scourin
@@ -149,7 +149,7 @@ EventScr_Ch19_Beginning:
 	CLEAN
 	WARP_POS 7, 14, 0
 	DISA CHARACTER_TEODOR
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	DISA CHARACTER_NINIAN
 	VCWF 2
 	TEX1 MSG_B9F                             @ Black...fog? I can't see anything! Blast! Those
@@ -168,17 +168,17 @@ EventScr_08CB3880:
 	.global EventScr_Ch19_Ending
 EventScr_Ch19_Ending:
 	MUEN 6
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	FADI 0x10
 	EXIT_MAP
 	STAL 0x50
 	UNIT_CAM_OFF
 	CAM1_POS 0x15, 0
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	VCWF 0
 	LOU1 Units_08CCEB70
 	ENUN
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 0xC, 8
 	MUSC_FADE 0x4F, 4
 	BACG 0x42
@@ -198,7 +198,7 @@ EventScr_Ch19_Ending:
 	TEX1 MSG_BA4                             @ Let's get moving! We've been fighting since we g
 	CLEAN
 	MUEN 6
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_SPEED CHARACTER_TACTICIAN, 14, 12, 0x10
 	MOVE_SPEED CHARACTER_HECTOR, 11, 12, 0x10
 	MOVE_SPEED CHARACTER_LYN, 12, 12, 0x10
@@ -214,7 +214,7 @@ EventScr_Ch19_Ending:
 	WARP_POS 15, 6, 1
 	LOU1 Units_08CCEBC0
 	ENUN
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	STAL 0x78
 	TEX1 MSG_BA5                             @ What is this place? I was supposed to be at the
 	CLEAN
@@ -224,7 +224,7 @@ EventScr_Ch19_Ending:
 	CLEAN
 	WARP_POS 12, 7, 0
 	DISA CHARACTER_NERGAL
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	STAL 0x78
 	FADI 2
 	EXIT_MAP

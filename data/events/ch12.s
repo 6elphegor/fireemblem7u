@@ -7,16 +7,16 @@
 
 	.global EvList_Ch12_Turn
 EvList_Ch12_Turn:
-	TURN 0, EventScr_08CB0554, 1, 0, 0, 0
-	TURN 0, EventScr_Ch12_Ending, 8, 0, 0, 0
-	TURN 0, EventScr_08CCA10C, 3, 0, 0, 2
-	TURN 0, EventScr_08CCA120, 5, 7, 0, 2
-	TURN 0, EventScr_08CCA134, 3, 4, 0, 2
-	TURN 0, EventScr_08CCA10C, 2, 4, 0, 4
-	TURN 0, EventScr_08CCA120, 4, 7, 0, 4
-	TURN 0, EventScr_08CCA134, 3, 4, 0, 4
-	TURN 0, EventScr_08CCA148, 3, 0, 0, 4
-	TURN 0, EventScr_08CCA148, 5, 0, 0, 4
+	TURN 0, EventScr_08CB0554, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_Ch12_Ending, 8, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CCA10C, 3, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CCA120, 5, 7, FACTION_BLUE, 2
+	TURN 0, EventScr_08CCA134, 3, 4, FACTION_BLUE, 2
+	TURN 0, EventScr_08CCA10C, 2, 4, FACTION_BLUE, 4
+	TURN 0, EventScr_08CCA120, 4, 7, FACTION_BLUE, 4
+	TURN 0, EventScr_08CCA134, 3, 4, FACTION_BLUE, 4
+	TURN 0, EventScr_08CCA148, 3, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CCA148, 5, 0, FACTION_BLUE, 4
 	EVLIST_END
 
 	.global EvList_Ch12_Character
@@ -98,7 +98,7 @@ EventScr_08CB0554:
 	CURF CHARACTER_SEALEN
 	TEX1 MSG_A9A                             @ Our goal is the throne. We'll attack from the fr
 	CLEAN
-	IFAF 5, 0x0807A3B9
+	IFAF 5, sub_0807A3B8
 	IFDEPLOYED 0, 5, CHARACTER_OSWIN
 	STAL 0x3C
 	MUEN 4
@@ -113,10 +113,10 @@ EventScr_08CB0554:
 
 	.global EventScr_08CB05D0
 EventScr_08CB05D0:
-	IFAF 9, 0x0807A305
+	IFAF 9, sub_0807A304
 	TEX1 MSG_A9C                             @ No! The throne!
 	CLEAN
-	ASMC 0x08079705
+	ASMC sub_08079704
 	STAL 1
 	LABEL 9
 	REMA
@@ -124,12 +124,12 @@ EventScr_08CB05D0:
 
 	.global EventScr_Ch12_Ending
 EventScr_Ch12_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUSC 0x38
 	STAL 0x3C
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x10
 	FADU 4
 	ENTER_MAP

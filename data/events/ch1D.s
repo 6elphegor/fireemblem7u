@@ -7,24 +7,24 @@
 
 	.global EvList_Ch1D_Turn
 EvList_Ch1D_Turn:
-	TURN 0, EventScr_08CB5A24, 1, 0, 0, 0
-	TURN 0, EventScr_08CB5AEC, 2, 0, 0, 1
-	TURN 0, EventScr_08CB5AEC, 2, 0, 0, 2
-	TURN 0, EventScr_08CD2694, 3, 0, 0, 1
-	TURN 0, EventScr_08CD26A8, 5, 0, 0, 1
-	TURN 0, EventScr_08CD26BC, 5, 6, 0, 1
-	TURN 0, EventScr_08CD26D0, 7, 8, 0, 1
-	TURN 0, EventScr_08CD2694, 3, 0, 0, 2
-	TURN 0, EventScr_08CD26A8, 5, 0, 0, 2
-	TURN 0, EventScr_08CD26BC, 5, 6, 0, 2
-	TURN 0, EventScr_08CD26D0, 7, 8, 0, 2
-	TURN 0, EventScr_08CB5B90, 1, 0, 0, 4
-	TURN 0, EventScr_08CB5AEC, 2, 0, 0, 3
-	TURN 0, EventScr_08CB5B48, 2, 0, 0, 4
-	TURN 0, EventScr_08CD2694, 2, 3, 0, 5
-	TURN 0, EventScr_08CD26A8, 4, 5, 0, 5
-	TURN 0, EventScr_08CD26BC, 4, 6, 0, 5
-	TURN 0, EventScr_08CD26D0, 6, 8, 0, 5
+	TURN 0, EventScr_08CB5A24, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CB5AEC, 2, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CB5AEC, 2, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD2694, 3, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD26A8, 5, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD26BC, 5, 6, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD26D0, 7, 8, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD2694, 3, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD26A8, 5, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD26BC, 5, 6, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD26D0, 7, 8, FACTION_BLUE, 2
+	TURN 0, EventScr_08CB5B90, 1, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CB5AEC, 2, 0, FACTION_BLUE, 3
+	TURN 0, EventScr_08CB5B48, 2, 0, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD2694, 2, 3, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD26A8, 4, 5, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD26BC, 4, 6, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD26D0, 6, 8, FACTION_BLUE, 5
 	EVLIST_END
 
 	.global EvList_Ch1D_Character
@@ -46,7 +46,7 @@ EvList_Ch1D_Location:
 
 	.global EvList_Ch1D_Misc
 EvList_Ch1D_Misc:
-	ASME 0, EventScr_Ch1D_Ending, 0x08079FE9
+	ASME 0, EventScr_Ch1D_Ending, sub_08079FE8
 	AFEV 0, gEvent_GameOver, 0x65
 	AREA 9, EventScr_08CB5CC4, 0, 4, 1, 5
 	AREA 0xA, EventScr_08CB5D04, 3, 4, 4, 5
@@ -81,7 +81,7 @@ ChapterEvents_Ch1D:
 EventScr_Ch1D_Beginning:
 	UNIT_CAM_OFF
 	LOU1 Units_08CD242C
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 0x11, 3
 	LOU1 Units_08CD247C
 	ENUN
@@ -110,7 +110,7 @@ EventScr_Ch1D_Beginning:
 	STAL 0x20
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	MUSC 0x3A
 	BACG 0x51
 	FADU 0x10
@@ -180,9 +180,9 @@ EventScr_08CB5A24:
 	LOU2_BY_MODE Units_Ch1D_Player, Units_Ch1D_PlayerHard, Units_Ch1D_PlayerHector, Units_Ch1D_PlayerHectorHard
 	LOU1_IF_MODE 2, 0, Units_08CD22FC
 	LOU1_IF_MODE 3, 0, Units_08CD231C
-	ASMC 0x0807D2ED
+	ASMC sub_0807D2EC
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFHM 5
 	IFDEPLOYED 0, 7, CHARACTER_CANAS
 	MUEN 4
@@ -215,7 +215,7 @@ EventScr_08CB5AEC:
 	LOU1_IF_MODE 3, 0, Units_08CD235C
 	ENUN
 	STAL 0x1E
-	ASMC2 0x0800F325
+	ASMC2 sub_0800F324
 	FAWU 4
 	ENTER_MAP
 	TEX1 MSG_C2F                             @ ......
@@ -328,7 +328,7 @@ EventScr_08CB5C68:
 
 	.global EventScr_08CB5CC4
 EventScr_08CB5CC4:
-	IFAT 1, 0x0807D2B1
+	IFAT 1, sub_0807D2B0
 	ENUF 9
 	GOTO 9
 	LABEL 1
@@ -341,7 +341,7 @@ EventScr_08CB5CC4:
 
 	.global EventScr_08CB5D04
 EventScr_08CB5D04:
-	IFAT 1, 0x0807D2B1
+	IFAT 1, sub_0807D2B0
 	ENUF 0xA
 	GOTO 9
 	LABEL 1
@@ -354,7 +354,7 @@ EventScr_08CB5D04:
 
 	.global EventScr_08CB5D44
 EventScr_08CB5D44:
-	IFAT 1, 0x0807D2B1
+	IFAT 1, sub_0807D2B0
 	ENUF 0xB
 	GOTO 9
 	LABEL 1
@@ -367,7 +367,7 @@ EventScr_08CB5D44:
 
 	.global EventScr_08CB5D84
 EventScr_08CB5D84:
-	IFAT 1, 0x0807D2B1
+	IFAT 1, sub_0807D2B0
 	ENUF 0xC
 	GOTO 9
 	LABEL 1
@@ -380,7 +380,7 @@ EventScr_08CB5D84:
 
 	.global EventScr_08CB5DC4
 EventScr_08CB5DC4:
-	IFAT 1, 0x0807D2B1
+	IFAT 1, sub_0807D2B0
 	ENUF 0xD
 	GOTO 9
 	LABEL 1
@@ -393,7 +393,7 @@ EventScr_08CB5DC4:
 
 	.global EventScr_08CB5E04
 EventScr_08CB5E04:
-	IFAT 1, 0x0807D2B1
+	IFAT 1, sub_0807D2B0
 	ENUF 0xE
 	GOTO 9
 	LABEL 1
@@ -407,12 +407,12 @@ EventScr_08CB5E04:
 	.global EventScr_Ch1D_Ending
 EventScr_Ch1D_Ending:
 	MUEN 2
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUSC 0x38
 	STAL 0x3C
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x51
 	FADU 4
 	ENTER_MAP
@@ -428,8 +428,8 @@ EventScr_Ch1D_Ending:
 	ENTER_MAP
 	LABEL 1
 	TEX1_BY_MODE MSG_C3E, MSG_C3F            @ You really helped me out. Thank you. We couldn't / You really helped me out. Thank you. Don't reall
-	IFAF 5, 0x0807D325
-	IFAF 5, 0x08079EFD
+	IFAF 5, sub_0807D324
+	IFAF 5, sub_08079EFC
 	FADI 4
 	EXIT_MAP
 	EVBIT_NOTEXTSKIP
@@ -437,9 +437,9 @@ EventScr_Ch1D_Ending:
 	FADU 0x80
 	ENTER_MAP
 	STAL 2
-	ASMC 0x08015591
+	ASMC ApplySystemObjectsGraphics
 	TUTORIAL_TEXT 0, 0, MSG_C40, 7           @ Accept side quest?
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	EVBIT_YESSKIP
 	IFYN 5
 	CALL EventScr_08CC0C14
@@ -447,7 +447,7 @@ EventScr_Ch1D_Ending:
 	MUEN 1
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	BACG 0x51
 	FADU 0x10
 	ENTER_MAP
@@ -470,7 +470,7 @@ EventScr_Ch1D_Ending:
 	EXIT_MAP
 	BACG 0x5B
 	LOMA_ID CHAPTER_1D
-	IFAF 7, 0x0807D369
+	IFAF 7, sub_0807D368
 	MNCH CHAPTER_20
 	STAL 1
 	ENDB

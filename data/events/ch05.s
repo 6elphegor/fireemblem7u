@@ -7,8 +7,8 @@
 
 	.global EvList_Ch05_Turn
 EvList_Ch05_Turn:
-	TURN 0, EventScr_Ch05_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_08CAB2D8, 1, 0, 0, 0
+	TURN 0, EventScr_Ch05_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CAB2D8, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch05_TutorialD
@@ -68,7 +68,7 @@ EvList_Ch05_TutorialC:
 
 	.global EvList_Ch05_Misc
 EvList_Ch05_Misc:
-	ASME 0, EventScr_Ch05_Ending, 0x08079FE9
+	ASME 0, EventScr_Ch05_Ending, sub_08079FE8
 	AFEV 0xE, EventScr_08CAB864, 8
 	AFEV 0xF, EventScr_08CAB8CC, 9
 	AFEV 0x10, EventScr_08CAB92C, 0xA
@@ -168,7 +168,7 @@ BattleScr_08CAB100:
 	.global EventScr_Ch05_Beginning
 EventScr_Ch05_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	LOU1 Units_Ch05_Player
 	ENUN
 	MOVE_SPEED CHARACTER_LYN_TUTORIAL, 4, 5, 0x10
@@ -206,7 +206,7 @@ EventScr_Ch05_Beginning:
 	MOVE_POS_SCR 7, 2, MoveScr_08CAB0C0
 	MOVE_POS_SCR 7, 4, MoveScr_08CAB0C7
 	ENUN
-	ASMC 0x08018889
+	ASMC sub_08018888
 	MOVE_SCR CHARACTER_LYN_TUTORIAL, MoveScr_08CAB0DD
 	MOVE_SCR_BLUE_OR_SCR CHARACTER_FLORINA_TUTORIAL, MoveScr_08CAB0F8, MoveScr_08CAB0A6
 	MOVE_SCR_BLUE_OR_SCR CHARACTER_KENT_TUTORIAL, MoveScr_08CAB0E2, MoveScr_08CAB090
@@ -215,8 +215,8 @@ EventScr_Ch05_Beginning:
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CAB0AB
 	ENUN
 	DISA CHARACTER_TACTICIAN
-	ASMC 0x0807A7D9
-	IFAF 0x12, 0x08079DFD
+	ASMC HideAllAlliesExceptLeader
+	IFAF 0x12, sub_08079DFC
 	LOU1 Units_08CC6370
 	ENUN
 	LABEL 0x12
@@ -257,7 +257,7 @@ EventScr_08CAB2D8:
 	LABEL 0xF
 	FIGHT CHARACTER_BANDIT_A3, CHARACTER_ERK, 0, ITEM_NONE, 0, 1
 	LABEL 0x10
-	SKIP_IFN_ASM 1, 0x0807A1AD
+	SKIP_IFN_ASM 1, sub_0807A1AC
 	UNIT_CLEAR_STATE CHARACTER_BANDIT_A3, 0x2
 	STAL 0x40
 	MUEN 2
@@ -269,7 +269,7 @@ EventScr_08CAB2D8:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_90B, 5           @ Sometimes, you can talk to different NPCs (the g
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	IFDIFF 1, 0x63
 	ENUT 7
@@ -283,8 +283,8 @@ EventScr_08CAB2D8:
 EventScr_08CAB440:
 	IGNORE_KEYS 0x0
 	MUSS 0x42
-	IFAF 5, 0x0807A15D
-	IFAF 6, 0x0807A14D
+	IFAF 5, sub_0807A15C
+	IFAF 6, sub_0807A14C
 	TEX1 MSG_919                             @ Um, excuse me... Hello? Hm? Why are you fighting
 	CLEAN
 	MURE 6
@@ -354,20 +354,20 @@ EventScr_08CAB564:
 EventScr_08CAB594:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_LYN_TUTORIAL
 	TEX1 MSG_90C                             @ I must move closer to talk.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 8
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA0F90
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_90D            @ You want me to talk to that person? Understood.
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x5F
 	MENU_OVERRIDE_HIDE 0x63
@@ -381,23 +381,23 @@ EventScr_08CAB594:
 EventScr_08CAB644:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_SERRA
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_SERRA
 	TEX1 MSG_911                             @ Please direct me.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 9
 	GOTO 9
 	LABEL 1
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_912, 5           @ Press the A Button , and select the staff from t
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_913            @ I'm going to use my staff. Watch in wonder!
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -410,23 +410,23 @@ EventScr_08CAB644:
 EventScr_08CAB704:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_ERK
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_ERK
 	TEX1 MSG_917                             @ I will show you the true power of magic!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xA
 	GOTO 9
 	LABEL 1
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_918, 5           @ Magic , like Dorcas's throwing axes, can strike
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	TUTORIAL_CURSORS_TARGET
 	STAL 0x32
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x5B
 	MENU_OVERRIDE_HIDE 0x63
@@ -443,8 +443,8 @@ EventScr_08CAB7CC:
 	TUTORIAL_CURSORS AreaList_08CA0F90
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_90E            @ I'm supposed to talk to that person, right? Give
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xB
 	EVBIT_YESSKIP
 	REMA
@@ -456,8 +456,8 @@ EventScr_08CAB808:
 	TUTORIAL_CURSORS AreaList_08CA0F98
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_914            @ My staff! Let me use my staff!
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xC
 	EVBIT_YESSKIP
 	REMA
@@ -468,7 +468,7 @@ EventScr_08CAB844:
 	EVBIT_SILENTSKIP
 	TUTORIAL_CURSORS_TARGET
 	STAL 0x32
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xD
 	REMA
 	ENDA
@@ -476,13 +476,13 @@ EventScr_08CAB844:
 	.global EventScr_08CAB864
 EventScr_08CAB864:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	IFTU 0x32
 	CURF CHARACTER_SERRA
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_90F, 5           @ Erk, a mage , and Serra, a cleric , have joined
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	EVBIT_YESSKIP
 	TEX1 MSG_910                             @ Hello. You're , right? I'm Serra. Nice to meet y
@@ -495,12 +495,12 @@ EventScr_08CAB864:
 	.global EventScr_08CAB8CC
 EventScr_08CAB8CC:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_915, 5           @ Clerics cannot wield weapons; therefore they can
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	EVBIT_YESSKIP
 	TEX1 MSG_916                             @ You are ? I am Erk. I'm not sure how I got in th
@@ -524,8 +524,8 @@ EventScr_Ch05_Ending:
 	MUSC 0x38
 	STAL 0x40
 	IFDIFF 0, 0xA
-	IFAT 0xA, 0x08079F5D
-	IFAT 0xA, 0x08079F4D
+	IFAT 0xA, sub_08079F5C
+	IFAT 0xA, sub_08079F4C
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x1C
@@ -536,13 +536,13 @@ EventScr_Ch05_Ending:
 	LABEL 0xA
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x1C
 	FADU 4
 	ENTER_MAP
 	TEX1 MSG_925                             @ Nicely done, . That should just about do it. Wha
-	IFAT 1, 0x08079E1D
-	IFAF 6, 0x08079E0D
+	IFAT 1, sub_08079E1C
+	IFAF 6, sub_08079E0C
 	LABEL 1
 	FADI 0x10
 	EXIT_MAP
@@ -550,9 +550,9 @@ EventScr_Ch05_Ending:
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_926                             @ Well, let us be on our way, Erk. What have we he
-	IFAF 5, 0x08079E0D
+	IFAF 5, sub_08079E0C
 	TEX2 MSG_927                             @ Oh, Sain! Do you think we could join the lady Ly
-	IFAT 6, 0x08079E1D
+	IFAT 6, sub_08079E1C
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x23
@@ -568,7 +568,7 @@ EventScr_Ch05_Ending:
 	MUEN 6
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA CHAPTER_0B, 2, 0x10
 	STAL 0x80
 	MUSC 0x53

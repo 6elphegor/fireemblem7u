@@ -7,8 +7,8 @@
 
 	.global EvList_Ch29_Turn
 EvList_Ch29_Turn:
-	TURN 0, EventScr_08CBD3DC, 1, 0, 0, 0
-	TURN 0, EventScr_08CBD464, 0xA, 0, 0, 5
+	TURN 0, EventScr_08CBD3DC, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CBD464, 0xA, 0, FACTION_BLUE, 5
 	EVLIST_END
 
 	.global EvList_Ch29_Character
@@ -71,7 +71,7 @@ EventScr_08CBD3DC:
 	LOU2 Units_Ch29_Player
 	ENUN
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFDEPLOYED 0, 7, CHARACTER_ELIWOOD
 	MUEN 4
 	CAM1 CHARACTER_ELIWOOD
@@ -85,7 +85,7 @@ EventScr_08CBD3DC:
 
 	.global EventScr_08CBD434
 EventScr_08CBD434:
-	IFAF 9, 0x0807A2F1
+	IFAF 9, sub_0807A2F0
 	IFUA 0, 9, CHARACTER_HECTOR
 	JUMP EventScr_Ch29_Ending
 	LABEL 9
@@ -119,13 +119,13 @@ EventScr_08CBD464:
 	.global EventScr_Ch29_Ending
 EventScr_Ch29_Ending:
 	MUEN 4
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	STAL 0x3C
 	MUSC 0x3A8
 	MUSI
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x58
 	FADU 4
 	ENTER_MAP
@@ -147,7 +147,7 @@ EventScr_Ch29_Ending:
 	MUEN 6
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA CHAPTER_28, 1, 0
 	CAM1_POS 0xC, 0
 	LOU1 Units_08CDC704
@@ -181,10 +181,10 @@ EventScr_Ch29_Ending:
 	EXIT_MAP
 	EVBIT_NOSKIP_SLOW_NGP
 	STAL 0x40
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA 0x3E, 0, 0
 	LOU1 Units_08CDC754
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 7, 4
 	ENUN
 	FADU 4
@@ -214,7 +214,7 @@ EventScr_Ch29_Ending:
 
 	.global EventScr_08CC0EDC
 EventScr_08CC0EDC:
-	TEX1_IF_ASM 0x0807EF6D, MSG_E24, MSG_E25 @ Tremendous... ...strength... Truly...like...his. / ...Seal... ...... could not... ...prote...ct...
+	TEX1_IF_ASM IsHectorInCombat, MSG_E24, MSG_E25 @ Tremendous... ...strength... Truly...like...his. / ...Seal... ...... could not... ...prote...ct...
 	CLEAN
 	REMA
 	ENDA

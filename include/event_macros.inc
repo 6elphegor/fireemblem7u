@@ -16,6 +16,10 @@
 
 #define EVENT_NOSCRIPT 1
 
+#define FACTION_BLUE  0x00
+#define FACTION_GREEN 0x40
+#define FACTION_RED   0x80
+
 #define FACTION_ID_BLUE   0
 #define FACTION_ID_GREEN  1
 #define FACTION_ID_RED    2
@@ -41,99 +45,99 @@
 
 @ --- event scripts (gEventCmdTable; command id, then fields) ---
 
-@ 0x00  (1 words)
+@ 0x00 Event00_ (1 words)
 .macro ENDA _hi=0
 	.2byte 0x00
 	.2byte \_hi
 .endm
 
-@ 0x01  (1 words)
+@ 0x01 Event01 (1 words)
 .macro ENDB _hi=0
 	.2byte 0x01
 	.2byte \_hi
 .endm
 
-@ 0x02  (1 words)
+@ 0x02 EvtCmd_Sleep (1 words)
 .macro STAL frames
 	.2byte 0x02
 	.2byte \frames
 .endm
 
-@ 0x03  (1 words)
+@ 0x03 EvtCmd_SleepFast (1 words)
 .macro STAL2 frames
 	.2byte 0x03
 	.2byte \frames
 .endm
 
-@ 0x04  (1 words)
+@ 0x04 EvtCmd_SleepText (1 words)
 .macro STAL3 frames
 	.2byte 0x04
 	.2byte \frames
 .endm
 
-@ 0x05  (1 words)
+@ 0x05 EvtCmd_Background (1 words)
 .macro BACG bg
 	.2byte 0x05
 	.2byte \bg
 .endm
 
-@ 0x06  (1 words)
+@ 0x06 EvtCmd_BackgroundRandom (1 words)
 .macro BACG_RANDOM _hi=0
 	.2byte 0x06
 	.2byte \_hi
 .endm
 
-@ 0x07  (1 words)
+@ 0x07 EvtCmd_BackgroundMore (1 words)
 .macro BACG_MORE bg
 	.2byte 0x07
 	.2byte \bg
 .endm
 
-@ 0x08  (1 words)
+@ 0x08 EvtCmd_BackgroundLynModeDeath (1 words)
 .macro BACG_LYNDEATH _hi=0
 	.2byte 0x08
 	.2byte \_hi
 .endm
 
-@ 0x09  (1 words)
+@ 0x09 EvtCmd_ClearTalk (1 words)
 .macro CLEAN _hi=0
 	.2byte 0x09
 	.2byte \_hi
 .endm
 
-@ 0x0A  (1 words)
+@ 0x0A EvtCmd_ClearSkip (1 words)
 .macro REMA _hi=0
 	.2byte 0x0A
 	.2byte \_hi
 .endm
 
-@ 0x0B  (1 words)
+@ 0x0B EvtCmd_ClearSkipFadeToPrep (1 words)
 .macro REMA_PREP _hi=0
 	.2byte 0x0B
 	.2byte \_hi
 .endm
 
-@ 0x0C  (1 words)
+@ 0x0C EvtCmd_FadeFromOpening (1 words)
 .macro FADE_FROM_OPENING _hi=0
 	.2byte 0x0C
 	.2byte \_hi
 .endm
 
-@ 0x0D  (2 words)
+@ 0x0D EvtCmd_Talk (2 words)
 .macro TEX1 msg, _hi=0
 	.2byte 0x0D
 	.2byte \_hi
 	.4byte \msg
 .endm
 
-@ 0x0E  (2 words)
+@ 0x0E EvtCmd_TalkOpaque (2 words)
 .macro TEX1_OPAQUE msg, _hi=0
 	.2byte 0x0E
 	.2byte \_hi
 	.4byte \msg
 .endm
 
-@ 0x0F  (3 words)
+@ 0x0F EvtCmd_TalkByMode (3 words)
 .macro TEX1_BY_MODE msg, msg_hector, _hi=0
 	.2byte 0x0F
 	.2byte \_hi
@@ -141,21 +145,21 @@
 	.4byte \msg_hector
 .endm
 
-@ 0x10  (2 words)
+@ 0x10 EvtCmd_TalkSetFuncBroken (2 words)
 .macro TEX_SETFUNC arg, _hi=0
 	.2byte 0x10
 	.2byte \_hi
 	.4byte \arg
 .endm
 
-@ 0x11  (2 words)
+@ 0x11 EvtCmd_TalkMore (2 words)
 .macro TEX2 msg, _hi=0
 	.2byte 0x11
 	.2byte \_hi
 	.4byte \msg
 .endm
 
-@ 0x12  (3 words)
+@ 0x12 EvtCmd_TalkMoreByMode (3 words)
 .macro TEX2_BY_MODE msg, msg_hector, _hi=0
 	.2byte 0x12
 	.2byte \_hi
@@ -163,40 +167,40 @@
 	.4byte \msg_hector
 .endm
 
-@ 0x13  (1 words)
+@ 0x13 EvtCmd_TalkAuto (1 words)
 .macro TEX_AUTO _hi=0
 	.2byte 0x13
 	.2byte \_hi
 .endm
 
-@ 0x14  (1 words)
+@ 0x14 Event14_TalkContinue (1 words)
 .macro TEXTCONT _hi=0
 	.2byte 0x14
 	.2byte \_hi
 .endm
 
-@ 0x15  (2 words)
+@ 0x15 EvtCmd_TalkGeneric (2 words)
 .macro TEX1_VISIT msgs, _hi=0
 	.2byte 0x15
 	.2byte \_hi
 	.4byte \msgs
 .endm
 
-@ 0x16  (2 words)
+@ 0x16 EvtCmd_TalkMoreGeneric (2 words)
 .macro TEX2_VISIT msgs, _hi=0
 	.2byte 0x16
 	.2byte \_hi
 	.4byte \msgs
 .endm
 
-@ 0x17  (2 words)
+@ 0x17 EvtCmd_TalkByTactRank (2 words)
 .macro TEX1_BY_RANK rank, msgs
 	.2byte 0x17
 	.2byte \rank
 	.4byte \msgs
 .endm
 
-@ 0x18  (3 words)
+@ 0x18 EvtCmd_TalkByTactGender (3 words)
 .macro TEX1_BY_GENDER msg_m, msg_f, _hi=0
 	.2byte 0x18
 	.2byte \_hi
@@ -204,7 +208,7 @@
 	.4byte \msg_f
 .endm
 
-@ 0x19  (3 words)
+@ 0x19 EvtCmd_TalkMoreByTactGender (3 words)
 .macro TEX2_BY_GENDER msg_m, msg_f, _hi=0
 	.2byte 0x19
 	.2byte \_hi
@@ -212,7 +216,7 @@
 	.4byte \msg_f
 .endm
 
-@ 0x1A  (4 words)
+@ 0x1A EvtCmd_TalkByFlag (4 words)
 .macro TEX1_IF_FLAG flag, msg_y, msg_n, _hi=0
 	.2byte 0x1A
 	.2byte \_hi
@@ -221,7 +225,7 @@
 	.4byte \msg_n
 .endm
 
-@ 0x1B  (4 words)
+@ 0x1B EvtCmd_TalkMoreByFlag (4 words)
 .macro TEX2_IF_FLAG flag, msg_y, msg_n, _hi=0
 	.2byte 0x1B
 	.2byte \_hi
@@ -230,7 +234,7 @@
 	.4byte \msg_n
 .endm
 
-@ 0x1C  (4 words)
+@ 0x1C EvtCmd_TalkByFunc (4 words)
 .macro TEX1_IF_ASM func, msg_y, msg_n, _hi=0
 	.2byte 0x1C
 	.2byte \_hi
@@ -239,7 +243,7 @@
 	.4byte \msg_n
 .endm
 
-@ 0x1D  (4 words)
+@ 0x1D EvtCmd_TalkMoreByFunc (4 words)
 .macro TEX2_IF_ASM func, msg_y, msg_n, _hi=0
 	.2byte 0x1D
 	.2byte \_hi
@@ -248,39 +252,39 @@
 	.4byte \msg_n
 .endm
 
-@ 0x1E  (1 words)
+@ 0x1E EvtCmd_ClearTalkBubble (1 words)
 .macro TEXTEND _hi=0
 	.2byte 0x1E
 	.2byte \_hi
 .endm
 
-@ 0x1F  (1 words)
+@ 0x1F EvtCmd_CameraPosition (1 words)
 .macro CAM1_POS x, y
 	.2byte 0x1F
 	.byte \x
 	.byte \y
 .endm
 
-@ 0x20  (1 words)
+@ 0x20 EvtCmd_CameraPid (1 words)
 .macro CAM1 pid
 	.2byte 0x20
 	.2byte \pid
 .endm
 
-@ 0x21  (1 words)
+@ 0x21 EvtCmd_CameraLeader (1 words)
 .macro CAM1_LEADER _hi=0
 	.2byte 0x21
 	.2byte \_hi
 .endm
 
-@ 0x22  (1 words)
+@ 0x22 Event20 (1 words)
 .macro CAM2_POS x, y
 	.2byte 0x22
 	.byte \x
 	.byte \y
 .endm
 
-@ 0x23  (3 words)
+@ 0x23 EvtCmd_MovePosition (3 words)
 .macro MOVE_POS x, y, x_to, y_to, _hi=0
 	.2byte 0x23
 	.2byte \_hi
@@ -290,7 +294,7 @@
 	.2byte \y_to
 .endm
 
-@ 0x24  (4 words)
+@ 0x24 EvtCmd_MovePositionSpeed (4 words)
 .macro MOVE_POS_SPEED x, y, x_to, y_to, speed, _hi=0
 	.2byte 0x24
 	.2byte \_hi
@@ -301,7 +305,7 @@
 	.4byte \speed
 .endm
 
-@ 0x25  (3 words)
+@ 0x25 EvtCmd_MovePositionScript (3 words)
 .macro MOVE_POS_SCR x, y, movescr, _hi=0
 	.2byte 0x25
 	.2byte \_hi
@@ -310,7 +314,7 @@
 	.4byte \movescr
 .endm
 
-@ 0x26  (3 words)
+@ 0x26 EvtCmd_MovePid (3 words)
 .macro MOVE pid, x_to, y_to, _hi=0
 	.2byte 0x26
 	.2byte \_hi
@@ -319,7 +323,7 @@
 	.2byte \y_to
 .endm
 
-@ 0x27  (4 words)
+@ 0x27 EvtCmd_MovePidSpeed (4 words)
 .macro MOVE_SPEED pid, x_to, y_to, speed, _hi=0
 	.2byte 0x27
 	.2byte \_hi
@@ -329,7 +333,7 @@
 	.4byte \speed
 .endm
 
-@ 0x28  (3 words)
+@ 0x28 EvtCmd_MovePidScript (3 words)
 .macro MOVE_SCR pid, movescr, _hi=0
 	.2byte 0x28
 	.2byte \_hi
@@ -337,7 +341,7 @@
 	.4byte \movescr
 .endm
 
-@ 0x29  (3 words)
+@ 0x29 EvtCmd_MovePidNextTo (3 words)
 .macro MOVENEXTTO pid, target, _hi=0
 	.2byte 0x29
 	.2byte \_hi
@@ -345,7 +349,7 @@
 	.4byte \target
 .endm
 
-@ 0x2A  (2 words)
+@ 0x2A EvtCmd_MoveLeader (2 words)
 .macro MOVE_LEADER x_to, y_to, _hi=0
 	.2byte 0x2A
 	.2byte \_hi
@@ -353,7 +357,7 @@
 	.2byte \y_to
 .endm
 
-@ 0x2B  (4 words)
+@ 0x2B EvtCmd_MovePidByFaction_PositionSpeed_Script (4 words)
 .macro MOVE_BLUE_OR_SCR pid, speed, x_to, y_to, movescr, _hi=0
 	.2byte 0x2B
 	.2byte \_hi
@@ -364,7 +368,7 @@
 	.4byte \movescr
 .endm
 
-@ 0x2C  (4 words)
+@ 0x2C EvtCmd_MovePidByFaction_Script_Script (4 words)
 .macro MOVE_SCR_BLUE_OR_SCR pid, movescr_blue, movescr, _hi=0
 	.2byte 0x2C
 	.2byte \_hi
@@ -373,7 +377,7 @@
 	.4byte \movescr
 .endm
 
-@ 0x2D  (3 words)
+@ 0x2D EvtCmd_MovePidOneStepSpeed (3 words)
 .macro MOVE_1STEP pid, direction, _hi=0
 	.2byte 0x2D
 	.2byte \_hi
@@ -381,7 +385,7 @@
 	.4byte \direction
 .endm
 
-@ 0x2E  (3 words)
+@ 0x2E EvtCmd_MovePositionInstant (3 words)
 .macro MOVE_POS_INSTANT x, y, x_to, y_to, _hi=0
 	.2byte 0x2E
 	.2byte \_hi
@@ -391,7 +395,7 @@
 	.2byte \y_to
 .endm
 
-@ 0x2F  (3 words)
+@ 0x2F EvtCmd_MovePidInstant (3 words)
 .macro MOVE_INSTANT pid, x_to, y_to, _hi=0
 	.2byte 0x2F
 	.2byte \_hi
@@ -400,7 +404,7 @@
 	.2byte \y_to
 .endm
 
-@ 0x30  (3 words)
+@ 0x30 EvtCmd_SavePositionPid (3 words)
 .macro SAVE_POS pid, slot, _hi=0
 	.2byte 0x30
 	.2byte \_hi
@@ -408,7 +412,7 @@
 	.4byte \slot
 .endm
 
-@ 0x31  (3 words)
+@ 0x31 EvtCmd_MovePidToSavedPosition (3 words)
 .macro MOVE_SAVED_POS pid, slot, _hi=0
 	.2byte 0x31
 	.2byte \_hi
@@ -416,21 +420,21 @@
 	.4byte \slot
 .endm
 
-@ 0x32  (2 words)
+@ 0x32 EvtCmd_LoadUnits (2 words)
 .macro LOU1 units, _hi=0
 	.2byte 0x32
 	.2byte \_hi
 	.4byte \units
 .endm
 
-@ 0x33  (2 words)
+@ 0x33 EvtCmd_LoadUnitsAlive (2 words)
 .macro LOU1_ALIVE units, _hi=0
 	.2byte 0x33
 	.2byte \_hi
 	.4byte \units
 .endm
 
-@ 0x34  (3 words)
+@ 0x34 EvtCmd_LoadUnitsFiltered (3 words)
 .macro LOU1_IF_MODE mode, hard, units, _hi=0
 	.2byte 0x34
 	.2byte \_hi
@@ -439,7 +443,7 @@
 	.4byte \units
 .endm
 
-@ 0x35  (5 words)
+@ 0x35 EvtCmd_LoadUnitsByMode (5 words)
 .macro LOU1_BY_MODE units, units_hard, units_hector, units_hector_hard, _hi=0
 	.2byte 0x35
 	.2byte \_hi
@@ -449,14 +453,14 @@
 	.4byte \units_hector_hard
 .endm
 
-@ 0x36  (2 words)
+@ 0x36 EvtCmd_LoadUnitsParty (2 words)
 .macro LOU2 units, _hi=0
 	.2byte 0x36
 	.2byte \_hi
 	.4byte \units
 .endm
 
-@ 0x37  (3 words)
+@ 0x37 EvtCmd_LoadUnitsPartyIfScenario (3 words)
 .macro LOU2_IF_MODE mode, units, _hi=0
 	.2byte 0x37
 	.2byte \_hi
@@ -464,7 +468,7 @@
 	.4byte \units
 .endm
 
-@ 0x38  (5 words)
+@ 0x38 EvtCmd_LoadUnitsPartyByMode (5 words)
 .macro LOU2_BY_MODE units, units_hard, units_hector, units_hector_hard, _hi=0
 	.2byte 0x38
 	.2byte \_hi
@@ -474,7 +478,7 @@
 	.4byte \units_hector_hard
 .endm
 
-@ 0x39  (3 words)
+@ 0x39 EvtCmd_LoadUnit (3 words)
 .macro LOAD_UNIT pid, jid, x, y, _hi=0
 	.2byte 0x39
 	.2byte \_hi
@@ -484,87 +488,87 @@
 	.2byte \y
 .endm
 
-@ 0x3A  (2 words)
+@ 0x3A EvtCmd_WarpLoadUnits (2 words)
 .macro LOU1_WARP units, _hi=0
 	.2byte 0x3A
 	.2byte \_hi
 	.4byte \units
 .endm
 
-@ 0x3B  (1 words)
+@ 0x3B EvtCmd_WaitForMovement (1 words)
 .macro ENUN _hi=0
 	.2byte 0x3B
 	.2byte \_hi
 .endm
 
-@ 0x3C  (1 words)
+@ 0x3C EvtCmd_UnitCameraOn (1 words)
 .macro UNIT_CAM_ON _hi=0
 	.2byte 0x3C
 	.2byte \_hi
 .endm
 
-@ 0x3D  (1 words)
+@ 0x3D EvtCmd_UnitCameraOff (1 words)
 .macro UNIT_CAM_OFF _hi=0
 	.2byte 0x3D
 	.2byte \_hi
 .endm
 
-@ 0x3E  (2 words)
+@ 0x3E Event3C_ASMC1 (2 words)
 .macro ASMC func, _hi=0
 	.2byte 0x3E
 	.2byte \_hi
 	.4byte \func
 .endm
 
-@ 0x3F  (2 words)
+@ 0x3F Event3D_ASMC2 (2 words)
 .macro ASMC2 func, _hi=0
 	.2byte 0x3F
 	.2byte \_hi
 	.4byte \func
 .endm
 
-@ 0x40  (2 words)
+@ 0x40 Event3E_ASMC3 (2 words)
 .macro ASMC3 func, _hi=0
 	.2byte 0x40
 	.2byte \_hi
 	.4byte \func
 .endm
 
-@ 0x41  (2 words)
+@ 0x41 Event3F_ASMC4 (2 words)
 .macro ASMC_WAIT func, _hi=0
 	.2byte 0x41
 	.2byte \_hi
 	.4byte \func
 .endm
 
-@ 0x42  (2 words)
+@ 0x42 Event40_ASMC5 (2 words)
 .macro ASMC_WAIT2 func, _hi=0
 	.2byte 0x42
 	.2byte \_hi
 	.4byte \func
 .endm
 
-@ 0x43  (1 words)
+@ 0x43 EvtCmd_Stop (1 words)
 .macro STOP _hi=0
 	.2byte 0x43
 	.2byte \_hi
 .endm
 
-@ 0x44  (2 words)
+@ 0x44 EvtCmd_Label (2 words)
 .macro LABEL id, _hi=0
 	.2byte 0x44
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x45  (2 words)
+@ 0x45 Event43_Goto (2 words)
 .macro GOTO id, _hi=0
 	.2byte 0x45
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x46  (3 words)
+@ 0x46 EvtCmd_GotoIfnAlive (3 words)
 .macro IFCA id, pid, _hi=0
 	.2byte 0x46
 	.2byte \_hi
@@ -572,7 +576,7 @@
 	.4byte \pid
 .endm
 
-@ 0x47  (3 words)
+@ 0x47 EvtCmd_GotoIfnInTeam (3 words)
 .macro IFCD id, pid, _hi=0
 	.2byte 0x47
 	.2byte \_hi
@@ -580,7 +584,7 @@
 	.4byte \pid
 .endm
 
-@ 0x48  (3 words)
+@ 0x48 EvtCmd_GotoIfyFunc (3 words)
 .macro IFAT id, func, _hi=0
 	.2byte 0x48
 	.2byte \_hi
@@ -588,7 +592,7 @@
 	.4byte \func
 .endm
 
-@ 0x49  (3 words)
+@ 0x49 EvtCmd_GotoIfnFunc (3 words)
 .macro IFAF id, func, _hi=0
 	.2byte 0x49
 	.2byte \_hi
@@ -596,21 +600,21 @@
 	.4byte \func
 .endm
 
-@ 0x4A  (2 words)
+@ 0x4A EvtCmd_GotoIfySkip (2 words)
 .macro IFSKIP id, _hi=0
 	.2byte 0x4A
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x4B  (2 words)
+@ 0x4B EvtCmd_GotoIfySkipText (2 words)
 .macro IFTEXTSKIP id, _hi=0
 	.2byte 0x4B
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x4C  (3 words)
+@ 0x4C EvtCmd_GotoIfyFlag (3 words)
 .macro IFET id, flag, _hi=0
 	.2byte 0x4C
 	.2byte \_hi
@@ -618,7 +622,7 @@
 	.4byte \flag
 .endm
 
-@ 0x4D  (3 words)
+@ 0x4D EvtCmd_GotoIfnFlag (3 words)
 .macro IFEF id, flag, _hi=0
 	.2byte 0x4D
 	.2byte \_hi
@@ -626,7 +630,7 @@
 	.4byte \flag
 .endm
 
-@ 0x4E  (3 words)
+@ 0x4E EvtCmd_GotoIfyActive (3 words)
 .macro IFUA negate, id, pid
 	.2byte 0x4E
 	.2byte \negate
@@ -634,49 +638,49 @@
 	.4byte \pid
 .endm
 
-@ 0x4F  (2 words)
+@ 0x4F EvtCmd_GotoIfyEliwoodMode (2 words)
 .macro IFEM id, _hi=0
 	.2byte 0x4F
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x50  (2 words)
+@ 0x50 EvtCmd_GotoIfyHectorMode (2 words)
 .macro IFHM id, _hi=0
 	.2byte 0x50
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x51  (2 words)
+@ 0x51 EvtCmd_GotoIfyDifficulty (2 words)
 .macro IFDIFF hard, id
 	.2byte 0x51
 	.2byte \hard
 	.4byte \id
 .endm
 
-@ 0x52  (2 words)
+@ 0x52 EvtCmd_GotoIfnTalkYes (2 words)
 .macro IFYN id, _hi=0
 	.2byte 0x52
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x53  (2 words)
+@ 0x53 EvtCmd_GotoIfnTalkYes2 (2 words)
 .macro IFYN2 id, _hi=0
 	.2byte 0x53
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x54  (2 words)
+@ 0x54 EvtCmd_GotoIfnTutorial (2 words)
 .macro IFTU id, _hi=0
 	.2byte 0x54
 	.2byte \_hi
 	.4byte \id
 .endm
 
-@ 0x55  (4 words)
+@ 0x55 EvtCmd_GotoIfnDeadAndFlagOnce (4 words)
 .macro IFCA_ONCE id, pid, flag, _hi=0
 	.2byte 0x55
 	.2byte \_hi
@@ -685,14 +689,14 @@
 	.4byte \flag
 .endm
 
-@ 0x56  (2 words)
+@ 0x56 EvtCmd_GotoIfyTurnCountReached (2 words)
 .macro IFTURN turn, id
 	.2byte 0x56
 	.2byte \turn
 	.4byte \id
 .endm
 
-@ 0x57  (3 words)
+@ 0x57 EvtCmd_GotoIfxDeployed (3 words)
 .macro IFDEPLOYED negate, id, pid
 	.2byte 0x57
 	.2byte \negate
@@ -700,35 +704,35 @@
 	.4byte \pid
 .endm
 
-@ 0x58  (2 words)
+@ 0x58 EvtCmd_Jump (2 words)
 .macro JUMP scr, _hi=0
 	.2byte 0x58
 	.2byte \_hi
 	.4byte \scr
 .endm
 
-@ 0x59  (2 words)
+@ 0x59 EvtCmd_SkipNIfyFunc (2 words)
 .macro SKIP_IF_ASM count, func
 	.2byte 0x59
 	.2byte \count
 	.4byte \func
 .endm
 
-@ 0x5A  (2 words)
+@ 0x5A EvtCmd_SkipNIfnFunc (2 words)
 .macro SKIP_IFN_ASM count, func
 	.2byte 0x5A
 	.2byte \count
 	.4byte \func
 .endm
 
-@ 0x5B  (2 words)
+@ 0x5B EvtCmd_GiveItem (2 words)
 .macro ITGV item, _hi=0
 	.2byte 0x5B
 	.2byte \_hi
 	.4byte \item
 .endm
 
-@ 0x5C  (3 words)
+@ 0x5C EvtCmd_GiveItemToPid (3 words)
 .macro ITGC pid, item, _hi=0
 	.2byte 0x5C
 	.2byte \_hi
@@ -736,58 +740,58 @@
 	.4byte \item
 .endm
 
-@ 0x5D  (2 words)
+@ 0x5D EvtCmd_GiveItemToLeader (2 words)
 .macro ITGM item, _hi=0
 	.2byte 0x5D
 	.2byte \_hi
 	.4byte \item
 .endm
 
-@ 0x5E  (2 words)
+@ 0x5E EvtCmd_GiveGold (2 words)
 .macro MONE silent, amount
 	.2byte 0x5E
 	.2byte \silent
 	.4byte \amount
 .endm
 
-@ 0x5F  (1 words)
+@ 0x5F EvtCmd_MapChange (1 words)
 .macro MNCH_MAP id
 	.2byte 0x5F
 	.2byte \id
 .endm
 
-@ 0x60  (1 words)
+@ 0x60 EvtCmd_MapChangePosition (1 words)
 .macro MAC_POS x, y
 	.2byte 0x60
 	.byte \x
 	.byte \y
 .endm
 
-@ 0x61  (1 words)
+@ 0x61 EvtCmd_MapChangeInstant (1 words)
 .macro MAC_INSTANT id
 	.2byte 0x61
 	.2byte \id
 .endm
 
-@ 0x62  (1 words)
+@ 0x62 EvtCmd_MapChangeInstantNoRender (1 words)
 .macro MAC_NORENDER id
 	.2byte 0x62
 	.2byte \id
 .endm
 
-@ 0x63  (1 words)
+@ 0x63 EvtCmd_ReRenderMap (1 words)
 .macro MAP_RERENDER arg
 	.2byte 0x63
 	.2byte \arg
 .endm
 
-@ 0x64  (1 words)
+@ 0x64 EvtCmd_MapChangeWithAutoWaterShadows (1 words)
 .macro MAC_WATER id
 	.2byte 0x64
 	.2byte \id
 .endm
 
-@ 0x65  (3 words)
+@ 0x65 EvtCmd_SetFaction (3 words)
 .macro CHANGE_FACTION pid, faction, _hi=0
 	.2byte 0x65
 	.2byte \_hi
@@ -795,7 +799,7 @@
 	.4byte \faction
 .endm
 
-@ 0x66  (2 words)
+@ 0x66 EvtCmd_FlashCursorPosition (2 words)
 .macro CURF_POS x, y, _hi=0
 	.2byte 0x66
 	.2byte \_hi
@@ -803,14 +807,14 @@
 	.2byte \y
 .endm
 
-@ 0x67  (2 words)
+@ 0x67 EvtCmd_FlashCursorPid (2 words)
 .macro CURF pid, _hi=0
 	.2byte 0x67
 	.2byte \_hi
 	.4byte \pid
 .endm
 
-@ 0x68  (2 words)
+@ 0x68 EvtCmd_PutCursor (2 words)
 .macro CUMO_POS x, y, _hi=0
 	.2byte 0x68
 	.2byte \_hi
@@ -818,13 +822,13 @@
 	.2byte \y
 .endm
 
-@ 0x69  (1 words)
+@ 0x69 EvtCmd_ClearCursors (1 words)
 .macro CURE _hi=0
 	.2byte 0x69
 	.2byte \_hi
 .endm
 
-@ 0x6A  (2 words)
+@ 0x6A EvtCmd_RemovePosition (2 words)
 .macro DISA_POS x, y, _hi=0
 	.2byte 0x6A
 	.2byte \_hi
@@ -832,14 +836,14 @@
 	.2byte \y
 .endm
 
-@ 0x6B  (2 words)
+@ 0x6B EvtCmd_RemovePid (2 words)
 .macro DISA pid, _hi=0
 	.2byte 0x6B
 	.2byte \_hi
 	.4byte \pid
 .endm
 
-@ 0x6C  (2 words)
+@ 0x6C EvtCmd_RemovePositionDisplayed (2 words)
 .macro DISA_POS_FADE x, y, _hi=0
 	.2byte 0x6C
 	.2byte \_hi
@@ -847,14 +851,14 @@
 	.2byte \y
 .endm
 
-@ 0x6D  (2 words)
+@ 0x6D EvtCmd_RemovePidDisplayed (2 words)
 .macro DISA_FADE pid, _hi=0
 	.2byte 0x6D
 	.2byte \_hi
 	.4byte \pid
 .endm
 
-@ 0x6E  (2 words)
+@ 0x6E EvtCmd_HidePosition (2 words)
 .macro HIDE_POS x, y, _hi=0
 	.2byte 0x6E
 	.2byte \_hi
@@ -862,28 +866,28 @@
 	.2byte \y
 .endm
 
-@ 0x6F  (2 words)
+@ 0x6F EvtCmd_HidePid (2 words)
 .macro HIDE pid, _hi=0
 	.2byte 0x6F
 	.2byte \_hi
 	.4byte \pid
 .endm
 
-@ 0x70  (2 words)
+@ 0x70 EvtCmd_DisablePid (2 words)
 .macro DISABLE_UNIT pid, _hi=0
 	.2byte 0x70
 	.2byte \_hi
 	.4byte \pid
 .endm
 
-@ 0x71  (2 words)
+@ 0x71 EvtCmd_EnablePid (2 words)
 .macro ENABLE_UNIT pid, _hi=0
 	.2byte 0x71
 	.2byte \_hi
 	.4byte \pid
 .endm
 
-@ 0x72  (3 words)
+@ 0x72 EvtCmd_SetState (3 words)
 .macro UNIT_SET_STATE pid, bits, _hi=0
 	.2byte 0x72
 	.2byte \_hi
@@ -891,7 +895,7 @@
 	.4byte \bits
 .endm
 
-@ 0x73  (3 words)
+@ 0x73 EvtCmd_ClearState (3 words)
 .macro UNIT_CLEAR_STATE pid, bits, _hi=0
 	.2byte 0x73
 	.2byte \_hi
@@ -899,7 +903,7 @@
 	.4byte \bits
 .endm
 
-@ 0x74  (3 words)
+@ 0x74 EvtCmd_SetAiPid (3 words)
 .macro CHAI pid, ai, _hi=0
 	.2byte 0x74
 	.2byte \_hi
@@ -907,7 +911,7 @@
 	.4byte \ai
 .endm
 
-@ 0x75  (3 words)
+@ 0x75 EvtCmd_SetAiPosition (3 words)
 .macro CHAI_POS x, y, ai, _hi=0
 	.2byte 0x75
 	.2byte \_hi
@@ -916,93 +920,93 @@
 	.4byte \ai
 .endm
 
-@ 0x76  (1 words)
+@ 0x76 EvtCmd_SetFlag (1 words)
 .macro ENUT flag
 	.2byte 0x76
 	.2byte \flag
 .endm
 
-@ 0x77  (1 words)
+@ 0x77 EvtCmd_ClearFlag (1 words)
 .macro ENUF flag
 	.2byte 0x77
 	.2byte \flag
 .endm
 
-@ 0x78  (1 words)
+@ 0x78 EvtCmd_PlayBgm (1 words)
 .macro MUSC song
 	.2byte 0x78
 	.2byte \song
 .endm
 
-@ 0x79  (1 words)
+@ 0x79 EvtCmd_OverrideBgm (1 words)
 .macro MUSS song
 	.2byte 0x79
 	.2byte \song
 .endm
 
-@ 0x7A  (1 words)
+@ 0x7A EvtCmd_RestoreBgm (1 words)
 .macro MURE speed
 	.2byte 0x7A
 	.2byte \speed
 .endm
 
-@ 0x7B  (2 words)
+@ 0x7B EvtCmd_FadeBgmIn (2 words)
 .macro MUSC_FADE song, speed
 	.2byte 0x7B
 	.2byte \song
 	.4byte \speed
 .endm
 
-@ 0x7C  (1 words)
+@ 0x7C EvtCmd_FadeBgmOut (1 words)
 .macro MUEN speed
 	.2byte 0x7C
 	.2byte \speed
 .endm
 
-@ 0x7D  (1 words)
+@ 0x7D EvtCmd_LowerBgmVolume (1 words)
 .macro MUSI _hi=0
 	.2byte 0x7D
 	.2byte \_hi
 .endm
 
-@ 0x7E  (1 words)
+@ 0x7E EvtCmd_RestoreBgmVolume (1 words)
 .macro MUNO _hi=0
 	.2byte 0x7E
 	.2byte \_hi
 .endm
 
-@ 0x7F  (1 words)
+@ 0x7F EvtCmd_PlaySe (1 words)
 .macro SOUN song
 	.2byte 0x7F
 	.2byte \song
 .endm
 
-@ 0x80  (2 words)
+@ 0x80 EvtCmd_PlaySongExt (2 words)
 .macro MUSC_EXT song, mode
 	.2byte 0x80
 	.2byte \song
 	.4byte \mode
 .endm
 
-@ 0x81  (1 words)
+@ 0x81 EvtCmd_NextChapter (1 words)
 .macro MNCH chapter
 	.2byte 0x81
 	.2byte \chapter
 .endm
 
-@ 0x82  (1 words)
+@ 0x82 Event80_CompleteGame (1 words)
 .macro COMPLETE_GAME _hi=0
 	.2byte 0x82
 	.2byte \_hi
 .endm
 
-@ 0x83  (1 words)
+@ 0x83 EvtCmd_EndLynCampaign (1 words)
 .macro END_LYN_MODE _hi=0
 	.2byte 0x83
 	.2byte \_hi
 .endm
 
-@ 0x84  (4 words)
+@ 0x84 EvtCmd_SetMap (4 words)
 .macro LOMA chapter, x, y, _hi=0
 	.2byte 0x84
 	.2byte \_hi
@@ -1011,103 +1015,103 @@
 	.4byte \y
 .endm
 
-@ 0x85  (1 words)
+@ 0x85 EvtCmd_SetMapId (1 words)
 .macro LOMA_ID chapter
 	.2byte 0x85
 	.2byte \chapter
 .endm
 
-@ 0x86  (1 words)
+@ 0x86 EvtCmd_NoSkip (1 words)
 .macro EVBIT_NOSKIP _hi=0
 	.2byte 0x86
 	.2byte \_hi
 .endm
 
-@ 0x87  (1 words)
+@ 0x87 EvtCmd_NoSkipTalk (1 words)
 .macro EVBIT_NOTEXTSKIP _hi=0
 	.2byte 0x87
 	.2byte \_hi
 .endm
 
-@ 0x88  (1 words)
+@ 0x88 EvtCmd_NoSkipTalkSlow (1 words)
 .macro EVBIT_NOTEXTSKIP_SLOW _hi=0
 	.2byte 0x88
 	.2byte \_hi
 .endm
 
-@ 0x89  (1 words)
+@ 0x89 EvtCmd_YesSkip (1 words)
 .macro EVBIT_YESSKIP _hi=0
 	.2byte 0x89
 	.2byte \_hi
 .endm
 
-@ 0x8A  (1 words)
+@ 0x8A EvtCmd_SilentSkip (1 words)
 .macro EVBIT_SILENTSKIP _hi=0
 	.2byte 0x8A
 	.2byte \_hi
 .endm
 
-@ 0x8B  (1 words)
+@ 0x8B EvtCmd_NoSkipUnlessNewGamePlus (1 words)
 .macro EVBIT_NOSKIP_NGP _hi=0
 	.2byte 0x8B
 	.2byte \_hi
 .endm
 
-@ 0x8C  (1 words)
+@ 0x8C EvtCmd_NoSkipTalkSlowUnlessNewGamePlus (1 words)
 .macro EVBIT_NOTEXTSKIP_SLOW_NGP _hi=0
 	.2byte 0x8C
 	.2byte \_hi
 .endm
 
-@ 0x8D  (1 words)
+@ 0x8D EvtCmd_NoSkipSlowUnlessNewGamePlus (1 words)
 .macro EVBIT_NOSKIP_SLOW_NGP _hi=0
 	.2byte 0x8D
 	.2byte \_hi
 .endm
 
-@ 0x8E  (1 words)
+@ 0x8E EvtCmd_FadeToBlack (1 words)
 .macro FADI speed
 	.2byte 0x8E
 	.2byte \speed
 .endm
 
-@ 0x8F  (1 words)
+@ 0x8F EvtCmd_FadeFromBlack (1 words)
 .macro FADU speed
 	.2byte 0x8F
 	.2byte \speed
 .endm
 
-@ 0x90  (1 words)
+@ 0x90 EvtCmd_FadeToWhite (1 words)
 .macro FAWI speed
 	.2byte 0x90
 	.2byte \speed
 .endm
 
-@ 0x91  (1 words)
+@ 0x91 EvtCmd_FadeFromWhite (1 words)
 .macro FAWU speed
 	.2byte 0x91
 	.2byte \speed
 .endm
 
-@ 0x92  (1 words)
+@ 0x92 EvtCmd_ExitMap (1 words)
 .macro EXIT_MAP _hi=0
 	.2byte 0x92
 	.2byte \_hi
 .endm
 
-@ 0x93  (1 words)
+@ 0x93 EvtCmd_EnterMap (1 words)
 .macro ENTER_MAP _hi=0
 	.2byte 0x93
 	.2byte \_hi
 .endm
 
-@ 0x94  (1 words)
+@ 0x94 EvtCmd_LynModeDeathFadeToBlack (1 words)
 .macro FADI_LYNDEATH arg
 	.2byte 0x94
 	.2byte \arg
 .endm
 
-@ 0x95  (4 words)
+@ 0x95 sub_0800E8A4 (4 words)
 .macro COLOR_FADE_OUT a, b, c, _hi=0
 	.2byte 0x95
 	.2byte \_hi
@@ -1116,7 +1120,7 @@
 	.4byte \c
 .endm
 
-@ 0x96  (4 words)
+@ 0x96 sub_0800E8CC (4 words)
 .macro COLOR_FADE_IN a, b, c, _hi=0
 	.2byte 0x96
 	.2byte \_hi
@@ -1125,7 +1129,7 @@
 	.4byte \c
 .endm
 
-@ 0x97  (5 words)
+@ 0x97 EvtCmd_FightScript (5 words)
 .macro FIGHT pid, target, battle, item, ballista, noscript, _hi=0
 	.2byte 0x97
 	.2byte \_hi
@@ -1137,50 +1141,50 @@
 	.byte \noscript
 .endm
 
-@ 0x98  (1 words)
+@ 0x98 EvtCmd_SetNoReloadGfx (1 words)
 .macro NO_RELOAD_GFX _hi=0
 	.2byte 0x98
 	.2byte \_hi
 .endm
 
-@ 0x99  (2 words)
+@ 0x99 EvtCmd_OnSkipFunc (2 words)
 .macro ON_SKIP_ASM func, _hi=0
 	.2byte 0x99
 	.2byte \_hi
 	.4byte \func
 .endm
 
-@ 0x9A  (1 words)
+@ 0x9A EvtCmd_ClearOnSkipFunc (1 words)
 .macro CLEAR_ON_SKIP_ASM _hi=0
 	.2byte 0x9A
 	.2byte \_hi
 .endm
 
-@ 0x9B  (1 words)
+@ 0x9B EvtCmd_SetWeatherWithFade (1 words)
 .macro WEA1 weather
 	.2byte 0x9B
 	.2byte \weather
 .endm
 
-@ 0x9C  (1 words)
+@ 0x9C EvtCmd_SetWeather (1 words)
 .macro WEA2 weather
 	.2byte 0x9C
 	.2byte \weather
 .endm
 
-@ 0x9D  (1 words)
+@ 0x9D EvtCmd_SetVision (1 words)
 .macro VCBF vision
 	.2byte 0x9D
 	.2byte \vision
 .endm
 
-@ 0x9E  (1 words)
+@ 0x9E EvtCmd_SetVisionInstant (1 words)
 .macro VCWF vision
 	.2byte 0x9E
 	.2byte \vision
 .endm
 
-@ 0x9F  (4 words)
+@ 0x9F EvtCmd_BreakItemSeal (4 words)
 .macro BREAK_SEAL pid, item, flag, _hi=0
 	.2byte 0x9F
 	.2byte \_hi
@@ -1189,55 +1193,55 @@
 	.4byte \flag
 .endm
 
-@ 0xA0  (2 words)
+@ 0xA0 EvtCmd_EnqueueEvent (2 words)
 .macro ENQUEUE_EVENT arg, _hi=0
 	.2byte 0xA0
 	.2byte \_hi
 	.4byte \arg
 .endm
 
-@ 0xA1  (2 words)
+@ 0xA1 EvtCmd_SetKeyIgnore (2 words)
 .macro IGNORE_KEYS keys, _hi=0
 	.2byte 0xA1
 	.2byte \_hi
 	.4byte \keys
 .endm
 
-@ 0xA2  (2 words)
+@ 0xA2 EvtCmd_SetFightScriptOverride (2 words)
 .macro FIGHT_OVERRIDE battle, _hi=0
 	.2byte 0xA2
 	.2byte \_hi
 	.4byte \battle
 .endm
 
-@ 0xA3  (1 words)
+@ 0xA3 EvtCmd_ClearMenuOverrides (1 words)
 .macro MENU_OVERRIDE_CLEAR _hi=0
 	.2byte 0xA3
 	.2byte \_hi
 .endm
 
-@ 0xA4  (2 words)
+@ 0xA4 EvtCmd_MenuOverrideHide (2 words)
 .macro MENU_OVERRIDE_HIDE cmd, _hi=0
 	.2byte 0xA4
 	.2byte \_hi
 	.4byte \cmd
 .endm
 
-@ 0xA5  (2 words)
+@ 0xA5 EvtCmd_MenuOverrideDisable (2 words)
 .macro MENU_OVERRIDE_DISABLE cmd, _hi=0
 	.2byte 0xA5
 	.2byte \_hi
 	.4byte \cmd
 .endm
 
-@ 0xA6  (2 words)
+@ 0xA6 EvtCmd_MenuOverrideEnable (2 words)
 .macro MENU_OVERRIDE_ENABLE cmd, _hi=0
 	.2byte 0xA6
 	.2byte \_hi
 	.4byte \cmd
 .endm
 
-@ 0xA7  (3 words)
+@ 0xA7 EvtCmd_BoxTalk (3 words)
 .macro TUTORIAL_TEXT x, y, msg, _hi=0
 	.2byte 0xA7
 	.2byte \_hi
@@ -1246,7 +1250,7 @@
 	.4byte \msg
 .endm
 
-@ 0xA8  (4 words)
+@ 0xA8 EvtCmd_BoxTalkByTactGender (4 words)
 .macro TUTORIAL_TEXT_BY_GENDER x, y, msg_m, msg_f, _hi=0
 	.2byte 0xA8
 	.2byte \_hi
@@ -1256,26 +1260,26 @@
 	.4byte \msg_f
 .endm
 
-@ 0xA9  (1 words)
+@ 0xA9 sub_0800FD34 (1 words)
 .macro TUTORIAL_A9 _hi=0
 	.2byte 0xA9
 	.2byte \_hi
 .endm
 
-@ 0xAA  (1 words)
+@ 0xAA EvtCmd_TutorialCursorsTargetMove (1 words)
 .macro TUTORIAL_CURSORS_TARGET _hi=0
 	.2byte 0xAA
 	.2byte \_hi
 .endm
 
-@ 0xAB  (2 words)
+@ 0xAB EvtCmd_TutorialCursors (2 words)
 .macro TUTORIAL_CURSORS area, _hi=0
 	.2byte 0xAB
 	.2byte \_hi
 	.4byte \area
 .endm
 
-@ 0xAC  (4 words)
+@ 0xAC sub_0800F36C (4 words)
 .macro EVCMD_AC arg1, arg2, arg3, _hi=0
 	.2byte 0xAC
 	.2byte \_hi
@@ -1284,32 +1288,32 @@
 	.4byte \arg3
 .endm
 
-@ 0xAD  (1 words)
+@ 0xAD sub_0800F3D4 (1 words)
 .macro EVCMD_AD _hi=0
 	.2byte 0xAD
 	.2byte \_hi
 .endm
 
-@ 0xAE  (1 words)
+@ 0xAE sub_0800F418 (1 words)
 .macro EVCMD_AE _hi=0
 	.2byte 0xAE
 	.2byte \_hi
 .endm
 
-@ 0xAF  (2 words)
+@ 0xAF sub_0800F424 (2 words)
 .macro EVCMD_AF arg1, _hi=0
 	.2byte 0xAF
 	.2byte \_hi
 	.4byte \arg1
 .endm
 
-@ 0xB0  (1 words)
+@ 0xB0 sub_0800F478 (1 words)
 .macro EVCMD_B0 _hi=0
 	.2byte 0xB0
 	.2byte \_hi
 .endm
 
-@ 0xB1  (5 words)
+@ 0xB1 sub_0800F560 (5 words)
 .macro EVCMD_B1 arg1, arg2, arg3, arg4, _hi=0
 	.2byte 0xB1
 	.2byte \_hi
@@ -1319,7 +1323,7 @@
 	.4byte \arg4
 .endm
 
-@ 0xB2  (4 words)
+@ 0xB2 sub_0800F5B4 (4 words)
 .macro EVCMD_B2 arg1, arg2, arg3, _hi=0
 	.2byte 0xB2
 	.2byte \_hi
@@ -1328,32 +1332,32 @@
 	.4byte \arg3
 .endm
 
-@ 0xB3  (2 words)
+@ 0xB3 sub_0800F61C (2 words)
 .macro EVCMD_B3 arg1, _hi=0
 	.2byte 0xB3
 	.2byte \_hi
 	.4byte \arg1
 .endm
 
-@ 0xB4  (1 words)
+@ 0xB4 sub_0800F65C (1 words)
 .macro EVCMD_B4 _hi=0
 	.2byte 0xB4
 	.2byte \_hi
 .endm
 
-@ 0xB5  (1 words)
+@ 0xB5 sub_0800F67C (1 words)
 .macro EVCMD_B5 _hi=0
 	.2byte 0xB5
 	.2byte \_hi
 .endm
 
-@ 0xB6  (1 words)
+@ 0xB6 sub_0800F69C (1 words)
 .macro EVCMD_B6 _hi=0
 	.2byte 0xB6
 	.2byte \_hi
 .endm
 
-@ 0xB7  (5 words)
+@ 0xB7 sub_0800F6B8 (5 words)
 .macro EVCMD_B7 arg1, arg2, arg3, arg4, _hi=0
 	.2byte 0xB7
 	.2byte \_hi
@@ -1363,7 +1367,7 @@
 	.4byte \arg4
 .endm
 
-@ 0xB8  (3 words)
+@ 0xB8 sub_0800F730 (3 words)
 .macro EVCMD_B8 arg1, arg2, _hi=0
 	.2byte 0xB8
 	.2byte \_hi
@@ -1371,7 +1375,7 @@
 	.4byte \arg2
 .endm
 
-@ 0xB9  (4 words)
+@ 0xB9 sub_0800F770 (4 words)
 .macro EVCMD_B9 arg1, arg2, arg3, _hi=0
 	.2byte 0xB9
 	.2byte \_hi
@@ -1380,7 +1384,7 @@
 	.4byte \arg3
 .endm
 
-@ 0xBA  (3 words)
+@ 0xBA sub_0800F7B8 (3 words)
 .macro EVCMD_BA arg1, arg2, _hi=0
 	.2byte 0xBA
 	.2byte \_hi
@@ -1388,20 +1392,20 @@
 	.4byte \arg2
 .endm
 
-@ 0xBB  (1 words)
+@ 0xBB sub_0800F804 (1 words)
 .macro EVCMD_BB _hi=0
 	.2byte 0xBB
 	.2byte \_hi
 .endm
 
-@ 0xBC  (2 words)
+@ 0xBC sub_0800F828 (2 words)
 .macro EVCMD_BC arg1, _hi=0
 	.2byte 0xBC
 	.2byte \_hi
 	.4byte \arg1
 .endm
 
-@ 0xBD  (5 words)
+@ 0xBD sub_0800F9B0 (5 words)
 .macro EVCMD_BD arg1, arg2, arg3, arg4, _hi=0
 	.2byte 0xBD
 	.2byte \_hi
@@ -1411,14 +1415,14 @@
 	.4byte \arg4
 .endm
 
-@ 0xBE  (2 words)
+@ 0xBE sub_0800FA30 (2 words)
 .macro EVCMD_BE arg1, _hi=0
 	.2byte 0xBE
 	.2byte \_hi
 	.4byte \arg1
 .endm
 
-@ 0xBF  (5 words)
+@ 0xBF sub_0800FA50 (5 words)
 .macro EVCMD_BF arg1, arg2, arg3, arg4, _hi=0
 	.2byte 0xBF
 	.2byte \_hi
@@ -1428,14 +1432,14 @@
 	.4byte \arg4
 .endm
 
-@ 0xC0  (2 words)
+@ 0xC0 sub_0800FAD0 (2 words)
 .macro EVCMD_C0 arg1, _hi=0
 	.2byte 0xC0
 	.2byte \_hi
 	.4byte \arg1
 .endm
 
-@ 0xC1  (4 words)
+@ 0xC1 sub_0800FAF0 (4 words)
 .macro EVCMD_C1 arg1, arg2, arg3, _hi=0
 	.2byte 0xC1
 	.2byte \_hi
@@ -1444,7 +1448,7 @@
 	.4byte \arg3
 .endm
 
-@ 0xC2  (3 words)
+@ 0xC2 sub_0800F844 (3 words)
 .macro EVCMD_C2 arg1, arg2, _hi=0
 	.2byte 0xC2
 	.2byte \_hi
@@ -1452,7 +1456,7 @@
 	.4byte \arg2
 .endm
 
-@ 0xC3  (3 words)
+@ 0xC3 sub_0800F884 (3 words)
 .macro EVCMD_C3 arg1, arg2, _hi=0
 	.2byte 0xC3
 	.2byte \_hi
@@ -1460,7 +1464,7 @@
 	.4byte \arg2
 .endm
 
-@ 0xC4  (3 words)
+@ 0xC4 sub_0800F8C4 (3 words)
 .macro EVCMD_C4 arg1, arg2, _hi=0
 	.2byte 0xC4
 	.2byte \_hi
@@ -1468,7 +1472,7 @@
 	.4byte \arg2
 .endm
 
-@ 0xC5  (3 words)
+@ 0xC5 sub_0800F904 (3 words)
 .macro EVCMD_C5 arg1, arg2, _hi=0
 	.2byte 0xC5
 	.2byte \_hi
@@ -1476,7 +1480,7 @@
 	.4byte \arg2
 .endm
 
-@ 0xC6  (4 words)
+@ 0xC6 sub_0800F944 (4 words)
 .macro EVCMD_C6 arg1, arg2, arg3, _hi=0
 	.2byte 0xC6
 	.2byte \_hi
@@ -1485,13 +1489,13 @@
 	.4byte \arg3
 .endm
 
-@ 0xC7  (1 words)
+@ 0xC7 sub_0800F998 (1 words)
 .macro EVCMD_C7 _hi=0
 	.2byte 0xC7
 	.2byte \_hi
 .endm
 
-@ 0xC8  (4 words)
+@ 0xC8 sub_0800F494 (4 words)
 .macro EVCMD_C8 arg1, arg2, arg3, _hi=0
 	.2byte 0xC8
 	.2byte \_hi
@@ -1500,27 +1504,27 @@
 	.4byte \arg3
 .endm
 
-@ 0xC9  (2 words)
+@ 0xC9 sub_0800F4EC (2 words)
 .macro EVCMD_C9 arg1, _hi=0
 	.2byte 0xC9
 	.2byte \_hi
 	.4byte \arg1
 .endm
 
-@ 0xCA  (1 words)
+@ 0xCA sub_0800F540 (1 words)
 .macro EVCMD_CA _hi=0
 	.2byte 0xCA
 	.2byte \_hi
 .endm
 
-@ 0xCB  (2 words)
+@ 0xCB sub_0800FD7C (2 words)
 .macro CALL scr, _hi=0
 	.2byte 0xCB
 	.2byte \_hi
 	.4byte \scr
 .endm
 
-@ 0xCC  (3 words)
+@ 0xCC EventCD_Warp (3 words)
 .macro WARP_POS x, y, kind, _hi=0
 	.2byte 0xCC
 	.2byte \_hi
@@ -1529,7 +1533,7 @@
 	.4byte \kind
 .endm
 
-@ 0xCD  (3 words)
+@ 0xCD sub_0800FE18 (3 words)
 .macro WARP pid, kind, _hi=0
 	.2byte 0xCD
 	.2byte \_hi
@@ -1537,7 +1541,7 @@
 	.4byte \kind
 .endm
 
-@ 0xCE  (3 words)
+@ 0xCE sub_0800FE80 (3 words)
 .macro WARP_OUT_POS x, y, kind, _hi=0
 	.2byte 0xCE
 	.2byte \_hi
@@ -1546,7 +1550,7 @@
 	.4byte \kind
 .endm
 
-@ 0xCF  (3 words)
+@ 0xCF EvtCmd_CgTalk (3 words)
 .macro CG_TEXT msg, kind, _hi=0
 	.2byte 0xCF
 	.2byte \_hi
@@ -1554,7 +1558,7 @@
 	.4byte \kind
 .endm
 
-@ 0xD0  (4 words)
+@ 0xD0 sub_0800FFD0 (4 words)
 .macro CG_TEXT_EXT msg, kind, flags, _hi=0
 	.2byte 0xD0
 	.2byte \_hi
@@ -1563,7 +1567,7 @@
 	.4byte \flags
 .endm
 
-@ 0xD1  (3 words)
+@ 0xD1 sub_08010010 (3 words)
 .macro CG_TEXT_MORE msg, kind, _hi=0
 	.2byte 0xD1
 	.2byte \_hi
@@ -1571,37 +1575,37 @@
 	.4byte \kind
 .endm
 
-@ 0xD2  (1 words)
+@ 0xD2 sub_08010048 (1 words)
 .macro CG_TEXT_END _hi=0
 	.2byte 0xD2
 	.2byte \_hi
 .endm
 
-@ 0xD3  (1 words)
+@ 0xD3 EvtCmd_CgBackground (1 words)
 .macro CG_BACG cg
 	.2byte 0xD3
 	.2byte \cg
 .endm
 
-@ 0xD4  (1 words)
+@ 0xD4 sub_080100D0 (1 words)
 .macro CG_D4 _hi=0
 	.2byte 0xD4
 	.2byte \_hi
 .endm
 
-@ 0xD5  (1 words)
+@ 0xD5 EvtCmd_PaletteFadeFromBlack (1 words)
 .macro PAL_FADE_FROM_BLACK speed
 	.2byte 0xD5
 	.2byte \speed
 .endm
 
-@ 0xD6  (1 words)
+@ 0xD6 EvtCmd_PaletteFadeToBlack (1 words)
 .macro PAL_FADE_TO_BLACK speed
 	.2byte 0xD6
 	.2byte \speed
 .endm
 
-@ 0xD7  (3 words)
+@ 0xD7 EvtCmd_BrownTextBox (3 words)
 .macro BROWN_TEXTBOX msg, x, y, _hi=0
 	.2byte 0xD7
 	.2byte \_hi
@@ -1610,13 +1614,13 @@
 	.2byte \y
 .endm
 
-@ 0xD8  (1 words)
+@ 0xD8 EvtCmd_EndBrownTextBox (1 words)
 .macro BROWN_TEXTBOX_END _hi=0
 	.2byte 0xD8
 	.2byte \_hi
 .endm
 
-@ 0xD9  (3 words)
+@ 0xD9 EvtCmd_BgFadeIn (3 words)
 .macro BACG_FADE_IN bg, speed, _hi=0
 	.2byte 0xD9
 	.2byte \_hi
@@ -1624,7 +1628,7 @@
 	.4byte \speed
 .endm
 
-@ 0xDA  (3 words)
+@ 0xDA EvtCmd_BgFade (3 words)
 .macro BACG_FADE bg, speed, _hi=0
 	.2byte 0xDA
 	.2byte \_hi
@@ -1632,21 +1636,21 @@
 	.4byte \speed
 .endm
 
-@ 0xDB  (2 words)
+@ 0xDB EvtCmd_BgFadeToMap (2 words)
 .macro BACG_FADE_TO_MAP speed, _hi=0
 	.2byte 0xDB
 	.2byte \_hi
 	.4byte \speed
 .endm
 
-@ 0xDC  (2 words)
+@ 0xDC EventDF_SnowStormfx (2 words)
 .macro SNOWSTORM_FX arg, _hi=0
 	.2byte 0xDC
 	.2byte \_hi
 	.4byte \arg
 .endm
 
-@ 0xDD  (3 words)
+@ 0xDD EventE2_Thunderfx (3 words)
 .macro THUNDER_FX x, y, _hi=0
 	.2byte 0xDD
 	.2byte \_hi
@@ -1654,7 +1658,7 @@
 	.4byte \y
 .endm
 
-@ 0xDE  (5 words)
+@ 0xDE EventE3_ScreenFlashing (5 words)
 .macro SCREEN_FLASH_FX mask, duration, speeds, color, _hi=0
 	.2byte 0xDE
 	.2byte \_hi
@@ -1664,7 +1668,7 @@
 	.4byte \color
 .endm
 
-@ 0xDF  (3 words)
+@ 0xDF EventE4_NinianDisplay (3 words)
 .macro NINIAN_APPEAR_FX x, y, _hi=0
 	.2byte 0xDF
 	.2byte \_hi
@@ -1672,7 +1676,7 @@
 	.4byte \y
 .endm
 
-@ 0xE0  (4 words)
+@ 0xE0 EventE5_FadeSteps (4 words)
 .macro FADE_STEPS mask, speed, color, _hi=0
 	.2byte 0xE0
 	.2byte \_hi
@@ -1681,19 +1685,19 @@
 	.4byte \color
 .endm
 
-@ 0xE1  (1 words)
+@ 0xE1 EventE6_StartFade (1 words)
 .macro FADE_START _hi=0
 	.2byte 0xE1
 	.2byte \_hi
 .endm
 
-@ 0xE2  (1 words)
+@ 0xE2 EventE7_EndFade (1 words)
 .macro FADE_END _hi=0
 	.2byte 0xE2
 	.2byte \_hi
 .endm
 
-@ 0xE3  (3 words)
+@ 0xE3 EventE8_StartSpriteAnim (3 words)
 .macro SPRITE_ANIM conf, x, y, _hi=0
 	.2byte 0xE3
 	.2byte \_hi
@@ -1702,13 +1706,13 @@
 	.2byte \y
 .endm
 
-@ 0xE4  (1 words)
+@ 0xE4 EventE9_EndEventSpriteAnim (1 words)
 .macro SPRITE_ANIM_END _hi=0
 	.2byte 0xE4
 	.2byte \_hi
 .endm
 
-@ 0xE5  (4 words)
+@ 0xE5 EventEA_StartMixPalette (4 words)
 .macro MIX_PALETTE pal_a, pal_b, arg, _hi=0
 	.2byte 0xE5
 	.2byte \_hi
@@ -1717,13 +1721,13 @@
 	.4byte \arg
 .endm
 
-@ 0xE6  (1 words)
+@ 0xE6 EventEB_EndMixPalette (1 words)
 .macro MIX_PALETTE_END _hi=0
 	.2byte 0xE6
 	.2byte \_hi
 .endm
 
-@ 0xE7  (1 words)
+@ 0xE7 sub_08011D30 (1 words)
 .macro EVCMD_E7 _hi=0
 	.2byte 0xE7
 	.2byte \_hi
@@ -1745,7 +1749,7 @@
 .endm
 
 @ event list entry 0x02 (4 words)
-.macro TURN flag, scr, turn, turn_end, faction, cond, _b3=0
+.macro TURN flag, scr, turn, turn_end, faction, mode, _b3=0
 	.2byte 0x02
 	.2byte \flag
 	.4byte \scr
@@ -1753,7 +1757,7 @@
 	.byte \turn_end
 	.byte \faction
 	.byte \_b3
-	.4byte \cond
+	.4byte \mode
 .endm
 
 @ event list entry 0x03 (4 words)

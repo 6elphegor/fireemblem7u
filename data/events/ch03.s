@@ -7,14 +7,14 @@
 
 	.global EvList_Ch03_Turn
 EvList_Ch03_Turn:
-	TURN 0, EventScr_Ch03_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_08CA9E98, 1, 0, 0, 0
+	TURN 0, EventScr_Ch03_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CA9E98, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch03_TutorialD
 EvList_Ch03_TutorialD:
-	TURN 0, EventScr_08CA9F00, 2, 0, 0, 0
-	TURN 0x14, EventScr_08CA9F4C, 3, 0, 0, 5
+	TURN 0, EventScr_08CA9F00, 2, 0, FACTION_BLUE, 0
+	TURN 0x14, EventScr_08CA9F4C, 3, 0, FACTION_BLUE, 5
 	EVLIST_END
 
 	.global EvList_Ch03_Character
@@ -67,7 +67,7 @@ EvList_Ch03_TutorialC:
 
 	.global EvList_Ch03_Misc
 EvList_Ch03_Misc:
-	ASME 0, EventScr_Ch03_Ending, 0x08079FE9
+	ASME 0, EventScr_Ch03_Ending, sub_08079FE8
 	AFEV 0x11, EventScr_08CAA37C, 0xC
 	AFEV 0x12, EventScr_08CAA3C8, 0xD
 	AFEV 0x13, EventScr_08CAA418, 0xE
@@ -132,7 +132,7 @@ MoveScr_08CA9BF2:
 	.global EventScr_Ch03_Beginning
 EventScr_Ch03_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	STAL 0x40
 	LOU1 Units_Ch03_Player
 	ENUN
@@ -215,14 +215,14 @@ EventScr_Ch03_Beginning:
 	TEX1 MSG_8B5                             @ ! We've got to fight back! Lyn... I... You're a
 	CLEAN
 	MUEN 4
-	ASMC 0x08018889
+	ASMC sub_08018888
 	MOVE CHARACTER_LYN_TUTORIAL, 1, 8
 	MOVE_BLUE_OR_SCR CHARACTER_KENT_TUTORIAL, 0x10, 2, 9, MoveScr_08CA9BB8
 	MOVE_BLUE_OR_SCR CHARACTER_SAIN_TUTORIAL, 0x10, 4, 8, MoveScr_08CA9BC1
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CA9BAF
 	ENUN
 	DISA CHARACTER_TACTICIAN
-	ASMC 0x0807A7D9
+	ASMC HideAllAlliesExceptLeader
 	REMA
 	ENDA
 
@@ -235,7 +235,7 @@ EventScr_08CA9E98:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8B8, 5           @ The red-roofed buildings are villages . Villages
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	IFDIFF 1, 0x63
 	ENUT 8
@@ -255,7 +255,7 @@ EventScr_08CA9F00:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8D1, 5           @ Units that fly , like pegasus knights, are very
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x63
 	REMA
 	ENDA
@@ -330,7 +330,7 @@ EventScr_08CAA01C:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8CF, 5           @ Weapons have the strength to be used only a limi
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA
 	ENDA
@@ -339,21 +339,21 @@ EventScr_08CAA01C:
 EventScr_08CAA08C:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_LYN_TUTORIAL
 	TEX1 MSG_8B9                             @ You want me to visit a village? Just give the or
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 9
 	GOTO 9
 	LABEL 1
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_8BA            @ I'm to visit a village, right? Then issue the co
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0BFC
 	STAL 0x28
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -366,21 +366,21 @@ EventScr_08CAA08C:
 EventScr_08CAA134:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_WIL_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_WIL_TUTORIAL
 	TEX1 MSG_8BD                             @ So, you are the tactician ? I am Wil, master mar
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xA
 	GOTO 9
 	LABEL 1
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_8BE            @ Hey, it's me! Wil, remember? Why don't you issue
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0C04
 	STAL 0x28
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -393,21 +393,21 @@ EventScr_08CAA134:
 EventScr_08CAA1DC:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_FLORINA_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_FLORINA_TUTORIAL
 	TEX1_BY_GENDER MSG_8C1, MSG_8C2          @ So...it's my turn now? I expect you'll want me t / To the north... On the other side of the wall. I
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xB
 	GOTO 9
 	LABEL 1
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 16, 16, MSG_8C3, MSG_8C4 @ I... I am ready to fight. I'll follow your order / I won't give up! Please, you must let me join th
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0C0C
 	STAL 0x28
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -422,8 +422,8 @@ EventScr_08CAA28C:
 	TUTORIAL_CURSORS AreaList_08CA0BFC
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_8BB            @ You'd like me to visit a village, right? Just gi
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xC
 	EVBIT_YESSKIP
 	REMA
@@ -433,12 +433,12 @@ EventScr_08CAA28C:
 EventScr_08CAA2C8:
 	EVBIT_SILENTSKIP
 	TUTORIAL_CURSORS AreaList_08CA0C04
-	ASMC 0x0804AAC1
+	ASMC FreezeMenu
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_8BF            @ Let's take out the bandit on the north side of t
-	ASMC_WAIT2 0x08083181
-	ASMC 0x0804AAE1
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC ResumeMenu
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xD
 	REMA
 	ENDA
@@ -449,8 +449,8 @@ EventScr_08CAA310:
 	TUTORIAL_CURSORS AreaList_08CA0C0C
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 16, 16, MSG_8C5, MSG_8C6 @ Excuse me... I hate to be a bother, but... If I' / Begging your pardon... I have to be next to an e
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xE
 	EVBIT_YESSKIP
 	REMA
@@ -479,7 +479,7 @@ EventScr_08CAA37C:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8BC, 5           @ By visiting a village, we gained a new companion
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	MENU_OVERRIDE_CLEAR
 	MENU_OVERRIDE_HIDE 0x71
@@ -489,12 +489,12 @@ EventScr_08CAA37C:
 	.global EventScr_08CAA3C8
 EventScr_08CAA3C8:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8C0, 5           @ Next is Florina, a pegasus knight. As you might
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	MENU_OVERRIDE_CLEAR
 	MENU_OVERRIDE_HIDE 0x71
@@ -504,12 +504,12 @@ EventScr_08CAA3C8:
 	.global EventScr_08CAA418
 EventScr_08CAA418:
 	EVBIT_SILENTSKIP
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	IGNORE_KEYS 0x0
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_8C7, 5           @ Knowing your units and their abilities and knowi
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	MENU_OVERRIDE_CLEAR
 	REMA
@@ -522,7 +522,7 @@ EventScr_Ch03_Ending:
 	STAL 0x40
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 2
 	FADU 4
 	ENTER_MAP
@@ -530,7 +530,7 @@ EventScr_Ch03_Ending:
 	TEX2 MSG_8D7                             @ Listen, most mercenaries are men, right? Bands o
 	TEX2 MSG_8D8                             @ Lovely Florina! I have the most brilliant idea!
 	TEX2 MSG_8D9                             @ Fantastic! Beauteous Florina! I am a knight of C
-	ASMC 0x0800ECFD
+	ASMC ClearTalk
 	BACG_FADE 3, 2
 	STAL 0x3C
 	CG_TEXT MSG_8DA, 1                       @ Lyn "Lyndis's Legion"? This is getting stranger

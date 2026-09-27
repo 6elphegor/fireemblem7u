@@ -7,7 +7,7 @@
 
 	.global EvList_Ch0D_Turn
 EvList_Ch0D_Turn:
-	TURN 0, EventScr_Ch0D_Beginning, 1, 0, 0, 0
+	TURN 0, EventScr_Ch0D_Beginning, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch0D_Character
@@ -83,7 +83,7 @@ EventScr_Ch0D_Beginning:
 	STAL 0x20
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	BACG 0x10
 	FADU 4
 	ENTER_MAP
@@ -198,11 +198,11 @@ EventScr_Ch0D_Ending:
 	MUEN 4
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x15
 	FADU 4
 	ENTER_MAP
-	IFAF 0xA, 0x08079DBD
+	IFAF 0xA, sub_08079DBC
 	MUSC 0x38
 	TEX1 MSG_A18                             @ Whew... That was close. Glad we're both all righ
 	GOTO 0xB

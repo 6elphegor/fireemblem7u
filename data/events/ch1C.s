@@ -7,45 +7,45 @@
 
 	.global EvList_Ch1C_Turn
 EvList_Ch1C_Turn:
-	TURN 0, EventScr_08CB5388, 1, 0, 0, 0
-	TURN 0, EventScr_08CB5460, 2, 0, 0, 0
-	TURN 0, EventScr_08CB5480, 0xC, 0, 0, 0
-	TURN 0, EventScr_08CD1880, 3, 0, 0, 1
-	TURN 0, EventScr_08CD17A4, 4, 0, 0, 1
-	TURN 0, EventScr_08CD17F4, 4, 0, 0, 1
-	TURN 0, EventScr_08CD181C, 5, 0, 0, 1
-	TURN 0, EventScr_08CD18A8, 5, 0, 0, 1
-	TURN 0, EventScr_08CD17F4, 8, 0, 0, 1
-	TURN 0, EventScr_08CD1844, 8, 0, 0, 1
-	TURN 0, EventScr_08CD181C, 9, 0, 0, 1
-	TURN 0, EventScr_08CD17CC, 8, 9, 0, 1
-	TURN 0, EventScr_08CD1894, 3, 0, 0, 2
-	TURN 0, EventScr_08CD17B8, 4, 0, 0, 2
-	TURN 0, EventScr_08CD1808, 4, 0, 0, 2
-	TURN 0, EventScr_08CD1830, 5, 0, 0, 2
-	TURN 0, EventScr_08CD18BC, 5, 0, 0, 2
-	TURN 0, EventScr_08CD1808, 8, 0, 0, 2
-	TURN 0, EventScr_08CD186C, 8, 0, 0, 2
-	TURN 0, EventScr_08CD1830, 9, 0, 0, 2
-	TURN 0, EventScr_08CD17CC, 8, 9, 0, 2
-	TURN 0, EventScr_08CD17A4, 2, 0, 0, 5
-	TURN 0, EventScr_08CD17E0, 8, 9, 0, 5
-	TURN 0, EventScr_08CD17A4, 3, 4, 0, 3
-	TURN 0, EventScr_08CD17F4, 3, 4, 0, 3
-	TURN 0, EventScr_08CD17F4, 7, 8, 0, 3
-	TURN 0, EventScr_08CD181C, 4, 5, 0, 3
-	TURN 0, EventScr_08CD181C, 8, 9, 0, 3
-	TURN 0, EventScr_08CD1858, 7, 8, 0, 3
-	TURN 0, EventScr_08CD1880, 2, 3, 0, 3
-	TURN 0, EventScr_08CD18D0, 4, 5, 0, 3
-	TURN 0, EventScr_08CD17B8, 3, 4, 0, 4
-	TURN 0, EventScr_08CD1808, 3, 4, 0, 4
-	TURN 0, EventScr_08CD1808, 7, 8, 0, 4
-	TURN 0, EventScr_08CD1830, 4, 5, 0, 4
-	TURN 0, EventScr_08CD1830, 8, 9, 0, 4
-	TURN 0, EventScr_08CD186C, 7, 8, 0, 4
-	TURN 0, EventScr_08CD1894, 2, 3, 0, 4
-	TURN 0, EventScr_08CD18E4, 4, 5, 0, 4
+	TURN 0, EventScr_08CB5388, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CB5460, 2, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CB5480, 0xC, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CD1880, 3, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD17A4, 4, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD17F4, 4, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD181C, 5, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD18A8, 5, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD17F4, 8, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD1844, 8, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD181C, 9, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD17CC, 8, 9, FACTION_BLUE, 1
+	TURN 0, EventScr_08CD1894, 3, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD17B8, 4, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD1808, 4, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD1830, 5, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD18BC, 5, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD1808, 8, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD186C, 8, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD1830, 9, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD17CC, 8, 9, FACTION_BLUE, 2
+	TURN 0, EventScr_08CD17A4, 2, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD17E0, 8, 9, FACTION_BLUE, 5
+	TURN 0, EventScr_08CD17A4, 3, 4, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD17F4, 3, 4, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD17F4, 7, 8, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD181C, 4, 5, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD181C, 8, 9, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD1858, 7, 8, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD1880, 2, 3, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD18D0, 4, 5, FACTION_BLUE, 3
+	TURN 0, EventScr_08CD17B8, 3, 4, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD1808, 3, 4, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD1808, 7, 8, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD1830, 4, 5, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD1830, 8, 9, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD186C, 7, 8, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD1894, 2, 3, FACTION_BLUE, 4
+	TURN 0, EventScr_08CD18E4, 4, 5, FACTION_BLUE, 4
 	EVLIST_END
 
 	.global EvList_Ch1C_Character
@@ -136,7 +136,7 @@ EventScr_Ch1C_Beginning:
 	MUEN 6
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	LOMA CHAPTER_1C, 0xC, 3
 	STAL 0x60
 	MNCH_MAP 0
@@ -236,7 +236,7 @@ EventScr_08CB5388:
 	LOU1 Units_08CD1084
 	ENUN
 	FADE_FROM_OPENING
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFHM 5
 	IFDEPLOYED 0, 7, CHARACTER_ISADORA
 	MUEN 4
@@ -281,8 +281,8 @@ EventScr_08CB5480:
 	.global EventScr_08CB54AC
 EventScr_08CB54AC:
 	MUSC 0x0D
-	IFAT 2, 0x0807A11D
-	ASMC 0x0801CD51
+	IFAT 2, sub_0807A11C
+	ASMC sub_0801CD50
 	STAL 0x1E
 	LOU1 Units_08CD16B4
 	ENUN
@@ -350,17 +350,17 @@ EventScr_08CB55C4:
 
 	.global EventScr_Ch1C_Ending
 EventScr_Ch1C_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUSC 0x38
 	STAL 0x3C
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA 0x36, 0, 0
 	UNIT_CAM_OFF
 	LOU1 Units_08CD1624
 	ENUN
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 5, 0xA
 	ENUN
 	FADU 0x10
@@ -384,7 +384,7 @@ EventScr_Ch1C_Ending:
 	STAL 0x1E
 	MUSC_FADE SONG_34, 4
 	TEX2 MSG_C1E                             @ Yet...it's all true. Yes. I wonder what will hap
-	TEX2_IF_ASM 0x0807A3B9, MSG_C1F, MSG_C20 @ . Ninian. Will you go with us? Ye-Yes... / Ninian, will you come, too? Ye-Yes...
+	TEX2_IF_ASM sub_0807A3B8, MSG_C1F, MSG_C20 @ . Ninian. Will you go with us? Ye-Yes... / Ninian, will you come, too? Ye-Yes...
 	CLEAN
 	FADI 0x10
 	EXIT_MAP
@@ -396,13 +396,13 @@ EventScr_Ch1C_Ending:
 	MOVE_INSTANT CHARACTER_UTHER, 7, 2
 	MOVE_POS_INSTANT 6, 1, 4, 2
 	MOVE_POS_INSTANT 8, 1, 4, 3
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_INSTANT CHARACTER_TACTICIAN, 9, 4
 	FADU 0x10
 	ENTER_MAP
 	STAL 0x3C
 	TEX1 MSG_C21                             @ I would sooner not place this burden on your sho
-	TEX2_IF_ASM 0x0807A3B9, MSG_C22, MSG_C23 @ And you, . My brother and his friends are in you / I see. Then I have no more to say. I will aid yo
+	TEX2_IF_ASM sub_0807A3B8, MSG_C22, MSG_C23 @ And you, . My brother and his friends are in you / I see. Then I have no more to say. I will aid yo
 	TEX2 MSG_C24                             @ ...And what of the girl? The one we spoke of ear
 	IFEM 0x11
 	FADI 0x10

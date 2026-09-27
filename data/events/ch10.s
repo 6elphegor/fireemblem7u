@@ -7,22 +7,22 @@
 
 	.global EvList_Ch10_Turn
 EvList_Ch10_Turn:
-	TURN 0, EventScr_Ch10_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_Ch10_Ending, 8, 0, 0, 0
-	TURN 0, EventScr_08CC9114, 2, 0, 0, 1
-	TURN 0, EventScr_08CC9114, 5, 0, 0, 1
-	TURN 0, EventScr_08CC9100, 3, 0, 0, 1
-	TURN 0, EventScr_08CC9114, 1, 2, 0, 2
-	TURN 0, EventScr_08CC9114, 5, 0, 0, 2
-	TURN 0, EventScr_08CC9100, 3, 0, 0, 2
-	TURN 0, EventScr_08CC9100, 4, 0, 0x80, 2
-	TURN 0, EventScr_08CC9114, 2, 0, 0, 5
-	TURN 0, EventScr_08CC9114, 5, 0, 0, 5
-	TURN 0, EventScr_08CC9100, 3, 0, 0, 5
-	TURN 0, EventScr_08CC9128, 4, 0, 0, 5
-	TURN 0, EventScr_08CC9114, 1, 0, 0x80, 4
-	TURN 0, EventScr_08CC9114, 6, 0, 0x80, 4
-	TURN 0, EventScr_08CC9100, 4, 0, 0x80, 4
+	TURN 0, EventScr_Ch10_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_Ch10_Ending, 8, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CC9114, 2, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CC9114, 5, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CC9100, 3, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CC9114, 1, 2, FACTION_BLUE, 2
+	TURN 0, EventScr_08CC9114, 5, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CC9100, 3, 0, FACTION_BLUE, 2
+	TURN 0, EventScr_08CC9100, 4, 0, FACTION_RED, 2
+	TURN 0, EventScr_08CC9114, 2, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CC9114, 5, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CC9100, 3, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CC9128, 4, 0, FACTION_BLUE, 5
+	TURN 0, EventScr_08CC9114, 1, 0, FACTION_RED, 4
+	TURN 0, EventScr_08CC9114, 6, 0, FACTION_RED, 4
+	TURN 0, EventScr_08CC9100, 4, 0, FACTION_RED, 4
 	EVLIST_END
 
 	.global EvList_Ch10_Character
@@ -86,7 +86,7 @@ EventScr_Ch10_Beginning:
 	TEX1 MSG_A60                             @ Oh noooooo! Someone! Help!!! Grrr! Stupid old fo
 	TEX2_BY_MODE MSG_A61, MSG_A62            @ Release him! Who-- I told you to let the man go! / Hold! Release that man! What? We're not after yo
 	CLEAN
-	IFAF 5, 0x0807A3B9
+	IFAF 5, sub_0807A3B8
 	STAL 0x3C
 	MUEN 4
 	CAM1 CHARACTER_MERLINUS
@@ -124,7 +124,7 @@ EventScr_Ch10_Ending:
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x1F
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	FADU 0x10
 	ENTER_MAP
 	TEX1_BY_MODE MSG_A68, MSG_A69            @ Ooof... Blast! I won't forget this! Then you're / Oof... Blast! I won't forget this! You thieves c

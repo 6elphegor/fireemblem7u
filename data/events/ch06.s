@@ -7,14 +7,14 @@
 
 	.global EvList_Ch06_Turn
 EvList_Ch06_Turn:
-	TURN 0, EventScr_Ch06_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_08CABF78, 1, 0, 0, 0
+	TURN 0, EventScr_Ch06_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CABF78, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch06_TutorialD
 EvList_Ch06_TutorialD:
-	TURN 0, EventScr_08CABFDC, 2, 0, 0, 0
-	TURN 0x17, EventScr_08CAC03C, 3, 0, 0, 5
+	TURN 0, EventScr_08CABFDC, 2, 0, FACTION_BLUE, 0
+	TURN 0x17, EventScr_08CAC03C, 3, 0, FACTION_BLUE, 5
 	EVLIST_END
 
 	.global EvList_Ch06_Character
@@ -194,7 +194,7 @@ BattleScr_08CABB90:
 	.global EventScr_Ch06_Beginning
 EventScr_Ch06_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	LOU1 Units_08CC65A0
 	ENUN
 	LOU1 Units_08CC64E0
@@ -279,7 +279,7 @@ EventScr_Ch06_Beginning:
 	CG_TEXT_MORE MSG_932, 1                  @ Lyn Who are--
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	BACG 0x2F
 	FADU 0x10
 	ENTER_MAP
@@ -313,9 +313,9 @@ EventScr_Ch06_Beginning:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_937, 5           @ The goal of this chapter is to open the doors an
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
-	ASMC 0x08018889
+	ASMC sub_08018888
 	MOVE_SCR CHARACTER_LYN_TUTORIAL, MoveScr_08CABB38
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CABB31
 	ENUN
@@ -326,7 +326,7 @@ EventScr_Ch06_Beginning:
 	MOVE_BLUE_OR_SCR CHARACTER_WIL_TUTORIAL, 0x20, 6, 10, MoveScr_08CABB0F
 	MOVE_SCR_BLUE_OR_SCR CHARACTER_RATH_TUTORIAL, MoveScr_08CABB48, MoveScr_08CABB2B
 	ENUN
-	ASMC 0x0807A7D9
+	ASMC HideAllAlliesExceptLeader
 	LOU1_ALIVE Units_08CC6560
 	ENUN
 	REMA
@@ -341,7 +341,7 @@ EventScr_08CABF78:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_939, 5           @ There may be times when you are unsure how to pr
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	IFDIFF 1, 0x63
 	ENUT 6
@@ -362,7 +362,7 @@ EventScr_08CABFDC:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_947, 5           @ Thieves can use their picks to open chests. Move
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	ENUT 0xA
 	LABEL 0x63
@@ -414,7 +414,7 @@ EventScr_08CAC088:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_93E, 5           @ The thief Matthew has joined your group. Thieves
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	CAM1 CHARACTER_MATTHEW
 	CURF CHARACTER_MATTHEW
 	LABEL 0x32
@@ -484,19 +484,19 @@ EventScr_08CAC1D0:
 EventScr_08CAC200:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_LYN_TUTORIAL
 	TEX1 MSG_93A                             @ What do you want me to do? Tell me, please!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 7
 	GOTO 9
 	LABEL 1
 	CAM1_POS 4, 1
 	TUTORIAL_CURSORS AreaList_08CA11A4
 	STAL 0x28
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -509,19 +509,19 @@ EventScr_08CAC200:
 EventScr_08CAC294:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_MATTHEW
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_MATTHEW
 	TEX1 MSG_940                             @ This is no good. Even I'm not so good I can open
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 8
 	GOTO 9
 	LABEL 1
 	CAM1_POS 8, 1
 	TUTORIAL_CURSORS AreaList_08CA11AC
 	STAL 0x28
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -534,18 +534,18 @@ EventScr_08CAC294:
 EventScr_08CAC328:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_RATH_TUTORIAL
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_RATH_TUTORIAL
 	TEX1 MSG_943                             @ You! You're ? Have you found the trigger? If so,
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 9
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA11B4
 	STAL 0x28
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	LABEL 9
@@ -557,20 +557,20 @@ EventScr_08CAC328:
 EventScr_08CAC3B0:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_MATTHEW
-	ASMC 0x0801D2D5
+	ASMC HideMoveRangeGraphics
 	CURF CHARACTER_MATTHEW
 	TEX1 MSG_948                             @ Battles aren't won by virtue and glory alone. No
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC 0x0807A4C9
+	ASMC sub_0807A4C8
 	ENUF 0xB
 	GOTO 9
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA11BC
 	STAL 8
 	TUTORIAL_TEXT 32, 96, MSG_949            @ Hey! Changed your mind? Hurrah! Treasure time! T
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -585,8 +585,8 @@ EventScr_08CAC450:
 	TUTORIAL_CURSORS AreaList_08CA11A4
 	STAL 8
 	TUTORIAL_TEXT 48, 48, MSG_93B            @ Wasn't I supposed to visit somewhere? Directions
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xC
 	EVBIT_YESSKIP
 	REMA
@@ -599,8 +599,8 @@ EventScr_08CAC490:
 	TUTORIAL_CURSORS AreaList_08CA11AC
 	STAL 8
 	TUTORIAL_TEXT 32, 80, MSG_941            @ I can't open a door I can't reach! Move me in fr
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xD
 	EVBIT_YESSKIP
 	REMA
@@ -613,8 +613,8 @@ EventScr_08CAC4D0:
 	TUTORIAL_CURSORS AreaList_08CA11B4
 	STAL 8
 	TUTORIAL_TEXT 16, 32, MSG_944            @ I don't see any trigger there. Do you? I didn't
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xE
 	EVBIT_YESSKIP
 	REMA
@@ -627,8 +627,8 @@ EventScr_08CAC510:
 	TUTORIAL_CURSORS AreaList_08CA11BC
 	STAL 8
 	TUTORIAL_TEXT 16, 96, MSG_94A            @ Oh, come on! There's a chest right there in fron
-	ASMC_WAIT2 0x08083181
-	ASMC_WAIT2 0x0807A7B5
+	ASMC_WAIT2 BoxTalkActive
+	ASMC_WAIT2 sub_0807A7B4
 	ENUF 0xF
 	EVBIT_YESSKIP
 	REMA
@@ -652,7 +652,7 @@ EventScr_08CAC57C:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_942, 5           @ The door has been opened. With that, you can als
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	CAM1 CHARACTER_RATH_TUTORIAL
 	CURF CHARACTER_RATH_TUTORIAL
 	LABEL 0x32
@@ -670,7 +670,7 @@ EventScr_08CAC5D0:
 	IFTU 0x32
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_971, 5           @ An angelic robe increases a character's max HP b
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	MENU_OVERRIDE_CLEAR
 	REMA
@@ -684,7 +684,7 @@ EventScr_08CAC61C:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_973, 5           @ If you get a weapon or staff you can't use, don'
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA
 	ENDA
@@ -725,7 +725,7 @@ MsgList_08CAC694:
 
 	.global EventScr_08CAC6CC
 EventScr_08CAC6CC:
-	IFAT 1, 0x0807A2F1
+	IFAT 1, sub_0807A2F0
 	ENUF 0x10
 	GOTO 0x63
 	LABEL 1
@@ -753,7 +753,7 @@ EventScr_08CAC6CC:
 
 	.global EventScr_08CAC770
 EventScr_08CAC770:
-	IFAT 1, 0x0807A2F1
+	IFAT 1, sub_0807A2F0
 	ENUF 0x11
 	GOTO 0x63
 	LABEL 1
@@ -792,7 +792,7 @@ MsgList_08CAC7EC:
 
 	.global EventScr_08CAC824
 EventScr_08CAC824:
-	IFAT 1, 0x0807A2F1
+	IFAT 1, sub_0807A2F0
 	ENUF 0x12
 	GOTO 9
 	LABEL 1
@@ -800,7 +800,7 @@ EventScr_08CAC824:
 	CLEAN
 	SOUN SONG_AF
 	MNCH_MAP 0xC
-	TEX1_IF_ASM 0x08079E2D, MSG_96A, MSG_96B @ Here it is, ! The hidden passageway! Good work! / Here it is, ! The hidden passageway! We should l
+	TEX1_IF_ASM sub_08079E2C, MSG_96A, MSG_96B @ Here it is, ! The hidden passageway! Good work! / Here it is, ! The hidden passageway! We should l
 	CLEAN
 	JUMP EventScr_Ch06_Ending
 	LABEL 9
@@ -814,7 +814,7 @@ EventScr_Ch06_Ending:
 	STAL 0x40
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	BACG 0x10
 	FADU 4
 	ENTER_MAP
@@ -857,7 +857,7 @@ EventScr_Ch06_Ending:
 	MUSC 0x3A4
 	FADU 4
 	ENTER_MAP
-	IFAF 1, 0x08079E2D
+	IFAF 1, sub_08079E2C
 	TEX1 MSG_97B                             @ ...... Rath! What is it? What are you-- I overhe
 	GOTO 2
 	LABEL 1

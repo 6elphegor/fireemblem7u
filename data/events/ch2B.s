@@ -7,14 +7,14 @@
 
 	.global EvList_Ch2B_Turn
 EvList_Ch2B_Turn:
-	TURN 0, EventScr_08CBE018, 1, 0, 0, 0
-	TURN 0, EventScr_Ch2B_Ending, 6, 0, 0, 0
+	TURN 0, EventScr_08CBE018, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_Ch2B_Ending, 6, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch2B_Character
 EvList_Ch2B_Character:
-	CHAR_ASM 6, EventScr_08CBE0E8, CHARACTER_HECTOR, CHARACTER_LYN, 0x0807A1F9
-	CHAR_ASM 6, EventScr_08CBE0E8, CHARACTER_LYN, CHARACTER_HECTOR, 0x0807A1F9
+	CHAR_ASM 6, EventScr_08CBE0E8, CHARACTER_HECTOR, CHARACTER_LYN, sub_0807A1F8
+	CHAR_ASM 6, EventScr_08CBE0E8, CHARACTER_LYN, CHARACTER_HECTOR, sub_0807A1F8
 	CHAR 7, EventScr_08CBE118, CHARACTER_HECTOR, CHARACTER_MATTHEW, 2
 	CHAR 7, EventScr_08CBE118, CHARACTER_MATTHEW, CHARACTER_HECTOR, 2
 	CHAR 8, EventScr_08CBE134, CHARACTER_HECTOR, CHARACTER_SERRA, 2
@@ -71,7 +71,7 @@ EventScr_Ch2B_Beginning:
 	LOU1 Units_08CDDD5C
 	ENUN
 	LOU1 Units_08CDDDAC
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 3, 4
 	ENUN
 	FADI 0x10
@@ -83,11 +83,11 @@ EventScr_Ch2B_Beginning:
 	CLEAN
 	STAL 0x40
 	TEX1 MSG_E57                             @ Ostia's castle town is as impressive as ever. Sh
-	IFAF 0xA, 0x0807A1BD
+	IFAF 0xA, sub_0807A1BC
 	TEX2 MSG_E59                             @ ... Curious. What is it, Lyndis? Hector. He acts
 	GOTO 0x14
 	LABEL 0xA
-	IFAF 0xB, 0x0807A1F9
+	IFAF 0xB, sub_0807A1F8
 	TEX2 MSG_E5A                             @ ...Lyndis, let's go. Mm...
 	GOTO 0x14
 	LABEL 0xB
@@ -122,7 +122,7 @@ EventScr_08CBE018:
 	ENTER_MAP
 	MONE 1, 0x7530
 	EVBIT_YESSKIP
-	IFAF 7, 0x0807A3B9
+	IFAF 7, sub_0807A3B8
 	IFDEPLOYED 0, 7, CHARACTER_BARTRE
 	STAL 0x3C
 	CAM1 CHARACTER_BARTRE
@@ -131,7 +131,7 @@ EventScr_08CBE018:
 	CLEAN
 	LABEL 7
 	IFEM 9
-	IFAF 9, 0x0807D9E5
+	IFAF 9, sub_0807D9E4
 	STAL 0x3C
 	LOU1 Units_08CDDE1C
 	ENUN
@@ -184,15 +184,15 @@ BattleScr_08CBE158:	@ unreferenced
 EventScr_08CBE164:
 	MUSS 0x3AC
 	TEX1 MSG_E5F                             @ You! Wench! Hm? Meeting me here will be your doo
-	IFAF 5, 0x0807DA15
+	IFAF 5, sub_0807DA14
 	CLEAN
-	ASMC 0x0801CD51
+	ASMC sub_0801CD50
 	FIGHT CHARACTER_BARTRE, CHARACTER_KARLA, 0, ITEM_NONE, 0, 1
 	GOTO 8
 	LABEL 5
 	TEX2 MSG_E60                             @ What is it? Prepare yourself! Yaa! Mm...? Unbeli
 	CLEAN
-	IFAF 6, 0x0807DA69
+	IFAF 6, sub_0807DA68
 	MOVE CHARACTER_KARLA, -1, 0
 	GOTO 7
 	LABEL 6
@@ -220,7 +220,7 @@ EventScr_08CBE224:
 	BACG 1
 	FADU 0x10
 	ENTER_MAP
-	IFAF 5, 0x0807A3B9
+	IFAF 5, sub_0807A3B8
 	IFET 5, 0xC
 	ENUT 0xC
 	TEX1_BY_RANK 0, MsgList_08CBE218
@@ -237,16 +237,16 @@ EventScr_08CBE224:
 EventScr_08CBE290:
 	IFEM 9
 	IFUA 0, 8, CHARACTER_BARTRE
-	IFAF 5, 0x0807DA8D
+	IFAF 5, sub_0807DA8C
 	UNIT_SET_STATE CHARACTER_BARTRE, 0x4
-	ASMC 0x0807DAC5
+	ASMC sub_0807DAC4
 	HIDE CHARACTER_BARTRE
 	TEX1 MSG_E62                             @ Mm. What an interesting fellow... No match for m
 	CLEAN
 	GOTO 9
 	LABEL 5
-	IFAF 7, 0x0807A13D
-	IFAT 6, 0x0807DAA9
+	IFAF 7, sub_0807A13C
+	IFAT 6, sub_0807DAA8
 	MUSS 0x42
 	TEX1 MSG_E61                             @ Oh... It seems you've improved some. Quiet! We'v
 	CLEAN
@@ -267,7 +267,7 @@ EventScr_08CBE290:
 
 	.global EventScr_Ch2B_Ending
 EventScr_Ch2B_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x2F
@@ -279,7 +279,7 @@ EventScr_Ch2B_Ending:
 	MUEN 6
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA CHAPTER_2A, 0, 0
 	UNIT_CAM_OFF
 	STAL 0x40
@@ -302,7 +302,7 @@ EventScr_Ch2B_Ending:
 	EXIT_MAP
 	STAL 0x20
 	MUSC 0x4A
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	STAL 0x40
 	LOMA CHAPTER_2F, 0xD, 0
 	UNIT_CAM_OFF
@@ -330,7 +330,7 @@ EventScr_Ch2B_Ending:
 	FAWU 0x10
 	ENTER_MAP
 	STAL 0x1E
-	ASMC2 0x0807CEB5
+	ASMC2 sub_0807CEB4
 	STAL 0x3C
 	TEX1 MSG_E6F                             @ This is ... The dragon girl... Ninian's essence.
 	CLEAN

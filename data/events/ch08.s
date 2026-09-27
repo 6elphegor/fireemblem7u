@@ -7,9 +7,9 @@
 
 	.global EvList_Ch08_Turn
 EvList_Ch08_Turn:
-	TURN 0, EventScr_08CAD43C, 1, 0, 0, 0
-	TURN 0, EventScr_08CAD454, 3, 0, 0, 0
-	TURN 0, EventScr_08CC70E0, 4, 0, 0, 0
+	TURN 0, EventScr_08CAD43C, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CAD454, 3, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CC70E0, 4, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch08_TutorialD
@@ -41,7 +41,7 @@ EvList_Ch08_TutorialB:
 
 	.global EvList_Ch08_Misc
 EvList_Ch08_Misc:
-	ASME 0, EventScr_Ch08_Ending, 0x08079FE9
+	ASME 0, EventScr_Ch08_Ending, sub_08079FE8
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
@@ -69,7 +69,7 @@ ChapterEvents_Ch08:
 	.global EventScr_Ch08_Beginning
 EventScr_Ch08_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	CAM1_POS 0, 0
 	LOU1 Units_08CC6D98
 	LOU1 Units_Ch08_Initial
@@ -102,7 +102,7 @@ EventScr_Ch08_Beginning:
 	STAL 0x40
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	LOMA 0x31, 0, 0
 	MAC_INSTANT 0
 	STAL 0x40
@@ -133,7 +133,7 @@ EventScr_Ch08_Beginning:
 	FADI 0x10
 	EXIT_MAP
 	LOMA CHAPTER_08, 0, 0
-	ASMC 0x08018889
+	ASMC sub_08018888
 	REMA_PREP
 	ENDA
 
@@ -164,7 +164,7 @@ EventScr_Ch08_Ending:
 	MUSC 0x52
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x42
 	FADU 4
 	ENTER_MAP

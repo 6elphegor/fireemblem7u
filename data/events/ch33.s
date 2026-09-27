@@ -7,7 +7,7 @@
 
 	.global EvList_Ch33_Turn
 EvList_Ch33_Turn:
-	TURN 0, EventScr_08CE0E74, 1, 0, 0, 0
+	TURN 0, EventScr_08CE0E74, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch33_Character

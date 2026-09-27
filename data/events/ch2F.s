@@ -7,7 +7,7 @@
 
 	.global EvList_Ch2F_Turn
 EvList_Ch2F_Turn:
-	TURN 0, EventScr_Ch2F_Beginning, 1, 0, 0, 0
+	TURN 0, EventScr_Ch2F_Beginning, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch2F_Character
@@ -85,7 +85,7 @@ MoveScr_08CBFC5B:
 
 	.global SpriteAnimConf_08CBFC60
 SpriteAnimConf_08CBFC60:
-	.4byte 0x081AA898, 0x081AA680, 0x081AB284
+	.4byte Pal_NinianDispfx, Img_NinianDispfx, 0x081AB284
 	.2byte 0x0, 0x280
 	.byte 5, 1, 0, 0
 
@@ -93,14 +93,14 @@ SpriteAnimConf_08CBFC60:
 
 	.global EventScr_Ch2F_Beginning
 EventScr_Ch2F_Beginning:
-	ASMC 0x0807A9D5
+	ASMC sub_0807A9D4
 	UNIT_CAM_OFF
-	ASMC 0x0807AE59
+	ASMC SetFlag_145
 	MUSC 0x35
-	ASMC 0x0807A8B9
-	ASMC 0x0807E1C1
+	ASMC sub_0807A8B8
+	ASMC sub_0807E1C0
 	LOMA CHAPTER_2F, 0xD, 8
-	ASMC2 0x0807E80D
+	ASMC2 EventCall_PutFireDragonSprite
 	MAC_INSTANT 1
 	FADU 0x10
 	ENTER_MAP
@@ -110,16 +110,16 @@ EventScr_Ch2F_Beginning:
 	STAL 0x1E
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807E67D
-	ASMC 0x0807A939
+	ASMC EndEventDragonsSpritefx
+	ASMC sub_0807A938
 	BACG 0x48
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_F1E                             @ So these are dragons. Look at the size of them.
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
-	ASMC2 0x0807E80D
+	ASMC ImmediateDisplayMap
+	ASMC2 EventCall_PutFireDragonSprite
 	FADU 0x10
 	ENTER_MAP
 	CAM1 CHARACTER_ATHOS
@@ -127,52 +127,52 @@ EventScr_Ch2F_Beginning:
 	STAL 0x1E
 	WARP_POS 12, 22, 0
 	UNIT_SET_STATE CHARACTER_ATHOS, 0x1
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	CAM1_POS 0xD, 5
 	WARP_POS 12, 10, 1
 	MOVE_INSTANT CHARACTER_ATHOS, 12, 10
 	UNIT_CLEAR_STATE CHARACTER_ATHOS, 0x1
-	ASMC_WAIT2 0x08020AB9
-	ASMC2 0x0807AD05
-	ASMC2 0x0807E855
+	ASMC_WAIT2 WarpEffectExists
+	ASMC2 StartEventHorizontalQuakefxSlightlyNoSound
+	ASMC2 Move2ndFireDragon
 	STAL 0x60
-	ASMC2 0x0807E871
+	ASMC2 Move3rdFireDragon
 	STAL 0x30
-	ASMC2 0x0807E95D
-	ASMC2 0x0807ACDD
+	ASMC2 sub_0807E95C
+	ASMC2 StartEventHorizontalQuakefxViolentlyNoSound
 	STAL 0x20
-	ASMC2 0x0807EB39
-	ASMC2 0x0807E99D
+	ASMC2 StartDragonFlameImpact
+	ASMC2 sub_0807E99C
 	STAL 0
-	ASMC 0x0807EB4D
+	ASMC EndDragonFlameImpact
 	STAL 0x40
-	ASMC2 0x0807E97D
+	ASMC2 sub_0807E97C
 	STAL 0x20
-	ASMC2 0x0807EB39
-	ASMC2 0x0807E9D1
+	ASMC2 StartDragonFlameImpact
+	ASMC2 sub_0807E9D0
 	STAL 0
-	ASMC 0x0807EB4D
-	ASMC2 0x0807AD05
-	ASMC2 0x0807EA01
+	ASMC EndDragonFlameImpact
+	ASMC2 StartEventHorizontalQuakefxSlightlyNoSound
+	ASMC2 StartEventDragonsSpriteMovefx
 	WEA2 5
 	STAL 0x1E
-	ASMC 0x0807AD2D
+	ASMC EndEventHorizontalQuakefx
 	STAL 0x1E
 	MOVE_SCR CHARACTER_ELIWOOD, MoveScr_08CBFC40
 	CAM1_POS 0xD, 0xF
 	ENUN
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807E67D
-	ASMC 0x0807A939
+	ASMC EndEventDragonsSpritefx
+	ASMC sub_0807A938
 	BACG 0x48
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_F1F                             @ Ahh... So powerful. Can they be stopped? Lord At
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
-	ASMC2 0x0807E88D
+	ASMC ImmediateDisplayMap
+	ASMC2 ReputFireDragonSprite
 	FADU 0x10
 	ENTER_MAP
 	STAL 0x1E
@@ -180,28 +180,28 @@ EventScr_Ch2F_Beginning:
 	SOUN 0x2EA
 	FAWI 0x40
 	EXIT_MAP
-	ASMC 0x0800F319
+	ASMC sub_0800F318
 	FAWU 4
 	ENTER_MAP
-	ASMC2 0x0807E8D5
+	ASMC2 FireDragonSpriteRetreated
 	STAL 8
-	ASMC2 0x0807E8F5
+	ASMC2 sub_0807E8F4
 	STAL 0x3C
 	WARP_POS 12, 14, 1
 	LOU1 Units_08CE0B58
 	STAL 0x3C
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	STAL 0x1E
 	MUSC SONG_37
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807E67D
-	ASMC 0x0807A939
+	ASMC EndEventDragonsSpritefx
+	ASMC sub_0807A938
 	BACG 0x48
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_F20                             @ Bramimond! ... Preparations...took time. ... OK.
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	TEX1 MSG_F21                             @ Ah!! This light... Uwaa! What... What is it!? Lo
 	IFTEXTSKIP 0xA
@@ -220,8 +220,8 @@ EventScr_Ch2F_Beginning:
 	LABEL 0xA
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
-	ASMC2 0x0807E915
+	ASMC ImmediateDisplayMap
+	ASMC2 sub_0807E914
 	FADU 0x10
 	ENTER_MAP
 	STAL 0x1E
@@ -235,8 +235,8 @@ EventScr_Ch2F_Beginning:
 	STAL 0x3C
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807E67D
-	ASMC 0x0807A939
+	ASMC EndEventDragonsSpritefx
+	ASMC sub_0807A938
 	BACG 0x48
 	FADU 0x10
 	ENTER_MAP
@@ -251,12 +251,12 @@ EventScr_Ch2F_Beginning:
 	SOUN 0x2ED
 	FAWI 2
 	EXIT_MAP
-	ASMC 0x0807A95D
-	ASMC2 0x0807E915
+	ASMC ImmediateDisplayMap
+	ASMC2 sub_0807E914
 	FAWU 4
 	ENTER_MAP
 	STAL 0x1E
-	ASMC 0x0807E3FD
+	ASMC sub_0807E3FC
 	MOVE_SCR CHARACTER_ELIWOOD, MoveScr_08CBFC46
 	MOVE_SCR CHARACTER_NILS, MoveScr_08CBFC51
 	MOVE_SCR CHARACTER_LYN, MoveScr_08CBFC4B
@@ -267,8 +267,8 @@ EventScr_Ch2F_Beginning:
 	MUEN 4
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807E67D
-	ASMC 0x0807A939
+	ASMC EndEventDragonsSpritefx
+	ASMC sub_0807A938
 	BACG 0x48
 	STAL 0x20
 	MUSC 0x3A
@@ -277,8 +277,8 @@ EventScr_Ch2F_Beginning:
 	TEX1 MSG_F24                             @ Where ... Where am I? Girl with the exalted bloo
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
-	ASMC2 0x0807E915
+	ASMC ImmediateDisplayMap
+	ASMC2 sub_0807E914
 	FADU 0x10
 	ENTER_MAP
 	MOVE_SPEED CHARACTER_ATHOS, 14, 12, 0x48
@@ -290,31 +290,31 @@ EventScr_Ch2F_Beginning:
 	SPRITE_ANIM SpriteAnimConf_08CBFC60, 192, 176
 	STAL 0x3C
 	SOUN 0x3B0
-	ASMC2 0x0807EB5D
-	ASMC2 0x0807AD05
+	ASMC2 EventCall_FireDragonScreamingInPain
+	ASMC2 StartEventHorizontalQuakefxSlightlyNoSound
 	SNOWSTORM_FX 0x1E
-	ASMC2 0x0807C8A1
+	ASMC2 StartLoadIceCrystal
 	STAL 0
 	SPRITE_ANIM_END
-	ASMC 0x0807AD2D
+	ASMC EndEventHorizontalQuakefx
 	TEX1 MSG_F25                             @ That's enough.
 	TEXTEND
 	STAL 0x10
-	ASMC2 0x0807EB9D
+	ASMC2 EventCall_FireDragonFellWeakly
 	STAL 0x20
-	ASMC 0x0807AE31
+	ASMC EndEventQuakefx
 	TEX2 MSG_F26                             @ I'm sorry... This is not your fault... ... I'm s
 	CLEAN
-	ASMC2 0x0807EBE5
-	ASMC2 0x0807AD05
-	ASMC2 0x0807ED2D
+	ASMC2 EventCall_FireDragonFadeOut
+	ASMC2 StartEventHorizontalQuakefxSlightlyNoSound
+	ASMC2 sub_0807ED2C
 	STAL 0x1E
-	ASMC 0x0807AD2D
+	ASMC EndEventHorizontalQuakefx
 	STAL 0x1E
 	TEX1 MSG_F27                             @ No... no more ......
 	CLEAN
 	STAL 0x10
-	ASMC2 0x0807EC15
+	ASMC2 EventCall_FinalFireDragonReStandUp
 	STAL 0x1E
 	DISA CHARACTER_CITIZEN_DC
 	SOUN 0x2D9
@@ -327,15 +327,15 @@ EventScr_Ch2F_Beginning:
 	MUSC 0x57
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807E67D
-	ASMC 0x0807A939
+	ASMC EndEventDragonsSpritefx
+	ASMC sub_0807A938
 	BACG 0x48
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_F28                             @ Ninian!! It's OK. She only fainted. Thank goodne
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	LOU1 Units_08CE0B78
 	FADU 0x10
 	ENTER_MAP
@@ -345,7 +345,7 @@ EventScr_Ch2F_Beginning:
 	WARP_POS 12, 11, 0
 	DISA CHARACTER_CITIZEN_DC
 	DISA CHARACTER_BRAMIMOND
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	STAL 0x1E
 	CAM1_POS 0xD, 2
 	MUSC 0x57
@@ -357,13 +357,13 @@ EventScr_Ch2F_Beginning:
 	TEX1 MSG_F29                             @ Chosen ones! You must stop the final dragon! You
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
-	ASMC 0x0807A8B9
-	ASMC 0x0807E349
+	ASMC sub_0807A8B8
+	ASMC sub_0807E348
 	LOU1 Units_Ch2F_Initial
-	ASMC 0x0807E3DD
-	ASMC 0x0807AE65
+	ASMC sub_0807E3DC
+	ASMC ClearFlag_145
 	STAL 0x3C
 	REMA_PREP
 	ENDA
@@ -371,7 +371,7 @@ EventScr_Ch2F_Beginning:
 	.global EventScr_08CC03B8
 EventScr_08CC03B8:
 	TEX1 MSG_F2A                             @ Stay beside me, Louise. We mustn't get separated
-	ASMC 0x0807CEE9
+	ASMC sub_0807CEE8
 	CLEAN
 	REMA
 	ENDA
@@ -380,18 +380,18 @@ EventScr_08CC03B8:
 	.global EventScr_Ch30_Beginning
 EventScr_Ch2F_Ending:
 	EVBIT_NOTEXTSKIP_SLOW_NGP
-	ASMC 0x0807E421
-	ASMC 0x0807ED41
-	ASMC 0x0801CD51
+	ASMC ForceDisplayDragonSprite
+	ASMC ForceCenteredDragon
+	ASMC sub_0801CD50
 	MUEN 1
-	ASMC 0x0807AC55
-	ASMC 0x0807BBE5
+	ASMC StartEventHorizontalQuakefxViolently
+	ASMC StartDeadDragonFlamefx
 	STAL 0
-	ASMC 0x0807AD2D
+	ASMC EndEventHorizontalQuakefx
 	STAL 0x1E
 	FADI 2
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	COMPLETE_GAME
 	ENDB
 EventScr_Ch30_Beginning:

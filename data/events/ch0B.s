@@ -7,31 +7,31 @@
 
 	.global EvList_Ch0B_Turn
 EvList_Ch0B_Turn:
-	TURN 0, EventScr_08CADD68, 1, 0, 0, 0
-	TURN 0, EventScr_08CC7BC8, 5, 7, 0x80, 0
-	TURN 0, EventScr_08CC7BC8, 8, 9, 0x80, 0
-	TURN 0, EventScr_08CADD80, 2, 0, 0, 0
-	TURN 0, EventScr_08CADDBC, 3, 0, 0, 0
-	TURN 0, EventScr_08CADD94, 4, 0, 0, 0
-	TURN 0, EventScr_08CADDCC, 5, 0, 0, 0
-	TURN 0, EventScr_08CADD80, 8, 0, 0, 0
-	TURN 0, EventScr_08CADDBC, 9, 0, 0, 0
-	TURN 0, EventScr_08CADDA8, 9, 0, 0, 0
-	TURN 0, EventScr_08CADDCC, 0xA, 0, 0, 0
-	TURN 0, EventScr_08CADD80, 0xE, 0, 0, 0
-	TURN 0, EventScr_08CADDBC, 0xF, 0, 0, 0
-	TURN 0, EventScr_08CADDA8, 0xF, 0, 0, 0
-	TURN 0, EventScr_08CADDCC, 0x10, 0, 0, 0
-	TURN 0, EventScr_08CADD80, 0x13, 0, 0, 0
-	TURN 0, EventScr_08CADDBC, 0x14, 0, 0, 0
-	TURN 0, EventScr_08CADDA8, 0x14, 0, 0, 0
-	TURN 0, EventScr_08CADDCC, 0x15, 0, 0, 0
-	TURN 0, EventScr_08CADD80, 0x18, 0, 0, 0
-	TURN 0, EventScr_08CADDBC, 0x19, 0, 0, 0
-	TURN 0, EventScr_08CADD94, 0x1A, 0, 0, 0
-	TURN 0, EventScr_08CADDCC, 0x1B, 0, 0, 0
-	TURN 0, EventScr_08CADD80, 0x1E, 0, 0, 0
-	TURN 0, EventScr_08CADDBC, 0x1F, 0, 0, 0
+	TURN 0, EventScr_08CADD68, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CC7BC8, 5, 7, FACTION_RED, 0
+	TURN 0, EventScr_08CC7BC8, 8, 9, FACTION_RED, 0
+	TURN 0, EventScr_08CADD80, 2, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDBC, 3, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADD94, 4, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDCC, 5, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADD80, 8, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDBC, 9, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDA8, 9, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDCC, 0xA, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADD80, 0xE, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDBC, 0xF, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDA8, 0xF, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDCC, 0x10, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADD80, 0x13, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDBC, 0x14, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDA8, 0x14, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDCC, 0x15, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADD80, 0x18, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDBC, 0x19, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADD94, 0x1A, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDCC, 0x1B, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADD80, 0x1E, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CADDBC, 0x1F, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch0B_TutorialD
@@ -123,7 +123,7 @@ MoveScr_08CADC70:
 	.global EventScr_Ch0B_Beginning
 EventScr_Ch0B_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	LOU1 Units_08CC7840
 	ENUN
 	LOU1 Units_Ch0B_Initial
@@ -141,7 +141,7 @@ EventScr_Ch0B_Beginning:
 	ENTER_MAP
 	TEX1 MSG_9DA                             @ Lady Lyndis, you should be able to see Castle Ca
 	CLEAN
-	ASMC 0x08018889
+	ASMC sub_08018888
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CADC70
 	ENUN
 	DISA CHARACTER_TACTICIAN
@@ -152,7 +152,7 @@ EventScr_Ch0B_Beginning:
 	MOVE_BLUE_OR_SCR CHARACTER_MATTHEW, 0x10, 99, 0, MoveScr_08CADC65
 	MOVE_BLUE_OR_SCR CHARACTER_NILS, 0x10, 99, 0, MoveScr_08CADC6B
 	ENUN
-	ASMC 0x0807A7D9
+	ASMC HideAllAlliesExceptLeader
 	REMA_PREP
 	ENDA
 
@@ -265,7 +265,7 @@ EventScr_Ch0B_Ending:
 	MUSC 0x38
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x10
 	FADU 4
 	ENTER_MAP
@@ -282,7 +282,7 @@ EventScr_Ch0B_Ending:
 	TEX1 MSG_9E8                             @ Who is there? I said no visitors. I will see no
 	MUSC 0x54
 	TEX2 MSG_9E9                             @ Um... Pardon me... My name is... I'm Lyndis. Eh?
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG_FADE 8, 2
 	STAL 0x3C
@@ -312,7 +312,7 @@ EventScr_Ch0B_Ending:
 	FADU 4
 	ENTER_MAP
 	TEX1 MSG_9F1                             @ ... you're leaving, aren't you? No, I'm not aski
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG_FADE 9, 4
 	STAL 0x3C
@@ -321,7 +321,7 @@ EventScr_Ch0B_Ending:
 	FADI 2
 	EXIT_MAP
 	STAL 0x32
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	STAL 0x64
 	JUMP EventScr_08CC0F30
 	REMA
@@ -334,7 +334,7 @@ EventScr_08CC0F30:
 	ENUT 0x83
 	END_LYN_MODE
 	ENDB
-	ASMC 0x080B85D5
+	ASMC StartCharacterEndings
 	STAL 0
 	STAL 0
 	REMA

@@ -7,7 +7,7 @@
 
 	.global EvList_Ch42_Turn
 EvList_Ch42_Turn:
-	TURN 0, EventScr_Ch42_Beginning, 1, 0, 0, 0
+	TURN 0, EventScr_Ch42_Beginning, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch42_Character
@@ -55,8 +55,8 @@ ChapterEvents_Ch42:
 	.global EventScr_Ch42_Beginning
 EventScr_Ch42_Beginning:
 	UNIT_CAM_OFF
-	IFAT 1, 0x0807ED79
-	IFAT 2, 0x0807ED8D
+	IFAT 1, IsStartButtonHeld
+	IFAT 2, IsSelectButtonHeld
 	LOU1 Units_Ch42_Player
 	ENUN
 	LOU1 Units_08CE14A4
@@ -65,7 +65,7 @@ EventScr_Ch42_Beginning:
 	LABEL 1
 	LOU1 Units_08CE1504
 	ENUN
-	IFAT 0x16, 0x0807EDA5
+	IFAT 0x16, IsBButtonHeld
 	LABEL 0xB
 	LOU1 Units_08CE16C4
 	ENUN
@@ -73,14 +73,14 @@ EventScr_Ch42_Beginning:
 	LABEL 2
 	LOU1 Units_08CE18C4
 	ENUN
-	IFAT 0xB, 0x0807EDA5
+	IFAT 0xB, IsBButtonHeld
 	LABEL 0x16
 	LOU1 Units_08CE1A74
 	ENUN
 	LABEL 3
 	ENUN
-	ASMC 0x080799C9
-	ASMC 0x08079C31
+	ASMC sub_080799C8
+	ASMC sub_08079C30
 	REMA
 	ENDA
 
@@ -173,7 +173,7 @@ EventScr_Ch42_Ending:
 
 	.global EventScr_08CC06D8
 EventScr_08CC06D8:	@ unreferenced
-	TEX1_IF_ASM 0x0807EE59, MSG_7B1, MSG_8E4 @ Uggghh... Dorcas! Are you all right!? I... I mus / Aaah... I'm sorry, Natalie.
+	TEX1_IF_ASM IsDorcasRecruited, MSG_7B1, MSG_8E4 @ Uggghh... Dorcas! Are you all right!? I... I mus / Aaah... I'm sorry, Natalie.
 	CLEAN
 	REMA
 	ENDA
@@ -194,14 +194,14 @@ EventScr_08CC0708:	@ unreferenced
 
 	.global EventScr_08CC071C
 EventScr_08CC071C:	@ unreferenced
-	TEX1_IF_ASM 0x0807EE75, MSG_7B3, MSG_922 @ Owww! This can't be happening! Why me!? Serra! I / Oooh! This is unbearable... I suppose I'll just
+	TEX1_IF_ASM IsSerraRecruited, MSG_7B3, MSG_922 @ Owww! This can't be happening! Why me!? Serra! I / Oooh! This is unbearable... I suppose I'll just
 	CLEAN
 	REMA
 	ENDA
 
 	.global EventScr_08CC0738
 EventScr_08CC0738:	@ unreferenced
-	TEX1_IF_ASM 0x0807EE91, MSG_7B6, MSG_923 @ Argg... Erk! Please forgive me... I must rest. / Hmph...
+	TEX1_IF_ASM IsErkRecruited, MSG_7B6, MSG_923 @ Argg... Erk! Please forgive me... I must rest. / Hmph...
 	CLEAN
 	REMA
 	ENDA
@@ -294,7 +294,7 @@ EventScr_08CC0830:	@ unreferenced
 EventScr_08CC0844:	@ unreferenced
 	TEX1 MSG_8F7                             @ Ah... Natalie!
 	CLEAN
-	ASMC 0x0807CFBD
+	ASMC sub_0807CFBC
 	REMA
 	ENDA
 

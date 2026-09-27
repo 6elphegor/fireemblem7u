@@ -7,9 +7,9 @@
 
 	.global EvList_Ch09_Turn
 EvList_Ch09_Turn:
-	TURN 0, EventScr_08CAD610, 1, 0, 0, 0
-	TURN 0, EventScr_08CAD678, 2, 0, 0x80, 0
-	TURN 0, EventScr_08CAD664, 3, 4, 0x80, 0
+	TURN 0, EventScr_08CAD610, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CAD678, 2, 0, FACTION_RED, 0
+	TURN 0, EventScr_08CAD664, 3, 4, FACTION_RED, 0
 	EVLIST_END
 
 	.global EvList_Ch09_TutorialD
@@ -41,7 +41,7 @@ EvList_Ch09_TutorialC:
 
 	.global EvList_Ch09_Misc
 EvList_Ch09_Misc:
-	ASME 0, EventScr_Ch09_Ending, 0x08079FE9
+	ASME 0, EventScr_Ch09_Ending, sub_08079FE8
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
@@ -74,7 +74,7 @@ BattleScr_08CAD500:
 	.global EventScr_Ch09_Beginning
 EventScr_Ch09_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x08018831
+	ASMC UpdatePrevDeployStates
 	LOU1 Units_08CC7184
 	ENUN
 	CAM1_POS 0, 0
@@ -105,17 +105,17 @@ EventScr_Ch09_Beginning:
 	UNIT_SET_STATE CHARACTER_CAELIN_B9, 0x800
 	STAL 0x40
 	FIGHT CHARACTER_CAELIN_B9, CHARACTER_LYN_TUTORIAL, BattleScr_08CAD500, ITEM_NONE, 1, 0
-	ASMC 0x08018889
+	ASMC sub_08018888
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x1C
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_9B5                             @ What in--Where did this bolt come from? They hav
-	TEX2_IF_ASM 0x08079E7D, MSG_9B6, MSG_9B7 @ Wil, can you use a ballista? I've never tried, b / It's a giant bow? If only Wil were here... All w
+	TEX2_IF_ASM sub_08079E7C, MSG_9B6, MSG_9B7 @ Wil, can you use a ballista? I've never tried, b / It's a giant bow? If only Wil were here... All w
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A7D9
+	ASMC HideAllAlliesExceptLeader
 	REMA_PREP
 	ENDA
 
@@ -130,7 +130,7 @@ EventScr_08CAD610:
 	EVBIT_SILENTSKIP
 	STAL 8
 	TUTORIAL_TEXT 0, 0, MSG_9B8, 5           @ On the far side of the hill to the south is a ba
-	ASMC_WAIT2 0x08083181
+	ASMC_WAIT2 BoxTalkActive
 	LABEL 0x32
 	REMA
 	ENDA
@@ -173,7 +173,7 @@ EventScr_Ch09_Ending:
 	STAL 0x40
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x1C
 	FADU 4
 	ENTER_MAP

@@ -7,8 +7,8 @@
 
 	.global EvList_Ch0C_Turn
 EvList_Ch0C_Turn:
-	TURN 0, EventScr_Ch0C_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_08CAE350, 2, 0, 0, 0
+	TURN 0, EventScr_Ch0C_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CAE350, 2, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch0C_Character
@@ -76,7 +76,7 @@ MoveScr_08CAE02C:
 	.global EventScr_Ch0C_Beginning
 EventScr_Ch0C_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x0807CFE5
+	ASMC sub_0807CFE4
 	LOU1 Units_08CC7DDC
 	ENUN
 	LOU1 Units_Ch0C_Player
@@ -159,7 +159,7 @@ EventScr_Ch0C_Beginning:
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_9FB                             @ My lord Eliwood? I'm the daughter of the village
-	IFAF 0xB, 0x0807A3B9
+	IFAF 0xB, sub_0807A3B8
 	STAL 0x1E
 	FADI 0x10
 	EXIT_MAP
@@ -192,7 +192,7 @@ EventScr_Ch0C_Beginning:
 	ENUN
 	LOU1 Units_08CC7D6C
 	ENUN
-	IFAF 0xE, 0x0807A3B9
+	IFAF 0xE, sub_0807A3B8
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CAE02A
 	ENUN
 	DISA CHARACTER_TACTICIAN
@@ -224,7 +224,7 @@ EventScr_08CAE378:
 	BACG 1
 	FADU 0x10
 	ENTER_MAP
-	TEX1_IF_ASM 0x0807A3B9, MSG_A03, MSG_A02 @ There's a young traveler been stayin' with the m / This is terrible! Bandits! B-B-Bandits from the
+	TEX1_IF_ASM sub_0807A3B8, MSG_A03, MSG_A02 @ There's a young traveler been stayin' with the m / This is terrible! Bandits! B-B-Bandits from the
 	CLEAN
 	MUNO
 	REMA
@@ -272,7 +272,7 @@ EventScr_Ch0C_Ending:
 	STAL 0x3C
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	BACG 2
 	FADU 4
 	ENTER_MAP
@@ -281,10 +281,10 @@ EventScr_Ch0C_Ending:
 	CLEAN
 	LOU1 Units_08CC7E3C
 	STAL 5
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOU1 Units_08CC7EAC
 	ENUN
-	IFAF 5, 0x0807A3B9
+	IFAF 5, sub_0807A3B8
 	TEX1 MSG_A09                             @ Thank you for your guidance, . Where are you bou
 	STAL 0x3C
 	TEX2 MSG_A0A                             @ You will travel with us? Splendid! Thank you! I
@@ -299,16 +299,16 @@ EventScr_Ch0C_Ending:
 	STAL 0x3C
 	MOVE_SPEED CHARACTER_MARCUS, -1, 5, 0xF
 	ENUN
-	IFAT 7, 0x0807A3B9
+	IFAT 7, sub_0807A3B8
 	LOU1 Units_08CC7E6C
 	ENUN
 	TEX1 MSG_A0B                             @ Good luck! Travel safely!
 	CLEAN
 	LABEL 7
-	IFAF 8, 0x08079D8D
+	IFAF 8, sub_08079D8C
 	LOU1 Units_08CC7E8C
 	STAL 0x10
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOU1 Units_08CC7E6C
 	ENUN
 	STAL 0x20

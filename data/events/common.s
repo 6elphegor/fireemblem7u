@@ -9,15 +9,15 @@
 gEvent_GameOver:
 	EVBIT_NOTEXTSKIP
 	STAL 0x1E
-	ASMC 0x0807A455
+	ASMC sub_0807A454
 	STAL 0xA
-	ASMC 0x08013FA5
+	ASMC StartSlowFadeToBlack
 	STAL 0x50
-	ASMC 0x0806CCB9
-	IFAT 1, 0x0807A47D
-	ASMC 0x08020479
+	ASMC EndAllMus
+	IFAT 1, sub_0807A47C
+	ASMC StartGameOverScreen
 	LABEL 1
-	ASMC 0x080B2F95
+	ASMC sub_080B2F94
 	REMA
 	ENDA
 
@@ -37,7 +37,7 @@ EventScr_08CB5FFC:
 	FADI 4
 	EXIT_MAP
 	STAL 0x3C
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA 0x37, 0, 0
 	IFET 0x13, 0x81
 	LOU1 Units_08CD249C
@@ -45,7 +45,7 @@ EventScr_08CB5FFC:
 	LABEL 0x13
 	LOU1 Units_08CD251C
 	LABEL 0x14
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 8, 7
 	ENUN
 	MUSC 0x3B1
@@ -70,7 +70,7 @@ EventScr_08CB5FFC:
 	TEX1_IF_FLAG 0x81, MSG_C45, MSG_C46      @ Have you understood all that you have heard? Yes / Have you understood all that you have heard? Yes
 	TEX2 MSG_C47                             @ Forgive the late introductions. I am Pent, Count
 	TEX2 MSG_C48                             @ Bowing to the dictates of fate, my wife and I wo
-	IFAF 0xB, 0x0807A3B9
+	IFAF 0xB, sub_0807A3B8
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x4A
@@ -108,7 +108,7 @@ EventScr_08CB5FFC:
 	TEX1 MSG_C4C                             @ My beloved... I cannot believe you are gone. Eve
 	MUSC 0x56
 	TEX2 MSG_C4D                             @ Mother! I'm home! I've returned! Ah!! Eliwood! I
-	IFAF 0xF, 0x0807A3B9
+	IFAF 0xF, sub_0807A3B8
 	MUSI
 	FADI 4
 	EXIT_MAP
@@ -241,7 +241,7 @@ EventScr_08CBCD80:
 	MUEN 1
 	TEX2 MSG_E0C                             @ The sword... It's glowing... Watch out! Somethin
 	MUSC 0x35
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG_FADE 0x14, 2
 	SOUN 0xE3
@@ -251,12 +251,12 @@ EventScr_08CBCD80:
 	TEX1 MSG_E0D                             @ It can't be... It's a...dragon! No!!! How is it
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG 0x5B
 	STAL 0x28
 	SOUN 0xF0
-	ASMC 0x0807D8ED
+	ASMC EventCall_SwingSwordfx
 	STAL 0x5A
 	CG_BACG 0x21
 	SOUN SONG_E5
@@ -265,7 +265,7 @@ EventScr_08CBCD80:
 	STAL 0x80
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	MOVE_INSTANT CHARACTER_ELIWOOD, 6, 6
 	MOVE_INSTANT CHARACTER_LYN, 5, 4
 	MOVE_INSTANT CHARACTER_ELIWOOD, 6, 5
@@ -276,17 +276,17 @@ EventScr_08CBCD80:
 	LOU1 Units_08CDC25C
 	ENUN
 	SPRITE_ANIM_END
-	ASMC2 0x0807AC11
+	ASMC2 StartEventVeriticalQuakefx
 	STAL 5
-	ASMC 0x0807AD55
+	ASMC EndEventVerticalQuakefx
 	STAL 5
-	ASMC2 0x0807AC55
+	ASMC2 StartEventHorizontalQuakefxViolently
 	STAL 0x10
-	ASMC 0x0807AD2D
+	ASMC EndEventHorizontalQuakefx
 	MOVE_SCR CHARACTER_HECTOR, MoveScr_08CBC844
 	MOVE_SCR CHARACTER_LYN, MoveScr_08CBC84A
 	MOVE_SCR CHARACTER_ATHOS, MoveScr_08CBC850
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CBC856
 	ENUN
 	FADI 0x10
@@ -302,7 +302,7 @@ EventScr_08CBCD80:
 	WARP_POS 8, 8, 1
 	LOU1 Units_08CDC27C
 	ENUN
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	STAL 0x40
 	MUSC 0x4A
 	FADI 0x10
@@ -316,17 +316,17 @@ EventScr_08CBCD80:
 	CAM1_POS 3, 4
 	WARP_POS 3, 4, 0
 	HIDE CHARACTER_NILS
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	CAM1_POS 9, 8
 	WARP_POS 9, 8, 1
 	MOVE_INSTANT CHARACTER_NILS, 9, 8
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	STAL 0x40
 	MOVE_SPEED CHARACTER_ELIWOOD, 6, 7, 0x10
 	MOVE_SCR CHARACTER_HECTOR, MoveScr_08CBC85C
 	MOVE_SCR CHARACTER_LYN, MoveScr_08CBC863
 	MOVE_SCR CHARACTER_ATHOS, MoveScr_08CBC86B
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_SPEED CHARACTER_TACTICIAN, 4, 5, 0xC
 	ENUN
 	STAL 0x40
@@ -336,17 +336,17 @@ EventScr_08CBCD80:
 	FADU 0x10
 	ENTER_MAP
 	TEX1 MSG_E10                             @ Nils! Don't waste your breath. He won't be awake
-	IFAF 0x11, 0x0807A1D1
+	IFAF 0x11, sub_0807A1D0
 	MUSC 0x36
 	TEX2 MSG_E11                             @ That is Ninian. The girl you loved. The girl you
 	TEX2 MSG_E13                             @ She returned to her true form and lost all human
 	TEX2 MSG_E14                             @ Go on, look. She's using the last of her strengt
 	CLEAN
 	MUEN 4
-	ASMC 0x0807D955
+	ASMC EventCall_NinianDragonTrembling
 	STAL 0xB4
-	ASMC 0x0807D9CD
-	ASMC 0x0807D909
+	ASMC EventCall_PutFallNinian
+	ASMC EventCall_NinianReturnToHuman
 	LOU1 Units_08CDC29C
 	ENUN
 	FADI 0x10
@@ -379,10 +379,10 @@ EventScr_08CBCD80:
 	TEX2 MSG_E14                             @ Go on, look. She's using the last of her strengt
 	CLEAN
 	MUEN 4
-	ASMC 0x0807D955
+	ASMC EventCall_NinianDragonTrembling
 	STAL 0xB4
-	ASMC 0x0807D9CD
-	ASMC 0x0807D909
+	ASMC EventCall_PutFallNinian
+	ASMC EventCall_NinianReturnToHuman
 	LOU1 Units_08CDC29C
 	ENUN
 	FADI 0x10
@@ -409,7 +409,7 @@ EventScr_08CBCD80:
 	MUEN 1
 	TEXTCONT
 	LABEL 0x12
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG_FADE 0x16, 2
 	STAL 0x40
@@ -422,7 +422,7 @@ EventScr_08CBCD80:
 	CG_TEXT_MORE MSG_E1B, 1                  @ Athos I will not permit it. Instead, I will see
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	FADU 0x10
 	ENTER_MAP
 	MOVE CHARACTER_ATHOS, 7, 7
@@ -445,8 +445,8 @@ EventScr_08CBCD80:
 	MUEN 4
 	WARP_POS 8, 8, 0
 	DISA CHARACTER_NERGAL
-	ASMC_WAIT2 0x08020AB9
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	ASMC_WAIT2 WarpEffectExists
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_SPEED CHARACTER_TACTICIAN, 4, 6, 0xA
 	ENUN
 	STAL 0x40
@@ -460,7 +460,7 @@ EventScr_08CBCD80:
 	TEX1 MSG_E1D                             @ What do we do now? Not even legendary weapons ca
 	MUSC SONG_69
 	TEX2 MSG_E1E                             @ ...Ninian! ...... Ninian. ...Ninian!? Where is m
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG_FADE 0x17, 4
 	STAL 0x3C
@@ -523,7 +523,7 @@ EventScr_08CC0928:
 	TEX1 MSG_7BF                             @ How are you feeling, Nils? I'm... I'm fine. So,
 	LABEL 0xA
 	IFCA_ONCE 0xB, CHARACTER_DORCAS, 0x71
-	IFAT 0xB, 0x0807EEAD
+	IFAT 0xB, IsChapterInOccupationsShadow
 	FADI_LYNDEATH 0
 	EXIT_MAP
 	BACG_LYNDEATH
@@ -532,7 +532,7 @@ EventScr_08CC0928:
 	TEX1 MSG_7B2                             @ Dorcas! Are you OK? I'm...sorry. So... Ah, this
 	LABEL 0xB
 	IFCA_ONCE 0x16, CHARACTER_SERRA, 0x74
-	IFAT 0x16, 0x0807EEC1
+	IFAT 0x16, IsChapterBeyondTheBorders
 	FADI_LYNDEATH 0
 	EXIT_MAP
 	BACG_LYNDEATH
@@ -545,7 +545,7 @@ EventScr_08CC0928:
 	TEX1 MSG_7B5                             @ Serra! Are you well? It's not good. My apologies
 	LABEL 0x16
 	IFCA_ONCE 0xD, CHARACTER_ERK, 0x75
-	IFAT 0xD, 0x0807EEC1
+	IFAT 0xD, IsChapterBeyondTheBorders
 	FADI_LYNDEATH 0
 	EXIT_MAP
 	BACG_LYNDEATH
@@ -554,7 +554,7 @@ EventScr_08CC0928:
 	TEX1 MSG_7B7                             @ Erk! Are you OK? I don't believe I can go on...
 	LABEL 0xD
 	IFCA_ONCE 0xE, CHARACTER_RATH_TUTORIAL, 0x78
-	IFAT 0xE, 0x0807EED5
+	IFAT 0xE, IsChapterBloodOfPride
 	FADI_LYNDEATH 0
 	EXIT_MAP
 	BACG_LYNDEATH
@@ -637,7 +637,7 @@ EventScr_08CC0C14:
 	TEX1 MSG_7F3                             @ How is Karel? I heard he suffered a grave wound.
 	LABEL 0xB
 	IFCA_ONCE 0xC, CHARACTER_NINO, 0x94
-	IFAT 0xC, 0x0807EEE9
+	IFAT 0xC, IsChapterNightOfFarewells
 	FADI_LYNDEATH 0
 	EXIT_MAP
 	BACG_LYNDEATH
@@ -678,28 +678,28 @@ EventScr_08CC0C14:
 
 	.global EventScr_08CC0E50
 EventScr_08CC0E50:
-	TEX1_IF_ASM 0x0807EF35, MSG_7F5, MSG_D87 @ Am I... Am I going to die? Nino! / Am I...going to die? Mother...?
+	TEX1_IF_ASM IsNinoRecruited, MSG_7F5, MSG_D87 @ Am I... Am I going to die? Nino! / Am I...going to die? Mother...?
 	CLEAN
 	REMA
 	ENDA
 
 	.global EventScr_08CC0E6C
 EventScr_08CC0E6C:
-	TEX1_IF_ASM 0x0807A3F9, MSG_7DC, MSG_7DB @ Mother... Forgive me... Take care... of...Hugh.. / Ah, what a shame. There was so much more that I
+	TEX1_IF_ASM GmUnitFadeExists, MSG_7DC, MSG_7DB @ Mother... Forgive me... Take care... of...Hugh.. / Ah, what a shame. There was so much more that I
 	CLEAN
 	REMA
 	ENDA
 
 	.global EventScr_08CC0E88
 EventScr_08CC0E88:
-	TEX1_IF_ASM 0x0807EF51, MSG_7E4, MSG_C10 @ Rath! Are you OK? ...... / ...Urggh...
+	TEX1_IF_ASM IsRathRecruited, MSG_7E4, MSG_C10 @ Rath! Are you OK? ...... / ...Urggh...
 	CLEAN
 	REMA
 	ENDA
 
 	.global EventScr_08CC0EA4
 EventScr_08CC0EA4:
-	TEX1_IF_ASM 0x0807A3F9, MSG_7E9, MSG_7E8 @ Will I never... make it home... I...Igrene... My / Will I never... make it home...
+	TEX1_IF_ASM GmUnitFadeExists, MSG_7E9, MSG_7E8 @ Will I never... make it home... I...Igrene... My / Will I never... make it home...
 	CLEAN
 	REMA
 	ENDA

@@ -7,20 +7,20 @@
 
 	.global EvList_Ch2E_Turn
 EvList_Ch2E_Turn:
-	TURN 0, EventScr_08CBF4DC, 1, 0, 0, 0
-	TURN 0, EventScr_08CBF8B8, 2, 0, 0, 0
-	TURN 0, EventScr_08CBF8D0, 3, 0, 0, 0
-	TURN 0, EventScr_08CBF8E8, 4, 0, 0, 0
-	TURN 0, EventScr_08CBF900, 5, 0, 0, 0
-	TURN 0, EventScr_08CBF918, 6, 0, 0, 0
-	TURN 0x2A, EventScr_08CBF948, 7, 0x63, 0, 0
+	TURN 0, EventScr_08CBF4DC, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CBF8B8, 2, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CBF8D0, 3, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CBF8E8, 4, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CBF900, 5, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CBF918, 6, 0, FACTION_BLUE, 0
+	TURN 0x2A, EventScr_08CBF948, 7, 0x63, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch2E_Character
 EvList_Ch2E_Character:
 	CHAR 7, EventScr_08CBF9A8, CHARACTER_ELIWOOD, CHARACTER_LYN, 2
 	CHAR 7, EventScr_08CBF9A8, CHARACTER_LYN, CHARACTER_ELIWOOD, 2
-	CHAR_ASM 8, EventScr_08CBF9C4, CHARACTER_LYN, CHARACTER_HECTOR, 0x0807DDED
+	CHAR_ASM 8, EventScr_08CBF9C4, CHARACTER_LYN, CHARACTER_HECTOR, sub_0807DDEC
 	CHAR 9, EventScr_08CBF9E0, CHARACTER_ELIWOOD, CHARACTER_HECTOR, 2
 	CHAR 0xA, EventScr_08CBFA00, CHARACTER_HECTOR, CHARACTER_OSWIN, 2
 	EVLIST_END
@@ -41,7 +41,7 @@ EvList_Ch2E_Location:
 
 	.global EvList_Ch2E_Misc
 EvList_Ch2E_Misc:
-	ASME 0x29, EventScr_08CBF930, 0x08079AB5
+	ASME 0x29, EventScr_08CBF930, sub_08079AB4
 	AFEV 0, EventScr_Ch2E_Ending, 2
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
@@ -76,11 +76,11 @@ MoveScr_08CBF238:
 	.global EventScr_Ch2E_Beginning
 EventScr_Ch2E_Beginning:
 	UNIT_CAM_OFF
-	ASMC 0x0807AA75
+	ASMC sub_0807AA74
 	LOMA CHAPTER_1A, 0xF, 0
 	MAC_INSTANT 0xC
 	LOU1 Units_08CE0464
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 0x11, 2
 	FADU 0x10
 	ENTER_MAP
@@ -88,17 +88,17 @@ EventScr_Ch2E_Beginning:
 	TEX1_BY_MODE MSG_EB0, MSG_EB1            @ ...Nergal should be back there. Should we wait f / That blackheart Nergal's back there! I wonder if
 	CLEAN
 	WARP_POS 14, 2, 1
-	IFAF 5, 0x08079F0D
+	IFAF 5, sub_08079F0C
 	LOU1 Units_08CE0504
 	ENUN
 	GOTO 7
 	LABEL 5
 	LOU1 Units_08CE0504
 	ENUN
-	ASMC 0x0807DBF5
+	ASMC sub_0807DBF4
 	LABEL 7
 	UNIT_CLEAR_STATE CHARACTER_ATHOS, 0x400000
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	MOVE_SCR CHARACTER_ATHOS, MoveScr_08CBF238
 	ENUN
 	MUSC_FADE SONG_3C, 4
@@ -112,9 +112,9 @@ EventScr_Ch2E_Beginning:
 	MUEN 6
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
-	IFAF 0x64, 0x0807A3B9
+	IFAF 0x64, sub_0807A3B8
 	MUSC 0x3B1
 	FADU 0x10
 	ENTER_MAP
@@ -123,7 +123,7 @@ EventScr_Ch2E_Beginning:
 	FADI 4
 	EXIT_MAP
 	LABEL 0x64
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA CHAPTER_2E, 9, 0x12
 	STAL 0x3C
 	REMA_PREP
@@ -172,13 +172,13 @@ gUnk_08CBF3AC:
 
 	.global EventScr_08CBF4DC
 EventScr_08CBF4DC:
-	ASMC 0x0807AA75
+	ASMC sub_0807AA74
 	LOMA CHAPTER_2E, 9, 0x12
-	ASMC 0x0807AE59
+	ASMC SetFlag_145
 	UNIT_CAM_OFF
 	STAL 0x1E
 	MUSC 0x3B1
-	ASMC 0x0807A939
+	ASMC sub_0807A938
 	BACG 0x48
 	FADU 0x10
 	ENTER_MAP
@@ -188,13 +188,13 @@ EventScr_08CBF4DC:
 	EXIT_MAP
 	STAL 0x3C
 	LOU1 Units_08CE04B4
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOU1 Units_08CE0544
-	ASMC 0x0807DDD1
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	ASMC sub_0807DDD0
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 7, 0x13
 	ENUN
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	MUEN 4
 	FADU 4
 	ENTER_MAP
@@ -217,40 +217,40 @@ EventScr_08CBF4DC:
 	CLEAN
 	WARP_POS 5, 15, 1
 	LOU1 Units_08CE0644
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	WARP_POS 5, 16, 1
 	LOU1 Units_08CE0564
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	WARP_POS 11, 15, 1
 	LOU1 Units_08CE0604
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	WARP_POS 11, 16, 1
 	LOU1 Units_08CE05E4
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	TEX1 MSG_EBB
 	CLEAN
 	WARP_POS 7, 13, 1
 	LOU1 Units_08CE05A4
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	WARP_POS 9, 13, 1
 	LOU1 Units_08CE05C4
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	WARP_POS 6, 14, 1
 	LOU1 Units_08CE0584
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	WARP_POS 10, 14, 1
 	LOU1 Units_08CE0624
-	ASMC_WAIT2 0x08020AB9
+	ASMC_WAIT2 WarpEffectExists
 	TEX1 MSG_EBC
 	CLEAN
 	STAL 0x1E
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A939
+	ASMC sub_0807A938
 	BACG 0x45
 	TEX1_BY_MODE MSG_EBD, MSG_EBE            @ This... You seem impressed with my work. Or perh / This... You seem impressed with my work. Or perh
 	TEX2 MSG_EBF                             @ Nergal, after all these years... You have not st
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	BACG_FADE 0x1F, 4
 	CG_TEXT MSG_EC0, 1                       @ Nergal Look at this wound! The wound I took from
@@ -261,19 +261,19 @@ EventScr_08CBF4DC:
 	MUSC 0x57
 	TEX2_BY_MODE MSG_EC3, MSG_EC4            @ If that is what you learned from your encounter, / You're beyond help, you craven fool! Do you have
 	LABEL 0xA
-	ASMC 0x0807AE65
+	ASMC ClearFlag_145
 	FADI 4
 	EXIT_MAP
 	STAL 0x1E
-	ASMC 0x0807A95D
+	ASMC ImmediateDisplayMap
 	FADU 4
 	ENTER_MAP
 	STAL 0x1E
 	FAWI 0x80
 	EXIT_MAP
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
-	ASMC 0x0807A891
+	ASMC sub_0807A890
 	LOU1_IF_MODE 2, 0, Units_Ch2E_Initial
 	LOU1_IF_MODE 3, 0, Units_Ch2E_Initial
 	EVBIT_NOSKIP
@@ -290,17 +290,17 @@ EventScr_08CBF4DC:
 	CURF CHARACTER_HECTOR
 	LABEL 7
 	TEX1_BY_MODE MSG_EC5, MSG_EC7            @ Listen to me! This is my fight now! Mine alone! / This is my fight! Stand back, everyone!! Don't b
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	TEX2_BY_MODE MSG_EC6, MSG_EC8            @ Ah! , you, too? / Oh! , you, too?!
 	CLEAN
-	ASMC 0x0807DC15
-	ASMC_WAIT2 0x0807DC5D
+	ASMC sub_0807DC14
+	ASMC_WAIT2 sub_0807DC5C
 	CLEAN
 	TEX1_BY_MODE MSG_EEE, MSG_EEF            @ Everyone... Let's go! We've got to stop Nergal! / Everyone... Here we go! Give it your all, and be
 	CLEAN
 	STAL 0
-	SKIP_IFN_ASM 3, 0x0807A3B9
-	MOVE_SCR CHARACTER_TACTICIAN, 0x08B92472
+	SKIP_IFN_ASM 3, sub_0807A3B8
+	MOVE_SCR CHARACTER_TACTICIAN, gUnk_08B9246C+0x6
 	ENUN
 	DISA CHARACTER_TACTICIAN
 	MUEN 4
@@ -441,12 +441,12 @@ MoveScr_08CBFA30:
 
 	.global EventScr_Ch2E_Ending
 EventScr_Ch2E_Ending:
-	ASMC 0x08079B5D
+	ASMC sub_08079B5C
 	MUEN 6
 	UNIT_CAM_OFF
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	BACG 0x53
 	FADU 0x10
 	ENTER_MAP
@@ -455,18 +455,18 @@ EventScr_Ch2E_Ending:
 	CLEAR_ON_SKIP_ASM
 	FADI 0x10
 	EXIT_MAP
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA 0x40, 0, 9
-	ASMC 0x0800ECB1
+	ASMC EventClearTalkDisplayed
 	STAL 0
 	LOU1 Units_08CE0664
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 5, 0xA
-	ASMC 0x0807DE1D
+	ASMC sub_0807DE1C
 	FADU 0x10
 	ENTER_MAP
 	MUSC 0x35
-	ASMC2 0x0807AC55
+	ASMC2 StartEventHorizontalQuakefxViolently
 	STAL 0x1E
 	MNCH_MAP 0
 	SOUN 0xE3
@@ -480,21 +480,21 @@ EventScr_Ch2E_Ending:
 	FADI 4
 	EXIT_MAP
 	ENUN
-	ASMC 0x0807A8B9
+	ASMC sub_0807A8B8
 	LOMA CHAPTER_2F, 0xD, 0x14
-	ASMC 0x0807DEA9
+	ASMC sub_0807DEA8
 	FADU 0x10
 	ENTER_MAP
 	ENUN
-	ASMC 0x0807DF25
+	ASMC Finial_EventLoadAllies1
 	ENUN
-	ASMC 0x0807DFDD
+	ASMC Finial_EventLoadAllies2
 	ENUN
-	ASMC 0x0807E085
+	ASMC Finial_EventLoadAllies3
 	ENUN
 	STAL 0x3C
 	UNIT_CAM_ON
-	ASMC 0x0807E129
+	ASMC Finial_EventLoadAllies4
 	FADI 4
 	EXIT_MAP
 	ENUN
@@ -508,7 +508,7 @@ EventScr_Ch2E_Ending:
 	TEX1 MSG_F1B                             @ Ah! Th... Are those... Dragons? Nergal's final w
 	TEX2_BY_MODE MSG_F1C, MSG_F1D            @ This must end at any cost! I will stop it!! / I'll stop this! I'll show you!!
 	MNCH CHAPTER_2F
-	ASMC 0x0807AD2D
+	ASMC EndEventHorizontalQuakefx
 	STAL 1
 	ENDB
 	REMA
@@ -530,14 +530,14 @@ EventScr_08CBFBFC:
 
 	.global EventScr_08CC0EF8
 EventScr_08CC0EF8:
-	TEX1_IF_ASM 0x0807A421, MSG_F0D, MSG_F0C @ Did you know, Eliwood? What happened to your fri / Nergal! So you're here, Eliwood. I thought losin
+	TEX1_IF_ASM sub_0807A420, MSG_F0D, MSG_F0C @ Did you know, Eliwood? What happened to your fri / Nergal! So you're here, Eliwood. I thought losin
 	CLEAN
 	REMA
 	ENDA
 
 	.global EventScr_08CC0F14
 EventScr_08CC0F14:
-	TEX1_IF_ASM 0x0807A421, MSG_F0F, MSG_F0E @ Nergal! I cannot understand you, Hector of Ostia / Nergal! So you've come, Hector of Ostia. Your ex
+	TEX1_IF_ASM sub_0807A420, MSG_F0F, MSG_F0E @ Nergal! I cannot understand you, Hector of Ostia / Nergal! So you've come, Hector of Ostia. Your ex
 	CLEAN
 	REMA
 	ENDA

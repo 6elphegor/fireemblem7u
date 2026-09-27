@@ -7,13 +7,13 @@
 
 	.global EvList_Ch0E_Turn
 EvList_Ch0E_Turn:
-	TURN 0, EventScr_Ch0E_Beginning, 1, 0, 0, 0
-	TURN 0, EventScr_08CAEE0C, 4, 0, 0, 1
-	TURN 0, EventScr_08CAEF14, 3, 0, 0x80, 1
-	TURN 0, EventScr_08CAEF14, 2, 0, 0x80, 2
-	TURN 0, EventScr_08CAEE0C, 4, 0, 0, 3
-	TURN 0, EventScr_08CAEF14, 3, 0, 0x80, 3
-	TURN 0, EventScr_08CAEF14, 3, 0, 0x80, 4
+	TURN 0, EventScr_Ch0E_Beginning, 1, 0, FACTION_BLUE, 0
+	TURN 0, EventScr_08CAEE0C, 4, 0, FACTION_BLUE, 1
+	TURN 0, EventScr_08CAEF14, 3, 0, FACTION_RED, 1
+	TURN 0, EventScr_08CAEF14, 2, 0, FACTION_RED, 2
+	TURN 0, EventScr_08CAEE0C, 4, 0, FACTION_BLUE, 3
+	TURN 0, EventScr_08CAEF14, 3, 0, FACTION_RED, 3
+	TURN 0, EventScr_08CAEF14, 3, 0, FACTION_RED, 4
 	EVLIST_END
 
 	.global EvList_Ch0E_Character
@@ -35,7 +35,7 @@ EvList_Ch0E_Location:
 
 	.global EvList_Ch0E_Misc
 EvList_Ch0E_Misc:
-	ASME 0, EventScr_Ch0E_Ending, 0x08079FE9
+	ASME 0, EventScr_Ch0E_Ending, sub_08079FE8
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
@@ -108,7 +108,7 @@ EventScr_Ch0E_Beginning:
 	ENUN
 	MOVE_INSTANT CHARACTER_ELIWOOD, 9, 15
 	MOVE_INSTANT CHARACTER_MARCUS, 11, 15
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	LOAD_UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, 0xA, 0xF
 	ENUN
 	FADU 4
@@ -117,7 +117,7 @@ EventScr_Ch0E_Beginning:
 	CAM1_POS 0xA, 0xB
 	MOVE CHARACTER_ELIWOOD, 9, 11
 	MOVE CHARACTER_MARCUS, 11, 11
-	SKIP_IFN_ASM 1, 0x0807A3B9
+	SKIP_IFN_ASM 1, sub_0807A3B8
 	MOVE_SPEED CHARACTER_TACTICIAN, 10, 12, 0x18
 	ENUN
 	FADI 0x10
@@ -126,7 +126,7 @@ EventScr_Ch0E_Beginning:
 	MUSC SONG_33
 	FADU 4
 	ENTER_MAP
-	TEX1_IF_ASM 0x0807A3B9, MSG_A1D, MSG_A1C @ Instead of entering Laus with such a small group / This is taking too long. I agree, and yet... San
+	TEX1_IF_ASM sub_0807A3B8, MSG_A1D, MSG_A1C @ Instead of entering Laus with such a small group / This is taking too long. I agree, and yet... San
 	MUSC SONG_32
 	TEX2 MSG_A1E                             @ What? Lord Eliwood! Beware!
 	CLEAN
@@ -144,12 +144,12 @@ EventScr_Ch0E_Beginning:
 	ENTER_MAP
 	TEX1 MSG_A1F                             @ Heh heh heh... Noble sirs. Alms for a poor villa
 	CLEAN
-	IFAF 5, 0x0807A3B9
+	IFAF 5, sub_0807A3B8
 	MOVE_SCR CHARACTER_TACTICIAN, MoveScr_08CAE9CC
 	ENUN
 	DISA CHARACTER_TACTICIAN
 	LABEL 5
-	IFAT 6, 0x08079D7D
+	IFAT 6, sub_08079D7C
 	MOVE_SCR CHARACTER_MARCUS, MoveScr_08CAE9D1
 	ENUN
 	HIDE CHARACTER_MARCUS
@@ -162,7 +162,7 @@ EventScr_Ch0E_Beginning:
 	MOVE_POS 10, 8, 7, 2
 	ENUN
 	MOVE CHARACTER_ELIWOOD, 3, 14
-	SKIP_IFN_ASM 1, 0x08079D7D
+	SKIP_IFN_ASM 1, sub_08079D7C
 	MOVE CHARACTER_MARCUS, 3, 12
 	ENUN
 	LOU1 Units_08CC84EC
@@ -170,7 +170,7 @@ EventScr_Ch0E_Beginning:
 	MOVE CHARACTER_ZAGAN, 15, 1
 	ENUN
 	LOU1_IF_MODE 2, 1, Units_08CC835C
-	IFAF 8, 0x0807A3B9
+	IFAF 8, sub_0807A3B8
 	IFDEPLOYED 0, 8, CHARACTER_DORCAS
 	STAL 0x3C
 	MUEN 4
@@ -188,7 +188,7 @@ EventScr_Ch0E_Beginning:
 	LOU1 Units_Ch0E_InitialHector
 	FADU 4
 	ENTER_MAP
-	IFAF 0x14, 0x08079DBD
+	IFAF 0x14, sub_08079DBC
 	TEX1 MSG_A26                             @ Lord Hector! I have it! I know where Lord Eliwoo
 	TEX2 MSG_A28                             @ You're going to meet Lord Eliwood, right? Well,
 	MUSC SONG_32
@@ -219,7 +219,7 @@ EventScr_Ch0E_Beginning:
 	DISA CHARACTER_TACTICIAN
 	CLEAN
 	ENUN
-	SKIP_IFN_ASM 1, 0x08079DBD
+	SKIP_IFN_ASM 1, sub_08079DBC
 	LOU1 Units_08CC842C
 	LOU1 Units_08CC844C
 	ENUN
@@ -229,7 +229,7 @@ EventScr_Ch0E_Beginning:
 	BACG 0x1C
 	FADU 0x10
 	ENTER_MAP
-	TEX1_IF_ASM 0x08079DBD, MSG_A2B, MSG_A2C @ Ewww! That's terrible! I loathe violence! Nicely / Ewww! That's terrible! I loathe violence! I cann
+	TEX1_IF_ASM sub_08079DBC, MSG_A2B, MSG_A2C @ Ewww! That's terrible! I loathe violence! Nicely / Ewww! That's terrible! I loathe violence! I cann
 	CLEAN
 	MURE 6
 	MOVE CHARACTER_HECTOR, 4, 2
@@ -402,7 +402,7 @@ EventScr_Ch0E_Ending:
 	STAL 0x3C
 	FADI 4
 	EXIT_MAP
-	ASMC 0x0807A869
+	ASMC sub_0807A868
 	BACG 0x1C
 	FADU 4
 	ENTER_MAP
@@ -415,12 +415,12 @@ EventScr_Ch0E_Ending:
 	TEX2 MSG_A36                             @ Lord Hector! Why didn't you tell me the fighting
 	GOTO 0xF
 	LABEL 0xA
-	IFAF 0xC, 0x08079DBD
-	IFAF 0xD, 0x08079E0D
+	IFAF 0xC, sub_08079DBC
+	IFAF 0xD, sub_08079E0C
 	TEX2 MSG_A36                             @ Lord Hector! Why didn't you tell me the fighting
 	GOTO 0xF
 	LABEL 0xC
-	IFAF 0xE, 0x08079E0D
+	IFAF 0xE, sub_08079E0C
 	TEX2 MSG_A37                             @ Lord Hector! Why didn't you tell me the fighting
 	GOTO 0xF
 	LABEL 0xD
@@ -429,11 +429,11 @@ EventScr_Ch0E_Ending:
 	LABEL 0xE
 	TEX2 MSG_A39                             @ Enough pleasantries for now. Eliwood, this journ
 	LABEL 0xF
-	SKIP_IFN_ASM 1, 0x08079DBD
+	SKIP_IFN_ASM 1, sub_08079DBC
 	UNIT_CLEAR_STATE CHARACTER_MATTHEW, 0x10000
 	UNIT_CLEAR_STATE CHARACTER_SERRA, 0x10000
 	TEX2 MSG_A3A                             @ What is it, Hector? Do you know something? Nothi
-	IFAF 5, 0x0807A3B9
+	IFAF 5, sub_0807A3B8
 	FADI 4
 	EXIT_MAP
 	STAL 0x1E
@@ -445,8 +445,8 @@ EventScr_Ch0E_Ending:
 	STAL 0x3C
 	TEX2 MSG_A3C                             @ ... You might be right. Something may have happe
 	TEX2 MSG_A3D                             @ Eliwood! Who is this? This is . I required tacti
-	IFAF 5, 0x08079DBD
-	IFAF 5, 0x08079E0D
+	IFAF 5, sub_08079DBC
+	IFAF 5, sub_08079E0C
 	FADI 0x10
 	EXIT_MAP
 	BACG 0x1C

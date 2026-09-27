@@ -7,7 +7,7 @@
 
 	.global EvList_Ch40_Turn
 EvList_Ch40_Turn:
-	TURN 0, EventScr_08CE1354, 1, 0, 0, 0
+	TURN 0, EventScr_08CE1354, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
 	.global EvList_Ch40_Character
