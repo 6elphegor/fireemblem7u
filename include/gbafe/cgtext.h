@@ -17,6 +17,7 @@ struct CgTextSt {
 extern struct CgTextSt gCgTextSt;
 extern CONST_DATA struct ProcCmd gProcScr_CgTextMain[];
 extern CONST_DATA struct ProcCmd gProcScr_CgTextInterpreter[];
+extern CONST_DATA struct ProcCmd gProcScr_YesNoChoice[];
 
 enum {
     CG_TEXT_FLAG_0 = (1 << 0),

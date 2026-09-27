@@ -477,5 +477,48 @@ s8 sub_808FFFC(void)
 
     return 0;
 }
-ASM_FUNC("asm/nonmatching/code_08088AA8.s");
-ASM_FUNC("asm/nonmatching/code_08088B88.s");
+void YesNoChoice_Loop_KeyHandler(struct YesNoChoiceProc * proc)
+{
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        PlaySoundEffect(0x38B);
+        SetTalkChoiceResult(0);
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        PlaySoundEffect(0x38A);
+        SetTalkChoiceResult(proc->currentChoice);
+        Proc_Break(proc);
+        return;
+    }
+
+    if ((gpKeySt->pressed & DPAD_LEFT) && (proc->currentChoice == 2))
+    {
+        PlaySoundEffect(0x387);
+        proc->currentChoice = 1;
+    }
+
+    if ((gpKeySt->pressed & DPAD_RIGHT) && (proc->currentChoice == 1))
+    {
+        PlaySoundEffect(0x387);
+        proc->currentChoice = 2;
+    }
+
+    PutUiHand(proc->x + (proc->currentChoice - 1) * 40 - 4, proc->y);
+}
+
+void StartYesNoChoice(int * choiceTextIds, struct Text * th, int x, int y, int color, int defaultChoice, ProcPtr parent)
+{
+    struct YesNoChoiceProc * proc;
+
+    Text_InsertDrawString(th, 16, color, DecodeMsg(choiceTextIds[0]));
+    Text_InsertDrawString(th, 56, color, DecodeMsg(choiceTextIds[1]));
+
+    proc = Proc_StartBlocking(gProcScr_YesNoChoice, parent);
+    proc->currentChoice = defaultChoice;
+    proc->x = x + 16;
+    proc->y = y;
+}
