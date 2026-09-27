@@ -605,8 +605,34 @@ void PutStatScreenSupportList(void)
     }
 }
 
-void PutStatScreenWeaponExpBar(int num, int x, int y, int item_kind);
-ASM_FUNC("asm/nonmatching/code_08080360.s");
+void PutStatScreenWeaponExpBar(int num, int x, int y, int item_kind)
+{
+    int progress, progressMax, color;
+    int wexp = gStatScreenSt.unit->ranks[item_kind];
+
+    PutIcon(gUiTmScratchA + TM_OFFSET(x, y),
+        0x70 + item_kind, // TODO: icon id definitions
+        TILEREF(0, BGPAL_ICONS + 1));
+
+    color = (wexp >= WPN_EXP_S)
+        ? TEXT_COLOR_SYSTEM_GREEN
+        : TEXT_COLOR_SYSTEM_BLUE;
+
+    // display rank letter
+    PutSpecialChar(
+        gUiTmScratchA + TM_OFFSET(x + 4, y),
+        color,
+        GetWeaponLevelSpecialCharFromExp(wexp));
+
+    GetWeaponExpProgressState(wexp, &progress, &progressMax);
+
+    PutDrawUiGauge(
+        0x400 + 1 + num*6, 5,
+        gUiTmScratchC + TM_OFFSET(x + 2, y + 1),
+        TILEREF(0, BGPAL_STATSCREEN_6),
+        34,
+        (progress*34)/(progressMax-1), 0);
+}
 
 
 void PutStatScreenWeaponExpAndSupportsPage(void);
