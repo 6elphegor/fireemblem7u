@@ -5,7 +5,7 @@
 #include "gba/m4a_internal.h"
 
 // GetCurrentBgmSong
-// sub_080034F4
+// IsBgmPlaying
 // Sound_SetBGMVolume
 // SetBgmVolume
 // FadeBgmOut
@@ -26,16 +26,16 @@ void OverrideBgm(int song);
 // DelaySong_OnLoop
 // PlaySongDelayed
 // PlaySongCore
-// sub_08003F6C
-// sub_08003F8C
-// sub_08003FC0
+// Sound_SetDefaultMaxNumChannels
+// Sound_SetMaxNumChannels
+// Sound_UpdateMaxChannelsForSong
 // IsMusicProc2Running
-// sub_0800404C
-// sub_080040B8
+// MusicChange_StartVolumeChange
+// MusicChange_StartBgm
 void CallSomeSoundMaybe(int songId, int b, int c, int d, ProcPtr parent);
 bool MusicProc4Exists(void);
 // sub_080041E4
-// sub_0800421C
+// DeleteAll6CWaitMusicRelated
 // sub_08004234
 
 #define PlaySoundEffect(id) \

@@ -7,7 +7,7 @@ sub_080BC960: @ 0x080BC960
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #8
-	bl sub_08003F8C
+	bl Sound_SetMaxNumChannels
 	ldr r0, _080BC98C @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]

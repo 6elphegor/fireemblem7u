@@ -58,7 +58,7 @@ AgbMain: @ 0x08000A50
 	bl RandInit
 	bl LoadAndVerifySramSaveData
 	bl m4aSoundInit
-	bl sub_08003F6C
+	bl Sound_SetDefaultMaxNumChannels
 	ldr r0, _08000B18 @ =OnVBlank
 	bl SetOnVBlank
 	movs r0, #0
