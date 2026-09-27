@@ -1,5 +1,6 @@
 #include "gbafe.h"
 #include "gbafe/cgtext.h"
+#include "gbafe/unk-data.h"
 
 struct PrepRankProc {
     /* 00 */ PROC_HEADER;
@@ -15,13 +16,17 @@ struct PrepRankProc {
     /* 40 */ u8 unk_40;
     /* 41 */ u8 unk_41;
     /* 42 */ u8 unk_42;
-    /* 43 */ u8 unk_43[0x4E - 0x43];
-    /* 4E */ s16 unk_4e;
-    /* 50 */ s16 unk_50;
+    /* 43 */ char unk_43[0x4E - 0x43];
+    /* 4E */ u8 unk_4e;
+    /* 4F */ s8 unk_4f;
+    /* 50 */ s8 unk_50;
+    /* 51 */ u8 unk_51;
     /* 52 */ s16 unk_52;
     /* 54 */ s16 unk_54;
     /* 56 */ s16 unk_56;
-    /* 58 */ s16 unk_58;
+    /* 58 */ int unk_58;
+    /* 5C */ s16 unk_5c;
+    /* 5E */ s16 unk_5e;
 };
 
 struct PrepRankPalAnimProc {
@@ -51,10 +56,29 @@ void sub_08099968(struct PrepRankProc * proc);
 
 extern u8 Img_0840E830[];
 extern u16 Pal_0840E978[];
+extern u16 Pal_081D69E4[];
+extern u16 Pal_081D72A4[];
+extern u16 Pal_081D7B20[];
 extern u8 Tsa_0840EA38[];
 extern u16 const * CONST_DATA gUnk_08CC5100[];
 extern struct ProcCmd CONST_DATA ProcScr_08CC5114[];
 extern int CONST_DATA gUnk_08CC50C0[];
+extern int CONST_DATA gUnk_08CC51C4[];
+extern int CONST_DATA gUnk_08CC51AC[];
+extern u8 Tsa_0840EAF0[];
+
+struct PrepRankTalkEnt {
+    /* 00 */ int pid;
+    /* 04 */ int msg_hi;
+    /* 08 */ int msg_mid;
+    /* 0C */ int msg_lo;
+};
+
+extern struct PrepRankTalkEnt CONST_DATA gUnk_08CC52D8[];
+
+void sub_08099BA4(struct PrepRankProc * proc);
+void sub_08099A48(struct PrepRankProc * proc);
+int sub_0809A83C(int pid, int rank);
 
 
 
@@ -227,13 +251,283 @@ void sub_08099928(struct PrepRankProc * proc)
     StartCgText(0x16, 0x13, 0x12, 4, proc->msg, (void *) 0x06011000, 10, 0);
     SetCgTextFlags(0x4E);
 }
-ASM_FUNC("asm/nonmatching/code_08099968.s");
-ASM_FUNC("asm/nonmatching/code_08099A48.s");
-ASM_FUNC("asm/nonmatching/code_08099AC0.s");
-ASM_FUNC("asm/nonmatching/code_08099B6C.s");
-ASM_FUNC("asm/nonmatching/code_08099BA4.s");
-ASM_FUNC("asm/nonmatching/code_08099FA0.s");
-ASM_FUNC("asm/nonmatching/code_0809A024.s");
+void sub_08099968(struct PrepRankProc * proc)
+{
+    int i, j;
+
+    if (proc->unk_3b == 0)
+        return;
+
+    for (i = 0; i < 5; i++)
+    {
+        int x, y;
+
+        if (proc->ranks[i] == 0xFF)
+            continue;
+
+        x = (proc->unk_52 + 0x34) & 0x1FF;
+        y = (0x19 + proc->unk_54 + i * 16) & 0xFF;
+
+        for (j = 0; j <= proc->ranks[i]; j++)
+            PutSpriteExt(13, x + j * 10, y, gUnk_08CC5100[j], 0xF380);
+    }
+
+    if (proc->unk_3e != 0)
+        PutSpriteExt(13, (proc->unk_52 + 0xC0) & 0x1FF, (proc->unk_54 + 0x1C) & 0xFF, gUnk_08CC5100[0], 0xF380);
+}
+void sub_08099A48(struct PrepRankProc * proc)
+{
+    int idx = 0;
+    u16 const * pals[] = { Pal_UiWindowFrame1, Pal_081D69E4, Pal_081D72A4, Pal_081D7B20 };
+
+    if (proc->unk_3d != 0)
+        idx = 1;
+    else
+    {
+        switch (proc->unk_3c)
+        {
+        case 0:
+            idx = 3;
+            break;
+
+        case 1:
+            break;
+
+        case 2:
+            idx = 2;
+            break;
+        }
+    }
+
+    ApplyPaletteExt(pals[idx], 0xA0, 0x20);
+
+    if (proc->unk_3b == 0)
+    {
+        ArchivePalette(0x20);
+        SetPalFadeStClkEnd(0xC0, 0xC0, 0xC0);
+    }
+}
+void sub_08099AC0(struct PrepRankProc * proc)
+{
+    int i;
+
+    proc->unk_3c = 0;
+    proc->unk_3d = 0;
+    proc->unk_3e = 0;
+    proc->unk_52 = 0;
+    proc->unk_54 = 0;
+    proc->unk_5c = 0;
+    proc->unk_5e = 0;
+
+    for (i = 0; i < 5; i++)
+        proc->ranks[i] |= 0xFF;
+
+    proc->timer = 0;
+
+    Decompress(Img_0840E830, (void *) 0x06017000);
+    ApplyPaletteExt(Pal_0840E978, 0x3E0, 0x20);
+
+    gPlaySt.cfgTextSpeed = 1;
+
+    StartParallelWorker(sub_08099968, proc);
+    StartGreenText(proc);
+
+    gDispIo.blend_ct.target1_enable_bd = 0;
+    gDispIo.blend_ct.target2_enable_bd = 0;
+}
+void sub_08099B6C(int x, int y, int color, int id, int count)
+{
+    int i;
+
+    for (i = 0; i < count; i++)
+        PutSpecialChar(gBg2Tm + TM_OFFSET(x + i, y), color, id);
+}
+void sub_08099BA4(struct PrepRankProc * proc)
+{
+    int i;
+
+    ResetText();
+    TmFill(gBg2Tm, 0);
+    SetTextFontGlyphs(0);
+    SetTextFont(NULL);
+
+    if (proc->unk_3b != 0)
+    {
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(1, 1), 0, 0, 12, DecodeMsg(gUnk_08CC51C4[proc->unk_3c]));
+
+        for (i = 0; i < 5; i++)
+            PutDrawText(NULL, gBg2Tm + TM_OFFSET(2, 4 + i * 2), 0, 0, 5, DecodeMsg(gUnk_08CC50C0[i]));
+
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 7), 0, 0, 4, DecodeMsg(0x12C4));
+        PutNumber(gBg2Tm + TM_OFFSET(27, 7), 2, proc->unk_58);
+        PutSpecialChar(gBg2Tm + TM_OFFSET(28, 7), 3, 0x1E);
+
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 9), 0, 0, 4, DecodeMsg(0x12C5));
+        PutSpecialChar(gBg2Tm + TM_OFFSET(23, 9), 0, 0x20);
+        PutSpecialChar(gBg2Tm + TM_OFFSET(26, 9), 0, 0x20);
+        PutNumber(gBg2Tm + TM_OFFSET(22, 9), 2, proc->unk_40);
+        sub_080063CC(gBg2Tm + TM_OFFSET(25, 9), 2, proc->unk_41);
+        sub_080063CC(gBg2Tm + TM_OFFSET(28, 9), 2, proc->unk_42);
+
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(10, 1), 3, 0, 5, DecodeMsg(0x12C6));
+        PutSpecialChar(gBg2Tm + TM_OFFSET(14, 1), 4, gUnk_08CC51AC[proc->ranks[5]]);
+
+        if (proc->unk_3d == 0)
+            PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 1), 3, 0, 4, DecodeMsg(0x12BA));
+        else
+            PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 1), 3, 4, 4, DecodeMsg(0x12BB));
+
+        PutNumber(gBg2Tm + TM_OFFSET(24, 1), 2, proc->unk_4e);
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(25, 1), 3, 0, 5, DecodeMsg(0x12C8));
+
+        if (proc->unk_3e != 0)
+        {
+            PutDrawText(NULL, gBg2Tm + TM_OFFSET(16, 4), 0, 0, 6, proc->unk_43);
+            PutNumber(gBg2Tm + TM_OFFSET(28, 4), 2, proc->unk_3a);
+        }
+        else
+        {
+            sub_08099B6C(17, 4, 1, 0x14, 5);
+            sub_08099B6C(26, 4, 1, 0x14, 3);
+        }
+    }
+    else
+    {
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(1, 1), 0, 0, 12, DecodeMsg(gUnk_08CC51C4[proc->unk_3c]));
+
+        for (i = 0; i < 5; i++)
+        {
+            PutDrawText(NULL, gBg2Tm + TM_OFFSET(2, 4 + i * 2), 1, 0, 5, DecodeMsg(gUnk_08CC50C0[i]));
+            sub_08099B6C(8, 4 + i * 2, 1, 0x14, 3);
+        }
+
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 7), 1, 0, 4, DecodeMsg(0x12C4));
+        sub_08099B6C(22, 7, 1, 0x14, 3);
+
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 9), 1, 0, 4, DecodeMsg(0x12C5));
+        sub_08099B6C(22, 9, 1, 0x14, 3);
+
+        PutDrawText(NULL, gBg2Tm + TM_OFFSET(10, 1), 1, 0, 5, DecodeMsg(0x12C6));
+        sub_08099B6C(14, 1, 1, 0x14, 1);
+
+        if (proc->unk_3d == 0)
+            PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 1), 1, 0, 4, DecodeMsg(0x12BA));
+        else
+            PutDrawText(NULL, gBg2Tm + TM_OFFSET(17, 1), 1, 4, 4, DecodeMsg(0x12BB));
+
+        sub_08099B6C(23, 1, 1, 0x14, 5);
+        sub_08099B6C(17, 4, 1, 0x14, 5);
+        sub_08099B6C(26, 4, 1, 0x14, 3);
+    }
+
+    EnableBgSync(BG2_SYNC_BIT);
+}
+void sub_08099FA0(struct PrepRankProc * proc)
+{
+    sub_08099358(proc);
+
+    ResetSysHandCursor(proc);
+    DisplaySysHandCursorTextShadow(0x600, 1);
+
+    StartUiSpinningArrows(proc);
+    LoadUiSpinningArrowGfx(0, 0x280, 2);
+    SetUiSpinningArrowConfig(3);
+    SetUiSpinningArrowPositions(0, 0x40, 0xE8, 0x40);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    gDispIo.blend_ct.effect = 0;
+
+    gDispIo.blend_coef_a = 0;
+    gDispIo.blend_coef_b = 0;
+    gDispIo.blend_y = 0;
+
+    sub_08091944(0x5000, 5);
+}
+void sub_0809A024(struct PrepRankProc * proc)
+{
+    int i;
+    struct GameRankSaveData buf;
+
+    CpuFill16(0, &buf, sizeof(buf));
+
+    LoadRankData(&buf, proc->unk_3c, proc->unk_3d);
+
+    proc->unk_3b = buf.valid;
+
+    if (proc->unk_3b != 0)
+    {
+        proc->ranks[0] = buf.tactics_rank;
+        proc->ranks[1] = buf.survival_rank;
+        proc->ranks[2] = buf.funds_rank;
+        proc->ranks[3] = buf.exp_rank;
+        proc->ranks[4] = buf.combat_rank;
+        proc->unk_3e = buf.unk00_16;
+        proc->unk_40 = buf.hours;
+        proc->unk_41 = buf.minutes;
+        proc->unk_42 = buf.seconds;
+        proc->unk_58 = buf.gold;
+        proc->unk_3f = buf.luckydog;
+
+        proc->ranks[5] = GetOverallRank(proc->ranks[0], proc->ranks[1], proc->ranks[2], proc->ranks[3], proc->ranks[4]);
+
+        proc->unk_4e = buf.unk08_15;
+        proc->unk_3a = buf.unk00_17;
+
+        if (proc->unk_3e != 0)
+        {
+            strcpy(proc->unk_43, buf.tactician_name);
+            SetTacticianName(proc->unk_43);
+        }
+        else
+        {
+            SetTacticianName(DecodeMsg(0x55B));
+        }
+
+        if (proc->unk_3f != 0)
+        {
+            if (sub_0809A83C(proc->unk_3f, proc->ranks[5]) == 0)
+                proc->unk_3f = 0;
+        }
+
+        if (proc->unk_3f == 0)
+        {
+            if (proc->unk_3c == 0)
+                proc->unk_3f = 0x2D;
+            else
+                proc->unk_3f = 0x28;
+        }
+    }
+    else
+    {
+        for (i = 0; i < 5; i++)
+            proc->ranks[i] |= 0xFF;
+    }
+
+    sub_080AACD8(gBg1Tm, Tsa_0840EAF0, 0x5280);
+
+    sub_08099BA4(proc);
+    sub_08099A48(proc);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+
+    EndFaceById(0);
+    EndCgText();
+
+    if (proc->unk_3b != 0 && proc->unk_3f != 0)
+    {
+        int msg;
+
+        StartTalkFace(gCharacterData[proc->unk_3f - 1].portraitId, 0xD8, 0x58, 0x102, 0);
+
+        msg = sub_0809A83C(proc->unk_3f, proc->ranks[5]);
+
+        InitTalk(0x28, 0, 1);
+        StartCgText(0x16, 0x13, 0x12, 4, msg, (void *) 0x06011000, 10, 0);
+        SetCgTextFlags(0x809FE);
+    }
+}
 ASM_FUNC("asm/nonmatching/code_0809A280.s");
 ASM_FUNC("asm/nonmatching/code_0809A378.s");
 ASM_FUNC("asm/nonmatching/code_0809A404.s");
@@ -241,10 +535,46 @@ ASM_FUNC("asm/nonmatching/code_0809A504.s");
 ASM_FUNC("asm/nonmatching/code_0809A560.s");
 ASM_FUNC("asm/nonmatching/code_0809A650.s");
 ASM_FUNC("asm/nonmatching/code_0809A6C0.s");
-ASM_FUNC("asm/nonmatching/code_0809A824.s");
-ASM_FUNC("asm/nonmatching/code_0809A83C.s");
-ASM_FUNC("asm/nonmatching/code_0809A870.s");
-ASM_FUNC("asm/nonmatching/code_0809A8C8.s");
+void sub_0809A824(struct PrepRankProc * proc)
+{
+    sub_0809E3D8(proc->unk_3c, proc->unk_3d, proc);
+}
+int sub_0809A83C(int pid, int rank)
+{
+    struct PrepRankTalkEnt const * it;
+
+    for (it = gUnk_08CC52D8; it->pid != 0; it++)
+    {
+        if (pid == it->pid)
+        {
+            if (rank > 3)
+                return it->msg_hi;
+
+            if (rank > 1)
+                return it->msg_mid;
+
+            return it->msg_lo;
+        }
+    }
+
+    return 0;
+}
+int sub_0809A870(int n)
+{
+    int r = n % 3;
+
+    if (r == 0)
+        return gUnk_08CC52D8[n / 3].msg_hi;
+
+    if (r == 1)
+        return gUnk_08CC52D8[n / 3].msg_mid;
+
+    return gUnk_08CC52D8[n / 3].msg_lo;
+}
+int sub_0809A8C8(int n)
+{
+    return gUnk_08CC52D8[n / 3].pid;
+}
 ASM_FUNC("asm/nonmatching/code_0809A8E4.s");
 ASM_FUNC("asm/nonmatching/code_0809A924.s");
 ASM_FUNC("asm/nonmatching/code_0809A9A8.s");

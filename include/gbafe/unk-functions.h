@@ -742,7 +742,7 @@ int GetSupportScreenPartnerCount(int charId);
 // sub_0809E25C
 // nullsub_80
 // sub_0809E3A8
-// sub_0809E3D8
+ProcPtr sub_0809E3D8(int a, int b, ProcPtr parent);
 // sub_0809E3F4
 // nullsub_81
 
