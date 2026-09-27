@@ -5,6 +5,7 @@ gEkrXPosReal = 0x02000028;
 gEkrYPosReal = 0x0200002C;
 gEkrBg0QuakeVec = 0x02000038;
 gpEfxUnitPaletteBackup = 0x02000054;
+gUnk_020000A4 = 0x020000A4;
 gStatScreenSt = 0x0200310C;
 gUiTmScratchA = 0x0200323C;
 gUiTmScratchB = 0x0200373C;
