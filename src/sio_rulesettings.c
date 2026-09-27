@@ -5,6 +5,21 @@
 
 extern const u8 gUnknown_081D53E4[];
 
+void FE6Link_Init(ProcPtr proc);
+void Set_0203DDDC(ProcPtr proc);
+
+CONST_DATA struct ProcCmd ProcScr_SIO_RuleSettings[] = {
+    PROC_CALL(SioRuleSettings_Init),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_YIELD,
+    PROC_CALL(FE6Link_Init),
+    PROC_REPEAT(SioRuleSettings_Loop_Main),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_YIELD,
+    PROC_END,
+};
+
 //! FE8U = 0x0804766C
 void LoadLinkArenaRuleSettings(u8 * buf)
 {
@@ -178,6 +193,4 @@ void SioRuleSettings_Loop_Main(struct ProcSioRuleSettings * proc)
 
     return;
 }
-
-extern struct ProcCmd CONST_DATA ProcScr_SIO_RuleSettings[];
 

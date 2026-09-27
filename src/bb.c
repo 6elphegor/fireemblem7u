@@ -5,16 +5,59 @@
 
 void sub_08019B40(void);
 
-extern u16 CONST_DATA gSubtitleHelpTextChrLut[];
-extern u8 CONST_DATA gSubtitleHelpDarkenerBldyLut[];
-extern u8 CONST_DATA gSubtitleHelpYLut[];
-extern u8 CONST_DATA gSubtitleHelpToggleYLut[];
-extern struct ProcCmd CONST_DATA ProcScr_SubtitleHelpDarkener[];
-extern struct ProcCmd CONST_DATA ProcScr_SubtitleHelp[];
-extern struct ProcCmd CONST_DATA ProcScr_SubtitleHelpToggle[];
 extern u8 CONST_DATA Pal_SubtitleHelpText[];
 extern u8 CONST_DATA Img_SubtitleHelpToggle[];
 extern u8 CONST_DATA Pal_SubtitleHelpToggle[];
+
+CONST_DATA u16 gSubtitleHelpTextChrLut[] = {
+    0, 4, 8, 0xC, 0x10, 0x14, 0x18, 0x44,
+    0x48, 0x4C, 0x50, 0x54, 0x58,
+};
+
+CONST_DATA u8 gSubtitleHelpDarkenerBldyLut[] = {
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 1, 2, 3, 4,
+    5, 6, 7, 7, 7, 7, 7, 7,
+    7, 7, 7, 7, 7, 7, 7, 7,
+    0, 0,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SubtitleHelpDarkener[] = {
+    PROC_END_DUPLICATES,
+    PROC_CALL(SubtitleHelpDarkener_Init),
+    PROC_REPEAT(SubtitleHelpDarkener_FadeIn),
+    PROC_REPEAT(SubtitleHelpDarkener_FadeOut),
+    PROC_END,
+};
+
+CONST_DATA u8 gSubtitleHelpYLut[] = {
+    0x90, 0x91, 0x92, 0x94, 0x96, 0x99, 0x9C, 0,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SubtitleHelp[] = {
+    PROC_19,
+    PROC_19,
+    PROC_SET_END_CB(SubtitleHelp_OnEnd),
+    PROC_YIELD,
+    PROC_CALL(SubtitleHelp_Init),
+    PROC_REPEAT(SubtitleHelp_Loop),
+    PROC_BLOCK,
+};
+
+CONST_DATA u8 gSubtitleHelpToggleYLut[] = {
+    0x8E, 0x8F, 0x90, 0x92, 0x94, 0x97, 0x9A, 0,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SubtitleHelpToggle[] = {
+    PROC_19,
+    PROC_19,
+    PROC_YIELD,
+    PROC_CALL(sub_080325A0),
+    PROC_REPEAT(sub_08032710),
+    PROC_CALL(SubtitleHelp_OnEnd),
+    PROC_SLEEP(8),
+    PROC_END,
+};
 
 void PutSubtitleHelpText(struct SubtitleHelpProc * proc, int y)
 {

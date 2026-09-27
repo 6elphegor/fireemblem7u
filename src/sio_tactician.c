@@ -3,8 +3,6 @@
 
 // FE8U: sio_tactician.c
 
-extern struct ProcCmd CONST_DATA ProcScr_TacticianNameSelection[];
-
 extern const struct TacticianTextConf gTacticianTextConf[];
 
 extern const s16 SioTacticianIndexMap[];
@@ -32,6 +30,36 @@ void sub_08047E84(u8 * str, int len, int x, int y, int palId, ProcPtr parent);
 ProcPtr StartNameEntrySpriteDraw(ProcPtr parent, int x, int y);
 void UpdateNameEntrySpriteDraw(void * proc, int xNew, int yNew, int xPointer, int cursorKind, int f);
 void PutLinkArenaChoiceBannerSprite(int x, int y);
+
+void FE6Link_Init(ProcPtr proc);
+void Set_0203DDDC(ProcPtr proc);
+
+CONST_DATA struct ProcCmd ProcScr_TacticianNameSelection[] = {
+    PROC_YIELD,
+    PROC_CALL(Tactician_InitScreen),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_YIELD,
+    PROC_CALL(FE6Link_Init),
+    PROC_LABEL(0),
+    PROC_REPEAT(Tactician_Loop),
+    PROC_GOTO(2),
+    PROC_LABEL(1),
+    PROC_CALL(sub_0803F938),
+    PROC_REPEAT(sub_0803F950),
+    PROC_CALL(sub_0803F990),
+    PROC_REPEAT(sub_0803F9BC),
+    PROC_GOTO(0),
+    PROC_LABEL(3),
+    PROC_CALL(NameSelect_DrawName),
+    PROC_REPEAT(sub_0803FA3C),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_YIELD,
+    PROC_CALL(sub_0803FB24),
+    PROC_END,
+};
 
 //! FE8U = 0x08044550
 const struct TacticianTextConf * GetTacticianTextConf(s16 idx)
