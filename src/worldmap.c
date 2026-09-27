@@ -390,7 +390,54 @@ int WmGetCameraY(void)
     return gWmSt.y;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B33D0.s");
+void sub_080B33D0(int x, int y, int w, int h, u16 oam2)
+{
+    int i;
+
+    if (w <= 7 || h <= 7)
+        return;
+
+    for (i = x + 8; i < x + w - 40; i += 32)
+    {
+        PutSpriteExt(2, i & 0x1FF, y & 0xFF, Sprite_32x8, oam2 + 0x806);
+        PutSpriteExt(2, (i & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_32x8, oam2 + 0x806);
+    }
+
+    for (; i < x + w - 24; i += 16)
+    {
+        PutSpriteExt(2, i & 0x1FF, y & 0xFF, Sprite_16x8, oam2 + 0x806);
+        PutSpriteExt(2, (i & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_16x8, oam2 + 0x806);
+    }
+
+    for (; i < x + w - 8; i += 8)
+    {
+        PutSpriteExt(2, i & 0x1FF, y & 0xFF, Sprite_8x8, oam2 + 0x806);
+        PutSpriteExt(2, (i & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_8x8, oam2 + 0x806);
+    }
+
+    for (i = y + 8; i < y + h - 40; i += 32)
+    {
+        PutSpriteExt(2, x & 0x1FF, i & 0xFF, Sprite_8x32, oam2 + 0x804);
+        PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, i & 0xFF, Sprite_8x32, oam2 + 0x804);
+    }
+
+    for (; i < y + h - 24; i += 16)
+    {
+        PutSpriteExt(2, x & 0x1FF, i & 0xFF, Sprite_8x16, oam2 + 0x804);
+        PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, i & 0xFF, Sprite_8x16, oam2 + 0x804);
+    }
+
+    for (; i < y + h - 8; i += 8)
+    {
+        PutSpriteExt(2, x & 0x1FF, i & 0xFF, Sprite_8x8, oam2 + 0x804);
+        PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, i & 0xFF, Sprite_8x8, oam2 + 0x804);
+    }
+
+    PutSpriteExt(2, x & 0x1FF, y & 0xFF, Sprite_8x8, oam2 + 0x805);
+    PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, y & 0xFF, Sprite_8x8, oam2 + 0x805);
+    PutSpriteExt(2, (x & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_8x8, oam2 + 0x805);
+    PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x3000, (y + h - 8) & 0xFF, Sprite_8x8, oam2 + 0x805);
+}
 void WmFade_Init(struct WmFadeProc * proc)
 {
     WmRedrawMap();
