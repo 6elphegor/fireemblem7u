@@ -75,3 +75,9 @@ void sub_080BB0E0(void)
     OpScanlineSt.unk_00 += OpScanlineSt.unk_08;
 }
 #endif
+
+ASM_FUNC("asm/nonmatching/code_080BB0E0.s");
+ASM_FUNC("asm/nonmatching/code_080BB2AC.s");
+ASM_FUNC("asm/nonmatching/code_080BB31C.s");
+ASM_FUNC("asm/nonmatching/code_080BB32C.s");
+ASM_FUNC("asm/nonmatching/code_080BB354.s");
