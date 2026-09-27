@@ -290,7 +290,55 @@ void SioTeamList_EraseTeam(struct SioTeamListProc * proc)
     return;
 }
 
-ASM_FUNC("asm/nonmatching/code_0803E258.s");
+void SioTeamList_SwapTeams(struct SioTeamListProc * proc)
+{
+    int tmp;
+    struct Unit * unit;
+
+    int teamB = proc->unk_40;
+    int teamA = proc->selectedTeam;
+
+    SwapMultiArenaSaveTeams(gLinkArenaTeamList[teamA].unk_0f & 0x7f, gLinkArenaTeamList[teamB].unk_0f & 0x7f);
+
+    tmp = gLinkArenaTeamList[teamA].unk_10;
+    gLinkArenaTeamList[teamA].unk_10 = gLinkArenaTeamList[teamB].unk_10;
+    gLinkArenaTeamList[teamB].unk_10 = tmp;
+
+    unit = GetUnit(teamA * 5 + 1);
+
+    if (ReadMultiArenaSaveTeam(teamA, unit, gLinkArenaTeamList[teamA].name) == 0)
+    {
+        SioStrCpy(gSioStr_NoData, gLinkArenaTeamList[teamA].name);
+        gLinkArenaTeamList[teamA].unk_0f = teamA | 0x80;
+    }
+    else
+    {
+        gLinkArenaTeamList[teamA].unk_0f = teamA;
+    }
+
+    unit = GetUnit(teamB * 5 + 1);
+
+    if (ReadMultiArenaSaveTeam(teamB, unit, gLinkArenaTeamList[teamB].name) == 0)
+    {
+        SioStrCpy(gSioStr_NoData, gLinkArenaTeamList[teamB].name);
+        gLinkArenaTeamList[teamB].unk_0f = teamB | 0x80;
+    }
+    else
+    {
+        gLinkArenaTeamList[teamB].unk_0f = teamB;
+    }
+
+    DrawLinkArenaTeamName(teamB);
+    DrawLinkArenaTeamName(teamA);
+
+    UpdateLinkArenaMenuScrollBar(proc->unk_38, proc->yBg1 + 40);
+
+    Proc_End(proc->pSioHoldProc);
+
+    proc->selectedOption = MULTIARENA_LIST_SWAP;
+
+    EnableBgSync(BG1_SYNC_BIT);
+}
 
 //! FE8U = 0x080437C0
 int sub_0803E358(u8 mode, struct SioTeamListProc * proc)
