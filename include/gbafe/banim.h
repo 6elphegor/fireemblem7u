@@ -543,8 +543,8 @@ void BeginAnimsOnBattleAnimations(void);
 // ??? EkrBattleEndRountine
 // ??? MainUpdate_8055C68
 // ??? NewEkrBattleStarting
-// ??? sub_08050AC0
-// ??? sub_08050BD4
+// ??? ekrBaStart_InitScreen
+// ??? ekrBaStart_SreenFailIn
 // ??? ekrBaStart_InitBattleScreen
 // ??? ekrBaStart_ExecEkrBattle6C
 // ??? ekrBaStart_8055FE8
