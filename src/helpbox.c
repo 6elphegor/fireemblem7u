@@ -1140,7 +1140,105 @@ void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
 
 #else
 
-ASM_FUNC("asm/nonmatching/code_080836D8.s");
+// registers for w/h/hOut are allocated differently
+
+void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
+{
+    int charWidth;
+    int w = 0;
+    int h = 16;
+
+    *wOut = 0;
+    *hOut = 0;
+
+    while (1)
+    {
+        switch (*str)
+        {
+        case 0x12:
+        case 0x13:
+        case 0x14:
+            if (*wOut < w)
+                *wOut = w;
+
+            if (*hOut < h)
+                *hOut = h;
+
+            break;
+
+        case 0x80:
+            str += 2;
+            continue;
+
+        case 0x18:
+        case 0x19:
+            w = 0x40;
+            str++;
+            continue;
+
+        case 0x01:
+            h += 16;
+
+            if (*wOut < w)
+                *wOut = w;
+
+            w = 0;
+            str++;
+            continue;
+
+        case 0x04:
+        case 0x05:
+        case 0x06:
+        case 0x07:
+            str++;
+            continue;
+
+        case 0x02:
+            str++;
+
+            if (*hOut < h)
+                *hOut = h;
+
+            h = 0;
+
+            if (*wOut < w)
+                *wOut = w;
+
+            w = 0;
+            continue;
+
+        case 0x03:
+            str++;
+
+            if (*hOut < h)
+                *hOut = h;
+
+            h = 0;
+
+            if (*wOut < w + 8)
+                *wOut = w + 8;
+
+            w = 0;
+            continue;
+
+        case 0x00:
+            if (*wOut < w)
+                *wOut = w;
+
+            if (*hOut < h)
+                *hOut = h;
+
+            break;
+
+        default:
+            str = GetCharTextLen(str, &charWidth);
+            w += charWidth;
+            continue;
+        }
+
+        break;
+    }
+}
 
 #endif
 
