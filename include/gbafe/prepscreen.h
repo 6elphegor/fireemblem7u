@@ -251,6 +251,10 @@ void MenuScroll_Loop(ProcPtr proc);
 // PutMenuScrollBarAt
 // UpdateMenuScrollBarConfig
 // InitMenuScrollBarImg
+ProcPtr StartMenuScrollBar(ProcPtr parent);
+void PutMenuScrollBarAt(int x, int y);
+void UpdateMenuScrollBarConfig(u8 segments, u16 currentSegment, u16 totalRows, u8 visibleRows);
+void InitMenuScrollBarImg(int chr, int pal);
 // sub_08090540
 // sub_08090580
 

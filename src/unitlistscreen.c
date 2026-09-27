@@ -142,15 +142,193 @@ void sub_8090358(u16 arg_0)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_08088E80.s");
-ASM_FUNC("asm/nonmatching/code_08088F3C.s");
-ASM_FUNC("asm/nonmatching/code_08089038.s");
-ASM_FUNC("asm/nonmatching/code_08089148.s");
-ASM_FUNC("asm/nonmatching/code_080891D4.s");
-ASM_FUNC("asm/nonmatching/code_08089200.s");
-ASM_FUNC("asm/nonmatching/code_08089220.s");
+void sub_08088E80(u8 side, u8 frame, s8 visible)
+{
+    int tile = (u8)((frame / 8) % 6);
+
+    if (side == 0)
+    {
+        if (visible)
+        {
+            gBg2Tm[TM_OFFSET(0, 4)] = TILEREF(0x368, 15) + tile;
+            gBg2Tm[TM_OFFSET(0, 5)] = TILEREF(0x36E, 15) + tile;
+        }
+        else
+        {
+            gBg2Tm[TM_OFFSET(0, 4)] = 0;
+            gBg2Tm[TM_OFFSET(0, 5)] = 0;
+        }
+    }
+    else
+    {
+        if (visible)
+        {
+            gBg2Tm[TM_OFFSET(29, 4)] = TILEREF(0x768, 15) + tile;
+            gBg2Tm[TM_OFFSET(29, 5)] = TILEREF(0x76E, 15) + tile;
+        }
+        else
+        {
+            gBg2Tm[TM_OFFSET(29, 4)] = 0;
+            gBg2Tm[TM_OFFSET(29, 5)] = 0;
+        }
+    }
+
+    EnableBgSync(BG2_SYNC_BIT);
+}
+
+void sub_8090418(struct UnitListScreenProc * proc, s8 unk)
+{
+    int i;
+    int unitId;
+
+    if (unk != 0)
+        unitId = PrepGetLatestCharId();
+    else
+        unitId = GetLastStatScreenUnitId();
+
+    for (i = 0; i < gUnknown_0200F158; i++)
+    {
+        if (unk != 0)
+        {
+            if (gSortedUnits[i]->unit->pCharacterData->number == unitId)
+                goto found;
+
+            continue;
+        }
+        else
+        {
+            if (gSortedUnits[i]->unit->index == unitId)
+                goto found;
+
+            continue;
+        }
+
+    found:
+        proc->unk_30 = i;
+
+        if (i == 0)
+        {
+            proc->unk_2c = 0;
+            proc->unk_3e = 0;
+            return;
+        }
+
+        if (i == gUnknown_0200F158 - 1)
+        {
+            if (gUnknown_0200F158 < 7)
+            {
+                proc->unk_2c = i;
+                proc->unk_3e = 0;
+                return;
+            }
+            else
+            {
+                proc->unk_2c = 5;
+                proc->unk_3e = (gUnknown_0200F158 - 6) * 16;
+                return;
+            }
+        }
+
+        if (i > proc->unk_3e / 16 && i < proc->unk_3e / 16 + 5)
+        {
+            proc->unk_2c = i - proc->unk_3e / 16;
+            return;
+        }
+
+        if (proc->unk_3e > (i - 1) * 16)
+        {
+            proc->unk_2c = 1;
+            proc->unk_3e = (i - 1) * 16;
+            return;
+        }
+
+        if (proc->unk_3e < (i - 4) * 16)
+        {
+            proc->unk_2c = 4;
+            proc->unk_3e = (i - 4) * 16;
+            return;
+        }
+
+        return;
+    }
+}
+
+void sub_8090514(s8 flag)
+{
+    if (flag != 0)
+    {
+        SetWinEnable(1, 1, 0);
+
+        SetWin0Box(0, 56, 240, 152);
+        SetWin1Box(0, 0, 240, 32);
+
+        SetWin0Layers(1, 1, 1, 1, 1);
+        SetWin1Layers(0, 1, 1, 1, 1);
+        SetWOutLayers(0, 1, 1, 1, 0);
+    }
+    else
+    {
+        SetWinEnable(1, 0, 0);
+
+        SetWin0Box(0, 56, 240, 152);
+
+        SetWin0Layers(1, 1, 1, 1, 1);
+        SetWOutLayers(0, 1, 1, 1, 1);
+    }
+}
+
+void UnitList_StartStatScreen(struct UnitListScreenProc * proc)
+{
+    EndAllMus();
+    Proc_End(proc->pSpriteProc);
+    Proc_End(proc->pMuralProc);
+    EndGreenText();
+
+    SetWinEnable(0, 0, 0);
+
+    if (proc->mode == UNITLIST_MODE_PREPMENU)
+        SetStatScreenExcludedUnitFlags(0x11);
+    else
+        SetStatScreenExcludedUnitFlags(0x1F);
+
+    StartStatScreen(gSortedUnits[proc->unk_30]->unit, proc);
+    gPlaySt.lastUnitSortType = (proc->unk_34 << 7) + proc->unk_32;
+    proc->unk_29 = 4;
+}
+
+void UnitList_ResetFromStatScreen(struct UnitListScreenProc * proc)
+{
+    sub_8090D80(proc);
+    SetDispEnable(0, 0, 0, 0, 0);
+}
+
+void UnitList_ResetDispFromStatScreen(void)
+{
+    SetDispEnable(1, 1, 1, 1, 1);
+}
+
+void UnitListScreenSprites_Init(struct UnitListScreenSpritesProc * proc)
+{
+    proc->unk_2c = proc->proc_parent;
+    proc->unk_3b = 0;
+    proc->unk_3c = 0;
+    proc->unk_38 = proc->unk_2c->unk_3e;
+    proc->unk_3a = 0;
+    proc->unk_30 = 0;
+
+    proc->unk_34 = StartMenuScrollBar(proc);
+    PutMenuScrollBarAt(224, 64);
+    UpdateMenuScrollBarConfig(10, proc->unk_2c->unk_3e, gUnknown_0200F158, 6);
+    InitMenuScrollBarImg(0x7200, 1);
+
+    ForceSyncUnitSpriteSheet();
+}
+
 ASM_FUNC("asm/nonmatching/code_0808927C.s");
-ASM_FUNC("asm/nonmatching/code_08089558.s");
+void UnitListScreenSprites_Dummy(void)
+{
+}
+
 ASM_FUNC("asm/nonmatching/code_0808955C.s");
 ASM_FUNC("asm/nonmatching/code_0808966C.s");
 ASM_FUNC("asm/nonmatching/code_08089714.s");
