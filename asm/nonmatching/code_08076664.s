@@ -51,7 +51,7 @@ sub_08076664: @ 0x08076664
 	adds r2, r1, #0
 	adds r2, #8
 	adds r1, r2, #0
-	bl sub_080755E0
+	bl StartManimStarExplosion
 	add sp, #4
 	pop {r4, r7}
 	pop {r0}

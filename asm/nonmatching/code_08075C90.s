@@ -385,7 +385,7 @@ _08075F18:
 	lsrs r1, r2, #0x18
 	adds r0, r4, #0
 	bl StartMuCritFlash
-	bl sub_080751E0
+	bl StartManimBgShaker
 	ldr r0, _08075FD4 @ =0x0203E0FC
 	ldr r1, [r7, #0xc]
 	adds r3, r1, #0

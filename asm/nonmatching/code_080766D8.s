@@ -62,7 +62,7 @@ _080766F6:
 	adds r2, r1, #0
 	adds r2, #8
 	adds r1, r2, #0
-	bl sub_0807560C
+	bl StartManimStarImplosion
 	add sp, #4
 	pop {r4, r7}
 	pop {r0}

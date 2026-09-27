@@ -12,8 +12,6 @@ extern u8 CONST_DATA gManimAntitoxinFrameLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimAntitoxin[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimStatusHealSe[];
 
-void LoadSparkGfx(void);
-
 extern u8 const Img_ManimWarpFlashy[];
 extern u16 const Pal_ManimWarpFlashy[];
 extern u8 const Img_ManimWarpFlashyFrames[];

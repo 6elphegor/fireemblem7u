@@ -156,6 +156,34 @@ struct ManimLevelUpProc {
     /* 32 */ s16 y_scroll_offset;
 };
 
+struct ManimShakeProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 timer;
+};
+
+struct ManimStarProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2A);
+    /* 2A */ s16 x_center;
+    /* 2C */ s16 y_center;
+    /* 2E */ s16 lo;
+    /* 30 */ s16 hi;
+    /* 32 */ STRUCT_PAD(0x32, 0x36);
+    /* 36 */ u16 distance;
+    /* 38 */ u16 angle;
+    /* 3A */ u16 timer;
+    /* 3C */ u16 start;
+    /* 3E */ u16 end;
+    /* 40 */ u16 terminator;
+};
+
+struct ManimStarfxConf {
+    /* 00 */ u16 distance;
+    /* 02 */ u16 angle;
+    /* 04 */ int unk_04;
+};
+
 struct ManimEffectProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;
@@ -338,20 +366,20 @@ void ManimLevelUp_StartLevelUpText(struct ManimLevelUpProc * proc);
 void ManimLevelUp_RestoreBgm(struct ManimLevelUpProc * proc);
 // sub_8075898
 // sub_80758AC
-// sub_08075114
+void ManimSpellAssocFade_Main(ProcPtr proc);
 // sub_8075938
-// sub_080751A0
-// sub_080751E0
+void ManimSpellAssocResetPal_Main(ProcPtr proc);
+void StartManimBgShaker(void);
 // sub_80759C8
-// sub_08075218
-// LoadSparkGfx
-// sub_080752F4
-// sub_0807534C
-// sub_080753AC
-// sub_08075448
-// sub_08075528
-// sub_080755E0
-// sub_0807560C
+void ManimBgShaker_Main(struct ManimShakeProc * proc);
+void LoadSparkGfx(void);
+void PutSparkGfx(int x, int y);
+void PutSparkGfxRotation(int x_center, int y_center, int distance, int angle);
+void ManimStarRotation_Init(struct ManimStarProc * proc);
+void ManimStarRotation_Main(struct ManimStarProc * proc);
+void StartManimStarRotation(int x_center, int y_center, int lo, int hi, int start, int end, int terminator);
+void StartManimStarExplosion(int x, int y);
+void StartManimStarImplosion(int x, int y);
 // sub_08075638
 // sub_8075E34
 // sub_8075E68
@@ -419,3 +447,6 @@ void EndManimLevelUpStatGainLabels(void);
 void ManimLevelUp_PutStatGainLabels(struct ManimLevelUpProc * proc);
 void ManimLevelUp_EndLevelUpText(struct ManimLevelUpProc * proc);
 void ManimLevelUp_Clear(struct ManimLevelUpProc * proc);
+void StartManimSpellAssocFadeExt(ProcPtr proc);
+void StartManimSpellAssocResetPalExt(ProcPtr proc);
+void ManimBgShaker_Init(struct ManimShakeProc * proc);
