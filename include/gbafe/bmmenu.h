@@ -149,7 +149,7 @@ void UpdateBattleForecastContents(void);
 void CloseBattleForecast(void);
 void MakeTradeTargetList(struct Unit * unit);
 ProcPtr StartTradeMenu(struct Unit * unit, struct Unit * other, int unk);
-s8 sub_08034884(struct Unit * unit);   /* FE8U: CanUnitSeize */
+s8 CanUnitSeize(struct Unit * unit);   /* FE8U: CanUnitSeize */
 int GetAvailableTileEventCommand(s8 x, s8 y);
 s8 IsUnitMagicSealed(struct Unit * unit);
 void MakeTargetListForRefresh(struct Unit * unit);
@@ -181,9 +181,9 @@ void StartUnitInventoryInfoWindow(ProcPtr parent);
 void StartSubtitleHelp(ProcPtr parent, const char * str);
 void RefreshUnitStealInventoryInfoWindow(struct Unit * unit);
 s8 IsItemStealable(int item);
-void sub_08031DFC(ProcPtr parent);   /* StartUnitHpInfoWindow */
-void sub_0803202C(ProcPtr parent);   /* RefreshUnitTakeRescueInfoWindows */
-void sub_080321E0(ProcPtr parent);   /* StartUnitGiveInfoWindows */
+void StartUnitHpInfoWindow(ProcPtr parent);   /* StartUnitHpInfoWindow */
+void RefreshUnitTakeRescueInfoWindows(ProcPtr parent);   /* RefreshUnitTakeRescueInfoWindows */
+void StartUnitGiveInfoWindows(ProcPtr parent);   /* StartUnitGiveInfoWindows */
 void RefreshUnitHpInfoWindow(struct Unit * unit);
 void RefreshUnitRescueInfoWindows(struct Unit * unit);
 void RefreshUnitGiveInfoWindows(struct Unit * unit);
@@ -192,8 +192,8 @@ void RefreshUnitInventoryInfoWindow(struct Unit * unit);
 void RideBallista(struct Unit * unit);
 void TryRemoveUnitFromBallista(struct Unit * unit);
 void StartMu(struct Unit * unit);
-s8 sub_080347E4(struct Trap * trap);   /* IsBallista */
-int sub_0803483C(struct Trap * trap);  /* GetBallistaItemUses */
+s8 IsBallista(struct Trap * trap);   /* IsBallista */
+int GetBallistaItemUses(struct Trap * trap);  /* GetBallistaItemUses */
 
 /* ---- bmmenu.c ---- */
 

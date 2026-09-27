@@ -25,7 +25,7 @@ ReadSuspendSave: @ 0x080A1258
 	ldr r3, [r5]
 	movs r2, #0x1c
 	bl _call_via_r3
-	bl sub_0802F208
+	bl LoadRNStateFromActionStruct
 	bl InitUnits
 	movs r4, #0
 	movs r5, #0
