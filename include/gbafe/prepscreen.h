@@ -339,21 +339,21 @@ void PrepItemScreen_DrawFunds(void);
 void PrepItemScreen_HideFunds(void);
 void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc);
 void PrepItemScreen_OnEnd(struct PrepItemScreenProc * proc);
-// sub_08091868
-// sub_080918B4
-// sub_080918D4
-// sub_080918F4
-// sub_08091914
-// sub_08091944
-// sub_08091994
+void sub_08091868(u16 * tm);
+void sub_080918B4(void);
+void sub_080918D4(void);
+void sub_080918F4(void);
+void sub_08091914(void);
+void sub_08091944(int vram, int pal);
+void sub_08091994(int vram, int pal);
 void PrepItemScreen_Reinit(struct PrepItemScreenProc * proc);
-// sub_08091AD8
-// sub_08091C48
+s8 sub_08091AD8(struct PrepItemScreenProc * proc);
+void sub_08091C48(struct PrepItemScreenProc * proc);
 void PrepItemScreen_StartStatScreen(struct PrepItemScreenProc * proc);
 void PrepItemScreen_ResumeFromStatScreen(struct PrepItemScreenProc * proc);
 void sub_08091DBC(struct PrepItemScreenProc * proc);
-// sub_08091F04
-// sub_08092010
+void sub_08091F04(struct PrepItemScreenProc * proc, u16 * tm, struct Unit * unit);
+void sub_08092010(struct PrepItemScreenProc * proc);
 void sub_0809210C(struct PrepItemScreenProc * proc);
 void sub_0809218C(struct PrepItemScreenProc * proc);
 void sub_080921E8(struct PrepItemScreenProc * proc);
@@ -370,13 +370,13 @@ void sub_080928D4(struct PrepItemScreenProc * proc);
 // UpdatePrepItemScreenFace
 // EndPrepItemScreenFace
 // StartPrepItemScreen
-// sub_080929D0
-// sub_08092AE4
-// sub_08092B6C
-// sub_08092C34
-// PrepItem_DrawSMS
+void sub_080929D0(struct Text * text, u16 * tm, struct Unit * unit, int color);
+void sub_08092AE4(struct PrepItemScreenProc * proc);
+void sub_08092B6C(struct PrepItemScreenProc * proc, u8 a, int b);
+bool sub_08092C34(int x, int y);
+void PrepItem_DrawSMS(struct PrepItemScreenProc * proc);
 // PrepItemDrawPopupBox
-// sub_08092ED4
+void sub_08092ED4(struct PrepItemScreenProc * proc, int a);
 // PrepItemScreen_GiveAll
 
 struct ProcPrepUnit {

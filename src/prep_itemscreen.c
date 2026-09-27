@@ -5,9 +5,19 @@ void EndPrepItemScreenFace(int slot);
 void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp);
 void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2);
 void EndMenuScrollBar(void);
+ProcPtr StartMenuScrollBar(ProcPtr parent);
+void InitMenuScrollBarImg(int chr, int pal);
+void PutMenuScrollBarAt(int x, int y);
+void UpdateMenuScrollBarConfig(u8 a, u16 b, u16 c, u8 d);
+void TryHideMenuScrollBar(void);
+void SetupDebugFontForOBJ(int vram, int pal);
 
 extern u8 Img_0840E368[];
 extern u16 Pal_0840E3EC[];
+extern u8 Tsa_084070BC[];
+extern u8 Tsa_08407188[];
+
+s8 sub_080912EC(struct Unit * unit);
 
 int CONST_DATA gHelpTextIds_PrepItemScreen[] = {
 	0x385,
@@ -181,7 +191,134 @@ void PrepItemScreen_HideFunds(void)
     DisableSysBrownBox(0);
     EnableBgSync(BG0_SYNC_BIT);
 }
-ASM_FUNC("asm/nonmatching/code_080913FC.s");
+void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
+{
+    int i;
+
+    struct FaceVramEnt faceConfig[4] =
+    {
+        { 0x5800, 6 },
+        { 0x6800, 7 },
+        { 0, 0 },
+        { 0, 0 },
+    };
+
+    InitBgs(gBgConfig_PrepScreen);
+
+    gDispIo.disp_ct.mode = DISPCNT_MODE_0;
+
+    SetFaceConfig(faceConfig);
+
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    SetupDebugFontForOBJ(0x06017800, 0);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 0;
+    gDispIo.bg3_ct.priority = 3;
+
+    ResetText();
+    InitIcons();
+    ApplyIconPalettes(4);
+    UnpackUiWindowFrameGraphics();
+    ApplySystemObjectsGraphics();
+
+    MakePrepUnitList();
+    proc->hoverUnitIdx = UnitGetIndexInPrepList(PrepGetLatestCharId());
+
+    ResetSysHandCursor(proc);
+    StartParallelWorker(PrepItem_DrawSMS, proc);
+    StartUiCursorHand(proc);
+
+    SetOnHBlankA(NULL);
+
+    TmFill(GetBgTilemap(0), 0);
+    TmFill(GetBgTilemap(1), 0);
+    TmFill(GetBgTilemap(2), 0);
+
+    gPal[0] = 0;
+    EnablePalSync();
+
+    for (i = 0; i < 15; i++)
+        InitText(&gPrepItemTexts[i], 5);
+
+    for (i = 0; i < 5; i++)
+    {
+        InitText(&gPrepItemTexts[15 + i], 7);
+        InitText(&gPrepItemTexts[20 + i], 7);
+    }
+
+    InitTextDb(&gPrepItemTexts[25], 8);
+    InitTextDb(&gPrepItemTexts[26], 8);
+    InitText(&gPrepItemTexts[27], 8);
+    InitText(&gPrepItemTexts[29], 7);
+    InitText(&gPrepItemTexts[30], 5);
+
+    LoadHelpBoxGfx((void *) 0x06014000, -1);
+
+    SetBlendBackdropA(0);
+    SetBlendBackdropB(0);
+
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 0, 0);
+
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Box(0, 4, 240, 68);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 0, 1, 1);
+
+    SetBgOffset(0, 4, -4);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, -40, (proc->scrollOffset - 4) & 0xff);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+
+    ApplyUnitSpritePalettes();
+    CpuFastFill(0, PAL_OBJ(11), 0x20);
+
+    ForceSyncUnitSpriteSheet();
+
+    Decompress(Img_PrepTextShadow, (void *) 0x06013E00);
+    UiCursorHand_SetPosition(0, 0, 0, 208, 60);
+    DisplaySysHandCursorTextShadow(0x600, 1);
+
+    PrepRestartMuralBackground();
+
+    if (proc->selectedUnitIdx != 0xff)
+    {
+        SetUiCursorHandConfig(
+            0, ((proc->selectedUnitIdx % 3) * 64) + 24, ((proc->selectedUnitIdx / 3) * 16) + 4 - proc->scrollOffset, 2);
+        UpdatePrepItemScreenFace(0, GetUnitFromPrepList(proc->selectedUnitIdx), 68, 78, 0x503);
+    }
+
+    StartMenuScrollBar(proc);
+    InitMenuScrollBarImg(0x200, 4);
+    PutMenuScrollBarAt(216, 12);
+    UpdateMenuScrollBarConfig(6, proc->scrollOffset, ((PrepGetUnitAmount() - 1) / 3) + 1, 4);
+    TryHideMenuScrollBar();
+
+    PrepUpdateSMS();
+
+    SetBlendAlpha(8, 8);
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendTargetB(0, 1, 0, 0, 0);
+
+    SetOnHBlankA(PrepItemScreen_OnHBlank);
+
+    StartSysBrownBox(6, 0xE00, 8, 0xC00, 0x400, proc);
+    SetSysBrownBoxWidth(0, 1);
+
+    Text_SetColor(&gPrepItemTexts[29], TEXT_COLOR_SYSTEM_GOLD);
+    Text_DrawString(&gPrepItemTexts[29], DecodeMsg(0x1259));
+
+    Text_SetColor(&gPrepItemTexts[27], proc->hasConvoyAccess == 0 ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE);
+    Text_SetCursor(&gPrepItemTexts[27], 0);
+    Text_DrawString(&gPrepItemTexts[27], DecodeMsg(0x125A));
+    Text_SetCursor(&gPrepItemTexts[27], 0x20);
+    Text_DrawString(&gPrepItemTexts[27], DecodeMsg(0x125B));
+}
 void PrepItemScreen_OnEnd(struct PrepItemScreenProc * proc)
 {
     PrepSetLatestCharId(GetUnitFromPrepList(proc->hoverUnitIdx)->pCharacterData->number);
@@ -245,17 +382,301 @@ void sub_08091994(int vram, int pal)
     Decompress(Img_0840E368, (void *) OBJ_VRAM0 + vram);
     ApplyPalette(Pal_0840E3EC, pal + 0x10);
 }
-ASM_FUNC("asm/nonmatching/code_080919C8.s");
-ASM_FUNC("asm/nonmatching/code_08091AD8.s");
-ASM_FUNC("asm/nonmatching/code_08091C48.s");
-ASM_FUNC("asm/nonmatching/code_08091D70.s");
-ASM_FUNC("asm/nonmatching/code_08091D9C.s");
-ASM_FUNC("asm/nonmatching/code_08091DBC.s");
-ASM_FUNC("asm/nonmatching/code_08091F04.s");
-ASM_FUNC("asm/nonmatching/code_08092010.s");
-ASM_FUNC("asm/nonmatching/code_0809210C.s");
-ASM_FUNC("asm/nonmatching/code_0809218C.s");
-ASM_FUNC("asm/nonmatching/code_080921E8.s");
+void PrepItemScreen_Reinit(struct PrepItemScreenProc * proc)
+{
+    sub_08092AE4(proc);
+
+    TmFill(GetBgTilemap(0), 0);
+    TmFill(GetBgTilemap(1), 0);
+    TmFill(GetBgTilemap(2), 0);
+
+    sub_08091944(0x6000, 5);
+    sub_08091994(0x3000, 10);
+
+    sub_080AACD8(gBg1Tm, Tsa_084070BC, 0x5300);
+
+    UpdatePrepItemScreenFace(0, GetUnitFromPrepList(proc->hoverUnitIdx), 68, 78, 0x503);
+
+    sub_080929D0(&gPrepItemTexts[15], gBg0Tm + TM_OFFSET(2, 9), GetUnitFromPrepList(proc->hoverUnitIdx), 2);
+
+    sub_08091868(gBg0Tm + TM_OFFSET(2, 9) + 0x30);
+
+    proc->unitSelected = 0;
+
+    ShowSysHandCursor(
+        (proc->hoverUnitIdx % 3) * 64 + 24, ((proc->hoverUnitIdx / 3) * 16) + 4 - proc->scrollOffset, 7, 0x800);
+
+    sub_08092ED4(proc, 0);
+    UnblockUiCursorHand();
+    DisableAllUiCursorHand();
+    StartHelpPromptSprite(201, 123, proc);
+
+    sub_08091914();
+    StartParallelWorker(sub_080918B4, proc);
+
+    PrepItemScreen_DrawFunds();
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+}
+s8 sub_08091AD8(struct PrepItemScreenProc * proc)
+{
+    int previous = proc->hoverUnitIdx;
+
+    u16 keys = gpKeySt->repeated;
+
+    proc->scrollAmount = 4;
+
+    if (gpKeySt->held & L_BUTTON)
+    {
+        keys = gpKeySt->held;
+        proc->scrollAmount = 8;
+    }
+
+    if (keys & DPAD_UP)
+    {
+        if ((proc->hoverUnitIdx - 3) >= 0)
+            proc->hoverUnitIdx -= 3;
+    }
+
+    if (keys & DPAD_DOWN)
+    {
+        if ((proc->hoverUnitIdx + 3) < PrepGetUnitAmount())
+            proc->hoverUnitIdx += 3;
+    }
+
+    if (keys & DPAD_LEFT)
+    {
+        if ((proc->hoverUnitIdx % 3) != 0)
+            proc->hoverUnitIdx--;
+    }
+
+    if (keys & DPAD_RIGHT)
+    {
+        if (((proc->hoverUnitIdx % 3) < 2) && ((proc->hoverUnitIdx + 1) < PrepGetUnitAmount()))
+            proc->hoverUnitIdx++;
+    }
+
+    if (proc->hoverUnitIdx != previous)
+    {
+        int hoverYPos = proc->hoverUnitIdx / 3 * 16;
+        int yMax = (PrepGetUnitAmount() - 1) / 3 * 16;
+
+        if (hoverYPos - proc->scrollOffset > 32 && proc->scrollOffset + 48 < yMax)
+        {
+            sub_08092B6C(proc, (proc->scrollOffset >> 4) + 4, 0);
+            SetSysHandCursorXPos((proc->hoverUnitIdx % 3) * 64 + 24);
+        }
+        else if (hoverYPos - proc->scrollOffset < 0x10 && ({ proc->scrollOffset + 0; }) != 0)
+        {
+            sub_08092B6C(proc, (proc->scrollOffset >> 4) - 1, 0);
+            SetSysHandCursorXPos((proc->hoverUnitIdx % 3) * 64 + 24);
+        }
+        else
+        {
+            ShowSysHandCursor(
+                (proc->hoverUnitIdx % 3) * 64 + 24, (proc->hoverUnitIdx / 3) * 16 + 4 - proc->scrollOffset, 7, 0x800);
+        }
+
+        PlaySoundEffect(0x385);
+        return 1;
+    }
+
+    return 0;
+}
+void sub_08091C48(struct PrepItemScreenProc * proc)
+{
+    int hoverYPos = (proc->hoverUnitIdx / 3) * 16;
+    int yMax = ((PrepGetUnitAmount() - 1) / 3) * 16;
+
+    if (((hoverYPos - proc->scrollOffset) > 32) && ((proc->scrollOffset + 48) < yMax))
+    {
+        proc->scrollOffset += proc->scrollAmount;
+
+        SetBgOffset(2, -40, (proc->scrollOffset - 4) & 0xff);
+
+        if (proc->selectedUnitIdx != 0xFF)
+        {
+            SetUiCursorHandConfig(
+                0, ((proc->selectedUnitIdx % 3) * 64) + 24, ((proc->selectedUnitIdx / 3) * 16) + 4 - proc->scrollOffset, 2);
+        }
+
+        UpdateMenuScrollBarConfig(6, proc->scrollOffset, ((PrepGetUnitAmount() - 1) / 3) + 1, 4);
+    }
+
+    if (((hoverYPos - proc->scrollOffset) < 16) && (proc->scrollOffset != 0))
+    {
+        proc->scrollOffset -= proc->scrollAmount;
+
+        SetBgOffset(2, -40, (proc->scrollOffset - 4) & 0xff);
+
+        if (proc->selectedUnitIdx != 0xFF)
+        {
+            SetUiCursorHandConfig(
+                0, ((proc->selectedUnitIdx % 3) * 64) + 24, ((proc->selectedUnitIdx / 3) * 16) + 4 - proc->scrollOffset, 2);
+        }
+
+        UpdateMenuScrollBarConfig(6, proc->scrollOffset, ((PrepGetUnitAmount() - 1) / 3) + 1, 4);
+    }
+}
+void PrepItemScreen_StartStatScreen(struct PrepItemScreenProc * proc)
+{
+    PrepItemScreen_OnEnd(proc);
+    SetStatScreenExcludedUnitFlags(0x31);
+    StartStatScreen(GetUnitFromPrepList(proc->hoverUnitIdx), proc);
+    Proc_Break(proc);
+}
+void PrepItemScreen_ResumeFromStatScreen(struct PrepItemScreenProc * proc)
+{
+    PrepItemScreen_SetupGfx(proc);
+    proc->hoverUnitIdx = GetLatestUnitIndexInPrepListByUId();
+    sub_08092AE4(proc);
+}
+void sub_08091DBC(struct PrepItemScreenProc * proc)
+{
+    int tmp = proc->scrollOffset;
+
+    if (!(tmp & 15))
+    {
+        if (gpKeySt->pressed & R_BUTTON)
+        {
+            Proc_Break(proc);
+            return;
+        }
+
+        if (gpKeySt->pressed & A_BUTTON)
+        {
+            proc->selectedUnitIdx = proc->hoverUnitIdx;
+
+            if (((proc->hoverUnitIdx % 3) < 2) && (proc->hoverUnitIdx < PrepGetUnitAmount() - 1))
+                proc->hoverUnitIdx++;
+            else
+                proc->hoverUnitIdx--;
+
+            SetUiCursorHandConfig(
+                0, ((proc->selectedUnitIdx % 3) * 64) + 24, (proc->selectedUnitIdx / 3) * 16 + 4 - proc->scrollOffset, 2);
+
+            Proc_Goto(proc, 2);
+            PlaySoundEffect(0x38A);
+            return;
+        }
+
+        if (gpKeySt->pressed & B_BUTTON)
+        {
+            Proc_Goto(proc, 12);
+            PlaySoundEffect(0x38B);
+            return;
+        }
+
+        if (sub_08091AD8(proc) != 0)
+        {
+            UpdatePrepItemScreenFace(0, GetUnitFromPrepList(proc->hoverUnitIdx), 68, 78, 0x503);
+            sub_080929D0(&gPrepItemTexts[15], gBg0Tm + TM_OFFSET(2, 9), GetUnitFromPrepList(proc->hoverUnitIdx), 2);
+            EnableBgSync(BG0_SYNC_BIT);
+        }
+    }
+
+    sub_08091C48(proc);
+}
+void sub_08091F04(struct PrepItemScreenProc * proc, u16 * tm, struct Unit * unit)
+{
+    struct Text * th;
+    int color;
+
+    TmFillRect(tm, 10, 6, 0);
+
+    ClearText(&gPrepItemTexts[25]);
+    ClearText(&gPrepItemTexts[26]);
+
+    Text_InsertDrawString(
+        &gPrepItemTexts[25], 0, PrepGetUnitAmount() < 2 ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE,
+        DecodeMsg(0x125D));
+    Text_InsertDrawString(
+        &gPrepItemTexts[25], 32, PrepGetUnitAmount() < 2 ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE,
+        DecodeMsg(0x125E));
+    PutText(&gPrepItemTexts[25], tm + TM_OFFSET(0, 1));
+
+    Text_InsertDrawString(
+        &gPrepItemTexts[26], 0, !sub_080912EC(unit) ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE,
+        DecodeMsg(0x125F));
+
+    th = &gPrepItemTexts[26];
+    color = TEXT_COLOR_SYSTEM_WHITE;
+    if ((!proc->hasConvoyAccess) || (GetUnitItemCount(unit) < 1) || CheckInLinkArena())
+        color = TEXT_COLOR_SYSTEM_GRAY;
+    Text_InsertDrawString(th, 32, color, DecodeMsg(0x1260));
+
+    PutText(&gPrepItemTexts[26], tm + TM_OFFSET(0, 3));
+    PutText(&gPrepItemTexts[27], tm + TM_OFFSET(0, 5));
+}
+void sub_08092010(struct PrepItemScreenProc * proc)
+{
+    int i;
+    char const * str;
+    int x;
+
+    struct Unit * unit = GetUnitFromPrepList(proc->selectedUnitIdx);
+
+    proc->unitSelected = 1;
+
+    sub_080AACD8(gBg1Tm, Tsa_08407188, 0x5300);
+
+    for (i = 0; i < 8; i++)
+        TmFillRect(gBg2Tm + ((((proc->scrollOffset >> 3) + i) & 0x1F) + 4) * 0x20, 9, 0, 0);
+
+    PutFaceChibi(GetUnitPortraitId(unit), gBg0Tm + TM_OFFSET(3, 4), 0x270, 2, 0);
+
+    ClearText(&gPrepItemTexts[30]);
+
+    str = DecodeMsg(unit->pCharacterData->nameTextId);
+    x = GetStringTextCenteredPos(40, str);
+
+    PutDrawText(&gPrepItemTexts[30], gBg0Tm + TM_OFFSET(8, 4), TEXT_COLOR_SYSTEM_WHITE, x, 0, str);
+
+    PutSpecialChar(gBg0Tm + TM_OFFSET(8, 6), TEXT_COLOR_SYSTEM_GOLD, 0x24);
+    PutSpecialChar(gBg0Tm + TM_OFFSET(9, 6), TEXT_COLOR_SYSTEM_GOLD, 0x25);
+    PutSpecialChar(gBg0Tm + TM_OFFSET(12, 6), TEXT_COLOR_SYSTEM_GOLD, 0x1D);
+
+    PutNumberOrBlank(gBg0Tm + TM_OFFSET(11, 6), TEXT_COLOR_SYSTEM_BLUE, unit->level);
+    PutNumberOrBlank(gBg0Tm + TM_OFFSET(14, 6), TEXT_COLOR_SYSTEM_BLUE, unit->exp);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+}
+void sub_0809210C(struct PrepItemScreenProc * proc)
+{
+    TmFillRect(gBg0Tm + TM_OFFSET(15, 9), 12, 20, 0);
+
+    sub_08091944(0x6000, 5);
+    sub_08091994(0x3000, 10);
+    sub_08092010(proc);
+
+    if (sub_08092C34(((proc->selectedUnitIdx % 3) * 64) + 20, ((proc->selectedUnitIdx / 3) * 16) + 4 - proc->scrollOffset))
+        BlockUiCursorHand();
+    else
+        UnblockUiCursorHand();
+
+    sub_08091914();
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
+void sub_0809218C(struct PrepItemScreenProc * proc)
+{
+    sub_08091F04(proc, gBg0Tm + TM_OFFSET(18, 9), GetUnitFromPrepList(proc->selectedUnitIdx));
+    StartParallelWorker(sub_080918F4, proc);
+    StartHelpPromptSprite(201, 123, proc);
+
+    ShowSysHandCursor((proc->popupPromptIdx & 1) * 32 + 136, (proc->popupPromptIdx >> 1) * 16 + 84, 3, 0x400);
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
+void sub_080921E8(struct PrepItemScreenProc * proc)
+{
+    struct Unit * unit = GetUnitFromPrepList(proc->selectedUnitIdx);
+
+    sub_08092ED4(proc, 0);
+    sub_080929D0(&gPrepItemTexts[15], gBg0Tm + TM_OFFSET(2, 9), unit, 0);
+
+    EnableBgSync(BG2_SYNC_BIT);
+}
 ASM_FUNC("asm/nonmatching/code_08092220.s");
 ASM_FUNC("asm/nonmatching/code_08092578.s");
 ASM_FUNC("asm/nonmatching/code_080925D0.s");
