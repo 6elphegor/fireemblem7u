@@ -1997,3 +1997,6 @@ gEndingCgScroll2Lut = 0x08CEEE68;
 Pal_EndingCgScroll = 0x085E0280;
 gWmSt = 0x02000000;
 gWmCanvas = 0x0200000C;
+ProcScr_WmFade = 0x08CE7568;
+gWmHBlankFlags = 0x02000814;
+gWmHBlankLine = 0x02000815;

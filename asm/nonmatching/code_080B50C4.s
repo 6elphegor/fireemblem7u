@@ -151,7 +151,7 @@ sub_080B50C4: @ 0x080B50C4
 	strb r5, [r0]
 	movs r0, #0
 	bl SetOnHBlankA
-	ldr r0, _080B5260 @ =sub_080B37C4
+	ldr r0, _080B5260 @ =WmHBlankHandler
 	bl SetOnHBlankA
 	adds r0, r4, #0
 	bl sub_080B3C04
@@ -185,7 +185,7 @@ _080B5250: .4byte 0x06015000
 _080B5254: .4byte 0x0000FFE0
 _080B5258: .4byte 0x0000E0FF
 _080B525C: .4byte 0x02000814
-_080B5260: .4byte sub_080B37C4
+_080B5260: .4byte WmHBlankHandler
 _080B5264:
 	movs r0, #2
 	movs r1, #0

@@ -22,7 +22,7 @@ sub_080B3C90: @ 0x080B3C90
 	ldr r2, _080B3CC8 @ =0x000044C3
 	ldr r3, _080B3CCC @ =0x00007247
 	movs r1, #0x28
-	bl sub_080B3858
+	bl WmMakeGradient
 	pop {r4}
 	pop {r0}
 	bx r0

@@ -14,7 +14,7 @@ sub_080B4F78: @ 0x080B4F78
 	adds r0, r4, #0
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_080B37A4
+	bl StartWmFade
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0

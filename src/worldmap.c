@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/scanline.h"
 
 // FE7 world map (no FE8 counterpart)
 
@@ -18,6 +19,19 @@ struct WmCanvas {
     /* 802 */ s16 offX;
     /* 804 */ s16 offY;
 };
+
+extern u8 gWmHBlankFlags;
+extern u8 gWmHBlankLine;
+
+struct WmFadeProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int timer;
+    /* 30 */ int mode;
+    /* 34 */ int x;
+    /* 38 */ int y;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_WmFade[];
 
 extern struct WmSt gWmSt;
 extern struct WmCanvas gWmCanvas;
@@ -177,12 +191,95 @@ int WmGetCameraY(void)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B33D0.s");
-ASM_FUNC("asm/nonmatching/code_080B36A0.s");
-ASM_FUNC("asm/nonmatching/code_080B36FC.s");
-ASM_FUNC("asm/nonmatching/code_080B3720.s");
-ASM_FUNC("asm/nonmatching/code_080B37A4.s");
-ASM_FUNC("asm/nonmatching/code_080B37C4.s");
-ASM_FUNC("asm/nonmatching/code_080B3858.s");
+void WmFade_Init(struct WmFadeProc * proc)
+{
+    WmRedrawMap();
+
+    SetBlendAlpha(0x10, 0);
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    proc->timer = 0;
+}
+
+void WmFade_SetCamera(struct WmFadeProc * proc)
+{
+    if (proc->timer == 0)
+        WmSetCamera(proc->mode, proc->x, proc->y);
+
+    Proc_Break(proc);
+}
+
+void WmFade_Loop(struct WmFadeProc * proc)
+{
+    int t = ++proc->timer >> 2;
+
+    SetBlendAlpha(0x10 - t, t);
+
+    if (t == 0x10)
+    {
+        Proc_Break(proc);
+
+        TmFill(GetBgTilemap(2), 0);
+        EnableBgSync(BG2_SYNC_BIT);
+
+        SetBlendConfig(0, t, 0, 0);
+    }
+}
+
+void StartWmFade(int mode, int x, int y, ProcPtr parent)
+{
+    struct WmFadeProc * proc = Proc_StartBlocking(ProcScr_WmFade, parent);
+
+    proc->x = x;
+    proc->y = y;
+    proc->mode = mode;
+}
+
+void WmHBlankHandler(void)
+{
+    u16 vcount = REG_VCOUNT + 1;
+
+    if (vcount > 0xA0)
+        vcount = 0;
+
+    if ((vcount & 1) != 0)
+        return;
+
+    if (gWmHBlankFlags & 2)
+    {
+        if (vcount == 0)
+            gManimActiveScanlineBuf = gManimScanlineBufs[0];
+
+        REG_WIN0H = gManimActiveScanlineBuf[vcount];
+    }
+
+    if (gWmHBlankFlags & 1)
+    {
+        if (vcount >= gWmHBlankLine && vcount < gWmHBlankLine + 0x28)
+        {
+            u16 color = (gPal + 0x140)[vcount - gWmHBlankLine];
+
+            *(u16 *) (PLTT + 0x268) = color;
+            *(u16 *) (PLTT + 0x248) = color;
+        }
+    }
+}
+
+void WmMakeGradient(u16 * dstPal, int b, u16 colorA, u16 colorB)
+{
+    int i;
+
+    for (i = 0; i < b; i++)
+    {
+        int color = (b - i);
+
+        dstPal[i] = (((color * (colorA & 0x1F) + i * (colorB & 0x1F)) / b) & 0x1F) +
+            (((color * (colorA & 0x3E0) + i * (colorB & 0x3E0)) / b) & 0x3E0) +
+            (((color * (colorA & 0x7C00) + i * (colorB & 0x7C00)) / b) & 0x7C00);
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B3918.s");
 ASM_FUNC("asm/nonmatching/code_080B3940.s");
 ASM_FUNC("asm/nonmatching/code_080B39D8.s");
