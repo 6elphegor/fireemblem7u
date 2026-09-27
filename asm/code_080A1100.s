@@ -85,13 +85,13 @@ _080A118E:
 	bl WriteSramFast
 	ldr r1, _080A1234 @ =0x00001F1C
 	adds r0, r7, r1
-	bl sub_0809E954
+	bl WritePermanentFlags
 	ldr r1, _080A1238 @ =0x00001F24
 	adds r0, r7, r1
-	bl sub_0809E934
+	bl WriteChapterFlags
 	ldr r1, _080A123C @ =0x00001924
 	adds r0, r7, r1
-	bl sub_0809E9C4
+	bl WriteSupplyItems
 	ldr r1, _080A1240 @ =0x000019EC
 	adds r0, r7, r1
 	bl WritePidStats

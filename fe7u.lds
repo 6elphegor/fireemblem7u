@@ -4121,15 +4121,7 @@ SECTIONS
         build/asm/code_0809E3F4.o(.text);
         build/asm/code_0809E400.o(.text);
         build/src/save_core.o(.text);
-        build/asm/code_0809E934.o(.text);
-        build/asm/code_0809E954.o(.text);
-        build/asm/code_0809E974.o(.text);
-        build/asm/code_0809E99C.o(.text);
-        build/asm/code_0809E9C4.o(.text);
-        build/asm/code_0809E9DC.o(.text);
-        build/asm/code_0809E9FC.o(.text);
-        build/asm/code_0809EA58.o(.text);
-        build/asm/code_0809EA7C.o(.text);
+        build/src/bmsave-lib.o(.text);
         build/asm/code_0809EA80.o(.text);
         build/asm/code_0809EAB8.o(.text);
         build/asm/code_0809EAE0.o(.text);
