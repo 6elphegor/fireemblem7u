@@ -4,7 +4,7 @@ extern s8 CONST_DATA gUnitBurstMapUiTextXTable[];
 extern s8 CONST_DATA gUnitBurstMapUiTextYTable[];
 extern s8 CONST_DATA gUnitBurstMapUiXOffsetTable[];
 extern s8 CONST_DATA gUnitBurstMapUiYOffsetTable[];
-extern u16 * CONST_DATA gUnitBurstMapUiTopTsaLut[];
+extern u8 const * CONST_DATA gUnitBurstMapUiTopTsaLut[];
 extern s8 CONST_DATA sMMBSlideInWidthLut[];
 extern s8 CONST_DATA sMMBSlideOutWidthLut[];
 extern s8 CONST_DATA sTerrainSlideInWidthLut[];
@@ -569,11 +569,87 @@ void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
     ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
 }
 
-ASM_FUNC("asm/nonmatching/code_08085250.s");
+int GetUnitBurstMapUiOrientationAt(int x, int y)
+{
+    int cursorQuadrant = GetCursorQuadrant();
 
-ASM_FUNC("asm/nonmatching/code_08085290.s");
+    int result = 1;
 
-ASM_FUNC("asm/nonmatching/code_080853F8.s");
+    if ((y < 6) || ((y < 12) && (sPlayerInterfaceConfigLut[cursorQuadrant].yGoal < 0)))
+        result = 4;
+
+    if (x < 2)
+        result = result - 1;
+
+    if (x > 22)
+        result = result + 1;
+
+    return result;
+}
+
+void DrawUnitBurstMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
+{
+    int x;
+    int y;
+    int orientation;
+    char const * nameStr;
+    int pos;
+
+    x = (unit->xPos * 16 - gBmSt.camera.x) / 8;
+    y = (unit->yPos * 16 - gBmSt.camera.y) / 8;
+
+    orientation = GetUnitBurstMapUiOrientationAt(x, y);
+
+    x = x + gUnitBurstMapUiXOffsetTable[orientation];
+    y = y + gUnitBurstMapUiYOffsetTable[orientation];
+
+    proc->xBurst = x;
+    proc->yBurst = y;
+
+    proc->wBurst = 8;
+    proc->hBurst = 5;
+
+    nameStr = DecodeMsg(unit->pCharacterData->nameTextId);
+    pos = GetStringTextCenteredPos(48, nameStr);
+
+    ClearText(proc->texts);
+
+    Text_SetParams(proc->texts, pos, TEXT_COLOR_0030);
+    Text_DrawString(proc->texts, nameStr);
+
+    PutText(proc->texts, gBg0Tm + TM_OFFSET(
+        x + gUnitBurstMapUiTextXTable[orientation],
+        y + gUnitBurstMapUiTextYTable[orientation]));
+
+    proc->statusTm = gBg0Tm + TM_OFFSET(x + 1, y + 3);
+
+    proc->unitClock = 0;
+
+    proc->xHp = x + 1;
+    proc->yHp = y + 3;
+
+    UnitMapUiUpdate(proc, unit);
+
+    TmApplyTsa(gBg1Tm + TM_OFFSET(x, y), gUnitBurstMapUiTopTsaLut[orientation], TILEREF(0x100, 3));
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
+}
+
+void ClearUnitBurstMapUi(struct PlayerInterfaceProc * proc)
+{
+    if (proc->wBurst == 8 && proc->hBurst == 5)
+    {
+        TmFillRect(gBg0Tm + TM_OFFSET(proc->xBurst, proc->yBurst), proc->wBurst - 1, proc->hBurst - 1, 0);
+        TmFillRect(gBg1Tm + TM_OFFSET(proc->xBurst, proc->yBurst), proc->wBurst - 1, proc->hBurst - 1, 0);
+
+        EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+        proc->wBurst = 0;
+        proc->hBurst = 0;
+    }
+}
 
 ASM_FUNC("asm/nonmatching/code_08085478.s");
 
