@@ -4,6 +4,7 @@
 
 struct ProcCmd CONST_DATA ProcScr_BmMain[] =
 {
+    PROC_YIELD,
     PROC_19,
     PROC_19,
     PROC_MARK(2),
