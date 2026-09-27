@@ -5,6 +5,11 @@
 s8 sub_08079D20(void);
 s8 sub_0807A304(void);
 void UnitGetDeathDropLocation(struct Unit * unit, int * xOut, int * yOut);
+s8 sub_0807A1F8(void);
+void EndTalk(void);
+bool IsTalkActive(void);
+ProcPtr StartTalkExt(int x, int y, char const * str, ProcPtr parent);
+void SetTalkPrintColor(int color);
 
 struct EventCallLookupEnt
 {
@@ -25,8 +30,9 @@ struct Event_0807DC14Sub
 struct ProcEvent_0807DC14
 {
     PROC_HEADER;
-    STRUCT_PAD(0x29, 0x60);
+    STRUCT_PAD(0x29, 0x5E);
 
+    /* 5E */ u16 flags;
     /* 60 */ struct Event_0807DC14Sub unk_60;
 };
 
@@ -176,4 +182,134 @@ int sub_0807DC30(int key)
     }
 
     return 0;
+}
+
+int sub_0807DC5C(struct ProcEvent_0807DC14 * proc)
+{
+    struct Event_0807DC14Sub * sub = &proc->unk_60;
+    struct Unit * unit;
+    int active;
+    int i;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EndTalk();
+        return FALSE;
+    }
+
+    active = IsTalkActive();
+
+    if (active)
+        return TRUE;
+
+    switch (sub->unk_00)
+    {
+    case 0:
+        i = 1;
+
+        if (sub->unk_01 != 0)
+            i = sub->unk_01;
+
+        for (; i < 0x40; i++)
+        {
+            unit = GetUnit(i);
+
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+            if (unit->state & US_UNAVAILABLE)
+                continue;
+
+            sub->unk_02 = unit->pCharacterData->number;
+
+            if (sub->unk_02 == 0x01)
+                continue;
+
+            if (sub->unk_02 == 0x02)
+                continue;
+
+            if (sub->unk_02 == 0x2D)
+                continue;
+
+            if (sub->unk_02 == 0x26)
+                continue;
+
+            sub->unk_04 = sub_0807DC30(sub->unk_02);
+            sub->unk_01 = i + 1;
+            sub->unk_00++;
+
+            return TRUE;
+        }
+
+        return FALSE;
+
+    case 1:
+        unit = GetUnitFromCharId(sub->unk_02);
+
+        if (unit != NULL)
+        {
+            EnsureCameraOntoPosition(proc, unit->xPos, unit->yPos);
+            SetMapCursorPosition(unit->xPos, unit->yPos);
+        }
+
+        sub->unk_00++;
+        break;
+
+    case 2:
+        if (Proc_Find(ProcScr_Face))
+        {
+            ClearTalkBubble();
+            Proc_ForEach(ProcScr_Face, (ProcFunc) StartFaceFadeOut);
+            StartTemporaryLock(proc, 8);
+        }
+
+        sub->unk_00++;
+        break;
+
+    case 3:
+        if (sub->unk_04 != 0)
+        {
+            SetInitTalkTextFont();
+            ClearTalkText();
+            ClearPutTalkText();
+            ClearTalk();
+
+            StartTalkExt(10, 14, DecodeMsg(sub->unk_04), NULL);
+            SetTalkPrintColor(1);
+            SetActiveTalkFace(1);
+        }
+
+        sub->unk_00 = active;
+        break;
+    }
+
+    return TRUE;
+}
+
+void sub_0807DD94(void)
+{
+    CpuFastFill(0, (void *) VRAM, 0x20);
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+void sub_0807DDD0(void)
+{
+    InitPlayerUnitPositionsForPrepScreen();
+    SyncUnitDeploymentState();
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+    RenderMap();
+}
+
+int sub_0807DDEC(void)
+{
+    if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR && sub_0807A1F8() && CheckFlag(0x07))
+        return TRUE;
+
+    return FALSE;
 }

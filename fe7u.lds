@@ -1625,10 +1625,6 @@ SECTIONS
         build/src/eventcall_0807CEC8.o(.text);
         build/src/eventcall_ninian.o(.text);
         build/src/eventcall_0807D9E4.o(.text);
-        build/asm/code_0807DC5C.o(.text);
-        build/asm/code_0807DD94.o(.text);
-        build/asm/code_0807DDD0.o(.text);
-        build/asm/code_0807DDEC.o(.text);
         build/asm/code_0807DE1C.o(.text);
         build/asm/code_0807DEA8.o(.text);
         build/asm/code_0807DF24.o(.text);
