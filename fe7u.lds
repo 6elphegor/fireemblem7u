@@ -5402,15 +5402,7 @@ SECTIONS
         build/asm/code_0808F7C4.o(.text);
         build/asm/code_0808F7D8.o(.text);
         build/asm/code_0808F7F0.o(.text);
-        build/asm/code_0808F808.o(.text);
-        build/asm/code_0808F904.o(.text);
-        build/asm/code_0808F9AC.o(.text);
-        build/asm/code_0808F9B0.o(.text);
-        build/asm/code_0808FA48.o(.text);
-        build/asm/code_0808FA5C.o(.text);
-        build/asm/code_0808FA68.o(.text);
-        build/asm/code_0808FA84.o(.text);
-        build/asm/code_0808FAA8.o(.text);
+        build/src/prepscreenfx.o(.text);
         build/asm/code_0808FABC.o(.text);
         build/asm/code_0808FB54.o(.text);
         build/asm/code_0808FB98.o(.text);

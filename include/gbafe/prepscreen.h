@@ -590,11 +590,11 @@ extern struct ProcCmd ProcScr_PrepMenuDescHandler[];
 // ??? ProcScr_AtMenu
 extern struct ProcCmd ProcScr_PrepPromoteDebug[];
 // ??? ProcScr_AtUnkMenu
-// ??? Sprite_08D8C52E
-// ??? Sprite_08D8C53C
-// ??? Sprite_08D8C544
-// ??? Sprite_08D8C55E
-// ??? Sprites_08D8C5D8
+// ??? Sprite_08CC3FB6
+// ??? Sprite_08CC3FC4
+// ??? Sprite_08CC3FCC
+// ??? Sprite_08CC3FE6
+// ??? Sprites_08CC4060
 // ??? ProcScr_PrepSpecialCharEff
 // ??? ProcScr_PrepScreenMenuDummyItem
 // ??? ProcScr_PrepMenu

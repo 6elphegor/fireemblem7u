@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0808F9B0
-sub_0808F9B0: @ 0x0808F9B0
+	thumb_func_start ProcPrepSpChar_OnInit
+ProcPrepSpChar_OnInit: @ 0x0808F9B0
 	push {r4, r5, lr}
 	sub sp, #8
 	adds r5, r0, #0
