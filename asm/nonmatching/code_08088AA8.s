@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08088AA8
-sub_08088AA8: @ 0x08088AA8
+	thumb_func_start YesNoChoice_Loop_KeyHandler
+YesNoChoice_Loop_KeyHandler: @ 0x08088AA8
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r1, _08088AD4 @ =0x08B857F8

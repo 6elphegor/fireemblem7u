@@ -25,7 +25,7 @@ StartCgText: @ 0x08087BFC
 	ldr r0, [sp, #0x2c]
 	bl DecodeMsg
 	str r0, [r4, #0x2c]
-	bl _08088074
+	bl DoesStringContainTact
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08087C3A
@@ -139,7 +139,7 @@ _08087CE8:
 	ldr r0, [sp, #0x2c]
 	bl DecodeMsg
 	str r0, [r4, #0x2c]
-	bl _08088074
+	bl DoesStringContainTact
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08087D28

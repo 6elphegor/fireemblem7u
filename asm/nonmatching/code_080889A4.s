@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080889A4
-sub_080889A4: @ 0x080889A4
+	thumb_func_start CgTextInterpreter_808FF10
+CgTextInterpreter_808FF10: @ 0x080889A4
 	adds r0, #0x4c
 	movs r1, #0
 	strh r1, [r0]

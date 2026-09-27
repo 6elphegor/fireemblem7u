@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08087690
-sub_08087690: @ 0x08087690
+	thumb_func_start CgText_Init
+CgText_Init: @ 0x08087690
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -56,7 +56,7 @@ _080876E8:
 	adds r0, #0xa
 	strb r2, [r0]
 	adds r0, r6, #0
-	bl sub_080875A8
+	bl sub_808EB0C
 	adds r0, r6, #0
 	adds r0, #0x5b
 	movs r1, #0
@@ -78,7 +78,7 @@ _0808771A:
 	ldr r0, [r6, #0x2c]
 	add r2, sp, #8
 	add r1, sp, #4
-	bl sub_08087EFC
+	bl GetCgTextBoxDimensions
 	movs r0, #0
 	bl SetTextFontGlyphs
 	ldr r1, [sp, #4]
@@ -263,8 +263,8 @@ _080878A6:
 	bl EnableBgSync
 _080878AC:
 	adds r0, r6, #0
-	bl sub_08087EAC
-	ldr r0, _08087920 @ =sub_08088098
+	bl sub_808F3D8
+	ldr r0, _08087920 @ =sub_808F5C8
 	adds r1, r6, #0
 	bl StartParallelWorker
 	ldr r0, [r6, #0x30]
@@ -313,7 +313,7 @@ _080878FE:
 	bl Proc_Goto
 	b _08087A04
 	.align 2, 0
-_08087920: .4byte sub_08088098
+_08087920: .4byte sub_808F5C8
 _08087924:
 	bl GetCgTextFlags
 	movs r1, #0x80
@@ -418,7 +418,7 @@ _08087992:
 	bne _08087A04
 	movs r0, #0
 	bl SetOnHBlankB
-	ldr r0, _08087A34 @ =sub_08087534
+	ldr r0, _08087A34 @ =CgText_OnHBlank
 	bl SetOnHBlankB
 _08087A04:
 	bl GetCgTextFlags
@@ -441,4 +441,4 @@ _08087A04:
 	.align 2, 0
 _08087A2C: .4byte 0x0203E738
 _08087A30: .4byte 0xFFFFFC1F
-_08087A34: .4byte sub_08087534
+_08087A34: .4byte CgText_OnHBlank

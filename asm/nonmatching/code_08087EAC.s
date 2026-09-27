@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08087EAC
-sub_08087EAC: @ 0x08087EAC
+	thumb_func_start sub_808F3D8
+sub_808F3D8: @ 0x08087EAC
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetCgTextFlags

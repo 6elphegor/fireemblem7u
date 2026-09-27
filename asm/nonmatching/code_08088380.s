@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08088380
-sub_08088380: @ 0x08088380
+	thumb_func_start CgTextInterpreter_Loop_Main
+CgTextInterpreter_Loop_Main: @ 0x08088380
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

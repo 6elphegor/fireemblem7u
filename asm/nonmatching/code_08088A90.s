@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08088A90
-sub_08088A90: @ 0x08088A90
+	thumb_func_start sub_808FFFC
+sub_808FFFC: @ 0x08088A90
 	push {lr}
 	bl GetCgTextFlags
 	movs r1, #4

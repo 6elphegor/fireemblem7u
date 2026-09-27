@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080889AC
-sub_080889AC: @ 0x080889AC
+	thumb_func_start CgTextInterpreter_808FF18
+CgTextInterpreter_808FF18: @ 0x080889AC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -21,7 +21,7 @@ sub_080889AC: @ 0x080889AC
 	ldrb r1, [r1]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08088938
+	bl sub_808FEA4
 	adds r0, r7, #0
 	adds r0, #0x4c
 	ldrh r1, [r0]
@@ -38,7 +38,7 @@ sub_080889AC: @ 0x080889AC
 	cmp r1, r0
 	bne _08088A26
 	adds r0, r5, #0
-	bl sub_08087DE0
+	bl sub_808F30C
 	ldrb r0, [r4]
 	subs r0, #1
 	ldrb r1, [r6]

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08087B20
-sub_08087B20: @ 0x08087B20
+	thumb_func_start CgText_808F04C
+CgText_808F04C: @ 0x08087B20
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08087B54 @ =0x08B857F8

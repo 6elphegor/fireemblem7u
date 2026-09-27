@@ -20,7 +20,7 @@ Event_CgTalkOnSkip: @ 0x08010190
 	str r0, [r4, #0x40]
 	b _080101C6
 _080101B2:
-	bl sub_08087D58
+	bl CgTextExists
 	lsls r0, r0, #0x18
 	asrs r5, r0, #0x18
 	cmp r5, #0

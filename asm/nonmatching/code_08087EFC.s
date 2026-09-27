@@ -2,10 +2,8 @@
 
 	.syntax unified
 
-	.global _08088074
-
-	thumb_func_start sub_08087EFC
-sub_08087EFC: @ 0x08087EFC
+	thumb_func_start GetCgTextBoxDimensions
+GetCgTextBoxDimensions: @ 0x08087EFC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -154,27 +152,4 @@ _08088066:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-	.align 2, 0
-_08088074:
-	ldrb r1, [r0]
-	cmp r1, #0
-	beq _08088080
-	cmp r1, #0x80
-	beq _08088084
-	b _08088090
-_08088080:
-	movs r0, #0
-	b _08088094
-_08088084:
-	adds r0, #1
-	ldrb r1, [r0]
-	cmp r1, #0x20
-	bne _08088090
-	movs r0, #1
-	b _08088094
-_08088090:
-	adds r0, #1
-	b _08088074
-_08088094:
-	bx lr
 	.align 2, 0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08087534
-sub_08087534: @ 0x08087534
+	thumb_func_start CgText_OnHBlank
+CgText_OnHBlank: @ 0x08087534
 	push {r4, r5, lr}
 	ldr r0, _08087594 @ =0x04000006
 	ldrh r0, [r0]

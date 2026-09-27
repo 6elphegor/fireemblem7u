@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08087D74
-sub_08087D74: @ 0x08087D74
+	thumb_func_start sub_808F2A0
+sub_808F2A0: @ 0x08087D74
 	push {lr}
 	ldr r0, _08087D8C @ =0x08CC306C
 	bl Proc_Find
