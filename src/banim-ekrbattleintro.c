@@ -19,11 +19,23 @@ struct ProcEkrBaseKaiten {
 
 struct ProcUnitKakudai {
     /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x44);
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ s16 timer;
+    /* 2E */ s16 terminator;
+    /* 30 */ u16 unk30;
+    /* 32 */ s16 x1;
+    /* 34 */ s16 x2;
+    /* 36 */ s16 left_pos;
+    /* 38 */ s16 right_pos;
+    /* 3A */ s16 y1;
+    /* 3C */ s16 y2;
+    /* 3E */ STRUCT_PAD(0x3E, 0x44);
     /* 44 */ int type;
     /* 48 */ STRUCT_PAD(0x48, 0x4C);
     /* 4C */ int valid_l;
     /* 50 */ int valid_r;
+    /* 54 */ void * pOaml;
+    /* 58 */ void * pOamr;
 };
 
 struct ProcEkrIntroWindow {
@@ -124,7 +136,72 @@ void NewEkrUnitKakudai(int identifier)
 
 ASM_FUNC("asm/nonmatching/code_0805175C.s");
 
-ASM_FUNC("asm/nonmatching/code_080518E8.s");
+void UnitKakudai2(struct ProcUnitKakudai * proc)
+{
+    u16 ret1, x, y;
+    struct AnimSpriteData sprite_data[0x40];
+    struct Anim _anim;
+    struct Anim * anim = &_anim;
+
+    if (proc->timer >= proc->terminator)
+    {
+        Proc_Break(proc);
+        return;
+    }
+
+    proc->timer++;
+
+    if (proc->type == 0)
+        ret1 = Interpolate(0, 0x250, 0x100, proc->timer, proc->terminator);
+    else
+        ret1 = Interpolate(0, 0x100, 0x250, proc->timer, proc->terminator);
+
+    if (proc->valid_l == 1)
+    {
+        BanimUpdateSpriteRotScale(proc->pOaml, sprite_data, ret1, ret1, 0);
+
+        if (proc->type == 0)
+        {
+            x = Interpolate(0, proc->x1, proc->left_pos, proc->timer, proc->terminator);
+            y = Interpolate(0, proc->y1, 0x58, proc->timer, proc->terminator);
+        }
+        else
+        {
+            x = Interpolate(0, proc->left_pos, proc->x1, proc->timer, proc->terminator);
+            y = Interpolate(0, 0x58, proc->y1, proc->timer, proc->terminator);
+        }
+        anim->pSpriteData = sprite_data;
+        anim->xPosition = x;
+        anim->yPosition = y;
+        anim->state2 = 0x400;
+        anim->oam2Base = 0x7200;
+        anim->oamBase = 0;
+        AnimDisplay(anim);
+    }
+
+    if (proc->valid_r == 1)
+    {
+        BanimUpdateSpriteRotScale(proc->pOamr, sprite_data, ret1, ret1, 1);
+
+        if (proc->type == 0)
+        {
+            x = Interpolate(0, proc->x2, proc->right_pos, proc->timer, proc->terminator);
+            y = Interpolate(0, proc->y2, 0x58, proc->timer, proc->terminator);
+        }
+        else
+        {
+            x = Interpolate(0, proc->right_pos, proc->x2, proc->timer, proc->terminator);
+            y = Interpolate(0, 0x58, proc->y2, proc->timer, proc->terminator);
+        }
+        anim->pSpriteData = sprite_data;
+        anim->xPosition = x;
+        anim->yPosition = y;
+        anim->state2 = 0x400;
+        anim->oam2Base = 0x9300;
+        anim->oamBase = 0;
+        AnimDisplay(anim);
+    }
+}
 
 void UnitKakudaiEndNop(struct ProcUnitKakudai * proc)
 {
