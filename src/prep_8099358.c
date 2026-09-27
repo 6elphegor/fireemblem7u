@@ -81,7 +81,7 @@ void sub_08099A48(struct PrepRankProc * proc);
 int sub_0809A83C(int pid, int rank);
 int sub_0809A870(int n);
 int sub_0809A8C8(int n);
-void sub_0809A504(int x);
+void sub_0809A504(int x, int y);
 
 struct PrepDivinationProc {
     /* 00 */ PROC_HEADER;
@@ -159,7 +159,63 @@ void sub_0809945C(int pal, ProcPtr parent)
     struct PrepRankPalAnimProc * proc = Proc_Start(ProcScr_08CC5114, parent);
     proc->pal = pal;
 }
+#if NONMATCHING
+// register allocation only: the original has x in r4, j in r5 and the reduced &proc->ranks[i]
+// pointer in r6 (here: rank pointer in r4, x in r6); without the j pin it drifts further
+void sub_08099474(struct PrepRankProc * proc)
+{
+    int i;
+    register int j asm("r5");
+    int x, y;
+    int scale;
+    u8 * rank;
+    u16 const * const * sprites;
+
+    if ((proc->timer >> 3) <= 5)
+    {
+        proc->timer += 2;
+
+        if ((proc->timer >> 3) == 6)
+            sub_0809945C(0xF, proc);
+    }
+
+    for (i = 0; i < 5; i++)
+    {
+        y = i * 16 + 9;
+
+        if (proc->ranks[i] != 0xFF)
+        {
+            j = 0;
+            if (j <= proc->ranks[i] && j < (proc->timer >> 3))
+            {
+                x = 0x50;
+                sprites = gUnk_08CC5100;
+                do
+                {
+                    PutSpriteExt(4, x + (j << 9), y + OAM0_AFFINE_ENABLE, *sprites++, 0xF380);
+                    x += 15;
+                    j++;
+                } while (j <= proc->ranks[i] && j < (proc->timer >> 3));
+            }
+        }
+    }
+
+    for (i = 0; i < 5; i++)
+    {
+        scale = (proc->timer - (i + 1) * 8) * 32;
+
+        if (scale > 0x100)
+            scale = 0x100;
+
+        if (scale > 0x20)
+            SetObjAffineAuto(i, 0, scale, 0x100);
+        else
+            SetObjAffineAuto(i, 0, 0x20, 0x100);
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08099474.s");
+#endif
 void sub_08099628(void)
 {
     int i;
@@ -629,7 +685,7 @@ void sub_0809A404(struct PrepRankProc * proc)
     SetWOutLayers(0, 0, 0, 1, 1);
     SetWin0Box(0, 0, 0xF0, 0xA0);
 }
-void sub_0809A504(int x)
+void sub_0809A504(int x, int y)
 {
     int left = 0;
     int right = 0xF0;
@@ -645,8 +701,6 @@ void sub_0809A504(int x)
 
     SetWin0Box(left, 0, right, 0xA0);
 }
-#if NONMATCHING
-// register allocation: -y should go in r1 so &proc->unk_54 is recomputed instead of CSEd from &proc->unk_52
 void sub_0809A560(struct PrepRankProc * proc)
 {
     int t, a, b, x, y;
@@ -657,8 +711,8 @@ void sub_0809A560(struct PrepRankProc * proc)
     a = 8 - (t * 8 * t) / 100;
     b = 16 - (t * 16 * t) / 100;
 
-    x = a * (proc->unk_4f * 8);
-    y = a * (proc->unk_50 * 8);
+    x = a * (proc->unk_4f << 3);
+    y = a * (proc->unk_50 << 3);
 
     SetBlendAlpha(b, 16 - b);
 
@@ -669,7 +723,7 @@ void sub_0809A560(struct PrepRankProc * proc)
     proc->unk_52 = -x;
     proc->unk_54 = -y;
 
-    sub_0809A504(-x);
+    sub_0809A504(-x, -y);
 
     if (proc->unk_3f != 0)
         SetFacePosition(0, 0xD8 - x, 0x58 - y);
@@ -677,9 +731,6 @@ void sub_0809A560(struct PrepRankProc * proc)
     if (proc->timer == 10)
         Proc_Break(proc);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0809A560.s");
-#endif
 void sub_0809A650(struct PrepRankProc * proc)
 {
     proc->timer = 0;
@@ -714,7 +765,46 @@ void sub_0809A650(struct PrepRankProc * proc)
         }
     }
 }
-ASM_FUNC("asm/nonmatching/code_0809A6C0.s");
+void sub_0809A6C0(struct PrepRankProc * proc)
+{
+    int t, a, b, x, y;
+
+    proc->timer++;
+    t = 10 - proc->timer;
+
+    a = 8 - (t * 8 * t) / 100;
+    b = 16 - (t * 16 * t) / 100;
+
+    x = (a * 8 - 0x40) * proc->unk_4f;
+    y = (a * 8 - 0x40) * proc->unk_50;
+
+    SetBlendAlpha(16 - b, b);
+
+    SetBgOffset(0, x, y);
+    SetBgOffset(1, x, y);
+    SetBgOffset(2, x, y + 4);
+
+    proc->unk_52 = -x;
+    proc->unk_54 = -y;
+
+    sub_0809A504(-x, -y);
+
+    if (proc->unk_3f != 0)
+        SetFacePosition(0, 0xD8 - x, 0x58 - y);
+
+    if (proc->timer == 10)
+    {
+        Proc_Break(proc);
+
+        gDispIo.bg0_ct.priority = 1;
+        gDispIo.bg1_ct.priority = 3;
+        gDispIo.bg2_ct.priority = 2;
+        gDispIo.bg3_ct.priority = 3;
+
+        SetBlendConfig(0, 0, 0, 0);
+        SetWinEnable(0, 0, 0);
+    }
+}
 void sub_0809A824(struct PrepRankProc * proc)
 {
     sub_0809E3D8(proc->unk_3c, proc->unk_3d, proc);

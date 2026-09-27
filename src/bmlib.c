@@ -661,7 +661,8 @@ void ArchivePalette(int index)
 }
 
 #if NONMATCHING
-// FE8U port; register allocation differs in the first (red) loop
+// FE8U port; only the red-channel sum differs: the original emits "adds r1, r1, r0" (result in
+// the masked-color register), this gives "adds r0, r0, r1"
 void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
 {
     int i, j;
@@ -681,7 +682,7 @@ void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
             if ((1 << i) & mask) {
                 for (j = 0; j < 0x10; j++) {
                     u8 r __attribute__((unused)) = st[i].from_colors[j] & 0x1F;
-                    buffer[0x10 * i + j] = ((st[i].from_colors[j] & 0x1F) + (((0x1F - (st[i].from_colors[j] & 0x1F)) * a1) >> 8)) & 0x1F;
+                    buffer[0x10 * i + j] = ((((0x1F - (st[i].from_colors[j] & 0x1F)) * a1) >> 8) + (st[i].from_colors[j] & 0x1F)) & 0x1F;
                 }
             }
         }

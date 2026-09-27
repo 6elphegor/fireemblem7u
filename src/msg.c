@@ -149,4 +149,57 @@ char * StrCopyEnd(char const * src, char * dst)
     return dst;
 }
 
-ASM_FUNC("asm/nonmatching/code_08012F14.s");
+char * MsgExpandWithArticle(u8 useArticle, u8 definite, u8 capital)
+{
+    char * src = sMsgString.buffer5;
+    char * dst = sMsgString.buffer6;
+    char * out = sMsgString.buffer7;
+    char * str = dst;
+
+    StringCopy(src, sMsgString.buffer1);
+
+    while (*src != 0)
+    {
+        if (*src < 0x20)
+        {
+            *dst++ = *src++;
+        }
+        else if (*src != 0x80)
+        {
+            *dst++ = *src++;
+        }
+        else
+        {
+            src++;
+
+            switch (*src)
+            {
+            case 0x20:
+                StringCopy(dst, GetTacticianName());
+                goto next;
+
+            default:
+                *dst++ = 0x80;
+                *dst++ = *src++;
+                continue;
+            }
+
+        next:
+            while (*dst != 0)
+                dst++;
+
+            src++;
+        }
+    }
+
+    *dst = 0;
+
+    if (useArticle)
+    {
+        out = StrCopyEnd(GetArticle(str, definite, capital), out);
+        StrCopyEnd(str, out);
+        return sMsgString.buffer7;
+    }
+
+    return sMsgString.buffer6;
+}

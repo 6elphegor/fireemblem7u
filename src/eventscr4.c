@@ -24,6 +24,7 @@ void WmMergeMonsters(void);
 void sub_080B4F70(void);
 void sub_080B4F74(int a, int b);
 void WmStartFadeCamera(int a, int b, int c, int d);
+void WmStartScrollCamera(int x, int y);
 void StartWmSpotlight(int a, int b);
 void EndWmSpotlightProc(void);
 void sub_080B4D4C(int a, int b, u16 c);
@@ -43,8 +44,10 @@ void WmMu_StartFlash(int a);
 void nullsub_5(int a, int b, int c);
 void nullsub_6(void);
 void sub_080B4C60(int a, s16 b, s16 c, u8 d);
+void StartWmIcon2(int idx, s16 x, s16 y, u8 pal);
 void EndWmIcon2(int a);
 void sub_080B4B8C(int a, s16 b, s16 c, u8 d);
+void StartWmIcon(int idx, s16 x, s16 y, u8 pal);
 void EndWmIcon(int a);
 void sub_080B4F9C(int a, int b);
 
@@ -1089,7 +1092,44 @@ int sub_0800F998(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800F9B0.s");
+int sub_0800F9B0(struct EventProc * proc)
+{
+#ifndef NONMATCHING
+    register EventScr const * script asm("r1");
+    register int pal asm("r3");
+    register int b asm("r2");
+    register EventScr xr asm("r2");
+    register int y_raw asm("r3");
+#else
+    int y_raw;
+    EventScr const * script;
+    int pal;
+    int b;
+    EventScr xr;
+#endif
+    int a = proc->script[1];
+    int x;
+    int y;
+
+    xr = proc->script[2];
+    x = SCR_LO16_SIGN(xr);
+
+    script = proc->script;
+    y_raw = ((u16 const *) script)[5];
+    y = y_raw & 0x8000 ? -1 : y_raw;
+    pal = script[3];
+    b = script[4];
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        if (b != 0)
+            WmMergeFace(b, 5, a, 0, x, y, pal);
+        else
+            StartWmIcon2(a, x, y, pal);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
 
 int sub_0800FA30(struct EventProc * proc)
 {
@@ -1101,7 +1141,44 @@ int sub_0800FA30(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800FA50.s");
+int sub_0800FA50(struct EventProc * proc)
+{
+#ifndef NONMATCHING
+    register EventScr const * script asm("r1");
+    register int pal asm("r3");
+    register int b asm("r2");
+    register EventScr xr asm("r2");
+    register int y_raw asm("r3");
+#else
+    int y_raw;
+    EventScr const * script;
+    int pal;
+    int b;
+    EventScr xr;
+#endif
+    int a = proc->script[1];
+    int x;
+    int y;
+
+    xr = proc->script[2];
+    x = SCR_LO16_SIGN(xr);
+
+    script = proc->script;
+    y_raw = ((u16 const *) script)[5];
+    y = y_raw & 0x8000 ? -1 : y_raw;
+    pal = script[3];
+    b = script[4];
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        if (b != 0)
+            WmMergeFace(b, 4, a, 0, x, y, pal);
+        else
+            StartWmIcon(a, x, y, pal);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
 
 int sub_0800FAD0(struct EventProc * proc)
 {
@@ -1113,7 +1190,36 @@ int sub_0800FAD0(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800FAF0.s");
+int sub_0800FAF0(struct EventProc * proc)
+{
+#ifndef NONMATCHING
+    register EventScr const * script asm("r3");
+    register int b asm("r3");
+#else
+    EventScr const * script;
+    int b;
+#endif
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    u16 y_raw;
+    int y;
+    int c;
+
+    script = proc->script;
+    y_raw = ((u16 const *) script)[3];
+    y = y_raw & 0x8000 ? -1 : y_raw;
+    c = script[2];
+    b = script[3];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (b != 0)
+        WmMergeFace(b, 8, 0, 0, x, y, c);
+    else
+        WmStartScrollCamera(x, y);
+
+    return EVENT_CMDRET_YIELD;
+}
 
 int EvtCmd_SetKeyIgnore(struct EventProc * proc)
 {

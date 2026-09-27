@@ -79,7 +79,29 @@ void DebugInitBg(int bg, int vramoff)
     gDebugTextSt.chr = GetBgChrId(bg, vramoff);
 }
 
-ASM_FUNC("asm/nonmatching/code_08004F70.s");
+void DebugPutStr(u16 * tm, char const * str)
+{
+    while (*str != 0)
+    {
+        int chr;
+
+        if (*str > 0x60)
+        {
+            chr = gDebugTextSt.chr + (u16) -0x40;
+            *tm = *str + chr;
+        }
+        else
+        {
+            chr = gDebugTextSt.chr + (u16) -0x20;
+            *tm = *str + chr;
+        }
+
+        tm++;
+        str++;
+    }
+
+    EnableBgSyncById(gDebugTextSt.bg);
+}
 
 void DebugPutFmt(u16 * tm, char const * fmt, ...)
 {
@@ -1043,7 +1065,27 @@ void TextNop2(void)
 {
 }
 
+#if NONMATCHING
+// the lut loads get moved next to their uses; the original keeps both loads early (dst ends up in r8)
+void DrawSpecialCharGlyph(int chr, int color, struct Glyph const * glyph)
+{
+    int i;
+    u32 * dst = (u32 *) (gActiveFont->draw_dest + chr * 64);
+    u32 * src = (u32 *) glyph->bitmap;
+    u16 * lut = (u16 *) GetColorLut(color);
+
+    for (i = 0; i < 16; i++)
+    {
+        u32 bits = *src++;
+        u16 lo = lut[bits & 0xFF];
+        u16 hi = lut[(bits >> 8) & 0xFF];
+
+        *dst++ = (hi << 16) + lo;
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08006084.s");
+#endif
 
 int AddSpecialChar(struct SpecialCharSt * st, int color, int id)
 {

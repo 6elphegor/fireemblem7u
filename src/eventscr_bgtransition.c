@@ -391,4 +391,40 @@ void StartEvtBgFadeToMap(int flags, ProcPtr parent)
     proc->speed = flags & 0xFF;
 }
 
+#if NONMATCHING
+// one instruction short: the original has a dead 'ldrb r2, [r4]' before the ldrsb
+int EvtCmd_BgFadeToMap(struct EventProc * proc)
+{
+    int flags = proc->script[1];
+    u16 skipped = proc->flags & EVENT_FLAG_SKIPPED;
+
+    if (skipped)
+    {
+        u8 * bg = (u8 *) &proc->background;
+
+        if ((s8) *bg != -1)
+        {
+            *bg = 0xFF;
+
+            RefreshBMapGraphics();
+            UnlockBmDisplay();
+            ReleaseMus();
+        }
+
+        return EVENT_CMDRET_CONTINUE;
+    }
+    else
+    {
+        u8 * bg = (u8 *) &proc->background;
+
+        StartEvtBgFadeToMap(flags, proc);
+
+        *bg = 0xFF;
+        proc->unk_4D = skipped;
+
+        return EVENT_CMDRET_YIELD;
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080110B8.s");
+#endif

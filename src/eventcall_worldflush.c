@@ -12,7 +12,36 @@ struct ProcWorldFlush
     /* 2C */ int timer;
 };
 
+#if NONMATCHING
+// window bitfield read-modify-writes: the original keeps each win_ct byte in a register and stores once; this version stores in between
+void sub_0807CC5C(struct ProcWorldFlush * proc)
+{
+    proc->timer = 0;
+
+    InitScanlineEffect();
+
+    SetBlendTargetA(1, 1, 1, 1, 1);
+    SetWin0Box(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    SetWinEnable(1, 0, 0);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 1, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetBlendBrighten(0);
+
+    SetOnHBlankA(sub_080777E4);
+
+    PlaySoundEffect(0x269);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_0807CC5C.s");
+#endif
 
 void sub_0807CD4C(struct ProcWorldFlush * proc)
 {
@@ -45,7 +74,28 @@ void WorldFlushReload(struct ProcWorldFlush * proc)
     proc->timer = 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0807CDEC.s");
+void sub_0807CDEC(struct ProcWorldFlush * proc)
+{
+    int duration = 0x80;
+#ifndef NONMATCHING
+    register int r asm("r5") = DISPLAY_WIDTH;
+#else
+    int r = DISPLAY_WIDTH;
+#endif
+    int t, y;
+
+    t = ++proc->timer;
+
+    r = ((duration - t) * r * (duration - t)) / (duration * duration);
+    y = 0x10 - (t * 0x10 * t) / (duration * duration);
+
+    sub_0807764C(120, 48, r);
+
+    SetBlendBrighten(y);
+
+    if (proc->timer >= duration)
+        Proc_Break(proc);
+}
 
 void sub_0807CE60(struct ProcWorldFlush * proc)
 {

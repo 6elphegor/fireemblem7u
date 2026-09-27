@@ -1250,7 +1250,62 @@ void sub_0808A770(struct UnitListScreenProc * proc)
     Proc_Break(proc);
 }
 
+#if NONMATCHING
+// port of FE8U's (also nonmatching) sub_8091F10; register allocation differs throughout
+void sub_0808A92C(struct UnitListScreenProc * proc)
+{
+    int r4, r5;
+
+    proc->unk_38 += gUnknown_08A17B36[proc->unk_3c];
+
+    if (proc->unk_38 > 20)
+    {
+        proc->unk_38 = 20;
+    }
+
+    proc->unk_3c++;
+
+    if (proc->pageTarget > proc->unk_37)
+    {
+        for (r5 = 0; r5 < proc->unk_38; r5++)
+        {
+            for (r4 = proc->unk_3e / 8; r4 < proc->unk_3e / 8 + 12; r4++)
+            {
+                gBg0Tm[(r4 & 0x1f) * 0x20 + (({r5 + 0x1c;}) - proc->unk_38)] = gUnknown_0200D7E0[r4 & 0x1f][r5 + 8];
+            }
+
+            for (r4 = 0; r4 < 2; r4++)
+            {
+                gBg2Tm[(r4 + 5) * 0x20 + (({r5 + 0x1c;}) - proc->unk_38)] = gUnknown_0200DFE0[r4][r5 + 8];
+            }
+        }
+    }
+    else
+    {
+        for (r5 = 0; r5 < proc->unk_38; r5++)
+        {
+            for (r4 = proc->unk_3e / 8; r4 < proc->unk_3e / 8 + 12; r4++)
+            {
+                gBg0Tm[(r4 & 0x1f) * 0x20 + ({r5 + 8;})] = gUnknown_0200D7E0[r4 & 0x1f][({r5 + 0x1c;}) - proc->unk_38];
+            }
+
+            for (r4 = 0; r4 < 2; r4++)
+            {
+                gBg2Tm[(r4 + 5) * 0x20 + (r5 + 8)] = gUnknown_0200DFE0[r4][({r5 + 0x1c;}) - proc->unk_38];
+            }
+        }
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
+
+    if (proc->unk_38 >= 20)
+    {
+        Proc_Break(proc);
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_0808A92C.s");
+#endif
 
 void StartUnitListScreenField(void)
 {
@@ -1348,11 +1403,649 @@ void sub_0808AC90(u8 maxPages, u8 page, s8 flag)
     EnableBgSync(BG2_SYNC_BIT);
 }
 
-ASM_FUNC("asm/nonmatching/code_0808AD00.s");
+void sub_0808AD00(struct UnitListScreenProc * proc, u8 unitNum, u16 * tm, u8 page, u8 putName)
+{
+    u8 inactive;
+    u8 i;
+    u8 num;
+    int icon;
+
+    int row = (u8) (unitNum % 7);
+    int y = (unitNum * 2) & 0x1F;
+
+    if ((gSortedUnits[unitNum]->unit->state & US_NOT_DEPLOYED) != 0)
+        inactive = 1;
+    else
+        inactive = 0;
+
+    if (putName != 0)
+    {
+        ClearText(&gUnknown_0200E060[row]);
+        Text_SetCursor(&gUnknown_0200E060[row], 0);
+
+        if (!CheckInLinkArena() && proc->mode == UNITLIST_MODE_PREPMENU &&
+            IsCharacterForceDeployed(gSortedUnits[unitNum]->unit->pCharacterData->number))
+        {
+            Text_SetColor(&gUnknown_0200E060[row], 4);
+        }
+        else
+        {
+            Text_SetColor(&gUnknown_0200E060[row], inactive ? 1 : 0);
+        }
+
+        Text_DrawString(
+            &gUnknown_0200E060[row], DecodeMsg(gSortedUnits[unitNum]->unit->pCharacterData->nameTextId));
+        PutText(&gUnknown_0200E060[row], tm + y * 0x20 + 3);
+    }
+
+    ClearText(&gUnknown_0200E098[row][0]);
+    ClearText(&gUnknown_0200E098[row][1]);
+
+    TmFillRect_thm(tm + y * 0x20 + 8, 0x18, 1, 0);
+
+    switch (page)
+    {
+    case 0:
+        PutDrawText(
+            &gUnknown_0200E098[row][0], tm + y * 0x20 + 8, 0, 0, 0,
+            DecodeMsg(gSortedUnits[unitNum]->unit->pClassData->nameTextId));
+        Text_SetColor(&gUnknown_0200E098[row][1], inactive ? 1 : 0);
+
+        if (GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit) == 0)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 17,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127F));
+        }
+        else
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 17,
+                inactive ? 1 : 0, 0, 0,
+                GetItemName(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)));
+            PutIcon(
+                tm + y * 0x20 + 15, GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)),
+                TILEREF(0, 4));
+            sub_8090324(GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)));
+        }
+
+        ClearText(&gUnknown_0200E098[row][2]);
+
+        switch (gSortedUnits[unitNum]->unit->state & (US_SOLOANIM_1 | US_SOLOANIM_2))
+        {
+        case US_SOLOANIM_1:
+            PutDrawText(&gUnknown_0200E098[row][2], tm + y * 0x20 + 24, 4, 8, 0, DecodeMsg(0x1274));
+            break;
+
+        case US_SOLOANIM_2:
+            PutDrawText(&gUnknown_0200E098[row][2], tm + y * 0x20 + 24, 4, 8, 0, DecodeMsg(0x1275));
+            break;
+
+        case 0:
+            PutDrawText(&gUnknown_0200E098[row][2], tm + y * 0x20 + 24, 1, 4, 0, DecodeMsg(0x1276));
+            break;
+        }
+
+        break;
+
+    case 1:
+    {
+#ifndef NONMATCHING
+        register u16 * p asm("r4");
+#else
+        u16 * p;
+#endif
+
+        PutDrawText(
+            &gUnknown_0200E098[row][0], (p = tm + y * 0x20) + 8,
+            inactive ? 1 : 0, 0, 0,
+            DecodeMsg(gSortedUnits[unitNum]->unit->pClassData->nameTextId));
+
+        PutNumberOrBlank(
+            p + 17, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->unit->level);
+
+        PutNumberOrBlank(
+            p + 20, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->unit->exp);
+
+        PutNumberOrBlank(
+            p + 23, inactive ? 1 : 2,
+            GetUnitCurrentHp(gSortedUnits[unitNum]->unit));
+        PutSpecialChar(p + 24, inactive ? 1 : 0, 0x16);
+        PutNumberOrBlank(
+            p + 26, inactive ? 1 : 2,
+            GetUnitMaxHp(gSortedUnits[unitNum]->unit));
+
+        break;
+    }
+
+    case 2:
+        PutNumberOrBlank(
+            tm + y * 0x20 + 9,
+            UNIT_POW_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->pow ? 4 : 2,
+            GetUnitPower(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 12,
+            UNIT_SKL_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->skl ? 4 : 2,
+            GetUnitSkill(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 15,
+            UNIT_SPD_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->spd ? 4 : 2,
+            GetUnitSpeed(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 18,
+            UNIT_LCK_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->lck ? 4 : 2,
+            GetUnitLuck(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 21,
+            UNIT_DEF_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->def ? 4 : 2,
+            GetUnitDefense(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 24,
+            UNIT_RES_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->res ? 4 : 2,
+            GetUnitResistance(gSortedUnits[unitNum]->unit));
+
+        icon = GetUnitAffinityIcon(gSortedUnits[unitNum]->unit);
+
+        if (icon == -1)
+            PutSpecialChar(tm + y * 0x20 + 26, 2, 0x14);
+        else
+            PutIcon(tm + y * 0x20 + 26, icon, TILEREF(0, 4 + 1));
+
+        break;
+
+    case 3:
+        if (GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit) == 0)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][0], tm + y * 0x20 + 10,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127F));
+        }
+        else
+        {
+            char const * name = GetItemName(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit));
+
+            PutDrawText(
+                &gUnknown_0200E098[row][0], tm + y * 0x20 + 10,
+                inactive ? 1 : 0, 0, 0, name);
+
+            PutIcon(
+                tm + y * 0x20 + 8, GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)),
+                TILEREF(0, 4));
+            sub_8090324(GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)));
+        }
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 18, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->battleAttack);
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 22, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->battleHitRate);
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 26, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->battleAvoidRate);
+
+        break;
+
+    case 4:
+        if ((gSortedUnits[unitNum]->unit->state & US_RESCUING) != 0)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 18,
+                inactive ? 1 : 0, 0, 0,
+                GetUnitRescueName(gSortedUnits[unitNum]->unit));
+        }
+        else
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 18,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127D));
+        }
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 10, inactive ? 1 : 2,
+            UNIT_MOV(gSortedUnits[unitNum]->unit));
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 13, inactive ? 1 : 2,
+            UNIT_CON(gSortedUnits[unitNum]->unit));
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 16, inactive ? 1 : 2,
+            GetUnitAid(gSortedUnits[unitNum]->unit));
+
+        PutDrawText(
+            &gUnknown_0200E098[row][0], tm + y * 0x20 + 23,
+            inactive ? 1 : 0, 0, 0,
+            GetUnitStatusName(gSortedUnits[unitNum]->unit));
+
+        break;
+
+    case 5:
+    {
+        for (i = 0; i < 8; i++)
+        {
+            const int wpnLevelRankChars[] =
+            {
+                0x14, 0x1D, 0x1C, 0x1B, 0x1A, 0x19, 0x18,
+            };
+
+            num = GetWeaponLevelFromExp(gSortedUnits[unitNum]->unit->ranks[i]);
+
+            PutSpecialChar(tm + y * 0x20 + 10 + 2 * i, num == 6 ? 4 : 2, wpnLevelRankChars[num]);
+        }
+
+        break;
+    }
+
+    default:
+    {
+        u8 supportStart;
+        u8 supportPassed;
+        int supportCount;
+
+        supportStart = (page - 6) * 3;
+        supportPassed = 0;
+        num = 0;
+        supportCount = GetUnitSupporterCount(gSortedUnits[unitNum]->unit);
+
+        ClearText(&gUnknown_0200E098[row][2]);
+
+        for (i = 0; i < supportCount; i++)
+        {
+            if (CanUnitSupportNow(gSortedUnits[unitNum]->unit, i))
+            {
+                if (supportPassed >= supportStart)
+                {
+                    struct Unit * other = GetUnitSupportUnit(gSortedUnits[unitNum]->unit, i);
+
+                    if (((u16) (other->state & US_NOT_DEPLOYED)) == 0)
+                    {
+                        char const * name = DecodeMsg(
+                            (GetCharacterData(GetUnitSupportPid(gSortedUnits[unitNum]->unit, i)))->nameTextId);
+
+                        PutDrawText(
+                            &gUnknown_0200E098[row][num], tm + y * 0x20 + 9 + num * 6,
+                            inactive ? 1 : 0, 0, 0, name);
+                    }
+                    else
+                    {
+                        char const * name = DecodeMsg(
+                            (GetCharacterData(GetUnitSupportPid(gSortedUnits[unitNum]->unit, i)))->nameTextId);
+
+                        PutDrawText(
+                            &gUnknown_0200E098[row][num], tm + y * 0x20 + 9 + num * 6, 1, 0, 0, name);
+                    }
+
+                    num++;
+
+                    if (num == 3)
+                        break;
+                }
+                else
+                {
+                    supportPassed++;
+                }
+            }
+        }
+
+        for (; num < 3; num++)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][num], tm + y * 0x20 + 9 + num * 6,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127D));
+        }
+
+        break;
+    }
+    }
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
 
 int SortUnitList_GetUnitSoloAnimation(struct Unit * unit)
 {
     return unit->state & (US_SOLOANIM_1 | US_SOLOANIM_2);
 }
 
-ASM_FUNC("asm/nonmatching/code_0808B5E0.s");
+bool SortUnitList(u8 key, u8 order)
+{
+    u8 cache[0x40];
+    u8 r2 = order & 1;
+
+    #define PREPARE_VARS \
+        bool changed = FALSE; \
+        u8 i, j, tmp_cache; \
+        void * tmp_addr;
+
+    #define BUILD_CACHE(key) \
+    { \
+        for (i = 0; i < gUnknown_0200F158; i++) \
+        { \
+            cache[i] = key(i); \
+        } \
+    }
+
+    #define RETURN_IF_CHANGED if (changed) return TRUE;
+
+    #define SWAP(i, j) \
+    { \
+        tmp_addr = gSortedUnits[(i)]; \
+        gSortedUnits[(i)] = gSortedUnits[(j)]; \
+        gSortedUnits[(j)] = tmp_addr; \
+    }
+
+    #define SWAP_CACHE(i, j) \
+    { \
+        tmp_cache = cache[(i)]; \
+        cache[(i)] = cache[(j)]; \
+        cache[(j)] = tmp_cache; \
+        SWAP(i, j) \
+    }
+
+    #define SORT_CORE_KEY(key, arrow, swap) \
+    { \
+        /* this is a bubble sort, I think */ \
+        for (i = 0; i < gUnknown_0200F158 - 1; i++) \
+        { \
+            for (j = 0; j < gUnknown_0200F158 - 1 - i; j++) \
+            { \
+                if (key(j + 1) arrow key(j)) \
+                { \
+                    /* swap */ \
+                    swap(j, j + 1) \
+                    changed = TRUE; \
+                } \
+            } \
+        } \
+    }
+
+    #define SORT_CORE(cond, swap) \
+    { \
+        /* this is a bubble sort, I think */ \
+        for (i = 0; i < gUnknown_0200F158 - 1; i++) \
+        { \
+            for (j = 0; j < gUnknown_0200F158 - 1 - i; j++) \
+            { \
+                if (cond) \
+                { \
+                    /* swap */ \
+                    swap(j, j + 1) \
+                    changed = TRUE; \
+                } \
+            } \
+        } \
+    }
+
+    #define SORT_REAL(cond_asc, cond_dsc) \
+        if (r2 == 0) \
+        { \
+            PREPARE_VARS \
+            SORT_CORE(cond_asc, SWAP) \
+            RETURN_IF_CHANGED \
+        } \
+        else \
+        { \
+            PREPARE_VARS \
+            SORT_CORE(cond_dsc, SWAP) \
+            RETURN_IF_CHANGED \
+        }
+
+    #define SORT(cond) SORT_REAL(cond, !(cond))
+
+    #define SORT_BY_KEY(key) \
+        if (r2 == 0) \
+        { \
+            PREPARE_VARS \
+            SORT_CORE_KEY(key, >, SWAP) \
+            RETURN_IF_CHANGED \
+        } \
+        else \
+        { \
+            PREPARE_VARS \
+            SORT_CORE_KEY(key, <, SWAP) \
+            RETURN_IF_CHANGED \
+        }
+
+    #define SORT_MAIN(sort_a, sort_b) \
+        if (r2 == 0) \
+        { \
+            PREPARE_VARS \
+            sort_a \
+            RETURN_IF_CHANGED \
+        } \
+        else \
+        { \
+            PREPARE_VARS \
+            sort_b \
+            RETURN_IF_CHANGED \
+        } \
+        break;
+
+    #define COND_FIELD(field) ((gSortedUnits[j + 1]->field) < (gSortedUnits[j]->field))
+    #define COND_UNIT_FIELD(field) COND_FIELD(unit->field)
+
+    #define SORT_BY_FUNC(func) \
+        SORT_REAL(func(gSortedUnits[j + 1]->unit) > func(gSortedUnits[j]->unit), \
+            func(gSortedUnits[j + 1]->unit) < func(gSortedUnits[j]->unit))
+
+    #define SORT_BY_UNIT_FIELD(field) \
+        SORT_REAL((gSortedUnits[j + 1]->unit->field) > (gSortedUnits[j]->unit->field), \
+            (gSortedUnits[j + 1]->unit->field) < (gSortedUnits[j]->unit->field))
+
+    switch (key)
+    {
+        case 1:
+            #define KEY_A(i) (gSortedUnits[(i)]->unit->pCharacterData->sort_order)
+            #define KEY_B(i) (gSortedUnits[(i)]->unit->state & US_UNSELECTABLE)
+
+            SORT_MAIN(
+                SORT_CORE_KEY(KEY_A, <, SWAP) SORT_CORE_KEY(KEY_B, <, SWAP),
+                SORT_CORE_KEY(KEY_A, >, SWAP) SORT_CORE_KEY(KEY_B, >, SWAP))
+
+            #undef KEY_B
+            #undef KEY_A
+
+        case 3:
+            #define KEY(i) (gSortedUnits[(i)]->unit->level)
+            SORT_MAIN(SORT_CORE_KEY(KEY, >, SWAP), SORT_CORE_KEY(KEY, <, SWAP))
+            #undef KEY
+
+        case 2:
+            #define KEY(i) (gSortedUnits[(i)]->unit->pClassData->sort_order)
+            SORT_MAIN(SORT_CORE_KEY(KEY, <, SWAP), SORT_CORE_KEY(KEY, >, SWAP))
+            #undef KEY
+
+        case 4:
+            SORT_BY_UNIT_FIELD(exp)
+            break;
+
+        case 5:
+            SORT_BY_FUNC(GetUnitCurrentHp)
+            break;
+
+        case 6:
+            SORT_BY_FUNC(GetUnitMaxHp)
+            break;
+
+        case 7:
+            SORT_BY_FUNC(GetUnitPower)
+            break;
+
+        case 8:
+            SORT_BY_FUNC(GetUnitSkill)
+            break;
+
+        case 9:
+            SORT_BY_FUNC(GetUnitSpeed)
+            break;
+
+        case 10:
+            SORT_BY_FUNC(GetUnitLuck)
+            break;
+
+        case 11:
+            SORT_BY_FUNC(GetUnitDefense)
+            break;
+
+        case 12:
+            SORT_BY_FUNC(GetUnitResistance)
+            break;
+
+        case 19:
+            SORT_BY_FUNC(UNIT_CON)
+            break;
+
+        case 20:
+            SORT_BY_FUNC(GetUnitAid)
+            break;
+
+        case 13:
+            #define KEY(i) (GetUnitAffinityIcon(gSortedUnits[(i)]->unit))
+            SORT_MAIN(SORT_CORE_KEY(KEY, <, SWAP), SORT_CORE_KEY(KEY, >, SWAP))
+            #undef KEY
+
+        case 14:
+            SORT_MAIN(
+            {
+                for (i = 0; i < gUnknown_0200F158; i++)
+                {
+                    cache[i] = GetItemIndex(GetUnitEquippedWeapon(gSortedUnits[i]->unit));
+                }
+
+                for (i = 0; i < gUnknown_0200F158 - 1; i++)
+                {
+                    for (j = 0; j < gUnknown_0200F158 - 1 - i; j++)
+                    {
+                        if (cache[j + 1] > cache[j])
+                        {
+                            SWAP_CACHE(j, j + 1)
+                            changed = TRUE;
+                        }
+                        else if (cache[j + 1] == cache[j] && GetUnitEquippedWeapon(gSortedUnits[j + 1]->unit) > GetUnitEquippedWeapon(gSortedUnits[j]->unit))
+                        {
+                            SWAP_CACHE(j, j + 1)
+                            changed = TRUE;
+                        }
+                    }
+                }
+            },
+            {
+                for (i = 0; i < gUnknown_0200F158; i++)
+                {
+                    cache[i] = GetItemIndex(GetUnitEquippedWeapon(gSortedUnits[i]->unit));
+                }
+
+                for (i = 0; i < gUnknown_0200F158 - 1; i++)
+                {
+                    for (j = 0; j < gUnknown_0200F158 - 1 - i; j++)
+                    {
+                        if (cache[j + 1] < cache[j])
+                        {
+                            SWAP_CACHE(j, j + 1)
+                            changed = TRUE;
+                        }
+                        else if (cache[j + 1] == cache[j] && GetUnitEquippedWeapon(gSortedUnits[j + 1]->unit) < GetUnitEquippedWeapon(gSortedUnits[j]->unit))
+                        {
+                            SWAP_CACHE(j, j + 1)
+                            changed = TRUE;
+                        }
+                    }
+                }
+            })
+
+        case 15:
+            #define KEY(i) (gSortedUnits[(i)]->battleAttack)
+            SORT_MAIN(SORT_CORE_KEY(KEY, >, SWAP), SORT_CORE_KEY(KEY, <, SWAP))
+            #undef KEY
+
+        case 16:
+            #define KEY(i) (gSortedUnits[(i)]->battleHitRate)
+            SORT_MAIN(SORT_CORE_KEY(KEY, >, SWAP), SORT_CORE_KEY(KEY, <, SWAP))
+            #undef KEY
+
+        case 17:
+            #define KEY(i) (gSortedUnits[(i)]->battleAvoidRate)
+            SORT_MAIN(SORT_CORE_KEY(KEY, >, SWAP), SORT_CORE_KEY(KEY, <, SWAP))
+            #undef KEY
+
+        case 18:
+            SORT_BY_FUNC(UNIT_MOV)
+            break;
+
+        case 21:
+            SORT_BY_UNIT_FIELD(statusIndex)
+            break;
+
+        case 22:
+            SORT_MAIN(
+            {
+                for (i = 0; i < gUnknown_0200F158; i++)
+                {
+                    if ((gSortedUnits[i]->unit->state & US_RESCUING) != 0)
+                        cache[i] = 1;
+                    else
+                        cache[i] = 0;
+                }
+
+                SORT_CORE(cache[j + 1] > cache[j], SWAP_CACHE)
+            },
+            {
+                for (i = 0; i < gUnknown_0200F158; i++)
+                {
+                    if ((gSortedUnits[i]->unit->state & US_RESCUING) != 0)
+                        cache[i] = 1;
+                    else
+                        cache[i] = 0;
+                }
+
+                SORT_CORE(cache[j + 1] < cache[j], SWAP_CACHE)
+            })
+
+        case 23:
+            SORT_BY_UNIT_FIELD(ranks[0])
+            break;
+
+        case 24:
+            SORT_BY_UNIT_FIELD(ranks[1])
+            break;
+
+        case 25:
+            SORT_BY_UNIT_FIELD(ranks[2])
+            break;
+
+        case 26:
+            SORT_BY_UNIT_FIELD(ranks[3])
+            break;
+
+        case 27:
+            SORT_BY_UNIT_FIELD(ranks[4])
+            break;
+
+        case 28:
+            SORT_BY_UNIT_FIELD(ranks[5])
+            break;
+
+        case 29:
+            SORT_BY_UNIT_FIELD(ranks[6])
+            break;
+
+        case 30:
+            SORT_BY_UNIT_FIELD(ranks[7])
+            break;
+
+        case 31:
+            #define KEY(i) (gSortedUnits[(i)]->supportCount)
+            SORT_MAIN(SORT_CORE_KEY(KEY, >, SWAP), SORT_CORE_KEY(KEY, <, SWAP))
+            #undef KEY
+
+        case 32:
+            SORT_BY_FUNC(SortUnitList_GetUnitSoloAnimation)
+            break;
+    }
+
+    return FALSE;
+}

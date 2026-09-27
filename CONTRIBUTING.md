@@ -27,6 +27,12 @@ bulk edits, `rm -rf build/asm build/src` before building.
 * `include/` — headers (FireEmblem7J's, extended).
 * `symbols.ld` — FE7U addresses of data not yet defined in C.
 * `data/layout.txt` — FE7U addresses of C modules' data sections.
+* `data/events/chXX.s` — chapter event data (`include/event_macros.inc`
+  documents each macro and the event command it assembles to).  They are
+  run through cpp, so `MSG_*`, `CHARACTER_*`, `CLASS_*`, `ITEM_*`, `SONG_*`
+  and `CHAPTER_*` work as in C.  Each `.section .rodata.ev_<ADDR>` has a
+  line in `data/layout.txt`; `tools/evdis.py --layout` regenerates the
+  files and prints those lines.
 
 ## Decompiling a function
 

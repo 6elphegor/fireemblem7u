@@ -978,7 +978,43 @@ void sub_080BCB1C(u8 const * src, int offset)
 {
     Decompress(src, gUnk_08CEF074 + offset);
 }
+#if NONMATCHING
+// loop layout: the original does not duplicate the outer loop's exit test; register allocation differs
+void sub_080BCB34(int w, int h, int count, int offset, int start)
+{
+    int x, y, i;
+    int idx = count * start;
+
+    for (y = 0; y < h; y++)
+    {
+        for (x = 0; x < w; x++)
+        {
+            for (i = 0; i < count; i++)
+            {
+                u32 * src;
+                u32 * dst;
+                int v;
+
+                idx &= 0x3F;
+
+                src = (u32 *) (gUnk_08CEF074 + offset + x * 0x20 + y * 0x400);
+                dst = (u32 *) (offset + x * 0x20 + y * 0x400 + 0x06014000);
+
+                v = gUnk_08CEF314[idx & 0x3F];
+
+                src += v >> 3;
+                dst += v >> 3;
+
+                *dst |= *src & (0xF << ((v & 7) * 4));
+
+                idx++;
+            }
+        }
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080BCB34.s");
+#endif
 
 ASM_FUNC("asm/nonmatching/code_080BCBFC.s");
 
@@ -1210,7 +1246,57 @@ void sub_080BD1A4(struct OpAnimSubProc * proc)
     if (proc->unk_30 == 0)
         Proc_Break(proc);
 }
+#if NONMATCHING
+// structure matches; register allocation / hoisted invariants differ
+void sub_080BD1DC(int a, u16 const * pal, int pal_bank, int amount, int mask, int speed, ProcPtr parent)
+{
+    int i;
+    u16 bits = mask;
+    struct OpAnimSubProc * proc = Proc_Start(ProcScr_08CEF424, parent);
+
+    proc->unk_30 = 0;
+    proc->unk_34 = pal_bank;
+    proc->unk_2C = speed;
+
+    EnablePalSync();
+
+    if (a == -1)
+        CpuFastCopy(gPal + pal_bank * 0x10, gUnkOpAnim_020072C0, 0x20);
+    else
+        CpuFastCopy((void *) a, gUnkOpAnim_020072C0, 0x20);
+
+    if (pal == (u16 const *) -1)
+    {
+        for (i = 0; i < 0x10; i++)
+        {
+            if ((bits >> i) & 1)
+            {
+                u16 color = gUnkOpAnim_020072C0[i];
+                int r = (color & 0x1F) + (amount & 0x1F);
+                int g = (color & 0x3E0) + ((amount & 0x1F) << 5);
+                int b = (color & 0x7C00) + ((amount & 0x1F) << 10);
+
+                gUnkOpAnim_020072C0[0x10 + i] =
+                    ((r > 0x1F ? 0x1F : r) & 0x1F) +
+                    ((g > 0x3E0 ? 0x3E0 : g) & 0x3E0) +
+                    ((b > 0x7C00 ? 0x7C00 : b) & 0x7C00);
+            }
+            else
+            {
+                gUnkOpAnim_020072C0[0x10 + i] = gUnkOpAnim_020072C0[i];
+            }
+        }
+    }
+    else
+    {
+        CpuFastCopy(pal, gUnkOpAnim_020072C0 + 0x10, 0x20);
+        CpuFastCopy(gUnkOpAnim_020072C0 + 0x10, gPal + pal_bank * 0x10, 0x20);
+        EnablePalSync();
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080BD1DC.s");
+#endif
 
 void sub_080BD310(struct OpAnimBirdProc * proc)
 {
@@ -1319,7 +1405,46 @@ int sub_080BD570(struct OpAnimTextEntry const * entry)
 
     return i;
 }
+#if NONMATCHING
+// register allocation differs (conf->header reloads, bg register reused for tm)
+void sub_080BD588(int bg, struct OpAnimBgConf const * conf, int row)
+{
+    int i;
+    void const * img = conf->frames[row].img;
+    u16 const * tsa = conf->frames[row].tsa;
+
+    if (row < 0)
+        return;
+
+    if (img != NULL)
+        Decompress(img, (void *) GetBgChrOffset(bg) + ((row % conf->header->rows) * 0x400 + VRAM) + conf->header->chr_offset);
+
+    if (tsa != NULL)
+    {
+        u16 * tm;
+        int width = *(u8 const *) tsa;
+        int height = *tsa >> 8;
+
+        tsa++;
+
+        tm = GetBgTilemap(bg) + (row & 0x1F) * 0x20;
+        tsa += (height - row % conf->header->rows) * (width + 1);
+
+        for (i = 0; i <= width; i++)
+            *tm++ = *tsa++ + (conf->header->pal_bank << 12) + ((conf->header->chr_offset & 0x1FFFF) >> 5);
+    }
+    else
+    {
+        int base = (row % conf->header->rows) * 0x20;
+        u16 * tm = GetBgTilemap(bg) + (row & 0x1F) * 0x20;
+
+        for (i = 0; i < 0x20; i++)
+            *tm++ = base + (conf->header->pal_bank << 12) + ((conf->header->chr_offset & 0x1FFFF) >> 5) + i;
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080BD588.s");
+#endif
 
 void sub_080BD688(struct OpAnimBgProc * proc, int speed)
 {
