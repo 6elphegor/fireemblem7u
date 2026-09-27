@@ -15,7 +15,6 @@ void m4aMPlayFadeOut(struct MusicPlayerInfo * mplayInfo, u16 speed);
 void m4aMPlayFadeOutPause(struct MusicPlayerInfo * mplayInfo, u16 speed);
 void m4aMPlayFadeInContinue(struct MusicPlayerInfo * mplayInfo, u16 speed);
 
-int EventEndTalk(struct EventProc * proc);
 
 /* world map */
 void EndWM(void);
@@ -669,7 +668,7 @@ int sub_0800F61C(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
 
     sub_080B4FE4(proc->script[1]);
-    proc->idle_func = (void *) EventEndTalk;
+    proc->idle_func = EventEndTalk;
 
     if (proc->flags & EVENT_FLAG_NOSKIPTALK)
         SetTalkFlag(4);

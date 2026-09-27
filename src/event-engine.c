@@ -1,9 +1,6 @@
 #include "gbafe.h"
 #include "gbafe/bmtarget.h"
 
-bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def);
-void TryMoveUnit(struct Unit * unit, int x, int y, bool arg);
-void TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, int y, int arg);
 bool sub_08079954(struct Unit * unit);
 bool sub_08079A14(struct Unit * unit);
 
