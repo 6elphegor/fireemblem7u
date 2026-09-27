@@ -1107,3 +1107,7 @@ gProcScr_CgTextInterpreter = 0x08CC3114;
 gProcScr_YesNoChoice = 0x08CC3174;
 gUnknown_0819D20C = 0x0819D20C;
 gUnknown_0819D174 = 0x0819D174;
+gSprite_08CC3020 = 0x08CC3020;
+gSprite_08CC3034 = 0x08CC3034;
+gSprite_08CC3048 = 0x08CC3048;
+gSprite_08CC305C = 0x08CC305C;

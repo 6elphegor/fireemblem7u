@@ -4,6 +4,10 @@
 extern u16 CONST_DATA gPal_HelpTextBox[];
 extern u16 CONST_DATA gUnknown_0819D20C[];
 extern u8 CONST_DATA gUnknown_0819D174[];
+extern u16 CONST_DATA gSprite_08CC3020[];
+extern u16 CONST_DATA gSprite_08CC3034[];
+extern u16 CONST_DATA gSprite_08CC3048[];
+extern u16 CONST_DATA gSprite_08CC305C[];
 
 void SetCgTextFlags(int flags)
 {
@@ -611,7 +615,80 @@ s8 DoesStringContainTact(const char * str)
         str++;
     }
 }
-ASM_FUNC("asm/nonmatching/code_08088098.s");
+void sub_808F5C8(struct CgTextMainProc * proc)
+{
+    int iy;
+
+    int x = proc->x * 8;
+    int y = proc->y * 8;
+    int ix = 0;
+
+    // FAKE
+    int oam2Maybe = (int)-(GetCgTextFlags() & 0x100) >> 0x1f & 0x400;
+
+    switch (GetCgTextFlags() & CG_TEXT_BG_MASK)
+    {
+    case CG_TEXT_BG(0):
+        x -= gDispIo.bg_off[0].x;
+        y -= gDispIo.bg_off[0].y;
+        break;
+
+    case CG_TEXT_BG(1):
+        x -= gDispIo.bg_off[1].x;
+        y -= gDispIo.bg_off[1].y;
+        break;
+
+    case CG_TEXT_BG(2):
+        x -= gDispIo.bg_off[2].x;
+        y -= gDispIo.bg_off[2].y;
+        break;
+
+    case CG_TEXT_BG(3):
+        x -= gDispIo.bg_off[3].x;
+        y -= gDispIo.bg_off[3].y;
+        break;
+    }
+
+    if (GetCgTextFlags() & CG_TEXT_FLAG_16)
+    {
+        PutSpriteExt(0, OAM1_X(x - 16), OAM0_Y(y - 24), gSprite_08CC3020, OAM2_CHR(0x3D0) + OAM2_PAL(1));
+
+        for (iy = 0; iy < proc->unk_61; iy++)
+            PutSpriteExt(0, OAM1_X(x + 16 + iy * 8), OAM0_Y(y - 24), gSprite_08CC3048, OAM2_CHR(0x3D0) + OAM2_PAL(1));
+
+        PutSpriteExt(0, OAM1_X(x + 16 + iy * 8), OAM0_Y(y - 24), gSprite_08CC3034, OAM2_CHR(0x3D0) + OAM2_PAL(1));
+        PutSpriteExt(0, OAM1_X(x - 8), OAM0_Y(y - 20), gSprite_08CC305C, OAM2_CHR(0x3C0) + OAM2_PAL(2));
+    }
+
+    for (iy = 0; iy < proc->boxHeight / 2; iy++)
+    {
+        for (ix = 0; ix < proc->boxWidth / 4; ix++)
+        {
+            PutSpriteExt(
+                2, OAM1_X(x + ix * 0x20), OAM0_Y(y + iy * 0x10), Sprite_32x16,
+                proc->palId + ix * 4 + iy * 64 + oam2Maybe);
+        }
+    }
+
+    if ((proc->boxWidth % 4) != 0)
+    {
+        int tmp = proc->boxWidth / 4 * 4;
+        x += proc->boxWidth / 4 * 32;
+
+        for (iy = 0; iy < proc->boxHeight / 2; iy++)
+        {
+            for (ix = 0; ix < (((proc->boxWidth) - (proc->boxWidth / 4) * 4) << 0x18 >> 0x18); ix++)
+            {
+                PutSpriteExt(
+                    2, OAM1_X(x + ix * 8), OAM0_Y(y + iy * 16), Sprite_8x16,
+                    proc->palId + tmp + ix + iy * 64 + oam2Maybe);
+            }
+        }
+    }
+
+    PutSpriteExt(
+        2, OAM1_X(x + ix * 0x20), OAM0_Y(y + iy * 0x10), Sprite_32x16, proc->palId + ix * 4 + iy * 64 + oam2Maybe);
+}
 ASM_FUNC("asm/nonmatching/code_08088380.s");
 void sub_808FEA4(int * src, int x, int y)
 {
