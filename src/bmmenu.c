@@ -1,33 +1,309 @@
 #include "gbafe.h"
+#include "gbafe/bmmenu.h"
 
-ASM_FUNC("asm/nonmatching/code_08021594.s");
-ASM_FUNC("asm/nonmatching/code_080215B0.s");
-ASM_FUNC("asm/nonmatching/code_080215C4.s");
-ASM_FUNC("asm/nonmatching/code_080215D4.s");
-ASM_FUNC("asm/nonmatching/code_08021600.s");
-ASM_FUNC("asm/nonmatching/code_08021610.s");
-ASM_FUNC("asm/nonmatching/code_08021614.s");
-ASM_FUNC("asm/nonmatching/code_08021630.s");
-ASM_FUNC("asm/nonmatching/code_08021644.s");
-ASM_FUNC("asm/nonmatching/code_08021654.s");
-ASM_FUNC("asm/nonmatching/code_080216B0.s");
-ASM_FUNC("asm/nonmatching/code_08021714.s");
-ASM_FUNC("asm/nonmatching/code_08021738.s");
-ASM_FUNC("asm/nonmatching/code_0802176C.s");
-ASM_FUNC("asm/nonmatching/code_080217AC.s");
-ASM_FUNC("asm/nonmatching/code_080217B0.s");
-ASM_FUNC("asm/nonmatching/code_080217E8.s");
-ASM_FUNC("asm/nonmatching/code_08021808.s");
-ASM_FUNC("asm/nonmatching/code_0802181C.s");
-ASM_FUNC("asm/nonmatching/code_08021854.s");
-ASM_FUNC("asm/nonmatching/code_08021874.s");
-ASM_FUNC("asm/nonmatching/code_08021898.s");
-ASM_FUNC("asm/nonmatching/code_080218E0.s");
-ASM_FUNC("asm/nonmatching/code_08021900.s");
-ASM_FUNC("asm/nonmatching/code_08021948.s");
-ASM_FUNC("asm/nonmatching/code_08021968.s");
-ASM_FUNC("asm/nonmatching/code_0802199C.s");
-ASM_FUNC("asm/nonmatching/code_080219EC.s");
+extern struct ProcCmd CONST_DATA ProcScr_Config_Field[];
+extern u16 CONST_DATA EventScr_08B93DA4[];
+extern const struct SelectInfo gSelectInfo_Rescue;
+extern const struct SelectInfo gSelectInfo_Drop;
+extern const struct SelectInfo gSelectInfo_Take;
+extern const struct SelectInfo gSelectInfo_Give;
+//--HEAD-END--
+
+u8 MapMenu_UnitCommand(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    Proc_Goto(Proc_Find(ProcScr_PlayerPhase), 10);
+    StartUnitListScreenField();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 MapMenu_OptionsCommand(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    Proc_Start(ProcScr_Config_Field, PROC_TREE_3);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 MapMenu_StatusCommand(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    NewChapterStatusScreen(NULL);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 MapMenu_DangerZone_UnusedEffect(void)
+{
+    gActiveUnit = NULL;
+    gBmSt.swap_action_range_count = 0;
+    Proc_Goto(Proc_Find(ProcScr_PlayerPhase), 0xC);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 sub_08021600(void)
+{
+    sub_080A4E0C(PROC_TREE_3);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 sub_08021610(void)
+{
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+void sub_08021614(ProcPtr proc)
+{
+    if (GetTalkChoiceResult() != 1)
+        EventGotoLabel(proc, 0x63);
+}
+
+u8 sub_08021630(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    StartEvent(EventScr_08B93DA4);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 EffectWait(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    gActionSt.id = ACTION_WAIT;
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 GenericSelection_BackToUM(ProcPtr proc, struct SelectTarget * target)
+{
+    EndTargetSelection(proc);
+
+    TmFill(gBg2Tm, 0);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    ResetTextFont();
+
+    HideMoveRangeGraphics();
+
+    EnsureCameraOntoPosition(
+        StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursor_sprite_target.x - gBmSt.camera.x, 1, 22),
+        gActiveUnit->xPos,
+        gActiveUnit->yPos
+    );
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_SND6B | MENU_ACT_CLEAR;
+}
+
+void BackToUnitMenu_CamWatch(ProcPtr proc)
+{
+    if (IsCameraNotWatchingPosition(gActiveUnit->xPos, gActiveUnit->yPos))
+    {
+        int y = gActiveUnit->yPos;
+
+        Proc_EndEach(ProcScr_CamMove);
+
+        if (GetCameraAdjustedY(y << 4) > gBmSt.camera_max.y)
+            y = (gBmSt.camera_max.y >> 4) + 2;
+
+        EnsureCameraOntoPosition(proc, gActiveUnit->xPos, y);
+    }
+}
+
+void BackToUnitMenu_RestartMenu(void)
+{
+    StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursor_sprite_target.x - gBmSt.camera.x, 1, 22);
+}
+
+u8 GenericSelection_BackToUM_CamWait(ProcPtr proc, struct SelectTarget * target)
+{
+    EndTargetSelection(proc);
+
+    TmFill(gBg2Tm, 0);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    HideMoveRangeGraphics();
+
+    ResetTextFont();
+
+    Proc_Start(gProcScr_BackToUnitMenu, PROC_TREE_3);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_SND6B | MENU_ACT_CLEAR;
+}
+
+u8 ItemMenu_ButtonBPressed(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    TmFill(gBg2Tm, 0);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    ResetTextFont();
+
+    StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursor_sprite_target.x - gBmSt.camera.x, 1, 22);
+
+    HideMoveRangeGraphics();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B | MENU_ACT_CLEAR | MENU_ACT_ENDFACE;
+}
+
+u8 RescueSelection_OnHelp(ProcPtr proc, struct SelectTarget * target)
+{
+    return 0;
+}
+
+u8 RescueUsability(const struct MenuItemDef * def, int number)
+{
+    if (gActiveUnit->state & US_HAS_MOVED)
+        return MENU_NOTSHOWN;
+
+    if (gActiveUnit->state & (US_IN_BALLISTA | US_RESCUING))
+        return MENU_NOTSHOWN;
+
+    MakeRescueTargetList(gActiveUnit);
+
+    if (CountTargets() == 0)
+        return MENU_NOTSHOWN;
+
+    return MENU_ENABLED;
+}
+
+u8 RescueEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    MakeRescueTargetList(gActiveUnit);
+    StartMapSelect(&gSelectInfo_Rescue);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+}
+
+u8 RescueSelection_OnSelect(ProcPtr proc, struct SelectTarget * target)
+{
+    gActionSt.target = target->uid;
+    gActionSt.id = ACTION_RESCUE;
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 DropUsability(const struct MenuItemDef * def, int number)
+{
+    if (gActiveUnit->state & US_HAS_MOVED)
+        return MENU_NOTSHOWN;
+
+    if (!(gActiveUnit->state & US_RESCUING))
+        return MENU_NOTSHOWN;
+
+    MakeDropTargetList(gActiveUnit);
+
+    if (CountTargets() == 0)
+        return MENU_NOTSHOWN;
+
+    return MENU_ENABLED;
+}
+
+u8 DropEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    MakeDropTargetList(gActiveUnit);
+    StartMapSelect(&gSelectInfo_Drop);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 DropSelection_OnSelect(ProcPtr proc, struct SelectTarget * target)
+{
+    gActionSt.id = ACTION_DROP;
+    gActionSt.target = gActiveUnit->rescue;
+    gActionSt.x_target = target->x;
+    gActionSt.y_target = target->y;
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 TakeUsability(const struct MenuItemDef * def, int number)
+{
+    if (gActiveUnit->state & US_HAS_MOVED)
+        return MENU_NOTSHOWN;
+
+    if (gBmSt.partial_actions_taken & 1)
+        return MENU_NOTSHOWN;
+
+    if (gActiveUnit->state & US_RESCUING)
+        return MENU_NOTSHOWN;
+
+    sub_08023F64(gActiveUnit);
+
+    if (CountTargets() == 0)
+        return MENU_NOTSHOWN;
+
+    return MENU_ENABLED;
+}
+
+u8 TakeEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    sub_08023F64(gActiveUnit);
+    StartMapSelect(&gSelectInfo_Take);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+}
+
+u8 GiveUsability(const struct MenuItemDef * def, int number)
+{
+    if (gActiveUnit->state & US_HAS_MOVED)
+        return MENU_NOTSHOWN;
+
+    if (gBmSt.partial_actions_taken & 1)
+        return MENU_NOTSHOWN;
+
+    if (!(gActiveUnit->state & US_RESCUING))
+        return MENU_NOTSHOWN;
+
+    sub_08024018(gActiveUnit);
+
+    if (CountTargets() == 0)
+        return MENU_NOTSHOWN;
+
+    return MENU_ENABLED;
+}
+
+u8 GiveEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    sub_08024018(gActiveUnit);
+    StartMapSelect(&gSelectInfo_Give);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A;
+}
+
+void MakeUnitRescueTransferGraphics(struct Unit * from, struct Unit * to)
+{
+    struct Unit * rescue = GetUnit(from->rescue);
+
+    EndSubtitleHelp();
+
+    Make6CKOIDOAMM(rescue, GetSomeFacingDirection(to->xPos, to->yPos, from->xPos, from->yPos));
+}
+
+u8 TakeSelection_OnSelect(ProcPtr proc, struct SelectTarget * target)
+{
+    gActionSt.id = ACTION_TAKE;
+    gActionSt.target = target->uid;
+
+    UnitSyncMovement(GetUnit(gActionSt.target));
+
+    MakeUnitRescueTransferGraphics(GetUnit(gActionSt.target), GetUnit(gActionSt.instigator));
+
+    UnitGive(GetUnit(gActionSt.target), GetUnit(gActionSt.instigator));
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 GiveSelection_OnSelect(ProcPtr proc, struct SelectTarget * target)
+{
+    gActionSt.id = ACTION_GIVE;
+    gActionSt.target = target->uid;
+
+    UnitSyncMovement(GetUnit(gActionSt.instigator));
+
+    MakeUnitRescueTransferGraphics(GetUnit(gActionSt.instigator), GetUnit(gActionSt.target));
+
+    UnitGive(GetUnit(gActionSt.instigator), GetUnit(gActionSt.target));
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
 ASM_FUNC("asm/nonmatching/code_08021A3C.s");
 ASM_FUNC("asm/nonmatching/code_08021A98.s");
 ASM_FUNC("asm/nonmatching/code_08021AE4.s");
