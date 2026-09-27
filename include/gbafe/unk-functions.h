@@ -1251,18 +1251,18 @@ void StartFinScreen(ProcPtr parent); // FE7J sub_80B9C0C
 // EndingFog_Loop
 // TurnRecord_Init
 // sub_80B9DAC
-// sub_080B9340
-// sub_080B9654
+// HandleTurnRecordText
+// TurnRecord_Loop_Main
 // sub_080B96FC
 // sub_080B9B38
-// sub_080B9D54
-// sub_080B9DD4
-// sub_080B9E10
-// sub_080B9E40
+// PlayerRank_StartScreen
+// PlayerRankFlash_FadeIn
+// PlayerRankFlash_FadeOut
+// StartPlayerRankFlash
 // sub_080B9E58
-// sub_080B9F4C
+// PlayerRank_WaitForKey
 // sub_80BAA80
-// sub_080B9F84
+// PlayerRank_CheckMode
 void sub_80BAAB8(/* TODO */);
 // sub_80BAACC
 // sub_80BAAE0

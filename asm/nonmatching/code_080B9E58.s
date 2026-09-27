@@ -98,7 +98,7 @@ _080B9ED2:
 	bne _080B9F18
 	movs r0, #0xf
 	adds r1, r4, #0
-	bl sub_080B9E40
+	bl StartPlayerRankFlash
 	b _080B9F22
 	.align 2, 0
 _080B9F10: .4byte 0x0000011F
@@ -107,7 +107,7 @@ _080B9F18:
 	ldr r0, [r4, #0x2c]
 	adds r0, #0xa
 	adds r1, r4, #0
-	bl sub_080B9E40
+	bl StartPlayerRankFlash
 _080B9F22:
 	ldr r0, [r4, #0x2c]
 	adds r0, #1

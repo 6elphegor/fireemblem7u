@@ -71,10 +71,24 @@ struct EndingTurnRecordProc {
     /* 4C */ s16 unk_4c;
 };
 
+struct PlayerRankFlashProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ STRUCT_PAD(0x2A, 0x58);
+    /* 58 */ int pal;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_PlayerRankUnk_08CEEB84[];
+extern struct ProcCmd CONST_DATA ProcScr_PlayerRankFlash[];
+extern struct ProcCmd CONST_DATA ProcScr_PlayerRankScreen[];
+extern struct ProcCmd CONST_DATA ProcScr_EndingCgScroll[];
+
 void SetFacePosition(int slot, int x, int y);
 void DrawFinImage(void);
 
 extern struct ProcCmd CONST_DATA gProcScr_FinScreen[];
+extern struct Text * CONST_DATA gpTurnRecordTexts;
+
+int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId);
 extern u16 Pal_TurnRecordBg[];
 extern u8 Tsa_TurnRecordBg[];
 int CountDigits(int number);
@@ -965,21 +979,132 @@ void TurnRecord_Init(struct EndingTurnRecordProc * proc)
     EnableBgSync(BG3_SYNC_BIT);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B924C.s");
+void TurnRecord_SetupText(void)
+{
+    int i;
+
+    SetBgOffset(1, 0, -136);
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Box(0, 24, 240, 136);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(0, 0, 1, 1, 1);
+
+    for (i = 0; i < 9; i++)
+    {
+        InitText(gpTurnRecordTexts + 0 + i, 5);
+        InitText(gpTurnRecordTexts + 9 + i, 14);
+    }
+
+    InitText(gpTurnRecordTexts + 18, 3);
+    InitText(gpTurnRecordTexts + 19, 2);
+
+    Text_DrawString(gpTurnRecordTexts + 18, DecodeMsg(0x118A));
+
+    Text_SetColor(gpTurnRecordTexts + 19, 3);
+    Text_DrawString(gpTurnRecordTexts + 19, DecodeMsg(0x1185));
+}
+
 ASM_FUNC("asm/nonmatching/code_080B9340.s");
-ASM_FUNC("asm/nonmatching/code_080B9654.s");
+void TurnRecord_Loop_Main(struct EndingTurnRecordProc * proc)
+{
+    int y = proc->yPos >> 6;
+
+    SetBgOffset(1, 0, y - 136);
+
+    if ((y & 15) == 0)
+    {
+        if (proc->displayId == (y / 16))
+        {
+            if (proc->chapterId >= proc->chapterStatsIdx)
+            {
+                int unk = proc->chapterId - proc->chapterStatsIdx;
+
+                if (unk == 1)
+                    HandleTurnRecordText((void *) -1, proc->displayId);
+                else if (unk >= 3)
+                    Proc_Break(proc);
+                else
+                    HandleTurnRecordText(NULL, proc->displayId);
+            }
+            else
+            {
+                proc->chapterId += HandleTurnRecordText(GetChapterStats(proc->chapterId), proc->displayId);
+            }
+
+            proc->chapterId++;
+            proc->displayId++;
+        }
+    }
+
+    if (gpKeySt->held & A_BUTTON)
+        proc->yPos += proc->yScrollAmt;
+
+    proc->yPos += proc->yScrollAmt;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B96FC.s");
 ASM_FUNC("asm/nonmatching/code_080B9B38.s");
-ASM_FUNC("asm/nonmatching/code_080B9D54.s");
-ASM_FUNC("asm/nonmatching/code_080B9DD4.s");
-ASM_FUNC("asm/nonmatching/code_080B9E10.s");
-ASM_FUNC("asm/nonmatching/code_080B9E40.s");
+void PlayerRank_StartScreen(ProcPtr parent)
+{
+    SetBlendAlpha(8, 0x10);
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+    SetDispEnable(1, 1, 1, 1, 1);
+
+    Proc_Start(ProcScr_PlayerRankUnk_08CEEB84, parent);
+}
+
+void PlayerRankFlash_FadeIn(struct PlayerRankFlashProc * proc)
+{
+    ArchivePalette(proc->pal + 0x10);
+    sub_080139D8(0x100, 0x100, 0x100, 0x200, 0x200, 0x200, 1 << (proc->pal + 0x10), 0x10, proc);
+}
+
+void PlayerRankFlash_FadeOut(struct PlayerRankFlashProc * proc)
+{
+    sub_080139D8(0x200, 0x200, 0x200, 0x100, 0x100, 0x100, 1 << (proc->pal + 0x10), 0x10, proc);
+}
+
+void StartPlayerRankFlash(int pal, ProcPtr parent)
+{
+    struct PlayerRankFlashProc * proc = Proc_Start(ProcScr_PlayerRankFlash, parent);
+    proc->pal = pal;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B9E58.s");
-ASM_FUNC("asm/nonmatching/code_080B9F4C.s");
-ASM_FUNC("asm/nonmatching/code_080B9F78.s");
-ASM_FUNC("asm/nonmatching/code_080B9F84.s");
-ASM_FUNC("asm/nonmatching/code_080B9FB0.s");
-ASM_FUNC("asm/nonmatching/code_080B9FC4.s");
+void PlayerRank_WaitForKey(ProcPtr proc)
+{
+    if (gpKeySt->pressed & (A_BUTTON | B_BUTTON | START_BUTTON))
+    {
+        FadeBgmOut(-1);
+        Proc_Break(proc);
+    }
+}
+
+void PlayerRank_FadeBgm(void)
+{
+    FadeBgmOut(3);
+}
+
+void PlayerRank_CheckMode(ProcPtr proc)
+{
+    if (gPlaySt.chapterStateBits & 0x80)
+        Proc_Goto(proc, 1);
+    else
+        Proc_Goto(proc, 0);
+}
+
+void StartPlayerRankScreen(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_PlayerRankScreen, parent);
+}
+
+void StartEndingCgScroll(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_EndingCgScroll, parent);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B9FD8.s");
 ASM_FUNC("asm/nonmatching/code_080BA10C.s");
 ASM_FUNC("asm/nonmatching/code_080BA25C.s");

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B9340
-sub_080B9340: @ 0x080B9340
+	thumb_func_start HandleTurnRecordText
+HandleTurnRecordText: @ 0x080B9340
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
