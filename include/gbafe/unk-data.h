@@ -5,13 +5,17 @@
 
 extern struct MusicPlayerInfo gUnk_03005A30;
 extern struct MusicPlayerInfo gUnk_03005CC0;
+extern struct MusicPlayerInfo gUnk_03005B10;
+extern struct MusicPlayerInfo gUnk_03005DA0;
 
 extern EWRAM_DATA u16 * gManimScanlineBufs[2];
 
 extern s8 MoveTable_Flying[];
 extern s8 MoveTable_Ballista[];
 extern char const *StatusNameStringLut[];
-extern int TacticianAffins[12]; // FE7U: by birth month only (FE7J: [12][4], by blood type too)
+extern int const StatusNameMsgLut[];
+extern int TacticianAffins[12][4];
+extern int TacticianBirthAffins[12];
 extern u8 gArenaLevelBackup;
 extern struct unk_type_0203A50C gUnk_0203A510;
 
@@ -1233,6 +1237,10 @@ extern const u16 FrameLut_EkrDragon_082E4418[];
 extern const u16 FrameLut_EkrDragon_082E441E[];
 extern const u16 FrameLut_EkrDragon_082E4430[];
 extern const u16 FrameLut_EkrDragon_082E4442[];
+extern const u16 FrameLut_EkrDragon_082DE7A4[];
+extern const u16 FrameLut_EkrDragon_082DE7AA[];
+extern const u16 FrameLut_EkrDragon_082DE7BC[];
+extern const u16 FrameLut_EkrDragon_082DE7CE[];
 extern const u8 Img_EkrDragon_082DE7E8[];
 extern const u8 Tsa_EkrDragon_DragonTail[];
 extern const u8 Tsa_EkrDragon_MainBg[];
@@ -1550,9 +1558,9 @@ extern u8 Img_SysBlackBox[];
 // ??? gUnk_0841D0EC
 // ??? gUnk_0841D0F4
 // ??? gUnk_0841D0FC
-extern u16 Pal_0841D100[];
-extern u8  Img_0841D120[];
-extern u8  Tsa_0841D614[];
+extern u16 Pal_08404BBC[];
+extern u8  Img_08404BDC[];
+extern u8  Tsa_084050D8[];
 // ??? gUnk_0841D838
 // ??? gUnk_0841DBCC
 // ??? gUnk_0841DE88
@@ -1567,18 +1575,19 @@ extern u8  Img_PrepScreenTitle[];
 extern u16 Pal_SysBrownBox[];
 // ??? gUnk_0841ECB0
 extern u16 SpriteAnim_0841ECD0[];
+extern u16 SpriteAnim_084062AC[];
 extern u8 Img_PrepWindow[];
-extern u16 Pal_0841F774[];
-extern u16 Pal_0841F814[];
-extern u16 Pal_0841F8B4[];
-extern u16 Pal_0841F954[];
+extern u16 Pal_08406D50[];
+extern u16 Pal_08406DF0[];
+extern u16 Pal_08406E90[];
+extern u16 Pal_08406F30[];
 // ??? gUnk_0841F9F4
 // ??? gUnk_0842035C
 // ??? Tsa_08420810
 // ??? Tsa_08420CC4
-extern u8 TSA_0842162C[];
-extern u8 TSA_08421644[];
-extern u8 TSA_08421684[];
+extern u8 TSA_08407354[];
+extern u8 TSA_0840736C[];
+extern u8 TSA_084073AC[];
 // ??? gUnk_08421C24
 extern u8  Img_PrepMuralBackground[];
 extern u16 TsaConfig_PrepMuralBackground[];
@@ -1734,7 +1743,7 @@ extern struct ProcCmd ProcScr_PlayerPhase[];
 // ??? gUnk_08C028A8
 // ??? gUnk_08C028C0
 // ??? gUnk_08C028E8
-extern struct ProcCmd ProcScr_08C02920[];
+extern struct ProcCmd ProcScr_08B93664[];
 // ??? gUnk_08C02938
 // ??? gUnk_08C02958
 // ??? gUnk_08C029A8
@@ -1742,7 +1751,7 @@ extern struct ProcCmd ProcScr_08C02920[];
 // ??? gUnk_08C029E8
 // ??? gUnk_08C02A28
 // ??? gUnk_08C02A48
-extern struct ProcCmd ProcScr_BmMain_08C02A68[];
+extern struct ProcCmd ProcScr_BmMain_08B937AC[];
 // ??? gUnk_08C02AB0
 // ??? gUnk_08C02AD0
 // ??? gUnk_08C02AF0
@@ -1753,7 +1762,7 @@ extern struct ProcCmd ProcScr_BmMain_08C02A68[];
 extern struct ProcCmd ProcScr_ChapterIntro_Bg3Scroll[];
 extern struct ProcCmd ProcScr_ChapterIntroDeamon[];
 extern struct ProcCmd ProcScr_ChapterIntrofx[];
-extern struct ProcCmd ProcScr_BmMain_08C02D98[];
+extern struct ProcCmd ProcScr_BmMain_08B93ADC[];
 // ??? gUnk_08C02DD8
 // ??? gUnk_08C02E30
 extern struct ProcCmd ProcScr_DanceringAnim[];
@@ -1858,9 +1867,9 @@ extern struct ProcCmd ProcScr_SALLYCURSOR[];
 // ??? gUnk_08C05D08
 // ??? gUnk_08C05D10
 // ??? gUnk_08C05E30
-extern struct ProcCmd ProcScr_BmMain_08C05E68[];
-extern struct ProcCmd ProcScr_BmMain_08C05EC8[];
-extern struct ProcCmd ProcScr_BmMain_08C05F30[];
+extern struct ProcCmd ProcScr_BmMain_08B96BAC[];
+extern struct ProcCmd ProcScr_BmMain_08B96C0C[];
+extern struct ProcCmd ProcScr_BmMain_08B96C74[];
 // ??? gUnk_08C05FF0
 // ??? gUnk_08C06008
 // ??? gUnk_08C06028
@@ -1870,7 +1879,7 @@ extern struct ProcCmd ProcScr_BmMain_08C05F30[];
 // ??? gUnk_08C060B4
 // ??? gUnk_08C06104
 extern struct ProcCmd ProcScr_AiPhase[];
-extern struct ProcCmd ProcScr_08C0617C[];
+extern struct ProcCmd ProcScr_08B96EA8[];
 // ??? gUnk_08C061A4
 
 /* ai.h */
@@ -2287,9 +2296,9 @@ extern struct ProcCmd ProcScr_StartWorldMapEvent[];
 // ??? gUnk_08DB7DD0
 // ??? gUnk_08DB7E28
 // ??? gUnk_08DB7E70
-extern struct ProcCmd ProcScr_Unk_08DB7EB0[];
-extern struct ProcCmd ProcScr_Unk_08DB8048[];
-extern struct ProcCmd ProcScr_Unk_08DB8088[];
+extern struct ProcCmd ProcScr_Unk_08CEDEE4[];
+extern struct ProcCmd ProcScr_Unk_08CEE084[];
+extern struct ProcCmd ProcScr_Unk_08CEE0C4[];
 // ??? gUnk_08DB8118
 // ??? gUnk_08DB85EC
 // ??? gUnk_08DB85F4

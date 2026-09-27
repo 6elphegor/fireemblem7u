@@ -90,10 +90,13 @@ void PrepScreenMenu_OnSupport(struct ProcAtMenu * proc);
 void PrepScreenMenu_OnSave(struct ProcAtMenu * proc);
 int PrepScreenMenu_OnStartPress(struct ProcAtMenu * proc);
 // PrepScreenMenu_808E57C
+void sub_0808DC3C(struct ProcAtMenu * proc);
 int PrepScreenMenu_OnBPress(struct ProcAtMenu * proc);
 void PrepScreenMenu_OnCheckMap(struct ProcAtMenu * proc);
 // nullsub_74
 // nullsub_75
+void nullsub_74(void);
+void nullsub_75(void);
 void ResetSioPidPool(void);
 void RegisterSioPid(u8 val);
 void RemoveSioPid(u8 val);
@@ -105,10 +108,13 @@ int PrepGetLatestCharId();
 void PrepSetLatestCharId(int val);
 // IsCharacterForceDeployed
 // CalcForceDeployedUnitCounts
+bool IsCharacterForceDeployed(int pid);
+s32 CalcForceDeployedUnitCounts(void);
 bool SomeLeftoverFunctionThatReturns0(struct Unit *unit);
 bool IsUnitInCurrentRoster(struct Unit *unit);
 // AtMenu_AddPrepScreenSupportMenuItem
-int CanPrepScreenCheckMap(void);
+void AtMenu_AddPrepScreenSupportMenuItem(struct ProcAtMenu *proc);
+bool CanPrepScreenCheckMap(void);
 void InitPrepScreenMainMenu(struct ProcAtMenu *proc);
 int GetLatestUnitIndexInPrepListByUId(void);
 int PrepGetLatestUnitIndex(void);
@@ -141,6 +147,7 @@ struct ProcPrepMenuDesc {
 // ParsePrepMenuDescTexts
 // DrawPrepMenuDescTexts
 void PrepMenuDescOnInit(struct ProcPrepMenuDesc * proc);
+void sub_0808E60C(struct ProcPrepMenuDesc * proc);
 void PrepMenuDescOnParse(struct ProcPrepMenuDesc * proc);
 void PrepMenuDescOnDraw(void);
 void StartPrepMenuDescHandler(int msg, ProcPtr parent);
@@ -174,7 +181,7 @@ void sub_0808F3D0(struct ProcAtMenu *proc);
 void sub_0808F43C(struct ProcAtMenu *proc);
 void sub_0808F4A8(struct ProcAtMenu *proc);
 void sub_0808F52C(struct ProcAtMenu *proc);
-void sub_808FED8(struct ProcAtMenu *proc);
+void sub_0808F598(struct ProcAtMenu *proc);
 void sub_0808F5A0(struct ProcAtMenu *proc);
 void ConvoyPromotion_Init(ProcPtr proc);
 void sub_0808F690(ProcPtr proc);
@@ -234,7 +241,7 @@ void EndPrepScreenMenu(void);
 // sub_8090A88
 // ShowPrepScreenMenuFrozenHand
 // sub_8090AC0
-void EnablePrepScreenMenu(void);
+void sub_0809019C(void);
 void MenuScroll_Init(ProcPtr proc);
 void MenuScroll_Loop(ProcPtr proc);
 // LockMenuScrollBar
@@ -257,7 +264,7 @@ struct ProcPrepMuralBackground {
 
 void PrepMuralBackground_Init(struct ProcPrepMuralBackground *proc);
 void PrepMuralBackground_Loop(struct ProcPrepMuralBackground *proc);
-void StartPrepMuralBackground(void *vram, int pal_bank);
+struct ProcPrepMuralBackground * StartPrepMuralBackground(ProcPtr parent, int pal_bank);
 void EndPrepMuralBackground(void);
 // sub_080907D4
 
@@ -334,16 +341,16 @@ void sub_08091DBC(struct PrepItemScreenProc * proc);
 void sub_0809210C(struct PrepItemScreenProc * proc);
 void sub_0809218C(struct PrepItemScreenProc * proc);
 void sub_080921E8(struct PrepItemScreenProc * proc);
-void sub_8092B30(struct PrepItemScreenProc * proc);
+void sub_08092220(struct PrepItemScreenProc * proc);
 // sub_08092578
 void sub_080925D0(struct PrepItemScreenProc * proc);
 void sub_080926F8(struct PrepItemScreenProc * proc);
 void PrepItemScreen_Loop_MainKeyHandler(struct PrepItemScreenProc * proc);
 void StartPrepItemTradeScreen(struct PrepItemScreenProc * proc);
-void sub_8093198(struct PrepItemScreenProc * proc);
-void sub_80931B0(struct PrepItemScreenProc * proc);
+void sub_0809288C(struct PrepItemScreenProc * proc);
+void sub_080928A4(struct PrepItemScreenProc * proc);
 void StartPrepArmory(struct PrepItemScreenProc * proc);
-void sub_80931E0(struct PrepItemScreenProc * proc);
+void sub_080928D4(struct PrepItemScreenProc * proc);
 // UpdatePrepItemScreenFace
 // EndPrepItemScreenFace
 // StartPrepItemScreen

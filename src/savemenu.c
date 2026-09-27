@@ -94,6 +94,29 @@ u8 BitfileToIndex(u8 byte)
     return UINT8_MAX;
 }
 
-void SaveMenu_StartHelpBox(struct SaveMenuProc * proc);
-ASM_FUNC("asm/nonmatching/code_080A3404.s");
+void SaveMenu_StartHelpBox(struct SaveMenuProc * proc)
+{
+    if ((proc->unk_3F == 0xFF) || (proc->unk_36 == 0))
+    {
+        CloseHelpBox();
+        proc->in_rtext = 0;
+        return;
+    }
+
+    switch (proc->action_flag) {
+    case SAVEMENU_ACTION_BITFILE_1:
+    case SAVEMENU_ACTION_BITFILE_4:
+    case SAVEMENU_ACTION_BITFILE_5:
+        if (proc->unk_36 != 0 && proc->in_rtext == false)
+        {
+            LoadHelpBoxGfx((void *)0x06013800, 9);
+            StartHelpBoxExt_Unk(0x30, 0x30, 0x3B2);
+            proc->in_rtext = true;
+        }
+        break;
+
+    default:
+        break;
+    }
+}
 

@@ -638,14 +638,8 @@ void TalkToggleInvertedPalette(int id)
     }
 }
 
-#if NONMATCHING
-
-// ldrb r0, [r1, #0x12]
-// instead of
-// movs r0, #0x12
-// ldrsb r0, [r1, r0]
-
-int TalkInterpret(ProcPtr proc) {
+int TalkInterpret(ProcPtr proc)
+{
     struct Proc* unkProc;
     int i;
 
@@ -668,7 +662,7 @@ int TalkInterpret(ProcPtr proc) {
 
                 Text_Skip(TALK_TEXT_BY_LINE(sTalkSt->line_active), 6);
 
-                if (sTalkSt->instant_print || sTalkSt->print_delay <= 0) {
+                if (*(s8 *)&sTalkSt->instant_print || sTalkSt->print_delay <= 0) {
                     return 2;
                 }
 
@@ -727,7 +721,7 @@ int TalkInterpret(ProcPtr proc) {
         case 0x05:
         case 0x06:
         case 0x07:
-            if (sTalkSt->instant_print) {
+            if (*(s8 *)&sTalkSt->instant_print) {
                 sTalkSt->str++;
                 return 2;
             }
@@ -919,7 +913,7 @@ int TalkInterpret(ProcPtr proc) {
                     return 3;
 
                 case 0x05:
-                    sub_080144CC(sTalkSt->number, sTalkSt->buf_number_str);
+                    NumberToStringAscii(sTalkSt->number, sTalkSt->buf_number_str);
 
                     sTalkSt->str--;
                     sTalkSt->str_back = sTalkSt->str;
@@ -1018,14 +1012,6 @@ int TalkInterpret(ProcPtr proc) {
     return 1;
 }
 
-#else
-
-NAKEDFUNC
-int TalkInterpret(ProcPtr proc);
-ASM_FUNC("asm/nonmatching/code_080085BC.s");
-
-
-#endif
 
 void SetActiveTalkFace(int face)
 {
@@ -1441,8 +1427,10 @@ void sub_080095C8(struct Proc * proc)
     }
 }
 
-void sub_080096BC(struct Proc * proc);
-ASM_FUNC("asm/nonmatching/code_080096BC.s");
+void sub_080096BC(struct Proc * proc)
+{
+    CleanTalkObjects(0x200, 0x1A, 0x44444444, proc);
+}
 
 
 void sub_080096D4(ProcPtr proc)
@@ -1654,8 +1642,73 @@ void sub_08009A10(int x, int y, int width, int height)
     SetWOutLayers(0, 1, 1, 1, 1);
 }
 
-void PutTalkBubbleTail(int bg, int x, int y, int kind);
-ASM_FUNC("asm/nonmatching/code_08009A90.s");
+#define TALK_TM_INDEX(x, y) ((x) + ((y) << 5))
+
+void PutTalkBubbleTail(int bg, int x, int y, int kind)
+{
+
+    u16* buf = GetBgTilemap(bg);
+
+    switch (kind) {
+        case 0:
+            // _0800851C
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 4, 3);
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 4, 3) + 0x400;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 6, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 5, 3) + 0x400;
+
+            break;
+
+        case 1:
+            // _08008550
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 4, 3);
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 4, 3) + 0x400;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 5, 3);
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 6, 3);
+
+            break;
+
+        case 2:
+            // _08008588
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 8, 3) + 0x400;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 9, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 7, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 7, 3) + 0x400 + 0x800;
+
+            break;
+
+        case 3:
+            // _080085BC
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 7, 3);
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 7, 3) + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 8, 3);
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 9, 3);
+
+            break;
+
+        case 4:
+            // _080085F4
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 9, 3) + 0x400 + 0x800;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 8, 3) + 0x400 + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 7, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 7, 3) + 0x400 + 0x800;
+
+            break;
+
+        case 5:
+            // _0800862C
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 7, 3);
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 7, 3) + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 9, 3) + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 8, 3) + 0x800;
+
+            break;
+    }
+
+    return;
+}
+
+#undef TALK_TM_INDEX
 
 
 void PutTalkBubbleTm(int id, int x, int y, int width, int height)
@@ -1898,14 +1951,246 @@ void sub_0800A108()
     CallDelayed(&sub_0800A0FC, 1);
 }
 
-int GetStrTalkLen(char const * str, bool isBubbleOpen);
-ASM_FUNC("asm/nonmatching/code_0800A11C.s");
+int GetStrTalkLen(char const * str, bool isBubbleOpen)
+{
+    char buf[0x20];
+    int chrLen;
+
+    int speakFace = sTalkSt->speak_talk_face;
+    int activeFace = sTalkSt->active_talk_face;
+
+    int currentLineLen = 0;
+    int maxLineLen = 24;
+
+    while (1) {
+        switch (*str) {
+            case 0x00:
+                if (currentLineLen > maxLineLen) {
+                    maxLineLen = currentLineLen;
+                }
+
+                currentLineLen = 0;
+
+                goto end;
+
+            case 0x01:
+            case 0x02:
+                if (currentLineLen > maxLineLen) {
+                    maxLineLen = currentLineLen;
+                }
+
+                currentLineLen = 0;
+
+                str++;
+
+                break;
+
+            case 0x04:
+            case 0x05:
+            case 0x06:
+            case 0x07:
+            case 0x16:
+            case 0x17:
+            case 0x1C:
+                str++;
+                break;
+
+            case 0x03:
+                currentLineLen += 12;
+                str++;
+                break;
+
+            case 0x08:
+            case 0x09:
+            case 0x0A:
+            case 0x0B:
+            case 0x0C:
+            case 0x0D:
+            case 0x0E:
+            case 0x0F:
+                activeFace = *str - 0x08;
+                str++;
+                break;
+
+            case 0x10:
+                while (1) {
+                    switch (*str) {
+                        case 0x08:
+                        case 0x09:
+                        case 0x0A:
+                        case 0x0B:
+                        case 0x0C:
+                        case 0x0D:
+                        case 0x0E:
+                        case 0x0F:
+                            activeFace = *str - 0x08;
+                            str++;
+
+                            continue;
+
+                        case 0x10:
+                            str += 3;
+
+                            continue;
+                    }
+
+                    break;
+                }
+
+                break;
+
+            case 0x11:
+                if (activeFace == speakFace) {
+                    if (currentLineLen > maxLineLen) {
+                        maxLineLen = currentLineLen;
+                    }
+
+                    currentLineLen = 0;
+
+                    goto end;
+                }
+
+                str++;
+
+                break;
+
+            case 0x12:
+            case 0x13:
+            case 0x14:
+            case 0x15:
+                if (!isBubbleOpen) {
+                    if (currentLineLen > maxLineLen) {
+                        maxLineLen = currentLineLen;
+                    }
+
+                    currentLineLen = 0;
+
+                    goto end;
+                }
+
+                str++;
+
+                break;
+
+            case 0x18:
+            case 0x19:
+            case 0x1A:
+            case 0x1B:
+                currentLineLen += 0x50;
+                str++;
+                break;
+
+            case 0x80:
+                str++;
+
+                switch (*str) {
+                    case 0x00:
+                    case 0x01:
+                    case 0x02:
+                    case 0x03:
+                    case 0x04:
+                    case 0x07:
+                    case 0x08:
+                    case 0x09:
+                    case 0x16:
+                    case 0x17:
+                    case 0x18:
+                    case 0x19:
+                    case 0x1A:
+                    case 0x1B:
+                    case 0x1C:
+                    case 0x1D:
+                    case 0x1E:
+                    case 0x1F:
+                    case 0x21:
+                    case 0x24:
+                    case 0x25:
+                        str++;
+                        break;
+
+                    case 0x05:
+                        NumberToStringAscii(sTalkSt->number, buf);
+                        currentLineLen += GetStrTalkLen(buf, isBubbleOpen);
+
+                        str++;
+                        break;
+
+                    case 0x20:
+                        currentLineLen += GetStringTextLen(GetTacticianName());
+
+                        str++;
+                        break;
+
+                    case 0x06:
+                        currentLineLen += GetStrTalkLen(sTalkSt->buf_unk_str, isBubbleOpen);
+
+                        str++;
+                        break;
+
+                    case 0x0A:
+                    case 0x0B:
+                    case 0x0C:
+                    case 0x0D:
+                    case 0x0E:
+                    case 0x0F:
+                    case 0x10:
+                    case 0x11:
+                        activeFace = *str - 0x0A;
+                        str++;
+
+                        break;
+
+                    default:
+                        break;
+
+                }
+
+                break;
+
+            case 0x81:
+                if (str[1] == 0x40) {
+                    str += 2;
+                    currentLineLen += 6;
+                    break;
+                }
+
+                // fallthrough
+
+            default:
+                if ((activeFace != speakFace) && (activeFace != 0xFF)) {
+                    if (!isBubbleOpen) {
+                        isBubbleOpen = 1;
+                        speakFace = activeFace;
+                    } else {
+                        if (currentLineLen > maxLineLen) {
+                            maxLineLen = currentLineLen;
+                        }
+
+                        currentLineLen = 0;
+
+                        goto end;
+                    }
+                }
+
+                str = GetCharTextLen(str, &chrLen);
+
+                currentLineLen += chrLen;
+        }
+    }
+
+end:
+    return maxLineLen;
+}
 
 
-bool sub_0800A4E8();
-ASM_FUNC("asm/nonmatching/code_0800A4E8.s");
+bool sub_0800A4E8()
+{
+    return false;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800A4EC.s");
+void sub_0800A4EC()
+{
+}
 
 
 void sub_800A390();

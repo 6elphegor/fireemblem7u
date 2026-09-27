@@ -450,8 +450,45 @@ void ChapterIntro_BeginFadeToMap(struct ProcChapterIntrofx * proc)
         ApplyFlamesWeatherGradient();
 }
 
-void ChapterIntro_LoopFadeToMap(struct ProcChapterIntrofx * proc);
-ASM_FUNC("asm/nonmatching/code_0801FCDC.s");
+void ChapterIntro_LoopFadeToMap(struct ProcChapterIntrofx * proc)
+{
+    if ((GetGameTime() % 2) == 0)
+    {
+        ColorFadeTick();
+
+        if (GetChapterInfo(gPlaySt.chapterIndex)->weather == WEATHER_FLAMES)
+            ApplyFlamesWeatherGradient();
+
+        if (GetChapterInfo(gPlaySt.chapterIndex)->fadeToBlack)
+        {
+            if (GetChapterInfo(gPlaySt.chapterIndex)->song_openning[gPlaySt.chapterModeIndex != 3 ? 0 : 1] != 0xFFFF)
+                StartBgm(GetChapterInfo(gPlaySt.chapterIndex)->song_openning[gPlaySt.chapterModeIndex != 3 ? 0 : 1], 0);
+
+            proc->timer = 0;
+            SetDispEnable(1, 1, 1, 0, 0);
+        }
+        else
+        {
+            int val;
+
+            EnablePalSync();
+
+            val = (proc->timer + 7) / 8;
+            SetBlendAlpha(12 + val, 4 - val);
+        }
+
+        proc->timer--;
+        if (proc->timer == 24)
+            if (GetChapterInfo(gPlaySt.chapterIndex)->song_openning[gPlaySt.chapterModeIndex != 3 ? 0 : 1] != 0xFFFF)
+                StartBgm(GetChapterInfo(gPlaySt.chapterIndex)->song_openning[gPlaySt.chapterModeIndex != 3 ? 0 : 1], 0);
+
+        if (proc->timer < 0)
+        {
+            EnableTilesetPalAnim();
+            Proc_Break(proc);
+        }
+    }
+}
 
 
 void ChapterIntro_BeginCloseText(struct ProcChapterIntrofx * proc)
@@ -530,8 +567,30 @@ void ChapterIntro_BeginFastFadeToMap(struct ProcChapterIntrofx * proc)
         StartBgm(GetChapterInfo(gPlaySt.chapterIndex)->song_openning[gPlaySt.chapterModeIndex != 3 ? 0 : 1], 0);
 }
 
-void ChapterIntro_LoopFastFadeToMap(struct ProcChapterIntrofx * proc);
-ASM_FUNC("asm/nonmatching/code_08020010.s");
+void ChapterIntro_LoopFastFadeToMap(struct ProcChapterIntrofx * proc)
+{
+    ColorFadeTick();
+
+    if (GetChapterInfo(gPlaySt.chapterIndex)->weather == WEATHER_FLAMES)
+        ApplyFlamesWeatherGradient();
+
+    if (GetChapterInfo(gPlaySt.chapterIndex)->fadeToBlack)
+    {
+        proc->timer = 0;
+
+        SetDispEnable(1, 1, 1, 0, 0);
+    }
+    else
+        EnablePalSync();
+
+    proc->timer--;
+
+    if (proc->timer < 0)
+    {
+        EnableTilesetPalAnim();
+        Proc_Break(proc);
+    }
+}
 
 
 void ChapterIntro_SetSkipTarget(int skip, struct ProcChapterIntrofx * proc)

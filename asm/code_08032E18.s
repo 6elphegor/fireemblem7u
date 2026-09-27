@@ -8,7 +8,7 @@ TerrainHealDisplay_Init: @ 0x08032E18
 	adds r4, r0, #0
 	ldr r0, _08032E34 @ =0x0202BBF8
 	ldrb r0, [r0, #0xf]
-	bl sub_080242E8
+	bl MakeTerrainHealTargetList
 	bl CountTargets
 	cmp r0, #0
 	bne _08032E38

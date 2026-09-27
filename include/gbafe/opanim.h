@@ -12,16 +12,17 @@ void sub_080BB0E0(void);
 // sub_080BB32C
 void HBlank_80BBDD0(void);
 void sub_080BB4E8(struct Proc * proc);
-void sub_80BBFA0(struct Proc * proc);
+void sub_080BB524(struct Proc * proc);
 void sub_080BB530(struct Proc * proc);
 // sub_80BC1E8
-void sub_80BC240(struct Proc * proc);
-void sub_80BC398(struct Proc * proc);
+void sub_080BB800(struct Proc * proc);
+void sub_080BB81C(struct Proc * proc);
+void sub_080BB98C(struct Proc * proc);
 void sub_080BBA3C(struct Proc * proc);
 void OpAnim_DrawWater(struct Proc * proc);
 void sub_080BBB30(struct Proc * proc);
 void sub_080BBBA4(struct Proc * proc);
-void sub_80BC5C4(struct Proc * proc);
+void sub_080BBBB8(struct Proc * proc);
 // sub_080BBC5C
 // sub_80BC688
 // sub_80BC730
@@ -29,18 +30,18 @@ void sub_80BC5C4(struct Proc * proc);
 // sub_080BBE40
 // sub_080BBE50
 // sub_080BBE7C
-void sub_80BC8B8(struct Proc * proc);
+void sub_080BBEB0(struct Proc * proc);
 void sub_080BC0A4(struct Proc * proc);
 void sub_080BC0C4(struct Proc * proc);
 // sub_80BCB00
 void sub_080BC104(struct Proc * proc);
-void sub_80BCB6C(struct Proc * proc);
-void sub_80BCC0C(struct Proc * proc);
-void sub_80BCC9C(struct Proc * proc);
+void sub_080BC164(struct Proc * proc);
+void sub_080BC21C(struct Proc * proc);
+void sub_080BC280(struct Proc * proc);
 // nullsub_92
 // sub_080BC2D8
 void OpAnim_DrawCloud(struct Proc * proc);
-void sub_80BCE9C(struct Proc * proc);
+void sub_080BC474(struct Proc * proc);
 void sub_080BC494(struct Proc * proc);
 // sub_80BCF98
 // sub_80BCFC4
@@ -128,7 +129,7 @@ extern struct Struct_02007508 gUnkOpAnim_0200750C;
 // ??? gUnk_08DB8FCC
 // ??? gUnk_08DB8FD0
 // ??? gUnk_08DB9010
-extern struct ProcCmd CONST_DATA ProcScr_08DB9030[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF0E4[];
 extern struct ProcCmd CONST_DATA ProcScr_OpeningSeqence[];
 extern struct ProcCmd CONST_DATA ProcScr_08DB91A8[];
 extern struct ProcCmd CONST_DATA ProcScr_08DB91C0[];

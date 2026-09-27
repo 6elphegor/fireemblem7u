@@ -53,6 +53,10 @@ void TryUnlockParentProc(ProcPtr);
 /* bm.h */
 
 void nullsub_38(void);
+void ClearMenuOverrides(void);
+void sub_08002C74(void);
+void sub_08002C8C(void);
+bool sub_08002CA4(void);
 
 void DecayTraps(void);
 
@@ -63,6 +67,7 @@ void InitPlayConfig(int);
 void StartBattleMap(/* TODO */);
 // RestartBattleMap
 void ResumeChapterFromSuspend(/* TODO */);
+void sub_0802E190(ProcPtr proc); // FE7J ResumeChapterFromSuspend
 // RefreshBMapDisplay_FromBattle
 // BMapDispResume_FromBattleDelayed
 // InitMoreBMapGraphics
@@ -586,7 +591,7 @@ void StartBoxDialogueExt(int x, int y, int msgId, u16* unkA, int unkB, ProcPtr p
 // CgText_808F0EC
 // StartCgText
 // EndCgText
-bool sub_80886E0(void);
+bool sub_08087D58(void);
 // sub_80886FC
 // CgText_ClearSpriteText
 // sub_08087DE0
@@ -752,6 +757,7 @@ int GetSupportScreenPartnerCount(int charId);
 // sub_080AAC48
 // sub_080AAC74
 // StartBonusClaimHelpBox
+void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to gBuf, then TmApplyTsa_thm
 // sub_080AAD18
 // sub_80ABC04
 // sub_80ABC28
@@ -1239,6 +1245,7 @@ void PutCgBackground(u16 *, int, int, int, int);
 // sub_080B9020
 // sub_080B9074
 void sub_80B9C0C(/* TODO */);
+void sub_080B90AC(void); // FE7J sub_80B9C0C
 // sub_080B90C0
 // sub_080B9128
 // sub_080B915C

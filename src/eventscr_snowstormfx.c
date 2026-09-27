@@ -11,8 +11,34 @@ struct ProcCmd CONST_DATA ProcScr_EventSnowStormfx[] = {
     PROC_END,
 };
 
-void EventSnowStormfx_Init(struct ProcEventSnowStormfx * proc);
-ASM_FUNC("asm/nonmatching/code_08011118.s");
+void EventSnowStormfx_Init(struct ProcEventSnowStormfx * proc)
+{
+    SetBlendAlpha(0x0, 0x10);
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 1);
+
+    Decompress(Img_EventSnowStormfx, (void *)BG_VRAM + 0x1000);
+    ApplyPalette(Pal_EventSnowStormfx, BGPAL_BM_15);
+    sub_080AACD8(gBg2Tm, Tsa_EventSnowStormfx, 0xF080);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    StartMixPalette(
+        Pal_EventSnowStormfx,
+        Pal_EventSnowStormfx + 0x10,
+        0x20,
+        BGPAL_BM_15,
+        1,
+        proc
+    );
+
+    proc->timer = 0;
+    proc->bg_offset = 0x20;
+
+    proc->x = 0;
+    proc->y = 0;
+
+    SetBgOffset(BG_2, 0, 0);
+}
 
 
 void EventSnowStormfx_Loop1(struct ProcEventSnowStormfx * proc)

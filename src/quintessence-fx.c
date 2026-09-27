@@ -30,8 +30,34 @@ struct ProcCmd CONST_DATA ProcScr_QuintessenceFxBg2Scroll[] = {
     PROC_END,
 };
 
-void QuintessenceFx_Init_Main(struct ProcEventAnimfx * proc);
-ASM_FUNC("asm/nonmatching/code_0807C044.s");
+void QuintessenceFx_Init_Main(struct ProcEventAnimfx * proc)
+{
+    gDispIo.blend_ct.effect = 1;
+
+    gDispIo.blend_coef_a = 0;
+    gDispIo.blend_coef_b = 16;
+    gDispIo.blend_y = 0;
+
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    ApplyPalette(Pal_QuintessenceFx, 5);
+    Decompress(Img_ChapterIntroFog, (void *)0x06004000);
+    sub_080AACD8(gBg2Tm, Tsa_QuintessenceFx, 0x5200);
+
+    EnableBgSync(BG2_SYNC_BIT | BG3_SYNC_BIT);
+    SetBgOffset(BG_2, 0, 0);
+
+    proc->timer = 0;
+    proc->bg2_offset = 0;
+
+    InitScanlineEffect();
+
+    SetOnHBlankA(QuintessenceFx_OnHBlank);
+    StartParallelWorker(QuintessenceFx_ParallelWorker, proc);
+
+    Proc_Start(ProcScr_QuintessenceFxBg2Scroll, PROC_TREE_VSYNC);
+}
 
 
 void QuintessenceFx_Loop_A(struct ProcEventAnimfx * proc)

@@ -122,12 +122,15 @@ class Partial(Analysis):
                 else:
                     addend = struct.unpack_from("<I", text.data, o)[0]
                     tgt_off = (sym.value + addend) & ~1
-                callee = at.get(tgt_off)
-                if callee is None or callee not in paired:
-                    return False
                 a = u + (o - off)
                 got = self.ours.bl_target(a) if rtype == R_ARM_THM_CALL else self.ours.word(a) & ~1
-                if got != paired[callee]:
+                callee = at.get(tgt_off)
+                if callee is None and off <= tgt_off < off + size:
+                    # switch jump table entry: a label inside this function
+                    if got != u + (tgt_off - off):
+                        return False
+                    continue
+                if callee is None or callee not in paired or got != paired[callee]:
                     return False
                 continue
             try:

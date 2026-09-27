@@ -32,12 +32,60 @@ void DragonGatefx_DistortionHandler(struct ProcDragonGateFx * proc)
     SetBgOffset(proc->unk_64, GetBgXOffset(BG_3), 0);
 }
 
-void DragonGatefx_DrawLight(struct ProcDragonGateFx * proc);
-ASM_FUNC("asm/nonmatching/code_0807AED8.s");
+void DragonGatefx_DrawLight(struct ProcDragonGateFx * proc)
+{
+    proc->unk_58 = 0;
+    proc->unk_4c = 0;
+
+    SetBgOffset(BG_1, 0, 0);
+    SetBgOffset(BG_2, 0, 0);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 2;
+
+    Decompress(Img_DragonGateLight, (void *)0x06004000);
+    sub_080AACD8(gBg2Tm, Tsa_DragonGateLight, TILEREF(0x200, 6));
+    ApplyPalette(Pal_DragonGateLight, 6);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    StartMixPalette(Pal_DragonGateLight, gUnk_081C0A70, 2, 6, 1, proc);
+
+    InitScanlineEffect();
+
+    SetOnHBlankA(DragonGatefx_LightHBlank);
+    StartParallelWorker(DragonGatefx_DistortionHandler, proc);
+
+    proc->unk_64 = 2;
+}
 
 
-void DragonGatefx_DrawDragon(struct ProcDragonGateFx * proc);
-ASM_FUNC("asm/nonmatching/code_0807AFA0.s");
+void DragonGatefx_DrawDragon(struct ProcDragonGateFx * proc)
+{
+    SetOnHBlankA(DragonGatefx_DragonHBlank);
+
+    SetBlendAlpha(0, 16);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 2;
+
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendTargetB(0, 0, 1, 0, 0);
+
+    Decompress(Img_DragonGateDragon, (void *)0x06003000);
+    sub_080AACD8(gBg1Tm, Tsa_DragonGateDragon, TILEREF(0x180, 7));
+    ApplyPalette(Pal_DragonGateDragon, 7);
+    EnableBgSync(BG1_SYNC_BIT);
+
+    proc->unk_4c = 0;
+
+    TryLockProc(proc->proc_parent);
+
+    proc->unk_64 = 1;
+}
 
 
 void DragonGatefx_MergeDragon(struct ProcDragonGateFx * proc)
@@ -54,8 +102,27 @@ void DragonGatefx_MergeDragon(struct ProcDragonGateFx * proc)
     }
 }
 
-void sub_0807B0D4(struct ProcDragonGateFx * proc);
-ASM_FUNC("asm/nonmatching/code_0807B0D4.s");
+void sub_0807B0D4(struct ProcDragonGateFx * proc)
+{
+    SetBlendConfig(BLEND_EFFECT_NONE, 16, 0, 0);
+
+    CpuFastCopy((void *)0x06003000, (void *)0x06004000, 0x1000);
+
+    sub_080AACD8(gBg2Tm, Tsa_DragonGateDragon, TILEREF(0x200, 7));
+    EnableBgSync(BG2_SYNC_BIT);
+
+    TmFill(gBg1Tm, TILEREF(0x0, 0));
+    EnableBgSync(BG1_SYNC_BIT);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 2;
+
+    TryUnlockProc(proc->proc_parent);
+
+    proc->unk_64 = 2;
+}
 
 
 void DragonGatefxSetHBlank(void)

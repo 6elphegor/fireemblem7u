@@ -31,19 +31,181 @@ void PutChapterTitlePalette(int config, int pal_bank)
 
     ApplyPalette(pal, pal_bank);
 }
-ASM_FUNC("asm/nonmatching/code_080820CC.s");
+int GetChapterTitleGlyphOffset(int glyph)
+{
+    int sum = 0;
+    const struct ChapTitleGlyph * info = gChapTitleGlyphs;
 
-ASM_FUNC("asm/nonmatching/code_080820E8.s");
+    for (; glyph != 0; glyph--)
+    {
+        sum += info->offset;
+        info++;
+    }
 
-ASM_FUNC("asm/nonmatching/code_08082168.s");
+    return sum;
+}
 
-ASM_FUNC("asm/nonmatching/code_08082224.s");
+int GetChapterTitleGlyph(const char * str)
+{
+    char buf[0x20];
 
-ASM_FUNC("asm/nonmatching/code_080822A4.s");
+    if ((u8)(*str - 'A') <= 'Z' - 'A')
+        return *str - 'A';
 
+    if ((u8)(*str - 'a') <= 'z' - 'a')
+        return *str - 'a' + 26;
 
-void PutChapterTitleGfx(int chr, u32 titleId);
-ASM_FUNC("asm/nonmatching/code_08082308.s");
+    if ((u8)(*str - '0') <= 9)
+        return *str - '0' + 52;
+
+    if (*str == '-')
+        return 0x3E;
+
+    if (*str == '\'')
+        return 0x3F;
+
+    if (*str == ':')
+        return 0x40;
+
+    if (*str == '.')
+        return 0x41;
+
+    if (*str == ' ')
+        return 0x80;
+
+    sub_080C0088(buf, "none chapter message = %c", *str);
+    return -1;
+}
+
+void DrawChapterTitleGlyph(u8 * src, u8 * dst, int glyph, int x)
+{
+    int ix, iy;
+    int off = GetChapterTitleGlyphOffset(glyph);
+    int src_x = off & 0xFF;
+    int src_y = (off >> 8) * 16;
+    const struct ChapTitleGlyph * info = &gChapTitleGlyphs[glyph];
+
+    for (iy = info->y_start; iy < info->y_end; iy++)
+    {
+        for (ix = 0; ix < info->width; ix++)
+        {
+            int sx = src_x + ix;
+            int dx = x + ix;
+            u32 pixel = *(u32 *)(src + ((sx >> 3) << 5) + (((src_y + iy) >> 3) << 10) + (((src_y + iy) & 7) << 2)) & (0xF << ((sx & 7) * 4));
+
+            if (pixel != 0)
+                *(u32 *)(dst + ((dx >> 3) << 5) + ((iy >> 3) << 10) + ((iy & 7) << 2)) |= (pixel >> ((sx & 7) * 4)) << ((dx & 7) * 4);
+        }
+    }
+}
+
+int GetChapterTitleTextX(const char * str)
+{
+    u8 b = 0, a = 0;
+
+    for (; *str != 0 && *str != 0x1F; str++)
+    {
+        int glyph = GetChapterTitleGlyph(str);
+        const struct ChapTitleGlyph * info;
+
+        if (glyph == 0x80)
+        {
+            if (a > b)
+            {
+                a = a + 3;
+                b = a;
+            }
+            else
+            {
+                b = b + 3;
+                a = b;
+            }
+            continue;
+        }
+
+        info = &gChapTitleGlyphs[glyph];
+
+        if (a - info->kern_a > b - info->kern_b)
+            b = a;
+        else
+            a = b;
+
+        a += info->advance_a - 1;
+        b += info->advance_b - 1;
+    }
+
+    return (0xC0 - ((a + b) >> 1)) >> 1;
+}
+
+const char * GetChapterTitleStr(int titleId)
+{
+    const char * str;
+
+    if (titleId < 0)
+        titleId = 0x4A;
+
+    switch (titleId)
+    {
+    case 0x4A:
+        str = DecodeMsg(0x5D2);
+        break;
+
+    case 0x4B:
+        str = DecodeMsg(0x5D3);
+        break;
+
+    case 0x4C:
+        str = DecodeMsg(0x5D4);
+        break;
+
+    default:
+        str = DecodeMsg(GetChapterInfo(titleId & 0x7F)->msg_chapter_title[(titleId >> 7) & 1]);
+        break;
+    }
+
+    return str;
+}
+
+void PutChapterTitleGfx(int chr, u32 titleId)
+{
+    const char * str = GetChapterTitleStr(titleId);
+    u8 * dst = (u8 *)VRAM + chr * TILE_SIZE_4BPP;
+    u8 b = GetChapterTitleTextX(str);
+    u8 a = b;
+
+    gChapTitleSt.chr_str = OAM2_CHR(chr);
+    CpuFastFill(0, dst, 0x800);
+    Decompress(Img_ChapterTitleFont, gBuf);
+
+    for (; *str != 0 && *str != 0x1F; str++)
+    {
+        int glyph = GetChapterTitleGlyph(str);
+        const struct ChapTitleGlyph * info;
+
+        if (glyph == 0x80)
+        {
+            if (a > b)
+                b = a + 3;
+            else
+                b = b + 3;
+
+            a = b;
+            continue;
+        }
+
+        info = &gChapTitleGlyphs[glyph];
+
+        if (a - info->kern_a > b - info->kern_b)
+            b = a;
+        else
+            a = b;
+
+        DrawChapterTitleGlyph(gBuf, dst, glyph, a);
+
+        a += info->advance_a - 1;
+        b += info->advance_b - 1;
+    }
+}
 
 
 void PutChapterTitleBG(int chr)
@@ -81,6 +243,17 @@ void PutChapterTitleBgUnkTsa(u16 * tm, int pal)
     TmApplyTsa(tm, Tsa_ChapterTitle_0840213C, TILEREF(gChapTitleSt.chr_bg, pal));
 }
 
-int GetChapterTitle(struct PlaySt * playst);
-ASM_FUNC("asm/nonmatching/code_080824A4.s");
+int GetChapterTitle(struct PlaySt * playst)
+{
+    if (playst == NULL)
+        return 0x4A;
+
+    if (playst->chapterStateBits & PLAY_FLAG_COMPLETE)
+        return 0x4B;
+
+    if (playst->chapterModeIndex == 3)
+        return playst->chapterIndex | 0x80;
+
+    return playst->chapterIndex;
+}
 

@@ -250,8 +250,23 @@ struct ProcCmd CONST_DATA ProcScr_DragonFlameImpact[] = {
     PROC_END,
 };
 
-void DragonFlameImpact_Init(struct ProcDragonFlameImpact * proc);
-ASM_FUNC("asm/nonmatching/code_0807EA30.s");
+void DragonFlameImpact_Init(struct ProcDragonFlameImpact * proc)
+{
+    proc->x = 0xC0;
+    proc->y = 0x98;
+    proc->timer = 0;
+
+    Decompress(Img_DragonFlameImpact, (void *)BG_VRAM + 0x5000);
+    ApplyPalette(Pal_DragonFlameImpact, 4);
+    sub_080AACD8(gBg2Tm, Tsa_DragonFlameImpact, 0x4280);
+    EnableBgSync(BG2_SYNC_BIT);
+    SetBgOffset(BG_2, 0, 0);
+
+    SetWinEnable(0, 0, 0);
+    gDispIo.disp_ct.objwin_enable = 1;
+    SetWOutLayers(1, 1, 0, 1, 1);
+    SetWObjLayers(1, 1, 1, 1, 0);
+}
 
 
 void DragonFlameImpact_Loop(struct ProcDragonFlameImpact * proc)

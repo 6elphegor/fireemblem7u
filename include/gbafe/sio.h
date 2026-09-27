@@ -209,6 +209,7 @@ void StartTacticianNameSelect(ProcPtr parent);
 // Shop_HandleBuyConfirmPrompt
 // sub_08043170
 void sub_8043948(/* TODO */);
+void sub_080431AC(ProcPtr proc); // FE7J sub_8043948
 // sub_080431C0
 // sub_804397C
 // Sio_DrawFe6CommImage

@@ -309,8 +309,94 @@ void SetBattleUnitTerrainBonusesAuto(struct BattleUnit *bu)
     bu->terrainResistance = bu->unit.pClassData->pTerrainResistanceLookup[bu->terrainId];
 }
 
-void SetBattleUnitWeapon(struct BattleUnit *bu, int itemSlot);
-ASM_FUNC("asm/nonmatching/code_0802877C.s");
+void SetBattleUnitWeapon(struct BattleUnit *bu, int itemSlot)
+{
+    if (itemSlot == BU_ISLOT_AUTO)
+        itemSlot = GetUnitEquippedWeaponSlot(&bu->unit);
+
+    if ((bu->unit.state & US_IN_BALLISTA) && GetBallistaItemAt(bu->unit.xPos, bu->unit.yPos))
+        itemSlot = BU_ISLOT_BALLISTA;
+    
+    bu->canCounter = true;
+
+    switch (itemSlot) {
+    case 0 ... 4:
+        bu->weaponSlotIndex = itemSlot;
+        bu->weapon = bu->unit.items[bu->weaponSlotIndex];
+        break;
+    
+    case BU_ISLOT_OVERFLOW:
+        bu->weaponSlotIndex = 0xFF;
+        bu->weapon = gBmSt.inventory_item_overflow;
+        break;
+    
+    case BU_ISLOT_ARENA_PLAYER:
+        bu->weaponSlotIndex = 0;
+        bu->weapon = gArenaSt.player_weapon;
+        bu->canCounter = false;
+        break;
+    
+    case BU_ISLOT_ARENA_OPPONENT:
+        bu->weaponSlotIndex = 0;
+        bu->weapon = gArenaSt.opponent_weapon;
+        bu->canCounter = false;
+
+        break;
+
+    case BU_ISLOT_BALLISTA:
+        bu->weaponSlotIndex = 0xFF;
+        bu->weapon = GetBallistaItemAt(bu->unit.xPos, bu->unit.yPos);
+        bu->canCounter = false;
+        break;
+    
+    default:
+        bu->weaponSlotIndex = 0xFF;
+        bu->weapon = 0;
+        bu->canCounter = false;
+        break;
+    }
+
+    bu->weaponBefore = bu->weapon;
+    bu->weaponAttributes = GetItemAttributes(bu->weapon);
+    bu->weaponType = GetItemType(bu->weapon);
+
+    if (!(gBattleStats.config & BATTLE_CONFIG_BIT2)) {
+        if (bu->weaponAttributes & IA_MAGICDAMAGE) {
+            switch (GetItemIndex(bu->weapon)) {
+            case ITEM_SWORD_WINDSWORD:
+                if (gBattleStats.range == 2)
+                    bu->weaponType = ITYPE_ANIMA;
+                else
+                    bu->weaponAttributes = bu->weaponAttributes &~ IA_MAGICDAMAGE;
+
+                break;
+
+            case ITEM_SWORD_LIGHTBRAND:
+                if (gBattleStats.range == 2)
+                    bu->weaponType = ITYPE_LIGHT;
+                else
+                    bu->weaponAttributes = bu->weaponAttributes &~ IA_MAGICDAMAGE;
+
+                break;
+
+            case ITEM_SWORD_RUNESWORD:
+                bu->weaponType = ITYPE_DARK;
+                break;
+
+            } // switch (GetItemIndex(bu->weapon))
+        } // if (bu->weaponAttributes & IA_MAGICDAMAGE)
+
+        if (!IsItemCoveringRange(bu->weapon, gBattleStats.range) || bu->weaponSlotIndex == 0xFF) {
+            bu->weapon = 0;
+            bu->canCounter = false;
+        }
+
+        if (bu->unit.statusIndex == UNIT_STATUS_SLEEP) {
+            bu->weapon = 0;
+            bu->canCounter = false;
+        }
+    }
+}
 
 
 void SetBattleUnitWeaponBallista(struct BattleUnit *bu)
@@ -380,8 +466,27 @@ void ComputeBattleUnitBaseDefense(struct BattleUnit *bu)
     bu->battleDefense = bu->terrainDefense + bu->unit.def;
 }
 
-void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *defender);
-ASM_FUNC("asm/nonmatching/code_08028B10.s");
+void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *defender)
+{
+    attacker->battleAttack = GetItemMight(attacker->weapon) + attacker->wTriangleDmgBonus;
+    if (IsItemEffectiveAgainst(attacker->weapon, &defender->unit) == true) {
+        switch (GetItemIndex(attacker->weapon)) {
+        case ITEM_SWORD_DURANDAL:
+        case ITEM_AXE_ARMADS:
+        case ITEM_SWORD_WYRMSLAYER:
+        case ITEM_ANIMA_FORBLAZE:
+        case ITEM_SWORD_SOL_KATTI:
+            attacker->battleAttack *= 2;
+            break;
+
+        default:
+            attacker->battleAttack *= 2;
+            break;
+        }
+    }
+
+    attacker->battleAttack += attacker->unit.pow;
+}
 
 
 void ComputeBattleUnitSpeed(struct BattleUnit *bu)
@@ -397,12 +502,63 @@ void ComputeBattleUnitSpeed(struct BattleUnit *bu)
         bu->battleSpeed = 0;
 }
 
-void ComputeBattleUnitHitRate(struct BattleUnit *bu);
-ASM_FUNC("asm/nonmatching/code_08028BA0.s");
+void ComputeBattleUnitHitRate(struct BattleUnit *bu)
+{
+    int ret;
+
+    bu->battleHitRate = 
+        bu->unit.skl * 2 +
+        GetItemHit(bu->weapon) +
+        bu->unit.lck / 2 +
+        bu->wTriangleHitBonus;
+
+    if (gPlaySt.tact_enabled == 0)
+        return;
+
+    if (gPlaySt.chapterModeIndex == 0x1)
+        return;
+
+    if (gBmSt.flags & BM_FLAG_LINKARENA)
+        return;
+
+    if (UNIT_FACTION(&bu->unit))
+        return;
+
+    if (TacticianBirthAffins[gPlaySt.tact_birth] == bu->unit.pCharacterData->affinity) {
+        ret = gPlaySt.unk2C_04 / 0xC;
+        if (ret > 10)
+            ret = 10;
+
+        bu->battleHitRate += ret;
+    }
+
+    if (sub_08028194(&bu->unit))
+        bu->battleHitRate += 10;
+}
 
 
-void ComputeBattleUnitAvoidRate(struct BattleUnit *bu);
-ASM_FUNC("asm/nonmatching/code_08028C50.s");
+void ComputeBattleUnitAvoidRate(struct BattleUnit *bu)
+{
+    int ret;
+
+    bu->battleAvoidRate = bu->battleSpeed * 2 + bu->terrainAvoid + (bu->unit.lck);
+
+    if (gPlaySt.tact_enabled != 0 && gPlaySt.chapterModeIndex != 0x1 && !(gBmSt.flags & BM_FLAG_LINKARENA) && UNIT_FACTION(&bu->unit) == 0) {
+        if (TacticianBirthAffins[gPlaySt.tact_birth] == bu->unit.pCharacterData->affinity) {
+            ret = gPlaySt.unk2C_04 / 0xC;
+            if (ret > 10)
+                ret = 10;
+
+            bu->battleAvoidRate += ret;
+        }
+
+        if (sub_08028194(&bu->unit))
+            bu->battleAvoidRate += 10;
+    }
+
+    if (bu->battleAvoidRate < 0)
+        bu->battleAvoidRate = 0;
+}
 
 
 void ComputeBattleUnitCritRate(struct BattleUnit *bu)

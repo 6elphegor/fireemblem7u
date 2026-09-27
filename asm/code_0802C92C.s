@@ -13,7 +13,7 @@ sub_0802C92C: @ 0x0802C92C
 	bl BattleInitItemEffect
 	ldrb r0, [r4, #0xc]
 	bl GetUnit
-	bl sub_080249FC
+	bl MakeTargetListForLatona
 	bl CountTargets
 	adds r6, r0, #0
 	movs r5, #0

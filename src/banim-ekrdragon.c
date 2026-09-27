@@ -1,5 +1,11 @@
 #include "gbafe.h"
 
+/* misnamed: returns gEkrDragonStatusLeft.type */
+int GetKeyStatus_IgnoreMask(void)
+{
+    return gEkrDragonStatusLeft.type;
+}
+
 void ResetEkrDragonStatus(void)
 {
     struct EkrDragonStatus * dstat;
@@ -52,8 +58,10 @@ void AddEkrDragonStatusType(struct Anim * anim, u16 type_bitfile)
     GetEkrDragonStatus(anim)->type |= type_bitfile;
 }
 
-int CheckInEkrDragon(void);
-ASM_FUNC("asm/nonmatching/code_08064AE0.s");
+int CheckInEkrDragon(void)
+{
+    return GetKeyStatus_IgnoreMask();
+}
 
 
 void EkrDragonTmCpyHFlip(int x, int y)

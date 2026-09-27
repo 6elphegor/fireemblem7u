@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0808EEB0
-sub_0808EEB0: @ 0x0808EEB0
+	thumb_func_start AtMenu_UnlockGame
+AtMenu_UnlockGame: @ 0x0808EEB0
 	push {lr}
 	bl CheckInLinkArena
 	lsls r0, r0, #0x18

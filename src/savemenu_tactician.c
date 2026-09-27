@@ -156,7 +156,7 @@ void sub_080A6748(void)
 
 	PutIcon(
 		gBg0Tm + TM_OFFSET(0xE, 0x5),
-		TacticianAffins[gPlaySt.tact_birth] + 0x79,
+		TacticianBirthAffins[gPlaySt.tact_birth] + 0x79,
 		0x5000
 	);
 

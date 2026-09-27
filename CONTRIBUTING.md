@@ -60,5 +60,7 @@ match this compiler.
   your area (`tools/rename.py` edits every asm file).  If a name is wrong,
   note it in your report instead.
 * Header edits: add declarations near related ones; don't rewrite blocks.
+  `grep -rn NAME include/` first — two branches declaring the same function
+  with different types breaks the build after merging.
 * `symbols.ld` and `data/layout.txt` merge by union — just add lines.
 * Commit only matching states (`make` prints `OK`).

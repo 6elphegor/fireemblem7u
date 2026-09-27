@@ -1,7 +1,5 @@
 #include "gbafe.h"
 
-bool8 sub_08002CCC(void);
-void sub_08002C8C(void);
 void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
 void sub_080BAA68(struct ProcTitle * proc);
 void sub_080BAA90(struct ProcTitle * proc);

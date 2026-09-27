@@ -1,7 +1,6 @@
 #include "gbafe.h"
 
 int CountDigits(int number);
-const char * sub_08018CC0(struct Unit * unit); // FE7U GetUnitRescueName (msg-based)
 void sub_08016668(struct Text * text, int item, int nameColor, u16 * mapOut); // DrawItemStatScreenLine
 char * GetItemRangeString(int item); // GetItemDisplayRangeString
 
@@ -456,7 +455,7 @@ void PutStatScreenPersonalInfoPage(void)
     // display unit rescue name
     Text_InsertDrawString(gStatScreenSt.text + STATSCREEN_TEXT_RESCUE,
         24, TEXT_COLOR_SYSTEM_BLUE,
-        sub_08018CC0(gStatScreenSt.unit));
+        GetUnitRescueName(gStatScreenSt.unit));
 
     // display status name
     if (gStatScreenSt.unit->statusIndex == UNIT_STATUS_BERSERK)

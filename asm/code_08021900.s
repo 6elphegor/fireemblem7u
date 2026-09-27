@@ -24,7 +24,7 @@ sub_08021900: @ 0x08021900
 	cmp r2, #0
 	beq _08021940
 	adds r0, r3, #0
-	bl sub_08024018
+	bl MakeGiveTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _08021940

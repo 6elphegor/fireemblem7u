@@ -1,0 +1,10 @@
+--target=arm-none-eabi
+-mthumb
+-xc
+-std=gnu89
+-Iinclude
+-I.
+-Itools/agbcc/include
+-nostdinc
+-Wno-implicit-int
+-Wno-implicit-function-declaration
