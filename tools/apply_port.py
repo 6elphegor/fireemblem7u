@@ -133,14 +133,26 @@ def main():
         if end in asm_addr:  # else: end of code, or the next function is C
             cut.append(asm_addr[end])
         run(sys.executable, "tools/carve.py", *cut)
-        asm = next(p for p in Path("asm").glob("*.s")
-                   if re.search(r"func_start (\w+)", p.read_text()).group(1) == first)
-        text = asm.read_text()
-        if "\t.global _" in text:
-            sys.exit(f"{stem}: labels in {asm} are referenced from elsewhere")
-        asm.unlink()
-        src_obj = f"build/src/{stem[4:]}.o(.text);"
-        lds.write_text(lds.read_text().replace(f"build/asm/{asm.stem}.o(.text);", src_obj))
+        # Every asm file now lying wholly inside [start, end) gives way to the C.
+        inside = []
+        for p in Path("asm").glob("*.s"):
+            m = re.search(r"^\w+: @ 0x([0-9A-F]{8})$", p.read_text(), re.M)
+            if m and start <= int(m.group(1), 16) < end:
+                inside.append((int(m.group(1), 16), p))
+        inside.sort()
+        if not inside or inside[0][0] != start:
+            sys.exit(f"{stem}: no asm file starts at {start:#x}")
+        text_lds = lds.read_text()
+        for i, (_, asm) in enumerate(inside):
+            if "\t.global _" in asm.read_text():
+                sys.exit(f"{stem}: labels in {asm} are referenced from elsewhere")
+            entry = f"build/asm/{asm.stem}.o(.text);"
+            if i == 0:
+                text_lds = text_lds.replace(entry, f"build/src/{stem[4:]}.o(.text);")
+            else:
+                text_lds = re.sub(rf"^\s*{re.escape(entry)}\n", "", text_lds, flags=re.M)
+            asm.unlink()
+        lds.write_text(text_lds)
 
     # ---- data layout ------------------------------------------------------
     layout = Path("data/layout.txt")
