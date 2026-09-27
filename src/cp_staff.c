@@ -135,7 +135,7 @@ void AiStaffHealMendRecover(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
 
     GenerateMagicSealMap(-1);
 
-    sub_0801A0FC();
+    MarkMovementMapEdges();
 
     if (gAiState.unk7C != 0)
         lowestHpPerc = gAiState.unk7C;
@@ -309,7 +309,7 @@ void AiStaffWarp(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
     sub_0803758C(gActiveUnit);
 
     GenerateMagicSealMap(-1);
-    sub_0801A0FC();
+    MarkMovementMapEdges();
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -365,7 +365,7 @@ void AiStaffRestore(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
     sub_0803758C(gActiveUnit);
 
     GenerateMagicSealMap(-1);
-    sub_0801A0FC();
+    MarkMovementMapEdges();
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -591,7 +591,7 @@ void AiStaffBarrier(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
     sub_0803758C(gActiveUnit);
 
     GenerateMagicSealMap(-1);
-    sub_0801A0FC();
+    MarkMovementMapEdges();
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {

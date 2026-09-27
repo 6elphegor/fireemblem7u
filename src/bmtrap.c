@@ -8,7 +8,7 @@
 // from other modules
 struct MuProc;
 void StartFireTrapAnim1(ProcPtr proc, int x, int y);
-void sub_0801EDC0(ProcPtr proc, int x, int y);
+void StartFireTrapAnim2(ProcPtr proc, int x, int y);
 struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 struct MuProc * GetUnitMu(struct Unit * unit);
@@ -43,7 +43,7 @@ void ExecFireTileTrapAnim1(struct ProcBmTrap * proc)
 
 void ExecFireTileTrapAnim2(struct ProcBmTrap * proc)
 {
-    sub_0801EDC0(proc, proc->unit->xPos, proc->unit->yPos);
+    StartFireTrapAnim2(proc, proc->unit->xPos, proc->unit->yPos);
 }
 
 void ApplyTrapDamageAnim(struct ProcBmTrap * proc)

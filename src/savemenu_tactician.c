@@ -1,6 +1,6 @@
 #include "gbafe.h"
 
-void sub_08042C58(ProcPtr parent); // StartTacticianNameSelect
+void StartTacticianNameSelect(ProcPtr parent); // StartTacticianNameSelect
 void sub_080A7194(struct ProcTactInfo *proc); // StartTactBirthSelect
 void sub_080A73E4(struct ProcTactInfo *proc); // StartTactGenderSelect
 
@@ -57,7 +57,7 @@ PROC_LABEL(PL_TACTINFO_4),
 	PROC_CALL_ARG(NewFadeOut, 8),
 	PROC_WHILE(FadeOutExists),
 	PROC_CALL(TactInfo_EndMuralBG),
-	PROC_CALL(sub_08042C58), // StartTacticianNameSelect
+	PROC_CALL(StartTacticianNameSelect), // StartTacticianNameSelect
 	PROC_YIELD,
 	PROC_CALL(TactInfo_SetupGfx),
 	PROC_CALL_ARG(NewFadeIn, 8),

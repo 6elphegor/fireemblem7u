@@ -220,7 +220,7 @@ _0806916A:
 	ldr r0, [r3, #0x60]
 	bl DisableEfxStatusUnits
 	bl DisableEfxWeaponIcon
-	bl sub_0804F480
+	bl DisableEfxHpBarColorChange
 	movs r0, #0x21
 	rsbs r0, r0, #0
 	ldrb r1, [r5, #1]

@@ -76,7 +76,7 @@ void ResumeMapMainDuringArena(struct MapMainProc * mapMain);
 void ResumeMapMainDuringPhaseChange(struct MapMainProc * mapMain);
 
 void SyncUnitSpriteSheet(void);
-void sub_080195F0(void);
+void UpdateBmMapDisplay(void);
 void UnpackChapterMapPalette(void);
 void InitTraps(void);
 void InitChapterMap(int chapterId);
@@ -132,7 +132,7 @@ struct ProcCmd CONST_DATA ProcScr_MapTask[] = {
 PROC_LABEL(0),
     PROC_CALL(PutUnitSpritesOam),
     PROC_CALL(WfxUpdate),
-    PROC_CALL(sub_080195F0),
+    PROC_CALL(UpdateBmMapDisplay),
 
     PROC_SLEEP(0),
     PROC_GOTO(0),
