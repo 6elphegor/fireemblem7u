@@ -11,7 +11,7 @@ extern EWRAM_DATA u16 * gManimScanlineBufs[2];
 extern s8 MoveTable_Flying[];
 extern s8 MoveTable_Ballista[];
 extern char const *StatusNameStringLut[];
-extern int TacticianAffins[12][4];
+extern int TacticianAffins[12]; // FE7U: by birth month only (FE7J: [12][4], by blood type too)
 extern u8 gArenaLevelBackup;
 extern struct unk_type_0203A50C gUnk_0203A510;
 
@@ -49,7 +49,7 @@ extern u16 Pal_Text[];
 // ??? gUnk_08190208
 // ??? gUnk_08190228
 // ??? gUnk_08190248
-extern u16 Pal_08190268[];
+extern u16 Pal_08194714[];
 // ??? gUnk_08190288
 extern u16 gUnk_08194754[];
 extern u16 gUnk_08194774[];

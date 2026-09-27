@@ -2,8 +2,12 @@
 
 void sub_08042C58(ProcPtr parent); // StartTacticianNameSelect
 
-EWRAM_OVERLAY(0) struct Font gTactInfoFont = {};
-EWRAM_OVERLAY(0) struct Text gTactInfoTexts[3] = {};
+struct TactInfoTextSt {
+	struct Font font;
+	struct Text texts[3];
+};
+
+EWRAM_OVERLAY(0) struct TactInfoTextSt gTactInfoSt = {};
 
 // tactician config position
 
@@ -124,42 +128,39 @@ void UpdateTactMainHandPosition(int index)
 }
 
 
-#if NONMATCHING
 void sub_080A6748(void)
 {
 	int i;
-	struct Font *font = &gTactInfoFont;
+	struct Font *font = &gTactInfoSt.font;
+	char const *str;
 
 	InitSpriteTextFont(font, OBJ_VRAM0 + 0x1000, 0xF);
 	SetTextFont(font);
 	SetTextFontGlyphs(TEXT_GLYPHS_TALK);
 
 	for (i = 0; i < 3; i++) {
-		InitSpriteText(gTactInfoTexts + i);
-		SpriteText_DrawBackgroundExt(gTactInfoTexts + i, 0);
+		InitSpriteText(gTactInfoSt.texts + i);
+		SpriteText_DrawBackgroundExt(gTactInfoSt.texts + i, 0);
 	}
 
-	ApplyPalette(Pal_08190268, 0x1F);
+	ApplyPalette(Pal_08194714, 0x1F);
 
-	Text_InsertDrawString(gTactInfoTexts, 0x00, TEXT_COLOR_SYSTEM_GREEN, GetTacticianName());
-	Text_InsertDrawString(gTactInfoTexts, 0x40, TEXT_COLOR_SYSTEM_GREEN, DecodeMsg(TactGetMsg_Blood(gPlaySt.tact_blood)));
-	Text_InsertDrawString(gTactInfoTexts, 0x60, TEXT_COLOR_SYSTEM_GREEN, DecodeMsg(TactGetMsg_Birth(gPlaySt.tact_birth)));
-	Text_InsertDrawString(gTactInfoTexts, 0x80, TEXT_COLOR_SYSTEM_GREEN, DecodeMsg(TactGetMsg_Gender(gPlaySt.tact_gender)));
+	Text_InsertDrawString(gTactInfoSt.texts, 0x00, TEXT_COLOR_SYSTEM_GREEN, GetTacticianName());
+
+	str = DecodeMsg(TactGetMsg_Birth(gPlaySt.tact_birth));
+	Text_InsertDrawString(gTactInfoSt.texts, GetStringTextCenteredPos(0x40, str) + 0x40, TEXT_COLOR_SYSTEM_GREEN, str);
+
+	str = DecodeMsg(TactGetMsg_Gender(gPlaySt.tact_gender));
+	Text_InsertDrawString(gTactInfoSt.texts, GetStringTextCenteredPos(0x40, str) + 0x80, TEXT_COLOR_SYSTEM_GREEN, str);
 
 	PutIcon(
 		gBg0Tm + TM_OFFSET(0xE, 0x5),
-		TacticianAffins[gPlaySt.tact_birth][gPlaySt.tact_blood] + 0x79,
+		TacticianAffins[gPlaySt.tact_birth] + 0x79,
 		0x5000
 	);
 
 	SetTextFont(NULL);
 }
-#else
-NAKEDFUNC
-void sub_080A6748(void);
-ASM_FUNC("asm/nonmatching/code_080A6748.s");
-
-#endif
 
 void TactInfoFx_Thread(struct ProcTactInfo *proc);
 ASM_FUNC("asm/nonmatching/code_080A682C.s");
