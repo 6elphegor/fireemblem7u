@@ -9,8 +9,28 @@ void sub_08079C48(int amount);
 void StartUnkTrapAnim(ProcPtr parent, int a, int b, int c, int d);
 
 extern u16 gUnk_03004ADC;
+extern s8 gFadeComponentStep[];
 extern u16 CONST_DATA gUnk_08CB8984[];
 extern u16 CONST_DATA gUnk_08CB898E[];
+extern struct UnitDefinition CONST_DATA gUnk_08CDB3C8[];
+extern struct UnitDefinition CONST_DATA gUnk_08CDB3E8[];
+extern struct ProcCmd CONST_DATA ProcScr_08CBB47C[];
+extern struct ProcCmd CONST_DATA ProcScr_08CBB48C[];
+
+void sub_08020D6C(ProcPtr proc, int x, int y);
+void StartEmitStarsAnim(ProcPtr parent, int x1, int y1, int x2, int y2);
+void ClearEmitedStars(void);
+
+struct ProcEventCameraShake
+{
+    PROC_HEADER;
+
+    /* 2C */ int x;
+
+    STRUCT_PAD(0x30, 0x4C);
+
+    /* 4C */ s16 timer;
+};
 
 void sub_0807CEC8(void)
 {
@@ -394,4 +414,178 @@ int sub_0807D4EC(void)
         count++;
 
     return count <= 1;
+}
+
+int sub_0807D528(void)
+{
+    int count = CheckFlag(0x09) != 0;
+
+    if (CheckFlag(0x0A))
+        count++;
+
+    if (CheckFlag(0x0B))
+        count++;
+
+    if (CheckFlag(0x0C))
+        count++;
+
+    if (CheckFlag(0x0D))
+        count++;
+
+    if (CheckFlag(0x0E))
+        count++;
+
+    if (CheckFlag(0x0F))
+        count++;
+
+    if (CheckFlag(0x10))
+        count++;
+
+    if (CheckFlag(0x11))
+        count++;
+
+    if (count <= 3)
+        return TRUE;
+
+    return FALSE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0807D5BC.s");
+
+void sub_0807D60C(struct ProcEventCameraShake * proc)
+{
+    if ((GetGameTime() & 1) == 0)
+    {
+        proc->timer++;
+        gBmSt.camera.x = (proc->timer & 1) ? proc->x - 1 : proc->x + 1;
+    }
+}
+
+void sub_0807D644(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        struct ProcEventCameraShake * shake = Proc_Start(ProcScr_08CBB47C, PROC_TREE_VSYNC);
+        shake->x = gBmSt.camera.x;
+
+        if (!gPlaySt.cfgDisableSoundEffects)
+            m4aSongNumStart(0x26A);
+    }
+}
+
+void sub_0807D688(void)
+{
+    Proc_EndEach(ProcScr_08CBB47C);
+    gBmSt.camera.x = (gBmSt.camera.x + 0xF) & ~0xF;
+    Sound_FadeOutSE(4);
+}
+
+void sub_0807D6B4(struct ProcEventCameraShake * proc)
+{
+    ColorFadeTick();
+    EnablePalSync();
+
+    if (--proc->timer < 0)
+        Proc_Break(proc);
+}
+
+void sub_0807D6DC(void)
+{
+}
+
+void sub_0807D6E0(struct ProcEventCameraShake * proc)
+{
+    proc->timer = 15;
+    sub_0807D6B4(proc);
+}
+
+void sub_0807D6F4(struct ProcEventCameraShake * proc)
+{
+    gFadeComponentStep[0x1B] = -1;
+    proc->timer = 15;
+    sub_0807D6B4(proc);
+}
+
+void sub_0807D710(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        struct Unit * unit = GetUnitFromCharId(0x85);
+
+        unit->index += 0x40;
+        RefreshUnitSprites();
+        unit->index -= 0x40;
+
+        CpuFastCopy(PAL_OBJ(0xD), PAL_OBJ(0xB), 0x20);
+
+        ColorFadeSetupFromColorToWhite(1);
+        ColorFadeInit();
+
+        gFadeComponentStep[0x1B] = 1;
+
+        Proc_Start(ProcScr_08CBB48C, proc);
+    }
+}
+
+void sub_0807D770(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        Proc_BreakEach(ProcScr_08CBB48C);
+}
+
+void sub_0807D78C(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        struct Unit * unit = GetUnitFromCharId(0x84);
+        unit->pClassData = GetClassData(0x56);
+        RefreshUnitSprites();
+    }
+}
+
+void sub_0807D7B4(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        struct Unit * unit = GetUnitFromCharId(0x84);
+        HideUnitSprite(unit);
+        StartMuDeathFade(StartMu(unit));
+    }
+}
+
+void sub_0807D7E0(void)
+{
+    if (CheckFlag(0x70))
+        LoadUnit(gUnk_08CDB3C8);
+    else
+        LoadUnit(gUnk_08CDB3E8);
+}
+
+int sub_0807D80C(void)
+{
+    if (gBattleActor.unit.pCharacterData->number == GetPlayerLeaderUnitId())
+        return TRUE;
+
+    if (gBattleTarget.unit.pCharacterData->number == GetPlayerLeaderUnitId())
+        return TRUE;
+
+    return FALSE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0807D840.s");
+
+void sub_0807D890(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        StartEmitStarsAnim(proc,
+            0x7F - gBmSt.camera.x, 0x18 - gBmSt.camera.y,
+            0x87 - gBmSt.camera.x, 0x30 - gBmSt.camera.y);
+    }
+}
+
+void sub_0807D8D4(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        ClearEmitedStars();
 }
