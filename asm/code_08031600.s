@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08031600
-sub_08031600: @ 0x08031600
+	thumb_func_start UnitInfoWindow_OnLoop
+UnitInfoWindow_OnLoop: @ 0x08031600
 	push {r4, r5, r6, lr}
 	sub sp, #0xc
 	adds r4, r0, #0

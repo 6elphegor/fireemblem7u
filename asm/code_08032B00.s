@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08032B00
-sub_08032B00: @ 0x08032B00
+	thumb_func_start StatusHealEffect_BlendedSprite_Init
+StatusHealEffect_BlendedSprite_Init: @ 0x08032B00
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

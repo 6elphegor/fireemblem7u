@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803202C
-sub_0803202C: @ 0x0803202C
+	thumb_func_start RefreshUnitTakeRescueInfoWindows
+RefreshUnitTakeRescueInfoWindows: @ 0x0803202C
 	push {r4, lr}
 	sub sp, #8
 	adds r4, r0, #0

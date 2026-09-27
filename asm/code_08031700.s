@@ -103,7 +103,7 @@ _080317C0:
 	adds r0, r4, #0
 	bl ClearText
 	adds r0, r5, #0
-	bl sub_080316B8
+	bl UnitInfoWindow_PositionUnitName
 	mov r0, sl
 	ldrb r1, [r0]
 	adds r0, r4, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08031EF0
-sub_08031EF0: @ 0x08031EF0
+	thumb_func_start StartUnitResChangeInfoWindow
+StartUnitResChangeInfoWindow: @ 0x08031EF0
 	push {lr}
 	bl NewUnitInfoWindow
 	adds r0, #0x38

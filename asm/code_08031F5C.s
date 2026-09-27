@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08031F5C
-sub_08031F5C: @ 0x08031F5C
+	thumb_func_start StartUnitStaffOffenseInfoWindow
+StartUnitStaffOffenseInfoWindow: @ 0x08031F5C
 	push {r4, lr}
 	bl NewUnitInfoWindow
 	adds r4, r0, #0

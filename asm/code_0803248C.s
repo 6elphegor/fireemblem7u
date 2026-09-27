@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803248C
-sub_0803248C: @ 0x0803248C
+	thumb_func_start SubtitleHelpDarkener_FadeIn
+SubtitleHelpDarkener_FadeIn: @ 0x0803248C
 	ldr r0, _080324A0 @ =0x0202BBB8
 	adds r1, r0, #0
 	adds r1, #0x38

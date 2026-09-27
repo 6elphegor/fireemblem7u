@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08032D7C
-sub_08032D7C: @ 0x08032D7C
+	thumb_func_start StatusHealEffect_Finish
+StatusHealEffect_Finish: @ 0x08032D7C
 	push {lr}
 	bl ClearUi
 	ldr r3, _08032DD0 @ =0x03002870

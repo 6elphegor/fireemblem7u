@@ -1628,7 +1628,7 @@ u8 BallistaRangeMenuHelpBox(struct MenuProc * menu, struct MenuItemProc * menuIt
 
 void HealMapSelect_Init(ProcPtr proc)
 {
-    sub_08031DFC(proc);
+    StartUnitHpInfoWindow(proc);
 }
 
 u8 HealMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
@@ -1640,7 +1640,7 @@ u8 HealMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
 
 void RescueSelection_OnConstruction(ProcPtr proc)
 {
-    sub_0803202C(proc);
+    RefreshUnitTakeRescueInfoWindows(proc);
     StartSubtitleHelp(proc, DecodeMsg(0x71C));
 }
 
@@ -1662,7 +1662,7 @@ void sub_0802330C(void)
 
 void GiveSelection_OnInit(ProcPtr menu)
 {
-    sub_080321E0(menu);
+    StartUnitGiveInfoWindows(menu);
 
     StartSubtitleHelp(menu, DecodeMsg(0x71F));
 }
@@ -1676,7 +1676,7 @@ u8 GiveSelection_OnChange(ProcPtr proc, struct SelectTarget * target)
 
 void TakeSelection_OnInit(ProcPtr menu)
 {
-    sub_0803202C(menu);
+    RefreshUnitTakeRescueInfoWindows(menu);
 
     StartSubtitleHelp(menu, DecodeMsg(0x71E));
 }
@@ -1702,7 +1702,7 @@ u8 TradeSelection_OnChange(ProcPtr proc, struct SelectTarget * target)
 
 void TalkSupportSelection_OnInit(ProcPtr menu)
 {
-    sub_08031DFC(menu);
+    StartUnitHpInfoWindow(menu);
     StartSubtitleHelp(menu, DecodeMsg(0x723));
 }
 
@@ -1714,7 +1714,7 @@ u8 TalkSupportSelection_OnChange(ProcPtr proc, struct SelectTarget * target)
 
 void RefreshMapSelect_Init(ProcPtr menu)
 {
-    sub_08031DFC(menu);
+    StartUnitHpInfoWindow(menu);
     StartSubtitleHelp(menu, DecodeMsg(0x724));
 }
 
@@ -1726,7 +1726,7 @@ u8 RefreshMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
 
 void WarpUnitMapSelect_Init(ProcPtr menu)
 {
-    sub_08031DFC(menu);
+    StartUnitHpInfoWindow(menu);
 }
 
 u8 WarpUnitMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)

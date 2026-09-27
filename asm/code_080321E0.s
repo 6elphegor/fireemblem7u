@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080321E0
-sub_080321E0: @ 0x080321E0
+	thumb_func_start StartUnitGiveInfoWindows
+StartUnitGiveInfoWindows: @ 0x080321E0
 	push {r4, lr}
 	sub sp, #8
 	adds r4, r0, #0

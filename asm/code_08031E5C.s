@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08031E5C
-sub_08031E5C: @ 0x08031E5C
+	thumb_func_start StartUnitHpStatusInfoWindow
+StartUnitHpStatusInfoWindow: @ 0x08031E5C
 	push {r4, lr}
 	bl NewUnitInfoWindow
 	adds r4, r0, #0
