@@ -598,7 +598,7 @@ void sub_080AB654(struct SoundRoomProc * proc)
         if (i >= 99)
             PutNumber(gBg2Tm + TM_OFFSET(13 + (i % 4) * 4, (((i / 4) * 2 + 8) & 0x1f)), color, i + 1);
         else
-            sub_080063CC(gBg2Tm + TM_OFFSET(13 + (i % 4) * 4, (((i / 4) * 2 + 8) & 0x1f)), color, i + 1);
+            PutNumber2Digit(gBg2Tm + TM_OFFSET(13 + (i % 4) * 4, (((i / 4) * 2 + 8) & 0x1f)), color, i + 1);
     }
 
     EnableBgSync(BG2_SYNC_BIT);

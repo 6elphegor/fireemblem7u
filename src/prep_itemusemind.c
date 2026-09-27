@@ -1,9 +1,9 @@
 #include "gbafe.h"
 #include "gbafe/bmusemind.h"
 
-void sub_08074474(int chr, int pal, int unk, ProcPtr parent);
-void sub_08074744(int x, int y, int value);
-void sub_0807453C(void);
+void StartManimLevelUpStatGainLabels(int chr, int pal, int unk, ProcPtr parent);
+void StartPrepItemBoostStatGainLabelAnim(int x, int y, int value);
+void EndManimLevelUpStatGainLabels(void);
 
 void PrepItemUseBooster_OnDraw(struct ProcPrepItemUseBooster * proc, int x, int y, int msg, int item)
 {
@@ -39,7 +39,7 @@ void PrepItemUseBooster_OnInit(struct ProcPrepItemUseBooster * proc)
     int i, item, msg;
     struct ProcPrepItemUse * parent = proc->proc_parent;
 
-    sub_08074474(0x1C0, 3, 0, proc);
+    StartManimLevelUpStatGainLabels(0x1C0, 3, 0, proc);
 
     proc->status_pre[0] = GetUnitCurrentHp(parent->unit);
     proc->status_pre[1] = GetUnitPower(parent->unit);
@@ -73,7 +73,7 @@ void PrepItemUseBooster_OnInit(struct ProcPrepItemUseBooster * proc)
         if (proc->status_pre[i] == proc->status_pst[i])
             continue;
 
-        sub_08074744(
+        StartPrepItemBoostStatGainLabelAnim(
             (i >> 2) * 48 + 0xB8, (i & 3) * 16 + 0x32, proc->status_pst[i] - proc->status_pre[i]);
     }
 
@@ -110,7 +110,7 @@ void PrepItemUseBooster_OnEnd(struct ProcPrepItemUseBooster * proc)
     DrawPrepScreenItemUseDesc(parent->unit, parent->slot);
 
     DisableUiCursorHand(0);
-    sub_0807453C();
+    EndManimLevelUpStatGainLabels();
     EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
     LoadHelpBoxGfx((void *) 0x06014000, -1);
 }

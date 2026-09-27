@@ -63,7 +63,7 @@ _0800FA12:
 	lsls r3, r3, #0x18
 	lsrs r3, r3, #0x18
 	adds r0, r7, #0
-	bl sub_080B4C60
+	bl StartWmIcon2
 _0800FA24:
 	movs r0, #0
 	add sp, #0xc

@@ -245,8 +245,8 @@ _080BFC0C:
 	.align 2, 0
 _080BFC14: .4byte 0x03005E74
 
-	thumb_func_start sub_080BFC18
-sub_080BFC18: @ 0x080BFC18
+	thumb_func_start __ashldi3
+__ashldi3: @ 0x080BFC18
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
 	adds r5, r0, #0

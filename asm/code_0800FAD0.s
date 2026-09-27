@@ -14,7 +14,7 @@ sub_0800FAD0: @ 0x0800FAD0
 	cmp r1, #0
 	bne _0800FAE8
 	adds r0, r2, #0
-	bl sub_080B4C28
+	bl EndWmIcon
 _0800FAE8:
 	movs r0, #0
 	pop {r1}

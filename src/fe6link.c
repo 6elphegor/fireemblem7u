@@ -97,7 +97,7 @@ extern u8 gUnk_Sio_02000C1C[];
 
 extern u8 gUnk_Sio_02000C00[];
 
-void sub_0800530C(int a, int b, const char * str);
+void DebugPutObjStr(int a, int b, const char * str);
 void SoundVSyncOn_rev01(void);
 void SoundVSyncOff_rev01(void);
 void LoadHelpBoxGfx(void * vram, int palId);
@@ -274,7 +274,7 @@ void FE6Link_OnEnd(void)
 }
 void sub_08043604(void)
 {
-    sub_0800530C(8, 16, "END");
+    DebugPutObjStr(8, 16, "END");
 }
 bool sub_08043618(void * data)
 {

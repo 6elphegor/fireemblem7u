@@ -37,7 +37,7 @@ u8 ItemMenu_Select1stCommand(struct MenuProc * menu, struct MenuItemProc * menuI
 void sub_08022360(int x, int y);
 u8 sub_08022404(struct MenuProc * menu);
 u8 sub_0802245C(struct MenuProc * menu);
-void sub_080B2F28(void);
+void CallSuspendPromptEvent(void);
 
 u8 sub_08021540(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
@@ -60,7 +60,7 @@ u8 MapMenu_SuspendCommand(struct MenuProc * menu, struct MenuItemProc * menuItem
         return MENU_ACT_SND6B;
     }
 
-    sub_080B2F28();
+    CallSuspendPromptEvent();
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }
@@ -1511,7 +1511,7 @@ u8 ArenaCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
         return MENU_ACT_SND6B;
     }
 
-    sub_080B267C();
+    StartArenaScreen();
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }

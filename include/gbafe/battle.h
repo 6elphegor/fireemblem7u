@@ -239,7 +239,7 @@ void BattleInitTargetCanCounter(void);
 // InitObstacleBattleUnit
 void ComputeBattleObstacleStats(void);
 void UpdateObstacleFromBattle(struct BattleUnit *bu);
-// BeginBattleAnimations
+void BeginBattleAnimations(void);
 // GetUnitSoloBattleAnimType
 // GetBattleAnimType
 void BattlePrintDebugUnitInfo(struct BattleUnit *actor, struct BattleUnit *target);
@@ -250,7 +250,7 @@ void UpdateActorFromBattle(void);
 // BattleApplyMiscAction
 // BattleApplyItemEffect
 // GetOffensiveStaffAccuracy
-// BattleGenerateArena
+void BattleGenerateArena(struct Unit * unit);
 // BattleIsTriangleAttack
 // DidBattleUnitBreakWeapon
 // SetScriptedBattle
