@@ -802,8 +802,8 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_8057924
 // ??? efxDance_Loop_Main
 // ??? StartSpellAnimBallista
-// ??? sub_080572D4
-// ??? sub_08057394
+// ??? efxShooter_Loop_Main
+// ??? StartSubSpell_efxShooterOBJ
 // ??? efxShooterOBJ_Loop
 // ??? sub_8057C24
 // ??? sub_08057478

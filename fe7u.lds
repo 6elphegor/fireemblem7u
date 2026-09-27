@@ -1194,10 +1194,7 @@ SECTIONS
         build/src/banim-efxmagic.o(.text);
         build/src/banim-efxmagic-phywpn.o(.text);
         build/src/banim-efxmagic-refresh.o(.text);
-        build/asm/code_08057284.o(.text);
-        build/asm/code_080572D4.o(.text);
-        build/asm/code_08057394.o(.text);
-        build/asm/code_0805740C.o(.text);
+        build/src/banim-efxmagic-ballista.o(.text);
         build/asm/code_0805743C.o(.text);
         build/asm/code_08057478.o(.text);
         build/asm/code_08057514.o(.text);

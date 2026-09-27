@@ -1457,3 +1457,7 @@ StartSubSpell_efxSongBG_frames = 0x081E7FFC;
 TsaArray_SongBg = 0x08BA16D4;
 ProcScr_efxDance = 0x08BA17C4;
 ProcScr_efxSong = 0x08BA16A4;
+ProcScr_efxShooter = 0x08BA17DC;
+AnimScr_08BA5D9C = 0x08BA5D9C;
+AnimScr_08BA5E38 = 0x08BA5E38;
+ProcScr_efxShooterOBJ = 0x08BA17F4;
