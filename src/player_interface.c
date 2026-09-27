@@ -1,16 +1,108 @@
 #include "gbafe.h"
 
-ASM_FUNC("asm/nonmatching/code_08084714.s");
+int GetWindowQuadrant(int x, int y)
+{
+    if (x < 0)
+    {
+        if (y < 0)
+            return 0;
+        else
+            return 1;
+    }
+    else if (y < 0)
+        return 2;
+    else
+        return 3;
+}
 
-ASM_FUNC("asm/nonmatching/code_08084730.s");
+int GetCursorQuadrant(void)
+{
+    int cursorX;
+    int camX;
+    int cursorY;
+    int camY;
 
-ASM_FUNC("asm/nonmatching/code_08084774.s");
+    int x;
+    int y;
 
-ASM_FUNC("asm/nonmatching/code_0808478C.s");
+    cursorX = (gBmSt.cursor.x * 16);
+    camX = (gBmSt.camera.x - 8);
 
-ASM_FUNC("asm/nonmatching/code_080847C8.s");
+    x = cursorX - camX;
 
-ASM_FUNC("asm/nonmatching/code_080847F4.s");
+    cursorY = (gBmSt.cursor.y * 16);
+    camY = (gBmSt.camera.y - 8);
+
+    y = cursorY - camY;
+
+    if ((x < 105) && (y < (DISPLAY_HEIGHT / 2) + 1))
+        return 0;
+
+    if ((x >= 105) && (y < (DISPLAY_HEIGHT / 2) + 1))
+        return 1;
+
+    if ((x < 105) && (y >= (DISPLAY_HEIGHT / 2) + 1))
+        return 2;
+
+    if ((x >= 105) && (y >= (DISPLAY_HEIGHT / 2) + 1))
+        return 3;
+}
+
+void PutMapUiHpBarLeft(u16 * buffer, s16 hp, int tileBase)
+{
+    if (hp > 5)
+        hp = 5;
+
+    *buffer = hp + tileBase;
+}
+
+void PutMapUiHpBarMid(u16 * buffer, s16 hp, int tileBase)
+{
+    int i;
+
+    int hpEighth = hp >> 3;
+    int eighthTileIdx = hp & 7;
+
+    for (i = 0; i < 4; i++)
+    {
+        int fullTileIdx = tileBase + 14;
+        int emptyTileIdx = tileBase + 6;
+
+        if (i < hpEighth)
+            *buffer = fullTileIdx;
+        else if (i == hpEighth)
+            *buffer = emptyTileIdx + eighthTileIdx;
+        else
+            *buffer = emptyTileIdx;
+
+        buffer++;
+    }
+}
+
+void PutMapUiHpBarRight(u16 * buffer, s16 hp, int tileBase)
+{
+    int base;
+
+    if (hp >= 5)
+        hp = 5;
+
+    if (hp < 0)
+        hp = 0;
+
+    base = tileBase + 15;
+
+    *buffer = hp + base;
+}
+
+void PutMapUiHpBar(u16 * buffer, struct Unit * unit, int tileBase)
+{
+    s16 hpCurrent = 42 * GetUnitCurrentHp(unit);
+    s16 hpPercent = Div(hpCurrent, GetUnitMaxHp(unit));
+
+    PutMapUiHpBarLeft(buffer, hpPercent, tileBase);
+    PutMapUiHpBarMid(buffer + 1, hpPercent - 5, tileBase);
+    PutMapUiHpBarRight(buffer + 5, hpPercent - 37, tileBase);
+}
 
 ASM_FUNC("asm/nonmatching/code_08084858.s");
 

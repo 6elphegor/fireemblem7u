@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080859B4
-sub_080859B4: @ 0x080859B4
+	thumb_func_start BurstDisplay_Init
+BurstDisplay_Init: @ 0x080859B4
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x2c

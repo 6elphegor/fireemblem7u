@@ -21,14 +21,14 @@ UnitMapUiUpdate: @ 0x08084FB4
 	beq _08084FE2
 	ldr r0, [r6, #0x40]
 	adds r1, r4, #0
-	bl sub_08084EDC
+	bl PutUnitMapUiStatus
 	movs r0, #1
 	bl EnableBgSync
 	b _08085058
 _08084FE2:
 	ldr r0, [r6, #0x40]
 	adds r1, r4, #0
-	bl sub_08084EB4
+	bl ClearUnitMapUiStatus
 	movs r0, #1
 	bl EnableBgSync
 	adds r0, r4, #0

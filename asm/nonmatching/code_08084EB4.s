@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08084EB4
-sub_08084EB4: @ 0x08084EB4
+	thumb_func_start ClearUnitMapUiStatus
+ClearUnitMapUiStatus: @ 0x08084EB4
 	movs r2, #0x90
 	lsls r2, r2, #1
 	adds r1, r2, #0

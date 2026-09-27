@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08084B34
-sub_08084B34: @ 0x08084B34
+	thumb_func_start TerrainDisplay_Loop_SlideIn
+TerrainDisplay_Loop_SlideIn: @ 0x08084B34
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r1, _08084B6C @ =0x08CC2B94

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08085888
-sub_08085888: @ 0x08085888
+	thumb_func_start MMB_Loop_Display
+MMB_Loop_Display: @ 0x08085888
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r6, _08085940 @ =0x0202BBB8

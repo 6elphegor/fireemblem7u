@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08084858
-sub_08084858: @ 0x08084858
+	thumb_func_start MMB_Loop_SlideIn
+MMB_Loop_SlideIn: @ 0x08084858
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

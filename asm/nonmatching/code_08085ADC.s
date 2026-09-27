@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08085ADC
-sub_08085ADC: @ 0x08085ADC
+	thumb_func_start InitPlayerPhaseInterface
+InitPlayerPhaseInterface: @ 0x08085ADC
 	push {r4, r5, lr}
 	ldr r5, _08085BDC @ =0x03002870
 	movs r4, #0x21

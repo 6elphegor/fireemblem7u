@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080857B4
-sub_080857B4: @ 0x080857B4
+	thumb_func_start MMB_Init
+MMB_Init: @ 0x080857B4
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r1, r4, #0

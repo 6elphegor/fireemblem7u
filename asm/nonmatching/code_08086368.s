@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08086368
-sub_08086368: @ 0x08086368
+	thumb_func_start MenuButtonDisp_Init
+MenuButtonDisp_Init: @ 0x08086368
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08086390 @ =0x08405170

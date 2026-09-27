@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08085DCC
-sub_08085DCC: @ 0x08085DCC
+	thumb_func_start GoalDisplay_Init
+GoalDisplay_Init: @ 0x08085DCC
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	movs r1, #0

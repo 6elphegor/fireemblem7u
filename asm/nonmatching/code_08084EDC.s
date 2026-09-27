@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08084EDC
-sub_08084EDC: @ 0x08084EDC
+	thumb_func_start PutUnitMapUiStatus
+PutUnitMapUiStatus: @ 0x08084EDC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	movs r4, #0x80

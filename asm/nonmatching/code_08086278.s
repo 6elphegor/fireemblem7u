@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08086278
-sub_08086278: @ 0x08086278
+	thumb_func_start GoalDisplay_Loop_Display
+GoalDisplay_Loop_Display: @ 0x08086278
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r3, r4, #0
