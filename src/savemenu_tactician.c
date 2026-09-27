@@ -97,8 +97,11 @@ void sub_080A66C4(void)
 		EndSubtitleHelp();
 }
 
-void sub_080A66D8(ProcPtr proc);
-ASM_FUNC("asm/nonmatching/code_080A66D8.s");
+void sub_080A66D8(ProcPtr proc)
+{
+	if (IsSubtitleHelpActive() == false)
+		sub_080327C4(proc, DecodeMsg(0x78F));
+}
 
 
 void UpdateTactMainHandShadow(int index, ProcPtr proc)
