@@ -233,6 +233,7 @@ bool IsPointInQuad(int x, int y, int x1, int y1, int x2, int y2, int x3, int y3)
 void WmDrawMap(int mode, int x, int y);
 void WmRedrawMapAt(int mode, int x, int y);
 void WmDrawMapRegion(int x1, int y1, int x2, int y2);
+void WmPutMapTile(int x, int y);
 void WmCanvas_PutPixel(int x, int y, u8 color);
 void WmUpdateCamera(int x, int y);
 
@@ -1691,9 +1692,76 @@ void EndWmSpotlightProc(void)
     Proc_End(Proc_Find(ProcScr_WmSpotlight));
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5B80.s");
+inline u8 const * GetWmMapImgPtr(int x, int y)
+{
+    u8 const * img = gWmMapImgTable[y >> 5][x >> 5];
 
-ASM_FUNC("asm/nonmatching/code_080B5BFC.s");
+    return img + (((y & 0x1F) << 5) + (x & 0x1F)) * 0x20;
+}
+
+inline u16 const * GetWmMapTsaPtr(int x, int y)
+{
+    u16 const * tsa = gWmMapTsaTable[y >> 5][x >> 5];
+
+    tsa += (0x1F - (y & 0x1F)) * 0x20 + 1;
+    return tsa + (x & 0x1F);
+}
+
+
+#if NONMATCHING
+// differs only by a reserved (unused) 4-byte stack slot in the original
+void WmPutMapTile(int x, int y)
+{
+    if (x < 0 || y < 0 || x > 127 || y > 85)
+        return;
+
+    gBg3Tm[(y & 0x1F) * 0x20 + (x & 0x1F)] = *GetWmMapTsaPtr(x, y);
+    CpuFastSet(GetWmMapImgPtr(x, y), (void *) (VRAM + 0x8000 + ((y & 0x1F) * 0x20 + (x & 0x1F)) * 0x20), 8);
+    EnableBgSync(BG3_SYNC_BIT);
+}
+#else
+ASM_FUNC("asm/nonmatching/code_080B5B80.s");
+#endif
+
+void WmDrawMapRegion(int x1, int y1, int x2, int y2)
+{
+    int ix, iy;
+
+    if (x1 < 0 && y1 < 0)
+    {
+        for (iy = 0; iy <= 20; iy++)
+            for (ix = 0; ix <= 30; ix++)
+                WmPutMapTile(x2 + ix, y2 + iy);
+    }
+    else if (y2 < y1)
+    {
+        for (iy = y2; iy < y1; iy++)
+            for (ix = 0; ix <= 30; ix++)
+                WmPutMapTile(x2 + ix, iy);
+
+        for (iy = y1; iy < y2 + 21; iy++)
+            for (ix = x2; ix < x1; ix++)
+                WmPutMapTile(ix, iy);
+
+        for (iy = y1; iy < y2 + 21; iy++)
+            for (ix = x1 + 31; ix < x2 + 31; ix++)
+                WmPutMapTile(ix, iy);
+    }
+    else
+    {
+        for (iy = y1 + 21; iy < y2 + 21; iy++)
+            for (ix = 0; ix <= 30; ix++)
+                WmPutMapTile(x2 + ix, iy);
+
+        for (iy = y2; iy < y1 + 21; iy++)
+            for (ix = x2; ix < x1; ix++)
+                WmPutMapTile(ix, iy);
+
+        for (iy = y2; iy < y1 + 21; iy++)
+            for (ix = x1 + 31; ix < x2 + 31; ix++)
+                WmPutMapTile(ix, iy);
+    }
+}
 void WmDrawCgMap(int idx)
 {
     int i;
@@ -1830,19 +1898,3 @@ int WmToScreenY(int y)
 {
     return y - gWmSt.y;
 }
-
-u8 const * GetWmMapImgPtr(int x, int y)
-{
-    u8 const * img = gWmMapImgTable[y >> 5][x >> 5];
-
-    return img + (((y & 0x1F) << 5) + (x & 0x1F)) * 0x20;
-}
-
-u16 const * GetWmMapTsaPtr(int x, int y)
-{
-    u16 const * tsa = gWmMapTsaTable[y >> 5][x >> 5];
-
-    tsa += (~y & 0x1F) * 0x20 + 1;
-    return tsa + (x & 0x1F);
-}
-
