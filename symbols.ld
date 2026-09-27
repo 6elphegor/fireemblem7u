@@ -1663,3 +1663,7 @@ Img_ManimWarpFlashyFrames = 0x083F4E88;
 gManimWarpFlashyFrameLut = 0x08C9DB4C;
 ProcScr_ManimEffectAnimator = 0x08C9DAE4;
 ProcScr_ManimWarpFlashy = 0x08C9DB1C;
+Img_ManimTorch = 0x083F6D78;
+Pal_ManimTorch = 0x083F7030;
+SpriteAnim_ManimTorch = 0x083ECCA0;
+ProcScr_ManimTorch = 0x08C9DB64;

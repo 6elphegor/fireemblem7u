@@ -227,10 +227,10 @@ void ManimSpellAnim_EndWithHBlank(ProcPtr proc);
 void StartManimWarpFlashy(struct Unit * unit, int arg_1, int arg_2);
 void ManimWarpFlashy_Init(struct ManimEffectProc * proc);
 void ManimWarpFlashy_Main(struct ManimEffectProc * proc);
-// sub_08072898
-// sub_080728F0
-// sub_08072A18
-// sub_08072B10
+void StartManimTorchFx(struct Unit * unit);
+void ManimTorchFx_Init(struct ManimEffectProc * proc);
+void ManimTorchFx_Expand(struct ManimEffectProc * proc);
+void ManimTorchFx_Fade(struct ManimEffectProc * proc);
 // sub_80733F8
 // sub_807340C
 // sub_08072C90
@@ -358,3 +358,4 @@ void ManimLatonaFx_ClearBg2(ProcPtr proc);
 void ManimLatonaShine_End(ProcPtr proc);
 void ManimLatonaShine_Init(ProcPtr proc);
 void StartManimStatusHealSe(struct Unit * unit);
+void ManimTorchFx_ResetHBlank(struct ManimEffectProc * proc);

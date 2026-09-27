@@ -24,6 +24,14 @@ extern u8 CONST_DATA gManimWarpFlashyFrameLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimEffectAnimator[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimWarpFlashy[];
 
+void sub_0807689C(void);
+void sub_080769CC(int x, int y, int radius);
+
+extern u8 const Img_ManimTorch[];
+extern u16 const Pal_ManimTorch[];
+extern u16 const SpriteAnim_ManimTorch[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimTorch[];
+
 void StartManimLatonaFx(struct Unit * unit)
 {
     struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimLatona, PROC_TREE_3);
@@ -395,11 +403,88 @@ void ManimWarpFlashy_Main(struct ManimEffectProc * proc)
     SetBlendAlpha(12, 12);
 }
 
-ASM_FUNC("asm/nonmatching/code_08072898.s");
-ASM_FUNC("asm/nonmatching/code_080728F0.s");
-ASM_FUNC("asm/nonmatching/code_08072A18.s");
-ASM_FUNC("asm/nonmatching/code_08072B10.s");
-ASM_FUNC("asm/nonmatching/code_08072C0C.s");
+void StartManimTorchFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimTorch, PROC_TREE_3);
+
+    proc->unit = unit;
+    proc->x = SCREEN_TILE_IX(gActionSt.x_target);
+    proc->y = SCREEN_TILE_IY(gActionSt.y_target);
+}
+
+void ManimTorchFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySoundEffect(0xB3);
+
+    Decompress(Img_ManimTorch, OBJ_VRAM0 + 0x1C0 * 0x20);
+    ApplyPalette(Pal_ManimTorch, 0x10 + 4);
+
+    SetWhitePal(4);
+    sub_08014B94((void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20, 0x20 / sizeof(u16), 0xFFFF);
+    sub_08014B94(gBg2Tm, 0x400, TILEREF(0x140, 4));
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    proc->frame = 0;
+    proc->timer = 0;
+
+    StartSpriteAnimProc(SpriteAnim_ManimTorch, proc->x + 4, proc->y, TILEREF(0x1C0, 4), 0, 2);
+
+    InitScanlineEffect();
+    sub_0807689C();
+    SetDefaultManimScreenConf();
+
+    SetBlendAlpha(0, 0x10);
+}
+
+void ManimTorchFx_Expand(struct ManimEffectProc * proc)
+{
+    int radius, ca;
+
+    radius = Interpolate(5, 1, 160, proc->frame, 80);
+    sub_080769CC(proc->x + 8, proc->y + 8, radius);
+
+    proc->frame++;
+
+    ca = (proc->frame * 0x10) / 40;
+
+    if (ca >= 0x10)
+        ca = 0x10;
+
+    SetBlendAlpha(ca, 0x10);
+
+    if (proc->frame >= 40)
+    {
+        Proc_Break(proc);
+        EndEachSpriteAnimProc();
+    }
+}
+
+void ManimTorchFx_Fade(struct ManimEffectProc * proc)
+{
+    int radius, ca;
+
+    radius = Interpolate(5, 1, 160, proc->frame, 80);
+    sub_080769CC(proc->x + 8, proc->y + 8, radius);
+
+    proc->frame++;
+
+    ca = 0x10 - ((proc->frame - 40) * 0x10) / 30;
+
+    if (ca <= 0)
+        ca = 0;
+
+    SetBlendAlpha(ca, 0x10);
+
+    if (proc->frame >= 70)
+        Proc_Break(proc);
+}
+
+void ManimTorchFx_ResetHBlank(struct ManimEffectProc * proc)
+{
+    ResetScanLineHBlank();
+}
+
 ASM_FUNC("asm/nonmatching/code_08072C20.s");
 ASM_FUNC("asm/nonmatching/code_08072C90.s");
 ASM_FUNC("asm/nonmatching/code_08072D10.s");

@@ -20,7 +20,7 @@ sub_080764B0: @ 0x080764B0
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_08072898
+	bl StartManimTorchFx
 	add sp, #4
 	pop {r7}
 	pop {r0}
