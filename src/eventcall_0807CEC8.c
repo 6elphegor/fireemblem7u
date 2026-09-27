@@ -450,7 +450,26 @@ int sub_0807D528(void)
     return FALSE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0807D5BC.s");
+void sub_0807D5BC(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        struct Unit * unit = GetUnitFromCharId(0x5B);
+        int x, y, cx, cy;
+
+        x = unit->xPos * 16;
+        cx = gBmSt.camera.x - 8;
+        x -= cx;
+
+        y = unit->yPos * 16;
+        cy = gBmSt.camera.y - 8;
+        y -= cy;
+
+        sub_08020D6C(proc, x, y);
+
+        proc->unk_4D = TRUE;
+    }
+}
 
 void sub_0807D60C(struct ProcEventCameraShake * proc)
 {
@@ -572,7 +591,26 @@ int sub_0807D80C(void)
     return FALSE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0807D840.s");
+void sub_0807D840(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        struct Unit * unit = GetUnitFromCharId(0x44);
+        int x, y, cx, cy;
+
+        x = unit->xPos * 16;
+        cx = gBmSt.camera.x - 8;
+        x -= cx;
+
+        y = unit->yPos * 16;
+        cy = gBmSt.camera.y - 8;
+        y -= cy;
+
+        sub_08020D6C(proc, x, y);
+
+        proc->unk_4D = TRUE;
+    }
+}
 
 void sub_0807D890(struct EventProc * proc)
 {
