@@ -796,3 +796,11 @@ ProcPtr StartRuleSettingSpriteDrawInteractive(ProcPtr parent);
 void UpdateRuleSettingSprites(ProcPtr proc, s16 b, s16 xOption, s16 yOption);
 void sub_080A1F54(struct SioSaveConf * conf);
 void sub_080A1F90(struct SioSaveConf * conf);
+extern int gKeyInputSequenceTimer;
+extern int gTargetKeyInSeqIndex;
+extern int gCurrentKeyInSeqIndex;
+extern u16 gKeyInputSequenceBuffer[];
+bool sub_080A0A10(struct PlaySt * playSt); // IsGameNotFirstChapter
+ProcPtr StartSioMenuItem(ProcPtr parent, u8 xBase, u8 yBase, u8 index, u8 state);
+void SioMenuItem_SetArrowConfig(struct SioMenuItemProc * proc, int xLeft, int xRight, int leftSpeed, int rightSpeed);
+void SioMenuItem_SetPosition(struct SioMenuItemProc * proc, s16 x, s16 y);
