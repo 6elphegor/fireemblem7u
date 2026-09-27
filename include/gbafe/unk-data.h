@@ -1233,7 +1233,7 @@ extern const u16 FrameLut_EkrDragon_082E4418[];
 extern const u16 FrameLut_EkrDragon_082E441E[];
 extern const u16 FrameLut_EkrDragon_082E4430[];
 extern const u16 FrameLut_EkrDragon_082E4442[];
-extern const u8 Img_EkrDragon_082E445C[];
+extern const u8 Img_EkrDragon_082DE7E8[];
 extern const u8 Tsa_EkrDragon_DragonTail[];
 extern const u8 Tsa_EkrDragon_MainBg[];
 extern const u8 Tsa_EkrDragon_082E7170[];
