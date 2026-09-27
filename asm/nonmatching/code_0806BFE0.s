@@ -19,7 +19,7 @@ MU_SetDefaultFacing_Auto: @ 0x0806BFE0
 _0806BFF8: .4byte 0x08C9D00C
 _0806BFFC:
 	ldr r0, [r7]
-	bl sub_0806BFA4
+	bl SetMuDefaultFacing
 _0806C002:
 	add sp, #4
 	pop {r7}

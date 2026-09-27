@@ -14,7 +14,7 @@ sub_0806D968: @ 0x0806D968
 	adds r1, #0x3c
 	ldrb r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806D524
+	bl GetMuImgBufById
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806C040
-sub_0806C040: @ 0x0806C040
+	thumb_func_start MuExists
+MuExists: @ 0x0806C040
 	push {r7, lr}
 	mov r7, sp
 	ldr r1, _0806C058 @ =0x08C9D00C

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806CF58
-sub_0806CF58: @ 0x0806CF58
+	thumb_func_start GetNewMuConfig
+GetNewMuConfig: @ 0x0806CF58
 	push {r4, r7, lr}
 	sub sp, #0xc
 	mov r7, sp

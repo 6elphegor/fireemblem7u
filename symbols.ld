@@ -613,3 +613,6 @@ Pal_DragonsGate = 0x0818F7B0;
 Img_NilsInDragonsGate = 0x0818F8B0;
 Tsa_NilsInDragonsGate = 0x0818FC08;
 Pal_NilsInDragonsGate = 0x081900E4;
+sMuConfig = 0x030014E8;
+ProcScr_Mu = 0x08C9D00C;
+ProcScr_MuStepSe = 0x08C9CE70;

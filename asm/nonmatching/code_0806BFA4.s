@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806BFA4
-sub_0806BFA4: @ 0x0806BFA4
+	thumb_func_start SetMuDefaultFacing
+SetMuDefaultFacing: @ 0x0806BFA4
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

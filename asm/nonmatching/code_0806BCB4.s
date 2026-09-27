@@ -35,14 +35,14 @@ StartMuInternal: @ 0x0806BCB4
 	ldr r0, [r7, #8]
 	adds r1, r7, #0
 	adds r1, #0x1a
-	bl sub_0806CEB4
+	bl GetDefaultMuConfig
 	str r0, [r7, #0x14]
 	b _0806BD06
 _0806BCFA:
 	ldr r0, [r7, #8]
 	adds r1, r7, #0
 	adds r1, #0x1a
-	bl sub_0806CF58
+	bl GetNewMuConfig
 	str r0, [r7, #0x14]
 _0806BD06:
 	ldr r0, [r7, #0x14]
@@ -268,19 +268,19 @@ _0806BD40:
 	bl SetSpriteAnimId
 	ldr r1, [r7, #0xc]
 	adds r0, r1, #0
-	bl sub_0806D554
+	bl GetMuImg
 	adds r4, r0, #0
 	ldr r0, [r7, #0x14]
 	ldrb r1, [r0]
 	adds r0, r1, #0
-	bl sub_0806D524
+	bl GetMuImgBufById
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Decompress
 	ldr r0, [r7, #0x14]
 	ldrb r1, [r0]
 	adds r0, r1, #0
-	bl sub_0806D524
+	bl GetMuImgBufById
 	ldr r1, [r7, #0x10]
 	str r0, [r1, #0x24]
 	ldr r0, [r7, #0x10]

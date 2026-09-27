@@ -48,13 +48,13 @@ sub_0806E188: @ 0x0806E188
 	adds r0, r4, #0
 	bl SetSpriteAnimInfo
 	ldr r0, [r7]
-	bl sub_0806D554
+	bl GetMuImg
 	adds r4, r0, #0
 	ldr r0, [r7]
 	ldr r1, [r0, #0x34]
 	ldrb r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806D524
+	bl GetMuImgBufById
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Decompress

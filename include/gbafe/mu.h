@@ -66,8 +66,23 @@ struct MuInfo
     u16 const * anim;
 };
 
+enum
+{
+    MU_MAX_COUNT = 4,
+    MU_GFX_MAX_SIZE = 0x2200,
+    MU_SUBPIXEL_PRECISION = 4,
+};
+
+enum
+{
+    MU_FACING_SELECTED = 4,
+    MU_FACING_UNK11 = 11,
+    MU_FACING_STANDING = 15,
+};
+
 struct MuConfig;
 
+// Layout verified against FE7U mu code (same as FE8U's)
 struct MuProc
 {
     /* 00 */ PROC_HEADER;
@@ -75,24 +90,27 @@ struct MuProc
     /* 2C */ struct Unit * unit;
     /* 30 */ struct SpriteAnim * sprite_anim;
     /* 34 */ struct MuConfig * config;
+    /* 38 */ void * vram;
 
-    /* 38 */ u8 cam_b;
-    /* 39 */ u8 state;
-    /* 3A */ u8 hidden_b;
-    /* 3B */ u8 jid;
-    /* 3C */ s8 facing;
-    /* 3D */ u8 step_sound_clock;
-    /* 3E */ u8 fast_walk_b;
-    /* 3F */ // pad
-    /* 40 */ u16 move_clock_q4;
-    /* 42 */ s16 move_config;
-    /* 44 */ s16 x_q4, y_q4;
-    /* 48 */ s16 x_offset_q4, y_offset_q4;
+    /* 3C */ u8 slot;
+    /* 3D */ u8 _u3D;
+    /* 3E */ u8 cam_b;
+    /* 3F */ u8 state;
+    /* 40 */ u8 hidden_b;
+    /* 41 */ u8 jid;
+    /* 42 */ s8 facing;
+    /* 43 */ u8 step_sound_clock;
+    /* 44 */ u8 fast_walk_b;
+    /* 46 */ u16 layer;
+    /* 48 */ u16 move_clock_q4;
+    /* 4A */ s16 move_config;
+    /* 4C */ s16 x_q4, y_q4;
+    /* 50 */ s16 x_offset_q4, y_offset_q4;
 };
 
 struct MuConfig
 {
-    /* 00 */ u8 id;
+    /* 00 */ u8 slot;
     /* 01 */ u8 pal;
     /* 02 */ u16 chr;
     /* 04 */ u8 pc;
@@ -101,20 +119,58 @@ struct MuConfig
     /* 48 */ struct MuProc * mu;
 };
 
+struct MuStepSoundProc
+{
+    /* 00 */ PROC_HEADER;
+    STRUCT_PAD(0x29, 0x58);
+    /* 58 */ u32 song1;
+    /* 5C */ u32 song2;
+    /* 60 */ u32 unk60;
+    /* 64 */ s16 x1;
+    /* 66 */ s16 x2;
+};
+
+struct MuFogBumpProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int x, y;
+    STRUCT_PAD(0x34, 0x50);
+    /* 50 */ struct SpriteAnim * sprite_anim;
+    STRUCT_PAD(0x54, 0x64);
+    /* 64 */ s16 timer;
+};
+
+struct MuEffectProc
+{
+    /* 00 */ PROC_HEADER;
+    STRUCT_PAD(0x29, 0x54);
+    /* 54 */ struct MuProc * mu;
+    STRUCT_PAD(0x58, 0x64);
+    /* 64 */ s16 time_left;
+    /* 66 */ s16 frame;
+};
+
+struct MuFlashEffectProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct MuProc * mu;
+    /* 30 */ u8 timer;
+};
+
 // MU_Init
-// sub_0806BA88
+// StartMuExt
 // StartMu
 // sub_806C398
 // EnableMuCamera
 // DisableMuCamera
 struct MuProc * StartUiMu(struct Unit * unit, int x, int y);
-// sub_0806BC88
+// StartUiStandingMu
 // StartMuInternal
 // SetMuFacing
-// sub_0806BFA4
+// SetMuDefaultFacing
 // MU_SetDefaultFacing_Auto
 // SetAutoMuMoveScript
-// sub_0806C040
+// MuExists
 // MuExistsActive
 // IsMuActive
 // SetMuMoveScript
@@ -138,7 +194,7 @@ struct MuProc * StartUiMu(struct Unit * unit, int x, int y);
 // sub_806D07C
 // sub_0806C8A0
 // UpdateMuStepSounds
-// sub_0806CC0C
+// Mu_OnLoop
 // sub_0806CC90
 void EndAllMus(void);
 // EndMu
@@ -149,15 +205,15 @@ void ReleaseMus(void);
 void ApplyMoveScriptToCoordinates(int * x, int * y, u8 const * move_script);
 bool CanStartMu(void);
 // ResetMuAnims
-// sub_0806CEB4
-// sub_0806CF58
+// GetDefaultMuConfig
+// GetNewMuConfig
 // sub_0806CFFC
 // sub_0806D148
 // sub_0806D250
 // GetMuQ4MovementSpeed
 // sub_0806D4CC
-// sub_0806D524
-// sub_0806D554
+// GetMuImgBufById
+// GetMuImg
 // GetMuAnimForJid
 // StartMuDeathFade
 // sub_0806D6D8

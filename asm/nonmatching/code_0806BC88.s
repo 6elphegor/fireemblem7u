@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806BC88
-sub_0806BC88: @ 0x0806BC88
+	thumb_func_start StartUiStandingMu
+StartUiStandingMu: @ 0x0806BC88
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806CC0C
-sub_0806CC0C: @ 0x0806CC0C
+	thumb_func_start Mu_OnLoop
+Mu_OnLoop: @ 0x0806CC0C
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

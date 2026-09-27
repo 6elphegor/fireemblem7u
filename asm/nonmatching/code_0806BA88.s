@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806BA88
-sub_0806BA88: @ 0x0806BA88
+	thumb_func_start StartMuExt
+StartMuExt: @ 0x0806BA88
 	push {r4, r7, lr}
 	sub sp, #0x14
 	add r7, sp, #4

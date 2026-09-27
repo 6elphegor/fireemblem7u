@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806D554
-sub_0806D554: @ 0x0806D554
+	thumb_func_start GetMuImg
+GetMuImg: @ 0x0806D554
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
