@@ -370,7 +370,14 @@ void EpilogueText_Init(struct EpilogueProc * proc)
 
 ASM_FUNC("asm/nonmatching/code_080B75D8.s");
 
-ASM_FUNC("asm/nonmatching/code_080B766C.s");
+void EpilogueText_LoopFadeOut(struct EpilogueProc * proc)
+{
+    proc->timer++;
+    SetBlendConfig(0, 0x10 - (proc->timer >> 1), proc->timer >> 1, 0);
+
+    if (proc->timer == 0x20)
+        Proc_Break(proc);
+}
 
 void EpilogueText_Next(struct EpilogueProc * proc)
 {
@@ -491,7 +498,18 @@ void sub_080B7B18(struct EpilogueProc * proc)
     }
 }
 
+#if NONMATCHING
+void sub_080B7B74(struct EpilogueProc * proc)
+{
+    Proc_Goto(StartEpilogueScroll(gEpilogueEndScroll, 2, proc), 0);
+    ClearEpilogueTexts();
+    SetBlendConfig(0, 0x10, 0, 0);
+    proc->timer = 0;
+    SetOnHBlankA(NULL);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B7B74.s");
+#endif
 
 void sub_080B7BC8(struct EpilogueProc * proc)
 {
