@@ -176,7 +176,17 @@ void sub_080A511C(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_08CE40F8, parent);
 }
-ASM_FUNC("asm/nonmatching/code_080A5130.s");
+void SaveMenuCopyPalette(u16 * src, u16 * dst, int count)
+{
+    u16 * src_;
+    count = count * 0x10;
+
+    if (count <= 0)
+        return;
+
+    for (src_ = src; count != 0; count--)
+        *dst++ = *src_++;
+}
 ASM_FUNC("asm/nonmatching/code_080A5148.s");
 ASM_FUNC("asm/nonmatching/code_080A5214.s");
 void SaveDraw_Init(struct SaveDrawProc * proc)

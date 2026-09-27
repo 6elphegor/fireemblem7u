@@ -2830,3 +2830,4 @@ SpriteArray_08A209B8 = 0x08CE4584;
 SpriteArray_08A2099C = 0x08CE456C;
 ApConf_SaveMenuCursor = 0x08413A50;
 ProcScr_SaveDraw = 0x08CE42EC;
+gUnknown_02000004 = 0x02000004;

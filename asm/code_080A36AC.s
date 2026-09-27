@@ -45,7 +45,7 @@ ProcSaveMenu_InitScreen: @ 0x080A36AC
 	ldr r0, _080A38A0 @ =0x08413A10
 	ldr r1, _080A38A4 @ =0x02000004
 	movs r2, #2
-	bl sub_080A5130
+	bl SaveMenuCopyPalette
 	movs r0, #0xf
 	bl EnableBgSync
 	mov r0, r8
