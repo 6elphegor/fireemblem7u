@@ -4,13 +4,13 @@
 
 // ??? sub_8025114
 void ApplyUnitSpritePalettes(void);
-// ??? sub_08024CE0
+// ??? ApplyUnitSpriteSepiaPalette
 void ResetUnitSprites(void);
 void ResetUnitSpritesB(void);
 int UseUnitSprite(u32 id);
 int StartUiSMS(int smsId, int frameId);
-// ??? sub_08024EB8
 // ??? ApplyUnitSpriteImage16x16
+// ??? ApplyUnitSpriteUiImage16x16
 // ??? ApplyUnitSpriteImage16x32
 // ??? ApplyUnitSpriteImage32x32
 void TornOutUnitSprite(struct Unit * unit, int timer);

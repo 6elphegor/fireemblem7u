@@ -191,17 +191,7 @@ SECTIONS
         build/src/faction.o(.text);
         build/src/gold.o(.text);
         build/src/bmtarget.o(.text);
-        build/asm/code_08024C88.o(.text);
-        build/asm/code_08024C98.o(.text);
-        build/asm/code_08024CE0.o(.text);
-        build/asm/code_08024CF8.o(.text);
-        build/asm/code_08024D2C.o(.text);
-        build/asm/code_08024D60.o(.text);
-        build/asm/code_08024DEC.o(.text);
-        build/asm/code_08024EB8.o(.text);
-        build/asm/code_08024F4C.o(.text);
-        build/asm/code_08025028.o(.text);
-        build/asm/code_08025118.o(.text);
+        build/src/unit-sprite.o(.text);
         build/asm/code_0802520C.o(.text);
         build/asm/code_08025518.o(.text);
         build/asm/code_08025580.o(.text);

@@ -21,7 +21,7 @@ extern struct ProcCmd CONST_DATA ProcScr_EvtBgFadeIn[];
 extern struct ProcCmd CONST_DATA ProcScr_EvtBgFadeOut[];
 extern struct ProcCmd CONST_DATA ProcScr_EvtBgFadeToMap[];
 
-void sub_08024CE0(void);
+void ApplyUnitSpriteSepiaPalette(void);
 
 void EvtBgFadeIn_Init(struct EvtBgTransitionProc * proc)
 {
@@ -295,7 +295,7 @@ void EvtBgFadeToMap_RestoreMap(struct EvtBgTransitionProc * proc)
     ApplyUnitSpritePalettes();
 
     if (proc->flags & BGTRANS_FLAG_UNK_200)
-        sub_08024CE0();
+        ApplyUnitSpriteSepiaPalette();
 
     ForceSyncUnitSpriteSheet();
     UnlockBmDisplay();
