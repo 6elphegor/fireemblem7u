@@ -179,9 +179,9 @@ void ChapterIntro_SetFasten(struct ProcChapterIntrofx * proc);
 // GameOverScreen_LoopFadeOut
 // GameOverScreen_End
 // sub_80208E0
-// sub_0802049C
-// sub_08020568
-// sub_080205E0
+// ProcLightRuneAnim3_Init
+// ProcLightRuneAnim3_Loop
+// ProcLightRuneAnim3_End
 // StartLightRuneAnim3
 // ProcDanceAnim_Init
 // ProcDanceAnim_Loop
