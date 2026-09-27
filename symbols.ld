@@ -1103,3 +1103,4 @@ gUnknown_085AAA0E = 0x08B9A466;
 gUnknown_085AAA48 = 0x08B9A4A0;
 gCgTextSt = 0x0203E738;
 gProcScr_CgTextMain = 0x08CC306C;
+gProcScr_CgTextInterpreter = 0x08CC3114;

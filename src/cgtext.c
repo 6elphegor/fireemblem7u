@@ -378,12 +378,104 @@ s8 DoesStringContainTact(const char * str)
 }
 ASM_FUNC("asm/nonmatching/code_08088098.s");
 ASM_FUNC("asm/nonmatching/code_08088380.s");
-ASM_FUNC("asm/nonmatching/code_08088938.s");
-ASM_FUNC("asm/nonmatching/code_080889A4.s");
-ASM_FUNC("asm/nonmatching/code_080889AC.s");
-ASM_FUNC("asm/nonmatching/code_08088A30.s");
-ASM_FUNC("asm/nonmatching/code_08088A58.s");
-ASM_FUNC("asm/nonmatching/code_08088A7C.s");
-ASM_FUNC("asm/nonmatching/code_08088A90.s");
+void sub_808FEA4(int * src, int x, int y)
+{
+    int i;
+    int ix;
+    int iy;
+
+    int * srcPtr = src;
+
+    for (iy = 0; iy < y; iy++)
+    {
+        int * srcPtr_ = srcPtr;
+
+        for (ix = 0; ix < x; ix++)
+        {
+            for (i = 0; i < 7; i++)
+            {
+                srcPtr_[0] = srcPtr_[1];
+                srcPtr_++;
+            }
+
+            if (iy == y - 1)
+            {
+                srcPtr_[0] = 0;
+                srcPtr_++;
+            }
+            else
+            {
+                int tmp = ix + 0x20;
+                srcPtr_[0] = srcPtr[tmp * 8];
+                srcPtr_++;
+            }
+        }
+
+        srcPtr += 0x100;
+    }
+}
+
+void CgTextInterpreter_808FF10(struct CgTextInterpreterProc * proc)
+{
+    proc->unk_4c = 0;
+}
+
+void CgTextInterpreter_808FF18(struct CgTextInterpreterProc * proc)
+{
+    struct CgTextMainProc * parent = proc->proc_parent;
+
+    int a = (parent->thIndex + 1) * 2;
+
+    sub_808FEA4(parent->vram, parent->boxWidth, a);
+
+    proc->unk_4c++;
+
+    if (proc->unk_4c == parent->unk_5f * 16)
+    {
+        sub_808F30C(parent);
+
+        parent->thIndex -= parent->unk_5f - 1;
+
+        parent->textWidth = 0;
+        parent->textHeight = 0;
+        GetCgTextDimensions(parent->str, &parent->textWidth, &parent->textHeight);
+
+        parent->textHeight = parent->thIndex * 16 + parent->textHeight;
+
+        Proc_Break(proc);
+    }
+}
+
+void CgTextInterpreter_808FF9C(struct CgTextInterpreterProc * proc)
+{
+    struct CgTextMainProc * parent = proc->proc_parent;
+
+    CgText_ClearSpriteText(parent);
+
+    parent->thIndex = 0;
+
+    parent->textWidth = 0;
+    parent->textHeight = 0;
+    GetCgTextDimensions(parent->str, &parent->textWidth, &parent->textHeight);
+}
+
+void RestartCgTextInterpreter(struct CgTextMainProc * parent)
+{
+    Proc_End(Proc_Find(gProcScr_CgTextInterpreter));
+    Proc_Start(gProcScr_CgTextInterpreter, parent);
+}
+
+void EndCgTextInterpreter(void)
+{
+    Proc_End(Proc_Find(gProcScr_CgTextInterpreter));
+}
+
+s8 sub_808FFFC(void)
+{
+    if (GetCgTextFlags() & CG_TEXT_FLAG_2)
+        return 1;
+
+    return 0;
+}
 ASM_FUNC("asm/nonmatching/code_08088AA8.s");
 ASM_FUNC("asm/nonmatching/code_08088B88.s");
