@@ -1425,3 +1425,4 @@ gBarfxTileConf1 = 0x082E5ACC;
 gBarfxTileConf2 = 0x082E5ADA;
 gBarfxTileConf3 = 0x082E5AEC;
 gEfxTileRefPals = 0x08BDAF3C;
+ProcScr_ekrLvupFan = 0x08B9A9E4;

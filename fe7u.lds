@@ -991,8 +991,7 @@ SECTIONS
         build/asm/code_0804B174.o(.text);
         build/asm/code_0804B180.o(.text);
         build/src/banim-ekrbattle.o(.text);
-        build/asm/code_0804C0B4.o(.text);
-        build/asm/code_0804C0D0.o(.text);
+        build/src/banim-ekrlvupfan.o(.text);
         build/asm/code_0804C118.o(.text);
         build/asm/code_0804C168.o(.text);
         build/asm/code_0804C1D0.o(.text);
