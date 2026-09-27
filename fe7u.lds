@@ -159,7 +159,7 @@ SECTIONS
         build/src/face.o(.text);
         build/src/talk.o(.text);
         build/src/talk-advance.o(.text);
-        build/asm/code_0800A608.o(.text);
+        build/src/event.o(.text);
         build/asm/code_0800A618.o(.text);
         build/asm/code_0800A708.o(.text);
         build/asm/code_0800A71C.o(.text);
