@@ -7,7 +7,6 @@ void PutMenuScrollBarAt(int x, int y);
 void TryHideMenuScrollBar(void);
 void SomethingPrepListRelated(struct Unit * unit, int page, int flags);
 void sub_0809120C(void);
-void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
 
 extern u16 gUnk_08407400[];
 extern u16 const * CONST_DATA gUnk_08CC4FA0[];

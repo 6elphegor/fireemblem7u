@@ -3,7 +3,6 @@
 u32 GetGold(void);
 void AddGold(s32 amount);
 u16 GetItemSellPrice(int item);
-void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
 
 extern int CONST_DATA gShopSellTextIndexLookup[];
 extern char * CONST_DATA gpShopSellStringBuffer;

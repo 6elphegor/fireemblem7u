@@ -21,7 +21,7 @@ sub_080765FC: @ 0x080765FC
 	adds r1, r0, r1
 	ldr r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806DC14
+	bl StartMuFadeFromFlash
 	add sp, #4
 	pop {r7}
 	pop {r0}

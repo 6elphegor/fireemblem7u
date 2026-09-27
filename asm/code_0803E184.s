@@ -31,11 +31,11 @@ sub_0803E184: @ 0x0803E184
 	movs r0, #0x7f
 	ldrb r3, [r4, #0x13]
 	ands r0, r3
-	bl sub_080A1CC4
+	bl WipeMultiArenaSaveTeam
 	adds r0, r5, #0
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_080A1E8C
+	bl ReadMultiArenaSaveTeam
 	ldr r0, _0803E218 @ =0x081D5228
 	adds r1, r4, #0
 	bl SioStrCpy

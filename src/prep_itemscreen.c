@@ -18,7 +18,6 @@ extern u8 Tsa_08407188[];
 extern u8 Tsa_08407270[];
 
 s8 sub_080912EC(struct Unit * unit);
-void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
 void SetFacePosition(int slot, int x, int y);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void SyncUnitSpriteSheet(void);

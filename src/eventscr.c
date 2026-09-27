@@ -279,7 +279,7 @@ void BuildBestMoveScript(int x, int y, u8 * out);
 struct MuProc * StartMu(struct Unit * unit);
 void DisableMuCamera(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * move_script);
-void sub_0806D4CC(struct MuProc * mu, int speed);
+void SetMuConfig(struct MuProc * mu, int speed);
 bool IsMuActive(struct MuProc * mu);
 void EndMu(struct MuProc * mu);
 u8 IsPidBlue(u8 pid);
@@ -1191,7 +1191,7 @@ bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * mov
     SetMuMoveScript(mu, move_script);
 
     if (speed != 0)
-        sub_0806D4CC(mu, speed);
+        SetMuConfig(mu, speed);
 
     gBmMapOther[y][x] = unit->index;
 

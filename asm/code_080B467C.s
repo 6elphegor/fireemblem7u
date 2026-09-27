@@ -82,7 +82,7 @@ _080B46FC:
 	strb r0, [r1, #8]
 	ldr r0, [r2, #0x58]
 	ldrb r1, [r1, #9]
-	bl sub_0806E220
+	bl SetMuPal
 _080B4718:
 	adds r5, #0xc
 	subs r4, #1

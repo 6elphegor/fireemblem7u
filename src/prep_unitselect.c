@@ -2,8 +2,6 @@
 
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void SyncUnitSpriteSheet(void);
-void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
-s8 sub_08090DB0(struct Unit * unit);
 ProcPtr StartMenuScrollBar(ProcPtr parent);
 void InitMenuScrollBarImg(int chr, int pal);
 void PutMenuScrollBarAt(int x, int y);

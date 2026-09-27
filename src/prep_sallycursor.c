@@ -38,12 +38,10 @@ void StartPrepUnitSwap(ProcPtr parent, struct Unit * unit, int x, int y);
 void sub_08018980(void);                            // LoadUnitPrepScreenPositions
 void InitPlayerUnitPositionsForPrepScreen(void);                            // InitPlayerUnitPositionsForPrepScreen
 void sub_080A3284(void);                            // StartMinimapPrepPhase
-int sub_0807812C(struct EventInfo * info);          // SearchAvailableEvent
+int SearchAvailableEvent(struct EventInfo * info);          // SearchAvailableEvent
 void sub_080B03D4(struct Unit * unit, const u16 * items); // StartArmoryScreen
 void sub_080B03F4(struct Unit * unit, const u16 * items); // StartVendorScreen
 void SyncUnitDeploymentState(void);
-void PidStatsSubFavval100(int pid);
-void PidStatsAddDeployAmt(int pid);
 void sub_08004234(void);
 void RefreshBMapGraphics(void);
 
@@ -635,7 +633,7 @@ void PrepScreenProc_StartShopScreen(ProcPtr proc)
     info.xPos = gBmSt.cursor.x;
     info.yPos = gBmSt.cursor.y;
 
-    if (!sub_0807812C(&info))
+    if (!SearchAvailableEvent(&info))
         return;
 
     switch (info.commandId)

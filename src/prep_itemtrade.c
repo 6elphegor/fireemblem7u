@@ -2,7 +2,6 @@
 #include "gbafe/bmitemuse.h"
 #include "gbafe/ui.h"
 
-void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
 
 extern struct ProcCmd CONST_DATA ProcScr_PrepItemTradeScreen[];
 

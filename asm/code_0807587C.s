@@ -21,7 +21,7 @@ sub_0807587C: @ 0x0807587C
 	adds r1, r0, r1
 	ldr r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806DDD4
+	bl StartMuSpeedUpAnim
 	add sp, #4
 	pop {r7}
 	pop {r0}

@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/cgtext.h"
 
 struct SupportScreenUnit {
     /* 00 */ u8 charId;
@@ -9,11 +10,6 @@ struct SupportScreenUnit {
     /* 17 */ u8 pad_17;
 };
 
-struct SupportTalkEnt {
-    /* 00 */ u8 unitA;
-    /* 01 */ u8 unitB;
-    /* 02 */ u8 pad_02[0x14 - 0x02];
-};
 
 struct SupportScreenProc {
     /* 00 */ PROC_HEADER;
@@ -58,17 +54,10 @@ struct SubScreenProc {
 
 extern struct SupportScreenUnit * CONST_DATA sSupportScreenUnits;
 extern int sSupportScreenUnitCount;
-extern struct SupportTalkEnt CONST_DATA gSupportTalkList[];
 
-void MetaSave_SetMetCharacter(int charId, void * buf);
-int GetUnitsAverageSupportValue(int charA, int charB);
-void UpdateBestGlobalSupportValue(int charA, int charB, int value);
 
 int GetSupportScreenCharIdAt(int idx);
 int GetSupportScreenPartnerCount(int charId);
-s8 GGM_IsCharacterKnown(int charId, struct GlobalSaveInfo * info);
-void GetGlobalSupportListFromSave(int charId, u8 * out, struct GlobalSaveInfo * info);
-int GetTotalSupportCollection(void);
 int GetClassSMSId(int classId);
 void PutUnitSpriteForClassId(int layer, int x, int y, int oam2, int classId);
 void SyncUnitSpriteSheet(void);
@@ -97,7 +86,6 @@ void StartSupportUnitSubScreen(s8 fromPrepScreen, int idx, ProcPtr parent);
 int GetSupportTalkSong(u8 a, u8 charA, u8 charB, int rank);
 char * GetTacticianName(void);
 struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
-s8 sub_08088A90(void);
 
 extern struct Font gPrepItemTextFont;
 extern u8 Tsa_0840ECC4[];
@@ -198,9 +186,9 @@ s8 sub_0809B15C(int charId)
 {
     struct SupportTalkEnt const * iter;
 
-    for (iter = gSupportTalkList; iter->unitA != 0; iter++)
+    for (iter = gSupportTalkList; iter->pidA != 0; iter++)
     {
-        if (iter->unitA == charId || iter->unitB == charId)
+        if (iter->pidA == charId || iter->pidB == charId)
             return 1;
     }
 
@@ -210,11 +198,11 @@ void sub_0809B184(void)
 {
     struct SupportTalkEnt const * iter;
 
-    for (iter = gSupportTalkList; iter->unitA != 0; iter++)
+    for (iter = gSupportTalkList; iter->pidA != 0; iter++)
     {
-        MetaSave_SetMetCharacter(iter->unitA, NULL);
-        MetaSave_SetMetCharacter(iter->unitB, NULL);
-        UpdateBestGlobalSupportValue(iter->unitA, iter->unitB, GetUnitsAverageSupportValue(iter->unitA, iter->unitB));
+        MetaSave_SetMetCharacter(iter->pidA, NULL);
+        MetaSave_SetMetCharacter(iter->pidB, NULL);
+        UpdateBestGlobalSupportValue(iter->pidA, iter->pidB, GetUnitsAverageSupportValue(iter->pidA, iter->pidB));
     }
 }
 void SupportScreen_SetupUnits(struct SupportScreenProc * proc)
@@ -931,7 +919,7 @@ void sub_0809C41C(struct SupportTactProc * proc)
 }
 void sub_0809C44C(ProcPtr proc)
 {
-    if (!sub_08088A90())
+    if (!sub_808FFFC())
     {
         Proc_Break(proc);
         return;

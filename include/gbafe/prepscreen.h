@@ -251,6 +251,10 @@ void MenuScroll_Loop(ProcPtr proc);
 // PutMenuScrollBarAt
 // UpdateMenuScrollBarConfig
 // InitMenuScrollBarImg
+ProcPtr StartMenuScrollBar(ProcPtr parent);
+void PutMenuScrollBarAt(int x, int y);
+void UpdateMenuScrollBarConfig(u8 segments, u16 currentSegment, u16 totalRows, u8 visibleRows);
+void InitMenuScrollBarImg(int chr, int pal);
 // sub_08090540
 // sub_08090580
 
@@ -290,13 +294,16 @@ void TryLockProc(ProcPtr proc);
 void TryUnlockProc(ProcPtr proc);
 void PrepHbKeyListener_Loop(ProcPtr proc);
 // StartPrepErrorHelpbox
+ProcPtr StartPrepErrorHelpbox(int x, int y, int msgId, ProcPtr parent);
 // IsWeaponUsable
 // CountUnitUsableWeapons
 // sub_08090DB0
+s8 sub_08090DB0(struct Unit * unit);
 s8 CheckValidLinkArenaItemSwap(struct Unit * unitA, int slotA, struct Unit * unitB, int slotB);
 // CheckValidLinkArenaItemSupply
 // sub_08090EE8
 // sub_08090F30
+void sub_08090F30(void);
 
 struct PrepItemTypePageEnt {
     /* 00 */ u8 lowerBound;
@@ -557,7 +564,6 @@ void StartPrepItemSupplyProc(struct Unit * unit, ProcPtr parent);
 void sub_08097488(void);
 void sub_080974A8(void);
 // StartBmSupply
-void MaybeStartSelectConvoyItemProc(struct Unit * unit, ProcPtr unused);
 struct PrepItemListProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;

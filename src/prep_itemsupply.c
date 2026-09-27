@@ -21,8 +21,6 @@ void SomethingPrepListRelated(struct Unit * unit, int page, int flags);
 void sub_0809120C(void);
 int GetPrepPageForItem(int item);
 s8 sub_08090EE8(struct Unit * unit, int slot);
-void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
-void StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 
 extern struct ProcCmd CONST_DATA ProcScr_PrepItemSupplyScreen[];

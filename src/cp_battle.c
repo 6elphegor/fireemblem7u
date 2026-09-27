@@ -65,7 +65,7 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
             if (GetUnitItemCount(gActiveUnit) < UNIT_ITEM_COUNT)
             {
                 RevertMapChange(gActiveUnit);
-                sub_0801A0FC();
+                MarkMovementMapEdges();
 
                 if (AiAttemptStealActionWithinMovement() == 1)
                     return 0;

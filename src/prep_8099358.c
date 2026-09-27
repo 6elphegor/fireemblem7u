@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/cgtext.h"
 
 struct PrepRankProc {
     /* 00 */ PROC_HEADER;
@@ -38,7 +39,6 @@ int GetGameCombatRank(void);
 int GetGameFundsRank(void);
 int GetOverallRank(int a, int b, int c, int d, int e);
 struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
-s8 sub_08088A90(void);
 void StartCgText(int x, int y, int width, int height, int msg, void * vram, int pal, ProcPtr parent);
 void SetCgTextFlags(int flags);
 void EndCgText(void);
@@ -209,7 +209,7 @@ void sub_080998B4(ProcPtr proc)
 }
 void sub_080998D8(ProcPtr proc)
 {
-    if (!sub_08088A90())
+    if (!sub_808FFFC())
     {
         Proc_Break(proc);
         return;

@@ -9,7 +9,7 @@ sub_080B26C4: @ 0x080B26C4
 	add r7, sp, #4
 	str r0, [r7]
 	ldr r0, _080B2A18 @ =0x08C9D00C
-	ldr r1, _080B2A1C @ =sub_0806DAB4
+	ldr r1, _080B2A1C @ =HideMu
 	bl Proc_ForEach
 	bl sub_080B1E28
 	ldr r0, _080B2A20 @ =0x03002870
@@ -416,7 +416,7 @@ sub_080B26C4: @ 0x080B26C4
 	bx r0
 	.align 2, 0
 _080B2A18: .4byte 0x08C9D00C
-_080B2A1C: .4byte sub_0806DAB4
+_080B2A1C: .4byte HideMu
 _080B2A20: .4byte 0x03002870
 _080B2A24: .4byte 0x083F42D0
 _080B2A28: .4byte 0x02020140

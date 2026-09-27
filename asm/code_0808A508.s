@@ -26,7 +26,7 @@ _0808A524:
 	b _0808A5A0
 _0808A52E:
 	adds r0, r4, #0
-	bl sub_08089E70
+	bl sub_809144C
 	b _0808A5A0
 _0808A536:
 	adds r0, r4, #0
@@ -54,7 +54,7 @@ _0808A53E:
 	movs r0, #0
 	strb r0, [r5]
 	ldrh r0, [r4, #0x3e]
-	bl sub_08088DC0
+	bl sub_8090358
 	b _0808A5A0
 _0808A570:
 	adds r0, r4, #0
@@ -78,7 +78,7 @@ _0808A570:
 	movs r0, #0
 	strb r0, [r5]
 	ldrh r0, [r4, #0x3e]
-	bl sub_08088DC0
+	bl sub_8090358
 _0808A5A0:
 	ldr r0, _0808A60C @ =0x08B857F8
 	ldr r1, [r0]
