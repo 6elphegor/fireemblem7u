@@ -17,6 +17,11 @@ void sub_080A5EF0(void);
 struct SaveMenuUnkProc2 * StartSaveDraw(ProcPtr parent);
 void sub_080A602C(struct SaveMenuProc * proc);
 u8 SaveMenuGetValidMenuAmt(int flag, struct SaveMenuProc * proc);
+u8 SaveMenuModifySaveSlot(u8 slot, int a, int b);
+s8 SaveMenuTryMoveSaveSlotCursor(struct SaveMenuProc * proc, int dir);
+void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, int flag);
+void SaveMenuWriteNewGame(struct SaveMenuProc * proc);
+void sub_080A3CAC(struct SaveMenuProc * proc);
 
 CONST_DATA u16 BgConfig_SaveMenu[] = {
     0x0000, 0x6000, 0x0000, 
@@ -363,12 +368,360 @@ void SaveMenu_080A465C(struct SaveMenuProc * proc)
 {
     Proc_Goto(proc, proc->unk_2E);
 }
-ASM_FUNC("asm/nonmatching/code_080A39F8.s");
-ASM_FUNC("asm/nonmatching/code_080A3C78.s");
-ASM_FUNC("asm/nonmatching/code_080A3CAC.s");
-ASM_FUNC("asm/nonmatching/code_080A3E98.s");
-ASM_FUNC("asm/nonmatching/code_080A40EC.s");
-ASM_FUNC("asm/nonmatching/code_080A40F8.s");
+void Loop6C_savemenu(struct SaveMenuProc * proc)
+{
+    proc->unk_2E = 2;
+
+    if (gpKeySt->repeated & DPAD_UP)
+    {
+        if (proc->selected_id != 0)
+        {
+            proc->selected_id--;
+            PlaySoundEffect(0x386);
+        }
+        else
+        {
+            if (gpKeySt->pressed & DPAD_UP)
+            {
+                proc->selected_id = proc->unk_31 - 1;
+                PlaySoundEffect(0x386);
+            }
+        }
+    }
+    else if (gpKeySt->repeated & DPAD_DOWN)
+    {
+        if (proc->selected_id < proc->unk_31 - 1)
+        {
+            proc->selected_id++;
+            PlaySoundEffect(0x386);
+        }
+        else
+        {
+            if (gpKeySt->pressed & DPAD_DOWN)
+            {
+                proc->selected_id = 0;
+                PlaySoundEffect(0x386);
+            }
+        }
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        proc->action_flag = SaveMenuIndexToValidBitfile(proc->unk_30, proc->selected_id);
+        PlaySoundEffect(0x38A);
+        proc->anim_clock = 0;
+
+        switch (proc->action_flag)
+        {
+        case 0x01:
+            proc->copy_from_id = proc->unk_3F;
+            Proc_Goto(proc, 3);
+            break;
+
+        case 0x02:
+            proc->copy_from_id = SaveMenuModifySaveSlot(ReadLastGameSaveId(), 1, 1);
+            Proc_Goto(proc, 3);
+            break;
+
+        case 0x04:
+            proc->copy_from_id = SaveMenuModifySaveSlot(ReadLastGameSaveId(), 1, 1);
+            Proc_Goto(proc, 3);
+            break;
+
+        case 0x08:
+            proc->copy_from_id = SaveMenuModifySaveSlot(ReadLastGameSaveId(), 1, 1);
+            Proc_Goto(proc, 3);
+            break;
+
+        case 0x10:
+            proc->copy_from_id = SaveMenuModifySaveSlot(proc->copy_from_id, 0, 1);
+
+            if (sub_0809E9FC() == 0)
+            {
+                SaveMenu_SetDifficultyChoice(0, 0);
+                Proc_Goto(proc, 3);
+            }
+            else
+            {
+                Proc_Goto(proc, 1);
+                StartBgmVolumeChange(0xC0, 0x100, 0x10, NULL);
+            }
+            break;
+
+        case 0x20:
+            if (proc->unk_34 >= proc->unk_33)
+                proc->unk_34 = 0;
+
+            Proc_Goto(proc, 8);
+            break;
+        }
+    }
+    else if (gpKeySt->pressed & B_BUTTON)
+    {
+        PlaySoundEffect(0x38B);
+        Proc_Goto(proc, 0x12);
+        proc->action_flag = 0x100;
+    }
+}
+void SaveMenuWriteNewGame(struct SaveMenuProc * proc)
+{
+    int mode = 1;
+    int isDifficult = proc->unk_3D != 0;
+
+    if (proc->unk_2A == 1)
+        mode = 2;
+
+    if (proc->unk_2A == 2)
+        mode = 3;
+
+    WriteNewGameSave(proc->copy_from_id, isDifficult, mode);
+}
+void sub_080A3CAC(struct SaveMenuProc * proc)
+{
+    if (proc->unk_36 == 0)
+    {
+        PlaySoundEffect(0x38A);
+
+        switch (proc->action_flag)
+        {
+        case 0x04:
+            if (proc->unk_2D == (u8) -1)
+            {
+                proc->unk_2D = proc->copy_from_id;
+                SaveMenuTryMoveSaveSlotCursor(proc, 1);
+                return;
+            }
+
+            CopyGameSave(proc->unk_2D, proc->copy_from_id);
+            Proc_Goto(proc, 6);
+            return;
+
+        case 0x08:
+            proc->unk_36 = 2;
+            SaveMenuDrawSubSelBox(proc, 1);
+            break;
+
+        case 0x40:
+            proc->unk_36 = 1;
+            SaveMenuDrawSubSelBox(proc, 1);
+            break;
+
+        case 0x02:
+        case 0x20:
+        case 0x10:
+            proc->unk_36 = 2;
+            SaveMenuDrawSubSelBox(proc, 1);
+            break;
+        }
+
+        SaveMenu_StartHelpBox(proc);
+        return;
+    }
+
+    switch (proc->action_flag)
+    {
+    case 0x20:
+        if (proc->unk_36 == 1)
+        {
+            proc->unk_44 = 0xf0;
+            ReadGameSave(proc->copy_from_id);
+            Proc_Goto(proc, 0xE);
+            PlaySoundEffect(0x38A);
+        }
+        else
+        {
+            PlaySoundEffect(0x38B);
+        }
+        break;
+
+    case 0x02:
+        if (proc->unk_36 == 1)
+        {
+            proc->unk_44 = 0xf0;
+            PlaySoundEffect(0x38A);
+            SaveMenu_HandleExtraMiscOption(proc);
+        }
+        else
+        {
+            PlaySoundEffect(0x38B);
+        }
+        break;
+
+    case 0x10:
+        if (proc->unk_36 == 1)
+        {
+            SaveMenuWriteNewGame(proc);
+            Proc_Goto(proc, 6);
+            PlaySoundEffect(0x380);
+        }
+        else
+        {
+            PlaySoundEffect(0x38B);
+        }
+        break;
+
+    case 0x08:
+        if (proc->unk_36 == 1)
+        {
+            InvalidateGameSave(proc->copy_from_id);
+            Proc_Goto(proc, 6);
+            PlaySoundEffect(0x38A);
+        }
+        else
+        {
+            PlaySoundEffect(0x38B);
+        }
+        break;
+
+    case 0x40:
+        if (proc->unk_36 == 1)
+        {
+            WriteGameSave(proc->copy_from_id);
+            Proc_Goto(proc, 6);
+            PlaySoundEffect(0x380);
+        }
+        else
+        {
+            Proc_Goto(proc, 0x11);
+            proc->action_flag |= 0x100;
+            PlaySoundEffect(0x38B);
+        }
+        break;
+    }
+
+    SaveMenuDrawSubSelBox(proc, 0);
+    SaveMenu_StartHelpBox(proc);
+}
+void sub_080A3E98(struct SaveMenuProc * proc)
+{
+    proc->unk_2E = 5;
+
+    if (SaveMenuPostChapterHandleHelpBox(proc))
+        return;
+
+    if (proc->unk_36 == 0)
+    {
+        if (gpKeySt->pressed & DPAD_UP)
+        {
+            if (SaveMenuTryMoveSaveSlotCursor(proc, -1) != 0)
+                PlaySoundEffect(0x386);
+        }
+        else if (gpKeySt->pressed & DPAD_DOWN)
+        {
+            if (SaveMenuTryMoveSaveSlotCursor(proc, 1) != 0)
+                PlaySoundEffect(0x386);
+        }
+    }
+    else if (gpKeySt->pressed & DPAD_LEFT)
+    {
+        if (proc->unk_36 != 1)
+        {
+            proc->unk_36 = 1;
+            PlaySoundEffect(0x387);
+            SaveMenu_StartHelpBox(proc);
+        }
+    }
+    else if (gpKeySt->pressed & DPAD_RIGHT)
+    {
+        if (proc->unk_36 != 2)
+        {
+            proc->unk_36 = 2;
+            PlaySoundEffect(0x387);
+            SaveMenu_StartHelpBox(proc);
+        }
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        proc->anim_clock = 0;
+
+        switch (proc->action_flag)
+        {
+        case 0x02:
+            if (proc->unk_3F != (u8) -1)
+            {
+                sub_080A3CAC(proc);
+                return;
+            }
+
+            PlaySoundEffect(0x38A);
+            SaveMenu_HandleExtraMiscOption(proc);
+            return;
+
+        case 0x80:
+            if (proc->unk_3F != (u8) -1)
+                proc->unk_44 = 0xf0;
+
+            PlaySoundEffect(0x38A);
+            SaveMenu_HandleExtraMiscOption(proc);
+            return;
+
+        case 0x01:
+            PlaySoundEffect(0x38A);
+            SaveMenu_HandleExtraMiscOption(proc);
+            return;
+
+        case 0x10:
+            if (proc->unk_3F == (u8) -1)
+                break;
+
+            PlaySoundEffect(0x38A);
+            sub_080A3CAC(proc);
+            return;
+
+        case 0x04:
+        case 0x08:
+        case 0x40:
+            sub_080A3CAC(proc);
+            return;
+
+        default:
+            return;
+        }
+
+        SaveMenuWriteNewGame(proc);
+        Proc_Goto(proc, 6);
+        PlaySoundEffect(0x380);
+        return;
+    }
+    else if (gpKeySt->pressed & B_BUTTON)
+    {
+        proc->anim_clock = 0;
+        PlaySoundEffect(0x38B);
+
+        if (proc->unk_36 != 0)
+        {
+            SaveMenuDrawSubSelBox(proc, 0);
+            SaveMenu_StartHelpBox(proc);
+            return;
+        }
+
+        if (proc->unk_2D != (u8) -1)
+        {
+            proc->copy_from_id = proc->unk_2D;
+            proc->unk_2D = -1;
+            return;
+        }
+
+        if (proc->action_flag & (0x80 | 0x40))
+        {
+            Proc_Goto(proc, 0x11);
+            proc->action_flag |= 0x100;
+            return;
+        }
+
+        Proc_Goto(proc, 4);
+    }
+}
+void sub_080A40EC(struct SaveMenuProc * proc)
+{
+    sub_080A3CAC(proc);
+}
+void SaveMenuRegisterSlotSelected(struct SaveMenuProc * proc)
+{
+    proc->unk_2E = 6;
+    proc->anim_clock = 0;
+}
 ASM_FUNC("asm/nonmatching/code_080A4108.s");
 ASM_FUNC("asm/nonmatching/code_080A43E0.s");
 ASM_FUNC("asm/nonmatching/code_080A4428.s");
