@@ -1,9 +1,8 @@
 #include "gbafe.h"
+#include "gbafe/bmitemuse.h"
+#include "gbafe/bmcontainer.h"
 
 u32 GetGold(void);
-void EndPrepItemScreenFace(int slot);
-void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp);
-void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2);
 void EndMenuScrollBar(void);
 ProcPtr StartMenuScrollBar(ProcPtr parent);
 void InitMenuScrollBarImg(int chr, int pal);
@@ -16,8 +15,14 @@ extern u8 Img_0840E368[];
 extern u16 Pal_0840E3EC[];
 extern u8 Tsa_084070BC[];
 extern u8 Tsa_08407188[];
+extern u8 Tsa_08407270[];
 
 s8 sub_080912EC(struct Unit * unit);
+void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
+void SetFacePosition(int slot, int x, int y);
+void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
+void SyncUnitSpriteSheet(void);
+u8 GetConvoyItemCount_(void);
 
 int CONST_DATA gHelpTextIds_PrepItemScreen[] = {
 	0x385,
@@ -677,24 +682,499 @@ void sub_080921E8(struct PrepItemScreenProc * proc)
 
     EnableBgSync(BG2_SYNC_BIT);
 }
-ASM_FUNC("asm/nonmatching/code_08092220.s");
-ASM_FUNC("asm/nonmatching/code_08092578.s");
-ASM_FUNC("asm/nonmatching/code_080925D0.s");
-ASM_FUNC("asm/nonmatching/code_080926F8.s");
-ASM_FUNC("asm/nonmatching/code_08092708.s");
-ASM_FUNC("asm/nonmatching/code_0809285C.s");
-ASM_FUNC("asm/nonmatching/code_0809288C.s");
-ASM_FUNC("asm/nonmatching/code_080928A4.s");
-ASM_FUNC("asm/nonmatching/code_080928BC.s");
-ASM_FUNC("asm/nonmatching/code_080928D4.s");
-ASM_FUNC("asm/nonmatching/code_080928EC.s");
-ASM_FUNC("asm/nonmatching/code_080929A4.s");
-ASM_FUNC("asm/nonmatching/code_080929BC.s");
-ASM_FUNC("asm/nonmatching/code_080929D0.s");
-ASM_FUNC("asm/nonmatching/code_08092AE4.s");
-ASM_FUNC("asm/nonmatching/code_08092B6C.s");
-ASM_FUNC("asm/nonmatching/code_08092C34.s");
-ASM_FUNC("asm/nonmatching/code_08092C44.s");
-ASM_FUNC("asm/nonmatching/code_08092CB8.s");
-ASM_FUNC("asm/nonmatching/code_08092ED4.s");
-ASM_FUNC("asm/nonmatching/code_08092F08.s");
+void sub_08092220(struct PrepItemScreenProc * proc)
+{
+    int previous = proc->popupPromptIdx;
+
+    if (proc->helpboxActiveIdx == 0xff)
+    {
+        if (gpKeySt->pressed & R_BUTTON)
+        {
+            proc->helpboxActiveIdx = previous;
+            StartHelpBox(
+                (proc->popupPromptIdx & 1) * 32 + 136, (proc->popupPromptIdx >> 1) * 16 + 84,
+                gHelpTextIds_PrepItemScreen[proc->popupPromptIdx]);
+            return;
+        }
+
+        if (gpKeySt->pressed & A_BUTTON)
+        {
+            switch (previous)
+            {
+            case 0:
+                if (PrepGetUnitAmount() < 2)
+                    break;
+
+                Proc_Goto(proc, 4);
+                PlaySoundEffect(0x38A);
+                return;
+
+            case 1:
+                if (PrepGetUnitAmount() < 2)
+                    break;
+
+                Proc_Goto(proc, 8);
+                PlaySoundEffect(0x38A);
+                return;
+
+            case 2:
+                if (!sub_080912EC(GetUnitFromPrepList(proc->selectedUnitIdx)))
+                    break;
+
+                Proc_Goto(proc, 9);
+                PlaySoundEffect(0x38A);
+                return;
+
+            case 3:
+                if (!proc->hasConvoyAccess)
+                    break;
+
+                if (GetUnitItemCount(GetUnitFromPrepList(proc->selectedUnitIdx)) < 1)
+                    break;
+
+                if (CheckInLinkArena())
+                    break;
+
+                Proc_Goto(proc, 11);
+                PlaySoundEffect(0x38A);
+                return;
+
+            case 4:
+                if (!proc->hasConvoyAccess)
+                    break;
+
+                Proc_Goto(proc, 10);
+                PlaySoundEffect(0x38A);
+                return;
+
+            case 5:
+                if (CheckInLinkArena() && (!(GetUnitFromPrepList(proc->selectedUnitIdx)->state & US_NOT_DEPLOYED)))
+                {
+                    StartPrepErrorHelpbox(-1, -1, 0x3AE, proc);
+                    return;
+                }
+
+                if (!proc->hasConvoyAccess)
+                    break;
+
+                if (PrepItemScreen_GiveAll(GetUnitFromPrepList(proc->selectedUnitIdx)) == 0)
+                    break;
+
+                sub_08091F04(proc, gBg0Tm + TM_OFFSET(18, 9), GetUnitFromPrepList(proc->selectedUnitIdx));
+                sub_080929D0(&gPrepItemTexts[15], gBg0Tm + TM_OFFSET(2, 9), GetUnitFromPrepList(proc->selectedUnitIdx), 0);
+                EnableBgSync(BG0_SYNC_BIT);
+
+                PlaySoundEffect(0x38A);
+                return;
+            }
+
+            PlaySoundEffect(0x38C);
+            return;
+        }
+
+        if (gpKeySt->pressed & B_BUTTON)
+        {
+            proc->hoverUnitIdx = proc->selectedUnitIdx;
+            proc->selectedUnitIdx = 0xff;
+            DisableUiCursorHand(0);
+            PlaySoundEffect(0x38B);
+            Proc_Goto(proc, 0);
+            return;
+        }
+    }
+    else if (gpKeySt->pressed & (B_BUTTON | R_BUTTON))
+    {
+        CloseHelpBox();
+        proc->helpboxActiveIdx = 0xff;
+    }
+
+    if (gpKeySt->repeated & DPAD_LEFT)
+    {
+        if ((proc->popupPromptIdx & 1) != 0)
+            proc->popupPromptIdx--;
+        else if (gpKeySt->pressed & DPAD_LEFT)
+            proc->popupPromptIdx++;
+    }
+
+    if (gpKeySt->repeated & DPAD_RIGHT)
+    {
+        if ((proc->popupPromptIdx & 1) == 0)
+            proc->popupPromptIdx++;
+        else if (gpKeySt->pressed & DPAD_RIGHT)
+            proc->popupPromptIdx--;
+    }
+
+    if (gpKeySt->repeated & DPAD_UP)
+    {
+        if (proc->popupPromptIdx >= 2)
+            proc->popupPromptIdx -= 2;
+        else if (gpKeySt->pressed & DPAD_UP)
+            proc->popupPromptIdx += 4;
+    }
+
+    if (gpKeySt->repeated & DPAD_DOWN)
+    {
+        if (proc->popupPromptIdx < 4)
+            proc->popupPromptIdx += 2;
+        else if (gpKeySt->pressed & DPAD_DOWN)
+            proc->popupPromptIdx -= 4;
+    }
+
+    if (previous == proc->popupPromptIdx)
+        return;
+
+    PlaySoundEffect(0x385);
+
+    ShowSysHandCursor((proc->popupPromptIdx & 1) * 32 + 136, (proc->popupPromptIdx >> 1) * 16 + 84, 3, 0x400);
+
+    if (proc->helpboxActiveIdx == 0xff)
+        return;
+
+    StartHelpBox(
+        (proc->popupPromptIdx & 1) * 32 + 136, (proc->popupPromptIdx >> 1) * 16 + 84,
+        gHelpTextIds_PrepItemScreen[proc->popupPromptIdx]);
+}
+void sub_08092578(struct PrepItemScreenProc * proc)
+{
+    TmFill(GetBgTilemap(0), 0);
+
+    sub_080929D0(&gPrepItemTexts[15], gBg0Tm + TM_OFFSET(2, 9), GetUnitFromPrepList(proc->selectedUnitIdx), 0);
+    sub_080929D0(&gPrepItemTexts[20], gBg0Tm + TM_OFFSET(15, 9), GetUnitFromPrepList(proc->hoverUnitIdx), 0);
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
+void sub_080925D0(struct PrepItemScreenProc * proc)
+{
+    TmFill(GetBgTilemap(1), 0);
+    TmFill(GetBgTilemap(2), 0);
+
+    TmFillRect(gBg0Tm, 31, 8, 0);
+
+    sub_08091944(0x6000, 5);
+    sub_08091994(0x3000, 10);
+
+    sub_080AACD8(gBg1Tm, Tsa_08407270, 0x5300);
+
+    proc->unitSelected = 0;
+
+    ShowSysHandCursor(
+        ((proc->hoverUnitIdx % 3) * 64) + 24, ((proc->hoverUnitIdx / 3) * 16) + 4 - proc->scrollOffset, 7, 0x800);
+    sub_08092ED4(proc, 0);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+
+    UpdatePrepItemScreenFace(0, GetUnitFromPrepList(proc->selectedUnitIdx), 68, 78, 0x503);
+    UpdatePrepItemScreenFace(1, GetUnitFromPrepList(proc->hoverUnitIdx), 172, 78, 0x502);
+
+    SetUiCursorHandConfig(
+        0, ((proc->selectedUnitIdx % 3) * 64) + 24, ((proc->selectedUnitIdx / 3) * 16) + 4 - proc->scrollOffset, 2);
+
+    StartParallelFiniteLoop(sub_08092578, 1, proc);
+
+    UnblockUiCursorHand();
+    EndHelpPromptSprite();
+}
+void sub_080926F8(struct PrepItemScreenProc * proc)
+{
+    sub_08091914();
+    EnableBgSync(BG0_SYNC_BIT);
+}
+void PrepItemScreen_Loop_MainKeyHandler(struct PrepItemScreenProc * proc)
+{
+    int tmp = proc->scrollOffset;
+
+    if (!(tmp & 15))
+    {
+        if (gpKeySt->pressed & R_BUTTON)
+        {
+            Proc_Break(proc);
+            return;
+        }
+
+        if (gpKeySt->pressed & A_BUTTON)
+        {
+            int itemCountA = GetUnitItemCount(GetUnitFromPrepList(proc->hoverUnitIdx));
+            int itemCountB = GetUnitItemCount(GetUnitFromPrepList(proc->selectedUnitIdx));
+
+            if ((proc->hoverUnitIdx != proc->selectedUnitIdx) && ((itemCountA > 0) || (itemCountB > 0)))
+            {
+                Proc_Goto(proc, 6);
+                PlaySoundEffect(0x38A);
+                return;
+            }
+
+            PlaySoundEffect(0x38C);
+            return;
+        }
+
+        if (gpKeySt->pressed & B_BUTTON)
+        {
+            EndPrepItemScreenFace(1);
+            Proc_Goto(proc, 2);
+            PlaySoundEffect(0x38B);
+            return;
+        }
+
+        if (sub_08091AD8(proc) != 0)
+        {
+            UpdatePrepItemScreenFace(1, GetUnitFromPrepList(proc->hoverUnitIdx), 172, 78, 0x502);
+            sub_080929D0(&gPrepItemTexts[20], gBg0Tm + TM_OFFSET(15, 9), GetUnitFromPrepList(proc->hoverUnitIdx), 2);
+            sub_080929D0(&gPrepItemTexts[15], gBg0Tm + TM_OFFSET(2, 9), GetUnitFromPrepList(proc->selectedUnitIdx), 1);
+            EnableBgSync(BG0_SYNC_BIT);
+        }
+    }
+
+    sub_08091C48(proc);
+}
+void StartPrepItemTradeScreen(struct PrepItemScreenProc * proc)
+{
+    PrepItemScreen_OnEnd(proc);
+
+    StartPrepItemTradeScreenProc(
+        GetUnitFromPrepList(proc->selectedUnitIdx), GetUnitFromPrepList(proc->hoverUnitIdx), proc);
+}
+void sub_0809288C(struct PrepItemScreenProc * proc)
+{
+    sub_080958B0(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
+}
+void sub_080928A4(struct PrepItemScreenProc * proc)
+{
+    StartPrepItemSupplyProc(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
+}
+void StartPrepArmory(struct PrepItemScreenProc * proc)
+{
+    sub_08098F70(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
+}
+void sub_080928D4(struct PrepItemScreenProc * proc)
+{
+    sub_08098588(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
+}
+void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp)
+{
+    struct PrepItemScreenProc * proc = Proc_Find(ProcScr_PrepItemScreen);
+
+    if (proc->pUnits[slot] != unit)
+    {
+        if (proc->pUnits[slot] != NULL)
+            EndFaceById(slot);
+
+        if (unit != NULL)
+            StartBmFace(slot, GetUnitPortraitId(unit), (s16)x, (s16)y, disp);
+    }
+    else
+    {
+        if (unit != NULL)
+        {
+            SetFacePosition(slot, (s16)x, (s16)y);
+            SetFaceDispById(slot, disp);
+        }
+    }
+
+    proc->pUnits[slot] = unit;
+
+    proc->xFacePosBySlot[slot] = x;
+    proc->yFacePosBySlot[slot] = y;
+    proc->faceDispBySlot[slot] = disp;
+}
+void EndPrepItemScreenFace(int slot)
+{
+    UpdatePrepItemScreenFace(slot, NULL, 0, 0, 0);
+}
+ProcPtr StartPrepItemScreen(ProcPtr parent)
+{
+    return Proc_StartBlocking(ProcScr_PrepItemScreen, parent);
+}
+void sub_080929D0(struct Text * text, u16 * tm, struct Unit * unit, u16 flags)
+{
+    int itemCount;
+    int i;
+
+    TmFillRect(tm, 12, 20, 0);
+
+    if (flags & 2)
+        ClearIcons();
+
+    if (unit == NULL)
+        return;
+
+    itemCount = GetUnitItemCount(unit);
+
+    for (i = 0; i < itemCount; text++, i++)
+    {
+        u16 item = unit->items[i];
+
+        int isUnusable = (flags & 4) ? !CanUnitUseItemPrepScreen(unit, item) : !IsItemDisplayUsable(unit, item);
+
+        if (!(flags & 1))
+        {
+            ClearText(text);
+            Text_SetColor(text, isUnusable);
+            Text_SetCursor(text, 0);
+            Text_DrawString(text, GetItemName(item));
+        }
+
+        PutIcon(tm + TM_OFFSET(1, i * 2), GetItemIconId(item), 0x4000);
+
+        PutText(text, tm + TM_OFFSET(3, i * 2));
+        PutNumberOrBlank(
+            tm + TM_OFFSET(12, i * 2), !isUnusable ? TEXT_COLOR_SYSTEM_BLUE : TEXT_COLOR_SYSTEM_GRAY,
+            GetItemUses(item));
+    }
+}
+void sub_08092AE4(struct PrepItemScreenProc * proc)
+{
+    int hoverRow = proc->hoverUnitIdx / 3;
+    int hoverYPos = hoverRow * 16;
+    int yMax = ((PrepGetUnitAmount() - 1) / 3) * 16;
+    int yDiff = hoverYPos - proc->scrollOffset;
+
+    if (yDiff > 32)
+    {
+        if (hoverYPos == yMax)
+            proc->scrollOffset = hoverYPos - 48;
+        else
+            proc->scrollOffset = hoverYPos - 32;
+    }
+    else if (yDiff < 16)
+    {
+        if (hoverYPos == 0)
+            proc->scrollOffset = hoverYPos;
+        else
+            proc->scrollOffset = hoverYPos - 16;
+    }
+
+    SetBgOffset(2, -40, (proc->scrollOffset - 4) & 0xff);
+    UpdateMenuScrollBarConfig(6, proc->scrollOffset, ((PrepGetUnitAmount() - 1) / 3) + 1, 4);
+}
+void sub_08092B6C(struct PrepItemScreenProc * proc, u8 row, s8 flag)
+{
+    int i;
+    int idx;
+    struct Text * text;
+
+    idx = row * 3;
+    text = &gPrepItemTexts[idx % 15];
+
+    for (i = 0; i < 3; text++, i++)
+    {
+        int x;
+        int y;
+
+        if (flag == 0)
+            ClearText(text);
+
+        if (idx + i >= PrepGetUnitAmount())
+            continue;
+
+        x = (i % 3) * 8;
+        y = (row * 2) & 31;
+
+        if (flag == 0)
+        {
+            struct Unit * unit = GetUnitFromPrepList(idx + i);
+
+            Text_SetCursor(text, 0);
+            Text_SetColor(text, TEXT_COLOR_SYSTEM_WHITE);
+            Text_DrawString(text, DecodeMsg(unit->pCharacterData->nameTextId));
+        }
+
+        PutText(text, gBg2Tm + TM_OFFSET(x, y));
+    }
+
+    EnableBgSync(BG2_SYNC_BIT);
+}
+bool sub_08092C34(u32 x, int y)
+{
+    if ((x < 97) && (y > 31))
+        return TRUE;
+
+    return FALSE;
+}
+void PrepItem_DrawSMS(struct PrepItemScreenProc * proc)
+{
+    int i;
+
+    for (i = 0; i < PrepGetUnitAmount(); i++)
+    {
+        int x = (i % 3) * 64;
+        u32 y = (i / 3) * 16 - proc->scrollOffset;
+
+        if (y + 20 > 68)
+            continue;
+
+        if (proc->unitSelected && sub_08092C34(x, y))
+            continue;
+
+        PutUnitSprite(0, (x + 24), (y + 4) & 0xff, GetUnitFromPrepList(i));
+    }
+
+    SyncUnitSpriteSheet();
+}
+void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2)
+{
+    int i;
+    int j;
+
+    if ((w <= 0) || (h <= 0))
+        return;
+
+    PutSpriteExt(4, x, y, Sprite_8x8, oam2);
+    PutSpriteExt(4, x + w * 8 + 0x1000, y, Sprite_8x8, oam2);
+    PutSpriteExt(4, x + w * 8 + 0x3000, y + h * 8, Sprite_8x8, oam2);
+    PutSpriteExt(4, x + 0x2000, y + h * 8, Sprite_8x8, oam2);
+
+    for (j = 1; j < (w - 1); j += 2)
+    {
+        PutSpriteExt(4, x + j * 8, y, Sprite_16x8, oam2 + 1);
+        PutSpriteExt(4, x + j * 8 + 0x2000, y + h * 8, Sprite_16x8, oam2 + 1);
+    }
+
+    for (; j < w; j++)
+    {
+        PutSpriteExt(4, x + j * 8, y, Sprite_8x8, oam2 + 1);
+        PutSpriteExt(4, x + j * 8 + 0x2000, y + h * 8, Sprite_8x8, oam2 + 1);
+    }
+
+    for (i = 1; i < h; i++)
+    {
+        PutSpriteExt(4, x, y + i * 8, Sprite_8x8, oam2 + 3);
+        PutSpriteExt(4, x + w * 8 + 0x1000, y + i * 8, Sprite_8x8, oam2 + 3);
+    }
+
+    for (i = 1; i < h; i++)
+    {
+        for (j = 1; j < w - 3; j += 4)
+            PutSpriteExt(4, x + 8 * j, y + i * 8, Sprite_32x8, oam2 + 4);
+
+        for (; j < w - 1; j += 2)
+            PutSpriteExt(4, x + 8 * j, y + i * 8, Sprite_16x8, oam2 + 4);
+
+        for (; j < w; j++)
+            PutSpriteExt(4, x + 8 * j, y + i * 8, Sprite_8x8, oam2 + 4);
+    }
+}
+void sub_08092ED4(struct PrepItemScreenProc * proc, u8 flag)
+{
+    int i;
+
+    for (i = (proc->scrollOffset >> 4); i < (proc->scrollOffset >> 4) + 4; i++)
+        sub_08092B6C(proc, i, flag);
+}
+bool PrepItemScreen_GiveAll(struct Unit * unit)
+{
+    int i;
+
+    int unitItemCount = GetUnitItemCount(unit);
+    int convoyItemCount = GetConvoyItemCount_();
+
+    for (i = 0; (i < unitItemCount) && (i + convoyItemCount < 100); i++)
+    {
+        AddItemToConvoy(unit->items[0]);
+        UnitRemoveItem(unit, 0);
+    }
+
+    if (i > 0)
+        return TRUE;
+
+    return FALSE;
+}

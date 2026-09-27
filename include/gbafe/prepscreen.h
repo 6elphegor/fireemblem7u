@@ -57,6 +57,12 @@ struct SioPidPool {
     u8 pids[8];
 };
 
+void sub_080958B0(struct Unit * unit, ProcPtr parent);
+
+void sub_08098F70(struct Unit * unit, ProcPtr parent);
+
+void sub_08098588(struct Unit * unit, ProcPtr parent);
+
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 
 struct PrepUnitList {
@@ -358,7 +364,7 @@ void sub_0809210C(struct PrepItemScreenProc * proc);
 void sub_0809218C(struct PrepItemScreenProc * proc);
 void sub_080921E8(struct PrepItemScreenProc * proc);
 void sub_08092220(struct PrepItemScreenProc * proc);
-// sub_08092578
+void sub_08092578(struct PrepItemScreenProc * proc);
 void sub_080925D0(struct PrepItemScreenProc * proc);
 void sub_080926F8(struct PrepItemScreenProc * proc);
 void PrepItemScreen_Loop_MainKeyHandler(struct PrepItemScreenProc * proc);
@@ -367,18 +373,17 @@ void sub_0809288C(struct PrepItemScreenProc * proc);
 void sub_080928A4(struct PrepItemScreenProc * proc);
 void StartPrepArmory(struct PrepItemScreenProc * proc);
 void sub_080928D4(struct PrepItemScreenProc * proc);
-// UpdatePrepItemScreenFace
-// EndPrepItemScreenFace
-// StartPrepItemScreen
-void sub_080929D0(struct Text * text, u16 * tm, struct Unit * unit, int color);
+void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp);
+void EndPrepItemScreenFace(int slot);
+ProcPtr StartPrepItemScreen(ProcPtr parent);
+void sub_080929D0(struct Text * text, u16 * tm, struct Unit * unit, u16 flags);
 void sub_08092AE4(struct PrepItemScreenProc * proc);
-void sub_08092B6C(struct PrepItemScreenProc * proc, u8 a, int b);
-bool sub_08092C34(int x, int y);
+void sub_08092B6C(struct PrepItemScreenProc * proc, u8 row, s8 flag);
+bool sub_08092C34(u32 x, int y);
 void PrepItem_DrawSMS(struct PrepItemScreenProc * proc);
-// PrepItemDrawPopupBox
-void sub_08092ED4(struct PrepItemScreenProc * proc, int a);
-// PrepItemScreen_GiveAll
-
+void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2);
+void sub_08092ED4(struct PrepItemScreenProc * proc, u8 flag);
+bool PrepItemScreen_GiveAll(struct Unit * unit);
 struct ProcPrepUnit {
     PROC_HEADER;
 };
@@ -427,7 +432,7 @@ void sub_08093FA0(struct ProcPrepUnit *proc);
 // sub_08094350
 // sub_08094630
 // PrepItemTrade_OnEnd
-// StartPrepItemTradeScreenProc
+void StartPrepItemTradeScreenProc(struct Unit * unitA, struct Unit * unitB, ProcPtr parent);
 // sub_0809496C
 // PrepItemUseTryMoveHand
 // DrawPrepScreenItemUseStatLabels
@@ -487,7 +492,7 @@ void sub_08093FA0(struct ProcPrepUnit *proc);
 // sub_08097204
 // sub_08097324
 // sub_8097BBC
-// StartPrepItemSupplyProc
+void StartPrepItemSupplyProc(struct Unit * unit, ProcPtr parent);
 // sub_08097488
 // sub_080974A8
 // StartBmSupply
