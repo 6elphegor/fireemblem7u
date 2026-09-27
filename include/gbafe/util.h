@@ -119,7 +119,7 @@ void sub_08014170(ProcPtr proc);
 // ??? FadeInBlackSpeed04
 // ??? FadeInBlackSpeed08
 // ??? FadeInBlackSpeed08Unk
-// ??? FadeInBlackSpeed10
+void FadeInBlackSpeed10(ProcPtr proc);
 void FadeInBlackSpeed20(ProcPtr proc);
 // ??? FadeInBlackSpeed40
 // ??? sub_0801421C

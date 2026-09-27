@@ -1,5 +1,6 @@
 # rom|ram ADDR SIZE OBJECT(SECTION) -- see tools/gen_layout.py
 ram 0x02000000 0x2 build/src/savemenu.o(ewram_overlay_savemenu)
+ram 0x02000004 0x14 build/src/titlescreen.o(ewram_overlay_gamestart)
 ram 0x02001F70 0x802 build/src/bmfx-chapterintrofx.o(ewram_overlay_0)
 ram 0x02007018 0x2A4 build/src/opanim_scanline.o(ewram_overlay_gamestart)
 ram 0x02026A50 0x2E0 build/src/icon.o(ewram_data)
@@ -64,4 +65,5 @@ rom 0x08CE4314 0x28 build/src/savedrawfx.o(.data)
 rom 0x08CE49E8 0x40 build/src/cursor-hand.o(.data)
 rom 0x08CE4A60 0x298 build/src/sysutil.o(.data)
 rom 0x08CE5E44 0x58 build/src/lord-select.o(.data)
+rom 0x08CEEF6C 0x108 build/src/titlescreen.o(.data)
 rom 0x08CEFA40 0x1290 build/src/bmbgfx_data.o(.data)
