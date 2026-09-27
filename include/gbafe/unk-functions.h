@@ -67,7 +67,6 @@ void InitPlayConfig(int);
 void StartBattleMap(/* TODO */);
 // RestartBattleMap
 void ResumeChapterFromSuspend(/* TODO */);
-void sub_0802E190(ProcPtr proc); // FE7J ResumeChapterFromSuspend
 // RefreshBMapDisplay_FromBattle
 // BMapDispResume_FromBattleDelayed
 // InitMoreBMapGraphics
