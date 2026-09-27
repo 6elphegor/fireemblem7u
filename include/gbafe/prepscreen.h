@@ -283,7 +283,7 @@ ProcPtr StartSallyCirProc(ProcPtr parent, u8 unk);
 // sub_08090A58
 // sub_08090B18
 // sub_8091588
-// GetConvoyItemCount_
+u8 GetConvoyItemCount_(void);
 void ViewCounter_Loop(ProcPtr proc);
 // StartViewCounter
 void TryLockProc(ProcPtr proc);
@@ -497,22 +497,45 @@ void PrepItemUseBooster_OnDraw(struct ProcPrepItemUseBooster * proc, int x, int 
 void PrepItemUseBooster_OnInit(struct ProcPrepItemUseBooster * proc);
 void PrepItemUseBooster_IDLE(struct ProcPrepItemUseBooster * proc);
 void PrepItemUseBooster_OnEnd(struct ProcPrepItemUseBooster * proc);
+struct PrepItemSupplyProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * unit;
+    /* 30 */ u8 unk_30;
+    /* 31 */ u8 unitInvIdx;
+    /* 32 */ s8 scrollAmount;
+    /* 33 */ u8 unk_33;
+    /* 34 */ u8 unk_34;
+    /* 35 */ u8 currentPage;
+    /* 36 */ u16 unk_36;
+    /* 38 */ u16 unk_38;
+    /* 3A */ u16 idxPerPage[9];
+    /* 4C */ u16 yOffsetPerPage[9];
+};
+
+struct PrepItemSuppyText {
+    /* 00 */ struct Font font;
+    /* 18 */ struct Text th[18];
+};
+
+extern struct PrepItemSuppyText PrepItemSuppyTexts;
+
 // sub_80963FC
-// sub_08095C28
-// StoreConvoyWeaponIconGraphics
-// sub_08095CA8
-// sub_08095DC0
-// sub_08095E24
-// sub_08095ED8
-// sub_08095F14
-// sub_08095F90
-// sub_08095FCC
-// sub_08096054
-// sub_08096110
-// sub_08096160
-// sub_08096198
-// sub_080961D0
-// sub_08096260
+void sub_08095C28(int idx, ProcPtr proc);
+void StoreConvoyWeaponIconGraphics(int vramOffset, int pal);
+void sub_08095CA8(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit);
+void sub_08095DC0(u16 * tm, int yLines);
+void sub_08095E24(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit);
+void PrepItemSupply_OnHBlank(void);
+void PrepItemSupply_Init(struct PrepItemSupplyProc * proc);
+void sub_08095F90(void);
+void sub_08095FCC(struct PrepItemSupplyProc * proc);
+void sub_08096054(void);
+void PutGiveTakeBoxSprites(void);
+void PutGiveSprites(void);
+void PutTakeSprites(void);
+void Supply_PutHighlightedCategorySprites(struct PrepItemSupplyProc * proc);
+void sub_08096260(u16 * tm, u32 chr, int pal);
 // sub_8096A78
 // sub_08096604
 // sub_08096668
@@ -671,13 +694,19 @@ void PrepItemUse_ConfirmWindowCtrlLoop(struct ProcPrepItemUse * proc);
 
 void PrepItemUse_ExecPromotionItemUnused(struct ProcPrepItemUse * proc);
 
+void sub_08095BF4(void);
+
+void sub_080962A0(struct PrepItemSupplyProc * proc);
+
+void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc);
+
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 extern EWRAM_OVERLAY(0) struct Text gPrepMainMenuTexts[10];
 
 extern CONST_DATA u16 gBgConfig_PrepScreen[];
 extern CONST_DATA int Msgs_PrepMainMenuHelpbox[][3];
 extern struct ProcCmd ProcScr_PrepMenuDescHandler[];
-// ??? ProcScr_AtMenu
+extern struct ProcCmd CONST_DATA ProcScr_AtMenu[];
 extern struct ProcCmd ProcScr_PrepPromoteDebug[];
 // ??? ProcScr_AtUnkMenu
 // ??? Sprite_08CC3FB6

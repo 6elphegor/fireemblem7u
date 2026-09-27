@@ -23,13 +23,13 @@ sub_08096604: @ 0x08096604
 	movs r0, #0x44
 	movs r2, #4
 	bl ShowSysHandCursor
-	ldr r0, _0809665C @ =sub_08096160
+	ldr r0, _0809665C @ =PutGiveSprites
 	bl GetParallelWorker
 	bl Proc_End
-	ldr r0, _08096660 @ =sub_08096198
+	ldr r0, _08096660 @ =PutTakeSprites
 	bl GetParallelWorker
 	bl Proc_End
-	ldr r0, _08096664 @ =sub_08096110
+	ldr r0, _08096664 @ =PutGiveTakeBoxSprites
 	adds r1, r4, #0
 	bl StartParallelWorker
 	movs r0, #7
@@ -38,6 +38,6 @@ sub_08096604: @ 0x08096604
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0809665C: .4byte sub_08096160
-_08096660: .4byte sub_08096198
-_08096664: .4byte sub_08096110
+_0809665C: .4byte PutGiveSprites
+_08096660: .4byte PutTakeSprites
+_08096664: .4byte PutGiveTakeBoxSprites

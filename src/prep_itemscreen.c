@@ -22,7 +22,7 @@ void StartPrepErrorHelpbox(int x, int y, int msg, ProcPtr parent);
 void SetFacePosition(int slot, int x, int y);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void SyncUnitSpriteSheet(void);
-u8 GetConvoyItemCount_(void);
+
 
 int CONST_DATA gHelpTextIds_PrepItemScreen[] = {
 	0x385,

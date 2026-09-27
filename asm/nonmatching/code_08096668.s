@@ -49,10 +49,10 @@ _0809669C:
 	movs r1, #0x44
 	movs r3, #2
 	bl SetUiCursorHandConfig
-	ldr r0, _080966F8 @ =sub_08096110
+	ldr r0, _080966F8 @ =PutGiveTakeBoxSprites
 	bl GetParallelWorker
 	bl Proc_End
-	ldr r0, _080966FC @ =sub_08096160
+	ldr r0, _080966FC @ =PutGiveSprites
 	adds r1, r5, #0
 	bl StartParallelWorker
 	movs r0, #1
@@ -72,8 +72,8 @@ _080966EE:
 	bl Proc_Goto
 	b _08096888
 	.align 2, 0
-_080966F8: .4byte sub_08096110
-_080966FC: .4byte sub_08096160
+_080966F8: .4byte PutGiveTakeBoxSprites
+_080966FC: .4byte PutGiveSprites
 _08096700: .4byte 0x0202BBF8
 _08096704: .4byte 0x0000038A
 _08096708:
@@ -88,10 +88,10 @@ _08096708:
 	movs r1, #0x44
 	movs r3, #2
 	bl SetUiCursorHandConfig
-	ldr r0, _08096758 @ =sub_08096110
+	ldr r0, _08096758 @ =PutGiveTakeBoxSprites
 	bl GetParallelWorker
 	bl Proc_End
-	ldr r0, _0809675C @ =sub_08096198
+	ldr r0, _0809675C @ =PutTakeSprites
 	adds r1, r5, #0
 	bl StartParallelWorker
 	movs r0, #2
@@ -111,8 +111,8 @@ _0809674E:
 	bl Proc_Goto
 	b _08096888
 	.align 2, 0
-_08096758: .4byte sub_08096110
-_0809675C: .4byte sub_08096198
+_08096758: .4byte PutGiveTakeBoxSprites
+_0809675C: .4byte PutTakeSprites
 _08096760: .4byte 0x0202BBF8
 _08096764: .4byte 0x0000038A
 _08096768:
