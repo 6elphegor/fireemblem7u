@@ -5,7 +5,10 @@ void sub_08002C8C(void);
 void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
 void sub_080BAA68(struct ProcTitle * proc);
 void sub_080BAA90(struct ProcTitle * proc);
+void sub_080BAB24(void);
 
+EWRAM_OVERLAY(gamestart) u16 gTitleFlameBldCnt = 0;
+EWRAM_OVERLAY(gamestart) u16 gTitleFlameBldAlpha = 0;
 EWRAM_OVERLAY(gamestart) struct TitleSt gTitleSt = {0};
 
 struct ProcCmd CONST_DATA ProcScr_TitleScreen[] = {
@@ -337,7 +340,41 @@ void StartTitleScreen_FlagTrue(ProcPtr parent)
     proc = Proc_StartBlocking(ProcScr_TitleScreen, parent);
     proc->mode = 1;
 }
-ASM_FUNC("asm/nonmatching/code_080BAB24.s");
+
+void sub_080BAB24(void)
+{
+    u16 vcount = REG_VCOUNT;
+
+    if (vcount >= DISPLAY_HEIGHT)
+    {
+        gManimActiveScanlineBuf = gManimScanlineBufs[0];
+        vcount = 0;
+    }
+    else
+    {
+        vcount++;
+    }
+
+    if (vcount & 1)
+    {
+        REG_BG0HOFS = gManimActiveScanlineBuf[vcount + DISPLAY_HEIGHT];
+        REG_BG0VOFS = gManimActiveScanlineBuf[vcount];
+    }
+    else
+    {
+        if (vcount == 40)
+        {
+            REG_BLDCNT = gTitleFlameBldCnt;
+            REG_BLDALPHA = gTitleFlameBldAlpha;
+        }
+
+        if (vcount == 100)
+        {
+            REG_BLDCNT = *(u16 *) &gDispIo.blend_ct;
+            REG_BLDALPHA = (gDispIo.blend_coef_b << 8) | gDispIo.blend_coef_a;
+        }
+    }
+}
 
 
 struct ProcCmd CONST_DATA ProcScr_TitleFlame[] = {
@@ -347,8 +384,41 @@ struct ProcCmd CONST_DATA ProcScr_TitleFlame[] = {
     PROC_END,
 };
 
-void Title_StartTextFlame(struct ProcTitle * proc);
-ASM_FUNC("asm/nonmatching/code_080BABB8.s");
+void Title_StartTextFlame(struct ProcTitle * proc)
+{
+    SetDispEnable(1, 1, 1, 1, 1);
+    StartSpriteAnimProc(SpirteAnim_TitleText, 0x78, 0x84C, 0, 0x7, 0xA);
+    SetWinEnable(0, 0, 1);
+    SetWin0Layers(0, 0, 0, 0, 0);
+    SetWObjLayers(1, 0, 0, 0, 1);
+    SetWOutLayers(0, 1, 1, 1, 1);
+
+    gDispIo.win_ct.wobj_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetBlendAlpha(0, 0x10);
+    SetBlendTargetA(1, 1, 0, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+
+    gTitleFlameBldCnt = 0x3F43;
+    gTitleFlameBldAlpha = 0x1000;
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBgOffset(BG_1, 0, -0x34);
+
+    ApplyPalette(Pal_TitleTextFlame, 0xC);
+    Decompress(Img_TitleTextFlame, (void *)BG_VRAM + 0x5000);
+    sub_080AACD8(gBg0Tm, Tsa_TitleTextFlame, 0xC280);
+    EnableBgSync(BG0_SYNC_BIT);
+
+    InitScanlineEffect();
+    SetOnHBlankA(sub_080BAB24);
+    Proc_Start(ProcScr_TitleFlame, proc);
+}
 
 
 void TitleFlame_Init(struct Proc * proc)
