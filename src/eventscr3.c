@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/cp_common.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_SE4;
 extern struct MusicPlayerInfo gMPlayInfo_SE5;
@@ -8,14 +9,6 @@ extern struct MusicPlayerInfo gMPlayInfo_SE1;
 extern struct MusicPlayerInfo gMPlayInfo_SE7;
 extern struct MusicPlayerInfo gMPlayInfo_SE2;
 
-struct AiDecisionSt {
-    /* 00 */ u8 action_id;
-    /* 01 */ u8 unit_id;
-    /* 02 */ u8 x_move;
-    /* 03 */ u8 y_move;
-};
-
-extern struct AiDecisionSt gAiDecision;
 
 extern struct ProcCmd CONST_DATA ProcScr_EventWeatherChangeWithFade[];
 
@@ -530,8 +523,8 @@ int EvtCmd_FightScript(struct EventProc * proc)
 
     Proc_Mark(proc, 7);
 
-    gAiDecision.x_move = unit_a->xPos;
-    gAiDecision.y_move = unit_a->yPos;
+    gAiDecision.xMove = unit_a->xPos;
+    gAiDecision.yMove = unit_a->yPos;
 
     return EVENT_CMDRET_YIELD;
 }
