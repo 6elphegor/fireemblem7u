@@ -92,6 +92,7 @@ extern u8 Img_UiVArrow[];
 
 extern struct Text gShopItemTexts[];
 extern struct ShopState sShopState;
+extern int sShopHeadLocBak;
 extern struct Text gText_GoldBox;
 
 int Shop_GetPortraitIndex(struct ProcShop * proc);

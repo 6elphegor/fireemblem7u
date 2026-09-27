@@ -954,17 +954,183 @@ void HandleShopBuyAction(struct ProcShop * proc)
     DisplayGoldBoxText(gBg0Tm + TM_OFFSET_(27, 6));
 }
 
-ASM_FUNC("asm/nonmatching/code_080B209C.s");
-ASM_FUNC("asm/nonmatching/code_080B21A4.s");
-ASM_FUNC("asm/nonmatching/code_080B21C0.s");
-ASM_FUNC("asm/nonmatching/code_080B224C.s");
-ASM_FUNC("asm/nonmatching/code_080B22BC.s");
-ASM_FUNC("asm/nonmatching/code_080B23B8.s");
-ASM_FUNC("asm/nonmatching/code_080B24EC.s");
-ASM_FUNC("asm/nonmatching/code_080B2508.s");
-ASM_FUNC("asm/nonmatching/code_080B252C.s");
-ASM_FUNC("asm/nonmatching/code_080B2548.s");
-ASM_FUNC("asm/nonmatching/code_080B2574.s");
-ASM_FUNC("asm/nonmatching/code_080B25A0.s");
-ASM_FUNC("asm/nonmatching/code_080B25D0.s");
-ASM_FUNC("asm/nonmatching/code_080B25F4.s");
+int ShopTryMoveHand(int pos, int pre, s8 hscroll_en)
+{
+    int previous;
+
+    if (pos < 0)
+        pos = 0;
+
+    if (pos >= pre)
+        pos = pre - 1;
+
+    previous = pos;
+
+    if (gpKeySt->repeated & DPAD_UP)
+    {
+        if (pos == 0)
+        {
+            if (hscroll_en && (gpKeySt->pressed & DPAD_UP))
+                pos = pre - 1;
+        }
+        else
+        {
+            pos--;
+        }
+    }
+    else if (gpKeySt->repeated & DPAD_DOWN)
+    {
+        if (pos == (pre - 1))
+        {
+            if (hscroll_en && (gpKeySt->pressed & DPAD_DOWN))
+                pos = 0;
+        }
+        else
+            pos++;
+    }
+
+    if (previous != pos)
+    {
+        PlaySoundEffect(0x386);
+    }
+
+    return pos;
+}
+
+void ShopSt_SetHeadLocBak(int loc)
+{
+    sShopHeadLocBak = loc;
+}
+
+int ShopTryScrollPage(int head_loc, int total, int lines, int hand_loc)
+{
+    int bak = sShopHeadLocBak;
+
+    sShopHeadLocBak = head_loc;
+
+    if (head_loc == bak)
+        return 0;
+
+    if (lines > total)
+        return 0;
+
+    if (head_loc < bak)
+    {
+        if (hand_loc == 0)
+            return 0;
+
+        if (head_loc - hand_loc < 1)
+            return -1;
+    }
+    else
+    {
+        if (lines + hand_loc == total)
+            return 0;
+
+        if (head_loc - hand_loc >= lines - 1)
+            return 1;
+    }
+
+    return 0;
+}
+
+int ShopUpdateBg2Offset(int off, int tar, int trig)
+{
+    if ((off - tar >= 0 ? off - tar : tar - off) < trig)
+        return tar;
+
+    off += (tar - off > 0 ? 1 : (tar - off < 0 ? -1 : 0)) * trig;
+    return off;
+}
+
+void RegisterShopState(u16 head_loc, u16 item_cnt, u16 lines, u16 hand_loc, int bg2_base, ShopFunc func, struct ProcShop * proc)
+{
+    ShopSt_SetHeadLocBak(head_loc);
+
+    gShopState->head_loc = head_loc;
+    gShopState->item_cnt = item_cnt;
+    gShopState->lines = lines;
+    gShopState->hand_loc = hand_loc;
+    gShopState->px_per_line = 16;
+    gShopState->trig = 4;
+    gShopState->draw_line = func;
+    gShopState->proc = proc;
+    gShopState->bg2_base = -bg2_base;
+    gShopState->bg2_off = hand_loc * 16;
+}
+
+void Shop_TryMoveHandPage(void)
+{
+    gShopState->head_loc = ShopTryMoveHand(gShopState->head_loc, gShopState->item_cnt, 0);
+
+    switch (ShopTryScrollPage(gShopState->head_loc, gShopState->item_cnt, gShopState->lines, gShopState->hand_loc)) {
+    case 0:
+    default:
+        break;
+
+    case +1:
+        gShopState->hand_loc++;
+        gShopState->draw_line(gShopState->proc, gShopState->hand_loc + gShopState->lines - 1);
+        break;
+
+    case -1:
+        gShopState->hand_loc--;
+        gShopState->draw_line(gShopState->proc, gShopState->hand_loc);
+        break;
+    }
+
+    gShopState->bg2_off = ShopUpdateBg2Offset(
+        gShopState->bg2_off,
+        gShopState->hand_loc * gShopState->px_per_line,
+        gShopState->trig);
+}
+
+u16 ShopSt_GetHeadLoc(void)
+{
+    return gShopState->head_loc;
+}
+
+int ShopSt_GetBg2Offset(void)
+{
+    return gShopState->bg2_base + gShopState->bg2_off;
+}
+
+u16 ShopSt_GetHandLoc(void)
+{
+    return gShopState->hand_loc;
+}
+
+void ShopSt_SetLineHeight(int px)
+{
+    gShopState->px_per_line = px;
+}
+
+void ShopSt_SetSetPageScrollTrigOffset(int trig)
+{
+    gShopState->trig = trig;
+}
+
+s8 IsShopPageScrolling(void)
+{
+    if (gShopState->bg2_off != gShopState->hand_loc * gShopState->px_per_line)
+        return 1;
+
+    return 0;
+}
+
+s8 ShouldDisplayUpArrow(void)
+{
+    if (gShopState->hand_loc != 0)
+        return 1;
+
+    return 0;
+}
+
+s8 ShouldDisplayDownArrow(void)
+{
+    if (gShopState->hand_loc + gShopState->lines < gShopState->item_cnt)
+        return 1;
+
+    return 0;
+}
+

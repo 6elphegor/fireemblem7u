@@ -1544,3 +1544,5 @@ Sprite_ShopGoldBox = 0x08CE7248;
 gText_GoldBox = 0x03001618;
 Img_ShopGoldBox = 0x083F43AC;
 Img_UiVArrow = 0x0840D150;
+sShopState = 0x0203EE88;
+sShopHeadLocBak = 0x0203EEA4;
