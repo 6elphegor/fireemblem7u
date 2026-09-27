@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080A649C
-sub_080A649C: @ 0x080A649C
+	thumb_func_start SaveMenuInitSlotPalette
+SaveMenuInitSlotPalette: @ 0x080A649C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

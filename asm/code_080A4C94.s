@@ -43,7 +43,7 @@ sub_080A4C94: @ 0x080A4C94
 	adds r0, r4, #0
 	adds r0, #0x2c
 	ldrb r0, [r0]
-	bl sub_080A649C
+	bl SaveMenuInitSlotPalette
 	movs r0, #0xc
 	bl Proc_UnblockEachMarked
 	movs r0, #0xd

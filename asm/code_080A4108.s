@@ -56,7 +56,7 @@ _080A415C:
 	bl PutChapterTitleGfx
 _080A4172:
 	ldrb r0, [r4]
-	bl sub_080A649C
+	bl SaveMenuInitSlotPalette
 	b _080A4248
 	.align 2, 0
 _080A417C: .4byte 0x0001FFFF

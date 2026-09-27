@@ -189,7 +189,7 @@ ProcPtr StartSpinRotation(ProcPtr parent);
 
 /* savemenu_difficulty */
 // ??? sub_080A6398
-// ??? sub_080A649C
+// ??? SaveMenuInitSlotPalette
 // ??? sub_080A652C
 // ??? SaveMenuGetValidMenuAmt
 // ??? nullsub_84

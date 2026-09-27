@@ -177,7 +177,7 @@ _080A381E:
 	cmp r7, #3
 	ble _080A381E
 	ldrb r0, [r4]
-	bl sub_080A649C
+	bl SaveMenuInitSlotPalette
 	bl SaveMenuInitSubBoxText
 	movs r0, #2
 	bl EnableBgSync

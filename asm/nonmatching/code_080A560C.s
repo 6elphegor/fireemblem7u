@@ -19,7 +19,7 @@ sub_080A560C: @ 0x080A560C
 	cmp r1, r2
 	beq _080A5636
 	ldrb r0, [r0]
-	bl sub_080A649C
+	bl SaveMenuInitSlotPalette
 	ldr r0, [r7, #0x14]
 	adds r0, #0x2c
 	ldrb r0, [r0]
