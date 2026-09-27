@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803FA00
-sub_0803FA00: @ 0x0803FA00
+	thumb_func_start NameSelect_DrawName
+NameSelect_DrawName: @ 0x0803FA00
 	push {r4, lr}
 	adds r0, #0x3b
 	movs r1, #1

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F66C
-sub_0803F66C: @ 0x0803F66C
+	thumb_func_start TacticianTryDeleteChar
+TacticianTryDeleteChar: @ 0x0803F66C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r5, #0

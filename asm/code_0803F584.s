@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F584
-sub_0803F584: @ 0x0803F584
+	thumb_func_start Tactician_MoveHand
+Tactician_MoveHand: @ 0x0803F584
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	lsls r5, r1, #1

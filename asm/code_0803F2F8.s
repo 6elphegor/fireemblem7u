@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F2F8
-sub_0803F2F8: @ 0x0803F2F8
+	thumb_func_start Tactician_InitScreen
+Tactician_InitScreen: @ 0x0803F2F8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

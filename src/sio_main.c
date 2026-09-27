@@ -3,12 +3,6 @@
 
 // Link arena misc (FE8U: sio_main.c)
 
-struct Proc_Sio_085A93A0
-{
-    /* 00 */ PROC_HEADER;
-    /* 2C */ u8 pad_2C[0x58 - 0x2C];
-    /* 58 */ int timer;
-};
 
 u32 SioStrCpy(u8 const * src, u8 * dst)
 {
@@ -65,9 +59,6 @@ bool CheckInLinkArena(void)
 {
     return !!(gBmSt.flags & BM_FLAG_LINKARENA);
 }
-
-void sub_0803DA30(struct Proc_Sio_085A93A0 * proc);
-void sub_0803DA70(struct Proc_Sio_085A93A0 * proc);
 
 void sub_0803DA24(void)
 {

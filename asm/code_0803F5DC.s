@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F5DC
-sub_0803F5DC: @ 0x0803F5DC
+	thumb_func_start TacticianTryAppendChar
+TacticianTryAppendChar: @ 0x0803F5DC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

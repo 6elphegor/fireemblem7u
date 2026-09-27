@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F2E4
-sub_0803F2E4: @ 0x0803F2E4
+	thumb_func_start SioStrLen
+SioStrLen: @ 0x0803F2E4
 	adds r1, r0, #0
 	movs r2, #0
 	b _0803F2EE

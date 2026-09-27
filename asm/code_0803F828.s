@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F828
-sub_0803F828: @ 0x0803F828
+	thumb_func_start Tactician_Loop
+Tactician_Loop: @ 0x0803F828
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -31,7 +31,7 @@ sub_0803F828: @ 0x0803F828
 	strh r0, [r4, #0x36]
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0803F710
+	bl Tactician_LoopCore
 	ldrh r0, [r4, #0x36]
 	ldrh r1, [r4, #0x34]
 	cmp r0, r1
@@ -54,7 +54,7 @@ _0803F872:
 	movs r1, #0
 	strb r1, [r0]
 	adds r0, r6, #0
-	bl sub_0803F2E4
+	bl SioStrLen
 	lsls r1, r0, #3
 	subs r3, r1, r0
 	ldr r6, [r4, #0x2c]

@@ -99,7 +99,7 @@ bool CheckInLinkArena(void);
 // SioStrLen
 // Tactician_InitScreen
 // SioUpdateTeam
-// sub_0803F584
+// Tactician_MoveHand
 // TacticianTryAppendChar
 // TacticianTryDeleteChar
 // SaveTactician
@@ -111,7 +111,7 @@ bool CheckInLinkArena(void);
 // sub_0803F950
 // sub_0803F990
 // sub_0803F9BC
-// sub_0803FA00
+// NameSelect_DrawName
 // sub_0803FA3C
 // sub_0803FB24
 // SioPostBattleSprites_Init

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F710
-sub_0803F710: @ 0x0803F710
+	thumb_func_start Tactician_LoopCore
+Tactician_LoopCore: @ 0x0803F710
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -17,7 +17,7 @@ sub_0803F710: @ 0x0803F710
 	adds r0, r4, #0
 	movs r1, #0
 	adds r2, r5, #0
-	bl sub_0803F584
+	bl Tactician_MoveHand
 _0803F72E:
 	ldr r1, [r6]
 	movs r0, #0x80
@@ -28,7 +28,7 @@ _0803F72E:
 	adds r0, r4, #0
 	movs r1, #1
 	adds r2, r5, #0
-	bl sub_0803F584
+	bl Tactician_MoveHand
 _0803F744:
 	ldr r1, [r6]
 	movs r0, #0x20
@@ -39,7 +39,7 @@ _0803F744:
 	adds r0, r4, #0
 	movs r1, #2
 	adds r2, r5, #0
-	bl sub_0803F584
+	bl Tactician_MoveHand
 _0803F75A:
 	ldr r1, [r6]
 	movs r0, #0x10
@@ -50,7 +50,7 @@ _0803F75A:
 	adds r0, r4, #0
 	movs r1, #3
 	adds r2, r5, #0
-	bl sub_0803F584
+	bl Tactician_MoveHand
 _0803F770:
 	ldr r1, [r6]
 	movs r0, #1
@@ -77,12 +77,12 @@ _0803F794:
 _0803F79A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0803F5DC
+	bl TacticianTryAppendChar
 	b _0803F7B6
 _0803F7A4:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0803F66C
+	bl TacticianTryDeleteChar
 	b _0803F7B6
 _0803F7AE:
 	adds r0, r4, #0
@@ -99,7 +99,7 @@ _0803F7B6:
 	beq _0803F7CE
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0803F66C
+	bl TacticianTryDeleteChar
 _0803F7CE:
 	ldr r1, [r6]
 	movs r0, #8
@@ -125,7 +125,7 @@ _0803F7E4:
 	beq _0803F808
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0803F66C
+	bl TacticianTryDeleteChar
 	b _0803F820
 	.align 2, 0
 _0803F804: .4byte 0x08B857F8
