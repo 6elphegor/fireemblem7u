@@ -3479,3 +3479,7 @@ sSelectTargetList = 0x0203DCF8;
 sSelectTargetCount = 0x0203DFF8;
 ProcScr_TargetSelection = 0x08B9A92C;
 gNearTargetLinkOrder = 0x08B9A964;
+Pal_Wm_084221D4 = 0x084221D4;
+Pal_Wm_08424CD8 = 0x08424CD8;
+Pal_Wm_084225A8 = 0x084225A8;
+Img_Wm_08421C78 = 0x08421C78;

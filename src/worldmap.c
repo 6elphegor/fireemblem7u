@@ -184,6 +184,10 @@ extern struct ProcCmd CONST_DATA ProcScr_WmSpotlight[];
 extern struct ProcCmd CONST_DATA ProcScr_WorldFlush[];
 extern u16 const * CONST_DATA gWmMapTsaTable[][4];
 extern u8 const * CONST_DATA gWmMapImgTable[][4];
+extern u16 const Pal_Wm_084221D4[];
+extern u16 const Pal_Wm_08424CD8[];
+extern u16 const Pal_Wm_084225A8[];
+extern u8 const Img_Wm_08421C78[];
 extern u16 Pal_WmMap[];
 extern u16 Pal_WmMapA[];
 extern u8 Img_WmMapA[];
@@ -1292,7 +1296,59 @@ void WorldMap_Init(void)
     SetDispEnable(0, 0, 0, 0, 0);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B50C4.s");
+void WorldMap_InitDisplay(struct WorldMapProc * proc)
+{
+    proc->unk_40 = 0;
+    proc->unk_48 = 0;
+    proc->unk_54 = 0;
+
+    gDispIo.disp_ct.bg0_enable = 0;
+    gDispIo.disp_ct.bg1_enable = 0;
+    gDispIo.disp_ct.bg2_enable = 1;
+    gDispIo.disp_ct.bg3_enable = 0;
+    gDispIo.disp_ct.obj_enable = 1;
+
+    WmSetCamera(proc->mode, proc->x, proc->y);
+
+    SetBlendNone();
+
+    ApplyPaletteExt(Pal_Wm_084221D4, 0x260, 0x20);
+    ApplyPaletteExt(Pal_Wm_08424CD8, 0x200, 0x20);
+    ApplyPaletteExt(Pal_MiscUiGraphics, 0x360, 0x20);
+    ApplyPaletteExt(Pal_Wm_084225A8, 0x320, 0x20);
+    Decompress(Img_Wm_08421C78, (void *) (VRAM + 0x15000));
+
+    SetWinEnable(0, 0, 0);
+    SetWOutLayers(1, 1, 1, 1, 1);
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.win1_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetBlankBgColor(0, 0, 0);
+
+    SetBlendConfig(0, 0, 0, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 1);
+
+    gWmHBlankFlags = 0;
+
+    SetOnHBlankA(NULL);
+    SetOnHBlankA(WmHBlankHandler);
+
+    StartWmSpriteAnims(proc);
+    StartWmTextBox(proc);
+    StartWmUnitManager(proc);
+
+    if (proc->flags & 4)
+    {
+        if (proc->flags & 0x40)
+            NewFadeIn(1, NULL);
+        else
+            NewFadeIn(2, NULL);
+    }
+
+    WmSetUnk02(0);
+}
 void WorldMap_OnEnd(struct WorldMapProc * proc)
 {
     SetOnHBlankB(NULL);
