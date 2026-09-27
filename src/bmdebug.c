@@ -1,6 +1,16 @@
 #include "gbafe.h"
 #include "gbafe/bmmenu.h"
 
+extern const struct MenuDef gDebugClearMenuDef;
+extern const struct MenuDef gDebugStartupMenuDef;
+extern char const sDebugStartupStr[];
+
+void WriteCompletedPlaythroughSaveData(void);
+void SetTalkUnkStr(char const * str);
+void PutBuildInfo(u16 * tm);
+void RefreshBMapGraphics(void);
+
+
 struct DebugMonitorProc {
     PROC_HEADER;
 
@@ -355,19 +365,61 @@ int DebugMenu_ClearDraw(struct MenuProc * menuProc, struct MenuItemProc * menuIt
 
 ASM_FUNC("asm/nonmatching/code_0801B814.s");
 
-ASM_FUNC("asm/nonmatching/code_0801B8B8.s");
+u8 DebugMenu_ClearEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801B8BC.s");
+u8 DebugMenu_ErasedEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    ClearUi();
+    StartMenu(&gDebugClearMenuDef);
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801B8D4.s");
+u8 sub_0801B8D4(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    WriteCompletedPlaythroughSaveData();
+    gPlaySt.chapterStateBits &= ~PLAY_FLAG_PREPSCREEN;
+    CleanupUnitsBeforeChapter();
+    WriteGameSave(ReadLastGameSaveId());
+    SoftReset(0xFF);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801B900.s");
+int sub_0801B900(void)
+{
+    DebugPutStr(gBg0Tm + TM_OFFSET(7, 3), GetChapterInfo(0)->debug_name);
+    EnableBgSync(BG0_SYNC_BIT);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801B924.s");
+void sub_0801B924(void)
+{
+    struct MenuProc * menu;
+
+    SetMainFunc(OnMain);
+    SetOnVBlank(OnVBlank);
+    RefreshBMapGraphics();
+    DebugInitBg(2, 0);
+    SetTalkUnkStr(sDebugStartupStr);
+    menu = StartMenu(&gDebugStartupMenuDef);
+
+    gBmSt.flags |= BM_FLAG_LINKARENA;
+    StartMuralBackgroundAlt(menu, (void *) 0x0600B000, -1);
+    gBmSt.flags &= ~BM_FLAG_LINKARENA;
+
+    PutBuildInfo(gBg2Tm + 0x20);
+}
 
 ASM_FUNC("asm/nonmatching/code_0801B990.s");
 
-ASM_FUNC("asm/nonmatching/code_0801BA10.s");
+int sub_0801BA10(void)
+{
+    EndFaceById(0);
+    EndFaceById(1);
+    SetDispEnable(0, 0, 0, 0, 0);
+    gPal[0] = 0;
+    EnablePalSync();
+}
 
 ASM_FUNC("asm/nonmatching/code_0801BA54.s");
 

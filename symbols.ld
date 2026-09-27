@@ -1175,3 +1175,6 @@ sDebugBlankStr = 0x081C3B74;
 ProcScr_DebugMonitor = 0x08B9333C;
 sDebugOnOffMsgs = 0x081C3B80;
 sDebugWeatherMsgs = 0x081C3B88;
+gDebugClearMenuDef = 0x08B95848;
+gDebugStartupMenuDef = 0x08B95890;
+sDebugStartupStr = 0x081C3BA4;
