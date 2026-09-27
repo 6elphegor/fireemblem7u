@@ -1,39 +1,42 @@
 #include "gbafe.h"
 #include "gbafe/bmmenu.h"
 
+// Data (not yet in C; FE7U addresses in symbols.ld)
+
 extern struct ProcCmd CONST_DATA ProcScr_Config_Field[];
+extern struct ProcCmd CONST_DATA gProcScr_BKSEL[];
+extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
 extern u16 CONST_DATA EventScr_08B93DA4[];
+extern u8 CONST_DATA Tsa_StealMenuFrame[];
+
+extern const struct MenuDef gBallistaRangeMenuDef;
+extern const struct MenuDef gWeaponSelectMenuDef;
+extern const struct MenuDef gItemMenuDef;
+extern const struct MenuDef gItemSelectMenuDef;
+extern const struct MenuDef gItemSubMenuDef;
+extern const struct MenuDef gYesNoSelectionMenuDef;
+extern const struct MenuDef gStaffItemSelectMenuDef;
+extern const struct MenuDef gStealItemMenuDef;
+
 extern const struct SelectInfo gSelectInfo_Rescue;
 extern const struct SelectInfo gSelectInfo_Drop;
 extern const struct SelectInfo gSelectInfo_Take;
 extern const struct SelectInfo gSelectInfo_Give;
-extern const struct MenuDef gBallistaRangeMenuDef;
-extern const struct MenuDef gWeaponSelectMenuDef;
-extern const struct MenuDef gItemMenuDef;
 extern const struct SelectInfo gSelectInfo_Attack;
 extern const struct SelectInfo gSelectInfo_Trade;
-extern struct ProcCmd CONST_DATA gProcScr_BKSEL[];
-extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
+extern const struct SelectInfo gSelectInfo_Talk;
+extern const struct SelectInfo gSelectInfo_Support;
+extern const struct SelectInfo gSelectInfo_Steal;
+extern const struct SelectInfo gSelectInfo_Dance;
+
+extern struct Font gItemSelectMenuFont;
 
 u8 StartFightBallistaReview(struct MenuProc * menu, struct MenuItemProc * menuItem);
 u8 StartFightItemReview(struct MenuProc * menu, struct MenuItemProc * menuItem);
 u8 ItemMenu_Select1stCommand(struct MenuProc * menu, struct MenuItemProc * menuItem);
-extern const struct MenuDef gItemSelectMenuDef;
-extern const struct MenuDef gItemSubMenuDef;
-extern const struct MenuDef gYesNoSelectionMenuDef;
-extern struct Font gItemSelectMenuFont;
-
 void sub_08022360(int x, int y);
 u8 sub_08022404(struct MenuProc * menu);
 u8 sub_0802245C(struct MenuProc * menu);
-extern const struct MenuDef gStaffItemSelectMenuDef;
-extern const struct SelectInfo gSelectInfo_Talk;
-extern const struct SelectInfo gSelectInfo_Support;
-extern const struct MenuDef gStealItemMenuDef;
-extern const struct SelectInfo gSelectInfo_Steal;
-extern const struct SelectInfo gSelectInfo_Dance;
-extern u8 CONST_DATA Tsa_StealMenuFrame[];
-//--HEAD-END--
 
 u8 MapMenu_UnitCommand(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
