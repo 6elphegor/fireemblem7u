@@ -827,7 +827,45 @@ void WmSlots_UpdatePosition(int idx, struct WmSlotsProc * proc)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B43EC.s");
-ASM_FUNC("asm/nonmatching/code_080B4510.s");
+void sub_080B4510(struct WmUnitManagerProc * proc)
+{
+    int i;
+
+    SetBlendConfig(0, proc->unk_45 >> 1, 0x10 - (proc->unk_45 >> 1), 0);
+
+    proc->unk_45 += proc->unk_44;
+
+    if (proc->unk_45 == 0)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            if (proc->slots[3]->ent[i].anim != NULL && (s8) proc->slots[3]->ent[i].state == -1)
+            {
+                EndFaceById(i);
+                proc->slots[3]->ent[i].state = 0;
+                proc->slots[3]->ent[i].anim = NULL;
+            }
+        }
+
+        proc->unk_44 = 0;
+    }
+
+    if (proc->unk_45 == 0x20)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            struct FaceProc * face = (struct FaceProc *) proc->slots[3]->ent[i].anim;
+
+            if (face != NULL && proc->slots[3]->ent[i].state == 1)
+            {
+                SetFaceDisp(face, GetFaceDisp(face) & ~0x400);
+                proc->slots[3]->ent[i].state = 0;
+            }
+        }
+
+        proc->unk_44 = 0;
+    }
+}
 void WmDimPalette(u16 * dst, u16 * src, u8 coeff)
 {
     int i;
