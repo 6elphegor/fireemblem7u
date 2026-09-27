@@ -12,7 +12,7 @@ sub_080B7B74: @ 0x080B7B74
 	bl sub_080B73EC
 	movs r1, #0
 	bl Proc_Goto
-	bl sub_080B6E28
+	bl ClearEpilogueTexts
 	adds r4, #0x44
 	movs r2, #0
 	movs r3, #0

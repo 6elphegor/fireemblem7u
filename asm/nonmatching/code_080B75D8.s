@@ -55,7 +55,7 @@ _080B762C:
 	ldr r0, [r5, #0x30]
 	adds r0, #8
 	str r0, [r5, #0x30]
-	bl sub_080B6E84
+	bl EpilogueText_Center
 	b _080B7660
 _080B7644:
 	strh r1, [r4]

@@ -129,7 +129,7 @@ _080B79DC:
 	adds r0, r1, #0
 	movs r1, #0xa
 	bl __modsi3
-	bl sub_080B6E58
+	bl ClearEpilogueText
 _080B79E8:
 	mov r1, r8
 	ldrh r0, [r1]

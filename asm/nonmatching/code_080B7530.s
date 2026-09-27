@@ -6,7 +6,7 @@
 sub_080B7530: @ 0x080B7530
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_080B6E28
+	bl ClearEpilogueTexts
 	ldr r0, _080B75C0 @ =0x08194714
 	movs r1, #0xd0
 	lsls r1, r1, #2
@@ -30,7 +30,7 @@ sub_080B7530: @ 0x080B7530
 	bl SetTextFontGlyphs
 	ldr r0, [r4, #0x30]
 	ldr r1, [r4, #0x2c]
-	bl sub_080B6E84
+	bl EpilogueText_Center
 	ldr r2, _080B75C8 @ =0x03002870
 	adds r1, r2, #0
 	adds r1, #0x3c

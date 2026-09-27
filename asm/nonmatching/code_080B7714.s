@@ -76,7 +76,7 @@ sub_080B7714: @ 0x080B7714
 	ldr r1, _080B77D4 @ =0x02022860
 	ldr r2, _080B77D8 @ =0x01000100
 	bl CpuFastSet
-	bl sub_080B6DE4
+	bl InitEpilogueTexts
 	movs r0, #0
 	bl SetOnHBlankA
 	adds r0, r5, #0

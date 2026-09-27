@@ -88,13 +88,13 @@ _080B714C:
 	ldrb r2, [r4, #2]
 	ldrb r3, [r4, #3]
 	adds r0, r7, #0
-	bl sub_080B6ECC
+	bl EpilogueText_DrawStats
 	movs r0, #1
 	bl SetTextFontGlyphs
 _080B7172:
 	ldr r1, [r6]
 	adds r0, r7, #0
-	bl sub_080B6E84
+	bl EpilogueText_Center
 _080B717A:
 	ldr r0, [r6]
 	ldrb r2, [r0]

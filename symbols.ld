@@ -2029,3 +2029,4 @@ Pal_WmMapB = 0x085D5FEC;
 Img_WmMapB = 0x085D606C;
 Tsa_WmMapB = 0x085DB38C;
 ProcScr_WorldFlush = 0x08CE7878;
+gEpilogueFontSt = 0x02000818;

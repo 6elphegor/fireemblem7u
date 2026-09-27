@@ -41,7 +41,7 @@ _080B6DA4:
 	ldr r0, [r2, #4]
 _080B6DA6:
 	bl DecodeMsg
-	bl sub_080B6D48
+	bl CountEpilogueLines
 	strb r0, [r4, #4]
 	ldr r0, [r5]
 	ldrb r1, [r4, #4]

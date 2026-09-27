@@ -54,7 +54,7 @@ sub_080B7810: @ 0x080B7810
 	ldrb r2, [r1]
 	orrs r0, r2
 	strb r0, [r1]
-	bl sub_080B6E28
+	bl ClearEpilogueTexts
 	ldr r0, _080B78D4 @ =sub_080B7408
 	adds r1, r5, #0
 	bl StartParallelWorker

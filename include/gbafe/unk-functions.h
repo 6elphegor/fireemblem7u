@@ -1160,18 +1160,18 @@ void ComputeChapterRankings(void);
 void PutCgBackground(u16 *, int, int, int, int);
 // sub_080B6C14
 // sub_080B6C8C
-// sub_080B6D48
+// CountEpilogueLines
 // sub_080B6D64
 // sub_080B6DD4
-// sub_080B6DE4
-// sub_080B6E28
-// sub_080B6E58
-// sub_080B6E84
-// sub_080B6ECC
+// InitEpilogueTexts
+// ClearEpilogueTexts
+// ClearEpilogueText
+// EpilogueText_Center
+// EpilogueText_DrawStats
 // sub_080B6FB8
 // sub_080B70B4
-// sub_080B71A8
-// sub_080B71F4
+// DarkenPalettesHalf
+// EpilogueCopyPalettes
 // sub_80B7FC8
 // sub_80B8010
 // sub_080B72A8
