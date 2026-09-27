@@ -46,6 +46,13 @@ extern struct ProcCmd CONST_DATA ProcScr_08CEF284[];
 extern u16 const gUnk_085EE02C[];
 extern struct OpAnimImgEntry const gUnk_08CEF594[];
 extern struct OpAnimImgEntry const gUnk_08CEF630[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF2D4[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF2F4[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF394[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF3EC[];
+extern u8 * gUnk_08CEF074;
+extern u16 const gUnk_08CEF314[];
+extern struct OpAnimTextEntry const gUnk_08CEF4BC[];
 
 void sub_08003F8C(int reverb);
 
@@ -673,7 +680,40 @@ void sub_080BC474(struct OpAnimProc * proc)
 {
     SetDispEnable(1, 1, 1, 1, 1);
 }
-ASM_FUNC("asm/nonmatching/code_080BC494.s");
+void sub_080BC494(struct OpAnimProc * proc)
+{
+    int angles[8] = { 0x00, 0x80, 0x40, 0xA0, 0x20, 0xE0, 0x60, 0xC0 };
+    int step = 0x10;
+    int val = proc->unk_2C / 10;
+
+    if (val < 0x10)
+    {
+        SetBlendAlpha(0x10, 0x10 - val);
+    }
+
+    if ((proc->unk_2C % step) == 0)
+    {
+        int i = proc->unk_2C / step;
+
+        if (i < 8)
+            sub_080BCFCC(i, angles[i], proc);
+    }
+
+    if (proc->unk_2C == 0xA0)
+    {
+        TmFill(gBg1Tm, 0);
+        EnableBgSync(BG1_SYNC_BIT);
+
+        SetBlendConfig(BLEND_EFFECT_NONE, 0, 0, 0);
+
+        BmBgfxSetLoopEN(0);
+        Proc_Break(proc);
+
+        SetBackdropColor(0);
+    }
+
+    proc->unk_2C++;
+}
 
 void sub_080BC570(struct Proc * proc)
 {
@@ -874,26 +914,206 @@ void sub_080BC9A8(struct OpAnimSubProc * proc)
     proc->unk_2C = 0;
     sub_080BBD28();
 }
-ASM_FUNC("asm/nonmatching/code_080BC9B8.s");
-ASM_FUNC("asm/nonmatching/code_080BCA6C.s");
-ASM_FUNC("asm/nonmatching/code_080BCA84.s");
-ASM_FUNC("asm/nonmatching/code_080BCA94.s");
-ASM_FUNC("asm/nonmatching/code_080BCAE8.s");
-ASM_FUNC("asm/nonmatching/code_080BCAFC.s");
-ASM_FUNC("asm/nonmatching/code_080BCB1C.s");
+void sub_080BC9B8(struct OpAnimSubProc * proc)
+{
+    int val;
+
+    if (++proc->unk_2C <= 0x40)
+    {
+        SetBlendAlpha(proc->unk_2C / 8, 0x10);
+    }
+
+    SetBgOffset(0, proc->unk_2C >> 1, 0);
+
+    if (proc->unk_2C > proc->unk_30)
+    {
+        val = 8 - (proc->unk_2C - proc->unk_30) / 8;
+        SetBlendAlpha(val, 0x10);
+
+        if (val == 0)
+        {
+            Proc_Break(proc);
+            TmFill(gBg0Tm, 0);
+            EnableBgSync(BG0_SYNC_BIT);
+        }
+    }
+}
+void sub_080BCA6C(int a, ProcPtr parent)
+{
+    struct OpAnimSubProc * proc = Proc_Start(ProcScr_08CEF2D4, parent);
+    proc->unk_30 = a;
+}
+void sub_080BCA84(struct OpAnimSubProc * proc)
+{
+    proc->unk_2C = 0;
+    sub_080BBC80();
+}
+void sub_080BCA94(struct OpAnimSubProc * proc)
+{
+    if (++proc->unk_2C <= 0x80)
+    {
+        SetBlendAlpha(proc->unk_2C / 8, 0x10);
+    }
+    else
+    {
+        Proc_Break(proc);
+    }
+}
+void sub_080BCAE8(ProcPtr proc)
+{
+    Proc_Start(ProcScr_08CEF2F4, proc);
+}
+void sub_080BCAFC(void)
+{
+    CpuFastFill(0, (void *) 0x06014000, 0x800);
+}
+void sub_080BCB1C(u8 const * src, int offset)
+{
+    Decompress(src, gUnk_08CEF074 + offset);
+}
 ASM_FUNC("asm/nonmatching/code_080BCB34.s");
+
 ASM_FUNC("asm/nonmatching/code_080BCBFC.s");
-ASM_FUNC("asm/nonmatching/code_080BCCC4.s");
-ASM_FUNC("asm/nonmatching/code_080BCCF0.s");
-ASM_FUNC("asm/nonmatching/code_080BCDB4.s");
-ASM_FUNC("asm/nonmatching/code_080BCDD8.s");
-ASM_FUNC("asm/nonmatching/code_080BCE14.s");
-ASM_FUNC("asm/nonmatching/code_080BCE20.s");
-ASM_FUNC("asm/nonmatching/code_080BCE34.s");
+
+void sub_080BCCC4(struct OpAnimTextProc * proc)
+{
+    ApplyPaletteExt(gUnk_085E9D2C, 0x220, 0x20);
+
+    proc->entry = gUnk_08CEF4BC;
+    proc->unk_38 = 0;
+
+    sub_080BCAFC();
+
+    proc->unk_3C = 0;
+}
+void sub_080BCCF0(struct OpAnimTextProc * proc)
+{
+    int div = 8;
+    int len, max, rem, x;
+
+    if (proc->unk_3C == 0)
+    {
+        proc->unk_30 = sub_080BD570(proc->entry);
+
+        if (proc->unk_30 == 0)
+        {
+            if (proc->entry->duration == 0)
+                Proc_Goto(proc, 99);
+            else
+                Proc_Break(proc);
+
+            return;
+        }
+    }
+
+    len = 0x400 / div - 0x10;
+
+    max = proc->unk_30 * len;
+
+    if (proc->unk_3C < max)
+    {
+        rem = proc->unk_3C % len;
+        x = rem / (0x40 / div);
+
+        if (rem == 0)
+        {
+            int i = proc->unk_3C / len;
+            sub_080BCB1C(proc->entry->img[i], proc->unk_38 + (i << 11));
+        }
+
+        sub_080BCB34(2, 2, div, proc->unk_38 + (x << 6), proc->unk_3C);
+        proc->unk_3C++;
+    }
+    else
+    {
+        Proc_Break(proc);
+    }
+}
+
+void sub_080BCDB4(struct OpAnimTextProc * proc)
+{
+    if (++proc->unk_3C >= proc->entry->duration - 0x20)
+    {
+        proc->unk_3C = 0;
+        Proc_Break(proc);
+    }
+}
+void sub_080BCDD8(struct OpAnimTextProc * proc)
+{
+    if (proc->unk_3C < 0x20)
+    {
+        sub_080BCBFC(0x1E, proc->unk_30 * 2, 2, proc->unk_38, proc->unk_3C);
+        proc->unk_3C++;
+    }
+    else
+    {
+        proc->unk_3C = 0;
+        proc->entry++;
+        Proc_Break(proc);
+    }
+}
+void sub_080BCE14(struct OpAnimTextProc * proc)
+{
+    sub_080BCAFC();
+}
+void sub_080BCE20(ProcPtr proc)
+{
+    Proc_Start(ProcScr_08CEF394, proc);
+}
+void sub_080BCE34(struct OpAnimCloudProc * proc)
+{
+    int i;
+
+    proc->unk_2E = 0;
+    proc->unk_30 = (proc->unk_2C / 4) * 0x2000 + (proc->unk_2C % 4) * 0x100;
+
+    for (i = 0; i < 4; i++)
+    {
+        proc->unk_32[i] = 0xFF00;
+        proc->unk_3A[i] = 0xFF00;
+    }
+}
 ASM_FUNC("asm/nonmatching/code_080BCE60.s");
-ASM_FUNC("asm/nonmatching/code_080BCFCC.s");
-ASM_FUNC("asm/nonmatching/code_080BCFE8.s");
-ASM_FUNC("asm/nonmatching/code_080BD08C.s");
+void sub_080BCFCC(int a, int b, ProcPtr parent)
+{
+    struct OpAnimCloudProc * proc = Proc_Start(ProcScr_08CEF3EC, parent);
+    proc->unk_2C = a;
+    proc->unk_2A = b;
+}
+void sub_080BCFE8(u16 const * src1, u16 const * src2, int pal, int k)
+{
+    int i;
+    u16 * dst = gPal + pal * 0x10;
+    int k2 = 0x100 - k;
+
+    for (i = 0; i < 0x10; i++)
+    {
+        *dst++ =
+            ((((*src1 & 0x001F) * k + (*src2 & 0x001F) * k2) >> 8) & 0x001F) +
+            ((((*src1 & 0x03E0) * k + (*src2 & 0x03E0) * k2) >> 8) & 0x03E0) +
+            ((((*src1 & 0x7C00) * k + (*src2 & 0x7C00) * k2) >> 8) & 0x7C00);
+
+        src1++;
+        src2++;
+    }
+
+    EnablePalSync();
+}
+void Proc_08DB9398_Loop(struct OpAnimSubProc * proc)
+{
+    proc->unk_30 += proc->unk_2C;
+
+    if (proc->unk_30 > 0x100)
+        proc->unk_30 = 0x100;
+
+    if (proc->unk_30 < 0)
+        proc->unk_30 = 0;
+
+    sub_080BCFE8(gUnkOpAnim_020072C0 + 0x10, gUnkOpAnim_020072C0, proc->unk_34, proc->unk_30);
+
+    if (proc->unk_30 == 0x100 || proc->unk_30 == 0)
+        Proc_Break(proc);
+}
 ASM_FUNC("asm/nonmatching/code_080BD0D4.s");
 ASM_FUNC("asm/nonmatching/code_080BD168.s");
 ASM_FUNC("asm/nonmatching/code_080BD1A4.s");
@@ -905,7 +1125,22 @@ ASM_FUNC("asm/nonmatching/code_080BD4C4.s");
 ASM_FUNC("asm/nonmatching/code_080BD4F4.s");
 ASM_FUNC("asm/nonmatching/code_080BD548.s");
 ASM_FUNC("asm/nonmatching/code_080BD55C.s");
-ASM_FUNC("asm/nonmatching/code_080BD570.s");
+int sub_080BD570(struct OpAnimTextEntry const * entry)
+{
+    int i;
+
+    i = 0;
+
+    do
+    {
+        if (entry->img[i] == NULL)
+            break;
+
+        i++;
+    } while (i < 2);
+
+    return i;
+}
 ASM_FUNC("asm/nonmatching/code_080BD588.s");
 ASM_FUNC("asm/nonmatching/code_080BD688.s");
 ASM_FUNC("asm/nonmatching/code_080BD68C.s");

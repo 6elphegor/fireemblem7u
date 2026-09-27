@@ -34,6 +34,32 @@ struct OpAnimSubProc {
     /* 3C */ struct OpAnimImgEntry const * unk_3C;
 };
 
+struct OpAnimTextEntry {
+    /* 00 */ void const * img[2];
+    /* 08 */ int duration;
+};
+
+struct OpAnimTextProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ struct OpAnimTextEntry const * entry;
+    /* 30 */ int unk_30;
+    /* 34 */ int unk_34;
+    /* 38 */ int unk_38;
+    /* 3C */ int unk_3C;
+};
+
+struct OpAnimCloudProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2A);
+    /* 2A */ u16 unk_2A;
+    /* 2C */ u16 unk_2C;
+    /* 2E */ u16 unk_2E;
+    /* 30 */ u16 unk_30;
+    /* 32 */ u16 unk_32[4];
+    /* 3A */ u16 unk_3A[4];
+};
+
 void sub_080BB070(void);
 void InitOpScanlineBuf(void);
 void SwapOpScanlineBufs(void);
@@ -96,32 +122,25 @@ void sub_080BC94C(void);
 void sub_080BC960(struct OpAnimProc * proc);
 void sub_080BC994(void);
 void sub_080BC9A8(struct OpAnimSubProc * proc);
-// sub_080BC9B8
+void sub_080BC9B8(struct OpAnimSubProc * proc);
 void sub_080BCA6C(int a, ProcPtr parent);
-// sub_80BD47C
-// sub_080BCA94
-// sub_80BD4E0
-// sub_80BD4F4
+void sub_080BCA84(struct OpAnimSubProc * proc);
+void sub_080BCA94(struct OpAnimSubProc * proc);
 void sub_080BCB1C(u8 const * src, int offset);
-// sub_80BD54C
-// sub_80BD614
-// sub_80BD6DC
-// sub_80BD70C
-// sub_80BD7C8
-// sub_80BD7EC
-// sub_80BD830
-// sub_80BD83C
-// sub_80BD850
-// sub_80BD884
+void sub_080BCCC4(struct OpAnimTextProc * proc);
+void sub_080BCCF0(struct OpAnimTextProc * proc);
+void sub_080BCDB4(struct OpAnimTextProc * proc);
+void sub_080BCDD8(struct OpAnimTextProc * proc);
+void sub_080BCE14(struct OpAnimTextProc * proc);
+void sub_080BCE34(struct OpAnimCloudProc * proc);
 // sub_80BD904
 // sub_80BD928
 // sub_80BD96C
 // sub_80BD978
-// sub_080BCE34
-// sub_080BCE60
+void sub_080BCE60(struct OpAnimCloudProc * proc);
 void sub_080BCFCC(int a, int b, ProcPtr parent);
-// sub_080BCFE8
-// Proc_08DB9398_Loop
+void sub_080BCFE8(u16 const * src1, u16 const * src2, int pal, int k);
+void Proc_08DB9398_Loop(struct OpAnimSubProc * proc);
 void sub_080BD0D4(void * a, const u16 * pal, int pal_bank, int size, ProcPtr parent);
 // sub_080BD168
 // sub_080BD1A4
@@ -133,7 +152,7 @@ void sub_080BD424(int a, int b, int angle, int speed, ProcPtr parent);
 // sub_080BD4F4
 void sub_080BD548(ProcPtr proc);
 void sub_080BD55C(void);
-// sub_080BD570
+int sub_080BD570(struct OpAnimTextEntry const * entry);
 // sub_080BD588
 void sub_080BD688(ProcPtr proc, int val);
 // sub_080BD68C
@@ -166,6 +185,7 @@ extern struct Struct_02007508 gUnkOpAnim_0200750C;
 
 extern u32 gUnkOpAnim_03001620;
 extern int gUnkOpAnim_020072BC;
+extern u16 gUnkOpAnim_020072C0[0x20];
 extern u16 gUnkOpAnim_02007300[0x100];
 extern u16 * gUnkOpAnim_02007500[2];
 extern int gUnkOpAnim_02007508;
