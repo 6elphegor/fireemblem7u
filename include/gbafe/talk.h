@@ -156,7 +156,7 @@ void sub_080093CC(struct TalkChoiceEnt const * choices, struct Text * text, u16 
 // ??? sub_08009480
 // ??? sub_08009588
 // ??? sub_080095C8
-// ??? sub_800954C
+// ??? sub_080096BC
 // ??? sub_080096D4
 void sub_08009708();
 int GetTalkPauseCmdDuration(int cmd);
@@ -206,25 +206,25 @@ void TalkAdvance_Loop(struct ProcTalkAdvance * proc);
 
 extern struct ProcCmd gUnk_08B90980[];
 extern struct TalkSt * CONST_DATA sTalkSt;
-extern struct ProcCmd gUnk_08BFFB6C[];
+extern struct ProcCmd gUnk_08B909BC[];
 extern struct ProcCmd ProcScr_Talk[];
-extern struct ProcCmd gUnk_08BFFBB4[];
-extern struct ProcCmd gUnk_08BFFBBC[];
+extern struct ProcCmd gUnk_08B90A04[];
+extern struct ProcCmd gUnk_08B90A0C[];
 extern struct ProcCmd gUnk_08BFFBDC[];
-extern struct ProcCmd gUnk_08BFFBFC[];
-extern u16 const * CONST_DATA gUnk_08BFFC3C[];
-extern struct ProcCmd gUnk_08BFFC7C[];
+extern struct ProcCmd gUnk_08B90A4C[];
+extern u16 const * CONST_DATA gUnk_08B90A8C[];
+extern struct ProcCmd gUnk_08B90ACC[];
 extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFC9C[];
 extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFCAC[];
-extern struct ProcCmd gUnk_08BFFCBC[];
-extern struct ProcCmd gUnk_08BFFCD4[];
-extern struct ProcCmd gUnk_08BFFCFC[];
-extern int CONST_DATA gUnk_08BFFD2C[];
-extern struct ProcCmd gUnk_08BFFD3C[];
-extern struct ProcCmd gUnk_08BFFD4C[];
-extern int CONST_DATA gUnk_08BFFD7C[];
-extern u16 gUnk_08BFFD9C[];
-extern u16 gUnk_08BFFDB6[];
+extern struct ProcCmd gUnk_08B90B0C[];
+extern struct ProcCmd gUnk_08B90B24[];
+extern struct ProcCmd gUnk_08B90B4C[];
+extern int CONST_DATA gUnk_08B90B7C[];
+extern struct ProcCmd gUnk_08B90B8C[];
+extern struct ProcCmd gUnk_08B90B9C[];
+extern int CONST_DATA gUnk_08B90BCC[];
+extern u16 gUnk_08B90BEC[];
+extern u16 gUnk_08B90C06[];
 extern struct ProcCmd gUnk_08BFFE18[];
 extern struct ProcCmd ProcScr_TalkAdvanceDeamon[];
 extern struct ProcCmd ProcScr_TalkAdvance[];

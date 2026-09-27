@@ -51,8 +51,8 @@ extern u16 Pal_Text[];
 // ??? gUnk_08190248
 extern u16 Pal_08190268[];
 // ??? gUnk_08190288
-extern u16 gUnk_081902A8[];
-extern u16 gUnk_081902C8[];
+extern u16 gUnk_08194754[];
+extern u16 gUnk_08194774[];
 // ??? gUnk_081902E8
 // ??? gUnk_08190764
 // ??? gUnk_08190784
@@ -1348,13 +1348,13 @@ extern const u8 Tsa_EkrDragonFireBG2[];
 // ??? gUnk_0840085C
 // ??? gUnk_084009F0
 // ??? Pal_ManimWindowHpBar
-extern u8 const gUnk_084027B0[];
-extern u8 const gUnk_08402858[];
-extern u8 const gUnk_084028FC[];
-extern u8 const gUnk_08402958[];
-extern u8 const gUnk_084029AC[];
-extern u8 const gUnk_084029FC[];
-extern u16 gUnk_08402A4C[];
+extern u8 const gUnk_083FBD34[];
+extern u8 const gUnk_083FBDDC[];
+extern u8 const gUnk_083FBE80[];
+extern u8 const gUnk_083FBEDC[];
+extern u8 const gUnk_083FBF30[];
+extern u8 const gUnk_083FBF80[];
+extern u16 gUnk_083FBFD0[];
 // ??? gUnk_08402BF0
 // ??? gUnk_08402F68
 // ??? gUnk_08402F84
