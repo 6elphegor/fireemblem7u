@@ -609,15 +609,7 @@ SECTIONS
         build/src/sio_tactician.o(.text);
         build/src/sio_postbattle.o(.text);
         build/src/sio_bat.o(.text);
-        build/asm/code_080412E0.o(.text);
-        build/asm/code_08041584.o(.text);
-        build/asm/code_08041610.o(.text);
-        build/asm/code_0804168C.o(.text);
-        build/asm/code_080416D4.o(.text);
-        build/asm/code_080416F0.o(.text);
-        build/asm/code_0804170C.o(.text);
-        build/asm/code_0804172C.o(.text);
-        build/asm/code_0804176C.o(.text);
+        build/src/sio_term.o(.text);
         build/asm/code_0804177C.o(.text);
         build/asm/code_080417BC.o(.text);
         build/asm/code_080417F8.o(.text);

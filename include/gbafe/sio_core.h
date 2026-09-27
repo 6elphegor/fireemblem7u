@@ -787,3 +787,4 @@ void StartSioErrorScreen(void);
 extern const u8 gUnknown_080D9D5E[];
 extern const int gUnknown_081D5254[];
 extern u8 * CONST_DATA gUnknown_08B98CA8[];
+void StartPrepAtMenu(void);
