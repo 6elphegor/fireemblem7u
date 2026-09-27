@@ -771,3 +771,9 @@ AnimScr_EfxChill1_R = 0x08BD5644;
 AnimScr_EfxChill1_L = 0x08BD5848;
 AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
+/* cp_battle */
+sCombatScoreCoefficients = 0x030013C0;
+gAiCombatScoreCoefficientTable = 0x081D36F4;
+gAiBallistaItemIdsInit = 0x081D3B64;
+sFriendZoneRangeScoreLut = 0x08B989FC;
+sRange3OffsetLut_ = 0x08B98A60;
