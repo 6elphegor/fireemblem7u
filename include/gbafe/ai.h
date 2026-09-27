@@ -204,7 +204,7 @@ void AiUpdateUnitsSeekHealing(void);
 // sub_0803A7C8
 // sub_0803A828
 // sub_0803A874
-// sub_0803A8C4
+// AiBallistaRideExit
 // sub_0803AA40
 // sub_0803AA60
 // GetAiStaffFuncIndex

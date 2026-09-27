@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803A8C4
-sub_0803A8C4: @ 0x0803A8C4
+	thumb_func_start AiBallistaRideExit
+AiBallistaRideExit: @ 0x0803A8C4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

@@ -62,7 +62,7 @@ _0803B430:
 	cmp r0, #0
 	beq _0803B46C
 	adds r0, r6, #0
-	bl sub_080BFC74
+	bl _call_via_sl
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803B528

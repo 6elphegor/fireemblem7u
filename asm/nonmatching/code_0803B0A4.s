@@ -83,7 +83,7 @@ _0803B108:
 	cmp r1, #0
 	beq _0803B150
 	adds r0, r5, #0
-	bl sub_080BFC70
+	bl _call_via_r9
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1

@@ -29,7 +29,7 @@ _08036834:
 	ldrsb r1, [r4, r1]
 	adds r1, r6, r1
 	str r2, [sp, #8]
-	bl sub_080BFC70
+	bl _call_via_r9
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r2, [sp, #8]
