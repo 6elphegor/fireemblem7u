@@ -22,6 +22,18 @@ extern u8 const gUnk_08673D58[];
 extern u16 const gUnk_08600544[];
 extern u8 const gUnk_085FF1D4[];
 extern u8 const gUnk_0860029C[];
+extern u16 const gUnk_086005A4[];
+extern u16 const gUnk_085E9D2C[];
+extern u16 const gUnk_0867451C[];
+extern u8 const gUnk_086756A0[];
+extern u16 const gUnk_086758C0[];
+extern u8 const gUnk_08676BB8[];
+extern u16 const gUnk_08616D74[];
+extern u8 const gUnk_08616D94[];
+extern u16 const gUnk_086005E4[];
+extern u16 const gUnk_08600604[];
+extern u16 const gUnk_08600584[];
+extern u16 const gUnk_08600564[];
 
 struct ProcCmd CONST_DATA ProcScr_08CEF0E4[] = {
     PROC_SET_END_CB(sub_080BB524),
@@ -304,20 +316,227 @@ void OpAnim_DrawWater(struct OpAnimProc * proc)
     gUnkOpAnim_03001620 |= 1;
     proc->unk_2C = 0;
 }
-ASM_FUNC("asm/nonmatching/code_080BBB30.s");
-ASM_FUNC("asm/nonmatching/code_080BBBA4.s");
-ASM_FUNC("asm/nonmatching/code_080BBBB8.s");
-ASM_FUNC("asm/nonmatching/code_080BBC5C.s");
-ASM_FUNC("asm/nonmatching/code_080BBC80.s");
-ASM_FUNC("asm/nonmatching/code_080BBD28.s");
-ASM_FUNC("asm/nonmatching/code_080BBDD0.s");
-ASM_FUNC("asm/nonmatching/code_080BBE40.s");
-ASM_FUNC("asm/nonmatching/code_080BBE50.s");
-ASM_FUNC("asm/nonmatching/code_080BBE7C.s");
-ASM_FUNC("asm/nonmatching/code_080BBEB0.s");
-ASM_FUNC("asm/nonmatching/code_080BC0A4.s");
-ASM_FUNC("asm/nonmatching/code_080BC0C4.s");
-ASM_FUNC("asm/nonmatching/code_080BC0F8.s");
+void sub_080BBB30(struct OpAnimProc * proc)
+{
+    int val = ++proc->unk_2C;
+
+    gDispIo.blend_ct.effect = BLEND_EFFECT_ALPHA;
+    val = val >> 2;
+    gDispIo.blend_coef_a = val;
+    gDispIo.blend_coef_b = 0x10 - val;
+    gDispIo.blend_y = 0;
+
+    SetBlendTargetA(1, 0, 0, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+
+    if (val == 0x10)
+    {
+        proc->unk_2C = 0;
+        Proc_Break(proc);
+    }
+}
+void sub_080BBBA4(struct OpAnimProc * proc)
+{
+    ApplyPaletteExt(gUnk_086005A4, 0, 0x20);
+}
+void sub_080BBBB8(struct OpAnimProc * proc)
+{
+    StartBgmExt(0x5C, 0x1E, NULL);
+
+    gDispIo.bg0_ct.priority = 2;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 3;
+
+    ApplyPaletteExt(gUnk_085E9D2C, 0x220, 0x20);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    proc->unk_2C = 0;
+    proc->unk_3C = 0;
+
+    sub_080BCAFC();
+    EndAllParallelWorkers();
+    StartParallelWorker(sub_080BB76C, proc);
+    sub_080BCE20(proc);
+
+    SetBlendConfig(BLEND_EFFECT_NONE, 0, 0, 0);
+
+    gUnkOpAnim_03001620 |= 0x80;
+
+    proc->unk_30 = 0;
+    proc->unk_38 = 0;
+    proc->unk_34 = 0;
+}
+void sub_080BBC5C(void)
+{
+    StartSpriteAnimProc(gUnk_086740B4, 0x78, 0x50, 0x3980, 0, 10);
+}
+void sub_080BBC80(void)
+{
+    SetBgOffset(0, 0, 0);
+    TmFill(gBg0Tm, 0);
+    ApplyPaletteExt(gUnk_0867451C, 0x1A0, 0x20);
+    CpuFastCopy(gUnk_08CEF080, (void *) 0x06008000, 0x2000);
+    sub_080AACD8(gBg0Tm, gUnk_086756A0, 0xD000);
+    EnableBgSync(BG0_SYNC_BIT);
+
+    SetBlendAlpha(0, 0x10);
+    SetBlendTargetA(1, 0, 0, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+}
+void sub_080BBD28(void)
+{
+    SetBgOffset(0, 0, 0);
+    TmFill(gBg0Tm, 0);
+    ApplyPaletteExt(gUnk_086758C0, 0x1A0, 0x20);
+    CpuFastCopy(gUnk_08CEF07C, (void *) 0x06008000, 0x2000);
+    sub_080AACD8(gBg0Tm, gUnk_08676BB8, 0xD000);
+    EnableBgSync(BG0_SYNC_BIT);
+
+    SetBlendAlpha(0, 0x10);
+    SetBlendTargetA(1, 0, 0, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+}
+void sub_080BBDD0(void)
+{
+    SetBgOffset(0, 0, 0);
+    sub_080BB2AC();
+    TmFill(gBg0Tm, 0);
+    ApplyPaletteExt(gUnk_08616D74, 0x1A0, 0x20);
+    CpuFastCopy(gUnk_08CEF078, (void *) 0x06008000, 0x1000);
+    sub_080AACD8(gBg0Tm + 0x40, gUnk_08616D94, 0xD000);
+
+    gUnkOpAnim_03001620 |= 0x20;
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
+void sub_080BBE40(void)
+{
+    gUnkOpAnim_03001620 |= 0x40;
+}
+void sub_080BBE50(struct OpAnimProc * proc)
+{
+    sub_080BD1DC(-1, gUnk_086005E4, 0, 0x10, 0xFFFF, 8, proc);
+}
+void sub_080BBE7C(struct OpAnimProc * proc)
+{
+    sub_080BBC5C();
+    sub_080BD1DC(-1, gUnk_08600604, 0, 0x10, 0xFFFF, 8, proc);
+}
+void sub_080BBEB0(struct OpAnimProc * proc)
+{
+    if (proc->unk_38 > proc->unk_30)
+    {
+        proc->unk_30 += proc->unk_34;
+
+        if (proc->unk_30 > proc->unk_38)
+            proc->unk_30 = proc->unk_38;
+
+        sub_080BD688(proc->unk_40, -proc->unk_30);
+    }
+
+    if (proc->unk_38 < proc->unk_30)
+    {
+        proc->unk_30 -= proc->unk_34;
+
+        if (proc->unk_30 < proc->unk_38)
+            proc->unk_30 = proc->unk_38;
+
+        sub_080BD688(proc->unk_40, -proc->unk_30);
+    }
+
+    switch (proc->unk_2C)
+    {
+    case 300:
+        sub_080BCA6C(1000, proc);
+        break;
+
+    case 1220:
+        gUnkOpAnim_03001620 |= 0x200;
+        /* fallthrough */
+
+    case 1340:
+        sub_080BD0D4((void *) -1, gUnk_08600584, 0, 1, proc);
+        break;
+
+    case 1400:
+        proc->unk_34 = 0x20;
+        proc->unk_38 = 0x200;
+        break;
+
+    case 1580:
+        gUnkOpAnim_03001620 |= 0x400;
+        sub_080BBDD0();
+        break;
+
+    case 1760:
+        proc->unk_34 = 0x20;
+        proc->unk_38 = 0;
+        break;
+
+    case 2060:
+    case 2210:
+        sub_080BBE50(proc);
+        break;
+
+    case 2360:
+        sub_080BBE7C(proc);
+        gUnkOpAnim_03001620 &= ~0x600;
+        sub_080BBE40();
+        break;
+
+    case 2860:
+        sub_080BBE50(proc);
+        gUnkOpAnim_03001620 |= 0x800;
+        break;
+
+    case 2920:
+        proc->unk_34 = 0x10;
+        proc->unk_38 = 0x180;
+        gUnkOpAnim_03001620 &= ~0x800;
+        break;
+
+    case 3060:
+        sub_080BD0D4((void *) -1, gUnk_08600564, 0, 1, proc);
+        break;
+
+    case 2560:
+    case 3160:
+        proc->unk_34 = 0x10;
+        proc->unk_38 = 0x100;
+        break;
+
+    case 3700:
+        sub_080BCAE8(proc);
+        break;
+
+    case 4000:
+        Proc_Break(proc);
+        break;
+    }
+
+    proc->unk_2C++;
+}
+void sub_080BC0A4(struct OpAnimProc * proc)
+{
+    proc->unk_2C = 0;
+    gUnkOpAnim_03001620 |= 0x100;
+    ArchiveCurrentPalettes();
+}
+void sub_080BC0C4(struct OpAnimProc * proc)
+{
+    int val = proc->unk_2C * 8 + 0x100;
+    proc->unk_2C++;
+
+    WriteFadedPaletteFromArchive(val, val, val, 1);
+
+    if (val == 0x200)
+        Proc_Break(proc);
+}
+void sub_080BC0F8(void)
+{
+    EnableBgSync(BG1_SYNC_BIT);
+}
 ASM_FUNC("asm/nonmatching/code_080BC104.s");
 ASM_FUNC("asm/nonmatching/code_080BC164.s");
 ASM_FUNC("asm/nonmatching/code_080BC21C.s");

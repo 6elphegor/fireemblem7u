@@ -36,20 +36,20 @@ void sub_080BB81C(struct OpAnimProc * proc);
 void sub_080BB98C(struct OpAnimProc * proc);
 void sub_080BBA3C(struct OpAnimProc * proc);
 void OpAnim_DrawWater(struct OpAnimProc * proc);
-void sub_080BBB30(struct Proc * proc);
-void sub_080BBBA4(struct Proc * proc);
-void sub_080BBBB8(struct Proc * proc);
-// sub_080BBC5C
-// sub_80BC688
-// sub_80BC730
-// sub_080BBDD0
-// sub_080BBE40
-// sub_080BBE50
-// sub_080BBE7C
-void sub_080BBEB0(struct Proc * proc);
-void sub_080BC0A4(struct Proc * proc);
-void sub_080BC0C4(struct Proc * proc);
-// sub_80BCB00
+void sub_080BBB30(struct OpAnimProc * proc);
+void sub_080BBBA4(struct OpAnimProc * proc);
+void sub_080BBBB8(struct OpAnimProc * proc);
+void sub_080BBC5C(void);
+void sub_080BBC80(void);
+void sub_080BBD28(void);
+void sub_080BBDD0(void);
+void sub_080BBE40(void);
+void sub_080BBE50(struct OpAnimProc * proc);
+void sub_080BBE7C(struct OpAnimProc * proc);
+void sub_080BBEB0(struct OpAnimProc * proc);
+void sub_080BC0A4(struct OpAnimProc * proc);
+void sub_080BC0C4(struct OpAnimProc * proc);
+void sub_080BC0F8(void);
 void sub_080BC104(struct Proc * proc);
 void sub_080BC164(struct Proc * proc);
 void sub_080BC21C(struct Proc * proc);
@@ -62,6 +62,9 @@ void sub_080BC494(struct Proc * proc);
 // sub_80BCF98
 // sub_80BCFC4
 void sub_080BC5B8(ProcPtr proc);
+void sub_080BCAE8(ProcPtr proc);
+void sub_080BCAFC(void);
+void sub_080BCE20(ProcPtr proc);
 // sub_080BC5CC
 // sub_080BC5E0
 // sub_080BC5F4
@@ -74,7 +77,7 @@ void sub_080BC5B8(ProcPtr proc);
 void sub_080BC960(struct Proc * proc);
 // sub_80BD3A0
 // sub_080BC9B8
-// sub_080BCA6C
+void sub_080BCA6C(int a, ProcPtr parent);
 // sub_80BD47C
 // sub_080BCA94
 // sub_80BD4E0
@@ -102,7 +105,7 @@ void sub_080BC960(struct Proc * proc);
 void sub_080BD0D4(void * a, const u16 * pal, int pal_bank, int size, ProcPtr parent);
 // sub_080BD168
 // sub_080BD1A4
-// sub_080BD1DC
+void sub_080BD1DC(int a, u16 const * pal, int c, int d, int e, int f, ProcPtr parent);
 // sub_080BD310
 // sub_080BD364
 void sub_080BD424(int a, int b, int angle, int speed, ProcPtr parent);
@@ -111,7 +114,7 @@ void sub_080BD424(int a, int b, int angle, int speed, ProcPtr parent);
 void sub_080BD548(ProcPtr proc);
 // sub_080BD570
 // sub_080BD588
-// sub_080BD688
+void sub_080BD688(ProcPtr proc, int val);
 // sub_080BD68C
 // sub_080BD698
 ProcPtr sub_080BD764(void const * a, int b, int c, int d, ProcPtr parent);
