@@ -200,8 +200,8 @@ bool WarpEffectExists(ProcPtr proc);
 // sub_08020C14
 // nullsub_40
 // ProcWhiteCircleFx_Loop
-// sub_08020D18
-// sub_08020D6C
+// ProcWhiteCircleFx_End
+// StartCircularFadeAnim
 // ProcEmitSingleStar_Init
 // sub_08020E68
 // Calcs_Interpolate

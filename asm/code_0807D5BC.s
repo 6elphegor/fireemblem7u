@@ -31,7 +31,7 @@ sub_0807D5BC: @ 0x0807D5BC
 	subs r0, #8
 	subs r2, r2, r0
 	adds r0, r4, #0
-	bl sub_08020D6C
+	bl StartCircularFadeAnim
 	adds r1, r4, #0
 	adds r1, #0x4d
 	movs r0, #1

@@ -178,9 +178,7 @@ SECTIONS
         build/src/danceringfx.o(.text);
         build/src/eventwarpfx.o(.text);
         build/src/bmfx_08020AD0.o(.text);
-        build/asm/code_08020C5C.o(.text);
-        build/asm/code_08020D18.o(.text);
-        build/asm/code_08020D6C.o(.text);
+        build/src/whitecircularfadefx.o(.text);
         build/asm/code_08020E34.o(.text);
         build/asm/code_08020E68.o(.text);
         build/asm/code_08020EDC.o(.text);
