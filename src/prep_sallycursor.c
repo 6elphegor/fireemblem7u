@@ -24,7 +24,7 @@ struct EventInfo
 const struct UnitDefinition * sub_08079280(void);  // GetChapterAllyUnitDataPointer
 void TrySwitchViewedUnit(int x, int y);
 void EndPlayerPhaseSideWindows(void);
-void sub_0808FE48(ProcPtr proc);                    // StartPrepScreenMenu
+void StartPrepScreenMenu(ProcPtr proc);                    // StartPrepScreenMenu
 void SetPrepScreenMenuItem(int index, void * func, int color, int msg, int msgHelp);
 void SetPrepScreenMenuOnBPress(void * func);
 void SetPrepScreenMenuOnStartPress(void * func);
@@ -247,7 +247,7 @@ void PrepScreenProc_StartMapMenu(struct ProcPrepSallyCursor * proc)
     EndPlayerPhaseSideWindows();
     HideMoveRangeGraphics();
 
-    sub_0808FE48(proc);
+    StartPrepScreenMenu(proc);
 
     SetPrepScreenMenuItem(PREP_MAPMENU_VIEW_MAP, PrepMapMenu_OnViewMap, 0, 0x114F, 0x383);
     SetPrepScreenMenuItem(PREP_MAPMENU_FORMATION, PrepMapMenu_OnFormation, 0, 0x114E, 0x384);
