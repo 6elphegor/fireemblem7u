@@ -18,7 +18,7 @@ _080B42E2:
 	cmp r0, #0
 	beq _080B42F4
 	movs r0, #0
-	bl sub_080B2FC0
+	bl WmSetUnk02
 _080B42F4:
 	pop {r4}
 	pop {r0}

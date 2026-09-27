@@ -13,11 +13,11 @@ sub_080B4F9C: @ 0x080B4F9C
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080B4FD8
-	bl sub_080B33B8
+	bl WmGetCameraX
 	adds r1, r4, #0
 	adds r1, #0x4c
 	strh r0, [r1]
-	bl sub_080B33C4
+	bl WmGetCameraY
 	adds r1, r4, #0
 	adds r1, #0x4e
 	strh r0, [r1]

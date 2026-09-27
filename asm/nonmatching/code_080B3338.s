@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B3338
-sub_080B3338: @ 0x080B3338
+	thumb_func_start WmUpdateCamera
+WmUpdateCamera: @ 0x080B3338
 	push {r4, r5, lr}
 	adds r2, r0, #0
 	ldr r0, _080B33B4 @ =0x02000000

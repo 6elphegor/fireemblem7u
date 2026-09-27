@@ -8,9 +8,9 @@ sub_080B5430: @ 0x080B5430
 	mov r7, r8
 	push {r7}
 	adds r4, r0, #0
-	bl sub_080B33B8
+	bl WmGetCameraX
 	mov r8, r0
-	bl sub_080B33C4
+	bl WmGetCameraY
 	adds r7, r0, #0
 	mov r5, r8
 	adds r3, r7, #0
@@ -131,11 +131,11 @@ _080B5518:
 	mov r1, r8
 	subs r0, r5, r1
 	subs r1, r3, r7
-	bl sub_080B32CC
+	bl WmMoveCamera
 	movs r1, #1
 	rsbs r1, r1, #0
 	adds r0, r1, #0
-	bl sub_080B3338
+	bl WmUpdateCamera
 	adds r1, r4, #0
 	adds r1, #0x40
 	movs r0, #0x80

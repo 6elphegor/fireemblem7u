@@ -1995,3 +1995,5 @@ gpEndingCgScrollBlendTable = 0x08CEEF68;
 gEndingCgScrollLut = 0x08CEED60;
 gEndingCgScroll2Lut = 0x08CEEE68;
 Pal_EndingCgScroll = 0x085E0280;
+gWmSt = 0x02000000;
+gWmCanvas = 0x0200000C;

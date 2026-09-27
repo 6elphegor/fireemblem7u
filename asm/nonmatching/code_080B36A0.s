@@ -6,7 +6,7 @@
 sub_080B36A0: @ 0x080B36A0
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_080B32A0
+	bl WmRedrawMap
 	ldr r3, _080B36F0 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c

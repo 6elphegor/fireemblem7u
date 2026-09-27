@@ -14,7 +14,7 @@ sub_080B36FC: @ 0x080B36FC
 	lsrs r0, r0, #0x18
 	ldr r1, [r4, #0x34]
 	ldr r2, [r4, #0x38]
-	bl sub_080B322C
+	bl WmSetCamera
 _080B3714:
 	adds r0, r4, #0
 	bl Proc_Break

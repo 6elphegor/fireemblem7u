@@ -42,7 +42,7 @@ sub_080B50C4: @ 0x080B50C4
 	ldrsh r1, [r4, r2]
 	movs r3, #0x32
 	ldrsh r2, [r4, r3]
-	bl sub_080B322C
+	bl WmSetCamera
 	movs r0, #0x3c
 	adds r0, r0, r7
 	mov r8, r0
@@ -192,7 +192,7 @@ _080B5264:
 	bl NewFadeIn
 _080B526C:
 	movs r0, #0
-	bl sub_080B2FC0
+	bl WmSetUnk02
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov sb, r4

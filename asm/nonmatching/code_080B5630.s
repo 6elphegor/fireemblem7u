@@ -8,6 +8,6 @@ sub_080B5630: @ 0x080B5630
 	bl sub_08004234
 	bl sub_080B4F58
 	movs r0, #0
-	bl sub_080B2FC0
+	bl WmSetUnk02
 	pop {r0}
 	bx r0

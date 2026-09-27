@@ -420,11 +420,11 @@ _080B41BE:
 	beq _080B41D6
 _080B41C6:
 	adds r0, r5, #0
-	bl sub_080B32CC
+	bl WmMoveCamera
 	movs r1, #1
 	rsbs r1, r1, #0
 	adds r0, r1, #0
-	bl sub_080B3338
+	bl WmUpdateCamera
 _080B41D6:
 	ldr r0, [r6, #0x54]
 	movs r1, #0x80
@@ -433,7 +433,7 @@ _080B41D6:
 	cmp r0, #0
 	beq _080B4278
 	movs r0, #1
-	bl sub_080B2FC0
+	bl WmSetUnk02
 	b _080B4278
 	.align 2, 0
 _080B41EC: .4byte 0x02000000
@@ -505,7 +505,7 @@ _080B4256:
 	cmp r1, #0
 	beq _080B4278
 	movs r0, #0
-	bl sub_080B2FC0
+	bl WmSetUnk02
 _080B4278:
 	mov r3, sp
 	ldrh r4, [r3, #0xc]

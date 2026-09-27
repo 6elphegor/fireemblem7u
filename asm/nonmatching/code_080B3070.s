@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B3070
-sub_080B3070: @ 0x080B3070
+	thumb_func_start WmCanvas_PutPixel
+WmCanvas_PutPixel: @ 0x080B3070
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
