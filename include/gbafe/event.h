@@ -24,10 +24,10 @@ struct EventProc {
 
     /* 2C */ EventScr const * script_start;
     /* 30 */ EventScr const * script;
-    /* 38 */ EventScr const * script_return;
+    /* 34 */ EventScr const * script_return;     // script_start of the calling script (0 if none)
+    /* 38 */ EventScr const * script_return_pc;  // script position of the calling script
 
-    STRUCT_PAD(0x38, 0x40);
-
+    /* 3C */ void (* skip_func)(struct EventProc * proc);
     /* 40 */ void (* idle_func)(struct EventProc * proc);
     /* 44 */ struct UnitDefinition const * unit_info;
     /* 48 */ int talk_auto_msg;
@@ -36,16 +36,19 @@ struct EventProc {
     /* 4E */ u8 unk_4E;
     /* 4F */ u8 map_change_param;
     /* 50 */ u16 sleep_duration;
+    /* 52 */ s16 unk_52;
 
-    STRUCT_PAD(0x52, 0x55);
+    STRUCT_PAD(0x54, 0x55);
 
     /* 55 */ u8 pid_param; // TODO: what is this exactly?
     /* 56 */ u16 ignore_count;
-
-    STRUCT_PAD(0x58, 0x5C);
-
+    /* 58 */ int unk_58;
     /* 5C */ u16 iid_param;
     /* 5E */ u16 flags;
+
+    STRUCT_PAD(0x60, 0x68);
+
+    /* 68 */ s8 text_speed;
 };
 
 enum event_func_ret_idx {
@@ -678,3 +681,35 @@ extern struct ProcCmd CONST_DATA ProcScr_ScreenFlashing[];
 extern struct ProcCmd CONST_DATA ProcScr_EventFadefx[];
 extern struct ProcCmd CONST_DATA ProcScr_EventSpriteAnim[];
 extern struct ProcCmd CONST_DATA ProcScr_Event_08B92414[];
+
+struct EventCmdInfo {
+    int (* func)(struct EventProc * proc);
+    int length; // in words
+};
+
+extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
+
+/* ---- event-engine.c (0x0800A618-0x0800B4C8) ---- */
+
+/* ---- end event-engine.c ---- */
+
+
+/* ---- eventscr.c (0x0800B90C-0x0800D01C) ---- */
+
+/* ---- end eventscr.c ---- */
+
+
+/* ---- eventscr2.c (0x0800D01C-0x0800E330) ---- */
+
+/* ---- end eventscr2.c ---- */
+
+
+/* ---- eventscr3.c (0x0800E330-0x0800EC40) ---- */
+
+/* ---- end eventscr3.c ---- */
+
+
+/* ---- eventscr4.c (0x0800EC40-0x0800F9B0) ---- */
+
+/* ---- end eventscr4.c ---- */
+
