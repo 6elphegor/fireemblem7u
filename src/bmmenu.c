@@ -580,7 +580,7 @@ u8 TradeSelection_OnSelect(ProcPtr proc, struct SelectTarget * target)
 {
     gActionSt.id = ACTION_TRADED_NOCHANGES;
 
-    sub_0802B678(gActiveUnit, GetUnit(target->uid), 0);
+    StartTradeMenu(gActiveUnit, GetUnit(target->uid), 0);
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }

@@ -149,7 +149,7 @@ void BattleGenerateBallistaSimulation(struct Unit * actor, struct Unit * target,
 void UpdateBattleForecastContents(void);
 void CloseBattleForecast(void);
 void MakeTradeTargetList(struct Unit * unit);
-void sub_0802B678(struct Unit * unit, struct Unit * other, int unk);   /* FE8U: StartTradeMenu */
+ProcPtr StartTradeMenu(struct Unit * unit, struct Unit * other, int unk);
 s8 sub_08034884(struct Unit * unit);   /* FE8U: CanUnitSeize */
 int GetAvailableTileEventCommand(s8 x, s8 y);
 s8 IsUnitMagicSealed(struct Unit * unit);
