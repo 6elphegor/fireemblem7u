@@ -18,11 +18,11 @@ struct ProcBmFx {
 
 // GetSomeFacingDirection
 // Make6CMOVEUNITForUnitBeingRescued
-// sub_0801D440
+// Loop6C_KOIDO
 // Make6CKOIDO
 // Make6CKOIDOAMM
-// sub_0801D51C
-// sub_0801D554
+// bmxfade_init
+// bmxfade_loop
 // Destruct6CBMXFADE
 // StartMapFade
 // IsMapFadeActive
@@ -30,7 +30,7 @@ struct ProcBmFx {
 // GetEnemyStartCursorPosition
 // ProcFun_ResetCursorPosition
 // ADJUSTFROMXI_MoveCameraOnSomeUnit
-// sub_0801D7AC
+// ConvoyMenuProc_StarMenu
 // ConvoyMenuProc_MenuEnd
 // ConvoyMenuProc_MaybeStartSelectConvoyItem
 // ConvoyMenuProc_SendToConvoyReal
@@ -52,8 +52,8 @@ struct ProcBmFx {
 // UpdateMenuItemPanel
 // EndMenuItemPanel
 // PrepUnitSwapProc_Init
-// sub_0801E360
-// sub_0801E45C
+// PrepUnitSwapProc_MainLoop
+// PrepUnitSwapProc_OnEnd
 // StartPrepUnitSwap
 // sub_801E83C
 // PhaseIntroVMatchHi
@@ -71,9 +71,9 @@ struct ProcBmFx {
 // PhaseIntroBlendBox_InLoop
 // PhaseIntroBlendBox_OutLoop
 // PhaseIntro_EndIfNoUnits
-// sub_0801E9CC
-// sub_0801EA78
-// sub_0801EB74
+// PhaseIntro_InitGraphics
+// PhaseIntro_InitDisp
+// PhaseIntro_WaitForEnd
 // ChangeActiveUnitFacing
 // GasTrapSpriteAnim_Init
 // StartGasTrapAnim
@@ -84,13 +84,13 @@ struct ProcBmFx {
 // StartUnkTrapAnim
 // ArrowTrapSpriteAnim_Init
 // StartArrowTrapAnim
-// sub_0801EF64
+// ProcShowMapChange_MoveCamera
 // ProcShowMapChange_UpdateGame
 // StartShowMapChangeAnim
 // PikeTrapSpriteAnim_Init
 // StartPikeTrapAnim
 // ProcPopup2_Init
-// sub_0801F0D0
+// ProcPopup2_Loop
 // NewPopup2_PlanA
 // sub_801F514
 // sub_801F650

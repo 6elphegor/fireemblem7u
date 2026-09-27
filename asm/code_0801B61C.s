@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B61C
-sub_0801B61C: @ 0x0801B61C
+	thumb_func_start DebugMapMenu_DisplayInfoIdle
+DebugMapMenu_DisplayInfoIdle: @ 0x0801B61C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -25,7 +25,7 @@ sub_0801B61C: @ 0x0801B61C
 	strh r1, [r0]
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0801B598
+	bl DebugMapMenu_DisplayInfoDraw
 	movs r0, #1
 	rsbs r0, r0, #0
 	movs r1, #9

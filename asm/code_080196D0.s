@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080196D0
-sub_080196D0: @ 0x080196D0
+	thumb_func_start RenderBmMapColumn
+RenderBmMapColumn: @ 0x080196D0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

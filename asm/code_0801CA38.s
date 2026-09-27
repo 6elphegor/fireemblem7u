@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801CA38
-sub_0801CA38: @ 0x0801CA38
+	thumb_func_start PlayerPhase_PrepareAction
+PlayerPhase_PrepareAction: @ 0x0801CA38
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r4, _0801CA78 @ =0x0203A85C

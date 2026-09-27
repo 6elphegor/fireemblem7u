@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B66C
-sub_0801B66C: @ 0x0801B66C
+	thumb_func_start DebugMenu_WeatherDraw
+DebugMenu_WeatherDraw: @ 0x0801B66C
 	push {r4, r5, r6, lr}
 	sub sp, #0x1c
 	adds r5, r1, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801D7AC
-sub_0801D7AC: @ 0x0801D7AC
+	thumb_func_start ConvoyMenuProc_StarMenu
+ConvoyMenuProc_StarMenu: @ 0x0801D7AC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, _0801D7D8 @ =0x02001F70

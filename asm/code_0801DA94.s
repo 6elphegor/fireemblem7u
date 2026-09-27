@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801DA94
-sub_0801DA94: @ 0x0801DA94
+	thumb_func_start SendToConvoyMenu_Selected2
+SendToConvoyMenu_Selected2: @ 0x0801DA94
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0

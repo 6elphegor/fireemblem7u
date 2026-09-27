@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801BC80
-sub_0801BC80: @ 0x0801BC80
+	thumb_func_start DebugContinueMenu_InitializeFile
+DebugContinueMenu_InitializeFile: @ 0x0801BC80
 	push {lr}
 	adds r1, #0x3d
 	ldrb r1, [r1]

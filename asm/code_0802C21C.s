@@ -8,7 +8,7 @@ sub_0802C21C: @ 0x0802C21C
 	adds r4, r0, #0
 	ldrb r0, [r4]
 	ldrb r1, [r4, #1]
-	bl sub_080193BC
+	bl GetTrueTerrainAt
 	ldr r1, _0802C248 @ =0x0202E3E0
 	ldr r2, [r1]
 	ldrb r3, [r4, #1]

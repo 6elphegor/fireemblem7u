@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B598
-sub_0801B598: @ 0x0801B598
+	thumb_func_start DebugMapMenu_DisplayInfoDraw
+DebugMapMenu_DisplayInfoDraw: @ 0x0801B598
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r6, r1, #0

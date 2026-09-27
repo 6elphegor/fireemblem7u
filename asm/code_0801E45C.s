@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801E45C
-sub_0801E45C: @ 0x0801E45C
+	thumb_func_start PrepUnitSwapProc_OnEnd
+PrepUnitSwapProc_OnEnd: @ 0x0801E45C
 	adds r1, r0, #0
 	ldr r2, [r1, #0x2c]
 	movs r3, #0x34

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801A0FC
-sub_0801A0FC: @ 0x0801A0FC
+	thumb_func_start MarkMovementMapEdges
+MarkMovementMapEdges: @ 0x0801A0FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080193BC
-sub_080193BC: @ 0x080193BC
+	thumb_func_start GetTrueTerrainAt
+GetTrueTerrainAt: @ 0x080193BC
 	ldr r2, _080193D8 @ =0x08B932B4
 	ldr r2, [r2]
 	lsls r1, r1, #2

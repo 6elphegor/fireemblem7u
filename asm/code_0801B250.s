@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B250
-sub_0801B250: @ 0x0801B250
+	thumb_func_start Loop6C_WaitForSelectPress
+Loop6C_WaitForSelectPress: @ 0x0801B250
 	push {lr}
 	adds r2, r0, #0
 	ldr r0, _0801B26C @ =0x08B857F8

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B214
-sub_0801B214: @ 0x0801B214
+	thumb_func_start Return3or2BySecondParity
+Return3or2BySecondParity: @ 0x0801B214
 	push {r4, lr}
 	sub sp, #8
 	bl GetGameTime

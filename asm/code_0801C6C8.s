@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801C6C8
-sub_0801C6C8: @ 0x0801C6C8
+	thumb_func_start PlayerPhase_RangeDisplayIdle
+PlayerPhase_RangeDisplayIdle: @ 0x0801C6C8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #0xff
@@ -56,7 +56,7 @@ _0801C72C:
 	ldrsh r0, [r1, r2]
 	movs r3, #0x16
 	ldrsh r1, [r1, r3]
-	bl sub_0801CEF4
+	bl CanMoveActiveUnitTo
 	lsls r0, r0, #0x18
 	movs r4, #0
 	cmp r0, #0
@@ -235,7 +235,7 @@ _0801C8B2:
 	beq _0801C974
 	adds r0, r4, #0
 	bl GetUnit
-	bl sub_0801C218
+	bl CanShowUnitStatScreen
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0801C974

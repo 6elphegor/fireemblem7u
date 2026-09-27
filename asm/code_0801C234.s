@@ -66,7 +66,7 @@ _0801C28C:
 	cmp r0, #0
 	beq _0801C304
 	bl GetUnit
-	bl sub_0801C218
+	bl CanShowUnitStatScreen
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0801C304

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B008
-sub_0801B008: @ 0x0801B008
+	thumb_func_start GenerateDangerZoneRange
+GenerateDangerZoneRange: @ 0x0801B008
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

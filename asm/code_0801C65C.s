@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801C65C
-sub_0801C65C: @ 0x0801C65C
+	thumb_func_start PlayerPhase_DisplayDangerZone
+PlayerPhase_DisplayDangerZone: @ 0x0801C65C
 	push {r4, r5, r6, lr}
 	ldr r4, _0801C6B0 @ =0x0202BBB8
 	adds r5, r4, #0
@@ -12,7 +12,7 @@ sub_0801C65C: @ 0x0801C65C
 	adds r0, r6, #0
 	ldrb r1, [r5]
 	ands r0, r1
-	bl sub_0801B008
+	bl GenerateDangerZoneRange
 	ldr r0, _0801C6B4 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #1

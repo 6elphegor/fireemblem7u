@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801DD6C
-sub_0801DD6C: @ 0x0801DD6C
+	thumb_func_start MenuItemPanelProcIdle
+MenuItemPanelProcIdle: @ 0x0801DD6C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801EB74
-sub_0801EB74: @ 0x0801EB74
+	thumb_func_start PhaseIntro_WaitForEnd
+PhaseIntro_WaitForEnd: @ 0x0801EB74
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0801EBFC @ =0x03002870

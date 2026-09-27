@@ -234,7 +234,7 @@ _08019FDC:
 _08019FF2:
 	ldr r0, [sp, #0xc]
 	ldr r1, [sp, #8]
-	bl sub_0801A010
+	bl RevertMovementScript
 	add sp, #0x14
 	pop {r3, r4, r5}
 	mov r8, r3

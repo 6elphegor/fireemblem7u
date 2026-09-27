@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801E9CC
-sub_0801E9CC: @ 0x0801E9CC
+	thumb_func_start PhaseIntro_InitGraphics
+PhaseIntro_InitGraphics: @ 0x0801E9CC
 	push {lr}
 	ldr r0, _0801EA08 @ =0x08195520
 	ldr r1, _0801EA0C @ =0x06002000

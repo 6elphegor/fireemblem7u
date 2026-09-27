@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801C218
-sub_0801C218: @ 0x0801C218
+	thumb_func_start CanShowUnitStatScreen
+CanShowUnitStatScreen: @ 0x0801C218
 	adds r1, r0, #0
 	ldr r0, [r1, #4]
 	ldrb r0, [r0, #4]

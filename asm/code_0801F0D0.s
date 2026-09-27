@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801F0D0
-sub_0801F0D0: @ 0x0801F0D0
+	thumb_func_start ProcPopup2_Loop
+ProcPopup2_Loop: @ 0x0801F0D0
 	push {lr}
 	adds r2, r0, #0
 	adds r1, r2, #0

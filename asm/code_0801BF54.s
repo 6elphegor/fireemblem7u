@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801BF54
-sub_0801BF54: @ 0x0801BF54
+	thumb_func_start Debug_GetChapterId
+Debug_GetChapterId: @ 0x0801BF54
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801D440
-sub_0801D440: @ 0x0801D440
+	thumb_func_start Loop6C_KOIDO
+Loop6C_KOIDO: @ 0x0801D440
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl MuExistsActive

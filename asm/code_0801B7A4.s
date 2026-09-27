@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B7A4
-sub_0801B7A4: @ 0x0801B7A4
+	thumb_func_start DebugMenu_ClearDraw
+DebugMenu_ClearDraw: @ 0x0801B7A4
 	push {r4, r5, lr}
 	adds r5, r1, #0
 	adds r4, r5, #0

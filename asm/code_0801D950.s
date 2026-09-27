@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801D950
-sub_0801D950: @ 0x0801D950
+	thumb_func_start SendToConvoyMenu_Draw
+SendToConvoyMenu_Draw: @ 0x0801D950
 	push {lr}
 	bl ItemSelectMenu_TextDraw
 	pop {r1}

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801C624
-sub_0801C624: @ 0x0801C624
+	thumb_func_start DisplayActiveUnitEffectRange
+DisplayActiveUnitEffectRange: @ 0x0801C624
 	push {lr}
 	ldr r0, _0801C650 @ =0x0202BBF8
 	adds r0, #0x41
@@ -22,7 +22,7 @@ _0801C63A:
 	strb r0, [r1, #4]
 	ldr r0, _0801C658 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_0801C4D0
+	bl DisplayUnitEffectRange
 	pop {r0}
 	bx r0
 	.align 2, 0

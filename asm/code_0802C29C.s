@@ -15,7 +15,7 @@ _0802C2A8:
 	bne _0802C2C8
 	ldrb r0, [r4]
 	ldrb r1, [r4, #1]
-	bl sub_080193BC
+	bl GetTrueTerrainAt
 	ldr r1, _0802C2D8 @ =0x0202E3E0
 	ldr r2, [r1]
 	ldrb r3, [r4, #1]

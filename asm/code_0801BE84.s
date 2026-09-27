@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801BE84
-sub_0801BE84: @ 0x0801BE84
+	thumb_func_start DebugChargeMenu_Idle
+DebugChargeMenu_Idle: @ 0x0801BE84
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
@@ -92,7 +92,7 @@ _0801BF10:
 _0801BF24:
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_0801BDDC
+	bl DebugChargeMenu_Draw
 _0801BF2C:
 	movs r0, #0
 	pop {r4, r5, r6}

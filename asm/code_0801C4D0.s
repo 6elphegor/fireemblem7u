@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801C4D0
-sub_0801C4D0: @ 0x0801C4D0
+	thumb_func_start DisplayUnitEffectRange
+DisplayUnitEffectRange: @ 0x0801C4D0
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	movs r4, #1

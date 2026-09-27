@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801EA78
-sub_0801EA78: @ 0x0801EA78
+	thumb_func_start PhaseIntro_InitDisp
+PhaseIntro_InitDisp: @ 0x0801EA78
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8

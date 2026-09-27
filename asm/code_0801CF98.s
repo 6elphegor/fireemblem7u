@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801CF98
-sub_0801CF98: @ 0x0801CF98
+	thumb_func_start PlayerPhase_WaitForUnitMovement
+PlayerPhase_WaitForUnitMovement: @ 0x0801CF98
 	push {r4, lr}
 	adds r4, r0, #0
 	bl MuExistsActive

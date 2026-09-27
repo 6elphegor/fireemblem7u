@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801E4B8
-sub_0801E4B8: @ 0x0801E4B8
+	thumb_func_start PrepUnitSwapProcExits
+PrepUnitSwapProcExits: @ 0x0801E4B8
 	push {lr}
 	ldr r0, _0801E4C8 @ =0x08B93704
 	bl Proc_Find

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801CDBC
-sub_0801CDBC: @ 0x0801CDBC
+	thumb_func_start PlayerPhase_ApplyUnitMovement
+PlayerPhase_ApplyUnitMovement: @ 0x0801CDBC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r4, _0801CE20 @ =0x03004690

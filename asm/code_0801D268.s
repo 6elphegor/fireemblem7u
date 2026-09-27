@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801D268
-sub_0801D268: @ 0x0801D268
+	thumb_func_start MoveLimitView_OnEnd
+MoveLimitView_OnEnd: @ 0x0801D268
 	push {lr}
 	adds r0, #0x4a
 	movs r1, #0x11

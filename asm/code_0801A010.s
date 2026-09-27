@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801A010
-sub_0801A010: @ 0x0801A010
+	thumb_func_start RevertMovementScript
+RevertMovementScript: @ 0x0801A010
 	sub sp, #0x40
 	adds r3, r0, #0
 	mov r2, sp

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801EF64
-sub_0801EF64: @ 0x0801EF64
+	thumb_func_start ProcShowMapChange_MoveCamera
+ProcShowMapChange_MoveCamera: @ 0x0801EF64
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x2c]

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B814
-sub_0801B814: @ 0x0801B814
+	thumb_func_start DebugMenu_ClearIdle
+DebugMenu_ClearIdle: @ 0x0801B814
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x64
 	adds r6, r0, #0
@@ -81,7 +81,7 @@ _0801B89C:
 	bl WriteGlobalSaveInfo
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl sub_0801B7A4
+	bl DebugMenu_ClearDraw
 _0801B8AC:
 	movs r0, #0
 	add sp, #0x64

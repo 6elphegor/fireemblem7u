@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801979C
-sub_0801979C: @ 0x0801979C
+	thumb_func_start RenderBmMapLine
+RenderBmMapLine: @ 0x0801979C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

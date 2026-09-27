@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801B6F8
-sub_0801B6F8: @ 0x0801B6F8
+	thumb_func_start DebugMenu_WeatherIdle
+DebugMenu_WeatherIdle: @ 0x0801B6F8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -22,7 +22,7 @@ sub_0801B6F8: @ 0x0801B6F8
 	str r0, [r4, #0x58]
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_0801B66C
+	bl DebugMenu_WeatherDraw
 	ldr r0, [r4, #0x58]
 	movs r1, #7
 	bl __modsi3

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801C57C
-sub_0801C57C: @ 0x0801C57C
+	thumb_func_start PlayerPhase_InitUnitMovementSelect
+PlayerPhase_InitUnitMovementSelect: @ 0x0801C57C
 	push {r4, r5, lr}
 	bl sub_0806C040
 	lsls r0, r0, #0x18
@@ -41,7 +41,7 @@ _0801C5B8:
 	strb r0, [r5, #4]
 	ldr r4, _0801C608 @ =0x03004690
 	ldr r0, [r4]
-	bl sub_0801C4D0
+	bl DisplayUnitEffectRange
 	ldr r4, [r4]
 	movs r1, #0x10
 	ldrsb r1, [r4, r1]

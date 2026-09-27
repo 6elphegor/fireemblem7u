@@ -11,7 +11,7 @@ sub_080342FC: @ 0x080342FC
 	ldrb r2, [r2, #0x11]
 	lsls r2, r2, #0x18
 	asrs r2, r2, #0x18
-	bl sub_0801EDC0
+	bl StartFireTrapAnim2
 	pop {r0}
 	bx r0
 	.align 2, 0

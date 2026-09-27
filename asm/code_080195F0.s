@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080195F0
-sub_080195F0: @ 0x080195F0
+	thumb_func_start UpdateBmMapDisplay
+UpdateBmMapDisplay: @ 0x080195F0
 	push {r4, r5, lr}
 	ldr r2, _08019620 @ =0x0202BBB8
 	ldrh r4, [r2, #0xc]
@@ -25,7 +25,7 @@ sub_080195F0: @ 0x080195F0
 	cmp r0, #0
 	beq _08019634
 	movs r0, #0xf
-	bl sub_080196D0
+	bl RenderBmMapColumn
 	b _08019634
 	.align 2, 0
 _08019620: .4byte 0x0202BBB8
@@ -36,7 +36,7 @@ _08019624:
 	cmp r0, #0
 	beq _08019634
 	movs r0, #0
-	bl sub_080196D0
+	bl RenderBmMapColumn
 _08019634:
 	ldr r2, _08019664 @ =0x0202BBB8
 	ldrh r4, [r2, #0xe]
@@ -58,7 +58,7 @@ _08019634:
 	cmp r0, #0
 	beq _08019678
 	movs r0, #0xa
-	bl sub_0801979C
+	bl RenderBmMapLine
 	b _08019678
 	.align 2, 0
 _08019664: .4byte 0x0202BBB8
@@ -69,7 +69,7 @@ _08019668:
 	cmp r0, #0
 	beq _08019678
 	movs r0, #0
-	bl sub_0801979C
+	bl RenderBmMapLine
 _08019678:
 	ldr r4, _080196CC @ =0x0202BBB8
 	ldr r0, [r4, #0xc]

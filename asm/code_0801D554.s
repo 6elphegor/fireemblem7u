@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801D554
-sub_0801D554: @ 0x0801D554
+	thumb_func_start bmxfade_loop
+bmxfade_loop: @ 0x0801D554
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801D1E4
-sub_0801D1E4: @ 0x0801D1E4
+	thumb_func_start MoveLimitView_OnLoop
+MoveLimitView_OnLoop: @ 0x0801D1E4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl GetGameTime
