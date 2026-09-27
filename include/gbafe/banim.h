@@ -1187,7 +1187,7 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_8061B7C
 // ??? sub_8061BE0
 // ??? sub_08061434
-// ??? StartSpellBG_IvaldiBG1
+// ??? StartSpellBG_LuceBG
 // ??? sub_8061DE8
 // ??? sub_08061658
 // ??? sub_8061EE8
