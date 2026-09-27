@@ -180,14 +180,14 @@ void CallDelayed(void (*)(), int);
 // ??? sub_08014E38
 // ??? MemCpy
 // ??? PutDrawTextCentered
-// ??? VecMulMat
-// ??? MatMulMat
-// ??? MatIdent
-// ??? MatCopy
-// ??? MatRotA
-// ??? MatRotB
-// ??? MatRotC
-// ??? nullsub_36
-// ??? VecDotVec
-// ??? VecCrossVec
-// ??? sub_08015244
+void VecMulMat(int const * vec, int const * mat, int * ovec);
+void MatMulMat(int const * lmat, int const * rmat, int * omat);
+void MatIdent(int * mat);
+void MatCopy(int const * src, int * dst);
+void MatRotA(int * mat, short angle);
+void MatRotB(int * mat, short angle);
+void MatRotC(int * mat, short angle);
+void sub_080151E4(void);
+int VecDotVec(int const * lvec, int const * rvec);
+void VecCrossVec(int const * lvec, int const * rvec, int * ovec);
+int sub_08015244(int a, int b, int c, int d);
