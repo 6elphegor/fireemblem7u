@@ -2,6 +2,8 @@
 
 int CountDigits(int number);
 const char * sub_08018CC0(struct Unit * unit); // FE7U GetUnitRescueName (msg-based)
+void sub_08016668(struct Text * text, int item, int nameColor, u16 * mapOut); // DrawItemStatScreenLine
+char * GetItemRangeString(int item); // GetItemDisplayRangeString
 
 void DrawUiGaugeBitmapEdgeColumn(u8 * bitmap, int pixels_per_line, int column)
 {
@@ -489,8 +491,73 @@ void PutStatScreenPersonalInfoPage(void)
 }
 
 
-void PutStatScreenItemsPage(void);
-ASM_FUNC("asm/nonmatching/code_080800B4.s");
+void PutStatScreenItemsPage(void)
+{
+    int i, item;
+    char const * str;
+
+    Decompress(Tsa_Statscreen_Pag1_083FCAC0, gBuf);
+    TmApplyTsa(gUiTmScratchB, gBuf, TILEREF(BGCHR_WINDOWFRAME, BGPAL_WINDOWFRAME));
+
+    Decompress(Tsa_Statscreen_Pag1_083FCE2C, gBuf);
+    TmApplyTsa(gUiTmScratchC + TM_OFFSET(1, 11), gBuf, TILEREF(BGCHR_STATSCREEN_EQUIPSTATFRAME, BGPAL_STATSCREEN_EQUIPSTATFRAME));
+
+    PutStatScreenText(gStatScreenEquipmentLabelsInfo);
+
+    for (i = 0; (i < ITEMSLOT_INV_COUNT) && (item = gStatScreenSt.unit->items[i]); i++)
+    {
+        int color;
+        if ((gStatScreenSt.unit->state & US_DROP_ITEM) && (i == GetUnitItemCount(gStatScreenSt.unit) - 1))
+            color = TEXT_COLOR_SYSTEM_GREEN;
+        else
+            color = IsItemDisplayUsable(gStatScreenSt.unit, item)
+                ? TEXT_COLOR_SYSTEM_WHITE
+                : TEXT_COLOR_SYSTEM_GRAY;
+
+        sub_08016668(
+            &gStatScreenSt.text[STATSCREEN_TEXT_ITEM_A + i],
+            item, color,
+            gUiTmScratchA + TM_OFFSET(1, 1 + i * 2));
+    }
+
+    i = GetUnitEquippedWeaponSlot(gStatScreenSt.unit);
+    item = 0;
+
+    if (i >= 0)
+    {
+        PutSpecialChar(
+            gUiTmScratchA + TM_OFFSET(16, 1 + i * 2),
+            0, TEXT_SPECIAL_EXP_E);
+
+        TmApplyTsa(
+            gUiTmScratchC + TM_OFFSET(1, 2 + i * 2),
+            Tsa_Statscreen_Pag1_083FCE68, TILEREF(BGCHR_STATSCREEN_EQUIPSTATFRAME, BGPAL_STATSCREEN_EQUIPSTATFRAME));
+
+        item = gStatScreenSt.unit->items[i];
+    }
+
+    PutNumberOrBlank(gUiTmScratchA + TM_OFFSET(8,  13),
+        TEXT_COLOR_SYSTEM_BLUE, gBattleActor.battleAttack);
+
+    PutNumberOrBlank(gUiTmScratchA + TM_OFFSET(8,  15),
+        TEXT_COLOR_SYSTEM_BLUE, gBattleActor.battleHitRate);
+
+    PutNumberOrBlank(gUiTmScratchA + TM_OFFSET(15, 13),
+        TEXT_COLOR_SYSTEM_BLUE, gBattleActor.battleCritRate);
+
+    PutNumberOrBlank(gUiTmScratchA + TM_OFFSET(15, 15),
+        TEXT_COLOR_SYSTEM_BLUE, gBattleActor.battleAvoidRate);
+
+    str = GetItemRangeString(item);
+    Text_InsertDrawString(gStatScreenSt.text + STATSCREEN_TEXT_EQUIPRANGE,
+        47 - GetStringTextLen(str), TEXT_COLOR_SYSTEM_BLUE, str);
+
+    for (i = 0; i < 8; ++i)
+    {
+        gUiTmScratchA[TM_OFFSET(2 + i, 11)] = TILEREF(0x278 + i, BGPAL_ICONS + 1);
+        gUiTmScratchA[TM_OFFSET(2 + i, 12)] = TILEREF(0x270 + i, BGPAL_ICONS + 1);
+    }
+}
 
 
 void PutStatScreenSupportList(void)

@@ -1375,15 +1375,15 @@ extern u16 gUnk_083FBFD0[];
 
 extern const u8 Tsa_StatScreen_083FC9FC[];
 extern const u8 Tsa_StatScreenPage0[];
-extern const u8 Tsa_Statscreen_Pag1_08403560[];
+extern const u8 Tsa_Statscreen_Pag1_083FCAC0[];
 extern const u8 Tsa_StatScreen_084035D0[];
 extern const u16 Pal_StatScreenFaceDefault[];
 extern const u16 Pal_StatScreenFaceGeneric[];
 extern const u8 Img_StatScreen_083FCBEC[];
 extern const u8 Img_StatScreen_083FCC90[];
 extern const u16 Pal_StatScreen_083FCE0C[];
-extern const u8 Tsa_Statscreen_Pag1_084038CC[];
-extern const u8 Tsa_Statscreen_Pag1_08403908[];
+extern const u8 Tsa_Statscreen_Pag1_083FCE2C[];
+extern const u8 Tsa_Statscreen_Pag1_083FCE68[];
 extern const u8 Img_StatScreen_083FCE8C[];
 extern u16 const Pals_StatScreen_Title[][0x20];
 extern const u8 Tsa_Statscreen_083FD5C4[];
