@@ -1,7 +1,7 @@
 #include "gbafe.h"
 
 /* auto-decls */
-extern struct ProcCmd ProcScr_efxIvaldiWOUT[];
+extern struct ProcCmd ProcScr_efxBolganoneWOUT[];
 int sub_08004CC4(void);
 void NewEfxSpellCast(void);
 void sub_0805A928(struct Anim * anim, int idx);
@@ -325,7 +325,7 @@ void sub_0805ADF0(struct Anim * anim, int duration, int terminator)
 
     gEfxBgSemaphore++;
 
-    proc = Proc_Start(ProcScr_efxIvaldiWOUT, PROC_TREE_3);
+    proc = Proc_Start(ProcScr_efxBolganoneWOUT, PROC_TREE_3);
     proc->anim = anim;
     proc->timer = 0;
     proc->terminator = terminator;
