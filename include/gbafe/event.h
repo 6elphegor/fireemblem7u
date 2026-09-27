@@ -801,6 +801,14 @@ void Event_WaitForFaceEnd(struct EventProc * proc);
 
 
 /* ---- eventscr.c (0x0800B90C-0x0800D01C) ---- */
+void EventStartTalk(struct EventProc * proc, int msg, bool init);
+void EventEndTalk(struct EventProc * proc);
+bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y);
+void TryMoveUnit(struct Unit * unit, int x, int y, u8 move_closest);
+bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, int y, u16 speed);
+bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * move_script, u16 speed);
+int GetNextAvailableBlueUnitId(int uid);
+bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def);
 
 /* ---- end eventscr.c ---- */
 
