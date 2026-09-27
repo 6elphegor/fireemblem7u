@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/bmcontainer.h"
 #include "gbafe/unitlistscreen.h"
 
 void sub_809014C(void)

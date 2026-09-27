@@ -91,11 +91,6 @@ extern u16 const Sprite_08A17B6C[];
 extern u16 const * gSpriteArray_08A17C20[];
 extern u16 gUnknown_02013460[];
 
-/* unit stack (defined in asm) */
-void InitUnitStack(void * buf);
-void PushUnit(struct Unit * unit);
-void LoadPlayerUnitsFromUnitStack(void);
-
 void sub_809014C(void);
 void sub_80901BC(u8 x, u8 y, u8 width);
 void sub_8090238(u8 key);
