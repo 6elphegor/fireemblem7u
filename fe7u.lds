@@ -175,11 +175,7 @@ SECTIONS
         build/src/bmfx-chapterintrofx.o(.text);
         build/src/gameoverbgfx.o(.text);
         build/src/lightrunefx.o(.text);
-        build/asm/code_08020668.o(.text);
-        build/asm/code_0802071C.o(.text);
-        build/asm/code_08020784.o(.text);
-        build/asm/code_0802078C.o(.text);
-        build/asm/code_080207DC.o(.text);
+        build/src/danceringfx.o(.text);
         build/asm/code_08020848.o(.text);
         build/asm/code_08020928.o(.text);
         build/asm/code_080209C4.o(.text);
