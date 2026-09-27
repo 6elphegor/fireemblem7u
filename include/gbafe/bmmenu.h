@@ -83,7 +83,7 @@ enum {
     MENU_ACT_DOOM       = (1 << 7),
 };
 
-struct MenuProc * StartMenu(const struct MenuDef * def, ProcPtr parent);
+struct MenuProc * StartMenu(const struct MenuDef * def);   /* FE8U: StartOrphanMenu */
 struct MenuProc * StartSemiCenteredOrphanMenu(const struct MenuDef * def, int xSubject, int xTileLeft, int xTileRight);
 u8 MenuFrozenHelpBox(struct MenuProc * proc, int msgid);
 void EndAllMenus(void);
@@ -129,6 +129,30 @@ void NewChapterStatusScreen(ProcPtr parent);
 void EventGotoLabel(ProcPtr proc, int label);
 int GetSomeFacingDirection(int xFrom, int yFrom, int xTo, int yTo);
 void Make6CKOIDOAMM(struct Unit * unit, int facing);
+
+void BmMapFillg(u8 ** map, int value);
+void MapAddInBoundedRange(int x, int y, int minRange, int maxRange);
+int GetUnitWeaponReach(struct Unit * unit, int slot);
+void BuildUnitStandingRangeForReach(struct Unit * unit, int reach);
+void ListAttackTargetsForWeapon(struct Unit * unit, int item);
+void DrawItemMenuLine(struct Text * text, int item, s8 isUsable, u16 * tm);
+void UpdateMenuItemPanel(int slot);
+void StartEquipInfoWindow(ProcPtr parent, struct Unit * unit, int x, int y);   /* FE8U: ForceMenuItemPanel */
+void sub_080790B8(void);
+void sub_080790BC(void);
+void ChangeActiveUnitFacing(int x, int y);
+void InitObstacleBattleUnit(void);
+void BattleGenerateSimulation(struct Unit * actor, struct Unit * target, int x, int y, int itemSlot);
+void BattleGenerateBallistaSimulation(struct Unit * actor, struct Unit * target, int x, int y);
+void UpdateBattleForecastContents(void);
+void CloseBattleForecast(void);
+void MakeTradeTargetList(struct Unit * unit);
+void sub_0802B678(struct Unit * unit, struct Unit * other, int unk);   /* FE8U: StartTradeMenu */
+s8 sub_08034884(struct Unit * unit);   /* FE8U: CanUnitSeize */
+int GetAvailableTileEventCommand(s8 x, s8 y);
+s8 IsUnitMagicSealed(struct Unit * unit);
+void MakeTargetListForRefresh(struct Unit * unit);
+s8 CanUnitUseItem(struct Unit * unit, int item);
 
 /* ---- bmmenu.c ---- */
 
