@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080782FC
-sub_080782FC: @ 0x080782FC
+	thumb_func_start EvCheck02_TURN
+EvCheck02_TURN: @ 0x080782FC
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	ldr r2, [r4]

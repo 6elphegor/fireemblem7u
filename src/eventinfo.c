@@ -44,6 +44,37 @@ struct EvCheck0F
     /* 0C */ u32 unkC;
 };
 
+struct EvCheck02
+{
+    /* 00 */ u32 unk0;
+    /* 04 */ u32 script;
+    /* 08 */ u32 unk8;
+    /* 0C */ u32 unkC;
+};
+
+struct EvCheck04
+{
+    /* 00 */ u32 unk0;
+    /* 04 */ u32 script;
+    /* 08 */ u32 unk8;
+    /* 0C */ s8 (* func)(struct EventInfo * info);
+};
+
+struct EvCheck07
+{
+    /* 00 */ u32 unk0;
+    /* 04 */ u16 item;
+    /* 06 */ u16 money;
+    /* 08 */ u32 unk8;
+};
+
+struct EvCheck0E
+{
+    /* 00 */ u32 unk0;
+    /* 04 */ u32 script;
+    /* 08 */ s8 (* func)(struct EventInfo * info);
+};
+
 struct EvCheck0E_Area
 {
     /* 00 */ u16 cmd;
@@ -190,19 +221,250 @@ int EvCheck10_(struct EventInfo * info)
     return 0;
 }
 ASM_FUNC("asm/nonmatching/code_080782FC.s");
-ASM_FUNC("asm/nonmatching/code_080783F4.s");
-ASM_FUNC("asm/nonmatching/code_08078478.s");
-ASM_FUNC("asm/nonmatching/code_080784C0.s");
-ASM_FUNC("asm/nonmatching/code_0807850C.s");
-ASM_FUNC("asm/nonmatching/code_08078520.s");
-ASM_FUNC("asm/nonmatching/code_0807856C.s");
-ASM_FUNC("asm/nonmatching/code_080785B0.s");
-ASM_FUNC("asm/nonmatching/code_080785F4.s");
-ASM_FUNC("asm/nonmatching/code_08078650.s");
-ASM_FUNC("asm/nonmatching/code_080786B4.s");
-ASM_FUNC("asm/nonmatching/code_080786E0.s");
-ASM_FUNC("asm/nonmatching/code_0807870C.s");
-ASM_FUNC("asm/nonmatching/code_08078738.s");
+
+int EvCheck03_CHAR(struct EventInfo * info)
+{
+    struct EvCheck02 const * ls = (void const *) info->listScript;
+
+    int pidA = EVT_CMD_B1(ls->unk8);
+    int pidB = EVT_CMD_B2(ls->unk8);
+
+    switch (EVT_CMD_B1(ls->unkC))
+    {
+    case 1:
+        if (gPlaySt.chapterModeIndex != 2)
+            return 0;
+
+        break;
+
+    case 2:
+        if (gPlaySt.chapterModeIndex != 3)
+            return 0;
+
+        break;
+
+    case 3:
+        if (!CheckFlag(EVT_CMD_HI(ls->unkC)))
+            return 0;
+
+        break;
+    }
+
+    if ((info->pidA == pidA || pidA == 0) && info->pidB == pidB)
+    {
+        info->script = ((struct EvCheck02 const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck04_CHARASM(struct EventInfo * info)
+{
+    struct EvCheck04 const * ls = (void const *) info->listScript;
+
+    int pidA = EVT_CMD_B1(ls->unk8);
+    int pidB = EVT_CMD_B2(ls->unk8);
+
+    if (ls->func(info) != 0 && (info->pidA == pidA || pidA == 0) && info->pidB == pidB)
+    {
+        info->script = ((struct EvCheck04 const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck04 const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck05_LOCA(struct EventInfo * info)
+{
+    struct EvCheck02 const * ls = (void const *) info->listScript;
+
+    int x = EVT_CMD_B1(ls->unk8);
+    int y = EVT_CMD_B2(ls->unk8);
+    int cmdId = EVT_CMD_B3(ls->unk8);
+
+    info->givenMoney = 0;
+
+    if ((x == info->xPos) && (y == info->yPos))
+    {
+        info->script = ls->script;
+        info->flag = EVT_CMD_HI(ls->unk0);
+        info->commandId = cmdId;
+
+        if (cmdId == 0x12)
+            info->givenItem = 0;
+
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck06_VILL(struct EventInfo * info)
+{
+    int result = EvCheck05_LOCA(info);
+    info->givenMoney = 3;
+    return result;
+}
+
+int EvCheck07_CHES(struct EventInfo * info)
+{
+    struct EvCheck07 const * ls = (void const *) info->listScript;
+
+    u8 x = EVT_CMD_B1(ls->unk8);
+    int y = EVT_CMD_B2(ls->unk8);
+    int cmdId = EVT_CMD_B3(ls->unk8);
+    int money = EVT_CMD_B4(ls->unk8);
+
+    if ((x == info->xPos) && (y == info->yPos))
+    {
+        info->script = 1;
+        info->flag = EVT_CMD_HI(ls->unk0);
+        info->commandId = cmdId;
+        info->givenMoney = money;
+        info->givenItem = ls->item;
+        info->givenMoney = ls->money;
+
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck08_DOOR(struct EventInfo * info)
+{
+    struct EvCheck02 const * ls = (void const *) info->listScript;
+
+    int x = EVT_CMD_B1(ls->unk8);
+    int y = EVT_CMD_B2(ls->unk8);
+    int cmdId = EVT_CMD_B3(ls->unk8);
+    int money = EVT_CMD_B4(ls->unk8);
+
+    if ((x == info->xPos) && (y == info->yPos))
+    {
+        info->script = ls->script;
+#if !NONMATCHING
+        asm("":::"memory");
+#endif
+        info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+        info->commandId = cmdId;
+        info->givenMoney = money;
+
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck09_(struct EventInfo * info)
+{
+    struct EvCheck02 const * ls = (void const *) info->listScript;
+
+    int x = EVT_CMD_B1(ls->unk8);
+    int y = EVT_CMD_B2(ls->unk8);
+    int cmdId = EVT_CMD_B3(ls->unk8);
+    int money = EVT_CMD_B4(ls->unk8);
+
+    if ((x == info->xPos) && (y == info->yPos))
+    {
+        info->script = ls->script;
+#if !NONMATCHING
+        asm("":::"memory");
+#endif
+        info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+        info->commandId = cmdId;
+        info->givenMoney = money;
+
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck0A_SHOP(struct EventInfo * info)
+{
+    struct EvCheck02 const * ls = (void const *) info->listScript;
+
+    int x = EVT_CMD_B1(ls->unk8);
+    int y = EVT_CMD_B2(ls->unk8);
+    int cmdId = EVT_CMD_B3(ls->unk8);
+
+    if ((x == info->xPos) && (y == info->yPos))
+    {
+        if (cmdId != 0x15 || GetUnitItemSlot(gActiveUnit, 0x71) != -1)
+        {
+            info->script = ((struct EvCheck02 const *) info->listScript)->script;
+            info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+            info->commandId = cmdId;
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+int EvCheck0B_AREA(struct EventInfo * info)
+{
+    s8 x = gActiveUnit->xPos;
+    s8 y = gActiveUnit->yPos;
+
+    s8 x1 = EVT_CMD_B1(((struct EvCheck02 const *) info->listScript)->unk8);
+    s8 y1 = EVT_CMD_B2(((struct EvCheck02 const *) info->listScript)->unk8);
+    s8 x2 = EVT_CMD_B3(((struct EvCheck02 const *) info->listScript)->unk8);
+    s8 y2 = EVT_CMD_B4(((struct EvCheck02 const *) info->listScript)->unk8);
+
+    if (x1 <= x && y1 <= y && x2 >= x && y2 >= y)
+    {
+        info->script = ((struct EvCheck02 const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck0C_(struct EventInfo * info)
+{
+    if (gPlaySt.chapterModeIndex == 2 && !CheckFlag(2))
+        return EvCheck0B_AREA(info);
+
+    return 0;
+}
+
+int EvCheck0D_(struct EventInfo * info)
+{
+    if (gPlaySt.chapterModeIndex == 3 && !CheckFlag(2))
+        return EvCheck0B_AREA(info);
+
+    return 0;
+}
+
+int EvCheck0E_(struct EventInfo * info)
+{
+    if (((struct EvCheck0E const *) info->listScript)->func(info) != 0)
+    {
+        info->script = ((struct EvCheck0E const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck0E const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+
+bool EventInfoCheckTalk(struct EventInfo * info, u8 pidA, u8 pidB)
+{
+    if ((info->pidA == pidA) && (info->pidB == pidB))
+    {
+        info->script = info->listScript[1];
+        info->flag = EVT_CMD_HI(info->listScript[0]);
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
 ASM_FUNC("asm/nonmatching/code_08078760.s");
 ASM_FUNC("asm/nonmatching/code_08078794.s");
 ASM_FUNC("asm/nonmatching/code_080787F4.s");
