@@ -5,6 +5,8 @@
 
 extern struct MusicPlayerInfo gUnk_03005A30;
 extern struct MusicPlayerInfo gUnk_03005CC0;
+extern struct MusicPlayerInfo gUnk_03005B10;
+extern struct MusicPlayerInfo gUnk_03005DA0;
 
 extern EWRAM_DATA u16 * gManimScanlineBufs[2];
 

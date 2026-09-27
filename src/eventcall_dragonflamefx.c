@@ -16,8 +16,19 @@ struct ProcDragonFlamefx {
     /* 64 */ s16 sound_en;
 };
 
-void PutDragonGateFlame(int ix, int iy);
-ASM_FUNC("asm/nonmatching/code_0807B28C.s");
+void PutDragonGateFlame(int ix, int iy)
+{
+    ix = (gBmSt.camera.x - ix) & 0xFF;
+    iy = (gBmSt.camera.y - iy) & 0xFF;
+
+    ApplyPalette(Pal_DragonGateFlame, BGPAL_BM_0);
+    Decompress(Img_DragonGateFlame, (void *)BG_VRAM + 0x800);
+    sub_080AACD8(gBg0Tm, Tsa_DragonGateFlame, 0x0040);
+
+    EnableBgSync(BG0_SYNC_BIT);
+    SetBgOffset(BG_0, ix, iy);
+    EnableBgSync(BG0_SYNC_BIT);
+}
 
 
 void sub_0807B2F8(int x, int y)

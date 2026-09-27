@@ -154,6 +154,7 @@ void SaveEndgameRankings(void);
 // ??? WriteSoundRoomSaveData
 // ??? IsSoundRoomSongUnlocked
 // ??? UnlockSoundRoomSong
+void UnlockSoundRoomSong(void * buf, int song);
 // ??? EraseLinkArenaStruct2
 // ??? LoadAndVerfyLinkArenaStruct2
 // ??? WriteLinkArenaStruct2

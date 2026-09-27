@@ -424,6 +424,7 @@ struct ProcFlameBreathfx {
 // sub_0807C378
 // sub_0807C38C
 // sub_0807C3A0
+void sub_0807C3A0(struct ProcFlameBreathfx * proc);
 
 void sub_0807C41C(struct ProcFlameBreathfx * proc);
 void sub_0807C520(struct ProcFlameBreathfx * proc);
