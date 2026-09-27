@@ -250,7 +250,6 @@ SECTIONS
         build/src/bmlib.o(.text);
         build/src/bmlib-math.o(.text);
         build/src/bm.o(.text);
-        build/asm/code_08015FF4.o(.text);
         build/src/bmitem.o(.text);
         build/src/unit.o(.text);
         build/src/bmmap.o(.text);

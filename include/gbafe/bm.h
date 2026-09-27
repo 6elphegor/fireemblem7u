@@ -256,6 +256,7 @@ int GetActiveMapSong(void);
 void StartMapSongBgm(void);
 void sub_08015F94(struct CamMoveProc * proc);
 void nullsub_37(void);
+void StartCameraMoveLinear(ProcPtr parent, int x, int y, int duration);
 
 extern s8 sDirKeysToOffsetLut[][2];
 extern u16 Sprite_MapCursorStretched[];
@@ -264,3 +265,4 @@ extern u16 * gSysUpArrowSpriteLut[];
 extern u16 * gSysDownArrowSpriteLut[];
 extern struct ProcCmd ProcScr_CamMove[];
 extern struct ProcCmd ProcScr_UnkMapCursor[];
+extern struct ProcCmd ProcScr_CamMoveLinear[];
