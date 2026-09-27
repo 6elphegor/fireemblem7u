@@ -270,7 +270,11 @@ ProcPtr sub_0809E3D8(int a, int b, ProcPtr parent)
     proc->unk_34 = b;
     return proc;
 }
-ASM_FUNC("asm/nonmatching/code_0809E3F4.s");
+void sub_0809E3F4(void)
+{
+    register u8 * p asm("r0") = &gUnk_0203E790;
+    *p = 0;
+}
 void sub_0809E400(void)
 {
 }
