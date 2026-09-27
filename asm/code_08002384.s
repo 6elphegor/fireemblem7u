@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08002384
-sub_08002384: @ 0x08002384
+	thumb_func_start ColorFadeSetupFromColorToBlack
+ColorFadeSetupFromColorToBlack: @ 0x08002384
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
