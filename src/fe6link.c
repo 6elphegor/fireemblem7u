@@ -3,6 +3,8 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+extern u16 CONST_DATA gUnknown_08B999BC[];
+
 extern u16 CONST_DATA gUnknown_08B99984[];
 extern u16 CONST_DATA gUnknown_08B9997C[];
 extern u16 CONST_DATA gUnknown_08B99968[];
@@ -513,7 +515,66 @@ void sub_08043F1C(struct Fe6LinkProc * proc)
     EnableBgSync(BG1_SYNC_BIT);
     proc->unk_68 = 0;
 }
-ASM_FUNC("asm/nonmatching/code_08043F50.s");
+void sub_08043F50(struct Fe6LinkProc * proc)
+{
+    struct Fe6LinkMenuProc * child = proc->unk_54;
+
+    PutSprite(4, 0x18, 0x50, gUnknown_08B999BC, 0);
+    PutSprite(4, 0x30, 0x60, gUnknown_08B999BC, 0x10);
+
+    PutUiHand(proc->unk_68 * 0x34 + 0x28, 0x60);
+
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        SioPlaySoundEffect(1);
+        child->unk_50 = 2;
+
+        TmFillRect_thm(gBg1Tm + TM_OFFSET(2, 9), 16, 6, 0);
+        EnableBgSync(BG1_SYNC_BIT);
+        Proc_Break(proc);
+        return;
+    }
+
+    if ((gpKeySt->pressed & DPAD_LEFT) && proc->unk_68 == 1)
+    {
+        proc->unk_68--;
+        SioPlaySoundEffect(3);
+    }
+
+    if ((gpKeySt->pressed & DPAD_RIGHT) && proc->unk_68 == 0)
+    {
+        proc->unk_68++;
+        SioPlaySoundEffect(3);
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        if (proc->unk_68 != 0)
+        {
+            SioPlaySoundEffect(1);
+            child->unk_50 = 2;
+
+            TmFillRect_thm(gBg1Tm + TM_OFFSET(2, 9), 16, 6, 0);
+            EnableBgSync(BG1_SYNC_BIT);
+            Proc_Break(proc);
+        }
+        else
+        {
+            SioPlaySoundEffect(2);
+
+            gUnk_Sio_02000C00[0] = child->unk_44;
+            SioEmitData(gUnk_Sio_02000C00, 4);
+
+            TmFillRect_thm(gBg1Tm + TM_OFFSET(2, 9), 16, 6, 0);
+            EnableBgSync(BG1_SYNC_BIT);
+
+            LoadHelpBoxGfx((void *)0x06016800, 13);
+            StartHelpBoxExt_Unk(0x40, 0x48, 0x1192);
+
+            Proc_Goto(proc, 3);
+        }
+    }
+}
 void sub_0804408C(ProcPtr proc)
 {
     if (gpKeySt->pressed & (A_BUTTON | START_BUTTON))
