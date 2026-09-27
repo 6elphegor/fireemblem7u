@@ -831,13 +831,13 @@ void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to
 // sub_080ACA48
 // sub_080ACA90
 // sub_80AD97C
-// sub_080ACABC
+// PutChapterBannerSprites
 // sub_080ACAF8
 // sub_080ACB64
 // sub_80ADAA0
-// sub_080ACCF4
+// DrawBonusClaimItemText
 // SetBonusItemClaimed
-// sub_080ACE60
+// SetupBonusClaimTargets
 // sub_080ACF08
 // sub_80ADE84
 // sub_80AE0D4

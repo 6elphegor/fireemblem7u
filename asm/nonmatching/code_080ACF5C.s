@@ -109,7 +109,7 @@ sub_080ACF5C: @ 0x080ACF5C
 	orrs r0, r1
 	mov r2, ip
 	strb r0, [r2, #0x18]
-	bl sub_080ACBC8
+	bl InitBonusClaimData
 	movs r5, #0
 	ldr r0, _080AD194 @ =0x08CE5780
 	ldr r0, [r0]
@@ -129,7 +129,7 @@ _080AD058:
 	movs r1, #0xa
 	bl InitText
 	adds r0, r5, #0
-	bl sub_080ACCF4
+	bl DrawBonusClaimItemText
 	adds r5, #1
 	cmp r5, #5
 	bgt _080AD086
@@ -169,7 +169,7 @@ _080AD0A4:
 	adds r0, #0x70
 	movs r1, #0xf
 	bl InitText
-	ldr r0, _080AD19C @ =sub_080ACABC
+	ldr r0, _080AD19C @ =PutChapterBannerSprites
 	adds r1, r6, #0
 	bl StartParallelWorker
 	movs r0, #2
@@ -234,7 +234,7 @@ _080AD0A4:
 	adds r0, r6, #0
 	bl StartUiCursorHand
 	adds r0, r6, #0
-	bl sub_080ACE60
+	bl SetupBonusClaimTargets
 	ldr r0, _080AD1A8 @ =0x06013800
 	movs r1, #5
 	bl LoadHelpBoxGfx
@@ -255,7 +255,7 @@ _080AD18C: .4byte 0x0840FA00
 _080AD190: .4byte 0x03002870
 _080AD194: .4byte 0x08CE5780
 _080AD198: .4byte 0x08CE5784
-_080AD19C: .4byte sub_080ACABC
+_080AD19C: .4byte PutChapterBannerSprites
 _080AD1A0: .4byte sub_080ACB64
 _080AD1A4: .4byte 0x0000FFC0
 _080AD1A8: .4byte 0x06013800

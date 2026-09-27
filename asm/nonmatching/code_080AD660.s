@@ -43,7 +43,7 @@ _080AD6AC:
 	adds r0, r4, #0
 	bl SetBonusItemClaimed
 	ldrb r0, [r6]
-	bl sub_080ACCF4
+	bl DrawBonusClaimItemText
 	ldr r0, [r7]
 	ldrb r0, [r0, #4]
 	cmp r0, #0x28

@@ -112,7 +112,7 @@ _080AD284:
 	ldrb r0, [r6]
 	bl SetBonusItemClaimed
 	ldrb r0, [r6]
-	bl sub_080ACCF4
+	bl DrawBonusClaimItemText
 	adds r0, r5, #0
 	movs r1, #2
 	bl Proc_Goto
@@ -203,7 +203,7 @@ _080AD328:
 	strb r0, [r4]
 	ldrb r0, [r6]
 	subs r0, #1
-	bl sub_080ACCF4
+	bl DrawBonusClaimItemText
 	b _080AD3A8
 	.align 2, 0
 _080AD34C: .4byte 0x08CE5780
@@ -232,7 +232,7 @@ _080AD358:
 	strb r0, [r1]
 	ldrb r0, [r2]
 	adds r0, #1
-	bl sub_080ACCF4
+	bl DrawBonusClaimItemText
 	b _080AD3A8
 	.align 2, 0
 _080AD38C: .4byte 0x08CE5780
