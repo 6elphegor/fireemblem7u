@@ -1453,6 +1453,12 @@ struct ProcEfxSoundSE {
     /* 48 */ int index;
 };
 
+enum {
+    EFX_HPT_CHANGED,
+    EFX_HPT_DEFEATED,
+    EFX_HPT_NOT_CHANGE,
+};
+
 void EfxPlaySE(int songid, int volume);
 void Loop6C_efxSoundSE(struct ProcEfxSoundSE * proc);
 // ??? DoM4aSongNumStop
@@ -1466,11 +1472,11 @@ void EfxPlaySEwithCmdCtrl(struct Anim * anim, int);
 // ??? GetEfxSoundType1FromTerrain
 // ??? IsAnimSoundInPositionMaybe
 // ??? GetEfxSoundType2FromBaseCon
-s16 sub_08067CC4(struct Anim * anim);
+s16 GetEfxHpChangeType(struct Anim * anim);
 // ??? EfxPlayHittedSFX
 // ??? EfxPlayCriticalHittedSFX
 // ??? EfxCheckRetaliation
-// ??? GetEfxHpChangeType
+// ??? EfxCheckStaffType
 // ??? EkrPlayMainBGM
 // ??? EkrRestoreBGM
 // ??? GetBanimBossBGM

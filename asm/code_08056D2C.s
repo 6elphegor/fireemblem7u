@@ -41,7 +41,7 @@ sub_08056D2C: @ 0x08056D2C
 	adds r0, r6, #0
 	bl StartBattleAnimHitEffectsDefault
 	adds r0, r6, #0
-	bl sub_08067CC4
+	bl GetEfxHpChangeType
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	cmp r0, #2
