@@ -84,7 +84,7 @@ void GameCtrl_SavePlayThroughData(void);
 char *GetTacticianName();
 void SetTacticianName(const char *name);
 u16 * GetConvoyItemArray(void);
-// ClearSupplyItems
+void ClearSupplyItems(void);
 // ShrinkConvoyItemList
 // GetConvoyItemCount
 // AddItemToConvoy

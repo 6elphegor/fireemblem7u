@@ -227,30 +227,49 @@ void SavePlayThroughData(void);
 // ??? sub_80A0DFC
 // ??? WriteCompletedPlaythroughSaveData
 struct PidStats * GetPidStats(u8 pid);
-// ??? GetBonusContentClaimFlags
-// ??? SetBonusContentClaimFlags
-// ??? WriteBonusContentClaimFlags
-// ??? ReadBonusContentClaimFlags
+#define UNIT_SAVE_AMOUNT_BLUE 52
+
+struct GameSavePackedUnit {
+    /* 00 */ u8 raw[0x24];
+};
+
+struct GameSaveBlock {
+    /* 000 */ struct PlaySt playSt;
+    /* 048 */ struct GameSavePackedUnit units[UNIT_SAVE_AMOUNT_BLUE];
+    /* 798 */ u16 supplyItems[100];
+    /* 860 */ u8 pidStats[0xCC0 - 0x860];
+    /* CC0 */ u8 chapterStats[0xD80 - 0xCC0];
+    /* D80 */ u8 permanentFlags[0xD88 - 0xD80];
+    /* D88 */ u32 bonusClaimFlags;
+};
+
+extern u32 gBonusContentClaimFlags;
+extern u8 gSuspendSaveIdOffset;
+
+u32 GetBonusContentClaimFlags(void);
+void SetBonusContentClaimFlags(u32 flags);
+void WriteBonusContentClaimFlags(struct GameSaveBlock * sram_dest);
+void ReadBonusContentClaimFlags(struct GameSaveBlock const * sram_src);
 void WriteLastGameSaveId(int num);
 int ReadLastGameSaveId(void);
-// ??? sub_080A061C
+void InvalidateGameSave(int index);
 void CopyGameSave(int index_src, int index_dest);
-void WriteNewGameSave(int index, int isDifficult, int mode, int isTutorial);
+void WriteNewGameSave(int index, int isDifficult, int mode);
 void WriteGameSave(int slot);
 void ReadGameSave(int slot);
 bool IsSaveValid(int);
 void ReadGameSavePlaySt(s32, struct PlaySt *);
-// ??? LoadSavedBonusClaimFlags
-// ??? sub_080A09FC
-// ??? sub_080A0A10
-// ??? IsGameSaveNotFirstChapter
+u32 LoadSavedBonusClaimFlags(int slot);
+bool sub_080A09FC(struct PlaySt * play_st);
+bool IsGameNotFirstChapter(struct PlaySt * play_st);
+bool IsGameSaveNotFirstChapter(int slot);
 void WriteGameSavePackedUnit(struct Unit *unit, void *sram_dest);
 void LoadSavedUnit(const void *sram_src, struct Unit *unit);
 void InvalidateSuspendSave(int);
 void WriteSuspendSave(int saveBlockId);
 void ReadSuspendSave(int slot);
 u8 IsValidSuspendSave(int);
-// ??? ReadSuspendSavePlaySt
+void ReadSuspendSavePlaySt(int slot, struct PlaySt * buf);
 // ??? EncodeSuspendSavePackedUnit
 // ??? ReadSuspendSavePackedUnit
 // ??? WriteTraps

@@ -39,7 +39,7 @@ sub_080A6398: @ 0x080A6398
 	adds r5, r0, r4
 	strb r2, [r5]
 	adds r0, r4, #0
-	bl sub_080A0A10
+	bl IsGameNotFirstChapter
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A63F6
