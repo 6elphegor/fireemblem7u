@@ -3,6 +3,7 @@
 extern struct ProcCmd CONST_DATA ProcScr_TactNameSelect[];
 extern struct ProcCmd CONST_DATA ProcScr_TactBirthSelect[];
 extern struct ProcCmd CONST_DATA ProcScr_TactGenderSelect[];
+extern u16 CONST_DATA gUnk_08B90600[];
 
 void StartTacticianNameSelect(ProcPtr parent); // StartTacticianNameSelect
 void sub_080A7194(struct ProcTactInfo *proc); // StartTactBirthSelect
@@ -482,8 +483,108 @@ void sub_080A6E64(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_TactNameSelect, parent);
 }
-ASM_FUNC("asm/nonmatching/code_080A6E78.s");
-ASM_FUNC("asm/nonmatching/code_080A6F34.s");
+void sub_080A6E78(struct ProcTactInfo * proc)
+{
+    int i;
+    char * str;
+
+    proc->cur_index = gPlaySt.tact_birth;
+    DrawUiFrame2(2, 11, 26, 6, 0);
+    EnableBgSync(BG1_SYNC_BIT);
+    ShowSysHandCursor((proc->cur_index % 6) * 0x20 + 0x1A, (proc->cur_index / 6) * 0x10 + 0x60, 2, 0x800);
+    SetTextFont(&gTactInfoSt.font);
+    SetTextFontGlyphs(0);
+
+    for (i = 0; i < 6; i++)
+    {
+        str = DecodeMsg(TactGetMsg_Birth(i));
+        str[3] = 0;
+        Text_InsertDrawString(&gTactInfoSt.texts[1], i * 0x20, 0, str);
+        str = DecodeMsg(TactGetMsg_Birth(i + 6));
+        str[3] = 0;
+        Text_InsertDrawString(&gTactInfoSt.texts[2], i * 0x20, 0, str);
+    }
+
+    DecodeMsg(0);
+    SetTextFont(NULL);
+}
+void sub_080A6F34(struct ProcTactInfo * proc)
+{
+    int i;
+    char * str;
+    int index_pre = proc->cur_index;
+
+    for (i = 0; i < 3; i++)
+        PutSpriteExt(4, 0x1E + 0x40 * i, 0x60, gUnk_08B90600, 0xF4C0 + 8 * i);
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        PlaySoundEffect(SONG_38A);
+        gPlaySt.tact_birth = proc->cur_index;
+
+        PutIcon(
+            gBg0Tm + TM_OFFSET(0xE, 0x5),
+            TacticianBirthAffins[gPlaySt.tact_birth] + 0x79,
+            0x5000);
+
+        SetTextFont(&gTactInfoSt.font);
+        SetTextFontGlyphs(1);
+        Tact_ClearNrVrams((void *) OBJ_VRAM0 + 0x1000, 8, 8);
+
+        str = DecodeMsg(TactGetMsg_Birth(gPlaySt.tact_birth));
+        Text_InsertDrawString(gTactInfoSt.texts, GetStringTextCenteredPos(0x40, str) + 0x40, 4, str);
+
+        SetTextFont(NULL);
+        EnableBgSync(BG0_SYNC_BIT);
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        PlaySoundEffect(0x38B);
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->repeated & DPAD_UP)
+    {
+        if (proc->cur_index / 6 > 0)
+            proc->cur_index -= 6;
+        else if (gpKeySt->pressed & DPAD_UP)
+            proc->cur_index += 6;
+    }
+
+    if (gpKeySt->repeated & DPAD_DOWN)
+    {
+        if (proc->cur_index / 6 < 1)
+            proc->cur_index += 6;
+        else if (gpKeySt->pressed & DPAD_UP)
+            proc->cur_index -= 6;
+    }
+
+    if (gpKeySt->repeated & DPAD_LEFT)
+    {
+        if (proc->cur_index % 6 > 0)
+            proc->cur_index -= 1;
+        else if (gpKeySt->pressed & DPAD_LEFT)
+            proc->cur_index += 5;
+    }
+
+    if (gpKeySt->repeated & DPAD_RIGHT)
+    {
+        if (proc->cur_index % 6 < 5)
+            proc->cur_index += 1;
+        else if (gpKeySt->pressed & DPAD_RIGHT)
+            proc->cur_index -= 5;
+    }
+
+    if (proc->cur_index != index_pre)
+    {
+        ShowSysHandCursor((proc->cur_index % 6) * 0x20 + 0x1A, (proc->cur_index / 6) * 0x10 + 0x60, 2, 0x800);
+        PlaySoundEffect(SONG_385);
+    }
+}
 void sub_080A715C(void)
 {
     TmFill(gBg1Tm, 0);
@@ -496,8 +597,78 @@ void sub_080A7194(struct ProcTactInfo * proc)
 {
     Proc_StartBlocking(ProcScr_TactBirthSelect, proc);
 }
-ASM_FUNC("asm/nonmatching/code_080A71A8.s");
-ASM_FUNC("asm/nonmatching/code_080A722C.s");
+void sub_080A71A8(struct ProcTactInfo * proc)
+{
+    int i;
+
+    proc->cur_index = gPlaySt.tact_gender;
+    DrawUiFrame2(16, 11, 10, 4, 0);
+    EnableBgSync(BG1_SYNC_BIT);
+    ShowSysHandCursor(proc->cur_index * 0x20 + 0x88, 0x60, 3, 0x800);
+    SetTextFont(&gTactInfoSt.font);
+    SetTextFontGlyphs(0);
+
+    for (i = 0; i < 2; i++)
+        Text_InsertDrawString(&gTactInfoSt.texts[1], i * 0x1F, 0, DecodeMsg(TactGetMsg_Gender(i)));
+
+    SetTextFont(NULL);
+}
+void sub_080A722C(struct ProcTactInfo * proc)
+{
+    int i;
+    char * str;
+    int index_pre = proc->cur_index;
+
+    for (i = 0; i < 3; i++)
+        PutSpriteExt(4, 0x8C + 0x20 * i, 0x60, Sprite_32x16, 0xF4C0 + 4 * i);
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        PlaySoundEffect(SONG_38A);
+        gPlaySt.tact_gender = proc->cur_index;
+
+        SetTextFont(&gTactInfoSt.font);
+        SetTextFontGlyphs(1);
+        Tact_ClearNrVrams((void *) OBJ_VRAM0 + 0x1000, 16, 8);
+
+        str = DecodeMsg(TactGetMsg_Gender(gPlaySt.tact_gender));
+        Text_InsertDrawString(gTactInfoSt.texts, GetStringTextCenteredPos(0x40, str) + 0x80, 4, str);
+
+        SetTextFont(NULL);
+        EnableBgSync(BG0_SYNC_BIT);
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        PlaySoundEffect(0x38B);
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->repeated & DPAD_LEFT)
+    {
+        if (proc->cur_index > 0)
+            proc->cur_index--;
+        else if (gpKeySt->pressed & DPAD_LEFT)
+            proc->cur_index = 1;
+    }
+
+    if (gpKeySt->repeated & DPAD_RIGHT)
+    {
+        if (proc->cur_index <= 0)
+            proc->cur_index++;
+        else if (gpKeySt->pressed & DPAD_RIGHT)
+            proc->cur_index = 0;
+    }
+
+    if (proc->cur_index != index_pre)
+    {
+        ShowSysHandCursor(proc->cur_index * 0x20 + 0x88, 0x60, 3, 0x800);
+        PlaySoundEffect(SONG_385);
+    }
+}
 void sub_080A73AC(void)
 {
     TmFill(gBg1Tm, 0);
@@ -510,4 +681,31 @@ void sub_080A73E4(struct ProcTactInfo * proc)
 {
     Proc_StartBlocking(ProcScr_TactGenderSelect, proc);
 }
-ASM_FUNC("asm/nonmatching/code_080A73F8.s");
+void sub_080A73F8(int time)
+{
+    int a, b;
+    u16 * dst = gPal + 0x1BD;
+    u16 * src = Pal_084150C0 + 12;
+    u16 c1 = src[0];
+    u16 c2 = src[1];
+
+    time &= 0x3F;
+
+    if (time < 0x20)
+    {
+        a = 0x20 - time;
+        b = time;
+    }
+    else
+    {
+        a = time - 0x20;
+        b = 0x40 - time;
+    }
+
+    *dst =
+        ((((c1 & 0x1F) * a + (c2 & 0x1F) * b) >> 5) & 0x1F) +
+        ((((c1 & 0x3E0) * a + (c2 & 0x3E0) * b) >> 5) & 0x3E0) +
+        ((((c1 & 0x7C00) * a + (c2 & 0x7C00) * b) >> 5) & 0x7C00);
+
+    EnablePalSync();
+}
