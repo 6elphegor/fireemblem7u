@@ -55,6 +55,7 @@ struct PasswordProc {
 
 extern struct ProcCmd CONST_DATA ProcScr_08CC5AF0[];
 extern u8 gUnk_0203E790;
+extern u8 CONST_DATA gUnk_08CC5ACC[];
 
 void sub_0809D778(struct PasswordSeedSt * st, u8 const * src)
 {
@@ -147,85 +148,71 @@ u16 sub_0809D9A4(u8 const * buf, int n)
 
     return (sum + (sum >> 8) + (sum >> 16)) & 0x3FF;
 }
-#if NONMATCHING
-// loop invariant hoisting: &gPasswordBitsPerChar is hoisted here, the original keeps gPasswordData in r8 instead
 void sub_0809D9E4(void)
 {
     int i = 0;
     int j;
-    int bit;
     u8 * p;
-    u16 * data = gPasswordData;
-    u16 seed = sub_0809D9A4(gPasswordBuf + gPasswordCharCount, data[3]);
+    u16 * data;
+    u16 seed = sub_0809D9A4(gPasswordBuf + gPasswordCharCount, gPasswordData[3]);
 
     p = gPasswordBuf;
+    data = gPasswordData;
 
-    do
-    {
-        if (i % 3 == 0)
-            bit = (data[0] & (1 << (i / 3))) >> (i / 3);
-        else if (i % 3 == 1)
-            bit = (data[1] & (1 << (i / 3))) >> (i / 3);
-        else
-            bit = (data[2] & (1 << (i / 3))) >> (i / 3);
+loop:
+    if (i % 3 == 0)
+        *p |= ((data[0] & (1 << (i / 3))) >> (i / 3)) << (i % gPasswordBitsPerChar);
+    else if (i % 3 == 1)
+        *p |= ((data[1] & (1 << (i / 3))) >> (i / 3)) << (i % gPasswordBitsPerChar);
+    else
+        *p |= ((data[2] & (1 << (i / 3))) >> (i / 3)) << (i % gPasswordBitsPerChar);
 
-        *p |= bit << (i % gPasswordBitsPerChar);
+    i++;
 
-        i++;
+    if (i % gPasswordBitsPerChar == 0)
+        p++;
 
-        if (i % gPasswordBitsPerChar == 0)
-            p++;
-    } while (i != 30);
+    if (i != 30)
+        goto loop;
 
     for (j = 0; j < gPasswordCharCount; j++)
         gPasswordBuf[j] = (gPasswordBuf[j] + seed) & gPasswordCharMask;
 
     sub_0809D844();
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0809D9E4.s");
-#endif
-#if NONMATCHING
-// the original keeps a zero "idx" variable in sl (not constant-folded) and uses it for the first loop test and p
 void sub_0809DAB8(void)
 {
-    int idx = 0;
+    int k = 0;
     int i = 0;
     int j;
-    u8 * p;
     u16 seed;
 
     sub_0809D844();
 
     seed = sub_0809D9A4(gPasswordBuf + gPasswordCharCount, gPasswordData[3]);
 
-    for (j = idx; j < gPasswordCharCount; j++)
+    for (j = 0; j < gPasswordCharCount; j++)
         gPasswordBuf[j] = (gPasswordBuf[j] - seed) & gPasswordCharMask;
 
     gPasswordData[0] = 0;
     gPasswordData[1] = 0;
     gPasswordData[2] = 0;
 
-    p = gPasswordBuf + idx;
-
     do
     {
         if (i % 3 == 0)
-            gPasswordData[0] |= ((*p >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
+            gPasswordData[0] |= ((gPasswordBuf[k] >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
         else if (i % 3 == 1)
-            gPasswordData[1] |= ((*p >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
+            gPasswordData[1] |= ((gPasswordBuf[k] >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
         else
-            gPasswordData[2] |= ((*p >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
+            gPasswordData[2] |= ((gPasswordBuf[k] >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
 
         i++;
 
         if (i % gPasswordBitsPerChar == 0)
-            p++;
+            k++;
     } while (i != 30);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0809DAB8.s");
-#endif
 void ModifyPassword(void (* func)(int * bitpos, u8 * buf))
 {
     int bitpos = 0;
@@ -345,7 +332,37 @@ void sub_0809DED8(int * bitpos, u8 * buf)
     gPasswordInfo.unk_0b = sub_0809D914(buf, bitpos, 8);
     gPasswordInfo.unk_10 = sub_0809D914(buf, bitpos, 24);
 }
-ASM_FUNC("asm/nonmatching/code_0809DFC4.s");
+u8 sub_0809DFC4(int chapter_mode, int difficulty)
+{
+    struct GameRankSaveData buf;
+    int r;
+
+    CpuFill16(0, &gPasswordInfo, sizeof(gPasswordInfo));
+
+    if ((u8)LoadRankData(&buf, chapter_mode, difficulty))
+    {
+        gPasswordInfo.unk_00 = chapter_mode;
+        gPasswordInfo.unk_02 = difficulty;
+        gPasswordInfo.unk_03 = buf.tactics_rank;
+        gPasswordInfo.unk_04 = buf.survival_rank;
+        gPasswordInfo.unk_05 = buf.funds_rank;
+        gPasswordInfo.unk_06 = buf.exp_rank;
+        gPasswordInfo.unk_07 = buf.exp_rank;
+        gPasswordInfo.unk_09 = buf.unk00_17;
+        gPasswordInfo.unk_08 = buf.unk08_15;
+        gPasswordInfo.unk_01 = buf.unk00_16;
+        gPasswordInfo.unk_0c = buf.hours;
+        gPasswordInfo.unk_0e = buf.minutes;
+        gPasswordInfo.unk_0f = buf.seconds;
+        gPasswordInfo.unk_10 = buf.gold;
+        gPasswordInfo.unk_0a = buf.luckydog;
+        gPasswordInfo.unk_0b = buf.cuteguy;
+        r = 1;
+    }
+    else
+        r = 0;
+    return r;
+}
 void PrintPassword(struct Text * texts, u8 const * charTable)
 {
     int line;
@@ -399,7 +416,54 @@ void sub_0809E15C(int y)
     PutNumber(gBg2Tm + TM_OFFSET(15, y + 4), 2, gPasswordInfo.unk_0e);
     PutNumber(gBg2Tm + TM_OFFSET(18, y + 4), 2, gPasswordInfo.unk_0f);
 }
-ASM_FUNC("asm/nonmatching/code_0809E25C.s");
+void sub_0809E25C(struct PasswordProc * proc)
+{
+    int i;
+
+    InitBgs(NULL);
+    ResetTextFont();
+    ResetText();
+
+    SetDispEnable(1, 1, 1, 1, 0);
+
+    gDispIo.bg0_ct.priority = 1;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 0;
+    gDispIo.bg3_ct.priority = 3;
+
+    UnpackUiWindowFrameGraphics();
+    EnablePalSync();
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+    TmFill(gBg3Tm, 0);
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+    SetBgOffset(3, 0, 0);
+
+    SetWinEnable(0, 0, 0);
+
+    DrawUiFrame2(2, 6, 0x1a, 7, 2);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    for (i = 0; i < 3; i++)
+        InitText((struct Text *) gPasswordUnk_0201440C + i, 0x1b);
+
+    if (sub_0809DFC4(proc->unk_30, proc->unk_34) == 0)
+    {
+        Proc_Goto(proc, 0x63);
+        return;
+    }
+
+    sub_0809D7B4(5, 0x11);
+    ModifyPassword(InitPassword);
+    PrintPassword((struct Text *) gPasswordUnk_0201440C, gUnk_08CC5ACC);
+    proc->bg = StartMuralBackgroundAlt(0, 0, 10);
+}
 void sub_0809E3A4(void)
 {
 }

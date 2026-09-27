@@ -859,18 +859,20 @@ void Epilogue_LoopBlendOut(struct EpilogueProc * proc)
     }
 }
 
-#if NONMATCHING
 void Epilogue_StartEndScroll(struct EpilogueProc * proc)
 {
+    register u16 * timer asm("r4");
+    register int a asm("r2");
+    register int b asm("r3");
     Proc_Goto(StartEpilogueScroll(gEpilogueEndScroll, 2, proc), 0);
     ClearEpilogueTexts();
-    SetBlendConfig(0, 0x10, 0, 0);
-    proc->timer = 0;
+    timer = &proc->timer;
+    a = 0;
+    b = 0;
+    SetBlendConfig(0, 0x10, a, a);
+    *timer = b;
     SetOnHBlankA(NULL);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B7B74.s");
-#endif
 
 void Epilogue_StartEndText(struct EpilogueProc * proc)
 {

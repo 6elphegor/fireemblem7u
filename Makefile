@@ -26,7 +26,9 @@ C_SRCS   := $(wildcard src/*.c) $(wildcard src/data/*.c)
 ASM_SRCS := $(wildcard asm/*.s) $(wildcard src/*.s)
 C_OBJS   := $(patsubst %.c,build/%.o,$(C_SRCS))
 ASM_OBJS := $(patsubst %.s,build/%.o,$(ASM_SRCS))
-OBJS := $(C_OBJS) $(ASM_OBJS) build/data.o build/msg_data.o
+EVENT_SRCS := $(wildcard data/events/*.s)
+EVENT_OBJS := $(patsubst %.s,build/%.o,$(EVENT_SRCS))
+OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) build/data.o build/msg_data.o
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
 .PHONY: all compare clean msgheader
@@ -51,9 +53,9 @@ build/fe7u.ld: $(LDS)
 	@mkdir -p $(@D)
 	sed -E 's#build/asm/([A-Za-z0-9_]+\.o)\(#*asm.a:\1(#' $< > $@
 
-$(ELF): $(C_OBJS) build/asm.a build/data.o build/msg_data.o build/fe7u.ld $(LAYOUT) symbols.ld
+$(ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) build/data.o build/msg_data.o build/fe7u.ld $(LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
-	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive build/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) build/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
@@ -71,6 +73,18 @@ build/src/%.o: src/%.c
 	$(CPP) $(CPPFLAGS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o build/src/$*.s
 	@printf '\t.text\n\t.align 2, 0\n' >> build/src/$*.s
 	$(AS) $(ASFLAGS) -o $@ build/src/$*.s
+
+# Chapter event data (tools/evdis.py): assembly run through cpp so it can use
+# the C constant names (msg.h, and enum headers converted by enum2inc.py).
+ENUM_INCS := $(addprefix build/include/constants/,characters.inc classes.inc items.inc songs.inc chapters.inc)
+
+$(ENUM_INCS): build/include/constants/%.inc: include/constants/%.h tools/enum2inc.py
+	python3 tools/enum2inc.py $< $@
+
+build/data/events/%.o: data/events/%.s include/event_macros.inc include/constants/msg.h $(ENUM_INCS)
+	@mkdir -p $(@D)
+	$(CPP) -x assembler-with-cpp -iquote include -I build/include -nostdinc -undef $< -o build/data/events/$*.i
+	$(AS) $(ASFLAGS) -o $@ build/data/events/$*.i
 
 build/%.o: %.s
 	@mkdir -p $(@D)

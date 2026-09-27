@@ -4,8 +4,21 @@
 
 struct ClassReelEnt {
     /* 00 */ char const * name;
-    /* 04 */ u8 _pad_04[0x0B - 0x04];
+    /* 04 */ int descMsg;
+    /* 08 */ u8 _pad_08[0x0A - 0x08];
+    /* 0A */ s8 charPalId;
     /* 0B */ u8 jid;
+    /* 0C */ u8 genericPalId;
+    /* 0D */ u8 animId;
+    /* 0E */ u8 magicFx;
+    /* 0F */ u8 xOffsetBg;
+    /* 10 */ u8 yOffsetBg;
+    /* 11 */ u8 xOffsetObj;
+    /* 12 */ u8 yOffsetObj;
+    /* 13 */ u8 terrainL;
+    /* 14 */ u8 terrainR;
+    /* 15 */ u8 _pad_15[0x18 - 0x15];
+    /* 18 */ u8 const * script;
 };
 
 struct OpInfoEnterProc {
@@ -78,6 +91,25 @@ extern struct ProcCmd CONST_DATA ProcScr_ClassInfoDisplay[];
 extern struct ProcCmd CONST_DATA ProcScr_ClassStatsDisplay[];
 extern u8 Img_ClassDisplayFont[];
 extern u16 Pal_ClassDisplayFont[];
+extern int const gClassReelStatLabels[2][6];
+extern u16 const Pal_ClassReel_InfoBg[];
+extern u8 const Tsa_ClassReel_InfoBg[];
+extern u8 const Img_ClassReel_UiBox[];
+extern u16 const Pal_ClassReel_UiBox[];
+extern u8 const Tsa_ClassReel_UiBox[];
+extern u8 gOpInfoImgSheetBuf[];
+extern u8 gOpInfoRtlOamBuf[];
+extern u8 gOpInfoPalBuf[];
+extern u8 gOpInfoFrameBuf[];
+extern struct AnimMagicFxBuffer gClassReelMagicAnim;
+extern u8 gOpInfoMagicBgImgBuf[];
+extern u8 gOpInfoMagicBgTsaBuf[];
+extern u8 gOpInfoMagicObjImgBuf[];
+extern u8 gOpInfoTerrainBuf[];
+extern struct Text gClassReelTexts[6];
+
+ProcPtr StartTalkMsg(int x, int y, int id);
+void SetTalkPrintDelay(int delay);
 
 ProcPtr StartClassStatsDisplay(ProcPtr parent);
 void SetClassStatsDisplayX(struct OpInfoGaugeDrawProc * proc, int x);
@@ -356,7 +388,6 @@ void ClassIntroLetter_LoopDisplay(struct OpInfoViewProc * proc)
     proc->timer = 0;
 }
 
-#if NONMATCHING
 void ClassIntroLetter_LoopFadeOut(struct OpInfoViewProc * proc)
 {
     int timer = proc->timer;
@@ -365,7 +396,7 @@ void ClassIntroLetter_LoopFadeOut(struct OpInfoViewProc * proc)
     int x = proc->x;
     int d = ((x - 0x58) * timer * timer) >> 15;
 
-    PutClassIntroLetter(proc->tile, proc->index, x + d, 0x18, a4, a5, ({ proc->timer + 0; }) >> 4);
+    PutClassIntroLetter(proc->tile, proc->index, x + d, 0x18, a4, a5, ({ proc->timer + 0; }) / 16);
 
     if (proc->timer == 0x100)
     {
@@ -375,9 +406,6 @@ void ClassIntroLetter_LoopFadeOut(struct OpInfoViewProc * proc)
 
     proc->timer += 8;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080AF4D4.s");
-#endif
 ProcPtr StartClassNameIntroLetter(ProcPtr parent, int index, int x, int tile)
 {
     struct OpInfoViewProc * proc = Proc_Start(ProcScr_ClassIntroLetter, parent);
@@ -585,7 +613,166 @@ void ClassReel_SetupMagicBlend(void)
     gDispIo.blend_ct.target2_enable_bd = 1;
 }
 
-ASM_FUNC("asm/nonmatching/code_080AF99C.s");
+void ClassInfoDisplay_Init(struct OpInfoClassDisplayProc * proc)
+{
+    union
+    {
+        int hack_4d[2][6][1][1];
+        int hack_2d[2][6];
+    } hack;
+    int i;
+    int hasMagicRank;
+    u16 * buffer;
+
+    hasMagicRank = FALSE;
+
+    memcpy(hack.hack_2d, gClassReelStatLabels, sizeof(hack.hack_2d));
+
+    proc->script = proc->ent->script;
+
+    for (i = 4; i <= 7; i++)
+    {
+        if ((GetClassData(proc->ent->jid)->baseRanks[i]) != 0)
+        {
+            hasMagicRank = TRUE;
+            break;
+        }
+    }
+
+    proc->timer = 0;
+    proc->timer2 = 0;
+
+    proc->x = 0xFA;
+
+    TmFill(buffer = gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    SetBlendNone();
+
+    ResetTextFont();
+    ResetText();
+
+    gDispIo.bg0_ct.priority = 2;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+    SetBgOffset(3, 0, 0);
+
+    Decompress(Img_PrepMuralBackground, (void *) (GetBgChrOffset(3) + VRAM));
+    ApplyPaletteExt(Pal_ClassReel_InfoBg, 0x140, 0x20);
+    TmApplyTsa_thm(gBg3Tm, Tsa_ClassReel_InfoBg, TILEREF(0, 10));
+
+    Decompress(Img_ClassReel_UiBox, (void *) (GetBgChrOffset(2) + VRAM));
+    ApplyPaletteExt(Pal_ClassReel_UiBox, 0x120, 0x20);
+    TmApplyTsa_thm(gBg2Tm, Tsa_ClassReel_UiBox, TILEREF(0, 9));
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    TmFill(buffer, 0);
+
+    proc->stats[0] = GetClassData(proc->ent->jid)->baseHP;
+    proc->stats[1] = GetClassData(proc->ent->jid)->basePow;
+    proc->stats[2] = GetClassData(proc->ent->jid)->baseSkl;
+    proc->stats[3] = GetClassData(proc->ent->jid)->baseSpd;
+    proc->stats[4] = GetClassData(proc->ent->jid)->baseDef;
+    proc->stats[5] = GetClassData(proc->ent->jid)->baseRes;
+
+    for (i = 0; i <= 5; i++)
+    {
+        InitText(&gClassReelTexts[i], 3);
+
+        ClearText(&gClassReelTexts[i]);
+
+        Text_SetColor(&gClassReelTexts[i], TEXT_COLOR_SYSTEM_GOLD);
+        Text_SetCursor(&gClassReelTexts[i], 0);
+
+        if (hasMagicRank != 0)
+            Text_DrawString(&gClassReelTexts[i], DecodeMsg(hack.hack_2d[1][i]));
+        else
+            Text_DrawString(&gClassReelTexts[i], DecodeMsg(hack.hack_4d[0][i][1][-1]));
+
+        PutText(&gClassReelTexts[i], TM_OFFSET(1, i * 2 + 1) + buffer);
+        PutNumber(TM_OFFSET(5, i * 2 + 1) + buffer, TEXT_COLOR_SYSTEM_WHITE, proc->stats[i]);
+    }
+
+    proc->statsProc = StartClassStatsDisplay(proc);
+
+    InitTalk(0x100, 2, 0);
+
+    SetInitTalkTextFont();
+    ClearTalkText();
+    EndTalk();
+
+    StartTalkMsg(2, 15, proc->ent->descMsg);
+
+    SetTalkPrintColor(0);
+
+    SetTalkFlag(1);
+    SetTalkFlag(2);
+    SetTalkFlag(4);
+    SetTalkFlag(8);
+    SetTalkFlag(0x40);
+
+    SetTalkPrintDelay(4);
+
+    gOpInfoData.charPalId = proc->ent->charPalId;
+    gOpInfoData.xPos = 260;
+    gOpInfoData.yPos = 88;
+    gOpInfoData.animId = proc->ent->animId;
+    gOpInfoData.roundType = 6;
+    gOpInfoData.genericPalId = proc->ent->genericPalId;
+    gOpInfoData.state2 = 1;
+    gOpInfoData.oam2Tile = 0x180;
+    gOpInfoData.oam2Pal = 2;
+    gOpInfoData.pImgSheetBuf = gOpInfoImgSheetBuf;
+    gOpInfoData.unk_24 = gOpInfoRtlOamBuf;
+    gOpInfoData.unk_20 = gOpInfoPalBuf;
+    gOpInfoData.unk_28 = gOpInfoFrameBuf;
+
+    gOpInfoData.unk_30 = &gClassReelMagicAnim;
+
+    gClassReelMagicAnim.magic_func_idx = proc->ent->magicFx;
+    gClassReelMagicAnim.x_offset_bg = proc->ent->xOffsetBg;
+    gClassReelMagicAnim.y_offset_bg = proc->ent->yOffsetBg;
+    gClassReelMagicAnim.x_offset_obj = proc->ent->xOffsetObj;
+    gClassReelMagicAnim.y_offset_obj = proc->ent->yOffsetObj;
+    gClassReelMagicAnim.obj_chr = 0x280;
+    gClassReelMagicAnim.obj_pal_id = 0xF;
+    gClassReelMagicAnim.bg_chr = 0x200;
+    gClassReelMagicAnim.bg_pal_id = 0xF;
+    gClassReelMagicAnim.bg = 1;
+    gClassReelMagicAnim.bg_tm_buf = gBg1Tm;
+    gClassReelMagicAnim.bg_img_buf = gOpInfoMagicBgImgBuf;
+    gClassReelMagicAnim.bg_tsa_buf = gOpInfoMagicBgTsaBuf;
+    gClassReelMagicAnim.obj_img_buf = gOpInfoMagicObjImgBuf;
+    gClassReelMagicAnim.reset_callback = ClassReel_SetupMagicBlend;
+
+    NewEkrUnitMainMini(&gOpInfoData);
+
+    gOpInfoTerrainConf.unk00 = proc->ent->terrainL;
+    gOpInfoTerrainConf.unk02 = 10;
+    gOpInfoTerrainConf.unk04 = 0x380;
+    gOpInfoTerrainConf.unk06 = proc->ent->terrainR;
+    gOpInfoTerrainConf.unk08 = 11;
+    gOpInfoTerrainConf.unk0A = 0x3C0;
+    gOpInfoTerrainConf.unk0C = 0;
+    gOpInfoTerrainConf.unk0E = -1;
+
+    gOpInfoTerrainConf.unk1C = (void *) OBJ_VRAM0;
+    gOpInfoTerrainConf.unk20 = gOpInfoTerrainBuf;
+
+    sub_08054F30(&gOpInfoTerrainConf);
+    sub_08055308(&gOpInfoTerrainConf, 0xD0, 0x68, 0x130, 0x68);
+
+    SetOnHBlankA(ClassReel_VCountHandler);
+}
 void ClassInfoDisplay_Worker(struct OpInfoClassDisplayProc * proc)
 {
     if (proc->timer2 == 400)
@@ -740,7 +927,6 @@ ProcPtr StartClassAnimDisplay(ProcPtr parent, int ent)
     return proc;
 }
 
-#if NONMATCHING
 void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
 {
     struct ClassDisplayFont const * font;
@@ -751,7 +937,7 @@ void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
     proc->width = 0;
     proc->x = 0xFA;
 
-    for (i = 0; i < 15 && proc->display->ent->name[i] != 0; i++)
+    for (i = 0; i < 15 && ({ proc->display->ent->name[i]; }) != 0; i++)
     {
         font = GetClassDisplayFontInfo(proc->display->ent->name[i]);
 
@@ -764,9 +950,6 @@ void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
     Decompress(Img_ClassDisplayFont, (void *) 0x06010000);
     ApplyPalettes(Pal_ClassDisplayFont, 0x14, 2);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B00A8.s");
-#endif
 
 void ClassStatsDisplay_Loop(struct OpInfoGaugeDrawProc * proc)
 {
