@@ -72,6 +72,8 @@ void SysHandCursor_Init(struct SysHandCursorProc * proc);
 void SysHandCursor_Loop(struct SysHandCursorProc * proc);
 ProcPtr ResetSysHandCursor(ProcPtr parent);
 void DisplaySysHandCursorTextShadow(u32 vobj_offset, u32 pal);
+void SetSysHandCursorXPos(int x);
+void sub_080A9500(int y);
 void ShowSysHandCursor(int x, int y, int shadow_len, u16 chr);
 void HideSysHandCursor(void);
 void EndSysHandCursor(void);
@@ -144,6 +146,8 @@ extern struct ProcCmd ProcScr_SysboxText[];
 
 void SysboxTextMain(struct ProcSysboxText * proc);
 void NewSysboxText(int vobj_offset, int pal, const char * str, int line, ProcPtr parent);
+void sub_080A9D08(void); // EndSysboxText
+void sub_080A9D1C(int vobj_offset, int pal, const char * str, int line, ProcPtr parent); // US NewSysboxText (ends the old one first)
 
 void EndAllProcChildren(ProcPtr proc);
 void nullsub_85(void);

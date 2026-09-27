@@ -356,9 +356,19 @@ void DisplaySysHandCursorTextShadow(u32 vobj_offset, u32 pal)
         Decompress(Img_PrepTextShadow, OBJ_VRAM0 + vobj_offset);
     }
 }
-ASM_FUNC("asm/nonmatching/code_080A94E4.s");
+void SetSysHandCursorXPos(int x)
+{
+    struct SysHandCursorProc * proc = Proc_Find(ProcScr_SysHandCtrl);
+    if (proc)
+        proc->x = x;
+}
 
-ASM_FUNC("asm/nonmatching/code_080A9500.s");
+void sub_080A9500(int y)
+{
+    struct SysHandCursorProc * proc = Proc_Find(ProcScr_SysHandCtrl);
+    if (proc)
+        proc->y = y;
+}
 
 
 void ShowSysHandCursor(int x, int y, int shadow_len, u16 chr)
@@ -833,9 +843,36 @@ void SysboxTextMain(struct ProcSysboxText * proc)
     proc->timer++;
     SetTextFont(NULL);
 }
-ASM_FUNC("asm/nonmatching/code_080A9D08.s");
+void sub_080A9D08(void)
+{
+    Proc_End(Proc_Find(ProcScr_SysboxText));
+}
 
-ASM_FUNC("asm/nonmatching/code_080A9D1C.s");
+void sub_080A9D1C(int vobj_offset, int pal, const char * str, int line, ProcPtr parent)
+{
+    int i;
+    struct ProcSysboxText * proc;
+
+    Proc_End(Proc_Find(ProcScr_SysboxText));
+    proc = Proc_Start(ProcScr_SysboxText, parent);
+
+    InitSpriteTextFont(&proc->font, OBJ_VRAM0 + vobj_offset, pal);
+    proc->str = str;
+    proc->line = 0;
+    proc->max_line = line;
+    proc->timer = 0;
+
+    for (i = 0; i < line; i++)
+    {
+        InitSpriteText(&proc->texts[i]);
+        SpriteText_DrawBackgroundExt(&proc->texts[i], 0);
+    }
+
+    ApplyPalette(Pal_Text, pal + 0x10);
+    SetTextFontGlyphs(0);
+    SetTextFont(NULL);
+    Proc_Goto(proc, 0);
+}
 
 
 CONST_DATA struct ProcCmd ProcScr_SysboxText[] = {
