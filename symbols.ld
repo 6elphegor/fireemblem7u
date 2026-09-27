@@ -2828,3 +2828,5 @@ ProcScr_TactGenderSelect = 0x08CE47DC;
 Sprite_08A2051C = 0x08CE4158;
 SpriteArray_08A209B8 = 0x08CE4584;
 SpriteArray_08A2099C = 0x08CE456C;
+ApConf_SaveMenuCursor = 0x08413A50;
+ProcScr_SaveDraw = 0x08CE42EC;

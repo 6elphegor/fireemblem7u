@@ -2,6 +2,33 @@
 
 #include "gbafe/bonusclaim.h"
 
+#include "gbafe/savemenu.h"
+
+struct SaveDrawProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 unk_29;
+    /* 2A */ u16 unk_2a;
+    /* 2C */ u16 unk_2c;
+    /* 2E */ u16 unk_2e;
+    /* 30 */ u16 unk_30;
+    /* 32 */ s8 unk_32;
+    /* 33 */ u8 unk_33;
+    /* 34 */ ProcPtr unk_34;
+    /* 38 */ u8 unk_38;
+    /* 39 */ u8 unk_39;
+    /* 3A */ u8 unk_3a;
+    /* 3B */ u8 unk_3b;
+    /* 3C */ u8 unk_3c;
+};
+
+#define SAVE_MENU_PARENT(proc) ((struct SaveMenuProc *) (proc)->proc_parent)
+
+extern u16 CONST_DATA ApConf_SaveMenuCursor[];
+extern struct ProcCmd CONST_DATA ProcScr_SaveDraw[];
+
+ProcPtr StartSaveDrawCursor(ProcPtr parent);
+
 extern u16 CONST_DATA Sprite_08A2051C[];
 extern u16 * CONST_DATA SpriteArray_08A209B8[];
 extern u16 * CONST_DATA SpriteArray_08A2099C[];
@@ -152,7 +179,35 @@ void sub_080A511C(ProcPtr parent)
 ASM_FUNC("asm/nonmatching/code_080A5130.s");
 ASM_FUNC("asm/nonmatching/code_080A5148.s");
 ASM_FUNC("asm/nonmatching/code_080A5214.s");
-ASM_FUNC("asm/nonmatching/code_080A5420.s");
+void SaveDraw_Init(struct SaveDrawProc * proc)
+{
+    proc->unk_2c = 0;
+    proc->unk_2e = 0x100;
+    proc->unk_3a = 0;
+    proc->unk_3b = 40;
+    proc->unk_30 = 0;
+    proc->unk_32 = 0;
+
+    SetObjAffine(0, 0x100, 0, 0, 0x100);
+    SetObjAffine(1, 0x100, 0, 0, 0x100);
+    SetObjAffine(2, 0x100, 0, 0, 0x100);
+
+    proc->unk_2a = 0;
+    proc->unk_34 = StartSaveDrawCursor(proc);
+    proc->unk_39 = 0;
+
+    if (SAVE_MENU_PARENT(proc)->unk_3F == 0xff)
+    {
+        SAVE_MENU_PARENT(proc)->approc = NULL;
+    }
+    else
+    {
+        SAVE_MENU_PARENT(proc)->approc =
+            StartSpriteAnimProc(ApConf_SaveMenuCursor, 320, SAVE_MENU_PARENT(proc)->unk_3F * 32 + 48, 0x160, 0, 4);
+    }
+
+    proc->unk_3c = SAVE_MENU_PARENT(proc)->copy_from_id;
+}
 void sub_080A54C8(s8 flag, u16 color)
 {
     if (flag != 0)
@@ -175,4 +230,7 @@ void sub_080A5590(ProcPtr unused, int x, int y, u8 spriteIdx, u8 palIdA, u8 palI
 ASM_FUNC("asm/nonmatching/code_080A560C.s");
 ASM_FUNC("asm/nonmatching/code_080A5748.s");
 ASM_FUNC("asm/nonmatching/code_080A5818.s");
-ASM_FUNC("asm/nonmatching/code_080A5C48.s");
+ProcPtr StartSaveDraw(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_SaveDraw, parent);
+}

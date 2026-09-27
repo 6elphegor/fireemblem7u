@@ -63,6 +63,7 @@ struct SaveMenuProc {
     /* 54 */ struct SaveMenuUnkProc1 * proc1;
     /* 58 */ struct SaveMenuUnkProc2 * proc2;
     /* 5C */ ProcPtr proc3; // sprite anim proc
+    /* 60 */ ProcPtr approc;
 };
 
 extern u8 gUnk_Savemenu_02000000;
