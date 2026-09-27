@@ -534,7 +534,7 @@ _080B4278:
 _080B42AC: .4byte 0x02000000
 _080B42B0:
 	ldr r0, [r6, #0x58]
-	bl sub_0806DAB4
+	bl HideMu
 	adds r6, #0x61
 	str r6, [sp, #0x20]
 _080B42BA:

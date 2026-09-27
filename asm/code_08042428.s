@@ -17,7 +17,7 @@ _0804242E:
 	mov r1, sp
 	bl ReadGameSavePlaySt
 	mov r0, sp
-	bl sub_080A0A10
+	bl IsGameNotFirstChapter
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08042452

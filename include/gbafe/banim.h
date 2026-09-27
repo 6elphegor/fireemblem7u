@@ -380,21 +380,21 @@ int GetBanimInitPosReal(void);
 int CheckEkrHitDone(void);
 // ??? EkrEfxIsUnitHittedNow
 // ??? NewEfxHPBar
-// ??? sub_0804D670
+// ??? EfxHpBar_DeclineToDeath
 // ??? EfxHpBar_MoveCameraOnEnd
 // ??? EfxHpBar_WaitCameraMove
 // ??? NewEfxHpBarResire
-// ??? sub_0804D94C
-// ??? sub_0804DA0C
-// ??? sub_0804DAB0
+// ??? EfxHpBarResire_WaitOnCurrentSide
+// ??? EfxHpBarResire_SetAnotherSide
+// ??? EfxHpBarResire_DeclineToDeath
 // ??? NewEfxAvoid
 // ??? EfxAvoidMain
 // ??? NewEfxHpBarLive
-// ??? sub_0804DD70
+// ??? EfxHPBarLiveMain
 // ??? NewEfxNoDmage
-// ??? sub_0804DE7C
-// ??? sub_0804DED0
-// ??? sub_0804DEF4
+// ??? EfxNoDamageMain
+// ??? NewEfxNoDamageYure
+// ??? EfxNoDamageYureMain
 // ??? NewEfxStatusCHG
 // ??? EfxStatusCHGMain
 // ??? NewEfxDeadEvent
@@ -406,10 +406,10 @@ int CheckEkrHitDone(void);
 // ??? NewEfxDead
 // ??? sub_0804E234
 // ??? sub_0804E278
-// ??? sub_0804E2E8
-// ??? sub_0804E30C
-// ??? sub_0804E36C
-// ??? sub_0804E3E4
+// ??? NewEfxDeadPika
+// ??? EfxDeadPikaMain
+// ??? NewEfxDeadAlpha
+// ??? EfxDeadAlphaMain
 // ??? NewEfxFarAttackWithDistance
 // ??? sub_0804E574
 // ??? sub_0804E5AC
@@ -417,13 +417,13 @@ int CheckEkrHitDone(void);
 // ??? sub_0804E648
 // ??? sub_0804E6DC
 ProcPtr NewEfxQuakePure(int, int);
-// ??? sub_0804E77C
+// ??? efxQuakePure_Loop
 // ??? NewEfxHitQuakePure
 // ??? nullsub_48
-void NewEfxQuake(int type);
-// ??? sub_0804E900
+ProcPtr NewEfxQuake(int type);
+// ??? efxQuake_Loop
 // ??? NewEfxHitQuake
-// ??? sub_0804EC88
+// ??? efxHitQuake_Loop
 void NewEfxFlashBgWhite(struct Anim * anim, int duartion);
 void NewEfxFlashBgRed(struct Anim * anim, int duartion);
 void NewEfxFlashBgBlack(struct Anim * anim, int duartion);
@@ -435,16 +435,16 @@ void NewEfxFlashBgDirectly(struct Anim * anim, int duartion);
 // ??? EfxWhiteOutMain2
 // ??? EfxWhiteOutRestorePalSync
 // ??? NewEfxFlashHPBar
-// ??? EfxWhiteInMain1
-// ??? sub_0804F254
+// ??? EfxFlashHPBarDelay
+// ??? EfxFlashHPBarMain1
 // ??? EfxFlashHPBarRestorePal
 // ??? NewEfxHpBarColorChange
 // ??? EndEfxHPBarColorChange
-// ??? sub_0804F480
-// ??? EfxHpBarColorChange_804FC6C
+// ??? DisableEfxHpBarColorChange
+// ??? EnableEfxHpBarColorChange
 // ??? EfxHPBarColorChangeMain
 // ??? NewEfxFlashUnit
-// ??? sub_0804F5D4
+// ??? EfxFlashUnitMain
 // ??? EfxFlashUnitRestorePal
 
 struct ProcEfxStatusUnit {
@@ -470,7 +470,6 @@ struct ProcEfxStatusUnit {
 
     STRUCT_PAD(0x54, 0x5C);
 
-    /* 54 */ u8 _pad_54[0x5C - 0x54];
     /* 5C */ struct Anim * anim;
 };
 
@@ -484,7 +483,7 @@ void SetUnitEfxDebuff(struct Anim * anim, int debuff);
 u32 GetUnitEfxDebuff(struct Anim * anim);
 void EfxStatusUnitFlashing(struct Anim * anim, int, int, int);
 void EfxStatusUnit_Loop(struct ProcEfxStatusUnit * proc);
-// ??? sub_0804FA08
+// ??? EfxStatusUnitEnd
 void NewEfxWeaponIcon(s16 effective1, s16 effective2);
 void EndProcEfxWeaponIcon(void);
 void DisableEfxWeaponIcon(void);

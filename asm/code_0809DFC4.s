@@ -18,7 +18,7 @@ sub_0809DFC4: @ 0x0809DFC4
 	mov r0, sp
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_0809F224
+	bl LoadRankData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809E088

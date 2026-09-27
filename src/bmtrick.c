@@ -575,7 +575,7 @@ struct Trap * AddLightRune(int x, int y)
 
 struct Trap * RemoveLightRune(struct Trap * trap)
 {
-    gBmMapTerrain[trap->yPos][trap->xPos] = sub_080193BC(trap->xPos, trap->yPos);
+    gBmMapTerrain[trap->yPos][trap->xPos] = GetTrueTerrainAt(trap->xPos, trap->yPos);
     return RemoveTrap(trap);
 }
 
@@ -624,7 +624,7 @@ void DisableAllLightRunes(void)
         {
 
         case FE7_TRAP_LIGHT_RUNE:
-            gBmMapTerrain[trap->yPos][trap->xPos] = sub_080193BC(trap->xPos, trap->yPos);
+            gBmMapTerrain[trap->yPos][trap->xPos] = GetTrueTerrainAt(trap->xPos, trap->yPos);
             break;
 
         }

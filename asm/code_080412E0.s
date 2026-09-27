@@ -128,7 +128,7 @@ _080413F0:
 	strb r0, [r4]
 _080413F2:
 	add r0, sp, #8
-	bl sub_080A0A10
+	bl IsGameNotFirstChapter
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0804140E

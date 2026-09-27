@@ -13,7 +13,7 @@ _080B699C:
 	subs r0, #4
 	cmp r0, sp
 	bge _080B699C
-	bl sub_080A01BC
+	bl PidStatsGetTotalExpGain
 	adds r1, r0, #0
 	ldr r4, _080B6A64 @ =0x000FFFFF
 	cmp r1, r4
