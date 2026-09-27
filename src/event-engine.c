@@ -141,23 +141,305 @@ int sub_0800A7CC(void)
     return gUnk_08B90C9C[gUnk_03000100++];
 }
 
-ASM_FUNC("asm/nonmatching/code_0800A7E4.s");
-ASM_FUNC("asm/nonmatching/code_0800A918.s");
-ASM_FUNC("asm/nonmatching/code_0800AA18.s");
-ASM_FUNC("asm/nonmatching/code_0800AA4C.s");
-ASM_FUNC("asm/nonmatching/code_0800AABC.s");
-ASM_FUNC("asm/nonmatching/code_0800AAD8.s");
-ASM_FUNC("asm/nonmatching/code_0800AB00.s");
-ASM_FUNC("asm/nonmatching/code_0800AB1C.s");
-ASM_FUNC("asm/nonmatching/code_0800AB38.s");
-ASM_FUNC("asm/nonmatching/code_0800AC8C.s");
-ASM_FUNC("asm/nonmatching/code_0800ACC4.s");
-ASM_FUNC("asm/nonmatching/code_0800AD1C.s");
-ASM_FUNC("asm/nonmatching/code_0800AD28.s");
-ASM_FUNC("asm/nonmatching/code_0800AD34.s");
-ASM_FUNC("asm/nonmatching/code_0800AD40.s");
-ASM_FUNC("asm/nonmatching/code_0800AD5C.s");
-ASM_FUNC("asm/nonmatching/code_0800ADA8.s");
+int ParsePopupInstAndGetLen(struct PopupProc * proc)
+{
+    char str[0x10];
+    int len = 0;
+    struct PopupInstruction const * inst;
+
+    for (inst = proc->inst; inst->opcode != POPUP_OP_END; inst++)
+    {
+        switch (inst->opcode)
+        {
+        case POPUP_OP_SOUND:
+            proc->song = inst->data;
+            break;
+
+        case POPUP_OP_NUM:
+            len += NumberToStringAscii(gPopupNumber, str) * 8;
+            break;
+
+        case POPUP_OP_ITEM_ICON:
+            proc->icon_x = len;
+            proc->icon = GetItemIconId(gPopupItem);
+            ApplyIconPalette(0, proc->icon_pal);
+            len += 0x10;
+            break;
+
+        case POPUP_OP_WTYPE_ICON:
+            proc->icon_x = len;
+            proc->icon = gPopupItem + 0x70;
+            ApplyIconPalette(1, proc->icon_pal);
+            len += 0x10;
+            break;
+
+        case POPUP_OP_MSG:
+            len += GetStringTextLen(DecodeMsg(inst->data));
+            break;
+
+        case POPUP_OP_STR:
+            len += GetStringTextLen((char const *) inst->data);
+            break;
+
+        case POPUP_OP_UNIT_NAME:
+            len += GetStringTextLen(DecodeMsg(gPopupUnit->pCharacterData->nameTextId));
+            break;
+
+        case POPUP_OP_ITEM_NAME:
+            len += GetStringTextLen(GetItemName(gPopupItem));
+            break;
+
+        case POPUP_OP_ITEM_STR_CAP:
+            len += GetStringTextLen(GetItemNameWithArticle(gPopupItem, TRUE));
+            break;
+
+        case POPUP_OP_ITEM_STR:
+            len += GetStringTextLen(GetItemNameWithArticle(gPopupItem, FALSE));
+            break;
+
+        case POPUP_OP_SPACE:
+            len += inst->data;
+            break;
+
+        case POPUP_OP_COLOR:
+        default:
+            break;
+        }
+    }
+
+    return len;
+}
+
+void GeneratePopupText(struct PopupInstruction const * inst, struct Text text)
+{
+    char str[0x10];
+
+    for (; inst->opcode != POPUP_OP_END; inst++)
+    {
+        switch (inst->opcode)
+        {
+        case POPUP_OP_NUM:
+            NumberToStringAscii(gPopupNumber, str);
+            Text_DrawString(&text, str);
+            break;
+
+        case POPUP_OP_WTYPE_ICON:
+        case POPUP_OP_ITEM_ICON:
+            Text_Skip(&text, 0x10);
+            break;
+
+        case POPUP_OP_COLOR:
+            Text_SetColor(&text, inst->data);
+            break;
+
+        case POPUP_OP_MSG:
+            Text_DrawString(&text, DecodeMsg(inst->data));
+            break;
+
+        case POPUP_OP_STR:
+            Text_DrawString(&text, (char const *) inst->data);
+            break;
+
+        case POPUP_OP_UNIT_NAME:
+            Text_DrawString(&text, DecodeMsg(gPopupUnit->pCharacterData->nameTextId));
+            break;
+
+        case POPUP_OP_ITEM_NAME:
+            Text_DrawString(&text, GetItemName(gPopupItem));
+            break;
+
+        case POPUP_OP_ITEM_STR_CAP:
+            Text_DrawString(&text, GetItemNameWithArticle(gPopupItem, TRUE));
+            break;
+
+        case POPUP_OP_ITEM_STR:
+            Text_DrawString(&text, GetItemNameWithArticle(gPopupItem, FALSE));
+            break;
+
+        case POPUP_OP_SPACE:
+            Text_Skip(&text, inst->data);
+
+        default:
+            break;
+        }
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+void PopupProc_Init(struct PopupProc * proc)
+{
+    proc->x_tile_param = -1;
+    proc->y_tile_param = -1;
+    proc->text_color = TEXT_COLOR_SYSTEM_WHITE;
+    proc->icon = -1;
+    proc->icon_x = 0;
+    proc->song = 0;
+}
+
+void PopupProc_PrepareGfx(struct PopupProc * proc)
+{
+    InitTextFont(NULL, (void *) BG_VRAM + 0x2000 + GetBgChrOffset(0), 0x100, 0);
+    ClearIcons();
+    UnpackUiWindowFrameGraphics();
+
+    SetBlendNone();
+    SetWinEnable(0, 0, 0);
+
+    proc->x_gfx_size = ParsePopupInstAndGetLen(proc);
+}
+
+void PopupProc_MaybeSetVolume(struct PopupProc * proc)
+{
+    if (proc->song != 0)
+        StartBgmVolumeChange(0x100, 0x80, 0x10, proc);
+}
+
+void PopupProc_PlaySound(struct PopupProc * proc)
+{
+    if (proc->song != 0)
+        PlaySoundEffect(proc->song);
+}
+
+void PopupProc_MaybeResetVolume(struct PopupProc * proc)
+{
+    if (proc->song != 0)
+        StartBgmVolumeChange(0x80, 0x100, 0x10, proc);
+}
+
+void PopupIconUpdateProc_Loop(struct PopupIconUpdateProc * proc)
+{
+    PutOamHiRam(proc->x, proc->y, Sprite_16x16, proc->oam2);
+}
+
+void PopupProc_GfxDraw(struct PopupProc * proc)
+{
+    struct Text text;
+    int icon_pos;
+    int tile_len;
+    int x, y;
+    int width;
+
+    u32 len;
+
+    len = ParsePopupInstAndGetLen(proc);
+    proc->x_gfx_size = len;
+    tile_len = (len << 0x10) >> 0x13;
+
+    if ((len & 7) != 0)
+        tile_len++;
+
+    icon_pos = (tile_len * 8 - proc->x_gfx_size) >> 1;
+
+    if (proc->x_tile_param == -1)
+        x = ((0x1E - tile_len) >> 1) - 1;
+    else
+        x = proc->x_tile_param;
+
+    if (proc->y_tile_param != -1)
+        y = proc->y_tile_param;
+    else
+        y = 8;
+
+    width = tile_len + 2;
+    DrawUiFrame2(x, y, width, 4, proc->window_kind);
+
+    proc->x_tile = x;
+    proc->y_tile = y;
+    proc->x_tile_size = width;
+    proc->y_tile_size = 3;
+    proc->icon_x += icon_pos;
+
+    InitText(&text, tile_len);
+    Text_SetColor(&text, proc->text_color);
+    Text_SetCursor(&text, icon_pos);
+    GeneratePopupText(proc->inst, text);
+
+    if (proc->icon != 0xFFFF)
+        PutIconObjImg(proc->icon, proc->icon_chr);
+
+    PutText(&text, gBg0Tm + TM_OFFSET(x + 1, y + 1));
+    ResetText();
+
+    if (proc->icon != 0xFFFF)
+    {
+        struct PopupIconUpdateProc * child = Proc_Start(ProcScr_PopupUpdateIcon, proc);
+
+        child->x = (proc->x_tile + 1) * 8 + proc->icon_x;
+        child->y = (proc->y_tile + 1) * 8;
+        child->oam2 = proc->icon_chr | (proc->icon_pal & 0xF) << 0xC;
+    }
+}
+
+void PopupProc_WaitForPress(struct PopupProc * proc)
+{
+    if (proc->clock < 0)
+    {
+        if (gpKeySt->pressed != 0)
+        {
+            Proc_Break(proc);
+            return;
+        }
+    }
+    else if (proc->clock != 0)
+    {
+        proc->clock--;
+
+        if (proc->clock == 0)
+            Proc_Break(proc);
+    }
+}
+
+void PopupProc_GfxClear(struct PopupProc * proc)
+{
+    TmFillRect_thm(gBg0Tm + TM_OFFSET(proc->x_tile, proc->y_tile), proc->x_tile_size, proc->y_tile_size, 0);
+    TmFillRect_thm(gBg1Tm + TM_OFFSET(proc->x_tile, proc->y_tile), proc->x_tile_size, proc->y_tile_size, 0);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+void sub_0800AD1C(struct Unit * unit)
+{
+    gPopupUnit = unit;
+}
+
+void sub_0800AD28(u16 item)
+{
+    gPopupItem = item;
+}
+
+void SetPopupNumber(u32 num)
+{
+    gPopupNumber = num;
+}
+
+ProcPtr NewPopup_Simple(struct PopupInstruction const * inst, int clock, int window_kind, ProcPtr parent)
+{
+    return NewPopupCore(inst, clock, window_kind, 0x240, 4, parent);
+}
+
+ProcPtr NewPopupCore(struct PopupInstruction const * inst, int clock, int window_kind, int icon_chr, int icon_pal, ProcPtr parent)
+{
+    struct PopupProc * proc;
+
+    if (parent != NULL)
+        proc = Proc_StartBlocking(ProcScr_Popup, parent);
+    else
+        proc = Proc_Start(ProcScr_Popup, PROC_TREE_3);
+
+    proc->clock = clock;
+    proc->inst = inst;
+    proc->window_kind = window_kind;
+    proc->icon_chr = icon_chr;
+    proc->icon_pal = icon_pal + 0x10;
+
+    return proc;
+}
+
+void EndPopups(void)
+{
+    Proc_EndEach(ProcScr_Popup);
+}
+
 ASM_FUNC("asm/nonmatching/code_0800ADB8.s");
 ASM_FUNC("asm/nonmatching/code_0800ADD0.s");
 ASM_FUNC("asm/nonmatching/code_0800ADDC.s");

@@ -124,6 +124,7 @@ s32 GetPartyTotalGoldValue(void);
 // sub_08017178
 int GetItemIndex(int item);
 char *GetItemName(int item);
+char * GetItemNameWithArticle(int item, bool capitalize);
 int GetItemDescMsg(int item);
 int GetItemUseDescId(int item);
 int GetItemType(int item);
@@ -141,7 +142,7 @@ int GetItemCrit(int item);
 int GetItemRequiredExp(int item);
 // GetItemEffectiveness
 // GetItemBonuses
-// GetItemIconId
+int GetItemIconId(int item);
 int GetItemWeaponEffect(int item);
 // GetItemEffect
 int GetItemCostPerUse(int item);

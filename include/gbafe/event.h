@@ -691,6 +691,90 @@ extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
 
 /* ---- event-engine.c (0x0800A618-0x0800B4C8) ---- */
 
+enum popup_opcode_index {
+    POPUP_OP_END,              /* 00 */
+    POPUP_OP_SPACE,            /* 01 */
+    POPUP_OP_ITEM_NAME,        /* 02 */
+    POPUP_OP_ITEM_STR_CAP,     /* 03 */
+    POPUP_OP_ITEM_STR,         /* 04 */
+    POPUP_OP_UNIT_NAME,        /* 05 */
+    POPUP_OP_MSG,              /* 06 */
+    POPUP_OP_STR,              /* 07 */
+    POPUP_OP_COLOR,            /* 08 */
+    POPUP_OP_ITEM_ICON,        /* 09 */
+    POPUP_OP_WTYPE_ICON,       /* 0A */
+    POPUP_OP_NUM,              /* 0B */
+    POPUP_OP_SOUND,            /* 0C */
+};
+
+struct PopupInstruction {
+    u8 opcode;
+    u32 data;
+};
+
+struct PopupProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct PopupInstruction const * inst;
+    /* 30 */ int clock;
+    /* 34 */ s8 x_tile_param;
+    /* 35 */ s8 y_tile_param;
+    /* 36 */ u8 window_kind;
+    /* 37 */ u8 x_tile;
+    /* 38 */ u8 y_tile;
+    /* 39 */ u8 x_tile_size;
+    /* 3A */ u8 y_tile_size;
+    /* 3B */ u8 text_color;
+    /* 3C */ STRUCT_PAD(0x3C, 0x3E);
+    /* 3E */ u16 icon;
+    /* 40 */ u16 icon_chr;
+    /* 42 */ u8 icon_pal;
+    /* 43 */ STRUCT_PAD(0x43, 0x44);
+    /* 44 */ u8 icon_x;
+    /* 45 */ STRUCT_PAD(0x45, 0x46);
+    /* 46 */ u16 x_gfx_size;
+    /* 48 */ u16 song;
+};
+
+struct PopupIconUpdateProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int x;
+    /* 30 */ int y;
+    /* 34 */ STRUCT_PAD(0x34, 0x4A);
+    /* 4A */ u16 oam2;
+};
+
+extern struct Unit * gPopupUnit;
+extern u16 gPopupItem;
+extern u32 gPopupNumber;
+
+extern struct ProcCmd CONST_DATA ProcScr_Popup[];
+extern struct ProcCmd CONST_DATA ProcScr_PopupUpdateIcon[];
+
+void LoadUnitCore(struct UnitDefinition const * def, struct EventProc * proc);
+void FakeLoadUnit(struct UnitDefinition const * def, struct Unit * unit);
+void sub_0800A71C(struct UnitDefinition const * def, struct Unit * unit, struct EventProc * proc, bool move);
+bool sub_0800A7A0(void);
+int sub_0800A7BC(void);
+int sub_0800A7CC(void);
+int ParsePopupInstAndGetLen(struct PopupProc * proc);
+void GeneratePopupText(struct PopupInstruction const * inst, struct Text text);
+void PopupProc_Init(struct PopupProc * proc);
+void PopupProc_PrepareGfx(struct PopupProc * proc);
+void PopupProc_MaybeSetVolume(struct PopupProc * proc);
+void PopupProc_PlaySound(struct PopupProc * proc);
+void PopupProc_MaybeResetVolume(struct PopupProc * proc);
+void PopupIconUpdateProc_Loop(struct PopupIconUpdateProc * proc);
+void PopupProc_GfxDraw(struct PopupProc * proc);
+void PopupProc_WaitForPress(struct PopupProc * proc);
+void PopupProc_GfxClear(struct PopupProc * proc);
+void sub_0800AD1C(struct Unit * unit); // SetPopupUnit
+void sub_0800AD28(u16 item); // SetPopupItem
+void SetPopupNumber(u32 num);
+ProcPtr NewPopup_Simple(struct PopupInstruction const * inst, int clock, int window_kind, ProcPtr parent);
+ProcPtr NewPopupCore(struct PopupInstruction const * inst, int clock, int window_kind, int icon_chr, int icon_pal, ProcPtr parent);
+void EndPopups(void);
 /* ---- end event-engine.c ---- */
 
 

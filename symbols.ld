@@ -650,6 +650,11 @@ gEventCmdTable = 0x08B90E48;
 
 gUnk_03000100 = 0x03000100;
 gUnk_08B90C9C = 0x08B90C9C;
+gPopupUnit = 0x03000104;
+gPopupItem = 0x03000108;
+gPopupNumber = 0x0300010C;
+ProcScr_Popup = 0x08B90CA0;
+ProcScr_PopupUpdateIcon = 0x08B90D00;
 /* end event-engine.c */
 
 
