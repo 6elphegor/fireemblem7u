@@ -771,3 +771,9 @@ AnimScr_EfxChill1_R = 0x08BD5644;
 AnimScr_EfxChill1_L = 0x08BD5848;
 AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
+/* cp_utility */
+sRange3OffsetLut = 0x08B97034;
+gTerrainList_LootableVillages = 0x08B97098;
+gTerrainList_LootableVillagesAndChests = 0x08B9709C;
+gAiClassRankLists = 0x08B970C8;
+gAiStealPriorityItemList = 0x08B97290;
