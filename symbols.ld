@@ -1904,3 +1904,6 @@ Obj_EventShinningCursor = 0x08CA7518;
 ProcScr_TutorialCursor = 0x08CA7534;
 ProcScr_TutorialCursorWatcher = 0x08CA7554;
 Pal_EventCursorShinning = 0x0841E3B8;
+ProcScr_08CA78DC = 0x08CA78DC;
+ProcScr_08CA7994 = 0x08CA7994;
+ProcScr_WorldFlush = 0x08CA79C4;
