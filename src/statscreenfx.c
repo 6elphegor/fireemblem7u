@@ -635,8 +635,28 @@ void PutStatScreenWeaponExpBar(int num, int x, int y, int item_kind)
 }
 
 
-void PutStatScreenWeaponExpAndSupportsPage(void);
-ASM_FUNC("asm/nonmatching/code_08080424.s");
+void PutStatScreenWeaponExpAndSupportsPage(void)
+{
+    Decompress(Tsa_StatScreen_083FCB30, gBuf);
+    TmApplyTsa(gUiTmScratchB, gBuf, TILEREF(BGCHR_WINDOWFRAME, BGPAL_WINDOWFRAME));
+
+    if (UnitHasMagicRank(gStatScreenSt.unit))
+    {
+        PutStatScreenWeaponExpBar(0, 1, 1, ITYPE_ANIMA);
+        PutStatScreenWeaponExpBar(1, 1, 3, ITYPE_LIGHT);
+        PutStatScreenWeaponExpBar(2, 9, 1, ITYPE_DARK);
+        PutStatScreenWeaponExpBar(3, 9, 3, ITYPE_STAFF);
+    }
+    else
+    {
+        PutStatScreenWeaponExpBar(0, 1, 1, ITYPE_SWORD);
+        PutStatScreenWeaponExpBar(1, 1, 3, ITYPE_LANCE);
+        PutStatScreenWeaponExpBar(2, 9, 1, ITYPE_AXE);
+        PutStatScreenWeaponExpBar(3, 9, 3, ITYPE_BOW);
+    }
+
+    PutStatScreenSupportList();
+}
 
 
 void PutStatScreenPage(int page_id)

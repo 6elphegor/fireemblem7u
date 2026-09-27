@@ -242,6 +242,7 @@ gUnk_083FBFD0 = 0x083FBFD0;
 Tsa_StatScreen_083FC9FC = 0x083FC9FC;
 Tsa_StatScreenPage0 = 0x083FCA4C;
 Tsa_Statscreen_Pag1_083FCAC0 = 0x083FCAC0;
+Tsa_StatScreen_083FCB30 = 0x083FCB30;
 Pal_StatScreenFaceDefault = 0x083FCBAC;
 Pal_StatScreenFaceGeneric = 0x083FCBCC;
 Img_StatScreen_083FCBEC = 0x083FCBEC;
