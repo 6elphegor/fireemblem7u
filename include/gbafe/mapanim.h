@@ -61,6 +61,30 @@ struct ManimInfoWindowProc {
     /* 30 */ ProcPtr parent;
 };
 
+struct ManimDebugProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 actor;
+    /* 66 */ s16 field;
+};
+
+struct ManimDebugInfoEntry {
+    /* 00 */ s16 data[10];
+    /* 14 */ struct Text text[10];
+};
+
+struct ManimDebugInfo {
+    /* 00 */ STRUCT_PAD(0x00, 0x08);
+    /* 08 */ struct ManimDebugInfoEntry infos[2];
+};
+
+struct ManimDebugFieldInfo {
+    /* 00 */ u8 width;
+    /* 01 */ s8 up, down, left, right;
+    /* 05 */ u8 min, max;
+    /* 07 */ STRUCT_PAD(0x07, 0x08);
+};
+
 void Manim_StoleItemPopup(ProcPtr proc);
 void Manim_WeaponBrokePopup(ProcPtr proc);
 bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
@@ -117,13 +141,13 @@ void ManimExpBar_InitShake(struct ManimExpBarProc * proc);
 void ManimExpBar_Shake(struct ManimExpBarProc * proc);
 void ManimExpBar_LevelUpIfPossible(struct ManimExpBarProc * proc);
 // sub_8070AF8
-// sub_08070324
-// sub_08070784
-// sub_08070980
-// sub_08070B60
-// sub_08071088
-// sub_08071174
-// sub_080713EC
+void ManimDebug_PutField(int num, int index, int color);
+void ManimDebug_Init(struct ManimDebugProc * proc);
+void ManimDebug_InitScreen(struct ManimDebugProc * proc);
+void ManimDebug_Loop(struct ManimDebugProc * proc);
+void ManimDebug_SetupBattleUnit(struct BattleUnit * bu, int actor);
+bool ManimDebug_SetupBattle(void);
+void ManimDebug_StartBattleAnim(ProcPtr proc);
 // sub_08071424
 // sub_080714A0
 // sub_0807151C
@@ -282,3 +306,4 @@ void ManimExpBar_LevelUpIfPossible(struct ManimExpBarProc * proc);
 // sub_08076798
 // sub_8076FFC
 // sub_8077014
+void StartManimDebug(void);
