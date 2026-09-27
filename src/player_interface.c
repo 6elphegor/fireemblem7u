@@ -1,5 +1,23 @@
 #include "gbafe.h"
 
+extern s8 CONST_DATA gUnitBurstMapUiTextXTable[];
+extern s8 CONST_DATA gUnitBurstMapUiTextYTable[];
+extern s8 CONST_DATA gUnitBurstMapUiXOffsetTable[];
+extern s8 CONST_DATA gUnitBurstMapUiYOffsetTable[];
+extern u16 * CONST_DATA gUnitBurstMapUiTopTsaLut[];
+extern s8 CONST_DATA sMMBSlideInWidthLut[];
+extern s8 CONST_DATA sMMBSlideOutWidthLut[];
+extern s8 CONST_DATA sTerrainSlideInWidthLut[];
+extern s8 CONST_DATA sTerrainSlideOutWidthLut[];
+extern struct ProcCmd CONST_DATA gProcScr_TerrainDisplay[];
+extern struct ProcCmd CONST_DATA gProcScr_UnitDisplay_MinimugBox[];
+extern struct ProcCmd CONST_DATA gProcScr_UnitDisplay_Burst[];
+extern struct ProcCmd CONST_DATA gProcScr_SideWindowMaker[];
+extern s8 CONST_DATA sGoalSlideInWidthLut[];
+extern s8 CONST_DATA sGoalSlideOutWidthLut[];
+extern struct ProcCmd CONST_DATA gProcScr_GoalDisplay[];
+extern struct ProcCmd CONST_DATA gProcScr_PrepMap_MenuButtonDisplay[];
+
 int GetWindowQuadrant(int x, int y)
 {
     if (x < 0)
@@ -104,17 +122,227 @@ void PutMapUiHpBar(u16 * buffer, struct Unit * unit, int tileBase)
     PutMapUiHpBarRight(buffer + 5, hpPercent - 37, tileBase);
 }
 
-ASM_FUNC("asm/nonmatching/code_08084858.s");
+void MMB_Loop_SlideIn(struct PlayerInterfaceProc * proc)
+{
+    int tmIndex;
+    int width;
 
-ASM_FUNC("asm/nonmatching/code_080849D0.s");
+    int y = sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0 ? 0 : 14;
 
-ASM_FUNC("asm/nonmatching/code_08084B34.s");
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+    {
+        tmIndex = TM_OFFSET(0, y);
 
-ASM_FUNC("asm/nonmatching/code_08084C5C.s");
+        TmFillRect(gBg0Tm + tmIndex, 12, 6, 0);
+        TmFillRect(gBg1Tm + tmIndex, 12, 6, 0);
+    }
+    else
+    {
+        tmIndex = TM_OFFSET(0, y);
 
-ASM_FUNC("asm/nonmatching/code_08084D90.s");
+        TmFillRect(gBg0Tm + TM_OFFSET(18, 0) + tmIndex, 12, 6, 0);
+        TmFillRect(gBg1Tm + TM_OFFSET(18, 0) + tmIndex, 12, 6, 0);
+    }
 
-ASM_FUNC("asm/nonmatching/code_08084DE4.s");
+    tmIndex = TM_OFFSET(0, y);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    width = sMMBSlideInWidthLut[proc->showHideClock];
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+    {
+        TmCopyRect(gUiTmScratchA + (12 - width), gBg0Tm + tmIndex, width, 6);
+        TmCopyRect(gUiTmScratchB + (12 - width), gBg1Tm + tmIndex, width, 6);
+    }
+    else
+    {
+        TmCopyRect(gUiTmScratchA, gBg0Tm + TM_OFFSET(30 - width, y), width, 6);
+        TmCopyRect(gUiTmScratchB, gBg1Tm + TM_OFFSET(30 - width, y), width, 6);
+    }
+
+    proc->showHideClock++;
+
+    if (proc->showHideClock == 4)
+    {
+        proc->hideContents = false;
+        proc->showHideClock = 0;
+
+        Proc_Break(proc);
+
+        UnitMapUiUpdate(proc, GetUnit(gBmMapUnit[gBmSt.cursor.y][gBmSt.cursor.x]));
+    }
+}
+
+void MMB_Loop_SlideOut(struct PlayerInterfaceProc * proc)
+{
+    int tmIndex;
+    int width;
+
+    int y = sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0 ? 0 : 14;
+
+    proc->hideContents = true;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+    {
+        tmIndex = TM_OFFSET(0, y);
+
+        TmFillRect(gBg0Tm + tmIndex, 12, 6, 0);
+        TmFillRect(gBg1Tm + tmIndex, 12, 6, 0);
+    }
+    else
+    {
+        tmIndex = TM_OFFSET(0, y);
+
+        TmFillRect(gBg0Tm + TM_OFFSET(18, 0) + tmIndex, 12, 6, 0);
+        TmFillRect(gBg1Tm + TM_OFFSET(18, 0) + tmIndex, 12, 6, 0);
+    }
+
+    tmIndex = TM_OFFSET(0, y);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    width = sMMBSlideOutWidthLut[proc->showHideClock];
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+    {
+        TmCopyRect(gUiTmScratchA + (12 - width), gBg0Tm + tmIndex, width, 6);
+        TmCopyRect(gUiTmScratchB + (12 - width), gBg1Tm + tmIndex, width, 6);
+    }
+    else
+    {
+        TmCopyRect(gUiTmScratchA, gBg0Tm + TM_OFFSET(30 - width, y), width, 6);
+        TmCopyRect(gUiTmScratchB, gBg1Tm + TM_OFFSET(30 - width, y), width, 6);
+    }
+
+    proc->showHideClock++;
+
+    if (proc->showHideClock == 3)
+    {
+        proc->isRetracting = false;
+        proc->showHideClock = 0;
+        proc->windowQuadrant = -1;
+
+        Proc_Break(proc);
+    }
+}
+
+void TerrainDisplay_Loop_SlideIn(struct PlayerInterfaceProc * proc)
+{
+    int width;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xTerrain < 0)
+    {
+        TmFillRect(gBg0Tm + TM_OFFSET(0, 13), 6, 7, 0);
+        TmFillRect(gBg1Tm + TM_OFFSET(0, 13), 6, 7, 0);
+    }
+    else
+    {
+        TmFillRect(gBg0Tm + TM_OFFSET(24, 13), 6, 7, 0);
+        TmFillRect(gBg1Tm + TM_OFFSET(24, 13), 6, 7, 0);
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    width = sTerrainSlideInWidthLut[proc->showHideClock];
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xTerrain < 0)
+    {
+        TmCopyRect(gUiTmScratchA + TM_OFFSET(6 - width, 10), gBg0Tm + TM_OFFSET(0, 13), width, 7);
+        TmCopyRect(gUiTmScratchB + TM_OFFSET(6 - width, 10), gBg1Tm + TM_OFFSET(0, 13), width, 7);
+    }
+    else
+    {
+        TmCopyRect(gUiTmScratchA + TM_OFFSET(0, 10), gBg0Tm + TM_OFFSET(30 - width, 13), width, 7);
+        TmCopyRect(gUiTmScratchB + TM_OFFSET(0, 10), gBg1Tm + TM_OFFSET(30 - width, 13), width, 7);
+    }
+
+    proc->showHideClock++;
+
+    if (proc->showHideClock == 3)
+    {
+        proc->showHideClock = 0;
+        proc->hideContents = false;
+
+        Proc_Break(proc);
+    }
+}
+
+void TerrainDisplay_Loop_SlideOut(struct PlayerInterfaceProc * proc)
+{
+    int width;
+
+    proc->hideContents = true;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xTerrain < 0)
+    {
+        TmFillRect(gBg0Tm + TM_OFFSET(0, 13), 6, 7, 0);
+        TmFillRect(gBg1Tm + TM_OFFSET(0, 13), 6, 7, 0);
+    }
+    else
+    {
+        TmFillRect(gBg0Tm + TM_OFFSET(24, 13), 6, 7, 0);
+        TmFillRect(gBg1Tm + TM_OFFSET(24, 13), 6, 7, 0);
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    width = sTerrainSlideOutWidthLut[proc->showHideClock];
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xTerrain < 0)
+    {
+        TmCopyRect(gUiTmScratchA + TM_OFFSET(6 - width, 10), gBg0Tm + TM_OFFSET(0, 13), width, 7);
+        TmCopyRect(gUiTmScratchB + TM_OFFSET(6 - width, 10), gBg1Tm + TM_OFFSET(0, 13), width, 7);
+    }
+    else
+    {
+        TmCopyRect(gUiTmScratchA + TM_OFFSET(0, 10), gBg0Tm + TM_OFFSET(30 - width, 13), width, 7);
+        TmCopyRect(gUiTmScratchB + TM_OFFSET(0, 10), gBg1Tm + TM_OFFSET(30 - width, 13), width, 7);
+    }
+
+    proc->showHideClock++;
+
+    if (proc->showHideClock == 3)
+    {
+        proc->showHideClock = 0;
+        proc->hideContents = false;
+        proc->isRetracting = false;
+
+        Proc_Break(proc);
+    }
+}
+
+void sub_08084D90(struct PlayerInterfaceProc * proc)
+{
+    int x;
+    int y;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+        x = 0;
+    else
+        x = 18;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
+        y = 0;
+    else
+        y = 14;
+
+    TmCopyRect(gUiTmScratchA, gBg0Tm + TM_OFFSET(x, y), 12, 6);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+void sub_08084DE4(struct PlayerInterfaceProc * proc)
+{
+    int x;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xTerrain < 0)
+        x = 0;
+    else
+        x = 24;
+
+    TmCopyRect(gUiTmScratchA + TM_OFFSET(0, 10), gBg0Tm + TM_OFFSET(x, 13), 6, 7);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
 
 ASM_FUNC("asm/nonmatching/code_08084E28.s");
 
