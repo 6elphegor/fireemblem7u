@@ -194,12 +194,188 @@ void sub_808F2A0(void)
     if (proc != NULL)
         Proc_Goto(proc, 0);
 }
-ASM_FUNC("asm/nonmatching/code_08087D90.s");
-ASM_FUNC("asm/nonmatching/code_08087DE0.s");
-ASM_FUNC("asm/nonmatching/code_08087E2C.s");
-ASM_FUNC("asm/nonmatching/code_08087EAC.s");
-ASM_FUNC("asm/nonmatching/code_08087EFC.s");
-ASM_FUNC("asm/nonmatching/code_08088074.s");
+void CgText_ClearSpriteText(struct CgTextMainProc * proc)
+{
+    int i;
+
+    SetTextFont(proc->pFont);
+
+    for (i = 0; i <= proc->boxHeight / 2; i++)
+        SpriteText_DrawBackgroundExt(proc->pTexts[i], 0);
+
+    SetTextFont(NULL);
+}
+
+void sub_808F30C(struct CgTextMainProc * proc)
+{
+    int i;
+
+    SetTextFont(proc->pFont);
+
+    for (i = 0; i <= proc->boxHeight / 2; i++)
+        Text_SetCursor(proc->pTexts[i], 0);
+}
+
+void GetCgTextDimensions(const char * str, u8 * wOut, u8 * hOut)
+{
+    int charWidth;
+
+    int w = 0;
+    int h = *hOut;
+
+    SetTextFontGlyphs(TEXT_GLYPHS_TALK);
+
+    while (1)
+    {
+        switch (*str)
+        {
+        case 0x00: // [X]
+        case 0x03: // [A]
+        case 0x18: // [Yes]
+        case 0x19: // [No]
+            *wOut = w;
+            *hOut = h;
+            return;
+
+        case 0x02: // [NL2]
+        case 0x04: // [....]
+        case 0x05: // [.....]
+        case 0x06: // [......]
+        case 0x07: // [.......]
+        case 0x16: // [ToggleMouthMove]
+        case 0x17: // [ToggleSmile]
+            str++;
+            continue;
+
+        case 0x01: // [NL]
+            str++;
+            h += 16;
+            w = 0;
+            continue;
+
+        case 0x80:
+            str += 2;
+            continue;
+
+        default:
+            str = GetCharTextLen(str, &charWidth);
+            w += charWidth;
+            continue;
+        }
+    }
+}
+
+void sub_808F3D8(struct CgTextMainProc * proc)
+{
+    if (GetCgTextFlags() & CG_TEXT_FLAG_0)
+        return;
+
+    if (GetCgTextFlags() & CG_TEXT_FLAG_1)
+        proc->x = proc->x - proc->boxWidth - 1;
+    else
+        proc->x += 2;
+
+    proc->y -= proc->boxHeight;
+}
+
+void GetCgTextBoxDimensions(const char * str, int * wOut, int * hOut)
+{
+    int charWidth;
+
+    int w = 0;
+    int h = 16;
+
+    *wOut = 0;
+    *hOut = 0;
+
+    SetTextFontGlyphs(TEXT_GLYPHS_TALK);
+
+    while (1)
+    {
+        switch (*str)
+        {
+        case 0x03: // [A]
+            w += 8;
+
+        case 0x00: // [X]
+        case 0x01: // [NL]
+        case 0x02: // [2NL]
+        case 0x18: // [Yes]
+        case 0x19: // [No]
+            if (*wOut < w)
+                *wOut = w;
+
+            w = 0;
+            break;
+        }
+
+        switch (*str)
+        {
+        case 0x01: // [NL]
+        case 0x18: // [Yes]
+        case 0x19: // [No]
+            h += 16;
+            break;
+
+        case 0x00: // [X]
+        case 0x02: // [2NL]
+            if (*hOut < h)
+                *hOut = h;
+
+            h = 0;
+            break;
+        }
+
+        switch (*str)
+        {
+        case 0x00: // [X]
+            return;
+
+        case 0x01: // [NL]
+        case 0x02: // [NL2]
+        case 0x03: // [A]
+        case 0x04: // [....]
+        case 0x05: // [.....]
+        case 0x06: // [......]
+        case 0x07: // [.......]
+        case 0x16: // [ToggleMouthMove]
+        case 0x17: // [ToggleSmile]
+        case 0x18: // [Yes]
+        case 0x19: // [No]
+            str++;
+            continue;
+
+        case 0x80:
+            str += 2;
+            continue;
+
+        default:
+            str = GetCharTextLen(str, &charWidth);
+            w += charWidth;
+            continue;
+        }
+    }
+}
+
+s8 DoesStringContainTact(const char * str)
+{
+    while (1)
+    {
+        switch (*str)
+        {
+        case 0x00: // [X]
+            return 0;
+
+        case 0x80:
+            str++;
+
+            if (*str == 0x20) // [Tact]
+                return 1;
+        }
+
+        str++;
+    }
+}
 ASM_FUNC("asm/nonmatching/code_08088098.s");
 ASM_FUNC("asm/nonmatching/code_08088380.s");
 ASM_FUNC("asm/nonmatching/code_08088938.s");
