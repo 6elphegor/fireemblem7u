@@ -37,7 +37,7 @@ _080A4B18:
 	cmp r0, #0x20
 	bne _080A4B40
 	adds r0, r4, #0
-	bl sub_080ADAF8
+	bl StartBonusClaimScreen
 	b _080A4B40
 _080A4B28:
 	adds r0, r4, #0

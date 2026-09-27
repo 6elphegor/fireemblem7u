@@ -73,8 +73,8 @@ void StartUnitListScreenForSoloAnim(ProcPtr parent);
 
 void sub_080B1FB0(int x, int y, u16 oam2, int flag);
 void UnpackUiVArrowGfx(int chr, int pal);
-u8 sub_080AE360(u8 index);
-void sub_080AE4CC(u8 index, u8 value);
+u8 GetGameOption(u8 index);
+void SetGameOption(u8 index, u8 value);
 bool GenericOptionChangeHandler(ProcPtr proc);
 
 s16 GetOptionMenuLayoutId(void)
@@ -92,15 +92,15 @@ u8 GetSelectedGameOption(void)
 {
     return gConfigUiState->selectedOptionIdx;
 }
-u8 sub_080ADB48(void)
+u8 GetSelectedOptionValue(void)
 {
-    return sub_080AE360(gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]);
+    return GetGameOption(gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]);
 }
 void sub_080ADB7C(void)
 {
     InitBgs(gUnk_08CE58BE);
 }
-void sub_080ADB8C(ProcPtr parent, void * vram, int pal)
+void StartMuralBackground(ProcPtr parent, void * vram, int pal)
 {
     int tileref;
     int i;
@@ -128,7 +128,7 @@ void sub_080ADB8C(ProcPtr parent, void * vram, int pal)
 
     Proc_Start(ProcScr_BackgroundSlide, parent);
 }
-void sub_080ADC24(int selectedIdx, int yBase)
+void DrawGameOptionIcon(int selectedIdx, int yBase)
 {
     int y = 0x20 * ((selectedIdx * 2 + yBase) & 0x1f);
 
@@ -142,18 +142,18 @@ void sub_080ADC24(int selectedIdx, int yBase)
     gBg2Tm[TM_OFFSET(2, 1) + y] = icon + 0x20;
     gBg2Tm[TM_OFFSET(3, 1) + y] = icon + 0x21;
 }
-void sub_080ADCC4(void)
+void DrawGameOptionHelpText(void)
 {
     char const * str;
 
     ClearText(&gConfigUiState->optionHelpText);
 
     str = DecodeMsg(
-        gGameOptions[gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]].selectors[sub_080ADB48()].helpTextId);
+        gGameOptions[gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]].selectors[GetSelectedOptionValue()].helpTextId);
 
     PutDrawText(&gConfigUiState->optionHelpText, gBg0Tm + TM_OFFSET(4, 17), TEXT_COLOR_SYSTEM_WHITE, 0, 22, str);
 }
-void sub_080ADD34(int selectedIdx, int textIdx, int y)
+void DrawGameOptionText(int selectedIdx, int textIdx, int y)
 {
     char const * str;
 
@@ -163,7 +163,7 @@ void sub_080ADD34(int selectedIdx, int textIdx, int y)
 
     PutDrawText(&gConfigUiState->optionTexts[textIdx], gBg2Tm + TM_OFFSET(4, y), TEXT_COLOR_SYSTEM_WHITE, 0, 9, str);
 }
-void sub_080ADDB4(int selectedIdx, int textIdx, int y)
+void DrawOptionValueTexts(int selectedIdx, int textIdx, int y)
 {
     int i;
 
@@ -180,7 +180,7 @@ void sub_080ADDB4(int selectedIdx, int textIdx, int y)
 
         Text_InsertDrawString(
             &gConfigUiState->valueTexts[textIdx], gGameOptions[optionIdx].selectors[i].xPos - 120,
-            (i == sub_080AE360(optionIdx)) ? TEXT_COLOR_0789 : TEXT_COLOR_0456,
+            (i == GetGameOption(optionIdx)) ? TEXT_COLOR_0789 : TEXT_COLOR_0456,
             DecodeMsg(gGameOptions[optionIdx].selectors[i].optionTextId));
     }
 
@@ -191,7 +191,7 @@ void ConfigSprites_Init(void)
     ApplyIconPalette(1, 18);
     UnpackUiVArrowGfx(0x80, 3);
 }
-void sub_080ADEA8(void)
+void DrawConfigUiSprites(void)
 {
     int y;
 
@@ -205,7 +205,7 @@ void sub_080ADEA8(void)
 
     DisplayFrozenUiHand(16, y);
 
-    PutUiHand(gGameOptions[optionIdx].selectors[sub_080AE360(optionIdx)].xPos - 2, y);
+    PutUiHand(gGameOptions[optionIdx].selectors[GetGameOption(optionIdx)].xPos - 2, y);
 
     if (gConfigUiState->maxOption > 6)
     {
@@ -216,10 +216,10 @@ void sub_080ADEA8(void)
             sub_080B1FB0(100, 125, 0x3080, 0);
     }
 
-    if ((GetSelectedGameOption() == 0) && (sub_080ADB48() == 3))
+    if ((GetSelectedGameOption() == 0) && (GetSelectedOptionValue() == 3))
         PutOamHiRam(192, 32, Sprite_16x16, (time != 0) ? OAM2_CHR(0xCE) + OAM2_PAL(2) : OAM2_CHR(0xCC) + OAM2_PAL(2));
 }
-void sub_080ADFA0(struct ConfigProc * proc)
+void Config_Init(struct ConfigProc * proc)
 {
     int i;
 
@@ -277,7 +277,7 @@ void sub_080ADFA0(struct ConfigProc * proc)
 
     InitText(&gConfigUiState->optionHelpText, 22);
 
-    sub_080ADCC4();
+    DrawGameOptionHelpText();
 
     InitText(&gConfigUiState->text_68, 9);
     InitText(&gConfigUiState->text_a0, 14);
@@ -286,16 +286,16 @@ void sub_080ADFA0(struct ConfigProc * proc)
     {
         int y = (i * 2) + 4;
 
-        sub_080ADC24(i, 4);
+        DrawGameOptionIcon(i, 4);
 
         InitText(&gConfigUiState->optionTexts[i], 9);
         InitText(&gConfigUiState->valueTexts[i], 14);
 
-        sub_080ADD34(i, i, y);
-        sub_080ADDB4(i, i, y);
+        DrawGameOptionText(i, i, y);
+        DrawOptionValueTexts(i, i, y);
     }
 
-    sub_080ADB8C(proc, NULL, -1);
+    StartMuralBackground(proc, NULL, -1);
 
     Proc_Start(ProcScr_08CE5BB8, proc);
 
@@ -308,12 +308,12 @@ bool WindowColorOptionChangeHandler(ProcPtr proc)
 
     return FALSE;
 }
-bool sub_080AE218(struct ConfigProc * proc)
+bool MusicOptionChangeHandler(struct ConfigProc * proc)
 {
     if (GenericOptionChangeHandler(proc) == 0)
         return FALSE;
 
-    if (sub_080AE360(gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]) != 0)
+    if (GetGameOption(gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]) != 0)
     {
         FadeBgmOut(1);
         return FALSE;
@@ -333,7 +333,7 @@ bool GenericOptionChangeHandler(ProcPtr proc)
     int selectedIdx = gConfigUiState->selectedOptionIdx;
     u8 optionIdx = gGameOptionLayouts[GetOptionMenuLayoutId()].order[selectedIdx];
 
-    u8 selectedValue = sub_080ADB48();
+    u8 selectedValue = GetSelectedOptionValue();
 
     if (gpKeySt->repeated & (DPAD_LEFT | DPAD_RIGHT))
     {
@@ -342,7 +342,7 @@ bool GenericOptionChangeHandler(ProcPtr proc)
             if (selectedValue != 0)
             {
                 selectedValue--;
-                sub_080AE4CC(optionIdx, selectedValue);
+                SetGameOption(optionIdx, selectedValue);
 
                 valueChanged = TRUE;
             }
@@ -354,7 +354,7 @@ bool GenericOptionChangeHandler(ProcPtr proc)
                 if (selectedValue < 3)
                 {
                     selectedValue++;
-                    sub_080AE4CC(optionIdx, selectedValue);
+                    SetGameOption(optionIdx, selectedValue);
 
                     valueChanged = TRUE;
                 }
@@ -364,7 +364,7 @@ bool GenericOptionChangeHandler(ProcPtr proc)
         if (valueChanged)
         {
             Proc_Start(ProcScr_08CE5B98, proc);
-            sub_080ADDB4(selectedIdx, selectedIdx % 7, selectedIdx * 2 + 4);
+            DrawOptionValueTexts(selectedIdx, selectedIdx % 7, selectedIdx * 2 + 4);
             EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
             PlaySoundEffect(0x387);
         }
@@ -372,7 +372,7 @@ bool GenericOptionChangeHandler(ProcPtr proc)
 
     return valueChanged;
 }
-u8 sub_080AE360(u8 index)
+u8 GetGameOption(u8 index)
 {
     int value = 0;
 
@@ -452,7 +452,7 @@ u8 sub_080AE360(u8 index)
 
     return value;
 }
-void sub_080AE4CC(u8 index, u8 newValue)
+void SetGameOption(u8 index, u8 newValue)
 {
     switch (index)
     {
@@ -535,7 +535,7 @@ void sub_080AE4CC(u8 index, u8 newValue)
         break;
     }
 }
-void sub_080AE6D0(ProcPtr proc, int selectedIdx, int c)
+void PutGameOptionRow(ProcPtr proc, int selectedIdx, int c)
 {
     int i;
     int textIdx;
@@ -552,9 +552,9 @@ void sub_080AE6D0(ProcPtr proc, int selectedIdx, int c)
 
     textIdx = selectedIdx % 7;
 
-    sub_080ADC24(selectedIdx, 4);
-    sub_080ADD34(selectedIdx, textIdx, y);
-    sub_080ADDB4(selectedIdx, textIdx, y);
+    DrawGameOptionIcon(selectedIdx, 4);
+    DrawGameOptionText(selectedIdx, textIdx, y);
+    DrawOptionValueTexts(selectedIdx, textIdx, y);
 
     for (i = 0; i <= 26; i++)
     {
@@ -563,7 +563,7 @@ void sub_080AE6D0(ProcPtr proc, int selectedIdx, int c)
 
     EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
 }
-void sub_080AE754(struct ConfigProc * proc)
+void Config_Loop_KeyHandler(struct ConfigProc * proc)
 {
     bool valueChanged = FALSE;
 
@@ -582,7 +582,7 @@ void sub_080AE754(struct ConfigProc * proc)
             if (gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx] != 0)
                 break;
 
-            if (sub_080AE360(0) != 3)
+            if (GetGameOption(0) != 3)
                 break;
 
             PlaySoundEffect(0x38A);
@@ -603,7 +603,7 @@ void sub_080AE754(struct ConfigProc * proc)
                     {
                         gConfigUiState->headOptionIdx--;
 
-                        sub_080AE6D0(proc, gConfigUiState->selectedOptionIdx - 1, 0);
+                        PutGameOptionRow(proc, gConfigUiState->selectedOptionIdx - 1, 0);
 
                         proc->bgYOffset -= 4;
                         proc->moving = 1;
@@ -623,7 +623,7 @@ void sub_080AE754(struct ConfigProc * proc)
                     {
                         gConfigUiState->headOptionIdx++;
 
-                        sub_080AE6D0(proc, gConfigUiState->selectedOptionIdx + 1, 320);
+                        PutGameOptionRow(proc, gConfigUiState->selectedOptionIdx + 1, 320);
 
                         proc->bgYOffset += 4;
                         proc->moving = 4;
@@ -678,7 +678,7 @@ void sub_080AE754(struct ConfigProc * proc)
 
     SetBgOffset(2, 0, proc->bgYOffset);
 }
-bool sub_080AE9C0(struct ConfigProc * proc)
+bool Config_HandleExit(struct ConfigProc * proc)
 {
     EndMuralBackground();
 
@@ -695,7 +695,7 @@ bool sub_080AE9C0(struct ConfigProc * proc)
 
     return TRUE;
 }
-void sub_080AEA04(struct ConfigProc * proc)
+void Config_SetSourceFromPrep(struct ConfigProc * proc)
 {
     proc->unk_37 = TRUE;
 }

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AD49C
-sub_080AD49C: @ 0x080AD49C
+	thumb_func_start BonusClaim_StartSelectTargetSubMenu
+BonusClaim_StartSelectTargetSubMenu: @ 0x080AD49C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -200,7 +200,7 @@ _080AD616:
 	cmp r0, #0
 	bne _080AD566
 _080AD63A:
-	ldr r0, _080AD65C @ =sub_080AD414
+	ldr r0, _080AD65C @ =BonusClaim_DrawTargetUnitSprites
 	ldr r1, [sp, #4]
 	bl StartParallelWorker
 	ldr r1, [sp, #4]
@@ -215,4 +215,4 @@ _080AD63A:
 	bx r0
 	.align 2, 0
 _080AD658: .4byte 0x08CE5788
-_080AD65C: .4byte sub_080AD414
+_080AD65C: .4byte BonusClaim_DrawTargetUnitSprites

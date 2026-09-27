@@ -243,7 +243,7 @@ void sub_080ACF08(void)
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
-void sub_080ACF5C(struct BonusClaimProc * proc)
+void BonusClaim_Init(struct BonusClaimProc * proc)
 {
     int i;
 
@@ -326,7 +326,7 @@ void sub_080ACF5C(struct BonusClaimProc * proc)
 
     LoadHelpBoxGfx((void *) 0x06013800, 5);
 }
-void sub_080AD1AC(struct BonusClaimProc * proc)
+void BonusClaim_Loop_MainKeyHandler(struct BonusClaimProc * proc)
 {
     u16 tmp;
     struct BonusClaimEnt * ent;
@@ -452,7 +452,7 @@ void sub_080AD1AC(struct BonusClaimProc * proc)
 
     UpdateMenuScrollBarConfig(7, proc->unk_2c, *gpBonusClaimItemCount, 5);
 }
-void sub_080AD414(struct BonusClaimProc * proc)
+void BonusClaim_DrawTargetUnitSprites(struct BonusClaimProc * proc)
 {
     int i;
 
@@ -477,7 +477,7 @@ void sub_080AD484(struct BonusClaimProc * proc)
     }
 }
 ASM_FUNC("asm/nonmatching/code_080AD49C.s");
-bool sub_080AD660(struct BonusClaimProc * proc)
+bool TryClaimBonusItem(struct BonusClaimProc * proc)
 {
     int itemId;
 
@@ -507,13 +507,13 @@ bool sub_080AD660(struct BonusClaimProc * proc)
     return TRUE;
 }
 
-void sub_080AD6E4(struct BonusClaimProc * proc)
+void BonusClaim_Loop_SelectTargetKeyHandler(struct BonusClaimProc * proc)
 {
     int tmp = proc->submenuIndex;
 
     if (gpKeySt->pressed & A_BUTTON)
     {
-        if (sub_080AD660(proc))
+        if (TryClaimBonusItem(proc))
         {
             Proc_Goto(proc, 2);
             return;
@@ -543,7 +543,7 @@ void sub_080AD6E4(struct BonusClaimProc * proc)
         ShowSysHandCursor(88, proc->submenuIndex * 16 + 48, 8, 0x800);
     }
 }
-void sub_080AD7B4(struct BonusClaimProc * proc)
+void BonusClaim_EndSelectTargetSubMenu(struct BonusClaimProc * proc)
 {
     sub_080AD484(proc);
 
@@ -565,7 +565,7 @@ void sub_080AD7B4(struct BonusClaimProc * proc)
     }
 }
 ASM_FUNC("asm/nonmatching/code_080AD820.s");
-void sub_080ADA58(struct BonusClaimProc * proc)
+void BonusClaim_Loop_PopupDisplayTimer(struct BonusClaimProc * proc)
 {
     proc->timer++;
 
@@ -578,7 +578,7 @@ void sub_080ADA58(struct BonusClaimProc * proc)
     if (proc->timer > 120)
         Proc_Break(proc);
 }
-void sub_080ADA90(void)
+void BonusClaim_ClearItemSentPopup(void)
 {
     TmFill(gBg0Tm, 0);
     TmFill(gBg1Tm, 0);
@@ -593,7 +593,7 @@ void BonusClaim_OnEnd(struct BonusClaimProc * proc)
     EndAllProcChildren(proc);
     SetOnHBlankA(NULL);
 }
-void sub_080ADAF8(ProcPtr parent)
+void StartBonusClaimScreen(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_08CE578C, parent);
 }
