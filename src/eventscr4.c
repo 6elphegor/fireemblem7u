@@ -934,16 +934,33 @@ int sub_0800F998(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-#if NONMATCHING
-// register allocation differs (script pointer / argument registers swapped)
 int sub_0800F9B0(struct EventProc * proc)
 {
+#ifndef NONMATCHING
+    register EventScr const * script asm("r1");
+    register int pal asm("r3");
+    register int b asm("r2");
+    register EventScr xr asm("r2");
+    register int y_raw asm("r3");
+#else
+    int y_raw;
+    EventScr const * script;
+    int pal;
+    int b;
+    EventScr xr;
+#endif
     int a = proc->script[1];
-    int x = SCR_LO16_SIGN(proc->script[2]);
-    u16 y_raw = EVT_ARG_U16(proc, 5);
-    int y = y_raw & 0x8000 ? -1 : y_raw;
-    int pal = proc->script[3];
-    int b = proc->script[4];
+    int x;
+    int y;
+
+    xr = proc->script[2];
+    x = SCR_LO16_SIGN(xr);
+
+    script = proc->script;
+    y_raw = ((u16 const *) script)[5];
+    y = y_raw & 0x8000 ? -1 : y_raw;
+    pal = script[3];
+    b = script[4];
 
     if (!(proc->flags & EVENT_FLAG_SKIPPED))
     {
@@ -955,9 +972,6 @@ int sub_0800F9B0(struct EventProc * proc)
 
     return EVENT_CMDRET_CONTINUE;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0800F9B0.s");
-#endif
 
 int sub_0800FA30(struct EventProc * proc)
 {
@@ -969,16 +983,33 @@ int sub_0800FA30(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-#if NONMATCHING
-// register allocation differs (script pointer / argument registers swapped)
 int sub_0800FA50(struct EventProc * proc)
 {
+#ifndef NONMATCHING
+    register EventScr const * script asm("r1");
+    register int pal asm("r3");
+    register int b asm("r2");
+    register EventScr xr asm("r2");
+    register int y_raw asm("r3");
+#else
+    int y_raw;
+    EventScr const * script;
+    int pal;
+    int b;
+    EventScr xr;
+#endif
     int a = proc->script[1];
-    int x = SCR_LO16_SIGN(proc->script[2]);
-    u16 y_raw = EVT_ARG_U16(proc, 5);
-    int y = y_raw & 0x8000 ? -1 : y_raw;
-    int pal = proc->script[3];
-    int b = proc->script[4];
+    int x;
+    int y;
+
+    xr = proc->script[2];
+    x = SCR_LO16_SIGN(xr);
+
+    script = proc->script;
+    y_raw = ((u16 const *) script)[5];
+    y = y_raw & 0x8000 ? -1 : y_raw;
+    pal = script[3];
+    b = script[4];
 
     if (!(proc->flags & EVENT_FLAG_SKIPPED))
     {
@@ -990,9 +1021,6 @@ int sub_0800FA50(struct EventProc * proc)
 
     return EVENT_CMDRET_CONTINUE;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0800FA50.s");
-#endif
 
 int sub_0800FAD0(struct EventProc * proc)
 {
@@ -1004,15 +1032,25 @@ int sub_0800FAD0(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-#if NONMATCHING
-// register allocation differs (script pointer / argument registers swapped)
 int sub_0800FAF0(struct EventProc * proc)
 {
+#ifndef NONMATCHING
+    register EventScr const * script asm("r3");
+    register int b asm("r3");
+#else
+    EventScr const * script;
+    int b;
+#endif
     int x = SCR_LO16_SIGN(proc->script[1]);
-    u16 y_raw = EVT_ARG_U16(proc, 3);
-    int y = y_raw & 0x8000 ? -1 : y_raw;
-    int c = proc->script[2];
-    int b = proc->script[3];
+    u16 y_raw;
+    int y;
+    int c;
+
+    script = proc->script;
+    y_raw = ((u16 const *) script)[3];
+    y = y_raw & 0x8000 ? -1 : y_raw;
+    c = script[2];
+    b = script[3];
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
@@ -1024,9 +1062,6 @@ int sub_0800FAF0(struct EventProc * proc)
 
     return EVENT_CMDRET_YIELD;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0800FAF0.s");
-#endif
 
 int EvtCmd_SetKeyIgnore(struct EventProc * proc)
 {
