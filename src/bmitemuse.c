@@ -798,7 +798,7 @@ void DoUseRestoreStaff(struct Unit * unit, void (*func)(struct Unit *))
 
 int RestoreMapSelect_Init(ProcPtr proc)
 {
-    sub_08031E5C(proc);
+    StartUnitHpStatusInfoWindow(proc);
 }
 
 u8 RestoreMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
@@ -820,7 +820,7 @@ void DoUseBarrierStaff(struct Unit * unit)
 
 int BarrierMapSelect_Init(ProcPtr proc)
 {
-    sub_08031EF0(proc);
+    StartUnitResChangeInfoWindow(proc);
 }
 
 u8 BarrierMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
@@ -842,7 +842,7 @@ void DoUseAttackStaff(struct Unit * unit, void (*func)(struct Unit *))
 
 int AttackStaffMapSelect_Init(ProcPtr proc)
 {
-    sub_08031F5C(proc);
+    StartUnitStaffOffenseInfoWindow(proc);
 }
 
 u8 AttackStaffMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)

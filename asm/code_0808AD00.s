@@ -246,7 +246,7 @@ _0808AECC:
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	bl GetItemIconId
-	bl sub_08088D8C
+	bl sub_8090324
 _0808AF2A:
 	ldr r3, [sp, #0x50]
 	ldr r4, [sp, #0x2c]
@@ -622,7 +622,7 @@ _0808B1F0:
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	bl GetItemIconId
-	bl sub_08088D8C
+	bl sub_8090324
 _0808B254:
 	ldr r5, [sp, #0x54]
 	add r5, sl

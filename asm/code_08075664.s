@@ -21,7 +21,7 @@ sub_08075664: @ 0x08075664
 	adds r1, r0, r1
 	ldr r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806DCB4
+	bl StartMuActionAnim
 	add sp, #4
 	pop {r7}
 	pop {r0}

@@ -40,7 +40,6 @@ extern u8 const Tsa_TerrainMapUi_ObstacleLabels[];
 extern u8 const Tsa_TerrainMapUi_ObstacleFullHp[];
 
 char const * GetTerrainName(int terrain);
-int sub_0802BCBC(int x, int y); // GetObstacleHpAt
 void sub_08005044(int number); // StoreNumberStringToSmallBuffer
 void nullsub_7(void);
 void sub_08005080(int number); // StoreNumberStringOrDashesToSmallBuffer
@@ -700,7 +699,7 @@ void DrawTerrainDisplayWindow(struct PlayerInterfaceProc * proc)
     case TERRAIN_WALL_BREAKABLE:
         TmApplyTsa(gUiTmScratchA + TM_OFFSET(1, 14), Tsa_TerrainMapUi_ObstacleLabels, TILEREF(0x100, 2));
 
-        num = sub_0802BCBC(gBmSt.cursor.x, gBmSt.cursor.y);
+        num = GetObstacleHpAt(gBmSt.cursor.x, gBmSt.cursor.y);
 
         if (num == 100)
         {
@@ -719,7 +718,7 @@ void DrawTerrainDisplayWindow(struct PlayerInterfaceProc * proc)
     case TERRAIN_KILLERBALLISTA:
         TmApplyTsa(gUiTmScratchA + TM_OFFSET(1, 14), Tsa_TerrainMapUi_BallistaLabels, TILEREF(0x100, 0));
 
-        sub_08005044(sub_0802BCBC(gBmSt.cursor.x, gBmSt.cursor.y));
+        sub_08005044(GetObstacleHpAt(gBmSt.cursor.x, gBmSt.cursor.y));
         PutDigits(gUiTmScratchA + TM_OFFSET(4, 14), gNumberStr + 7, TILEREF(0x128, 0), 2);
 
         break;

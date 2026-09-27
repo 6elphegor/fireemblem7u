@@ -322,7 +322,7 @@ void TryAddUnitToTalkTargetList(struct Unit * unit)
     if (unit->statusIndex == UNIT_STATUS_BERSERK || unit->statusIndex == UNIT_STATUS_SLEEP)
         return;
 
-    if (!sub_080789FC(gSubjectUnit->pCharacterData->number, unit->pCharacterData->number))
+    if (!CheckForCharacterEvents(gSubjectUnit->pCharacterData->number, unit->pCharacterData->number))
         return;
 
     EnlistTarget(unit->xPos, unit->yPos, unit->index, unit->pCharacterData->number);

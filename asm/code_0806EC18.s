@@ -90,7 +90,7 @@ _0806ECB0:
 	adds r1, r0, r1
 	ldr r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806BFA4
+	bl SetMuDefaultFacing
 	b _0806ED1A
 	.align 2, 0
 _0806ECCC: .4byte 0x0203E0FC

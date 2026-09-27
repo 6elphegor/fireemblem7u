@@ -580,7 +580,7 @@ u8 TradeSelection_OnSelect(ProcPtr proc, struct SelectTarget * target)
 {
     gActionSt.id = ACTION_TRADED_NOCHANGES;
 
-    sub_0802B678(gActiveUnit, GetUnit(target->uid), 0);
+    StartTradeMenu(gActiveUnit, GetUnit(target->uid), 0);
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }
@@ -590,7 +590,7 @@ u8 UnitActionMenu_Seize_Available(const struct MenuItemDef * def, int number)
     if (gActiveUnit->state & US_HAS_MOVED)
         return MENU_NOTSHOWN;
 
-    if (!sub_08034884(gActiveUnit))
+    if (!CanUnitSeize(gActiveUnit))
         return MENU_NOTSHOWN;
 
     return GetAvailableTileEventCommand(gActiveUnit->xPos, gActiveUnit->yPos) == 0xF
@@ -1628,7 +1628,7 @@ u8 BallistaRangeMenuHelpBox(struct MenuProc * menu, struct MenuItemProc * menuIt
 
 void HealMapSelect_Init(ProcPtr proc)
 {
-    sub_08031DFC(proc);
+    StartUnitHpInfoWindow(proc);
 }
 
 u8 HealMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
@@ -1640,7 +1640,7 @@ u8 HealMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
 
 void RescueSelection_OnConstruction(ProcPtr proc)
 {
-    sub_0803202C(proc);
+    RefreshUnitTakeRescueInfoWindows(proc);
     StartSubtitleHelp(proc, DecodeMsg(0x71C));
 }
 
@@ -1662,7 +1662,7 @@ void sub_0802330C(void)
 
 void GiveSelection_OnInit(ProcPtr menu)
 {
-    sub_080321E0(menu);
+    StartUnitGiveInfoWindows(menu);
 
     StartSubtitleHelp(menu, DecodeMsg(0x71F));
 }
@@ -1676,7 +1676,7 @@ u8 GiveSelection_OnChange(ProcPtr proc, struct SelectTarget * target)
 
 void TakeSelection_OnInit(ProcPtr menu)
 {
-    sub_0803202C(menu);
+    RefreshUnitTakeRescueInfoWindows(menu);
 
     StartSubtitleHelp(menu, DecodeMsg(0x71E));
 }
@@ -1702,7 +1702,7 @@ u8 TradeSelection_OnChange(ProcPtr proc, struct SelectTarget * target)
 
 void TalkSupportSelection_OnInit(ProcPtr menu)
 {
-    sub_08031DFC(menu);
+    StartUnitHpInfoWindow(menu);
     StartSubtitleHelp(menu, DecodeMsg(0x723));
 }
 
@@ -1714,7 +1714,7 @@ u8 TalkSupportSelection_OnChange(ProcPtr proc, struct SelectTarget * target)
 
 void RefreshMapSelect_Init(ProcPtr menu)
 {
-    sub_08031DFC(menu);
+    StartUnitHpInfoWindow(menu);
     StartSubtitleHelp(menu, DecodeMsg(0x724));
 }
 
@@ -1726,7 +1726,7 @@ u8 RefreshMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
 
 void WarpUnitMapSelect_Init(ProcPtr menu)
 {
-    sub_08031DFC(menu);
+    StartUnitHpInfoWindow(menu);
 }
 
 u8 WarpUnitMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target)
@@ -1834,14 +1834,14 @@ u8 GetUnitAttackBallistaCommandAvailability(const struct MenuItemDef * def, int 
 
     trap = GetTrapAt(gActiveUnit->xPos, gActiveUnit->yPos);
 
-    if (!sub_080347E4(trap))
+    if (!IsBallista(trap))
         return MENU_NOTSHOWN;
 
     ListAttackTargetsForWeapon(gActiveUnit, trap->extra | 0x100);
     if (CountTargets() == 0)
         return MENU_NOTSHOWN;
 
-    if (sub_0803483C(trap) == 0)
+    if (GetBallistaItemUses(trap) == 0)
         return MENU_DISABLED;
 
     return MENU_ENABLED;

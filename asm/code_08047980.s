@@ -6,6 +6,6 @@
 sub_08047980: @ 0x08047980
 	push {lr}
 	ldr r0, [r0, #0x30]
-	bl sub_0806DAB4
+	bl HideMu
 	pop {r0}
 	bx r0

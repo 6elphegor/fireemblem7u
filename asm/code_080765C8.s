@@ -22,7 +22,7 @@ sub_080765C8: @ 0x080765C8
 	ldr r2, [r1]
 	adds r0, r2, #0
 	movs r1, #0
-	bl sub_0806DB94
+	bl StartMuFadeIntoFlash
 	add sp, #4
 	pop {r7}
 	pop {r0}

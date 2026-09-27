@@ -16,7 +16,7 @@ _08079B06:
 	adds r0, r1, #0
 	bl GetUnitFromCharId
 	movs r1, #0
-	bl sub_0802CC88
+	bl GeneratePromotionBattle
 	pop {r0}
 	bx r0
 	.align 2, 0
