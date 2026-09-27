@@ -257,7 +257,7 @@ void LoadOneYearLaterCg(void)
 
     Decompress(Img_OneYearLater, (void *)0x06000800);
     ApplyPalette(Pal_OneYearLater, 5);
-    sub_080AACD8(gBg0Tm, Tsa_OneYearLater, TILEREF(0x40, 5));
+    PutCompressedTsa(gBg0Tm, Tsa_OneYearLater, TILEREF(0x40, 5));
 
     EnableBgSync(BG0_SYNC_BIT);
 }

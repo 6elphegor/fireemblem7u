@@ -156,7 +156,7 @@ void DrawAtMenuUpfx(int tile, int pal);
 void AtMenu_Reinitialize(struct ProcAtMenu *proc);
 void EndPrepAtMenuIfNoUnitAvailable(struct ProcAtMenu *proc);
 void AtMenu_UpdateDesc(struct ProcAtMenu *proc);
-// sub_0808E9A8
+// AtMenu_DrawSubmenuTexts
 // CleanupPrepMenuScreen
 void AtMenu_SetupCtrlUI(struct ProcAtMenu *proc);
 void AtMenu_CtrlLoop(struct ProcAtMenu *proc);
@@ -170,7 +170,7 @@ void AtMenu_LockGame(struct ProcAtMenu *proc);
 void AtMenu_UnlockGame(struct ProcAtMenu *proc);
 // StartPrepAtMenu
 // StartPrepAtMenuWithConfig
-bool HasConvoyAccess_(void);
+bool HasConvoyAccess_(); // takes an int (kind); prep_itemscreen.c calls it without one
 // sub_0808EF94
 // sub_0808EFFC
 // sub_808F970
@@ -270,7 +270,7 @@ void PrepMuralBackground_Init(struct ProcPrepMuralBackground *proc);
 void PrepMuralBackground_Loop(struct ProcPrepMuralBackground *proc);
 struct ProcPrepMuralBackground * StartPrepMuralBackground(ProcPtr parent, int pal_bank);
 void EndPrepMuralBackground(void);
-// sub_080907D4
+// SallyCir_OnHBlank
 
 struct SallyCirProc {
     PROC_HEADER;

@@ -229,7 +229,7 @@ void PutWmSpriteClipped(u8 layer, int x, int y, u16 const * sprite, u16 yOff, u1
 extern struct WmSt gWmSt;
 extern struct WmCanvas gWmCanvas;
 
-bool sub_080AAD18(int x, int y, int x1, int y1, int x2, int y2, int x3, int y3);
+bool IsPointInQuad(int x, int y, int x1, int y1, int x2, int y2, int x3, int y3);
 void WmDrawMap(int mode, int x, int y);
 void WmRedrawMapAt(int mode, int x, int y);
 void WmDrawMapRegion(int x1, int y1, int x2, int y2);
@@ -300,9 +300,9 @@ void WmCanvas_FillQuad(int x0, int y0, int x1, int y1, int x2, int y2, int x3, i
     {
         for (x = xmin; x <= xmax; x++)
         {
-            if (sub_080AAD18(x, y, x0, y0, x1, y1, x2, y2))
+            if (IsPointInQuad(x, y, x0, y0, x1, y1, x2, y2))
                 WmCanvas_PutPixel(x, y, color);
-            else if (sub_080AAD18(x, y, x0, y0, x2, y2, x3, y3))
+            else if (IsPointInQuad(x, y, x0, y0, x2, y2, x3, y3))
                 WmCanvas_PutPixel(x, y, color);
         }
     }

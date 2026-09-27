@@ -181,7 +181,7 @@ void ClearSioBG(void);
 void EndLinkArenaPointsBox(void);
 void StartLinkArenaPointsBox(void);
 void StartLinkArenaMUDeathFade(struct MuProc * muProc);
-ProcPtr sub_08047A00(struct Unit * unit, struct MuProc * muProc, int x, int y, int facing, u8 playStepSe, ProcPtr parent);
+ProcPtr StartSioWarpFx(struct Unit * unit, struct MuProc * muProc, int x, int y, int facing, u8 playStepSe, ProcPtr parent);
 void sub_08048E0C(struct Unit * unit);
 
 void BmMapFillg(u8 ** map, int value);
@@ -1389,8 +1389,8 @@ void sub_08045D24(struct SioBattleMapProc * proc)
     unitB->xPos = proc->unk_34;
     unitB->yPos = proc->unk_38;
 
-    sub_08047A00(unitA, gUnknown_03001838[0], 6, 5, 1, 1, proc);
-    sub_08047A00(unitB, gUnknown_03001838[1], 8, 5, 0, 0, proc);
+    StartSioWarpFx(unitA, gUnknown_03001838[0], 6, 5, 1, 1, proc);
+    StartSioWarpFx(unitB, gUnknown_03001838[1], 8, 5, 0, 0, proc);
 
     return;
 }
@@ -1529,7 +1529,7 @@ void sub_08045FC4(ProcPtr proc)
 
         flag = 1;
 
-        sub_08047A00(
+        StartSioWarpFx(
             unitA, gUnknown_03001838[0], gUnknown_080D9F48[indexA].x, gUnknown_080D9F48[indexA].y, 2, flag, proc);
     }
 
@@ -1553,7 +1553,7 @@ void sub_08045FC4(ProcPtr proc)
             flag = 0;
         }
 
-        sub_08047A00(
+        StartSioWarpFx(
             unitB, gUnknown_03001838[1], gUnknown_080D9F48[indexB].x, gUnknown_080D9F48[indexB].y, 2, flag, proc);
     }
 

@@ -96,7 +96,68 @@ void sub_080403B0(struct SioBatProc * proc)
     return;
 }
 
+#if NONMATCHING
+// register allocation only (temporaries in r2 instead of r0/r1)
+extern u8 const gUnk_081D5352[];
+
+void sub_08040444(void)
+{
+    int i;
+    int j;
+
+    u8 hack[3];
+    memcpy(hack, gUnk_081D5352, sizeof(hack));
+
+    InitUnits();
+
+    for (i = 0; i < gLinkArenaSt.unk_05 + 2; i++)
+    {
+        int r4 = i * 0x40 + 1;
+
+        struct Unit * unit = GetUnit(r4);
+        ReadMultiArenaSaveTeam(gLinkArenaSt.unk_06[i], unit, gUnk_Sio_0203DAC5[i]);
+
+        gLinkArenaSt.unk_05 = gLinkArenaSt.unk_05;
+
+        for (j = 0; j < 5; j++)
+        {
+            u16 * fid = gUnk_Sio_0203DD90.unk_24 - -i;
+
+            unit = GetUnit(r4 + j);
+
+            unit->exp = 0;
+            SetUnitStatus(unit, 0);
+            unit->rescue = 0;
+
+            if ((gSioSaveConfig._unk2_) == 0)
+                sub_0803DD40(unit);
+            else
+                sub_08048E0C(unit);
+
+            if (j == 0)
+                *fid = GetUnitMiniPortraitId(unit);
+
+            unit->index = r4 + j;
+
+            if (i == 0)
+                continue;
+
+            if (gSioSaveConfig._unk0_ == 0)
+                unit->state = 0x200;
+        }
+    }
+
+    gUnk_Sio_0203DD90.unk_00 = 0;
+
+    gSioSt->selfId = 0;
+    gSioSt->unk_009 = hack[gLinkArenaSt.unk_05];
+    gSioSt->unk_007 = gLinkArenaSt.unk_05 + 2;
+
+    gLinkArenaSt.unk_A0 = gLinkArenaSt.unk_05 + 2;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08040444.s");
+#endif
 
 extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN2[];
 
@@ -208,7 +269,7 @@ void sub_08040714(struct SioBatProc * proc)
     char buf[20];
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_TacticianSelObj, (void *)0x06014800);
     Decompress(Img_LinkArenaPlayerBanners, (void *)0x06016000);
@@ -742,7 +803,7 @@ void sub_0804105C(struct SioBatProc * proc)
 void sub_08041104(struct SioBatProc * proc)
 {
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     EndLinkArenaVersusSpriteDraw();
     EndFaceById(3);
@@ -767,7 +828,7 @@ void sub_0804116C(ProcPtr proc)
     u8 buf[4];
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
     ApplyPalette(Pal_LinkArenaRankIcons, 6);

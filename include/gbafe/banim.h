@@ -543,21 +543,21 @@ void BeginAnimsOnBattleAnimations(void);
 // ??? EkrBattleEndRountine
 // ??? MainUpdate_8055C68
 // ??? NewEkrBattleStarting
-// ??? sub_08050AC0
-// ??? sub_08050BD4
+// ??? ekrBaStart_InitScreen
+// ??? ekrBaStart_SreenFailIn
 // ??? ekrBaStart_InitBattleScreen
 // ??? ekrBaStart_ExecEkrBattle6C
 // ??? ekrBaStart_8055FE8
 // ??? ekrBaStart_8056024
 // ??? ekrBaStart_8056078
 // ??? NewEkrbattleending
-// ??? sub_08050ECC
-// ??? sub_08050F44
-// ??? sub_08050F98
+// ??? ekrBattleEnding_80560F0
+// ??? ekrBattleEnding_8056170
+// ??? ekrBattleEnding_80561C8
 // ??? ekrBattleEnding_8056228
-// ??? sub_08051054
-// ??? sub_080510E0
-// ??? sub_08051170
+// ??? ekrBattleEnding_8056288
+// ??? ekrBattleEnding_8056310
+// ??? ekrBattleEnding_8056390
 // ??? sub_8051A38
 // ??? NewEkrBaseKaiten
 // ??? EkrBaseKaitenMain
@@ -569,8 +569,8 @@ void NewEkrWindowAppear(int identifier, int);
 bool CheckEkrWindowAppearUnexist(void);
 // ??? EkrWindowAppearMain
 void NewEkrNamewinAppear(int identifier, int duration, int delay);
-// ??? sub_08051BD0
-// ??? sub_08051BE4
+// ??? CheckEkrNamewinAppearUnexist
+// ??? EkrNamewinAppearDelay
 // ??? EkrNamewinAppearMain
 // ??? NewEkrBaseAppear
 // ??? sub_80524A4
@@ -578,9 +578,9 @@ void NewEkrNamewinAppear(int identifier, int duration, int delay);
 bool PrepareBattleGraphicsMaybe(void);
 u16 GetBattleAnimationId_WithUnique(struct Unit * unit, const struct BattleAnimDef * pBattleAnimDef, u16, int * out);
 // ??? GetBanimTerrainGround
-// ??? sub_08052A30
-// ??? sub_08052B08
-// ??? sub_08052C50
+// ??? GetBanimBackgroundIndex
+// ??? GetSpellAnimId
+// ??? UnsetMapStaffAnim
 void ParseBattleHitToBanimCmd(void);
 bool CheckBattleHasHit(void);
 s16 GetBattleAnimCharacterUniquePalIndex(struct Unit * unit, int index);

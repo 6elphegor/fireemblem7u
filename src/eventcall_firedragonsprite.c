@@ -258,7 +258,7 @@ void DragonFlameImpact_Init(struct ProcDragonFlameImpact * proc)
 
     Decompress(Img_DragonFlameImpact, (void *)BG_VRAM + 0x5000);
     ApplyPalette(Pal_DragonFlameImpact, 4);
-    sub_080AACD8(gBg2Tm, Tsa_DragonFlameImpact, 0x4280);
+    PutCompressedTsa(gBg2Tm, Tsa_DragonFlameImpact, 0x4280);
     EnableBgSync(BG2_SYNC_BIT);
     SetBgOffset(BG_2, 0, 0);
 

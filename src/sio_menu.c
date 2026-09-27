@@ -113,7 +113,7 @@ void SioMenu_LoadGraphics(struct SioMenuProc * proc)
     ReadMultiArenaSaveConfig(&gSioSaveConfig);
     proc->unk_59 = gSioSaveConfig._unk3_;
 
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_LinkArenaMenu, (void *)0x06014800);
     ApplyPalettes(Pal_LinkArenaMenu, 0x13, 3);
@@ -243,7 +243,7 @@ void SioMenu_RestartGraphicsMaybe(struct SioMenuProc * proc)
     ReadMultiArenaSaveConfig(&gSioSaveConfig);
     proc->unk_59 = gSioSaveConfig._unk3_;
 
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_LinkArenaMenu, (void *)0x06014800);
     ApplyPalettes(Pal_LinkArenaMenu, 0x13, 3);

@@ -559,11 +559,10 @@ void sub_0805AC1C(struct Anim * anim, int idx)
     child->yPosition = proc->unk3A;
 }
 
-#if NONMATCHING
 void sub_0805AD44(struct ProcEfxBolganoneOBJ * proc)
 {
     struct Anim * anim = proc->anim2;
-    int r, off, x, y;
+    int r, off, x, y, a, s, c;
 
     if (gUnknown_0202003C == 1 || proc->timer > proc->terminator)
     {
@@ -579,15 +578,17 @@ void sub_0805AD44(struct ProcEfxBolganoneOBJ * proc)
     off = gSinLut[proc->unk30 + 0x40] >> 10;
     proc->unk30 = (proc->unk30 + 6) & 0xFF;
 
-    x = gSinLut[proc->unk44 & 0xFF] * r;
-    y = gSinLut[(proc->unk44 & 0xFF) + 0x40] * r;
+    a = proc->unk44 & 0xFF;
+    s = gSinLut[a];
+    c = gSinLut[a + 0x40];
+    x = s * r;
+    y = c * r;
+    x >>= 12;
+    y >>= 12;
 
-    anim->xPosition = proc->unk32 + off - (x >> 12);
-    anim->yPosition = proc->unk3A - (y >> 12);
+    anim->xPosition = proc->unk32 + off - x;
+    anim->yPosition = proc->unk3A - y;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0805AD44.s");
-#endif
 
 // 9.99 efxmagic-ivaldi:StartSubSpell_efxIvaldiWOUT
 void sub_0805ADF0(struct Anim * anim, int duration, int terminator)

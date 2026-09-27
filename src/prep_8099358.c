@@ -201,7 +201,7 @@ void sub_08099728(struct PrepRankProc * proc)
     sub_08099358(proc);
 
     sub_08091944(0x5000, 5);
-    sub_080AACD8(gBg1Tm, Tsa_0840EA38, 0x5280);
+    PutCompressedTsa(gBg1Tm, Tsa_0840EA38, 0x5280);
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
 
@@ -529,7 +529,7 @@ void sub_0809A024(struct PrepRankProc * proc)
             proc->ranks[i] |= 0xFF;
     }
 
-    sub_080AACD8(gBg1Tm, Tsa_0840EAF0, 0x5280);
+    PutCompressedTsa(gBg1Tm, Tsa_0840EAF0, 0x5280);
 
     sub_08099BA4(proc);
     sub_08099A48(proc);
@@ -647,7 +647,41 @@ void sub_0809A504(int x)
 
     SetWin0Box(left, 0, right, 0xA0);
 }
+#if NONMATCHING
+// register allocation: -y should go in r1 so &proc->unk_54 is recomputed instead of CSEd from &proc->unk_52
+void sub_0809A560(struct PrepRankProc * proc)
+{
+    int t, a, b, x, y;
+
+    proc->timer++;
+    t = 10 - proc->timer;
+
+    a = 8 - (t * 8 * t) / 100;
+    b = 16 - (t * 16 * t) / 100;
+
+    x = a * (proc->unk_4f * 8);
+    y = a * (proc->unk_50 * 8);
+
+    SetBlendAlpha(b, 16 - b);
+
+    SetBgOffset(0, x, y);
+    SetBgOffset(1, x, y);
+    SetBgOffset(2, x, y + 4);
+
+    proc->unk_52 = -x;
+    proc->unk_54 = -y;
+
+    sub_0809A504(-x);
+
+    if (proc->unk_3f != 0)
+        SetFacePosition(0, 0xD8 - x, 0x58 - y);
+
+    if (proc->timer == 10)
+        Proc_Break(proc);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_0809A560.s");
+#endif
 void sub_0809A650(struct PrepRankProc * proc)
 {
     proc->timer = 0;

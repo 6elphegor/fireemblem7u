@@ -278,7 +278,6 @@ void sub_080618AC(struct ProcEfxOBJ * proc)
     return;
 }
 
-#if NONMATCHING
 void sub_08061914(struct Anim * anim, int terminator)
 {
     struct ProcEfxBGCOL * proc;
@@ -316,16 +315,18 @@ void sub_08061914(struct Anim * anim, int terminator)
     }
 
     other = GetAnimAnotherSide(proc->anim);
-    anim->oam2Base = (anim->oam2Base & 0xF3FF) | 0x400;
-    other->oam2Base = (other->oam2Base & 0xF3FF) | 0x400;
+    anim->oam2Base &= ~OAM2_LAYER(3);
+    anim->oam2Base |= OAM2_LAYER(1);
+    other->oam2Base &= ~OAM2_LAYER(3);
+    other->oam2Base |= OAM2_LAYER(1);
 
     anim3 = gUnknown_02000010[GetAnimPosition(other)];
     if (anim3 != NULL)
-        anim3->oam2Base = (anim3->oam2Base & 0xF3FF) | 0x400;
+    {
+        anim3->oam2Base &= ~OAM2_LAYER(3);
+        anim3->oam2Base |= OAM2_LAYER(1);
+    }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08061914.s");
-#endif
 
 void sub_08061A34(struct ProcEfxBGCOL * proc)
 {

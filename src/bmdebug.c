@@ -70,6 +70,7 @@ struct SoundRoomEnt
 };
 
 extern struct SoundRoomEnt CONST_DATA gSoundRoomTable[];
+extern struct SoundRoomEnt CONST_DATA gUnk_08CE5378[];
 extern char const sDebugBlankStr[];
 
 
@@ -269,7 +270,19 @@ int sub_0801B470(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
     return 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B528.s");
+u8 sub_0801B528(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    if (gSoundRoomTable == gUnk_08CE5378)
+    {
+        PlaySoundEffect(gSoundRoomTable[menuItemProc->itemNumber].bgmId);
+    }
+    else
+    {
+        StartBgmExt(gSoundRoomTable[menuItemProc->itemNumber].bgmId, 1, NULL);
+    }
+
+    return 0;
+}
 
 u8 EndMenuAndClear(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {
@@ -387,7 +400,43 @@ int DebugMenu_ClearDraw(struct MenuProc * menuProc, struct MenuItemProc * menuIt
     return 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B814.s");
+u8 DebugMenu_ClearIdle(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int i;
+    struct GlobalSaveInfo info;
+
+    if (gpKeySt->repeated & (DPAD_RIGHT | DPAD_LEFT))
+    {
+        int count = GetGlobalCompletionCount();
+
+        if (gpKeySt->repeated & DPAD_LEFT)
+            if (count >= 0)
+                count--;
+
+        if (gpKeySt->repeated & DPAD_RIGHT)
+            if (count < 12)
+                count++;
+
+        ReadGlobalSaveInfo(&info);
+
+        for (i = 0; i < MAX_CLEARED_PLAYTHROUGHS; i++)
+            info.cleared_playthroughs[i] = 0;
+
+        for (i = 0; i < count; i++)
+            RegisterCompletedPlaythrough(&info, i + 1);
+
+        if (count == 0)
+            info.completed = 0;
+        else
+            info.completed = 1;
+
+        WriteGlobalSaveInfo(&info);
+
+        DebugMenu_ClearDraw(menuProc, menuItemProc);
+    }
+
+    return 0;
+}
 
 u8 DebugMenu_ClearEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {
@@ -434,7 +483,26 @@ void sub_0801B924(void)
     PutBuildInfo(gBg2Tm + 0x20);
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B990.s");
+int sub_0801B990(struct MenuProc * menuProc)
+{
+    struct SaveBlockInfo block;
+
+    menuProc->menuItems[4]->itemNumber = 0;
+
+    EnableBgSync(BG0_SYNC_BIT);
+
+    if ((ReadSaveBlockInfo(&block, 3) != 1) || (((block.checksum32 + (block.checksum32 >> 0x10)) & 0xff)) != 0)
+    {
+        StartFace(0, 0xB7, 32, 80, 0x103);
+        StartFace(1, 0xB6, 208, 80, 0x102);
+        return 0;
+    }
+
+    StartFace(0, 0xB4, 32, 80, 0x103);
+    StartFace(1, 0xB2, 208, 80, 0x102);
+
+    return 0;
+}
 
 int sub_0801BA10(void)
 {
@@ -492,7 +560,27 @@ u8 sub_0801BA54(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
     return 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801BB74.s");
+u8 sub_0801BB74(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    RandInit(GetGameTime());
+    InitUnits();
+
+    if (gpKeySt->held & L_BUTTON)
+        WriteNewGameSave(0, 1, 0);
+    else
+        WriteNewGameSave(0, 0, 0);
+
+    SetTacticianName(DecodeMsg(0x55B));
+
+    gPlaySt.chapterIndex = menuItemProc->itemNumber;
+
+    WriteGameSave(0);
+
+    CleanupUnitsBeforeChapter();
+    sub_08012B88();
+
+    return 2;
+}
 
 u8 sub_0801BBE0(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {

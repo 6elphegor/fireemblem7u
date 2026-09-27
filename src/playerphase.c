@@ -147,7 +147,7 @@ else_stmt:
                 }
 
                 EndPlayerPhaseSideWindows();
-                sub_080A3284();
+                StartMinimapPlayerPhase();
 
                 Proc_Goto(proc, 9);
 
@@ -160,7 +160,7 @@ else_stmt:
 
     PutMapCursor(
         gBmSt.cursor_sprite.x, gBmSt.cursor_sprite.y,
-        sub_08026064(gBmSt.cursor.x, gBmSt.cursor.y) ? 3 : 0);
+        IsUnitSpriteHoverEnabledAt(gBmSt.cursor.x, gBmSt.cursor.y) ? 3 : 0);
 }
 
 void DisplayUnitEffectRange(struct Unit * unit)

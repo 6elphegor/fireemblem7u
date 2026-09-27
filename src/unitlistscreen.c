@@ -609,7 +609,7 @@ void sub_8090D80(struct UnitListScreenProc * proc)
 
     sub_08090F30();
 
-    sub_080AACD8(gBg1Tm, gUnknown_08A1C8B4, 0x1000);
+    PutCompressedTsa(gBg1Tm, gUnknown_08A1C8B4, 0x1000);
 
     for (i = 0; i < 7; i++)
     {
@@ -953,3 +953,406 @@ void sub_809144C(struct UnitListScreenProc * proc)
         }
     }
 }
+
+void sub_0808A214(struct UnitListScreenProc * proc)
+{
+    int i;
+    u8 unk_32;
+
+    if (proc->helpActive != 0 && (gpKeySt->pressed & (B_BUTTON | R_BUTTON)) != 0)
+    {
+        CloseHelpBox();
+        proc->helpActive = 0;
+        return;
+    }
+
+    if ((gpKeySt->pressed & A_BUTTON) != 0 && proc->helpActive == 0)
+    {
+        unk_32 = proc->unk_32;
+
+        proc->unk_2a = 1;
+        PlaySoundEffect(0x38A);
+        proc->unk_32 = gUnitListScreenFields[proc->page][proc->unk_2d].sortKey;
+        proc->unk_33 = (proc->unk_33 + 1) & 1;
+
+        if (SortUnitList(proc->unk_32, proc->unk_33))
+        {
+            for (i = 0; i < 6 && i < gUnknown_0200F158; i++)
+                sub_0808AD00(proc, i, gBg0Tm, proc->page, 1);
+
+            sub_8090358(proc->unk_3e);
+            EnableBgSync(BG0_SYNC_BIT);
+        }
+
+        proc->unk_34 = proc->unk_33;
+        proc->unk_35 = proc->unk_2d;
+
+        if (proc->unk_32 != unk_32)
+            sub_8090238(proc->unk_32);
+
+        return;
+    }
+
+    if (((gpKeySt->repeated & DPAD_DOWN) != 0) && proc->helpActive == 0)
+    {
+        PlaySoundEffect(0x386);
+        proc->unk_33 = 1;
+        proc->unk_29 = 0;
+        return;
+    }
+
+    if ((gpKeySt->repeated & DPAD_LEFT) != 0)
+    {
+        proc->unk_33 = 1;
+
+        if (proc->unk_2d == 0)
+        {
+            if (proc->page < 2)
+                return;
+
+            if (proc->mode == UNITLIST_MODE_SOLOANIM)
+                return;
+
+            PlaySoundEffect(0x38F);
+            proc->pageTarget--;
+
+            for (i = 8; i > 0 && gUnitListScreenFields[proc->pageTarget][i].xColumn == 0; i--)
+            {
+            }
+
+            proc->unk_2d = i;
+            Proc_Goto(proc, 2);
+            return;
+        }
+
+        proc->unk_2d--;
+        PlaySoundEffect(0x387);
+        return;
+    }
+
+    if ((gpKeySt->repeated & DPAD_RIGHT) != 0)
+    {
+        proc->unk_33 = 1;
+
+        if (proc->unk_2d == 8 || gUnitListScreenFields[proc->page][proc->unk_2d + 1].xColumn == 0)
+        {
+            if (proc->page < proc->unk_2e)
+            {
+                if (proc->mode == UNITLIST_MODE_SOLOANIM)
+                    return;
+
+                proc->unk_2d = 0;
+                PlaySoundEffect(0x38F);
+
+                proc->pageTarget++;
+                Proc_Goto(proc, 2);
+            }
+            return;
+        }
+        else
+        {
+            proc->unk_2d++;
+            PlaySoundEffect(0x387);
+        }
+
+        return;
+    }
+
+    if ((gpKeySt->pressed & R_BUTTON) != 0 && proc->helpActive == 0)
+    {
+        proc->helpActive = 1;
+
+        StartHelpBox(
+            gUnitListScreenFields[proc->page][proc->unk_2d].xColumn, 0x28,
+            gUnitListScreenFields[proc->page][proc->unk_2d].helpTextId);
+    }
+}
+
+void sub_0808A508(struct UnitListScreenProc * proc)
+{
+    int prev = proc->unk_2d;
+
+    switch (proc->unk_29)
+    {
+        case 0:
+            sub_809144C(proc);
+            break;
+
+        case 3:
+            sub_0808A214(proc);
+            break;
+
+        case 1:
+            proc->unk_3e += 4 * proc->unk_31;
+            SetBgOffset(0, 0, (proc->unk_3e - 56) & 0xFF);
+
+            if ((proc->unk_3e % 0x10) == 0)
+            {
+                proc->unk_29 = 0;
+                sub_8090358(proc->unk_3e);
+            }
+
+            break;
+
+        case 2:
+            proc->unk_3e += -(4 * proc->unk_31);
+            SetBgOffset(0, 0, (proc->unk_3e - 56) & 0xFF);
+
+            if ((proc->unk_3e % 0x10) == 0)
+            {
+                proc->unk_29 = 0;
+                sub_8090358(proc->unk_3e);
+            }
+
+            break;
+    }
+
+    if (((gpKeySt->pressed & B_BUTTON) != 0) && (proc->helpActive == 0))
+    {
+        PlaySoundEffect(0x38B);
+        SetStatScreenLastUnitId(0);
+        Proc_Break(proc);
+    }
+
+    if ((proc->helpActive != 0) && (prev != proc->unk_2d))
+    {
+        StartHelpBox(
+            gUnitListScreenFields[proc->pageTarget][proc->unk_2d].xColumn, 40,
+            gUnitListScreenFields[proc->pageTarget][proc->unk_2d].helpTextId);
+    }
+}
+
+void UnitList_OnEnd(struct UnitListScreenProc * proc)
+{
+    int page;
+
+    if (proc->mode == UNITLIST_MODE_PREPMENU)
+    {
+        PrepSetLatestCharId(gSortedUnits[proc->unk_30]->unit->pCharacterData->number);
+        sub_809014C();
+    }
+
+    gPlaySt.lastUnitSortType = (proc->unk_34 << 7) + proc->unk_32;
+
+    page = proc->page;
+    if (page != 0)
+    {
+        page = (proc->page << 4);
+        gPlaySt.unk19 &= 0xf;
+        gPlaySt.unk19 |= page;
+    }
+
+    Proc_End(proc->pSpriteProc);
+
+    if (proc->pMuralProc != NULL)
+        Proc_End(proc->pMuralProc);
+
+    EndGreenText();
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    SetWinEnable(0, 0, 0);
+
+    ResetTextFont();
+    ClearIcons();
+}
+
+void UnitList_StartPageChange(struct UnitListScreenProc * proc)
+{
+    int i;
+
+    TmFillRect_thm(gUnknown_0200D7E0[0], 31, 31, 0);
+
+    for (i = proc->unk_3e / 16; i < proc->unk_3e / 16 + 6 && i < gUnknown_0200F158; i++)
+        sub_0808AD00(proc, i, gUnknown_0200D7E0[0], proc->page, 0);
+
+    TmFillRect_thm(gUnknown_0200DFE0[0], 31, 1, 0);
+
+    UnitList_DrawColumnNames(gUnknown_0200DFE0[0], proc->page);
+
+    proc->unk_3c = 0;
+    proc->unk_37 = proc->page;
+    proc->unk_38 = 0;
+}
+
+void sub_0808A770(struct UnitListScreenProc * proc)
+{
+    int i;
+    int r4;
+    u8 r1;
+
+    proc->unk_38 += gUnknown_08A17B30[proc->unk_3c];
+
+    if (proc->unk_38 > 20)
+        proc->unk_38 = 20;
+
+    proc->unk_3c++;
+
+    for (i = 0; i < 20; i++)
+    {
+        if (proc->pageTarget > proc->page)
+        {
+            if (i + proc->unk_38 > 20)
+                r1 = 0;
+            else
+                r1 = i + proc->unk_38 + 8;
+        }
+        else
+        {
+            if (i < proc->unk_38)
+                r1 = 0;
+            else
+                r1 = i - proc->unk_38 + 8;
+        }
+
+        for (r4 = proc->unk_3e / 8; r4 < 12 + proc->unk_3e / 8; r4++)
+        {
+            int off = 8 + (r4 & 0x1F) * 0x20;
+            gBg0Tm[off + i] = gUnknown_0200D7E0[r4 & 0x1F][r1];
+        }
+
+        for (r4 = 0; r4 < 2; r4++)
+        {
+            int off = 0xA8 + r4 * 0x20;
+            gBg2Tm[off + i] = gUnknown_0200DFE0[r4][r1];
+        }
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
+
+    if (proc->unk_38 < 20)
+        return;
+
+    proc->page = proc->pageTarget;
+
+    TmFillRect_thm(gBg2Tm + 0x150 / 2, 0x16, 1, 0);
+    TmFillRect_thm(gBg0Tm + 0x10 / 2, 0x16, 0x1F, 0);
+
+    for (r4 = 0; r4 < 20; r4++)
+        gUnknown_0200F15C[r4] = 0xFF;
+
+    ClearIcons();
+    sub_8090238(proc->unk_32);
+
+    for (r4 = proc->unk_3e / 16; r4 < proc->unk_3e / 16 + 6 && r4 < gUnknown_0200F158; r4++)
+        sub_0808AD00(proc, r4, gUnknown_0200D7E0[0], proc->page, 0);
+
+    UnitList_DrawColumnNames(gUnknown_0200DFE0[0], proc->page);
+    sub_0808AC90(proc->unk_2e, proc->page, 0);
+
+    proc->unk_38 = 0;
+    proc->unk_3c = 0;
+
+    Proc_Break(proc);
+}
+
+ASM_FUNC("asm/nonmatching/code_0808A92C.s");
+
+void StartUnitListScreenField(void)
+{
+    struct UnitListScreenProc * proc = Proc_Start(ProcScr_UnitListScreen_Field, PROC_TREE_3);
+    proc->mode = UNITLIST_MODE_FIELD;
+}
+
+void StartUnitListScreenPrepMenu(ProcPtr parent)
+{
+    struct UnitListScreenProc * proc;
+
+    if (parent == NULL)
+        proc = Proc_Start(ProcScr_UnitListScreen_PrepMenu, PROC_TREE_3);
+    else
+        proc = Proc_StartBlocking(ProcScr_UnitListScreen_PrepMenu, parent);
+
+    proc->mode = UNITLIST_MODE_PREPMENU;
+
+    if (CheckInLinkArena() == true)
+        proc->allyCount = 5;
+    else
+        proc->allyCount = GetChapterAllyUnitCount();
+
+    proc->deployedCount = 0;
+}
+
+void StartUnitListScreenForSoloAnim(ProcPtr parent)
+{
+    struct UnitListScreenProc * proc;
+
+    if (parent == NULL)
+        proc = Proc_Start(ProcScr_UnitListScreen_SoloAnim, PROC_TREE_3);
+    else
+        proc = Proc_StartBlocking(ProcScr_UnitListScreen_SoloAnim, parent);
+
+    proc->mode = UNITLIST_MODE_SOLOANIM;
+}
+
+void StartUnitListScreenUnk(ProcPtr parent)
+{
+    struct UnitListScreenProc * proc;
+
+    if (parent == NULL)
+        proc = Proc_Start(ProcScr_UnitListScreen_PrepMenu, PROC_TREE_3);
+    else
+        proc = Proc_StartBlocking(ProcScr_UnitListScreen_PrepMenu, parent);
+
+    proc->mode = 4;
+}
+
+void UnitList_DrawColumnNames(u16 * tm, u8 page)
+{
+    int i;
+
+    TmFillRect_thm(tm + 9, 19, 1, 0);
+    ClearText(&gUnknown_0200E148);
+
+    if (page == 5)
+    {
+        for (i = 0; i < 8; i++)
+            PutIcon(tm + 9 + 2 * i, i + 0x70, OAM2_PAL(5));
+    }
+    else
+    {
+        for (i = 1; i < 9 && gUnitListScreenFields[page][i].xColumn != 0; i++)
+        {
+            Text_SetCursor(&gUnknown_0200E148, gUnitListScreenFields[page][i].xColumn - 64);
+            Text_SetColor(&gUnknown_0200E148, TEXT_COLOR_SYSTEM_WHITE);
+            Text_DrawString(&gUnknown_0200E148, DecodeMsg(gUnitListScreenFields[page][i].labelString));
+        }
+
+        PutText(&gUnknown_0200E148, tm + 8);
+    }
+
+    EnableBgSync(BG2_SYNC_BIT);
+}
+
+void sub_0808AC90(u8 maxPages, u8 page, s8 flag)
+{
+    if (page != 0)
+    {
+        PutNumber(gBg2Tm + TM_OFFSET(26, 1), TEXT_COLOR_SYSTEM_BLUE, page);
+        PutSpecialChar(gBg2Tm + TM_OFFSET(27, 1), TEXT_COLOR_SYSTEM_WHITE, 0x16);
+        PutNumber(gBg2Tm + TM_OFFSET(28, 1), TEXT_COLOR_SYSTEM_BLUE, maxPages);
+    }
+    else
+    {
+        TmFillRect_thm(gBg1Tm + TM_OFFSET(25, 0), 6, 3, 0);
+        EnableBgSync(BG1_SYNC_BIT);
+    }
+
+    if (flag)
+        UnitList_DrawColumnNames(gBg2Tm + TM_OFFSET(0, 5), page);
+
+    EnableBgSync(BG2_SYNC_BIT);
+}
+
+ASM_FUNC("asm/nonmatching/code_0808AD00.s");
+
+int SortUnitList_GetUnitSoloAnimation(struct Unit * unit)
+{
+    return unit->state & (US_SOLOANIM_1 | US_SOLOANIM_2);
+}
+
+ASM_FUNC("asm/nonmatching/code_0808B5E0.s");

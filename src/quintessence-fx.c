@@ -43,7 +43,7 @@ void QuintessenceFx_Init_Main(struct ProcEventAnimfx * proc)
 
     ApplyPalette(Pal_QuintessenceFx, 5);
     Decompress(Img_ChapterIntroFog, (void *)0x06004000);
-    sub_080AACD8(gBg2Tm, Tsa_QuintessenceFx, 0x5200);
+    PutCompressedTsa(gBg2Tm, Tsa_QuintessenceFx, 0x5200);
 
     EnableBgSync(BG2_SYNC_BIT | BG3_SYNC_BIT);
     SetBgOffset(BG_2, 0, 0);

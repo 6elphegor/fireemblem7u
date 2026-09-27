@@ -52,13 +52,19 @@ build/fe7u.ld: $(LDS)
 	sed -E 's#build/asm/([A-Za-z0-9_]+\.o)\(#*asm.a:\1(#' $< > $@
 
 $(ELF): $(C_OBJS) build/asm.a build/data.o build/fe7u.ld $(LAYOUT) symbols.ld
+	@python3 tools/check_symbols.py
 	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive build/data.o
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
+build/src/soundwrapper.o: CFLAGS += -O0
+build/src/ramfunc.o: CFLAGS += -O0
 build/src/mu.o build/src/bmshop.o build/src/uiarena.o: CFLAGS += -O0
 build/src/mapanim.o build/src/mapanim_api.o build/src/mapanim_infobox.o build/src/mapanim_expbar.o build/src/mapanim_debug.o build/src/mapanim_specialeffect.o build/src/mapanim_staffeffect.o build/src/mapanim_lvupfx.o build/src/mapanim_lvup.o build/src/mapanim_spellassocfx.o build/src/mapanim_spellassoc.o build/src/scanline.o: CFLAGS += -O0
 build/src/agb-sram.o: CFLAGS += -O1
+
+# ASM_FUNC pulls asm/nonmatching/*.s into C objects via .include.
+$(C_OBJS): $(wildcard asm/nonmatching/*.s)
 
 build/src/%.o: src/%.c
 	@mkdir -p $(@D)

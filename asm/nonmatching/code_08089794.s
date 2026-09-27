@@ -157,7 +157,7 @@ _080898A0:
 	movs r2, #0x80
 	lsls r2, r2, #5
 	adds r0, r4, #0
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	movs r4, #0
 	mov r6, r8
 	adds r6, #0x2e
