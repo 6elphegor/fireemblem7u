@@ -151,9 +151,31 @@ void EndMuralBackground_(void)
         EndPrepMuralBackground();
 }
 
-void Prep_DrawChapterGoal(int vram_offset, int pal_bank);
-ASM_FUNC("asm/nonmatching/code_0808E488.s");
+void Prep_DrawChapterGoal(int vram_offset, int pal_bank)
+{
+    int msg;
+    const char *str;
+    struct Font font;
+    struct Text th;
 
+    InitSpriteTextFont(&font, OBJ_VRAM0 + vram_offset, pal_bank);
+    ApplyPalette(Pal_Text, 0x10 + pal_bank);
+    InitSpriteText(&th);
+    SetTextFont(&font);
+    SetTextFontGlyphs(0);
+    SpriteText_DrawBackgroundExt(&th, 0);
+
+    /* FE7U: goal window text id is at +0x8E of ChapterInfo (JP: +0x8A) */
+    msg = *(u16 *)((u8 *)GetChapterInfo(gPlaySt.chapterIndex) + 0x8E);
+    str = DecodeMsg(msg);
+
+    Text_InsertDrawString(
+        &th,
+        GetStringTextCenteredPos(0x60, str),
+        0, str);
+
+    SetTextFont(NULL);
+}
 
 void PrepAtMenu_OnInit(struct ProcAtMenu *proc)
 {
