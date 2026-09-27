@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080110B8
-sub_080110B8: @ 0x080110B8
+	thumb_func_start EvtCmd_BgFadeToMap
+EvtCmd_BgFadeToMap: @ 0x080110B8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x30]
@@ -39,7 +39,7 @@ _080110F8:
 	adds r4, #0x4c
 	adds r0, r2, #0
 	adds r1, r5, #0
-	bl sub_0801109C
+	bl StartEvtBgFadeToMap
 	movs r0, #0xff
 	strb r0, [r4]
 	adds r0, r5, #0

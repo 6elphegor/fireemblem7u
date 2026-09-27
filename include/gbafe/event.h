@@ -447,28 +447,28 @@ int GetChapterAllyUnitCount(void);
 // StartBrownTextBoxCore
 // EvtCmd_BrownTextBox
 // EvtCmd_EndBrownTextBox
-// sub_08010860
+// EvtBgFadeIn_Init
 // sub_8010D88
 // sub_8010DC4
-// sub_080109C4
+// EvtBgFadeIn_PutBackground
 // sub_8010EA0
-// sub_08010A9C
-// sub_08010AF8
+// EvtBgFadeIn_End
+// StartEvtBgFadeIn
 // sub_8010F74
-// sub_08010BE8
-// sub_08010C94
-// sub_08010CE0
-// sub_08010D58
-// sub_08010D98
-// sub_08010DC4
-// sub_08010DF8
+// EvtBgFadeOut_PutBackground
+// EvtBgFadeOut_Loop
+// EvtBgFadeOut_CopyToBg3
+// EvtBgFadeOut_End
+// StartEvtBgFadeOut
+// EvtCmd_BgFadeIn
+// EvtCmd_BgFade
 // sub_8011298
-// sub_08010F0C
-// sub_08010FBC
+// EvtBgFadeToMap_CopyToBg2
+// EvtBgFadeToMap_RestoreMap
 // sub_8011458
-// sub_08011054
-// sub_0801109C
-// sub_080110B8
+// EvtBgFadeToMap_End
+// StartEvtBgFadeToMap
+// EvtCmd_BgFadeToMap
 
 struct ProcEventSnowStormfx {
     PROC_HEADER;

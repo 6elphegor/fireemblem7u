@@ -2731,3 +2731,6 @@ ProcScr_BrownTextBoxFadeIn = 0x08B91EFC;
 ProcScr_BrownTextBoxFadeOut = 0x08B91F14;
 Pal_BrownTextBox = 0x0842535C;
 Img_BrownTextBox = 0x084251BC;
+ProcScr_EvtBgFadeIn = 0x08B91F34;
+ProcScr_EvtBgFadeOut = 0x08B91F84;
+ProcScr_EvtBgFadeToMap = 0x08B91FDC;
