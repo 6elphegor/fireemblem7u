@@ -1,7 +1,6 @@
 #include "gbafe.h"
 
-/* misnamed: returns gEkrDragonStatusLeft.type */
-int GetKeyStatus_IgnoreMask(void)
+int GetEkrDragonStatusTypeLeft(void)
 {
     return gEkrDragonStatusLeft.type;
 }
@@ -60,7 +59,7 @@ void AddEkrDragonStatusType(struct Anim * anim, u16 type_bitfile)
 
 int CheckInEkrDragon(void)
 {
-    return GetKeyStatus_IgnoreMask();
+    return GetEkrDragonStatusTypeLeft();
 }
 
 
