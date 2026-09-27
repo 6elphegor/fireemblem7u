@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08072F00
-sub_08072F00: @ 0x08072F00
+	thumb_func_start ManimRepairFx_Blink
+ManimRepairFx_Blink: @ 0x08072F00
 	push {r4, r5, r7, lr}
 	sub sp, #0x18
 	mov r7, sp

@@ -32,6 +32,16 @@ extern u16 const Pal_ManimTorch[];
 extern u16 const SpriteAnim_ManimTorch[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimTorch[];
 
+extern u8 const Img_ManimBerserk[];
+extern u16 const Pal_ManimBerserk[];
+extern u16 const SpriteAnim_ManimBerserk[];
+extern u8 const Img_ManimRepair[];
+extern u16 const Pal_ManimRepair[];
+extern u8 const Tsa_ManimRepair[];
+extern u8 const gManimRepairFrameLut[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimBerserk[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimRepair[];
+
 void StartManimLatonaFx(struct Unit * unit)
 {
     struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimLatona, PROC_TREE_3);
@@ -485,14 +495,79 @@ void ManimTorchFx_ResetHBlank(struct ManimEffectProc * proc)
     ResetScanLineHBlank();
 }
 
-ASM_FUNC("asm/nonmatching/code_08072C20.s");
-ASM_FUNC("asm/nonmatching/code_08072C90.s");
-ASM_FUNC("asm/nonmatching/code_08072D10.s");
-ASM_FUNC("asm/nonmatching/code_08072D7C.s");
-ASM_FUNC("asm/nonmatching/code_08072D98.s");
-ASM_FUNC("asm/nonmatching/code_08072E5C.s");
+void StartManimBerserkFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimBerserk, PROC_TREE_3);
+
+    proc->unit = unit;
+    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
+    proc->y = ((SCREEN_TILE_Y(unit->yPos) << 1) + 1) * 8;
+}
+
+void ManimBerserkFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x87, proc->x);
+    SetBgOffset(2, 0, 0);
+    SetDefaultManimScreenConf();
+
+    Decompress(Img_ManimBerserk, OBJ_VRAM0 + 0x1C0 * 0x20);
+    ApplyPalette(Pal_ManimBerserk, 0x10 + 4);
+
+    StartSpriteAnimProc(SpriteAnim_ManimBerserk, proc->x, proc->y, TILEREF(0x1C0, 4), 0, 2);
+
+    proc->unk_48 = 1;
+}
+
+void StartManimRepairFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimRepair, PROC_TREE_3);
+
+    proc->x = (SCREEN_TILE_X(unit->xPos) << 1) * 8 + 8;
+    proc->y = (SCREEN_TILE_Y(unit->yPos) << 1) * 8 + 8;
+}
+
+void ManimRepairFx_PlaySe(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x86, proc->x);
+}
+
+void ManimRepairFx_Init(struct ManimEffectProc * proc)
+{
+    SetBgOffset(2, 0, 0);
+    SetDefaultManimScreenConf();
+    SetBlendAlpha(0x10, 0x10);
+
+    Decompress(Img_ManimRepair, (void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20);
+    ApplyPalette(Pal_ManimRepair, 4);
+
+    proc->unk_48 = 0;
+    proc->frame_idx = 0;
+}
+
+void ManimRepairFx_Main(struct ManimEffectProc * proc)
+{
+    sub_080149A8(
+        gBg2Tm,
+        proc->x / 8 - 2, proc->y / 8 - 9,
+        TILEREF(0x140, 4),
+        4, 11, Tsa_ManimRepair,
+        gManimRepairFrameLut[proc->unk_48++]);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    if (gManimRepairFrameLut[proc->unk_48] == 0xFF)
+        Proc_Break(proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_08072F00.s");
-ASM_FUNC("asm/nonmatching/code_08072FC0.s");
+void ManimRepairFx_FadeOut(struct ManimEffectProc * proc)
+{
+    SetBlendAlpha(Interpolate(0, 0x10, 0, proc->frame_idx++, 30), 0x10);
+
+    if (proc->frame_idx > 30)
+        Proc_Break(proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_08073060.s");
 ASM_FUNC("asm/nonmatching/code_080730C8.s");
 ASM_FUNC("asm/nonmatching/code_080730F4.s");

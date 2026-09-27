@@ -20,7 +20,7 @@ sub_08076508: @ 0x08076508
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_08072C20
+	bl StartManimBerserkFx
 	add sp, #4
 	pop {r7}
 	pop {r0}
