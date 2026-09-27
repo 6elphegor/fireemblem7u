@@ -23,6 +23,18 @@ void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, int flag);
 void SaveMenuWriteNewGame(struct SaveMenuProc * proc);
 void sub_080A3CAC(struct SaveMenuProc * proc);
 s8 sub_080A6220(struct SaveMenuProc * proc);
+s8 sub_080A474C(struct SaveMenuProc * proc, int direction);
+
+struct SaveMenuHelpProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ int x;
+    /* 30 */ int y;
+    /* 34 */ STRUCT_PAD(0x34, 0x58);
+    /* 58 */ int msgId;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_08CE3C24[];
 
 CONST_DATA u16 BgConfig_SaveMenu[] = {
     0x0000, 0x6000, 0x0000, 
@@ -895,11 +907,130 @@ void sub_080A4554(struct SaveMenuProc * proc)
     if (proc->anim_clock == 0xe)
         Proc_Goto(proc, 0xA);
 }
-ASM_FUNC("asm/nonmatching/code_080A45A0.s");
-ASM_FUNC("asm/nonmatching/code_080A474C.s");
-ASM_FUNC("asm/nonmatching/code_080A47B4.s");
-ASM_FUNC("asm/nonmatching/code_080A47EC.s");
-ASM_FUNC("asm/nonmatching/code_080A4830.s");
+void sub_080A45A0(struct SaveMenuProc * proc)
+{
+    int previous = proc->unk_34;
+
+    proc->unk_2E = 0xA;
+
+    if (gpKeySt->repeated & DPAD_UP)
+    {
+        if (proc->unk_34 != 0)
+            proc->unk_34--;
+        else if (gpKeySt->pressed & DPAD_UP)
+            proc->unk_34 = proc->unk_33 - 1;
+    }
+    else if (gpKeySt->repeated & DPAD_DOWN)
+    {
+        if (proc->unk_34 < proc->unk_33 - 1)
+            proc->unk_34++;
+        else if (gpKeySt->pressed & DPAD_DOWN)
+            proc->unk_34 = 0;
+    }
+
+    if (previous != proc->unk_34)
+        PlaySoundEffect(0x386);
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        proc->unk_35 = SaveMenuIndexToValidBitfile(proc->unk_32, proc->unk_34);
+        PlaySoundEffect(0x38A);
+
+        proc->anim_clock = 0;
+
+        switch (proc->unk_35)
+        {
+        case 0x20:
+        case 0x40:
+            proc->copy_from_id = SaveMenuModifySaveSlot(ReadLastGameSaveId(), 1, 1);
+            sub_080A474C(proc, 0);
+            PlaySoundEffect(0x38A);
+            Proc_Goto(proc, 0xC);
+            break;
+
+        case 0x02:
+            CallSomeSoundMaybe(0, 0xc0, 0, 0x18, NULL);
+            Proc_Goto(proc, 0xE);
+            break;
+
+        case 0x08:
+            CallSomeSoundMaybe(0x29, 0xc0, 0x100, 0x18, NULL);
+            Proc_Goto(proc, 0xE);
+            break;
+
+        case 0x04:
+            CallSomeSoundMaybe(0x30, 0xc0, 0x100, 0x18, NULL);
+            Proc_Goto(proc, 0xE);
+            break;
+
+        default:
+            SaveMenu_HandleExtraMiscOption(proc);
+            Proc_Goto(proc, 0x12);
+            break;
+        }
+    }
+    else if (gpKeySt->pressed & B_BUTTON)
+    {
+        proc->anim_clock = 0;
+        Proc_Goto(proc, 9);
+        PlaySoundEffect(0x38B);
+    }
+}
+s8 sub_080A474C(struct SaveMenuProc * proc, int direction)
+{
+    u8 unk = proc->copy_from_id;
+
+    if (unk > 2)
+        proc->copy_from_id = 0;
+
+    if (direction == 0)
+        return 1;
+
+    if (direction > 0)
+    {
+        if (proc->copy_from_id < 2)
+            proc->copy_from_id = proc->copy_from_id + 1;
+        else
+            proc->copy_from_id = 0;
+    }
+    else
+    {
+        if (proc->copy_from_id == 0)
+            proc->copy_from_id = 2;
+        else
+            proc->copy_from_id = proc->copy_from_id - 1;
+    }
+
+    if (unk != proc->copy_from_id)
+    {
+        PlaySoundEffect(0x386);
+        return 1;
+    }
+
+    return 0;
+}
+void sub_080A47B4(struct SaveMenuHelpProc * proc)
+{
+    LoadHelpBoxGfx((void *) 0x06013800, 9);
+    StartHelpBoxExt_Unk(proc->x, proc->y, proc->msgId);
+    PlaySoundEffect(0x390);
+}
+void sub_080A47EC(struct SaveMenuHelpProc * proc)
+{
+    if (gpKeySt->pressed & (A_BUTTON | B_BUTTON | R_BUTTON))
+    {
+        PlaySoundEffect(0x391);
+        CloseHelpBox();
+        Proc_Break(proc);
+    }
+}
+void sub_080A4830(int x, int y, int msgId, ProcPtr parent)
+{
+    struct SaveMenuHelpProc * proc = Proc_StartBlocking(ProcScr_08CE3C24, parent);
+    proc->msgId = msgId;
+    proc->x = x;
+    proc->y = y;
+}
 ASM_FUNC("asm/nonmatching/code_080A4850.s");
 ASM_FUNC("asm/nonmatching/code_080A4A0C.s");
 ASM_FUNC("asm/nonmatching/code_080A4A24.s");
