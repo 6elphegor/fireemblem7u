@@ -70,7 +70,7 @@ void ResumeChapterFromSuspend(/* TODO */);
 // RefreshBMapDisplay_FromBattle
 // BMapDispResume_FromBattleDelayed
 // InitMoreBMapGraphics
-// RefreshBMapGraphics
+void RefreshBMapGraphics(void);
 // StartMapMain
 // EndMapMain
 void CleanupUnitsBeforeChapter(void);

@@ -869,6 +869,124 @@ AnimScr_EfxChill1_R = 0x08BD5644;
 AnimScr_EfxChill1_L = 0x08BD5848;
 AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
+
+/* event engine (0x0800A618-0x0800F9B0) shared */
+gBmMapOther = 0x0202E3F4;
+ProcScr_UnkEvt = 0x08B90D88;
+gEventCmdTable = 0x08B90E48;
+
+/* event-engine.c */
+
+gUnk_03000100 = 0x03000100;
+gUnk_08B90C9C = 0x08B90C9C;
+gPopupUnit = 0x03000104;
+gPopupItem = 0x03000108;
+gPopupNumber = 0x0300010C;
+ProcScr_Popup = 0x08B90CA0;
+ProcScr_PopupUpdateIcon = 0x08B90D00;
+gEventQueueCount = 0x03004160;
+gEventQueue = 0x03004170;
+ProcScr_08B90B9C = 0x08B90B9C;
+ProcScr_EventFadeOutOfBackgroundTalk = 0x08B90D08;
+ProcScr_08B90D40 = 0x08B90D40;
+ProcScr_EventFadeOutOfSkip = 0x08B90D68;
+ProcScr_EventDarkenThenFunc = 0x08B90E28;
+ProcScr_08B969E4 = 0x08B969E4;
+/* end event-engine.c */
+
+
+/* eventscr.c */
+gUnk_02033E00 = 0x02033E00;
+ProcScr_08B91A08 = 0x08B91A08;
+gEventSavedPosX = 0x0202A5AC;
+gEventSavedPosY = 0x0202A5B0;
+
+/* end eventscr.c */
+
+
+/* eventscr2.c */
+ProcScr_EventFlashCursor = 0x08B91A38;
+ProcScr_EventCursor = 0x08B91A50;
+sEventLoadUnitBuf = 0x030041D0;
+gUnitDef_08B91A18 = 0x08B91A18;
+
+/* end eventscr2.c */
+
+
+/* eventscr3.c */
+gUnk_03005A90 = 0x03005A90;
+gUnk_03005AD0 = 0x03005AD0;
+gUnk_03005CE0 = 0x03005CE0;
+gUnk_03005D20 = 0x03005D20;
+gUnk_03005D60 = 0x03005D60;
+gUnk_03005DF0 = 0x03005DF0;
+gUnk_03005E30 = 0x03005E30;
+gAiDecision = 0x0203A97C;
+ProcScr_EventWeatherChangeWithFade = 0x08B91A78;
+
+/* end eventscr3.c */
+
+
+/* eventscr4.c */
+gFaceConfig_08B91AB8 = 0x08B91AB8;
+EventScr_08B91AD8 = 0x08B91AD8;
+EventScr_08B91AE8 = 0x08B91AE8;
+EventScr_08B91B10 = 0x08B91B10;
+gPopup_08B91B34 = 0x08B91B34;
+gPopup_08B91B7C = 0x08B91B7C;
+gPopup_08B91BC4 = 0x08B91BC4;
+gPopup_08B91BE4 = 0x08B91BE4;
+gPopup_08B91C2C = 0x08B91C2C;
+gPopup_08B91C64 = 0x08B91C64;
+gPopup_08B91CBC = 0x08B91CBC;
+gPopup_08B91D04 = 0x08B91D04;
+gPopup_08B91D5C = 0x08B91D5C;
+gPopup_08B91DA4 = 0x08B91DA4;
+ProcScr_GiveItem = 0x08B91DC4;
+EventScr_08B91DF4 = 0x08B91DF4;
+EventScr_08B91E0C = 0x08B91E0C;
+EventScr_08B91E28 = 0x08B91E28;
+EventScr_08B91E40 = 0x08B91E40;
+EventScr_08B91E4C = 0x08B91E4C;
+EventScr_08B91E68 = 0x08B91E68;
+
+/* end eventscr4.c */
+
+Img_BarNumfx = 0x081D9DF0;
+Img_EkrExpBar = 0x081D97F0;
+Img_EkrExpBarChange = 0x081D9AF0;
+Pal_ExpBar = 0x081D9FBC;
+ProcScr_ekrBattle = 0x08B9A9BC;
+Tsa_EkrExpBar = 0x081D9F50;
+gBanimEffectiveness = 0x0203E0E4;
+gBanimExpGain = 0x0203E0D4;
+gBanimExpPrevious = 0x0203E0D0;
+gEkrBarfxBuf = 0x02019484;
+gEkrBattleEndFlag = 0x02017724;
+gEkrDeadEventExist = 0x02017738;
+gEkrDebugModeMaybe = 0x0203E008;
+gEkrDebugTimer = 0x02000018;
+gEkrDebugUnk1 = 0x0200001C;
+gEkrDebugUnk2 = 0x02000020;
+gEkrGaugeHp = 0x0203E0B8;
+gEkrHpBarCount = 0x02017728;
+gEkrInitPosReal = 0x02017744;
+gEkrInitialHitSide = 0x0203E00C;
+gEkrPids = 0x0203E09C;
+gpEkrTriangleUnits = 0x0203E0A0;
+gpProcEkrBattle = 0x02000064;
+ProcScr_ekrBattleDeamon = 0x08B9A99C;
+ProcScr_efxSPDQuake = 0x08B9AFE4;
+gBuf_Banim = 0x0201A784;
+gEfxHpBarResireFlag = 0x02017750;
+gEfxHpLutOff = 0x0203E05E;
+gEfxQuakeVecs = 0x081D7F22;
+gEfxQuakeVecs2 = 0x081D7FB6;
+gEfxSpellAnimExists = 0x0201772C;
+gSpellAnimBgfx = 0x02017784;
+gTmA_Banim = 0x0201C8C4;
+gUnknown_0201775C = 0x0201775C;
+gUnknown_0201FABC = 0x0201FABC;
 /* cp_perform */
 ProcScr_08B85854 = 0x08B85854;
 ProcScr_AiTargetCursor = 0x08B96F7C;
@@ -1128,3 +1246,54 @@ ProcScr_ChapterStatusScreen_FromPrep = 0x08CC2F58;
 Sprite_ChapterStatus_ChapterName = 0x08CC2FD8;
 ProcScr_StatusScreenSpriteDraw = 0x08CC3000;
 HelpInfo_ChapterStatus_AllyUnits = 0x08CE5D74;
+AnimScr_EfxFireOBJ_L_Front = 0x08BB4348;
+AnimScr_EfxFireOBJ_R_Front = 0x08BB46D0;
+AnimScr_EfxLiveOBJ1 = 0x08BBE6B0;
+AnimScr_EfxThunderOBJ_L = 0x08BB3F30;
+AnimScr_EfxThunderOBJ_R = 0x08BB3404;
+FrameConf_efxopFireBG = 0x081E9838;
+FrameConf_efxopLightningBG = 0x081E98FE;
+FrameConf_efxopLiveBG = 0x081E98B6;
+FrameConf_efxopLiveBGCOL = 0x081E98BC;
+FrameConf_efxopThunderBG = 0x081E986A;
+FrameConf_efxopThunderBGCOL = 0x081E9874;
+ImgArray_Light_ClassReel = 0x08BA49DC;
+Img_BoltingSprites = 0x081FC19C;
+Img_FireSpellBg = 0x081FC6D4;
+Img_FireSpellSprites = 0x081FE804;
+Img_HealSpellBg = 0x08269CF8;
+Img_HealSprites_Sparkles = 0x0826A9E8;
+Img_ThunderSpellBg = 0x081FB4B4;
+PalArray_Light_ClassReel = 0x08BA4A60;
+Pal_BoltingSprites = 0x081FC634;
+Pal_FireSpellBg = 0x081FD2CC;
+Pal_FireSpellSprites = 0x081FEE00;
+Pal_HealSpellBg = 0x0826A7E8;
+Pal_HealSprites_Sparkles = 0x0826AC3C;
+Pal_ThunderSpellBg = 0x081FBD70;
+ProcScr_efxopFire = 0x08BA47F8;
+ProcScr_efxopFireBG = 0x08BA4820;
+ProcScr_efxopFireOBJ = 0x08BA4868;
+ProcScr_efxopLightning = 0x08BA499C;
+ProcScr_efxopLightningBG = 0x08BA49C4;
+ProcScr_efxopLive = 0x08BA4900;
+ProcScr_efxopLiveALPHA = 0x08BA4964;
+ProcScr_efxopLiveBG = 0x08BA4928;
+ProcScr_efxopLiveBGCOL = 0x08BA4944;
+ProcScr_efxopLiveOBJ = 0x08BA4984;
+ProcScr_efxopThunder = 0x08BA4880;
+ProcScr_efxopThunderBG = 0x08BA48A8;
+ProcScr_efxopThunderBGCOL = 0x08BA48C8;
+ProcScr_efxopThunderOBJ = 0x08BA48E8;
+TsaArray_Fire_ClassReel = 0x08BA4838;
+TsaArray_Light_ClassReel = 0x08BA4AE4;
+TsaArray_Live_ClassReel = 0x08BA4940;
+TsaArray_Thunder_ClassReel = 0x08BA48C0;
+gClassReelSpellAnimFuncLut = 0x08BA47D8;
+ProcScr_ekrsubAnimeEmulator = 0x08BDAF50;
+gAnimSpriteRotScalePosX = 0x082E5AF8;
+gAnimSpriteRotScalePosY = 0x082E5B18;
+gBarfxTileConf1 = 0x082E5ACC;
+gBarfxTileConf2 = 0x082E5ADA;
+gBarfxTileConf3 = 0x082E5AEC;
+gEfxTileRefPals = 0x08BDAF3C;
