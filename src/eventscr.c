@@ -79,8 +79,32 @@ int EvtCmd_Background(struct EventProc * proc)
     return EVENT_CMDRET_YIELD;
 }
 
-int EvtCmd_BackgroundLynModeDeath(struct EventProc * proc);
-ASM_FUNC("asm/nonmatching/code_0800B5B8.s");
+int EvtCmd_BackgroundLynModeDeath(struct EventProc * proc)
+{
+    int background = GetChapterInfo(gPlaySt.chapterIndex)->default_background;
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (!GetLynModeDeathFlag())
+    {
+        OverrideBgm(0x2C);
+        SetLynModeDeathFlag();
+    }
+
+    if (proc->background == -1)
+    {
+        LockBmDisplay();
+        LockMus();
+    }
+
+    DisplayBackground(background);
+    proc->background = background;
+
+    SetDispEnable(1, 1, 1, 1, 1);
+
+    return EVENT_CMDRET_YIELD;
+}
 
 
 int EvtCmd_BackgroundRandom(struct EventProc * proc)
