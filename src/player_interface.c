@@ -601,43 +601,433 @@ ASM_FUNC("asm/nonmatching/code_08085C68.s");
 
 ASM_FUNC("asm/nonmatching/code_08085C7C.s");
 
-ASM_FUNC("asm/nonmatching/code_08085CDC.s");
+extern u8 const gTSA_GoalBox_OneLine[];
+extern u8 const gTSA_GoalBox_TwoLines[];
+extern u8 const Img_PrepHelpButtonSprites[];
 
-ASM_FUNC("asm/nonmatching/code_08085CFC.s");
+int sub_08084E70(void);
+int sub_08084E90(void);
+int CountUnitsByFaction(int faction);
 
-ASM_FUNC("asm/nonmatching/code_08085D48.s");
+bool sub_08085CDC(void)
+{
+    if (((gBmSt.cursor.y * 16) - gBmSt.camera.y) > 64)
+        return TRUE;
 
-ASM_FUNC("asm/nonmatching/code_08085DCC.s");
+    return FALSE;
+}
 
-ASM_FUNC("asm/nonmatching/code_08085F70.s");
+int sub_08085CFC(void)
+{
+    if (sub_08085CDC())
+    {
+        if (sub_08084E70() == -1)
+            return 2;
 
-ASM_FUNC("asm/nonmatching/code_08086008.s");
+        if (sub_08084E70() == +1)
+            return 1;
+    }
+    else
+    {
+        if (sub_08084E90() == -1)
+            return 4;
 
-ASM_FUNC("asm/nonmatching/code_080861C8.s");
+        if (sub_08084E90() == +1)
+            return 3;
+    }
 
-ASM_FUNC("asm/nonmatching/code_08086210.s");
+    return 0;
+}
 
-ASM_FUNC("asm/nonmatching/code_0808626C.s");
+void sub_08085D48(struct PlayerInterfaceProc * proc)
+{
+    TmFillRect(gUiTmScratchB + TM_OFFSET(20, 10), 11, 9, 0);
+    TmFillRect(gUiTmScratchA + TM_OFFSET(20, 12), 11, 9, 0);
 
-ASM_FUNC("asm/nonmatching/code_08086270.s");
+    if (proc->unitClock == 0)
+    {
+        TmApplyTsa(gUiTmScratchB + TM_OFFSET(20, 10), gTSA_GoalBox_OneLine, TILEREF(0x100, 1));
+        PutText(proc->texts, gUiTmScratchA + TM_OFFSET(21, 13));
+    }
 
-ASM_FUNC("asm/nonmatching/code_08086274.s");
+    if (proc->unitClock == 1)
+    {
+        TmApplyTsa(gUiTmScratchB + TM_OFFSET(20, 10), gTSA_GoalBox_TwoLines, TILEREF(0x100, 1));
+        PutText(&proc->texts[0], gUiTmScratchA + TM_OFFSET(21, 13));
+        PutText(&proc->texts[1], gUiTmScratchA + TM_OFFSET(21, 15));
+    }
+}
 
-ASM_FUNC("asm/nonmatching/code_08086278.s");
+void GoalDisplay_Init(struct PlayerInterfaceProc * proc)
+{
+    int turnNumber;
+    char const * str;
 
-ASM_FUNC("asm/nonmatching/code_0808630C.s");
+    proc->showHideClock = 0;
+    proc->isRetracting = FALSE;
+    proc->cursorQuadrant = 0;
+    proc->windowQuadrant = -1;
 
-ASM_FUNC("asm/nonmatching/code_08086368.s");
+    InitText(&proc->texts[0], 9);
+    InitText(&proc->texts[1], 8);
 
-ASM_FUNC("asm/nonmatching/code_08086398.s");
+    StartGreenText(proc);
 
-ASM_FUNC("asm/nonmatching/code_08086420.s");
+    ClearText(&proc->texts[0]);
+    ClearText(&proc->texts[1]);
 
-ASM_FUNC("asm/nonmatching/code_080864AC.s");
+    {
+        char const * goalStr = DecodeMsg(GetChapterInfo(gPlaySt.chapterIndex)->goalWindowTextId);
+        Text_InsertDrawString(&proc->texts[0], GetStringTextCenteredPos(72, goalStr), TEXT_COLOR_SYSTEM_WHITE, goalStr);
+    }
 
-ASM_FUNC("asm/nonmatching/code_080864E8.s");
+    switch (GetChapterInfo(gPlaySt.chapterIndex)->goalWindowDataType)
+    {
+    case 0:
+    case 3:
+    case 4:
+        proc->unitClock = 0;
+        return;
 
-ASM_FUNC("asm/nonmatching/code_0808652C.s");
+    case 1:
+        Text_InsertDrawString(&proc->texts[1], 16, TEXT_COLOR_SYSTEM_WHITE, DecodeMsg(0x128D));
 
-ASM_FUNC("asm/nonmatching/code_080865D4.s");
+        if (gPlaySt.chapterVisionRange != 0)
+            Text_InsertDrawString(&proc->texts[1], 40, TEXT_COLOR_SYSTEM_GRAY, DecodeMsg(0x127C));
+        else
+            Text_InsertDrawNumberOrBlank(&proc->texts[1], 48, TEXT_COLOR_SYSTEM_BLUE, CountUnitsByFaction(FACTION_RED));
+
+        break;
+
+    case 2:
+        turnNumber = gPlaySt.chapterTurnNumber;
+
+        if (turnNumber >= GetChapterInfo(gPlaySt.chapterIndex)->protectCharacterIndex - 1)
+        {
+            str = DecodeMsg(0x128E);
+            Text_InsertDrawString(&proc->texts[1], GetStringTextCenteredPos(64, str), TEXT_COLOR_SYSTEM_GREEN, str);
+            break;
+        }
+
+        Text_InsertDrawNumberOrBlank(&proc->texts[1], 10, TEXT_COLOR_SYSTEM_BLUE, gPlaySt.chapterTurnNumber);
+        Text_InsertDrawString(&proc->texts[1], 19, TEXT_COLOR_SYSTEM_WHITE, DecodeMsg(0x12B0));
+        Text_InsertDrawNumberOrBlank(&proc->texts[1], 34, TEXT_COLOR_SYSTEM_BLUE,
+            GetChapterInfo(gPlaySt.chapterIndex)->protectCharacterIndex - 1);
+        Text_InsertDrawString(&proc->texts[1], 43, TEXT_COLOR_SYSTEM_WHITE, DecodeMsg(0x128F));
+
+        break;
+
+    default:
+        return;
+    }
+
+    proc->unitClock = 1;
+}
+
+void GoalDisplay_Loop_OnSideChange(struct PlayerInterfaceProc * proc)
+{
+    int quadrant;
+    struct PlayerInterfaceProc * tiProc;
+
+    proc->showHideClock = 0;
+    proc->hideContents = TRUE;
+
+    proc->cursorQuadrant = GetCursorQuadrant();
+
+    quadrant = GetWindowQuadrant(
+        sPlayerInterfaceConfigLut[proc->cursorQuadrant].xGoal, sPlayerInterfaceConfigLut[proc->cursorQuadrant].yGoal);
+
+    tiProc = Proc_Find(gProcScr_TerrainDisplay);
+
+    if (tiProc != NULL)
+    {
+        if ((tiProc->windowQuadrant > -1) && (tiProc->windowQuadrant == quadrant))
+            return;
+    }
+
+    proc->windowQuadrant = quadrant;
+
+    sub_08085D48(proc);
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+
+    proc->xCursorPrev = proc->xCursor;
+    proc->yCursorPrev = proc->yCursor;
+
+    Proc_Break(proc);
+}
+
+void sub_08086008(int quadrant, int param_2, int param_3)
+{
+    int x = sPlayerInterfaceConfigLut[quadrant].xGoal;
+    int y = sPlayerInterfaceConfigLut[quadrant].yGoal;
+
+    if ((x < 0) && (y < 0))
+    {
+        TmFillRect(gBg1Tm, 12, 6, 0);
+        TmFillRect(gBg0Tm, 12, 6, 0);
+
+        TmCopyRect(gUiTmScratchB + TM_OFFSET(20, (16 - param_2)), gBg1Tm, 12, param_2);
+        TmCopyRect(gUiTmScratchA + TM_OFFSET(20, (18 - param_2)), gBg0Tm, 12, param_2);
+    }
+
+    if ((x > 0) && (y < 0))
+    {
+        TmFillRect(gBg1Tm + TM_OFFSET(19, 0), 12, 6, 0);
+        TmFillRect(gBg0Tm + TM_OFFSET(19, 0), 12, 6, 0);
+
+        TmCopyRect(gUiTmScratchB + TM_OFFSET(20, (16 - param_2)), gBg1Tm + TM_OFFSET(19, 0), 12, param_2);
+        TmCopyRect(gUiTmScratchA + TM_OFFSET(20, (18 - param_2)), gBg0Tm + TM_OFFSET(19, 0), 12, param_2);
+    }
+
+    if ((x < 0) && (y > 0))
+    {
+        TmFillRect(gBg1Tm + TM_OFFSET(0, 14), 12, 6, 0);
+        TmFillRect(gBg0Tm + TM_OFFSET(0, 14), 12, 6, 0);
+
+        TmCopyRect(
+            gUiTmScratchB + TM_OFFSET(20, 10),
+            gBg1Tm + 0x1C0 + 0x20 * (({ (1 - param_3) * 2 + 20; }) - param_2) - 0x1C0, 12, param_2);
+        TmCopyRect(
+            gUiTmScratchA + TM_OFFSET(20, 12),
+            gBg0Tm + 0x1C0 + 0x20 * (({ (1 - param_3) * 2 + 20; }) - param_2) - 0x1C0, 12, param_2);
+    }
+
+    if ((x > 0) && (y > 0))
+    {
+        TmFillRect(gBg1Tm + TM_OFFSET(19, 14), 12, 6, 0);
+        TmFillRect(gBg0Tm + TM_OFFSET(19, 14), 12, 6, 0);
+
+        TmCopyRect(
+            gUiTmScratchB + TM_OFFSET(20, 10),
+            gBg1Tm + 0x1D3 + 0x20 * (({ (1 - param_3) * 2 + 20; }) - param_2) - 0x1C0, 12, param_2);
+        TmCopyRect(
+            gUiTmScratchA + TM_OFFSET(20, 12),
+            gBg0Tm + 0x1D3 + 0x20 * (({ (1 - param_3) * 2 + 20; }) - param_2) - 0x1C0, 12, param_2);
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+void GoalDisplay_Loop_SlideIn(struct PlayerInterfaceProc * proc)
+{
+    int width = sGoalSlideInWidthLut[proc->showHideClock];
+
+    sub_08086008(proc->cursorQuadrant, width, proc->unitClock);
+
+    proc->showHideClock++;
+
+    if (proc->showHideClock == 5)
+    {
+        proc->showHideClock = 0;
+        proc->hideContents = FALSE;
+
+        Proc_Break(proc);
+    }
+}
+
+void GoalDisplay_Loop_SlideOut(struct PlayerInterfaceProc * proc)
+{
+    int width;
+
+    proc->hideContents = TRUE;
+
+    width = sGoalSlideOutWidthLut[proc->showHideClock];
+
+    sub_08086008(proc->cursorQuadrant, width, proc->unitClock);
+
+    proc->showHideClock++;
+
+    if (proc->showHideClock == 3)
+    {
+        proc->showHideClock = 0;
+        proc->hideContents = FALSE;
+        proc->isRetracting = FALSE;
+        proc->windowQuadrant = -1;
+
+        Proc_Break(proc);
+    }
+}
+
+void sub_0808626C(void)
+{
+}
+
+void sub_08086270(void)
+{
+}
+
+void sub_08086274(void)
+{
+}
+
+void GoalDisplay_Loop_Display(struct PlayerInterfaceProc * proc)
+{
+    proc->xCursorPrev = proc->xCursor;
+    proc->yCursorPrev = proc->yCursor;
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+
+    if (proc->xCursor == proc->xCursorPrev && proc->yCursor == proc->yCursorPrev)
+        return;
+
+    if (Proc_Find(ProcScr_CamMove) == NULL)
+    {
+        int cursorQuadrant = GetCursorQuadrant();
+        int quadrant = proc->cursorQuadrant;
+
+        if (cursorQuadrant == quadrant)
+            return;
+
+        if ((sPlayerInterfaceConfigLut[cursorQuadrant].xGoal == sPlayerInterfaceConfigLut[quadrant].xGoal) &&
+            (sPlayerInterfaceConfigLut[cursorQuadrant].yGoal == sPlayerInterfaceConfigLut[quadrant].yGoal))
+            return;
+    }
+
+    proc->isRetracting = TRUE;
+
+    Proc_Break(proc);
+}
+
+bool IsAnyPlayerSideWindowRetracting(void)
+{
+    struct PlayerInterfaceProc * proc;
+
+    proc = Proc_Find(gProcScr_UnitDisplay_MinimugBox);
+
+    if (proc != NULL && proc->isRetracting)
+        return TRUE;
+
+    proc = Proc_Find(gProcScr_TerrainDisplay);
+
+    if (proc != NULL && proc->isRetracting)
+        return TRUE;
+
+    proc = Proc_Find(gProcScr_GoalDisplay);
+
+    if (proc != NULL && proc->isRetracting)
+        return TRUE;
+
+    return FALSE;
+}
+
+void MenuButtonDisp_Init(struct PlayerInterfaceProc * proc)
+{
+    Decompress(Img_PrepHelpButtonSprites, (void *) 0x06015000);
+
+    proc->xHp = 160;
+    proc->yHp = 140;
+    proc->isRetracting = FALSE;
+}
+
+void UpdateMenuButtonPos(struct PlayerInterfaceProc * proc, int quadrant, int offset)
+{
+    int x = sPlayerInterfaceConfigLut[quadrant].xGoal;
+    int y = sPlayerInterfaceConfigLut[quadrant].yGoal;
+
+    if ((x < 0) && (y < 0))
+    {
+        proc->xHp = 8;
+        proc->yHp = offset - 24;
+    }
+
+    if ((x > 0) && (y < 0))
+    {
+        proc->xHp = 160;
+        proc->yHp = offset - 24;
+    }
+
+    if ((x < 0) && (y > 0))
+    {
+        proc->xHp = 8;
+        proc->yHp = 160 - offset;
+    }
+
+    if ((x > 0) && (y > 0))
+    {
+        proc->xHp = 160;
+        proc->yHp = 160 - offset;
+    }
+}
+
+void DrawMenuButtonAt(int x, int y)
+{
+    PutSprite(4, OAM1_X(x + 0), OAM0_Y(y), Sprite_32x16, OAM2_CHR(0x280));
+    PutSprite(4, OAM1_X(x + 32), OAM0_Y(y), Sprite_32x16, OAM2_CHR(0x284));
+    PutSprite(4, OAM1_X(x + 64), OAM0_Y(y), Sprite_32x16, OAM2_CHR(0x288));
+    PutSprite(4, OAM1_X(x + 96), OAM0_Y(y), Sprite_8x16, OAM2_CHR(0x28C));
+}
+
+void MenuButtonDisp_UpdateCursorPos(struct PlayerInterfaceProc * proc)
+{
+    proc->cursorQuadrant = GetCursorQuadrant();
+
+    UpdateMenuButtonPos(proc, proc->cursorQuadrant, proc->showHideClock);
+
+    proc->showHideClock = 0;
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+}
+
+void MenuButtonDisp_Loop_OnSlideIn(struct PlayerInterfaceProc * proc)
+{
+    proc->showHideClock += 4;
+
+    UpdateMenuButtonPos(proc, proc->cursorQuadrant, proc->showHideClock);
+    DrawMenuButtonAt(proc->xHp, proc->yHp);
+
+    if (proc->showHideClock == 24)
+    {
+        Proc_Break(proc);
+        proc->isRetracting = FALSE;
+    }
+}
+
+void MenuButtonDisp_Loop_Display(struct PlayerInterfaceProc * proc)
+{
+    DrawMenuButtonAt(proc->xHp, proc->yHp);
+
+    proc->xCursorPrev = proc->xCursor;
+    proc->yCursorPrev = proc->yCursor;
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+
+    if (proc->xCursor == proc->xCursorPrev && proc->yCursor == proc->yCursorPrev)
+        return;
+
+    if (Proc_Find(ProcScr_CamMove) == NULL)
+    {
+        int cursorQuadrant = GetCursorQuadrant();
+        int quadrant = proc->cursorQuadrant;
+
+        if (cursorQuadrant == quadrant)
+            return;
+
+        if ((sPlayerInterfaceConfigLut[cursorQuadrant].xGoal == sPlayerInterfaceConfigLut[quadrant].xGoal) &&
+            (sPlayerInterfaceConfigLut[cursorQuadrant].yGoal == sPlayerInterfaceConfigLut[quadrant].yGoal))
+            return;
+    }
+
+    proc->isRetracting = TRUE;
+
+    Proc_Break(proc);
+}
+
+void MenuButtonDisp_Loop_OnSlideOut(struct PlayerInterfaceProc * proc)
+{
+    proc->showHideClock -= 4;
+
+    UpdateMenuButtonPos(proc, proc->cursorQuadrant, proc->showHideClock);
+    DrawMenuButtonAt(proc->xHp, proc->yHp);
+
+    if (proc->showHideClock == 0)
+    {
+        proc->isRetracting = FALSE;
+        Proc_Break(proc);
+    }
+}
 

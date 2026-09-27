@@ -1324,3 +1324,6 @@ gBarfxTileConf1 = 0x082E5ACC;
 gBarfxTileConf2 = 0x082E5ADA;
 gBarfxTileConf3 = 0x082E5AEC;
 gEfxTileRefPals = 0x08BDAF3C;
+gTSA_GoalBox_TwoLines = 0x084048B4;
+gTSA_GoalBox_OneLine = 0x0840493C;
+Img_PrepHelpButtonSprites = 0x08405170;
