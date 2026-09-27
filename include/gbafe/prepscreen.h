@@ -152,7 +152,7 @@ void PrepMenuDescOnParse(struct ProcPrepMenuDesc * proc);
 void PrepMenuDescOnDraw(void);
 void StartPrepMenuDescHandler(int msg, ProcPtr parent);
 // StartPrepAtSubMenuUI
-// DrawAtMenuUpfx
+void DrawAtMenuUpfx(int tile, int pal);
 void AtMenu_Reinitialize(struct ProcAtMenu *proc);
 void EndPrepAtMenuIfNoUnitAvailable(struct ProcAtMenu *proc);
 void AtMenu_UpdateDesc(struct ProcAtMenu *proc);
@@ -191,7 +191,7 @@ void sub_0808F7A8(struct ProcAtMenu *proc);
 // sub_8090104
 // sub_8090118
 // sub_8090130
-// sub_0808F808
+void sub_0808F808(int xOam1, int yOam0, int config, u16 oam2);
 // PrepScreenSprite_OnDraw
 // nullsub_77
 

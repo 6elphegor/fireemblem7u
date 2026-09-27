@@ -25,8 +25,8 @@ struct PrepRankProc {
     /* 54 */ s16 unk_54;
     /* 56 */ s16 unk_56;
     /* 58 */ int unk_58;
-    /* 5C */ s16 unk_5c;
-    /* 5E */ s16 unk_5e;
+    /* 5C */ u16 unk_5c;
+    /* 5E */ u16 unk_5e;
 };
 
 struct PrepRankPalAnimProc {
@@ -79,6 +79,30 @@ extern struct PrepRankTalkEnt CONST_DATA gUnk_08CC52D8[];
 void sub_08099BA4(struct PrepRankProc * proc);
 void sub_08099A48(struct PrepRankProc * proc);
 int sub_0809A83C(int pid, int rank);
+int sub_0809A870(int n);
+int sub_0809A8C8(int n);
+void sub_0809A504(int x);
+void SetFacePosition(int slot, int x, int y);
+
+struct PrepDivinationProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int unk_2c;
+    /* 30 */ int unk_30;
+};
+
+struct PrepDivinationFlashProc {
+    /* 00 */ PROC_HEADER;
+    /* 2A */ u16 timer;
+    /* 2C */ u16 pal[15];
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_08CC5760[];
+
+int GetGold(void);
+void AddGold(int amount);
+
+void sub_0809A8E4(struct PrepDivinationProc * proc);
+void sub_0809A924(int vram_offset, int pal);
 
 
 
@@ -528,12 +552,136 @@ void sub_0809A024(struct PrepRankProc * proc)
         SetCgTextFlags(0x809FE);
     }
 }
-ASM_FUNC("asm/nonmatching/code_0809A280.s");
-ASM_FUNC("asm/nonmatching/code_0809A378.s");
-ASM_FUNC("asm/nonmatching/code_0809A404.s");
-ASM_FUNC("asm/nonmatching/code_0809A504.s");
+void sub_0809A280(struct PrepRankProc * proc)
+{
+    proc->unk_4f = 0;
+    proc->unk_50 = 0;
+
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        PlaySoundEffect(0x38B);
+        CallSomeSoundMaybe(0x5A, 0x100, 0xC0, 0x18, NULL);
+        Proc_Goto(proc, 0);
+        return;
+    }
+
+    if (gpKeySt->held & SELECT_BUTTON)
+    {
+        proc->unk_5e++;
+
+        if (proc->unk_3b != 0 && proc->unk_5e > 180)
+        {
+            PlaySoundEffect(0x38A);
+            Proc_Goto(proc, 3);
+            return;
+        }
+    }
+    else
+    {
+        proc->unk_5e = 0;
+    }
+
+    if (gpKeySt->pressed & (DPAD_LEFT | L_BUTTON))
+        proc->unk_4f = -1;
+
+    if (gpKeySt->pressed & (DPAD_RIGHT | R_BUTTON))
+        proc->unk_4f = 1;
+
+    if (proc->unk_4f != 0 || proc->unk_50 != 0)
+        Proc_Goto(proc, 2);
+}
+void sub_0809A378(struct PrepRankProc * proc)
+{
+    int msg;
+    int pid = sub_0809A8C8(proc->unk_5c);
+
+    if (pid == 0)
+    {
+        proc->unk_5c = 0;
+        pid = sub_0809A8C8(0);
+    }
+
+    msg = sub_0809A870(proc->unk_5c);
+    proc->unk_5c++;
+
+    EndFaceById(0);
+    StartTalkFace(gCharacterData[pid - 1].portraitId, 0xD8, 0x58, 0x102, 0);
+
+    InitTalk(0x28, 0, 1);
+    StartCgText(0x16, 0x13, 0x12, 4, msg, (void *) 0x06011000, 10, 0);
+    SetCgTextFlags(0x2000A);
+}
+void sub_0809A404(struct PrepRankProc * proc)
+{
+    gDispIo.bg0_ct.priority = 1;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 0;
+
+    proc->timer = 0;
+
+    SetBlendConfig(1, 0, 0x10, 0);
+    SetBlendTargetA(0, 0, 0, 1, 0);
+    SetBlendTargetB(1, 1, 1, 0, 1);
+
+    PlaySoundEffect(0xC8);
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(0, 0, 0, 1, 1);
+    SetWin0Box(0, 0, 0xF0, 0xA0);
+}
+void sub_0809A504(int x)
+{
+    int left = 0;
+    int right = 0xF0;
+
+    if (x > 0)
+        left = x;
+
+    if (x < 0)
+        right = x + 0x100;
+
+    right = right > 0xF0 ? 0xF0 : right < 0 ? 0 : right;
+    left = left > 0xF0 ? 0xF0 : left < 0 ? 0 : left;
+
+    SetWin0Box(left, 0, right, 0xA0);
+}
 ASM_FUNC("asm/nonmatching/code_0809A560.s");
-ASM_FUNC("asm/nonmatching/code_0809A650.s");
+void sub_0809A650(struct PrepRankProc * proc)
+{
+    proc->timer = 0;
+
+    if (proc->unk_4f > 0)
+    {
+        SetUiSpinningArrowFastMaybe(1);
+
+        if (proc->unk_3c == 2)
+        {
+            proc->unk_3d = 1 - proc->unk_3d;
+            proc->unk_3c = 0;
+        }
+        else
+        {
+            proc->unk_3c++;
+        }
+    }
+
+    if (proc->unk_4f < 0)
+    {
+        SetUiSpinningArrowFastMaybe(0);
+
+        if (proc->unk_3c == 0)
+        {
+            proc->unk_3d = 1 - proc->unk_3d;
+            proc->unk_3c = 2;
+        }
+        else
+        {
+            proc->unk_3c--;
+        }
+    }
+}
 ASM_FUNC("asm/nonmatching/code_0809A6C0.s");
 void sub_0809A824(struct PrepRankProc * proc)
 {
@@ -575,24 +723,291 @@ int sub_0809A8C8(int n)
 {
     return gUnk_08CC52D8[n / 3].pid;
 }
-ASM_FUNC("asm/nonmatching/code_0809A8E4.s");
-ASM_FUNC("asm/nonmatching/code_0809A924.s");
-ASM_FUNC("asm/nonmatching/code_0809A9A8.s");
-ASM_FUNC("asm/nonmatching/code_0809AB38.s");
-ASM_FUNC("asm/nonmatching/code_0809AB7C.s");
-ASM_FUNC("asm/nonmatching/code_0809ABC0.s");
-ASM_FUNC("asm/nonmatching/code_0809AC20.s");
-ASM_FUNC("asm/nonmatching/code_0809AC7C.s");
-ASM_FUNC("asm/nonmatching/code_0809AC9C.s");
-ASM_FUNC("asm/nonmatching/code_0809ACFC.s");
-ASM_FUNC("asm/nonmatching/code_0809AD20.s");
-ASM_FUNC("asm/nonmatching/code_0809AD64.s");
-ASM_FUNC("asm/nonmatching/code_0809ADC0.s");
-ASM_FUNC("asm/nonmatching/code_0809ADE4.s");
-ASM_FUNC("asm/nonmatching/code_0809AE40.s");
-ASM_FUNC("asm/nonmatching/code_0809AE84.s");
-ASM_FUNC("asm/nonmatching/code_0809AEA0.s");
-ASM_FUNC("asm/nonmatching/code_0809AEBC.s");
-ASM_FUNC("asm/nonmatching/code_0809AEFC.s");
-ASM_FUNC("asm/nonmatching/code_0809AF94.s");
-ASM_FUNC("asm/nonmatching/code_0809B02C.s");
+void sub_0809A8E4(struct PrepDivinationProc * proc)
+{
+    int i;
+
+    sub_0808F808(0x90, 3, proc->unk_30, 0x23C0);
+
+    for (i = 0; i < 3; i++)
+        PutSpriteExt(4, 0x94 + i * 0x20, 0x12, Sprite_32x16, 0x1380 + i * 4);
+}
+void sub_0809A924(int vram_offset, int pal)
+{
+    struct Font font;
+    struct Text text;
+    char const * str = DecodeMsg(GetChapterInfo(gPlaySt.chapterIndex)->goalWindowTextId);
+
+    InitSpriteTextFont(&font, (u8 *) 0x06010000 + vram_offset, 1);
+    ApplyPaletteExt(Pal_Text, (pal + 0x10) * 0x20, 0x20);
+    InitSpriteText(&text);
+
+    SetTextFont(&font);
+    SetTextFontGlyphs(0);
+
+    SpriteText_DrawBackgroundExt(&text, 0);
+    Text_InsertDrawString(&text, GetStringTextCenteredPos(0x60, str), 0, str);
+
+    SetTextFont(NULL);
+}
+void sub_0809A9A8(struct PrepDivinationProc * proc)
+{
+    int fid = GetChapterDivinationPortrait();
+
+    gDispIo.disp_ct.mode = 0;
+
+    InitBgs(NULL);
+
+    TmFill(GetBgTilemap(0), 0);
+    TmFill(GetBgTilemap(1), 0);
+    TmFill(GetBgTilemap(2), 0);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 0;
+    gDispIo.bg3_ct.priority = 3;
+
+    InitFaces();
+    ResetText();
+    InitIcons();
+    UnpackUiWindowFrameGraphics();
+    ApplySystemObjectsGraphics();
+
+    SetBgOffset(0, 4, -4);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+
+    ApplyIconPalettes(4);
+    PrepRestartMuralBackground();
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+
+    StartGreenText(proc);
+
+    InitText(&gPrepItemTexts[29], 8);
+
+    StartSysBrownBox(13, 0xE00, 15, 0xC00, 0, proc);
+    EnableSysBrownBox(0, 0x90, 0x10, 0);
+
+    sub_0809A924(0x7000, 1);
+
+    proc->unk_30 = GetChapterInfo(gPlaySt.chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0];
+
+    DrawAtMenuUpfx(0x7800, 2);
+
+    StartParallelWorker(sub_0809A8E4, proc);
+
+    InitTalk(0x200, 3, 1);
+
+    if (gPlaySt.chapterIndex == 0x2E)
+    {
+        Proc_Goto(proc, 3);
+    }
+    else if (fid == 0x4B)
+    {
+        SetFlag(0x99);
+    }
+    else if (CheckFlag(0x99) && gPlaySt.chapterIndex <= 0x2A)
+    {
+        fid = 0x4B;
+        ClearFlag(0x99);
+        Proc_Goto(proc, 4);
+    }
+
+    StartTalkFace(fid, 0xD4, 0x52, 0x202, 0);
+}
+void sub_0809AB38(struct PrepDivinationProc * proc)
+{
+    proc->unk_2c = GetChapterDivinationTextIdBeginning();
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    SetCgTextFlags(GetCgTextFlags() | 0x4004E);
+}
+void sub_0809AB7C(struct PrepDivinationProc * proc)
+{
+    proc->unk_2c = GetChapterDivinationTextIdHectorStory();
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    SetCgTextFlags(GetCgTextFlags() | 0x4000A);
+}
+void sub_0809ABC0(struct PrepDivinationProc * proc)
+{
+    if (gPlaySt.tact_enabled)
+        proc->unk_2c = 0xFBD;
+    else
+        proc->unk_2c = 0xFBE;
+
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    SetCgTextFlags(GetCgTextFlags() | 0x4000A);
+}
+void sub_0809AC20(struct PrepDivinationProc * proc)
+{
+    if (gPlaySt.tact_enabled)
+        proc->unk_2c = 0xFBF;
+    else
+        proc->unk_2c = 0xFC0;
+
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    SetCgTextFlags(GetCgTextFlags() | 0x6000A);
+}
+void sub_0809AC7C(void)
+{
+    StartTalkFace(0x41, 0xD4, 0x52, 0x202, 0);
+}
+void sub_0809AC9C(struct PrepDivinationProc * proc)
+{
+    if (gPlaySt.tact_enabled)
+        proc->unk_2c = 0xFC1;
+    else
+        proc->unk_2c = 0xFC2;
+
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    SetCgTextFlags(GetCgTextFlags() | 0x4000A);
+}
+void sub_0809ACFC(ProcPtr proc)
+{
+    EndCgText();
+    EndAllProcChildren(proc);
+    EndMuralBackground_();
+    EndFaceById(0);
+    SetOnHBlankA(NULL);
+}
+void sub_0809AD20(struct PrepDivinationProc * proc)
+{
+    proc->unk_2c = GetChapterDivinationTextIdEnding();
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    SetCgTextFlags(GetCgTextFlags() | 0x4004E);
+}
+void sub_0809AD64(ProcPtr proc)
+{
+    if (GetTalkChoiceResult() == 1)
+    {
+        int fee = GetChapterDivinationFee();
+
+        if (GetGold() >= fee)
+        {
+            if (fee > 0)
+            {
+                AddGold(-fee);
+                PlaySoundEffect(0xB9);
+            }
+
+            Proc_Goto(proc, 0);
+        }
+        else
+        {
+            Proc_Goto(proc, 2);
+        }
+    }
+    else
+    {
+        Proc_Goto(proc, 1);
+    }
+}
+void sub_0809ADC0(ProcPtr proc)
+{
+    if (GetTalkChoiceResult() == 1)
+        Proc_Goto(proc, 0);
+    else
+        Proc_Goto(proc, 1);
+}
+void sub_0809ADE4(struct PrepDivinationProc * proc)
+{
+    if (sub_0809931C())
+        proc->unk_2c = 0xF85;
+    else
+        proc->unk_2c = 0xF83;
+
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    SetCgTextFlags(GetCgTextFlags() | 0x4004E);
+}
+void sub_0809AE40(struct PrepDivinationProc * proc)
+{
+    proc->unk_2c = 0xF84;
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    SetCgTextFlags(GetCgTextFlags() | 0x4004E);
+}
+void sub_0809AE84(void)
+{
+    CallSomeSoundMaybe(0x5E, 0x100, 0x100, 0x20, NULL);
+}
+void sub_0809AEA0(void)
+{
+    CallSomeSoundMaybe(0x49, 0x100, 0x100, 0x20, NULL);
+}
+void sub_0809AEBC(struct PrepDivinationFlashProc * proc)
+{
+    int i;
+    u16 * src = gPal + 0xA1;
+
+    for (i = 0; i < 15; i++)
+        proc->pal[i] = *src++;
+
+    PlaySoundEffect(0xEE);
+
+    proc->timer = 0;
+}
+void sub_0809AEFC(struct PrepDivinationFlashProc * proc)
+{
+    int i, k;
+    u16 * dst = gPal + 0xA1;
+
+    proc->timer++;
+    k = proc->timer >> 1;
+
+    for (i = 0; i < 15; i++)
+    {
+        int r = (proc->pal[i] & 0x1F) + k;
+        int g = ((proc->pal[i] & 0x3E0) >> 5) + k;
+        int b = ((proc->pal[i] & 0x7C00) >> 10) + k;
+
+        if (r > 0x1F)
+            r = 0x1F;
+
+        if (g > 0x1F)
+            g = 0x1F;
+
+        if (b > 0x1F)
+            b = 0x1F;
+
+        *dst++ = (r & 0x1F) + ((g & 0x1F) << 5) + ((b & 0x1F) << 10);
+    }
+
+    EnablePalSync();
+
+    if (proc->timer == 0x10)
+        Proc_Break(proc);
+}
+void sub_0809AF94(struct PrepDivinationFlashProc * proc)
+{
+    int i, k;
+    u16 * dst = gPal + 0xA1;
+
+    proc->timer--;
+    k = proc->timer >> 1;
+
+    for (i = 0; i < 15; i++)
+    {
+        int r = (proc->pal[i] & 0x1F) + k;
+        int g = ((proc->pal[i] & 0x3E0) >> 5) + k;
+        int b = ((proc->pal[i] & 0x7C00) >> 10) + k;
+
+        if (r > 0x1F)
+            r = 0x1F;
+
+        if (g > 0x1F)
+            g = 0x1F;
+
+        if (b > 0x1F)
+            b = 0x1F;
+
+        *dst++ = (r & 0x1F) + ((g & 0x1F) << 5) + ((b & 0x1F) << 10);
+    }
+
+    EnablePalSync();
+
+    if (proc->timer == 0)
+        Proc_Break(proc);
+}
+void sub_0809B02C(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_08CC5760, parent);
+}
