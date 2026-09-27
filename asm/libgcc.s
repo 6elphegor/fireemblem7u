@@ -37,8 +37,8 @@ _call_via_r6: @ 0x080BFC64
 	bx r6
 	nop
 
-	thumb_func_start sub_080BFC68
-sub_080BFC68: @ 0x080BFC68
+	thumb_func_start _call_via_r7
+_call_via_r7: @ 0x080BFC68
 	bx r7
 	nop
 
