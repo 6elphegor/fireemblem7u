@@ -790,6 +790,7 @@ void WmUnitManager_Init(struct WmUnitManagerProc * proc)
     proc->unk_48 = 0;
 }
 
+void WorldFlushHBlank(void);
 void sub_080B43EC(struct WmUnitManagerProc * proc);
 void sub_080B4510(struct WmUnitManagerProc * proc);
 void sub_080B467C(struct WmUnitManagerProc * proc);
@@ -1493,7 +1494,32 @@ void StartWmPalFadeIn(int color)
         proc->colors[i - 1] = PAL_COLOR(color & 0x1f, i);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5990.s");
+void WmSpotlight_Init(struct WmSpotlightProc * proc)
+{
+    proc->timer = 0;
+
+    InitScanlineEffect();
+
+    SetBlendTargetA(1, 1, 1, 1, 0);
+
+    SetWin0Box(0, 0, 240, 160);
+    SetWinEnable(1, 0, 0);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 1, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetBlendConfig(2, 0, 0, 0);
+
+    sub_0807744C();
+
+    gWmHBlankFlags |= 2;
+}
 ASM_FUNC("asm/nonmatching/code_080B5A84.s");
 
 void WmEndSpotlight(void)
