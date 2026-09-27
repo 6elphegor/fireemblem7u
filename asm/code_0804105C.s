@@ -51,7 +51,7 @@ _080410A6:
 	strb r1, [r0, #1]
 	strh r6, [r0, #2]
 	movs r1, #4
-	bl sub_0803CE34
+	bl SioSend
 	ldr r4, [r4]
 	ldr r1, [r5, #0x58]
 	movs r0, #0x8c

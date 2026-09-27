@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08042C58
-sub_08042C58: @ 0x08042C58
+	thumb_func_start StartTacticianNameSelect
+StartTacticianNameSelect: @ 0x08042C58
 	push {r4, lr}
 	adds r4, r0, #0
 	bl UnpackUiWindowFrameGraphics

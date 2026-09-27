@@ -174,7 +174,7 @@ void EndLinkArenaFogPlaceholders(void);
 
 bool sub_0803CD1C(u8 playerId);
 int sub_0803CDB8(void);
-s16 sub_0803CE34(const void * src, u16 len);
+s16 SioSend(const void * src, u16 len);
 int SioEmitData(const u8 * src, u16 len);
 int SioReceiveData(void * dst, u8 * outSenderId, bool (* verify)(void *));
 void ClearSioBG(void);
@@ -1671,7 +1671,7 @@ void sub_080462A4(void)
         gSioMsgBuf.kind = 0xD4;
         gSioMsgBuf.sender = gSioSt->selfId;
         gSioMsgBuf.param = 0;
-        sub_0803CE34(&gSioMsgBuf, sizeof(gSioMsgBuf));
+        SioSend(&gSioMsgBuf, sizeof(gSioMsgBuf));
     }
 
     return;

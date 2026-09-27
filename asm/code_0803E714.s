@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803E714
-sub_0803E714: @ 0x0803E714
+	thumb_func_start SioTeamList_Loop_MainKeyHandler
+SioTeamList_Loop_MainKeyHandler: @ 0x0803E714
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -57,7 +57,7 @@ sub_0803E714: @ 0x0803E714
 	adds r0, r4, #0
 	bl sub_0803E0D4
 	adds r0, r4, #0
-	bl sub_0803E454
+	bl GetLATeamListHelpTextId
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	movs r1, #1

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08041ED8
-sub_08041ED8: @ 0x08041ED8
+	thumb_func_start SioResult_NewHS_LoopScroll
+SioResult_NewHS_LoopScroll: @ 0x08041ED8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

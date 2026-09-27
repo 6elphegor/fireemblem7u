@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08040270
-sub_08040270: @ 0x08040270
+	thumb_func_start SioPostBattleMusic_PlayStandardBgm
+SioPostBattleMusic_PlayStandardBgm: @ 0x08040270
 	push {lr}
 	movs r0, #0x2e
 	movs r1, #0

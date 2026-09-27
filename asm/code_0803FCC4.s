@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803FCC4
-sub_0803FCC4: @ 0x0803FCC4
+	thumb_func_start SioPostBattleSprites_Loop_DrawStatic
+SioPostBattleSprites_Loop_DrawStatic: @ 0x0803FCC4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

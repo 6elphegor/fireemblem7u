@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803DEE4
-sub_0803DEE4: @ 0x0803DEE4
+	thumb_func_start CanBuildNewLinkArenaTeam
+CanBuildNewLinkArenaTeam: @ 0x0803DEE4
 	push {r4, lr}
 	ldr r0, _0803DEF0 @ =0x0203D90C
 	ldrb r0, [r0, #0xa]

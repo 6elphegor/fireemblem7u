@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080401EC
-sub_080401EC: @ 0x080401EC
+	thumb_func_start SioPostBattle_AwaitAPress
+SioPostBattle_AwaitAPress: @ 0x080401EC
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_080490D4

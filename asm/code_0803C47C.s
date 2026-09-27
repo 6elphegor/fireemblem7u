@@ -28,10 +28,10 @@ SioRegisterIrq: @ 0x0803C47C
 	ldr r1, _0803C4E8 @ =0x030013CC
 	subs r0, #1
 	str r0, [r1]
-	ldr r1, _0803C4EC @ =sub_0803C558
+	ldr r1, _0803C4EC @ =SioHandleIrq_Serial
 	movs r0, #7
 	bl SetIrqFunc
-	ldr r1, _0803C4F0 @ =sub_0803C8E8
+	ldr r1, _0803C4F0 @ =SioHandleIrq_Timer3
 	movs r0, #6
 	bl SetIrqFunc
 	ldr r2, _0803C4F4 @ =0x04000200
@@ -51,6 +51,6 @@ _0803C4DC: .4byte 0x030046B8
 _0803C4E0: .4byte 0x030046B4
 _0803C4E4: .4byte 0x03004748
 _0803C4E8: .4byte 0x030013CC
-_0803C4EC: .4byte sub_0803C558
-_0803C4F0: .4byte sub_0803C8E8
+_0803C4EC: .4byte SioHandleIrq_Serial
+_0803C4F0: .4byte SioHandleIrq_Timer3
 _0803C4F4: .4byte 0x04000200

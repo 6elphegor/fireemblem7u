@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803E8E4
-sub_0803E8E4: @ 0x0803E8E4
+	thumb_func_start SioTeamList_WaitForUnitListScreen
+SioTeamList_WaitForUnitListScreen: @ 0x0803E8E4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0803E900 @ =0x08CC32A4

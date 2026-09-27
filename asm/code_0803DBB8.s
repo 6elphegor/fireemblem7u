@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803DBB8
-sub_0803DBB8: @ 0x0803DBB8
+	thumb_func_start EndSioHold
+EndSioHold: @ 0x0803DBB8
 	push {lr}
 	ldr r0, _0803DBC4 @ =0x08B98BC4
 	bl Proc_EndEach

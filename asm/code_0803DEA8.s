@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803DEA8
-sub_0803DEA8: @ 0x0803DEA8
+	thumb_func_start SioTeamList_Init
+SioTeamList_Init: @ 0x0803DEA8
 	mov ip, r0
 	mov r2, ip
 	adds r2, #0x4a

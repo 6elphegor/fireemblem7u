@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080417BC
-sub_080417BC: @ 0x080417BC
+	thumb_func_start DrawLinkArenaModeIcon
+DrawLinkArenaModeIcon: @ 0x080417BC
 	push {r4, lr}
 	lsls r1, r1, #0x12
 	movs r2, #0xa0

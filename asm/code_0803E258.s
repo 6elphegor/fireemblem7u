@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803E258
-sub_0803E258: @ 0x0803E258
+	thumb_func_start SioTeamList_SwapTeams
+SioTeamList_SwapTeams: @ 0x0803E258
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

@@ -15,7 +15,7 @@ sub_0804307C: @ 0x0804307C
 	strb r1, [r0, #1]
 	strh r2, [r0, #2]
 	movs r1, #4
-	bl sub_0803CE34
+	bl SioSend
 	ldr r4, [r4]
 	ldrb r0, [r4, #9]
 	ldrb r1, [r4, #0xa]

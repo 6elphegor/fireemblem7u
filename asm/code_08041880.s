@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08041880
-sub_08041880: @ 0x08041880
+	thumb_func_start DrawLinkArenaRankings
+DrawLinkArenaRankings: @ 0x08041880
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -41,12 +41,12 @@ _0804189E:
 	str r0, [sp]
 	adds r0, r5, #0
 	mov r1, r8
-	bl sub_080417F8
+	bl DrawLinkArenaRankingRow
 	lsls r4, r6, #7
 	mov r1, sl
 	adds r0, r4, r1
 	adds r1, r6, #0
-	bl sub_0804177C
+	bl DrawLinkArenaRankIcon
 	mov r0, sl
 	adds r0, #6
 	adds r4, r4, r0
@@ -57,7 +57,7 @@ _0804189E:
 	lsls r1, r0, #0x1b
 	lsrs r1, r1, #0x1f
 	mov r0, sb
-	bl sub_080417BC
+	bl DrawLinkArenaModeIcon
 	adds r7, #0x10
 	movs r1, #0x80
 	add sb, r1

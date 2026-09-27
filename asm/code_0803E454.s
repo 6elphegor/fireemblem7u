@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803E454
-sub_0803E454: @ 0x0803E454
+	thumb_func_start GetLATeamListHelpTextId
+GetLATeamListHelpTextId: @ 0x0803E454
 	adds r3, r0, #0
 	ldr r2, _0803E470 @ =0x08B98C9C
 	ldr r0, _0803E474 @ =0x0203D90C

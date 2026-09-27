@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803F0C4
-sub_0803F0C4: @ 0x0803F0C4
+	thumb_func_start SioTeamList_LoadTeam_Dummy
+SioTeamList_LoadTeam_Dummy: @ 0x0803F0C4
 	push {r4, lr}
 	sub sp, #0x14
 	ldr r4, [r0, #0x40]

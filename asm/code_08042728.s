@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08042728
-sub_08042728: @ 0x08042728
+	thumb_func_start SioMenu_RestartGraphicsMaybe
+SioMenu_RestartGraphicsMaybe: @ 0x08042728
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803CE34
-sub_0803CE34: @ 0x0803CE34
+	thumb_func_start SioSend
+SioSend: @ 0x0803CE34
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803C8E8
-sub_0803C8E8: @ 0x0803C8E8
+	thumb_func_start SioHandleIrq_Timer3
+SioHandleIrq_Timer3: @ 0x0803C8E8
 	ldr r1, _0803C900 @ =0x0400010E
 	movs r0, #0
 	strh r0, [r1]

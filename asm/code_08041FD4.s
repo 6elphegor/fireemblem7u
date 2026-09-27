@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08041FD4
-sub_08041FD4: @ 0x08041FD4
+	thumb_func_start LoadLinkArenaRuleSettings
+LoadLinkArenaRuleSettings: @ 0x08041FD4
 	ldr r1, _08041FF4 @ =0x0203D90C
 	movs r2, #0x80
 	lsls r2, r2, #1

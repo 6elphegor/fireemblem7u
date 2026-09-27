@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803E930
-sub_0803E930: @ 0x0803E930
+	thumb_func_start SioTeamList_8043D8C
+SioTeamList_8043D8C: @ 0x0803E930
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -290,7 +290,7 @@ _0803EB88:
 	movs r0, #2
 	bl SioPlaySoundEffect
 	adds r0, r7, #0
-	bl sub_0803E258
+	bl SioTeamList_SwapTeams
 	b _0803EC76
 _0803EB96:
 	ldr r0, _0803EBD8 @ =0x0203DA78

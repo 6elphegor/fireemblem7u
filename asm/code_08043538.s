@@ -54,7 +54,7 @@ _0804358C:
 	ldrb r1, [r2]
 	strh r1, [r0, #2]
 	movs r1, #0xa
-	bl sub_0803CE34
+	bl SioSend
 	ldr r1, [r5]
 	movs r0, #3
 	ldrb r2, [r1, #9]

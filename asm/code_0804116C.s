@@ -39,7 +39,7 @@ sub_0804116C: @ 0x0804116C
 	bl ResetTextFont
 	bl sub_0803DCF0
 	add r0, sp, #8
-	bl sub_08041FD4
+	bl LoadLinkArenaRuleSettings
 	movs r0, #1
 	movs r1, #0xfe
 	movs r2, #0
@@ -84,12 +84,12 @@ _080411DE:
 	ldr r4, _080412B4 @ =0x0202369C
 	adds r0, r0, r4
 	movs r1, #0
-	bl sub_080417BC
+	bl DrawLinkArenaModeIcon
 	ldr r0, [r5, #0x1c]
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #1
-	bl sub_080417BC
+	bl DrawLinkArenaModeIcon
 	ldr r0, _080412B8 @ =0x081D5260
 	mov r4, r8
 	subs r4, #0xc

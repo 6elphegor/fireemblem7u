@@ -247,7 +247,7 @@ _08040AA8:
 	ldrb r1, [r2]
 	strh r1, [r0, #2]
 	movs r1, #0x16
-	bl sub_0803CE34
+	bl SioSend
 _08040ACE:
 	add sp, #8
 	pop {r4, r5, r6}

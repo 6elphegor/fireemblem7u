@@ -2,13 +2,13 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080429B8
-sub_080429B8: @ 0x080429B8
+	thumb_func_start SioMenu_Loop_HandleKeyInput
+SioMenu_Loop_HandleKeyInput: @ 0x080429B8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, [r4, #0x48]
 	movs r1, #5
-	bl sub_080428B8
+	bl SioMenu_HandleDPadInput
 	ldr r0, [r4, #0x48]
 	cmp r5, r0
 	beq _08042A36

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08042BB8
-sub_08042BB8: @ 0x08042BB8
+	thumb_func_start StartLinkArenaMainMenu
+StartLinkArenaMainMenu: @ 0x08042BB8
 	push {r4, lr}
 	adds r4, r0, #0
 	bl UnpackUiWindowFrameGraphics

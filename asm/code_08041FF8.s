@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08041FF8
-sub_08041FF8: @ 0x08041FF8
+	thumb_func_start SaveLinkArenaRuleSettings
+SaveLinkArenaRuleSettings: @ 0x08041FF8
 	push {r4, r5, lr}
 	ldr r5, _08042038 @ =0x0203D90C
 	movs r1, #0x80

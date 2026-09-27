@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08040144
-sub_08040144: @ 0x08040144
+	thumb_func_start SioPostBattle_Loop_Main
+SioPostBattle_Loop_Main: @ 0x08040144
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r4, r0, #0

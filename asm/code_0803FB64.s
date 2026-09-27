@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803FB64
-sub_0803FB64: @ 0x0803FB64
+	thumb_func_start SioPostBattleSprites_Loop_DrawSlideIn
+SioPostBattleSprites_Loop_DrawSlideIn: @ 0x0803FB64
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803EF60
-sub_0803EF60: @ 0x0803EF60
+	thumb_func_start SioTeamList_StartEraseTeamSubMenu
+SioTeamList_StartEraseTeamSubMenu: @ 0x0803EF60
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r1, r5, #0

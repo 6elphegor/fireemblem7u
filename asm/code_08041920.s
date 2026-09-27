@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08041920
-sub_08041920: @ 0x08041920
+	thumb_func_start SioResult_Init
+SioResult_Init: @ 0x08041920
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x10
 	adds r7, r0, #0
@@ -120,7 +120,7 @@ _080419B8:
 	bl PutSioText
 	ldr r0, _08041B3C @ =0x0203DB68
 	bl sub_080A1F2C
-	bl sub_08041880
+	bl DrawLinkArenaRankings
 	ldr r1, _08041B40 @ =0x03002870
 	mov ip, r1
 	movs r0, #0x20

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803C944
-sub_0803C944: @ 0x0803C944
+	thumb_func_start SioMain_Loop
+SioMain_Loop: @ 0x0803C944
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -105,14 +105,14 @@ _0803C9D4:
 	ldrh r1, [r1]
 	strh r1, [r0, #2]
 	movs r1, #4
-	bl sub_0803CE34
+	bl SioSend
 	b _0803C964
 	.align 2, 0
 _0803CA08: .4byte 0x08B98AEC
 _0803CA0C: .4byte 0x0300479C
 _0803CA10:
 	adds r0, r5, #0
-	bl sub_0803D19C
+	bl SioQueuePendingRecvData
 	ldr r0, _0803CA38 @ =0x0300479C
 	movs r1, #0xde
 	strb r1, [r0]
@@ -215,7 +215,7 @@ _0803CAD0:
 	strh r7, [r0, #2]
 _0803CAD4:
 	movs r1, #4
-	bl sub_0803CE34
+	bl SioSend
 	b _0803CCAE
 	.align 2, 0
 _0803CADC: .4byte 0x08B98AEC

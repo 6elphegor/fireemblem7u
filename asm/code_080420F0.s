@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080420F0
-sub_080420F0: @ 0x080420F0
+	thumb_func_start SioRuleSettings_Init
+SioRuleSettings_Init: @ 0x080420F0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -56,7 +56,7 @@ sub_080420F0: @ 0x080420F0
 	movs r2, #0
 	bl SetBgOffset
 	add r0, sp, #8
-	bl sub_08041FD4
+	bl LoadLinkArenaRuleSettings
 	mov r3, r8
 	ldr r0, [r3, #0x2c]
 	ldr r4, [r3, #0x30]
@@ -124,12 +124,12 @@ _080421B8:
 	ldr r4, _08042290 @ =0x0202369C
 	adds r0, r0, r4
 	movs r1, #0
-	bl sub_080417BC
+	bl DrawLinkArenaModeIcon
 	ldr r0, [r5, #0x1c]
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #1
-	bl sub_080417BC
+	bl DrawLinkArenaModeIcon
 	mov r1, r8
 	ldr r0, [r1, #0x2c]
 	movs r1, #6

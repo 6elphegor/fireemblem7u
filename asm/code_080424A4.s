@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080424A4
-sub_080424A4: @ 0x080424A4
+	thumb_func_start SioMenu_LoadGraphics
+SioMenu_LoadGraphics: @ 0x080424A4
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x10
 	adds r6, r0, #0

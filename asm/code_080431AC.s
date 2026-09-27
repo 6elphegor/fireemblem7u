@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080431AC
-sub_080431AC: @ 0x080431AC
+	thumb_func_start CallEraseSaveEvent
+CallEraseSaveEvent: @ 0x080431AC
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080431BC @ =0x08B9981C

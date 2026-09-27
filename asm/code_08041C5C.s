@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08041C5C
-sub_08041C5C: @ 0x08041C5C
+	thumb_func_start SioResult_NewHS_Init
+SioResult_NewHS_Init: @ 0x08041C5C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -134,7 +134,7 @@ _08041D1A:
 	bl PutText
 	ldr r0, _08041ECC @ =0x0203DB68
 	bl sub_080A1F2C
-	bl sub_08041880
+	bl DrawLinkArenaRankings
 	ldr r1, _08041ED0 @ =0x03002870
 	mov ip, r1
 	movs r0, #0x20

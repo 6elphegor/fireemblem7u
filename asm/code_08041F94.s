@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08041F94
-sub_08041F94: @ 0x08041F94
+	thumb_func_start SioResult_NewHS_AwaitAPress
+SioResult_NewHS_AwaitAPress: @ 0x08041F94
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08041FB8 @ =0x08B857F8

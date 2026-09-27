@@ -65,7 +65,7 @@ _0803D368:
 	movs r4, #0
 	strh r1, [r0, #2]
 	movs r1, #4
-	bl sub_0803CE34
+	bl SioSend
 	strb r4, [r5, #4]
 	mov r3, r8
 	ldr r0, [r3]
@@ -124,7 +124,7 @@ _0803D3D6:
 	movs r5, #0
 	strh r1, [r0, #2]
 	movs r1, #4
-	bl sub_0803CE34
+	bl SioSend
 	strb r5, [r6]
 	ldr r0, [r4]
 	ldr r2, _0803D434 @ =0x00001B76
@@ -186,7 +186,7 @@ _0803D438:
 	ldrh r1, [r2]
 	strh r1, [r0, #2]
 	movs r1, #4
-	bl sub_0803CE34
+	bl SioSend
 	ldrh r0, [r6, #4]
 _0803D490:
 	add sp, #4

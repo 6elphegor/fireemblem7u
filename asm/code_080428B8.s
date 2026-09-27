@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080428B8
-sub_080428B8: @ 0x080428B8
+	thumb_func_start SioMenu_HandleDPadInput
+SioMenu_HandleDPadInput: @ 0x080428B8
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r5, r0, #0

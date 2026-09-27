@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08042CB8
-sub_08042CB8: @ 0x08042CB8
+	thumb_func_start XMapTransfer_80482E0
+XMapTransfer_80482E0: @ 0x08042CB8
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	movs r5, #0
@@ -80,7 +80,7 @@ _08042D3C:
 	ldrb r1, [r2]
 	strh r1, [r0, #2]
 	movs r1, #0xa
-	bl sub_0803CE34
+	bl SioSend
 	ldr r1, [r4]
 	movs r0, #3
 	ldrb r2, [r1, #9]

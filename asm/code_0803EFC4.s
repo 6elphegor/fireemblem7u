@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803EFC4
-sub_0803EFC4: @ 0x0803EFC4
+	thumb_func_start SioTeamList_EraseTeam_KeyHandler
+SioTeamList_EraseTeam_KeyHandler: @ 0x0803EFC4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r1, [r4, #0x58]
@@ -93,7 +93,7 @@ _0803F070:
 	cmp r0, #0
 	bne _0803F092
 	adds r0, r4, #0
-	bl sub_0803E184
+	bl SioTeamList_EraseTeam
 	movs r0, #2
 	bl SioPlaySoundEffect
 	b _0803F098

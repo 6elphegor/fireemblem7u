@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803D19C
-sub_0803D19C: @ 0x0803D19C
+	thumb_func_start SioQueuePendingRecvData
+SioQueuePendingRecvData: @ 0x0803D19C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r3, _0803D204 @ =0x08B98AEC

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803C558
-sub_0803C558: @ 0x0803C558
+	thumb_func_start SioHandleIrq_Serial
+SioHandleIrq_Serial: @ 0x0803C558
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

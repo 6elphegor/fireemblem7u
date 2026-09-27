@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803E490
-sub_0803E490: @ 0x0803E490
+	thumb_func_start SioTeamList_SetupGfx
+SioTeamList_SetupGfx: @ 0x0803E490
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -208,7 +208,7 @@ _0803E570:
 	movs r3, #8
 	bl sub_08047E84
 	adds r0, r7, #0
-	bl sub_0803E454
+	bl GetLATeamListHelpTextId
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	movs r1, #1

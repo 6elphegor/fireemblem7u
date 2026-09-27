@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08042298
-sub_08042298: @ 0x08042298
+	thumb_func_start SioRuleSettings_Loop_Main
+SioRuleSettings_Loop_Main: @ 0x08042298
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -24,7 +24,7 @@ sub_08042298: @ 0x08042298
 	bl Proc_Break
 _080422C2:
 	mov r0, sp
-	bl sub_08041FD4
+	bl LoadLinkArenaRuleSettings
 	ldr r1, [r5]
 	movs r0, #0x40
 	ldrh r1, [r1, #6]
@@ -96,7 +96,7 @@ _08042328:
 	lsrs r4, r0, #0x18
 _08042350:
 	mov r0, sp
-	bl sub_08041FF8
+	bl SaveLinkArenaRuleSettings
 	cmp r4, #0
 	beq _080423AA
 	movs r0, #3

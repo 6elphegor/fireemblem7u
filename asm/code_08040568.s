@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08040568
-sub_08040568: @ 0x08040568
+	thumb_func_start New6C_SIOMAIN2
+New6C_SIOMAIN2: @ 0x08040568
 	push {lr}
 	ldr r0, _08040578 @ =0x08B9A0E8
 	movs r1, #2

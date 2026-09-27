@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08040238
-sub_08040238: @ 0x08040238
+	thumb_func_start SioPostBattleMusic_PlayFanfare
+SioPostBattleMusic_PlayFanfare: @ 0x08040238
 	push {lr}
 	ldr r0, [r0, #0x58]
 	cmp r0, #0

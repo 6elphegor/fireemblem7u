@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080425E4
-sub_080425E4: @ 0x080425E4
+	thumb_func_start SioMenu_8047C60
+SioMenu_8047C60: @ 0x080425E4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8

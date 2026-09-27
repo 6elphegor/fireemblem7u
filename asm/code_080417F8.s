@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080417F8
-sub_080417F8: @ 0x080417F8
+	thumb_func_start DrawLinkArenaRankingRow
+DrawLinkArenaRankingRow: @ 0x080417F8
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
