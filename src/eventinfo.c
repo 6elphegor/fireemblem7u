@@ -316,8 +316,6 @@ int EvCheck10_(struct EventInfo * info)
 
     return 0;
 }
-#if NONMATCHING
-// jump-threading: the maxTurn == 0 faction test branches the other way and case 1 cross-jumps into case 2
 int EvCheck02_TURN(struct EventInfo * info)
 {
     struct EvCheck02 const * ls = (void const *) info->listScript;
@@ -329,46 +327,34 @@ int EvCheck02_TURN(struct EventInfo * info)
     switch (ls->unkC)
     {
     case 1:
-        if (gPlaySt.chapterModeIndex != 2)
-            return 0;
+        if (gPlaySt.chapterModeIndex == 2 && !(gPlaySt.chapterStateBits & 0x40))
+            break;
 
-        if (gPlaySt.chapterStateBits & 0x40)
-            return 0;
-
-        break;
+        return 0;
 
     case 2:
-        if (gPlaySt.chapterModeIndex != 3)
-            return 0;
+        if (gPlaySt.chapterModeIndex == 3 && !(gPlaySt.chapterStateBits & 0x40))
+            break;
 
-        if (gPlaySt.chapterStateBits & 0x40)
-            return 0;
-
-        break;
+        return 0;
 
     case 3:
-        if (!(gPlaySt.chapterStateBits & 0x40))
-            return 0;
+        if ((gPlaySt.chapterStateBits & 0x40) && gPlaySt.chapterModeIndex == 2)
+            break;
 
-        if (gPlaySt.chapterModeIndex != 2)
-            return 0;
-
-        break;
+        return 0;
 
     case 4:
-        if (!(gPlaySt.chapterStateBits & 0x40))
-            return 0;
+        if ((gPlaySt.chapterStateBits & 0x40) && gPlaySt.chapterModeIndex == 3)
+            break;
 
-        if (gPlaySt.chapterModeIndex != 3)
-            return 0;
-
-        break;
+        return 0;
 
     case 5:
-        if (!(gPlaySt.chapterStateBits & 0x40))
-            return 0;
+        if (gPlaySt.chapterStateBits & 0x40)
+            break;
 
-        break;
+        return 0;
 
     default:
         goto check_turn;
@@ -381,27 +367,31 @@ check_turn:
     if (maxTurn == 0)
     {
         if (gPlaySt.chapterTurnNumber != turn)
-            return 0;
+            goto fail;
 
         if (gPlaySt.faction != faction)
-            return 0;
+            goto fail;
 
         goto success;
     }
-    else
-    if (gPlaySt.chapterTurnNumber >= turn && gPlaySt.chapterTurnNumber <= maxTurn && gPlaySt.faction == faction)
-    {
-    success:
-        info->script = ((struct EvCheck02 const *) info->listScript)->script;
-        info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
-        return 1;
-    }
 
+    if (gPlaySt.chapterTurnNumber < turn)
+        goto fail;
+
+    if (gPlaySt.chapterTurnNumber > maxTurn)
+        goto fail;
+
+    if (gPlaySt.faction != faction)
+        goto fail;
+
+success:
+    info->script = ((struct EvCheck02 const *) info->listScript)->script;
+    info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+    return 1;
+
+fail:
     return 0;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080782FC.s");
-#endif
 
 int EvCheck03_CHAR(struct EventInfo * info)
 {
