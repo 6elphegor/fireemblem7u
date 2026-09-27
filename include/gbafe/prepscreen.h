@@ -537,15 +537,15 @@ void PutTakeSprites(void);
 void Supply_PutHighlightedCategorySprites(struct PrepItemSupplyProc * proc);
 void sub_08096260(u16 * tm, u32 chr, int pal);
 // sub_8096A78
-// sub_08096604
-// sub_08096668
-// sub_0809689C
-// sub_08096950
-// sub_080969F4
-// sub_08096A98
-// sub_08096B1C
-// sub_08096BB0
-// sub_08096C54
+void sub_08096604(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_Loop_GiveTakeKeyHandler(struct PrepItemSupplyProc * proc);
+void sub_0809689C(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_SwitchPageLeft(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_SwitchPageRight(struct PrepItemSupplyProc * proc);
+void sub_08096A98(struct PrepItemSupplyProc * proc);
+void sub_08096B1C(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_ScrollVertical(struct PrepItemSupplyProc * proc, int amount);
+void sub_08096C54(void);
 // sub_08096C60
 // sub_08096DC0
 // sub_0809714C

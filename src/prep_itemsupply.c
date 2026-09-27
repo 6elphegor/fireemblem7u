@@ -6,6 +6,7 @@ extern u8 Img_08405CE4[];
 extern int CONST_DATA gSupplyTextIndexLookup[];
 extern char * CONST_DATA gpPrepItemSupplyStringBuffer;
 extern u16 gUnk_08407400[];
+extern int CONST_DATA gSupplyHelpTextIndexLookup[];
 extern u16 const * CONST_DATA gUnk_08CC4FA0[];
 extern u16 CONST_DATA gUnk_08CC4F90[];
 
@@ -333,15 +334,265 @@ void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc)
     SetUiSpinningArrowConfig(3);
     StartParallelWorker(Supply_PutHighlightedCategorySprites, proc);
 }
-ASM_FUNC("asm/nonmatching/code_08096604.s");
-ASM_FUNC("asm/nonmatching/code_08096668.s");
-ASM_FUNC("asm/nonmatching/code_0809689C.s");
-ASM_FUNC("asm/nonmatching/code_08096950.s");
-ASM_FUNC("asm/nonmatching/code_080969F4.s");
-ASM_FUNC("asm/nonmatching/code_08096A98.s");
-ASM_FUNC("asm/nonmatching/code_08096B1C.s");
-ASM_FUNC("asm/nonmatching/code_08096BB0.s");
-ASM_FUNC("asm/nonmatching/code_08096C54.s");
+void sub_08096604(struct PrepItemSupplyProc * proc)
+{
+    sub_08095C28(0, proc);
+    DisableUiCursorHand(0);
+    sub_08095FCC(proc);
+    ShowSysHandCursor(68, proc->unk_33 * 16 + 36, 4, 0x400);
+    Proc_End(GetParallelWorker(PutGiveSprites));
+    Proc_End(GetParallelWorker(PutTakeSprites));
+    StartParallelWorker(PutGiveTakeBoxSprites, proc);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+}
+void PrepItemSupply_Loop_GiveTakeKeyHandler(struct PrepItemSupplyProc * proc)
+{
+    int idx = proc->unk_33;
+
+    if (proc->unk_38 == 0)
+    {
+        if (gpKeySt->pressed & A_BUTTON)
+        {
+            switch (idx)
+            {
+            case 0:
+                if ((GetConvoyItemCount_() < 100) && (GetUnitItemCount(proc->unit) > 0))
+                {
+                    SetUiCursorHandConfig(0, 68, proc->unk_33 * 16 + 36, 2);
+                    Proc_End(GetParallelWorker(PutGiveTakeBoxSprites));
+                    StartParallelWorker(PutGiveSprites, proc);
+                    sub_08095C28(1, proc);
+                    PlaySoundEffect(0x38A);
+                    Proc_Goto(proc, 3);
+                    return;
+                }
+
+                PlaySoundEffect(0x38C);
+                break;
+
+            case 1:
+                if (GetUnitItemCount(proc->unit) < UNIT_ITEM_COUNT)
+                {
+                    SetUiCursorHandConfig(0, 68, proc->unk_33 * 16 + 36, 2);
+                    Proc_End(GetParallelWorker(PutGiveTakeBoxSprites));
+                    StartParallelWorker(PutTakeSprites, proc);
+                    sub_08095C28(2, proc);
+                    PlaySoundEffect(0x38A);
+                    Proc_Goto(proc, 4);
+                    return;
+                }
+
+                PlaySoundEffect(0x38C);
+                break;
+            }
+            return;
+        }
+
+        if (gpKeySt->pressed & B_BUTTON)
+        {
+            Proc_Goto(proc, 8);
+            PlaySoundEffect(0x38B);
+            return;
+        }
+
+        if (gpKeySt->pressed & R_BUTTON)
+        {
+            StartHelpBox(68, proc->unk_33 * 16 + 36, gSupplyHelpTextIndexLookup[idx]);
+            proc->unk_38 = 1;
+            return;
+        }
+    }
+    else
+    {
+        if (gpKeySt->pressed & (R_BUTTON | B_BUTTON))
+        {
+            CloseHelpBox();
+            proc->unk_38 = 0;
+            return;
+        }
+    }
+
+    if (gpKeySt->repeated & DPAD_UP)
+    {
+        if (proc->unk_33 != 0)
+            proc->unk_33--;
+        else if (gpKeySt->pressed & DPAD_UP)
+            proc->unk_33 = 1;
+    }
+
+    if (gpKeySt->repeated & DPAD_DOWN)
+    {
+        if (proc->unk_33 == 0)
+            proc->unk_33++;
+        else if (gpKeySt->pressed & DPAD_DOWN)
+            proc->unk_33 = 0;
+    }
+
+    if (idx != proc->unk_33)
+    {
+        PlaySoundEffect(0x386);
+        ShowSysHandCursor(68, proc->unk_33 * 16 + 36, 4, 0x400);
+        if (proc->unk_38 != 0)
+            StartHelpBox(68, proc->unk_33 * 16 + 36, gSupplyHelpTextIndexLookup[proc->unk_33]);
+    }
+}
+void sub_0809689C(struct PrepItemSupplyProc * proc)
+{
+    InitIcons();
+    SomethingPrepListRelated(proc->unit, proc->currentPage, 1);
+    sub_08095CA8(&PrepItemSuppyTexts.th[7], gBg2Tm + 0xF, proc->yOffsetPerPage[proc->currentPage] >> 4, proc->unit);
+    DrawPrepScreenItemIcons(gBg0Tm + 0x122, proc->unit);
+    ShowSysHandCursor(
+        0x80, proc->idxPerPage[proc->currentPage] * 16 + 0x28 - proc->yOffsetPerPage[proc->currentPage], 0xb, 0x800);
+
+    EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
+
+    if (proc->unk_38 == 0)
+        return;
+
+    if (Unk_Prep_02012466 != 0)
+    {
+        int item = gPrepScreenItemList[proc->idxPerPage[proc->currentPage]].item;
+        StartItemHelpBox(
+            0x80, proc->idxPerPage[proc->currentPage] * 0x10 + 0x28 - proc->yOffsetPerPage[proc->currentPage], item);
+        proc->unk_38 = 1;
+    }
+    else
+    {
+        CloseHelpBox();
+        proc->unk_38 = 0xff;
+    }
+}
+void PrepItemSupply_SwitchPageLeft(struct PrepItemSupplyProc * proc)
+{
+    int x = 0;
+    int four = 4;
+
+    proc->unk_34++;
+
+    if (proc->unk_34 < four)
+    {
+        int tmp = (((4 - proc->unk_34) * 0x60 * (4 - proc->unk_34)) / (four * four));
+        x = tmp - 0x60;
+    }
+
+    if (proc->unk_34 == four)
+    {
+        if (proc->currentPage == 0)
+            proc->currentPage = 8;
+        else
+            proc->currentPage--;
+
+        sub_0809689C(proc);
+    }
+
+    if (proc->unk_34 >= four)
+    {
+        int tmp = four - (proc->unk_34 - four);
+        x = (tmp * 0x60 * tmp) / (four * four);
+    }
+
+    SetBgOffset(2, (x & 0xff), proc->yOffsetPerPage[proc->currentPage] - 40);
+
+    if (proc->unk_34 == four * 2)
+        Proc_Goto(proc, 4);
+}
+void PrepItemSupply_SwitchPageRight(struct PrepItemSupplyProc * proc)
+{
+    int x = 0;
+    int four = 4;
+
+    proc->unk_34++;
+
+    if (proc->unk_34 < four)
+    {
+        int tmp = (((4 - proc->unk_34) * 0x60 * (4 - proc->unk_34)) / (four * four));
+        x = 0x60 - tmp;
+    }
+
+    if (proc->unk_34 == four)
+    {
+        if (proc->currentPage == 8)
+            proc->currentPage = 0;
+        else
+            proc->currentPage++;
+
+        sub_0809689C(proc);
+    }
+
+    if (proc->unk_34 >= four)
+    {
+        int tmp = four - (proc->unk_34 - four);
+        x = -((tmp * 0x60 * tmp) / (four * four));
+    }
+
+    SetBgOffset(2, (x & 0xff), proc->yOffsetPerPage[proc->currentPage] - 40);
+
+    if (proc->unk_34 == four * 2)
+        Proc_Goto(proc, 4);
+}
+void sub_08096A98(struct PrepItemSupplyProc * proc)
+{
+    if (Unk_Prep_02012466 == 0)
+    {
+        proc->idxPerPage[proc->currentPage] = proc->yOffsetPerPage[proc->currentPage] = 0;
+    }
+    else
+    {
+        if (proc->idxPerPage[proc->currentPage] > (Unk_Prep_02012466 - 1))
+            proc->idxPerPage[proc->currentPage] = Unk_Prep_02012466 - 1;
+    }
+
+    if (Unk_Prep_02012466 > 6)
+    {
+        if (((proc->yOffsetPerPage[proc->currentPage] >> 4) + 7) > Unk_Prep_02012466)
+            proc->yOffsetPerPage[proc->currentPage] = (Unk_Prep_02012466 - 7) * 0x10;
+    }
+
+    SetBgOffset(2, 0, proc->yOffsetPerPage[proc->currentPage] - 0x28);
+}
+void sub_08096B1C(struct PrepItemSupplyProc * proc)
+{
+    if ((proc->idxPerPage[proc->currentPage] * 16 + 40 - proc->yOffsetPerPage[proc->currentPage] < 0x38) &&
+        (proc->idxPerPage[proc->currentPage] != 0))
+    {
+        proc->idxPerPage[proc->currentPage]++;
+    }
+
+    if ((proc->idxPerPage[proc->currentPage] * 16 + 40 - proc->yOffsetPerPage[proc->currentPage] > 0x78) &&
+        (proc->idxPerPage[proc->currentPage] != Unk_Prep_02012466 - 1))
+    {
+        proc->idxPerPage[proc->currentPage]--;
+    }
+
+    sub_08096A98(proc);
+
+    ShowSysHandCursor(
+        0x80, proc->idxPerPage[proc->currentPage] * 16 + 40 - proc->yOffsetPerPage[proc->currentPage], 0xb, 0x800);
+}
+void PrepItemSupply_ScrollVertical(struct PrepItemSupplyProc * proc, int amount)
+{
+    InitIcons();
+
+    sub_08095DC0(gBg2Tm + 0xF, proc->yOffsetPerPage[proc->currentPage] >> 4);
+    DrawPrepScreenItemIcons(gBg0Tm + 0x122, proc->unit);
+
+    EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
+
+    if (amount < 0)
+        sub_08095E24(&PrepItemSuppyTexts.th[7], gBg2Tm + 0xF, (proc->yOffsetPerPage[proc->currentPage] >> 4) - 1, proc->unit);
+
+    if (amount > 0)
+        sub_08095E24(&PrepItemSuppyTexts.th[7], gBg2Tm + 0xF, (proc->yOffsetPerPage[proc->currentPage] >> 4) + 7, proc->unit);
+
+    proc->yOffsetPerPage[proc->currentPage] += amount;
+
+    SetBgOffset(2, 0, proc->yOffsetPerPage[proc->currentPage] - 40);
+}
+void sub_08096C54(void)
+{
+    sub_08096054();
+}
 ASM_FUNC("asm/nonmatching/code_08096C60.s");
 ASM_FUNC("asm/nonmatching/code_08096DC0.s");
 ASM_FUNC("asm/nonmatching/code_0809714C.s");

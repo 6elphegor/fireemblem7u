@@ -160,7 +160,7 @@ _08096EEA:
 	movs r0, #0
 	strb r0, [r1]
 	adds r0, r4, #0
-	bl sub_08096950
+	bl PrepItemSupply_SwitchPageLeft
 	b _0809713E
 	.align 2, 0
 _08096F04: .4byte 0x0202BBF8
@@ -188,7 +188,7 @@ _08096F2C:
 	adds r0, #0x34
 	strb r5, [r0]
 	adds r0, r4, #0
-	bl sub_080969F4
+	bl PrepItemSupply_SwitchPageRight
 	b _0809713E
 	.align 2, 0
 _08096F44: .4byte 0x0202BBF8
@@ -413,7 +413,7 @@ _080970EC:
 	ldrsb r1, [r0, r1]
 _080970F4:
 	adds r0, r4, #0
-	bl sub_08096BB0
+	bl PrepItemSupply_ScrollVertical
 	b _0809713E
 	.align 2, 0
 _080970FC: .4byte 0x02012466
