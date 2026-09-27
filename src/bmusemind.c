@@ -1,6 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
-#include "gbafe/bmitemuse.h"
 #include "gbafe/bmusemind.h"
 
 void BattleInitItemEffect(struct Unit * actor, int itemSlot);

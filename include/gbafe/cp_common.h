@@ -336,7 +336,7 @@ void MarkMovementMapEdges(void);                                        // MarkM
 void MarkWorkingMapEdges(void);
 void GenerateMagicSealMap(int value);
 void SetWorkingBmMap(u8 ** map);
-void RevertMapChange(struct Unit * unit);                       // GenerateUnitMovementMap (misnamed here)
+void GenerateUnitMovementMap(struct Unit * unit);                       // GenerateUnitMovementMap (misnamed here)
 struct Trap * GetRiddenBallistaAt(int x, int y);
 void RideBallista(struct Unit * unit);
 void TryRemoveUnitFromBallista(struct Unit * unit);

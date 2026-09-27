@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B6D64
-sub_080B6D64: @ 0x080B6D64
+	thumb_func_start CountEpilogueEntryLines
+CountEpilogueEntryLines: @ 0x080B6D64
 	push {r4, r5, lr}
 	ldr r0, _080B6D8C @ =0x08CEDE00
 	ldr r4, [r0]

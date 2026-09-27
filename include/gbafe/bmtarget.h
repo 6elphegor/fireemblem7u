@@ -86,7 +86,7 @@ void TryAddUnitToDanceRingTargetList(struct Unit * unit);
 void MakeTargetListForDanceRing(struct Unit * unit);
 
 // Declarations of functions from other modules not yet in their headers.
-void BmMapFillg(u8 ** map, int value);
+void BmMapFill(u8 ** map, int value);
 void MapAddInRange(int x, int y, int range, int value);
 void MapAddInBoundedRange(short x, short y, short minRange, short maxRange);
 int GetTerrainHealAmount(int terrain);
@@ -97,6 +97,7 @@ int GetItemMinRange(int item);
 int GetItemMaxRange(int item);
 int GetSomeBallistaItemAt(int x, int y);
 bool CheckForCharacterEvents(u8 pidA, u8 pidB);
-bool sub_08078F24(s8 x, s8 y);
+bool IsThereClosedChestAt(s8 x, s8 y);
+bool IsThereClosedDoorAt(s8 x, s8 y);
 void PidStatsRecordLoseData(u8 pid);
 void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);

@@ -86,8 +86,6 @@ extern u16 CONST_DATA Pal_SoundRoomVolumeGraph[];
 extern u8 CONST_DATA Img_SoundRoomUiElements[];
 extern u16 CONST_DATA Pal_SoundRoomUiElements[];
 extern u8 CONST_DATA gUnknown_08A2C908[];
-extern u16 CONST_DATA gUnknown_08A01EE4[];
-extern u16 CONST_DATA gUnknown_08A01F04[];
 extern u8 CONST_DATA gUnknown_08A2C4C8[];
 extern u8 CONST_DATA gUnknown_08A2C5A8[];
 extern u8 CONST_DATA gUnknown_08413D90[];
@@ -675,8 +673,8 @@ void SoundRoomUi_Init(struct SoundRoomProc * proc)
     sub_080AB654(proc);
 
     Decompress(gUnknown_08A2C908, (void *)0x06004000);
-    ApplyPalette(gUnknown_08A01EE4, 4);
-    ApplyPalette(gUnknown_08A01F04, 5);
+    ApplyPalette(Pal_StatScreenFaceDefault, 4);
+    ApplyPalette(Pal_StatScreenFaceGeneric, 5);
 
     DrawUiFrame2(2, 1, 26, 6, 0);
     DrawUiFrame2(11, 7, 17, 12, 0);

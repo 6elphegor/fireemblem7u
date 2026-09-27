@@ -203,7 +203,7 @@ struct CallDelayedProc {
 
 void CallDelayed_OnLoop(struct CallDelayedProc * proc);
 void CallDelayedArg_OnLoop(struct CallDelayedProc * proc);
-void CallDelayed(void (*)(), int);
+void CallDelayed(void (* func)(void), int delay);
 void CallDelayedArg(void (* func)(int), int arg, int delay);
 void sub_08014B70(u8 * out, int size);
 void sub_08014B84(u8 * out, int size, int value);

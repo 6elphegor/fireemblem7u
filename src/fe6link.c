@@ -490,7 +490,42 @@ void sub_080439D0(struct Text * th)
     Text_InsertDrawString(th, 0x80, 0, DecodeMsg(1));
     Text_InsertDrawString(th, 0xB0, 0, DecodeMsg(2));
 }
-ASM_FUNC("asm/nonmatching/code_08043A14.s");
+void sub_08043A14(struct Fe6LinkMenuProc * proc)
+{
+    int i;
+    int color;
+    int n;
+
+    Decompress(gUnknown_081D2B3C, (void *)0x06012800);
+    ApplyPaletteExt(gUnknown_081D3598, 0x280, 0xC0);
+    InitSpriteTextFont(&Font_Sio_02000C60, (void *)0x06015000, 0xE);
+    ApplyPaletteExt(Pal_Text, 0x340, 0x20);
+    SetTextFontGlyphs(0);
+    ResetTextFont();
+
+    for (i = 0; i < 3; i++)
+    {
+        proc->unk_2c[i] = (n = gUnk_Sio_02000C04.unk_09[i] * 2 + 1) - gUnk_Sio_02000C04.unk_01[i];
+
+        if (gUnk_Sio_02000C04.unk_01[i] != 0)
+            color = 0;
+        else
+            color = 1;
+
+        InitSpriteText(&gUnk_Sio_02000C40[i]);
+        SpriteText_DrawBackgroundExt(&gUnk_Sio_02000C40[i], 0);
+        sub_0804397C(&gUnk_Sio_02000C40[i], color, gUnk_Sio_02000C04.unk_05[i]);
+
+        proc->unk_38[i] = 0x18;
+        proc->unk_3e[i] = i * 32 + 0x20;
+    }
+
+    InitSpriteText(&gUnk_Sio_02000C58);
+    SpriteText_DrawBackgroundExt(&gUnk_Sio_02000C58, 0);
+    sub_080439D0(&gUnk_Sio_02000C58);
+
+    proc->unk_4c = proc->unk_50 = proc->unk_54 = proc->unk_44 = proc->unk_48 = 0;
+}
 void sub_08043B1C(int time)
 {
     u16 hours, minutes, seconds;

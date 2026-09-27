@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/cp_common.h"
 
 #define gMapRangeSigned ((s8 **) gBmMapRange)
@@ -39,7 +38,7 @@ void AiRefreshDangerMap(void)
     {
         gAiState.dangerMapFilled = 1;
 
-        BmMapFillg(gBmMapOther, 0);
+        BmMapFill(gBmMapOther, 0);
         AiFillDangerMap();
     }
 }
@@ -420,7 +419,7 @@ void AiEquipGetDanger(int x, int y, u16 * range_danger_out, u16 * melee_danger_o
     *melee_danger_out = 0;
     *range_danger_out = 0;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     for (i = 1; i < 0xC0; i++)
     {
@@ -438,7 +437,7 @@ void AiEquipGetDanger(int x, int y, u16 * range_danger_out, u16 * melee_danger_o
         if (!AiIsWithinFlyingDistance(unit, x, y))
             continue;
 
-        RevertMapChange(unit);
+        GenerateUnitMovementMap(unit);
 
         if (gBmMapMovement[y][x] == 0xFF)
             continue;
@@ -574,7 +573,7 @@ s8 AiTryDoDanceAdjacent(int x, int y)
     if (!(UNIT_CATTRIBUTES(gActiveUnit) & (CA_DANCE | CA_PLAY)))
         return 0;
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     MapAddInRange(x, y, 1, 1);
 
@@ -620,7 +619,7 @@ s8 AiTryDoStealAdjacent(int x, int y)
     if (!(UNIT_CATTRIBUTES(gActiveUnit) & CA_STEAL))
         return 0;
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     gBmMapMovement[y][x] = 0;
     MapAddInRange(x, y, 1, MAP_MOVEMENT_MAX);
@@ -640,7 +639,7 @@ s8 sub_08039F60(int x, int y)
     if (item == 0)
         return 0;
 
-    BmMapFillg(gBmMapMovement, 0);
+    BmMapFill(gBmMapMovement, 0);
 
     MapAddInBoundedRange(x, y, GetItemMinRange(item), GetItemMaxRange(item));
 
@@ -802,7 +801,7 @@ s8 sub_0803A204(const void * arg)
     gActiveUnit->xPos = xPrev;
     gActiveUnit->yPos = yPrev;
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     if (UnitHasMagicRank(gActiveUnit) != 0)
         GenerateMagicSealMap(-1);
@@ -926,7 +925,7 @@ s8 AiCountEnemyInRangeOrTryMoveToSpecificPosition(const void * input)
     }
     else
     {
-        RevertMapChange(gActiveUnit);
+        GenerateUnitMovementMap(gActiveUnit);
     }
 
     if (AiTryMoveToSpecificPosition(&pos) == 1)

@@ -1,7 +1,5 @@
 #include "gbafe.h"
 #include "gbafe/cp_common.h"
-#include "gbafe/bmtarget.h"
-#include "gbafe/bmitemuse.h"
 
 #define gMapRangeSigned ((s8 **) gBmMapRange)
 #define gMapMovementSigned ((s8 **) gBmMapMovement)
@@ -219,7 +217,7 @@ void AiStaffPhysicRescue(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
                 if (AiIsWithinRectDistance(gActiveUnit->xPos, gActiveUnit->yPos, unit->xPos, unit->yPos, GetUnitMagRange(gActiveUnit) + UNIT_MOV(gActiveUnit)) == 0)
                     continue;
 
-                BmMapFillg(gBmMapRange, 0);
+                BmMapFill(gBmMapRange, 0);
 
                 MapAddInRange(unit->xPos, unit->yPos, GetUnitMagRange(gActiveUnit), 1);
 
@@ -272,7 +270,7 @@ void AiStaffFortify(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
 
             if (gBmMapUnit[iy][ix] == 0 || gBmMapUnit[iy][ix] == gActiveUnitId)
             {
-                BmMapFillg(gBmMapRange, 0);
+                BmMapFill(gBmMapRange, 0);
 
                 MapAddInRange(ix, iy, GetUnitMagRange(gActiveUnit), 1);
 
@@ -491,7 +489,7 @@ void AiStaffSilence(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
 
             if (tmp >= bestUnk)
             {
-                BmMapFillg(gBmMapRange, 0);
+                BmMapFill(gBmMapRange, 0);
 
                 MapAddInRange(unit->xPos, unit->yPos, GetUnitMagRange(gActiveUnit), 1);
 
@@ -556,7 +554,7 @@ void AiStaffSleepBerserk(int itemIdx, s8 (* isEnemy)(struct Unit * unit))
             if (accuracy + unit->level < best)
                 continue;
 
-            BmMapFillg(gBmMapRange, 0);
+            BmMapFill(gBmMapRange, 0);
 
             MapAddInRange(unit->xPos, unit->yPos, GetUnitMagRange(gActiveUnit), 1);
 

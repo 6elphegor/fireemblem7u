@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 #include "gbafe/unk-functions.h"
 
 enum
@@ -45,7 +44,6 @@ extern struct MenuItemOverride sMenuOverrides[MENU_OVERRIDE_MAX];
 struct MenuProc * StartAdjustedMenu(const struct MenuDef * def, int xSubject, int xTileLeft, int xTileRight);
 struct MenuProc * StartLockingMenu(const struct MenuDef * def, ProcPtr parent);
 struct MenuProc * StartMenuExt(const struct MenuDef * def, struct MenuRect rect);
-ProcPtr EndMenu(struct MenuProc * proc);
 void Menu_OnInit(struct MenuProc * proc);
 void RedrawMenu(struct MenuProc * proc);
 void DrawMenuItemHover(struct MenuProc * proc, int item, s8 hover);

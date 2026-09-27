@@ -19,7 +19,7 @@ struct ProcCmd const * Manim_GetRoundProcScript(void)
     if (gManimSt.special_proc_scr == NULL)
         return ProcScr_ManimDefaultItemEffect;
 
-    return (struct ProcCmd const *) gManimSt.special_proc_scr;
+    return gManimSt.special_proc_scr;
 }
 
 void Manim_AnimateSubjectIdle(ProcPtr proc)

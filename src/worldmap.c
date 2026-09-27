@@ -487,11 +487,96 @@ void WmSpriteAnims_Init(struct WmSpriteAnimsProc * proc)
         proc->slots[i].anim = NULL;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3940.s");
+void WmSpriteAnims_Loop(struct WmSpriteAnimsProc * proc)
+{
+    if (proc->count == 0)
+        return;
 
-ASM_FUNC("asm/nonmatching/code_080B39D8.s");
+    if (proc->fade != 0)
+    {
+        if (proc->blend == 0)
+            EndAllWmSpriteAnims();
+        else
+            proc->blend--;
+    }
+    else
+    {
+        u32 t;
+        int b;
 
-ASM_FUNC("asm/nonmatching/code_080B3AFC.s");
+        if ((++proc->timer >> 3) == 0x10)
+            proc->timer = 0;
+
+        t = proc->timer >> 3;
+
+        if ((t & 0xF) > 7)
+            b = 10 - (t & 7);
+        else
+            b = (t & 7) + 2;
+
+        proc->blend = b * 4;
+    }
+
+    SetBlendConfig(0, proc->blend >> 2, 0x10, 0);
+}
+
+void StartWmSpriteAnim(u32 slot, int id)
+{
+    int x, y;
+    struct WmSpriteAnimsProc * proc = Proc_Find(ProcScr_WmSpriteAnims);
+
+    if (slot > 3 || proc == NULL)
+        return;
+
+    if (proc->slots[slot].anim != NULL)
+        return;
+
+    Decompress(gWmSpriteAnimTable[id].img, (void *) (0x06010000 | proc->chr));
+
+    x = gWmSpriteAnimTable[id].x - gWmSt.x;
+    y = gWmSpriteAnimTable[id].y - gWmSt.y + 0x400;
+
+    proc->slots[slot].anim = StartSpriteAnimProc(gWmSpriteAnimTable[id].ap, x, y,
+        (proc->chr >> 5) + 0x9C00, gWmSpriteAnimTable[id].animId, 13);
+
+    proc->slots[slot].chr = proc->chr;
+    proc->slots[slot].id = id;
+    proc->chr += gWmSpriteAnimTable[id].size;
+
+    if (proc->count == 0)
+    {
+        SetBlendConfig(0, 0, 0x10, 0);
+    }
+
+    proc->count++;
+
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+}
+
+void EndWmSpriteAnim(u32 slot)
+{
+    struct WmSpriteAnimsProc * proc = Proc_Find(ProcScr_WmSpriteAnims);
+
+    if (slot > 3 || proc == NULL)
+        return;
+
+    if (proc->slots[slot].anim == NULL)
+        return;
+
+    EndSpriteAnimProc(proc->slots[slot].anim);
+    proc->slots[slot].anim = NULL;
+
+    if (--proc->count == 0)
+    {
+        proc->chr = 0;
+        proc->timer = 0;
+    }
+    else if (proc->chr == proc->slots[slot].chr + gWmSpriteAnimTable[proc->slots[slot].id].size)
+    {
+        proc->chr = proc->slots[slot].chr;
+    }
+}
 
 void EndAllWmSpriteAnims(void)
 {
@@ -705,6 +790,17 @@ void WmUnitManager_Init(struct WmUnitManagerProc * proc)
     proc->unk_48 = 0;
 }
 
+void WorldFlushHBlank(void);
+void sub_080B43EC(struct WmUnitManagerProc * proc);
+void sub_080B4510(struct WmUnitManagerProc * proc);
+void sub_080B467C(struct WmUnitManagerProc * proc);
+void EndWmMu(int idx);
+void WmDimPalette(u16 * dst, u16 * src, u8 coeff);
+
+extern u8 const gWmUnitPalAnimSeq[];
+extern u16 const Pal_WmUnitAnimA[];
+extern u16 const Pal_WmUnitAnimB[];
+
 void WmSlots_UpdatePosition(int idx, struct WmSlotsProc * proc)
 {
     struct ProcSpriteAnim * anim;
@@ -730,8 +826,92 @@ void WmSlots_UpdatePosition(int idx, struct WmSlotsProc * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B43EC.s");
-ASM_FUNC("asm/nonmatching/code_080B4510.s");
+void sub_080B43EC(struct WmUnitManagerProc * proc)
+{
+    int i;
+    u16 * flags;
+    struct WmSlotsProc * slots = proc->slots[3];
+
+    for (i = 0; i < 4; i++)
+    {
+        struct FaceProc * face;
+
+        if (slots->ent[i].anim != NULL)
+        {
+            int x;
+            face = (struct FaceProc *) slots->ent[i].anim;
+            x = slots->ent[i].x;
+            flags = (u16 *) &slots->ent[i].y;
+
+            if ((*flags & 0x800) && (*flags & 0xFF) < 0x10)
+            {
+                if (*flags & 0x100)
+                    face->x_disp = x + (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+
+                if (*flags & 0x200)
+                    face->x_disp = x - (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+
+                (*flags)++;
+            }
+
+            if ((*flags & 0x1000) && (*flags & 0xFF) < 0x10)
+            {
+                if (*flags & 0x100)
+                {
+                    int x2 = x - 0x20;
+                    face->x_disp = x2 + (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+                }
+
+                if (*flags & 0x200)
+                {
+                    int x2 = x + 0x20;
+                    face->x_disp = x2 - (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+                }
+
+                (*flags)++;
+            }
+        }
+    }
+}
+void sub_080B4510(struct WmUnitManagerProc * proc)
+{
+    int i;
+
+    SetBlendConfig(0, proc->unk_45 >> 1, 0x10 - (proc->unk_45 >> 1), 0);
+
+    proc->unk_45 += proc->unk_44;
+
+    if (proc->unk_45 == 0)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            if (proc->slots[3]->ent[i].anim != NULL && (s8) proc->slots[3]->ent[i].state == -1)
+            {
+                EndFaceById(i);
+                proc->slots[3]->ent[i].state = 0;
+                proc->slots[3]->ent[i].anim = NULL;
+            }
+        }
+
+        proc->unk_44 = 0;
+    }
+
+    if (proc->unk_45 == 0x20)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            struct FaceProc * face = (struct FaceProc *) proc->slots[3]->ent[i].anim;
+
+            if (face != NULL && proc->slots[3]->ent[i].state == 1)
+            {
+                SetFaceDisp(face, GetFaceDisp(face) & ~0x400);
+                proc->slots[3]->ent[i].state = 0;
+            }
+        }
+
+        proc->unk_44 = 0;
+    }
+}
 void WmDimPalette(u16 * dst, u16 * src, u8 coeff)
 {
     int i;
@@ -748,8 +928,72 @@ void WmDimPalette(u16 * dst, u16 * src, u8 coeff)
     EnablePalSync();
 }
 
-ASM_FUNC("asm/nonmatching/code_080B467C.s");
-ASM_FUNC("asm/nonmatching/code_080B4738.s");
+void sub_080B467C(struct WmUnitManagerProc * proc)
+{
+    int i;
+
+    proc->unk_48 += proc->unk_47;
+
+    WmDimPalette(gPal + 0x1A0, gPal + 0x100 + proc->unk_46 * 0x10, proc->unk_48);
+
+    if (proc->unk_48 == 0)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            if (proc->slots[0]->ent[i].anim != NULL && (s8) proc->slots[0]->ent[i].state == -1)
+                EndWmMu(i);
+        }
+
+        proc->unk_47 = 0;
+    }
+
+    if (proc->unk_48 == 0x20)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            struct WmSlotEnt * ent = &proc->slots[0]->ent[i];
+
+            if (ent->anim != NULL && ent->state == 1)
+            {
+                ent->state = 0;
+                SetMuPal(((struct WmMuMoveProc *) ent->anim)->mu, ent->pal);
+            }
+        }
+
+        proc->unk_47 = 0;
+    }
+}
+void sub_080B4738(struct WmUnitManagerProc * proc)
+{
+    u8 seq[0x37];
+    int i;
+    int pal;
+
+    memcpy(seq, gWmUnitPalAnimSeq, sizeof(seq));
+
+    proc->unk_30++;
+
+    if (seq[proc->unk_30] == 0xFF)
+        proc->unk_30 = 0;
+
+    pal = seq[proc->unk_30];
+    ApplyPaletteExt(Pal_WmUnitAnimA + pal * 0x10, 0x200, 0x20);
+    ApplyPaletteExt(Pal_WmUnitAnimB + pal * 0x10, 0x220, 0x20);
+
+    for (i = 0; i < 4; i++)
+        WmSlots_UpdatePosition(i, proc->slots[1]);
+
+    for (i = 0; i < 5; i++)
+        WmSlots_UpdatePosition(i, proc->slots[2]);
+
+    sub_080B43EC(proc);
+
+    if ((s8) proc->unk_44 != 0)
+        sub_080B4510(proc);
+
+    if ((s8) proc->unk_47 != 0)
+        sub_080B467C(proc);
+}
 void WmUnitManager_EndAll(struct WmUnitManagerProc * proc)
 {
     int i;
@@ -890,8 +1134,77 @@ void EndWmIcon2(int idx)
     mgr->slots[2]->ent[idx].anim = NULL;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B4D4C.s");
-ASM_FUNC("asm/nonmatching/code_080B4E88.s");
+void sub_080B4D4C(int slot, int fid, u16 flags)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[3]->ent[slot];
+
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    if (ent->anim == NULL)
+    {
+        struct FaceProc * face;
+        int disp;
+        int x;
+
+        ent->x = flags & 0xFF;
+        ent->y = (flags & 0xFF00) + 0x800;
+
+        x = ent->x;
+        disp = (flags & 0x400) ? 0x443 : 0x442;
+
+        if (flags & 0x8000)
+            disp |= 0x2000;
+
+        face = StartBmFace(slot, fid, x, 0x28, disp);
+        ent->anim = (struct ProcSpriteAnim *) face;
+
+        if ((flags & 0x6000) == 0x6000)
+            face->sprite_layer = 6;
+        else if (flags & 0x4000)
+            face->sprite_layer = 5;
+        else if (flags & 0x2000)
+            face->sprite_layer = 4;
+        else
+            face->sprite_layer = 3;
+
+        SetFaceBlinkControlById(slot, 5);
+
+        ent->state = 1;
+        mgr->unk_44 = 2;
+
+        if (mgr->unk_45 == 0x20)
+        {
+            mgr->unk_45 = 0;
+            SetBlendConfig(1, mgr->unk_45, 0x10 - mgr->unk_45, 0);
+        }
+    }
+}
+void sub_080B4E88(int slot, u16 flags)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[3]->ent[slot];
+
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    if (ent->anim != NULL && !(ent->y & 0x1000))
+    {
+        SetFaceDisp((struct FaceProc *) ent->anim, GetFaceDisp((struct FaceProc *) ent->anim) | 0x400);
+
+        ent->y = (flags & 0xFF00) + 0x1000;
+        ent->state = 0xFF;
+
+        mgr->unk_44 = 0xFE;
+
+        if (mgr->unk_45 == 0)
+        {
+            mgr->unk_45 = 0x20;
+            SetBlendConfig(0, mgr->unk_45 >> 1, 0x10 - (mgr->unk_45 >> 1), 0);
+        }
+    }
+}
 ProcPtr StartWmUnitManager(ProcPtr parent)
 {
     return Proc_Start(ProcScr_WmUnitManager, parent);
@@ -1056,7 +1369,51 @@ void WorldMap_InitScrollCamera(struct WorldMapProc * proc)
     proc->unk_54 = 1;
 }
 
+#if NONMATCHING
+void WorldMap_LoopScrollCamera(struct WorldMapProc * proc)
+{
+    int camX = WmGetCameraX();
+    int camY = WmGetCameraY();
+    int x = camX;
+    int y = camY;
+
+    while ((s16) proc->unk_40 < 0x100 && x == camX && y == camY)
+    {
+        int t, d;
+
+        proc->unk_40 += proc->speed;
+
+        t = 0x100 - (s16) proc->unk_40;
+        d = ABS(proc->targetX - proc->camX);
+        x = d - d * t * t / 0x10000;
+
+        t = 0x100 - (s16) proc->unk_40;
+        d = ABS(proc->targetY - proc->camY);
+        y = d - d * t * t / 0x10000;
+    }
+
+    if (proc->targetX > proc->camX)
+        x = proc->camX + x;
+    else
+        x = proc->camX - x;
+
+    if (proc->targetY > proc->camY)
+        y = proc->camY + y;
+    else
+        y = proc->camY - y;
+
+    WmMoveCamera(x - camX, y - camY);
+    WmUpdateCamera(-1, -1);
+
+    if (proc->unk_40 == 0x100)
+    {
+        Proc_Break(proc);
+        proc->unk_54 = 0;
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B5430.s");
+#endif
 void StartWorldMap(u8 mode, int x, int y, u32 flags)
 {
     struct WorldMapProc * proc = Proc_Start(ProcScr_WorldMap, PROC_TREE_3);
@@ -1265,8 +1622,53 @@ void StartWmPalFadeIn(int color)
         proc->colors[i - 1] = PAL_COLOR(color & 0x1f, i);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5990.s");
+void WmSpotlight_Init(struct WmSpotlightProc * proc)
+{
+    proc->timer = 0;
+
+    InitScanlineEffect();
+
+    SetBlendTargetA(1, 1, 1, 1, 0);
+
+    SetWin0Box(0, 0, 240, 160);
+    SetWinEnable(1, 0, 0);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 1, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetBlendConfig(2, 0, 0, 0);
+
+    sub_0807744C();
+
+    gWmHBlankFlags |= 2;
+}
+#if NONMATCHING
+void WmSpotlight_Loop(struct WmSpotlightProc * proc)
+{
+    int max = 60;
+    int k = 0x18;
+    int r, c;
+
+    proc->timer++;
+    r = k * proc->timer * proc->timer / (max * max);
+    c = 0x10 - 0x10 * proc->timer * proc->timer / (max * max);
+
+    sub_0807764C(proc->x - gWmSt.x, proc->y - (gWmSt.y + 1), r);
+
+    SetBlendConfig(2, 0, 0, c);
+
+    if (proc->timer >= max)
+        proc->timer = 0;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B5A84.s");
+#endif
 
 void WmEndSpotlight(void)
 {
@@ -1384,7 +1786,23 @@ void WorldFlush_Prepare(struct WmSpotlightProc * proc)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B608C.s");
-ASM_FUNC("asm/nonmatching/code_080B6190.s");
+void WorldFlushOut(struct WmSpotlightProc * proc)
+{
+    int max = 64;
+    int k = 300;
+    int r, c;
+
+    proc->timer++;
+    r = k * proc->timer * proc->timer / (max * max);
+    c = 8 - 8 * (max - proc->timer) * (max - proc->timer) / (max * max);
+
+    sub_0807764C(proc->x, proc->y, r);
+
+    SetBlendConfig(2, 0, 0, c + 8);
+
+    if (proc->timer >= max)
+        Proc_Break(proc);
+}
 
 void WorldFlush_End(void)
 {

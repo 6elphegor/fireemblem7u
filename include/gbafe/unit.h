@@ -3,6 +3,7 @@
 #include "global.h"
 
 struct SupportData;
+struct BattleAnimDef;
 
 // Config
 enum { UNIT_LEVEL_MAX = 20 };
@@ -62,10 +63,10 @@ struct CharacterData {
     /* 21 */ u8 growthRes;
     /* 22 */ u8 growthLck;
 
-    /* 23 */ u8 _u23;
-    /* 24 */ u8 _u24;
-    /* 25 */ u8 _u25;
-    /* 26 */ u8 _u26;
+    /* 23 */ u8 _u23; // battle palette (unpromoted)
+    /* 24 */ u8 _u24; // battle palette (promoted)
+    /* 25 */ u8 _u25; // unique battle anim (unpromoted), see gUnitSpecificBanimConfigs
+    /* 26 */ u8 _u26; // unique battle anim (promoted)
     /* 27 */ u8 _u27;
 
     /* 28 */ u32 attributes;
@@ -126,7 +127,7 @@ struct ClassData {
 
     /* 2C */ u8 baseRanks[8];
 
-    /* 34 */ const void* pBattleAnimDef;
+    /* 34 */ const struct BattleAnimDef* pBattleAnimDef;
     /* 38 */ const s8* pMovCostTable[3]; // standard, rain, snow
 
     /* 44 */ const s8* pTerrainAvoidLookup;

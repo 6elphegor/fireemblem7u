@@ -265,7 +265,6 @@ void SetTalkFunc(ProcFunc func);
 bool IsTalkLocked(void);
 void ResumeTalk(void);
 bool IsTalkActive(void);
-bool IsTactFemale(void);
 int GetGameTacticsRank(void);
 int GetGameSurvivalRank(void);
 int GetGameExpRank(void);
@@ -273,18 +272,13 @@ int GetGameCombatRank(void);
 int GetGameFundsRank(void);
 void EventForceSlowTextSpeed(struct EventProc * proc);
 void sub_0800AF20(struct EventProc * proc);
-void AiGetUnitClosestValidPosition(struct Unit * unit, int x, int y, struct Vec2 * out);
+s8 AiGetUnitClosestValidPosition(struct Unit * unit, s16 x, s16 y, struct Vec2 * out);
 void MapFloodRange_Unitless(int x, int y, s8 const * mov_table);
 void BuildBestMoveScript(int x, int y, u8 * out);
-struct MuProc * StartMu(struct Unit * unit);
 void DisableMuCamera(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * move_script);
-void SetMuConfig(struct MuProc * mu, int speed);
 bool IsMuActive(struct MuProc * mu);
 void EndMu(struct MuProc * mu);
-u8 IsPidBlue(u8 pid);
-u8 IsPidBlueDeployed(u8 pid);
-void BmMapFillg(u8 ** map, int value);
 void EventUnitLoadWait(struct EventProc * proc);
 void EventUnitLoadAliveWait(struct EventProc * proc);
 void EventLoadUnitsAsParty(struct EventProc * proc);
@@ -300,7 +294,6 @@ struct EventMuWaitProc {
     /* 54 */ struct MuProc * mu;
 };
 
-extern u8 gUnk_02033E00[];
 extern struct ProcCmd CONST_DATA ProcScr_08B91A08[];
 
 void EventStartTalk(struct EventProc * proc, int msg, bool init)
@@ -1150,7 +1143,7 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
     }
 
     MapFloodRange_Unitless(unit->xPos, unit->yPos, unit->pClassData->pMovCostTable[0]);
-    BuildBestMoveScript(pos.x, pos.y, gUnk_02033E00);
+    BuildBestMoveScript(pos.x, pos.y, gWorkingMoveScr);
 
     if (placed)
         gBmMapTerrain[y][x] = 0;
@@ -1160,7 +1153,7 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
 
     EnableAllLightRunes();
 
-    return DisplayMovement(proc, unit, gUnk_02033E00, speed);
+    return DisplayMovement(proc, unit, gWorkingMoveScr, speed);
 }
 
 bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * move_script, u16 speed)
@@ -1229,7 +1222,7 @@ void WaitForMu_OnLoop(struct EventMuWaitProc * proc)
 
 int EvtCmd_LoadUnits(struct EventProc * proc)
 {
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[1];
 
@@ -1245,7 +1238,7 @@ int EvtCmd_LoadUnits(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsAlive(struct EventProc * proc)
 {
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[1];
 
@@ -1267,7 +1260,7 @@ int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
     if (gPlaySt.chapterModeIndex != (u8)proc->script[1])
         return EVENT_CMDRET_CONTINUE;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[2];
 
@@ -1283,7 +1276,7 @@ int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsParty(struct EventProc * proc)
 {
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[1];
     EventLoadUnitsAsParty(proc);
@@ -1295,7 +1288,7 @@ int EvtCmd_LoadUnitsPartyIfScenario(struct EventProc * proc)
 {
     if (gPlaySt.chapterModeIndex == (u8)proc->script[1])
     {
-        BmMapFillg(gBmMapOther, 0);
+        BmMapFill(gBmMapOther, 0);
 
         proc->unit_info = (struct UnitDefinition const *)proc->script[2];
         EventLoadUnitsAsParty(proc);
@@ -1316,7 +1309,7 @@ int EvtCmd_LoadUnitsByMode(struct EventProc * proc)
     if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
         mode += 2;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (mode)
     {
@@ -1361,7 +1354,7 @@ int EvtCmd_LoadUnitsPartyByMode(struct EventProc * proc)
     if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
         mode += 2;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (mode)
     {

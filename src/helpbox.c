@@ -1036,15 +1036,11 @@ void StartBoxDialogueExt(int x, int y, int msg, u16 * unkA, int unkB, ProcPtr pa
     Proc_Start(ProcScr_TalkBoxIdle, PROC_TREE_VSYNC);
 }
 
-#if NONMATCHING
-
-// registers for w/h/hOut are allocated differently
-
 void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
 {
     int charWidth;
-    int h = 16;
     int w = 0;
+    int h = 16;
 
     *wOut = 0;
     *hOut = 0;
@@ -1068,6 +1064,12 @@ void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
             str += 2;
             continue;
 
+        case 0x18:
+        case 0x19:
+            w = 0x40;
+            str++;
+            continue;
+
         case 0x01:
             h += 16;
 
@@ -1075,12 +1077,6 @@ void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
                 *wOut = w;
 
             w = 0;
-            str++;
-            continue;
-
-        case 0x18:
-        case 0x19:
-            w = 0x40;
             str++;
             continue;
 
@@ -1137,12 +1133,6 @@ void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
         break;
     }
 }
-
-#else
-
-ASM_FUNC("asm/nonmatching/code_080836D8.s");
-
-#endif
 
 void DialogBoxGetGlyphLen(const char * str, u8 * xOut)
 {

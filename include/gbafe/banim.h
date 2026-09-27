@@ -583,7 +583,7 @@ u16 GetBattleAnimationId_WithUnique(struct Unit * unit, const struct BattleAnimD
 // ??? UnsetMapStaffAnim
 void ParseBattleHitToBanimCmd(void);
 bool CheckBattleHasHit(void);
-s16 GetBattleAnimCharacterUniquePalIndex(struct Unit * unit, int index);
+int GetBattleAnimCharacterUniquePalIndex(struct Unit * unit, int index);
 u16 * FilterBattleAnimCharacterPalette(s16 index, u16 item);
 int GetAllegienceId(u32 arg);
 void EkrPrepareBanimfx(struct Anim * anim, u16 index);
@@ -1187,7 +1187,7 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_8061B7C
 // ??? sub_8061BE0
 // ??? sub_08061434
-// ??? StartSpellBG_IvaldiBG1
+// ??? StartSpellBG_LuceBG
 // ??? sub_8061DE8
 // ??? sub_08061658
 // ??? sub_8061EE8

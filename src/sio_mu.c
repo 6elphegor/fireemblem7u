@@ -32,7 +32,7 @@ extern struct ProcCmd ProcScr_MuRestorePalInfo[];
 
 extern u8 CONST_DATA Img_LinkArenaWarpFx[];
 extern u16 CONST_DATA Pal_LinkArenaWarpFx[];
-extern u16 CONST_DATA gUnknown_089AE4A4[];
+extern u16 CONST_DATA Img_ManimWarpFlashyFrames[];
 extern u8 CONST_DATA gUnknown_085AA854[];
 
 extern struct ProcCmd CONST_DATA ProcScr_SIOWARP[];
@@ -114,7 +114,7 @@ void SioWarp_Init(struct SioWarpProc * proc)
 void SioWarp_Loop(struct SioWarpProc * proc)
 {
     sub_080148FC(
-        gBg2Tm, proc->x - 1, proc->y - 3, 0x3220, 4, 6, gUnknown_089AE4A4,
+        gBg2Tm, proc->x - 1, proc->y - 3, 0x3220, 4, 6, Img_ManimWarpFlashyFrames,
         gUnknown_085AA854[proc->unk_40]);
 
     EnableBgSync(BG2_SYNC_BIT);

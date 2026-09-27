@@ -655,7 +655,7 @@ void sub_08043068(void);
 bool sub_0804307C(void);
 void XMapTransfer_8048730(void);
 void sub_08043130(void);
-void Shop_HandleBuyConfirmPrompt(ProcPtr proc);
+void SioEvent_GotoLabel1UnlessYes(ProcPtr proc);
 void sub_08043170(ProcPtr proc);
 void EraseSaveData(void);
 
@@ -734,7 +734,7 @@ extern const u16 Pal_TacticianSelObj[];
 // sio_uiutils / sio_mu and other helpers (FE7U names)
 
 void InitSioBG(void);
-void sub_08047BD4(int a, int b);
+void sub_08047BD4(ProcPtr parent, int n);
 void sub_08047CA8(void);
 void sub_08049220(void);
 void StartLinkArenaTitleBanner(ProcPtr parent, int size);
@@ -764,8 +764,7 @@ int sub_0804528C(void); // FE8U sub_8049A60
 void sub_08048E0C(struct Unit * unit); // FE8U sub_804D40C
 ProcPtr StartTalkExt(int, int, const char *, ProcPtr);
 void SetTalkFlag(int);
-void SetTalkPrintDelay(int a);
-void SetTalkPrintColor(int a);
+void SetTalkPrintDelay(s8 delay);
 void StartLinkArenaButtonSpriteDraw(int x, int y, ProcPtr parent);
 ProcPtr StartLinkArenaVersusSpriteDraw(int x, int y, ProcPtr parent);
 void StartSioErrorScreen(void);
@@ -775,7 +774,7 @@ extern const int gUnknown_081D5254[];
 extern u8 * CONST_DATA gUnknown_08B98CA8[];
 void StartPrepAtMenu(void);
 void StartLinkArenaMenuScrollBar(int xBase, int yBase, u8 c, u8 d, u8 e, ProcPtr parent);
-void sub_08047C38(int a);
+void sub_08047C38(ProcPtr parent);
 extern const u8 Img_LinkArenaRankIcons[];
 extern const u16 Pal_LinkArenaRankIcons[];
 ProcPtr StartRuleSettingSpriteDrawInteractive(ProcPtr parent);

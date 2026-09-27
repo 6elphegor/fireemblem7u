@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmcontainer.h"
 
 // Unit stack (FE8U: bmusort.c)
 

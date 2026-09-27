@@ -73,7 +73,7 @@ int GetChapterTitleGlyph(const char * str)
     if (*str == ' ')
         return 0x80;
 
-    sub_080C0088(buf, "none chapter message = %c", *str);
+    sprintf(buf, "none chapter message = %c", *str);
     return -1;
 }
 

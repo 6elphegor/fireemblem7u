@@ -384,8 +384,8 @@ void MPlayMain(void);
 void RealClearChain(void *x);
 
 void MPlayContinue(struct MusicPlayerInfo *mplayInfo);
-void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader);
-void m4aMPlayStop(struct MusicPlayerInfo *mplayInfo);
+void MPlayStart_rev01(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader);
+void MPlayStop_rev01(struct MusicPlayerInfo *mplayInfo);
 void FadeOutBody(struct MusicPlayerInfo *mplayInfo);
 void TrkVolPitSet(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track);
 void MPlayFadeOut(struct MusicPlayerInfo *mplayInfo, u16 speed);
@@ -393,7 +393,7 @@ void ClearChain(void *x);
 void Clear64byte(void *addr);
 void SoundInit(struct SoundInfo *soundInfo);
 void MPlayExtender(struct CgbChannel *cgbChans);
-void m4aSoundMode(u32 mode);
+void SoundMode_rev01(u32 mode);
 void MPlayOpen(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track, u8 a3);
 void CgbSound(void);
 void CgbOscOff(u8);
@@ -401,8 +401,8 @@ u32 MidiKeyToCgbFreq(u8, u8, u8);
 void DummyFunc(void);
 void MPlayJumpTableCopy(void **mplayJumpTable);
 void SampleFreqSet(u32 freq);
-void m4aSoundVSyncOn(void);
-void m4aSoundVSyncOff(void);
+void SoundVSyncOn_rev01(void);
+void SoundVSyncOff_rev01(void);
 
 void MPlayVolumeControl(struct MusicPlayerInfo * mplayInfo, u16 trackBits, u16 volume);
 

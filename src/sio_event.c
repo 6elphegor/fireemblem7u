@@ -321,7 +321,7 @@ void sub_08043130(void)
     return;
 }
 
-void Shop_HandleBuyConfirmPrompt(ProcPtr proc)
+void SioEvent_GotoLabel1UnlessYes(ProcPtr proc)
 {
     if (GetTalkChoiceResult() != 1)
     {

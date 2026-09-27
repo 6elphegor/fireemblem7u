@@ -540,7 +540,91 @@ void ArchivePalette(int index)
         dst[index].from_colors[i] = *src++;
 }
 
+#if NONMATCHING
+// FE8U port; register allocation differs in the first (red) loop
+void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
+{
+    int i, j;
+    struct PalFadeSt *st;
+    u16 *buffer = gPal;
+
+    SetPalFadeStClkEnd1(a1);
+    SetPalFadeStClkEnd2(a2);
+    SetPalFadeStClkEnd3(a3);
+
+    st = GetPalFadeSt();
+
+    if (a1 > 0x100) {
+        a1 -= 0x100;
+
+        for (i = 0; i < 0x20; i++) {
+            if ((1 << i) & mask) {
+                for (j = 0; j < 0x10; j++) {
+                    u8 r __attribute__((unused)) = st[i].from_colors[j] & 0x1F;
+                    buffer[0x10 * i + j] = ((st[i].from_colors[j] & 0x1F) + (((0x1F - (st[i].from_colors[j] & 0x1F)) * a1) >> 8)) & 0x1F;
+                }
+            }
+        }
+    } else {
+        for (i = 0; i < 0x20; i++) {
+            if ((1 << i) & mask) {
+                for (j = 0; j < 0x10; j++) {
+                    u8 r __attribute__((unused)) = st[i].from_colors[j] & 0x1F;
+                    buffer[0x10 * i + j] = (((st[i].from_colors[j] & 0x1F) * a1) >> 8) & 0x1F;
+                }
+            }
+        }
+    }
+
+    if (a2 > 0x100) {
+        a2 -= 0x100;
+
+        for (i = 0; i < 0x20; i++) {
+            if ((1 << i) & mask) {
+                for (j = 0; j < 0x10; j++) {
+                    u16 g = st[i].from_colors[j] & 0x3E0;
+                    buffer[0x10 * i + j] |= 0x3E0 & (g + ((0x3E0 - g) * a2 >> 8));
+                }
+            }
+        }
+    } else {
+        for (i = 0; i < 0x20; i++) {
+            if ((1 << i) & mask) {
+                for (j = 0; j < 0x10; j++) {
+                    u16 g = st[i].from_colors[j] & 0x3E0;
+                    buffer[0x10 * i + j] |= 0x3E0 & (g * a2 >> 8);
+                }
+            }
+        }
+    }
+
+    if (a3 > 0x100) {
+        a3 -= 0x100;
+
+        for (i = 0; i < 0x20; i++) {
+            if ((1 << i) & mask) {
+                for (j = 0; j < 0x10; j++) {
+                    u16 b = st[i].from_colors[j] & 0x7C00;
+                    buffer[0x10 * i + j] |= 0x7C00 & (b + ((0x7C00 - b) * a3 >> 8));
+                }
+            }
+        }
+    } else {
+        for (i = 0; i < 0x20; i++) {
+            if ((1 << i) & mask) {
+                for (j = 0; j < 0x10; j++) {
+                    u16 b = st[i].from_colors[j] & 0x7C00;
+                    buffer[0x10 * i + j] |= 0x7C00 & (b * a3 >> 8);
+                }
+            }
+        }
+    }
+
+    EnablePalSync();
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08013728.s");
+#endif
 
 struct Proc08B928DC {
     PROC_HEADER;

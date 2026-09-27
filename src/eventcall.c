@@ -1,7 +1,6 @@
 #include "gbafe.h"
 #include "gbafe/bmusemind.h"
 #include "gbafe/bmtrade.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/bmcommanddbg.h"
 
 /* Event-script helpers (ASMC / condition callbacks) */
@@ -325,7 +324,7 @@ s8 sub_08079F4C(void) { return sub_08079F1C(0x11); }
 s8 sub_08079F5C(void) { return sub_08079F1C(0x13); }
 s8 sub_08079F6C(void) { return sub_08079F1C(0x1B); }
 
-s8 AreAnyEnemyUnitDead(void)
+s8 AreAnyEnemyUnitsAlive(void)
 {
     int i;
 
@@ -345,7 +344,7 @@ s8 AreAnyEnemyUnitDead(void)
     return FALSE;
 }
 
-u16 GetDeadEnemyAmount(void)
+u16 GetAliveEnemyAmount(void)
 {
     u16 count = 0;
     int i;
@@ -368,7 +367,7 @@ u16 GetDeadEnemyAmount(void)
 
 int sub_08079FE8(void)
 {
-    return AreAnyEnemyUnitDead() == FALSE;
+    return AreAnyEnemyUnitsAlive() == FALSE;
 }
 
 s8 sub_0807A000(u8 pid)
@@ -544,7 +543,7 @@ int sub_0807A2F0(void)
     return ret;
 }
 
-int sub_0807A304(void)
+bool sub_0807A304(void)
 {
     int ret = FALSE;
 
@@ -589,7 +588,7 @@ int sub_0807A3B8(void)
     return gPlaySt.tact_enabled;
 }
 
-int IsTactFemale(void)
+bool IsTactFemale(void)
 {
     return gPlaySt.tact_gender;
 }
@@ -616,7 +615,7 @@ int GmUnitFadeExists(void)
 
 int sub_0807A408(void)
 {
-    if (GetDeadEnemyAmount() >= 50)
+    if (GetAliveEnemyAmount() >= 50)
         return TRUE;
 
     return FALSE;

@@ -102,7 +102,35 @@ void EfxPlaySound5CVol100(void)
     EfxPlaySE(0x37C, 0x100);
 }
 
+#if NONMATCHING
+// FE8U port; register allocation and constant rematerialization differ
+void MakeBattlePopupTileMapFromTSA(u16 * tm, u16 width)
+{
+    u32 i;
+    u16 * ekrTsaBuf = gEkrTsaBuffer;
+    s32 constant = 0x1100;
+
+    tm[0x00] = ekrTsaBuf[0x00] + constant;
+    tm[0x20] = ekrTsaBuf[0x18] + constant;
+    tm[0x40] = ekrTsaBuf[0x30] + constant;
+    tm[0x60] = ekrTsaBuf[0x48] + constant;
+
+    for (i = 0; i < width; i++)
+    {
+        tm[0x01 + i] = ekrTsaBuf[0x01 + i] + constant;
+        tm[0x21 + i] = ekrTsaBuf[0x19 + i] + constant;
+        tm[0x41 + i] = ekrTsaBuf[0x31 + i] + constant;
+        tm[0x61 + i] = ekrTsaBuf[0x49 + i] + constant;
+    }
+
+    tm[0x01 + i] = ekrTsaBuf[0x17] + constant;
+    tm[0x21 + i] = ekrTsaBuf[0x2F] + constant;
+    tm[0x41 + i] = ekrTsaBuf[0x47] + constant;
+    tm[0x61 + i] = ekrTsaBuf[0x5F] + constant;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_0806B0C0.s");
+#endif
 
 void DrawBattlePopup(struct ProcEkrPopup * proc, int type, u32 priv)
 {

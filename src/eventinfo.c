@@ -135,10 +135,9 @@ extern struct BattleTalkEnt const gDefeatTalkList[];
 extern struct BattleTalkEnt const gDefeatTalkList_Tutorial[];
 
 void sub_0807D7E0(void);
-void LoadUnits(void const * units);
+int LoadUnits(struct UnitDefinition const * units);
 void sub_080799C8(void);
 bool BattleIsTriangleAttack(void);
-void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
 void UnitGetDeathDropLocation(struct Unit * unit, int * x, int * y);
 
 struct ForceDeployEnt
@@ -157,22 +156,21 @@ struct HardBonusLevelEnt
 extern u8 gPermanentFlagBits[];
 extern u8 gChapterFlagBits[];
 extern u8 const gFlagBitMaskLut[];
-extern u16 const EventScr_GameOver[];
 extern struct ForceDeployEnt const gForceDeployList[];
 extern struct HardBonusLevelEnt const gHardBonusLevelList[];
 extern u8 const gUnk_08CA0538[];
 
 int IsTutorialDisabled(void);
-bool8 CheckChapterFlag(int flag);
-bool CheckPermanentFlag(int flag);
+bool8 CheckPermanentFlag(int flag);
+bool CheckChapterFlag(int flag);
 
 void sub_0800ADB8(void);
 void sub_0800F028(u8 mapChangeId);
 void sub_0800F044(u16 item, u8 mapChangeId);
 void sub_0800F06C(int money, u8 mapChangeId);
-void StartArmoryScreenOrphaned(struct Unit * unit, void const * shopItems);
-void StartVendorScreenOrphaned(struct Unit * unit, void const * shopItems);
-void StartSecretShopScreenOrphaned(struct Unit * unit, void const * shopItems);
+void StartArmoryScreenOrphaned(struct Unit * unit, u16 * shopItems);
+void StartVendorScreenOrphaned(struct Unit * unit, u16 * shopItems);
+void StartSecretShopScreenOrphaned(struct Unit * unit, u16 * shopItems);
 
 struct EventInfo * SearchAvailableEvent(struct EventInfo * info);
 struct EventInfo * SearchNextAvailableEvent(struct EventInfo * info);
@@ -318,7 +316,92 @@ int EvCheck10_(struct EventInfo * info)
 
     return 0;
 }
+#if NONMATCHING
+// jump-threading: the maxTurn == 0 faction test branches the other way and case 1 cross-jumps into case 2
+int EvCheck02_TURN(struct EventInfo * info)
+{
+    struct EvCheck02 const * ls = (void const *) info->listScript;
+
+    int turn = EVT_CMD_B1(ls->unk8);
+    int maxTurn = EVT_CMD_B2(ls->unk8);
+    int faction = EVT_CMD_B3(ls->unk8);
+
+    switch (ls->unkC)
+    {
+    case 1:
+        if (gPlaySt.chapterModeIndex != 2)
+            return 0;
+
+        if (gPlaySt.chapterStateBits & 0x40)
+            return 0;
+
+        break;
+
+    case 2:
+        if (gPlaySt.chapterModeIndex != 3)
+            return 0;
+
+        if (gPlaySt.chapterStateBits & 0x40)
+            return 0;
+
+        break;
+
+    case 3:
+        if (!(gPlaySt.chapterStateBits & 0x40))
+            return 0;
+
+        if (gPlaySt.chapterModeIndex != 2)
+            return 0;
+
+        break;
+
+    case 4:
+        if (!(gPlaySt.chapterStateBits & 0x40))
+            return 0;
+
+        if (gPlaySt.chapterModeIndex != 3)
+            return 0;
+
+        break;
+
+    case 5:
+        if (!(gPlaySt.chapterStateBits & 0x40))
+            return 0;
+
+        break;
+
+    default:
+        goto check_turn;
+    }
+
+    if (CheckFlag(2))
+        return 0;
+
+check_turn:
+    if (maxTurn == 0)
+    {
+        if (gPlaySt.chapterTurnNumber != turn)
+            return 0;
+
+        if (gPlaySt.faction != faction)
+            return 0;
+
+        goto success;
+    }
+    else
+    if (gPlaySt.chapterTurnNumber >= turn && gPlaySt.chapterTurnNumber <= maxTurn && gPlaySt.faction == faction)
+    {
+    success:
+        info->script = ((struct EvCheck02 const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080782FC.s");
+#endif
 
 int EvCheck03_CHAR(struct EventInfo * info)
 {
@@ -901,15 +984,15 @@ void StartAvailableTileEvent(s8 x, s8 y)
         break;
 
     case 0x13:
-        StartArmoryScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartArmoryScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x14:
-        StartVendorScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartVendorScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x15:
-        StartSecretShopScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartSecretShopScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x16:
@@ -941,7 +1024,23 @@ void sub_08078E2C(s8 x, s8 y)
         StartAvailableTileEvent(x, y);
 }
 
-ASM_FUNC("asm/nonmatching/code_08078E54.s");
+bool sub_08078E54(s8 x, s8 y)
+{
+    if (GetAvailableTileEventCommand(x, y) == 0x13)
+        return TRUE;
+
+    if (GetAvailableTileEventCommand(x, y) == 0x14)
+        return TRUE;
+
+    if (GetAvailableTileEventCommand(x, y) == 0x15)
+        if (GetUnitItemSlot(gActiveUnit, 0x71) != -1)
+            return TRUE;
+
+    if (GetAvailableTileEventCommand(x, y) == 0x16)
+        return TRUE;
+
+    return FALSE;
+}
 
 bool sub_08078E54(s8 x, s8 y);
 
@@ -951,7 +1050,7 @@ void sub_08078EB8(s8 x, s8 y)
         StartAvailableTileEvent(x, y);
 }
 
-bool IsThereClosedDoorAt(s8 x, s8 y)
+bool IsThereClosedChestAt(s8 x, s8 y)
 {
     if (GetAvailableTileEventCommand(x, y) == 0x12)
         return TRUE;
@@ -961,11 +1060,11 @@ bool IsThereClosedDoorAt(s8 x, s8 y)
 
 void StartAvailableChestTileEvent(s8 x, s8 y)
 {
-    if (IsThereClosedDoorAt(x, y))
+    if (IsThereClosedChestAt(x, y))
         StartAvailableTileEvent(x, y);
 }
 
-bool sub_08078F24(s8 x, s8 y)
+bool IsThereClosedDoorAt(s8 x, s8 y)
 {
     if (GetAvailableTileEventCommand(x, y) == 0x10)
         return TRUE;
@@ -975,7 +1074,7 @@ bool sub_08078F24(s8 x, s8 y)
 
 void StartAvailableDoorTileEvent(s8 x, s8 y)
 {
-    if (sub_08078F24(x, y))
+    if (IsThereClosedDoorAt(x, y))
         StartAvailableTileEvent(x, y);
 }
 
@@ -1166,12 +1265,12 @@ void sub_08079214(void)
         if (gPlaySt.chapterStateBits & 0x40)
         {
             info.script = group[0x24 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
             info.script = group[0x20 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
     else
@@ -1179,12 +1278,12 @@ void sub_08079214(void)
         if (gPlaySt.chapterStateBits & 0x40)
         {
             info.script = group[0x1C / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
             info.script = group[0x18 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
 
@@ -1193,7 +1292,7 @@ void sub_08079214(void)
     RefreshUnitSprites();
 }
 
-void const * sub_08079280(void)
+struct UnitDefinition const * sub_08079280(void)
 {
     u32 const * group = (void const *) GetChapterEventInfo(gPlaySt.chapterIndex);
 
@@ -1317,7 +1416,52 @@ bool CheckBattleTalk(u8 pidA, u8 pidB)
     return FALSE;
 }
 
+#if NONMATCHING
+// register allocation: pidA needs a second pseudo (r7) for the triangle-attack lookup
+void StartBattleTalk(u8 pidA, u8 pidB)
+{
+    struct BattleTalkExtEnt const * ext = sub_080792C4(pidA, pidB);
+    struct BattleTalkEnt const * ent;
+
+    if (ext != NULL)
+    {
+        if (CheckFlag(ext->flag))
+            return;
+
+        if (ext->msg != 0)
+            sub_0800ED78(ext->msg);
+        else
+            StartEvent(ext->event);
+
+        sub_0800ADB8();
+        SetFlag(ext->flag);
+        return;
+    }
+
+    if ((ent = sub_08079320(pidA, gBattleTalkList)) != NULL || (ent = sub_08079320(pidB, gBattleTalkList)) != NULL)
+    {
+        if (ent->msg != 0)
+        {
+            sub_0800ED78(ent->msg);
+            sub_0800ADB8();
+        }
+
+        SetFlag(ent->flag);
+        return;
+    }
+
+    ent = sub_08079320(pidA, gTriangleAttackTalkList);
+
+    if (ent != NULL && BattleIsTriangleAttack())
+    {
+        sub_0800ED78(ent->msg);
+        sub_0800ADB8();
+        SetFlag(ent->flag);
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08079464.s");
+#endif
 
 bool CheckBattleDefeatTalk(u8 pid)
 {
@@ -1443,7 +1587,7 @@ void sub_08079704(void)
     SetFlag(0x65);
     StartBgm(0x2B, NULL);
     gPlaySt.cfgDisableBgm = TRUE;
-    StartEvent(EventScr_GameOver);
+    StartEvent(gEvent_GameOver);
 }
 
 s8 sub_08079734(void)
@@ -1508,7 +1652,7 @@ void SetChapterFlag(int flag)
     gChapterFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
 }
 
-bool CheckPermanentFlag(int flag)
+bool CheckChapterFlag(int flag)
 {
     if (flag == 0)
         return FALSE;
@@ -1555,7 +1699,7 @@ void SetPermanentFlag(int flag)
     gPermanentFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
 }
 
-bool8 CheckChapterFlag(int flag)
+bool8 CheckPermanentFlag(int flag)
 {
     if (flag < 100 || flag == 100)
         return FALSE;
@@ -1603,9 +1747,9 @@ void SetFlag(int flag)
 bool CheckFlag(int flag)
 {
     if (flag < 100)
-        return CheckPermanentFlag(flag);
-    else
         return CheckChapterFlag(flag);
+    else
+        return CheckPermanentFlag(flag);
 }
 
 void ClearFlag(int flag)
@@ -1695,7 +1839,19 @@ void sub_080799C8(void)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_08079A14.s");
+bool sub_08079A14(struct Unit * unit)
+{
+    u8 const * it = gUnk_08CA0538;
+    int pid = unit->pCharacterData->number;
+
+    for (; *it != 0; it++)
+    {
+        if (*it == pid)
+            return TRUE;
+    }
+
+    return FALSE;
+}
 
 void CallEndEvent(void)
 {
