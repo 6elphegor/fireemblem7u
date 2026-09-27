@@ -30,8 +30,8 @@ void StartLockingFadeToBlack(int speed, ProcPtr parent);
 void StartLockingFadeFromBlack(int speed, ProcPtr parent);
 void StartLockingFadeToWhite(int speed, ProcPtr parent);
 void StartLockingFadeFromWhite(int speed, ProcPtr parent);
-void sub_080AEC5C(int a, int b, int c, ProcPtr parent);
-void sub_080AECB0(int a, int b, int c, ProcPtr parent);
+void NewColFadeOut(int a, int b, int c, ProcPtr parent);
+void NewColFadeIn(int a, int b, int c, ProcPtr parent);
 u32 GetGold(void);
 void SetGold(s32 amount);
 void StartPopup_800EE90(int amount, ProcPtr parent);
@@ -403,7 +403,7 @@ int sub_0800E8A4(struct EventProc * proc)
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080AEC5C(proc->script[1], proc->script[2], proc->script[3], proc);
+    NewColFadeOut(proc->script[1], proc->script[2], proc->script[3], proc);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -412,7 +412,7 @@ int sub_0800E8CC(struct EventProc * proc)
     if ((proc->flags & EVENT_FLAG_SKIPPED) != 0)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080AECB0(proc->script[1], proc->script[2], proc->script[3], proc);
+    NewColFadeIn(proc->script[1], proc->script[2], proc->script[3], proc);
     return EVENT_CMDRET_YIELD;
 }
 

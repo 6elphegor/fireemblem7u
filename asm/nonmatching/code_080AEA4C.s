@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AEA4C
-sub_080AEA4C: @ 0x080AEA4C
+	thumb_func_start ColFadeOut_Loop
+ColFadeOut_Loop: @ 0x080AEA4C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

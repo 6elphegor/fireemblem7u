@@ -2787,3 +2787,6 @@ gpBonusClaimConfig = 0x08CE5788;
 SpriteArray_08CE45A8 = 0x08CE45A8;
 SpriteArray_08CE45B4 = 0x08CE45B4;
 ProcScr_08CE578C = 0x08CE578C;
+ProcScr_ColFadeOut = 0x08CE5DE4;
+ProcScr_ColFadeIn = 0x08CE5E14;
+gUnk_020144F8 = 0x020144F8;

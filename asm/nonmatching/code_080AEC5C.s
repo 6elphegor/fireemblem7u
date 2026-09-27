@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AEC5C
-sub_080AEC5C: @ 0x080AEC5C
+	thumb_func_start NewColFadeOut
+NewColFadeOut: @ 0x080AEC5C
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0

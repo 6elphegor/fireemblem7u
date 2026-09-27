@@ -875,8 +875,8 @@ void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to
 // sub_080AEA04
 // ColFadeOut_Init
 // nullsub_88
-// sub_080AEA4C
-// sub_080AEB38
+// ColFadeOut_Loop
+// ColFadeIn_Loop
 // sub_80AFB94
 // sub_80AFBE8
 

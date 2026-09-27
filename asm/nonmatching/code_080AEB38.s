@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AEB38
-sub_080AEB38: @ 0x080AEB38
+	thumb_func_start ColFadeIn_Loop
+ColFadeIn_Loop: @ 0x080AEB38
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
