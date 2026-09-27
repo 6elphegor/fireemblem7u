@@ -390,12 +390,12 @@ void PopupProc_GfxClear(struct PopupProc * proc)
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
 
-void sub_0800AD1C(struct Unit * unit)
+void SetPopupUnit(struct Unit * unit)
 {
     gPopupUnit = unit;
 }
 
-void sub_0800AD28(u16 item)
+void SetPopupItem(u16 item)
 {
     gPopupItem = item;
 }
@@ -562,7 +562,7 @@ ProcPtr StartEvent(EventScr const * script)
     return StartEventInternal(script, PROC_TREE_3);
 }
 
-ProcPtr sub_0800AF68(EventScr const * script, ProcPtr parent)
+ProcPtr StartEventLocking(EventScr const * script, ProcPtr parent)
 {
     return StartEventInternal(script, parent);
 }

@@ -202,19 +202,19 @@ ProcPtr CallSupportViewerEvent(int msg)
 
 void sub_0800EDE0(u16 item, ProcPtr parent)
 {
-    sub_0800AD28(item);
+    SetPopupItem(item);
     NewPopup_Simple(gPopup_08B91B34, 0x60, 0, parent);
 }
 
 void sub_0800EE04(u16 item, ProcPtr parent)
 {
-    sub_0800AD28(item);
+    SetPopupItem(item);
     NewPopup_Simple(gPopup_08B91B7C, 0x60, 0, parent);
 }
 
 void sub_0800EE28(u16 item, ProcPtr parent)
 {
-    sub_0800AD28(item);
+    SetPopupItem(item);
     NewPopup_Simple(gPopup_08B91BC4, 0x60, 0, parent);
 }
 
@@ -236,7 +236,7 @@ void StartPopup_800EE90(int num, ProcPtr parent)
 
 void StartPopup_800EEB0(struct Unit * unit, u16 item, ProcPtr parent)
 {
-    sub_0800AD28(item);
+    SetPopupItem(item);
 
     if (UNIT_FACTION(unit) == FACTION_BLUE)
         NewPopup_Simple(gPopup_08B91C64, 0x60, 0, parent);
@@ -246,7 +246,7 @@ void StartPopup_800EEB0(struct Unit * unit, u16 item, ProcPtr parent)
 
 void StartStoleItemPopup(u16 item, ProcPtr parent)
 {
-    sub_0800AD28(item);
+    SetPopupItem(item);
 
     if (UNIT_FACTION(gActiveUnit) == FACTION_BLUE)
         NewPopup_Simple(gPopup_08B91D04, 0x60, 0, parent);

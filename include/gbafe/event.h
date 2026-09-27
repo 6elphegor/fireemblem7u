@@ -88,7 +88,7 @@ enum event_func_ret_idx {
 // PopupProc_WaitForPress
 // sub_0800ACC4
 // sub_800ACC4
-// sub_0800AD28
+// SetPopupItem
 // SetPopupNumber
 // NewPopup_Simple
 // NewPopupCore
@@ -769,8 +769,8 @@ void PopupIconUpdateProc_Loop(struct PopupIconUpdateProc * proc);
 void PopupProc_GfxDraw(struct PopupProc * proc);
 void PopupProc_WaitForPress(struct PopupProc * proc);
 void PopupProc_GfxClear(struct PopupProc * proc);
-void sub_0800AD1C(struct Unit * unit); // SetPopupUnit
-void sub_0800AD28(u16 item); // SetPopupItem
+void SetPopupUnit(struct Unit * unit);
+void SetPopupItem(u16 item);
 void SetPopupNumber(u32 num);
 ProcPtr NewPopup_Simple(struct PopupInstruction const * inst, int clock, int window_kind, ProcPtr parent);
 ProcPtr NewPopupCore(struct PopupInstruction const * inst, int clock, int window_kind, int icon_chr, int icon_pal, ProcPtr parent);
@@ -784,7 +784,7 @@ void sub_0800AE50(void);
 void sub_0800AE8C(ProcPtr proc);
 void EventForceSlowTextSpeed(struct EventProc * proc);
 void sub_0800AF20(struct EventProc * proc);
-ProcPtr sub_0800AF68(EventScr const * script, ProcPtr parent); // StartEventLocking
+ProcPtr StartEventLocking(EventScr const * script, ProcPtr parent);
 ProcPtr StartEventInternal(EventScr const * script, ProcPtr parent);
 void sub_0800B0F0(struct EventProc * proc);
 void sub_0800B104(void);
