@@ -106,6 +106,12 @@ extern u8 Img_0840E40C[];
 extern u16 Pal_0840E4EC[];
 
 void DrawSupportSubScreenSprites(struct SubScreenProc * proc);
+void StartSupportViewerTalk(u8 charA, u8 charB, int rank);
+void SetFacePosition(int slot, int x, int y);
+void sub_0809BF78(int idx);
+int UiSupport_GetSupportTalkSong(int idx, int partner, int rank);
+
+extern struct ProcCmd CONST_DATA gProcScr_SupportUnitSubScreen[];
 void DrawSupportSubScreenUnitPartnerText(struct SubScreenProc * proc, int idx);
 extern u16 gUnk_02012BFC[];
 extern u16 Pal_TactInfoBg[];
@@ -1290,17 +1296,348 @@ void SupportSubScreen_SetupGraphics(struct SubScreenProc * proc)
 
     StartParallelWorker(DrawSupportSubScreenSprites, proc);
 }
-ASM_FUNC("asm/nonmatching/code_0809CE38.s");
-ASM_FUNC("asm/nonmatching/code_0809CFF8.s");
-ASM_FUNC("asm/nonmatching/code_0809D0BC.s");
-ASM_FUNC("asm/nonmatching/code_0809D15C.s");
-ASM_FUNC("asm/nonmatching/code_0809D22C.s");
-ASM_FUNC("asm/nonmatching/code_0809D2D4.s");
-ASM_FUNC("asm/nonmatching/code_0809D380.s");
-ASM_FUNC("asm/nonmatching/code_0809D428.s");
-ASM_FUNC("asm/nonmatching/code_0809D4D4.s");
-ASM_FUNC("asm/nonmatching/code_0809D5D0.s");
-ASM_FUNC("asm/nonmatching/code_0809D6A8.s");
-ASM_FUNC("asm/nonmatching/code_0809D6C8.s");
-ASM_FUNC("asm/nonmatching/code_0809D71C.s");
-ASM_FUNC("asm/nonmatching/code_0809D754.s");
+void SupportSubScreen_Loop_KeyHandler(struct SubScreenProc * proc)
+{
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        PlaySoundEffect(0x38B);
+        Proc_Goto(proc, 3);
+        return;
+    }
+
+    if (gpKeySt->repeated & R_BUTTON)
+    {
+        Proc_Goto(proc, 4);
+        return;
+    }
+
+    if (gpKeySt->repeated & L_BUTTON)
+    {
+        Proc_Goto(proc, 5);
+        return;
+    }
+
+    if (proc->fromPrepScreen)
+        return;
+
+    if (proc->unk_3b != 0)
+    {
+        u32 previous = proc->unk_39;
+
+        if (gpKeySt->pressed & A_BUTTON)
+        {
+            PlaySoundEffect(0x38A);
+            Proc_Goto(proc, 2);
+            return;
+        }
+
+        if (gpKeySt->repeated & DPAD_LEFT)
+        {
+            if ((proc->unk_39 & 3) != 0)
+            {
+                int unk = (proc->unk_39 & 0xfc) + 0xFF;
+                proc->unk_39 = unk + (proc->unk_39 & 3);
+            }
+        }
+
+        if (gpKeySt->repeated & DPAD_RIGHT)
+        {
+            if ((proc->unk_39 & 3) < GetSupportScreenPartnerSupportLevel(proc->unitIdx, (proc->unk_39 >> 2) & 7) - 1)
+            {
+                int unk = (proc->unk_39 & 0xfc) + 1;
+                proc->unk_39 = unk + (proc->unk_39 & 3);
+            }
+        }
+
+        if (gpKeySt->repeated & DPAD_UP)
+            SupportSubScreen_MoveCursorToNextValidUnit(proc, ((proc->unk_39 >> 2) & 7) - 1, -1);
+
+        if (gpKeySt->repeated & DPAD_DOWN)
+            SupportSubScreen_MoveCursorToNextValidUnit(proc, ((proc->unk_39 >> 2) & 7) + 1, +1);
+
+        if (previous != proc->unk_39)
+        {
+            ShowSysHandCursor((proc->unk_39 & 3) * 8 + 0xc4, ((proc->unk_39 >> 2) & 7) * 16 + 0x18, 1, 0x800);
+            PlaySoundEffect(0x385);
+        }
+    }
+    else
+    {
+        if (gpKeySt->pressed & A_BUTTON)
+            PlaySoundEffect(0x38C);
+
+        return;
+    }
+}
+void sub_0809CFF8(struct SubScreenProc * proc)
+{
+    InitBgs(NULL);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBlendConfig(3, 0, 0, 0x10);
+    SetBlendTargetA(1, 1, 1, 1, 1);
+    SetBlendTargetB(0, 1, 0, 0, 0);
+
+    InitFaces();
+
+    ResetText();
+    InitIcons();
+    UnpackUiWindowFrameGraphics();
+    ApplySystemObjectsGraphics();
+
+    StartSupportViewerTalk(
+        GetSupportScreenCharIdAt(proc->unitIdx),
+        GetSupportScreenPartnerCharId(proc->unitIdx, proc->unk_39 >> 2 & 7),
+        (proc->unk_39 & 3) + 1);
+}
+void SupportSubScreen_StartSwapPage(struct SubScreenProc * proc)
+{
+    proc->unk_3a = 0;
+
+    HideSysHandCursor();
+
+    gDispIo.bg0_ct.priority = 1;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 0;
+
+    SetBlendConfig(1, 0, 0x10, 0);
+    SetBlendTargetA(0, 0, 0, 1, 0);
+    SetBlendTargetB(1, 1, 1, 0, 1);
+
+    sub_0809C49C();
+
+    PlaySoundEffect(0xC8);
+}
+void sub_0809D15C(u32 xBase)
+{
+    int ix;
+    int iy;
+
+    for (ix = 0; ix < 30; ix++)
+    {
+        u32 x = ix + xBase;
+        if (x < 30)
+        {
+            for (iy = 0; iy < 20; iy++)
+            {
+                *(gBg0Tm + TM_OFFSET(ix, iy)) = *(gUnk_02012BFC + TM_OFFSET(x, iy + 0x00));
+                *(gBg1Tm + TM_OFFSET(ix, iy)) = *(gUnk_02012BFC + TM_OFFSET(x, iy + 0x20));
+                *(gBg2Tm + TM_OFFSET(ix, iy)) = *(gUnk_02012BFC + TM_OFFSET(x, iy + 0x40));
+            }
+        }
+        else
+        {
+            for (iy = 0; iy < 20; iy++)
+            {
+                *(gBg0Tm + TM_OFFSET(ix, iy)) = 0;
+                *(gBg1Tm + TM_OFFSET(ix, iy)) = 0;
+                *(gBg2Tm + TM_OFFSET(ix, iy)) = 0;
+            }
+        }
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+}
+void SupportSubScreen_SwapPageOut_ToLeft(struct SubScreenProc * proc)
+{
+    int a;
+    int b;
+    int c;
+
+    proc->unk_3a++;
+
+    a = 10 - proc->unk_3a;
+
+    b = 8 - ((a * 8) * a / 100);
+    c = 16 - (a * 0x10) * a / 100;
+
+    proc->x = -b * 8;
+    sub_0809D15C(b);
+
+    SetFacePosition(0, (proc->x + 0x38) & 0x1FF, proc->unk_3f);
+
+    SetBlendConfig(1, c, 0x10 - c, 0);
+
+    if (proc->unk_3a == 10)
+    {
+        Proc_Break(proc);
+        proc->unitIdx = GetNextSupportScreenUnit(proc->unitIdx);
+    }
+}
+void SupportSubScreen_SwapPageIn_FromRight(struct SubScreenProc * proc)
+{
+    int a;
+    int b;
+    int c;
+
+    proc->unk_3a++;
+
+    a = 10 - proc->unk_3a;
+
+    b = 8 - ((a * 8) * a / 100);
+    c = 16 - (a * 0x10) * a / 100;
+
+    proc->x = (8 - b) * 8;
+
+    sub_0809D15C(b - 8);
+
+    SetFacePosition(0, (proc->x + 0x38) & 0x1FF, proc->unk_3f);
+
+    SetBlendConfig(1, 0x10 - c, c, 0);
+
+    if (proc->unk_3a == 10)
+        Proc_Break(proc);
+}
+void SupportSubScreen_SwapPageOut_ToRight(struct SubScreenProc * proc)
+{
+    int a;
+    int b;
+    int c;
+
+    proc->unk_3a++;
+
+    a = 10 - proc->unk_3a;
+
+    b = 8 - ((a * 8) * a / 100);
+    c = 16 - (a * 0x10) * a / 100;
+
+    proc->x = b * 8;
+
+    sub_0809D15C(-b);
+
+    SetFacePosition(0, (proc->x + 0x38) & 0x1FF, proc->unk_3f);
+
+    SetBlendConfig(1, c, 0x10 - c, 0);
+
+    if (proc->unk_3a == 10)
+    {
+        Proc_Break(proc);
+        proc->unitIdx = GetPreviousSupportScreenUnit(proc->unitIdx);
+    }
+}
+void SupportSubScreen_SwapPageIn_FromLeft(struct SubScreenProc * proc)
+{
+    int a;
+    int b;
+    int c;
+
+    proc->unk_3a++;
+
+    a = 10 - proc->unk_3a;
+
+    b = 8 - ((a * 8) * a / 100);
+    c = 16 - (a * 0x10) * a / 100;
+
+    proc->x = (b - 8) * 8;
+
+    sub_0809D15C(8 - b);
+
+    SetFacePosition(0, (proc->x + 0x38) & 0x1FF, proc->unk_3f);
+
+    SetBlendConfig(1, 0x10 - c, c, 0);
+
+    if (proc->unk_3a == 10)
+        Proc_Break(proc);
+}
+void SupportSubScreen_ReinitAfterSwapPage(struct SubScreenProc * proc)
+{
+    int fid;
+
+    InitFaces();
+    ResetText();
+    InitIcons();
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+
+    proc->unk_39 = proc->unk_39 & 0xfc;
+    proc->unk_39 = proc->unk_39 & 0xe3;
+
+    proc->partnerCount = GetSupportScreenPartnerCount(GetSupportScreenCharIdAt(proc->unitIdx));
+
+    InitSupportSubScreenPartners(proc);
+    InitSupportSubScreenPartnerLevels(proc);
+    InitSupportSubScreenRemainingSupports(proc);
+    SupportSubScreen_MoveCursorToNextValidUnit(proc, 0, +1);
+
+    sub_080AACD8(gBg1Tm, Tsa_0840ECC4, 0x5200);
+
+    fid = gCharacterData[GetSupportScreenCharIdAt(proc->unitIdx) - 1].portraitId;
+
+    if (ShouldFaceBeRaised(fid))
+    {
+        proc->unk_3f = 0;
+        StartBmFace(0, fid, 0x38, 0, 0x100);
+    }
+    else
+    {
+        proc->unk_3f = 8;
+        StartBmFace(0, fid, 0x38, 8, 0x104);
+    }
+
+    DrawSupportSubScreenUnitPartnerDetails(proc);
+    DrawSupportSubScreenRemainingText(proc);
+    sub_0809C49C();
+
+    proc->unk_3a = 0;
+}
+void SupportSubScreen_EndSwapPage(struct SubScreenProc * proc)
+{
+    gDispIo.bg0_ct.priority = 1;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBlendConfig(1, 0, 0xc, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+
+    SetBlendBackdropA(0);
+    SetBlendBackdropB(0);
+
+    if (proc->fromPrepScreen == 0)
+    {
+        if (proc->unk_3b != 0)
+        {
+            ShowSysHandCursor((proc->unk_39 & 3) * 8 + 0xc4, (proc->unk_39 >> 2 & 7) * 16 + 0x18, 1, 0x800);
+
+            proc->unk_3a = -1;
+        }
+    }
+}
+void SupportSubScreen_OnEnd(struct SubScreenProc * proc)
+{
+    EndAllProcChildren(proc);
+    EndMuralBackground_();
+    EndFaceById(0);
+    sub_0809BF78(proc->unitIdx);
+}
+void SupportSubScreen_PrepareSupportConvo(struct SubScreenProc * proc)
+{
+    proc->songId = UiSupport_GetSupportTalkSong(proc->unitIdx, proc->unk_39 >> 2 & 7, (proc->unk_39 & 3) + 1);
+
+    if (proc->songId == 0)
+        CallSomeSoundMaybe(0x30, 0x100, 0x80, 0x10, NULL);
+    else
+        CallSomeSoundMaybe(proc->songId, 0x100, 0x100, 0x10, NULL);
+}
+void sub_0809D71C(struct SubScreenProc * proc)
+{
+    if (proc->songId == 0)
+        CallSomeSoundMaybe(0x30, 0x80, 0x100, 0x10, NULL);
+    else
+        CallSomeSoundMaybe(0x30, 0x100, 0x100, 0x10, NULL);
+}
+void StartSupportUnitSubScreen(s8 fromPrepScreen, int unitIndex, ProcPtr parent)
+{
+    struct SubScreenProc * proc = Proc_StartBlocking(gProcScr_SupportUnitSubScreen, parent);
+
+    proc->fromPrepScreen = fromPrepScreen;
+    proc->unitIdx = unitIndex;
+}
