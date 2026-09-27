@@ -128,7 +128,6 @@ void HideMoveRangeGraphics(void);
 void DisplayMoveRangeGraphics(int config);
 void StartUnitListScreenField(void);
 void NewChapterStatusScreen(ProcPtr parent);
-void EventGotoLabel(ProcPtr proc, int label);
 int GetSomeFacingDirection(int xFrom, int yFrom, int xTo, int yTo);
 void Make6CKOIDOAMM(struct Unit * unit, int facing);
 

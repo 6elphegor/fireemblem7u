@@ -814,7 +814,29 @@ bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def);
 
 
 /* ---- eventscr2.c (0x0800D01C-0x0800E330) ---- */
+void EventUnitLoadWait(struct EventProc * proc);
+void EventUnitLoadAliveWait(struct EventProc * proc);
+void EventLoadUnitsAsParty(struct EventProc * proc);
+int EvtCmd_LoadUnit(struct EventProc * proc);
+void EventMovementWait(struct EventProc * proc);
+int EvtCmd_WaitForMovement(struct EventProc * proc);
+int EvtCmd_UnitCameraOn(struct EventProc * proc);
+int EvtCmd_UnitCameraOff(struct EventProc * proc);
+int Event3C_ASMC1(struct EventProc * proc);
+int Event3D_ASMC2(struct EventProc * proc);
+int Event3E_ASMC3(struct EventProc * proc);
+int Event3F_ASMC4(struct EventProc * proc);
+int Event40_ASMC5(struct EventProc * proc);
+int EvtCmd_Stop(struct EventProc * proc);
+int EvtCmd_Label(struct EventProc * proc);
+int EventGotoLabel(struct EventProc * proc, int label);
 
+int EvtCmd_GotoIfyFlag(struct EventProc * proc);
+int EventGiveItem(struct Unit * unit, u16 iid, struct EventProc * proc);
+void EventFlashCursorWait(struct EventProc * proc);
+void EventRemoveDisplayedWait(struct EventProc * proc);
+bool EventIsPidBlueForDisable(u8 pid);
+void EventSetUnitAi(struct Unit * unit, u8 ai1, u8 ai2, int unused);
 /* ---- end eventscr2.c ---- */
 
 
