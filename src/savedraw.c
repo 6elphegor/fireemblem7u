@@ -2,6 +2,10 @@
 
 #include "gbafe/bonusclaim.h"
 
+extern u16 CONST_DATA Sprite_08A2051C[];
+extern u16 * CONST_DATA SpriteArray_08A209B8[];
+extern u16 * CONST_DATA SpriteArray_08A2099C[];
+
 struct SaveBonusHelpProc
 {
     /* 00 */ PROC_HEADER;
@@ -149,9 +153,25 @@ ASM_FUNC("asm/nonmatching/code_080A5130.s");
 ASM_FUNC("asm/nonmatching/code_080A5148.s");
 ASM_FUNC("asm/nonmatching/code_080A5214.s");
 ASM_FUNC("asm/nonmatching/code_080A5420.s");
-ASM_FUNC("asm/nonmatching/code_080A54C8.s");
-ASM_FUNC("asm/nonmatching/code_080A5514.s");
-ASM_FUNC("asm/nonmatching/code_080A5590.s");
+void sub_080A54C8(s8 flag, u16 color)
+{
+    if (flag != 0)
+        gPal[0x168] = gPal[0x190 + ((color >> 2) & 0xf)];
+    else
+        gPal[0x168] = gPal[0x19D];
+
+    EnablePalSync();
+}
+void sub_080A5514(ProcPtr unused, int x, int y, u8 spriteIdx, u8 palIdA, u8 palIdB)
+{
+    PutSpriteExt(4, OAM1_X(x), y, Sprite_08A2051C, OAM2_PAL(palIdA));
+    PutSpriteExt(4, OAM1_X(x + 8), y + 9, SpriteArray_08A209B8[spriteIdx], OAM2_PAL(palIdB));
+}
+void sub_080A5590(ProcPtr unused, int x, int y, u8 spriteIdx, u8 palIdA, u8 palIdB)
+{
+    PutSpriteExt(4, OAM1_X(x), y, Sprite_08A2051C, OAM2_PAL(palIdA));
+    PutSpriteExt(4, OAM1_X(x + 8), y + 9, SpriteArray_08A2099C[spriteIdx], OAM2_PAL(palIdB));
+}
 ASM_FUNC("asm/nonmatching/code_080A560C.s");
 ASM_FUNC("asm/nonmatching/code_080A5748.s");
 ASM_FUNC("asm/nonmatching/code_080A5818.s");
