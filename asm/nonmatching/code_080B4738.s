@@ -46,7 +46,7 @@ _080B475A:
 _080B478A:
 	ldr r1, [r5, #0x38]
 	adds r0, r4, #0
-	bl sub_080B437C
+	bl WmFaceSlots_UpdatePosition
 	adds r4, #1
 	cmp r4, #3
 	ble _080B478A
@@ -54,7 +54,7 @@ _080B478A:
 _080B479A:
 	ldr r1, [r5, #0x3c]
 	adds r0, r4, #0
-	bl sub_080B437C
+	bl WmFaceSlots_UpdatePosition
 	adds r4, #1
 	cmp r4, #4
 	ble _080B479A

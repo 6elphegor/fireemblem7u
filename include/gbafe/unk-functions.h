@@ -1061,11 +1061,11 @@ int GetClassReelEntry(int, int);
 // WmMuMove_Init
 // WmMuMove_SetFacing
 // sub_80B4CEC
-// sub_080B42D4
+// WmMuMove_OnEnd
 // sub_80B511C
-// sub_080B4310
-// sub_080B4328
-// sub_080B437C
+// WmFaceSlots_Init
+// WmFaceManager_Init
+// WmFaceSlots_UpdatePosition
 // sub_080B43EC
 // sub_080B4510
 // sub_080B4610

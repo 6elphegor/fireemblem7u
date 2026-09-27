@@ -92,6 +92,30 @@ struct WmMuMoveProc {
     /* 62 */ u8 first;
 };
 
+struct WmFaceSlotsProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct {
+        /* 00 */ s16 x;
+        /* 02 */ s16 y;
+        /* 04 */ struct ProcSpriteAnim * anim;
+        /* 08 */ s8 state;
+    } ent[5];
+};
+
+struct WmFaceManagerProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ ProcPtr parent;
+    /* 30 */ u16 unk_30;
+    /* 34 */ struct WmFaceSlotsProc * slots[4];
+    /* 44 */ u8 unk_44;
+    /* 45 */ u8 unk_45;
+    /* 46 */ u8 unk_46;
+    /* 47 */ u8 unk_47;
+    /* 48 */ u8 unk_48;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_WmFaceManager[];
+extern struct ProcCmd CONST_DATA ProcScr_WmFaceSlots[];
 extern struct ProcCmd CONST_DATA ProcScr_WmTextBox[];
 extern struct ProcCmd CONST_DATA ProcScr_WmMarker[];
 extern u16 CONST_DATA Sprite_WmTextBoxA[];
@@ -536,11 +560,75 @@ void WmMuMove_SetFacing(struct WmMuMoveProc * proc, int facing)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B3EB4.s");
-ASM_FUNC("asm/nonmatching/code_080B42D4.s");
-ASM_FUNC("asm/nonmatching/code_080B42FC.s");
-ASM_FUNC("asm/nonmatching/code_080B4310.s");
-ASM_FUNC("asm/nonmatching/code_080B4328.s");
-ASM_FUNC("asm/nonmatching/code_080B437C.s");
+void WmMuMove_OnEnd(struct WmMuMoveProc * proc)
+{
+    if (proc->mu != NULL)
+        EndMu(proc->mu);
+
+    if (proc->flags & 0x2000000)
+        WmSetUnk02(0);
+}
+
+ProcPtr StartWmFaceManager(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_WmFaceManager, parent);
+}
+
+void WmFaceSlots_Init(struct WmFaceSlotsProc * proc)
+{
+    int i;
+
+    for (i = 0; i < 5; i++)
+    {
+        proc->ent[i].anim = NULL;
+        proc->ent[i].state = 0;
+        proc->ent[i].y = 0;
+        proc->ent[i].x = 0;
+    }
+}
+
+void WmFaceManager_Init(struct WmFaceManagerProc * proc)
+{
+    proc->unk_30 = 0;
+
+    proc->slots[0] = Proc_Start(ProcScr_WmFaceSlots, proc);
+    proc->slots[1] = Proc_Start(ProcScr_WmFaceSlots, proc);
+    proc->slots[2] = Proc_Start(ProcScr_WmFaceSlots, proc);
+    proc->slots[3] = Proc_Start(ProcScr_WmFaceSlots, proc);
+
+    proc->parent = proc->proc_parent;
+
+    proc->unk_44 = 0;
+    proc->unk_45 = 0;
+    proc->unk_47 = 0;
+    proc->unk_48 = 0;
+}
+
+void WmFaceSlots_UpdatePosition(int idx, struct WmFaceSlotsProc * proc)
+{
+    struct ProcSpriteAnim * anim;
+    int x, y;
+
+    if (proc->ent[idx].anim != NULL)
+    {
+        anim = proc->ent[idx].anim;
+
+        x = proc->ent[idx].x - gWmSt.x;
+        y = proc->ent[idx].y - gWmSt.y;
+
+        if ((unsigned) (x + 0x1F) <= 0x12E && y > -0x20 && y <= 0xBF)
+        {
+            anim->x = x & 0x1FF;
+            anim->y = y & 0xFF;
+        }
+        else
+        {
+            anim->x = 0x100;
+            anim->y = 0;
+        }
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B43EC.s");
 ASM_FUNC("asm/nonmatching/code_080B4510.s");
 ASM_FUNC("asm/nonmatching/code_080B4610.s");

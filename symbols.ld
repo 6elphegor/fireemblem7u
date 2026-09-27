@@ -2007,3 +2007,5 @@ ProcScr_WmMarker = 0x08CE7670;
 Sprite_WmTextBoxA = 0x08CE75A0;
 Sprite_WmTextBoxB = 0x08CE760E;
 Sprite_WmMarker = 0x08CE7598;
+ProcScr_WmFaceManager = 0x08CE7688;
+ProcScr_WmFaceSlots = 0x08CE76B0;
