@@ -3,11 +3,65 @@
 extern struct KeySt * CONST_DATA gpKeySt;
 extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
 
-extern char const * CONST_DATA gManimDebugHitStrings[];
-extern struct ManimDebugFieldInfo CONST_DATA gManimDebugFieldInfo[];
-extern char const * CONST_DATA gManimDebugLabelStrings[];
-extern struct ManimDebugInfo * CONST_DATA gpManimDebugInfo;
-extern struct ProcCmd CONST_DATA ProcScr_ManimDebug[];
+
+extern struct ManimDebugInfo gManimDebugInfo;
+extern struct ProcCmd CONST_DATA ProcScr_ManimBattle[];
+
+CONST_DATA char const * gManimDebugHitStrings[] = {
+    "ーーー",
+    "攻撃",
+    "攻撃デ",
+    "攻撃リ",
+    "攻撃毒",
+    "必殺",
+    "必殺デ",
+    "必殺リ",
+    "必殺毒",
+    "空ぶり",
+};
+
+CONST_DATA struct ManimDebugFieldInfo gManimDebugFieldInfo[] = {
+    { 9, 9, 1, 0, 0, 1, 254 },
+    { 2, 0, 3, 2, 2, 0, 32 },
+    { 2, 0, 3, 1, 1, 0, 32 },
+    { 11, 1, 4, 3, 3, 1, 100 },
+    { 10, 3, 5, 4, 4, 1, 159 },
+    { 9, 4, 6, 5, 5, 0, 10 },
+    { 5, 5, 7, 6, 6, 0, 10 },
+    { 5, 6, 8, 7, 7, 0, 10 },
+    { 5, 7, 9, 8, 8, 0, 10 },
+    { 5, 8, 0, 9, 9, 0, 10 },
+};
+
+CONST_DATA char const * gManimDebugLabelStrings[] = {
+    "ＰＩＤ",
+    "ＸＹ",
+    "兵種",
+    "武器",
+    "１",
+    "２",
+    "３",
+    "４",
+    "５",
+    NULL,
+};
+
+CONST_DATA struct ManimDebugInfo * gpManimDebugInfo = &gManimDebugInfo;
+
+CONST_DATA struct ProcCmd ProcScr_ManimDebug[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(LockGame),
+    PROC_CALL(EndPlayerPhaseSideWindows),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimDebug_Init),
+    PROC_LABEL(0),
+    PROC_CALL(ManimDebug_InitScreen),
+    PROC_REPEAT(ManimDebug_Loop),
+    PROC_CALL(ManimDebug_StartBattleAnim),
+    PROC_WHILE_EXISTS(ProcScr_ManimBattle),
+    PROC_GOTO(0),
+    PROC_END,
+};
 
 void StartManimDebug(void)
 {

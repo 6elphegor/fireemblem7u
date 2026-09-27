@@ -5,7 +5,6 @@ u8 GetSpellAssocFacing(u16 item);
 u8 GetWeaponAnimActorCount(u16 item);
 struct ProcCmd * GetWeaponAnimManimSpecialScr(u16 item);
 
-extern u8 const gManimActorLayerLut[];
 extern struct ProcCmd CONST_DATA ProcScr_MuDeathFade[];
 extern struct ProcCmd CONST_DATA ProcScr_PoisonDmgMapEffect[];
 extern struct ProcCmd CONST_DATA ProcScr_CritAtkMapEffect[];
@@ -187,6 +186,8 @@ void InitManimActorFacings(void)
         break;
     }
 }
+
+u8 const gManimActorLayerLut[] = { 10, 9, 8, 7 };
 
 void SortManimActorLayers(void)
 {
