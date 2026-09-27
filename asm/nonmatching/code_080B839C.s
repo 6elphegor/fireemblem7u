@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B839C
-sub_080B839C: @ 0x080B839C
+	thumb_func_start LoadNextCharacterEnding
+LoadNextCharacterEnding: @ 0x080B839C
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	movs r0, #0
@@ -88,7 +88,7 @@ _080B8430:
 	b _080B8488
 _080B843A:
 	ldr r0, [r4, #0x34]
-	bl sub_080B8358
+	bl DoesUnitHavePairedEnding
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080B84C2

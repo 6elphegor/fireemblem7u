@@ -11,9 +11,9 @@ sub_080B88E0: @ 0x080B88E0
 	push {r5, r6, r7}
 	sub sp, #8
 	adds r7, r0, #0
-	bl sub_080B81E4
+	bl InitCharacterEndingText
 	adds r0, r7, #0
-	bl sub_080B85E8
+	bl CharacterEnding_LoadUnitBattleStats
 	ldr r4, _080B8B50 @ =0x08CEE858
 	ldr r0, [r4]
 	movs r1, #0
@@ -35,7 +35,7 @@ sub_080B88E0: @ 0x080B88E0
 	bl TmApplyTsa_thm
 	ldr r0, [r7, #0x38]
 	ldrb r0, [r0, #1]
-	bl sub_080B7EB0
+	bl GetPidTitleTextId
 	bl DecodeMsg
 	adds r5, r0, #0
 	movs r0, #0x78
@@ -131,7 +131,7 @@ sub_080B88E0: @ 0x080B88E0
 	bl PutNumber
 	ldr r0, [r7, #0x38]
 	ldrb r0, [r0, #2]
-	bl sub_080B7EB0
+	bl GetPidTitleTextId
 	bl DecodeMsg
 	adds r5, r0, #0
 	movs r0, #0x78

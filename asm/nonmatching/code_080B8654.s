@@ -9,9 +9,9 @@ sub_080B8654: @ 0x080B8654
 	push {r7}
 	sub sp, #8
 	mov r8, r0
-	bl sub_080B81E4
+	bl InitCharacterEndingText
 	mov r0, r8
-	bl sub_080B85E8
+	bl CharacterEnding_LoadUnitBattleStats
 	ldr r7, _080B86B4 @ =0x08CEE858
 	ldr r0, [r7]
 	movs r1, #0
@@ -83,7 +83,7 @@ _080B870C: .4byte 0x08CEE868
 _080B8710: .4byte 0x08CEE858
 _080B8714:
 	ldrb r0, [r0, #1]
-	bl sub_080B7EB0
+	bl GetPidTitleTextId
 	bl DecodeMsg
 	adds r6, r0, #0
 	movs r0, #0x78

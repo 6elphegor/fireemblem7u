@@ -93,7 +93,7 @@ _080B8D48:
 _080B8D5C:
 	ldr r0, [r3]
 	ldrb r0, [r0, #4]
-	bl sub_080B7F54
+	bl GetPidDefeatedEndingString
 	b _080B8D8C
 _080B8D66:
 	ldr r0, [r2, #4]
@@ -107,7 +107,7 @@ _080B8D6A:
 	beq _080B8D84
 	ldr r0, [r2]
 	ldrb r0, [r0, #4]
-	bl sub_080B7F54
+	bl GetPidDefeatedEndingString
 	str r0, [r6, #0x44]
 	cmp r0, #0
 	bne _080B8D8E
