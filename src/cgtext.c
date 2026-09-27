@@ -1,6 +1,8 @@
 #include "gbafe.h"
 #include "gbafe/cgtext.h"
 
+extern u16 CONST_DATA gPal_HelpTextBox[];
+
 void SetCgTextFlags(int flags)
 {
     gCgTextSt.flags = flags;
@@ -172,7 +174,67 @@ void CgText_808F0EC(struct CgTextMainProc * proc)
     RestartCgTextInterpreter(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_08087BFC.s");
+void StartCgText(int x, int y, int width, int height, int stringId, void * vram, int pal, ProcPtr parent)
+{
+    int palTmp;
+    int i;
+    int mask;
+
+    struct CgTextMainProc * proc = Proc_Find(gProcScr_CgTextMain);
+
+    if (proc)
+    {
+        proc->str = DecodeMsg(stringId);
+        if (DoesStringContainTact(proc->str))
+            proc->str = MsgExpand();
+
+        if (proc->blendAmt == 0x10)
+            Proc_Goto(proc, 3);
+        else
+            Proc_Goto(proc, 2);
+
+        return;
+    }
+
+    if (parent)
+        proc = Proc_StartBlocking(gProcScr_CgTextMain, parent);
+    else
+        proc = Proc_Start(gProcScr_CgTextMain, PROC_TREE_3);
+
+    SetCgTextFlags(CG_TEXT_BG(1));
+    ClearAllTalkFlags();
+
+    proc->pFont = &gCgTextSt.font;
+
+    for (i = 0; i < 6; i++)
+        proc->pTexts[i] = &gCgTextSt.texts[i];
+
+    proc->x = x;
+    proc->y = y;
+    proc->boxWidth = width;
+    proc->boxHeight = height;
+    proc->vram = vram;
+
+    if (pal < 0)
+        pal = 5;
+
+    mask = 0xf;
+    palTmp = (pal & mask);
+    pal = palTmp + 0x10;
+
+    if (vram == 0)
+        vram = (void *)0x06013000;
+
+    InitSpriteTextFont(proc->pFont, vram, pal);
+    SetTextFont(NULL);
+
+    ApplyPalette(gPal_HelpTextBox, pal);
+    proc->palId = ((((uintptr_t)vram) << 0x11) >> 0x16) + ((pal & mask) << 0xc);
+
+    proc->str = DecodeMsg(stringId);
+    if (DoesStringContainTact(proc->str) != 0)
+        proc->str = MsgExpand();
+}
 
 void EndCgText(void)
 {
