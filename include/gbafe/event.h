@@ -27,7 +27,7 @@ struct EventProc {
     /* 34 */ EventScr const * script_return;     // script_start of the calling script (0 if none)
     /* 38 */ EventScr const * script_return_pc;  // script position of the calling script
 
-    /* 3C */ void (* skip_func)(struct EventProc * proc);
+    /* 3C */ void (* skip_func)(void);
     /* 40 */ void (* idle_func)(struct EventProc * proc);
     /* 44 */ struct UnitDefinition const * unit_info;
     /* 48 */ int talk_auto_msg;
@@ -102,7 +102,7 @@ void Event_FadeOutOfSkip(struct EventProc * proc);
 // sub_800ADDC
 // sub_0800AE50
 // sub_0800AE8C
-void StartEvent();
+ProcPtr StartEvent();
 // StartEventLocking
 // StartEventInternal
 // sub_0800B0F0
@@ -775,6 +775,28 @@ void SetPopupNumber(u32 num);
 ProcPtr NewPopup_Simple(struct PopupInstruction const * inst, int clock, int window_kind, ProcPtr parent);
 ProcPtr NewPopupCore(struct PopupInstruction const * inst, int clock, int window_kind, int icon_chr, int icon_pal, ProcPtr parent);
 void EndPopups(void);
+void sub_0800ADB8(void);
+void sub_0800ADD0(ProcPtr proc);
+void sub_0800AE04(struct EventProc * proc);
+void sub_0800AE18(ProcPtr proc);
+void sub_0800AE34(ProcPtr proc);
+void sub_0800AE50(void);
+void sub_0800AE8C(ProcPtr proc);
+void EventForceSlowTextSpeed(struct EventProc * proc);
+void sub_0800AF20(struct EventProc * proc);
+ProcPtr sub_0800AF68(EventScr const * script, ProcPtr parent); // StartEventLocking
+ProcPtr StartEventInternal(EventScr const * script, ProcPtr parent);
+void sub_0800B0F0(struct EventProc * proc);
+void sub_0800B104(void);
+void sub_0800B110(struct EventProc * proc);
+void sub_0800B130(struct EventProc * proc);
+void sub_0800B180(struct EventProc * proc);
+void sub_0800B198(struct EventProc * proc);
+bool Event_IsSkipAllowed(struct EventProc * proc);
+void Event_DarkenThenFunc(void (* func)(ProcPtr arg), ProcPtr arg);
+void Event_BeginSkip(struct EventProc * proc);
+void Event_MainLoop(struct EventProc * proc);
+void Event_WaitForFaceEnd(struct EventProc * proc);
 /* ---- end event-engine.c ---- */
 
 

@@ -655,6 +655,14 @@ gPopupItem = 0x03000108;
 gPopupNumber = 0x0300010C;
 ProcScr_Popup = 0x08B90CA0;
 ProcScr_PopupUpdateIcon = 0x08B90D00;
+gEventQueueCount = 0x03004160;
+gEventQueue = 0x03004170;
+ProcScr_08B90B9C = 0x08B90B9C;
+ProcScr_EventFadeOutOfBackgroundTalk = 0x08B90D08;
+ProcScr_08B90D40 = 0x08B90D40;
+ProcScr_EventFadeOutOfSkip = 0x08B90D68;
+ProcScr_EventDarkenThenFunc = 0x08B90E28;
+ProcScr_08B969E4 = 0x08B969E4;
 /* end event-engine.c */
 
 

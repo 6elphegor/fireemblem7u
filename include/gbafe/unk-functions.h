@@ -71,7 +71,7 @@ void sub_0802E190(ProcPtr proc); // FE7J ResumeChapterFromSuspend
 // RefreshBMapDisplay_FromBattle
 // BMapDispResume_FromBattleDelayed
 // InitMoreBMapGraphics
-// RefreshBMapGraphics
+void RefreshBMapGraphics(void);
 // StartMapMain
 // EndMapMain
 void CleanupUnitsBeforeChapter(void);

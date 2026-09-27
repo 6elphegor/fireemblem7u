@@ -85,7 +85,7 @@ void SetBlackPal(int palid);
 // ??? StartFadeFromBlack
 // ??? StartLockingFadeToBlack
 // ??? StartLockingFadeToBlack
-// ??? StartLockingFadeFromBlack
+void StartLockingFadeFromBlack(int speed, ProcPtr parent);
 // ??? sub_8014488
 // ??? sub_80144A0
 void StartMidFadeFromBlack(void);
@@ -99,7 +99,7 @@ void StartMidLockingFadeToBlack(ProcPtr parent);
 void StartMidLockingFadeToBlack(ProcPtr parent);
 // ??? StartSlowLockingFadeFromBlack
 // ??? StartFastLockingFadeFromBlack
-// ??? StartMidLockingFadeFromBlack
+void StartMidLockingFadeFromBlack(ProcPtr parent);
 // ??? sub_8014540
 // ??? sub_8014550
 // ??? sub_8014560
