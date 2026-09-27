@@ -1127,3 +1127,6 @@ Pal_LimitViewBlue = 0x083FDD1C;
 Pal_LimitViewRed = 0x083FDD7C;
 Pal_LimitViewGreen = 0x083FDDDC;
 gMapMenuDef = 0x08B95AF4;
+sProcScr_KOIDO = 0x08B935EC;
+sProcScr_KOIDOAMM = 0x08B93604;
+sProcScr_BMXFADE = 0x08B9362C;
