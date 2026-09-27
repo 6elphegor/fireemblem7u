@@ -109,6 +109,16 @@ extern u16 const Pal_PlayerRankLetters[];
 extern u16 const Pal_PlayerRankUnk_085DFA90[];
 extern u16 Pal_PlayerRankUnk_085DFAB0[];
 extern u16 const Pal_PlayerRankUnk_085DFAF0[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEA70[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEA90[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEA9E[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAAC[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEABA[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAC8[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAD6[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAE4[];
+extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB54[];
+extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB6C[];
 
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankUnk_08CEEB84[];
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankFlash[];
@@ -1113,7 +1123,104 @@ void TurnRecord_Loop_Main(struct EndingTurnRecordProc * proc)
     proc->yPos += proc->yScrollAmt;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B96FC.s");
+void PlayerRank_PutSprites(struct PlayerRankProc * proc)
+{
+    int i;
+
+    PutSpriteExt(2, 24, 20, Sprite_PlayerRank_08CEEA70, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(9));
+    PutSpriteExt(2, 16, 128, Sprite_PlayerRank_08CEEAE4, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(6));
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)
+    {
+        PutSpriteExt(2, 16, 56, Sprite_PlayerRank_08CEEA90, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 56, Sprite_PlayerRank_08CEEA9E, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 16, 88, Sprite_PlayerRank_08CEEABA, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 88, Sprite_PlayerRank_08CEEAD6, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(7));
+
+        for (i = 0; i < 3; i++)
+        {
+            if (proc->scales[i] > 0x10)
+            {
+                SetObjAffine(
+                    i,
+                    Div(+COS_Q12(0) * 16, proc->scales[i]),
+                    Div(-SIN_Q12(0) * 16, 0x100),
+                    Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                    Div(+COS_Q12(0) * 16, 0x100));
+
+                PutSpriteExt(
+                    2,
+                    (i & 1) * 112 + 80 + i * 512,
+                    (i >> 1) * 32 + 304,
+                    SpriteLut_PlayerRank_08CEEB54[proc->counts[i]],
+                    OAM2_PAL(i + 10) + OAM2_CHR(0x80) + OAM2_LAYER(1));
+            }
+        }
+
+        if (proc->scales[i] > 0x10)
+        {
+            SetObjAffine(
+                i,
+                Div(+COS_Q12(0) * 16, proc->scales[i]),
+                Div(-SIN_Q12(0) * 16, 0x100),
+                Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                Div(+COS_Q12(0) * 16, 0x100));
+
+            PutSpriteExt(
+                2,
+                (i & 1) * 112 + 80 + i * 512,
+                (i >> 1) * 32 + 304,
+                SpriteLut_PlayerRank_08CEEB6C[proc->counts[i]],
+                OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(15));
+        }
+    }
+    else
+    {
+        PutSpriteExt(2, 16, 48, Sprite_PlayerRank_08CEEA90, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 48, Sprite_PlayerRank_08CEEA9E, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 16, 72, Sprite_PlayerRank_08CEEAC8, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 72, Sprite_PlayerRank_08CEEAAC, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 16, 96, Sprite_PlayerRank_08CEEABA, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 96, Sprite_PlayerRank_08CEEAD6, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(7));
+
+        for (i = 0; i < 5; i++)
+        {
+            if (proc->scales[i] > 0x10)
+            {
+                SetObjAffine(
+                    i,
+                    Div(+COS_Q12(0) * 16, proc->scales[i]),
+                    Div(-SIN_Q12(0) * 16, 0x100),
+                    Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                    Div(+COS_Q12(0) * 16, 0x100));
+
+                PutSpriteExt(
+                    2,
+                    (i & 1) * 112 + 80 + i * 512,
+                    (i >> 1) * 24 + 296,
+                    SpriteLut_PlayerRank_08CEEB54[proc->counts[i]],
+                    OAM2_PAL(i + 10) + OAM2_CHR(0x80) + OAM2_LAYER(1));
+            }
+        }
+
+        if (proc->scales[i] > 0x10)
+        {
+            SetObjAffine(
+                i,
+                Div(+COS_Q12(0) * 16, proc->scales[i]),
+                Div(-SIN_Q12(0) * 16, 0x100),
+                Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                Div(+COS_Q12(0) * 16, 0x100));
+
+            PutSpriteExt(
+                2,
+                (i & 1) * 112 + 80 + (i * 512),
+                (i >> 1) * 24 + 296,
+                SpriteLut_PlayerRank_08CEEB6C[proc->counts[i]],
+                OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(15));
+        }
+    }
+}
 void PlayerRank_Init(struct PlayerRankProc * proc)
 {
     u16 hours, minutes, seconds;
