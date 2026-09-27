@@ -18,6 +18,8 @@ extern u16 gPasswordData[];
 
 u16 sub_0809D82C(void);
 int sub_0809D9A4(u8 const * buf, int n);
+void sub_0809D9E4(void);
+void sub_0809DAB8(void);
 void sub_0809D844(void);
 int sub_0809D800(int n);
 void sub_0809D880(u8 * buf, int * bitpos, int value, int nbits);
@@ -139,7 +141,36 @@ ASM_FUNC("asm/nonmatching/code_0809D9A4.s");
 ASM_FUNC("asm/nonmatching/code_0809D9E4.s");
 ASM_FUNC("asm/nonmatching/code_0809DAB8.s");
 ASM_FUNC("asm/nonmatching/code_0809DBD8.s");
-ASM_FUNC("asm/nonmatching/code_0809DCA8.s");
+bool sub_0809DCA8(void (* func)(int * bitpos, u8 * buf))
+{
+    u16 rng[2];
+    int bitpos = 0;
+    int i;
+    u16 chk;
+    u16 x;
+
+    sub_0809DAB8();
+
+    gPasswordSeed = gPasswordData[0];
+
+    chk = sub_0809D9A4(gPasswordBuf + gPasswordCharCount, gPasswordData[3]);
+    rng[0] = sub_0809D82C();
+
+    for (i = 0; i < gPasswordData[3]; i++)
+        gPasswordBuf[i + gPasswordCharCount] = (gPasswordBuf[i + gPasswordCharCount] - sub_0809D82C()) & gPasswordCharMask;
+
+    rng[1] = sub_0809D82C();
+
+    func(&bitpos, gPasswordBuf + gPasswordCharCount);
+
+    x = (rng[0] + sub_0809D9A4(gPasswordBuf + gPasswordCharCount, gPasswordData[3])) & 0x3FF;
+    chk = (chk + rng[1]) & 0x3FF;
+
+    if (gPasswordData[1] != x || gPasswordData[2] != chk)
+        return FALSE;
+
+    return TRUE;
+}
 u16 sub_0809DD7C(u16 const * ch, s8 const * table)
 {
     int i = 0;
