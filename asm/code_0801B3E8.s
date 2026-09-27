@@ -6,7 +6,7 @@
 sub_0801B3E8: @ 0x0801B3E8
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
-	bl sub_080AAD7C
+	bl CountTotalSoundRoomSongs
 	adds r4, r0, #0
 	adds r6, r5, #0
 	adds r6, #0x3c
