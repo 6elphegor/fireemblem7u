@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+#include "gbafe/bonusclaim.h"
+
 struct SaveBonusHelpProc
 {
     /* 00 */ PROC_HEADER;
@@ -10,7 +12,6 @@ struct SaveBonusHelpProc
     /* 5C */ int unk_5c;
 };
 
-extern void * CONST_DATA gpBonusContentSaveBuf;
 extern struct ProcCmd CONST_DATA ProcScr_08CE40F8[];
 
 void sub_080A4E58(void)
@@ -47,7 +48,54 @@ void sub_080A4E58(void)
     EnableBgSync(BG3_SYNC_BIT);
 }
 
-ASM_FUNC("asm/nonmatching/code_080A4F74.s");
+void sub_080A4F74(struct SaveBonusHelpProc * proc)
+{
+    int i;
+
+    CpuFill16(0, gpBonusClaimData, 0x284);
+
+    if (!LoadBonusContentData(gpBonusClaimData))
+    {
+        Proc_Goto(proc, 10);
+        return;
+    }
+
+    proc->unk_5c = 0;
+    proc->unk_58 = 0;
+
+    for (i = 0; i < 0x20; i++)
+    {
+        struct BonusClaimEnt * ent = &gpBonusClaimData[i];
+        int state = ent->unseen & 3;
+
+        if (state == 1)
+        {
+            if (ent->kind == 3)
+            {
+                proc->unk_58 = state;
+                ent->unseen = (ent->unseen & 0xFC) + 2;
+                UnlockSoundRoomSong(NULL, 0x75);
+            }
+
+            ent = &gpBonusClaimData[i];
+
+            if (ent->kind == 4)
+            {
+                proc->unk_5c = state;
+                ent->unseen = (ent->unseen & 0xFC) + 2;
+                UnlockSoundRoomSong(NULL, 0x76);
+            }
+        }
+    }
+
+    if (proc->unk_58 == 0 && proc->unk_5c == 0)
+    {
+        Proc_Goto(proc, 10);
+        return;
+    }
+
+    LoadHelpBoxGfx((void *) 0x06013800, 9);
+}
 void sub_080A503C(struct SaveBonusHelpProc * proc)
 {
     if (proc->unk_58 != 0)
@@ -91,7 +139,7 @@ void sub_080A50CC(struct SaveBonusHelpProc * proc)
 }
 void sub_080A5108(void)
 {
-    SaveBonusContentData(gpBonusContentSaveBuf);
+    SaveBonusContentData(gpBonusClaimData);
 }
 void sub_080A511C(ProcPtr parent)
 {

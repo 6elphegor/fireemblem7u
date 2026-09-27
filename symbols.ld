@@ -2814,5 +2814,5 @@ gMinimapBackWinBuf = 0x02000504;
 gMinimapDisplayedWinBuf = 0x02000508;
 gMinimapObjectFlashPal = 0x0200050C;
 ProcScr_Minimap = 0x08CE3B6C;
-gpBonusContentSaveBuf = 0x08CE40F4;
+gpBonusClaimData = 0x08CE40F4;
 ProcScr_08CE40F8 = 0x08CE40F8;
