@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806EADC
-sub_0806EADC: @ 0x0806EADC
+	thumb_func_start SetBattleMuPaletteByIndex
+SetBattleMuPaletteByIndex: @ 0x0806EADC
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

@@ -8,7 +8,14 @@ void sub_0807160C(struct Unit * unit);
 bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
 bool ManimShouldBuDisplayWeaponLevelGained(struct BattleUnit * bu);
 
+bool CheckBattleDefeatTalk(u8 pid);
+void DisplayDefeatTalkForPid(u8 pid);
+void StartBattleTalk(u8 pid_a, u8 pid_b);
+u8 GetSpellAssocReturnBool(u16 item);
+void StartManimInfoWindow(int x, int y, ProcPtr parent);
+
 extern struct ProcCmd ProcScr_ManimEnd[];
+extern struct ProcCmd ProcScr_ManimExpBar[];
 
 void Manim_StoleItemPopup(ProcPtr proc)
 {
@@ -145,11 +152,181 @@ void Manim_MoveCameraOntoTarget(ProcPtr proc)
     EnsureCameraOntoPosition(proc, gManimSt.actor[1].unit->xPos, gManimSt.actor[1].unit->yPos);
 }
 
-ASM_FUNC("asm/nonmatching/code_0806E6B0.s");
-ASM_FUNC("asm/nonmatching/code_0806E750.s");
-ASM_FUNC("asm/nonmatching/code_0806E7C4.s");
-ASM_FUNC("asm/nonmatching/code_0806E8D8.s");
-ASM_FUNC("asm/nonmatching/code_0806EA94.s");
-ASM_FUNC("asm/nonmatching/code_0806EADC.s");
-ASM_FUNC("asm/nonmatching/code_0806EAEC.s");
-ASM_FUNC("asm/nonmatching/code_0806EB20.s");
+void Manim_DisplayDeathQuote(ProcPtr proc)
+{
+    int actor = -1;
+
+    switch (gManimSt.main_actor_count)
+    {
+    case 2:
+        if (gManimSt.actor[1].hp_cur == 0)
+            actor = 1;
+
+        // fallthrough
+
+    case 1:
+        if (gManimSt.actor[0].hp_cur == 0)
+            actor = 0;
+
+        break;
+    }
+
+    if (actor != -1)
+    {
+        int pid = gManimSt.actor[actor].unit->pCharacterData->number;
+
+        if (CheckBattleDefeatTalk(pid))
+        {
+            EndManimInfoWindow();
+            DisplayDefeatTalkForPid(pid);
+            sub_0800ADB8();
+        }
+    }
+}
+
+void Manim_DisplayDeathFade(ProcPtr proc)
+{
+    int actor = -1;
+
+    switch (gManimSt.main_actor_count)
+    {
+    case 2:
+        if (gManimSt.actor[1].hp_cur == 0)
+            actor = 1;
+
+        // fallthrough
+
+    case 1:
+        if (gManimSt.actor[0].hp_cur == 0)
+            actor = 0;
+
+        break;
+    }
+
+    if (actor != -1)
+        StartMuDeathFade(gManimSt.actor[actor].mu);
+}
+
+void Manim_DisplayExpBar(ProcPtr proc)
+{
+    struct ManimExpBarProc * exp_proc;
+    int actor = -1;
+
+    switch (gManimSt.main_actor_count)
+    {
+    case 2:
+        if (gManimSt.actor[1].bu->expGain != 0)
+            actor = 1;
+
+        // fallthrough
+
+    case 1:
+        if (gManimSt.actor[0].bu->expGain != 0)
+            actor = 0;
+
+        break;
+    }
+
+    if (actor >= 0)
+    {
+        exp_proc = Proc_StartBlocking(ProcScr_ManimExpBar, proc);
+
+        exp_proc->exp_from = gManimSt.actor[actor].bu->expPrevious;
+        exp_proc->exp_to = gManimSt.actor[actor].bu->expPrevious + gManimSt.actor[actor].bu->expGain;
+        exp_proc->actor = actor;
+    }
+}
+
+void Manim_InitInfoBox(ProcPtr proc)
+{
+    int y;
+
+    SetBlendNone();
+
+    switch (gManimSt.manim_kind)
+    {
+    case 1:
+    case 2:
+        return;
+
+    default:
+        break;
+    }
+
+    if (!GetSpellAssocReturnBool(gManimSt.actor[0].bu->weaponBefore))
+        return;
+
+    if (gManimSt.main_actor_count == 1)
+    {
+        y = (gManimSt.actor[0].unit->yPos << 4) - gBmSt.camera.y;
+
+        if (y >= 112)
+            y = y - 40;
+        else
+            y = y + 24;
+    }
+    else
+    {
+        int array[2];
+        int i;
+        int actor;
+
+        for (i = 0; i < gManimSt.main_actor_count; ++i)
+            array[i] = (gManimSt.actor[i].unit->yPos << 4) - gBmSt.camera.y;
+
+        if (ABS(array[0] - array[1]) >= 80)
+        {
+            y = 64;
+        }
+        else
+        {
+            actor = array[0] > array[1] ? 0 : 1;
+
+            if (array[actor] >= 112)
+                y = array[1 - actor] - 40;
+            else
+                y = array[actor] + 24;
+        }
+    }
+
+    StartManimInfoWindow(15, y / 8, proc);
+}
+
+void Manim_CallBattleQuoteEvents(ProcPtr proc)
+{
+    switch (gManimSt.main_actor_count)
+    {
+    case 2:
+        StartBattleTalk(
+            gManimSt.actor[0].unit->pCharacterData->number, gManimSt.actor[1].unit->pCharacterData->number);
+        break;
+
+    default:
+        break;
+    }
+
+    sub_0800ADB8();
+}
+
+void SetBattleMuPaletteByIndex(int actor)
+{
+}
+
+void SetBattleMuPalette(ProcPtr proc)
+{
+    switch (gManimSt.main_actor_count)
+    {
+    case 2:
+        SetBattleMuPaletteByIndex(1);
+
+        // fallthrough
+
+    case 1:
+        SetBattleMuPaletteByIndex(0);
+    }
+}
+
+void Manim_PlayStealSe(void)
+{
+    PlaySoundEffect(0xA0);
+}

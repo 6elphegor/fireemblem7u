@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806E8D8
-sub_0806E8D8: @ 0x0806E8D8
+	thumb_func_start Manim_InitInfoBox
+Manim_InitInfoBox: @ 0x0806E8D8
 	push {r4, r7, lr}
 	sub sp, #0x18
 	mov r7, sp

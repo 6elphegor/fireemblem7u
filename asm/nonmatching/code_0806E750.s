@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806E750
-sub_0806E750: @ 0x0806E750
+	thumb_func_start Manim_DisplayDeathFade
+Manim_DisplayDeathFade: @ 0x0806E750
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp

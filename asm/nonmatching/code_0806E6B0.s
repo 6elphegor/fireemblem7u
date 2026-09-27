@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806E6B0
-sub_0806E6B0: @ 0x0806E6B0
+	thumb_func_start Manim_DisplayDeathQuote
+Manim_DisplayDeathQuote: @ 0x0806E6B0
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp

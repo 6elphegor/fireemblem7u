@@ -1612,3 +1612,4 @@ gTSA_GoalBox_TwoLines = 0x084048B4;
 gTSA_GoalBox_OneLine = 0x0840493C;
 Img_PrepHelpButtonSprites = 0x08405170;
 ProcScr_ManimEnd = 0x08C9D6DC;
+ProcScr_ManimExpBar = 0x08C9D820;

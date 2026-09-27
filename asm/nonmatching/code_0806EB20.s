@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806EB20
-sub_0806EB20: @ 0x0806EB20
+	thumb_func_start Manim_PlayStealSe
+Manim_PlayStealSe: @ 0x0806EB20
 	push {r7, lr}
 	mov r7, sp
 	ldr r1, _0806EB40 @ =0x0202BBF8

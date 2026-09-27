@@ -42,6 +42,15 @@ struct ManimSt {
 
 extern struct ManimSt EWRAM_DATA gManimSt;
 
+struct ManimExpBarProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 exp_from;
+    /* 66 */ s16 exp_to;
+    /* 68 */ s16 actor;
+    /* 6A */ s16 timer;
+};
+
 // Manim_StoleItemPopup
 // Manim_WeaponBrokePopup
 // ManimShouldBuDisplayWeaponBroke
@@ -55,14 +64,14 @@ extern struct ManimSt EWRAM_DATA gManimSt;
 // Manim_ShowPoisonEffectIfAny
 // Manim_MoveCameraOntoSubject
 // Manim_MoveCameraOntoTarget
-// sub_0806E6B0
-// sub_0806E750
-// sub_0806E7C4
-// sub_0806E8D8
-// sub_0806EA94
-// sub_0806EADC
-// sub_0806EAEC
-// sub_0806EB20
+// Manim_DisplayDeathQuote
+// Manim_DisplayDeathFade
+// Manim_DisplayExpBar
+// Manim_InitInfoBox
+// Manim_CallBattleQuoteEvents
+// SetBattleMuPaletteByIndex
+// SetBattleMuPalette
+// Manim_PlayStealSe
 // InitManimActor
 // sub_0806EC18
 // InitManimActorFacings

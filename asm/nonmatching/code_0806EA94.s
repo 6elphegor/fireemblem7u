@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806EA94
-sub_0806EA94: @ 0x0806EA94
+	thumb_func_start Manim_CallBattleQuoteEvents
+Manim_CallBattleQuoteEvents: @ 0x0806EA94
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
