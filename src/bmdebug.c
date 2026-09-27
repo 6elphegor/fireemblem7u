@@ -1,6 +1,8 @@
 #include "gbafe.h"
 #include "gbafe/bmmenu.h"
 
+extern int TacticianBirthAffins[12];
+
 struct DebugChargeMsgs { int msg[3]; };
 
 extern const struct DebugChargeMsgs sDebugChargeMsgs;
@@ -677,9 +679,88 @@ int sub_0801BF38(void)
     Proc_Goto(Proc_Find(ProcScr_GameControl), 15);
 }
 
-ASM_FUNC("asm/nonmatching/code_0801BF54.s");
+int Debug_GetChapterId(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int n;
 
-ASM_FUNC("asm/nonmatching/code_0801C070.s");
+    TmFillRect_thm(gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile), 8, 1, 0);
+
+    if (gPlaySt.tact_enabled)
+    {
+        InitIcons();
+        ApplyIconPalettes(4);
+
+        ClearText(&menuItemProc->text);
+        Text_InsertDrawNumberOrBlank(&menuItemProc->text, 0x30, 0, gPlaySt.tact_birth + 1);
+        Text_InsertDrawNumberOrBlank(&menuItemProc->text, 0x48, 2, gPlaySt.unk2C_04);
+
+        n = gPlaySt.unk2C_04 / 12;
+
+        if (n > 10)
+            n = 10;
+
+        Text_InsertDrawNumberOrBlank(&menuItemProc->text, 0x58, 3, n);
+        PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
+        PutIcon(gBg0Tm + TM_OFFSET(menuItemProc->xTile + 1, menuItemProc->yTile),
+            TacticianBirthAffins[gPlaySt.tact_birth] + 0x79, 0x5000);
+    }
+    else
+    {
+        ClearText(&menuItemProc->text);
+        Text_InsertDrawString(&menuItemProc->text, 8, 1, DecodeMsg(0x1290));
+        PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
+    }
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
+
+u8 DebugMenuMapIdleCore(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int v;
+
+    if (gpKeySt->repeated & (L_BUTTON | R_BUTTON | DPAD_LEFT | DPAD_RIGHT | SELECT_BUTTON))
+    {
+        if ((gpKeySt->repeated & DPAD_LEFT) && gPlaySt.unk2C_04 > 0)
+        {
+            v = gPlaySt.unk2C_04 - 1;
+
+            if (v > 0xFF)
+                v = 0xFF;
+
+            gPlaySt.unk2C_04 = v;
+        }
+
+        if (gpKeySt->repeated & DPAD_RIGHT)
+        {
+            v = gPlaySt.unk2C_04 + 1;
+
+            if (v > 0xFF)
+                v = 0xFF;
+
+            gPlaySt.unk2C_04 = v;
+        }
+
+        if (gpKeySt->repeated & L_BUTTON)
+            gPlaySt.tact_enabled = 0;
+
+        if (gpKeySt->repeated & R_BUTTON)
+            gPlaySt.tact_enabled = 1;
+
+        if (gpKeySt->repeated & SELECT_BUTTON)
+        {
+            v = gPlaySt.tact_birth;
+
+            if (v <= 10)
+                gPlaySt.tact_birth = v + 1;
+            else
+                gPlaySt.tact_birth = 0;
+        }
+
+        Debug_GetChapterId(menuProc, menuItemProc);
+    }
+
+    return 0;
+}
 
 u8 sub_0801C164(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {
