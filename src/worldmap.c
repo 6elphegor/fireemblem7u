@@ -2312,7 +2312,40 @@ void WorldFlush_Prepare(struct WmSpotlightProc * proc)
     proc->y = 0x60;
 }
 
+#if NONMATCHING
+// the original merges the win_ct bitfield read-modify-writes (one load/store per byte)
+void WorldFlushInit(struct WmSpotlightProc * proc)
+{
+    proc->timer = 0;
+
+    InitScanlineEffect();
+
+    SetBlendTargetA(1, 1, 1, 1, 1);
+
+    SetWin0Box(0, 0, 240, 160);
+    SetWinEnable(1, 0, 0);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 1, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetBlendConfig(2, 0, 0, 0);
+
+    gWmHBlankFlags |= 2;
+
+    SetOnHBlankA(NULL);
+    SetOnHBlankA(WorldFlushHBlank);
+
+    PlaySoundEffect(0x269);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B608C.s");
+#endif
 void WorldFlushOut(struct WmSpotlightProc * proc)
 {
     int max = 64;
