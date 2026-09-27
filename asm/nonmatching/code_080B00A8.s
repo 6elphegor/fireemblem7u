@@ -32,7 +32,7 @@ _080B00D4:
 	ldr r0, [r0]
 	adds r0, r0, r6
 	ldrb r0, [r0]
-	bl sub_080B02E4
+	bl GetClassDisplayFontInfo
 	cmp r0, #0
 	beq _080B00F2
 	ldrb r1, [r0, #5]

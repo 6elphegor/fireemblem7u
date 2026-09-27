@@ -1553,3 +1553,4 @@ gMid_Lv = 0x08CC26D4;
 Img_ArenaBuildingFront = 0x083EFA3C;
 Tsa_ArenaBuildingFront = 0x083F2618;
 Pal_ArenaBuildingFront = 0x083F2ACC;
+gClassDisplayFontData = 0x08CE6D80;

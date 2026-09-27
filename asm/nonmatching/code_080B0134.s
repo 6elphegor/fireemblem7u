@@ -112,7 +112,7 @@ _080B01FC:
 	ldr r0, [r0]
 	add r0, sb
 	ldrb r0, [r0]
-	bl sub_080B02E4
+	bl GetClassDisplayFontInfo
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _080B025A

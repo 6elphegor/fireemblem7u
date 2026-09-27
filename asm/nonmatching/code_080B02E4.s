@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B02E4
-sub_080B02E4: @ 0x080B02E4
+	thumb_func_start GetClassDisplayFontInfo
+GetClassDisplayFontInfo: @ 0x080B02E4
 	lsls r0, r0, #0x18
 	lsrs r1, r0, #0x18
 	adds r2, r1, #0
