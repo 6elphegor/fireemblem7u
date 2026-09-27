@@ -364,10 +364,10 @@ void sub_080327C4(ProcPtr proc, const char *str);
 // AddBallista
 // RideBallista
 // TryRemoveUnitFromBallista
-// sub_080347E4
+// IsBallista
 // sub_080347F8
 // sub_08034820
-// sub_0803483C
+// GetBallistaItemUses
 // ClearBallistaOccupied
 // SetBallistaOccupied
 // GetCurrentPromotedLevelBonus

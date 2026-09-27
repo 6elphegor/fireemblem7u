@@ -1834,14 +1834,14 @@ u8 GetUnitAttackBallistaCommandAvailability(const struct MenuItemDef * def, int 
 
     trap = GetTrapAt(gActiveUnit->xPos, gActiveUnit->yPos);
 
-    if (!sub_080347E4(trap))
+    if (!IsBallista(trap))
         return MENU_NOTSHOWN;
 
     ListAttackTargetsForWeapon(gActiveUnit, trap->extra | 0x100);
     if (CountTargets() == 0)
         return MENU_NOTSHOWN;
 
-    if (sub_0803483C(trap) == 0)
+    if (GetBallistaItemUses(trap) == 0)
         return MENU_DISABLED;
 
     return MENU_ENABLED;

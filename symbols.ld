@@ -1100,3 +1100,5 @@ gObject_16x16 = 0x08B905B8;
 ProcScr_08B90D88 = 0x08B90D88;
 gHelpInfo_MbpHp = 0x08CC2568;
 gHelpInfo_CbpHp = 0x08CC2610;
+sProcScr_ExecTrap8 = 0x08B96DE0;
+sProcScr_ExecTrapMine = 0x08B96E30;
