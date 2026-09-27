@@ -78,7 +78,9 @@ struct WmMuMoveProc {
     /* 00 */ PROC_HEADER;
     /* 29 */ u8 facing;
     /* 2A */ u8 count;
-    /* 2B */ STRUCT_PAD(0x2B, 0x2E);
+    /* 2B */ u8 jid;
+    /* 2C */ u8 pal;
+    /* 2D */ STRUCT_PAD(0x2D, 0x2E);
     /* 2E */ s16 xs[7];
     /* 3C */ s16 ys[7];
     /* 4A */ s16 curX;
@@ -184,6 +186,10 @@ extern struct ProcCmd CONST_DATA ProcScr_WmSpotlight[];
 extern struct ProcCmd CONST_DATA ProcScr_WorldFlush[];
 extern u16 const * CONST_DATA gWmMapTsaTable[][4];
 extern u8 const * CONST_DATA gWmMapImgTable[][4];
+extern u16 const Pal_Wm_084221D4[];
+extern u16 const Pal_Wm_08424CD8[];
+extern u16 const Pal_Wm_084225A8[];
+extern u8 const Img_Wm_08421C78[];
 extern u16 Pal_WmMap[];
 extern u16 Pal_WmMapA[];
 extern u8 Img_WmMapA[];
@@ -233,8 +239,34 @@ bool IsPointInQuad(int x, int y, int x1, int y1, int x2, int y2, int x3, int y3)
 void WmDrawMap(int mode, int x, int y);
 void WmRedrawMapAt(int mode, int x, int y);
 void WmDrawMapRegion(int x1, int y1, int x2, int y2);
+void WmPutMapTile(int x, int y);
 void WmCanvas_PutPixel(int x, int y, u8 color);
 void WmUpdateCamera(int x, int y);
+
+inline int WmToScreenX(int x)
+{
+    return x - gWmSt.x;
+}
+
+inline int WmToScreenY(int y)
+{
+    return y - gWmSt.y;
+}
+
+inline u8 const * GetWmMapImgPtr(int x, int y)
+{
+    u8 const * img = gWmMapImgTable[y >> 5][x >> 5];
+
+    return img + (((y & 0x1F) << 5) + (x & 0x1F)) * 0x20;
+}
+
+inline u16 const * GetWmMapTsaPtr(int x, int y)
+{
+    u16 const * tsa = gWmMapTsaTable[y >> 5][x >> 5];
+
+    tsa += (0x1F - (y & 0x1F)) * 0x20 + 1;
+    return tsa + (x & 0x1F);
+}
 
 s8 WmGetUnk02(void)
 {
@@ -269,7 +301,34 @@ void WmCanvas_Scroll(int dx, int dy)
     SetBgOffset(2, gWmCanvas.offX, gWmCanvas.offY);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3070.s");
+void WmCanvas_PutPixel(int x, int y, u8 color)
+{
+    int tx, ty;
+    u16 * tile;
+    u32 * p;
+
+    x += gWmCanvas.offX;
+    y += gWmCanvas.offY;
+
+    tx = x >> 3;
+    ty = y >> 3;
+
+    if ((unsigned) tx > 0x1F || (unsigned) ty > 0x1F)
+        return;
+
+    tile = (u16 *) ((u8 *) &gWmCanvas + (tx * 2 + ty * 0x40));
+
+    if (*tile == 0xFFFF)
+    {
+        *tile = gWmCanvas.nextTile;
+        gBg2Tm[ty * 0x20 + tx] = *tile + 0xA080;
+        gWmCanvas.nextTile++;
+        EnableBgSync(BG2_SYNC_BIT);
+    }
+
+    p = (u32 *) (VRAM + 0x1000 + *tile * 0x20);
+    p[y & 7] |= (color & 0xF) << ((x & 7) * 4);
+}
 
 void WmCanvas_FillQuad(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3, u8 color)
 {
@@ -371,7 +430,31 @@ void WmMoveCamera(int dx, int dy)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3338.s");
+void WmUpdateCamera(int x, int y)
+{
+    if (gWmSt.mode != 1)
+        return;
+
+    if (x != -1 && y != -1)
+    {
+        gWmSt.tx = x;
+        gWmSt.ty = y;
+    }
+
+    {
+        struct WmSt * st = &gWmSt;
+
+        if (*(u32 *) &st->tx == *(u32 *) &st->x)
+            return;
+
+        WmDrawMapRegion(st->x / 8, st->y / 8, st->tx / 8, st->ty / 8);
+    }
+
+    SetBgOffset(3, gWmSt.tx & 0xFF, gWmSt.ty & 0xFF);
+
+    gWmSt.x = gWmSt.tx;
+    gWmSt.y = gWmSt.ty;
+}
 
 int WmGetCameraX(void)
 {
@@ -383,7 +466,54 @@ int WmGetCameraY(void)
     return gWmSt.y;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B33D0.s");
+void sub_080B33D0(int x, int y, int w, int h, u16 oam2)
+{
+    int i;
+
+    if (w <= 7 || h <= 7)
+        return;
+
+    for (i = x + 8; i < x + w - 40; i += 32)
+    {
+        PutSpriteExt(2, i & 0x1FF, y & 0xFF, Sprite_32x8, oam2 + 0x806);
+        PutSpriteExt(2, (i & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_32x8, oam2 + 0x806);
+    }
+
+    for (; i < x + w - 24; i += 16)
+    {
+        PutSpriteExt(2, i & 0x1FF, y & 0xFF, Sprite_16x8, oam2 + 0x806);
+        PutSpriteExt(2, (i & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_16x8, oam2 + 0x806);
+    }
+
+    for (; i < x + w - 8; i += 8)
+    {
+        PutSpriteExt(2, i & 0x1FF, y & 0xFF, Sprite_8x8, oam2 + 0x806);
+        PutSpriteExt(2, (i & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_8x8, oam2 + 0x806);
+    }
+
+    for (i = y + 8; i < y + h - 40; i += 32)
+    {
+        PutSpriteExt(2, x & 0x1FF, i & 0xFF, Sprite_8x32, oam2 + 0x804);
+        PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, i & 0xFF, Sprite_8x32, oam2 + 0x804);
+    }
+
+    for (; i < y + h - 24; i += 16)
+    {
+        PutSpriteExt(2, x & 0x1FF, i & 0xFF, Sprite_8x16, oam2 + 0x804);
+        PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, i & 0xFF, Sprite_8x16, oam2 + 0x804);
+    }
+
+    for (; i < y + h - 8; i += 8)
+    {
+        PutSpriteExt(2, x & 0x1FF, i & 0xFF, Sprite_8x8, oam2 + 0x804);
+        PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, i & 0xFF, Sprite_8x8, oam2 + 0x804);
+    }
+
+    PutSpriteExt(2, x & 0x1FF, y & 0xFF, Sprite_8x8, oam2 + 0x805);
+    PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x1000, y & 0xFF, Sprite_8x8, oam2 + 0x805);
+    PutSpriteExt(2, (x & 0x1FF) + 0x2000, (y + h - 8) & 0xFF, Sprite_8x8, oam2 + 0x805);
+    PutSpriteExt(2, ((x + w - 8) & 0x1FF) + 0x3000, (y + h - 8) & 0xFF, Sprite_8x8, oam2 + 0x805);
+}
 void WmFade_Init(struct WmFadeProc * proc)
 {
     WmRedrawMap();
@@ -745,7 +875,177 @@ void WmMuMove_SetFacing(struct WmMuMoveProc * proc, int facing)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3EB4.s");
+void WmMuMove_Loop(struct WmMuMoveProc * proc)
+{
+    int idx = proc->pos >> 20;
+    int t = (proc->pos << 12) >> 22;
+    int facing;
+    int x, y;
+
+    if (proc->count != 0)
+    {
+    facing = proc->facing;
+
+    if (idx < proc->count - 1)
+    {
+        if (proc->lastIdx != idx)
+            proc->delay = ((proc->flags >> 21) & 3) * 30;
+
+        if (proc->delay != 0)
+        {
+            proc->delay--;
+            x = proc->curX;
+            y = proc->curY;
+        }
+        else
+        {
+            int x0, x1, x2, x3;
+            int y0, y1, y2, y3;
+            int dx, dy;
+            u16 speed;
+            u32 old;
+            int step;
+            u8 angle;
+
+            x0 = idx > 0 ? proc->xs[idx - 1] : proc->xs[idx];
+            x1 = proc->xs[idx];
+            x2 = proc->xs[idx + 1];
+            x3 = idx < proc->count - 2 ? proc->xs[idx + 2] : x2;
+
+            y0 = idx > 0 ? proc->ys[idx - 1] : proc->ys[idx];
+            y1 = proc->ys[idx];
+            y2 = proc->ys[idx + 1];
+            y3 = idx < proc->count - 2 ? proc->ys[idx + 2] : y2;
+
+            x = sub_080A86A0(x0, x1, x2, x3, t);
+            y = sub_080A86A0(y0, y1, y2, y3, t);
+
+            dx = sub_080A8778(x0, x1, x2, x3, t);
+            dy = sub_080A8778(y0, y1, y2, y3, t);
+
+            speed = Sqrt(dx * dx + dy * dy);
+
+            old = proc->dist;
+            proc->dist += speed;
+
+            if ((proc->flags & 0x1000000) && ((u32) proc->dist >> 12) > (old >> 12))
+                StartWmMarker(x, y, 0, proc);
+
+            step = 0x40000 / (speed + 1);
+
+            if (step < 0x200)
+                step = 0x200;
+
+            if (proc->flags & 0x1000)
+                step <<= 1;
+
+            if (proc->flags & 0x100000)
+                step >>= 1;
+
+            proc->pos += step;
+
+            angle = ArcTan2(dx, dy) >> 8;
+
+            if (proc->first)
+            {
+                if (angle <= 0x20 || angle >= 0xE1)
+                    facing = 1;
+
+                if (angle >= 0x21 && angle <= 0x60)
+                    facing = 2;
+
+                if (angle >= 0x61 && angle <= 0xA0)
+                    facing = 0;
+
+                if (angle >= 0xA1 && angle <= 0xE0)
+                    facing = 3;
+
+                proc->first = 0;
+            }
+            else
+            {
+                if (angle <= 0x1C || angle >= 0xE5)
+                    facing = 1;
+
+                if (angle >= 0x25 && angle <= 0x5C)
+                    facing = 2;
+
+                if (angle >= 0x65 && angle <= 0x9C)
+                    facing = 0;
+
+                if (angle >= 0xA5 && angle <= 0xDC)
+                    facing = 3;
+            }
+
+            WmMuMove_SetFacing(proc, facing);
+
+            if (proc->flags & 0x8000)
+            {
+                int sx = x - gWmSt.x;
+                int sy = y - gWmSt.y;
+                int ox = proc->curX - gWmSt.x;
+                int mx = sx - 8;
+                int oy = proc->curY - gWmSt.y;
+                int my = sy - 12;
+                int cdx = sx - ox;
+                int cdy = sy - oy;
+
+                if ((cdx < 0 && mx > 0x70) || (cdx > 0 && mx < 0x80))
+                    cdx = 0;
+
+                if ((cdy < 0 && my > 0x40) || (cdy > 0 && my < 0x50))
+                    cdy = 0;
+
+                if (cdx != 0 || cdy != 0)
+                {
+                    WmMoveCamera(cdx, cdy);
+                    WmUpdateCamera(-1, -1);
+                }
+            }
+
+            if (proc->flags & 0x2000000)
+                WmSetUnk02(1);
+        }
+    }
+    else
+    {
+        x = proc->xs[proc->count - 1];
+        y = proc->ys[proc->count - 1];
+
+        switch (proc->flags & 0x300)
+        {
+        case 0x200:
+            proc->first = 1;
+            WmMuMove_SetFacing(proc, 4);
+            break;
+
+        case 0x100:
+            ShowMu(proc->mu);
+            break;
+
+        case 0:
+            proc->first = 1;
+            WmMuMove_SetFacing(proc, 0xF);
+            break;
+        }
+
+        if (proc->flags & 0x2000000)
+            WmSetUnk02(0);
+    }
+
+    proc->curX = x;
+    proc->curY = y;
+
+    SetMuScreenPosition(proc->mu, x - gWmSt.x - 8, y - gWmSt.y - 12);
+    ShowMu(proc->mu);
+    }
+    else
+    {
+        HideMu(proc->mu);
+    }
+
+    proc->lastIdx = idx;
+}
 void WmMuMove_OnEnd(struct WmMuMoveProc * proc)
 {
     if (proc->mu != NULL)
@@ -1051,7 +1351,89 @@ void WmMu_EndFlash(int idx)
     mgr->unk_48 = 0x20;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B4904.s");
+void StartWmMuMove(int idx, int x, int y, u32 config)
+{
+    struct WmMuMoveProc * proc;
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[0]->ent[idx];
+
+    switch (config & 0xF0000)
+    {
+    case 0x10000:
+        x -= 8;
+        y += 8;
+        break;
+
+    case 0x20000:
+        x += 8;
+        y += 8;
+        break;
+
+    case 0x30000:
+        x -= 8;
+        y -= 8;
+        break;
+
+    case 0x40000:
+        x += 8;
+        y -= 8;
+        break;
+
+    case 0x50000:
+        y -= 14;
+        break;
+
+    case 0x60000:
+        y += 14;
+        break;
+
+    case 0x70000:
+        x -= 14;
+        break;
+
+    case 0x80000:
+        x += 14;
+        break;
+    }
+
+    if (ent->anim == NULL)
+    {
+        proc = Proc_Start(ProcScr_WmMu, mgr);
+        mgr->slots[0]->ent[idx].anim = (void *) proc;
+
+        proc->mu = StartMuInternal(0, 0, config & 0xFF, 0x280, ((config >> 13) & 3) + 0xC);
+        HideMu(proc->mu);
+
+        proc->facing = 2;
+        SetMuFacing(proc->mu, 2);
+        StartUiStandingMu(proc->mu);
+
+        proc->jid = config;
+        proc->pal = ((config >> 13) & 3) + 0xC;
+
+        proc->mu->layer = 0x400;
+        proc->mu->sprite_anim->oam2 = proc->mu->config->chr + OAM2_PAL(proc->mu->config->pal) + proc->mu->layer;
+
+        proc->curX = x;
+        proc->curY = y;
+
+        ent->pal = proc->pal;
+        ent->state = 0;
+
+        WmMu_StartFlash(idx);
+    }
+    else
+    {
+        proc = (void *) mgr->slots[0]->ent[idx].anim;
+    }
+
+    proc->mu->sprite_anim->layer = ((config >> 10) & 3) + 6;
+    proc->flags = config;
+
+    proc->xs[proc->count] = x;
+    proc->ys[proc->count] = y;
+    proc->count++;
+}
 void EndWmMu(int idx)
 {
     struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
@@ -1291,7 +1673,59 @@ void WorldMap_Init(void)
     SetDispEnable(0, 0, 0, 0, 0);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B50C4.s");
+void WorldMap_InitDisplay(struct WorldMapProc * proc)
+{
+    proc->unk_40 = 0;
+    proc->unk_48 = 0;
+    proc->unk_54 = 0;
+
+    gDispIo.disp_ct.bg0_enable = 0;
+    gDispIo.disp_ct.bg1_enable = 0;
+    gDispIo.disp_ct.bg2_enable = 1;
+    gDispIo.disp_ct.bg3_enable = 0;
+    gDispIo.disp_ct.obj_enable = 1;
+
+    WmSetCamera(proc->mode, proc->x, proc->y);
+
+    SetBlendNone();
+
+    ApplyPaletteExt(Pal_Wm_084221D4, 0x260, 0x20);
+    ApplyPaletteExt(Pal_Wm_08424CD8, 0x200, 0x20);
+    ApplyPaletteExt(Pal_MiscUiGraphics, 0x360, 0x20);
+    ApplyPaletteExt(Pal_Wm_084225A8, 0x320, 0x20);
+    Decompress(Img_Wm_08421C78, (void *) (VRAM + 0x15000));
+
+    SetWinEnable(0, 0, 0);
+    SetWOutLayers(1, 1, 1, 1, 1);
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.win1_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetBlankBgColor(0, 0, 0);
+
+    SetBlendConfig(0, 0, 0, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 1);
+
+    gWmHBlankFlags = 0;
+
+    SetOnHBlankA(NULL);
+    SetOnHBlankA(WmHBlankHandler);
+
+    StartWmSpriteAnims(proc);
+    StartWmTextBox(proc);
+    StartWmUnitManager(proc);
+
+    if (proc->flags & 4)
+    {
+        if (proc->flags & 0x40)
+            NewFadeIn(1, NULL);
+        else
+            NewFadeIn(2, NULL);
+    }
+
+    WmSetUnk02(0);
+}
 void WorldMap_OnEnd(struct WorldMapProc * proc)
 {
     SetOnHBlankB(NULL);
@@ -1648,27 +2082,23 @@ void WmSpotlight_Init(struct WmSpotlightProc * proc)
 
     gWmHBlankFlags |= 2;
 }
-#if NONMATCHING
 void WmSpotlight_Loop(struct WmSpotlightProc * proc)
 {
     int max = 60;
     int k = 0x18;
-    int r, c;
+    int r, c, t;
 
-    proc->timer++;
-    r = k * proc->timer * proc->timer / (max * max);
-    c = 0x10 - 0x10 * proc->timer * proc->timer / (max * max);
+    t = ++proc->timer;
+    r = k * t * t / (max * max);
+    c = 0x10 - 0x10 * t * t / (max * max);
 
-    sub_0807764C(proc->x - gWmSt.x, proc->y - (gWmSt.y + 1), r);
+    sub_0807764C(WmToScreenX(proc->x), WmToScreenY(proc->y - 1), r);
 
     SetBlendConfig(2, 0, 0, c);
 
     if (proc->timer >= max)
         proc->timer = 0;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B5A84.s");
-#endif
 
 void WmEndSpotlight(void)
 {
@@ -1691,9 +2121,60 @@ void EndWmSpotlightProc(void)
     Proc_End(Proc_Find(ProcScr_WmSpotlight));
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5B80.s");
+#if NONMATCHING
+// differs only by a reserved (unused) 4-byte stack slot in the original
+void WmPutMapTile(int x, int y)
+{
+    if (x < 0 || y < 0 || x > 127 || y > 85)
+        return;
 
-ASM_FUNC("asm/nonmatching/code_080B5BFC.s");
+    gBg3Tm[(y & 0x1F) * 0x20 + (x & 0x1F)] = *GetWmMapTsaPtr(x, y);
+    CpuFastSet(GetWmMapImgPtr(x, y), (void *) (VRAM + 0x8000 + ((y & 0x1F) * 0x20 + (x & 0x1F)) * 0x20), 8);
+    EnableBgSync(BG3_SYNC_BIT);
+}
+#else
+ASM_FUNC("asm/nonmatching/code_080B5B80.s");
+#endif
+
+void WmDrawMapRegion(int x1, int y1, int x2, int y2)
+{
+    int ix, iy;
+
+    if (x1 < 0 && y1 < 0)
+    {
+        for (iy = 0; iy <= 20; iy++)
+            for (ix = 0; ix <= 30; ix++)
+                WmPutMapTile(x2 + ix, y2 + iy);
+    }
+    else if (y2 < y1)
+    {
+        for (iy = y2; iy < y1; iy++)
+            for (ix = 0; ix <= 30; ix++)
+                WmPutMapTile(x2 + ix, iy);
+
+        for (iy = y1; iy < y2 + 21; iy++)
+            for (ix = x2; ix < x1; ix++)
+                WmPutMapTile(ix, iy);
+
+        for (iy = y1; iy < y2 + 21; iy++)
+            for (ix = x1 + 31; ix < x2 + 31; ix++)
+                WmPutMapTile(ix, iy);
+    }
+    else
+    {
+        for (iy = y1 + 21; iy < y2 + 21; iy++)
+            for (ix = 0; ix <= 30; ix++)
+                WmPutMapTile(x2 + ix, iy);
+
+        for (iy = y2; iy < y1 + 21; iy++)
+            for (ix = x2; ix < x1; ix++)
+                WmPutMapTile(ix, iy);
+
+        for (iy = y2; iy < y1 + 21; iy++)
+            for (ix = x1 + 31; ix < x2 + 31; ix++)
+                WmPutMapTile(ix, iy);
+    }
+}
 void WmDrawCgMap(int idx)
 {
     int i;
@@ -1741,7 +2222,53 @@ void WmDrawMap(int mode, int x, int y)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5E80.s");
+void WmRedrawMapAt(int mode, int x, int y)
+{
+    int ix, iy, ty;
+
+    CpuFastSet(gPal, gPal + 0x80, 0x20);
+
+    if (mode == 1)
+    {
+        for (iy = 0; iy < 20; iy++)
+        {
+            ty = (y + iy) & 0x1F;
+
+            for (ix = 0; ix < 30; ix++)
+            {
+                CpuFastSet(
+                    (void *) (VRAM + 0x8000 + ((((x + ix) & 0x1F) + ty * 0x20) * 0x20)),
+                    (void *) (VRAM + 0x1000 + (iy * 0x20 + ix) * 0x20), 8);
+            }
+        }
+
+        for (iy = 0; iy < 20; iy++)
+        {
+            ty = (y + iy) & 0x1F;
+
+            for (ix = 0; ix < 30; ix++)
+            {
+                {
+                    int tx = (x + ix) & 0x1F;
+                    gBg2Tm[iy * 0x20 + ix] = iy * 0x20 + ix + ((gBg3Tm[ty * 0x20 + tx] & 0xF000) + 0x80) + -0x8000;
+                }
+            }
+        }
+    }
+    else
+    {
+        CpuFastSet((void *) (VRAM + 0x8000), (void *) (VRAM + 0x1000), 0x1400);
+
+        for (iy = 0; iy < 20; iy++)
+        {
+            for (ix = 0; ix < 30; ix++)
+                gBg2Tm[iy * 0x20 + ix] = gBg3Tm[iy * 0x20 + ix] + 0x8080;
+        }
+    }
+
+    EnablePalSync();
+    EnableBgSync(BG2_SYNC_BIT);
+}
 s8 GetWorldMapUnk54(void)
 {
     struct WorldMapProc * proc = Proc_Find(ProcScr_WorldMap);
@@ -1785,7 +2312,40 @@ void WorldFlush_Prepare(struct WmSpotlightProc * proc)
     proc->y = 0x60;
 }
 
+#if NONMATCHING
+// the original merges the win_ct bitfield read-modify-writes (one load/store per byte)
+void WorldFlushInit(struct WmSpotlightProc * proc)
+{
+    proc->timer = 0;
+
+    InitScanlineEffect();
+
+    SetBlendTargetA(1, 1, 1, 1, 1);
+
+    SetWin0Box(0, 0, 240, 160);
+    SetWinEnable(1, 0, 0);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 1, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetBlendConfig(2, 0, 0, 0);
+
+    gWmHBlankFlags |= 2;
+
+    SetOnHBlankA(NULL);
+    SetOnHBlankA(WorldFlushHBlank);
+
+    PlaySoundEffect(0x269);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B608C.s");
+#endif
 void WorldFlushOut(struct WmSpotlightProc * proc)
 {
     int max = 64;
@@ -1820,29 +2380,3 @@ void StartWorldFlush(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_WorldFlush, parent);
 }
-
-int WmToScreenX(int x)
-{
-    return x - gWmSt.x;
-}
-
-int WmToScreenY(int y)
-{
-    return y - gWmSt.y;
-}
-
-u8 const * GetWmMapImgPtr(int x, int y)
-{
-    u8 const * img = gWmMapImgTable[y >> 5][x >> 5];
-
-    return img + (((y & 0x1F) << 5) + (x & 0x1F)) * 0x20;
-}
-
-u16 const * GetWmMapTsaPtr(int x, int y)
-{
-    u16 const * tsa = gWmMapTsaTable[y >> 5][x >> 5];
-
-    tsa += (~y & 0x1F) * 0x20 + 1;
-    return tsa + (x & 0x1F);
-}
-
