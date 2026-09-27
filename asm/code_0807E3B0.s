@@ -16,7 +16,7 @@ sub_0807E3B0: @ 0x0807E3B0
 	bne _0807E3D0
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08011DAC
+	bl EventLoadUnitFromDef
 	b _0807E3D6
 _0807E3D0:
 	movs r0, #9

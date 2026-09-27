@@ -605,7 +605,7 @@ bool EventSpriteAnimExists(void);
 // EventEA_StartMixPalette
 // EventEB_EndMixPalette
 void EventLoadUnit(int pid, int jid, int x_load, int y_load, int x_move, int y_move, int faction_id, void * unk);
-// sub_08011DAC
+// EventLoadUnitFromDef
 void sub_08011E28(ProcPtr proc);
 void sub_08011F10(ProcPtr proc);
 // EvtCmd_WarpLoadUnits

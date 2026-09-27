@@ -231,14 +231,6 @@ SECTIONS
         build/src/eventscr_screenflashfx.o(.text);
         build/src/eventscr_fadefx.o(.text);
         build/src/eventscr_spriteanim.o(.text);
-        build/asm/code_08011CE0.o(.text);
-        build/asm/code_08011D24.o(.text);
-        build/asm/code_08011D30.o(.text);
-        build/asm/code_08011D34.o(.text);
-        build/asm/code_08011DAC.o(.text);
-        build/asm/code_08011E28.o(.text);
-        build/asm/code_08011F10.o(.text);
-        build/asm/code_08011F58.o(.text);
         build/src/sprite-anim.o(.text);
         build/src/game-ctrl.o(.text);
         build/asm/code_08012C60.o(.text);

@@ -2786,3 +2786,4 @@ gSpellAssocData = 0x08C999C0;
 gBuildDateStr = 0x080C57E0;
 gBuildNameStr = 0x080C57FC;
 ProcScr_CamMoveLinear = 0x08B92E70;
+gUnk_08BE3888 = 0x08BE3888;
