@@ -33,7 +33,6 @@ void sub_08047E84(u8 * str, int len, int x, int y, int palId, ProcPtr parent);
 ProcPtr StartNameEntrySpriteDraw(ProcPtr parent, int x, int y);
 void UpdateNameEntrySpriteDraw(void * proc, int xNew, int yNew, int xPointer, int cursorKind, int f);
 void PutLinkArenaChoiceBannerSprite(int x, int y);
-void WriteMultiArenaSaveTeam(int team, struct Unit * buffer, char * str);
 
 //! FE8U = 0x08044550
 const struct TacticianTextConf * GetTacticianTextConf(s16 idx)

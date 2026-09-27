@@ -80,12 +80,6 @@ struct Fe6LinkProc
     /* 68 */ s16 unk_68;
 };
 
-struct Fe6LinkSaveInfo
-{
-    /* 00 */ u32 data[8];
-    /* 20 */ u16 unk_20;
-};
-
 struct Fe6LinkRecvData
 {
     /* 00 */ u8 kind;
@@ -100,7 +94,6 @@ struct Fe6LinkRecvData
 extern struct Fe6LinkRecvData gUnk_Sio_02000C04;
 extern u8 gUnk_Sio_02000C1C[];
 
-void ReadFe6LinkSaveInfo(void * buf);
 
 extern u8 gUnk_Sio_02000C00[];
 
@@ -397,12 +390,12 @@ void sub_08043798(struct Fe6LinkProc * proc)
         ReadFe6LinkSaveInfo(&info);
 
         for (i = 0; i < 8; i++)
-            info.data[i] = ((u32 *)(gUnk_Sio_02000C1C + 4))[i];
+            info.flags[i] = ((u32 *)(gUnk_Sio_02000C1C + 4))[i];
 
         if (gUnk_Sio_02000C04.unk_05[proc->unk_60] == 0x19)
-            info.unk_20 = 2;
+            info.value = 2;
         else
-            info.unk_20 = 1;
+            info.value = 1;
 
         WriteFe6LinkSaveInfo(&info);
         Proc_Break(proc);

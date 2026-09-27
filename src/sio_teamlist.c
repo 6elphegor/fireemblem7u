@@ -3,14 +3,13 @@
 
 // FE8U: sio_teamlist.c
 
-#define MULTIARENA_TEAMNAME_SIZE 18
-#define MULTIARENA_MAX_TEAMS 10
+#define LINKARENA_TEAMNAME_LEN 19
 
 extern struct ProcCmd CONST_DATA ProcScr_SioTeamList[];
 
 struct LinkArenaTeamEnt
 {
-    /* 00 */ char name[MULTIARENA_TEAMNAME_SIZE + 1];
+    /* 00 */ char name[LINKARENA_TEAMNAME_LEN];
     /* 13 */ u8 unk_0f;
     /* 14 */ u8 unk_10;
     /* 15 */ STRUCT_PAD(0x15, 0x18);
@@ -55,7 +54,7 @@ extern struct LATeamListConfig CONST_DATA gSioTeamListConfig_2[];
 
 extern struct LATeamListConfig * CONST_DATA gSioTeamListConfigLut[];
 
-extern char gUnk_Sio_0203DD50[][MULTIARENA_TEAMNAME_SIZE + 1];
+extern char gUnk_Sio_0203DD50[][LINKARENA_TEAMNAME_LEN];
 extern struct Text gUnk_Sio_0203DA88[];
 extern struct Text Texts_0203DAB0;
 extern struct Font Font_0203DB64;
@@ -75,10 +74,6 @@ extern const u8 gUnknown_085AC604[];
 extern u16 Pal_SysBrownBox[];
 extern const s8 gUnknown_080D9D61[];
 
-s8 sub_080A1C44(int id, char * name);
-s8 sub_080A1E8C(int id, struct Unit * unit, char * name);
-void sub_080A1CC4(int id);
-void sub_080A1D90(int a, int b);
 void UpdateLinkArenaMenuScrollBar(u8 a, s16 b);
 void sub_08047B34(void);
 void sub_08047BD4(int a, int b);
@@ -165,7 +160,7 @@ int sub_0803DF48(int activeOption, u8 mode)
         case 0:
             for (i = 0; i < MULTIARENA_MAX_TEAMS; i++)
             {
-                if (sub_080A1C44(i, gLinkArenaTeamList[i].name) == 1)
+                if (ReadMultiArenaSaveTeamName(i, gLinkArenaTeamList[i].name) == 1)
                 {
                     gLinkArenaTeamList[i].unk_10 = ptr[activeOption].unk_04;
                     gLinkArenaTeamList[i].unk_0f = i;
@@ -177,7 +172,7 @@ int sub_0803DF48(int activeOption, u8 mode)
                     gLinkArenaTeamList[i].unk_0f = i | 0x80;
                 }
 
-                sub_080A1E8C(i, GetUnit(i * 5 + 1), buf);
+                ReadMultiArenaSaveTeam(i, GetUnit(i * 5 + 1), buf);
             }
 
             count = i;
@@ -188,11 +183,11 @@ int sub_0803DF48(int activeOption, u8 mode)
         case 2:
             for (i = 0; i < MULTIARENA_MAX_TEAMS; i++)
             {
-                if (sub_080A1C44(i, gLinkArenaTeamList[count].name) == 1)
+                if (ReadMultiArenaSaveTeamName(i, gLinkArenaTeamList[count].name) == 1)
                 {
                     gLinkArenaTeamList[count].unk_10 = ptr[activeOption].unk_04;
                     gLinkArenaTeamList[count].unk_0f = i;
-                    sub_080A1E8C(i, GetUnit(count * 5 + 1), buf);
+                    ReadMultiArenaSaveTeam(i, GetUnit(count * 5 + 1), buf);
 
                     count++;
                 }
@@ -269,8 +264,8 @@ void SioTeamList_EraseTeam(struct SioTeamListProc * proc)
 
     struct Unit * unit = GetUnit(team * 5 + 1);
 
-    sub_080A1CC4(gLinkArenaTeamList[team].unk_0f & 0x7f);
-    sub_080A1E8C(team, unit, gLinkArenaTeamList[team].name);
+    WipeMultiArenaSaveTeam(gLinkArenaTeamList[team].unk_0f & 0x7f);
+    ReadMultiArenaSaveTeam(team, unit, gLinkArenaTeamList[team].name);
 
     SioStrCpy(gSioStr_NoData, gLinkArenaTeamList[team].name); // "NO DATA"
 
@@ -562,7 +557,7 @@ void SioTeamList_StartUnitList(struct SioTeamListProc * proc)
     InitUnits();
 
     unit = GetUnit(1);
-    sub_080A1E8C(gLinkArenaTeamList[proc->unk_40].unk_0f, unit, buf);
+    ReadMultiArenaSaveTeam(gLinkArenaTeamList[proc->unk_40].unk_0f, unit, buf);
 
     StartUnitListScreenUnk(proc);
 
@@ -1028,7 +1023,7 @@ void SioTeamList_LoadTeam_Dummy(struct SioTeamListProc * proc)
 
     char buf[20];
 
-    sub_080A1E8C(proc->unk_40, GetUnit(1), buf);
+    ReadMultiArenaSaveTeam(proc->unk_40, GetUnit(1), buf);
 
     return;
 }

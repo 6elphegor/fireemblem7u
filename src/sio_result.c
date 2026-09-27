@@ -131,7 +131,7 @@ void SioResult_Init(struct SioResultProc * proc)
 
     PutSioText(0x3C2, 1); // "+Control Pad: move/B Button: back."
 
-    sub_080A1F2C(gSioResultRankings);
+    ReadMultiArenaSaveRankings(gSioResultRankings);
     DrawLinkArenaRankings();
 
     SetWinEnable(1, 0, 0);
@@ -283,7 +283,7 @@ void SioResult_NewHS_Init(struct SioResultProc * proc)
 
     PutText(&gSioTexts[0], gBg0Tm + TM_OFFSET(5, 5));
 
-    sub_080A1F2C(gSioResultRankings);
+    ReadMultiArenaSaveRankings(gSioResultRankings);
     DrawLinkArenaRankings();
 
     SetWinEnable(1, 1, 0);

@@ -13,9 +13,6 @@ extern u16 CONST_DATA Sprite_085A9F98[];
 
 void InitTalkTextFont(void);
 
-void EraseSaveRankData(void);
-void sub_0809F668(void); // FE8U EraseSoundRoomSaveData?
-void EraseLinkArenaStruct2(void);
 
 /**
  * Contains Link Arena functions that are called by events
@@ -341,7 +338,7 @@ void sub_08043170(ProcPtr proc)
         InitGlobalSaveInfo();
         ResetFe6LinkSaveInfo();
         EraseSaveRankData();
-        sub_0809F668();
+        EraseSoundRoomSaveData();
         EraseLinkArenaStruct2();
     }
     else

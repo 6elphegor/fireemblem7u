@@ -13,8 +13,6 @@ extern int gTargetKeyInSeqIndex;
 extern int gCurrentKeyInSeqIndex;
 extern u16 gKeyInputSequenceBuffer[];
 
-void sub_080A1F54(struct SioSaveConf * conf);
-void sub_080A1F90(struct SioSaveConf * conf);
 
 void SioHold_Loop(struct ProcSioHold * proc)
 {
@@ -140,9 +138,9 @@ void SioPlaySoundEffect(int idx)
 
 void sub_0803DDD0(void)
 {
-    sub_080A1F90(&gSioSaveConfig);
+    ReadMultiArenaSaveConfig(&gSioSaveConfig);
     gSioSaveConfig._unk3_ = true;
-    sub_080A1F54(&gSioSaveConfig);
+    WriteMultiArenaSaveConfig(&gSioSaveConfig);
 }
 
 bool IsKeyInputSequenceComplete(const u16 * list)

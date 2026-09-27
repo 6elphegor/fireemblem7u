@@ -3,13 +3,6 @@
 
 // FE8U: sio_bat.c
 
-struct GameSavePackedUnit { u32 raw[9]; };
-
-struct MultiArenaSaveTeam {
-    /* 00 */ char name[MULTIARENA_TEAMNAME_SIZE + 1];
-    /* 14 */ struct GameSavePackedUnit units[5];
-};
-
 extern struct Text gUnk_Sio_0203DA78;
 extern u8 gUnk_Sio_0203DAC0[];
 extern int gUnk_Sio_0203DD28;
@@ -19,7 +12,6 @@ extern const u16 gUnknown_085ADDA8[];
 extern struct FaceVramEnt CONST_DATA gUnknown_085A9864[];
 extern struct ProcCmd CONST_DATA gUnknown_085A93A0[];
 
-void sub_080A1C10(int team, struct MultiArenaSaveTeam * dst);
 void EndLinkArenaButtonSpriteDraw(void);
 void EndLinkArenaVersusSpriteDraw(void);
 void sub_08047C38(int a);
@@ -86,11 +78,11 @@ void sub_080403B0(struct SioBatProc * proc)
     u8 ranking = sub_0804528C();
     int points = gUnk_Sio_0203DD90.currentScore[gSioSt->selfId];
 
-    sub_080A1F2C(gSioResultRankings);
+    ReadMultiArenaSaveRankings(gSioResultRankings);
 
     proc->unk_58 = sub_08040280(ranking, playerCount, mode, points);
 
-    sub_080A1EF0(gSioResultRankings);
+    WriteMultiArenaSaveRankings(gSioResultRankings);
 
     if (proc->unk_58 != -1)
     {
@@ -229,7 +221,7 @@ void sub_08040714(struct SioBatProc * proc)
 
     sub_08047BD4(0, 2);
 
-    sub_080A1C44(gLinkArenaSt.unk_03, buf);
+    ReadMultiArenaSaveTeamName(gLinkArenaSt.unk_03, buf);
 
     SetTextFont(&Font_0203DB64);
     InitSystemTextFont();
@@ -470,7 +462,7 @@ void sub_08040E08(struct SioBatProc * proc)
     gUnk_Sio_0203DD28 = 0;
 
     InitUnits();
-    sub_080A1C10(gLinkArenaSt.unk_03, gUnknown_085A9884);
+    ReadMultiArenaSaveTeamRaw(gLinkArenaSt.unk_03, gUnknown_085A9884);
 
     for (i = 0; i < 5; i++)
     {

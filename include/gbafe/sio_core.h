@@ -747,17 +747,7 @@ void ScrollMultiArenaTeamSprites(int amount);
 void * memcpy(void * dst, const void * src, unsigned long n);
 void m4aMPlayFadeOut(struct MusicPlayerInfo * mplayInfo, u16 speed);
 
-#define MULTIARENA_TEAMNAME_SIZE 18
-#define MULTIARENA_MAX_TEAMS 10
-#define MULTIARENA_MAX_RANKINGS 10
 
-struct MultiArenaRankingEnt {
-    /* 00 */ u32 ranking : 2;
-    /*    */ u32 player_count : 2;
-    /*    */ u32 mode : 1;
-    /*    */ u32 points : 27;
-    /* 04 */ char name[12];
-};
 
 extern struct MultiArenaRankingEnt gSioResultRankings[];
 extern const int gLinkArenaStatusMsg[];
@@ -770,10 +760,6 @@ extern struct ProcCmd CONST_DATA ProcScr_SIOVSYNC[];
 extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN[];
 extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN2[];
 
-s8 sub_080A1C44(int team, char * dst); // ReadMultiArenaSaveTeamName
-s8 sub_080A1E8C(int team, struct Unit * units_dst, char * name_dst); // ReadMultiArenaSaveTeam
-void sub_080A1EF0(struct MultiArenaRankingEnt const * src); // WriteMultiArenaSaveRankings
-void sub_080A1F2C(struct MultiArenaRankingEnt * dst); // ReadMultiArenaSaveRankings
 int sub_0804528C(void); // FE8U sub_8049A60
 void sub_08048E0C(struct Unit * unit); // FE8U sub_804D40C
 ProcPtr StartTalkExt(int, int, const char *, ProcPtr);
@@ -794,13 +780,10 @@ extern const u8 Img_LinkArenaRankIcons[];
 extern const u16 Pal_LinkArenaRankIcons[];
 ProcPtr StartRuleSettingSpriteDrawInteractive(ProcPtr parent);
 void UpdateRuleSettingSprites(ProcPtr proc, s16 b, s16 xOption, s16 yOption);
-void sub_080A1F54(struct SioSaveConf * conf);
-void sub_080A1F90(struct SioSaveConf * conf);
 extern int gKeyInputSequenceTimer;
 extern int gTargetKeyInSeqIndex;
 extern int gCurrentKeyInSeqIndex;
 extern u16 gKeyInputSequenceBuffer[];
-bool sub_080A0A10(struct PlaySt * playSt); // IsGameNotFirstChapter
 ProcPtr StartSioMenuItem(ProcPtr parent, u8 xBase, u8 yBase, u8 index, u8 state);
 void SioMenuItem_SetArrowConfig(struct SioMenuItemProc * proc, int xLeft, int xRight, int leftSpeed, int rightSpeed);
 void SioMenuItem_SetPosition(struct SioMenuItemProc * proc, s16 x, s16 y);

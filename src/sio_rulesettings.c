@@ -126,7 +126,7 @@ void SioRuleSettings_Loop_Main(struct ProcSioRuleSettings * proc)
     if ((gpKeySt->pressed & B_BUTTON) != 0)
     {
         SioPlaySoundEffect(1);
-        sub_080A1F54(&gSioSaveConfig);
+        WriteMultiArenaSaveConfig(&gSioSaveConfig);
         Proc_Break(proc);
     }
 

@@ -5,9 +5,7 @@
 
 extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
 void sub_08044ED8(void);
-void sub_080A1AC8(void); // WriteNewMultiArenaSave
 void sub_08044FFC(void);
-s8 IsMultiArenaSaveReady(void);
 extern struct ProcCmd CONST_DATA ProcScr_SIOTERM[];
 extern struct ProcCmd CONST_DATA ProcScr_SIOPRA[];
 extern struct ProcCmd CONST_DATA ProcScr_SIOBAT[];
@@ -77,7 +75,7 @@ bool CheckSomethingSaveRelated(void)
 
         ReadGameSavePlaySt(i, &playSt);
 
-        if (sub_080A0A10(&playSt))
+        if (IsGameNotFirstChapter(&playSt))
         {
             return true;
         }
@@ -112,7 +110,7 @@ void SioMenu_LoadGraphics(struct SioMenuProc * proc)
 
     memcpy(title, gUnknown_081D5426, 5);
 
-    sub_080A1F90(&gSioSaveConfig);
+    ReadMultiArenaSaveConfig(&gSioSaveConfig);
     proc->unk_59 = gSioSaveConfig._unk3_;
 
     sub_08047B34();
@@ -242,7 +240,7 @@ void SioMenu_RestartGraphicsMaybe(struct SioMenuProc * proc)
 
     memcpy(title, gUnknown_081D5426, 5);
 
-    sub_080A1F90(&gSioSaveConfig);
+    ReadMultiArenaSaveConfig(&gSioSaveConfig);
     proc->unk_59 = gSioSaveConfig._unk3_;
 
     sub_08047B34();
@@ -491,7 +489,7 @@ void StartLinkArenaMainMenu(ProcPtr parent)
 
     if (!IsSaveValid(5))
     {
-        sub_080A1AC8();
+        WriteNewMultiArenaSave();
     }
 
     gLinkArenaSt.unk_05 = 0;
