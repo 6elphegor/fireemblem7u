@@ -1,0 +1,164 @@
+#include "gbafe.h"
+
+void SetFlag_145(void)
+{
+    SetFlag(0x91);
+}
+
+void ClearFlag_145(void)
+{
+    ClearFlag(0x91);
+}
+
+struct ProcDragonGateFx
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ s16 unk_4c;
+    /* 4E */ STRUCT_PAD(0x4E, 0x58);
+    /* 58 */ int unk_58;
+    /* 5C */ STRUCT_PAD(0x5C, 0x64);
+    /* 64 */ s16 unk_64;
+};
+
+void DragonGatefx_DistortionHandler(struct ProcDragonGateFx * proc)
+{
+    proc->unk_58++;
+
+    sub_08076F44(GetScanlineBuf(1, 0), proc->unk_58, 8, 3);
+    sub_08076FC4(GetScanlineBuf(1, 160), proc->unk_58, 8, 3, GetBgXOffset(BG_3));
+    SwapScanlineBufs();
+
+    SetBgOffset(proc->unk_64, GetBgXOffset(BG_3), 0);
+}
+
+void DragonGatefx_DrawLight(struct ProcDragonGateFx * proc);
+ASM_FUNC("asm/nonmatching/code_0807AED8.s");
+
+
+void DragonGatefx_DrawDragon(struct ProcDragonGateFx * proc);
+ASM_FUNC("asm/nonmatching/code_0807AFA0.s");
+
+
+void DragonGatefx_MergeDragon(struct ProcDragonGateFx * proc)
+{
+    s32 blend_amt = ++proc->unk_4c >> 2;
+
+    SetBlendAlpha(blend_amt, 16 - blend_amt);
+
+    if (blend_amt == 16)
+    {
+        Proc_Break(proc);
+        TmFill(gBg2Tm, TILEREF(0x0, 0));
+        EnableBgSync(BG2_SYNC_BIT);
+    }
+}
+
+void sub_0807B0D4(struct ProcDragonGateFx * proc);
+ASM_FUNC("asm/nonmatching/code_0807B0D4.s");
+
+
+void DragonGatefxSetHBlank(void)
+{
+    SetOnHBlankA(DragonGatefx_LightHBlank);
+}
+
+void DragonGatefx_End(void)
+{
+    CpuFastFill(0, (void *)0x06003000, 0x3000);
+    SetOnHBlankA(NULL);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+}
+
+// clang-format off
+
+struct ProcCmd CONST_DATA ProcScr_DragonGatefx[] =
+{
+    PROC_SET_END_CB(DragonGatefx_End),
+    PROC_CALL(DragonGatefx_DrawLight),
+
+    PROC_BLOCK,
+
+PROC_LABEL(0),
+    PROC_CALL(DragonGatefx_DrawDragon),
+    PROC_REPEAT(DragonGatefx_MergeDragon),
+
+    PROC_CALL(sub_0807B0D4),
+    PROC_SLEEP(1),
+
+    PROC_CALL(DragonGatefxSetHBlank),
+    PROC_BLOCK,
+
+    PROC_END,
+};
+
+// clang-format on
+
+void EventCall_StartDragonGatefx(ProcPtr parent)
+{
+    Proc_Start(ProcScr_DragonGatefx, parent);
+}
+
+void DrawDragonGateDragonfx(void)
+{
+    Proc_Goto(Proc_Find(ProcScr_DragonGatefx), 0);
+}
+
+void EndDragonGatefx(ProcPtr unused)
+{
+    Proc_End(Proc_Find(ProcScr_DragonGatefx));
+}
+
+struct DragonSpriteBlinkingProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ s16 timer;
+};
+
+void DragonSpriteBlinking_Init(struct DragonSpriteBlinkingProc * proc)
+{
+    proc->timer = 0;
+}
+
+void DragonSpriteBlinking_Loop(struct DragonSpriteBlinkingProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(0x86);
+
+    proc->timer++;
+
+    if ((unit != NULL) && (proc->timer & 1))
+    {
+        if (!(unit->state & US_NOT_DEPLOYED))
+        {
+            unit->state ^= US_HIDDEN;
+            RefreshEntityMaps();
+            RefreshUnitSprites();
+        }
+    }
+}
+
+// clang-format off
+
+struct ProcCmd CONST_DATA ProcScr_DragonSpriteBlinking[] =
+{
+    PROC_CALL(DragonSpriteBlinking_Init),
+    PROC_REPEAT(DragonSpriteBlinking_Loop),
+    /* BUG: no end? */
+};
+
+// clang-format on
+
+void StartDragonSpriteBlinking(ProcPtr parent)
+{
+    Proc_Start(ProcScr_DragonSpriteBlinking, parent);
+}
+
+void EndDragonSpriteBlinking(void)
+{
+    Proc_End(Proc_Find(ProcScr_DragonSpriteBlinking));
+}
