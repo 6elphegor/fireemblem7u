@@ -380,8 +380,8 @@ void sub_080327C4(ProcPtr proc, const char *str);
 /* banim.h */
 
 // NewEkrHenseiInitPROC
-// sub_0806B7F8
-// sub_0806B858
+// EkrHenseiInit_InitScreen
+// EkrHenseiInit_InitTimer
 // sub_806C064
 // sub_806C0C8
 // NewEkrHenseiEnd
