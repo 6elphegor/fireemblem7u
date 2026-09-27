@@ -22,11 +22,11 @@ StartCharacterEvent: @ 0x08078A40
 	mov r0, sp
 	strb r4, [r0, #0x1a]
 	strb r5, [r0, #0x1b]
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _08078A74
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 _08078A74:
 	add sp, #0x1c
 	pop {r4, r5}

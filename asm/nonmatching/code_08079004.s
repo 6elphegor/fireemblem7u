@@ -21,11 +21,11 @@ sub_08079004: @ 0x08079004
 	cmp r4, #0xb
 	bhi _08079050
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _08079050
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 	cmp r4, #1
 	bne _08079050
 	bl sub_0807CEFC

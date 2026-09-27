@@ -14,20 +14,20 @@ StartAvailableTurnEvents: @ 0x080789B8
 	ldr r0, [r0]
 	str r0, [sp]
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _080789F4
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 	b _080789EA
 	.align 2, 0
 _080789E0: .4byte 0x0202BBF8
 _080789E4:
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 _080789EA:
 	mov r0, sp
-	bl sub_08078180
+	bl SearchNextAvailableEvent
 	cmp r0, #0
 	bne _080789E4
 _080789F4:

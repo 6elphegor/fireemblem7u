@@ -22,7 +22,7 @@ StartAvailableTileEvent: @ 0x08078C14
 	mov r0, sp
 	strb r4, [r0, #0x18]
 	strb r5, [r0, #0x19]
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	bne _08078C44
 	b _08078DF2
@@ -73,7 +73,7 @@ _08078C60: @ jump table
 	.4byte _08078CE6 @ case 29
 _08078CD8:
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 	ldr r0, [sp, #0x10]
 	cmp r0, #3
 	beq _08078CE6
@@ -115,7 +115,7 @@ _08078D08:
 	b _08078D02
 _08078D32:
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 	b _08078D02
 _08078D3A:
 	ldr r4, [sp, #0x14]
@@ -134,7 +134,7 @@ _08078D3A:
 	lsrs r0, r0, #0x18
 	bl sub_0800F028
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 	b _08078DB0
 _08078D64:
 	cmp r4, #0x76

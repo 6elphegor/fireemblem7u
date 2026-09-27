@@ -20,11 +20,11 @@ sub_080790C4: @ 0x080790C4
 	cmp r2, #0xb
 	bhi _080790F2
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _080790F2
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 _080790F2:
 	movs r0, #0
 	add sp, #0x1c

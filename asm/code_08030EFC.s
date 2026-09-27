@@ -20,7 +20,7 @@ sub_08030EFC: @ 0x08030EFC
 	ldrh r0, [r2, #0x16]
 	strb r0, [r1, #0x19]
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _08030F4E
 	ldr r0, [sp, #0xc]

@@ -21,11 +21,11 @@ RunWaitEvents: @ 0x08079180
 	ldrb r0, [r2, #0x11]
 	strb r0, [r1, #0x19]
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _080791B2
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 _080791B2:
 	add sp, #0x1c
 	pop {r0}

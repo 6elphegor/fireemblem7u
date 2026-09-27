@@ -14,7 +14,7 @@ CheckAvailableTurnEvent: @ 0x08078988
 	ldr r0, [r0]
 	str r0, [sp]
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	bne _080789B0
 	movs r0, #0

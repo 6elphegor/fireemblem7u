@@ -21,7 +21,7 @@ CheckForWaitEvents: @ 0x08079140
 	ldrb r0, [r2, #0x11]
 	strb r0, [r1, #0x19]
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	bne _08079178
 	movs r0, #0

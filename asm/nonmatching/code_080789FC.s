@@ -22,7 +22,7 @@ sub_080789FC: @ 0x080789FC
 	mov r0, sp
 	strb r4, [r0, #0x1a]
 	strb r5, [r0, #0x1b]
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	bne _08078A34
 	movs r0, #0

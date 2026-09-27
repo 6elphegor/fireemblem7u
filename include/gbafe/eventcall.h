@@ -3,12 +3,12 @@
 #include "global.h"
 #include "proc.h"
 
-// sub_08078100
-// sub_08078120
-// sub_0807812C
-// sub_08078180
+// StartEventFromInfo
+// SetEventInfoFlag
+// SearchAvailableEvent
+// SearchNextAvailableEvent
 // sub_8078980
-// sub_080781B4
+// EvCheck01_AFEV
 // sub_80789AC
 // sub_0807821C
 // sub_8078A8C

@@ -20,7 +20,7 @@ sub_0807905C: @ 0x0807905C
 	cmp r2, #0xb
 	bhi _080790AA
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _080790AA
 	mov r0, sp
@@ -30,7 +30,7 @@ sub_0807905C: @ 0x0807905C
 	cmp r0, #1
 	beq _080790A4
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 	movs r0, #1
 	b _080790AC
 	.align 2, 0
@@ -38,7 +38,7 @@ _0807909C: .4byte 0x0202BBF8
 _080790A0: .4byte 0x08C9EA2C
 _080790A4:
 	mov r0, sp
-	bl sub_08078120
+	bl SetEventInfoFlag
 _080790AA:
 	movs r0, #0
 _080790AC:

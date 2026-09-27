@@ -1,14 +1,194 @@
 #include "gbafe.h"
 
-ASM_FUNC("asm/nonmatching/code_08078100.s");
-ASM_FUNC("asm/nonmatching/code_08078120.s");
-ASM_FUNC("asm/nonmatching/code_0807812C.s");
-ASM_FUNC("asm/nonmatching/code_08078180.s");
-ASM_FUNC("asm/nonmatching/code_080781B0.s");
-ASM_FUNC("asm/nonmatching/code_080781B4.s");
-ASM_FUNC("asm/nonmatching/code_080781DC.s");
-ASM_FUNC("asm/nonmatching/code_0807821C.s");
-ASM_FUNC("asm/nonmatching/code_080782BC.s");
+#define EVT_CMD_LO(cmd) (((cmd) & 0x0000FFFF))
+#define EVT_CMD_HI(cmd) (((cmd) & 0xFFFF0000) >> 16)
+#define EVT_CMD_B1(cmd) (((cmd) & 0x000000FF))
+#define EVT_CMD_B2(cmd) (((cmd) & 0x0000FF00) >> 8)
+#define EVT_CMD_B3(cmd) (((cmd) & 0x00FF0000) >> 16)
+#define EVT_CMD_B4(cmd) (((cmd) & 0xFF000000) >> 24)
+
+#define EVENT_NOSCRIPT 1
+
+struct EventInfo
+{
+    /* 00 */ u32 const * listScript;
+    /* 04 */ u32 script;
+    /* 08 */ u32 flag;
+    /* 0C */ u32 commandId;
+    /* 10 */ u32 givenMoney;
+    /* 14 */ u32 givenItem;
+    /* 18 */ s8 xPos;
+    /* 19 */ s8 yPos;
+    /* 1A */ u8 pidA;
+    /* 1B */ u8 pidB;
+};
+
+struct EventListCmdInfo
+{
+    /* 00 */ int (* func)(struct EventInfo * info);
+    /* 04 */ int length;
+};
+
+struct EvCheck01
+{
+    /* 00 */ u32 unk0;
+    /* 04 */ u32 script;
+    /* 08 */ u16 flag;
+};
+
+struct EvCheck0F
+{
+    /* 00 */ u32 unk0;
+    /* 04 */ u32 unk4;
+    /* 08 */ u32 script;
+    /* 0C */ u32 unkC;
+};
+
+struct EvCheck0E_Area
+{
+    /* 00 */ u16 cmd;
+    /* 02 */ u16 flag;
+    /* 04 */ u8 const * list;
+};
+
+extern struct EventListCmdInfo gEventListCmdInfoTable[];
+
+
+void StartEventFromInfo(struct EventInfo * info)
+{
+    if (info->script != 0)
+    {
+        SetFlag(info->flag);
+
+        if (info->script != EVENT_NOSCRIPT)
+            StartEvent((void const *) info->script);
+    }
+}
+
+void SetEventInfoFlag(struct EventInfo * info)
+{
+    SetFlag(info->flag);
+}
+
+struct EventInfo * SearchAvailableEvent(struct EventInfo * info)
+{
+    int cmd;
+
+    info->script = 0;
+    info->flag = 0;
+
+    while (cmd = EVT_CMD_LO(info->listScript[0]),
+        CheckFlag(EVT_CMD_HI(info->listScript[0])) || gEventListCmdInfoTable[cmd].func(info) != 1)
+    {
+        info->listScript += gEventListCmdInfoTable[cmd].length;
+    }
+
+    if (info->script)
+        return info;
+
+    return NULL;
+}
+
+struct EventInfo * SearchNextAvailableEvent(struct EventInfo * info)
+{
+    if (info != NULL)
+    {
+        int cmdId = EVT_CMD_LO(info->listScript[0]);
+        info->listScript += gEventListCmdInfoTable[cmdId].length;
+
+        return SearchAvailableEvent(info);
+    }
+    return NULL;
+}
+
+int EvCheck00_Always(struct EventInfo * info)
+{
+    return 1;
+}
+
+int EvCheck01_AFEV(struct EventInfo * info)
+{
+    if (CheckFlag(((struct EvCheck01 const *) info->listScript)->flag) != 0)
+    {
+        info->script = ((struct EvCheck01 const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck01 const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+
+int EvCheck0F_(struct EventInfo * info)
+{
+    int unk = EVT_CMD_LO(((struct EvCheck0F const *) info->listScript)->unkC);
+    int unk2 = EVT_CMD_HI(((struct EvCheck0F const *) info->listScript)->unk0);
+
+    if ((CheckFlag(unk2) == 0) && (CheckFlag(unk) != 0))
+    {
+        info->script = ((struct EvCheck0F const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck0F const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+
+bool sub_0807821C(struct EventInfo * info)
+{
+    u8 i = 0;
+    u8 x = gBmSt.cursor.x;
+    u8 y = gBmSt.cursor.y;
+    struct EvCheck0E_Area const * ls = (void const *) info->listScript;
+    u8 const * list = ls->list;
+
+    if (list != NULL)
+    {
+        switch (ls->cmd)
+        {
+        case 0xF:
+            for (; list[i * 4] != 0xFF; i++)
+            {
+                if (x == list[i * 4] && y == list[i * 4 + 1])
+                    return TRUE;
+            }
+            break;
+
+        case 0x10:
+            if (gBmMapMovement[y][x] > 0x77)
+                break;
+
+            if (x < list[0] || y < list[1] || x > list[4] || y > list[5])
+                break;
+
+            return TRUE;
+
+        default:
+            return TRUE;
+        }
+    }
+    else
+    {
+        if (x == gActiveUnit->xPos && y == gActiveUnit->yPos)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+int EvCheck10_(struct EventInfo * info)
+{
+    int unk = EVT_CMD_LO(((struct EvCheck0F const *) info->listScript)->unkC);
+    int unk2 = EVT_CMD_HI(((struct EvCheck0F const *) info->listScript)->unk0);
+
+    if ((CheckFlag(unk2) == 0) && (CheckFlag(unk) != 0))
+    {
+        info->script = ((struct EvCheck0F const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck0F const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
 ASM_FUNC("asm/nonmatching/code_080782FC.s");
 ASM_FUNC("asm/nonmatching/code_080783F4.s");
 ASM_FUNC("asm/nonmatching/code_08078478.s");

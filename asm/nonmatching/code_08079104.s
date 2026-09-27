@@ -20,7 +20,7 @@ sub_08079104: @ 0x08079104
 	cmp r2, #0xb
 	bhi _08079138
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _08079138
 	movs r0, #1

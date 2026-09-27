@@ -19,11 +19,11 @@ sub_08078FC8: @ 0x08078FC8
 	cmp r1, #0xb
 	bhi _08078FF4
 	mov r0, sp
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _08078FF4
 	mov r0, sp
-	bl sub_08078100
+	bl StartEventFromInfo
 _08078FF4:
 	movs r0, #0
 	add sp, #0x1c

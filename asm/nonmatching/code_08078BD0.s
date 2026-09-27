@@ -22,7 +22,7 @@ GetAvailableTileEventCommand: @ 0x08078BD0
 	mov r0, sp
 	strb r4, [r0, #0x18]
 	strb r5, [r0, #0x19]
-	bl sub_0807812C
+	bl SearchAvailableEvent
 	cmp r0, #0
 	beq _08078C08
 	ldr r0, [sp, #0xc]
