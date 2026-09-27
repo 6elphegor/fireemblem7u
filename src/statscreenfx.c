@@ -1,0 +1,370 @@
+#include "gbafe.h"
+
+void DrawUiGaugeBitmapEdgeColumn(u8 * bitmap, int pixels_per_line, int column)
+{
+    bitmap[1 * pixels_per_line + column] = 4;
+    bitmap[2 * pixels_per_line + column] = 14;
+    bitmap[3 * pixels_per_line + column] = 3;
+}
+
+void DrawUiGaugeBitmapBaseColumn(u8 * bitmap, int pixels_per_line, int column)
+{
+    bitmap[0 * pixels_per_line + column] = 4;
+    bitmap[1 * pixels_per_line + column] = 14;
+    bitmap[2 * pixels_per_line + column] = 14;
+    bitmap[3 * pixels_per_line + column] = 14;
+    bitmap[4 * pixels_per_line + column] = 3;
+}
+
+void DrawUiGaugeBitmapFilledColumn(u8 * bitmap, int pixels_per_line, int column)
+{
+    bitmap[1 * pixels_per_line + column] = 1;
+    bitmap[2 * pixels_per_line + column] = 5;
+}
+
+void DrawUiGaugeBitmapBonusColumn(u8 * bitmap, int pixels_per_line, int column)
+{
+    bitmap[1 * pixels_per_line + column] = 13;
+    bitmap[2 * pixels_per_line + column] = 12;
+}
+
+void DrawUiGauge(int chr, int dot_x, int chr_count, int dot_width, int dot_plain, int dot_bonus)
+{
+    int i;
+
+    u8 * bitmap = gBuf;
+
+    CpuFastFill(0, bitmap, chr_count * 8 * 8);
+
+    DrawUiGaugeBitmapEdgeColumn(bitmap, chr_count * 8, dot_x);
+    DrawUiGaugeBitmapEdgeColumn(bitmap, chr_count * 8, dot_x + dot_width + 3);
+
+    for (i = 0; i < dot_width + 2; i++)
+    {
+        DrawUiGaugeBitmapBaseColumn(bitmap, chr_count * 8, i + 1 + dot_x);
+    }
+
+    for (i = 0; i < dot_plain; i++)
+    {
+        DrawUiGaugeBitmapFilledColumn(bitmap, chr_count * 8, i + 2 + dot_x);
+    }
+
+    for (i = 0; i < dot_bonus; i++)
+    {
+        DrawUiGaugeBitmapBonusColumn(bitmap, chr_count * 8, dot_plain + i + 2 + dot_x);
+    }
+
+    ApplyBitmap(bitmap, ((void *) VRAM) + chr * CHR_SIZE, chr_count, 1);
+}
+
+void PutDrawUiGauge(int chr, int width, u16 * tm, int tileref, int dot_width, int dot_plain, int dot_bonus)
+{
+    DrawUiGauge(chr, 2, width, dot_width, dot_plain, dot_bonus);
+
+    tileref += chr & 0x3FF; // TODO: macro?
+    PutAppliedBitmap(tm, tileref, width, 1);
+}
+
+void BackgroundSlide_Init(struct MuralBackgroundProc * proc)
+{
+    proc->offset = 0;
+}
+
+void BackgroundSlide_Loop(struct MuralBackgroundProc * proc)
+{
+    proc->offset++;
+
+    SetBgOffset(3, proc->offset / 4, 0);
+    REG_BG3HOFS = proc->offset / 4;
+}
+
+struct ProcCmd CONST_DATA ProcScr_BackgroundSlide[] = {
+    PROC_CALL(BackgroundSlide_Init),
+    PROC_REPEAT(BackgroundSlide_Loop),
+    PROC_END,
+};
+
+ProcPtr StartMuralBackgroundAlt(ProcPtr parent, void * vram, int pal)
+{
+    int i, tileref;
+    u16 * tm = gBg3Tm;
+
+    if (vram == NULL)
+        vram = ((void*) VRAM) + GetBgChrOffset(3);
+
+    if (pal < 0)
+        pal = BGPAL_MURALBACKGROUND;
+
+    if (gBmSt.flags & BM_FLAG_LINKARENA)
+        ApplyPalettes(Pal_LinkArenaMuralBackground, pal, 2);
+    else
+        ApplyPalettes(Pal_MuralBackground, pal, 2);
+
+    Decompress(Img_MuralBackground, vram);
+
+    tileref = ((((uintptr_t) (vram - GetBgChrOffset(3))) / CHR_SIZE) & 0xFFF) + TILE_PAL_SAFE(pal);
+
+    for (i = 0; i < 0x280; i++)
+        *tm++ = i + tileref;
+
+    return Proc_Start(ProcScr_BackgroundSlide, parent);
+}
+
+ProcPtr StartMuralBackgroundExt(ProcPtr parent, void * vram, int pal, u8 type)
+{
+    int i, tileref;
+    u16 * tm = gBg3Tm;
+
+    if (vram == NULL)
+        vram = ((void*) VRAM) + GetBgChrOffset(3);
+
+    if (pal < 0)
+        pal = BGPAL_MURALBACKGROUND;
+
+    if (type != 0)
+        ApplyPalettes(Pal_LinkArenaMuralBackground, pal, 2);
+    else
+        ApplyPalettes(Pal_MuralBackground, pal, 2);
+
+    Decompress(Img_MuralBackground, vram);
+
+    tileref = ((((uintptr_t) (vram - GetBgChrOffset(3))) / CHR_SIZE) & 0xFFF) + TILE_PAL_SAFE(pal);
+
+    for (i = 0; i < 0x280; i++)
+        *tm++ = i + tileref;
+
+    return Proc_Start(ProcScr_BackgroundSlide, parent);
+}
+
+void EndMuralBackground(void)
+{
+    Proc_EndEach(ProcScr_BackgroundSlide);
+}
+
+int GetLastStatScreenUnitId(void)
+{
+    return gStatScreenInfo.unit_id;
+}
+
+void SetStatScreenLastUnitId(int unit_id)
+{
+    gStatScreenInfo.unit_id = unit_id;
+}
+
+void SetStatScreenExcludedUnitFlags(int flags)
+{
+    gStatScreenInfo.excluded_unit_flags = flags;
+}
+
+struct TextInitInfo CONST_DATA gStatScreenTextList[] =
+{
+    { gStatScreenSt.text + STATSCREEN_TEXT_PNAME, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_JNAME, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_UNUSED, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_POW, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_SKL, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_SPD, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_LCK, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_DEF, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_RES, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_MOV, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_CON, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_AID, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_RESCUE, 9 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_AFFINITY, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_STATUS, 9 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_ITEM_A, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_ITEM_B, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_ITEM_C, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_ITEM_D, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_ITEM_E, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_EQUIPRANGE, 6 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_EQUIPATTACK, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_EQUIPHIT, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_EQUIPCRIT, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_EQUIPAVOID, 3 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_WEXP_A, 2 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_WEXP_B, 2 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_WEXP_C, 2 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_WEXP_D, 2 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_SUPPORT_A, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_SUPPORT_B, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_SUPPORT_C, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_SUPPORT_D, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_SUPPORT_E, 7 },
+    { gStatScreenSt.text + STATSCREEN_TEXT_BWL, 16 },
+
+    { 0 }, // end!
+};
+
+void InitStatScreenText(void)
+{
+    InitTextList(gStatScreenTextList);
+}
+
+void PutStatScreenText(struct StatScreenTextInfo const * list);
+ASM_FUNC("asm/nonmatching/code_0807FA48.s");
+
+
+void PutStatScreenLeftPanelInfo(void)
+{
+    char const * pname_str = DecodeMsg(UNIT_NAME_ID(gStatScreenSt.unit));
+    int pname_text_x = GetStringTextCenteredPos(8 * 7, pname_str);
+
+    TmFill(gBg0Tm, 0);
+
+    BattleGenerateUiStats(gStatScreenSt.unit, GetUnitEquippedWeaponSlot(gStatScreenSt.unit));
+
+    // display pname & jname
+
+    PutDrawText(gStatScreenSt.text + STATSCREEN_TEXT_PNAME,
+        gBg0Tm + TM_OFFSET(4, 10), TEXT_COLOR_SYSTEM_WHITE, pname_text_x, 0, pname_str);
+
+    PutDrawText(gStatScreenSt.text + STATSCREEN_TEXT_JNAME,
+        gBg0Tm + TM_OFFSET(1, 13), TEXT_COLOR_SYSTEM_WHITE, 0, 0, DecodeMsg(gStatScreenSt.unit->pClassData->nameTextId));
+
+    // display level, exp, hp
+
+    PutTwoSpecialChar(gBg0Tm + TM_OFFSET(1, 15), TEXT_COLOR_SYSTEM_GOLD, TEXT_SPECIAL_LV_A, TEXT_SPECIAL_LV_B);
+    PutSpecialChar(gBg0Tm + TM_OFFSET(5, 15), TEXT_COLOR_SYSTEM_GOLD, TEXT_SPECIAL_EXP_E);
+
+    PutTwoSpecialChar(gBg0Tm + TM_OFFSET(1, 17), TEXT_COLOR_SYSTEM_GOLD, TEXT_SPECIAL_HP_A, TEXT_SPECIAL_HP_B);
+    PutSpecialChar(gBg0Tm + TM_OFFSET(5, 17), TEXT_COLOR_SYSTEM_GOLD, TEXT_SPECIAL_SLASH);
+
+    PutNumberOrBlank(gBg0Tm + TM_OFFSET(4, 15), TEXT_COLOR_SYSTEM_BLUE, gStatScreenSt.unit->level);
+    PutNumberOrBlank(gBg0Tm + TM_OFFSET(7, 15), TEXT_COLOR_SYSTEM_BLUE, gStatScreenSt.unit->exp);
+
+    // Display current hp
+
+    if (GetUnitCurrentHp(gStatScreenSt.unit) > 99)
+    {
+        // Display '--' if current hp > 99
+        PutTwoSpecialChar(gBg0Tm + TM_OFFSET(3, 17), TEXT_COLOR_SYSTEM_BLUE,
+            TEXT_SPECIAL_DASH, TEXT_SPECIAL_DASH);
+    }
+    else
+    {
+        // Display current hp
+        PutNumberOrBlank(gBg0Tm + TM_OFFSET(4, 17), TEXT_COLOR_SYSTEM_BLUE,
+            GetUnitCurrentHp(gStatScreenSt.unit));
+    }
+
+    // Display max hp
+
+    if (GetUnitMaxHp(gStatScreenSt.unit) > 99)
+    {
+        // Display '--' if max hp > 99
+        PutTwoSpecialChar(gBg0Tm + TM_OFFSET(6, 17), TEXT_COLOR_SYSTEM_BLUE,
+            TEXT_SPECIAL_DASH, TEXT_SPECIAL_DASH);
+    }
+    else
+    {
+        // Display max hp
+        PutNumberOrBlank(gBg0Tm + TM_OFFSET(7, 17), TEXT_COLOR_SYSTEM_BLUE,
+            GetUnitMaxHp(gStatScreenSt.unit));
+    }
+}
+
+void DisplayBwl(void);
+ASM_FUNC("asm/nonmatching/code_0807FBF0.s");
+
+
+void PutStatScreenStatWithBar(int num, int x, int y, int base, int total, int max)
+{
+    int bonus = total - base;
+
+    PutNumberOrBlank(gUiTmScratchA + TM_OFFSET(x, y),
+        (base == max) ? TEXT_COLOR_SYSTEM_GREEN : TEXT_COLOR_SYSTEM_BLUE, base);
+
+    PutNumberBonus(bonus, gUiTmScratchA + TM_OFFSET(x + 1, y));
+
+    if (total > 30)
+    {
+        total = 30;
+        bonus = total - base;
+    }
+
+    PutDrawUiGauge(0x400 + 1 + num*6, 6,
+        gUiTmScratchC + TM_OFFSET(x - 2, y + 1),
+        TILEREF(0, BGPAL_STATSCREEN_6), max * 41 / 30, base * 41 / 30, bonus * 41 / 30);
+}
+
+
+void PutStatScreenPersonalInfoPage(void);
+ASM_FUNC("asm/nonmatching/code_0807FDF0.s");
+
+
+void PutStatScreenItemsPage(void);
+ASM_FUNC("asm/nonmatching/code_080800B4.s");
+
+
+void PutStatScreenSupportList(void)
+{
+    int count, i;
+
+    int y_tm = 6;
+    int line = 0;
+
+    int text_color = GetUnitTotalSupportLevel(gStatScreenSt.unit) == MAX_SIMULTANEOUS_SUPPORT_COUNT_PER_UNIT
+        ? TEXT_COLOR_SYSTEM_GREEN : TEXT_COLOR_SYSTEM_WHITE;
+
+    for (count = GetUnitSupporterCount(gStatScreenSt.unit), i = 0; i < count; i++)
+    {
+        int support_level = GetUnitSupportLevel(gStatScreenSt.unit, i);
+
+        if (support_level != 0)
+        {
+            int rank_color;
+
+            u8 pid = GetUnitSupportPid(gStatScreenSt.unit, i);
+
+            PutIcon(gUiTmScratchA + TM_OFFSET(4, y_tm),
+                GetAffinityIconByPid(pid),
+                TILEREF(0, BGPAL_ICONS + 1));
+
+            PutDrawText(gStatScreenSt.text + STATSCREEN_TEXT_SUPPORT_A + line,
+                gUiTmScratchA + TM_OFFSET(7, y_tm),
+                text_color, 0, 0, DecodeMsg(GetCharacterData(pid)->nameTextId));
+
+            rank_color = TEXT_COLOR_SYSTEM_BLUE;
+
+            if (support_level == SUPPORT_LEVEL_A)
+                rank_color = TEXT_COLOR_SYSTEM_GREEN;
+
+            if (text_color == TEXT_COLOR_SYSTEM_GREEN)
+                rank_color = TEXT_COLOR_SYSTEM_GREEN;
+
+            PutSpecialChar(gUiTmScratchA + TM_OFFSET(13, y_tm),
+                rank_color, GetSupportLevelSpecialChar(support_level));
+
+            y_tm += 2;
+            line++;
+        }
+    }
+}
+
+void PutStatScreenWeaponExpBar(int num, int x, int y, int item_kind);
+ASM_FUNC("asm/nonmatching/code_08080360.s");
+
+
+void PutStatScreenWeaponExpAndSupportsPage(void);
+ASM_FUNC("asm/nonmatching/code_08080424.s");
+
+
+void PutStatScreenPage(int page_id)
+{
+    typedef void (* PutPageFunc)(void);
+
+    PutPageFunc func_table[4] =
+    {
+        PutStatScreenPersonalInfoPage,
+        PutStatScreenItemsPage,
+        PutStatScreenWeaponExpAndSupportsPage,
+        PutStatScreenPersonalInfoPage,
+    };
+
+    CpuFastFill(0, gUiTmScratchA, sizeof(u16) * 0x20 * 20);
+    CpuFastFill(0, gUiTmScratchC, sizeof(u16) * 0x20 * 18);
+
+    func_table[page_id]();
+}
