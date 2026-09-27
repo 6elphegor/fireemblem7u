@@ -13,35 +13,277 @@ void SetManimActorFacing(int actor, int target, int facing);
 u8 GetSpellAssocFacing(int weapon);
 
 extern struct MuConfig sMuConfig[MU_MAX_COUNT];
-extern struct ProcCmd ProcScr_Mu[];
-extern struct ProcCmd ProcScr_MuStepSe[];
-extern struct ProcCmd ProcScr_MuFogBump[];
 extern u8 const Img_MuFogBump[];
 extern u16 const SpriteAnim_MuFogBump[];
-extern s16 const sMoveOffsetLut[];
-extern u16 const MuSoundScr_Foot[];
-extern u16 const MuSoundScr_FootHeavy[];
-extern u16 const MuSoundScr_Mounted[];
-extern u16 const MuSoundScr_Wyvern[];
-extern u16 const MuSoundScr_Pegasus[];
-extern u16 const MuSoundScr_46[];
-extern void (* const sMuStateFuncs[])(struct MuProc * proc);
-extern u16 const sMuChrOffLut_Default[];
-extern u16 const sMuChrOffLut[];
-extern u8 const sMuWalkSpeedLut[];
-extern u8 const sMuImgBufOffLut[];
 extern u8 gMUGfxBuffer[];
-extern struct MuInfo const gMuInfoTable[];
-extern struct ProcCmd ProcScr_MuDeathFade[];
-extern struct ProcCmd ProcScr_MuBlink[];
-extern u8 const sPixelEffectOrderLut[];
 extern u32 sKeptPixelsWordMask;
 extern u32 sClearedPixelWordMask;
-extern struct ProcCmd ProcScr_MuPixelEffect[];
-extern struct ProcCmd ProcScr_MuRestorePalInfo[];
-extern struct ProcCmd ProcScr_MuCritFlash[];
-extern struct ProcCmd ProcScr_MuHitFlash[];
-extern u16 const * const gMuFlashPalLut[];
+extern u16 const Pal_AllBlack[];
+extern u16 const Pal_AllWhite[];
+extern u16 const Pal_AllRed[];
+extern u16 const Pal_AllGreen[];
+extern u16 const Pal_AllBlue[];
+extern u16 const Pal_AllYellow[];
+
+CONST_DATA u16 const * gMuFlashPalLut[] = {
+    [MU_FLASH_WHITE] = Pal_AllWhite,
+    [MU_FLASH_BLACK] = Pal_AllBlack,
+    [MU_FLASH_RED] = Pal_AllRed,
+    [MU_FLASH_GREEN] = Pal_AllGreen,
+    [MU_FLASH_BLUE] = Pal_AllBlue,
+    [MU_FLASH_5] = Pal_AllYellow,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuStepSe[] = {
+    PROC_CALL(MuStepSe_Init),
+    PROC_YIELD,
+    PROC_CALL(MuStepSe_PlaySeA),
+    PROC_YIELD,
+    PROC_CALL(MuStepSe_PlaySeB),
+    PROC_END,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuFogBump[] = {
+    PROC_CALL(MuFogBump_Init),
+    PROC_REPEAT(MuFogBump_ScaleLoop),
+    PROC_REPEAT(MuFogBump_EndLoop),
+    PROC_END,
+};
+
+CONST_DATA s16 sMoveOffsetLut[] = {
+    -1, 0, // left
+    +1, 0, // right
+    0, +1, // down
+    0, -1, // up
+};
+
+CONST_DATA u16 MuSoundScr_Foot[] = {
+    0x10, 2,
+    SONG_96, 0, 0, 0, 0, 0, 0, 0,
+    SONG_97, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA u16 MuSoundScr_FootHeavy[] = {
+    0x20, 2,
+    SONG_A4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    SONG_A5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA u16 MuSoundScr_Mounted[] = {
+    0x15, 3,
+    SONG_9A, 0, 0,
+    SONG_9B, 0, 0, 0, 0, 0, 0,
+    SONG_9C, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA u16 MuSoundScr_Wyvern[] = {
+    0x14, 1,
+    SONG_A0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA u16 MuSoundScr_Pegasus[] = {
+    0x14, 1,
+    SONG_A6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA u16 MuSoundScr_46[] = {
+    0x14, 1,
+    0x2E0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+void (* CONST_DATA sMuStateFuncs[])(struct MuProc * proc) = {
+    [MU_STATE_NONE] = Mu_OnStateNone,
+    [MU_STATE_INACTIVE] = Mu_OnStateDoNothing,
+    [MU_STATE_MOVEMENT] = Mu_OnStateMovement,
+    [MU_STATE_SLEEPING] = Mu_OnStateSleeping,
+    [MU_STATE_UNK4] = Mu_OnStateUnk4,
+    [MU_STATE_BUMPING] = Mu_OnStateBump,
+    [MU_STATE_DISPLAY_UI] = Mu_OnStateDoNothing,
+    [MU_STATE_DEATHFADE] = Mu_OnStateDoNothing,
+};
+
+struct ProcCmd CONST_DATA ProcScr_Mu[] = {
+    PROC_NAME_DEBUG("MOVEUNIT"),
+    PROC_MARK(4),
+    PROC_SET_END_CB(MU_OnEnd),
+    PROC_REPEAT(Mu_OnLoop),
+};
+
+CONST_DATA u16 sMuChrOffLut_Default[MU_MAX_COUNT] = {
+    0x00, 0x10, 0x08, 0x18,
+};
+
+CONST_DATA u16 sMuChrOffLut[MU_MAX_COUNT] = {
+    0x00, 0x08, 0x04, 0x10,
+};
+
+CONST_DATA u8 sMuWalkSpeedLut[2] = {
+    2, 1,
+};
+
+CONST_DATA u8 sMuImgBufOffLut[MU_MAX_COUNT + 1] = {
+    0, // dummy because active ids start at 1
+    0, 2, 1, 3,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuDeathFade[] = {
+    PROC_REPEAT(MuDeathFade_OnLoop),
+    PROC_SLEEP(15),
+    PROC_END,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuBlink[] = {
+    PROC_REPEAT(MuBlink_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA u8 sPixelEffectOrderLut[0x40] = {
+    0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+    0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+    0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+    0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuPixelEffect[] = {
+    PROC_REPEAT(MuPixelEffect_OnLoop),
+    PROC_END,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuRestorePalInfo[] = {
+    PROC_SLEEP(8),
+    PROC_CALL(MuRestorePalInfo_Apply),
+    PROC_END,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuCritFlash[] = {
+    PROC_CALL(MuCritFlash_Init),
+    PROC_SLEEP(1),
+    PROC_CALL(MuCritFlash_SetFadedPalette),
+    PROC_SLEEP(2),
+    PROC_CALL(MuCritFlash_SetRegularPalette),
+    PROC_SLEEP(3),
+    PROC_CALL(MuCritFlash_SetFadedPalette),
+    PROC_SLEEP(2),
+    PROC_CALL(MuCritFlash_SetRegularPalette),
+    PROC_SLEEP(3),
+    PROC_CALL(MuCritFlash_SetFadedPalette),
+    PROC_SLEEP(1),
+    PROC_CALL(MuCritFlash_StartFadeBack_maybe),
+    PROC_REPEAT(MuCritFlash_SpriteShakeLoop),
+    PROC_SLEEP(17),
+    PROC_CALL(MuCritFlash_RestorePalette),
+    PROC_END,
+};
+
+struct ProcCmd CONST_DATA ProcScr_MuHitFlash[] = {
+    PROC_SLEEP(17),
+    PROC_CALL(MuFlashFadeFrom_RestorePal),
+    PROC_END,
+};
+
+// Map sprite graphics and animation of each class
+CONST_DATA struct MuInfo gMuInfoTable[] = {
+    [CLASS_LORD_ELIWOOD - 1] = { (u8 const *) 0x083B8CAC, (u16 const *) 0x083B9670 },
+    [CLASS_LORD_LYN - 1] = { (u8 const *) 0x083B97C8, (u16 const *) 0x083B9F88 },
+    [CLASS_LORD_HECTOR - 1] = { (u8 const *) 0x083BA0E0, (u16 const *) 0x083BA990 },
+    [CLASS_KNIGHT_LORD_04 - 1] = { (u8 const *) 0x083B8CAC, (u16 const *) 0x083B9670 },
+    [CLASS_BLADE_LORD_05 - 1] = { (u8 const *) 0x083B97C8, (u16 const *) 0x083B9F88 },
+    [CLASS_GREAT_LORD_06 - 1] = { (u8 const *) 0x083BA0E0, (u16 const *) 0x083BA990 },
+    [CLASS_KNIGHT_LORD - 1] = { (u8 const *) 0x083BAAE8, (u16 const *) 0x083BB458 },
+    [CLASS_BLADE_LORD - 1] = { (u8 const *) 0x083BB5B8, (u16 const *) 0x083BBE44 },
+    [CLASS_GREAT_LORD - 1] = { (u8 const *) 0x083BBFA4, (u16 const *) 0x083BCA90 },
+    [CLASS_MERCENARY - 1] = { (u8 const *) 0x083BCBE8, (u16 const *) 0x083BD38C },
+    [CLASS_MERCENARY_F - 1] = { (u8 const *) 0x083BD4E4, (u16 const *) 0x083BDC4C },
+    [CLASS_HERO - 1] = { (u8 const *) 0x083BDDA4, (u16 const *) 0x083BE700 },
+    [CLASS_HERO_F - 1] = { (u8 const *) 0x083BE860, (u16 const *) 0x083BF1E0 },
+    [CLASS_MYRMIDON - 1] = { (u8 const *) 0x083BF340, (u16 const *) 0x083BFB28 },
+    [CLASS_MYRMIDON_F - 1] = { (u8 const *) 0x083BFC80, (u16 const *) 0x083C04C4 },
+    [CLASS_SWORDMASTER - 1] = { (u8 const *) 0x083C061C, (u16 const *) 0x083C0E68 },
+    [CLASS_SWORDMASTER_F - 1] = { (u8 const *) 0x083C0FC8, (u16 const *) 0x083C184C },
+    [CLASS_FIGHTER - 1] = { (u8 const *) 0x083C19AC, (u16 const *) 0x083C21A8 },
+    [CLASS_WARRIOR - 1] = { (u8 const *) 0x083C2300, (u16 const *) 0x083C2D0C },
+    [CLASS_KNIGHT - 1] = { (u8 const *) 0x083C2E64, (u16 const *) 0x083C3758 },
+    [CLASS_KNIGHT_F - 1] = { (u8 const *) 0x083C2E64, (u16 const *) 0x083C3758 },
+    [CLASS_GENERAL - 1] = { (u8 const *) 0x083C38B0, (u16 const *) 0x083C4364 },
+    [CLASS_GENERAL_F - 1] = { (u8 const *) 0x083C38B0, (u16 const *) 0x083C4364 },
+    [CLASS_ARCHER - 1] = { (u8 const *) 0x083C44C4, (u16 const *) 0x083C4C88 },
+    [CLASS_ARCHER_F - 1] = { (u8 const *) 0x083C4DE0, (u16 const *) 0x083C55D4 },
+    [CLASS_SNIPER - 1] = { (u8 const *) 0x083C572C, (u16 const *) 0x083C5F54 },
+    [CLASS_SNIPER_F - 1] = { (u8 const *) 0x083C60AC, (u16 const *) 0x083C6920 },
+    [CLASS_MONK - 1] = { (u8 const *) 0x083C6A78, (u16 const *) 0x083C7164 },
+    [CLASS_CLERIC - 1] = { (u8 const *) 0x083C72BC, (u16 const *) 0x083C79D4 },
+    [CLASS_BISHOP - 1] = { (u8 const *) 0x083C7B2C, (u16 const *) 0x083C8398 },
+    [CLASS_BISHOP_F - 1] = { (u8 const *) 0x083C84F8, (u16 const *) 0x083C8D4C },
+    [CLASS_MAGE - 1] = { (u8 const *) 0x083C8EAC, (u16 const *) 0x083C96EC },
+    [CLASS_MAGE_F - 1] = { (u8 const *) 0x083C9844, (u16 const *) 0x083CA110 },
+    [CLASS_SAGE - 1] = { (u8 const *) 0x083CA268, (u16 const *) 0x083CABDC },
+    [CLASS_SAGE_F - 1] = { (u8 const *) 0x083CAD34, (u16 const *) 0x083CB718 },
+    [CLASS_SHAMAN - 1] = { (u8 const *) 0x083CB870, (u16 const *) 0x083CC054 },
+    [CLASS_SHAMAN_F - 1] = { (u8 const *) 0x083CC1AC, (u16 const *) 0x083CC9E0 },
+    [CLASS_DRUID - 1] = { (u8 const *) 0x083CCB38, (u16 const *) 0x083CD41C },
+    [CLASS_DRUID_F - 1] = { (u8 const *) 0x083CD574, (u16 const *) 0x083CDE30 },
+    [CLASS_CAVALIER - 1] = { (u8 const *) 0x083CDF88, (u16 const *) 0x083CE8D0 },
+    [CLASS_CAVALIER_F - 1] = { (u8 const *) 0x083CDF88, (u16 const *) 0x083CE8D0 },
+    [CLASS_PALADIN - 1] = { (u8 const *) 0x083CEA28, (u16 const *) 0x083CF3CC },
+    [CLASS_PALADIN_F - 1] = { (u8 const *) 0x083CEA28, (u16 const *) 0x083CF3CC },
+    [CLASS_TROUBADOUR - 1] = { (u8 const *) 0x083CF524, (u16 const *) 0x083CFEC8 },
+    [CLASS_VALKYRIE - 1] = { (u8 const *) 0x083D0020, (u16 const *) 0x083D0A28 },
+    [CLASS_NOMAD - 1] = { (u8 const *) 0x083D0B80, (u16 const *) 0x083D1494 },
+    [CLASS_NOMAD_F - 1] = { (u8 const *) 0x083D15EC, (u16 const *) 0x083D1F88 },
+    [CLASS_NOMAD_TROOPER - 1] = { (u8 const *) 0x083D20E0, (u16 const *) 0x083D2A68 },
+    [CLASS_NOMAD_TROOPER_F - 1] = { (u8 const *) 0x083D2BC0, (u16 const *) 0x083D35DC },
+    [CLASS_PEGASUS_KNIGHT - 1] = { (u8 const *) 0x083D3734, (u16 const *) 0x083D4454 },
+    [CLASS_FALCOKNIGHT - 1] = { (u8 const *) 0x083D45AC, (u16 const *) 0x083D5340 },
+    [CLASS_WYVERN_RIDER - 1] = { (u8 const *) 0x083D5498, (u16 const *) 0x083D61E8 },
+    [CLASS_WYVERN_RIDER_F - 1] = { (u8 const *) 0x083D5498, (u16 const *) 0x083D61E8 },
+    [CLASS_WYVERN_LORD - 1] = { (u8 const *) 0x083D6348, (u16 const *) 0x083D7154 },
+    [CLASS_WYVERN_LORD_F - 1] = { (u8 const *) 0x083D6348, (u16 const *) 0x083D7154 },
+    [CLASS_SOLDIER - 1] = { (u8 const *) 0x083D72BC, (u16 const *) 0x083D7A68 },
+    [CLASS_BRIGAND - 1] = { (u8 const *) 0x083D7BC0, (u16 const *) 0x083D83F0 },
+    [CLASS_PIRATE - 1] = { (u8 const *) 0x083D8548, (u16 const *) 0x083D8E78 },
+    [CLASS_BERSERKER - 1] = { (u8 const *) 0x083D8FD0, (u16 const *) 0x083D98D0 },
+    [CLASS_THIEF - 1] = { (u8 const *) 0x083D9A28, (u16 const *) 0x083DA2A4 },
+    [CLASS_THIEF_F - 1] = { (u8 const *) 0x083DA3FC, (u16 const *) 0x083DABFC },
+    [CLASS_ASSASSIN - 1] = { (u8 const *) 0x083DAD54, (u16 const *) 0x083DB4FC },
+    [CLASS_CIVILIAN - 1] = { (u8 const *) 0x083DB654, (u16 const *) 0x083DBA34 },
+    [CLASS_DANCER - 1] = { (u8 const *) 0x083DBB8C, (u16 const *) 0x083DC578 },
+    [CLASS_BARD - 1] = { (u8 const *) 0x083DC770, (u16 const *) 0x083DCF00 },
+    [CLASS_ARCHSAGE - 1] = { (u8 const *) 0x083DD090, (u16 const *) 0x083DD7F8 },
+    [CLASS_MAGIC_SEAL - 1] = { (u8 const *) 0x083DD950, (u16 const *) 0x083DDFA0 },
+    [CLASS_TRANSPORTER_TENT - 1] = { (u8 const *) 0x083DE0F8, (u16 const *) 0x083DE518 },
+    [CLASS_DARK_DRUID - 1] = { (u8 const *) 0x083DE670, (u16 const *) 0x083DEF18 },
+    [CLASS_FIRE_DRAGON - 1] = { (u8 const *) 0x083DF070, (u16 const *) 0x083DFC14 },
+    [CLASS_CIVILIAN_47 - 1] = { (u8 const *) 0x083DFD6C, (u16 const *) 0x083E0450 },
+    [CLASS_CIVILIAN_48 - 1] = { (u8 const *) 0x083E05A8, (u16 const *) 0x083E0C9C },
+    [CLASS_CHILD_49 - 1] = { (u8 const *) 0x083E0DF4, (u16 const *) 0x083E11D8 },
+    [CLASS_BRAMIMOND - 1] = { (u8 const *) 0x083E1330, (u16 const *) 0x083E1A64 },
+    [CLASS_PEER_4B - 1] = { (u8 const *) 0x083E1BBC, (u16 const *) 0x083E2438 },
+    [CLASS_PEER_4C - 1] = { (u8 const *) 0x083E2590, (u16 const *) 0x083E2AE4 },
+    [CLASS_PRINCE_4D - 1] = { (u8 const *) 0x083E2C3C, (u16 const *) 0x083E3248 },
+    [CLASS_QUEEN - 1] = { (u8 const *) 0x083E33A0, (u16 const *) 0x083E3880 },
+    [CLASS_CIVILIAN_4F - 1] = { (u8 const *) 0x083E39D8, (u16 const *) 0x083E3DC8 },
+    [CLASS_CORSAIR - 1] = { (u8 const *) 0x083D8548, (u16 const *) 0x083D8E78 },
+    [CLASS_PRINCE_51 - 1] = { (u8 const *) 0x083E3F20, (u16 const *) 0x083E4410 },
+    [CLASS_PRINCE_52 - 1] = { (u8 const *) 0x083E4568, (u16 const *) 0x083E4954 },
+    [CLASS_PRINCE_53 - 1] = { (u8 const *) 0x083E4AAC, (u16 const *) 0x083E4EBC },
+    [CLASS_CHILD_54 - 1] = { (u8 const *) 0x083E5014, (u16 const *) 0x083E54BC },
+    [CLASS_FIRE_DRAGON_55 - 1] = { (u8 const *) 0x083E5614, (u16 const *) 0x083E5CD4 },
+    [CLASS_WARRIOR_56 - 1] = { (u8 const *) 0x083E5E2C, (u16 const *) 0x083E623C },
+    [CLASS_CHILD_57 - 1] = { (u8 const *) 0x083E6394, (u16 const *) 0x083E69B8 },
+    [CLASS_CHILD_58 - 1] = { (u8 const *) 0x083E6B10, (u16 const *) 0x083E716C },
+    [CLASS_TRANSPORTER_WAGON - 1] = { (u8 const *) 0x083E72C4, (u16 const *) 0x083E7CEC },
+    [CLASS_SAGE_5A - 1] = { (u8 const *) 0x083CAD34, (u16 const *) 0x083CB718 },
+    [CLASS_5B - 1] = { (u8 const *) 0x083E7E44, (u16 const *) 0x083E84CC },
+    [CLASS_5C - 1] = { (u8 const *) 0x083E8624, (u16 const *) 0x083E8CAC },
+    [CLASS_5D - 1] = { (u8 const *) 0x083E8E04, (u16 const *) 0x083E948C },
+    [CLASS_5E - 1] = { (u8 const *) 0x083E95E4, (u16 const *) 0x083E9B38 },
+    [CLASS_5F - 1] = { (u8 const *) 0x083E9CA0, (u16 const *) 0x083EA18C },
+    [CLASS_60 - 1] = { (u8 const *) 0x083EA2E4, (u16 const *) 0x083EA880 },
+    [CLASS_61 - 1] = { (u8 const *) 0x083EA9E8, (u16 const *) 0x083EB02C },
+    [CLASS_62 - 1] = { (u8 const *) 0x083EB194, (u16 const *) 0x083EB800 },
+    [CLASS_63 - 1] = { (u8 const *) 0x083EB968, (u16 const *) 0x083EBCFC },
+};
+
 #define MU_PAL_OBJ(pal) (gPal + ((((pal) + 0x10) * 0x20) >> 1))
 void MU_Init(void)
 {
