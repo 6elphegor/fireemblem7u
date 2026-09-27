@@ -473,7 +473,7 @@ void StartBoxDialogueExt(int x, int y, int msgId, u16* unkA, int unkB, ProcPtr p
 // sub_08083C44
 // sub_08083C68
 // sub_08083C8C
-// sub_08083CE8
+// BoxDialogueInterpreter_Main
 // sub_080842F0
 // sub_08084320
 // sub_0808436C

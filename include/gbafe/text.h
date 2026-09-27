@@ -158,6 +158,7 @@ void InitSpriteTextFont(struct Font * font, u8 * draw_dest, int palid);
 void InitSpriteText(struct Text * text);
 void SpriteText_DrawBackground(struct Text * text);
 void SpriteText_DrawBackgroundExt(struct Text * text, u32 line);
+void StartYesNoChoice(int * choiceTextIds, struct Text * text, int x, int y, int color, int defaultChoice, ProcPtr parent);
 char const * StartTextPrint(struct Text * text, char const * str, int interval, int char_per_tick);
 bool IsTextPrinting(struct Text * text);
 void EndTextPrinting(void);
