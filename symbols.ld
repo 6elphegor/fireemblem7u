@@ -782,3 +782,13 @@ gAiCombatScoreCoefficientTable = 0x081D36F4;
 gAiBallistaItemIdsInit = 0x081D3B64;
 sFriendZoneRangeScoreLut = 0x08B989FC;
 sRange3OffsetLut_ = 0x08B98A60;
+/* cp_script */
+gAiScriptEnded = 0x030013B0;
+gAiScriptKind = 0x030013B4;
+gpAiScriptCurrent = 0x030013B8;
+gpCurrentAiFunctionCall = 0x030013BC;
+gAiScript_FallbackAi1 = 0x08B970A4;
+gAiScript_FallbackAi2 = 0x08B970B4;
+gAiTerrainList_SnagWall = 0x08B970C4;
+gpAi2Table = 0x08B989E4;
+gpAi1Table = 0x08B989F0;
