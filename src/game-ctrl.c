@@ -567,7 +567,7 @@ PROC_LABEL(6),
     PROC_GOTO(7),
 
 PROC_LABEL(10),
-    PROC_CALL(sub_08042BB8),
+    PROC_CALL(StartLinkArenaMainMenu),
     PROC_YIELD,
 
     PROC_CALL(GC_RestoreMainBGM),
@@ -605,7 +605,7 @@ PROC_LABEL(15),
     PROC_CALL(StartMidFadeFromBlack),
     PROC_REPEAT(WaitForFade),
 
-    PROC_CALL(sub_080431AC),
+    PROC_CALL(CallEraseSaveEvent),
     PROC_YIELD,
 
     PROC_CALL(StartMidFadeToBlack),
