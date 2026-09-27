@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013AE4
-sub_08013AE4: @ 0x08013AE4
+	thumb_func_start StartPalFadeToWhite
+StartPalFadeToWhite: @ 0x08013AE4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0

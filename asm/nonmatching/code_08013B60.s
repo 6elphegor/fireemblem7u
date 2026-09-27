@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013B60
-sub_08013B60: @ 0x08013B60
+	thumb_func_start EndPalFade
+EndPalFade: @ 0x08013B60
 	push {lr}
 	ldr r0, _08013B6C @ =0x08B92914
 	bl Proc_EndEach

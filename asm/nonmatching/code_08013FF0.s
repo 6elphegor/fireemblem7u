@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start StartSlowLockingFadeFromBlack
-StartSlowLockingFadeFromBlack: @ 0x08013FF0
+	thumb_func_start StartSlowLockingFadeToBlack
+StartSlowLockingFadeToBlack: @ 0x08013FF0
 	push {lr}
 	adds r1, r0, #0
 	movs r0, #4

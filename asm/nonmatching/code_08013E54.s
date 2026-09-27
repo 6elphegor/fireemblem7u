@@ -2,10 +2,10 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013E54
-sub_08013E54: @ 0x08013E54
+	thumb_func_start FadeToWhite_OnInit
+FadeToWhite_OnInit: @ 0x08013E54
 	push {lr}
-	bl sub_08013CCC
+	bl FadeToBlack_OnInit
 	ldr r3, _08013E80 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c

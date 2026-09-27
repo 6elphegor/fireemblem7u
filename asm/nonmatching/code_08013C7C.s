@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013C7C
-sub_08013C7C: @ 0x08013C7C
+	thumb_func_start SetWhitePal
+SetWhitePal: @ 0x08013C7C
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _08013C94 @ =0x08B92A48

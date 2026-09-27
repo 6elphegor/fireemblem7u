@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08014758
-sub_08014758: @ 0x08014758
+	thumb_func_start PaletteAnimator_Loop
+PaletteAnimator_Loop: @ 0x08014758
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x36]

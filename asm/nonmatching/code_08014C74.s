@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08014C74
-sub_08014C74: @ 0x08014C74
+	thumb_func_start GetTmOffsetById
+GetTmOffsetById: @ 0x08014C74
 	cmp r0, #1
 	beq _08014C9C
 	cmp r0, #1

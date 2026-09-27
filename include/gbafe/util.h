@@ -72,15 +72,15 @@ struct PalFadeSt * StartPalFade(u16 const * colors, int pal, int duration, ProcP
 // ??? SetPalFadeStop
 // ??? PalFade_OnLoop
 void SetBlackPal(int palid);
-// ??? sub_08013C7C
+// ??? SetWhitePal
 // ??? sub_80141BC
 // ??? sub_80141D4
-// ??? sub_08013CCC
+// ??? FadeToBlack_OnInit
 // ??? sub_8014264
-// ??? sub_08013D88
-// ??? sub_08013E14
-// ??? sub_08013E54
-// ??? sub_08013E84
+// ??? FadeFromBlack_OnInit
+// ??? FadeFromCommon_OnLoop
+// ??? FadeToWhite_OnInit
+// ??? FadeFromWhite_OnInit
 // ??? FadeExists
 // ??? StartFadeFromBlack
 // ??? StartLockingFadeToBlack
@@ -90,14 +90,14 @@ void SetBlackPal(int palid);
 // ??? sub_80144A0
 void StartMidFadeFromBlack(void);
 void StartMidFadeToBlack(void);
-void sub_08013FBC(void); // StartFadeFromBlack(0x10); FE7J calls it StartMidLockingFadeToBlack
+void StartMidFadeFromBlack(void); // StartFadeFromBlack(0x10); FE7J calls it StartMidLockingFadeToBlack
 // ??? StartSlowFadeFromBlack
 // ??? StartFastFadeFromBlack
 void StartMidLockingFadeToBlack(ProcPtr parent);
 // ??? StartSlowLockingFadeToBlack
 // ??? StartFastLockingFadeToBlack
 void StartMidLockingFadeToBlack(ProcPtr parent);
-// ??? StartSlowLockingFadeFromBlack
+// ??? StartSlowLockingFadeToBlack
 // ??? StartFastLockingFadeFromBlack
 // ??? StartMidLockingFadeFromBlack
 // ??? sub_8014540
@@ -144,14 +144,14 @@ void WaitForFade(ProcPtr proc);
 // ??? sub_08014450
 void StartTemporaryLock(ProcPtr proc, int arg_1);
 // ??? TemporaryLock_OnLoop
-u8 sub_080144CC(int number, char * buf);
+u8 NumberToStringSJis(int number, char * buf);
 // ??? PutStringCentered
 // ??? PutString
-// ??? sub_080146DC
+// ??? DeleteAllPaletteAnimator
 // ??? StartPaletteAnimatorExt
 // ??? StartPaletteAnimatorReverse
 // ??? StartPaletteAnimatorNormal
-// ??? sub_08014758
+// ??? PaletteAnimator_Loop
 // ??? sub_080147BC
 // ??? sub_08014824
 // ??? sub_080148FC
@@ -168,15 +168,15 @@ void CallDelayed(void (*)(), int);
 // ??? PartialGameLock_OnLoop
 // ??? VramCopy
 // ??? sub_80150A0
-// ??? sub_08014C50
-// ??? sub_08014C74
+// ??? PutTmLinear
+// ??? GetTmOffsetById
 // ??? sub_08014CD0
 // ??? Screen2Pan
 // ??? PlaySeSpacial
 // ??? PlaySeDelayed
 // ??? PlaySeFunc
-// ??? sub_08014E18
-// ??? sub_08014E28
+// ??? _StartBgm
+// ??? _FadeBgmOut
 // ??? sub_08014E38
 // ??? MemCpy
 // ??? PutDrawTextCentered

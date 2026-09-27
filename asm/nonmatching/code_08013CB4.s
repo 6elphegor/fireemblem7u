@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013CB4
-sub_08013CB4: @ 0x08013CB4
+	thumb_func_start SetAllWhitePals
+SetAllWhitePals: @ 0x08013CB4
 	push {r4, lr}
 	movs r4, #0
 _08013CB8:

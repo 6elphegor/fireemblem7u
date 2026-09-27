@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080144CC
-sub_080144CC: @ 0x080144CC
+	thumb_func_start NumberToStringSJis
+NumberToStringSJis: @ 0x080144CC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

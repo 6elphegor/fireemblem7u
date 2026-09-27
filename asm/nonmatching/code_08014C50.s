@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08014C50
-sub_08014C50: @ 0x08014C50
+	thumb_func_start PutTmLinear
+PutTmLinear: @ 0x08014C50
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	lsls r3, r3, #0x10

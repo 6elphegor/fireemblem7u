@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013C9C
-sub_08013C9C: @ 0x08013C9C
+	thumb_func_start SetAllBlackPals
+SetAllBlackPals: @ 0x08013C9C
 	push {r4, lr}
 	movs r4, #0
 _08013CA0:

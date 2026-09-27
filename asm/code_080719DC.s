@@ -8,7 +8,7 @@ sub_080719DC: @ 0x080719DC
 	sub sp, #4
 	mov r7, sp
 	str r0, [r7]
-	bl sub_080146DC
+	bl DeleteAllPaletteAnimator
 	ldr r1, _08071A50 @ =0x02023C60
 	adds r0, r1, #0
 	movs r1, #0

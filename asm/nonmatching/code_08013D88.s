@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013D88
-sub_08013D88: @ 0x08013D88
+	thumb_func_start FadeFromBlack_OnInit
+FadeFromBlack_OnInit: @ 0x08013D88
 	push {r4, r5, r6, lr}
 	ldr r1, _08013E08 @ =0x03002870
 	mov ip, r1

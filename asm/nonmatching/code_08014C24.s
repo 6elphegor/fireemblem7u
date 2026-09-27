@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08014C24
-sub_08014C24: @ 0x08014C24
+	thumb_func_start VramCopyInRaw
+VramCopyInRaw: @ 0x08014C24
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08013D44
-sub_08013D44: @ 0x08013D44
+	thumb_func_start FadeToCommon_OnLoop
+FadeToCommon_OnLoop: @ 0x08013D44
 	push {lr}
 	adds r2, r0, #0
 	ldr r0, _08013D5C @ =0x03002870

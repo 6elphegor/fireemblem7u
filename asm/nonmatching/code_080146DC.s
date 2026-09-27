@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080146DC
-sub_080146DC: @ 0x080146DC
+	thumb_func_start DeleteAllPaletteAnimator
+DeleteAllPaletteAnimator: @ 0x080146DC
 	push {lr}
 	ldr r0, _080146E8 @ =0x08B92A00
 	bl Proc_EndEach
