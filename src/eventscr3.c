@@ -30,8 +30,6 @@ void StartLockingFadeToBlack(int speed, ProcPtr parent);
 void StartLockingFadeFromBlack(int speed, ProcPtr parent);
 void StartLockingFadeToWhite(int speed, ProcPtr parent);
 void StartLockingFadeFromWhite(int speed, ProcPtr parent);
-void Event_SetExitMap(void);
-void Event_SetEnterMap(void);
 void sub_080AEC5C(int a, int b, int c, ProcPtr parent);
 void sub_080AECB0(int a, int b, int c, ProcPtr parent);
 u32 GetGold(void);
@@ -390,13 +388,13 @@ int EvtCmd_FadeFromWhite(struct EventProc * proc)
 
 int EvtCmd_ExitMap(struct EventProc * proc)
 {
-    Event_SetExitMap();
+    Event_SetExitMap(proc);
     return EVENT_CMDRET_CONTINUE;
 }
 
 int EvtCmd_EnterMap(struct EventProc * proc)
 {
-    Event_SetEnterMap();
+    Event_SetEnterMap(proc);
     return EVENT_CMDRET_CONTINUE;
 }
 
