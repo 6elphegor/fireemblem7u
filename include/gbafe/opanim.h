@@ -3,6 +3,21 @@
 #include "global.h"
 #include "proc.h"
 
+struct OpAnimProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ int unk_2C;
+    /* 30 */ int unk_30;
+    /* 34 */ int unk_34;
+    /* 38 */ int unk_38;
+    /* 3C */ s8 unk_3C;
+    /* 3D */ STRUCT_PAD(0x3D, 0x40);
+    /* 40 */ ProcPtr unk_40;
+    /* 44 */ u8 unk_44;
+    /* 45 */ STRUCT_PAD(0x45, 0x4C);
+    /* 4C */ s16 unk_4C;
+};
+
 void sub_080BB070(void);
 void InitOpScanlineBuf(void);
 void SwapOpScanlineBufs(void);
@@ -11,15 +26,16 @@ void sub_080BB2AC(void);
 void sub_080BB31C(void);
 void sub_080BB32C(void);
 void HBlank_80BBDD0(void);
-void sub_080BB4E8(struct Proc * proc);
-void sub_080BB524(struct Proc * proc);
-void sub_080BB530(struct Proc * proc);
-// sub_80BC1E8
-void sub_080BB800(struct Proc * proc);
-void sub_080BB81C(struct Proc * proc);
-void sub_080BB98C(struct Proc * proc);
-void sub_080BBA3C(struct Proc * proc);
-void OpAnim_DrawWater(struct Proc * proc);
+void sub_080BB4E8(struct OpAnimProc * proc);
+void sub_080BB524(struct OpAnimProc * proc);
+void sub_080BB530(struct OpAnimProc * proc);
+void sub_080BB76C(struct OpAnimProc * proc);
+void sub_080BB800(struct OpAnimProc * proc);
+void sub_080BB814(struct OpAnimProc * proc);
+void sub_080BB81C(struct OpAnimProc * proc);
+void sub_080BB98C(struct OpAnimProc * proc);
+void sub_080BBA3C(struct OpAnimProc * proc);
+void OpAnim_DrawWater(struct OpAnimProc * proc);
 void sub_080BBB30(struct Proc * proc);
 void sub_080BBBA4(struct Proc * proc);
 void sub_080BBBB8(struct Proc * proc);
@@ -45,6 +61,7 @@ void sub_080BC474(struct Proc * proc);
 void sub_080BC494(struct Proc * proc);
 // sub_80BCF98
 // sub_80BCFC4
+void sub_080BC5B8(ProcPtr proc);
 // sub_080BC5CC
 // sub_080BC5E0
 // sub_080BC5F4
@@ -88,16 +105,16 @@ void sub_080BD0D4(void * a, const u16 * pal, int pal_bank, int size, ProcPtr par
 // sub_080BD1DC
 // sub_080BD310
 // sub_080BD364
-// sub_080BD424
+void sub_080BD424(int a, int b, int angle, int speed, ProcPtr parent);
 // sub_080BD4C4
 // sub_080BD4F4
-// sub_080BD548
+void sub_080BD548(ProcPtr proc);
 // sub_080BD570
 // sub_080BD588
 // sub_080BD688
 // sub_080BD68C
 // sub_080BD698
-// sub_080BD764
+ProcPtr sub_080BD764(void const * a, int b, int c, int d, ProcPtr parent);
 
 struct OpScanlineSt {
     /* 00 */ int unk_00;
