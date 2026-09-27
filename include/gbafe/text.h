@@ -118,6 +118,23 @@ enum special_character_idx {
     TEXT_SPECIAL_NOTHING = 0xFF,
 };
 
+void DebugInitBg(int bg, int vramoff);
+void DebugPutStr(u16 * tm, char const * str);
+void DebugPutFmt(u16 * tm, char const * fmt, ...);
+void DebugScreenInit(void);
+void DebugPrintFmt(char const * fmt, ...);
+void ClearNumberStr(void);
+void GenNumberStr(int number);
+void GenNumberOrBlankStr(int number);
+void DebugPrintNumber(int number, int length);
+void GenNumberHexStr(int number);
+void DebugPrintNumberHex(int number, int length);
+void DebugPrintStr(char const * str);
+void DebugPutScreen(void);
+int DebugUpdateScreen(u16 held, u16 pressed);
+void DebugPutObjStr(int x, int y, char const * str);
+void DebugPutObjNumber(int x, int y, int number, int length);
+void DebugPutObjNumberHex(int x, int y, int number, int length);
 int GetLang(void);
 void SetLang(int lang);
 void ResetText(void);
@@ -172,9 +189,8 @@ void PutNumberOrBlank(u16 * tm, int color, int number);
 void PutNumberTwoChr(u16 * tm, int color, int number);
 void PutNumberSmall(u16 * tm, int color, int number);
 void PutNumberBonus(int number, u16 * tm);
-void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero);
 void PutNumber2Digit(u16 * tm, int color, int number);
-void sub_080063CC(u16 * tm, int color, int number); // PutNumber2Digit
 void PutNumber2DigitSmall(u16 * tm, int color, int number);
+void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero);
 void PutTime(u16 * tm, int color, int time, bool always_display_punctuation);
 void PutTwoSpecialChar(u16 * tm, int color, int id_a, int id_b);

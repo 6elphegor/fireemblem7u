@@ -57,6 +57,7 @@ $(ELF): $(C_OBJS) build/asm.a build/data.o build/fe7u.ld $(LAYOUT) symbols.ld
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
 build/src/mu.o build/src/bmshop.o build/src/uiarena.o: CFLAGS += -O0
+build/src/mapanim.o build/src/mapanim_api.o build/src/mapanim_infobox.o build/src/mapanim_expbar.o build/src/mapanim_debug.o build/src/mapanim_specialeffect.o build/src/mapanim_staffeffect.o build/src/mapanim_lvupfx.o build/src/mapanim_lvup.o build/src/mapanim_spellassocfx.o build/src/mapanim_spellassoc.o build/src/scanline.o: CFLAGS += -O0
 build/src/agb-sram.o: CFLAGS += -O1
 
 build/src/%.o: src/%.c
