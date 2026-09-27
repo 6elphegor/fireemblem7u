@@ -608,10 +608,7 @@ SECTIONS
         build/asm/code_0801109C.o(.text);
         build/asm/code_080110B8.o(.text);
         build/src/eventscr_snowstormfx.o(.text);
-        build/asm/code_0801138C.o(.text);
-        build/asm/code_08011430.o(.text);
-        build/asm/code_08011464.o(.text);
-        build/asm/code_08011498.o(.text);
+        build/src/eventscr_thunderfx.o(.text);
         build/src/eventscr_niniandisp.o(.text);
         build/src/eventscr_screenflashfx.o(.text);
         build/src/eventscr_fadefx.o(.text);
