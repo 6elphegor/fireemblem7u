@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+void sub_080AACD8(u16 * tm, void const * src, u16 tileref); // Decompress to gGenericBuffer, then TmApplyTsa
+
 struct ProcCmd CONST_DATA ProcScr_PrepMenuDescHandler[] = {
     PROC_CALL(PrepMenuDescOnInit),
     PROC_SLEEP(1),
@@ -294,9 +296,94 @@ void DrawAtMenuUpfx(int tile, int pal)
 	CpuFastFill(0, PAL_OBJ(0) + PAL_OFFSET(pal + 1), 0x20);
 }
 
-void AtMenu_Reinitialize(struct ProcAtMenu * proc);
-ASM_FUNC("asm/nonmatching/code_0808E6D4.s");
+void AtMenu_Reinitialize(struct ProcAtMenu * proc)
+{
+    int i;
 
+	InitBgs(gBgConfig_PrepScreen);
+	ResetText();
+	UnpackUiWindowFrameGraphics();
+	LoadHelpBoxGfx(NULL, 0xE);
+	SetDispEnable(0, 0, 0, 0, 0);
+	ApplySystemObjectsGraphics();
+	ResetUnitSprites();
+	MakePrepUnitList();
+    PrepAutoCapDeployUnits(proc);
+    ReorderPlayerUnitsBasedOnDeployment();
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+
+    for (i = 0; i < 5; i++)
+        InitText(&gPrepMainMenuTexts[i + 5], 0xE);
+    for (i = 0; i < 4; i++)
+        InitText(&gPrepMainMenuTexts[i + 1], 0x8);
+	InitText(&gPrepMainMenuTexts[0], 10);
+
+    /* "Preparations" */
+    Decompress(Img_PrepScreenTitle, OBJ_VRAM0 + 0x4800);
+
+#if (PROJECT == FE7)
+    ApplyPalettes(Pal_SysBrownBox, 0x12, 2);
+#elif (PROJECT == FE8)
+    ApplyPalettes(Pal_SysBrownBox, 0x19, 2);
+#endif
+
+	DrawAtMenuUpfx(0x7000, 0x06);
+
+    /* "Menu", "Start" button */
+    Decompress(Img_PrepScreenTitleSprites, OBJ_VRAM0 + 0x6000);
+    ApplyPalette(Pal_PrepScreenTitleSprites, 0x14);
+
+    EnablePalSync();
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 3;
+
+	SetWinEnable(0, 0, 0);
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+
+    InitPrepScreenMainMenu(proc);
+    EnableBgSync(0xF);
+
+#if (PROJECT == FE7)
+    SetBlendAlpha(0xE, 0x8);
+	SetBlendTargetA(0, 0, 0, 0, 0);
+	SetBlendTargetB(0, 0, 0, 1, 0);
+#elif (PROJECT == FE8)
+	SetBlendNone();
+#endif
+
+	StartPrepSpecialCharEffect(proc);
+	PrepRestartMuralBackground();
+
+	ApplyPalette(Pal_08404BBC, 3);
+	Decompress(Img_08404BDC, (void *)(BG_VRAM + 0x7800));
+	sub_080AACD8(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_084050D8, OAM2_PAL(3) + OAM2_CHR(0x7800 / 0x20));
+
+#if (PROJECT == FE7)
+	Prep_DrawChapterGoal(0x5000, 0xB);
+#elif (PROJECT == FE8)
+	Prep_DrawChapterGoal(0x5800, 0xB);
+#endif
+
+	NewSysBlackBoxHandler(proc);
+	SysBlackBoxSetGfx(0x6800);
+
+#if (PROJECT == FE7)
+	EnableSysBlackBox(0, 4, 0x480, 11, 3, 0xC00);
+#endif
+
+    proc->unk_35 = GetActivePrepMenuItemIndex();
+    ParsePrepMenuDescTexts(GetPrepMainMenuInfoxMsg());
+    DrawPrepMenuDescTexts();
+}
 
 void EndPrepAtMenuIfNoUnitAvailable(struct ProcAtMenu * proc)
 {

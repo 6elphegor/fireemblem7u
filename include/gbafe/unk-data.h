@@ -1550,9 +1550,9 @@ extern u8 Img_SysBlackBox[];
 // ??? gUnk_0841D0EC
 // ??? gUnk_0841D0F4
 // ??? gUnk_0841D0FC
-extern u16 Pal_0841D100[];
-extern u8  Img_0841D120[];
-extern u8  Tsa_0841D614[];
+extern u16 Pal_08404BBC[];
+extern u8  Img_08404BDC[];
+extern u8  Tsa_084050D8[];
 // ??? gUnk_0841D838
 // ??? gUnk_0841DBCC
 // ??? gUnk_0841DE88
