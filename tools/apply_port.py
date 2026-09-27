@@ -205,11 +205,6 @@ def main():
         if not f["text"]:
             continue
         start, end = f["text"], f["text"] + f["text_size"]
-        first = asm_addr[start]
-        cut = [first]
-        if end in asm_addr:  # else: end of code, or the next function is C
-            cut.append(asm_addr[end])
-        run(sys.executable, "tools/carve.py", *cut)
         # Every asm file now lying wholly inside [start, end) gives way to the C.
         inside = []
         for p in Path("asm").glob("*.s"):
