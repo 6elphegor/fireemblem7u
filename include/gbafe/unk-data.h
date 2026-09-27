@@ -13,7 +13,7 @@ extern s8 MoveTable_Ballista[];
 extern char const *StatusNameStringLut[];
 extern int TacticianAffins[12][4];
 extern u8 gArenaLevelBackup;
-extern struct unk_type_0203A50C gUnk_0203A50C;
+extern struct unk_type_0203A50C gUnk_0203A510;
 
 // ??? gUnk_080C0C50
 // ??? gUnk_080C0C6C
