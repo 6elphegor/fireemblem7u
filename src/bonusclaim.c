@@ -476,7 +476,87 @@ void sub_080AD484(struct BonusClaimProc * proc)
         proc->unk_34 = NULL;
     }
 }
+#if NONMATCHING
+// the original counts the loop down in a separate register (i eliminated); here i stays a biv
+void BonusClaim_StartSelectTargetSubMenu(struct BonusClaimProc * proc)
+{
+    int i;
+
+    struct Text * th = gpBonusClaimText + 12;
+    u8 sl = proc->targets;
+    int tmp = (proc->targets * 2);
+
+    DrawUiFrame2(10, 5, 11, tmp + 2, 1);
+
+    gDispIo.disp_ct.win0_enable = 1;
+    gDispIo.disp_ct.win1_enable = 1;
+    gDispIo.disp_ct.objwin_enable = 0;
+
+    gDispIo.win_ct.win0_enable_bg0 = 1;
+    gDispIo.win_ct.win0_enable_bg1 = 1;
+    gDispIo.win_ct.win0_enable_bg2 = 0;
+    gDispIo.win_ct.win0_enable_bg3 = 1;
+    gDispIo.win_ct.win0_enable_obj = 1;
+
+    gDispIo.win0_left = 80;
+    gDispIo.win0_top = 40;
+    gDispIo.win0_right = 168;
+    gDispIo.win0_bottom = (tmp + 7) * 8;
+
+    {
+        int y = proc->menuIndex * 16;
+        int t = proc->unk_2c - 56;
+        SetUiCursorHandConfig(0, 64, y - t, 1);
+    }
+
+    ShowSysHandCursor(88, proc->submenuIndex * 16 + 48, 8, 0x800);
+
+    for (i = 0; i != sl; th++, i++)
+    {
+        int count;
+        int color = 0;
+        struct Unit * unit = gpBonusClaimConfig[i].unit;
+        u16 * tm = gBg0Tm + 13;
+
+        ClearText(th);
+        Text_SetCursor(th, 0);
+
+        if (unit->pCharacterData->number == 0x28)
+        {
+            count = GetConvoyItemCount();
+
+            if (count == 100)
+                color = 1;
+
+            Text_SetParams(th, 0, color);
+            Text_DrawString(th, DecodeMsg(0x125A));
+        }
+        else
+        {
+            count = GetUnitItemCount(unit);
+
+            if (count == 5)
+                color = 1;
+
+            Text_SetParams(th, 0, color);
+            Text_DrawString(th, DecodeMsg(unit->pCharacterData->nameTextId));
+        }
+
+        if (color == 0)
+            gpBonusClaimConfig[i].hasInventorySpace = 1;
+        else
+            gpBonusClaimConfig[i].hasInventorySpace = 0;
+
+        PutText(th, tm + 0xc0 + 0x40 * i);
+
+        PutNumber(tm + 0xc6 + 0x40 * i, color == 0 ? 2 : 1, count);
+    }
+
+    proc->unk_34 = StartParallelWorker(BonusClaim_DrawTargetUnitSprites, proc);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080AD49C.s");
+#endif
 bool TryClaimBonusItem(struct BonusClaimProc * proc)
 {
     int itemId;
@@ -564,7 +644,100 @@ void BonusClaim_EndSelectTargetSubMenu(struct BonusClaimProc * proc)
         ShowSysHandCursor(64, y - t, 13, 0x800);
     }
 }
+#if NONMATCHING
+// register allocation around the width computation (orig keeps (len+7)/8 in r4, width in r9)
+void BonusClaim_DrawItemSentPopup(struct BonusClaimProc * proc)
+{
+    const char * itemNameStr;
+    const char * otherStr;
+    int width;
+    int x;
+    struct Text * th;
+    char buf[32];
+    struct BonusClaimEnt * ent;
+    struct BonusClaimEnt * ent2;
+    int itemId;
+
+    int idx = gpBonusClaimItemList[proc->menuIndex].unk_00;
+
+    ent = gpBonusClaimData;
+    ent += idx;
+    itemId = ent->itemId;
+
+    th = gpBonusClaimText + 14;
+
+    SetWinEnable(0, 1, 0);
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+
+    sub_080ACF08();
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    sub_080AD484(proc);
+
+    WriteGameSave(ReadLastGameSaveId());
+
+    proc->timer = 0;
+    DisableUiCursorHand(0);
+
+    {
+        int y = proc->menuIndex * 16;
+        int t = proc->unk_2c - 56;
+        ShowSysHandCursor(64, y - t, 13, 0x800);
+    }
+
+    ClearText(th);
+    Text_SetParams(th, 0, 0);
+    Text_SetCursor(th, 0);
+
+    otherStr = DecodeMsgInBuffer(0x10B3, buf);
+    itemNameStr = GetItemNameWithArticle(itemId, FALSE);
+
+    width = ((GetStringTextLen(otherStr) + GetStringTextLen(itemNameStr) + 7) / 8) + 4;
+    x = 15 - width / 2;
+
+    Text_DrawString(th, otherStr);
+    Text_SetColor(th, 2);
+    Text_DrawString(th, itemNameStr);
+
+    PutText(th, gBg0Tm + x + 0x141);
+
+    PutIcon(gBg0Tm + (x + (width + 1)) + 0x13C, GetItemIconId(itemId), 0x4000);
+
+    ent2 = gpBonusClaimData;
+    ent2 += idx;
+    switch (ent2->kind)
+    {
+    case 0:
+    case 1:
+        PlaySoundEffect(0x37A);
+        break;
+
+    case 2:
+        PlaySoundEffect(0xB9);
+        break;
+    }
+
+    PutUiWindowFrame(gBg1Tm, x, 10, width, 3, 0, 1);
+
+    SetWinEnable(1, 1, 0);
+
+    SetWin0Layers(1, 1, 0, 1, 0);
+
+    gDispIo.win0_left = x * 8;
+    gDispIo.win0_top = 80;
+    gDispIo.win0_right = (x + width) * 8;
+    gDispIo.win0_bottom = 104;
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    SetBgOffset(0, 0, -4);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080AD820.s");
+#endif
 void BonusClaim_Loop_PopupDisplayTimer(struct BonusClaimProc * proc)
 {
     proc->timer++;
