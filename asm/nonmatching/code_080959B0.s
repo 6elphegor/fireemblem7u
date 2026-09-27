@@ -73,7 +73,7 @@ sub_080959B0: @ 0x080959B0
 	movs r1, #0
 	bl DrawPrepScreenItemUseStatBars
 	ldr r0, [r4, #0x2c]
-	bl sub_08094D74
+	bl DrawPrepScreenItemUseStatValues
 	ldr r0, [r4, #0x2c]
 	bl GetUnitCurrentHp
 	adds r1, r7, #0

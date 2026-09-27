@@ -1371,3 +1371,5 @@ Tsa_08407270 = 0x08407270;
 gPrepUnitTexts = 0x02012AA0;
 Tsa_08406FD0 = 0x08406FD0;
 ProcScr_PrepItemTradeScreen = 0x08CC49E4;
+Tsa_0840E50C = 0x0840E50C;
+ProcScr_PrepItemUseScreen = 0x08CC4A2C;

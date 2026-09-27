@@ -45,7 +45,7 @@ _08095BB4:
 	bl DrawPrepScreenItems
 	ldr r0, [r4, #0x2c]
 	ldr r1, [r4, #0x30]
-	bl sub_08094EF4
+	bl DrawPrepScreenItemUseDesc
 	movs r0, #0
 	bl DisableUiCursorHand
 	bl sub_0807453C

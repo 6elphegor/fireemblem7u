@@ -57,12 +57,6 @@ struct SioPidPool {
     u8 pids[8];
 };
 
-void sub_080958B0(struct Unit * unit, ProcPtr parent);
-
-void sub_08098F70(struct Unit * unit, ProcPtr parent);
-
-void sub_08098588(struct Unit * unit, ProcPtr parent);
-
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 
 struct PrepUnitList {
@@ -458,13 +452,24 @@ void PrepItemTrade_Loop_MainKeyHandler(struct PrepMenuTradeProc * proc);
 void PrepItemTrade_OnEnd(void);
 void StartPrepItemTradeScreenProc(struct Unit * unitA, struct Unit * unitB, ProcPtr parent);
 void sub_0809496C(struct Unit * unitA, struct Unit * unitB, int rightItemIdx, ProcPtr parent);
-// PrepItemUseTryMoveHand
-// DrawPrepScreenItemUseStatLabels
-// DrawPrepScreenItemUseStatBars
-// sub_08094D74
+struct ProcPrepItemUse {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * unit;
+    /* 30 */ int slot;
+    /* 34 */ int unk34;
+    /* 38 */ int slot_rtext;
+    /* 3C */ int pos_subbox;
+    /* 40 */ int game_lock;
+};
+
+bool PrepItemUseTryMoveHand(struct ProcPrepItemUse * proc);
+void DrawPrepScreenItemUseStatLabels(struct Unit * unit);
+void DrawPrepScreenItemUseStatBars(struct Unit * unit, int mask);
+void DrawPrepScreenItemUseStatValues(struct Unit * unit);
 // sub_8095750
-// sub_08094FB4
-// PrepItemUse_OnInit
+void PrepItemUseParallel_UpdateSMS(struct ProcPrepItemUse * proc);
+void PrepItemUse_OnInit(struct ProcPrepItemUse * proc);
 // sub_8095830
 // sub_8095B64
 // sub_8095C90
@@ -472,12 +477,12 @@ void sub_0809496C(struct Unit * unitA, struct Unit * unitB, int rightItemIdx, Pr
 // sub_8095D1C
 // sub_8095D38
 // sub_8095D58
-// PrepItemUse_HandleItemEffect
+void PrepItemUse_HandleItemEffect(struct ProcPrepItemUse * proc);
 // PrepItemUse_ExecPromotionItem
-// PrepItemUse_WaitPromotionDone
-// PrepItemUse_PostPromotion
-// PrepItemUse_ResetBgmAfterPromo
-// sub_08095894
+void PrepItemUse_WaitPromotionDone(struct ProcPrepItemUse * proc);
+void PrepItemUse_PostPromotion(struct ProcPrepItemUse * proc);
+void PrepItemUse_ResetBgmAfterPromo(void);
+void sub_08095894(void);
 // StartPrepItemUseScreen
 // PrepItemUseBooster_OnDraw
 // PrepItemUseBooster_OnInit
@@ -632,6 +637,30 @@ void StartPrepItemSupplyProc(struct Unit * unit, ProcPtr parent);
 // sub_0809AEFC
 // sub_0809AF94
 // sub_809BA00
+
+void StartPrepItemUseScreen(struct Unit * unit, ProcPtr parent);
+
+void sub_08098F70(struct Unit * unit, ProcPtr parent);
+
+void sub_08098588(struct Unit * unit, ProcPtr parent);
+
+void DrawPrepScreenItemUseDesc(struct Unit * unit, int slot);
+
+void PrepItemUse_InitDisplay(struct ProcPrepItemUse * proc);
+
+void PrepItemUse_CtrlLoop(struct ProcPrepItemUse * proc);
+
+void ProcPrepItemUse_OnEnd(void);
+
+void PrepItemUseDrawSubBox(void);
+
+void PrepItemUseClearSubBox(void);
+
+void PrepItemUse_ConfirmWindowInit(struct ProcPrepItemUse * proc);
+
+void PrepItemUse_ConfirmWindowCtrlLoop(struct ProcPrepItemUse * proc);
+
+void PrepItemUse_ExecPromotionItemUnused(struct ProcPrepItemUse * proc);
 
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 extern EWRAM_OVERLAY(0) struct Text gPrepMainMenuTexts[10];

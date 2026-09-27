@@ -935,7 +935,7 @@ void StartPrepItemTradeScreen(struct PrepItemScreenProc * proc)
 }
 void sub_0809288C(struct PrepItemScreenProc * proc)
 {
-    sub_080958B0(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
+    StartPrepItemUseScreen(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
 }
 void sub_080928A4(struct PrepItemScreenProc * proc)
 {
