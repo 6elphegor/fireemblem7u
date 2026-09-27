@@ -16,9 +16,17 @@ struct MsgBuffer
 extern struct MsgBuffer sMsgString;
 extern int sActiveMsg;
 extern char const * CONST_DATA gMsgTable[];
-extern char const * CONST_DATA gArticleStrTable[][2];
 
 char * GetTacticianName(void);
+
+CONST_DATA char const * gArticleStrTable[][2] = {
+    (char const *) 0x08193E1C,
+    (char const *) 0x08193E18,
+    (char const *) 0x08193E14,
+    (char const *) 0x08193E10,
+    (char const *) 0x08193E08,
+    (char const *) 0x08193E00,
+};
 
 char * DecodeMsg(int id)
 {

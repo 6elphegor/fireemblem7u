@@ -31,13 +31,6 @@ struct MenuItemOverride
 typedef u8 (* MenuAvailabilityFunc)(struct MenuItemDef const * def, int number);
 typedef u8 (* MenuSelectFunc)(struct MenuProc * proc, struct MenuItemProc * item);
 
-extern struct ProcCmd CONST_DATA ProcScr_MenuMain[];
-extern struct ProcCmd CONST_DATA ProcScr_Menu[];
-extern struct ProcCmd CONST_DATA ProcScr_MenuItem[];
-extern struct ProcCmd CONST_DATA ProcScr_MenuAutoHelpBox[];
-extern struct ProcCmd CONST_DATA ProcScr_MenuFrozenHelpBox[];
-extern struct ProcCmd CONST_DATA ProcScr_MenuFrozen[];
-extern u8 CONST_DATA sItemCountYOffsetLut[];
 
 extern struct MenuItemOverride sMenuOverrides[MENU_OVERRIDE_MAX];
 
@@ -57,6 +50,53 @@ void SetMenuOverride(int cmdid, int kind, void * func);
 u8 OverriddenMenuAvailability(const struct MenuItemDef * def, int number);
 u8 OverriddenMenuSelected(struct MenuProc * proc, struct MenuItemProc * item);
 s8 HasMenuChangedItem(struct MenuProc * proc);
+
+void Menu_AutoHelpBox_OnInit(struct MenuProc * proc);
+void Menu_AutoHelpBox_OnLoop(struct MenuProc * proc);
+void Menu_FrozenHelpBox_OnLoop(struct MenuProc * proc);
+void Menu_Frozen_OnLoop(struct MenuProc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_MenuMain[] = {
+    PROC_REPEAT(Menu_OnIdle),
+    PROC_CALL(EndGreenText),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_Menu[] = {
+    PROC_19,
+    PROC_YIELD,
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_CALL(StartGreenText),
+    PROC_CALL(RedrawMenu),
+    PROC_CALL(Menu_OnInit),
+    PROC_JUMP(ProcScr_MenuMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_MenuItem[] = {
+    PROC_BLOCK,
+};
+
+CONST_DATA struct ProcCmd ProcScr_MenuAutoHelpBox[] = {
+    PROC_CALL(Menu_AutoHelpBox_OnInit),
+    PROC_REPEAT(Menu_AutoHelpBox_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_MenuFrozenHelpBox[] = {
+    PROC_REPEAT(Menu_FrozenHelpBox_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_MenuFrozen[] = {
+    PROC_REPEAT(Menu_Frozen_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA u8 sItemCountYOffsetLut[] = {
+    0, 0, 0, 0, 0, 0, 0, 1,
+    2, 3, 3, 3,
+};
 
 struct MenuProc * StartAdjustedMenu(const struct MenuDef * def, int xSubject, int xTileLeft, int xTileRight)
 {

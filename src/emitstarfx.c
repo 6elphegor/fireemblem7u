@@ -35,11 +35,32 @@ struct ProcEmitStars {
 
 extern u16 CONST_DATA Sprite_8x8[];
 
-extern struct ProcCmd CONST_DATA ProcScr_EmitSingleStar[];
-extern struct ProcCmd CONST_DATA ProcScr_EmitStars[];
-extern u8 CONST_DATA Img_EmitedStar[];
 
 void Calcs_Interpolate(int * buf1, int * buf2, int r2, int r3, int r4);
+
+void LetsEmitStars(struct ProcEmitStars * proc);
+void ProcEmitSingleStar_Init(struct ProcEmitSingleStarFx * proc);
+void ProcEmitSingleStar_Loop(struct ProcEmitSingleStarFx * proc);
+void StarsBlinking(struct ProcEmitStars * proc);
+
+CONST_DATA struct ProcCmd ProcScr_EmitSingleStar[] = {
+    PROC_CALL(ProcEmitSingleStar_Init),
+    PROC_REPEAT(ProcEmitSingleStar_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_EmitStars[] = {
+    PROC_REPEAT(LetsEmitStars),
+    PROC_REPEAT(StarsBlinking),
+    PROC_END,
+};
+
+CONST_DATA u8 Img_EmitedStar[] = {
+    0xE0, 0, 0, 0, 0xEE, 0xE, 0, 0,
+    0xE0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
 
 void ProcEmitSingleStar_Init(struct ProcEmitSingleStarFx * proc)
 {

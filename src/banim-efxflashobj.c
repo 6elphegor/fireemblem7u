@@ -32,11 +32,8 @@ struct ProcEfxSpellCast {
     /* 4C */ const void * const * tsa_list;
 };
 
-extern struct ProcCmd ProcScr_efxSpellCast[];
-extern struct ProcCmd ProcScr_efxSpellCastBg[];
 extern const u16 gFrameLut_EfxWeaponIcon[];
 extern const u16 gFrameLut_EfxSpellCastBg[];
-extern const void * const TsaList_EfxSpellCastBg[];
 extern const u8 Img_EfxSpellCastBg[];
 extern const u16 Pal_EfxSpellCastBg[];
 
@@ -48,6 +45,52 @@ extern s16 gBanimBackgroundIndex;
 
 void PutBanimBgPAL(int index);
 void PutBanimBG(int index);
+
+void sub_0804FAD4(struct ProcEfxWeaponIcon * proc);
+void sub_0804FB3C(struct ProcEfxWeaponIcon * proc);
+void sub_0804FBF8(struct ProcEfxSpellCast * proc);
+void sub_0804FC5C(struct ProcEfxSpellCast * proc);
+void sub_0804FC9C(struct ProcEfxSpellCast * proc);
+void sub_0804FDA0(struct ProcEfxSpellCast * proc);
+void sub_0804FE28(struct ProcEfxSpellCast * proc);
+void sub_0804FE78(struct ProcEfxSpellCast * proc);
+void sub_0804FF04(struct ProcEfxSpellCast * proc);
+void sub_0804FF60(struct ProcEfxSpellCast * proc);
+
+CONST_DATA struct ProcCmd ProcScr_EfxWeaponIcon[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_SET_END_CB(sub_0804FB3C),
+    PROC_REPEAT(sub_0804FAD4),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxSpellCast[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(sub_0804FBF8),
+    PROC_REPEAT(sub_0804FC5C),
+    PROC_REPEAT(sub_0804FC9C),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxSpellCastBg[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(sub_0804FDA0),
+    PROC_REPEAT(sub_0804FE28),
+    PROC_REPEAT(sub_0804FE78),
+    PROC_REPEAT(sub_0804FF04),
+    PROC_REPEAT(sub_0804FF60),
+    PROC_END,
+};
+
+CONST_DATA const void * const TsaList_EfxSpellCastBg[] = {
+    (const void * const) 0x082CD6E4,
+    (const void * const) 0x082CDAF8,
+    (const void * const) 0x082CDF18,
+    (const void * const) 0x082CE338,
+};
 
 void NewEfxWeaponIcon(s16 effective1, s16 effective2)
 {
