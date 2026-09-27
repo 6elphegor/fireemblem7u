@@ -543,21 +543,21 @@ void BeginAnimsOnBattleAnimations(void);
 // ??? EkrBattleEndRountine
 // ??? MainUpdate_8055C68
 // ??? NewEkrBattleStarting
-// ??? sub_08050AC0
-// ??? sub_08050BD4
+// ??? ekrBaStart_InitScreen
+// ??? ekrBaStart_SreenFailIn
 // ??? ekrBaStart_InitBattleScreen
 // ??? ekrBaStart_ExecEkrBattle6C
 // ??? ekrBaStart_8055FE8
 // ??? ekrBaStart_8056024
 // ??? ekrBaStart_8056078
 // ??? NewEkrbattleending
-// ??? sub_08050ECC
-// ??? sub_08050F44
-// ??? sub_08050F98
+// ??? ekrBattleEnding_80560F0
+// ??? ekrBattleEnding_8056170
+// ??? ekrBattleEnding_80561C8
 // ??? ekrBattleEnding_8056228
-// ??? sub_08051054
-// ??? sub_080510E0
-// ??? sub_08051170
+// ??? ekrBattleEnding_8056288
+// ??? ekrBattleEnding_8056310
+// ??? ekrBattleEnding_8056390
 // ??? sub_8051A38
 // ??? NewEkrBaseKaiten
 // ??? EkrBaseKaitenMain
@@ -569,8 +569,8 @@ void NewEkrWindowAppear(int identifier, int);
 bool CheckEkrWindowAppearUnexist(void);
 // ??? EkrWindowAppearMain
 void NewEkrNamewinAppear(int identifier, int duration, int delay);
-// ??? sub_08051BD0
-// ??? sub_08051BE4
+// ??? CheckEkrNamewinAppearUnexist
+// ??? EkrNamewinAppearDelay
 // ??? EkrNamewinAppearMain
 // ??? NewEkrBaseAppear
 // ??? sub_80524A4
@@ -578,9 +578,9 @@ void NewEkrNamewinAppear(int identifier, int duration, int delay);
 bool PrepareBattleGraphicsMaybe(void);
 u16 GetBattleAnimationId_WithUnique(struct Unit * unit, const struct BattleAnimDef * pBattleAnimDef, u16, int * out);
 // ??? GetBanimTerrainGround
-// ??? sub_08052A30
-// ??? sub_08052B08
-// ??? sub_08052C50
+// ??? GetBanimBackgroundIndex
+// ??? GetSpellAnimId
+// ??? UnsetMapStaffAnim
 void ParseBattleHitToBanimCmd(void);
 bool CheckBattleHasHit(void);
 s16 GetBattleAnimCharacterUniquePalIndex(struct Unit * unit, int index);
@@ -702,7 +702,7 @@ void sub_08054C8C(struct AnimBuffer *);
 // ??? sub_08054E00
 void sub_08054E10(struct AnimBuffer *, s16, s16);
 // ??? sub_08054E2C
-// ??? sub_08054E3C
+s8 sub_08054E3C(struct AnimBuffer *);
 void sub_08054E5C(struct AnimBuffer *);
 // ??? sub_08054E70
 void NewEfxAnimeDrvProc(void);
@@ -712,8 +712,8 @@ void NewEkrUnitMainMini(struct AnimBuffer *);
 void sub_08054EF0(struct AnimBuffer *);
 // ??? EkrUnitMainMiniMain
 void sub_08054F30(struct BanimUnkStructComm * conf); // FE8U: void sub_805AA68(struct BanimUnkStructComm * buf)
-// ??? sub_080552DC
-// ??? sub_08055308
+void sub_080552DC(struct BanimUnkStructComm * conf);
+void sub_08055308(struct BanimUnkStructComm * conf, s16 x1, s16 y1, s16 x2, s16 y2);
 // ??? sub_08055320
 // ??? sub_08055468
 // ??? sub_8055CCC
@@ -1369,7 +1369,7 @@ void EfxDrsmmoyaScrollCOL_Loop1(struct ProcEfxDrsmmoyaScrollCOL * proc);
 void EfxDrsmmoyaScrollCOL_Delay(struct ProcEfxDrsmmoyaScrollCOL * proc);
 void EfxDrsmmoyaScrollCOL_Loop3(struct ProcEfxDrsmmoyaScrollCOL * proc);
 void ResetClassReelSpell(void);
-// ??? EndActiveClassReelSpell
+void EndActiveClassReelSpell(void);
 void EndActiveClassReelBgColorProc(void);
 // ??? SetActiveClassReelSpell
 // ??? SetActiveCRSpellBgColorProc

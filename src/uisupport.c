@@ -484,7 +484,7 @@ void SupportScreen_SetupGraphics(struct SupportScreenProc * proc)
     sub_0809B440(proc);
     sub_08091944(0x5000, 5);
 
-    sub_080AACD8(gBg1Tm, Tsa_0840EBE8, 0x5280);
+    PutCompressedTsa(gBg1Tm, Tsa_0840EBE8, 0x5280);
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
 
@@ -1293,7 +1293,7 @@ void SupportSubScreen_SetupGraphics(struct SubScreenProc * proc)
 
     sub_08091944(0x4000, 5);
 
-    sub_080AACD8(gBg1Tm, Tsa_0840ECC4, 0x5200);
+    PutCompressedTsa(gBg1Tm, Tsa_0840ECC4, 0x5200);
 
     fid = gCharacterData[GetSupportScreenCharIdAt(proc->unitIdx) - 1].portraitId;
 
@@ -1587,7 +1587,7 @@ void SupportSubScreen_ReinitAfterSwapPage(struct SubScreenProc * proc)
     InitSupportSubScreenRemainingSupports(proc);
     SupportSubScreen_MoveCursorToNextValidUnit(proc, 0, +1);
 
-    sub_080AACD8(gBg1Tm, Tsa_0840ECC4, 0x5200);
+    PutCompressedTsa(gBg1Tm, Tsa_0840ECC4, 0x5200);
 
     fid = gCharacterData[GetSupportScreenCharIdAt(proc->unitIdx) - 1].portraitId;
 

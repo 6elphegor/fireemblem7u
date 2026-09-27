@@ -19,7 +19,7 @@ sub_080412E0: @ 0x080412E0
 	movs r2, #6
 	bl memcpy
 	bl ClearSioBG
-	bl sub_08047B34
+	bl InitSioBG
 	ldr r0, _080413C0 @ =0x081C5BE0
 	ldr r1, _080413C4 @ =0x06014800
 	bl Decompress

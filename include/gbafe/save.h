@@ -246,7 +246,7 @@ struct PidStats
 struct ChapterStats {
     /* 00 */ u16 chapter_index : 7;
              u16 chapter_turn  : 9;
-    /* 02 */ u16 chapter_time;
+             u16 chapter_time  : 16;
 };
 
 #define WIN_ARRAY_NUM 0x30
@@ -523,22 +523,22 @@ void sub_80A2BFC(void); // NullBmMapHidden_
 // ??? GetMinimapTerrainCellAt
 // ??? GetMinimapObjectCellAt
 // ??? DrawMinimapInternal
-// ??? sub_080A28CC
-// ??? sub_080A290C
-// ??? sub_080A2948
-// ??? sub_080A2960
-// ??? sub_080A2A84
-// ??? sub_080A2C30
-// ??? sub_080A2CBC
+// ??? Minimap_Init
+// ??? Minimap_OnHBlank
+// ??? InitMinimapWindowBuffers
+// ??? Minimap_InitOpenAnim
+// ??? Minimap_OpenAnim
+// ??? Minimap_InitCloseAnim
+// ??? Minimap_CloseAnim
 // ??? ApplyMinimapGraphics
 // ??? InitMinimapFlashPalette
-// ??? sub_080A2F38
-// ??? sub_080A2F74
+// ??? Minimap_ApplyFlashPalette
+// ??? Minimap_ApplyViewportFlashColor
 // ??? Minimap_PutViewport
-// ??? sub_080A3004
-// ??? sub_080A3080
+// ??? Minimap_AdjustDisplay
+// ??? Minimap_HandleMoveInput
 // ??? Minimap_InitProcVars
 // ??? Minimap_AdjustCursorOnClose
-// ??? sub_080A31A4
-// ??? sub_080A3284
+// ??? Minimap_Main
+// ??? StartMinimapPlayerPhase
 // ??? DrawMinimap

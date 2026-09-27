@@ -4,20 +4,20 @@
 
 // ??? sub_8025114
 void ApplyUnitSpritePalettes(void);
-// ??? sub_08024CE0
+// ??? ApplyUnitSpriteSepiaPalette
 void ResetUnitSprites(void);
 void ResetUnitSpritesB(void);
 int UseUnitSprite(u32 id);
 int StartUiSMS(int smsId, int frameId);
-// ??? sub_08024EB8
 // ??? ApplyUnitSpriteImage16x16
+// ??? ApplyUnitSpriteUiImage16x16
 // ??? ApplyUnitSpriteImage16x32
 // ??? ApplyUnitSpriteImage32x32
 void TornOutUnitSprite(struct Unit * unit, int timer);
 // ??? SyncUnitSpriteSheet
 void SyncUnitSpriteSheet(void);
 void ForceSyncUnitSpriteSheet(void);
-// ??? sub_080255E0
+// ??? SyncUiSMS
 // ??? SetStandingMuFacing
 // ??? GetUnitDisplayedSpritePalette
 // ??? GetUnitSpritePalette
@@ -26,10 +26,10 @@ void RefreshUnitSprites(void);
 void PutUnitSpritesOam(void);
 // ??? PutChapterMarkedTileIconOam
 void PutUnitSpriteIconsOam(void);
-// ??? sub_08025F8C
+// ??? ResetUnitSpriteHoverCursor
 // ??? sub_8026428
 void UnitSpriteHoverUpdate(void);
-// ??? sub_08026064
+// ??? IsUnitSpriteHoverEnabledAt
 // ??? PutUnitSprite
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 // ??? PutUnitSpriteForClassId

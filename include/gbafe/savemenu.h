@@ -56,13 +56,16 @@ struct SaveMenuProc {
     /* 3D */ u8 unk_3D;
     /* 3E */ u8 in_rtext;
     /* 3F */ u8 unk_3F;
-    /* 40 */ u16 unk_40;
+    /* 40 */ u8 unk_40;
+    /* 41 */ u8 unk_41;
     /* 42 */ u16 action_flag;
-    /* 44 */ u32 unk_44[3]; // time value
-    /* 50 */ u32 unk_50; // time value
-    /* 54 */ struct SaveMenuUnkProc1 * proc1;
+    /* 44 */ u16 unk_44;
+    /* 46 */ u16 unk_46;
+    /* 48 */ u32 unk_48[3]; // time value
+    /* 54 */ u32 unk_54; // time value
     /* 58 */ struct SaveMenuUnkProc2 * proc2;
     /* 5C */ ProcPtr proc3; // sprite anim proc
+    /* 60 */ ProcPtr approc;
 };
 
 extern u8 gUnk_Savemenu_02000000;
@@ -74,9 +77,9 @@ u8 SaveMenuIndexToValidBitfile(u8 byte, int num);
 u8 SaveMenuGetBitfileByMask(u8 byte1, u8 byte2);
 u8 BitfileToIndex(u8 byte);
 void SaveMenu_StartHelpBox(struct SaveMenuProc * proc);
-// ??? LoadSaveMenuHelpText
-// ??? SaveMenuPostChapterHandleHelpBox
-// ??? SaveMenuPutChapterTitle
+int LoadSaveMenuHelpText(int slot);
+bool SaveMenuPostChapterHandleHelpBox(struct SaveMenuProc * proc);
+void SaveMenuPutChapterTitle(struct SaveMenuProc * proc);
 // ??? SaveMenu_Init
 // ??? ProcSaveMenu_InitScreen
 // ??? SaveMenu_LoadExtraMenuGraphics
@@ -85,13 +88,13 @@ void SaveMenu_StartHelpBox(struct SaveMenuProc * proc);
 // ??? SaveMenu_080A465C
 // ??? Loop6C_savemenu
 // ??? SaveMenuWriteNewGame
-// ??? sub_080A3CAC
-// ??? sub_080A3E98
+// ??? ExecSaveMenuMiscOption
+// ??? SaveMenu_SaveSlotSelectLoop
 // ??? sub_80A4D64
 // ??? SaveMenuRegisterSlotSelected
-// ??? sub_080A4108
-// ??? sub_080A43E0
-// ??? sub_080A4428
+// ??? SaveMenuWaitSlotBoxScrolling
+// ??? SaveMenuScrollSlot
+// ??? SaveMenuScrollBackToMain
 // ??? sub_080A4478
 // ??? sub_080A44C0
 // ??? sub_080A4504
@@ -109,13 +112,13 @@ void SaveMenu_StartHelpBox(struct SaveMenuProc * proc);
 // ??? sub_80A57A8
 // ??? sub_80A57BC
 // ??? SaveMenuPostExtraMiscScreen
-// ??? sub_080A4B7C
+// ??? SaveMenu_ResetLcdFormDifficulty
 // ??? sub_080A4BD8
 // ??? sub_080A4C34
-// ??? sub_080A4C94
-// ??? sub_080A4D54
-// ??? sub_080A4D74
-// ??? sub_080A4D94
+// ??? SaveMenu_ReloadScreenFormDifficulty
+// ??? SaveMenu_PostDifficultHandler
+// ??? SaveMenuSlotSelDrawSprite
+// ??? SaveMenuStartBonusClaim
 // ??? sub_80A5A94
 void StartMainMenu(/* TODO */);
 // ??? sub_080A4DEC
@@ -131,7 +134,7 @@ void sub_080A4E58(void);
 // ??? sub_080A50CC
 // ??? sub_80A5DF0
 // ??? sub_080A511C
-// ??? sub_080A5130
+// ??? SaveMenuCopyPalette
 // ??? sub_080A5148
 // ??? sub_080A5214
 // ??? SaveDraw_Init
@@ -171,16 +174,16 @@ ProcPtr StartSpinRotation(ProcPtr parent);
 // ??? sub_080A5E8C
 // ??? sub_080A5EAC
 // ??? StartSaveDrawCursor
-// ??? sub_080A5EF0
+// ??? SaveMenuInitSubBoxText
 // ??? SaveMenuDrawSubSelBoxExt
 // ??? SaveMenuDrawSubSelBox
 // ??? sub_080A5FD0
-// ??? sub_080A6004
-// ??? sub_080A6018
-// ??? sub_080A602C
+// ??? AddMainMenuOption
+// ??? AddExtraMenuOption
+// ??? InitSaveMenuChoice
 // ??? SaveMenuModifySaveSlot
 // ??? SaveMenuTryMoveSaveSlotCursor
-// ??? sub_080A6220
+// ??? SaveMenuHasOptions
 // ??? sub_080A6238
 // ??? StartSqMask
 // ??? SaveBgUp_Loop
@@ -188,7 +191,7 @@ ProcPtr StartSpinRotation(ProcPtr parent);
 
 /* savemenu_difficulty */
 // ??? sub_080A6398
-// ??? sub_080A649C
+// ??? SaveMenuInitSlotPalette
 // ??? sub_080A652C
 // ??? SaveMenuGetValidMenuAmt
 // ??? nullsub_84

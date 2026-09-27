@@ -269,7 +269,7 @@ void sub_08040714(struct SioBatProc * proc)
     char buf[20];
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_TacticianSelObj, (void *)0x06014800);
     Decompress(Img_LinkArenaPlayerBanners, (void *)0x06016000);
@@ -803,7 +803,7 @@ void sub_0804105C(struct SioBatProc * proc)
 void sub_08041104(struct SioBatProc * proc)
 {
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     EndLinkArenaVersusSpriteDraw();
     EndFaceById(3);
@@ -828,7 +828,7 @@ void sub_0804116C(ProcPtr proc)
     u8 buf[4];
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
     ApplyPalette(Pal_LinkArenaRankIcons, 6);

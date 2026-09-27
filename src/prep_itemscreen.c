@@ -17,7 +17,7 @@ extern u8 Tsa_084070BC[];
 extern u8 Tsa_08407188[];
 extern u8 Tsa_08407270[];
 
-s8 sub_080912EC(struct Unit * unit);
+s8 CanUnitPrepScreenUse(struct Unit * unit);
 void SetFacePosition(int slot, int x, int y);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void SyncUnitSpriteSheet(void);
@@ -397,7 +397,7 @@ void PrepItemScreen_Reinit(struct PrepItemScreenProc * proc)
     sub_08091944(0x6000, 5);
     sub_08091994(0x3000, 10);
 
-    sub_080AACD8(gBg1Tm, Tsa_084070BC, 0x5300);
+    PutCompressedTsa(gBg1Tm, Tsa_084070BC, 0x5300);
 
     UpdatePrepItemScreenFace(0, GetUnitFromPrepList(proc->hoverUnitIdx), 68, 78, 0x503);
 
@@ -600,7 +600,7 @@ void sub_08091F04(struct PrepItemScreenProc * proc, u16 * tm, struct Unit * unit
     PutText(&gPrepItemTexts[25], tm + TM_OFFSET(0, 1));
 
     Text_InsertDrawString(
-        &gPrepItemTexts[26], 0, !sub_080912EC(unit) ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE,
+        &gPrepItemTexts[26], 0, !CanUnitPrepScreenUse(unit) ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE,
         DecodeMsg(0x125F));
 
     th = &gPrepItemTexts[26];
@@ -622,7 +622,7 @@ void sub_08092010(struct PrepItemScreenProc * proc)
 
     proc->unitSelected = 1;
 
-    sub_080AACD8(gBg1Tm, Tsa_08407188, 0x5300);
+    PutCompressedTsa(gBg1Tm, Tsa_08407188, 0x5300);
 
     for (i = 0; i < 8; i++)
         TmFillRect(gBg2Tm + ((((proc->scrollOffset >> 3) + i) & 0x1F) + 4) * 0x20, 9, 0, 0);
@@ -717,7 +717,7 @@ void sub_08092220(struct PrepItemScreenProc * proc)
                 return;
 
             case 2:
-                if (!sub_080912EC(GetUnitFromPrepList(proc->selectedUnitIdx)))
+                if (!CanUnitPrepScreenUse(GetUnitFromPrepList(proc->selectedUnitIdx)))
                     break;
 
                 Proc_Goto(proc, 9);
@@ -852,7 +852,7 @@ void sub_080925D0(struct PrepItemScreenProc * proc)
     sub_08091944(0x6000, 5);
     sub_08091994(0x3000, 10);
 
-    sub_080AACD8(gBg1Tm, Tsa_08407270, 0x5300);
+    PutCompressedTsa(gBg1Tm, Tsa_08407270, 0x5300);
 
     proc->unitSelected = 0;
 

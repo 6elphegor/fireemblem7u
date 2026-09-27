@@ -195,7 +195,7 @@ void PrepUnit_InitGfx(void)
 
     PutPrepMenuUiImg(0x6000, 0xF);
 
-    sub_080AACD8(gBg1Tm, Tsa_08406FD0, 0xF300);
+    PutCompressedTsa(gBg1Tm, Tsa_08406FD0, 0xF300);
 
     Decompress(Img_PrepScreenTitleSprites, (void *) 0x06010800);
     EnablePalSync();

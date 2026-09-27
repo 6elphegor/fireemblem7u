@@ -1,6 +1,6 @@
 #include "gbafe.h"
 
-void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
+void PutCompressedTsa(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
 void sub_080BAA68(struct ProcTitle * proc);
 void sub_080BAA90(struct ProcTitle * proc);
 void sub_080BAB24(void);
@@ -95,11 +95,11 @@ void Title_InitBg(struct ProcTitle * proc)
 
     ApplyPalette(Pal_TitleAxe, 0xE);
     Decompress(Img_TitleAxe, (void *)BG_VRAM + 0xCC00);
-    sub_080AACD8(gBg2Tm + TM_OFFSET(0, 1), Tsa_TitleAxe, 0xE260);
+    PutCompressedTsa(gBg2Tm + TM_OFFSET(0, 1), Tsa_TitleAxe, 0xE260);
 
     ApplyPalette(Pal_TitleTextShadow, 0xD);
     Decompress(Img_TitleTextShadow, (void *)BG_VRAM + 0xDE00);
-    sub_080AACD8(gBg1Tm, Tsa_TitleTextShadow, 0xD2F0);
+    PutCompressedTsa(gBg1Tm, Tsa_TitleTextShadow, 0xD2F0);
 }
 
 
@@ -410,7 +410,7 @@ void Title_StartTextFlame(struct ProcTitle * proc)
 
     ApplyPalette(Pal_TitleTextFlame, 0xC);
     Decompress(Img_TitleTextFlame, (void *)BG_VRAM + 0x5000);
-    sub_080AACD8(gBg0Tm, Tsa_TitleTextFlame, 0xC280);
+    PutCompressedTsa(gBg0Tm, Tsa_TitleTextFlame, 0xC280);
     EnableBgSync(BG0_SYNC_BIT);
 
     InitScanlineEffect();

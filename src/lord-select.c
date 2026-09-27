@@ -67,7 +67,7 @@ void sub_080AEDF0(struct ProcLordSelect * proc)
 
         proc->unk_34++;
         proc->stat = LORD_SELECT_STAT_1;
-        sub_080AF344(proc, proc->unk_4C);
+        StartClassNameIntro(proc, proc->unk_4C);
         break;
 
     case LORD_SELECT_STAT_3:

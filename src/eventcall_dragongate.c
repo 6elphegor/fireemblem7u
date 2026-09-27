@@ -46,7 +46,7 @@ void DragonGatefx_DrawLight(struct ProcDragonGateFx * proc)
     gDispIo.bg3_ct.priority = 2;
 
     Decompress(Img_DragonGateLight, (void *)0x06004000);
-    sub_080AACD8(gBg2Tm, Tsa_DragonGateLight, TILEREF(0x200, 6));
+    PutCompressedTsa(gBg2Tm, Tsa_DragonGateLight, TILEREF(0x200, 6));
     ApplyPalette(Pal_DragonGateLight, 6);
     EnableBgSync(BG2_SYNC_BIT);
 
@@ -76,7 +76,7 @@ void DragonGatefx_DrawDragon(struct ProcDragonGateFx * proc)
     SetBlendTargetB(0, 0, 1, 0, 0);
 
     Decompress(Img_DragonGateDragon, (void *)0x06003000);
-    sub_080AACD8(gBg1Tm, Tsa_DragonGateDragon, TILEREF(0x180, 7));
+    PutCompressedTsa(gBg1Tm, Tsa_DragonGateDragon, TILEREF(0x180, 7));
     ApplyPalette(Pal_DragonGateDragon, 7);
     EnableBgSync(BG1_SYNC_BIT);
 
@@ -108,7 +108,7 @@ void sub_0807B0D4(struct ProcDragonGateFx * proc)
 
     CpuFastCopy((void *)0x06003000, (void *)0x06004000, 0x1000);
 
-    sub_080AACD8(gBg2Tm, Tsa_DragonGateDragon, TILEREF(0x200, 7));
+    PutCompressedTsa(gBg2Tm, Tsa_DragonGateDragon, TILEREF(0x200, 7));
     EnableBgSync(BG2_SYNC_BIT);
 
     TmFill(gBg1Tm, TILEREF(0x0, 0));

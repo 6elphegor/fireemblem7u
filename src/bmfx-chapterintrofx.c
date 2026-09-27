@@ -615,3 +615,17 @@ void ChapterIntro_SetFasten(struct ProcChapterIntrofx * proc)
 {
     proc->fasten = 2;
 }
+
+void ChapterIntro_8021188(struct ProcChapterIntrofx * proc)
+{
+    if ((GetGameTime() & 1) == 0)
+    {
+        ColorFadeTick();
+
+        if (GetChapterInfo(gPlaySt.chapterIndex)->weather == 5)
+            ApplyFlamesWeatherGradient();
+
+        EnableTilesetPalAnim();
+        Proc_Break(proc);
+    }
+}

@@ -1049,3 +1049,22 @@ void sub_08015F94(struct CamMoveProc * proc)
 void nullsub_37(void)
 {
 }
+
+void StartCameraMoveLinear(ProcPtr parent, int x, int y, int duration)
+{
+    struct CamMoveProc * proc;
+
+    if (parent != NULL)
+        proc = Proc_StartBlocking(ProcScr_CamMoveLinear, parent);
+    else
+        proc = Proc_Start(ProcScr_CamMoveLinear, PROC_TREE_3);
+
+    proc->from.x = gBmSt.camera.x;
+    proc->from.y = gBmSt.camera.y;
+
+    proc->to.x = x * 16;
+    proc->to.y = y * 16;
+
+    proc->distance = duration;
+    proc->frame = 0;
+}

@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/cgtext.h"
 
 /* functions from other modules */
 ProcPtr Proc_FindNonBlocked(const struct ProcCmd * script);
@@ -22,25 +23,47 @@ void WmMergeFace(int a, int b, int c, int d, int e, int f, int g);
 void WmMergeMonsters(void);
 void sub_080B4F70(void);
 void sub_080B4F74(int a, int b);
-void sub_080B4F78(int a, int b, int c, int d);
-void sub_080B5B44(int a, int b);
-void sub_080B5B6C(void);
+void WmStartFadeCamera(int a, int b, int c, int d);
+void StartWmSpotlight(int a, int b);
+void EndWmSpotlightProc(void);
 void sub_080B4D4C(int a, int b, u16 c);
 void sub_080B4E88(int a, u16 b);
-void sub_080B4FE4(int a);
-void sub_080B3D20(int a);
-void sub_080B3D78(void);
-void sub_080B4904(int a, int b, int c, int d);
-void sub_080B4ADC(int a);
-void sub_080B39D8(int a, int b);
-void sub_080B3AFC(int a);
-void sub_080B3B70(void);
-void sub_080B5844(int a);
-void sub_080B5934(int a);
-void sub_080B4890(int a);
-void sub_080B4828(int a);
+void WmStartTalk(int a);
+void OpenWmTextBox(int a);
+void CloseWmTextBox(void);
+void StartWmMuMove(int a, int b, int c, int d);
+void EndWmMu(int a);
+void StartWmSpriteAnim(int a, int b);
+void EndWmSpriteAnim(int a);
+void EndAllWmSpriteAnims(void);
+void StartWmPalFadeOut(int a);
+void StartWmPalFadeIn(int a);
+void WmMu_EndFlash(int a);
+void WmMu_StartFlash(int a);
 void nullsub_5(int a, int b, int c);
 void nullsub_6(void);
+void sub_080B4C60(int a, s16 b, s16 c, u8 d);
+void EndWmIcon2(int a);
+void sub_080B4B8C(int a, s16 b, s16 c, u8 d);
+void EndWmIcon(int a);
+void sub_080B4F9C(int a, int b);
+
+void SetScriptedBattle(struct BattleHit * hits);
+void SetMenuOverride(int a, int b, void * func);
+int MenuAlwaysNotShown();
+int MenuAlwaysDisabled();
+int MenuAlwaysEnabled();
+int Get8(void);
+void StartBoxDialogueSimple(int x, int y, int msg, ProcPtr parent);
+bool IsTactFemale(void);
+void StartNoBoxTalk(ProcPtr parent);
+void StartTutorialCursors(int kind);
+void SetkeyStIgnoredMask(int mask);
+void StartEventWarpAnim(ProcPtr parent, int x, int y, s8 kind, s8 flag);
+void StartWarpEffect_08020A64(ProcPtr parent, int x, int y, s8 kind);
+int WmToScreenX(int x);
+int WmToScreenY(int y);
+void Event_CgTalkOnSkip(struct EventProc * proc);
 
 extern struct FaceVramEnt CONST_DATA gFaceConfig_08B91AB8[];
 extern EventScr CONST_DATA EventScr_08B91AD8[];
@@ -519,8 +542,8 @@ void sub_0800F358(void)
     m4aMPlayFadeInContinue(&gUnk_03005B10, 2);
 }
 
-void sub_080B5554(u8 a, int x, int y, int c);
-void sub_080B55BC(int c);
+void StartWorldMap(u8 a, int x, int y, int c);
+void WorldMap_StartBgm(int c);
 
 int sub_0800F36C(struct EventProc * proc)
 {
@@ -532,8 +555,8 @@ int sub_0800F36C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B5554(a, x, y, c);
-    sub_080B55BC(c);
+    StartWorldMap(a, x, y, c);
+    WorldMap_StartBgm(c);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -588,7 +611,7 @@ int sub_0800F494(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B4F78(a, b, c, d);
+    WmStartFadeCamera(a, b, c, d);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -601,13 +624,13 @@ int sub_0800F4EC(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B5B44(a, b);
+    StartWmSpotlight(a, b);
     return EVENT_CMDRET_YIELD;
 }
 
 int sub_0800F540(struct EventProc * proc)
 {
-    sub_080B5B6C();
+    EndWmSpotlightProc();
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
@@ -683,7 +706,7 @@ int sub_0800F61C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B4FE4(proc->script[1]);
+    WmStartTalk(proc->script[1]);
     proc->idle_func = EventEndTalk;
 
     if (proc->flags & EVENT_FLAG_NOSKIPTALK)
@@ -697,7 +720,7 @@ int sub_0800F65C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D20(1);
+    OpenWmTextBox(1);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -706,7 +729,7 @@ int sub_0800F67C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D20(0);
+    OpenWmTextBox(0);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -715,7 +738,7 @@ int sub_0800F69C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D78();
+    CloseWmTextBox();
     return EVENT_CMDRET_YIELD;
 }
 
@@ -733,7 +756,7 @@ int sub_0800F6B8(struct EventProc * proc)
         if (e != 0)
             WmMergeFace(e, 0, a, 0, b, c, d);
         else
-            sub_080B4904(a, b, c, d);
+            StartWmMuMove(a, b, c, d);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -750,7 +773,7 @@ int sub_0800F730(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 1, a, 0, skipped, skipped, skipped);
         else
-            sub_080B4ADC(a);
+            EndWmMu(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -768,7 +791,7 @@ int sub_0800F770(struct EventProc * proc)
         if (c != 0)
             WmMergeFace(c, 2, a, b, skipped, skipped, skipped);
         else
-            sub_080B39D8(a, b);
+            StartWmSpriteAnim(a, b);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -786,7 +809,7 @@ int sub_0800F7B8(struct EventProc * proc)
     if (b != 0)
         WmMergeFace(b, 3, a, 0, skipped, skipped, skipped);
     else
-        sub_080B3AFC(a);
+        EndWmSpriteAnim(a);
 
     return EVENT_CMDRET_YIELD;
 }
@@ -801,7 +824,7 @@ int sub_0800F804(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3B70();
+    EndAllWmSpriteAnims();
     return EVENT_CMDRET_YIELD;
 }
 
@@ -830,7 +853,7 @@ int sub_0800F844(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 10, 0, 0, skipped, skipped, a);
         else
-            sub_080B5844(a);
+            StartWmPalFadeOut(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -847,7 +870,7 @@ int sub_0800F884(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 9, 0, 0, skipped, skipped, a);
         else
-            sub_080B5934(a);
+            StartWmPalFadeIn(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -864,7 +887,7 @@ int sub_0800F8C4(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 12, 0, 0, skipped, skipped, a);
         else
-            sub_080B4890(a);
+            WmMu_EndFlash(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -881,7 +904,7 @@ int sub_0800F904(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 11, 0, 0, skipped, skipped, a);
         else
-            sub_080B4828(a);
+            WmMu_StartFlash(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -906,4 +929,387 @@ int sub_0800F998(struct EventProc * proc)
         nullsub_6();
 
     return EVENT_CMDRET_CONTINUE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0800F9B0.s");
+
+int sub_0800FA30(struct EventProc * proc)
+{
+    int a = proc->script[1];
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        EndWmIcon2(a);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0800FA50.s");
+
+int sub_0800FAD0(struct EventProc * proc)
+{
+    int a = proc->script[1];
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        EndWmIcon(a);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0800FAF0.s");
+
+int EvtCmd_SetKeyIgnore(struct EventProc * proc)
+{
+    SetkeyStIgnoredMask(proc->script[1]);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_SetFightScriptOverride(struct EventProc * proc)
+{
+    SetScriptedBattle((struct BattleHit *) proc->script[1]);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_ClearMenuOverrides(struct EventProc * proc)
+{
+    ClearMenuOverrides();
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MenuOverrideHide(struct EventProc * proc)
+{
+    SetMenuOverride(proc->script[1], 1, MenuAlwaysNotShown);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MenuOverrideDisable(struct EventProc * proc)
+{
+    SetMenuOverride(proc->script[1], 1, MenuAlwaysDisabled);
+    SetMenuOverride(proc->script[1], 2, Get8);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MenuOverrideEnable(struct EventProc * proc)
+{
+    SetMenuOverride(proc->script[1], 1, MenuAlwaysEnabled);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_BoxTalk(struct EventProc * proc)
+{
+    u16 cfg = EVT_ARG_U16(proc, 1);
+    u16 flags = 0;
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        u16 y_raw;
+
+        StartBoxDialogueSimple(SCR_LO16_SIGN(proc->script[1]), (y_raw = EVT_ARG_U16(proc, 3)) & 0x8000 ? -1 : y_raw, proc->script[2], 0);
+
+        if (cfg & 1)
+            flags |= 0x10;
+
+        if (cfg & 2)
+            flags |= 0x80;
+
+        if (cfg & 4)
+            flags |= 0x100;
+
+        if (cfg & 8)
+            flags |= 0x20;
+
+        if (cfg != 0)
+            SetDialogueBoxConfig(flags);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_BoxTalkByTactGender(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        u16 y_raw;
+
+        if (!IsTactFemale())
+            StartBoxDialogueSimple(SCR_LO16_SIGN(proc->script[1]), (y_raw = EVT_ARG_U16(proc, 3)) & 0x8000 ? -1 : y_raw, proc->script[2], 0);
+        else
+            StartBoxDialogueSimple(SCR_LO16_SIGN(proc->script[1]), (y_raw = EVT_ARG_U16(proc, 3)) & 0x8000 ? -1 : y_raw, proc->script[3], 0);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int sub_0800FD34(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        StartNoBoxTalk(NULL);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_TutorialCursorsTargetMove(struct EventProc * proc)
+{
+    StartTutorialCursors(0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_TutorialCursors(struct EventProc * proc)
+{
+    if (proc->script[1] == 0)
+        StartTutorialCursors(1);
+    else
+        StartTutorialCursors(proc->script[1]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int sub_0800FD7C(struct EventProc * proc)
+{
+    EventScr const * script = (EventScr const *) proc->script[1];
+
+    proc->script_return = proc->script_start;
+    proc->script_return_pc = proc->script + 2;
+    proc->script = script;
+    proc->script_start = script;
+
+    return EVENT_CMDRET_JUMPED;
+}
+
+int EventCD_Warp(struct EventProc * proc)
+{
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    u16 y_raw = EVT_ARG_U16(proc, 3);
+    int y = y_raw & 0x8000 ? -1 : y_raw;
+    int kind = proc->script[2];
+    u16 skipped = proc->flags & EVENT_FLAG_SKIPPED;
+
+    if (skipped)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+        StartEventWarpAnim(proc, x, y, kind, skipped);
+    else
+        StartEventWarpAnim(proc, x, y, kind, 1);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_0800FE18(struct EventProc * proc)
+{
+    int kind = proc->script[2];
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+    u16 skipped;
+    int x, y;
+
+    if ((skipped = proc->flags & EVENT_FLAG_SKIPPED))
+        return EVENT_CMDRET_CONTINUE;
+
+    x = unit->xPos;
+    y = unit->yPos;
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+        StartEventWarpAnim(proc, x, y, kind, skipped);
+    else
+        StartEventWarpAnim(proc, x, y, kind, 1);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_0800FE80(struct EventProc * proc)
+{
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    u16 y_raw = EVT_ARG_U16(proc, 3);
+    int y = y_raw & 0x8000 ? -1 : y_raw;
+    int kind = proc->script[2];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    StartWarpEffect_08020A64(proc, WmToScreenX(x) - 0x10, WmToScreenY(y) - 0x28, kind);
+    return EVENT_CMDRET_YIELD;
+}
+
+void EventStartCgTalk(int msg, int kind, int flags, struct EventProc * proc)
+{
+    ApplySystemObjectsGraphics();
+    InitTalk(0x80, 0, 1);
+    EnableBgSync(BG0_SYNC_BIT);
+
+    switch (kind)
+    {
+    case 0:
+        StartCgText(3, 2, 0x14, 4, msg, (void *) OBJ_VRAM0 + 0x1000, -1, NULL);
+
+    case 1:
+        StartCgText(3, 0x12, 0x14, 4, msg, (void *) OBJ_VRAM0 + 0x1000, -1, NULL);
+    }
+
+    proc->idle_func = Event_CgTalkOnSkip;
+
+    if (proc->flags & EVENT_FLAG_NOSKIPTALK)
+        flags |= 0x40;
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+    {
+        flags |= 0x2820;
+        EventForceSlowTextSpeed(proc);
+    }
+
+    SetCgTextFlags(flags);
+}
+
+int EvtCmd_CgTalk(struct EventProc * proc)
+{
+    int flags = 0x400;
+    int msg = proc->script[1];
+    int kind = proc->script[2];
+
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartCgTalk(msg, kind, flags, proc);
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_0800FFD0(struct EventProc * proc)
+{
+    int msg = proc->script[1];
+    int kind = proc->script[2];
+    int flags = proc->script[3] | 0x400;
+
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartCgTalk(msg, kind, flags, proc);
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_08010010(struct EventProc * proc)
+{
+    int flags = 0x400;
+    int msg = proc->script[1];
+    int kind = proc->script[2];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartCgTalk(msg, kind, flags, proc);
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_08010048(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EndCgText();
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_CgBackground(struct EventProc * proc)
+{
+    u16 id = EVT_ARG_U16(proc, 1);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->background == -1)
+    {
+        LockBmDisplay();
+        LockMus();
+    }
+
+    proc->background = 0x61;
+
+    PutCgBackground(gBg3Tm, GetBgChrOffset(3), 8, 8, id);
+    EnableBgSync(BG3_SYNC_BIT);
+    SetBgOffset(3, 0, 0);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_080100D0(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_PaletteFadeFromBlack(struct EventProc * proc)
+{
+    int kind = EVT_ARG_U16(proc, 1);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    switch (kind)
+    {
+    case 0:
+        NewBlockedFadeIn(0x10, proc);
+        break;
+
+    case 1:
+        NewBlockedFadeIn(8, proc);
+        break;
+
+    case 2:
+        NewBlockedFadeIn(4, proc);
+        break;
+
+    case 3:
+        NewBlockedFadeIn(2, proc);
+        break;
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_PaletteFadeToBlack(struct EventProc * proc)
+{
+    int kind = EVT_ARG_U16(proc, 1);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    switch (kind)
+    {
+    case 0:
+        NewBlockedFadeOut(0x10, proc);
+        break;
+
+    case 1:
+        NewBlockedFadeOut(8, proc);
+        break;
+
+    case 2:
+        NewBlockedFadeOut(4, proc);
+        break;
+
+    case 3:
+        NewBlockedFadeOut(2, proc);
+        break;
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+void Event_CgTalkOnSkip(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EndCgText();
+        sub_0800AF20(proc);
+        proc->idle_func = NULL;
+    }
+    else if (!CgTextExists())
+    {
+        sub_0800AF20(proc);
+        proc->idle_func = NULL;
+    }
 }

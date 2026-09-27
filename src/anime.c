@@ -337,7 +337,6 @@ void AnimInsert(struct Anim* anim)
     }
 }
 
-#if 0
 void AnimDisplayPrivate(struct Anim * anim)
 {
     struct AnimSpriteData const * it;
@@ -384,7 +383,7 @@ void AnimDisplayPrivate(struct Anim * anim)
         }
     }
 
-    for (it = sprData; it->header == 1 || gOamHiPutIt >= (gOam + 0x200); it++)
+    for (it = sprData; it->header != 1 && gOamHiPutIt < (gOam + 0x200); it++)
     {
         x = it->as.object.x + anim->xPosition;
         y = it->as.object.y + anim->yPosition;
@@ -413,4 +412,3 @@ void AnimDisplayPrivate(struct Anim * anim)
         *(u16 *) ((u32 *) gOamHiPutIt)++ = (it->as.object.oam2 & 0xF3FF) + anim->oam2Base;
     }
 }
-#endif

@@ -19,7 +19,7 @@ void EventSnowStormfx_Init(struct ProcEventSnowStormfx * proc)
 
     Decompress(Img_EventSnowStormfx, (void *)BG_VRAM + 0x1000);
     ApplyPalette(Pal_EventSnowStormfx, BGPAL_BM_15);
-    sub_080AACD8(gBg2Tm, Tsa_EventSnowStormfx, 0xF080);
+    PutCompressedTsa(gBg2Tm, Tsa_EventSnowStormfx, 0xF080);
     EnableBgSync(BG2_SYNC_BIT);
 
     StartMixPalette(

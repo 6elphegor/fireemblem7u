@@ -24,7 +24,7 @@ void MPlayPanpotControl(struct MusicPlayerInfo * mplayInfo, u16 trackBits, s8 pa
 void MPlayStop_rev01(struct MusicPlayerInfo * mplayInfo);
 void MakeBgmOverridePersist(void);
 void sub_08003AF8(void);
-void sub_08003F6C(void);
+void Sound_SetDefaultMaxNumChannels(void);
 s8 sub_08079A9C(void);
 void sub_08079A90(void);
 int GetBattleAnimArenaFlag(void);
@@ -549,7 +549,7 @@ void EkrPlayMainBGM(void)
 
     if (GetBattleAnimArenaFlag() == 1)
     {
-        sub_08003F6C();
+        Sound_SetDefaultMaxNumChannels();
         EfxOverrideBgm(0x48, 0x100);
         return;
     }

@@ -75,7 +75,7 @@ extern u16 Pal_SysBrownBox[];
 extern const s8 gUnknown_080D9D61[];
 
 void UpdateLinkArenaMenuScrollBar(u8 a, s16 b);
-void sub_08047B34(void);
+void InitSioBG(void);
 void sub_08047BD4(int a, int b);
 ProcPtr sub_08048504(struct SioTeamListProc * parent, int numActiveOptions, u8 * buf);
 void StartLinkArenaTitleBanner(ProcPtr parent, int size);
@@ -413,7 +413,7 @@ void SioTeamList_SetupGfx(struct SioTeamListProc * proc)
     u16 * textPalette = Pal_Text;
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_TacticianSelObj, (void *)0x06014800);
     sub_08047BD4(0, 2);

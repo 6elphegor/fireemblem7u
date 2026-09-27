@@ -131,7 +131,7 @@ enum {
     REACH_MAGBY2 = (1 << 5),
 };
 
-// sub_08015FF4
+// StartCameraMoveLinear
 int GetItemHpBonus(int item);
 int GetItemPowBonus(int item);
 int GetItemSklBonus(int item);

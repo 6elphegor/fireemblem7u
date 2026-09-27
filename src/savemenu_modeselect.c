@@ -1,6 +1,6 @@
 #include "gbafe.h"
 
-void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
+void PutCompressedTsa(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
 
 struct ModeSelectProc
 {
@@ -684,7 +684,7 @@ void ModeSelect_Init(struct ModeSelectProc * proc)
 
     Decompress(Img_ModeSelect_Menu, (void *)(0x6000000 + GetBgChrOffset(1)));
     TmApplyTsa_thm(gBg0Tm, Tsa_ModeSelect_Menu, 0);
-    sub_080AACD8(gBg1Tm, Tsa_08415AC0, 0xf000); // this loads the "claw menu" and bg of the chapters
+    PutCompressedTsa(gBg1Tm, Tsa_08415AC0, 0xf000); // this loads the "claw menu" and bg of the chapters
     ApplyPalette(Pal_084150C0, 0x1B);
 
     Decompress(Img_ModeSelect_Sprites, (void *)0x6010000);

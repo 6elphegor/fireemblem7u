@@ -20,9 +20,9 @@ extern u8 * gMultiBootSrcp;
 extern int gMultiBootLength;
 
 void MultiBootInit(struct MultiBootParam * mp);
-int sub_08049424(struct MultiBootParam * mp); // MultiBootMain
-void sub_08049880(struct MultiBootParam * mp, const u8 * srcp, int length, u8 palette_color, s8 palette_speed); // MultiBootStartMaster
-int sub_08049944(struct MultiBootParam * mp); // MultiBootCheckComplete
+int MultiBootMain(struct MultiBootParam * mp); // MultiBootMain
+void MultiBootStartMaster(struct MultiBootParam * mp, const u8 * srcp, int length, u8 palette_color, s8 palette_speed); // MultiBootStartMaster
+int MultiBootCheckComplete(struct MultiBootParam * mp); // MultiBootCheckComplete
 
 extern u16 CONST_DATA gUnknown_08B999BC[];
 
@@ -97,7 +97,7 @@ extern u8 gUnk_Sio_02000C1C[];
 
 extern u8 gUnk_Sio_02000C00[];
 
-void sub_0800530C(int a, int b, const char * str);
+void DebugPutObjStr(int a, int b, const char * str);
 void SoundVSyncOn_rev01(void);
 void SoundVSyncOff_rev01(void);
 void LoadHelpBoxGfx(void * vram, int palId);
@@ -197,19 +197,19 @@ void FE6Link_Loop(struct Fe6LinkProc * proc)
 
     if (proc->unk_64 == 1)
     {
-        sub_08049880(&gMultiBootParam, gMultiBootSrcp + MULTIBOOT_HEADER_SIZE, gMultiBootLength - MULTIBOOT_HEADER_SIZE, 4, 1);
+        MultiBootStartMaster(&gMultiBootParam, gMultiBootSrcp + MULTIBOOT_HEADER_SIZE, gMultiBootLength - MULTIBOOT_HEADER_SIZE, 4, 1);
         proc->unk_64 = 2;
     }
 
-    sub_08049424(&gMultiBootParam);
+    MultiBootMain(&gMultiBootParam);
 
     if (proc->unk_64 == 0 && gMultiBootParam.probe_count == 0 && gMultiBootParam.client_bit == 2)
     {
-        sub_08049880(&gMultiBootParam, gMultiBootSrcp + MULTIBOOT_HEADER_SIZE, gMultiBootLength - MULTIBOOT_HEADER_SIZE, 4, 1);
+        MultiBootStartMaster(&gMultiBootParam, gMultiBootSrcp + MULTIBOOT_HEADER_SIZE, gMultiBootLength - MULTIBOOT_HEADER_SIZE, 4, 1);
         proc->unk_64 = 2;
     }
 
-    if (sub_08049944(&gMultiBootParam))
+    if (MultiBootCheckComplete(&gMultiBootParam))
         Proc_Break(proc);
 }
 void sub_080434EC(ProcPtr proc)
@@ -274,7 +274,7 @@ void FE6Link_OnEnd(void)
 }
 void sub_08043604(void)
 {
-    sub_0800530C(8, 16, "END");
+    DebugPutObjStr(8, 16, "END");
 }
 bool sub_08043618(void * data)
 {

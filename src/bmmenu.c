@@ -37,6 +37,40 @@ u8 ItemMenu_Select1stCommand(struct MenuProc * menu, struct MenuItemProc * menuI
 void sub_08022360(int x, int y);
 u8 sub_08022404(struct MenuProc * menu);
 u8 sub_0802245C(struct MenuProc * menu);
+void CallSuspendPromptEvent(void);
+
+u8 sub_08021540(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 MapMenu_Suspend_Available(const struct MenuItemDef * def, int number)
+{
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_TUTORIAL)
+        return MENU_DISABLED;
+
+    return MENU_ENABLED;
+}
+
+u8 MapMenu_SuspendCommand(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    if (menuItem->availability == MENU_DISABLED)
+    {
+        MenuFrozenHelpBox(menu, 0x74D);
+        return MENU_ACT_SND6B;
+    }
+
+    CallSuspendPromptEvent();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+u8 CommandEffectEndPlayerPhase(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    Proc_EndEach(ProcScr_PlayerPhase);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
 
 u8 MapMenu_UnitCommand(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
@@ -1477,7 +1511,7 @@ u8 ArenaCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
         return MENU_ACT_SND6B;
     }
 
-    sub_080B267C();
+    StartArenaScreen();
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }
