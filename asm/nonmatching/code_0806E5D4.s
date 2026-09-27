@@ -8,7 +8,7 @@ Manim_DisplayRoundAnim: @ 0x0806E5D4
 	sub sp, #4
 	mov r7, sp
 	str r0, [r7]
-	bl sub_08075638
+	bl Manim_GetRoundProcScript
 	adds r1, r0, #0
 	adds r0, r1, #0
 	ldr r1, [r7]

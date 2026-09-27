@@ -380,24 +380,24 @@ void ManimStarRotation_Main(struct ManimStarProc * proc);
 void StartManimStarRotation(int x_center, int y_center, int lo, int hi, int start, int end, int terminator);
 void StartManimStarExplosion(int x, int y);
 void StartManimStarImplosion(int x, int y);
-// sub_08075638
+struct ProcCmd const * Manim_GetRoundProcScript(void);
 // sub_8075E34
 // sub_8075E68
-// sub_080756CC
-// sub_08075798
-// sub_080757DC
-// sub_08075820
+void Manim_StartDanceAnim(ProcPtr proc);
+void Manim_PlayDanceSe(void);
+void Manim_PlayRefreshSe(void);
+void Manim_StopDanceAnim(ProcPtr proc);
 // sub_807604C
-// sub_080758B0
-// sub_08075994
+void ManimMoveUnitTowardsTarget(struct MuProc * mu1, struct MuProc * mu2);
+void ManimMoveUnitAwayFromTarget(struct MuProc * mu1, struct MuProc * mu2);
 // sub_8076248
 // sub_80762CC
-// sub_08075B80
-// sub_08075BD0
-// sub_08075C20
-// sub_08075C90
-// sub_08076050
-// sub_08076124
+void Manim_MoveCameraOnSubject(ProcPtr proc);
+void Manim_MoveCameraOnTarget(ProcPtr proc);
+void Manim_SpellWarpMoveCamera(ProcPtr proc);
+void Manim_BeginRoundSpecificAnims(ProcPtr proc);
+void RegisterManimHpChange(int actor, int damage);
+void Manim_WaitForHpBar(ProcPtr proc);
 // sub_8076920
 // sub_8076950
 // sub_8076980
@@ -406,24 +406,24 @@ void StartManimStarImplosion(int x, int y);
 // sub_8076A1C
 // sub_8076A58
 // sub_8076A94
-// sub_08076300
+void Manim_CallSpellAssocMend(ProcPtr proc);
 // sub_8076B0C
 // sub_8076B48
-// sub_080763B4
-// sub_08076470
+void Manim_SpellWarpStartFlashy(ProcPtr proc);
+void Manim_SpellWarpStartFlashyAtNewPos(ProcPtr proc);
 // sub_8076C80
-// sub_080764E0
+void Manim_CallSpellAssocUnlock(ProcPtr proc);
 // sub_8076CD8
 // sub_8076D08
 // sub_8076D38
 // sub_8076D68
-// sub_080765C8
+void Manim_SpellWarpStartFlashFade(ProcPtr proc);
 // sub_8076DCC
 // sub_8076E00
-// sub_08076664
-// sub_080766D8
+void Manim_SpellWarpStartExplosion(ProcPtr proc);
+void Manim_SpellWarpStartImplosion(ProcPtr proc);
 // sub_8076F34
-// sub_08076798
+void Manim_SpellWarpSetNewPosition(ProcPtr proc);
 // sub_8076FFC
 // sub_8077014
 void StartManimDebug(void);
@@ -450,3 +450,28 @@ void ManimLevelUp_Clear(struct ManimLevelUpProc * proc);
 void StartManimSpellAssocFadeExt(ProcPtr proc);
 void StartManimSpellAssocResetPalExt(ProcPtr proc);
 void ManimBgShaker_Init(struct ManimShakeProc * proc);
+void Manim_AnimateSubjectIdle(ProcPtr proc);
+void Manim_SubjectResetAnim(ProcPtr proc);
+void Manim_BeginSubjectFastAnim(ProcPtr proc);
+void Manim_MoveSubjectsTowardsTarget(ProcPtr proc);
+void Manim_MoveSubjectsAwayFromTarget(ProcPtr proc);
+void Manim_PoisonEffectOnTarget(ProcPtr proc);
+void Manim_CallSpellAssocSilence(ProcPtr proc);
+void Manim_CallSpellAssocBarrier(ProcPtr proc);
+void Manim_CallSpellAssocLatona(ProcPtr proc);
+void Manim_CallSpellAssocAntitoxin(ProcPtr proc);
+void Manim_CallSpellAssocPureWater(ProcPtr proc);
+void Manim_CallSpellAssocElixir(ProcPtr proc);
+void Manim_CallSpellAssocHeal(ProcPtr proc);
+void Manim_CallSpellAssocRecover(ProcPtr proc);
+void Manim_CallSpellAssocVulnerary(ProcPtr proc);
+void Manim_CallSpellAssocTorch(ProcPtr proc);
+void Manim_CallSpellAssocBerserk(ProcPtr proc);
+void Manim_CallSpellAssocRestore(ProcPtr proc);
+void Manim_CallSpellAssocSleep(ProcPtr proc);
+void Manim_CallSpellAssocRepair(ProcPtr proc);
+void Manim_SpellWarpEndFlashFade(ProcPtr proc);
+void Manim_SpellWarpMuHide(ProcPtr proc);
+void Manim_SpellWarpMuShow(ProcPtr proc);
+void Manim_StartSpellAssocFade(ProcPtr proc);
+void Manim_SpellAssocResetPal(ProcPtr proc);

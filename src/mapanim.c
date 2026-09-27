@@ -2,17 +2,10 @@
 
 // not yet declared in headers
 bool DidBattleUnitBreakWeapon(struct BattleUnit * bu);
-void EndManimInfoWindow(void);
-struct ProcCmd * sub_08075638(void);
-void StartManimPoisonAnim(struct Unit * unit);
-bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
-bool ManimShouldBuDisplayWeaponLevelGained(struct BattleUnit * bu);
-
 bool CheckBattleDefeatTalk(u8 pid);
 void DisplayDefeatTalkForPid(u8 pid);
 void StartBattleTalk(u8 pid_a, u8 pid_b);
 u8 GetSpellAssocReturnBool(u16 item);
-void StartManimInfoWindow(int x, int y, ProcPtr parent);
 
 extern struct ProcCmd ProcScr_ManimEnd[];
 extern struct ProcCmd ProcScr_ManimExpBar[];
@@ -127,7 +120,7 @@ void Manim_PrepareNextBattleRound(ProcPtr proc)
 
 void Manim_DisplayRoundAnim(ProcPtr proc)
 {
-    Proc_StartBlocking(sub_08075638(), proc);
+    Proc_StartBlocking(Manim_GetRoundProcScript(), proc);
 }
 
 void Manim_ShowPoisonEffectIfAny(ProcPtr proc)
