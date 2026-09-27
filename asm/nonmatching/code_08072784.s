@@ -77,7 +77,7 @@ sub_08072784: @ 0x08072784
 	ldr r0, [r7]
 	bl Proc_Break
 _0807281A:
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r0, _08072894 @ =0x03002870
 	adds r1, r0, #0
 	adds r0, #0x3c

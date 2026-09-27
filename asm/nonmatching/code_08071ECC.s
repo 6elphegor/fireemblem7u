@@ -66,7 +66,7 @@ sub_08071ECC: @ 0x08071ECC
 	movs r1, #0x80
 	movs r2, #0x20
 	bl ApplyPaletteExt
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r0, _08071FC8 @ =0x03002870
 	adds r1, r0, #0
 	adds r0, #0x3c

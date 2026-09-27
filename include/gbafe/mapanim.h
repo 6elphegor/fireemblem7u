@@ -85,6 +85,19 @@ struct ManimDebugFieldInfo {
     /* 07 */ STRUCT_PAD(0x07, 0x08);
 };
 
+struct ManimShineProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int x;
+    /* 30 */ int y;
+    /* 34 */ STRUCT_PAD(0x34, 0x44);
+    /* 44 */ s16 timer;
+    /* 46 */ STRUCT_PAD(0x46, 0x54);
+    /* 54 */ int size;
+    /* 58 */ int fade_duration;
+    /* 5C */ STRUCT_PAD(0x5C, 0x64);
+    /* 64 */ s16 timer2;
+};
+
 struct ManimEffectProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;
@@ -176,18 +189,18 @@ void ManimWallBreakAnim_Init(struct ManimEffectProc * proc);
 void StartManimPoisonAnim(struct Unit * unit);
 void ManimPoisonAnim_Init(struct ManimEffectProc * proc);
 // sub_8071ECC
-// sub_08071750
-// sub_08071888
+void ManimLatonaFx_Init(struct ManimEffectProc * proc);
+void ManimLatonaFx_Main(struct ManimEffectProc * proc);
 // sub_80721A4
-// sub_080719DC
-// sub_08071A60
-// sub_08071B34
+void ManimLatonaBlink_Init(struct ManimEffectProc * proc);
+void ManimLatonaBlink_Main(struct ManimEffectProc * proc);
+void StartManimLatonaShine(int x, int y, int size, int duration, int fade_duration, ProcPtr parent);
 // sub_8072374
 // sub_8072398
-// sub_08071BD0
-// sub_08071C70
-// sub_08071D28
-// sub_08071D70
+void ManimLatonaShine_Start(struct ManimShineProc * proc);
+void ManimLatonaShine_FadeIn(struct ManimShineProc * proc);
+void ManimLatonaShine_Wait(struct ManimShineProc * proc);
+void ManimLatonaShine_FadeOut(struct ManimShineProc * proc);
 // sub_08071E4C
 // sub_08071ECC
 // sub_08071FD0
@@ -239,7 +252,7 @@ void ManimPoisonAnim_Init(struct ManimEffectProc * proc);
 // sub_08073B14
 // sub_08073C50
 // sub_08073D0C
-// sub_08073D80
+// SetDefaultManimScreenConf
 // sub_08073EF4
 // sub_807475C
 // sub_08073F88
@@ -328,4 +341,7 @@ void ManimPoisonAnim_Init(struct ManimEffectProc * proc);
 // sub_8076FFC
 // sub_8077014
 void StartManimDebug(void);
-void StartManimPoisonAnim2(struct Unit * unit);
+void StartManimLatonaFx(struct Unit * unit);
+void ManimLatonaFx_ClearBg2(ProcPtr proc);
+void ManimLatonaShine_End(ProcPtr proc);
+void ManimLatonaShine_Init(ProcPtr proc);

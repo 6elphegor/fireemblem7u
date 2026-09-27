@@ -17,7 +17,7 @@ sub_08073354: @ 0x08073354
 	ldr r1, _08073420 @ =sub_08076A78
 	adds r0, r1, #0
 	bl SetOnHBlankA
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r0, _08073424 @ =0x03002870
 	adds r1, r0, #0
 	adds r0, #0x3c

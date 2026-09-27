@@ -16,7 +16,7 @@ sub_08072C90: @ 0x08072C90
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r0, _08072CFC @ =0x083F87B4
 	ldr r1, _08072D00 @ =0x06013800
 	bl Decompress

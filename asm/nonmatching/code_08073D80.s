@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08073D80
-sub_08073D80: @ 0x08073D80
+	thumb_func_start SetDefaultManimScreenConf
+SetDefaultManimScreenConf: @ 0x08073D80
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _08073EE4 @ =0x03002870

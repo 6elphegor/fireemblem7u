@@ -71,7 +71,7 @@ _08073B60:
 	bl StartPaletteAnimatorReverse
 	bl InitScanlineEffect
 	bl sub_0807689C
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r0, _08073C4C @ =0x03002870
 	adds r1, r0, #0
 	adds r0, #0x3c

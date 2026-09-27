@@ -16,7 +16,7 @@ sub_080735B8: @ 0x080735B8
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r4, _080736C4 @ =0x083F8FBC
 	movs r0, #2
 	bl GetBgChrOffset

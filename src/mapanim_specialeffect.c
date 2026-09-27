@@ -12,7 +12,6 @@ extern u16 const Pal_ManimPoison[];
 extern u16 const SpriteAnim_ManimPoison[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimWallBreak[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimPoison[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimPoison2[];
 
 void StartManimMissAnim(struct Unit * unit)
 {
@@ -80,14 +79,4 @@ void ManimPoisonAnim_Init(struct ManimEffectProc * proc)
         SpriteAnim_ManimPoison,
         proc->x - 8, proc->y + 8,
         TILEREF(0x1C0, 4), 0, 2);
-}
-
-void StartManimPoisonAnim2(struct Unit * unit)
-{
-    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimPoison2, PROC_TREE_3);
-
-    proc->unit = unit;
-
-    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
-    proc->y = ((SCREEN_TILE_Y(unit->yPos) << 1) + 1) * 8;
 }

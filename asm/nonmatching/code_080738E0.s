@@ -16,7 +16,7 @@ sub_080738E0: @ 0x080738E0
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r0, _080739A0 @ =0x03002870
 	adds r1, r0, #0
 	adds r0, #0x3c

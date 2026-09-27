@@ -74,7 +74,7 @@ _0807290E:
 	bl StartSpriteAnimProc
 	bl InitScanlineEffect
 	bl sub_0807689C
-	bl sub_08073D80
+	bl SetDefaultManimScreenConf
 	ldr r0, _08072A14 @ =0x03002870
 	adds r1, r0, #0
 	adds r0, #0x3c
