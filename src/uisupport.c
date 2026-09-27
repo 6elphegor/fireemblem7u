@@ -76,7 +76,7 @@ void sub_0809B440(struct SupportScreenProc * proc);
 void sub_0809BE80(struct SupportScreenProc * proc, int line);
 
 extern u8 Tsa_0840EBE8[];
-extern u8 Img_08403A48[];
+extern u8 Img_SysBlackBox[];
 extern struct ProcCmd CONST_DATA gProcScr_SupportScreen[];
 extern u16 CONST_DATA Sprite_08CC58D4[];
 extern int TacticianBirthAffins[];
@@ -517,7 +517,7 @@ void SupportScreen_SetupGraphics(struct SupportScreenProc * proc)
     StartBmFace(0, 0x41, 56, -10, 0x901);
     InitTalk(0x28, 0, 1);
 
-    Decompress(Img_08403A48, (void *) 0x06017800);
+    Decompress(Img_SysBlackBox, (void *) 0x06017800);
 
     if (proc->fromPrepScreen)
         proc->unk_30 = 0xF6F;

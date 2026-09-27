@@ -110,7 +110,6 @@ extern struct LinkArenaStMaybe gLinkArenaSt;
 extern struct SioUnknown_0203DD90 gUnk_Sio_0203DD90;
 extern char gUnk_Sio_0203DAC5[][19];
 extern struct AiState gAiState;
-extern u8 gWorkingMovementScript[];
 
 extern const u8 gUnknown_080D9F28[][4];
 extern const struct Vec2 gUnknown_080D9F48[];
@@ -2520,10 +2519,10 @@ void LAUnitDeaths_FindNextAndStart(struct SioBattleMapProc * proc)
 
     mu = StartMu(unit);
 
-    gWorkingMovementScript[0] = MOVE_CMD_MOVE_DOWN;
-    gWorkingMovementScript[1] = MOVE_CMD_HALT;
+    gWorkingMoveScr[0] = MOVE_CMD_MOVE_DOWN;
+    gWorkingMoveScr[1] = MOVE_CMD_HALT;
 
-    SetMuMoveScript(mu, gWorkingMovementScript);
+    SetMuMoveScript(mu, gWorkingMoveScr);
 
     StartLinkArenaMUDeathFade(mu);
 
@@ -2685,11 +2684,11 @@ void sub_08046FE8(struct SioBattleMapProc * proc)
 
         mu = StartMu(&gBattleTarget.unit);
 
-        gWorkingMovementScript[0] = GetFacingFromTo(
+        gWorkingMoveScr[0] = GetFacingFromTo(
             gBattleActor.unit.xPos, gBattleActor.unit.yPos, gBattleTarget.unit.xPos, gBattleTarget.unit.yPos);
-        gWorkingMovementScript[1] = MOVE_CMD_HALT;
+        gWorkingMoveScr[1] = MOVE_CMD_HALT;
 
-        SetMuMoveScript(mu, gWorkingMovementScript);
+        SetMuMoveScript(mu, gWorkingMoveScr);
         StartLinkArenaMUDeathFade(mu);
 
         proc->unk_54 = mu;

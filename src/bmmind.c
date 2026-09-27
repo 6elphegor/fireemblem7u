@@ -29,7 +29,6 @@ int GetCurrentBgmSong(void);
 int GetUnitLastItem(struct Unit * unit);
 void StartGiveItem(struct Unit * unit, u16 item, ProcPtr parent);
 
-extern u8 gWorkingMovementScript[];
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 
 extern struct ProcCmd CONST_DATA sProcScr_AfterDropAction[];
@@ -138,9 +137,9 @@ s8 DoRescueDropAction(ProcPtr proc)
 
     if (gBmMapHidden[gActionSt.y_target][gActionSt.x_target] & HIDDEN_BIT_UNIT)
     {
-        gWorkingMovementScript[0] = MOVE_CMD_BUMP;
-        gWorkingMovementScript[1] = MOVE_CMD_HALT;
-        SetAutoMuMoveScript(gWorkingMovementScript);
+        gWorkingMoveScr[0] = MOVE_CMD_BUMP;
+        gWorkingMoveScr[1] = MOVE_CMD_HALT;
+        SetAutoMuMoveScript(gWorkingMoveScr);
         return 0;
     }
 
@@ -416,11 +415,11 @@ void BATTLE_PostCombatDeathFades(struct CombatActionProc * proc)
         RefreshUnitSprites();
         muProc = StartMu(&gBattleTarget.unit);
 
-        gWorkingMovementScript[0] = GetFacingFromTo(
+        gWorkingMoveScr[0] = GetFacingFromTo(
             gBattleActor.unit.xPos, gBattleActor.unit.yPos, gBattleTarget.unit.xPos, gBattleTarget.unit.yPos);
-        gWorkingMovementScript[1] = MOVE_CMD_HALT;
+        gWorkingMoveScr[1] = MOVE_CMD_HALT;
 
-        SetMuMoveScript(muProc, gWorkingMovementScript);
+        SetMuMoveScript(muProc, gWorkingMoveScr);
         StartMuDeathFade(muProc);
 
         proc->unk_54 = muProc;

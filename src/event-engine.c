@@ -456,7 +456,7 @@ extern struct ProcCmd CONST_DATA ProcScr_EventFadeOutOfBackgroundTalk[];
 extern struct ProcCmd CONST_DATA ProcScr_08B90D40[];
 extern struct ProcCmd CONST_DATA ProcScr_EventFadeOutOfSkip[];
 extern struct ProcCmd CONST_DATA ProcScr_EventDarkenThenFunc[];
-extern struct ProcCmd CONST_DATA ProcScr_08B969E4[];
+extern struct ProcCmd CONST_DATA ProcScr_SubtitleHelpDarkener[];
 
 void sub_0800ADD0(ProcPtr proc);
 
@@ -820,7 +820,7 @@ void Event_BeginSkip(struct EventProc * proc)
 
 void Event_MainLoop(struct EventProc * proc)
 {
-    if (Proc_Find(ProcScr_08B969E4))
+    if (Proc_Find(ProcScr_SubtitleHelpDarkener))
         return;
 
     if (IsSubtitleHelpActive())

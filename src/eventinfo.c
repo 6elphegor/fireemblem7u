@@ -156,7 +156,6 @@ struct HardBonusLevelEnt
 extern u8 gPermanentFlagBits[];
 extern u8 gChapterFlagBits[];
 extern u8 const gFlagBitMaskLut[];
-extern u16 const EventScr_GameOver[];
 extern struct ForceDeployEnt const gForceDeployList[];
 extern struct HardBonusLevelEnt const gHardBonusLevelList[];
 extern u8 const gUnk_08CA0538[];
@@ -1588,7 +1587,7 @@ void sub_08079704(void)
     SetFlag(0x65);
     StartBgm(0x2B, NULL);
     gPlaySt.cfgDisableBgm = TRUE;
-    StartEvent(EventScr_GameOver);
+    StartEvent(gEvent_GameOver);
 }
 
 s8 sub_08079734(void)

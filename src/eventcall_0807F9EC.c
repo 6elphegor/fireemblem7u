@@ -27,7 +27,7 @@ void sub_0807EDB8(void)
 
 void sub_0807EDD0(void)
 {
-    MPlayVolumeControl(&gUnk_03005DA0, 0xFFFF, 0x20);
+    MPlayVolumeControl(&gMPlayInfo_SE3, 0xFFFF, 0x20);
 }
 
 void sub_0807EDE8(void)
@@ -37,7 +37,7 @@ void sub_0807EDE8(void)
 
 void sub_0807EE04(void)
 {
-    MPlayVolumeControl(&gUnk_03005DA0, 0xFFFF, 0x100);
+    MPlayVolumeControl(&gMPlayInfo_SE3, 0xFFFF, 0x100);
 }
 
 bool sub_0807EE20(void)

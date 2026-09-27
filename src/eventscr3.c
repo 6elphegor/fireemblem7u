@@ -1,12 +1,12 @@
 #include "gbafe.h"
 
-extern struct MusicPlayerInfo gUnk_03005A90;
-extern struct MusicPlayerInfo gUnk_03005AD0;
-extern struct MusicPlayerInfo gUnk_03005CE0;
-extern struct MusicPlayerInfo gUnk_03005D20;
-extern struct MusicPlayerInfo gUnk_03005D60;
-extern struct MusicPlayerInfo gUnk_03005DF0;
-extern struct MusicPlayerInfo gUnk_03005E30;
+extern struct MusicPlayerInfo gMPlayInfo_SE4;
+extern struct MusicPlayerInfo gMPlayInfo_SE5;
+extern struct MusicPlayerInfo gMPlayInfo_SE6;
+extern struct MusicPlayerInfo gMPlayInfo_BGM2;
+extern struct MusicPlayerInfo gMPlayInfo_SE1;
+extern struct MusicPlayerInfo gMPlayInfo_SE7;
+extern struct MusicPlayerInfo gMPlayInfo_SE2;
 
 struct AiDecisionSt {
     /* 00 */ u8 action_id;
@@ -80,35 +80,35 @@ int EvtCmd_PlaySongExt(struct EventProc * proc)
     switch (proc->script[1])
     {
     case 1:
-        StartBgmExt(song, 1, (void *) &gUnk_03005D20);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_BGM2);
         break;
 
     case 2:
-        StartBgmExt(song, 1, (void *) &gUnk_03005D60);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE1);
         break;
 
     case 3:
-        StartBgmExt(song, 1, (void *) &gUnk_03005E30);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE2);
         break;
 
     case 4:
-        StartBgmExt(song, 1, (void *) &gUnk_03005DA0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE3);
         break;
 
     case 5:
-        StartBgmExt(song, 1, (void *) &gUnk_03005A90);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE4);
         break;
 
     case 6:
-        StartBgmExt(song, 1, (void *) &gUnk_03005AD0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE5);
         break;
 
     case 7:
-        StartBgmExt(song, 1, (void *) &gUnk_03005CE0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE6);
         break;
 
     case 8:
-        StartBgmExt(song, 1, (void *) &gUnk_03005DF0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE7);
         break;
 
     default:

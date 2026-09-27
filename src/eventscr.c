@@ -294,7 +294,6 @@ struct EventMuWaitProc {
     /* 54 */ struct MuProc * mu;
 };
 
-extern u8 gUnk_02033E00[];
 extern struct ProcCmd CONST_DATA ProcScr_08B91A08[];
 
 void EventStartTalk(struct EventProc * proc, int msg, bool init)
@@ -1144,7 +1143,7 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
     }
 
     MapFloodRange_Unitless(unit->xPos, unit->yPos, unit->pClassData->pMovCostTable[0]);
-    BuildBestMoveScript(pos.x, pos.y, gUnk_02033E00);
+    BuildBestMoveScript(pos.x, pos.y, gWorkingMoveScr);
 
     if (placed)
         gBmMapTerrain[y][x] = 0;
@@ -1154,7 +1153,7 @@ bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, in
 
     EnableAllLightRunes();
 
-    return DisplayMovement(proc, unit, gUnk_02033E00, speed);
+    return DisplayMovement(proc, unit, gWorkingMoveScr, speed);
 }
 
 bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * move_script, u16 speed)

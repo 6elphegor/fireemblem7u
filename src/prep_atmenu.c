@@ -400,7 +400,7 @@ void AtMenu_Reinitialize(struct ProcAtMenu * proc)
 
 	ApplyPalette(Pal_08404BBC, 3);
 	Decompress(Img_08404BDC, (void *)(BG_VRAM + 0x7800));
-	PutCompressedTsa(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_084050D8, OAM2_PAL(3) + OAM2_CHR(0x7800 / 0x20));
+	PutCompressedTsa(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_PrepMenuFrame, OAM2_PAL(3) + OAM2_CHR(0x7800 / 0x20));
 
 #if (PROJECT == FE7)
 	Prep_DrawChapterGoal(0x5000, 0xB);
@@ -895,7 +895,7 @@ void AtUnkMenu_Reinitialize(struct ProcAtMenu * _proc)
 
     ApplyPalette(Pal_08404BBC, 0xF);
     Decompress(Img_08404BDC, (void *) (BG_VRAM + 0x5800));
-    PutCompressedTsa(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_084050D8, OAM2_PAL(0xF) + OAM2_CHR(0x5800 / 0x20));
+    PutCompressedTsa(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_PrepMenuFrame, OAM2_PAL(0xF) + OAM2_CHR(0x5800 / 0x20));
 
     for (i = 0; i < 5; i++)
         InitText(&gPrepMainMenuTexts[i + 5], 0xE);
