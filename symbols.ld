@@ -799,3 +799,10 @@ sAiSpecialItemFuncLut = 0x081D3BDC;
 sAiTerrainList_Door = 0x08B98AE8;
 sAiTerrainList_Chest = 0x08B98AEA;
 gWorkingTerrainMoveCosts = 0x030043F0;
+/* cp_0803E2F4 */
+gAiUnk_0203A988 = 0x0203A988;
+gRedAiEscapePoints = 0x08B97100;
+gGreenAiEscapePoints = 0x08B971C0;
+gAI3HealingThresholdTable = 0x08B9727C;
+gAiSpecificPositionLists = 0x08B972E8;
+sTerrainList_Fort = 0x08B98AC4;
