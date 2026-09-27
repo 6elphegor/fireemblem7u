@@ -22,6 +22,7 @@ s8 SaveMenuTryMoveSaveSlotCursor(struct SaveMenuProc * proc, int dir);
 void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, int flag);
 void SaveMenuWriteNewGame(struct SaveMenuProc * proc);
 void sub_080A3CAC(struct SaveMenuProc * proc);
+s8 sub_080A6220(struct SaveMenuProc * proc);
 
 CONST_DATA u16 BgConfig_SaveMenu[] = {
     0x0000, 0x6000, 0x0000, 
@@ -722,13 +723,178 @@ void SaveMenuRegisterSlotSelected(struct SaveMenuProc * proc)
     proc->unk_2E = 6;
     proc->anim_clock = 0;
 }
-ASM_FUNC("asm/nonmatching/code_080A4108.s");
-ASM_FUNC("asm/nonmatching/code_080A43E0.s");
-ASM_FUNC("asm/nonmatching/code_080A4428.s");
-ASM_FUNC("asm/nonmatching/code_080A4478.s");
-ASM_FUNC("asm/nonmatching/code_080A44C0.s");
-ASM_FUNC("asm/nonmatching/code_080A4504.s");
-ASM_FUNC("asm/nonmatching/code_080A4554.s");
+void sub_080A4108(struct SaveMenuProc * proc)
+{
+    if (proc->anim_clock == 8)
+    {
+        sub_080A6398(proc->copy_from_id, proc);
+        sub_080A6398(4, proc);
+
+        if (proc->unk_37[proc->copy_from_id] != (u8) -1)
+            PutChapterTitleGfx(((u32) (proc->copy_from_id * 0x800 + 0xB40 * 0x20) & 0x0001FFFF) >> 5, proc->unk_37[proc->copy_from_id]);
+        else
+            PutChapterTitleGfx(((u32) (proc->copy_from_id * 0x800 + 0xB40 * 0x20) & 0x0001FFFF) >> 5, -1);
+
+        sub_080A649C(proc->copy_from_id);
+    }
+    else if (proc->anim_clock == 0x20)
+    {
+        sub_080A602C(proc);
+
+        if (proc->action_flag == 0x10)
+        {
+            Proc_Goto(proc, 0x12);
+            StartBgmVolumeChange(0xc0, 0, 0x10, NULL);
+        }
+        else if (proc->action_flag == 0x40)
+        {
+            Proc_Goto(proc, 0x11);
+        }
+        else if (sub_080A6220(proc))
+        {
+            if (proc->unk_2D != (u8) -1)
+            {
+                proc->copy_from_id = proc->unk_2D;
+                proc->unk_2D = -1;
+            }
+            else
+                proc->copy_from_id = SaveMenuModifySaveSlot(proc->copy_from_id, 1, 1);
+
+            Proc_Goto(proc, 5);
+        }
+    }
+    else if (proc->anim_clock == 0x30)
+    {
+        proc->copy_from_id = 0;
+        proc->unk_2D = -1;
+        proc->anim_clock = 0;
+        proc->selected_id = 0;
+        proc->action_flag = SaveMenuIndexToValidBitfile(proc->unk_30, 0);
+
+        PlaySoundEffect(0x38B);
+        Proc_Goto(proc, 4);
+
+        return;
+    }
+
+    if (proc->anim_clock == 0x10)
+    {
+        SetObjAffine(
+            proc->copy_from_id,
+            Div(+COS_Q12(0) * 16, 0x100),
+            Div(-SIN_Q12(0) * 16, 0x100),
+            Div(+SIN_Q12(0) * 16, 0x100),
+            Div(+COS_Q12(0) * 16, 0x100));
+    }
+    else
+    {
+        if ((proc->anim_clock <= 7))
+        {
+            SetObjAffine(
+                proc->copy_from_id,
+                Div(+COS_Q12(0) * 16, 0x100),
+                Div(-SIN_Q12(0) * 16, (proc->anim_clock * -0x20) + 0x100),
+                Div(+SIN_Q12(0) * 16, 0x100),
+                Div(+COS_Q12(0) * 16, (proc->anim_clock * -0x20) + 0x100));
+        }
+        else if ((proc->anim_clock < 0x10))
+        {
+            SetObjAffine(
+                proc->copy_from_id,
+                Div(+COS_Q12(0) * 16, 0x100),
+                Div(-SIN_Q12(0) * 16, (proc->anim_clock * 0x20) - 0xE0),
+                Div(+SIN_Q12(0) * 16, 0x100),
+                Div(+COS_Q12(0) * 16, (proc->anim_clock * 0x20) - 0xE0));
+        }
+    }
+
+    proc->anim_clock++;
+}
+void sub_080A43E0(struct SaveMenuProc * proc)
+{
+    int unk;
+
+    proc->unk_2E = 3;
+    proc->anim_clock++;
+
+    unk = 0xe - proc->anim_clock;
+    proc->unk_2F = -0x24 - (unk * 0xdc * unk / 0xc4);
+
+    if (proc->anim_clock == 0xe)
+        Proc_Break(proc);
+}
+void sub_080A4428(struct SaveMenuProc * proc)
+{
+    int unk;
+
+    proc->unk_2E = 4;
+    proc->anim_clock++;
+
+    unk = 0xe - proc->anim_clock;
+    proc->unk_2F = (unk * 0xdc * unk / 0xc4);
+
+    if (proc->anim_clock == 0xe)
+    {
+        Decompress(gUnk_084130A4, (void *) 0x06013800);
+        Proc_Break(proc);
+    }
+}
+void sub_080A4478(struct SaveMenuProc * proc)
+{
+    int unk;
+
+    proc->unk_2E = 8;
+    proc->anim_clock++;
+
+    unk = 0xe - proc->anim_clock;
+    proc->unk_46 = 0xdc - (unk * 0xdc * unk / 0xc4);
+
+    if (proc->anim_clock == 0xe)
+        Proc_Goto(proc, 0xA);
+}
+void sub_080A44C0(struct SaveMenuProc * proc)
+{
+    int unk;
+
+    proc->unk_2E = 8;
+    proc->anim_clock++;
+
+    unk = 0xe - proc->anim_clock;
+    proc->unk_46 = (unk * 0xdc * unk / 0xc4);
+
+    if (proc->anim_clock == 0xe)
+        Proc_Goto(proc, 2);
+}
+void sub_080A4504(struct SaveMenuProc * proc)
+{
+    int unk;
+
+    proc->unk_2E = 0xC;
+    proc->anim_clock++;
+
+    unk = 0xe - proc->anim_clock;
+
+    proc->unk_46 = 0x1b8 - (unk * 0xdc * unk / 0xc4);
+    proc->unk_2F = proc->unk_46 + 0x24;
+
+    if (proc->anim_clock == 0xe)
+        Proc_Goto(proc, 0xB);
+}
+void sub_080A4554(struct SaveMenuProc * proc)
+{
+    int unk;
+
+    proc->unk_2E = 0xD;
+    proc->anim_clock++;
+
+    unk = 0xe - proc->anim_clock;
+
+    proc->unk_46 = 0xdc + (unk * 0xdc * unk / 0xc4);
+    proc->unk_2F = proc->unk_46 + 0x24;
+
+    if (proc->anim_clock == 0xe)
+        Proc_Goto(proc, 0xA);
+}
 ASM_FUNC("asm/nonmatching/code_080A45A0.s");
 ASM_FUNC("asm/nonmatching/code_080A474C.s");
 ASM_FUNC("asm/nonmatching/code_080A47B4.s");
