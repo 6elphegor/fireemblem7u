@@ -1169,3 +1169,5 @@ Img_PhaseChangeEnemy = 0x08194C30;
 Pal_PhaseChangeEnemy = 0x08195088;
 Img_PhaseChangeOther = 0x081950A8;
 Pal_PhaseChangeOther = 0x08195500;
+gProc_DebugPrintWithProc = 0x08B93344;
+gDebugMenuDef = 0x08B958D8;
