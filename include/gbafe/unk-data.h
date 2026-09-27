@@ -11,6 +11,7 @@ extern EWRAM_DATA u16 * gManimScanlineBufs[2];
 extern s8 MoveTable_Flying[];
 extern s8 MoveTable_Ballista[];
 extern char const *StatusNameStringLut[];
+extern int const StatusNameMsgLut[];
 extern int TacticianAffins[12][4];
 extern u8 gArenaLevelBackup;
 extern struct unk_type_0203A50C gUnk_0203A510;
