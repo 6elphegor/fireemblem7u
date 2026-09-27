@@ -9,7 +9,7 @@ void sub_080255E0(int slot, void * vram);
 void sub_08026308(u16 layer, int x, int y, u16 oam2, int jid, int slot);
 void TryRemoveUnitFromBallista(struct Unit * unit);
 void CallDelayedArg(void (* func)(int arg), int arg, int delay);
-void sub_0806EC18(int actor, int target, int facing);
+void SetManimActorFacing(int actor, int target, int facing);
 u8 GetSpellAssocFacing(int weapon);
 
 extern struct MuConfig sMuConfig[MU_MAX_COUNT];
@@ -865,7 +865,7 @@ void StartMuDelayedFaceDefender(struct MuProc * proc)
 }
 void MuDelayedFaceDefenderFunc(int arg)
 {
-    sub_0806EC18(
+    SetManimActorFacing(
         gManimSt.attacker_actor,
         1 - gManimSt.attacker_actor,
         GetSpellAssocFacing(gManimSt.actor[0].bu->weaponBefore));

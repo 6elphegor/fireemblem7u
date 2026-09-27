@@ -51,39 +51,39 @@ struct ManimExpBarProc {
     /* 6A */ s16 timer;
 };
 
-// Manim_StoleItemPopup
-// Manim_WeaponBrokePopup
-// ManimShouldBuDisplayWeaponBroke
-// Manim_WeaponLevelGainedPopup
-// ManimShouldBuDisplayWeaponLevelGained
-// Manim_PrepareBattleTalk
-// Manim_Finish
-// Manim_AdvanceBattleRound
-// Manim_PrepareNextBattleRound
-// Manim_DisplayRoundAnim
-// Manim_ShowPoisonEffectIfAny
-// Manim_MoveCameraOntoSubject
-// Manim_MoveCameraOntoTarget
-// Manim_DisplayDeathQuote
-// Manim_DisplayDeathFade
-// Manim_DisplayExpBar
-// Manim_InitInfoBox
-// Manim_CallBattleQuoteEvents
-// SetBattleMuPaletteByIndex
-// SetBattleMuPalette
-// Manim_PlayStealSe
-// InitManimActor
-// sub_0806EC18
-// InitManimActorFacings
-// sub_0806EDAC
-// sub_0806EFC4
-// sub_0806F050
-// sub_0806F0DC
-// sub_0806F190
-// StartBattleManim
-// InitManimHits
-// InitManimActors
-// GetFacingFromTo
+void Manim_StoleItemPopup(ProcPtr proc);
+void Manim_WeaponBrokePopup(ProcPtr proc);
+bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
+void Manim_WeaponLevelGainedPopup(ProcPtr proc);
+bool ManimShouldBuDisplayWeaponLevelGained(struct BattleUnit * bu);
+void Manim_PrepareBattleTalk(ProcPtr proc);
+void Manim_Finish(ProcPtr proc);
+void Manim_AdvanceBattleRound(void);
+void Manim_PrepareNextBattleRound(ProcPtr proc);
+void Manim_DisplayRoundAnim(ProcPtr proc);
+void Manim_ShowPoisonEffectIfAny(ProcPtr proc);
+void Manim_MoveCameraOntoSubject(ProcPtr proc);
+void Manim_MoveCameraOntoTarget(ProcPtr proc);
+void Manim_DisplayDeathQuote(ProcPtr proc);
+void Manim_DisplayDeathFade(ProcPtr proc);
+void Manim_DisplayExpBar(ProcPtr proc);
+void Manim_InitInfoBox(ProcPtr proc);
+void Manim_CallBattleQuoteEvents(ProcPtr proc);
+void SetBattleMuPaletteByIndex(int actor);
+void SetBattleMuPalette(ProcPtr proc);
+void Manim_PlayStealSe(void);
+void InitManimActor(int actor, struct BattleUnit * bu, struct Unit * unit);
+void SetManimActorFacing(int actor, int target, int facing);
+void InitManimActorFacings(void);
+void SortManimActorLayers(void);
+void BeginMapAnimForPoisonDmg(void);
+void BeginMapAnimForCritAtk(void);
+void BeginMapAnimForSteal(void);
+void BeginMapAnimForDance(void);
+void StartBattleManim(void);
+void InitManimHits(struct BattleUnit * actor, struct BattleUnit * target, struct BattleHit * hit);
+void InitManimActors(struct BattleUnit * actor, struct BattleUnit * target, struct BattleHit * hit);
+int GetFacingFromTo(int x_from, int y_from, int x_to, int y_to);
 // UnpackManimWindowDigits
 // PutManimWindowNumber
 // UnpackManimWindowGraphics
