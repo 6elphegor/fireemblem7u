@@ -2671,6 +2671,7 @@ gEpilogueUnitInfo = 0x08CEDD48;
 gpEpilogueEnts = 0x08CEDE00;
 gEpilogueTotalLines = 0x02000884;
 gEpilogueEntCount = 0x02000888;
+gpEpilogueStrBuf = 0x08CEDDFC;
 ProcScr_ManimEnd = 0x08C9D6DC;
 ProcScr_ManimExpBar = 0x08C9D820;
 ProcScr_ManimPoisonDmg = 0x08C9D48C;

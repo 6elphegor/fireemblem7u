@@ -62,6 +62,7 @@ extern struct EpilogueUnitInfo const gEpilogueUnitInfo[];
 extern struct EpilogueEnt * const gpEpilogueEnts;
 extern int gEpilogueTotalLines;
 extern int gEpilogueEntCount;
+extern char * const gpEpilogueStrBuf;
 
 void ClearEpilogueTexts(void);
 void ClearEpilogueText(int idx);
@@ -70,7 +71,9 @@ void EpilogueText_Center(struct Text * text, char const * str);
 void sub_080B6C14(void);
 void sub_080B6C8C(void);
 void sub_080B6D64(void);
-void sub_080B6FB8(int chapter, char const * str);
+void sub_080B6FB8(int chapter, char * str);
+char * sub_080AAAA8(int chapter, char * dst);
+int sub_080AABD0(char ** src, char ** dst);
 void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr);
 void sub_080B6DD4(void);
 void sub_080B7408(struct EpilogueProc * proc);
@@ -271,7 +274,69 @@ void EpilogueText_DrawStats(struct Text * text, int battles, int wins, int losse
     Text_DrawNumber(text, losses);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B6FB8.s");
+void sub_080B6FB8(int chapter, char * str)
+{
+    char buf[0x80];
+    char * src;
+    char * dst;
+    int lines = 0;
+
+    src = str;
+    dst = gpEpilogueStrBuf;
+
+    for (;;)
+    {
+        switch (*src)
+        {
+        case 1:
+            *dst = *src;
+            src++;
+            dst++;
+            lines++;
+
+            if (lines == 1)
+            {
+                dst = sub_080AAAA8(chapter, dst);
+                dst = AppendString(DecodeMsgInBuffer(GetChapterInfo(chapter)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0], buf), dst);
+                dst = AppendString(DecodeMsgInBuffer(0x118B, buf), dst);
+            }
+
+            break;
+
+        case 0:
+            *dst = *src;
+            goto copy_back;
+
+        default:
+            sub_080AABD0(&src, &dst);
+            break;
+        }
+    }
+
+copy_back:
+    src = str;
+    dst = gpEpilogueStrBuf;
+
+    for (;;)
+    {
+        switch (*dst)
+        {
+        case 1:
+            *src++ = *dst++;
+            break;
+
+        case 0:
+            goto end;
+
+        default:
+            sub_080AABD0(&dst, &src);
+            break;
+        }
+    }
+
+end:
+    *src = *dst;
+}
 void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr)
 {
     struct EpilogueEnt * ent = &gpEpilogueEnts[entIdx];
@@ -296,7 +361,7 @@ void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr)
         else if ((s8) ent->defeatChapter >= 0)
         {
             *pstr = DecodeMsg(info->msgDead);
-            sub_080B6FB8((s8) ent->defeatChapter, *pstr);
+            sub_080B6FB8((s8) ent->defeatChapter, (char *) *pstr);
         }
         else
         {
