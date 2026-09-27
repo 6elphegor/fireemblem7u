@@ -752,7 +752,7 @@ int GetSupportScreenPartnerCount(int charId);
 // sub_080AAC48
 // sub_080AAC74
 // StartBonusClaimHelpBox
-void sub_080AACD8(u16 * tm, u8 const * tsa, u16 tileref); // Decompress tsa to gBuf, then TmApplyTsa_thm
+void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to gBuf, then TmApplyTsa_thm
 // sub_080AAD18
 // sub_80ABC04
 // sub_80ABC28

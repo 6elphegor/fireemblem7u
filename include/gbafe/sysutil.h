@@ -247,7 +247,6 @@ struct ProcBmBgfx {
     /* 58 */ bool (* callback)(ProcPtr);
 };
 
-void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // decompresses tsa, then TmApplyTsa
 void BmBgfx_Init(struct ProcBmBgfx * proc);
 void BmBgfx_Loop(struct ProcBmBgfx * proc);
 void BmBgfx_End(struct ProcBmBgfx * proc);
