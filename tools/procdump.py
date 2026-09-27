@@ -95,7 +95,7 @@ def main():
     for a, b in zip(bounds, bounds[1:]):
         name = SYMS.get(a, f"gUnk_{a:08X}")
         cmds = [proc_cmd(x) for x in range(a, b - (b - a) % 8, 8)] if (b - a) >= 8 else [None]
-        if (b - a) % 8 == 0 and all(cmds) and (name.startswith("ProcScr") or cmds[-1] == "PROC_END,"):
+        if (b - a) % 8 == 0 and all(cmds) and (name.startswith("ProcScr") or (cmds[-1] == "PROC_END," and any(c != "PROC_END," for c in cmds))):
             print(f"struct ProcCmd CONST_DATA {name}[] = {{")
             for c in cmds:
                 print("    " + c)

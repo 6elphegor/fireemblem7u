@@ -5,28 +5,148 @@ void MPlayPanpotControl(struct MusicPlayerInfo * mplayInfo, u16 trackBits, s8 pa
 void FadeBgmOut(int speed);
 
 extern void (* CONST_DATA gDecompressFuncLut[])(void const * src, void * dst);
-extern struct ProcCmd CONST_DATA ProcScr_08B928DC[];
-extern struct ProcCmd CONST_DATA ProcScr_SpacialSeTest[];
-extern struct ProcCmd CONST_DATA ProcScr_PalFade[];
-extern struct ProcCmd CONST_DATA ProcScr_FadeToBlack[];
-extern struct ProcCmd CONST_DATA ProcScr_FadeFromBlack[];
-extern struct ProcCmd CONST_DATA ProcScr_FadeToWhite[];
-extern struct ProcCmd CONST_DATA ProcScr_FadeFromWhite[];
-extern struct ProcCmd CONST_DATA ProcScr_FadeCore[];
-extern struct ProcCmd CONST_DATA ProcScr_TemporaryLock[];
-extern char CONST_DATA SJisZero[];
-extern char CONST_DATA SJisDash[];
-extern char CONST_DATA AsciiZero;
-extern char CONST_DATA AsciiDash;
-extern struct ProcCmd CONST_DATA ProcScr_PaletteAnimator[];
-extern struct ProcCmd CONST_DATA ProcScr_CallDelayed[];
-extern struct ProcCmd CONST_DATA ProcScr_CallDelayedArg[];
-extern u16 CONST_DATA Pal_AllBlack[];
-extern u16 CONST_DATA Pal_AllWhite[];
-extern struct ProcCmd CONST_DATA ProcScr_PartialGameLock[];
 
 extern struct PalFadeSt sPalFadeSt[0x20];
 extern struct Text sPutStringText;
+
+struct Proc08B928DC;
+struct ProcSpacialSeTest;
+struct PalFadeProc;
+void PalFade_OnLoop(struct PalFadeProc * proc);
+void SpacialSeTest_OnInit(struct ProcSpacialSeTest * proc);
+void SpacialSeTest_OnLoop(struct ProcSpacialSeTest * proc);
+void sub_08013964(struct Proc08B928DC * proc);
+void sub_0801396C(struct Proc08B928DC * proc);
+
+void (* CONST_DATA gDecompressFuncLut[])(void const * src, void * dst) = {
+    UnpackRaw,
+    UnpackRaw,
+    LZ77UnCompVram,
+    LZ77UnCompWram,
+    HuffUnComp,
+    HuffUnComp,
+    RLUnCompVram,
+    RLUnCompWram,
+};
+
+CONST_DATA struct ProcCmd ProcScr_08B928DC[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_08013964),
+    PROC_REPEAT(sub_0801396C),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpacialSeTest[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(SpacialSeTest_OnInit),
+    PROC_REPEAT(SpacialSeTest_OnLoop),
+};
+
+CONST_DATA struct ProcCmd ProcScr_PalFade[] = {
+    PROC_MARK(10),
+    PROC_REPEAT(PalFade_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_FadeToBlack[] = {
+    PROC_CALL(FadeToBlack_OnInit),
+    PROC_YIELD,
+    PROC_REPEAT(FadeToCommon_OnLoop),
+    PROC_BLOCK,
+};
+
+CONST_DATA struct ProcCmd ProcScr_FadeFromBlack[] = {
+    PROC_CALL(FadeFromBlack_OnInit),
+    PROC_YIELD,
+    PROC_REPEAT(FadeFromCommon_OnLoop),
+    PROC_BLOCK,
+};
+
+CONST_DATA struct ProcCmd ProcScr_FadeToWhite[] = {
+    PROC_CALL(FadeToWhite_OnInit),
+    PROC_YIELD,
+    PROC_REPEAT(FadeToCommon_OnLoop),
+    PROC_BLOCK,
+};
+
+CONST_DATA struct ProcCmd ProcScr_FadeFromWhite[] = {
+    PROC_CALL(FadeFromWhite_OnInit),
+    PROC_YIELD,
+    PROC_REPEAT(FadeFromCommon_OnLoop),
+    PROC_BLOCK,
+};
+
+CONST_DATA struct ProcCmd ProcScr_FadeCore[] = {
+    PROC_MARK(10),
+    PROC_CALL(FadeCore_Init),
+    PROC_YIELD,
+    PROC_CALL(FadeCore_Tick),
+    PROC_REPEAT(FadeCore_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_TemporaryLock[] = {
+    PROC_YIELD,
+    PROC_REPEAT(TemporaryLock_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA char SJisZero[] = "０";
+
+CONST_DATA char SJisDash[] = "ー";
+
+CONST_DATA char AsciiZero = '0';
+
+CONST_DATA char AsciiDash = '-';
+
+CONST_DATA struct ProcCmd ProcScr_PaletteAnimator[] = {
+    PROC_REPEAT(PaletteAnimator_Loop),
+};
+
+CONST_DATA struct ProcCmd ProcScr_CallDelayed[] = {
+    PROC_REPEAT(CallDelayed_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_CallDelayedArg[] = {
+    PROC_REPEAT(CallDelayedArg_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA u16 Pal_AllBlack[] = {
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA u16 Pal_AllWhite[] = {
+    0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF,
+    0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF,
+};
+
+CONST_DATA u16 Pal_AllRed[] = {
+    0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F,
+    0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F,
+};
+
+CONST_DATA u16 Pal_AllGreen[] = {
+    0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0,
+    0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0, 0x3E0,
+};
+
+CONST_DATA u16 Pal_AllBlue[] = {
+    0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00,
+    0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00, 0x7C00,
+};
+
+CONST_DATA u16 Pal_AllYellow[] = {
+    0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE,
+    0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE, 0x7FE,
+};
+
+CONST_DATA struct ProcCmd ProcScr_PartialGameLock[] = {
+    PROC_REPEAT(PartialGameLock_OnLoop),
+    PROC_END,
+};
 
 int Interpolate(int method, int lo, int hi, int x, int x_max)
 {
