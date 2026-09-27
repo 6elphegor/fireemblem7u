@@ -50,9 +50,9 @@ void StartAvailableTurnEvents(void);
 // sub_80795FC
 // sub_08078E54
 // sub_8079688
-// IsThereClosedDoorAt
+// IsThereClosedChestAt
 // StartAvailableChestTileEvent
-// sub_08078F24
+// IsThereClosedDoorAt
 // StartAvailableDoorTileEvent
 // sub_08078F68
 // sub_8079754

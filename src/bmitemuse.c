@@ -325,7 +325,7 @@ s8 CanUnitUseChestKeyItem(struct Unit * unit)
     if (gBmMapTerrain[unit->yPos][unit->xPos] != TERRAIN_CHEST)
         return FALSE;
 
-    if (!IsThereClosedDoorAt(unit->xPos, unit->yPos))
+    if (!IsThereClosedChestAt(unit->xPos, unit->yPos))
         return FALSE;
 
     return TRUE;

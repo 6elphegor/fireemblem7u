@@ -1051,7 +1051,7 @@ void sub_08078EB8(s8 x, s8 y)
         StartAvailableTileEvent(x, y);
 }
 
-bool IsThereClosedDoorAt(s8 x, s8 y)
+bool IsThereClosedChestAt(s8 x, s8 y)
 {
     if (GetAvailableTileEventCommand(x, y) == 0x12)
         return TRUE;
@@ -1061,11 +1061,11 @@ bool IsThereClosedDoorAt(s8 x, s8 y)
 
 void StartAvailableChestTileEvent(s8 x, s8 y)
 {
-    if (IsThereClosedDoorAt(x, y))
+    if (IsThereClosedChestAt(x, y))
         StartAvailableTileEvent(x, y);
 }
 
-bool sub_08078F24(s8 x, s8 y)
+bool IsThereClosedDoorAt(s8 x, s8 y)
 {
     if (GetAvailableTileEventCommand(x, y) == 0x10)
         return TRUE;
@@ -1075,7 +1075,7 @@ bool sub_08078F24(s8 x, s8 y)
 
 void StartAvailableDoorTileEvent(s8 x, s8 y)
 {
-    if (sub_08078F24(x, y))
+    if (IsThereClosedDoorAt(x, y))
         StartAvailableTileEvent(x, y);
 }
 

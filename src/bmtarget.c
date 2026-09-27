@@ -409,7 +409,7 @@ void TryAddClosedDoorToTargetList(int x, int y)
     if (gBmMapTerrain[y][x] != TERRAIN_DOOR)
         return;
 
-    if (!sub_08078F24(x, y))
+    if (!IsThereClosedDoorAt(x, y))
         return;
 
     EnlistTarget(x, y, TERRAIN_DOOR, 0);
@@ -420,7 +420,7 @@ void TryAddBridgeToTargetList(int x, int y)
     if (gBmMapTerrain[y][x] != TERRAIN_DRAWBRIDGE)
         return;
 
-    if (!sub_08078F24(x, y))
+    if (!IsThereClosedDoorAt(x, y))
         return;
 
     EnlistTarget(x, y, TERRAIN_DRAWBRIDGE, 0);
