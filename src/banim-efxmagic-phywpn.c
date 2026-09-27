@@ -166,7 +166,7 @@ void EfxTeonoMain(struct ProcEfx * proc)
             animc->state3 |= ANIM_BIT3_TAKE_BACK_ENABLE | ANIM_BIT3_HIT_EFFECT_APPLIED;
             StartBattleAnimHitEffectsDefault(animc, proc->hitted);
 
-            if (sub_08067CC4(animc) != (2))
+            if (GetEfxHpChangeType(animc) != (2))
             {
                 if (CheckRoundCrit(proc->anim) == true)
                     NewEfxPierceCritical(animc);
@@ -357,7 +357,7 @@ void EfxArrowMain(struct ProcEfx * proc)
             animc->state3 |= ANIM_BIT3_TAKE_BACK_ENABLE | ANIM_BIT3_HIT_EFFECT_APPLIED;
             StartBattleAnimHitEffectsDefault(animc, proc->hitted);
 
-            if (sub_08067CC4(animc) != (2))
+            if (GetEfxHpChangeType(animc) != (2))
             {
                 if (CheckRoundCrit(proc->anim) == true)
                     NewEfxPierceCritical(animc);
@@ -625,7 +625,7 @@ void EfxTeyariMain(struct ProcEfx * proc)
             animc->state3 |= ANIM_BIT3_TAKE_BACK_ENABLE | ANIM_BIT3_HIT_EFFECT_APPLIED;
             StartBattleAnimHitEffectsDefault(animc, proc->hitted);
 
-            if (sub_08067CC4(animc) != (2))
+            if (GetEfxHpChangeType(animc) != (2))
             {
                 if (CheckRoundCrit(proc->anim) == true)
                     NewEfxPierceCritical(animc);

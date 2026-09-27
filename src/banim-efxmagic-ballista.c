@@ -64,7 +64,7 @@ void efxShooter_Loop_Main(struct ProcEfx * proc)
 
             StartBattleAnimHitEffectsDefault(anim, proc->hitted);
 
-            if (sub_08067CC4(anim) != 2)
+            if (GetEfxHpChangeType(anim) != 2)
             {
                 if (CheckRoundCrit(proc->anim) == 1)
                 {
