@@ -1122,7 +1122,31 @@ void StartPlayerRankFlash(int pal, ProcPtr parent)
     proc->pal = pal;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B9E58.s");
+void PlayerRank_LoopLetters(struct PlayerRankProc * proc)
+{
+    proc->timer += 0x20;
+
+    proc->scales[proc->idx] = proc->timer % 0x200 > 0xFF ? 0x100 - proc->timer % 0x100 : proc->timer % 0x100;
+
+    if (proc->scales[proc->idx] == 0)
+        proc->counts[proc->idx]++;
+
+    if (proc->counts[proc->idx] == proc->ranks[proc->idx] && proc->scales[proc->idx] == 0x100)
+    {
+        proc->timer = 0;
+
+        if ((gPlaySt.chapterStateBits & 0x80) && proc->idx == 3)
+            StartPlayerRankFlash(0xF, proc);
+        else
+            StartPlayerRankFlash(proc->idx + 10, proc);
+
+        proc->idx++;
+
+        PlaySoundEffect(0x85);
+
+        Proc_Break(proc);
+    }
+}
 
 void PlayerRank_WaitForKey(ProcPtr proc)
 {
