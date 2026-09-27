@@ -56,11 +56,13 @@ struct SaveMenuProc {
     /* 3D */ u8 unk_3D;
     /* 3E */ u8 in_rtext;
     /* 3F */ u8 unk_3F;
-    /* 40 */ u16 unk_40;
+    /* 40 */ u8 unk_40;
+    /* 41 */ u8 unk_41;
     /* 42 */ u16 action_flag;
-    /* 44 */ u32 unk_44[3]; // time value
-    /* 50 */ u32 unk_50; // time value
-    /* 54 */ struct SaveMenuUnkProc1 * proc1;
+    /* 44 */ u16 unk_44;
+    /* 46 */ u16 unk_46;
+    /* 48 */ u32 unk_48[3]; // time value
+    /* 54 */ u32 unk_54; // time value
     /* 58 */ struct SaveMenuUnkProc2 * proc2;
     /* 5C */ ProcPtr proc3; // sprite anim proc
 };
@@ -74,9 +76,9 @@ u8 SaveMenuIndexToValidBitfile(u8 byte, int num);
 u8 SaveMenuGetBitfileByMask(u8 byte1, u8 byte2);
 u8 BitfileToIndex(u8 byte);
 void SaveMenu_StartHelpBox(struct SaveMenuProc * proc);
-// ??? LoadSaveMenuHelpText
-// ??? SaveMenuPostChapterHandleHelpBox
-// ??? SaveMenuPutChapterTitle
+int sub_080A3474(int slot);
+bool SaveMenuPostChapterHandleHelpBox(struct SaveMenuProc * proc);
+void SaveMenuPutChapterTitle(struct SaveMenuProc * proc);
 // ??? SaveMenu_Init
 // ??? ProcSaveMenu_InitScreen
 // ??? SaveMenu_LoadExtraMenuGraphics

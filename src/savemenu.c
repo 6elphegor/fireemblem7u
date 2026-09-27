@@ -3,6 +3,21 @@
 EWRAM_OVERLAY(savemenu) u8 gUnk_Savemenu_02000000 = 0;
 EWRAM_OVERLAY(savemenu) u8 gUnk_Savemenu_02000001 = 0;
 
+extern u16 gUnk_Savemenu_02000004[];
+extern u16 const gUnk_084139F0[];
+extern u16 const gUnk_08413A10[];
+extern u8 const gUnk_084130A4[];
+extern u8 const gGfx_SupportMenu[];
+
+void sub_080A5130(u16 const * src, u16 * dst, int count);
+void sub_080A5FD0(void);
+void sub_080A6398(u8 slot, struct SaveMenuProc * proc);
+void sub_080A649C(u8 slot);
+void sub_080A5EF0(void);
+struct SaveMenuUnkProc2 * StartSaveDraw(ProcPtr parent);
+void sub_080A602C(struct SaveMenuProc * proc);
+u8 SaveMenuGetValidMenuAmt(int flag, struct SaveMenuProc * proc);
+
 CONST_DATA u16 BgConfig_SaveMenu[] = {
     0x0000, 0x6000, 0x0000, 
     0xC000, 0x6800, 0x0000, 
@@ -121,15 +136,233 @@ void SaveMenu_StartHelpBox(struct SaveMenuProc * proc)
 }
 
 
-ASM_FUNC("asm/nonmatching/code_080A3474.s");
-ASM_FUNC("asm/nonmatching/code_080A351C.s");
-ASM_FUNC("asm/nonmatching/code_080A35DC.s");
-ASM_FUNC("asm/nonmatching/code_080A3630.s");
-ASM_FUNC("asm/nonmatching/code_080A36AC.s");
-ASM_FUNC("asm/nonmatching/code_080A38D8.s");
-ASM_FUNC("asm/nonmatching/code_080A3960.s");
-ASM_FUNC("asm/nonmatching/code_080A39A4.s");
-ASM_FUNC("asm/nonmatching/code_080A39E8.s");
+int sub_080A3474(int slot)
+{
+    struct PlaySt playSt;
+
+    if (!IsSaveValid(slot))
+        return 0;
+
+    ReadGameSavePlaySt(slot, &playSt);
+
+    if (!playSt.tact_enabled)
+    {
+        gPlaySt.tact_enabled = FALSE;
+        return 1;
+    }
+
+    gPlaySt.tact_enabled = TRUE;
+
+    if (playSt.playerName[0] == 0)
+        gPlaySt.playerName[0] = 0;
+    else
+        SetTacticianName(playSt.playerName);
+
+    gPlaySt.tact_gender = playSt.tact_gender;
+    gPlaySt.tact_birth = playSt.tact_birth;
+
+    return 2;
+}
+bool SaveMenuPostChapterHandleHelpBox(struct SaveMenuProc * proc)
+{
+    int time, _timer_default = 8;
+
+    if (proc->action_flag == 0x40)
+        return FALSE;
+
+    if (proc->unk_40 == 8)
+    {
+        if (gpKeySt->pressed & (B_BUTTON | R_BUTTON | DPAD_ANY))
+        {
+            CloseHelpBox();
+            proc->unk_40 = 8 - 1;
+        }
+    }
+    else if (gpKeySt->pressed & R_BUTTON)
+    {
+        switch (sub_080A3474(proc->copy_from_id))
+        {
+        case 0:
+            PlaySoundEffect(0x38C);
+            break;
+
+        case 1:
+        case 2:
+            LoadHelpBoxGfx((void *) 0x06013800, 9);
+            StartItemHelpBox(0x48, proc->copy_from_id * 0x20 + 0x2c, (u16) -1);
+            proc->unk_40 = _timer_default;
+            break;
+        }
+    }
+
+    time = proc->unk_40;
+    if (time == 0)
+        return FALSE;
+
+    if (time < _timer_default)
+        proc->unk_40--;
+
+    time = proc->unk_40;
+    if (time != 0)
+        return TRUE;
+
+    return FALSE;
+}
+void SaveMenuPutChapterTitle(struct SaveMenuProc * proc)
+{
+    int i;
+
+    PutChapterTitleBG(0xAC0);
+
+    for (i = 0; i < 3; i++)
+    {
+        if (proc->unk_37[i] != (u8) -1)
+            PutChapterTitleGfx(((0xB40 * 0x20 + (0x800 * (u32) i)) & 0x1FFFF) / 0x20, proc->unk_37[i]);
+        else
+            PutChapterTitleGfx(((0xB40 * 0x20 + (0x800 * (u32) i)) & 0x1FFFF) / 0x20, -1);
+    }
+}
+void sub_080A3630(void)
+{
+    InitBgs(BgConfig_SaveMenu);
+    ResetText();
+
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    gDispIo.disp_ct.mode = DISPCNT_MODE_1;
+    gDispIo.bg2_ct.size = BGCNT_SIZE_AFF256x256;
+    gDispIo.bg2_ct.wrap = false;
+
+    gDispIo.bg0_ct.priority = 3;
+    gDispIo.bg1_ct.priority = 0;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 2;
+}
+void ProcSaveMenu_InitScreen(struct SaveMenuProc * proc)
+{
+    int i;
+
+    ResetTextFont();
+    ApplySystemObjectsGraphics();
+
+    ApplyPalettes(Pal_SaveMenuBackground, 0, 3);
+    Decompress(Img_MuralBackground, (void *) BG_VRAM + GetBgChrOffset(BG_0));
+    TmApplyTsa(gBg0Tm, Tsa_SaveMenuBackground, 0);
+
+    ApplyPalettes(Pal_SaveMenuWindow, 0x11, 8);
+    ApplyPalette(gUnk_084139F0, 0x15);
+    sub_080A5130(gUnk_08413A10, gUnk_Savemenu_02000004, 2);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    proc->anim_clock = 0;
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.win1_enable_blend = 1;
+
+    Decompress(gGfx_SupportMenu, (void *) 0x06010800);
+
+    proc->unk_36 = 0;
+    proc->unk_2D = -1;
+    proc->unk_3D = 0;
+
+    sub_080A5FD0();
+
+    for (i = 0; i < 4; i++)
+    {
+        SetObjAffine(
+            i,
+            Div(+COS_Q12(0) * 16, 0x100),
+            Div(-SIN_Q12(0) * 16, 0x100),
+            Div(+SIN_Q12(0) * 16, 0x100),
+            Div(+COS_Q12(0) * 16, 0x100));
+    }
+
+    proc->unk_44 = 0x100;
+    proc->unk_3F = -1;
+    proc->in_rtext = FALSE;
+    proc->unk_40 = 0;
+
+    gUnk_Savemenu_02000000 = 100;
+    gUnk_Savemenu_02000001 = 10;
+
+    SetOnHBlankA(SaveMenuOnHBlank);
+
+    Decompress(Img_SpinRotation, (void *) BG_VRAM + GetBgChrOffset(BG_2));
+    sub_08001F3C(gBg3Tm, Tsa_SpinRotation, 0, 5);
+    EnableBgSync(BG3_SYNC_BIT);
+
+    for (i = 0; i < 4; i++)
+        sub_080A6398(i, proc);
+
+    sub_080A649C(proc->copy_from_id);
+    sub_080A5EF0();
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    SetWinEnable(0, 0, 0);
+
+    gPal[0] = 0;
+    EnablePalSync();
+
+    SaveMenuPutChapterTitle(proc);
+
+    proc->proc2 = StartSaveDraw(proc);
+    proc->proc3 = StartSpinRotation(proc);
+}
+void SaveMenu_LoadExtraMenuGraphics(struct SaveMenuProc * proc)
+{
+    Decompress(gUnk_084130A4, (void *) 0x06013800);
+    sub_080A602C(proc);
+
+    if (proc->action_flag == 0x20)
+    {
+        proc->selected_id = SaveMenuGetValidMenuAmt(0x20, proc);
+    }
+    else
+    {
+        proc->unk_2E = 2;
+        proc->copy_from_id = 0;
+        proc->selected_id = 0;
+        proc->unk_34 = 0;
+        proc->unk_46 = 0;
+        proc->action_flag = SaveMenuIndexToValidBitfile(proc->unk_30, proc->selected_id);
+    }
+
+    if (proc->unk_2E == 2)
+        proc->unk_2F = 0;
+
+    if (proc->unk_2E == 5)
+        proc->unk_2F = 0xdc;
+}
+void SaveMenuInit(struct SaveMenuProc * proc)
+{
+    proc->unk_2E = 5;
+    proc->copy_from_id = ReadLastGameSaveId();
+    proc->selected_id = 0;
+    proc->unk_34 = 0;
+    proc->unk_46 = 0;
+    proc->unk_30 = 0x40;
+    proc->action_flag = 0x40;
+    proc->unk_31 = 0;
+    proc->unk_2F = 0xdc;
+}
+void SaveMenuInitUnused(struct SaveMenuProc * proc)
+{
+    proc->unk_2E = 5;
+    proc->copy_from_id = ReadLastGameSaveId();
+    proc->selected_id = 0;
+    proc->unk_34 = 0;
+    proc->unk_46 = 0;
+    proc->unk_30 = 0x80;
+    proc->action_flag = 0x80;
+    proc->unk_31 = 0;
+    proc->unk_2F = 0xdc;
+}
+void SaveMenu_080A465C(struct SaveMenuProc * proc)
+{
+    Proc_Goto(proc, proc->unk_2E);
+}
 ASM_FUNC("asm/nonmatching/code_080A39F8.s");
 ASM_FUNC("asm/nonmatching/code_080A3C78.s");
 ASM_FUNC("asm/nonmatching/code_080A3CAC.s");
