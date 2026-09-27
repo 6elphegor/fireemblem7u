@@ -1115,3 +1115,7 @@ sBmMapRangePool = 0x03000BF8;
 gTerrainNameMsgTable = 0x08BE50E8;
 TerrainTable_HealAmount = 0x08BE47C4;
 TerrainTable_HealsStatus = 0x08BE4805;
+gWorkingBmMap = 0x030041E0;
+gMovMapFillStPool1 = 0x030041F0;
+gMovMapFillStPool2 = 0x03004490;
+gMovMapFillState = 0x030046A0;
