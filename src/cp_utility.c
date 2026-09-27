@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/cp_common.h"
 
 #define gMapRangeSigned ((s8 **) gBmMapRange)
@@ -249,7 +248,7 @@ void AiRandomMove(void)
     s16 xOut = 0;
     s16 yOut = 0;
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     xOut = -1;
 
@@ -698,8 +697,8 @@ void AiMakeMoveRangeMapsForUnitAndWeapon(struct Unit * unit, u16 item)
     int ix;
     int iy;
 
-    RevertMapChange(unit);
-    BmMapFillg(gBmMapRange, 0);
+    GenerateUnitMovementMap(unit);
+    BmMapFill(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -720,8 +719,8 @@ void AiMakeMoveRangeUnitPowerMaps(struct Unit * unit)
 
     int power = GetUnitPower(unit) > 20 ? 20 : GetUnitPower(unit);
 
-    RevertMapChange(unit);
-    BmMapFillg(gBmMapRange, 0);
+    GenerateUnitMovementMap(unit);
+    BmMapFill(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -740,8 +739,8 @@ void sub_08036770(struct Unit * unit, u16 item)
     int ix;
     int iy;
 
-    RevertMapChange(unit);
-    BmMapFillg(gBmMapRange, 0);
+    GenerateUnitMovementMap(unit);
+    BmMapFill(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -847,12 +846,12 @@ s8 AiFindSafestReachableLocation(struct Unit * unit, struct Vec2 * out)
 
     if (gAiState.flags & AI_FLAG_STAY)
     {
-        BmMapFillg(gBmMapMovement, -1);
+        BmMapFill(gBmMapMovement, -1);
         gBmMapMovement[unit->yPos][unit->xPos] = 0;
     }
     else
     {
-        RevertMapChange(unit);
+        GenerateUnitMovementMap(unit);
     }
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
@@ -960,7 +959,7 @@ void AiTryMoveTowards(s16 x, s16 y, u8 action, u8 maxDanger, u8 unk)
     else
         AiMapFloodRangeFrom(x, y, gActiveUnit);
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     bestRange = gBmMapRange[gActiveUnit->yPos][gActiveUnit->xPos];
     xOut = -1;
@@ -1018,7 +1017,7 @@ void AiTryMoveTowardsNeglectWall(s16 x, s16 y, u8 action, u8 maxDanger, u8 unk)
     else
         sub_0803BF8C(x, y, gActiveUnit);
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     bestRange = gBmMapRange[gActiveUnit->yPos][gActiveUnit->xPos];
     xOut = -1;
@@ -1283,7 +1282,7 @@ void SaveNumberOfAlliedUnitsIn0To8Range(struct Unit * unit)
 
     int count = 0;
 
-    BmMapFillg(gBmMapMovement, 0);
+    BmMapFill(gBmMapMovement, 0);
     MapAddInBoundedRange(unit->xPos, unit->yPos, 1, 8);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
@@ -1432,5 +1431,5 @@ void sub_0803758C(struct Unit * unit)
     if (gAiState.flags & AI_FLAG_STAY)
         MapFloodUnitMovement(unit, 0);
     else
-        RevertMapChange(unit);
+        GenerateUnitMovementMap(unit);
 }

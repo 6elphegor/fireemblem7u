@@ -2,15 +2,15 @@
 
 // not yet declared in headers
 int GetUnitSpritePalette(struct Unit * unit);
-void SetStandingMuFacing(int slot, void * vram);
+void SetStandingMuFacing(int slot, u8 * vram);
 int GetClassSMSId(int jid);
 void PlaySeSpacial(int song, int x);
-void SyncUiSMS(int slot, void * vram);
-void sub_08026308(u16 layer, int x, int y, u16 oam2, int jid, int slot);
+void SyncUiSMS(int slot, u8 * vram);
+void sub_08026308(int layer, int x, int y, u16 oam2, int jid, int slot);
 void TryRemoveUnitFromBallista(struct Unit * unit);
 void CallDelayedArg(void (* func)(int arg), int arg, int delay);
 void SetManimActorFacing(int actor, int target, int facing);
-u8 GetSpellAssocFacing(int weapon);
+u8 GetSpellAssocFacing(u16 item);
 
 extern struct MuConfig sMuConfig[MU_MAX_COUNT];
 extern u8 const Img_MuFogBump[];

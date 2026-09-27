@@ -1,9 +1,9 @@
 #include "gbafe.h"
 
 // not yet declared in headers
-u8 GetSpellAssocFacing(int weapon);
+u8 GetSpellAssocFacing(u16 item);
 u8 GetWeaponAnimActorCount(u16 item);
-struct ProcScr const * GetWeaponAnimManimSpecialScr(u16 item);
+struct ProcCmd * GetWeaponAnimManimSpecialScr(u16 item);
 
 extern u8 const gManimActorLayerLut[];
 extern struct ProcCmd ProcScr_ManimPoisonDmg[];

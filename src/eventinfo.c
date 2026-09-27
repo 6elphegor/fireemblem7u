@@ -135,10 +135,9 @@ extern struct BattleTalkEnt const gDefeatTalkList[];
 extern struct BattleTalkEnt const gDefeatTalkList_Tutorial[];
 
 void sub_0807D7E0(void);
-void LoadUnits(void const * units);
+int LoadUnits(struct UnitDefinition const * units);
 void sub_080799C8(void);
 bool BattleIsTriangleAttack(void);
-void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
 void UnitGetDeathDropLocation(struct Unit * unit, int * x, int * y);
 
 struct ForceDeployEnt
@@ -157,22 +156,21 @@ struct HardBonusLevelEnt
 extern u8 gPermanentFlagBits[];
 extern u8 gChapterFlagBits[];
 extern u8 const gFlagBitMaskLut[];
-extern u16 const EventScr_GameOver[];
 extern struct ForceDeployEnt const gForceDeployList[];
 extern struct HardBonusLevelEnt const gHardBonusLevelList[];
 extern u8 const gUnk_08CA0538[];
 
 int IsTutorialDisabled(void);
-bool8 CheckChapterFlag(int flag);
-bool CheckPermanentFlag(int flag);
+bool8 CheckPermanentFlag(int flag);
+bool CheckChapterFlag(int flag);
 
 void sub_0800ADB8(void);
 void sub_0800F028(u8 mapChangeId);
 void sub_0800F044(u16 item, u8 mapChangeId);
 void sub_0800F06C(int money, u8 mapChangeId);
-void StartArmoryScreenOrphaned(struct Unit * unit, void const * shopItems);
-void StartVendorScreenOrphaned(struct Unit * unit, void const * shopItems);
-void StartSecretShopScreenOrphaned(struct Unit * unit, void const * shopItems);
+void StartArmoryScreenOrphaned(struct Unit * unit, u16 * shopItems);
+void StartVendorScreenOrphaned(struct Unit * unit, u16 * shopItems);
+void StartSecretShopScreenOrphaned(struct Unit * unit, u16 * shopItems);
 
 struct EventInfo * SearchAvailableEvent(struct EventInfo * info);
 struct EventInfo * SearchNextAvailableEvent(struct EventInfo * info);
@@ -986,15 +984,15 @@ void StartAvailableTileEvent(s8 x, s8 y)
         break;
 
     case 0x13:
-        StartArmoryScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartArmoryScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x14:
-        StartVendorScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartVendorScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x15:
-        StartSecretShopScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartSecretShopScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x16:
@@ -1052,7 +1050,7 @@ void sub_08078EB8(s8 x, s8 y)
         StartAvailableTileEvent(x, y);
 }
 
-bool IsThereClosedDoorAt(s8 x, s8 y)
+bool IsThereClosedChestAt(s8 x, s8 y)
 {
     if (GetAvailableTileEventCommand(x, y) == 0x12)
         return TRUE;
@@ -1062,11 +1060,11 @@ bool IsThereClosedDoorAt(s8 x, s8 y)
 
 void StartAvailableChestTileEvent(s8 x, s8 y)
 {
-    if (IsThereClosedDoorAt(x, y))
+    if (IsThereClosedChestAt(x, y))
         StartAvailableTileEvent(x, y);
 }
 
-bool sub_08078F24(s8 x, s8 y)
+bool IsThereClosedDoorAt(s8 x, s8 y)
 {
     if (GetAvailableTileEventCommand(x, y) == 0x10)
         return TRUE;
@@ -1076,7 +1074,7 @@ bool sub_08078F24(s8 x, s8 y)
 
 void StartAvailableDoorTileEvent(s8 x, s8 y)
 {
-    if (sub_08078F24(x, y))
+    if (IsThereClosedDoorAt(x, y))
         StartAvailableTileEvent(x, y);
 }
 
@@ -1267,12 +1265,12 @@ void sub_08079214(void)
         if (gPlaySt.chapterStateBits & 0x40)
         {
             info.script = group[0x24 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
             info.script = group[0x20 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
     else
@@ -1280,12 +1278,12 @@ void sub_08079214(void)
         if (gPlaySt.chapterStateBits & 0x40)
         {
             info.script = group[0x1C / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
             info.script = group[0x18 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
 
@@ -1294,7 +1292,7 @@ void sub_08079214(void)
     RefreshUnitSprites();
 }
 
-void const * sub_08079280(void)
+struct UnitDefinition const * sub_08079280(void)
 {
     u32 const * group = (void const *) GetChapterEventInfo(gPlaySt.chapterIndex);
 
@@ -1589,7 +1587,7 @@ void sub_08079704(void)
     SetFlag(0x65);
     StartBgm(0x2B, NULL);
     gPlaySt.cfgDisableBgm = TRUE;
-    StartEvent(EventScr_GameOver);
+    StartEvent(gEvent_GameOver);
 }
 
 s8 sub_08079734(void)
@@ -1654,7 +1652,7 @@ void SetChapterFlag(int flag)
     gChapterFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
 }
 
-bool CheckPermanentFlag(int flag)
+bool CheckChapterFlag(int flag)
 {
     if (flag == 0)
         return FALSE;
@@ -1701,7 +1699,7 @@ void SetPermanentFlag(int flag)
     gPermanentFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
 }
 
-bool8 CheckChapterFlag(int flag)
+bool8 CheckPermanentFlag(int flag)
 {
     if (flag < 100 || flag == 100)
         return FALSE;
@@ -1749,9 +1747,9 @@ void SetFlag(int flag)
 bool CheckFlag(int flag)
 {
     if (flag < 100)
-        return CheckPermanentFlag(flag);
-    else
         return CheckChapterFlag(flag);
+    else
+        return CheckPermanentFlag(flag);
 }
 
 void ClearFlag(int flag)

@@ -1,15 +1,10 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/cp_common.h"
 #include "gbafe/bmcommanddbg.h"
 
 // Unused unit command availability checks (FE8U: bmcommanddbg.c)
 
 // Also declared in bmmenu.h, which conflicts with bmtarget.h
-int GetUnitWeaponReach(struct Unit * unit, int slot);
-void BuildUnitStandingRangeForReach(struct Unit * unit, int reach);
-int GetAvailableTileEventCommand(s8 x, s8 y);
-s8 CanUnitSeize(struct Unit * unit);
 
 bool CanUnitUseVisit(void)
 {
@@ -67,7 +62,7 @@ bool CanUnitUseSeize(void)
 bool CanUnitUseAttack(void)
 {
     BeginTargetList(0, 0);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
     GenerateUnitCompleteAttackRange(gActiveUnit);
     gSubjectUnit = gActiveUnit;
     ForEachUnitInRange(AddUnitToTargetListIfNotAllied);
@@ -109,7 +104,7 @@ int sub_08031444(void)
 
 int sub_08031470(void)
 {
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
     gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
     return GetUnitCommandUseFlags();
 }
@@ -122,7 +117,7 @@ void sub_080314AC(struct Unit * unit)
 
     int reach = GetUnitWeaponReach(unit, -1);
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     for (i = FACTION_RED + 1; i < FACTION_RED + 0x40; i++)
     {

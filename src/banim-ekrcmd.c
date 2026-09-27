@@ -1,7 +1,4 @@
-// banim.h declares this as returning s16, but it returns an untruncated int
-#define GetBattleAnimCharacterUniquePalIndex GetBattleAnimCharacterUniquePalIndex_hdr
 #include "gbafe.h"
-#undef GetBattleAnimCharacterUniquePalIndex
 
 struct UnkStruct1_sub_805893C {
     u8 _pad_[0x23];

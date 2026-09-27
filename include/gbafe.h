@@ -75,3 +75,7 @@
 #include "gbafe/opanim.h"
 #include "gbafe/lord-select.h"
 #include "gbafe/player_interface.h"
+#include "gbafe/bmtarget.h"
+#include "gbafe/bmmenu.h"
+#include "gbafe/bmitemuse.h"
+#include "gbafe/bmcontainer.h"

@@ -15,7 +15,7 @@ int GetConvoyItemCount(void);
 int AddItemToConvoy(int item);
 void RemoveItemFromConvoy(int index);
 int GetConvoyItemSlot(int item);
-bool8 HasConvoyAccess(void);
+bool HasConvoyAccess(void);
 bool8 sub_0802E864(void);
 struct Unit * GetSupplyUnit(void);
 

@@ -79,7 +79,7 @@ extern u32 AnimScr_LvupStatupfx3[];
 extern u32 AnimScr_LvupStatupfx5[];
 extern u32 AnimScr_LvupStatupObj[];
 
-void sub_0805067C(const u16 * src, u16 * dst, int index, int count, int unk);
+void sub_0805067C(const u16 * src, u16 * dst, u32 index, u32 count, u32 unk);
 
 void EfxUpdatePartsofScroll(void);
 void PutEkrLvupStatGainLabelGfx1(int stat_num, int stat_gain);

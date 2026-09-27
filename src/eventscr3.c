@@ -1,25 +1,18 @@
 #include "gbafe.h"
+#include "gbafe/cp_common.h"
 
-extern struct MusicPlayerInfo gUnk_03005A90;
-extern struct MusicPlayerInfo gUnk_03005AD0;
-extern struct MusicPlayerInfo gUnk_03005CE0;
-extern struct MusicPlayerInfo gUnk_03005D20;
-extern struct MusicPlayerInfo gUnk_03005D60;
-extern struct MusicPlayerInfo gUnk_03005DF0;
-extern struct MusicPlayerInfo gUnk_03005E30;
+extern struct MusicPlayerInfo gMPlayInfo_SE4;
+extern struct MusicPlayerInfo gMPlayInfo_SE5;
+extern struct MusicPlayerInfo gMPlayInfo_SE6;
+extern struct MusicPlayerInfo gMPlayInfo_BGM2;
+extern struct MusicPlayerInfo gMPlayInfo_SE1;
+extern struct MusicPlayerInfo gMPlayInfo_SE7;
+extern struct MusicPlayerInfo gMPlayInfo_SE2;
 
-struct AiDecisionSt {
-    /* 00 */ u8 action_id;
-    /* 01 */ u8 unit_id;
-    /* 02 */ u8 x_move;
-    /* 03 */ u8 y_move;
-};
-
-extern struct AiDecisionSt gAiDecision;
 
 extern struct ProcCmd CONST_DATA ProcScr_EventWeatherChangeWithFade[];
 
-void RestoreBgm(int speed);
+void RestoreBgm(u16 speed);
 void StartBgmFadeIn(int song, int speed, struct MusicPlayerInfo * music_player);
 void FadeBgmOut_2(int speed);
 void SetBgmVolume(int volume);
@@ -32,8 +25,7 @@ void StartLockingFadeToWhite(int speed, ProcPtr parent);
 void StartLockingFadeFromWhite(int speed, ProcPtr parent);
 void NewColFadeOut(int a, int b, int c, ProcPtr parent);
 void NewColFadeIn(int a, int b, int c, ProcPtr parent);
-u32 GetGold(void);
-void SetGold(s32 amount);
+int GetGold(void);
 void StartPopup_800EE90(int amount, ProcPtr parent);
 void StartPopup_800EE4C(int amount, ProcPtr parent);
 void BattleInitItemEffect(struct Unit * actor, int item_slot);
@@ -41,7 +33,6 @@ void BattleInitItemEffectTarget(struct Unit * unit);
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);
 void BattleGenerateBallistaReal(struct Unit * actor, struct Unit * target);
 void UnitBeginAction(struct Unit * unit);
-struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 void BeginBattleAnimations(void);
 void AiEndMuAndRefreshUnits(void);
@@ -82,35 +73,35 @@ int EvtCmd_PlaySongExt(struct EventProc * proc)
     switch (proc->script[1])
     {
     case 1:
-        StartBgmExt(song, 1, (void *) &gUnk_03005D20);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_BGM2);
         break;
 
     case 2:
-        StartBgmExt(song, 1, (void *) &gUnk_03005D60);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE1);
         break;
 
     case 3:
-        StartBgmExt(song, 1, (void *) &gUnk_03005E30);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE2);
         break;
 
     case 4:
-        StartBgmExt(song, 1, (void *) &gUnk_03005DA0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE3);
         break;
 
     case 5:
-        StartBgmExt(song, 1, (void *) &gUnk_03005A90);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE4);
         break;
 
     case 6:
-        StartBgmExt(song, 1, (void *) &gUnk_03005AD0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE5);
         break;
 
     case 7:
-        StartBgmExt(song, 1, (void *) &gUnk_03005CE0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE6);
         break;
 
     case 8:
-        StartBgmExt(song, 1, (void *) &gUnk_03005DF0);
+        StartBgmExt(song, 1, (void *) &gMPlayInfo_SE7);
         break;
 
     default:
@@ -532,8 +523,8 @@ int EvtCmd_FightScript(struct EventProc * proc)
 
     Proc_Mark(proc, 7);
 
-    gAiDecision.x_move = unit_a->xPos;
-    gAiDecision.y_move = unit_a->yPos;
+    gAiDecision.xMove = unit_a->xPos;
+    gAiDecision.yMove = unit_a->yPos;
 
     return EVENT_CMDRET_YIELD;
 }

@@ -6,7 +6,7 @@
 extern struct MusicPlayerInfo gUnk_03005A30;
 extern struct MusicPlayerInfo gUnk_03005CC0;
 extern struct MusicPlayerInfo gUnk_03005B10;
-extern struct MusicPlayerInfo gUnk_03005DA0;
+extern struct MusicPlayerInfo gMPlayInfo_SE3;
 
 extern EWRAM_DATA u16 * gManimScanlineBufs[2];
 
@@ -1560,7 +1560,7 @@ extern u8 Img_SysBlackBox[];
 // ??? gUnk_0841D0FC
 extern u16 Pal_08404BBC[];
 extern u8  Img_08404BDC[];
-extern u8  Tsa_084050D8[];
+extern u8  Tsa_PrepMenuFrame[];
 // ??? gUnk_0841D838
 // ??? gUnk_0841DBCC
 // ??? gUnk_0841DE88

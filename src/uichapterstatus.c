@@ -57,7 +57,7 @@ extern u16 const Sprite_ChapterStatus_08CC2E5E[];
 extern u16 const Sprite_ChapterStatus_FactionSelector[];
 extern u16 const Sprite_ChapterStatus_ChapterName[];
 
-u32 GetGold(void);
+int GetGold(void);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void SyncUnitSpriteSheet(void);
 
