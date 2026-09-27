@@ -113,6 +113,7 @@ s32 CalcForceDeployedUnitCounts(void);
 bool SomeLeftoverFunctionThatReturns0(struct Unit *unit);
 bool IsUnitInCurrentRoster(struct Unit *unit);
 // AtMenu_AddPrepScreenSupportMenuItem
+void AtMenu_AddPrepScreenSupportMenuItem(struct ProcAtMenu *proc);
 bool CanPrepScreenCheckMap(void);
 void InitPrepScreenMainMenu(struct ProcAtMenu *proc);
 int GetLatestUnitIndexInPrepListByUId(void);

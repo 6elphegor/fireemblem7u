@@ -5089,8 +5089,7 @@ SECTIONS
         build/asm/code_0808B5D4.o(.text);
         build/asm/code_0808B5E0.o(.text);
         build/src/prepscreen.o(.text);
-        build/asm/code_0808DF20.o(.text);
-        build/asm/code_0808DF9C.o(.text);
+        build/src/preputil_atmenuitem.o(.text);
         build/asm/code_0808E0DC.o(.text);
         build/asm/code_0808E110.o(.text);
         build/asm/code_0808E140.o(.text);
