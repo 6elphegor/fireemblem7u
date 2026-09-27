@@ -1094,3 +1094,7 @@ ProcScr_SubtitleHelpToggle = 0x08B96A54;
 Pal_SubtitleHelpText = 0x08194694;
 Img_SubtitleHelpToggle = 0x08405450;
 Pal_SubtitleHelpToggle = 0x08405670;
+Img_StatusHealEffect = 0x083FE094;
+Pal_StatusHealEffect = 0x083FE11C;
+Tsa_StatusHealEffect = 0x083FE13C;
+ProcScr_StatusHealEffect = 0x08B96B74;
