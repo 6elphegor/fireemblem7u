@@ -1,7 +1,6 @@
 #include "gbafe.h"
 
 char * strcpy(char * dst, const char * src);
-bool IsMultiArenaSaveReady(void); // TEMP
 
 CONST_DATA int sSupportUnkLut[][2] = {
     { 0x15, 0x0F },
