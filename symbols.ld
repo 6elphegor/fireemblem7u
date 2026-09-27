@@ -613,3 +613,6 @@ gItemSelectMenuDef = 0x08B95A40;
 gItemSubMenuDef = 0x08B959D4;
 gYesNoSelectionMenuDef = 0x08B959B0;
 gItemSelectMenuFont = 0x02002774;
+gStaffItemSelectMenuDef = 0x08B95A1C;
+gSelectInfo_Talk = 0x08B95C38;
+gSelectInfo_Support = 0x08B95C18;

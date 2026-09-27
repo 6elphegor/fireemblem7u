@@ -159,6 +159,19 @@ int GetItemEffect(int item);
 int GetItemCantUseMsgid(struct Unit * unit, int item);
 void DoItemUse(struct Unit * unit, int item);
 
+int GetUnitItemUseReachBits(struct Unit * unit, int slot);
+void sub_08024094(struct Unit * unit);   /* MakeTalkTargetList */
+void sub_080240C8(struct Unit * unit);   /* MakeTargetListForSupport */
+int GetUnitKeyItemSlotForTerrain(struct Unit * unit, int terrain);
+void MakeTargetListForDoorAndBridges(struct Unit * unit, int terrain);
+s8 CanUnitUseChestKeyItem(struct Unit * unit);
+int GetConvoyItemCount(void);
+s8 sub_08079D9C(void);   /* HasConvoyAccess */
+void StartBmSupply(struct Unit * unit, ProcPtr parent);
+void StartAvailableTileEvent(s8 x, s8 y);
+s8 ArenaIsUnitAllowed(struct Unit * unit);
+void sub_080B267C(void);   /* StartArenaScreen */
+
 /* ---- bmmenu.c ---- */
 
 extern const struct MenuDef gUnitActionMenuDef;
