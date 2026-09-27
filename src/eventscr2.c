@@ -11,6 +11,9 @@ bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def);
 int GetNextAvailableBlueUnitId(int id);
 
 /* not yet declared elsewhere */
+struct MuProc * StartMu(struct Unit * unit);
+void MU_SetDefaultFacing_Auto(void);
+void StartMuDeathFade(struct MuProc * mu);
 int GetMapChangeIdAt(int x, int y);
 void RefreshAutoWaterShadows(void);
 
@@ -968,33 +971,285 @@ int EvtCmd_ClearCursors(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800DE98.s");
+bool EventIsPidBlueForDisable(u8 pid)
+{
+    int i;
 
-ASM_FUNC("asm/nonmatching/code_0800DEC8.s");
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
 
-ASM_FUNC("asm/nonmatching/code_0800DF50.s");
+        if (unit == NULL || unit->pCharacterData == NULL)
+            continue;
 
-ASM_FUNC("asm/nonmatching/code_0800DF8C.s");
+        if (unit->pCharacterData->number == pid)
+            return TRUE;
+    }
 
-ASM_FUNC("asm/nonmatching/code_0800E058.s");
+    return FALSE;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800E0D4.s");
+int EvtCmd_RemovePosition(struct EventProc * proc)
+{
+    s16 x = SCR_LO16_SIGN(proc->script[1]);
+    s16 y = SCR_HI16_SIGN(proc->script[1]);
 
-ASM_FUNC("asm/nonmatching/code_0800E100.s");
+    struct Unit * unit = GetUnit(gBmMapUnit[y][x]);
 
-ASM_FUNC("asm/nonmatching/code_0800E16C.s");
+    if (EventIsPidBlueForDisable(unit->pCharacterData->number))
+        unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
+    else
+        ClearUnit(unit);
 
-ASM_FUNC("asm/nonmatching/code_0800E18C.s");
+    RefreshEntityMaps();
+    RefreshUnitSprites();
 
-ASM_FUNC("asm/nonmatching/code_0800E1A8.s");
+    return EVENT_CMDRET_YIELD;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800E1C4.s");
+int EvtCmd_RemovePid(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
 
-ASM_FUNC("asm/nonmatching/code_0800E1EC.s");
+    if (EventIsPidBlueForDisable(proc->script[1]))
+        unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
+    else
+        ClearUnit(unit);
 
-ASM_FUNC("asm/nonmatching/code_0800E214.s");
+    RefreshEntityMaps();
+    RefreshUnitSprites();
 
-ASM_FUNC("asm/nonmatching/code_0800E254.s");
+    return EVENT_CMDRET_YIELD;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800E2B8.s");
+int EvtCmd_RemovePositionDisplayed(struct EventProc * proc)
+{
+    s16 x = SCR_LO16_SIGN(proc->script[1]);
+    s16 y = SCR_HI16_SIGN(proc->script[1]);
+
+    struct Unit * unit = GetUnit(gBmMapUnit[y][x]);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        if (EventIsPidBlueForDisable(unit->pCharacterData->number))
+            unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
+        else
+            ClearUnit(unit);
+
+        RefreshEntityMaps();
+        RefreshUnitSprites();
+    }
+    else
+    {
+        struct MuProc * mu;
+
+        proc->pid_param = unit->pCharacterData->number;
+
+        HideUnitSprite(unit);
+
+        mu = StartMu(unit);
+        MU_SetDefaultFacing_Auto();
+        StartMuDeathFade(mu);
+
+        proc->idle_func = EventRemoveDisplayedWait;
+        proc->sleep_duration = 60;
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_RemovePidDisplayed(struct EventProc * proc)
+{
+    struct Unit * unit;
+
+    proc->pid_param = proc->script[1];
+    unit = GetUnitFromCharId(proc->pid_param);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        if (EventIsPidBlueForDisable(unit->pCharacterData->number))
+            unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
+        else
+            ClearUnit(unit);
+
+        RefreshEntityMaps();
+        RefreshUnitSprites();
+    }
+    else
+    {
+        struct MuProc * mu;
+
+        HideUnitSprite(unit);
+
+        mu = StartMu(unit);
+        MU_SetDefaultFacing_Auto();
+        StartMuDeathFade(mu);
+
+        proc->idle_func = EventRemoveDisplayedWait;
+        proc->sleep_duration = 60;
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+void EventRemoveDisplayedWait(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->pid_param);
+
+    EndAllMus();
+    ClearUnit(unit);
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+
+    proc->idle_func = NULL;
+}
+
+int EvtCmd_HidePosition(struct EventProc * proc)
+{
+    s16 x = SCR_LO16_SIGN(proc->script[1]);
+    s16 y = SCR_HI16_SIGN(proc->script[1]);
+
+    struct Unit * unit = GetUnit(gBmMapUnit[y][x]);
+
+    unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_HidePid(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+
+    unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_DisablePid(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+
+    unit->state |= 0x04010000;
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_EnablePid(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+
+    unit->state &= ~0x00400000;
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_SetState(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+
+    u32 bits = proc->script[2];
+
+    unit->state |= bits;
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_ClearState(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+
+    unit->state &= ~proc->script[2];
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+
+    return EVENT_CMDRET_YIELD;
+}
+
+void EventSetUnitAi(struct Unit * unit, u8 ai1, u8 ai2, int unused)
+{
+    if (ai1 != 0x14)
+    {
+        unit->ai1 = ai1;
+        unit->ai1data = 0;
+    }
+
+    if (ai2 != 0x23)
+    {
+        unit->ai2 = ai2;
+        unit->ai2data = 0;
+
+        if (ai2 == 0xC)
+            unit->aiFlags |= 8;
+    }
+}
+
+int EvtCmd_SetAiPid(struct EventProc * proc)
+{
+    EventScr const * script = proc->script;
+    u8 pid = script[1];
+    u32 ai = script[2];
+    u8 ai1 = script[2];
+    u8 ai2 = (ai & 0xFF00) >> 8;
+    u8 ai3 = (ai & 0xFF0000) >> 16;
+    int i;
+
+    for (i = 1; i < 0xC0; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (unit == NULL || unit->pCharacterData == NULL)
+            continue;
+
+        if (unit->state & (US_HIDDEN | US_DEAD))
+            continue;
+
+        if (unit->pCharacterData->number != pid)
+            continue;
+
+        EventSetUnitAi(unit, ai1, ai2, ai3);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_SetAiPosition(struct EventProc * proc)
+{
+    EventScr const * script = proc->script;
+    u32 ai = script[2];
+    u8 ai1 = script[2];
+    u8 ai2 = (ai & 0xFF00) >> 8;
+    u8 ai3 = (ai & 0xFF0000) >> 16;
+    int i = 0x41;
+    int x = ((s8 const *) script)[4];
+    int y = ((s8 const *) script)[6];
+
+    for (; i < 0xC0; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (unit == NULL || unit->pCharacterData == NULL)
+            continue;
+
+        if (unit->state & (US_HIDDEN | US_DEAD))
+            continue;
+
+        if (unit->xPos != x || unit->yPos != y)
+            continue;
+
+        EventSetUnitAi(unit, ai1, ai2, ai3);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
 

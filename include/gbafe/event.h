@@ -720,6 +720,9 @@ int EventGotoLabel(struct EventProc * proc, int label);
 int EvtCmd_GotoIfyFlag(struct EventProc * proc);
 int EventGiveItem(struct Unit * unit, u16 iid, struct EventProc * proc);
 void EventFlashCursorWait(struct EventProc * proc);
+void EventRemoveDisplayedWait(struct EventProc * proc);
+bool EventIsPidBlueForDisable(u8 pid);
+void EventSetUnitAi(struct Unit * unit, u8 ai1, u8 ai2, int unused);
 /* ---- end eventscr2.c ---- */
 
 
