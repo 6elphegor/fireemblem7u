@@ -694,8 +694,8 @@ struct PointsSpriteTextProc
     /* 54 */ const char * str;
 };
 
-void sub_8048864(void);
-void sub_8048884(struct SioProc85A971C_Unk44 * buf);
+void sub_080431C0(void);
+void sub_080440E8(struct SioProc85A971C_Unk44 * buf);
 void DrawLinkArenaPointsBox(struct Text * th, int x, int y, int var, int number);
 void LAPointsBox_LoadBoxes(struct LAPointsBoxProc * proc);
 void LAPointsBox_Dummy(void);
@@ -711,9 +711,9 @@ void PointsNumberMover_AwaitEnd(struct PointsNumberMoverProc * proc);
 void PointsSpriteText_Init(struct PointsSpriteTextProc * proc);
 void PointsSpriteText_LoopIn(struct PointsSpriteTextProc * proc);
 void PointsSpriteText_LoopOut(struct PointsSpriteTextProc * proc);
-s8 sub_80490EC(int x, int y, const char * str, u8 flag, ProcPtr parent);
-void sub_8049238(ProcPtr proc);
-void sub_804926C(ProcPtr proc);
+s8 sub_08044940(int x, int y, const char * str, u8 flag, ProcPtr parent);
+void sub_08044A8C(ProcPtr proc);
+void sub_08044AC0(ProcPtr proc);
 
 
 extern struct SioUnknown_0203DD90 gUnk_Sio_0203DD90;

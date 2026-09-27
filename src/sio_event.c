@@ -6,6 +6,7 @@
 extern struct ProcCmd CONST_DATA ProcScr_TacticianNameSelection[];
 extern int gUnk_Sio_0203DD8C;
 extern u8 gUnk_Sio_02000000[];
+extern u16 CONST_DATA Sprite_085A9F98[];
 
 #define SRAM_OFFSET_XMAP 0x7400
 #define SRAM_SIZE_XMAP 0xC00
@@ -362,5 +363,12 @@ extern EventScr CONST_DATA EventScr_EraseSaveInfo[];
 void CallEraseSaveEvent(ProcPtr proc)
 {
     StartEventLocking(EventScr_EraseSaveInfo, proc);
+    return;
+}
+
+//! FE8U = 0x08048864 (sio_points.c in fireemblem8u)
+void sub_080431C0(void)
+{
+    PutSprite(4, 56, 4, Sprite_085A9F98, 0);
     return;
 }
