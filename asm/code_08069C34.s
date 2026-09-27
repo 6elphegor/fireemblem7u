@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08069C34
-sub_08069C34: @ 0x08069C34
+	thumb_func_start NewEfxleveluphb
+NewEfxleveluphb: @ 0x08069C34
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
