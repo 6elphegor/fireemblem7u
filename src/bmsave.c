@@ -532,7 +532,74 @@ void ReadSuspendSavePlaySt(int slot, struct PlaySt * buf)
 
 ASM_FUNC("asm/nonmatching/code_080A13EC.s");
 
-ASM_FUNC("asm/nonmatching/code_080A16C0.s");
+void ReadSuspendSavePackedUnit(void const * sram_src, struct Unit * unit)
+{
+    int i;
+    struct SuspendSavePackedUnit unit_su;
+
+    ReadSramFast(sram_src, &unit_su, sizeof(unit_su));
+
+    unit->pCharacterData = GetCharacterData(unit_su.pid);
+    unit->pClassData = GetClassData(unit_su.jid);
+    unit->level = unit_su.level;
+    unit->exp = unit_su.exp;
+    unit->state = unit_su.state;
+    unit->xPos = unit_su.xPos;
+    unit->yPos = unit_su.yPos;
+
+    unit->maxHP = unit_su.maxHP;
+    unit->curHP = unit_su.curHP;
+    unit->pow = unit_su.pow;
+    unit->skl = unit_su.skl;
+    unit->spd = unit_su.spd;
+    unit->def = unit_su.def;
+    unit->res = unit_su.res;
+    unit->lck = unit_su.lck;
+    unit->conBonus = unit_su.conBonus;
+
+    unit->statusIndex = unit_su.statusIndex;
+    unit->statusDuration = unit_su.statusDuration;
+    unit->torchDuration = unit_su.torchDuration;
+    unit->barrierDuration = unit_su.barrierDuration;
+
+    unit->rescue = unit_su.rescue;
+    unit->movBonus = unit_su.movBonus;
+    unit->ballistaIndex = unit_su.ballistaIndex & 0x7F;
+
+    unit->items[0] = unit_su.item1 & 0x3FFF;
+    unit->items[1] = unit_su.item2 & 0x3FFF;
+    unit->items[2] = unit_su.item3 & 0x3FFF;
+    unit->items[3] = unit_su.item4;
+    unit->items[4] = (u32) unit_su.item5;
+
+    unit->supportBits = (unit_su.ballistaIndex & 0x80) >> 7 |
+                        (unit_su.item1 & 0xC000) >> 0x0D |
+                        (unit_su.item2 & 0xC000) >> 0x0B |
+                        (unit_su.item3 & 0xC000) >> 0x09;
+
+    for (i = 0; i < 8; i++)
+        unit->ranks[i] = unit_su.ranks[i];
+
+    for (i = 0; i < UNIT_SUPPORT_MAX_COUNT; i++)
+        unit->supports[i] = unit_su.supports[i];
+
+    unit->ai1 = unit_su.ai1;
+    unit->ai1data = unit_su.ai1data;
+    unit->ai2 = unit_su.ai2;
+    unit->ai2data = unit_su.ai2data;
+    unit->ai3And4 = unit_su.ai3And4;
+    unit->_u46 = unit_su.unk31;
+    unit->aiFlags = unit_su.aiFlags;
+
+    if (unit->exp == 0x7F)
+        unit->exp = -1;
+
+    if (unit->xPos == 0x3F)
+        unit->xPos = -1;
+
+    if (unit->yPos == 0x3F)
+        unit->yPos = -1;
+}
 
 void WriteTraps(void * sram_dest)
 {
