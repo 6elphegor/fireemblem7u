@@ -711,7 +711,38 @@ void DrawTextGlyph(struct Text * text, struct Glyph const * glyph)
     text->x += glyph->width;
 }
 
-ASM_FUNC("asm/nonmatching/code_08005900.s");
+void DrawTextGlyphNoClear(struct Text * text, struct Glyph const * glyph)
+{
+    int i;
+
+    u32 * dst = (u32 *) gActiveFont->get_draw_dest(text);
+    int subx = text->x & 7;
+    u32 const * bitmap = glyph->bitmap;
+
+    u64 row;
+
+    u16 const * mask_lut = GetColorLut(TEXT_COLOR_MASK);
+    u16 const * color_lut = GetColorLut(text->color);
+
+    for (i = 0; i < 16; i++)
+    {
+        row = (u64) *bitmap << subx * 2;
+
+        dst[0x00] &= mask_lut[row & 0xFF] | (mask_lut[(row >> 8) & 0xFF] << 16);
+        dst[0x00] |= color_lut[row & 0xFF] | (color_lut[(row >> 8) & 0xFF] << 16);
+
+        dst[0x10] &= mask_lut[(row >> 16) & 0xFF] | (mask_lut[(row >> 24) & 0xFF] << 16);
+        dst[0x10] |= color_lut[(row >> 16) & 0xFF] | (color_lut[(row >> 24) & 0xFF] << 16);
+
+        dst[0x20] &= mask_lut[(row >> 32) & 0xFF] | (mask_lut[(row >> 40) & 0xFF] << 16);
+        dst[0x20] |= color_lut[(row >> 32) & 0xFF] | (color_lut[(row >> 40) & 0xFF] << 16);
+
+        dst++;
+        bitmap++;
+    }
+
+    text->x += glyph->width;
+}
 
 void InitSystemTextFont(void)
 {
