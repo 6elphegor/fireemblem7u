@@ -120,6 +120,18 @@ void sub_809144C(struct UnitListScreenProc * proc);
 void sub_0808AC90(u8 maxPages, u8 page, s8 flag); /* FE8U sub_8092298 */
 void sub_0808AD00(struct UnitListScreenProc * proc, u8 unitNum, u16 * tm, u8 page, s8 putName); /* FE8U UnitList_PutRow */
 bool SortUnitList(u8 key, u8 order);
+void sub_0808A214(struct UnitListScreenProc * proc);
+void sub_0808A508(struct UnitListScreenProc * proc);
+void UnitList_OnEnd(struct UnitListScreenProc * proc);
+void UnitList_StartPageChange(struct UnitListScreenProc * proc);
+void sub_0808A770(struct UnitListScreenProc * proc);
+void UnitList_DrawColumnNames(u16 * tm, u8 page);
+int SortUnitList_GetUnitSoloAnimation(struct Unit * unit);
+
+extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_Field[];
+extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_PrepMenu[];
+extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_SoloAnim[];
+extern u8 CONST_DATA gUnknown_08A17B30[];
 
 extern struct ProcCmd ProcScr_bmview[];
 extern u8 const Img_08A1CD68[];
