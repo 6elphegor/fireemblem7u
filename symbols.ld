@@ -1678,6 +1678,7 @@ gPasswordSeed = 0x02014434;
 gPasswordBuf = 0x02014438;
 gPasswordData = 0x020144D8;
 gPasswordInfo = 0x020144E0;
+gUnk_08CC5ACC = 0x08CC5ACC;
 ProcScr_08CC5AF0 = 0x08CC5AF0;
 gUnk_0203E790 = 0x0203E790;
 BanimLeftDefaultPos = 0x081D85A4;

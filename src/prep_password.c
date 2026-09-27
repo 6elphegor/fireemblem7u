@@ -55,6 +55,7 @@ struct PasswordProc {
 
 extern struct ProcCmd CONST_DATA ProcScr_08CC5AF0[];
 extern u8 gUnk_0203E790;
+extern u8 CONST_DATA gUnk_08CC5ACC[];
 
 void sub_0809D778(struct PasswordSeedSt * st, u8 const * src)
 {
@@ -345,7 +346,7 @@ void sub_0809DED8(int * bitpos, u8 * buf)
     gPasswordInfo.unk_0b = sub_0809D914(buf, bitpos, 8);
     gPasswordInfo.unk_10 = sub_0809D914(buf, bitpos, 24);
 }
-int sub_0809DFC4(int chapter_mode, int difficulty)
+u8 sub_0809DFC4(int chapter_mode, int difficulty)
 {
     struct GameRankSaveData buf;
     int r;
@@ -429,7 +430,54 @@ void sub_0809E15C(int y)
     PutNumber(gBg2Tm + TM_OFFSET(15, y + 4), 2, gPasswordInfo.unk_0e);
     PutNumber(gBg2Tm + TM_OFFSET(18, y + 4), 2, gPasswordInfo.unk_0f);
 }
-ASM_FUNC("asm/nonmatching/code_0809E25C.s");
+void sub_0809E25C(struct PasswordProc * proc)
+{
+    int i;
+
+    InitBgs(NULL);
+    ResetTextFont();
+    ResetText();
+
+    SetDispEnable(1, 1, 1, 1, 0);
+
+    gDispIo.bg0_ct.priority = 1;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 0;
+    gDispIo.bg3_ct.priority = 3;
+
+    UnpackUiWindowFrameGraphics();
+    EnablePalSync();
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+    TmFill(gBg3Tm, 0);
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+    SetBgOffset(3, 0, 0);
+
+    SetWinEnable(0, 0, 0);
+
+    DrawUiFrame2(2, 6, 0x1a, 7, 2);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    for (i = 0; i < 3; i++)
+        InitText((struct Text *) gPasswordUnk_0201440C + i, 0x1b);
+
+    if (sub_0809DFC4(proc->unk_30, proc->unk_34) == 0)
+    {
+        Proc_Goto(proc, 0x63);
+        return;
+    }
+
+    sub_0809D7B4(5, 0x11);
+    ModifyPassword(InitPassword);
+    PrintPassword((struct Text *) gPasswordUnk_0201440C, gUnk_08CC5ACC);
+    proc->bg = StartMuralBackgroundAlt(0, 0, 10);
+}
 void sub_0809E3A4(void)
 {
 }
