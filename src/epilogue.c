@@ -408,7 +408,46 @@ void EpilogueText_Init(struct EpilogueProc * proc)
     StartParallelWorker(sub_080B74B4, proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B75D8.s");
+void EpilogueText_Loop(struct EpilogueProc * proc)
+{
+    proc->timer--;
+
+    SetTextFont(&gEpilogueFontSt.font);
+    SetTextFontGlyphs(1);
+
+    if (proc->timer == 0)
+    {
+        proc->timer = proc->delay;
+
+        switch (*proc->str)
+        {
+        case 1:
+            proc->timer *= 2;
+            proc->str++;
+            proc->text++;
+            EpilogueText_Center(proc->text, proc->str);
+            break;
+
+        case 0:
+            proc->timer = 0;
+            Proc_Break(proc);
+            break;
+
+        case 4:
+        case 5:
+            proc->str++;
+            proc->timer *= 8;
+            break;
+
+        default:
+            Text_SetColor(proc->text, 1);
+            proc->str = Text_DrawCharacter(proc->text, proc->str);
+            break;
+        }
+    }
+
+    SetTextFont(NULL);
+}
 
 void EpilogueText_LoopFadeOut(struct EpilogueProc * proc)
 {
