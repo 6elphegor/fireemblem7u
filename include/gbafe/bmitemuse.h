@@ -2,9 +2,9 @@
 
 #include "global.h"
 #include "proc.h"
+#include "bmmenu.h"
 
 struct Unit;
-struct SelectTarget;
 struct SpriteAnim;
 
 struct WarpSelectProc {
@@ -31,18 +31,17 @@ extern u8 CONST_DATA gItemUseJidList_FellContract[];
 
 extern struct ProcCmd CONST_DATA gProcScr_SquareSelectWarp[];
 extern struct ProcCmd CONST_DATA gProcScr_SquareSelectTorch[];
-extern struct ProcCmd CONST_DATA gProcScr_BackToUnitMenu[];
 
 extern u16 CONST_DATA gSpriteAnim_WarpCursor[];
 
-extern u8 CONST_DATA gSelectInfo_OffensiveStaff[];
-extern u8 CONST_DATA gSelectInfo_Barrier[];
-extern u8 CONST_DATA gSelectInfo_Restore[];
-extern u8 CONST_DATA gSelectInfo_Heal[];
-extern u8 CONST_DATA gSelectInfo_PutTrap[];
-extern u8 CONST_DATA gSelectInfo_WarpUnit[];
-extern u8 CONST_DATA gSelectInfo_Repair[];
-extern u8 CONST_DATA gMenuInfo_RepairItems[];
+extern const struct SelectInfo gSelectInfo_OffensiveStaff;
+extern const struct SelectInfo gSelectInfo_Barrier;
+extern const struct SelectInfo gSelectInfo_Restore;
+extern const struct SelectInfo gSelectInfo_Heal;
+extern const struct SelectInfo gSelectInfo_PutTrap;
+extern const struct SelectInfo gSelectInfo_WarpUnit;
+extern const struct SelectInfo gSelectInfo_Repair;
+extern const struct MenuDef gMenuInfo_RepairItems;
 
 s8 CanUnitUseItem(struct Unit * unit, int item);
 int GetItemCantUseMsgid(struct Unit * unit, int item);
@@ -90,22 +89,10 @@ void DoUseTorchStaff(struct Unit * unit);
 s8 CanUnitUseItemPrepScreen(struct Unit * unit, int item);
 
 // Declarations of functions from other modules not yet in their headers.
-void StartSubtitleHelp(ProcPtr parent, char const * str);
-void HideMoveRangeGraphics(void);
-void DisplayMoveRangeGraphics(int config);
 void FillWarpRangeMap(struct Unit * unit, struct Unit * target);
 void HandlePlayerMapCursor(void);
-ProcPtr NewTargetSelection_Specialized(void const * info, u8 (*onSelect)(ProcPtr, struct SelectTarget *));
-ProcPtr StartMapSelect(void const * info);
-void EndTargetSelection(ProcPtr proc);
-void ChangeActiveUnitFacing(int x, int y);
-ProcPtr StartMenu(void const * info);
-void StartEquipInfoWindow(ProcPtr parent, struct Unit * unit, int x, int y);
-void UpdateMenuItemPanel(int slot);
-void MenuFrozenHelpBox(ProcPtr menu, int msg);
-void DrawItemMenuLineLong(struct Text * text, int item, s8 isUsable, u16 * tm);
+void DrawItemMenuLineLong(struct Text * text, int item, bool isUsable, u16 * mapOut);
 int GetOffensiveStaffAccuracy(struct Unit * actor, struct Unit * target);
-void StartUnitInventoryInfoWindow(ProcPtr parent);
 void RefreshHammerneUnitInfoWindow(struct Unit * unit);
 void StartUnitHpStatusInfoWindow(ProcPtr parent);
 void RefreshUnitHpStatusInfoWindow(struct Unit * unit);
@@ -114,4 +101,3 @@ void RefreshUnitResChangeInfoWindow(struct Unit * unit);
 void StartUnitStaffOffenseInfoWindow(ProcPtr parent);
 void RefreshUnitStaffOffenseInfoWindow(struct Unit * unit, int hit);
 struct ItemStatBonuses const * GetItemBonuses(int item);
-bool IsThereClosedDoorAt(int x, int y);

@@ -97,6 +97,7 @@ int GetItemMinRange(int item);
 int GetItemMaxRange(int item);
 int GetSomeBallistaItemAt(int x, int y);
 bool CheckForCharacterEvents(u8 pidA, u8 pidB);
+bool IsThereClosedDoorAt(s8 x, s8 y);
 bool sub_08078F24(s8 x, s8 y);
 void PidStatsRecordLoseData(u8 pid);
 void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);

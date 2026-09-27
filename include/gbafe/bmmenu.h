@@ -3,6 +3,8 @@
 #include "global.h"
 #include "proc.h"
 #include "text.h"
+#include "bmtarget.h"
+#include "bmarch.h"
 
 struct Unit;
 struct Trap;
@@ -92,14 +94,6 @@ void EndAllMenus(void);
 
 /* ---- target selection (fireemblem8u uiselecttarget.h) ---- */
 
-struct SelectTarget {
-    /* 00 */ s8 x, y;
-    /* 02 */ s8 uid;
-    /* 03 */ s8 extra;
-    /* 04 */ struct SelectTarget * next;
-    /* 08 */ struct SelectTarget * prev;
-};
-
 struct SelectInfo {
     /* 00 */ void (* onInit)(ProcPtr proc);
     /* 04 */ void (* onEnd)(ProcPtr proc);
@@ -112,15 +106,10 @@ struct SelectInfo {
 };
 
 ProcPtr StartMapSelect(const struct SelectInfo * info);   /* NewTargetSelection */
+ProcPtr NewTargetSelection_Specialized(const struct SelectInfo * info, u8 (* onSelect)(ProcPtr, struct SelectTarget *));
 ProcPtr EndTargetSelection(ProcPtr proc);
-int CountTargets(void);                                    /* GetSelectTargetCount */
 
-/* ---- target list builders (bmtarget) ---- */
-
-void MakeRescueTargetList(struct Unit * unit);
-void MakeDropTargetList(struct Unit * unit);
-void MakeTakeTargetList(struct Unit * unit);   /* MakeTakeTargetList */
-void MakeGiveTargetList(struct Unit * unit);   /* MakeGiveTargetList */
+/* target list builders: see bmtarget.h */
 
 /* ---- misc externals ---- */
 
@@ -131,28 +120,23 @@ void NewChapterStatusScreen(ProcPtr parent);
 int GetSomeFacingDirection(int xFrom, int yFrom, int xTo, int yTo);
 void Make6CKOIDOAMM(struct Unit * unit, int facing);
 
-void BmMapFillg(u8 ** map, int value);
-void MapAddInBoundedRange(short x, short y, short minRange, short maxRange);
 int GetUnitWeaponReach(struct Unit * unit, int slot);
 void BuildUnitStandingRangeForReach(struct Unit * unit, int reach);
-void ListAttackTargetsForWeapon(struct Unit * unit, int item);
 void DrawItemMenuLine(struct Text * text, int item, s8 isUsable, u16 * tm);
 void UpdateMenuItemPanel(int slot);
 void StartEquipInfoWindow(ProcPtr parent, struct Unit * unit, int x, int y);   /* FE8U: ForceMenuItemPanel */
-void sub_080790B8(void);
-void sub_080790BC(void);
+s8 sub_080790B8(void);
+s8 sub_080790BC(void);
 void ChangeActiveUnitFacing(int x, int y);
 void InitObstacleBattleUnit(void);
 void BattleGenerateSimulation(struct Unit * actor, struct Unit * target, int x, int y, int itemSlot);
 void BattleGenerateBallistaSimulation(struct Unit * actor, struct Unit * target, int x, int y);
 void UpdateBattleForecastContents(void);
 void CloseBattleForecast(void);
-void MakeTradeTargetList(struct Unit * unit);
 ProcPtr StartTradeMenu(struct Unit * unit, struct Unit * other, int unk);
 s8 CanUnitSeize(struct Unit * unit);   /* FE8U: CanUnitSeize */
 int GetAvailableTileEventCommand(s8 x, s8 y);
 s8 IsUnitMagicSealed(struct Unit * unit);
-void MakeTargetListForRefresh(struct Unit * unit);
 s8 CanUnitUseItem(struct Unit * unit, int item);
 
 int GetItemEffect(int item);
@@ -160,10 +144,7 @@ int GetItemCantUseMsgid(struct Unit * unit, int item);
 void DoItemUse(struct Unit * unit, int item);
 
 int GetUnitItemUseReachBits(struct Unit * unit, int slot);
-void MakeTalkTargetList(struct Unit * unit);   /* MakeTalkTargetList */
-void MakeTargetListForSupport(struct Unit * unit);   /* MakeTargetListForSupport */
 int GetUnitKeyItemSlotForTerrain(struct Unit * unit, int terrain);
-void MakeTargetListForDoorAndBridges(struct Unit * unit, int terrain);
 s8 CanUnitUseChestKeyItem(struct Unit * unit);
 int GetConvoyItemCount(void);
 s8 sub_08079D9C(void);   /* HasConvoyAccess */
@@ -172,15 +153,10 @@ void StartAvailableTileEvent(s8 x, s8 y);
 s8 ArenaIsUnitAllowed(struct Unit * unit);
 void StartArenaScreen(void);   /* StartArenaScreen */
 
-void FillBallistaRangeMaybe(struct Unit * unit);
 void SetWorkingBmMap(u8 ** map);
-int GetItemMinRange(int item);
-int GetItemMaxRange(int item);
-void MakeTargetListForSteal(struct Unit * unit);
 void StartUnitInventoryInfoWindow(ProcPtr parent);
 void StartSubtitleHelp(ProcPtr parent, const char * str);
 void RefreshUnitStealInventoryInfoWindow(struct Unit * unit);
-s8 IsItemStealable(int item);
 void StartUnitHpInfoWindow(ProcPtr parent);   /* StartUnitHpInfoWindow */
 void RefreshUnitTakeRescueInfoWindows(ProcPtr parent);   /* RefreshUnitTakeRescueInfoWindows */
 void StartUnitGiveInfoWindows(ProcPtr parent);   /* StartUnitGiveInfoWindows */
@@ -189,11 +165,7 @@ void RefreshUnitRescueInfoWindows(struct Unit * unit);
 void RefreshUnitGiveInfoWindows(struct Unit * unit);
 void RefreshUnitTakeInfoWindows(struct Unit * unit);
 void RefreshUnitInventoryInfoWindow(struct Unit * unit);
-void RideBallista(struct Unit * unit);
-void TryRemoveUnitFromBallista(struct Unit * unit);
 struct MuProc * StartMu(struct Unit * unit);
-s8 IsBallista(struct Trap * trap);   /* IsBallista */
-int GetBallistaItemUses(struct Trap * trap);  /* GetBallistaItemUses */
 
 /* ---- bmmenu.c ---- */
 

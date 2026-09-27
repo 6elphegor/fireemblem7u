@@ -135,7 +135,7 @@ extern struct ProcCmd CONST_DATA gUnknown_085AA5BC[];
 extern u8 CONST_DATA gLut_LinkArenaFogPlaceholder_YOffset[];
 extern struct ProcCmd CONST_DATA ProcScr_DrawLinkArenaFogPlaceholders[];
 extern struct ProcCmd CONST_DATA gUnknown_085AA75C[];
-extern u8 CONST_DATA gUnknown_085AADA0[];
+extern const struct MenuDef gUnknown_085AADA0;
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 extern u16 CONST_DATA EventScr_LinkArenaSurrenderPrompt[];
 extern u16 CONST_DATA EventScr_LinkArenaNoDamagePrompt[];
@@ -200,7 +200,6 @@ bool CanUnitUseWeapon(struct Unit * unit, int item);
 int GetItemAttributes(int item);
 int GetItemMinRange(int item);
 int GetItemMaxRange(int item);
-ProcPtr StartMenu(const void * def);
 void NewBattleForecast(ProcPtr proc);
 void BattleGenerateSimulation(struct Unit * actor, struct Unit * target, int x, int y, int itemSlot);
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);
@@ -1192,7 +1191,7 @@ void sub_08045960(struct SioProc85AA1AC * proc)
     proc->unk_64 = GetGameLock();
     ApplyIconPalettes(4);
 
-    StartMenu(gUnknown_085AADA0);
+    StartMenu(&gUnknown_085AADA0);
 
     return;
 }
