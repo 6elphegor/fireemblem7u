@@ -78,6 +78,59 @@ enum weapon_lv_exp {
     WPN_EXP_S = 251,
 };
 
+struct ItemStatBonuses {
+    /* 00 */ s8 hpBonus;
+    /* 01 */ s8 powBonus;
+    /* 02 */ s8 sklBonus;
+    /* 03 */ s8 spdBonus;
+    /* 04 */ s8 defBonus;
+    /* 05 */ s8 resBonus;
+    /* 06 */ s8 lckBonus;
+    /* 07 */ s8 movBonus;
+    /* 08 */ s8 conBonus;
+};
+
+struct ItemData {
+    /* 00 */ u16 nameTextId;
+    /* 02 */ u16 descTextId;
+    /* 04 */ u16 useDescTextId;
+    /* 06 */ u8  number;
+    /* 07 */ u8  weaponType;
+    /* 08 */ u32 attributes;
+    /* 0C */ const struct ItemStatBonuses * pStatBonuses;
+    /* 10 */ const u8 * pEffectiveness;
+    /* 14 */ u8  maxUses;
+    /* 15 */ u8  might;
+    /* 16 */ u8  hit;
+    /* 17 */ u8  weight;
+    /* 18 */ u8  crit;
+    /* 19 */ u8  encodedRange;
+    /* 1A */ u16 costPerUse;
+    /* 1C */ u8  weaponRank;
+    /* 1D */ u8  iconId;
+    /* 1E */ u8  useEffectId;
+    /* 1F */ u8  weaponEffectId;
+    /* 20 */ u8  weaponExp;
+    /* 21 */ u8  unk21;
+    /* 22 */ u8  _pad22[2];
+};
+
+extern struct ItemData CONST_DATA gItemData[];
+
+#define ITEM_INDEX(aItem) ((aItem) & 0xFF)
+#define ITEM_USES(aItem) ((aItem) >> 8)
+
+enum {
+    REACH_NONE   = 0,
+
+    REACH_RANGE1 = (1 << 0),
+    REACH_RANGE2 = (1 << 1),
+    REACH_RANGE3 = (1 << 2),
+    REACH_TO10   = (1 << 3),
+    REACH_TO15   = (1 << 4),
+    REACH_MAGBY2 = (1 << 5),
+};
+
 // sub_08015FF4
 int GetItemHpBonus(int item);
 int GetItemPowBonus(int item);
@@ -90,10 +143,10 @@ int MakeNewItem(int item);
 bool CanUnitUseWeapon(struct Unit *unit, int item);
 bool CanUnitUseWeaponNow(struct Unit *unit, int item);
 bool CanUnitUseStaff(struct Unit *unit, int item);
-// CanUnitUseStaffNow
-// DrawItemMenuLine
-// DrawItemMenuLineLong
-// DrawItemMenuLineNoColor
+bool CanUnitUseStaffNow(struct Unit *unit, int item);
+void DrawItemMenuLine(struct Text * text, int item, bool isUsable, u16 * mapOut);
+void DrawItemMenuLineLong(struct Text * text, int item, bool isUsable, u16 * mapOut);
+void DrawItemMenuLineNoColor(struct Text * text, int item, u16 * mapOut);
 void DrawItemStatScreenLine(struct Text * text, int item, int nameColor, u16 * mapOut);
 u16 GetItemAfterUse(int item);
 u16 GetUnitEquippedWeapon(struct Unit *unit);
@@ -101,32 +154,30 @@ int GetUnitEquippedWeaponSlot(struct Unit *unit);
 bool IsItemCoveringRange(int item, int range);
 void EquipUnitItemSlot(struct Unit *unit, int itemSlot);
 bool IsItemEffectiveAgainst(u16 item, struct Unit *unit);
-char *GetItemDisplayRangeString(int item);
 char *GetItemRangeString(int item);
-char *GetWeaponLevelStringFromExp(int item);
-char *GetItemKindString(int weaponType);
 int GetWeaponLevelFromExp(int wexp);
-// sub_8016DD8
+char *GetWeaponLevelStringFromExp(int item);
 int GetWeaponLevelSpecialCharFromExp(int wexp);
-// sub_8016E60
+char *GetItemKindString(int wpnType);
 void GetWeaponExpProgressState(int wexp, int * outValue, int * outMax);
 bool IsItemDisplayUsable(struct Unit * unit, int item);
-// CanUnitUse_unused
-// GetUnitItemHealAmount
+bool CanUnitUse_unused(struct Unit * unit, int item);
+int GetUnitItemHealAmount(struct Unit * unit, int item);
 int GetUnitItemSlot(struct Unit *unit, int itemIndex);
-// IsItemStealable
-// IsItemRepairable
-// GetItemReach
-// GetUnitWeaponReach
-// GetUnitItemUseReachBits
-// GetUnitStaffReachBits
-// GetConvoyItemCostSum
-// GetUnitItemCostSum
+bool IsItemStealable(int item);
+bool IsItemRepairable(int item);
+int GetItemReach(int item);
+int GetUnitWeaponReach(struct Unit * unit, int itemSlot);
+int GetUnitItemUseReachBits(struct Unit * unit, int itemSlot);
+int GetUnitStaffReachBits(struct Unit * unit);
+int GetConvoyItemCostSum(void);
+int GetUnitItemCostSum(void);
 s32 GetPartyTotalGoldValue(void);
-// BreakItemSealForPid
-// sub_08017178
+void BreakItemSealForPid(int item, u8 pid);
+bool IsItemUnsealedForUnit(struct Unit * unit, int item);
 int GetItemIndex(int item);
 char *GetItemName(int item);
+char *GetItemNameWithArticle(int item, u8 capitalize);
 int GetItemDescMsg(int item);
 int GetItemUseDescId(int item);
 int GetItemType(int item);
@@ -137,17 +188,18 @@ int GetItemMight(int item);
 int GetItemHit(int item);
 int GetItemWeight(int item);
 int GetItemCrit(int item);
-// sub_08017340
-// GetItemMinRange
-// GetItemMaxRange
-// GetItemEncodedRange
+int GetItemCost(int item);
+int GetItemMinRange(int item);
+int GetItemMaxRange(int item);
+int GetItemEncodedRange(int item);
 int GetItemRequiredExp(int item);
-// GetItemEffectiveness
-// GetItemBonuses
-// GetItemIconId
+const u8 *GetItemEffectiveness(int item);
+const struct ItemStatBonuses *GetItemBonuses(int item);
+int GetItemIconId(int item);
 int GetItemWeaponEffect(int item);
-// GetItemEffect
+int GetItemEffect(int item);
 int GetItemCostPerUse(int item);
-// GetItemMaxValue
+int GetItemMaxValue(int item);
 int GetItemAwardedExp(int item);
-// GetItemData
+const struct ItemData *GetItemData(int itemIndex);
+int sub_080174C0(int item);

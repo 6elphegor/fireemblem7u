@@ -32,7 +32,7 @@ WriteSuspendSave: @ 0x080A1100
 	adds r1, r7, #0
 	movs r2, #0x48
 	bl WriteAndVerifySramFast
-	bl sub_0802F1F8
+	bl StoreRNStateToActionStruct
 	ldr r0, _080A1220 @ =0x0203A85C
 	adds r1, r7, #0
 	adds r1, #0x48

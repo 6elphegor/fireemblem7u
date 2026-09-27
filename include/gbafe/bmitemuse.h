@@ -16,18 +16,6 @@ struct WarpSelectProc {
     /* 54 */ struct SpriteAnim * ap;
 };
 
-struct ItemStatBonuses {
-    /* 00 */ s8 hpBonus;
-    /* 01 */ s8 powBonus;
-    /* 02 */ s8 sklBonus;
-    /* 03 */ s8 spdBonus;
-    /* 04 */ s8 defBonus;
-    /* 05 */ s8 resBonus;
-    /* 06 */ s8 lckBonus;
-    /* 07 */ s8 movBonus;
-    /* 08 */ s8 conBonus;
-};
-
 extern struct Unit gStatGainSimUnit;
 
 extern u8 CONST_DATA gItemUseJidList_HeroCrest[];
@@ -119,11 +107,11 @@ void DrawItemMenuLineLong(struct Text * text, int item, s8 isUsable, u16 * tm);
 int GetOffensiveStaffAccuracy(struct Unit * actor, struct Unit * target);
 void StartUnitInventoryInfoWindow(ProcPtr parent);
 void RefreshHammerneUnitInfoWindow(struct Unit * unit);
-void sub_08031E5C(ProcPtr parent);
+void StartUnitHpStatusInfoWindow(ProcPtr parent);
 void RefreshUnitHpStatusInfoWindow(struct Unit * unit);
-void sub_08031EF0(ProcPtr parent);
+void StartUnitResChangeInfoWindow(ProcPtr parent);
 void RefreshUnitResChangeInfoWindow(struct Unit * unit);
-void sub_08031F5C(ProcPtr parent);
+void StartUnitStaffOffenseInfoWindow(ProcPtr parent);
 void RefreshUnitStaffOffenseInfoWindow(struct Unit * unit, int hit);
 struct ItemStatBonuses const * GetItemBonuses(int item);
 bool IsThereClosedDoorAt(int x, int y);

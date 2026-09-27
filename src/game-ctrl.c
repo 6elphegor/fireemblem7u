@@ -602,7 +602,7 @@ PROC_LABEL(14),
 PROC_LABEL(15),
     PROC_CALL(GC_InitSramResetScreen),
 
-    PROC_CALL(sub_08013FBC),
+    PROC_CALL(StartMidFadeFromBlack),
     PROC_REPEAT(WaitForFade),
 
     PROC_CALL(sub_080431AC),

@@ -10,7 +10,7 @@ sub_08072620: @ 0x08072620
 	str r0, [r7]
 	movs r0, #0
 	bl SetOnHBlankA
-	bl sub_080146DC
+	bl DeleteAllPaletteAnimator
 	ldr r1, _080726B8 @ =0x02023C60
 	adds r0, r1, #0
 	movs r1, #0
