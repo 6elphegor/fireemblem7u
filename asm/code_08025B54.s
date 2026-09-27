@@ -58,7 +58,7 @@ _08025B8C:
 	beq _08025BD4
 	b _08025F62
 _08025BD4:
-	bl sub_08025A9C
+	bl PutChapterMarkedTileIconOam
 	movs r0, #1
 	mov r8, r0
 _08025BDC:

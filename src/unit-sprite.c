@@ -59,6 +59,7 @@ extern struct SMSHandle gSMSHandleArray[];
 extern struct SMSHandle * gSMSHandleIt;
 
 struct SMSHandle * AddUnitSprite(int y);
+void PutChapterMarkedTileIconOam(void);
 
 void IncUnitSpriteSyncFlag(void)
 {
@@ -576,4 +577,99 @@ struct SMSHandle * AddUnitSprite(int y)
 
         it = it->pNext;
     }
+}
+
+void PutUnitSpritesOam(void)
+{
+    struct SMSHandle * it = gSMSHandleArray->pNext;
+
+    PutUnitSpriteIconsOam();
+
+    if (it == NULL)
+        return;
+
+    for (; it != NULL; it = it->pNext)
+    {
+        int r3 = 0;
+
+        int x = it->xDisplay - gBmSt.camera.x;
+        int y = it->yDisplay - gBmSt.camera.y;
+
+        if (x < -16 || x > DISPLAY_WIDTH)
+            continue;
+
+        if (y < -32 || y > DISPLAY_HEIGHT)
+            continue;
+
+        if (it->config & 0x80)
+            continue;
+
+        if (it->config & 0x40)
+            r3 = GetGameTime() & 2;
+
+        switch ((it->config & 0xf))
+        {
+        case 0:
+            PutOamHiRam(OAM1_X(x + r3 + 0x200), OAM0_Y(0x100 + y), Sprite_16x16, it->oam2Base + OAM2_LAYER(2));
+            break;
+
+        case 1:
+            PutOamHiRam(OAM1_X(x + r3 + 0x200), OAM0_Y(0x100 + y - 16), Sprite_16x32, it->oam2Base + OAM2_LAYER(2));
+            break;
+
+        case 2:
+            PutOamHiRam(OAM1_X((x - 8) + r3 + 0x200), OAM0_Y(0x100 + y - 16), Sprite_32x32, it->oam2Base + OAM2_LAYER(2));
+            break;
+
+        case 3:
+            PutOamHiRam(OAM1_X(x + r3 + 0x200), OAM0_Y(0x100 + y), Sprite_16x16, it->oam2Base + OAM2_LAYER(3));
+            break;
+
+        case 4:
+            PutOamHiRam(OAM1_X(x + r3 + 0x200), OAM0_Y(0x100 + y - 16), Sprite_16x32, it->oam2Base + OAM2_LAYER(3));
+            break;
+
+        case 5:
+            PutOamHiRam(OAM1_X((x - 8) + r3 + 0x200), OAM0_Y(0x100 + y - 16), Sprite_32x32, it->oam2Base + OAM2_LAYER(3));
+            break;
+        }
+    }
+}
+
+void PutChapterMarkedTileIconOam(void)
+{
+    int x;
+    int y;
+    int xTile;
+    int yTile;
+    int shouldDisplay;
+
+    // NOTE: chapterdata.h names 0x93/0x94 destPosY/unk94, but here they are the x/y of the marked tile
+    xTile = GetChapterInfo(gPlaySt.chapterIndex)->destPosY;
+    yTile = GetChapterInfo(gPlaySt.chapterIndex)->unk94;
+
+    shouldDisplay = (GetGameTime() & 0x1f) < 0x14 ? 1 : 0;
+
+    if (xTile == 0xFF)
+        return;
+
+    if (shouldDisplay == 0)
+        return;
+
+    if (gBmMapFog[yTile][xTile] == 0)
+        return;
+
+    if (gBmMapTerrain[yTile][xTile] == TERRAIN_ROOF)
+        return;
+
+    x = xTile * 16 - gBmSt.camera.x;
+    y = yTile * 16 - gBmSt.camera.y;
+
+    if (x < -16 || x > DISPLAY_WIDTH)
+        return;
+
+    if (y < -16 || y > DISPLAY_HEIGHT)
+        return;
+
+    PutOamHiRam(OAM1_X(0x200 + x + 4), OAM0_Y(0x100 + y + 7), Sprite_8x8, 0xC51);
 }
