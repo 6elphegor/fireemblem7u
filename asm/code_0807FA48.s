@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start DisplayTexts
-DisplayTexts: @ 0x0807FA48
+	thumb_func_start PutStatScreenText
+PutStatScreenText: @ 0x0807FA48
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r6, r0, #0

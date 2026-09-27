@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080BADA0
-sub_080BADA0: @ 0x080BADA0
+	thumb_func_start TitleFlame_Loop
+TitleFlame_Loop: @ 0x080BADA0
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r5, r0, #0

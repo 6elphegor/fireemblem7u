@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080800B4
-sub_080800B4: @ 0x080800B4
+	thumb_func_start PutStatScreenItemsPage
+PutStatScreenItemsPage: @ 0x080800B4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -24,7 +24,7 @@ sub_080800B4: @ 0x080800B4
 	adds r1, r4, #0
 	bl TmApplyTsa_thm
 	ldr r0, _08080130 @ =0x08404A60
-	bl DisplayTexts
+	bl PutStatScreenText
 	movs r4, #0
 	ldr r1, _08080134 @ =0x0200310C
 	ldr r0, [r1, #0xc]

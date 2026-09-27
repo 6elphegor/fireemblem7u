@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08080424
-sub_08080424: @ 0x08080424
+	thumb_func_start PutStatScreenWeaponExpAndSupportsPage
+PutStatScreenWeaponExpAndSupportsPage: @ 0x08080424
 	push {r4, lr}
 	ldr r0, _0808047C @ =0x083FCB30
 	ldr r4, _08080480 @ =0x02020140
@@ -24,22 +24,22 @@ sub_08080424: @ 0x08080424
 	movs r1, #1
 	movs r2, #1
 	movs r3, #5
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 	movs r0, #1
 	movs r1, #1
 	movs r2, #3
 	movs r3, #6
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 	movs r0, #2
 	movs r1, #9
 	movs r2, #1
 	movs r3, #7
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 	movs r0, #3
 	movs r1, #9
 	movs r2, #3
 	movs r3, #4
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 	b _080804BC
 	.align 2, 0
 _0808047C: .4byte 0x083FCB30
@@ -51,22 +51,22 @@ _0808048C:
 	movs r1, #1
 	movs r2, #1
 	movs r3, #0
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 	movs r0, #1
 	movs r1, #1
 	movs r2, #3
 	movs r3, #1
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 	movs r0, #2
 	movs r1, #9
 	movs r2, #1
 	movs r3, #2
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 	movs r0, #3
 	movs r1, #9
 	movs r2, #3
 	movs r3, #3
-	bl DisplayWeaponExp
+	bl PutStatScreenWeaponExpBar
 _080804BC:
 	bl PutStatScreenSupportList
 	pop {r4}

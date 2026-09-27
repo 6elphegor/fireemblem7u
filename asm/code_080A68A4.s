@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080A68A4
-sub_080A68A4: @ 0x080A68A4
+	thumb_func_start TactInfo_Init
+TactInfo_Init: @ 0x080A68A4
 	push {lr}
 	movs r1, #0
 	str r1, [r0, #0x2c]

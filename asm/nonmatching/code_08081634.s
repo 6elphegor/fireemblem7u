@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08081634
-sub_08081634: @ 0x08081634
+	thumb_func_start HelpBoxPopulateStatScreenPower
+HelpBoxPopulateStatScreenPower: @ 0x08081634
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08081650 @ =0x0200310C

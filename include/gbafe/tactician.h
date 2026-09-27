@@ -49,10 +49,10 @@ void sub_080A69E0(struct ProcTactInfo *proc);
 void TactInfo_IntroDialogue1(struct ProcTactInfo *proc);
 void TactInfo_IntroDialogue2(struct ProcTactInfo *proc);
 void TactInfo_HandleIntroDialoguePrompt(struct ProcTactInfo *proc);
-void sub_80A77AC(struct ProcTactInfo *proc);
+void sub_080A6AC4(struct ProcTactInfo *proc);
 void sub_080A6B00(struct ProcTactInfo *proc);
 void TactInfo_EndMuralBG(struct ProcTactInfo *proc);
-void sub_80A7834(struct ProcTactInfo *proc);
+void sub_080A6B4C(struct ProcTactInfo *proc);
 void TactInfo_UpdateSaveData(struct ProcTactInfo *proc);
 void TactInfo_CheckParticipantDialogue(struct ProcTactInfo *proc);
 void TactInfo_HandleCheckParticipantPrompt(struct ProcTactInfo *proc);
@@ -114,5 +114,5 @@ void sub_080A73F8(s32);
 // ??? ModeSelect_RotateLeft
 // ??? ModeSelect_Loop_RotateCarousel
 // ??? ModeSelect_End
-// ??? sub_80A9578
+// ??? sub_080A8664
 void StartModeSelect(ProcPtr proc);

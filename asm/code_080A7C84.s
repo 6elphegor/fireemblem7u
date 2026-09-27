@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080A7C84
-sub_080A7C84: @ 0x080A7C84
+	thumb_func_start ModeSelect_Init
+ModeSelect_Init: @ 0x080A7C84
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -297,7 +297,7 @@ _080A7E78:
 	ldrb r0, [r0]
 	bl StartModeSelectFace
 	str r0, [r6, #0x3c]
-	bl sub_080A75F0
+	bl PutModeSelectLabelText
 	mov r1, sl
 	ldrb r0, [r1]
 	add r0, r8

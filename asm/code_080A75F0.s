@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080A75F0
-sub_080A75F0: @ 0x080A75F0
+	thumb_func_start PutModeSelectLabelText
+PutModeSelectLabelText: @ 0x080A75F0
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8

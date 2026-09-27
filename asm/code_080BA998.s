@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080BA998
-sub_080BA998: @ 0x080BA998
+	thumb_func_start Title_RefrainSprites
+Title_RefrainSprites: @ 0x080BA998
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0

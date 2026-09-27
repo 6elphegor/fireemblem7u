@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0807FDF0
-sub_0807FDF0: @ 0x0807FDF0
+	thumb_func_start PutStatScreenPersonalInfoPage
+PutStatScreenPersonalInfoPage: @ 0x0807FDF0
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	ldr r0, _0807FE40 @ =0x083FCA4C
@@ -16,7 +16,7 @@ sub_0807FDF0: @ 0x0807FDF0
 	adds r1, r4, #0
 	bl TmApplyTsa_thm
 	ldr r0, _0807FE4C @ =0x084049A0
-	bl DisplayTexts
+	bl PutStatScreenText
 	ldr r5, _0807FE50 @ =0x0200310C
 	ldr r0, [r5, #0xc]
 	bl UnitHasMagicRank
@@ -309,7 +309,7 @@ _08080088:
 	lsls r2, r2, #7
 	adds r0, r4, #0
 	bl PutIcon
-	bl sub_0807FBF0
+	bl DisplayBwl
 	add sp, #8
 	pop {r4, r5, r6}
 	pop {r0}

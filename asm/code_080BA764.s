@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080BA764
-sub_080BA764: @ 0x080BA764
+	thumb_func_start Title_BmBgfxAnimIN
+Title_BmBgfxAnimIN: @ 0x080BA764
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x10
 	adds r5, r0, #0

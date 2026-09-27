@@ -59,7 +59,7 @@ _080A6BB4:
 	bl sub_080A73E4
 _080A6BBA:
 	ldr r0, [r4, #0x2c]
-	bl sub_080A6728
+	bl UpdateTactMainHandPosition
 	adds r0, r4, #0
 	movs r1, #2
 	bl Proc_Goto
@@ -91,7 +91,7 @@ _080A6BF8:
 	cmp r0, #0
 	beq _080A6C20
 	adds r0, r4, #0
-	bl sub_080A6664
+	bl TactInfo_StartHelpbox
 	b _080A6CAE
 _080A6C0A:
 	ldr r0, _080A6CB4 @ =0x08B857F8
@@ -165,7 +165,7 @@ _080A6C7A:
 	cmp r0, #0
 	beq _080A6C94
 	adds r0, r4, #0
-	bl sub_080A6664
+	bl TactInfo_StartHelpbox
 _080A6C94:
 	ldr r0, [r4, #0x2c]
 	adds r1, r4, #0

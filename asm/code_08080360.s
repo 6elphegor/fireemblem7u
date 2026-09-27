@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start DisplayWeaponExp
-DisplayWeaponExp: @ 0x08080360
+	thumb_func_start PutStatScreenWeaponExpBar
+PutStatScreenWeaponExpBar: @ 0x08080360
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

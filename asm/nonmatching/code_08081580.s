@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08081580
-sub_08081580: @ 0x08081580
+	thumb_func_start HelpBoxPopulateStatScreenStatus
+HelpBoxPopulateStatScreenStatus: @ 0x08081580
 	adds r2, r0, #0
 	ldr r0, _0808159C @ =0x0200310C
 	ldr r0, [r0, #0xc]

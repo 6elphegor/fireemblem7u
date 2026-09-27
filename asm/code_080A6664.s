@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080A6664
-sub_080A6664: @ 0x080A6664
+	thumb_func_start TactInfo_StartHelpbox
+TactInfo_StartHelpbox: @ 0x080A6664
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r5, #0

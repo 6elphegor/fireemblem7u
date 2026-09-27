@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080A6728
-sub_080A6728: @ 0x080A6728
+	thumb_func_start UpdateTactMainHandPosition
+UpdateTactMainHandPosition: @ 0x080A6728
 	push {lr}
 	ldr r1, _080A6744 @ =0x08CE45C0
 	lsls r0, r0, #3
