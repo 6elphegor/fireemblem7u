@@ -1,5 +1,46 @@
 #include "gbafe.h"
 
+#include "gbafe/savemenu.h"
+
+struct SaveDrawCursorProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2D);
+    /* 2D */ u8 unk_2d;
+    /* 2E */ u8 unk_2e;
+    /* 2F */ u8 unk_2f;
+    /* 30 */ u8 unk_30;
+    /* 31 */ u8 unk_31;
+    /* 32 */ u8 unk_32;
+    /* 33 */ u8 unk_33;
+    /* 34 */ u8 unk_34;
+    /* 35 */ u8 unk_35;
+};
+
+struct SaveDrawProcFx
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x34);
+    /* 34 */ struct SaveDrawCursorProc * unk_34;
+};
+
+struct SqMaskProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 unk_29;
+    /* 2A */ u8 unk_2a;
+    /* 2B */ u8 unk_2b;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_SaveDrawCursor[];
+extern struct ProcCmd CONST_DATA ProcScr_SqMask[];
+extern struct ProcCmd CONST_DATA ProcScr_SaveBgUp[];
+extern int CONST_DATA SaveMenuSubSelBoxTexts[];
+extern struct Font gSaveMenuSubBoxFont;
+extern struct Text gSaveMenuSubBoxText;
+
+void SaveMenuDrawSubSelBoxExt(int msgId, s8 draw_en);
+
 void SpinRotation_Init(struct ProcSpinRotation * proc)
 {
     proc->unk_39 = 0;
@@ -54,20 +95,80 @@ ProcPtr StartSpinRotation(ProcPtr parent)
 
 ASM_FUNC("asm/nonmatching/code_080A5CF8.s");
 ASM_FUNC("asm/nonmatching/code_080A5D2C.s");
-ASM_FUNC("asm/nonmatching/code_080A5E8C.s");
-ASM_FUNC("asm/nonmatching/code_080A5EAC.s");
-ASM_FUNC("asm/nonmatching/code_080A5EDC.s");
-ASM_FUNC("asm/nonmatching/code_080A5EF0.s");
+void sub_080A5E8C(int a, int b, int c, struct SaveDrawProcFx * proc)
+{
+    struct SaveDrawCursorProc * cursor = proc->unk_34;
+
+    cursor->unk_2f = c;
+    cursor->unk_2d = b;
+    cursor->unk_31 = 1;
+    cursor->unk_35 = a;
+}
+void sub_080A5EAC(int a, int b, struct SaveDrawProcFx * proc)
+{
+    struct SaveDrawCursorProc * cursor = proc->unk_34;
+
+    cursor->unk_32 = b;
+    cursor->unk_33 = 1;
+    cursor->unk_35 = a;
+    cursor->unk_34 = 0;
+}
+ProcPtr StartSaveDrawCursor(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_SaveDrawCursor, parent);
+}
+void SaveMenuInitSubBoxText(void)
+{
+    InitTextFont(&gSaveMenuSubBoxFont, (void *) 0x0600C020, 1, 4);
+    InitText(&gSaveMenuSubBoxText, 10);
+}
 ASM_FUNC("asm/nonmatching/code_080A5F18.s");
-ASM_FUNC("asm/nonmatching/code_080A5F98.s");
-ASM_FUNC("asm/nonmatching/code_080A5FD0.s");
-ASM_FUNC("asm/nonmatching/code_080A6004.s");
-ASM_FUNC("asm/nonmatching/code_080A6018.s");
+void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, s8 flag)
+{
+    SaveMenuDrawSubSelBoxExt(SaveMenuSubSelBoxTexts[BitfileToIndex(proc->action_flag)], flag);
+
+    if (flag == 0)
+        proc->unk_36 = 0;
+}
+void sub_080A5FD0(void)
+{
+    CpuFastFill(0, (void *) 0x06008000, 0x800);
+    CpuFastFill(0, (void *) 0x0600C000, 0x800);
+}
+void AddMainMenuOption(struct SaveMenuProc * proc, int option)
+{
+    proc->unk_30 |= option;
+    proc->unk_31++;
+}
+void AddExtraMenuOption(struct SaveMenuProc * proc, int option)
+{
+    proc->unk_32 |= option;
+    proc->unk_33++;
+}
 ASM_FUNC("asm/nonmatching/code_080A602C.s");
 ASM_FUNC("asm/nonmatching/code_080A6114.s");
 ASM_FUNC("asm/nonmatching/code_080A6184.s");
-ASM_FUNC("asm/nonmatching/code_080A6220.s");
+bool SaveMenuHasOptions(struct SaveMenuProc * proc)
+{
+    if (proc->action_flag & proc->unk_30)
+        return true;
+
+    return false;
+}
 ASM_FUNC("asm/nonmatching/code_080A6238.s");
-ASM_FUNC("asm/nonmatching/code_080A6334.s");
-ASM_FUNC("asm/nonmatching/code_080A6368.s");
-ASM_FUNC("asm/nonmatching/code_080A6384.s");
+void StartSqMask(ProcPtr parent, u8 b, u8 c)
+{
+    struct SqMaskProc * proc = Proc_StartBlocking(ProcScr_SqMask, parent);
+
+    proc->unk_2a = b;
+    proc->unk_2b = c;
+    proc->unk_29 = 0;
+}
+void SaveBgUp_Loop(void)
+{
+    RegisterDataMove(gBg2Tm, (void *) 0x06007000, 0x800);
+}
+ProcPtr StartSaveBgUp(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_SaveBgUp, parent);
+}

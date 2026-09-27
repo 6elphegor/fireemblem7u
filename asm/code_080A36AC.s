@@ -178,7 +178,7 @@ _080A381E:
 	ble _080A381E
 	ldrb r0, [r4]
 	bl sub_080A649C
-	bl sub_080A5EF0
+	bl SaveMenuInitSubBoxText
 	movs r0, #2
 	bl EnableBgSync
 	ldr r2, _080A38A8 @ =0x03002870

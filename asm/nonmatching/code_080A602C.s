@@ -25,7 +25,7 @@ sub_080A602C: @ 0x080A602C
 	bne _080A605A
 	adds r0, r4, #0
 	movs r1, #1
-	bl sub_080A6004
+	bl AddMainMenuOption
 _080A605A:
 	movs r1, #0
 	adds r2, r4, #0
@@ -44,22 +44,22 @@ _080A606A:
 	ble _080A6090
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080A6004
+	bl AddMainMenuOption
 	cmp r5, #2
 	bgt _080A6088
 	adds r0, r4, #0
 	movs r1, #4
-	bl sub_080A6004
+	bl AddMainMenuOption
 _080A6088:
 	adds r0, r4, #0
 	movs r1, #8
-	bl sub_080A6004
+	bl AddMainMenuOption
 _080A6090:
 	cmp r5, #2
 	bgt _080A609C
 	adds r0, r4, #0
 	movs r1, #0x10
-	bl sub_080A6004
+	bl AddMainMenuOption
 _080A609C:
 	bl IsExtraLinkArenaEnabled
 	lsls r0, r0, #0x18
@@ -67,7 +67,7 @@ _080A609C:
 	beq _080A60AE
 	adds r0, r4, #0
 	movs r1, #1
-	bl sub_080A6018
+	bl AddExtraMenuOption
 _080A60AE:
 	bl IsExtraSoundRoomEnabled
 	lsls r0, r0, #0x18
@@ -75,7 +75,7 @@ _080A60AE:
 	beq _080A60C0
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080A6018
+	bl AddExtraMenuOption
 _080A60C0:
 	bl IsExtraSupportViewerEnabled
 	lsls r0, r0, #0x18
@@ -83,14 +83,14 @@ _080A60C0:
 	beq _080A60D2
 	adds r0, r4, #0
 	movs r1, #4
-	bl sub_080A6018
+	bl AddExtraMenuOption
 _080A60D2:
 	bl GetRankDataValidBitMap
 	cmp r0, #0
 	beq _080A60E2
 	adds r0, r4, #0
 	movs r1, #8
-	bl sub_080A6018
+	bl AddExtraMenuOption
 _080A60E2:
 	bl IsExtraBonusClaimEnabled
 	lsls r0, r0, #0x18
@@ -98,7 +98,7 @@ _080A60E2:
 	beq _080A60F4
 	adds r0, r4, #0
 	movs r1, #0x20
-	bl sub_080A6018
+	bl AddExtraMenuOption
 _080A60F4:
 	ldrb r0, [r6]
 	cmp r0, #0

@@ -88,7 +88,7 @@ _080A41AA:
 	b _080A4248
 _080A41B8:
 	adds r0, r7, #0
-	bl sub_080A6220
+	bl SaveMenuHasOptions
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A4248

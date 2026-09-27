@@ -37,7 +37,7 @@ sub_080A4C94: @ 0x080A4C94
 	ldr r1, _080A4D50 @ =0x02000001
 	movs r0, #0xa
 	strb r0, [r1]
-	bl sub_080A5EF0
+	bl SaveMenuInitSubBoxText
 	adds r0, r4, #0
 	bl SaveMenuPutChapterTitle
 	adds r0, r4, #0
