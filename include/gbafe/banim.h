@@ -1174,12 +1174,12 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_806158C
 // ??? sub_80615A8
 // ??? sub_80615C4
-// ??? sub_08060E18
+// ??? efxOura_Loop_Main
 // ??? StartSubSpell_efxOuraBG_A
 // ??? StartSubSpell_efxOuraBG_B
-// ??? sub_08061098
+// ??? StartSubSpell_efxOuraBG_C
 // ??? sub_8061914
-// ??? sub_08061184
+// ??? StartSubSpell_efxOuraBG2
 // ??? sub_8061A50
 // ??? sub_8061A6C
 // ??? StartSubSpell_efxOuraBGCOL
