@@ -1902,10 +1902,14 @@ int GetStrTalkLen(char const * str, bool isBubbleOpen);
 ASM_FUNC("asm/nonmatching/code_0800A11C.s");
 
 
-bool sub_0800A4E8();
-ASM_FUNC("asm/nonmatching/code_0800A4E8.s");
+bool sub_0800A4E8()
+{
+    return false;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800A4EC.s");
+void sub_0800A4EC()
+{
+}
 
 
 void sub_800A390();
