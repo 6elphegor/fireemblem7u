@@ -1,6 +1,7 @@
 #include "gbafe.h"
 
 int CountDigits(int number);
+const char * sub_08018CC0(struct Unit * unit); // FE7U GetUnitRescueName (msg-based)
 
 void DrawUiGaugeBitmapEdgeColumn(u8 * bitmap, int pixels_per_line, int column)
 {
@@ -363,8 +364,129 @@ void PutStatScreenStatWithBar(int num, int x, int y, int base, int total, int ma
 }
 
 
-void PutStatScreenPersonalInfoPage(void);
-ASM_FUNC("asm/nonmatching/code_0807FDF0.s");
+void PutStatScreenPersonalInfoPage(void)
+{
+    Decompress(Tsa_StatScreenPage0, gBuf);
+    TmApplyTsa(gUiTmScratchB, gBuf, TILEREF(BGCHR_WINDOWFRAME, BGPAL_WINDOWFRAME));
+
+    PutStatScreenText(gStatScreenPersonalInfoLabelsInfo);
+
+    // display strength/magic labels
+
+    if (UnitHasMagicRank(gStatScreenSt.unit))
+    {
+        // magic
+        PutDrawText(gStatScreenSt.text + STATSCREEN_TEXT_POW,
+            gUiTmScratchA + TM_OFFSET(1, 1),
+            TEXT_COLOR_SYSTEM_GOLD, 0, 0,
+            DecodeMsg(0x10F9));
+    }
+    else
+    {
+        // strength
+        PutDrawText(gStatScreenSt.text + STATSCREEN_TEXT_POW,
+            gUiTmScratchA + TM_OFFSET(1, 1),
+            TEXT_COLOR_SYSTEM_GOLD, 0, 0,
+            DecodeMsg(0x10F8));
+    }
+
+    // display strength/magic stat value
+    PutStatScreenStatWithBar(0, 5, 1,
+        gStatScreenSt.unit->pow,
+        GetUnitPower(gStatScreenSt.unit),
+        UNIT_POW_MAX(gStatScreenSt.unit));
+
+    // display skill stat value
+    PutStatScreenStatWithBar(1, 5, 3,
+        gStatScreenSt.unit->state & US_RESCUING
+            ? gStatScreenSt.unit->skl / 2 : gStatScreenSt.unit->skl,
+        GetUnitSkill(gStatScreenSt.unit),
+        gStatScreenSt.unit->state & US_RESCUING
+            ? UNIT_SKL_MAX(gStatScreenSt.unit) / 2 : UNIT_SKL_MAX(gStatScreenSt.unit));
+
+    // display speed stat value
+    PutStatScreenStatWithBar(2, 5, 5,
+        gStatScreenSt.unit->state & US_RESCUING
+            ? gStatScreenSt.unit->spd/2 : gStatScreenSt.unit->spd,
+        GetUnitSpeed(gStatScreenSt.unit),
+        gStatScreenSt.unit->state & US_RESCUING
+            ? UNIT_SPD_MAX(gStatScreenSt.unit) / 2 : UNIT_SPD_MAX(gStatScreenSt.unit));
+
+    // display luck stat value
+    PutStatScreenStatWithBar(3, 5, 7,
+        gStatScreenSt.unit->lck,
+        GetUnitLuck(gStatScreenSt.unit),
+        UNIT_LCK_MAX(gStatScreenSt.unit));
+
+    // display defense stat value
+    PutStatScreenStatWithBar(4, 5, 9,
+        gStatScreenSt.unit->def,
+        GetUnitDefense(gStatScreenSt.unit),
+        UNIT_DEF_MAX(gStatScreenSt.unit));
+
+    // display resistance stat value
+    PutStatScreenStatWithBar(5, 5, 11,
+        gStatScreenSt.unit->res,
+        GetUnitResistance(gStatScreenSt.unit),
+        UNIT_RES_MAX(gStatScreenSt.unit));
+
+    // display movement stat value
+    PutStatScreenStatWithBar(6, 13, 1,
+        UNIT_MOV_BASE(gStatScreenSt.unit),
+        UNIT_MOV(gStatScreenSt.unit),
+        UNIT_MOV_MAX(gStatScreenSt.unit));
+
+    // display constitution stat value
+    PutStatScreenStatWithBar(7, 13, 3,
+        UNIT_CON_BASE(gStatScreenSt.unit),
+        UNIT_CON(gStatScreenSt.unit),
+        UNIT_CON_MAX(gStatScreenSt.unit));
+
+    // display unit aid
+    PutNumber(gUiTmScratchA + TM_OFFSET(13, 5), TEXT_COLOR_SYSTEM_BLUE,
+        GetUnitAid(gStatScreenSt.unit));
+
+    // display unit aid icon
+    PutIcon(gUiTmScratchA + TM_OFFSET(14, 5),
+        GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreenSt.unit)),
+        TILEREF(0, BGPAL_ICONS + 1));
+
+    // display unit rescue name
+    Text_InsertDrawString(gStatScreenSt.text + STATSCREEN_TEXT_RESCUE,
+        24, TEXT_COLOR_SYSTEM_BLUE,
+        sub_08018CC0(gStatScreenSt.unit));
+
+    // display status name
+    if (gStatScreenSt.unit->statusIndex == UNIT_STATUS_BERSERK)
+    {
+        Text_InsertDrawString(gStatScreenSt.text + STATSCREEN_TEXT_STATUS,
+            23, TEXT_COLOR_SYSTEM_BLUE,
+            GetUnitStatusName(gStatScreenSt.unit));
+    }
+    else
+    {
+        Text_InsertDrawString(gStatScreenSt.text + STATSCREEN_TEXT_STATUS,
+            24, TEXT_COLOR_SYSTEM_BLUE,
+            GetUnitStatusName(gStatScreenSt.unit));
+    }
+
+    // display status turns
+
+    if (gStatScreenSt.unit->statusIndex != UNIT_STATUS_NONE)
+    {
+        PutNumberSmall(gUiTmScratchA + TM_OFFSET(16, 11),
+            TEXT_COLOR_SYSTEM_WHITE,
+            gStatScreenSt.unit->statusDuration);
+    }
+
+    // display affininity icon
+
+    PutIcon(gUiTmScratchA + TM_OFFSET(13, 9),
+        GetUnitAffinityIcon(gStatScreenSt.unit),
+        TILEREF(0, BGPAL_ICONS + 1));
+
+    DisplayBwl();
+}
 
 
 void PutStatScreenItemsPage(void);
