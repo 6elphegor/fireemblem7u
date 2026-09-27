@@ -201,11 +201,11 @@ void ManimLatonaShine_Start(struct ManimShineProc * proc);
 void ManimLatonaShine_FadeIn(struct ManimShineProc * proc);
 void ManimLatonaShine_Wait(struct ManimShineProc * proc);
 void ManimLatonaShine_FadeOut(struct ManimShineProc * proc);
-// sub_08071E4C
-// sub_08071ECC
-// sub_08071FD0
+void StartManimAntitoxinFx(struct Unit * unit, u8 const * img, u16 const * pal);
+void ManimAntitoxinFx_Init(struct ManimEffectProc * proc);
+void ManimAntitoxinFx_Main(struct ManimEffectProc * proc);
 // sub_8072884
-// sub_08072104
+void ManimStatusHealSe_Play(struct ManimEffectProc * proc);
 // sub_08072124
 // sub_08072180
 // sub_080722C0
@@ -345,3 +345,4 @@ void StartManimLatonaFx(struct Unit * unit);
 void ManimLatonaFx_ClearBg2(ProcPtr proc);
 void ManimLatonaShine_End(ProcPtr proc);
 void ManimLatonaShine_Init(ProcPtr proc);
+void StartManimStatusHealSe(struct Unit * unit);

@@ -10,6 +10,11 @@ extern s16 const gManimLatonaShinePos[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimLatonaShine[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimLatona[];
 
+extern u8 const Img_ManimAntitoxinFrames[];
+extern u8 CONST_DATA gManimAntitoxinFrameLut[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimAntitoxin[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimStatusHealSe[];
+
 void StartManimLatonaFx(struct Unit * unit)
 {
     struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimLatona, PROC_TREE_3);
@@ -172,11 +177,71 @@ void ManimLatonaShine_FadeOut(struct ManimShineProc * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_08071E4C.s");
-ASM_FUNC("asm/nonmatching/code_08071ECC.s");
-ASM_FUNC("asm/nonmatching/code_08071FD0.s");
-ASM_FUNC("asm/nonmatching/code_08072098.s");
-ASM_FUNC("asm/nonmatching/code_08072104.s");
+void StartManimAntitoxinFx(struct Unit * unit, u8 const * img, u16 const * pal)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimAntitoxin, PROC_TREE_3);
+
+    proc->unit = unit;
+
+    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
+    proc->y = ((SCREEN_TILE_Y(unit->yPos) << 1) + 1) * 8;
+
+    proc->img = img;
+    proc->pal = pal;
+}
+
+void ManimAntitoxinFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0xB6, proc->x);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 2;
+
+    SetBgOffset(2, 0, 0);
+
+    Decompress(proc->img, (void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20);
+    ApplyPalette(proc->pal, 4);
+
+    SetDefaultManimScreenConf();
+    SetBlendConfig(1, 0x10, 0x10, 0);
+
+    proc->frame = 0;
+}
+
+void ManimAntitoxinFx_Main(struct ManimEffectProc * proc)
+{
+    sub_080148FC(
+        gBg2Tm,
+        proc->x / 8 - 3,
+        proc->y / 8 - 3,
+        TILEREF(0x140, 4),
+        6, 6,
+        (u16 const *)Img_ManimAntitoxinFrames,
+        gManimAntitoxinFrameLut[proc->frame / 2]);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    proc->frame++;
+
+    if (gManimAntitoxinFrameLut[proc->frame / 2] == 0xFF)
+        Proc_Break(proc);
+}
+
+void StartManimStatusHealSe(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimStatusHealSe, PROC_TREE_3);
+
+    proc->x = (SCREEN_TILE_X(unit->xPos) << 1) * 8 + 8;
+    proc->y = (SCREEN_TILE_Y(unit->yPos) << 1) * 8 + 8;
+}
+
+void ManimStatusHealSe_Play(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x10F, proc->x);
+}
+
 ASM_FUNC("asm/nonmatching/code_08072124.s");
 ASM_FUNC("asm/nonmatching/code_08072180.s");
 ASM_FUNC("asm/nonmatching/code_080722C0.s");

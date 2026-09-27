@@ -1653,3 +1653,7 @@ Img_ManimLatona2 = 0x083F699C;
 Pal_ManimLatona = 0x083F695C;
 gManimLatonaShinePos = 0x08C9DA14;
 ProcScr_ManimLatonaShine = 0x08C9DA3C;
+Img_ManimAntitoxinFrames = 0x083F5CF4;
+gManimAntitoxinFrameLut = 0x08C9DAAC;
+ProcScr_ManimAntitoxin = 0x08C9DA7C;
+ProcScr_ManimStatusHealSe = 0x08C9DAC4;

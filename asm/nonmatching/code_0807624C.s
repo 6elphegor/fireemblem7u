@@ -21,7 +21,7 @@ sub_0807624C: @ 0x0807624C
 	ldr r0, [r2]
 	ldr r1, _08076280 @ =0x083F51E8
 	ldr r2, _08076284 @ =0x083F62F4
-	bl sub_08071E4C
+	bl StartManimAntitoxinFx
 	add sp, #4
 	pop {r7}
 	pop {r0}
