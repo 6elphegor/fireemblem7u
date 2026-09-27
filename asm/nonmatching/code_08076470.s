@@ -27,7 +27,7 @@ sub_08076470: @ 0x08076470
 	adds r2, r3, #0
 	adds r3, #0x61
 	ldrb r2, [r3]
-	bl sub_080726C0
+	bl StartManimWarpFlashy
 	add sp, #4
 	pop {r7}
 	pop {r0}

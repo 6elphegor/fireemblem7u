@@ -22,7 +22,7 @@ sub_08076288: @ 0x08076288
 	ldr r1, _080762BC @ =0x083F66A0
 	ldr r2, _080762C0 @ =0x083F695C
 	movs r3, #0x8b
-	bl sub_08072124
+	bl StartManimEffectAnimator
 	add sp, #4
 	pop {r7}
 	pop {r0}

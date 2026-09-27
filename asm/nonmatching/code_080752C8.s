@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080752C8
-sub_080752C8: @ 0x080752C8
+	thumb_func_start LoadSparkGfx
+LoadSparkGfx: @ 0x080752C8
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _080752E8 @ =0x083F5188

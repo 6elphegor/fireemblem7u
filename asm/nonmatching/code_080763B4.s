@@ -86,7 +86,7 @@ _080763D2:
 	ldr r3, [r2]
 	movs r2, #0x11
 	ldrsb r2, [r3, r2]
-	bl sub_080726C0
+	bl StartManimWarpFlashy
 	add sp, #4
 	pop {r4, r5, r7}
 	pop {r0}

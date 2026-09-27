@@ -98,6 +98,18 @@ struct ManimShineProc {
     /* 64 */ s16 timer2;
 };
 
+struct ManimAnimatorProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct Unit * unit;
+    /* 30 */ STRUCT_PAD(0x30, 0x40);
+    /* 40 */ u16 ca;
+    /* 42 */ u16 cb;
+    /* 44 */ STRUCT_PAD(0x44, 0x50);
+    /* 50 */ void const * img;
+    /* 54 */ void const * pal;
+    /* 58 */ u16 song;
+};
+
 struct ManimEffectProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;
@@ -206,15 +218,15 @@ void ManimAntitoxinFx_Init(struct ManimEffectProc * proc);
 void ManimAntitoxinFx_Main(struct ManimEffectProc * proc);
 // sub_8072884
 void ManimStatusHealSe_Play(struct ManimEffectProc * proc);
-// sub_08072124
-// sub_08072180
-// sub_080722C0
-// sub_08072424
-// sub_08072588
-// sub_08072620
-// sub_080726C0
-// sub_0807272C
-// sub_08072784
+void StartManimEffectAnimator(struct Unit * unit, void const * img, void const * pal, u16 song);
+void ManimEffectAnimator_Init(struct ManimAnimatorProc * proc);
+void ManimEffectAnimator_FadeIn(struct ManimAnimatorProc * proc);
+void ManimEffectAnimator_FadeOut(struct ManimAnimatorProc * proc);
+void ManimSpellAnim_End(ProcPtr proc);
+void ManimSpellAnim_EndWithHBlank(ProcPtr proc);
+void StartManimWarpFlashy(struct Unit * unit, int arg_1, int arg_2);
+void ManimWarpFlashy_Init(struct ManimEffectProc * proc);
+void ManimWarpFlashy_Main(struct ManimEffectProc * proc);
 // sub_08072898
 // sub_080728F0
 // sub_08072A18
@@ -286,7 +298,7 @@ void ManimStatusHealSe_Play(struct ManimEffectProc * proc);
 // sub_080751E0
 // sub_80759C8
 // sub_08075218
-// sub_080752C8
+// LoadSparkGfx
 // sub_080752F4
 // sub_0807534C
 // sub_080753AC

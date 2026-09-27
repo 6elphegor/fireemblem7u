@@ -8,7 +8,7 @@ sub_080753AC: @ 0x080753AC
 	sub sp, #8
 	mov r7, sp
 	str r0, [r7]
-	bl sub_080752C8
+	bl LoadSparkGfx
 	movs r0, #0
 	str r0, [r7, #4]
 _080753BC:

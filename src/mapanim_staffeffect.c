@@ -15,6 +15,15 @@ extern u8 CONST_DATA gManimAntitoxinFrameLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimAntitoxin[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimStatusHealSe[];
 
+void LoadSparkGfx(void);
+
+extern u8 const Img_ManimWarpFlashy[];
+extern u16 const Pal_ManimWarpFlashy[];
+extern u8 const Img_ManimWarpFlashyFrames[];
+extern u8 CONST_DATA gManimWarpFlashyFrameLut[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimEffectAnimator[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimWarpFlashy[];
+
 void StartManimLatonaFx(struct Unit * unit)
 {
     struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimLatona, PROC_TREE_3);
@@ -242,15 +251,150 @@ void ManimStatusHealSe_Play(struct ManimEffectProc * proc)
     PlaySeSpacial(0x10F, proc->x);
 }
 
-ASM_FUNC("asm/nonmatching/code_08072124.s");
-ASM_FUNC("asm/nonmatching/code_08072180.s");
-ASM_FUNC("asm/nonmatching/code_080722C0.s");
-ASM_FUNC("asm/nonmatching/code_08072424.s");
-ASM_FUNC("asm/nonmatching/code_08072588.s");
-ASM_FUNC("asm/nonmatching/code_08072620.s");
-ASM_FUNC("asm/nonmatching/code_080726C0.s");
-ASM_FUNC("asm/nonmatching/code_0807272C.s");
-ASM_FUNC("asm/nonmatching/code_08072784.s");
+void StartManimEffectAnimator(struct Unit * unit, void const * img, void const * pal, u16 song)
+{
+    struct ManimAnimatorProc * proc = Proc_Start(ProcScr_ManimEffectAnimator, PROC_TREE_3);
+
+    proc->unit = unit;
+    proc->img = img;
+    proc->pal = pal;
+    proc->song = song;
+}
+
+void ManimEffectAnimator_Init(struct ManimAnimatorProc * proc)
+{
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 2;
+
+    SetBgOffset(2, 0, 0);
+
+    Decompress(proc->img, (void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20);
+
+    sub_080147BC(
+        gBg2Tm,
+        (SCREEN_TILE_X(proc->unit->xPos) << 1) - 2,
+        (SCREEN_TILE_Y(proc->unit->yPos) << 1) - 2,
+        TILEREF(0x140, 4), 6, 6);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    StartPaletteAnimatorNormal(proc->pal, 4 * 0x20, 0x20, 4, proc);
+
+    proc->ca = 0;
+    proc->cb = 0x10;
+
+    PlaySeSpacial(proc->song, ((SCREEN_TILE_X(proc->unit->xPos) << 1) + 1) * 8);
+}
+
+void ManimEffectAnimator_FadeIn(struct ManimAnimatorProc * proc)
+{
+    proc->ca++;
+
+    if (proc->ca == 0x10)
+        Proc_Break(proc);
+
+    proc->cb = 0x16 - proc->ca;
+
+    if (proc->cb > 0x10)
+        proc->cb = 0x10;
+
+    SetBlendAlpha(proc->ca, proc->cb);
+
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendBackdropA(0);
+    SetBlendTargetB(0, 0, 0, 1, 1);
+    SetBlendBackdropB(1);
+}
+
+void ManimEffectAnimator_FadeOut(struct ManimAnimatorProc * proc)
+{
+    proc->ca--;
+
+    if (proc->ca == 0)
+        Proc_Break(proc);
+
+    proc->cb = 0x16 - proc->ca;
+
+    if (proc->cb > 0x10)
+        proc->cb = 0x10;
+
+    SetBlendAlpha(proc->ca, proc->cb);
+
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendBackdropA(0);
+    SetBlendTargetB(0, 0, 0, 1, 1);
+    SetBlendBackdropB(1);
+}
+
+void ManimSpellAnim_End(ProcPtr proc)
+{
+    DeleteAllPaletteAnimator();
+
+    TmFill(gBg2Tm, 0);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    SetBlendNone();
+    SetWinEnable(0, 0, 0);
+}
+
+void ManimSpellAnim_EndWithHBlank(ProcPtr proc)
+{
+    SetOnHBlankA(NULL);
+
+    DeleteAllPaletteAnimator();
+
+    TmFill(gBg2Tm, 0);
+    EnableBgSync(BG2_SYNC_BIT);
+
+    SetBlendNone();
+    SetWinEnable(0, 0, 0);
+}
+
+void StartManimWarpFlashy(struct Unit * unit, int arg_1, int arg_2)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimWarpFlashy, PROC_TREE_3);
+
+    proc->unit = unit;
+    proc->x = SCREEN_TILE_X(proc->unit->xPos) << 1;
+    proc->y = SCREEN_TILE_Y(proc->unit->yPos) << 1;
+}
+
+void ManimWarpFlashy_Init(struct ManimEffectProc * proc)
+{
+    SetBgOffset(2, 0, 0);
+
+    Decompress(Img_ManimWarpFlashy, (void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20);
+    ApplyPalette(Pal_ManimWarpFlashy, 4);
+
+    LoadSparkGfx();
+
+    proc->frame = 0;
+}
+
+void ManimWarpFlashy_Main(struct ManimEffectProc * proc)
+{
+    sub_080148FC(
+        gBg2Tm,
+        proc->x - 1,
+        proc->y - 3,
+        TILEREF(0x140, 4),
+        4, 6,
+        (u16 const *)Img_ManimWarpFlashyFrames,
+        gManimWarpFlashyFrameLut[proc->frame / 2]);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    proc->frame++;
+
+    if (gManimWarpFlashyFrameLut[proc->frame / 2] == 0xFF)
+        Proc_Break(proc);
+
+    SetDefaultManimScreenConf();
+    SetBlendAlpha(12, 12);
+}
+
 ASM_FUNC("asm/nonmatching/code_08072898.s");
 ASM_FUNC("asm/nonmatching/code_080728F0.s");
 ASM_FUNC("asm/nonmatching/code_08072A18.s");
