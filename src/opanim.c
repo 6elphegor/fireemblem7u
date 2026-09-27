@@ -34,6 +34,13 @@ extern u16 const gUnk_086005E4[];
 extern u16 const gUnk_08600604[];
 extern u16 const gUnk_08600584[];
 extern u16 const gUnk_08600564[];
+extern u8 const gUnk_085EC9A4[];
+extern u8 const gUnk_085ECBC0[];
+extern u16 const gUnk_086727E0[];
+extern u8 const gUnk_08672800[];
+extern u8 const gUnk_08673AD8[];
+extern u16 const gUnk_085ED1C4[];
+extern u8 const gUnk_085ED1E4[];
 
 struct ProcCmd CONST_DATA ProcScr_08CEF0E4[] = {
     PROC_SET_END_CB(sub_080BB524),
@@ -537,13 +544,124 @@ void sub_080BC0F8(void)
 {
     EnableBgSync(BG1_SYNC_BIT);
 }
-ASM_FUNC("asm/nonmatching/code_080BC104.s");
-ASM_FUNC("asm/nonmatching/code_080BC164.s");
-ASM_FUNC("asm/nonmatching/code_080BC21C.s");
-ASM_FUNC("asm/nonmatching/code_080BC280.s");
-ASM_FUNC("asm/nonmatching/code_080BC2D4.s");
-ASM_FUNC("asm/nonmatching/code_080BC2D8.s");
-ASM_FUNC("asm/nonmatching/code_080BC30C.s");
+void sub_080BC104(struct OpAnimProc * proc)
+{
+    SetOnHBlankA(NULL);
+    sub_080BC5CC();
+    EndFadeInOut();
+
+    CpuFastFill(0, gPal, 0x20);
+    EnablePalSync();
+
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    ResetTitleBgAffin(2);
+    EndEachSpriteAnimProc();
+}
+void sub_080BC164(struct OpAnimProc * proc)
+{
+    SetBlendConfig(BLEND_EFFECT_NONE, 0, 0, 0);
+
+    gUnkOpAnim_03001620 &= ~0x1E1;
+
+    CpuFastFill(0, (void *) 0x06017000, 0x1000);
+
+    SetDispEnable(0, 0, 0, 0, 1);
+
+    ApplyPaletteExt(gUnk_085E9D2C, 0x220, 0x20);
+    sub_080BCB1C(gUnk_085EC9A4, 0);
+    sub_080BCB1C(gUnk_085ECBC0, 0x800);
+
+    proc->unk_2C = 0;
+
+    CpuFastFill(0, (void *) 0x06014000, 0x1000);
+
+    proc->unk_3C = 1;
+}
+void sub_080BC21C(struct OpAnimProc * proc)
+{
+    int len = 0x70;
+    int div = 8;
+    int time = proc->unk_2C;
+    int val = (time % len) / div;
+
+    if (time < len)
+        sub_080BCB34(2, 2, 8, val << 6, time);
+    else
+        sub_080BCB34(2, 2, 8, (val << 6) + 0x800, time - len);
+
+    if (proc->unk_2C == len * 2)
+    {
+        proc->unk_2C = 0;
+        Proc_Break(proc);
+    }
+    else
+    {
+        proc->unk_2C++;
+    }
+}
+
+void sub_080BC280(struct OpAnimProc * proc)
+{
+    if (proc->unk_2C == 0)
+        StartBgmExt(0x5F, 0, NULL);
+
+    if (proc->unk_2C < 0x20)
+    {
+        sub_080BCBFC(0x20, 2, 2, 0, proc->unk_2C);
+        sub_080BCBFC(0x20, 2, 2, 0x800, proc->unk_2C);
+        proc->unk_2C++;
+    }
+    else
+    {
+        Proc_Break(proc);
+    }
+}
+void sub_080BC2D4(void)
+{
+}
+s8 sub_080BC2D8(struct ProcBmBgfx * proc)
+{
+    if ((s8) proc->func_call_type != 0 && proc->counter_functioncall == 1)
+        sub_080BD0D4(gUnk_08659C9C, gUnk_08659C9C + 0x10, 10, 0x10, proc);
+
+    return 0;
+}
+void OpAnim_DrawCloud(struct OpAnimProc * proc)
+{
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+    TmFill(gBg3Tm, 0);
+
+    EndAllParallelWorkers();
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 2;
+
+    StartBmBgfx(BmBgfxConf_OpAnim, 0, 0, 0, 0, 0x4000, 10, sub_080BC2D8, proc);
+
+    gUnkOpAnim_03001620 |= 0x10;
+
+    ApplyPaletteExt(gUnk_086727E0, 0x1C0, 0x20);
+    Decompress(gUnk_08672800, (void *) 0x06000000);
+    sub_080AACD8(gBg1Tm, gUnk_08673AD8, 0xE000);
+
+    ApplyPaletteExt(gUnk_085ED1C4, 0x300, 0x20);
+    Decompress(gUnk_085ED1E4, (void *) 0x06010000);
+
+    SetBlendAlpha(0x10, 0x10);
+    SetBlendTargetA(1, 0, 0, 0, 0);
+    SetBlendTargetB(0, 1, 0, 0, 0);
+
+    proc->unk_2C = 0;
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+}
 ASM_FUNC("asm/nonmatching/code_080BC474.s");
 ASM_FUNC("asm/nonmatching/code_080BC494.s");
 ASM_FUNC("asm/nonmatching/code_080BC570.s");
