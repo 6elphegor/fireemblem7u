@@ -771,3 +771,13 @@ AnimScr_EfxChill1_R = 0x08BD5644;
 AnimScr_EfxChill1_L = 0x08BD5848;
 AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
+/* cp_script */
+gAiScriptEnded = 0x030013B0;
+gAiScriptKind = 0x030013B4;
+gpAiScriptCurrent = 0x030013B8;
+gpCurrentAiFunctionCall = 0x030013BC;
+gAiScript_FallbackAi1 = 0x08B970A4;
+gAiScript_FallbackAi2 = 0x08B970B4;
+gAiTerrainList_SnagWall = 0x08B970C4;
+gpAi2Table = 0x08B989E4;
+gpAi1Table = 0x08B989F0;
