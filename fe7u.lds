@@ -437,15 +437,7 @@ SECTIONS
         build/asm/code_08047C38.o(.text);
         build/src/sio_uiutils.o(.text);
         build/src/sio_menudef.o(.text);
-        build/asm/code_080493E8.o(.text);
-        build/asm/code_08049424.o(.text);
-        build/asm/code_08049810.o(.text);
-        build/asm/code_0804985C.o(.text);
-        build/asm/code_08049880.o(.text);
-        build/asm/code_08049944.o(.text);
-        build/asm/code_08049954.o(.text);
-        build/asm/code_08049A40.o(.text);
-        build/asm/code_08049A58.o(.text);
+        build/src/sio_multiboot.o(.text);
         build/src/ui.o(.text);
         build/asm/code_08049B78.o(.text);
         build/asm/code_08049CE4.o(.text);
