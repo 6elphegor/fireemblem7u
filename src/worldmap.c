@@ -1469,7 +1469,23 @@ void WorldFlush_Prepare(struct WmSpotlightProc * proc)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B608C.s");
-ASM_FUNC("asm/nonmatching/code_080B6190.s");
+void WorldFlushOut(struct WmSpotlightProc * proc)
+{
+    int max = 64;
+    int k = 300;
+    int r, c;
+
+    proc->timer++;
+    r = k * proc->timer * proc->timer / (max * max);
+    c = 8 - 8 * (max - proc->timer) * (max - proc->timer) / (max * max);
+
+    sub_0807764C(proc->x, proc->y, r);
+
+    SetBlendConfig(2, 0, 0, c + 8);
+
+    if (proc->timer >= max)
+        Proc_Break(proc);
+}
 
 void WorldFlush_End(void)
 {
