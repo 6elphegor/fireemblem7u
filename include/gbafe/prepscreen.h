@@ -546,18 +546,18 @@ void sub_08096A98(struct PrepItemSupplyProc * proc);
 void sub_08096B1C(struct PrepItemSupplyProc * proc);
 void PrepItemSupply_ScrollVertical(struct PrepItemSupplyProc * proc, int amount);
 void sub_08096C54(void);
-// sub_08096C60
-// sub_08096DC0
-// sub_0809714C
-// sub_080971E8
-// sub_08097204
-// sub_08097324
+void sub_08096C60(struct PrepItemSupplyProc * proc);
+void sub_08096DC0(struct PrepItemSupplyProc * proc);
+s8 sub_0809714C(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_SwitchToUnitInventory(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_GiveItemToSupply(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_Loop_UnitInvKeyHandler(struct PrepItemSupplyProc * proc);
 // sub_8097BBC
 void StartPrepItemSupplyProc(struct Unit * unit, ProcPtr parent);
-// sub_08097488
-// sub_080974A8
+void sub_08097488(void);
+void sub_080974A8(void);
 // StartBmSupply
-// MaybeStartSelectConvoyItemProc
+void MaybeStartSelectConvoyItemProc(struct Unit * unit, ProcPtr unused);
 // PrepItemList_Init
 // sub_08097554
 // PrepItemList_DrawCurrentOwnerText
@@ -699,6 +699,8 @@ void sub_08095BF4(void);
 void sub_080962A0(struct PrepItemSupplyProc * proc);
 
 void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc);
+
+void PrepItemSupply_OnEnd(struct PrepItemSupplyProc * proc);
 
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 extern EWRAM_OVERLAY(0) struct Text gPrepMainMenuTexts[10];
