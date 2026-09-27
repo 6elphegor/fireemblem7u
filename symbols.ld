@@ -489,6 +489,7 @@ gClassData = 0x08BE01B0;
 MoveTable_Flying = 0x08BE3C16;
 MoveTable_Ballista = 0x08BE3C98;
 FaceInfoTable = 0x08C96584;
+AffinityBonuses = 0x08C9A1C0;
 ProcScr_FlameBreathfx = 0x08CA7864;
 gUnk_08CC1B1C = 0x08CC1B1C;
 gUnk_08CC1B50 = 0x08CC1B50;
