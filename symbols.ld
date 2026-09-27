@@ -2407,3 +2407,4 @@ gBolganoneOBJ2XBase = 0x081E8988;
 gBolganoneOBJ2XOffsets = 0x081E8978;
 gBolganoneOBJDurations = 0x081E88CA;
 gBolganoneOBJTypes = 0x081E88DA;
+banim_data = 0x08E00008;

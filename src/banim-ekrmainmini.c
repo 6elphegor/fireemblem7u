@@ -142,7 +142,6 @@ void sub_08054A68(struct Anim * anim)
     return;
 }
 
-#if NONMATCHING
 void sub_08054A8C(struct Anim * anim)
 {
     struct AnimBuffer * pAnimBuffer = anim->pUnk44;
@@ -158,7 +157,7 @@ void sub_08054A8C(struct Anim * anim)
 
         const void * unk28 = pAnimBuffer->unk_28;
         register struct BanimModeData * frameData asm("r1");
-        int off = modes[mode];
+        register int off asm("r0") = modes[mode];
         frameData = (void *)unk28 + off;
 
         anim1->pImgSheet = frameData->img;
@@ -175,9 +174,6 @@ void sub_08054A8C(struct Anim * anim)
         }
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08054A8C.s");
-#endif
 
 #if NONMATCHING
 // 0.59 ekrmainmini:InitMainMiniAnim
