@@ -100,7 +100,7 @@ WorldFlushInit: @ 0x080B608C
 	strb r3, [r0]
 	movs r0, #0
 	bl SetOnHBlankA
-	ldr r0, _080B6184 @ =sub_080B5FE0
+	ldr r0, _080B6184 @ =WorldFlushHBlank
 	bl SetOnHBlankA
 	ldr r0, _080B6188 @ =0x0202BBF8
 	adds r0, #0x41
@@ -122,6 +122,6 @@ _080B6168:
 _080B6178: .4byte 0x030028AC
 _080B617C: .4byte 0x0000FFE0
 _080B6180: .4byte 0x02000814
-_080B6184: .4byte sub_080B5FE0
+_080B6184: .4byte WorldFlushHBlank
 _080B6188: .4byte 0x0202BBF8
 _080B618C: .4byte 0x00000269

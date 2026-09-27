@@ -42,11 +42,11 @@ _0800FEB4:
 	cmp r0, #0
 	bne _0800FEE8
 	adds r0, r2, #0
-	bl sub_080B6278
+	bl WmToScreenX
 	adds r4, r0, #0
 	subs r4, #0x10
 	adds r0, r7, #0
-	bl sub_080B6288
+	bl WmToScreenY
 	adds r2, r0, #0
 	subs r2, #0x28
 	lsls r3, r6, #0x18

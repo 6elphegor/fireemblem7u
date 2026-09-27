@@ -181,8 +181,9 @@ struct CGDataEnt {
 struct CGDataEnt const * GetCG(int idx);
 
 extern struct ProcCmd CONST_DATA ProcScr_WmSpotlight[];
-extern u16 const * CONST_DATA gWmMapTsaTable[];
-extern u8 const * CONST_DATA gWmMapImgTable[];
+extern struct ProcCmd CONST_DATA ProcScr_WorldFlush[];
+extern u16 const * CONST_DATA gWmMapTsaTable[][4];
+extern u8 const * CONST_DATA gWmMapImgTable[][4];
 extern u16 Pal_WmMap[];
 extern u16 Pal_WmMapA[];
 extern u8 Img_WmMapA[];
@@ -1337,14 +1338,90 @@ void WmDrawMap(int mode, int x, int y)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B5E80.s");
-ASM_FUNC("asm/nonmatching/code_080B5FC0.s");
-ASM_FUNC("asm/nonmatching/code_080B5FE0.s");
-ASM_FUNC("asm/nonmatching/code_080B6034.s");
+s8 GetWorldMapUnk54(void)
+{
+    struct WorldMapProc * proc = Proc_Find(ProcScr_WorldMap);
+
+    if (proc != NULL)
+        return proc->unk_54;
+
+    return 0;
+}
+
+void WorldFlushHBlank(void)
+{
+    u16 vcount = REG_VCOUNT + 1;
+
+    if (vcount > 0xA0)
+        vcount = 0;
+
+    if ((vcount & 1) != 0)
+        return;
+
+    if (gWmHBlankFlags & 2)
+    {
+        if (vcount == 0)
+            gManimActiveScanlineBuf = gManimScanlineBufs[0];
+
+        REG_WIN0H = gManimActiveScanlineBuf[vcount];
+    }
+}
+
+void WorldFlush_Prepare(struct WmSpotlightProc * proc)
+{
+    ClearTalk();
+
+    ApplyPalettes(Pal_WmMapA, 0, 4);
+    SetBgOffset(3, 0, 0);
+    Decompress(Img_WmMapA, (void *) (VRAM + 0x8000));
+    TmApplyTsa_thm(gBg3Tm, Tsa_WmMapA, 0);
+    EnableBgSync(BG3_SYNC_BIT);
+
+    proc->x = 0xB4;
+    proc->y = 0x60;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B608C.s");
 ASM_FUNC("asm/nonmatching/code_080B6190.s");
-ASM_FUNC("asm/nonmatching/code_080B620C.s");
-ASM_FUNC("asm/nonmatching/code_080B6264.s");
-ASM_FUNC("asm/nonmatching/code_080B6278.s");
-ASM_FUNC("asm/nonmatching/code_080B6288.s");
-ASM_FUNC("asm/nonmatching/code_080B6298.s");
-ASM_FUNC("asm/nonmatching/code_080B62C4.s");
+void WorldFlush_End(void)
+{
+    EndEachSpriteAnimProc();
+
+    SetBlendBrighten(0x10);
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetWinEnable(0, 0, 0);
+
+    SetOnHBlankA(NULL);
+}
+
+void StartWorldFlush(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_WorldFlush, parent);
+}
+
+int WmToScreenX(int x)
+{
+    return x - gWmSt.x;
+}
+
+int WmToScreenY(int y)
+{
+    return y - gWmSt.y;
+}
+
+u8 const * GetWmMapImgPtr(int x, int y)
+{
+    u8 const * img = gWmMapImgTable[y >> 5][x >> 5];
+
+    return img + (((y & 0x1F) << 5) + (x & 0x1F)) * 0x20;
+}
+
+u16 const * GetWmMapTsaPtr(int x, int y)
+{
+    u16 const * tsa = gWmMapTsaTable[y >> 5][x >> 5];
+
+    tsa += (~y & 0x1F) * 0x20 + 1;
+    return tsa + (x & 0x1F);
+}
+

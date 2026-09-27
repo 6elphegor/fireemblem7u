@@ -2028,3 +2028,4 @@ Tsa_WmMapA = 0x085D5B38;
 Pal_WmMapB = 0x085D5FEC;
 Img_WmMapB = 0x085D606C;
 Tsa_WmMapB = 0x085DB38C;
+ProcScr_WorldFlush = 0x08CE7878;
