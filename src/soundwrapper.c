@@ -42,10 +42,6 @@ extern struct MusicPlayerInfo gMPlayInfo_SE5;
 extern struct MusicPlayerInfo gMPlayInfo_SE6;
 extern struct MusicPlayerInfo gMPlayInfo_SE7;
 
-extern struct ProcCmd ProcScr_MusicFadeIn[];
-extern struct ProcCmd ProcScr_MusicVolumeChange[];
-extern struct ProcCmd ProcScr_08B85854[];
-extern struct ProcCmd ProcScr_MusicChange[];
 
 void m4aMPlayFadeOut(struct MusicPlayerInfo * mplayInfo, u16 speed);
 void m4aMPlayFadeOutPause(struct MusicPlayerInfo * mplayInfo, u16 speed);
@@ -66,6 +62,40 @@ void Sound_SetMaxNumChannels(int maxchn);
 void Sound_UpdateMaxChannelsForSong(int songId);
 void StartBgmVolumeChange(int volume, int b, int c, ProcPtr parent);
 void DeleteAll6CWaitMusicRelated(void);
+
+void DelaySong_OnLoop(struct MusicProc * proc);
+void MusicChange_StartBgm(struct MusicProc * proc);
+void MusicChange_StartVolumeChange(struct MusicProc * proc);
+void MusicFi_OnLoop(struct MusicProc * proc);
+void MusicVc_OnLoop(struct MusicProc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_MusicFadeIn[] = {
+    PROC_END_DUPLICATES,
+    PROC_REPEAT(MusicFi_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_MusicVolumeChange[] = {
+    PROC_YIELD,
+    PROC_REPEAT(MusicVc_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_08B85854[] = {
+    PROC_REPEAT(DelaySong_OnLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_MusicChange[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(MusicChange_StartVolumeChange),
+    PROC_SLEEP(1),
+    PROC_CALL(MusicChange_StartBgm),
+    PROC_SLEEP(8),
+    PROC_LABEL(0),
+    PROC_YIELD,
+    PROC_END,
+};
 
 int GetCurrentBgmSong(void)
 {

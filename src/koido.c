@@ -12,14 +12,26 @@ struct KoidoProc {
     /* 3C */ s8 config;
 };
 
-extern struct ProcCmd CONST_DATA sProcScr_KOIDO[];
-extern struct ProcCmd CONST_DATA sProcScr_KOIDOAMM[];
 
 void EndMu(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * script);
 bool MuExistsActive(void);
 
 void Loop6C_KOIDO(struct KoidoProc * proc);
+
+CONST_DATA struct ProcCmd sProcScr_KOIDO[] = {
+    PROC_19,
+    PROC_REPEAT(Loop6C_KOIDO),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_KOIDOAMM[] = {
+    PROC_19,
+    PROC_CALL(LockGame),
+    PROC_REPEAT(Loop6C_KOIDO),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
 
 int GetSomeFacingDirection(int x0, int y0, int x1, int y1)
 {

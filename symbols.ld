@@ -853,7 +853,6 @@ gUnitDef_08B91A18 = 0x08B91A18;
 
 /* eventscr3.c */
 gUnk_03005D20 = 0x03005D20;
-ProcScr_EventWeatherChangeWithFade = 0x08B91A78;
 
 /* end eventscr3.c */
 
@@ -919,7 +918,6 @@ gTmA_Banim = 0x0201C8C4;
 gUnknown_0201775C = 0x0201775C;
 gUnknown_0201FABC = 0x0201FABC;
 /* cp_perform */
-ProcScr_08B85854 = 0x08B85854;
 ProcScr_AiTargetCursor = 0x08B96F7C;
 PopupScr_AiPillage = 0x08B9701C;
 gWorkingMoveScr = 0x02033E00;
@@ -1162,9 +1160,6 @@ Pal_LimitViewBlue = 0x083FDD1C;
 Pal_LimitViewRed = 0x083FDD7C;
 Pal_LimitViewGreen = 0x083FDDDC;
 gMapMenuDef = 0x08B95AF4;
-sProcScr_KOIDO = 0x08B935EC;
-sProcScr_KOIDOAMM = 0x08B93604;
-sProcScr_BMXFADE = 0x08B9362C;
 gConvoyItemCount = 0x02001F70;
 gProcCmd_ConvoyMenu = 0x08B9369C;
 gConvoyMenuDef = 0x08B95944;
@@ -2920,9 +2915,6 @@ gMPlayInfo_SE4 = 0x03005A90;
 gMPlayInfo_SE5 = 0x03005AD0;
 gMPlayInfo_SE6 = 0x03005CE0;
 gMPlayInfo_SE7 = 0x03005DF0;
-ProcScr_MusicFadeIn = 0x08B85824;
-ProcScr_MusicVolumeChange = 0x08B8583C;
-ProcScr_MusicChange = 0x08B85864;
 ArmCodeStart = 0x08000228;
 ArmCodeEnd = 0x080009FC;
 gRamFuncBuffer = 0x03002F40;
@@ -2932,14 +2924,8 @@ gRamFunc_PutOamHi = 0x03002920;
 gRamFunc_PutOamLo = 0x03003944;
 gRamFunc_MapFloodCoreStep = 0x03004150;
 gRamFunc_MapFloodCore = 0x03002918;
-ProcScr_BrownTextBox = 0x08B91EDC;
-ProcScr_BrownTextBoxFadeIn = 0x08B91EFC;
-ProcScr_BrownTextBoxFadeOut = 0x08B91F14;
 Pal_BrownTextBox = 0x0842535C;
 Img_BrownTextBox = 0x084251BC;
-ProcScr_EvtBgFadeIn = 0x08B91F34;
-ProcScr_EvtBgFadeOut = 0x08B91F84;
-ProcScr_EvtBgFadeToMap = 0x08B91FDC;
 Img_GameOverText = 0x08402250;
 Pal_GameOverText1 = 0x084025A8;
 Pal_GameOverText2 = 0x08402588;

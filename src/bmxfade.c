@@ -8,7 +8,20 @@ struct BmxfadeProc {
     /* 4E */ s16 game_lock;
 };
 
-extern struct ProcCmd CONST_DATA sProcScr_BMXFADE[];
+
+void Destruct6CBMXFADE(struct BmxfadeProc * proc);
+void bmxfade_init(struct BmxfadeProc * proc);
+void bmxfade_loop(struct BmxfadeProc * proc);
+
+CONST_DATA struct ProcCmd sProcScr_BMXFADE[] = {
+    PROC_19,
+    PROC_END_IF_DUPLICATE,
+    PROC_SET_END_CB(Destruct6CBMXFADE),
+    PROC_CALL(bmxfade_init),
+    PROC_CALL(bmxfade_loop),
+    PROC_REPEAT(bmxfade_loop),
+    PROC_END,
+};
 
 void bmxfade_init(struct BmxfadeProc * proc)
 {

@@ -10,7 +10,6 @@ extern struct MusicPlayerInfo gMPlayInfo_SE7;
 extern struct MusicPlayerInfo gMPlayInfo_SE2;
 
 
-extern struct ProcCmd CONST_DATA ProcScr_EventWeatherChangeWithFade[];
 
 void RestoreBgm(u16 speed);
 void StartBgmFadeIn(int song, int speed, struct MusicPlayerInfo * music_player);
@@ -41,6 +40,17 @@ void SetWeather(int weather);
 void SetVisionWithFade(int vision);
 void SetVision(int vision);
 void BreakItemSealForPid(int pid, u8 item);
+
+CONST_DATA struct ProcCmd ProcScr_EventWeatherChangeWithFade[] = {
+    PROC_YIELD,
+    PROC_CALL(StartSlowLockingFadeToWhite),
+    PROC_YIELD,
+    PROC_CALL(EventWeatherChangeWithFade_SetWeather),
+    PROC_SLEEP(30),
+    PROC_CALL(StartSlowLockingFadeFromWhite),
+    PROC_YIELD,
+    PROC_END,
+};
 
 int EvtCmd_SetFlag(struct EventProc * proc)
 {

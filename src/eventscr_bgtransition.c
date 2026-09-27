@@ -17,11 +17,65 @@ struct EvtBgTransitionProc {
 #define BGTRANS_FLAG_UNK_200     0x200
 
 extern struct ProcCmd gProcScr_EventEngine[];
-extern struct ProcCmd CONST_DATA ProcScr_EvtBgFadeIn[];
-extern struct ProcCmd CONST_DATA ProcScr_EvtBgFadeOut[];
-extern struct ProcCmd CONST_DATA ProcScr_EvtBgFadeToMap[];
 
 void ApplyUnitSpriteSepiaPalette(void);
+
+void EvtBgFadeIn_CopyToBg2(struct EvtBgTransitionProc * proc);
+void EvtBgFadeIn_End(struct EvtBgTransitionProc * proc);
+void EvtBgFadeIn_Init(struct EvtBgTransitionProc * proc);
+void EvtBgFadeIn_Loop(struct EvtBgTransitionProc * proc);
+void EvtBgFadeIn_PutBackground(struct EvtBgTransitionProc * proc);
+void EvtBgFadeOut_CopyToBg3(struct EvtBgTransitionProc * proc);
+void EvtBgFadeOut_End(struct EvtBgTransitionProc * proc);
+void EvtBgFadeOut_Init(struct EvtBgTransitionProc * proc);
+void EvtBgFadeOut_Loop(struct EvtBgTransitionProc * proc);
+void EvtBgFadeOut_PutBackground(struct EvtBgTransitionProc * proc);
+void EvtBgFadeToMap_CopyToBg2(struct EvtBgTransitionProc * proc);
+void EvtBgFadeToMap_End(struct EvtBgTransitionProc * proc);
+void EvtBgFadeToMap_Init(struct EvtBgTransitionProc * proc);
+void EvtBgFadeToMap_Loop(struct EvtBgTransitionProc * proc);
+void EvtBgFadeToMap_RestoreMap(struct EvtBgTransitionProc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_EvtBgFadeIn[] = {
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeIn_Init),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeIn_CopyToBg2),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeIn_PutBackground),
+    PROC_YIELD,
+    PROC_REPEAT(EvtBgFadeIn_Loop),
+    PROC_CALL(EvtBgFadeIn_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_EvtBgFadeOut[] = {
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeOut_Init),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeOut_PutBackground),
+    PROC_YIELD,
+    PROC_REPEAT(EvtBgFadeOut_Loop),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeOut_CopyToBg3),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeOut_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_EvtBgFadeToMap[] = {
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeToMap_Init),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeToMap_CopyToBg2),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeToMap_RestoreMap),
+    PROC_YIELD,
+    PROC_REPEAT(EvtBgFadeToMap_Loop),
+    PROC_YIELD,
+    PROC_CALL(EvtBgFadeToMap_End),
+    PROC_END,
+};
 
 void EvtBgFadeIn_Init(struct EvtBgTransitionProc * proc)
 {

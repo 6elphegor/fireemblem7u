@@ -18,14 +18,39 @@ extern u16 CONST_DATA Sprite_8x8[];
 extern u16 CONST_DATA Sprite_16x8[];
 extern u16 CONST_DATA Sprite_32x16[];
 
-extern struct ProcCmd CONST_DATA ProcScr_BrownTextBox[];
-extern struct ProcCmd CONST_DATA ProcScr_BrownTextBoxFadeIn[];
-extern struct ProcCmd CONST_DATA ProcScr_BrownTextBoxFadeOut[];
 
 extern u16 CONST_DATA Pal_BrownTextBox[];
 extern u8 CONST_DATA Img_BrownTextBox[];
 
 #define EVT_ARG_U16(proc, n) (((u16 const *)(proc)->script)[n])
+
+void BrownTextBoxFadeIn_Init(struct BrownTextBoxProc * proc);
+void BrownTextBoxFadeIn_Loop(struct BrownTextBoxProc * proc);
+void BrownTextBoxFadeOut_End(void);
+void BrownTextBoxFadeOut_Init(struct BrownTextBoxProc * proc);
+void BrownTextBoxFadeOut_Loop(struct BrownTextBoxProc * proc);
+void BrownTextBox_Loop(struct BrownTextBoxProc * proc);
+void BrownTextBox_OnEnd(void);
+
+CONST_DATA struct ProcCmd ProcScr_BrownTextBox[] = {
+    PROC_YIELD,
+    PROC_SET_END_CB(BrownTextBox_OnEnd),
+    PROC_REPEAT(BrownTextBox_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_BrownTextBoxFadeIn[] = {
+    PROC_CALL(BrownTextBoxFadeIn_Init),
+    PROC_REPEAT(BrownTextBoxFadeIn_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_BrownTextBoxFadeOut[] = {
+    PROC_CALL(BrownTextBoxFadeOut_Init),
+    PROC_REPEAT(BrownTextBoxFadeOut_Loop),
+    PROC_CALL(BrownTextBoxFadeOut_End),
+    PROC_END,
+};
 
 void BrownTextBox_Loop(struct BrownTextBoxProc * proc)
 {
