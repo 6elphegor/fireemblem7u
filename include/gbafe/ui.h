@@ -34,6 +34,7 @@ void ClearUi(void); // FE8U: ClearBg0Bg1
 // DrawUiItemHover
 // ClearUiItemHover
 // UnpackUnkUiFrame
+void UnpackUnkUiFrame(void * vram, int palid, int palcount);
 void DisplayUiHandExt(s32 x, s32 y, u32 objTileOffset);
 void DisplayFrozenUiHandExt(s32 x, s32 y, u32 objTileOffset);
 void UnpackUiWindowFrameGraphics(void);
