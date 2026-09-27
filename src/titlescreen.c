@@ -102,8 +102,59 @@ void Title_InitBg(struct ProcTitle * proc)
 }
 
 
-void Title_Init(struct ProcTitle * proc);
-ASM_FUNC("asm/nonmatching/code_080BA564.s");
+void Title_Init(struct ProcTitle * proc)
+{
+    int i;
+    u16 * tm;
+
+    u16 bg_config[12] =
+    {
+        0x0000, 0x7800, 0,
+        0x8000, 0x6000, 0,
+        0x8000, 0x6800, 0,
+        0x8000, 0x7000, 0,
+    };
+
+    proc->timer = 0;
+    SetWinEnable(0, 0, 0);
+
+    InitBgs(bg_config);
+
+    gDispIo.disp_ct.mode = 0;
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    gDispIo.bg0_ct.priority = 3;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, -0x34);
+    SetBgOffset(2, 0, 0);
+    SetBgOffset(3, 0, 0);
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+    TmFill(gBg3Tm, 0);
+
+    ResetTitleBgAffin(BG_2);
+
+
+    SetBlendBackdropA(0);
+    SetBlendBackdropB(0);
+    SetBlendNone();
+
+    EnableBgSync(BG3_SYNC_BIT | BG2_SYNC_BIT | BG1_SYNC_BIT | BG0_SYNC_BIT);
+
+    if (proc->mode != 0)
+        Proc_Goto(proc, 0);
+
+    proc->timer_idle = 0;
+
+    for (i = 0; i < 6; i++)
+        proc->approcs[i] = NULL;
+}
 
 
 void Title_InitDisp(struct ProcTitle * proc)
