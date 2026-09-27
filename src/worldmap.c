@@ -790,6 +790,14 @@ void WmUnitManager_Init(struct WmUnitManagerProc * proc)
     proc->unk_48 = 0;
 }
 
+void sub_080B43EC(struct WmUnitManagerProc * proc);
+void sub_080B4510(struct WmUnitManagerProc * proc);
+void sub_080B467C(struct WmUnitManagerProc * proc);
+
+extern u8 const gWmUnitPalAnimSeq[];
+extern u16 const Pal_WmUnitAnimA[];
+extern u16 const Pal_WmUnitAnimB[];
+
 void WmSlots_UpdatePosition(int idx, struct WmSlotsProc * proc)
 {
     struct ProcSpriteAnim * anim;
@@ -834,7 +842,37 @@ void WmDimPalette(u16 * dst, u16 * src, u8 coeff)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B467C.s");
-ASM_FUNC("asm/nonmatching/code_080B4738.s");
+void sub_080B4738(struct WmUnitManagerProc * proc)
+{
+    u8 seq[0x37];
+    int i;
+    int pal;
+
+    memcpy(seq, gWmUnitPalAnimSeq, sizeof(seq));
+
+    proc->unk_30++;
+
+    if (seq[proc->unk_30] == 0xFF)
+        proc->unk_30 = 0;
+
+    pal = seq[proc->unk_30];
+    ApplyPaletteExt(Pal_WmUnitAnimA + pal * 0x10, 0x200, 0x20);
+    ApplyPaletteExt(Pal_WmUnitAnimB + pal * 0x10, 0x220, 0x20);
+
+    for (i = 0; i < 4; i++)
+        WmSlots_UpdatePosition(i, proc->slots[1]);
+
+    for (i = 0; i < 5; i++)
+        WmSlots_UpdatePosition(i, proc->slots[2]);
+
+    sub_080B43EC(proc);
+
+    if ((s8) proc->unk_44 != 0)
+        sub_080B4510(proc);
+
+    if ((s8) proc->unk_47 != 0)
+        sub_080B467C(proc);
+}
 void WmUnitManager_EndAll(struct WmUnitManagerProc * proc)
 {
     int i;
