@@ -1049,8 +1049,77 @@ void EndWmIcon2(int idx)
     mgr->slots[2]->ent[idx].anim = NULL;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B4D4C.s");
-ASM_FUNC("asm/nonmatching/code_080B4E88.s");
+void sub_080B4D4C(int slot, int fid, u16 flags)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[3]->ent[slot];
+
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    if (ent->anim == NULL)
+    {
+        struct FaceProc * face;
+        int disp;
+        int x;
+
+        ent->x = flags & 0xFF;
+        ent->y = (flags & 0xFF00) + 0x800;
+
+        x = ent->x;
+        disp = (flags & 0x400) ? 0x443 : 0x442;
+
+        if (flags & 0x8000)
+            disp |= 0x2000;
+
+        face = StartBmFace(slot, fid, x, 0x28, disp);
+        ent->anim = (struct ProcSpriteAnim *) face;
+
+        if ((flags & 0x6000) == 0x6000)
+            face->sprite_layer = 6;
+        else if (flags & 0x4000)
+            face->sprite_layer = 5;
+        else if (flags & 0x2000)
+            face->sprite_layer = 4;
+        else
+            face->sprite_layer = 3;
+
+        SetFaceBlinkControlById(slot, 5);
+
+        ent->state = 1;
+        mgr->unk_44 = 2;
+
+        if (mgr->unk_45 == 0x20)
+        {
+            mgr->unk_45 = 0;
+            SetBlendConfig(1, mgr->unk_45, 0x10 - mgr->unk_45, 0);
+        }
+    }
+}
+void sub_080B4E88(int slot, u16 flags)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[3]->ent[slot];
+
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    if (ent->anim != NULL && !(ent->y & 0x1000))
+    {
+        SetFaceDisp((struct FaceProc *) ent->anim, GetFaceDisp((struct FaceProc *) ent->anim) | 0x400);
+
+        ent->y = (flags & 0xFF00) + 0x1000;
+        ent->state = 0xFF;
+
+        mgr->unk_44 = 0xFE;
+
+        if (mgr->unk_45 == 0)
+        {
+            mgr->unk_45 = 0x20;
+            SetBlendConfig(0, mgr->unk_45 >> 1, 0x10 - (mgr->unk_45 >> 1), 0);
+        }
+    }
+}
 ProcPtr StartWmUnitManager(ProcPtr parent)
 {
     return Proc_Start(ProcScr_WmUnitManager, parent);
