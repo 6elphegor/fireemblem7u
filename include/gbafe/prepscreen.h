@@ -337,7 +337,7 @@ struct PrepItemScreenProc {
     /* 40 */ struct Unit * pUnits[2];
 };
 
-extern struct Text gPrepItemTexts[32];
+extern struct Text gPrepItemTexts[31];
 
 void PrepItemScreen_OnHBlank(void);
 void PrepItemScreen_Init(struct PrepItemScreenProc * proc);
@@ -385,34 +385,48 @@ void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2);
 void sub_08092ED4(struct PrepItemScreenProc * proc, u8 flag);
 bool PrepItemScreen_GiveAll(struct Unit * unit);
 struct ProcPrepUnit {
-    PROC_HEADER;
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 cur_counter; // Total unit number to be on battle
+    /* 2A */ u8 max_counter; // Total unit number can be on battle
+    /* 2B */ u8 unk_2B;
+    /* 2C */ u16 list_num_pre; // pre unit index in prep-list(for scroll)
+    /* 2E */ u16 list_num_cur; // current unit index in prep-list
+    /* 30 */ u16 yDiff_cur; // y Pos offset of Unit SMS (current)
+    /* 32 */ u16 unk_32;
+    /* 34 */ u16 unk_34;
+    /* 36 */ u8 scroll_val; // each px to scroll at each frame
+    /* 37 */ u8 button_blank;
+    /* 38 */ u8 pad_38[0x3C - 0x38];
+    /* 3C */ u16 unk_3C;
 };
+
+extern struct Text gPrepUnitTexts[0x16];
 
 void PrepUnit_DrawUnitListNames(struct ProcPrepUnit *proc, int line);
 void PrepUpdateMenuTsaScroll(int val);
 void PrepUnit_DrawSMSAndObjs(struct ProcPrepUnit *proc);
 void PrepUnit_InitTexts(void);
 void PrepUnit_InitGfx(void);
-// sub_08093250
+void sub_08093250(ProcPtr parent, u32 obj_offset);
 void PrepUnit_InitSMS(struct ProcPrepUnit *proc);
 void PrepUnit_DrawLeftUnitName(struct Unit *unit);
 void PrepUnit_DrawLeftUnitNameCur(struct ProcPrepUnit *proc);
 void PrepUnit_DrawUnitItems(struct Unit *unit);
 void PrepUnit_DrawPickLeftBar(struct ProcPrepUnit *proc, s8 val);
-bool PrepCheckCanSelectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
-bool PrepCheckCanUnselectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
-bool PrepUnit_HandlePressA(struct ProcPrepUnit *proc);
-// sub_08093734
-bool ShouldPrepUnitMenuScroll(struct ProcPrepUnit *proc);
-// sub_080937CC
-// sub_08093814
+s8 PrepCheckCanSelectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
+s8 PrepCheckCanUnselectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
+s8 PrepUnit_HandlePressA(struct ProcPrepUnit *proc);
+void sub_08093734(void);
+s8 ShouldPrepUnitMenuScroll(struct ProcPrepUnit *proc);
+void sub_080937CC(struct ProcPrepUnit * proc);
+void sub_08093814(struct ProcPrepUnit * proc);
 void ProcPrepUnit_OnInit(struct ProcPrepUnit *proc);
 void ProcPrepUnit_InitScreen(struct ProcPrepUnit *proc);
 void sub_08093A7C(struct ProcPrepUnit *proc);
 void ProcPrepUnit_Idle(struct ProcPrepUnit *proc);
 void sub_08093D54(struct ProcPrepUnit *proc);
 void sub_08093D9C(struct ProcPrepUnit *proc);
-// nullsub_11
+void nullsub_11(void);
 void sub_08093DE8(struct ProcPrepUnit *proc);
 void sub_08093E00(struct ProcPrepUnit *proc);
 void sub_08093E2C(struct ProcPrepUnit *proc);
