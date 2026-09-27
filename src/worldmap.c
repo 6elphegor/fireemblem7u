@@ -201,6 +201,7 @@ struct WmPalFadeProc {
 extern EventScr const * CONST_DATA gWmEventScripts[];
 
 void sub_08077680(int y);
+void sub_0807764C(int x, int y, int r);
 void sub_08077860(void);
 void sub_08004234(void);
 void StartWmSpriteAnim(u32 slot, int id);
@@ -1266,6 +1267,7 @@ void StartWmPalFadeIn(int color)
 
 ASM_FUNC("asm/nonmatching/code_080B5990.s");
 ASM_FUNC("asm/nonmatching/code_080B5A84.s");
+
 void WmEndSpotlight(void)
 {
     gWmHBlankFlags &= ~2;
@@ -1383,6 +1385,7 @@ void WorldFlush_Prepare(struct WmSpotlightProc * proc)
 
 ASM_FUNC("asm/nonmatching/code_080B608C.s");
 ASM_FUNC("asm/nonmatching/code_080B6190.s");
+
 void WorldFlush_End(void)
 {
     EndEachSpriteAnimProc();
