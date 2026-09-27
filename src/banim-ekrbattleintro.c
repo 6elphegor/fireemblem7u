@@ -66,6 +66,14 @@ void EkrDispUP_SetPositionUnsync(u16 x, u16 y);
 void UnsyncEkrDispUP(void);
 void SyncEkrDispUP(void);
 void EndEkrDispUP(void);
+extern const u16 BanimLeftDefaultPos[];
+extern u8 gBanimLeftImgSheetBuf[];
+extern u8 gBanimRightImgSheetBuf[];
+extern void const * gBanimForceUnitChgDebug[2];
+extern u8 gEkrKakudaiSomeBufLeft[];
+extern u8 gEkrKakudaiSomeBufRight[];
+extern s16 gEkrBmLocation[4];
+extern int gEkrInitPosReal;
 u16 IsItemDisplayedInBattle(u16 item);
 
 // view of CharacterData 0x25..0x26 as an array (unit.h declares them as _u25, _u26)
@@ -142,7 +150,63 @@ void NewEkrUnitKakudai(int identifier)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_0805175C.s");
+void UnitKakudai1(struct ProcUnitKakudai * proc)
+{
+    void * ptr;
+    int front_mode;
+    u8 mode2;
+
+    mode2 = BattleTypeToAnimModeEndOfDodge[gEkrDistanceType];
+    front_mode = BanimDefaultModeConfig[mode2 * 4];
+
+    UpdateBanimFrame();
+
+    if (proc->type == 0)
+        if (gBattleStats.config & BATTLE_CONFIG_REFRESH)
+            EfxPalModifyPetrifyEffect(gPal, 0x17, 1);
+
+    if (gBanimValid[0] == TRUE)
+    {
+        struct BanimModeData * unk = (void *) (gBanimScrLeft + gpBanimModesLeft[front_mode]);
+        const void * src = unk->img;
+        proc->pOaml = (void *) gBanimOaml + unk->unk2;
+        LZ77UnCompWram(src, gBanimLeftImgSheetBuf);
+    }
+
+    if (gBanimValid[1] == TRUE)
+    {
+        struct BanimModeData * unk = (void *) (gBanimScrRight + gpBanimModesRight[front_mode]);
+        const void * src = unk->img;
+        proc->pOamr = (void *) gBanimOamr2 + unk->unk2;
+        LZ77UnCompWram(src, gBanimRightImgSheetBuf);
+    }
+
+    if (gBanimForceUnitChgDebug[0] != NULL)
+        LZ77UnCompWram(gBanimForceUnitChgDebug[0], gEkrKakudaiSomeBufLeft);
+
+    if (gBanimForceUnitChgDebug[1] != NULL)
+        LZ77UnCompWram(gBanimForceUnitChgDebug[1], gEkrKakudaiSomeBufRight);
+
+    ptr = OBJ_VRAM1;
+    RegisterDataMove(gBanimLeftImgSheetBuf, ptr, 0x4000);
+
+    proc->timer = 0;
+    proc->terminator = 0xB;
+
+    proc->x1 = gEkrBmLocation[0] * 0x10 + 8;
+    proc->y1 = gEkrBmLocation[1] * 0x10 + 8;
+    proc->x2 = gEkrBmLocation[2] * 0x10 + 8;
+    proc->y2 = gEkrBmLocation[3] * 0x10 + 8;
+    proc->left_pos = BanimTypesPosLeft[gEkrDistanceType];
+    proc->right_pos = BanimTypesPosRight[gEkrDistanceType];
+
+    if (gEkrInitPosReal == 0)
+        proc->right_pos += BanimLeftDefaultPos[gEkrDistanceType];
+    else
+        proc->left_pos -= BanimLeftDefaultPos[gEkrDistanceType];
+
+    Proc_Break(proc);
+}
 
 void UnitKakudai2(struct ProcUnitKakudai * proc)
 {
