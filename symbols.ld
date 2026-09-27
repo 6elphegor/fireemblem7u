@@ -648,6 +648,8 @@ gEventCmdTable = 0x08B90E48;
 
 /* event-engine.c */
 
+gUnk_03000100 = 0x03000100;
+gUnk_08B90C9C = 0x08B90C9C;
 /* end event-engine.c */
 
 
