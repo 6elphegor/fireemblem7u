@@ -282,6 +282,7 @@ void SetMuMoveScript(struct MuProc * mu, u8 const * move_script);
 void sub_0806D4CC(struct MuProc * mu, int speed);
 bool IsMuActive(struct MuProc * mu);
 void EndMu(struct MuProc * mu);
+u8 IsPidBlue(u8 pid);
 
 struct EventMuWaitProc {
     /* 00 */ PROC_HEADER;
@@ -873,12 +874,148 @@ int EvtCmd_MovePositionScript(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800C5B0.s");
-ASM_FUNC("asm/nonmatching/code_0800C63C.s");
-ASM_FUNC("asm/nonmatching/code_0800C6E4.s");
-ASM_FUNC("asm/nonmatching/code_0800C7FC.s");
-ASM_FUNC("asm/nonmatching/code_0800C8BC.s");
-ASM_FUNC("asm/nonmatching/code_0800C958.s");
+int EvtCmd_MovePidNextTo(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[2]);
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    unit = GetUnitFromCharId(proc->script[1]);
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x, y, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x, y, 0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MoveLeader(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
+    int x_to = SCR_LO16_SIGN(proc->script[1]);
+    int y_to = SCR_HI16_SIGN(proc->script[1]);
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x_to, y_to, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x_to, y_to, 0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePidByFaction_PositionSpeed_Script(struct EventProc * proc)
+{
+    bool blue = IsPidBlue(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(SCR_LO16(proc->script[1]));
+    int x = SCR_LO16_SIGN(proc->script[2]);
+    int y = SCR_HI16_SIGN(proc->script[2]);
+    u16 speed = SCR_HI16(proc->script[1]);
+    u8 const * move_script = (u8 const *)proc->script[3];
+
+    if (blue)
+    {
+        if (x == 99)
+            return EVENT_CMDRET_CONTINUE;
+
+        if (x == unit->xPos && y == unit->yPos)
+            return EVENT_CMDRET_CONTINUE;
+    }
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        if (!blue)
+        {
+            x = unit->xPos;
+            y = unit->yPos;
+            ApplyMoveScriptToCoordinates(&x, &y, move_script);
+        }
+
+        TryMoveUnit(unit, x, y, FALSE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    if (blue)
+        TryMoveUnitDisplayed(proc, unit, x, y, speed);
+    else
+        DisplayMovement(proc, unit, move_script, 0);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePidByFaction_Script_Script(struct EventProc * proc)
+{
+    int x, y;
+    bool blue = IsPidBlue(proc->script[1]);
+    struct Unit * unit = GetUnitFromCharId(SCR_LO16(proc->script[1]));
+    u8 const * move_script_blue = (u8 const *)proc->script[2];
+    u8 const * move_script = (u8 const *)proc->script[3];
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        x = unit->xPos;
+        y = unit->yPos;
+
+        if (!blue)
+            ApplyMoveScriptToCoordinates(&x, &y, move_script);
+        else
+            ApplyMoveScriptToCoordinates(&x, &y, move_script_blue);
+
+        TryMoveUnit(unit, x, y, FALSE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    if (blue)
+        DisplayMovement(proc, unit, move_script_blue, 0);
+    else
+        DisplayMovement(proc, unit, move_script, 0);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePositionInstant(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnit(gBmMapUnit[SCR_HI16_SIGN(proc->script[1])][SCR_LO16_SIGN(proc->script[1])]);
+
+    if (unit != NULL)
+    {
+        TryMoveUnit(unit, SCR_LO16_SIGN(proc->script[2]), SCR_HI16_SIGN(proc->script[2]), TRUE);
+        RefreshUnitSprites();
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePidInstant(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+
+    TryMoveUnit(unit, SCR_LO16_SIGN(proc->script[2]), SCR_HI16_SIGN(proc->script[2]), TRUE);
+    RefreshUnitSprites();
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
 ASM_FUNC("asm/nonmatching/code_0800C9AC.s");
 ASM_FUNC("asm/nonmatching/code_0800CA1C.s");
 void TryMoveUnit(struct Unit * unit, int x, int y, u8 move_closest)
