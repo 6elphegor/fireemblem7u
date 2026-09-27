@@ -102,7 +102,7 @@ _0803D3D6:
 	cmp r2, #0
 	beq _0803D438
 	mov r0, sb
-	bl sub_080BFC74
+	bl _call_via_sl
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0803D438

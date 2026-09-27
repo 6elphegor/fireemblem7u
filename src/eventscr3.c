@@ -23,7 +23,7 @@ void RestoreBgm(int speed);
 void StartBgmFadeIn(int song, int speed, struct MusicPlayerInfo * music_player);
 void FadeBgmOut_2(int speed);
 void SetBgmVolume(int volume);
-void StartSlowLockingFadeFromBlack(ProcPtr parent);
+
 void RestartBattleMap(void);
 void UnpackChapterMapPalette(void);
 void StartLockingFadeToBlack(int speed, ProcPtr parent);
@@ -200,7 +200,7 @@ int EvtCmd_NextChapter(struct EventProc * proc)
     proc->flags |= EVENT_FLAG_DISABLESKIP;
 
     if ((proc->flags & EVENT_FLAG_SKIPPED) == 0)
-        StartSlowLockingFadeFromBlack(proc);
+        StartSlowLockingFadeToBlack(proc);
 
     if (chapter != 0x2F)
         FadeBgmOut(4);

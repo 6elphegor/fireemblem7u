@@ -30,7 +30,7 @@ sub_08074008: @ 0x08074008
 	lsls r2, r2, #2
 	movs r3, #0xa4
 	lsls r3, r3, #7
-	bl sub_08014C50
+	bl PutTmLinear
 	ldr r1, _080740B8 @ =0x081DB334
 	adds r0, r1, #0
 	movs r1, #0xa0

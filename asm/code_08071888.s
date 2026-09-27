@@ -14,7 +14,7 @@ sub_08071888: @ 0x08071888
 	ldrh r0, [r1]
 	cmp r0, #2
 	bls _08071910
-	bl sub_080146DC
+	bl DeleteAllPaletteAnimator
 	ldr r0, _08071904 @ =0x083F695C
 	ldr r1, [r7]
 	str r1, [sp]

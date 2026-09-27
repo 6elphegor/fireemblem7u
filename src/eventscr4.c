@@ -7,7 +7,7 @@ void SetTalkFlag(int talk_flags);
 void ClearTalkFaceRefs(void);
 void SetBgmVolume(int volume);
 void SetWeather(int weather);
-void StartSlowLockingFadeFromBlack(ProcPtr parent);
+
 void HandleGiveUnitItem(struct Unit * unit, int item, ProcPtr parent);
 struct UnitDefinition const * sub_08079280(void);
 
@@ -545,7 +545,7 @@ int sub_0800F3D4(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
     }
 
-    StartSlowLockingFadeFromBlack(proc);
+    StartSlowLockingFadeToBlack(proc);
     return EVENT_CMDRET_YIELD;
 }
 
