@@ -1,8 +1,92 @@
 #include "gbafe.h"
 #include "gbafe/cp_common.h"
 
-ASM_FUNC("asm/nonmatching/code_08035838.s");
-ASM_FUNC("asm/nonmatching/code_0803589C.s");
+s8 AiCompare(const u8 * left, u8 op, u32 right)
+{
+    switch (op)
+    {
+    case AI_COMPARE_GT:
+        if (*left > right)
+            return 1;
+        break;
+
+    case AI_COMPARE_GE:
+        if (*left >= right)
+            return 1;
+        break;
+
+    case AI_COMPARE_EQ:
+        if (*left == right)
+            return 1;
+        break;
+
+    case AI_COMPARE_LE:
+        if (*left <= right)
+            return 1;
+        break;
+
+    case AI_COMPARE_LT:
+        if (*left < right)
+            return 1;
+        break;
+
+    case AI_COMPARE_NE:
+        if (*left != right)
+            return 1;
+        break;
+    }
+
+    return 0;
+}
+
+s8 AiFindTargetInReachByCharId(int uid, struct Vec2 * out)
+{
+    int i;
+
+    MapFloodRange_Unitless(gActiveUnit->xPos, gActiveUnit->yPos, GetUnitMovementCost(gActiveUnit));
+    MarkWorkingMapEdges();
+
+    out->x = -1;
+
+    for (i = 1; i < 0xC0; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (gBmMapRange[unit->yPos][unit->xPos] > MAP_MOVEMENT_MAX)
+            continue;
+
+        if (unit->pCharacterData->number != uid)
+            continue;
+
+        if (unit->state & US_DEAD)
+        {
+            gAiState.cmd_result[0] = 1;
+            return 0;
+        }
+
+        if (unit->state & US_RESCUED)
+            gAiState.cmd_result[0] = 3;
+
+        out->x = unit->xPos;
+        out->y = unit->yPos;
+    }
+
+    if (out->x >= 0)
+        return 1;
+
+    if (!(GetUnitFromCharId(uid)->state & US_UNAVAILABLE))
+    {
+        gAiState.cmd_result[0] = 4;
+        return 0;
+    }
+
+    gAiState.cmd_result[0] = 1;
+
+    return 0;
+}
 ASM_FUNC("asm/nonmatching/code_0803598C.s");
 ASM_FUNC("asm/nonmatching/code_08035A38.s");
 ASM_FUNC("asm/nonmatching/code_08035B54.s");
