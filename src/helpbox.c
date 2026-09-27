@@ -179,7 +179,75 @@ void sub_080825B4(void * vram, int palId)
     gHelpBoxSt.oam2_base = (((u32)vram << 0x11) >> 0x16) + (palId & 0xF) * 0x1000;
 }
 
-ASM_FUNC("asm/nonmatching/code_0808263C.s");
+void PutSpriteTalkBox(int x, int y, int w, int h, int unk)
+{
+    int xCount, yCount;
+    int ix, iy;
+    int xPx, yPx;
+
+    if (w < 0x20)
+        w = 0x20;
+
+    if (w > 0xC0)
+        w = 0xC0;
+
+    if (h < 0x10)
+        h = 0x10;
+
+    if (h > 0x30)
+        h = 0x30;
+
+    xCount = (w + 0x1F) / 0x20;
+    yCount = (h + 0x0F) / 0x10;
+
+    for (ix = xCount - 1; ix >= 0; ix--)
+    {
+        for (iy = yCount; iy >= 0; iy--)
+        {
+            xPx = (ix + 1) * 0x20;
+            if (xPx > w)
+                xPx = w;
+            xPx -= 0x20;
+
+            yPx = (iy + 1) * 0x10;
+            if (yPx > h)
+                yPx = h;
+            yPx -= 0x10;
+
+            PutSprite(0, x + xPx, y + yPx, Sprite_32x16, gHelpBoxSt.oam2_base + ix * 4 + iy * 0x40);
+        }
+    }
+
+    for (ix = xCount - 1; ix >= 0; ix--)
+    {
+        xPx = (ix + 1) * 0x20;
+        if (xPx > w)
+            xPx = w;
+        xPx -= 0x20;
+
+        PutSprite(0, x + xPx, y - 8, Sprite_32x8, gHelpBoxSt.oam2_base + 0x1B);
+        PutSprite(0, x + xPx, y + h, Sprite_32x8_VFlipped, gHelpBoxSt.oam2_base + 0x1B);
+    }
+
+    for (iy = yCount; iy >= 0; iy--)
+    {
+        yPx = (iy + 1) * 0x10;
+        if (yPx > h)
+            yPx = h;
+        yPx -= 0x10;
+
+        PutSprite(0, x - 8, y + yPx, Sprite_8x16, gHelpBoxSt.oam2_base + 0x1F);
+        PutSprite(0, x + w, y + yPx, Sprite_8x16_HFlipped, gHelpBoxSt.oam2_base + 0x1F);
+    }
+
+    PutSprite(0, x - 8, y - 8, Sprite_8x8, gHelpBoxSt.oam2_base + 0x3E);
+    PutSprite(0, x + w, y - 8, Sprite_8x8_HFlipped, gHelpBoxSt.oam2_base + 0x3E);
+    PutSprite(0, x - 8, y + h, Sprite_8x8_VFlipped, gHelpBoxSt.oam2_base + 0x3E);
+    PutSprite(0, x + w, y + h, Sprite_8x8_HFlipped_VFlipped, gHelpBoxSt.oam2_base + 0x3E);
+
+    if (!unk)
+        PutSprite(0, x, y - 11, Sprite_32x16, (0x3FF & gHelpBoxSt.oam2_base) + 0x5C);
+}
 
 int DrawHelpBoxWeaponLabels(int item)
 {
@@ -1177,7 +1245,119 @@ void DrawBoxDialogueText(int x, int y, int msg)
     sub_080845C8(proc->msg, wInner, hInner);
 }
 
+#if NONMATCHING
+
+// register allocation differs; the 8x8 border loop gets reversed
+
+void sub_080838FC(int x, int y, int width, int height)
+{
+    int i, j, k;
+    int spriteWidth, spriteHeight;
+
+    if (width < 0x20)
+        width = 0x20;
+
+    if (width > 0xC0)
+        width = 0xC0;
+
+    if (height < 0x10)
+        height = 0x10;
+
+    if (height > 0x50)
+        height = 0x50;
+
+    if (!(GetDialogueBoxConfig() & 1))
+    {
+        spriteHeight = (height + 0xF) / 0x10;
+        spriteWidth = (width + 7) / 8 + 1;
+
+        for (i = 0; i < spriteWidth - 4; i += 4)
+        {
+            for (j = spriteHeight; j >= 0; j--)
+            {
+                k = 0x10 * (j + 1);
+                if (k > height)
+                    k = height;
+                k -= 0x10;
+
+                PutSprite(2, x + i * 8, y + k, Sprite_32x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
+            }
+        }
+
+        for (; i < spriteWidth - 2; i += 2)
+        {
+            for (j = spriteHeight; j >= 0; j--)
+            {
+                k = 0x10 * (j + 1);
+                if (k > height)
+                    k = height;
+                k -= 0x10;
+
+                PutSprite(2, x + i * 8, y + k, Sprite_16x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
+            }
+        }
+
+        for (; i < spriteWidth; i++)
+        {
+            for (j = spriteHeight; j >= 0; j--)
+            {
+                k = 0x10 * (j + 1);
+                if (k > height)
+                    k = height;
+                k -= 0x10;
+
+                PutSprite(2, x + i * 8, y + k, Sprite_8x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
+            }
+        }
+
+        for (i = 0; i < spriteWidth - 2; i += 2)
+        {
+            PutSprite(2, x + i * 8, y - 8, Sprite_16x8, gBoxDialogueConf.unk_40 + 0x1B);
+            PutSprite(2, x + i * 8, y + height, Sprite_16x8_VFlipped, gBoxDialogueConf.unk_40 + 0x1B);
+        }
+
+        for (; i < spriteWidth; i++)
+        {
+            PutSprite(2, x + i * 8, y - 8, Sprite_8x8, gBoxDialogueConf.unk_40 + 0x1B);
+            PutSprite(2, x + i * 8, y + height, Sprite_8x8_VFlipped, gBoxDialogueConf.unk_40 + 0x1B);
+        }
+
+        for (j = spriteHeight; j >= 0; j--)
+        {
+            k = 0x10 * (j + 1);
+            if (k > height)
+                k = height;
+            k -= 0x10;
+
+            PutSprite(2, x - 8, y + k, Sprite_8x16, gBoxDialogueConf.unk_40 + 0x1F);
+            PutSprite(2, x + i * 8, y + k, Sprite_8x16_HFlipped, gBoxDialogueConf.unk_40 + 0x1F);
+        }
+
+        PutSprite(2, x - 8, y - 8, Sprite_8x8, gBoxDialogueConf.unk_40 + 0x3E);
+        PutSprite(2, x + i * 8, y - 8, Sprite_8x8_HFlipped, gBoxDialogueConf.unk_40 + 0x3E);
+        PutSprite(2, x - 8, y + height, Sprite_8x8_VFlipped, gBoxDialogueConf.unk_40 + 0x3E);
+        PutSprite(2, x + i * 8, y + height, Sprite_8x8_HFlipped_VFlipped, gBoxDialogueConf.unk_40 + 0x3E);
+    }
+    else
+    {
+        spriteWidth = (width + 0x1F) / 0x20;
+        spriteHeight = ((u16)GetDialogueBoxConfig() >> 8) - 1;
+
+        for (i = spriteWidth - 1; i >= 0; i--)
+        {
+            for (j = spriteHeight; j >= 0; j--)
+            {
+                PutSprite(2, x + i * 0x20, y + j * 0x10, Sprite_32x16, gBoxDialogueConf.unk_40 + i * 4 + j * 0x40);
+            }
+        }
+    }
+}
+
+#else
+
 ASM_FUNC("asm/nonmatching/code_080838FC.s");
+
+#endif
 
 void sub_08083C0C(struct ProcBoxDialogueDrawTextExt * proc)
 {
