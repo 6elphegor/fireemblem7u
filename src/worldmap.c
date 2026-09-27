@@ -243,6 +243,31 @@ void WmPutMapTile(int x, int y);
 void WmCanvas_PutPixel(int x, int y, u8 color);
 void WmUpdateCamera(int x, int y);
 
+inline int WmToScreenX(int x)
+{
+    return x - gWmSt.x;
+}
+
+inline int WmToScreenY(int y)
+{
+    return y - gWmSt.y;
+}
+
+inline u8 const * GetWmMapImgPtr(int x, int y)
+{
+    u8 const * img = gWmMapImgTable[y >> 5][x >> 5];
+
+    return img + (((y & 0x1F) << 5) + (x & 0x1F)) * 0x20;
+}
+
+inline u16 const * GetWmMapTsaPtr(int x, int y)
+{
+    u16 const * tsa = gWmMapTsaTable[y >> 5][x >> 5];
+
+    tsa += (0x1F - (y & 0x1F)) * 0x20 + 1;
+    return tsa + (x & 0x1F);
+}
+
 s8 WmGetUnk02(void)
 {
     return gWmSt.unk_02;
@@ -2057,27 +2082,23 @@ void WmSpotlight_Init(struct WmSpotlightProc * proc)
 
     gWmHBlankFlags |= 2;
 }
-#if NONMATCHING
 void WmSpotlight_Loop(struct WmSpotlightProc * proc)
 {
     int max = 60;
     int k = 0x18;
-    int r, c;
+    int r, c, t;
 
-    proc->timer++;
-    r = k * proc->timer * proc->timer / (max * max);
-    c = 0x10 - 0x10 * proc->timer * proc->timer / (max * max);
+    t = ++proc->timer;
+    r = k * t * t / (max * max);
+    c = 0x10 - 0x10 * t * t / (max * max);
 
-    sub_0807764C(proc->x - gWmSt.x, proc->y - (gWmSt.y + 1), r);
+    sub_0807764C(WmToScreenX(proc->x), WmToScreenY(proc->y - 1), r);
 
     SetBlendConfig(2, 0, 0, c);
 
     if (proc->timer >= max)
         proc->timer = 0;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B5A84.s");
-#endif
 
 void WmEndSpotlight(void)
 {
@@ -2099,22 +2120,6 @@ void EndWmSpotlightProc(void)
 {
     Proc_End(Proc_Find(ProcScr_WmSpotlight));
 }
-
-inline u8 const * GetWmMapImgPtr(int x, int y)
-{
-    u8 const * img = gWmMapImgTable[y >> 5][x >> 5];
-
-    return img + (((y & 0x1F) << 5) + (x & 0x1F)) * 0x20;
-}
-
-inline u16 const * GetWmMapTsaPtr(int x, int y)
-{
-    u16 const * tsa = gWmMapTsaTable[y >> 5][x >> 5];
-
-    tsa += (0x1F - (y & 0x1F)) * 0x20 + 1;
-    return tsa + (x & 0x1F);
-}
-
 
 #if NONMATCHING
 // differs only by a reserved (unused) 4-byte stack slot in the original
@@ -2295,14 +2300,4 @@ void WorldFlush_End(void)
 void StartWorldFlush(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_WorldFlush, parent);
-}
-
-int WmToScreenX(int x)
-{
-    return x - gWmSt.x;
-}
-
-int WmToScreenY(int y)
-{
-    return y - gWmSt.y;
 }
