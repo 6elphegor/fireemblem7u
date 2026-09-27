@@ -4,7 +4,7 @@
 
 CONST_DATA struct ChapterInfo gChapterDataTable[] = {
     [CHAPTER_00] = {
-        .debug_name = (char const *) 0x083B8CA4,
+        .debug_name = "T01)00",
         .asset_img_a = 1,
         .asset_img_b = 0,
         .asset_pal = 2,
@@ -87,7 +87,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_01] = {
-        .debug_name = (char const *) 0x083B8C9C,
+        .debug_name = "T02)01",
         .asset_img_a = 1,
         .asset_img_b = 0,
         .asset_pal = 7,
@@ -170,7 +170,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_02] = {
-        .debug_name = (char const *) 0x083B8C94,
+        .debug_name = "T03)02",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 11,
@@ -253,7 +253,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_03] = {
-        .debug_name = (char const *) 0x083B8C8C,
+        .debug_name = "T04)03",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 17,
@@ -336,7 +336,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_04] = {
-        .debug_name = (char const *) 0x083B8C84,
+        .debug_name = "T05)04",
         .asset_img_a = 22,
         .asset_img_b = 0,
         .asset_pal = 23,
@@ -419,7 +419,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_05] = {
-        .debug_name = (char const *) 0x083B8C7C,
+        .debug_name = "T06)05",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -502,7 +502,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_06] = {
-        .debug_name = (char const *) 0x083B8C74,
+        .debug_name = "T07)06",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 34,
@@ -585,7 +585,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_07] = {
-        .debug_name = (char const *) 0x083B8C6C,
+        .debug_name = "T08)07",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -668,7 +668,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_08] = {
-        .debug_name = (char const *) 0x083B8C60,
+        .debug_name = "T08x)07x",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 41,
@@ -751,7 +751,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_09] = {
-        .debug_name = (char const *) 0x083B8C58,
+        .debug_name = "T09)08",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -834,7 +834,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_0A] = {
-        .debug_name = (char const *) 0x083B8C50,
+        .debug_name = "T10)09",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -917,7 +917,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_0B] = {
-        .debug_name = (char const *) 0x083B8C48,
+        .debug_name = "T11)10",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 51,
@@ -1000,7 +1000,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_0C] = {
-        .debug_name = (char const *) 0x083B8C40,
+        .debug_name = "01)11",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -1083,7 +1083,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_0D] = {
-        .debug_name = (char const *) 0x083B8C38,
+        .debug_name = "01)11h",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 58,
@@ -1166,7 +1166,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_0E] = {
-        .debug_name = (char const *) 0x083B8C30,
+        .debug_name = "02)12",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -1249,7 +1249,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_0F] = {
-        .debug_name = (char const *) 0x083B8C28,
+        .debug_name = "03)13",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -1332,7 +1332,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_10] = {
-        .debug_name = (char const *) 0x083B8C20,
+        .debug_name = "03)13x",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 68,
@@ -1415,7 +1415,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_11] = {
-        .debug_name = (char const *) 0x083B8C18,
+        .debug_name = "04)14",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 72,
@@ -1498,7 +1498,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_12] = {
-        .debug_name = (char const *) 0x083B8C10,
+        .debug_name = "04)14h",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 58,
@@ -1581,7 +1581,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_13] = {
-        .debug_name = (char const *) 0x083B8C08,
+        .debug_name = "05)15",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -1664,7 +1664,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_14] = {
-        .debug_name = (char const *) 0x083B8C00,
+        .debug_name = "06)16",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 82,
@@ -1747,7 +1747,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_15] = {
-        .debug_name = (char const *) 0x083B8BF8,
+        .debug_name = "06)16x",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 86,
@@ -1830,7 +1830,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_16] = {
-        .debug_name = (char const *) 0x083B8BF0,
+        .debug_name = "07)17",
         .asset_img_a = 91,
         .asset_img_b = 0,
         .asset_pal = 92,
@@ -1913,7 +1913,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_17] = {
-        .debug_name = (char const *) 0x083B8BE8,
+        .debug_name = "08)18",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 98,
@@ -1996,7 +1996,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_18] = {
-        .debug_name = (char const *) 0x083B8BE0,
+        .debug_name = "08)18x",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 102,
@@ -2079,7 +2079,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_19] = {
-        .debug_name = (char const *) 0x083B8BD8,
+        .debug_name = "08)18hx",
         .asset_img_a = 106,
         .asset_img_b = 0,
         .asset_pal = 107,
@@ -2162,7 +2162,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_1A] = {
-        .debug_name = (char const *) 0x083B8BD0,
+        .debug_name = "09)19",
         .asset_img_a = 106,
         .asset_img_b = 0,
         .asset_pal = 107,
@@ -2245,7 +2245,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_1B] = {
-        .debug_name = (char const *) 0x083B8BC8,
+        .debug_name = "10)20",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 115,
@@ -2328,7 +2328,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_1C] = {
-        .debug_name = (char const *) 0x083B8BC0,
+        .debug_name = "11)21",
         .asset_img_a = 22,
         .asset_img_b = 0,
         .asset_pal = 119,
@@ -2411,7 +2411,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_1D] = {
-        .debug_name = (char const *) 0x083B8BB8,
+        .debug_name = "12)22",
         .asset_img_a = 123,
         .asset_img_b = 0,
         .asset_pal = 124,
@@ -2494,7 +2494,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_1E] = {
-        .debug_name = (char const *) 0x083B8BB0,
+        .debug_name = "12)22xa",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 128,
@@ -2577,7 +2577,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_1F] = {
-        .debug_name = (char const *) 0x083B8BA8,
+        .debug_name = "13)23",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -2660,7 +2660,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_20] = {
-        .debug_name = (char const *) 0x083B8BA0,
+        .debug_name = "13)23b",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 86,
@@ -2743,7 +2743,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_21] = {
-        .debug_name = (char const *) 0x083B8B98,
+        .debug_name = "13)23h",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 138,
@@ -2826,7 +2826,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_22] = {
-        .debug_name = (char const *) 0x083B8B90,
+        .debug_name = "14)24",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -2909,7 +2909,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_23] = {
-        .debug_name = (char const *) 0x083B8B88,
+        .debug_name = "15)25",
         .asset_img_a = 145,
         .asset_img_b = 0,
         .asset_pal = 146,
@@ -2992,7 +2992,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_24] = {
-        .debug_name = (char const *) 0x083B8B80,
+        .debug_name = "15)25b",
         .asset_img_a = 145,
         .asset_img_b = 0,
         .asset_pal = 146,
@@ -3075,7 +3075,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_25] = {
-        .debug_name = (char const *) 0x083B8B78,
+        .debug_name = "16)26",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 155,
@@ -3158,7 +3158,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_26] = {
-        .debug_name = (char const *) 0x083B8B70,
+        .debug_name = "16)26x",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 159,
@@ -3241,7 +3241,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_27] = {
-        .debug_name = (char const *) 0x083B8B68,
+        .debug_name = "17)27",
         .asset_img_a = 106,
         .asset_img_b = 0,
         .asset_pal = 107,
@@ -3324,7 +3324,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_28] = {
-        .debug_name = (char const *) 0x083B8B60,
+        .debug_name = "18)28",
         .asset_img_a = 167,
         .asset_img_b = 0,
         .asset_pal = 168,
@@ -3407,7 +3407,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_29] = {
-        .debug_name = (char const *) 0x083B8B58,
+        .debug_name = "18)28h",
         .asset_img_a = 174,
         .asset_img_b = 0,
         .asset_pal = 175,
@@ -3490,7 +3490,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_2A] = {
-        .debug_name = (char const *) 0x083B8B50,
+        .debug_name = "19)29",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 58,
@@ -3573,7 +3573,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_2B] = {
-        .debug_name = (char const *) 0x083B8B48,
+        .debug_name = "19)29x",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 183,
@@ -3656,7 +3656,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_2C] = {
-        .debug_name = (char const *) 0x083B8B40,
+        .debug_name = "20)30",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -3739,7 +3739,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_2D] = {
-        .debug_name = (char const *) 0x083B8B38,
+        .debug_name = "20)30hx",
         .asset_img_a = 106,
         .asset_img_b = 0,
         .asset_pal = 189,
@@ -3822,7 +3822,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_2E] = {
-        .debug_name = (char const *) 0x083B8B30,
+        .debug_name = "21)31",
         .asset_img_a = 193,
         .asset_img_b = 0,
         .asset_pal = 194,
@@ -3905,7 +3905,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [CHAPTER_2F] = {
-        .debug_name = (char const *) 0x083B8B28,
+        .debug_name = "22)32",
         .asset_img_a = 193,
         .asset_img_b = 0,
         .asset_pal = 194,
@@ -3988,7 +3988,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x30] = {
-        .debug_name = (char const *) 0x083B8B20,
+        .debug_name = "ET07)07",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 203,
@@ -4071,7 +4071,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x31] = {
-        .debug_name = (char const *) 0x083B8B14,
+        .debug_name = "ET08)08x",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 41,
@@ -4154,7 +4154,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x32] = {
-        .debug_name = (char const *) 0x083B8B0C,
+        .debug_name = "E01)11h",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 58,
@@ -4237,7 +4237,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x33] = {
-        .debug_name = (char const *) 0x083B8B04,
+        .debug_name = "E03)13",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -4320,7 +4320,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x34] = {
-        .debug_name = (char const *) 0x083B8AFC,
+        .debug_name = "E04)14",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -4403,7 +4403,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x35] = {
-        .debug_name = (char const *) 0x083B8AF0,
+        .debug_name = "E08)18hx",
         .asset_img_a = 106,
         .asset_img_b = 0,
         .asset_pal = 215,
@@ -4486,7 +4486,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x36] = {
-        .debug_name = (char const *) 0x083B8AE8,
+        .debug_name = "E11)21",
         .asset_img_a = 22,
         .asset_img_b = 0,
         .asset_pal = 119,
@@ -4569,7 +4569,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x37] = {
-        .debug_name = (char const *) 0x083B8AE0,
+        .debug_name = "E12)22",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 220,
@@ -4652,7 +4652,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x38] = {
-        .debug_name = (char const *) 0x083B8AD4,
+        .debug_name = "E12)22xa",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 58,
@@ -4735,7 +4735,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x39] = {
-        .debug_name = (char const *) 0x083B8ACC,
+        .debug_name = "E13)23b",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 183,
@@ -4818,7 +4818,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x3A] = {
-        .debug_name = (char const *) 0x083B8AC4,
+        .debug_name = "E14)24",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 227,
@@ -4901,7 +4901,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x3B] = {
-        .debug_name = (char const *) 0x083B8ABC,
+        .debug_name = "E15)25",
         .asset_img_a = 145,
         .asset_img_b = 0,
         .asset_pal = 146,
@@ -4984,7 +4984,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x3C] = {
-        .debug_name = (char const *) 0x083B8AB4,
+        .debug_name = "E16)26",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -5067,7 +5067,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x3D] = {
-        .debug_name = (char const *) 0x083B8AAC,
+        .debug_name = "E16)26x",
         .asset_img_a = 16,
         .asset_img_b = 0,
         .asset_pal = 234,
@@ -5150,7 +5150,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x3E] = {
-        .debug_name = (char const *) 0x083B8AA4,
+        .debug_name = "E18)28",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,
@@ -5233,7 +5233,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x3F] = {
-        .debug_name = (char const *) 0x083B8A9C,
+        .debug_name = "E19)29",
         .asset_img_a = 10,
         .asset_img_b = 0,
         .asset_pal = 58,
@@ -5316,7 +5316,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x40] = {
-        .debug_name = (char const *) 0x083B8A94,
+        .debug_name = "E22)32",
         .asset_img_a = 193,
         .asset_img_b = 0,
         .asset_pal = 194,
@@ -5399,7 +5399,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x41] = {
-        .debug_name = (char const *) 0x083B8A90,
+        .debug_name = "VS",
         .asset_img_a = 22,
         .asset_img_b = 0,
         .asset_pal = 119,
@@ -5482,7 +5482,7 @@ CONST_DATA struct ChapterInfo gChapterDataTable[] = {
         .unk97 = 0,
     },
     [0x42] = {
-        .debug_name = (char const *) 0x083B8A88,
+        .debug_name = "test",
         .asset_img_a = 28,
         .asset_img_b = 29,
         .asset_pal = 30,

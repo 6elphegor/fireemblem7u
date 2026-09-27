@@ -622,7 +622,7 @@ def gen_chapters():
         assert rd8(a + 0x15) == 0
         name = chapters.get(i, f"0x{i:02X}")
         out.append(f"    [{name}] = {{")
-        out.append(f"        .debug_name = (char const *) 0x{rd32(a):08X},")
+        out.append(f'        .debug_name = "{cstr(rd32(a))}",')
         for fld in CHAPTER_FIELDS:
             if fld is None:
                 out.append("")
