@@ -38,7 +38,7 @@
 // CheckAnyRedUnitArea
 bool CheckAvailableTurnEvent(void);
 void StartAvailableTurnEvents(void);
-// sub_080789FC
+// CheckForCharacterEvents
 // StartCharacterEvent
 // StartSupportTalk
 // StartSupportViewerTalk

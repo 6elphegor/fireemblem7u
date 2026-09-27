@@ -84,6 +84,35 @@ struct EvCheck0E_Area
 
 extern struct EventListCmdInfo gEventListCmdInfoTable[];
 
+struct SupportTalkEnt
+{
+    /* 00 */ u8 pidA;
+    /* 01 */ u8 pidB;
+    /* 04 */ u32 msg[3];
+    /* 10 */ u32 songs;
+};
+
+extern struct SupportTalkEnt const gSupportTalkList[];
+
+void sub_0800ADB8(void);
+void CallMapSupportEvent(u32 msg, int song);
+void CallSupportViewerEvent(u32 msg);
+void UpdateBestGlobalSupportValue(u8 pidA, u8 pidB, int rank);
+void sub_0800F028(u8 mapChangeId);
+void sub_0800F044(u16 item, u8 mapChangeId);
+void sub_0800F06C(int money, u8 mapChangeId);
+void sub_080B03D4(struct Unit * unit, void const * shopItems);
+void sub_080B03F4(struct Unit * unit, void const * shopItems);
+void sub_080B0414(struct Unit * unit, void const * shopItems);
+
+struct EventInfo * SearchAvailableEvent(struct EventInfo * info);
+struct EventInfo * SearchNextAvailableEvent(struct EventInfo * info);
+void StartEventFromInfo(struct EventInfo * info);
+int GetSupportTalkSong(struct SupportTalkEnt const * it, u8 pidA, u8 pidB, int rank);
+bool CheckWin(void);
+void MaybeCallEndEvent(void);
+
+
 
 void StartEventFromInfo(struct EventInfo * info)
 {
@@ -465,38 +494,445 @@ bool EventInfoCheckTalk(struct EventInfo * info, u8 pidA, u8 pidB)
 
     return FALSE;
 }
-ASM_FUNC("asm/nonmatching/code_08078760.s");
-ASM_FUNC("asm/nonmatching/code_08078794.s");
-ASM_FUNC("asm/nonmatching/code_080787F4.s");
-ASM_FUNC("asm/nonmatching/code_08078820.s");
-ASM_FUNC("asm/nonmatching/code_08078870.s");
-ASM_FUNC("asm/nonmatching/code_08078888.s");
-ASM_FUNC("asm/nonmatching/code_080788B0.s");
-ASM_FUNC("asm/nonmatching/code_080788D8.s");
-ASM_FUNC("asm/nonmatching/code_08078900.s");
-ASM_FUNC("asm/nonmatching/code_08078928.s");
-ASM_FUNC("asm/nonmatching/code_08078988.s");
-ASM_FUNC("asm/nonmatching/code_080789B8.s");
-ASM_FUNC("asm/nonmatching/code_080789FC.s");
-ASM_FUNC("asm/nonmatching/code_08078A40.s");
-ASM_FUNC("asm/nonmatching/code_08078A80.s");
-ASM_FUNC("asm/nonmatching/code_08078AF4.s");
-ASM_FUNC("asm/nonmatching/code_08078B4C.s");
-ASM_FUNC("asm/nonmatching/code_08078BD0.s");
-ASM_FUNC("asm/nonmatching/code_08078C14.s");
-ASM_FUNC("asm/nonmatching/code_08078DFC.s");
-ASM_FUNC("asm/nonmatching/code_08078E10.s");
-ASM_FUNC("asm/nonmatching/code_08078E2C.s");
+bool CheckActiveUnitArea(int x1, int y1, int x2, int y2)
+{
+    if ((gActiveUnit->xPos >= x1) && (gActiveUnit->xPos <= x2) && (gActiveUnit->yPos >= y1) && (gActiveUnit->yPos <= y2))
+        return TRUE;
+
+    return FALSE;
+}
+
+bool CheckAnyBlueUnitArea(int x1, int y1, int x2, int y2)
+{
+    int i;
+
+    for (i = FACTION_BLUE + 1; i < FACTION_GREEN; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & (US_DEAD | US_BIT16))
+            continue;
+
+        if ((unit->xPos >= x1) && (unit->xPos <= x2) && (unit->yPos >= y1) && (unit->yPos <= y2))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool CheckAnyBlueUnitArea1(void)
+{
+    if (gPlaySt.faction != FACTION_RED)
+        return 0;
+
+    if (CheckAnyBlueUnitArea(0, 15, 25, 23))
+        return 0;
+
+    return 1;
+}
+
+bool CheckAnyBlueUnitArea2(void)
+{
+    if (gPlaySt.faction != FACTION_RED)
+        return 0;
+
+    if (CheckAnyBlueUnitArea(0, 24, 16, 27))
+        return 1;
+
+    if (CheckAnyBlueUnitArea(0, 21, 2, 23))
+        return 1;
+
+    if (CheckAnyBlueUnitArea(3, 20, 5, 22))
+        return 1;
+
+    return 0;
+}
+
+bool CheckAnyBlueUnitArea3(void)
+{
+    return CheckAnyBlueUnitArea(12, 21, 31, 24);
+}
+
+bool CheckAnyBlueUnitArea4(void)
+{
+    if (gPlaySt.faction != FACTION_RED)
+        return 0;
+
+    return CheckAnyBlueUnitArea(17, 21, 31, 35);
+}
+
+bool CheckAnyBlueUnitArea5(void)
+{
+    if (gPlaySt.faction != FACTION_RED)
+        return 0;
+
+    return CheckAnyBlueUnitArea(0, 15, 8, 18);
+}
+
+bool CheckAnyBlueUnitArea6(void)
+{
+    if (gPlaySt.faction != FACTION_RED)
+        return 0;
+
+    return CheckAnyBlueUnitArea(0, 24, 12, 27);
+}
+
+bool CheckAnyBlueUnitArea7(void)
+{
+    if (gPlaySt.faction != FACTION_RED)
+        return 0;
+
+    return CheckAnyBlueUnitArea(21, 0, 30, 6);
+}
+
+bool CheckAnyRedUnitArea(int x1, int y1, int x2, int y2)
+{
+    int i;
+
+    for (i = FACTION_RED + 1; i < FACTION_PURPLE; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & (US_DEAD | US_BIT16))
+            continue;
+
+        if ((unit->xPos >= x1) && (unit->xPos <= x2) && (unit->yPos >= y1) && (unit->yPos <= y2))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool CheckAvailableTurnEvent(void)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->turnBasedEvents;
+
+    if (SearchAvailableEvent(&info))
+        return TRUE;
+
+    return FALSE;
+}
+
+void StartAvailableTurnEvents(void)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->turnBasedEvents;
+
+    if (SearchAvailableEvent(&info))
+    {
+        StartEventFromInfo(&info);
+
+        while (SearchNextAvailableEvent(&info))
+            StartEventFromInfo(&info);
+    }
+}
+
+bool CheckForCharacterEvents(u8 pidA, u8 pidB)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->characterBasedEvents;
+    info.pidA = pidA;
+    info.pidB = pidB;
+
+    if (SearchAvailableEvent(&info))
+        return TRUE;
+
+    return FALSE;
+}
+
+void StartCharacterEvent(u8 pidA, u8 pidB)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->characterBasedEvents;
+    info.pidA = pidA;
+    info.pidB = pidB;
+
+    if (SearchAvailableEvent(&info))
+        StartEventFromInfo(&info);
+}
+
+void StartSupportTalk(u8 pidA, u8 pidB, int rank)
+{
+    u32 msg = 0;
+    struct SupportTalkEnt const * it;
+
+    for (it = gSupportTalkList; it->pidA != 0; it++)
+    {
+        if ((it->pidA == pidA && it->pidB == pidB) || (it->pidB == pidA && it->pidA == pidB))
+        {
+            if (rank == 1)
+                msg = it->msg[0];
+
+            if (rank == 2)
+                msg = it->msg[1];
+
+            if (rank == 3)
+                msg = it->msg[2];
+
+            break;
+        }
+    }
+
+    if (msg != 0)
+    {
+        CallMapSupportEvent(msg, GetSupportTalkSong(it, pidA, pidB, rank));
+        sub_0800ADB8();
+        UpdateBestGlobalSupportValue(pidA, pidB, rank);
+    }
+}
+
+void StartSupportViewerTalk(u8 pidA, u8 pidB, int rank)
+{
+    u32 msg = 0;
+    struct SupportTalkEnt const * it;
+
+    for (it = gSupportTalkList; it->pidA != 0; it++)
+    {
+        if ((it->pidA == pidA && it->pidB == pidB) || (it->pidB == pidA && it->pidA == pidB))
+        {
+            if (rank == 1)
+                msg = it->msg[0];
+
+            if (rank == 2)
+                msg = it->msg[1];
+
+            if (rank == 3)
+                msg = it->msg[2];
+
+            break;
+        }
+    }
+
+    if (msg != 0)
+    {
+        CallSupportViewerEvent(msg);
+        sub_0800ADB8();
+    }
+}
+
+int GetSupportTalkSong(struct SupportTalkEnt const * ent, u8 pidA, u8 pidB, int rank)
+{
+    struct SupportTalkEnt const * it = ent;
+
+    if (it == NULL)
+    {
+        for (it = gSupportTalkList; it->pidA != 0; it++)
+        {
+            if ((it->pidA == pidA && it->pidB == pidB) || (it->pidB == pidA && it->pidA == pidB))
+                break;
+        }
+    }
+
+    if (it->songs != 0)
+    {
+        switch ((it->songs >> ((rank - 1) * 8)) & 0xFF)
+        {
+        case 0:
+            return 0;
+
+        case 1:
+            return 0x41;
+
+        case 2:
+            return 0x4C;
+
+        case 3:
+        case 4:
+            return 0x6A;
+        }
+    }
+
+    return 0;
+}
+
+int GetAvailableTileEventCommand(s8 x, s8 y)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->locationBasedEvents;
+    info.xPos = x;
+    info.yPos = y;
+
+    if (!SearchAvailableEvent(&info))
+        return 0;
+
+    return info.commandId;
+}
+
+void StartAvailableTileEvent(s8 x, s8 y)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->locationBasedEvents;
+    info.xPos = x;
+    info.yPos = y;
+
+    if (SearchAvailableEvent(&info) == NULL)
+        return;
+
+    switch (info.commandId)
+    {
+    case 0x0E:
+    case 0x0F:
+        StartEventFromInfo(&info);
+
+        if (info.givenMoney != 3)
+            break;
+
+        // fallthrough
+
+    case 0x1D:
+        sub_0800F028(GetMapChangeIdAt(info.xPos, info.yPos));
+        sub_0800ADB8();
+        break;
+
+    case 0x10:
+    case 0x11:
+        if (info.script == 1)
+        {
+            sub_0800F028(GetMapChangeIdAt(info.xPos, info.yPos));
+            SetFlag(info.flag);
+        }
+        else
+        {
+            StartEventFromInfo(&info);
+        }
+
+        sub_0800ADB8();
+        break;
+
+    case 0x12:
+        if (info.givenItem == 0)
+        {
+            sub_0800F028(GetMapChangeIdAt(info.xPos, info.yPos));
+            StartEventFromInfo(&info);
+        }
+        else if (info.givenItem != 0x76)
+        {
+            sub_0800F044(info.givenItem, GetMapChangeIdAt(info.xPos, info.yPos));
+        }
+        else
+        {
+            sub_0800F06C(info.givenMoney, GetMapChangeIdAt(info.xPos, info.yPos));
+        }
+
+        sub_0800ADB8();
+        SetFlag(info.flag);
+        break;
+
+    case 0x13:
+        sub_080B03D4(gActiveUnit, (void const *) info.script);
+        break;
+
+    case 0x14:
+        sub_080B03F4(gActiveUnit, (void const *) info.script);
+        break;
+
+    case 0x15:
+        sub_080B0414(gActiveUnit, (void const *) info.script);
+        break;
+
+    case 0x16:
+        asm("nop");
+        break;
+
+    case 0x00:
+        asm("nop");
+        break;
+    }
+}
+
+void sub_08078DFC(s8 x, s8 y)
+{
+    StartAvailableTileEvent(x, y);
+}
+
+bool sub_08078E10(s8 x, s8 y)
+{
+    if (GetAvailableTileEventCommand(x, y) == 0x0E)
+        return TRUE;
+
+    return FALSE;
+}
+
+void sub_08078E2C(s8 x, s8 y)
+{
+    if (sub_08078E10(x, y))
+        StartAvailableTileEvent(x, y);
+}
+
 ASM_FUNC("asm/nonmatching/code_08078E54.s");
-ASM_FUNC("asm/nonmatching/code_08078EB8.s");
-ASM_FUNC("asm/nonmatching/code_08078EE0.s");
-ASM_FUNC("asm/nonmatching/code_08078EFC.s");
-ASM_FUNC("asm/nonmatching/code_08078F24.s");
-ASM_FUNC("asm/nonmatching/code_08078F40.s");
-ASM_FUNC("asm/nonmatching/code_08078F68.s");
-ASM_FUNC("asm/nonmatching/code_08078F84.s");
-ASM_FUNC("asm/nonmatching/code_08078FAC.s");
-ASM_FUNC("asm/nonmatching/code_08078FBC.s");
+
+bool sub_08078E54(s8 x, s8 y);
+
+void sub_08078EB8(s8 x, s8 y)
+{
+    if (sub_08078E54(x, y))
+        StartAvailableTileEvent(x, y);
+}
+
+bool IsThereClosedDoorAt(s8 x, s8 y)
+{
+    if (GetAvailableTileEventCommand(x, y) == 0x12)
+        return TRUE;
+
+    return FALSE;
+}
+
+void StartAvailableChestTileEvent(s8 x, s8 y)
+{
+    if (IsThereClosedDoorAt(x, y))
+        StartAvailableTileEvent(x, y);
+}
+
+bool sub_08078F24(s8 x, s8 y)
+{
+    if (GetAvailableTileEventCommand(x, y) == 0x10)
+        return TRUE;
+
+    return FALSE;
+}
+
+void StartAvailableDoorTileEvent(s8 x, s8 y)
+{
+    if (sub_08078F24(x, y))
+        StartAvailableTileEvent(x, y);
+}
+
+bool sub_08078F68(s8 x, s8 y)
+{
+    if (GetAvailableTileEventCommand(x, y) == 0x11)
+        return TRUE;
+
+    return FALSE;
+}
+
+void sub_08078F84(s8 x, s8 y)
+{
+    if (sub_08078F68(x, y))
+        StartAvailableTileEvent(x, y);
+}
+
+bool ShouldCallEndEvent(void)
+{
+    return CheckWin();
+}
+
+void MaybeCallEndEvent_(void)
+{
+    MaybeCallEndEvent();
+}
 ASM_FUNC("asm/nonmatching/code_08078FC8.s");
 ASM_FUNC("asm/nonmatching/code_08079004.s");
 ASM_FUNC("asm/nonmatching/code_0807905C.s");

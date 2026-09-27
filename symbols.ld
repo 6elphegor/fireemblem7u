@@ -1064,3 +1064,4 @@ gUnknown_08A1BD40 = 0x0840628C;
 gUnknown_085AAA0E = 0x08B9A466;
 gUnknown_085AAA48 = 0x08B9A4A0;
 gEventListCmdInfoTable = 0x08C9E9A4;
+gSupportTalkList = 0x08C9F9F4;
