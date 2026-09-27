@@ -142,7 +142,42 @@ void sub_08054A68(struct Anim * anim)
     return;
 }
 
+#if NONMATCHING
+void sub_08054A8C(struct Anim * anim)
+{
+    struct AnimBuffer * pAnimBuffer = anim->pUnk44;
+
+    if (GetAISLayerId(anim) == 0)
+    {
+        int mode = BanimDefaultModeConfig[0x18];
+        struct BattleAnim * banim = &banim_data[pAnimBuffer->animId];
+        int * modes = banim->modes;
+
+        struct Anim * anim1 = pAnimBuffer->anim1;
+        struct Anim * anim2 = pAnimBuffer->anim2;
+
+        const void * unk28 = pAnimBuffer->unk_28;
+        register struct BanimModeData * frameData asm("r1");
+        int off = modes[mode];
+        frameData = (void *)unk28 + off;
+
+        anim1->pImgSheet = frameData->img;
+        unk28 = anim1->pSpriteDataPool;
+        anim1->pSpriteData = unk28 += frameData->unk2;
+
+        unk28 = anim2->pSpriteDataPool;
+        anim2->pSpriteData = unk28 += 0x000057F0;
+
+        if (pAnimBuffer->unk_2C != anim->pImgSheet)
+        {
+            NewEkrChienCHR(anim);
+            pAnimBuffer->unk_2C = anim->pImgSheet;
+        }
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08054A8C.s");
+#endif
 
 #if NONMATCHING
 // 0.59 ekrmainmini:InitMainMiniAnim
@@ -256,7 +291,125 @@ void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
 ASM_FUNC("asm/nonmatching/code_08054AF0.s");
 #endif
 
+#if NONMATCHING
+void sub_08054C8C(struct AnimBuffer * pAnimBuf)
+{
+    u32 modeA;
+    u32 configA;
+    u32 modeB;
+    u32 configB;
+
+    struct Anim * anim;
+    u32 * puVar8;
+    u32 * scrA;
+    u32 * scrB;
+    struct BattleAnim * ba;
+    struct BattleAnim * ba2;
+    u32 * scr;
+    int * modes;
+    int mode;
+
+    ba = banim_data;
+
+    modeA = BanimDefaultModeConfig[pAnimBuf->roundType * 4];
+    modeB = BanimDefaultModeConfig[pAnimBuf->roundType * 4 + 2];
+
+    LZ77UnCompWram(ba[pAnimBuf->animId].script, (void *)pAnimBuf->unk_28);
+
+    ba2 = ba + pAnimBuf->animId;
+    modes = ba2->modes;
+    scr = (u32 *)pAnimBuf->unk_28;
+
+    scrA = AnimScr_DefaultAnim;
+    if (modeA != 0xff)
+    {
+        scrA = (void *)scr + modes[modeA];
+    }
+
+    scrB = AnimScr_DefaultAnim;
+    if (modeB != 0xff)
+    {
+        scrB = (void *)scr + modes[modeB];
+    }
+
+    if (pAnimBuf->state2 == 0)
+    {
+        int * p;
+        puVar8 = pAnimBuf->unk_24;
+        LZ77UnCompWram(ba2->oam_l, puVar8);
+        p = (puVar8 + 0x15FC);
+        *p = 1;
+    }
+    else
+    {
+        int * p;
+        puVar8 = pAnimBuf->unk_24;
+        LZ77UnCompWram(ba2->oam_r, puVar8);
+        p = (puVar8 + 0x15FC);
+        *p = 1;
+    }
+
+    anim = pAnimBuf->anim1;
+
+    anim->pScrStart = scrA;
+    anim->pScrCurrent = scrA;
+
+    anim->pSpriteDataPool = pAnimBuf->unk_24;
+
+    anim->xPosition = pAnimBuf->xPos;
+    anim->yPosition = pAnimBuf->yPos;
+
+    anim->oam2Base = (pAnimBuf->oam2Pal << 0xc) | 0x800 | pAnimBuf->oam2Tile;
+    anim->state2 = (anim->state2 & 0x700);
+
+    anim->state3 = 0;
+    anim->timer = 0;
+    anim->nextRoundId = 0;
+    anim->currentRoundType = pAnimBuf->roundType;
+    anim->pImgSheetBuf = pAnimBuf->pImgSheetBuf;
+
+    anim->commandQueueSize = 0;
+    pAnimBuf->anim1 = anim;
+
+    anim = pAnimBuf->anim2;
+
+    anim->pScrStart = scrB;
+    anim->pScrCurrent = scrB;
+
+    anim->pSpriteDataPool = pAnimBuf->unk_24;
+
+    anim->xPosition = pAnimBuf->xPos;
+    anim->yPosition = pAnimBuf->yPos;
+
+    anim->oam2Base = (pAnimBuf->oam2Pal << 0xc) | 0x800 | pAnimBuf->oam2Tile;
+    anim->state2 = (anim->state2 & 0x700);
+
+    anim->state3 = 0;
+    anim->timer = 0;
+    anim->nextRoundId = 0;
+    anim->currentRoundType = pAnimBuf->roundType;
+    anim->pImgSheetBuf = pAnimBuf->pImgSheetBuf;
+
+    anim->commandQueueSize = 0;
+    pAnimBuf->anim2 = anim;
+
+    LZ77UnCompWram(ba[pAnimBuf->animId].pal, pAnimBuf->unk_20);
+
+    if (pAnimBuf->charPalId != -1)
+    {
+        struct BattleAnimCharaPal * cbap = &character_battle_animation_palette_table[pAnimBuf->charPalId];
+        LZ77UnCompWram(cbap->pal, pAnimBuf->unk_20);
+    }
+
+    CpuFastCopy(pAnimBuf->unk_20 + pAnimBuf->genericPalId * 0x20, pAnimBuf->oam2Pal * 0x10 + gPal + 0x100, 0x20);
+
+    EnablePalSync();
+
+    return;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08054C8C.s");
+#endif
 
 // 1.00 ekrmainmini:sub_805A930
 void sub_08054E00(struct AnimBuffer * pAnimBuf, int animId, int charPalId)
