@@ -7,9 +7,9 @@ void sub_080BB070(void);
 void InitOpScanlineBuf(void);
 void SwapOpScanlineBufs(void);
 void sub_080BB0E0(void);
-// sub_080BB2AC
-// sub_080BB31C
-// sub_080BB32C
+void sub_080BB2AC(void);
+void sub_080BB31C(void);
+void sub_080BB32C(void);
 void HBlank_80BBDD0(void);
 void sub_080BB4E8(struct Proc * proc);
 void sub_080BB524(struct Proc * proc);
@@ -122,6 +122,14 @@ struct Struct_02007508 {
 };
 
 extern struct Struct_02007508 gUnkOpAnim_0200750C;
+
+extern u32 gUnkOpAnim_03001620;
+extern int gUnkOpAnim_020072BC;
+extern u16 gUnkOpAnim_02007300[0x100];
+extern u16 * gUnkOpAnim_02007500[2];
+extern int gUnkOpAnim_02007508;
+extern int gUnkOpAnim_0200751C;
+extern int gUnkOpAnim_02007520;
 
 // ??? gUnk_08DB8FC0
 // ??? gUnk_08DB8FC4
