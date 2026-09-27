@@ -31,7 +31,7 @@ Manim_ShowPoisonEffectIfAny: @ 0x0806E5F4
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_0807160C
+	bl StartManimPoisonAnim
 	ldr r0, [r7]
 	movs r1, #0x64
 	bl StartTemporaryLock

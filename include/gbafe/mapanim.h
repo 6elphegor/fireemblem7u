@@ -85,6 +85,27 @@ struct ManimDebugFieldInfo {
     /* 07 */ STRUCT_PAD(0x07, 0x08);
 };
 
+struct ManimEffectProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct Unit * unit;
+    /* 30 */ int x;
+    /* 34 */ int y;
+    /* 38 */ STRUCT_PAD(0x38, 0x40);
+    /* 40 */ u16 frame;
+    /* 42 */ u16 timer;
+    /* 44 */ u16 unk_44;
+    /* 46 */ u16 unk_46;
+    /* 48 */ s16 unk_48;
+    /* 4A */ s16 frame_idx;
+    /* 4C */ s16 unk_4C;
+    /* 4E */ STRUCT_PAD(0x4E, 0x50);
+    /* 50 */ void const * img;
+    /* 54 */ void const * pal;
+    /* 58 */ u16 unk_58;
+    /* 5A */ STRUCT_PAD(0x5A, 0x64);
+    /* 64 */ s16 unk_64;
+};
+
 void Manim_StoleItemPopup(ProcPtr proc);
 void Manim_WeaponBrokePopup(ProcPtr proc);
 bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
@@ -148,12 +169,12 @@ void ManimDebug_Loop(struct ManimDebugProc * proc);
 void ManimDebug_SetupBattleUnit(struct BattleUnit * bu, int actor);
 bool ManimDebug_SetupBattle(void);
 void ManimDebug_StartBattleAnim(ProcPtr proc);
-// sub_08071424
-// sub_080714A0
-// sub_0807151C
-// sub_080715B0
-// sub_0807160C
-// sub_0807167C
+void StartManimMissAnim(struct Unit * unit);
+void StartManimNoDamageAnim(struct Unit * unit);
+void StartManimWallBreakAnim(struct Unit * unit, int arg);
+void ManimWallBreakAnim_Init(struct ManimEffectProc * proc);
+void StartManimPoisonAnim(struct Unit * unit);
+void ManimPoisonAnim_Init(struct ManimEffectProc * proc);
 // sub_8071ECC
 // sub_08071750
 // sub_08071888
@@ -307,3 +328,4 @@ void ManimDebug_StartBattleAnim(ProcPtr proc);
 // sub_8076FFC
 // sub_8077014
 void StartManimDebug(void);
+void StartManimPoisonAnim2(struct Unit * unit);

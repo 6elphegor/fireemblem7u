@@ -78,7 +78,7 @@ _08075CD2:
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_08071424
+	bl StartManimMissAnim
 _08075D26:
 	b _0807603E
 	.align 2, 0
@@ -174,7 +174,7 @@ _08075D94:
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_08071424
+	bl StartManimMissAnim
 	b _0807603E
 	.align 2, 0
 _08075DE8: .4byte 0x0203E0FC
@@ -214,7 +214,7 @@ _08075DF0:
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_080714A0
+	bl StartManimNoDamageAnim
 	b _0807603E
 	.align 2, 0
 _08075E3C: .4byte 0x0203E0FC
@@ -285,7 +285,7 @@ _08075E8E:
 	ldr r1, [r0]
 	adds r0, r1, #0
 	movs r1, #1
-	bl sub_0807151C
+	bl StartManimWallBreakAnim
 	b _08075EEC
 	.align 2, 0
 _08075ECC: .4byte 0x0203E0FC
@@ -302,7 +302,7 @@ _08075ED0:
 	ldr r1, [r0]
 	adds r0, r1, #0
 	movs r1, #0
-	bl sub_0807151C
+	bl StartManimWallBreakAnim
 _08075EEC:
 	b _08075F18
 	.align 2, 0

@@ -20,7 +20,7 @@ sub_080761E0: @ 0x080761E0
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_080716E0
+	bl StartManimPoisonAnim2
 	add sp, #4
 	pop {r7}
 	pop {r0}

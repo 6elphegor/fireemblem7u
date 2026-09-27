@@ -4,7 +4,7 @@
 bool DidBattleUnitBreakWeapon(struct BattleUnit * bu);
 void EndManimInfoWindow(void);
 struct ProcCmd * sub_08075638(void);
-void sub_0807160C(struct Unit * unit);
+void StartManimPoisonAnim(struct Unit * unit);
 bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
 bool ManimShouldBuDisplayWeaponLevelGained(struct BattleUnit * bu);
 
@@ -134,7 +134,7 @@ void Manim_ShowPoisonEffectIfAny(ProcPtr proc)
 {
     if (gManimSt.hit_attributes & BATTLE_HIT_ATTR_POISON)
     {
-        sub_0807160C(gManimSt.actor[gManimSt.defender_actor].unit);
+        StartManimPoisonAnim(gManimSt.actor[gManimSt.defender_actor].unit);
         StartTemporaryLock(proc, 100);
     }
 }
