@@ -5270,7 +5270,7 @@ _080C287A:
 	cmp r0, #0
 	beq _080C288A
 	adds r0, r5, #0
-	bl sub_080BFC6C
+	bl _call_via_r8
 	orrs r7, r0
 _080C288A:
 	adds r5, #0x58

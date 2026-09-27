@@ -42,18 +42,18 @@ _call_via_r7: @ 0x080BFC68
 	bx r7
 	nop
 
-	thumb_func_start sub_080BFC6C
-sub_080BFC6C: @ 0x080BFC6C
+	thumb_func_start _call_via_r8
+_call_via_r8: @ 0x080BFC6C
 	bx r8
 	nop
 
-	thumb_func_start sub_080BFC70
-sub_080BFC70: @ 0x080BFC70
+	thumb_func_start _call_via_r9
+_call_via_r9: @ 0x080BFC70
 	bx sb
 	nop
 
-	thumb_func_start sub_080BFC74
-sub_080BFC74: @ 0x080BFC74
+	thumb_func_start _call_via_sl
+_call_via_sl: @ 0x080BFC74
 	bx sl
 	nop
 _080BFC78:

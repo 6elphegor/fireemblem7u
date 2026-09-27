@@ -9,7 +9,7 @@ GetItemSellPrice: @ 0x080B1D90
 	mov r7, sp
 	str r0, [r7]
 	ldr r0, [r7]
-	bl sub_08017340
+	bl GetItemCost
 	asrs r1, r0, #0x1f
 	lsrs r2, r1, #0x1f
 	adds r1, r0, r2
