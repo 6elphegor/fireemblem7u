@@ -687,9 +687,125 @@ ASM_FUNC("asm/nonmatching/code_08089794.s");
 
 #endif
 
-ASM_FUNC("asm/nonmatching/code_08089B9C.s");
-ASM_FUNC("asm/nonmatching/code_08089C00.s");
-ASM_FUNC("asm/nonmatching/code_08089CA8.s");
-ASM_FUNC("asm/nonmatching/code_08089D50.s");
-ASM_FUNC("asm/nonmatching/code_08089DD4.s");
+void UnitList_Init(struct UnitListScreenProc * proc)
+{
+    proc->unk_29 = 0;
+    proc->unk_31 = 1;
+    proc->unk_2c = 0;
+    proc->unk_2d = 0;
+    proc->unk_30 = 0;
+
+    if (proc->mode == UNITLIST_MODE_SOLOANIM)
+        proc->page = 0;
+    else
+        proc->page = 1;
+
+    proc->pageTarget = proc->page;
+
+    proc->unk_3e = 0;
+    proc->unk_32 = 1;
+    proc->unk_2a = 0;
+    proc->unk_33 = 1;
+    proc->unk_34 = 0;
+    proc->unk_35 = 0;
+
+    sub_8090D80(proc);
+}
+
+void UnitList_DeployUnit(struct Unit * unit, struct UnitListScreenProc * proc)
+{
+    int i;
+
+    if (proc->allyCount > proc->deployedCount)
+    {
+        unit->state &= ~(US_UNSELECTABLE | US_NOT_DEPLOYED);
+
+        RegisterSioPid(unit->pCharacterData->number);
+
+        for (i = proc->unk_3e / 16; i < (proc->unk_3e / 16) + 6 && i < gUnknown_0200F158; i++)
+            sub_0808AD00(proc, i, gBg0Tm, proc->page, 1);
+
+        proc->deployedCount++;
+        PlaySoundEffect(0x38A);
+    }
+    else
+    {
+        PlaySoundEffect(0x38C);
+    }
+}
+
+void UnitList_UndeployUnit(struct Unit * unit, struct UnitListScreenProc * proc)
+{
+    int i;
+
+    if (!IsCharacterForceDeployed(unit->pCharacterData->number))
+    {
+        unit->state |= (US_UNSELECTABLE | US_NOT_DEPLOYED);
+
+        RemoveSioPid(unit->pCharacterData->number);
+
+        for (i = proc->unk_3e / 16; i < (proc->unk_3e / 16) + 6 && i < gUnknown_0200F158; i++)
+            sub_0808AD00(proc, i, gBg0Tm, proc->page, 1);
+
+        proc->deployedCount--;
+        PlaySoundEffect(0x38B);
+    }
+    else
+    {
+        PlaySoundEffect(0x38C);
+    }
+}
+
+void UnitList_TogglePrepDeployState(struct UnitListScreenProc * proc)
+{
+    int index = proc->unk_30;
+    struct Unit * unit = gSortedUnits[index]->unit;
+
+    if ((unit->state & US_BIT25) != 0)
+    {
+        StartPrepErrorHelpbox(0, proc->unk_2c * 16 + 56, 0x3B1, proc);
+        return;
+    }
+
+    if ((unit->state & US_NOT_DEPLOYED) != 0)
+    {
+        if (CheckInLinkArena() && !sub_08090DB0(unit))
+        {
+            StartPrepErrorHelpbox(0, proc->unk_2c * 16 + 56, 0x3AD, proc);
+            return;
+        }
+
+        UnitList_DeployUnit(unit, proc);
+        return;
+    }
+
+    UnitList_UndeployUnit(unit, proc);
+}
+
+void UnitList_ToggleSoloAnimState(struct Unit * unit, int step)
+{
+    int animState;
+
+    if ((UNIT_CATTRIBUTES(unit) & CA_SUPPLY) != 0)
+    {
+        PlaySoundEffect(0x38C);
+        return;
+    }
+
+    animState = (unit->state & (US_SOLOANIM_1 | US_SOLOANIM_2)) >> 14;
+    animState = (animState + step + 3) % 3;
+    animState = animState << 14;
+
+    unit->state = (unit->state & ~(US_SOLOANIM_1 | US_SOLOANIM_2)) | animState;
+
+    if (animState & (US_SOLOANIM_1 | US_SOLOANIM_2))
+    {
+        PlaySoundEffect(0x38A);
+    }
+    else
+    {
+        PlaySoundEffect(0x38B);
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_08089E70.s");
