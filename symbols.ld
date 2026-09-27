@@ -2826,3 +2826,4 @@ ProcScr_ekrUnitKakudai = 0x08B9B214;
 ProcScr_ekrWindowAppear = 0x08B9B23C;
 ProcScr_ekrNamewinAppear = 0x08B9B254;
 ProcScr_ekrBaseAppear = 0x08B9B274;
+gUnitSpecificBanimConfigs = 0x08C996B4;

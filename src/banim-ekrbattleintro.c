@@ -66,6 +66,14 @@ void EkrDispUP_SetPositionUnsync(u16 x, u16 y);
 void UnsyncEkrDispUP(void);
 void SyncEkrDispUP(void);
 void EndEkrDispUP(void);
+u16 IsItemDisplayedInBattle(u16 item);
+
+// view of CharacterData 0x25..0x26 as an array (unit.h declares them as _u25, _u26)
+struct CharacterDataBanimView {
+    u8 pad[0x25];
+    u8 banim_unique[2];
+};
+extern struct BattleAnimDef const * CONST_DATA gUnitSpecificBanimConfigs[];
 
 ASM_FUNC("asm/nonmatching/code_08051274.s");
 
@@ -371,4 +379,69 @@ void EkrBaseAppearMain(struct ProcEkrIntroWindow * proc)
 
 ASM_FUNC("asm/nonmatching/code_08051D50.s");
 
-ASM_FUNC("asm/nonmatching/code_08052858.s");
+u16 GetBattleAnimationId_WithUnique(struct Unit * unit, const struct BattleAnimDef * pBattleAnimDef, u16 item, int * out)
+{
+    const struct BattleAnimDef * animDef;
+    int i;
+    int j;
+#if NONMATCHING
+    int ret;
+#else
+    register int ret asm("sl");
+#endif
+    int idx;
+    int found;
+    u16 itemType;
+
+    ret = 0;
+
+    if (pBattleAnimDef == NULL || (GetItemType(item) == 9 && !IsItemDisplayedInBattle(item)))
+        return -1;
+
+    if (item == 0)
+        itemType = 9;
+    else
+        itemType = GetItemType(item);
+
+    animDef = pBattleAnimDef;
+
+    idx = ((struct CharacterDataBanimView const *) unit->pCharacterData)->banim_unique[(UNIT_CATTRIBUTES(unit) >> 8 & 1)];
+
+    if (idx != 0)
+        animDef = gUnitSpecificBanimConfigs[idx];
+
+    *out = 0;
+    i = 0;
+    found = 0;
+
+    while (i < 2)
+    {
+        const struct BattleAnimDef * it = animDef;
+        do
+        {
+            for (j = 0; it->wtype != 0; it++, j++)
+            {
+                if (i == 0 && it->wtype >= 0x100)
+                    continue;
+
+                if (i == 1 && it->wtype < 0x100)
+                    continue;
+
+                if (it->wtype == GetItemIndex(item) || (it->wtype - 0x100 == itemType))
+                {
+                    ret = it->index;
+                    *out = j;
+                    found = 1;
+                    break;
+                }
+            }
+        } while (0);
+
+        if (found == 1)
+            break;
+
+        i++;
+    }
+
+    return (ret - 1);
+}
