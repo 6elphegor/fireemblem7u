@@ -149,7 +149,29 @@ u16 sub_0809D9A4(u8 const * buf, int n)
 }
 ASM_FUNC("asm/nonmatching/code_0809D9E4.s");
 ASM_FUNC("asm/nonmatching/code_0809DAB8.s");
-ASM_FUNC("asm/nonmatching/code_0809DBD8.s");
+void ModifyPassword(void (* func)(int * bitpos, u8 * buf))
+{
+    int bitpos = 0;
+    int i;
+
+    for (i = 0; i < 0xA0; i++)
+        gPasswordBuf[i] = 0;
+
+    func(&bitpos, gPasswordBuf + gPasswordCharCount);
+
+    gPasswordData[3] = sub_0809D800(bitpos);
+    gPasswordData[1] = sub_0809D9A4(gPasswordBuf + gPasswordCharCount, gPasswordData[3]);
+    gPasswordData[0] = (gPasswordData[1] + (GetGameTime() >> 3)) % 0x400;
+    gPasswordSeed = gPasswordData[0];
+    gPasswordData[1] = (gPasswordData[1] + sub_0809D82C()) & 0x3FF;
+
+    for (i = 0; i < gPasswordData[3]; i++)
+        gPasswordBuf[i + gPasswordCharCount] = (gPasswordBuf[i + gPasswordCharCount] + sub_0809D82C()) & gPasswordCharMask;
+
+    gPasswordData[2] = (sub_0809D9A4(gPasswordBuf + gPasswordCharCount, gPasswordData[3]) + sub_0809D82C()) & 0x3FF;
+
+    sub_0809D9E4();
+}
 bool sub_0809DCA8(void (* func)(int * bitpos, u8 * buf))
 {
     u16 rng[2];
