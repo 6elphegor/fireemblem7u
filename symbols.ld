@@ -771,3 +771,6 @@ AnimScr_EfxChill1_R = 0x08BD5644;
 AnimScr_EfxChill1_L = 0x08BD5848;
 AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
+/* cp_staff, cpextra */
+sAiStaffFuncLut = 0x081D3B74;
+sAiAdjacentPositionLut = 0x08B98AC8;
