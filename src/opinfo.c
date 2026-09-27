@@ -38,6 +38,49 @@ struct OpInfoIconProc {
 };
 
 void SetLordSelectState(int stat);
+bool sub_080AEE74(void);
+
+struct OpInfoClassDisplayProc {
+    /* 00 */ PROC_HEADER;
+    /* 2A */ u16 timer;
+    /* 2C */ u16 timer2;
+    /* 2E */ STRUCT_PAD(0x2E, 0x30);
+    /* 30 */ ProcPtr parent;
+    /* 34 */ struct ClassReelEnt * ent;
+    /* 38 */ u8 const * script;
+    /* 3C */ ProcPtr statsProc;
+    /* 40 */ u8 stats[6];
+    /* 46 */ u8 x;
+};
+
+struct OpInfoGaugeDrawProc {
+    /* 00 */ PROC_HEADER;
+    /* 2A */ u16 timer;
+    /* 2C */ STRUCT_PAD(0x2C, 0x30);
+    /* 30 */ struct OpInfoClassDisplayProc * display;
+    /* 34 */ u8 width;
+    /* 35 */ u8 x;
+};
+
+struct ClassDisplayFont {
+    u16 const * sprite;
+    u8 xBase;
+    u8 width;
+    u8 yBase;
+};
+
+struct ClassDisplayFont const * GetClassDisplayFontInfo(u8 chr);
+
+extern struct AnimBuffer gOpInfoData;
+extern struct BanimUnkStructComm gOpInfoTerrainConf;
+extern struct ClassReelEnt * const * const * CONST_DATA gClassReelSetLut[];
+extern struct ProcCmd CONST_DATA ProcScr_ClassInfoDisplay[];
+extern struct ProcCmd CONST_DATA ProcScr_ClassStatsDisplay[];
+extern u8 Img_ClassDisplayFont[];
+extern u16 Pal_ClassDisplayFont[];
+
+ProcPtr StartClassStatsDisplay(ProcPtr parent);
+void SetClassStatsDisplayX(struct OpInfoGaugeDrawProc * proc, int x);
 
 static inline int DarknessCoeff(int darkness, u8 lsr)
 {
@@ -385,16 +428,213 @@ void ClassReel_VCountHandler(void)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080AF8C4.s");
+void ClassReel_SetupMagicBlend(void)
+{
+    SetBlendAlpha(0x10, 0x10);
+
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendTargetB(0, 0, 1, 1, 1);
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Box(0, 0, 240, 160);
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 0, 1, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    gDispIo.blend_ct.target2_enable_bd = 1;
+}
+
 ASM_FUNC("asm/nonmatching/code_080AF99C.s");
-ASM_FUNC("asm/nonmatching/code_080AFDC0.s");
-ASM_FUNC("asm/nonmatching/code_080AFDFC.s");
-ASM_FUNC("asm/nonmatching/code_080AFF30.s");
-ASM_FUNC("asm/nonmatching/code_080AFFC4.s");
-ASM_FUNC("asm/nonmatching/code_080B0048.s");
-ASM_FUNC("asm/nonmatching/code_080B0088.s");
+void ClassInfoDisplay_Worker(struct OpInfoClassDisplayProc * proc)
+{
+    if (proc->timer2 == 400)
+    {
+        if (sub_080AEE74())
+        {
+            FadeBgmOut(60);
+            Proc_Goto(proc, 7);
+        }
+        else
+        {
+            Proc_Goto(proc, 4);
+        }
+    }
+
+    proc->timer2++;
+}
+
+void ClassInfoDisplay_LoopWindowIn(struct OpInfoClassDisplayProc * proc)
+{
+    proc->x -= (80 - proc->timer) / 14 + 1;
+
+    if (proc->x < 180)
+        proc->x = 180;
+
+    SetDispEnable(1, 1, 1, 1, 1);
+    SetWinEnable(1, 0, 0);
+
+    SetWin0Box(0, 80 - proc->timer, 240, proc->timer + 80);
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(0, 0, 0, 0, 0);
+
+    if (proc->timer == 80)
+    {
+        proc->x = 180;
+        proc->timer = 0;
+
+        Proc_Break(proc);
+
+        StartParallelWorker(ClassInfoDisplay_Worker, proc);
+    }
+    else
+    {
+        proc->timer += 4;
+    }
+
+    sub_08054E10(&gOpInfoData, proc->x, 88);
+    sub_08055308(&gOpInfoTerrainConf, proc->x - 48, 104, proc->x + 48, 104);
+
+    SetClassStatsDisplayX(proc->statsProc, 120);
+}
+
+void ClassInfoDisplay_ExecScript(struct OpInfoClassDisplayProc * proc)
+{
+    switch (proc->script[0])
+    {
+        case 0:
+            Proc_Goto(proc, 10);
+            break;
+
+        case 1:
+            gOpInfoData.roundType = 0;
+            sub_08054C8C(&gOpInfoData);
+            break;
+
+        case 2:
+            gOpInfoData.roundType = 1;
+            sub_08054C8C(&gOpInfoData);
+            break;
+
+        case 3:
+        case 7:
+            sub_08054E5C(&gOpInfoData);
+            break;
+
+        case 4:
+            gOpInfoData.roundType = 2;
+            sub_08054C8C(&gOpInfoData);
+            break;
+
+        case 6:
+            gOpInfoData.roundType = 4;
+            sub_08054C8C(&gOpInfoData);
+            break;
+
+        case 5:
+        case 8:
+            break;
+    }
+
+    proc->timer = 0;
+}
+
+void ClassInfoDisplay_LoopScript(struct OpInfoClassDisplayProc * proc)
+{
+    switch (proc->script[0])
+    {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 6:
+        case 7:
+            proc->script += 2;
+            Proc_Break(proc);
+            break;
+
+        case 5:
+            proc->timer++;
+
+            if (proc->timer < proc->script[1])
+                return;
+
+            proc->script += 2;
+            Proc_Break(proc);
+            break;
+
+        case 8:
+            if (sub_08054E3C(&gOpInfoData) != 0)
+            {
+                proc->script += 2;
+                Proc_Break(proc);
+            }
+    }
+}
+
+void ClassInfoDisplay_OnEnd(struct OpInfoClassDisplayProc * proc)
+{
+    SetOnHBlankA(NULL);
+
+    EndTalk();
+    EndActiveClassReelBgColorProc();
+    sub_080552DC(&gOpInfoTerrainConf);
+    EndActiveClassReelSpell();
+    sub_08054EF0(&gOpInfoData);
+
+    if (proc->statsProc != NULL)
+        Proc_End(proc->statsProc);
+
+    SetLordSelectState(2);
+}
+
+ProcPtr StartClassAnimDisplay(ProcPtr parent, int ent)
+{
+    struct OpInfoClassDisplayProc * proc = Proc_Start(ProcScr_ClassInfoDisplay, parent);
+
+    proc->parent = parent;
+    proc->ent = (struct ClassReelEnt *) ent;
+    proc->statsProc = NULL;
+
+    return proc;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B00A8.s");
+
 ASM_FUNC("asm/nonmatching/code_080B0134.s");
-ASM_FUNC("asm/nonmatching/code_080B0294.s");
-ASM_FUNC("asm/nonmatching/code_080B02A8.s");
-ASM_FUNC("asm/nonmatching/code_080B02B0.s");
+ProcPtr StartClassStatsDisplay(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_ClassStatsDisplay, parent);
+}
+
+void SetClassStatsDisplayX(struct OpInfoGaugeDrawProc * proc, int x)
+{
+    proc->x = x;
+}
+
+int GetClassReelEntry(int set, int index)
+{
+    struct ClassReelEnt * const * const * list = gClassReelSetLut[set];
+    struct ClassReelEnt * const * it;
+
+    for (it = *list; *list != NULL;)
+    {
+        if (index == 0)
+            return (int) *it;
+
+        index--;
+        it++;
+
+        if (*it == NULL)
+        {
+            list++;
+            it = *list;
+        }
+    }
+
+    return 0;
+}
+

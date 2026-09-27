@@ -114,7 +114,7 @@ void StartTalkExt(int x, int y, char const * str, ProcPtr parent);
 // ??? StartTalkMsg
 // ??? StartTalkMsgExt
 // ??? StartTalk
-// ??? EndTalk
+void EndTalk(void);
 // ??? SetTalkLines
 void ClearAllTalkFlags(void);
 void SetTalkFlag(int flag);

@@ -906,16 +906,16 @@ ProcPtr StartClassNameIntro(ProcPtr parent, int);
 // ClassReel_VCountHandler
 // sub_80B0714
 // sub_80B07EC
-// sub_080AFDC0
-// sub_080AFDFC
+// ClassInfoDisplay_Worker
+// ClassInfoDisplay_LoopWindowIn
 // ClassInfoDisplay_ExecScript
 // ClassInfoDisplay_LoopScript
 // ClassInfoDisplay_OnEnd
-void StartClassAnimDisplay(ProcPtr parent, int);
+ProcPtr StartClassAnimDisplay(ProcPtr parent, int);
 // sub_80B0EDC
 // sub_80B0F5C
 // sub_80B10B8
-// sub_080B02A8
+// SetClassStatsDisplayX
 int GetClassReelEntry(int, int);
 // sub_80B1110
 // Shop_GetPortraitIndex

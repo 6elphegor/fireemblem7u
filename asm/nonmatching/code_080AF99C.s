@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AF99C
-sub_080AF99C: @ 0x080AF99C
+	thumb_func_start ClassInfoDisplay_Init
+ClassInfoDisplay_Init: @ 0x080AF99C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -302,7 +302,7 @@ _080AFC18:
 	ble _080AFB98
 	movs r5, #0
 	mov r0, sb
-	bl sub_080B0294
+	bl StartClassStatsDisplay
 	mov r3, sb
 	str r0, [r3, #0x3c]
 	movs r0, #0x80
@@ -393,7 +393,7 @@ _080AFC18:
 	str r2, [r1, #0x1c]
 	ldr r2, _080AFDA4 @ =0x0200CB40
 	str r2, [r1, #0x20]
-	ldr r2, _080AFDA8 @ =sub_080AF8C4
+	ldr r2, _080AFDA8 @ =ClassReel_SetupMagicBlend
 	str r2, [r1, #0x24]
 	bl NewEkrUnitMainMini
 	ldr r4, _080AFDAC @ =0x0200DB40
@@ -452,7 +452,7 @@ _080AFD98: .4byte 0x02023460
 _080AFD9C: .4byte 0x0200A340
 _080AFDA0: .4byte 0x0200C340
 _080AFDA4: .4byte 0x0200CB40
-_080AFDA8: .4byte sub_080AF8C4
+_080AFDA8: .4byte ClassReel_SetupMagicBlend
 _080AFDAC: .4byte 0x0200DB40
 _080AFDB0: .4byte 0x0000FFFF
 _080AFDB4: .4byte 0x06010000

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B00A8
-sub_080B00A8: @ 0x080B00A8
+	thumb_func_start ClassStatsDisplay_Init
+ClassStatsDisplay_Init: @ 0x080B00A8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x14]
