@@ -250,9 +250,9 @@ extern u8 Img_NinianReturnToHuman[];
 // ??? Img_NinianDragonTrembling
 // ??? SpirteAnim_NinianDragonTrembling
 extern u8 Img_EventDragonsSpritefx1[];
-extern u16 gUnk_081C5020[];
+extern u16 gUnk_081C07B4[];
 extern u8 Img_EventDragonsSpritefx2[];
-extern u16 gUnk_081C673C[];
+extern u16 gUnk_081C1ED0[];
 extern u8 Img_DragonFlameImpact[];
 extern u16 Pal_DragonFlameImpact[];
 extern u8 Tsa_DragonFlameImpact[];

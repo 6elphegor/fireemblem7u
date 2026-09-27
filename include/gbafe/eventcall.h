@@ -667,7 +667,7 @@ struct ProcEventCutscene
 
 void sub_0807EC30(struct ProcEventCutscene * proc);
 void sub_0807ECA8(struct ProcEventCutscene * proc);
-// sub_807FAE8
+// sub_0807ED2C
 // ForceCenteredDragon
 // sub_807FB34
 // IsStartButtonHeld
@@ -740,7 +740,7 @@ extern struct ProcCmd ProcScr_IceCrystalfx[];
 // ??? gUnk_08D87684
 extern struct ProcCmd ProcScr_EventDragonsSpritefx[];
 // ??? ProcScr_DragonFlameImpact
-// ??? ProcScr_08D87F68
+// ??? ProcScr_08CBFCB4
 extern EventScr EventScr_DeathQuoteOnEnd[];
 // ??? ProcScr_NilsEpilogueIntro
 // ??? ProcScr_NilsEpilogueOutro
