@@ -1327,4 +1327,37 @@ void sub_080BD698(struct OpAnimBgProc * proc)
     SetBgOffset(proc->bg, 0, cur);
 }
 
-ASM_FUNC("asm/nonmatching/code_080BD764.s");
+ProcPtr sub_080BD764(struct OpAnimBgConf const * conf, int bg, int pos, int speed, ProcPtr parent)
+{
+    int i;
+    int bgbits[4] = { BG0_SYNC_BIT, BG1_SYNC_BIT, BG2_SYNC_BIT, BG3_SYNC_BIT };
+    struct OpAnimBgProc * proc = Proc_Start(ProcScr_08CEF750, parent);
+
+    proc->count = 0;
+
+    while (conf->frames[proc->count].img != (void *) -1)
+        proc->count++;
+
+    if (pos == -1)
+        pos = proc->count - 0x14;
+
+    proc->pos = pos << 13;
+    proc->conf = conf;
+    proc->bg = bg;
+    proc->speed = speed;
+
+    SetBgOffset(bg, 0, proc->pos >> 10);
+
+    if (conf->header->img != NULL)
+        Decompress(conf->header->img, (void *) GetBgChrOffset(bg) + (VRAM + conf->header->chr_offset));
+
+    if (conf->header->pal != NULL && conf->header->pal_count != 0)
+        ApplyPaletteExt(conf->header->pal, conf->header->pal_bank * 0x20, conf->header->pal_count * 0x20);
+
+    for (i = -1; i < 0x14; i++)
+        sub_080BD588(bg, conf, pos + i);
+
+    EnableBgSync(bgbits[bg]);
+
+    return proc;
+}
