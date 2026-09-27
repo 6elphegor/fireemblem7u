@@ -1035,3 +1035,5 @@ gTrapPool = 0x0203A518;
 gTrapPoolLast = 0x0203A718;
 gBmMapBaseTiles = 0x08B932B4;
 gEvent_GameOver = 0x08CA749C;
+ProcScr_PostWarpStaffAction = 0x08B945C8;
+ProcScr_SetTargetStatus = 0x08B945E8;
