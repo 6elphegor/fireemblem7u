@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B3AFC
-sub_080B3AFC: @ 0x080B3AFC
+	thumb_func_start EndWmSpriteAnim
+EndWmSpriteAnim: @ 0x080B3AFC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r0, _080B3B44 @ =0x08CE7630

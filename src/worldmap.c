@@ -33,6 +33,34 @@ struct WmFadeProc {
 
 extern struct ProcCmd CONST_DATA ProcScr_WmFade[];
 
+struct WmSpriteAnimsProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 fade;
+    /* 2A */ u8 blend;
+    /* 2B */ u8 count;
+    /* 2C */ u8 timer;
+    /* 2E */ u16 chr;
+    /* 30 */ struct {
+        ProcPtr anim;
+        u8 id;
+        u16 chr;
+    } slots[4];
+};
+
+struct WmSpriteAnimEnt {
+    /* 00 */ void const * img;
+    /* 04 */ u16 const * ap;
+    /* 08 */ int animId;
+    /* 0C */ u16 size;
+    /* 0E */ s16 x;
+    /* 10 */ s16 y;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_WmSpriteAnims[];
+extern struct WmSpriteAnimEnt const gWmSpriteAnimTable[];
+
+void EndAllWmSpriteAnims(void);
+
 extern struct WmSt gWmSt;
 extern struct WmCanvas gWmCanvas;
 
@@ -280,12 +308,58 @@ void WmMakeGradient(u16 * dstPal, int b, u16 colorA, u16 colorB)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3918.s");
+void WmSpriteAnims_Init(struct WmSpriteAnimsProc * proc)
+{
+    int i;
+
+    proc->count = 0;
+    proc->timer = 0;
+    proc->blend = 0;
+    proc->fade = 0;
+    proc->chr = 0;
+
+    for (i = 0; i < 4; i++)
+        proc->slots[i].anim = NULL;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B3940.s");
+
 ASM_FUNC("asm/nonmatching/code_080B39D8.s");
+
 ASM_FUNC("asm/nonmatching/code_080B3AFC.s");
-ASM_FUNC("asm/nonmatching/code_080B3B70.s");
-ASM_FUNC("asm/nonmatching/code_080B3BE8.s");
+
+void EndAllWmSpriteAnims(void)
+{
+    int i;
+    struct WmSpriteAnimsProc * proc = Proc_Find(ProcScr_WmSpriteAnims);
+
+    if (proc == NULL)
+        return;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (proc->slots[i].anim != NULL)
+        {
+            EndSpriteAnimProc(proc->slots[i].anim);
+            proc->slots[i].anim = NULL;
+        }
+    }
+
+    proc->chr = 0;
+    proc->count = 0;
+    proc->timer = 0;
+    proc->blend = 0;
+    proc->fade = 0;
+}
+
+void WmMergeMonsters(void)
+{
+    struct WmSpriteAnimsProc * proc = Proc_Find(ProcScr_WmSpriteAnims);
+
+    if (proc != NULL)
+        proc->fade = 1;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B3C04.s");
 ASM_FUNC("asm/nonmatching/code_080B3C18.s");
 ASM_FUNC("asm/nonmatching/code_080B3C58.s");

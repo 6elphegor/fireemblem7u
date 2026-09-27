@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B3940
-sub_080B3940: @ 0x080B3940
+	thumb_func_start WmSpriteAnims_Loop
+WmSpriteAnims_Loop: @ 0x080B3940
 	push {r4, lr}
 	adds r2, r0, #0
 	adds r0, #0x2b
@@ -20,7 +20,7 @@ sub_080B3940: @ 0x080B3940
 	adds r4, r0, #0
 	cmp r1, #0
 	bne _080B3966
-	bl sub_080B3B70
+	bl EndAllWmSpriteAnims
 	b _080B39A6
 _080B3966:
 	subs r0, r1, #1

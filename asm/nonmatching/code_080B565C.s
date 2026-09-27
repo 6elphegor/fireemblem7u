@@ -53,11 +53,11 @@ _080B56C6:
 _080B56CE:
 	ldr r0, [r4, #0x34]
 	ldr r1, [r4, #0x40]
-	bl sub_080B39D8
+	bl StartWmSpriteAnim
 	b _080B5754
 _080B56D8:
 	ldr r0, [r4, #0x34]
-	bl sub_080B3AFC
+	bl EndWmSpriteAnim
 	b _080B5754
 _080B56E0:
 	ldr r0, [r4, #0x34]

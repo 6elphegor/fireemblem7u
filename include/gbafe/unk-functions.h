@@ -1041,11 +1041,11 @@ int GetClassReelEntry(int, int);
 // StartWmFade
 // WmHBlankHandler
 // WmMakeGradient
-// sub_080B3918
-// sub_080B3940
-// sub_080B39D8
-// sub_080B3AFC
-// sub_080B3B70
+// WmSpriteAnims_Init
+// WmSpriteAnims_Loop
+// StartWmSpriteAnim
+// EndWmSpriteAnim
+// EndAllWmSpriteAnims
 // WmMergeMonsters
 // sub_080B3C04
 // sub_080B3C18

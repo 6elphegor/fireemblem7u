@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B39D8
-sub_080B39D8: @ 0x080B39D8
+	thumb_func_start StartWmSpriteAnim
+StartWmSpriteAnim: @ 0x080B39D8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

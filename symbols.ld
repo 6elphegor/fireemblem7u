@@ -2000,3 +2000,5 @@ gWmCanvas = 0x0200000C;
 ProcScr_WmFade = 0x08CE7568;
 gWmHBlankFlags = 0x02000814;
 gWmHBlankLine = 0x02000815;
+ProcScr_WmSpriteAnims = 0x08CE7630;
+gWmSpriteAnimTable = 0x085E99B4;

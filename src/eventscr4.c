@@ -32,9 +32,9 @@ void sub_080B3D20(int a);
 void sub_080B3D78(void);
 void sub_080B4904(int a, int b, int c, int d);
 void sub_080B4ADC(int a);
-void sub_080B39D8(int a, int b);
-void sub_080B3AFC(int a);
-void sub_080B3B70(void);
+void StartWmSpriteAnim(int a, int b);
+void EndWmSpriteAnim(int a);
+void EndAllWmSpriteAnims(void);
 void sub_080B5844(int a);
 void sub_080B5934(int a);
 void sub_080B4890(int a);
@@ -768,7 +768,7 @@ int sub_0800F770(struct EventProc * proc)
         if (c != 0)
             WmMergeFace(c, 2, a, b, skipped, skipped, skipped);
         else
-            sub_080B39D8(a, b);
+            StartWmSpriteAnim(a, b);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -786,7 +786,7 @@ int sub_0800F7B8(struct EventProc * proc)
     if (b != 0)
         WmMergeFace(b, 3, a, 0, skipped, skipped, skipped);
     else
-        sub_080B3AFC(a);
+        EndWmSpriteAnim(a);
 
     return EVENT_CMDRET_YIELD;
 }
@@ -801,7 +801,7 @@ int sub_0800F804(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3B70();
+    EndAllWmSpriteAnims();
     return EVENT_CMDRET_YIELD;
 }
 
