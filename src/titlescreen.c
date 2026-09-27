@@ -232,8 +232,26 @@ void Title_ResetBmBgfxConf(struct ProcTitle * proc)
     SetBlendBackdropB(1);
 }
 
-void Title_BmBgfxAnimOUT(struct ProcTitle * proc);
-ASM_FUNC("asm/nonmatching/code_080BA918.s");
+void Title_BmBgfxAnimOUT(struct ProcTitle * proc)
+{
+    proc->timer++;
+
+    if (proc->timer <= 0x20)
+    {
+        if (proc->timer == 0x20)
+        {
+            TitleSpriteBlendIN(proc->approcs[5], 0x78, 0x90, 0x78, 0x90, 0x10, proc);
+        }
+        else
+        {
+            u8 pa = proc->timer / 2;
+            SetBlendAlpha(pa, 0x10 - pa);
+        }
+    }
+
+    if (proc->timer == 0x3C)
+        Proc_Break(proc);
+}
 
 
 void Title_RefrainSprites(struct ProcTitle * proc)
