@@ -1031,3 +1031,7 @@ gUnknown_080DA1CA = 0x081D56E4;
 gUnknown_08A1BD40 = 0x0840628C;
 gUnknown_085AAA0E = 0x08B9A466;
 gUnknown_085AAA48 = 0x08B9A4A0;
+gTrapPool = 0x0203A518;
+gTrapPoolLast = 0x0203A718;
+gBmMapBaseTiles = 0x08B932B4;
+gEvent_GameOver = 0x08CA749C;

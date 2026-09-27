@@ -34,7 +34,7 @@ _08034464:
 	movs r1, #0x11
 	ldrsb r1, [r5, r1]
 	movs r2, #0xb
-	bl sub_0802BA98
+	bl GetTypedTrapAt
 	bl RemoveTrap
 	ldr r0, _08034488 @ =0x08B96E30
 _08034478:

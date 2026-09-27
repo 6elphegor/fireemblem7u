@@ -13,7 +13,7 @@ _08079BB8:
 	cmp r0, #0xc
 	bne _08079BC4
 	adds r0, r4, #0
-	bl sub_0802C21C
+	bl RemoveLightRune
 	subs r4, #8
 _08079BC4:
 	adds r4, #8
