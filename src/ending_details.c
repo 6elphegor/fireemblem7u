@@ -33,11 +33,41 @@ struct CharacterEndingProc {
 struct EndingBattleDisplayProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * units[2];
-    /* 34 */ STRUCT_PAD(0x34, 0x3C);
+    /* 34 */ int timer;
+    /* 38 */ struct CharacterEndingEnt const * pCharacterEnding;
     /* 3C */ u16 battleAmounts[2];
     /* 40 */ u16 winAmounts[2];
     /* 44 */ u16 lossAmounts[2];
 };
+
+struct EndingBattleTextProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct CharacterEndingEnt const * pCharacterEnding;
+    /* 30 */ struct Unit * unitA;
+    /* 34 */ struct Unit * unitB;
+    /* 38 */ STRUCT_PAD(0x38, 0x3C);
+    /* 3C */ int pauseTimer;
+    /* 40 */ int defaultPauseDelay;
+    /* 44 */ char const * str;
+    /* 48 */ struct Text * text;
+};
+
+void SetFacePosition(int slot, int x, int y);
+int CountDigits(int number);
+int GetGameOverallRank(void);
+void sub_080B8160(int a, int b);
+
+extern u8 CONST_DATA gCharEndingSlideOffsetLut[];
+extern struct ProcCmd CONST_DATA gProcScr_EndingBattleDisplay_Solo[];
+extern struct ProcCmd CONST_DATA gProcScr_EndingBattleDisplay_Paired[];
+extern struct ProcCmd CONST_DATA gProcScr_EndingBattleDisplay_Text[];
+extern u8 Tsa_SoloEndingWindow[];
+extern u8 Tsa_SoloEndingNameplate[];
+extern u8 Tsa_PairedEndingWindow[];
+extern u8 Tsa_PairedEndingNameplates[];
+extern u16 Pal_FinScreen[];
+extern u8 Img_FinScreen[];
+extern u8 Tsa_FinScreen[];
 
 extern char * CONST_DATA gpDefeatedEndingLocString;
 extern struct EndingTitleEnt CONST_DATA gCharacterEndingTitleLut[];
@@ -305,7 +335,93 @@ bool DoesUnitHavePairedEnding(struct CharacterEndingEnt const * pairingEnt, stru
     return false;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B839C.s");
+void LoadNextCharacterEnding(struct CharacterEndingProc * proc)
+{
+    proc->unitB = NULL;
+    proc->unitA = NULL;
+
+    for (;; proc->pCharacterEnding++)
+    {
+        if (proc->pCharacterEnding->type == 0)
+        {
+            Proc_Goto(proc, 100);
+            return;
+        }
+
+        if ((*&proc->pidShownFlags[proc->pCharacterEnding->pidA >> 5] >> (proc->pCharacterEnding->pidA & 0x1f)) & 1)
+            continue;
+
+        if (proc->pCharacterEnding->pidB != 0)
+        {
+            if ((*&proc->pidShownFlags[proc->pCharacterEnding->pidB >> 5] >> (proc->pCharacterEnding->pidB & 0x1f)) & 1)
+                continue;
+        }
+
+        if (proc->pCharacterEnding->pidA == 0xCD)
+        {
+            if (!gPlaySt.tact_enabled)
+                continue;
+
+            proc->unitA = NULL;
+        }
+        else
+        {
+            proc->unitA = GetUnitForCharacterEnding(proc->pCharacterEnding->pidA);
+
+            if (proc->unitA == NULL)
+                continue;
+
+            switch (proc->pCharacterEnding->type)
+            {
+            case 1:
+                if (DoesUnitHavePairedEnding(proc->pCharacterEndingBkp, proc->unitA))
+                    continue;
+
+                break;
+
+            case 2:
+                proc->unitB = GetUnitForCharacterEnding(proc->pCharacterEnding->pidB);
+
+                if (proc->unitB == NULL)
+                    continue;
+
+                if (GetUnitASupporterPid(proc->unitA) != proc->pCharacterEnding->pidB)
+                    continue;
+
+                break;
+
+            case 3:
+                if (GetUnitASupporterPid(GetUnitFromCharId(1)) == 0x25)
+                    continue;
+
+                proc->unitB = GetUnitForCharacterEnding(proc->pCharacterEnding->pidB);
+
+                if (proc->unitB == NULL)
+                    continue;
+
+                break;
+
+            case 4:
+                proc->unitB = GetUnitFromCharId(0xF);
+
+                if (proc->unitB == NULL)
+                    continue;
+
+                break;
+            }
+        }
+
+        *&proc->pidShownFlags[(proc->pCharacterEnding->pidA >> 5)] |= 1 << (proc->pCharacterEnding->pidA & 0x1f);
+
+        if (proc->pCharacterEnding->pidB == 0)
+            return;
+
+        *&proc->pidShownFlags[proc->pCharacterEnding->pidB >> 5] |= 1 << (proc->pCharacterEnding->pidB & 0x1f);
+
+        return;
+    }
+}
+
 void CharacterEnding_StartBattleDisplay(struct CharacterEndingProc * proc)
 {
     switch (proc->pCharacterEnding->type)
@@ -383,19 +499,329 @@ void CharacterEnding_LoadUnitBattleStats(struct EndingBattleDisplayProc * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B8654.s");
-ASM_FUNC("asm/nonmatching/code_080B8874.s");
-ASM_FUNC("asm/nonmatching/code_080B88C0.s");
-ASM_FUNC("asm/nonmatching/code_080B88E0.s");
-ASM_FUNC("asm/nonmatching/code_080B8B90.s");
-ASM_FUNC("asm/nonmatching/code_080B8BF0.s");
-ASM_FUNC("asm/nonmatching/code_080B8C40.s");
-ASM_FUNC("asm/nonmatching/code_080B8C8C.s");
-ASM_FUNC("asm/nonmatching/code_080B8CAC.s");
-ASM_FUNC("asm/nonmatching/code_080B8D98.s");
-ASM_FUNC("asm/nonmatching/code_080B8E78.s");
-ASM_FUNC("asm/nonmatching/code_080B8E98.s");
-ASM_FUNC("asm/nonmatching/code_080B8EA8.s");
+void SoloEndingBattleDisp_Init(struct EndingBattleDisplayProc * proc)
+{
+    char const * str;
+
+    InitCharacterEndingText();
+
+    CharacterEnding_LoadUnitBattleStats(proc);
+
+    TmFill(gSoloEndingBattleDispConf[0], 0);
+    TmFill(gSoloEndingBattleDispConf[1], 0);
+    TmFill(gSoloEndingBattleDispConf[2], 0);
+
+    TmApplyTsa_thm(gSoloEndingBattleDispConf[2], Tsa_SoloEndingWindow, 0xC280);
+    TmApplyTsa_thm(gSoloEndingBattleDispConf[1], Tsa_SoloEndingNameplate, 0xC280);
+
+    if (proc->pCharacterEnding->pidA == 0xCD)
+    {
+        int rank = GetGameOverallRank();
+
+        if (rank > 3)
+            DecodeMsg(0x1074);
+        else if (rank > 1)
+            DecodeMsg(0x1076);
+        else
+            DecodeMsg(0x1078);
+
+        str = MsgExpand();
+
+        PutDrawText(gpCharacterEndingTexts + 5, gSoloEndingBattleDispConf[0] + TM_OFFSET(1, 3), 0, GetStringTextCenteredPos(120, str), 0, str);
+    }
+    else
+    {
+        str = DecodeMsg(GetPidTitleTextId(proc->pCharacterEnding->pidA));
+
+        PutDrawText(gpCharacterEndingTexts + 5, gSoloEndingBattleDispConf[0] + TM_OFFSET(1, 3), 0, GetStringTextCenteredPos(120, str), 0, str);
+
+        PutDrawText(gpCharacterEndingTexts + 8, gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1), 3, 0, 0, DecodeMsg(0x12AB));
+        PutDrawText(gpCharacterEndingTexts + 8, gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1), 3, 32, 0, DecodeMsg(0x12AC));
+        PutDrawText(gpCharacterEndingTexts + 8, gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1), 3, 64, 0, DecodeMsg(0x12AD));
+
+        PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1) + CountDigits(proc->battleAmounts[0]), 2, proc->battleAmounts[0]);
+        PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(21, 1) + CountDigits(proc->winAmounts[0]), 2, proc->winAmounts[0]);
+        PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(25, 1) + CountDigits(proc->lossAmounts[0]), 2, proc->lossAmounts[0]);
+
+        StartBmFace(0, gCharacterData[proc->pCharacterEnding->pidA - 1].portraitId, 416, 56, 0x502);
+
+        if (proc->units[0]->state & US_DEAD)
+        {
+            ArchivePalette(0x16);
+            WriteFadedPaletteFromArchive(0xC0, 0xC0, 0xC0, 0x400000);
+        }
+    }
+
+    proc->timer = 0;
+    SetBlendNone();
+}
+
+void SoloEndingBattleDisp_Loop(struct EndingBattleDisplayProc * proc)
+{
+    int xBase = 30;
+    int xOffset = gCharEndingSlideOffsetLut[proc->timer++];
+
+    if (proc->pCharacterEnding->pidA != 0xCD)
+        SetFacePosition(0, OAM1_X((xBase - xOffset) * 8 + 176), 56);
+
+    sub_080B8160(xBase - xOffset, 0);
+
+    if (xOffset == 30)
+        Proc_Break(proc);
+}
+
+void StartSoloEndingBattleDisplay(struct CharacterEndingEnt const * ent, struct Unit * unit, ProcPtr parent)
+{
+    struct EndingBattleDisplayProc * proc = Proc_StartBlocking(gProcScr_EndingBattleDisplay_Solo, parent);
+
+    proc->units[0] = unit;
+    proc->units[1] = NULL;
+
+    proc->pCharacterEnding = ent;
+}
+
+void PairedEndingBattleDisp_Init(struct EndingBattleDisplayProc * proc)
+{
+    char const * str;
+
+    InitCharacterEndingText();
+
+    CharacterEnding_LoadUnitBattleStats(proc);
+
+    TmFill(gSoloEndingBattleDispConf[0], 0);
+    TmFill(gSoloEndingBattleDispConf[1], 0);
+    TmFill(gSoloEndingBattleDispConf[2], 0);
+
+    TmApplyTsa_thm(gSoloEndingBattleDispConf[2], Tsa_PairedEndingWindow, 0xC280);
+    TmApplyTsa_thm(gSoloEndingBattleDispConf[1], Tsa_PairedEndingNameplates, 0xC280);
+
+    str = DecodeMsg(GetPidTitleTextId(proc->pCharacterEnding->pidA));
+    PutDrawText(gpCharacterEndingTexts + 5, gSoloEndingBattleDispConf[0] + TM_OFFSET(1, 3), 0, GetStringTextCenteredPos(120, str), 0, str);
+
+    PutDrawText(gpCharacterEndingTexts + 7, gSoloEndingBattleDispConf[0] + TM_OFFSET(1, 17), 3, 0, 0, DecodeMsg(0x12AB));
+    PutDrawText(gpCharacterEndingTexts + 7, gSoloEndingBattleDispConf[0] + TM_OFFSET(1, 17), 3, 32, 0, DecodeMsg(0x12AC));
+    PutDrawText(gpCharacterEndingTexts + 7, gSoloEndingBattleDispConf[0] + TM_OFFSET(1, 17), 3, 64, 0, DecodeMsg(0x12AD));
+
+    PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(1, 17) + CountDigits(proc->battleAmounts[0]), 2, proc->battleAmounts[0]);
+    PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(5, 17) + CountDigits(proc->winAmounts[0]), 2, proc->winAmounts[0]);
+    PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(9, 17) + CountDigits(proc->lossAmounts[0]), 2, proc->lossAmounts[0]);
+
+    str = DecodeMsg(GetPidTitleTextId(proc->pCharacterEnding->pidB));
+    PutDrawText(gpCharacterEndingTexts + 6, gSoloEndingBattleDispConf[0] + TM_OFFSET(14, 17), 0, GetStringTextCenteredPos(120, str), 0, str);
+
+    PutDrawText(gpCharacterEndingTexts + 8, gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1), 3, 0, 0, DecodeMsg(0x12AB));
+    PutDrawText(gpCharacterEndingTexts + 8, gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1), 3, 32, 0, DecodeMsg(0x12AC));
+    PutDrawText(gpCharacterEndingTexts + 8, gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1), 3, 64, 0, DecodeMsg(0x12AD));
+
+    PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(17, 1) + CountDigits(proc->battleAmounts[1]), 2, proc->battleAmounts[1]);
+    PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(21, 1) + CountDigits(proc->winAmounts[1]), 2, proc->winAmounts[1]);
+    PutNumber(gSoloEndingBattleDispConf[0] + TM_OFFSET(25, 1) + CountDigits(proc->lossAmounts[1]), 2, proc->lossAmounts[1]);
+
+    proc->timer = 0;
+
+    SetBlendNone();
+
+    StartBmFace(0, gCharacterData[proc->pCharacterEnding->pidA - 1].portraitId, 304, 48, 0x503);
+    StartBmFace(1, gCharacterData[proc->pCharacterEnding->pidB - 1].portraitId, 416, 48, 0x502);
+}
+
+void PairedEndingBattleDisp_Loop_SlideIn(struct EndingBattleDisplayProc * proc)
+{
+    int xBase = 30;
+
+    int xOffset = gCharEndingSlideOffsetLut[proc->timer];
+    proc->timer++;
+
+    xBase -= xOffset;
+
+    SetFacePosition(0, (xBase * 8 + 64) & 0x1FF, 48);
+    SetFacePosition(1, (xBase * 8 + 176) & 0x1FF, 48);
+
+    sub_080B8160(xBase, 0);
+
+    if (xOffset == 30)
+        Proc_Break(proc);
+}
+
+void PairedEndingBattleDisp_InitBlend(struct EndingBattleDisplayProc * proc)
+{
+    proc->timer = 0;
+
+    SetBlendAlpha(0x10, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 1, 0, 0);
+}
+
+void PairedEndingBattleDisp_Loop_Blend(struct EndingBattleDisplayProc * proc)
+{
+    int bldAmt = proc->timer >> 2;
+
+    proc->timer++;
+
+    SetBlendAlpha(0x10 - bldAmt, bldAmt);
+
+    if (bldAmt == 8)
+        Proc_Break(proc);
+}
+
+void StartPairedEndingBattleDisplay(struct CharacterEndingEnt const * ent, struct Unit * unitA, struct Unit * unitB, ProcPtr parent)
+{
+    struct EndingBattleDisplayProc * proc = Proc_StartBlocking(gProcScr_EndingBattleDisplay_Paired, parent);
+
+    proc->units[0] = unitA;
+    proc->units[1] = unitB;
+
+    proc->pCharacterEnding = ent;
+}
+
+void EndingBattleInitText(struct EndingBattleTextProc * proc)
+{
+    int i;
+
+    proc->text = gpCharacterEndingTexts;
+
+    proc->defaultPauseDelay = 4;
+    proc->pauseTimer = 4;
+
+    Text_SetCursor(proc->text, 0);
+    Text_SetColor(proc->text, 0);
+
+    for (i = 0; i < 5; i++)
+    {
+        int y = TM_OFFSET(0, 6 + i * 2);
+
+        ClearText(gpCharacterEndingTexts + i);
+        PutText(gpCharacterEndingTexts + i, gBg0Tm + 2 + y);
+    }
+
+    EnableBgSync(BG0_SYNC_BIT);
+
+    switch (proc->pCharacterEnding->type)
+    {
+    case 5:
+    {
+        i = GetGameOverallRank();
+
+        if (i > 3)
+            proc->str = DecodeMsg(0x1075);
+        else if (i > 1)
+            proc->str = DecodeMsg(0x1077);
+        else
+            proc->str = DecodeMsg(0x1079);
+
+        break;
+    }
+
+    case 3:
+        proc->str = DecodeMsg(proc->pCharacterEnding->msg);
+        break;
+
+    case 4:
+        if ((proc->unitA->state & US_DEAD) || (proc->unitB->state & US_DEAD))
+            proc->str = GetPidDefeatedEndingString(proc->unitA->pCharacterData->number);
+        else
+            proc->str = DecodeMsg(proc->pCharacterEnding->msg);
+
+        break;
+
+    default:
+        if (proc->unitA->state & US_DEAD)
+        {
+            proc->str = GetPidDefeatedEndingString(proc->unitA->pCharacterData->number);
+
+            if (proc->str != NULL)
+                return;
+        }
+
+        proc->str = DecodeMsg(proc->pCharacterEnding->msg);
+        break;
+    }
+}
+
+void EndingBattleText_Loop(struct EndingBattleTextProc * proc)
+{
+    if ((gpKeySt->pressed & START_BUTTON) && IsGamePlayedThrough())
+    {
+        Proc_Break(proc);
+        Proc_Goto(proc->proc_parent, 100);
+        return;
+    }
+
+    if (proc->pauseTimer != 0)
+    {
+        proc->pauseTimer--;
+        return;
+    }
+
+    SetTextFont(NULL);
+
+    switch (*proc->str)
+    {
+    case 0:
+        Proc_Break(proc);
+        break;
+
+    case 1:
+        proc->str++;
+        proc->text++;
+        proc->pauseTimer += 16;
+
+        Text_SetCursor(proc->text, 0);
+        Text_SetColor(proc->text, 0);
+
+        break;
+
+    case 4:
+        proc->pauseTimer = 8;
+        proc->str++;
+        break;
+
+    case 5:
+        proc->pauseTimer = 16;
+        proc->str++;
+        break;
+
+    case 6:
+        proc->pauseTimer = 32;
+        proc->str++;
+        break;
+
+    case 7:
+        proc->pauseTimer = 64;
+        proc->str++;
+        break;
+
+    case 2:
+    case 3:
+    default:
+        proc->str = Text_DrawCharacter(proc->text, proc->str);
+    }
+
+    proc->pauseTimer = proc->defaultPauseDelay;
+}
+
+void StartEndingBattleText(struct CharacterEndingEnt const * ent, struct Unit * unitA, struct Unit * unitB, ProcPtr parent)
+{
+    struct EndingBattleTextProc * proc = Proc_StartBlocking(gProcScr_EndingBattleDisplay_Text, parent);
+
+    proc->pCharacterEnding = ent;
+    proc->unitA = unitA;
+    proc->unitB = unitB;
+}
+
+void EndEndingBattleText(void)
+{
+    Proc_EndEach(gProcScr_EndingBattleDisplay_Text);
+}
+
+void DrawFinImage(void)
+{
+    ApplyPalette(Pal_FinScreen, 14);
+    Decompress(Img_FinScreen, (void *) (VRAM + 0x1000));
+    TmApplyTsa_thm(gBg2Tm, Tsa_FinScreen, 0xE080);
+    EnableBgSync(BG2_SYNC_BIT);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B8EEC.s");
 ASM_FUNC("asm/nonmatching/code_080B8F64.s");
 ASM_FUNC("asm/nonmatching/code_080B8FBC.s");
