@@ -1588,7 +1588,7 @@ extern u16 Pal_PrepMuralBackground[];
 // ??? gUnk_08427BFC
 // ??? gUnk_08428114
 // ??? gUnk_08428A40
-extern u16 Pal_08428A80[];
+extern u16 Pal_0840DD24[];
 extern u8  Img_PrepAtMenuUpfx[];
 extern u16 Pal_PrepAtMenuUpfx[];
 extern u16 Pal_PrepScreenTitleSprites[];

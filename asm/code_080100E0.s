@@ -33,19 +33,19 @@ _08010108:
 	b _08010130
 _08010112:
 	movs r0, #0x10
-	bl StartLockingPaletteFadeFromBlack
+	bl NewBlockedFadeIn
 	b _08010130
 _0801011A:
 	movs r0, #8
-	bl StartLockingPaletteFadeFromBlack
+	bl NewBlockedFadeIn
 	b _08010130
 _08010122:
 	movs r0, #4
-	bl StartLockingPaletteFadeFromBlack
+	bl NewBlockedFadeIn
 	b _08010130
 _0801012A:
 	movs r0, #2
-	bl StartLockingPaletteFadeFromBlack
+	bl NewBlockedFadeIn
 _08010130:
 	movs r0, #2
 _08010132:
