@@ -927,7 +927,6 @@ ProcPtr StartClassAnimDisplay(ProcPtr parent, int ent)
     return proc;
 }
 
-#if NONMATCHING
 void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
 {
     struct ClassDisplayFont const * font;
@@ -938,7 +937,7 @@ void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
     proc->width = 0;
     proc->x = 0xFA;
 
-    for (i = 0; i < 15 && proc->display->ent->name[i] != 0; i++)
+    for (i = 0; i < 15 && ({ proc->display->ent->name[i]; }) != 0; i++)
     {
         font = GetClassDisplayFontInfo(proc->display->ent->name[i]);
 
@@ -951,9 +950,6 @@ void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
     Decompress(Img_ClassDisplayFont, (void *) 0x06010000);
     ApplyPalettes(Pal_ClassDisplayFont, 0x14, 2);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B00A8.s");
-#endif
 
 void ClassStatsDisplay_Loop(struct OpInfoGaugeDrawProc * proc)
 {
