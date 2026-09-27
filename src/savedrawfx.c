@@ -122,7 +122,33 @@ void SaveMenuInitSubBoxText(void)
     InitTextFont(&gSaveMenuSubBoxFont, (void *) 0x0600C020, 1, 4);
     InitText(&gSaveMenuSubBoxText, 10);
 }
-ASM_FUNC("asm/nonmatching/code_080A5F18.s");
+void SaveMenuDrawSubSelBoxExt(int msgId, s8 draw_en)
+{
+    const char * str;
+
+    if (draw_en != 0)
+    {
+        str = DecodeMsg(msgId);
+
+        SetTextFont(&gSaveMenuSubBoxFont);
+
+        ClearText(&gSaveMenuSubBoxText);
+        Text_SetCursor(&gSaveMenuSubBoxText, 0);
+        Text_SetColor(&gSaveMenuSubBoxText, 0);
+        Text_DrawString(&gSaveMenuSubBoxText, str);
+
+        Text_SetCursor(&gSaveMenuSubBoxText, 0x28);
+        Text_DrawString(&gSaveMenuSubBoxText, DecodeMsg(0x1265));
+
+        PutText(&gSaveMenuSubBoxText, gBg1Tm + TM_OFFSET(7, 17));
+    }
+    else
+    {
+        TmFillRect_thm(gBg1Tm + TM_OFFSET(7, 17), 10, 1, 0);
+    }
+
+    EnableBgSync(BG1_SYNC_BIT);
+}
 void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, s8 flag)
 {
     SaveMenuDrawSubSelBoxExt(SaveMenuSubSelBoxTexts[BitfileToIndex(proc->action_flag)], flag);
@@ -145,7 +171,57 @@ void AddExtraMenuOption(struct SaveMenuProc * proc, int option)
     proc->unk_32 |= option;
     proc->unk_33++;
 }
-ASM_FUNC("asm/nonmatching/code_080A602C.s");
+void InitSaveMenuChoice(struct SaveMenuProc * proc)
+{
+    int i;
+    int count = 0;
+
+    proc->unk_31 = 0;
+    proc->unk_30 = 0;
+    proc->unk_32 = 0;
+    proc->unk_33 = 0;
+
+    if (*(u16 *) proc->unk_44 == 0x100)
+        AddMainMenuOption(proc, 1);
+
+    for (i = 0; i < 3; i++)
+        if (proc->unk_37[i] != (u8) -1)
+            count++;
+
+    if (count > 0)
+    {
+        AddMainMenuOption(proc, 2);
+
+        if (count < 3)
+            AddMainMenuOption(proc, 4);
+
+        AddMainMenuOption(proc, 8);
+    }
+
+    if (count < 3)
+        AddMainMenuOption(proc, 0x10);
+
+    if (IsExtraLinkArenaEnabled())
+        AddExtraMenuOption(proc, 1);
+
+    if (IsExtraSoundRoomEnabled())
+        AddExtraMenuOption(proc, 2);
+
+    if (IsExtraSupportViewerEnabled())
+        AddExtraMenuOption(proc, 4);
+
+    if (GetRankDataValidBitMap())
+        AddExtraMenuOption(proc, 8);
+
+    if (IsExtraBonusClaimEnabled())
+        AddExtraMenuOption(proc, 0x20);
+
+    if (proc->unk_32 != 0)
+    {
+        proc->unk_30 |= 0x20;
+        proc->unk_31++;
+    }
+}
 ASM_FUNC("asm/nonmatching/code_080A6114.s");
 ASM_FUNC("asm/nonmatching/code_080A6184.s");
 bool SaveMenuHasOptions(struct SaveMenuProc * proc)

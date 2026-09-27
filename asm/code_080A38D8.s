@@ -10,7 +10,7 @@ SaveMenu_LoadExtraMenuGraphics: @ 0x080A38D8
 	ldr r1, _080A390C @ =0x06013800
 	bl Decompress
 	adds r0, r5, #0
-	bl sub_080A602C
+	bl InitSaveMenuChoice
 	adds r6, r5, #0
 	adds r6, #0x42
 	ldrh r0, [r6]

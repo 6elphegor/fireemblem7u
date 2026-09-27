@@ -177,7 +177,7 @@ ProcPtr StartSpinRotation(ProcPtr parent);
 // ??? sub_080A5FD0
 // ??? AddMainMenuOption
 // ??? AddExtraMenuOption
-// ??? sub_080A602C
+// ??? InitSaveMenuChoice
 // ??? SaveMenuModifySaveSlot
 // ??? SaveMenuTryMoveSaveSlotCursor
 // ??? SaveMenuHasOptions

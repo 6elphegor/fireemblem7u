@@ -64,7 +64,7 @@ _080A4180:
 	cmp r0, #0x20
 	bne _080A41F6
 	adds r0, r7, #0
-	bl sub_080A602C
+	bl InitSaveMenuChoice
 	adds r0, r7, #0
 	adds r0, #0x42
 	ldrh r0, [r0]
