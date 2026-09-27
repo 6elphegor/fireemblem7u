@@ -62,6 +62,8 @@ struct CgTextMainProc {
     /* 5D */ s8 unk_5d;
     /* 5E */ u8 unk_5e;
     /* 5F */ u8 unk_5f;
+    /* 60 */ u8 unk_60;
+    /* 61 */ u8 unk_61; // extra name box width (FE7)
 };
 
 struct CgTextInterpreterProc {

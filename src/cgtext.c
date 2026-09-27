@@ -2,6 +2,8 @@
 #include "gbafe/cgtext.h"
 
 extern u16 CONST_DATA gPal_HelpTextBox[];
+extern u16 CONST_DATA gUnknown_0819D20C[];
+extern u8 CONST_DATA gUnknown_0819D174[];
 
 void SetCgTextFlags(int flags)
 {
@@ -63,7 +65,54 @@ void CgText_OnHBlank(void)
         REG_BLDALPHA = gDispIo.blend_coef_a + gDispIo.blend_coef_b * 0x100;
     }
 }
-ASM_FUNC("asm/nonmatching/code_080875A8.s");
+void sub_808EB0C(struct CgTextMainProc * proc)
+{
+    struct Font font;
+    char buf[32];
+    struct Text th;
+    int len;
+
+    char * iter = buf;
+
+    if ((proc->str[0] == 0x80) && (proc->str[1] == 0x23)) // [SetName]
+    {
+        proc->str += 2;
+
+        while (*proc->str != 0x01) // [NL]
+        {
+            *iter = *proc->str;
+            proc->str++;
+            iter++;
+        }
+
+        proc->str++;
+        *iter = 0;
+
+        SetCgTextFlag(CG_TEXT_FLAG_16);
+
+        InitSpriteTextFont(&font, (void *)0x06017800, 0x12);
+        SetTextFont(&font);
+        InitSpriteText(&th);
+
+        SpriteText_DrawBackgroundExt(&th, 0);
+
+        SetTextFontGlyphs(TEXT_GLYPHS_SYSTEM);
+
+        len = GetStringTextLen(buf);
+        if (len > 48)
+            proc->unk_61 = (len - 41) / 8;
+        else
+            proc->unk_61 = 0;
+
+        Text_InsertDrawString(&th, GetStringTextCenteredPos((proc->unk_61 + 6) * 8, buf), 0, buf);
+
+        SetTextFont(NULL);
+
+        ApplyPalette(Pal_Text, 0x12);
+        ApplyPalette(gUnknown_0819D20C, 0x11);
+        Decompress(gUnknown_0819D174, (void *)0x06017A00);
+    }
+}
 ASM_FUNC("asm/nonmatching/code_08087690.s");
 void CgText_InitBlendAmt(struct CgTextMainProc * proc)
 {

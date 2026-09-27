@@ -1105,3 +1105,5 @@ gCgTextSt = 0x0203E738;
 gProcScr_CgTextMain = 0x08CC306C;
 gProcScr_CgTextInterpreter = 0x08CC3114;
 gProcScr_YesNoChoice = 0x08CC3174;
+gUnknown_0819D20C = 0x0819D20C;
+gUnknown_0819D174 = 0x0819D174;
