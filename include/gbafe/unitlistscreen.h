@@ -85,6 +85,11 @@ extern u8 gUnknown_0200F158;
 extern u32 gUnknown_0200F15C[8];
 
 extern u16 const * gSpriteArray_08A17B58[];
+extern u16 const Sprite_08A17B64[];
+extern u16 const Sprite_08CC3490[];
+extern u16 const Sprite_08A17B6C[];
+extern u16 const * gSpriteArray_08A17C20[];
+extern u16 gUnknown_02013460[];
 
 /* unit stack (defined in asm) */
 void InitUnitStack(void * buf);

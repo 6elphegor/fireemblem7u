@@ -324,7 +324,95 @@ void UnitListScreenSprites_Init(struct UnitListScreenSpritesProc * proc)
     ForceSyncUnitSpriteSheet();
 }
 
-ASM_FUNC("asm/nonmatching/code_0808927C.s");
+void UnitListScreenSprites_Main(struct UnitListScreenSpritesProc * proc)
+{
+    int i;
+    int r7;
+    int r8;
+
+    int gUnknown_08205B84[4] =
+    {
+        0, 1, 2, 1,
+    };
+
+    if (proc->unk_2c->unk_34 == 0)
+        PutSpriteExt(0xb, 184, gUnknown_08205B84[(proc->unk_3b / 8) % 4] + 7, Sprite_08A17B64, OAM2_PAL(9));
+    else
+        PutSpriteExt(0xb, 184 + OAM1_VFLIP, gUnknown_08205B84[(proc->unk_3b / 8) % 4] + 7, Sprite_08A17B64, OAM2_PAL(9));
+
+    PutSpriteExt(0xd, 0x20, 8, gSpriteArray_08A17C20[proc->unk_2c->page], OAM2_PAL(9));
+    PutSpriteExt(0xd, 0xA0, 0, Sprite_08CC3490, OAM2_PAL(9));
+
+    UpdateMenuScrollBarConfig(10, proc->unk_2c->unk_3e, gUnknown_0200F158, 6);
+
+    if (proc->unk_2c->unk_29 >= 3)
+    {
+        PutUiHand(
+            gUnitListScreenFields[proc->unk_2c->page][proc->unk_2c->unk_2d].xColumn - 2, proc->unk_2c->unk_2c * 16 + 40);
+    }
+    else
+    {
+        PutSpriteExt(0xd, 4, proc->unk_2c->unk_2c * 16 + 0x40, Sprite_08A17B6C, OAM2_PAL(9));
+    }
+
+    if ((proc->unk_38 != proc->unk_2c->unk_3e) || ((proc->unk_2c->unk_3e % 0x10) != 0))
+    {
+        gPal[0x19E] = gUnknown_02013460[8];
+        EnablePalSync();
+
+        proc->unk_3c = 32;
+        proc->unk_38 = proc->unk_2c->unk_3e;
+
+        if (proc->unk_3a == 0)
+        {
+            sub_8090514(1);
+            proc->unk_3a = 1;
+        }
+    }
+    else
+    {
+        gPal[0x19E] = gUnknown_02013460[(proc->unk_3c / 4) & 0xf];
+        EnablePalSync();
+
+        if (proc->unk_3a == 1)
+        {
+            sub_8090514(0);
+            proc->unk_3a = 0;
+        }
+    }
+
+    SyncUnitSpriteSheet();
+
+    r7 = (proc->unk_38 / 0x10);
+    r8 = -((proc->unk_38) % 0x10);
+
+    for (i = 0; i < 6 && i + r7 < gUnknown_0200F158; i++)
+    {
+        PutUnitSprite(4, 8, 56 + i * 16 + r8, gSortedUnits[i + r7]->unit);
+    }
+
+    if ((proc->unk_3a != 0) && ((i + r7) < gUnknown_0200F158))
+    {
+        PutUnitSprite(4, 8, 56 + i * 16 + r8, gSortedUnits[i + r7]->unit);
+    }
+
+    if ((proc->unk_2c->page < proc->unk_2c->unk_2e) && (proc->unk_2c->mode != UNITLIST_MODE_SOLOANIM))
+        sub_08088E80(1, proc->unk_30, 1);
+    else
+        sub_08088E80(1, proc->unk_30, 0);
+
+    if ((proc->unk_2c->page > 1) && (proc->unk_2c->mode != UNITLIST_MODE_SOLOANIM))
+        sub_08088E80(0, proc->unk_30, 1);
+    else
+        sub_08088E80(0, proc->unk_30, 0);
+
+    if ((u8)++proc->unk_30 / 8 > 5)
+        proc->unk_30 = 0;
+
+    proc->unk_3b++;
+    proc->unk_3c++;
+}
+
 void UnitListScreenSprites_Dummy(void)
 {
 }
