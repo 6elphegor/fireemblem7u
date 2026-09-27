@@ -38,7 +38,7 @@ sub_080A71A8: @ 0x080A71A8
 	movs r5, #0
 _080A71F2:
 	adds r0, r4, #0
-	bl sub_080A6DC0
+	bl TactGetMsg_Gender
 	bl DecodeMsg
 	adds r3, r0, #0
 	ldr r0, _080A7228 @ =0x0200008C

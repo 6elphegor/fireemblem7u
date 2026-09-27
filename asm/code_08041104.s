@@ -8,7 +8,7 @@ sub_08041104: @ 0x08041104
 	adds r5, r0, #0
 	bl ClearSioBG
 	bl sub_08047B34
-	bl sub_080490B4
+	bl EndLinkArenaVersusSpriteDraw
 	movs r0, #3
 	bl EndFaceById
 	ldr r4, _0804115C @ =0x0203D960

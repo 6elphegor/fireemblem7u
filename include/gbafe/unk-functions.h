@@ -67,7 +67,6 @@ void InitPlayConfig(int);
 void StartBattleMap(/* TODO */);
 // RestartBattleMap
 void ResumeChapterFromSuspend(/* TODO */);
-void sub_0802E190(ProcPtr proc); // FE7J ResumeChapterFromSuspend
 // RefreshBMapDisplay_FromBattle
 // BMapDispResume_FromBattleDelayed
 // InitMoreBMapGraphics
@@ -80,8 +79,8 @@ void CleanupUnitsBeforeChapter(void);
 // ResumeMapMainDuringBerserk
 // ResumeMapMainDuringArena
 // ResumeMapMainDuringPhaseChange
-void sub_0802E6B0(/* TODO */);
-void sub_0802E6D4(/* TODO */);
+void GameCtrl_DeclareCompletedChapter(void);
+void GameCtrl_SavePlayThroughData(void);
 char *GetTacticianName();
 void SetTacticianName(const char *name);
 // GetConvoyItemArray
@@ -476,7 +475,7 @@ void StartBoxDialogueExt(int x, int y, int msgId, u16* unkA, int unkB, ProcPtr p
 // sub_08083C44
 // sub_08083C68
 // sub_08083C8C
-// sub_08083CE8
+// BoxDialogueInterpreter_Main
 // sub_080842F0
 // sub_08084320
 // sub_0808436C
@@ -761,25 +760,25 @@ void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to
 // sub_080AAD18
 // sub_80ABC04
 // sub_80ABC28
-// sub_080AAD68
+// IsSoundRoomCompleted
 // sub_80ABC5C
-// sub_080AAD7C
+// CountTotalSoundRoomSongs
 // CountSecretSoundRoomSongs
 // IsSoundRoomSongPlayable
 // CountDisplayedSoundRoomSongs
-// sub_080AAE40
+// InitSoundRoomSongData
 // nullsub_86
 // SoundRoomSongChange_FadeOutPrevious
-// sub_080AAFC4
+// SoundRoomSongChange_StartNext
 // PlayNextShuffledSong
 // InitSoundRoomShuffleBuffer
-// sub_080AB1C8
-// sub_080AB228
+// SoundRoom_StartNextSong_Positive
+// SoundRoom_StartNextSong_Negative
 // UpdateVolumeGraphBuffer
 // InitSoundRoomVolumeGraph
 // sub_80AC1EC
 // nullsub_87
-// sub_080AB314
+// VolumeGraphBuffer_Loop
 // sub_080AB420
 // sub_080AB440
 // sub_080AB4EC
@@ -789,24 +788,24 @@ void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to
 // sub_080AB604
 // sub_080AB654
 // sub_080AB75C
-// sub_080AB78C
-// sub_080AB79C
+// TickCurrentSongTime
+// SoundRoomUi_Init
 // StartSoundRoomSong
 // StopSoundRoomSong
 // TryDrawSoundRoomSongTitle
-// sub_080ABB60
-// sub_080ABD4C
+// SoundRoomUi_Loop_MainKeyHandler
+// SoundRoomUi_RestartTitleMusic
 // sub_80ACC60
 // sub_080ABD90
-// sub_080ABEF4
-// sub_080ABFC8
-// sub_080AC000
+// SoundRoomUi_80AFBBC
+// SoundRoomUi_Loop_MainUiSlideOut
+// SoundRoomUi_80AFC98
 // SoundRoomUi_80AFCE4
-// sub_080AC084
+// SoundRoomUi_Loop_MainUiSlideIn
 // SoundRoomUi_80AFD48
-// sub_080AC0E4
-// sub_080AC174
-// sub_080AC21C
+// SoundRoomUi_Loop_ShufflePlayUiSlideIn
+// SoundRoomUi_Loop_ShufflePlayKeyHandler
+// SoundRoomUi_Loop_ShufflePlayUiSlideOut
 // sub_80AD190
 // sub_080AC2C0
 // DrawSoundRoomSongTitle
@@ -815,8 +814,8 @@ void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to
 // sub_080AC54C
 // DrawMusicPlayerTime
 // sub_80AD53C
-// sub_080AC66C
-// sub_080AC78C
+// SoundRoom_DrawSprites_Loop
+// DrawSoundRoomSprites
 // sub_80AD678
 // sub_080AC7B0
 // sub_080AC7E8

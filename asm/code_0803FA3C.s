@@ -8,7 +8,7 @@ sub_0803FA3C: @ 0x0803FA3C
 	adds r5, r0, #0
 	movs r0, #0x40
 	movs r1, #0x58
-	bl sub_0804925C
+	bl PutLinkArenaChoiceBannerSprite
 	ldr r0, _0803FACC @ =0x08B857F8
 	ldr r1, [r0]
 	movs r0, #0x20

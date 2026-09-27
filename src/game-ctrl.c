@@ -485,7 +485,7 @@ PROC_LABEL(23),
     PROC_GOTO(0),
 
 PROC_LABEL(18),
-    PROC_CALL(sub_080A6D9C),
+    PROC_CALL(StartTacticianInfo),
     PROC_YIELD,
 
     PROC_GOTO(5),
@@ -559,7 +559,7 @@ PROC_LABEL(6),
     PROC_CALL(sub_0801264C),
     PROC_CALL(GC_DarkenScreen),
     PROC_CALL(GC_RememberChapterId),
-    PROC_CALL(sub_0802E190),
+    PROC_CALL(ResumeChapterFromSuspend),
     PROC_YIELD,
 
     PROC_CALL(GC_PostLoadSuspend),
@@ -583,7 +583,7 @@ PROC_LABEL(11),
     PROC_GOTO(4),
 
 PROC_LABEL(13),
-    PROC_CALL(sub_0802E6B0),
+    PROC_CALL(GameCtrl_DeclareCompletedChapter),
     PROC_CALL(sub_08012A70),
     PROC_YIELD,
 
@@ -593,7 +593,7 @@ PROC_LABEL(14),
 
     PROC_WHILE(IsEventRunning),
 
-    PROC_CALL(sub_0802E6D4),
+    PROC_CALL(GameCtrl_SavePlayThroughData),
     PROC_CALL(sub_080B90AC),
     PROC_SLEEP(30),
 

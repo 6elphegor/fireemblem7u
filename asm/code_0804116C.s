@@ -97,7 +97,7 @@ _080411DE:
 	adds r0, r2, r0
 	ldrb r1, [r0]
 	mov r0, sb
-	bl sub_08047D80
+	bl StartLinkArenaTitleBanner
 	ldr r0, _080412BC @ =0x08B98CA8
 	ldrb r3, [r4]
 	lsls r1, r3, #2

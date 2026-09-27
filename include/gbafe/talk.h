@@ -116,7 +116,7 @@ void SetInitTalkTextFont();
 // ??? StartTalk
 // ??? EndTalk
 // ??? SetTalkLines
-// ??? ClearAllTalkFlags
+void ClearAllTalkFlags(void);
 // ??? SetTalkFlag
 // ??? SetTalkFunc
 // ??? ClearTalkFlag

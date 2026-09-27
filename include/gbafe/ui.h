@@ -23,7 +23,7 @@ void ApplyUiWindowFramePal(int palid);
 void UnpackUiWindowFrameImg(void *dest);
 void ApplyUiStatBarPal(int palid);
 void UnpackUiWindowFrameGraphics2(int window_theme);
-void PutUiWindowFrame(int x, int y, int width, int height, int window_kind);
+void PutUiWindowFrame(u16 * tm, int x, int y, int width, int height, int tilebase, int window_kind);
 void DrawUiFrame2(int x, int y, int width, int height, int window_kind);
 void PutUiHand(int x, int y);
 void PutUnkUiHand(int x, int y);

@@ -93,7 +93,7 @@ _08040792:
 	ldrb r2, [r4]
 	adds r1, r2, r1
 	ldrb r1, [r1]
-	bl sub_08047D80
+	bl StartLinkArenaTitleBanner
 	ldr r0, _08040860 @ =0x08B98CA8
 	ldrb r3, [r4]
 	lsls r1, r3, #2

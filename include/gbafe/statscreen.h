@@ -124,7 +124,7 @@ struct StatScreenTextInfo {
     /* 04 */ u16 * tm;
     /* 08 */ u8 color;
     /* 09 */ u8 x_offset;
-    /* 0C */ char const * const * str_list;
+    /* 0C */ int const * msg; // FE7J: char const * const * str_list
 };
 
 void InitStatScreenText(void);
