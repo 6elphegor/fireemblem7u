@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AC2AC
-sub_080AC2AC: @ 0x080AC2AC
+	thumb_func_start StartSoundRoomScreen
+StartSoundRoomScreen: @ 0x080AC2AC
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080AC2BC @ =0x08CE54E4

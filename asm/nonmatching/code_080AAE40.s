@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AAE40
-sub_080AAE40: @ 0x080AAE40
+	thumb_func_start InitSoundRoomSongData
+InitSoundRoomSongData: @ 0x080AAE40
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -11,7 +11,7 @@ sub_080AAE40: @ 0x080AAE40
 	push {r5, r6, r7}
 	sub sp, #0x2c
 	adds r7, r0, #0
-	bl sub_080AAD7C
+	bl CountTotalSoundRoomSongs
 	movs r1, #0x36
 	adds r1, r1, r7
 	mov r8, r1

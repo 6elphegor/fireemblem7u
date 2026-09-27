@@ -2,7 +2,7 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AB310
-sub_080AB310: @ 0x080AB310
+	thumb_func_start VolumeGraphBuffer_Null
+VolumeGraphBuffer_Null: @ 0x080AB310
 	bx lr
 	.align 2, 0

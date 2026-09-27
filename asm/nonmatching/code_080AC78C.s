@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AC78C
-sub_080AC78C: @ 0x080AC78C
+	thumb_func_start DrawSoundRoomSprites
+DrawSoundRoomSprites: @ 0x080AC78C
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080AC79C @ =0x08CE56E4

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080ABD4C
-sub_080ABD4C: @ 0x080ABD4C
+	thumb_func_start SoundRoomUi_RestartTitleMusic
+SoundRoomUi_RestartTitleMusic: @ 0x080ABD4C
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0

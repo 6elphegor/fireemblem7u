@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AB228
-sub_080AB228: @ 0x080AB228
+	thumb_func_start SoundRoom_StartNextSong_Negative
+SoundRoom_StartNextSong_Negative: @ 0x080AB228
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x32

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080ABB60
-sub_080ABB60: @ 0x080ABB60
+	thumb_func_start SoundRoomUi_Loop_MainKeyHandler
+SoundRoomUi_Loop_MainKeyHandler: @ 0x080ABB60
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	movs r5, #0

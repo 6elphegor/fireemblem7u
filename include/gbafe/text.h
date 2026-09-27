@@ -173,6 +173,7 @@ void PutNumberSmall(u16 * tm, int color, int number);
 void PutNumberBonus(int number, u16 * tm);
 void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero);
 void PutNumber2Digit(u16 * tm, int color, int number);
+void sub_080063CC(u16 * tm, int color, int number); // PutNumber2Digit
 void PutNumber2DigitSmall(u16 * tm, int color, int number);
 void PutTime(u16 * tm, int color, int time, bool always_display_punctuation);
 void PutTwoSpecialChar(u16 * tm, int color, int id_a, int id_b);

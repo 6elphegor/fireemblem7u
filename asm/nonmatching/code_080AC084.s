@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AC084
-sub_080AC084: @ 0x080AC084
+	thumb_func_start SoundRoomUi_Loop_MainUiSlideIn
+SoundRoomUi_Loop_MainUiSlideIn: @ 0x080AC084
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r2, r5, #0

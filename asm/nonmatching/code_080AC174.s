@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AC174
-sub_080AC174: @ 0x080AC174
+	thumb_func_start SoundRoomUi_Loop_ShufflePlayKeyHandler
+SoundRoomUi_Loop_ShufflePlayKeyHandler: @ 0x080AC174
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x3f
@@ -44,7 +44,7 @@ _080AC1B4:
 	cmp r0, #0
 	beq _080AC1D0
 	adds r0, r4, #0
-	bl sub_080AB1C8
+	bl SoundRoom_StartNextSong_Positive
 	b _080AC216
 	.align 2, 0
 _080AC1CC: .4byte 0x08B857F8
@@ -54,7 +54,7 @@ _080AC1D0:
 	cmp r0, #0
 	beq _080AC1E0
 	adds r0, r4, #0
-	bl sub_080AB228
+	bl SoundRoom_StartNextSong_Negative
 	b _080AC216
 _080AC1E0:
 	movs r0, #6

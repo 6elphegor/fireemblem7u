@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AC66C
-sub_080AC66C: @ 0x080AC66C
+	thumb_func_start SoundRoom_DrawSprites_Loop
+SoundRoom_DrawSprites_Loop: @ 0x080AC66C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AAD68
-sub_080AAD68: @ 0x080AAD68
+	thumb_func_start IsSoundRoomCompleted
+IsSoundRoomCompleted: @ 0x080AAD68
 	adds r0, #0x34
 	ldrb r0, [r0]
 	cmp r0, #0x64

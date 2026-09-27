@@ -26,7 +26,7 @@ _080AC024:
 	cmp r0, #0
 	beq _080AC034
 	adds r0, r4, #0
-	bl sub_080AB1C8
+	bl SoundRoom_StartNextSong_Positive
 	b _080AC068
 _080AC034:
 	movs r0, #0x10
@@ -34,7 +34,7 @@ _080AC034:
 	cmp r0, #0
 	beq _080AC044
 	adds r0, r4, #0
-	bl sub_080AB228
+	bl SoundRoom_StartNextSong_Negative
 	b _080AC068
 _080AC044:
 	ldr r0, _080AC054 @ =0x00000302

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AB79C
-sub_080AB79C: @ 0x080AB79C
+	thumb_func_start SoundRoomUi_Init
+SoundRoomUi_Init: @ 0x080AB79C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -108,7 +108,7 @@ sub_080AB79C: @ 0x080AB79C
 	adds r0, #0x11
 	strb r3, [r0]
 	adds r0, r4, #0
-	bl sub_080AAE40
+	bl InitSoundRoomSongData
 	adds r0, r4, #0
 	bl sub_080AB440
 	bl sub_080AC2C0
@@ -267,7 +267,7 @@ sub_080AB79C: @ 0x080AB79C
 	movs r2, #0x40
 	bl ApplyPaletteExt
 	adds r0, r4, #0
-	bl sub_080AC78C
+	bl DrawSoundRoomSprites
 	adds r1, r7, #0
 	adds r1, #0x3c
 	movs r0, #0x3f
@@ -300,7 +300,7 @@ sub_080AB79C: @ 0x080AB79C
 	adds r0, r4, #0
 	bl StartGreenText
 	bl InitSoundRoomVolumeGraph
-	ldr r0, _080ABAAC @ =sub_080AB78C
+	ldr r0, _080ABAAC @ =TickCurrentSongTime
 	adds r1, r4, #0
 	bl StartParallelWorker
 	ldr r0, _080ABAB0 @ =0x08CE54B4
@@ -333,5 +333,5 @@ _080ABA9C: .4byte 0x06012000
 _080ABAA0: .4byte 0x08414844
 _080ABAA4: .4byte 0x0000FFE0
 _080ABAA8: .4byte 0x0000E0FF
-_080ABAAC: .4byte sub_080AB78C
+_080ABAAC: .4byte TickCurrentSongTime
 _080ABAB0: .4byte 0x08CE54B4

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AC21C
-sub_080AC21C: @ 0x080AC21C
+	thumb_func_start SoundRoomUi_Loop_ShufflePlayUiSlideOut
+SoundRoomUi_Loop_ShufflePlayUiSlideOut: @ 0x080AC21C
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
 	adds r6, r0, #0

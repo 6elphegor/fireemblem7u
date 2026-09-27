@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AAD7C
-sub_080AAD7C: @ 0x080AAD7C
+	thumb_func_start CountTotalSoundRoomSongs
+CountTotalSoundRoomSongs: @ 0x080AAD7C
 	movs r2, #0
 	ldr r1, _080AAD8C @ =0x08CE4D28
 _080AAD80:

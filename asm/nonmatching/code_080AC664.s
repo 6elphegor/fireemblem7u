@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AC664
-sub_080AC664: @ 0x080AC664
+	thumb_func_start SoundRoom_DrawSprites_Init
+SoundRoom_DrawSprites_Init: @ 0x080AC664
 	movs r1, #0
 	str r1, [r0, #0x2c]
 	bx lr
