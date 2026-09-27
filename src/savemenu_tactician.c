@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern struct ProcCmd CONST_DATA ProcScr_TactNameSelect[];
+extern struct ProcCmd CONST_DATA ProcScr_TactBirthSelect[];
+extern struct ProcCmd CONST_DATA ProcScr_TactGenderSelect[];
+
 void StartTacticianNameSelect(ProcPtr parent); // StartTacticianNameSelect
 void sub_080A7194(struct ProcTactInfo *proc); // StartTactBirthSelect
 void sub_080A73E4(struct ProcTactInfo *proc); // StartTactGenderSelect
@@ -463,15 +467,47 @@ void TactBlood_Init(struct ProcTactBlood *proc)
 	// FE7U: blood type selection was removed; only this empty stub remains
 }
 
-ASM_FUNC("asm/nonmatching/code_080A6E28.s");
-ASM_FUNC("asm/nonmatching/code_080A6E2C.s");
-ASM_FUNC("asm/nonmatching/code_080A6E64.s");
+void sub_080A6E28(void)
+{
+}
+void sub_080A6E2C(void)
+{
+    TmFill(gBg1Tm, 0);
+    SetTextFont(&gTactInfoSt.font);
+    SpriteText_DrawBackgroundExt(gTactInfoSt.texts + 1, 0);
+    SetTextFont(NULL);
+    EnableBgSync(BG1_SYNC_BIT);
+}
+void sub_080A6E64(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_TactNameSelect, parent);
+}
 ASM_FUNC("asm/nonmatching/code_080A6E78.s");
 ASM_FUNC("asm/nonmatching/code_080A6F34.s");
-ASM_FUNC("asm/nonmatching/code_080A715C.s");
-ASM_FUNC("asm/nonmatching/code_080A7194.s");
+void sub_080A715C(void)
+{
+    TmFill(gBg1Tm, 0);
+    SetTextFont(&gTactInfoSt.font);
+    SpriteText_DrawBackgroundExt(gTactInfoSt.texts + 1, 0);
+    SetTextFont(NULL);
+    EnableBgSync(BG1_SYNC_BIT);
+}
+void sub_080A7194(struct ProcTactInfo * proc)
+{
+    Proc_StartBlocking(ProcScr_TactBirthSelect, proc);
+}
 ASM_FUNC("asm/nonmatching/code_080A71A8.s");
 ASM_FUNC("asm/nonmatching/code_080A722C.s");
-ASM_FUNC("asm/nonmatching/code_080A73AC.s");
-ASM_FUNC("asm/nonmatching/code_080A73E4.s");
+void sub_080A73AC(void)
+{
+    TmFill(gBg1Tm, 0);
+    SetTextFont(&gTactInfoSt.font);
+    SpriteText_DrawBackgroundExt(gTactInfoSt.texts + 1, 0);
+    SetTextFont(NULL);
+    EnableBgSync(BG1_SYNC_BIT);
+}
+void sub_080A73E4(struct ProcTactInfo * proc)
+{
+    Proc_StartBlocking(ProcScr_TactGenderSelect, proc);
+}
 ASM_FUNC("asm/nonmatching/code_080A73F8.s");

@@ -2822,3 +2822,6 @@ ProcScr_SaveBgUp = 0x08CE4398;
 SaveMenuSubSelBoxTexts = 0x08CE435C;
 gSaveMenuSubBoxFont = 0x02000044;
 gSaveMenuSubBoxText = 0x0200005C;
+ProcScr_TactNameSelect = 0x08CE477C;
+ProcScr_TactBirthSelect = 0x08CE47AC;
+ProcScr_TactGenderSelect = 0x08CE47DC;
