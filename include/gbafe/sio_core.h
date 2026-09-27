@@ -229,8 +229,8 @@ struct ProcTactician {
     /* 3A */ u8 unk3A;
     /* 3A */ u8 unk3B;
     /* 3C */ u8 max_len;                /* pre-configured max string length */
-    /* 3D */ char str[0x4C - 0x3D];
-    /* 4C */ u16 unk4C[0x10];
+    /* 3D */ char str[0x48 - 0x3D];
+    /* 48 */ u16 unk4C[0x10];
 };
 
 struct TacticianTextConf {
