@@ -526,6 +526,105 @@ def gen_characters():
     write("characters.c", out)
 
 
+# --- chapters -----------------------------------------------------------------
+
+CHAPTER_TABLE, CHAPTER_COUNT = 0x08C9A200, 67
+
+# (offset, field, kind, count): kinds are u8/s8/u16/u32/msg/hex8/hex16
+CHAPTER_FIELDS = [
+    (0x04, "asset_img_a", "u8", 1), (0x05, "asset_img_b", "u8", 1),
+    (0x06, "asset_pal", "u8", 1), (0x07, "asset_tileset", "u8", 1),
+    (0x08, "asset_map", "u8", 1), (0x09, "asset_img_anims", "u8", 1),
+    (0x0A, "asset_pal_anims", "u8", 1), (0x0B, "asset_map_changes", "u8", 1),
+    None,
+    (0x0C, "fog", "u8", 1), (0x0D, "has_prep", "u8", 1), (0x0E, "title_ids", "u8", 2),
+    (0x10, "unk_0F", "u8", 1), (0x11, "unk_10", "u8", 1), (0x12, "weather", "u8", 1),
+    (0x13, "banim_terrain_id", "u8", 1), (0x14, "hard_bonus_levels", "u8", 1),
+    None,
+    (0x16, "map_bgm_ids", "hex16", 8), (0x26, "song_prologue_lyn", "hex16", 1),
+    (0x28, "song_openning", "hex16", 2),
+    None,
+    (0x2C, "wall_hp", "u8", 1),
+    None,
+    (0x2D, "turnsForTacticsRankAInEliwoodStory", "u8", 2),
+    (0x2F, "turnsForTacticsRankAInHectorStory", "u8", 2),
+    (0x31, "turnsForTacticsRankBInEliwoodStory", "u8", 2),
+    (0x33, "turnsForTacticsRankBInHectorStory", "u8", 2),
+    (0x35, "turnsForTacticsRankCInEliwoodStory", "u8", 2),
+    (0x37, "turnsForTacticsRankCInHectorStory", "u8", 2),
+    (0x39, "turnsForTacticsRankDInEliwoodStory", "u8", 2),
+    (0x3B, "turnsForTacticsRankDInHectorStory", "u8", 2),
+    (0x3D, "unk3D", "u8", 1),
+    None,
+    (0x3E, "gainedExpForExpRankAInEliwoodStory", "u16", 2),
+    (0x42, "gainedExpForExpRankAInHectorStory", "u16", 2),
+    (0x46, "gainedExpForExpRankBInEliwoodStory", "u16", 2),
+    (0x4A, "gainedExpForExpRankBInHectorStory", "u16", 2),
+    (0x4E, "gainedExpForExpRankCInEliwoodStory", "u16", 2),
+    (0x52, "gainedExpForExpRankCInHectorStory", "u16", 2),
+    (0x56, "gainedExpForExpRankDInEliwoodStory", "u16", 2),
+    (0x5A, "gainedExpForExpRankDInHectorStory", "u16", 2),
+    (0x5E, "unk5E", "u16", 1),
+    None,
+    (0x60, "goldForFundsRankInEliwoodStory", "u32", 2),
+    (0x68, "goldForFundsRankInHectorStory", "u32", 2),
+    None,
+    (0x70, "msg_chapter_title", "msg", 2), (0x74, "unk74", "msg", 2),
+    None,
+    (0x78, "mapEventDataId", "u8", 1), (0x79, "gmapEventId", "u8", 1),
+    None,
+    (0x7A, "divinationTextIdBeginning", "msg", 1),
+    (0x7C, "divinationTextIdInEliwoodStory", "msg", 1),
+    (0x7E, "divinationTextIdInHectorStory", "msg", 1),
+    (0x80, "divinationTextIdEnding", "msg", 1),
+    (0x82, "divinationPortrait", "u8", 1), (0x83, "divinationFee", "u8", 1),
+    None,
+    (0x84, "prepScreenNumber", "u8", 2),
+    (0x86, "merchantPosX", "u8", 1), (0x87, "merchantPosXInHectorStory", "u8", 1),
+    (0x88, "merchantPosY", "u8", 1), (0x89, "merchantPosYInHectorStory", "u8", 1),
+    None,
+    (0x8A, "victorySongEnemyThreshold", "s8", 1), (0x8B, "fadeToBlack", "u8", 1),
+    None,
+    (0x8C, "statusObjectiveTextId", "msg", 1), (0x8E, "goalWindowTextId", "msg", 1),
+    (0x90, "goalWindowDataType", "u8", 1), (0x91, "protectCharacterIndex", "u8", 1),
+    (0x92, "destPosX", "u8", 1), (0x93, "destPosY", "u8", 1),
+    None,
+    (0x94, "unk94", "u8", 1), (0x95, "default_background", "u8", 1),
+    (0x96, "unk96", "u8", 1), (0x97, "unk97", "u8", 1),
+]
+
+
+def gen_chapters():
+    rd = {"u8": rd8, "s8": rds8, "hex16": rd16, "u16": rd16, "msg": rd16, "u32": rd32}
+    size = {"u8": 1, "s8": 1, "hex16": 2, "u16": 2, "msg": 2, "u32": 4}
+    chapters = parse_enum("include/constants/chapters.h", "CHAPTER_")
+    out = HEADER + ["CONST_DATA struct ChapterInfo gChapterDataTable[] = {"]
+    for i in range(CHAPTER_COUNT):
+        a = CHAPTER_TABLE + i * 0x98
+        assert rd8(a + 0x15) == 0
+        name = chapters.get(i, f"0x{i:02X}")
+        out.append(f"    [{name}] = {{")
+        out.append(f"        .debug_name = (char const *) 0x{rd32(a):08X},")
+        for fld in CHAPTER_FIELDS:
+            if fld is None:
+                out.append("")
+                continue
+            off, field, kind, count = fld
+            vals = [rd[kind](a + off + j * size[kind]) for j in range(count)]
+            if kind == "msg":
+                strs = [f"0x{v:X}" for v in vals]
+                texts = [decode_msg(v) for v in vals if v]
+                comment = " // " + " / ".join(dict.fromkeys(texts)) if texts else ""
+            else:
+                strs = [f"0x{v:X}" if kind == "hex16" else str(v) for v in vals]
+                comment = ""
+            val = strs[0] if count == 1 else "{ " + ", ".join(strs) + " }"
+            out.append(f"        .{field} = {val},{comment}")
+        out.append("    },")
+    out.append("};")
+    write("chapters.c", out)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     gen_characters()
@@ -536,6 +635,7 @@ def main():
     gen_supports()
     gen_itembonus()
     gen_banimconf()
+    gen_chapters()
 
 
 if __name__ == "__main__":

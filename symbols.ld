@@ -1522,7 +1522,6 @@ Pal_PathArrow = 0x083FE074;
 ProcScr_PrepHelpPrompt = 0x08B96448;
 Img_PrepHelpButtonSprites = 0x08405170;
 ProcScr_Config_PrepMapMenu = 0x08CE5CA0;
-gChapterDataTable = 0x08C9A200;
 Img_StatusHealEffect = 0x083FE094;
 Pal_StatusHealEffect = 0x083FE11C;
 Tsa_StatusHealEffect = 0x083FE13C;
