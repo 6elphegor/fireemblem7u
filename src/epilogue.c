@@ -72,8 +72,8 @@ void Epilogue_HBlank(void);
 void InitEpilogueEntries(void);
 void CountEpilogueEntryLines(void);
 void EpilogueInsertDefeatChapter(int chapter, char * str);
-char * sub_080AAAA8(int chapter, char * dst);
-int sub_080AABD0(char ** src, char ** dst);
+char * AppendChapterNumberString(int chapter, char * str);
+int CopyTextChar(char const ** src, char ** dst);
 void DrawEpilogueEntryText(int entIdx, int textIdx, int mode, char const ** pstr);
 void InitEpilogueData(void);
 void Epilogue_PutTextSprites(struct EpilogueProc * proc);
@@ -321,7 +321,7 @@ void EpilogueInsertDefeatChapter(int chapter, char * str)
 
             if (lines == 1)
             {
-                dst = sub_080AAAA8(chapter, dst);
+                dst = AppendChapterNumberString(chapter, dst);
                 dst = AppendString(DecodeMsgInBuffer(GetChapterInfo(chapter)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0], buf), dst);
                 dst = AppendString(DecodeMsgInBuffer(0x118B, buf), dst);
             }
@@ -333,7 +333,7 @@ void EpilogueInsertDefeatChapter(int chapter, char * str)
             goto copy_back;
 
         default:
-            sub_080AABD0(&src, &dst);
+            CopyTextChar((char const **) &src, &dst);
             break;
         }
     }
@@ -354,7 +354,7 @@ copy_back:
             goto end;
 
         default:
-            sub_080AABD0(&dst, &src);
+            CopyTextChar((char const **) &dst, &src);
             break;
         }
     }
