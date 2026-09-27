@@ -119,7 +119,7 @@ _080419B8:
 	movs r1, #1
 	bl PutSioText
 	ldr r0, _08041B3C @ =0x0203DB68
-	bl sub_080A1F2C
+	bl ReadMultiArenaSaveRankings
 	bl sub_08041880
 	ldr r1, _08041B40 @ =0x03002870
 	mov ip, r1

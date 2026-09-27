@@ -17,7 +17,7 @@ sub_08042728: @ 0x08042728
 	bl memcpy
 	ldr r4, _080427C8 @ =0x0203DA0C
 	adds r0, r4, #0
-	bl sub_080A1F90
+	bl ReadMultiArenaSaveConfig
 	ldrb r4, [r4]
 	lsls r0, r4, #0x1c
 	lsrs r0, r0, #0x1f

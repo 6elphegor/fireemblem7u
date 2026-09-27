@@ -107,10 +107,10 @@ void ResetPermanentFlags(void);
 void SetFlag(int flag);
 bool CheckFlag(int);
 void ClearFlag(int flag);
-// GetPermanentFlagBits
-// GetPermanentFlagBitsSize
-// GetChapterFlagBits
-// GetChapterFlagBitsSize
+u8 * GetPermanentFlagBits(void);
+int GetPermanentFlagBitsSize(void);
+u8 * GetChapterFlagBits(void);
+int GetChapterFlagBitsSize(void);
 // CheckDifficultMode
 // sub_08079954
 // sub_08079990

@@ -54,6 +54,8 @@ void TryUnlockParentProc(ProcPtr);
 
 void nullsub_38(void);
 void ClearMenuOverrides(void);
+void GetForceDisabledMenuItems(u8 * list);
+void SetForceDisabledMenuItems(u8 const * list);
 void sub_08002C74(void);
 void sub_08002C8C(void);
 bool sub_08002CA4(void);
@@ -83,8 +85,8 @@ void GameCtrl_DeclareCompletedChapter(void);
 void GameCtrl_SavePlayThroughData(void);
 char *GetTacticianName();
 void SetTacticianName(const char *name);
-// GetConvoyItemArray
-// ClearSupplyItems
+u16 * GetConvoyItemArray(void);
+void ClearSupplyItems(void);
 // ShrinkConvoyItemList
 // GetConvoyItemCount
 // AddItemToConvoy
@@ -577,37 +579,37 @@ void StartBoxDialogueExt(int x, int y, int msgId, u16* unkA, int unkB, ProcPtr p
 // GetCgTextBlendControl
 // SetCgTextBlendAlpha
 // GetCgTextBlendAlpha
-// sub_08087534
+// CgText_OnHBlank
 // sub_8087F60
 // sub_8088024
 // CgText_InitBlendAmt
 // CgText_LoopFadeIn
 // CgText_InitFadeOut
 // CgText_LoopFadeOut
-// sub_08087B20
+// CgText_808F04C
 // CgText_808F084
 // CgText_OnEnd
 // CgText_808F0EC
 // StartCgText
 // EndCgText
-bool sub_08087D58(void);
+bool CgTextExists(void);
 // sub_80886FC
 // CgText_ClearSpriteText
-// sub_08087DE0
+// sub_808F30C
 // GetCgTextDimensions
-// sub_08087EAC
-// sub_08087EFC
+// sub_808F3D8
+// GetCgTextBoxDimensions
 // sub_8088A20
 // sub_8088C78
 // sub_8088D08
-// sub_08088938
+// sub_808FEA4
 // sub_8089308
-// sub_080889AC
+// CgTextInterpreter_808FF18
 // CgTextInterpreter_808FF9C
 // RestartCgTextInterpreter
 // EndCgTextInterpreter
-// sub_08088A90
-// sub_08088AA8
+// sub_808FFFC
+// YesNoChoice_Loop_KeyHandler
 // StartYesNoChoice
 // sub_809014C
 // sub_80901BC
@@ -1133,12 +1135,12 @@ int GetClassReelEntry(int, int);
 // sub_080B6288
 // sub_080B6298
 // sub_080B62C4
-// GetGameTacticsRank
-// GetGameSurvivalRank
-// GetGameExpRank
-// GetGameCombatRank
-// GetGameFundsRank
-// GetOverallRank
+int GetGameTacticsRank(void);
+int GetGameSurvivalRank(void);
+int GetGameExpRank(void);
+int GetGameCombatRank(void);
+int GetGameFundsRank(void);
+int GetOverallRank(int tactics, int survival, int funds, int exp, int combat);
 // sub_080B663C
 // sub_080B6674
 // sub_080B66B4

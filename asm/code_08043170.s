@@ -12,7 +12,7 @@ sub_08043170: @ 0x08043170
 	bl InitGlobalSaveInfo
 	bl ResetFe6LinkSaveInfo
 	bl EraseSaveRankData
-	bl sub_0809F668
+	bl EraseSoundRoomSaveData
 	bl EraseLinkArenaStruct2
 	b _0804319A
 _08043192:

@@ -22,7 +22,7 @@ sub_0809A024: @ 0x0809A024
 	adds r0, #1
 	ldrb r2, [r0]
 	add r0, sp, #0x10
-	bl sub_0809F224
+	bl LoadRankData
 	add r0, sp, #0x10
 	ldrb r2, [r0]
 	lsls r0, r2, #0x1f

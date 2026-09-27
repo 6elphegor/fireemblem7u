@@ -39,7 +39,7 @@ _0804046C:
 	ldr r1, _080404D4 @ =0x0203D9AD
 	adds r2, r2, r1
 	adds r1, r5, #0
-	bl sub_080A1E8C
+	bl ReadMultiArenaSaveTeam
 	movs r7, #0
 	adds r2, r6, #1
 	mov sl, r2

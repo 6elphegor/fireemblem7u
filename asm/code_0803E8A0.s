@@ -22,7 +22,7 @@ sub_0803E8A0: @ 0x0803E8A0
 	adds r0, r0, r3
 	ldrb r0, [r0, #0x13]
 	mov r2, sp
-	bl sub_080A1E8C
+	bl ReadMultiArenaSaveTeam
 	adds r0, r4, #0
 	bl StartUnitListScreenUnk
 	add sp, #0x14

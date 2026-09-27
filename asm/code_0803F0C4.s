@@ -12,7 +12,7 @@ sub_0803F0C4: @ 0x0803F0C4
 	adds r1, r0, #0
 	adds r0, r4, #0
 	mov r2, sp
-	bl sub_080A1E8C
+	bl ReadMultiArenaSaveTeam
 	add sp, #0x14
 	pop {r4}
 	pop {r0}

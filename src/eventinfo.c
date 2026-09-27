@@ -84,16 +84,6 @@ struct EvCheck0E_Area
 
 extern struct EventListCmdInfo gEventListCmdInfoTable[];
 
-struct SupportTalkEnt
-{
-    /* 00 */ u8 pidA;
-    /* 01 */ u8 pidB;
-    /* 04 */ u32 msg[3];
-    /* 10 */ u32 songs;
-};
-
-extern struct SupportTalkEnt const gSupportTalkList[];
-
 struct TutorialEventEnt
 {
     /* 00 */ u32 const * a;
@@ -177,7 +167,6 @@ bool8 CheckChapterFlag(int flag);
 bool CheckPermanentFlag(int flag);
 
 void sub_0800ADB8(void);
-void UpdateBestGlobalSupportValue(u8 pidA, u8 pidB, int rank);
 void sub_0800F028(u8 mapChangeId);
 void sub_0800F044(u16 item, u8 mapChangeId);
 void sub_0800F06C(int money, u8 mapChangeId);

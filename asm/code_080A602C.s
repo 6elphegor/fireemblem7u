@@ -69,7 +69,7 @@ _080A609C:
 	movs r1, #1
 	bl sub_080A6018
 _080A60AE:
-	bl sub_0809EAB8
+	bl IsExtraSoundRoomEnabled
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A60C0
@@ -92,7 +92,7 @@ _080A60D2:
 	movs r1, #8
 	bl sub_080A6018
 _080A60E2:
-	bl sub_0809EB78
+	bl IsExtraBonusClaimEnabled
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A60F4

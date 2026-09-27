@@ -42,8 +42,6 @@ int SearchAvailableEvent(struct EventInfo * info);          // SearchAvailableEv
 void sub_080B03D4(struct Unit * unit, const u16 * items); // StartArmoryScreen
 void sub_080B03F4(struct Unit * unit, const u16 * items); // StartVendorScreen
 void SyncUnitDeploymentState(void);
-void PidStatsSubFavval100(int pid);
-void PidStatsAddDeployAmt(int pid);
 void sub_08004234(void);
 void RefreshBMapGraphics(void);
 
