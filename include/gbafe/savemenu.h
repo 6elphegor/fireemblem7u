@@ -65,6 +65,7 @@ struct SaveMenuProc {
     /* 54 */ u32 unk_54; // time value
     /* 58 */ struct SaveMenuUnkProc2 * proc2;
     /* 5C */ ProcPtr proc3; // sprite anim proc
+    /* 60 */ ProcPtr approc;
 };
 
 extern u8 gUnk_Savemenu_02000000;

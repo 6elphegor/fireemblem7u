@@ -24,6 +24,8 @@ void SaveMenuWriteNewGame(struct SaveMenuProc * proc);
 void sub_080A3CAC(struct SaveMenuProc * proc);
 s8 sub_080A6220(struct SaveMenuProc * proc);
 s8 sub_080A474C(struct SaveMenuProc * proc, int direction);
+void sub_080A4830(int x, int y, int msgId, ProcPtr parent);
+void StartSqMask(ProcPtr parent, int a, int b);
 
 struct SaveMenuHelpProc {
     /* 00 */ PROC_HEADER;
@@ -35,6 +37,14 @@ struct SaveMenuHelpProc {
 };
 
 extern struct ProcCmd CONST_DATA ProcScr_08CE3C24[];
+extern struct ProcCmd CONST_DATA ProcScr_08CE3C54[];
+extern struct ProcCmd CONST_DATA ProcScr_08CE3F24[];
+extern struct ProcCmd CONST_DATA ProcScr_08CE4034[];
+extern struct ProcCmd CONST_DATA ProcScr_08CC51D0[];
+
+ProcPtr StartSoundRoomScreen(ProcPtr parent);
+void sub_0809BE68(ProcPtr parent);
+void sub_080A511C(ProcPtr parent);
 
 CONST_DATA u16 BgConfig_SaveMenu[] = {
     0x0000, 0x6000, 0x0000, 
@@ -1031,21 +1041,319 @@ void sub_080A4830(int x, int y, int msgId, ProcPtr parent)
     proc->x = x;
     proc->y = y;
 }
-ASM_FUNC("asm/nonmatching/code_080A4850.s");
-ASM_FUNC("asm/nonmatching/code_080A4A0C.s");
-ASM_FUNC("asm/nonmatching/code_080A4A24.s");
-ASM_FUNC("asm/nonmatching/code_080A4ADC.s");
-ASM_FUNC("asm/nonmatching/code_080A4B4C.s");
-ASM_FUNC("asm/nonmatching/code_080A4B7C.s");
-ASM_FUNC("asm/nonmatching/code_080A4BD8.s");
-ASM_FUNC("asm/nonmatching/code_080A4C34.s");
-ASM_FUNC("asm/nonmatching/code_080A4C94.s");
-ASM_FUNC("asm/nonmatching/code_080A4D54.s");
-ASM_FUNC("asm/nonmatching/code_080A4D74.s");
-ASM_FUNC("asm/nonmatching/code_080A4D94.s");
-ASM_FUNC("asm/nonmatching/code_080A4DA8.s");
-ASM_FUNC("asm/nonmatching/code_080A4DB4.s");
-ASM_FUNC("asm/nonmatching/code_080A4DEC.s");
-ASM_FUNC("asm/nonmatching/code_080A4E0C.s");
-ASM_FUNC("asm/nonmatching/code_080A4E20.s");
-ASM_FUNC("asm/nonmatching/code_080A4E34.s");
+void sub_080A4850(struct SaveMenuProc * proc)
+{
+    proc->unk_2E = 5;
+
+    if (proc->unk_36 == 0)
+    {
+        if (gpKeySt->pressed & DPAD_UP)
+            sub_080A474C(proc, -1);
+        else if (gpKeySt->pressed & DPAD_DOWN)
+            sub_080A474C(proc, 1);
+    }
+    else if (gpKeySt->pressed & DPAD_LEFT)
+    {
+        if (proc->unk_36 != 1)
+        {
+            proc->unk_36 = 1;
+            PlaySoundEffect(0x387);
+        }
+    }
+    else if (gpKeySt->pressed & DPAD_RIGHT)
+    {
+        if (proc->unk_36 != 2)
+        {
+            proc->unk_36 = 2;
+            PlaySoundEffect(0x387);
+        }
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        switch (proc->unk_35)
+        {
+        case 0x40:
+            if (((proc->unk_3A[proc->copy_from_id]) & 1) != 0)
+            {
+                if (proc->unk_3F == (u8) -1)
+                {
+                    ReadGameSave(proc->copy_from_id);
+                    Proc_Goto(proc, 0xE);
+                    PlaySoundEffect(0x38A);
+                    return;
+                }
+
+                sub_080A3CAC(proc);
+                return;
+            }
+
+            sub_080A4830(0x40, 0x30, 0x768, proc);
+            return;
+
+        case 0x20:
+            if (((proc->unk_3A[proc->copy_from_id]) & 2) != 0)
+            {
+                if (proc->unk_3F == (u8) -1)
+                {
+                    ReadGameSave(proc->copy_from_id);
+                    Proc_Goto(proc, 0xE);
+                    PlaySoundEffect(0x38A);
+                    return;
+                }
+
+                sub_080A3CAC(proc);
+                return;
+            }
+
+            sub_080A4830(0x2e, 0x38, 0x767, proc);
+            return;
+
+        default:
+            return;
+        }
+    }
+    else if (gpKeySt->pressed & B_BUTTON)
+    {
+        PlaySoundEffect(0x38B);
+
+        if (proc->unk_36 != 0)
+        {
+            SaveMenuDrawSubSelBox(proc, 0);
+            SaveMenu_StartHelpBox(proc);
+            return;
+        }
+
+        Decompress(gUnk_084130A4, (void *) 0x06013800);
+        proc->anim_clock = 0;
+        Proc_Goto(proc, 0xD);
+        return;
+    }
+}
+void sub_080A4A0C(struct SaveMenuProc * proc)
+{
+    StartSqMask(proc, 1, 2);
+    Proc_Break(proc);
+}
+void sub_080A4A24(struct SaveMenuProc * proc)
+{
+    if (proc->approc != NULL)
+        EndSpriteAnimProc(proc->approc);
+
+    Proc_End(proc->proc2);
+    Proc_End(proc->proc3);
+
+    SetOnHBlankA(NULL);
+
+    if (proc->action_flag == 0x20)
+    {
+        if (proc->unk_35 == 1)
+            SetNextGameAction(6);
+    }
+    else if (proc->action_flag & 0x40)
+    {
+        return;
+    }
+    else if (proc->action_flag & 0x100)
+    {
+        StartBgmVolumeChange(0xc0, 0x100, 0x10, NULL);
+
+        if ((proc->action_flag & 0x80) != 0)
+            SetNextGameAction(0xB);
+        else
+            SetNextGameAction(5);
+    }
+    else if (proc->action_flag & 1)
+    {
+        ReadSuspendSave(3);
+        SetNextGameAction(4);
+    }
+    else if (proc->action_flag & 0x82)
+    {
+        ReadGameSave(proc->copy_from_id);
+        SetNextGameAction(proc->copy_from_id + 1);
+    }
+    else if (proc->action_flag & 0x10)
+    {
+        SetNextGameAction(0);
+    }
+}
+void sub_080A4ADC(struct SaveMenuProc * proc)
+{
+    proc->action_flag = 0x20;
+
+    Proc_End(proc->proc2);
+    Proc_End(proc->proc3);
+
+    SetOnHBlankA(NULL);
+
+    if (proc->approc != NULL)
+        EndSpriteAnimProc(proc->approc);
+
+    switch (proc->unk_35)
+    {
+    default:
+        return;
+
+    case 0x20:
+        StartBonusClaimScreen(proc);
+        return;
+
+    case 0x02:
+        StartSoundRoomScreen(proc);
+        return;
+
+    case 0x04:
+        sub_0809BE68(proc);
+        return;
+
+    case 0x08:
+        Proc_StartBlocking(ProcScr_08CC51D0, proc);
+        return;
+    }
+}
+void SaveMenuPostExtraMiscScreen(struct SaveMenuProc * proc)
+{
+    switch (proc->unk_35)
+    {
+    case 0x20:
+        Proc_Goto(proc, 0xB);
+        return;
+
+    case 0x02:
+    case 0x04:
+    case 0x08:
+        Proc_Goto(proc, 0xA);
+        return;
+    }
+}
+void sub_080A4B7C(struct SaveMenuProc * proc)
+{
+    proc->anim_clock = 0;
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(0, 0, 0, 0, 0);
+}
+void sub_080A4BD8(struct SaveMenuProc * proc)
+{
+    int unkA;
+    int unkB;
+
+    proc->anim_clock++;
+
+    unkA = (0x10 - proc->anim_clock);
+
+    unkB = 0x50 - ((unkA * 0x50 * unkA) / 256);
+
+    gDispIo.win0_left = 0;
+    gDispIo.win0_top = 0x50 - (unkB);
+    gDispIo.win0_right = 0xf0;
+    gDispIo.win0_bottom = unkB + 0x50;
+
+    if (proc->anim_clock == 0x10)
+        Proc_Break(proc);
+}
+void sub_080A4C34(struct SaveMenuProc * proc)
+{
+    int unkA;
+    int unkB;
+
+    proc->anim_clock++;
+
+    unkA = (0x10 - proc->anim_clock);
+
+    unkB = 0x50 - ((unkA * 0x50 * unkA) / 256);
+
+    gDispIo.win0_left = 0;
+    gDispIo.win0_top = unkB;
+    gDispIo.win0_right = 0xf0;
+    gDispIo.win0_bottom = -0x60 - unkB;
+
+    if (proc->anim_clock == 0x10)
+        Proc_Break(proc);
+}
+void sub_080A4C94(struct SaveMenuProc * proc)
+{
+    SetBgOffset(1, 0, 0);
+    TmFill(gBg1Tm, 0);
+
+    ResetTextFont();
+    ApplySystemObjectsGraphics();
+
+    Decompress(gUnk_084130A4, (void *) 0x06013800);
+    ApplyPalettes(Pal_SaveMenuWindow, 0x11, 8);
+    Decompress(gGfx_SupportMenu, (void *) 0x06010800);
+    TmApplyTsa(gBg0Tm, Tsa_SaveMenuBackground, 0);
+
+    gUnk_Savemenu_02000000 = 100;
+    gUnk_Savemenu_02000001 = 10;
+
+    sub_080A5EF0();
+    SaveMenuPutChapterTitle(proc);
+    sub_080A649C(proc->copy_from_id);
+
+    Proc_UnblockEachMarked(0xC);
+    Proc_UnblockEachMarked(0xD);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    if (proc->unk_2A != 3)
+    {
+        proc->unk_2E = 5;
+        proc->unk_2F = 0xdc;
+    }
+}
+void sub_080A4D54(struct SaveMenuProc * proc)
+{
+    if (proc->unk_2A == 3)
+        Proc_Goto(proc, 2);
+    else
+        Proc_Goto(proc, 5);
+}
+void sub_080A4D74(struct SaveMenuProc * proc)
+{
+    if (!(proc->action_flag & 0x10))
+        StartHelpPromptSprite(0xc0, 8, proc);
+}
+void sub_080A4D94(struct SaveMenuProc * proc)
+{
+    if (proc->unk_35 == 0x20)
+        sub_080A511C(proc);
+}
+void sub_080A4DA8(void)
+{
+    EndHelpPromptSprite();
+}
+void StartMainMenu(ProcPtr parent)
+{
+    struct SaveMenuProc * proc = Proc_StartBlocking(ProcScr_08CE3C54, parent);
+
+    proc->action_flag = 0x100;
+    proc->unk_35 = 0;
+
+    gPlaySt.cfgTextSpeed = 2;
+}
+void sub_080A4DEC(struct SaveMenuProc * proc)
+{
+    if (!(gBmSt.flags & 0x10))
+        Proc_Goto(proc, 0x14);
+}
+void sub_080A4E0C(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_08CE3F24, parent);
+}
+void sub_080A4E20(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_08CE4034, parent);
+}
+void SaveMenu_SetDifficultyChoice(s32 a, s32 b)
+{
+    struct SaveMenuProc * proc = Proc_Find(ProcScr_08CE3C54);
+
+    if (proc != NULL)
+    {
+        proc->unk_2A = a;
+        proc->unk_3D = b;
+    }
+}
