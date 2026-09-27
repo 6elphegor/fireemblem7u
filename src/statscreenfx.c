@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+int CountDigits(int number);
+
 void DrawUiGaugeBitmapEdgeColumn(u8 * bitmap, int pixels_per_line, int column)
 {
     bitmap[1 * pixels_per_line + column] = 4;
@@ -278,8 +280,66 @@ void PutStatScreenLeftPanelInfo(void)
     }
 }
 
-void DisplayBwl(void);
-ASM_FUNC("asm/nonmatching/code_0807FBF0.s");
+void DisplayBwl(void)
+{
+    struct PidStats * bwl;
+    int battles, wins, losses;
+
+    bwl = GetPidStats(UNIT_CHAR_ID(gStatScreenSt.unit));
+
+    if (!bwl)
+        return;
+
+    if (gBmSt.flags & BM_FLAG_LINKARENA)
+        return;
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_TUTORIAL)
+        return;
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)
+        return;
+
+    if (IsFirstPlaythrough() == TRUE)
+        return;
+
+    if (UNIT_FACTION(gStatScreenSt.unit) != FACTION_BLUE)
+        return;
+
+    battles = bwl->battle_count;
+    if (battles > 999)
+        battles = 999;
+
+    wins = bwl->win_count;
+    if (wins > 999)
+        wins = 999;
+
+    losses = bwl->loss_count;
+
+    ClearText(&gStatScreenSt.text[STATSCREEN_TEXT_BWL]);
+
+    Text_InsertDrawString(&gStatScreenSt.text[STATSCREEN_TEXT_BWL],
+        6, TEXT_COLOR_SYSTEM_GOLD, DecodeMsg(0x12AB));
+
+    Text_InsertDrawString(&gStatScreenSt.text[STATSCREEN_TEXT_BWL],
+        0x2E, TEXT_COLOR_SYSTEM_GOLD, DecodeMsg(0x12AC));
+
+    Text_InsertDrawString(&gStatScreenSt.text[STATSCREEN_TEXT_BWL],
+        0x56, TEXT_COLOR_SYSTEM_GOLD, DecodeMsg(0x12AD));
+
+    PutText(&gStatScreenSt.text[STATSCREEN_TEXT_BWL],
+        gUiTmScratchA + TM_OFFSET(1, 14));
+
+    PutNumber(gUiTmScratchA + TM_OFFSET(2, 14) + CountDigits(battles),
+        TEXT_COLOR_SYSTEM_BLUE, battles);
+
+    PutNumber(gUiTmScratchA + TM_OFFSET(7, 14) + CountDigits(wins),
+        TEXT_COLOR_SYSTEM_BLUE, wins);
+
+    PutNumber(gUiTmScratchA + TM_OFFSET(12, 14) + CountDigits(losses),
+        TEXT_COLOR_SYSTEM_BLUE, losses);
+
+    TmApplyTsa(gUiTmScratchC + TM_OFFSET(0, 14), Tsa_Statscreen_083FD5C4, 0x1060);
+}
 
 
 void PutStatScreenStatWithBar(int num, int x, int y, int base, int total, int max)

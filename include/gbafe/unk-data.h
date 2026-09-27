@@ -1386,7 +1386,7 @@ extern const u8 Tsa_Statscreen_Pag1_084038CC[];
 extern const u8 Tsa_Statscreen_Pag1_08403908[];
 extern const u8 Img_StatScreen_083FCE8C[];
 extern u16 const Pals_StatScreen_Title[][0x20];
-extern const u8 Tsa_Statscreen_08404124[];
+extern const u8 Tsa_Statscreen_083FD5C4[];
 extern const u8 Tsa_StatScreen_083FD62C[];
 // ??? gUnk_084041FC
 // ??? gUnk_0840431C
