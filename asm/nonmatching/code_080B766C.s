@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B766C
-sub_080B766C: @ 0x080B766C
+	thumb_func_start EpilogueText_LoopFadeOut
+EpilogueText_LoopFadeOut: @ 0x080B766C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r0, #0x44

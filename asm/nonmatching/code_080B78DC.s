@@ -46,14 +46,14 @@ _080B7910:
 	bne _080B7940
 	movs r0, #0
 	adds r1, r5, #0
-	bl sub_080B72A8
+	bl StartEpilogueCg
 	movs r1, #0
 	bl Proc_Goto
 	b _080B7948
 _080B7940:
 	adds r0, r1, #0
 	adds r1, r5, #0
-	bl sub_080B72A8
+	bl StartEpilogueCg
 _080B7948:
 	ldrh r0, [r5, #0x3e]
 	adds r0, #1

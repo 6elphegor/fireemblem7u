@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B7380
-sub_080B7380: @ 0x080B7380
+	thumb_func_start EpilogueScroll_Loop
+EpilogueScroll_Loop: @ 0x080B7380
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r6, r4, #0
@@ -28,7 +28,7 @@ _080B73AA:
 	adds r0, r3, #0
 	adds r0, #0xa
 	ldr r2, [r2, #4]
-	bl sub_080B72D8
+	bl EpiloguePutBgRow
 	ldr r0, [r4, #0x38]
 	adds r0, #8
 	str r0, [r4, #0x38]

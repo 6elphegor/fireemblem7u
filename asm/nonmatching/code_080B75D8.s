@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B75D8
-sub_080B75D8: @ 0x080B75D8
+	thumb_func_start EpilogueText_Loop
+EpilogueText_Loop: @ 0x080B75D8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r5, #0

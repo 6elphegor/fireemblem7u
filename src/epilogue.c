@@ -16,6 +16,38 @@ struct EpilogueCgProc {
 
 extern struct EpilogueFontSt gEpilogueFontSt;
 
+struct EpilogueProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ char const * str;
+    /* 30 */ struct Text * text;
+    /* 34 */ int const * msgs;
+    /* 38 */ void const * const * data;
+    /* 3C */ u16 speed;
+    /* 3E */ s16 part;
+    /* 40 */ s16 cg;
+    /* 42 */ u16 delay;
+    /* 44 */ s16 timer;
+    /* 46 */ s16 unk_46;
+    /* 48 */ STRUCT_PAD(0x48, 0x4A);
+    /* 4A */ s16 lastRow;
+    /* 4C */ s16 unk_4c;
+    /* 4E */ s16 unk_4e;
+    /* 50 */ s8 skippable;
+    /* 51 */ u8 unk_51;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_EpilogueCg[];
+extern struct ProcCmd CONST_DATA ProcScr_EpilogueScroll[];
+extern struct ProcCmd CONST_DATA ProcScr_EpilogueText[];
+extern u16 Pal_EpilogueText[];
+
+void ClearEpilogueTexts(void);
+void EpilogueText_Center(struct Text * text, char const * str);
+void sub_080B6C14(void);
+void sub_080B6DD4(void);
+void sub_080B7408(ProcPtr proc);
+void sub_080B74B4(ProcPtr proc);
+
 struct CGDataEnt {
     /* 00 */ u8 isSplit;
     /* 04 */ void const * img;
@@ -26,6 +58,7 @@ struct CGDataEnt {
 struct CGDataEnt const * GetCG(int idx);
 int CountDigits(int number);
 void sub_080010F4(u16 const * src, int a, int b, int c);
+void EpiloguePutBgRow(int idx, void const * img, u8 const * tsa);
 
 ASM_FUNC("asm/nonmatching/code_080B6C14.s");
 ASM_FUNC("asm/nonmatching/code_080B6C8C.s");
@@ -192,21 +225,165 @@ void EpilogueCg_Loop(struct EpilogueCgProc * proc)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B72A8.s");
+
 ASM_FUNC("asm/nonmatching/code_080B72D8.s");
-ASM_FUNC("asm/nonmatching/code_080B7334.s");
+
+void EpilogueScroll_Init(struct EpilogueProc * proc)
+{
+    int i;
+
+    proc->timer = 0;
+    proc->lastRow = -1;
+
+    sub_080010F4(*proc->data, 0, 0x100, 0x20);
+    proc->data++;
+
+    for (i = 0; i < 10; i++)
+    {
+        EpiloguePutBgRow(i, proc->data[0], proc->data[1]);
+        proc->data += 2;
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B7380.s");
-ASM_FUNC("asm/nonmatching/code_080B73EC.s");
+
+ProcPtr StartEpilogueScroll(void const * const * data, int speed, ProcPtr parent)
+{
+    struct EpilogueProc * proc = Proc_Start(ProcScr_EpilogueScroll, parent);
+
+    proc->data = data;
+    proc->speed = speed;
+
+    return proc;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B7408.s");
 ASM_FUNC("asm/nonmatching/code_080B74B4.s");
-ASM_FUNC("asm/nonmatching/code_080B7530.s");
+void EpilogueText_Init(struct EpilogueProc * proc)
+{
+    ClearEpilogueTexts();
+
+    ApplyPalette(Pal_EpilogueText, 0x1A);
+
+    proc->timer = proc->delay;
+
+    proc->str = DecodeMsg(*proc->msgs);
+    proc->str = MsgExpand();
+
+    proc->text = &gEpilogueFontSt.texts[0];
+
+    SetTextFontGlyphs(1);
+    EpilogueText_Center(proc->text, proc->str);
+
+    SetBlendConfig(0, 0x10, 0, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+    gDispIo.blend_ct.target2_enable_bd = 1;
+
+    StartParallelWorker(sub_080B74B4, proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B75D8.s");
+
 ASM_FUNC("asm/nonmatching/code_080B766C.s");
-ASM_FUNC("asm/nonmatching/code_080B76B8.s");
-ASM_FUNC("asm/nonmatching/code_080B76D8.s");
-ASM_FUNC("asm/nonmatching/code_080B76F8.s");
-ASM_FUNC("asm/nonmatching/code_080B7714.s");
-ASM_FUNC("asm/nonmatching/code_080B77DC.s");
-ASM_FUNC("asm/nonmatching/code_080B7810.s");
+
+void EpilogueText_Next(struct EpilogueProc * proc)
+{
+    EndAllProcChildren(proc);
+
+    if (*proc->msgs++ != 0)
+        Proc_Goto(proc, 0);
+}
+
+ProcPtr StartEpilogueText(int const * msgs, int delay, ProcPtr parent)
+{
+    struct EpilogueProc * proc = Proc_Start(ProcScr_EpilogueText, parent);
+
+    proc->msgs = msgs;
+    proc->delay = delay;
+
+    return proc;
+}
+
+bool IsEpilogueTextActive(void)
+{
+    if (Proc_Find(ProcScr_EpilogueText) != NULL)
+        return TRUE;
+
+    return FALSE;
+}
+
+void Epilogue_Init(struct EpilogueProc * proc)
+{
+    InitBgs(NULL);
+
+    CpuFastFill(0, (void *) VRAM, 0x20);
+
+    gDispIo.disp_ct.mode = 0;
+
+    SetBlendConfig(0, 0x10, 0, 0);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBgOffset(3, 0, 0);
+
+    SetWinEnable(0, 0, 0);
+
+    CpuFastFill(0, gPal, 0x400);
+
+    InitEpilogueTexts();
+    SetOnHBlankA(NULL);
+
+    proc->unk_4c = 0;
+    proc->unk_4e = 0;
+
+    sub_080B6DD4();
+}
+
+void Epilogue_SkipWatcher(struct EpilogueProc * proc)
+{
+    if (proc->skippable != 0 && (gpKeySt->pressed & START_BUTTON))
+    {
+        proc->skippable = 0;
+        Proc_Goto(proc, 0x32);
+    }
+}
+
+void Epilogue_InitMain(struct EpilogueProc * proc)
+{
+    struct GlobalSaveInfo info;
+
+    proc->timer = 0;
+    proc->unk_46 = 0;
+    proc->cg = 0;
+    proc->part = 0;
+
+    ApplyPalette(Pal_EpilogueText, 0x1A);
+
+    SetOnHBlankA(sub_080B6C14);
+
+    SetBlendConfig(0, 0x10, 0, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+    gDispIo.blend_ct.target2_enable_bd = 1;
+
+    ClearEpilogueTexts();
+
+    StartParallelWorker(sub_080B7408, proc);
+
+    proc->unk_51 = 0;
+
+    if (ReadGlobalSaveInfo(&info) && (*((u8 *) &info + 0xE) & 3))
+        proc->unk_51 = 1;
+
+    proc->skippable = 0;
+
+    StartParallelWorker(Epilogue_SkipWatcher, proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B78DC.s");
 ASM_FUNC("asm/nonmatching/code_080B7A0C.s");
 ASM_FUNC("asm/nonmatching/code_080B7A24.s");

@@ -2030,3 +2030,7 @@ Img_WmMapB = 0x085D606C;
 Tsa_WmMapB = 0x085DB38C;
 ProcScr_WorldFlush = 0x08CE7878;
 gEpilogueFontSt = 0x02000818;
+ProcScr_EpilogueCg = 0x08CEDE04;
+ProcScr_EpilogueScroll = 0x08CEDE5C;
+ProcScr_EpilogueText = 0x08CEDEA4;
+Pal_EpilogueText = 0x08194714;

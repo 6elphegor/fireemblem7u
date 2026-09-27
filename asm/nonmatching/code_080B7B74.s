@@ -9,7 +9,7 @@ sub_080B7B74: @ 0x080B7B74
 	ldr r0, _080B7BC0 @ =0x08CEDC98
 	movs r1, #2
 	adds r2, r4, #0
-	bl sub_080B73EC
+	bl StartEpilogueScroll
 	movs r1, #0
 	bl Proc_Goto
 	bl ClearEpilogueTexts

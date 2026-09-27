@@ -34,7 +34,7 @@ sub_080B7B18: @ 0x080B7B18
 	bne _080B7B64
 	adds r0, r4, #0
 	bl EndAllProcChildren
-	ldr r0, _080B7B70 @ =sub_080B77DC
+	ldr r0, _080B7B70 @ =Epilogue_SkipWatcher
 	adds r1, r4, #0
 	bl StartParallelWorker
 	adds r0, r4, #0
@@ -45,4 +45,4 @@ _080B7B64:
 	bx r0
 	.align 2, 0
 _080B7B6C: .4byte 0x03002870
-_080B7B70: .4byte sub_080B77DC
+_080B7B70: .4byte Epilogue_SkipWatcher
