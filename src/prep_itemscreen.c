@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmitemuse.h"
 #include "gbafe/bmcontainer.h"
 
 u32 GetGold(void);

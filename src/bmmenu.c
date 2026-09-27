@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
 

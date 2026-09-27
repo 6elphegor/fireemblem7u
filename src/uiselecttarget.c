@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 
 enum
 {
@@ -39,9 +38,6 @@ extern int sSelectTargetCount;
 extern struct ProcCmd CONST_DATA ProcScr_TargetSelection[];
 extern struct NearTargetLinkOffset CONST_DATA gNearTargetLinkOrder[13];
 
-void BeginTargetList(int x, int y);
-void EnlistTarget(int x, int y, int uid, int extra);
-struct SelectTarget * GetTarget(int n);
 void TargetSelection_HandleMoveInput(struct SelectTargetProc * proc);
 int TargetSelection_HandleSelectInput(struct SelectTargetProc * proc);
 struct SelectTarget * GetLinkedTargets(void);

@@ -1,9 +1,7 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/unk-functions.h"
 
 /* not yet declared elsewhere */
-struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 void StartMuDeathFade(struct MuProc * mu);
 int GetMapChangeIdAt(int x, int y);

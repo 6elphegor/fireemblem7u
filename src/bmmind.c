@@ -5,10 +5,6 @@
 
 /* functions from other modules */
 void TryRemoveUnitFromBallista(struct Unit * unit);
-int GetSomeFacingDirection(int xFrom, int yFrom, int xTo, int yTo);
-void StartAvailableTileEvent(s8 x, s8 y);
-void InitObstacleBattleUnit(void);
-void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
 void DoItemAction(ProcPtr proc);
 void Make6CKOIDO(struct Unit * unit, int facing, int kind, ProcPtr parent);
 int ExecTrapAfterDropAction(ProcPtr proc, struct Unit * unit);
@@ -26,7 +22,6 @@ void BeginMapAnimForSteal(void);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void UnitGetDeathDropLocation(struct Unit * unit, int * xOut, int * yOut);
 void StartMuDeathFade(struct MuProc * proc);
-struct MuProc * StartMu(struct Unit * unit);
 int GetFacingFromTo(int x1, int y1, int x2, int y2);
 void SetMuMoveScript(struct MuProc * proc, u8 const * script);
 void EndMu(struct MuProc * proc);

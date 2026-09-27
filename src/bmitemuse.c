@@ -1,6 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
-#include "gbafe/bmitemuse.h"
 
 #define gMapMovementSigned ((s8 **) gBmMapMovement)
 #define gMapRangeSigned ((s8 **) gBmMapRange)

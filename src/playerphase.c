@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 #include "gbafe/bmmap.h"
 #include "gbafe/bmidoten.h"
 #include "gbafe/playerphase.h"

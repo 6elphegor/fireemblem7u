@@ -1,7 +1,6 @@
 #include "gbafe.h"
 #include "gbafe/bmusemind.h"
 #include "gbafe/bmtrade.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/bmcommanddbg.h"
 
 /* Event-script helpers (ASMC / condition callbacks) */

@@ -10,7 +10,6 @@ void SetGold(s32 amount);
 void SetTalkPrintColor(int color);
 s8 HasConvoyAccess(void);
 int AddItemToConvoy(int item);
-int GetConvoyItemCount(void);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 

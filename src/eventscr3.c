@@ -41,7 +41,6 @@ void BattleInitItemEffectTarget(struct Unit * unit);
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);
 void BattleGenerateBallistaReal(struct Unit * actor, struct Unit * target);
 void UnitBeginAction(struct Unit * unit);
-struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 void BeginBattleAnimations(void);
 void AiEndMuAndRefreshUnits(void);

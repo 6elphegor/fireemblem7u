@@ -1,7 +1,6 @@
 #include "gbafe.h"
 #include "gbafe/bmtrap.h"
 #include "gbafe/bmarch.h"
-#include "gbafe/bmtarget.h"
 
 // Traps (FE8U: bmtrap.c)
 
@@ -9,7 +8,6 @@
 struct MuProc;
 void StartFireTrapAnim1(ProcPtr proc, int x, int y);
 void StartFireTrapAnim2(ProcPtr proc, int x, int y);
-struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 struct MuProc * GetUnitMu(struct Unit * unit);
 void EndMu(struct MuProc * proc);

@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 
 // FE7 trap type values (differ from FE8 past TRAP_MINE)
 #define FE7_TRAP_LIGHT_RUNE 12

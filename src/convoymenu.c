@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 
 extern u8 gConvoyItemCount; // ewram_overlay_0
 

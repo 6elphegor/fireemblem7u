@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 
 extern int TacticianBirthAffins[12];
 

@@ -1,6 +1,5 @@
 #include "gbafe.h"
 #include "gbafe/bksel.h"
-#include "gbafe/bmmenu.h"
 
 // Battle forecast (FE8U: bksel.c)
 

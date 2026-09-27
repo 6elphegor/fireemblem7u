@@ -2,7 +2,6 @@
 
 #include "gbafe/bmcontainer.h"
 #include "gbafe/bmarena.h"
-#include "gbafe/bmitemuse.h"
 struct ViewCounterProc
 {
     /* 00 */ PROC_HEADER;

@@ -1,15 +1,10 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/cp_common.h"
 #include "gbafe/bmcommanddbg.h"
 
 // Unused unit command availability checks (FE8U: bmcommanddbg.c)
 
 // Also declared in bmmenu.h, which conflicts with bmtarget.h
-int GetUnitWeaponReach(struct Unit * unit, int slot);
-void BuildUnitStandingRangeForReach(struct Unit * unit, int reach);
-int GetAvailableTileEventCommand(s8 x, s8 y);
-s8 CanUnitSeize(struct Unit * unit);
 
 bool CanUnitUseVisit(void)
 {

@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 #include "gbafe/unk-functions.h"
 
 enum

@@ -1,8 +1,6 @@
 #include "gbafe.h"
 
 char * MsgExpandWithArticle(int a, int b, s8 c);
-bool IsUnitMagicSealed(struct Unit * unit);
-bool CanUnitUseItem(struct Unit * unit, int item);
 u16 * GetConvoyItemArray(void);
 int GetGold(void);
 

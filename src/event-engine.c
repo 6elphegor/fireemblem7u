@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 
 bool sub_08079954(struct Unit * unit);
 bool sub_08079A14(struct Unit * unit);

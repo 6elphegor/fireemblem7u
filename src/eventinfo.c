@@ -138,7 +138,6 @@ void sub_0807D7E0(void);
 void LoadUnits(void const * units);
 void sub_080799C8(void);
 bool BattleIsTriangleAttack(void);
-void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
 void UnitGetDeathDropLocation(struct Unit * unit, int * x, int * y);
 
 struct ForceDeployEnt

@@ -1,13 +1,10 @@
 #include "gbafe.h"
 #include "gbafe/cp_common.h"
-#include "gbafe/bmtarget.h"
 
 #include <string.h>
 
 #define ITEM_INDEX(aItem) ((aItem) & 0xFF)
 
-void BattleGenerateSimulation(struct Unit * actor, struct Unit * target, int x, int y, int actorWpnSlot);
-void BattleGenerateBallistaSimulation(struct Unit * actor, struct Unit * target, int x, int y);
 
 struct AiCombatScoreCoefficients
 {
