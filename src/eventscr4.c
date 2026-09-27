@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/cgtext.h"
 
 /* functions from other modules */
 ProcPtr Proc_FindNonBlocked(const struct ProcCmd * script);
@@ -62,6 +63,7 @@ void StartEventWarpAnim(ProcPtr parent, int x, int y, s8 kind, s8 flag);
 void StartWarpEffect_08020A64(ProcPtr parent, int x, int y, s8 kind);
 int sub_080B6278(int x);
 int sub_080B6288(int y);
+void Event_CgTalkOnSkip(struct EventProc * proc);
 
 extern struct FaceVramEnt CONST_DATA gFaceConfig_08B91AB8[];
 extern EventScr CONST_DATA EventScr_08B91AD8[];
@@ -1125,4 +1127,189 @@ int sub_0800FE80(struct EventProc * proc)
 
     StartWarpEffect_08020A64(proc, sub_080B6278(x) - 0x10, sub_080B6288(y) - 0x28, kind);
     return EVENT_CMDRET_YIELD;
+}
+
+void EventStartCgTalk(int msg, int kind, int flags, struct EventProc * proc)
+{
+    ApplySystemObjectsGraphics();
+    InitTalk(0x80, 0, 1);
+    EnableBgSync(BG0_SYNC_BIT);
+
+    switch (kind)
+    {
+    case 0:
+        StartCgText(3, 2, 0x14, 4, msg, (void *) OBJ_VRAM0 + 0x1000, -1, NULL);
+
+    case 1:
+        StartCgText(3, 0x12, 0x14, 4, msg, (void *) OBJ_VRAM0 + 0x1000, -1, NULL);
+    }
+
+    proc->idle_func = Event_CgTalkOnSkip;
+
+    if (proc->flags & EVENT_FLAG_NOSKIPTALK)
+        flags |= 0x40;
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+    {
+        flags |= 0x2820;
+        EventForceSlowTextSpeed(proc);
+    }
+
+    SetCgTextFlags(flags);
+}
+
+int EvtCmd_CgTalk(struct EventProc * proc)
+{
+    int flags = 0x400;
+    int msg = proc->script[1];
+    int kind = proc->script[2];
+
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartCgTalk(msg, kind, flags, proc);
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_0800FFD0(struct EventProc * proc)
+{
+    int msg = proc->script[1];
+    int kind = proc->script[2];
+    int flags = proc->script[3] | 0x400;
+
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartCgTalk(msg, kind, flags, proc);
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_08010010(struct EventProc * proc)
+{
+    int flags = 0x400;
+    int msg = proc->script[1];
+    int kind = proc->script[2];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartCgTalk(msg, kind, flags, proc);
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_08010048(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EndCgText();
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_CgBackground(struct EventProc * proc)
+{
+    u16 id = EVT_ARG_U16(proc, 1);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->background == -1)
+    {
+        LockBmDisplay();
+        LockMus();
+    }
+
+    proc->background = 0x61;
+
+    PutCgBackground(gBg3Tm, GetBgChrOffset(3), 8, 8, id);
+    EnableBgSync(BG3_SYNC_BIT);
+    SetBgOffset(3, 0, 0);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int sub_080100D0(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_PaletteFadeFromBlack(struct EventProc * proc)
+{
+    int kind = EVT_ARG_U16(proc, 1);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    switch (kind)
+    {
+    case 0:
+        NewBlockedFadeIn(0x10, proc);
+        break;
+
+    case 1:
+        NewBlockedFadeIn(8, proc);
+        break;
+
+    case 2:
+        NewBlockedFadeIn(4, proc);
+        break;
+
+    case 3:
+        NewBlockedFadeIn(2, proc);
+        break;
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_PaletteFadeToBlack(struct EventProc * proc)
+{
+    int kind = EVT_ARG_U16(proc, 1);
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    switch (kind)
+    {
+    case 0:
+        NewBlockedFadeOut(0x10, proc);
+        break;
+
+    case 1:
+        NewBlockedFadeOut(8, proc);
+        break;
+
+    case 2:
+        NewBlockedFadeOut(4, proc);
+        break;
+
+    case 3:
+        NewBlockedFadeOut(2, proc);
+        break;
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+void Event_CgTalkOnSkip(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EndCgText();
+        sub_0800AF20(proc);
+        proc->idle_func = NULL;
+    }
+    else if (!CgTextExists())
+    {
+        sub_0800AF20(proc);
+        proc->idle_func = NULL;
+    }
 }

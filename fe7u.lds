@@ -127,16 +127,6 @@ SECTIONS
         build/src/eventscr2.o(.text);
         build/src/eventscr3.o(.text);
         build/src/eventscr4.o(.text);
-        build/asm/code_0800FEF0.o(.text);
-        build/asm/code_0800FF94.o(.text);
-        build/asm/code_0800FFD0.o(.text);
-        build/asm/code_08010010.o(.text);
-        build/asm/code_08010048.o(.text);
-        build/asm/code_08010064.o(.text);
-        build/asm/code_080100D0.o(.text);
-        build/asm/code_080100E0.o(.text);
-        build/asm/code_08010138.o(.text);
-        build/asm/code_08010190.o(.text);
         build/asm/code_080101CC.o(.text);
         build/asm/code_08010460.o(.text);
         build/asm/code_08010464.o(.text);
