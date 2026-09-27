@@ -953,10 +953,168 @@ int GetSupportScreenPartnerCount(int charId)
     return gCharacterData[charId - 1].pSupportData->count;
 }
 ASM_FUNC("asm/nonmatching/code_0809C544.s");
-ASM_FUNC("asm/nonmatching/code_0809C654.s");
-ASM_FUNC("asm/nonmatching/code_0809C844.s");
-ASM_FUNC("asm/nonmatching/code_0809C924.s");
-ASM_FUNC("asm/nonmatching/code_0809CA08.s");
+void DrawSupportSubScreenUnitPartnerText(struct SubScreenProc * proc, int idx)
+{
+    int _y;
+    int i;
+    int unitCharId;
+    int partnerCharId;
+
+    int supportLvCharLut[3] =
+    {
+        0x1B,
+        0x1A,
+        0x19,
+    };
+
+    if (proc->partnerState[idx] == 0)
+    {
+        for (i = 0; i < 5; i++)
+            PutSpecialChar(gBg2Tm + TM_OFFSET(0x10 + i, _y = idx * 2 + 3), TEXT_COLOR_SYSTEM_GRAY, 0x14);
+
+        for (i = 0; i < 2; i++)
+            PutSpecialChar(gBg2Tm + TM_OFFSET(0x16 + i, _y = idx * 2 + 3), TEXT_COLOR_SYSTEM_GRAY, 0x14);
+
+        for (i = 0; i < 3; i++)
+            PutSpecialChar(gBg2Tm + TM_OFFSET(0x19 + i, _y = idx * 2 + 3), TEXT_COLOR_SYSTEM_GRAY, 0x14);
+    }
+    else
+    {
+        int color = 0;
+
+        unitCharId = GetSupportScreenCharIdAt(proc->unitIdx);
+        partnerCharId = GetSupportScreenPartnerCharId(proc->unitIdx, idx);
+
+        if (proc->partnerState[idx] == 2)
+            color = 1;
+
+        PutDrawText(
+            0, gBg2Tm + TM_OFFSET(16, 0) + (_y = ((idx * 2) + 3) * 0x20), color, 0, 5,
+            DecodeMsg(gCharacterData[GetSupportScreenPartnerCharId(proc->unitIdx, idx) - 1].nameTextId));
+
+        PutIcon(
+            gBg2Tm + TM_OFFSET(16, 0) + TM_OFFSET(6, (idx * 2) + 3),
+            gCharacterData[GetSupportScreenPartnerCharId(proc->unitIdx, idx) - 1].affinity + 0x79, 0xe000);
+
+        if (GetUnitsAverageSupportValue(unitCharId, partnerCharId) == 2)
+        {
+            for (i = 0; i < 2; i++)
+            {
+                color = 1;
+                if (proc->supportLevel[idx] == 2)
+                    color = 4;
+                else if (proc->supportLevel[idx] > i)
+                    color = 0;
+
+                PutSpecialChar(gBg2Tm + TM_OFFSET(0x19 + i, (idx * 2) + 3), color, supportLvCharLut[i]);
+            }
+
+            PutSpecialChar(gBg2Tm + 0x1B + (((idx * 2) + 3) * 0x20), TEXT_COLOR_SYSTEM_GRAY, 0x14);
+        }
+        else
+        {
+            for (i = 0; i < 3; i++)
+            {
+                color = 1;
+                if (proc->supportLevel[idx] == 3)
+                    color = 4;
+                else if (proc->supportLevel[idx] > i)
+                    color = 0;
+
+                PutSpecialChar(gBg2Tm + TM_OFFSET(0x19 + i, (idx * 2) + 3), color, supportLvCharLut[i]);
+            }
+        }
+    }
+}
+void DrawSupportSubScreenRemainingText(struct SubScreenProc * proc)
+{
+    char const * str;
+    struct Font font;
+    struct Text th;
+
+    InitSpriteTextFont(&font, (void *) 0x06015000, 0xe);
+    ApplyPalette(Pal_Text, 0x1E);
+
+    InitSpriteText(&th);
+
+    SetTextFont(&font);
+    SetTextFontGlyphs(0);
+
+    SpriteText_DrawBackgroundExt(&th, 0);
+
+    str = DecodeMsg(gCharacterData[GetSupportScreenCharIdAt(proc->unitIdx) - 1].nameTextId);
+
+    Text_InsertDrawString(&th, GetStringTextCenteredPos(48, str), TEXT_COLOR_SYSTEM_WHITE, str);
+
+    Text_InsertDrawString(
+        &th, 48, proc->remainingSupports == 0 ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE, DecodeMsg(0x1280));
+
+    Text_InsertDrawString(
+        &th, 96, proc->remainingSupports == 0 ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_WHITE, DecodeMsg(0x1281));
+
+    Text_SetCursor(&th, 112);
+
+    Text_SetColor(&th, (proc->remainingSupports == 0) ? TEXT_COLOR_SYSTEM_GRAY : TEXT_COLOR_SYSTEM_BLUE);
+    Text_DrawNumberOrBlank(&th, proc->remainingSupports);
+
+    SetTextFont(NULL);
+}
+void InitSupportSubScreenPartners(struct SubScreenProc * proc)
+{
+    int i;
+    int j;
+
+    if (proc->fromPrepScreen)
+    {
+        for (i = 0; i < proc->partnerCount; i++)
+        {
+            int partnerCharId = GetSupportScreenPartnerCharId(proc->unitIdx, i);
+
+            proc->partnerState[i] = 0;
+
+            for (j = 1; j < 0x40; j++)
+            {
+                struct Unit * unit = GetUnit(j);
+
+                if (!UNIT_IS_VALID(unit))
+                    continue;
+
+                if (unit->pCharacterData->number != partnerCharId)
+                    continue;
+
+                if (unit->state & US_BIT16)
+                    continue;
+
+                if (unit->state & US_DEAD)
+                    proc->partnerState[i] = 2;
+                else
+                    proc->partnerState[i] = 1;
+            }
+        }
+    }
+    else
+    {
+        proc->unk_3b = 0;
+
+        for (i = 0; i < proc->partnerCount; i++)
+        {
+            proc->partnerState[i] = 0;
+
+            if (GetSupportScreenPartnerIsAlive(proc->unitIdx, i))
+            {
+                proc->partnerState[i] = 1;
+                proc->unk_3b += GetSupportScreenPartnerSupportLevel(proc->unitIdx, i);
+            }
+        }
+    }
+}
+void InitSupportSubScreenPartnerLevels(struct SubScreenProc * proc)
+{
+    int i;
+
+    for (i = 0; i < proc->partnerCount; i++)
+        proc->supportLevel[i] = GetSupportScreenPartnerSupportLevel(proc->unitIdx, i);
+}
 ASM_FUNC("asm/nonmatching/code_0809CA38.s");
 ASM_FUNC("asm/nonmatching/code_0809CAB8.s");
 ASM_FUNC("asm/nonmatching/code_0809CB10.s");

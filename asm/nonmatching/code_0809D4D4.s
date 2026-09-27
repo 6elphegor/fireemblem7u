@@ -37,7 +37,7 @@ sub_0809D4D4: @ 0x0809D4D4
 	adds r0, r5, #0
 	bl InitSupportSubScreenPartners
 	adds r0, r5, #0
-	bl sub_0809CA08
+	bl InitSupportSubScreenPartnerLevels
 	adds r0, r5, #0
 	bl sub_0809CA38
 	adds r0, r5, #0

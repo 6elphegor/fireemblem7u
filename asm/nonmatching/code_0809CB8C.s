@@ -26,7 +26,7 @@ sub_0809CB8C: @ 0x0809CB8C
 	adds r0, r4, #0
 	bl InitSupportSubScreenPartners
 	adds r0, r4, #0
-	bl sub_0809CA08
+	bl InitSupportSubScreenPartnerLevels
 	adds r0, r4, #0
 	bl sub_0809CA38
 	adds r0, r4, #0
