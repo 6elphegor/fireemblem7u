@@ -1872,3 +1872,6 @@ Tsa_EkrPopup = 0x081DB704;
 AnimScr_EkrPopup = 0x08BDCD4C;
 ProcScr_ekrPopup = 0x08BDCD54;
 ProcScr_ekrPopup2 = 0x08BDCDBC;
+ProcScr_ekrHenseiInit = 0x08BDCDF4;
+ProcScr_ekrHenseiEnd = 0x08BDCE24;
+gSpellAssocData = 0x08C999C0;
