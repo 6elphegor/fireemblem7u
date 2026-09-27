@@ -157,7 +157,7 @@ s8 AiIsInByteList(const u8 * list, u8 item);
 s8 AiFindClosestTerrainPosition(const u8 * terrainList, int flags, struct Vec2 * out);
 u8 AiGetPositionRange(int x, int y);
 s8 AiFindClosestTerrainAdjacentPosition(const u8 * terrainList, int flags, struct Vec2 * out);
-s8 AiFindClosestUnlockPosition(int flags, struct Vec2 * outA, struct Vec2 * outB);
+s8 AiFindClosestUnlockPosition(int flags, struct Vec2 * out);
 int AiCountUnitsInRange(void);
 int AiCountEnemyUnitsInRange(void);
 int AiCountAlliedUnitsInRange(void);

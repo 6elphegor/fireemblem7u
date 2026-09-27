@@ -429,7 +429,104 @@ s8 AiFindClosestTerrainAdjacentPosition(const u8 * terrainList, int flags, struc
 
     return 0;
 }
-ASM_FUNC("asm/nonmatching/code_080360E8.s");
+
+s8 AiFindClosestUnlockPosition(int flags, struct Vec2 * out)
+{
+    int ix;
+    int iy;
+    struct Vec2 tmp;
+    u16 zero = 0;
+
+    u8 bestDistance = 0xFF;
+    u8 count = 0;
+
+    for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
+    {
+        for (ix = gBmMapSize.x - 1; ix >= 0; ix--)
+        {
+            if (gBmMapRange[iy][ix] > MAP_MOVEMENT_MAX)
+                continue;
+
+            switch (gBmMapTerrain[iy][ix])
+            {
+            case TERRAIN_DOOR:
+                count++;
+
+                if (flags & AI_FLAG_3)
+                    continue;
+
+                if (!AiFindBestAdjacentPositionByFunc(ix, iy, AiGetPositionRange, &tmp))
+                    continue;
+
+                break;
+
+            case TERRAIN_CHEST:
+                count++;
+
+                if (flags & AI_FLAG_BERSERKED)
+                    continue;
+
+                tmp.x = ix;
+                tmp.y = iy;
+
+                if (gBmMapMovement[iy][ix] <= UNIT_MOV(gActiveUnit))
+                {
+                    if (flags & AI_FLAG_0)
+                    {
+                        if (gBmMapUnit[tmp.y][tmp.x] != 0 && !AreUnitIdsAllied(gActiveUnit->index, gBmMapUnit[tmp.y][tmp.x]))
+                            continue;
+                    }
+
+                    if (flags & AI_FLAG_STAY)
+                    {
+                        if (AiCountNearbyEnemyUnits(tmp.x, tmp.y) != 0)
+                            continue;
+                    }
+
+                    out->x = tmp.x;
+                    out->y = tmp.y;
+
+                    return 1;
+                }
+
+                break;
+
+            default:
+                continue;
+            }
+
+            if (flags & 1)
+            {
+                if (gBmMapUnit[tmp.y][tmp.x] != 0 && !AreUnitIdsAllied(gActiveUnit->index, gBmMapUnit[tmp.y][tmp.x]))
+                    continue;
+            }
+
+            if (flags & 2)
+            {
+                if (AiCountNearbyEnemyUnits(tmp.x, tmp.y) != 0)
+                    continue;
+            }
+
+            if (bestDistance <= gMapRangeSigned[tmp.y][tmp.x])
+                continue;
+
+            out->x = tmp.x;
+            out->y = tmp.y;
+            bestDistance = gBmMapRange[tmp.y][tmp.x];
+        }
+    }
+
+    if (!(zero & 0x10000))
+        gAiState.cmd_result[1] = 1;
+
+    if (count == 0)
+        gAiState.cmd_result[0] = 5;
+
+    if (bestDistance != 0xFF)
+        return 1;
+
+    return 0;
+}
 
 int AiCountUnitsInRange(void)
 {
