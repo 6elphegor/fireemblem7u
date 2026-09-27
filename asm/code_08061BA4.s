@@ -105,7 +105,7 @@ _08061C6A:
 	bl StartSpellThing_MagicQuake
 	adds r0, r6, #0
 	movs r1, #0x1e
-	bl sub_08060AEC
+	bl StartSubSpell_efxGespenstBG4
 	adds r0, r6, #0
 	bl StartSubSpell_efxGespenstBGCOL2
 	ldr r0, _08061C9C @ =0x000002FE
