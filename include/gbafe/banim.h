@@ -578,9 +578,9 @@ void NewEkrNamewinAppear(int identifier, int duration, int delay);
 bool PrepareBattleGraphicsMaybe(void);
 u16 GetBattleAnimationId_WithUnique(struct Unit * unit, const struct BattleAnimDef * pBattleAnimDef, u16, int * out);
 // ??? GetBanimTerrainGround
-// ??? sub_08052A30
-// ??? sub_08052B08
-// ??? sub_08052C50
+// ??? GetBanimBackgroundIndex
+// ??? GetSpellAnimId
+// ??? UnsetMapStaffAnim
 void ParseBattleHitToBanimCmd(void);
 bool CheckBattleHasHit(void);
 s16 GetBattleAnimCharacterUniquePalIndex(struct Unit * unit, int index);

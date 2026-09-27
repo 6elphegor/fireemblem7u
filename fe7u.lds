@@ -342,11 +342,7 @@ SECTIONS
         build/src/banim-ekrbattlestarting.o(.text);
         build/src/banim-ekrbattleending.o(.text);
         build/src/banim-ekrbattleintro.o(.text);
-        build/asm/code_08052954.o(.text);
-        build/asm/code_08052A30.o(.text);
-        build/asm/code_08052B08.o(.text);
-        build/asm/code_08052C50.o(.text);
-        build/asm/code_08052C9C.o(.text);
+        build/src/banim-battleparse.o(.text);
         build/asm/code_08053214.o(.text);
         build/asm/code_0805322C.o(.text);
         build/asm/code_08053250.o(.text);

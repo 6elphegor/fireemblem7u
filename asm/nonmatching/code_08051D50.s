@@ -715,7 +715,7 @@ _08052300:
 	ldr r1, [sp, #8]
 	adds r1, #0x4a
 	ldrh r1, [r1]
-	bl sub_08052B08
+	bl GetSpellAnimId
 	ldr r1, _080525C0 @ =0x0203E024
 	strh r0, [r1]
 _08052318:
@@ -727,7 +727,7 @@ _08052318:
 	ldr r1, [sp, #0xc]
 	adds r1, #0x4a
 	ldrh r1, [r1]
-	bl sub_08052B08
+	bl GetSpellAnimId
 	ldr r1, _080525C0 @ =0x0203E024
 	strh r0, [r1, #2]
 _08052330:
@@ -770,7 +770,7 @@ _0805236C:
 	adds r1, #0x4a
 	ldrh r2, [r1]
 	movs r1, #0
-	bl sub_08052C50
+	bl UnsetMapStaffAnim
 _08052380:
 	ldr r4, [sp, #0x28]
 	cmp r4, #0
@@ -780,7 +780,7 @@ _08052380:
 	adds r1, #0x4a
 	ldrh r2, [r1]
 	movs r1, #1
-	bl sub_08052C50
+	bl UnsetMapStaffAnim
 _08052394:
 	ldr r0, _080525CC @ =0x0203E02C
 	movs r1, #0
@@ -1210,7 +1210,7 @@ _080526D0:
 	bl GetChapterInfo
 	ldrb r1, [r0, #0x13]
 	adds r0, r4, #0
-	bl sub_08052A30
+	bl GetBanimBackgroundIndex
 	strh r0, [r5]
 _080526E6:
 	bl CheckBanimHensei
