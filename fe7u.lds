@@ -340,15 +340,7 @@ SECTIONS
         build/src/banim-efxflashobj.o(.text);
         build/src/banim-ekrutils.o(.text);
         build/src/banim-ekrbattlestarting.o(.text);
-        build/asm/code_08050EB4.o(.text);
-        build/asm/code_08050ECC.o(.text);
-        build/asm/code_08050F44.o(.text);
-        build/asm/code_08050F98.o(.text);
-        build/asm/code_08050FF4.o(.text);
-        build/asm/code_08051054.o(.text);
-        build/asm/code_080510E0.o(.text);
-        build/asm/code_08051170.o(.text);
-        build/asm/code_0805125C.o(.text);
+        build/src/banim-ekrbattleending.o(.text);
         build/asm/code_08051274.o(.text);
         build/asm/code_0805164C.o(.text);
         build/asm/code_080516E8.o(.text);

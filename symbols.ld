@@ -2818,3 +2818,4 @@ gSioBgPalTable = 0x081D552E;
 gEkrBmLocation = 0x0203E02E;
 gUnknown_0201FACC = 0x0201FACC;
 ProcScr_ekrBattleStarting = 0x08B9B004;
+ProcScr_ekrBattleEnding = 0x08B9B04C;
