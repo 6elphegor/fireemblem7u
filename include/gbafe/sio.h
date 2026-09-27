@@ -324,8 +324,8 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_08046994
 // sub_080469C4
 // sub_08046A54
-// sub_08046A7C
-// sub_08046B48
+// LinkArenaFogSprite_Loop
+// StartLinkArenaFogPlaceholders
 // EndLinkArenaFogPlaceholders
 // sub_08046B6C
 // sub_08046B8C
@@ -335,7 +335,7 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_08046CD4
 // sub_08046D10
 // sub_08046D9C
-// sub_08046DC0
+// LAUnitDeaths_Init
 // LAUnitDeaths_FindNextAndStart
 // sub_8047658
 // sub_8047664

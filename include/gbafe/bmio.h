@@ -6,7 +6,7 @@
 // BmVSync_End
 // BmVSync_Repeat
 void StartBmVSync(void);
-// BMapVSync_End
+void BMapVSync_End(void);
 void LockBmDisplay(void);
 void UnlockBmDisplay(void);
 void AllocWeatherParticles(int weather);
@@ -40,3 +40,5 @@ void ApplyFlamesWeatherGradient(void);
 void DisableTilesetPalAnim(void);
 void EnableTilesetPalAnim(void);
 // SetWeather
+
+extern struct ProcCmd ProcScr_MapTask[];
