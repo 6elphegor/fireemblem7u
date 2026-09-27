@@ -196,7 +196,7 @@ _080B49CA:
 	mov r4, ip
 	strb r4, [r2, #8]
 	mov r0, sb
-	bl sub_080B4828
+	bl WmMu_StartFlash
 	b _080B4A94
 	.align 2, 0
 _080B4A80: .4byte 0x08CE7688

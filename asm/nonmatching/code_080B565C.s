@@ -112,11 +112,11 @@ _080B573E:
 	b _080B5754
 _080B5746:
 	ldr r0, [r4, #0x44]
-	bl sub_080B4890
+	bl WmMu_EndFlash
 	b _080B5754
 _080B574E:
 	ldr r0, [r4, #0x44]
-	bl sub_080B4828
+	bl WmMu_StartFlash
 _080B5754:
 	adds r0, r4, #0
 	bl Proc_Break

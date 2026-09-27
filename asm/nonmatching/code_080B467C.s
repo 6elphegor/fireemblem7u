@@ -25,7 +25,7 @@ sub_080B467C: @ 0x080B467C
 	adds r2, r0, r3
 	adds r1, r1, r2
 	ldrb r2, [r4]
-	bl sub_080B4610
+	bl WmDimPalette
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _080B46EA

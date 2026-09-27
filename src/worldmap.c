@@ -92,21 +92,24 @@ struct WmMuMoveProc {
     /* 62 */ u8 first;
 };
 
-struct WmFaceSlotsProc {
-    /* 00 */ PROC_HEADER;
-    /* 2C */ struct {
-        /* 00 */ s16 x;
-        /* 02 */ s16 y;
-        /* 04 */ struct ProcSpriteAnim * anim;
-        /* 08 */ s8 state;
-    } ent[5];
+struct WmSlotEnt {
+    /* 00 */ s16 x;
+    /* 02 */ s16 y;
+    /* 04 */ struct ProcSpriteAnim * anim;
+    /* 08 */ u8 state;
+    /* 09 */ u8 pal;
 };
 
-struct WmFaceManagerProc {
+struct WmSlotsProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct WmSlotEnt ent[5];
+};
+
+struct WmUnitManagerProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ ProcPtr parent;
     /* 30 */ u16 unk_30;
-    /* 34 */ struct WmFaceSlotsProc * slots[4];
+    /* 34 */ struct WmSlotsProc * slots[4];
     /* 44 */ u8 unk_44;
     /* 45 */ u8 unk_45;
     /* 46 */ u8 unk_46;
@@ -114,8 +117,12 @@ struct WmFaceManagerProc {
     /* 48 */ u8 unk_48;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_WmFaceManager[];
-extern struct ProcCmd CONST_DATA ProcScr_WmFaceSlots[];
+extern struct ProcCmd CONST_DATA ProcScr_WmMu[];
+extern struct ProcCmd CONST_DATA ProcScr_WmUnitManager[];
+
+void sub_080B4C28(int idx);
+void sub_080B4D14(int idx);
+extern struct ProcCmd CONST_DATA ProcScr_WmSlots[];
 extern struct ProcCmd CONST_DATA ProcScr_WmTextBox[];
 extern struct ProcCmd CONST_DATA ProcScr_WmMarker[];
 extern u16 CONST_DATA Sprite_WmTextBoxA[];
@@ -569,12 +576,12 @@ void WmMuMove_OnEnd(struct WmMuMoveProc * proc)
         WmSetUnk02(0);
 }
 
-ProcPtr StartWmFaceManager(ProcPtr parent)
+ProcPtr StartWmMu(ProcPtr parent)
 {
-    return Proc_Start(ProcScr_WmFaceManager, parent);
+    return Proc_Start(ProcScr_WmMu, parent);
 }
 
-void WmFaceSlots_Init(struct WmFaceSlotsProc * proc)
+void WmSlots_Init(struct WmSlotsProc * proc)
 {
     int i;
 
@@ -587,14 +594,14 @@ void WmFaceSlots_Init(struct WmFaceSlotsProc * proc)
     }
 }
 
-void WmFaceManager_Init(struct WmFaceManagerProc * proc)
+void WmUnitManager_Init(struct WmUnitManagerProc * proc)
 {
     proc->unk_30 = 0;
 
-    proc->slots[0] = Proc_Start(ProcScr_WmFaceSlots, proc);
-    proc->slots[1] = Proc_Start(ProcScr_WmFaceSlots, proc);
-    proc->slots[2] = Proc_Start(ProcScr_WmFaceSlots, proc);
-    proc->slots[3] = Proc_Start(ProcScr_WmFaceSlots, proc);
+    proc->slots[0] = Proc_Start(ProcScr_WmSlots, proc);
+    proc->slots[1] = Proc_Start(ProcScr_WmSlots, proc);
+    proc->slots[2] = Proc_Start(ProcScr_WmSlots, proc);
+    proc->slots[3] = Proc_Start(ProcScr_WmSlots, proc);
 
     proc->parent = proc->proc_parent;
 
@@ -604,7 +611,7 @@ void WmFaceManager_Init(struct WmFaceManagerProc * proc)
     proc->unk_48 = 0;
 }
 
-void WmFaceSlots_UpdatePosition(int idx, struct WmFaceSlotsProc * proc)
+void WmSlots_UpdatePosition(int idx, struct WmSlotsProc * proc)
 {
     struct ProcSpriteAnim * anim;
     int x, y;
@@ -631,12 +638,81 @@ void WmFaceSlots_UpdatePosition(int idx, struct WmFaceSlotsProc * proc)
 
 ASM_FUNC("asm/nonmatching/code_080B43EC.s");
 ASM_FUNC("asm/nonmatching/code_080B4510.s");
-ASM_FUNC("asm/nonmatching/code_080B4610.s");
+void WmDimPalette(u16 * dst, u16 * src, u8 coeff)
+{
+    int i;
+
+    for (i = 0; i < 0x10; i++)
+    {
+        *dst = ((((*src & 0x1F) * coeff) >> 5) & 0x1F) +
+            ((((*src & 0x3E0) * coeff) >> 5) & 0x3E0) +
+            ((((*src & 0x7C00) * coeff) >> 5) & 0x7C00);
+        dst++;
+        src++;
+    }
+
+    EnablePalSync();
+}
+
 ASM_FUNC("asm/nonmatching/code_080B467C.s");
 ASM_FUNC("asm/nonmatching/code_080B4738.s");
-ASM_FUNC("asm/nonmatching/code_080B47E0.s");
-ASM_FUNC("asm/nonmatching/code_080B4828.s");
-ASM_FUNC("asm/nonmatching/code_080B4890.s");
+void WmUnitManager_EndAll(struct WmUnitManagerProc * proc)
+{
+    int i;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (proc->slots[1]->ent[i].anim != NULL)
+            sub_080B4C28(i);
+    }
+
+    for (i = 0; i < 5; i++)
+    {
+        if (proc->slots[2]->ent[i].anim != NULL)
+            sub_080B4D14(i);
+    }
+}
+
+void WmMu_StartFlash(int idx)
+{
+    struct WmMuMoveProc * mu;
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[0]->ent[idx];
+
+    if (mgr == NULL || (mu = (struct WmMuMoveProc *) ent->anim) == NULL)
+        return;
+
+    CpuFastFill(0, gPal + 0x1A0, 0x20);
+    EnablePalSync();
+
+    SetMuPal(mu->mu, 0xA);
+
+    ent->state = 1;
+    mgr->unk_46 = ent->pal;
+    mgr->unk_47 = 1;
+    mgr->unk_48 = 0;
+}
+
+void WmMu_EndFlash(int idx)
+{
+    struct WmMuMoveProc * mu;
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[0]->ent[idx];
+
+    if (mgr == NULL || (mu = (struct WmMuMoveProc *) ent->anim) == NULL)
+        return;
+
+    CpuFastCopy(gPal + 0x100 + ent->pal * 0x10, gPal + 0x1A0, 0x20);
+    EnablePalSync();
+
+    SetMuPal(mu->mu, 0xA);
+
+    ent->state |= 0xFF;
+    mgr->unk_46 = ent->pal;
+    mgr->unk_47 |= 0xFF;
+    mgr->unk_48 = 0x20;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B4904.s");
 ASM_FUNC("asm/nonmatching/code_080B4ADC.s");
 ASM_FUNC("asm/nonmatching/code_080B4B14.s");
