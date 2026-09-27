@@ -83,7 +83,7 @@ GenerateGameRankSaveData: @ 0x0809F388
 	ands r0, r2
 	orrs r0, r1
 	strh r0, [r7, #2]
-	bl sub_0809FCB0
+	bl GetGameTotalTime
 	mov r4, sp
 	adds r4, #6
 	add r5, sp, #8
@@ -288,7 +288,7 @@ _0809F548:
 	ands r1, r2
 	orrs r1, r0
 	strb r1, [r7]
-	bl sub_0809FB70
+	bl GetCurCompleteChapters
 	movs r1, #0x3f
 	ands r0, r1
 	lsls r0, r0, #5

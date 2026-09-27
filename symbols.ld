@@ -1101,3 +1101,6 @@ gUnknown_080DA1CA = 0x081D56E4;
 gUnknown_08A1BD40 = 0x0840628C;
 gUnknown_085AAA0E = 0x08B9A466;
 gUnknown_085AAA48 = 0x08B9A4A0;
+gPidStatsSaveLoc = 0x0203E79C;
+gPidStatsData = 0x0203E7A0;
+gChapterStats = 0x0203EC00;

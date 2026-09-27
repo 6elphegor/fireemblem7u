@@ -180,43 +180,57 @@ struct PidStats
     u32 : 0; // unused/padding (15 bits)
 };
 
-// ??? ClearPidChStatsSaveData
+#define BWL_ARRAY_NUM 0x46
+
+struct ChapterStats {
+    /* 00 */ u16 chapter_index : 7;
+             u16 chapter_turn  : 9;
+    /* 02 */ u16 chapter_time;
+};
+
+#define WIN_ARRAY_NUM 0x30
+
+extern struct PidStats * gPidStatsSaveLoc;
+extern struct PidStats gPidStatsData[BWL_ARRAY_NUM];
+extern struct ChapterStats gChapterStats[WIN_ARRAY_NUM];
+
+void ClearPidChStatsSaveData(void * sram_dest);
 void ClearPidStats_ret(void);
 void ClearPidStats(void);
-// ??? ReadPidStats
-// ??? ReadChapterStats
-// ??? WritePidStats
-// ??? WriteChapterStats
-// ??? GetChapterStats
-// ??? IsChapterStatsValid
-// ??? GetNextChapterStatsSlot
-// ??? sub_0809FB70
+void ReadPidStats(void * sram_src);
+void ReadChapterStats(void const * sram_src);
+void WritePidStats(void * sram_dest);
+void WriteChapterStats(void * sram_dest);
+struct ChapterStats * GetChapterStats(int index);
+bool IsChapterStatsValid(struct ChapterStats * chapter_stats);
+int GetNextChapterStatsSlot(void);
+int GetCurCompleteChapters(void);
 int GetNextChapterStatsEntry(void);
 void RegisterChapterStats(struct PlaySt *);
-// ??? GetGameTotalTime_unused
-// ??? GetGameTotalTurnCount
-// ??? IsChapterPartOfCurrentMode
-// ??? sub_0809FCB0
-// ??? GetTotalTurnCountUpUntilNow
-// ??? PidStatsAddBattleAmt
-// ??? sub_0809FD9C
-// ??? PidStatsRecordLoseData
-// ??? PidStatsRecordDefeatInfo
-// ??? PidStatsAddActAmt
+int GetGameTotalTime_unused(void);
+int GetGameTotalTurnCount(void);
+bool IsChapterPartOfCurrentMode(int ch_index);
+int GetGameTotalTime(void);
+int GetTotalTurnCountUpUntilNow(void);
+void PidStatsAddBattleAmt(struct Unit * unit);
+void PidStatsAddWinAmt(u8 pid);
+void PidStatsRecordLoseData(u8 pid);
+void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
+void PidStatsAddActAmt(u8 pid);
 void PidStatsAddStatView(u8 pid);
-// ??? PidStatsAddDeployAmt
-// ??? PidStatsAddMove
-// ??? PidStatsAddExpGained
-// ??? PidStatsSubFavval08
-// ??? PidStatsSubFavval100
-// ??? PidStatsGetTotalBattleAmt
-// ??? PidStatsGetTotalWinAmt
-// ??? sub_080A0178
-// ??? PidStatsGetTotalLevel
-// ??? sub_080A01BC
-// ??? PidStatsGetExpGain
-// ??? PidStatsGetFavval
-// ??? PidStatsAddFavval
+void PidStatsAddDeployAmt(u8 pid);
+void PidStatsAddMove(u8 pid, int amount);
+void PidStatsAddExpGained(u8 pid, int expGain);
+void PidStatsSubFavval08(u8 pid);
+void PidStatsSubFavval100(u8 pid);
+int PidStatsGetTotalBattleAmt(void);
+int PidStatsGetTotalWinAmt(void);
+int PidStatsGetTotalLossAmt(void);
+int PidStatsGetTotalLevel(void);
+int PidStatsGetTotalExpGain(void);
+int PidStatsGetExpGain(u8 pid);
+int PidStatsGetFavval(u8 pid);
+void PidStatsAddFavval(u8 pid, int val);
 void PidStatsRecordBattleRes(void);
 bool IsPlaythroughIdUnique(int index);
 int GetNewPlaythroughId(void);
@@ -224,8 +238,9 @@ int GetGlobalCompletionCntByInfo(struct GlobalSaveInfo * info);
 int GetGlobalCompletionCount(void);
 bool RegisterCompletedPlaythrough(struct GlobalSaveInfo * info, int index);
 void SavePlayThroughData(void);
-// ??? sub_80A0DFC
-// ??? WriteCompletedPlaythroughSaveData
+bool IsFirstChapterStatsPrologue(void);
+int GetCompletedPlaythroughKind(void);
+void WriteCompletedPlaythroughSaveData(void);
 struct PidStats * GetPidStats(u8 pid);
 // ??? GetBonusContentClaimFlags
 // ??? SetBonusContentClaimFlags
@@ -255,7 +270,7 @@ u8 IsValidSuspendSave(int);
 // ??? ReadSuspendSavePackedUnit
 // ??? WriteTraps
 // ??? ReadTraps
-// ??? GetLastSuspendSaveId
+int GetLastSuspendSaveId(void);
 // ??? GetNextSuspendSaveId
 // ??? WriteSwappedSuspendSaveId
 int SramChecksum32(void const * sram_src, int size);
