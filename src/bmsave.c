@@ -150,7 +150,38 @@ void WriteNewGameSave(int index, int isDifficult, int mode)
     WriteLastGameSaveId(index);
 }
 
-ASM_FUNC("asm/nonmatching/code_080A0810.s");
+void WriteGameSave(int slot)
+{
+    int i;
+    struct SaveBlockInfo chunk;
+    struct GlobalSaveInfo info;
+
+    struct GameSaveBlock * dest = GetSaveWriteAddr(slot);
+    InvalidateSuspendSave(SAVE_SUSPEND);
+    gPlaySt.gameSaveSlot = slot;
+    gPlaySt.time_saved = GetGameTime();
+    WriteAndVerifySramFast(&gPlaySt, &dest->playSt, sizeof(gPlaySt));
+
+    for (i = 0; i < UNIT_SAVE_AMOUNT_BLUE; i++)
+        WriteGameSavePackedUnit(&gUnitArrayBlue[i], &dest->units[i]);
+
+    ReadGlobalSaveInfo(&info);
+
+    for (i = 0; i < UNIT_SAVE_AMOUNT_BLUE; i++)
+        MetaSave_SetMetCharacter(UNIT_CHAR_ID(&gUnitArrayBlue[i]), &info);
+
+    WriteGlobalSaveInfo(&info);
+    WriteSupplyItems(dest->supplyItems);
+    WritePidStats(dest->pidStats);
+    WriteChapterStats(dest->chapterStats);
+    WriteBonusContentClaimFlags(dest);
+    WritePermanentFlags(dest->permanentFlags);
+
+    chunk.magic32 = SAVE_MAGIC32_SAV;
+    chunk.kind = SAVE_KIND_GAME;
+    WriteSaveBlockInfo(&chunk, slot);
+    WriteLastGameSaveId(slot);
+}
 
 void ReadGameSave(int slot)
 {
