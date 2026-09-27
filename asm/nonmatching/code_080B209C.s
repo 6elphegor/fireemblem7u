@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B209C
-sub_080B209C: @ 0x080B209C
+	thumb_func_start ShopTryMoveHand
+ShopTryMoveHand: @ 0x080B209C
 	push {r7, lr}
 	sub sp, #0x10
 	mov r7, sp

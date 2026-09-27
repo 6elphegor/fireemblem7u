@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B2574
-sub_080B2574: @ 0x080B2574
+	thumb_func_start ShopSt_SetSetPageScrollTrigOffset
+ShopSt_SetSetPageScrollTrigOffset: @ 0x080B2574
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B2548
-sub_080B2548: @ 0x080B2548
+	thumb_func_start ShopSt_SetLineHeight
+ShopSt_SetLineHeight: @ 0x080B2548
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

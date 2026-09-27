@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1DB8
-sub_080B1DB8: @ 0x080B1DB8
+	thumb_func_start IsItemSellable
+IsItemSellable: @ 0x080B1DB8
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

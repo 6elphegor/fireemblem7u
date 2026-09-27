@@ -110,19 +110,19 @@ void InitTalk(int chr, int lines, bool unpack_bubble);
 // ??? InitSpriteTalk
 // ??? sub_08007F50
 void SetInitTalkTextFont();
-// ??? StartTalkExt
+void StartTalkExt(int x, int y, char const * str, ProcPtr parent);
 // ??? StartTalkMsg
 // ??? StartTalkMsgExt
 // ??? StartTalk
 // ??? EndTalk
 // ??? SetTalkLines
 void ClearAllTalkFlags(void);
-// ??? SetTalkFlag
+void SetTalkFlag(int flag);
 // ??? SetTalkFunc
 // ??? ClearTalkFlag
 // ??? CheckTalkFlag
 // ??? SetTalkPrintDelay
-// ??? SetTalkPrintColor
+void SetTalkPrintColor(int color);
 // ??? TalkSkipListener_OnIdle
 // ??? Talk_OnInit
 // ??? sub_08008218

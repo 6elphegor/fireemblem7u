@@ -11,7 +11,7 @@ sub_080B26C4: @ 0x080B26C4
 	ldr r0, _080B2A18 @ =0x08C9D00C
 	ldr r1, _080B2A1C @ =HideMu
 	bl Proc_ForEach
-	bl sub_080B1E28
+	bl InitShopScreenConfig
 	ldr r0, _080B2A20 @ =0x03002870
 	ldrb r1, [r0, #0xc]
 	movs r2, #0xfc
@@ -71,7 +71,7 @@ sub_080B26C4: @ 0x080B26C4
 	movs r0, #2
 	bl EnableBgSync
 	ldr r0, [r7]
-	bl sub_080B17A0
+	bl StartUiGoldBox
 	ldr r0, _080B2A20 @ =0x03002870
 	ldrb r1, [r0, #1]
 	movs r2, #0x20

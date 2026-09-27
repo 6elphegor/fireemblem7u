@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B25F4
-sub_080B25F4: @ 0x080B25F4
+	thumb_func_start ShouldDisplayDownArrow
+ShouldDisplayDownArrow: @ 0x080B25F4
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _080B2614 @ =0x08CE7298

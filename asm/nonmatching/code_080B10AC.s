@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B10AC
-sub_080B10AC: @ 0x080B10AC
+	thumb_func_start Shop_Loop_UnkKeyHandler
+Shop_Loop_UnkKeyHandler: @ 0x080B10AC
 	push {r4, r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -11,8 +11,8 @@ sub_080B10AC: @ 0x080B10AC
 	adds r0, r7, #4
 	movs r1, #0
 	strb r1, [r0]
-	bl sub_080B23B8
-	bl sub_080B2508
+	bl Shop_TryMoveHandPage
+	bl ShopSt_GetBg2Offset
 	adds r1, r0, #0
 	lsls r0, r1, #0x10
 	lsrs r2, r0, #0x10
@@ -24,7 +24,7 @@ sub_080B10AC: @ 0x080B10AC
 	adds r1, #0x5c
 	ldrb r0, [r1]
 	adds r4, r0, #0
-	bl sub_080B24EC
+	bl ShopSt_GetHeadLoc
 	lsls r2, r4, #0x10
 	lsrs r1, r2, #0x10
 	lsls r2, r0, #0x10
@@ -35,7 +35,7 @@ sub_080B10AC: @ 0x080B10AC
 	movs r1, #1
 	strb r1, [r0]
 _080B10F0:
-	bl sub_080B24EC
+	bl ShopSt_GetHeadLoc
 	ldr r1, [r7]
 	adds r2, r1, #0
 	adds r1, #0x5c
@@ -47,7 +47,7 @@ _080B10F0:
 	orrs r2, r0
 	adds r0, r2, #0
 	strb r0, [r1]
-	bl sub_080B252C
+	bl ShopSt_GetHandLoc
 	ldr r1, [r7]
 	adds r2, r1, #0
 	adds r1, #0x5d
@@ -145,8 +145,8 @@ _080B10F0:
 	movs r0, #0x38
 	bl StartItemHelpBox
 _080B11D2:
-	bl sub_080B1F2C
-	bl sub_080B25A0
+	bl DisplayShopUiArrows
+	bl IsShopPageScrolling
 	lsls r1, r0, #0x18
 	asrs r0, r1, #0x18
 	cmp r0, #0

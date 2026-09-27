@@ -2,15 +2,15 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1024
-sub_080B1024: @ 0x080B1024
+	thumb_func_start Shop_AnythingElseContinueDialogue
+Shop_AnythingElseContinueDialogue: @ 0x080B1024
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
 	str r0, [r7]
 	movs r0, #0xf
 	ldr r1, [r7]
-	bl sub_080B034C
+	bl StartShopDialogue
 	add sp, #4
 	pop {r7}
 	pop {r0}

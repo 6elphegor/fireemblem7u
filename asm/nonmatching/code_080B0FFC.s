@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B0FFC
-sub_080B0FFC: @ 0x080B0FFC
+	thumb_func_start Shop_AnythingElseRestartDialogue
+Shop_AnythingElseRestartDialogue: @ 0x080B0FFC
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -18,7 +18,7 @@ sub_080B0FFC: @ 0x080B0FFC
 	strb r2, [r0]
 	movs r0, #0xc
 	ldr r1, [r7]
-	bl sub_080B034C
+	bl StartShopDialogue
 	add sp, #4
 	pop {r7}
 	pop {r0}

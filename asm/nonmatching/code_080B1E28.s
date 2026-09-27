@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1E28
-sub_080B1E28: @ 0x080B1E28
+	thumb_func_start InitShopScreenConfig
+InitShopScreenConfig: @ 0x080B1E28
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _080B1F04 @ =0x03002870

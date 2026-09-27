@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B23B8
-sub_080B23B8: @ 0x080B23B8
+	thumb_func_start Shop_TryMoveHandPage
+Shop_TryMoveHandPage: @ 0x080B23B8
 	push {r4, r7, lr}
 	mov r7, sp
 	ldr r0, _080B2414 @ =0x08CE7298
@@ -14,7 +14,7 @@ sub_080B23B8: @ 0x080B23B8
 	ldrh r2, [r1, #2]
 	adds r1, r2, #0
 	movs r2, #0
-	bl sub_080B209C
+	bl ShopTryMoveHand
 	adds r1, r0, #0
 	ldr r2, _080B2414 @ =0x08CE7298
 	ldr r0, [r2]
@@ -38,7 +38,7 @@ sub_080B23B8: @ 0x080B23B8
 	ldr r3, _080B2414 @ =0x08CE7298
 	ldr r4, [r3]
 	ldrh r3, [r4, #6]
-	bl sub_080B21C0
+	bl ShopTryScrollPage
 	cmp r0, #0
 	beq _080B241E
 	cmp r0, #0
@@ -138,7 +138,7 @@ _080B24AC:
 	ldr r2, _080B24E8 @ =0x08CE7298
 	ldr r3, [r2]
 	ldrh r2, [r3, #0xa]
-	bl sub_080B224C
+	bl ShopUpdateBg2Offset
 	adds r1, r0, #0
 	ldr r2, _080B24E8 @ =0x08CE7298
 	ldr r0, [r2]

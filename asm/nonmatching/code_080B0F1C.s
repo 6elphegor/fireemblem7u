@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B0F1C
-sub_080B0F1C: @ 0x080B0F1C
+	thumb_func_start Shop_HandleSellConfirmPrompt
+Shop_HandleSellConfirmPrompt: @ 0x080B0F1C
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -65,12 +65,12 @@ _080B0F3C:
 	ldrb r1, [r2]
 	bl UnitRemoveItem
 	ldr r0, [r7]
-	bl sub_080B0520
+	bl UpdateShopItemCounts
 	ldr r0, [r7]
-	bl sub_080B1AD8
+	bl ShopInitTexts_OnSell
 	ldr r1, _080B0FCC @ =0x02022E16
 	adds r0, r1, #0
-	bl sub_080B18B0
+	bl DisplayGoldBoxText
 	ldr r1, [r7]
 	adds r0, r1, #0
 	adds r1, #0x5b

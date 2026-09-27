@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1B80
-sub_080B1B80: @ 0x080B1B80
+	thumb_func_start ShopDrawDefaultSellItemLine
+ShopDrawDefaultSellItemLine: @ 0x080B1B80
 	push {r4, r5, r7, lr}
 	sub sp, #0x10
 	mov r7, sp
@@ -83,7 +83,7 @@ _080B1BFA:
 	lsls r4, r3, #1
 	ldr r5, _080B1C30 @ =0x02023C6E
 	adds r3, r4, r5
-	bl sub_080B1CCC
+	bl DrawShopItemLine
 	ldr r0, [r7, #4]
 	adds r1, r0, #1
 	str r1, [r7, #4]

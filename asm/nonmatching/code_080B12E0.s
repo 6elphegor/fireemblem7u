@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B12E0
-sub_080B12E0: @ 0x080B12E0
+	thumb_func_start StartShopFadeIn
+StartShopFadeIn: @ 0x080B12E0
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

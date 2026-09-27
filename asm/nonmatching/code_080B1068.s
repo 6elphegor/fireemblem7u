@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1068
-sub_080B1068: @ 0x080B1068
+	thumb_func_start Shop_OnExit
+Shop_OnExit: @ 0x080B1068
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

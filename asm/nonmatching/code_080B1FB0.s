@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1FB0
-sub_080B1FB0: @ 0x080B1FB0
+	thumb_func_start DisplayUiVArrow
+DisplayUiVArrow: @ 0x080B1FB0
 	push {r4, r7, lr}
 	sub sp, #0x1c
 	add r7, sp, #4

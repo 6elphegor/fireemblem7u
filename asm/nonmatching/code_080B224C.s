@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B224C
-sub_080B224C: @ 0x080B224C
+	thumb_func_start ShopUpdateBg2Offset
+ShopUpdateBg2Offset: @ 0x080B224C
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp

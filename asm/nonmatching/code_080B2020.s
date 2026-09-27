@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B2020
-sub_080B2020: @ 0x080B2020
+	thumb_func_start HandleShopBuyAction
+HandleShopBuyAction: @ 0x080B2020
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -35,7 +35,7 @@ sub_080B2020: @ 0x080B2020
 	adds r1, #0x30
 	adds r2, r1, r2
 	ldrh r1, [r2]
-	bl sub_080B1D40
+	bl GetItemPurchasePrice
 	lsls r1, r0, #0x10
 	lsrs r0, r1, #0x10
 	ldr r1, [r7, #4]
@@ -45,12 +45,12 @@ sub_080B2020: @ 0x080B2020
 	adds r0, r1, #0
 	bl SetGold
 	ldr r0, [r7]
-	bl sub_080B0520
+	bl UpdateShopItemCounts
 	ldr r0, [r7]
-	bl sub_080B19AC
+	bl DrawShopSoldItems
 	ldr r1, _080B2098 @ =0x02022E16
 	adds r0, r1, #0
-	bl sub_080B18B0
+	bl DisplayGoldBoxText
 	add sp, #8
 	pop {r7}
 	pop {r0}

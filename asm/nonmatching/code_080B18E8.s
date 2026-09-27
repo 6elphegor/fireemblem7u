@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B18E8
-sub_080B18E8: @ 0x080B18E8
+	thumb_func_start ShopInitTexts_OnBuy
+ShopInitTexts_OnBuy: @ 0x080B18E8
 	push {r7, lr}
 	sub sp, #0x10
 	mov r7, sp

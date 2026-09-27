@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1DF0
-sub_080B1DF0: @ 0x080B1DF0
+	thumb_func_start GoldBox_OnLoop
+GoldBox_OnLoop: @ 0x080B1DF0
 	push {r4, r5, r7, lr}
 	sub sp, #4
 	mov r7, sp

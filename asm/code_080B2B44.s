@@ -30,7 +30,7 @@ sub_080B2B44: @ 0x080B2B44
 _080B2B7A:
 	ldr r1, _080B2B94 @ =0x02022E16
 	adds r0, r1, #0
-	bl sub_080B18B0
+	bl DisplayGoldBoxText
 	ldr r0, [r7]
 	bl sub_080B2DF8
 	add sp, #8

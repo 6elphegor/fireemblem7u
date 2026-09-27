@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1878
-sub_080B1878: @ 0x080B1878
+	thumb_func_start ClearGoldBoxTextTm2Line
+ClearGoldBoxTextTm2Line: @ 0x080B1878
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp

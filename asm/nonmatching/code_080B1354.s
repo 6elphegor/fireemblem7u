@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1354
-sub_080B1354: @ 0x080B1354
+	thumb_func_start Shop_Init
+Shop_Init: @ 0x080B1354
 	push {r4, r7, lr}
 	sub sp, #0xc
 	add r7, sp, #4
@@ -26,7 +26,7 @@ _080B137A:
 	ldr r0, _080B148C @ =0x08C9D00C
 	ldr r1, _080B1490 @ =HideMu
 	bl Proc_ForEach
-	bl sub_080B1E28
+	bl InitShopScreenConfig
 	ldr r0, _080B1494 @ =0x03002870
 	ldrb r1, [r0, #0xc]
 	movs r2, #0xfc
@@ -116,7 +116,7 @@ _080B137A:
 	movs r1, #3
 	bl UnpackUiVArrowGfx
 	ldr r0, [r7]
-	bl sub_080B0320
+	bl Shop_GetPortraitIndex
 	movs r1, #1
 	str r1, [sp]
 	movs r1, #0x20
@@ -141,7 +141,7 @@ _080B137A:
 	movs r0, #2
 	bl EnableBgSync
 	ldr r0, [r7]
-	bl sub_080B17A0
+	bl StartUiGoldBox
 	movs r0, #0
 	str r0, [r7, #4]
 _080B1484:
@@ -173,7 +173,7 @@ _080B14A4:
 _080B14C0: .4byte 0x0203EE58
 _080B14C4:
 	ldr r0, [r7]
-	bl sub_080B19AC
+	bl DrawShopSoldItems
 	ldr r0, _080B1780 @ =0x03002870
 	ldrb r1, [r0, #1]
 	movs r2, #0x20

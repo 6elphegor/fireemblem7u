@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B21A4
-sub_080B21A4: @ 0x080B21A4
+	thumb_func_start ShopSt_SetHeadLocBak
+ShopSt_SetHeadLocBak: @ 0x080B21A4
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

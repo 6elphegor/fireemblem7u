@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B21C0
-sub_080B21C0: @ 0x080B21C0
+	thumb_func_start ShopTryScrollPage
+ShopTryScrollPage: @ 0x080B21C0
 	push {r7, lr}
 	sub sp, #0x14
 	mov r7, sp

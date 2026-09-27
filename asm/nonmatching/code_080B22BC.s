@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B22BC
-sub_080B22BC: @ 0x080B22BC
+	thumb_func_start RegisterShopState
+RegisterShopState: @ 0x080B22BC
 	push {r4, r5, r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -24,7 +24,7 @@ sub_080B22BC: @ 0x080B22BC
 	adds r0, r7, #0
 	ldrh r1, [r0]
 	adds r0, r1, #0
-	bl sub_080B21A4
+	bl ShopSt_SetHeadLocBak
 	ldr r1, _080B23B4 @ =0x08CE7298
 	ldr r0, [r1]
 	adds r1, r7, #0

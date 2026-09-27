@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B103C
-sub_080B103C: @ 0x080B103C
+	thumb_func_start Shop_ExitShopDialogue
+Shop_ExitShopDialogue: @ 0x080B103C
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -14,12 +14,12 @@ sub_080B103C: @ 0x080B103C
 	bne _080B1056
 	movs r0, #7
 	ldr r1, [r7]
-	bl sub_080B034C
+	bl StartShopDialogue
 	b _080B105E
 _080B1056:
 	movs r0, #0x27
 	ldr r1, [r7]
-	bl sub_080B034C
+	bl StartShopDialogue
 _080B105E:
 	add sp, #4
 	pop {r7}

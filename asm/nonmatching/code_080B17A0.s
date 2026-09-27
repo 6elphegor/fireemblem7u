@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B17A0
-sub_080B17A0: @ 0x080B17A0
+	thumb_func_start StartUiGoldBox
+StartUiGoldBox: @ 0x080B17A0
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -59,10 +59,10 @@ sub_080B17A0: @ 0x080B17A0
 	bl ApplyPaletteExt
 	ldr r1, _080B183C @ =0x02022E18
 	adds r0, r1, #0
-	bl sub_080B1844
+	bl InitGoldBoxText
 	ldr r1, _080B1840 @ =0x02022E16
 	adds r0, r1, #0
-	bl sub_080B18B0
+	bl DisplayGoldBoxText
 	add sp, #8
 	pop {r7}
 	pop {r0}

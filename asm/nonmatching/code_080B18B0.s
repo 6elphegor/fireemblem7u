@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B18B0
-sub_080B18B0: @ 0x080B18B0
+	thumb_func_start DisplayGoldBoxText
+DisplayGoldBoxText: @ 0x080B18B0
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -13,7 +13,7 @@ sub_080B18B0: @ 0x080B18B0
 	bl InitSystemTextFont
 	ldr r0, [r7]
 	movs r1, #6
-	bl sub_080B1878
+	bl ClearGoldBoxTextTm2Line
 	bl GetGold
 	adds r2, r0, #0
 	ldr r0, [r7]

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1D40
-sub_080B1D40: @ 0x080B1D40
+	thumb_func_start GetItemPurchasePrice
+GetItemPurchasePrice: @ 0x080B1D40
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp

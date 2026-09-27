@@ -25,7 +25,7 @@ _080B2D3A:
 _080B2D44:
 	ldr r1, _080B2D6C @ =0x02022E16
 	adds r0, r1, #0
-	bl sub_080B18B0
+	bl DisplayGoldBoxText
 	ldr r1, _080B2D70 @ =0x0202BBF8
 	adds r0, r1, #0
 	adds r1, #0x41

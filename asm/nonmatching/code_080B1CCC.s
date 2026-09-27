@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1CCC
-sub_080B1CCC: @ 0x080B1CCC
+	thumb_func_start DrawShopItemLine
+DrawShopItemLine: @ 0x080B1CCC
 	push {r4, r7, lr}
 	sub sp, #0x10
 	mov r7, sp
@@ -23,7 +23,7 @@ sub_080B1CCC: @ 0x080B1CCC
 	bl DrawItemMenuLine
 	ldr r1, [r7, #4]
 	adds r0, r1, #0
-	bl sub_080B1DB8
+	bl IsItemSellable
 	lsls r1, r0, #0x18
 	asrs r0, r1, #0x18
 	cmp r0, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B1844
-sub_080B1844: @ 0x080B1844
+	thumb_func_start InitGoldBoxText
+InitGoldBoxText: @ 0x080B1844
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

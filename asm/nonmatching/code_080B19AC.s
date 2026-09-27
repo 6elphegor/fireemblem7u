@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B19AC
-sub_080B19AC: @ 0x080B19AC
+	thumb_func_start DrawShopSoldItems
+DrawShopSoldItems: @ 0x080B19AC
 	push {r4, r5, r7, lr}
 	sub sp, #0x10
 	mov r7, sp
@@ -98,7 +98,7 @@ _080B1A44:
 	lsls r4, r3, #1
 	ldr r5, _080B1A78 @ =0x02023C6E
 	adds r3, r4, r5
-	bl sub_080B1C70
+	bl DrawShopItemPriceLine
 	ldr r0, [r7, #4]
 	adds r1, r0, #1
 	str r1, [r7, #4]
