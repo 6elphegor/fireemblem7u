@@ -16,7 +16,6 @@ struct AiSpecialItemLutEntry {
 
 extern const struct AiSpecialItemLutEntry sAiSpecialItemFuncLut[];
 
-
 CONST_DATA const u8 sAiTerrainList_Door[] = {
     0x1E, 0,
 };

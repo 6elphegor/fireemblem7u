@@ -18,7 +18,6 @@ extern u16 CONST_DATA Sprite_8x8[];
 extern u16 CONST_DATA Sprite_16x8[];
 extern u16 CONST_DATA Sprite_32x16[];
 
-
 extern u16 CONST_DATA Pal_BrownTextBox[];
 extern u8 CONST_DATA Img_BrownTextBox[];
 

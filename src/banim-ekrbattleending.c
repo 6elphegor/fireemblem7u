@@ -16,7 +16,6 @@ struct ProcEkrBattleEnding {
 extern s16 gBanimBackgroundIndex;
 extern s16 gEkrBmLocation[4];
 
-
 int GetBattleAnimArenaFlag(void);
 void NewEkrBaseKaiten(int identifier);
 void NewEkrBaseAppear(int identifier, int duration);

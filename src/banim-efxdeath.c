@@ -16,7 +16,6 @@ struct ProcEfxDead {
     /* 60 */ struct Anim * anim2;
 };
 
-
 extern u32 gEkrHpBarCount;
 extern u32 gEkrDeadEventExist;
 extern int gEkrDeadExist;

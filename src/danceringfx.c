@@ -11,7 +11,6 @@ extern u8 CONST_DATA Tsa_DanceringFx[];
 
 extern struct VectorBmfx const Vectors_DanceringFx[14];
 
-
 void * memcpy(void * dst, const void * src, unsigned long n);
 
 void ProcDanceAnim_Init(struct ProcBmFx * proc);

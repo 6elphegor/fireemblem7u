@@ -399,8 +399,6 @@ void SioResult_NewHS_AwaitAPress(ProcPtr proc)
     return;
 }
 
-
-
 //! FE8U = 0x08047654
 void StartSioResultNewHighScore(int value, ProcPtr parent)
 {

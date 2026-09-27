@@ -97,7 +97,6 @@ extern u8 CONST_DATA gGfx_YellowTextBox[];
 extern u16 CONST_DATA gPal_HelpTextBox[];
 extern u16 CONST_DATA gPal_YellowTextBox[];
 
-
 void sub_08082E80(struct HelpBoxInfo const * info);
 void sub_08082F50(void);
 void sub_08082FD8(struct HelpBoxInfo const * info);

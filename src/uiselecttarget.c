@@ -35,7 +35,6 @@ extern struct Vec2 sSelectTargetRoot;
 extern struct SelectTarget sSelectTargetList[];
 extern int sSelectTargetCount;
 
-
 void TargetSelection_HandleMoveInput(struct SelectTargetProc * proc);
 int TargetSelection_HandleSelectInput(struct SelectTargetProc * proc);
 struct SelectTarget * GetLinkedTargets(void);

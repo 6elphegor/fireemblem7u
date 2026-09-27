@@ -17,7 +17,6 @@ struct ColFadeProc
 
 extern u16 gUnk_020144F8[];
 
-
 void ColFadeIn_Init_Null(void);
 void ColFadeIn_Loop(struct ColFadeProc * proc);
 void ColFadeOut_Init(struct ColFadeProc * proc);

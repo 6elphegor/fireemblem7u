@@ -35,7 +35,6 @@ struct ProcEmitStars {
 
 extern u16 CONST_DATA Sprite_8x8[];
 
-
 void Calcs_Interpolate(int * buf1, int * buf2, int r2, int r3, int r4);
 
 void LetsEmitStars(struct ProcEmitStars * proc);

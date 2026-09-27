@@ -9,7 +9,6 @@ struct ClassDisplayFont {
     s8 yBase;
 };
 
-
 CONST_DATA struct ClassDisplayFont gClassDisplayFontData[] = {
     { (u16 *) 0x08CE6C10, 0, 8, 0 },
     { (u16 *) 0x08CE6C18, 0, 8, 0 },

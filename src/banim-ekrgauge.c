@@ -43,7 +43,6 @@ extern const u16 Pal_EfxSideHitDmgCrit[];
 extern const u8 Img_EfxSideHitDmgCrit[];
 extern const u8 Img_EfxWTAArrow[];
 
-
 void EnableEkrGauge(void);
 void DisableEkrGauge(void);
 void ModDec(s16 val, u16 buf[]);

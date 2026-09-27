@@ -8,7 +8,6 @@ struct BmxfadeProc {
     /* 4E */ s16 game_lock;
 };
 
-
 void Destruct6CBMXFADE(struct BmxfadeProc * proc);
 void bmxfade_init(struct BmxfadeProc * proc);
 void bmxfade_loop(struct BmxfadeProc * proc);

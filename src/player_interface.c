@@ -1,6 +1,5 @@
 #include "gbafe.h"
 
-
 extern u16 const gPal_PlayerInterface_Blue[];
 extern u16 const gPal_PlayerInterface_Red[];
 extern u16 const gPal_PlayerInterface_Green[];

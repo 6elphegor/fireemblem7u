@@ -67,7 +67,6 @@ struct ProcEkrClasschgRST {
 extern struct ProcEkrClasschg * gpProcEkrClasschg;
 extern int gEfxBgSemaphore;
 
-
 extern const u16 FrameLut_EkrClasschgBG1[];
 extern const u16 FrameLut_EkrClasschgBG2[];
 extern AnimScr AnimScr_EfxClasschgOBJ[];

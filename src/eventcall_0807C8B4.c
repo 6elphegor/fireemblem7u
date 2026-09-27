@@ -4,7 +4,6 @@ u16 GetDialogueBoxConfig(void);
 void InitBoxDialogue(void * vram_dst, int pal);
 ProcPtr StartTalkMsg(int x, int y, int id);
 
-
 struct ProcEvent_08CA7994
 {
     PROC_HEADER;

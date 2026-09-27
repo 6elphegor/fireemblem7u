@@ -9,7 +9,6 @@ struct CGDataEnt {
     /* 0C */ u16 const * pal;
 };
 
-
 CONST_DATA struct CGDataEnt gCGDataTable[] = {
     { 1, (void *) 0x08CED6D0, (u8 *) 0x084354F8, (u16 *) 0x084353F8 },
     { 1, (void *) 0x08CED6F8, (u8 *) 0x0843ABD8, (u16 *) 0x0843AAD8 },

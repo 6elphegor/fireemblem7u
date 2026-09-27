@@ -7,7 +7,6 @@ struct Popup2Proc {
     /* 4C */ u16 timer;
 };
 
-
 void ProcPopup2_Init(struct Popup2Proc * proc);
 void ProcPopup2_Loop(struct Popup2Proc * proc);
 

@@ -41,7 +41,6 @@ struct ProcEfxQuake {
     /* 64 */ struct Anim * unk_64;
 };
 
-
 extern const s16 gEfxQuakeVecs0[];
 extern const s16 gEfxQuakeVecs[];
 extern const s16 gEfxQuakeVecs1[];

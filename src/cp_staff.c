@@ -16,7 +16,6 @@ struct AdjPosLutEnt {
     int y;
 };
 
-
 CONST_DATA struct AdjPosLutEnt sAiAdjacentPositionLut[] = {
     { 1, 0 },
     { -1, 0 },

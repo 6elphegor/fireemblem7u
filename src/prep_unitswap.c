@@ -19,7 +19,6 @@ struct PrepUnitSwapProc {
     /* 44 */ int divisor;
 };
 
-
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 
 #define SIN(x) gSinLut[(x) & 0xFF]

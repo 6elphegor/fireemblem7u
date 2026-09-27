@@ -9,8 +9,6 @@ extern u8 CONST_DATA Img_EventWarp[];
 extern u16 CONST_DATA Pal_EventWarp[];
 extern u8 CONST_DATA Tsa_EventWarp[];
 
-
-
 void ProcEventWrapAnim_End(struct ProcBmFx * proc);
 void ProcEventWrapAnim_Init(struct ProcBmFx * proc);
 void ProcEventWrapAnim_Loop(struct ProcBmFx * proc);

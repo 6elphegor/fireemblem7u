@@ -11,7 +11,6 @@ extern u8 CONST_DATA Tsa_LightRune[];
 
 extern struct VectorBmfx const Vectors_LightRune3[13];
 
-
 void * memcpy(void * dst, const void * src, unsigned long n);
 
 void ProcLightRuneAnim3_End(struct ProcBmFx * proc);

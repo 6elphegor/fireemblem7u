@@ -3,7 +3,6 @@
 extern struct KeySt * CONST_DATA gpKeySt;
 extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
 
-
 extern struct ManimDebugInfo gManimDebugInfo;
 extern struct ProcCmd CONST_DATA ProcScr_ManimBattle[];
 

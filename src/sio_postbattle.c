@@ -9,8 +9,6 @@
  * "Battle Data" UI.
  */
 
-
-
 extern s16 const gUnknown_080D9E1C[][4];
 
 extern u8 const gUnknown_080D9E44[];
@@ -148,7 +146,6 @@ void SioPostBattleSprites_Loop_DrawStatic(struct SioPostBattleSpritesProc * proc
     return;
 }
 
-
 //! FE8U = 0x08045494
 ProcPtr StartDrawLinkArenaRankSprites(struct SioPostBattleProc * parent, int delayMaybe, u16 fid, u8 oam2, u8 ranking)
 {
@@ -216,7 +213,6 @@ void sub_0803FEAC(struct SioPostBattleProc * proc)
 
     return;
 }
-
 
 //! FE8U = 0x08045610
 ProcPtr SioPostBattle_StartMusicProc(struct SioPostBattleProc * parent)

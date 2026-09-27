@@ -35,7 +35,6 @@ struct ProcEfxHpBarColorChange {
     /* 5C */ struct Anim * anim;
 };
 
-
 extern struct ProcEfxHpBarColorChange * gpProcEfxHpBarColorChange;
 extern s16 gEkrGaugeHp[2];
 

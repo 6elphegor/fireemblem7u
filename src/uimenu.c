@@ -31,7 +31,6 @@ struct MenuItemOverride
 typedef u8 (* MenuAvailabilityFunc)(struct MenuItemDef const * def, int number);
 typedef u8 (* MenuSelectFunc)(struct MenuProc * proc, struct MenuItemProc * item);
 
-
 extern struct MenuItemOverride sMenuOverrides[MENU_OVERRIDE_MAX];
 
 struct MenuProc * StartAdjustedMenu(const struct MenuDef * def, int xSubject, int xTileLeft, int xTileRight);

@@ -10,7 +10,6 @@ struct ProcEkrLvupFan {
     /* 2C */ s16 timer;
 };
 
-
 void SetBgmVolume(int volume);
 void M4aPlayWithPostionCtrl(int songid, int x, int flag);
 

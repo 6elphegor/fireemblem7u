@@ -47,7 +47,6 @@ extern u8 CONST_DATA Img_PikeTrap[];
 extern u16 CONST_DATA Pal_PikeTrap[];
 extern u16 CONST_DATA SpriteAnim_PikeTrap[];
 
-
 #define OBJCHR_TRAPFX 0x240
 #define OBJPAL_TRAPFX 2
 #define TRAPFX_OAM2 (OBJCHR_TRAPFX | (OBJPAL_TRAPFX << 12) | (1 << 10))

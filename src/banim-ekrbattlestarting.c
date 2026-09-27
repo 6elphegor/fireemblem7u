@@ -21,7 +21,6 @@ extern int gEkrInitPosReal;
 extern int gUnknown_0201FACC;
 extern struct Anim * gUnknown_02000010[2];
 
-
 int GetBattleAnimArenaFlag(void);
 void BeginAnimsOnBattle_Arena(void);
 void ExecBattleAnimArenaExit(void);

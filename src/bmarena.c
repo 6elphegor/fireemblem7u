@@ -6,7 +6,6 @@
 extern struct Unit gArenaOpponent;
 extern u8 gArenaLevelBackup;
 
-
 void * memcpy(void * dst, const void * src, unsigned long size);
 
 extern const u8 gArenaBaseWeapons[8];

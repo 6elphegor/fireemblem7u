@@ -31,7 +31,6 @@ extern u16 CONST_DATA Pal_GameOverText1[];
 extern u16 CONST_DATA Pal_GameOverText2[];
 extern u8 CONST_DATA Tsa_GameOverFx[];
 
-
 void GameOverScreen_BeginFadeOut(struct ProcGameOverScreen * proc);
 void GameOverScreen_BeginIdle(struct ProcGameOverScreen * proc);
 void GameOverScreen_End(struct ProcGameOverScreen * proc);

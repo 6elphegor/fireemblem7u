@@ -12,7 +12,6 @@ struct MenuItemPanelProc {
     /* 64 */ u8 draw_arrow;
 };
 
-
 void MenuItemPanelProcIdle(struct MenuItemPanelProc * proc);
 
 CONST_DATA struct ProcCmd gProcCmd_MenuItemPanel[] = {

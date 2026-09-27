@@ -19,7 +19,6 @@ int GetPrepPageForItem(int item);
 s8 sub_08090EE8(struct Unit * unit, int slot);
 void MU_SetDefaultFacing_Auto(void);
 
-
 extern u8 Tsa_0840E5D4[];
 extern u8 Img_08405754[];
 

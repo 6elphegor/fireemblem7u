@@ -7,7 +7,6 @@ struct PhaseIntroSubProc {
     /* 4C */ s16 timer;
 };
 
-
 extern u8 const Img_PhaseChangeSquares[];
 extern u8 const Img_PhaseChangePlayer[];
 extern u16 const Pal_PhaseChangePlayer[];

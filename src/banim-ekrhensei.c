@@ -16,7 +16,6 @@ struct ProcEkrHensei {
 extern u32 gEkrInitPosReal;
 extern s16 gBanimBackgroundIndex;
 
-
 int GetBanimInitPosReal(void);
 void MainUpdate_8055C68(void);
 void EfxClearScreenFx(void);

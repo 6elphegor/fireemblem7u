@@ -11,7 +11,6 @@ extern u8 CONST_DATA Tsa_Unk_0819C58C[];
 
 extern struct VectorBmfx const Vectors_Unk_081C3C30[14];
 
-
 void * memcpy(void * dst, const void * src, unsigned long n);
 
 void sub_08020AD0(struct ProcBmFx * proc);

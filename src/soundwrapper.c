@@ -42,7 +42,6 @@ extern struct MusicPlayerInfo gMPlayInfo_SE5;
 extern struct MusicPlayerInfo gMPlayInfo_SE6;
 extern struct MusicPlayerInfo gMPlayInfo_SE7;
 
-
 void m4aMPlayFadeOut(struct MusicPlayerInfo * mplayInfo, u16 speed);
 void m4aMPlayFadeOutPause(struct MusicPlayerInfo * mplayInfo, u16 speed);
 void m4aMPlayFadeInContinue(struct MusicPlayerInfo * mplayInfo, u16 speed);

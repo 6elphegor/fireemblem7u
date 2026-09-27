@@ -12,7 +12,6 @@ struct KoidoProc {
     /* 3C */ s8 config;
 };
 
-
 void EndMu(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * script);
 bool MuExistsActive(void);

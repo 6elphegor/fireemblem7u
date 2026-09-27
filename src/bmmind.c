@@ -31,7 +31,6 @@ void StartGiveItem(struct Unit * unit, u16 item, ProcPtr parent);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 
-
 void BattleApplyGameStateUpdates(ProcPtr proc);
 void IsMapFadeActive(ProcPtr proc);
 

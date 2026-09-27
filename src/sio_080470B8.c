@@ -17,7 +17,6 @@ extern s16 * gUnk_Sio_02001180;
 extern s16 * gUnk_Sio_02001184;
 extern s16 * gUnk_Sio_02001188;
 
-
 void sub_08047184(s16 * a, int b, int c, int d, int e, int f, int g, int h, int i, s16 j, u16 k);
 
 void sub_080472F4(struct SioProc85AA7B4 * proc);
