@@ -609,3 +609,7 @@ gSelectInfo_Attack = 0x08B95C98;
 gSelectInfo_Trade = 0x08B95C78;
 gProcScr_BKSEL = 0x08B96D5C;
 gProcScr_0859B630 = 0x08B93E0C;
+gItemSelectMenuDef = 0x08B95A40;
+gItemSubMenuDef = 0x08B959D4;
+gYesNoSelectionMenuDef = 0x08B959B0;
+gItemSelectMenuFont = 0x02002774;

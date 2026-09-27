@@ -18,6 +18,14 @@ extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
 u8 StartFightBallistaReview(struct MenuProc * menu, struct MenuItemProc * menuItem);
 u8 StartFightItemReview(struct MenuProc * menu, struct MenuItemProc * menuItem);
 u8 ItemMenu_Select1stCommand(struct MenuProc * menu, struct MenuItemProc * menuItem);
+extern const struct MenuDef gItemSelectMenuDef;
+extern const struct MenuDef gItemSubMenuDef;
+extern const struct MenuDef gYesNoSelectionMenuDef;
+extern struct Font gItemSelectMenuFont;
+
+void sub_08022360(int x, int y);
+u8 sub_08022404(struct MenuProc * menu);
+u8 sub_0802245C(struct MenuProc * menu);
 //--HEAD-END--
 
 u8 MapMenu_UnitCommand(struct MenuProc * menu, struct MenuItemProc * menuItem)
@@ -728,27 +736,319 @@ u8 RefreshMapSelect_Select(ProcPtr proc, struct SelectTarget * target)
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }
 
-ASM_FUNC("asm/nonmatching/code_0802217C.s");
-ASM_FUNC("asm/nonmatching/code_0802219C.s");
-ASM_FUNC("asm/nonmatching/code_08022204.s");
-ASM_FUNC("asm/nonmatching/code_0802228C.s");
-ASM_FUNC("asm/nonmatching/code_080222DC.s");
-ASM_FUNC("asm/nonmatching/code_0802234C.s");
-ASM_FUNC("asm/nonmatching/code_0802235C.s");
-ASM_FUNC("asm/nonmatching/code_08022360.s");
-ASM_FUNC("asm/nonmatching/code_080223A4.s");
-ASM_FUNC("asm/nonmatching/code_080223B0.s");
-ASM_FUNC("asm/nonmatching/code_080223EC.s");
-ASM_FUNC("asm/nonmatching/code_08022404.s");
-ASM_FUNC("asm/nonmatching/code_0802245C.s");
-ASM_FUNC("asm/nonmatching/code_08022530.s");
-ASM_FUNC("asm/nonmatching/code_080225A8.s");
-ASM_FUNC("asm/nonmatching/code_080225F0.s");
-ASM_FUNC("asm/nonmatching/code_08022624.s");
-ASM_FUNC("asm/nonmatching/code_080226B0.s");
-ASM_FUNC("asm/nonmatching/code_080226F0.s");
-ASM_FUNC("asm/nonmatching/code_08022724.s");
-ASM_FUNC("asm/nonmatching/code_08022798.s");
+u8 ItemCommandUsability(const struct MenuItemDef * def, int number)
+{
+    if (gActiveUnit->state & US_HAS_MOVED)
+        return MENU_NOTSHOWN;
+
+    if (gActiveUnit->items[0] == 0)
+        return MENU_NOTSHOWN;
+
+    return MENU_ENABLED;
+}
+
+u8 ItemCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    ProcPtr proc;
+
+    if (menuItem->availability != MENU_ENABLED)
+        return 0;
+
+    ClearIcons();
+    ApplyIconPalettes(4);
+
+    ResetTextFont();
+
+    proc = StartMenu(&gItemSelectMenuDef);
+
+    StartFace(0, GetUnitPortraitId(gActiveUnit), 0xB0, 0xC, 2);
+
+    SetFaceBlinkControlById(0, 5);
+
+    StartEquipInfoWindow(proc, gActiveUnit, 0xF, 0xB);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
+}
+
+int ItemSelectMenu_TextDraw(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    s8 isUsable;
+
+    int item = gActiveUnit->items[menuItem->itemNumber];
+
+    if (GetItemAttributes(item) & IA_WEAPON)
+    {
+        WeaponSelectMenu_Draw(menu, menuItem);
+        return 0;
+    }
+
+    if (GetItemType(item) == ITYPE_12)
+        isUsable = 0;
+    else
+        isUsable = CanUnitUseItem(gActiveUnit, item);
+
+    DrawItemMenuLine(
+        &menuItem->text,
+        item,
+        isUsable,
+        gBg0Tm + TM_OFFSET(menuItem->xTile, menuItem->yTile)
+    );
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
+
+u8 ItemSelectMenu_Usability(const struct MenuItemDef * def, int number)
+{
+    int item = gActiveUnit->items[number];
+
+    if (item == 0)
+        return MENU_NOTSHOWN;
+
+    if (GetItemAttributes(item) & IA_WEAPON)
+        WeaponSelectMenu_IsAvailable(def, number);
+
+    return CanUnitUseItem(gActiveUnit, item)
+        ? MENU_ENABLED : MENU_DISABLED;
+}
+
+u8 ItemSelectMenu_Effect(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    struct MenuRect rect;
+
+    gActionSt.item_slot = menuItem->itemNumber;
+
+    rect.x = menuItem->xTile + 9;
+    rect.y = menuItem->yTile - 1;
+    rect.w = 6;
+    rect.h = 0;
+
+    sub_08022360(rect.x, rect.y);
+
+    StartLockingMenuExt(&gItemSubMenuDef, rect, menu);
+
+    return MENU_ACT_SND6A;
+}
+
+int Menu_SwitchIn(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    UpdateMenuItemPanel(menuItem->itemNumber);
+}
+
+int Menu_SwitchOut_DoNothing(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+}
+
+void sub_08022360(int x, int y)
+{
+    InitTextFont(&gItemSelectMenuFont, (void *) VRAM + 0x4000, 0x200, 0);
+
+    TmCopyRect(gBg0Tm + 0x2B, gUiTmScratchA, 9, 19);
+    TmCopyRect(gBg1Tm + 0x2B, gUiTmScratchB, 9, 19);
+}
+
+void ItemSubMenuEnd(struct MenuProc * menu)
+{
+    SetTextFont(NULL);
+}
+
+u8 MenuCommand_SelectNo(struct MenuProc * menu)
+{
+    SetTextFont(NULL);
+
+    TmCopyRect(gUiTmScratchA, gBg0Tm + 0x2B, 9, 19);
+    TmCopyRect(gUiTmScratchB, gBg1Tm + 0x2B, 9, 19);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B;
+}
+
+u8 sub_080223EC(struct MenuProc * menu)
+{
+    SetTextFont(NULL);
+    ResetTextFont();
+
+    EndAllMenus();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_CLEAR | MENU_ACT_ENDFACE;
+}
+
+u8 sub_08022404(struct MenuProc * menu)
+{
+    ProcPtr proc;
+
+    sub_080223EC(menu);
+    MenuCommand_SelectNo(menu);
+
+    proc = StartMenu(&gItemSelectMenuDef);
+
+    StartFace(0, GetUnitPortraitId(gActiveUnit), 0xB0, 0xC, 2);
+
+    SetFaceBlinkControlById(0, 5);
+    StartEquipInfoWindow(proc, gActiveUnit, 15, 11);
+
+    return MENU_ENABLED;
+}
+
+u8 sub_0802245C(struct MenuProc * menu)
+{
+    ProcPtr proc;
+
+    sub_080223EC(menu);
+
+    if (GetUnitItemCount(gActiveUnit) == 0)
+    {
+        ClearUi();
+
+        EndFaceById(0);
+
+        StartSemiCenteredOrphanMenu(&gUnitActionMenuDef, gBmSt.cursor_sprite_target.x - gBmSt.camera.x, 1, 0x16);
+
+        return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6B | MENU_ACT_CLEAR;
+    }
+
+    TmCopyRect(gUiTmScratchA, gBg0Tm + 0x2B, 9, 0x13);
+    TmCopyRect(gUiTmScratchB, gBg1Tm + 0x2B, 9, 0x13);
+
+    TmFillRect(gBg0Tm + 0x2B - 0xA, 0xE, 0xC, 0);
+    TmFillRect(gBg1Tm + 0x2B - 0xA, 0xD, 0xC, 0);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    proc = StartMenu(&gItemSelectMenuDef);
+
+    StartFace(0, GetUnitPortraitId(gActiveUnit), 0xB0, 0xC, 2);
+
+    SetFaceBlinkControlById(0, 5);
+
+    StartEquipInfoWindow(proc, gActiveUnit, 0xF, 0xB);
+
+    return MENU_ACT_SKIPCURSOR;
+}
+
+u8 ItemSubMenu_IsUseAvailable(const struct MenuItemDef * def, int number)
+{
+    int item = gActiveUnit->items[gActionSt.item_slot];
+
+    if (GetItemEffect(item) == 0)
+        return MENU_NOTSHOWN;
+
+    if (GetItemType(item) == ITYPE_STAFF)
+        return MENU_NOTSHOWN;
+
+    if (GetItemType(item) == ITYPE_12)
+        return MENU_NOTSHOWN;
+
+    if ((GetItemAttributes(item) & IA_WEAPON) && !CanUnitUseWeapon(gActiveUnit, item))
+        return MENU_NOTSHOWN;
+
+    return CanUnitUseItem(gActiveUnit, item)
+        ? MENU_ENABLED : MENU_DISABLED;
+}
+
+u8 ItemSubMenu_IsEquipAvailable(const struct MenuItemDef * def, int number)
+{
+    int item = gActiveUnit->items[gActionSt.item_slot];
+
+    if (!(GetItemAttributes(item) & IA_WEAPON))
+        return MENU_NOTSHOWN;
+
+    return CanUnitUseWeapon(gActiveUnit, item)
+        ? MENU_ENABLED : MENU_DISABLED;
+}
+
+u8 ItemSubMenu_IsDiscardAvailable(const struct MenuItemDef * def, int number)
+{
+    if (GetItemAttributes(gActiveUnit->items[gActionSt.item_slot]) & IA_UNSELLABLE)
+        return MENU_DISABLED;
+
+    return MENU_ENABLED;
+}
+
+u8 ItemSubMenu_UseItem(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    if (menuItem->availability == MENU_DISABLED)
+    {
+        MenuFrozenHelpBox(menu, GetItemCantUseMsgid(gActiveUnit, gActiveUnit->items[gActionSt.item_slot]));
+        return MENU_ACT_SND6B;
+    }
+
+    ClearUi();
+
+    DoItemUse(gActiveUnit, gActiveUnit->items[gActionSt.item_slot]);
+
+    PlaySoundEffect(SONG_38A);
+
+    SetTextFont(NULL);
+
+    ResetTextFont();
+
+    EndAllMenus();
+
+    return MENU_ACT_SKIPCURSOR | MENU_ACT_ENDFACE;
+}
+
+u8 ItemSubMenu_EquipItem(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    if (menuItem->availability == MENU_DISABLED)
+    {
+        MenuFrozenHelpBox(menu, 0x737);
+        return MENU_ACT_SND6B;
+    }
+
+    EquipUnitItemSlot(gActiveUnit, gActionSt.item_slot);
+
+    return sub_08022404(menu);
+}
+
+u8 ItemSubMenu_TradeItem(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    gBmSt.unk_3F = gActionSt.item_slot;
+
+    sub_080223EC(menu);
+
+    EndFaceById(0);
+
+    TradeCommandEffect(menu, menuItem);
+
+    return MENU_ENABLED;
+}
+
+u8 ItemSubMenu_DiscardItem(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    struct MenuProc * proc;
+    struct MenuRect rect;
+
+    if (menuItem->availability == MENU_DISABLED)
+    {
+        MenuFrozenHelpBox(menu, 0x739);
+        return MENU_ACT_SND6B;
+    }
+
+    rect.x = menuItem->xTile + 3;
+    rect.y = menuItem->yTile;
+    rect.w = 5;
+    rect.h = 0;
+
+    proc = StartLockingMenuExt(&gYesNoSelectionMenuDef, rect, menu);
+
+    proc->itemCurrent = 1;
+
+    return MENU_ACT_SND6A | MENU_ACT_DOOM;
+}
+
+u8 MenuCommand_SelectYes(struct MenuProc * menu, struct MenuItemProc * menuItem)
+{
+    UnitRemoveItem(gActiveUnit, gActionSt.item_slot);
+
+    if (gActionSt.item_slot != 0)
+        TmFill(gBg0Tm, 0);
+
+    sub_0802245C(menu);
+
+    return MENU_ACT_SKIPCURSOR;
+}
+
 ASM_FUNC("asm/nonmatching/code_080227D0.s");
 ASM_FUNC("asm/nonmatching/code_08022808.s");
 ASM_FUNC("asm/nonmatching/code_08022858.s");

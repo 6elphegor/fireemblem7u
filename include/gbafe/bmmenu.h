@@ -85,6 +85,7 @@ enum {
 
 struct MenuProc * StartMenu(const struct MenuDef * def);   /* FE8U: StartOrphanMenu */
 struct MenuProc * StartSemiCenteredOrphanMenu(const struct MenuDef * def, int xSubject, int xTileLeft, int xTileRight);
+struct MenuProc * StartLockingMenuExt(const struct MenuDef * def, struct MenuRect rect, ProcPtr parent);   /* FE8U: StartMenuAt */
 u8 MenuFrozenHelpBox(struct MenuProc * proc, int msgid);
 void EndAllMenus(void);
 
@@ -153,6 +154,10 @@ int GetAvailableTileEventCommand(s8 x, s8 y);
 s8 IsUnitMagicSealed(struct Unit * unit);
 void MakeTargetListForRefresh(struct Unit * unit);
 s8 CanUnitUseItem(struct Unit * unit, int item);
+
+int GetItemEffect(int item);
+int GetItemCantUseMsgid(struct Unit * unit, int item);
+void DoItemUse(struct Unit * unit, int item);
 
 /* ---- bmmenu.c ---- */
 
