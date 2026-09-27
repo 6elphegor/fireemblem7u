@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027D40
-sub_08027D40: @ 0x08027D40
+	thumb_func_start RestoreMapSelect_SwitchIn
+RestoreMapSelect_SwitchIn: @ 0x08027D40
 	push {r4, lr}
 	adds r4, r1, #0
 	movs r0, #0

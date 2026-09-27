@@ -185,7 +185,7 @@ _08026EB4:
 _08026EBE:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08027400
+	bl CanUnitUsePromotionItem
 	b _08026F28
 _08026EC8:
 	adds r0, r4, #0
@@ -193,15 +193,15 @@ _08026EC8:
 	b _08026F28
 _08026ED0:
 	adds r0, r4, #0
-	bl sub_08027308
+	bl CanUnitUsePureWaterItem
 	b _08026F28
 _08026ED8:
 	adds r0, r4, #0
-	bl sub_0802731C
+	bl CanUnitUseTorchItem
 	b _08026F28
 _08026EE0:
 	adds r0, r4, #0
-	bl sub_08027340
+	bl CanUnitUseAntitoxinItem
 	b _08026F28
 _08026EE8:
 	adds r0, r4, #0

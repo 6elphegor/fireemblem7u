@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027DD0
-sub_08027DD0: @ 0x08027DD0
+	thumb_func_start DoUseAttackStaff
+DoUseAttackStaff: @ 0x08027DD0
 	push {r4, lr}
 	bl _call_via_r1
 	ldr r0, _08027E00 @ =0x0202E3E4

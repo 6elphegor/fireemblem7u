@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027AE8
-sub_08027AE8: @ 0x08027AE8
+	thumb_func_start DoUseRepairStaff
+DoUseRepairStaff: @ 0x08027AE8
 	push {r4, lr}
 	bl MakeTargetListForHammerne
 	ldr r0, _08027B28 @ =0x0202E3E4

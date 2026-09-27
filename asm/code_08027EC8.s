@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027EC8
-sub_08027EC8: @ 0x08027EC8
+	thumb_func_start TorchSelect_OnInit
+TorchSelect_OnInit: @ 0x08027EC8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r1, _08027F14 @ =0x0202BBB8

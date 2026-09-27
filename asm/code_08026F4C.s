@@ -136,7 +136,7 @@ _080270C6:
 	strb r0, [r1, #8]
 	ldr r0, [r4]
 	adds r1, r6, #0
-	bl sub_08027400
+	bl CanUnitUsePromotionItem
 	ldr r1, [r4]
 	strb r5, [r1, #8]
 	lsls r0, r0, #0x18

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027400
-sub_08027400: @ 0x08027400
+	thumb_func_start CanUnitUsePromotionItem
+CanUnitUsePromotionItem: @ 0x08027400
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #0

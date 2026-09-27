@@ -88,7 +88,7 @@ _08027208:
 	ldr r1, _08027214 @ =MakeTargetListForRangedHeal
 _0802720A:
 	adds r0, r5, #0
-	bl sub_08027CBC
+	bl DoUseHealStaff
 	b _080272CA
 	.align 2, 0
 _08027214: .4byte MakeTargetListForRangedHeal
@@ -102,7 +102,7 @@ _08027224: .4byte MakeTargetListForRescueStaff
 _08027228:
 	ldr r1, _08027234 @ =MakeTargetListForRestore
 	adds r0, r5, #0
-	bl sub_08027CF8
+	bl DoUseRestoreStaff
 	b _080272CA
 	.align 2, 0
 _08027234: .4byte MakeTargetListForRestore
@@ -120,13 +120,13 @@ _08027248:
 	ldr r1, _08027254 @ =MakeTargetListForBerserk
 _0802724A:
 	adds r0, r5, #0
-	bl sub_08027DD0
+	bl DoUseAttackStaff
 	b _080272CA
 	.align 2, 0
 _08027254: .4byte MakeTargetListForBerserk
 _08027258:
 	adds r0, r5, #0
-	bl sub_08027D64
+	bl DoUseBarrierStaff
 	b _080272CA
 _08027260:
 	ldr r1, _08027268 @ =MakeTargetListForUnlock
@@ -137,11 +137,11 @@ _08027260:
 _08027268: .4byte MakeTargetListForUnlock
 _0802726C:
 	adds r0, r5, #0
-	bl sub_080279B8
+	bl DoUseWarpStaff
 	b _080272CA
 _08027274:
 	adds r0, r5, #0
-	bl sub_08027AE8
+	bl DoUseRepairStaff
 	b _080272CA
 _0802727C:
 	adds r0, r5, #0
@@ -159,14 +159,14 @@ _08027294:
 	ldr r2, _080272A4 @ =0x00000733
 _08027298:
 	adds r0, r5, #0
-	bl sub_08027A30
+	bl DoUsePutTrap
 	b _080272CA
 	.align 2, 0
 _080272A0: .4byte MakeTargetListForLightRune
 _080272A4: .4byte 0x00000733
 _080272A8:
 	adds r0, r5, #0
-	bl sub_08028010
+	bl DoUseTorchStaff
 	b _080272CA
 _080272B0:
 	ldr r1, _080272BC @ =MakeTargetListForDanceRing
@@ -179,7 +179,7 @@ _080272BC: .4byte MakeTargetListForDanceRing
 _080272C0: .4byte 0x00000734
 _080272C4:
 	adds r0, r5, #0
-	bl sub_08027674
+	bl SetItemUseAction
 _080272CA:
 	pop {r4, r5}
 	pop {r0}

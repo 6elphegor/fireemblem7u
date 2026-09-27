@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027B60
-sub_08027B60: @ 0x08027B60
+	thumb_func_start RepairSelectOnInit
+RepairSelectOnInit: @ 0x08027B60
 	push {lr}
 	bl StartUnitInventoryInfoWindow
 	pop {r0}

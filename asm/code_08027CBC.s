@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027CBC
-sub_08027CBC: @ 0x08027CBC
+	thumb_func_start DoUseHealStaff
+DoUseHealStaff: @ 0x08027CBC
 	push {r4, lr}
 	bl _call_via_r1
 	ldr r0, _08027CEC @ =0x0202E3E4

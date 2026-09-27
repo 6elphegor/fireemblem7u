@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08028010
-sub_08028010: @ 0x08028010
+	thumb_func_start DoUseTorchStaff
+DoUseTorchStaff: @ 0x08028010
 	push {lr}
 	ldr r0, _08028030 @ =0x08B94214
 	movs r1, #3

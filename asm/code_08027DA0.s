@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027DA0
-sub_08027DA0: @ 0x08027DA0
+	thumb_func_start BarrierMapSelect_Init
+BarrierMapSelect_Init: @ 0x08027DA0
 	push {lr}
 	bl sub_08031EF0
 	pop {r1}

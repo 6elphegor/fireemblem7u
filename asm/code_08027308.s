@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027308
-sub_08027308: @ 0x08027308
+	thumb_func_start CanUnitUsePureWaterItem
+CanUnitUsePureWaterItem: @ 0x08027308
 	adds r0, #0x31
 	movs r1, #0xf0
 	ldrb r0, [r0]

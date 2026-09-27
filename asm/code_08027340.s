@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027340
-sub_08027340: @ 0x08027340
+	thumb_func_start CanUnitUseAntitoxinItem
+CanUnitUseAntitoxinItem: @ 0x08027340
 	adds r0, #0x30
 	movs r1, #0xf
 	ldrb r0, [r0]

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027A30
-sub_08027A30: @ 0x08027A30
+	thumb_func_start DoUsePutTrap
+DoUsePutTrap: @ 0x08027A30
 	push {r4, r5, lr}
 	adds r5, r2, #0
 	bl _call_via_r1

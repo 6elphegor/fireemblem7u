@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027D64
-sub_08027D64: @ 0x08027D64
+	thumb_func_start DoUseBarrierStaff
+DoUseBarrierStaff: @ 0x08027D64
 	push {r4, lr}
 	bl MakeTargetListForBarrier
 	ldr r0, _08027D94 @ =0x0202E3E4

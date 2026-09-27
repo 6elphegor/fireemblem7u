@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027B6C
-sub_08027B6C: @ 0x08027B6C
+	thumb_func_start RepairMenuItemOnChange
+RepairMenuItemOnChange: @ 0x08027B6C
 	push {lr}
 	adds r1, #0x3c
 	movs r0, #0

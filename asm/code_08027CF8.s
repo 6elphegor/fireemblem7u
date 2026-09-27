@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027CF8
-sub_08027CF8: @ 0x08027CF8
+	thumb_func_start DoUseRestoreStaff
+DoUseRestoreStaff: @ 0x08027CF8
 	push {r4, lr}
 	bl _call_via_r1
 	ldr r0, _08027D28 @ =0x0202E3E4

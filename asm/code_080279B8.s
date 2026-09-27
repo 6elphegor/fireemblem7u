@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080279B8
-sub_080279B8: @ 0x080279B8
+	thumb_func_start DoUseWarpStaff
+DoUseWarpStaff: @ 0x080279B8
 	push {r4, lr}
 	bl MakeTargetListForWarp
 	ldr r0, _080279FC @ =0x0202E3E4

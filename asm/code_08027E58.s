@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027E58
-sub_08027E58: @ 0x08027E58
+	thumb_func_start SubtitleMapSelect_End
+SubtitleMapSelect_End: @ 0x08027E58
 	push {lr}
 	bl EndSubtitleHelp
 	bl ClearUi

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027A88
-sub_08027A88: @ 0x08027A88
+	thumb_func_start RepairSelectOnSelect
+RepairSelectOnSelect: @ 0x08027A88
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r1, #0

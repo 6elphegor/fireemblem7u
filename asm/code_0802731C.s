@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0802731C
-sub_0802731C: @ 0x0802731C
+	thumb_func_start CanUnitUseTorchItem
+CanUnitUseTorchItem: @ 0x0802731C
 	adds r1, r0, #0
 	ldr r0, _08027338 @ =0x0202BBF8
 	ldrb r0, [r0, #0xd]

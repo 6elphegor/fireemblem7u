@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027D34
-sub_08027D34: @ 0x08027D34
+	thumb_func_start RestoreMapSelect_Init
+RestoreMapSelect_Init: @ 0x08027D34
 	push {lr}
 	bl sub_08031E5C
 	pop {r1}

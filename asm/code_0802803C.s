@@ -99,7 +99,7 @@ _08028164:
 _0802816E:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08027400
+	bl CanUnitUsePromotionItem
 _08028176:
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18

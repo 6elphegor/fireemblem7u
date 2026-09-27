@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080277CC
-sub_080277CC: @ 0x080277CC
+	thumb_func_start WarpSelect_OnIdle
+WarpSelect_OnIdle: @ 0x080277CC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r4, _08027844 @ =0x0202BBB8

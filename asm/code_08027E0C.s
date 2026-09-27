@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027E0C
-sub_08027E0C: @ 0x08027E0C
+	thumb_func_start AttackStaffMapSelect_Init
+AttackStaffMapSelect_Init: @ 0x08027E0C
 	push {lr}
 	bl sub_08031F5C
 	pop {r1}

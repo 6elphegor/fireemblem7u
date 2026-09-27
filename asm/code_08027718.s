@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08027718
-sub_08027718: @ 0x08027718
+	thumb_func_start WarpSelect_OnInit
+WarpSelect_OnInit: @ 0x08027718
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
