@@ -1171,3 +1171,4 @@ Img_PhaseChangeOther = 0x081950A8;
 Pal_PhaseChangeOther = 0x08195500;
 gProc_DebugPrintWithProc = 0x08B93344;
 gDebugMenuDef = 0x08B958D8;
+sDebugBlankStr = 0x081C3B74;

@@ -1,6 +1,24 @@
 #include "gbafe.h"
 #include "gbafe/bmmenu.h"
 
+void DebugPutStr(u16 * tm, char const * str);
+void EndMapMain(void);
+void sub_08012B88(void);
+int CountTotalSoundRoomSongs(void);
+int GetCurrentBgmSong(void);
+
+struct SoundRoomEnt
+{
+    /* 00 */ int bgmId;
+    /* 04 */ int songLength;
+    /* 08 */ s8 (* displayCondFunc)(ProcPtr proc);
+    /* 0C */ int nameTextId;
+};
+
+extern struct SoundRoomEnt CONST_DATA gSoundRoomTable[];
+extern char const sDebugBlankStr[];
+
+
 struct DebugPrintProc {
     PROC_HEADER;
 
@@ -115,17 +133,98 @@ int StartDebugMenu(struct MenuProc * menuProc)
     return 1;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B338.s");
+u8 sub_0801B338(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    if (gpKeySt->repeated & DPAD_RIGHT)
+        menuItemProc->itemNumber++;
 
-ASM_FUNC("asm/nonmatching/code_0801B3C4.s");
+    if (gpKeySt->repeated & DPAD_LEFT)
+        menuItemProc->itemNumber--;
 
-ASM_FUNC("asm/nonmatching/code_0801B3E8.s");
+    if (menuItemProc->itemNumber > 0x42)
+        menuItemProc->itemNumber = 0x42;
 
-ASM_FUNC("asm/nonmatching/code_0801B470.s");
+    if (menuItemProc->itemNumber < 0)
+        menuItemProc->itemNumber = 0;
+
+    if (gpKeySt->repeated & (DPAD_RIGHT | DPAD_LEFT))
+    {
+        DebugPutStr(gBg0Tm + TM_OFFSET(7, 3), sDebugBlankStr);
+        DebugPutStr(gBg0Tm + TM_OFFSET(7, 3), GetChapterInfo(menuItemProc->itemNumber)->debug_name);
+        EnableBgSync(BG0_SYNC_BIT);
+    }
+
+    return 0;
+}
+
+u8 sub_0801B3C4(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    EndMapMain();
+    gPlaySt.chapterIndex = menuItemProc->itemNumber;
+    CleanupUnitsBeforeChapter();
+    sub_08012B88();
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
+
+int sub_0801B3E8(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int songId;
+    int i;
+
+    int totalSongs = CountTotalSoundRoomSongs();
+
+    menuItemProc->itemNumber = 0;
+
+    songId = GetCurrentBgmSong();
+
+    for (i = 0; i < totalSongs; i++)
+    {
+        if (songId == i)
+        {
+            menuItemProc->itemNumber = i;
+            break;
+        }
+    }
+
+    ClearText(&menuItemProc->text);
+    Text_InsertDrawString(&menuItemProc->text, 0, 0, DecodeMsg(gSoundRoomTable[menuItemProc->itemNumber].nameTextId));
+    PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
+}
+
+int sub_0801B470(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    if (gpKeySt->repeated & DPAD_RIGHT)
+        menuItemProc->itemNumber++;
+
+    if (gpKeySt->repeated & DPAD_LEFT)
+        menuItemProc->itemNumber--;
+
+    if (menuItemProc->itemNumber < 0)
+        menuItemProc->itemNumber = 0;
+
+    if (gSoundRoomTable[menuItemProc->itemNumber].bgmId < 0)
+        menuItemProc->itemNumber--;
+
+    if (gpKeySt->repeated & (DPAD_RIGHT | DPAD_LEFT))
+    {
+        ClearText(&menuItemProc->text);
+        Text_InsertDrawString(&menuItemProc->text, 0, 0, DecodeMsg(gSoundRoomTable[menuItemProc->itemNumber].nameTextId));
+        PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
+    }
+
+    return 0;
+}
 
 ASM_FUNC("asm/nonmatching/code_0801B528.s");
 
-ASM_FUNC("asm/nonmatching/code_0801B580.s");
+u8 EndMenuAndClear(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    EndMenu(menuProc);
+    EndFaceById(0);
+    ClearUi();
+
+    return 1;
+}
 
 ASM_FUNC("asm/nonmatching/code_0801B598.s");
 
