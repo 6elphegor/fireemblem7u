@@ -155,7 +155,13 @@ u16 sub_0809DD7C(u16 const * ch, s8 const * table)
 
     return 0xFFFF;
 }
-ASM_FUNC("asm/nonmatching/code_0809DDAC.s");
+void sub_0809DDAC(s8 const * str, s8 const * table)
+{
+    int i;
+
+    for (i = 0; str[i * 2] != 0; i++)
+        gPasswordBuf[i] = sub_0809DD7C((u16 const *)(str + i * 2), table);
+}
 void InitPassword(int * bitpos, u8 * buf)
 {
     gPasswordSeed = gPasswordUnk_02014408;
