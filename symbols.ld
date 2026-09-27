@@ -2787,3 +2787,7 @@ gBuildDateStr = 0x080C57E0;
 gBuildNameStr = 0x080C57FC;
 ProcScr_CamMoveLinear = 0x08B92E70;
 gUnk_08BE3888 = 0x08BE3888;
+sMsgString = 0x0202A5B4;
+sActiveMsg = 0x0202B5B4;
+gMsgTable = 0x08B808AC;
+gArticleStrTable = 0x08B928A4;

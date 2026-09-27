@@ -233,12 +233,7 @@ SECTIONS
         build/src/eventscr_spriteanim.o(.text);
         build/src/sprite-anim.o(.text);
         build/src/game-ctrl.o(.text);
-        build/asm/code_08012C60.o(.text);
-        build/asm/code_08012C9C.o(.text);
-        build/asm/code_08012CBC.o(.text);
-        build/asm/code_08012DD4.o(.text);
-        build/asm/code_08012EFC.o(.text);
-        build/asm/code_08012F14.o(.text);
+        build/src/msg.o(.text);
         build/src/bmlib.o(.text);
         build/src/bmlib-math.o(.text);
         build/src/bm.o(.text);

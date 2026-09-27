@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08012F14
-sub_08012F14: @ 0x08012F14
+	thumb_func_start MsgExpandWithArticle
+MsgExpandWithArticle: @ 0x08012F14
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -95,11 +95,11 @@ _08012FB0:
 	mov r0, sl
 	bl GetArticle
 	adds r1, r6, #0
-	bl sub_08012EFC
+	bl StrCopyEnd
 	adds r6, r0, #0
 	mov r0, sl
 	adds r1, r6, #0
-	bl sub_08012EFC
+	bl StrCopyEnd
 	ldr r0, _08012FE4 @ =0x0202B5B4
 _08012FD4:
 	pop {r3, r4, r5}
