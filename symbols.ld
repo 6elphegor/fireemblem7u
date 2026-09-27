@@ -2802,3 +2802,5 @@ gUnknown_08A17B30 = 0x08CC342C;
 gUnknown_03001864 = 0x03001450;
 Pal_MenuScrollBar = 0x08405734;
 Img_MenuScrollBar = 0x08405690;
+gUnknown_02012F58 = 0x02012468;
+gUnknown_02013458 = 0x02012968;

@@ -270,7 +270,7 @@ void PrepMuralBackground_Init(struct ProcPrepMuralBackground *proc);
 void PrepMuralBackground_Loop(struct ProcPrepMuralBackground *proc);
 struct ProcPrepMuralBackground * StartPrepMuralBackground(ProcPtr parent, int pal_bank);
 void EndPrepMuralBackground(void);
-// sub_080907D4
+// SallyCir_OnHBlank
 
 struct SallyCirProc {
     PROC_HEADER;
