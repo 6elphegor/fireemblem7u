@@ -104,6 +104,7 @@ extern u16 CONST_DATA Sprite_ClassIntroLineEndL[];
 extern u16 CONST_DATA Sprite_ClassIntroLineEndR[];
 extern u16 CONST_DATA Sprite_ClassIntroIconFrame[];
 extern u16 const * CONST_DATA SpriteLut_ClassIntroIcons[];
+extern u16 const * CONST_DATA SpriteLut_GaugePips[];
 
 int GetClassIntroGlyphTile(u8 chr);
 void PutClassIntroLetter(u16 tile, u8 index, int x, int y, u16 xScale, u16 yScale, u8 offset);
@@ -604,7 +605,59 @@ ProcPtr StartClassAnimDisplay(ProcPtr parent, int ent)
 
 ASM_FUNC("asm/nonmatching/code_080B00A8.s");
 
-ASM_FUNC("asm/nonmatching/code_080B0134.s");
+void ClassStatsDisplay_Loop(struct OpInfoGaugeDrawProc * proc)
+{
+    u8 value;
+    int i;
+    int x;
+
+    for (i = 0; i < 6; i++)
+    {
+        value = proc->display->stats[i];
+
+        if (value >= 30)
+            value = 30;
+
+        for (x = 0; x < (value >> 2); x++)
+            PutSpriteExt(13, x * 8 + 0x31, i * 16 + 15, SpriteLut_GaugePips[3], 0x5000);
+
+        if ((value & 3) != 0)
+            PutSpriteExt(13, x * 8 + 0x31, i * 16 + 15, SpriteLut_GaugePips[(value & 3) - 1], 0x5000);
+    }
+
+    x = ((0x78 - proc->width) / 2) + proc->x;
+
+    if (x + proc->width > 0xE8)
+        x = 0xE8 - proc->width;
+
+    for (i = 0; proc->display->ent->name[i] != 0;)
+    {
+        struct ClassDisplayFont const * font = GetClassDisplayFontInfo(proc->display->ent->name[i]);
+
+        if (font != NULL)
+        {
+            if (font->sprite != NULL)
+            {
+                PutSpriteExt(4, x - (s8) font->xBase, 8 - (s8) font->yBase, font->sprite, 0x5000);
+                PutSpriteExt(4, x - (s8) font->xBase - 2, 6 - (s8) font->yBase, font->sprite, 0x4000);
+
+                x += (s8) font->width - (s8) font->xBase;
+            }
+        }
+        else
+        {
+            x += 4;
+        }
+
+        i++;
+
+        if (i > 14)
+            break;
+    }
+
+    if (proc->timer < 0xFF)
+        proc->timer++;
+}
 ProcPtr StartClassStatsDisplay(ProcPtr parent)
 {
     return Proc_Start(ProcScr_ClassStatsDisplay, parent);

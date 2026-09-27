@@ -2556,6 +2556,7 @@ Tsa_ArenaBuildingFront = 0x083F2618;
 Pal_ArenaBuildingFront = 0x083F2ACC;
 gClassDisplayFontData = 0x08CE6D80;
 gClassIntroLetterProcs = 0x02000000;
+SpriteLut_GaugePips = 0x08CE6078;
 gClassIntroGlyphWidths = 0x08CE5E9C;
 Sprite_ClassIntroLetter = 0x08CE5EB6;
 ProcScr_ClassIntro = 0x08CE5EC0;
