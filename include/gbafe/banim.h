@@ -814,7 +814,7 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_08057714
 // ??? sub_8057F38
 // ??? sub_8057F84
-// ??? sub_080577D8
+// ??? efxHurtmut_Loop_Main
 // ??? StartSubSpell_efxHurtmutOBJ
 // ??? sub_80580EC
 // ??? sub_8058120
