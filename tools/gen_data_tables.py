@@ -643,6 +643,36 @@ def gen_chapters():
     write("chapters.c", out)
 
 
+# --- debug unit names -----------------------------------------------------------
+
+DEBUG_PINFO_TABLE = 0x08C97F3C
+
+
+def cstr(a):
+    o = a - 0x08000000
+    return ROM[o:ROM.index(b"\0", o)].decode("ascii")
+
+
+def gen_debugpinfo():
+    out = HEADER + [
+        "// Unreferenced: debug names of each character and its (generic) class.",
+        "// The string literals are the module's .rodata (0x083B7E14).",
+        "",
+        "struct DebugPInfo {",
+        "    int jid;",
+        "    char const * pname;",
+        "    char const * jname;",
+        "};",
+        "",
+        "CONST_DATA struct DebugPInfo gDebugPInfo[] = {",
+    ]
+    for i in range(CHAR_COUNT):
+        a = DEBUG_PINFO_TABLE + i * 12
+        out.append(f'    [{char(i + 1)} - 1] = {{ {cls(rd32(a))}, "{cstr(rd32(a + 4))}", "{cstr(rd32(a + 8))}" }},')
+    out.append("};")
+    write("debugpinfo.c", out)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     gen_characters()
@@ -655,6 +685,7 @@ def main():
     gen_banimconf()
     gen_chapters()
     gen_affinity()
+    gen_debugpinfo()
 
 
 if __name__ == "__main__":
