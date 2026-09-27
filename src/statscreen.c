@@ -459,12 +459,57 @@ void HelpBoxPopulateStatScreenItem(struct HelpBoxProc * proc)
     proc->msg = GetItemDescMsg(item);
 }
 
-void HelpBoxPopulateStatScreenStatus(struct HelpBoxProc * proc);
-ASM_FUNC("asm/nonmatching/code_08081580.s");
+void HelpBoxPopulateStatScreenStatus(struct HelpBoxProc * proc)
+{
+    switch (gStatScreenSt.unit->statusIndex)
+    {
+
+    case UNIT_STATUS_NONE:
+        proc->msg = 0x270;
+        break;
+
+    case UNIT_STATUS_POISON:
+        proc->msg = 0x271;
+        break;
+
+    case UNIT_STATUS_SLEEP:
+        proc->msg = 0x272;
+        break;
+
+    case UNIT_STATUS_SILENCED:
+        proc->msg = 0x274;
+        break;
+
+    case UNIT_STATUS_BERSERK:
+        proc->msg = 0x273;
+        break;
+
+    case UNIT_STATUS_ATTACK:
+        proc->msg = 0x275;
+        break;
+
+    case UNIT_STATUS_DEFENSE:
+        proc->msg = 0x276;
+        break;
+
+    case UNIT_STATUS_CRIT:
+        proc->msg = 0x277;
+        break;
+
+    case UNIT_STATUS_AVOID:
+        proc->msg = 0x278;
+        break;
+    }
+}
 
 
-void HelpBoxPopulateStatScreenPower(struct HelpBoxProc * proc);
-ASM_FUNC("asm/nonmatching/code_08081634.s");
+void HelpBoxPopulateStatScreenPower(struct HelpBoxProc * proc)
+{
+    if (UnitHasMagicRank(gStatScreenSt.unit))
+        proc->msg = 0x265;
+    else
+        proc->msg = 0x264;
+}
 
 
 void HelpBoxRedirectStatScreenItem(struct HelpBoxProc * proc)
@@ -503,8 +548,15 @@ void HelpBoxPopulateStatScreenWeaponExp(struct HelpBoxProc * proc)
     proc->msg = item_kind_msg_lut[item_kind];
 }
 
-void HelpBoxPopulateStatScreenPInfo(struct HelpBoxProc * proc);
-ASM_FUNC("asm/nonmatching/code_080816FC.s");
+void HelpBoxPopulateStatScreenPInfo(struct HelpBoxProc * proc)
+{
+    int msg_desc = gStatScreenSt.unit->pCharacterData->descTextId;
+
+    if (msg_desc != 0)
+        proc->msg = msg_desc;
+    else
+        proc->msg = 0x396;
+}
 
 
 void HelpBoxPopulateStatScreenJInfo(struct HelpBoxProc * proc)
