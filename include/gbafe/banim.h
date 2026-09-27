@@ -237,7 +237,13 @@ struct ProcEfxALPHA {
     /* 2E */ s16 unk2E;
     /* 30 */ s16 unk30;
 
-    STRUCT_PAD(0x32, 0x5C);
+    STRUCT_PAD(0x32, 0x44);
+
+    /* 44 */ int unk44;
+    /* 48 */ int unk48;
+    /* 4C */ int unk4C;
+
+    STRUCT_PAD(0x50, 0x5C);
 
     /* 5C */ struct Anim * anim;
 };
@@ -742,19 +748,19 @@ void StartSpellAnimation(struct Anim * anim);
 // ??? DummvRSTMain
 // ??? NewEfxRestWIN
 // ??? EfxRestWINMain
-// ??? sub_08055BE0
-// ??? sub_08055C08
-// ??? sub_08055C30
-// ??? sub_08055C6C
-// ??? sub_08055CA8
+// ??? EfxMagicHBlank_08055BE0
+// ??? EfxMagicHBlank_08055C08
+// ??? EfxMagicHBlank_08055C30
+// ??? EfxMagicHBlank_08055C6C
+// ??? EfxMagicHBlank_08055CA8
 // ??? NewEfxRestWINH
 void NewEfxRestWINH_(struct Anim *anim, int a, int b);
 // ??? sub_805660C
 // ??? sub_08055E30
 void NewEfxALPHA(struct Anim * anim, int a, int b, int c, int d, int e);
-// ??? sub_08055F50
+// ??? EfxALPHAMain
 // ??? sub_08056054
-// ??? sub_080560B4
+// ??? EfxCircleWINMain
 void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? Loop6C_efxMagicQUAKE
 // ??? StartSpellAnimDummy
