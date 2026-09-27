@@ -607,7 +607,7 @@ s8 sub_080380A8(int x, int y, struct Vec2 * out, u8 * itemSlotOut)
 
     u32 best = 0;
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     for (slot = 0; slot < 5; slot++)
     {

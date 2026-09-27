@@ -28,7 +28,7 @@ extern struct MovMapFillStateExt gMovMapFillStPool1[];
 extern struct MovMapFillStateExt gMovMapFillStPool2[];
 extern struct MovMapFillState gMovMapFillState;
 
-void RevertMapChange(struct Unit * unit);                               // GenerateUnitMovementMap (misnamed)
+void GenerateUnitMovementMap(struct Unit * unit);                               // GenerateUnitMovementMap (misnamed)
 void MapFloodUnitMovement(struct Unit * unit, s8 movement);             // GenerateUnitMovementMapExt
 void MapFloodUnitExtended(struct Unit * unit);                          // GenerateUnitExtendedMovementMap
 void MapFloodRange_Unitless(int x, int y, const s8 mct[]);              // GenerateExtendedMovementMapOnRange

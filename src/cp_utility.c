@@ -248,7 +248,7 @@ void AiRandomMove(void)
     s16 xOut = 0;
     s16 yOut = 0;
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     xOut = -1;
 
@@ -697,7 +697,7 @@ void AiMakeMoveRangeMapsForUnitAndWeapon(struct Unit * unit, u16 item)
     int ix;
     int iy;
 
-    RevertMapChange(unit);
+    GenerateUnitMovementMap(unit);
     BmMapFillg(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
@@ -719,7 +719,7 @@ void AiMakeMoveRangeUnitPowerMaps(struct Unit * unit)
 
     int power = GetUnitPower(unit) > 20 ? 20 : GetUnitPower(unit);
 
-    RevertMapChange(unit);
+    GenerateUnitMovementMap(unit);
     BmMapFillg(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
@@ -739,7 +739,7 @@ void sub_08036770(struct Unit * unit, u16 item)
     int ix;
     int iy;
 
-    RevertMapChange(unit);
+    GenerateUnitMovementMap(unit);
     BmMapFillg(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
@@ -851,7 +851,7 @@ s8 AiFindSafestReachableLocation(struct Unit * unit, struct Vec2 * out)
     }
     else
     {
-        RevertMapChange(unit);
+        GenerateUnitMovementMap(unit);
     }
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
@@ -959,7 +959,7 @@ void AiTryMoveTowards(s16 x, s16 y, u8 action, u8 maxDanger, u8 unk)
     else
         AiMapFloodRangeFrom(x, y, gActiveUnit);
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     bestRange = gBmMapRange[gActiveUnit->yPos][gActiveUnit->xPos];
     xOut = -1;
@@ -1017,7 +1017,7 @@ void AiTryMoveTowardsNeglectWall(s16 x, s16 y, u8 action, u8 maxDanger, u8 unk)
     else
         sub_0803BF8C(x, y, gActiveUnit);
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     bestRange = gBmMapRange[gActiveUnit->yPos][gActiveUnit->xPos];
     xOut = -1;
@@ -1431,5 +1431,5 @@ void sub_0803758C(struct Unit * unit)
     if (gAiState.flags & AI_FLAG_STAY)
         MapFloodUnitMovement(unit, 0);
     else
-        RevertMapChange(unit);
+        GenerateUnitMovementMap(unit);
 }

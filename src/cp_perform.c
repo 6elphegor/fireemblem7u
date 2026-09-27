@@ -115,7 +115,7 @@ void CpPerform_BeginUnitMovement(struct CpPerformProc * proc)
 
     HideUnitSprite(gActiveUnit);
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
     SetWorkingBmMap(gBmMapMovement);
 
     BuildBestMoveScript(gAiDecision.xMove, gAiDecision.yMove, gWorkingMoveScr);

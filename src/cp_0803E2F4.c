@@ -437,7 +437,7 @@ void AiEquipGetDanger(int x, int y, u16 * range_danger_out, u16 * melee_danger_o
         if (!AiIsWithinFlyingDistance(unit, x, y))
             continue;
 
-        RevertMapChange(unit);
+        GenerateUnitMovementMap(unit);
 
         if (gBmMapMovement[y][x] == 0xFF)
             continue;
@@ -801,7 +801,7 @@ s8 sub_0803A204(const void * arg)
     gActiveUnit->xPos = xPrev;
     gActiveUnit->yPos = yPrev;
 
-    RevertMapChange(gActiveUnit);
+    GenerateUnitMovementMap(gActiveUnit);
 
     if (UnitHasMagicRank(gActiveUnit) != 0)
         GenerateMagicSealMap(-1);
@@ -925,7 +925,7 @@ s8 AiCountEnemyInRangeOrTryMoveToSpecificPosition(const void * input)
     }
     else
     {
-        RevertMapChange(gActiveUnit);
+        GenerateUnitMovementMap(gActiveUnit);
     }
 
     if (AiTryMoveToSpecificPosition(&pos) == 1)

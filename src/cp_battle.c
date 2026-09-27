@@ -61,7 +61,7 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
         {
             if (GetUnitItemCount(gActiveUnit) < UNIT_ITEM_COUNT)
             {
-                RevertMapChange(gActiveUnit);
+                GenerateUnitMovementMap(gActiveUnit);
                 MarkMovementMapEdges();
 
                 if (AiAttemptStealActionWithinMovement() == 1)
@@ -75,7 +75,7 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
             gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
         }
         else
-            RevertMapChange(gActiveUnit);
+            GenerateUnitMovementMap(gActiveUnit);
 
         if (UnitHasMagicRank(gActiveUnit))
             GenerateMagicSealMap(-1);

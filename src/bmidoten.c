@@ -20,7 +20,7 @@ inline void SetWorkingBmMap(u8 ** map)
     gWorkingBmMap = map;
 }
 
-void RevertMapChange(struct Unit * unit)
+void GenerateUnitMovementMap(struct Unit * unit)
 {
     SetWorkingMoveTable(GetUnitMovementCost(unit));
     SetWorkingBmMap(gBmMapMovement);
