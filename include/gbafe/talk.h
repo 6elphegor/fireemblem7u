@@ -136,7 +136,7 @@ bool TalkSpritePrepNextChar(ProcPtr proc);
 int TalkInterpret(ProcPtr proc);
 void SetActiveTalkFace(int);
 void sub_08008E34(ProcPtr proc);
-// ??? StartTalkFace
+struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
 // ??? GetFaceIdByXPos
 void sub_08008F6C(int talk_face, int toBack);
 void MoveTalkFace(int talkFaceFrom, int talkFaceTo);

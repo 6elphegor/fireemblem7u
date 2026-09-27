@@ -86,6 +86,10 @@ extern struct ProcCmd CONST_DATA gProcScr_GoldBox[];
 extern struct ProcCmd CONST_DATA ProcScr_ShopDrawHand[];
 extern struct ShopState * CONST_DATA gShopState;
 
+extern u8 Tsa_ShopWindows[];
+extern u8 Img_ShopGoldBox[];
+extern u8 Img_UiVArrow[];
+
 extern struct Text gShopItemTexts[];
 extern struct ShopState sShopState;
 extern struct Text gText_GoldBox;
@@ -126,7 +130,7 @@ void Shop_SellAnythingElseDialogue(struct ProcShop * proc);
 void Shop_AnythingElseRestartDialogue(struct ProcShop * proc);
 void Shop_AnythingElseContinueDialogue(struct ProcShop * proc);
 void Shop_ExitShopDialogue(struct ProcShop * proc);
-void Shop_OnExit(void);
+void Shop_OnExit(struct ProcShop * proc);
 void Shop_PrepEntryDialogue(struct ProcShop * proc);
 void Shop_Loop_UnkKeyHandler(struct ProcShop * proc);
 void StartShopFadeIn(struct ProcShop * proc);
@@ -149,7 +153,7 @@ u16 GetItemSellPrice(int item);
 s8 IsItemSellable(int item);
 void GoldBox_OnLoop(struct ProcShop * proc);
 void InitShopScreenConfig(void);
-void _DisplayShopUiArrows(void);
+void _DisplayShopUiArrows(ProcPtr proc);
 void DisplayShopUiArrows(void);
 void UnpackUiVArrowGfx(int chr, int pal);
 void DisplayUiVArrow(int x, int y, u16 oam2, int flip);
