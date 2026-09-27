@@ -128,6 +128,9 @@ struct ManimLevelUpLabelInfo {
     /* 04 */ int const * msg[2];
 };
 
+extern struct ManimLevelUpLabelInfo CONST_DATA gManimLevelUpLabelInfoList[];
+extern u16 const Pal_ManimLevelUpStatGain[];
+
 struct ManimLevelUpStatGainLabelProc {
     /* 00 */ PROC_HEADER;
     /* 29 */ STRUCT_PAD(0x29, 0x2A);
@@ -142,6 +145,15 @@ struct ManimLevelUpLabelColorProc {
     /* 54 */ s32 clock;
     /* 58 */ STRUCT_PAD(0x58, 0x64);
     /* 64 */ s16 pal;
+};
+
+struct ManimLevelUpProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2E);
+    /* 2E */ s16 actor;
+    /* 30 */ u8 next_stat_num;
+    /* 31 */ u8 clock;
+    /* 32 */ s16 y_scroll_offset;
 };
 
 struct ManimEffectProc {
@@ -311,19 +323,19 @@ void StartManimLevelUpStatGainLabels(int chr, int pal, int sprite_layer, ProcPtr
 // sub_8074D38
 void StartManimLevelUpStatGainLabelAnim(int x, int y, int stat_num, int stat_gain);
 void StartPrepItemBoostStatGainLabelAnim(int x, int y, int stat_gain);
-// StartManimLevelUp
-// sub_080748D0
-// sub_080749F4
-// sub_08074A28
-// sub_08074BF8
-// sub_08074C10
-// sub_08074CA0
-// sub_08074D14
+void StartManimLevelUp(int actor, ProcPtr parent);
+void InitManimLevelUpWindow(void);
+void ClearManimLevelUpWindow(void);
+void ManimLevelUp_InitMainScreen(struct ManimLevelUpProc * proc);
+void ManimLevelUpLabelColor_Init(struct ManimLevelUpLabelColorProc * proc);
+void ManimLevelUpLabelColor_Loop(struct ManimLevelUpLabelColorProc * proc);
+void ManimLevelUp_ScrollIn(struct ManimLevelUpProc * proc);
+void ManimLevelUp_ScrollOut(struct ManimLevelUpProc * proc);
 // sub_8075584
-// sub_08074F00
-// sub_08074F20
+void ManimLevelUp_DimBgm(struct ManimLevelUpProc * proc);
+void ManimLevelUp_StartLevelUpText(struct ManimLevelUpProc * proc);
 // sub_8075864
-// sub_080750A8
+void ManimLevelUp_RestoreBgm(struct ManimLevelUpProc * proc);
 // sub_8075898
 // sub_80758AC
 // sub_08075114
@@ -404,3 +416,6 @@ void StartManimBarrierFx(struct Unit * unit);
 void EndManimBgScroll(void);
 void ManimLevelUpStatGainLabel_Finish(struct ManimLevelUpStatGainLabelProc * proc);
 void EndManimLevelUpStatGainLabels(void);
+void ManimLevelUp_PutStatGainLabels(struct ManimLevelUpProc * proc);
+void ManimLevelUp_EndLevelUpText(struct ManimLevelUpProc * proc);
+void ManimLevelUp_Clear(struct ManimLevelUpProc * proc);

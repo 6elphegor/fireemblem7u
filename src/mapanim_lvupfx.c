@@ -4,10 +4,8 @@ extern u8 const Img_ManimLevelUpFrame[];
 extern u8 const Tsa_ManimLevelUpFrame[];
 extern u16 const Pal_ManimLevelUpFrame[];
 extern u8 const Img_ManimLevelUpStatGain[];
-extern u16 const Pal_ManimLevelUpStatGain[];
 extern u8 const Img_ManimLevelUpStatGainDigits[];
 extern u16 const SpriteAnim_ManimLevelUpStatGain[];
-extern struct ManimLevelUpLabelInfo CONST_DATA gManimLevelUpLabelInfoList[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimLevelUpStatGainLabel[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimLevelUpLabelColor[];
 

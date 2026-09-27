@@ -1715,3 +1715,7 @@ SpriteAnim_ManimLevelUpStatGain = 0x083EBE54;
 gManimLevelUpLabelInfoList = 0x08C9DDB4;
 ProcScr_ManimLevelUpStatGainLabel = 0x08C9DE2C;
 ProcScr_ManimLevelUpLabelColor = 0x08C9DE3C;
+Pal_ManimLevelUpStatGainCycling = 0x083F3074;
+Img_ManimLevelUpText = 0x083F323C;
+SpriteAnim_ManimLevelUpText = 0x083EC514;
+ProcScr_ManimLevelUp = 0x08C9DE54;

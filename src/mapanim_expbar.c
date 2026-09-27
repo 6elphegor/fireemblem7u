@@ -1,8 +1,5 @@
 #include "gbafe.h"
 
-// not yet declared in headers
-void StartManimLevelUp(int actor, ProcPtr parent);
-
 extern u8 const Img_EkrExpBar[];
 extern u8 const Img_EkrExpBarChange[];
 extern u8 const Img_BarNumfx[];
