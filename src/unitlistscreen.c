@@ -1348,7 +1348,308 @@ void sub_0808AC90(u8 maxPages, u8 page, s8 flag)
     EnableBgSync(BG2_SYNC_BIT);
 }
 
-ASM_FUNC("asm/nonmatching/code_0808AD00.s");
+void sub_0808AD00(struct UnitListScreenProc * proc, u8 unitNum, u16 * tm, u8 page, u8 putName)
+{
+    u8 inactive;
+    u8 i;
+    u8 num;
+    int icon;
+
+    int row = (u8) (unitNum % 7);
+    int y = (unitNum * 2) & 0x1F;
+
+    if ((gSortedUnits[unitNum]->unit->state & US_NOT_DEPLOYED) != 0)
+        inactive = 1;
+    else
+        inactive = 0;
+
+    if (putName != 0)
+    {
+        ClearText(&gUnknown_0200E060[row]);
+        Text_SetCursor(&gUnknown_0200E060[row], 0);
+
+        if (!CheckInLinkArena() && proc->mode == UNITLIST_MODE_PREPMENU &&
+            IsCharacterForceDeployed(gSortedUnits[unitNum]->unit->pCharacterData->number))
+        {
+            Text_SetColor(&gUnknown_0200E060[row], 4);
+        }
+        else
+        {
+            Text_SetColor(&gUnknown_0200E060[row], inactive ? 1 : 0);
+        }
+
+        Text_DrawString(
+            &gUnknown_0200E060[row], DecodeMsg(gSortedUnits[unitNum]->unit->pCharacterData->nameTextId));
+        PutText(&gUnknown_0200E060[row], tm + y * 0x20 + 3);
+    }
+
+    ClearText(&gUnknown_0200E098[row][0]);
+    ClearText(&gUnknown_0200E098[row][1]);
+
+    TmFillRect_thm(tm + y * 0x20 + 8, 0x18, 1, 0);
+
+    switch (page)
+    {
+    case 0:
+        PutDrawText(
+            &gUnknown_0200E098[row][0], tm + y * 0x20 + 8, 0, 0, 0,
+            DecodeMsg(gSortedUnits[unitNum]->unit->pClassData->nameTextId));
+        Text_SetColor(&gUnknown_0200E098[row][1], inactive ? 1 : 0);
+
+        if (GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit) == 0)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 17,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127F));
+        }
+        else
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 17,
+                inactive ? 1 : 0, 0, 0,
+                GetItemName(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)));
+            PutIcon(
+                tm + y * 0x20 + 15, GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)),
+                TILEREF(0, 4));
+            sub_8090324(GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)));
+        }
+
+        ClearText(&gUnknown_0200E098[row][2]);
+
+        switch (gSortedUnits[unitNum]->unit->state & (US_SOLOANIM_1 | US_SOLOANIM_2))
+        {
+        case US_SOLOANIM_1:
+            PutDrawText(&gUnknown_0200E098[row][2], tm + y * 0x20 + 24, 4, 8, 0, DecodeMsg(0x1274));
+            break;
+
+        case US_SOLOANIM_2:
+            PutDrawText(&gUnknown_0200E098[row][2], tm + y * 0x20 + 24, 4, 8, 0, DecodeMsg(0x1275));
+            break;
+
+        case 0:
+            PutDrawText(&gUnknown_0200E098[row][2], tm + y * 0x20 + 24, 1, 4, 0, DecodeMsg(0x1276));
+            break;
+        }
+
+        break;
+
+    case 1:
+    {
+#ifndef NONMATCHING
+        register u16 * p asm("r4");
+#else
+        u16 * p;
+#endif
+
+        PutDrawText(
+            &gUnknown_0200E098[row][0], (p = tm + y * 0x20) + 8,
+            inactive ? 1 : 0, 0, 0,
+            DecodeMsg(gSortedUnits[unitNum]->unit->pClassData->nameTextId));
+
+        PutNumberOrBlank(
+            p + 17, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->unit->level);
+
+        PutNumberOrBlank(
+            p + 20, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->unit->exp);
+
+        PutNumberOrBlank(
+            p + 23, inactive ? 1 : 2,
+            GetUnitCurrentHp(gSortedUnits[unitNum]->unit));
+        PutSpecialChar(p + 24, inactive ? 1 : 0, 0x16);
+        PutNumberOrBlank(
+            p + 26, inactive ? 1 : 2,
+            GetUnitMaxHp(gSortedUnits[unitNum]->unit));
+
+        break;
+    }
+
+    case 2:
+        PutNumberOrBlank(
+            tm + y * 0x20 + 9,
+            UNIT_POW_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->pow ? 4 : 2,
+            GetUnitPower(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 12,
+            UNIT_SKL_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->skl ? 4 : 2,
+            GetUnitSkill(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 15,
+            UNIT_SPD_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->spd ? 4 : 2,
+            GetUnitSpeed(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 18,
+            UNIT_LCK_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->lck ? 4 : 2,
+            GetUnitLuck(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 21,
+            UNIT_DEF_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->def ? 4 : 2,
+            GetUnitDefense(gSortedUnits[unitNum]->unit));
+        PutNumberOrBlank(
+            tm + y * 0x20 + 24,
+            UNIT_RES_MAX(gSortedUnits[unitNum]->unit) == gSortedUnits[unitNum]->unit->res ? 4 : 2,
+            GetUnitResistance(gSortedUnits[unitNum]->unit));
+
+        icon = GetUnitAffinityIcon(gSortedUnits[unitNum]->unit);
+
+        if (icon == -1)
+            PutSpecialChar(tm + y * 0x20 + 26, 2, 0x14);
+        else
+            PutIcon(tm + y * 0x20 + 26, icon, TILEREF(0, 4 + 1));
+
+        break;
+
+    case 3:
+        if (GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit) == 0)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][0], tm + y * 0x20 + 10,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127F));
+        }
+        else
+        {
+            char const * name = GetItemName(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit));
+
+            PutDrawText(
+                &gUnknown_0200E098[row][0], tm + y * 0x20 + 10,
+                inactive ? 1 : 0, 0, 0, name);
+
+            PutIcon(
+                tm + y * 0x20 + 8, GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)),
+                TILEREF(0, 4));
+            sub_8090324(GetItemIconId(GetUnitEquippedWeapon(gSortedUnits[unitNum]->unit)));
+        }
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 18, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->battleAttack);
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 22, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->battleHitRate);
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 26, inactive ? 1 : 2,
+            gSortedUnits[unitNum]->battleAvoidRate);
+
+        break;
+
+    case 4:
+        if ((gSortedUnits[unitNum]->unit->state & US_RESCUING) != 0)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 18,
+                inactive ? 1 : 0, 0, 0,
+                GetUnitRescueName(gSortedUnits[unitNum]->unit));
+        }
+        else
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][1], tm + y * 0x20 + 18,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127D));
+        }
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 10, inactive ? 1 : 2,
+            UNIT_MOV(gSortedUnits[unitNum]->unit));
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 13, inactive ? 1 : 2,
+            UNIT_CON(gSortedUnits[unitNum]->unit));
+
+        PutNumberOrBlank(
+            tm + y * 0x20 + 16, inactive ? 1 : 2,
+            GetUnitAid(gSortedUnits[unitNum]->unit));
+
+        PutDrawText(
+            &gUnknown_0200E098[row][0], tm + y * 0x20 + 23,
+            inactive ? 1 : 0, 0, 0,
+            GetUnitStatusName(gSortedUnits[unitNum]->unit));
+
+        break;
+
+    case 5:
+    {
+        for (i = 0; i < 8; i++)
+        {
+            const int wpnLevelRankChars[] =
+            {
+                0x14, 0x1D, 0x1C, 0x1B, 0x1A, 0x19, 0x18,
+            };
+
+            num = GetWeaponLevelFromExp(gSortedUnits[unitNum]->unit->ranks[i]);
+
+            PutSpecialChar(tm + y * 0x20 + 10 + 2 * i, num == 6 ? 4 : 2, wpnLevelRankChars[num]);
+        }
+
+        break;
+    }
+
+    default:
+    {
+        u8 supportStart;
+        u8 supportPassed;
+        int supportCount;
+
+        supportStart = (page - 6) * 3;
+        supportPassed = 0;
+        num = 0;
+        supportCount = GetUnitSupporterCount(gSortedUnits[unitNum]->unit);
+
+        ClearText(&gUnknown_0200E098[row][2]);
+
+        for (i = 0; i < supportCount; i++)
+        {
+            if (CanUnitSupportNow(gSortedUnits[unitNum]->unit, i))
+            {
+                if (supportPassed >= supportStart)
+                {
+                    struct Unit * other = GetUnitSupportUnit(gSortedUnits[unitNum]->unit, i);
+
+                    if (((u16) (other->state & US_NOT_DEPLOYED)) == 0)
+                    {
+                        char const * name = DecodeMsg(
+                            (GetCharacterData(GetUnitSupportPid(gSortedUnits[unitNum]->unit, i)))->nameTextId);
+
+                        PutDrawText(
+                            &gUnknown_0200E098[row][num], tm + y * 0x20 + 9 + num * 6,
+                            inactive ? 1 : 0, 0, 0, name);
+                    }
+                    else
+                    {
+                        char const * name = DecodeMsg(
+                            (GetCharacterData(GetUnitSupportPid(gSortedUnits[unitNum]->unit, i)))->nameTextId);
+
+                        PutDrawText(
+                            &gUnknown_0200E098[row][num], tm + y * 0x20 + 9 + num * 6, 1, 0, 0, name);
+                    }
+
+                    num++;
+
+                    if (num == 3)
+                        break;
+                }
+                else
+                {
+                    supportPassed++;
+                }
+            }
+        }
+
+        for (; num < 3; num++)
+        {
+            PutDrawText(
+                &gUnknown_0200E098[row][num], tm + y * 0x20 + 9 + num * 6,
+                inactive ? 1 : 0, 0, 0, DecodeMsg(0x127D));
+        }
+
+        break;
+    }
+    }
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
 
 int SortUnitList_GetUnitSoloAnimation(struct Unit * unit)
 {
