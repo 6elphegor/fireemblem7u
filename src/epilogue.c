@@ -66,7 +66,34 @@ void EpiloguePutBgRow(int idx, void const * img, u8 const * tsa);
 void InitBoxDialogue(void * vram_dst, int pal);
 void StartBoxDialogueSimple(int x, int y, int msg, ProcPtr parent);
 
-ASM_FUNC("asm/nonmatching/code_080B6C14.s");
+void sub_080B6C14(void)
+{
+    u16 vcount = REG_VCOUNT + 1;
+
+    if (vcount > 160)
+        vcount = 0;
+
+    if (vcount < 0x20)
+    {
+        int c = vcount >> 1;
+        REG_BLDCNT = 0x3F40;
+        REG_BLDALPHA = ((0x10 - c) << 8) + c;
+    }
+
+    if (vcount > 0x80)
+    {
+        int c = (0xA0 - vcount) >> 1;
+        REG_BLDCNT = 0x3F40;
+        REG_BLDALPHA = ((0x10 - c) << 8) + c;
+    }
+
+    if (vcount == 0x20)
+    {
+        REG_BLDCNT = *((u16 *) &gDispIo.blend_ct);
+        REG_BLDALPHA = (gDispIo.blend_coef_b << 8) | gDispIo.blend_coef_a;
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B6C8C.s");
 int CountEpilogueLines(char const * str)
 {
@@ -343,7 +370,20 @@ void sub_080B7408(struct EpilogueProc * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B74B4.s");
+void sub_080B74B4(ProcPtr proc)
+{
+    int i, j;
+
+    for (i = 0; i < 8; i++)
+    {
+        int y = i * 24 + 0x18;
+
+        for (j = 0; j < 7; j++)
+            PutSpriteExt(4, 8 + j * 0x20, (y & 0xFF) + 0x400, Sprite_32x16,
+                ((((u32) (i * 0x800 + 0x1000) & 0x1FFFF) >> 5) + 0xA400) + j * 4);
+    }
+}
+
 void EpilogueText_Init(struct EpilogueProc * proc)
 {
     ClearEpilogueTexts();
