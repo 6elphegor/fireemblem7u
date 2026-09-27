@@ -688,7 +688,7 @@ EventScr_Ch27_Ending:
 	STAL 0x40
 	TEX1 MSG_DED                             @ You mustn't go! Neither of you!! Would you like
 	CLEAN
-	BACG_FADE 0x10, 4
+	BACG_FADE 0x10, 0x4
 	MUSS SONG_31
 	DISA CHARACTER_CITIZEN_DA
 	LOU1 Units_08CDB968

@@ -444,9 +444,9 @@ EventScr_Ch07_Ending:
 	ASMC EventClearTalkDisplayed
 	STAL 0
 	MUSC SONG_3D
-	BACG_FADE 6, 4
+	BACG_FADE 6, 0x4
 	STAL 0x78
-	BACG_FADE_IN 0x3D, 4
+	BACG_FADE_IN 0x3D, 0x4
 	TEX1 MSG_99D                             @ Ninian! Ninian! She'll be fine. She's just lost
 	FADI 4
 	EXIT_MAP

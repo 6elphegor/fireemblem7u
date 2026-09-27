@@ -155,7 +155,7 @@ EventScr_Ch16_Beginning:
 	ASMC EventClearTalkDisplayed
 	STAL 0
 	MUEN 4
-	BACG_FADE 0x25, 2
+	BACG_FADE 0x25, 0x2
 	MUSC 0x3AA
 	CG_TEXT MSG_B28, 1                       @ Lyn Hey!! What-- What are you doing?
 	CG_TEXT_MORE MSG_B29, 1                  @ Hector You're a strong woman, Lyndis. I thought

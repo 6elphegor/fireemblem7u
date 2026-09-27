@@ -252,10 +252,10 @@ EventScr_08CBF4DC:
 	TEX2 MSG_EBF                             @ Nergal, after all these years... You have not st
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 0x1F, 4
+	BACG_FADE 0x1F, 0x4
 	CG_TEXT MSG_EC0, 1                       @ Nergal Look at this wound! The wound I took from
 	STAL 0x1E
-	BACG_FADE_IN 0x45, 4
+	BACG_FADE_IN 0x45, 0x4
 	TEX1_BY_MODE MSG_EC1, MSG_EC2            @ It was a mistake. The only person who understood / It was a mistake. The only person who understood
 	IFTEXTSKIP 0xA
 	MUSC 0x57

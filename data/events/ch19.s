@@ -73,7 +73,7 @@ EventScr_Ch19_Beginning:
 	LOU1 Units_08CCEAB0
 	ENUN
 	STAL 0x40
-	BACG_FADE 0x26, 4
+	BACG_FADE 0x26, 0x4
 	CG_TEXT MSG_B8F, 1                       @ Man ...You hide and wait here. There's food and
 	CG_TEXT_MORE MSG_B90, 1                  @ Young Girl ...What about you, Daddy? Are you goi
 	STAL 0x20

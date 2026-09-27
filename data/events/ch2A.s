@@ -142,7 +142,7 @@ EventScr_Ch2A_Beginning:
 	ENUN
 	STAL 0x40
 	MUSC_FADE SONG_3C, 4
-	BACG_FADE 0x18, 4
+	BACG_FADE 0x18, 0x4
 	CG_TEXT MSG_E2E, 1                       @ Athos I first met Nergal some 500 years ago, wan
 	STAL3 8
 	CG_TEXT_MORE MSG_E2F, 1                  @ Lyn So what happened?
@@ -193,7 +193,7 @@ EventScr_Ch2A_Beginning:
 	MUEN 4
 	STAL3 0x40
 	MURE 4
-	BACG_FADE 0x1A, 4
+	BACG_FADE 0x1A, 0x4
 	CG_TEXT MSG_E3D, 1                       @ Athos ...It was terrible. When we discovered wha
 	STAL3 8
 	CG_TEXT_MORE MSG_E3E, 1                  @ Eliwood ......

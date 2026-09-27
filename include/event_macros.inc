@@ -1621,19 +1621,19 @@
 .endm
 
 @ 0xD9 EvtCmd_BgFadeIn (3 words)
-.macro BACG_FADE_IN bg, speed, _hi=0
+.macro BACG_FADE_IN bg, flags, _hi=0
 	.2byte 0xD9
 	.2byte \_hi
 	.4byte \bg
-	.4byte \speed
+	.4byte \flags
 .endm
 
 @ 0xDA EvtCmd_BgFade (3 words)
-.macro BACG_FADE bg, speed, _hi=0
+.macro BACG_FADE bg, flags, _hi=0
 	.2byte 0xDA
 	.2byte \_hi
 	.4byte \bg
-	.4byte \speed
+	.4byte \flags
 .endm
 
 @ 0xDB EvtCmd_BgFadeToMap (2 words)

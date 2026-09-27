@@ -78,7 +78,7 @@ EventScr_Ch1E_Beginning:
 	CLEAN
 	STAL 0x80
 	MUSI
-	BACG_FADE 0x27, 4
+	BACG_FADE 0x27, 0x4
 	CG_TEXT MSG_C5B, 1                       @ Nergal ...I name you Kishuna. You are the only m
 	BACG_FADE_TO_MAP 0x2
 	MUNO

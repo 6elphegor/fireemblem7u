@@ -103,7 +103,7 @@ EventScr_Ch1D_Beginning:
 	CLEAN
 	MOVE_SPEED CHARACTER_HECTOR, 17, 7, 0x18
 	ENUN
-	BACG_FADE 0xD, 4
+	BACG_FADE 0xD, 0x4
 	STAL 1
 	CG_TEXT MSG_C27, 1                       @ Nils Waaaaaaa!!! I'm going to fall! I'm going to
 	MUEN 4

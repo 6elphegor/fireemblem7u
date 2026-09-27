@@ -531,7 +531,7 @@ EventScr_Ch03_Ending:
 	TEX2 MSG_8D8                             @ Lovely Florina! I have the most brilliant idea!
 	TEX2 MSG_8D9                             @ Fantastic! Beauteous Florina! I am a knight of C
 	ASMC ClearTalk
-	BACG_FADE 3, 2
+	BACG_FADE 3, 0x2
 	STAL 0x3C
 	CG_TEXT MSG_8DA, 1                       @ Lyn "Lyndis's Legion"? This is getting stranger
 	STAL3 0x3C

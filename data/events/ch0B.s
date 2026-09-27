@@ -284,12 +284,12 @@ EventScr_Ch0B_Ending:
 	TEX2 MSG_9E9                             @ Um... Pardon me... My name is... I'm Lyndis. Eh?
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 8, 2
+	BACG_FADE 8, 0x2
 	STAL 0x3C
 	CG_TEXT MSG_9EA, 1                       @ Lord Hausen Lundgren told me that my daughter ha
 	CG_TEXT_MORE MSG_9EB, 1                  @ Lyn Mother and Father were slain last year by br
 	CG_TEXT_MORE MSG_9EC, 1                  @ Lord Hausen Lyndis, please forgive a prideful ol
-	BACG_FADE_IN 0x13, 2
+	BACG_FADE_IN 0x13, 0x2
 	TEX1 MSG_9ED                             @ Grandfather. My parents... My tribe... Our life
 	MUEN 2
 	STAL 0x1E
@@ -314,7 +314,7 @@ EventScr_Ch0B_Ending:
 	TEX1 MSG_9F1                             @ ... you're leaving, aren't you? No, I'm not aski
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 9, 4
+	BACG_FADE 9, 0x4
 	STAL 0x3C
 	CG_TEXT MSG_9F2, 1                       @ Well then, take care... I... I hope I see you ag
 	STAL3 0x3C

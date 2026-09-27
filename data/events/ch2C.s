@@ -470,25 +470,25 @@ EventScr_Ch2C_Ending:
 	MUSC 0x3A
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 0x2A, 4
+	BACG_FADE 0x2A, 0x4
 	STAL 0x40
 	CG_TEXT MSG_E9A, 1                       @ Nils A millennium ago... Man chased dragonkind f
-	BACG_FADE 0x1B, 4
+	BACG_FADE 0x1B, 0x4
 	STAL 0x40
 	CG_TEXT MSG_E9B, 1                       @ Nils We were stable there, happy, even. But some
 	STAL3 0x10
 	CG_TEXT_MORE MSG_E9C, 1                  @ Eliwood Nergal...
-	BACG_FADE 0x1C, 2
+	BACG_FADE 0x1C, 0x2
 	STAL 0x40
 	CG_TEXT MSG_E9D, 1                       @ Nils But something unexpected happened. When we
-	BACG_FADE 0x1D, 2
+	BACG_FADE 0x1D, 0x2
 	STAL 0x40
 	CG_TEXT MSG_E9E, 1                       @ Nils Disguised as a dancer and a bard, we fled a
 	STAL3 0x10
 	CG_TEXT_MORE MSG_E9F, 1                  @ Lyn That whole time... Nergal was after you? Why
 	STAL3 0x20
 	CG_TEXT_MORE MSG_EA0, 1                  @ Nils You were so good to us. We didn't want to c
-	BACG_FADE 0x1E, 2
+	BACG_FADE 0x1E, 0x2
 	STAL 0x40
 	CG_TEXT MSG_EA1, 1                       @ Nils ...We decided that the only way to escape w
 	LOU1 Units_08CDF430

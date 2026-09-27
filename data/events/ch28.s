@@ -74,9 +74,9 @@ EventScr_Ch28_Beginning:
 	STAL 0x40
 	CG_TEXT MSG_DFB, 1                       @ Nergal So, at last... Your true form... is liber
 	STAL 0x40
-	BACG_FADE 0x12, 4
+	BACG_FADE 0x12, 0x4
 	STAL 0x40
-	BACG_FADE 0x13, 4
+	BACG_FADE 0x13, 0x4
 	STAL 0x40
 	CG_TEXT MSG_DFC, 1                       @ Nergal Hmph. To where do you hope to run, beast?
 	STAL 0x40

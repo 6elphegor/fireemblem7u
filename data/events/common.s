@@ -243,7 +243,7 @@ EventScr_08CBCD80:
 	MUSC 0x35
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 0x14, 2
+	BACG_FADE 0x14, 0x2
 	SOUN 0xE3
 	STAL 0x80
 	FADE_START
@@ -411,12 +411,12 @@ EventScr_08CBCD80:
 	LABEL 0x12
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 0x16, 2
+	BACG_FADE 0x16, 0x2
 	STAL 0x40
 	CG_TEXT MSG_E19, 1                       @ Eliwood Niniaaaaaaan!!!!
 	STAL 0xC0
 	MUSC 0x35
-	BACG_FADE 0x15, 4
+	BACG_FADE 0x15, 0x4
 	STAL 0x5E
 	CG_TEXT MSG_E1A, 1                       @ Nergal That's enough. You will await the end of
 	CG_TEXT_MORE MSG_E1B, 1                  @ Athos I will not permit it. Instead, I will see
@@ -462,7 +462,7 @@ EventScr_08CBCD80:
 	TEX2 MSG_E1E                             @ ...Ninian! ...... Ninian. ...Ninian!? Where is m
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 0x17, 4
+	BACG_FADE 0x17, 0x4
 	STAL 0x3C
 	CG_TEXT MSG_E1F, 1                       @ Nils Aaaaaaaaaaa!!!!!
 	STAL 0x12C

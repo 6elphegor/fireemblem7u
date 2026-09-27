@@ -74,7 +74,7 @@ EventScr_Ch2D_Beginning:
 	STAL 0x80
 	TEX1 MSG_EA5                             @ ............
 	CLEAN
-	BACG_FADE 0x27, 4
+	BACG_FADE 0x27, 0x4
 	MUSI
 	CG_TEXT MSG_EA6, 1                       @ Nergal ...What do you want, monster? You can't f
 	BACG_FADE_TO_MAP 0x2

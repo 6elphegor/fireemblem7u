@@ -179,7 +179,7 @@ EventScr_08CB4B98:
 	MUSI
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 0xC, 4
+	BACG_FADE 0xC, 0x4
 	SOUN 0x2E9
 	FAWI 0x40
 	EXIT_MAP
@@ -193,7 +193,7 @@ EventScr_08CB4B98:
 	FAWU 4
 	ENTER_MAP
 	MUNO
-	BACG_FADE_IN 0x35, 4
+	BACG_FADE_IN 0x35, 0x4
 	TEX1 MSG_BEE                             @ ... Whew! That should do it. Help them for me, t
 	CLEAN
 	STAL 0x3C

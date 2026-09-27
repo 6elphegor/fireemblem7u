@@ -205,7 +205,7 @@ EventScr_Ch13_Beginning:
 	TEX1 MSG_AAB                             @ Lord Eliwood, look! Up there! A pegasus knight!
 	ASMC EventClearTalkDisplayed
 	STAL 0
-	BACG_FADE 0xB, 2
+	BACG_FADE 0xB, 0x2
 	CG_TEXT MSG_AAC, 1                       @ Florina Lord Eliwood!
 	CG_TEXT_MORE MSG_AAD, 1                  @ Eliwood Could it really be... Florina, is that y
 	CG_TEXT_MORE MSG_AAE, 1                  @ Florina Yes! I'm Lady Lyndis's...

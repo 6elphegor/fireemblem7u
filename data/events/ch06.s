@@ -271,7 +271,7 @@ EventScr_Ch06_Beginning:
 	MOVE_POS 8, 11, 11, 11
 	MOVE_POS 7, 10, 7, 13
 	ENUN
-	BACG_FADE 5, 4
+	BACG_FADE 5, 0x4
 	STAL 0x40
 	CG_TEXT MSG_92F, 1                       @ Assassin Aaaargg! Aaaaah!!
 	CG_TEXT_MORE MSG_930, 1                  @ Lyn What? An arrow?

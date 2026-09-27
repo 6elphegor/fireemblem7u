@@ -730,11 +730,11 @@ EventScr_Ch01_Ending:
 	ENTER_MAP
 	TEX1 MSG_874                             @ That's the last of them! Fantastic work, !
 	ASMC ClearTalk
-	BACG_FADE 1, 2
+	BACG_FADE 1, 0x2
 	STAL 0x40
 	CG_TEXT MSG_875, 1                       @ Lyn And now for these knights of Lycia. You were
 	MUEN 6
-	BACG_FADE_IN 0x22, 2
+	BACG_FADE_IN 0x22, 0x2
 	MUSC SONG_3F
 	TEX1 MSG_876                             @ Yes. We have ventured from Caelin, in Lycia, in
 	TEX2 MSG_877                             @ And then this year, we received a letter from La
