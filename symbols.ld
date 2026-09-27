@@ -788,25 +788,17 @@ AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
 
 /* event engine (0x0800A618-0x0800F9B0) shared */
-ProcScr_UnkEvt = 0x08B90D88;
-gEventCmdTable = 0x08B90E48;
+ProcScr_UnkEvt = gProcScr_EventEngine;
 
 /* event-engine.c */
 
 gUnk_03000100 = 0x03000100;
-gUnk_08B90C9C = 0x08B90C9C;
 gPopupUnit = 0x03000104;
 gPopupItem = 0x03000108;
 gPopupNumber = 0x0300010C;
-ProcScr_Popup = 0x08B90CA0;
-ProcScr_PopupUpdateIcon = 0x08B90D00;
 gEventQueueCount = 0x03004160;
 gEventQueue = 0x03004170;
 ProcScr_08B90B9C = 0x08B90B9C;
-ProcScr_EventFadeOutOfBackgroundTalk = 0x08B90D08;
-ProcScr_08B90D40 = 0x08B90D40;
-ProcScr_EventFadeOutOfSkip = 0x08B90D68;
-ProcScr_EventDarkenThenFunc = 0x08B90E28;
 /* end event-engine.c */
 
 
@@ -1086,7 +1078,6 @@ gWorkingBmMap = 0x030041E0;
 gMovMapFillStPool1 = 0x030041F0;
 gMovMapFillStPool2 = 0x03004490;
 gMovMapFillState = 0x030046A0;
-gProcScr_EventEngine = 0x08B90D88;
 gOpenLimitViewImgLut = 0x08B9356C;
 sProcScr_MoveLimitView = 0x08B935B4;
 Img_LimitViewSquare = 0x083FDC9C;

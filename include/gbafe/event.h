@@ -388,11 +388,11 @@ int GetChapterAllyUnitCount(void);
 // sub_0800F904
 // sub_0800F944
 // sub_0800F998
-// sub_0800F9B0
+int sub_0800F9B0(struct EventProc * proc);
 // sub_800F93C
-// sub_0800FA50
+int sub_0800FA50(struct EventProc * proc);
 // sub_800F9DC
-// sub_0800FAF0
+int sub_0800FAF0(struct EventProc * proc);
 // sub_800FA74
 // sub_800FA84
 // sub_800FA94
