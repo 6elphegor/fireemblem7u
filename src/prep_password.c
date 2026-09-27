@@ -345,7 +345,37 @@ void sub_0809DED8(int * bitpos, u8 * buf)
     gPasswordInfo.unk_0b = sub_0809D914(buf, bitpos, 8);
     gPasswordInfo.unk_10 = sub_0809D914(buf, bitpos, 24);
 }
-ASM_FUNC("asm/nonmatching/code_0809DFC4.s");
+int sub_0809DFC4(int chapter_mode, int difficulty)
+{
+    struct GameRankSaveData buf;
+    int r;
+
+    CpuFill16(0, &gPasswordInfo, sizeof(gPasswordInfo));
+
+    if ((u8)LoadRankData(&buf, chapter_mode, difficulty))
+    {
+        gPasswordInfo.unk_00 = chapter_mode;
+        gPasswordInfo.unk_02 = difficulty;
+        gPasswordInfo.unk_03 = buf.tactics_rank;
+        gPasswordInfo.unk_04 = buf.survival_rank;
+        gPasswordInfo.unk_05 = buf.funds_rank;
+        gPasswordInfo.unk_06 = buf.exp_rank;
+        gPasswordInfo.unk_07 = buf.exp_rank;
+        gPasswordInfo.unk_09 = buf.unk00_17;
+        gPasswordInfo.unk_08 = buf.unk08_15;
+        gPasswordInfo.unk_01 = buf.unk00_16;
+        gPasswordInfo.unk_0c = buf.hours;
+        gPasswordInfo.unk_0e = buf.minutes;
+        gPasswordInfo.unk_0f = buf.seconds;
+        gPasswordInfo.unk_10 = buf.gold;
+        gPasswordInfo.unk_0a = buf.luckydog;
+        gPasswordInfo.unk_0b = buf.cuteguy;
+        r = 1;
+    }
+    else
+        r = 0;
+    return r;
+}
 void PrintPassword(struct Text * texts, u8 const * charTable)
 {
     int line;
