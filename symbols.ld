@@ -1914,3 +1914,5 @@ gUnk_08CDB3C8 = 0x08CDB3C8;
 gUnk_08CDB3E8 = 0x08CDB3E8;
 ProcScr_08CBB47C = 0x08CBB47C;
 ProcScr_08CBB48C = 0x08CBB48C;
+Img_NinianDragonSprite = 0x081BE108;
+SpriteAnim_NinianDragon = 0x081BE4D8;
