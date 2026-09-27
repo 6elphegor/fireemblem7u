@@ -242,3 +242,13 @@ PROC_LABEL(1),
     PROC_BLOCK,
     PROC_END,
 };
+
+ASM_FUNC("asm/nonmatching/code_080901B8.s");
+ASM_FUNC("asm/nonmatching/code_080901EC.s");
+ASM_FUNC("asm/nonmatching/code_08090444.s");
+ASM_FUNC("asm/nonmatching/code_08090460.s");
+ASM_FUNC("asm/nonmatching/code_0809047C.s");
+ASM_FUNC("asm/nonmatching/code_08090490.s");
+ASM_FUNC("asm/nonmatching/code_080904A4.s");
+ASM_FUNC("asm/nonmatching/code_080904C4.s");
+ASM_FUNC("asm/nonmatching/code_080904F8.s");

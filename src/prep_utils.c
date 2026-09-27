@@ -25,3 +25,27 @@ struct PrepItemTypePageEnt CONST_DATA gPrepItemTypePageLut[] = {
     [8] = { ITYPE_ITEM,   ITYPE_12    },
 };
 
+ASM_FUNC("asm/nonmatching/code_08090C44.s");
+ASM_FUNC("asm/nonmatching/code_08090C48.s");
+ASM_FUNC("asm/nonmatching/code_08090C58.s");
+ASM_FUNC("asm/nonmatching/code_08090C94.s");
+ASM_FUNC("asm/nonmatching/code_08090CD4.s");
+ASM_FUNC("asm/nonmatching/code_08090CE4.s");
+ASM_FUNC("asm/nonmatching/code_08090CF8.s");
+ASM_FUNC("asm/nonmatching/code_08090D20.s");
+ASM_FUNC("asm/nonmatching/code_08090D58.s");
+ASM_FUNC("asm/nonmatching/code_08090D80.s");
+ASM_FUNC("asm/nonmatching/code_08090DB0.s");
+ASM_FUNC("asm/nonmatching/code_08090DEC.s");
+ASM_FUNC("asm/nonmatching/code_08090E90.s");
+ASM_FUNC("asm/nonmatching/code_08090EE8.s");
+ASM_FUNC("asm/nonmatching/code_08090F30.s");
+ASM_FUNC("asm/nonmatching/code_08090F68.s");
+ASM_FUNC("asm/nonmatching/code_08090F9C.s");
+ASM_FUNC("asm/nonmatching/code_08091138.s");
+ASM_FUNC("asm/nonmatching/code_0809120C.s");
+ASM_FUNC("asm/nonmatching/code_08091250.s");
+ASM_FUNC("asm/nonmatching/code_08091270.s");
+ASM_FUNC("asm/nonmatching/code_08091298.s");
+ASM_FUNC("asm/nonmatching/code_080912CC.s");
+ASM_FUNC("asm/nonmatching/code_080912EC.s");
