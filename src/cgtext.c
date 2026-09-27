@@ -63,18 +63,137 @@ void CgText_OnHBlank(void)
 }
 ASM_FUNC("asm/nonmatching/code_080875A8.s");
 ASM_FUNC("asm/nonmatching/code_08087690.s");
-ASM_FUNC("asm/nonmatching/code_08087A38.s");
-ASM_FUNC("asm/nonmatching/code_08087A40.s");
-ASM_FUNC("asm/nonmatching/code_08087A7C.s");
-ASM_FUNC("asm/nonmatching/code_08087ADC.s");
-ASM_FUNC("asm/nonmatching/code_08087B20.s");
-ASM_FUNC("asm/nonmatching/code_08087B58.s");
-ASM_FUNC("asm/nonmatching/code_08087B98.s");
-ASM_FUNC("asm/nonmatching/code_08087BC0.s");
+void CgText_InitBlendAmt(struct CgTextMainProc * proc)
+{
+    proc->blendAmt = 0;
+}
+
+void CgText_LoopFadeIn(struct CgTextMainProc * proc)
+{
+    u16 target1;
+    u16 target2;
+
+    proc->blendAmt++;
+
+    target1 = proc->blendAmt;
+
+    if (proc->blendAmt != 0x10)
+        target2 = 0x10 - proc->blendAmt;
+    else
+        target2 = 1;
+
+    SetCgTextBlendAlpha(target1, target2);
+
+    if (proc->blendAmt == 0x10)
+        Proc_Break(proc);
+}
+
+void CgText_InitFadeOut(struct CgTextMainProc * proc)
+{
+    CgText_ClearSpriteText(proc);
+    SetFaceDispById(0, GetFaceDispById(0) & ~FACE_DISP_TALK_1);
+
+    EndCgTextInterpreter();
+
+    if (GetCgTextFlags() & CG_TEXT_FLAG_0)
+        Proc_Goto(proc, 5);
+    else
+        proc->blendAmt = 0x10;
+
+    if (GetCgTextFlags() & CG_TEXT_FLAG_17)
+        StartFaceFadeOut(Proc_Find(ProcScr_Face));
+}
+
+void CgText_LoopFadeOut(struct CgTextMainProc * proc)
+{
+    u16 target1;
+    u16 target2;
+
+    proc->blendAmt--;
+
+    target1 = proc->blendAmt;
+
+    if (target1 != 0x10)
+        target2 = 0x10 - target1;
+    else
+        target2 = 1;
+
+    SetCgTextBlendAlpha(target1, target2);
+
+    if (proc->blendAmt == 0)
+    {
+        ClearCgTextFlag(CG_TEXT_FLAG_16);
+        Proc_Break(proc);
+    }
+}
+
+void CgText_808F04C(struct CgTextMainProc * proc)
+{
+    if (!(gpKeySt->pressed & (B_BUTTON | START_BUTTON)))
+        return;
+
+    if (GetCgTextFlags() & CG_TEXT_FLAG_6)
+        return;
+
+    sub_0800F08C();
+    EndCgTextInterpreter();
+
+    Proc_Goto(proc, 0);
+}
+
+void CgText_808F084(struct CgTextMainProc * proc)
+{
+    u16 * bg = GetBgTilemap(GetCgTextBg(GetCgTextFlags()));
+    TmFillRect_thm(bg + (proc->y - 1) * 32, 31, proc->boxHeight + 1, 0);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+}
+
+void CgText_OnEnd(struct CgTextMainProc * proc)
+{
+    SetFaceDispById(0, GetFaceDispById(0) & ~FACE_DISP_TALK_1);
+    CgText_808F084(proc);
+    SetOnHBlankB(NULL);
+}
+
+void CgText_808F0EC(struct CgTextMainProc * proc)
+{
+    CgText_ClearSpriteText(proc);
+
+    proc->thIndex = 0;
+
+    SetTextFontGlyphs(TEXT_GLYPHS_TALK);
+
+    proc->textWidth = 0;
+    proc->textHeight = 0;
+    GetCgTextDimensions(proc->str, &proc->textWidth, &proc->textHeight);
+
+    SetTextFontGlyphs(TEXT_GLYPHS_SYSTEM);
+
+    RestartCgTextInterpreter(proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_08087BFC.s");
-ASM_FUNC("asm/nonmatching/code_08087D44.s");
-ASM_FUNC("asm/nonmatching/code_08087D58.s");
-ASM_FUNC("asm/nonmatching/code_08087D74.s");
+
+void EndCgText(void)
+{
+    Proc_End(Proc_Find(gProcScr_CgTextMain));
+}
+
+bool CgTextExists(void)
+{
+    if (Proc_Find(gProcScr_CgTextMain))
+        return TRUE;
+
+    return FALSE;
+}
+
+void sub_808F2A0(void)
+{
+    struct CgTextMainProc * proc = Proc_Find(gProcScr_CgTextMain);
+
+    if (proc != NULL)
+        Proc_Goto(proc, 0);
+}
 ASM_FUNC("asm/nonmatching/code_08087D90.s");
 ASM_FUNC("asm/nonmatching/code_08087DE0.s");
 ASM_FUNC("asm/nonmatching/code_08087E2C.s");
