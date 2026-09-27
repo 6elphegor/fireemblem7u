@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B3EB4
-sub_080B3EB4: @ 0x080B3EB4
+	thumb_func_start WmMuMove_Loop
+WmMuMove_Loop: @ 0x080B3EB4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -230,7 +230,7 @@ _080B3FEC:
 	ldr r1, [sp, #0x10]
 	movs r2, #0
 	adds r3, r6, #0
-	bl sub_080B3DFC
+	bl StartWmMarker
 _080B406E:
 	adds r1, r4, #1
 	movs r0, #0x80
@@ -350,7 +350,7 @@ _080B4134:
 _080B4144:
 	adds r0, r6, #0
 	mov r1, sl
-	bl sub_080B3E98
+	bl WmMuMove_SetFacing
 	ldr r1, [r6, #0x54]
 	movs r0, #0x80
 	lsls r0, r0, #8
@@ -475,7 +475,7 @@ _080B4224:
 	strb r0, [r1]
 	adds r0, r6, #0
 	movs r1, #4
-	bl sub_080B3E98
+	bl WmMuMove_SetFacing
 	b _080B4256
 _080B423E:
 	ldr r0, [r6, #0x58]
@@ -488,7 +488,7 @@ _080B4246:
 	strb r0, [r1]
 	adds r0, r6, #0
 	movs r1, #0xf
-	bl sub_080B3E98
+	bl WmMuMove_SetFacing
 _080B4256:
 	ldr r1, [r6, #0x54]
 	movs r0, #0x80

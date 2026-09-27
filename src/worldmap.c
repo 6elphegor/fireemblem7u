@@ -61,6 +61,46 @@ extern struct WmSpriteAnimEnt const gWmSpriteAnimTable[];
 
 void EndAllWmSpriteAnims(void);
 
+struct WmTextBoxProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 kind;
+    /* 2A */ u8 active;
+};
+
+struct WmMarkerProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 kind;
+    /* 2A */ s16 x;
+    /* 2C */ s16 y;
+};
+
+struct WmMuMoveProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 facing;
+    /* 2A */ u8 count;
+    /* 2B */ STRUCT_PAD(0x2B, 0x2E);
+    /* 2E */ s16 xs[7];
+    /* 3C */ s16 ys[7];
+    /* 4A */ s16 curX;
+    /* 4C */ s16 curY;
+    /* 50 */ u32 pos;
+    /* 54 */ u32 flags;
+    /* 58 */ struct MuProc * mu;
+    /* 5C */ int dist;
+    /* 60 */ u8 delay;
+    /* 61 */ u8 lastIdx;
+    /* 62 */ u8 first;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_WmTextBox[];
+extern struct ProcCmd CONST_DATA ProcScr_WmMarker[];
+extern u16 CONST_DATA Sprite_WmTextBoxA[];
+extern u16 CONST_DATA Sprite_WmTextBoxB[];
+extern u16 CONST_DATA Sprite_WmMarker[];
+
+void WmMakeGradient(u16 * dstPal, int b, u16 colorA, u16 colorB);
+void PutWmSpriteClipped(u8 layer, int x, int y, u16 const * sprite, u16 yOff, u16 xOff, u16 oam2);
+
 extern struct WmSt gWmSt;
 extern struct WmCanvas gWmCanvas;
 
@@ -360,19 +400,141 @@ void WmMergeMonsters(void)
         proc->fade = 1;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3C04.s");
-ASM_FUNC("asm/nonmatching/code_080B3C18.s");
-ASM_FUNC("asm/nonmatching/code_080B3C58.s");
-ASM_FUNC("asm/nonmatching/code_080B3C90.s");
-ASM_FUNC("asm/nonmatching/code_080B3CD0.s");
-ASM_FUNC("asm/nonmatching/code_080B3D20.s");
-ASM_FUNC("asm/nonmatching/code_080B3D78.s");
-ASM_FUNC("asm/nonmatching/code_080B3DA4.s");
-ASM_FUNC("asm/nonmatching/code_080B3DB8.s");
-ASM_FUNC("asm/nonmatching/code_080B3DFC.s");
-ASM_FUNC("asm/nonmatching/code_080B3E20.s");
-ASM_FUNC("asm/nonmatching/code_080B3E78.s");
-ASM_FUNC("asm/nonmatching/code_080B3E98.s");
+ProcPtr StartWmSpriteAnims(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_WmSpriteAnims, parent);
+}
+
+void SetWmSpriteAnimPosition(int slot, int x, int y)
+{
+    struct WmSpriteAnimsProc * proc = Proc_Find(ProcScr_WmSpriteAnims);
+
+    if (proc != NULL)
+    {
+        struct ProcSpriteAnim * anim = proc->slots[slot].anim;
+
+        if (anim != NULL)
+        {
+            anim->x = x - gWmSt.x;
+            anim->y = y - gWmSt.y;
+        }
+    }
+}
+
+void WmClearTextBoxGfx(void)
+{
+    int i;
+
+    for (i = 0; i < 4; i++)
+        CpuFastFill(0x44444444, (u8 *) (VRAM + 0x14000) + i * 0x400, 0x360);
+}
+
+void WmTextBox_Init(struct WmTextBoxProc * proc)
+{
+    proc->kind = 1;
+    proc->active = 0;
+
+    WmClearTextBoxGfx();
+
+    gWmHBlankFlags ^= 1;
+
+    WmMakeGradient(gPal + 0x140, 0x28, 0x44C3, 0x7247);
+}
+
+void WmTextBox_Loop(struct WmTextBoxProc * proc)
+{
+    int y;
+
+    if (proc->active != 0)
+    {
+        y = 0;
+
+        if (proc->kind == 1)
+            y = 0x70;
+
+        PutSpriteExt(2, 0, y, Sprite_WmTextBoxA, 0x3000);
+        PutSpriteExt(1, 0, y, Sprite_WmTextBoxB, 0x2000);
+    }
+}
+
+void OpenWmTextBox(u8 kind)
+{
+    struct WmTextBoxProc * proc = Proc_Find(ProcScr_WmTextBox);
+
+    if (proc == NULL)
+        return;
+
+    WmClearTextBoxGfx();
+
+    if (kind == 0)
+        gWmHBlankLine = 4;
+
+    if (kind == 1)
+        gWmHBlankLine = 0x74;
+
+    gWmHBlankFlags |= 1;
+
+    proc->kind = kind;
+    proc->active = 1;
+}
+
+void CloseWmTextBox(void)
+{
+    struct WmTextBoxProc * proc = Proc_Find(ProcScr_WmTextBox);
+
+    if (proc == NULL)
+        return;
+
+    gWmHBlankFlags ^= 1;
+    proc->active = 0;
+}
+
+ProcPtr StartWmTextBox(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_WmTextBox, parent);
+}
+
+void WmMarker_Loop(struct WmMarkerProc * proc)
+{
+    PutWmSpriteClipped(0xB, proc->x - gWmSt.x - 4, proc->y - gWmSt.y - 4, Sprite_WmMarker, 0, 0, 0x1000);
+}
+
+void StartWmMarker(int x, int y, int kind, ProcPtr parent)
+{
+    struct WmMarkerProc * proc = Proc_Start(ProcScr_WmMarker, parent);
+
+    proc->x = x;
+    proc->y = y;
+    proc->kind = kind;
+}
+
+void PutWmSpriteClipped(u8 layer, int x, int y, u16 const * sprite, u16 yOff, u16 xOff, u16 oam2)
+{
+    if (x < -16 || y < -16 || x > 0xEF || y > 0x9F)
+        return;
+
+    PutSpriteExt(layer, (x & 0x1FF) + xOff, (y & 0xFF) + yOff, sprite, oam2);
+}
+
+void WmMuMove_Init(struct WmMuMoveProc * proc)
+{
+    proc->count = 0;
+    proc->pos = 0;
+    proc->delay = 0;
+    proc->lastIdx = 0;
+    proc->dist = 0;
+    proc->first = 1;
+}
+
+void WmMuMove_SetFacing(struct WmMuMoveProc * proc, int facing)
+{
+    if (facing != proc->facing)
+    {
+        proc->facing = facing;
+        SetMuFacing(proc->mu, proc->facing);
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B3EB4.s");
 ASM_FUNC("asm/nonmatching/code_080B42D4.s");
 ASM_FUNC("asm/nonmatching/code_080B42FC.s");

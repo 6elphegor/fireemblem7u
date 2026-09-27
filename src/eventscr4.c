@@ -28,8 +28,8 @@ void sub_080B5B6C(void);
 void sub_080B4D4C(int a, int b, u16 c);
 void sub_080B4E88(int a, u16 b);
 void sub_080B4FE4(int a);
-void sub_080B3D20(int a);
-void sub_080B3D78(void);
+void OpenWmTextBox(int a);
+void CloseWmTextBox(void);
 void sub_080B4904(int a, int b, int c, int d);
 void sub_080B4ADC(int a);
 void StartWmSpriteAnim(int a, int b);
@@ -697,7 +697,7 @@ int sub_0800F65C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D20(1);
+    OpenWmTextBox(1);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -706,7 +706,7 @@ int sub_0800F67C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D20(0);
+    OpenWmTextBox(0);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -715,7 +715,7 @@ int sub_0800F69C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D78();
+    CloseWmTextBox();
     return EVENT_CMDRET_YIELD;
 }
 

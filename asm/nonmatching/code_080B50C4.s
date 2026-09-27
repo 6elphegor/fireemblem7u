@@ -154,9 +154,9 @@ sub_080B50C4: @ 0x080B50C4
 	ldr r0, _080B5260 @ =WmHBlankHandler
 	bl SetOnHBlankA
 	adds r0, r4, #0
-	bl sub_080B3C04
+	bl StartWmSpriteAnims
 	adds r0, r4, #0
-	bl sub_080B3DA4
+	bl StartWmTextBox
 	adds r0, r4, #0
 	bl sub_080B4F44
 	ldr r1, [r4, #0x2c]
