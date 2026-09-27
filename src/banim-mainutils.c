@@ -176,7 +176,7 @@ int GetBanimPalette(int banim_id, int pos)
         return banim_id;
     }
 }
-#if 0
+#if NONMATCHING
 void UpdateBanimFrame(void)
 {
     int val, bid, bid_pal, chara_pal;
@@ -256,4 +256,391 @@ void UpdateBanimFrame(void)
             gBanimTriAtkPalettes[POS_R] = cbapt[bid].pal;
     }
 }
+#else
+ASM_FUNC("asm/nonmatching/code_08054024.s");
 #endif
+
+extern s16 gEfxHpLutOff[];
+extern const u16 BanimLeftDefaultPos[];
+extern u8 gBanimLeftImgSheetBuf[];
+extern u8 gBanimRightImgSheetBuf[];
+
+void InitMainAnims(void)
+{
+    struct Anim * anim1, *anim2;
+
+    switch (gEkrDistanceType) {
+    case EKR_DISTANCE_CLOSE:
+    case EKR_DISTANCE_MONOCOMBAT:
+    case EKR_DISTANCE_PROMOTION:
+        InitBattleAnimFrame(ANIM_ROUND_TAKING_HIT_CLOSE, ANIM_ROUND_TAKING_HIT_CLOSE);
+        break;
+
+    case EKR_DISTANCE_FAR:
+        InitBattleAnimFrame(ANIM_ROUND_TAKING_HIT_FAR, ANIM_ROUND_TAKING_HIT_FAR);
+        break;
+
+    case EKR_DISTANCE_FARFAR:
+        InitBattleAnimFrame(ANIM_ROUND_TAKING_HIT_FAR, ANIM_ROUND_TAKING_HIT_FAR);
+
+        if (GetBanimInitPosReal() == EKR_POS_L) {
+            anim1 = gAnims[2];
+            anim1->xPosition = 0x180;
+
+            anim2 = gAnims[3];
+            anim2->xPosition = 0x180;
+        } else {
+            anim1 = gAnims[0];
+            anim1->xPosition = 0x180;
+
+            anim2 = gAnims[1];
+            anim2->xPosition = 0x180;
+        }
+        break;
+
+    default:
+        break;
+    }
+
+    gEfxHpLutOff[0] = 0;
+    gEfxHpLutOff[1] = 0;
+}
+
+void InitBattleAnimFrame(int round_type_left, int round_type_right)
+{
+    gAnims[0] = NULL;
+    gAnims[1] = NULL;
+    gAnims[2] = NULL;
+    gAnims[3] = NULL;
+
+    if (gBanimValid[EKR_POS_L] == true)
+        InitLeftAnim(round_type_left);
+
+    if (gBanimValid[EKR_POS_R] == true)
+        InitRightAnim(round_type_right);
+
+    if (gEkrDistanceType == EKR_DISTANCE_PROMOTION) {
+        gAnims[0]->state |= ANIM_BIT_HIDDEN;
+        gAnims[1]->state |= ANIM_BIT_HIDDEN;
+    }
+}
+
+void InitLeftAnim(int round_type)
+{
+    struct Anim * anim;
+    u32 frame_front = BanimDefaultModeConfig[round_type * 4 + 0];
+    u32 priority_front = BanimDefaultModeConfig[round_type * 4 + 1];
+    u32 frame_back = BanimDefaultModeConfig[round_type * 4 + 2];
+    u32 priority_back = BanimDefaultModeConfig[round_type * 4 + 3];
+    u32 r4 = BanimTypesPosLeft[gEkrDistanceType];
+
+    void *array[2];
+    array[0] = &&label1;
+    array[1] = &&label2;
+
+    gEkrXPosBase[0] = -BanimLeftDefaultPos[gEkrDistanceType];
+    gEkrYPosBase[0] = 0;
+    gEkrXPosReal[0] = gEkrXPosBase[0] + r4;
+    gEkrYPosReal[0] = 0x58;
+
+label1:
+    {
+        u32 idx = gpBanimModesLeft[frame_front];
+        void *scr = gBanimScrLeft + idx;
+        if (frame_front == 0xFF)
+            scr = AnimScr_DefaultAnim;
+        do anim = AnimCreate(scr, priority_front); while (0);
+        anim->xPosition = gEkrXPosReal[0] - gEkrBgPosition;
+        anim->yPosition = gEkrYPosReal[0];
+        anim->oam2Base = OAM2_PAL(0x7) + OAM2_LAYER(0x2) + OAM2_CHR(0x4000 / 0x20);
+        anim->state2 |= ANIM_BIT2_0400 | ANIM_BIT2_BACK_FRAME;
+        anim->nextRoundId = 0x0;
+        anim->currentRoundType = round_type;
+        anim->pImgSheetBuf = gBanimLeftImgSheetBuf;
+        anim->pSpriteDataPool = gBanimOaml;
+        gAnims[0] = anim;
+    }
+
+label2:
+    {
+        u32 idx = gpBanimModesLeft[frame_back];
+        void *scr = gBanimScrLeft + idx;
+        if (frame_back == 0xFF)
+            scr = AnimScr_DefaultAnim;
+        anim = AnimCreate(scr, priority_back);
+        anim->xPosition = gEkrXPosReal[0] - gEkrBgPosition;
+        anim->yPosition = gEkrYPosReal[0];
+        anim->oam2Base = OAM2_PAL(0x7) + OAM2_LAYER(0x2) + OAM2_CHR(0x4000 / 0x20);
+        anim->state2 |= ANIM_BIT2_0400 | ANIM_BIT2_FRONT_FRAME;
+        anim->nextRoundId = 0x0;
+        anim->currentRoundType = round_type;
+        anim->pImgSheetBuf = gBanimLeftImgSheetBuf;
+        anim->pSpriteDataPool = gBanimOaml;
+        gAnims[1] = anim;
+    }
+}
+
+void InitRightAnim(int round_type)
+{
+    struct Anim * anim;
+    u32 frame_front = BanimDefaultModeConfig[round_type * 4 + 0];
+    u32 priority_front = BanimDefaultModeConfig[round_type * 4 + 1];
+    u32 frame_back = BanimDefaultModeConfig[round_type * 4 + 2];
+    u32 priority_back = BanimDefaultModeConfig[round_type * 4 + 3];
+    u32 r2 = BanimTypesPosRight[gEkrDistanceType];
+
+    void *array[2];
+    array[0] = &&label1;
+    array[1] = &&label2;
+    
+    gEkrXPosBase[1] = 0;
+    gEkrYPosBase[1] = 0;
+    gEkrXPosReal[1] = r2;
+    gEkrYPosReal[1] = 0x58;
+
+label1:
+    {
+        u32 idx = gpBanimModesRight[frame_front];
+        void *scr = gBanimScrRight + idx;
+        if (frame_front == 0xFF)
+            scr = AnimScr_DefaultAnim;
+        do anim = AnimCreate(scr, priority_front); while (0);
+        anim->xPosition = gEkrXPosReal[1] - gEkrBgPosition;
+        anim->yPosition = gEkrYPosReal[1];
+        anim->oam2Base = OAM2_PAL(0x9) + OAM2_LAYER(0x2) + OAM2_CHR(0x6000 / 0x20);
+        anim->state2 |= ANIM_BIT2_POS_RIGHT | ANIM_BIT2_0400;
+        anim->nextRoundId = 0x0;
+        anim->currentRoundType = round_type;
+        anim->pImgSheetBuf = gBanimRightImgSheetBuf;
+        anim->pSpriteDataPool = gBanimOamr2;
+        gAnims[2] = anim;
+    }
+
+label2:
+    {
+        u32 idx = gpBanimModesRight[frame_back];
+        void *scr = gBanimScrRight + idx;
+        if (frame_back == 0xFF)
+            scr = AnimScr_DefaultAnim;
+        anim = AnimCreate(scr, priority_back);
+        anim->xPosition = gEkrXPosReal[1] - gEkrBgPosition;
+        anim->yPosition = gEkrYPosReal[1];
+        anim->oam2Base = OAM2_PAL(0x9) + OAM2_LAYER(0x2) + OAM2_CHR(0x6000 / 0x20);
+        anim->state2 |= ANIM_BIT2_FRONT_FRAME | ANIM_BIT2_POS_RIGHT | ANIM_BIT2_0400;
+        anim->nextRoundId = 0x0;
+        anim->currentRoundType = round_type;
+        anim->pImgSheetBuf = gBanimRightImgSheetBuf;
+        anim->pSpriteDataPool = gBanimOamr2;
+        gAnims[3] = anim;
+    }
+}
+
+void SwitchAISFrameDataFromBARoundType(struct Anim * anim, int type)
+{
+    u32 frame, priority;
+    const u32 *scr;
+
+    if (GetAISLayerId(anim) == 0) {
+        frame    = BanimDefaultModeConfig[4 * type + 0];
+        priority = BanimDefaultModeConfig[4 * type + 1];
+    } else {
+        frame    = BanimDefaultModeConfig[4 * type + 2];
+        priority = BanimDefaultModeConfig[4 * type + 3];
+    }
+
+    if (frame != 0xFF) {
+        if (GetAnimPosition(anim) == EKR_POS_L) {
+            scr = gpBanimModesLeft;
+            scr = (void *)gBanimScrLeft + scr[frame];
+        } else
+            scr = (void *)gBanimScrRight + gpBanimModesRight[frame];
+
+        anim->pScrStart = scr;
+        anim->pScrCurrent = scr;
+    } else {
+        anim->pScrStart = AnimScr_DefaultAnim;
+        anim->pScrCurrent = AnimScr_DefaultAnim;
+        anim->state3 = 0;
+    }
+
+    anim->drawLayerPriority = priority;
+    anim->oam2Base &= ~0xC00;
+    anim->oam2Base |= 0x800;
+    anim->timer = 0;
+    anim->state2 &= ANIM_BIT2_FRONT_FRAME | ANIM_BIT2_POS_RIGHT | ANIM_BIT2_0400;
+    anim->currentRoundType = type;
+    anim->commandQueueSize = 0;
+    anim->pSpriteDataPool = gBanimOaml + GetAnimPosition(anim) * 0x5800 / 4;
+    AnimSort();
+}
+
+int GetAISLayerId(struct Anim * anim)
+{
+    if (!(anim->state2 & ANIM_BIT2_FRONT_FRAME))
+        return 0;
+
+    return 1;
+}
+
+int GetAnimPosition(struct Anim * anim)
+{
+    if (!(anim->state2 & ANIM_BIT2_POS_RIGHT))
+        return EKR_POS_L;
+
+    return EKR_POS_R;
+}
+
+int CheckRoundMiss(s16 type)
+{
+    switch(type) {
+    case ANIM_ROUND_TAKING_MISS_CLOSE:
+    case ANIM_ROUND_TAKING_MISS_FAR:
+        return true;
+
+    case ANIM_ROUND_HIT_CLOSE:
+    case ANIM_ROUND_CRIT_CLOSE:
+    case ANIM_ROUND_NONCRIT_FAR:
+    case ANIM_ROUND_CRIT_FAR:
+    case ANIM_ROUND_TAKING_HIT_CLOSE:
+    case ANIM_ROUND_STANDING:
+    case ANIM_ROUND_TAKING_HIT_FAR:
+    case ANIM_ROUND_MISS_CLOSE:
+    default:
+        return false;
+    }
+}
+
+int CheckRound1(s16 type)
+{
+    switch(type) {
+    case ANIM_ROUND_TAKING_HIT_CLOSE:
+    case ANIM_ROUND_STANDING:
+    case ANIM_ROUND_TAKING_HIT_FAR:
+        return true;
+
+    case ANIM_ROUND_HIT_CLOSE:
+    case ANIM_ROUND_CRIT_CLOSE:
+    case ANIM_ROUND_NONCRIT_FAR:
+    case ANIM_ROUND_CRIT_FAR:
+    case ANIM_ROUND_TAKING_MISS_CLOSE:
+    case ANIM_ROUND_TAKING_MISS_FAR:
+    case ANIM_ROUND_MISS_CLOSE:
+    default:
+        return false;
+    }
+}
+
+int CheckRound2(s16 type)
+{
+    switch(type) {
+    case ANIM_ROUND_HIT_CLOSE:
+    case ANIM_ROUND_CRIT_CLOSE:
+    case ANIM_ROUND_NONCRIT_FAR:
+    case ANIM_ROUND_CRIT_FAR:
+    case ANIM_ROUND_MISS_CLOSE:
+        return true;
+
+    case ANIM_ROUND_TAKING_MISS_CLOSE:
+    case ANIM_ROUND_TAKING_MISS_FAR:
+    case ANIM_ROUND_TAKING_HIT_CLOSE:
+    case ANIM_ROUND_STANDING:
+    case ANIM_ROUND_TAKING_HIT_FAR:
+    default:
+        return false;
+    }
+}
+
+int CheckRoundCrit(struct Anim * anim)
+{
+    switch(anim->currentRoundType) {
+    case ANIM_ROUND_CRIT_CLOSE:
+    case ANIM_ROUND_CRIT_FAR:
+        return true;
+
+    case ANIM_ROUND_HIT_CLOSE:
+    case ANIM_ROUND_NONCRIT_FAR:
+    case ANIM_ROUND_TAKING_MISS_CLOSE:
+    case ANIM_ROUND_TAKING_MISS_FAR:
+    case ANIM_ROUND_TAKING_HIT_CLOSE:
+    case ANIM_ROUND_STANDING:
+    case ANIM_ROUND_TAKING_HIT_FAR:
+    case ANIM_ROUND_MISS_CLOSE:
+    default:
+        return false;
+    }
+}
+
+struct Anim *GetAnimAnotherSide(struct Anim * anim)
+{
+    return gAnims[(1 ^ GetAnimPosition(anim)) * 2];
+}
+
+s16 GetAnimRoundType(struct Anim * anim)
+{
+    return GetBattleAnimRoundType((anim->nextRoundId - 1) * 2 + GetAnimPosition(anim));
+}
+
+s16 GetAnimNextRoundType(struct Anim * anim)
+{
+    return GetBattleAnimRoundType(anim->nextRoundId * 2 + GetAnimPosition(anim));
+}
+
+s16 GetAnimRoundTypeAnotherSide(struct Anim * anim)
+{
+    return GetBattleAnimRoundType((anim->nextRoundId - 1) * 2 + (1 ^ GetAnimPosition(anim)));
+}
+
+s16 GetAnimNextRoundTypeAnotherSide(struct Anim * anim)
+{
+    return GetBattleAnimRoundType(anim->nextRoundId * 2 + (1 ^ GetAnimPosition(anim)));
+}
+
+void SetAnimStateHidden(int pos)
+{
+    if (pos == EKR_POS_L) {
+        struct Anim * anim;
+
+        anim = gAnims[0];
+        anim->state |= ANIM_BIT_HIDDEN;
+
+        anim = gAnims[1];
+        anim->state |= ANIM_BIT_HIDDEN;
+        return;
+    }
+
+    if (pos == EKR_POS_R) {
+        struct Anim * anim;
+
+        anim = gAnims[2];
+        anim->state |= ANIM_BIT_HIDDEN;
+
+        anim = gAnims[3];
+        anim->state |= ANIM_BIT_HIDDEN;
+        return;
+    }
+}
+
+void SetAnimStateUnHidden(int pos)
+{
+    if (pos == EKR_POS_L) {
+        struct Anim * anim;
+
+        anim = gAnims[0];
+        anim->state &= ~ANIM_BIT_HIDDEN;
+
+        anim = gAnims[1];
+        anim->state &= ~ANIM_BIT_HIDDEN;
+        return;
+    }
+
+    if (pos == EKR_POS_R) {
+        struct Anim * anim;
+
+        anim = gAnims[2];
+        anim->state &= ~ANIM_BIT_HIDDEN;
+
+        anim = gAnims[3];
+        anim->state &= ~ANIM_BIT_HIDDEN;
+        return;
+    }
+}

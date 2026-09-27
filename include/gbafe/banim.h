@@ -369,7 +369,7 @@ void UnAsyncEkrDispUP(void);
 // ??? EfxClearScreenFx
 // ??? sub_0804D0B8
 // ??? EfxPrepareScreenFx
-// ??? GetBanimInitPosReal
+int GetBanimInitPosReal(void);
 // ??? EkrEfxStatusClear
 int CheckEkrHitDone(void);
 // ??? EkrEfxIsUnitHittedNow
