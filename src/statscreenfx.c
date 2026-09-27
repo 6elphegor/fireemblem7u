@@ -202,8 +202,21 @@ void InitStatScreenText(void)
     InitTextList(gStatScreenTextList);
 }
 
-void PutStatScreenText(struct StatScreenTextInfo const * list);
-ASM_FUNC("asm/nonmatching/code_0807FA48.s");
+void PutStatScreenText(struct StatScreenTextInfo const * list)
+{
+    while (list->text != NULL)
+    {
+        if (list->msg != NULL)
+        {
+            PutDrawText(list->text, list->tm, list->color, list->x_offset, 0, DecodeMsg(*list->msg));
+        }
+        else
+        {
+            PutText(list->text, list->tm);
+        }
+        list++;
+    }
+}
 
 
 void PutStatScreenLeftPanelInfo(void)
