@@ -202,12 +202,14 @@ void SaveMenuCopyPalette(u16 * src, u16 * dst, int count)
         *dst++ = *src_++;
 }
 #if NONMATCHING
-// only differs in which loop-invariant constants get hoisted (0x1F not kept in a register)
+// only the operand order of the final orr differs (orig: orrs r1, r3)
 void sub_080A5148(int time)
 {
     int i;
     int b, g, r;
     int c1, c2;
+    register int m1f asm("sl");
+    register int m2 asm("r4");
 
     time &= 0x3F;
 
@@ -216,15 +218,19 @@ void sub_080A5148(int time)
 
     for (i = 1; i < 0x10; i++)
     {
+        m1f = 0x1F;
+
         if (i >= 8 && i <= 10)
             continue;
 
-        c2 = gUnk_Savemenu_02000004[0x10 + i];
         c1 = gPal[0x120 + i];
+        c2 = gUnk_Savemenu_02000004[0x10 + i];
 
         b = ((((c1 & 0x7C00) * (0x20 - time) + (c2 & 0x7C00) * time) >> 5) & 0x7C00);
         g = ((((c1 & 0x3E0) * (0x20 - time) + (c2 & 0x3E0) * time) >> 5) & 0x3E0);
-        r = ((((c1 & 0x1F) * (0x20 - time) + (c2 & 0x1F) * time) >> 5) & 0x1F);
+        r = (((c1 & m1f) * (0x20 - time) + (c2 & m1f) * time) >> 5);
+        m2 = 0x1F;
+        r &= m2;
 
         gPal[0x110 + i] = r | (b | g);
     }
