@@ -68,6 +68,7 @@ void EpilogueText_Center(struct Text * text, char const * str);
 void sub_080B6C14(void);
 void sub_080B6C8C(void);
 void sub_080B6D64(void);
+void sub_080B6FB8(int chapter, char const * str);
 void sub_080B6DD4(void);
 void sub_080B7408(struct EpilogueProc * proc);
 void sub_080B74B4(ProcPtr proc);
@@ -268,7 +269,72 @@ void EpilogueText_DrawStats(struct Text * text, int battles, int wins, int losse
 }
 
 ASM_FUNC("asm/nonmatching/code_080B6FB8.s");
-ASM_FUNC("asm/nonmatching/code_080B70B4.s");
+void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr)
+{
+    struct EpilogueEnt * ent = &gpEpilogueEnts[entIdx];
+    struct EpilogueUnitInfo const * info = ent->info;
+    struct Text * text = &gEpilogueFontSt.texts[textIdx];
+
+    SetTextFont(&gEpilogueFontSt.font);
+    SetTextFontGlyphs(1);
+    SpriteText_DrawBackgroundExt(text, 0);
+    Text_SetColor(text, 1);
+
+    switch (mode)
+    {
+    case 0:
+        if (info->pid == 0xCD)
+        {
+            if (gPlaySt.tact_gender)
+                *pstr = DecodeMsg(info->msgDead);
+            else
+                *pstr = DecodeMsg(info->msgAlive);
+        }
+        else if ((s8) ent->defeatChapter >= 0)
+        {
+            *pstr = DecodeMsg(info->msgDead);
+            sub_080B6FB8((s8) ent->defeatChapter, *pstr);
+        }
+        else
+        {
+            *pstr = DecodeMsg(info->msgAlive);
+        }
+
+        *pstr = MsgExpand();
+        break;
+
+    case 1:
+        if (info->pid != 0xCD && (s8) ent->defeatChapter < 0)
+        {
+            SetTextFontGlyphs(0);
+            EpilogueText_DrawStats(text, ent->battles, ent->wins, ent->losses);
+            SetTextFontGlyphs(1);
+        }
+        break;
+    }
+
+    EpilogueText_Center(text, *pstr);
+
+    for (;;)
+    {
+        switch (**pstr)
+        {
+        case 0:
+            goto end;
+
+        case 1:
+            (*pstr)++;
+            goto end;
+
+        default:
+            *pstr = Text_DrawCharacter(text, *pstr);
+            break;
+        }
+    }
+
+end:
+    SetTextFont(NULL);
+}
 void DarkenPalettesHalf(void)
 {
     int i;
