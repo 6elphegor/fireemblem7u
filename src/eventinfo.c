@@ -110,6 +110,47 @@ void SetEventInfoFlag(struct EventInfo * info);
 bool ShouldCallEndEvent(void);
 void CallEndEvent(void);
 
+struct BattleTalkEnt
+{
+    /* 00 */ u8 pid;
+    /* 01 */ u8 chapter;
+    /* 04 */ u32 msg;
+    /* 08 */ u32 flag;
+};
+
+struct BattleTalkExtEnt
+{
+    /* 00 */ u8 pidA;
+    /* 01 */ u8 pidB;
+    /* 02 */ u8 chapter;
+    /* 04 */ u32 msg;
+    /* 08 */ u32 event;
+    /* 0C */ u32 flag;
+};
+
+struct DefeatTalkExtEnt
+{
+    /* 00 */ u8 pid;
+    /* 01 */ u8 chapter;
+    /* 04 */ u32 msg;
+    /* 08 */ u32 event;
+    /* 0C */ u32 flag;
+};
+
+extern struct BattleTalkExtEnt const gBattleTalkExtList[];
+extern struct BattleTalkEnt const gBattleTalkList[];
+extern struct BattleTalkEnt const gTriangleAttackTalkList[];
+extern struct DefeatTalkExtEnt const gDefeatTalkExtList[];
+extern struct BattleTalkEnt const gDefeatTalkList[];
+extern struct BattleTalkEnt const gDefeatTalkList_Tutorial[];
+
+void sub_0807D7E0(void);
+void LoadUnits(void const * units);
+void sub_080799C8(void);
+bool BattleIsTriangleAttack(void);
+void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
+void UnitGetDeathDropLocation(struct Unit * unit, int * x, int * y);
+
 void sub_0800ADB8(void);
 void CallMapSupportEvent(u32 msg, int song);
 void CallSupportViewerEvent(u32 msg);
@@ -1098,17 +1139,293 @@ void const * sub_080791F0(void)
 
     return group->specialEventsWhenUnitSelected;
 }
-ASM_FUNC("asm/nonmatching/code_08079214.s");
-ASM_FUNC("asm/nonmatching/code_08079280.s");
-ASM_FUNC("asm/nonmatching/code_080792C4.s");
-ASM_FUNC("asm/nonmatching/code_08079320.s");
-ASM_FUNC("asm/nonmatching/code_08079368.s");
-ASM_FUNC("asm/nonmatching/code_080793B0.s");
-ASM_FUNC("asm/nonmatching/code_080793F8.s");
+void sub_08079214(void)
+{
+    struct EventInfo info;
+    u32 const * group = (void const *) GetChapterEventInfo(gPlaySt.chapterIndex);
+
+    info.flag = 0;
+
+    if (gPlaySt.chapterIndex == 0x27)
+        sub_0807D7E0();
+
+    if (gPlaySt.chapterModeIndex == 3)
+    {
+        if (gPlaySt.chapterStateBits & 0x40)
+        {
+            info.script = group[0x24 / 4];
+            LoadUnits((void const *) info.script);
+        }
+        else
+        {
+            info.script = group[0x20 / 4];
+            LoadUnits((void const *) info.script);
+        }
+    }
+    else
+    {
+        if (gPlaySt.chapterStateBits & 0x40)
+        {
+            info.script = group[0x1C / 4];
+            LoadUnits((void const *) info.script);
+        }
+        else
+        {
+            info.script = group[0x18 / 4];
+            LoadUnits((void const *) info.script);
+        }
+    }
+
+    sub_080799C8();
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+}
+
+void const * sub_08079280(void)
+{
+    u32 const * group = (void const *) GetChapterEventInfo(gPlaySt.chapterIndex);
+
+    if (gPlaySt.chapterModeIndex == 3)
+    {
+        if (gPlaySt.chapterStateBits & 0x40)
+            return (void const *) group[0x34 / 4];
+
+        return (void const *) group[0x30 / 4];
+    }
+
+    if (gPlaySt.chapterStateBits & 0x40)
+        return (void const *) group[0x2C / 4];
+
+    return (void const *) group[0x28 / 4];
+}
+
+struct BattleTalkExtEnt const * sub_080792C4(u8 pidA, u8 pidB)
+{
+    struct BattleTalkExtEnt const * it = gBattleTalkExtList;
+
+    if (gPlaySt.chapterStateBits & 0x80)
+        return NULL;
+
+    for (; it->pidB != 0; it++)
+    {
+        if ((pidA == it->pidA && pidB == it->pidB) || (pidA == it->pidB && pidB == it->pidA))
+        {
+            if (it->chapter == 0x43)
+                return it;
+
+            if (gPlaySt.chapterIndex == it->chapter)
+                return it;
+        }
+    }
+
+    return NULL;
+}
+
+struct BattleTalkEnt const * sub_08079320(u8 pid, struct BattleTalkEnt const * it)
+{
+    for (; it->pid != 0; it++)
+    {
+        if (CheckFlag(it->flag))
+            continue;
+
+        if (pid == it->pid)
+        {
+            if (it->chapter == 0x43)
+                return it;
+
+            if (gPlaySt.chapterIndex == it->chapter)
+                return it;
+        }
+    }
+
+    return NULL;
+}
+
+struct DefeatTalkExtEnt const * sub_08079368(u8 pid, struct DefeatTalkExtEnt const * it)
+{
+    for (; it->pid != 0; it++)
+    {
+        if (CheckFlag(it->flag))
+            continue;
+
+        if (pid == it->pid)
+        {
+            if (it->chapter == 0x43)
+                return it;
+
+            if (gPlaySt.chapterIndex == it->chapter)
+                return it;
+        }
+    }
+
+    return NULL;
+}
+
+struct BattleTalkEnt const * sub_080793B0(u8 pid, struct BattleTalkEnt const * it)
+{
+    for (; it->pid != 0; it++)
+    {
+        if (CheckFlag(it->flag))
+            continue;
+
+        if (pid == it->pid)
+        {
+            if (it->chapter == 0x43)
+                return it;
+
+            if (gPlaySt.chapterIndex == it->chapter)
+                return it;
+        }
+    }
+
+    return NULL;
+}
+
+bool CheckBattleTalk(u8 pidA, u8 pidB)
+{
+    struct BattleTalkExtEnt const * ent = sub_080792C4(pidA, pidB);
+
+    if (ent != NULL)
+    {
+        if (CheckFlag(ent->flag))
+            return FALSE;
+
+        return TRUE;
+    }
+
+    if (sub_08079320(pidA, gBattleTalkList) != NULL)
+        return TRUE;
+
+    if (sub_08079320(pidB, gBattleTalkList) != NULL)
+        return TRUE;
+
+    if (sub_08079320(pidA, gTriangleAttackTalkList) != NULL && BattleIsTriangleAttack())
+        return TRUE;
+
+    return FALSE;
+}
+
 ASM_FUNC("asm/nonmatching/code_08079464.s");
-ASM_FUNC("asm/nonmatching/code_08079514.s");
-ASM_FUNC("asm/nonmatching/code_08079568.s");
-ASM_FUNC("asm/nonmatching/code_08079624.s");
+
+bool CheckBattleDefeatTalk(u8 pid)
+{
+    struct BattleTalkEnt const * list;
+
+    if (sub_08079368(pid, gDefeatTalkExtList) != NULL)
+        return TRUE;
+
+    list = gPlaySt.chapterModeIndex == 1 ? gDefeatTalkList_Tutorial : gDefeatTalkList;
+
+    if (sub_080793B0(pid, list) != NULL)
+        return TRUE;
+
+    if (gPlaySt.chapterModeIndex != 1 && (pid == 0x0F || pid == 0x15))
+        return TRUE;
+
+    return FALSE;
+}
+
+void sub_08079568(u16 pid)
+{
+    struct Unit * unit;
+    int i;
+    int x;
+    int y;
+
+    for (i = FACTION_BLUE + 1; i < FACTION_GREEN; i++)
+    {
+        unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->pCharacterData->number != pid)
+            continue;
+
+        if (unit->state & US_DEAD)
+            continue;
+
+        PidStatsRecordDefeatInfo(pid, 0, 7);
+        UnitKill(unit);
+        SetUnitHp(unit, 0);
+
+        if (gBattleActor.unit.index == unit->index)
+            gBattleActor.unit = *unit;
+
+        if (gBattleTarget.unit.index == unit->index)
+            gBattleTarget.unit = *unit;
+
+        if (unit->state & US_RESCUED)
+            UnitDrop(GetUnit(unit->rescue), 0, 0);
+
+        if (!(unit->state & US_RESCUING))
+            return;
+
+        UnitGetDeathDropLocation(unit, &x, &y);
+        UnitDrop(unit, x, y);
+
+        return;
+    }
+}
+
+void DisplayDefeatTalkForPid(u8 pid)
+{
+    struct BattleTalkEnt const * list;
+    struct BattleTalkEnt const * ent;
+    struct DefeatTalkExtEnt const * ext;
+
+    list = gPlaySt.chapterModeIndex == 1 ? gDefeatTalkList_Tutorial : gDefeatTalkList;
+
+    ent = sub_080793B0(pid, list);
+
+    if (ent != NULL)
+    {
+        if (ent->msg != 0)
+            StartEvent((void const *) ent->msg);
+
+        sub_0800ADB8();
+        SetFlag(ent->flag);
+
+        if (ent->flag == 0x65)
+        {
+            StartBgm(0x2B, NULL);
+            gPlaySt.cfgDisableBgm = TRUE;
+        }
+        else if (UNIT_FACTION(GetUnitFromCharId(pid)) == FACTION_BLUE)
+        {
+            StartBgm(0x2C, NULL);
+        }
+
+        return;
+    }
+
+    ext = sub_08079368(pid, gDefeatTalkExtList);
+
+    if (ext != NULL)
+    {
+        if (ext->msg != 0)
+            sub_0800ED78(ext->msg);
+        else if (ext->event != 0)
+            StartEvent((void const *) ext->event);
+
+        sub_0800ADB8();
+        SetFlag(ext->flag);
+
+        if (UNIT_FACTION(GetUnitFromCharId(pid)) == FACTION_BLUE)
+            StartBgm(0x2C, NULL);
+    }
+
+    switch (pid)
+    {
+    case 0x0F:
+        sub_08079568(0x15);
+        break;
+
+    case 0x15:
+        sub_08079568(0x0F);
+        break;
+    }
+}
 ASM_FUNC("asm/nonmatching/code_08079704.s");
 ASM_FUNC("asm/nonmatching/code_08079734.s");
 ASM_FUNC("asm/nonmatching/code_08079738.s");
