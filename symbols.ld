@@ -792,3 +792,10 @@ gAiScript_FallbackAi2 = 0x08B970B4;
 gAiTerrainList_SnagWall = 0x08B970C4;
 gpAi2Table = 0x08B989E4;
 gpAi1Table = 0x08B989F0;
+/* cp_staff, cpextra */
+sAiStaffFuncLut = 0x081D3B74;
+sAiAdjacentPositionLut = 0x08B98AC8;
+sAiSpecialItemFuncLut = 0x081D3BDC;
+sAiTerrainList_Door = 0x08B98AE8;
+sAiTerrainList_Chest = 0x08B98AEA;
+gWorkingTerrainMoveCosts = 0x030043F0;
