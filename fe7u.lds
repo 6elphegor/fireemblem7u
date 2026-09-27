@@ -5163,8 +5163,7 @@ SECTIONS
         build/asm/code_080904A4.o(.text);
         build/asm/code_080904C4.o(.text);
         build/asm/code_080904F8.o(.text);
-        build/asm/code_08090540.o(.text);
-        build/asm/code_08090580.o(.text);
+        build/src/prep_bgscroll.o(.text);
         build/asm/code_080905D4.o(.text);
         build/asm/code_08090690.o(.text);
         build/asm/code_0809076C.o(.text);
