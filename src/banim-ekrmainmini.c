@@ -282,6 +282,7 @@ void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
 }
 
 #if NONMATCHING
+// only register allocation differs in the character palette tail (table pointer should be in r7)
 void sub_08054C8C(struct AnimBuffer * pAnimBuf)
 {
     u32 modeA;

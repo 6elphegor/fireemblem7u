@@ -318,7 +318,92 @@ int EvCheck10_(struct EventInfo * info)
 
     return 0;
 }
+#if NONMATCHING
+// jump-threading: the maxTurn == 0 faction test branches the other way and case 1 cross-jumps into case 2
+int EvCheck02_TURN(struct EventInfo * info)
+{
+    struct EvCheck02 const * ls = (void const *) info->listScript;
+
+    int turn = EVT_CMD_B1(ls->unk8);
+    int maxTurn = EVT_CMD_B2(ls->unk8);
+    int faction = EVT_CMD_B3(ls->unk8);
+
+    switch (ls->unkC)
+    {
+    case 1:
+        if (gPlaySt.chapterModeIndex != 2)
+            return 0;
+
+        if (gPlaySt.chapterStateBits & 0x40)
+            return 0;
+
+        break;
+
+    case 2:
+        if (gPlaySt.chapterModeIndex != 3)
+            return 0;
+
+        if (gPlaySt.chapterStateBits & 0x40)
+            return 0;
+
+        break;
+
+    case 3:
+        if (!(gPlaySt.chapterStateBits & 0x40))
+            return 0;
+
+        if (gPlaySt.chapterModeIndex != 2)
+            return 0;
+
+        break;
+
+    case 4:
+        if (!(gPlaySt.chapterStateBits & 0x40))
+            return 0;
+
+        if (gPlaySt.chapterModeIndex != 3)
+            return 0;
+
+        break;
+
+    case 5:
+        if (!(gPlaySt.chapterStateBits & 0x40))
+            return 0;
+
+        break;
+
+    default:
+        goto check_turn;
+    }
+
+    if (CheckFlag(2))
+        return 0;
+
+check_turn:
+    if (maxTurn == 0)
+    {
+        if (gPlaySt.chapterTurnNumber != turn)
+            return 0;
+
+        if (gPlaySt.faction != faction)
+            return 0;
+
+        goto success;
+    }
+    else
+    if (gPlaySt.chapterTurnNumber >= turn && gPlaySt.chapterTurnNumber <= maxTurn && gPlaySt.faction == faction)
+    {
+    success:
+        info->script = ((struct EvCheck02 const *) info->listScript)->script;
+        info->flag = EVT_CMD_HI(((struct EvCheck02 const *) info->listScript)->unk0);
+        return 1;
+    }
+
+    return 0;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080782FC.s");
+#endif
 
 int EvCheck03_CHAR(struct EventInfo * info)
 {
@@ -1333,7 +1418,52 @@ bool CheckBattleTalk(u8 pidA, u8 pidB)
     return FALSE;
 }
 
+#if NONMATCHING
+// register allocation: pidA needs a second pseudo (r7) for the triangle-attack lookup
+void StartBattleTalk(u8 pidA, u8 pidB)
+{
+    struct BattleTalkExtEnt const * ext = sub_080792C4(pidA, pidB);
+    struct BattleTalkEnt const * ent;
+
+    if (ext != NULL)
+    {
+        if (CheckFlag(ext->flag))
+            return;
+
+        if (ext->msg != 0)
+            sub_0800ED78(ext->msg);
+        else
+            StartEvent(ext->event);
+
+        sub_0800ADB8();
+        SetFlag(ext->flag);
+        return;
+    }
+
+    if ((ent = sub_08079320(pidA, gBattleTalkList)) != NULL || (ent = sub_08079320(pidB, gBattleTalkList)) != NULL)
+    {
+        if (ent->msg != 0)
+        {
+            sub_0800ED78(ent->msg);
+            sub_0800ADB8();
+        }
+
+        SetFlag(ent->flag);
+        return;
+    }
+
+    ent = sub_08079320(pidA, gTriangleAttackTalkList);
+
+    if (ent != NULL && BattleIsTriangleAttack())
+    {
+        sub_0800ED78(ent->msg);
+        sub_0800ADB8();
+        SetFlag(ent->flag);
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_08079464.s");
+#endif
 
 bool CheckBattleDefeatTalk(u8 pid)
 {

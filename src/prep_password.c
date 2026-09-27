@@ -147,8 +147,85 @@ u16 sub_0809D9A4(u8 const * buf, int n)
 
     return (sum + (sum >> 8) + (sum >> 16)) & 0x3FF;
 }
+#if NONMATCHING
+// loop invariant hoisting: &gPasswordBitsPerChar is hoisted here, the original keeps gPasswordData in r8 instead
+void sub_0809D9E4(void)
+{
+    int i = 0;
+    int j;
+    int bit;
+    u8 * p;
+    u16 * data = gPasswordData;
+    u16 seed = sub_0809D9A4(gPasswordBuf + gPasswordCharCount, data[3]);
+
+    p = gPasswordBuf;
+
+    do
+    {
+        if (i % 3 == 0)
+            bit = (data[0] & (1 << (i / 3))) >> (i / 3);
+        else if (i % 3 == 1)
+            bit = (data[1] & (1 << (i / 3))) >> (i / 3);
+        else
+            bit = (data[2] & (1 << (i / 3))) >> (i / 3);
+
+        *p |= bit << (i % gPasswordBitsPerChar);
+
+        i++;
+
+        if (i % gPasswordBitsPerChar == 0)
+            p++;
+    } while (i != 30);
+
+    for (j = 0; j < gPasswordCharCount; j++)
+        gPasswordBuf[j] = (gPasswordBuf[j] + seed) & gPasswordCharMask;
+
+    sub_0809D844();
+}
+#else
 ASM_FUNC("asm/nonmatching/code_0809D9E4.s");
+#endif
+#if NONMATCHING
+// the original keeps a zero "idx" variable in sl (not constant-folded) and uses it for the first loop test and p
+void sub_0809DAB8(void)
+{
+    int idx = 0;
+    int i = 0;
+    int j;
+    u8 * p;
+    u16 seed;
+
+    sub_0809D844();
+
+    seed = sub_0809D9A4(gPasswordBuf + gPasswordCharCount, gPasswordData[3]);
+
+    for (j = idx; j < gPasswordCharCount; j++)
+        gPasswordBuf[j] = (gPasswordBuf[j] - seed) & gPasswordCharMask;
+
+    gPasswordData[0] = 0;
+    gPasswordData[1] = 0;
+    gPasswordData[2] = 0;
+
+    p = gPasswordBuf + idx;
+
+    do
+    {
+        if (i % 3 == 0)
+            gPasswordData[0] |= ((*p >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
+        else if (i % 3 == 1)
+            gPasswordData[1] |= ((*p >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
+        else
+            gPasswordData[2] |= ((*p >> (i % gPasswordBitsPerChar)) & 1) << (i / 3);
+
+        i++;
+
+        if (i % gPasswordBitsPerChar == 0)
+            p++;
+    } while (i != 30);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_0809DAB8.s");
+#endif
 void ModifyPassword(void (* func)(int * bitpos, u8 * buf))
 {
     int bitpos = 0;

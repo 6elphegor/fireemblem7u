@@ -121,7 +121,16 @@ void FortuneSubMenu_HandleOptionSwitch(struct PrepProcA1962C * proc)
         break;
     }
 }
+#if NONMATCHING
+// the original has a dead "adds r1, r0, #0" copy of the proc pointer before storing unk_29
+void StartFortuneSubMenu(int option, ProcPtr parent)
+{
+    struct PrepProcA1962C * proc = Proc_StartBlocking(gProcScr_FortuneSubMenu, parent);
+    proc->unk_29 = option;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080991DC.s");
+#endif
 
 s8 sub_080991F8(int var)
 {
