@@ -569,8 +569,8 @@ void NewEkrWindowAppear(int identifier, int);
 bool CheckEkrWindowAppearUnexist(void);
 // ??? EkrWindowAppearMain
 void NewEkrNamewinAppear(int identifier, int duration, int delay);
-// ??? sub_08051BD0
-// ??? sub_08051BE4
+// ??? CheckEkrNamewinAppearUnexist
+// ??? EkrNamewinAppearDelay
 // ??? EkrNamewinAppearMain
 // ??? NewEkrBaseAppear
 // ??? sub_80524A4

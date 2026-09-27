@@ -38,7 +38,7 @@ int GetBattleAnimArenaFlag(void);
 void ArenaSetResult(int result);
 void ArenaContinueBattle(void);
 void sub_0805555C(void);
-s8 sub_08051BD0(void);
+s8 CheckEkrNamewinAppearUnexist(void);
 void nullsub_10(void);
 void EkrEfxStatusClear(void);
 void EkrPlayMainBGM(void);
@@ -505,7 +505,7 @@ void ekrBattle_8050600(struct ProcEkrBattle * proc)
     if (gEkrDeadEventExist != 0)
         return;
 
-    ret = sub_08051BD0();
+    ret = CheckEkrNamewinAppearUnexist();
     if (ret != true)
         return;
 
