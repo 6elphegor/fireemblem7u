@@ -70,6 +70,7 @@ struct SoundRoomEnt
 };
 
 extern struct SoundRoomEnt CONST_DATA gSoundRoomTable[];
+extern struct SoundRoomEnt CONST_DATA gUnk_08CE5378[];
 extern char const sDebugBlankStr[];
 
 
@@ -269,7 +270,19 @@ int sub_0801B470(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
     return 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B528.s");
+u8 sub_0801B528(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    if (gSoundRoomTable == gUnk_08CE5378)
+    {
+        PlaySoundEffect(gSoundRoomTable[menuItemProc->itemNumber].bgmId);
+    }
+    else
+    {
+        StartBgmExt(gSoundRoomTable[menuItemProc->itemNumber].bgmId, 1, NULL);
+    }
+
+    return 0;
+}
 
 u8 EndMenuAndClear(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {

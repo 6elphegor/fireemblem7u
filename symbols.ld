@@ -1084,6 +1084,7 @@ ProcScr_TalkBoxIdle = 0x08CC2B84;
 gSoundRoomText = 0x0201EA50;
 gSoundRoomVolumeGraphBuffer = 0x0201EA9C;
 gSoundRoomTable = 0x08CE4D28;
+gUnk_08CE5378 = 0x08CE5378;
 gSoundRoomBgTable = 0x08CE538C;
 gUnknown_08A212D4 = 0x08CE5480;
 gUnknown_08A212D8 = 0x08CE5484;
