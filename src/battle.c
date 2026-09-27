@@ -466,8 +466,27 @@ void ComputeBattleUnitBaseDefense(struct BattleUnit *bu)
     bu->battleDefense = bu->terrainDefense + bu->unit.def;
 }
 
-void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *defender);
-ASM_FUNC("asm/nonmatching/code_08028B10.s");
+void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *defender)
+{
+    attacker->battleAttack = GetItemMight(attacker->weapon) + attacker->wTriangleDmgBonus;
+    if (IsItemEffectiveAgainst(attacker->weapon, &defender->unit) == true) {
+        switch (GetItemIndex(attacker->weapon)) {
+        case ITEM_SWORD_DURANDAL:
+        case ITEM_AXE_ARMADS:
+        case ITEM_SWORD_WYRMSLAYER:
+        case ITEM_ANIMA_FORBLAZE:
+        case ITEM_SWORD_SOL_KATTI:
+            attacker->battleAttack *= 2;
+            break;
+
+        default:
+            attacker->battleAttack *= 2;
+            break;
+        }
+    }
+
+    attacker->battleAttack += attacker->unit.pow;
+}
 
 
 void ComputeBattleUnitSpeed(struct BattleUnit *bu)
@@ -483,12 +502,63 @@ void ComputeBattleUnitSpeed(struct BattleUnit *bu)
         bu->battleSpeed = 0;
 }
 
-void ComputeBattleUnitHitRate(struct BattleUnit *bu);
-ASM_FUNC("asm/nonmatching/code_08028BA0.s");
+void ComputeBattleUnitHitRate(struct BattleUnit *bu)
+{
+    int ret;
+
+    bu->battleHitRate = 
+        bu->unit.skl * 2 +
+        GetItemHit(bu->weapon) +
+        bu->unit.lck / 2 +
+        bu->wTriangleHitBonus;
+
+    if (gPlaySt.tact_enabled == 0)
+        return;
+
+    if (gPlaySt.chapterModeIndex == 0x1)
+        return;
+
+    if (gBmSt.flags & BM_FLAG_LINKARENA)
+        return;
+
+    if (UNIT_FACTION(&bu->unit))
+        return;
+
+    if (TacticianBirthAffins[gPlaySt.tact_birth] == bu->unit.pCharacterData->affinity) {
+        ret = gPlaySt.unk2C_04 / 0xC;
+        if (ret > 10)
+            ret = 10;
+
+        bu->battleHitRate += ret;
+    }
+
+    if (sub_08028194(&bu->unit))
+        bu->battleHitRate += 10;
+}
 
 
-void ComputeBattleUnitAvoidRate(struct BattleUnit *bu);
-ASM_FUNC("asm/nonmatching/code_08028C50.s");
+void ComputeBattleUnitAvoidRate(struct BattleUnit *bu)
+{
+    int ret;
+
+    bu->battleAvoidRate = bu->battleSpeed * 2 + bu->terrainAvoid + (bu->unit.lck);
+
+    if (gPlaySt.tact_enabled != 0 && gPlaySt.chapterModeIndex != 0x1 && !(gBmSt.flags & BM_FLAG_LINKARENA) && UNIT_FACTION(&bu->unit) == 0) {
+        if (TacticianBirthAffins[gPlaySt.tact_birth] == bu->unit.pCharacterData->affinity) {
+            ret = gPlaySt.unk2C_04 / 0xC;
+            if (ret > 10)
+                ret = 10;
+
+            bu->battleAvoidRate += ret;
+        }
+
+        if (sub_08028194(&bu->unit))
+            bu->battleAvoidRate += 10;
+    }
+
+    if (bu->battleAvoidRate < 0)
+        bu->battleAvoidRate = 0;
+}
 
 
 void ComputeBattleUnitCritRate(struct BattleUnit *bu)

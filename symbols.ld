@@ -182,6 +182,7 @@ gUnk_081C07B4 = 0x081C07B4;
 Img_EventDragonsSpritefx2 = 0x081C0DE0;
 gUnk_081C1ED0 = 0x081C1ED0;
 Img_MineFx = 0x081C3368;
+TacticianBirthAffins = 0x081C3AC0;
 SpritAnim_MineFx = 0x081C34DC;
 Pal_MineFx = 0x081C3570;
 Img_SysGrayBox = 0x081D7E54;
