@@ -1178,3 +1178,5 @@ sDebugWeatherMsgs = 0x081C3B88;
 gDebugClearMenuDef = 0x08B95848;
 gDebugStartupMenuDef = 0x08B95890;
 sDebugStartupStr = 0x081C3BA4;
+gDebugMenuDef_08B958B4 = 0x08B958B4;
+gDebugMenuDef_08B9586C = 0x08B9586C;

@@ -1,6 +1,19 @@
 #include "gbafe.h"
 #include "gbafe/bmmenu.h"
 
+extern const struct MenuDef gDebugMenuDef_08B958B4;
+extern const struct MenuDef gDebugMenuDef_08B9586C;
+extern struct ProcCmd ProcScr_BmMain[];
+extern u16 Pal_MuralBackground[];
+extern u16 Pal_LinkArenaMuralBackground[];
+
+void StartGame(void);
+void sub_08012BAC(void);
+void sub_08012BD0(void);
+void SetVisionWithFade(int vision_range);
+bool IsMapFadeActive(void);
+
+
 extern const struct MenuDef gDebugClearMenuDef;
 extern const struct MenuDef gDebugStartupMenuDef;
 extern char const sDebugStartupStr[];
@@ -421,39 +434,189 @@ int sub_0801BA10(void)
     EnablePalSync();
 }
 
-ASM_FUNC("asm/nonmatching/code_0801BA54.s");
+u8 sub_0801BA54(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int x = menuProc->rect.x + 2;
+    int y = menuProc->rect.y + 10;
+
+    if (gpKeySt->repeated & DPAD_RIGHT)
+    {
+        if (menuItemProc->itemNumber < 0x42)
+            menuItemProc->itemNumber++;
+        else if (gpKeySt->pressed & DPAD_RIGHT)
+            menuItemProc->itemNumber = 0;
+    }
+
+    if (gpKeySt->repeated & DPAD_LEFT)
+    {
+        if (menuItemProc->itemNumber > 0)
+            menuItemProc->itemNumber--;
+        else if (gpKeySt->pressed & DPAD_LEFT)
+            menuItemProc->itemNumber = 0x42;
+    }
+
+    if (gpKeySt->repeated & (DPAD_RIGHT | DPAD_LEFT))
+    {
+        DebugPutStr(gBg0Tm + TM_OFFSET(x, y), sDebugBlankStr);
+        DebugPutStr(gBg0Tm + TM_OFFSET(x, y), GetChapterInfo(menuItemProc->itemNumber)->debug_name);
+        EnableBgSync(BG0_SYNC_BIT);
+    }
+
+    if (gpKeySt->held & R_BUTTON)
+    {
+        gPlaySt.chapterModeIndex = 3;
+        ApplyPalettes(Pal_MuralBackground, 0xE, 2);
+    }
+    else
+    {
+        gPlaySt.chapterModeIndex = 2;
+        ApplyPalettes(Pal_LinkArenaMuralBackground, 0xE, 2);
+    }
+
+    if (menuItemProc->itemNumber <= 11)
+        gPlaySt.chapterModeIndex = 1;
+
+    EnablePalSync();
+
+    return 0;
+}
 
 ASM_FUNC("asm/nonmatching/code_0801BB74.s");
 
-ASM_FUNC("asm/nonmatching/code_0801BBE0.s");
+u8 sub_0801BBE0(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    StartMenu(&gDebugMenuDef_08B958B4);
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801BBF4.s");
+u8 sub_0801BBF4(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    StartMenu(&gDebugMenuDef_08B9586C);
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801BC08.s");
+u8 sub_0801BC08(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    sub_080A4E0C(PROC_TREE_3);
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801BC18.s");
+u8 sub_0801BC18(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    return MENU_DISABLED;
+}
 
-ASM_FUNC("asm/nonmatching/code_0801BC1C.s");
+u8 sub_0801BC1C(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int result;
 
-ASM_FUNC("asm/nonmatching/code_0801BC38.s");
+    if (menuItemProc->availability == MENU_ENABLED)
+    {
+        WriteSuspendSave(4);
+        result = (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+    }
+    else
+        result = MENU_ACT_SND6B;
 
-ASM_FUNC("asm/nonmatching/code_0801BC50.s");
+    return result;
+}
 
-ASM_FUNC("asm/nonmatching/code_0801BC80.s");
+int DebugContinueMenu_IsManualContinueAvailable(const struct MenuItemDef * def, int number)
+{
+    return IsValidSuspendSave(4) ? MENU_ENABLED : MENU_DISABLED;
+}
 
-ASM_FUNC("asm/nonmatching/code_0801BCAC.s");
+u8 DebugContinueMenu_ManualContinue(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    if (menuItemProc->availability != MENU_ENABLED)
+        return MENU_ACT_SND6B;
 
-ASM_FUNC("asm/nonmatching/code_0801BCC4.s");
+    if (Proc_Find(ProcScr_BmMain))
+        EndMapMain();
 
-ASM_FUNC("asm/nonmatching/code_0801BCE4.s");
+    ReadSuspendSave(4);
+    sub_08012BAC();
 
-ASM_FUNC("asm/nonmatching/code_0801BD64.s");
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801BDBC.s");
+u8 DebugContinueMenu_InitializeFile(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    if (menuItemProc->availability != MENU_ENABLED)
+        return MENU_ACT_SND6B;
 
-ASM_FUNC("asm/nonmatching/code_0801BDC0.s");
+    if (Proc_Find(ProcScr_BmMain))
+        EndMapMain();
 
-ASM_FUNC("asm/nonmatching/code_0801BDCC.s");
+    sub_08012BD0();
+
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
+
+int DebugContinueMenu_IsContinueChapterAvailable(const struct MenuItemDef * def, int number)
+{
+    return IsValidSuspendSave(3) ? MENU_ENABLED : MENU_DISABLED;
+}
+
+u8 DebugContinueMenu_ContinueChapter(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int result;
+
+    if (menuItemProc->availability == MENU_ENABLED)
+    {
+        ReadSuspendSave(3);
+        sub_08012BAC();
+        result = (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+    }
+    else
+        result = MENU_ACT_SND6B;
+
+    return result;
+}
+
+int DebugMenu_FogDraw(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    struct DebugOnOffMsgs msgs = sDebugOnOffMsgs;
+
+    ClearText(&menuItemProc->text);
+    Text_InsertDrawString(&menuItemProc->text, 8, 0, DecodeMsg(0x1253));
+    Text_InsertDrawString(&menuItemProc->text, 64, 2, DecodeMsg(msgs.msg[gPlaySt.chapterVisionRange != 0]));
+    PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
+
+    return 0;
+}
+
+u8 DebugMenu_FogIdle(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    if (!IsMapFadeActive() && (gpKeySt->pressed & (A_BUTTON | DPAD_RIGHT | DPAD_LEFT)))
+    {
+        if (gPlaySt.chapterVisionRange == 0)
+            SetVisionWithFade(GetChapterInfo(gPlaySt.chapterIndex)->fog);
+        else
+            SetVisionWithFade(0);
+
+        DebugMenu_FogDraw(menuProc, menuItemProc);
+    }
+
+    return 0;
+}
+
+u8 DebugMenu_FogEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    return 0;
+}
+
+u8 DebugContinueMenu_ReleaseEntry(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    StartGame();
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A);
+}
+
+u8 DebugMenu_GNightEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    sub_08002D48(0x300);
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
 
 ASM_FUNC("asm/nonmatching/code_0801BDDC.s");
 
