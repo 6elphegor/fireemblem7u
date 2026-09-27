@@ -3487,3 +3487,4 @@ gCgbChans = 0x03005BE0;
 gMPlayMemAccArea = 0x03005DE0;
 gNumMusicPlayers = 0x00000009;
 gMaxLines = 0x00000000;
+VerifySramFast = 0x03005E74;

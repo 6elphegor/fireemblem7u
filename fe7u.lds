@@ -301,6 +301,7 @@ SECTIONS
         build/asm/m4a_1.o(.text);
         build/src/m4a.o(.text);
         build/asm/libagb.o(.text);
+        build/src/agb-sram.o(.text);
         *libgcc.a:_ashldi3.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
         *libgcc.a:_divsi3.o(.text);
