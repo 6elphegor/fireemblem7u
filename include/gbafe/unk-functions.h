@@ -678,7 +678,7 @@ int GetTotalSupportLevel(int idx);
 // sub_0809BA48
 // sub_809C448
 // SupportScreen_StartUnitSubMenu
-// sub_0809BE14
+// SupportScreen_RestartSourceScreenMusic
 // StartSupportScreenFromPrepScreen
 // StartSupportScreen
 // sub_809C838
@@ -693,27 +693,27 @@ int GetTotalSupportLevel(int idx);
 // sub_0809C44C
 // sub_0809C49C
 int GetSupportScreenPartnerCount(int charId);
-// sub_0809C544
+// DrawSupportSubScreenSprites
 // DrawSupportSubScreenUnitPartnerText
 // DrawSupportSubScreenRemainingText
 // InitSupportSubScreenPartners
-// sub_0809CA08
-// sub_0809CA38
-// sub_0809CAB8
-// sub_0809CB10
-// sub_0809CB8C
+// InitSupportSubScreenPartnerLevels
+// InitSupportSubScreenRemainingSupports
+// DrawSupportSubScreenUnitPartnerDetails
+// SupportSubScreen_MoveCursorToNextValidUnit
+// SupportSubScreen_Init
 // sub_0809CBD8
-// sub_0809CC30
-// sub_0809CE38
+// SupportSubScreen_SetupGraphics
+// SupportSubScreen_Loop_KeyHandler
 // sub_0809CFF8
-// sub_0809D0BC
+// SupportSubScreen_StartSwapPage
 // sub_0809D15C
-// sub_0809D22C
-// sub_0809D2D4
-// sub_0809D380
-// sub_0809D428
-// sub_0809D4D4
-// sub_0809D5D0
+// SupportSubScreen_SwapPageOut_ToLeft
+// SupportSubScreen_SwapPageIn_FromRight
+// SupportSubScreen_SwapPageOut_ToRight
+// SupportSubScreen_SwapPageIn_FromLeft
+// SupportSubScreen_ReinitAfterSwapPage
+// SupportSubScreen_EndSwapPage
 // SupportSubScreen_OnEnd
 // SupportSubScreen_PrepareSupportConvo
 // sub_0809D71C
@@ -742,7 +742,7 @@ int GetSupportScreenPartnerCount(int charId);
 // sub_0809E25C
 // nullsub_80
 // sub_0809E3A8
-// sub_0809E3D8
+ProcPtr sub_0809E3D8(int a, int b, ProcPtr parent);
 // sub_0809E3F4
 // nullsub_81
 

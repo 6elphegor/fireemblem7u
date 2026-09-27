@@ -45,7 +45,7 @@ _080A4B28:
 	b _080A4B40
 _080A4B30:
 	adds r0, r4, #0
-	bl sub_0809BE68
+	bl StartSupportScreen
 	b _080A4B40
 _080A4B38:
 	ldr r0, _080A4B48 @ =0x08CC51D0
