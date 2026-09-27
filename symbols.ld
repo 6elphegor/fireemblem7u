@@ -857,6 +857,8 @@ gEventCmdTable = 0x08B90E48;
 
 
 /* eventscr2.c */
+sEventLoadUnitBuf = 0x030041D0;
+gUnitDef_08B91A18 = 0x08B91A18;
 
 /* end eventscr2.c */
 
