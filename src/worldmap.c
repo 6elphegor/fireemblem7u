@@ -78,7 +78,9 @@ struct WmMuMoveProc {
     /* 00 */ PROC_HEADER;
     /* 29 */ u8 facing;
     /* 2A */ u8 count;
-    /* 2B */ STRUCT_PAD(0x2B, 0x2E);
+    /* 2B */ u8 jid;
+    /* 2C */ u8 pal;
+    /* 2D */ STRUCT_PAD(0x2D, 0x2E);
     /* 2E */ s16 xs[7];
     /* 3C */ s16 ys[7];
     /* 4A */ s16 curX;
@@ -1056,7 +1058,89 @@ void WmMu_EndFlash(int idx)
     mgr->unk_48 = 0x20;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B4904.s");
+void StartWmMuMove(int idx, int x, int y, u32 config)
+{
+    struct WmMuMoveProc * proc;
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+    struct WmSlotEnt * ent = &mgr->slots[0]->ent[idx];
+
+    switch (config & 0xF0000)
+    {
+    case 0x10000:
+        x -= 8;
+        y += 8;
+        break;
+
+    case 0x20000:
+        x += 8;
+        y += 8;
+        break;
+
+    case 0x30000:
+        x -= 8;
+        y -= 8;
+        break;
+
+    case 0x40000:
+        x += 8;
+        y -= 8;
+        break;
+
+    case 0x50000:
+        y -= 14;
+        break;
+
+    case 0x60000:
+        y += 14;
+        break;
+
+    case 0x70000:
+        x -= 14;
+        break;
+
+    case 0x80000:
+        x += 14;
+        break;
+    }
+
+    if (ent->anim == NULL)
+    {
+        proc = Proc_Start(ProcScr_WmMu, mgr);
+        mgr->slots[0]->ent[idx].anim = (void *) proc;
+
+        proc->mu = StartMuInternal(0, 0, config & 0xFF, 0x280, ((config >> 13) & 3) + 0xC);
+        HideMu(proc->mu);
+
+        proc->facing = 2;
+        SetMuFacing(proc->mu, 2);
+        StartUiStandingMu(proc->mu);
+
+        proc->jid = config;
+        proc->pal = ((config >> 13) & 3) + 0xC;
+
+        proc->mu->layer = 0x400;
+        proc->mu->sprite_anim->oam2 = proc->mu->config->chr + OAM2_PAL(proc->mu->config->pal) + proc->mu->layer;
+
+        proc->curX = x;
+        proc->curY = y;
+
+        ent->pal = proc->pal;
+        ent->state = 0;
+
+        WmMu_StartFlash(idx);
+    }
+    else
+    {
+        proc = (void *) mgr->slots[0]->ent[idx].anim;
+    }
+
+    proc->mu->sprite_anim->layer = ((config >> 10) & 3) + 6;
+    proc->flags = config;
+
+    proc->xs[proc->count] = x;
+    proc->ys[proc->count] = y;
+    proc->count++;
+}
 void EndWmMu(int idx)
 {
     struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
