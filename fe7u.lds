@@ -3054,9 +3054,6 @@ SECTIONS
         build/src/helpbox.o(.text);
         build/src/player_interface.o(.text);
         build/src/sioerror.o(.text);
-        build/asm/code_08086668.o(.text);
-        build/asm/code_080866FC.o(.text);
-        build/asm/code_080867C0.o(.text);
         build/src/uichapterstatus.o(.text);
         build/asm/code_08087474.o(.text);
         build/asm/code_0808748C.o(.text);
