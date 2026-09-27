@@ -4,15 +4,24 @@
  * Battle animation effect utilities (fireemblem8u: banim-efxutils.c)
  */
 
-extern CONST_DATA u16 gEfxTileRefPals[];
 extern const u16 gBarfxTileConf1[];
 extern const u16 gBarfxTileConf2[];
 extern const u16 gBarfxTileConf3[];
-extern CONST_DATA struct ProcCmd ProcScr_ekrsubAnimeEmulator[];
 extern const s16 gAnimSpriteRotScalePosX[];
 extern const s16 gAnimSpriteRotScalePosY[];
 
 void UnpackChapterMapPalette(void);
+
+CONST_DATA u16 gEfxTileRefPals[] = {
+    0xB000, 0xC000, 0xD000, 0xE000, 0xF000, 0xB000, 0xC000, 0xD000,
+    0xE000, 0xF000,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ekrsubAnimeEmulator[] = {
+    PROC_19,
+    PROC_REPEAT(EkrsubAnimeEmulatorMain),
+    PROC_END,
+};
 
 void sub_0806693C(u16 * tm, u16 width, u16 height, int pal, int chr)
 {

@@ -6,21 +6,13 @@ void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void NewEfxTwobaiRST(struct Anim *anim, int unk44);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxOura[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxOuraBG[];
-extern u16 * TsaArray_AuraBg1[];
 extern u16 Img_AuraBg1[];
 extern u16 Pal_AuraBg1[];
-extern struct ProcCmd ProcScr_efxOuraBG2[];
 extern u16 Img_ShineBg1[];
 extern u16 Tsa_ShineBg1_Left[];
 extern u16 Tsa_ShineBg1_Right[];
-extern struct ProcCmd ProcScr_efxOuraBGCOL[];
 extern u16 Pal_ShineBg_0828FD00[];
-extern struct ProcCmd ProcScr_efxOuraBG3[];
-extern u16 * TsaArray_AuraBg3[];
-extern u16 * ImgArray_AuraBg3[];
 extern u16 Pal_AuraBg3[];
 
 void StartSpellAnimAura(struct Anim * anim);
@@ -42,6 +34,99 @@ extern const u16 StartSubSpell_efxOuraBG_B_frames[];
 extern const u16 StartSubSpell_efxOuraBG_C_frames[];
 extern const u16 StartSubSpell_efxOuraBGCOL_frames[];
 extern const u16 StartSubSpell_efxOuraBG3_frames[];
+
+CONST_DATA struct ProcCmd ProcScr_efxOura[] = {
+    PROC_19,
+    PROC_REPEAT(efxOura_Loop_Main),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxOuraBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxOuraBG_Loop),
+    PROC_END,
+};
+
+CONST_DATA u16 * TsaArray_AuraBg1[] = {
+    (u16 *) 0x0829E770,
+    (u16 *) 0x0829E810,
+    (u16 *) 0x0829E8B8,
+    (u16 *) 0x0829E960,
+    (u16 *) 0x0829EA0C,
+    (u16 *) 0x0829EAC4,
+    (u16 *) 0x0829EB7C,
+    (u16 *) 0x0829EC2C,
+    (u16 *) 0x0829ECD8,
+    (u16 *) 0x0829ED80,
+    (u16 *) 0x0829EE20,
+    (u16 *) 0x0829EEBC,
+    (u16 *) 0x0829EF54,
+    (u16 *) 0x0829F06C,
+    (u16 *) 0x0829F1A8,
+    (u16 *) 0x0829F2F8,
+    (u16 *) 0x0829F434,
+    (u16 *) 0x0829F538,
+    (u16 *) 0x0829F5DC,
+    (u16 *) 0x0829F678,
+    (u16 *) 0x0829F714,
+    (u16 *) 0x0829F7B0,
+    (u16 *) 0x0829F84C,
+    (u16 *) 0x0829F8E8,
+    (u16 *) 0x0829F9A4,
+    (u16 *) 0x0829FA94,
+    (u16 *) 0x0829FB98,
+    (u16 *) 0x0829FC9C,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxOuraBG2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxOuraBG2_OnEnd),
+    PROC_REPEAT(efxOuraBG2_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxOuraBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxOuraBGCOL_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxOuraBG3[] = {
+    PROC_19,
+    PROC_REPEAT(efxOuraBG3_Loop),
+    PROC_END,
+};
+
+CONST_DATA u16 * TsaArray_AuraBg3[] = {
+    (u16 *) 0x082AEF80,
+    (u16 *) 0x082AF1F8,
+    (u16 *) 0x082AF470,
+    (u16 *) 0x082AF6E8,
+    (u16 *) 0x082AF960,
+    (u16 *) 0x082AFBD0,
+    (u16 *) 0x082AFE2C,
+    (u16 *) 0x082B00A4,
+    (u16 *) 0x082B031C,
+    (u16 *) 0x082B0594,
+    (u16 *) 0x082B080C,
+    (u16 *) 0x082B0A84,
+};
+
+CONST_DATA u16 * ImgArray_AuraBg3[] = {
+    (u16 *) 0x0829FDA0,
+    (u16 *) 0x082A11B4,
+    (u16 *) 0x082A26E0,
+    (u16 *) 0x082A3C5C,
+    (u16 *) 0x082A51E4,
+    (u16 *) 0x082A65D4,
+    (u16 *) 0x082A78E0,
+    (u16 *) 0x082A8C54,
+    (u16 *) 0x082AA140,
+    (u16 *) 0x082AB4EC,
+    (u16 *) 0x082AC89C,
+    (u16 *) 0x082ADBB8,
+};
 
 // 9.99 efxmagic-aura:StartSpellAnimAura
 void StartSpellAnimAura(struct Anim * anim)

@@ -7,12 +7,28 @@ struct ExtraMenuUnkProc {
     /* 58 */ int unk_58;
 };
 
-extern u16 const gUnk_08CE5734[];
 extern u16 const gUnk_08CE4158[];
 extern u16 const * const gUnk_08CE456C[];
-extern struct ProcCmd CONST_DATA ProcScr_08CE574C[];
 extern u8 const gGfx_SupportMenu[];
 extern u8 const gUnk_084130A4[];
+
+void sub_080AC904(struct ExtraMenuUnkProc * proc);
+void sub_080AC940(struct ExtraMenuUnkProc * proc);
+void sub_080ACA3C(struct ExtraMenuUnkProc * proc);
+void sub_080ACA48(struct ExtraMenuUnkProc * proc);
+
+CONST_DATA u16 const gUnk_08CE5734[] = {
+    0, 0x6000, 0, 0, 0x6800, 0, 0x8000, 0x7800,
+    0, 0x8000, 0x7800, 0,
+};
+
+CONST_DATA struct ProcCmd ProcScr_08CE574C[] = {
+    PROC_CALL(sub_080AC904),
+    PROC_CALL(sub_080AC940),
+    PROC_SET_END_CB(sub_080ACA3C),
+    PROC_REPEAT(sub_080ACA48),
+    PROC_END,
+};
 
 void sub_080AC8A0(void)
 {

@@ -14,12 +14,27 @@ struct SpinningArrowProc
 };
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
-extern u16 CONST_DATA gSprite_UiSpinningArrows_Horizontal[];
-extern u16 CONST_DATA gSprite_UiSpinningArrows_Vertical[];
-extern struct ProcCmd CONST_DATA gProcScr_UiSpinningArrows[];
 extern u16 const Pal_0840DCE4[];
 extern u8 const gUnknown_0840D224[];
 extern u8 const Img_SpinningArrow[];
+
+void UiSpinningArrows_Init(struct SpinningArrowProc * proc);
+void UiSpinningArrows_Loop(struct SpinningArrowProc * proc);
+
+CONST_DATA u16 gSprite_UiSpinningArrows_Horizontal[] = {
+    2, 0, 0, 0, 8, 0, 6,
+};
+
+CONST_DATA u16 gSprite_UiSpinningArrows_Vertical[] = {
+    1, 0x4000, 0, 0, 0,
+};
+
+CONST_DATA struct ProcCmd gProcScr_UiSpinningArrows[] = {
+    PROC_CALL(UiSpinningArrows_Init),
+    PROC_YIELD,
+    PROC_REPEAT(UiSpinningArrows_Loop),
+    PROC_END,
+};
 
 void UiSpinningArrows_Init(struct SpinningArrowProc * proc)
 {

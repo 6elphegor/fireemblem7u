@@ -16,8 +16,14 @@ struct AiSpecialItemLutEntry {
 
 extern const struct AiSpecialItemLutEntry sAiSpecialItemFuncLut[];
 
-extern const u8 sAiTerrainList_Door[];
-extern const u8 sAiTerrainList_Chest[];
+
+CONST_DATA const u8 sAiTerrainList_Door[] = {
+    0x1E, 0,
+};
+
+CONST_DATA const u8 sAiTerrainList_Chest[] = {
+    0x21, 0,
+};
 
 int GetSpecialItemFuncIndex(u16 item)
 {

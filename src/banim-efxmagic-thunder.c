@@ -7,13 +7,9 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxThunder[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxThunderBG[];
 extern u16 Img_ThunderSpellBg[];
-extern struct ProcCmd ProcScr_efxThunderBGCOL[];
 extern u16 Pal_ThunderSpellBg[];
-extern struct ProcCmd ProcScr_efxThunderOBJ[];
 extern AnimScr AnimScr_EfxThunderOBJ_L[];
 extern AnimScr AnimScr_EfxThunderOBJ_R[];
 extern u16 Pal_BoltingSprites[];
@@ -29,9 +25,42 @@ void NewEfxThunderOBJ(struct Anim *anim);
 void EfxThunderOBJMain(struct ProcEfxOBJ * proc);
 
 extern const u16 NewEfxThunderBG_frame_config[];
-extern u16 * NewEfxThunderBG_tsa_l[];
-extern u16 * NewEfxThunderBG_tsa_r[];
 extern const u16 NewEfxThunderBGCOL_frame_config[];
+
+CONST_DATA struct ProcCmd ProcScr_efxThunder[] = {
+    PROC_19,
+    PROC_REPEAT(Loop6C_efxThunder),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxThunderBG[] = {
+    PROC_19,
+    PROC_REPEAT(EfxThunderBGMain),
+    PROC_END,
+};
+
+CONST_DATA u16 * NewEfxThunderBG_tsa_l[] = {
+    (u16 *) 0x081FBF70,
+    (u16 *) 0x081FC03C,
+};
+
+CONST_DATA u16 * NewEfxThunderBG_tsa_r[] = {
+    (u16 *) 0x081FBF70,
+    (u16 *) 0x081FC03C,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxThunderBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxThunderBGCOL_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxThunderOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxThunderOBJMain),
+    PROC_END,
+};
 
 // 9.99 efxmagic-thunder:StartSpellAnimThunder
 void StartSpellAnimThunder(struct Anim *anim)

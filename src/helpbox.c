@@ -96,18 +96,7 @@ extern u16 CONST_DATA Pal_HelpBox[];
 extern u8 CONST_DATA gGfx_YellowTextBox[];
 extern u16 CONST_DATA gPal_HelpTextBox[];
 extern u16 CONST_DATA gPal_YellowTextBox[];
-extern int CONST_DATA gUnknown_08A016D8[];
 
-extern struct ProcCmd CONST_DATA gProcScr_HelpBoxTextScroll[];
-extern struct ProcCmd CONST_DATA ProcScr_HelpBoxIntro[];
-extern struct ProcCmd CONST_DATA ProcScr_Helpbox_bug_08A01678[];
-extern struct ProcCmd CONST_DATA gUnknown_08A01698[];
-extern struct ProcCmd CONST_DATA gUnknown_08A016C8[];
-extern struct ProcCmd CONST_DATA gProcScr_BoxDialogue[];
-extern struct ProcCmd CONST_DATA ProcScr_MergeBoxDialogue[];
-extern struct ProcCmd CONST_DATA ProcScr_BoxDialogueDrawTextExt[];
-extern struct ProcCmd CONST_DATA gUnknown_08A01800[];
-extern struct ProcCmd CONST_DATA ProcScr_TalkBoxIdle[];
 
 void sub_08082E80(struct HelpBoxInfo const * info);
 void sub_08082F50(void);
@@ -125,6 +114,129 @@ void sub_080838FC(int x, int y, int width, int height);
 void sub_080845C8(int msg, int x, int y);
 void sub_0808460C(void);
 void GetBoxDialogueSize(const char * str, int * wOut, int * hOut);
+
+void BoxDialogueInterpreter_Main(struct ProcBoxDialogueDrawTextExt * proc);
+void HelpBoxDrawOneLineExt(struct HelpBoxScrollProc * proc);
+void HelpBoxDrawstring(struct ProcHelpBoxIntro * proc);
+void HelpBoxIntroDrawTexts(struct ProcHelpBoxIntro * proc);
+void HelpBoxSetupstringLines(struct ProcHelpBoxIntro * proc);
+void HelpBoxTextScroll_OnLoop(struct HelpBoxScrollProc * proc);
+void MergeBoxDialogue1(struct HelpBoxProc * proc);
+void MergeBoxDialogue2(struct HelpBoxProc * proc);
+void MergeBoxDialogue3(struct HelpBoxProc * proc);
+void sub_08082DE0(struct HelpBoxProc * proc);
+void sub_08082E08(struct HelpBoxProc * proc);
+void sub_08082E38(struct HelpBoxProc * proc);
+void sub_08082F80(struct HelpBoxProc * proc);
+void sub_08082FA4(struct HelpBoxProc * proc);
+void sub_08083128(ProcPtr proc);
+void sub_08083444(struct ProcBoxDialogue * proc);
+void sub_08083478(struct ProcBoxDialogue * proc);
+void sub_080834A8(void);
+void sub_08083C0C(struct ProcBoxDialogueDrawTextExt * proc);
+void sub_080842F0(ProcPtr proc);
+void sub_08084320(struct ProcBoxDialogueDrawTextExt * proc);
+void sub_0808436C(struct ProcBoxDialogueDrawTextExt * proc);
+void sub_080843AC(ProcPtr proc);
+void sub_080843D8(struct ProcBoxDialogueDrawTextExt * proc);
+void sub_08084490(struct HelpBox8A01800Proc * proc);
+
+CONST_DATA struct ProcCmd gProcScr_HelpBoxTextScroll[] = {
+    PROC_REPEAT(HelpBoxTextScroll_OnLoop),
+    PROC_END,
+    PROC_YIELD,
+    PROC_CALL(HelpBoxDrawOneLineExt),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_HelpBoxIntro[] = {
+    PROC_SLEEP(6),
+    PROC_REPEAT(HelpBoxSetupstringLines),
+    PROC_REPEAT(HelpBoxDrawstring),
+    PROC_CALL(HelpBoxIntroDrawTexts),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_Helpbox_bug_08A01678[] = {
+    PROC_REPEAT(sub_08082DE0),
+    PROC_CALL(sub_08082E08),
+    PROC_REPEAT(sub_08082E38),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gUnknown_08A01698[] = {
+    PROC_SLEEP(1),
+    PROC_LABEL(0),
+    PROC_CALL(sub_08082F80),
+    PROC_REPEAT(sub_08082FA4),
+    PROC_CALL(sub_08082F50),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gUnknown_08A016C8[] = {
+    PROC_REPEAT(sub_08083128),
+    PROC_END,
+};
+
+CONST_DATA int gUnknown_08A016D8[] = {
+    1, 2,
+};
+
+CONST_DATA struct ProcCmd gProcScr_BoxDialogue[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_08083444),
+    PROC_LABEL(0),
+    PROC_REPEAT(sub_08083478),
+    PROC_LABEL(1),
+    PROC_BLOCK,
+    PROC_LABEL(3),
+    PROC_SLEEP(4),
+    PROC_LABEL(2),
+    PROC_CALL(sub_080834A8),
+    PROC_SLEEP(10),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_MergeBoxDialogue[] = {
+    PROC_REPEAT(MergeBoxDialogue1),
+    PROC_CALL(MergeBoxDialogue2),
+    PROC_REPEAT(MergeBoxDialogue3),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_BoxDialogueDrawTextExt[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_08083C0C),
+    PROC_LABEL(0),
+    PROC_REPEAT(BoxDialogueInterpreter_Main),
+    PROC_GOTO(2),
+    PROC_LABEL(1),
+    PROC_REPEAT(sub_080842F0),
+    PROC_LABEL(4),
+    PROC_REPEAT(sub_08084320),
+    PROC_GOTO(0),
+    PROC_LABEL(5),
+    PROC_REPEAT(sub_08084320),
+    PROC_CALL(sub_0808436C),
+    PROC_GOTO(0),
+    PROC_LABEL(6),
+    PROC_REPEAT(sub_080843D8),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(sub_080843AC),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gUnknown_08A01800[] = {
+    PROC_SLEEP(6),
+    PROC_CALL(sub_08084490),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_TalkBoxIdle[] = {
+    PROC_BLOCK,
+    PROC_END,
+};
 
 void LoadHelpBoxGfx(void * vram, int palId)
 {

@@ -26,7 +26,6 @@ struct EkrGaugeStruct1 {
 };
 
 extern struct ProcEkrGauge * gpProcEkrGauge;
-extern struct ProcCmd ProcScr_ekrGauge[];
 
 extern s16 gEkrGaugeHp[2];
 extern u16 gEkrGaugeHpBak[2];
@@ -44,12 +43,6 @@ extern const u16 Pal_EfxSideHitDmgCrit[];
 extern const u8 Img_EfxSideHitDmgCrit[];
 extern const u8 Img_EfxWTAArrow[];
 
-extern const u8 AnimSprite_EkrGaugeWtaUp0[];
-extern const u8 AnimSprite_EkrGaugeWtaUp1[];
-extern const u8 AnimSprite_EkrGaugeWtaUp2[];
-extern const u8 AnimSprite_EkrGaugeWtaDown0[];
-extern const u8 AnimSprite_EkrGaugeWtaDown1[];
-extern const u8 AnimSprite_EkrGaugeWtaDown2[];
 
 void EnableEkrGauge(void);
 void DisableEkrGauge(void);
@@ -63,15 +56,105 @@ extern u16 gUnk_Banim_02016E48[];
 extern u16 gUnk_Banim_02017048[];
 extern u16 gUnk_Banim_02017248[];
 extern u16 gUnk_Banim_02017448[];
-extern const u8 AnimSprite_EkrGaugeHpNum[];
-extern const u8 AnimSprite_EkrGaugeHpBar[];
-extern const u8 AnimSprite_EkrGaugeName[];
-extern const u8 AnimSprite_EkrGaugeStatsL[];
-extern const u8 AnimSprite_EkrGaugeStatsR[];
-extern const u8 AnimSprite_EkrGaugeWeapon[];
 s16 EkrEfxIsUnitHittedNow(int pos);
 void sub_0804C118(void * _src, void * _dst);
 void sub_0804C504(struct EkrGaugeStruct1 * buf, int a, int b);
+
+void ekrGaugeMain(struct ProcEkrGauge * proc);
+
+CONST_DATA struct ProcCmd ProcScr_ekrGauge[] = {
+    PROC_19,
+    PROC_REPEAT(ekrGaugeMain),
+    PROC_END,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeHpBar[] = {
+    0, 0x40, 0, 0x40, 0x80, 1, 0, 0,
+    0, 0, 0, 0, 0, 0x40, 0, 0x40,
+    0x84, 1, 0x20, 0, 0, 0, 0, 0,
+    0, 0x40, 0, 0x40, 0x88, 1, 0x40, 0,
+    0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeHpNum[] = {
+    0, 0x40, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeName[] = {
+    0, 0x40, 0, 0x40, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0x40, 0, 0x40,
+    4, 0, 0, 0, 8, 0, 0, 0,
+    0, 0x40, 0, 0x40, 8, 0, 0, 0,
+    0x10, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeStatsL[] = {
+    0, 0x40, 0, 0x80, 0, 0, 0x95, 0xFF,
+    0xF8, 0xFF, 0, 0, 0, 0, 0, 0x40,
+    8, 0, 0xB5, 0xFF, 0xF8, 0xFF, 0, 0,
+    0, 0x40, 0, 0x40, 4, 0, 0x95, 0xFF,
+    8, 0, 0, 0, 0, 0x40, 0, 0,
+    8, 0, 0xB5, 0xFF, 8, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeStatsR[] = {
+    0, 0x40, 0, 0x80, 0, 0, 0x3B, 0,
+    0xF8, 0xFF, 0, 0, 0, 0, 0, 0x40,
+    8, 0, 0x5B, 0, 0xF8, 0xFF, 0, 0,
+    0, 0x40, 0, 0x40, 4, 0, 0x3B, 0,
+    8, 0, 0, 0, 0, 0x40, 0, 0,
+    8, 0, 0x5B, 0, 8, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeWeapon[] = {
+    0, 0, 0, 0x40, 0, 0, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeWtaUp0[] = {
+    0, 0x80, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeWtaUp1[] = {
+    0, 0x80, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeWtaUp2[] = {
+    0, 0x80, 0, 0, 1, 0, 0, 0,
+    0xFF, 0xFF, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeWtaDown0[] = {
+    0, 0x80, 0, 0, 2, 0, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeWtaDown1[] = {
+    0, 0x80, 0, 0, 3, 0, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
+
+CONST_DATA const u8 AnimSprite_EkrGaugeWtaDown2[] = {
+    0, 0x80, 0, 0, 3, 0, 0, 0,
+    1, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+};
 
 void sub_0804C118(void * _src, void * _dst)
 {

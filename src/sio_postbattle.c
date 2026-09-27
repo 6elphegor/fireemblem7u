@@ -9,9 +9,7 @@
  * "Battle Data" UI.
  */
 
-extern u16 const * CONST_DATA SpriteArray_085A96D4[];
 
-extern u16 const * CONST_DATA SpriteArray_085A96E4[];
 
 extern s16 const gUnknown_080D9E1C[][4];
 
@@ -35,6 +33,50 @@ extern u16 const Sprite_080D9E06[];
 extern u16 const Sprite_081D52E6[];
 extern u16 const Sprite_080D9DF2[];
 extern u16 const Sprite_080D9E0E[];
+
+void FE6Link_Init(ProcPtr proc);
+void Set_0203DDDC(ProcPtr proc);
+
+CONST_DATA u16 const * SpriteArray_085A96D4[] = {
+    (u16 const *) 0x081D5298,
+    (u16 const *) 0x081D52A0,
+    (u16 const *) 0x081D52A8,
+    (u16 const *) 0x081D52B0,
+};
+
+CONST_DATA u16 const * SpriteArray_085A96E4[] = {
+    (u16 const *) 0x081D52B8,
+    (u16 const *) 0x081D52C0,
+    (u16 const *) 0x081D52CE,
+    (u16 const *) 0x081D52D6,
+};
+
+CONST_DATA struct ProcCmd ProcScr_LinkArenaPostBattle_DrawSprites[] = {
+    PROC_YIELD,
+    PROC_CALL(SioPostBattleSprites_Init),
+    PROC_REPEAT(SioPostBattleSprites_Loop_DrawSlideIn),
+    PROC_REPEAT(SioPostBattleSprites_Loop_DrawStatic),
+    PROC_END,
+    PROC_CALL(SioPostBattle_Init),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_YIELD,
+    PROC_CALL(FE6Link_Init),
+    PROC_REPEAT(SioPostBattle_Loop_Main),
+    PROC_REPEAT(SioPostBattle_AwaitAPress),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_YIELD,
+    PROC_CALL(StartBmVSync),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SioPostBattle_PlayMusic[] = {
+    PROC_SLEEP(16),
+    PROC_CALL(SioPostBattleMusic_PlayFanfare),
+    PROC_SLEEP(210),
+    PROC_CALL(SioPostBattleMusic_PlayStandardBgm),
+    PROC_END,
+};
 
 //! FE8U = 0x08045208
 void SioPostBattleSprites_Init(struct SioPostBattleSpritesProc * proc)
@@ -106,7 +148,6 @@ void SioPostBattleSprites_Loop_DrawStatic(struct SioPostBattleSpritesProc * proc
     return;
 }
 
-extern struct ProcCmd CONST_DATA ProcScr_LinkArenaPostBattle_DrawSprites[];
 
 //! FE8U = 0x08045494
 ProcPtr StartDrawLinkArenaRankSprites(struct SioPostBattleProc * parent, int delayMaybe, u16 fid, u8 oam2, u8 ranking)
@@ -176,7 +217,6 @@ void sub_0803FEAC(struct SioPostBattleProc * proc)
     return;
 }
 
-extern struct ProcCmd ProcScr_SioPostBattle_PlayMusic[];
 
 //! FE8U = 0x08045610
 ProcPtr SioPostBattle_StartMusicProc(struct SioPostBattleProc * parent)

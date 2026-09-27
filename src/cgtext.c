@@ -4,14 +4,79 @@
 extern u16 CONST_DATA gPal_HelpTextBox[];
 extern u16 CONST_DATA gUnknown_0819D20C[];
 extern u8 CONST_DATA gUnknown_0819D174[];
-extern u16 CONST_DATA gSprite_08CC3020[];
-extern u16 CONST_DATA gSprite_08CC3034[];
-extern u16 CONST_DATA gSprite_08CC3048[];
-extern u16 CONST_DATA gSprite_08CC305C[];
-extern int CONST_DATA gTextIds_AskExit[];
-extern int CONST_DATA gTextIds_YesNo[];
 
 void StartTalkWaitForInputUnk(ProcPtr parent, int x, int y, int z);
+
+CONST_DATA u16 gSprite_08CC3020[] = {
+    3, 0x4400, 0x4000, 0, 0x4408, 0x4000, 5, 0x4410,
+    0x4000, 0xA,
+};
+
+CONST_DATA u16 gSprite_08CC3034[] = {
+    3, 0x4400, 0x4000, 1, 0x4408, 0x4000, 6, 0x4410,
+    0x4000, 0xB,
+};
+
+CONST_DATA u16 gSprite_08CC3048[] = {
+    3, 0x400, 0, 1, 0x408, 0, 6, 0x410,
+    0, 0xB,
+};
+
+CONST_DATA u16 gSprite_08CC305C[] = {
+    2, 0x4400, 0x8000, 0, 0x4400, 0x8020, 4, 0,
+};
+
+CONST_DATA struct ProcCmd gProcScr_CgTextMain[] = {
+    PROC_SET_END_CB(CgText_OnEnd),
+    PROC_YIELD,
+    PROC_CALL(CgText_Init),
+    PROC_LABEL(1),
+    PROC_CALL(CgText_InitBlendAmt),
+    PROC_LABEL(2),
+    PROC_REPEAT(CgText_LoopFadeIn),
+    PROC_LABEL(3),
+    PROC_CALL(CgText_808F0EC),
+    PROC_REPEAT(CgText_808F04C),
+    PROC_LABEL(4),
+    PROC_BLOCK,
+    PROC_LABEL(0),
+    PROC_CALL(CgText_InitFadeOut),
+    PROC_REPEAT(CgText_LoopFadeOut),
+    PROC_CALL(CgText_808F084),
+    PROC_YIELD,
+    PROC_LABEL(5),
+    PROC_END,
+};
+
+CONST_DATA int gTextIds_AskExit[] = {
+    3949, 3950,
+};
+
+CONST_DATA int gTextIds_YesNo[] = {
+    1, 2,
+};
+
+CONST_DATA struct ProcCmd gProcScr_CgTextInterpreter[] = {
+    PROC_YIELD,
+    PROC_LABEL(0),
+    PROC_REPEAT(CgTextInterpreter_Loop_Main),
+    PROC_LABEL(1),
+    PROC_CALL(CgTextInterpreter_808FF10),
+    PROC_REPEAT(CgTextInterpreter_808FF18),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(CgTextInterpreter_808FF9C),
+    PROC_GOTO(0),
+    PROC_LABEL(99),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_YesNoChoice[] = {
+    PROC_SLEEP(8),
+    PROC_REPEAT(YesNoChoice_Loop_KeyHandler),
+    PROC_SLEEP(5),
+    PROC_END,
+};
 
 void SetCgTextFlags(int flags)
 {

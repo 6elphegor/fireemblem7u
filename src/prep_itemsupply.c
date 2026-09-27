@@ -3,10 +3,7 @@
 extern u16 Pal_08405EA4[];
 extern u8 Img_08405B4C[];
 extern u8 Img_08405CE4[];
-extern int CONST_DATA gSupplyTextIndexLookup[];
-extern char * CONST_DATA gpPrepItemSupplyStringBuffer;
 extern u16 gUnk_08407400[];
-extern int CONST_DATA gSupplyHelpTextIndexLookup[];
 extern u16 const * CONST_DATA gUnk_08CC4FA0[];
 extern u16 CONST_DATA gUnk_08CC4F90[];
 
@@ -22,11 +19,94 @@ int GetPrepPageForItem(int item);
 s8 sub_08090EE8(struct Unit * unit, int slot);
 void MU_SetDefaultFacing_Auto(void);
 
-extern struct ProcCmd CONST_DATA ProcScr_PrepItemSupplyScreen[];
-extern struct ProcCmd CONST_DATA ProcScr_BmSupplyScreen[];
 
 extern u8 Tsa_0840E5D4[];
 extern u8 Img_08405754[];
+
+CONST_DATA int gSupplyTextIndexLookup[] = {
+    4714, 4715, 4716,
+};
+
+CONST_DATA char * gpPrepItemSupplyStringBuffer = (char *) 0x0200E68C;
+
+CONST_DATA int gSupplyHelpTextIndexLookup[] = {
+    909, 910,
+};
+
+CONST_DATA struct ProcCmd ProcScr_PrepItemSupplyScreen[] = {
+    PROC_YIELD,
+    PROC_LABEL(0),
+    PROC_CALL(PrepItemSupply_Init),
+    PROC_CALL(sub_080962A0),
+    PROC_YIELD,
+    PROC_CALL(PrepItemSupply_InitGfx),
+    PROC_CALL_ARG(NewFadeIn, 16),
+    PROC_WHILE(FadeInExists),
+    PROC_LABEL(1),
+    PROC_CALL(sub_08096604),
+    PROC_LABEL(2),
+    PROC_REPEAT(PrepItemSupply_Loop_GiveTakeKeyHandler),
+    PROC_LABEL(4),
+    PROC_CALL(sub_08096B1C),
+    PROC_REPEAT(sub_08096DC0),
+    PROC_LABEL(5),
+    PROC_REPEAT(PrepItemSupply_SwitchPageLeft),
+    PROC_LABEL(6),
+    PROC_REPEAT(PrepItemSupply_SwitchPageRight),
+    PROC_LABEL(3),
+    PROC_CALL(PrepItemSupply_SwitchToUnitInventory),
+    PROC_REPEAT(PrepItemSupply_Loop_UnitInvKeyHandler),
+    PROC_LABEL(8),
+    PROC_CALL_ARG(NewFadeOut, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(9),
+    PROC_CALL(PrepItemSupply_OnEnd),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_BmSupplyScreen[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(LockBmDisplay),
+    PROC_LABEL(0),
+    PROC_CALL(sub_08097488),
+    PROC_CALL(DisableAllGfx),
+    PROC_YIELD,
+    PROC_CALL(PrepItemSupply_Init),
+    PROC_CALL(sub_080962A0),
+    PROC_YIELD,
+    PROC_CALL(PrepItemSupply_InitGfx),
+    PROC_CALL_ARG(NewFadeIn, 16),
+    PROC_WHILE(FadeInExists),
+    PROC_LABEL(1),
+    PROC_CALL(sub_08096604),
+    PROC_LABEL(2),
+    PROC_REPEAT(PrepItemSupply_Loop_GiveTakeKeyHandler),
+    PROC_LABEL(4),
+    PROC_CALL(sub_08096B1C),
+    PROC_REPEAT(sub_08096DC0),
+    PROC_LABEL(5),
+    PROC_REPEAT(PrepItemSupply_SwitchPageLeft),
+    PROC_LABEL(6),
+    PROC_REPEAT(PrepItemSupply_SwitchPageRight),
+    PROC_LABEL(3),
+    PROC_CALL(PrepItemSupply_SwitchToUnitInventory),
+    PROC_REPEAT(PrepItemSupply_Loop_UnitInvKeyHandler),
+    PROC_LABEL(8),
+    PROC_CALL_ARG(NewFadeOut, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(9),
+    PROC_CALL(PrepItemSupply_OnEnd),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(sub_080974A8),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
 
 void sub_08095BF4(void)
 {

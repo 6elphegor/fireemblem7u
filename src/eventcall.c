@@ -14,10 +14,6 @@ bool BoxTalkActive(void);
 
 extern u8 gSelectTargetCount;
 
-extern struct ProcCmd CONST_DATA ProcScr_08CA74F0[];
-extern struct ProcCmd CONST_DATA ProcScr_TutorialCursor[];
-extern struct ProcCmd CONST_DATA ProcScr_TutorialCursorWatcher[];
-extern u16 CONST_DATA Obj_EventShinningCursor[];
 extern u16 CONST_DATA Pal_EventCursorShinning[];
 
 struct ProcTutorialCursor
@@ -40,6 +36,39 @@ struct ProcEventMapLock
 
     /* 4C */ s8 locked;
     /* 4D */ u8 unk_4D;
+};
+
+void sub_0807A4B0(void);
+void sub_0807A4BC(void);
+void sub_0807A52C(struct ProcTutorialCursor * proc);
+void sub_0807A558(struct ProcTutorialCursor * proc);
+void sub_0807A764(struct ProcTutorialCursor * proc);
+void sub_0807A76C(struct ProcTutorialCursor * proc);
+
+CONST_DATA struct ProcCmd ProcScr_08CA74F0[] = {
+    PROC_SLEEP(28),
+    PROC_CALL(sub_0807A4BC),
+    PROC_SLEEP(8),
+    PROC_CALL(sub_0807A4B0),
+    PROC_END,
+};
+
+CONST_DATA u16 Obj_EventShinningCursor[] = {
+    4, 0, 0x1FF, 0, 0, 0x1008, 0, 9,
+    0x21FF, 0, 9, 0x3008, 0, 0,
+};
+
+CONST_DATA struct ProcCmd ProcScr_TutorialCursor[] = {
+    PROC_CALL(sub_0807A52C),
+    PROC_SLEEP(1),
+    PROC_REPEAT(sub_0807A558),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_TutorialCursorWatcher[] = {
+    PROC_CALL(sub_0807A764),
+    PROC_REPEAT(sub_0807A76C),
+    PROC_END,
 };
 
 int sub_08079AB4(void)

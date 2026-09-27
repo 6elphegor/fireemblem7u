@@ -6,16 +6,10 @@
 
 extern int gEkrMainBgmPlaying;
 extern int gEfxSoundSeExist;
-extern struct ProcCmd ProcScr_efxSoundSE[];
-extern CONST_DATA int gBanimBossBGMs[];
 extern s16 gEfxHpLutOff[];
 extern s16 gEkrInitialHitSide;
 extern s16 gBanimTerrain[2];
 extern s16 gBanimCon[2];
-extern u16 * gBanimSongTable1[];
-extern u16 * gBanimSongTable2[];
-extern u16 * gBanimSongTable3[];
-extern u16 * gBanimSongTable4[];
 
 void Sound_SetBGMVolume(int volume);
 void SetBgmVolume(int volume);
@@ -38,6 +32,85 @@ void EfxPlayCriticalHittedSFX(struct Anim * anim);
 int GetBanimBossBGM(struct Unit * unit);
 u16 GetEfxSoundType1FromTerrain(u16 terrain);
 u16 GetEfxSoundType2FromBaseCon(u16 basecon);
+
+CONST_DATA struct ProcCmd ProcScr_efxSoundSE[] = {
+    PROC_19,
+    PROC_REPEAT(Loop6C_efxSoundSE),
+    PROC_END,
+};
+
+CONST_DATA int gBanimBossBGMs[] = {
+    135, 20, 137, 20, 141, 20, 142, 20,
+    148, 20, 153, 20, 159, 20, 166, 20,
+    173, 20, 182, 20, 190, 20, 197, 21,
+    60, 20, 61, 20, 63, 20, 64, 20,
+    65, 20, 69, 20, 70, 20, 71, 20,
+    72, 20, 73, 21, 12, 21, 74, 21,
+    75, 21, 76, 21, 92, 21, 77, 21,
+    78, 20, 79, 21, 80, 21, 83, 21,
+    84, 21, 59, 21, 99, 22, 100, 22,
+    87, 21, 33, 21, 43, 21, 88, 21,
+    89, 21, 81, 22, 90, 20, 91, 22,
+    101, 22, 102, 22, 93, 21, 94, 21,
+    96, 21, 133, 22, 68, 23, 247, 21,
+    250, 21, 249, 21, 244, 22, 245, 22,
+    248, 22, 246, 22, 86, 21, 134, 24,
+    -1, -1, 21692746, 21823820, 21954894, 22085968, 22348116, 22479190,
+    22610264, 22741338, 23003486, 23134560, 23265634, 23396708, 23658856, 23789930,
+    23921004, 24052078, 24314226, 24445300, 24576374, 24707448, 24969596, 25100670,
+    25231744, 25362818, 25624966, 25756040, 25887114, 26018188, 26280336, 26935706,
+    27591076, 27591076, 28246446, 28901816, 29557186, 29557186, 30212556, 30867926,
+    31523296, 31523296, 32178666, 32834036, 33489406, 33489406, 34144776, 34800146,
+    35455516, 35455516, 36110886, 36766256, 37421626, 37421626, 38076996, 38732366,
+    39387736, 39387736, 26411410, 27066780, 27722150, 27722150, 28311985, 29032890,
+    29688260, 29688260, 30343630, 30999000, 31654370, 31654370, 32309740, 32965110,
+    33620480, 33620480, 34275850, 34931220, 35586590, 35586590, 36241960, 36897330,
+    37552700, 37552700, 38208070, 38863440, 39518810, 39518810, 26542484, 27197854,
+    27853224, 27853224, 28508594, 29163964, 29819334, 29819334, 30474704, 31130074,
+    31785444, 31785444, 32440814, 33096184, 33751554, 33751554, 34406924, 35062294,
+    35717664, 35717664, 36373034, 37028404, 37683774, 37683774, 38339144, 38994514,
+    39649884, 39649884,
+};
+
+CONST_DATA u16 * gBanimSongTable1[] = {
+    (u16 *) 0x08BDB168,
+    (u16 *) 0x08BDB178,
+    (u16 *) 0x08BDB188,
+    (u16 *) 0x08BDB198,
+    (u16 *) 0x08BDB1A8,
+    (u16 *) 0x08BDB1B8,
+    (u16 *) 0x08BDB1C8,
+};
+
+CONST_DATA u16 * gBanimSongTable2[] = {
+    (u16 *) 0x08BDB1D8,
+    (u16 *) 0x08BDB1E8,
+    (u16 *) 0x08BDB1F8,
+    (u16 *) 0x08BDB208,
+    (u16 *) 0x08BDB218,
+    (u16 *) 0x08BDB228,
+    (u16 *) 0x08BDB238,
+};
+
+CONST_DATA u16 * gBanimSongTable3[] = {
+    (u16 *) 0x08BDB248,
+    (u16 *) 0x08BDB258,
+    (u16 *) 0x08BDB268,
+    (u16 *) 0x08BDB278,
+    (u16 *) 0x08BDB288,
+    (u16 *) 0x08BDB298,
+    (u16 *) 0x08BDB2A8,
+};
+
+CONST_DATA u16 * gBanimSongTable4[] = {
+    (u16 *) 0x08BDB2B8,
+    (u16 *) 0x08BDB2C8,
+    (u16 *) 0x08BDB2D8,
+    (u16 *) 0x08BDB2E8,
+    (u16 *) 0x08BDB2F8,
+    (u16 *) 0x08BDB308,
+    (u16 *) 0x08BDB318,
+};
 
 void EfxPlaySE(int songid, int volume)
 {

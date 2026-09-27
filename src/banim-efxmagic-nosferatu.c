@@ -7,16 +7,10 @@ ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int sp
 void NewEfxRestWINH(struct Anim *anim, int a, s16 b, u32 c);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxResire[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxResireBG[];
-extern u16 * TsaArray_NosferatuBg[];
-extern u16 * ImgArray_NosferatuBg[];
 extern u16 Pal_NosferatuBg[];
-extern struct ProcCmd ProcScr_efxResireBG2[];
 extern u32 gEfxHpBarResireFlag;
 extern const u16 gFrameConfig_081E8570[];
-extern struct ProcCmd ProcScr_efxResireRST[];
 
 void StartSpellAnimNosferatu(struct Anim * anim);
 void efxResire_Loop_Main(struct ProcEfx * proc);
@@ -32,6 +26,141 @@ void efxResireRST_Loop(struct ProcEfxRST * proc);
 
 extern const u16 StartSubSpell_efxResireBG_frames[];
 extern const u16 StartSubSpell_efxResireBG2_frames[];
+
+CONST_DATA struct ProcCmd ProcScr_efxResire[] = {
+    PROC_19,
+    PROC_REPEAT(efxResire_Loop_Main),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxResireBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxResireBG_Loop_A),
+    PROC_REPEAT(efxResireBG_Loop_B),
+    PROC_REPEAT(efxResireBG_Loop_C),
+    PROC_REPEAT(efxResireBG_Loop_D),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxResireBG2[] = {
+    PROC_19,
+    PROC_REPEAT(efxResireBG2_Loop),
+    PROC_END,
+};
+
+CONST_DATA u16 * ImgArray_NosferatuBg[] = {
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822A27C,
+    (u16 *) 0x0822AD4C,
+    (u16 *) 0x0822AD4C,
+    (u16 *) 0x0822AD4C,
+    (u16 *) 0x0822B8F4,
+    (u16 *) 0x0822B8F4,
+    (u16 *) 0x0822C44C,
+    (u16 *) 0x0822C44C,
+    (u16 *) 0x0822CF00,
+    (u16 *) 0x0822CF00,
+    (u16 *) 0x0822D9D0,
+    (u16 *) 0x0822D9D0,
+    (u16 *) 0x0822D9D0,
+    (u16 *) 0x0822E694,
+    (u16 *) 0x0822E694,
+    (u16 *) 0x0822E694,
+    (u16 *) 0x0822EF98,
+    (u16 *) 0x0822EF98,
+    (u16 *) 0x0822EF98,
+    (u16 *) 0x0822EF98,
+    (u16 *) 0x0822EF98,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822F4EC,
+    (u16 *) 0x0822FE04,
+    (u16 *) 0x0822FE04,
+    (u16 *) 0x0822FE04,
+    (u16 *) 0x0822FE04,
+    (u16 *) 0x08230A38,
+    (u16 *) 0x08230A38,
+    (u16 *) 0x08230A38,
+    (u16 *) 0x082316DC,
+    (u16 *) 0x082316DC,
+    (u16 *) 0x082316DC,
+    (u16 *) 0x082322D0,
+    (u16 *) 0x082322D0,
+    (u16 *) 0x082322D0,
+    (u16 *) 0x082322D0,
+    (u16 *) 0x082322D0,
+};
+
+CONST_DATA u16 * TsaArray_NosferatuBg[] = {
+    (u16 *) 0x08232BD0,
+    (u16 *) 0x08232D00,
+    (u16 *) 0x08232DAC,
+    (u16 *) 0x08232E5C,
+    (u16 *) 0x08232F14,
+    (u16 *) 0x08232FD4,
+    (u16 *) 0x082330A0,
+    (u16 *) 0x08233180,
+    (u16 *) 0x08233268,
+    (u16 *) 0x08233370,
+    (u16 *) 0x0823348C,
+    (u16 *) 0x082335C8,
+    (u16 *) 0x08233718,
+    (u16 *) 0x08233870,
+    (u16 *) 0x082339C8,
+    (u16 *) 0x08233B1C,
+    (u16 *) 0x08233C6C,
+    (u16 *) 0x08233DBC,
+    (u16 *) 0x08233EF4,
+    (u16 *) 0x08234020,
+    (u16 *) 0x0823413C,
+    (u16 *) 0x08234248,
+    (u16 *) 0x08234340,
+    (u16 *) 0x0823442C,
+    (u16 *) 0x082344FC,
+    (u16 *) 0x082345B8,
+    (u16 *) 0x0823466C,
+    (u16 *) 0x0823471C,
+    (u16 *) 0x082347C8,
+    (u16 *) 0x08234870,
+    (u16 *) 0x08234924,
+    (u16 *) 0x082349E4,
+    (u16 *) 0x08234AB0,
+    (u16 *) 0x08234B78,
+    (u16 *) 0x08234C40,
+    (u16 *) 0x08234D14,
+    (u16 *) 0x08234DF0,
+    (u16 *) 0x08234ED8,
+    (u16 *) 0x08234FCC,
+    (u16 *) 0x082350D4,
+    (u16 *) 0x082351DC,
+    (u16 *) 0x08235300,
+    (u16 *) 0x08235420,
+    (u16 *) 0x0823553C,
+    (u16 *) 0x0823564C,
+    (u16 *) 0x08235758,
+    (u16 *) 0x08235858,
+    (u16 *) 0x08235948,
+    (u16 *) 0x08235A24,
+    (u16 *) 0x08235AF0,
+    (u16 *) 0x08235BA8,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxResireRST[] = {
+    PROC_19,
+    PROC_REPEAT(efxResireRST_Loop),
+    PROC_END,
+};
 
 // 9.99 efxmagic-nosferatu:StartSpellAnimNosferatu
 void StartSpellAnimNosferatu(struct Anim * anim)

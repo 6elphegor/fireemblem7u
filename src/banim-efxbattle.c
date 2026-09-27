@@ -41,10 +41,6 @@ struct ProcEfxQuake {
     /* 64 */ struct Anim * unk_64;
 };
 
-extern struct ProcCmd ProcScr_efxFarAttack[];
-extern struct ProcCmd ProcScr_efxHitQuakePure[];
-extern struct ProcCmd ProcScr_efxQuake[];
-extern const void * EfxQuakePureVecs[];
 
 extern const s16 gEfxQuakeVecs0[];
 extern const s16 gEfxQuakeVecs[];
@@ -76,6 +72,71 @@ void sub_08055468(s16 distance, s16 pos);
 void sub_080554FC(int x);
 
 void sub_0804E6DC(int xPos);
+
+void efxHitQuakePure_Loop_Null(void);
+void efxHitQuake_Loop(struct ProcEfxQuake * proc);
+void efxQuakePure_Loop(struct ProcEfxQuake * proc);
+void efxQuake_Loop(struct ProcEfxQuake * proc);
+void sub_0804E5AC(struct ProcEfxFarAttack * proc);
+void sub_0804E5DC(struct ProcEfxFarAttack * proc);
+void sub_0804E648(struct ProcEfxFarAttack * proc);
+
+CONST_DATA struct ProcCmd ProcScr_efxFarAttack[] = {
+    PROC_19,
+    PROC_REPEAT(sub_0804E5AC),
+    PROC_REPEAT(sub_0804E5DC),
+    PROC_REPEAT(sub_0804E648),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_EfxQuakePure[] = {
+    PROC_19,
+    PROC_REPEAT(efxQuakePure_Loop),
+    PROC_END,
+};
+
+CONST_DATA const void * EfxQuakePureVecs[] = {
+    gEfxQuakeVecs0,
+    NULL,
+    gEfxQuakeVecs,
+    NULL,
+    gEfxQuakeVecs1,
+    NULL,
+    gEfxQuakeVecs2,
+    NULL,
+    gEfxQuakeVecs3,
+    NULL,
+    gEfxQuakeVecs4,
+    NULL,
+    (const void *) 0x081D8166,
+    NULL,
+    (const void *) 0x081D8178,
+    NULL,
+    (const void *) 0x081D819A,
+    NULL,
+    (const void *) 0x081D81AC,
+    NULL,
+    (const void *) 0x081D81BE,
+    NULL,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxHitQuakePure[] = {
+    PROC_19,
+    PROC_REPEAT(efxHitQuakePure_Loop_Null),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxQuake[] = {
+    PROC_19,
+    PROC_REPEAT(efxQuake_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_EfxHitQuake[] = {
+    PROC_19,
+    PROC_REPEAT(efxHitQuake_Loop),
+    PROC_END,
+};
 
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg)
 {

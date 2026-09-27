@@ -21,6 +21,47 @@ extern struct ProcCmd CONST_DATA ProcScr_085A9FA0[];
 
 extern u16 CONST_DATA gUnknown_085A9FB0[];
 
+CONST_DATA struct ProcCmd ProcScr_LinkArenaPointsBox[] = {
+    PROC_CALL(LAPointsBox_LoadBoxes),
+    PROC_CALL(LAPointsBox_Dummy),
+    PROC_END,
+};
+
+CONST_DATA int gUnknown_085AA084[] = {
+    0, -20, -16, 0, 0, 12, 16, 0,
+};
+
+CONST_DATA s16 gUnknown_085AA0A4[] = {
+    0, 0, 1, 1, 1, 1, 1, 1,
+    2, 2, 2, 1, 1, 1, 1, 1,
+    1, 1, 0,
+};
+
+CONST_DATA s16 gUnknown_085AA0CA[] = {
+    0, -1, 3, 3, 2, 2, 1, 0,
+    0, 0, 0, 0, -1, -2, -2, -3,
+    -3, 1, 0,
+};
+
+CONST_DATA struct ProcCmd ProcScr_LinkArena_PointsNumberMover[] = {
+    PROC_YIELD,
+    PROC_CALL(PointsNumberMover_Init),
+    PROC_REPEAT(PointsNumberMover_LoopNumberEmerge),
+    PROC_REPEAT(PointsNumberMover_LoopMoveToPointsBox),
+    PROC_CALL(PointsNumberMover_InitScoreChange),
+    PROC_REPEAT(PointsNumberMover_TickScore),
+    PROC_REPEAT(PointsNumberMover_AwaitEnd),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_LinkArena_PointsSpriteText[] = {
+    PROC_YIELD,
+    PROC_CALL(PointsSpriteText_Init),
+    PROC_REPEAT(PointsSpriteText_LoopIn),
+    PROC_REPEAT(PointsSpriteText_LoopOut),
+    PROC_END,
+};
+
 //! FE8U = 0x08048884
 void sub_080440E8(struct SioProc85A971C_Unk44 * buf)
 {
@@ -139,7 +180,6 @@ void LAPointsBox_Dummy(void)
     return;
 }
 
-extern struct ProcCmd CONST_DATA ProcScr_LinkArenaPointsBox[];
 
 //! FE8U = 0x08048A6C
 void StartLinkArenaPointsBox(void)
@@ -161,7 +201,6 @@ void EndLinkArenaPointsBox(void)
     return;
 }
 
-extern int CONST_DATA gUnknown_085AA084[];
 
 //! FE8U = 0x08048AA8
 void PointsNumberMover_Init(struct PointsNumberMoverProc * proc)
@@ -200,9 +239,7 @@ void PointsNumberMover_Init(struct PointsNumberMoverProc * proc)
     return;
 }
 
-extern s16 CONST_DATA gUnknown_085AA0A4[];
 
-extern s16 CONST_DATA gUnknown_085AA0CA[];
 
 /**
  * Effect where the score numbers "emerge" from the unit
@@ -342,7 +379,6 @@ void PointsNumberMover_AwaitEnd(struct PointsNumberMoverProc * proc)
     return;
 }
 
-extern struct ProcCmd CONST_DATA ProcScr_LinkArena_PointsNumberMover[];
 
 //! FE8U = 0x08048E84
 void PointsSpriteText_Init(struct PointsSpriteTextProc * proc)
@@ -423,7 +459,6 @@ void PointsSpriteText_LoopOut(struct PointsSpriteTextProc * proc)
  * after combat in the Link Arena.
 */
 
-extern struct ProcCmd CONST_DATA ProcScr_LinkArena_PointsSpriteText[];
 
 //! FE8U = 0x080490EC
 s8 sub_08044940(int x, int y, const char * str, u8 flag, ProcPtr parent)

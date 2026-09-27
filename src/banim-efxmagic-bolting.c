@@ -5,18 +5,11 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd gProcScr_efxThunderstorm[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd gProcScr_efxThunderstormBG[];
-extern u16 * TsaArray_BoltingBg[];
-extern u16 * ImgArray_BoltingBg[];
 extern u16 Pal_BoltingBg[];
-extern struct ProcCmd gProcScr_efxThunderstormOBJ[];
 extern u32 AnimScr_EfxThunderstormOBJ[];
 extern u16 Pal_BoltingSprites[];
 extern u16 Img_BoltingSprites[];
-extern struct ProcCmd gProcScr_efxThunderstormCOLOR[];
-extern struct ProcCmd gProcScr_efxThunderstormDARK[];
 
 void StartSpellAnimBolting(struct Anim * anim);
 void efxThunderstorm_Loop_Main(struct ProcEfx * proc);
@@ -34,6 +27,72 @@ void efxThunderstormDark_Loop_A(struct ProcEfxBGCOL * proc);
 void efxThunderstormDark_Loop_B(struct ProcEfxBGCOL * proc);
 
 extern const u16 StartSubSpell_efxThunderstormBG_frames[];
+
+CONST_DATA struct ProcCmd gProcScr_efxThunderstorm[] = {
+    PROC_19,
+    PROC_REPEAT(efxThunderstorm_Loop_Main),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_efxThunderstormBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxThunderstormBG_Loop),
+    PROC_END,
+};
+
+CONST_DATA u16 * ImgArray_BoltingBg[] = {
+    (u16 *) 0x0820ABBC,
+    (u16 *) 0x0820ABBC,
+    (u16 *) 0x0820ABBC,
+    (u16 *) 0x0820ABBC,
+    (u16 *) 0x0820B78C,
+    (u16 *) 0x0820B78C,
+    (u16 *) 0x0820B78C,
+    (u16 *) 0x0820B78C,
+    (u16 *) 0x0820B78C,
+    (u16 *) 0x0820B78C,
+    (u16 *) 0x0820C7F8,
+};
+
+CONST_DATA u16 * TsaArray_BoltingBg[] = {
+    (u16 *) 0x0820D5E4,
+    (u16 *) 0x0820D778,
+    (u16 *) 0x0820D980,
+    (u16 *) 0x0820DAE4,
+    (u16 *) 0x0820DBC4,
+    (u16 *) 0x0820DCDC,
+    (u16 *) 0x0820DE88,
+    (u16 *) 0x0820DFA8,
+    (u16 *) 0x0820E094,
+    (u16 *) 0x0820E17C,
+    (u16 *) 0x0820E214,
+};
+
+CONST_DATA struct ProcCmd gProcScr_efxThunderstormOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxThunderstormOBJ_Loop),
+    PROC_SLEEP(100),
+    PROC_REPEAT(efxThunderstormOBJ_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_efxThunderstormCOLOR[] = {
+    PROC_19,
+    PROC_SLEEP(94),
+    PROC_REPEAT(efxThunderstormColor_Loop_A),
+    PROC_SLEEP(3),
+    PROC_REPEAT(efxThunderstormColor_Loop_B),
+    PROC_SLEEP(20),
+    PROC_REPEAT(efxThunderstormColor_Loop_C),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_efxThunderstormDARK[] = {
+    PROC_19,
+    PROC_REPEAT(efxThunderstormDark_Loop_A),
+    PROC_REPEAT(efxThunderstormDark_Loop_B),
+    PROC_END,
+};
 
 // 9.99 efxmagic-bolting:StartSpellAnimBolting
 void StartSpellAnimBolting(struct Anim * anim)

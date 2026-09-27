@@ -58,23 +58,7 @@ extern int gEkrWindowAppearExist;
 extern int gEkrNamewinAppearExist;
 extern int gProcEkrBaseAppearExist;
 
-extern struct ProcCmd CONST_DATA ProcScr_EkrBaseKaiten[];
-extern struct ProcCmd CONST_DATA ProcScr_ekrUnitKakudai[];
-extern const u8 * CONST_DATA Imgs_085B9B84[];
-extern const u8 * CONST_DATA Imgs_085B9BA4[];
-extern u32 * CONST_DATA AnimScrs_085B9BC4[];
-extern u32 * CONST_DATA AnimScrs_085B9BE4[];
-extern u32 * CONST_DATA AnimScrs_085B9C04[];
-extern u32 * CONST_DATA AnimScrs_085B9C24[];
-extern u32 * CONST_DATA AnimScrs_085B9C44[];
-extern u32 * CONST_DATA AnimScrs_085B9C64[];
-extern const u16 * CONST_DATA gUnknown_085B9C84[];
-extern const u16 * CONST_DATA gUnknown_085B9CA4[];
-extern const u16 * CONST_DATA gUnknown_085B9CC4[];
 extern const u16 Pal_080DC85C[];
-extern struct ProcCmd CONST_DATA ProcScr_ekrWindowAppear[];
-extern struct ProcCmd CONST_DATA ProcScr_ekrNamewinAppear[];
-extern struct ProcCmd CONST_DATA ProcScr_ekrBaseAppear[];
 
 void EkrGauge_0804CC78(s16 x, s16 y);
 void EkrGauge_ClrInitFlag(void);
@@ -99,6 +83,169 @@ struct CharacterDataBanimView {
     u8 banim_unique[2];
 };
 extern struct BattleAnimDef const * CONST_DATA gUnitSpecificBanimConfigs[];
+
+void EkrBaseAppearMain(struct ProcEkrIntroWindow * proc);
+void EkrBaseKaitenMain(struct ProcEkrBaseKaiten * proc);
+void EkrNamewinAppearDelay(struct ProcEkrIntroWindow * proc);
+void EkrNamewinAppearMain(struct ProcEkrIntroWindow * proc);
+void EkrWindowAppearMain(struct ProcEkrIntroWindow * proc);
+void UnitKakudai1(struct ProcUnitKakudai * proc);
+void UnitKakudai2(struct ProcUnitKakudai * proc);
+void UnitKakudaiEndNop(struct ProcUnitKakudai * proc);
+
+CONST_DATA struct ProcCmd ProcScr_EkrBaseKaiten[] = {
+    PROC_19,
+    PROC_REPEAT(EkrBaseKaitenMain),
+    PROC_END,
+};
+
+CONST_DATA const u8 * Imgs_085B9B84[] = {
+    (const u8 *) 0x081E6CD4,
+    NULL,
+    (const u8 *) 0x081E6CD4,
+    NULL,
+    (const u8 *) 0x081E67D0,
+    NULL,
+    (const u8 *) 0x081E6CD4,
+    NULL,
+};
+
+CONST_DATA const u8 * Imgs_085B9BA4[] = {
+    (const u8 *) 0x081E7160,
+    (const u8 *) 0x081E75B8,
+    (const u8 *) 0x081E75B8,
+    (const u8 *) 0x081E75B8,
+    (const u8 *) 0x081E7AEC,
+    (const u8 *) 0x081E75B8,
+    (const u8 *) 0x081E75B8,
+    (const u8 *) 0x081E75B8,
+};
+
+CONST_DATA u32 * AnimScrs_085B9BC4[] = {
+    (u32 *) 0x08B9F428,
+    NULL,
+    (u32 *) 0x08B9F448,
+    NULL,
+    (u32 *) 0x08B9E798,
+    NULL,
+    (u32 *) 0x08B9F46C,
+    NULL,
+};
+
+CONST_DATA u32 * AnimScrs_085B9BE4[] = {
+    (u32 *) 0x08B9FCFC,
+    (u32 *) 0x08BA0B60,
+    (u32 *) 0x08BA0B60,
+    (u32 *) 0x08BA0B60,
+    (u32 *) 0x08BA1364,
+    (u32 *) 0x08BA0B84,
+    (u32 *) 0x08BA0B84,
+    (u32 *) 0x08BA0B84,
+};
+
+CONST_DATA u32 * AnimScrs_085B9C04[] = {
+    (u32 *) 0x08B9FCD8,
+    (u32 *) 0x08BA0B18,
+    (u32 *) 0x08BA0B18,
+    (u32 *) 0x08BA0B18,
+    (u32 *) 0x08BA1340,
+    (u32 *) 0x08BA0B3C,
+    (u32 *) 0x08BA0B3C,
+    (u32 *) 0x08BA0B3C,
+};
+
+CONST_DATA u32 * AnimScrs_085B9C24[] = {
+    (u32 *) 0x08B9F490,
+    NULL,
+    (u32 *) 0x08B9F4B0,
+    NULL,
+    (u32 *) 0x08B9E7BC,
+    NULL,
+    (u32 *) 0x08B9F4D4,
+    NULL,
+};
+
+CONST_DATA u32 * AnimScrs_085B9C44[] = {
+    (u32 *) 0x08B9FD44,
+    (u32 *) 0x08BA0BF0,
+    (u32 *) 0x08BA0BF0,
+    (u32 *) 0x08BA0BF0,
+    (u32 *) 0x08BA13AC,
+    (u32 *) 0x08BA0C14,
+    (u32 *) 0x08BA0C14,
+    (u32 *) 0x08BA0C14,
+};
+
+CONST_DATA u32 * AnimScrs_085B9C64[] = {
+    (u32 *) 0x08B9FD20,
+    (u32 *) 0x08BA0BA8,
+    (u32 *) 0x08BA0BA8,
+    (u32 *) 0x08BA0BA8,
+    (u32 *) 0x08BA1388,
+    (u32 *) 0x08BA0BCC,
+    (u32 *) 0x08BA0BCC,
+    (u32 *) 0x08BA0BCC,
+};
+
+CONST_DATA const u16 * gUnknown_085B9C84[] = {
+    (const u16 *) 0x081D8458,
+    NULL,
+    (const u16 *) 0x081D8468,
+    NULL,
+    (const u16 *) 0x081D8448,
+    NULL,
+    (const u16 *) 0x081D8478,
+    NULL,
+};
+
+CONST_DATA const u16 * gUnknown_085B9CA4[] = {
+    (const u16 *) 0x081D8498,
+    (const u16 *) 0x081D84C8,
+    (const u16 *) 0x081D84C8,
+    (const u16 *) 0x081D84C8,
+    (const u16 *) 0x081D84F8,
+    (const u16 *) 0x081D84D8,
+    (const u16 *) 0x081D84D8,
+    (const u16 *) 0x081D84D8,
+};
+
+CONST_DATA const u16 * gUnknown_085B9CC4[] = {
+    (const u16 *) 0x081D8488,
+    (const u16 *) 0x081D84A8,
+    (const u16 *) 0x081D84A8,
+    (const u16 *) 0x081D84A8,
+    (const u16 *) 0x081D84E8,
+    (const u16 *) 0x081D84B8,
+    (const u16 *) 0x081D84B8,
+    (const u16 *) 0x081D84B8,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ekrUnitKakudai[] = {
+    PROC_19,
+    PROC_REPEAT(UnitKakudai1),
+    PROC_REPEAT(UnitKakudai2),
+    PROC_REPEAT(UnitKakudaiEndNop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ekrWindowAppear[] = {
+    PROC_19,
+    PROC_REPEAT(EkrWindowAppearMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ekrNamewinAppear[] = {
+    PROC_19,
+    PROC_REPEAT(EkrNamewinAppearDelay),
+    PROC_REPEAT(EkrNamewinAppearMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ekrBaseAppear[] = {
+    PROC_19,
+    PROC_REPEAT(EkrBaseAppearMain),
+    PROC_END,
+};
 
 void NewEkrBaseKaiten(int identifier)
 {

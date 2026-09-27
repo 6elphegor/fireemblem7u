@@ -67,21 +67,9 @@ struct ProcEkrClasschgRST {
 extern struct ProcEkrClasschg * gpProcEkrClasschg;
 extern int gEfxBgSemaphore;
 
-extern struct ProcCmd ProcScr_ekrClasschg[];
-extern struct ProcCmd ProcScr_efxClasschgBG[];
-extern struct ProcCmd ProcScr_efxClasschgBGSE00[];
-extern struct ProcCmd ProcScr_efxClasschgBGSE01[];
-extern struct ProcCmd ProcScr_efxClasschgOBJ[];
-extern struct ProcCmd ProcScr_efxClasschgFIN[];
-extern struct ProcCmd ProcScr_efxClasschgCLONE[];
-extern struct ProcCmd ProcScr_efxBlackInOutUnit[];
-extern struct ProcCmd ProcScr_efxClasschgRST[];
 
 extern const u16 FrameLut_EkrClasschgBG1[];
 extern const u16 FrameLut_EkrClasschgBG2[];
-extern u16 * TsaLut_EkrClasschgBG[];
-extern u16 * ImgLut_EkrClasschgBG[];
-extern u16 * PalLut_EkrClasschgBG[];
 extern AnimScr AnimScr_EfxClasschgOBJ[];
 extern const u16 Pal_BoltingSprites[];
 extern const u8 Img_BoltingSprites[];
@@ -103,6 +91,153 @@ void NewEfxClasschgFIN(struct Anim * anim, int duration);
 void NewEfxClasschgCLONE(struct Anim * anim, int duration);
 void NewEfxBlackInOutUnit(struct Anim * anim, int duration, int arg);
 void NewEfxClasschgRST(struct Anim * anim, struct ProcSubEkrClasschgRST * subproc, int duration, int start, int end);
+
+void EfxBlackInOutUnitMain(struct ProcEfxClasschgInOutUnit * proc);
+void EfxClasschgBGSE00Main(struct ProcEfxBG * proc);
+void EfxClasschgBGSE01Main(struct ProcEfxBG * proc);
+void EfxClasschgBgMain(struct ProcEfxBG * proc);
+void EfxClasschgCloneCallBack(void);
+void EfxClasschgCloneMain(struct ProcEfxBG * proc);
+void EfxClasschgFinMain(struct ProcEfxBG * proc);
+void EfxClasschgOBJMain(struct ProcEfxOBJ * proc);
+void EfxClasschgRSTMain(struct ProcEkrClasschgRST * proc);
+void EkrClasschgMain(struct ProcEkrClasschg * proc);
+void EkrClasschgRegisterDone(struct ProcEkrClasschg * proc);
+
+CONST_DATA struct ProcCmd ProcScr_ekrClasschg[] = {
+    PROC_19,
+    PROC_REPEAT(EkrClasschgMain),
+    PROC_REPEAT(EkrClasschgRegisterDone),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxClasschgBG[] = {
+    PROC_19,
+    PROC_REPEAT(EfxClasschgBgMain),
+    PROC_END,
+};
+
+CONST_DATA u16 * TsaLut_EkrClasschgBG[] = {
+    (u16 *) 0x081F65C0,
+    (u16 *) 0x081F6778,
+    (u16 *) 0x081F690C,
+    (u16 *) 0x081F6AC4,
+    (u16 *) 0x081F6C88,
+    (u16 *) 0x081F6DC4,
+    (u16 *) 0x081F6E5C,
+    (u16 *) 0x081F6F50,
+    (u16 *) 0x081F7040,
+    (u16 *) 0x081F7130,
+    (u16 *) 0x081F7298,
+    (u16 *) 0x081F73AC,
+    (u16 *) 0x081F7528,
+    (u16 *) 0x081F7650,
+    (u16 *) 0x081F7834,
+    (u16 *) 0x081F7984,
+    (u16 *) 0x081F7B10,
+    (u16 *) 0x081F7BFC,
+    (u16 *) 0x081F7CDC,
+    (u16 *) 0x081F7DD4,
+    (u16 *) 0x081F7EF8,
+    (u16 *) 0x081F8044,
+    (u16 *) 0x081F81B4,
+};
+
+CONST_DATA u16 * ImgLut_EkrClasschgBG[] = {
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F4254,
+    (u16 *) 0x081F57E4,
+    (u16 *) 0x081F57E4,
+    (u16 *) 0x081F57E4,
+    (u16 *) 0x081F57E4,
+    (u16 *) 0x081F57E4,
+    (u16 *) 0x081F57E4,
+};
+
+CONST_DATA u16 * PalLut_EkrClasschgBG[] = {
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6560,
+    (u16 *) 0x081F6580,
+    (u16 *) 0x081F6580,
+    (u16 *) 0x081F6580,
+    (u16 *) 0x081F6580,
+    (u16 *) 0x081F6580,
+    (u16 *) 0x081F6580,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxClasschgBGSE00[] = {
+    PROC_19,
+    PROC_REPEAT(EfxClasschgBGSE00Main),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxClasschgBGSE01[] = {
+    PROC_19,
+    PROC_REPEAT(EfxClasschgBGSE01Main),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxClasschgOBJ[] = {
+    PROC_19,
+    PROC_SLEEP(100),
+    PROC_REPEAT(EfxClasschgOBJMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxClasschgFIN[] = {
+    PROC_19,
+    PROC_REPEAT(EfxClasschgFinMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxClasschgCLONE[] = {
+    PROC_19,
+    PROC_SET_END_CB(EfxClasschgCloneCallBack),
+    PROC_REPEAT(EfxClasschgCloneMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxBlackInOutUnit[] = {
+    PROC_19,
+    PROC_REPEAT(EfxBlackInOutUnitMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxClasschgRST[] = {
+    PROC_19,
+    PROC_REPEAT(EfxClasschgRSTMain),
+    PROC_END,
+};
 
 bool EkrClasschgFinished(void)
 {
