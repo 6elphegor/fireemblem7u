@@ -204,7 +204,7 @@ void CleanTalkObjects(int chr, int lines, int default_val, ProcPtr parent);
 void TalkAdvance_Init(struct ProcTalkAdvance * proc);
 void TalkAdvance_Loop(struct ProcTalkAdvance * proc);
 
-extern struct ProcCmd gUnk_08BFFB30[];
+extern struct ProcCmd gUnk_08B90980[];
 extern struct TalkSt * CONST_DATA sTalkSt;
 extern struct ProcCmd gUnk_08BFFB6C[];
 extern struct ProcCmd ProcScr_Talk[];

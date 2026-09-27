@@ -28,7 +28,7 @@ _080000C0:
 	msr cpsr_fc, r0
 	ldr sp, _080000F4 @ =0x03007E00
 	ldr r1, _0800021C @ =0x03007FFC
-	add r0, pc, #0x18 @ =IntrMain
+	add r0, pc, #0x18 @ =IrqMain
 	str r0, [r1]
 	ldr r1, _08000220 @ =AgbMain
 	mov lr, pc
@@ -38,8 +38,8 @@ _080000F0:
 _080000F4: .4byte 0x03007E00
 _080000F8: .4byte 0x03007FA0
 
-	arm_func_start IntrMain
-IntrMain: @ 0x080000FC
+	arm_func_start IrqMain
+IrqMain: @ 0x080000FC
 	mov r3, #0x4000000
 	add r3, r3, #0x200
 	ldr r2, [r3]

@@ -38,7 +38,7 @@ $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to 0x09000000 $< $@
 
 $(ELF): $(OBJS) $(LDS) $(LAYOUT) symbols.ld
-	$(LD) -T $(LDS) -Map $(MAP) -o $@ $(OBJS)
+	$(LD) -T $(LDS) -Map $(MAP) --no-warn-rwx-segments -o $@ $(OBJS)
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0

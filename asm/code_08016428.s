@@ -69,7 +69,7 @@ _0801648A:
 	ldr r0, _080164F0 @ =0x08BE222C
 	adds r4, r1, r0
 	ldrh r0, [r4]
-	bl GetMsg
+	bl DecodeMsg
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
@@ -148,7 +148,7 @@ _08016524:
 	ldr r0, _080165C0 @ =0x08BE222C
 	adds r5, r1, r0
 	ldrh r0, [r5]
-	bl GetMsg
+	bl DecodeMsg
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
@@ -243,7 +243,7 @@ DrawItemMenuLineNoColor: @ 0x080165DC
 	ldr r0, _0801664C @ =0x08BE222C
 	adds r5, r1, r0
 	ldrh r0, [r5]
-	bl GetMsg
+	bl DecodeMsg
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
@@ -316,7 +316,7 @@ sub_08016668: @ 0x08016668
 	ldr r0, _08016714 @ =0x08BE222C
 	adds r5, r1, r0
 	ldrh r0, [r5]
-	bl GetMsg
+	bl DecodeMsg
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
@@ -481,8 +481,8 @@ _080167C0:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start CanItemReachDistance
-CanItemReachDistance: @ 0x080167C8
+	thumb_func_start IsItemCoveringRange
+IsItemCoveringRange: @ 0x080167C8
 	adds r3, r1, #0
 	movs r1, #0xff
 	ands r0, r1
@@ -508,8 +508,8 @@ _080167F0:
 _080167F2:
 	bx lr
 
-	thumb_func_start UnitEquipItemSlot
-UnitEquipItemSlot: @ 0x080167F4
+	thumb_func_start EquipUnitItemSlot
+EquipUnitItemSlot: @ 0x080167F4
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	lsls r4, r1, #1
@@ -701,7 +701,7 @@ _08016936:
 _0801693A:
 	ldr r0, [sp, #0x24]
 _0801693C:
-	bl GetMsg
+	bl DecodeMsg
 	add sp, #0x28
 	pop {r4, r5}
 	pop {r1}
@@ -786,7 +786,7 @@ _080169CC:
 	lsls r0, r4, #2
 	add r0, sp
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	add sp, #0x20
 	pop {r4, r5}
 	pop {r1}
@@ -830,7 +830,7 @@ GetItemKindString: @ 0x08016A08
 	lsls r0, r0, #2
 	add r0, sp
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	add sp, #0x2c
 	pop {r4, r5}
 	pop {r1}
@@ -901,8 +901,8 @@ _08016AAA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start IsItemDisplayUseable
-IsItemDisplayUseable: @ 0x08016AB0
+	thumb_func_start IsItemDisplayUsable
+IsItemDisplayUsable: @ 0x08016AB0
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	adds r2, r1, #0
@@ -1140,8 +1140,8 @@ _08016D00:
 	.align 2, 0
 _08016D08: .4byte 0x08BE222C
 
-	thumb_func_start FindUnitItemSlot
-FindUnitItemSlot: @ 0x08016D0C
+	thumb_func_start GetUnitItemSlot
+GetUnitItemSlot: @ 0x08016D0C
 	push {r4, r5, lr}
 	movs r3, #0
 	movs r4, #0xff
@@ -1767,8 +1767,8 @@ _080171A6:
 _080171AC: .4byte 0x08BE222C
 _080171B0: .4byte 0x0202BBF8
 
-	thumb_func_start GetItemIid
-GetItemIid: @ 0x080171B4
+	thumb_func_start GetItemIndex
+GetItemIndex: @ 0x080171B4
 	adds r1, r0, #0
 	movs r0, #0xff
 	ands r0, r1
@@ -1785,7 +1785,7 @@ GetItemName: @ 0x080171BC
 	ldr r0, _080171E0 @ =0x08BE222C
 	adds r1, r1, r0
 	ldrh r0, [r1]
-	bl GetMsg
+	bl DecodeMsg
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
@@ -1809,7 +1809,7 @@ GetItemNameWithArticle: @ 0x080171E4
 	ldr r1, _08017228 @ =0x08BE222C
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r0, r4, #0
 	bl GetItemAttributes
 	movs r1, #0x10
@@ -1860,8 +1860,8 @@ GetItemUseDescId: @ 0x08017244
 	.align 2, 0
 _08017258: .4byte 0x08BE222C
 
-	thumb_func_start GetItemKind
-GetItemKind: @ 0x0801725C
+	thumb_func_start GetItemType
+GetItemType: @ 0x0801725C
 	cmp r0, #0
 	beq _08017278
 	movs r1, #0xff
@@ -2110,8 +2110,8 @@ GetItemBonuses: @ 0x080173E8
 	.align 2, 0
 _080173FC: .4byte 0x08BE222C
 
-	thumb_func_start GetItemIcon
-GetItemIcon: @ 0x08017400
+	thumb_func_start GetItemIconId
+GetItemIconId: @ 0x08017400
 	cmp r0, #0
 	beq _0801741C
 	movs r1, #0xff
@@ -2213,8 +2213,8 @@ GetItemAwardedExp: @ 0x08017494
 	.align 2, 0
 _080174A8: .4byte 0x08BE222C
 
-	thumb_func_start GetIInfo
-GetIInfo: @ 0x080174AC
+	thumb_func_start GetItemData
+GetItemData: @ 0x080174AC
 	adds r1, r0, #0
 	lsls r0, r1, #3
 	adds r0, r0, r1
@@ -2344,7 +2344,7 @@ GetFreeBlueUnit: @ 0x08017584
 	push {r4, r5, lr}
 	movs r5, #0x40
 	ldrb r4, [r0]
-	bl GetLeaderPid
+	bl GetPlayerLeaderUnitId
 	movs r2, #1
 	ldr r4, _080175A8 @ =0x08B92EB0
 	movs r3, #0xff
@@ -2580,7 +2580,7 @@ UnitHasItem: @ 0x080176F8
 	adds r4, r0, #0
 	adds r5, r1, #0
 	adds r0, r5, #0
-	bl GetItemIid
+	bl GetItemIndex
 	adds r5, r0, #0
 	movs r6, #0
 	ldrh r0, [r4, #0x1e]
@@ -2589,7 +2589,7 @@ UnitHasItem: @ 0x080176F8
 	adds r4, #0x1e
 _08017710:
 	ldrh r0, [r4]
-	bl GetItemIid
+	bl GetItemIndex
 	cmp r0, r5
 	bne _0801771E
 	movs r0, #1
@@ -2617,7 +2617,7 @@ LoadUnits: @ 0x08017734
 	b _08017746
 _0801773C:
 	adds r0, r4, #0
-	bl CreateUnit
+	bl LoadUnit
 	adds r4, #0x10
 	adds r5, #1
 _08017746:
@@ -2661,8 +2661,8 @@ _08017776:
 _08017786:
 	bx lr
 
-	thumb_func_start CreateUnit
-CreateUnit: @ 0x08017788
+	thumb_func_start LoadUnit
+LoadUnit: @ 0x08017788
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #0
@@ -2720,24 +2720,24 @@ _080177C4:
 	cmp r0, #0
 	bne _08017804
 	adds r0, r4, #0
-	bl sub_08017BC0
+	bl UnitAutolevelPlayer
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08017A1C
+	bl UnitAutolevelWExp
 	b _0801781A
 _08017804:
 	adds r0, r4, #0
 	bl UnitAutolevel
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08017A1C
+	bl UnitAutolevelWExp
 	ldrb r1, [r5, #2]
 	adds r0, r4, #0
 	adds r0, #0x38
 	strb r1, [r0]
 _0801781A:
 	adds r0, r4, #0
-	bl sub_080179BC
+	bl FixROMUnitStructPtr
 	adds r0, r4, #0
 	bl UnitLoadSupports
 	ldr r0, [r4]
@@ -2757,7 +2757,7 @@ _0801781A:
 	str r0, [r4, #0xc]
 _08017844:
 	adds r0, r4, #0
-	bl UnitCheckStatOverflow
+	bl UnitCheckStatCaps
 	adds r0, r4, #0
 	bl GetUnitEquippedWeapon
 	lsls r0, r0, #0x10
@@ -2829,7 +2829,7 @@ _080178A6:
 	adds r7, r4, #0
 _080178C4:
 	ldrb r0, [r4]
-	bl CreateItem
+	bl MakeNewItem
 	adds r1, r0, #0
 	adds r0, r5, #0
 	bl UnitAddItem
@@ -2865,7 +2865,7 @@ UnitLoadItemsFromDefinition: @ 0x080178F4
 	adds r6, r4, #0
 _0801790C:
 	ldrb r0, [r4]
-	bl CreateItem
+	bl MakeNewItem
 	adds r1, r0, #0
 	adds r0, r5, #0
 	bl UnitAddItem
@@ -2959,8 +2959,8 @@ _080179B4:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080179BC
-sub_080179BC: @ 0x080179BC
+	thumb_func_start FixROMUnitStructPtr
+FixROMUnitStructPtr: @ 0x080179BC
 	adds r2, r0, #0
 	ldr r3, [r2]
 	ldr r1, [r2, #4]
@@ -3015,8 +3015,8 @@ _08017A16:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08017A1C
-sub_08017A1C: @ 0x08017A1C
+	thumb_func_start UnitAutolevelWExp
+UnitAutolevelWExp: @ 0x08017A1C
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	movs r0, #1
@@ -3071,7 +3071,7 @@ _08017A7E:
 	cmp r1, #0
 	bne _08017AA8
 	adds r0, r4, #0
-	bl GetItemKind
+	bl GetItemType
 	adds r1, r6, #0
 	adds r1, #0x28
 	adds r5, r1, r0
@@ -3175,7 +3175,7 @@ UnitApplyBonusLevels: @ 0x08017B4C
 	adds r0, r4, #0
 	bl UnitAutolevelCore
 	adds r0, r4, #0
-	bl UnitCheckStatOverflow
+	bl UnitCheckStatCaps
 	adds r0, r4, #0
 	bl GetUnitEquippedWeapon
 	lsls r0, r0, #0x10
@@ -3223,8 +3223,8 @@ _08017BA8:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08017BC0
-sub_08017BC0: @ 0x08017BC0
+	thumb_func_start UnitAutolevelPlayer
+UnitAutolevelPlayer: @ 0x08017BC0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	movs r3, #8
@@ -3305,8 +3305,8 @@ _08017C5E:
 	pop {r0}
 	bx r0
 
-	thumb_func_start UnitCheckStatOverflow
-UnitCheckStatOverflow: @ 0x08017C64
+	thumb_func_start UnitCheckStatCaps
+UnitCheckStatCaps: @ 0x08017C64
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	movs r1, #0x12
@@ -3424,8 +3424,8 @@ _08017D2E:
 	pop {r0}
 	bx r0
 
-	thumb_func_start GetUnitByPid
-GetUnitByPid: @ 0x08017D34
+	thumb_func_start GetUnitFromCharId
+GetUnitFromCharId: @ 0x08017D34
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	movs r2, #1
@@ -3501,8 +3501,8 @@ _08017DAC:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start CanUnitCarry
-CanUnitCarry: @ 0x08017DB4
+	thumb_func_start CanUnitRescue
+CanUnitRescue: @ 0x08017DB4
 	push {r4, lr}
 	adds r4, r1, #0
 	bl GetUnitAid
@@ -3549,8 +3549,8 @@ UnitRescue: @ 0x08017DE4
 	bx lr
 	.align 2, 0
 
-	thumb_func_start UnitDropRescue
-UnitDropRescue: @ 0x08017E08
+	thumb_func_start UnitDrop
+UnitDrop: @ 0x08017E08
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -3594,8 +3594,8 @@ _08017E44:
 _08017E54: .4byte 0x08B92EB0
 _08017E58: .4byte 0x0202BBF8
 
-	thumb_func_start UnitGiveRescue
-UnitGiveRescue: @ 0x08017E5C
+	thumb_func_start UnitGive
+UnitGive: @ 0x08017E5C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r6, r1, #0
@@ -3606,11 +3606,11 @@ UnitGiveRescue: @ 0x08017E5C
 	ldr r5, [r0]
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl CanUnitCarry
+	bl CanUnitRescue
 	adds r0, r4, #0
 	movs r1, #0
 	movs r2, #0
-	bl UnitDropRescue
+	bl UnitDrop
 	adds r0, r6, #0
 	adds r1, r5, #0
 	bl UnitRescue
@@ -3620,8 +3620,8 @@ UnitGiveRescue: @ 0x08017E5C
 	.align 2, 0
 _08017E8C: .4byte 0x08B92EB0
 
-	thumb_func_start KillUnit
-KillUnit: @ 0x08017E90
+	thumb_func_start UnitKill
+UnitKill: @ 0x08017E90
 	push {lr}
 	adds r2, r0, #0
 	movs r0, #0xc0
@@ -3766,7 +3766,7 @@ UnitGetDeathDropLocation: @ 0x08017F6C
 	movs r1, #0x11
 	ldrsb r1, [r3, r1]
 	ldr r2, _08018078 @ =0x08BE3C16
-	bl MapFloodExtended
+	bl GenerateExtendedMovementMap
 	ldr r0, _0801807C @ =0x03004690
 	ldr r2, [r0]
 	movs r0, #0x11
@@ -3986,8 +3986,8 @@ _08018158: .4byte 0x0203A85C
 _0801815C: .4byte 0x0202BBB8
 _08018160: .4byte 0x0202E3DC
 
-	thumb_func_start UnitBeginReMoveAction
-UnitBeginReMoveAction: @ 0x08018164
+	thumb_func_start UnitBeginCantoAction
+UnitBeginCantoAction: @ 0x08018164
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r6, _080181B8 @ =0x03004690
@@ -4446,8 +4446,8 @@ _080184D6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start UnitKnowsMagic
-UnitKnowsMagic: @ 0x080184DC
+	thumb_func_start UnitHasMagicRank
+UnitHasMagicRank: @ 0x080184DC
 	adds r2, r0, #0
 	adds r0, #0x2c
 	adds r1, r2, #0
@@ -4506,7 +4506,7 @@ GetUnitKeyItemSlotForTerrain: @ 0x08018524
 	beq _0801854A
 	adds r0, r4, #0
 	movs r1, #0x6a
-	bl FindUnitItemSlot
+	bl GetUnitItemSlot
 	cmp r0, #0
 	bge _08018572
 _0801854A:
@@ -4516,26 +4516,26 @@ _0801854A:
 	bne _0801856A
 	adds r0, r4, #0
 	movs r1, #0x68
-	bl FindUnitItemSlot
+	bl GetUnitItemSlot
 	cmp r0, #0
 	bge _08018572
 	adds r0, r4, #0
 	movs r1, #0x78
-	bl FindUnitItemSlot
+	bl GetUnitItemSlot
 	b _08018572
 _08018568:
 	movs r6, #0x69
 _0801856A:
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl FindUnitItemSlot
+	bl GetUnitItemSlot
 _08018572:
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
 
-	thumb_func_start GetAidIconFromAttributes
-GetAidIconFromAttributes: @ 0x08018578
+	thumb_func_start GetUnitAidIconId
+GetUnitAidIconId: @ 0x08018578
 	adds r1, r0, #0
 	movs r0, #0x80
 	lsls r0, r0, #3
@@ -5417,8 +5417,8 @@ GetUnitLuck: @ 0x08018BB8
 	bx r1
 	.align 2, 0
 
-	thumb_func_start GetUnitFid
-GetUnitFid: @ 0x08018BD8
+	thumb_func_start GetUnitPortraitId
+GetUnitPortraitId: @ 0x08018BD8
 	adds r2, r0, #0
 	ldr r1, [r2]
 	ldrh r0, [r1, #6]
@@ -5575,7 +5575,7 @@ _08018CE0:
 	ldr r0, _08018CEC @ =0x08B92E88
 	ldr r0, [r0]
 _08018CE4:
-	bl GetMsg
+	bl DecodeMsg
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -5591,7 +5591,7 @@ GetUnitStatusName: @ 0x08018CF0
 	lsrs r0, r0, #0x1a
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -5609,8 +5609,8 @@ GetUnit: @ 0x08018D0C
 	.align 2, 0
 _08018D1C: .4byte 0x08B92EB0
 
-	thumb_func_start GetJobInfo
-GetJobInfo: @ 0x08018D20
+	thumb_func_start GetClassData
+GetClassData: @ 0x08018D20
 	adds r1, r0, #0
 	cmp r1, #0
 	ble _08018D34
@@ -5684,7 +5684,7 @@ InitChapterMap: @ 0x08018D88
 	adds r1, r4, #0
 	bl UnpackChapterMap
 	adds r0, r4, #0
-	bl ApplyChapterMapGraphics
+	bl UnpackChapterMapGraphics
 	ldr r0, _08018E44 @ =0x0202E3F8
 	ldr r6, _08018E48 @ =0x0202E3DC
 	ldr r4, _08018E4C @ =0x0202E3D8
@@ -6177,7 +6177,7 @@ UnpackChapterMap: @ 0x08019174
 	adds r4, r0, #0
 	adds r6, r1, #0
 	adds r0, r6, #0
-	bl GetChapterMap
+	bl GetChapterMapPointer
 	adds r1, r4, #0
 	bl Decompress
 	ldr r5, _080191C4 @ =0x0202E3D8
@@ -6214,8 +6214,8 @@ _080191C8: .4byte 0x08C9C9C8
 _080191CC: .4byte 0x02030A90
 _080191D0: .4byte 0x0202BBB8
 
-	thumb_func_start ApplyChapterMapGraphics
-ApplyChapterMapGraphics: @ 0x080191D4
+	thumb_func_start UnpackChapterMapGraphics
+UnpackChapterMapGraphics: @ 0x080191D4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, _08019230 @ =0x08C9C9C8
@@ -7414,7 +7414,7 @@ GetTerrainName: @ 0x08019B08
 	lsls r0, r0, #1
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -7592,8 +7592,8 @@ MapFloodRange_Unitless: @ 0x08019C50
 _08019C78: .4byte 0x0202E3E8
 _08019C7C: .4byte 0x030041E0
 
-	thumb_func_start MapFloodExtended
-MapFloodExtended: @ 0x08019C80
+	thumb_func_start GenerateExtendedMovementMap
+GenerateExtendedMovementMap: @ 0x08019C80
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -10178,7 +10178,7 @@ _0801B03C:
 	cmp r0, #0
 	beq _0801B064
 	adds r0, r4, #0
-	bl UnitKnowsMagic
+	bl UnitHasMagicRank
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0801B128
@@ -10227,7 +10227,7 @@ _0801B086:
 	ldrb r7, [r0]
 	strb r5, [r0]
 	adds r0, r4, #0
-	bl UnitKnowsMagic
+	bl UnitHasMagicRank
 	lsls r0, r0, #0x18
 	asrs r5, r0, #0x18
 	cmp sl, r5
@@ -10540,7 +10540,7 @@ DebugPrint: @ 0x0801B2E4
 	adds r4, r3, #0
 	ldr r0, _0801B310 @ =0x08B93344
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r5, [r0, #0x2c]
 	str r6, [r0, #0x30]
 	str r4, [r0, #0x54]
@@ -10703,7 +10703,7 @@ _0801B41C:
 	adds r1, #0xc
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
@@ -10793,7 +10793,7 @@ _0801B4C6:
 	adds r1, #0xc
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
@@ -10895,7 +10895,7 @@ sub_0801B598: @ 0x0801B598
 	adds r0, r5, #0
 	bl ClearText
 	ldr r0, _0801B614 @ =0x00001247
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #8
@@ -10907,7 +10907,7 @@ sub_0801B598: @ 0x0801B598
 	lsls r0, r0, #2
 	add r0, sp
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0x40
@@ -10998,7 +10998,7 @@ sub_0801B66C: @ 0x0801B66C
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _0801B6F0 @ =0x0000124F
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #8
@@ -11010,7 +11010,7 @@ sub_0801B66C: @ 0x0801B66C
 	lsls r0, r0, #2
 	add r0, sp
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x40
@@ -11129,14 +11129,14 @@ sub_0801B7A4: @ 0x0801B7A4
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _0801B808 @ =0x00001250
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #8
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _0801B80C @ =0x00001251
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x48
@@ -11206,7 +11206,7 @@ _0801B842:
 	adds r5, #1
 _0801B856:
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	add r1, sp, #0x14
 	movs r2, #0
 	mov r0, sp
@@ -11245,7 +11245,7 @@ _0801B894:
 _0801B89C:
 	strb r0, [r1, #0xe]
 	mov r0, sp
-	bl SaveMetaSave
+	bl WriteGlobalSaveInfo
 	adds r0, r6, #0
 	adds r1, r7, #0
 	bl sub_0801B7A4
@@ -11610,7 +11610,7 @@ sub_0801BB74: @ 0x0801BB74
 	movs r0, #0
 	movs r1, #1
 	movs r2, #0
-	bl SaveNewGame
+	bl WriteNewGameSave
 	b _0801BBAE
 	.align 2, 0
 _0801BBA0: .4byte 0x08B857F8
@@ -11618,10 +11618,10 @@ _0801BBA4:
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
-	bl SaveNewGame
+	bl WriteNewGameSave
 _0801BBAE:
 	ldr r0, _0801BBD8 @ =0x0000055B
-	bl GetMsg
+	bl DecodeMsg
 	bl SetTacticianName
 	ldr r1, _0801BBDC @ =0x0202BBF8
 	adds r0, r4, #0
@@ -11809,7 +11809,7 @@ sub_0801BCE4: @ 0x0801BCE4
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _0801BD58 @ =0x00001253
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #8
@@ -11824,7 +11824,7 @@ sub_0801BCE4: @ 0x0801BCE4
 	ands r0, r1
 	add r0, sp
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x40
@@ -11970,7 +11970,7 @@ _0801BE32:
 	lsls r0, r6, #2
 	add r0, sp
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x20
@@ -12129,7 +12129,7 @@ sub_0801BF54: @ 0x0801BF54
 	movs r1, #8
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	ldr r6, _0801C020 @ =0x0202BBF8
 	adds r7, r6, #0
 	adds r7, #0x2b
@@ -12213,7 +12213,7 @@ _0801C028:
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _0801C06C @ =0x00001290
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #8
@@ -12380,7 +12380,7 @@ sub_0801C168: @ 0x0801C168
 	push {lr}
 	ldr r0, _0801C178 @ =0x08B9335C
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	movs r0, #0x17
 	pop {r1}
 	bx r1
@@ -12805,7 +12805,7 @@ sub_0801C4D0: @ 0x0801C4D0
 	movs r1, #0
 	bl BmMapFillg
 	adds r0, r6, #0
-	bl UnitKnowsMagic
+	bl UnitHasMagicRank
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0801C518
@@ -12887,7 +12887,7 @@ sub_0801C57C: @ 0x0801C57C
 	ldr r0, [r4]
 	bl HideUnitSprite
 _0801C5B8:
-	bl SetAutoMuDefaultFacing
+	bl MU_SetDefaultFacing_Auto
 	bl sub_08078FC8
 	ldr r5, _0801C610 @ =0x0202BBB8
 	movs r0, #2
@@ -13153,7 +13153,7 @@ _0801C7DC:
 	movs r3, #2
 	ldrsh r2, [r0, r3]
 	adds r0, r5, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	bl HideMoveRangeGraphics
 	adds r0, r5, #0
 	bl Proc_Break
@@ -13183,7 +13183,7 @@ _0801C7FC:
 	movs r3, #2
 	ldrsh r2, [r4, r3]
 	adds r0, r5, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	movs r1, #0
 	ldrsh r0, [r4, r1]
 	movs r2, #2
@@ -13279,7 +13279,7 @@ _0801C8FC:
 	movs r3, #2
 	ldrsh r2, [r4, r3]
 	adds r0, r5, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	movs r1, #0
 	ldrsh r0, [r4, r1]
 	movs r2, #2
@@ -13395,7 +13395,7 @@ _0801CA04: .4byte 0x03004690
 _0801CA08: .4byte 0x0202BD4C
 _0801CA0C:
 	adds r0, r4, #0
-	bl UnitBeginReMoveAction
+	bl UnitBeginCantoAction
 _0801CA12:
 	ldr r4, _0801CA34 @ =0x03004690
 	ldr r0, [r4]
@@ -13427,7 +13427,7 @@ sub_0801CA38: @ 0x0801CA38
 	ldrsb r2, [r0, r2]
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	lsls r0, r0, #0x18
 	movs r1, #0x80
 	lsls r1, r1, #0x11
@@ -13610,7 +13610,7 @@ _0801CBF4:
 	movs r1, #0
 	bl BmMapFillg
 	ldr r0, [r5]
-	bl UnitBeginReMoveAction
+	bl UnitBeginCantoAction
 	ldr r2, [r5]
 	ldr r0, [r2, #0xc]
 	movs r1, #0x40
@@ -13621,7 +13621,7 @@ _0801CBF4:
 	bl EndAllMus
 	ldr r0, [r5]
 	bl StartMu
-	bl SetAutoMuDefaultFacing
+	bl MU_SetDefaultFacing_Auto
 	ldr r0, _0801CC38 @ =0x0202BBF8
 	ldrb r0, [r0, #0xd]
 	cmp r0, #0
@@ -13671,7 +13671,7 @@ EnsureCameraOntoActiveUnitPosition: @ 0x0801CC68
 	ldrb r2, [r2, #0x11]
 	lsls r2, r2, #0x18
 	asrs r2, r2, #0x18
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	movs r1, #0
 	lsls r0, r0, #0x18
 	cmp r0, #0
@@ -14456,7 +14456,7 @@ _0801D2BC: .4byte 0x08B935B4
 _0801D2C0:
 	adds r0, r4, #0
 	movs r1, #4
-	bl SpawnProc
+	bl Proc_Start
 	adds r0, #0x4a
 	strh r5, [r0]
 _0801D2CC:
@@ -14516,7 +14516,7 @@ _0801D32C:
 	ldrsb r1, [r4, r1]
 	movs r2, #0x11
 	ldrsb r2, [r4, r2]
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	movs r0, #0x10
 	ldrsb r0, [r4, r0]
 	movs r1, #0x11
@@ -14706,7 +14706,7 @@ Make6CKOIDO: @ 0x0801D47C
 	mov r8, r2
 	adds r1, r3, #0
 	ldr r0, _0801D4CC @ =0x08B935EC
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r7, r0, #0
 	str r6, [r7, #0x30]
 	str r4, [r7, #0x2c]
@@ -14745,7 +14745,7 @@ Make6CKOIDOAMM: @ 0x0801D4D0
 	adds r4, r1, #0
 	ldr r0, _0801D518 @ =0x08B93604
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r7, r0, #0
 	str r6, [r7, #0x30]
 	str r4, [r7, #0x2c]
@@ -14887,7 +14887,7 @@ Destruct6CBMXFADE: @ 0x0801D5EC
 	ldrsh r0, [r4, r1]
 	cmp r0, #0
 	beq _0801D602
-	bl ReleaseGame
+	bl UnlockGame
 _0801D602:
 	pop {r4}
 	pop {r0}
@@ -14901,7 +14901,7 @@ StartMapFade: @ 0x0801D608
 	lsrs r4, r4, #0x18
 	ldr r0, _0801D630 @ =0x08B9362C
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	lsls r4, r4, #0x18
 	asrs r4, r4, #0x18
 	adds r0, #0x4e
@@ -15080,7 +15080,7 @@ _0801D758:
 	cmp r2, #0
 	blt _0801D772
 	adds r0, r5, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
 	bl SetMapCursorPosition
@@ -15106,7 +15106,7 @@ ADJUSTFROMXI_MoveCameraOnSomeUnit: @ 0x0801D77C
 	adds r0, r6, #0
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl SetMapCursorPosition
@@ -15265,7 +15265,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
 	ldr r0, _0801D91C @ =0x0202BBB8
 	strh r5, [r0, #0x2c]
 	adds r0, r4, #0
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	movs r0, #2
 	str r0, [sp]
@@ -15289,7 +15289,7 @@ HandleGiveUnitItem: @ 0x0801D8B0
 	cmp r0, #0x63
 	bgt _0801D924
 	ldr r0, _0801D920 @ =0x00000727
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r6, #0
 	bl StartSubtitleHelp
@@ -15301,7 +15301,7 @@ _0801D920: .4byte 0x00000727
 _0801D924:
 	movs r0, #0xe5
 	lsls r0, r0, #3
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r6, #0
 	bl StartSubtitleHelp
@@ -15310,7 +15310,7 @@ _0801D934:
 	bl SetTalkChoiceResult
 	ldr r0, _0801D94C @ =0x08B9369C
 	adds r1, r6, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 _0801D942:
 	add sp, #4
 	pop {r4, r5, r6}
@@ -15454,7 +15454,7 @@ sub_0801DA14: @ 0x0801DA14
 	ldr r2, _0801DA70 @ =0x00000762
 	movs r0, #8
 	adds r3, r6, #0
-	bl StartBoxTalk
+	bl StartBoxDialogueSimple
 	b _0801DA86
 	.align 2, 0
 _0801DA68: .4byte 0x03004690
@@ -15468,7 +15468,7 @@ _0801DA74:
 	ldr r2, _0801DA90 @ =0x00000761
 	movs r0, #8
 	adds r3, r6, #0
-	bl StartBoxTalk
+	bl StartBoxDialogueSimple
 _0801DA86:
 	movs r0, #0
 	pop {r4, r5, r6}
@@ -15509,7 +15509,7 @@ sub_0801DA94: @ 0x0801DA94
 	ldr r2, _0801DAE4 @ =0x00000762
 	movs r0, #8
 	adds r3, r6, #0
-	bl StartBoxTalk
+	bl StartBoxDialogueSimple
 	b _0801DAFE
 	.align 2, 0
 _0801DADC: .4byte 0x0202BBB8
@@ -15525,7 +15525,7 @@ _0801DAE8:
 	ldr r2, _0801DB08 @ =0x00000761
 	movs r0, #8
 	adds r3, r6, #0
-	bl StartBoxTalk
+	bl StartBoxDialogueSimple
 _0801DAFE:
 	movs r0, #0
 	pop {r4, r5, r6}
@@ -15537,7 +15537,7 @@ _0801DB08: .4byte 0x00000761
 	thumb_func_start SendToConvoyMenu_Idle
 SendToConvoyMenu_Idle: @ 0x0801DB0C
 	push {r4, lr}
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	cmp r0, #1
 	beq _0801DB1A
 	movs r0, #0
@@ -16050,7 +16050,7 @@ StartEquipInfoWindow: @ 0x0801DEFC
 	bne _0801DFAA
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl SpawnProc
+	bl Proc_Start
 	adds r4, r0, #0
 	str r6, [r4, #0x2c]
 	adds r0, #0x30
@@ -16088,7 +16088,7 @@ StartEquipInfoWindow: @ 0x0801DEFC
 	ldr r0, [r4, #0x2c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl BattleGenerateDisplayStats
+	bl BattleGenerateUiStats
 	ldr r3, _0801DFB8 @ =0x0203A470
 	ldr r2, _0801DFBC @ =0x0203A3F0
 	adds r0, r2, #0
@@ -16203,7 +16203,7 @@ _0801E058:
 	movs r5, #8
 _0801E05C:
 	adds r0, r4, #0
-	bl GetItemKind
+	bl GetItemType
 	cmp r0, #9
 	beq _0801E078
 	cmp r0, #9
@@ -16219,7 +16219,7 @@ _0801E070:
 _0801E078:
 	adds r0, r4, #0
 	bl GetItemUseDescId
-	bl GetMsg
+	bl DecodeMsg
 	adds r4, r0, #0
 	movs r5, #0
 	ldr r7, [sp, #4]
@@ -16296,7 +16296,7 @@ _0801E11C:
 	lsls r1, r5, #0x18
 	asrs r1, r1, #0x18
 	mov r0, sb
-	bl BattleGenerateDisplayStats
+	bl BattleGenerateUiStats
 	cmp r5, #8
 	bne _0801E15E
 	ldr r3, _0801E2AC @ =0x0203A470
@@ -16343,7 +16343,7 @@ _0801E15E:
 	mov sb, r3
 _0801E17E:
 	ldr r0, _0801E2B4 @ =0x00001101
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r6, #0
 	movs r1, #0x20
@@ -16352,7 +16352,7 @@ _0801E17E:
 	adds r5, r6, #0
 	adds r5, #8
 	ldr r0, _0801E2B8 @ =0x00001103
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #2
@@ -16361,21 +16361,21 @@ _0801E17E:
 	adds r4, r6, #0
 	adds r4, #0x10
 	ldr r0, _0801E2BC @ =0x00001104
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #2
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _0801E2C0 @ =0x0000110D
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0x2c
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _0801E2C4 @ =0x00001105
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x2c
@@ -16455,7 +16455,7 @@ _0801E17E:
 	adds r4, #0x4e
 	mov r3, sl
 	ldrh r0, [r3]
-	bl GetItemKind
+	bl GetItemType
 	adds r1, r0, #0
 	adds r1, #0x70
 	ldr r0, [sp, #8]
@@ -16716,7 +16716,7 @@ StartPrepUnitSwap: @ 0x0801E480
 	adds r5, r3, #0
 	ldr r0, _0801E4B4 @ =0x08B93704
 	adds r1, r6, #0
-	bl SpawnProc
+	bl Proc_Start
 	mov r1, r8
 	str r1, [r0, #0x2c]
 	lsls r4, r4, #4
@@ -16869,7 +16869,7 @@ sub_0801E5C8: @ 0x0801E5C8
 	adds r5, r0, #0
 	bl GetCurrentBgmSong
 	adds r4, r0, #0
-	bl GetMapBgmSong
+	bl GetActiveMapSong
 	cmp r4, r0
 	beq _0801E5E0
 	movs r0, #4
@@ -17792,7 +17792,7 @@ StartGasTrapAnim: @ 0x0801ED04
 	mov r8, r3
 	ldr r0, _0801ED30 @ =0x08B937F4
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r5, [r0, #0x2c]
 	str r6, [r0, #0x30]
 	adds r0, #0x4a
@@ -17862,7 +17862,7 @@ StartFireTrapAnim1: @ 0x0801ED90
 	bl ApplyPaletteExt
 	ldr r0, _0801EDBC @ =0x08B93814
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r5, [r0, #0x2c]
 	str r6, [r0, #0x30]
 	pop {r4, r5, r6}
@@ -17885,7 +17885,7 @@ sub_0801EDC0: @ 0x0801EDC0
 	bl ApplyPaletteExt
 	ldr r0, _0801EDEC @ =0x08B93814
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r5, [r0, #0x2c]
 	str r6, [r0, #0x30]
 	pop {r4, r5, r6}
@@ -17995,7 +17995,7 @@ StartUnkTrapAnim: @ 0x0801EE84
 	bl ApplyPaletteExt
 	ldr r0, _0801EED8 @ =0x08B93834
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r5, [r0, #0x58]
 	str r6, [r0, #0x5c]
 	mov r1, r8
@@ -18050,7 +18050,7 @@ ArrowTrapSpriteAnim_Init: @ 0x0801EEDC
 	ldr r1, [r5, #0x2c]
 	adds r0, r5, #0
 	movs r2, #0x1f
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	add sp, #8
 	pop {r4, r5}
 	pop {r0}
@@ -18069,7 +18069,7 @@ StartArrowTrapAnim: @ 0x0801EF48
 	adds r4, r1, #0
 	ldr r0, _0801EF60 @ =0x08B93874
 	adds r1, r2, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	pop {r4}
 	pop {r0}
@@ -18093,7 +18093,7 @@ sub_0801EF64: @ 0x0801EF64
 	adds r2, r0, r2
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	str r4, [r5, #0x34]
 	pop {r4, r5}
 	pop {r0}
@@ -18134,7 +18134,7 @@ StartShowMapChangeAnim: @ 0x0801EFCC
 	adds r1, r0, #0
 	adds r4, r2, #0
 	ldr r0, _0801EFF4 @ =0x08B9389C
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r5, r0, #0
 	adds r0, r4, #0
 	bl GetTrap
@@ -18221,7 +18221,7 @@ StartPikeTrapAnim: @ 0x0801F07C
 	adds r7, r3, #0
 	ldr r0, _0801F0A0 @ =0x08B938CC
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r5, [r0, #0x2c]
 	str r6, [r0, #0x30]
 	cmp r7, #1
@@ -18354,7 +18354,7 @@ _0801F15E:
 	bl PutDrawText
 	ldr r0, _0801F18C @ =0x08B938EC
 	adds r1, r7, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	add sp, #8
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -18383,7 +18383,7 @@ NewPopup2_PlanD: @ 0x0801F190
 	movs r1, #0
 	bl Text_SetColor
 	adds r0, r4, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	add r0, sp, #4
 	bl Text_DrawString
@@ -18425,7 +18425,7 @@ _0801F1FE:
 	cmp r5, #0
 	beq _0801F224
 	adds r0, r5, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	add r0, sp, #4
 	bl Text_DrawString
@@ -18464,7 +18464,7 @@ _0801F242:
 	subs r5, #2
 	adds r4, r4, r5
 	adds r0, r7, #0
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
@@ -18472,7 +18472,7 @@ _0801F242:
 	bl PutIcon
 	ldr r0, _0801F294 @ =0x08B938EC
 	mov r1, r8
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	add sp, #0xc
 	pop {r3}
 	mov r8, r3
@@ -18533,8 +18533,8 @@ ChapterIntroDeamon_Init: @ 0x0801F2E0
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0801F2F0
-sub_0801F2F0: @ 0x0801F2F0
+	thumb_func_start ChapterIntroDeamon_Loop
+ChapterIntroDeamon_Loop: @ 0x0801F2F0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0801F344 @ =0x08B857F8
@@ -18863,8 +18863,8 @@ _0801F4E0:
 _0801F568: .4byte 0x00004110
 _0801F56C: .4byte 0x02023C60
 
-	thumb_func_start sub_0801F570
-sub_0801F570: @ 0x0801F570
+	thumb_func_start ChapterIntro_Init
+ChapterIntro_Init: @ 0x0801F570
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18967,7 +18967,7 @@ sub_0801F570: @ 0x0801F570
 	movs r1, #1
 	bl PutChapterTitlePalette
 	movs r0, #0x80
-	bl sub_08082410
+	bl PutChapterTitleUnkBG
 	movs r4, #0x80
 	lsls r4, r4, #1
 	ldr r0, _0801F708 @ =0x0202BBF8
@@ -18980,12 +18980,12 @@ sub_0801F570: @ 0x0801F570
 	add sb, r0
 	mov r0, sb
 	movs r1, #0
-	bl sub_08082480
+	bl PutChapterTitleBgUnkTsa
 	ldr r1, _0801F70C @ =0x00000246
 	add sl, r1
 	mov r0, sl
 	movs r1, #1
-	bl sub_08082440
+	bl PutChapterTitleNameTsa
 	bl ColorFadeInit
 	movs r3, #1
 	rsbs r3, r3, #0
@@ -19045,8 +19045,8 @@ _0801F720: .4byte 0x06008020
 _0801F724: .4byte 0x083FF760
 _0801F728: .4byte 0x02022860
 
-	thumb_func_start sub_0801F72C
-sub_0801F72C: @ 0x0801F72C
+	thumb_func_start ChapterIntro_BeginFadeIn
+ChapterIntro_BeginFadeIn: @ 0x0801F72C
 	push {lr}
 	ldr r3, _0801F768 @ =0x03002870
 	movs r1, #2
@@ -19080,8 +19080,8 @@ sub_0801F72C: @ 0x0801F72C
 _0801F768: .4byte 0x03002870
 _0801F76C: .4byte 0x0000FFE0
 
-	thumb_func_start sub_0801F770
-sub_0801F770: @ 0x0801F770
+	thumb_func_start ChapterIntro_LoopFadeIn
+ChapterIntro_LoopFadeIn: @ 0x0801F770
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r2, _0801F7C0 @ =0x03002870
@@ -19158,8 +19158,8 @@ _0801F7FA:
 	.align 2, 0
 _0801F800: .4byte 0x03002870
 
-	thumb_func_start sub_0801F804
-sub_0801F804: @ 0x0801F804
+	thumb_func_start ChapterIntro_BeginMotifFadeIn
+ChapterIntro_BeginMotifFadeIn: @ 0x0801F804
 	push {lr}
 	ldr r3, _0801F858 @ =0x03002870
 	movs r1, #2
@@ -19208,8 +19208,8 @@ _0801F85C: .4byte 0x0000FFE0
 _0801F860: .4byte 0x0000E0FF
 _0801F864: .4byte 0x0202BBF8
 
-	thumb_func_start sub_0801F868
-sub_0801F868: @ 0x0801F868
+	thumb_func_start ChapterIntro_LoopMotifFadeIn
+ChapterIntro_LoopMotifFadeIn: @ 0x0801F868
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r3, _0801F8C4 @ =0x03002870
@@ -19296,8 +19296,8 @@ _0801F906:
 	.align 2, 0
 _0801F90C: .4byte 0x03002870
 
-	thumb_func_start sub_0801F910
-sub_0801F910: @ 0x0801F910
+	thumb_func_start ChapterIntro_BeginHOpenText
+ChapterIntro_BeginHOpenText: @ 0x0801F910
 	push {lr}
 	adds r0, #0x4c
 	movs r1, #0
@@ -19330,8 +19330,8 @@ _0801F944:
 _0801F948: .4byte 0x03002870
 _0801F94C: .4byte 0x0202BBF8
 
-	thumb_func_start sub_0801F950
-sub_0801F950: @ 0x0801F950
+	thumb_func_start ChapterIntro_LoopHOpenText
+ChapterIntro_LoopHOpenText: @ 0x0801F950
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -19611,8 +19611,8 @@ ChapterIntro_0801FFD0: @ 0x0801FB68
 	.align 2, 0
 _0801FB74: .4byte 0x0202BBB8
 
-	thumb_func_start sub_0801FB78
-sub_0801FB78: @ 0x0801FB78
+	thumb_func_start ChapterIntro_InitMapDisplay
+ChapterIntro_InitMapDisplay: @ 0x0801FB78
 	push {r4, r5, lr}
 	ldr r3, _0801FC4C @ =0x03002870
 	movs r0, #1
@@ -19672,7 +19672,7 @@ sub_0801FB78: @ 0x0801FB78
 	ldr r4, _0801FC5C @ =0x0202BBF8
 	movs r0, #0xe
 	ldrsb r0, [r4, r0]
-	bl ApplyChapterMapGraphics
+	bl UnpackChapterMapGraphics
 	bl ApplyUnitSpritePalettes
 	bl ApplySystemObjectsGraphics
 	movs r0, #0xe
@@ -20058,8 +20058,8 @@ ChapterIntro_BeginFadeOut: @ 0x0801FEE8
 	.align 2, 0
 _0801FF10: .4byte 0x02022860
 
-	thumb_func_start sub_0801FF14
-sub_0801FF14: @ 0x0801FF14
+	thumb_func_start ChapterIntro_LoopFadeOut
+ChapterIntro_LoopFadeOut: @ 0x0801FF14
 	push {r4, lr}
 	adds r4, r0, #0
 	bl ColorFadeTick_thm
@@ -20099,8 +20099,8 @@ _0801FF5C:
 	.align 2, 0
 _0801FF64: .4byte 0x03002870
 
-	thumb_func_start sub_0801FF68
-sub_0801FF68: @ 0x0801FF68
+	thumb_func_start ChapterIntro_BeginFastFadeToMap
+ChapterIntro_BeginFastFadeToMap: @ 0x0801FF68
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl ClearUi

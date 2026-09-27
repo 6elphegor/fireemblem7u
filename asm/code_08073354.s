@@ -65,7 +65,7 @@ sub_08073354: @ 0x08073354
 	ldr r0, _08073428 @ =0x02023C60
 	ldr r1, _0807342C @ =0x02020140
 	ldr r2, _08073430 @ =0x00004140
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	movs r0, #4
 	bl EnableBgSync
 	movs r0, #2
@@ -76,7 +76,7 @@ sub_08073354: @ 0x08073354
 	ldr r1, _08073434 @ =0x08C9E98C
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProc
+	bl Proc_Start
 	ldr r0, [r7]
 	adds r1, r0, #0
 	adds r0, #0x48
@@ -258,7 +258,7 @@ sub_08073550: @ 0x08073550
 	ldr r1, _080735B0 @ =0x08C9DCE4
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]
@@ -646,7 +646,7 @@ sub_08073878: @ 0x08073878
 	ldr r1, _080738D8 @ =0x08C9DD24
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]
@@ -879,7 +879,7 @@ sub_08073A54: @ 0x08073A54
 	ldr r1, _08073AB4 @ =0x08C9DD4C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r1, _08073AB8 @ =0x0202BBB8
@@ -1456,7 +1456,7 @@ sub_08073EF4: @ 0x08073EF4
 	str r3, [r7, #0xc]
 	ldr r0, _08073F6C @ =0x08C9DDA4
 	ldr r1, [r7, #0xc]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0x10]
 	ldr r0, [r7, #0x10]
 	ldr r1, [r7]
@@ -1641,7 +1641,7 @@ sub_08074008: @ 0x08074008
 	ldr r0, [r1, #4]
 	ldrh r1, [r0]
 	adds r0, r1, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r0, #0
 	adds r0, r5, #0
 	movs r1, #0
@@ -1713,7 +1713,7 @@ _080740C8:
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl UnitKnowsMagic
+	bl UnitHasMagicRank
 	lsls r1, r0, #0x18
 	asrs r0, r1, #0x18
 	cmp r0, #1
@@ -1732,7 +1732,7 @@ _0807413A:
 	ldr r1, [r0]
 	ldr r2, [r1]
 	adds r0, r2, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #3
@@ -2153,7 +2153,7 @@ sub_08074474: @ 0x08074474
 	str r3, [r7, #0xc]
 	ldr r0, _08074528 @ =0x08C9DE2C
 	ldr r1, [r7, #0xc]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0x10]
 	ldr r0, [r7, #0x10]
 	ldr r2, [r7]
@@ -2211,7 +2211,7 @@ sub_08074474: @ 0x08074474
 	bl ApplyPaletteExt
 	ldr r0, _08074538 @ =0x08C9DE3C
 	ldr r1, [r7, #0x10]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0x14]
 	ldr r1, [r7, #0x14]
 	ldr r2, [r7, #4]
@@ -2672,7 +2672,7 @@ sub_0807489C: @ 0x0807489C
 	str r1, [r7, #4]
 	ldr r0, _080748CC @ =0x08C9DE54
 	ldr r1, [r7, #4]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r2, [r7]
@@ -3743,7 +3743,7 @@ sub_080750DC: @ 0x080750DC
 	ldr r1, _080750F8 @ =0x08C9DF14
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	b _08075106
 	.align 2, 0
 _080750F8: .4byte 0x08C9DF14
@@ -3751,7 +3751,7 @@ _080750FC:
 	ldr r1, _08075110 @ =0x08C9DF14
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 _08075106:
 	add sp, #4
 	pop {r7}
@@ -3815,7 +3815,7 @@ sub_08075168: @ 0x08075168
 	ldr r1, _08075184 @ =0x08C9DF2C
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	b _08075192
 	.align 2, 0
 _08075184: .4byte 0x08C9DF2C
@@ -3823,7 +3823,7 @@ _08075188:
 	ldr r1, _0807519C @ =0x08C9DF2C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 _08075192:
 	add sp, #4
 	pop {r7}
@@ -3875,7 +3875,7 @@ sub_080751E0: @ 0x080751E0
 	ldr r1, _080751F4 @ =0x08C9DF44
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -4309,7 +4309,7 @@ sub_08075528: @ 0x08075528
 	ldr r1, _080755DC @ =0x08C9DF5C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0x10]
 	ldr r0, [r7, #0x10]
 	ldr r2, [r7]
@@ -5173,7 +5173,7 @@ sub_08075B80: @ 0x08075B80
 	movs r2, #0x11
 	ldrsb r2, [r3, r2]
 	ldr r0, [r7]
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	add sp, #4
 	pop {r4, r7}
 	pop {r0}
@@ -5214,7 +5214,7 @@ sub_08075BD0: @ 0x08075BD0
 	movs r2, #0x11
 	ldrsb r2, [r3, r2]
 	ldr r0, [r7]
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	add sp, #4
 	pop {r4, r7}
 	pop {r0}
@@ -5269,7 +5269,7 @@ sub_08075C20: @ 0x08075C20
 	adds r3, #0x61
 	ldrb r2, [r3]
 	ldr r0, [r7]
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	add sp, #4
 	pop {r7}
 	pop {r0}
@@ -9452,8 +9452,8 @@ _08077C00: .4byte 0x04000014
 _08077C04: .4byte 0x0203E668
 _08077C08: .4byte 0x04000016
 
-	thumb_func_start sub_08077C0C
-sub_08077C0C: @ 0x08077C0C
+	thumb_func_start DragonGatefx_LightHBlank
+DragonGatefx_LightHBlank: @ 0x08077C0C
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -10128,7 +10128,7 @@ _0807814E:
 	ldr r0, [r4]
 	ldrh r5, [r0]
 	ldrh r0, [r0, #2]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08078140
@@ -10190,7 +10190,7 @@ sub_080781B4: @ 0x080781B4
 	adds r4, r0, #0
 	ldr r0, [r4]
 	ldrh r0, [r0, #8]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080781CA
@@ -10216,12 +10216,12 @@ sub_080781DC: @ 0x080781DC
 	ldrh r5, [r0, #0xc]
 	ldr r6, _08078210 @ =0xFFFF0000
 	ldrh r0, [r0, #2]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08078214
 	adds r0, r5, #0
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08078214
@@ -10341,12 +10341,12 @@ sub_080782BC: @ 0x080782BC
 	ldrh r5, [r0, #0xc]
 	ldr r6, _080782F0 @ =0xFFFF0000
 	ldrh r0, [r0, #2]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080782F4
 	adds r0, r5, #0
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080782F4
@@ -10457,7 +10457,7 @@ _08078398:
 	beq _080783EC
 _080783A4:
 	movs r0, #2
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080783EC
@@ -10546,7 +10546,7 @@ _08078434:
 _08078440: .4byte 0x0202BBF8
 _08078444:
 	lsrs r0, r0, #0x10
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0807846E
@@ -10820,7 +10820,7 @@ sub_080785F4: @ 0x080785F4
 	ldr r0, _08078644 @ =0x03004690
 	ldr r0, [r0]
 	movs r1, #0x71
-	bl FindUnitItemSlot
+	bl GetUnitItemSlot
 	movs r1, #1
 	rsbs r1, r1, #0
 	cmp r0, r1
@@ -10907,7 +10907,7 @@ sub_080786B4: @ 0x080786B4
 	cmp r0, #2
 	bne _080786D8
 	movs r0, #2
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080786D8
@@ -10932,7 +10932,7 @@ sub_080786E0: @ 0x080786E0
 	cmp r0, #3
 	bne _08078704
 	movs r0, #2
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08078704
@@ -11960,7 +11960,7 @@ sub_08078E54: @ 0x08078E54
 	ldr r0, _08078EAC @ =0x03004690
 	ldr r0, [r0]
 	movs r1, #0x71
-	bl FindUnitItemSlot
+	bl GetUnitItemSlot
 	movs r1, #1
 	rsbs r1, r1, #0
 	cmp r0, r1
@@ -12419,7 +12419,7 @@ _080791BC: .4byte 0x03004690
 CheckWin: @ 0x080791C0
 	push {lr}
 	movs r0, #3
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
@@ -12429,7 +12429,7 @@ CheckWin: @ 0x080791C0
 MaybeCallEndEvent: @ 0x080791D0
 	push {lr}
 	movs r0, #3
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080791EC
@@ -12621,7 +12621,7 @@ sub_08079320: @ 0x08079320
 	b _0807935A
 _0807932A:
 	ldr r0, [r4, #8]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08079358
@@ -12664,7 +12664,7 @@ sub_08079368: @ 0x08079368
 	b _080793A2
 _08079372:
 	ldr r0, [r4, #0xc]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080793A0
@@ -12707,7 +12707,7 @@ sub_080793B0: @ 0x080793B0
 	b _080793EA
 _080793BA:
 	ldr r0, [r4, #8]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080793E8
@@ -12755,7 +12755,7 @@ CheckBattleTalk: @ 0x080793F8
 	cmp r0, #0
 	beq _0807941E
 	ldr r0, [r0, #0xc]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0807945C
@@ -12809,7 +12809,7 @@ StartBattleTalk: @ 0x08079464
 	cmp r5, #0
 	beq _080794A8
 	ldr r0, [r5, #0xc]
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08079508
@@ -12949,7 +12949,7 @@ _08079572:
 	movs r2, #7
 	bl PidStatsRecordDefeatInfo
 	adds r0, r4, #0
-	bl KillUnit
+	bl UnitKill
 	adds r0, r4, #0
 	movs r1, #0
 	bl SetUnitHp
@@ -12980,7 +12980,7 @@ _080795D2:
 	bl GetUnit
 	movs r1, #0
 	movs r2, #0
-	bl UnitDropRescue
+	bl UnitDrop
 _080795EA:
 	ldr r0, [r4, #0xc]
 	movs r1, #0x10
@@ -12994,7 +12994,7 @@ _080795EA:
 	ldr r1, [sp]
 	ldr r2, [sp, #4]
 	adds r0, r4, #0
-	bl UnitDropRescue
+	bl UnitDrop
 	b _0807961A
 	.align 2, 0
 _0807960C: .4byte 0x0203A3F0
@@ -13054,7 +13054,7 @@ _08079678: .4byte 0x08C9F22C
 _0807967C: .4byte 0x08C9F16C
 _08079680:
 	adds r0, r5, #0
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	movs r1, #0xc0
 	ldrb r0, [r0, #0xb]
 	ands r1, r0
@@ -13088,7 +13088,7 @@ _080796C2:
 	ldr r0, [r4, #0xc]
 	bl SetFlag
 	adds r0, r5, #0
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	movs r1, #0xc0
 	ldrb r0, [r0, #0xb]
 	ands r1, r0
@@ -13294,8 +13294,8 @@ _08079802:
 _08079804: .4byte 0x08C9EAEC
 _08079808: .4byte 0x03004AD8
 
-	thumb_func_start ClearChapterFlags
-ClearChapterFlags: @ 0x0807980C
+	thumb_func_start ResetChapterFlags
+ResetChapterFlags: @ 0x0807980C
 	ldr r1, _0807981C @ =0x03004AD8
 	movs r2, #0
 	adds r0, r1, #5
@@ -13408,8 +13408,8 @@ _080798C6:
 _080798C8: .4byte 0x08C9EAEC
 _080798CC: .4byte 0x03004AD0
 
-	thumb_func_start ClearPermanentFlags
-ClearPermanentFlags: @ 0x080798D0
+	thumb_func_start ResetPermanentFlags
+ResetPermanentFlags: @ 0x080798D0
 	ldr r1, _080798E0 @ =0x03004AD0
 	movs r2, #0
 	adds r0, r1, #7
@@ -13435,8 +13435,8 @@ _080798F4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start GetFlag
-GetFlag: @ 0x080798F8
+	thumb_func_start CheckFlag
+CheckFlag: @ 0x080798F8
 	push {lr}
 	cmp r0, #0x63
 	ble _08079904
@@ -13668,7 +13668,7 @@ sub_08079A5C: @ 0x08079A5C
 	cmp r0, #0
 	bne _08079A84
 	movs r0, #0x9c
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	rsbs r1, r0, #0
@@ -13694,7 +13694,7 @@ sub_08079A90: @ 0x08079A90
 sub_08079A9C: @ 0x08079A9C
 	push {lr}
 	movs r0, #0x8f
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08079AAE
@@ -13759,7 +13759,7 @@ sub_08079AF4: @ 0x08079AF4
 	movs r1, #1
 _08079B06:
 	adds r0, r1, #0
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	movs r1, #0
 	bl sub_0802CC88
 	pop {r0}
@@ -14025,7 +14025,7 @@ sub_08079CCC: @ 0x08079CCC
 	push {lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	bl sub_08079C64
 	pop {r0}
 	bx r0
@@ -15089,7 +15089,7 @@ _0807A3A0: .4byte 0x00001387
 	thumb_func_start sub_0807A3A4
 sub_0807A3A4: @ 0x0807A3A4
 	push {lr}
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	movs r1, #0
 	cmp r0, #1
 	bne _0807A3B2
@@ -15125,7 +15125,7 @@ _0807A3D4: .4byte 0x0202BBF8
 sub_0807A3D8: @ 0x0807A3D8
 	push {lr}
 	movs r0, #0x9b
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
@@ -15285,7 +15285,7 @@ sub_0807A4C8: @ 0x0807A4C8
 	push {lr}
 	ldr r0, _0807A4D8 @ =0x08CA74F0
 	movs r1, #4
-	bl SpawnProc
+	bl Proc_Start
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -15556,7 +15556,7 @@ StartTutorialCursors: @ 0x0807A6E4
 	beq _0807A75A
 	ldr r0, _0807A73C @ =0x08CA7534
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r5, [r0, #0x54]
 	movs r0, #0
 	bl GetTarget
@@ -15565,7 +15565,7 @@ StartTutorialCursors: @ 0x0807A6E4
 	movs r2, #1
 	ldrsb r2, [r0, r2]
 	movs r0, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	ldr r1, [r6]
 	movs r0, #0x10
 	ldrsb r0, [r1, r0]
@@ -15581,7 +15581,7 @@ _0807A73C: .4byte 0x08CA7534
 _0807A740:
 	ldr r0, _0807A760 @ =0x08CA7534
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r5, [r0, #0x54]
 	ldr r1, [r6]
 	movs r0, #0x10
@@ -15651,7 +15651,7 @@ sub_0807A7B4: @ 0x0807A7B4
 	bne _0807A7CA
 	ldr r0, _0807A7D4 @ =0x08CA7554
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 _0807A7CA:
 	adds r0, r4, #0
 	pop {r4}
@@ -15663,8 +15663,8 @@ _0807A7D4: .4byte 0x08CA7554
 	thumb_func_start HideAllAlliesExceptLeader
 HideAllAlliesExceptLeader: @ 0x0807A7D8
 	push {r4, r5, r6, r7, lr}
-	bl GetLeaderPid
-	bl GetUnitByPid
+	bl GetPlayerLeaderUnitId
+	bl GetUnitFromCharId
 	adds r5, r0, #0
 	movs r7, #0x10
 	ldrsb r7, [r5, r7]
@@ -15960,10 +15960,10 @@ _0807AA00: .4byte 0x03002870
 sub_0807AA04: @ 0x0807AA04
 	push {r4, lr}
 	movs r0, #0x26
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	adds r4, r0, #0
 	movs r0, #0x25
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl SwapUnitStats
@@ -16095,232 +16095,3 @@ sub_0807AAE4: @ 0x0807AAE4
 	bx lr
 	.align 2, 0
 _0807AB00: .4byte 0x03002870
-
-	thumb_func_start sub_0807AB04
-sub_0807AB04: @ 0x0807AB04
-	push {lr}
-	ldr r0, [r0, #0x14]
-	adds r0, #0x4c
-	movs r1, #0
-	ldrsb r1, [r0, r1]
-	movs r0, #1
-	rsbs r0, r0, #0
-	cmp r1, r0
-	bne _0807AB34
-	bl GetGameTime
-	movs r1, #1
-	ands r1, r0
-	cmp r1, #0
-	beq _0807AB56
-	ldr r1, _0807AB30 @ =0x0202BBB8
-	movs r0, #2
-	ldrh r2, [r1, #0xc]
-	eors r0, r2
-	strh r0, [r1, #0xc]
-	b _0807AB56
-	.align 2, 0
-_0807AB30: .4byte 0x0202BBB8
-_0807AB34:
-	bl GetGameTime
-	movs r1, #1
-	ands r1, r0
-	cmp r1, #0
-	beq _0807AB56
-	bl GetGameTime
-	adds r1, r0, #0
-	movs r0, #2
-	ands r1, r0
-	lsls r1, r1, #0x10
-	lsrs r1, r1, #0x10
-	movs r0, #3
-	movs r2, #0
-	bl SetBgOffset
-_0807AB56:
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start sub_0807AB5C
-sub_0807AB5C: @ 0x0807AB5C
-	push {lr}
-	ldr r0, [r0, #0x14]
-	adds r0, #0x4c
-	movs r1, #0
-	ldrsb r1, [r0, r1]
-	movs r0, #1
-	rsbs r0, r0, #0
-	cmp r1, r0
-	bne _0807AB94
-	bl GetGameTime
-	movs r1, #1
-	ands r1, r0
-	cmp r1, #0
-	beq _0807ABB8
-	ldr r0, _0807AB8C @ =0x0202BBB8
-	ldr r1, _0807AB90 @ =0x0000FFFD
-	ldrh r2, [r0, #0xc]
-	ands r1, r2
-	movs r2, #1
-	eors r1, r2
-	strh r1, [r0, #0xc]
-	b _0807ABB8
-	.align 2, 0
-_0807AB8C: .4byte 0x0202BBB8
-_0807AB90: .4byte 0x0000FFFD
-_0807AB94:
-	bl GetGameTime
-	movs r1, #1
-	ands r1, r0
-	cmp r1, #0
-	beq _0807ABB8
-	movs r0, #3
-	bl GetBgXOffset
-	adds r1, r0, #0
-	movs r0, #1
-	eors r1, r0
-	lsls r1, r1, #0x10
-	lsrs r1, r1, #0x10
-	movs r0, #3
-	movs r2, #0
-	bl SetBgOffset
-_0807ABB8:
-	pop {r0}
-	bx r0
-
-	thumb_func_start sub_0807ABBC
-sub_0807ABBC: @ 0x0807ABBC
-	push {lr}
-	ldr r0, [r0, #0x14]
-	adds r0, #0x4c
-	ldrb r0, [r0]
-	cmp r0, #0x61
-	bne _0807ABE8
-	bl GetGameTime
-	movs r1, #1
-	ands r1, r0
-	cmp r1, #0
-	beq _0807AC02
-	bl GetGameTime
-	adds r1, r0, #0
-	movs r0, #1
-	ands r1, r0
-	movs r0, #3
-	movs r2, #0
-	bl SetBgOffset
-	b _0807AC02
-_0807ABE8:
-	bl GetGameTime
-	movs r1, #1
-	ands r1, r0
-	cmp r1, #0
-	beq _0807AC02
-	ldr r0, _0807AC08 @ =0x0202BBB8
-	ldr r1, _0807AC0C @ =0x0000FFFD
-	ldrh r2, [r0, #0xe]
-	ands r1, r2
-	movs r2, #1
-	eors r1, r2
-	strh r1, [r0, #0xe]
-_0807AC02:
-	pop {r0}
-	bx r0
-	.align 2, 0
-_0807AC08: .4byte 0x0202BBB8
-_0807AC0C: .4byte 0x0000FFFD
-
-	thumb_func_start StartEventVeriticalQuakefx
-StartEventVeriticalQuakefx: @ 0x0807AC10
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	ldr r5, _0807AC48 @ =0x08CA759C
-	adds r0, r5, #0
-	bl Proc_Find
-	cmp r0, #0
-	bne _0807AC28
-	adds r0, r5, #0
-	adds r1, r4, #0
-	bl SpawnProc
-_0807AC28:
-	movs r1, #0
-	bl Proc_Goto
-	ldr r0, _0807AC4C @ =0x0202BBF8
-	adds r0, #0x41
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1e
-	cmp r0, #0
-	blt _0807AC40
-	ldr r0, _0807AC50 @ =0x0000026A
-	bl m4aSongNumStart
-_0807AC40:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-_0807AC48: .4byte 0x08CA759C
-_0807AC4C: .4byte 0x0202BBF8
-_0807AC50: .4byte 0x0000026A
-
-	thumb_func_start StartEventHorizontalQuakefxViolently
-StartEventHorizontalQuakefxViolently: @ 0x0807AC54
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	ldr r5, _0807AC8C @ =0x08CA756C
-	adds r0, r5, #0
-	bl Proc_Find
-	cmp r0, #0
-	bne _0807AC7E
-	ldr r0, _0807AC90 @ =0x0202BBF8
-	adds r0, #0x41
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1e
-	cmp r0, #0
-	blt _0807AC76
-	ldr r0, _0807AC94 @ =0x0000026A
-	bl m4aSongNumStart
-_0807AC76:
-	adds r0, r5, #0
-	adds r1, r4, #0
-	bl SpawnProc
-_0807AC7E:
-	movs r1, #0
-	bl Proc_Goto
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-_0807AC8C: .4byte 0x08CA756C
-_0807AC90: .4byte 0x0202BBF8
-_0807AC94: .4byte 0x0000026A
-
-	thumb_func_start StartEventHorizontalQuakefxSlightly
-StartEventHorizontalQuakefxSlightly: @ 0x0807AC98
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	ldr r5, _0807ACD0 @ =0x08CA756C
-	adds r0, r5, #0
-	bl Proc_Find
-	cmp r0, #0
-	bne _0807ACC2
-	ldr r0, _0807ACD4 @ =0x0202BBF8
-	adds r0, #0x41
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1e
-	cmp r0, #0
-	blt _0807ACBA
-	ldr r0, _0807ACD8 @ =0x0000026A
-	bl m4aSongNumStart
-_0807ACBA:
-	adds r0, r5, #0
-	adds r1, r4, #0
-	bl SpawnProc
-_0807ACC2:
-	movs r1, #1
-	bl Proc_Goto
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-_0807ACD0: .4byte 0x08CA756C
-_0807ACD4: .4byte 0x0202BBF8
-_0807ACD8: .4byte 0x0000026A
-

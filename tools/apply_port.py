@@ -179,6 +179,10 @@ def main():
             continue
         have[rewrite.get(name, name)] = f"0x{plan['sym_addr'][name]:08X}"
     syms.write_text("".join(f"{n} = {a};\n" for n, a in sorted(have.items(), key=lambda kv: int(kv[1], 16))))
+    # make 3.81 compares mtimes to the second; don't trust objects built
+    # moments before these edits.
+    shutil.rmtree("build/asm", ignore_errors=True)
+    shutil.rmtree("build/src", ignore_errors=True)
     print(f"ported {len(files)} files", file=sys.stderr)
 
 

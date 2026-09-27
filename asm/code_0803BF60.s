@@ -3296,7 +3296,7 @@ _0803D8B2:
 	lsrs r4, r4, #0x18
 	ldr r0, _0803D8EC @ =0x08B98AF0
 	ldr r1, [sp, #0x18]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r3, r0, #0
 	str r7, [r3, #0x30]
 	adds r0, #0x34
@@ -3331,7 +3331,7 @@ StartSioBigReceive: @ 0x0803D8F0
 	adds r4, r1, #0
 	adds r1, r2, #0
 	ldr r0, _0803D918 @ =0x08B98B10
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	str r5, [r0, #0x30]
 	adds r2, r0, #0
@@ -3703,7 +3703,7 @@ StartSioHold: @ 0x0803DB88
 	ldr r7, [sp, #0x18]
 	ldr r0, _0803DBB4 @ =0x08B98BC4
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	str r5, [r0, #0x2c]
 	str r6, [r0, #0x30]
 	mov r1, r8
@@ -3838,7 +3838,7 @@ _0803DCB8: .4byte 0x0203DC08
 _0803DCBC: .4byte 0x02023C62
 _0803DCC0:
 	adds r0, r6, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r5, #0
 	bl Text_DrawString
@@ -4083,7 +4083,7 @@ sub_0803DE94: @ 0x0803DE94
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _0803DEA4 @ =0x08B98CB4
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -4786,7 +4786,7 @@ _0803E40A:
 	lsls r0, r6, #4
 	adds r0, r0, r7
 	ldr r0, [r0, #8]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	lsls r2, r6, #1
 	adds r2, #5
@@ -4863,7 +4863,7 @@ sub_0803E490: @ 0x0803E490
 	ldr r1, _0803E680 @ =0x081C827C
 	movs r2, #0x80
 	lsls r2, r2, #5
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	ldr r0, _0803E684 @ =0x081C7F04
 	movs r1, #0x98
 	lsls r1, r1, #2
@@ -6285,7 +6285,7 @@ _0803F018:
 	movs r1, #0xc
 	movs r2, #2
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #1
 	bl EnableBgSync
 	adds r0, r4, #0
@@ -6321,7 +6321,7 @@ _0803F098:
 	movs r1, #0xc
 	movs r2, #2
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #1
 	bl EnableBgSync
 	adds r0, r4, #0
@@ -6661,7 +6661,7 @@ sub_0803F2F8: @ 0x0803F2F8
 	ldr r1, _0803F388 @ =0x081C84CC
 	movs r2, #0x80
 	lsls r2, r2, #5
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	ldr r0, _0803F38C @ =0x0203DA60
 	bl SetTextFont
 	bl InitSystemTextFont
@@ -6895,7 +6895,7 @@ _0803F530:
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq _0803F55E
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	adds r5, r0, #0
 	ldr r4, [r5, #0xc]
 	movs r0, #8
@@ -7604,7 +7604,7 @@ _0803FA8C:
 	movs r1, #0xc
 	movs r2, #2
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #1
 	bl EnableBgSync
 	adds r0, r5, #0
@@ -7640,7 +7640,7 @@ _0803FB02:
 	movs r1, #0xc
 	movs r2, #2
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #1
 	bl EnableBgSync
 	adds r0, r5, #0
@@ -8009,7 +8009,7 @@ StartDrawLinkArenaRankSprites: @ 0x0803FDD4
 	lsrs r5, r5, #0x18
 	ldr r0, _0803FE20 @ =0x08B98EF4
 	mov r1, r8
-	bl SpawnProc
+	bl Proc_Start
 	adds r1, r0, #0
 	mov r0, r8
 	str r0, [r1, #0x2c]
@@ -8063,7 +8063,7 @@ sub_0803FE24: @ 0x0803FE24
 	adds r0, r0, r6
 	ldr r1, _0803FE6C @ =0x081C81C4
 	ldr r2, _0803FE70 @ =0x00002060
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	b _0803FE9E
 	.align 2, 0
 _0803FE64: .4byte 0x02023C60
@@ -8187,7 +8187,7 @@ SioPostBattle_StartMusicProc: @ 0x0803FF50
 	adds r4, r0, #0
 	ldr r0, _0803FF70 @ =0x08B98F74
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	adds r1, r0, #0
 	adds r0, r4, #0
 	adds r0, #0x42
@@ -8259,7 +8259,7 @@ sub_0803FF80: @ 0x0803FF80
 	ldr r0, _08040118 @ =0x02024460
 	ldr r1, _0804011C @ =0x081CB63C
 	movs r2, #0
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	ldr r0, _08040120 @ =0x02000C60
 	ldr r1, _08040124 @ =0x06012000
 	movs r2, #0xe
@@ -8916,7 +8916,7 @@ sub_08040568: @ 0x08040568
 	push {lr}
 	ldr r0, _08040578 @ =0x08B9A0E8
 	movs r1, #2
-	bl SpawnProc
+	bl Proc_Start
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -9061,7 +9061,7 @@ _08040660:
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	movs r0, #0xa
 	str r0, [sp]
@@ -9270,13 +9270,13 @@ sub_08040870: @ 0x08040870
 	strh r1, [r0]
 	ldr r0, _080408AC @ =0x08B98B60
 	movs r1, #0
-	bl SpawnProc
+	bl Proc_Start
 	ldr r0, _080408B0 @ =0x08B98B88
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	ldr r0, _080408B4 @ =0x08B98B38
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	movs r1, #1
 	rsbs r1, r1, #0
 	mov r0, sp
@@ -10321,7 +10321,7 @@ sub_08041104: @ 0x08041104
 	movs r1, #0
 	bl Text_SetColor
 	ldr r0, _08041160 @ =0x00000785
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Text_DrawString
@@ -10330,7 +10330,7 @@ sub_08041104: @ 0x08041104
 	bl PutText
 	ldr r0, _08041168 @ =0x08B98BAC
 	adds r1, r5, #0
-	bl SpawnProc
+	bl Proc_Start
 	movs r0, #0
 	movs r1, #0
 	bl sub_08047BD4
@@ -10402,7 +10402,7 @@ _080411DE:
 	movs r1, #0
 	bl Text_SetColor
 	ldr r0, [r6]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Text_DrawString
@@ -10750,7 +10750,7 @@ _080414C0:
 	ldr r1, [sp, #0x6c]
 	adds r0, r1, r0
 	adds r1, r4, #0
-	bl sub_08082460
+	bl PutChapterTitleBgTsa
 	mov r2, sl
 	lsls r0, r2, #0xf
 	lsrs r0, r0, #0x14
@@ -10762,7 +10762,7 @@ _080414C0:
 	ldr r1, [sp, #0x64]
 	adds r0, r1, r0
 	adds r1, r5, #0
-	bl sub_08082440
+	bl PutChapterTitleNameTsa
 	ldr r2, [sp, #0x64]
 	movs r0, #0x80
 	lsls r0, r0, #1
@@ -11183,7 +11183,7 @@ sub_080417F8: @ 0x080417F8
 	lsls r4, r4, #2
 	adds r4, r4, r0
 	ldr r0, [r4]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	mov r0, r8
 	movs r1, #0x88
@@ -11193,7 +11193,7 @@ sub_080417F8: @ 0x080417F8
 	lsls r5, r5, #2
 	adds r5, r5, r0
 	ldr r0, [r5]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	mov r0, r8
 	movs r1, #0xa2
@@ -11329,7 +11329,7 @@ sub_08041920: @ 0x08041920
 	ldr r1, _08041B18 @ =0x081C87A0
 	movs r2, #0x80
 	lsls r2, r2, #5
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	ldr r0, _08041B1C @ =0x0203DA60
 	bl SetTextFont
 	bl InitSystemTextFont
@@ -11369,7 +11369,7 @@ _080419B8:
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _08041B28 @ =0x0000077F
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x10
@@ -11377,21 +11377,21 @@ _080419B8:
 	bl Text_InsertDrawString
 	movs r0, #0xf0
 	lsls r0, r0, #3
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x54
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _08041B2C @ =0x00000781
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x78
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _08041B30 @ =0x00000782
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x96
@@ -11703,7 +11703,7 @@ sub_08041C5C: @ 0x08041C5C
 	ldr r1, _08041EAC @ =0x081C87A0
 	movs r2, #0x80
 	lsls r2, r2, #5
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	ldr r0, _08041EB0 @ =0x0203DA60
 	bl SetTextFont
 	bl InitSystemTextFont
@@ -11753,7 +11753,7 @@ _08041D1A:
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _08041EBC @ =0x0000077F
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x10
@@ -11761,21 +11761,21 @@ _08041D1A:
 	bl Text_InsertDrawString
 	movs r0, #0xf0
 	lsls r0, r0, #3
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x54
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _08041EC0 @ =0x00000781
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x78
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _08041EC4 @ =0x00000782
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x96
@@ -12041,7 +12041,7 @@ StartSioResultNewHighScore: @ 0x08041FBC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08041FD0 @ =0x08B99560
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x3c]
 	pop {r4}
 	pop {r0}
@@ -12153,7 +12153,7 @@ _08042074:
 	adds r0, #0xc
 	adds r0, r5, r0
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Text_DrawString
@@ -12286,7 +12286,7 @@ _080421B8:
 	movs r1, #0
 	bl Text_SetColor
 	ldr r0, [r5]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Text_DrawString
@@ -13469,7 +13469,7 @@ _08042BA0:
 	add r0, sp
 	ldr r0, [r0]
 	adds r1, r6, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 _08042BB0:
 	add sp, #0x14
 	pop {r4, r5, r6}
@@ -13480,7 +13480,7 @@ _08042BB0:
 sub_08042BB8: @ 0x08042BB8
 	push {r4, lr}
 	adds r4, r0, #0
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	ldr r0, _08042C20 @ =0x0203DA60
 	ldr r1, _08042C24 @ =0x06001800
 	movs r2, #0xc0
@@ -13514,10 +13514,10 @@ _08042BDC:
 	strb r0, [r1]
 	ldr r0, _08042C30 @ =0x08B99640
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	ldr r0, _08042C34 @ =0x08B9333C
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -13534,7 +13534,7 @@ StartNameSelect: @ 0x08042C38
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _08042C54 @ =0x08B98E14
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r3, r0, #0
 	adds r3, #0x33
 	movs r2, #0
@@ -13551,7 +13551,7 @@ _08042C54: .4byte 0x08B98E14
 sub_08042C58: @ 0x08042C58
 	push {r4, lr}
 	adds r4, r0, #0
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl UnsetBmStLinkArenaFlag
 	ldr r0, _08042CA4 @ =0x0203DA60
 	ldr r1, _08042CA8 @ =0x06001800
@@ -13571,7 +13571,7 @@ sub_08042C58: @ 0x08042C58
 	strb r0, [r1]
 	ldr r0, _08042CB4 @ =0x08B98E14
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r2, r0, #0
 	adds r2, #0x33
 	movs r1, #7
@@ -13723,7 +13723,7 @@ XMapTransfer_8048418: @ 0x08042DB0
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	cmp r0, #1
 	bne _08042DC8
 	ldr r1, _08042DC4 @ =0x0203DC98
@@ -14126,7 +14126,7 @@ XMapTransfer_8048730: @ 0x080430C4
 	bl InitSystemTextFont
 	ldr r4, _08043124 @ =0x0203D970
 	ldr r0, _08043128 @ =0x00000771
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	movs r2, #0
@@ -14178,7 +14178,7 @@ _08043150: .4byte 0x03002870
 Shop_HandleBuyConfirmPrompt: @ 0x08043154
 	push {r4, lr}
 	adds r4, r0, #0
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	cmp r0, #1
 	beq _08043168
 	adds r0, r4, #0
@@ -14194,7 +14194,7 @@ _08043168:
 sub_08043170: @ 0x08043170
 	push {r4, lr}
 	adds r4, r0, #0
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	cmp r0, #1
 	bne _08043192
 	bl InitGlobalSaveInfo
@@ -14307,14 +14307,14 @@ Sio_DrawFe6CommImage: @ 0x080431E0
 	ldr r5, _080433A4 @ =0x00004060
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	movs r0, #0x88
 	lsls r0, r0, #3
 	adds r4, r4, r0
 	ldr r1, _080433A8 @ =0x081D2628
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	ldr r4, _080433AC @ =0x081CE25C
 	movs r0, #3
 	bl GetBgChrOffset
@@ -14348,7 +14348,7 @@ _080432AC:
 	bne _080432AC
 	ldr r0, _080433BC @ =0x08B99870
 	adds r1, r6, #0
-	bl SpawnProc
+	bl Proc_Start
 	ldr r0, _080433C0 @ =0x0203DA60
 	bl SetTextFont
 	bl InitSystemTextFont
@@ -14360,7 +14360,7 @@ _080432AC:
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _080433C8 @ =0x0000118D
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
@@ -14597,13 +14597,13 @@ sub_080434EC: @ 0x080434EC
 	strh r1, [r0]
 	ldr r0, _0804352C @ =0x08B98B60
 	movs r1, #0
-	bl SpawnProc
+	bl Proc_Start
 	ldr r0, _08043530 @ =0x08B98B88
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	ldr r0, _08043534 @ =0x08B98B38
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	movs r1, #1
 	rsbs r1, r1, #0
 	mov r0, sp
@@ -15016,7 +15016,7 @@ _08043848:
 	bne _0804387C
 	ldr r7, _08043878 @ =0x00001186
 	adds r0, r7, #0
-	bl GetMsg
+	bl DecodeMsg
 	bl GetStringTextLen
 	adds r5, r0, #0
 	cmp r4, #0
@@ -15026,7 +15026,7 @@ _08043848:
 	asrs r6, r0, #1
 _08043864:
 	adds r0, r7, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	mov r0, sb
 	adds r1, r6, #0
@@ -15053,7 +15053,7 @@ _0804387C:
 	lsls r0, r0, #1
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	bl GetStringTextLen
 	subs r0, #1
 	str r0, [sp, #4]
@@ -15064,13 +15064,13 @@ _080438B0:
 	adds r0, r0, r1
 	str r0, [sp, #0x14]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	bl GetStringTextLen
 	subs r0, #1
 	str r0, [sp, #8]
 	adds r5, r5, r0
 	ldr r0, _08043974 @ =0x00001185
-	bl GetMsg
+	bl DecodeMsg
 	bl GetStringTextLen
 	str r0, [sp, #0xc]
 	adds r5, r5, r0
@@ -15079,7 +15079,7 @@ _080438B0:
 	cmp r4, #0
 	beq _080438EA
 	ldr r0, _08043978 @ =0x00001188
-	bl GetMsg
+	bl DecodeMsg
 	bl GetStringTextLen
 	adds r5, r5, r0
 _080438EA:
@@ -15099,7 +15099,7 @@ _080438F6:
 	ldr r1, _08043970 @ =0x08B99880
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	mov r0, sb
 	adds r1, r6, #0
@@ -15110,7 +15110,7 @@ _080438F6:
 _0804391C:
 	ldr r2, [sp, #0x14]
 	ldrh r0, [r2]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	mov r0, sb
 	adds r1, r6, #0
@@ -15119,7 +15119,7 @@ _0804391C:
 	ldr r0, [sp, #8]
 	adds r6, r6, r0
 	ldr r0, _08043974 @ =0x00001185
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	mov r0, sb
 	adds r1, r6, #0
@@ -15130,7 +15130,7 @@ _0804391C:
 	cmp r4, #0
 	beq _08043960
 	ldr r0, _08043978 @ =0x00001188
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	mov r0, sb
 	adds r1, r6, #0
@@ -15165,7 +15165,7 @@ sub_0804397C: @ 0x0804397C
 	adds r3, r7, #0
 	bl sub_08043828
 	ldrh r0, [r5]
-	bl GetMsg
+	bl DecodeMsg
 	bl GetStringTextLen
 	movs r1, #0x46
 	subs r1, r1, r0
@@ -15179,7 +15179,7 @@ _080439B0:
 	adds r4, r1, #0
 	adds r4, #0x28
 	ldrh r0, [r5]
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r6, #0
 	adds r1, r4, #0
@@ -15196,21 +15196,21 @@ sub_080439D0: @ 0x080439D0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08043A10 @ =0x00001191
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
 	movs r2, #0
 	bl Text_InsertDrawString
 	movs r0, #1
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x80
 	movs r2, #0
 	bl Text_InsertDrawString
 	movs r0, #2
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0xb0
@@ -15779,7 +15779,7 @@ sub_08043EA0: @ 0x08043EA0
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _08043EB0 @ =0x08B9998C
-	bl SpawnProc
+	bl Proc_Start
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -15798,7 +15798,7 @@ sub_08043EB4: @ 0x08043EB4
 	adds r0, r4, #0
 	bl sub_08043EA0
 	str r0, [r4, #0x54]
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	ldr r0, _08043F00 @ =0x02023460
 	movs r1, #4
 	str r1, [sp]
@@ -15959,7 +15959,7 @@ _08044012:
 	movs r1, #0x10
 	movs r2, #6
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #2
 	bl EnableBgSync
 	adds r0, r5, #0
@@ -15980,7 +15980,7 @@ _08044034:
 	movs r1, #0x10
 	movs r2, #6
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #2
 	bl EnableBgSync
 	ldr r0, _08044084 @ =0x06016800
@@ -16035,7 +16035,7 @@ sub_080440AC: @ 0x080440AC
 GC_ConnectToFE6: @ 0x080440B8
 	push {r4, lr}
 	adds r4, r0, #0
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	ldr r0, _080440DC @ =0x0203DA60
 	ldr r1, _080440E0 @ =0x06001800
 	movs r2, #0xc0
@@ -16043,7 +16043,7 @@ GC_ConnectToFE6: @ 0x080440B8
 	bl InitTextFont
 	ldr r0, _080440E4 @ =0x08B999D8
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -16317,7 +16317,7 @@ StartLinkArenaPointsBox: @ 0x080442D4
 	bl SetBgOffset
 	ldr r0, _080442F8 @ =0x08B99AD8
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -17153,7 +17153,7 @@ _08044996:
 	beq _08044A3C
 	ldr r0, _08044A34 @ =0x08B99B5C
 	ldr r1, [sp, #0x34]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r2, r0, #0
 	adds r0, #0x32
 	strb r4, [r0]
@@ -17218,7 +17218,7 @@ _08044A44:
 	beq _08044A6E
 	ldr r0, _08044A74 @ =0x08B99B9C
 	ldr r1, [sp, #0x34]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	ldr r1, [sp, #8]
 	str r1, [r0, #0x2c]
 	ldr r1, [sp, #0xc]
@@ -17250,7 +17250,7 @@ sub_08044A8C: @ 0x08044A8C
 	adds r4, r0, #0
 	bl StartLinkArenaPointsBox
 	ldr r0, _08044ABC @ =0x000012CB
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r0, #0
 	str r4, [sp]
 	movs r0, #0x58
@@ -17276,7 +17276,7 @@ sub_08044AC0: @ 0x08044AC0
 	adds r4, r0, #0
 	bl StartLinkArenaPointsBox
 	ldr r0, _08044AE8 @ =0x000012CB
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r0, #0
 	str r4, [sp]
 	movs r0, #0x58
@@ -18069,7 +18069,7 @@ _08045090:
 	bl sub_08046B48
 	ldr r0, _0804511C @ =0x08B961A8
 	movs r1, #4
-	bl SpawnProc
+	bl Proc_Start
 	bl StartBmVSync
 	bl sub_08044FFC
 	ldr r1, _08045120 @ =0x0202BBF8
@@ -18179,7 +18179,7 @@ _080451CE:
 	ldr r0, _080451E0 @ =0x08B99D58
 _080451D0:
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	b _080451EC
 	.align 2, 0
 _080451D8: .4byte 0x0202BBF8
@@ -18188,7 +18188,7 @@ _080451E0: .4byte 0x08B99D58
 _080451E4:
 	ldr r0, _080451F8 @ =0x08B99F08
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 _080451EC:
 	adds r0, r4, #0
 	bl Proc_Break
@@ -19342,7 +19342,7 @@ _08045B50:
 	ldr r0, [r7]
 	mov r2, r8
 	ldrb r1, [r2, #7]
-	bl UnitEquipItemSlot
+	bl EquipUnitItemSlot
 	ldr r4, [r5, #0xc]
 	movs r0, #0x80
 	lsls r0, r0, #2
@@ -19350,7 +19350,7 @@ _08045B50:
 	cmp r4, #0
 	bne _08045BA8
 	adds r0, r6, #0
-	bl StartFightPreview
+	bl NewBattleForecast
 	mov r0, r8
 	ldrb r0, [r0, #6]
 	cmp r0, #2
@@ -19454,7 +19454,7 @@ sub_08045C38: @ 0x08045C38
 	adds r4, r0, #0
 	ldr r0, _08045C50 @ =0x08B99C18
 	adds r1, r4, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -19707,7 +19707,7 @@ sub_08045E18: @ 0x08045E18
 	ldr r0, _08045E9C @ =0x0300141C
 	ldrb r1, [r0, #3]
 	adds r0, r6, #0
-	bl UnitEquipItemSlot
+	bl EquipUnitItemSlot
 	adds r0, r6, #0
 	mov r1, r8
 	bl BattleGenerateReal
@@ -19718,7 +19718,7 @@ sub_08045E18: @ 0x08045E18
 	strb r0, [r1, #4]
 	ldr r0, _08045EA4 @ =0x08B9A188
 	adds r1, r7, #0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r0, r7, #0
 	bl Proc_Break
 _08045E86:
@@ -21342,7 +21342,7 @@ sub_08046B48: @ 0x08046B48
 	push {lr}
 	ldr r0, _08046B58 @ =0x08B99CB8
 	movs r1, #4
-	bl SpawnProc
+	bl Proc_Start
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -21768,7 +21768,7 @@ sub_08046E7C: @ 0x08046E7C
 	thumb_func_start LinkArena_StoreTalkChoice
 LinkArena_StoreTalkChoice: @ 0x08046E90
 	push {lr}
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	adds r1, r0, #0
 	cmp r1, #1
 	bne _08046EA8
@@ -22486,7 +22486,7 @@ sub_08047420: @ 0x08047420
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	ldr r0, _080474C0 @ =0x08B9A1E0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r0, #0x64
 	movs r3, #0
 	strh r4, [r0]
@@ -22672,7 +22672,7 @@ sub_08047594: @ 0x08047594
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	ldr r0, _08047618 @ =0x08B9A218
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r0, #0x64
 	movs r2, #0
 	strh r4, [r0]
@@ -22811,7 +22811,7 @@ sub_08047670: @ 0x08047670
 	bl StartPalFade
 	ldr r0, _080476C4 @ =0x08B9A268
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x2c]
 	pop {r4}
 	pop {r0}
@@ -22849,7 +22849,7 @@ StartLinkArenaMUDeathFade: @ 0x080476E4
 	strb r0, [r1]
 	ldr r0, _0804775C @ =0x08C9D044
 	adds r1, r4, #0
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x54]
 	adds r0, #0x64
 	movs r3, #0
@@ -22955,7 +22955,7 @@ sub_080477B4: @ 0x080477B4
 	bl StartPalFade
 	ldr r0, _080477E4 @ =0x08C9D0BC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x54]
 	pop {r4}
 	pop {r0}
@@ -23134,7 +23134,7 @@ SioWarpFx_StartSioWarp: @ 0x08047940
 	adds r4, r0, #0
 	ldr r0, _0804796C @ =0x08B9A298
 	movs r1, #2
-	bl SpawnProc
+	bl Proc_Start
 	ldr r2, [r4, #0x2c]
 	movs r1, #0x10
 	ldrsb r1, [r2, r1]
@@ -23253,14 +23253,14 @@ sub_08047A00: @ 0x08047A00
 	cmp r1, #0
 	beq _08047A28
 	ldr r0, _08047A24 @ =0x08B9A2C8
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	b _08047A30
 	.align 2, 0
 _08047A24: .4byte 0x08B9A2C8
 _08047A28:
 	ldr r0, _08047A54 @ =0x08B9A2C8
 	movs r1, #2
-	bl SpawnProc
+	bl Proc_Start
 _08047A30:
 	adds r1, r0, #0
 	str r5, [r1, #0x2c]
@@ -23298,14 +23298,14 @@ sub_08047A58: @ 0x08047A58
 	cmp r1, #0
 	beq _08047A80
 	ldr r0, _08047A7C @ =0x08B9A340
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	b _08047A88
 	.align 2, 0
 _08047A7C: .4byte 0x08B9A340
 _08047A80:
 	ldr r0, _08047AAC @ =0x08B9A340
 	movs r1, #2
-	bl SpawnProc
+	bl Proc_Start
 _08047A88:
 	adds r1, r0, #0
 	str r5, [r1, #0x2c]
@@ -23369,7 +23369,7 @@ StartLinkArenaButtonSpriteDraw: @ 0x08047AE4
 	bl Proc_EndEach
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl SpawnProc
+	bl Proc_Start
 	str r6, [r0, #0x2c]
 	mov r1, r8
 	str r1, [r0, #0x30]
@@ -23511,7 +23511,7 @@ _08047C12:
 _08047C20:
 	adds r0, r3, #0
 	adds r1, r6, #0
-	bl SpawnProc
+	bl Proc_Start
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -23560,7 +23560,7 @@ _08047C66:
 	ble _08047C5A
 	ldr r0, _08047CA0 @ =0x08CC1C5C
 	mov r1, r8
-	bl SpawnProc
+	bl Proc_Start
 	add sp, #0x28
 	pop {r3}
 	mov r8, r3
@@ -23650,7 +23650,7 @@ _08047D06:
 	ldr r1, _08047D5C @ =0x081CBCD0
 	movs r2, #0x82
 	lsls r2, r2, #5
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	movs r0, #4
 	bl EnableBgSync
 	pop {r4, r5, r6}
@@ -23692,7 +23692,7 @@ sub_08047D80: @ 0x08047D80
 	bl Proc_EndEach
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl SpawnProc
+	bl Proc_Start
 	str r6, [r0, #0x58]
 	pop {r4, r5, r6}
 	pop {r0}

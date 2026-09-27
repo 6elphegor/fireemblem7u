@@ -599,10 +599,10 @@ extern struct ProcCmd ProcScr_PrepPromoteDebug[];
 // ??? ProcScr_PrepScreenMenuDummyItem
 // ??? ProcScr_PrepMenu
 // ??? Sprite_MenuScrollContainer
-// ??? Sprite_08D8C744
-// ??? Sprite_08D8C74C
-// ??? Sprites_08D8C794
-// ??? Sprites_08D8C7E8
+// ??? Sprite_08CC41CC
+// ??? Sprite_08CC41D4
+// ??? Sprites_08CC421C
+// ??? Sprites_08CC4270
 // ??? ProcScr_menu_scroll
 // ??? ProcScr_PrepMuralBackground
 // ??? ProcScr_SallyCir
@@ -611,9 +611,9 @@ extern struct ProcCmd ProcScr_PrepPromoteDebug[];
 // ??? gPrepItemTypePageLut
 // ??? gHelpTextIds_PrepItemScreen
 // ??? ProcScr_PrepItemScreen
-// ??? Sprite_08D8CDA8
-extern u16 Sprite_08D8CDBC[];
-extern u16 Sprite_08D8CDD0[];
+// ??? Sprite_08CC4818
+extern u16 Sprite_08CC482C[];
+extern u16 Sprite_08CC4840[];
 // ??? ProcScr_PrepUnitScreen
 // ??? ProcScr_PrepItemTradeScreen
 extern struct ProcCmd ProcScr_PrepItemUseScreen[];

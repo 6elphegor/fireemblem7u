@@ -523,7 +523,7 @@ sub_08091F04: @ 0x08091F04
 	movs r1, #0xa
 	movs r2, #6
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	ldr r4, _08091FFC @ =0x02012A70
 	adds r0, r4, #0
 	bl ClearText
@@ -538,7 +538,7 @@ sub_08091F04: @ 0x08091F04
 	movs r5, #1
 _08091F3C:
 	ldr r0, _08092000 @ =0x0000125D
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
@@ -551,7 +551,7 @@ _08091F3C:
 	movs r5, #1
 _08091F5A:
 	ldr r0, _08092004 @ =0x0000125E
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x20
@@ -570,7 +570,7 @@ _08091F5A:
 	movs r4, #1
 _08091F86:
 	ldr r0, _08092008 @ =0x0000125F
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r7, #0
 	movs r1, #0
@@ -598,7 +598,7 @@ _08091FBE:
 _08091FC0:
 	movs r0, #0x93
 	lsls r0, r0, #5
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0x20
@@ -662,12 +662,12 @@ _0809203A:
 	movs r1, #9
 	movs r2, #0
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	adds r4, #1
 	cmp r4, #7
 	ble _0809203A
 	mov r0, r8
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	ldr r7, _08092104 @ =0x02022D66
 	movs r2, #0x9c
 	lsls r2, r2, #2
@@ -682,7 +682,7 @@ _0809203A:
 	mov r1, r8
 	ldr r0, [r1]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r4, r0, #0
 	movs r0, #0x28
 	adds r1, r4, #0
@@ -746,7 +746,7 @@ sub_0809210C: @ 0x0809210C
 	movs r1, #0xc
 	movs r2, #0x14
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #0xc0
 	lsls r0, r0, #7
 	movs r1, #5
@@ -1334,7 +1334,7 @@ sub_080925D0: @ 0x080925D0
 	movs r1, #0x1f
 	movs r2, #8
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #0xc0
 	lsls r0, r0, #7
 	movs r1, #5
@@ -1711,7 +1711,7 @@ _0809292A:
 	cmp r6, #0
 	beq _0809296C
 	adds r0, r6, #0
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	lsls r2, r7, #0x10
 	asrs r2, r2, #0x10
@@ -1787,7 +1787,7 @@ StartPrepItemScreen: @ 0x080929BC
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080929CC @ =0x08CC4448
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -1811,7 +1811,7 @@ sub_080929D0: @ 0x080929D0
 	movs r1, #0xc
 	movs r2, #0x14
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #2
 	ldr r1, [sp]
 	ands r0, r1
@@ -1854,7 +1854,7 @@ _08092A24:
 _08092A44:
 	mov r0, r8
 	adds r1, r5, #0
-	bl IsItemDisplayUseable
+	bl IsItemDisplayUsable
 _08092A4C:
 	movs r7, #0
 	lsls r0, r0, #0x18
@@ -1882,7 +1882,7 @@ _08092A56:
 	bl Text_DrawString
 _08092A84:
 	adds r0, r5, #0
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	mov r0, sl
 	movs r2, #0x80
@@ -2056,7 +2056,7 @@ _08092BAC:
 	bl Text_SetColor
 	ldr r0, [r4]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r6, #0
 	bl Text_DrawString
@@ -2558,7 +2558,7 @@ _08092FAE:
 	bl ClearText
 	ldr r0, [r5]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	movs r1, #0x1f
 	mov r2, r8
 	ands r1, r2
@@ -2607,7 +2607,7 @@ PrepUpdateMenuTsaScroll: @ 0x08093014
 	movs r1, #0xd
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #4
 	bl EnableBgSync
 	pop {r0}
@@ -2958,9 +2958,9 @@ PrepUnit_DrawLeftUnitName: @ 0x080932F4
 	movs r1, #6
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	adds r0, r5, #0
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r4, #0
 	subs r1, #0x88
 	movs r2, #0x9c
@@ -2975,14 +2975,14 @@ PrepUnit_DrawLeftUnitName: @ 0x080932F4
 	bl ClearText
 	ldr r0, [r5]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	movs r0, #0x38
 	bl GetStringTextCenteredPos
 	adds r6, r0, #0
 	ldr r0, [r5]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r4, #0
 	subs r1, #0x80
 	mov r2, sb
@@ -3052,7 +3052,7 @@ PrepUnit_DrawUnitItems: @ 0x080933C4
 	movs r1, #0xb
 	movs r2, #0xa
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	adds r0, r7, #0
 	bl GetUnitItemCount
 	str r0, [sp, #8]
@@ -3076,7 +3076,7 @@ _08093404:
 	adds r0, r0, r1
 	ldrh r4, [r0]
 	adds r0, r4, #0
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	mov r0, sb
 	movs r2, #0x80
@@ -3090,7 +3090,7 @@ _08093404:
 	bl ClearText
 	adds r0, r7, #0
 	adds r1, r4, #0
-	bl IsItemDisplayUseable
+	bl IsItemDisplayUsable
 	movs r6, #0
 	lsls r0, r0, #0x18
 	cmp r0, #0
@@ -3112,7 +3112,7 @@ _08093442:
 	bl PutDrawText
 	adds r0, r7, #0
 	adds r1, r4, #0
-	bl IsItemDisplayUseable
+	bl IsItemDisplayUsable
 	lsls r0, r0, #0x18
 	movs r5, #1
 	cmp r0, #0
@@ -3165,7 +3165,7 @@ PrepUnit_DrawPickLeftBar: @ 0x080934BC
 	adds r0, r5, #0
 	bl ClearText
 	ldr r0, _08093598 @ =0x00001272
-	bl GetMsg
+	bl DecodeMsg
 	ldr r1, _0809359C @ =0x02022CBC
 	str r4, [sp]
 	str r0, [sp, #4]
@@ -3179,7 +3179,7 @@ _080934E8:
 	movs r2, #3
 	bl ClearTextPart
 	ldr r0, _080935A0 @ =0x00001271
-	bl GetMsg
+	bl DecodeMsg
 	ldr r7, _0809359C @ =0x02022CBC
 	movs r1, #0
 	str r1, [sp]
@@ -3217,7 +3217,7 @@ _0809351E:
 	movs r1, #4
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	adds r0, r7, #0
 	adds r0, #0x18
 	movs r1, #2
@@ -3477,7 +3477,7 @@ sub_08093734: @ 0x08093734
 	bl GetChapterInfo
 	adds r0, #0x8e
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r4, r0, #0
 	ldr r5, _0809378C @ =0x02012B40
 	adds r0, r5, #0
@@ -3867,8 +3867,8 @@ sub_08093A7C: @ 0x08093A7C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08093AA0
-sub_08093AA0: @ 0x08093AA0
+	thumb_func_start ProcPrepUnit_Idle
+ProcPrepUnit_Idle: @ 0x08093AA0
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldrh r0, [r5, #0x2c]
@@ -4286,15 +4286,15 @@ _08093DCC:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08093DE4
-sub_08093DE4: @ 0x08093DE4
+	thumb_func_start nullsub_11
+nullsub_11: @ 0x08093DE4
 	bx lr
 	.align 2, 0
 
 	thumb_func_start sub_08093DE8
 sub_08093DE8: @ 0x08093DE8
 	push {lr}
-	bl sub_08093DE4
+	bl nullsub_11
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r0, #0xd0
@@ -4470,8 +4470,8 @@ _08093F2E:
 	.align 2, 0
 _08093F3C: .4byte 0x0001000C
 
-	thumb_func_start sub_08093F40
-sub_08093F40: @ 0x08093F40
+	thumb_func_start PrepUnitDisableDisp
+PrepUnitDisableDisp: @ 0x08093F40
 	ldr r2, _08093F60 @ =0x03002870
 	movs r0, #2
 	rsbs r0, r0, #0
@@ -4491,8 +4491,8 @@ sub_08093F40: @ 0x08093F40
 	.align 2, 0
 _08093F60: .4byte 0x03002870
 
-	thumb_func_start sub_08093F64
-sub_08093F64: @ 0x08093F64
+	thumb_func_start PrepUnitEnableDisp
+PrepUnitEnableDisp: @ 0x08093F64
 	ldr r2, _08093F80 @ =0x03002870
 	movs r0, #1
 	ldrb r1, [r2, #1]
@@ -4873,7 +4873,7 @@ DrawPrepScreenItems: @ 0x08094230
 	movs r1, #0xb
 	movs r2, #9
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	mov r0, sl
 	bl GetUnitItemCount
 	str r0, [sp, #0x10]
@@ -4902,7 +4902,7 @@ _0809426A:
 _08094286:
 	mov r0, sl
 	adds r1, r6, #0
-	bl IsItemDisplayUseable
+	bl IsItemDisplayUsable
 _0809428E:
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -4939,7 +4939,7 @@ _080942C8:
 	adds r1, r7, #0
 	bl PutNumberOrBlank
 	adds r0, r6, #0
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	mov r0, r8
 	movs r2, #0x80
@@ -4985,7 +4985,7 @@ _08094328:
 	adds r0, #0x1e
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	adds r0, r4, #0
 	movs r2, #0x80
@@ -5057,7 +5057,7 @@ sub_08094350: @ 0x08094350
 	bl TmFill
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	movs r0, #0
 	movs r1, #0
@@ -5132,7 +5132,7 @@ _08094476:
 	mov r2, r8
 	str r0, [r2, #0x3c]
 	ldr r0, [r2, #0x2c]
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	movs r4, #4
 	rsbs r4, r4, #0
@@ -5144,7 +5144,7 @@ _08094476:
 	bl StartBmFace
 	mov r3, r8
 	ldr r0, [r3, #0x30]
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	ldr r0, _08094618 @ =0x00000202
 	str r0, [sp]
@@ -5171,7 +5171,7 @@ _08094476:
 	ldr r0, [r4, #0x2c]
 	ldr r0, [r0]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r7, r0, #0
 	bl GetStringTextLen
 	adds r3, r0, #0
@@ -5193,7 +5193,7 @@ _08094476:
 	ldr r0, [r1, #0x30]
 	ldr r0, [r0]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r7, r0, #0
 	bl GetStringTextLen
 	subs r4, r4, r0
@@ -5719,7 +5719,7 @@ StartPrepItemTradeScreenProc: @ 0x08094948
 	adds r5, r1, #0
 	adds r1, r2, #0
 	ldr r0, _08094968 @ =0x08CC49E4
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	str r5, [r0, #0x30]
 	movs r1, #1
@@ -5739,7 +5739,7 @@ sub_0809496C: @ 0x0809496C
 	adds r6, r2, #0
 	adds r1, r3, #0
 	ldr r0, _08094988 @ =0x08CC49E4
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	str r5, [r0, #0x30]
 	str r6, [r0, #0x40]
@@ -5847,7 +5847,7 @@ _08094A30:
 	cmp r4, #0
 	bge _08094A30
 	ldr r0, _08094A8C @ =0x000010F4
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r6, #0
 	adds r6, #8
 	ldr r5, _08094A90 @ =0x02023D82
@@ -5860,13 +5860,13 @@ _08094A30:
 	movs r3, #0
 	bl PutDrawText
 	mov r0, r8
-	bl UnitKnowsMagic
+	bl UnitHasMagicRank
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #0
 	beq _08094A98
 	ldr r0, _08094A94 @ =0x000010F9
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r6, #0
 	adds r6, #8
 	adds r1, r5, #0
@@ -5885,7 +5885,7 @@ _08094A90: .4byte 0x02023D82
 _08094A94: .4byte 0x000010F9
 _08094A98:
 	ldr r0, _08094BA8 @ =0x000010F8
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r6, #0
 	adds r6, #8
 	adds r1, r5, #0
@@ -5898,7 +5898,7 @@ _08094A98:
 	bl PutDrawText
 _08094AB4:
 	ldr r0, _08094BAC @ =0x000010FB
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r6, #0
 	adds r6, #8
 	ldr r7, _08094BB0 @ =0x02023E82
@@ -5911,7 +5911,7 @@ _08094AB4:
 	movs r3, #0
 	bl PutDrawText
 	ldr r0, _08094BB4 @ =0x000010FC
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r6, #0
 	adds r6, #8
 	adds r1, r7, #0
@@ -5923,7 +5923,7 @@ _08094AB4:
 	movs r3, #0
 	bl PutDrawText
 	ldr r0, _08094BB8 @ =0x000010FD
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r6, #0
 	adds r6, #8
 	adds r1, r7, #0
@@ -5935,7 +5935,7 @@ _08094AB4:
 	movs r3, #0
 	bl PutDrawText
 	ldr r0, _08094BBC @ =0x000010FE
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r6, #0
 	adds r6, #8
 	adds r1, r7, #0
@@ -5947,7 +5947,7 @@ _08094AB4:
 	movs r3, #0
 	bl PutDrawText
 	ldr r0, _08094BC0 @ =0x000010FF
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r6, #0
 	adds r6, #8
 	adds r1, r7, #0
@@ -5959,7 +5959,7 @@ _08094AB4:
 	movs r3, #0
 	bl PutDrawText
 	ldr r0, _08094BC4 @ =0x00001107
-	bl GetMsg
+	bl DecodeMsg
 	adds r2, r6, #0
 	adds r6, #8
 	adds r1, r7, #0
@@ -5973,7 +5973,7 @@ _08094AB4:
 	mov r1, r8
 	ldr r0, [r1, #4]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r4, r0, #0
 	movs r0, #0x38
 	adds r1, r4, #0
@@ -6439,7 +6439,7 @@ sub_08094EF4: @ 0x08094EF4
 	movs r1, #0
 	bl Text_SetColor
 	adds r0, r5, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	ldr r2, _08094F74 @ =0x02022FBE
 	mov r0, sp
@@ -6460,7 +6460,7 @@ _08094F78:
 	movs r1, #1
 	bl Text_SetColor
 	adds r0, r5, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	ldr r2, _08094FB0 @ =0x02022FBE
 	mov r0, sp
@@ -6568,7 +6568,7 @@ sub_08094FE4: @ 0x08094FE4
 	strb r0, [r4, #0x18]
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	bl ApplyUnitSpritePalettes
 	movs r0, #0
@@ -6653,7 +6653,7 @@ _080950D4:
 	movs r1, #0
 	bl DrawPrepScreenItemUseStatBars
 	ldr r0, [r7, #0x2c]
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	movs r3, #4
 	rsbs r3, r3, #0
@@ -6697,7 +6697,7 @@ _080950D4:
 	ldr r0, [r7, #0x2c]
 	ldr r0, [r0]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r4, r0, #0
 	bl GetStringTextLen
 	movs r3, #0x30
@@ -7023,7 +7023,7 @@ sub_0809546C: @ 0x0809546C
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _080954DC @ =0x00001269
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r4, #0
 	adds r4, #8
 	ldr r5, _080954E0 @ =0x02023FC2
@@ -7038,7 +7038,7 @@ sub_0809546C: @ 0x0809546C
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _080954E4 @ =0x000010EE
-	bl GetMsg
+	bl DecodeMsg
 	adds r5, #0x82
 	str r6, [sp]
 	str r0, [sp, #4]
@@ -7048,7 +7048,7 @@ sub_0809546C: @ 0x0809546C
 	movs r3, #0
 	bl PutDrawText
 	ldr r0, _080954E8 @ =0x000010EF
-	bl GetMsg
+	bl DecodeMsg
 	str r6, [sp]
 	str r0, [sp, #4]
 	adds r0, r4, #0
@@ -7076,7 +7076,7 @@ PrepItemUseClearSubBox: @ 0x080954EC
 	movs r1, #0xd
 	movs r2, #4
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	movs r0, #4
 	bl EnableBgSync
 	pop {r0}
@@ -7253,7 +7253,7 @@ sub_0809565C: @ 0x0809565C
 	adds r1, #0x1e
 	adds r1, r1, r0
 	ldrh r0, [r1]
-	bl GetItemIid
+	bl GetItemIndex
 	subs r0, #0x63
 	cmp r0, #0x33
 	bhi _0809576E
@@ -7434,7 +7434,7 @@ sub_080958B0: @ 0x080958B0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080958C4 @ =0x08CC4A2C
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	pop {r4}
 	pop {r0}
@@ -7454,10 +7454,10 @@ sub_080958C8: @ 0x080958C8
 	adds r5, r1, #0
 	str r2, [sp, #8]
 	adds r0, r3, #0
-	bl GetMsg
+	bl DecodeMsg
 	mov sl, r0
 	ldr r0, [sp, #0x2c]
-	bl GetItemIcon
+	bl GetItemIconId
 	mov r8, r0
 	mov r0, sl
 	bl GetStringTextLen
@@ -7489,7 +7489,7 @@ _0809590A:
 	ldr r0, _08095948 @ =0x02023C60
 	adds r4, r4, r0
 	ldr r0, [sp, #0x2c]
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
@@ -7776,7 +7776,7 @@ sub_08095B6C: @ 0x08095B6C
 	movs r1, #0xe
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	cmp r5, #0
 	bne _08095B98
 	adds r0, r4, #0
@@ -7867,7 +7867,7 @@ sub_08095C28: @ 0x08095C28
 	ldr r0, [r4]
 	ldr r1, _08095C68 @ =0x08CC4B88
 	ldr r1, [r1]
-	bl GetMsgTo
+	bl DecodeMsgInBuffer
 	adds r2, r0, #0
 	movs r0, #0xf0
 	lsls r0, r0, #7
@@ -7927,7 +7927,7 @@ sub_08095CA8: @ 0x08095CA8
 	movs r1, #0xc
 	movs r2, #0x1f
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	ldr r1, _08095CF4 @ =0x02012466
 	ldrh r0, [r1]
 	cmp r0, #0
@@ -7935,7 +7935,7 @@ sub_08095CA8: @ 0x08095CA8
 	ldr r0, [sp]
 	bl ClearText
 	ldr r0, _08095CF8 @ =0x0000126D
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	ldr r0, [sp]
 	movs r1, #0
@@ -7970,7 +7970,7 @@ _08095D0A:
 	ldrh r7, [r0, #2]
 	ldr r0, [sp, #8]
 	adds r1, r7, #0
-	bl IsItemDisplayUseable
+	bl IsItemDisplayUsable
 	movs r1, #0
 	mov sb, r1
 	lsls r0, r0, #0x18
@@ -7995,7 +7995,7 @@ _08095D34:
 	adds r4, r5, #2
 	add r4, sl
 	adds r0, r7, #0
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	adds r0, r4, #0
 	movs r2, #0x80
@@ -8068,7 +8068,7 @@ _08095DE0:
 	lsls r4, r4, #6
 	adds r4, #2
 	add r4, r8
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	adds r0, r4, #0
 	movs r2, #0x80
@@ -8118,7 +8118,7 @@ sub_08095E24: @ 0x08095E24
 	ldrh r6, [r0, #2]
 	adds r0, r3, #0
 	adds r1, r6, #0
-	bl IsItemDisplayUseable
+	bl IsItemDisplayUsable
 	movs r1, #0
 	mov r8, r1
 	lsls r0, r0, #0x18
@@ -8133,7 +8133,7 @@ _08095E64:
 	movs r1, #0xc
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	adds r0, r7, #0
 	bl ClearText
 	adds r0, r6, #0
@@ -8145,7 +8145,7 @@ _08095E64:
 	bl Text_InsertDrawString
 	adds r5, r4, #2
 	adds r0, r6, #0
-	bl GetItemIcon
+	bl GetItemIconId
 	adds r1, r0, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
@@ -8338,7 +8338,7 @@ _08096006:
 	movs r4, #1
 _08096008:
 	ldr r0, _08096048 @ =0x0000126E
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r7, #0
 	movs r1, #0
@@ -8351,7 +8351,7 @@ _08096008:
 	movs r4, #1
 _08096024:
 	ldr r0, _08096050 @ =0x0000126F
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0x40
@@ -8379,9 +8379,9 @@ sub_08096054: @ 0x08096054
 	movs r1, #0xc
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	ldr r0, _08096104 @ =0x0000125A
-	bl GetMsg
+	bl DecodeMsg
 	ldr r4, _08096108 @ =0x02012B68
 	adds r1, r6, #0
 	adds r1, #0xda
@@ -8402,7 +8402,7 @@ sub_08096054: @ 0x08096054
 	movs r3, #2
 	bl PutFaceChibi
 	ldr r0, _0809610C @ =0x00001270
-	bl GetMsg
+	bl DecodeMsg
 	adds r4, #8
 	str r5, [sp]
 	str r0, [sp, #4]
@@ -8720,7 +8720,7 @@ sub_080962A0: @ 0x080962A0
 	bl InitFaces
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl PrepRestartMuralBackground
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -8804,7 +8804,7 @@ sub_08096370: @ 0x08096370
 	ldr r0, [r7, #0x2c]
 	ldr r0, [r0]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r0, r7, #0
 	bl StartUiCursorHand
 	adds r0, r7, #0
@@ -10816,7 +10816,7 @@ StartPrepItemSupplyProc: @ 0x0809746C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08097484 @ =0x08CC4B94
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	adds r0, #0x30
 	movs r1, #0
@@ -10854,7 +10854,7 @@ sub_080974A8: @ 0x080974A8
 	bl HideUnitSprite
 	ldr r0, [r4]
 	bl StartMu
-	bl SetAutoMuDefaultFacing
+	bl MU_SetDefaultFacing_Auto
 _080974C0:
 	pop {r4}
 	pop {r0}
@@ -10868,7 +10868,7 @@ StartBmSupply: @ 0x080974CC
 	adds r4, r0, #0
 	ldr r0, _080974E8 @ =0x08CC4C74
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x2c]
 	adds r0, #0x30
 	movs r1, #1
@@ -10885,7 +10885,7 @@ MaybeStartSelectConvoyItemProc: @ 0x080974EC
 	adds r4, r0, #0
 	ldr r0, _08097508 @ =0x08CC4C74
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x2c]
 	adds r0, #0x30
 	movs r1, #2
@@ -10943,9 +10943,9 @@ sub_08097554: @ 0x08097554
 	movs r1, #0xc
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	ldr r0, _08097594 @ =0x00001262
-	bl GetMsg
+	bl DecodeMsg
 	ldr r2, _08097598 @ =0x02012BE0
 	movs r1, #0
 	str r1, [sp]
@@ -10985,7 +10985,7 @@ PrepItemList_DrawCurrentOwnerText: @ 0x0809759C
 	movs r1, #0xa
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	ldr r7, _080975EC @ =0x02012B70
 	adds r0, r7, #0
 	bl ClearText
@@ -10994,7 +10994,7 @@ PrepItemList_DrawCurrentOwnerText: @ 0x0809759C
 	cmp r0, r4
 	bgt _080975F8
 	ldr r0, _080975F4 @ =0x0000127D
-	bl GetMsg
+	bl DecodeMsg
 	movs r1, #0
 	str r1, [sp]
 	str r0, [sp, #4]
@@ -11019,7 +11019,7 @@ _080975F8:
 	cmp r4, #0
 	bne _0809762C
 	ldr r0, _08097628 @ =0x0000125A
-	bl GetMsg
+	bl DecodeMsg
 	str r4, [sp]
 	str r0, [sp, #4]
 	adds r0, r7, #0
@@ -11034,10 +11034,10 @@ _08097624: .4byte 0x020117E4
 _08097628: .4byte 0x0000125A
 _0809762C:
 	adds r0, r4, #0
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	ldr r0, [r0]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	movs r1, #0
 	str r1, [sp]
 	str r0, [sp, #4]
@@ -11182,7 +11182,7 @@ sub_080976F0: @ 0x080976F0
 	bl InitFaces
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	movs r0, #0
 	movs r1, #0
@@ -11395,7 +11395,7 @@ _080978AA:
 	adds r1, r7, #0
 	bl StartParallelWorker
 	ldr r0, [r7, #0x2c]
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	movs r3, #4
 	rsbs r3, r3, #0
@@ -11407,7 +11407,7 @@ _080978AA:
 	ldr r0, [r7, #0x2c]
 	ldr r0, [r0]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	mov r8, r0
 	movs r1, #0xe0
 	lsls r1, r1, #4
@@ -12904,7 +12904,7 @@ PrepItemList_StartTradeScreen: @ 0x08098550
 	adds r4, r4, r0
 	ldr r6, [r5, #0x2c]
 	ldrb r0, [r4]
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	adds r1, r0, #0
 	ldrb r2, [r4, #1]
 	adds r0, r6, #0
@@ -12921,7 +12921,7 @@ sub_08098588: @ 0x08098588
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0809859C @ =0x08CC4DBC
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	pop {r4}
 	pop {r0}
@@ -12970,7 +12970,7 @@ sub_080985D4: @ 0x080985D4
 	ldr r0, [r4]
 	ldr r1, _08098614 @ =0x08CC4EBC
 	ldr r1, [r1]
-	bl GetMsgTo
+	bl DecodeMsgInBuffer
 	adds r2, r0, #0
 	movs r0, #0xe0
 	lsls r0, r0, #7
@@ -13057,35 +13057,35 @@ sub_08098660: @ 0x08098660
 	bl SpriteText_DrawBackgroundExt
 	movs r0, #0x93
 	lsls r0, r0, #5
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _0809870C @ =0x00001265
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0x20
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _08098710 @ =0x00001266
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0x40
 	movs r2, #0
 	bl Text_InsertDrawString
 	ldr r0, _08098714 @ =0x00001267
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0x80
 	movs r2, #3
 	bl Text_InsertDrawString
 	ldr r0, _08098718 @ =0x00001259
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0xc0
@@ -13203,7 +13203,7 @@ WmSell_DrawItemGoldValue: @ 0x080987E4
 	movs r1, #0xa
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	cmp r4, #0
 	beq _08098856
 	adds r0, r4, #0
@@ -13265,7 +13265,7 @@ sub_08098868: @ 0x08098868
 	movs r1, #0xa
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	adds r5, r4, #0
 	adds r5, #0xe
 	bl GetGold
@@ -13297,9 +13297,9 @@ sub_080988A8: @ 0x080988A8
 	movs r1, #0xc
 	movs r2, #1
 	movs r3, #0
-	bl TmFillRect_t
+	bl TmFillRect_thm
 	ldr r0, _08098900 @ =0x0000125A
-	bl GetMsg
+	bl DecodeMsg
 	ldr r3, _08098904 @ =0x02012B68
 	adds r1, r4, #0
 	adds r1, #0xda
@@ -13382,7 +13382,7 @@ sub_08098908: @ 0x08098908
 	bl InitFaces
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	movs r0, #0
 	movs r1, #0
@@ -13420,7 +13420,7 @@ sub_08098908: @ 0x08098908
 	bl EnableBgSync
 	mov r1, sb
 	ldr r0, [r1, #0x2c]
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	ldr r0, _08098B64 @ =0x00000503
 	str r0, [sp]
@@ -14096,7 +14096,7 @@ sub_08098F70: @ 0x08098F70
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08098F84 @ =0x08CC4EC0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x2c]
 	pop {r4}
 	pop {r0}
@@ -14123,7 +14123,7 @@ sub_08098F88: @ 0x08098F88
 	movs r3, #4
 	bl StartCgText
 	movs r0, #0x7c
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r0}
 	bx r0
@@ -14422,7 +14422,7 @@ StartFortuneSubMenu: @ 0x080991DC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080991F4 @ =0x08CC4FE0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r1, r0, #0
 	adds r0, #0x29
 	strb r4, [r0]
@@ -14687,7 +14687,7 @@ sub_08099358: @ 0x08099358
 	bl InitFaces
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	movs r0, #0
 	movs r1, #0
@@ -14765,7 +14765,7 @@ sub_0809945C: @ 0x0809945C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08099470 @ =0x08CC5114
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x58]
 	pop {r4}
 	pop {r0}
@@ -15001,7 +15001,7 @@ _08099640:
 	adds r0, r4, #0
 	bl ClearText
 	ldm r7!, {r0}
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r4, #0
 	adds r4, #8
 	ldr r1, _08099680 @ =0x02023C68
@@ -15369,7 +15369,7 @@ sub_08099928: @ 0x08099928
 	movs r3, #4
 	bl StartCgText
 	movs r0, #0x4e
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
@@ -15699,7 +15699,7 @@ _08099BD8:
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r4, #0
 	adds r1, #0x42
 	movs r2, #0xc
@@ -15740,7 +15740,7 @@ _08099C30:
 	mov r8, r3
 	subs r3, #4
 	ldm r3!, {r0}
-	bl GetMsg
+	bl DecodeMsg
 	ldr r5, _08099D50 @ =0x02023C64
 	adds r1, r4, r5
 	movs r2, #5
@@ -15756,7 +15756,7 @@ _08099C30:
 	bge _08099C30
 	movs r6, #5
 	ldr r0, _08099D54 @ =0x000012C4
-	bl GetMsg
+	bl DecodeMsg
 	movs r2, #0xef
 	lsls r2, r2, #1
 	adds r1, r5, r2
@@ -15780,7 +15780,7 @@ _08099C30:
 	movs r2, #0x1e
 	bl PutSpecialChar
 	ldr r0, _08099D58 @ =0x000012C5
-	bl GetMsg
+	bl DecodeMsg
 	ldr r2, _08099D5C @ =0x0000025E
 	adds r1, r5, r2
 	str r4, [sp]
@@ -15821,7 +15821,7 @@ _08099C30:
 	movs r1, #2
 	bl sub_080063CC
 	ldr r0, _08099D68 @ =0x000012C6
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r5, #0
 	adds r1, #0x50
 	str r6, [sp]
@@ -15845,7 +15845,7 @@ _08099C30:
 	cmp r0, #0
 	bne _08099D74
 	ldr r0, _08099D70 @ =0x000012BA
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r5, #0
 	adds r1, #0x5e
 	str r4, [sp]
@@ -15870,7 +15870,7 @@ _08099D6C: .4byte 0x08CC51AC
 _08099D70: .4byte 0x000012BA
 _08099D74:
 	ldr r0, _08099DE4 @ =0x000012BB
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r5, #0
 	adds r1, #0x5e
 	str r4, [sp]
@@ -15887,7 +15887,7 @@ _08099D8C:
 	movs r1, #2
 	bl PutNumber
 	ldr r0, _08099DEC @ =0x000012C8
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r4, #2
 	movs r5, #5
 	str r5, [sp]
@@ -15946,7 +15946,7 @@ _08099E10:
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r4, #0
 	adds r1, #0x42
 	movs r2, #0xc
@@ -15967,7 +15967,7 @@ _08099E42:
 	lsls r0, r6, #2
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	ldr r7, _08099F28 @ =0x02023C64
 	adds r1, r5, r7
 	movs r2, #5
@@ -15992,7 +15992,7 @@ _08099E42:
 	cmp r6, #4
 	ble _08099E42
 	ldr r0, _08099F2C @ =0x000012C4
-	bl GetMsg
+	bl DecodeMsg
 	movs r6, #0xef
 	lsls r6, r6, #1
 	adds r1, r7, r6
@@ -16011,7 +16011,7 @@ _08099E42:
 	movs r3, #0x14
 	bl sub_08099B6C
 	ldr r0, _08099F30 @ =0x000012C5
-	bl GetMsg
+	bl DecodeMsg
 	ldr r2, _08099F34 @ =0x0000025E
 	adds r1, r7, r2
 	str r4, [sp]
@@ -16028,7 +16028,7 @@ _08099E42:
 	movs r3, #0x14
 	bl sub_08099B6C
 	ldr r0, _08099F38 @ =0x000012C6
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r7, #0
 	adds r1, #0x50
 	mov r6, sb
@@ -16050,7 +16050,7 @@ _08099E42:
 	cmp r0, #0
 	bne _08099F40
 	ldr r0, _08099F3C @ =0x000012BA
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r7, #0
 	adds r1, #0x5e
 	str r4, [sp]
@@ -16071,7 +16071,7 @@ _08099F38: .4byte 0x000012C6
 _08099F3C: .4byte 0x000012BA
 _08099F40:
 	ldr r0, _08099F9C @ =0x000012BB
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r7, #0
 	adds r1, #0x5e
 	str r4, [sp]
@@ -16319,7 +16319,7 @@ _0809A140: .4byte 0x0100000C
 _0809A144: .4byte 0x001FFFFF
 _0809A148:
 	ldr r0, _0809A190 @ =0x0000055B
-	bl GetMsg
+	bl DecodeMsg
 	bl SetTacticianName
 _0809A152:
 	ldrb r0, [r5]
@@ -16445,7 +16445,7 @@ _0809A1D2:
 	movs r3, #4
 	bl StartCgText
 	ldr r0, _0809A27C @ =0x000809FE
-	bl SetCgFlags
+	bl SetCgTextFlags
 _0809A25E:
 	add sp, #0x2c
 	pop {r3, r4}
@@ -16641,7 +16641,7 @@ _0809A396:
 	movs r3, #4
 	bl StartCgText
 	ldr r0, _0809A400 @ =0x0002000A
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -17338,7 +17338,7 @@ sub_0809A924: @ 0x0809A924
 	bl GetChapterInfo
 	adds r0, #0x8e
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r6, r0, #0
 	ldr r0, _0809A9A0 @ =0x06010000
 	adds r5, r5, r0
@@ -17430,7 +17430,7 @@ sub_0809A9A8: @ 0x0809A9A8
 	bl InitFaces
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	ldr r2, _0809AADC @ =0x0000FFFC
 	movs r0, #0
@@ -17520,7 +17520,7 @@ _0809AAEC:
 	b _0809AB1C
 _0809AAF8:
 	movs r0, #0x99
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809AB1C
@@ -17572,7 +17572,7 @@ sub_0809AB38: @ 0x0809AB38
 	adds r1, r0, #0
 	ldr r0, _0809AB78 @ =0x0004004E
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
@@ -17603,7 +17603,7 @@ sub_0809AB7C: @ 0x0809AB7C
 	adds r1, r0, #0
 	ldr r0, _0809ABBC @ =0x0004000A
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
@@ -17649,7 +17649,7 @@ _0809ABE2:
 	adds r1, r0, #0
 	ldr r0, _0809AC1C @ =0x0004000A
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r0}
 	bx r0
@@ -17696,7 +17696,7 @@ _0809AC44:
 	adds r1, r0, #0
 	ldr r0, _0809AC78 @ =0x0006000A
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r0}
 	bx r0
@@ -17758,7 +17758,7 @@ _0809ACBE:
 	adds r1, r0, #0
 	ldr r0, _0809ACF8 @ =0x0004000A
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r0}
 	bx r0
@@ -17806,7 +17806,7 @@ sub_0809AD20: @ 0x0809AD20
 	adds r1, r0, #0
 	ldr r0, _0809AD60 @ =0x0004004E
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
@@ -17819,7 +17819,7 @@ _0809AD60: .4byte 0x0004004E
 sub_0809AD64: @ 0x0809AD64
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	cmp r0, #1
 	bne _0809ADB2
 	bl sub_080992A0
@@ -17864,7 +17864,7 @@ _0809ADBA:
 sub_0809ADC0: @ 0x0809ADC0
 	push {r4, lr}
 	adds r4, r0, #0
-	bl GetTalkResult
+	bl GetTalkChoiceResult
 	cmp r0, #1
 	bne _0809ADD6
 	adds r0, r4, #0
@@ -17914,7 +17914,7 @@ _0809ADFE:
 	adds r1, r0, #0
 	ldr r0, _0809AE3C @ =0x0004004E
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
@@ -17946,7 +17946,7 @@ sub_0809AE40: @ 0x0809AE40
 	adds r1, r0, #0
 	ldr r0, _0809AE80 @ =0x0004004E
 	orrs r0, r1
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r0}
 	bx r0
@@ -18189,7 +18189,7 @@ sub_0809B02C: @ 0x0809B02C
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _0809B03C @ =0x08CC5760
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -18631,9 +18631,9 @@ _0809B358: .4byte 0x08BDCE78
 _0809B35C:
 	add r4, sp, #0x28
 	adds r0, r4, #0
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	ldr r0, _0809B3D4 @ =0x0000055B
-	bl GetMsg
+	bl DecodeMsg
 	bl SetTacticianName
 	movs r6, #0
 	add r0, sp, #0x28
@@ -18643,7 +18643,7 @@ _0809B35C:
 _0809B378:
 	adds r0, r6, #0
 	mov r1, sl
-	bl MetaSave_HasMetCharacter
+	bl GGM_IsCharacterKnown
 	lsls r0, r0, #0x18
 	adds r1, r6, #1
 	mov r8, r1
@@ -18706,7 +18706,7 @@ _0809B3DC:
 	ldrb r1, [r1, #5]
 	strb r1, [r2]
 	add r1, sp, #0x28
-	bl MetaSave_HasMetCharacter
+	bl GGM_IsCharacterKnown
 	ldr r2, [r5]
 	ldr r3, [r7]
 	lsls r1, r2, #1
@@ -18909,7 +18909,7 @@ sub_0809B568: @ 0x0809B568
 	movs r6, #4
 _0809B582:
 	ldr r0, _0809B5E4 @ =0x000012C9
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
@@ -19146,7 +19146,7 @@ sub_0809B700: @ 0x0809B700
 	bl InitFaces
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	movs r0, #0xe
 	bl ApplyIconPalettes
@@ -19483,7 +19483,7 @@ sub_0809BA48: @ 0x0809BA48
 	movs r3, #4
 	bl StartCgText
 	ldr r0, _0809BA7C @ =0x000008FC
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r0}
 	bx r0
@@ -19975,7 +19975,7 @@ StartSupportScreenFromPrepScreen: @ 0x0809BE50
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _0809BE64 @ =0x08CC57F4
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r0, #0x42
 	movs r1, #1
 	strb r1, [r0]
@@ -19989,7 +19989,7 @@ sub_0809BE68: @ 0x0809BE68
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _0809BE7C @ =0x08CC57F4
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r0, #0x42
 	movs r1, #0
 	strb r1, [r0]
@@ -20086,7 +20086,7 @@ _0809BF10:
 	ldr r1, _0809BF70 @ =0x08BDCE4C
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r5, #0
 	bl Text_DrawString
@@ -20267,7 +20267,7 @@ sub_0809C044: @ 0x0809C044
 	ldrb r7, [r7]
 	lsrs r0, r7, #4
 	bl sub_080A6DB0
-	bl GetMsg
+	bl DecodeMsg
 	adds r7, r0, #0
 	movs r0, #0x40
 	adds r1, r7, #0
@@ -20287,7 +20287,7 @@ sub_0809C044: @ 0x0809C044
 	lsls r0, r5, #0x1f
 	lsrs r0, r0, #0x1f
 	bl sub_080A6DC0
-	bl GetMsg
+	bl DecodeMsg
 	adds r7, r0, #0
 	movs r0, #0x40
 	adds r1, r7, #0
@@ -20424,7 +20424,7 @@ sub_0809C154: @ 0x0809C154
 	ldr r1, _0809C328 @ =0x08418818
 	ldr r2, _0809C32C @ =0x0000F020
 	adds r0, r4, #0
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	adds r4, #0x40
 	ldr r1, _0809C330 @ =0x02023460
 	movs r2, #0x88
@@ -20658,7 +20658,7 @@ sub_0809C41C: @ 0x0809C41C
 	movs r3, #4
 	bl StartCgText
 	movs r0, #0x4e
-	bl SetCgFlags
+	bl SetCgTextFlags
 	add sp, #0x10
 	pop {r0}
 	bx r0
@@ -21022,7 +21022,7 @@ _0809C710:
 	ldr r1, _0809C7A0 @ =0x08BDCE4C
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	mov r2, sl
 	lsls r2, r2, #1
 	mov r8, r2
@@ -21195,7 +21195,7 @@ DrawSupportSubScreenRemainingText: @ 0x0809C844
 	muls r0, r1, r0
 	adds r0, r0, r4
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r4, r0, #0
 	movs r0, #0x30
 	adds r1, r4, #0
@@ -21214,7 +21214,7 @@ DrawSupportSubScreenRemainingText: @ 0x0809C844
 _0809C8B4:
 	movs r0, #0x94
 	lsls r0, r0, #5
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r6, #0
 	movs r1, #0x30
@@ -21227,7 +21227,7 @@ _0809C8B4:
 	movs r4, #1
 _0809C8D2:
 	ldr r0, _0809C920 @ =0x00001281
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r6, #0
 	movs r1, #0x60
@@ -21702,7 +21702,7 @@ sub_0809CC30: @ 0x0809CC30
 	strb r2, [r4, #0x18]
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	bl ApplyUnitSpritePalettes
 	bl sub_0809CBD8
@@ -22173,7 +22173,7 @@ sub_0809CFF8: @ 0x0809CFF8
 	bl InitFaces
 	bl ResetText
 	bl InitIcons
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	ldr r0, [r5, #0x2c]
 	bl GetSupportScreenCharIdAt
@@ -23029,7 +23029,7 @@ StartSupportUnitSubScreen: @ 0x0809D754
 	lsls r4, r4, #0x18
 	lsrs r4, r4, #0x18
 	ldr r0, _0809D774 @ =0x08CC5984
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	adds r1, r0, #0
 	adds r1, #0x38
 	strb r4, [r1]
@@ -24441,7 +24441,7 @@ sub_0809E25C: @ 0x0809E25C
 	ldrb r1, [r4, #0x18]
 	orrs r0, r1
 	strb r0, [r4, #0x18]
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl EnablePalSync
 	ldr r0, _0809E358 @ =0x02022C60
 	movs r1, #0
@@ -24577,7 +24577,7 @@ sub_0809E3D8: @ 0x0809E3D8
 	adds r5, r1, #0
 	adds r1, r2, #0
 	ldr r0, _0809E3F0 @ =0x08CC5AF0
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r4, [r0, #0x30]
 	str r5, [r0, #0x34]
 	pop {r4, r5}
@@ -24722,8 +24722,8 @@ _0809E4E4:
 	pop {r1}
 	bx r1
 
-	thumb_func_start LoadMetaSave
-LoadMetaSave: @ 0x0809E4F0
+	thumb_func_start ReadGlobalSaveInfo
+ReadGlobalSaveInfo: @ 0x0809E4F0
 	push {r4, r5, lr}
 	sub sp, #0x64
 	adds r5, r0, #0
@@ -24783,8 +24783,8 @@ _0809E566:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start SaveMetaSave
-SaveMetaSave: @ 0x0809E570
+	thumb_func_start WriteGlobalSaveInfo
+WriteGlobalSaveInfo: @ 0x0809E570
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x50
@@ -24912,7 +24912,7 @@ _0809E660:
 	cmp r0, r1
 	bge _0809E660
 	mov r0, sp
-	bl SaveMetaSave
+	bl WriteGlobalSaveInfo
 	add sp, #0x64
 	pop {r4}
 	pop {r0}
@@ -25378,12 +25378,12 @@ sub_0809E9FC: @ 0x0809E9FC
 	sub sp, #0x64
 	movs r4, #0
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809EA4C
 	mov r0, sp
-	bl MetaSave_CountCompletedPlaythroughs
+	bl GetGlobalCompletionCntByInfo
 	adds r5, r0, #0
 	bl CheckLinkedToFE6
 	rsbs r1, r0, #0
@@ -25426,7 +25426,7 @@ sub_0809EA58: @ 0x0809EA58
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809EA6C
@@ -25485,7 +25485,7 @@ sub_0809EAB8: @ 0x0809EAB8
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809EAD8
@@ -25508,9 +25508,9 @@ _0809EADA:
 IsExtraSupportViewerEnabled: @ 0x0809EAE0
 	push {r4, lr}
 	movs r0, #0
-	bl MetaSave_HasMetAnyCharacter
+	bl GGM_IsAnyCharacterKnown
 	adds r4, r0, #0
-	bl WasGameBeatenAtLeastOnce
+	bl IsGamePlayedThrough
 	ands r0, r4
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
@@ -25524,7 +25524,7 @@ GetRankDataValidBitMap: @ 0x0809EAFC
 	push {r4, lr}
 	sub sp, #0x94
 	movs r4, #0
-	bl WasGameBeatenAtLeastOnce
+	bl IsGamePlayedThrough
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809EB10
@@ -25728,7 +25728,7 @@ GetTotalGlobalSupportValue: @ 0x0809EC4C
 	bne _0809EC60
 	mov r4, sp
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 _0809EC60:
 	movs r0, #0
 	adds r7, r4, #0
@@ -25805,7 +25805,7 @@ GetGlobalBestSupport: @ 0x0809ECD0
 	mov r4, sp
 	mov r0, sp
 	str r3, [sp, #0x64]
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	ldr r3, [sp, #0x64]
 _0809ECEE:
 	adds r4, #0x20
@@ -25891,7 +25891,7 @@ _0809ED78:
 	bne _0809ED8A
 	mov sl, sp
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 _0809ED8A:
 	ldrb r0, [r4]
 	str r7, [sp, #0x70]
@@ -26009,7 +26009,7 @@ UpdateBestGlobalSupportValue: @ 0x0809EE50
 	movs r6, #3
 	ands r6, r2
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809EEC0
@@ -26057,7 +26057,7 @@ _0809EE94:
 	adds r0, r2, r6
 	strb r0, [r3]
 	mov r0, sp
-	bl SaveMetaSave
+	bl WriteGlobalSaveInfo
 	movs r0, #1
 	b _0809EEC2
 _0809EEC0:
@@ -26084,7 +26084,7 @@ MetaSave_SetMetCharacter: @ 0x0809EECC
 	bne _0809EEEC
 	mov r5, sp
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	movs r3, #1
 _0809EEEC:
 	asrs r0, r4, #3
@@ -26101,15 +26101,15 @@ _0809EEEC:
 	cmp r3, #0
 	beq _0809EF0C
 	adds r0, r5, #0
-	bl SaveMetaSave
+	bl WriteGlobalSaveInfo
 _0809EF0C:
 	add sp, #0x64
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start MetaSave_HasMetCharacter
-MetaSave_HasMetCharacter: @ 0x0809EF14
+	thumb_func_start GGM_IsCharacterKnown
+GGM_IsCharacterKnown: @ 0x0809EF14
 	push {r4, r5, lr}
 	sub sp, #0x64
 	adds r5, r0, #0
@@ -26122,7 +26122,7 @@ MetaSave_HasMetCharacter: @ 0x0809EF14
 	bne _0809EF30
 	mov r4, sp
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 _0809EF30:
 	asrs r0, r5, #3
 	adds r1, r4, #0
@@ -26148,8 +26148,8 @@ _0809EF50:
 	pop {r1}
 	bx r1
 
-	thumb_func_start MetaSave_HasMetAnyCharacter
-MetaSave_HasMetAnyCharacter: @ 0x0809EF58
+	thumb_func_start GGM_IsAnyCharacterKnown
+GGM_IsAnyCharacterKnown: @ 0x0809EF58
 	push {r4, lr}
 	sub sp, #0x64
 	adds r4, r0, #0
@@ -26157,7 +26157,7 @@ MetaSave_HasMetAnyCharacter: @ 0x0809EF58
 	bne _0809EF6A
 	mov r4, sp
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 _0809EF6A:
 	movs r1, #0
 	adds r2, r4, #0
@@ -26190,12 +26190,12 @@ sub_0809EF90: @ 0x0809EF90
 	bx lr
 	.align 2, 0
 
-	thumb_func_start WasGameBeatenAtLeastOnce
-WasGameBeatenAtLeastOnce: @ 0x0809EF94
+	thumb_func_start IsGamePlayedThrough
+IsGamePlayedThrough: @ 0x0809EF94
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809EFB4
@@ -26220,12 +26220,12 @@ CheckLinkedToFE6: @ 0x0809EFBC
 	sub sp, #0x88
 	add r4, sp, #0x24
 	adds r0, r4, #0
-	bl LoadMetaSave
+	bl ReadGlobalSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809EFE4
 	adds r0, r4, #0
-	bl MetaSave_CountCompletedPlaythroughs
+	bl GetGlobalCompletionCntByInfo
 	cmp r0, #9
 	ble _0809EFDC
 	movs r0, #2

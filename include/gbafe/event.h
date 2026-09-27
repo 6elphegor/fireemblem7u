@@ -677,4 +677,4 @@ extern struct ProcCmd CONST_DATA ProcScr_NinianAppearfx[];
 extern struct ProcCmd CONST_DATA ProcScr_ScreenFlashing[];
 extern struct ProcCmd CONST_DATA ProcScr_EventFadefx[];
 extern struct ProcCmd CONST_DATA ProcScr_EventSpriteAnim[];
-extern struct ProcCmd CONST_DATA ProcScr_Event_08C0169C[];
+extern struct ProcCmd CONST_DATA ProcScr_Event_08B92414[];

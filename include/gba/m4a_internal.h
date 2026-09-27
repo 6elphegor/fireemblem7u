@@ -385,7 +385,7 @@ void RealClearChain(void *x);
 
 void MPlayContinue(struct MusicPlayerInfo *mplayInfo);
 void MPlayStart(struct MusicPlayerInfo *mplayInfo, struct SongHeader *songHeader);
-void MPlayStop_rev01(struct MusicPlayerInfo *mplayInfo);
+void m4aMPlayStop(struct MusicPlayerInfo *mplayInfo);
 void FadeOutBody(struct MusicPlayerInfo *mplayInfo);
 void TrkVolPitSet(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track);
 void MPlayFadeOut(struct MusicPlayerInfo *mplayInfo, u16 speed);

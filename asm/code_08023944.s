@@ -619,7 +619,7 @@ TryAddUnitToRescueTargetList: @ 0x08023DD8
 	bne _08023E2C
 	ldr r0, [r5]
 	adds r1, r4, #0
-	bl CanUnitCarry
+	bl CanUnitRescue
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08023E2C
@@ -765,7 +765,7 @@ TryAddRescuedUnitToTakeTargetList: @ 0x08023EF8
 	bl GetUnit
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl CanUnitCarry
+	bl CanUnitRescue
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08023F5A
@@ -853,7 +853,7 @@ sub_08023F98: @ 0x08023F98
 	bl GetUnit
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl CanUnitCarry
+	bl CanUnitRescue
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0802400C
@@ -2615,7 +2615,7 @@ _08024DA8:
 _08024DAE:
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl sub_08024F4C
+	bl ApplyUnitSpriteImage16x16
 	b _08024DCA
 _08024DB8:
 	adds r0, r6, #0
@@ -2822,8 +2822,8 @@ _08024F40: .4byte 0x08B93E58
 _08024F44: .4byte 0x08B93E44
 _08024F48: .4byte 0x02033F14
 
-	thumb_func_start sub_08024F4C
-sub_08024F4C: @ 0x08024F4C
+	thumb_func_start ApplyUnitSpriteImage16x16
+ApplyUnitSpriteImage16x16: @ 0x08024F4C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4414,7 +4414,7 @@ _08025B8C:
 	bl __umodsi3
 	mov sb, r0
 	movs r0, #0x91
-	bl GetFlag
+	bl CheckFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08025BD4
@@ -5870,8 +5870,8 @@ _080266DA:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080266E4
-sub_080266E4: @ 0x080266E4
+	thumb_func_start UnitGainSupportExp
+UnitGainSupportExp: @ 0x080266E4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -5940,7 +5940,7 @@ UnitGainSupportLevel: @ 0x08026744
 	lsls r1, r1, #0x18
 	lsrs r1, r1, #0x18
 	adds r0, r4, #0
-	bl sub_08026BA0
+	bl SetSupportLevelGained
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6217,7 +6217,7 @@ _08026966:
 	bgt _08026978
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl sub_080266E4
+	bl UnitGainSupportExp
 _08026978:
 	adds r7, #1
 	cmp r7, r8
@@ -6234,8 +6234,8 @@ _08026984:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08026990
-sub_08026990: @ 0x08026990
+	thumb_func_start GetAffinityBonuses
+GetAffinityBonuses: @ 0x08026990
 	adds r2, r0, #0
 	ldr r1, _08026998 @ =0x08C9A1C0
 	b _080269A8
@@ -6256,13 +6256,13 @@ _080269A8:
 _080269AE:
 	bx lr
 
-	thumb_func_start sub_080269B0
-sub_080269B0: @ 0x080269B0
+	thumb_func_start ApplyAffinityBonuses
+ApplyAffinityBonuses: @ 0x080269B0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r0, r1, #0
 	adds r5, r2, #0
-	bl sub_08026990
+	bl GetAffinityBonuses
 	ldrb r2, [r0, #1]
 	adds r1, r2, #0
 	muls r1, r5, r1
@@ -6313,8 +6313,8 @@ InitBonuses: @ 0x08026A08
 	strb r1, [r0, #6]
 	bx lr
 
-	thumb_func_start sub_08026A18
-sub_08026A18: @ 0x08026A18
+	thumb_func_start GetUnitSupportBonuses
+GetUnitSupportBonuses: @ 0x08026A18
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -6391,7 +6391,7 @@ _08026A8C:
 	ldrb r1, [r0, #9]
 	adds r0, r6, #0
 	adds r2, r4, #0
-	bl sub_080269B0
+	bl ApplyAffinityBonuses
 	adds r0, r7, #0
 	mov r1, r8
 	bl GetUnitSupportLevel
@@ -6400,7 +6400,7 @@ _08026A8C:
 	ldrb r1, [r0, #9]
 	adds r0, r6, #0
 	adds r2, r5, #0
-	bl sub_080269B0
+	bl ApplyAffinityBonuses
 	cmp r4, #0
 	beq _08026ADC
 	cmp r5, #0
@@ -6446,8 +6446,8 @@ _08026AE4:
 _08026B1C: .4byte 0x0202BBB8
 _08026B20: .4byte 0x0001002C
 
-	thumb_func_start sub_08026B24
-sub_08026B24: @ 0x08026B24
+	thumb_func_start GetUnitAffinityIcon
+GetUnitAffinityIcon: @ 0x08026B24
 	ldr r0, [r0]
 	ldrb r0, [r0, #9]
 	cmp r0, #0
@@ -6511,7 +6511,7 @@ GetAffinityName: @ 0x08026B74
 	lsls r0, r0, #2
 	add r0, sp
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	add sp, #0x20
 	pop {r4, r5}
 	pop {r1}
@@ -6519,8 +6519,8 @@ GetAffinityName: @ 0x08026B74
 	.align 2, 0
 _08026B9C: .4byte 0x081C3CC4
 
-	thumb_func_start sub_08026BA0
-sub_08026BA0: @ 0x08026BA0
+	thumb_func_start SetSupportLevelGained
+SetSupportLevelGained: @ 0x08026BA0
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
@@ -6529,7 +6529,7 @@ sub_08026BA0: @ 0x08026BA0
 	lsls r5, r5, #0x18
 	lsrs r5, r5, #0x18
 	adds r0, r6, #0
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	adds r7, r0, #0
 	adds r1, r5, #0
 	bl GetUnitSupportNumByPid
@@ -6543,7 +6543,7 @@ sub_08026BA0: @ 0x08026BA0
 	orrs r0, r2
 	strb r0, [r1]
 	adds r0, r5, #0
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	adds r7, r0, #0
 	adds r1, r6, #0
 	bl GetUnitSupportNumByPid
@@ -6581,7 +6581,7 @@ ArePidsAtMaxSupport: @ 0x08026C08
 	lsrs r0, r0, #0x18
 	lsls r4, r4, #0x18
 	lsrs r4, r4, #0x18
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	adds r5, r0, #0
 	adds r1, r4, #0
 	bl GetUnitSupportNumByPid
@@ -6699,7 +6699,7 @@ CanUnitUseItem: @ 0x08026CD0
 	b _08026F44
 _08026CF4:
 	adds r0, r5, #0
-	bl GetItemIid
+	bl GetItemIndex
 	subs r0, #0x4a
 	cmp r0, #0x50
 	bls _08026D02
@@ -6943,7 +6943,7 @@ GetItemCantUseMsgid: @ 0x08026F4C
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
 	adds r0, r6, #0
-	bl GetItemIid
+	bl GetItemIndex
 	subs r0, #0x55
 	cmp r0, #0x45
 	bls _08026F5E
@@ -7101,7 +7101,7 @@ DoItemUse: @ 0x080270FC
 	movs r0, #0
 	bl EndFaceById
 	adds r0, r4, #0
-	bl GetItemIid
+	bl GetItemIndex
 	subs r0, #0x4a
 	cmp r0, #0x35
 	bls _0802711A
@@ -7469,7 +7469,7 @@ sub_08027400: @ 0x08027400
 	b _0802756C
 _08027410:
 	adds r0, r1, #0
-	bl GetItemIid
+	bl GetItemIndex
 	subs r0, #0x63
 	cmp r0, #0x33
 	bls _0802741E
@@ -7660,7 +7660,7 @@ CanUnitUseStatGainItem: @ 0x08027578
 	adds r0, r1, r4
 	strb r0, [r6, #0x1a]
 	adds r0, r6, #0
-	bl UnitCheckStatOverflow
+	bl UnitCheckStatCaps
 	movs r1, #0x12
 	ldrsb r1, [r6, r1]
 	movs r0, #0x12
@@ -7778,7 +7778,7 @@ DoUseRescueStaff: @ 0x08027698
 	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	ldr r0, _080276D4 @ =0x0000072C
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -7806,7 +7806,7 @@ DoUseSpecialDance: @ 0x080276D8
 	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -7825,7 +7825,7 @@ sub_08027718: @ 0x08027718
 	push {r6}
 	adds r6, r0, #0
 	ldr r0, _080277B8 @ =0x00000725
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r6, #0
 	bl StartSubtitleHelp
@@ -7840,7 +7840,7 @@ sub_08027718: @ 0x08027718
 	ldrsb r2, [r0, r2]
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	bl HideMoveRangeGraphics
 	ldr r0, _080277C0 @ =0x03004690
 	ldr r4, [r0]
@@ -8057,7 +8057,7 @@ WarpSelect_OnConfirm: @ 0x0802790C
 	movs r2, #0x11
 	ldrsb r2, [r0, r2]
 	adds r0, r5, #0
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -8080,7 +8080,7 @@ WarpSelect_OnCancel: @ 0x08027948
 	bl SetMapCursorPosition
 	ldr r0, _08027978 @ =0x08B93DDC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -8108,7 +8108,7 @@ WarpOnSelectTarget: @ 0x08027990
 	strb r0, [r1, #0xd]
 	ldr r0, _080279B4 @ =0x08B94194
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	movs r0, #4
 	pop {r4}
 	pop {r1}
@@ -8131,7 +8131,7 @@ sub_080279B8: @ 0x080279B8
 	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	ldr r0, _08027A08 @ =0x0000072B
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -8186,7 +8186,7 @@ sub_08027A30: @ 0x08027A30
 	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -8230,7 +8230,7 @@ sub_08027A88: @ 0x08027A88
 	bl StartEquipInfoWindow
 	ldrb r0, [r5, #0xd]
 	bl GetUnit
-	bl GetUnitFid
+	bl GetUnitPortraitId
 	adds r1, r0, #0
 	movs r0, #2
 	str r0, [sp]
@@ -8263,7 +8263,7 @@ sub_08027AE8: @ 0x08027AE8
 	bl StartMapSelect
 	adds r4, r0, #0
 	ldr r0, _08027B30 @ =0x0000072E
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -8500,7 +8500,7 @@ sub_08027CBC: @ 0x08027CBC
 	bl StartMapSelect
 	adds r4, r0, #0
 	ldr r0, _08027CF4 @ =0x0000072A
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -8525,7 +8525,7 @@ sub_08027CF8: @ 0x08027CF8
 	bl StartMapSelect
 	adds r4, r0, #0
 	ldr r0, _08027D30 @ =0x0000072D
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -8576,7 +8576,7 @@ sub_08027D64: @ 0x08027D64
 	bl StartMapSelect
 	adds r4, r0, #0
 	ldr r0, _08027D9C @ =0x0000072F
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -8627,7 +8627,7 @@ sub_08027DD0: @ 0x08027DD0
 	bl StartMapSelect
 	adds r4, r0, #0
 	ldr r0, _08027E08 @ =0x00000731
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp
@@ -8724,7 +8724,7 @@ sub_08027E9C: @ 0x08027E9C
 	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	ldr r0, _08027EC4 @ =0x0000072C
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl StartSubtitleHelp

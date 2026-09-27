@@ -1285,7 +1285,7 @@ NewEkrsubAnimeEmulator: @ 0x08067300
 	ldr r7, [sp, #0x18]
 	ldr r1, [sp, #0x20]
 	ldr r0, _08067348 @ =0x08BDAF50
-	bl SpawnProc
+	bl Proc_Start
 	movs r2, #0
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -1675,7 +1675,7 @@ _0806760C: .4byte 0x0202BBF8
 _08067610:
 	ldr r0, _08067624 @ =0x08BDAF68
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r5, [r0, #0x44]
 	str r6, [r0, #0x48]
 	strh r4, [r0, #0x2c]
@@ -2627,12 +2627,12 @@ _08067DD8:
 _08067DDA:
 	bx lr
 
-	thumb_func_start sub_08067DDC
-sub_08067DDC: @ 0x08067DDC
+	thumb_func_start GetEfxHpChangeType
+GetEfxHpChangeType: @ 0x08067DDC
 	push {lr}
 	cmp r0, #0
 	beq _08067E40
-	bl GetItemIid
+	bl GetItemIndex
 	subs r0, #0x4a
 	cmp r0, #0xe
 	bhi _08067E40
@@ -2833,7 +2833,7 @@ _08067F7C:
 	adds r4, r0, #0
 	ldr r0, [r5]
 	ldrb r0, [r0, #4]
-	bl GetUnitByPid
+	bl GetUnitFromCharId
 	movs r1, #0xc0
 	ldrb r0, [r0, #0xb]
 	ands r1, r0
@@ -2970,7 +2970,7 @@ _08068084:
 _08068090:
 	adds r0, #0x4a
 	ldrh r0, [r0]
-	bl sub_08067DDC
+	bl GetEfxHpChangeType
 	b _080680A2
 	.align 2, 0
 _0806809C: .4byte 0x0203A470
@@ -3218,7 +3218,7 @@ NewEkrClassChg: @ 0x0806824C
 	ldr r4, _08068274 @ =0x020200A8
 	ldr r0, _08068278 @ =0x08BDB398
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r4]
 	str r5, [r0, #0x5c]
 	movs r2, #0
@@ -3573,7 +3573,7 @@ sub_08068540: @ 0x08068540
 	adds r4, r0, #0
 	ldr r0, _08068570 @ =0x08BDB3B8
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -3604,7 +3604,7 @@ sub_08068584: @ 0x08068584
 	adds r4, r0, #0
 	ldr r0, _080685B4 @ =0x08BDB3B8
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -3689,7 +3689,7 @@ sub_08068638: @ 0x08068638
 	adds r4, r0, #0
 	ldr r0, _08068650 @ =0x08BDB4E4
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -3761,7 +3761,7 @@ sub_080686BC: @ 0x080686BC
 	adds r4, r0, #0
 	ldr r0, _080686D4 @ =0x08BDB4FC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -3832,7 +3832,7 @@ sub_0806873C: @ 0x0806873C
 	adds r4, r0, #0
 	ldr r0, _08068778 @ =0x08BDB514
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r5, r0, #0
 	str r4, [r5, #0x5c]
 	ldr r3, _0806877C @ =0x08BB7280
@@ -3880,7 +3880,7 @@ sub_080687A0: @ 0x080687A0
 	adds r4, r1, #0
 	ldr r0, _08068890 @ =0x08BDB534
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r5, [r0, #0x5c]
 	movs r6, #0
 	movs r1, #0
@@ -4048,7 +4048,7 @@ NewEfxClasschgCLONE: @ 0x0806890C
 	adds r5, r1, #0
 	ldr r0, _08068928 @ =0x08BDB54C
 	movs r1, #4
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -4122,7 +4122,7 @@ sub_08068994: @ 0x08068994
 	adds r6, r2, #0
 	ldr r0, _080689BC @ =0x08BDB56C
 	movs r1, #4
-	bl SpawnProc
+	bl Proc_Start
 	adds r1, r0, #0
 	str r4, [r1, #0x5c]
 	movs r2, #0
@@ -4236,7 +4236,7 @@ NewEfxClasschgRST: @ 0x08068A70
 	str r0, [r1]
 	ldr r0, _08068AB0 @ =0x08BDB584
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -4574,7 +4574,7 @@ _08068D16:
 	movs r7, #0
 _08068D2A:
 	adds r0, r6, #0
-	bl UnitKnowsMagic
+	bl UnitHasMagicRank
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08068D58
@@ -4595,7 +4595,7 @@ _08068D5A:
 	adds r0, r0, r1
 	ldr r0, [r0]
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r5, r0, #0
 	lsls r1, r7, #3
 	ldr r0, _08068E9C @ =0x02017660
@@ -4674,7 +4674,7 @@ _08068DBC:
 	ldr r0, [r0]
 	ldr r0, [r0, #4]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Text_DrawString
@@ -4692,7 +4692,7 @@ _08068DBC:
 	bl Text_SetColor
 	ldr r0, _08068EB8 @ =0x08CC26D4
 	ldr r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Text_DrawString
@@ -4785,7 +4785,7 @@ EkrLvup_DrawUnitName: @ 0x08068F18
 	ldr r0, [r0]
 	ldr r0, [r0, #4]
 	ldrh r0, [r0]
-	bl GetMsg
+	bl DecodeMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl Text_DrawString
@@ -4834,7 +4834,7 @@ NewEkrLevelup: @ 0x08068F90
 	ldr r5, _08068FBC @ =0x020200AC
 	ldr r0, _08068FC0 @ =0x08BDB5FC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r6, r0, #0
 	str r6, [r5]
 	str r4, [r6, #0x5c]
@@ -6182,7 +6182,7 @@ NewEfxPartsofScroll: @ 0x08069AF4
 	push {lr}
 	ldr r0, _08069B08 @ =0x08BDB6AC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	movs r1, #0
 	strh r1, [r0, #0x2c]
 	strh r1, [r0, #0x2e]
@@ -6271,7 +6271,7 @@ NewEfxPartsofScroll2: @ 0x08069B90
 	push {lr}
 	ldr r0, _08069BA4 @ =0x08BDB6CC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	movs r1, #0
 	strh r1, [r0, #0x2c]
 	strh r1, [r0, #0x2e]
@@ -6432,7 +6432,7 @@ _08069C96:
 	str r0, [r1]
 	ldr r0, _08069CFC @ =0x08BDB72C
 	movs r1, #0
-	bl SpawnProc
+	bl Proc_Start
 	strh r4, [r0, #0x2c]
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -6612,7 +6612,7 @@ NewEfxlvupbg: @ 0x08069E30
 	adds r4, r0, #0
 	ldr r0, _08069E64 @ =0x08BDB754
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -6687,7 +6687,7 @@ NewEfxLvupBG2: @ 0x08069ED0
 	adds r4, r0, #0
 	ldr r0, _08069F08 @ =0x08BDB7C4
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -6761,7 +6761,7 @@ NewEfxLvupOBJ2: @ 0x08069F60
 	mov r8, r2
 	ldr r0, _08069FB0 @ =0x08BDB7F4
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r4, r0, #0
 	str r5, [r4, #0x5c]
 	ldr r3, _08069FB4 @ =0x08B9CA30
@@ -6807,7 +6807,7 @@ NewEfxLvupBGCOL: @ 0x08069FCC
 	adds r4, r0, #0
 	ldr r0, _08069FF4 @ =0x08BDB814
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r2, #0
 	strh r2, [r0, #0x2c]
@@ -6985,7 +6985,7 @@ NewEkrLvupApfx: @ 0x0806A0F8
 	bl ApplyPaletteExt
 	ldr r0, _0806A154 @ =0x08BDB834
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	movs r1, #0
 	strh r5, [r0, #0x2c]
 	ldr r0, _0806A158 @ =0x02020130
@@ -7221,7 +7221,7 @@ BanimDrawStatupAp: @ 0x0806A2C0
 	beq _0806A3BA
 	ldr r0, _0806A344 @ =0x08BDB84C
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r4, r0, #0
 	ldr r1, [sp, #0x40]
 	cmp r1, #0
@@ -7431,8 +7431,8 @@ _0806A4B4:
 _0806A4B6:
 	bx lr
 
-	thumb_func_start sub_0806A4B8
-sub_0806A4B8: @ 0x0806A4B8
+	thumb_func_start nullsub_10
+nullsub_10: @ 0x0806A4B8
 	bx lr
 	.align 2, 0
 
@@ -7442,7 +7442,7 @@ NewEkrTriangle: @ 0x0806A4BC
 	adds r4, r0, #0
 	ldr r0, _0806A4D8 @ =0x08BDB874
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	ldr r1, _0806A4DC @ =0x02020134
 	movs r0, #0
@@ -7527,7 +7527,7 @@ _0806A55C: .4byte 0x0203E098
 _0806A560: .4byte 0x0203E0A0
 _0806A564:
 	adds r0, r4, #0
-	bl GetItemKind
+	bl GetItemType
 _0806A56A:
 	cmp r0, #1
 	beq _0806A574
@@ -7540,7 +7540,7 @@ _0806A574:
 	b _0806A58C
 _0806A57A:
 	adds r0, r4, #0
-	bl GetItemIid
+	bl GetItemIndex
 	movs r2, #1
 	mov r8, r2
 	cmp r0, #0x28
@@ -7584,7 +7584,7 @@ _0806A5B4:
 _0806A5C8: .4byte 0x0203E0A0
 _0806A5CC:
 	adds r0, r4, #0
-	bl GetItemKind
+	bl GetItemType
 _0806A5D2:
 	cmp r0, #1
 	beq _0806A5DC
@@ -7596,7 +7596,7 @@ _0806A5DC:
 	b _0806A5EE
 _0806A5E0:
 	adds r0, r4, #0
-	bl GetItemIid
+	bl GetItemIndex
 	movs r7, #1
 	cmp r0, #0x28
 	bne _0806A5EE
@@ -7612,7 +7612,7 @@ _0806A5EE:
 	ldr r0, [r0]
 	adds r0, #0x4a
 	ldrh r0, [r0]
-	bl GetItemIid
+	bl GetItemIndex
 	cmp r0, #0x28
 	bne _0806A6C4
 	ldr r1, _0806A618 @ =0x02020134
@@ -7648,7 +7648,7 @@ _0806A634:
 _0806A648: .4byte 0x0203E0A0
 _0806A64C:
 	adds r0, r4, #0
-	bl GetItemKind
+	bl GetItemType
 	cmp r0, #0
 	beq _0806A660
 _0806A656:
@@ -7687,7 +7687,7 @@ _0806A67C:
 _0806A690: .4byte 0x0203E0A0
 _0806A694:
 	adds r0, r4, #0
-	bl GetItemKind
+	bl GetItemType
 	cmp r0, #0
 	beq _0806A6A6
 _0806A69E:
@@ -7741,7 +7741,7 @@ sub_0806A6E4: @ 0x0806A6E4
 	ldr r7, [sp, #0x18]
 	ldr r0, _0806A718 @ =0x08BDB88C
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -7857,7 +7857,7 @@ NewEkrTriPegasusKnightBG: @ 0x0806A7D4
 	adds r7, r3, #0
 	ldr r0, _0806A7FC @ =0x08BDB8A4
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r1, r0, #0
 	str r4, [r1, #0x5c]
 	movs r0, #0
@@ -7962,7 +7962,7 @@ NewEkrTriPegasusKnightOBJ: @ 0x0806A8A8
 	mov sb, r3
 	ldr r0, _0806A8DC @ =0x08BDB8D4
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r5, r0, #0
 	str r7, [r5, #0x5c]
 	movs r0, #0
@@ -8061,7 +8061,7 @@ sub_0806A97C: @ 0x0806A97C
 	ldr r7, [sp, #0x18]
 	ldr r0, _0806A9B0 @ =0x08BDB8EC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r4, [r0, #0x5c]
 	movs r1, #0
 	strh r1, [r0, #0x2c]
@@ -8193,7 +8193,7 @@ NewEkrTriArmorKnightOBJ: @ 0x0806AA84
 	adds r6, r3, #0
 	ldr r0, _0806AABC @ =0x08BDB904
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r5, r0, #0
 	mov r0, r8
 	str r0, [r5, #0x5c]
@@ -8406,7 +8406,7 @@ NewEkrTriArmorKnightOBJ2: @ 0x0806AC60
 	adds r7, r3, #0
 	ldr r0, _0806AC9C @ =0x08BDB91C
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r4, r0, #0
 	mov r0, r8
 	str r0, [r4, #0x5c]
@@ -8596,7 +8596,7 @@ NewEfxTriangleQUAKE: @ 0x0806ADE0
 	str r0, [r1]
 	ldr r0, _0806AE14 @ =0x08BDB93C
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r4, r0, #0
 	str r5, [r4, #0x5c]
 	movs r0, #0
@@ -9096,7 +9096,7 @@ DrawBattlePopup: @ 0x0806B1A4
 	str r1, [sp, #4]
 	movs r0, #0xea
 	lsls r0, r0, #3
-	bl GetMsg
+	bl DecodeMsg
 	adds r5, r0, #0
 	bl GetStringTextLen
 	adds r4, r0, #0
@@ -9125,7 +9125,7 @@ _0806B220:
 	adds r4, r0, #0
 	adds r4, #0x10
 	ldr r0, _0806B250 @ =0x00000751
-	bl GetMsg
+	bl DecodeMsg
 	adds r5, r0, #0
 	bl GetStringTextLen
 	adds r0, r0, r4
@@ -9135,7 +9135,7 @@ _0806B220:
 _0806B250: .4byte 0x00000751
 _0806B254:
 	ldr r0, _0806B2AC @ =0x0000075A
-	bl GetMsg
+	bl DecodeMsg
 	adds r5, r0, #0
 	bl GetStringTextLen
 	adds r1, r0, #2
@@ -9200,7 +9200,7 @@ _0806B2C0:
 	bl Text_Skip
 	ldr r0, _0806B30C @ =0x00000751
 _0806B2F2:
-	bl GetMsg
+	bl DecodeMsg
 	adds r5, r0, #0
 	adds r0, r6, #0
 	movs r1, #0
@@ -9213,7 +9213,7 @@ _0806B2F2:
 _0806B30C: .4byte 0x00000751
 _0806B310:
 	ldr r0, _0806B364 @ =0x0000075A
-	bl GetMsg
+	bl DecodeMsg
 	adds r5, r0, #0
 	adds r0, r6, #0
 	movs r1, #0
@@ -9243,7 +9243,7 @@ _0806B328:
 	movs r1, #0x12
 	bl ApplyIconPalette
 	mov r0, sb
-	bl GetItemKind
+	bl GetItemType
 	adds r0, #0x70
 	b _0806B380
 	.align 2, 0
@@ -9257,7 +9257,7 @@ _0806B36C:
 	movs r1, #0x12
 	bl ApplyIconPalette
 	mov r0, sb
-	bl GetItemIcon
+	bl GetItemIconId
 _0806B380:
 	movs r1, #0x40
 	bl PutIconObjImg
@@ -9336,7 +9336,7 @@ NewEkrPopup: @ 0x0806B40C
 	ldr r4, _0806B46C @ =0x02020138
 	ldr r0, _0806B470 @ =0x08BDCDBC
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r5, r0, #0
 	str r5, [r4]
 	ldr r1, _0806B474 @ =0x0202013C
@@ -9384,7 +9384,7 @@ _0806B480:
 	ldr r4, _0806B52C @ =0x02020138
 	ldr r0, _0806B530 @ =0x08BDCD54
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	adds r5, r0, #0
 	str r5, [r4]
 	ldr r1, _0806B534 @ =0x0202013C
@@ -9835,7 +9835,7 @@ NewEkrHenseiInitPROC: @ 0x0806B7E4
 	push {lr}
 	ldr r0, _0806B7F4 @ =0x08BDCDF4
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -9956,7 +9956,7 @@ NewEkrHenseiEnd: @ 0x0806B8E8
 	push {lr}
 	ldr r0, _0806B8F8 @ =0x08BDCE24
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -10057,7 +10057,7 @@ GetSpellAssocStructPtr: @ 0x0806B9B8
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldr r4, _0806B9E4 @ =0x08C999C0
-	bl GetItemIid
+	bl GetItemIndex
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldrh r1, [r4]
@@ -10537,7 +10537,7 @@ _0806BD24:
 	ldr r1, _0806BD3C @ =0x08C9D00C
 	adds r0, r1, #0
 	movs r1, #5
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0xc]
 	ldr r0, [r7, #0xc]
 	cmp r0, #0
@@ -10862,7 +10862,7 @@ sub_0806BFA4: @ 0x0806BFA4
 	adds r1, #0x41
 	ldrb r2, [r1]
 	adds r0, r2, #0
-	bl GetJobInfo
+	bl GetClassData
 	ldr r1, [r0, #0x28]
 	movs r2, #1
 	adds r0, r1, #0
@@ -10883,8 +10883,8 @@ _0806BFD8:
 	pop {r0}
 	bx r0
 
-	thumb_func_start SetAutoMuDefaultFacing
-SetAutoMuDefaultFacing: @ 0x0806BFE0
+	thumb_func_start MU_SetDefaultFacing_Auto
+MU_SetDefaultFacing_Auto: @ 0x0806BFE0
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -11262,7 +11262,7 @@ StartPlayMuStepSe: @ 0x0806C25C
 	ldr r1, _0806C2AC @ =0x08C9CE70
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0xc]
 _0806C284:
 	ldr r0, [r7, #0xc]
@@ -11650,7 +11650,7 @@ StartMuFogBump: @ 0x0806C540
 	ldr r1, _0806C5B8 @ =0x08C9CEA0
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r1, [r7, #0xc]
@@ -12370,7 +12370,7 @@ UpdateMuStepSounds: @ 0x0806CAF8
 	adds r1, #0x41
 	ldrb r2, [r1]
 	adds r0, r2, #0
-	bl GetJobInfo
+	bl GetClassData
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r0, #0x28]
@@ -12665,7 +12665,7 @@ LockMus: @ 0x0806CD30
 	push {r7, lr}
 	mov r7, sp
 	movs r0, #4
-	bl Proc_LockEachMarked
+	bl Proc_BlockEachMarked
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -13563,7 +13563,7 @@ _0806D3B8:
 	adds r1, #0x41
 	ldrb r2, [r1]
 	adds r0, r2, #0
-	bl GetJobInfo
+	bl GetClassData
 	ldr r1, _0806D3E4 @ =0x08C9D03C
 	ldrb r0, [r0, #7]
 	adds r1, r1, r0
@@ -13671,7 +13671,7 @@ _0806D480:
 	adds r1, #0x41
 	ldrb r2, [r1]
 	adds r0, r2, #0
-	bl GetJobInfo
+	bl GetClassData
 	ldr r1, _0806D4B8 @ =0x08C9D03C
 	ldrb r0, [r0, #7]
 	adds r1, r1, r0
@@ -13847,7 +13847,7 @@ StartMuDeathFade: @ 0x0806D5AC
 	ldr r1, _0806D6CC @ =0x08C9D044
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -14151,7 +14151,7 @@ sub_0806D804: @ 0x0806D804
 	ldr r1, _0806D888 @ =0x08C9D05C
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -14422,7 +14422,7 @@ sub_0806DA18: @ 0x0806DA18
 	ldr r1, _0806DAAC @ =0x08C9D0AC
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -14694,7 +14694,7 @@ sub_0806DC14: @ 0x0806DC14
 	ldr r1, _0806DC60 @ =0x08C9D0BC
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -14983,7 +14983,7 @@ sub_0806DE44: @ 0x0806DE44
 	ldr r1, _0806DE88 @ =0x08C9D0D4
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r1, [r7]
@@ -15301,7 +15301,7 @@ sub_0806E054: @ 0x0806E054
 	ldr r1, _0806E0EC @ =0x08C9D15C
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r1, [r7]
@@ -15808,7 +15808,7 @@ Manim_Finish: @ 0x0806E474
 	bl ResetTextFont
 	bl EndManimInfoWindow
 	bl InitBmBgLayers
-	bl LoadUiFrameGraphics
+	bl UnpackUiWindowFrameGraphics
 	bl ApplySystemObjectsGraphics
 	bl IsEventRunning
 	lsls r1, r0, #0x18
@@ -15984,7 +15984,7 @@ sub_0806E5D4: @ 0x0806E5D4
 	adds r1, r0, #0
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	add sp, #4
 	pop {r7}
 	pop {r0}
@@ -16047,7 +16047,7 @@ sub_0806E644: @ 0x0806E644
 	movs r2, #0x11
 	ldrsb r2, [r3, r2]
 	ldr r0, [r7]
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 	add sp, #4
 	pop {r7}
 	pop {r0}
@@ -16080,7 +16080,7 @@ _0806E68C:
 	movs r2, #0x11
 	ldrsb r2, [r3, r2]
 	ldr r0, [r7]
-	bl CameraMoveWatchPosition
+	bl EnsureCameraOntoPosition
 _0806E6A2:
 	add sp, #4
 	pop {r7}
@@ -16288,7 +16288,7 @@ _0806E818:
 	ldr r1, _0806E8D0 @ =0x08C9D820
 	adds r0, r1, #0
 	ldr r1, [r7]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, _0806E8D4 @ =0x0203E0FC
@@ -17366,7 +17366,7 @@ sub_0806EFC4: @ 0x0806EFC4
 	ldr r1, _0806F04C @ =0x08C9D48C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -17432,7 +17432,7 @@ sub_0806F050: @ 0x0806F050
 	ldr r1, _0806F0D8 @ =0x08C9D4CC
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -17518,7 +17518,7 @@ sub_0806F0DC: @ 0x0806F0DC
 	ldr r1, _0806F18C @ =0x08C9D50C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -17600,7 +17600,7 @@ sub_0806F190: @ 0x0806F190
 	ldr r1, _0806F238 @ =0x08C9D5DC
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -17658,7 +17658,7 @@ _0806F260:
 	ldr r1, _0806F2B4 @ =0x08C9D634
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 _0806F29E:
 	pop {r7}
 	pop {r0}
@@ -18330,7 +18330,7 @@ StartManimInfoWindow: @ 0x0806F784
 	ldr r1, _0806F7DC @ =0x08C9D7B0
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0xc]
 	ldr r1, [r7, #0xc]
 	ldr r2, [r7]
@@ -18969,7 +18969,7 @@ sub_0806FBA4: @ 0x0806FBA4
 	adds r4, r2, #0
 	lsls r3, r4, #0x10
 	lsrs r2, r3, #0x10
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	movs r0, #2
 	bl EnableBgSync
 	ldr r0, _0806FD34 @ =0x0203E0FC
@@ -19006,7 +19006,7 @@ sub_0806FBA4: @ 0x0806FBA4
 	ldr r0, [r1]
 	ldrh r1, [r0]
 	adds r0, r1, #0
-	bl GetMsg
+	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
@@ -19390,7 +19390,7 @@ sub_0806FF88: @ 0x0806FF88
 	ldr r1, _08070038 @ =0x083F3F3C
 	movs r2, #0xa4
 	lsls r2, r2, #7
-	bl TmApplyTsa_t
+	bl TmApplyTsa_thm
 	ldr r1, [r7]
 	adds r0, r1, #0
 	adds r1, #0x64
@@ -19792,7 +19792,7 @@ sub_0807030C: @ 0x0807030C
 	ldr r1, _08070320 @ =0x08C9D93C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -19829,7 +19829,7 @@ sub_08070324: @ 0x08070324
 	movs r4, #0xe
 	ldrsh r1, [r0, r4]
 	adds r0, r1, #0
-	bl GetJobInfo
+	bl GetClassData
 	str r0, [r7, #0x10]
 	ldr r1, _080703B0 @ =0x08C9D938
 	ldr r0, [r1]
@@ -19914,7 +19914,7 @@ _080703E0:
 	ldr r0, [r7, #0xc]
 	ldrh r1, [r0]
 	adds r0, r1, #0
-	bl GetMsg
+	bl DecodeMsg
 	ldr r1, _08070460 @ =0x08C9D938
 	ldr r2, [r7]
 	movs r3, #0x64
@@ -20093,7 +20093,7 @@ _08070560:
 	ldr r0, [r7, #0x10]
 	ldrh r1, [r0]
 	adds r0, r1, #0
-	bl GetMsg
+	bl DecodeMsg
 	ldr r1, _080705E0 @ =0x08C9D938
 	ldr r2, [r7]
 	movs r3, #0x64
@@ -21535,7 +21535,7 @@ sub_08071088: @ 0x08071088
 	movs r2, #0xe
 	ldrsh r1, [r0, r2]
 	adds r0, r1, #0
-	bl GetJobInfo
+	bl GetClassData
 	ldr r1, [r7]
 	str r0, [r1, #4]
 	ldr r0, [r7]
@@ -22080,7 +22080,7 @@ sub_0807151C: @ 0x0807151C
 	ldr r1, _080715A8 @ =0x08C9D99C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r1, [r7]
@@ -22195,7 +22195,7 @@ sub_0807160C: @ 0x0807160C
 	ldr r1, _08071674 @ =0x08C9D9BC
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -22295,7 +22295,7 @@ sub_080716E0: @ 0x080716E0
 	ldr r1, _08071748 @ =0x08C9D9DC
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -22837,7 +22837,7 @@ sub_08071B34: @ 0x08071B34
 	str r3, [r7, #0xc]
 	ldr r0, _08071B84 @ =0x08C9DA3C
 	ldr r1, [r7, #0x20]
-	bl SpawnProcLocking
+	bl Proc_StartBlocking
 	str r0, [r7, #0x10]
 	ldr r0, [r7, #0x10]
 	ldr r1, [r7]
@@ -23239,7 +23239,7 @@ sub_08071E4C: @ 0x08071E4C
 	ldr r1, _08071EC4 @ =0x08C9DA7C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0xc]
 	ldr r0, [r7, #0xc]
 	ldr r1, [r7]
@@ -23525,7 +23525,7 @@ sub_08072098: @ 0x08072098
 	ldr r1, _080720FC @ =0x08C9DAC4
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]
@@ -23604,7 +23604,7 @@ sub_08072124: @ 0x08072124
 	ldr r1, _0807217C @ =0x08C9DAE4
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0x10]
 	ldr r0, [r7, #0x10]
 	ldr r1, [r7]
@@ -24308,7 +24308,7 @@ sub_080726C0: @ 0x080726C0
 	ldr r1, _08072724 @ =0x08C9DB1C
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #0xc]
 	ldr r0, [r7, #0xc]
 	ldr r1, [r7]
@@ -24533,7 +24533,7 @@ sub_08072898: @ 0x08072898
 	ldr r1, _080728E4 @ =0x08C9DB64
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -24967,7 +24967,7 @@ sub_08072C20: @ 0x08072C20
 	ldr r1, _08072C88 @ =0x08C9DBAC
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r7]
@@ -25080,7 +25080,7 @@ sub_08072D10: @ 0x08072D10
 	ldr r1, _08072D74 @ =0x08C9DBD4
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]
@@ -25504,7 +25504,7 @@ sub_08073060: @ 0x08073060
 	ldr r1, _080730C0 @ =0x08C9DC14
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]
@@ -25661,7 +25661,7 @@ sub_08073198: @ 0x08073198
 	ldr r1, _080731F8 @ =0x08C9DC54
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]
@@ -25821,7 +25821,7 @@ sub_080732E8: @ 0x080732E8
 	ldr r1, _0807334C @ =0x08C9DC94
 	adds r0, r1, #0
 	movs r1, #3
-	bl SpawnProc
+	bl Proc_Start
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r2, [r7]
