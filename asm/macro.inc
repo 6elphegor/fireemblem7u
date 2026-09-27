@@ -1,3 +1,6 @@
+	.ifndef GUARD_ASM_MACRO_INC
+	.set GUARD_ASM_MACRO_INC, 1
+
 	.macro arm_func_start name
 	.align 2, 0
 	.global \name
@@ -27,3 +30,5 @@
 	.macro thumb_func_end name
 	.size \name, .-\name
 	.endm
+
+	.endif

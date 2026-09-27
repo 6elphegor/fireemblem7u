@@ -1,0 +1,2 @@
+symbols.ld merge=union
+data/layout.txt merge=union
