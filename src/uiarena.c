@@ -7,6 +7,7 @@
 
 u32 GetGold(void);
 void SetGold(s32 amount);
+void SetTalkPrintColor(int color);
 void Proc_Mark(ProcPtr proc, u8 mark);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];

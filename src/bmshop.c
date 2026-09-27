@@ -7,6 +7,7 @@
 
 u32 GetGold(void);
 void SetGold(s32 amount);
+void SetTalkPrintColor(int color);
 s8 HasConvoyAccess(void);
 int AddItemToConvoy(int item);
 int GetConvoyItemCount(void);

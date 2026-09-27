@@ -122,7 +122,7 @@ void SetTalkFlag(int flag);
 // ??? ClearTalkFlag
 // ??? CheckTalkFlag
 // ??? SetTalkPrintDelay
-void SetTalkPrintColor(u8 color);
+// ??? SetTalkPrintColor
 // ??? TalkSkipListener_OnIdle
 // ??? Talk_OnInit
 // ??? sub_08008218
