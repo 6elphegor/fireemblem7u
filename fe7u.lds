@@ -1203,17 +1203,7 @@ SECTIONS
         build/src/banim-efxmagic-fimbulvetr.o(.text);
         build/src/banim-efxmagic-bolting.o(.text);
         build/src/banim-efxmagic-flux.o(.text);
-        build/asm/code_080598A8.o(.text);
-        build/asm/code_080598E4.o(.text);
-        build/asm/code_08059A28.o(.text);
-        build/asm/code_08059AB4.o(.text);
-        build/asm/code_08059B54.o(.text);
-        build/asm/code_08059BD8.o(.text);
-        build/asm/code_08059C74.o(.text);
-        build/asm/code_08059CE0.o(.text);
-        build/asm/code_08059D48.o(.text);
-        build/asm/code_08059DAC.o(.text);
-        build/asm/code_08059DDC.o(.text);
+        build/src/banim-efxmagic-nosferatu.o(.text);
         build/asm/code_08059E24.o(.text);
         build/asm/code_08059E60.o(.text);
         build/asm/code_08059F18.o(.text);

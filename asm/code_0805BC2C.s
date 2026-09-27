@@ -95,7 +95,7 @@ _0805BCD4:
 	adds r1, r0, #0
 	adds r0, r5, #0
 	movs r2, #0x1e
-	bl sub_08059DAC
+	bl StartSubSpell_efxResireRST
 	adds r0, r5, #0
 	movs r1, #0x2b
 	movs r2, #0
