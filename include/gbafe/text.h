@@ -118,6 +118,24 @@ enum special_character_idx {
     TEXT_SPECIAL_NOTHING = 0xFF,
 };
 
+void DebugInitBg(int bg, int vramoff);
+void DebugPutStr(u16 * tm, char const * str);
+void DebugPutFmt(u16 * tm, char const * fmt, ...);
+void DebugScreenInit(void);
+void DebugPrintFmt(char const * fmt, ...);
+void ClearNumberStr(void);
+void GenNumberStr(int number);
+void GenNumberOrBlankStr(int number);
+void DebugPrintNumber(int number, int length);
+void GenNumberHexStr(int number);
+void DebugPrintNumberHex(int number, int length);
+void DebugPrintStr(char const * str);
+void DebugPutScreen(void);
+int DebugUpdateScreen(u16 held, u16 pressed);
+void SetupDebugFontForOBJ(int vramoff, int palid);
+void DebugPutObjStr(int x, int y, char const * str);
+void DebugPutObjNumber(int x, int y, int number, int length);
+void DebugPutObjNumberHex(int x, int y, int number, int length);
 int GetLang(void);
 void SetLang(int lang);
 void ResetText(void);
