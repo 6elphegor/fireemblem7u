@@ -645,12 +645,19 @@ void BonusClaim_EndSelectTargetSubMenu(struct BonusClaimProc * proc)
     }
 }
 #if NONMATCHING
-// register allocation around the width computation (orig keeps (len+7)/8 in r4, width in r9)
+// only difference left: the original keeps &gDispIo in ip (r12) for the window setup at the end
 void BonusClaim_DrawItemSentPopup(struct BonusClaimProc * proc)
 {
+#ifndef NONMATCHING
+    register const char * itemNameStr asm("r8");
+    register int width asm("sb");
+    register int w8 asm("r4");
+#else
+    int w8;
     const char * itemNameStr;
-    const char * otherStr;
     int width;
+#endif
+    const char * otherStr;
     int x;
     struct Text * th;
     char buf[32];
@@ -695,7 +702,8 @@ void BonusClaim_DrawItemSentPopup(struct BonusClaimProc * proc)
     otherStr = DecodeMsgInBuffer(0x10B3, buf);
     itemNameStr = GetItemNameWithArticle(itemId, FALSE);
 
-    width = ((GetStringTextLen(otherStr) + GetStringTextLen(itemNameStr) + 7) / 8) + 4;
+    w8 = (GetStringTextLen(otherStr) + GetStringTextLen(itemNameStr) + 7) / 8;
+    width = w8 + 4;
     x = 15 - width / 2;
 
     Text_DrawString(th, otherStr);
@@ -704,7 +712,9 @@ void BonusClaim_DrawItemSentPopup(struct BonusClaimProc * proc)
 
     PutText(th, gBg0Tm + x + 0x141);
 
-    PutIcon(gBg0Tm + (x + (width + 1)) + 0x13C, GetItemIconId(itemId), 0x4000);
+    w8 += 5;
+    w8 = x + w8;
+    PutIcon(gBg0Tm + w8 + 0x13C, GetItemIconId(itemId), 0x4000);
 
     ent2 = gpBonusClaimData;
     ent2 += idx;
