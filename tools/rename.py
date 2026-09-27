@@ -9,12 +9,27 @@ sub_XXXXXXXX names also get their tools/fe7u.cfg entry named, so a
 regenerated disassembly keeps them.
 """
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 FILES = [*Path("asm").glob("*.s"), *Path("src").rglob("*.[chs]"), *Path("include").rglob("*.h"), Path("fe7u.lds")]
 CFG = Path("tools/fe7u.cfg")
 IDENT = re.compile(r"[A-Za-z_]\w*")
+
+
+def defined_symbols(texts):
+    """Names defined as asm labels or by compiled C objects (not merely declared)."""
+    names = set()
+    for p, t in texts.items():
+        if p.suffix == ".s":
+            names.update(re.findall(r"^(\w+):", t, re.M))
+    for o in Path("build/src").glob("*.o"):
+        if not Path("src", o.stem + ".c").exists():
+            continue
+        out = subprocess.run(["arm-none-eabi-nm", "--defined-only", str(o)], capture_output=True, text=True).stdout
+        names.update(l.split()[-1] for l in out.splitlines())
+    return names
 
 
 def main():
@@ -24,9 +39,7 @@ def main():
         pairs = [tuple(l.split()[:2]) for l in Path(sys.argv[1]).read_text().splitlines() if l.strip() and not l.startswith("#")]
 
     texts = {p: p.read_text() for p in FILES}
-    existing = set()
-    for t in texts.values():
-        existing.update(IDENT.findall(t))
+    existing = defined_symbols(texts)
 
     renames, claimed = {}, set()
     for old, new in pairs:

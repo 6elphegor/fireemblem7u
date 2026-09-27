@@ -92,6 +92,12 @@ def main():
             if new != name:
                 rewrite[name] = new
 
+    # Rename before the reference headers land.
+    rn = Path("build/renames.txt")
+    rn.parent.mkdir(exist_ok=True)
+    rn.write_text("".join(f"{o} {r}\n" for o, r in renames))
+    run(sys.executable, "tools/rename.py", str(rn))
+
     # ---- sources --------------------------------------------------------
     if Path("include").exists():
         shutil.rmtree("include")
@@ -111,26 +117,21 @@ def main():
         if new != text:
             t.write_text(new, encoding="utf-8")
 
-    rn = Path("build/renames.txt")
-    rn.parent.mkdir(exist_ok=True)
-    rn.write_text("".join(f"{o} {r}\n" for o, r in renames))
-    run(sys.executable, "tools/rename.py", str(rn))
-
     # ---- code -----------------------------------------------------------
-    elf_addr = {}
-    for s in Elf("fe7u.elf").symbols:
-        if s.type == STT_FUNC:
-            elf_addr[s.value & ~1] = s.name
-    old_to_new = dict(renames)
+    # Functions still in asm, by address, as named after renaming.
+    asm_addr = {}
+    for p in Path("asm").glob("*.s"):
+        for name, a in re.findall(r"^(\w+): @ 0x([0-9A-F]{8})$", p.read_text(), re.M):
+            asm_addr[int(a, 16)] = name
     lds = Path("fe7u.lds")
     for stem, f in sorted(files.items(), key=lambda kv: kv[1]["text"] or 0):
         if not f["text"]:
             continue
         start, end = f["text"], f["text"] + f["text_size"]
-        first = old_to_new.get(elf_addr[start], elf_addr[start])
+        first = asm_addr[start]
         cut = [first]
-        if end in elf_addr:
-            cut.append(old_to_new.get(elf_addr[end], elf_addr[end]))
+        if end in asm_addr:  # else: end of code, or the next function is C
+            cut.append(asm_addr[end])
         run(sys.executable, "tools/carve.py", *cut)
         asm = next(p for p in Path("asm").glob("*.s")
                    if re.search(r"func_start (\w+)", p.read_text()).group(1) == first)
