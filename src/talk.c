@@ -1656,8 +1656,73 @@ void sub_08009A10(int x, int y, int width, int height)
     SetWOutLayers(0, 1, 1, 1, 1);
 }
 
-void PutTalkBubbleTail(int bg, int x, int y, int kind);
-ASM_FUNC("asm/nonmatching/code_08009A90.s");
+#define TALK_TM_INDEX(x, y) ((x) + ((y) << 5))
+
+void PutTalkBubbleTail(int bg, int x, int y, int kind)
+{
+
+    u16* buf = GetBgTilemap(bg);
+
+    switch (kind) {
+        case 0:
+            // _0800851C
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 4, 3);
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 4, 3) + 0x400;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 6, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 5, 3) + 0x400;
+
+            break;
+
+        case 1:
+            // _08008550
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 4, 3);
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 4, 3) + 0x400;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 5, 3);
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 6, 3);
+
+            break;
+
+        case 2:
+            // _08008588
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 8, 3) + 0x400;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 9, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 7, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 7, 3) + 0x400 + 0x800;
+
+            break;
+
+        case 3:
+            // _080085BC
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 7, 3);
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 7, 3) + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 8, 3);
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 9, 3);
+
+            break;
+
+        case 4:
+            // _080085F4
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 9, 3) + 0x400 + 0x800;
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 8, 3) + 0x400 + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 7, 3) + 0x400;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 7, 3) + 0x400 + 0x800;
+
+            break;
+
+        case 5:
+            // _0800862C
+            buf[TALK_TM_INDEX(x    , y    )] = TILEREF(0x10 + 7, 3);
+            buf[TALK_TM_INDEX(x    , y + 1)] = TILEREF(0x10 + 7, 3) + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y    )] = TILEREF(0x10 + 9, 3) + 0x800;
+            buf[TALK_TM_INDEX(x + 1, y + 1)] = TILEREF(0x10 + 8, 3) + 0x800;
+
+            break;
+    }
+
+    return;
+}
+
+#undef TALK_TM_INDEX
 
 
 void PutTalkBubbleTm(int id, int x, int y, int width, int height)
