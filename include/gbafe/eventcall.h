@@ -108,10 +108,10 @@ void SetFlag(int flag);
 bool CheckFlag(int);
 void ClearFlag(int flag);
 // GetPermanentFlagBits
-// sub_0807992C
-// sub_08079930
-// sub_08079938
-// sub_0807993C
+// GetPermanentFlagBitsSize
+// GetChapterFlagBits
+// GetChapterFlagBitsSize
+// IsDifficultMode
 // sub_08079954
 // sub_08079990
 // sub_080799C8

@@ -6,9 +6,9 @@
 sub_0809E934: @ 0x0809E934
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_08079930
+	bl GetChapterFlagBits
 	adds r5, r0, #0
-	bl sub_08079938
+	bl GetChapterFlagBitsSize
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0

@@ -151,6 +151,31 @@ bool BattleIsTriangleAttack(void);
 void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
 void UnitGetDeathDropLocation(struct Unit * unit, int * x, int * y);
 
+struct ForceDeployEnt
+{
+    /* 00 */ u8 unk0;
+    /* 01 */ u8 pid;
+    /* 02 */ u8 pad[6];
+};
+
+struct HardBonusLevelEnt
+{
+    /* 00 */ u8 pid;
+    /* 04 */ int levels;
+};
+
+extern u8 gPermanentFlagBits[];
+extern u8 gChapterFlagBits[];
+extern u8 const gFlagBitMaskLut[];
+extern u16 const EventScr_GameOver[];
+extern struct ForceDeployEnt const gForceDeployList[];
+extern struct HardBonusLevelEnt const gHardBonusLevelList[];
+extern u8 const gUnk_08CA0538[];
+
+int IsTutorialDisabled(void);
+bool CheckChapterFlag(int flag);
+bool CheckPermanentFlag(int flag);
+
 void sub_0800ADB8(void);
 void CallMapSupportEvent(u32 msg, int song);
 void CallSupportViewerEvent(u32 msg);
@@ -1426,40 +1451,290 @@ void DisplayDefeatTalkForPid(u8 pid)
         break;
     }
 }
-ASM_FUNC("asm/nonmatching/code_08079704.s");
-ASM_FUNC("asm/nonmatching/code_08079734.s");
-ASM_FUNC("asm/nonmatching/code_08079738.s");
-ASM_FUNC("asm/nonmatching/code_0807973C.s");
-ASM_FUNC("asm/nonmatching/code_08079740.s");
-ASM_FUNC("asm/nonmatching/code_08079744.s");
-ASM_FUNC("asm/nonmatching/code_08079748.s");
-ASM_FUNC("asm/nonmatching/code_0807974C.s");
-ASM_FUNC("asm/nonmatching/code_08079750.s");
-ASM_FUNC("asm/nonmatching/code_08079754.s");
-ASM_FUNC("asm/nonmatching/code_08079758.s");
-ASM_FUNC("asm/nonmatching/code_0807975C.s");
-ASM_FUNC("asm/nonmatching/code_08079760.s");
-ASM_FUNC("asm/nonmatching/code_08079764.s");
-ASM_FUNC("asm/nonmatching/code_08079798.s");
-ASM_FUNC("asm/nonmatching/code_080797D4.s");
-ASM_FUNC("asm/nonmatching/code_0807980C.s");
-ASM_FUNC("asm/nonmatching/code_08079820.s");
-ASM_FUNC("asm/nonmatching/code_08079858.s");
-ASM_FUNC("asm/nonmatching/code_08079894.s");
-ASM_FUNC("asm/nonmatching/code_080798D0.s");
-ASM_FUNC("asm/nonmatching/code_080798E4.s");
-ASM_FUNC("asm/nonmatching/code_080798F8.s");
-ASM_FUNC("asm/nonmatching/code_08079910.s");
-ASM_FUNC("asm/nonmatching/code_08079924.s");
-ASM_FUNC("asm/nonmatching/code_0807992C.s");
-ASM_FUNC("asm/nonmatching/code_08079930.s");
-ASM_FUNC("asm/nonmatching/code_08079938.s");
-ASM_FUNC("asm/nonmatching/code_0807993C.s");
-ASM_FUNC("asm/nonmatching/code_08079954.s");
-ASM_FUNC("asm/nonmatching/code_08079990.s");
-ASM_FUNC("asm/nonmatching/code_080799C8.s");
+void sub_08079704(void)
+{
+    SetFlag(0x65);
+    StartBgm(0x2B, NULL);
+    gPlaySt.cfgDisableBgm = TRUE;
+    StartEvent(EventScr_GameOver);
+}
+
+s8 sub_08079734(void)
+{
+    return 0;
+}
+
+void sub_08079738(void)
+{
+}
+
+void sub_0807973C(void)
+{
+}
+
+s8 sub_08079740(void)
+{
+    return 0;
+}
+
+void sub_08079744(void)
+{
+}
+
+s8 sub_08079748(void)
+{
+    return 0;
+}
+
+s8 sub_0807974C(void)
+{
+    return 0;
+}
+
+void sub_08079750(void)
+{
+}
+
+void sub_08079754(void)
+{
+}
+
+void sub_08079758(void)
+{
+}
+
+void sub_0807975C(void)
+{
+}
+
+void sub_08079760(void)
+{
+}
+
+void SetChapterFlag(int flag)
+{
+    if (flag == 0)
+        return;
+
+    flag = flag - 1;
+
+    gChapterFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
+}
+
+bool CheckPermanentFlag(int flag)
+{
+    if (flag == 0)
+        return FALSE;
+
+    flag = flag - 1;
+
+    if ((gChapterFlagBits[flag / 8] & gFlagBitMaskLut[flag % 8]) != 0)
+        return TRUE;
+
+    return FALSE;
+}
+
+void ClearChapterFlag(int flag)
+{
+    u8 mask;
+
+    if (flag == 0)
+        return;
+
+    flag = flag - 1;
+
+    mask = ~gFlagBitMaskLut[flag % 8];
+    gChapterFlagBits[flag / 8] = mask & gChapterFlagBits[flag / 8];
+}
+
+void ResetChapterFlags(void)
+{
+    int i;
+
+    for (i = 0; i < 6; i++)
+        gChapterFlagBits[i] = 0;
+}
+
+void SetPermanentFlag(int flag)
+{
+    if (flag < 100)
+        return;
+
+    if (flag == 100)
+        return;
+
+    flag = flag - 100 - 1;
+
+    gPermanentFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
+}
+
+bool CheckChapterFlag(int flag)
+{
+    if (flag < 100 || flag == 100)
+        return FALSE;
+
+    flag = flag - 100 - 1;
+
+    if ((gPermanentFlagBits[flag / 8] & gFlagBitMaskLut[flag % 8]) != 0)
+        return TRUE;
+
+    return FALSE;
+}
+
+void ClearPermanentFlag(int flag)
+{
+    u8 mask;
+
+    if (flag < 100)
+        return;
+
+    if (flag == 100)
+        return;
+
+    flag = flag - 100 - 1;
+
+    mask = ~gFlagBitMaskLut[flag % 8];
+    gPermanentFlagBits[flag / 8] = mask & gPermanentFlagBits[flag / 8];
+}
+
+void ResetPermanentFlags(void)
+{
+    int i;
+
+    for (i = 0; i < 8; i++)
+        gPermanentFlagBits[i] = 0;
+}
+
+void SetFlag(int flag)
+{
+    if (flag < 100)
+        SetChapterFlag(flag);
+    else
+        SetPermanentFlag(flag);
+}
+
+bool CheckFlag(int flag)
+{
+    if (flag < 100)
+        return CheckPermanentFlag(flag);
+    else
+        return CheckChapterFlag(flag);
+}
+
+void ClearFlag(int flag)
+{
+    if (flag < 100)
+        ClearChapterFlag(flag);
+    else
+        ClearPermanentFlag(flag);
+}
+
+u8 * GetPermanentFlagBits(void)
+{
+    return gPermanentFlagBits;
+}
+
+int GetPermanentFlagBitsSize(void)
+{
+    return 8;
+}
+
+u8 * GetChapterFlagBits(void)
+{
+    return gChapterFlagBits;
+}
+
+int GetChapterFlagBitsSize(void)
+{
+    return 6;
+}
+
+bool IsDifficultMode(void)
+{
+    if (gPlaySt.chapterStateBits & 0x40)
+        return TRUE;
+
+    return FALSE;
+}
+
+bool sub_08079954(struct Unit * unit)
+{
+    struct ForceDeployEnt const * it = gForceDeployList;
+
+    for (; it->unk0 != 0; it++)
+    {
+        if (unit->pCharacterData->number == it->pid && (unit->state & US_BIT16))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+int sub_08079990(u8 pid)
+{
+    struct HardBonusLevelEnt const * it;
+
+    for (it = gHardBonusLevelList; it->pid != 0; it++)
+    {
+        if (it->pid == pid)
+            return it->levels;
+    }
+
+    return GetChapterInfo(gPlaySt.chapterIndex)->hard_bonus_levels;
+}
+
+void sub_080799C8(void)
+{
+    int i;
+
+    if (!(gPlaySt.chapterStateBits & 0x40))
+        return;
+
+    if (gPlaySt.chapterModeIndex != 3)
+        return;
+
+    for (i = FACTION_RED + 1; i < FACTION_PURPLE; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+        int levels;
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        levels = sub_08079990(unit->pCharacterData->number);
+
+        if (levels != 0)
+            UnitApplyBonusLevels(unit, levels);
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_08079A14.s");
-ASM_FUNC("asm/nonmatching/code_08079A38.s");
-ASM_FUNC("asm/nonmatching/code_08079A5C.s");
-ASM_FUNC("asm/nonmatching/code_08079A90.s");
-ASM_FUNC("asm/nonmatching/code_08079A9C.s");
+
+void CallEndEvent(void)
+{
+    StartEvent(GetChapterEventInfo(gPlaySt.chapterIndex)->endingSceneEvents);
+    SetFlag(0x91);
+}
+
+s8 sub_08079A5C(void)
+{
+    int ret = 0;
+
+    if (!(gPlaySt.chapterStateBits & 0x40) && !IsTutorialDisabled())
+        ret = CheckFlag(0x9C) != 0;
+
+    return ret;
+}
+
+void sub_08079A90(void)
+{
+    SetFlag(0x8F);
+}
+
+bool sub_08079A9C(void)
+{
+    if (CheckFlag(0x8F))
+        return TRUE;
+
+    return FALSE;
+}

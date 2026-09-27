@@ -9,7 +9,7 @@ sub_0809E99C: @ 0x0809E99C
 	ldr r4, _0809E9C0 @ =0x03005E70
 	bl GetPermanentFlagBits
 	adds r5, r0, #0
-	bl sub_0807992C
+	bl GetPermanentFlagBitsSize
 	adds r2, r0, #0
 	ldr r3, [r4]
 	adds r0, r6, #0

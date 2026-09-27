@@ -8,7 +8,7 @@ sub_0809E954: @ 0x0809E954
 	adds r4, r0, #0
 	bl GetPermanentFlagBits
 	adds r5, r0, #0
-	bl sub_0807992C
+	bl GetPermanentFlagBitsSize
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
