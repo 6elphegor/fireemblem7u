@@ -80,7 +80,68 @@ struct SramMain {
     /* Todo */
 };
 
+extern struct SramMain * gSramMain;
+
 #define GLOBALSIZEINFO_SIZE_FOR_CHECKSUM 0x50
+
+/* SRAM offsets of the misc save data (relative to gSramMain) */
+#define SRAM_OFFSET_RANKDATA   0x7044
+#define SRAM_OFFSET_FE6LINK    0x70D8
+#define SRAM_OFFSET_SOUNDROOM  0x70FC
+#define SRAM_OFFSET_LINKARENA2 0x7120
+#define SRAM_OFFSET_BONUSCLAIM 0x7134
+
+struct GameRankSaveData {
+    /* 00 */ u32 valid : 0x01;
+             u32 overall_rank : 0x03;
+             u32 tactics_rank : 0x03;
+             u32 survival_rank : 0x03;
+             u32 funds_rank : 0x03;
+             u32 exp_rank : 0x03;
+             u32 combat_rank : 0x03;
+
+             u32 chapter_mode : 0x02;
+             u32 difficulty : 0x01;
+             u32 unk00_16 : 0x01;
+             u32 unk00_17 : 0x08;
+             u32 cuteguy : 0x08;
+
+             u32 hours : 0x0A;
+             u32 minutes : 0x06;
+             u32 seconds : 0x06;
+             u32 gold : 0x18;
+
+    /* 08 */ u32 unk08_15 : 0x06;
+             u32 unk08_1F : 0x01;
+
+    /* 0C */ char tactician_name[0xB];
+
+    /* 17 */ u8 luckydog;
+};
+
+struct GameRankSaveDataPacks {
+    /* 00 */ struct GameRankSaveData pack[6];
+    /* 90 */ u16 checksum;
+    /* 92 */ u16 unk92;
+};
+
+struct Fe6LinkSaveInfo {
+    /* 00 */ u32 flags[8];
+    /* 20 */ u16 value;
+    /* 22 */ u16 checksum;
+};
+
+struct SoundRoomSaveData {
+    /* 00 */ u32 flags[8];
+    /* 20 */ u16 checksum;
+    /* 22 */ u16 unk22;
+};
+
+struct LinkArenaSaveData2 {
+    /* 00 */ u32 flags[4];
+    /* 10 */ u16 checksum;
+    /* 12 */ u16 unk12;
+};
 
 #define SRAM_XMAP_SIZE 0xC00u
 #define SRAM_XMAP_ADDR (CART_SRAM + CART_SRAM_SIZE - SRAM_XMAP_SIZE)
@@ -102,65 +163,65 @@ void WriteSaveBlockInfo(struct SaveBlockInfo * block_info, int save_id);
 // ??? EraseSaveBlockInfo
 void * GetSaveWriteAddr(int save_id);
 void * GetSaveReadAddr(int save_id);
-// ??? sub_809F344
-// ??? WritePermanentFlags
-// ??? ReadChapterFlags
-// ??? ReadPermanentFlags
-// ??? WriteSupplyItems
-// ??? ReadSupplyItems
+void WriteChapterFlags(void * sram_dest);
+void WritePermanentFlags(void * sram_dest);
+void ReadChapterFlags(void const * sram_src);
+void ReadPermanentFlags(void const * sram_src);
+void WriteSupplyItems(void * sram_dest);
+void ReadSupplyItems(void const * sram_src);
 s32 sub_0809E9FC(void);
-// ??? sub_0809EA58
-// ??? sub_809F48C
-// ??? IsExtraLinkArenaEnabled
-// ??? sub_0809EAB8
-// ??? IsExtraSupportViewerEnabled
-// ??? GetRankDataValidBitMap
-// ??? sub_809F588
-// ??? sub_809F5B0
-// ??? GetUnitsAverageSupportValue
-// ??? GetTotalAverageSupportValue
-// ??? GetTotalGlobalSupportValue
-// ??? GetTotalSupportCollection
-// ??? GetGlobalBestSupport
-// ??? GetGlobalSupportListFromSave
-// ??? UpdateBestGlobalSupportValue
-// ??? MetaSave_SetMetCharacter
-// ??? GGM_IsCharacterKnown
-// ??? GGM_IsAnyCharacterKnown
-// ??? nullsub_82
-// ??? nullsub_83
+int sub_0809EA58(void);
+bool sub_0809EA7C(void);
+bool IsExtraLinkArenaEnabled(void);
+bool IsExtraSoundRoomEnabled(void);
+bool IsExtraSupportViewerEnabled(void);
+u32 GetRankDataValidBitMap(void);
+bool IsExtraBonusClaimEnabled(void);
+int GetUnitsAverageSupportValue(const int unitA, const int unitB);
+int GetTotalAverageSupportValue(void);
+int GetTotalGlobalSupportValue(struct GlobalSaveInfo * info);
+int GetTotalSupportCollection(void);
+int GetGlobalBestSupport(int unitA, int unitB, struct GlobalSaveInfo * info);
+void GetGlobalSupportListFromSave(int pid, u8 * data, struct GlobalSaveInfo * info);
+bool UpdateBestGlobalSupportValue(int unitA, int unitB, int supportRank);
+void MetaSave_SetMetCharacter(int pid, struct GlobalSaveInfo * info);
+bool GGM_IsCharacterKnown(int pid, struct GlobalSaveInfo * info);
+int GGM_IsAnyCharacterKnown(struct GlobalSaveInfo * info);
+void sub_0809EF8C(void);
+void sub_0809EF90(void);
 bool IsGamePlayedThrough(void);
 int CheckLinkedToFE6(void);
-// ??? ReadFe6LinkSaveInfo
+bool ReadFe6LinkSaveInfo(void * buf);
 void WriteFe6LinkSaveInfo(void * buf);
-// ??? sub_0809F084
-// ??? sub_0809F0A0
-// ??? sub_0809F0B8
-// ??? sub_0809F0D0
-// ??? sub_0809F0D4
-// ??? LoadAndVerfyRankData
-// ??? LoadBonusContentData
+void ClearFe6LinkSaveInfo(struct Fe6LinkSaveInfo * link);
+bool Fe6LinkSaveInfo_CheckFlag(struct Fe6LinkSaveInfo * link, int flag);
+void Fe6LinkSaveInfo_SetFlag(struct Fe6LinkSaveInfo * link, int flag);
+void Fe6LinkSaveInfo_SetValue(struct Fe6LinkSaveInfo * link, u16 value);
+u16 Fe6LinkSaveInfo_GetValue(struct Fe6LinkSaveInfo * link);
+bool LoadAndVerfyRankData(void * buf);
+bool LoadBonusContentData(void * buf);
 void SaveBonusContentData(void * buf);
-// ??? SaveRankings
-// ??? EraseSaveRankData
-// ??? GetNextChapterMode
-// ??? sub_0809F224
-// ??? SaveNewRankData
-// ??? JudgeGameRankSaveData
-// ??? GenerateGameRankSaveData
+void SaveRankings(void * buf);
+void EraseSaveRankData(void);
+int GetNextChapterMode(void);
+int LoadRankData(void * buf, int chapter_mode, int difficulty);
+void SaveNewRankData(void * buf, int chapter_mode, int difficulty);
+u8 JudgeGameRankSaveData(struct GameRankSaveData * old, struct GameRankSaveData * new);
+void GenerateGameRankSaveData(struct GameRankSaveData * buf, int chapter_mode, int difficulty);
 void SaveEndgameRankings(void);
-// ??? sub_0809F668
+void EraseSoundRoomSaveData(void);
 bool LoadAndVerifySoundRoomData(void * buf);
-// ??? WriteSoundRoomSaveData
-// ??? IsSoundRoomSongUnlocked
-// ??? UnlockSoundRoomSong
-void UnlockSoundRoomSong(void * buf, int song);
-// ??? EraseLinkArenaStruct2
+void WriteSoundRoomSaveData(struct SoundRoomSaveData * buf);
+bool IsSoundRoomSongUnlocked(struct SoundRoomSaveData * buf, int song);
+void UnlockSoundRoomSong(struct SoundRoomSaveData * buf, int song);
+void EraseLinkArenaStruct2(void);
 bool LoadAndVerfyLinkArenaStruct2(void * buf);
-// ??? WriteLinkArenaStruct2
-// ??? ModifySaveLinkArenaStruct2A
-// ??? ModifySaveLinkArenaStruct2B
-// ??? LoadAndVerifySramSaveData
+void WriteLinkArenaStruct2(struct LinkArenaSaveData2 * buf);
+bool ModifySaveLinkArenaStruct2A(struct LinkArenaSaveData2 * buf, int val);
+void ModifySaveLinkArenaStruct2B(struct LinkArenaSaveData2 * buf, int val);
+void SaveGlobalLang(int lang);
+int LoadGlobalLang(void);
+void LoadAndVerifySramSaveData(void);
 
 struct PidStats
 {
@@ -190,13 +251,13 @@ void ClearPidStats(void);
 // ??? GetChapterStats
 // ??? IsChapterStatsValid
 // ??? GetNextChapterStatsSlot
-// ??? sub_0809FB70
+int sub_0809FB70(void);
 int GetNextChapterStatsEntry(void);
 void RegisterChapterStats(struct PlaySt *);
 // ??? GetGameTotalTime_unused
 // ??? GetGameTotalTurnCount
 // ??? IsChapterPartOfCurrentMode
-// ??? sub_0809FCB0
+int sub_0809FCB0(void);
 // ??? GetTotalTurnCountUpUntilNow
 // ??? PidStatsAddBattleAmt
 // ??? sub_0809FD9C
@@ -215,7 +276,7 @@ void PidStatsAddStatView(u8 pid);
 // ??? PidStatsGetTotalLevel
 // ??? sub_080A01BC
 // ??? PidStatsGetExpGain
-// ??? PidStatsGetFavval
+int PidStatsGetFavval(u8 pid);
 // ??? PidStatsAddFavval
 void PidStatsRecordBattleRes(void);
 bool IsPlaythroughIdUnique(int index);
@@ -243,7 +304,7 @@ void ReadGameSavePlaySt(s32, struct PlaySt *);
 // ??? LoadSavedBonusClaimFlags
 // ??? sub_080A09FC
 // ??? sub_080A0A10
-// ??? IsGameSaveNotFirstChapter
+bool IsGameSaveNotFirstChapter(int slot);
 void WriteGameSavePackedUnit(struct Unit *unit, void *sram_dest);
 void LoadSavedUnit(const void *sram_src, struct Unit *unit);
 void InvalidateSuspendSave(int);

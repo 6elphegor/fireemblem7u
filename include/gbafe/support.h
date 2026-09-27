@@ -55,6 +55,14 @@ struct SupportBonuses {
     /* 06 */ u8 bonus_dodge;
 };
 
+struct SupportTalkEnt {
+    /* 00 */ u8 pid_a;
+    /* 01 */ u8 pid_b;
+    /* 02 */ u8 _unk02[0x14 - 0x02];
+};
+
+extern struct SupportTalkEnt CONST_DATA gSupportTalkList[];
+
 int GetUnitSupporterCount(struct Unit * unit);
 u8 GetUnitSupportPid(struct Unit * unit, int num);
 struct Unit * GetUnitSupportUnit(struct Unit * unit, int num);

@@ -1133,12 +1133,12 @@ int GetClassReelEntry(int, int);
 // sub_080B6288
 // sub_080B6298
 // sub_080B62C4
-// GetGameTacticsRank
-// GetGameSurvivalRank
-// GetGameExpRank
-// GetGameCombatRank
-// GetGameFundsRank
-// GetOverallRank
+int GetGameTacticsRank(void);
+int GetGameSurvivalRank(void);
+int GetGameExpRank(void);
+int GetGameCombatRank(void);
+int GetGameFundsRank(void);
+int GetOverallRank(int tactics, int survival, int funds, int exp, int combat);
 // sub_080B663C
 // sub_080B6674
 // sub_080B66B4
