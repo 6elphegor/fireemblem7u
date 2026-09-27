@@ -203,10 +203,10 @@ bool WarpEffectExists(ProcPtr proc);
 // ProcWhiteCircleFx_End
 // StartCircularFadeAnim
 // ProcEmitSingleStar_Init
-// sub_08020E68
+// ProcEmitSingleStar_Loop
 // Calcs_Interpolate
-// sub_08020F24
-// sub_0802107C
+// LetsEmitStars
+// StarsBlinking
 // StartEmitStarsAnim
 // ClearEmitedStars
 // sub_80215D0

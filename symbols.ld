@@ -2761,3 +2761,6 @@ Tsa_Unk_0819C58C = 0x0819C58C;
 Vectors_Unk_081C3C30 = 0x081C3C30;
 ProcScr_Unk_08B93C7C = 0x08B93C7C;
 ProcScr_WhiteCircleFx = 0x08B93CA4;
+ProcScr_EmitSingleStar = 0x08B93CBC;
+ProcScr_EmitStars = 0x08B93CD4;
+Img_EmitedStar = 0x08B93CEC;

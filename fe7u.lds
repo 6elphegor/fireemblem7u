@@ -179,14 +179,7 @@ SECTIONS
         build/src/eventwarpfx.o(.text);
         build/src/bmfx_08020AD0.o(.text);
         build/src/whitecircularfadefx.o(.text);
-        build/asm/code_08020E34.o(.text);
-        build/asm/code_08020E68.o(.text);
-        build/asm/code_08020EDC.o(.text);
-        build/asm/code_08020F24.o(.text);
-        build/asm/code_0802107C.o(.text);
-        build/asm/code_080210E4.o(.text);
-        build/asm/code_0802114C.o(.text);
-        build/asm/code_08021164.o(.text);
+        build/src/emitstarfx.o(.text);
         build/src/bmfx-swingsword.o(.text);
         build/src/bmfx-minefx.o(.text);
         build/src/bmfx-niniantransform.o(.text);
