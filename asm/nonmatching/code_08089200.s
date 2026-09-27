@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089200
-sub_08089200: @ 0x08089200
+	thumb_func_start UnitList_ResetDispFromStatScreen
+UnitList_ResetDispFromStatScreen: @ 0x08089200
 	ldr r2, _0808921C @ =0x03002870
 	movs r0, #1
 	ldrb r1, [r2, #1]

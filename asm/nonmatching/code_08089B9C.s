@@ -52,6 +52,6 @@ _08089BCE:
 	adds r0, #1
 	strb r2, [r0]
 	adds r0, r3, #0
-	bl sub_08089794
+	bl sub_8090D80
 	pop {r0}
 	bx r0

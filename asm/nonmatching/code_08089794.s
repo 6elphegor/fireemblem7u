@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089794
-sub_08089794: @ 0x08089794
+	thumb_func_start sub_8090D80
+sub_8090D80: @ 0x08089794
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -48,7 +48,7 @@ sub_08089794: @ 0x08089794
 	movs r5, #6
 	strb r5, [r0]
 	mov r0, r8
-	bl sub_08089714
+	bl sub_8090D00
 	mov r0, r8
 	adds r0, #0x39
 	ldrb r0, [r0]
@@ -209,14 +209,14 @@ _0808990C:
 	bl InitText
 	ldr r1, [sp, #0x18]
 	ldrb r0, [r1]
-	bl sub_08088CD4
+	bl sub_8090238
 	ldr r2, [sp, #0xc]
 	ldrb r2, [r2]
 	cmp r2, #4
 	bne _080899AC
 	mov r0, r8
 	movs r1, #0
-	bl sub_08088F3C
+	bl sub_8090418
 	movs r0, #0
 	ldr r6, [sp, #0xc]
 	strb r0, [r6]
@@ -241,7 +241,7 @@ _080899AC:
 	bne _080899BC
 	mov r0, r8
 	movs r1, #1
-	bl sub_08088F3C
+	bl sub_8090418
 _080899BC:
 	movs r1, #0
 	movs r0, #0

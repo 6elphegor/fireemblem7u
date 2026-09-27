@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089220
-sub_08089220: @ 0x08089220
+	thumb_func_start UnitListScreenSprites_Init
+UnitListScreenSprites_Init: @ 0x08089220
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x14]

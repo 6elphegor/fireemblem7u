@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08088D8C
-sub_08088D8C: @ 0x08088D8C
+	thumb_func_start sub_8090324
+sub_8090324: @ 0x08088D8C
 	adds r3, r0, #0
 	movs r2, #0
 	ldr r1, _08088DB0 @ =0x0200E66C

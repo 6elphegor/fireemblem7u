@@ -2,10 +2,10 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080891D4
-sub_080891D4: @ 0x080891D4
+	thumb_func_start UnitList_ResetFromStatScreen
+UnitList_ResetFromStatScreen: @ 0x080891D4
 	push {lr}
-	bl sub_08089794
+	bl sub_8090D80
 	ldr r2, _080891FC @ =0x03002870
 	movs r0, #2
 	rsbs r0, r0, #0

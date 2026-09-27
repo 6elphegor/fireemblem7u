@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089DD4
-sub_08089DD4: @ 0x08089DD4
+	thumb_func_start UnitList_ToggleSoloAnimState
+UnitList_ToggleSoloAnimState: @ 0x08089DD4
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r2, r1, #0

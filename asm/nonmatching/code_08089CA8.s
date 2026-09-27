@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089CA8
-sub_08089CA8: @ 0x08089CA8
+	thumb_func_start UnitList_UndeployUnit
+UnitList_UndeployUnit: @ 0x08089CA8
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r4, r0, #0

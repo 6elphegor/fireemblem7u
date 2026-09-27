@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089E70
-sub_08089E70: @ 0x08089E70
+	thumb_func_start sub_809144C
+sub_809144C: @ 0x08089E70
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -71,7 +71,7 @@ _08089EEA:
 	b _0808A206
 _08089EEC:
 	adds r0, r5, #0
-	bl sub_08089D50
+	bl UnitList_TogglePrepDeployState
 	b _0808A206
 _08089EF4:
 	ldr r1, _08089F28 @ =0x0200CBF0
@@ -132,7 +132,7 @@ _08089F58:
 	ldr r0, [r0]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08089DD4
+	bl UnitList_ToggleSoloAnimState
 	ldrb r1, [r4]
 	ldr r2, _08089F84 @ =0x02022C60
 	adds r0, r5, #0
@@ -202,7 +202,7 @@ _08089FEA:
 	ldr r0, [r0]
 	ldr r0, [r0]
 	movs r1, #1
-	bl sub_08089DD4
+	bl UnitList_ToggleSoloAnimState
 	ldrb r1, [r4]
 	ldr r2, _0808A018 @ =0x02022C60
 	adds r0, r5, #0

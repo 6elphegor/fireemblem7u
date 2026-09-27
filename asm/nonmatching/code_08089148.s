@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089148
-sub_08089148: @ 0x08089148
+	thumb_func_start UnitList_StartStatScreen
+UnitList_StartStatScreen: @ 0x08089148
 	push {r4, lr}
 	adds r4, r0, #0
 	bl EndAllMus

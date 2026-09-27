@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08089D50
-sub_08089D50: @ 0x08089D50
+	thumb_func_start UnitList_TogglePrepDeployState
+UnitList_TogglePrepDeployState: @ 0x08089D50
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r0, #0x30
@@ -59,12 +59,12 @@ _08089DB8: .4byte 0x000003AD
 _08089DBC:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08089C00
+	bl UnitList_DeployUnit
 	b _08089DCE
 _08089DC6:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08089CA8
+	bl UnitList_UndeployUnit
 _08089DCE:
 	pop {r4, r5}
 	pop {r0}

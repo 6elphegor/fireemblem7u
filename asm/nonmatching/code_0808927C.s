@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0808927C
-sub_0808927C: @ 0x0808927C
+	thumb_func_start UnitListScreenSprites_Main
+UnitListScreenSprites_Main: @ 0x0808927C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -171,7 +171,7 @@ _080893AC:
 	cmp r1, #0
 	bne _08089430
 	movs r0, #1
-	bl sub_08089038
+	bl sub_8090514
 	movs r0, #1
 	mov r4, r8
 	strb r0, [r4]
@@ -205,7 +205,7 @@ _080893F4:
 	cmp r2, #1
 	bne _08089430
 	movs r0, #0
-	bl sub_08089038
+	bl sub_8090514
 	movs r0, #0
 	mov r3, r8
 	strb r0, [r3]

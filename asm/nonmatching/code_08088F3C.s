@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08088F3C
-sub_08088F3C: @ 0x08088F3C
+	thumb_func_start sub_8090418
+sub_8090418: @ 0x08088F3C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8

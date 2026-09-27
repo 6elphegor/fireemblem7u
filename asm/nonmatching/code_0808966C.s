@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0808966C
-sub_0808966C: @ 0x0808966C
+	thumb_func_start sub_8090C58
+sub_8090C58: @ 0x0808966C
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r1, _080896C0 @ =0x0200E668
@@ -36,7 +36,7 @@ _0808968C:
 	beq _080896B2
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0808955C
+	bl sub_8090B48
 _080896B2:
 	adds r5, #1
 	ldr r0, _080896C4 @ =0x0202BBF8
@@ -71,7 +71,7 @@ _080896D4:
 	bne _080896F8
 	adds r0, r2, #0
 	adds r1, r6, #0
-	bl sub_0808955C
+	bl sub_8090B48
 _080896F8:
 	adds r4, #1
 	ldr r0, _08089710 @ =0x0202BBF8

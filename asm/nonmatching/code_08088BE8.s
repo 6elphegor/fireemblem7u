@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08088BE8
-sub_08088BE8: @ 0x08088BE8
+	thumb_func_start sub_809014C
+sub_809014C: @ 0x08088BE8
 	push {r4, r5, lr}
 	ldr r0, _08088C54 @ =0x0200D668
 	bl InitUnitStack
