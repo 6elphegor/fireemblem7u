@@ -243,6 +243,28 @@ struct GameSaveBlock {
     /* D88 */ u32 bonusClaimFlags;
 };
 
+#define UNIT_SAVE_AMOUNT_RED 50
+#define UNIT_SAVE_AMOUNT_GREEN 10
+
+struct SuspendSavePackedUnit {
+    /* 00 */ u8 raw[0x34];
+};
+
+struct SuspendSaveBlock {
+    /* 0000 */ struct PlaySt playSt;
+    /* 0048 */ struct Action action;
+    /* 0064 */ struct SuspendSavePackedUnit blueUnits[UNIT_SAVE_AMOUNT_BLUE];
+    /* 0AF4 */ struct SuspendSavePackedUnit redUnits[UNIT_SAVE_AMOUNT_RED];
+    /* 151C */ struct SuspendSavePackedUnit greenUnits[UNIT_SAVE_AMOUNT_GREEN];
+    /* 1724 */ u8 traps[0x200];
+    /* 1924 */ u16 supplyItems[100];
+    /* 19EC */ u8 pidStats[0x1E4C - 0x19EC];
+    /* 1E4C */ u8 chapterStats[0x1F0C - 0x1E4C];
+    /* 1F0C */ u8 menuOverride[0x10];
+    /* 1F1C */ u8 permanentFlags[8];
+    /* 1F24 */ u8 chapterFlags[8];
+};
+
 extern u32 gBonusContentClaimFlags;
 extern u8 gSuspendSaveIdOffset;
 
@@ -270,13 +292,13 @@ void WriteSuspendSave(int saveBlockId);
 void ReadSuspendSave(int slot);
 u8 IsValidSuspendSave(int);
 void ReadSuspendSavePlaySt(int slot, struct PlaySt * buf);
-// ??? EncodeSuspendSavePackedUnit
-// ??? ReadSuspendSavePackedUnit
-// ??? WriteTraps
-// ??? ReadTraps
-// ??? GetLastSuspendSaveId
-// ??? GetNextSuspendSaveId
-// ??? WriteSwappedSuspendSaveId
+void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf);
+void ReadSuspendSavePackedUnit(void const * sram_src, struct Unit * unit);
+void WriteTraps(void * sram_dest);
+void ReadTraps(void const * sram_src);
+int GetLastSuspendSaveId(void);
+int GetNextSuspendSaveId(void);
+void WriteSwappedSuspendSaveId(void);
 int SramChecksum32(void const * sram_src, int size);
 bool VerifySaveBlockChecksum(struct SaveBlockInfo * block_info);
 void PopulateSaveBlockChecksum(struct SaveBlockInfo * block_info);
