@@ -1108,3 +1108,6 @@ gUnitArrayGreen = 0x0202DCD0;
 gMultiArenaSaveTeamBufA = 0x0203ECC8;
 gMultiArenaSaveTeamBufB = 0x0203ED90;
 gInitialMultiArenaRankings = 0x0840F438;
+gPidStatsSaveLoc = 0x0203E79C;
+gPidStatsData = 0x0203E7A0;
+gChapterStats = 0x0203EC00;

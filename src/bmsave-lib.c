@@ -689,7 +689,7 @@ void GenerateGameRankSaveData(struct GameRankSaveData * buf, int chapter_mode, i
     buf->unk00_16 = gPlaySt.tact_enabled;
     buf->unk00_17 = gPlaySt.unk2C_04;
 
-    FormatTime(sub_0809FCB0(), &hours, &minutes, &seconds);
+    FormatTime(GetGameTotalTime(), &hours, &minutes, &seconds);
     buf->hours = hours;
     buf->minutes = minutes;
     buf->seconds = seconds;
@@ -738,7 +738,7 @@ void GenerateGameRankSaveData(struct GameRankSaveData * buf, int chapter_mode, i
     buf->combat_rank = GetGameCombatRank();
 
     buf->overall_rank = GetOverallRank(buf->tactics_rank, buf->survival_rank, buf->funds_rank, buf->exp_rank, buf->combat_rank);
-    buf->unk08_15 = sub_0809FB70();
+    buf->unk08_15 = GetCurCompleteChapters();
     strcpy(buf->tactician_name, GetTacticianName());
 }
 
