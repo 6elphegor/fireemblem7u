@@ -1130,3 +1130,7 @@ gMapMenuDef = 0x08B95AF4;
 sProcScr_KOIDO = 0x08B935EC;
 sProcScr_KOIDOAMM = 0x08B93604;
 sProcScr_BMXFADE = 0x08B9362C;
+gConvoyItemCount = 0x02001F70;
+gProcCmd_ConvoyMenu = 0x08B9369C;
+gConvoyMenuDef = 0x08B95944;
+gSendToConvoyMenuDef = 0x08B95968;
