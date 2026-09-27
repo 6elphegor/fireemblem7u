@@ -13,6 +13,16 @@ void sub_0803DA24(void);
 void EndPrepScreen(void);
 void ReorderPlayerUnitsBasedOnDeployment(void);
 
+struct ProcAtUnkMenu {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x5C);
+    /* 5C */ int unk5C;
+    /* 60 */ STRUCT_PAD(0x60, 0x64);
+    /* 64 */ u16 unk64;
+};
+
+void sub_0808F808(int x, int y, int unk, int oam2);
+
 extern int CONST_DATA gAtSubMenuMsgs[];
 extern u8 CONST_DATA Tsa_PrepMenuFrame[];
 extern struct ProcCmd CONST_DATA ProcScr_PrepUnitScreen[];
@@ -735,6 +745,72 @@ bool HasConvoyAccess_(int kind)
                 return TRUE;
         }
         break;
+    }
+
+    return FALSE;
+}
+
+void sub_0808EF94(struct ProcAtUnkMenu * proc)
+{
+    int i;
+
+    sub_0808F808(0x70, 4, proc->unk5C, 0x23C0);
+
+    for (i = 0; i < 3; i++)
+        PutSpriteExt(4, 0x80 + i * 0x20, 0x14, Sprite_32x16, 0x4680 + i * 4);
+
+    if (proc->unk64 == 1 && (START_BUTTON & gpKeySt->pressed))
+    {
+        proc->unk64 = 0;
+        Proc_Goto(proc, 0x64);
+    }
+}
+
+bool sub_0808EFFC(void)
+{
+    int i;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (UNIT_IS_VALID(unit) && unit->pCharacterData->number == 0x23)
+        {
+            if (!(unit->state & US_DEAD))
+                return TRUE;
+
+            return FALSE;
+        }
+    }
+
+    return FALSE;
+}
+
+bool sub_0808F034(void)
+{
+    struct Unit * unit;
+
+    if (gPlaySt.chapterStateBits & 0x80)
+        return FALSE;
+
+    if (CheckInLinkArena())
+        return FALSE;
+
+    if (!GetChapterInfo(gPlaySt.chapterIndex)->has_prep)
+        return FALSE;
+
+    if (((struct ChapterInfoMerchantView const *) GetChapterInfo(gPlaySt.chapterIndex))->merchantPos[gPlaySt.chapterModeIndex == 3 ? 1 : 0] == 0xFF)
+        return FALSE;
+
+    unit = GetUnitFromCharId(0x28);
+
+    if (unit == NULL)
+        return FALSE;
+
+    if (unit->level == 0x14 && unit->pClassData->number == 0x44)
+    {
+        ClearFlag(0x90);
+        return TRUE;
     }
 
     return FALSE;
