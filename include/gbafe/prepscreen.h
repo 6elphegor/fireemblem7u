@@ -299,7 +299,7 @@ void PrepHbKeyListener_Loop(ProcPtr proc);
 // IsWeaponUsable
 // CountUnitUsableWeapons
 // sub_08090DB0
-// CheckValidLinkArenaItemSwap
+s8 CheckValidLinkArenaItemSwap(struct Unit * unitA, int slotA, struct Unit * unitB, int slotB);
 // CheckValidLinkArenaItemSupply
 // sub_08090EE8
 // sub_08090F30
@@ -439,15 +439,25 @@ void PrepUnitEnableDisp(struct ProcPrepUnit *proc);
 void sub_08093F84(struct ProcPrepUnit *proc);
 void sub_08093FA0(struct ProcPrepUnit *proc);
 
-// PrepItemTrade_ApplyItemSwap
-// PrepItemTrade_DpadKeyHandler
-// DrawPrepScreenItems
-// DrawPrepScreenItemIcons
-// sub_08094350
-// sub_08094630
-// PrepItemTrade_OnEnd
+struct PrepMenuTradeProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * units[2];
+    /* 34 */ int cursorItemSlot; // 0x0-0x4 = left side, 0x8-0xC = right side
+    /* 38 */ int selectedItemSlot;
+    /* 3C */ int helpBoxItemSlot;
+    /* 40 */ int unk_40;
+};
+
+void PrepItemTrade_ApplyItemSwap(struct Unit * unitA, int itemSlotA, struct Unit * unitB, int itemSlotB);
+s8 PrepItemTrade_DpadKeyHandler(struct PrepMenuTradeProc * proc);
+void DrawPrepScreenItems(u16 * tm, struct Text * th, struct Unit * unit, u8 checkPrepUsability);
+void DrawPrepScreenItemIcons(u16 * tm, struct Unit * unit);
+void PrepItemTrade_Init(struct PrepMenuTradeProc * proc);
+void PrepItemTrade_Loop_MainKeyHandler(struct PrepMenuTradeProc * proc);
+void PrepItemTrade_OnEnd(void);
 void StartPrepItemTradeScreenProc(struct Unit * unitA, struct Unit * unitB, ProcPtr parent);
-// sub_0809496C
+void sub_0809496C(struct Unit * unitA, struct Unit * unitB, int rightItemIdx, ProcPtr parent);
 // PrepItemUseTryMoveHand
 // DrawPrepScreenItemUseStatLabels
 // DrawPrepScreenItemUseStatBars
