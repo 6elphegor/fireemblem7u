@@ -2,19 +2,23 @@
 
 struct ProcEkrBaseKaiten {
     /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 29 */ u8 unk29;
+    /* 2A */ u16 unk2A;
     /* 2C */ s16 timer;
     /* 2E */ s16 terminator;
-    /* 30 */ STRUCT_PAD(0x30, 0x32);
+    /* 30 */ u16 unk30;
     /* 32 */ s16 x1;
     /* 34 */ s16 x2;
-    /* 36 */ STRUCT_PAD(0x36, 0x3A);
+    /* 36 */ s16 unk36;
+    /* 38 */ STRUCT_PAD(0x38, 0x3A);
     /* 3A */ s16 y1;
     /* 3C */ s16 y2;
-    /* 3E */ STRUCT_PAD(0x3E, 0x44);
+    /* 3E */ s16 unk3E;
+    /* 40 */ STRUCT_PAD(0x40, 0x44);
     /* 44 */ int type;
     /* 48 */ STRUCT_PAD(0x48, 0x5C);
     /* 5C */ struct Anim * anim;
+    /* 60 */ const u16 * unk60;
 };
 
 struct ProcUnitKakudai {
@@ -54,7 +58,20 @@ extern int gEkrWindowAppearExist;
 extern int gEkrNamewinAppearExist;
 extern int gProcEkrBaseAppearExist;
 
+extern struct ProcCmd CONST_DATA ProcScr_EkrBaseKaiten[];
 extern struct ProcCmd CONST_DATA ProcScr_ekrUnitKakudai[];
+extern const u8 * CONST_DATA Imgs_085B9B84[];
+extern const u8 * CONST_DATA Imgs_085B9BA4[];
+extern u32 * CONST_DATA AnimScrs_085B9BC4[];
+extern u32 * CONST_DATA AnimScrs_085B9BE4[];
+extern u32 * CONST_DATA AnimScrs_085B9C04[];
+extern u32 * CONST_DATA AnimScrs_085B9C24[];
+extern u32 * CONST_DATA AnimScrs_085B9C44[];
+extern u32 * CONST_DATA AnimScrs_085B9C64[];
+extern const u16 * CONST_DATA gUnknown_085B9C84[];
+extern const u16 * CONST_DATA gUnknown_085B9CA4[];
+extern const u16 * CONST_DATA gUnknown_085B9CC4[];
+extern const u16 Pal_080DC85C[];
 extern struct ProcCmd CONST_DATA ProcScr_ekrWindowAppear[];
 extern struct ProcCmd CONST_DATA ProcScr_ekrNamewinAppear[];
 extern struct ProcCmd CONST_DATA ProcScr_ekrBaseAppear[];
@@ -83,7 +100,235 @@ struct CharacterDataBanimView {
 };
 extern struct BattleAnimDef const * CONST_DATA gUnitSpecificBanimConfigs[];
 
-ASM_FUNC("asm/nonmatching/code_08051274.s");
+void NewEkrBaseKaiten(int identifier)
+{
+#ifdef NONMATCHING
+    #define AccessArray(array, index, offset) ((array)[index])
+#else
+    #define AccessArray(array, index, offset) (*(typeof(&*(array)))((void *)(array) + (offset)))
+#endif
+
+    int mode;
+    const u8 ** pptr;
+    struct Anim * anim;
+    struct ProcEkrBaseKaiten * proc;
+    u32 r6;
+    const u8 * src;
+
+    SetBlendConfig(0, 10, 6, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 1, 1, 0);
+
+    gDispIo.blend_ct.target2_enable_bd = 1;
+
+    if (gEkrBmLocation[0] == gEkrBmLocation[2])
+    {
+        if (gEkrBmLocation[1] >= gEkrBmLocation[3])
+            mode = 6;
+        else
+            mode = 2;
+    }
+    else
+    {
+        if (gEkrBmLocation[1] == gEkrBmLocation[3])
+        {
+            if (gEkrBmLocation[0] < gEkrBmLocation[2])
+                mode = 0;
+            else
+                mode = 4;
+        }
+        else
+        {
+            if (gEkrBmLocation[0] < gEkrBmLocation[2])
+            {
+                if (gEkrBmLocation[1] >= gEkrBmLocation[3])
+                    mode = 7;
+                else
+                    mode = 1;
+            }
+            else
+            {
+                if (gEkrBmLocation[1] >= gEkrBmLocation[3])
+                    mode = 5;
+                else
+                    mode = 3;
+            }
+        }
+    }
+
+    switch (gEkrDistanceType) {
+    case EKR_DISTANCE_CLOSE:
+    case EKR_DISTANCE_PROMOTION:
+        pptr = Imgs_085B9B84;
+        break;
+
+    case EKR_DISTANCE_FAR:
+    case EKR_DISTANCE_FARFAR:
+    case EKR_DISTANCE_MONOCOMBAT:
+    default:
+        pptr = Imgs_085B9BA4;
+        break;
+    }
+
+    src = pptr[mode];
+    r6 = mode * 4;
+    LZ77UnCompVram(src, OBJ_VRAM0);
+    CpuFastCopy(Pal_080DC85C, PAL_OBJ(4), 4);
+    EnablePalSync();
+
+    switch (gEkrDistanceType) {
+    case EKR_DISTANCE_CLOSE:
+    case EKR_DISTANCE_PROMOTION:
+        proc = Proc_Start(ProcScr_EkrBaseKaiten, PROC_TREE_3);
+        proc->type = identifier;
+        proc->unk29 = 0;
+        proc->timer = 0;
+        proc->terminator = 0xB;
+        proc->x1 = (gEkrBmLocation[0] + gEkrBmLocation[2]) * 8 + 8;
+        proc->y1 = (gEkrBmLocation[1] + gEkrBmLocation[3]) * 8 + 8;
+        proc->x2 = 0x78;
+        proc->y2 = 0x68;
+
+        if (proc->type == 0)
+            anim = AnimCreate(AccessArray(AnimScrs_085B9BC4, mode, r6), 0x64);
+        else
+            anim = AnimCreate(AccessArray(AnimScrs_085B9C24, mode, r6), 0x64);
+
+        proc->anim = anim;
+        anim->oam2Base = 0x4800;
+        anim->oamBase |= 0x400;
+
+        if (proc->type == 0)
+        {
+            anim->xPosition = proc->x1;
+            anim->yPosition = proc->y1;
+        }
+        else
+        {
+            anim->xPosition = proc->x2;
+            anim->yPosition = proc->y2;
+        }
+        proc->unk60 = AccessArray(gUnknown_085B9C84, mode, r6);
+        proc->unk3E = 0;
+        proc->unk36 = 0;
+        break;
+
+    case EKR_DISTANCE_FAR:
+    case EKR_DISTANCE_FARFAR:
+        proc = Proc_Start(ProcScr_EkrBaseKaiten, PROC_TREE_3);
+        proc->type = identifier;
+        proc->unk29 = 0;
+        proc->timer = 0;
+        proc->terminator = 0xB;
+        proc->x1 = gEkrBmLocation[0] * 0x10 + 8;
+        proc->y1 = gEkrBmLocation[1] * 0x10 + 8;
+        proc->x2 = 0x48;
+        proc->y2 = 0x68;
+
+        if (gEkrInitPosReal == 1)
+            proc->x2 -= BanimLeftDefaultPos[gEkrDistanceType];
+
+        if (proc->type == 0)
+            anim = AnimCreate(AccessArray(AnimScrs_085B9BE4, mode, r6), 0x64);
+        else
+            anim = AnimCreate(AccessArray(AnimScrs_085B9C44, mode, r6), 0x64);
+
+        proc->anim = anim;
+        anim->oam2Base = 0x4800;
+        anim->oamBase |= 0x400;
+
+        if (proc->type == 0)
+        {
+            anim->xPosition = proc->x1;
+            anim->yPosition = proc->y1;
+        }
+        else
+        {
+            anim->xPosition = proc->x2;
+            anim->yPosition = proc->y2;
+        }
+        proc->unk60 = AccessArray(gUnknown_085B9CA4, mode, r6);
+        proc->unk3E = 0;
+        proc->unk36 = 0;
+
+        /* Another proc ? */
+        proc = Proc_Start(ProcScr_EkrBaseKaiten, PROC_TREE_3);
+        proc->type = identifier;
+        proc->unk29 = 1;
+        proc->timer = 0;
+        proc->terminator = 0xB;
+        proc->x1 = gEkrBmLocation[2] * 0x10 + 8;
+        proc->y1 = gEkrBmLocation[3] * 0x10 + 8;
+        proc->x2 = 0xA8;
+        proc->y2 = 0x68;
+
+        if (gEkrInitPosReal == 0)
+            proc->x2 = BanimLeftDefaultPos[gEkrDistanceType] + 0xA8;
+
+        if (proc->type == 0)
+            anim = AnimCreate(AccessArray(AnimScrs_085B9C04, mode, r6), 0x64);
+        else
+            anim = AnimCreate(AccessArray(AnimScrs_085B9C64, mode, r6), 0x64);
+
+        proc->anim = anim;
+        anim->oam2Base = 0x4800;
+        anim->oamBase |= 0x400;
+
+        if (proc->type == 0)
+        {
+            anim->xPosition = proc->x1;
+            anim->yPosition = proc->y1;
+        }
+        else
+        {
+            anim->xPosition = proc->x2;
+            anim->yPosition = proc->y2;
+        }
+        proc->unk60 = AccessArray(gUnknown_085B9CC4, mode, r6);
+        proc->unk3E = 0;
+        proc->unk36 = 0;
+        break;
+
+    case EKR_DISTANCE_MONOCOMBAT:
+        proc = Proc_Start(ProcScr_EkrBaseKaiten, PROC_TREE_3);
+        proc->type = identifier;
+        proc->unk29 = 0;
+        proc->timer = 0;
+        proc->terminator = 0xB;
+        proc->x1 = gEkrBmLocation[2] * 0x10 + 8;
+        proc->y1 = gEkrBmLocation[3] * 0x10 + 8;
+        proc->x2 = 0x78;
+        proc->y2 = 0x68;
+
+        if (proc->type == 0)
+            anim = AnimCreate(AccessArray(AnimScrs_085B9C04, mode, r6), 0x64);
+        else
+            anim = AnimCreate(AccessArray(AnimScrs_085B9C64, mode, r6), 0x64);
+
+        proc->anim = anim;
+        anim->oam2Base = 0x4800;
+        anim->oamBase |= 0x400;
+
+        if (proc->type == 0)
+        {
+            anim->xPosition = proc->x1;
+            anim->yPosition = proc->y1;
+        }
+        else
+        {
+            anim->xPosition = proc->x2;
+            anim->yPosition = proc->y2;
+        }
+        proc->unk60 = AccessArray(gUnknown_085B9CC4, mode, r6);
+        proc->unk3E = 0;
+        proc->unk36 = 0;
+        break;
+
+    default:
+        break;
+    }
+}
+
 
 void EkrBaseKaitenMain(struct ProcEkrBaseKaiten * proc)
 {
