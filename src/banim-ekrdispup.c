@@ -47,7 +47,7 @@ extern const u8 Img_EfxRightItemBox[];
 extern const u16 Tsa_EkrDispUpSide[];
 extern const u16 Pal_EkrDispUp[];
 
-extern int gEkrHpBarCount;
+extern u32 gEkrHpBarCount;
 extern u32 gEfxSpellAnimExists;
 extern int gUnknown_02017730;
 extern u32 gEkrDeadEventExist;

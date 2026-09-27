@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0804C550
-sub_0804C550: @ 0x0804C550
+	thumb_func_start ekrGaugeMain
+ekrGaugeMain: @ 0x0804C550
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
