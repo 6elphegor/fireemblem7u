@@ -176,12 +176,7 @@ SECTIONS
         build/src/gameoverbgfx.o(.text);
         build/src/lightrunefx.o(.text);
         build/src/danceringfx.o(.text);
-        build/asm/code_08020848.o(.text);
-        build/asm/code_08020928.o(.text);
-        build/asm/code_080209C4.o(.text);
-        build/asm/code_080209F4.o(.text);
-        build/asm/code_08020A64.o(.text);
-        build/asm/code_08020AB8.o(.text);
+        build/src/eventwarpfx.o(.text);
         build/asm/code_08020AD0.o(.text);
         build/asm/code_08020B84.o(.text);
         build/asm/code_08020BFC.o(.text);
