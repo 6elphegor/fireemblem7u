@@ -53,7 +53,7 @@ extern u16 Pal_Text[];
 // ??? gUnk_08190208
 // ??? gUnk_08190228
 // ??? gUnk_08190248
-extern u16 Pal_08190268[];
+extern u16 Pal_08194714[];
 // ??? gUnk_08190288
 extern u16 gUnk_08194754[];
 extern u16 gUnk_08194774[];
@@ -297,12 +297,12 @@ extern u16 Pal_Unk_08432694[];
 // ??? gUnk_08433C0C
 // ??? gUnk_08433CA0
 extern u8  Img_ModeSelect_Sprites[];
-extern u16 Pal_08434448[];
+extern u16 Pal_084150C0[];
 // ??? gUnk_08434460
 extern u8  Tsa_ModeSelect_Menu[];
 extern u8  Img_ModeSelect_Menu[];
 extern u16 Pal_ModeSelect_Menu[];
-extern u8  Tsa_084352FC[];
+extern u8  Tsa_08415AC0[];
 extern u16 Pal_ModeSelect_Sprites[];
 extern u16 Pal_TactInfoBg[];
 extern u8  Img_TactInfoBg[];
@@ -1381,21 +1381,21 @@ extern u16 gUnk_083FBFD0[];
 // ??? gUnk_08403428
 // ??? gUnk_08403434
 
-extern const u8 Tsa_StatScreen_0840349C[];
+extern const u8 Tsa_StatScreen_083FC9FC[];
 extern const u8 Tsa_StatScreenPage0[];
-extern const u8 Tsa_Statscreen_Pag1_08403560[];
-extern const u8 Tsa_StatScreen_084035D0[];
+extern const u8 Tsa_Statscreen_Pag1_083FCAC0[];
+extern const u8 Tsa_StatScreen_083FCB30[];
 extern const u16 Pal_StatScreenFaceDefault[];
 extern const u16 Pal_StatScreenFaceGeneric[];
-extern const u8 Img_StatScreen_0840368C[];
-extern const u8 Img_StatScreen_08403730[];
-extern const u16 Pal_StatScreen_084038AC[];
-extern const u8 Tsa_Statscreen_Pag1_084038CC[];
-extern const u8 Tsa_Statscreen_Pag1_08403908[];
-extern const u8 Img_StatScreen_0840392C[];
+extern const u8 Img_StatScreen_083FCBEC[];
+extern const u8 Img_StatScreen_083FCC90[];
+extern const u16 Pal_StatScreen_083FCE0C[];
+extern const u8 Tsa_Statscreen_Pag1_083FCE2C[];
+extern const u8 Tsa_Statscreen_Pag1_083FCE68[];
+extern const u8 Img_StatScreen_083FCE8C[];
 extern u16 const Pals_StatScreen_Title[][0x20];
-extern const u8 Tsa_Statscreen_08404124[];
-extern const u8 Tsa_StatScreen_0840417C[];
+extern const u8 Tsa_Statscreen_083FD5C4[];
+extern const u8 Tsa_StatScreen_083FD62C[];
 // ??? gUnk_084041FC
 // ??? gUnk_0840431C
 // ??? gUnk_08404734
@@ -2161,16 +2161,16 @@ extern struct ProcCmd ProcScr_08B96EA8[];
 // ??? ProcScr_TactBloodSelect
 // ??? gUnk_08DADF98
 // ??? gUnk_08DADFC8
-// ??? gUnk_08DADFF8
-// ??? gUnk_08DAE004
-// ??? gUnk_08DAE010
-// ??? gUnk_08DAE01C
+// ??? gUnk_08CE480C
+// ??? gUnk_08CE4818
+// ??? gUnk_08CE4824
+// ??? gUnk_08CE4830
 // ??? Sprite_ModeSelect_Mode
 // ??? Sprite_ModeSelect_Select
 // ??? Sprite_ModeSelect_PressStart
 // ??? Sprite_ModeSelect_Change
 // ??? Sprite_ModeSelect_ChapterRange
-// ??? gUnk_08DAE0AC
+// ??? gUnk_08CE48C0
 // ??? ProcScr_ModeSelectSpriteDraw
 // ??? FaceConfig_ModeSelect
 // ??? ProcScr_ModeSelect

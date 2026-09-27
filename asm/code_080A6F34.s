@@ -75,7 +75,7 @@ _080A6F86:
 	bl Tact_ClearNrVrams
 	ldrb r5, [r5]
 	lsrs r0, r5, #4
-	bl sub_080A6DB0
+	bl TactGetMsg_Birth
 	bl DecodeMsg
 	adds r5, r0, #0
 	adds r4, #0x18

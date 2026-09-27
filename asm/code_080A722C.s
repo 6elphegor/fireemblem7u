@@ -66,7 +66,7 @@ _080A727C:
 	ldrb r4, [r4]
 	lsls r0, r4, #0x1f
 	lsrs r0, r0, #0x1f
-	bl sub_080A6DC0
+	bl TactGetMsg_Gender
 	bl DecodeMsg
 	adds r4, r0, #0
 	adds r5, #0x18

@@ -110,7 +110,7 @@ _08042574:
 	bge _08042574
 	ldr r0, [r6, #0x2c]
 	movs r1, #0
-	bl sub_08047D80
+	bl StartLinkArenaTitleBanner
 	movs r4, #0
 	str r4, [sp]
 	ldr r0, [r6, #0x2c]
