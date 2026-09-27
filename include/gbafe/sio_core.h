@@ -804,3 +804,4 @@ bool sub_080A0A10(struct PlaySt * playSt); // IsGameNotFirstChapter
 ProcPtr StartSioMenuItem(ProcPtr parent, u8 xBase, u8 yBase, u8 index, u8 state);
 void SioMenuItem_SetArrowConfig(struct SioMenuItemProc * proc, int xLeft, int xRight, int leftSpeed, int rightSpeed);
 void SioMenuItem_SetPosition(struct SioMenuItemProc * proc, s16 x, s16 y);
+extern struct SioMessage gUnknown_03004E80;

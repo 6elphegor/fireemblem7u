@@ -3,6 +3,32 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+struct Fe6LinkProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x44);
+    /* 44 */ int unk_44;
+    /* 48 */ int unk_48;
+    /* 4C */ int unk_4c;
+    /* 50 */ int unk_50;
+    /* 54 */ struct Fe6LinkProc * unk_54;
+    /* 58 */ int unk_58;
+    /* 5C */ int unk_5c;
+    /* 60 */ int unk_60;
+    /* 64 */ s16 unk_64;
+};
+
+struct Fe6LinkSaveInfo
+{
+    /* 00 */ u32 data[8];
+    /* 20 */ u16 unk_20;
+};
+
+extern u8 gUnk_Sio_02000C04[];
+extern u8 gUnk_Sio_02000C1C[];
+
+void ReadFe6LinkSaveInfo(void * buf);
+
 extern u8 gUnk_Sio_02000C00[];
 extern const char gUnknown_081D546C[]; // "END"
 
@@ -24,8 +50,55 @@ void sub_080434EC(ProcPtr proc)
     SioSend16(&magic, -1);
     SoundVSyncOn_rev01();
 }
-ASM_FUNC("asm/nonmatching/code_08043538.s");
-ASM_FUNC("asm/nonmatching/code_080435D4.s");
+void sub_08043538(ProcPtr proc)
+{
+    int i;
+    int numTimeouts = 0;
+
+    if (Proc_Find(ProcScr_SIOCON) != NULL)
+        return;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (gSioSt->timeoutClock[i] > 60)
+        {
+            numTimeouts++;
+        }
+    }
+
+    if (!sub_0803CD64() || (gSioSt->unk_01E > 60) || (numTimeouts != 0))
+    {
+        Proc_Goto(proc, 10);
+        return;
+    }
+
+    gUnknown_03004E80.kind = SIO_MSG_8C;
+    gUnknown_03004E80.sender = gSioSt->selfId;
+    gUnknown_03004E80.param = gSioSt->unk_000;
+    SioSend(&gUnknown_03004E80, 10);
+
+    if ((gSioSt->unk_009 & 3) == 3)
+    {
+        gSioSt->unk_009 = 3;
+        sub_0803D674();
+
+        gSioSt->unk_004 = 6;
+        gSioSt->unk_01E = 0;
+
+        sub_0803D500(3);
+        Proc_Break(proc);
+    }
+}
+void FE6Link_OnEnd(void)
+{
+    Proc_EndEach(ProcScr_SIOVSYNC);
+    Proc_EndEach(ProcScr_SIOMAIN);
+    Proc_EndEach(ProcScr_SIOCON);
+
+    SioReleaseIrq();
+    CloseHelpBox();
+    sub_0803C414();
+}
 void sub_08043604(void)
 {
     sub_0800530C(8, 16, gUnknown_081D546C);
@@ -71,7 +144,25 @@ bool sub_08043690(void * data)
 
     return FALSE;
 }
-ASM_FUNC("asm/nonmatching/code_080436A0.s");
+void sub_080436A0(struct Fe6LinkProc * proc)
+{
+    u8 senderId[4];
+
+    if ((u16)SioReceiveData(gUnk_Sio_02000C04, senderId, sub_08043690) != 0)
+    {
+        if (gUnk_Sio_02000C04[4] == 0)
+        {
+            LoadHelpBoxGfx((void *)0x06015000, 6);
+            StartHelpBoxExt_Unk(0x38, 0x38, 0x1194);
+            Proc_Goto(proc, 10);
+        }
+        else
+        {
+            proc->unk_58 = 0;
+            Proc_Break(proc);
+        }
+    }
+}
 ASM_FUNC("asm/nonmatching/code_08043700.s");
 bool sub_08043788(void * data)
 {
