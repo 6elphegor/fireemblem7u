@@ -50,7 +50,7 @@ void WriteFadedPaletteFromArchive(int red, int green, int blue, u32 mask);
 // ??? sub_08013964
 // ??? sub_0801396C
 void sub_080139D8(int a, int b, int c, int d, int e, int f, int g, int h, ProcPtr parent); // fe8u: sub_8013800
-bool sub_8013F3C(void); // fe8u: sub_8013844
+bool sub_08013A1C(void); // fe8u: sub_8013844
 // ??? SpacialSeTest_OnInit
 // ??? SpacialSeTest_OnLoop
 // ??? StartSpacialSeTest

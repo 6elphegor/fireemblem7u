@@ -763,6 +763,7 @@ sub_8013B4C SetPalFadeStClkEnd
 sub_8013E84 sub_08013964
 sub_8013E8C sub_0801396C
 sub_8013EF8 sub_080139D8
+sub_8013F3C sub_08013A1C
 sub_8014090 SetPalFadeStop
 sub_8014094 PalFade_OnLoop
 sub_801419C sub_08013C7C
