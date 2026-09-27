@@ -19,7 +19,7 @@ struct GameOption
 
 struct GameOptionLayout
 {
-    /* 00 */ int unk_00;
+    /* 00 */ u8 count;
     /* 04 */ u8 const * order;
 };
 
@@ -44,10 +44,11 @@ struct ConfigScreen
 struct ConfigProc
 {
     /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x30);
+    /* 29 */ STRUCT_PAD(0x29, 0x2E);
+    /* 2E */ u16 bgYOffset;
     /* 30 */ s16 moving;
     /* 32 */ STRUCT_PAD(0x32, 0x36);
-    /* 36 */ u8 unk_36;
+    /* 36 */ u8 loadSoloAnimScreen;
     /* 37 */ u8 unk_37;
 };
 
@@ -58,7 +59,17 @@ extern u16 CONST_DATA gUnk_08CE58BE[];
 extern u16 CONST_DATA gSprite_ConfigurationUiHeader[];
 extern struct ProcCmd CONST_DATA ProcScr_08CE5B98[];
 
+extern struct ProcCmd CONST_DATA ProcScr_08CE5BB8[];
+extern u16 const gUnk_0841E338[];
+extern u8 const gUnk_0841DA40[];
+extern u8 const gUnk_0841DCA4[];
+extern u8 const gUnk_0841DC90[];
+extern u8 const gUnk_0841E180[];
+extern u8 const gUnk_0841E204[];
+
 extern s16 gUnk_020144F4;
+
+void StartUnitListScreenForSoloAnim(ProcPtr parent);
 
 void sub_080B1FB0(int x, int y, u16 oam2, int flag);
 void UnpackUiVArrowGfx(int chr, int pal);
@@ -208,7 +219,88 @@ void sub_080ADEA8(void)
     if ((GetSelectedGameOption() == 0) && (sub_080ADB48() == 3))
         PutOamHiRam(192, 32, Sprite_16x16, (time != 0) ? OAM2_CHR(0xCE) + OAM2_PAL(2) : OAM2_CHR(0xCC) + OAM2_PAL(2));
 }
-ASM_FUNC("asm/nonmatching/code_080ADFA0.s");
+void sub_080ADFA0(struct ConfigProc * proc)
+{
+    int i;
+
+    i = 0;
+
+    if (gPlaySt.chapterModeIndex != CHAPTER_MODE_LYN)
+    {
+        i = 1;
+
+        if (gPlaySt.chapterModeIndex != CHAPTER_MODE_ELIWOOD)
+            i = 2;
+    }
+
+    gConfigUiState->unk_32 = i;
+    gConfigUiState->maxOption = gGameOptionLayouts[GetOptionMenuLayoutId()].count;
+    gConfigUiState->selectedOptionIdx = 0;
+    gConfigUiState->headOptionIdx = 0;
+
+    proc->bgYOffset = 0;
+    proc->moving = 0;
+    proc->loadSoloAnimScreen = FALSE;
+    proc->unk_37 = FALSE;
+
+    UnpackUiWindowFrameGraphics();
+
+    SetDispEnable(1, 1, 1, 1, 1);
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, proc->bgYOffset);
+    SetBgOffset(3, 0, 0);
+
+    SetWinEnable(1, 0, 0);
+
+    SetWin0Box(0, 32, 240, 128);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 0, 1, 1);
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+    TmFill(gBg3Tm, 0);
+
+    ApplyPalette(gUnk_0841E338, 4);
+    ApplyPalette(gUnk_0841E338, 18);
+
+    Decompress(gUnk_0841DA40, (void *) 0x06011800);
+    Decompress(gUnk_0841DCA4, (void *) 0x06004000);
+    Decompress(gUnk_0841DC90, (void *) 0x06005000 + GetBgChrOffset(2));
+
+    TmApplyTsa(gBg1Tm, gUnk_0841E180, 0x1000);
+    TmApplyTsa(gBg1Tm + 0x202, gUnk_0841E204, 0x1000);
+
+    ResetTextFont();
+
+    InitText(&gConfigUiState->optionHelpText, 22);
+
+    sub_080ADCC4();
+
+    InitText(&gConfigUiState->text_68, 9);
+    InitText(&gConfigUiState->text_a0, 14);
+
+    for (i = 0; i < 6; i++)
+    {
+        int y = (i * 2) + 4;
+
+        sub_080ADC24(i, 4);
+
+        InitText(&gConfigUiState->optionTexts[i], 9);
+        InitText(&gConfigUiState->valueTexts[i], 14);
+
+        sub_080ADD34(i, i, y);
+        sub_080ADDB4(i, i, y);
+    }
+
+    sub_080ADB8C(proc, NULL, -1);
+
+    Proc_Start(ProcScr_08CE5BB8, proc);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+}
 bool WindowColorOptionChangeHandler(ProcPtr proc)
 {
     if (GenericOptionChangeHandler(proc) != 0)
@@ -280,9 +372,330 @@ bool GenericOptionChangeHandler(ProcPtr proc)
 
     return valueChanged;
 }
-ASM_FUNC("asm/nonmatching/code_080AE360.s");
-ASM_FUNC("asm/nonmatching/code_080AE4CC.s");
-ASM_FUNC("asm/nonmatching/code_080AE6D0.s");
-ASM_FUNC("asm/nonmatching/code_080AE754.s");
-ASM_FUNC("asm/nonmatching/code_080AE9C0.s");
-ASM_FUNC("asm/nonmatching/code_080AEA04.s");
+u8 sub_080AE360(u8 index)
+{
+    int value = 0;
+
+    switch (index)
+    {
+    case 0:
+        switch (gPlaySt.cfgAnimationType)
+        {
+        case 0:
+            return 0;
+        case 3:
+            return 1;
+        case 1:
+            return 2;
+        case 2:
+            return 3;
+        }
+
+        // fallthrough
+
+    case 1:
+        value = gPlaySt.cfgDisableTerrainDisplay;
+        break;
+
+    case 2:
+        value = gPlaySt.cfgUnitDisplayType;
+        break;
+
+    case 3:
+        value = gPlaySt.cfgAutoCursor;
+        break;
+
+    case 4:
+        value = gPlaySt.cfgTextSpeed;
+        break;
+
+    case 5:
+        value = gPlaySt.cfgGameSpeed;
+        break;
+
+    case 6:
+        value = gPlaySt.cfgDisableBgm;
+        break;
+
+    case 7:
+        value = gPlaySt.cfgDisableSoundEffects;
+        break;
+
+    case 8:
+        value = gPlaySt.config_window_theme;
+        break;
+
+    case 10:
+        value = gPlaySt.cfgBattleForecastType;
+        break;
+
+    case 11:
+        value = gPlaySt.cfgNoSubtitleHelp;
+        break;
+
+    case 12:
+        value = gPlaySt.cfgDisableAutoEndTurns;
+        break;
+
+    case 13:
+        value = gPlaySt.cfgUnitColor;
+        break;
+
+    case 14:
+        value = gPlaySt.cfgDisableGoalDisplay;
+        break;
+
+    case 15:
+        value = gPlaySt.cfgController;
+        break;
+    }
+
+    return value;
+}
+void sub_080AE4CC(u8 index, u8 newValue)
+{
+    switch (index)
+    {
+    case 0:
+        switch (newValue)
+        {
+        case 0:
+            gPlaySt.cfgAnimationType = 0;
+            return;
+
+        case 1:
+            gPlaySt.cfgAnimationType = 3;
+            return;
+
+        case 2:
+            gPlaySt.cfgAnimationType = 1;
+            return;
+
+        case 3:
+            gPlaySt.cfgAnimationType = 2;
+            return;
+        }
+
+        // fallthrough
+
+    case 1:
+        gPlaySt.cfgDisableTerrainDisplay = newValue;
+        break;
+
+    case 2:
+        gPlaySt.cfgUnitDisplayType = newValue;
+        break;
+
+    case 3:
+        gPlaySt.cfgAutoCursor = newValue;
+        break;
+
+    case 4:
+        gPlaySt.cfgTextSpeed = newValue;
+        break;
+
+    case 5:
+        gPlaySt.cfgGameSpeed = newValue;
+        break;
+
+    case 6:
+        gPlaySt.cfgDisableBgm = newValue;
+        break;
+
+    case 7:
+        gPlaySt.cfgDisableSoundEffects = newValue;
+        break;
+
+    case 8:
+        gPlaySt.config_window_theme = newValue;
+        break;
+
+    case 10:
+        gPlaySt.cfgBattleForecastType = newValue;
+        break;
+
+    case 11:
+        gPlaySt.cfgNoSubtitleHelp = newValue;
+        break;
+
+    case 12:
+        gPlaySt.cfgDisableAutoEndTurns = newValue;
+        break;
+
+    case 13:
+        gPlaySt.cfgUnitColor = newValue;
+        break;
+
+    case 14:
+        gPlaySt.cfgDisableGoalDisplay = newValue;
+        break;
+
+    case 15:
+        gPlaySt.cfgController = newValue;
+        break;
+    }
+}
+void sub_080AE6D0(ProcPtr proc, int selectedIdx, int c)
+{
+    int i;
+    int textIdx;
+
+    int y = ((selectedIdx * 2) + 4) & 0x1f;
+
+    int yTmp = 0x20 * y;
+
+    for (i = 0; i <= 26; i++)
+    {
+        gBg2Tm[yTmp + 0x02 + i] = 0;
+        gBg2Tm[yTmp + 0x22 + i] = 0;
+    }
+
+    textIdx = selectedIdx % 7;
+
+    sub_080ADC24(selectedIdx, 4);
+    sub_080ADD34(selectedIdx, textIdx, y);
+    sub_080ADDB4(selectedIdx, textIdx, y);
+
+    for (i = 0; i <= 26; i++)
+    {
+        gBg0Tm[c + 0x62 + i] = 0;
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
+}
+void sub_080AE754(struct ConfigProc * proc)
+{
+    bool valueChanged = FALSE;
+
+    switch (proc->moving)
+    {
+    case 0:
+        if (gpKeySt->pressed & (B_BUTTON))
+        {
+            PlaySoundEffect(0x38B);
+            Proc_Break(proc);
+
+            break;
+        }
+        else if (gpKeySt->pressed & (A_BUTTON))
+        {
+            if (gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx] != 0)
+                break;
+
+            if (sub_080AE360(0) != 3)
+                break;
+
+            PlaySoundEffect(0x38A);
+            proc->loadSoloAnimScreen = TRUE;
+            Proc_Break(proc);
+
+            break;
+        }
+        else if (gpKeySt->repeated & (DPAD_UP | DPAD_DOWN))
+        {
+            if (gpKeySt->repeated & (DPAD_UP))
+            {
+                if (gConfigUiState->selectedOptionIdx != 0)
+                {
+                    gConfigUiState->selectedOptionIdx--;
+
+                    if ((gConfigUiState->selectedOptionIdx - gConfigUiState->headOptionIdx < 1) && (gConfigUiState->headOptionIdx != 0))
+                    {
+                        gConfigUiState->headOptionIdx--;
+
+                        sub_080AE6D0(proc, gConfigUiState->selectedOptionIdx - 1, 0);
+
+                        proc->bgYOffset -= 4;
+                        proc->moving = 1;
+                    }
+
+                    valueChanged = TRUE;
+                }
+            }
+            else
+            {
+                if (gConfigUiState->selectedOptionIdx < gConfigUiState->maxOption - 1)
+                {
+                    gConfigUiState->selectedOptionIdx++;
+
+                    if ((gConfigUiState->selectedOptionIdx - gConfigUiState->headOptionIdx > 4) &&
+                        (gConfigUiState->selectedOptionIdx < gConfigUiState->maxOption - 1))
+                    {
+                        gConfigUiState->headOptionIdx++;
+
+                        sub_080AE6D0(proc, gConfigUiState->selectedOptionIdx + 1, 320);
+
+                        proc->bgYOffset += 4;
+                        proc->moving = 4;
+                    }
+
+                    valueChanged = TRUE;
+                }
+            }
+
+            if (valueChanged)
+            {
+                Proc_Start(ProcScr_08CE5B98, proc);
+                EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
+                PlaySoundEffect(0x386);
+
+                break;
+            }
+        }
+
+        if (gpKeySt->pressed & (DPAD_LEFT | DPAD_RIGHT))
+        {
+            if (gGameOptions[gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]].func != NULL)
+                gGameOptions[gGameOptionLayouts[GetOptionMenuLayoutId()].order[gConfigUiState->selectedOptionIdx]].func(proc);
+        }
+
+        break;
+
+    case 1:
+    case 2:
+    case 3:
+        proc->bgYOffset -= 4;
+
+        if (proc->moving == 3)
+            proc->moving = 0;
+        else
+            proc->moving++;
+
+        break;
+
+    case 4:
+    case 5:
+    case 6:
+        proc->bgYOffset += 4;
+
+        if (proc->moving == 6)
+            proc->moving = 0;
+        else
+            proc->moving++;
+
+        break;
+    }
+
+    SetBgOffset(2, 0, proc->bgYOffset);
+}
+bool sub_080AE9C0(struct ConfigProc * proc)
+{
+    EndMuralBackground();
+
+    Proc_EndEach(ProcScr_08CE5BB8);
+    Proc_EndEach(ProcScr_08CE5B98);
+
+    if (proc->loadSoloAnimScreen)
+    {
+        StartUnitListScreenForSoloAnim(proc);
+        Proc_Goto(proc, 0);
+
+        return FALSE;
+    }
+
+    return TRUE;
+}
+void sub_080AEA04(struct ConfigProc * proc)
+{
+    proc->unk_37 = TRUE;
+}
