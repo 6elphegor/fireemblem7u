@@ -1036,112 +1036,6 @@ void StartBoxDialogueExt(int x, int y, int msg, u16 * unkA, int unkB, ProcPtr pa
     Proc_Start(ProcScr_TalkBoxIdle, PROC_TREE_VSYNC);
 }
 
-#if NONMATCHING
-
-// registers for w/h/hOut are allocated differently
-
-void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
-{
-    int charWidth;
-    int h = 16;
-    int w = 0;
-
-    *wOut = 0;
-    *hOut = 0;
-
-    while (1)
-    {
-        switch (*str)
-        {
-        case 0x12:
-        case 0x13:
-        case 0x14:
-            if (*wOut < w)
-                *wOut = w;
-
-            if (*hOut < h)
-                *hOut = h;
-
-            break;
-
-        case 0x80:
-            str += 2;
-            continue;
-
-        case 0x01:
-            h += 16;
-
-            if (*wOut < w)
-                *wOut = w;
-
-            w = 0;
-            str++;
-            continue;
-
-        case 0x18:
-        case 0x19:
-            w = 0x40;
-            str++;
-            continue;
-
-        case 0x04:
-        case 0x05:
-        case 0x06:
-        case 0x07:
-            str++;
-            continue;
-
-        case 0x02:
-            str++;
-
-            if (*hOut < h)
-                *hOut = h;
-
-            h = 0;
-
-            if (*wOut < w)
-                *wOut = w;
-
-            w = 0;
-            continue;
-
-        case 0x03:
-            str++;
-
-            if (*hOut < h)
-                *hOut = h;
-
-            h = 0;
-
-            if (*wOut < w + 8)
-                *wOut = w + 8;
-
-            w = 0;
-            continue;
-
-        case 0x00:
-            if (*wOut < w)
-                *wOut = w;
-
-            if (*hOut < h)
-                *hOut = h;
-
-            break;
-
-        default:
-            str = GetCharTextLen(str, &charWidth);
-            w += charWidth;
-            continue;
-        }
-
-        break;
-    }
-}
-
-#else
-
-// registers for w/h/hOut are allocated differently
-
 void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
 {
     int charWidth;
@@ -1239,8 +1133,6 @@ void GetBoxDialogueSize(const char * str, int * wOut, int * hOut)
         break;
     }
 }
-
-#endif
 
 void DialogBoxGetGlyphLen(const char * str, u8 * xOut)
 {
