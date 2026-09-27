@@ -4636,12 +4636,7 @@ SECTIONS
         build/src/eventcall_zephielepilogue.o(.text);
         build/src/quintessence-fx.o(.text);
         build/src/eventcall_unittornout.o(.text);
-        build/asm/code_0807C3A0.o(.text);
-        build/asm/code_0807C41C.o(.text);
-        build/asm/code_0807C520.o(.text);
-        build/asm/code_0807C578.o(.text);
-        build/asm/code_0807C614.o(.text);
-        build/asm/code_0807C66C.o(.text);
+        build/src/eventcall_flamebreath.o(.text);
         build/src/eventcall_flamebreath_2.o(.text);
         build/src/eventcall_icecrystal.o(.text);
         build/asm/code_0807C8B4.o(.text);
