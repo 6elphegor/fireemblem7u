@@ -172,7 +172,12 @@ def main():
     # an earlier port produced (a JP-address name can equal a US-address one).
     stored_path = Path("tools/ref_rewrites.txt")
     stored = dict(l.split() for l in stored_path.read_text().splitlines() if l and not l.startswith("#"))
-    produced = set(stored.values()) | our_symbols()
+    ours_now = our_symbols()
+    # Drop stored rewrites whose target has since been renamed to the key.
+    for k, v in list(stored.items()):
+        if v not in ours_now and k in ours_now:
+            del stored[k]
+    produced = set(stored.values()) | ours_now
     for k, v in stored.items():
         if k in rewrite:
             rewrite[k] = v
