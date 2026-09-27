@@ -56,7 +56,7 @@ _080B8D14: .4byte 0x02022C64
 _080B8D18:
 	cmp r1, #5
 	bne _080B8D6A
-	bl sub_080B6674
+	bl GetGameOverallRank
 	adds r5, r0, #0
 	cmp r5, #3
 	ble _080B8D30

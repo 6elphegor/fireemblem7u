@@ -9,7 +9,7 @@ sub_080B721C: @ 0x080B721C
 	adds r0, #0x40
 	movs r1, #0
 	ldrsh r0, [r0, r1]
-	bl sub_080B6B5C
+	bl GetCG
 	adds r4, r0, #0
 	movs r0, #3
 	movs r1, #0

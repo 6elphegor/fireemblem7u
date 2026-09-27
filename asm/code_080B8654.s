@@ -36,7 +36,7 @@ sub_080B8654: @ 0x080B8654
 	ldrb r4, [r0, #1]
 	cmp r4, #0xcd
 	bne _080B8714
-	bl sub_080B6674
+	bl GetGameOverallRank
 	cmp r0, #3
 	ble _080B86C8
 	ldr r0, _080B86C4 @ =0x00001074

@@ -1142,18 +1142,18 @@ int GetGameCombatRank(void);
 int GetGameFundsRank(void);
 int GetOverallRank(int tactics, int survival, int funds, int exp, int combat);
 // sub_080B663C
-// sub_080B6674
-// sub_080B66B4
-// sub_080B6734
+// GetGameOverallRank
+// GetChapterTacticsRank
+// GetChapterSurvivalRank
 // sub_080B676C
 // GetGameDeathCount
 // GetGameWinPerc
-// sub_080B67F0
+// GetChapterDeathCount
 // nullsub_90
-// sub_080B6848
+// GetChapterFundsRank
 // GetChapterWinPerc
 // GetChapterCombatRank
-// sub_080B6994
+// GetChapterExpRank
 void ComputeChapterRankings(void);
 // sub_80B7968
 // nullsub_91

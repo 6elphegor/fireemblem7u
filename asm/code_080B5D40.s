@@ -5,7 +5,7 @@
 	thumb_func_start sub_080B5D40
 sub_080B5D40: @ 0x080B5D40
 	push {r4, r5, r6, lr}
-	bl sub_080B6B5C
+	bl GetCG
 	adds r6, r0, #0
 	ldr r0, [r6, #0xc]
 	movs r2, #0x80

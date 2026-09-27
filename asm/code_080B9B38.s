@@ -76,11 +76,11 @@ _080B9B7C:
 	mov r2, sb
 	mov r3, sl
 	bl FormatTime
-	bl sub_080B66B4
+	bl GetChapterTacticsRank
 	adds r6, r5, #0
 	adds r6, #0x3a
 	strb r0, [r6]
-	bl sub_080B6734
+	bl GetChapterSurvivalRank
 	adds r4, r5, #0
 	adds r4, #0x3b
 	strb r0, [r4]
