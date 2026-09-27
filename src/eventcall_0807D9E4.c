@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/bmusailment.h"
 
 /* Chapter-specific event-call helpers */
 
@@ -10,6 +11,12 @@ void EndTalk(void);
 bool IsTalkActive(void);
 ProcPtr StartTalkExt(int x, int y, char const * str, ProcPtr parent);
 void SetTalkPrintColor(int color);
+
+struct EventLoadPos
+{
+    /* 00 */ s8 x_load, y_load;
+    /* 02 */ s8 x_move, y_move;
+};
 
 struct EventCallLookupEnt
 {
@@ -312,4 +319,282 @@ int sub_0807DDEC(void)
         return TRUE;
 
     return FALSE;
+}
+
+void sub_0807DE1C(void)
+{
+    struct { s8 x, y; } positions[7] =
+    {
+        { 8, 12 }, { 7, 13 }, { 4, 11 }, { 9, 13 }, { 10, 10 }, { 4, 9 }, { 10, 12 },
+    };
+
+    int count = 0;
+    int i;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+        int pid;
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        pid = unit->pCharacterData->number;
+
+        if (pid == 0x01)
+            continue;
+
+        if (pid == 0x02)
+            continue;
+
+        if (pid == 0x2D)
+            continue;
+
+        if (pid == 0x26)
+            continue;
+
+        if (pid == 0x27)
+            continue;
+
+        if (unit->state & US_UNAVAILABLE)
+            continue;
+
+        EventLoadUnit(pid, 0,
+            positions[count].x, positions[count].y,
+            positions[count].x, positions[count].y,
+            0, NULL);
+
+        if (++count > 6)
+            break;
+    }
+
+    RefreshUnitSprites();
+}
+
+void sub_0807DEA8(struct EventProc * proc)
+{
+    int pids[3];
+    struct EventLoadPos positions[3] =
+    {
+        { 12, 25, 12, 20 },
+        { 11, 25, 11, 21 },
+        { 13, 25, 13, 21 },
+    };
+
+    int i;
+
+    if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
+    {
+        pids[0] = 0x02;
+        pids[1] = 0x2D;
+        pids[2] = 0x01;
+    }
+    else
+    {
+        pids[0] = 0x01;
+        pids[1] = 0x2D;
+        pids[2] = 0x02;
+    }
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return;
+
+    for (i = 0; i < 3; i++)
+    {
+        EventLoadUnit(pids[i], 0,
+            positions[i].x_load, positions[i].y_load,
+            positions[i].x_move, positions[i].y_move,
+            0, proc);
+    }
+}
+
+void Finial_EventLoadAllies1(struct EventProc * proc)
+{
+    struct EventLoadPos positions[3] =
+    {
+        { 11, 25, 11, 22 },
+        { 13, 25, 13, 22 },
+        { 12, 25, 12, 22 },
+    };
+
+    u16 skipped = proc->flags & EVENT_FLAG_SKIPPED;
+
+    if (skipped != 0)
+        return;
+
+    EventLoadUnit(0x27, 0,
+        positions[0].x_load, positions[0].y_load,
+        positions[0].x_move, positions[0].y_move,
+        skipped, proc);
+
+    EventLoadUnit(0x26, 0,
+        positions[1].x_load, positions[1].y_load,
+        positions[1].x_move, positions[1].y_move,
+        skipped, proc);
+
+    if (gPlaySt.tact_enabled)
+    {
+        EventLoadUnit(0xCD, 0x51,
+            positions[2].x_load, positions[2].y_load,
+            positions[2].x_move, positions[2].y_move,
+            1, proc);
+    }
+}
+
+void Finial_EventLoadAllies2(struct EventProc * proc)
+{
+    int count = 0;
+    struct EventLoadPos positions[4] =
+    {
+        { 14, 25, 14, 22 },
+        { 10, 25, 10, 23 },
+        { 11, 25, 11, 24 },
+        { 13, 25, 13, 24 },
+    };
+
+    int i;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+        int pid;
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        pid = unit->pCharacterData->number;
+
+        if (pid == 0x01)
+            continue;
+
+        if (pid == 0x02)
+            continue;
+
+        if (pid == 0x2D)
+            continue;
+
+        if (pid == 0x26)
+            continue;
+
+        if (pid == 0x27)
+            continue;
+
+        if (unit->state & US_UNAVAILABLE)
+            continue;
+
+        EventLoadUnit(pid, 0,
+            positions[count].x_load, positions[count].y_load,
+            positions[count].x_move, positions[count].y_move,
+            0, proc);
+
+        if (++count > 3)
+            break;
+    }
+
+    RefreshUnitSprites();
+}
+
+void Finial_EventLoadAllies3(struct EventProc * proc)
+{
+    int count = 0;
+    struct EventLoadPos positions[3] =
+    {
+        { 10, 25, 10, 25 },
+        { 12, 25, 12, 25 },
+        { 14, 25, 14, 25 },
+    };
+
+    int i;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+        int pid;
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        pid = unit->pCharacterData->number;
+
+        if (pid == 0x01)
+            continue;
+
+        if (pid == 0x02)
+            continue;
+
+        if (pid == 0x2D)
+            continue;
+
+        if (pid == 0x26)
+            continue;
+
+        if (pid == 0x27)
+            continue;
+
+        if (unit->state & US_UNAVAILABLE)
+            continue;
+
+        if (count > 3)
+        {
+            EventLoadUnit(pid, 0,
+                positions[count - 4].x_load, positions[count - 4].y_load,
+                positions[count - 4].x_move, positions[count - 4].y_move,
+                0, proc);
+        }
+
+        if (++count > 6)
+            break;
+    }
+
+    RefreshUnitSprites();
+}
+
+void Finial_EventLoadAllies4(struct EventProc * proc)
+{
+    int pids[3];
+    struct EventLoadPos positions[3] =
+    {
+        { 12, 20, 12, 15 },
+        { 11, 21, 11, 16 },
+        { 13, 21, 13, 16 },
+    };
+
+    int i;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return;
+
+    if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
+    {
+        pids[0] = 0x02;
+        pids[1] = 0x2D;
+        pids[2] = 0x01;
+    }
+    else
+    {
+        pids[0] = 0x01;
+        pids[1] = 0x2D;
+        pids[2] = 0x02;
+    }
+
+    for (i = 0; i < 3; i++)
+    {
+        EventLoadUnit(pids[i], 0,
+            positions[i].x_load, positions[i].y_load,
+            positions[i].x_move, positions[i].y_move,
+            0, proc);
+    }
+
+    RefreshUnitSprites();
+}
+
+void sub_0807E1AC(void)
+{
+    StartStatusHealEffect(GetUnitFromCharId(0x27), NULL);
 }
