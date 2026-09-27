@@ -390,8 +390,8 @@ void sub_08099BA4(struct PrepRankProc * proc)
         PutSpecialChar(gBg2Tm + TM_OFFSET(23, 9), 0, 0x20);
         PutSpecialChar(gBg2Tm + TM_OFFSET(26, 9), 0, 0x20);
         PutNumber(gBg2Tm + TM_OFFSET(22, 9), 2, proc->unk_40);
-        sub_080063CC(gBg2Tm + TM_OFFSET(25, 9), 2, proc->unk_41);
-        sub_080063CC(gBg2Tm + TM_OFFSET(28, 9), 2, proc->unk_42);
+        PutNumber2Digit(gBg2Tm + TM_OFFSET(25, 9), 2, proc->unk_41);
+        PutNumber2Digit(gBg2Tm + TM_OFFSET(28, 9), 2, proc->unk_42);
 
         PutDrawText(NULL, gBg2Tm + TM_OFFSET(10, 1), 3, 0, 5, DecodeMsg(0x12C6));
         PutSpecialChar(gBg2Tm + TM_OFFSET(14, 1), 4, gUnk_08CC51AC[proc->ranks[5]]);
