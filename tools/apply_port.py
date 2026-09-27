@@ -63,13 +63,13 @@ def partial_source(text, entry):
         return a, o, b
 
     first_def = min((d[0] for d in defs.values()), default=len(text))
-    anchor, pending = None, []
+    anchor, pending, inserts = None, [], {}
     for addr, name, status in entry["funcs"]:
         if name is None:
             if anchor is None:
                 pending.append(addr)
             else:
-                edits.append((anchor, anchor, "\n" + asm_line(addr)))
+                inserts[anchor] = inserts.get(anchor, "") + "\n" + asm_line(addr)
             continue
         a, o, b = need(name)
         if status == "asm":
@@ -77,6 +77,7 @@ def partial_source(text, entry):
         anchor = b
     if pending:
         edits.append((first_def, first_def, "".join(asm_line(x) for x in pending) + "\n"))
+    edits += [(p, p, t) for p, t in inserts.items()]
     for name in entry.get("dropped", []):
         a, o, b = need(name)
         edits.append((a, b, csrc.prototype(text, a, o)))
@@ -154,12 +155,31 @@ def main():
             text = partial_source(text, files[stem])
         dst.write_text(text, encoding="utf-8")
         targets.append(dst)
-    pat = re.compile(r"\b(" + "|".join(map(re.escape, sorted(rewrite, key=len, reverse=True))) + r")\b")
+    # Earlier ports' rewrites are fixed: reuse them, and never rewrite a name
+    # an earlier port produced (a JP-address name can equal a US-address one).
+    stored_path = Path("tools/ref_rewrites.txt")
+    stored = dict(l.split() for l in stored_path.read_text().splitlines() if l and not l.startswith("#"))
+    produced = set(stored.values())
+    for k, v in stored.items():
+        if k in rewrite:
+            rewrite[k] = v
+    fresh = {k: v for k, v in rewrite.items() if k not in stored and k not in produced and k != v}
+
+    def sub(text, mapping):
+        if not mapping:
+            return text
+        pat = re.compile(r"\b(" + "|".join(map(re.escape, sorted(mapping, key=len, reverse=True))) + r")\b")
+        return pat.sub(lambda m: mapping[m.group(1)], text)
+
+    new_srcs = {Path("src") / f"{stem[4:]}.c" for stem in files}
     for t in targets:
         text = t.read_text(encoding="utf-8")
-        new = pat.sub(lambda m: rewrite[m.group(1)], text)
+        new = sub(text, {**stored, **rewrite} if t in new_srcs else fresh)
         if new != text:
             t.write_text(new, encoding="utf-8")
+    stored.update(fresh)
+    stored_path.write_text("# reference identifier -> ours, applied when porting (tools/apply_port.py)\n"
+                           + "".join(f"{k} {v}\n" for k, v in sorted(stored.items())))
 
     # ---- code -----------------------------------------------------------
     # Functions still in asm, by address, as named after renaming.
