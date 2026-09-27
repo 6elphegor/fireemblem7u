@@ -10,6 +10,7 @@ extern const struct MenuDef gConvoyMenuDef;
 struct MenuProc * StartLockingMenu(const struct MenuDef * def, ProcPtr parent);
 void EndMenuItemPanel(void);
 void MaybeStartSelectConvoyItemProc(int unk, ProcPtr parent);
+s8 HasConvoyAccess(void);
 int AddItemToConvoy(int item);
 void NewPopup2_SendItem(ProcPtr parent, int item);
 void NewPopup2_DropItem(ProcPtr parent, int item);
@@ -27,7 +28,7 @@ int ConvoyMenuProc_StarMenu(ProcPtr proc)
     gConvoyItemCount = GetConvoyItemCount();
     ApplyIconPalettes(4);
 
-    if (sub_08079D9C() && (gConvoyItemCount < CONVOY_ITEM_COUNT))
+    if (HasConvoyAccess() && (gConvoyItemCount < CONVOY_ITEM_COUNT))
         StartLockingMenu(&gSendToConvoyMenuDef, proc);
     else
         StartLockingMenu(&gConvoyMenuDef, proc);
@@ -67,7 +68,7 @@ void ConvoyMenuProc_SetupActiveUnit(ProcPtr proc)
 
 void ConvoyMenuProc_ExecBootlegPopup(ProcPtr proc)
 {
-    if (sub_08079D9C())
+    if (HasConvoyAccess())
     {
         if (gConvoyItemCount < CONVOY_ITEM_COUNT)
             NewPopup2_SendItem(proc, ActionItem);
@@ -90,7 +91,7 @@ void HandleGiveUnitItem(struct Unit * unit, int item, ProcPtr proc)
     SetFaceBlinkControlById(0, 5);
     StartEquipInfoWindow(proc, unit, 0xF, 0xA);
 
-    if (sub_08079D9C() && GetConvoyItemCount() < CONVOY_ITEM_COUNT)
+    if (HasConvoyAccess() && GetConvoyItemCount() < CONVOY_ITEM_COUNT)
         StartSubtitleHelp(proc, DecodeMsg(0x727));
     else
         StartSubtitleHelp(proc, DecodeMsg(0x728));
