@@ -153,7 +153,7 @@ _0803F428:
 	bl InitText
 	ldr r0, [r6, #0x2c]
 	movs r1, #3
-	bl sub_08047D80
+	bl StartLinkArenaTitleBanner
 	subs r4, #0x8c
 	ldrb r0, [r4]
 	str r0, [sp]

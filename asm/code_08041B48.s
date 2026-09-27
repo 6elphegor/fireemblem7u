@@ -37,7 +37,7 @@ _08041B72:
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
 	movs r0, #0xa
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	b _08041C3A
 _08041B8E:
 	ldr r0, _08041C40 @ =0x08B857F8
@@ -71,7 +71,7 @@ _08041B8E:
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
 	movs r0, #0xa
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 _08041BD4:
 	ldr r0, _08041C40 @ =0x08B857F8
 	ldr r1, [r0]
@@ -107,7 +107,7 @@ _08041BD4:
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
 	movs r0, #0xa
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 _08041C20:
 	ldr r0, _08041C40 @ =0x08B857F8
 	ldr r1, [r0]

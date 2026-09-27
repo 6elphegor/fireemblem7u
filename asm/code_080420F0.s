@@ -133,7 +133,7 @@ _080421B8:
 	mov r1, r8
 	ldr r0, [r1, #0x2c]
 	movs r1, #6
-	bl sub_08047D80
+	bl StartLinkArenaTitleBanner
 	mov r0, sb
 	subs r0, #0xc
 	ldrb r0, [r0]

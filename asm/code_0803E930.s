@@ -128,7 +128,7 @@ _0803EA1C:
 	adds r1, #0x28
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	b _0803EE24
 _0803EA3A:
 	ldr r1, [r7, #0x40]
@@ -517,7 +517,7 @@ _0803ED3C:
 	adds r1, #0x28
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	b _0803ED8E
 	.align 2, 0
 _0803ED74: .4byte 0x08B857F8
@@ -586,7 +586,7 @@ _0803EDCC:
 	adds r1, #0x28
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	b _0803EE18
 	.align 2, 0
 _0803EE08: .4byte 0x08B857F8
