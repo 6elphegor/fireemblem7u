@@ -377,6 +377,7 @@ OpBmBgfx_0866A838 = 0x0866A838;
 OpBmBgfx_0866A99C = 0x0866A99C;
 OpBmBgfx_0866AA74 = 0x0866AA74;
 gpKeySt = 0x08B857F8;
+gBackgroundTable = 0x08B91588;
 ProcScr_EventSpriteAnim = 0x08B923EC;
 ProcScr_CamMove = 0x08B92E38;
 gUiWindowFramePalLut = 0x08B9A830;
