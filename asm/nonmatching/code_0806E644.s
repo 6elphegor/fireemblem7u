@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806E644
-sub_0806E644: @ 0x0806E644
+	thumb_func_start Manim_MoveCameraOntoSubject
+Manim_MoveCameraOntoSubject: @ 0x0806E644
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

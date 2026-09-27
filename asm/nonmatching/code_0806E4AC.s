@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806E4AC
-sub_0806E4AC: @ 0x0806E4AC
+	thumb_func_start Manim_AdvanceBattleRound
+Manim_AdvanceBattleRound: @ 0x0806E4AC
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _0806E588 @ =0x0203E0FC

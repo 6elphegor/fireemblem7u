@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806E5D4
-sub_0806E5D4: @ 0x0806E5D4
+	thumb_func_start Manim_DisplayRoundAnim
+Manim_DisplayRoundAnim: @ 0x0806E5D4
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

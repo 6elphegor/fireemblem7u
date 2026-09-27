@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806E5F4
-sub_0806E5F4: @ 0x0806E5F4
+	thumb_func_start Manim_ShowPoisonEffectIfAny
+Manim_ShowPoisonEffectIfAny: @ 0x0806E5F4
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp

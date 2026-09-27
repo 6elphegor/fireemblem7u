@@ -49,7 +49,7 @@ sub_0806EFC4: @ 0x0806EFC4
 	ldr r0, _0806F040 @ =0x0203E0FC
 	ldr r1, _0806F044 @ =0x0203A4F0
 	str r1, [r0, #0x50]
-	bl sub_0806E4AC
+	bl Manim_AdvanceBattleRound
 	ldr r0, _0806F03C @ =0x0203A3F0
 	ldr r1, _0806F048 @ =0x0203A470
 	ldr r2, _0806F044 @ =0x0203A4F0
