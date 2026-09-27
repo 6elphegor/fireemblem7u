@@ -486,3 +486,6 @@ Tsa_DragonGateFlame = 0x081B97B0;
 Img_DragonFlameImpact = 0x081C2340;
 Pal_DragonFlameImpact = 0x081C23C8;
 Tsa_DragonFlameImpact = 0x081C25C8;
+Img_EventSnowStormfx = 0x0819D22C;
+Pal_EventSnowStormfx = 0x0819D6E4;
+Tsa_EventSnowStormfx = 0x0819D724;
