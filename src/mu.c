@@ -5,7 +5,7 @@ int GetUnitSpritePalette(struct Unit * unit);
 void SetStandingMuFacing(int slot, void * vram);
 int GetClassSMSId(int jid);
 void PlaySeSpacial(int song, int x);
-void sub_080255E0(int slot, void * vram);
+void SyncUiSMS(int slot, void * vram);
 void sub_08026308(u16 layer, int x, int y, u16 oam2, int jid, int slot);
 void TryRemoveUnitFromBallista(struct Unit * unit);
 void CallDelayedArg(void (* func)(int arg), int arg, int delay);
@@ -632,7 +632,7 @@ void PutMuSMS(struct MuProc * proc)
         pos.y = OAM0_Y(pos.y);
         if (proc->state == MU_STATE_DEATHFADE)
             pos.y |= OAM0_BLEND;
-        sub_080255E0(proc->slot, proc->vram);
+        SyncUiSMS(proc->slot, proc->vram);
         sub_08026308(
             proc->sprite_anim->layer,
             pos.x - 8,

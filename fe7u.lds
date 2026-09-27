@@ -192,13 +192,6 @@ SECTIONS
         build/src/gold.o(.text);
         build/src/bmtarget.o(.text);
         build/src/unit-sprite.o(.text);
-        build/asm/code_0802520C.o(.text);
-        build/asm/code_08025518.o(.text);
-        build/asm/code_08025580.o(.text);
-        build/asm/code_080255E0.o(.text);
-        build/asm/code_08025654.o(.text);
-        build/asm/code_080256C8.o(.text);
-        build/asm/code_080256F4.o(.text);
         build/asm/code_08025724.o(.text);
         build/asm/code_080258D8.o(.text);
         build/asm/code_08025910.o(.text);

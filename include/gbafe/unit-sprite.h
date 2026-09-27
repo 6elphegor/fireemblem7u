@@ -17,7 +17,7 @@ void TornOutUnitSprite(struct Unit * unit, int timer);
 // ??? SyncUnitSpriteSheet
 void SyncUnitSpriteSheet(void);
 void ForceSyncUnitSpriteSheet(void);
-// ??? sub_080255E0
+// ??? SyncUiSMS
 // ??? SetStandingMuFacing
 // ??? GetUnitDisplayedSpritePalette
 // ??? GetUnitSpritePalette
