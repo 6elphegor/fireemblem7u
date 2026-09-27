@@ -89,6 +89,36 @@ struct PlayerRankProc {
 };
 
 void StartPlayerRankFlash(int pal, ProcPtr parent);
+void PlayerRank_PutSprites(struct PlayerRankProc * proc);
+
+int GetGameTacticsRank(void);
+int GetGameSurvivalRank(void);
+int GetGameExpRank(void);
+int GetGameCombatRank(void);
+int GetGameFundsRank(void);
+int GetOverallRank(int tacticsRank, int survivalRank, int fundsRank, int combatRank, int expRank);
+int sub_080B663C(int param_1, int param_2, int param_3);
+int GetChapterTacticsRank(void);
+int GetChapterSurvivalRank(void);
+int GetChapterCombatRank(void);
+
+extern u8 const Tsa_PlayerRankBg[];
+extern u16 const Pal_PlayerRankBg[];
+extern u8 const Img_PlayerRankLetters[];
+extern u16 const Pal_PlayerRankLetters[];
+extern u16 const Pal_PlayerRankUnk_085DFA90[];
+extern u16 Pal_PlayerRankUnk_085DFAB0[];
+extern u16 const Pal_PlayerRankUnk_085DFAF0[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEA70[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEA90[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEA9E[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAAC[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEABA[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAC8[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAD6[];
+extern u16 CONST_DATA Sprite_PlayerRank_08CEEAE4[];
+extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB54[];
+extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB6C[];
 
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankUnk_08CEEB84[];
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankFlash[];
@@ -1055,7 +1085,96 @@ void TurnRecord_SetupText(void)
     Text_DrawString(gpTurnRecordTexts + 19, DecodeMsg(0x1185));
 }
 
+#if NONMATCHING
+int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId)
+{
+    int r6;
+    int y;
+    int chapterTurn;
+    int textIndex;
+
+    int x = 3;
+    int chapterIncrement = 0;
+
+    textIndex = displayId % 9;
+    y = (displayId * 2) & 0x1f;
+    r6 = y * 0x20;
+
+    TmFillRect_thm(gBg1Tm + TM_OFFSET(0, y), 31, 1, 0);
+    EnableBgSync(BG1_SYNC_BIT);
+
+    ClearText(gpTurnRecordTexts + 0 + textIndex);
+    ClearText(gpTurnRecordTexts + 9 + textIndex);
+
+    if ((u32) chapterStats == -1)
+    {
+        int gameTotalTurns = GetGameTotalTurnCount();
+
+        PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + 0x10;}), 3, 0, chapterIncrement, DecodeMsg(0x12D1));
+        PutNumber(gBg1Tm + ({r6 + 0x17;}), 2, gameTotalTurns);
+        PutText(gpTurnRecordTexts + 18, gBg1Tm + ({r6 + 0x18;}));
+
+        return 0;
+    }
+
+    if (chapterStats)
+    {
+        int chapterIndex = chapterStats->chapter_index;
+        int num = GetChapterInfo(chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0] >> 1;
+
+        if (chapterIndex == 0)
+        {
+            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + ({r6 + x;}), 3, 0, chapterIncrement, DecodeMsg(0x1187));
+        }
+        else if (chapterIndex >= 0x2E && chapterIndex <= 0x2F)
+        {
+            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + ({r6 + x;}), 3, 0, chapterIncrement, DecodeMsg(0x1186));
+        }
+        else
+        {
+            int digits;
+
+            PutText(gpTurnRecordTexts + 19, gBg1Tm + TM_OFFSET(x, y));
+
+            digits = 0;
+
+            if (num > 9)
+                digits = 1;
+
+            PutNumber(gBg1Tm + TM_OFFSET(digits + 2 + x, y), 2, num);
+
+            if (chapterIndex == 0x19)
+                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + 3 + x, y), 2, 0, 0, DecodeMsg(0x1189));
+            else if (GetChapterInfo(chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0] & 1)
+                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + 3 + x, y), 2, 0, 0, DecodeMsg(0x1188));
+        }
+
+        if (chapterIndex >= 0x2E && chapterIndex <= 0x2F)
+        {
+            chapterTurn = chapterStats->chapter_turn;
+            ++chapterStats;
+            chapterTurn += chapterStats->chapter_turn;
+            chapterIncrement = 1;
+        }
+        else
+        {
+            chapterTurn = chapterStats->chapter_turn;
+        }
+
+        if (chapterIndex == 0x19)
+            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + (8 + x);}), 0, 0, 0, DecodeMsg(GetChapterInfo(0x19)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
+        else
+            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + (5 + x);}), 0, 0, 0, DecodeMsg(GetChapterInfo(chapterIndex)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
+
+        PutNumber(gBg1Tm + ({r6 + (20 + x);}), 2, chapterTurn);
+        PutText(gpTurnRecordTexts + 18, gBg1Tm + ({r6 + (21 + x);}));
+    }
+
+    return chapterIncrement;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B9340.s");
+#endif
 void TurnRecord_Loop_Main(struct EndingTurnRecordProc * proc)
 {
     int y = proc->yPos >> 6;
@@ -1093,8 +1212,171 @@ void TurnRecord_Loop_Main(struct EndingTurnRecordProc * proc)
     proc->yPos += proc->yScrollAmt;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B96FC.s");
-ASM_FUNC("asm/nonmatching/code_080B9B38.s");
+void PlayerRank_PutSprites(struct PlayerRankProc * proc)
+{
+    int i;
+
+    PutSpriteExt(2, 24, 20, Sprite_PlayerRank_08CEEA70, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(9));
+    PutSpriteExt(2, 16, 128, Sprite_PlayerRank_08CEEAE4, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(6));
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_EXTRA_MAP)
+    {
+        PutSpriteExt(2, 16, 56, Sprite_PlayerRank_08CEEA90, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 56, Sprite_PlayerRank_08CEEA9E, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 16, 88, Sprite_PlayerRank_08CEEABA, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 88, Sprite_PlayerRank_08CEEAD6, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(7));
+
+        for (i = 0; i < 3; i++)
+        {
+            if (proc->scales[i] > 0x10)
+            {
+                SetObjAffine(
+                    i,
+                    Div(+COS_Q12(0) * 16, proc->scales[i]),
+                    Div(-SIN_Q12(0) * 16, 0x100),
+                    Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                    Div(+COS_Q12(0) * 16, 0x100));
+
+                PutSpriteExt(
+                    2,
+                    (i & 1) * 112 + 80 + i * 512,
+                    (i >> 1) * 32 + 304,
+                    SpriteLut_PlayerRank_08CEEB54[proc->counts[i]],
+                    OAM2_PAL(i + 10) + OAM2_CHR(0x80) + OAM2_LAYER(1));
+            }
+        }
+
+        if (proc->scales[i] > 0x10)
+        {
+            SetObjAffine(
+                i,
+                Div(+COS_Q12(0) * 16, proc->scales[i]),
+                Div(-SIN_Q12(0) * 16, 0x100),
+                Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                Div(+COS_Q12(0) * 16, 0x100));
+
+            PutSpriteExt(
+                2,
+                (i & 1) * 112 + 80 + i * 512,
+                (i >> 1) * 32 + 304,
+                SpriteLut_PlayerRank_08CEEB6C[proc->counts[i]],
+                OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(15));
+        }
+    }
+    else
+    {
+        PutSpriteExt(2, 16, 48, Sprite_PlayerRank_08CEEA90, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 48, Sprite_PlayerRank_08CEEA9E, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 16, 72, Sprite_PlayerRank_08CEEAC8, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 72, Sprite_PlayerRank_08CEEAAC, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 16, 96, Sprite_PlayerRank_08CEEABA, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(8));
+        PutSpriteExt(2, 128, 96, Sprite_PlayerRank_08CEEAD6, OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(7));
+
+        for (i = 0; i < 5; i++)
+        {
+            if (proc->scales[i] > 0x10)
+            {
+                SetObjAffine(
+                    i,
+                    Div(+COS_Q12(0) * 16, proc->scales[i]),
+                    Div(-SIN_Q12(0) * 16, 0x100),
+                    Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                    Div(+COS_Q12(0) * 16, 0x100));
+
+                PutSpriteExt(
+                    2,
+                    (i & 1) * 112 + 80 + i * 512,
+                    (i >> 1) * 24 + 296,
+                    SpriteLut_PlayerRank_08CEEB54[proc->counts[i]],
+                    OAM2_PAL(i + 10) + OAM2_CHR(0x80) + OAM2_LAYER(1));
+            }
+        }
+
+        if (proc->scales[i] > 0x10)
+        {
+            SetObjAffine(
+                i,
+                Div(+COS_Q12(0) * 16, proc->scales[i]),
+                Div(-SIN_Q12(0) * 16, 0x100),
+                Div(+SIN_Q12(0) * 16, proc->scales[i]),
+                Div(+COS_Q12(0) * 16, 0x100));
+
+            PutSpriteExt(
+                2,
+                (i & 1) * 112 + 80 + (i * 512),
+                (i >> 1) * 24 + 296,
+                SpriteLut_PlayerRank_08CEEB6C[proc->counts[i]],
+                OAM2_CHR(0x80) + OAM2_LAYER(1) + OAM2_PAL(15));
+        }
+    }
+}
+void PlayerRank_Init(struct PlayerRankProc * proc)
+{
+    u16 hours, minutes, seconds;
+    u16 i;
+    u16 * tm;
+
+    proc->timer = 0;
+    proc->idx = 0;
+
+    UnpackUiWindowFrameGraphics();
+
+    TmApplyTsa_thm(gBg1Tm, Tsa_PlayerRankBg, 0x1000);
+    ApplyPaletteExt(Pal_PlayerRankBg, 0x300, 0x40);
+    Decompress(Img_PlayerRankLetters, (void *) 0x06011000);
+
+    for (i = 0; i < 5; i++)
+        ApplyPaletteExt(Pal_PlayerRankLetters, (i + 0x1A) * 0x20, 0x20);
+
+    ApplyPaletteExt(Pal_PlayerRankUnk_085DFAF0, 0x3E0, 0x20);
+    ApplyPaletteExt(Pal_PlayerRankUnk_085DFA90, 0x2C0, 0x20);
+    ApplyPaletteExt(Pal_PlayerRankUnk_085DFAB0, 0x2E0, 0x20);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    if (gPlaySt.chapterStateBits & 0x80)
+    {
+        FormatTime(GetGameTime() - gPlaySt.time_chapter_started, &hours, &minutes, &seconds);
+
+        proc->ranks[0] = GetChapterTacticsRank();
+        proc->ranks[1] = GetChapterSurvivalRank();
+        proc->ranks[2] = GetChapterCombatRank();
+        proc->ranks[3] = sub_080B663C(proc->ranks[0], proc->ranks[1], proc->ranks[2]);
+
+        StartBgm(0x29, NULL);
+    }
+    else
+    {
+        FormatTime(GetGameTotalTime_unused(), &hours, &minutes, &seconds);
+
+        proc->ranks[0] = GetGameTacticsRank();
+        proc->ranks[1] = GetGameSurvivalRank();
+        proc->ranks[2] = GetGameFundsRank();
+        proc->ranks[3] = GetGameExpRank();
+        proc->ranks[4] = GetGameCombatRank();
+        proc->ranks[5] = GetOverallRank(proc->ranks[0], proc->ranks[1], proc->ranks[2], proc->ranks[3], proc->ranks[4]);
+
+        StartBgm(0x29, NULL);
+    }
+
+    tm = gBg0Tm + TM_OFFSET(0, 17);
+
+    PutNumber(tm + 5, 2, hours);
+    PutSpecialChar(tm + 6, 2, 0x20);
+    PutNumber2Digit(tm + 8, 2, minutes);
+    PutSpecialChar(tm + 9, 2, 0x20);
+    PutNumber2Digit(tm + 11, 2, seconds);
+
+    for (i = 0; i < 6; i++)
+    {
+        proc->scales[i] = 0;
+        proc->unk_46[i] = 1;
+        proc->counts[i] = 0;
+    }
+
+    StartParallelWorker(PlayerRank_PutSprites, proc);
+    StartMixPalette(Pal_PlayerRankUnk_085DFAB0, Pal_PlayerRankUnk_085DFAB0 + 0x10, 2, 0x17, 1, proc);
+}
 void PlayerRank_StartScreen(ProcPtr parent)
 {
     SetBlendAlpha(8, 0x10);
@@ -1122,7 +1404,31 @@ void StartPlayerRankFlash(int pal, ProcPtr parent)
     proc->pal = pal;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B9E58.s");
+void PlayerRank_LoopLetters(struct PlayerRankProc * proc)
+{
+    proc->timer += 0x20;
+
+    proc->scales[proc->idx] = proc->timer % 0x200 > 0xFF ? 0x100 - proc->timer % 0x100 : proc->timer % 0x100;
+
+    if (proc->scales[proc->idx] == 0)
+        proc->counts[proc->idx]++;
+
+    if (proc->counts[proc->idx] == proc->ranks[proc->idx] && proc->scales[proc->idx] == 0x100)
+    {
+        proc->timer = 0;
+
+        if ((gPlaySt.chapterStateBits & 0x80) && proc->idx == 3)
+            StartPlayerRankFlash(0xF, proc);
+        else
+            StartPlayerRankFlash(proc->idx + 10, proc);
+
+        proc->idx++;
+
+        PlaySoundEffect(0x85);
+
+        Proc_Break(proc);
+    }
+}
 
 void PlayerRank_WaitForKey(ProcPtr proc)
 {
@@ -1199,9 +1505,102 @@ void EndingCgScroll_Init(struct EndingCgScrollProc * proc)
     SetOnHBlankA(EndingCgScroll_HBlank);
 }
 
-ASM_FUNC("asm/nonmatching/code_080BA10C.s");
+#if NONMATCHING
+void EndingCgScroll_Loop(struct EndingCgScrollProc * proc)
+{
+    int row = (proc->lastY >> 3) & 0x1F;
 
-ASM_FUNC("asm/nonmatching/code_080BA25C.s");
+    proc->lastY = proc->yPos >> 6;
+
+    if (proc->lastY >= 0x720)
+    {
+        SetBgOffset(3, 0, 0x80);
+        Proc_Break(proc);
+        return;
+    }
+
+    SetBgOffset(3, 0, (proc->lastY - 0xA0) & 0xFF);
+
+    if (proc->imgIdx < 7)
+    {
+        void const * img = proc->lut->img[proc->imgIdx];
+
+        if (img != NULL)
+            Decompress(img, (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + proc->imgIdx * 0x800));
+        else
+            CpuFastFill(0, (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + proc->imgIdx * 0x800), 0x800);
+
+        proc->imgIdx++;
+    }
+
+    if ((row & 7) == 0)
+    {
+        u8 const * tsa = proc->lut->tsa[proc->tsaIdx];
+
+        if (proc->tsaIdx == (row >> 3))
+        {
+            if (tsa == NULL)
+                return;
+
+            {
+                u16 tileref = proc->bank * 0x1C0 + 0xA000;
+                TmApplyTsa_thm(gBg3Tm + row * 0x20, tsa, tileref);
+            }
+
+            EnableBgSync(BG3_SYNC_BIT);
+
+            if (++proc->tsaIdx == 4)
+            {
+                proc->tsaIdx = 0;
+                proc->imgIdx = 0;
+                proc->bank = 1 - proc->bank;
+                proc->lut++;
+            }
+        }
+    }
+
+    if (gpKeySt->pressed & START_BUTTON)
+    {
+        if (IsGamePlayedThrough())
+            Proc_Goto(proc, 0);
+
+        return;
+    }
+
+    proc->yPos += proc->speed;
+}
+#else
+ASM_FUNC("asm/nonmatching/code_080BA10C.s");
+#endif
+
+void EndingCgScroll2_Init(struct EndingCgScrollProc * proc)
+{
+    int i;
+
+    proc->lut = gEndingCgScroll2Lut;
+    proc->bank = 0;
+
+    ApplyPalette(Pal_EndingCgScroll, 10);
+    SetBgOffset(3, 0, 0x80);
+    TmFill(gBg3Tm, 0);
+
+    for (i = 0; i < 6; i++)
+    {
+        if (proc->lut->img[i] != NULL)
+            Decompress(proc->lut->img[i], (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + i * 0x800));
+    }
+
+    for (i = 1; i < 4; i++)
+    {
+        if (proc->lut->tsa[i] != NULL)
+        {
+            u16 tileref = proc->bank * 0x1C0 + 0xA000;
+            TmApplyTsa_thm(gBg3Tm + i * 0x100, proc->lut->tsa[i], tileref);
+        }
+    }
+
+    EnableBgSync(BG3_SYNC_BIT);
+}
 
 void EndingCgScroll_End(void)
 {

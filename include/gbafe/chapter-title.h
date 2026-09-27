@@ -22,7 +22,7 @@ struct ChapTitleGlyph {
 extern const struct ChapTitleGlyph gChapTitleGlyphs[];
 extern const u8 Img_ChapterTitleFont[];
 
-int sub_080C0088(char * buf, const char * fmt, ...); // sprintf
+int sprintf(char * buf, const char * fmt, ...); // sprintf
 
 struct ChapTitleSt {
     u16 chr_bg;

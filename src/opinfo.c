@@ -104,6 +104,7 @@ extern u16 CONST_DATA Sprite_ClassIntroLineEndL[];
 extern u16 CONST_DATA Sprite_ClassIntroLineEndR[];
 extern u16 CONST_DATA Sprite_ClassIntroIconFrame[];
 extern u16 const * CONST_DATA SpriteLut_ClassIntroIcons[];
+extern u16 const * CONST_DATA SpriteLut_GaugePips[];
 
 int GetClassIntroGlyphTile(u8 chr);
 void PutClassIntroLetter(u16 tile, u8 index, int x, int y, u16 xScale, u16 yScale, u8 offset);
@@ -157,7 +158,41 @@ int GetClassIntroStringWidth(u8 const * str)
     return width;
 }
 
-ASM_FUNC("asm/nonmatching/code_080AEFA8.s");
+void PutClassIntroLetter(u16 tile, u8 index, int x, int y, u16 xScale, u16 yScale, u8 offset)
+{
+    int i;
+    int pal = (u8) (index % 13) + 1;
+
+    if (tile == 0xFFFF)
+        return;
+
+    if (offset != 0)
+    {
+        for (i = 1; i < 0x10; i++)
+        {
+            if (i + offset > 0xF)
+                gPal[0x100 + pal * 0x10 + i] = gPal[0x10F];
+            else
+                gPal[0x100 + pal * 0x10 + i] = gPal[0x100 + i + offset];
+        }
+
+        EnablePalSync();
+    }
+    else
+    {
+        pal = 14;
+    }
+
+    if (xScale < 8)
+        xScale = 8;
+
+    if (yScale < 8)
+        yScale = 8;
+
+    SetObjAffineAuto(index, 0, xScale, yScale);
+
+    PutSpriteExt(4, (x & 0x1FF) + (index << 9), y & 0x1FF, Sprite_ClassIntroLetter, tile + OAM2_PAL(pal));
+}
 
 void ClassIntro_PutNextLetter(struct OpInfoEnterProc * proc)
 {
@@ -273,14 +308,76 @@ void ClassIntroLetter_Init(struct OpInfoViewProc * proc)
     proc->timer = 0;
 }
 
+#if NONMATCHING
+void ClassIntroLetter_LoopFadeIn(struct OpInfoViewProc * proc)
+{
+    if (proc->index == 0)
+    {
+        int x0 = COS_Q12(0x60) >> 6;
+        int y0 = (SIN_Q12(0x60) * 3) >> 9;
+        int angle = 0xC0 - proc->timer;
+        int x = COS_Q12(angle) >> 6;
+        int y = (SIN_Q12(angle) * 3) >> 9;
+        u16 scale = 0x200 - (proc->timer << 8) / 0x60;
+
+        PutClassIntroLetter(proc->tile, proc->index, (proc->x + x - x0) & 0x1FF, (y - (y0 - 0x18)) & 0x1FF,
+            scale, scale, 8 - proc->timer / 12);
+
+        proc->timer += 4;
+
+        if (proc->timer == 0x60)
+        {
+            proc->timer = 0;
+            Proc_Break(proc);
+        }
+    }
+    else
+    {
+        int a = 0x10 - (proc->timer >> 4);
+
+        PutClassIntroLetter(proc->tile, proc->index, proc->x - a, 0x18 - a, proc->timer, 0x100,
+            0x10 - (proc->timer >> 4));
+
+        proc->timer += 0x10;
+
+        if (proc->timer == 0x100)
+        {
+            proc->timer = 0;
+            Proc_Break(proc);
+        }
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080AF368.s");
+#endif
 void ClassIntroLetter_LoopDisplay(struct OpInfoViewProc * proc)
 {
     PutClassIntroLetter(proc->tile, proc->index, proc->x, 0x18, 0x100, 0x100, 0);
     proc->timer = 0;
 }
 
+#if NONMATCHING
+void ClassIntroLetter_LoopFadeOut(struct OpInfoViewProc * proc)
+{
+    int timer = proc->timer;
+    int a4 = 0x100 + timer;
+    int a5 = 0x100 - timer;
+    int x = proc->x;
+    int d = ((x - 0x58) * timer * timer) >> 15;
+
+    PutClassIntroLetter(proc->tile, proc->index, x + d, 0x18, a4, a5, ({ proc->timer + 0; }) >> 4);
+
+    if (proc->timer == 0x100)
+    {
+        gClassIntroLetterProcs[proc->index] = NULL;
+        Proc_Break(proc);
+    }
+
+    proc->timer += 8;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080AF4D4.s");
+#endif
 ProcPtr StartClassNameIntroLetter(ProcPtr parent, int index, int x, int tile)
 {
     struct OpInfoViewProc * proc = Proc_Start(ProcScr_ClassIntroLetter, parent);
@@ -346,7 +443,48 @@ void PutClassIntroIconLine(u8 len, u8 flag)
     }
 }
 
+#if NONMATCHING
+void PutClassIntroIcons(u8 a, u8 b, u8 c)
+{
+    int i;
+    int tmp;
+    int tmp2;
+    u16 const * const * object;
+    u16 oam2 = OAM2_PAL(14);
+
+    if (a != 0)
+        oam2 = OAM2_PAL(15);
+
+    for (i = 0; i < 0x10; i++)
+    {
+        u16 color;
+
+        if ((a + i) < 0x10)
+            color = a + i;
+        else
+            color = 0xF;
+
+        gPal[0x1F0 + i] = gPal[0x1E0 + color];
+    }
+
+    EnablePalSync();
+
+    tmp = ((4 - b) << 5);
+
+    for (i = 0, object = SpriteLut_ClassIntroIcons, tmp2 = tmp + 8; i < 8; object++, i++)
+    {
+        if (((c >> i) & 1) != 0)
+        {
+            PutSpriteExt(4, tmp2 & 0x1FF, 0x50, *object, OAM2_PAL(15));
+            tmp2 += 0x20;
+        }
+    }
+
+    PutSpriteExt(4, 0x90, 0x50, Sprite_ClassIntroIconFrame, oam2);
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080AF69C.s");
+#endif
 
 void ClassIntroIcon_LoopLine(struct OpInfoIconProc * proc)
 {
@@ -602,9 +740,87 @@ ProcPtr StartClassAnimDisplay(ProcPtr parent, int ent)
     return proc;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B00A8.s");
+#if NONMATCHING
+void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
+{
+    struct ClassDisplayFont const * font;
+    int i;
 
-ASM_FUNC("asm/nonmatching/code_080B0134.s");
+    proc->display = (struct OpInfoClassDisplayProc *) proc->proc_parent;
+    proc->timer = 0;
+    proc->width = 0;
+    proc->x = 0xFA;
+
+    for (i = 0; i < 15 && proc->display->ent->name[i] != 0; i++)
+    {
+        font = GetClassDisplayFontInfo(proc->display->ent->name[i]);
+
+        if (font != NULL)
+            proc->width += font->width - font->xBase;
+        else
+            proc->width += 4;
+    }
+
+    Decompress(Img_ClassDisplayFont, (void *) 0x06010000);
+    ApplyPalettes(Pal_ClassDisplayFont, 0x14, 2);
+}
+#else
+ASM_FUNC("asm/nonmatching/code_080B00A8.s");
+#endif
+
+void ClassStatsDisplay_Loop(struct OpInfoGaugeDrawProc * proc)
+{
+    u8 value;
+    int i;
+    int x;
+
+    for (i = 0; i < 6; i++)
+    {
+        value = proc->display->stats[i];
+
+        if (value >= 30)
+            value = 30;
+
+        for (x = 0; x < (value >> 2); x++)
+            PutSpriteExt(13, x * 8 + 0x31, i * 16 + 15, SpriteLut_GaugePips[3], 0x5000);
+
+        if ((value & 3) != 0)
+            PutSpriteExt(13, x * 8 + 0x31, i * 16 + 15, SpriteLut_GaugePips[(value & 3) - 1], 0x5000);
+    }
+
+    x = ((0x78 - proc->width) / 2) + proc->x;
+
+    if (x + proc->width > 0xE8)
+        x = 0xE8 - proc->width;
+
+    for (i = 0; proc->display->ent->name[i] != 0;)
+    {
+        struct ClassDisplayFont const * font = GetClassDisplayFontInfo(proc->display->ent->name[i]);
+
+        if (font != NULL)
+        {
+            if (font->sprite != NULL)
+            {
+                PutSpriteExt(4, x - (s8) font->xBase, 8 - (s8) font->yBase, font->sprite, 0x5000);
+                PutSpriteExt(4, x - (s8) font->xBase - 2, 6 - (s8) font->yBase, font->sprite, 0x4000);
+
+                x += (s8) font->width - (s8) font->xBase;
+            }
+        }
+        else
+        {
+            x += 4;
+        }
+
+        i++;
+
+        if (i > 14)
+            break;
+    }
+
+    if (proc->timer < 0xFF)
+        proc->timer++;
+}
 ProcPtr StartClassStatsDisplay(ProcPtr parent)
 {
     return Proc_Start(ProcScr_ClassStatsDisplay, parent);
