@@ -29,6 +29,18 @@ extern u8 const Tsa_MinimugBox[];
 
 extern char gNumberStr[];
 
+extern s8 const TerrainTable_MovCost_BerserkerNormal[];
+extern s8 const TerrainTable_Avo_Common[];
+extern s8 const TerrainTable_Def_Common[];
+extern u8 const Tsa_TerrainMapUi_Box[];
+extern u8 const Tsa_TerrainMapUi_Labels[];
+extern u8 const Tsa_TerrainMapUi_BallistaLabels[];
+extern u8 const Tsa_TerrainMapUi_ObstacleLabels[];
+extern u8 const Tsa_TerrainMapUi_ObstacleFullHp[];
+
+char const * GetTerrainName(int terrain);
+int sub_0802BCBC(int x, int y); // GetObstacleHpAt
+void sub_08005044(int number); // StoreNumberStringToSmallBuffer
 void nullsub_7(void);
 void sub_08005080(int number); // StoreNumberStringOrDashesToSmallBuffer
 
@@ -651,13 +663,152 @@ void ClearUnitBurstMapUi(struct PlayerInterfaceProc * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_08085478.s");
+void DrawTerrainDisplayWindow(struct PlayerInterfaceProc * proc)
+{
+    char const * str;
+    int num;
 
-ASM_FUNC("asm/nonmatching/code_08085644.s");
+    int terrainId = gBmMapTerrain[gBmSt.cursor.y][gBmSt.cursor.x];
 
-ASM_FUNC("asm/nonmatching/code_0808566C.s");
+    TmFillRect(gUiTmScratchA + TM_OFFSET(0, 10), 14, 7, 0);
+    TmFillRect(gUiTmScratchB + TM_OFFSET(0, 10), 14, 7, 0);
 
-ASM_FUNC("asm/nonmatching/code_08085710.s");
+    str = GetTerrainName(terrainId);
+
+    num = GetStringTextCenteredPos(32, str);
+
+    ClearText(proc->texts);
+    Text_SetParams(proc->texts, num, TEXT_COLOR_SYSTEM_WHITE);
+    Text_DrawString(proc->texts, str);
+    PutText(proc->texts, gUiTmScratchA + TM_OFFSET(1, 12));
+
+    TmApplyTsa(gUiTmScratchA + TM_OFFSET(1, 14), Tsa_TerrainMapUi_Labels, TILEREF(0x100, 0));
+
+    if (TerrainTable_MovCost_BerserkerNormal[terrainId] > 0)
+    {
+        sub_08005044(TerrainTable_Def_Common[terrainId]);
+        PutDigits(gUiTmScratchA + TM_OFFSET(4, 14), gNumberStr + 7, TILEREF(0x128, 0), 2);
+
+        sub_08005044(TerrainTable_Avo_Common[terrainId]);
+        PutDigits(gUiTmScratchA + TM_OFFSET(4, 15), gNumberStr + 7, TILEREF(0x128, 0), 2);
+    }
+
+    switch (terrainId)
+    {
+    case TERRAIN_SNAG:
+    case TERRAIN_WALL_BREAKABLE:
+        TmApplyTsa(gUiTmScratchA + TM_OFFSET(1, 14), Tsa_TerrainMapUi_ObstacleLabels, TILEREF(0x100, 2));
+
+        num = sub_0802BCBC(gBmSt.cursor.x, gBmSt.cursor.y);
+
+        if (num == 100)
+        {
+            TmApplyTsa(gUiTmScratchA + TM_OFFSET(3, 15), Tsa_TerrainMapUi_ObstacleFullHp, TILEREF(0x100, 0));
+        }
+        else
+        {
+            sub_08005044(num);
+            PutDigits(gUiTmScratchA + TM_OFFSET(4, 15), gNumberStr + 7, TILEREF(0x128, 0), 2);
+        }
+
+        break;
+
+    case TERRAIN_BALLISTA:
+    case TERRAIN_LONGBALLISTA:
+    case TERRAIN_KILLERBALLISTA:
+        TmApplyTsa(gUiTmScratchA + TM_OFFSET(1, 14), Tsa_TerrainMapUi_BallistaLabels, TILEREF(0x100, 0));
+
+        sub_08005044(sub_0802BCBC(gBmSt.cursor.x, gBmSt.cursor.y));
+        PutDigits(gUiTmScratchA + TM_OFFSET(4, 14), gNumberStr + 7, TILEREF(0x128, 0), 2);
+
+        break;
+    }
+
+    TmApplyTsa(gUiTmScratchB + TM_OFFSET(0, 10), Tsa_TerrainMapUi_Box, TILEREF(0x100, 1));
+}
+
+void TerrainDisplay_Init(struct PlayerInterfaceProc * proc)
+{
+    proc->windowQuadrant = -1;
+    proc->isRetracting = false;
+    proc->showHideClock = 0;
+    proc->cursorQuadrant = 1;
+
+    InitTextDb(proc->texts, 4);
+}
+
+void TerrainDisplay_Loop_OnSideChange(struct PlayerInterfaceProc * proc)
+{
+    int quadrant;
+    struct PlayerInterfaceProc * ui1Proc;
+    struct PlayerInterfaceProc * piProc;
+
+    proc->hideContents = true;
+
+    proc->cursorQuadrant = GetCursorQuadrant();
+
+    quadrant = GetWindowQuadrant(
+        sPlayerInterfaceConfigLut[proc->cursorQuadrant].xTerrain,
+        sPlayerInterfaceConfigLut[proc->cursorQuadrant].yTerrain);
+
+    ui1Proc = Proc_Find(gProcScr_UnitDisplay_MinimugBox);
+
+    if (ui1Proc != NULL)
+    {
+        if ((ui1Proc->windowQuadrant > -1) && (ui1Proc->windowQuadrant == quadrant))
+            return;
+    }
+
+    piProc = Proc_Find(gProcScr_GoalDisplay);
+
+    // BUG: checks ui1Proc instead of piProc
+    if (ui1Proc != NULL)
+    {
+        if ((piProc->windowQuadrant > -1) && (piProc->windowQuadrant == quadrant))
+            return;
+    }
+
+    proc->windowQuadrant = quadrant;
+
+    DrawTerrainDisplayWindow(proc);
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+
+    Proc_Break(proc);
+}
+
+void TerrainDisplay_Loop_Display(struct PlayerInterfaceProc * proc)
+{
+    proc->xCursorPrev = proc->xCursor;
+    proc->yCursorPrev = proc->yCursor;
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+
+    if ((proc->xCursor == proc->xCursorPrev) && (proc->yCursor == proc->yCursorPrev))
+        return;
+
+    if (Proc_Find(ProcScr_CamMove) == NULL)
+    {
+        int cursorQuadrant = GetCursorQuadrant();
+
+        if ((cursorQuadrant == proc->cursorQuadrant) ||
+            ((sPlayerInterfaceConfigLut[cursorQuadrant].xTerrain ==
+              sPlayerInterfaceConfigLut[proc->cursorQuadrant].xTerrain) &&
+             (sPlayerInterfaceConfigLut[cursorQuadrant].yTerrain ==
+              sPlayerInterfaceConfigLut[proc->cursorQuadrant].yTerrain)))
+        {
+            DrawTerrainDisplayWindow(proc);
+            sub_08084DE4(proc);
+            return;
+        }
+    }
+
+    proc->isRetracting = true;
+
+    Proc_Break(proc);
+}
 
 ASM_FUNC("asm/nonmatching/code_080857B4.s");
 
