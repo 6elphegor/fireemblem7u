@@ -400,7 +400,43 @@ int DebugMenu_ClearDraw(struct MenuProc * menuProc, struct MenuItemProc * menuIt
     return 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B814.s");
+u8 DebugMenu_ClearIdle(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int i;
+    struct GlobalSaveInfo info;
+
+    if (gpKeySt->repeated & (DPAD_RIGHT | DPAD_LEFT))
+    {
+        int count = GetGlobalCompletionCount();
+
+        if (gpKeySt->repeated & DPAD_LEFT)
+            if (count >= 0)
+                count--;
+
+        if (gpKeySt->repeated & DPAD_RIGHT)
+            if (count < 12)
+                count++;
+
+        ReadGlobalSaveInfo(&info);
+
+        for (i = 0; i < MAX_CLEARED_PLAYTHROUGHS; i++)
+            info.cleared_playthroughs[i] = 0;
+
+        for (i = 0; i < count; i++)
+            RegisterCompletedPlaythrough(&info, i + 1);
+
+        if (count == 0)
+            info.completed = 0;
+        else
+            info.completed = 1;
+
+        WriteGlobalSaveInfo(&info);
+
+        DebugMenu_ClearDraw(menuProc, menuItemProc);
+    }
+
+    return 0;
+}
 
 u8 DebugMenu_ClearEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {
