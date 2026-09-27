@@ -202,12 +202,35 @@ void EndModeSelectAnims(s32 count)
     return;
 }
 
-void PutModeSelectLabelText(void);
-ASM_FUNC("asm/nonmatching/code_080A75F0.s");
+void PutModeSelectLabelText(void)
+{
+    ClearText(&gUnk_020000A4.text[5]);
+    ClearText(&gUnk_020000A4.text[6]);
+
+    PutDrawText(&gUnk_020000A4.text[5], gBg1Tm + TM_OFFSET(14, 6), TEXT_COLOR_SYSTEM_WHITE, 0, 0, DecodeMsg(gUnk_08CE48C0[3][0]));
+    PutDrawText(&gUnk_020000A4.text[6], gBg1Tm + TM_OFFSET(14, 10), TEXT_COLOR_SYSTEM_WHITE, 0, 0, DecodeMsg(gUnk_08CE48C0[3][2]));
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    return;
+}
 
 
-void PutModeSelectCharacterText(s32 index);
-ASM_FUNC("asm/nonmatching/code_080A7668.s");
+void PutModeSelectCharacterText(s32 index)
+{
+    ClearText(&gUnk_020000A4.text[2]);
+    ClearText(&gUnk_020000A4.text[3]);
+    ClearText(&gUnk_020000A4.text[4]);
+
+    PutDrawText(
+        &gUnk_020000A4.text[2], gBg1Tm + TM_OFFSET(14, 8), TEXT_COLOR_SYSTEM_BLUE, 0, 0, DecodeMsg(gUnk_08CE48C0[index][0]));
+    PutDrawText(
+        &gUnk_020000A4.text[4], gBg1Tm + TM_OFFSET(19, 10), TEXT_COLOR_SYSTEM_BLUE, 0, 0, DecodeMsg(gUnk_08CE48C0[index][2]));
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    return;
+}
 
 
 void PutModeSelectDifficultyText(struct ModeSelectProc * proc);
