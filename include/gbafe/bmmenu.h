@@ -149,7 +149,7 @@ void UpdateBattleForecastContents(void);
 void CloseBattleForecast(void);
 void MakeTradeTargetList(struct Unit * unit);
 void sub_0802B678(struct Unit * unit, struct Unit * other, int unk);   /* FE8U: StartTradeMenu */
-s8 sub_08034884(struct Unit * unit);   /* FE8U: CanUnitSeize */
+s8 CanUnitSeize(struct Unit * unit);   /* FE8U: CanUnitSeize */
 int GetAvailableTileEventCommand(s8 x, s8 y);
 s8 IsUnitMagicSealed(struct Unit * unit);
 void MakeTargetListForRefresh(struct Unit * unit);
@@ -192,8 +192,8 @@ void RefreshUnitInventoryInfoWindow(struct Unit * unit);
 void RideBallista(struct Unit * unit);
 void TryRemoveUnitFromBallista(struct Unit * unit);
 void StartMu(struct Unit * unit);
-s8 sub_080347E4(struct Trap * trap);   /* IsBallista */
-int sub_0803483C(struct Trap * trap);  /* GetBallistaItemUses */
+s8 IsBallista(struct Trap * trap);   /* IsBallista */
+int GetBallistaItemUses(struct Trap * trap);  /* GetBallistaItemUses */
 
 /* ---- bmmenu.c ---- */
 

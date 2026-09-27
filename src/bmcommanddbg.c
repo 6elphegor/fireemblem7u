@@ -6,10 +6,10 @@
 // Unused unit command availability checks (FE8U: bmcommanddbg.c)
 
 // Also declared in bmmenu.h, which conflicts with bmtarget.h
-s8 sub_08034884(struct Unit * unit); // CanUnitSeize
 int GetUnitWeaponReach(struct Unit * unit, int slot);
 void BuildUnitStandingRangeForReach(struct Unit * unit, int reach);
 int GetAvailableTileEventCommand(s8 x, s8 y);
+s8 CanUnitSeize(struct Unit * unit);
 
 bool CanUnitUseVisit(void)
 {
@@ -46,7 +46,7 @@ bool CanUnitUseSeize(void)
     if (gActiveUnit->state & US_HAS_MOVED)
         return FALSE;
 
-    if (!sub_08034884(gActiveUnit))
+    if (!CanUnitSeize(gActiveUnit))
         return FALSE;
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
