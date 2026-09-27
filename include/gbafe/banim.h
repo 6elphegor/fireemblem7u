@@ -429,16 +429,16 @@ void NewEfxFlashBgDirectly(struct Anim * anim, int duartion);
 // ??? EfxWhiteOutMain2
 // ??? EfxWhiteOutRestorePalSync
 // ??? NewEfxFlashHPBar
-// ??? EfxWhiteInMain1
-// ??? sub_0804F254
+// ??? EfxFlashHPBarDelay
+// ??? EfxFlashHPBarMain1
 // ??? EfxFlashHPBarRestorePal
 // ??? NewEfxHpBarColorChange
 // ??? EndEfxHPBarColorChange
-// ??? sub_0804F480
-// ??? EfxHpBarColorChange_804FC6C
+// ??? DisableEfxHpBarColorChange
+// ??? EnableEfxHpBarColorChange
 // ??? EfxHPBarColorChangeMain
 // ??? NewEfxFlashUnit
-// ??? sub_0804F5D4
+// ??? EfxFlashUnitMain
 // ??? EfxFlashUnitRestorePal
 
 struct ProcEfxStatusUnit {
