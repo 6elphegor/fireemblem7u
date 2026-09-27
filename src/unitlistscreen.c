@@ -417,9 +417,126 @@ void UnitListScreenSprites_Dummy(void)
 {
 }
 
-ASM_FUNC("asm/nonmatching/code_0808955C.s");
-ASM_FUNC("asm/nonmatching/code_0808966C.s");
-ASM_FUNC("asm/nonmatching/code_08089714.s");
+void sub_8090B48(struct Unit * unit, struct UnitListScreenProc * proc)
+{
+    int supporterCount;
+    int i;
+    int supportCountNow;
+
+    if ((unit->state & US_NOT_DEPLOYED) == 0)
+        proc->deployedCount++;
+
+    gSortedUnitsBuf[gUnknown_0200F158].unit = unit;
+
+    BattleGenerateUiStats(unit, -1);
+
+    gSortedUnitsBuf[gUnknown_0200F158].battleAttack = ((gBattleActor.battleAttack + 1) & 0xff) - 1;
+    gSortedUnitsBuf[gUnknown_0200F158].battleHitRate = ((gBattleActor.battleHitRate + 1) & 0xff) - 1;
+    gSortedUnitsBuf[gUnknown_0200F158].battleAvoidRate = ((gBattleActor.battleAvoidRate + 1) & 0xff) - 1;
+
+    supporterCount = GetUnitSupporterCount(unit);
+    supportCountNow = 0;
+
+    for (i = 0; i < supporterCount; i++)
+    {
+        if (CanUnitSupportNow(unit, i))
+            supportCountNow++;
+    }
+
+    if (supportCountNow > 3)
+    {
+        if (proc->unk_2e < ((supportCountNow - 1) / 3) + 6)
+            proc->unk_2e = ((supportCountNow - 1) / 3) + 6;
+    }
+
+    gSortedUnitsBuf[gUnknown_0200F158].supportCount = supportCountNow;
+    gSortedUnits[gUnknown_0200F158] = &gSortedUnitsBuf[gUnknown_0200F158];
+
+    gUnknown_0200F158++;
+
+    UseUnitSprite(GetUnitSMSId(unit));
+}
+
+void sub_8090C58(struct UnitListScreenProc * proc)
+{
+    gUnknown_0200F158 = 0;
+
+    if (proc->mode == UNITLIST_MODE_PREPMENU)
+    {
+        int i;
+
+        for (i = (gPlaySt.faction) + 1; i < (gPlaySt.faction) + 0x40; i++)
+        {
+            struct Unit * unit = GetUnit(i);
+
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+            if (!IsUnitInCurrentRoster(unit))
+                continue;
+
+            sub_8090B48(unit, proc);
+        }
+    }
+    else
+    {
+        int i;
+
+        for (i = gPlaySt.faction + 1; i < gPlaySt.faction + 0x40; i++)
+        {
+            struct Unit * unit = GetUnit(i);
+
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+            if (unit->state & US_UNAVAILABLE)
+                continue;
+
+            sub_8090B48(unit, proc);
+        }
+    }
+}
+
+void sub_8090D00(struct UnitListScreenProc * proc)
+{
+    gUnknown_0200F158 = 0;
+
+    if (proc->mode == UNITLIST_MODE_PREPMENU)
+    {
+        int i;
+
+        for (i = FACTION_BLUE + 1; i < FACTION_BLUE + 0x40; i++)
+        {
+            struct Unit * unit = GetUnit(i);
+
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+            if (!IsUnitInCurrentRoster(unit))
+                continue;
+
+            sub_8090B48(unit, proc);
+        }
+    }
+    else
+    {
+        int i;
+
+        for (i = FACTION_BLUE + 1; i < FACTION_BLUE + 0x40; i++)
+        {
+            struct Unit * unit = GetUnit(i);
+
+            if (!UNIT_IS_VALID(unit))
+                continue;
+
+            if (unit->state & US_UNAVAILABLE)
+                continue;
+
+            sub_8090B48(unit, proc);
+        }
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_08089794.s");
 ASM_FUNC("asm/nonmatching/code_08089B9C.s");
 ASM_FUNC("asm/nonmatching/code_08089C00.s");
