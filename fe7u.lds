@@ -1206,14 +1206,7 @@ SECTIONS
         build/src/banim-efxmagic-nosferatu.o(.text);
         build/src/banim-efxmagic-light.o(.text);
         build/src/banim-efxmagic-bolganone.o(.text);
-        build/asm/code_0805AE90.o(.text);
-        build/asm/code_0805AECC.o(.text);
-        build/asm/code_0805AFBC.o(.text);
-        build/asm/code_0805B040.o(.text);
-        build/asm/code_0805B0C4.o(.text);
-        build/asm/code_0805B148.o(.text);
-        build/asm/code_0805B1EC.o(.text);
-        build/asm/code_0805B260.o(.text);
+        build/src/banim-efxmagic-divine.o(.text);
         build/asm/code_0805B290.o(.text);
         build/asm/code_0805B2CC.o(.text);
         build/asm/code_0805B438.o(.text);

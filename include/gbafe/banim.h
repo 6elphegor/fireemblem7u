@@ -945,10 +945,10 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_0805ADF0
 // ??? sub_805B610
 // ??? sub_805B678
-// ??? sub_0805AECC
-// ??? sub_0805AFBC
-// ??? sub_0805B040
-// ??? sub_0805B0C4
+// ??? efxDivine_Loop_Main
+// ??? StartSubSpell_efxDivineBG
+// ??? StartSubSpell_efxDivineBG_2
+// ??? StartSubSpell_efxDivineBG_3
 // ??? efxDivineBG_Loop
 // ??? StartSubSpell_efxDivineOBJ
 // ??? efxDivineOBJ_Loop
