@@ -233,8 +233,52 @@ void PutModeSelectCharacterText(s32 index)
 }
 
 
-void PutModeSelectDifficultyText(struct ModeSelectProc * proc);
-ASM_FUNC("asm/nonmatching/code_080A76F8.s");
+void PutModeSelectDifficultyText(struct ModeSelectProc * proc)
+{
+    s32 unk = proc->unk_43[proc->unk_41];
+
+    ClearText(&gUnk_020000A4.text[0]);
+    ClearText(&gUnk_020000A4.text[1]);
+
+    PutDrawText(
+        &gUnk_020000A4.text[0], gBg1Tm + TM_OFFSET(15, 12), unk == 0 ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY,
+        0, 0, DecodeMsg(0x12BA));
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    switch (proc->unk_49[proc->unk_41])
+    {
+        case 0:
+            if (!(1 & proc->unk_40))
+            {
+                return;
+            }
+
+            break;
+
+        case 1:
+            if (!(4 & proc->unk_40))
+            {
+                return;
+            }
+
+            break;
+
+        case 2:
+            if (!(0x10 & proc->unk_40))
+            {
+                return;
+            }
+
+            break;
+    }
+
+    PutDrawText(
+        &gUnk_020000A4.text[1], gBg1Tm + TM_OFFSET(15, 14), unk == 1 ? TEXT_COLOR_SYSTEM_GOLD : TEXT_COLOR_SYSTEM_GRAY,
+        0, 0, DecodeMsg(0x12BB));
+
+    return;
+}
 
 
 struct FaceProc * StartModeSelectFace(s32 index);
