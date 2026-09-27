@@ -175,7 +175,32 @@ int CountEpilogueLines(char const * str)
     }
 }
 
+#if NONMATCHING
+void CountEpilogueEntryLines(void)
+{
+    struct EpilogueEnt * ent = gpEpilogueEnts;
+
+    gEpilogueTotalLines = 0;
+
+    for (; ent->info != NULL; ent++)
+    {
+        if (ent->info->pid == 0xCD)
+        {
+            ent->lines = 9;
+            gEpilogueTotalLines += 9;
+        }
+        else if (ent->info->pid != 3)
+        {
+            ent->lines = CountEpilogueLines(DecodeMsg((s8) ent->defeatChapter >= 0 ? ent->info->msgDead : ent->info->msgAlive));
+            gEpilogueTotalLines += ent->lines;
+        }
+    }
+
+    gEpilogueTotalLines += 5;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B6D64.s");
+#endif
 
 void InitEpilogueData(void)
 {

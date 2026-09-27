@@ -1369,7 +1369,51 @@ void WorldMap_InitScrollCamera(struct WorldMapProc * proc)
     proc->unk_54 = 1;
 }
 
+#if NONMATCHING
+void WorldMap_LoopScrollCamera(struct WorldMapProc * proc)
+{
+    int camX = WmGetCameraX();
+    int camY = WmGetCameraY();
+    int x = camX;
+    int y = camY;
+
+    while ((s16) proc->unk_40 < 0x100 && x == camX && y == camY)
+    {
+        int t, d;
+
+        proc->unk_40 += proc->speed;
+
+        t = 0x100 - (s16) proc->unk_40;
+        d = ABS(proc->targetX - proc->camX);
+        x = d - d * t * t / 0x10000;
+
+        t = 0x100 - (s16) proc->unk_40;
+        d = ABS(proc->targetY - proc->camY);
+        y = d - d * t * t / 0x10000;
+    }
+
+    if (proc->targetX > proc->camX)
+        x = proc->camX + x;
+    else
+        x = proc->camX - x;
+
+    if (proc->targetY > proc->camY)
+        y = proc->camY + y;
+    else
+        y = proc->camY - y;
+
+    WmMoveCamera(x - camX, y - camY);
+    WmUpdateCamera(-1, -1);
+
+    if (proc->unk_40 == 0x100)
+    {
+        Proc_Break(proc);
+        proc->unk_54 = 0;
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B5430.s");
+#endif
 void StartWorldMap(u8 mode, int x, int y, u32 flags)
 {
     struct WorldMapProc * proc = Proc_Start(ProcScr_WorldMap, PROC_TREE_3);
@@ -1604,7 +1648,27 @@ void WmSpotlight_Init(struct WmSpotlightProc * proc)
 
     gWmHBlankFlags |= 2;
 }
+#if NONMATCHING
+void WmSpotlight_Loop(struct WmSpotlightProc * proc)
+{
+    int max = 60;
+    int k = 0x18;
+    int r, c;
+
+    proc->timer++;
+    r = k * proc->timer * proc->timer / (max * max);
+    c = 0x10 - 0x10 * proc->timer * proc->timer / (max * max);
+
+    sub_0807764C(proc->x - gWmSt.x, proc->y - (gWmSt.y + 1), r);
+
+    SetBlendConfig(2, 0, 0, c);
+
+    if (proc->timer >= max)
+        proc->timer = 0;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B5A84.s");
+#endif
 
 void WmEndSpotlight(void)
 {

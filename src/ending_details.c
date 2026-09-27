@@ -1085,7 +1085,96 @@ void TurnRecord_SetupText(void)
     Text_DrawString(gpTurnRecordTexts + 19, DecodeMsg(0x1185));
 }
 
+#if NONMATCHING
+int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId)
+{
+    int r6;
+    int y;
+    int chapterTurn;
+    int textIndex;
+
+    int x = 3;
+    int chapterIncrement = 0;
+
+    textIndex = displayId % 9;
+    y = (displayId * 2) & 0x1f;
+    r6 = y * 0x20;
+
+    TmFillRect_thm(gBg1Tm + TM_OFFSET(0, y), 31, 1, 0);
+    EnableBgSync(BG1_SYNC_BIT);
+
+    ClearText(gpTurnRecordTexts + 0 + textIndex);
+    ClearText(gpTurnRecordTexts + 9 + textIndex);
+
+    if ((u32) chapterStats == -1)
+    {
+        int gameTotalTurns = GetGameTotalTurnCount();
+
+        PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + 0x10;}), 3, 0, chapterIncrement, DecodeMsg(0x12D1));
+        PutNumber(gBg1Tm + ({r6 + 0x17;}), 2, gameTotalTurns);
+        PutText(gpTurnRecordTexts + 18, gBg1Tm + ({r6 + 0x18;}));
+
+        return 0;
+    }
+
+    if (chapterStats)
+    {
+        int chapterIndex = chapterStats->chapter_index;
+        int num = GetChapterInfo(chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0] >> 1;
+
+        if (chapterIndex == 0)
+        {
+            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + ({r6 + x;}), 3, 0, chapterIncrement, DecodeMsg(0x1187));
+        }
+        else if (chapterIndex >= 0x2E && chapterIndex <= 0x2F)
+        {
+            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + ({r6 + x;}), 3, 0, chapterIncrement, DecodeMsg(0x1186));
+        }
+        else
+        {
+            int digits;
+
+            PutText(gpTurnRecordTexts + 19, gBg1Tm + TM_OFFSET(x, y));
+
+            digits = 0;
+
+            if (num > 9)
+                digits = 1;
+
+            PutNumber(gBg1Tm + TM_OFFSET(digits + 2 + x, y), 2, num);
+
+            if (chapterIndex == 0x19)
+                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + 3 + x, y), 2, 0, 0, DecodeMsg(0x1189));
+            else if (GetChapterInfo(chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0] & 1)
+                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + 3 + x, y), 2, 0, 0, DecodeMsg(0x1188));
+        }
+
+        if (chapterIndex >= 0x2E && chapterIndex <= 0x2F)
+        {
+            chapterTurn = chapterStats->chapter_turn;
+            ++chapterStats;
+            chapterTurn += chapterStats->chapter_turn;
+            chapterIncrement = 1;
+        }
+        else
+        {
+            chapterTurn = chapterStats->chapter_turn;
+        }
+
+        if (chapterIndex == 0x19)
+            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + (8 + x);}), 0, 0, 0, DecodeMsg(GetChapterInfo(0x19)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
+        else
+            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + (5 + x);}), 0, 0, 0, DecodeMsg(GetChapterInfo(chapterIndex)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
+
+        PutNumber(gBg1Tm + ({r6 + (20 + x);}), 2, chapterTurn);
+        PutText(gpTurnRecordTexts + 18, gBg1Tm + ({r6 + (21 + x);}));
+    }
+
+    return chapterIncrement;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080B9340.s");
+#endif
 void TurnRecord_Loop_Main(struct EndingTurnRecordProc * proc)
 {
     int y = proc->yPos >> 6;
@@ -1416,7 +1505,73 @@ void EndingCgScroll_Init(struct EndingCgScrollProc * proc)
     SetOnHBlankA(EndingCgScroll_HBlank);
 }
 
+#if NONMATCHING
+void EndingCgScroll_Loop(struct EndingCgScrollProc * proc)
+{
+    int row = (proc->lastY >> 3) & 0x1F;
+
+    proc->lastY = proc->yPos >> 6;
+
+    if (proc->lastY >= 0x720)
+    {
+        SetBgOffset(3, 0, 0x80);
+        Proc_Break(proc);
+        return;
+    }
+
+    SetBgOffset(3, 0, (proc->lastY - 0xA0) & 0xFF);
+
+    if (proc->imgIdx < 7)
+    {
+        void const * img = proc->lut->img[proc->imgIdx];
+
+        if (img != NULL)
+            Decompress(img, (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + proc->imgIdx * 0x800));
+        else
+            CpuFastFill(0, (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + proc->imgIdx * 0x800), 0x800);
+
+        proc->imgIdx++;
+    }
+
+    if ((row & 7) == 0)
+    {
+        u8 const * tsa = proc->lut->tsa[proc->tsaIdx];
+
+        if (proc->tsaIdx == (row >> 3))
+        {
+            if (tsa == NULL)
+                return;
+
+            {
+                u16 tileref = proc->bank * 0x1C0 + 0xA000;
+                TmApplyTsa_thm(gBg3Tm + row * 0x20, tsa, tileref);
+            }
+
+            EnableBgSync(BG3_SYNC_BIT);
+
+            if (++proc->tsaIdx == 4)
+            {
+                proc->tsaIdx = 0;
+                proc->imgIdx = 0;
+                proc->bank = 1 - proc->bank;
+                proc->lut++;
+            }
+        }
+    }
+
+    if (gpKeySt->pressed & START_BUTTON)
+    {
+        if (IsGamePlayedThrough())
+            Proc_Goto(proc, 0);
+
+        return;
+    }
+
+    proc->yPos += proc->speed;
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080BA10C.s");
+#endif
 
 void EndingCgScroll2_Init(struct EndingCgScrollProc * proc)
 {
