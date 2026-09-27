@@ -388,7 +388,6 @@ void ClassIntroLetter_LoopDisplay(struct OpInfoViewProc * proc)
     proc->timer = 0;
 }
 
-#if NONMATCHING
 void ClassIntroLetter_LoopFadeOut(struct OpInfoViewProc * proc)
 {
     int timer = proc->timer;
@@ -397,7 +396,7 @@ void ClassIntroLetter_LoopFadeOut(struct OpInfoViewProc * proc)
     int x = proc->x;
     int d = ((x - 0x58) * timer * timer) >> 15;
 
-    PutClassIntroLetter(proc->tile, proc->index, x + d, 0x18, a4, a5, ({ proc->timer + 0; }) >> 4);
+    PutClassIntroLetter(proc->tile, proc->index, x + d, 0x18, a4, a5, ({ proc->timer + 0; }) / 16);
 
     if (proc->timer == 0x100)
     {
@@ -407,9 +406,6 @@ void ClassIntroLetter_LoopFadeOut(struct OpInfoViewProc * proc)
 
     proc->timer += 8;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080AF4D4.s");
-#endif
 ProcPtr StartClassNameIntroLetter(ProcPtr parent, int index, int x, int tile)
 {
     struct OpInfoViewProc * proc = Proc_Start(ProcScr_ClassIntroLetter, parent);
