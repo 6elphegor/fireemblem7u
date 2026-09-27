@@ -433,8 +433,25 @@ void TitleFlame_Init(struct Proc * proc)
     gTitleSt.unk_10 = 0;
 }
 
-void TitleFlame_Loop(struct Proc * proc);
-ASM_FUNC("asm/nonmatching/code_080BADA0.s");
+void TitleFlame_Loop(struct Proc * proc)
+{
+    if ((proc->unk66 >> 1) <= 0x10)
+    {
+        proc->unk66++;
+
+        if (proc->unk66 <= 0x10)
+            SetBgOffset(BG_1, -(proc->unk66 >> 3), -0x34 - (proc->unk66 >> 2));
+
+        gTitleFlameBldAlpha = (proc->unk66 >> 1) + ((0x10 - (proc->unk66 >> 2)) << 8);
+    }
+
+    sub_08076FC4(GetScanlineBuf(1, 0x00), proc->unk64, gTitleSt.unk_04, gTitleSt.unk_00, 0);
+    sub_08076FC4(GetScanlineBuf(1, 0xA0), proc->unk64, gTitleSt.unk_0C, gTitleSt.unk_08, 0);
+    SwapScanlineBufs();
+
+    SetBgOffset(BG_0, 0, gTitleSt.unk_10);
+    proc->unk64++;
+}
 
 
 struct ProcCmd CONST_DATA ProcScr_TitleAnimSpriteCtrl[] = {
