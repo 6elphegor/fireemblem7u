@@ -1555,3 +1555,6 @@ gUnknown_08B99968 = 0x08B99968;
 gUnknown_08B9997C = 0x08B9997C;
 gUnknown_08B99984 = 0x08B99984;
 gUnknown_08B999BC = 0x08B999BC;
+gMultiBootLength = 0x0300474C;
+gMultiBootParam = 0x03004750;
+gMultiBootSrcp = 0x030046B0;

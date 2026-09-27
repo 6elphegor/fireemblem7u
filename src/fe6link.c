@@ -3,6 +3,15 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+extern struct MultiBootParam gMultiBootParam;
+extern u8 * gMultiBootSrcp;
+extern int gMultiBootLength;
+
+void MultiBootInit(struct MultiBootParam * mp);
+int sub_08049424(struct MultiBootParam * mp); // MultiBootMain
+void sub_08049880(struct MultiBootParam * mp, const u8 * srcp, int length, u8 palette_color, s8 palette_speed); // MultiBootStartMaster
+int sub_08049944(struct MultiBootParam * mp); // MultiBootCheckComplete
+
 extern u16 CONST_DATA gUnknown_08B999BC[];
 
 extern u16 CONST_DATA gUnknown_08B99984[];
@@ -90,7 +99,44 @@ void SoundVSyncOff_rev01(void);
 void LoadHelpBoxGfx(void * vram, int palId);
 
 ASM_FUNC("asm/nonmatching/code_080431E0.s");
-ASM_FUNC("asm/nonmatching/code_080433F0.s");
+void FE6Link_Loop(struct Fe6LinkProc * proc)
+{
+    int i;
+
+    for (i = 1; i < 4; i++)
+    {
+        if (((gMultiBootParam.response_bit >> i) & 1) == 0)
+            gSioSt->playerStatus[i] = 0;
+        else if (((gMultiBootParam.client_bit >> i) & 1) == 0)
+            gSioSt->playerStatus[i] = 1;
+        else
+            gSioSt->playerStatus[i] = 3;
+    }
+
+    if (proc->unk_64 == 0 && (gpKeySt->pressed & B_BUTTON))
+    {
+        SioPlaySoundEffect(1);
+        Proc_Goto(proc, 11);
+        return;
+    }
+
+    if (proc->unk_64 == 1)
+    {
+        sub_08049880(&gMultiBootParam, gMultiBootSrcp + MULTIBOOT_HEADER_SIZE, gMultiBootLength - MULTIBOOT_HEADER_SIZE, 4, 1);
+        proc->unk_64 = 2;
+    }
+
+    sub_08049424(&gMultiBootParam);
+
+    if (proc->unk_64 == 0 && gMultiBootParam.probe_count == 0 && gMultiBootParam.client_bit == 2)
+    {
+        sub_08049880(&gMultiBootParam, gMultiBootSrcp + MULTIBOOT_HEADER_SIZE, gMultiBootLength - MULTIBOOT_HEADER_SIZE, 4, 1);
+        proc->unk_64 = 2;
+    }
+
+    if (sub_08049944(&gMultiBootParam))
+        Proc_Break(proc);
+}
 void sub_080434EC(ProcPtr proc)
 {
     u16 magic = 0x2586;
