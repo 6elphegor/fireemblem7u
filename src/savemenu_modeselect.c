@@ -281,27 +281,67 @@ void PutModeSelectDifficultyText(struct ModeSelectProc * proc)
 }
 
 
-struct FaceProc * StartModeSelectFace(s32 index);
-ASM_FUNC("asm/nonmatching/code_080A77C0.s");
+struct FaceProc * StartModeSelectFace(s32 index)
+{
+    s32 fids[3] = {
+        0x16,
+        0x02,
+        0x0C,
+    };
+
+    struct FaceProc * pFaceProc =
+        StartBmFace(0, fids[index], 204, 72, (FACE_DISP_KIND(FACE_96x80) | FACE_DISP_HLAYER(FACE_HLAYER_0)));
+    StartFaceFadeIn(pFaceProc);
+
+    return pFaceProc;
+}
 
 
-extern u8 Img_08435C64[];
-extern u8 Img_08435D54[];
-extern u8 Img_08435E44[];
-extern u8 Img_08435EA8[];
+extern u8 Img_08415BE8[];
+extern u8 Img_08415CB0[];
+extern u8 Img_08415DC4[];
+extern u8 Img_08415E04[];
 
-extern u8 Img_08435F00[];
-extern u8 Img_08436000[];
-extern u8 Img_084360F4[];
-extern u8 Img_08436158[];
+extern u8 Img_08415E54[];
+extern u8 Img_08415F14[];
+extern u8 Img_08415FF0[];
+extern u8 Img_0841601C[];
 
-extern u8 Img_084361B0[];
-extern u8 Img_084362B0[];
-extern u8 Img_084363A4[];
-extern u8 Img_08436408[];
+extern u8 Img_08416058[];
+extern u8 Img_08416118[];
+extern u8 Img_084161F4[];
+extern u8 Img_08416220[];
 
-void LoadModeSelectChapterGfx(s32 index);
-ASM_FUNC("asm/nonmatching/code_080A77F8.s");
+void LoadModeSelectChapterGfx(s32 index)
+{
+    u8 * gUnk_084393E4[3][4] = {
+        {
+            Img_08415BE8,
+            Img_08415CB0,
+            Img_08415DC4,
+            Img_08415E04,
+        },
+        {
+            Img_08415E54,
+            Img_08415F14,
+            Img_08415FF0,
+            Img_0841601C,
+        },
+        {
+            Img_08416058,
+            Img_08416118,
+            Img_084161F4,
+            Img_08416220,
+        },
+    };
+
+    Decompress(gUnk_084393E4[index][0], (void *)0x60102C0);
+    Decompress(gUnk_084393E4[index][1], (void *)0x60106C0);
+    Decompress(gUnk_084393E4[index][2], (void *)0x6010AC0);
+    Decompress(gUnk_084393E4[index][3], (void *)0x6010EC0);
+
+    return;
+}
 
 
 void sub_080A7860(s32 palId)
