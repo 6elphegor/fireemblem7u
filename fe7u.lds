@@ -3752,7 +3752,6 @@ SECTIONS
         build/asm/code_08064970.o(.text);
         build/asm/code_080649C8.o(.text);
         build/asm/code_08064A2C.o(.text);
-        build/asm/code_08064A3C.o(.text);
         build/src/banim-ekrdragon.o(.text);
         build/src/banim-ekrdragonfx.o(.text);
         build/asm/code_0806693C.o(.text);

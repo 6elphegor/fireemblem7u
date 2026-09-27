@@ -83,40 +83,36 @@ struct ChapterInfo {
     /* 60 */ u32 goldForFundsRankInEliwoodStory[2]; // FE7
     /* 68 */ u32 goldForFundsRankInHectorStory[2]; // FE7
 
-    /* 70 */ u16 msg_chapter_title_a;
-    /* 72 */ u16 msg_chapter_title_b;
+    /* 70 */ u16 msg_chapter_title[2];
+    /* 74 */ u16 unk74[2]; // FE7U only (not in FE7J): the fields below are at FE7J offset + 4
 
-    /* 74 */ u8 mapEventDataId;
-    /* 75 */ u8 gmapEventId;
+    /* 78 */ u8 mapEventDataId;
+    /* 79 */ u8 gmapEventId;
 
-    /* 76 */ u16 divinationTextIdBeginning; // FE7
-    /* 78 */ u16 divinationTextIdInEliwoodStory; // FE7
-    /* 7A */ u16 divinationTextIdInHectorStory; // FE7
-    /* 7C */ u16 divinationTextIdEnding; // FE7
-    /* 7E */ u8 divinationPortrait; // FE7
-    /* 7F */ u8 divinationFee; // FE7
+    /* 7A */ u16 divinationTextIdBeginning; // FE7
+    /* 7C */ u16 divinationTextIdInEliwoodStory; // FE7
+    /* 7E */ u16 divinationTextIdInHectorStory; // FE7
+    /* 80 */ u16 divinationTextIdEnding; // FE7
+    /* 82 */ u8 divinationPortrait; // FE7
+    /* 83 */ u8 divinationFee; // FE7
 
-    /* 80 */ u8 prepScreenNumber[2];
-    /* 82 */ u8 merchantPosX;
-    /* 83 */ u8 merchantPosXInHectorStory; // FE7
-    /* 84 */ u8 merchantPosY;
-    /* 85 */ u8 merchantPosYInHectorStory; // FE7
+    /* 84 */ u8 prepScreenNumber[2];
+    /* 86 */ u8 merchantPosX;
+    /* 87 */ u8 merchantPosXInHectorStory; // FE7
+    /* 88 */ u8 merchantPosY;
+    /* 89 */ u8 merchantPosYInHectorStory; // FE7
 
-    /* 86 */ s8 victorySongEnemyThreshold;
-    /* 87 */ bool8 fadeToBlack;
+    /* 8A */ s8 victorySongEnemyThreshold;
+    /* 8B */ bool8 fadeToBlack;
 
-    /* 88 */ u16 statusObjectiveTextId;
-    /* 8A */ u16 goalWindowTextId;
-    /* 8C */ u8 goalWindowDataType;
-    /* 8D */ u8 protectCharacterIndex;
+    /* 8C */ u16 statusObjectiveTextId;
+    /* 8E */ u16 goalWindowTextId;
+    /* 90 */ u8 goalWindowDataType;
+    /* 91 */ u8 protectCharacterIndex;
 
-    /* 8E */ u8 destPosX;
-    /* 8F */ u8 destPosY;
+    /* 92 */ u8 destPosX;
+    /* 93 */ u8 destPosY;
 
-    /* 90 */ u8 unk90; // ?
-    /* 91 */ u8 unk91; // ? (default_background in FE7J)
-    /* 92 */ u8 unk92; // ?
-    /* 93 */ u8 unk93; // ?
     /* 94 */ u8 unk94; // ?
     /* 95 */ u8 default_background;
     /* 96 */ u8 unk96; // ?

@@ -313,8 +313,32 @@ void StartMovingHelpBoxExt(struct HelpBoxInfo const * info, ProcPtr parent, int 
     proc->info = info;
 }
 
-void ApplyHelpBoxContentSize(struct HelpBoxProc * proc, int w_inner, int h_inner);
-ASM_FUNC("asm/nonmatching/code_08081CDC.s");
+void ApplyHelpBoxContentSize(struct HelpBoxProc * proc, int w_inner, int h_inner)
+{
+    w_inner = 0xE0 & (w_inner + 31); // align to 32 pixel multiple
+
+    switch (GetHelpBoxItemInfoKind(proc->item)) {
+    case HELPBOX_INFO_WEAPON:
+        w_inner = 0xA0;
+        h_inner += 0x20;
+        break;
+
+    case HELPBOX_INFO_STAFF:
+        if (w_inner < 0x60)
+            w_inner = 0x60;
+
+        h_inner += 0x10;
+        break;
+
+    case HELPBOX_INFO_SAVE_MENU:
+        w_inner = gPlaySt.tact_enabled ? 0xC0 : 0x40;
+        h_inner += 0x10;
+        break;
+    }
+
+    proc->w_box_fini = w_inner;
+    proc->h_box_fini = h_inner;
+}
 
 
 void ApplyHelpBoxPosition(struct HelpBoxProc * proc, int x, int y)

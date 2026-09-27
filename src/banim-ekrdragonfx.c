@@ -513,9 +513,6 @@ struct ProcCmd CONST_DATA ProcScr_EkrDragonBg2ScrollExt[] = {
     PROC_END,
 };
 
-/* Quite strange: https://decomp.me/scratch/be5w2 */
-#if NONMATCHING
-
 ProcPtr NewEkrDragonBg2ScrollExt(struct Anim * anim)
 {
     u32 i;
@@ -540,15 +537,6 @@ ProcPtr NewEkrDragonBg2ScrollExt(struct Anim * anim)
     proc->timer = 0;
     return proc;
 }
-
-#else
-
-NAKEDFUNC
-ProcPtr NewEkrDragonBg2ScrollExt(struct Anim * anim);
-ASM_FUNC("asm/nonmatching/code_08065C24.s");
-
-
-#endif
 
 void EkrDragonBg2ScrollExt_CallBack(void)
 {
@@ -636,8 +624,6 @@ struct ProcCmd CONST_DATA ProcScr_EkrDragonBg3HfScroll[] = {
     PROC_END,
 };
 
-#if NONMATCHING
-
 void NewEkrDragonBg3HfScroll(int duration, u16 off_base)
 {
     u32 i;
@@ -660,17 +646,8 @@ void NewEkrDragonBg3HfScroll(int duration, u16 off_base)
 
     proc = Proc_Start(ProcScr_EkrDragonBg3HfScroll, PROC_TREE_VSYNC);
     proc->timer = 0;
-    proc->frame = duration;
+    proc->duration = duration;
 }
-
-#else
-
-NAKEDFUNC
-void NewEkrDragonBg3HfScroll(int a, u16 b);
-ASM_FUNC("asm/nonmatching/code_08065DC8.s");
-
-
-#endif
 
 void EkrDragonBg3HfScroll_Nop(struct ProcEkrDragonIntroFx * proc)
 {
@@ -722,9 +699,101 @@ ProcPtr NewEkrDragonFxMain(struct Anim * anim)
     proc->round_cur = 0x1000;
 }
 
-void EkrDragonFxMainHandler(struct ProcEkrDragonFx * proc);
-ASM_FUNC("asm/nonmatching/code_08065EE8.s");
+void EkrDragonFxMainHandler(struct ProcEkrDragonFx * proc)
+{
+    s16 ret;
+    int round_type = proc->anim->currentRoundType;
 
+    if (proc->round_cur != round_type)
+    {
+        proc->round_cur = round_type;
+        proc->timer = 0;
+        proc->step = 0;
+        proc->frame = 0;
+
+        switch (round_type) {
+        case ANIM_ROUND_HIT_CLOSE:
+        case ANIM_ROUND_NONCRIT_FAR:
+        case ANIM_ROUND_MISS_CLOSE:
+            proc->conf = FrameLut_EkrDragon_082DE7AA;
+            break;
+
+        case ANIM_ROUND_CRIT_CLOSE:
+        case ANIM_ROUND_CRIT_FAR:
+            proc->conf = FrameLut_EkrDragon_082DE7BC;
+            break;
+
+        case ANIM_ROUND_TAKING_MISS_CLOSE:
+        case ANIM_ROUND_TAKING_MISS_FAR:
+            proc->conf = FrameLut_EkrDragon_082DE7CE;
+            break;
+
+        case ANIM_ROUND_TAKING_HIT_CLOSE:
+        case ANIM_ROUND_STANDING:
+        case ANIM_ROUND_TAKING_HIT_FAR:
+            proc->conf = FrameLut_EkrDragon_082DE7A4;
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    ret = EfxAdvanceFrameLut(&proc->timer, (void *)&proc->frame, proc->conf);
+    if (ret >= 0)
+    {
+        LZ77UnCompWram(proc->fx[ret], gEkrTsaBuffer);
+        EkrDragonTmCpyWithDistance();
+        EkrDragonTmCpyExt(gEkrBgPosition, 0);
+        return;
+    }
+    else if (ret == -6)
+    {
+        if (proc->step == 0)
+        {
+#if NONMATCHING
+            if (GetAnimAnotherSide(proc->anim)->state3 & ANIM_BIT3_HIT_EFFECT_APPLIED)
+                proc->step = 1;
+#else
+            register struct Anim * anim2 asm("r1");
+            register int bitfile asm("r0");
+
+            anim2 = GetAnimAnotherSide(proc->anim);
+            bitfile = ANIM_BIT3_HIT_EFFECT_APPLIED;
+
+            bitfile &= anim2->state3;
+            if (bitfile)
+                proc->step = 1;
+#endif
+        }
+        else if (CheckEkrHitDone() == true)
+        {
+            proc->timer = 0;
+            proc->step = 0;
+            proc->frame++;
+        }
+    }
+    else if (ret == -5)
+    {
+        if (proc->step == 0)
+        {
+            proc->step = 1;
+        }
+        else if (proc->anim->state3 & ANIM_BIT3_HIT_EFFECT_APPLIED)
+        {
+            proc->timer = 0;
+            proc->step = 0;
+            proc->frame++;
+        }
+    }
+    else if (ret == -4)
+    {
+        PlaySFX(0x2F2, 0x100, 0x78, 0);
+        proc->timer = 0;
+        proc->step = 0;
+        proc->frame++;
+    }
+}
 
 struct ProcCmd CONST_DATA ProcScr_EkrDragonBodyBlack[] = {
     PROC_19,

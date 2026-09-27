@@ -25,6 +25,7 @@ enum dragonstatue_attr {
 
 extern struct EkrDragonStatus gEkrDragonStatusLeft, gEkrDragonStatusRight;
 
+int GetKeyStatus_IgnoreMask(void);
 void ResetEkrDragonStatus(void);
 struct EkrDragonStatus * GetEkrDragonStatus(struct Anim * anim);
 u16 GetEkrDragonStatusAttr(struct Anim * anim);
