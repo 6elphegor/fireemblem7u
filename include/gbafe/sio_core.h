@@ -718,3 +718,31 @@ void sub_804926C(ProcPtr proc);
 
 extern struct SioUnknown_0203DD90 gUnk_Sio_0203DD90;
 void CallEraseSaveEvent(ProcPtr proc);
+
+// Shared link arena data (FE8U names at FE7U addresses, see symbols.ld)
+
+extern struct Text Texts_0203DB14[];
+extern struct Text Text_0203DB14;
+extern struct Font Font_0203DB64;
+extern struct Font Font_Sio_02000C60;
+extern struct Text gUnk_Sio_0203DA88[];
+extern char gUnk_Sio_0203DAC5[][19];
+extern struct Text gSioTexts[];
+extern const u8 Img_TacticianSelObj[];
+extern const u16 Pal_TacticianSelObj[];
+
+// sio_uiutils / sio_mu and other helpers (FE7U names)
+
+void sub_08047B34(void);
+void sub_08047BD4(int a, int b);
+void sub_08047CA8(void);
+void sub_08049220(void);
+void StartLinkArenaTitleBanner(ProcPtr parent, int size);
+void sub_08047E84(u8 * str, int len, int x, int y, int palId, ProcPtr parent);
+ProcPtr StartNameEntrySpriteDraw(ProcPtr parent, int x, int y);
+void UpdateNameEntrySpriteDraw(void * proc, int xNew, int yNew, int xPointer, int cursorKind, int f);
+void PutLinkArenaChoiceBannerSprite(int x, int y);
+void UpdateLinkArenaMenuScrollBar(u8 a, s16 b);
+void ScrollMultiArenaTeamSprites(int amount);
+void * memcpy(void * dst, const void * src, unsigned long n);
+void m4aMPlayFadeOut(struct MusicPlayerInfo * mplayInfo, u16 speed);
