@@ -517,10 +517,32 @@ void TitleSprite_Loop(struct ProcTitleSpriteCtrl * proc)
     }
 }
 
-void TitleSpriteBlendIN(ProcPtr approc, int x_step, int y_step, int x, int y, int duration, ProcPtr parent);
-ASM_FUNC("asm/nonmatching/code_080BAFE8.s");
+void TitleSpriteBlendIN(ProcPtr approc, int x_step, int y_step, int x, int y, int duration, ProcPtr parent)
+{
+    struct ProcTitleSpriteCtrl * proc = Proc_Start(ProcScr_TitleAnimSpriteCtrl, parent);
+
+    proc->approc = approc;
+    proc->x_step = x_step;
+    proc->y_step = y_step;
+    proc->x = x;
+    proc->y = y;
+    proc->duration = duration;
+    proc->callback = NULL;
+    proc->mode = 1;
+}
 
 
-void TitleSpriteBlendOUT(ProcPtr approc, int x_step, int y_step, int x, int y, int duration, void (* callback)(ProcPtr proc), ProcPtr parent);
-ASM_FUNC("asm/nonmatching/code_080BB028.s");
+void TitleSpriteBlendOUT(ProcPtr approc, int x_step, int y_step, int x, int y, int duration, void (* callback)(ProcPtr proc), ProcPtr parent)
+{
+    struct ProcTitleSpriteCtrl * proc = Proc_Start(ProcScr_TitleAnimSpriteCtrl, parent);
+
+    proc->approc = approc;
+    proc->x_step = x_step;
+    proc->y_step = y_step;
+    proc->x = x;
+    proc->y = y;
+    proc->callback = callback;
+    proc->duration = duration;
+    proc->mode = 0;
+}
 
