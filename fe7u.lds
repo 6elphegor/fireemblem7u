@@ -620,15 +620,8 @@ SECTIONS
         build/src/bmcamadjust.o(.text);
         build/src/convoymenu.o(.text);
         build/src/fogmap.o(.text);
-        build/asm/code_0801DD6C.o(.text);
-        build/asm/code_0801DEFC.o(.text);
-        build/asm/code_0801DFC0.o(.text);
-        build/asm/code_0801E2CC.o(.text);
-        build/asm/code_0801E2DC.o(.text);
-        build/asm/code_0801E360.o(.text);
-        build/asm/code_0801E45C.o(.text);
-        build/asm/code_0801E480.o(.text);
-        build/asm/code_0801E4B8.o(.text);
+        build/src/menuitempanel.o(.text);
+        build/src/prep_unitswap.o(.text);
         build/asm/code_0801E4D4.o(.text);
         build/asm/code_0801E518.o(.text);
         build/asm/code_0801E55C.o(.text);

@@ -1134,3 +1134,5 @@ gConvoyItemCount = 0x02001F70;
 gProcCmd_ConvoyMenu = 0x08B9369C;
 gConvoyMenuDef = 0x08B95944;
 gSendToConvoyMenuDef = 0x08B95968;
+gProcCmd_MenuItemPanel = 0x08B936EC;
+sProcScr_PrepUnitSwap = 0x08B93704;
