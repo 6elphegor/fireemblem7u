@@ -19,7 +19,7 @@ NewEkrDragonBg3HfScroll: @ 0x08065DC8
 	ldr r6, _08065E38 @ =0x0201FDB0
 	ldr r7, _08065E3C @ =0x0201FDB4
 	mov sb, r7
-	ldr r7, _08065E40 @ =sub_08065DA0
+	ldr r7, _08065E40 @ =EkrDragonBg3HfScroll_OnVBlank
 	mov ip, r7
 _08065DEA:
 	strh r1, [r3]
@@ -60,5 +60,5 @@ _08065E30: .4byte 0x0201FEF8
 _08065E34: .4byte 0x0201FDAC
 _08065E38: .4byte 0x0201FDB0
 _08065E3C: .4byte 0x0201FDB4
-_08065E40: .4byte sub_08065DA0
+_08065E40: .4byte EkrDragonBg3HfScroll_OnVBlank
 _08065E44: .4byte 0x08BD94F0

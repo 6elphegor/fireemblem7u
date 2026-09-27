@@ -13,7 +13,7 @@ NewEkrDragonBg2ScrollExt: @ 0x08065C24
 	mov ip, r3
 	ldr r5, _08065C80 @ =0x0201FB24
 	ldr r6, _08065C84 @ =0x0201FB28
-	ldr r7, _08065C88 @ =sub_08065BFC
+	ldr r7, _08065C88 @ =EkrDragonBg2Scroll_OnVBlank
 	movs r3, #0
 _08065C3A:
 	strh r3, [r2]
@@ -50,5 +50,5 @@ _08065C78: .4byte 0x0201FC6C
 _08065C7C: .4byte 0x0201FB20
 _08065C80: .4byte 0x0201FB24
 _08065C84: .4byte 0x0201FB28
-_08065C88: .4byte sub_08065BFC
+_08065C88: .4byte EkrDragonBg2Scroll_OnVBlank
 _08065C8C: .4byte 0x08BD94B8
