@@ -53,7 +53,7 @@ build/fe7u.ld: $(LDS)
 
 $(ELF): $(C_OBJS) build/asm.a build/data.o build/fe7u.ld $(LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
-	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive build/data.o
+	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive build/data.o -L $(AGBCC)/lib -lc -lgcc
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0

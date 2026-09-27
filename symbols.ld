@@ -3479,3 +3479,4 @@ sSelectTargetList = 0x0203DCF8;
 sSelectTargetCount = 0x0203DFF8;
 ProcScr_TargetSelection = 0x08B9A92C;
 gNearTargetLinkOrder = 0x08B9A964;
+end = 0x0203EEA8;
