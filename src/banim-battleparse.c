@@ -10,6 +10,22 @@ struct SpellAssocEnt {
 extern struct SpellAssocEnt CONST_DATA gSpellAssocData[];
 
 extern s16 gEkrInitialHitSide;
+extern u16 gAnimRoundData[20];
+extern u16 gEfxHpLut[22];
+extern s16 gBanimPositionIsEnemy[2];
+extern s16 gEkrGaugeHp[2];
+extern s16 gBanimMaxHP[2];
+
+extern u16 const gUnk_081D8508[];
+extern u16 const gUnk_081D8512[];
+extern u16 const gUnk_081D851C[];
+extern u16 const gUnk_081D8526[];
+extern u16 const gUnk_081D8530[];
+extern u16 const gUnk_081D853A[];
+extern u16 const gUnk_081D8544[];
+extern u16 const gUnk_081D854E[];
+extern u16 const gUnk_081D8558[];
+extern u16 const gUnk_081D8562[];
 
 extern CONST_DATA s8 BanimTerrainGroundDefault[];
 extern CONST_DATA s8 BanimTerrainGround_Tileset01[];
@@ -243,4 +259,277 @@ void UnsetMapStaffAnim(s16 * out, u16 pos, u16 weapon)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_08052C9C.s");
+#define ANIM_REF_OFFSET(off_ref_round, off_ref_pos) ((off_ref_round) * 2 + off_ref_pos)
+
+void ParseBattleHitToBanimCmd(void)
+{
+    u32 i;
+    struct BattleHit * hit;
+    u16 r9;
+    u16 r10;
+    u16 sp00[2];
+    struct BattleUnit * bul_sp04;
+    struct BattleUnit * bur_sp08;
+    s32 round_sp0C;
+    s32 is_enemy;
+    s32 distance_sp14;
+    s32 distance_sp18;
+    s16 distance_sp1C;
+    s32 is_dark_breath;
+
+    hit = gBattleHitArray;
+
+    for (i = 0; i < 20; i++)
+        gAnimRoundData[i] |= 0xFFFF;
+
+    for (i = 0; i < 20; i++)
+        gEfxHpLut[2 + i] |= 0xFFFF;
+
+    gpEkrTriangleUnits[0] = gpEkrTriangleUnits[1] = NULL;
+
+    if (gEkrDistanceType == EKR_DISTANCE_PROMOTION)
+    {
+        gAnimRoundData[0] = 4;
+        gAnimRoundData[1] = 4;
+        return;
+    }
+
+    if (gBattleStats.config & BATTLE_CONFIG_REFRESH)
+    {
+        gAnimRoundData[0] = 6;
+        gAnimRoundData[1] = 0;
+        return;
+    }
+
+    distance_sp14 = (u16) gEkrDistanceType;
+    distance_sp18 = distance_sp14;
+
+    is_dark_breath = false;
+
+    bul_sp04 = gpEkrBattleUnitLeft;
+    bur_sp08 = gpEkrBattleUnitRight;
+
+    if (GetItemIndex(bul_sp04->weaponBefore) == 0x11 && distance_sp14 == EKR_DISTANCE_CLOSE)
+        distance_sp14 = EKR_DISTANCE_FAR;
+    if (GetItemIndex(bur_sp08->weaponBefore) == 0x11 && distance_sp18 == EKR_DISTANCE_CLOSE)
+        distance_sp18 = EKR_DISTANCE_FAR;
+
+    if (GetItemIndex(bul_sp04->weaponBefore) == 0x28 && distance_sp14 == EKR_DISTANCE_CLOSE)
+        distance_sp14 = EKR_DISTANCE_FAR;
+    if (GetItemIndex(bur_sp08->weaponBefore) == 0x28 && distance_sp18 == EKR_DISTANCE_CLOSE)
+        distance_sp18 = EKR_DISTANCE_FAR;
+
+    if (GetItemIndex(bul_sp04->weaponBefore) == 0x29 && distance_sp14 == EKR_DISTANCE_CLOSE)
+        distance_sp14 = EKR_DISTANCE_FAR;
+    if (GetItemIndex(bur_sp08->weaponBefore) == 0x29 && distance_sp18 == EKR_DISTANCE_CLOSE)
+        distance_sp18 = EKR_DISTANCE_FAR;
+
+    gEfxHpLut[0] = gEkrGaugeHp[0];
+    gEfxHpLut[1] = gEkrGaugeHp[1];
+
+    round_sp0C = 0;
+    r10 = 0;
+    r9 = 0;
+
+    for (; !(hit->info & BATTLE_HIT_INFO_END); hit++, round_sp0C++)
+    {
+        s16 r3;
+        s16 distance_r4;
+        u16 * r5;
+        struct Unit * unit_r6;
+        u16 * r8;
+
+        if (hit->info & BATTLE_HIT_INFO_RETALIATION)
+            is_enemy = true;
+        else
+            is_enemy = false;
+
+        if (gBanimPositionIsEnemy[EKR_POS_L] == is_enemy)
+        {
+            r5 = &sp00[EKR_POS_L];
+            r8 = &sp00[EKR_POS_R];
+            distance_r4 = distance_sp14;
+            distance_sp1C = distance_sp18;
+            unit_r6 = &bul_sp04->unit;
+            r3 = is_dark_breath;
+
+            if (round_sp0C == 0)
+                gEkrInitialHitSide = EKR_POS_L;
+        }
+        else
+        {
+            r5 = &sp00[EKR_POS_R];
+            r8 = &sp00[EKR_POS_L];
+            distance_r4 = distance_sp18;
+            distance_sp1C = distance_sp14;
+            unit_r6 = &bur_sp08->unit;
+            r3 = 0;
+
+            if (round_sp0C == 0)
+                gEkrInitialHitSide = EKR_POS_R;
+        }
+
+        if (hit->attributes & BATTLE_HIT_ATTR_TATTACK)
+        {
+            gpEkrTriangleUnits[0] = gBattleStats.taUnitA;
+            gpEkrTriangleUnits[1] = gBattleStats.taUnitB;
+        }
+
+        if (hit->attributes & BATTLE_HIT_ATTR_CRIT)
+        {
+            if (!UnitHasMagicRank(unit_r6))
+                *r5 = gUnk_081D851C[distance_r4];
+            else
+                *r5 = gUnk_081D8544[distance_r4];
+        }
+        else if (hit->attributes & BATTLE_HIT_ATTR_SILENCER)
+        {
+            if (!UnitHasMagicRank(unit_r6))
+                *r5 = gUnk_081D851C[distance_r4];
+            else
+                *r5 = gUnk_081D8544[distance_r4];
+        }
+        else if (r3 >= 0)
+        {
+            if (!UnitHasMagicRank(unit_r6))
+                *r5 = gUnk_081D8508[distance_r4];
+            else
+                *r5 = gUnk_081D853A[distance_r4];
+        }
+        else
+        {
+            switch (sub_080672E8(2))
+            {
+            case 0:
+                *r5 = gUnk_081D854E[distance_r4];
+                break;
+
+            case 1:
+                *r5 = gUnk_081D8558[distance_r4];
+                break;
+
+            case 2:
+                *r5 = gUnk_081D8562[distance_r4];
+                break;
+
+            default:
+                break;
+            }
+        }
+
+        if (hit->attributes & BATTLE_HIT_ATTR_MISS)
+        {
+            if (!UnitHasMagicRank(unit_r6))
+                *r5 = gUnk_081D8512[distance_r4];
+            else
+                *r5 = gUnk_081D853A[distance_r4];
+
+            *r8 = gUnk_081D8526[distance_sp1C];
+        }
+        else
+        {
+            *r8 = gUnk_081D8530[distance_sp1C];
+        }
+
+        gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_L)] = sp00[EKR_POS_L];
+        r8 = sp00;
+        gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_R)] = r8[sp00 - r8 + EKR_POS_R];
+
+        if (!(hit->attributes & BATTLE_HIT_ATTR_MISS))
+        {
+            s16 new_hp;
+
+            if (hit->attributes & BATTLE_HIT_ATTR_DEVIL)
+            {
+                if (gBanimPositionIsEnemy[EKR_POS_L] == is_enemy)
+                {
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r9, EKR_POS_L)) - (s8) hit->hpChange;
+                    if (new_hp < 0)
+                        new_hp = 0;
+
+                    r9++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r9, EKR_POS_L)] = new_hp;
+                    gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_L)] = (s16) gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_L)] | ANIM_ROUND_DEVIL;
+                }
+                else
+                {
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r10, EKR_POS_R)) - (s8) hit->hpChange;
+                    if (new_hp < 0)
+                        new_hp = 0;
+
+                    r10++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r10, EKR_POS_R)] = new_hp;
+                    gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_R)] = (s16) gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_R)] | ANIM_ROUND_DEVIL;
+                }
+            }
+            else if (hit->attributes & BATTLE_HIT_ATTR_HPSTEAL)
+            {
+                if (gBanimPositionIsEnemy[EKR_POS_L] == is_enemy)
+                {
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r10, EKR_POS_R)) - (s8) hit->hpChange;
+                    if (new_hp < 0)
+                        new_hp = 0;
+
+                    r10++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r10, EKR_POS_R)] = new_hp;
+
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r9, EKR_POS_L)) + (s8) hit->hpChange;
+                    if (new_hp > gBanimMaxHP[EKR_POS_L])
+                        new_hp = gBanimMaxHP[EKR_POS_L];
+
+                    r9++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r9, EKR_POS_L)] = new_hp;
+                }
+                else
+                {
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r9, EKR_POS_L)) - (s8) hit->hpChange;
+                    if (new_hp < 0)
+                        new_hp = 0;
+
+                    r9++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r9, EKR_POS_L)] = new_hp;
+
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r10, EKR_POS_R)) + (s8) hit->hpChange;
+                    if (new_hp > gBanimMaxHP[EKR_POS_R])
+                        new_hp = gBanimMaxHP[EKR_POS_R];
+
+                    r10++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r10, EKR_POS_R)] = new_hp;
+                }
+            }
+            else
+            {
+                if (gBanimPositionIsEnemy[EKR_POS_L] == is_enemy)
+                {
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r10, EKR_POS_R)) - (s8) hit->hpChange;
+                    if (new_hp < 0)
+                        new_hp = 0;
+
+                    r10++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r10, EKR_POS_R)] = new_hp;
+
+                    if (hit->attributes & BATTLE_HIT_ATTR_POISON)
+                        gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_R)] = (s16) gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_R)] | ANIM_ROUND_POISON;
+
+                    if (hit->attributes & BATTLE_HIT_ATTR_SILENCER)
+                        gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_L)] = (s16) gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_L)] | ANIM_ROUND_SILENCER;
+                }
+                else
+                {
+                    new_hp = GetEfxHp(ANIM_REF_OFFSET(r9, EKR_POS_L)) - (s8) hit->hpChange;
+                    if (new_hp < 0)
+                        new_hp = 0;
+
+                    r9++;
+                    gEfxHpLut[ANIM_REF_OFFSET(r9, EKR_POS_L)] = new_hp;
+
+                    if (hit->attributes & BATTLE_HIT_ATTR_POISON)
+                        gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_L)] = (s16) gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_L)] | ANIM_ROUND_POISON;
+
+                    if (hit->attributes & BATTLE_HIT_ATTR_SILENCER)
+                        gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_R)] = (s16) gAnimRoundData[ANIM_REF_OFFSET(round_sp0C, EKR_POS_R)] | ANIM_ROUND_SILENCER;
+                }
+            }
+        }
+    }
+}
