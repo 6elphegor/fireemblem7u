@@ -1524,11 +1524,12 @@ void EndingCgScroll_Loop(struct EndingCgScrollProc * proc)
     if (proc->imgIdx < 7)
     {
         void const * img = proc->lut->img[proc->imgIdx];
+        void * dst = (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + proc->imgIdx * 0x800);
 
         if (img != NULL)
-            Decompress(img, (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + proc->imgIdx * 0x800));
+            Decompress(img, dst);
         else
-            CpuFastFill(0, (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + proc->imgIdx * 0x800), 0x800);
+            CpuFastFill(0, dst, 0x800);
 
         proc->imgIdx++;
     }
