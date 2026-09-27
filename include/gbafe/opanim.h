@@ -13,9 +13,25 @@ struct OpAnimProc {
     /* 3C */ s8 unk_3C;
     /* 3D */ STRUCT_PAD(0x3D, 0x40);
     /* 40 */ ProcPtr unk_40;
-    /* 44 */ u8 unk_44;
+    /* 44 */ s8 unk_44;
     /* 45 */ STRUCT_PAD(0x45, 0x4C);
     /* 4C */ s16 unk_4C;
+};
+
+struct OpAnimImgEntry {
+    /* 00 */ void const * img0;
+    /* 04 */ void const * img1;
+    /* 08 */ void const * tsa;
+};
+
+struct OpAnimSubProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ int unk_2C;
+    /* 30 */ int unk_30;
+    /* 34 */ int unk_34;
+    /* 38 */ int unk_38;
+    /* 3C */ struct OpAnimImgEntry const * unk_3C;
 };
 
 void sub_080BB070(void);
@@ -57,9 +73,9 @@ void sub_080BC280(struct OpAnimProc * proc);
 void sub_080BC2D4(void);
 s8 sub_080BC2D8(struct ProcBmBgfx * proc);
 void OpAnim_DrawCloud(struct OpAnimProc * proc);
-void sub_080BC474(struct Proc * proc);
-void sub_080BC494(struct Proc * proc);
-// sub_80BCF98
+void sub_080BC474(struct OpAnimProc * proc);
+void sub_080BC494(struct OpAnimProc * proc);
+void sub_080BC570(struct Proc * proc);
 // sub_80BCFC4
 void sub_080BC5B8(ProcPtr proc);
 void sub_080BCAE8(ProcPtr proc);
@@ -69,16 +85,17 @@ void sub_080BCB34(int a, int b, int c, int d, int e);
 void sub_080BCBFC(int a, int b, int c, int d, int e);
 void sub_080BCE20(ProcPtr proc);
 // sub_080BC5CC
-// sub_080BC5E0
-// sub_080BC5F4
-// sub_080BC6A8
-// sub_080BC790
-// sub_080BC7E4
-// sub_080BC8C0
-// sub_080BC8F8
-// sub_080BC94C
-void sub_080BC960(struct Proc * proc);
-// sub_80BD3A0
+int sub_080BC5E0(struct OpAnimImgEntry const * list);
+void sub_080BC5F4(struct OpAnimSubProc * proc);
+bool sub_080BC6A8(struct OpAnimSubProc * proc);
+void sub_080BC790(struct OpAnimSubProc * proc);
+void sub_080BC7E4(struct OpAnimSubProc * proc);
+void sub_080BC8C0(struct OpAnimSubProc * proc);
+void sub_080BC8F8(struct OpAnimSubProc * proc);
+void sub_080BC94C(void);
+void sub_080BC960(struct OpAnimProc * proc);
+void sub_080BC994(void);
+void sub_080BC9A8(struct OpAnimSubProc * proc);
 // sub_080BC9B8
 void sub_080BCA6C(int a, ProcPtr parent);
 // sub_80BD47C
@@ -102,7 +119,7 @@ void sub_080BCB1C(u8 const * src, int offset);
 // sub_80BD978
 // sub_080BCE34
 // sub_080BCE60
-// sub_080BCFCC
+void sub_080BCFCC(int a, int b, ProcPtr parent);
 // sub_080BCFE8
 // Proc_08DB9398_Loop
 void sub_080BD0D4(void * a, const u16 * pal, int pal_bank, int size, ProcPtr parent);
@@ -115,6 +132,7 @@ void sub_080BD424(int a, int b, int angle, int speed, ProcPtr parent);
 // sub_080BD4C4
 // sub_080BD4F4
 void sub_080BD548(ProcPtr proc);
+void sub_080BD55C(void);
 // sub_080BD570
 // sub_080BD588
 void sub_080BD688(ProcPtr proc, int val);

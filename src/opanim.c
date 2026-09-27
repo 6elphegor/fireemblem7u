@@ -41,6 +41,13 @@ extern u8 const gUnk_08672800[];
 extern u8 const gUnk_08673AD8[];
 extern u16 const gUnk_085ED1C4[];
 extern u8 const gUnk_085ED1E4[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF264[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF284[];
+extern u16 const gUnk_085EE02C[];
+extern struct OpAnimImgEntry const gUnk_08CEF594[];
+extern struct OpAnimImgEntry const gUnk_08CEF630[];
+
+void sub_08003F8C(int reverb);
 
 struct ProcCmd CONST_DATA ProcScr_08CEF0E4[] = {
     PROC_SET_END_CB(sub_080BB524),
@@ -662,22 +669,211 @@ void OpAnim_DrawCloud(struct OpAnimProc * proc)
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
 }
-ASM_FUNC("asm/nonmatching/code_080BC474.s");
+void sub_080BC474(struct OpAnimProc * proc)
+{
+    SetDispEnable(1, 1, 1, 1, 1);
+}
 ASM_FUNC("asm/nonmatching/code_080BC494.s");
-ASM_FUNC("asm/nonmatching/code_080BC570.s");
-ASM_FUNC("asm/nonmatching/code_080BC5B8.s");
-ASM_FUNC("asm/nonmatching/code_080BC5CC.s");
-ASM_FUNC("asm/nonmatching/code_080BC5E0.s");
-ASM_FUNC("asm/nonmatching/code_080BC5F4.s");
-ASM_FUNC("asm/nonmatching/code_080BC6A8.s");
-ASM_FUNC("asm/nonmatching/code_080BC790.s");
-ASM_FUNC("asm/nonmatching/code_080BC7E4.s");
-ASM_FUNC("asm/nonmatching/code_080BC8C0.s");
-ASM_FUNC("asm/nonmatching/code_080BC8F8.s");
-ASM_FUNC("asm/nonmatching/code_080BC94C.s");
-ASM_FUNC("asm/nonmatching/code_080BC960.s");
-ASM_FUNC("asm/nonmatching/code_080BC994.s");
-ASM_FUNC("asm/nonmatching/code_080BC9A8.s");
+
+void sub_080BC570(struct Proc * proc)
+{
+    if (((struct OpAnimProc *) proc->proc_parent)->unk_44 != 0)
+    {
+        if (gpKeySt->pressed & (A_BUTTON | B_BUTTON | START_BUTTON))
+        {
+            SetNextGameAction(2);
+            sub_080BC994();
+            sub_080BD55C();
+            Proc_Break(proc);
+            Proc_Goto(proc->proc_parent, 99);
+        }
+    }
+}
+void sub_080BC5B8(ProcPtr proc)
+{
+    Proc_Start(ProcScr_08CEF264, proc);
+}
+void sub_080BC5CC(void)
+{
+    Proc_End(Proc_Find(ProcScr_08CEF264));
+}
+int sub_080BC5E0(struct OpAnimImgEntry const * list)
+{
+    int i;
+
+    for (i = 0; list->img0 != NULL; list++)
+        i++;
+
+    return i;
+}
+void sub_080BC5F4(struct OpAnimSubProc * proc)
+{
+    ApplyPaletteExt(gUnk_085EE02C, 0x1E0, 0x20);
+    CpuFastFill(0, (void *) 0x0600C000, 0x4000);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 2;
+
+    SetBlendAlpha(0x10, 0);
+    SetBlendTargetA(1, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    proc->unk_3C = gUnk_08CEF594;
+    proc->unk_2C = 0;
+    proc->unk_30 = 1;
+    proc->unk_34 = sub_080BC5E0(gUnk_08CEF594);
+}
+bool sub_080BC6A8(struct OpAnimSubProc * proc)
+{
+    int time, val, a;
+
+    switch (proc->unk_2C % 3)
+    {
+    case 0:
+        Decompress(proc->unk_3C->img0, (void *) 0x0600C000 + (proc->unk_30 << 13));
+        break;
+
+    case 1:
+        Decompress(proc->unk_3C->img1, (void *) 0x0600D000 + (proc->unk_30 << 13));
+        break;
+
+    case 2:
+        sub_080AACD8(gBg3Tm, proc->unk_3C->tsa, 0xF200 + (proc->unk_30 << 8));
+        proc->unk_30 = 1 - proc->unk_30;
+        EnableBgSync(BG3_SYNC_BIT);
+        break;
+    }
+
+    time = ++proc->unk_2C;
+    val = (time * 0x10) / (proc->unk_34 * 3);
+
+    gDispIo.blend_ct.effect = BLEND_EFFECT_ALPHA;
+
+    a = (0x10 - val) * 2;
+
+    if (a > 0x10)
+        a = 0x10;
+
+    gDispIo.blend_coef_a = a;
+    gDispIo.blend_coef_b = val;
+    gDispIo.blend_y = 0;
+
+    if ((time % 3) == 0)
+    {
+        int i = time / 3;
+        proc->unk_3C++;
+
+        if (i == proc->unk_34)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+void sub_080BC790(struct OpAnimSubProc * proc)
+{
+    if (OpScanlineSt.unk_08 < 0x600)
+        OpScanlineSt.unk_08 += 0x100;
+
+    if (OpScanlineSt.unk_0C < 0x600)
+        OpScanlineSt.unk_0C += 0x20;
+
+    if (OpScanlineSt.unk_10 < 0x900)
+        OpScanlineSt.unk_10 += 0x20;
+
+    if (sub_080BC6A8(proc))
+        Proc_Break(proc);
+}
+void sub_080BC7E4(struct OpAnimSubProc * proc)
+{
+    proc->unk_2C = 0;
+    proc->unk_3C = gUnk_08CEF630;
+    proc->unk_34 = sub_080BC5E0(gUnk_08CEF630);
+
+    gDispIo.bg0_ct.priority = 2;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 1;
+
+    TmFill(gBg0Tm, 0);
+    EnableBgSync(BG0_SYNC_BIT);
+
+    gUnkOpAnim_03001620 &= ~1;
+
+    SetBlendAlpha(0x10, 0);
+    SetBlendTargetA(0, 0, 0, 1, 0);
+    SetBlendTargetB(1, 1, 1, 1, 1);
+
+    Proc_Goto(proc->proc_parent, 0);
+
+    InitOpScanlineBuf();
+
+    OpScanlineSt.unk_08 = 0x300;
+    OpScanlineSt.unk_04 = 0x300;
+    OpScanlineSt.unk_0C = 0x190;
+    OpScanlineSt.unk_10 = 0x320;
+
+    gUnkOpAnim_03001620 |= 4;
+}
+void sub_080BC8C0(struct OpAnimSubProc * proc)
+{
+    if (sub_080BC6A8(proc))
+    {
+        proc->unk_2C = 0;
+        Proc_Break(proc);
+
+        TmFill(gBg3Tm, 0);
+        EnableBgSync(BG3_SYNC_BIT);
+
+        Proc_Goto(proc->proc_parent, 1);
+    }
+}
+void sub_080BC8F8(struct OpAnimSubProc * proc)
+{
+    int time;
+
+    if (proc->unk_2C == 400)
+    {
+        Proc_Break(proc);
+        return;
+    }
+
+    time = ++proc->unk_2C;
+
+    if (time > 0x8C)
+    {
+        int max;
+
+        time -= 0x8C;
+        max = 0x100;
+
+        if (time <= max)
+        {
+            OpScanlineSt.unk_10 = (max - time) * 800 / max;
+            OpScanlineSt.unk_0C = (max - time) * 400 / max;
+        }
+    }
+}
+void sub_080BC94C(void)
+{
+    gUnkOpAnim_03001620 &= ~4;
+}
+void sub_080BC960(struct OpAnimProc * proc)
+{
+    sub_08003F8C(8);
+    PlaySoundEffect(0x62);
+    Proc_Start(ProcScr_08CEF284, proc);
+}
+void sub_080BC994(void)
+{
+    Proc_End(Proc_Find(ProcScr_08CEF284));
+}
+void sub_080BC9A8(struct OpAnimSubProc * proc)
+{
+    proc->unk_2C = 0;
+    sub_080BBD28();
+}
 ASM_FUNC("asm/nonmatching/code_080BC9B8.s");
 ASM_FUNC("asm/nonmatching/code_080BCA6C.s");
 ASM_FUNC("asm/nonmatching/code_080BCA84.s");
