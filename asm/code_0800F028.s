@@ -9,7 +9,7 @@ sub_0800F028: @ 0x0800F028
 	lsls r4, r4, #0x18
 	lsrs r4, r4, #0x18
 	ldr r0, _0800F040 @ =0x08B91E40
-	bl sub_0800AF5C
+	bl StartEvent
 	adds r0, #0x4f
 	strb r4, [r0]
 	pop {r4}

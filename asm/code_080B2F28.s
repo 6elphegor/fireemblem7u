@@ -8,7 +8,7 @@ sub_080B2F28: @ 0x080B2F28
 	mov r7, sp
 	ldr r1, _080B2F3C @ =0x08CE750C
 	adds r0, r1, #0
-	bl sub_0800AF5C
+	bl StartEvent
 	pop {r7}
 	pop {r0}
 	bx r0

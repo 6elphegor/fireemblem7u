@@ -171,7 +171,7 @@ _080456B8:
 	lsls r0, r0, #2
 	bl m4aSongNumStart
 	ldr r0, _080456F0 @ =0x08B99D20
-	bl sub_0800AF5C
+	bl StartEvent
 _080456E2:
 	adds r0, r6, #0
 	movs r1, #2

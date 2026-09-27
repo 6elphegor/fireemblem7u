@@ -14,7 +14,7 @@ sub_08078100: @ 0x08078100
 	ldr r0, [r4, #4]
 	cmp r0, #1
 	beq _0807811A
-	bl sub_0800AF5C
+	bl StartEvent
 _0807811A:
 	pop {r4}
 	pop {r0}

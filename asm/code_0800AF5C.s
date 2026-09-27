@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0800AF5C
-sub_0800AF5C: @ 0x0800AF5C
+	thumb_func_start StartEvent
+StartEvent: @ 0x0800AF5C
 	push {lr}
 	movs r1, #3
 	bl StartEventInternal

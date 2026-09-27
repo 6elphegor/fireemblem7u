@@ -22,7 +22,7 @@ _08079636:
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	beq _0807964C
-	bl sub_0800AF5C
+	bl StartEvent
 _0807964C:
 	bl sub_0800ADB8
 	ldr r0, [r4, #8]
@@ -74,7 +74,7 @@ _080796B8:
 	ldr r0, [r4, #8]
 	cmp r0, #0
 	beq _080796C2
-	bl sub_0800AF5C
+	bl StartEvent
 _080796C2:
 	bl sub_0800ADB8
 	ldr r0, [r4, #0xc]

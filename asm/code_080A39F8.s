@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080A39F8
-sub_080A39F8: @ 0x080A39F8
+	thumb_func_start Loop6C_savemenu
+Loop6C_savemenu: @ 0x080A39F8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r1, r5, #0

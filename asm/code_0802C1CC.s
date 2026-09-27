@@ -11,7 +11,7 @@ sub_0802C1CC: @ 0x0802C1CC
 	cmp r0, #0
 	beq _0802C1E0
 	ldr r0, _0802C1E4 @ =0x08CA749C
-	bl sub_0800AF5C
+	bl StartEvent
 _0802C1E0:
 	pop {r0}
 	bx r0

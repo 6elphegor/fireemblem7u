@@ -12,7 +12,7 @@ sub_0800F044: @ 0x0800F044
 	lsls r5, r5, #0x18
 	lsrs r5, r5, #0x18
 	ldr r0, _0800F068 @ =0x08B91E4C
-	bl sub_0800AF5C
+	bl StartEvent
 	adds r1, r0, #0
 	adds r1, #0x5c
 	strh r4, [r1]

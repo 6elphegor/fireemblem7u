@@ -99,7 +99,7 @@ void Event_FadeOutOfSkip(struct EventProc * proc);
 // sub_800ADDC
 // sub_0800AE50
 // sub_0800AE8C
-void sub_0800AF5C();
+void StartEvent();
 // StartEventLocking
 // StartEventInternal
 // sub_0800B0F0

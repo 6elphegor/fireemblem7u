@@ -7,7 +7,7 @@ CallSupportViewerEvent: @ 0x0800EDC8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0800EDDC @ =0x08B91B10
-	bl sub_0800AF5C
+	bl StartEvent
 	str r4, [r0, #0x48]
 	pop {r4}
 	pop {r1}

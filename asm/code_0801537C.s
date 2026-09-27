@@ -11,7 +11,7 @@ CallChapterStartEventMaybe: @ 0x0801537C
 	asrs r0, r0, #0x18
 	bl GetChapterEventInfo
 	ldr r0, [r0, #0x38]
-	bl sub_0800AF5C
+	bl StartEvent
 	movs r0, #0
 	pop {r1}
 	bx r1

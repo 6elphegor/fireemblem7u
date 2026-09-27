@@ -7,7 +7,7 @@ sub_0800F010: @ 0x0800F010
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0800F024 @ =0x08B91E28
-	bl sub_0800AF5C
+	bl StartEvent
 	str r4, [r0, #0x58]
 	pop {r4}
 	pop {r0}

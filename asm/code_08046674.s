@@ -26,7 +26,7 @@ sub_08046674: @ 0x08046674
 	lsls r0, r0, #2
 	bl m4aSongNumStart
 	ldr r0, _080466BC @ =0x08B99D20
-	bl sub_0800AF5C
+	bl StartEvent
 _080466A8:
 	adds r0, r5, #0
 	movs r1, #3

@@ -28,7 +28,7 @@ StartBattleTalk: @ 0x08079464
 	b _0807949C
 _08079496:
 	ldr r0, [r5, #8]
-	bl sub_0800AF5C
+	bl StartEvent
 _0807949C:
 	bl sub_0800ADB8
 	ldr r0, [r5, #0xc]

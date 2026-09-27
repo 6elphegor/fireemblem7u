@@ -17,7 +17,7 @@ sub_08045500: @ 0x08045500
 	blt _08045528
 	bl EndLinkArenaPointsBox
 	ldr r0, _0804553C @ =0x08B99D3C
-	bl sub_0800AF5C
+	bl StartEvent
 	adds r0, r4, #0
 	movs r1, #3
 	bl Proc_Goto

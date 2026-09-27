@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08011464
-sub_08011464: @ 0x08011464
+	thumb_func_start EventE2_Thunderfx
+EventE2_Thunderfx: @ 0x08011464
 	push {r4, r5, lr}
 	adds r1, r0, #0
 	ldr r0, [r1, #0x30]

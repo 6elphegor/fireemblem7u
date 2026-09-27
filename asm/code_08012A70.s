@@ -18,13 +18,13 @@ sub_08012A70: @ 0x08012A70
 _08012A88: .4byte 0x0202BBF8
 _08012A8C:
 	ldr r0, _08012A94 @ =0x08CC1B1C
-	bl sub_0800AF5C
+	bl StartEvent
 	b _08012A9E
 	.align 2, 0
 _08012A94: .4byte 0x08CC1B1C
 _08012A98:
 	ldr r0, _08012AA4 @ =0x08CC1B50
-	bl sub_0800AF5C
+	bl StartEvent
 _08012A9E:
 	pop {r0}
 	bx r0

@@ -17,7 +17,7 @@ sub_08079704: @ 0x08079704
 	orrs r1, r2
 	strb r1, [r0]
 	ldr r0, _08079730 @ =0x08CA749C
-	bl sub_0800AF5C
+	bl StartEvent
 	pop {r0}
 	bx r0
 	.align 2, 0

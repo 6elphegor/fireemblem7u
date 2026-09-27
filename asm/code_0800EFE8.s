@@ -12,7 +12,7 @@ sub_0800EFE8: @ 0x0800EFE8
 	lsls r5, r5, #0x10
 	lsrs r5, r5, #0x10
 	ldr r0, _0800F00C @ =0x08B91E0C
-	bl sub_0800AF5C
+	bl StartEvent
 	adds r1, r0, #0
 	adds r1, #0x55
 	strb r4, [r1]

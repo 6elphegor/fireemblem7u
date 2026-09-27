@@ -86,6 +86,19 @@ def partial_source(text, entry):
     return text
 
 
+def our_symbols():
+    """Names this project already defines: asm labels, symbols.ld, C objects."""
+    names = set()
+    for p in Path("asm").rglob("*.s"):
+        names.update(re.findall(r"^(\w+):", p.read_text(), re.M))
+    if Path("symbols.ld").exists():
+        names.update(re.findall(r"^(\w+) =", Path("symbols.ld").read_text(), re.M))
+    for o in Path("build/src").glob("*.o"):
+        out = subprocess.run(["arm-none-eabi-nm", "--defined-only", str(o)], capture_output=True, text=True).stdout
+        names.update(l.split()[-1] for l in out.splitlines())
+    return names
+
+
 def run(*cmd):
     subprocess.run(cmd, check=True)
 
@@ -159,7 +172,7 @@ def main():
     # an earlier port produced (a JP-address name can equal a US-address one).
     stored_path = Path("tools/ref_rewrites.txt")
     stored = dict(l.split() for l in stored_path.read_text().splitlines() if l and not l.startswith("#"))
-    produced = set(stored.values())
+    produced = set(stored.values()) | our_symbols()
     for k, v in stored.items():
         if k in rewrite:
             rewrite[k] = v

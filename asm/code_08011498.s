@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08011498
-sub_08011498: @ 0x08011498
+	thumb_func_start EventThunderfxExists
+EventThunderfxExists: @ 0x08011498
 	push {lr}
 	ldr r0, _080114A8 @ =0x08B92140
 	bl Proc_Find

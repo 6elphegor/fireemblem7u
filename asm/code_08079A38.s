@@ -11,7 +11,7 @@ CallEndEvent: @ 0x08079A38
 	asrs r0, r0, #0x18
 	bl GetChapterEventInfo
 	ldr r0, [r0, #0x3c]
-	bl sub_0800AF5C
+	bl StartEvent
 	movs r0, #0x91
 	bl SetFlag
 	pop {r0}

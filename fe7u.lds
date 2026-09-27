@@ -6271,12 +6271,7 @@ SECTIONS
         build/asm/code_080A31A4.o(.text);
         build/asm/code_080A3284.o(.text);
         build/asm/code_080A3298.o(.text);
-        build/asm/code_080A32D4.o(.text);
-        build/asm/code_080A3354.o(.text);
-        build/asm/code_080A336C.o(.text);
-        build/asm/code_080A33A4.o(.text);
-        build/asm/code_080A33E0.o(.text);
-        build/asm/code_080A3404.o(.text);
+        build/src/savemenu.o(.text);
         build/asm/code_080A3474.o(.text);
         build/asm/code_080A351C.o(.text);
         build/asm/code_080A35DC.o(.text);

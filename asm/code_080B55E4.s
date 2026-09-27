@@ -25,7 +25,7 @@ sub_080B55E4: @ 0x080B55E4
 	lsls r0, r0, #2
 	adds r0, r0, r5
 	ldr r0, [r0]
-	bl sub_0800AF5C
+	bl StartEvent
 _080B5616:
 	pop {r4, r5}
 	pop {r0}

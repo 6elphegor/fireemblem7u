@@ -8,7 +8,7 @@ CallMapSupportEvent: @ 0x0800ED90
 	adds r4, r0, #0
 	adds r5, r1, #0
 	ldr r0, _0800EDA8 @ =0x08B91AE8
-	bl sub_0800AF5C
+	bl StartEvent
 	str r4, [r0, #0x48]
 	str r5, [r0, #0x58]
 	pop {r4, r5}
