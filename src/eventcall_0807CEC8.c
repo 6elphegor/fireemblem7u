@@ -4,6 +4,13 @@
 
 int sub_0807A03C(void);
 void SetUnitStatusExt(struct Unit * unit, int status, int duration);
+int GetGold(void);
+void sub_08079C48(int amount);
+void StartUnkTrapAnim(ProcPtr parent, int a, int b, int c, int d);
+
+extern u16 gUnk_03004ADC;
+extern u16 CONST_DATA gUnk_08CB8984[];
+extern u16 CONST_DATA gUnk_08CB898E[];
 
 void sub_0807CEC8(void)
 {
@@ -235,4 +242,156 @@ int sub_0807D2B0(void)
 
 ret_true:
     return TRUE;
+}
+
+void sub_0807D2EC(void)
+{
+    u16 sum = 0;
+    int i;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        sum += PidStatsGetExpGain(unit->pCharacterData->number);
+    }
+
+    gUnk_03004ADC = sum;
+}
+
+int sub_0807D324(void)
+{
+    int sum = 0;
+    int i;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        sum += PidStatsGetExpGain(unit->pCharacterData->number);
+    }
+
+    sum -= gUnk_03004ADC;
+
+    if (sum > 699)
+        return TRUE;
+
+    return FALSE;
+}
+
+int sub_0807D368(void)
+{
+    u16 sum = 0;
+    int i;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+        int pid;
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & US_DEAD)
+            continue;
+
+        pid = unit->pCharacterData->number;
+
+        if ((u8) (pid - 1) <= 1 || pid == 0x2D)
+            sum += unit->level;
+    }
+
+    if (sum >= 50)
+        return TRUE;
+
+    return FALSE;
+}
+
+void sub_0807D3BC(ProcPtr proc)
+{
+    StartUnkTrapAnim(proc, 0x10, 1, 2, 3);
+}
+
+int sub_0807D3D4(void)
+{
+    struct Unit * unit = GetUnitFromCharId(0x25);
+    u8 y = unit->yPos;
+
+    if ((u8) (unit->xPos - 0x10) <= 2 && y <= 2)
+        return TRUE;
+
+    return FALSE;
+}
+
+int sub_0807D3F8(void)
+{
+    return GetGold() > 19999;
+}
+
+void sub_0807D414(void)
+{
+    sub_08079C48(20000);
+}
+
+int sub_0807D424(void)
+{
+    if (CheckFlag(0x07) && !CheckFlag(0x0D))
+        return TRUE;
+
+    return FALSE;
+}
+
+u16 sub_0807D448(u16 const * list)
+{
+    int j = 0;
+    int sum = 0;
+    int i;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & US_DEAD)
+            continue;
+
+        for (; list[j] != 0; j++)
+        {
+            if (unit->pCharacterData->number == (list[j] & 0xFF))
+                sum += PidStatsGetExpGain(list[j]);
+        }
+
+        j = 0;
+    }
+
+    return sum;
+}
+
+int sub_0807D4C0(void)
+{
+    if (sub_0807D448(gUnk_08CB8984) > sub_0807D448(gUnk_08CB898E))
+        return TRUE;
+
+    return FALSE;
+}
+
+int sub_0807D4EC(void)
+{
+    int count = CheckFlag(0x09) != 0;
+
+    if (CheckFlag(0x0A))
+        count++;
+
+    if (CheckFlag(0x0B))
+        count++;
+
+    return count <= 1;
 }
