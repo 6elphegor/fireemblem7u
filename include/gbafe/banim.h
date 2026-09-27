@@ -1251,7 +1251,7 @@ void NewEfxHurtmutEff00(struct Anim * anim);
 // ??? sub_80633DC
 void NewEfxMagfcast(struct Anim * anim, int);
 // ??? EfxMagfcastMain
-// ??? sub_08062C94
+// ??? NewEfxMagfcastBG
 // ??? sub_806355C
 void NewEfxSunakemuri(struct Anim * anim, int);
 // ??? sub_80635E4
@@ -1262,27 +1262,27 @@ void NewEfxLokmsuna(struct Anim * anim);
 // ??? NewEfxLokmsunaOBJ
 // ??? EfxLokmsunaIOBJMain
 void NewEfxKingPika(struct Anim * anim);
-// ??? sub_08063124
+// ??? EfxKingPikaMain
 void NewEfxFlashFX(struct Anim * anim);
-// ??? sub_080631B0
+// ??? EfxFlashFXMain
 // ??? NewEfxSongOBJ2
 // ??? EfxSongOBJ2Main
 // ??? NewEfxDanceOBJ
 // ??? sub_8063B30
 void NewEfxSpecalEffect(struct Anim *anim);
 // ??? sub_8063C14
-// ??? sub_08063438
-// ??? sub_08063458
+// ??? NewEfxSRankWeaponEffect
+// ??? EfxSRankWeaponEffectMain
 // ??? NewEfxSRankWeaponEffectBG
 // ??? EfxSRankWeaponEffectBGMain
-// ??? sub_0806353C
+// ??? NewEfxSRankWeaponEffectSCR
 // ??? EfxSRankWeaponEffectSCRMain
 // ??? NewEfxSRankWeaponEffectSCR2
-// ??? sub_08063600
+// ??? EfxSRankWeaponEffectSCR2Main
 // ??? sub_8063E2C
-// ??? sub_08063664
-// ??? sub_080636AC
-// ??? sub_08063748
+// ??? EfxMagdhisEffectMain
+// ??? NewEfxMagdhisEffectBG
+// ??? EfxMagdhisEffectBGMain
 void NewEfxMantBatabata(struct Anim *anim);
 // ??? EfxMantBatabata_Loop1
 // ??? EfxMantBatabata_Loop2
@@ -1293,7 +1293,7 @@ void NewEfxChillEffect(struct Anim *anim);
 // ??? NewEfxChillEffectBGCOL
 // ??? sub_80642F4
 void NewEfxChillAnime(struct Anim * anim, int);
-// ??? sub_08063BF4
+// ??? EfxChillAnime_Loop
 
 struct ProcEfxDrsmmoyaBG {
     PROC_HEADER;

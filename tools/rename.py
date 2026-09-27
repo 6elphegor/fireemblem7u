@@ -13,7 +13,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-FILES = [*Path("asm").glob("*.s"), *Path("src").rglob("*.[chs]"), *Path("include").rglob("*.h"), Path("fe7u.lds")]
+FILES = [*Path("asm").rglob("*.s"), *Path("src").rglob("*.[chs]"), *Path("include").rglob("*.h"), Path("fe7u.lds")]
 CFG = Path("tools/fe7u.cfg")
 IDENT = re.compile(r"[A-Za-z_]\w*")
 

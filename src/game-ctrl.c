@@ -485,7 +485,7 @@ PROC_LABEL(23),
     PROC_GOTO(0),
 
 PROC_LABEL(18),
-    PROC_CALL(sub_080A6D9C),
+    PROC_CALL(StartTacticianInfo),
     PROC_YIELD,
 
     PROC_GOTO(5),

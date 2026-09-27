@@ -812,6 +812,62 @@ void Event_WaitForFaceEnd(struct EventProc * proc);
 
 /* ---- eventscr3.c (0x0800E330-0x0800EC40) ---- */
 
+struct EventWeatherChangeProc {
+    /* 00 */ PROC_HEADER;
+    STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 weather;
+};
+
+int EvtCmd_SetFlag(struct EventProc * proc);
+int EvtCmd_ClearFlag(struct EventProc * proc);
+int EvtCmd_PlayBgm(struct EventProc * proc);
+int EvtCmd_PlaySongExt(struct EventProc * proc);
+int EvtCmd_OverrideBgm(struct EventProc * proc);
+int EvtCmd_RestoreBgm(struct EventProc * proc);
+int EvtCmd_FadeBgmIn(struct EventProc * proc);
+int EvtCmd_FadeBgmOut(struct EventProc * proc);
+int EvtCmd_LowerBgmVolume(struct EventProc * proc);
+int EvtCmd_RestoreBgmVolume(struct EventProc * proc);
+int EvtCmd_PlaySe(struct EventProc * proc);
+int EventEndBattleMap(struct EventProc * proc);
+int EvtCmd_NextChapter(struct EventProc * proc);
+int Event80_CompleteGame(struct EventProc * proc);
+int EvtCmd_EndLynCampaign(struct EventProc * proc);
+int EvtCmd_SetMap(struct EventProc * proc);
+int EvtCmd_SetMapId(struct EventProc * proc);
+void Event_EndSkip(struct EventProc * proc);
+int EvtCmd_NoSkip(struct EventProc * proc);
+int EvtCmd_NoSkipTalk(struct EventProc * proc);
+int EvtCmd_NoSkipTalkSlow(struct EventProc * proc);
+int EvtCmd_YesSkip(struct EventProc * proc);
+int EvtCmd_SilentSkip(struct EventProc * proc);
+int EvtCmd_NoSkipUnlessNewGamePlus(struct EventProc * proc);
+int EvtCmd_NoSkipTalkSlowUnlessNewGamePlus(struct EventProc * proc);
+int EvtCmd_NoSkipSlowUnlessNewGamePlus(struct EventProc * proc);
+int EvtCmd_FadeToBlack(struct EventProc * proc);
+int EvtCmd_FadeFromBlack(struct EventProc * proc);
+int EvtCmd_LynModeDeathFadeToBlack(struct EventProc * proc);
+int EvtCmd_FadeToWhite(struct EventProc * proc);
+int EvtCmd_FadeFromWhite(struct EventProc * proc);
+int EvtCmd_ExitMap(struct EventProc * proc);
+int EvtCmd_EnterMap(struct EventProc * proc);
+int sub_0800E8A4(struct EventProc * proc);
+int sub_0800E8CC(struct EventProc * proc);
+int EvtCmd_GiveGold(struct EventProc * proc);
+int EvtCmd_FightScript(struct EventProc * proc);
+void EventScriptedBattleWait(struct EventProc * proc);
+void EventScriptedBattleWaitB(struct EventProc * proc);
+int EvtCmd_SetNoReloadGfx(struct EventProc * proc);
+int EvtCmd_OnSkipFunc(struct EventProc * proc);
+int EvtCmd_ClearOnSkipFunc(struct EventProc * proc);
+int EvtCmd_SetWeatherWithFade(struct EventProc * proc);
+int EvtCmd_SetWeather(struct EventProc * proc);
+void EventWeatherChangeWithFade_SetWeather(struct EventWeatherChangeProc * proc);
+int EvtCmd_SetVision(struct EventProc * proc);
+int EvtCmd_SetVisionInstant(struct EventProc * proc);
+int EvtCmd_BreakItemSeal(struct EventProc * proc);
+int EvtCmd_EnqueueEvent(struct EventProc * proc);
+
 /* ---- end eventscr3.c ---- */
 
 

@@ -55,7 +55,7 @@ _08082A7C:
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl sub_080A6DD0
+	bl TactGetMsg_Affin
 	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0
@@ -67,7 +67,7 @@ _08082A7C:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x1f
 	lsrs r0, r0, #0x1f
-	bl sub_080A6DC0
+	bl TactGetMsg_Gender
 	bl DecodeMsg
 	adds r3, r0, #0
 	adds r0, r4, #0

@@ -50,7 +50,7 @@ sub_080A6E78: @ 0x080A6E78
 	adds r6, #0x20
 _080A6EDE:
 	adds r0, r5, #0
-	bl sub_080A6DB0
+	bl TactGetMsg_Birth
 	bl DecodeMsg
 	adds r3, r0, #0
 	strb r7, [r3, #3]
@@ -60,7 +60,7 @@ _080A6EDE:
 	movs r2, #0
 	bl Text_InsertDrawString
 	adds r0, r5, #6
-	bl sub_080A6DB0
+	bl TactGetMsg_Birth
 	bl DecodeMsg
 	adds r3, r0, #0
 	strb r7, [r3, #3]
