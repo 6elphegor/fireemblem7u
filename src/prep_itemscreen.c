@@ -1,5 +1,14 @@
 #include "gbafe.h"
 
+u32 GetGold(void);
+void EndPrepItemScreenFace(int slot);
+void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp);
+void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2);
+void EndMenuScrollBar(void);
+
+extern u8 Img_0840E368[];
+extern u16 Pal_0840E3EC[];
+
 int CONST_DATA gHelpTextIds_PrepItemScreen[] = {
 	0x385,
 	0x389,
@@ -148,18 +157,94 @@ void PrepItemScreen_OnHBlank(void)
         REG_BG0VOFS = 252;
 }
 
-ASM_FUNC("asm/nonmatching/code_08091354.s");
-ASM_FUNC("asm/nonmatching/code_0809138C.s");
-ASM_FUNC("asm/nonmatching/code_080913D8.s");
+void PrepItemScreen_Init(struct PrepItemScreenProc * proc)
+{
+    proc->selectedUnitIdx = -1;
+    proc->helpboxActiveIdx = -1;
+    proc->popupPromptIdx = 0;
+    proc->scrollOffset = 0;
+    proc->pUnits[1] = NULL;
+    proc->pUnits[0] = NULL;
+    proc->hasConvoyAccess = HasConvoyAccess_();
+}
+void PrepItemScreen_DrawFunds(void)
+{
+    PutText(&gPrepItemTexts[29], gBg0Tm + TM_OFFSET(19, 17));
+    PutNumber(gBg0Tm + TM_OFFSET(19, 17) + 9, TEXT_COLOR_SYSTEM_BLUE, GetGold());
+    PutSpecialChar(gBg0Tm + TM_OFFSET(19, 17) + 10, TEXT_COLOR_SYSTEM_GOLD, 0x1E);
+    EnableSysBrownBox(0, 0x88, 0x8B, 2);
+    EnableBgSync(BG0_SYNC_BIT);
+}
+void PrepItemScreen_HideFunds(void)
+{
+    TmFillRect(gBg0Tm + TM_OFFSET(19, 17), 10, 1, 0);
+    DisableSysBrownBox(0);
+    EnableBgSync(BG0_SYNC_BIT);
+}
 ASM_FUNC("asm/nonmatching/code_080913FC.s");
-ASM_FUNC("asm/nonmatching/code_08091824.s");
-ASM_FUNC("asm/nonmatching/code_08091868.s");
-ASM_FUNC("asm/nonmatching/code_080918B4.s");
-ASM_FUNC("asm/nonmatching/code_080918D4.s");
-ASM_FUNC("asm/nonmatching/code_080918F4.s");
-ASM_FUNC("asm/nonmatching/code_08091914.s");
-ASM_FUNC("asm/nonmatching/code_08091944.s");
-ASM_FUNC("asm/nonmatching/code_08091994.s");
+void PrepItemScreen_OnEnd(struct PrepItemScreenProc * proc)
+{
+    PrepSetLatestCharId(GetUnitFromPrepList(proc->hoverUnitIdx)->pCharacterData->number);
+
+    EndAllParallelWorkers();
+    EndSysHandCursor();
+    EndUiCursorHand();
+
+    EndPrepItemScreenFace(0);
+    EndPrepItemScreenFace(1);
+
+    EndMuralBackground_();
+    EndHelpPromptSprite();
+    EndMenuScrollBar();
+    EndSysBrownBox();
+
+    SetOnHBlankA(NULL);
+}
+void sub_08091868(u16 * tm)
+{
+    TmFillRect(tm, 10, 6, 0);
+
+    ClearText(&gPrepItemTexts[25]);
+    ClearText(&gPrepItemTexts[26]);
+
+    PutDrawText(&gPrepItemTexts[25], tm + TM_OFFSET(1, 1), TEXT_COLOR_SYSTEM_WHITE, 0, 0, DecodeMsg(0x125C));
+}
+void sub_080918B4(void)
+{
+    PrepItemDrawPopupBox(0x88, 0x58, 9, 4, 0xA580);
+}
+void sub_080918D4(void)
+{
+    PrepItemDrawPopupBox(8, 0x5C, 10, 5, 0xA580);
+}
+void sub_080918F4(void)
+{
+    PrepItemDrawPopupBox(0x82, 0x50, 9, 6, 0xA980);
+}
+void sub_08091914(void)
+{
+    Proc_End(GetParallelWorker(sub_080918B4));
+    Proc_End(GetParallelWorker(sub_080918D4));
+    Proc_End(GetParallelWorker(sub_080918F4));
+}
+void sub_08091944(int vram, int pal)
+{
+    u16 const * pals[] =
+    {
+        Pal_08406D50,
+        Pal_08406DF0,
+        Pal_08406E90,
+        Pal_08406F30,
+    };
+
+    Decompress(Img_PrepWindow, (void *) BG_VRAM + vram);
+    ApplyPalettes(pals[gPlaySt.config_window_theme], pal, 5);
+}
+void sub_08091994(int vram, int pal)
+{
+    Decompress(Img_0840E368, (void *) OBJ_VRAM0 + vram);
+    ApplyPalette(Pal_0840E3EC, pal + 0x10);
+}
 ASM_FUNC("asm/nonmatching/code_080919C8.s");
 ASM_FUNC("asm/nonmatching/code_08091AD8.s");
 ASM_FUNC("asm/nonmatching/code_08091C48.s");

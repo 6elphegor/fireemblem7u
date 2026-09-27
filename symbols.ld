@@ -1362,3 +1362,6 @@ gBarfxTileConf1 = 0x082E5ACC;
 gBarfxTileConf2 = 0x082E5ADA;
 gBarfxTileConf3 = 0x082E5AEC;
 gEfxTileRefPals = 0x08BDAF3C;
+gPrepItemTexts = 0x020129A8;
+Img_0840E368 = 0x0840E368;
+Pal_0840E3EC = 0x0840E3EC;
