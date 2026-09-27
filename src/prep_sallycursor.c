@@ -37,7 +37,7 @@ void UnitBeginAction(struct Unit * unit);
 void StartPrepUnitSwap(ProcPtr parent, struct Unit * unit, int x, int y);
 void sub_08018980(void);                            // LoadUnitPrepScreenPositions
 void InitPlayerUnitPositionsForPrepScreen(void);                            // InitPlayerUnitPositionsForPrepScreen
-void sub_080A3284(void);                            // StartMinimapPrepPhase
+void StartMinimapPlayerPhase(void);                            // StartMinimapPrepPhase
 int SearchAvailableEvent(struct EventInfo * info);          // SearchAvailableEvent
 void sub_080B03D4(struct Unit * unit, const u16 * items); // StartArmoryScreen
 void sub_080B03F4(struct Unit * unit, const u16 * items); // StartVendorScreen
@@ -500,7 +500,7 @@ void PrepScreenProc_MapIdle(struct ProcPrepSallyCursor * proc)
             if (gpKeySt->pressed & START_BUTTON)
             {
                 EndPlayerPhaseSideWindows();
-                sub_080A3284();
+                StartMinimapPlayerPhase();
                 Proc_Goto(proc, PL_SALLYCURSOR_MAP_IDLE);
                 return;
             }
