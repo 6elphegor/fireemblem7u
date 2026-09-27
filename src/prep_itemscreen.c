@@ -943,7 +943,7 @@ void sub_080928A4(struct PrepItemScreenProc * proc)
 }
 void StartPrepArmory(struct PrepItemScreenProc * proc)
 {
-    sub_08098F70(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
+    StartWorldMapSellScreen(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
 }
 void sub_080928D4(struct PrepItemScreenProc * proc)
 {

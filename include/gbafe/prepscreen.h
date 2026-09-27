@@ -591,24 +591,34 @@ void sub_0809835C(struct PrepItemListProc * proc);
 void PrepItemList_Loop_UnitInvKeyHandler(struct PrepItemListProc * proc);
 void PrepItemList_StartTradeScreen(struct PrepItemListProc * proc);
 // StartPrepItemListScreenProc
-// WmSell_DrawSupplyDialogueSpriteText
-// sub_080985D4
-// sub_08098618
-// WmSell_Init
-// sub_08098660
-// sub_0809871C
-// sub_08098790
-// WmSell_DrawItemGoldValue
-// sub_08098868
-// sub_080988A8
-// sub_08098908
-// sub_08098B7C
-// sub_08098C18
-// sub_08098C78
-// sub_08098DCC
-// sub_08098E18
-// sub_08098EA8
-// WmSell_OnEnd
+struct WmSellProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * unit;
+    /* 30 */ u8 unk_30;
+    /* 31 */ u8 unk_31;
+    /* 32 */ u16 unk_32;
+    /* 34 */ u16 unk_34;
+};
+
+void WmSell_DrawSupplyDialogueSpriteText(void);
+void sub_080985D4(int index, ProcPtr parent);
+void sub_08098618(void);
+void WmSell_Init(struct WmSellProc * proc);
+void sub_08098660(void);
+void WmSell_DrawSellOptionSpriteText(void);
+void WmSell_DrawValueSpriteText(void);
+void WmSell_DrawItemGoldValue(int item);
+void WmSell_DrawPartyFunds(void);
+void WmSell_PutSupplyFaceAndText(void);
+void WmSell_Setup(struct WmSellProc * proc);
+s8 WmSell_MainLoop_HandleDpadKeys(struct WmSellProc * proc);
+void sub_08098C18(struct WmSellProc * proc);
+void WmSell_OnLoop_MainKeyHandler(struct WmSellProc * proc);
+void sub_08098DCC(struct WmSellProc * proc);
+void WmSell_ConfirmSellItem(struct WmSellProc * proc);
+void WmSell_OnLoop_ConfirmSellKeyHandler(struct WmSellProc * proc);
+void WmSell_OnEnd(void);
 // StartWorldMapSellScreen
 // sub_08098F88
 // FortuneSubMenu_Init_Null
@@ -685,7 +695,7 @@ void PrepItemList_StartTradeScreen(struct PrepItemListProc * proc);
 
 void StartPrepItemUseScreen(struct Unit * unit, ProcPtr parent);
 
-void sub_08098F70(struct Unit * unit, ProcPtr parent);
+void StartWorldMapSellScreen(struct Unit * unit, ProcPtr parent);
 
 void StartPrepItemListScreenProc(struct Unit * unit, ProcPtr parent);
 

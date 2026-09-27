@@ -1389,3 +1389,7 @@ ProcScr_PrepItemSupplyScreen = 0x08CC4B94;
 ProcScr_BmSupplyScreen = 0x08CC4C74;
 Tsa_0840E780 = 0x0840E780;
 ProcScr_PrepItemListScreen = 0x08CC4DBC;
+gShopSellTextIndexLookup = 0x08CC4EB4;
+gpShopSellStringBuffer = 0x08CC4EBC;
+gProcScr_PrepWMShopSell = 0x08CC4EC0;
+Tsa_0840E6AC = 0x0840E6AC;
