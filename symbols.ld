@@ -840,3 +840,33 @@ AnimScr_EfxChill1_R = 0x08BD5644;
 AnimScr_EfxChill1_L = 0x08BD5848;
 AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
+
+/* event engine (0x0800A618-0x0800F9B0) shared */
+gBmMapOther = 0x0202E3F4;
+ProcScr_UnkEvt = 0x08B90D88;
+gEventCmdTable = 0x08B90E48;
+
+/* event-engine.c */
+
+/* end event-engine.c */
+
+
+/* eventscr.c */
+
+/* end eventscr.c */
+
+
+/* eventscr2.c */
+
+/* end eventscr2.c */
+
+
+/* eventscr3.c */
+
+/* end eventscr3.c */
+
+
+/* eventscr4.c */
+
+/* end eventscr4.c */
+
