@@ -65,7 +65,7 @@ void StartAvailableTurnEvents(void);
 // sub_080790B8
 // sub_080790BC
 // sub_8079890
-void sub_080790C4(void);
+s8 sub_080790C4(void);
 bool sub_08079104(void);
 // CheckForWaitEvents
 // RunWaitEvents

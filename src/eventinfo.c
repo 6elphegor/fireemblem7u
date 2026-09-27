@@ -94,6 +94,22 @@ struct SupportTalkEnt
 
 extern struct SupportTalkEnt const gSupportTalkList[];
 
+struct TutorialEventEnt
+{
+    /* 00 */ u32 const * a;
+    /* 04 */ u32 const * b;
+    /* 08 */ u32 const * c;
+    /* 0C */ u32 const * d;
+};
+
+extern struct TutorialEventEnt const gTutorialEventTable[];
+
+bool sub_0807CEFC(void);
+bool sub_0807821C(struct EventInfo * info);
+void SetEventInfoFlag(struct EventInfo * info);
+bool ShouldCallEndEvent(void);
+void CallEndEvent(void);
+
 void sub_0800ADB8(void);
 void CallMapSupportEvent(u32 msg, int song);
 void CallSupportViewerEvent(u32 msg);
@@ -933,20 +949,155 @@ void MaybeCallEndEvent_(void)
 {
     MaybeCallEndEvent();
 }
-ASM_FUNC("asm/nonmatching/code_08078FC8.s");
-ASM_FUNC("asm/nonmatching/code_08079004.s");
-ASM_FUNC("asm/nonmatching/code_0807905C.s");
-ASM_FUNC("asm/nonmatching/code_080790B4.s");
-ASM_FUNC("asm/nonmatching/code_080790B8.s");
-ASM_FUNC("asm/nonmatching/code_080790BC.s");
-ASM_FUNC("asm/nonmatching/code_080790C0.s");
-ASM_FUNC("asm/nonmatching/code_080790C4.s");
-ASM_FUNC("asm/nonmatching/code_08079104.s");
-ASM_FUNC("asm/nonmatching/code_08079140.s");
-ASM_FUNC("asm/nonmatching/code_08079180.s");
-ASM_FUNC("asm/nonmatching/code_080791C0.s");
-ASM_FUNC("asm/nonmatching/code_080791D0.s");
-ASM_FUNC("asm/nonmatching/code_080791F0.s");
+s8 sub_08078FC8(void)
+{
+    struct EventInfo info;
+    u16 chapter = gPlaySt.chapterIndex;
+
+    info.listScript = gTutorialEventTable[chapter].a;
+
+    if (chapter < 12 && SearchAvailableEvent(&info))
+        StartEventFromInfo(&info);
+
+    return 0;
+}
+
+s8 sub_08079004(void)
+{
+    struct EventInfo info;
+    u16 chapter = gPlaySt.chapterIndex;
+
+    info.listScript = gTutorialEventTable[chapter].c;
+
+    if (chapter < 12 && SearchAvailableEvent(&info))
+    {
+        StartEventFromInfo(&info);
+
+        if (chapter == 1 && sub_0807CEFC())
+            return 1;
+    }
+
+    return 0;
+}
+
+s8 sub_0807905C(void)
+{
+    struct EventInfo info;
+    u16 chapter = gPlaySt.chapterIndex;
+
+    info.listScript = gTutorialEventTable[chapter].b;
+
+    if (chapter < 12 && SearchAvailableEvent(&info))
+    {
+        if (sub_0807821C(&info) != 1)
+        {
+            StartEventFromInfo(&info);
+            return 1;
+        }
+
+        SetEventInfoFlag(&info);
+    }
+
+    return 0;
+}
+
+s8 sub_080790B4(void)
+{
+    return 0;
+}
+
+s8 sub_080790B8(void)
+{
+    return 0;
+}
+
+s8 sub_080790BC(void)
+{
+    return 0;
+}
+
+s8 sub_080790C0(void)
+{
+    return 0;
+}
+
+s8 sub_080790C4(void)
+{
+    struct EventInfo info;
+    u16 chapter = gPlaySt.chapterIndex;
+
+    info.listScript = gTutorialEventTable[chapter].d;
+
+    if (chapter < 12 && SearchAvailableEvent(&info))
+        StartEventFromInfo(&info);
+
+    return 0;
+}
+
+bool sub_08079104(void)
+{
+    struct EventInfo info;
+    u16 chapter = gPlaySt.chapterIndex;
+
+    info.listScript = gTutorialEventTable[chapter].d;
+
+    if (chapter < 12 && SearchAvailableEvent(&info))
+        return TRUE;
+
+    return FALSE;
+}
+
+bool CheckForWaitEvents(void)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->miscBasedEvents;
+    info.xPos = gActiveUnit->xPos;
+    info.yPos = gActiveUnit->yPos;
+
+    if (SearchAvailableEvent(&info))
+        return TRUE;
+
+    return FALSE;
+}
+
+void RunWaitEvents(void)
+{
+    struct EventInfo info;
+
+    info.listScript = GetChapterEventInfo(gPlaySt.chapterIndex)->miscBasedEvents;
+    info.xPos = gActiveUnit->xPos;
+    info.yPos = gActiveUnit->yPos;
+
+    if (SearchAvailableEvent(&info))
+        StartEventFromInfo(&info);
+}
+
+bool CheckWin(void)
+{
+    return CheckFlag(3);
+}
+
+void MaybeCallEndEvent(void)
+{
+    if (!CheckFlag(3))
+        return;
+
+    if (!ShouldCallEndEvent())
+        return;
+
+    CallEndEvent();
+}
+
+void const * sub_080791F0(void)
+{
+    struct ChapterEventGroup const * group = GetChapterEventInfo(gPlaySt.chapterIndex);
+
+    if (gPlaySt.chapterModeIndex == 3)
+        return group->specialEventsWhenDestSelected;
+
+    return group->specialEventsWhenUnitSelected;
+}
 ASM_FUNC("asm/nonmatching/code_08079214.s");
 ASM_FUNC("asm/nonmatching/code_08079280.s");
 ASM_FUNC("asm/nonmatching/code_080792C4.s");
