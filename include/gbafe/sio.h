@@ -347,7 +347,7 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_08046F98
 // sub_08046FE8
 // sub_08047068
-// sub_080470B8
+// Set_0203DDDC
 // FE6Link_Init
 // sub_080470D0
 // sub_08047108
