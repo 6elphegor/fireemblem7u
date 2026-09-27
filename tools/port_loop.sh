@@ -10,7 +10,7 @@ for stem in "$@"; do
     fi
     if python3 tools/apply_port.py "$ref" "$plan" "$stem" >build/apply.log 2>&1 &&
        make -j10 >build/make.log 2>&1 && tail -1 build/make.log | grep -q ': OK'; then
-        git add -A && git commit -q -m "Partial port of ${stem#src_}.c from FireEmblem7J" && echo "$stem: ported"
+        git add -A && git commit -q -m "Partial port of ${stem#src_}.c from FireEmblem7J" -m "Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>" && echo "$stem: ported"
     else
         echo "$stem: FAILED (see build/fail_$stem.log)"
         cat build/apply.log build/make.log > "build/fail_$stem.log" 2>/dev/null
