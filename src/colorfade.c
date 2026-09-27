@@ -17,8 +17,29 @@ struct ColFadeProc
 
 extern u16 gUnk_020144F8[];
 
-extern struct ProcCmd CONST_DATA ProcScr_ColFadeOut[];
-extern struct ProcCmd CONST_DATA ProcScr_ColFadeIn[];
+
+void ColFadeIn_Init_Null(void);
+void ColFadeIn_Loop(struct ColFadeProc * proc);
+void ColFadeOut_Init(struct ColFadeProc * proc);
+void ColFadeOut_Loop(struct ColFadeProc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_ColFadeOut[] = {
+    PROC_19,
+    PROC_SLEEP(2),
+    PROC_CALL(ColFadeOut_Init),
+    PROC_YIELD,
+    PROC_REPEAT(ColFadeOut_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ColFadeIn[] = {
+    PROC_19,
+    PROC_SLEEP(2),
+    PROC_CALL(ColFadeIn_Init_Null),
+    PROC_YIELD,
+    PROC_REPEAT(ColFadeIn_Loop),
+    PROC_END,
+};
 
 void ColFadeOut_Init(struct ColFadeProc * proc)
 {

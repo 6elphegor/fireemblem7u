@@ -5,13 +5,17 @@
 
 void sub_080263A0(int layer, int x, int y, int oam2, struct Unit * unit);
 
-extern struct ProcCmd CONST_DATA ProcScr_UnitInfoWindow[];
 extern u8 CONST_DATA Tsa_UnitInfoWindowHeader[];
 
 extern struct UnitInfoWindowProc * sRescueUnitInfoWindows[2];
 extern u16 CONST_DATA gUnitInfoWindowFactionPalLut[3];
 
 void * memcpy(void * dst, const void * src, unsigned long size);
+
+CONST_DATA struct ProcCmd ProcScr_UnitInfoWindow[] = {
+    PROC_REPEAT(UnitInfoWindow_OnLoop),
+    PROC_END,
+};
 
 void UnitInfoWindow_OnLoop(struct UnitInfoWindowProc * proc)
 {

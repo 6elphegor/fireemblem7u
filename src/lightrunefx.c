@@ -11,9 +11,19 @@ extern u8 CONST_DATA Tsa_LightRune[];
 
 extern struct VectorBmfx const Vectors_LightRune3[13];
 
-extern struct ProcCmd CONST_DATA ProcScr_LightRuneAnim3[];
 
 void * memcpy(void * dst, const void * src, unsigned long n);
+
+void ProcLightRuneAnim3_End(struct ProcBmFx * proc);
+void ProcLightRuneAnim3_Init(struct ProcBmFx * proc);
+void ProcLightRuneAnim3_Loop(struct ProcBmFx * proc);
+
+CONST_DATA struct ProcCmd ProcScr_LightRuneAnim3[] = {
+    PROC_CALL(ProcLightRuneAnim3_Init),
+    PROC_REPEAT(ProcLightRuneAnim3_Loop),
+    PROC_CALL(ProcLightRuneAnim3_End),
+    PROC_END,
+};
 
 void ProcLightRuneAnim3_Init(struct ProcBmFx * proc)
 {

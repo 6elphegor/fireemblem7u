@@ -7,7 +7,16 @@ struct Popup2Proc {
     /* 4C */ u16 timer;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_Popup2[];
+
+void ProcPopup2_Init(struct Popup2Proc * proc);
+void ProcPopup2_Loop(struct Popup2Proc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_Popup2[] = {
+    PROC_CALL(ProcPopup2_Init),
+    PROC_REPEAT(ProcPopup2_Loop),
+    PROC_CALL(ClearUi),
+    PROC_END,
+};
 
 void ProcPopup2_Init(struct Popup2Proc * proc)
 {

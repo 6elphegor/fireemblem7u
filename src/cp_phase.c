@@ -4,8 +4,23 @@
 // AI phase (FE8U: cp_phase.c)
 
 extern u32 gAiItemConfigTable[];
-extern struct ProcCmd CONST_DATA gProcScr_CpOrder[];
-extern struct ProcCmd CONST_DATA gProcScr_BerserkCpOrder[];
+
+void CpOrderBerserkInit(ProcPtr proc);
+void CpOrderFunc_End(ProcPtr proc);
+void CpOrderMain(ProcPtr proc);
+
+CONST_DATA struct ProcCmd gProcScr_CpOrder[] = {
+    PROC_19,
+    PROC_REPEAT(CpOrderMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_BerserkCpOrder[] = {
+    PROC_19,
+    PROC_CALL(CpOrderBerserkInit),
+    PROC_REPEAT(CpOrderFunc_End),
+    PROC_END,
+};
 
 void AiPhase_Begin(ProcPtr proc)
 {

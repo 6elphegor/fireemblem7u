@@ -4,8 +4,6 @@ u16 GetDialogueBoxConfig(void);
 void InitBoxDialogue(void * vram_dst, int pal);
 ProcPtr StartTalkMsg(int x, int y, int id);
 
-extern struct ProcCmd CONST_DATA ProcScr_08CA78DC[];
-extern struct ProcCmd CONST_DATA ProcScr_08CA7994[];
 
 struct ProcEvent_08CA7994
 {
@@ -13,6 +11,54 @@ struct ProcEvent_08CA7994
     STRUCT_PAD(0x29, 0x4C);
 
     /* 4C */ s16 timer;
+};
+
+void IsTalkActive(ProcPtr proc);
+void sub_0807C8B4(ProcPtr proc);
+void sub_0807C8FC(void);
+void sub_0807C96C(ProcPtr proc);
+void sub_0807C9B0(void);
+void sub_0807CA04(void);
+void sub_0807CA44(ProcPtr proc);
+void sub_0807CAC0(ProcPtr proc);
+void sub_0807CB28(ProcPtr proc);
+void sub_0807CB3C(struct ProcEvent_08CA7994 * proc);
+void sub_0807CBE4(struct ProcEvent_08CA7994 * proc);
+void sub_0807CC14(void);
+
+CONST_DATA struct ProcCmd ProcScr_08CA78DC[] = {
+    PROC_YIELD,
+    PROC_CALL(LockBmDisplay),
+    PROC_CALL(sub_0807CB28),
+    PROC_YIELD,
+    PROC_CALL(sub_0807C96C),
+    PROC_CALL(sub_0807C9B0),
+    PROC_CALL(StartMidFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(sub_0807CA04),
+    PROC_WHILE(IsTalkActive),
+    PROC_CALL(StartMidFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(sub_0807CA44),
+    PROC_YIELD,
+    PROC_LABEL(0),
+    PROC_CALL(sub_0807CAC0),
+    PROC_YIELD,
+    PROC_CALL(sub_0807C8B4),
+    PROC_YIELD,
+    PROC_YIELD,
+    PROC_CALL(sub_0807C8FC),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_08CA7994[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_0807CB3C),
+    PROC_SLEEP(16),
+    PROC_REPEAT(sub_0807CBE4),
+    PROC_CALL(sub_0807CC14),
+    PROC_END,
 };
 
 void sub_0807C8B4(ProcPtr proc)

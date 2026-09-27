@@ -26,6 +26,32 @@ void NewPopup2_PlanA(ProcPtr parent, int icon, char * str);
 int GetBattleAnimType(void);
 const struct TrapData * sub_080791F0(void);
 
+CONST_DATA struct ProcCmd sProcScr_ExecTrap8[] = {
+    PROC_SLEEP(1),
+    PROC_WHILE(MuExistsActive),
+    PROC_CALL(RegisterTrapDeathBWL),
+    PROC_CALL(ExecFireTileTrapAnim1),
+    PROC_YIELD,
+    PROC_CALL(ApplyTrapDamageAnim),
+    PROC_YIELD,
+    PROC_CALL(ApplyTrapDamageReal),
+    PROC_YIELD,
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_ExecTrapMine[] = {
+    PROC_SLEEP(1),
+    PROC_WHILE(MuExistsActive),
+    PROC_CALL(RegisterTrapDeathBWL),
+    PROC_CALL(ExecFireTileTrapAnim2),
+    PROC_YIELD,
+    PROC_CALL(ApplyTrapDamageAnim),
+    PROC_YIELD,
+    PROC_CALL(ApplyTrapDamageReal),
+    PROC_YIELD,
+    PROC_END,
+};
+
 void RegisterTrapDeathBWL(struct ProcBmTrap * proc)
 {
     struct Unit * unit = proc->unit;

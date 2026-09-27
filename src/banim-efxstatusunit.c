@@ -11,6 +11,14 @@ extern s16 gEkrDebugModeMaybe;
 
 void EfxStatusUnitEnd(struct ProcEfxStatusUnit * proc);
 
+CONST_DATA struct ProcCmd ProcScr_efxStatusUnit[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_SET_END_CB(EfxStatusUnitEnd),
+    PROC_REPEAT(EfxStatusUnit_Loop),
+    PROC_END,
+};
+
 void NewEfxStatusUnit(struct Anim * anim)
 {
     struct Unit * unit;

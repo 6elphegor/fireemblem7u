@@ -21,7 +21,6 @@ extern int gEkrInitPosReal;
 extern int gUnknown_0201FACC;
 extern struct Anim * gUnknown_02000010[2];
 
-extern struct ProcCmd CONST_DATA ProcScr_ekrBattleStarting[];
 
 int GetBattleAnimArenaFlag(void);
 void BeginAnimsOnBattle_Arena(void);
@@ -39,6 +38,26 @@ void NewEkrBaseKaiten(int identifier);
 void NewEkrBaseAppear(int identifier, int duration);
 void PutBanimBgPAL(int index);
 void PutBanimBG(int index);
+
+void ekrBaStart_8055FE8(struct ProcEkrBattleStarting * proc);
+void ekrBaStart_8056024(struct ProcEkrBattleStarting * proc);
+void ekrBaStart_8056078(struct ProcEkrBattleStarting * proc);
+void ekrBaStart_ExecEkrBattle6C(struct ProcEkrBattleStarting * proc);
+void ekrBaStart_InitBattleScreen(struct ProcEkrBattleStarting * proc);
+void ekrBaStart_InitScreen(struct ProcEkrBattleStarting * proc);
+void ekrBaStart_SreenFailIn(struct ProcEkrBattleStarting * proc);
+
+CONST_DATA struct ProcCmd ProcScr_ekrBattleStarting[] = {
+    PROC_19,
+    PROC_REPEAT(ekrBaStart_InitScreen),
+    PROC_REPEAT(ekrBaStart_SreenFailIn),
+    PROC_REPEAT(ekrBaStart_InitBattleScreen),
+    PROC_REPEAT(ekrBaStart_ExecEkrBattle6C),
+    PROC_REPEAT(ekrBaStart_8055FE8),
+    PROC_REPEAT(ekrBaStart_8056024),
+    PROC_REPEAT(ekrBaStart_8056078),
+    PROC_END,
+};
 
 bool SetupBanim(void)
 {

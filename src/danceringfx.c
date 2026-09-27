@@ -11,9 +11,24 @@ extern u8 CONST_DATA Tsa_DanceringFx[];
 
 extern struct VectorBmfx const Vectors_DanceringFx[14];
 
-extern struct ProcCmd CONST_DATA ProcScr_DanceringAnim[];
 
 void * memcpy(void * dst, const void * src, unsigned long n);
+
+void ProcDanceAnim_Init(struct ProcBmFx * proc);
+void ProcDanceAnim_Loop(struct ProcBmFx * proc);
+void ProcDanceAnim_Loop_Blend(struct ProcBmFx * proc);
+void ProcDanceAnim_ResetTimer(struct ProcBmFx * proc);
+void ProcLightRuneAnim3_End(ProcPtr proc);
+
+CONST_DATA struct ProcCmd ProcScr_DanceringAnim[] = {
+    PROC_CALL(ProcDanceAnim_Init),
+    PROC_REPEAT(ProcDanceAnim_Loop),
+    PROC_SLEEP(25),
+    PROC_CALL(ProcDanceAnim_ResetTimer),
+    PROC_REPEAT(ProcDanceAnim_Loop_Blend),
+    PROC_CALL(ProcLightRuneAnim3_End),
+    PROC_END,
+};
 
 void ProcDanceAnim_Init(struct ProcBmFx * proc)
 {

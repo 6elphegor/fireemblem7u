@@ -31,10 +31,53 @@ void StartGiveItem(struct Unit * unit, u16 item, ProcPtr parent);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 
-extern struct ProcCmd CONST_DATA sProcScr_AfterDropAction[];
-extern struct ProcCmd CONST_DATA sProcScr_DeathDropAnim[];
-extern struct ProcCmd CONST_DATA sProcScr_CombatAction[];
-extern struct ProcCmd CONST_DATA sProcScr_ArenaAction[];
+
+void BattleApplyGameStateUpdates(ProcPtr proc);
+void IsMapFadeActive(ProcPtr proc);
+
+CONST_DATA struct ProcCmd sProcScr_AfterDropAction[] = {
+    PROC_YIELD,
+    PROC_WHILE(MuExistsActive),
+    PROC_CALL_2(AfterDrop_CheckTrapAfterDropMaybe),
+    PROC_CALL(sub_0802F38C),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_DeathDropAnim[] = {
+    PROC_REPEAT(DeathDropSpriteAnim_Loop),
+    PROC_CALL(DeathDropSpriteAnim_ExecAnyTrap),
+    PROC_YIELD,
+    PROC_CALL(DeathDropSpriteAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_CombatAction[] = {
+    PROC_CALL(BeginBattleAnimations),
+    PROC_SLEEP(1),
+    PROC_CALL(BattleApplyGameStateUpdates),
+    PROC_WHILE(IsMapFadeActive),
+    PROC_CALL(BATTLE_GOTO1_IfNobodyIsDead),
+    PROC_CALL(BATTLE_PostCombatDeathFades),
+    PROC_SLEEP(32),
+    PROC_CALL(BATTLE_DeleteLinkedMOVEUNIT),
+    PROC_LABEL(1),
+    PROC_CALL_2(BATTLE_HandleItemDrop),
+    PROC_CALL(BATTLE_HandleCombatDeaths),
+    PROC_YIELD,
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_ArenaAction[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_0802FA6C),
+    PROC_CALL(BATTLE_PostCombatDeathFades),
+    PROC_SLEEP(32),
+    PROC_CALL(BATTLE_DeleteLinkedMOVEUNIT),
+    PROC_LABEL(1),
+    PROC_CALL(BATTLE_HandleArenaDeathsMaybe),
+    PROC_YIELD,
+    PROC_END,
+};
 
 void StoreRNStateToActionStruct(void)
 {

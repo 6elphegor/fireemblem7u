@@ -8,8 +8,6 @@
 EWRAM_DATA int gBanimLinkArenaFlag = 0;
 EWRAM_DATA int gBattleDeamonActive = 0;
 EWRAM_DATA struct Proc * gpProcEkrBattleDeamon = NULL;
-extern struct ProcCmd ProcScr_ekrBattleDeamon[];
-extern struct ProcCmd ProcScr_ekrBattle[];
 
 extern int gEkrDebugTimer;
 extern int gEkrDebugUnk1;
@@ -64,6 +62,21 @@ void EndEkrLevelUp(void);
 void NewEkrPopup(void);
 s8 CheckEkrPopupDone(void);
 void EndEkrPopup(void);
+
+CONST_DATA struct ProcCmd ProcScr_ekrBattleDeamon[] = {
+    PROC_19,
+    PROC_SET_END_CB(EkrBattleDeamon_OnEnd),
+    PROC_REPEAT(EkrBattleDeamonMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ekrBattle[] = {
+    PROC_19,
+    PROC_SET_END_CB(EkrBattle_End),
+    PROC_REPEAT(EkrBattle_Init),
+    PROC_REPEAT(EkrBattle_Main),
+    PROC_END,
+};
 
 void SetBanimLinkArenaFlag(int flag)
 {

@@ -47,16 +47,68 @@ extern u8 CONST_DATA Img_PikeTrap[];
 extern u16 CONST_DATA Pal_PikeTrap[];
 extern u16 CONST_DATA SpriteAnim_PikeTrap[];
 
-extern struct ProcCmd CONST_DATA ProcScr_GasTrapAnim[];
-extern struct ProcCmd CONST_DATA ProcScr_FireTrapAnim[];
-extern struct ProcCmd CONST_DATA ProcScr_UnkTrapAnim[];
-extern struct ProcCmd CONST_DATA ProcScr_ArrowTrapAnim[];
-extern struct ProcCmd CONST_DATA ProcScr_ShowMapChangeAnim[];
-extern struct ProcCmd CONST_DATA ProcScr_PikeTrapAnim[];
 
 #define OBJCHR_TRAPFX 0x240
 #define OBJPAL_TRAPFX 2
 #define TRAPFX_OAM2 (OBJCHR_TRAPFX | (OBJPAL_TRAPFX << 12) | (1 << 10))
+
+void ArrowTrapSpriteAnim_Init(struct TrapfxProc * proc);
+void FireTrapSpriteAnim_Init(struct TrapfxProc * proc);
+void GasTrapSpriteAnim_Init(struct TrapfxProc * proc);
+void IsMapFadeActive(ProcPtr proc);
+void PikeTrapSpriteAnim_Init(struct TrapfxProc * proc);
+void ProcShowMapChange_MoveCamera(struct ShowMapChangeProc * proc);
+void ProcShowMapChange_UpdateGame(struct ShowMapChangeProc * proc);
+void ProcUnkTrapAnimFunc(struct UnkTrapfxProc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_GasTrapAnim[] = {
+    PROC_YIELD,
+    PROC_CALL(GasTrapSpriteAnim_Init),
+    PROC_WHILE(SpriteAnimProcExists),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_FireTrapAnim[] = {
+    PROC_YIELD,
+    PROC_CALL(FireTrapSpriteAnim_Init),
+    PROC_WHILE(SpriteAnimProcExists),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_UnkTrapAnim[] = {
+    PROC_YIELD,
+    PROC_LABEL(0),
+    PROC_CALL(ProcUnkTrapAnimFunc),
+    PROC_SLEEP(8),
+    PROC_GOTO(0),
+    PROC_LABEL(100),
+    PROC_WHILE(SpriteAnimProcExists),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ArrowTrapAnim[] = {
+    PROC_YIELD,
+    PROC_CALL(ArrowTrapSpriteAnim_Init),
+    PROC_WHILE(SpriteAnimProcExists),
+    PROC_SLEEP(15),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ShowMapChangeAnim[] = {
+    PROC_YIELD,
+    PROC_CALL(ProcShowMapChange_MoveCamera),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_CALL(ProcShowMapChange_UpdateGame),
+    PROC_WHILE(IsMapFadeActive),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_PikeTrapAnim[] = {
+    PROC_YIELD,
+    PROC_CALL(PikeTrapSpriteAnim_Init),
+    PROC_WHILE(SpriteAnimProcExists),
+    PROC_END,
+};
 
 void GasTrapSpriteAnim_Init(struct TrapfxProc * proc)
 {

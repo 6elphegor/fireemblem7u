@@ -7,9 +7,6 @@ struct PhaseIntroSubProc {
     /* 4C */ s16 timer;
 };
 
-extern struct ProcCmd CONST_DATA gProcScr_PhaseIntroText[];
-extern struct ProcCmd CONST_DATA gProcScr_PhaseIntroSquares[];
-extern struct ProcCmd CONST_DATA gProcScr_PhaseIntroBlendBox[];
 
 extern u8 const Img_PhaseChangeSquares[];
 extern u8 const Img_PhaseChangePlayer[];
@@ -30,6 +27,43 @@ int GetCurrentBgmSong(void);
 
 void PhaseIntroVMatchMid(void);
 void PhaseIntroVMatchLo(void);
+
+void PhaseIntroBlendBox_InLoop(struct PhaseIntroSubProc * proc);
+void PhaseIntroBlendBox_Init(struct PhaseIntroSubProc * proc);
+void PhaseIntroBlendBox_OutLoop(struct PhaseIntroSubProc * proc);
+void PhaseIntroClearText(struct PhaseIntroSubProc * proc);
+void PhaseIntroInitText(struct PhaseIntroSubProc * proc);
+void PhaseIntroSquares_InLoop(struct PhaseIntroSubProc * proc);
+void PhaseIntroSquares_Init(struct PhaseIntroSubProc * proc);
+void PhaseIntroSquares_OutLoop(struct PhaseIntroSubProc * proc);
+void PhaseIntroText_InLoop(struct PhaseIntroSubProc * proc);
+void PhaseIntroText_OutLoop(struct PhaseIntroSubProc * proc);
+void PhaseIntroText_PutText(struct PhaseIntroSubProc * proc);
+
+CONST_DATA struct ProcCmd gProcScr_PhaseIntroText[] = {
+    PROC_CALL(PhaseIntroInitText),
+    PROC_SLEEP(6),
+    PROC_CALL(PhaseIntroText_PutText),
+    PROC_REPEAT(PhaseIntroText_InLoop),
+    PROC_SLEEP(14),
+    PROC_REPEAT(PhaseIntroText_OutLoop),
+    PROC_CALL(PhaseIntroClearText),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_PhaseIntroSquares[] = {
+    PROC_CALL(PhaseIntroSquares_Init),
+    PROC_REPEAT(PhaseIntroSquares_InLoop),
+    PROC_REPEAT(PhaseIntroSquares_OutLoop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_PhaseIntroBlendBox[] = {
+    PROC_CALL(PhaseIntroBlendBox_Init),
+    PROC_REPEAT(PhaseIntroBlendBox_InLoop),
+    PROC_REPEAT(PhaseIntroBlendBox_OutLoop),
+    PROC_END,
+};
 
 void PhaseIntroVMatchHi(void)
 {

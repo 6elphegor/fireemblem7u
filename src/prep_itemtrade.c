@@ -2,7 +2,18 @@
 #include "gbafe/ui.h"
 
 
-extern struct ProcCmd CONST_DATA ProcScr_PrepItemTradeScreen[];
+
+CONST_DATA struct ProcCmd ProcScr_PrepItemTradeScreen[] = {
+    PROC_YIELD,
+    PROC_CALL(PrepItemTrade_Init),
+    PROC_CALL_ARG(NewFadeIn, 16),
+    PROC_WHILE(FadeInExists),
+    PROC_REPEAT(PrepItemTrade_Loop_MainKeyHandler),
+    PROC_CALL_ARG(NewFadeOut, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(PrepItemTrade_OnEnd),
+    PROC_END,
+};
 
 void PrepItemTrade_ApplyItemSwap(struct Unit * unitA, int itemSlotA, struct Unit * unitB, int itemSlotB)
 {

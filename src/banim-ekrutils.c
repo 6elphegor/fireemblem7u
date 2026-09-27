@@ -30,7 +30,6 @@ extern u8 gBuf_Banim[0x2000];
 extern u16 gTmA_Banim[0xB58 / sizeof(u16)];
 extern const s16 gEfxQuakeVecs[];
 extern const s16 gEfxQuakeVecs2[];
-extern struct ProcCmd ProcScr_efxSPDQuake[];
 
 void NewEfxHPBar(struct Anim * anim);
 void NewEfxHpBarResire(struct Anim * anim);
@@ -46,6 +45,13 @@ void sub_08050844(struct ProcEfxSpdQuake * proc);
 void sub_08050918(struct ProcEfxSpdQuake * proc);
 
 #define GetRoundFlagByAnim(aAnim) (GetBattleAnimRoundTypeFlags((aAnim->nextRoundId - 1) * 2 + GetAnimPosition(aAnim)))
+
+CONST_DATA struct ProcCmd ProcScr_efxSPDQuake[] = {
+    PROC_19,
+    PROC_REPEAT(sub_08050844),
+    PROC_REPEAT(sub_08050918),
+    PROC_END,
+};
 
 void SpellFx_Begin(void)
 {

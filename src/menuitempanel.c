@@ -12,7 +12,14 @@ struct MenuItemPanelProc {
     /* 64 */ u8 draw_arrow;
 };
 
-extern struct ProcCmd CONST_DATA gProcCmd_MenuItemPanel[];
+
+void MenuItemPanelProcIdle(struct MenuItemPanelProc * proc);
+
+CONST_DATA struct ProcCmd gProcCmd_MenuItemPanel[] = {
+    PROC_19,
+    PROC_REPEAT(MenuItemPanelProcIdle),
+    PROC_END,
+};
 
 void MenuItemPanelProcIdle(struct MenuItemPanelProc * proc)
 {

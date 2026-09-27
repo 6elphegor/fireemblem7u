@@ -22,13 +22,6 @@ struct ProcEfxHpBar {
     /* 64 */ struct Anim * anim_this;
 };
 
-extern struct ProcCmd ProcScr_efxHPBar[];
-extern struct ProcCmd ProcScr_EfxHpBarResire[];
-extern struct ProcCmd ProcScr_EfxAvoid[];
-extern struct ProcCmd ProcScr_efxHPBarLive[];
-extern struct ProcCmd ProcScr_efxNoDamage[];
-extern struct ProcCmd ProcScr_efxNoDamageYure[];
-extern struct ProcCmd ProcScr_efxStatusCHG[];
 extern const s16 gEfxNoDmgBgShakeOff[];
 
 extern u32 gEkrHpBarCount;
@@ -49,6 +42,75 @@ void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void NewEfxDamageMojiEffect(struct Anim * anim, int hitted);
 void M4aPlayWithPostionCtrl(int songid, int x, int flag);
 void NewEfxNoDamageYure(struct Anim * anim1, struct Anim * anim2);
+
+void EfxAvoidMain(struct ProcEfxHpBar * proc);
+void EfxHPBarLiveMain(struct ProcEfxHpBar * proc);
+void EfxHpBarResire_DeclineToDeath(struct ProcEfxHpBar * proc);
+void EfxHpBarResire_SetAnotherSide(struct ProcEfxHpBar * proc);
+void EfxHpBarResire_WaitOnCurrentSide(struct ProcEfxHpBar * proc);
+void EfxHpBar_DeclineToDeath(struct ProcEfxHpBar * proc);
+void EfxHpBar_MoveCameraOnEnd(struct ProcEfxHpBar * proc);
+void EfxHpBar_WaitCameraMove(struct ProcEfxHpBar * proc);
+void EfxNoDamageMain(struct ProcEfxHpBar * proc);
+void EfxNoDamageYureMain(struct ProcEfxHpBar * proc);
+void EfxStatusCHGMain(struct ProcEfxHpBar * proc);
+
+CONST_DATA struct ProcCmd ProcScr_efxHPBar[] = {
+    PROC_19,
+    PROC_REPEAT(EfxHpBar_DeclineToDeath),
+    PROC_REPEAT(EfxHpBar_MoveCameraOnEnd),
+    PROC_REPEAT(EfxHpBar_WaitCameraMove),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_EfxHpBarResire[] = {
+    PROC_19,
+    PROC_REPEAT(EfxHpBarResire_WaitOnCurrentSide),
+    PROC_REPEAT(EfxHpBarResire_SetAnotherSide),
+    PROC_REPEAT(EfxHpBarResire_DeclineToDeath),
+    PROC_REPEAT(EfxHpBar_MoveCameraOnEnd),
+    PROC_REPEAT(EfxHpBar_WaitCameraMove),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_EfxAvoid[] = {
+    PROC_19,
+    PROC_REPEAT(EfxAvoidMain),
+    PROC_REPEAT(EfxHpBar_MoveCameraOnEnd),
+    PROC_REPEAT(EfxHpBar_WaitCameraMove),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxHPBarLive[] = {
+    PROC_19,
+    PROC_REPEAT(EfxHPBarLiveMain),
+    PROC_REPEAT(EfxHpBar_MoveCameraOnEnd),
+    PROC_REPEAT(EfxHpBar_WaitCameraMove),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxNoDamage[] = {
+    PROC_19,
+    PROC_REPEAT(EfxNoDamageMain),
+    PROC_REPEAT(EfxHpBar_MoveCameraOnEnd),
+    PROC_REPEAT(EfxHpBar_WaitCameraMove),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxNoDamageYure[] = {
+    PROC_19,
+    PROC_REPEAT(EfxNoDamageYureMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxStatusCHG[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxStatusCHGMain),
+    PROC_REPEAT(EfxHpBar_MoveCameraOnEnd),
+    PROC_REPEAT(EfxHpBar_WaitCameraMove),
+    PROC_END,
+};
 
 int CheckEkrHitDone(void)
 {

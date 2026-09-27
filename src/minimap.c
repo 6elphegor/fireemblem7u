@@ -27,10 +27,42 @@ extern s16 * gMinimapFrontWinBuf;
 extern s16 * gMinimapBackWinBuf;
 extern s16 * gMinimapDisplayedWinBuf;
 extern u16 * gMinimapObjectFlashPal;
-extern struct ProcCmd CONST_DATA ProcScr_Minimap[];
 
 void ApplyMinimapGraphics(int);
 void Minimap_InitProcVars(struct MinimapProc *);
+
+void InitMinimapFlashPalette();
+void Minimap_AdjustCursorOnClose(struct MinimapProc* proc);
+void Minimap_AdjustDisplay(struct MinimapProc* proc);
+void Minimap_CloseAnim(struct MinimapProc* proc);
+void Minimap_Init(ProcPtr proc);
+void Minimap_InitCloseAnim(struct MinimapProc* proc);
+void Minimap_InitOpenAnim(struct MinimapProc* proc);
+void Minimap_Main(ProcPtr proc);
+void Minimap_OpenAnim(struct MinimapProc* proc);
+
+CONST_DATA struct ProcCmd ProcScr_Minimap[] = {
+    PROC_CALL(LockGame),
+    PROC_YIELD,
+    PROC_CALL(ClearUi),
+    PROC_YIELD,
+    PROC_CALL(Minimap_Init),
+    PROC_CALL(Minimap_AdjustDisplay),
+    PROC_CALL(Minimap_InitOpenAnim),
+    PROC_REPEAT(Minimap_OpenAnim),
+    PROC_CALL(InitMinimapFlashPalette),
+    PROC_REPEAT(Minimap_Main),
+    PROC_CALL(Minimap_InitCloseAnim),
+    PROC_REPEAT(Minimap_CloseAnim),
+    PROC_CALL(Minimap_AdjustCursorOnClose),
+    PROC_CALL(ClearUi),
+    PROC_YIELD,
+    PROC_CALL(UnpackUiWindowFrameGraphics),
+    PROC_CALL(ResetText),
+    PROC_CALL(ApplySystemObjectsGraphics),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
 
 int GetMinimapConnectKindAt(int x, int y) {
     int index = 0;

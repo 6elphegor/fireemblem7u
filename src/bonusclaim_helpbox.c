@@ -11,9 +11,20 @@ struct BonusClaimHelpBoxProc
 };
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
-extern struct ProcCmd CONST_DATA gProcScr_BonusClaimHelpBox[];
 
 void * memcpy(void * dst, const void * src, unsigned long n);
+
+void BonusClaimHelp_Init(struct BonusClaimHelpBoxProc * proc);
+void BonusClaimHelp_Loop(struct BonusClaimHelpBoxProc * proc);
+
+CONST_DATA struct ProcCmd gProcScr_BonusClaimHelpBox[] = {
+    PROC_YIELD,
+    PROC_CALL(BonusClaimHelp_Init),
+    PROC_SLEEP(8),
+    PROC_REPEAT(BonusClaimHelp_Loop),
+    PROC_SLEEP(8),
+    PROC_END,
+};
 
 char * AppendChapterNumberString(int chapter, char * str)
 {

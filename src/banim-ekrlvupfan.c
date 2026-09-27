@@ -10,10 +10,17 @@ struct ProcEkrLvupFan {
     /* 2C */ s16 timer;
 };
 
-extern struct ProcCmd ProcScr_ekrLvupFan[];
 
 void SetBgmVolume(int volume);
 void M4aPlayWithPostionCtrl(int songid, int x, int flag);
+
+void EkrLvupFanMain(struct ProcEkrLvupFan * proc);
+
+CONST_DATA struct ProcCmd ProcScr_ekrLvupFan[] = {
+    PROC_19,
+    PROC_REPEAT(EkrLvupFanMain),
+    PROC_END,
+};
 
 void NewEkrLvlupFan(void)
 {

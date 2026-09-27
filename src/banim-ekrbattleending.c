@@ -16,7 +16,6 @@ struct ProcEkrBattleEnding {
 extern s16 gBanimBackgroundIndex;
 extern s16 gEkrBmLocation[4];
 
-extern struct ProcCmd CONST_DATA ProcScr_ekrBattleEnding[];
 
 int GetBattleAnimArenaFlag(void);
 void NewEkrBaseKaiten(int identifier);
@@ -26,6 +25,28 @@ void BMapDispResume_FromBattleDelayed(void);
 void RefreshBMapDisplay_FromBattle(void);
 void UnpackChapterMapPalette(void);
 void LoadLinkArenaFogPlaceholder(void);
+
+void ekrBattleEnding_80560F0(struct ProcEkrBattleEnding * proc);
+void ekrBattleEnding_8056170(struct ProcEkrBattleEnding * proc);
+void ekrBattleEnding_80561C8(struct ProcEkrBattleEnding * proc);
+void ekrBattleEnding_8056228(struct ProcEkrBattleEnding * proc);
+void ekrBattleEnding_8056288(struct ProcEkrBattleEnding * proc);
+void ekrBattleEnding_8056310(struct ProcEkrBattleEnding * proc);
+void ekrBattleEnding_8056390(struct ProcEkrBattleEnding * proc);
+void ekrBattleEnding_8056484(struct ProcEkrBattleEnding * proc);
+
+CONST_DATA struct ProcCmd ProcScr_ekrBattleEnding[] = {
+    PROC_19,
+    PROC_REPEAT(ekrBattleEnding_80560F0),
+    PROC_REPEAT(ekrBattleEnding_8056170),
+    PROC_REPEAT(ekrBattleEnding_80561C8),
+    PROC_REPEAT(ekrBattleEnding_8056228),
+    PROC_REPEAT(ekrBattleEnding_8056288),
+    PROC_REPEAT(ekrBattleEnding_8056310),
+    PROC_REPEAT(ekrBattleEnding_8056390),
+    PROC_REPEAT(ekrBattleEnding_8056484),
+    PROC_END,
+};
 
 void NewEkrbattleending(void)
 {

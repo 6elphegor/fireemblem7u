@@ -11,9 +11,20 @@ extern u8 CONST_DATA Tsa_Unk_0819C58C[];
 
 extern struct VectorBmfx const Vectors_Unk_081C3C30[14];
 
-extern struct ProcCmd CONST_DATA ProcScr_Unk_08B93C7C[];
 
 void * memcpy(void * dst, const void * src, unsigned long n);
+
+void sub_08020AD0(struct ProcBmFx * proc);
+void sub_08020B84(struct ProcBmFx * proc);
+void sub_08020BFC(struct ProcBmFx * proc);
+
+CONST_DATA struct ProcCmd ProcScr_Unk_08B93C7C[] = {
+    PROC_SLEEP(70),
+    PROC_CALL(sub_08020AD0),
+    PROC_REPEAT(sub_08020B84),
+    PROC_CALL(sub_08020BFC),
+    PROC_END,
+};
 
 void sub_08020AD0(struct ProcBmFx * proc)
 {

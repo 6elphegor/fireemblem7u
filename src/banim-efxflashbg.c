@@ -16,6 +16,28 @@ struct ProcEfxFlashing {
     /* 5C */ struct Anim * anim;
 };
 
+void EfxFlashBgMain(struct ProcEfxFlashing * proc);
+void EfxFlashRestorePalSync(struct ProcEfxFlashing * proc);
+void EfxWhiteOutMain1(struct ProcEfxFlashing * proc);
+void EfxWhiteOutMain2(struct ProcEfxFlashing * proc);
+void EfxWhiteOutRestorePalSync(struct ProcEfxFlashing * proc);
+
+CONST_DATA struct ProcCmd ProcScr_efxFlashBG[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxFlashBgMain),
+    PROC_REPEAT(EfxFlashRestorePalSync),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxWhiteOUT[] = {
+    PROC_19,
+    PROC_REPEAT(EfxWhiteOutMain1),
+    PROC_REPEAT(EfxWhiteOutMain2),
+    PROC_REPEAT(EfxWhiteOutRestorePalSync),
+    PROC_END,
+};
+
 void NewEfxFlashBgWhite(struct Anim * anim, int duartion)
 {
     struct ProcEfxFlashing * proc;

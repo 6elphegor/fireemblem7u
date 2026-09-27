@@ -22,6 +22,21 @@ struct SioRegs
 
 #define SIO ((struct SioRegs *)(&REG_SIOCNT))
 
+CONST_DATA struct ProcCmd gProcScr_SioBigSend[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_0803D688),
+    PROC_REPEAT(sub_0803D6E8),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_SioBigReceive[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_0803D758),
+    PROC_REPEAT(sub_0803D780),
+    PROC_REPEAT(sub_0803D7C4),
+    PROC_END,
+};
+
 int SioPollingMsg(void)
 {
     u16 siocnt;

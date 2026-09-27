@@ -16,6 +16,37 @@ extern const u8 Tsa_SioResultRankings[];
 extern const u8 Img_LinkArenaRankIcons[];
 extern const u16 Pal_LinkArenaRankIcons[];
 
+void FE6Link_Init(ProcPtr proc);
+void Set_0203DDDC(ProcPtr proc);
+
+CONST_DATA struct ProcCmd ProcScr_SIORESULT[] = {
+    PROC_19,
+    PROC_YIELD,
+    PROC_CALL(SioResult_Init),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_YIELD,
+    PROC_CALL(FE6Link_Init),
+    PROC_REPEAT(SioResult_Loop_Main),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_YIELD,
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SIORESULT_NewHighScore[] = {
+    PROC_YIELD,
+    PROC_CALL(SioResult_NewHS_Init),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_YIELD,
+    PROC_CALL(FE6Link_Init),
+    PROC_REPEAT(SioResult_NewHS_LoopScroll),
+    PROC_REPEAT(SioResult_NewHS_AwaitAPress),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_YIELD,
+    PROC_END,
+};
+
 //! FE8U = 0x08046E5C
 void DrawLinkArenaRankIcon(u16 * tm, int base)
 {
@@ -368,9 +399,7 @@ void SioResult_NewHS_AwaitAPress(ProcPtr proc)
     return;
 }
 
-extern struct ProcCmd CONST_DATA ProcScr_SIORESULT[];
 
-extern struct ProcCmd CONST_DATA ProcScr_SIORESULT_NewHighScore[];
 
 //! FE8U = 0x08047654
 void StartSioResultNewHighScore(int value, ProcPtr parent)

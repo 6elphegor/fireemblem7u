@@ -16,10 +16,6 @@ struct ProcEfxDead {
     /* 60 */ struct Anim * anim2;
 };
 
-extern struct ProcCmd ProcScr_efxDeadEvent[];
-extern struct ProcCmd ProcScr_efxDead[];
-extern struct ProcCmd ProcScr_efxDeadPika[];
-extern struct ProcCmd ProcScr_efxDeadAlpha[];
 
 extern u32 gEkrHpBarCount;
 extern u32 gEkrDeadEventExist;
@@ -40,6 +36,45 @@ void EfxPrepareScreenFx(void);
 void PlayDeathSoundForArena(void);
 void DisplayDefeatTalkForPid(u8 pid);
 void M4aPlayWithPostionCtrl(int songid, int x, int flag);
+
+void EfxDeadAlphaMain(struct ProcEfxDead * proc);
+void EfxDeadPikaMain(struct ProcEfxDead * proc);
+void sub_0804E040(struct ProcEfxDead * proc);
+void sub_0804E0C0(struct ProcEfxDead * proc);
+void sub_0804E0F0(struct ProcEfxDead * proc);
+void sub_0804E168(struct ProcEfxDead * proc);
+void sub_0804E1CC(struct ProcEfxDead * proc);
+void sub_0804E234(struct ProcEfxDead * proc);
+void sub_0804E278(struct ProcEfxDead * proc);
+
+CONST_DATA struct ProcCmd ProcScr_efxDeadEvent[] = {
+    PROC_19,
+    PROC_REPEAT(sub_0804E040),
+    PROC_REPEAT(sub_0804E0C0),
+    PROC_REPEAT(sub_0804E0F0),
+    PROC_REPEAT(sub_0804E168),
+    PROC_REPEAT(sub_0804E1CC),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxDead[] = {
+    PROC_19,
+    PROC_REPEAT(sub_0804E234),
+    PROC_REPEAT(sub_0804E278),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxDeadPika[] = {
+    PROC_19,
+    PROC_REPEAT(EfxDeadPikaMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxDeadAlpha[] = {
+    PROC_19,
+    PROC_REPEAT(EfxDeadAlphaMain),
+    PROC_END,
+};
 
 void NewEfxDeadEvent(struct Anim * anim1, struct Anim * anim2)
 {

@@ -1,8 +1,6 @@
 #include "gbafe.h"
 
 /* auto-decls */
-extern struct ProcCmd ProcScr_efxSpell11BG[];
-extern struct ProcCmd ProcScr_efxSpell11BGScroll[];
 extern u16 Img_Spell11Bg[];
 extern u16 Tsa_Spell11Bg[];
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -12,9 +10,7 @@ void NewEfxSpellCast(void);
 void StartSubSpell_efxIcebreathOBJ(struct Anim * anim);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxSpell11[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxSpell11BGCOL[];
 extern u16 Pal_Spell11Bg[];
 
 void sub_0805743C(struct Anim *anim);
@@ -23,6 +19,34 @@ void sub_08057714(struct Anim * anim);
 void sub_08057750(struct ProcEfxBGCOL * proc);
 
 extern const u16 sub_08057714_frame_config[];
+
+void sub_080575D4(struct ProcEfxBG * proc);
+void sub_0805764C(struct ProcEfxOBJ * proc);
+
+CONST_DATA struct ProcCmd ProcScr_efxSpell11[] = {
+    PROC_19,
+    PROC_REPEAT(sub_08057478),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxSpell11BG[] = {
+    PROC_19,
+    PROC_REPEAT(sub_080575D4),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxSpell11BGScroll[] = {
+    PROC_19,
+    PROC_REPEAT(sub_0805764C),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxSpell11BGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(sub_08057750),
+    PROC_END,
+};
 
 // 9.99 efxmagic-thunder:StartSpellAnimThunder
 void sub_0805743C(struct Anim *anim)

@@ -11,7 +11,15 @@ struct ProcWhiteCircleFx {
     /* 4C */ s16 counter;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_WhiteCircleFx[];
+
+void ProcWhiteCircleFx_End(struct ProcWhiteCircleFx * proc);
+void ProcWhiteCircleFx_Loop(struct ProcWhiteCircleFx * proc);
+
+CONST_DATA struct ProcCmd ProcScr_WhiteCircleFx[] = {
+    PROC_REPEAT(ProcWhiteCircleFx_Loop),
+    PROC_CALL(ProcWhiteCircleFx_End),
+    PROC_END,
+};
 
 void ProcWhiteCircleFx_Loop(struct ProcWhiteCircleFx * proc)
 {

@@ -16,8 +16,6 @@ struct ProcEkrHensei {
 extern u32 gEkrInitPosReal;
 extern s16 gBanimBackgroundIndex;
 
-extern CONST_DATA struct ProcCmd ProcScr_ekrHenseiInit[];
-extern CONST_DATA struct ProcCmd ProcScr_ekrHenseiEnd[];
 
 int GetBanimInitPosReal(void);
 void MainUpdate_8055C68(void);
@@ -27,6 +25,31 @@ void PutBanimBG(int index);
 
 void NewEkrHenseiInitPROC(void);
 void NewEkrHenseiEnd(void);
+
+void EkrHenseiEnd_End(struct ProcEkrHensei * proc);
+void EkrHenseiEnd_FadeOut(struct ProcEkrHensei * proc);
+void EkrHenseiEnd_InitTimer(struct ProcEkrHensei * proc);
+void EkrHenseiInit_End(struct ProcEkrHensei * proc);
+void EkrHenseiInit_FadeIn(struct ProcEkrHensei * proc);
+void EkrHenseiInit_InitScreen(struct ProcEkrHensei * proc);
+void EkrHenseiInit_InitTimer(struct ProcEkrHensei * proc);
+
+CONST_DATA struct ProcCmd ProcScr_ekrHenseiInit[] = {
+    PROC_19,
+    PROC_REPEAT(EkrHenseiInit_InitScreen),
+    PROC_REPEAT(EkrHenseiInit_InitTimer),
+    PROC_REPEAT(EkrHenseiInit_FadeIn),
+    PROC_REPEAT(EkrHenseiInit_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ekrHenseiEnd[] = {
+    PROC_19,
+    PROC_REPEAT(EkrHenseiEnd_InitTimer),
+    PROC_REPEAT(EkrHenseiEnd_FadeOut),
+    PROC_REPEAT(EkrHenseiEnd_End),
+    PROC_END,
+};
 
 int CheckBanimHensei(void)
 {

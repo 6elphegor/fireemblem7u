@@ -17,10 +17,34 @@ extern s16 * gUnk_Sio_02001180;
 extern s16 * gUnk_Sio_02001184;
 extern s16 * gUnk_Sio_02001188;
 
-extern struct ProcCmd CONST_DATA ProcScr_08B9A1E0[];
-extern struct ProcCmd CONST_DATA ProcScr_08B9A218[];
 
 void sub_08047184(s16 * a, int b, int c, int d, int e, int f, int g, int h, int i, s16 j, u16 k);
+
+void sub_080472F4(struct SioProc85AA7B4 * proc);
+void sub_08047340(struct SioProc85AA7B4 * proc);
+void sub_080473D8(void);
+void sub_080474D8(struct SioProc85AA7B4 * proc);
+void sub_08047570(void);
+
+CONST_DATA struct ProcCmd ProcScr_08B9A1E0[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_080472F4),
+    PROC_REPEAT(sub_08047340),
+    PROC_SLEEP(1),
+    PROC_CALL(sub_080473D8),
+    PROC_SLEEP(1),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_08B9A218[] = {
+    PROC_YIELD,
+    PROC_CALL(sub_080472F4),
+    PROC_REPEAT(sub_080474D8),
+    PROC_SLEEP(1),
+    PROC_CALL(sub_08047570),
+    PROC_SLEEP(1),
+    PROC_END,
+};
 
 void Set_0203DDDC(void)
 {

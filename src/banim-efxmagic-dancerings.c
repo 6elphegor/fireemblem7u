@@ -4,7 +4,6 @@
 void StartSubSpell_efxSongBG(struct Anim * anim, int kind);
 void StartSubSpell_efxSongOBJ(struct Anim * anim, int kind);
 void NewEfxTwobaiRST(struct Anim *anim, int unk44);
-extern struct ProcCmd ProcScr_efxDancepara[];
 
 void StartSpellAnimFillasMight(struct Anim * anim);
 void StartSpellAnimThorsIre(struct Anim * anim);
@@ -13,6 +12,12 @@ void StartSpellAnimSetsLitany(struct Anim * anim);
 void efxDancepara_Loop(struct ProcEfx * proc);
 
 
+
+CONST_DATA struct ProcCmd ProcScr_efxDancepara[] = {
+    PROC_19,
+    PROC_REPEAT(efxDancepara_Loop),
+    PROC_END,
+};
 
 // 9.99 efxmagic-dancerings:StartSpellAnimFillasMight
 void StartSpellAnimFillasMight(struct Anim * anim)

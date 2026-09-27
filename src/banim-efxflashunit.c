@@ -35,9 +35,6 @@ struct ProcEfxHpBarColorChange {
     /* 5C */ struct Anim * anim;
 };
 
-extern struct ProcCmd ProcScr_efxFlashHPBar[];
-extern struct ProcCmd ProcScr_efxHPBarColorChange[];
-extern struct ProcCmd ProcScr_efxFlashUnit[];
 
 extern struct ProcEfxHpBarColorChange * gpProcEfxHpBarColorChange;
 extern s16 gEkrGaugeHp[2];
@@ -55,6 +52,37 @@ extern u16 gEfxSplitedColorBufC[];
 extern u8 gEfxSplitedColorBufD[];
 extern u8 gEfxSplitedColorBufE[];
 extern u16 gEfxSplitedColorBufF[];
+
+void EfxFlashHPBarDelay(struct ProcEfxFlashing * proc);
+void EfxFlashHPBarMain1(struct ProcEfxFlashing * proc);
+void EfxFlashHPBarRestorePal(struct ProcEfxFlashing * proc);
+void EfxFlashUnitMain(struct ProcEfxFlashing * proc);
+void EfxFlashUnitRestorePal(struct ProcEfxFlashing * proc);
+void EfxHPBarColorChangeMain(struct ProcEfxHpBarColorChange * proc);
+
+CONST_DATA struct ProcCmd ProcScr_efxFlashHPBar[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxFlashHPBarDelay),
+    PROC_REPEAT(EfxFlashHPBarMain1),
+    PROC_REPEAT(EfxFlashHPBarRestorePal),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxHPBarColorChange[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxHPBarColorChangeMain),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_efxFlashUnit[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxFlashUnitMain),
+    PROC_REPEAT(EfxFlashUnitRestorePal),
+    PROC_END,
+};
 
 void NewEfxFlashHPBar(struct Anim * anim, int duartion, int duartion2)
 {

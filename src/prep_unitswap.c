@@ -19,11 +19,22 @@ struct PrepUnitSwapProc {
     /* 44 */ int divisor;
 };
 
-extern struct ProcCmd CONST_DATA sProcScr_PrepUnitSwap[];
 
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 
 #define SIN(x) gSinLut[(x) & 0xFF]
+
+void PrepUnitSwapProc_Init(struct PrepUnitSwapProc * proc);
+void PrepUnitSwapProc_MainLoop(struct PrepUnitSwapProc * proc);
+void PrepUnitSwapProc_OnEnd(struct PrepUnitSwapProc * proc);
+
+CONST_DATA struct ProcCmd sProcScr_PrepUnitSwap[] = {
+    PROC_YIELD,
+    PROC_CALL(PrepUnitSwapProc_Init),
+    PROC_REPEAT(PrepUnitSwapProc_MainLoop),
+    PROC_CALL(PrepUnitSwapProc_OnEnd),
+    PROC_END,
+};
 
 void PrepUnitSwapProc_Init(struct PrepUnitSwapProc * proc)
 {

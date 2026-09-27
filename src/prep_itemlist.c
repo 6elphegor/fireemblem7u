@@ -13,9 +13,42 @@ extern u16 const * CONST_DATA gUnk_08CC4FA0[];
 extern u16 CONST_DATA gUnk_08CC4F90[];
 extern u8 Tsa_0840E780[];
 extern u8 Img_08405754[];
-extern struct ProcCmd CONST_DATA ProcScr_PrepItemListScreen[];
 
 s8 CheckValidLinkArenaItemSupply(struct Unit * unit, int slot, int item);
+
+CONST_DATA struct ProcCmd ProcScr_PrepItemListScreen[] = {
+    PROC_YIELD,
+    PROC_CALL(PrepItemList_Init),
+    PROC_LABEL(0),
+    PROC_CALL(PrepItemList_InitGfx),
+    PROC_CALL_ARG(NewFadeIn, 16),
+    PROC_WHILE(FadeInExists),
+    PROC_LABEL(1),
+    PROC_CALL(sub_08097DD4),
+    PROC_LABEL(2),
+    PROC_REPEAT(PrepItemList_Loop_MainKeyHandler),
+    PROC_LABEL(6),
+    PROC_CALL_ARG(NewFadeOut, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(PrepItemList_OnEnd),
+    PROC_CALL(PrepItemList_StartTradeScreen),
+    PROC_YIELD,
+    PROC_GOTO(0),
+    PROC_LABEL(7),
+    PROC_CALL(PrepItemList_SwitchToUnitInventory),
+    PROC_REPEAT(PrepItemList_Loop_UnitInvKeyHandler),
+    PROC_GOTO(1),
+    PROC_LABEL(3),
+    PROC_REPEAT(PrepItemList_SwitchPageLeft),
+    PROC_LABEL(4),
+    PROC_REPEAT(PrepItemList_SwitchPageRight),
+    PROC_LABEL(8),
+    PROC_CALL_ARG(NewFadeOut, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(9),
+    PROC_CALL(PrepItemList_OnEnd),
+    PROC_END,
+};
 
 void PrepItemList_Init(struct PrepItemListProc * proc)
 {
