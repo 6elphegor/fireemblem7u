@@ -1695,7 +1695,19 @@ void sub_080799C8(void)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_08079A14.s");
+bool sub_08079A14(struct Unit * unit)
+{
+    u8 const * it = gUnk_08CA0538;
+    int pid = unit->pCharacterData->number;
+
+    for (; *it != 0; it++)
+    {
+        if (*it == pid)
+            return TRUE;
+    }
+
+    return FALSE;
+}
 
 void CallEndEvent(void)
 {
