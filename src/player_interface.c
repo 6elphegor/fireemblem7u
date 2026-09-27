@@ -26,6 +26,7 @@ extern u8 const Img_MapUiStatusDefense[];
 extern u8 const Img_MapUiStatusCrit[];
 extern u8 const Img_MapUiStatusAvoid[];
 extern u8 const Tsa_MinimugBox[];
+extern u8 const Img_PlayerInterface[];
 
 extern char gNumberStr[];
 
@@ -810,23 +811,247 @@ void TerrainDisplay_Loop_Display(struct PlayerInterfaceProc * proc)
     Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_080857B4.s");
+void MMB_Init(struct PlayerInterfaceProc * proc)
+{
+    proc->windowQuadrant = -1;
+    InitTextDb(proc->texts, 6);
+    proc->showHideClock = 0;
+    proc->isRetracting = false;
+}
 
-ASM_FUNC("asm/nonmatching/code_080857DC.s");
+void MMB_Loop_OnSideChange(struct PlayerInterfaceProc * proc)
+{
+    int quadrant;
+    struct PlayerInterfaceProc * tiProc;
 
-ASM_FUNC("asm/nonmatching/code_08085888.s");
+    struct Unit * unit = GetUnit(gBmMapUnit[gBmSt.cursor.y][gBmSt.cursor.x]);
 
-ASM_FUNC("asm/nonmatching/code_08085968.s");
+    if (unit == NULL)
+        return;
 
-ASM_FUNC("asm/nonmatching/code_080859B4.s");
+    proc->hideContents = true;
 
-ASM_FUNC("asm/nonmatching/code_080859E0.s");
+    proc->cursorQuadrant = GetCursorQuadrant();
 
-ASM_FUNC("asm/nonmatching/code_08085ADC.s");
+    quadrant = GetWindowQuadrant(
+        sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug,
+        sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug);
 
-ASM_FUNC("asm/nonmatching/code_08085C68.s");
+    tiProc = Proc_Find(gProcScr_TerrainDisplay);
 
-ASM_FUNC("asm/nonmatching/code_08085C7C.s");
+    if (tiProc != NULL)
+    {
+        if ((tiProc->windowQuadrant > -1) && (tiProc->windowQuadrant == quadrant))
+            return;
+    }
+
+    proc->windowQuadrant = quadrant;
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+
+    DrawUnitMapUi(proc, unit);
+
+    Proc_Break(proc);
+}
+
+void MMB_Loop_Display(struct PlayerInterfaceProc * proc)
+{
+    struct Unit * unit = GetUnit(gBmMapUnit[gBmSt.cursor.y][gBmSt.cursor.x]);
+
+    proc->unitClock++;
+
+    UnitMapUiUpdate(proc, unit);
+
+    if ((proc->unitClock & 63) == 0)
+        sub_08084D90(proc);
+
+    proc->xCursorPrev = proc->xCursor;
+    proc->yCursorPrev = proc->yCursor;
+
+    proc->xCursor = gBmSt.cursor.x;
+    proc->yCursor = gBmSt.cursor.y;
+
+    if ((proc->xCursor == proc->xCursorPrev) && (proc->yCursor == proc->yCursorPrev))
+        return;
+
+    if (unit != NULL && Proc_Find(ProcScr_CamMove) == NULL)
+    {
+        int cursorQuadrant = GetCursorQuadrant();
+
+        if ((cursorQuadrant == proc->cursorQuadrant) ||
+            ((sPlayerInterfaceConfigLut[cursorQuadrant].xMinimug ==
+              sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug) &&
+             (sPlayerInterfaceConfigLut[cursorQuadrant].yMinimug ==
+              sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug)))
+        {
+            Proc_Goto(proc, 1);
+            return;
+        }
+    }
+
+    proc->isRetracting = true;
+
+    Proc_Break(proc);
+}
+
+void MMB_CheckForUnit(struct PlayerInterfaceProc * proc)
+{
+    struct Unit * unit = GetUnit(gBmMapUnit[gBmSt.cursor.y][gBmSt.cursor.x]);
+
+    if (unit == NULL)
+    {
+        Proc_Goto(proc, 3);
+    }
+    else
+    {
+        DrawUnitMapUi(proc, unit);
+        sub_08084D90(proc);
+    }
+}
+
+void BurstDisplay_Init(struct PlayerInterfaceProc * proc)
+{
+    InitTextDb(proc->texts, 6);
+    proc->burstUnitId = 0;
+    proc->hideContents = false;
+    proc->showHideClock = 0;
+    proc->wBurst = 0;
+    proc->hBurst = 0;
+    proc->isRetracting = false;
+}
+
+void BurstDisplay_Loop_Display(struct PlayerInterfaceProc * proc)
+{
+    struct PlayerInterfaceProc * tiProc;
+    struct PlayerInterfaceProc * piProc;
+
+    proc->burstUnitIdPrev = proc->burstUnitId;
+
+    proc->burstUnitId = gBmMapUnit[gBmSt.cursor.y][gBmSt.cursor.x];
+
+    if ((proc->burstUnitIdPrev != proc->burstUnitId) && (proc->burstUnitIdPrev != 0))
+    {
+        ClearUnitBurstMapUi(proc);
+        proc->showHideClock = 0;
+
+        return;
+    }
+
+    if ((proc->burstUnitId == 0) || (Proc_Find(ProcScr_CamMove) != 0))
+        return;
+
+    tiProc = Proc_Find(gProcScr_TerrainDisplay);
+
+    if (tiProc != NULL)
+    {
+        if (tiProc->hideContents)
+        {
+            if (proc->showHideClock < 4)
+                proc->showHideClock++;
+
+            return;
+        }
+    }
+
+    piProc = Proc_Find(gProcScr_GoalDisplay);
+
+    if (piProc != NULL)
+    {
+        if (piProc->hideContents)
+        {
+            if (proc->showHideClock < 4)
+                proc->showHideClock++;
+
+            return;
+        }
+    }
+
+    proc->showHideClock++;
+
+    if (proc->showHideClock < 8)
+        return;
+
+    if (proc->showHideClock == 8)
+    {
+        DrawUnitBurstMapUi(proc, GetUnit(proc->burstUnitId));
+    }
+    else
+    {
+        proc->unitClock++;
+
+        if (tiProc)
+            proc->hideContents = tiProc->hideContents;
+        else
+            proc->hideContents = false;
+
+        UnitMapUiUpdate(proc, GetUnit(proc->burstUnitId));
+    }
+}
+
+void InitPlayerPhaseInterface(void)
+{
+    SetWinEnable(0, 0, 0);
+    SetWOutLayers(1, 1, 1, 1, 1);
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+
+    SetBlendAlpha(15, 4);
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendBackdropA(0);
+    SetBlendTargetB(0, 0, 1, 1, 1);
+
+    Decompress(Img_PlayerInterface, (void *)(VRAM + 0x2000));
+
+    CpuFastCopy((void *)(VRAM + 0x2500), (void *)(VRAM + 0x15C00), 10 * CHR_SIZE);
+    CpuFastCopy((void *)(VRAM + 0x2EA0), (void *)(VRAM + 0x15D40), CHR_SIZE);
+
+    ApplyPalette(gPal, 0x18);
+
+    ApplyIconPalette(1, 2);
+
+    ResetTextFont();
+
+    if (gPlaySt.cfgDisableTerrainDisplay == 0)
+        Proc_Start(gProcScr_TerrainDisplay, PROC_TREE_3);
+
+    if (gBmSt.flags & BM_FLAG_4)
+    {
+        Proc_Start(gProcScr_PrepMap_MenuButtonDisplay, PROC_TREE_3);
+    }
+    else
+    {
+        if (gPlaySt.cfgDisableGoalDisplay == 0)
+            Proc_Start(gProcScr_GoalDisplay, PROC_TREE_3);
+    }
+
+    if (gPlaySt.cfgUnitDisplayType == 0)
+        Proc_Start(gProcScr_UnitDisplay_MinimugBox, PROC_TREE_3);
+
+    if (gPlaySt.cfgUnitDisplayType == 1)
+        Proc_Start(gProcScr_UnitDisplay_Burst, PROC_TREE_3);
+}
+
+void StartMapWindows(void)
+{
+    Proc_Start(gProcScr_SideWindowMaker, PROC_TREE_3);
+}
+
+void EndPlayerPhaseSideWindows(void)
+{
+    Proc_EndEach(gProcScr_UnitDisplay_MinimugBox);
+    Proc_EndEach(gProcScr_UnitDisplay_Burst);
+    Proc_EndEach(gProcScr_TerrainDisplay);
+    Proc_EndEach(gProcScr_GoalDisplay);
+    Proc_EndEach(gProcScr_PrepMap_MenuButtonDisplay);
+
+    SetBlendNone();
+
+    ClearUi();
+}
 
 ASM_FUNC("asm/nonmatching/code_08085CDC.s");
 

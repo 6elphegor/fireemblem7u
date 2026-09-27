@@ -1332,3 +1332,4 @@ Tsa_TerrainMapUi_Labels = 0x08404880;
 Tsa_TerrainMapUi_BallistaLabels = 0x0840488C;
 Tsa_TerrainMapUi_ObstacleLabels = 0x08404894;
 Tsa_TerrainMapUi_ObstacleFullHp = 0x084048A0;
+Img_PlayerInterface = 0x08403BC4;
