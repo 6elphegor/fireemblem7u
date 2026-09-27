@@ -350,7 +350,52 @@ void sub_08040B80(struct SioBatProc * proc)
     return;
 }
 
-ASM_FUNC("asm/nonmatching/code_08040C24.s");
+void sub_08040C24(struct SioBatProc * proc)
+{
+    u16 got;
+    struct SioBatProc_Unk2C * unk_2c;
+    u8 buf[16];
+    u8 outSenderId[4];
+
+    unk_2c = proc->unk_2c;
+
+    if (gSioSt->selfId == 0)
+    {
+        if (gSioSt->pendingSend[proc->unk_34].unk_00 == gSioSt->unk_009)
+        {
+            PutSioText(0x3CC, 1); // "Select player to move first."
+            unk_2c->unk_38 = 0;
+            Proc_Break(proc);
+        }
+    }
+    else
+    {
+        if ((GetGameTime() % 38) == 0)
+        {
+            got = SioReceiveData(buf, outSenderId, NULL);
+
+            if (got != 0)
+            {
+                struct LinkArenaStMaybe * las = &gLinkArenaSt;
+                u8 * buf2 = buf;
+                struct { u32 unk_0_0 : 1; u32 unk_0_1 : 1; u32 unk_0_2 : 1; } * unk_ec = (void *)&las->unk_ec;
+
+                unk_ec->unk_0_0 = buf2[0];
+                unk_ec->unk_0_2 = buf[1];
+                unk_ec->unk_0_1 = buf[2];
+
+                proc->unk_3b = buf[3];
+                proc->unk_39 = buf[4];
+                RandSetSt((void *)(buf + 6));
+                PutSioText(0x3CC, 1); // "Select player to move first."
+                unk_2c->unk_38 = 0;
+                Proc_Break(proc);
+            }
+        }
+    }
+
+    return;
+}
 
 //! FE8U = 0x080463A8
 void sub_08040CFC(struct SioBatProc * proc)

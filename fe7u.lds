@@ -611,11 +611,7 @@ SECTIONS
         build/src/sio_bat.o(.text);
         build/src/sio_term.o(.text);
         build/src/sio_result.o(.text);
-        build/asm/code_08041FD4.o(.text);
-        build/asm/code_08041FF8.o(.text);
-        build/asm/code_0804203C.o(.text);
-        build/asm/code_080420F0.o(.text);
-        build/asm/code_08042298.o(.text);
+        build/src/sio_rulesettings.o(.text);
         build/asm/code_080423C4.o(.text);
         build/asm/code_08042428.o(.text);
         build/asm/code_08042464.o(.text);
