@@ -1235,13 +1235,9 @@ void DrawBoxDialogueText(int x, int y, int msg)
     sub_080845C8(proc->msg, wInner, hInner);
 }
 
-#if NONMATCHING
-
-// register allocation differs; the 8x8 border loop gets reversed
-
 void sub_080838FC(int x, int y, int width, int height)
 {
-    int i, j, k;
+    int i, j, l;
     int spriteWidth, spriteHeight;
 
     if (width < 0x20)
@@ -1263,91 +1259,93 @@ void sub_080838FC(int x, int y, int width, int height)
 
         for (i = 0; i < spriteWidth - 4; i += 4)
         {
+            l = 8 * i;
             for (j = spriteHeight; j >= 0; j--)
             {
-                k = 0x10 * (j + 1);
+                int k = 0x10 * (j + 1);
                 if (k > height)
                     k = height;
                 k -= 0x10;
 
-                PutSprite(2, x + i * 8, y + k, Sprite_32x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
+                PutSprite(2, x + l, y + k, Sprite_32x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
             }
         }
 
         for (; i < spriteWidth - 2; i += 2)
         {
+            l = 8 * i;
             for (j = spriteHeight; j >= 0; j--)
             {
-                k = 0x10 * (j + 1);
+                int k = 0x10 * (j + 1);
                 if (k > height)
                     k = height;
                 k -= 0x10;
 
-                PutSprite(2, x + i * 8, y + k, Sprite_16x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
+                PutSprite(2, x + l, y + k, Sprite_16x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
             }
         }
 
         for (; i < spriteWidth; i++)
         {
+            l = 8 * i;
             for (j = spriteHeight; j >= 0; j--)
             {
-                k = 0x10 * (j + 1);
+                int k = 0x10 * (j + 1);
                 if (k > height)
                     k = height;
                 k -= 0x10;
 
-                PutSprite(2, x + i * 8, y + k, Sprite_8x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
+                PutSprite(2, x + l, y + k, Sprite_8x16, gBoxDialogueConf.unk_40 + i + j * 0x40);
             }
         }
 
         for (i = 0; i < spriteWidth - 2; i += 2)
         {
-            PutSprite(2, x + i * 8, y - 8, Sprite_16x8, gBoxDialogueConf.unk_40 + 0x1B);
-            PutSprite(2, x + i * 8, y + height, Sprite_16x8_VFlipped, gBoxDialogueConf.unk_40 + 0x1B);
+            l = 8 * i;
+            PutSprite(2, x + l, y - 8, Sprite_16x8, gBoxDialogueConf.unk_40 + 0x1B);
+            PutSprite(2, x + l, y + height, Sprite_16x8_VFlipped, gBoxDialogueConf.unk_40 + 0x1B);
         }
 
         for (; i < spriteWidth; i++)
         {
-            PutSprite(2, x + i * 8, y - 8, Sprite_8x8, gBoxDialogueConf.unk_40 + 0x1B);
-            PutSprite(2, x + i * 8, y + height, Sprite_8x8_VFlipped, gBoxDialogueConf.unk_40 + 0x1B);
+            l = 8 * i;
+            PutSprite(2, x + l, y - 8, Sprite_8x8, gBoxDialogueConf.unk_40 + 0x1B);
+            PutSprite(2, x + l, y + height, Sprite_8x8_VFlipped, gBoxDialogueConf.unk_40 + 0x1B);
         }
 
         for (j = spriteHeight; j >= 0; j--)
         {
-            k = 0x10 * (j + 1);
+            int k = 0x10 * (j + 1);
             if (k > height)
                 k = height;
             k -= 0x10;
 
             PutSprite(2, x - 8, y + k, Sprite_8x16, gBoxDialogueConf.unk_40 + 0x1F);
-            PutSprite(2, x + i * 8, y + k, Sprite_8x16_HFlipped, gBoxDialogueConf.unk_40 + 0x1F);
+            PutSprite(2, x + 8 * i, y + k, Sprite_8x16_HFlipped, gBoxDialogueConf.unk_40 + 0x1F);
         }
 
         PutSprite(2, x - 8, y - 8, Sprite_8x8, gBoxDialogueConf.unk_40 + 0x3E);
-        PutSprite(2, x + i * 8, y - 8, Sprite_8x8_HFlipped, gBoxDialogueConf.unk_40 + 0x3E);
+        PutSprite(2, x + 8 * i, y - 8, Sprite_8x8_HFlipped, gBoxDialogueConf.unk_40 + 0x3E);
         PutSprite(2, x - 8, y + height, Sprite_8x8_VFlipped, gBoxDialogueConf.unk_40 + 0x3E);
-        PutSprite(2, x + i * 8, y + height, Sprite_8x8_HFlipped_VFlipped, gBoxDialogueConf.unk_40 + 0x3E);
+        PutSprite(2, x + 8 * i, y + height, Sprite_8x8_HFlipped_VFlipped, gBoxDialogueConf.unk_40 + 0x3E);
     }
     else
     {
         spriteWidth = (width + 0x1F) / 0x20;
-        spriteHeight = ((u16)GetDialogueBoxConfig() >> 8) - 1;
+        spriteHeight = GetDialogueBoxConfig() / 0x100 - 1;
 
         for (i = spriteWidth - 1; i >= 0; i--)
         {
             for (j = spriteHeight; j >= 0; j--)
             {
-                PutSprite(2, x + i * 0x20, y + j * 0x10, Sprite_32x16, gBoxDialogueConf.unk_40 + i * 4 + j * 0x40);
+                int k;
+                l = 0x20 * i;
+                k = 0x10 * j;
+                PutSprite(2, x + l, y + k, Sprite_32x16, gBoxDialogueConf.unk_40 + 4 * i + j * 0x40);
             }
         }
     }
 }
-
-#else
-
-ASM_FUNC("asm/nonmatching/code_080838FC.s");
-
-#endif
 
 void sub_08083C0C(struct ProcBoxDialogueDrawTextExt * proc)
 {
