@@ -162,12 +162,31 @@ void sub_080A6748(void)
 	SetTextFont(NULL);
 }
 
-void TactInfoFx_Thread(struct ProcTactInfo *proc);
-ASM_FUNC("asm/nonmatching/code_080A682C.s");
+void TactInfoFx_Thread(struct ProcTactInfo *proc)
+{
+	int i;
+
+	for (i = 0; i < 2; i++)
+		PutSpriteExt(4, 0x80 + 0x20 * i, 0x28, Sprite_32x16, 0xF880 + 4 * i);
+
+	for (i = 0; i < 2; i++)
+		PutSpriteExt(4, 0x38 + 0x20 * i, 0x48, Sprite_32x16, 0xF888 + 4 * i);
+
+	for (i = 0; i < 2; i++)
+		PutSpriteExt(4, 0x90 + 0x20 * i, 0x48, Sprite_32x16, 0xF890 + 4 * i);
+}
 
 
-void TactInfo_Init(struct ProcTactInfo *proc);
-ASM_FUNC("asm/nonmatching/code_080A68A4.s");
+void TactInfo_Init(struct ProcTactInfo *proc)
+{
+	proc->cur_index = 0;
+	proc->do_helpbox = 0;
+
+	SetTacticianName(DecodeMsg(0x790));
+
+	gPlaySt.tact_birth = 0;
+	gPlaySt.tact_gender = 0;
+}
 
 
 void TactInfo_SetupGfx(struct ProcTactInfo *proc)
