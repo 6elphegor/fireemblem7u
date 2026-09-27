@@ -241,12 +241,12 @@ void ManimRepairFx_Init(struct ManimEffectProc * proc);
 // ManimRepairFx_Blink
 void ManimRepairFx_FadeOut(struct ManimEffectProc * proc);
 // sub_807384C
-// sub_080730C8
+void ManimRestoreFx_Init(struct ManimEffectProc * proc);
 // sub_80738E0
 // sub_8073984
-// sub_08073200
-// sub_0807326C
-// sub_080732AC
+void ManimSleepFx_Init(struct ManimEffectProc * proc);
+void ManimSleepFx_Anim1(struct ManimEffectProc * proc);
+void ManimSleepFx_Anim2(struct ManimEffectProc * proc);
 // sub_080732E8
 // sub_08073354
 // sub_08073438
@@ -362,3 +362,6 @@ void ManimTorchFx_ResetHBlank(struct ManimEffectProc * proc);
 void StartManimBerserkFx(struct Unit * unit);
 void StartManimRepairFx(struct Unit * unit);
 void ManimRepairFx_Main(struct ManimEffectProc * proc);
+void StartManimRestoreFx(struct Unit * unit);
+void ManimRestoreFx_Main(struct ManimEffectProc * proc);
+void StartManimSleepFx(struct Unit * unit);

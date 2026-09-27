@@ -42,6 +42,15 @@ extern u8 const gManimRepairFrameLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimBerserk[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimRepair[];
 
+extern u16 const Pal_ManimRestore[];
+extern u8 const Tsa_ManimRestore[];
+extern u8 const gManimRestoreFrameLut[];
+extern u8 const Img_ManimSleep[];
+extern u16 const Pal_ManimSleep[];
+extern u16 const SpriteAnim_ManimSleep[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimRestore[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimSleep[];
+
 void StartManimLatonaFx(struct Unit * unit)
 {
     struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimLatona, PROC_TREE_3);
@@ -568,13 +577,68 @@ void ManimRepairFx_FadeOut(struct ManimEffectProc * proc)
         Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_08073060.s");
-ASM_FUNC("asm/nonmatching/code_080730C8.s");
-ASM_FUNC("asm/nonmatching/code_080730F4.s");
-ASM_FUNC("asm/nonmatching/code_08073198.s");
-ASM_FUNC("asm/nonmatching/code_08073200.s");
-ASM_FUNC("asm/nonmatching/code_0807326C.s");
-ASM_FUNC("asm/nonmatching/code_080732AC.s");
+void StartManimRestoreFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimRestore, PROC_TREE_3);
+
+    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
+    proc->y = ((SCREEN_TILE_Y(unit->yPos) << 1) + 1) * 8;
+}
+
+void ManimRestoreFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x82, proc->x);
+    ApplyPalette(Pal_ManimRestore, 4);
+}
+
+void ManimRestoreFx_Main(struct ManimEffectProc * proc)
+{
+    sub_080149A8(
+        gBg2Tm,
+        proc->x / 8 - 2, proc->y / 8 - 9,
+        TILEREF(0x140, 4),
+        4, 11, Tsa_ManimRestore,
+        gManimRestoreFrameLut[proc->unk_48++]);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    if (gManimRestoreFrameLut[proc->unk_48] == 0xFF)
+        Proc_Break(proc);
+}
+
+void StartManimSleepFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimSleep, PROC_TREE_3);
+
+    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
+    proc->y = ((SCREEN_TILE_Y(unit->yPos) << 1) + 1) * 8;
+}
+
+void ManimSleepFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x85, proc->x);
+
+    SetBgOffset(2, 0, 0);
+    SetDefaultManimScreenConf();
+
+    Decompress(Img_ManimSleep, OBJ_VRAM0 + 0x1C0 * 0x20);
+    ApplyPalette(Pal_ManimSleep, 0x10 + 4);
+
+    StartSpriteAnimProc(SpriteAnim_ManimSleep, proc->x, proc->y - 16, TILEREF(0x1C0, 4), 0, 2);
+}
+
+void ManimSleepFx_Anim1(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x85, proc->x);
+    StartSpriteAnimProc(SpriteAnim_ManimSleep, proc->x, proc->y - 8, TILEREF(0x1C0, 4), 0, 2);
+}
+
+void ManimSleepFx_Anim2(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x85, proc->x);
+    StartSpriteAnimProc(SpriteAnim_ManimSleep, proc->x, proc->y, TILEREF(0x1C0, 4), 0, 2);
+}
+
 ASM_FUNC("asm/nonmatching/code_080732E8.s");
 ASM_FUNC("asm/nonmatching/code_08073354.s");
 ASM_FUNC("asm/nonmatching/code_08073438.s");

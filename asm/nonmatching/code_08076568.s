@@ -20,7 +20,7 @@ sub_08076568: @ 0x08076568
 	adds r0, r0, r1
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_08073198
+	bl StartManimSleepFx
 	add sp, #4
 	pop {r7}
 	pop {r0}
