@@ -3,6 +3,7 @@
 #include "global.h"
 
 struct SupportData;
+struct BattleAnimDef;
 
 // Config
 enum { UNIT_LEVEL_MAX = 20 };
@@ -126,7 +127,7 @@ struct ClassData {
 
     /* 2C */ u8 baseRanks[8];
 
-    /* 34 */ const void* pBattleAnimDef;
+    /* 34 */ const struct BattleAnimDef* pBattleAnimDef;
     /* 38 */ const s8* pMovCostTable[3]; // standard, rain, snow
 
     /* 44 */ const s8* pTerrainAvoidLookup;
