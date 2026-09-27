@@ -1631,3 +1631,5 @@ gManimInfoWindowBarInfo = 0x08C9D774;
 gManimInfoWindowBarPalLut = 0x08C9D790;
 Tsa_ManimInfoWindowLut = 0x08C9D798;
 ProcScr_ManimInfoWindow = 0x08C9D7B0;
+Tsa_ManimExpBar = 0x083F3F3C;
+gManimExpBarInfo = 0x08C9D7E8;

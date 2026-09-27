@@ -109,13 +109,13 @@ u16 const * GetManimInfoWindowPal(struct Unit * unit);
 void PutManimInfoWindow(struct ManimInfoWindowProc * proc, int actor, int x_offset);
 void ManimInfoWindow_InitShake(struct ManimInfoWindowProc * proc);
 void ManimInfoWindow_Shake(struct ManimInfoWindowProc * proc);
-// sub_0806FF18
-// sub_0806FF88
-// sub_0807003C
-// sub_0807006C
-// sub_0807010C
-// sub_080701FC
-// sub_080702D8
+void PutManimExpBar(int x, int y, int exp);
+void ManimExpBar_Init(struct ManimExpBarProc * proc);
+void ManimExpBar_PlaySe(struct ManimExpBarProc * proc);
+void ManimExpBar_Increment(struct ManimExpBarProc * proc);
+void ManimExpBar_InitShake(struct ManimExpBarProc * proc);
+void ManimExpBar_Shake(struct ManimExpBarProc * proc);
+void ManimExpBar_LevelUpIfPossible(struct ManimExpBarProc * proc);
 // sub_8070AF8
 // sub_08070324
 // sub_08070784
@@ -207,7 +207,7 @@ void ManimInfoWindow_Shake(struct ManimInfoWindowProc * proc);
 // sub_8074D38
 // sub_08074554
 // sub_08074744
-// sub_0807489C
+// StartManimLevelUp
 // sub_080748D0
 // sub_080749F4
 // sub_08074A28

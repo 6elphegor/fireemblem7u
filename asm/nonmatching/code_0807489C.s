@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0807489C
-sub_0807489C: @ 0x0807489C
+	thumb_func_start StartManimLevelUp
+StartManimLevelUp: @ 0x0807489C
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
