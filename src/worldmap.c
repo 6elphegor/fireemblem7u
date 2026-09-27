@@ -520,7 +520,39 @@ void WmSpriteAnims_Loop(struct WmSpriteAnimsProc * proc)
     SetBlendConfig(0, proc->blend >> 2, 0x10, 0);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B39D8.s");
+void StartWmSpriteAnim(u32 slot, int id)
+{
+    int x, y;
+    struct WmSpriteAnimsProc * proc = Proc_Find(ProcScr_WmSpriteAnims);
+
+    if (slot > 3 || proc == NULL)
+        return;
+
+    if (proc->slots[slot].anim != NULL)
+        return;
+
+    Decompress(gWmSpriteAnimTable[id].img, (void *) (0x06010000 | proc->chr));
+
+    x = gWmSpriteAnimTable[id].x - gWmSt.x;
+    y = gWmSpriteAnimTable[id].y - gWmSt.y + 0x400;
+
+    proc->slots[slot].anim = StartSpriteAnimProc(gWmSpriteAnimTable[id].ap, x, y,
+        (proc->chr >> 5) + 0x9C00, gWmSpriteAnimTable[id].animId, 13);
+
+    proc->slots[slot].chr = proc->chr;
+    proc->slots[slot].id = id;
+    proc->chr += gWmSpriteAnimTable[id].size;
+
+    if (proc->count == 0)
+    {
+        SetBlendConfig(0, 0, 0x10, 0);
+    }
+
+    proc->count++;
+
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+}
 
 void EndWmSpriteAnim(u32 slot)
 {
