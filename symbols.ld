@@ -1333,3 +1333,6 @@ Tsa_TerrainMapUi_BallistaLabels = 0x0840488C;
 Tsa_TerrainMapUi_ObstacleLabels = 0x08404894;
 Tsa_TerrainMapUi_ObstacleFullHp = 0x084048A0;
 Img_PlayerInterface = 0x08403BC4;
+gTSA_GoalBox_TwoLines = 0x084048B4;
+gTSA_GoalBox_OneLine = 0x0840493C;
+Img_PrepHelpButtonSprites = 0x08405170;
