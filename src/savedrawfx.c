@@ -222,8 +222,92 @@ void InitSaveMenuChoice(struct SaveMenuProc * proc)
         proc->unk_31++;
     }
 }
-ASM_FUNC("asm/nonmatching/code_080A6114.s");
-ASM_FUNC("asm/nonmatching/code_080A6184.s");
+u8 SaveMenuModifySaveSlot(u8 slot, bool valid, s8 position)
+{
+    u8 i;
+
+    if (position > 0)
+    {
+        for (i = 0; i < 3; i++)
+        {
+            if ((IsSaveValid(slot) == valid))
+                return slot;
+
+            if (slot == 2)
+                slot = 0;
+            else
+                slot++;
+        }
+    }
+    else
+    {
+        for (i = 0; i < 3; i++)
+        {
+            if ((IsSaveValid(slot) == valid))
+                return slot;
+
+            if (slot == 0)
+                slot = 2;
+            else
+                slot--;
+        }
+    }
+
+    return -1;
+}
+bool SaveMenuTryMoveSaveSlotCursor(struct SaveMenuProc * proc, s8 position)
+{
+    s8 flag = 0;
+    u8 previous = proc->copy_from_id;
+
+    switch (proc->action_flag)
+    {
+    case 0x80:
+        flag = 1;
+        break;
+
+    case 4:
+        if (proc->unk_2D == (u8) -1)
+            flag = 1;
+        break;
+
+    case 2:
+    case 8:
+        flag = 1;
+        break;
+
+    case 0x10:
+        break;
+
+    case 1:
+        return 0;
+    }
+
+    if (position >= 1)
+    {
+        if (proc->copy_from_id == 2)
+            proc->copy_from_id = 0;
+        else
+            proc->copy_from_id++;
+    }
+    else
+    {
+        if (proc->copy_from_id == 0)
+            proc->copy_from_id = 2;
+        else
+            proc->copy_from_id--;
+    }
+
+    if (proc->action_flag == 0x40)
+        return true;
+
+    proc->copy_from_id = SaveMenuModifySaveSlot(proc->copy_from_id, flag, position);
+
+    if (previous == proc->copy_from_id)
+        return false;
+
+    return true;
+}
 bool SaveMenuHasOptions(struct SaveMenuProc * proc)
 {
     if (proc->action_flag & proc->unk_30)
