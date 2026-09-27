@@ -247,10 +247,10 @@ void ManimRestoreFx_Init(struct ManimEffectProc * proc);
 void ManimSleepFx_Init(struct ManimEffectProc * proc);
 void ManimSleepFx_Anim1(struct ManimEffectProc * proc);
 void ManimSleepFx_Anim2(struct ManimEffectProc * proc);
-// sub_080732E8
-// sub_08073354
-// sub_08073438
-// sub_080734C4
+void StartManimWaveFx(struct Unit * unit);
+void ManimWaveFx_Init(struct ManimEffectProc * proc);
+void ManimWaveFx_Expand(struct ManimEffectProc * proc);
+void ManimWaveFx_Shrink(struct ManimEffectProc * proc);
 // sub_8073D3C
 // sub_080735B8
 // sub_080736EC
@@ -265,7 +265,7 @@ void ManimSleepFx_Anim2(struct ManimEffectProc * proc);
 // sub_08073C50
 // sub_08073D0C
 // SetDefaultManimScreenConf
-// sub_08073EF4
+// StartManimBgScroll
 // sub_807475C
 // sub_08073F88
 // sub_08074008

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08073EF4
-sub_08073EF4: @ 0x08073EF4
+	thumb_func_start StartManimBgScroll
+StartManimBgScroll: @ 0x08073EF4
 	push {r7, lr}
 	sub sp, #0x14
 	mov r7, sp

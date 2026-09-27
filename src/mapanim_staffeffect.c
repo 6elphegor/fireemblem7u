@@ -51,6 +51,14 @@ extern u16 const SpriteAnim_ManimSleep[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimRestore[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimSleep[];
 
+void sub_08076A78(void);
+void sub_08076D8C(int x, int y, int radius, int max, u8 const * lut);
+void StartManimBgScroll(int bg, int x_inc, int y_inc, ProcPtr parent);
+
+extern u8 CONST_DATA gManimWaveLut[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimShiftingSineWaveScanlineBuf[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimWaveFx[];
+
 void StartManimLatonaFx(struct Unit * unit)
 {
     struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimLatona, PROC_TREE_3);
@@ -639,10 +647,56 @@ void ManimSleepFx_Anim2(struct ManimEffectProc * proc)
     StartSpriteAnimProc(SpriteAnim_ManimSleep, proc->x, proc->y, TILEREF(0x1C0, 4), 0, 2);
 }
 
-ASM_FUNC("asm/nonmatching/code_080732E8.s");
-ASM_FUNC("asm/nonmatching/code_08073354.s");
-ASM_FUNC("asm/nonmatching/code_08073438.s");
-ASM_FUNC("asm/nonmatching/code_080734C4.s");
+void StartManimWaveFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimWaveFx, PROC_TREE_3);
+
+    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
+    proc->y = (SCREEN_TILE_Y(unit->yPos) << 1) * 8 + 18;
+}
+
+void ManimWaveFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0xFD, proc->x);
+
+    InitScanlineEffect();
+    sub_0807689C();
+    SetOnHBlankA(sub_08076A78);
+    SetDefaultManimScreenConf();
+    SetBlendAlpha(0x10, 0x10);
+
+    TmApplyTsa_thm(gBg2Tm, gBuf, TILEREF(0x140, 4));
+    EnableBgSync(BG2_SYNC_BIT);
+
+    StartManimBgScroll(2, 0, 1, proc);
+    Proc_Start(ProcScr_ManimShiftingSineWaveScanlineBuf, proc);
+
+    proc->unk_48 = 0;
+    proc->frame_idx = 0;
+}
+
+void ManimWaveFx_Expand(struct ManimEffectProc * proc)
+{
+    if (proc->unk_48 >= 12)
+    {
+        proc->unk_48--;
+        Proc_Break(proc);
+    }
+
+    sub_08076D8C(proc->x, proc->y, ++proc->unk_48, 12, gManimWaveLut);
+}
+
+void ManimWaveFx_Shrink(struct ManimEffectProc * proc)
+{
+    if (proc->unk_48 <= 0)
+    {
+        proc->unk_48++;
+        Proc_Break(proc);
+    }
+
+    sub_08076D8C(proc->x, proc->y, --proc->unk_48, 12, gManimWaveLut);
+}
+
 ASM_FUNC("asm/nonmatching/code_08073550.s");
 ASM_FUNC("asm/nonmatching/code_080735B8.s");
 ASM_FUNC("asm/nonmatching/code_080736EC.s");

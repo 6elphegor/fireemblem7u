@@ -1684,3 +1684,6 @@ Pal_ManimSleep = 0x08276198;
 SpriteAnim_ManimSleep = 0x083F83B4;
 ProcScr_ManimRestore = 0x08C9DC14;
 ProcScr_ManimSleep = 0x08C9DC54;
+gManimWaveLut = 0x08C9DCDC;
+ProcScr_ManimShiftingSineWaveScanlineBuf = 0x08C9E98C;
+ProcScr_ManimWaveFx = 0x08C9DC94;
