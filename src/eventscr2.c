@@ -11,6 +11,21 @@ bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def);
 int GetNextAvailableBlueUnitId(int id);
 
 /* not yet declared elsewhere */
+int GetMapChangeIdAt(int x, int y);
+void RefreshAutoWaterShadows(void);
+
+struct EventCursorProc {
+    /* 00 */ PROC_HEADER;
+    STRUCT_PAD(0x29, 0x58);
+    /* 58 */ int timer;
+    STRUCT_PAD(0x5C, 0x64);
+    /* 64 */ s16 x;
+    /* 66 */ s16 y;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_EventFlashCursor[];
+extern struct ProcCmd CONST_DATA ProcScr_EventCursor[];
+
 bool IsPidBlueDeployed(int pid);
 bool IsTutorialDisabled(void);
 void RemoveMapChangeTrap(int id);
@@ -690,33 +705,268 @@ int EvtCmd_MapChange(struct EventProc * proc)
     return EVENT_CMDRET_YIELD;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800DA88.s");
+int EvtCmd_MapChangeWithAutoWaterShadows(struct EventProc * proc)
+{
+    u32 param = SCR_HI16(proc->script[0]);
+    u16 id = param;
+    u16 remove_prev;
 
-ASM_FUNC("asm/nonmatching/code_0800DB58.s");
+    if (id == 0xFFFF)
+    {
+        id = proc->map_change_param;
+        remove_prev = 0;
+    }
+    else
+    {
+        id = id & 0x7FFF;
+        remove_prev = param & 0x8000;
+    }
 
-ASM_FUNC("asm/nonmatching/code_0800DB90.s");
+    if (!proc->unk_4D)
+    {
+        RenderMapForFade();
 
-ASM_FUNC("asm/nonmatching/code_0800DBE8.s");
+        ApplyMapChange(id);
 
-ASM_FUNC("asm/nonmatching/code_0800DC0C.s");
+        if (remove_prev)
+        {
+            RemoveMapChangeTrap(id - 1);
+            PlaySoundEffect(0xBD);
+        }
+        else
+        {
+            PlaySoundEffect(0xBE);
+        }
 
-ASM_FUNC("asm/nonmatching/code_0800DC80.s");
+        AddMapChangeTrap(id);
+        RefreshTerrainMap();
+        UpdateRoofedUnits();
+        RefreshAutoWaterShadows();
+        RenderMap();
 
-ASM_FUNC("asm/nonmatching/code_0800DCC8.s");
+        StartMapFade(TRUE);
+    }
+    else
+    {
+        ApplyMapChange(id);
 
-ASM_FUNC("asm/nonmatching/code_0800DD38.s");
+        if (remove_prev)
+            RemoveMapChangeTrap(id - 1);
 
-ASM_FUNC("asm/nonmatching/code_0800DD88.s");
+        AddMapChangeTrap(id);
+        RefreshTerrainMap();
+        UpdateRoofedUnits();
+        RefreshAutoWaterShadows();
+    }
 
-ASM_FUNC("asm/nonmatching/code_0800DDC0.s");
+    return EVENT_CMDRET_YIELD;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800DDC8.s");
+int EvtCmd_MapChangeInstant(struct EventProc * proc)
+{
+    u16 id = SCR_HI16(proc->script[0]);
 
-ASM_FUNC("asm/nonmatching/code_0800DDFC.s");
+    if (id == 0xFFFF)
+        id = proc->map_change_param;
 
-ASM_FUNC("asm/nonmatching/code_0800DE64.s");
+    ApplyMapChange(id);
+    AddMapChangeTrap(id);
+    RefreshTerrainMap();
+    UpdateRoofedUnits();
+    RenderMap();
 
-ASM_FUNC("asm/nonmatching/code_0800DE84.s");
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MapChangeInstantNoRender(struct EventProc * proc)
+{
+    u32 param = SCR_HI16(proc->script[0]);
+    u16 id = param;
+    u16 remove_prev;
+
+    if (id == 0xFFFF)
+    {
+        id = proc->map_change_param;
+        remove_prev = 0;
+    }
+    else
+    {
+        id = id & 0x7FFF;
+        remove_prev = param & 0x8000;
+    }
+
+    ApplyMapChange(id);
+
+    if (remove_prev)
+        RemoveMapChangeTrap(id - 1);
+    else
+        AddMapChangeTrap(id);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_ReRenderMap(struct EventProc * proc)
+{
+    RefreshTerrainMap();
+    UpdateRoofedUnits();
+
+    if (SCR_HI16(proc->script[0]) != 0)
+        RefreshAutoWaterShadows();
+
+    RenderMap();
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_MapChangePosition(struct EventProc * proc)
+{
+    EventScr word = proc->script[0];
+    int id = GetMapChangeIdAt((u8) (word >> 16), word >> 24);
+
+    if (id == -1)
+        id = proc->map_change_param;
+
+    if (!proc->unk_4D)
+    {
+        RenderMapForFade();
+
+        ApplyMapChange(id);
+        AddMapChangeTrap(id);
+        RefreshTerrainMap();
+        UpdateRoofedUnits();
+        RenderMap();
+
+        StartMapFade(TRUE);
+    }
+    else
+    {
+        ApplyMapChange(id);
+        AddMapChangeTrap(id);
+        RefreshTerrainMap();
+        UpdateRoofedUnits();
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_SetFaction(struct EventProc * proc)
+{
+    u8 pid = proc->script[1];
+    int faction = proc->script[2];
+    int i;
+
+    for (i = 1; i < 0xC0; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (unit == NULL || unit->pCharacterData == NULL)
+            continue;
+
+        if (unit->state & US_DEAD)
+            continue;
+
+        if (unit->pCharacterData->number != pid)
+            continue;
+
+        UnitChangeFaction(unit, faction);
+    }
+
+    RefreshUnitSprites();
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_FlashCursorPosition(struct EventProc * proc)
+{
+    struct EventCursorProc * cursor;
+    u16 x, y;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    x = SCR_LO16_SIGN(proc->script[1]);
+    y = SCR_HI16_SIGN(proc->script[1]);
+
+    cursor = Proc_Start(ProcScr_EventFlashCursor, proc);
+    cursor->x = x;
+    cursor->y = y;
+
+    proc->idle_func = EventFlashCursorWait;
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_FlashCursorPid(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+    struct EventCursorProc * cursor;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    cursor = Proc_Start(ProcScr_EventFlashCursor, proc);
+    cursor->x = unit->xPos;
+    cursor->y = unit->yPos;
+
+    proc->idle_func = EventFlashCursorWait;
+
+    return EVENT_CMDRET_YIELD;
+}
+
+void EventFlashCursorWait(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        Proc_EndEach(ProcScr_EventFlashCursor);
+        proc->idle_func = NULL;
+        return;
+    }
+
+    if (!Proc_Find(ProcScr_EventFlashCursor))
+        proc->idle_func = NULL;
+}
+
+void EventFlashCursor_OnInit(struct EventCursorProc * proc)
+{
+    proc->timer = 60;
+}
+
+void EventFlashCursor_OnLoop(struct EventCursorProc * proc)
+{
+    if (--proc->timer <= 0)
+        Proc_Break(proc);
+
+    PutMapCursor(proc->x * 16, proc->y * 16, 0);
+}
+
+int EvtCmd_PutCursor(struct EventProc * proc)
+{
+    struct EventCursorProc * cursor;
+    u16 x, y;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    x = SCR_LO16_SIGN(proc->script[1]);
+    y = SCR_HI16_SIGN(proc->script[1]);
+
+    cursor = Proc_Start(ProcScr_EventCursor, proc);
+    cursor->x = x;
+    cursor->y = y;
+
+    return EVENT_CMDRET_YIELD;
+}
+
+void EventCursor_Loop(struct EventCursorProc * proc)
+{
+    PutMapCursor(proc->x * 16, proc->y * 16, 0);
+}
+
+int EvtCmd_ClearCursors(struct EventProc * proc)
+{
+    Proc_EndEach(ProcScr_EventCursor);
+    return EVENT_CMDRET_CONTINUE;
+}
 
 ASM_FUNC("asm/nonmatching/code_0800DE98.s");
 

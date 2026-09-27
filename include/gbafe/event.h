@@ -719,6 +719,7 @@ int EventGotoLabel(struct EventProc * proc, int label);
 
 int EvtCmd_GotoIfyFlag(struct EventProc * proc);
 int EventGiveItem(struct Unit * unit, u16 iid, struct EventProc * proc);
+void EventFlashCursorWait(struct EventProc * proc);
 /* ---- end eventscr2.c ---- */
 
 

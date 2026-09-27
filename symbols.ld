@@ -857,6 +857,8 @@ gEventCmdTable = 0x08B90E48;
 
 
 /* eventscr2.c */
+ProcScr_EventFlashCursor = 0x08B91A38;
+ProcScr_EventCursor = 0x08B91A50;
 sEventLoadUnitBuf = 0x030041D0;
 gUnitDef_08B91A18 = 0x08B91A18;
 
