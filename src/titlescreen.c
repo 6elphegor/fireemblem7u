@@ -2,6 +2,7 @@
 
 bool8 sub_08002CCC(void);
 void sub_08002C8C(void);
+void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
 void sub_080BAA68(struct ProcTitle * proc);
 void sub_080BAA90(struct ProcTitle * proc);
 
@@ -85,8 +86,20 @@ void Title_InitSpriteAnim(struct ProcTitle * proc, bool anim_en)
 
 
 
-void Title_InitBg(struct ProcTitle * proc);
-ASM_FUNC("asm/nonmatching/code_080BA4BC.s");
+void Title_InitBg(struct ProcTitle * proc)
+{
+    ApplyPalette(Pal_TitleBg, 0xF);
+    Decompress(Img_TitleBg, (void *)BG_VRAM + 0x8000);
+    TmApplyTsa(gBg3Tm, Tsa_TitleBg, 0xF000);
+
+    ApplyPalette(Pal_TitleAxe, 0xE);
+    Decompress(Img_TitleAxe, (void *)BG_VRAM + 0xCC00);
+    sub_080AACD8(gBg2Tm + TM_OFFSET(0, 1), Tsa_TitleAxe, 0xE260);
+
+    ApplyPalette(Pal_TitleTextShadow, 0xD);
+    Decompress(Img_TitleTextShadow, (void *)BG_VRAM + 0xDE00);
+    sub_080AACD8(gBg1Tm, Tsa_TitleTextShadow, 0xD2F0);
+}
 
 
 void Title_Init(struct ProcTitle * proc);
