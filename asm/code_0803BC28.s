@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803BC28
-sub_0803BC28: @ 0x0803BC28
+	thumb_func_start AiSpecialItemAntitoxin
+AiSpecialItemAntitoxin: @ 0x0803BC28
 	push {r4, r5, lr}
 	sub sp, #0x10
 	adds r5, r0, #0

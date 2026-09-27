@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08037218
-sub_08037218: @ 0x08037218
+	thumb_func_start SetupUnitStatusStaffAIFlags
+SetupUnitStatusStaffAIFlags: @ 0x08037218
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	lsls r1, r1, #0x10

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803BAA8
-sub_0803BAA8: @ 0x0803BAA8
+	thumb_func_start AiSpecialItemDoorKey
+AiSpecialItemDoorKey: @ 0x0803BAA8
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
 	adds r6, r0, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803AC50
-sub_0803AC50: @ 0x0803AC50
+	thumb_func_start AiStaffHealMendRecover
+AiStaffHealMendRecover: @ 0x0803AC50
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

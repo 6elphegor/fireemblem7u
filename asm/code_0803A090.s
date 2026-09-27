@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803A090
-sub_0803A090: @ 0x0803A090
+	thumb_func_start AiIsUnitAtPositionDifferentAllegiance
+AiIsUnitAtPositionDifferentAllegiance: @ 0x0803A090
 	ldr r2, _0803A0B4 @ =0x0202E3DC
 	ldr r2, [r2]
 	lsls r1, r1, #2

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08039510
-sub_08039510: @ 0x08039510
+	thumb_func_start AiCheckDangerAt
+AiCheckDangerAt: @ 0x08039510
 	lsls r2, r2, #0x18
 	lsrs r2, r2, #0x18
 	ldr r3, _0803952C @ =0x0202E3F4

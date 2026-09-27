@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080354D4
-sub_080354D4: @ 0x080354D4
+	thumb_func_start AiRideBallistaAction
+AiRideBallistaAction: @ 0x080354D4
 	push {lr}
 	ldr r1, _080354F4 @ =0x03004690
 	ldr r2, [r1]

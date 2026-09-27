@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08035294
-sub_08035294: @ 0x08035294
+	thumb_func_start AiStartCombatAction
+AiStartCombatAction: @ 0x08035294
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r5, _080352EC @ =0x0203A85C

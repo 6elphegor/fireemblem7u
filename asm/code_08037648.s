@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08037648
-sub_08037648: @ 0x08037648
+	thumb_func_start AiTryExecScriptB
+AiTryExecScriptB: @ 0x08037648
 	push {r4, lr}
 	ldr r3, _08037688 @ =0x030013B8
 	ldr r2, _0803768C @ =0x08B989E4

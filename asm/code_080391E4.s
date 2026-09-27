@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080391E4
-sub_080391E4: @ 0x080391E4
+	thumb_func_start AiGetDangerScoreComponent
+AiGetDangerScoreComponent: @ 0x080391E4
 	ldr r2, _08039210 @ =0x0203A3F0
 	movs r0, #0x11
 	ldrsb r0, [r2, r0]

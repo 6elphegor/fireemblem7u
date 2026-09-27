@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08037888
-sub_08037888: @ 0x08037888
+	thumb_func_start AiScriptCmd_03_Goto
+AiScriptCmd_03_Goto: @ 0x08037888
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r0, _080378A8 @ =0x030013B8

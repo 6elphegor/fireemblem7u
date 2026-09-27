@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803530C
-sub_0803530C: @ 0x0803530C
+	thumb_func_start AiStartEscapeAction
+AiStartEscapeAction: @ 0x0803530C
 	push {r4, lr}
 	sub sp, #0xc
 	adds r4, r0, #0

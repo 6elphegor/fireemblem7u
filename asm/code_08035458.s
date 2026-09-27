@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08035458
-sub_08035458: @ 0x08035458
+	thumb_func_start AiUseItemAction
+AiUseItemAction: @ 0x08035458
 	push {r4, lr}
 	ldr r4, _08035480 @ =0x03004690
 	ldr r2, [r4]

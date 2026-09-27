@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08039094
-sub_08039094: @ 0x08039094
+	thumb_func_start AiGetFriendZoneCombatScoreComponent
+AiGetFriendZoneCombatScoreComponent: @ 0x08039094
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8

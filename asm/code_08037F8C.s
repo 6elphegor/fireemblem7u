@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08037F8C
-sub_08037F8C: @ 0x08037F8C
+	thumb_func_start AiScriptCmd_13
+AiScriptCmd_13: @ 0x08037F8C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r7, r0, #0
@@ -15,7 +15,7 @@ sub_08037F8C: @ 0x08037F8C
 	ldr r0, _08037FCC @ =AiIsUnitEnemy
 	add r5, sp, #4
 	adds r1, r5, #0
-	bl sub_08035B54
+	bl AiFindTargetInReachNeglectWallByFunc
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -29,7 +29,7 @@ sub_08037F8C: @ 0x08037F8C
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036CEC
+	bl AiTryMoveTowardsNeglectWall
 	b _08037FF8
 	.align 2, 0
 _08037FC8: .4byte 0x030013B8
@@ -38,7 +38,7 @@ _08037FD0:
 	ldr r0, _08038008 @ =AiIsUnitEnemyAndNotInScrList
 	add r5, sp, #4
 	adds r1, r5, #0
-	bl sub_08035B54
+	bl AiFindTargetInReachNeglectWallByFunc
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -52,7 +52,7 @@ _08037FD0:
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036CEC
+	bl AiTryMoveTowardsNeglectWall
 _08037FF8:
 	ldrb r0, [r7]
 	adds r0, #1

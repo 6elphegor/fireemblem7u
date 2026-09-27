@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08035838
-sub_08035838: @ 0x08035838
+	thumb_func_start AiCompare
+AiCompare: @ 0x08035838
 	adds r3, r0, #0
 	lsls r1, r1, #0x18
 	lsrs r0, r1, #0x18

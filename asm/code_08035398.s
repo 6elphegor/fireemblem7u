@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08035398
-sub_08035398: @ 0x08035398
+	thumb_func_start AiPillageAction
+AiPillageAction: @ 0x08035398
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r3, _080353D4 @ =0x0203A97C

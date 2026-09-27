@@ -20,7 +20,7 @@ sub_08034F40: @ 0x08034F40
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _08034FCC
-	bl sub_080397DC
+	bl AiTryHealSelf
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -44,7 +44,7 @@ _08034F90: .4byte 0x03004690
 _08034F94:
 	add r4, sp, #4
 	adds r0, r4, #0
-	bl sub_08039534
+	bl AiTryGetNearestHealPoint
 	lsls r0, r0, #0x18
 	asrs r2, r0, #0x18
 	cmp r2, #1

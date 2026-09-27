@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080354FC
-sub_080354FC: @ 0x080354FC
+	thumb_func_start AiExitBallistaAction
+AiExitBallistaAction: @ 0x080354FC
 	push {lr}
 	ldr r1, _0803551C @ =0x03004690
 	ldr r2, [r1]

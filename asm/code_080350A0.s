@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080350A0
-sub_080350A0: @ 0x080350A0
+	thumb_func_start AiTargetCursor_Main
+AiTargetCursor_Main: @ 0x080350A0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]

@@ -43,7 +43,7 @@ _0803A600:
 	adds r0, #1
 	ldrb r7, [r0]
 _0803A60E:
-	bl sub_080375B8
+	bl AiTryExecScriptA
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1

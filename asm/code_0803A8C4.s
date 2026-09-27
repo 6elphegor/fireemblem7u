@@ -53,7 +53,7 @@ _0803A920: .4byte 0x0000FFFF
 _0803A924: .4byte 0x03004690
 _0803A928:
 	adds r0, r2, #0
-	bl sub_0803BEA0
+	bl InitAiMoveMapForUnit
 	ldr r0, _0803A9FC @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]

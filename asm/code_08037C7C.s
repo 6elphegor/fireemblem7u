@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08037C7C
-sub_08037C7C: @ 0x08037C7C
+	thumb_func_start AiScriptCmd_0C_MoveTowardsSetPoint
+AiScriptCmd_0C_MoveTowardsSetPoint: @ 0x08037C7C
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08035124
-sub_08035124: @ 0x08035124
+	thumb_func_start CpPerform_MoveCameraOntoUnit
+CpPerform_MoveCameraOntoUnit: @ 0x08035124
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	movs r0, #0x31

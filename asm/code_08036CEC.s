@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08036CEC
-sub_08036CEC: @ 0x08036CEC
+	thumb_func_start AiTryMoveTowardsNeglectWall
+AiTryMoveTowardsNeglectWall: @ 0x08036CEC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -173,7 +173,7 @@ _08036E36:
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r2, sl
-	bl sub_08039510
+	bl AiCheckDangerAt
 	lsls r0, r0, #0x18
 	adds r2, r4, #0
 	cmp r0, #0

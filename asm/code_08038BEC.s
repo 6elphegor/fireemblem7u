@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08038BEC
-sub_08038BEC: @ 0x08038BEC
+	thumb_func_start AiAttemptStealAction_GetMovementAt
+AiAttemptStealAction_GetMovementAt: @ 0x08038BEC
 	push {r4, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0

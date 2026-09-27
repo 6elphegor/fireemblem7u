@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803C0C8
-sub_0803C0C8: @ 0x0803C0C8
+	thumb_func_start AiUpdateNoMoveFlag
+AiUpdateNoMoveFlag: @ 0x0803C0C8
 	adds r0, #0x40
 	movs r1, #0x80
 	lsls r1, r1, #6

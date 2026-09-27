@@ -173,7 +173,7 @@ _08036C4A:
 	adds r0, r6, #0
 	adds r1, r5, #0
 	mov r2, sl
-	bl sub_08039510
+	bl AiCheckDangerAt
 	lsls r0, r0, #0x18
 	adds r2, r4, #0
 	cmp r0, #0

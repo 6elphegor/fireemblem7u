@@ -66,7 +66,7 @@ _08038C82:
 	str r1, [sp, #0x1c]
 	adds r0, r5, #0
 	mov r1, r8
-	ldr r2, _08038D60 @ =sub_08038BEC
+	ldr r2, _08038D60 @ =AiAttemptStealAction_GetMovementAt
 	add r3, sp, #0xc
 	bl AiFindBestAdjacentPositionByFunc
 	lsls r0, r0, #0x18
@@ -142,7 +142,7 @@ _08038D50: .4byte 0x0202E3D8
 _08038D54: .4byte 0x0202E3E4
 _08038D58: .4byte 0x0202E3DC
 _08038D5C: .4byte 0x0202BD48
-_08038D60: .4byte sub_08038BEC
+_08038D60: .4byte AiAttemptStealAction_GetMovementAt
 _08038D64: .4byte 0x03004690
 _08038D68:
 	ldr r0, _08038DA0 @ =0x03004690

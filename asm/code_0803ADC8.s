@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803ADC8
-sub_0803ADC8: @ 0x0803ADC8
+	thumb_func_start AiStaffPhysicRescue
+AiStaffPhysicRescue: @ 0x0803ADC8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

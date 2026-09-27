@@ -8,13 +8,13 @@ sub_0803BD64: @ 0x0803BD64
 	adds r5, r0, #0
 	adds r6, r1, #0
 	adds r4, r2, #0
-	bl sub_0803BEA0
+	bl InitAiMoveMapForUnit
 	adds r0, r5, #0
 	bl sub_0803BFC0
 	movs r0, #1
 	orrs r0, r6
 	adds r1, r4, #0
-	bl sub_080360E8
+	bl AiFindClosestUnlockPosition
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -44,7 +44,7 @@ _0803BDB0:
 	bl sub_0803BFF4
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_080360E8
+	bl AiFindClosestUnlockPosition
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1

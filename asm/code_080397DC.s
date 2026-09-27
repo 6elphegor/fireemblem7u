@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080397DC
-sub_080397DC: @ 0x080397DC
+	thumb_func_start AiTryHealSelf
+AiTryHealSelf: @ 0x080397DC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x10
 	movs r6, #0

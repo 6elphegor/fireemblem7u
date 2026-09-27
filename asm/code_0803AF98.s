@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803AF98
-sub_0803AF98: @ 0x0803AF98
+	thumb_func_start AiStaffFortify
+AiStaffFortify: @ 0x0803AF98
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

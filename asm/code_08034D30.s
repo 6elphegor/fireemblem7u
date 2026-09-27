@@ -49,7 +49,7 @@ _08034D84:
 	bl RenderMap
 	bl RefreshUnitSprites
 	ldr r0, [r6]
-	bl sub_0803C0C8
+	bl AiUpdateNoMoveFlag
 	ldr r1, [r6]
 	adds r1, #0x40
 	movs r0, #0xf8

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803831C
-sub_0803831C: @ 0x0803831C
+	thumb_func_start AiScriptCmd_18_TryAttackSnagWall
+AiScriptCmd_18_TryAttackSnagWall: @ 0x0803831C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x18
 	adds r7, r0, #0

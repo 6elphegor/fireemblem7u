@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803B3EC
-sub_0803B3EC: @ 0x0803B3EC
+	thumb_func_start AiStaffSilence
+AiStaffSilence: @ 0x0803B3EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

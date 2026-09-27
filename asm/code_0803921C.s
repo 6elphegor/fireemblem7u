@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803921C
-sub_0803921C: @ 0x0803921C
+	thumb_func_start AiGetLowHpScoreComponent
+AiGetLowHpScoreComponent: @ 0x0803921C
 	ldr r0, _08039238 @ =0x0203A3F0
 	movs r1, #0x13
 	ldrsb r1, [r0, r1]

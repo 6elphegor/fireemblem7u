@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08039138
-sub_08039138: @ 0x08039138
+	thumb_func_start AiGetTargetClassCombatScoreComponent
+AiGetTargetClassCombatScoreComponent: @ 0x08039138
 	push {lr}
 	ldr r0, _08039164 @ =0x0203A470
 	ldr r0, [r0, #4]

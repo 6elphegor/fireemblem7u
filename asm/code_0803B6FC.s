@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803B6FC
-sub_0803B6FC: @ 0x0803B6FC
+	thumb_func_start AiStaffBarrier
+AiStaffBarrier: @ 0x0803B6FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

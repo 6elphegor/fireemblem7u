@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803534C
-sub_0803534C: @ 0x0803534C
+	thumb_func_start AiStartStealAction
+AiStartStealAction: @ 0x0803534C
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}

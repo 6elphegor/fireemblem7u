@@ -69,7 +69,7 @@ _080371C2:
 _080371D8:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08037218
+	bl SetupUnitStatusStaffAIFlags
 	adds r0, r5, #0
 	adds r1, r4, #0
 	bl SetupUnitHealStaffAIFlags

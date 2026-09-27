@@ -205,7 +205,7 @@ _0803A394:
 	bge _0803A312
 _0803A39A:
 	ldr r0, _0803A3CC @ =AiIsUnitEnemy
-	bl sub_080387B0
+	bl AiAttemptCombatWithinMovement
 	ldr r0, _0803A3D0 @ =0x0203A97C
 	ldrb r0, [r0, #0xa]
 	cmp r0, #1

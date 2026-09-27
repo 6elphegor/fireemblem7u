@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803B0A4
-sub_0803B0A4: @ 0x0803B0A4
+	thumb_func_start AiStaffWarp
+AiStaffWarp: @ 0x0803B0A4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

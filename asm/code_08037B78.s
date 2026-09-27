@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08037B78
-sub_08037B78: @ 0x08037B78
+	thumb_func_start AiScriptCmd_07_DoStandardActionNoMove
+AiScriptCmd_07_DoStandardActionNoMove: @ 0x08037B78
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r0, #0x64

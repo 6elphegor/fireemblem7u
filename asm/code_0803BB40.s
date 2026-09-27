@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803BB40
-sub_0803BB40: @ 0x0803BB40
+	thumb_func_start AiSpecialItemLockpick
+AiSpecialItemLockpick: @ 0x0803BB40
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x10
 	adds r7, r0, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0803916C
-sub_0803916C: @ 0x0803916C
+	thumb_func_start AiGetTurnCombatScoreComponent
+AiGetTurnCombatScoreComponent: @ 0x0803916C
 	ldr r1, _0803917C @ =0x0202BBF8
 	ldr r0, _08039180 @ =0x030013C0
 	ldr r0, [r0]

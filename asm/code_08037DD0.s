@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08037DD0
-sub_08037DD0: @ 0x08037DD0
+	thumb_func_start AiScriptCmd_10_DoLooting
+AiScriptCmd_10_DoLooting: @ 0x08037DD0
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0

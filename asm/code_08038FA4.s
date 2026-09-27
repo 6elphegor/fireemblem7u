@@ -37,7 +37,7 @@ _08038FD4:
 	bl BattleGenerateBallistaSimulation
 _08038FEA:
 	adds r0, r5, #0
-	bl sub_08038FA0
+	bl AiIsBadFight
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08039000
@@ -47,7 +47,7 @@ _08038FEA:
 _08038FFC: .4byte 0x03004690
 _08039000:
 	adds r0, r5, #0
-	bl sub_08039240
+	bl AiComputeCombatScore
 	movs r0, #1
 _08039008:
 	add sp, #4

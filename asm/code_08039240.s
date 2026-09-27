@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08039240
-sub_08039240: @ 0x08039240
+	thumb_func_start AiComputeCombatScore
+AiComputeCombatScore: @ 0x08039240
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r2, _0803929C @ =0x030013C0
@@ -19,19 +19,19 @@ sub_08039240: @ 0x08039240
 	bl AiGetDamageDealtCombatScoreComponent
 	adds r4, r0, #0
 	adds r5, r4, #0
-	bl sub_08039070
+	bl AiGetOpponentLowHpScoreComponent
 	adds r4, r4, r0
-	bl sub_08039094
+	bl AiGetFriendZoneCombatScoreComponent
 	adds r4, r4, r0
-	bl sub_08039138
+	bl AiGetTargetClassCombatScoreComponent
 	adds r4, r4, r0
-	bl sub_0803916C
+	bl AiGetTurnCombatScoreComponent
 	adds r4, r4, r0
 	bl AiGetDamageTakenScoreComponent
 	subs r4, r4, r0
-	bl sub_080391E4
+	bl AiGetDangerScoreComponent
 	subs r4, r4, r0
-	bl sub_0803921C
+	bl AiGetLowHpScoreComponent
 	subs r4, r4, r0
 	cmp r4, #0
 	bge _08039290
