@@ -1156,10 +1156,6 @@ SECTIONS
         build/src/eventcall_0807F9EC.o(.text);
         build/src/statscreenfx.o(.text);
         build/src/statscreen-util.o(.text);
-        build/asm/code_08080AD8.o(.text);
-        build/asm/code_08080B70.o(.text);
-        build/asm/code_08080BA4.o(.text);
-        build/asm/code_08080C6C.o(.text);
         build/src/statscreen.o(.text);
         build/src/statscreen-helpbox.o(.text);
         build/src/chapter-title.o(.text);
