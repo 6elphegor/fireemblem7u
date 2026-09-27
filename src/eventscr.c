@@ -278,7 +278,6 @@ void MapFloodRange_Unitless(int x, int y, s8 const * mov_table);
 void BuildBestMoveScript(int x, int y, u8 * out);
 void DisableMuCamera(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * move_script);
-void SetMuConfig(struct MuProc * mu, int speed);
 bool IsMuActive(struct MuProc * mu);
 void EndMu(struct MuProc * mu);
 void EventUnitLoadWait(struct EventProc * proc);

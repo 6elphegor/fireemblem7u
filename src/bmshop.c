@@ -5,8 +5,7 @@
 
 // FE8U: bmshop.c (compiled at -O0 in FE7)
 
-u32 GetGold(void);
-void SetGold(s32 amount);
+int GetGold(void);
 void SetTalkPrintColor(int color);
 s8 HasConvoyAccess(void);
 int AddItemToConvoy(int item);

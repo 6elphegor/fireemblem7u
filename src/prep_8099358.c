@@ -82,7 +82,6 @@ int sub_0809A83C(int pid, int rank);
 int sub_0809A870(int n);
 int sub_0809A8C8(int n);
 void sub_0809A504(int x);
-void SetFacePosition(int slot, int x, int y);
 
 struct PrepDivinationProc {
     /* 00 */ PROC_HEADER;
@@ -99,7 +98,6 @@ struct PrepDivinationFlashProc {
 extern struct ProcCmd CONST_DATA ProcScr_08CC5760[];
 
 int GetGold(void);
-void AddGold(int amount);
 
 void sub_0809A8E4(struct PrepDivinationProc * proc);
 void sub_0809A924(int vram_offset, int pal);

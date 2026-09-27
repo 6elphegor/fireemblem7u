@@ -95,7 +95,6 @@ extern u16 Pal_0840E4EC[];
 
 void DrawSupportSubScreenSprites(struct SubScreenProc * proc);
 void StartSupportViewerTalk(u8 charA, u8 charB, int rank);
-void SetFacePosition(int slot, int x, int y);
 void sub_0809BF78(int idx);
 int UiSupport_GetSupportTalkSong(int idx, int partner, int rank);
 

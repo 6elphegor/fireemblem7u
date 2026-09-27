@@ -1,7 +1,7 @@
 #include "gbafe.h"
 #include "gbafe/bmcontainer.h"
 
-u32 GetGold(void);
+int GetGold(void);
 void EndMenuScrollBar(void);
 ProcPtr StartMenuScrollBar(ProcPtr parent);
 void InitMenuScrollBarImg(int chr, int pal);
@@ -17,7 +17,6 @@ extern u8 Tsa_08407188[];
 extern u8 Tsa_08407270[];
 
 s8 CanUnitPrepScreenUse(struct Unit * unit);
-void SetFacePosition(int slot, int x, int y);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void SyncUnitSpriteSheet(void);
 

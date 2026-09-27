@@ -5,8 +5,7 @@
 
 // FE8U: uiarena.c (compiled at -O0 in FE7)
 
-u32 GetGold(void);
-void SetGold(s32 amount);
+int GetGold(void);
 void SetTalkPrintColor(int color);
 void Proc_Mark(ProcPtr proc, u8 mark);
 

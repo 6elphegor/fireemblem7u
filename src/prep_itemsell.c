@@ -1,7 +1,6 @@
 #include "gbafe.h"
 
-u32 GetGold(void);
-void AddGold(s32 amount);
+int GetGold(void);
 u16 GetItemSellPrice(int item);
 
 extern int CONST_DATA gShopSellTextIndexLookup[];

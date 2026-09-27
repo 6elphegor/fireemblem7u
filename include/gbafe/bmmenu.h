@@ -165,7 +165,6 @@ void RefreshUnitRescueInfoWindows(struct Unit * unit);
 void RefreshUnitGiveInfoWindows(struct Unit * unit);
 void RefreshUnitTakeInfoWindows(struct Unit * unit);
 void RefreshUnitInventoryInfoWindow(struct Unit * unit);
-struct MuProc * StartMu(struct Unit * unit);
 
 /* ---- bmmenu.c ---- */
 

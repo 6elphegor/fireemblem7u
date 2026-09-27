@@ -563,7 +563,8 @@ void PrepItemSupply_Loop_UnitInvKeyHandler(struct PrepItemSupplyProc * proc);
 void StartPrepItemSupplyProc(struct Unit * unit, ProcPtr parent);
 void sub_08097488(void);
 void sub_080974A8(void);
-// StartBmSupply
+void StartBmSupply(struct Unit * unit, ProcPtr parent);
+void MaybeStartSelectConvoyItemProc(struct Unit * unit, ProcPtr parent);
 struct PrepItemListProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;

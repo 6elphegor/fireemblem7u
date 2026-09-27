@@ -583,7 +583,7 @@ u16 GetBattleAnimationId_WithUnique(struct Unit * unit, const struct BattleAnimD
 // ??? UnsetMapStaffAnim
 void ParseBattleHitToBanimCmd(void);
 bool CheckBattleHasHit(void);
-s16 GetBattleAnimCharacterUniquePalIndex(struct Unit * unit, int index);
+int GetBattleAnimCharacterUniquePalIndex(struct Unit * unit, int index);
 u16 * FilterBattleAnimCharacterPalette(s16 index, u16 item);
 int GetAllegienceId(u32 arg);
 void EkrPrepareBanimfx(struct Anim * anim, u16 index);

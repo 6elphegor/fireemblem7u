@@ -8,7 +8,6 @@ extern const struct MenuDef gConvoyMenuDef;
 
 struct MenuProc * StartLockingMenu(const struct MenuDef * def, ProcPtr parent);
 void EndMenuItemPanel(void);
-void MaybeStartSelectConvoyItemProc(int unk, ProcPtr parent);
 s8 HasConvoyAccess(void);
 int AddItemToConvoy(int item);
 void NewPopup2_SendItem(ProcPtr parent, int item);
@@ -51,7 +50,7 @@ int ConvoyMenuProc_MenuEnd(ProcPtr proc)
 
 int ConvoyMenuProc_MaybeStartSelectConvoyItem(ProcPtr proc)
 {
-    MaybeStartSelectConvoyItemProc(0, proc);
+    MaybeStartSelectConvoyItemProc(NULL, proc);
     return 0;
 }
 
