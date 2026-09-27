@@ -132,7 +132,6 @@ void DebugPrintNumberHex(int number, int length);
 void DebugPrintStr(char const * str);
 void DebugPutScreen(void);
 int DebugUpdateScreen(u16 held, u16 pressed);
-void SetupDebugFontForOBJ(int vramoff, int palid);
 void DebugPutObjStr(int x, int y, char const * str);
 void DebugPutObjNumber(int x, int y, int number, int length);
 void DebugPutObjNumberHex(int x, int y, int number, int length);
@@ -190,9 +189,8 @@ void PutNumberOrBlank(u16 * tm, int color, int number);
 void PutNumberTwoChr(u16 * tm, int color, int number);
 void PutNumberSmall(u16 * tm, int color, int number);
 void PutNumberBonus(int number, u16 * tm);
-void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero);
 void PutNumber2Digit(u16 * tm, int color, int number);
-void sub_080063CC(u16 * tm, int color, int number); // PutNumber2Digit
 void PutNumber2DigitSmall(u16 * tm, int color, int number);
+void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero);
 void PutTime(u16 * tm, int color, int time, bool always_display_punctuation);
 void PutTwoSpecialChar(u16 * tm, int color, int id_a, int id_b);

@@ -147,14 +147,14 @@ _08099C30:
 	ldr r3, [sp, #0x14]
 	ldrb r2, [r3]
 	movs r1, #2
-	bl sub_080063CC
+	bl PutNumber2Digit
 	movs r1, #0x9d
 	lsls r1, r1, #2
 	adds r0, r5, r1
 	ldr r3, [sp, #0x18]
 	ldrb r2, [r3]
 	movs r1, #2
-	bl sub_080063CC
+	bl PutNumber2Digit
 	ldr r0, _08099D68 @ =0x000012C6
 	bl DecodeMsg
 	adds r1, r5, #0

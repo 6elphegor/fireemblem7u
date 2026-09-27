@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08006084
-sub_08006084: @ 0x08006084
+	thumb_func_start DrawSpecialCharGlyph
+DrawSpecialCharGlyph: @ 0x08006084
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

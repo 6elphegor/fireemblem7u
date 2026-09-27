@@ -2045,3 +2045,7 @@ sSpecialCharStList = 0x02028D78;
 TextGlyphs_System = 0x08B896B0;
 TextGlyphs_Talk = 0x08B8B5B0;
 TextColorLutTable = 0x08B8610C;
+TextGlyphs_Special = 0x08B901B0;
+Pal_GreenTextColors = 0x08194734;
+ProcScr_TextPrint = 0x08B86140;
+ProcScr_GreenTextColor = 0x08B86150;

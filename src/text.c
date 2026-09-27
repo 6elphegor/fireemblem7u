@@ -30,6 +30,21 @@ extern struct SpecialCharSt sSpecialCharStList[];
 extern struct Glyph const * const TextGlyphs_System[];
 extern struct Glyph const * const TextGlyphs_Talk[];
 extern u16 const * const TextColorLutTable[];
+extern struct Glyph const * const TextGlyphs_Special[];
+extern u16 const Pal_GreenTextColors[];
+extern struct ProcCmd CONST_DATA ProcScr_TextPrint[];
+extern struct ProcCmd CONST_DATA ProcScr_GreenTextColor[];
+
+struct TextPrintProc
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Text * text;
+    /* 30 */ char const * str;
+    /* 34 */ s8 interval;
+    /* 35 */ s8 clock;
+    /* 36 */ s8 char_per_tick;
+};
 
 u8 * GetTextDrawDest(struct Text * text);
 u16 const * GetColorLut(int color);
@@ -39,6 +54,10 @@ void Text_DrawStringAscii(struct Text * text, char const * str);
 char const * Text_DrawCharacterAscii(struct Text * text, char const * str);
 char const * GetCharTextLenAscii(char const * str, int * out_width);
 int GetStringTextLenAscii(char const * str);
+u8 * GetSpriteTextDrawDest(struct Text * text);
+void DrawSpriteTextGlyph(struct Text * text, struct Glyph const * glyph);
+int GetSpecialCharChr(int color, int id);
+void DrawSpecialCharGlyph(int chr, int color, struct Glyph const * glyph);
 
 void DebugInitBg(int bg, int vramoff)
 {
@@ -798,4 +817,354 @@ int GetStringTextLenAscii(char const * str)
 
 void TextNop(void)
 {
+}
+
+void InitSpriteTextFont(struct Font * font, u8 * draw_dest, int palid)
+{
+    font->draw_dest = draw_dest;
+    font->get_draw_dest = GetSpriteTextDrawDest;
+    font->palid = (palid & 0xF) + 0x10;
+    font->tileref = ((uintptr_t) draw_dest & 0x1FFFF) >> 5;
+    font->chr_counter = 0;
+    font->lang = GetLang();
+
+    SetTextFont(font);
+
+    font->draw_glyph = DrawSpriteTextGlyph;
+}
+
+void InitSpriteText(struct Text * text)
+{
+    text->chr_position = gActiveFont->chr_counter;
+    text->tile_width = 32;
+    text->db_id = 0;
+    text->db_enabled = FALSE;
+    text->is_printing = FALSE;
+
+    gActiveFont->chr_counter += 64;
+
+    text->x = 0;
+    text->color = 0;
+}
+
+void SpriteText_DrawBackground(struct Text * text)
+{
+    if (text->tile_width != 0)
+    {
+        text->x = 0;
+        CpuFastFill(0x44444444, gActiveFont->get_draw_dest(text), 0x360);
+        CpuFastFill(0x44444444, gActiveFont->get_draw_dest(text) + 0x400, 0x360);
+    }
+}
+
+void SpriteText_DrawBackgroundExt(struct Text * text, u32 line)
+{
+    text->x = 0;
+    CpuFastFill(line, gActiveFont->get_draw_dest(text), 0x800);
+}
+
+u8 * GetSpriteTextDrawDest(struct Text * text)
+{
+    int chr = text->db_id * text->tile_width + text->chr_position + text->x / 8;
+    return gActiveFont->draw_dest + chr * CHR_SIZE;
+}
+
+void DrawSpriteTextGlyph(struct Text * text, struct Glyph const * glyph)
+{
+    u64 row;
+    int i;
+    u32 * dst = (u32 *) gActiveFont->get_draw_dest(text);
+    int subx = text->x & 7;
+    u32 const * bitmap = glyph->bitmap;
+    u16 const * lut = GetColorLut(text->color);
+
+    for (i = 0; i < 8; i++)
+    {
+        row = (u64) *bitmap << subx * 2;
+        bitmap++;
+
+        dst[0x00] |= lut[row & 0xFF] | (lut[(row >> 8) & 0xFF] << 16);
+        dst[0x08] |= lut[(row >> 16) & 0xFF] | (lut[(row >> 24) & 0xFF] << 16);
+        dst[0x10] |= lut[(row >> 32) & 0xFF] | (lut[(row >> 40) & 0xFF] << 16);
+
+        dst++;
+    }
+
+    dst = (u32 *) (gActiveFont->get_draw_dest(text) + 0x400);
+
+    for (i = 0; i < 8; i++)
+    {
+        row = (u64) *bitmap << subx * 2;
+        bitmap++;
+
+        dst[0x00] |= lut[row & 0xFF] | (lut[(row >> 8) & 0xFF] << 16);
+        dst[0x08] |= lut[(row >> 16) & 0xFF] | (lut[(row >> 24) & 0xFF] << 16);
+        dst[0x10] |= lut[(row >> 32) & 0xFF] | (lut[(row >> 40) & 0xFF] << 16);
+
+        dst++;
+    }
+
+    text->x += glyph->width;
+}
+
+void TextPrint_OnLoop(struct TextPrintProc * proc)
+{
+    int i;
+
+    proc->clock--;
+
+    if (proc->clock > 0)
+        return;
+
+    proc->clock = proc->interval;
+
+    for (i = 0; i < proc->char_per_tick; i++)
+    {
+        switch (*proc->str)
+        {
+        case 0:
+        case 1:
+            proc->text->is_printing = FALSE;
+            Proc_Break(proc);
+            return;
+
+        case 4:
+            proc->str++;
+            Text_Skip(proc->text, 6);
+            break;
+
+        default:
+            proc->str = Text_DrawCharacter(proc->text, proc->str);
+        }
+    }
+}
+
+char const * StartTextPrint(struct Text * text, char const * str, int interval, int char_per_tick)
+{
+    struct TextPrintProc * proc;
+
+    if (interval == 0)
+        Text_DrawString(text, str);
+
+    if (char_per_tick == 0)
+        char_per_tick = 1;
+
+    proc = Proc_Start(ProcScr_TextPrint, PROC_TREE_3);
+
+    proc->text = text;
+    proc->str = str;
+    proc->char_per_tick = char_per_tick;
+    proc->interval = interval;
+    proc->clock = 0;
+
+    text->is_printing = TRUE;
+
+    return GetStringLineEnd(str);
+}
+
+bool IsTextPrinting(struct Text * text)
+{
+    return (s8) text->is_printing;
+}
+
+void EndTextPrinting(void)
+{
+    Proc_EndEach(ProcScr_TextPrint);
+}
+
+void GreenText_OnLoop(void)
+{
+    u32 index = (GetGameTime() / 4) % 16;
+    PAL_BG_COLOR(0, 14) = *(Pal_GreenTextColors + index);
+    EnablePalSync();
+}
+
+void StartGreenText(ProcPtr parent)
+{
+    if (parent != NULL)
+        Proc_Start(ProcScr_GreenTextColor, parent);
+    else
+        Proc_Start(ProcScr_GreenTextColor, PROC_TREE_3);
+}
+
+void EndGreenText(void)
+{
+    Proc_EndEach(ProcScr_GreenTextColor);
+}
+
+void PutTextPart(struct Text * text, u16 * tm, int length)
+{
+    int tileref = gActiveFont->tileref + (text->db_id * text->tile_width + text->chr_position) * 2;
+    int i;
+
+    for (i = 0; i < text->tile_width && i < length; i++)
+    {
+        tm[0x00] = tileref++;
+        tm[0x20] = tileref++;
+        tm++;
+    }
+
+    if (*(s8 *) &text->db_enabled != 0)
+        text->db_id ^= 1;
+}
+
+void TextNop2(void)
+{
+}
+
+ASM_FUNC("asm/nonmatching/code_08006084.s");
+
+int AddSpecialChar(struct SpecialCharSt * st, int color, int id)
+{
+    st->color = color;
+    st->id = id;
+    st->chr_position = gActiveFont->chr_counter++;
+
+    (st + 1)->color = -1;
+
+    DrawSpecialCharGlyph(st->chr_position, color, TextGlyphs_Special[id]);
+
+    return st->chr_position;
+}
+
+int GetSpecialCharChr(int color, int id)
+{
+    struct SpecialCharSt * it = sSpecialCharStList;
+
+    while (TRUE)
+    {
+        if (it->color < 0)
+            return AddSpecialChar(it, color, id);
+
+        if (it->color == color && it->id == id)
+            return it->chr_position;
+
+        it++;
+    }
+}
+
+void PutSpecialChar(u16 * tm, int color, int id)
+{
+    int chr;
+
+    if (id == TEXT_SPECIAL_NOTHING)
+    {
+        tm[0x00] = 0;
+        tm[0x20] = 0;
+        return;
+    }
+
+    chr = GetSpecialCharChr(color, id) * 2 + gActiveFont->tileref;
+
+    tm[0x00] = chr;
+    tm[0x20] = chr + 1;
+}
+
+void PutNumberExt(u16 * tm, int color, int number, int id_zero)
+{
+    if (number == 0)
+    {
+        PutSpecialChar(tm, color, id_zero);
+        return;
+    }
+
+    while (number != 0)
+    {
+        PutSpecialChar(tm, color, number % 10 + id_zero);
+        number /= 10;
+
+        tm--;
+    }
+}
+
+void PutNumber(u16 * tm, int color, int number)
+{
+    PutNumberExt(tm, color, number, TEXT_SPECIAL_BIGNUM_0);
+}
+
+void PutNumberOrBlank(u16 * tm, int color, int number)
+{
+    if (number < 0 || number == 0xFF)
+        PutTwoSpecialChar(tm - 1, color, TEXT_SPECIAL_DASH, TEXT_SPECIAL_DASH);
+    else
+        PutNumber(tm, color, number);
+}
+
+void PutNumberTwoChr(u16 * tm, int color, int number)
+{
+    if (number == 100)
+        PutTwoSpecialChar(tm - 1, color, TEXT_SPECIAL_100_A, TEXT_SPECIAL_100_B);
+    else if (number < 0 || number == 255)
+        PutTwoSpecialChar(tm - 1, color, TEXT_SPECIAL_DASH, TEXT_SPECIAL_DASH);
+    else
+        PutNumber(tm, color, number);
+}
+
+void PutNumberSmall(u16 * tm, int color, int number)
+{
+    PutNumberExt(tm, color, number, TEXT_SPECIAL_SMALLNUM_0);
+}
+
+void PutNumberBonus(int number, u16 * tm)
+{
+    if (number == 0)
+        return;
+
+    PutSpecialChar(tm, TEXT_COLOR_SYSTEM_GREEN, TEXT_SPECIAL_PLUS);
+    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), TEXT_COLOR_SYSTEM_GREEN, number);
+}
+
+void SpecialCharTest(void)
+{
+    int ix, iy;
+    int cnt = GetGameTime();
+
+    for (iy = 0; iy < 10; iy++)
+        for (ix = 0; ix < 30; ix++)
+            PutSpecialChar(gBg0Tm + TM_OFFSET(ix, iy * 2), TEXT_COLOR_SYSTEM_WHITE, (cnt++) & 1);
+
+    EnableBgSync(BG0_SYNC_BIT);
+}
+
+inline void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero)
+{
+    PutSpecialChar(tm, color, number % 10 + id_zero);
+    PutSpecialChar(tm - 1, color, (number / 10) % 10 + id_zero);
+}
+
+inline void PutNumber2Digit(u16 * tm, int color, int number)
+{
+    PutNumber2DigitExt(tm, color, number, TEXT_SPECIAL_BIGNUM_0);
+}
+
+inline void PutNumber2DigitSmall(u16 * tm, int color, int number)
+{
+    PutNumber2DigitExt(tm, color, number, TEXT_SPECIAL_SMALLNUM_0);
+}
+
+void PutTime(u16 * tm, int color, int time, bool always_display_punctuation)
+{
+    u16 hours, minutes, seconds;
+    s8 hs = FormatTime(time, &hours, &minutes, &seconds);
+
+    PutNumber(tm + 2, color, hours);
+    PutNumber2Digit(tm + 5, color, minutes);
+    PutNumber2DigitSmall(tm + 8, color, seconds);
+
+    if (hs == FALSE || always_display_punctuation)
+    {
+        PutSpecialChar(tm + 3, color, TEXT_SPECIAL_COLON);
+        PutSpecialChar(tm + 6, color, TEXT_SPECIAL_DOT);
+    }
+    else
+    {
+        PutSpecialChar(tm + 3, color, TEXT_SPECIAL_NOTHING);
+        PutSpecialChar(tm + 6, color, TEXT_SPECIAL_NOTHING);
+    }
+}
+
+void PutTwoSpecialChar(u16 * tm, int color, int id_a, int id_b)
+{
+    PutSpecialChar(tm++, color, id_a);
+    PutSpecialChar(tm, color, id_b);
 }

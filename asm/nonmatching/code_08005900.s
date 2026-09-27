@@ -44,7 +44,7 @@ _08005948:
 	movs r1, #0
 	ldr r3, [sp, #0x10]
 	lsls r2, r3, #1
-	bl sub_080BFC18
+	bl __ashldi3
 	movs r5, #0xff
 	ands r5, r0
 	lsls r5, r5, #1
