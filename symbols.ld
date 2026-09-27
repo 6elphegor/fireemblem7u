@@ -1509,3 +1509,5 @@ AnimScr_EkrMainMini_R_Far = 0x08B9CB84;
 AnimScr_EkrMainMini_L_Far = 0x08B9CAF8;
 gEfxTerrainPalette = 0x02016828;
 gEkrXPosBase = 0x02000030;
+ProcScr_efxFlashBG = 0x08B9AE4C;
+ProcScr_efxWhiteOUT = 0x08B9AE74;

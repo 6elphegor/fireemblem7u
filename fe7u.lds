@@ -997,16 +997,7 @@ SECTIONS
         build/src/banim-efxhpbar.o(.text);
         build/src/banim-efxdeath.o(.text);
         build/src/banim-efxbattle.o(.text);
-        build/asm/code_0804EFDC.o(.text);
-        build/asm/code_0804F018.o(.text);
-        build/asm/code_0804F058.o(.text);
-        build/asm/code_0804F090.o(.text);
-        build/asm/code_0804F0B0.o(.text);
-        build/asm/code_0804F0E8.o(.text);
-        build/asm/code_0804F0FC.o(.text);
-        build/asm/code_0804F120.o(.text);
-        build/asm/code_0804F178.o(.text);
-        build/asm/code_0804F1E8.o(.text);
+        build/src/banim-efxflashbg.o(.text);
         build/asm/code_0804F1FC.o(.text);
         build/asm/code_0804F234.o(.text);
         build/asm/code_0804F254.o(.text);
