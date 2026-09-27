@@ -257,31 +257,420 @@ void DisplayBackgroundNoClear(int background)
     gPal[0] = 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800B90C.s");
-ASM_FUNC("asm/nonmatching/code_0800B974.s");
-ASM_FUNC("asm/nonmatching/code_0800B9A8.s");
-ASM_FUNC("asm/nonmatching/code_0800B9E4.s");
-ASM_FUNC("asm/nonmatching/code_0800BA3C.s");
-ASM_FUNC("asm/nonmatching/code_0800BA60.s");
-ASM_FUNC("asm/nonmatching/code_0800BA90.s");
-ASM_FUNC("asm/nonmatching/code_0800BADC.s");
-ASM_FUNC("asm/nonmatching/code_0800BB04.s");
-ASM_FUNC("asm/nonmatching/code_0800BB34.s");
-ASM_FUNC("asm/nonmatching/code_0800BB7C.s");
-ASM_FUNC("asm/nonmatching/code_0800BBC4.s");
-ASM_FUNC("asm/nonmatching/code_0800BC54.s");
-ASM_FUNC("asm/nonmatching/code_0800BCA0.s");
-ASM_FUNC("asm/nonmatching/code_0800BCE8.s");
-ASM_FUNC("asm/nonmatching/code_0800BD38.s");
-ASM_FUNC("asm/nonmatching/code_0800BD84.s");
-ASM_FUNC("asm/nonmatching/code_0800BDD4.s");
-ASM_FUNC("asm/nonmatching/code_0800BE20.s");
-ASM_FUNC("asm/nonmatching/code_0800BE2C.s");
-ASM_FUNC("asm/nonmatching/code_0800BE74.s");
-ASM_FUNC("asm/nonmatching/code_0800BEEC.s");
-ASM_FUNC("asm/nonmatching/code_0800BF5C.s");
-ASM_FUNC("asm/nonmatching/code_0800BFDC.s");
-ASM_FUNC("asm/nonmatching/code_0800C00C.s");
+/* ---- decls ---- */
+ProcPtr StartTalkMsg(int x, int y, int id);
+void EndTalk(void);
+void SetTalkFlag(int talk_flags);
+void SetTalkFunc(ProcFunc func);
+bool IsTalkLocked(void);
+void ResumeTalk(void);
+bool IsTalkActive(void);
+bool IsTactFemale(void);
+int GetGameTacticsRank(void);
+int GetGameSurvivalRank(void);
+int GetGameExpRank(void);
+int GetGameCombatRank(void);
+int GetGameFundsRank(void);
+void EventForceSlowTextSpeed(struct EventProc * proc);
+void sub_0800AF20(struct EventProc * proc);
+
+void EventStartTalk(struct EventProc * proc, int msg, bool init)
+{
+    if (init)
+        InitTalk(0x80, 2, TRUE);
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+        EventForceSlowTextSpeed(proc);
+
+    StartTalkMsg(1, 1, msg);
+
+    if (proc->flags & EVENT_FLAG_NOSKIPTALK)
+        SetTalkFlag(TALK_FLAG_NOSKIP);
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+        SetTalkFlag(TALK_FLAG_NOFAST);
+
+    proc->idle_func = EventEndTalk;
+}
+
+int EvtCmd_Talk(struct EventProc * proc)
+{
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartTalk(proc, proc->script[1], TRUE);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkOpaque(struct EventProc * proc)
+{
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartTalk(proc, proc->script[1], TRUE);
+    SetTalkFlag(0x100);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkByMode(struct EventProc * proc)
+{
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    InitTalk(0x80, 2, TRUE);
+
+    if (gPlaySt.chapterModeIndex != CHAPTER_MODE_HECTOR)
+        EventStartTalk(proc, proc->script[1], TRUE);
+    else
+        EventStartTalk(proc, proc->script[2], TRUE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkSetFuncBroken(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    /* BUG: passes the address of the argument rather than the argument */
+    SetTalkFunc((ProcFunc)(proc->script + 1));
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkMore(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartTalk(proc, proc->script[1], FALSE);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkMoreByMode(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (gPlaySt.chapterModeIndex != CHAPTER_MODE_HECTOR)
+        EventStartTalk(proc, proc->script[1], FALSE);
+    else
+        EventStartTalk(proc, proc->script[2], FALSE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkAuto(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartTalk(proc, proc->talk_auto_msg, TRUE);
+    return EVENT_CMDRET_YIELD;
+}
+
+int Event14_TalkContinue(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EndTalk();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    ResumeTalk();
+    proc->idle_func = EventEndTalk;
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkGeneric(struct EventProc * proc)
+{
+    EventScr const * msgs = (EventScr const *)proc->script[1];
+
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartTalk(proc, msgs[gActiveUnit->pCharacterData->visit_group], TRUE);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkMoreGeneric(struct EventProc * proc)
+{
+    EventScr const * msgs = (EventScr const *)proc->script[1];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    EventStartTalk(proc, msgs[gActiveUnit->pCharacterData->visit_group], FALSE);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkByTactRank(struct EventProc * proc)
+{
+    EventScr const * msgs = (EventScr const *)proc->script[1];
+    int rank;
+    int idx;
+
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    switch (SCR_HI16(proc->script[0]))
+    {
+    case 0:
+        rank = GetGameTacticsRank();
+        break;
+
+    case 1:
+        rank = GetGameSurvivalRank();
+        break;
+
+    case 2:
+        rank = GetGameExpRank();
+        break;
+
+    case 3:
+        rank = GetGameCombatRank();
+        break;
+
+    case 4:
+    default:
+        rank = GetGameFundsRank();
+        break;
+    }
+
+    idx = 0;
+    if (rank <= 2)
+    {
+        idx = 1;
+        if (rank <= 1)
+            idx = 2;
+    }
+
+    EventStartTalk(proc, msgs[idx], TRUE);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkByTactGender(struct EventProc * proc)
+{
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (!IsTactFemale())
+        EventStartTalk(proc, proc->script[1], TRUE);
+    else
+        EventStartTalk(proc, proc->script[2], TRUE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkMoreByTactGender(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (!IsTactFemale())
+        EventStartTalk(proc, proc->script[1], FALSE);
+    else
+        EventStartTalk(proc, proc->script[2], FALSE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkByFlag(struct EventProc * proc)
+{
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (CheckFlag(proc->script[1]))
+        EventStartTalk(proc, proc->script[2], TRUE);
+    else
+        EventStartTalk(proc, proc->script[3], TRUE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkMoreByFlag(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (CheckFlag(proc->script[1]))
+        EventStartTalk(proc, proc->script[2], FALSE);
+    else
+        EventStartTalk(proc, proc->script[3], FALSE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkByFunc(struct EventProc * proc)
+{
+    proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (((bool (*)(void))proc->script[1])())
+        EventStartTalk(proc, proc->script[2], TRUE);
+    else
+        EventStartTalk(proc, proc->script[3], TRUE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_TalkMoreByFunc(struct EventProc * proc)
+{
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_TEXTSKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (((bool (*)(void))proc->script[1])())
+        EventStartTalk(proc, proc->script[2], FALSE);
+    else
+        EventStartTalk(proc, proc->script[3], FALSE);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_ClearTalkBubble(struct EventProc * proc)
+{
+    ClearTalkBubble();
+    return EVENT_CMDRET_CONTINUE;
+}
+
+void EventEndTalk(struct EventProc * proc)
+{
+    u16 skipped = proc->flags & EVENT_FLAG_SKIPPED;
+
+    if (skipped)
+    {
+        EndTalk();
+        sub_0800AF20(proc);
+        proc->idle_func = NULL;
+        return;
+    }
+
+    if (!IsTalkActive() || IsTalkLocked())
+    {
+        sub_0800AF20(proc);
+        proc->idle_func = NULL;
+    }
+}
+
+int Event20(struct EventProc * proc)
+{
+    s16 x = (proc->script[0] >> 16) & 0xFF;
+    s16 y = (proc->script[0] >> 24) & 0xFF;
+    int cam_x, cam_y;
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        StoreAdjustedCameraPositions(x, y, &cam_x, &cam_y);
+        gBmSt.camera.x = cam_x * 16;
+        gBmSt.camera.y = cam_y * 16;
+        SetMapCursorPosition(x, y);
+        RenderMap();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    EnsureCameraOntoCenteredPosition(proc, x, y);
+    SetMapCursorPosition(x, y);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_CameraPosition(struct EventProc * proc)
+{
+    s16 x = (proc->script[0] >> 16) & 0xFF;
+    s16 y = (proc->script[0] >> 24) & 0xFF;
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        gBmSt.camera.x = GetCameraAdjustedX(x * 16);
+        gBmSt.camera.y = GetCameraAdjustedY(y * 16);
+        SetMapCursorPosition(x, y);
+        RenderMap();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    EnsureCameraOntoPosition(proc, x, y);
+    SetMapCursorPosition(x, y);
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_CameraPid(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(SCR_HI16(proc->script[0]));
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        gBmSt.camera.x = GetCameraAdjustedX(unit->xPos * 16);
+        gBmSt.camera.y = GetCameraAdjustedY(unit->yPos * 16);
+        SetMapCursorPosition(unit->xPos, unit->yPos);
+        RenderMap();
+    }
+    else
+    {
+        EnsureCameraOntoPosition(proc, unit->xPos, unit->yPos);
+        SetMapCursorPosition(unit->xPos, unit->yPos);
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_CameraLeader(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
+
+    EnsureCameraOntoPosition(proc, unit->xPos, unit->yPos);
+    SetMapCursorPosition(unit->xPos, unit->yPos);
+    return EVENT_CMDRET_YIELD;
+}
+
+bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y)
+{
+    if (proc->flags & EVENT_FLAG_UNITCAM)
+    {
+        if (Proc_Find(ProcScr_CamMove) != NULL)
+            return FALSE;
+
+        if (EnsureCameraOntoPosition(proc, x, y))
+            return FALSE;
+    }
+
+    if (!CanStartMu())
+        return FALSE;
+
+    return TRUE;
+}
+
 ASM_FUNC("asm/nonmatching/code_0800C058.s");
 ASM_FUNC("asm/nonmatching/code_0800C15C.s");
 ASM_FUNC("asm/nonmatching/code_0800C25C.s");

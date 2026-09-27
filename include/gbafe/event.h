@@ -695,6 +695,9 @@ extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
 
 
 /* ---- eventscr.c (0x0800B90C-0x0800D01C) ---- */
+void EventStartTalk(struct EventProc * proc, int msg, bool init);
+void EventEndTalk(struct EventProc * proc);
+bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y);
 
 /* ---- end eventscr.c ---- */
 
