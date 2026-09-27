@@ -33,13 +33,11 @@ extern u16 const SpriteAnim_ManimBerserk[];
 extern u8 const Img_ManimRepair[];
 extern u16 const Pal_ManimRepair[];
 extern u8 const Tsa_ManimRepair[];
-extern u8 const gManimRepairFrameLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimBerserk[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimRepair[];
 
 extern u16 const Pal_ManimRestore[];
 extern u8 const Tsa_ManimRestore[];
-extern u8 const gManimRestoreFrameLut[];
 extern u8 const Img_ManimSleep[];
 extern u16 const Pal_ManimSleep[];
 extern u16 const SpriteAnim_ManimSleep[];
@@ -61,7 +59,6 @@ extern u16 const SpriteAnim_ManimSilence[];
 extern u8 const Img_ManimBarrier[];
 extern u16 const Pal_ManimBarrier[];
 extern u8 const Tsa_ManimBarrier[];
-extern u8 const gManimBarrierFrameLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimSilence[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimBarrier[];
 
@@ -580,20 +577,44 @@ void ManimRepairFx_Init(struct ManimEffectProc * proc)
 
 void ManimRepairFx_Main(struct ManimEffectProc * proc)
 {
+    static u8 const lut[] =
+    {
+        0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6,
+        0xFF,
+    };
+
     sub_080149A8(
         gBg2Tm,
         proc->x / 8 - 2, proc->y / 8 - 9,
         TILEREF(0x140, 4),
         4, 11, Tsa_ManimRepair,
-        gManimRepairFrameLut[proc->unk_48++]);
+        lut[proc->unk_48++]);
 
     EnableBgSync(BG2_SYNC_BIT);
 
-    if (gManimRepairFrameLut[proc->unk_48] == 0xFF)
+    if (lut[proc->unk_48] == 0xFF)
         Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_08072F00.s");
+void ManimRepairFx_Blink(struct ManimEffectProc * proc)
+{
+    u8 blend_coef_list[] =
+    {
+        16, 14, 12, 10, 8, 10, 12, 14, 16,
+        16, 14, 12, 10, 8, 10, 12, 14, 16,
+        0xFF,
+    };
+
+start: // label needed to match (starts a new basic block)
+    SetBlendAlpha(blend_coef_list[proc->frame_idx++], 0x10);
+
+    if (blend_coef_list[proc->frame_idx] == 0xFF)
+    {
+        proc->frame_idx = 0;
+        Proc_Break(proc);
+    }
+}
+
 void ManimRepairFx_FadeOut(struct ManimEffectProc * proc)
 {
     SetBlendAlpha(Interpolate(0, 0x10, 0, proc->frame_idx++, 30), 0x10);
@@ -618,16 +639,22 @@ void ManimRestoreFx_Init(struct ManimEffectProc * proc)
 
 void ManimRestoreFx_Main(struct ManimEffectProc * proc)
 {
+    static u8 const lut[] =
+    {
+        0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6,
+        0xFF,
+    };
+
     sub_080149A8(
         gBg2Tm,
         proc->x / 8 - 2, proc->y / 8 - 9,
         TILEREF(0x140, 4),
         4, 11, Tsa_ManimRestore,
-        gManimRestoreFrameLut[proc->unk_48++]);
+        lut[proc->unk_48++]);
 
     EnableBgSync(BG2_SYNC_BIT);
 
-    if (gManimRestoreFrameLut[proc->unk_48] == 0xFF)
+    if (lut[proc->unk_48] == 0xFF)
         Proc_Break(proc);
 }
 
@@ -790,16 +817,27 @@ void ManimBarrierFx_Init(struct ManimEffectProc * proc)
 
 void ManimBarrierFx_Main(struct ManimEffectProc * proc)
 {
+    static u8 const lut[] =
+    {
+        0, 0, 1, 1, 2, 2, 3, 3,
+        4, 4, 3, 3, 4, 4, 3, 3,
+        4, 4, 3, 3, 4, 4, 3, 3,
+        4, 4, 3, 3, 4, 4, 3, 3,
+        4, 4, 3, 3, 4, 4, 3, 3,
+        2, 2, 1, 1, 0, 0,
+        0xFF,
+    };
+
     sub_080149A8(
         gBg2Tm,
         proc->x / 8 - 2, proc->y / 8 - 8,
         TILEREF(0x140, 4),
         4, 10, Tsa_ManimBarrier,
-        gManimBarrierFrameLut[proc->unk_48++]);
+        lut[proc->unk_48++]);
 
     EnableBgSync(BG2_SYNC_BIT);
 
-    if (gManimBarrierFrameLut[proc->unk_48] == 0xFF)
+    if (lut[proc->unk_48] == 0xFF)
         Proc_Break(proc);
 }
 
