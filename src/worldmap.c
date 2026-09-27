@@ -2222,7 +2222,53 @@ void WmDrawMap(int mode, int x, int y)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5E80.s");
+void WmRedrawMapAt(int mode, int x, int y)
+{
+    int ix, iy, ty;
+
+    CpuFastSet(gPal, gPal + 0x80, 0x20);
+
+    if (mode == 1)
+    {
+        for (iy = 0; iy < 20; iy++)
+        {
+            ty = (y + iy) & 0x1F;
+
+            for (ix = 0; ix < 30; ix++)
+            {
+                CpuFastSet(
+                    (void *) (VRAM + 0x8000 + ((((x + ix) & 0x1F) + ty * 0x20) * 0x20)),
+                    (void *) (VRAM + 0x1000 + (iy * 0x20 + ix) * 0x20), 8);
+            }
+        }
+
+        for (iy = 0; iy < 20; iy++)
+        {
+            ty = (y + iy) & 0x1F;
+
+            for (ix = 0; ix < 30; ix++)
+            {
+                {
+                    int tx = (x + ix) & 0x1F;
+                    gBg2Tm[iy * 0x20 + ix] = iy * 0x20 + ix + ((gBg3Tm[ty * 0x20 + tx] & 0xF000) + 0x80) + -0x8000;
+                }
+            }
+        }
+    }
+    else
+    {
+        CpuFastSet((void *) (VRAM + 0x8000), (void *) (VRAM + 0x1000), 0x1400);
+
+        for (iy = 0; iy < 20; iy++)
+        {
+            for (ix = 0; ix < 30; ix++)
+                gBg2Tm[iy * 0x20 + ix] = gBg3Tm[iy * 0x20 + ix] + 0x8080;
+        }
+    }
+
+    EnablePalSync();
+    EnableBgSync(BG2_SYNC_BIT);
+}
 s8 GetWorldMapUnk54(void)
 {
     struct WorldMapProc * proc = Proc_Find(ProcScr_WorldMap);
