@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08062C94
-sub_08062C94: @ 0x08062C94
+	thumb_func_start NewEfxMagfcastBG
+NewEfxMagfcastBG: @ 0x08062C94
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0

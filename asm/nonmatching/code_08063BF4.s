@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063BF4
-sub_08063BF4: @ 0x08063BF4
+	thumb_func_start EfxChillAnime_Loop
+EfxChillAnime_Loop: @ 0x08063BF4
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r1, [r6, #0x60]

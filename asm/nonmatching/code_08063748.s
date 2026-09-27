@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063748
-sub_08063748: @ 0x08063748
+	thumb_func_start EfxMagdhisEffectBGMain
+EfxMagdhisEffectBGMain: @ 0x08063748
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x2c

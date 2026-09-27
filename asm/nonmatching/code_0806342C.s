@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806342C
-sub_0806342C: @ 0x0806342C
+	thumb_func_start EfxSpecalEffectMain
+EfxSpecalEffectMain: @ 0x0806342C
 	push {lr}
 	bl Proc_Break
 	pop {r0}

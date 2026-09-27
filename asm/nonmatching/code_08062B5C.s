@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08062B5C
-sub_08062B5C: @ 0x08062B5C
+	thumb_func_start efxHurtmutEff01OBJ_806CFC4
+efxHurtmutEff01OBJ_806CFC4: @ 0x08062B5C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, [r5, #0x60]

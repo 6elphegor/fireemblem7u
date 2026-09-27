@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063A84
-sub_08063A84: @ 0x08063A84
+	thumb_func_start EfxChillEffectBGMain
+EfxChillEffectBGMain: @ 0x08063A84
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x2c

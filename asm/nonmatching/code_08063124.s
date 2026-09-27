@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063124
-sub_08063124: @ 0x08063124
+	thumb_func_start EfxKingPikaMain
+EfxKingPikaMain: @ 0x08063124
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r6, [r7, #0x5c]

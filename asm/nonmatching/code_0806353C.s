@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806353C
-sub_0806353C: @ 0x0806353C
+	thumb_func_start NewEfxSRankWeaponEffectSCR
+NewEfxSRankWeaponEffectSCR: @ 0x0806353C
 	push {lr}
 	ldr r0, _08063558 @ =0x08BA450C
 	movs r1, #3

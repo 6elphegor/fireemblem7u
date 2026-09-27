@@ -31,7 +31,7 @@ NewEfxMagfcast: @ 0x08062C18
 	bgt _08062C68
 	ldr r0, [r5, #0x5c]
 	adds r1, r7, #0
-	bl sub_08062C94
+	bl NewEfxMagfcastBG
 	b _08062C70
 	.align 2, 0
 _08062C5C: .4byte 0x0201774C
@@ -40,7 +40,7 @@ _08062C64: .4byte 0x0203E08E
 _08062C68:
 	ldr r0, [r5, #0x5c]
 	adds r1, r7, #2
-	bl sub_08062C94
+	bl NewEfxMagfcastBG
 _08062C70:
 	pop {r4, r5, r6, r7}
 	pop {r0}

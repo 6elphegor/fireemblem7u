@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063664
-sub_08063664: @ 0x08063664
+	thumb_func_start EfxMagdhisEffectMain
+EfxMagdhisEffectMain: @ 0x08063664
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldrh r0, [r5, #0x2c]
@@ -15,7 +15,7 @@ sub_08063664: @ 0x08063664
 	bne _0806369A
 	ldr r0, [r5, #0x5c]
 	movs r1, #0x49
-	bl sub_080636AC
+	bl NewEfxMagdhisEffectBG
 	movs r4, #0xa0
 	lsls r4, r4, #1
 	movs r1, #0x80

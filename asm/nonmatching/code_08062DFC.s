@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08062DFC
-sub_08062DFC: @ 0x08062DFC
+	thumb_func_start EfxSunakemuriMain
+EfxSunakemuriMain: @ 0x08062DFC
 	push {lr}
 	bl Proc_Break
 	pop {r0}

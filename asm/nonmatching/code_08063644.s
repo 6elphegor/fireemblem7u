@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063644
-sub_08063644: @ 0x08063644
+	thumb_func_start NewEfxMagdhisEffect
+NewEfxMagdhisEffect: @ 0x08063644
 	push {r4, lr}
 	adds r4, r0, #0
 	bl SpellFx_SetBG1Position

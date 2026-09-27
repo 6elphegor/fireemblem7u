@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063458
-sub_08063458: @ 0x08063458
+	thumb_func_start EfxSRankWeaponEffectMain
+EfxSRankWeaponEffectMain: @ 0x08063458
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldrh r0, [r6, #0x2c]
@@ -23,7 +23,7 @@ _08063472:
 	movs r1, #0x2d
 	movs r2, #1
 	bl NewEfxRestWINH_
-	bl sub_0806353C
+	bl NewEfxSRankWeaponEffectSCR
 	b _080634BC
 _08063486:
 	cmp r0, #0x46

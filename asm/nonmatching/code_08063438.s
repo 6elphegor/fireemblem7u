@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063438
-sub_08063438: @ 0x08063438
+	thumb_func_start NewEfxSRankWeaponEffect
+NewEfxSRankWeaponEffect: @ 0x08063438
 	push {r4, lr}
 	adds r4, r0, #0
 	bl SpellFx_SetBG1Position

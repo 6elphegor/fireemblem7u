@@ -78,7 +78,7 @@ _08063400:
 	movs r3, #0
 	bl PlaySFX
 	adds r0, r5, #0
-	bl sub_08063438
+	bl NewEfxSRankWeaponEffect
 _08063422:
 	pop {r4, r5, r6}
 	pop {r0}

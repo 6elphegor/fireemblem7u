@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063348
-sub_08063348: @ 0x08063348
+	thumb_func_start EfxDanceOBJMain
+EfxDanceOBJMain: @ 0x08063348
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]

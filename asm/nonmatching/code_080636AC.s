@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080636AC
-sub_080636AC: @ 0x080636AC
+	thumb_func_start NewEfxMagdhisEffectBG
+NewEfxMagdhisEffectBG: @ 0x080636AC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0

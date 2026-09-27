@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080631B0
-sub_080631B0: @ 0x080631B0
+	thumb_func_start EfxFlashFXMain
+EfxFlashFXMain: @ 0x080631B0
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r6, [r7, #0x5c]

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08063600
-sub_08063600: @ 0x08063600
+	thumb_func_start EfxSRankWeaponEffectSCR2Main
+EfxSRankWeaponEffectSCR2Main: @ 0x08063600
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
