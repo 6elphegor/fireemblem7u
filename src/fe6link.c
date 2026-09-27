@@ -3,6 +3,11 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+extern u16 CONST_DATA gUnknown_08B99984[];
+extern u16 CONST_DATA gUnknown_08B9997C[];
+extern u16 CONST_DATA gUnknown_08B99968[];
+extern u16 CONST_DATA gUnknown_08B9993C[];
+
 extern const u16 gUnknown_08B99880[];
 
 struct Fe6LinkMsgEnt
@@ -51,7 +56,18 @@ struct Fe6LinkSaveInfo
     /* 20 */ u16 unk_20;
 };
 
-extern u8 gUnk_Sio_02000C04[];
+struct Fe6LinkRecvData
+{
+    /* 00 */ u8 kind;
+    /* 01 */ u8 unk_01[3];
+    /* 04 */ u8 unk_04;
+    /* 05 */ u8 unk_05[3];
+    /* 08 */ u8 unk_08;
+    /* 09 */ u8 unk_09[3];
+    /* 0C */ u32 unk_0c[3];
+};
+
+extern struct Fe6LinkRecvData gUnk_Sio_02000C04;
 extern u8 gUnk_Sio_02000C1C[];
 
 void ReadFe6LinkSaveInfo(void * buf);
@@ -175,9 +191,9 @@ void sub_080436A0(struct Fe6LinkProc * proc)
 {
     u8 senderId[4];
 
-    if ((u16)SioReceiveData(gUnk_Sio_02000C04, senderId, sub_08043690) != 0)
+    if ((u16)SioReceiveData(&gUnk_Sio_02000C04, senderId, sub_08043690) != 0)
     {
-        if (gUnk_Sio_02000C04[4] == 0)
+        if (gUnk_Sio_02000C04.unk_04 == 0)
         {
             LoadHelpBoxGfx((void *)0x06015000, 6);
             StartHelpBoxExt_Unk(0x38, 0x38, 0x1194);
@@ -190,7 +206,37 @@ void sub_080436A0(struct Fe6LinkProc * proc)
         }
     }
 }
-ASM_FUNC("asm/nonmatching/code_08043700.s");
+void sub_08043700(struct Fe6LinkProc * proc)
+{
+    struct Fe6LinkProc * child = proc->unk_54;
+
+    if ((gpKeySt->pressed & DPAD_UP) && child->unk_44 > 0)
+    {
+        child->unk_44--;
+        SioPlaySoundEffect(3);
+    }
+
+    if ((gpKeySt->pressed & DPAD_DOWN) && child->unk_44 < 2)
+    {
+        child->unk_44++;
+        SioPlaySoundEffect(3);
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        if (gUnk_Sio_02000C04.unk_01[child->unk_44] != 0)
+        {
+            SioPlaySoundEffect(2);
+            child->unk_50 = 1;
+            proc->unk_60 = child->unk_44;
+            Proc_Break(proc);
+        }
+        else
+        {
+            SioPlaySoundEffect(0);
+        }
+    }
+}
 bool sub_08043788(void * data)
 {
     if (*(u8 *)data == 0x66)
@@ -198,7 +244,33 @@ bool sub_08043788(void * data)
 
     return FALSE;
 }
-ASM_FUNC("asm/nonmatching/code_08043798.s");
+void sub_08043798(struct Fe6LinkProc * proc)
+{
+    struct Fe6LinkSaveInfo info;
+    u8 senderId[4];
+    int i;
+
+    if ((u16)SioReceiveData(gUnk_Sio_02000C1C, senderId, sub_08043788) != 0)
+    {
+        CloseHelpBox();
+        sub_0803D500(0);
+        LoadHelpBoxGfx((void *)0x06016800, 13);
+        StartHelpBoxExt_Unk(0x40, 0x48, 0x1195);
+
+        ReadFe6LinkSaveInfo(&info);
+
+        for (i = 0; i < 8; i++)
+            info.data[i] = ((u32 *)(gUnk_Sio_02000C1C + 4))[i];
+
+        if (gUnk_Sio_02000C04.unk_05[proc->unk_60] == 0x19)
+            info.unk_20 = 2;
+        else
+            info.unk_20 = 1;
+
+        WriteFe6LinkSaveInfo(&info);
+        Proc_Break(proc);
+    }
+}
 void sub_08043828(struct Text * th, int num, u8 center, int color)
 {
     int widths[4];
@@ -289,8 +361,52 @@ void sub_080439D0(struct Text * th)
     Text_InsertDrawString(th, 0xB0, 0, DecodeMsg(2));
 }
 ASM_FUNC("asm/nonmatching/code_08043A14.s");
-ASM_FUNC("asm/nonmatching/code_08043B1C.s");
-ASM_FUNC("asm/nonmatching/code_08043C0C.s");
+void sub_08043B1C(int time)
+{
+    u16 hours, minutes, seconds;
+
+    FormatTime(time, &hours, &minutes, &seconds);
+
+    if (hours > 99)
+    {
+        hours = 99;
+        seconds = 59;
+        minutes = 59;
+    }
+
+    PutSprite(4, 0xD8, 0x90, gUnknown_08B99984, DivRem(seconds, 10));
+    PutSprite(4, 0xD0, 0x90, gUnknown_08B99984, Div(seconds, 10));
+    PutSprite(4, 0xC8, 0x90, gUnknown_08B99984, 10);
+
+    PutSprite(4, 0xC0, 0x88, gUnknown_08B9997C, DivRem(minutes, 10));
+    PutSprite(4, 0xB8, 0x88, gUnknown_08B9997C, Div(minutes, 10));
+    PutSprite(4, 0xB0, 0x88, gUnknown_08B9997C, 10);
+
+    PutSprite(4, 0xA8, 0x88, gUnknown_08B9997C, DivRem(hours, 10));
+
+    if (Div(hours, 10) > 0)
+        PutSprite(4, 0xA0, 0x88, gUnknown_08B9997C, Div(hours, 10));
+}
+void sub_08043C0C(struct Fe6LinkProc * proc)
+{
+    int i;
+
+    for (i = 0; i < 3; i++)
+    {
+        PutSprite(4, proc->unk_38[i], proc->unk_3e[i], gUnknown_08B99968, (proc->unk_2c[i] & 0xF) << 12);
+        PutSprite(4, proc->unk_38[i] + 0x28, proc->unk_3e[i] + 8, gUnknown_08B9993C, i << 6);
+    }
+
+    sub_08043B1C(gUnk_Sio_02000C04.unk_0c[proc->unk_44]);
+
+    PutUiHand(proc->unk_38[proc->unk_44] + 0x10, proc->unk_3e[proc->unk_44] + 8);
+
+    if (proc->unk_50 == 1)
+    {
+        proc->unk_54 = 0;
+        Proc_Break(proc);
+    }
+}
 ASM_FUNC("asm/nonmatching/code_08043CC8.s");
 ASM_FUNC("asm/nonmatching/code_08043DB8.s");
 ProcPtr sub_08043EA0(ProcPtr parent)
