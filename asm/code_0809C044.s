@@ -47,7 +47,7 @@ sub_0809C044: @ 0x0809C044
 	bl PutIcon
 	ldrb r7, [r7]
 	lsrs r0, r7, #4
-	bl sub_080A6DB0
+	bl TactGetMsg_Birth
 	bl DecodeMsg
 	adds r7, r0, #0
 	movs r0, #0x40
@@ -67,7 +67,7 @@ sub_0809C044: @ 0x0809C044
 	ldrb r5, [r5]
 	lsls r0, r5, #0x1f
 	lsrs r0, r0, #0x1f
-	bl sub_080A6DC0
+	bl TactGetMsg_Gender
 	bl DecodeMsg
 	adds r7, r0, #0
 	movs r0, #0x40

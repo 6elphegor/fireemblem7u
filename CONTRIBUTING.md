@@ -64,3 +64,7 @@ match this compiler.
   with different types breaks the build after merging.
 * `symbols.ld` and `data/layout.txt` merge by union — just add lines.
 * Commit only matching states (`make` prints `OK`).
+* Before reporting done: `git merge main`, then `tools/fix_renames.sh`
+  (updates `sub_XXXXXXXX` calls to functions renamed on main), fix any
+  remaining conflicts or duplicate declarations, and make sure `make`
+  still prints `OK`.

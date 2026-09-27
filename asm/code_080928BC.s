@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080928BC
-sub_080928BC: @ 0x080928BC
+	thumb_func_start StartPrepArmory
+StartPrepArmory: @ 0x080928BC
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x2a

@@ -41,7 +41,7 @@ _080A4B18:
 	b _080A4B40
 _080A4B28:
 	adds r0, r4, #0
-	bl sub_080AC2AC
+	bl StartSoundRoomScreen
 	b _080A4B40
 _080A4B30:
 	adds r0, r4, #0
