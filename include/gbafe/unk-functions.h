@@ -75,8 +75,8 @@ void CleanupUnitsBeforeChapter(void);
 // ResumeMapMainDuringBerserk
 // ResumeMapMainDuringArena
 // ResumeMapMainDuringPhaseChange
-void sub_0802E6B0(/* TODO */);
-void sub_0802E6D4(/* TODO */);
+void GameCtrl_DeclareCompletedChapter(void);
+void GameCtrl_SavePlayThroughData(void);
 char *GetTacticianName();
 void SetTacticianName(const char *name);
 // GetConvoyItemArray
