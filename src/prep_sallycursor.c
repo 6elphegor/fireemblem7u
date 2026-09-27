@@ -39,8 +39,8 @@ void sub_08018980(void);                            // LoadUnitPrepScreenPositio
 void InitPlayerUnitPositionsForPrepScreen(void);                            // InitPlayerUnitPositionsForPrepScreen
 void sub_080A3284(void);                            // StartMinimapPrepPhase
 int SearchAvailableEvent(struct EventInfo * info);          // SearchAvailableEvent
-void sub_080B03D4(struct Unit * unit, const u16 * items); // StartArmoryScreen
-void sub_080B03F4(struct Unit * unit, const u16 * items); // StartVendorScreen
+void StartArmoryScreenOrphaned(struct Unit * unit, const u16 * items); // StartArmoryScreen
+void StartVendorScreenOrphaned(struct Unit * unit, const u16 * items); // StartVendorScreen
 void SyncUnitDeploymentState(void);
 void sub_08004234(void);
 void RefreshBMapGraphics(void);
@@ -639,11 +639,11 @@ void PrepScreenProc_StartShopScreen(ProcPtr proc)
     switch (info.commandId)
     {
         case 0x13:
-            sub_080B03D4(NULL, (u16 *) info.script);
+            StartArmoryScreenOrphaned(NULL, (u16 *) info.script);
             break;
 
         case 0x14:
-            sub_080B03F4(NULL, (u16 *) info.script);
+            StartVendorScreenOrphaned(NULL, (u16 *) info.script);
             break;
     }
 }

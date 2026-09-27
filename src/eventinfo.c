@@ -170,9 +170,9 @@ void sub_0800ADB8(void);
 void sub_0800F028(u8 mapChangeId);
 void sub_0800F044(u16 item, u8 mapChangeId);
 void sub_0800F06C(int money, u8 mapChangeId);
-void sub_080B03D4(struct Unit * unit, void const * shopItems);
-void sub_080B03F4(struct Unit * unit, void const * shopItems);
-void sub_080B0414(struct Unit * unit, void const * shopItems);
+void StartArmoryScreenOrphaned(struct Unit * unit, void const * shopItems);
+void StartVendorScreenOrphaned(struct Unit * unit, void const * shopItems);
+void StartSecretShopScreenOrphaned(struct Unit * unit, void const * shopItems);
 
 struct EventInfo * SearchAvailableEvent(struct EventInfo * info);
 struct EventInfo * SearchNextAvailableEvent(struct EventInfo * info);
@@ -901,15 +901,15 @@ void StartAvailableTileEvent(s8 x, s8 y)
         break;
 
     case 0x13:
-        sub_080B03D4(gActiveUnit, (void const *) info.script);
+        StartArmoryScreenOrphaned(gActiveUnit, (void const *) info.script);
         break;
 
     case 0x14:
-        sub_080B03F4(gActiveUnit, (void const *) info.script);
+        StartVendorScreenOrphaned(gActiveUnit, (void const *) info.script);
         break;
 
     case 0x15:
-        sub_080B0414(gActiveUnit, (void const *) info.script);
+        StartSecretShopScreenOrphaned(gActiveUnit, (void const *) info.script);
         break;
 
     case 0x16:
