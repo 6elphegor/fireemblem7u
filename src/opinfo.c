@@ -158,7 +158,41 @@ int GetClassIntroStringWidth(u8 const * str)
     return width;
 }
 
-ASM_FUNC("asm/nonmatching/code_080AEFA8.s");
+void PutClassIntroLetter(u16 tile, u8 index, int x, int y, u16 xScale, u16 yScale, u8 offset)
+{
+    int i;
+    int pal = (u8) (index % 13) + 1;
+
+    if (tile == 0xFFFF)
+        return;
+
+    if (offset != 0)
+    {
+        for (i = 1; i < 0x10; i++)
+        {
+            if (i + offset > 0xF)
+                gPal[0x100 + pal * 0x10 + i] = gPal[0x10F];
+            else
+                gPal[0x100 + pal * 0x10 + i] = gPal[0x100 + i + offset];
+        }
+
+        EnablePalSync();
+    }
+    else
+    {
+        pal = 14;
+    }
+
+    if (xScale < 8)
+        xScale = 8;
+
+    if (yScale < 8)
+        yScale = 8;
+
+    SetObjAffineAuto(index, 0, xScale, yScale);
+
+    PutSpriteExt(4, (x & 0x1FF) + (index << 9), y & 0x1FF, Sprite_ClassIntroLetter, tile + OAM2_PAL(pal));
+}
 
 void ClassIntro_PutNextLetter(struct OpInfoEnterProc * proc)
 {
