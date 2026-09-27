@@ -114,7 +114,7 @@ void ShopDrawBuyItemLine(ProcPtr proc, int itemIndex);
 void ShopDrawSellItemLine(ProcPtr proc, int itemIndex);
 void Shop_InitBuyState(struct ProcShop * proc);
 void Shop_Loop_BuyKeyHandler(struct ProcShop * proc);
-void Shop_HandleBuyConfirmPrompt_(struct ProcShop * proc);
+void Shop_HandleBuyConfirmPrompt(struct ProcShop * proc);
 void Shop_TryAddItemToInventory(struct ProcShop * proc);
 void Shop_HandleSendToConvoyPrompt(struct ProcShop * proc);
 void Shop_NoSendToConvoyDialogue(struct ProcShop * proc);

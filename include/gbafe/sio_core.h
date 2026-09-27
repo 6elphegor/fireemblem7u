@@ -655,7 +655,7 @@ void sub_08043068(void);
 bool sub_0804307C(void);
 void XMapTransfer_8048730(void);
 void sub_08043130(void);
-void Shop_HandleBuyConfirmPrompt(ProcPtr proc);
+void SioEvent_GotoLabel1UnlessYes(ProcPtr proc);
 void sub_08043170(ProcPtr proc);
 void EraseSaveData(void);
 

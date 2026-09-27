@@ -287,7 +287,7 @@ void Shop_Loop_BuyKeyHandler(struct ProcShop * proc)
     }
 }
 
-void Shop_HandleBuyConfirmPrompt_(struct ProcShop * proc)
+void Shop_HandleBuyConfirmPrompt(struct ProcShop * proc)
 {
     switch (GetTalkChoiceResult()) {
     case 1:
