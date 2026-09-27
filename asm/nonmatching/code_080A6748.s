@@ -43,7 +43,7 @@ _080A6766:
 	adds r7, #0x2b
 	ldrb r1, [r7]
 	lsrs r0, r1, #4
-	bl sub_080A6DB0
+	bl TactGetMsg_Birth
 	bl DecodeMsg
 	adds r6, r0, #0
 	movs r0, #0x40
@@ -59,7 +59,7 @@ _080A6766:
 	ldrb r4, [r4]
 	lsls r0, r4, #0x1f
 	lsrs r0, r0, #0x1f
-	bl sub_080A6DC0
+	bl TactGetMsg_Gender
 	bl DecodeMsg
 	adds r6, r0, #0
 	movs r0, #0x40
