@@ -262,10 +262,10 @@ def gen_terrains():
         for t in range(TERRAIN_COUNT):
             out.append(f"    [{TERRAINS[t]}] = {rds8(a + t)},")
         out += ["};", ""]
-    out.append("// Japanese (Shift-JIS) terrain names, unused in FE7U")
+    out.append("// Japanese terrain names (Shift-JIS in ROM; .rodata at 0x083B7C7C), unused in FE7U")
     out.append("CONST_DATA char const * gTerrainDebugNameTable[TERRAIN_COUNT] = {")
     for t in range(TERRAIN_COUNT):
-        out.append(f"    [{TERRAINS[t]}] = (char const *) 0x{rd32(0x08BE4FE4 + 4 * t):08X},")
+        out.append(f'    [{TERRAINS[t]}] = "{sjis(rd32(0x08BE4FE4 + 4 * t))}",')
     out += ["};", ""]
     out.append("CONST_DATA u16 gTerrainNameMsgTable[TERRAIN_COUNT] = {")
     for t in range(TERRAIN_COUNT):
@@ -651,6 +651,11 @@ DEBUG_PINFO_TABLE = 0x08C97F3C
 def cstr(a):
     o = a - 0x08000000
     return ROM[o:ROM.index(b"\0", o)].decode("ascii")
+
+
+def sjis(a):
+    o = a - 0x08000000
+    return ROM[o:ROM.index(b"\0", o)].decode("cp932")
 
 
 def gen_debugpinfo():
