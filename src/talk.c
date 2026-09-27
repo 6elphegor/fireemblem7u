@@ -1441,8 +1441,10 @@ void sub_080095C8(struct Proc * proc)
     }
 }
 
-void sub_080096BC(struct Proc * proc);
-ASM_FUNC("asm/nonmatching/code_080096BC.s");
+void sub_080096BC(struct Proc * proc)
+{
+    CleanTalkObjects(0x200, 0x1A, 0x44444444, proc);
+}
 
 
 void sub_080096D4(ProcPtr proc)
