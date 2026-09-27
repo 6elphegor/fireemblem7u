@@ -561,7 +561,7 @@ struct SioResultProc
     /* 40 */ int unk_40;
 };
 
-void DrawLinkArenaRankIcon(u16 * tm, u32 base);
+void DrawLinkArenaRankIcon(u16 * tm, int base);
 void DrawLinkArenaModeIcon(u16 * tm, u32 base);
 void DrawLinkArenaRankingRow(struct Text * th, char * nameStr, u8 rank, u16 points, u8 playerCount);
 void DrawLinkArenaRankings(void);
@@ -788,3 +788,4 @@ extern const u8 gUnknown_080D9D5E[];
 extern const int gUnknown_081D5254[];
 extern u8 * CONST_DATA gUnknown_08B98CA8[];
 void StartPrepAtMenu(void);
+void StartLinkArenaMenuScrollBar(int xBase, int yBase, u8 c, u8 d, u8 e, ProcPtr parent);

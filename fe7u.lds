@@ -610,17 +610,7 @@ SECTIONS
         build/src/sio_postbattle.o(.text);
         build/src/sio_bat.o(.text);
         build/src/sio_term.o(.text);
-        build/asm/code_0804177C.o(.text);
-        build/asm/code_080417BC.o(.text);
-        build/asm/code_080417F8.o(.text);
-        build/asm/code_08041880.o(.text);
-        build/asm/code_08041920.o(.text);
-        build/asm/code_08041B48.o(.text);
-        build/asm/code_08041C44.o(.text);
-        build/asm/code_08041C5C.o(.text);
-        build/asm/code_08041ED8.o(.text);
-        build/asm/code_08041F94.o(.text);
-        build/asm/code_08041FBC.o(.text);
+        build/src/sio_result.o(.text);
         build/asm/code_08041FD4.o(.text);
         build/asm/code_08041FF8.o(.text);
         build/asm/code_0804203C.o(.text);
