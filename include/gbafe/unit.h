@@ -194,6 +194,9 @@ struct Unit {
 };
 
 extern struct Unit *gUnitLut[0x100];
+extern struct Unit gUnitArrayBlue[];
+extern struct Unit gUnitArrayRed[];
+extern struct Unit gUnitArrayGreen[];
 extern struct Unit *gActiveUnit;
 
 struct UnitDefinition {
