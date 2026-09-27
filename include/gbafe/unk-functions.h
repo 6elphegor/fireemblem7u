@@ -751,15 +751,15 @@ ProcPtr sub_0809E3D8(int a, int b, ProcPtr parent);
 /* cursor_hand.h */
 
 // sub_80AB970
-// sub_080AABD0
+// CopyTextChar
 // sub_80ABAE0
-// sub_080AAC10
-// sub_080AAC2C
-// sub_080AAC48
-// sub_080AAC74
+// FadeOutBgm
+// FadeInBgm
+// BonusClaimHelp_Init
+// BonusClaimHelp_Loop
 // StartBonusClaimHelpBox
-void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to gBuf, then TmApplyTsa_thm
-// sub_080AAD18
+void PutCompressedTsa(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to gBuf, then TmApplyTsa_thm
+// IsPointInQuad
 // sub_80ABC04
 // sub_80ABC28
 // IsSoundRoomCompleted

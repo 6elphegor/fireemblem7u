@@ -286,7 +286,7 @@ void PrepItemUse_InitDisplay(struct ProcPrepItemUse * proc)
     sub_08091944(0x6000, 5);
     sub_08091994(0x3000, 10);
 
-    sub_080AACD8(gBg1Tm, Tsa_0840E50C, 0x5300);
+    PutCompressedTsa(gBg1Tm, Tsa_0840E50C, 0x5300);
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
 
     StartSysBrownBox(0xD, 0xE00, 0xF, 0xC00, 0, proc);

@@ -102,7 +102,7 @@ _080B31B4:
 	adds r1, r5, #0
 	mov r2, sl
 	mov r3, sb
-	bl sub_080AAD18
+	bl IsPointInQuad
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080B31E2
@@ -124,7 +124,7 @@ _080B31E2:
 	adds r1, r5, #0
 	mov r2, sl
 	mov r3, sb
-	bl sub_080AAD18
+	bl IsPointInQuad
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080B320E

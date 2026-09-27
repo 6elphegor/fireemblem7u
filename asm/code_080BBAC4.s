@@ -18,7 +18,7 @@ OpAnim_DrawWater: @ 0x080BBAC4
 	ldr r1, _080BBB24 @ =0x0860029C
 	movs r2, #0xe0
 	lsls r2, r2, #8
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	ldr r2, _080BBB28 @ =0x03002870
 	movs r0, #0x3f
 	ldrb r1, [r2, #0xd]

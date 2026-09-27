@@ -40,7 +40,7 @@ sub_080BB98C: @ 0x080BB98C
 	ldr r1, _080BBA28 @ =0x085ED0DC
 	movs r2, #0xa2
 	lsls r2, r2, #8
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	movs r0, #8
 	bl EnableBgSync
 	movs r0, #0

@@ -30,7 +30,7 @@ sub_080BBDD0: @ 0x080BBDD0
 	movs r2, #0xd0
 	lsls r2, r2, #8
 	adds r0, r4, #0
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	ldr r2, _080BBE3C @ =0x03001620
 	ldr r0, [r2]
 	movs r1, #0x20

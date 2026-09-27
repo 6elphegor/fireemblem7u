@@ -52,7 +52,7 @@ _080BC6F8:
 	lsls r3, r3, #0x18
 	adds r2, r2, r3
 	lsrs r2, r2, #0x10
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	ldr r1, [r4, #0x30]
 	movs r0, #1
 	subs r0, r0, r1

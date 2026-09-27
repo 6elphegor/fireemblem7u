@@ -93,7 +93,7 @@ OpAnim_DrawCloud: @ 0x080BC30C
 	movs r2, #0xe0
 	lsls r2, r2, #8
 	adds r0, r6, #0
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	ldr r0, _080BC460 @ =0x085ED1C4
 	movs r1, #0xc0
 	lsls r1, r1, #2

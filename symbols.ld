@@ -2795,3 +2795,4 @@ gSprite_UiSpinningArrows_Horizontal = 0x08CE4A28;
 gSprite_UiSpinningArrows_Vertical = 0x08CE4A36;
 gProcScr_UiSpinningArrows = 0x08CE4A40;
 Img_SpinningArrow = 0x0840D150;
+gProcScr_BonusClaimHelpBox = 0x08CE4CF8;

@@ -1439,17 +1439,7 @@ SECTIONS
         build/src/cursor-hand.o(.text);
         build/src/spinning_arrow.o(.text);
         build/src/sysutil.o(.text);
-        build/asm/code_080AAAA8.o(.text);
-        build/asm/code_080AABD0.o(.text);
-        build/asm/code_080AAC04.o(.text);
-        build/asm/code_080AAC10.o(.text);
-        build/asm/code_080AAC2C.o(.text);
-        build/asm/code_080AAC48.o(.text);
-        build/asm/code_080AAC74.o(.text);
-        build/asm/code_080AACB8.o(.text);
-        build/asm/code_080AACD8.o(.text);
-        build/asm/code_080AAD00.o(.text);
-        build/asm/code_080AAD18.o(.text);
+        build/src/bonusclaim_helpbox.o(.text);
         build/src/soundroom.o(.text);
         build/asm/code_080AC7A0.o(.text);
         build/asm/code_080AC7B0.o(.text);

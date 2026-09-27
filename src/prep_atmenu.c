@@ -1,6 +1,6 @@
 #include "gbafe.h"
 
-void sub_080AACD8(u16 * tm, void const * src, u16 tileref); // Decompress to gGenericBuffer, then TmApplyTsa
+void PutCompressedTsa(u16 * tm, void const * src, u16 tileref); // Decompress to gGenericBuffer, then TmApplyTsa
 
 struct ProcCmd CONST_DATA ProcScr_PrepMenuDescHandler[] = {
     PROC_CALL(PrepMenuDescOnInit),
@@ -365,7 +365,7 @@ void AtMenu_Reinitialize(struct ProcAtMenu * proc)
 
 	ApplyPalette(Pal_08404BBC, 3);
 	Decompress(Img_08404BDC, (void *)(BG_VRAM + 0x7800));
-	sub_080AACD8(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_084050D8, OAM2_PAL(3) + OAM2_CHR(0x7800 / 0x20));
+	PutCompressedTsa(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_084050D8, OAM2_PAL(3) + OAM2_CHR(0x7800 / 0x20));
 
 #if (PROJECT == FE7)
 	Prep_DrawChapterGoal(0x5000, 0xB);

@@ -124,7 +124,7 @@ _0808EB68:
 	ldr r1, _0808EBA8 @ =0x084050D8
 	movs r2, #0xcf
 	lsls r2, r2, #6
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	movs r0, #1
 	movs r1, #4
 	bl DrawPrepScreenMenuFrameAt

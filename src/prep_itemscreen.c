@@ -397,7 +397,7 @@ void PrepItemScreen_Reinit(struct PrepItemScreenProc * proc)
     sub_08091944(0x6000, 5);
     sub_08091994(0x3000, 10);
 
-    sub_080AACD8(gBg1Tm, Tsa_084070BC, 0x5300);
+    PutCompressedTsa(gBg1Tm, Tsa_084070BC, 0x5300);
 
     UpdatePrepItemScreenFace(0, GetUnitFromPrepList(proc->hoverUnitIdx), 68, 78, 0x503);
 
@@ -622,7 +622,7 @@ void sub_08092010(struct PrepItemScreenProc * proc)
 
     proc->unitSelected = 1;
 
-    sub_080AACD8(gBg1Tm, Tsa_08407188, 0x5300);
+    PutCompressedTsa(gBg1Tm, Tsa_08407188, 0x5300);
 
     for (i = 0; i < 8; i++)
         TmFillRect(gBg2Tm + ((((proc->scrollOffset >> 3) + i) & 0x1F) + 4) * 0x20, 9, 0, 0);
@@ -852,7 +852,7 @@ void sub_080925D0(struct PrepItemScreenProc * proc)
     sub_08091944(0x6000, 5);
     sub_08091994(0x3000, 10);
 
-    sub_080AACD8(gBg1Tm, Tsa_08407270, 0x5300);
+    PutCompressedTsa(gBg1Tm, Tsa_08407270, 0x5300);
 
     proc->unitSelected = 0;
 

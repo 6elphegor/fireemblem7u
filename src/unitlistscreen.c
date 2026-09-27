@@ -609,7 +609,7 @@ void sub_8090D80(struct UnitListScreenProc * proc)
 
     sub_08090F30();
 
-    sub_080AACD8(gBg1Tm, gUnknown_08A1C8B4, 0x1000);
+    PutCompressedTsa(gBg1Tm, gUnknown_08A1C8B4, 0x1000);
 
     for (i = 0; i < 7; i++)
     {

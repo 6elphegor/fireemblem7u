@@ -34,7 +34,7 @@ sub_080B7C5C: @ 0x080B7C5C
 	ldr r0, _080B7CC4 @ =0x02022C60
 	ldr r1, _080B7CC8 @ =0x081C39C4
 	ldr r2, _080B7CCC @ =0x00005040
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	movs r0, #1
 	bl EnableBgSync
 	adds r5, #0x44
