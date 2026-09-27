@@ -446,7 +446,7 @@ bool sub_0800A4E8();
 bool IsMapFadeActive(void);
 void EndMapMain(void);
 void sub_080143E0(void);
-void sub_0806E144(void);
+void SetMuMaxWalkSpeed(void);
 bool sub_080B5644(void);
 
 extern u8 gEventQueueCount;
@@ -698,7 +698,7 @@ void sub_0800B198(struct EventProc * proc)
     Proc_EndEach(ProcScr_08B90B9C);
 
     if (proc->background == -1)
-        sub_0806E144();
+        SetMuMaxWalkSpeed();
 }
 
 bool Event_IsSkipAllowed(struct EventProc * proc)

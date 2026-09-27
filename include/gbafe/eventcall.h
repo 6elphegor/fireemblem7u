@@ -111,7 +111,7 @@ void ClearFlag(int flag);
 // GetPermanentFlagBitsSize
 // GetChapterFlagBits
 // GetChapterFlagBitsSize
-// IsDifficultMode
+// CheckDifficultMode
 // sub_08079954
 // sub_08079990
 // sub_080799C8

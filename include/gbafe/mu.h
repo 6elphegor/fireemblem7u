@@ -211,7 +211,6 @@ s8 GetMuDisplayPosition(struct MuProc * proc, struct Vec2 * out);
 void PutMuSMS(struct MuProc * proc);
 void PutMu(struct MuProc * proc);
 u16 GetMuQ4MovementSpeed(struct MuProc * proc);
-void SetMuConfig(struct MuProc * proc, u16 config);
 void * GetMuImgBufById(int slot);
 void const * GetMuImg(struct MuProc * proc);
 u16 const * GetMuAnimForJid(u16 jid);

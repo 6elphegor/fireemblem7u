@@ -9,7 +9,7 @@
 struct MuProc;
 void StartFireTrapAnim1(ProcPtr proc, int x, int y);
 void sub_0801EDC0(ProcPtr proc, int x, int y);
-void StartMu(struct Unit * unit);
+struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 struct MuProc * GetUnitMu(struct Unit * unit);
 void EndMu(struct MuProc * proc);

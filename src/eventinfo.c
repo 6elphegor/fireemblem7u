@@ -173,12 +173,10 @@ extern struct HardBonusLevelEnt const gHardBonusLevelList[];
 extern u8 const gUnk_08CA0538[];
 
 int IsTutorialDisabled(void);
-bool CheckChapterFlag(int flag);
+bool8 CheckChapterFlag(int flag);
 bool CheckPermanentFlag(int flag);
 
 void sub_0800ADB8(void);
-void CallMapSupportEvent(u32 msg, int song);
-void CallSupportViewerEvent(u32 msg);
 void UpdateBestGlobalSupportValue(u8 pidA, u8 pidB, int rank);
 void sub_0800F028(u8 mapChangeId);
 void sub_0800F044(u16 item, u8 mapChangeId);
@@ -1568,7 +1566,7 @@ void SetPermanentFlag(int flag)
     gPermanentFlagBits[flag / 8] |= gFlagBitMaskLut[flag % 8];
 }
 
-bool CheckChapterFlag(int flag)
+bool8 CheckChapterFlag(int flag)
 {
     if (flag < 100 || flag == 100)
         return FALSE;
@@ -1649,7 +1647,7 @@ int GetChapterFlagBitsSize(void)
     return 6;
 }
 
-bool IsDifficultMode(void)
+u8 CheckDifficultMode(void)
 {
     if (gPlaySt.chapterStateBits & 0x40)
         return TRUE;
