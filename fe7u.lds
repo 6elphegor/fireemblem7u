@@ -2974,8 +2974,7 @@ SECTIONS
         build/asm/code_08053428.o(.text);
         build/asm/code_08053434.o(.text);
         build/asm/code_08053440.o(.text);
-        build/asm/code_08053454.o(.text);
-        build/asm/code_08053460.o(.text);
+        build/src/banim-main.o(.text);
         build/src/banim-mainutils.o(.text);
         build/asm/code_08054024.o(.text);
         build/asm/code_08054248.o(.text);
