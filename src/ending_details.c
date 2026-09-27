@@ -1201,7 +1201,34 @@ void EndingCgScroll_Init(struct EndingCgScrollProc * proc)
 
 ASM_FUNC("asm/nonmatching/code_080BA10C.s");
 
-ASM_FUNC("asm/nonmatching/code_080BA25C.s");
+void EndingCgScroll2_Init(struct EndingCgScrollProc * proc)
+{
+    int i;
+
+    proc->lut = gEndingCgScroll2Lut;
+    proc->bank = 0;
+
+    ApplyPalette(Pal_EndingCgScroll, 10);
+    SetBgOffset(3, 0, 0x80);
+    TmFill(gBg3Tm, 0);
+
+    for (i = 0; i < 6; i++)
+    {
+        if (proc->lut->img[i] != NULL)
+            Decompress(proc->lut->img[i], (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + i * 0x800));
+    }
+
+    for (i = 1; i < 4; i++)
+    {
+        if (proc->lut->tsa[i] != NULL)
+        {
+            u16 tileref = proc->bank * 0x1C0 + 0xA000;
+            TmApplyTsa_thm(gBg3Tm + i * 0x100, proc->lut->tsa[i], tileref);
+        }
+    }
+
+    EnableBgSync(BG3_SYNC_BIT);
+}
 
 void EndingCgScroll_End(void)
 {
