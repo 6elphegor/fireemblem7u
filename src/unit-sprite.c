@@ -869,7 +869,49 @@ void ResetUnitSpriteHover(void)
     gMapSpriteSwitchHoverTimer = 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_08025FA8.s");
+// view of gBmSt's cursor/cursor_previous as whole words
+struct BmStCursorWords {
+    /* 00 */ u8 pad[0x14];
+    /* 14 */ u32 cursor;
+    /* 18 */ u32 cursor_previous;
+};
+
+void UnitSpriteHoverUpdate(void)
+{
+    struct Unit * unit;
+
+    unit = GetUnit(gBmMapUnit[gBmSt.cursor.y][gBmSt.cursor.x]);
+
+    if (unit)
+    {
+        if (!(unit->state & US_UNSELECTABLE)
+            && (UNIT_FACTION(unit) == FACTION_BLUE)
+            && unit->statusIndex != UNIT_STATUS_BERSERK
+            && unit->statusIndex != UNIT_STATUS_SLEEP)
+        {
+            gMapSpriteSwitchHoverTimer++;
+
+            if (gMapSpriteSwitchHoverTimer == 5)
+            {
+                StartMu(unit);
+                HideUnitSprite(unit);
+                return;
+            }
+        }
+    }
+
+    if (((struct BmStCursorWords *) &gBmSt)->cursor_previous != ((struct BmStCursorWords *) &gBmSt)->cursor)
+    {
+        gMapSpriteSwitchHoverTimer = 0;
+        unit = GetUnit(gBmMapUnit[gBmSt.cursor_previous.y][gBmSt.cursor_previous.x]);
+
+        if (unit)
+        {
+            EndAllMus();
+            ShowUnitSprite(unit);
+        }
+    }
+}
 
 bool IsUnitSpriteHoverEnabledAt(int x, int y)
 {
