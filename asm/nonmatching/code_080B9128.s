@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B9128
-sub_080B9128: @ 0x080B9128
+	thumb_func_start EndingFog_Loop
+EndingFog_Loop: @ 0x080B9128
 	push {lr}
 	adds r0, #0x4c
 	ldrh r1, [r0]

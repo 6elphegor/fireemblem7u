@@ -1612,3 +1612,6 @@ Tsa_PairedEndingNameplates = 0x085DD38C;
 Pal_FinScreen = 0x085DDC7C;
 Img_FinScreen = 0x085DDC9C;
 Tsa_FinScreen = 0x085DE098;
+gProcScr_FinScreen = 0x08CEE9A8;
+Pal_TurnRecordBg = 0x085DFB30;
+Tsa_TurnRecordBg = 0x085DFB70;

@@ -52,7 +52,31 @@ struct EndingBattleTextProc {
     /* 48 */ struct Text * text;
 };
 
+struct FinScreenProc {
+    /* 00 */ PROC_HEADER;
+    /* 2A */ STRUCT_PAD(0x2A, 0x4C);
+    /* 4C */ s16 blendTimer;
+    /* 4E */ STRUCT_PAD(0x4E, 0x58);
+    /* 58 */ int timer;
+};
+
+struct EndingTurnRecordProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int chapterId;
+    /* 30 */ int yPos;
+    /* 34 */ int yScrollAmt;
+    /* 38 */ u8 chapterStatsIdx;
+    /* 39 */ u8 displayId;
+    /* 3A */ STRUCT_PAD(0x3A, 0x4C);
+    /* 4C */ s16 unk_4c;
+};
+
 void SetFacePosition(int slot, int x, int y);
+void DrawFinImage(void);
+
+extern struct ProcCmd CONST_DATA gProcScr_FinScreen[];
+extern u16 Pal_TurnRecordBg[];
+extern u8 Tsa_TurnRecordBg[];
 int CountDigits(int number);
 int GetGameOverallRank(void);
 void sub_080B8160(int a, int b);
@@ -822,15 +846,125 @@ void DrawFinImage(void)
     EnableBgSync(BG2_SYNC_BIT);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B8EEC.s");
-ASM_FUNC("asm/nonmatching/code_080B8F64.s");
-ASM_FUNC("asm/nonmatching/code_080B8FBC.s");
-ASM_FUNC("asm/nonmatching/code_080B9020.s");
-ASM_FUNC("asm/nonmatching/code_080B9074.s");
-ASM_FUNC("asm/nonmatching/code_080B90AC.s");
-ASM_FUNC("asm/nonmatching/code_080B90C0.s");
+void Fin_Init(struct FinScreenProc * proc)
+{
+    proc->blendTimer = 0;
+    proc->timer = 0;
+
+    InitBgs(NULL);
+
+    if (CheckFlag(0x86))
+    {
+        PutCgBackground(gBg3Tm, 0x8000, 1, 7, 0x3F);
+        EnableBgSync(BG3_SYNC_BIT);
+        Proc_Goto(proc, 1);
+    }
+    else
+    {
+        DrawFinImage();
+    }
+
+    SetBlendNone();
+}
+
+void Fin_Loop_KeyListener(struct FinScreenProc * proc)
+{
+    proc->timer++;
+
+    if (gpKeySt->pressed & (A_BUTTON | START_BUTTON))
+    {
+        Proc_Break(proc);
+    }
+    else if (gpKeySt->held & SELECT_BUTTON)
+    {
+        proc->blendTimer++;
+
+        if (proc->blendTimer >= 0x78)
+            Proc_Goto(proc, 2);
+    }
+    else
+    {
+        proc->blendTimer = 0;
+    }
+}
+
+void Fin_InitBlend(struct FinScreenProc * proc)
+{
+    SetBlendAlpha(0, 0x10);
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    proc->blendTimer = 0;
+
+    DrawFinImage();
+}
+
+void Fin_LoopBlend(struct FinScreenProc * proc)
+{
+    int blendAmt = proc->blendTimer++ >> 2;
+
+    SetBlendAlpha(blendAmt, 0x10);
+
+    if (blendAmt == 16)
+    {
+        Proc_Break(proc);
+        proc->blendTimer = 0;
+    }
+}
+
+void Fin_End(void)
+{
+    SetBlendDarken(0x10);
+    SetBlendTargetA(1, 1, 1, 1, 1);
+}
+
+void StartFinScreen(ProcPtr parent)
+{
+    Proc_StartBlocking(gProcScr_FinScreen, parent);
+}
+
+void EndingFog_Init(struct EndingTurnRecordProc * proc)
+{
+    SetDispEnable(1, 1, 0, 1, 1);
+
+    ApplyPalette(Pal_ChapterIntroFog, 5);
+
+    Decompress(Img_ChapterIntroFog, (void *) (VRAM + 0x4000));
+    sub_080AACD8(gBg2Tm, Tsa_QuintessenceFx, 0x5200);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    proc->unk_4c = 0;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B9128.s");
-ASM_FUNC("asm/nonmatching/code_080B915C.s");
+void TurnRecord_Init(struct EndingTurnRecordProc * proc)
+{
+    proc->yPos = 0;
+    proc->yScrollAmt = 32;
+    proc->displayId = 0;
+    proc->chapterId = 0;
+    proc->chapterStatsIdx = GetNextChapterStatsSlot();
+
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    SetOnHBlankA(NULL);
+    InitBgs(NULL);
+
+    SetDispEnable(0, 0, 0, 0, 0);
+
+    SetBlendNone();
+    ResetText();
+
+    SetWinEnable(0, 0, 0);
+
+    ApplyPalettes(Pal_TurnRecordBg, 14, 2);
+    Decompress(Img_TitleBg, (void *) (VRAM + 0x8000));
+    TmApplyTsa_thm(gBg3Tm, Tsa_TurnRecordBg, 0xE000);
+
+    EnableBgSync(BG3_SYNC_BIT);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B924C.s");
 ASM_FUNC("asm/nonmatching/code_080B9340.s");
 ASM_FUNC("asm/nonmatching/code_080B9654.s");

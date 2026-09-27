@@ -1241,15 +1241,15 @@ void PutCgBackground(u16 *, int, int, int, int);
 // EndEndingBattleText
 // DrawFinImage
 // sub_80B9A4C
-// sub_080B8F64
-// sub_080B8FBC
-// sub_080B9020
-// sub_080B9074
+// Fin_Loop_KeyListener
+// Fin_InitBlend
+// Fin_LoopBlend
+// Fin_End
 void sub_80B9C0C(/* TODO */);
-void sub_080B90AC(void); // FE7J sub_80B9C0C
-// sub_080B90C0
-// sub_080B9128
-// sub_080B915C
+void StartFinScreen(ProcPtr parent); // FE7J sub_80B9C0C
+// EndingFog_Init
+// EndingFog_Loop
+// TurnRecord_Init
 // sub_80B9DAC
 // sub_080B9340
 // sub_080B9654
