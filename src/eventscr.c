@@ -273,6 +273,26 @@ int GetGameCombatRank(void);
 int GetGameFundsRank(void);
 void EventForceSlowTextSpeed(struct EventProc * proc);
 void sub_0800AF20(struct EventProc * proc);
+void AiGetUnitClosestValidPosition(struct Unit * unit, int x, int y, struct Vec2 * out);
+void MapFloodRange_Unitless(int x, int y, s8 const * mov_table);
+void BuildBestMoveScript(int x, int y, u8 * out);
+struct MuProc * StartMu(struct Unit * unit);
+void DisableMuCamera(struct MuProc * mu);
+void SetMuMoveScript(struct MuProc * mu, u8 const * move_script);
+void sub_0806D4CC(struct MuProc * mu, int speed);
+bool IsMuActive(struct MuProc * mu);
+void EndMu(struct MuProc * mu);
+
+struct EventMuWaitProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int x;
+    /* 30 */ int y;
+    STRUCT_PAD(0x34, 0x54);
+    /* 54 */ struct MuProc * mu;
+};
+
+extern u8 gUnk_02033E00[];
+extern struct ProcCmd CONST_DATA ProcScr_08B91A08[];
 
 void EventStartTalk(struct EventProc * proc, int msg, bool init)
 {
@@ -671,13 +691,188 @@ bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y)
     return TRUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800C058.s");
-ASM_FUNC("asm/nonmatching/code_0800C15C.s");
-ASM_FUNC("asm/nonmatching/code_0800C25C.s");
-ASM_FUNC("asm/nonmatching/code_0800C304.s");
-ASM_FUNC("asm/nonmatching/code_0800C3B4.s");
-ASM_FUNC("asm/nonmatching/code_0800C464.s");
-ASM_FUNC("asm/nonmatching/code_0800C4EC.s");
+int EvtCmd_MovePosition(struct EventProc * proc)
+{
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    int y = SCR_HI16_SIGN(proc->script[1]);
+    int x_to = SCR_LO16_SIGN(proc->script[2]);
+    int y_to = SCR_HI16_SIGN(proc->script[2]);
+    struct Unit * unit;
+
+    if (gBmMapUnit[y][x] == 0)
+        return EVENT_CMDRET_CONTINUE;
+
+    unit = GetUnit(gBmMapUnit[y][x]);
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x_to, y_to, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, x, y))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x_to, y_to, 0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePositionSpeed(struct EventProc * proc)
+{
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    int y = SCR_HI16_SIGN(proc->script[1]);
+    int x_to = SCR_LO16_SIGN(proc->script[2]);
+    int y_to = SCR_HI16_SIGN(proc->script[2]);
+    u16 speed = SCR_LO16(proc->script[3]);
+    struct Unit * unit;
+
+    if (gBmMapUnit[y][x] == 0)
+        return EVENT_CMDRET_CONTINUE;
+
+    unit = GetUnit(gBmMapUnit[y][x]);
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x_to, y_to, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, x, y))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x_to, y_to, speed);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePid(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+    int x_to = SCR_LO16_SIGN(proc->script[2]);
+    int y_to = SCR_HI16_SIGN(proc->script[2]);
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x_to, y_to, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x_to, y_to, 0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePidSpeed(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+    int x_to = SCR_LO16_SIGN(proc->script[2]);
+    int y_to = SCR_HI16_SIGN(proc->script[2]);
+    u16 speed = SCR_LO16(proc->script[3]);
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x_to, y_to, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x_to, y_to, speed);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePidOneStepSpeed(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+    int direction = proc->script[2];
+    u16 speed = SCR_LO16(proc->script[3]);
+    int x = unit->xPos;
+    int y = unit->yPos;
+
+    switch (direction)
+    {
+    case 0:
+        y--;
+        break;
+
+    case 1:
+        y++;
+        break;
+
+    case 2:
+        x--;
+        break;
+
+    case 3:
+        x++;
+        break;
+    }
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x, y, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x, y, speed);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePidScript(struct EventProc * proc)
+{
+    struct Unit * unit = GetUnitFromCharId(proc->script[1]);
+    u8 const * move_script = (u8 const *)proc->script[2];
+    int x, y;
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        x = unit->xPos;
+        y = unit->yPos;
+        ApplyMoveScriptToCoordinates(&x, &y, move_script);
+        TryMoveUnit(unit, x, y, FALSE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    DisplayMovement(proc, unit, move_script, 0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePositionScript(struct EventProc * proc)
+{
+    int x = SCR_LO16_SIGN(proc->script[1]);
+    int y = SCR_HI16_SIGN(proc->script[1]);
+    u8 const * move_script = (u8 const *)proc->script[2];
+    struct Unit * unit = GetUnit(gBmMapUnit[y][x]);
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        ApplyMoveScriptToCoordinates(&x, &y, move_script);
+        TryMoveUnit(unit, x, y, FALSE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, x, y))
+        return EVENT_CMDRET_REPEAT;
+
+    DisplayMovement(proc, unit, move_script, 0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
 ASM_FUNC("asm/nonmatching/code_0800C5B0.s");
 ASM_FUNC("asm/nonmatching/code_0800C63C.s");
 ASM_FUNC("asm/nonmatching/code_0800C6E4.s");
@@ -686,11 +881,141 @@ ASM_FUNC("asm/nonmatching/code_0800C8BC.s");
 ASM_FUNC("asm/nonmatching/code_0800C958.s");
 ASM_FUNC("asm/nonmatching/code_0800C9AC.s");
 ASM_FUNC("asm/nonmatching/code_0800CA1C.s");
-ASM_FUNC("asm/nonmatching/code_0800CAE8.s");
-ASM_FUNC("asm/nonmatching/code_0800CB74.s");
-ASM_FUNC("asm/nonmatching/code_0800CC5C.s");
-ASM_FUNC("asm/nonmatching/code_0800CD14.s");
-ASM_FUNC("asm/nonmatching/code_0800CD18.s");
+void TryMoveUnit(struct Unit * unit, int x, int y, u8 move_closest)
+{
+    struct Vec2 pos;
+
+    if (x == 0xFF)
+        x = -1;
+
+    if (y == 0xFF)
+        y = -1;
+
+    pos.x = x;
+    pos.y = y;
+
+    if (gBmMapTerrain[y][x] != 0 && move_closest)
+    {
+        if (unit->xPos != x || unit->yPos != y)
+            AiGetUnitClosestValidPosition(unit, (s16)x, (s16)y, &pos);
+    }
+
+    unit->xPos = pos.x;
+    unit->yPos = pos.y;
+
+    UnitSyncMovement(unit);
+
+    if (!(unit->state & US_UNDER_A_ROOF))
+    {
+        unit->state &= ~(US_HIDDEN | US_NOT_DEPLOYED);
+        RefreshEntityMaps();
+    }
+}
+
+bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, int y, u16 speed)
+{
+    struct Vec2 pos;
+    u8 placed = FALSE;
+
+    if (x == 0xFF)
+        x = -1;
+
+    if (y == 0xFF)
+        y = -1;
+
+    DisableAllLightRunes();
+
+    pos.x = x;
+    pos.y = y;
+
+    if (gBmMapTerrain[y][x] == 0)
+    {
+        placed = TRUE;
+        gBmMapTerrain[y][x] = placed;
+    }
+    else
+    {
+        AiGetUnitClosestValidPosition(unit, (s16)x, (s16)y, &pos);
+    }
+
+    MapFloodRange_Unitless(unit->xPos, unit->yPos, unit->pClassData->pMovCostTable[0]);
+    BuildBestMoveScript(pos.x, pos.y, gUnk_02033E00);
+
+    if (placed)
+        gBmMapTerrain[y][x] = 0;
+
+    if (proc->flags & EVENT_FLAG_SLOWTALK)
+        speed |= 0x40;
+
+    EnableAllLightRunes();
+
+    return DisplayMovement(proc, unit, gUnk_02033E00, speed);
+}
+
+bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * move_script, u16 speed)
+{
+    int x, y;
+    struct MuProc * mu = StartMu(unit);
+    struct EventMuWaitProc * wait;
+
+    if (!(proc->flags & EVENT_FLAG_UNITCAM))
+        DisableMuCamera(mu);
+
+    wait = Proc_Start(ProcScr_08B91A08, PROC_TREE_3);
+    wait->mu = mu;
+
+    HideUnitSprite(unit);
+    unit->state |= US_HIDDEN;
+
+    x = unit->xPos;
+    y = unit->yPos;
+
+    gBmMapOther[y][x] = 0;
+
+    ApplyMoveScriptToCoordinates(&x, &y, move_script);
+
+    wait->x = x;
+    wait->y = y;
+
+    SetMuMoveScript(mu, move_script);
+
+    if (speed != 0)
+        sub_0806D4CC(mu, speed);
+
+    gBmMapOther[y][x] = unit->index;
+
+    return TRUE;
+}
+
+void sub_0800CD14(void)
+{
+}
+
+void WaitForMu_OnLoop(struct EventMuWaitProc * proc)
+{
+    struct MuProc * mu = proc->mu;
+    struct Unit * unit;
+
+    if (IsMuActive(mu))
+        return;
+
+    EndMu(mu);
+
+    unit = mu->unit;
+    unit->xPos = proc->x;
+    unit->yPos = proc->y;
+
+    UnitSyncMovement(unit);
+    ShowUnitSprite(unit);
+
+    unit->state &= ~US_HIDDEN;
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+
+    Proc_Break(proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_0800CD64.s");
 ASM_FUNC("asm/nonmatching/code_0800CDA8.s");
 ASM_FUNC("asm/nonmatching/code_0800CDEC.s");

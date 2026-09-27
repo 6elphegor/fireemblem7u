@@ -698,6 +698,9 @@ extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
 void EventStartTalk(struct EventProc * proc, int msg, bool init);
 void EventEndTalk(struct EventProc * proc);
 bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y);
+void TryMoveUnit(struct Unit * unit, int x, int y, u8 move_closest);
+bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, int y, u16 speed);
+bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * move_script, u16 speed);
 
 /* ---- end eventscr.c ---- */
 
