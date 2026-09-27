@@ -1086,3 +1086,7 @@ gClassList_MagicArena = 0x08B962C2;
 gClassList_BowArena = 0x08B962ED;
 gArenaBaseWeapons = 0x081C403C;
 gArenaWeaponUpgrades = 0x081C4044;
+sProcScr_AfterDropAction = 0x08B96310;
+sProcScr_DeathDropAnim = 0x08B96338;
+sProcScr_CombatAction = 0x08B96360;
+sProcScr_ArenaAction = 0x08B963C8;
