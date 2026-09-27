@@ -1,8 +1,5 @@
 #include "gbafe.h"
 
-// not yet declared in headers
-void SetDefaultManimScreenConf(void);
-
 extern u8 const Img_ManimLatona1[];
 extern u8 const Img_ManimLatona2[];
 extern u16 const Pal_ManimLatona[];
@@ -69,6 +66,17 @@ extern u8 const Tsa_ManimBarrier[];
 extern u8 const gManimBarrierFrameLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimSilence[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimBarrier[];
+
+void StartAvailableDoorTileEvent(s8 x, s8 y);
+
+extern u8 const Img_ManimUnlockBg[];
+extern u8 const Tsa_ManimUnlockBg[];
+extern u8 const Img_ManimUnlockObj[];
+extern u16 const Pal_ManimUnlockObj[];
+extern u16 const Pal_ManimUnlockBg[];
+extern u16 const SpriteAnim_ManimUnlock[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimUnlock[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimBgScroll[];
 
 void StartManimLatonaFx(struct Unit * unit)
 {
@@ -797,13 +805,126 @@ void ManimBarrierFx_Main(struct ManimEffectProc * proc)
         Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_08073A54.s");
-ASM_FUNC("asm/nonmatching/code_08073ABC.s");
-ASM_FUNC("asm/nonmatching/code_08073AF0.s");
-ASM_FUNC("asm/nonmatching/code_08073B14.s");
-ASM_FUNC("asm/nonmatching/code_08073C50.s");
-ASM_FUNC("asm/nonmatching/code_08073D0C.s");
-ASM_FUNC("asm/nonmatching/code_08073D80.s");
-ASM_FUNC("asm/nonmatching/code_08073EF4.s");
-ASM_FUNC("asm/nonmatching/code_08073F70.s");
-ASM_FUNC("asm/nonmatching/code_08073F88.s");
+void StartManimUnlockFx(int x, int y)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimUnlock, PROC_TREE_3);
+
+    proc->x = (SCREEN_TILE_X(x) << 1) * 8 + 8;
+    proc->y = (SCREEN_TILE_Y(y) << 1) * 8 + 8;
+}
+
+void ManimUnlockFx_HideUnitAndOpenDoor(void)
+{
+    GetUnit(gActionSt.instigator)->state |= US_HIDDEN;
+    StartAvailableDoorTileEvent(gActionSt.x_target, gActionSt.y_target);
+}
+
+void ManimUnlockFx_UnhideUnit(void)
+{
+    GetUnit(gActionSt.instigator)->state &= ~US_HIDDEN;
+}
+
+void ManimUnlockFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x8D, proc->x);
+
+    SetBgOffset(2, 0, 0);
+    Decompress(Img_ManimUnlockBg, (void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20);
+
+    sub_080149A8(
+        gBg2Tm,
+        proc->x / 8 - 2, proc->y / 8 - 2,
+        TILEREF(0x140, 4),
+        4, 4, Tsa_ManimUnlockBg, 0);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    Decompress(Img_ManimUnlockObj, OBJ_VRAM0 + 0x1C0 * 0x20);
+    ApplyPalette(Pal_ManimUnlockObj, 0x10 + 4);
+
+    StartPaletteAnimatorReverse(Pal_ManimUnlockBg, 0x20 * 4, 0x20, 4, proc);
+
+    InitScanlineEffect();
+    sub_0807689C();
+    SetDefaultManimScreenConf();
+
+    SetBlendAlpha(0x10, 0x10);
+
+    proc->unk_48 = 1;
+}
+
+void ManimUnlockFx_Open(struct ManimEffectProc * proc)
+{
+    int radius = Interpolate(5, 1, 0x10, proc->unk_48, 30);
+
+    proc->unk_48++;
+
+    sub_080769CC(proc->x, proc->y, radius);
+
+    if (proc->unk_48 >= 30)
+    {
+        proc->unk_48 = 0;
+
+        Proc_Break(proc);
+
+        StartSpriteAnimProc(SpriteAnim_ManimUnlock, proc->x, proc->y, TILEREF(0x1C0, 4), 0, 2);
+        StartSpriteAnimProc(SpriteAnim_ManimUnlock, proc->x, proc->y, TILEREF(0x1C0, 4), 1, 2);
+    }
+}
+
+void ManimUnlockFx_Close(struct ManimEffectProc * proc)
+{
+    int radius = Interpolate(5, 0x10, 0, proc->unk_48, 30);
+
+    proc->unk_48++;
+
+    sub_080769CC(proc->x, proc->y, radius);
+
+    if (proc->unk_48 >= 30)
+        Proc_Break(proc);
+}
+
+void SetDefaultManimScreenConf(void)
+{
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 0;
+    gDispIo.bg2_ct.priority = 0;
+    gDispIo.bg3_ct.priority = 2;
+
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendBackdropA(0);
+    SetBlendTargetB(0, 0, 0, 1, 1);
+    SetBlendBackdropB(1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 0, 1, 1);
+}
+
+void StartManimBgScroll(int bg, int x_inc, int y_inc, ProcPtr parent)
+{
+    struct ManimBgScrollProc * proc = Proc_Start(ProcScr_ManimBgScroll, parent);
+
+    proc->bg = bg;
+
+    proc->x = 0;
+    proc->x_inc = x_inc;
+    proc->y = 0;
+    proc->y_inc = y_inc;
+}
+
+void EndManimBgScroll(void)
+{
+    Proc_EndEach(ProcScr_ManimBgScroll);
+}
+
+void ManimBgScroll_Main(struct ManimBgScrollProc * proc)
+{
+    SetBgOffset(proc->bg, proc->x, proc->y);
+
+    proc->x += proc->x_inc;
+    proc->y += proc->y_inc;
+}
+

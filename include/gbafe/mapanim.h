@@ -110,6 +110,17 @@ struct ManimAnimatorProc {
     /* 58 */ u16 song;
 };
 
+struct ManimBgScrollProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x58);
+    /* 58 */ int bg;
+    /* 5C */ STRUCT_PAD(0x5C, 0x64);
+    /* 64 */ u16 x;
+    /* 66 */ u16 x_inc;
+    /* 68 */ u16 y;
+    /* 6A */ u16 y_inc;
+};
+
 struct ManimEffectProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;
@@ -258,16 +269,16 @@ void ManimSilenceFx_Main(struct ManimEffectProc * proc);
 // sub_8074064
 void ManimBarrierFx_Init(struct ManimEffectProc * proc);
 void ManimBarrierFx_Main(struct ManimEffectProc * proc);
-// sub_08073A54
-// sub_08073ABC
-// sub_08073AF0
-// sub_08073B14
-// sub_08073C50
-// sub_08073D0C
-// SetDefaultManimScreenConf
-// StartManimBgScroll
+void StartManimUnlockFx(int x, int y);
+void ManimUnlockFx_HideUnitAndOpenDoor(void);
+void ManimUnlockFx_UnhideUnit(void);
+void ManimUnlockFx_Init(struct ManimEffectProc * proc);
+void ManimUnlockFx_Open(struct ManimEffectProc * proc);
+void ManimUnlockFx_Close(struct ManimEffectProc * proc);
+void SetDefaultManimScreenConf(void);
+void StartManimBgScroll(int bg, int x_inc, int y_inc, ProcPtr parent);
 // sub_807475C
-// sub_08073F88
+void ManimBgScroll_Main(struct ManimBgScrollProc * proc);
 // sub_08074008
 // sub_0807416C
 // sub_080741F4
@@ -367,3 +378,4 @@ void ManimRestoreFx_Main(struct ManimEffectProc * proc);
 void StartManimSleepFx(struct Unit * unit);
 void StartManimSilenceFx(struct Unit * unit);
 void StartManimBarrierFx(struct Unit * unit);
+void EndManimBgScroll(void);

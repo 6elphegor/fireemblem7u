@@ -16,7 +16,7 @@ sub_080764E0: @ 0x080764E0
 	adds r1, r2, #0
 	adds r2, #0x61
 	ldrb r1, [r2]
-	bl sub_08073A54
+	bl StartManimUnlockFx
 	add sp, #4
 	pop {r7}
 	pop {r0}
