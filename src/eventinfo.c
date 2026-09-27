@@ -941,7 +941,23 @@ void sub_08078E2C(s8 x, s8 y)
         StartAvailableTileEvent(x, y);
 }
 
-ASM_FUNC("asm/nonmatching/code_08078E54.s");
+bool sub_08078E54(s8 x, s8 y)
+{
+    if (GetAvailableTileEventCommand(x, y) == 0x13)
+        return TRUE;
+
+    if (GetAvailableTileEventCommand(x, y) == 0x14)
+        return TRUE;
+
+    if (GetAvailableTileEventCommand(x, y) == 0x15)
+        if (GetUnitItemSlot(gActiveUnit, 0x71) != -1)
+            return TRUE;
+
+    if (GetAvailableTileEventCommand(x, y) == 0x16)
+        return TRUE;
+
+    return FALSE;
+}
 
 bool sub_08078E54(s8 x, s8 y);
 
