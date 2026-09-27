@@ -642,12 +642,7 @@ SECTIONS
         build/asm/code_0801EB74.o(.text);
         build/src/unit_facing.o(.text);
         build/src/trapfx.o(.text);
-        build/asm/code_0801F0C8.o(.text);
-        build/asm/code_0801F0D0.o(.text);
-        build/asm/code_0801F100.o(.text);
-        build/asm/code_0801F190.o(.text);
-        build/asm/code_0801F298.o(.text);
-        build/asm/code_0801F2B0.o(.text);
+        build/src/popup2.o(.text);
         build/src/bmfx-chapterintrofx.o(.text);
         build/asm/code_080200D8.o(.text);
         build/asm/code_08020118.o(.text);

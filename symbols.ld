@@ -1158,3 +1158,4 @@ SpriteAnim_ArrowTrap = 0x0819770C;
 Img_PikeTrap = 0x08198FA4;
 Pal_PikeTrap = 0x08199438;
 SpriteAnim_PikeTrap = 0x08199224;
+ProcScr_Popup2 = 0x08B938EC;
