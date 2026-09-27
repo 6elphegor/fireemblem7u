@@ -15,6 +15,28 @@ struct SupportTalkEnt {
     /* 02 */ u8 pad_02[0x14 - 0x02];
 };
 
+struct SupportScreenProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int unk_2c;
+    /* 30 */ int unk_30;
+    /* 34 */ int unk_34;
+    /* 38 */ int curIndex;
+    /* 3C */ int unk_3c;
+    /* 40 */ s8 unk_40;
+    /* 41 */ u8 unk_41;
+    /* 42 */ s8 fromPrepScreen;
+    /* 43 */ s8 helpTextActive;
+};
+
+struct SupportTactProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int unk_2c;
+    /* 30 */ int unk_30;
+    /* 34 */ int count;
+};
+
 extern struct SupportScreenUnit * CONST_DATA sSupportScreenUnits;
 extern int sSupportScreenUnitCount;
 extern struct SupportTalkEnt CONST_DATA gSupportTalkList[];
@@ -29,20 +51,33 @@ s8 GGM_IsCharacterKnown(int charId, struct GlobalSaveInfo * info);
 void GetGlobalSupportListFromSave(int charId, u8 * out, struct GlobalSaveInfo * info);
 int GetTotalSupportCollection(void);
 int GetClassSMSId(int classId);
+void PutUnitSpriteForClassId(int layer, int x, int y, int oam2, int classId);
+void SyncUnitSpriteSheet(void);
+void ResetUnitSprites(void);
+ProcPtr StartMenuScrollBar(ProcPtr parent);
+void InitMenuScrollBarImg(int chr, int pal);
+void PutMenuScrollBarAt(int x, int y);
+void UpdateMenuScrollBarConfig(u8 a, u16 b, u16 c, u8 d);
+void TryHideMenuScrollBar(void);
+void EndMenuScrollBar(void);
+void StartCgText(int x, int y, int width, int height, int msg, void * vram, int pal, ProcPtr parent);
+void SetCgTextFlags(int flags);
+void EndCgText(void);
 
-struct SupportScreenProc {
-    /* 00 */ PROC_HEADER;
+void sub_0809B440(struct SupportScreenProc * proc);
+void sub_0809BE80(struct SupportScreenProc * proc, int line);
 
-    /* 2C */ int unk_2c;
-    /* 30 */ int unk_30;
-    /* 34 */ int unk_34;
-    /* 38 */ int curIndex;
-    /* 3C */ int unk_3c;
-    /* 40 */ s8 unk_40;
-    /* 41 */ u8 unk_41;
-    /* 42 */ s8 fromPrepScreen;
-    /* 43 */ s8 helpTextActive;
-};
+extern u8 Tsa_0840EBE8[];
+extern u8 Img_08403A48[];
+extern struct ProcCmd CONST_DATA gProcScr_SupportScreen[];
+extern u16 CONST_DATA Sprite_08CC58D4[];
+extern int TacticianBirthAffins[];
+extern u16 Pal_08194714[];
+
+void StartSupportUnitSubScreen(s8 fromPrepScreen, int idx, ProcPtr parent);
+int GetSupportTalkSong(u8 a, u8 charA, u8 charB, int rank);
+char * GetTacticianName(void);
+
 
 int GetSupportScreenUnitCount(void)
 {
@@ -325,22 +360,430 @@ void SupportScreen_OnInit(struct SupportScreenProc * proc)
     proc->curIndex = 0;
     proc->unk_3c = -1;
 }
-ASM_FUNC("asm/nonmatching/code_0809B604.s");
-ASM_FUNC("asm/nonmatching/code_0809B670.s");
-ASM_FUNC("asm/nonmatching/code_0809B700.s");
-ASM_FUNC("asm/nonmatching/code_0809BA24.s");
-ASM_FUNC("asm/nonmatching/code_0809BA48.s");
-ASM_FUNC("asm/nonmatching/code_0809BA80.s");
-ASM_FUNC("asm/nonmatching/code_0809BDFC.s");
-ASM_FUNC("asm/nonmatching/code_0809BE14.s");
-ASM_FUNC("asm/nonmatching/code_0809BE50.s");
-ASM_FUNC("asm/nonmatching/code_0809BE68.s");
-ASM_FUNC("asm/nonmatching/code_0809BE80.s");
-ASM_FUNC("asm/nonmatching/code_0809BF78.s");
-ASM_FUNC("asm/nonmatching/code_0809BF94.s");
-ASM_FUNC("asm/nonmatching/code_0809BFCC.s");
-ASM_FUNC("asm/nonmatching/code_0809C044.s");
-ASM_FUNC("asm/nonmatching/code_0809C12C.s");
+void DrawSupportScreenUnitSprites(struct SupportScreenProc * proc)
+{
+    int i;
+
+    int unitCount = GetSupportScreenUnitCount();
+
+    for (i = 0; i < unitCount; i++)
+    {
+        u32 y = (i / 3) * 16 + 76 - proc->unk_34;
+        int x = i % 3 * 64 + 24;
+
+        if (y - 76 < 49)
+            PutUnitSpriteForClassId(0, x, y, 0xc800, GetSupportScreenClassIdAt(i));
+    }
+
+    SyncUnitSpriteSheet();
+}
+void sub_0809B670(struct SupportScreenProc * proc)
+{
+    int a;
+    int b;
+
+    if (proc->unk_3c != -1)
+    {
+        proc->curIndex = proc->unk_3c;
+        proc->unk_3c = -1;
+
+        if ((((proc->curIndex / 3) - (proc->unk_34 / 16)) * 16 + 76) < 77)
+        {
+            if ((proc->curIndex / 3) == 0)
+                proc->unk_34 = 0;
+            else
+                proc->unk_34 = ((proc->curIndex / 3) - 1) * 16;
+        }
+
+        a = proc->curIndex / 3;
+        if ((((a) - (proc->unk_34 / 16)) * 16 + 76) > 123)
+        {
+            b = (GetSupportScreenUnitCount() - 1);
+            if (a == b / 3)
+                proc->unk_34 = (((GetSupportScreenUnitCount() - 1) / 3) - 3) * 16;
+            else
+                proc->unk_34 = ((proc->curIndex / 3) - 2) * 16;
+        }
+    }
+}
+void SupportScreen_SetupGraphics(struct SupportScreenProc * proc)
+{
+    int i;
+
+    gDispIo.disp_ct.mode = 0;
+
+    InitBgs(NULL);
+
+    TmFill(GetBgTilemap(0), 0);
+    TmFill(GetBgTilemap(1), 0);
+    TmFill(GetBgTilemap(2), 0);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 3;
+
+    InitFaces();
+
+    ResetText();
+    InitIcons();
+    UnpackUiWindowFrameGraphics();
+    ApplySystemObjectsGraphics();
+    ApplyIconPalettes(0xe);
+
+    sub_0809B670(proc);
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0xFFD8, proc->unk_34 - 76);
+
+    PrepRestartMuralBackground();
+
+    ApplyUnitSpritePalettes();
+    ResetUnitSprites();
+
+    sub_0809B440(proc);
+    sub_08091944(0x5000, 5);
+
+    sub_080AACD8(gBg1Tm, Tsa_0840EBE8, 0x5280);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+
+    if (GetSupportScreenUnitCount() != 0)
+    {
+        ResetSysHandCursor(proc);
+        DisplaySysHandCursorTextShadow(0x600, 1);
+        ShowSysHandCursor(
+            (proc->curIndex % 3) * 64 + 20, ((proc->curIndex / 3) - (proc->unk_34 / 16)) * 16 + 76, 7, 0x800);
+    }
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Box(0, 76, 240, 140);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 0, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetBlendConfig(3, 0, 0, 0x10);
+    SetBlendTargetA(1, 1, 1, 1, 1);
+
+    for (i = 0; i < 15; i++)
+        InitText(gPrepItemTexts + i, 5);
+
+    InitText(&gPrepItemTexts[29], 5);
+    InitText(&gPrepItemTexts[30], 9);
+
+    DrawSupportScreenText();
+
+    StartBmFace(0, 0x41, 56, -10, 0x901);
+    InitTalk(0x28, 0, 1);
+
+    Decompress(Img_08403A48, (void *) 0x06017800);
+
+    if (proc->fromPrepScreen)
+        proc->unk_30 = 0xF6F;
+    else
+        proc->unk_30 = 0xFC4;
+
+    StartParallelWorker(DrawSupportScreenUnitSprites, proc);
+
+    StartMenuScrollBar(proc);
+    InitMenuScrollBarImg(0x200, 4);
+    PutMenuScrollBarAt(0xd8, 0x54);
+    UpdateMenuScrollBarConfig(6, proc->unk_34, ((GetSupportScreenUnitCount() - 1) / 3) + 1, 4);
+    TryHideMenuScrollBar();
+
+    for (i = proc->unk_34 / 16; i < (proc->unk_34 / 16) + 4; i++)
+        sub_0809BE80(proc, i);
+
+    StartGreenText(proc);
+
+    proc->helpTextActive = 0;
+
+    LoadHelpBoxGfx((void *) 0x06014800, 10);
+
+    SetDispEnable(1, 1, 1, 1, 1);
+
+    StartHelpPromptSprite(0x10, 0x8c, proc);
+}
+void SupportScreen_OnEnd(ProcPtr proc)
+{
+    EndCgText();
+    EndAllProcChildren(proc);
+    EndMuralBackground_();
+    EndFaceById(0);
+    SetOnHBlankA(NULL);
+}
+void sub_0809BA48(struct SupportScreenProc * proc)
+{
+    StartCgText(10, 7, 17, 4, proc->unk_30, (void *) 0x06013000, -1, 0);
+    SetCgTextFlags(0x8FC);
+}
+void SupportScreen_Loop_KeyHandler(struct SupportScreenProc * proc)
+{
+    u16 keys;
+    int previous;
+    int var;
+
+    if (GetSupportScreenUnitCount())
+    {
+        if (!proc->unk_40)
+        {
+            previous = proc->curIndex;
+
+            keys = gpKeySt->repeated;
+            proc->unk_41 = 4;
+
+            if (gpKeySt->held & L_BUTTON)
+            {
+                keys = gpKeySt->held;
+                proc->unk_41 = 8;
+            }
+
+            if (proc->helpTextActive)
+            {
+                if (gpKeySt->pressed & B_BUTTON)
+                {
+                    CloseHelpBox();
+                    proc->helpTextActive = 0;
+                    return;
+                }
+            }
+            else
+            {
+                if (gpKeySt->pressed & R_BUTTON)
+                {
+                    StartHelpBox(
+                        (proc->curIndex % 3) * 64 + 20, ((proc->curIndex / 3) - (proc->unk_34 / 16)) * 16 + 76,
+                        gCharacterData[GetSupportScreenCharIdAt(proc->curIndex) - 1].descTextId);
+
+                    proc->helpTextActive = 1;
+
+                    return;
+                }
+
+                if (gpKeySt->pressed & A_BUTTON)
+                {
+                    Proc_Goto(proc, 2);
+                    PlaySoundEffect(0x38A);
+                    return;
+                }
+
+                if (gpKeySt->pressed & B_BUTTON)
+                {
+                    Proc_Goto(proc, 3);
+                    PlaySoundEffect(0x38B);
+                    return;
+                }
+            }
+
+            if (keys & DPAD_LEFT)
+            {
+                if ((proc->curIndex % 3) != 0)
+                    proc->curIndex--;
+            }
+
+            if (keys & DPAD_RIGHT)
+            {
+                if ((proc->curIndex % 3) != 2)
+                {
+                    proc->curIndex++;
+
+                    if (proc->curIndex >= GetSupportScreenUnitCount())
+                        proc->curIndex = GetSupportScreenUnitCount() - 1;
+                }
+            }
+
+            if ((keys & DPAD_UP) && (proc->curIndex > 2))
+                proc->curIndex -= 3;
+
+            if ((keys & DPAD_DOWN) && (proc->curIndex + 3 < GetSupportScreenUnitCount()))
+                proc->curIndex += 3;
+
+            if (previous != proc->curIndex)
+            {
+                var = ((proc->curIndex / 3) - (proc->unk_34 / 16)) * 16;
+
+                proc->unk_40 = 0;
+                PlaySoundEffect(0x385);
+
+                if ((var < 0x10) && (proc->unk_34 != 0))
+                {
+                    sub_0809BE80(proc, (proc->unk_34 / 16) - 1);
+                    proc->unk_40 = -1;
+                    SetSysHandCursorXPos((proc->curIndex % 3) * 64 + 20);
+                }
+                else if ((var >= 0x30) && (proc->unk_34 != ((((GetSupportScreenUnitCount() - 1) / 3) - 3) * 16)))
+                {
+                    sub_0809BE80(proc, (proc->unk_34 / 16) + 4);
+                    proc->unk_40 = 1;
+                    SetSysHandCursorXPos((proc->curIndex % 3) * 64 + 20);
+                }
+                else
+                {
+                    ShowSysHandCursor((proc->curIndex % 3) * 64 + 20, var + 76, 7, 0x800);
+                }
+
+                if (proc->helpTextActive != 0)
+                {
+                    StartHelpBox(
+                        (proc->curIndex % 3) * 64 + 0x14,
+                        ((proc->curIndex / 3) - (proc->unk_34 / 16)) * 16 + 76 - (proc->unk_40 * 16),
+                        gCharacterData[GetSupportScreenCharIdAt(proc->curIndex) - 1].descTextId);
+                }
+            }
+
+            if (proc->unk_40 == 0)
+                return;
+        }
+
+        if (proc->unk_40 < 0)
+            proc->unk_34 -= proc->unk_41;
+
+        if (proc->unk_40 > 0)
+            proc->unk_34 += proc->unk_41;
+
+        if ((proc->unk_34 & 0xf) == 0)
+            proc->unk_40 = 0;
+
+        UpdateMenuScrollBarConfig(6, proc->unk_34, ((GetSupportScreenUnitCount() - 1) / 3) + 1, 4);
+
+        SetBgOffset(2, 0xFFD8, (proc->unk_34 - 76) & 0xff);
+        return;
+    }
+
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        Proc_Goto(proc, 3);
+        PlaySoundEffect(0x38B);
+    }
+}
+void SupportScreen_StartUnitSubMenu(struct SupportScreenProc * proc)
+{
+    StartSupportUnitSubScreen(proc->fromPrepScreen, proc->curIndex, proc);
+}
+void SupportScreen_RestartSourceScreenMusic(struct SupportScreenProc * proc)
+{
+    if (!proc->fromPrepScreen)
+        CallSomeSoundMaybe(0x5A, 0x100, 0xC0, 0x18, NULL);
+    else
+        CallSomeSoundMaybe(0x49, 0x100, 0x100, 0x18, NULL);
+}
+void StartSupportScreenFromPrepScreen(ProcPtr parent)
+{
+    struct SupportScreenProc * proc = Proc_StartBlocking(gProcScr_SupportScreen, parent);
+    proc->fromPrepScreen = 1;
+}
+void StartSupportScreen(ProcPtr parent)
+{
+    struct SupportScreenProc * proc = Proc_StartBlocking(gProcScr_SupportScreen, parent);
+    proc->fromPrepScreen = 0;
+}
+void sub_0809BE80(struct SupportScreenProc * proc, int line)
+{
+    int i;
+    int j;
+    int x;
+    int y;
+    int color = 1;
+    struct Text * textPtr;
+
+    SetTextFontGlyphs(0);
+    SetTextFont(NULL);
+
+    textPtr = gPrepItemTexts + ((line * 3) % 15);
+    for (i = 0, j = (line * 3); i < 3; textPtr++, j++, i++)
+    {
+        ClearText(textPtr);
+
+        if ((j) < GetSupportScreenUnitCount())
+        {
+            x = ((i) % 3) * 8;
+            y = ((line * 2)) & 0x1f;
+
+            switch (Support_GetSupportLevelTextColor(proc->fromPrepScreen, (j)))
+            {
+            case 0:
+                color = 1;
+                break;
+
+            case 1:
+                color = 0;
+                break;
+
+            case 2:
+                color = 4;
+                break;
+            }
+
+            Text_SetCursor(textPtr, 0);
+            Text_SetColor(textPtr, color);
+
+            Text_DrawString(textPtr, DecodeMsg(gCharacterData[GetSupportScreenCharIdAt((j)) - 1].nameTextId));
+
+            PutText(textPtr, gBg2Tm + TM_OFFSET(x, y));
+        }
+    }
+
+    EnableBgSync(BG2_SYNC_BIT);
+}
+void sub_0809BF78(int idx)
+{
+    struct SupportScreenProc * proc = Proc_Find(gProcScr_SupportScreen);
+
+    if (proc != 0)
+        proc->unk_3c = idx;
+}
+int UiSupport_GetSupportTalkSong(int idx, int partner, int rank)
+{
+    return GetSupportTalkSong(0, GetSupportScreenCharIdAt(idx), GetSupportScreenPartnerCharId(idx, partner), rank);
+}
+void sub_0809BFCC(struct SupportTactProc * proc)
+{
+    int i;
+    int x = 0x7E - ((proc->count - 1) * 15) / 2;
+    int y = 0x54;
+
+    for (i = 0; i < proc->count; i++)
+    {
+        PutSpriteExt(4, i * 15 + x + 2, y, Sprite_08CC58D4, 0xEF80);
+        PutSpriteExt(4, x + i * 15, y, Sprite_08CC58D4, 0xFF80);
+    }
+}
+void sub_0809C044(void)
+{
+    struct Text * text = gPrepItemTexts;
+    char const * str;
+
+    ApplyPalette(Pal_08194714, 0);
+
+    SetTextFont((struct Font *) ((u8 *) text - 0x18));
+    SetTextFontGlyphs(1);
+
+    PutDrawText(text++, gBg2Tm + TM_OFFSET(16, 4), 4, 0, 0, GetTacticianName());
+
+    PutIcon(gBg2Tm + TM_OFFSET(14, 4), TacticianBirthAffins[gPlaySt.tact_birth] + 0x79, 0x5000);
+
+    str = DecodeMsg(TactGetMsg_Birth(gPlaySt.tact_birth));
+    PutDrawText(text++, gBg2Tm + TM_OFFSET(16, 4) + 0x77, 4, GetStringTextCenteredPos(0x40, str), 0, str);
+
+    str = DecodeMsg(TactGetMsg_Gender(gPlaySt.tact_gender));
+    PutDrawText(text, gBg2Tm + TM_OFFSET(16, 4) + 0x82, 4, GetStringTextCenteredPos(0x40, str), 0, str);
+
+    SetTextFont(NULL);
+    EnableBgSync(BG2_SYNC_BIT);
+}
+void sub_0809C12C(struct SupportTactProc * proc)
+{
+    int n = gPlaySt.unk2C_04 / 12;
+
+    if (n > 10)
+        n = 10;
+
+    proc->count = n;
+    proc->unk_2c = 0;
+}
 ASM_FUNC("asm/nonmatching/code_0809C154.s");
 ASM_FUNC("asm/nonmatching/code_0809C3F4.s");
 ASM_FUNC("asm/nonmatching/code_0809C41C.s");

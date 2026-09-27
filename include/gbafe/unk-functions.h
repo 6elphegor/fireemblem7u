@@ -676,7 +676,7 @@ int GetTotalSupportLevel(int idx);
 // sub_0809BA48
 // sub_809C448
 // SupportScreen_StartUnitSubMenu
-// sub_0809BE14
+// SupportScreen_RestartSourceScreenMusic
 // StartSupportScreenFromPrepScreen
 // StartSupportScreen
 // sub_809C838

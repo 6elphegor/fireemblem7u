@@ -1403,3 +1403,7 @@ ProcScr_08CC5114 = 0x08CC5114;
 sSupportScreenUnitCount = 0x02012BF8;
 sSupportScreenUnits = 0x08CC5798;
 gSupportTalkList = 0x08C9F9F4;
+Tsa_0840EBE8 = 0x0840EBE8;
+Img_08403A48 = 0x08403A48;
+gProcScr_SupportScreen = 0x08CC57F4;
+Sprite_08CC58D4 = 0x08CC58D4;
