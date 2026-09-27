@@ -11,6 +11,7 @@ AS      := $(PREFIX)as
 CPP     := $(PREFIX)cpp
 LD      := $(PREFIX)ld
 OBJCOPY := $(PREFIX)objcopy
+AR      := $(PREFIX)ar
 
 AGBCC := tools/agbcc
 CC1   := $(AGBCC)/bin/old_agbcc
@@ -23,7 +24,9 @@ SHASUM := $(shell command -v sha1sum || echo shasum)
 
 C_SRCS   := $(wildcard src/*.c)
 ASM_SRCS := $(wildcard asm/*.s) $(wildcard src/*.s)
-OBJS := $(patsubst %.c,build/%.o,$(C_SRCS)) $(patsubst %.s,build/%.o,$(ASM_SRCS)) build/data.o
+C_OBJS   := $(patsubst %.c,build/%.o,$(C_SRCS))
+ASM_OBJS := $(patsubst %.s,build/%.o,$(ASM_SRCS))
+OBJS := $(C_OBJS) $(ASM_OBJS) build/data.o
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
 .PHONY: all compare clean
@@ -37,8 +40,19 @@ compare: $(ROM)
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to 0x09000000 $< $@
 
-$(ELF): $(OBJS) $(LDS) $(LAYOUT) symbols.ld
-	$(LD) -T $(LDS) -Map $(MAP) --no-warn-rwx-segments -o $@ $(OBJS)
+# ld keeps every input file open; thousands of per-function objects can
+# exhaust the system's file table, so asm objects are linked from one archive.
+build/asm.a: $(ASM_OBJS)
+	@rm -f $@
+	@printf '%s\n' $(ASM_OBJS) > build/asm.list
+	$(AR) rcs $@ @build/asm.list
+
+build/fe7u.ld: $(LDS)
+	@mkdir -p $(@D)
+	sed -E 's#build/asm/([A-Za-z0-9_]+\.o)\(#*asm.a:\1(#' $< > $@
+
+$(ELF): $(C_OBJS) build/asm.a build/data.o build/fe7u.ld $(LAYOUT) symbols.ld
+	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive build/data.o
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
