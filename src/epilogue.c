@@ -64,6 +64,8 @@ extern int gEpilogueTotalLines;
 extern int gEpilogueEntCount;
 
 void ClearEpilogueTexts(void);
+void ClearEpilogueText(int idx);
+ProcPtr StartEpilogueCg(int cg, ProcPtr parent);
 void EpilogueText_Center(struct Text * text, char const * str);
 void sub_080B6C14(void);
 void sub_080B6C8C(void);
@@ -676,7 +678,51 @@ void Epilogue_InitMain(struct EpilogueProc * proc)
     StartParallelWorker(Epilogue_SkipWatcher, proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B78DC.s");
+void sub_080B78DC(struct EpilogueProc * proc)
+{
+    int timer = proc->timer;
+
+    if (timer >= gEpilogueTotalLines * 72)
+    {
+        Proc_Break(proc);
+    }
+    else
+    {
+        if (proc->part <= 9 && timer / (gEpilogueTotalLines * 72 / 10) >= proc->part)
+        {
+            if (proc->part == 0)
+                Proc_Goto(StartEpilogueCg(0, proc), 0);
+            else
+                StartEpilogueCg(proc->part, proc);
+
+            proc->part++;
+        }
+
+        if ((s16) (proc->timer % 72) == 0)
+        {
+            int row = (s16) (proc->unk_46 / 24);
+
+            if (proc->unk_4c < gEpilogueEntCount - 1)
+            {
+                sub_080B70B4(proc->unk_4c, row % 10, proc->unk_4e, &proc->str);
+                proc->unk_4e++;
+
+                if (gpEpilogueEnts[proc->unk_4c].lines == proc->unk_4e)
+                {
+                    proc->unk_4c++;
+                    proc->unk_4e = 0;
+                }
+            }
+            else
+            {
+                ClearEpilogueText(row % 10);
+            }
+        }
+    }
+
+    proc->timer++;
+    proc->unk_46 = proc->timer / 3;
+}
 void sub_080B7A0C(struct EpilogueProc * proc)
 {
     proc->timer = 0;
