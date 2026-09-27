@@ -888,9 +888,9 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? efxThunderstormDark_Loop_B
 // ??? nullsub_50
 // ??? sub_8059BF4
-// ??? sub_08059448
-// ??? sub_08059538
-// ??? sub_080595E8
+// ??? efxMistyRain_Loop_Main
+// ??? StartSubSpell_efxMistyrainBG
+// ??? StartSubSpell_efxMistyrainBG2
 // ??? sub_8059E80
 // ??? StartSubSpell_efxMistyRainOBJ
 // ??? StartSubSpell_efxMistyrainOBJ2
@@ -898,8 +898,8 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_8059F8C
 // ??? sub_8059FC8
 // ??? sub_805A004
-// ??? sub_08059858
-// ??? sub_08059884
+// ??? efxMistyRainObj2_08059858
+// ??? efxMistyRainObj2_08059884
 // ??? sub_805A090
 // ??? sub_080598E4
 // ??? StartSubSpell_efxResireBG
