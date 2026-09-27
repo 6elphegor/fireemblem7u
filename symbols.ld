@@ -2783,3 +2783,5 @@ ProcScr_ekrPopup2 = 0x08BDCDBC;
 ProcScr_ekrHenseiInit = 0x08BDCDF4;
 ProcScr_ekrHenseiEnd = 0x08BDCE24;
 gSpellAssocData = 0x08C999C0;
+gBuildDateStr = 0x080C57E0;
+gBuildNameStr = 0x080C57FC;

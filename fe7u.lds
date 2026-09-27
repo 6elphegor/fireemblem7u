@@ -10,8 +10,7 @@ SECTIONS
     .text :
     {
         build/asm/crt0.o(.text);
-        build/asm/code_08000A50.o(.text);
-        build/asm/code_08000B1C.o(.text);
+        build/src/main.o(.text);
         build/src/irq.o(.text);
         build/src/random.o(.text);
         build/src/hardware.o(.text);
