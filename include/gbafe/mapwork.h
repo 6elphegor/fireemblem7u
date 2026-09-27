@@ -30,5 +30,6 @@
 void MapFloodOnWorkingMap(struct Unit * unit, int x, int y, int movement); // GenerateMovementMapOnWorkingMap
 s8 * GetWorkingMoveCosts(void);
 extern u8 ** gWorkingBmMap;
+void GenerateUnitCompleteAttackRange(struct Unit * unit);
 
 extern u8 gWorkingMoveScr[MOVE_SCRIPT_MAX_LENGTH];

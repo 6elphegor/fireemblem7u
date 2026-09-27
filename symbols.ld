@@ -1129,3 +1129,7 @@ gpPathArrowProc = 0x08B96444;
 gPathArrowOAMTable = 0x08B96410;
 Img_PathArrow = 0x083FDE3C;
 Pal_PathArrow = 0x083FE074;
+ProcScr_PrepHelpPrompt = 0x08B96448;
+Img_PrepHelpButtonSprites = 0x08405170;
+ProcScr_Config_PrepMapMenu = 0x08CE5CA0;
+gChapterDataTable = 0x08C9A200;
