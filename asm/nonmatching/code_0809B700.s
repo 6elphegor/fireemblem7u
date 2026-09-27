@@ -228,7 +228,7 @@ _0809B8D8:
 	adds r0, r4, #0
 	movs r1, #9
 	bl InitText
-	bl sub_0809B568
+	bl DrawSupportScreenText
 	movs r3, #0xa
 	rsbs r3, r3, #0
 	ldr r0, _0809B94C @ =0x00000901

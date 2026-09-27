@@ -1400,3 +1400,6 @@ Pal_0840E978 = 0x0840E978;
 Tsa_0840EA38 = 0x0840EA38;
 gUnk_08CC5100 = 0x08CC5100;
 ProcScr_08CC5114 = 0x08CC5114;
+sSupportScreenUnitCount = 0x02012BF8;
+sSupportScreenUnits = 0x08CC5798;
+gSupportTalkList = 0x08C9F9F4;
