@@ -508,11 +508,11 @@ void SpellFx_SetSomeColorEffect(void);
 void SpellFx_ClearColorEffects(void);
 void StartBattleAnimHitEffectsDefault(struct Anim * anim, int type);
 // ??? sub_08050150
-void StartBattleAnimHitEffects(struct Anim * anim, int type);
+void StartBattleAnimHitEffects(struct Anim * anim, int type, int a, int b);
 void StartBattleAnimResireHitEffects(struct Anim * anim, int type);
 void StartBattleAnimStatusChgHitEffects(struct Anim * anim, int type);
 struct Anim * EfxCreateFrontAnim(struct Anim * anim, const AnimScr * scr1, const AnimScr * scr2, const AnimScr * scr3, const AnimScr * scr4);
-struct Anim * EfxCreateBackAnim(struct Anim * anim, const AnimScr * scr1, const AnimScr *scr2, const AnimScr * scr3, const AnimScr * scr4);
+void EfxCreateBackAnim(struct Anim * anim, const u16 * src1, const u16 * src2);
 void SpellFx_WriteBgMap(struct Anim * anim, const u16 * src1, const u16 * src2);
 // ??? SpellFx_WriteBgMapExt
 void SpellFx_RegisterObjGfx(const void * img, u32 size);
