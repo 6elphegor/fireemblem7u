@@ -40,6 +40,7 @@ extern struct ProcCmd CONST_DATA ProcScr_SaveBgUp[];
 extern int CONST_DATA SaveMenuSubSelBoxTexts[];
 extern struct Font gSaveMenuSubBoxFont;
 extern struct Text gSaveMenuSubBoxText;
+extern u16 CONST_DATA Sprite_08CE41AC[];
 
 void SaveMenuDrawSubSelBoxExt(int msgId, s8 draw_en);
 
@@ -108,7 +109,66 @@ void SaveDrawCursor_Init(struct SaveDrawCursorProc * proc)
     proc->unk_35 = 0;
     proc->unk_2c = 0;
 }
-ASM_FUNC("asm/nonmatching/code_080A5D2C.s");
+void SaveDrawCursor_Loop(struct SaveDrawCursorProc * proc)
+{
+    u8 y;
+    u8 x;
+    u8 x2;
+
+    u8 yOffsetLut[] = {
+        0, 1, 2, 3, 3, 2, 1, 0,
+    };
+
+    proc->unk_2a++;
+
+    if (proc->unk_2c < 4)
+        proc->unk_2c++;
+
+    if (proc->unk_31 != 0)
+    {
+        y = proc->unk_2f;
+        x = proc->unk_2d;
+
+        if (proc->unk_2c < 4)
+        {
+            y = (proc->unk_30 + y) >> 1;
+            x = (proc->unk_2e + x) >> 1;
+        }
+
+        if (proc->unk_35 == 0)
+            x2 = x + 0x86;
+        else
+            x2 = x + 0xb0;
+
+        proc->unk_30 = proc->unk_2f;
+        proc->unk_2e = proc->unk_2d;
+
+        if (proc->unk_35 == 0)
+        {
+            PutSpriteExt(4, x, y + yOffsetLut[proc->unk_2a >> 3 & 7], Sprite_08CE41AC, 0x1000);
+            PutSpriteExt(4, x2 | 0x1000, y + yOffsetLut[proc->unk_2a >> 3 & 7], Sprite_08CE41AC, 0x1000);
+        }
+        else
+        {
+            PutSpriteExt(4, 4, y + yOffsetLut[proc->unk_2a >> 3 & 7], Sprite_08CE41AC, 0x2000);
+        }
+
+        proc->unk_2c = 0;
+    }
+    else if (proc->unk_2c == 4)
+    {
+        proc->unk_31 = 0;
+    }
+
+    if (proc->unk_33 != 0)
+        PutSpriteExt(4, 6, proc->unk_32, Sprite_08CE41AC, 0x2000);
+
+    if (proc->unk_34 != 0)
+        proc->unk_33 = 0;
+
+    proc->unk_31 = 0;
+    proc->unk_34 = 1;
+}
 void sub_080A5E8C(int a, int b, int c, struct SaveDrawProcFx * proc)
 {
     struct SaveDrawCursorProc * cursor = proc->unk_34;
