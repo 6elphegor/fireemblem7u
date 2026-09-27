@@ -1080,7 +1080,47 @@ void sub_080BCE34(struct OpAnimCloudProc * proc)
         proc->unk_3A[i] = 0xFF00;
     }
 }
-ASM_FUNC("asm/nonmatching/code_080BCE60.s");
+void sub_080BCE60(struct OpAnimCloudProc * proc)
+{
+    int t, dist, scale, angle, rot, rx, ry, x, y;
+    int a = 0x40;
+    int b = 0x80;
+
+    t = a - proc->unk_2E;
+    dist = b - (t * (t << 7)) / (a * a);
+    scale = 0x200 - (dist << 9) / b;
+
+    angle = proc->unk_2A + dist;
+    rot = 0x100 - (angle & 0xFF);
+
+    rx = (scale * 180) / 0x200;
+    ry = (scale * 100) / 0x200;
+
+    if (scale < 8)
+    {
+        Proc_Break(proc);
+        return;
+    }
+
+    x = (((SIN_Q12(angle - 0x40) * rx) >> 12) + 0x38) & 0x1FF;
+    y = (0x10 - ((COS_Q12(angle - 0x40) * ry) >> 12)) & 0xFF;
+
+    rot = rot & 0xFF;
+
+    SetObjAffine(
+        proc->unk_2C,
+        Div(+COS_Q12(rot) * 16, scale),
+        Div(-SIN_Q12(rot) * 16, scale),
+        Div(+SIN_Q12(rot) * 16, scale),
+        Div(+COS_Q12(rot) * 16, scale));
+
+    x += proc->unk_2C << 9;
+    y += 0x300;
+
+    PutSpriteExt(4, x, y, Sprite_64x64, (proc->unk_30 >> 5) + 0x8000);
+
+    proc->unk_2E++;
+}
 void sub_080BCFCC(int a, int b, ProcPtr parent)
 {
     struct OpAnimCloudProc * proc = Proc_Start(ProcScr_08CEF3EC, parent);
