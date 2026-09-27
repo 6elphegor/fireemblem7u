@@ -67,10 +67,10 @@ extern struct ProcCmd CONST_DATA ProcScr_TradeMenu_TutorialHandCursor[];
 extern struct ProcCmd CONST_DATA ProcScr_TradeMenu_DoubleTutorialHandCursor[];
 extern struct ProcCmd CONST_DATA ProcScr_TradeMenu_TutorialWait[];
 
-extern u8 CONST_DATA EventScr_TradeTutStart[];
-extern u8 CONST_DATA EventScr_TradeTut_SelectItem[];
-extern u8 CONST_DATA EventScr_TradeTut_PressAtoGetItem[];
-extern u8 CONST_DATA EventScr_TradeTutDone[];
+extern EventScr CONST_DATA EventScr_TradeTutStart[];
+extern EventScr CONST_DATA EventScr_TradeTut_SelectItem[];
+extern EventScr CONST_DATA EventScr_TradeTut_PressAtoGetItem[];
+extern EventScr CONST_DATA EventScr_TradeTutDone[];
 
 void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc);
 void TradeMenu_HighlightUpdater_OnInit(struct TradeMenuProc * proc);
@@ -117,4 +117,3 @@ void DrawUiItemHover(int x, int y, int width);
 void ClearUiItemHover(int x, int y, int width);
 void SetkeyStIgnoredMask(int mask);
 s8 sub_08079A5C(void); /* CheckTradeTutorial */
-void StartEventInternal(const void * script, ProcPtr parent);

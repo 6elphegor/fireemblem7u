@@ -10,14 +10,12 @@ void BeginBattleAnimations(void);
 void InitBattleUnitWithoutBonuses(struct BattleUnit * bu, struct Unit * unit);
 void UnitPromote(struct Unit * unit);
 void GenerateBattleUnitStatGainsComparatively(struct BattleUnit * bu, struct Unit * unit);
-int GetUnitItemHealAmount(struct Unit * unit, int item);
 void MapFloodUnitExtended(struct Unit * unit);
 s8 ExecTrapAfterWarp(ProcPtr proc);
 struct MuProc * GetUnitMu(struct Unit * unit);
 void EndMu(struct MuProc * proc);
 void StartAvailableDoorTileEvent(s8 x, s8 y);
 void StartAvailableChestTileEvent(s8 x, s8 y);
-int GetItemIconId(int item);
 void NewPopup2_PlanA(ProcPtr proc, int iconId, char const * str);
 void StartLightRuneAnim3(ProcPtr proc, int x, int y);
 
