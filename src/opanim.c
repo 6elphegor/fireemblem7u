@@ -1246,7 +1246,57 @@ void sub_080BD1A4(struct OpAnimSubProc * proc)
     if (proc->unk_30 == 0)
         Proc_Break(proc);
 }
+#if NONMATCHING
+// structure matches; register allocation / hoisted invariants differ
+void sub_080BD1DC(int a, u16 const * pal, int pal_bank, int amount, int mask, int speed, ProcPtr parent)
+{
+    int i;
+    u16 bits = mask;
+    struct OpAnimSubProc * proc = Proc_Start(ProcScr_08CEF424, parent);
+
+    proc->unk_30 = 0;
+    proc->unk_34 = pal_bank;
+    proc->unk_2C = speed;
+
+    EnablePalSync();
+
+    if (a == -1)
+        CpuFastCopy(gPal + pal_bank * 0x10, gUnkOpAnim_020072C0, 0x20);
+    else
+        CpuFastCopy((void *) a, gUnkOpAnim_020072C0, 0x20);
+
+    if (pal == (u16 const *) -1)
+    {
+        for (i = 0; i < 0x10; i++)
+        {
+            if ((bits >> i) & 1)
+            {
+                u16 color = gUnkOpAnim_020072C0[i];
+                int r = (color & 0x1F) + (amount & 0x1F);
+                int g = (color & 0x3E0) + ((amount & 0x1F) << 5);
+                int b = (color & 0x7C00) + ((amount & 0x1F) << 10);
+
+                gUnkOpAnim_020072C0[0x10 + i] =
+                    ((r > 0x1F ? 0x1F : r) & 0x1F) +
+                    ((g > 0x3E0 ? 0x3E0 : g) & 0x3E0) +
+                    ((b > 0x7C00 ? 0x7C00 : b) & 0x7C00);
+            }
+            else
+            {
+                gUnkOpAnim_020072C0[0x10 + i] = gUnkOpAnim_020072C0[i];
+            }
+        }
+    }
+    else
+    {
+        CpuFastCopy(pal, gUnkOpAnim_020072C0 + 0x10, 0x20);
+        CpuFastCopy(gUnkOpAnim_020072C0 + 0x10, gPal + pal_bank * 0x10, 0x20);
+        EnablePalSync();
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080BD1DC.s");
+#endif
 
 void sub_080BD310(struct OpAnimBirdProc * proc)
 {
