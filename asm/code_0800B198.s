@@ -16,7 +16,7 @@ sub_0800B198: @ 0x0800B198
 	rsbs r0, r0, #0
 	cmp r1, r0
 	bne _0800B1B8
-	bl sub_0806E144
+	bl SetMuMaxWalkSpeed
 _0800B1B8:
 	pop {r4}
 	pop {r0}

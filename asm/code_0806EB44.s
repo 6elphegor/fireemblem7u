@@ -102,7 +102,7 @@ _0806EBF4:
 	adds r1, r0, r1
 	ldr r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806DAB4
+	bl HideMu
 _0806EC0C:
 	add sp, #0xc
 	pop {r4, r7}

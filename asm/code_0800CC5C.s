@@ -68,7 +68,7 @@ _0800CC8E:
 	beq _0800CCEA
 	adds r0, r6, #0
 	mov r1, sb
-	bl sub_0806D4CC
+	bl SetMuConfig
 _0800CCEA:
 	ldr r0, [sp, #4]
 	ldr r1, [r7]

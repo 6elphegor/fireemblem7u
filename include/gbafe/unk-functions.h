@@ -397,20 +397,20 @@ void sub_080327C4(ProcPtr proc, const char *str);
 
 /*mu.h */
 
-// sub_0806DE44
-// sub_0806DE8C
-// sub_0806DEAC
+// StartMuCritFlash
+// MuCritFlash_Init
+// MuCritFlash_SetFadedPalette
 // sub_806E6DC
-// sub_0806DF44
-// sub_0806DF80
+// MuCritFlash_StartFadeBack_maybe
+// MuCritFlash_SpriteShakeLoop
 // sub_806E7EC
-// sub_0806E054
+// StartMuHitFlash
 // sub_806E8DC
-// sub_0806E144
-// sub_0806E160
-// sub_0806E188
-// sub_0806E220
-// sub_0806E278
+// SetMuMaxWalkSpeed
+// MuMaxWalkSpeedFunc
+// SetMuSpecialSprite
+// SetMuPal
+// GetMu
 // GetUnitMu
 
 /* mapanim.h */

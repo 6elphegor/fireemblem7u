@@ -384,7 +384,7 @@ _08075F18:
 	lsls r2, r0, #0x18
 	lsrs r1, r2, #0x18
 	adds r0, r4, #0
-	bl sub_0806DE44
+	bl StartMuCritFlash
 	bl sub_080751E0
 	ldr r0, _08075FD4 @ =0x0203E0FC
 	ldr r1, [r7, #0xc]
@@ -414,7 +414,7 @@ _08075F18:
 	adds r1, r0, r1
 	ldr r2, [r1]
 	adds r0, r2, #0
-	bl sub_0806DDD4
+	bl StartMuSpeedUpAnim
 	b _0807603E
 	.align 2, 0
 _08075FD4: .4byte 0x0203E0FC
@@ -465,7 +465,7 @@ _08075FDC:
 	lsls r2, r0, #0x18
 	lsrs r1, r2, #0x18
 	adds r0, r4, #0
-	bl sub_0806E054
+	bl StartMuHitFlash
 _0807603E:
 	add sp, #0x14
 	pop {r4, r7}
