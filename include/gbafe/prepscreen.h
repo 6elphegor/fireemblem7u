@@ -484,10 +484,19 @@ void PrepItemUse_PostPromotion(struct ProcPrepItemUse * proc);
 void PrepItemUse_ResetBgmAfterPromo(void);
 void sub_08095894(void);
 // StartPrepItemUseScreen
-// PrepItemUseBooster_OnDraw
-// PrepItemUseBooster_OnInit
-// PrepItemUseBooster_IDLE
-// PrepItemUseBooster_OnEnd
+struct ProcPrepItemUseBooster {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int timer;
+    /* 30 */ u8 status_pre[8];
+    /* 38 */ u8 status_pst[8];
+    /* 40 */ int xpos, ypos, width, height;
+};
+
+void PrepItemUseBooster_OnDraw(struct ProcPrepItemUseBooster * proc, int x, int y, int msg, int item);
+void PrepItemUseBooster_OnInit(struct ProcPrepItemUseBooster * proc);
+void PrepItemUseBooster_IDLE(struct ProcPrepItemUseBooster * proc);
+void PrepItemUseBooster_OnEnd(struct ProcPrepItemUseBooster * proc);
 // sub_80963FC
 // sub_08095C28
 // StoreConvoyWeaponIconGraphics
