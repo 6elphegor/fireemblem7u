@@ -2034,3 +2034,5 @@ ProcScr_EpilogueCg = 0x08CEDE04;
 ProcScr_EpilogueScroll = 0x08CEDE5C;
 ProcScr_EpilogueText = 0x08CEDEA4;
 Pal_EpilogueText = 0x08194714;
+gEpilogueEndScroll = 0x08CEDC98;
+gEpilogueEndMsgs = 0x08CEDD40;

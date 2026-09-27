@@ -33,17 +33,21 @@ struct EpilogueProc {
     /* 4C */ s16 unk_4c;
     /* 4E */ s16 unk_4e;
     /* 50 */ s8 skippable;
-    /* 51 */ u8 unk_51;
+    /* 51 */ s8 unk_51;
 };
 
 extern struct ProcCmd CONST_DATA ProcScr_EpilogueCg[];
 extern struct ProcCmd CONST_DATA ProcScr_EpilogueScroll[];
 extern struct ProcCmd CONST_DATA ProcScr_EpilogueText[];
 extern u16 Pal_EpilogueText[];
+extern void const * const gEpilogueEndScroll[];
+extern int const gEpilogueEndMsgs[];
 
 void ClearEpilogueTexts(void);
 void EpilogueText_Center(struct Text * text, char const * str);
 void sub_080B6C14(void);
+void sub_080B6C8C(void);
+void sub_080B6D64(void);
 void sub_080B6DD4(void);
 void sub_080B7408(ProcPtr proc);
 void sub_080B74B4(ProcPtr proc);
@@ -83,7 +87,12 @@ int CountEpilogueLines(char const * str)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B6D64.s");
-ASM_FUNC("asm/nonmatching/code_080B6DD4.s");
+void sub_080B6DD4(void)
+{
+    sub_080B6C8C();
+    sub_080B6D64();
+}
+
 void InitEpilogueTexts(void)
 {
     int i;
@@ -385,19 +394,100 @@ void Epilogue_InitMain(struct EpilogueProc * proc)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B78DC.s");
-ASM_FUNC("asm/nonmatching/code_080B7A0C.s");
+void sub_080B7A0C(struct EpilogueProc * proc)
+{
+    proc->timer = 0;
+    proc->unk_46 = 0;
+    SetOnHBlankA(NULL);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B7A24.s");
-ASM_FUNC("asm/nonmatching/code_080B7B18.s");
+void sub_080B7B18(struct EpilogueProc * proc)
+{
+    proc->timer++;
+    SetBlendConfig(0, 0x10 - (proc->timer >> 2), proc->timer >> 2, 0);
+
+    if ((proc->timer >> 2) == 0x10)
+    {
+        EndAllProcChildren(proc);
+        StartParallelWorker(Epilogue_SkipWatcher, proc);
+        Proc_Break(proc);
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B7B74.s");
-ASM_FUNC("asm/nonmatching/code_080B7BC8.s");
-ASM_FUNC("asm/nonmatching/code_080B7BDC.s");
-ASM_FUNC("asm/nonmatching/code_080B7C28.s");
-ASM_FUNC("asm/nonmatching/code_080B7C3C.s");
-ASM_FUNC("asm/nonmatching/code_080B7C54.s");
-ASM_FUNC("asm/nonmatching/code_080B7C5C.s");
-ASM_FUNC("asm/nonmatching/code_080B7CD0.s");
+
+void sub_080B7BC8(struct EpilogueProc * proc)
+{
+    StartEpilogueText(gEpilogueEndMsgs, 8, proc);
+}
+
+void sub_080B7BDC(struct EpilogueProc * proc)
+{
+    proc->timer++;
+    if ((proc->timer & 1) == 0)
+        sub_080010F4(gEpilogueEndScroll[0], 0, 0x100, (proc->timer >> 1) + 0x20);
+
+    if ((proc->timer >> 1) == 0x20)
+    {
+        proc->skippable = 0;
+        Proc_Break(proc);
+    }
+}
+
+void sub_080B7C28(struct EpilogueProc * proc)
+{
+    EndAllProcChildren(proc);
+    SetOnHBlankA(NULL);
+    WipeAllPalette();
+}
+
+void sub_080B7C3C(struct EpilogueProc * proc)
+{
+    if (proc->unk_51)
+        proc->skippable = 1;
+}
+
+void sub_080B7C54(struct EpilogueProc * proc)
+{
+    proc->skippable = 0;
+}
+
+void sub_080B7C5C(struct EpilogueProc * proc)
+{
+    InitBgs(NULL);
+    SetBlendConfig(0, 0x10, 0, 0);
+    Decompress(Img_OneYearLater, (void *) (VRAM + 0x800));
+    ApplyPaletteExt(Pal_OneYearLater, 0xA0, 0x20);
+    sub_080AACD8(gBg0Tm, Tsa_OneYearLater, 0x5040);
+    EnableBgSync(BG0_SYNC_BIT);
+    proc->timer = 0;
+}
+
+void sub_080B7CD0(struct EpilogueProc * proc)
+{
+    if (++proc->timer == 0x3C)
+        Proc_Break(proc);
+    else if (gpKeySt->pressed & START_BUTTON)
+        Proc_Break(proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B7D0C.s");
-ASM_FUNC("asm/nonmatching/code_080B7D88.s");
+void sub_080B7D88(struct EpilogueProc * proc)
+{
+    if (GetTalkChoiceResult() == 2)
+        Proc_Goto(proc, 1);
+    else
+        Proc_Goto(proc, 0);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B7DAC.s");
-ASM_FUNC("asm/nonmatching/code_080B7E20.s");
+void sub_080B7E20(void)
+{
+    if (GetTalkChoiceResult() == 2)
+        SetNextGameAction(5);
+    else
+        SetNextGameAction(0xC);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B7E3C.s");
