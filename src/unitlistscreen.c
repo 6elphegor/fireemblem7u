@@ -808,4 +808,147 @@ void UnitList_ToggleSoloAnimState(struct Unit * unit, int step)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_08089E70.s");
+void sub_809144C(struct UnitListScreenProc * proc)
+{
+    if ((gpKeySt->held & L_BUTTON) != 0)
+        proc->unk_31 = 2;
+    else
+        proc->unk_31 = 1;
+
+    if ((gpKeySt->pressed & R_BUTTON) != 0)
+    {
+        Proc_Goto(proc, 3);
+        return;
+    }
+
+    if ((gpKeySt->pressed & A_BUTTON) != 0)
+    {
+        switch (proc->mode)
+        {
+            case UNITLIST_MODE_PREPMENU:
+                UnitList_TogglePrepDeployState(proc);
+                break;
+
+            case UNITLIST_MODE_SOLOANIM:
+                UnitList_ToggleSoloAnimState(gSortedUnits[proc->unk_30]->unit, 1);
+                sub_0808AD00(proc, proc->unk_30, gBg0Tm, proc->page, 0);
+                break;
+
+            case UNITLIST_MODE_FIELD:
+                SetStatScreenLastUnitId(gSortedUnits[proc->unk_30]->unit->index);
+                PlaySoundEffect(0x38A);
+                Proc_Break(proc);
+                break;
+        }
+
+        return;
+    }
+
+    if ((gpKeySt->repeated & DPAD_LEFT) != 0)
+    {
+        if (proc->mode == UNITLIST_MODE_SOLOANIM)
+        {
+            if ((gpKeySt->pressed & DPAD_LEFT) == 0)
+                return;
+
+            UnitList_ToggleSoloAnimState(gSortedUnits[proc->unk_30]->unit, -1);
+            sub_0808AD00(proc, proc->unk_30, gBg0Tm, proc->page, 0);
+            return;
+        }
+
+        if (proc->page < 2)
+            return;
+
+        proc->pageTarget--;
+        Proc_Goto(proc, 2);
+        proc->unk_2d = 0;
+        PlaySoundEffect(0x38F);
+        return;
+    }
+
+    if ((gpKeySt->repeated & DPAD_RIGHT) != 0)
+    {
+        if (proc->mode == UNITLIST_MODE_SOLOANIM)
+        {
+            if ((gpKeySt->pressed & DPAD_RIGHT) == 0)
+                return;
+
+            UnitList_ToggleSoloAnimState(gSortedUnits[proc->unk_30]->unit, +1);
+            sub_0808AD00(proc, proc->unk_30, gBg0Tm, proc->page, 0);
+            return;
+        }
+
+        if (proc->page < proc->unk_2e)
+        {
+            proc->pageTarget++;
+            proc->unk_2d = 0;
+            PlaySoundEffect(0x38F);
+            Proc_Goto(proc, 2);
+        }
+
+        return;
+    }
+
+    if ((gpKeySt->repeated & DPAD_UP) != 0 ||
+        ((gpKeySt->held & L_BUTTON) != 0 && (gpKeySt->pressed2 & DPAD_UP) != 0))
+    {
+        if (proc->unk_30 == 0)
+        {
+            if ((gpKeySt->pressed & DPAD_UP) == 0)
+                return;
+
+            PlaySoundEffect(0x386);
+            proc->unk_29 = 3;
+            return;
+        }
+
+        proc->unk_30--;
+        PlaySoundEffect(0x386);
+
+        if (proc->unk_2c < 2)
+        {
+            if (proc->unk_3e / 16 != 0)
+            {
+                if (proc->unk_2c == 0)
+                {
+                    proc->unk_30++;
+                    proc->unk_2c = 1;
+                }
+
+                sub_0808AD00(proc, proc->unk_3e / 16 - 1, gBg0Tm, proc->page, 1);
+                proc->unk_29 = 2;
+                proc->unk_3e = -(proc->unk_31 * 4) + proc->unk_3e;
+                SetBgOffset(0, 0, (proc->unk_3e - 0x38) & 0xFF);
+
+                if (proc->unk_2c == 0)
+                    proc->unk_2c++;
+
+                return;
+            }
+        }
+
+        proc->unk_2c--;
+        return;
+    }
+
+    if ((gpKeySt->repeated & DPAD_DOWN) != 0 ||
+        ((gpKeySt->held & L_BUTTON) != 0 && (gpKeySt->pressed2 & DPAD_DOWN) != 0))
+    {
+        if (proc->unk_30 < gUnknown_0200F158 - 1)
+        {
+            proc->unk_30++;
+            PlaySoundEffect(0x386);
+
+            if (proc->unk_2c == 4 && proc->unk_30 != gUnknown_0200F158 - 1)
+            {
+                sub_0808AD00(proc, 6 + proc->unk_3e / 16, gBg0Tm, proc->page, 1);
+                proc->unk_29 = 1;
+                proc->unk_3e = proc->unk_3e + proc->unk_31 * 4;
+                SetBgOffset(0, 0, (proc->unk_3e - 0x38) & 0xFF);
+                return;
+            }
+
+            proc->unk_2c++;
+        }
+    }
+}
