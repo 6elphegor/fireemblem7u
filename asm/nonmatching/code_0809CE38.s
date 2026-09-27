@@ -153,7 +153,7 @@ _0809CF48:
 	movs r2, #1
 	rsbs r2, r2, #0
 	adds r0, r6, #0
-	bl sub_0809CB10
+	bl SupportSubScreen_MoveCursorToNextValidUnit
 _0809CF6A:
 	ldr r1, [r4]
 	movs r0, #0x80
@@ -168,7 +168,7 @@ _0809CF6A:
 	adds r1, #1
 	adds r0, r6, #0
 	movs r2, #1
-	bl sub_0809CB10
+	bl SupportSubScreen_MoveCursorToNextValidUnit
 _0809CF88:
 	ldrb r1, [r5]
 	cmp r7, r1

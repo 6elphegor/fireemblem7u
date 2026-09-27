@@ -100,6 +100,13 @@ struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
 s8 sub_08088A90(void);
 
 extern struct Font gPrepItemTextFont;
+extern u8 Tsa_0840ECC4[];
+extern u8 Img_0840EDB8[];
+extern u8 Img_0840E40C[];
+extern u16 Pal_0840E4EC[];
+
+void DrawSupportSubScreenSprites(struct SubScreenProc * proc);
+void DrawSupportSubScreenUnitPartnerText(struct SubScreenProc * proc, int idx);
 extern u16 gUnk_02012BFC[];
 extern u16 Pal_TactInfoBg[];
 extern u8 Img_TactInfoBg[];
@@ -1115,12 +1122,174 @@ void InitSupportSubScreenPartnerLevels(struct SubScreenProc * proc)
     for (i = 0; i < proc->partnerCount; i++)
         proc->supportLevel[i] = GetSupportScreenPartnerSupportLevel(proc->unitIdx, i);
 }
-ASM_FUNC("asm/nonmatching/code_0809CA38.s");
-ASM_FUNC("asm/nonmatching/code_0809CAB8.s");
-ASM_FUNC("asm/nonmatching/code_0809CB10.s");
-ASM_FUNC("asm/nonmatching/code_0809CB8C.s");
-ASM_FUNC("asm/nonmatching/code_0809CBD8.s");
-ASM_FUNC("asm/nonmatching/code_0809CC30.s");
+void InitSupportSubScreenRemainingSupports(struct SubScreenProc * proc)
+{
+    int i;
+
+    if (proc->fromPrepScreen)
+    {
+        proc->remainingSupports = 5 - GetTotalSupportLevel(proc->unitIdx);
+    }
+    else
+    {
+        int charId = GetSupportScreenCharIdAt(proc->unitIdx);
+
+        proc->remainingSupports = 0;
+
+        for (i = 0; i < proc->partnerCount; i++)
+            proc->remainingSupports += GetUnitsAverageSupportValue(charId, GetSupportScreenPartnerCharId(proc->unitIdx, i));
+
+        proc->remainingSupports -= GetTotalSupportLevel(proc->unitIdx);
+    }
+}
+void DrawSupportSubScreenUnitPartnerDetails(struct SubScreenProc * proc)
+{
+    int i;
+
+    ResetUnitSprites();
+
+    for (i = 0; i < proc->partnerCount; i++)
+    {
+        proc->partnerClassId[i] = GetSupportScreenPartnerClassId(proc->unitIdx, i);
+        UseUnitSprite(GetClassSMSId(proc->partnerClassId[i]));
+    }
+
+    ForceSyncUnitSpriteSheet();
+
+    for (i = 0; i < proc->partnerCount; i++)
+        DrawSupportSubScreenUnitPartnerText(proc, i);
+}
+void SupportSubScreen_MoveCursorToNextValidUnit(struct SubScreenProc * proc, int partnerIdx, int step)
+{
+    while (1)
+    {
+        if (partnerIdx < 0)
+            return;
+
+        if (partnerIdx > (proc->partnerCount - 1))
+            return;
+
+        if (proc->partnerState[partnerIdx] & 1)
+        {
+            if (GetSupportScreenPartnerSupportLevel(proc->unitIdx, partnerIdx) > 0)
+            {
+                proc->unk_39 = (proc->unk_39 & 0xe3) + ((partnerIdx & 7) << 2);
+
+                if ((proc->unk_39 & 3) >= GetSupportScreenPartnerSupportLevel(proc->unitIdx, partnerIdx))
+                {
+                    proc->unk_39 = (proc->unk_39 & 0xfc) +
+                        (GetSupportScreenPartnerSupportLevel(proc->unitIdx, partnerIdx) - 1);
+                }
+
+                return;
+            }
+        }
+
+        partnerIdx += step;
+    }
+}
+void SupportSubScreen_Init(struct SubScreenProc * proc)
+{
+    proc->x = 0;
+    proc->y = 0;
+    proc->unk_39 &= 0xfc;
+    proc->unk_39 &= 0xe3;
+    proc->partnerCount = GetSupportScreenPartnerCount(GetSupportScreenCharIdAt(proc->unitIdx));
+
+    InitSupportSubScreenPartners(proc);
+    InitSupportSubScreenPartnerLevels(proc);
+    InitSupportSubScreenRemainingSupports(proc);
+    SupportSubScreen_MoveCursorToNextValidUnit(proc, 0, +1);
+}
+void sub_0809CBD8(void)
+{
+    int i;
+    u16 * src = PAL_OBJ(0xC);
+    u16 * dst = PAL_OBJ(0xD);
+
+    for (i = 0; i < 0x10; dst++, src++, i++)
+        *dst = (((*src & 0x1f) >> 1) & 0x1f) + (((*src & 0x3e0) >> 1) & 0x3e0) + (((*src & 0x7c00) >> 1) & 0x7c00);
+}
+void SupportSubScreen_SetupGraphics(struct SubScreenProc * proc)
+{
+    int fid;
+
+    gDispIo.disp_ct.mode = 0;
+
+    InitBgs(NULL);
+
+    gDispIo.bg0_ct.priority = 1;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 3;
+
+    ResetText();
+    InitIcons();
+
+    UnpackUiWindowFrameGraphics();
+    ApplySystemObjectsGraphics();
+
+    ApplyUnitSpritePalettes();
+    sub_0809CBD8();
+    ApplyIconPalettes(0xd);
+
+    StartGreenText(proc);
+
+    if (!proc->fromPrepScreen)
+    {
+        gPlaySt.cfgTextSpeed = 1;
+
+        ResetSysHandCursor(proc);
+        DisplaySysHandCursorTextShadow(0x600, 1);
+        ConfigSysHandCursorShadowEnabled(1);
+
+        proc->unk_3a = -1;
+
+        if (proc->unk_3b != 0)
+        {
+            ShowSysHandCursor((proc->unk_39 & 3) * 8 + 0xc4, ((proc->unk_39 >> 2) & 7) * 16 + 0x18, 1, 0x800);
+        }
+    }
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+
+    SetBlendConfig(0, 0, 0, 0);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    SetBlendBackdropA(0);
+    SetBlendBackdropB(0);
+
+    PrepRestartMuralBackground();
+
+    sub_08091944(0x4000, 5);
+
+    sub_080AACD8(gBg1Tm, Tsa_0840ECC4, 0x5200);
+
+    fid = gCharacterData[GetSupportScreenCharIdAt(proc->unitIdx) - 1].portraitId;
+
+    if (ShouldFaceBeRaised(fid))
+    {
+        proc->unk_3f = 0;
+        StartBmFace(0, fid, 0x38, 0, 0x100);
+    }
+    else
+    {
+        proc->unk_3f = 8;
+        StartBmFace(0, fid, 0x38, 8, 0x104);
+    }
+
+    Decompress(Img_0840EDB8, (void *) 0x06017000);
+    Decompress(Img_0840E40C, (void *) 0x06017800);
+    ApplyPalette(Pal_0840E4EC, 0x12);
+
+    DrawSupportSubScreenUnitPartnerDetails(proc);
+    DrawSupportSubScreenRemainingText(proc);
+
+    StartParallelWorker(DrawSupportSubScreenSprites, proc);
+}
 ASM_FUNC("asm/nonmatching/code_0809CE38.s");
 ASM_FUNC("asm/nonmatching/code_0809CFF8.s");
 ASM_FUNC("asm/nonmatching/code_0809D0BC.s");

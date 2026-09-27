@@ -39,11 +39,11 @@ sub_0809D4D4: @ 0x0809D4D4
 	adds r0, r5, #0
 	bl InitSupportSubScreenPartnerLevels
 	adds r0, r5, #0
-	bl sub_0809CA38
+	bl InitSupportSubScreenRemainingSupports
 	adds r0, r5, #0
 	movs r1, #0
 	movs r2, #1
-	bl sub_0809CB10
+	bl SupportSubScreen_MoveCursorToNextValidUnit
 	ldr r1, _0809D590 @ =0x0840ECC4
 	movs r2, #0xa4
 	lsls r2, r2, #7
@@ -95,7 +95,7 @@ _0809D598:
 	bl StartBmFace
 _0809D5B0:
 	adds r0, r5, #0
-	bl sub_0809CAB8
+	bl DrawSupportSubScreenUnitPartnerDetails
 	adds r0, r5, #0
 	bl DrawSupportSubScreenRemainingText
 	bl sub_0809C49C

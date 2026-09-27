@@ -696,12 +696,12 @@ int GetSupportScreenPartnerCount(int charId);
 // DrawSupportSubScreenRemainingText
 // InitSupportSubScreenPartners
 // InitSupportSubScreenPartnerLevels
-// sub_0809CA38
-// sub_0809CAB8
-// sub_0809CB10
-// sub_0809CB8C
+// InitSupportSubScreenRemainingSupports
+// DrawSupportSubScreenUnitPartnerDetails
+// SupportSubScreen_MoveCursorToNextValidUnit
+// SupportSubScreen_Init
 // sub_0809CBD8
-// sub_0809CC30
+// SupportSubScreen_SetupGraphics
 // sub_0809CE38
 // sub_0809CFF8
 // sub_0809D0BC
