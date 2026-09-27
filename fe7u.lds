@@ -999,15 +999,7 @@ SECTIONS
         build/src/banim-efxbattle.o(.text);
         build/src/banim-efxflashbg.o(.text);
         build/src/banim-efxflashunit.o(.text);
-        build/asm/code_0804F698.o(.text);
-        build/asm/code_0804F794.o(.text);
-        build/asm/code_0804F7D0.o(.text);
-        build/asm/code_0804F7F0.o(.text);
-        build/asm/code_0804F810.o(.text);
-        build/asm/code_0804F840.o(.text);
-        build/asm/code_0804F85C.o(.text);
-        build/asm/code_0804F900.o(.text);
-        build/asm/code_0804FA08.o(.text);
+        build/src/banim-efxstatusunit.o(.text);
         build/asm/code_0804FA50.o(.text);
         build/asm/code_0804FA98.o(.text);
         build/asm/code_0804FAB4.o(.text);

@@ -464,7 +464,6 @@ struct ProcEfxStatusUnit {
 
     STRUCT_PAD(0x54, 0x5C);
 
-    /* 54 */ u8 _pad_54[0x5C - 0x54];
     /* 5C */ struct Anim * anim;
 };
 
@@ -478,7 +477,7 @@ void SetUnitEfxDebuff(struct Anim * anim, int debuff);
 u32 GetUnitEfxDebuff(struct Anim * anim);
 void EfxStatusUnitFlashing(struct Anim * anim, int, int, int);
 void EfxStatusUnit_Loop(struct ProcEfxStatusUnit * proc);
-// ??? sub_0804FA08
+// ??? EfxStatusUnitEnd
 void NewEfxWeaponIcon(s16 effective1, s16 effective2);
 void EndProcEfxWeaponIcon(void);
 void DisableEfxWeaponIcon(void);

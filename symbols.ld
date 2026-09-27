@@ -1524,3 +1524,5 @@ gEfxSplitedColorBufC = 0x0201F99C;
 gEfxSplitedColorBufD = 0x0201F9FC;
 gEfxSplitedColorBufE = 0x0201FA2C;
 gEfxSplitedColorBufF = 0x0201FA5C;
+ProcScr_efxStatusUnit = 0x08B9AF14;
+gFrameLut_EfxStatusUnit = 0x081D83E4;
