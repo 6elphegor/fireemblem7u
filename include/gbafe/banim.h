@@ -912,13 +912,13 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? StartSubSpell_efxResireRST
 // ??? efxResireRST_Loop
 // ??? sub_805A60C
-// ??? sub_08059E60
+// ??? efxLightning_Loop_Main
 // ??? StartSubSpell_efxLightningBG
 // ??? efxLightningBG_Loop
 // ??? StartSpellAnimPurge
 // ??? sub_0805A094
-// ??? sub_0805A0D0
-// ??? sub_0805A200
+// ??? efxPurge_Loop_Main
+// ??? StartSubSpell_efxPurgeBG
 // ??? efxPurgeBG_Loop
 // ??? StartSubSpell_efxPurgeOBJRND
 // ??? efxPurgeOBJRND_Loop
