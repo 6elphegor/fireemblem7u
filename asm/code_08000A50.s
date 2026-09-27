@@ -56,7 +56,7 @@ AgbMain: @ 0x08000A50
 	bl RandInitB
 	bl RandNextB
 	bl RandInit
-	bl sub_0809F924
+	bl LoadAndVerifySramSaveData
 	bl m4aSoundInit
 	bl sub_08003F6C
 	ldr r0, _08000B18 @ =OnVBlank

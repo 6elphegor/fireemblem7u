@@ -17,7 +17,7 @@ EkrLvup_OnEnd: @ 0x08069AB8
 	ldr r0, [r4, #0x60]
 	bl EnableEfxStatusUnits
 	bl EnableEfxWeaponIcon
-	bl EfxHpBarColorChange_804FC6C
+	bl EnableEfxHpBarColorChange
 	adds r4, #0x29
 	movs r0, #1
 	strb r0, [r4]

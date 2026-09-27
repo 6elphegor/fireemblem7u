@@ -121,7 +121,7 @@ _0808A2F8:
 	blt _0808A2E0
 _0808A300:
 	ldrh r0, [r7, #0x3e]
-	bl sub_08088DC0
+	bl sub_8090358
 	movs r0, #1
 	bl EnableBgSync
 _0808A30C:
@@ -141,7 +141,7 @@ _0808A30C:
 _0808A326:
 	mov r6, r8
 	ldrb r0, [r6]
-	bl sub_08088CD4
+	bl sub_8090238
 	b _0808A4F4
 	.align 2, 0
 _0808A330: .4byte 0x02022C60

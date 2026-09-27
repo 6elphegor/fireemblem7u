@@ -40,7 +40,7 @@ _0807D054:
 	bl UnitAddItem
 	b _0807D08C
 _0807D06C:
-	bl sub_080A0430
+	bl IsFirstChapterStatsPrologue
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0807D08C
