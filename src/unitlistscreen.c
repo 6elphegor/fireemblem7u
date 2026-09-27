@@ -537,7 +537,156 @@ void sub_8090D00(struct UnitListScreenProc * proc)
     }
 }
 
+#if NONMATCHING
+
+// only the stack slots of spilled pointers differ
+
+void sub_8090D80(struct UnitListScreenProc * proc)
+{
+    int i;
+    u8 val;
+
+    SetDispEnable(1, 1, 1, 1, 1);
+
+    SetOnVMatch(NULL);
+    InitBgs(NULL);
+    ResetText();
+    ResetTextFont();
+    ClearIcons();
+    ApplyUnitSpritePalettes();
+
+    CpuFastFill(0, gPal + 0x1B0, 0x20);
+
+    ApplySystemObjectsGraphics();
+
+    StartGreenText(proc);
+
+    proc->deployedCount = 0;
+    proc->unk_2e = 6;
+
+    sub_8090D00(proc);
+
+    if ((proc->mode != UNITLIST_MODE_PREPMENU) || (proc->unk_2a == 1))
+    {
+        val = gPlaySt.lastUnitSortType;
+
+        if (val != 0)
+        {
+            proc->unk_33 = (val >> 7) & 1;
+            proc->unk_34 = proc->unk_33;
+            proc->unk_32 = val & 0x7f;
+        }
+
+        if ((proc->unk_29 != 4) && (proc->page != 0))
+        {
+            val = gPlaySt.unk19 / 16;
+
+            if (val != 0)
+            {
+                if (val > 6)
+                    proc->page = 6;
+                else
+                    proc->page = val;
+
+                proc->pageTarget = proc->page;
+            }
+        }
+
+        SortUnitList(proc->unk_32, proc->unk_34);
+    }
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+
+    InitIcons();
+    ApplyIconPalettes(4);
+    UnpackUiWindowFrameGraphics();
+
+    Decompress(Img_08A1CD68, (void *)0x06014800);
+    ApplyPalettes(Pal_0840DCE4, 0x19, 1);
+
+    sub_08090F30();
+
+    sub_080AACD8(gBg1Tm, gUnknown_08A1C8B4, 0x1000);
+
+    for (i = 0; i < 7; i++)
+    {
+        InitText(&gUnknown_0200E060[i], 5);
+        InitTextDb(&gUnknown_0200E098[i][0], 7);
+        InitText(&gUnknown_0200E098[i][1], 7);
+        InitText(&gUnknown_0200E098[i][2], 5);
+    }
+
+    InitText(&gUnknown_0200E140, 4);
+    InitText(&gUnknown_0200E148, 20);
+    InitText(&gUnknown_0200E150, 4);
+
+    sub_8090238(proc->unk_32);
+
+    if (proc->unk_29 == 4)
+    {
+        sub_8090418(proc, 0);
+        proc->unk_29 = 0;
+    }
+    else if (proc->mode == UNITLIST_MODE_PREPMENU)
+    {
+        sub_8090418(proc, 1);
+    }
+
+    proc->unk_3c = 0;
+    proc->helpActive = 0;
+
+    ClearText(&gUnknown_0200E140);
+    Text_SetCursor(&gUnknown_0200E140, 0);
+    Text_SetColor(&gUnknown_0200E140, 0);
+    Text_DrawString(&gUnknown_0200E140, DecodeMsg(0x10F2));
+    PutText(&gUnknown_0200E140, gBg2Tm + TM_OFFSET(3, 5));
+
+    for (i = 0; i < 20; i++)
+        gUnknown_0200F15C[i] = 0xFF;
+
+    for (i = proc->unk_3e / 16; i < (proc->unk_3e / 16) + 6 && i < gUnknown_0200F158; i++)
+        sub_0808AD00(proc, i, gBg0Tm, proc->page, 1);
+
+    sub_0808AC90(proc->unk_2e, proc->page, 1);
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Box(16, 56, 224, 152);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(0, 1, 1, 1, 1);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    SetBgOffset(3, 0, 0);
+    SetBgOffset(2, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(0, 0, (proc->unk_3e - 56) & 0xff);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 3;
+
+    Decompress(gUnknown_0840D224, gBg1Tm + 0x280);
+    ApplyPalette(gUnknown_08405B0C, 0xf);
+
+    proc->pSpriteProc = Proc_Start(ProcScr_bmview, proc);
+
+    if (proc->mode == UNITLIST_MODE_PREPMENU && !CheckInLinkArena())
+        proc->pMuralProc = StartPrepMuralBackground(NULL, 10);
+    else
+        proc->pMuralProc = StartMuralBackgroundAlt(NULL, NULL, 10);
+
+    LoadHelpBoxGfx(NULL, -1);
+}
+
+#else
+
 ASM_FUNC("asm/nonmatching/code_08089794.s");
+
+#endif
+
 ASM_FUNC("asm/nonmatching/code_08089B9C.s");
 ASM_FUNC("asm/nonmatching/code_08089C00.s");
 ASM_FUNC("asm/nonmatching/code_08089CA8.s");

@@ -294,13 +294,16 @@ void TryLockProc(ProcPtr proc);
 void TryUnlockProc(ProcPtr proc);
 void PrepHbKeyListener_Loop(ProcPtr proc);
 // StartPrepErrorHelpbox
+ProcPtr StartPrepErrorHelpbox(int x, int y, int msgId, ProcPtr parent);
 // IsWeaponUsable
 // CountUnitUsableWeapons
 // sub_08090DB0
+s8 sub_08090DB0(struct Unit * unit);
 // CheckValidLinkArenaItemSwap
 // CheckValidLinkArenaItemSupply
 // sub_08090EE8
 // sub_08090F30
+void sub_08090F30(void);
 
 struct PrepItemTypePageEnt {
     /* 00 */ u8 lowerBound;

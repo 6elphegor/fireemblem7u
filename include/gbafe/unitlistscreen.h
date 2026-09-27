@@ -120,3 +120,15 @@ void UnitList_UndeployUnit(struct Unit * unit, struct UnitListScreenProc * proc)
 void UnitList_TogglePrepDeployState(struct UnitListScreenProc * proc);
 void UnitList_ToggleSoloAnimState(struct Unit * unit, int step);
 void sub_809144C(struct UnitListScreenProc * proc);
+
+/* later in the module (still asm) */
+void sub_0808AC90(u8 maxPages, u8 page, s8 flag); /* FE8U sub_8092298 */
+void sub_0808AD00(struct UnitListScreenProc * proc, u8 unitNum, u16 * tm, u8 page, s8 putName); /* FE8U UnitList_PutRow */
+bool SortUnitList(u8 key, u8 order);
+
+extern struct ProcCmd ProcScr_bmview[];
+extern u8 const Img_08A1CD68[];
+extern u16 const Pal_0840DCE4[];
+extern u8 const gUnknown_08A1C8B4[];
+extern u8 const gUnknown_0840D224[];
+extern u16 const gUnknown_08405B0C[];
