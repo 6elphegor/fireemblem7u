@@ -39,11 +39,11 @@ void PrepareGradientScanlineBuf(u16 * buf, u16 y_top, u16 y_bottom, u16 color_a,
 void ManimShiftingSineWave_Main(struct ManimSineWaveProc * proc);
 void sub_0807744C(void);
 u16 * GetScanlineBuf(int buf_id, int scanline);
-// sub_0807754C
-// sub_0807764C
-// sub_08077680
-// sub_080777E4
-// sub_08077860
+void sub_0807754C(u16 * buf, int x, int y, int radius);
+void sub_0807764C(int x, int y, int radius);
+void sub_08077680(int arg);
+void sub_080777E4(void);
+void sub_08077860(void);
 void HBlank_Scanline_8078098(void);
 void sub_08077910(int a, int b);
 void CandleFlameFx_OnHBlank(void);
@@ -54,8 +54,10 @@ void DragonGatefx_LightHBlank(void);
 // sub_8078474
 void QuintessenceFx_OnHBlank(void);
 void DragonGatefx_DragonHBlank(void);
-// sub_08077EB8
-// sub_080780C4
+void sub_08077EB8(u16 * buf, int x, int y, int rx, int ry);
+void sub_080780C4(int x, int y, int rx, int ry);
 void sub_08076B80(void);
 void sub_08076BE8(void);
 void ManimShiftingSineWave_Init(struct ManimSineWaveProc * proc);
+void sub_08077B74(void);
+void sub_08077CA4(void);
