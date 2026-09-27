@@ -1198,14 +1198,7 @@ SECTIONS
         build/src/banim-efxmagic-spell11.o(.text);
         build/src/banim-efxmagic-hurtmut.o(.text);
         build/src/banim-efxmagic-breath.o(.text);
-        build/asm/code_08058044.o(.text);
-        build/asm/code_08058080.o(.text);
-        build/asm/code_08058120.o(.text);
-        build/asm/code_080581A4.o(.text);
-        build/asm/code_08058228.o(.text);
-        build/asm/code_08058264.o(.text);
-        build/asm/code_080582B0.o(.text);
-        build/asm/code_08058310.o(.text);
+        build/src/banim-efxmagic-thunder.o(.text);
         build/asm/code_08058340.o(.text);
         build/asm/code_08058384.o(.text);
         build/asm/code_080583C8.o(.text);

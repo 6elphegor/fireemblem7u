@@ -838,10 +838,10 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? StartSubSpell_efxDarkbreathOBJ
 // ??? sub_80587F8
 // ??? sub_805882C
-// ??? sub_08058080
+// ??? Loop6C_efxThunder
 // ??? NewEfxThunderBG
 // ??? EfxThunderBGMain
-// ??? sub_08058228
+// ??? NewEfxThunderBGCOL
 // ??? sub_8058A4C
 // ??? NewEfxThunderOBJ
 // ??? EfxThunderOBJMain
