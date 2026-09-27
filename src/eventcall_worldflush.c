@@ -74,17 +74,19 @@ void WorldFlushReload(struct ProcWorldFlush * proc)
     proc->timer = 0;
 }
 
-#if NONMATCHING
-// register allocation: the original keeps 240 in r5 and 0x4000 in r6
 void sub_0807CDEC(struct ProcWorldFlush * proc)
 {
     int duration = 0x80;
-    int max = DISPLAY_WIDTH;
-    int t, r, y;
+#ifndef NONMATCHING
+    register int r asm("r5") = DISPLAY_WIDTH;
+#else
+    int r = DISPLAY_WIDTH;
+#endif
+    int t, y;
 
     t = ++proc->timer;
 
-    r = ((duration - t) * max * (duration - t)) / (duration * duration);
+    r = ((duration - t) * r * (duration - t)) / (duration * duration);
     y = 0x10 - (t * 0x10 * t) / (duration * duration);
 
     sub_0807764C(120, 48, r);
@@ -94,9 +96,6 @@ void sub_0807CDEC(struct ProcWorldFlush * proc)
     if (proc->timer >= duration)
         Proc_Break(proc);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0807CDEC.s");
-#endif
 
 void sub_0807CE60(struct ProcWorldFlush * proc)
 {
