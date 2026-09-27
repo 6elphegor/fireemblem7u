@@ -328,8 +328,8 @@ void sub_080327C4(ProcPtr proc, const char *str);
 // DrawBattleForecastContents
 // GetFactionBattleForecastFramePalette
 // InitBattleForecastFramePalettes
-// sub_08033B98
-// sub_08033C28
+// BattleForecast_Init
+// BattleForecast_OnEnd
 // PutBattleForecastTilemaps
 // PutBattleForecastWeaponTriangleArrows
 // PutBattleForecastMultipliers

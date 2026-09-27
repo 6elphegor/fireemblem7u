@@ -145,6 +145,7 @@ int GetItemRequiredExp(int item);
 // GetItemEffectiveness
 // GetItemBonuses
 // GetItemIconId
+int GetItemIconId(int item);
 int GetItemWeaponEffect(int item);
 // GetItemEffect
 int GetItemCostPerUse(int item);
