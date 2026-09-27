@@ -169,15 +169,15 @@ void ChapterIntro_TickTimer(struct ProcChapterIntrofx * proc);
 void ChapterIntro_SetFasten(struct ProcChapterIntrofx * proc);
 // ChapterIntro_8021188
 // GameOverScreen_RandomScroll_Init
-// sub_08020158
+// GameOverScreen_RandomScroll_Loop
 // GameOverScreenHBlank
-// sub_0802020C
+// GameOverScreen_Init
 // GameOverScreen_LoopFadeIn
 // GameOverScreen_BeginIdle
-// sub_08020394
+// GameOverScreen_LoopIdle
 // GameOverScreen_BeginFadeOut
 // GameOverScreen_LoopFadeOut
-// sub_08020434
+// GameOverScreen_End
 // sub_80208E0
 // sub_0802049C
 // sub_08020568
