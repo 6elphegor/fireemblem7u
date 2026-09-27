@@ -24,7 +24,7 @@ _080B1372:
 	bl StartBgm
 _080B137A:
 	ldr r0, _080B148C @ =0x08C9D00C
-	ldr r1, _080B1490 @ =sub_0806DAB4
+	ldr r1, _080B1490 @ =HideMu
 	bl Proc_ForEach
 	bl sub_080B1E28
 	ldr r0, _080B1494 @ =0x03002870
@@ -151,7 +151,7 @@ _080B1484:
 	b _080B14C4
 	.align 2, 0
 _080B148C: .4byte 0x08C9D00C
-_080B1490: .4byte sub_0806DAB4
+_080B1490: .4byte HideMu
 _080B1494: .4byte 0x03002870
 _080B1498: .4byte 0x083F42D0
 _080B149C: .4byte 0x02020140

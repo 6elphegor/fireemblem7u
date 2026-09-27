@@ -5,7 +5,7 @@
 	thumb_func_start sub_0801C57C
 sub_0801C57C: @ 0x0801C57C
 	push {r4, r5, lr}
-	bl sub_0806C040
+	bl MuExists
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0801C5B8
@@ -56,7 +56,7 @@ _0801C5B8:
 	cmp r1, r0
 	bne _0801C618
 	movs r0, #0
-	bl sub_0802FEF4
+	bl PathArrowDisp_Init
 	ldr r0, _0801C60C @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -73,7 +73,7 @@ _0801C610: .4byte 0x0202BBB8
 _0801C614: .4byte 0x00000389
 _0801C618:
 	movs r0, #1
-	bl sub_0802FEF4
+	bl PathArrowDisp_Init
 _0801C61E:
 	pop {r4, r5}
 	pop {r0}

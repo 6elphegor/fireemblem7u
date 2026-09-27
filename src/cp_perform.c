@@ -24,7 +24,6 @@ struct CpPerformProc {
 void UnitBeginAction(struct Unit * unit);
 void DoAction(ProcPtr proc);
 void DoItemAction(ProcPtr proc);
-void StartStoleItemPopup(int item, ProcPtr parent);
 void StartAvailableTileEvent(s8 x, s8 y);
 ProcPtr NewPopup_Simple(const struct PopupInstruction * inst, int duration, int winStyle, ProcPtr parent);
 void StartCharacterEvent(u8 pidA, u8 pidB);

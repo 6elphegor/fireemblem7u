@@ -28,6 +28,7 @@ enum pid_defs {
 
     CHARACTER_DA = 0xDA,
 
+    CHARACTER_ARENA_OPPONENT = 0xFB,
     CHARACTER_WALL = 0xFC,
     CHARACTER_SNAG = 0xFD,
 };

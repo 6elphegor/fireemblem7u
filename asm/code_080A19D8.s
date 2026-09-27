@@ -65,7 +65,7 @@ _080A1A40:
 	bge _080A1A28
 	bl GetPermanentFlagBits
 	adds r4, r0, #0
-	bl sub_0807992C
+	bl GetPermanentFlagBitsSize
 	adds r1, r0, #0
 	lsrs r0, r1, #0x1f
 	adds r1, r1, r0
@@ -75,9 +75,9 @@ _080A1A40:
 	adds r0, r6, r0
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
-	bl sub_08079930
+	bl GetChapterFlagBits
 	adds r4, r0, #0
-	bl sub_08079938
+	bl GetChapterFlagBitsSize
 	adds r1, r0, #0
 	lsrs r0, r1, #0x1f
 	adds r1, r1, r0

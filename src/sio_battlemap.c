@@ -127,8 +127,8 @@ extern const u8 Img_LinkArena_FogUnitPlaceholder[];
 extern u8 CONST_DATA gUnknown_085AA158[];
 extern u8 CONST_DATA gUnknown_085AA15C[];
 extern struct ProcCmd CONST_DATA gUnknown_085AA1AC[];
-extern u8 CONST_DATA gUnknown_085AA1FC[];
-extern u8 CONST_DATA gUnknown_085AA21C[];
+extern struct PopupInstruction CONST_DATA gUnknown_085AA1FC[];
+extern struct PopupInstruction CONST_DATA gUnknown_085AA21C[];
 extern struct ProcCmd CONST_DATA gUnknown_085AA2FC[];
 extern struct ProcCmd CONST_DATA gUnknown_085AA4CC[];
 extern struct ProcCmd CONST_DATA gUnknown_085AA5BC[];
@@ -206,7 +206,6 @@ void BattleGenerateSimulation(struct Unit * actor, struct Unit * target, int x, 
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);
 void UpdateBattleForecastContents(void);
 void CloseBattleForecast(void);
-void NewPopup_Simple(const void * def, int time, int winStyle, ProcPtr parent);
 void AiSimulateBattleAgainstTargetAtPosition(struct AiCombatSimulationSt * sim);
 void StartAiTargetCursor(int x, int y, int kind, ProcPtr parent);
 int GetUnitDisplayedSpritePalette(struct Unit * unit);
