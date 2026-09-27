@@ -28,7 +28,7 @@ _0807290E:
 	movs r2, #0x20
 	bl ApplyPaletteExt
 	movs r0, #4
-	bl sub_08013C7C
+	bl SetWhitePal
 	movs r0, #2
 	bl GetBgChrOffset
 	ldr r2, _080729FC @ =0x06002800
