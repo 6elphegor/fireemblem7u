@@ -34,39 +34,50 @@ void SwapOpScanlineBufs(void)
     gpOpScanlineBufs[1] = buf;
 }
 
-#if 0
+
 void sub_080BB0E0(void)
 {
     int i;
     int r8;
+    s64 val;
 
-    signed long long __unk_00 = OpScanlineSt.unk_04;
-    signed long long __unk_08 = OpScanlineSt.unk_00;
-    signed long long __unk_10 = OpScanlineSt.unk_0C;
-    signed long long __unk_18 = OpScanlineSt.unk_10;
+    s64 a = OpScanlineSt.unk_04;
+    s64 b = OpScanlineSt.unk_00;
+    s64 c = OpScanlineSt.unk_0C;
+    s64 d = OpScanlineSt.unk_10;
 
     if (OpScanlineSt.unk_18 == 0)
     {
-        for (i = 1; i < 0xA0; i = i + 2)
+        for (i = 1; i < 0xA0; i += 2)
         {
-            int val = i * __unk_00 + __unk_08;
+            val = (i * a + b) >> 8;
 
-            gpOpScanlineBufs[0][i + 0x00] = ((SIN_Q12(val + 0x00) + 0xFFF) * __unk_10) >> 20;
-            gpOpScanlineBufs[0][i + 0xA0] = ((SIN_Q12(val + 0x40) + 0xFFF) * __unk_18) >> 20;
+            gpOpScanlineBufs[0][i + 0x00] = ((SIN_Q12(val) + 0xFFF) * c) >> 20;
+            gpOpScanlineBufs[0][i + 0xA0] = ((COS_Q12(val) + 0xFFF) * d) >> 20;
         }
     }
     else
     {
-        for (i = 9; i < 0x80; i = i + 2)
+        int sq = OpScanlineSt.unk_18 * OpScanlineSt.unk_18;
+
+        for (i = 9; i < 0x80; i += 2)
         {
-            r8 = ((OpScanlineSt.unk_14 - i) * (OpScanlineSt.unk_14 - i) * 0x100) / (OpScanlineSt.unk_18 * OpScanlineSt.unk_18);
+            r8 = ((sq - (OpScanlineSt.unk_14 - i) * (OpScanlineSt.unk_14 - i)) << 8) / sq;
 
             if (r8 > 0)
             {
-                int val = i * __unk_00 + __unk_08;
+                s64 cs;
+                s64 sn;
 
-                gpOpScanlineBufs[0][i + 0x00] = ((SIN_Q12(val + 0x00) + 0xFFF) * __unk_18 * r8) >> 20;
-                gpOpScanlineBufs[0][i + 0xA0] = ((SIN_Q12(val + 0x40) + 0xFFF) * __unk_10 * r8) >> 20;
+                val = (i * a + b) >> 8;
+                cs = COS_Q12(val) + 0xFFF;
+                sn = SIN_Q12(val) + 0xFFF;
+
+                cs = (cs * c * r8) >> 28;
+                sn = (sn * d * r8) >> 28;
+
+                gpOpScanlineBufs[0][i + 0x00] = cs;
+                gpOpScanlineBufs[0][i + 0xA0] = sn;
             }
         }
     }
@@ -74,9 +85,6 @@ void sub_080BB0E0(void)
     SwapOpScanlineBufs();
     OpScanlineSt.unk_00 += OpScanlineSt.unk_08;
 }
-#endif
-
-ASM_FUNC("asm/nonmatching/code_080BB0E0.s");
 
 void sub_080BB2AC(void)
 {
