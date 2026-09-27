@@ -15,6 +15,7 @@ int StartUiSMS(int smsId, int frameId);
 // ??? ApplyUnitSpriteImage32x32
 void TornOutUnitSprite(struct Unit * unit, int timer);
 // ??? SyncUnitSpriteSheet
+void SyncUnitSpriteSheet(void);
 void ForceSyncUnitSpriteSheet(void);
 // ??? sub_080255E0
 // ??? SetStandingMuFacing
@@ -30,6 +31,7 @@ void PutUnitSpriteIconsOam(void);
 void UnitSpriteHoverUpdate(void);
 // ??? sub_08026064
 // ??? PutUnitSprite
+void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 // ??? PutUnitSpriteForClassId
 void sub_08026250(int layer, int x, int y, int jid);
 // ??? sub_08026308

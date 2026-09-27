@@ -332,7 +332,7 @@ void SetWorkingMoveTable(const s8 mct[]);                       // SetWorkingMov
 void BeginMapFlood(int x, int y, int movement, int unitId);     // GenerateMovementMap
 void BuildBestMoveScript(int x, int y, u8 output[]);           // GenerateBestMovementScript
 void UnitApplyWorkingMovementScript(struct Unit * unit, int x, int y);
-void sub_0801A0FC(void);                                        // MarkMovementMapEdges
+void MarkMovementMapEdges(void);                                        // MarkMovementMapEdges
 void MarkWorkingMapEdges(void);
 void GenerateMagicSealMap(int value);
 void SetWorkingBmMap(u8 ** map);
