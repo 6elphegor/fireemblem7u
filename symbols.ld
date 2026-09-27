@@ -489,3 +489,5 @@ Tsa_DragonFlameImpact = 0x081C25C8;
 Img_EventSnowStormfx = 0x0819D22C;
 Pal_EventSnowStormfx = 0x0819D6E4;
 Tsa_EventSnowStormfx = 0x0819D724;
+Pal_QuintessenceFx = 0x081B98C8;
+Tsa_QuintessenceFx = 0x081B98E8;
