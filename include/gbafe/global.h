@@ -57,4 +57,4 @@
 
 // Emit a not-yet-decompiled function from its asm file (kept under
 // asm/nonmatching/, which is not assembled on its own).
-#define ASM_FUNC(path) asm(".include \"" path "\"\n\t.syntax divided\n")
+#define ASM_FUNC(path) asm("\t.text\n\t.include \"" path "\"\n\t.syntax divided\n")
