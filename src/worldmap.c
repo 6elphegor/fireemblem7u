@@ -793,6 +793,8 @@ void WmUnitManager_Init(struct WmUnitManagerProc * proc)
 void sub_080B43EC(struct WmUnitManagerProc * proc);
 void sub_080B4510(struct WmUnitManagerProc * proc);
 void sub_080B467C(struct WmUnitManagerProc * proc);
+void EndWmMu(int idx);
+void WmDimPalette(u16 * dst, u16 * src, u8 coeff);
 
 extern u8 const gWmUnitPalAnimSeq[];
 extern u16 const Pal_WmUnitAnimA[];
@@ -841,7 +843,41 @@ void WmDimPalette(u16 * dst, u16 * src, u8 coeff)
     EnablePalSync();
 }
 
-ASM_FUNC("asm/nonmatching/code_080B467C.s");
+void sub_080B467C(struct WmUnitManagerProc * proc)
+{
+    int i;
+
+    proc->unk_48 += proc->unk_47;
+
+    WmDimPalette(gPal + 0x1A0, gPal + 0x100 + proc->unk_46 * 0x10, proc->unk_48);
+
+    if (proc->unk_48 == 0)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            if (proc->slots[0]->ent[i].anim != NULL && (s8) proc->slots[0]->ent[i].state == -1)
+                EndWmMu(i);
+        }
+
+        proc->unk_47 = 0;
+    }
+
+    if (proc->unk_48 == 0x20)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            struct WmSlotEnt * ent = &proc->slots[0]->ent[i];
+
+            if (ent->anim != NULL && ent->state == 1)
+            {
+                ent->state = 0;
+                SetMuPal(((struct WmMuMoveProc *) ent->anim)->mu, ent->pal);
+            }
+        }
+
+        proc->unk_47 = 0;
+    }
+}
 void sub_080B4738(struct WmUnitManagerProc * proc)
 {
     u8 seq[0x37];
