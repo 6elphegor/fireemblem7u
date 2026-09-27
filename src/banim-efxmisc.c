@@ -1140,14 +1140,296 @@ void EfxMagdhisEffectBGMain(struct ProcEfxBG * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080637D4.s");
-ASM_FUNC("asm/nonmatching/code_08063958.s");
-ASM_FUNC("asm/nonmatching/code_08063984.s");
-ASM_FUNC("asm/nonmatching/code_080639C8.s");
-ASM_FUNC("asm/nonmatching/code_080639E8.s");
-ASM_FUNC("asm/nonmatching/code_08063A2C.s");
-ASM_FUNC("asm/nonmatching/code_08063A84.s");
-ASM_FUNC("asm/nonmatching/code_08063ADC.s");
-ASM_FUNC("asm/nonmatching/code_08063B0C.s");
-ASM_FUNC("asm/nonmatching/code_08063B48.s");
-ASM_FUNC("asm/nonmatching/code_08063BF4.s");
+/**
+ * C47: banim_code_cape_flowing
+ */
+extern struct ProcCmd ProcScr_efxMantBatabata[];
+extern const AnimScr AnimScr_EfxMantBatabata1_R[];
+extern const AnimScr AnimScr_EfxMantBatabata1_L[];
+extern const AnimScr AnimScr_EfxMantBatabata2_R[];
+extern const AnimScr AnimScr_EfxMantBatabata2_L[];
+extern const AnimScr AnimScr_EfxMantBatabata3_R[];
+extern const AnimScr AnimScr_EfxMantBatabata3_L[];
+extern const AnimScr AnimScr_EfxMantBatabata4_R[];
+extern const AnimScr AnimScr_EfxMantBatabata4_L[];
+extern const AnimScr AnimScr_EfxMantBatabata5_R[];
+extern const AnimScr AnimScr_EfxMantBatabata5_L[];
+extern const AnimScr AnimScr_EfxMantBatabata6_R[];
+extern const AnimScr AnimScr_EfxMantBatabata6_L[];
+
+void NewEfxMantBatabata(struct Anim * anim)
+{
+    s16 banim_index;
+    const AnimScr * scr1;
+    const AnimScr * scr2;
+    struct ProcEfxOBJ * proc;
+    struct Anim * anim2;
+
+    banim_index = gBanimIdx[GetAnimPosition(anim)] - 0x57;
+    switch (banim_index)
+    {
+    case 0x0:
+    case 0x1:
+        scr1 = AnimScr_EfxMantBatabata1_R;
+        scr2 = AnimScr_EfxMantBatabata1_L;
+        break;
+
+    case 0x2:
+    case 0x4:
+        scr1 = AnimScr_EfxMantBatabata2_R;
+        scr2 = AnimScr_EfxMantBatabata2_L;
+        break;
+
+    case 0x11:
+        scr1 = AnimScr_EfxMantBatabata3_R;
+        scr2 = AnimScr_EfxMantBatabata3_L;
+        break;
+
+    case 0x1A:
+    case 0x1B:
+        scr1 = AnimScr_EfxMantBatabata4_R;
+        scr2 = AnimScr_EfxMantBatabata4_L;
+        break;
+
+    case 0x14:
+    case 0x15:
+        scr1 = AnimScr_EfxMantBatabata5_R;
+        scr2 = AnimScr_EfxMantBatabata5_L;
+        break;
+
+    default:
+        scr1 = AnimScr_EfxMantBatabata6_R;
+        scr2 = AnimScr_EfxMantBatabata6_L;
+        break;
+    }
+
+    proc = Proc_Start(ProcScr_efxMantBatabata, PROC_TREE_3);
+    proc->anim = anim;
+    proc->timer = 0;
+    anim2 = EfxCreateFrontAnim(anim, scr2, scr1, scr2, scr1);
+    proc->anim2 = anim2;
+    gUnknown_02000010[GetAnimPosition(proc->anim)] = proc->anim2;
+
+    anim2->oam2Base &= 0xC00;
+
+    anim2->drawLayerPriority = 0x64;
+    AnimSort();
+
+    if (GetAnimPosition(anim) == EKR_POS_L)
+        anim2->oam2Base |= 0x7200;
+    else
+        anim2->oam2Base |= 0x9300;
+
+    SetAnimStateHidden(GetAnimPosition(proc->anim));
+}
+
+void EfxMantBatabata_Loop1(struct ProcEfxOBJ * proc)
+{
+    proc->anim2->xPosition = proc->anim->xPosition;
+
+    if (!(proc->anim->state3 & ANIM_BIT3_C01_BLOCKING_IN_BATTLE))
+        return;
+
+    if (!(proc->anim->state3 & ANIM_BIT3_HIT_EFFECT_APPLIED))
+        return;
+
+    Proc_Break(proc);
+}
+
+void EfxMantBatabata_Loop2(struct ProcEfxOBJ * proc)
+{
+    proc->anim2->xPosition = proc->anim->xPosition;
+
+    if (CheckEkrHitDone() == 0x1)
+    {
+        SetAnimStateUnHidden(GetAnimPosition(proc->anim));
+        AnimDelete(proc->anim2);
+        gUnknown_02000010[GetAnimPosition(proc->anim)] = NULL;
+        Proc_Break(proc);
+    }
+}
+
+/**
+ * Some critical atk effect?
+ */
+extern struct ProcCmd ProcScr_efxChillEffect[];
+extern struct ProcCmd ProcScr_efxChillEffectBG[];
+extern struct ProcCmd ProcScr_efxChillEffectBGCOL[];
+extern struct ProcCmd ProcScr_efxChillAnime[];
+extern const u16 FrameConf_EfxChillEffectBG[];
+extern u16 * TsaLut_EfxChillEffectBG[];
+extern const u8 Img_ExcaliburBg2[];
+extern const u16 FrameConf_EfxChillEffectBGCOL[];
+extern u16 Pal_EfxChillEffectBG[];
+extern const AnimScr AnimScr_EfxChill1_R[];
+extern const AnimScr AnimScr_EfxChill1_L[];
+extern const AnimScr AnimScr_EfxChill2_R[];
+extern const AnimScr AnimScr_EfxChill2_L[];
+
+void NewEfxChillEffect(struct Anim * anim)
+{
+    struct ProcEfx * proc;
+
+    SpellFx_SetBG1Position();
+    proc = Proc_Start(ProcScr_efxChillEffect, PROC_TREE_3);
+    proc->anim = anim;
+    proc->timer = 0;
+}
+
+void EfxChillEffectMain(struct ProcEfx * proc)
+{
+    int time = ++proc->timer;
+
+    if (time == 0x1)
+    {
+        NewEfxChillEffectBG(proc->anim);
+        NewEfxChillEffectBGCOL(proc->anim);
+        return;
+    }
+
+    if (time == 0x3)
+    {
+        NewEfxFlashBgBlack(proc->anim, 0x5);
+        return;
+    }
+
+    if (time == 0x11)
+    {
+        NewEfxFlashBgBlack(proc->anim, 0x5);
+        return;
+    }
+
+    if (time == 0x24)
+    {
+        Proc_Break(proc);
+        return;
+    }
+}
+
+void NewEfxChillEffectBG(struct Anim * anim)
+{
+    struct ProcEfxBG * proc;
+
+    gEfxBgSemaphore++;
+    proc = Proc_Start(ProcScr_efxChillEffectBG, PROC_TREE_3);
+    proc->anim = anim;
+    proc->timer = 0;
+    proc->terminator = 0;
+    proc->frame = 0;
+    proc->frame_config = FrameConf_EfxChillEffectBG;
+    proc->tsal = TsaLut_EfxChillEffectBG;
+    proc->tsar = TsaLut_EfxChillEffectBG;
+    SpellFx_RegisterBgGfx(Img_ExcaliburBg2, 0x2000);
+    SetBgOffset(BG_1, 0x0, 0x0);
+}
+
+void EfxChillEffectBGMain(struct ProcEfxBG * proc)
+{
+    int ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, (const s16 *)proc->frame_config);
+
+    if (ret >= 0)
+    {
+        u16 ** buf1 = proc->tsal;
+        u16 ** buf2 = proc->tsar;
+        SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
+        return;
+    }
+
+    if (ret == -1)
+    {
+        SpellFx_ClearBG1();
+        gEfxBgSemaphore--;
+        SpellFx_ClearColorEffects();
+        Proc_Break(proc);
+    }
+}
+
+void NewEfxChillEffectBGCOL(struct Anim * anim)
+{
+    struct ProcEfxBGCOL * proc;
+
+    proc = Proc_Start(ProcScr_efxChillEffectBGCOL, PROC_TREE_3);
+    proc->anim = anim;
+    proc->timer = 0;
+    proc->frame = 0;
+    proc->frame_config = FrameConf_EfxChillEffectBGCOL;
+    proc->pal = Pal_EfxChillEffectBG;
+}
+
+void EfxChillEffectBGCOL_Loop(struct ProcEfxBGCOL * proc)
+{
+    int ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, (const s16 *)proc->frame_config);
+
+    if (ret >= 0)
+    {
+        u16 * src = proc->pal;
+        SpellFx_RegisterBgPal(src + ret * 0x10, 0x20);
+        return;
+    }
+
+    if (ret == -1)
+    {
+        Proc_Break(proc);
+        return;
+    }
+}
+
+void NewEfxChillAnime(struct Anim * anim, int type)
+{
+    const AnimScr * scr1;
+    const AnimScr * scr2;
+    struct ProcEfxOBJ * proc;
+    struct Anim * anim2;
+
+    if (type == 0)
+    {
+        scr1 = AnimScr_EfxChill1_R;
+        scr2 = AnimScr_EfxChill1_L;
+    }
+    else
+    {
+        scr1 = AnimScr_EfxChill2_R;
+        scr2 = AnimScr_EfxChill2_L;
+    }
+
+    proc = Proc_Start(ProcScr_efxChillAnime, PROC_TREE_3);
+    proc->anim = anim;
+    proc->timer = 0;
+    anim2 = EfxCreateFrontAnim(anim, scr2, scr1, scr2, scr1);
+    proc->anim2 = anim2;
+    gUnknown_02000010[GetAnimPosition(proc->anim)] = proc->anim2;
+
+    anim2->oam2Base &= 0xC00;
+
+    anim2->drawLayerPriority = 0x64;
+    AnimSort();
+
+    if (GetAnimPosition(anim) == EKR_POS_L)
+        anim2->oam2Base |= 0x7200;
+    else
+        anim2->oam2Base |= 0x9300;
+
+    SetAnimStateHidden(GetAnimPosition(proc->anim));
+}
+
+void EfxChillAnime_Loop(struct ProcEfxOBJ * proc)
+{
+    struct Anim * _anim1;
+    struct Anim * _anim2;
+
+    proc->anim2->xPosition = proc->anim->xPosition;
+
+    if (++proc->timer == 0x14)
+    {
+        SetAnimStateUnHidden(GetAnimPosition(proc->anim));
+        AnimDelete(proc->anim2);
+        gUnknown_02000010[GetAnimPosition(proc->anim)] = NULL;
+
+        _anim1 = gAnims[GetAnimPosition(proc->anim) * 2];
+        _anim2 = gAnims[GetAnimPosition(proc->anim) * 2 + 1];
+
+        _anim1->state3 |= ANIM_BIT3_BLOCKEND;
+        _anim2->state3 |= ANIM_BIT3_BLOCKEND;
+        Proc_Break(proc);
+    }
+}
