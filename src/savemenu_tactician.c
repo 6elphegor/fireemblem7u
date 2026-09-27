@@ -1,6 +1,8 @@
 #include "gbafe.h"
 
 void sub_08042C58(ProcPtr parent); // StartTacticianNameSelect
+void sub_080A7194(struct ProcTactInfo *proc); // StartTactBirthSelect
+void sub_080A73E4(struct ProcTactInfo *proc); // StartTactGenderSelect
 
 struct TactInfoTextSt {
 	struct Font font;
@@ -287,8 +289,78 @@ void TactInfo_EndMuralBG(struct ProcTactInfo *proc)
 	EndAllProcChildren(proc);
 }
 
-void sub_080A6B4C(struct ProcTactInfo *proc);
-ASM_FUNC("asm/nonmatching/code_080A6B4C.s");
+void sub_080A6B4C(struct ProcTactInfo *proc)
+{
+	// FE7U has no blood type entry: 0 = name, 1 = birth month, 2 = gender
+	int index_pre = proc->cur_index;
+
+	if (proc->do_helpbox == false) {
+		if (gpKeySt->pressed & A_BUTTON) {
+			PlaySoundEffect(SONG_38A);
+
+			switch (proc->cur_index) {
+			case 0:
+				Proc_Goto(proc, PL_TACTINFO_4);
+				return;
+
+			case 1:
+				sub_080A7194(proc);
+				break;
+
+			case 2:
+				sub_080A73E4(proc);
+				break;
+
+			default:
+				return;
+			}
+
+			UpdateTactMainHandPosition(proc->cur_index);
+			Proc_Goto(proc, PL_TACTINFO_2);
+			return;
+		}
+
+		if (gpKeySt->pressed & (B_BUTTON | START_BUTTON)) {
+			Proc_Goto(proc, PL_TACTINFO_1);
+			PlaySoundEffect(SONG_38A);
+			return;
+		}
+
+		if (gpKeySt->pressed & R_BUTTON) {
+			TactInfo_StartHelpbox(proc);
+			return;
+		}
+	} else if (gpKeySt->pressed & (B_BUTTON | R_BUTTON))
+		TactInfo_CloseHelpbox(proc);
+
+	if (gpKeySt->repeated & DPAD_DOWN) {
+		if (proc->cur_index == 0)
+			proc->cur_index = 1;
+	}
+
+	if (gpKeySt->repeated & DPAD_UP) {
+		if (proc->cur_index > 0)
+			proc->cur_index = 0;
+	}
+
+	if (gpKeySt->repeated & DPAD_LEFT) {
+		if (proc->cur_index > 1)
+			proc->cur_index--;
+	}
+
+	if (gpKeySt->repeated & DPAD_RIGHT) {
+		if (proc->cur_index == 1)
+			proc->cur_index = 2;
+	}
+
+	if (index_pre != proc->cur_index) {
+		if (proc->do_helpbox != false)
+			TactInfo_StartHelpbox(proc);
+
+		UpdateTactMainHandShadow(proc->cur_index, proc);
+		PlaySoundEffect(SONG_385);
+	}
+}
 
 
 void TactInfo_UpdateSaveData(struct ProcTactInfo *proc)
