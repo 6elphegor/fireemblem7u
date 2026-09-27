@@ -371,8 +371,8 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_08047768
 // sub_080477B4
 // SioWarp_Init
-// sub_08047834
-// sub_08047904
+// SioWarp_Loop
+// SioWarp_End
 // SioWarpFx_StartSioWarp
 // SioWarpFx_804C178
 // sub_804816C
@@ -380,7 +380,7 @@ void GC_ConnectToFE6(/* TODO */);
 // SioWarpFx_ShowMoveUnit
 // sub_80481BC
 // SioWarpFx_AwaitSioWarp
-// sub_08047A00
+// StartSioWarpFx
 // sub_8048244
 // PutLinkArenaButtonSpriteAt
 // LAButtonSprites_Loop
