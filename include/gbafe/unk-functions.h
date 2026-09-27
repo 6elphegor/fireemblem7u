@@ -371,7 +371,7 @@ void sub_080327C4(ProcPtr proc, const char *str);
 // ClearBallistaOccupied
 // SetBallistaOccupied
 // GetCurrentPromotedLevelBonus
-// sub_08034884
+// CanUnitSeize
 
 /* ai.h */
 /* sio.h */

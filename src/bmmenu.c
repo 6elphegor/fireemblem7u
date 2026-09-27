@@ -590,7 +590,7 @@ u8 UnitActionMenu_Seize_Available(const struct MenuItemDef * def, int number)
     if (gActiveUnit->state & US_HAS_MOVED)
         return MENU_NOTSHOWN;
 
-    if (!sub_08034884(gActiveUnit))
+    if (!CanUnitSeize(gActiveUnit))
         return MENU_NOTSHOWN;
 
     return GetAvailableTileEventCommand(gActiveUnit->xPos, gActiveUnit->yPos) == 0xF

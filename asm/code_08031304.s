@@ -13,7 +13,7 @@ CanUnitUseSeize: @ 0x08031304
 	cmp r0, #0
 	bne _08031372
 	adds r0, r2, #0
-	bl sub_08034884
+	bl CanUnitSeize
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0803132C
