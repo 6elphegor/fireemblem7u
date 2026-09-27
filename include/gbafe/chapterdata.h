@@ -85,6 +85,7 @@ struct ChapterInfo {
 
     /* 70 */ u16 msg_chapter_title_a;
     /* 72 */ u16 msg_chapter_title_b;
+    /* 74 */ u16 unk74_us[2]; // FE7U only: offsets below are +4 in FE7U (struct is 0x98)
 
     /* 74 */ u8 mapEventDataId;
     /* 75 */ u8 gmapEventId;

@@ -704,8 +704,57 @@ u16 GetCameraCenteredY(int y)
     return result &~ 15;
 }
 
-void PutMapCursor(int x, int y, int kind);
-ASM_FUNC("asm/nonmatching/code_0801596C.s");
+void PutMapCursor(int x, int y, int kind)
+{
+    int oam2 = 0;
+    u16 const * sprite = NULL;
+
+    int frame = (GetGameTime() / 2) % 16; // TODO: ARRAY_COUNT
+
+    switch (kind)
+    {
+    case MAP_CURSOR_DEFAULT:
+    case MAP_CURSOR_REGULAR:
+        oam2 = OAM2_CHR(OBCHR_SYSTEM_OBJECTS + 0x02) + OAM2_PAL(OBPAL_SYSTEM_OBJECTS);
+        sprite = sMapCursorSpriteLut[frame];
+
+        break;
+
+    case MAP_CURSOR_RED_MOVING:
+        if (GetGameTime() - 1 == sLastTimeMapCursorDrawn)
+        {
+            x = (x + sLastCoordMapCursorDrawn.x) >> 1;
+            y = (y + sLastCoordMapCursorDrawn.y) >> 1;
+        }
+
+        oam2 = OAM2_CHR(OBCHR_SYSTEM_OBJECTS + 0x24) + OAM2_PAL(OBPAL_SYSTEM_OBJECTS);
+        sprite = sMapCursorSpriteLut[frame];
+
+        sLastCoordMapCursorDrawn.x = x;
+        sLastCoordMapCursorDrawn.y = y;
+        sLastTimeMapCursorDrawn = GetGameTime();
+
+        break;
+
+    case MAP_CURSOR_STRETCHED:
+        oam2 = OAM2_CHR(OBCHR_SYSTEM_OBJECTS + 0x02) + OAM2_PAL(OBPAL_SYSTEM_OBJECTS);
+        sprite = Sprite_MapCursorStretched;
+
+        break;
+
+    case MAP_CURSOR_RED_STATIC:
+        oam2 = OAM2_CHR(OBCHR_SYSTEM_OBJECTS + 0x24) + OAM2_PAL(OBPAL_SYSTEM_OBJECTS);
+        sprite = sMapCursorSpriteLut[0];
+
+        break;
+
+    }
+
+    x = x - gBmSt.camera.x;
+    y = y - gBmSt.camera.y;
+
+    PutSprite(4, x, y, sprite, oam2);
+}
 
 
 void DisplayBmTextShadow(int x, int y)
@@ -944,8 +993,38 @@ void sub_08015E64(int x, int y, int duration)
     proc->clock = duration;
 }
 
-int GetActiveMapSong(void);
-ASM_FUNC("asm/nonmatching/code_08015E9C.s");
+int GetActiveMapSong(void)
+{
+    u8 base_bgm_index = gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR ? MAP_BGM_BLUE_HECTOR : MAP_BGM_BLUE;
+
+    u8 blue_bgm_index = !CheckFlag(4) ? base_bgm_index + 0 : MAP_BGM_BLUE_GREEN_ALT;
+    u8 red_bgm_index = !CheckFlag(4) ? base_bgm_index + 1 : MAP_BGM_RED_ALT;
+    u8 green_bgm_index = !CheckFlag(4) ? base_bgm_index + 2 : MAP_BGM_BLUE_GREEN_ALT;
+
+    switch (gPlaySt.faction)
+    {
+    case FACTION_RED:
+        return GetChapterInfo(gPlaySt.chapterIndex)->map_bgm_ids[red_bgm_index];
+
+    case FACTION_GREEN:
+        return GetChapterInfo(gPlaySt.chapterIndex)->map_bgm_ids[green_bgm_index];
+
+    case FACTION_BLUE:
+        if (GetChapterInfo(gPlaySt.chapterIndex)->victorySongEnemyThreshold != 0)
+        {
+            int aliveUnits = CountFactionUnitsWithoutFlags(FACTION_RED, US_UNAVAILABLE);
+
+            if (aliveUnits <= GetChapterInfo(gPlaySt.chapterIndex)->victorySongEnemyThreshold)
+                return SONG_09;
+        }
+
+        return GetChapterInfo(gPlaySt.chapterIndex)->map_bgm_ids[blue_bgm_index];
+    }
+
+#if BUGFIX
+    return GetChapterInfo(gPlaySt.chapterIndex)->map_bgm_ids[0];
+#endif
+}
 
 
 void StartMapSongBgm(void)
