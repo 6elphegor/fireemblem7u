@@ -1735,7 +1735,7 @@ extern struct ProcCmd ProcScr_PlayerPhase[];
 // ??? gUnk_08C028A8
 // ??? gUnk_08C028C0
 // ??? gUnk_08C028E8
-extern struct ProcCmd ProcScr_08C02920[];
+extern struct ProcCmd ProcScr_08B93664[];
 // ??? gUnk_08C02938
 // ??? gUnk_08C02958
 // ??? gUnk_08C029A8
@@ -1743,7 +1743,7 @@ extern struct ProcCmd ProcScr_08C02920[];
 // ??? gUnk_08C029E8
 // ??? gUnk_08C02A28
 // ??? gUnk_08C02A48
-extern struct ProcCmd ProcScr_BmMain_08C02A68[];
+extern struct ProcCmd ProcScr_BmMain_08B937AC[];
 // ??? gUnk_08C02AB0
 // ??? gUnk_08C02AD0
 // ??? gUnk_08C02AF0
@@ -1754,7 +1754,7 @@ extern struct ProcCmd ProcScr_BmMain_08C02A68[];
 extern struct ProcCmd ProcScr_ChapterIntro_Bg3Scroll[];
 extern struct ProcCmd ProcScr_ChapterIntroDeamon[];
 extern struct ProcCmd ProcScr_ChapterIntrofx[];
-extern struct ProcCmd ProcScr_BmMain_08C02D98[];
+extern struct ProcCmd ProcScr_BmMain_08B93ADC[];
 // ??? gUnk_08C02DD8
 // ??? gUnk_08C02E30
 extern struct ProcCmd ProcScr_DanceringAnim[];
@@ -1859,9 +1859,9 @@ extern struct ProcCmd ProcScr_SALLYCURSOR[];
 // ??? gUnk_08C05D08
 // ??? gUnk_08C05D10
 // ??? gUnk_08C05E30
-extern struct ProcCmd ProcScr_BmMain_08C05E68[];
-extern struct ProcCmd ProcScr_BmMain_08C05EC8[];
-extern struct ProcCmd ProcScr_BmMain_08C05F30[];
+extern struct ProcCmd ProcScr_BmMain_08B96BAC[];
+extern struct ProcCmd ProcScr_BmMain_08B96C0C[];
+extern struct ProcCmd ProcScr_BmMain_08B96C74[];
 // ??? gUnk_08C05FF0
 // ??? gUnk_08C06008
 // ??? gUnk_08C06028
@@ -1871,7 +1871,7 @@ extern struct ProcCmd ProcScr_BmMain_08C05F30[];
 // ??? gUnk_08C060B4
 // ??? gUnk_08C06104
 extern struct ProcCmd ProcScr_AiPhase[];
-extern struct ProcCmd ProcScr_08C0617C[];
+extern struct ProcCmd ProcScr_08B96EA8[];
 // ??? gUnk_08C061A4
 
 /* ai.h */

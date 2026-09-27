@@ -89,6 +89,7 @@ void SetBlackPal(int palid);
 // ??? sub_8014488
 // ??? sub_80144A0
 void StartMidFadeFromBlack(void);
+void sub_08013FBC(void); // StartFadeFromBlack(0x10); FE7J calls it StartMidLockingFadeToBlack
 // ??? StartSlowFadeFromBlack
 // ??? StartFastFadeFromBlack
 void StartMidLockingFadeToBlack(ProcPtr parent);

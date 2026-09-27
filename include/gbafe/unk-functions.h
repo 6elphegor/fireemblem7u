@@ -53,6 +53,7 @@ void TryUnlockParentProc(ProcPtr);
 /* bm.h */
 
 void nullsub_38(void);
+void ClearMenuOverrides(void);
 
 void DecayTraps(void);
 
