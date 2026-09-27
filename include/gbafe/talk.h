@@ -110,7 +110,7 @@ void InitTalk(int chr, int lines, bool unpack_bubble);
 // ??? InitSpriteTalk
 // ??? sub_08007F50
 void SetInitTalkTextFont();
-void StartTalkExt(int x, int y, char const * str, ProcPtr parent);
+ProcPtr StartTalkExt(int x, int y, char const * str, ProcPtr parent);
 // ??? StartTalkMsg
 // ??? StartTalkMsgExt
 // ??? StartTalk
@@ -122,7 +122,7 @@ void SetTalkFlag(int flag);
 // ??? ClearTalkFlag
 // ??? CheckTalkFlag
 // ??? SetTalkPrintDelay
-void SetTalkPrintColor(int color);
+void SetTalkPrintColor(u8 color);
 // ??? TalkSkipListener_OnIdle
 // ??? Talk_OnInit
 // ??? sub_08008218
