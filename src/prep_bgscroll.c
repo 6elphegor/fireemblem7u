@@ -49,7 +49,32 @@ struct ProcCmd CONST_DATA ProcScr_PrepMuralBackground[] = {
 
 ASM_FUNC("asm/nonmatching/code_080905D4.s");
 
-ASM_FUNC("asm/nonmatching/code_08090690.s");
+void PrepMuralBackground_Loop(struct ProcPrepMuralBackground *proc)
+{
+    if (proc->unk_2C == 3) {
+        if (++proc->timer == 0x500)
+            proc->timer = 0;
+
+        SetBgOffset(BG_3, 0, proc->timer & 0xFF);
+        REG_BG3VOFS = proc->timer & 0xFF;
+        proc->unk_2C = 0;
+    }
+
+    proc->unk_2C++;
+
+    if ((proc->timer % 8) == 0) {
+        u16 * tsa = TsaConfig_PrepMuralBackground + 1;
+        int y = (proc->timer / 8 - 1) & 0x1F;
+        u8 row = (proc->timer / 8 + 0x1F) % 0x28;
+        u16 ix;
+
+        for (ix = 0; ix < 0x1E; ix++)
+            ((u16 (*)[0x20])gBg3Tm)[y][ix] = ((u16 (*)[30])tsa)[0x27 - row][ix] + proc->pal_bank * 0x1000;
+
+        CpuFastCopy(gBg3Tm + y * 0x20, (void *)(VRAM + GetBgTilemapOffset(3) + y * 0x40), 0x3C);
+    }
+}
+
 
 struct ProcPrepMuralBackground * StartPrepMuralBackground(ProcPtr parent, int pal_bank)
 {
