@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806CFFC
-sub_0806CFFC: @ 0x0806CFFC
+	thumb_func_start GetMuDisplayPosition
+GetMuDisplayPosition: @ 0x0806CFFC
 	push {r4, r7, lr}
 	sub sp, #0xc
 	mov r7, sp

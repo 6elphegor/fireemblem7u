@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806D250
-sub_0806D250: @ 0x0806D250
+	thumb_func_start PutMu
+PutMu: @ 0x0806D250
 	push {r4, r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -18,7 +18,7 @@ sub_0806D250: @ 0x0806D250
 _0806D266:
 	adds r1, r7, #4
 	ldr r0, [r7]
-	bl sub_0806CFFC
+	bl GetMuDisplayPosition
 	lsls r1, r0, #0x18
 	asrs r0, r1, #0x18
 	cmp r0, #0
