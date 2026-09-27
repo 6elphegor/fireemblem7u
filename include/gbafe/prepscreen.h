@@ -147,6 +147,7 @@ struct ProcPrepMenuDesc {
 // ParsePrepMenuDescTexts
 // DrawPrepMenuDescTexts
 void PrepMenuDescOnInit(struct ProcPrepMenuDesc * proc);
+void sub_0808E60C(struct ProcPrepMenuDesc * proc);
 void PrepMenuDescOnParse(struct ProcPrepMenuDesc * proc);
 void PrepMenuDescOnDraw(void);
 void StartPrepMenuDescHandler(int msg, ProcPtr parent);
@@ -180,7 +181,7 @@ void sub_0808F3D0(struct ProcAtMenu *proc);
 void sub_0808F43C(struct ProcAtMenu *proc);
 void sub_0808F4A8(struct ProcAtMenu *proc);
 void sub_0808F52C(struct ProcAtMenu *proc);
-void sub_808FED8(struct ProcAtMenu *proc);
+void sub_0808F598(struct ProcAtMenu *proc);
 void sub_0808F5A0(struct ProcAtMenu *proc);
 void ConvoyPromotion_Init(ProcPtr proc);
 void sub_0808F690(ProcPtr proc);
@@ -240,7 +241,7 @@ void EndPrepScreenMenu(void);
 // sub_8090A88
 // ShowPrepScreenMenuFrozenHand
 // sub_8090AC0
-void EnablePrepScreenMenu(void);
+void sub_0809019C(void);
 void MenuScroll_Init(ProcPtr proc);
 void MenuScroll_Loop(ProcPtr proc);
 // LockMenuScrollBar

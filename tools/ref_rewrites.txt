@@ -2,6 +2,7 @@
 ChapterIntro_Begin_0801FE98 sub_0801FA30
 ChapterIntro_Loop_0801E1F8 sub_0801FA88
 ChapterIntro_Loop_0801FF3C sub_0801FAD4
+EnablePrepScreenMenu sub_0809019C
 Event81_800E4A8 EvtCmd_EndLynCampaign
 Event98_800EA74 EvtCmd_ClearOnSkipFunc
 Face_0800798C sub_08007AFC
@@ -3593,6 +3594,7 @@ sub_80884A8 sub_08087B20
 sub_80884E0 CgText_808F084
 sub_8088520 CgText_OnEnd
 sub_8088548 CgText_808F0EC
+sub_80886E0 sub_08087D58
 sub_8088718 CgText_ClearSpriteText
 sub_8088768 sub_08087DE0
 sub_80887B4 GetCgTextDimensions
@@ -3652,6 +3654,7 @@ sub_808FD10 sub_0808F3D0
 sub_808FD7C sub_0808F43C
 sub_808FDE8 sub_0808F4A8
 sub_808FE6C sub_0808F52C
+sub_808FED8 sub_0808F598
 sub_808FEE0 sub_0808F5A0
 sub_808FFD0 sub_0808F690
 sub_80900E8 sub_0808F7A8
