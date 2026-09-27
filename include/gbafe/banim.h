@@ -411,13 +411,13 @@ int CheckEkrHitDone(void);
 // ??? sub_0804E648
 // ??? sub_0804E6DC
 ProcPtr NewEfxQuakePure(int, int);
-// ??? sub_0804E77C
+// ??? efxQuakePure_Loop
 // ??? NewEfxHitQuakePure
 // ??? nullsub_48
-void NewEfxQuake(int type);
-// ??? sub_0804E900
+ProcPtr NewEfxQuake(int type);
+// ??? efxQuake_Loop
 // ??? NewEfxHitQuake
-// ??? sub_0804EC88
+// ??? efxHitQuake_Loop
 void NewEfxFlashBgWhite(struct Anim * anim, int duartion);
 void NewEfxFlashBgRed(struct Anim * anim, int duartion);
 void NewEfxFlashBgBlack(struct Anim * anim, int duartion);
