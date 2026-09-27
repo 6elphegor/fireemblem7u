@@ -6,10 +6,33 @@ extern u16 gManimSpellAssocPalBackup[0xA0];
 extern u16 const Pal_AllBlack[];
 extern u8 const Img_ManimSpark[];
 extern u16 const Pal_ManimSpark[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimSpellAssocFade[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimSpellAssocResetPal[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimBgShaker[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimStarRotation[];
+
+CONST_DATA struct ProcCmd ProcScr_ManimSpellAssocFade[] = {
+    PROC_CALL(ManimSpellAssocFade_Main),
+    PROC_SLEEP(15),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimSpellAssocResetPal[] = {
+    PROC_CALL(ManimSpellAssocResetPal_Main),
+    PROC_SLEEP(16),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimBgShaker[] = {
+    PROC_CALL(ManimBgShaker_Init),
+    PROC_REPEAT(ManimBgShaker_Main),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimStarRotation[] = {
+    PROC_CALL(LockGame),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimStarRotation_Init),
+    PROC_REPEAT(ManimStarRotation_Main),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
 
 void StartManimSpellAssocFadeExt(ProcPtr proc)
 {

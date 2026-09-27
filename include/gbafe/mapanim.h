@@ -312,7 +312,7 @@ void ManimBerserkFx_Init(struct ManimEffectProc * proc);
 void ManimRepairFx_PlaySe(struct ManimEffectProc * proc);
 void ManimRepairFx_Init(struct ManimEffectProc * proc);
 // sub_8073648
-// ManimRepairFx_Blink
+void ManimRepairFx_Blink(struct ManimEffectProc * proc);
 void ManimRepairFx_FadeOut(struct ManimEffectProc * proc);
 // sub_807384C
 void ManimRestoreFx_Init(struct ManimEffectProc * proc);

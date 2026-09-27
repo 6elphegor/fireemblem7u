@@ -4,7 +4,6 @@
 u8 GetSpellAssocReturnBool(u16 item);
 u8 GetSpellAssocFlashColor(u16 item);
 
-extern struct ProcCmd CONST_DATA ProcScr_ManimDefaultItemEffect[];
 extern u8 const Img_ManimAntitoxin[];
 extern u16 const Pal_ManimAntitoxin[];
 extern u16 const Pal_ManimPureWater[];
@@ -13,6 +12,392 @@ extern u8 const Img_ManimMend[];
 extern u8 const Img_ManimRecover[];
 extern u8 const Img_ManimLatona1[];
 extern u16 const Pal_ManimLatona[];
+
+CONST_DATA struct ProcCmd ProcScr_ManimDefaultItemEffect[] = {
+    PROC_CALL(Manim_BeginSubjectFastAnim),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(8),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(20),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocFortify[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocLatona),
+    PROC_SLEEP(2),
+    PROC_SLEEP(200),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocAntitoxin[] = {
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocAntitoxin),
+    PROC_SLEEP(2),
+    PROC_SLEEP(70),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocPureWater[] = {
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocPureWater),
+    PROC_SLEEP(2),
+    PROC_SLEEP(70),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocElixir[] = {
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocElixir),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocVulnerary[] = {
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocVulnerary),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocHeal[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocHeal),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocMend[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocMend),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocRecover[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocRecover),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocPhysic[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocHeal),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocTorch[] = {
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocTorch),
+    PROC_SLEEP(2),
+    PROC_SLEEP(100),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocUnlock[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_SpellWarpMoveCamera),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocUnlock),
+    PROC_SLEEP(2),
+    PROC_SLEEP(140),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocBerserk[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocBerserk),
+    PROC_SLEEP(2),
+    PROC_SLEEP(50),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocSleep[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocSleep),
+    PROC_SLEEP(2),
+    PROC_SLEEP(140),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocSilence[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocSilence),
+    PROC_SLEEP(2),
+    PROC_SLEEP(64),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocRestore[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocRestore),
+    PROC_SLEEP(2),
+    PROC_SLEEP(80),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocRepair[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocRepair),
+    PROC_SLEEP(2),
+    PROC_SLEEP(80),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocUnused[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_PoisonEffectOnTarget),
+    PROC_SLEEP(2),
+    PROC_SLEEP(94),
+    PROC_SLEEP(10),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_PoisonDmgMapEffect[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_PoisonEffectOnTarget),
+    PROC_SLEEP(2),
+    PROC_SLEEP(50),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(44),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_CritAtkMapEffect[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_BeginRoundSpecificAnims),
+    PROC_SLEEP(30),
+    PROC_REPEAT(Manim_WaitForHpBar),
+    PROC_SLEEP(20),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocBarrier[] = {
+    PROC_CALL(DisableTilesetPalAnim),
+    PROC_CALL(Manim_StartSpellAssocFade),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_CallSpellAssocBarrier),
+    PROC_SLEEP(2),
+    PROC_SLEEP(60),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellAssocResetPal),
+    PROC_SLEEP(1),
+    PROC_CALL(EnableTilesetPalAnim),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_SpellAssocWarp[] = {
+    PROC_CALL(Manim_MoveCameraOnTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_AnimateSubjectIdle),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellWarpStartFlashy),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SpellWarpStartFlashFade),
+    PROC_SLEEP(20),
+    PROC_CALL(Manim_SpellWarpStartExplosion),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_SpellWarpMuHide),
+    PROC_SLEEP(8),
+    PROC_CALL(Manim_SpellWarpSetNewPosition),
+    PROC_SLEEP(30),
+    PROC_CALL(Manim_SpellWarpMoveCamera),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_SpellWarpStartImplosion),
+    PROC_SLEEP(40),
+    PROC_CALL(Manim_SpellWarpStartFlashyAtNewPos),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_SpellWarpMuShow),
+    PROC_CALL(Manim_SpellWarpEndFlashFade),
+    PROC_SLEEP(16),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_MoveCameraOnSubject),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_SubjectResetAnim),
+    PROC_SLEEP(30),
+    PROC_END,
+};
 
 struct ProcCmd const * Manim_GetRoundProcScript(void)
 {

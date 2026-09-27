@@ -5,6 +5,12 @@ u16 EWRAM_DATA gManimScanlineBufB[DISPLAY_HEIGHT * 2] = { 0 };
 u16 * EWRAM_DATA gManimScanlineBufs[2] = { 0 };
 u16 * EWRAM_DATA gManimActiveScanlineBuf = NULL;
 
+CONST_DATA struct ProcCmd ProcScr_ManimShiftingSineWaveScanlineBuf[] = {
+    PROC_CALL(ManimShiftingSineWave_Init),
+    PROC_REPEAT(ManimShiftingSineWave_Main),
+    PROC_END,
+};
+
 void InitScanlineEffect(void)
 {
     InitScanlineBuf(gManimScanlineBufA);

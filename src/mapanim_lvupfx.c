@@ -6,8 +6,41 @@ extern u16 const Pal_ManimLevelUpFrame[];
 extern u8 const Img_ManimLevelUpStatGain[];
 extern u8 const Img_ManimLevelUpStatGainDigits[];
 extern u16 const SpriteAnim_ManimLevelUpStatGain[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimLevelUpStatGainLabel[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimLevelUpLabelColor[];
+
+extern int const gMid_Lv;
+extern int const gMid_Hp;
+extern int const gMid_Str;
+extern int const gMid_Mag;
+extern int const gMid_Skl;
+extern int const gMid_Spd;
+extern int const gMid_Lck;
+extern int const gMid_Def;
+extern int const gMid_Res;
+extern int const gMid_Con;
+
+CONST_DATA struct ManimLevelUpLabelInfo gManimLevelUpLabelInfoList[] = {
+    { 9, 0, { 0 }, { &gMid_Lv, &gMid_Lv } },
+    { 1, 4, { 0 }, { &gMid_Hp, &gMid_Hp } },
+    { 1, 6, { 0 }, { &gMid_Str, &gMid_Mag } },
+    { 1, 8, { 0 }, { &gMid_Skl, &gMid_Skl } },
+    { 1, 10, { 0 }, { &gMid_Spd, &gMid_Spd } },
+    { 9, 4, { 0 }, { &gMid_Lck, &gMid_Lck } },
+    { 9, 6, { 0 }, { &gMid_Def, &gMid_Def } },
+    { 9, 8, { 0 }, { &gMid_Res, &gMid_Res } },
+    { 9, 10, { 0 }, { &gMid_Con, &gMid_Con } },
+    { 0xFF, 0xFF },
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimLevelUpStatGainLabel[] = {
+    PROC_SET_END_CB(ManimLevelUpStatGainLabel_Finish),
+    PROC_BLOCK,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimLevelUpLabelColor[] = {
+    PROC_CALL(ManimLevelUpLabelColor_Init),
+    PROC_REPEAT(ManimLevelUpLabelColor_Loop),
+    PROC_END,
+};
 
 void PutManimLevelUpFrame(int actor, int x, int y)
 {

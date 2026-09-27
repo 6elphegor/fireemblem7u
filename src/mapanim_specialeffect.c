@@ -10,8 +10,20 @@ extern u16 const Obj_WallBreakAnim[];
 extern u8 const Img_ManimPoison[];
 extern u16 const Pal_ManimPoison[];
 extern u16 const SpriteAnim_ManimPoison[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimWallBreak[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimPoison[];
+
+CONST_DATA struct ProcCmd ProcScr_ManimWallBreak[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimWallBreakAnim_Init),
+    PROC_WHILE(SpriteAnimProcExists),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimPoison[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimPoisonAnim_Init),
+    PROC_WHILE(SpriteAnimProcExists),
+    PROC_END,
+};
 
 void StartManimMissAnim(struct Unit * unit)
 {

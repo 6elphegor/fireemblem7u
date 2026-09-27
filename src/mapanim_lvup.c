@@ -3,7 +3,33 @@
 extern u16 const Pal_ManimLevelUpStatGainCycling[];
 extern u8 const Img_ManimLevelUpText[];
 extern u16 const SpriteAnim_ManimLevelUpText[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimLevelUp[];
+
+CONST_DATA struct ProcCmd ProcScr_ManimLevelUp[] = {
+    PROC_SET_END_CB(ManimLevelUp_Clear),
+    PROC_SLEEP(1),
+    PROC_CALL(InitManimLevelUpWindow),
+    PROC_CALL(ManimLevelUp_DimBgm),
+    PROC_YIELD,
+    PROC_CALL(ManimLevelUp_StartLevelUpText),
+    PROC_SLEEP(70),
+    PROC_CALL(ManimLevelUp_EndLevelUpText),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimLevelUp_RestoreBgm),
+    PROC_YIELD,
+    PROC_CALL(ManimLevelUp_InitMainScreen),
+    PROC_YIELD,
+    PROC_REPEAT(ManimLevelUp_ScrollIn),
+    PROC_SLEEP(30),
+    PROC_REPEAT(ManimLevelUp_PutStatGainLabels),
+    PROC_SLEEP(60),
+    PROC_CALL(EndManimLevelUpStatGainLabels),
+    PROC_SLEEP(1),
+    PROC_REPEAT(ManimLevelUp_ScrollOut),
+    PROC_CALL(ClearManimLevelUpWindow),
+    PROC_CALL(ClearTalk),
+    PROC_SLEEP(4),
+    PROC_END,
+};
 
 void StartManimLevelUp(int actor, ProcPtr parent)
 {

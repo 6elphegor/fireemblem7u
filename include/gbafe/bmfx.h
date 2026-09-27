@@ -187,7 +187,7 @@ void ChapterIntro_SetFasten(struct ProcChapterIntrofx * proc);
 // ProcDanceAnim_Loop
 // ProcDanceAnim_ResetTimer
 // ProcDanceAnim_Loop_Blend
-// StartDanceringAnim
+void StartDanceringAnim(ProcPtr parent);
 // ProcEventWrapAnim_Init
 // ProcEventWrapAnim_Loop
 // ProcEventWrapAnim_End

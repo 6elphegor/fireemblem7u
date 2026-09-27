@@ -11,10 +11,36 @@ extern u16 const Pal_ManimInfoWindowBlue[];
 extern u16 const Pal_ManimInfoWindowRed[];
 extern u16 const Pal_ManimInfoWindowGreen[];
 extern u16 const Pal_ManimInfoWindowPurple[];
-extern int const gManimInfoWindowBarPalLut[];
-extern u16 const gManimInfoWindowBarInfo[];
-extern u8 const * const Tsa_ManimInfoWindowLut[][2];
-extern struct ProcCmd ProcScr_ManimInfoWindow[];
+
+CONST_DATA u16 gManimInfoWindowBarInfo[] = {
+    0x04, 0x2A,
+    0x09, 0x2F,
+    0x09, 0x39,
+    0x09, 0x43,
+    0x09, 0x4D,
+    0x05, 0x57,
+    0x00, 0x00,
+};
+
+CONST_DATA int gManimInfoWindowBarPalLut[] = {
+    5, 6,
+};
+
+CONST_DATA u8 const * Tsa_ManimInfoWindowLut[][2] = {
+    { (u8 const *) 0x083F424C, (u8 const *) 0x083F424C },
+    { (u8 const *) 0x083F424C, (u8 const *) 0x083F424C },
+    { (u8 const *) 0x083F4278, (u8 const *) 0x083F42A4 },
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimInfoWindow[] = {
+    PROC_SET_END_CB(ManimWindow_Clear),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimInfoWindow_InitShake),
+    PROC_CALL(ManimInfoWindow_Init),
+    PROC_REPEAT(ManimInfoWindow_Shake),
+    PROC_REPEAT(ManimInfoWindow_UpdateHp),
+    PROC_END,
+};
 
 void UnpackManimWindowDigits(int chr)
 {

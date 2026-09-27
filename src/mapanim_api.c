@@ -6,11 +6,121 @@ u8 GetWeaponAnimActorCount(u16 item);
 struct ProcCmd * GetWeaponAnimManimSpecialScr(u16 item);
 
 extern u8 const gManimActorLayerLut[];
-extern struct ProcCmd ProcScr_ManimPoisonDmg[];
-extern struct ProcCmd ProcScr_ManimCritAtk[];
-extern struct ProcCmd ProcScr_ManimSteal[];
-extern struct ProcCmd ProcScr_ManimDance[];
-extern struct ProcCmd ProcScr_ManimBattle[];
+extern struct ProcCmd CONST_DATA ProcScr_MuDeathFade[];
+extern struct ProcCmd CONST_DATA ProcScr_PoisonDmgMapEffect[];
+extern struct ProcCmd CONST_DATA ProcScr_CritAtkMapEffect[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimEnd[];
+
+CONST_DATA struct ProcCmd ProcScr_ManimPoisonDmg[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(Manim_MoveCameraOntoSubject),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_InitInfoBox),
+    PROC_SLEEP(15),
+    PROC_START_CHILD_BLOCKING(ProcScr_PoisonDmgMapEffect),
+    PROC_SLEEP(1),
+    PROC_JUMP(ProcScr_ManimEnd),
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimCritAtk[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(Manim_MoveCameraOntoSubject),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_InitInfoBox),
+    PROC_SLEEP(15),
+    PROC_START_CHILD_BLOCKING(ProcScr_CritAtkMapEffect),
+    PROC_SLEEP(1),
+    PROC_JUMP(ProcScr_ManimEnd),
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimSteal[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(Manim_MoveCameraOntoTarget),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_MoveCameraOntoSubject),
+    PROC_SLEEP(2),
+    PROC_SLEEP(20),
+    PROC_CALL(Manim_BeginSubjectFastAnim),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsTowardsTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_PlayStealSe),
+    PROC_SLEEP(20),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveSubjectsAwayFromTarget),
+    PROC_SLEEP(20),
+    PROC_JUMP(ProcScr_ManimEnd),
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimDance[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(Manim_MoveCameraOntoSubject),
+    PROC_SLEEP(2),
+    PROC_SLEEP(20),
+    PROC_CALL(Manim_StartDanceAnim),
+    PROC_SLEEP(80),
+    PROC_CALL(StartDanceringAnim),
+    PROC_SLEEP(10),
+    PROC_CALL(Manim_StopDanceAnim),
+    PROC_SLEEP(20),
+    PROC_JUMP(ProcScr_ManimEnd),
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimBattle[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(Manim_PrepareBattleTalk),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_MoveCameraOntoSubject),
+    PROC_SLEEP(2),
+    PROC_CALL(Manim_CallBattleQuoteEvents),
+    PROC_WHILE(IsEventRunning),
+    PROC_SLEEP(5),
+    PROC_CALL(SetBattleMuPalette),
+    PROC_CALL(InitManimActorFacings),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_InitInfoBox),
+    PROC_SLEEP(15),
+    PROC_LABEL(0),
+    PROC_REPEAT(Manim_PrepareNextBattleRound),
+    PROC_CALL(Manim_DisplayRoundAnim),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_ShowPoisonEffectIfAny),
+    PROC_SLEEP(1),
+    PROC_SLEEP(5),
+    PROC_GOTO(0),
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimEnd[] = {
+    PROC_CALL(Manim_DisplayDeathQuote),
+    PROC_WHILE(IsEventRunning),
+    PROC_CALL(Manim_DisplayDeathFade),
+    PROC_WHILE_EXISTS(ProcScr_MuDeathFade),
+    PROC_CALL(EndManimInfoWindow),
+    PROC_SLEEP(1),
+    PROC_CALL(Manim_StoleItemPopup),
+    PROC_YIELD,
+    PROC_CALL(Manim_DisplayExpBar),
+    PROC_YIELD,
+    PROC_CALL(Manim_WeaponBrokePopup),
+    PROC_SLEEP(8),
+    PROC_CALL(Manim_WeaponLevelGainedPopup),
+    PROC_YIELD,
+    PROC_CALL(Manim_MoveCameraOntoSubject),
+    PROC_SLEEP(2),
+    PROC_CALL(UnlockGame),
+    PROC_CALL(Manim_Finish),
+    PROC_END,
+};
 
 void InitManimActor(int actor, struct BattleUnit * bu, struct Unit * unit)
 {

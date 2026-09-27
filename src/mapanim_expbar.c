@@ -5,7 +5,41 @@ extern u8 const Img_EkrExpBarChange[];
 extern u8 const Img_BarNumfx[];
 extern u16 const Pal_ExpBar[];
 extern u8 const Tsa_ManimExpBar[];
-extern u16 const gManimExpBarInfo[];
+
+CONST_DATA u16 gManimExpBarInfo[] = {
+    0x06, 0x207,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x09, 0x20E,
+    0x06, 0x218,
+    0x00, 0x00,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimExpBar[] = {
+    PROC_SET_END_CB(ManimWindow_Clear),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimExpBar_Init),
+    PROC_CALL(ManimExpBar_InitShake),
+    PROC_REPEAT(ManimExpBar_Shake),
+    PROC_SLEEP(20),
+    PROC_CALL(ManimExpBar_PlaySe),
+    PROC_SLEEP(2),
+    PROC_REPEAT(ManimExpBar_Increment),
+    PROC_SLEEP(20),
+    PROC_CALL(ManimWindow_Clear),
+    PROC_SLEEP(8),
+    PROC_CALL(ManimExpBar_LevelUpIfPossible),
+    PROC_SLEEP(1),
+    PROC_END,
+};
 
 void PutManimExpBar(int x, int y, int exp)
 {

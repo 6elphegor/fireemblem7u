@@ -3,21 +3,12 @@
 extern u8 const Img_ManimLatona1[];
 extern u8 const Img_ManimLatona2[];
 extern u16 const Pal_ManimLatona[];
-extern s16 const gManimLatonaShinePos[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimLatonaShine[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimLatona[];
 
 extern u8 const Img_ManimAntitoxinFrames[];
-extern u8 CONST_DATA gManimAntitoxinFrameLut[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimAntitoxin[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimStatusHealSe[];
 
 extern u8 const Img_ManimWarpFlashy[];
 extern u16 const Pal_ManimWarpFlashy[];
 extern u8 const Img_ManimWarpFlashyFrames[];
-extern u8 CONST_DATA gManimWarpFlashyFrameLut[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimEffectAnimator[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimWarpFlashy[];
 
 void sub_0807689C(void);
 void sub_080769CC(int x, int y, int radius);
@@ -25,7 +16,6 @@ void sub_080769CC(int x, int y, int radius);
 extern u8 const Img_ManimTorch[];
 extern u16 const Pal_ManimTorch[];
 extern u16 const SpriteAnim_ManimTorch[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimTorch[];
 
 extern u8 const Img_ManimBerserk[];
 extern u16 const Pal_ManimBerserk[];
@@ -33,24 +23,18 @@ extern u16 const SpriteAnim_ManimBerserk[];
 extern u8 const Img_ManimRepair[];
 extern u16 const Pal_ManimRepair[];
 extern u8 const Tsa_ManimRepair[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimBerserk[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimRepair[];
 
 extern u16 const Pal_ManimRestore[];
 extern u8 const Tsa_ManimRestore[];
 extern u8 const Img_ManimSleep[];
 extern u16 const Pal_ManimSleep[];
 extern u16 const SpriteAnim_ManimSleep[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimRestore[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimSleep[];
 
 void sub_08076A78(void);
 void sub_08076D8C(int x, int y, int radius, int max, u8 const * lut);
 void StartManimBgScroll(int bg, int x_inc, int y_inc, ProcPtr parent);
 
-extern u8 CONST_DATA gManimWaveLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimShiftingSineWaveScanlineBuf[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimWaveFx[];
 
 extern u8 const Img_ManimSilenceBg[];
 extern u8 const Img_ManimSilenceObj[];
@@ -59,8 +43,6 @@ extern u16 const SpriteAnim_ManimSilence[];
 extern u8 const Img_ManimBarrier[];
 extern u16 const Pal_ManimBarrier[];
 extern u8 const Tsa_ManimBarrier[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimSilence[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimBarrier[];
 
 void StartAvailableDoorTileEvent(s8 x, s8 y);
 
@@ -70,8 +52,196 @@ extern u8 const Img_ManimUnlockObj[];
 extern u16 const Pal_ManimUnlockObj[];
 extern u16 const Pal_ManimUnlockBg[];
 extern u16 const SpriteAnim_ManimUnlock[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimUnlock[];
-extern struct ProcCmd CONST_DATA ProcScr_ManimBgScroll[];
+
+extern struct ProcCmd CONST_DATA ProcScr_ManimLatonaBlink[];
+
+CONST_DATA struct ProcCmd ProcScr_ManimLatona[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimLatonaFx_Init),
+    PROC_REPEAT(ManimLatonaFx_Main),
+    PROC_START_CHILD_BLOCKING(ProcScr_ManimLatonaBlink),
+    PROC_SLEEP(60),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA s16 gManimLatonaShinePos[] = {
+    1, -1,
+    -2, 2,
+    2, 1,
+    -2, -2,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimLatonaBlink[] = {
+    PROC_CALL(ManimLatonaBlink_Init),
+    PROC_REPEAT(ManimLatonaBlink_Main),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimLatonaShine[] = {
+    PROC_SET_END_CB(ManimLatonaShine_End),
+    PROC_CALL(ManimLatonaShine_Init),
+    PROC_YIELD,
+    PROC_CALL(ManimLatonaShine_Start),
+    PROC_REPEAT(ManimLatonaShine_FadeIn),
+    PROC_REPEAT(ManimLatonaShine_Wait),
+    PROC_REPEAT(ManimLatonaShine_FadeOut),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimAntitoxin[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimAntitoxinFx_Init),
+    PROC_REPEAT(ManimAntitoxinFx_Main),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA u8 gManimAntitoxinFrameLut[] = {
+    0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+    0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+    0x10, 0x11, 0x12, 0x13, 0xFF,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimStatusHealSe[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimStatusHealSe_Play),
+    PROC_SLEEP(100),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimEffectAnimator[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimEffectAnimator_Init),
+    PROC_REPEAT(ManimEffectAnimator_FadeIn),
+    PROC_SLEEP(30),
+    PROC_REPEAT(ManimEffectAnimator_FadeOut),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimWarpFlashy[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimWarpFlashy_Init),
+    PROC_REPEAT(ManimWarpFlashy_Main),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA u8 gManimWarpFlashyFrameLut[] = {
+    0x00, 0x01, 0x02, 0x03, 0x03, 0x03, 0x03, 0x03,
+    0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x04,
+    0x05, 0x06, 0x07, 0x08, 0x09, 0xFF,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimTorch[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimTorchFx_Init),
+    PROC_SLEEP(30),
+    PROC_REPEAT(ManimTorchFx_Expand),
+    PROC_REPEAT(ManimTorchFx_Fade),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimTorchFx_ResetHBlank),
+    PROC_CALL(ManimSpellAnim_EndWithHBlank),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimBerserk[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimBerserkFx_Init),
+    PROC_SLEEP(120),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimRepair[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimRepairFx_Init),
+    PROC_CALL(ManimRepairFx_PlaySe),
+    PROC_REPEAT(ManimRepairFx_Main),
+    PROC_REPEAT(ManimRepairFx_Blink),
+    PROC_REPEAT(ManimRepairFx_FadeOut),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimRestore[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimRepairFx_Init),
+    PROC_CALL(ManimRestoreFx_Init),
+    PROC_REPEAT(ManimRestoreFx_Main),
+    PROC_REPEAT(ManimRepairFx_Blink),
+    PROC_REPEAT(ManimRepairFx_FadeOut),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimSleep[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimSleepFx_Init),
+    PROC_SLEEP(50),
+    PROC_CALL(ManimSleepFx_Anim1),
+    PROC_SLEEP(50),
+    PROC_CALL(ManimSleepFx_Anim2),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimWaveFx[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimWaveFx_Init),
+    PROC_SLEEP(10),
+    PROC_REPEAT(ManimWaveFx_Expand),
+    PROC_SLEEP(60),
+    PROC_REPEAT(ManimWaveFx_Shrink),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimSpellAnim_EndWithHBlank),
+    PROC_END,
+};
+
+CONST_DATA u8 gManimWaveLut[] = {
+    0x04, 0x06, 0x07, 0x08, 0x08, 0x09, 0xFF,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimSilence[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimSilenceFx_Init),
+    PROC_SLEEP(50),
+    PROC_CALL(ManimSilenceFx_Start),
+    PROC_SLEEP(40),
+    PROC_REPEAT(ManimSilenceFx_Main),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimBarrier[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimBarrierFx_Init),
+    PROC_REPEAT(ManimBarrierFx_Main),
+    PROC_CALL(ManimSpellAnim_End),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimUnlock[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ManimUnlockFx_Init),
+    PROC_REPEAT(ManimUnlockFx_Open),
+    PROC_SLEEP(80),
+    PROC_REPEAT(ManimUnlockFx_Close),
+    PROC_SLEEP(1),
+    PROC_CALL(ManimSpellAnim_EndWithHBlank),
+    PROC_CALL(ManimUnlockFx_HideUnitAndOpenDoor),
+    PROC_SLEEP(4),
+    PROC_CALL(ManimUnlockFx_UnhideUnit),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_ManimBgScroll[] = {
+    PROC_REPEAT(ManimBgScroll_Main),
+    PROC_END,
+};
 
 void StartManimLatonaFx(struct Unit * unit)
 {
