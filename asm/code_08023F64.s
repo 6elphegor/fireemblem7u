@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08023F64
-sub_08023F64: @ 0x08023F64
+	thumb_func_start MakeTakeTargetList
+MakeTakeTargetList: @ 0x08023F64
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]

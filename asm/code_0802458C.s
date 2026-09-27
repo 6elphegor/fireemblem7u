@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0802458C
-sub_0802458C: @ 0x0802458C
+	thumb_func_start MakeTargetListForAdjacentHeal
+MakeTargetListForAdjacentHeal: @ 0x0802458C
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]

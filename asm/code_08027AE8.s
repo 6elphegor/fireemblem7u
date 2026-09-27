@@ -5,7 +5,7 @@
 	thumb_func_start sub_08027AE8
 sub_08027AE8: @ 0x08027AE8
 	push {r4, lr}
-	bl sub_080249C8
+	bl MakeTargetListForHammerne
 	ldr r0, _08027B28 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #1

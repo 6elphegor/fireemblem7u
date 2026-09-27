@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08024B98
-sub_08024B98: @ 0x08024B98
+	thumb_func_start TryAddToLightRuneTargetList
+TryAddToLightRuneTargetList: @ 0x08024B98
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0

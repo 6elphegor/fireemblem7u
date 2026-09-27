@@ -13,7 +13,7 @@ sub_08022B34: @ 0x08022B34
 	cmp r0, #0
 	bne _08022B52
 	adds r0, r2, #0
-	bl sub_08024094
+	bl MakeTalkTargetList
 	bl CountTargets
 	cmp r0, #0
 	bne _08022B5C

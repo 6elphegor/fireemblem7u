@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start MakeTargetListForDanceRing
-MakeTargetListForDanceRing: @ 0x08024B64
+	thumb_func_start MakeTargetListForMine
+MakeTargetListForMine: @ 0x08024B64
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]

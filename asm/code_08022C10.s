@@ -11,7 +11,7 @@ sub_08022C10: @ 0x08022C10
 	beq _08022C34
 	ldr r0, _08022C2C @ =0x03004690
 	ldr r0, [r0]
-	bl sub_080240C8
+	bl MakeTargetListForSupport
 	ldr r0, _08022C30 @ =0x08B95C18
 	bl StartMapSelect
 	movs r0, #7

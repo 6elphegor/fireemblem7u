@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08023944
-sub_08023944: @ 0x08023944
+	thumb_func_start ForEachUnitInMovement
+ForEachUnitInMovement: @ 0x08023944
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r0, _080239A4 @ =0x0202E3D8

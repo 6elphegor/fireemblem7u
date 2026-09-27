@@ -118,10 +118,10 @@ _08026D10: @ jump table
 	.4byte _08026F44 @ case 79
 	.4byte _08026EC8 @ case 80
 _08026E54:
-	ldr r1, _08026E58 @ =sub_0802458C
+	ldr r1, _08026E58 @ =MakeTargetListForAdjacentHeal
 	b _08026F22
 	.align 2, 0
-_08026E58: .4byte sub_0802458C
+_08026E58: .4byte MakeTargetListForAdjacentHeal
 _08026E5C:
 	ldr r1, _08026E60 @ =MakeTargetListForRangedHeal
 	b _08026F22
@@ -133,50 +133,50 @@ _08026E64:
 	.align 2, 0
 _08026E68: .4byte MakeTargetListForRangedHeal
 _08026E6C:
-	ldr r1, _08026E70 @ =sub_0802465C
+	ldr r1, _08026E70 @ =MakeTargetListForRestore
 	b _08026F22
 	.align 2, 0
-_08026E70: .4byte sub_0802465C
+_08026E70: .4byte MakeTargetListForRestore
 _08026E74:
-	ldr r1, _08026E78 @ =sub_0802474C
+	ldr r1, _08026E78 @ =MakeTargetListForRescueStaff
 	b _08026F22
 	.align 2, 0
-_08026E78: .4byte sub_0802474C
+_08026E78: .4byte MakeTargetListForRescueStaff
 _08026E7C:
-	ldr r1, _08026E80 @ =sub_080246E0
+	ldr r1, _08026E80 @ =MakeTargetListForBarrier
 	b _08026F22
 	.align 2, 0
-_08026E80: .4byte sub_080246E0
+_08026E80: .4byte MakeTargetListForBarrier
 _08026E84:
-	ldr r1, _08026E88 @ =sub_08024858
+	ldr r1, _08026E88 @ =MakeTargetListForSilence
 	b _08026F22
 	.align 2, 0
-_08026E88: .4byte sub_08024858
+_08026E88: .4byte MakeTargetListForSilence
 _08026E8C:
-	ldr r1, _08026E90 @ =sub_08024880
+	ldr r1, _08026E90 @ =MakeTargetListForSleep
 	b _08026F22
 	.align 2, 0
-_08026E90: .4byte sub_08024880
+_08026E90: .4byte MakeTargetListForSleep
 _08026E94:
-	ldr r1, _08026E98 @ =sub_080248A8
+	ldr r1, _08026E98 @ =MakeTargetListForBerserk
 	b _08026F22
 	.align 2, 0
-_08026E98: .4byte sub_080248A8
+_08026E98: .4byte MakeTargetListForBerserk
 _08026E9C:
-	ldr r1, _08026EA0 @ =sub_08024908
+	ldr r1, _08026EA0 @ =MakeTargetListForWarp
 	b _08026F22
 	.align 2, 0
-_08026EA0: .4byte sub_08024908
+_08026EA0: .4byte MakeTargetListForWarp
 _08026EA4:
-	ldr r1, _08026EA8 @ =sub_080249C8
+	ldr r1, _08026EA8 @ =MakeTargetListForHammerne
 	b _08026F22
 	.align 2, 0
-_08026EA8: .4byte sub_080249C8
+_08026EA8: .4byte MakeTargetListForHammerne
 _08026EAC:
-	ldr r1, _08026EB0 @ =sub_0802493C
+	ldr r1, _08026EB0 @ =MakeTargetListForUnlock
 	b _08026F22
 	.align 2, 0
-_08026EB0: .4byte sub_0802493C
+_08026EB0: .4byte MakeTargetListForUnlock
 _08026EB4:
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -216,15 +216,15 @@ _08026EF8:
 	bl CanUnitUseLockpickItem
 	b _08026F28
 _08026F00:
-	ldr r1, _08026F04 @ =MakeTargetListForDanceRing
+	ldr r1, _08026F04 @ =MakeTargetListForMine
 	b _08026F22
 	.align 2, 0
-_08026F04: .4byte MakeTargetListForDanceRing
+_08026F04: .4byte MakeTargetListForMine
 _08026F08:
-	ldr r1, _08026F0C @ =MakeTargetListForMine
+	ldr r1, _08026F0C @ =MakeTargetListForLightRune
 	b _08026F22
 	.align 2, 0
-_08026F0C: .4byte MakeTargetListForMine
+_08026F0C: .4byte MakeTargetListForLightRune
 _08026F10:
 	ldr r1, _08026F1C @ =0x0202BBF8
 	ldrb r2, [r1, #0xd]
@@ -235,7 +235,7 @@ _08026F10:
 	.align 2, 0
 _08026F1C: .4byte 0x0202BBF8
 _08026F20:
-	ldr r1, _08026F30 @ =sub_08024C54
+	ldr r1, _08026F30 @ =MakeTargetListForDanceRing
 _08026F22:
 	adds r0, r4, #0
 	bl HasSelectTarget
@@ -244,7 +244,7 @@ _08026F28:
 	asrs r0, r0, #0x18
 	b _08026F46
 	.align 2, 0
-_08026F30: .4byte sub_08024C54
+_08026F30: .4byte MakeTargetListForDanceRing
 _08026F34:
 	ldr r0, [r4, #0xc]
 	movs r1, #0x80

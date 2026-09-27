@@ -5,7 +5,7 @@
 	thumb_func_start sub_080279B8
 sub_080279B8: @ 0x080279B8
 	push {r4, lr}
-	bl sub_08024908
+	bl MakeTargetListForWarp
 	ldr r0, _080279FC @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #1

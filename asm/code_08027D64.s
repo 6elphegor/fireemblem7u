@@ -5,7 +5,7 @@
 	thumb_func_start sub_08027D64
 sub_08027D64: @ 0x08027D64
 	push {r4, lr}
-	bl sub_080246E0
+	bl MakeTargetListForBarrier
 	ldr r0, _08027D94 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #1

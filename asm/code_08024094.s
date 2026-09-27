@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08024094
-sub_08024094: @ 0x08024094
+	thumb_func_start MakeTalkTargetList
+MakeTalkTargetList: @ 0x08024094
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -15,7 +15,7 @@ sub_08024094: @ 0x08024094
 	ldr r0, [r0]
 	movs r1, #0
 	bl BmMapFillg
-	ldr r2, _080240C4 @ =sub_0802404C
+	ldr r2, _080240C4 @ =TryAddUnitToTalkTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl ForEachAdjacentUnit
@@ -25,4 +25,4 @@ sub_08024094: @ 0x08024094
 	.align 2, 0
 _080240BC: .4byte 0x02033E40
 _080240C0: .4byte 0x0202E3E8
-_080240C4: .4byte sub_0802404C
+_080240C4: .4byte TryAddUnitToTalkTargetList

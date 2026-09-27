@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080242E8
-sub_080242E8: @ 0x080242E8
+	thumb_func_start MakeTerrainHealTargetList
+MakeTerrainHealTargetList: @ 0x080242E8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080249C8
-sub_080249C8: @ 0x080249C8
+	thumb_func_start MakeTargetListForHammerne
+MakeTargetListForHammerne: @ 0x080249C8
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]

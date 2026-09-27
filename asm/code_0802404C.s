@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0802404C
-sub_0802404C: @ 0x0802404C
+	thumb_func_start TryAddUnitToTalkTargetList
+TryAddUnitToTalkTargetList: @ 0x0802404C
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x30

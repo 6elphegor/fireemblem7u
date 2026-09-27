@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080240C8
-sub_080240C8: @ 0x080240C8
+	thumb_func_start MakeTargetListForSupport
+MakeTargetListForSupport: @ 0x080240C8
 	push {r4, r5, r6, r7, lr}
 	ldr r4, _0802416C @ =0x02033E40
 	str r0, [r4]

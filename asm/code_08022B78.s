@@ -11,7 +11,7 @@ sub_08022B78: @ 0x08022B78
 	beq _08022B9C
 	ldr r0, _08022B94 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08024094
+	bl MakeTalkTargetList
 	ldr r0, _08022B98 @ =0x08B95C38
 	bl StartMapSelect
 	movs r0, #7

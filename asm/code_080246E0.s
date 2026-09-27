@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080246E0
-sub_080246E0: @ 0x080246E0
+	thumb_func_start MakeTargetListForBarrier
+MakeTargetListForBarrier: @ 0x080246E0
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]

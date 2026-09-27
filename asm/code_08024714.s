@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08024714
-sub_08024714: @ 0x08024714
+	thumb_func_start TryAddUnitToRescueStaffTargetList
+TryAddUnitToRescueStaffTargetList: @ 0x08024714
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08024748 @ =0x02033E40

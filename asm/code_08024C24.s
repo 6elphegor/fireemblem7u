@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08024C24
-sub_08024C24: @ 0x08024C24
+	thumb_func_start TryAddUnitToDanceRingTargetList
+TryAddUnitToDanceRingTargetList: @ 0x08024C24
 	push {lr}
 	adds r3, r0, #0
 	movs r2, #0xb

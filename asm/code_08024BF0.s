@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start MakeTargetListForMine
-MakeTargetListForMine: @ 0x08024BF0
+	thumb_func_start MakeTargetListForLightRune
+MakeTargetListForLightRune: @ 0x08024BF0
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -15,7 +15,7 @@ MakeTargetListForMine: @ 0x08024BF0
 	ldr r0, [r0]
 	movs r1, #0
 	bl BmMapFillg
-	ldr r2, _08024C20 @ =sub_08024B98
+	ldr r2, _08024C20 @ =TryAddToLightRuneTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl ForEachAdjacentPosition
@@ -25,4 +25,4 @@ MakeTargetListForMine: @ 0x08024BF0
 	.align 2, 0
 _08024C18: .4byte 0x02033E40
 _08024C1C: .4byte 0x0202E3E8
-_08024C20: .4byte sub_08024B98
+_08024C20: .4byte TryAddToLightRuneTargetList

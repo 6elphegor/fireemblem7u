@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080248D0
-sub_080248D0: @ 0x080248D0
+	thumb_func_start TryAddUnitToWarpTargetList
+TryAddUnitToWarpTargetList: @ 0x080248D0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08024904 @ =0x02033E40

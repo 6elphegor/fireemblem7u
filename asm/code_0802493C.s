@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0802493C
-sub_0802493C: @ 0x0802493C
+	thumb_func_start MakeTargetListForUnlock
+MakeTargetListForUnlock: @ 0x0802493C
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]

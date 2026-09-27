@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0802480C
-sub_0802480C: @ 0x0802480C
+	thumb_func_start TryAddUnitToBerserkTargetList
+TryAddUnitToBerserkTargetList: @ 0x0802480C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08024854 @ =0x02033E40

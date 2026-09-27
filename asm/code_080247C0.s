@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080247C0
-sub_080247C0: @ 0x080247C0
+	thumb_func_start TryAddUnitToSleepTargetList
+TryAddUnitToSleepTargetList: @ 0x080247C0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08024808 @ =0x02033E40

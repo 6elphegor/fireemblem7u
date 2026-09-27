@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080249FC
-sub_080249FC: @ 0x080249FC
+	thumb_func_start MakeTargetListForLatona
+MakeTargetListForLatona: @ 0x080249FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
