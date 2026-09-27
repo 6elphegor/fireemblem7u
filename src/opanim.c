@@ -61,7 +61,7 @@ extern struct ProcCmd CONST_DATA ProcScr_08CEF750[];
 extern u16 const gUnk_085E9AD4[];
 extern u8 const gUnk_085E9AF4[];
 
-void sub_08003F8C(int reverb);
+void Sound_SetMaxNumChannels(int reverb);
 
 struct ProcCmd CONST_DATA ProcScr_08CEF0E4[] = {
     PROC_SET_END_CB(sub_080BB524),
@@ -908,7 +908,7 @@ void sub_080BC94C(void)
 }
 void sub_080BC960(struct OpAnimProc * proc)
 {
-    sub_08003F8C(8);
+    Sound_SetMaxNumChannels(8);
     PlaySoundEffect(0x62);
     Proc_Start(ProcScr_08CEF284, proc);
 }

@@ -221,6 +221,67 @@ void sub_08049124(void);
 void PutLinkArenaButtonSpriteAt(int x, int y);
 void sub_080263A0(int layer, int x, int y, int oam2, struct Unit * unit);
 
+extern u16 const gSioDefaultBgConfig[12];
+extern u8 const Img_SioBg[];
+extern u8 const Tsa_SioBg[];
+extern u16 const Pal_SioBg[];
+extern u16 const gSioBgPalTable[20];
+extern const u16 Pal_LinkArenaRankIcons[];
+
+void InitSioBG(void)
+{
+    u16 bgConfig[12];
+
+    memcpy(bgConfig, gSioDefaultBgConfig, sizeof(bgConfig));
+    InitBgs(bgConfig);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    ApplySystemGraphics();
+
+    ApplyPalettes(Pal_LinkArenaRankIcons, 0x18, 2);
+
+    Decompress(Img_SioBg, (void *) BG_VRAM + GetBgChrOffset(3));
+    Decompress(Tsa_SioBg, gBg3Tm);
+    ApplyPalettes(Pal_SioBg, 0xE, 2);
+}
+
+void sub_08047BD4(ProcPtr parent, int n)
+{
+    u16 * tm = gBg3Tm;
+    int i;
+
+    Proc_EndEach(ProcScr_08CC1C5C);
+
+    for (i = 0; i < (0x14 - n) * 0x20; i++)
+        *tm++ += 0xE000;
+
+    for (i = 0; i < n * 0x20; i++)
+        *tm++ += 0xF000;
+
+    Proc_Start(ProcScr_08CC1C5C, parent);
+}
+
+void sub_08047C38(ProcPtr parent)
+{
+    u16 pals[20];
+    u16 * tm;
+    int i;
+
+    memcpy(pals, gSioBgPalTable, sizeof(pals));
+    tm = gBg3Tm;
+
+    Proc_EndEach(ProcScr_08CC1C5C);
+
+    for (i = 0; i < 0x280; i++)
+        *tm++ += (pals[i / 0x20] & 0xF) << 12;
+
+    Proc_Start(ProcScr_08CC1C5C, parent);
+}
+
 void sub_08047CA8(void)
 {
     Proc_EndEach(ProcScr_08CC1C5C);

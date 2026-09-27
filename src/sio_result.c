@@ -88,7 +88,7 @@ void SioResult_Init(struct SioResultProc * proc)
     memcpy(title, gUnknown_081D53CB, 8);
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
     ApplyPalettes(gUnknown_081C7FC4, 4, 2);
@@ -239,7 +239,7 @@ void SioResult_NewHS_Init(struct SioResultProc * proc)
     memcpy(title, gUnknown_081D53D3, 7);
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
     ApplyPalettes(gUnknown_081C7FC4, 4, 2);

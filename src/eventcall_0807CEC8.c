@@ -17,7 +17,7 @@ extern struct UnitDefinition CONST_DATA gUnk_08CDB3E8[];
 extern struct ProcCmd CONST_DATA ProcScr_08CBB47C[];
 extern struct ProcCmd CONST_DATA ProcScr_08CBB48C[];
 
-void sub_08020D6C(ProcPtr proc, int x, int y);
+void StartCircularFadeAnim(ProcPtr proc, int x, int y);
 void StartEmitStarsAnim(ProcPtr parent, int x1, int y1, int x2, int y2);
 void ClearEmitedStars(void);
 
@@ -465,7 +465,7 @@ void sub_0807D5BC(struct EventProc * proc)
         cy = gBmSt.camera.y - 8;
         y -= cy;
 
-        sub_08020D6C(proc, x, y);
+        StartCircularFadeAnim(proc, x, y);
 
         proc->unk_4D = TRUE;
     }
@@ -606,7 +606,7 @@ void sub_0807D840(struct EventProc * proc)
         cy = gBmSt.camera.y - 8;
         y -= cy;
 
-        sub_08020D6C(proc, x, y);
+        StartCircularFadeAnim(proc, x, y);
 
         proc->unk_4D = TRUE;
     }

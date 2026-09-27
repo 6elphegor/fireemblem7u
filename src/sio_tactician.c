@@ -24,7 +24,7 @@ extern const char gSioStr_BackEntry[];
 extern const u8 gUnknown_081D527E[];
 void * memcpy(void * dst, const void * src, unsigned long n);
 
-void sub_08047B34(void);
+void InitSioBG(void);
 void sub_08047BD4(int a, int b);
 void sub_08047CA8(void);
 void sub_08049220(void);
@@ -159,7 +159,7 @@ void Tactician_InitScreen(struct ProcTactician * proc)
     memcpy(title, gUnknown_081D527E, 10);
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
     Decompress(Img_TacticianSelObj, (void *)0x06014800);
     ApplyPalette(Pal_TacticianSelObj, 0x13);
     ApplyPalette(Pal_085ADE68, 0x14);
