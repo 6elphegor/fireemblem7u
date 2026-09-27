@@ -90,6 +90,7 @@ struct MenuProc * StartMenu(const struct MenuDef * def);   /* FE8U: StartOrphanM
 struct MenuProc * StartSemiCenteredOrphanMenu(const struct MenuDef * def, int xSubject, int xTileLeft, int xTileRight);
 struct MenuProc * StartLockingMenuExt(const struct MenuDef * def, struct MenuRect rect, ProcPtr parent);   /* FE8U: StartMenuAt */
 u8 MenuFrozenHelpBox(struct MenuProc * proc, int msgid);
+ProcPtr EndMenu(struct MenuProc * proc);
 void EndAllMenus(void);
 
 /* ---- target selection (fireemblem8u uiselecttarget.h) ---- */

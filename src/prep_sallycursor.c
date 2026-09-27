@@ -22,20 +22,14 @@ const struct UnitDefinition * sub_08079280(void);  // GetChapterAllyUnitDataPoin
 void TrySwitchViewedUnit(int x, int y);
 void EndPlayerPhaseSideWindows(void);
 void StartPrepScreenMenu(ProcPtr proc);                    // StartPrepScreenMenu
-void SetPrepScreenMenuItem(int index, void * func, int color, int msg, int msgHelp);
-void SetPrepScreenMenuOnBPress(void * func);
-void SetPrepScreenMenuOnStartPress(void * func);
-void SetPrepScreenMenuOnEnd(void * func);
-void DrawPrepScreenMenuFrameAt(int x, int y);
-void SetPrepScreenMenuSelectedItem(int index);
-bool8 IsMapFadeActive(void);                        // DoesBMXFADEExist
+bool IsMapFadeActive(void);                        // DoesBMXFADEExist
 int GetPlayerSelectKind(struct Unit * unit);
 void UnitBeginAction(struct Unit * unit);
 void StartPrepUnitSwap(ProcPtr parent, struct Unit * unit, int x, int y);
 void sub_08018980(void);                            // LoadUnitPrepScreenPositions
 void InitPlayerUnitPositionsForPrepScreen(void);                            // InitPlayerUnitPositionsForPrepScreen
 void StartMinimapPlayerPhase(void);                            // StartMinimapPrepPhase
-int SearchAvailableEvent(struct EventInfo * info);          // SearchAvailableEvent
+struct EventInfo * SearchAvailableEvent(struct EventInfo * info);          // SearchAvailableEvent
 void StartArmoryScreenOrphaned(struct Unit * unit, const u16 * items); // StartArmoryScreen
 void StartVendorScreenOrphaned(struct Unit * unit, const u16 * items); // StartVendorScreen
 void SyncUnitDeploymentState(void);

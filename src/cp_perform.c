@@ -22,7 +22,7 @@ struct CpPerformProc {
 
 // Declarations of other modules' functions not yet in any header
 void UnitBeginAction(struct Unit * unit);
-void DoAction(ProcPtr proc);
+s8 DoAction(ProcPtr proc);
 void DoItemAction(ProcPtr proc);
 ProcPtr NewPopup_Simple(const struct PopupInstruction * inst, int duration, int winStyle, ProcPtr parent);
 void StartCharacterEvent(u8 pidA, u8 pidB);

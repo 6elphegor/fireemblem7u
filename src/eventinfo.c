@@ -135,7 +135,7 @@ extern struct BattleTalkEnt const gDefeatTalkList[];
 extern struct BattleTalkEnt const gDefeatTalkList_Tutorial[];
 
 void sub_0807D7E0(void);
-void LoadUnits(void const * units);
+int LoadUnits(struct UnitDefinition const * units);
 void sub_080799C8(void);
 bool BattleIsTriangleAttack(void);
 void UnitGetDeathDropLocation(struct Unit * unit, int * x, int * y);
@@ -169,9 +169,9 @@ void sub_0800ADB8(void);
 void sub_0800F028(u8 mapChangeId);
 void sub_0800F044(u16 item, u8 mapChangeId);
 void sub_0800F06C(int money, u8 mapChangeId);
-void StartArmoryScreenOrphaned(struct Unit * unit, void const * shopItems);
-void StartVendorScreenOrphaned(struct Unit * unit, void const * shopItems);
-void StartSecretShopScreenOrphaned(struct Unit * unit, void const * shopItems);
+void StartArmoryScreenOrphaned(struct Unit * unit, u16 * shopItems);
+void StartVendorScreenOrphaned(struct Unit * unit, u16 * shopItems);
+void StartSecretShopScreenOrphaned(struct Unit * unit, u16 * shopItems);
 
 struct EventInfo * SearchAvailableEvent(struct EventInfo * info);
 struct EventInfo * SearchNextAvailableEvent(struct EventInfo * info);
@@ -985,15 +985,15 @@ void StartAvailableTileEvent(s8 x, s8 y)
         break;
 
     case 0x13:
-        StartArmoryScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartArmoryScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x14:
-        StartVendorScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartVendorScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x15:
-        StartSecretShopScreenOrphaned(gActiveUnit, (void const *) info.script);
+        StartSecretShopScreenOrphaned(gActiveUnit, (u16 *) info.script);
         break;
 
     case 0x16:
@@ -1266,12 +1266,12 @@ void sub_08079214(void)
         if (gPlaySt.chapterStateBits & 0x40)
         {
             info.script = group[0x24 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
             info.script = group[0x20 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
     else
@@ -1279,12 +1279,12 @@ void sub_08079214(void)
         if (gPlaySt.chapterStateBits & 0x40)
         {
             info.script = group[0x1C / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
             info.script = group[0x18 / 4];
-            LoadUnits((void const *) info.script);
+            LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
 
@@ -1293,7 +1293,7 @@ void sub_08079214(void)
     RefreshUnitSprites();
 }
 
-void const * sub_08079280(void)
+struct UnitDefinition const * sub_08079280(void)
 {
     u32 const * group = (void const *) GetChapterEventInfo(gPlaySt.chapterIndex);
 

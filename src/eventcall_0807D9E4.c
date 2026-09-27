@@ -10,7 +10,6 @@ s8 sub_0807A1F8(void);
 void EndTalk(void);
 bool IsTalkActive(void);
 ProcPtr StartTalkExt(int x, int y, char const * str, ProcPtr parent);
-void SetTalkPrintColor(int color);
 
 struct EventLoadPos
 {

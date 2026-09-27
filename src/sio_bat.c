@@ -14,7 +14,6 @@ extern struct ProcCmd CONST_DATA gUnknown_085A93A0[];
 
 void EndLinkArenaButtonSpriteDraw(void);
 void EndLinkArenaVersusSpriteDraw(void);
-void sub_08047C38(int a);
 extern const u8 Img_LinkArenaRankIcons[];
 extern const u16 Pal_LinkArenaRankIcons[];
 

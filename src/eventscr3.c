@@ -19,7 +19,7 @@ extern struct AiDecisionSt gAiDecision;
 
 extern struct ProcCmd CONST_DATA ProcScr_EventWeatherChangeWithFade[];
 
-void RestoreBgm(int speed);
+void RestoreBgm(u16 speed);
 void StartBgmFadeIn(int song, int speed, struct MusicPlayerInfo * music_player);
 void FadeBgmOut_2(int speed);
 void SetBgmVolume(int volume);

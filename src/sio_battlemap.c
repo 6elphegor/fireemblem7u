@@ -198,7 +198,7 @@ bool CanUnitUseWeapon(struct Unit * unit, int item);
 int GetItemAttributes(int item);
 void NewBattleForecast(ProcPtr proc);
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);
-void AiSimulateBattleAgainstTargetAtPosition(struct AiCombatSimulationSt * sim);
+s8 AiSimulateBattleAgainstTargetAtPosition(struct AiCombatSimulationSt * sim);
 void StartAiTargetCursor(int x, int y, int kind, ProcPtr parent);
 int GetUnitDisplayedSpritePalette(struct Unit * unit);
 int GetFacingFromTo(int x1, int y1, int x2, int y2);

@@ -273,7 +273,7 @@ int GetGameCombatRank(void);
 int GetGameFundsRank(void);
 void EventForceSlowTextSpeed(struct EventProc * proc);
 void sub_0800AF20(struct EventProc * proc);
-void AiGetUnitClosestValidPosition(struct Unit * unit, int x, int y, struct Vec2 * out);
+s8 AiGetUnitClosestValidPosition(struct Unit * unit, s16 x, s16 y, struct Vec2 * out);
 void MapFloodRange_Unitless(int x, int y, s8 const * mov_table);
 void BuildBestMoveScript(int x, int y, u8 * out);
 void DisableMuCamera(struct MuProc * mu);

@@ -3,7 +3,7 @@
 #include "gbafe/bmusemind.h"
 
 void PrintStringToTexts(struct Text ** texts, char const * str, u16 * tm, int count);
-void PutUnitSpriteForClassId(int layer, int x, int y, int oam2, int classId);
+void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int classId);
 void SyncUnitSpriteSheet(void);
 void BeginBattleAnimations(void);
 

@@ -131,6 +131,15 @@ void EndMuralBackground_(void);
 void Prep_DrawChapterGoal(int vram_offset, int pal_bank);
 void PrepAtMenu_OnInit(struct ProcAtMenu *proc);
 
+// prep_menu.c
+void StartPrepScreenMenu(ProcPtr proc);
+void SetPrepScreenMenuOnBPress(const void * func);
+void SetPrepScreenMenuOnStartPress(const void * func);
+void SetPrepScreenMenuOnEnd(const void * func);
+void SetPrepScreenMenuItem(int index, const void * func, int color, int msg, int msg_rtext);
+void SetPrepScreenMenuSelectedItem(int index);
+void DrawPrepScreenMenuFrameAt(int x, int y);
+
 struct ProcPrepMenuDesc {
     PROC_HEADER;
 

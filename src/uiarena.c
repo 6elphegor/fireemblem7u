@@ -6,7 +6,6 @@
 // FE8U: uiarena.c (compiled at -O0 in FE7)
 
 int GetGold(void);
-void SetTalkPrintColor(int color);
 void Proc_Mark(ProcPtr proc, u8 mark);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];

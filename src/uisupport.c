@@ -59,7 +59,7 @@ extern int sSupportScreenUnitCount;
 int GetSupportScreenCharIdAt(int idx);
 int GetSupportScreenPartnerCount(int charId);
 int GetClassSMSId(int classId);
-void PutUnitSpriteForClassId(int layer, int x, int y, int oam2, int classId);
+void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int classId);
 void SyncUnitSpriteSheet(void);
 void ResetUnitSprites(void);
 ProcPtr StartMenuScrollBar(ProcPtr parent);
@@ -83,7 +83,7 @@ extern int TacticianBirthAffins[];
 extern u16 Pal_08194714[];
 
 void StartSupportUnitSubScreen(s8 fromPrepScreen, int idx, ProcPtr parent);
-int GetSupportTalkSong(u8 a, u8 charA, u8 charB, int rank);
+int GetSupportTalkSong(struct SupportTalkEnt const * ent, u8 charA, u8 charB, int rank);
 char * GetTacticianName(void);
 struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
 
@@ -775,7 +775,7 @@ void sub_0809BF78(int idx)
 }
 int UiSupport_GetSupportTalkSong(int idx, int partner, int rank)
 {
-    return GetSupportTalkSong(0, GetSupportScreenCharIdAt(idx), GetSupportScreenPartnerCharId(idx, partner), rank);
+    return GetSupportTalkSong(NULL, GetSupportScreenCharIdAt(idx), GetSupportScreenPartnerCharId(idx, partner), rank);
 }
 void sub_0809BFCC(struct SupportTactProc * proc)
 {

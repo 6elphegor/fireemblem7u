@@ -76,7 +76,6 @@ extern const s8 gUnknown_080D9D61[];
 
 void UpdateLinkArenaMenuScrollBar(u8 a, s16 b);
 void InitSioBG(void);
-void sub_08047BD4(int a, int b);
 ProcPtr sub_08048504(struct SioTeamListProc * parent, int numActiveOptions, u8 * buf);
 void StartLinkArenaTitleBanner(ProcPtr parent, int size);
 void sub_08047E84(u8 * str, int len, int x, int y, int palId, ProcPtr parent);

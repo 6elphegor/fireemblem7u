@@ -3,7 +3,6 @@
 
 void PutCompressedTsa(u16 * tm, void const * src, u16 tileref); // Decompress to gGenericBuffer, then TmApplyTsa
 
-void DrawPrepScreenMenuFrameAt(int x, int y);
 void ShowPrepScreenMenuFrozenHand(void);
 void StartChapterStatusScreen_FromPrep(ProcPtr parent);
 void StartFortuneSubMenu(int kind, ProcPtr parent);

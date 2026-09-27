@@ -6,7 +6,6 @@
 // FE8U: bmshop.c (compiled at -O0 in FE7)
 
 int GetGold(void);
-void SetTalkPrintColor(int color);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 

@@ -1,7 +1,7 @@
 #include "gbafe.h"
 #include "constants/msg.h"
 
-void SetupDebugFontForOBJ(signed char, int);
+void SetupDebugFontForOBJ(int vramOffset, int palId);
 void sub_8005234(int, int, int, int);
 
 #define TALK_TEXT_BY_LINE(line) (sTalkText + ((line) + sTalkSt->top_text_num) % sTalkSt->lines)

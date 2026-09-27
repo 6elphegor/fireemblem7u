@@ -7,8 +7,8 @@
 void TryRemoveUnitFromBallista(struct Unit * unit);
 void DoItemAction(ProcPtr proc);
 void Make6CKOIDO(struct Unit * unit, int facing, int kind, ProcPtr parent);
-int ExecTrapAfterDropAction(ProcPtr proc, struct Unit * unit);
-void ExecTrapAfterDeathDrop(ProcPtr proc, struct Unit * unit);
+s8 ExecTrapAfterDropAction(ProcPtr proc, struct Unit * unit);
+s8 ExecTrapAfterDeathDrop(ProcPtr proc, struct Unit * unit);
 void SetAutoMuMoveScript(const u8 * commands);
 void BattleGenerateBallistaReal(struct Unit * actor, struct Unit * target);
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);

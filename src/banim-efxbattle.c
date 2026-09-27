@@ -72,7 +72,7 @@ extern u16 gEfxTerrainPalette[0x10];
 
 int GetBattleAnimArenaFlag(void);
 void sub_08055320(struct BanimUnkStructComm * conf);
-void sub_08055468(int distance, s16 pos);
+void sub_08055468(s16 distance, s16 pos);
 void sub_080554FC(int x);
 
 void sub_0804E6DC(int xPos);

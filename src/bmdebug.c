@@ -87,7 +87,6 @@ extern struct ProcCmd CONST_DATA gProc_DebugPrintWithProc[];
 extern const struct MenuDef gDebugMenuDef;
 
 void NewKeyStSetter(int keys);
-void EndMenu(struct MenuProc * proc);
 void DebugInitBg(int bg, int vramOffset);
 
 int Return2or3BySecondParity(void)

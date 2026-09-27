@@ -1,12 +1,6 @@
 #include "gbafe.h"
 
-s32 sub_080991F8(s32);
-void DrawPrepScreenMenuFrameAt(s32, s32);
-void SetPrepScreenMenuItem(s32, void (*)(struct ProcAtMenu*), s32, s32, s32);
-void SetPrepScreenMenuOnBPress(s32 (*)(struct ProcAtMenu*));
-void SetPrepScreenMenuOnStartPress(s32 (*)(struct ProcAtMenu*));
-void SetPrepScreenMenuSelectedItem(u8);
-void StartPrepScreenMenu(); // StartPrepScreenMenu
+s8 sub_080991F8(int);
 
 void AtMenu_AddPrepScreenSupportMenuItem(struct ProcAtMenu *proc) {
     s32 var_r6 = 0;
@@ -34,7 +28,7 @@ void InitPrepScreenMainMenu(struct ProcAtMenu *proc) {
     s8 inLinkArena;
     u8 chapterStateBits;
 
-    StartPrepScreenMenu();
+    StartPrepScreenMenu(proc);
     inLinkArena = CheckInLinkArena();
     if (inLinkArena == 0) {
         SetPrepScreenMenuItem(0, PrepScreenMenu_OnPickUnits, 0, 0x113D, (s32) inLinkArena);
