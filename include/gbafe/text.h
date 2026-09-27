@@ -159,6 +159,7 @@ void InitSpriteTextFont(struct Font * font, u8 * draw_dest, int palid);
 void InitSpriteText(struct Text * text);
 void SpriteText_DrawBackground(struct Text * text);
 void SpriteText_DrawBackgroundExt(struct Text * text, u32 line);
+void StartYesNoChoice(int * choiceTextIds, struct Text * text, int x, int y, int color, int defaultChoice, ProcPtr parent);
 char const * StartTextPrint(struct Text * text, char const * str, int interval, int char_per_tick);
 bool IsTextPrinting(struct Text * text);
 void EndTextPrinting(void);
@@ -173,6 +174,7 @@ void PutNumberSmall(u16 * tm, int color, int number);
 void PutNumberBonus(int number, u16 * tm);
 void PutNumber2DigitExt(u16 * tm, int color, int number, int id_zero);
 void PutNumber2Digit(u16 * tm, int color, int number);
+void sub_080063CC(u16 * tm, int color, int number); // PutNumber2Digit
 void PutNumber2DigitSmall(u16 * tm, int color, int number);
 void PutTime(u16 * tm, int color, int time, bool always_display_punctuation);
 void PutTwoSpecialChar(u16 * tm, int color, int id_a, int id_b);

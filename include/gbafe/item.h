@@ -102,6 +102,9 @@ bool IsItemCoveringRange(int item, int range);
 void EquipUnitItemSlot(struct Unit *unit, int itemSlot);
 bool IsItemEffectiveAgainst(u16 item, struct Unit *unit);
 char *GetItemDisplayRangeString(int item);
+char *GetItemRangeString(int item);
+char *GetWeaponLevelStringFromExp(int item);
+char *GetItemKindString(int weaponType);
 int GetWeaponLevelFromExp(int wexp);
 // sub_8016DD8
 int GetWeaponLevelSpecialCharFromExp(int wexp);

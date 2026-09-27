@@ -44,7 +44,7 @@ _08041EFE:
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
 	movs r0, #0xa
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	mov r1, r8
 	ldr r0, [r1, #0x30]
 	adds r0, #2
@@ -74,7 +74,7 @@ _08041F38:
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
 	movs r0, #0xa
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	mov r1, r8
 	ldr r0, [r1, #0x30]
 	adds r0, #2

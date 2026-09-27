@@ -150,13 +150,13 @@ void SaveBonusContentData(void * buf);
 // ??? GenerateGameRankSaveData
 void SaveEndgameRankings(void);
 // ??? sub_0809F668
-// ??? LoadAndVerifySoundRoomData
+bool LoadAndVerifySoundRoomData(void * buf);
 // ??? WriteSoundRoomSaveData
 // ??? IsSoundRoomSongUnlocked
 // ??? UnlockSoundRoomSong
 void UnlockSoundRoomSong(void * buf, int song);
 // ??? EraseLinkArenaStruct2
-// ??? LoadAndVerfyLinkArenaStruct2
+bool LoadAndVerfyLinkArenaStruct2(void * buf);
 // ??? WriteLinkArenaStruct2
 // ??? ModifySaveLinkArenaStruct2A
 // ??? ModifySaveLinkArenaStruct2B

@@ -10,7 +10,7 @@ sub_0803EFC4: @ 0x0803EFC4
 	lsls r1, r1, #3
 	adds r1, #0x18
 	movs r0, #0x60
-	bl sub_0804925C
+	bl PutLinkArenaChoiceBannerSprite
 	ldr r0, _0803F068 @ =0x08B857F8
 	ldr r1, [r0]
 	movs r0, #0x20

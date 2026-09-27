@@ -36,7 +36,7 @@ sub_080429B8: @ 0x080429B8
 	movs r0, #0x2c
 	ldrsh r2, [r3, r0]
 	adds r0, r3, #0
-	bl sub_080489C0
+	bl StartSioMenuBurstFx
 	adds r0, r4, #0
 	movs r1, #0
 	bl SioMenu_GetItemHelpText
