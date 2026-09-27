@@ -519,7 +519,23 @@ void sub_0800F358(void)
     m4aMPlayFadeInContinue(&gUnk_03005B10, 2);
 }
 
-ASM_FUNC("asm/nonmatching/code_0800F36C.s");
+void sub_080B5554(u8 a, int x, int y, int c);
+void sub_080B55BC(int c);
+
+int sub_0800F36C(struct EventProc * proc)
+{
+    int a = proc->script[1];
+    int x = SCR_LO16_SIGN(proc->script[2]);
+    int y = SCR_HI16_SIGN(proc->script[2]);
+    int c = proc->script[3];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    sub_080B5554(a, x, y, c);
+    sub_080B55BC(c);
+    return EVENT_CMDRET_YIELD;
+}
 
 int sub_0800F3D4(struct EventProc * proc)
 {
