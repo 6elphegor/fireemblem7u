@@ -119,6 +119,7 @@ enum special_character_idx {
 };
 
 int GetLang(void);
+void SetLang(int lang);
 void ResetText(void);
 void InitTextFont(struct Font * font, void * draw_dest, int chr, int palid);
 void SetTextFontGlyphs(int glyphset);

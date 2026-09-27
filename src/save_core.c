@@ -89,8 +89,49 @@ void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo * info)
     WriteAndVerifySramFast(info, &gSramMain->head, sizeof(struct GlobalSaveInfo));
 }
 
-void InitGlobalSaveInfo(void);
-ASM_FUNC("asm/nonmatching/code_0809E5AC.s");
+void InitGlobalSaveInfo(void)
+{
+    struct GlobalSaveInfo info;
+    int i;
+
+    WipeSram();
+    StringCopy(info.name, SaveMarker);
+
+    info.magic32 = SAVE_MAGIC32;
+    info.magic16 = SAVE_MAGIC16;
+
+    info.completed  = 0;
+    info.flag0E_1 = 0;
+    info.Eirk_mode_easy = 0;
+    info.Eirk_mode_norm = 0;
+    info.Eirk_mode_hard = 0;
+    info.Ephy_mode_easy = 0;
+    info.Ephy_mode_norm = 0;
+    info.Ephy_mode_hard = 0;
+
+    info.game_end = 0;
+
+    info.unk10_00 = 0;
+    info.unk10_08 = 0;
+
+    info.last_suspend_slot = 0;
+    info.last_game_save_id = 0;
+
+    info.unk10_18 = 0;
+
+    SetLang(0);
+
+    for (i = 0; i < 0xC; i++)
+        info.cleared_playthroughs[i] = 0;
+
+    for (i = 0; i < 0x20; i++)
+        info.SuppordRecord[i] = 0;
+
+    for (i = 0; i < 0x20; i++)
+        info.charKnownFlags[i] = 0;
+
+    WriteGlobalSaveInfo(&info);
+}
 
 
 void ResetFe6LinkSaveInfo(void)
@@ -117,8 +158,49 @@ u16 SramAddrToOffset(void * addr)
     return ((u8 *) addr) - ((u8 *) (void *) gSramMain);
 }
 
-bool ReadSaveBlockInfo(struct SaveBlockInfo * block_info, int save_id);
-ASM_FUNC("asm/nonmatching/code_0809E6FC.s");
+bool ReadSaveBlockInfo(struct SaveBlockInfo * block_info, int save_id)
+{
+    struct SaveBlockInfo local_block_info;
+    u32 magic32;
+
+    if (block_info == NULL)
+        block_info = &local_block_info;
+
+    ReadSramFast(&gSramMain->block_info[save_id], block_info, sizeof(struct SaveBlockInfo));
+
+    if (block_info->magic16 != SAVE_MAGIC16)
+        return FALSE;
+
+    switch (save_id)
+    {
+        case SAVE_GAME0:
+        case SAVE_GAME1:
+        case SAVE_GAME2:
+            magic32 = SAVE_MAGIC32_SAV;
+            break;
+
+        case SAVE_SUSPEND:
+        case SAVE_SUSPEND_ALT:
+            magic32 = SAVE_MAGIC32_SUS;
+            break;
+
+        case SAVE_MULTIARENA:
+            magic32 = SAVE_MAGIC32_MULTIARENA;
+            break;
+
+        case SAVE_XMAP:
+            magic32 = SAVE_MAGIC32_XMAP;
+            break;
+
+        default:
+            return FALSE;
+    }
+
+    if (block_info->magic32 != magic32)
+        return FALSE;
+
+    return VerifySaveBlockChecksum(block_info);
+}
 
 
 void WriteSaveBlockInfo(struct SaveBlockInfo * block_info, int save_id)
@@ -179,8 +261,35 @@ void EraseSaveBlockInfo(int index)
     }
 }
 
-void * GetSaveWriteAddr(int save_id);
-ASM_FUNC("asm/nonmatching/code_0809E870.s");
+void * GetSaveWriteAddr(int save_id)
+{
+    switch (save_id)
+    {
+        case SAVE_GAME0:
+            return (void *)gSramMain + 0x3F2C;
+
+        case SAVE_GAME1:
+            return (void *)gSramMain + 0x4CB8;
+
+        case SAVE_GAME2:
+            return (void *)gSramMain + 0x5A44;
+
+        case SAVE_SUSPEND:
+            return (void *)gSramMain + 0x00D4;
+
+        case SAVE_SUSPEND_ALT:
+            return (void *)gSramMain + 0x2000;
+
+        case SAVE_MULTIARENA:
+            return (void *)gSramMain + 0x67D0;
+
+        case SAVE_XMAP:
+            return SRAM_XMAP_ADDR;
+
+        default:
+            return NULL;
+    }
+}
 
 
 void * GetSaveReadAddr(int save_id)
