@@ -2010,3 +2010,4 @@ Sprite_WmMarker = 0x08CE7598;
 ProcScr_WmMu = 0x08CE7688;
 ProcScr_WmSlots = 0x08CE76B0;
 ProcScr_WmUnitManager = 0x08CE76C8;
+Sprite_WmIcon = 0x08422160;

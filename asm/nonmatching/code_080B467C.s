@@ -51,7 +51,7 @@ _080B46BC:
 	cmp r0, r8
 	bne _080B46DE
 	adds r0, r4, #0
-	bl sub_080B4ADC
+	bl EndWmMu
 _080B46DE:
 	adds r5, #0xc
 	adds r4, #1

@@ -48,7 +48,7 @@ _080B56B8:
 	b _080B5754
 _080B56C6:
 	ldr r0, [r4, #0x34]
-	bl sub_080B4ADC
+	bl EndWmMu
 	b _080B5754
 _080B56CE:
 	ldr r0, [r4, #0x34]
@@ -68,7 +68,7 @@ _080B56E0:
 	ldr r3, [r4, #0x44]
 	lsls r3, r3, #0x18
 	lsrs r3, r3, #0x18
-	bl sub_080B4B8C
+	bl StartWmIcon
 	b _080B5754
 _080B56F6:
 	ldr r0, [r4, #0x34]
@@ -79,7 +79,7 @@ _080B56F6:
 	ldr r3, [r4, #0x44]
 	lsls r3, r3, #0x18
 	lsrs r3, r3, #0x18
-	bl sub_080B4C60
+	bl StartWmIcon2
 	b _080B5754
 _080B570C:
 	ldr r0, [r4, #0x34]

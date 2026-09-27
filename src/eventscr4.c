@@ -31,7 +31,7 @@ void sub_080B4FE4(int a);
 void OpenWmTextBox(int a);
 void CloseWmTextBox(void);
 void sub_080B4904(int a, int b, int c, int d);
-void sub_080B4ADC(int a);
+void EndWmMu(int a);
 void StartWmSpriteAnim(int a, int b);
 void EndWmSpriteAnim(int a);
 void EndAllWmSpriteAnims(void);
@@ -750,7 +750,7 @@ int sub_0800F730(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 1, a, 0, skipped, skipped, skipped);
         else
-            sub_080B4ADC(a);
+            EndWmMu(a);
     }
 
     return EVENT_CMDRET_CONTINUE;

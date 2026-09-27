@@ -63,7 +63,7 @@ _0800FAB2:
 	lsls r3, r3, #0x18
 	lsrs r3, r3, #0x18
 	adds r0, r7, #0
-	bl sub_080B4B8C
+	bl StartWmIcon
 _0800FAC4:
 	movs r0, #0
 	add sp, #0xc

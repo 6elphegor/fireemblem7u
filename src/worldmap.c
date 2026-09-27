@@ -120,8 +120,10 @@ struct WmUnitManagerProc {
 extern struct ProcCmd CONST_DATA ProcScr_WmMu[];
 extern struct ProcCmd CONST_DATA ProcScr_WmUnitManager[];
 
-void sub_080B4C28(int idx);
-void sub_080B4D14(int idx);
+void EndWmIcon(int idx);
+void EndWmIcon2(int idx);
+
+extern u16 CONST_DATA Sprite_WmIcon[];
 extern struct ProcCmd CONST_DATA ProcScr_WmSlots[];
 extern struct ProcCmd CONST_DATA ProcScr_WmTextBox[];
 extern struct ProcCmd CONST_DATA ProcScr_WmMarker[];
@@ -663,13 +665,13 @@ void WmUnitManager_EndAll(struct WmUnitManagerProc * proc)
     for (i = 0; i < 4; i++)
     {
         if (proc->slots[1]->ent[i].anim != NULL)
-            sub_080B4C28(i);
+            EndWmIcon(i);
     }
 
     for (i = 0; i < 5; i++)
     {
         if (proc->slots[2]->ent[i].anim != NULL)
-            sub_080B4D14(i);
+            EndWmIcon2(i);
     }
 }
 
@@ -714,13 +716,88 @@ void WmMu_EndFlash(int idx)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B4904.s");
-ASM_FUNC("asm/nonmatching/code_080B4ADC.s");
-ASM_FUNC("asm/nonmatching/code_080B4B14.s");
-ASM_FUNC("asm/nonmatching/code_080B4B50.s");
-ASM_FUNC("asm/nonmatching/code_080B4B8C.s");
-ASM_FUNC("asm/nonmatching/code_080B4C28.s");
-ASM_FUNC("asm/nonmatching/code_080B4C60.s");
-ASM_FUNC("asm/nonmatching/code_080B4D14.s");
+void EndWmMu(int idx)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+
+    if (mgr->slots[0]->ent[idx].anim != NULL)
+    {
+        Proc_End(mgr->slots[0]->ent[idx].anim);
+        mgr->slots[0]->ent[idx].anim = NULL;
+    }
+}
+
+void WmMu_SetLayerA(int idx)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+
+    if (mgr != NULL && mgr->slots[0]->ent[idx].anim != NULL)
+        ((struct WmMuMoveProc *) mgr->slots[0]->ent[idx].anim)->mu->sprite_anim->oam2 |= 0x400;
+}
+
+void WmMu_SetLayerB(int idx)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+
+    if (mgr != NULL && mgr->slots[0]->ent[idx].anim != NULL)
+        ((struct WmMuMoveProc *) mgr->slots[0]->ent[idx].anim)->mu->sprite_anim->oam2 |= 0x400;
+}
+
+void StartWmIcon(int idx, u16 x, u16 y, u8 pal)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+
+    mgr->slots[1]->ent[idx].x = x;
+    mgr->slots[1]->ent[idx].y = y;
+
+    if (mgr->slots[1]->ent[idx].anim == NULL)
+    {
+        int ax = (s16) x - gWmSt.x;
+        int ay = (s16) y - gWmSt.y;
+
+        mgr->slots[1]->ent[idx].anim = StartSpriteAnimProc(Sprite_WmIcon, ax, ay, ((pal & 0xF) << 12) + 0xE00, 1, 7);
+    }
+}
+
+void EndWmIcon(int idx)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+
+    if (mgr->slots[1]->ent[idx].anim != NULL)
+        EndSpriteAnimProc(mgr->slots[1]->ent[idx].anim);
+
+    mgr->slots[1]->ent[idx].anim = NULL;
+}
+
+void StartWmIcon2(int idx, u16 x, u16 y, u8 pal)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+
+    mgr->slots[2]->ent[idx].x = x;
+    mgr->slots[2]->ent[idx].y = y;
+
+    if (mgr->slots[2]->ent[idx].anim == NULL)
+    {
+        int ax = (s16) x - gWmSt.x;
+        int ay = (s16) y - gWmSt.y;
+
+        mgr->slots[2]->ent[idx].anim = StartSpriteAnimProc(Sprite_WmIcon, ax, ay, ((pal & 0xF) << 12) + 0xE00, 0, 0xA);
+
+        mgr->slots[1]->ent[idx].x = x;
+        mgr->slots[1]->ent[idx].y = y;
+    }
+}
+
+void EndWmIcon2(int idx)
+{
+    struct WmUnitManagerProc * mgr = Proc_Find(ProcScr_WmUnitManager);
+
+    if (mgr->slots[2]->ent[idx].anim != NULL)
+        EndSpriteAnimProc(mgr->slots[2]->ent[idx].anim);
+
+    mgr->slots[2]->ent[idx].anim = NULL;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B4D4C.s");
 ASM_FUNC("asm/nonmatching/code_080B4E88.s");
 ASM_FUNC("asm/nonmatching/code_080B4F44.s");
