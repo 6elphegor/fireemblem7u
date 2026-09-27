@@ -947,7 +947,7 @@ void StartPrepArmory(struct PrepItemScreenProc * proc)
 }
 void sub_080928D4(struct PrepItemScreenProc * proc)
 {
-    sub_08098588(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
+    StartPrepItemListScreenProc(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
 }
 void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp)
 {

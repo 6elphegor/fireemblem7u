@@ -1387,3 +1387,5 @@ Img_08405754 = 0x08405754;
 gSupplyHelpTextIndexLookup = 0x08CC4B8C;
 ProcScr_PrepItemSupplyScreen = 0x08CC4B94;
 ProcScr_BmSupplyScreen = 0x08CC4C74;
+Tsa_0840E780 = 0x0840E780;
+ProcScr_PrepItemListScreen = 0x08CC4DBC;

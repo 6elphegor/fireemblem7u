@@ -558,25 +558,38 @@ void sub_08097488(void);
 void sub_080974A8(void);
 // StartBmSupply
 void MaybeStartSelectConvoyItemProc(struct Unit * unit, ProcPtr unused);
-// PrepItemList_Init
-// sub_08097554
-// PrepItemList_DrawCurrentOwnerText
-// sub_08097660
-// sub_080976F0
-// sub_08097A6C
-// sub_08097A9C
-// sub_08097B64
-// sub_08097C08
-// sub_08097CAC
-// sub_08097D30
+struct PrepItemListProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct Unit * unit;
+    /* 30 */ u8 unitInvIdx;
+    /* 31 */ s8 scrollAmount;
+    /* 32 */ u8 unk_32;
+    /* 33 */ u8 currentPage;
+    /* 34 */ u16 unk_34;
+    /* 36 */ u16 unk_36;
+    /* 38 */ u16 idxPerPage[9];
+    /* 4A */ u16 yOffsetPerPage[9];
+};
+
+void PrepItemList_Init(struct PrepItemListProc * proc);
+void sub_08097554(void);
+void PrepItemList_DrawCurrentOwnerText(struct PrepItemListProc * proc);
+void List_PutHighlightedCategorySprites(struct PrepItemListProc * proc);
+void PrepItemList_InitGfx(struct PrepItemListProc * proc);
+void PrepItemList_OnEnd(struct PrepItemListProc * proc);
+void sub_08097A9C(struct PrepItemListProc * proc);
+void PrepItemList_SwitchPageLeft(struct PrepItemListProc * proc);
+void PrepItemList_SwitchPageRight(struct PrepItemListProc * proc);
+void sub_08097CAC(struct PrepItemListProc * proc);
+void PrepItemList_ScrollVertical(struct PrepItemListProc * proc, int amount);
 // sub_8098558
-// sub_08097DD4
-// sub_08097E68
-// sub_08098274
-// sub_08098320
-// sub_0809835C
-// sub_08098418
-// PrepItemList_StartTradeScreen
+void sub_08097DD4(struct PrepItemListProc * proc);
+void PrepItemList_Loop_MainKeyHandler(struct PrepItemListProc * proc);
+s8 sub_08098274(struct PrepItemListProc * proc);
+void PrepItemList_SwitchToUnitInventory(struct PrepItemListProc * proc);
+void sub_0809835C(struct PrepItemListProc * proc);
+void PrepItemList_Loop_UnitInvKeyHandler(struct PrepItemListProc * proc);
+void PrepItemList_StartTradeScreen(struct PrepItemListProc * proc);
 // StartPrepItemListScreenProc
 // WmSell_DrawSupplyDialogueSpriteText
 // sub_080985D4
@@ -674,7 +687,7 @@ void StartPrepItemUseScreen(struct Unit * unit, ProcPtr parent);
 
 void sub_08098F70(struct Unit * unit, ProcPtr parent);
 
-void sub_08098588(struct Unit * unit, ProcPtr parent);
+void StartPrepItemListScreenProc(struct Unit * unit, ProcPtr parent);
 
 void DrawPrepScreenItemUseDesc(struct Unit * unit, int slot);
 
