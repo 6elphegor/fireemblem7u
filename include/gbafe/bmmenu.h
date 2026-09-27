@@ -192,7 +192,7 @@ void RefreshUnitTakeInfoWindows(struct Unit * unit);
 void RefreshUnitInventoryInfoWindow(struct Unit * unit);
 void RideBallista(struct Unit * unit);
 void TryRemoveUnitFromBallista(struct Unit * unit);
-void StartMu(struct Unit * unit);
+struct MuProc * StartMu(struct Unit * unit);
 s8 sub_080347E4(struct Trap * trap);   /* IsBallista */
 int sub_0803483C(struct Trap * trap);  /* GetBallistaItemUses */
 
