@@ -74,7 +74,6 @@ PROC_LABEL(PL_TACTINFO_END),
 	PROC_END,
 };
 
-void nullsub_84(void);
 
 void TactInfo_StartHelpbox(struct ProcTactInfo *proc)
 {
@@ -459,6 +458,8 @@ void Tact_ClearNrVrams(void *vram, u32 chr, u32 nr_chrs)
 	CpuFastFill(0, vram + chr * CHR_SIZE + CHR_LINE * CHR_SIZE, nr_chrs * CHR_SIZE);
 }
 
-void TactBlood_Init(struct ProcTactBlood *proc);
-ASM_FUNC("asm/nonmatching/code_080A6E24.s");
+void TactBlood_Init(struct ProcTactBlood *proc)
+{
+	// FE7U: blood type selection was removed; only this empty stub remains
+}
 
