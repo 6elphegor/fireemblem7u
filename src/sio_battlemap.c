@@ -211,6 +211,34 @@ void StartAiTargetCursor(int x, int y, int kind, ProcPtr parent);
 int GetUnitDisplayedSpritePalette(struct Unit * unit);
 int GetFacingFromTo(int x1, int y1, int x2, int y2);
 
+extern u16 gUnknown_03001840[];
+
+//! FE8U = 0x08049298
+void sub_08044AEC(struct Unit * unit)
+{
+    int i;
+
+    for (i = 0; i < UNIT_ITEM_COUNT; i++)
+    {
+        gUnknown_03001840[i] = unit->items[i];
+    }
+
+    return;
+}
+
+//! FE8U = 0x080492B8
+void sub_08044B08(struct Unit * unit)
+{
+    int i;
+
+    for (i = 0; i < UNIT_ITEM_COUNT; i++)
+    {
+        unit->items[i] = gUnknown_03001840[i];
+    }
+
+    return;
+}
+
 void sub_08044B24(void)
 {
     sub_08044DCC();

@@ -644,8 +644,6 @@ SECTIONS
         build/asm/code_080440AC.o(.text);
         build/asm/code_080440B8.o(.text);
         build/src/sio_points.o(.text);
-        build/asm/code_08044AEC.o(.text);
-        build/asm/code_08044B08.o(.text);
         build/src/sio_battlemap.o(.text);
         build/asm/code_080470B8.o(.text);
         build/asm/code_080470C4.o(.text);
