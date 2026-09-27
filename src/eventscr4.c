@@ -22,12 +22,12 @@ void WmMergeFace(int a, int b, int c, int d, int e, int f, int g);
 void WmMergeMonsters(void);
 void sub_080B4F70(void);
 void sub_080B4F74(int a, int b);
-void sub_080B4F78(int a, int b, int c, int d);
+void WmStartFadeCamera(int a, int b, int c, int d);
 void sub_080B5B44(int a, int b);
 void sub_080B5B6C(void);
 void sub_080B4D4C(int a, int b, u16 c);
 void sub_080B4E88(int a, u16 b);
-void sub_080B4FE4(int a);
+void WmStartTalk(int a);
 void OpenWmTextBox(int a);
 void CloseWmTextBox(void);
 void sub_080B4904(int a, int b, int c, int d);
@@ -588,7 +588,7 @@ int sub_0800F494(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B4F78(a, b, c, d);
+    WmStartFadeCamera(a, b, c, d);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -683,7 +683,7 @@ int sub_0800F61C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B4FE4(proc->script[1]);
+    WmStartTalk(proc->script[1]);
     proc->idle_func = EventEndTalk;
 
     if (proc->flags & EVENT_FLAG_NOSKIPTALK)

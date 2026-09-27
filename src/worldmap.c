@@ -120,6 +120,37 @@ struct WmUnitManagerProc {
 extern struct ProcCmd CONST_DATA ProcScr_WmMu[];
 extern struct ProcCmd CONST_DATA ProcScr_WmUnitManager[];
 
+struct WorldMapProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ u32 flags;
+    /* 30 */ s16 x;
+    /* 32 */ s16 y;
+    /* 34 */ s16 speed;
+    /* 36 */ STRUCT_PAD(0x36, 0x40);
+    /* 40 */ u16 unk_40;
+    /* 42 */ STRUCT_PAD(0x42, 0x48);
+    /* 48 */ u16 unk_48;
+    /* 4A */ u8 mode;
+    /* 4B */ STRUCT_PAD(0x4B, 0x4C);
+    /* 4C */ s16 camX;
+    /* 4E */ s16 camY;
+    /* 50 */ s16 targetX;
+    /* 52 */ s16 targetY;
+    /* 54 */ u8 unk_54;
+};
+
+struct WmFaceConfig {
+    struct FaceVramEnt ent[4];
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_WorldMap[];
+extern struct WmFaceConfig const gWmFaceConfig;
+
+void InitSpriteTalk(int chr, int lines, int palid);
+ProcPtr StartTalkMsg(int x, int y, int id);
+void SetTalkPrintDelay(int delay);
+void StartWmFade(int mode, int x, int y, ProcPtr parent);
+
 void EndWmIcon(int idx);
 void EndWmIcon2(int idx);
 
@@ -800,16 +831,92 @@ void EndWmIcon2(int idx)
 
 ASM_FUNC("asm/nonmatching/code_080B4D4C.s");
 ASM_FUNC("asm/nonmatching/code_080B4E88.s");
-ASM_FUNC("asm/nonmatching/code_080B4F44.s");
-ASM_FUNC("asm/nonmatching/code_080B4F58.s");
-ASM_FUNC("asm/nonmatching/code_080B4F68.s");
-ASM_FUNC("asm/nonmatching/code_080B4F6C.s");
-ASM_FUNC("asm/nonmatching/code_080B4F70.s");
-ASM_FUNC("asm/nonmatching/code_080B4F74.s");
-ASM_FUNC("asm/nonmatching/code_080B4F78.s");
-ASM_FUNC("asm/nonmatching/code_080B4F9C.s");
-ASM_FUNC("asm/nonmatching/code_080B4FE4.s");
-ASM_FUNC("asm/nonmatching/code_080B5030.s");
+ProcPtr StartWmUnitManager(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_WmUnitManager, parent);
+}
+
+void EndWmUnitManager(void)
+{
+    Proc_EndEach(ProcScr_WmUnitManager);
+}
+
+void nullsub_5(void)
+{
+}
+
+void nullsub_6(void)
+{
+}
+
+void sub_080B4F70(void)
+{
+}
+
+void sub_080B4F74(void)
+{
+}
+
+void WmStartFadeCamera(int x, int y, int mode)
+{
+    ProcPtr proc = Proc_Find(ProcScr_WorldMap);
+    StartWmFade(mode, x, y, proc);
+}
+
+void WmStartScrollCamera(int x, int y, int speed)
+{
+    struct WorldMapProc * proc = Proc_Find(ProcScr_WorldMap);
+
+    if (proc != NULL)
+    {
+        proc->camX = WmGetCameraX();
+        proc->camY = WmGetCameraY();
+        proc->targetX = x;
+        proc->targetY = y;
+        proc->speed = speed;
+
+        Proc_Goto(proc, 2);
+    }
+}
+
+void WmStartTalk(int msg)
+{
+    EndTalk();
+    InitSpriteTalk(0x200, 2, 2);
+    StartTalkMsg(1, (gWmHBlankLine >> 3) + 1, msg);
+    SetTalkPrintDelay(4);
+    SetTalkFlag(0x20);
+    SetTalkFlag(0x80);
+    SetTalkFlag(4);
+    SetTalkFlag(1);
+}
+
+void WorldMap_Init(void)
+{
+    struct WmFaceConfig config = gWmFaceConfig;
+
+    InitBgs(NULL);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 3;
+    gDispIo.bg3_ct.priority = 3;
+
+    UnpackUiWindowFrameGraphics();
+    ResetText();
+    InitFaces();
+    SetFaceConfig(config.ent);
+
+    ResetUnitSprites();
+    MU_Init();
+    ApplyUnitSpritePalettes();
+
+    gBmSt.camera.x = 0;
+    gBmSt.camera.y = 0;
+
+    SetDispEnable(0, 0, 0, 0, 0);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B50C4.s");
 ASM_FUNC("asm/nonmatching/code_080B5280.s");
 ASM_FUNC("asm/nonmatching/code_080B52CC.s");

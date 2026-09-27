@@ -100,7 +100,7 @@ _080B572A:
 	ldr r0, [r4, #0x38]
 	ldr r1, [r4, #0x3c]
 	ldr r2, [r4, #0x44]
-	bl sub_080B4F9C
+	bl WmStartScrollCamera
 	b _080B5754
 _080B5736:
 	ldr r0, [r4, #0x44]

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B50C4
-sub_080B50C4: @ 0x080B50C4
+	thumb_func_start WorldMap_InitDisplay
+WorldMap_InitDisplay: @ 0x080B50C4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -158,7 +158,7 @@ sub_080B50C4: @ 0x080B50C4
 	adds r0, r4, #0
 	bl StartWmTextBox
 	adds r0, r4, #0
-	bl sub_080B4F44
+	bl StartWmUnitManager
 	ldr r1, [r4, #0x2c]
 	movs r0, #4
 	ands r0, r1
