@@ -2,6 +2,16 @@
 
 	.syntax unified
 
+	thumb_func_start ArcTan2
+ArcTan2: @ 0x080BFA04
+	svc #0xa
+	bx lr
+
+	thumb_func_start BgAffineSet
+BgAffineSet: @ 0x080BFA08
+	svc #0xe
+	bx lr
+
 	thumb_func_start CpuFastSet
 CpuFastSet: @ 0x080BFA0C
 	svc #0xc

@@ -23,7 +23,8 @@ make                    # builds fe7u.gba and checks its SHA1
 | --- | --- |
 | `asm/crt0.s` | ARM startup and IWRAM routines (`0x08000000`) |
 | `asm/code_*.s` | Game code not yet decompiled, named by start address |
-| `asm/m4a.s`, `libagb.s`, `veneers.s` | Library code; libc and libgcc are linked from agbcc's `libc.a`/`libgcc.a` (members listed in `fe7u.lds`) |
+| `asm/m4a_1.s` + `src/m4a.c`, `src/m4a_tables.c` | MusicPlayer2000 sound engine (hand-written asm part + C part) |
+| `asm/libagb.s`, `veneers.s` | Library code; libc and libgcc are linked from agbcc's `libc.a`/`libgcc.a` (members listed in `fe7u.lds`) |
 | `src/` | Decompiled C |
 | `include/` | Headers (adopted from FireEmblem7J) |
 | `data/layout.txt` | FE7U addresses of C data sections (ROM and RAM); everything else in the data region is incbin'd |

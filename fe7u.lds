@@ -298,7 +298,8 @@ SECTIONS
         build/src/titlescreen.o(.text);
         build/src/opanim_scanline.o(.text);
         build/src/opanim.o(.text);
-        build/asm/m4a.o(.text);
+        build/asm/m4a_1.o(.text);
+        build/src/m4a.o(.text);
         build/asm/libagb.o(.text);
         *libgcc.a:_ashldi3.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
