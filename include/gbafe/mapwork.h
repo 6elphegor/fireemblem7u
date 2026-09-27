@@ -27,4 +27,8 @@
 // ??? MapAddInBoundedRange
 // ??? GetWorkingMoveCosts
 
+void MapFloodOnWorkingMap(struct Unit * unit, int x, int y, int movement); // GenerateMovementMapOnWorkingMap
+s8 * GetWorkingMoveCosts(void);
+extern u8 ** gWorkingBmMap;
+
 extern u8 gWorkingMoveScr[MOVE_SCRIPT_MAX_LENGTH];
