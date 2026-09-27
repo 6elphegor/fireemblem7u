@@ -795,9 +795,9 @@ void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to
 // SoundRoomUi_RestartTitleMusic
 // sub_80ACC60
 // sub_080ABD90
-// sub_080ABEF4
+// SoundRoomUi_80AFBBC
 // SoundRoomUi_Loop_MainUiSlideOut
-// sub_080AC000
+// SoundRoomUi_80AFC98
 // SoundRoomUi_80AFCE4
 // SoundRoomUi_Loop_MainUiSlideIn
 // SoundRoomUi_80AFD48

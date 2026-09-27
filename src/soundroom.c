@@ -71,7 +71,7 @@ extern struct SoundRoomEnt CONST_DATA gSoundRoomTable[];
 extern int CONST_DATA gSoundRoomBgTable[];
 
 extern u16 * CONST_DATA gUnknown_08A212D4;
-extern void * CONST_DATA gUnknown_08A212D8;
+extern u16 * CONST_DATA gUnknown_08A212D8;
 extern struct Unknown_08A212DC * CONST_DATA gUnknown_08A212DC;
 extern s8 * CONST_DATA gSoundRoomShuffleBuffer;
 extern struct SoundInfo * CONST_DATA gpSoundInfo;
@@ -90,6 +90,19 @@ extern u16 CONST_DATA gUnknown_08A01EE4[];
 extern u16 CONST_DATA gUnknown_08A01F04[];
 extern u8 CONST_DATA gUnknown_08A2C4C8[];
 extern u8 CONST_DATA gUnknown_08A2C5A8[];
+extern u8 CONST_DATA gUnknown_08413D90[];
+extern char CONST_DATA gUnknown_08418E40[];
+extern int CONST_DATA gUnknown_08CE5388;
+
+extern u16 CONST_DATA gSprite_SoundRoom_AButtonPlay[];
+extern u16 CONST_DATA gSprite_SoundRoom_StartButtonStop[];
+extern u16 CONST_DATA gSprite_SoundRoom_SelectButtonRandom[];
+extern u16 CONST_DATA gSprite_RandomModeBanner[];
+extern u16 CONST_DATA gSprite_MusicPlayer_SeekBar[];
+extern u16 CONST_DATA gSprite_MusicPlayer_SeekBarIndicator[];
+extern u16 CONST_DATA gSprite_MusicPlayer_Time[];
+extern u16 CONST_DATA gSprite_MusicPlayer_Colon[];
+extern u16 * CONST_DATA gSpriteArray_MusicPlayer_TimeNumbers[];
 
 int CountTotalSoundRoomSongs(void);
 int CountSecretSoundRoomSongs(void);
@@ -603,56 +616,680 @@ void TickCurrentSongTime(struct SoundRoomProc * proc)
         proc->currentSongTime++;
 }
 
-ASM_FUNC("asm/nonmatching/code_080AB79C.s");
+void SoundRoomUi_Init(struct SoundRoomProc * proc)
+{
+    InitBgs(NULL);
 
-ASM_FUNC("asm/nonmatching/code_080ABAB4.s");
+    ResetTextFont();
+    ResetText();
 
-ASM_FUNC("asm/nonmatching/code_080ABB00.s");
+    ApplySystemObjectsGraphics();
+    UnpackUiWindowFrameGraphics();
+    InitSystemTextFont();
 
-ASM_FUNC("asm/nonmatching/code_080ABB38.s");
+    SetDispEnable(1, 1, 1, 1, 1);
 
-ASM_FUNC("asm/nonmatching/code_080ABB60.s");
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 3;
 
-ASM_FUNC("asm/nonmatching/code_080ABD4C.s");
+    SetWinEnable(0, 0, 0);
 
-ASM_FUNC("asm/nonmatching/code_080ABD7C.s");
+    SetBlankChr(0);
 
-ASM_FUNC("asm/nonmatching/code_080ABD90.s");
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+    TmFill(gBg3Tm, 0);
 
-ASM_FUNC("asm/nonmatching/code_080ABEF4.s");
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
 
-ASM_FUNC("asm/nonmatching/code_080ABFC8.s");
+    proc->curIndex = 0;
+    proc->unk_37 = 0;
+    proc->bgYOffset = 0;
+    proc->unk_3b = 0;
+    proc->unk_3c = 0;
+    proc->unk_3d = 0;
+    proc->unk_3e = 0;
+    proc->unk_2f = 0;
+    proc->isSongPlaying = 0;
+    proc->currentSongIdx = -1;
+    proc->unk_2e = 0;
+    proc->currentSongTime = 0;
+    proc->unk_3f = 0;
 
-ASM_FUNC("asm/nonmatching/code_080AC000.s");
+    InitSoundRoomSongData(proc);
+    sub_080AB440(proc);
+    sub_080AC2C0();
+    TryDrawSoundRoomSongTitle(proc);
+    ResetSysHandCursor(proc);
+    DisplaySysHandCursorTextShadow(0x280, 2);
 
-ASM_FUNC("asm/nonmatching/code_080AC070.s");
+    StartUiSpinningArrows(proc);
+    LoadUiSpinningArrowGfx(1, 0x680, 3);
+    SetUiSpinningArrowPositions(0x90, 0x38, 0x90, 0x90);
 
-ASM_FUNC("asm/nonmatching/code_080AC084.s");
+    sub_080AB5AC(proc);
+    sub_080AB5DC(proc);
+    sub_080AB654(proc);
 
-ASM_FUNC("asm/nonmatching/code_080AC0D0.s");
+    Decompress(gUnknown_08A2C908, (void *)0x06004000);
+    ApplyPalette(gUnknown_08A01EE4, 4);
+    ApplyPalette(gUnknown_08A01F04, 5);
 
-ASM_FUNC("asm/nonmatching/code_080AC0E4.s");
+    DrawUiFrame2(2, 1, 26, 6, 0);
+    DrawUiFrame2(11, 7, 17, 12, 0);
+    DrawUiFrame2(2, 11, 9, 8, 0);
+    TmApplyTsa_thm(gBg1Tm + TM_OFFSET(2, 11), gUnknown_08A2C4C8, 0x1000);
+    DrawUiFrame2(2, 7, 9, 4, 0);
+    TmApplyTsa_thm(gBg1Tm + TM_OFFSET(22, 5), gUnknown_08A2C5A8, 0x1000);
 
-ASM_FUNC("asm/nonmatching/code_080AC174.s");
+    sub_080AB75C(gBg0Tm + TM_OFFSET(22, 5), proc);
 
-ASM_FUNC("asm/nonmatching/code_080AC21C.s");
+    SetBgOffset(0, 0, -2);
+    SetBgOffset(2, -4, 0);
 
-ASM_FUNC("asm/nonmatching/code_080AC2AC.s");
+    SetWinEnable(1, 0, 0);
 
-ASM_FUNC("asm/nonmatching/code_080AC2C0.s");
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWin0Box(4, 64, 240, 144);
+    SetWOutLayers(1, 1, 0, 1, 1);
 
-ASM_FUNC("asm/nonmatching/code_080AC384.s");
+    PutCgBackground(gBg3Tm, 0x8000, 8, 8, sub_080AB548(proc));
 
-ASM_FUNC("asm/nonmatching/code_080AC3F8.s");
+    Decompress(Img_SoundRoomUiElements, (void *)0x06012000);
+    ApplyPalettes(Pal_SoundRoomUiElements, 0x14, 2);
 
-ASM_FUNC("asm/nonmatching/code_080AC4C4.s");
+    DrawSoundRoomSprites(proc);
 
-ASM_FUNC("asm/nonmatching/code_080AC54C.s");
+    SetBlendAlpha(15, 3);
+    SetBlendTargetA(0, 1, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
 
-ASM_FUNC("asm/nonmatching/code_080AC588.s");
+    StartGreenText(proc);
 
-ASM_FUNC("asm/nonmatching/code_080AC664.s");
+    InitSoundRoomVolumeGraph();
+    StartParallelWorker(TickCurrentSongTime, proc);
+    Proc_Start(gProcScr_VolumeGraphBuffer, proc);
+}
 
-ASM_FUNC("asm/nonmatching/code_080AC66C.s");
+bool StartSoundRoomSong(struct SoundRoomProc * proc, int index, int flagsMaybe)
+{
+    if (MusicProc4Exists())
+        return FALSE;
 
-ASM_FUNC("asm/nonmatching/code_080AC78C.s");
+    proc->currentSongIdx = index;
+    proc->currentSongTime = 1;
+    CallSomeSoundMaybe(gSoundRoomTable[index].bgmId, 0x100, 0x100, flagsMaybe, NULL);
+
+    return TRUE;
+}
+
+void StopSoundRoomSong(struct SoundRoomProc * proc)
+{
+    if (MusicProc4Exists())
+        return;
+
+    proc->currentSongTime = 0;
+    CallSomeSoundMaybe(0, 0x100, 0, 0x18, NULL);
+    proc->unk_2f = 0;
+    proc->isSongPlaying = 0;
+}
+
+void TryDrawSoundRoomSongTitle(struct SoundRoomProc * proc)
+{
+    if (IsSoundRoomSongPlayable(proc, proc->curIndex))
+        DrawSoundRoomSongTitle(proc->curIndex);
+    else
+        DrawSoundRoomSongTitle(-1);
+}
+
+void SoundRoomUi_Loop_MainKeyHandler(struct SoundRoomProc * proc)
+{
+    int moveAmt = 0;
+
+    if (proc->unk_37 == 0)
+    {
+        u16 keys = gpKeySt->repeated;
+        proc->unk_38 = 4;
+
+        if (gpKeySt->held & L_BUTTON)
+        {
+            keys = gpKeySt->held;
+            proc->unk_38 = 8;
+        }
+
+        if (keys & DPAD_UP)
+            moveAmt = -4;
+
+        if (keys & DPAD_DOWN)
+            moveAmt = +4;
+
+        if (keys & DPAD_LEFT)
+        {
+            u32 tmp = proc->curIndex;
+            if ((tmp & 3) != 0)
+                moveAmt = -1;
+        }
+
+        if (keys & DPAD_RIGHT)
+        {
+            u32 tmp = proc->curIndex;
+            if ((tmp & 3) < 3)
+                moveAmt = +1;
+        }
+
+        if (moveAmt != 0)
+        {
+            if ((proc->curIndex + moveAmt) < 0)
+                return;
+
+            if ((proc->curIndex + moveAmt) >= proc->totalSongs)
+                return;
+
+            proc->curIndex += moveAmt;
+
+            TryDrawSoundRoomSongTitle(proc);
+
+            proc->unk_37 = sub_080AB604(proc);
+
+            if (proc->unk_37 != 0)
+            {
+                if (proc->unk_37 == -1)
+                    Proc_Goto(proc, 10);
+
+                if (proc->unk_37 == +1)
+                    Proc_Goto(proc, 11);
+
+                sub_080AB654(proc);
+            }
+            else
+            {
+                sub_080AB5DC(proc);
+            }
+        }
+    }
+
+    if (proc->unk_37 != 0)
+    {
+        int tmp;
+
+        proc->bgYOffset = proc->unk_37 * proc->unk_38 + proc->bgYOffset;
+
+        SetBgOffset(2, -4, proc->bgYOffset & 0xff);
+
+        tmp = proc->bgYOffset;
+        if ((tmp & 0xf) == 0)
+            proc->unk_37 = 0;
+
+        sub_080AB5AC(proc);
+
+        return;
+    }
+
+    if (gpKeySt->pressed & R_BUTTON)
+    {
+        Proc_Goto(proc, 1);
+        return;
+    }
+
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        StopSoundRoomSong(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        if (IsSoundRoomSongPlayable(proc, proc->curIndex))
+        {
+            if (StartSoundRoomSong(proc, proc->curIndex, 0x20))
+                sub_080AC87C(sub_080AB4EC(proc), proc);
+
+            return;
+        }
+
+        PlaySoundEffect(0x38C);
+        return;
+    }
+
+    if (gpKeySt->pressed & SELECT_BUTTON)
+    {
+        if (MusicProc4Exists())
+            return;
+
+        Proc_Goto(proc, 2);
+
+        return;
+    }
+
+    if (gpKeySt->pressed & START_BUTTON)
+    {
+        Proc_Goto(proc, 3);
+        return;
+    }
+}
+
+void SoundRoomUi_RestartTitleMusic(struct SoundRoomProc * proc)
+{
+    if (!MusicProc4Exists())
+    {
+        CallSomeSoundMaybe(0x5A, 0, 0xC0, 0x18, NULL);
+        Proc_Break(proc);
+    }
+}
+
+void SoundRoomUi_OnEnd(struct SoundRoomProc * proc)
+{
+    EndAllProcChildren(proc);
+    Proc_EndEach(gProcScr_VolumeGraphBuffer);
+}
+
+void sub_080ABD90(struct SoundRoomProc * proc)
+{
+    proc->unk_3c = -proc->unk_3b / 3;
+    proc->unk_3d = (-(proc->unk_3b) * 2) / 3;
+
+    proc->unk_3e = proc->unk_3b;
+
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg2Tm, 0);
+
+    sub_080A8838(gUnknown_08A212D4, 0, 0, 1, 2, proc->unk_3c + 1, 26, 6);
+    sub_080A8838(gUnknown_08A212D4, 0, 7, 1, proc->unk_3d + 2, 7, 9, 4);
+    sub_080A8838(gUnknown_08A212D4, 0, 11, 1, proc->unk_3d + 2, 11, 9, 8);
+    sub_080A8838(gUnknown_08A212D4, 10, 7, 1, proc->unk_3e + 11, 7, 17, 12);
+    sub_080A8838(gUnknown_08A212D4, 10, 19, 1, proc->unk_3e + 22, 5, 6, 3);
+
+    sub_080A8838(gUnknown_08A212D8, 12, 0, 2, proc->unk_3e + 12, 0, 16, 32);
+    sub_080A8838(gUnknown_08A212D8, 0, 0, 0, proc->unk_3e + 22, 5, 6, 2);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+}
+
+void SoundRoomUi_80AFBBC(struct SoundRoomProc * proc)
+{
+    proc->unk_3b = 0;
+
+    PutUiWindowFrame(gUnknown_08A212D4, 0, 0, 26, 6, 0, 0);
+    PutUiWindowFrame(gUnknown_08A212D4, 0, 7, 9, 4, 0, 0);
+    TmApplyTsa_thm(gUnknown_08A212D4 + TM_OFFSET(0, 11), gUnknown_08A2C4C8, 0x1000);
+    PutUiWindowFrame(gUnknown_08A212D4, 10, 7, 17, 12, 0, 0);
+    TmApplyTsa_thm(gUnknown_08A212D4 + TM_OFFSET(10, 19), gUnknown_08A2C5A8, 0x1000);
+
+    CpuFastCopy(gBg2Tm, gUnknown_08A212D8, 0x800);
+
+    sub_080AB75C(gUnknown_08A212D8, proc);
+
+    TmApplyTsa_thm(gUnknown_08A212D4 + TM_OFFSET(0, 25), gUnknown_08413D90, 0x1000);
+
+    HideSysHandCursor();
+    SetUiSpinningArrowConfig(0);
+
+    proc->unk_3a = 0;
+}
+
+void SoundRoomUi_Loop_MainUiSlideOut(struct SoundRoomProc * proc)
+{
+    int tmp;
+
+    proc->unk_3a++;
+
+    tmp = ((proc->unk_3a * 2 + proc->unk_3a) << 3) * proc->unk_3a;
+
+    proc->unk_3b = tmp >> 6;
+
+    sub_080ABD90(proc);
+
+    if (proc->unk_3b == 24)
+        Proc_Break(proc);
+}
+
+void SoundRoomUi_80AFC98(struct SoundRoomProc * proc)
+{
+    if (gpKeySt->pressed & (A_BUTTON | SELECT_BUTTON))
+    {
+        sub_080AC87C(sub_080AB4EC(proc), proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & DPAD_LEFT)
+    {
+        SoundRoom_StartNextSong_Positive(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & DPAD_RIGHT)
+    {
+        SoundRoom_StartNextSong_Negative(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & (B_BUTTON | R_BUTTON | L_BUTTON))
+    {
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & START_BUTTON)
+    {
+        Proc_Goto(proc, 3);
+        return;
+    }
+}
+
+void SoundRoomUi_80AFCE4(struct SoundRoomProc * proc)
+{
+    TryDrawSoundRoomSongTitle(proc);
+    proc->unk_3a = 0;
+}
+
+void SoundRoomUi_Loop_MainUiSlideIn(struct SoundRoomProc * proc)
+{
+    int tmp;
+
+    proc->unk_3a++;
+
+    tmp = 8 - proc->unk_3a;
+    tmp = (((tmp) * 2 + (tmp)) << 3) * tmp;
+
+    proc->unk_3b = (tmp / 64);
+
+    sub_080ABD90(proc);
+
+    if (proc->unk_3b == 0)
+    {
+        sub_080AB5DC(proc);
+        sub_080AB5AC(proc);
+        Proc_Break(proc);
+    }
+}
+
+void SoundRoomUi_80AFD48(struct SoundRoomProc * proc)
+{
+    proc->unk_3a = 0;
+    proc->currentSongTime = 0;
+    InitSoundRoomShuffleBuffer(proc);
+}
+
+void SoundRoomUi_Loop_ShufflePlayUiSlideIn(struct SoundRoomProc * proc)
+{
+    int tmp;
+
+    proc->unk_3a++;
+
+    tmp = 8 - proc->unk_3a;
+    tmp = (((tmp) * 2 + (tmp)) << 3) * tmp;
+
+    proc->unk_3b = 0x18 - (tmp / 0x40);
+
+    proc->unk_3c = 0x14 - (proc->unk_3b / 3);
+
+    TmFill(gBg1Tm, 0);
+
+    sub_080A8838(gUnknown_08A212D4, 0, 25, 1, 2, proc->unk_3c + 1, 26, 7);
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    if (proc->unk_3b == 24)
+    {
+        proc->unk_3a = 0;
+        Proc_Break(proc);
+    }
+}
+
+void SoundRoomUi_Loop_ShufflePlayKeyHandler(struct SoundRoomProc * proc)
+{
+    if (proc->unk_3f != 0)
+        return;
+
+    if (proc->isSongPlaying != 0)
+    {
+        if (proc->currentSongTime >= (gSoundRoomTable[proc->currentSongIdx].songLength))
+        {
+            PlayNextShuffledSong(proc);
+            return;
+        }
+    }
+
+    if (gpKeySt->pressed & DPAD_RIGHT)
+    {
+        SoundRoom_StartNextSong_Positive(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & DPAD_LEFT)
+    {
+        SoundRoom_StartNextSong_Negative(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & (B_BUTTON | SELECT_BUTTON))
+    {
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        sub_080AC87C(sub_080AB4EC(proc), proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & START_BUTTON)
+        Proc_Goto(proc, 3);
+}
+
+void SoundRoomUi_Loop_ShufflePlayUiSlideOut(struct SoundRoomProc * proc)
+{
+    int tmp;
+
+    proc->unk_3a++;
+
+    tmp = 8 - proc->unk_3a;
+    tmp = (((tmp) * 2 + (tmp)) << 3) * tmp;
+
+    proc->unk_3b = (tmp / 0x40);
+
+    proc->unk_3c = 20 - (proc->unk_3b / 3);
+
+    TmFill(gBg1Tm, 0);
+
+    sub_080A8838(gUnknown_08A212D4, 0, 25, 1, 2, proc->unk_3c + 1, 26, 7);
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    if (proc->unk_3b == 0)
+    {
+        proc->isSongPlaying = 0;
+        Proc_Break(proc);
+    }
+}
+
+ProcPtr StartSoundRoomScreen(ProcPtr parent)
+{
+    return Proc_StartBlocking(ProcScr_SoundRoomUi, parent);
+}
+
+void sub_080AC2C0(void)
+{
+    int i;
+
+    u32 vram = 0x06014000;
+
+    InitSpriteTextFont(&gSoundRoomText.font, (void *)vram, 5);
+
+    ApplyPalettes(Pal_Text, 0x1A, 2);
+    gPal[0x1A * 0x10] = 0;
+
+    EnablePalSync();
+
+    SetTextFont(&gSoundRoomText.font);
+    InitSpriteText(&gSoundRoomText.text[0]);
+    InitSpriteText(&gSoundRoomText.text[1]);
+
+    for (i = 0; i < 3; i++)
+        InitSpriteText(&gSoundRoomText.text[2 + i]);
+
+    SetTextFont(NULL);
+
+    gSoundRoomText.unk_48 = (((0x1FFFF & vram) >> 5) & 0x3FF) + 0xA000;
+
+    SetTextFont(NULL);
+    SetTextFontGlyphs(0);
+
+    InitText(&gSoundRoomText.text[5], 2);
+    ClearText(&gSoundRoomText.text[5]);
+    Text_SetCursor(&gSoundRoomText.text[5], 1);
+    Text_DrawString(&gSoundRoomText.text[5], gUnknown_08418E40);
+}
+
+void DrawSoundRoomSongTitle(int index)
+{
+    const char * str;
+
+    if (index == -1)
+        str = DecodeMsg(gUnknown_08CE5388);
+    else
+        str = DecodeMsg(gSoundRoomTable[index].nameTextId);
+
+    SetTextFont(&gSoundRoomText.font);
+    SetTextFontGlyphs(1);
+
+    SpriteText_DrawBackgroundExt(&gSoundRoomText.text[0], 0);
+
+    Text_SetCursor(&gSoundRoomText.text[0], GetStringTextCenteredPos(160, str));
+    Text_SetColor(&gSoundRoomText.text[0], 0);
+    Text_DrawString(&gSoundRoomText.text[0], str);
+
+    SetTextFont(NULL);
+}
+
+void sub_080AC3F8(int y, u16 unk)
+{
+    int i;
+
+    if (unk > 32)
+    {
+        y = OAM0_Y(y);
+
+        SetObjAffine(
+            0,
+            Div(+COS_Q12(0) * 16, 256),
+            Div(-SIN_Q12(0) * 16, unk),
+            Div(+SIN_Q12(0) * 16, 256),
+            Div(+COS_Q12(0) * 16, unk));
+
+        for (i = 0; i < 5; i++)
+            PutSpriteExt(4, 40 + i * 32, y + 256, Sprite_32x16, i * 4 + gSoundRoomText.unk_48 + 0x1000);
+    }
+}
+
+void DrawSoundRoomVolumeGraphSprites(int x, int y, int c, int d)
+{
+    int count = 0;
+    int pal = 0xd;
+
+    if (d == 0)
+        return;
+
+    y = OAM0_Y(y);
+
+    if (c > 7)
+    {
+        int x_ = x;
+
+        for (; c > 7;)
+        {
+            c -= 8;
+
+            PutSpriteExt(0, OAM1_X(x_), y, Sprite_8x8, (pal << 12) + 0x47 + 0x800);
+
+            x_ += 8;
+            count++;
+
+            if (count > 2)
+                pal = 0xe;
+
+            if (count > 4)
+                pal = 0xf;
+        }
+    }
+
+    PutSpriteExt(0, OAM1_X(count * 8 + x), y, Sprite_8x8, c + (pal << 12) + 0x40 + 0x800);
+}
+
+void sub_080AC54C(struct SoundRoomSpriteDrawProc * proc)
+{
+    int i;
+
+    struct SoundRoomProc * parent = proc->proc_parent;
+
+    u8 * ptr = gSoundRoomVolumeGraphBuffer[0];
+    ptr += 0x30;
+
+    for (i = 0; i < 2; i++)
+    {
+        int a = ptr[i * 0x31];
+
+        DrawSoundRoomVolumeGraphSprites(parent->unk_3d * 8 + 24, 64 + i * 8, a, a);
+    }
+}
+
+void DrawMusicPlayerTime(int x, int y, int time)
+{
+    int seconds = time / 60;
+    int minutes = seconds / 60;
+    int secondsIntoMin = seconds % 60;
+
+    PutSpriteExt(0, x, y, gSprite_MusicPlayer_Time, 0x4000);
+    PutSpriteExt(0, x + 40, y, gSpriteArray_MusicPlayer_TimeNumbers[minutes], 0x4000);
+    PutSpriteExt(0, x + 48, y, gSprite_MusicPlayer_Colon, 0x4000);
+
+    if (secondsIntoMin >= 10)
+        PutSpriteExt(0, x + 56, y, gSpriteArray_MusicPlayer_TimeNumbers[secondsIntoMin / 10], 0x4000);
+    else
+        PutSpriteExt(0, x + 56, y, gSpriteArray_MusicPlayer_TimeNumbers[0], 0x4000);
+
+    PutSpriteExt(0, x + 64, y, gSpriteArray_MusicPlayer_TimeNumbers[secondsIntoMin % 10], 0x4000);
+}
+
+void SoundRoom_DrawSprites_Init(struct SoundRoomSpriteDrawProc * proc)
+{
+    proc->unk_2c = 0;
+}
+
+void SoundRoom_DrawSprites_Loop(struct SoundRoomSpriteDrawProc * proc)
+{
+    struct SoundRoomProc * parent = proc->proc_parent;
+
+    sub_080AC3F8(parent->unk_3c * 8 + 24, 0x100);
+
+    if (parent->isSongPlaying != 0)
+    {
+        int y = OAM0_Y(parent->unk_3c * 8 + 48);
+
+        PutSpriteExt(0, 4, OAM0_Y((12 - parent->unk_3c) * 8 + 4) + 0x400, gSprite_RandomModeBanner, 0x5000);
+
+        PutSpriteExt(0, 136, OAM0_Y(y + 1), gSprite_MusicPlayer_SeekBar, 0x4000);
+
+        PutSpriteExt(
+            0, parent->currentSongTime * 66 / (gSoundRoomTable[parent->currentSongIdx].songLength + 120) + 136, y,
+            gSprite_MusicPlayer_SeekBarIndicator, 0x4000);
+
+        DrawMusicPlayerTime(60, y, parent->currentSongTime);
+    }
+
+    PutSprite(0xb, OAM1_X(parent->unk_3d * 8 + 22), 88, gSprite_SoundRoom_AButtonPlay, 0x4000);
+    PutSprite(0xb, OAM1_X(parent->unk_3d * 8 + 22), 104, gSprite_SoundRoom_StartButtonStop, 0x4000);
+    PutSprite(0xb, OAM1_X(parent->unk_3d * 8 + 22), 120, gSprite_SoundRoom_SelectButtonRandom, 0x4000);
+
+    sub_080AC54C(proc);
+}
+
+ProcPtr DrawSoundRoomSprites(ProcPtr parent)
+{
+    return Proc_Start(gProcScr_SoundRoomDrawSprites, parent);
+}
