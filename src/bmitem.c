@@ -516,7 +516,39 @@ void EquipUnitItemSlot(struct Unit * unit, int itemSlot)
     unit->items[0] = item;
 }
 
-ASM_FUNC("asm/nonmatching/code_08016820.s");
+bool IsItemEffectiveAgainst(u16 item, struct Unit * unit)
+{
+    int classId = unit->pClassData->number;
+    const u8 * effList = GetItemEffectiveness(item);
+
+    if (!effList)
+        return FALSE;
+
+    for (; *effList; ++effList)
+        if (*effList == classId)
+            goto check_flying_effectiveness_negation;
+
+    return FALSE;
+
+check_flying_effectiveness_negation:
+    {
+        u32 attributes;
+        int i;
+
+        if (GetItemEffectiveness(item) != ItemEffectiveness_08C97ED2)
+            return TRUE;
+
+        attributes = 0;
+
+        for (i = 0; i < UNIT_ITEM_COUNT; ++i)
+            attributes = attributes | GetItemAttributes(unit->items[i]);
+
+        if (attributes & IA_NEGATE_FLYING)
+            return FALSE;
+
+        return TRUE;
+    }
+}
 
 char * GetItemRangeString(int item)
 {
@@ -934,4 +966,12 @@ void BreakItemSealForPid(int item, u8 pid)
     gPlaySt.unk1C[GetItemType(item)] = pid;
 }
 
-ASM_FUNC("asm/nonmatching/code_08017178.s");
+static inline int GetChapterUnk1C(int arg)
+{
+    return gPlaySt.unk1C[arg];
+}
+
+bool IsItemUnsealedForUnit(struct Unit * unit, int item)
+{
+    return (GetChapterUnk1C(GetItemType(item)) == unit->pCharacterData->number) ? TRUE : FALSE;
+}
