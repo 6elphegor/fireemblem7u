@@ -3,6 +3,16 @@
 #include "gbafe/cp_common.h"
 #include "gbafe/bmpatharrowdisp.h"
 
+CONST_DATA u16 gPathArrowOAMTable[5][5] = {
+    { 0x3AF0, 0x3B04, 0x3B06, 0x3B00, 0x3B02 },
+    { 0x3AF0, 0x3AF0, 0x3AF8, 0x3B0C, 0x3AFC },
+    { 0x3AF2, 0x3AF8, 0x3AF2, 0x3AFA, 0x3B08 },
+    { 0x3AF4, 0x3B0E, 0x3AFA, 0x3AF4, 0x3AFE },
+    { 0x3AF6, 0x3AFC, 0x3B0A, 0x3AFE, 0x3AF6 },
+};
+
+CONST_DATA struct PathArrowProc * gpPathArrowProc = (struct PathArrowProc *) 0x0203A878;
+
 // Movement path arrow (FE8U: bmpatharrowdisp.c)
 
 void SetLastCoords(u16 x, u16 y) {

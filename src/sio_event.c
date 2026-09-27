@@ -6,13 +6,22 @@
 extern struct ProcCmd CONST_DATA ProcScr_TacticianNameSelection[];
 extern int gUnk_Sio_0203DD8C;
 extern u8 gUnk_Sio_02000000[];
-extern u16 CONST_DATA Sprite_085A9F98[];
 
 #define SRAM_OFFSET_XMAP 0x7400
 #define SRAM_SIZE_XMAP 0xC00
 
 void InitTalkTextFont(void);
 
+
+CONST_DATA EventScr EventScr_EraseSaveInfo[] = {
+    0x3E, (EventScr) EnableAllGfx, 0x87, 0xD, 0x54, 0x3E, (EventScr) SioEvent_GotoLabel1UnlessYes, 0x11,
+    0x55, 0x3E, (EventScr) sub_08043170, 0x11, 0x56, 0x3E, (EventScr) EraseSaveData, 0x44,
+    1, 0xA, 0,
+};
+
+CONST_DATA u16 Sprite_085A9F98[] = {
+    1, 0x4000, 0xC000, 0x3200,
+};
 
 /**
  * Contains Link Arena functions that are called by events
@@ -354,7 +363,6 @@ void EraseSaveData(void)
     SoftReset(0xFF);
 }
 
-extern EventScr CONST_DATA EventScr_EraseSaveInfo[];
 
 //! FE8U = 0x08009A00
 void CallEraseSaveEvent(ProcPtr proc)
