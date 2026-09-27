@@ -109,7 +109,6 @@ extern u8 gOpInfoTerrainBuf[];
 extern struct Text gClassReelTexts[6];
 
 ProcPtr StartTalkMsg(int x, int y, int id);
-void SetTalkPrintColor(int color);
 void SetTalkPrintDelay(int delay);
 
 ProcPtr StartClassStatsDisplay(ProcPtr parent);
