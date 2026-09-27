@@ -78,6 +78,8 @@ void CleanupUnitsBeforeChapter(void);
 void sub_0802E6B0(/* TODO */);
 void sub_0802E6D4(/* TODO */);
 char *GetTacticianName();
+int sub_080A6DC0(int index);
+int sub_080A6DD0(int index);
 void SetTacticianName(const char *name);
 // GetConvoyItemArray
 // ClearSupplyItems
