@@ -235,9 +235,33 @@ void EpilogueCg_Loop(struct EpilogueCgProc * proc)
         Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B72A8.s");
+ProcPtr StartEpilogueCg(int cg, ProcPtr parent)
+{
+    struct EpilogueCgProc * proc;
 
-ASM_FUNC("asm/nonmatching/code_080B72D8.s");
+    if (Proc_Find(ProcScr_EpilogueCg) != NULL)
+        return NULL;
+
+    proc = Proc_Start(ProcScr_EpilogueCg, parent);
+    proc->cg = cg;
+    return proc;
+}
+
+void EpiloguePutBgRow(int idx, void const * img, u8 const * tsa)
+{
+    int tileref = 0;
+
+    idx *= 2;
+
+    if (idx > 0x1F)
+        tileref = 0xFE80;
+    else if (idx > 0x13)
+        tileref = 0x280;
+
+    Decompress(img, (void *) (VRAM + 0x8000 + ((idx << 10) & 0x7FFF)));
+    TmApplyTsa_thm(gBg3Tm + (idx & 0x1F) * 0x20, tsa, tileref);
+    EnableBgSync(BG3_SYNC_BIT);
+}
 
 void EpilogueScroll_Init(struct EpilogueProc * proc)
 {
@@ -256,7 +280,25 @@ void EpilogueScroll_Init(struct EpilogueProc * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B7380.s");
+void EpilogueScroll_Loop(struct EpilogueProc * proc)
+{
+    if ((proc->timer >> 7) != proc->lastRow)
+    {
+        if (proc->data[0] == NULL)
+        {
+            Proc_Break(proc);
+            return;
+        }
+
+        EpiloguePutBgRow((proc->timer >> 7) + 10, proc->data[0], proc->data[1]);
+        proc->data += 2;
+        EnableBgSync(BG3_SYNC_BIT);
+        proc->lastRow = proc->timer >> 7;
+    }
+
+    proc->timer += proc->speed;
+    SetBgOffset(3, 0, proc->timer >> 3);
+}
 
 ProcPtr StartEpilogueScroll(void const * const * data, int speed, ProcPtr parent)
 {
