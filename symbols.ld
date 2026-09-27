@@ -2804,3 +2804,4 @@ Pal_MenuScrollBar = 0x08405734;
 Img_MenuScrollBar = 0x08405690;
 gUnknown_02012F58 = 0x02012468;
 gUnknown_02013458 = 0x02012968;
+Pal_08A1D448 = 0x0840DD24;
