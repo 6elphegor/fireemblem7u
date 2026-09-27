@@ -20,13 +20,13 @@ PrepareBattleGraphicsMaybe: @ 0x08051D50
 	cmp r0, #0
 	bne _08051D7C
 	movs r0, #0
-	bl sub_080554E4
+	bl SetBanimArenaFlag
 	b _08051D82
 	.align 2, 0
 _08051D78: .4byte 0x0203A3D8
 _08051D7C:
 	movs r0, #1
-	bl sub_080554E4
+	bl SetBanimArenaFlag
 _08051D82:
 	ldr r1, _08051D98 @ =0x0202BBB8
 	movs r0, #0x40

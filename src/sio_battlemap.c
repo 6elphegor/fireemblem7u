@@ -174,7 +174,7 @@ void EndLinkArenaFogPlaceholders(void);
 
 bool sub_0803CD1C(u8 playerId);
 int sub_0803CDB8(void);
-s16 sub_0803CE34(const void * src, u16 len);
+s16 SioSend(const void * src, u16 len);
 int SioEmitData(const u8 * src, u16 len);
 int SioReceiveData(void * dst, u8 * outSenderId, bool (* verify)(void *));
 void ClearSioBG(void);
@@ -210,6 +210,34 @@ void AiSimulateBattleAgainstTargetAtPosition(struct AiCombatSimulationSt * sim);
 void StartAiTargetCursor(int x, int y, int kind, ProcPtr parent);
 int GetUnitDisplayedSpritePalette(struct Unit * unit);
 int GetFacingFromTo(int x1, int y1, int x2, int y2);
+
+extern u16 gUnknown_03001840[];
+
+//! FE8U = 0x08049298
+void sub_08044AEC(struct Unit * unit)
+{
+    int i;
+
+    for (i = 0; i < UNIT_ITEM_COUNT; i++)
+    {
+        gUnknown_03001840[i] = unit->items[i];
+    }
+
+    return;
+}
+
+//! FE8U = 0x080492B8
+void sub_08044B08(struct Unit * unit)
+{
+    int i;
+
+    for (i = 0; i < UNIT_ITEM_COUNT; i++)
+    {
+        unit->items[i] = gUnknown_03001840[i];
+    }
+
+    return;
+}
 
 void sub_08044B24(void)
 {
@@ -1671,7 +1699,7 @@ void sub_080462A4(void)
         gSioMsgBuf.kind = 0xD4;
         gSioMsgBuf.sender = gSioSt->selfId;
         gSioMsgBuf.param = 0;
-        sub_0803CE34(&gSioMsgBuf, sizeof(gSioMsgBuf));
+        SioSend(&gSioMsgBuf, sizeof(gSioMsgBuf));
     }
 
     return;
