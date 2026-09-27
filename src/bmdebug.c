@@ -1,6 +1,15 @@
 #include "gbafe.h"
 #include "gbafe/bmmenu.h"
 
+struct DebugChargeMsgs { int msg[3]; };
+
+extern const struct DebugChargeMsgs sDebugChargeMsgs;
+extern char const sDebugStr3rd[];
+extern char const sDebugStr2nd[];
+extern struct ProcCmd ProcScr_GameControl[];
+extern struct ProcCmd CONST_DATA gProcScr_Debug_08B9335C[];
+
+
 extern const struct MenuDef gDebugMenuDef_08B958B4;
 extern const struct MenuDef gDebugMenuDef_08B9586C;
 extern struct ProcCmd ProcScr_BmMain[];
@@ -618,16 +627,67 @@ u8 DebugMenu_GNightEffect(struct MenuProc * menuProc, struct MenuItemProc * menu
     return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
 }
 
-ASM_FUNC("asm/nonmatching/code_0801BDDC.s");
+int DebugChargeMenu_Draw(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    struct DebugChargeMsgs msgs = sDebugChargeMsgs;
+    int level = menuItemProc->itemNumber ? gPlaySt.debugControlGreen : gPlaySt.debugControlRed;
 
-ASM_FUNC("asm/nonmatching/code_0801BE84.s");
+    ClearText(&menuItemProc->text);
+    Text_InsertDrawString(&menuItemProc->text, 8, 0, menuItemProc->itemNumber ? sDebugStr3rd : sDebugStr2nd);
+    Text_InsertDrawString(&menuItemProc->text, 0x20, 2, DecodeMsg(msgs.msg[level]));
+    PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
 
-ASM_FUNC("asm/nonmatching/code_0801BF38.s");
+    return 0;
+}
+
+u8 DebugChargeMenu_Idle(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    int level;
+
+    if (gpKeySt->pressed & (A_BUTTON | DPAD_RIGHT | DPAD_LEFT))
+    {
+        level = menuItemProc->itemNumber ? gPlaySt.debugControlGreen : gPlaySt.debugControlRed;
+
+        if (gpKeySt->pressed & DPAD_LEFT)
+            level--;
+
+        if (gpKeySt->pressed & (A_BUTTON | DPAD_RIGHT))
+            level++;
+
+        if (level > 2)
+            level = 2;
+
+        if (level < 0)
+            level = 0;
+
+        if (menuItemProc->itemNumber)
+            gPlaySt.debugControlGreen = level;
+        else
+            gPlaySt.debugControlRed = level;
+
+        DebugChargeMenu_Draw(menuProc, menuItemProc);
+    }
+
+    return 0;
+}
+
+int sub_0801BF38(void)
+{
+    sub_08012B88();
+    Proc_Goto(Proc_Find(ProcScr_GameControl), 15);
+}
 
 ASM_FUNC("asm/nonmatching/code_0801BF54.s");
 
 ASM_FUNC("asm/nonmatching/code_0801C070.s");
 
-ASM_FUNC("asm/nonmatching/code_0801C164.s");
+u8 sub_0801C164(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}
 
-ASM_FUNC("asm/nonmatching/code_0801C168.s");
+u8 sub_0801C168(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    Proc_Start(gProcScr_Debug_08B9335C, PROC_TREE_3);
+    return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
+}

@@ -1180,3 +1180,7 @@ gDebugStartupMenuDef = 0x08B95890;
 sDebugStartupStr = 0x081C3BA4;
 gDebugMenuDef_08B958B4 = 0x08B958B4;
 gDebugMenuDef_08B9586C = 0x08B9586C;
+sDebugChargeMsgs = 0x081C3BB0;
+sDebugStr3rd = 0x081C3BBC;
+sDebugStr2nd = 0x081C3BC0;
+gProcScr_Debug_08B9335C = 0x08B9335C;
