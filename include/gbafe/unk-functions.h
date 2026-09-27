@@ -229,7 +229,7 @@ void SetTacticianName(const char *name);
 struct ChapterEventGroup * GetChapterEventInfo(u32);
 // sub_8031B1C
 // sub_8031B40
-// sub_080315E8
+// IsDifficultMode
 // sub_08031600
 // NewUnitInfoWindow
 // sub_080316B8
