@@ -290,7 +290,7 @@ void ProcPrepSpChar_OnInit(struct ProcPrepSpecialChar *proc)
         proc->approc = StartSpriteAnimProc(SpriteAnim_084062AC, 0x78, 0x418, 0x2E40, 1, 0xD);
     else {
         proc->approc = StartSpriteAnimProc(SpriteAnim_084062AC, 0x78, 0x418, 0x2E40, 0, 0xD);
-        proc->config = GetChapterInfo(gPlaySt.chapterIndex)->prepScreenNumberUS[gPlaySt.chapterModeIndex != 3 ? 0 : 1];
+        proc->config = GetChapterInfo(gPlaySt.chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex != 3 ? 0 : 1];
     }
 
     proc->unk_2B = 0;
