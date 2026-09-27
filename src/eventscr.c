@@ -281,8 +281,6 @@ void SetMuMoveScript(struct MuProc * mu, u8 const * move_script);
 void SetMuConfig(struct MuProc * mu, int speed);
 bool IsMuActive(struct MuProc * mu);
 void EndMu(struct MuProc * mu);
-u8 IsPidBlue(u8 pid);
-u8 IsPidBlueDeployed(u8 pid);
 void EventUnitLoadWait(struct EventProc * proc);
 void EventUnitLoadAliveWait(struct EventProc * proc);
 void EventLoadUnitsAsParty(struct EventProc * proc);

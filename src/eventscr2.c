@@ -19,7 +19,6 @@ struct EventCursorProc {
 extern struct ProcCmd CONST_DATA ProcScr_EventFlashCursor[];
 extern struct ProcCmd CONST_DATA ProcScr_EventCursor[];
 
-bool IsPidBlueDeployed(int pid);
 bool IsTutorialDisabled(void);
 void RemoveMapChangeTrap(int id);
 void UpdateRoofedUnits(void);

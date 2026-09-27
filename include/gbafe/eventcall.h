@@ -165,10 +165,10 @@ int GetChapterFlagBitsSize(void);
 // sub_08079C48
 // sub_08079C64
 // sub_08079CCC
-// IsPidBlueDeployed
+s8 IsPidBlueDeployed(u8 pid);
 // sub_08079D20
 // sub_807A7A4
-// IsPidBlue
+s8 IsPidBlue(u8 pid);
 // sub_08079D7C
 // sub_08079D8C
 // sub_08079D9C
@@ -234,7 +234,7 @@ void sub_807AA5C(void);
 // sub_0807A2C8
 // sub_0807A2DC
 // sub_0807A2F0
-// sub_0807A304
+bool sub_0807A304(void);
 // sub_0807A318
 // sub_807ADA8
 // sub_807ADC4
@@ -244,7 +244,7 @@ void sub_807AA5C(void);
 // sub_0807A3B8
 // IsTactFemale
 // sub_0807A3D8
-// IsTutorialDisabled
+// IsTutorialDisabled: returns int (eventinfo.c), but eventscr2.c needs a bool prototype to match
 // GmUnitFadeExists
 // sub_0807A408
 // sub_0807A420

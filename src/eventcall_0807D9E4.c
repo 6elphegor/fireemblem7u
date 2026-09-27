@@ -5,7 +5,6 @@
 /* Chapter-specific event-call helpers */
 
 s8 sub_08079D20(void);
-s8 sub_0807A304(void);
 void UnitGetDeathDropLocation(struct Unit * unit, int * xOut, int * yOut);
 s8 sub_0807A1F8(void);
 void EndTalk(void);

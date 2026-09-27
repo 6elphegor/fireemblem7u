@@ -543,7 +543,7 @@ int sub_0807A2F0(void)
     return ret;
 }
 
-int sub_0807A304(void)
+bool sub_0807A304(void)
 {
     int ret = FALSE;
 
