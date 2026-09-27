@@ -5,14 +5,10 @@
 
 /* functions from other modules */
 void TryRemoveUnitFromBallista(struct Unit * unit);
-int GetSomeFacingDirection(int xFrom, int yFrom, int xTo, int yTo);
-void StartAvailableTileEvent(s8 x, s8 y);
-void InitObstacleBattleUnit(void);
-void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause);
 void DoItemAction(ProcPtr proc);
 void Make6CKOIDO(struct Unit * unit, int facing, int kind, ProcPtr parent);
-int ExecTrapAfterDropAction(ProcPtr proc, struct Unit * unit);
-void ExecTrapAfterDeathDrop(ProcPtr proc, struct Unit * unit);
+s8 ExecTrapAfterDropAction(ProcPtr proc, struct Unit * unit);
+s8 ExecTrapAfterDeathDrop(ProcPtr proc, struct Unit * unit);
 void SetAutoMuMoveScript(const u8 * commands);
 void BattleGenerateBallistaReal(struct Unit * actor, struct Unit * target);
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);
@@ -26,7 +22,6 @@ void BeginMapAnimForSteal(void);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void UnitGetDeathDropLocation(struct Unit * unit, int * xOut, int * yOut);
 void StartMuDeathFade(struct MuProc * proc);
-struct MuProc * StartMu(struct Unit * unit);
 int GetFacingFromTo(int x1, int y1, int x2, int y2);
 void SetMuMoveScript(struct MuProc * proc, u8 const * script);
 void EndMu(struct MuProc * proc);
@@ -34,7 +29,6 @@ int GetCurrentBgmSong(void);
 int GetUnitLastItem(struct Unit * unit);
 void StartGiveItem(struct Unit * unit, u16 item, ProcPtr parent);
 
-extern u8 gWorkingMovementScript[];
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 
 extern struct ProcCmd CONST_DATA sProcScr_AfterDropAction[];
@@ -143,9 +137,9 @@ s8 DoRescueDropAction(ProcPtr proc)
 
     if (gBmMapHidden[gActionSt.y_target][gActionSt.x_target] & HIDDEN_BIT_UNIT)
     {
-        gWorkingMovementScript[0] = MOVE_CMD_BUMP;
-        gWorkingMovementScript[1] = MOVE_CMD_HALT;
-        SetAutoMuMoveScript(gWorkingMovementScript);
+        gWorkingMoveScr[0] = MOVE_CMD_BUMP;
+        gWorkingMoveScr[1] = MOVE_CMD_HALT;
+        SetAutoMuMoveScript(gWorkingMoveScr);
         return 0;
     }
 
@@ -421,11 +415,11 @@ void BATTLE_PostCombatDeathFades(struct CombatActionProc * proc)
         RefreshUnitSprites();
         muProc = StartMu(&gBattleTarget.unit);
 
-        gWorkingMovementScript[0] = GetFacingFromTo(
+        gWorkingMoveScr[0] = GetFacingFromTo(
             gBattleActor.unit.xPos, gBattleActor.unit.yPos, gBattleTarget.unit.xPos, gBattleTarget.unit.yPos);
-        gWorkingMovementScript[1] = MOVE_CMD_HALT;
+        gWorkingMoveScr[1] = MOVE_CMD_HALT;
 
-        SetMuMoveScript(muProc, gWorkingMovementScript);
+        SetMuMoveScript(muProc, gWorkingMoveScr);
         StartMuDeathFade(muProc);
 
         proc->unk_54 = muProc;

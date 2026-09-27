@@ -39,9 +39,9 @@ enum
 struct SupportData
 {
     /* 00 */ u8 pids[UNIT_SUPPORT_MAX_COUNT];
-    /* 0A */ u8 exp_base[UNIT_SUPPORT_MAX_COUNT];
-    /* 14 */ u8 exp_growth[UNIT_SUPPORT_MAX_COUNT];
-    /* 1E */ u8 count;
+    /* 07 */ u8 exp_base[UNIT_SUPPORT_MAX_COUNT];
+    /* 0E */ u8 exp_growth[UNIT_SUPPORT_MAX_COUNT];
+    /* 15 */ u8 count;
 };
 
 struct SupportBonuses {

@@ -186,7 +186,7 @@ void SetFaceEyeStateById(int slot, int state);
 // sub_08007AFC
 // sub_08007B70
 struct FaceProc * StartBmFace(int slot, int fid, int x, int y, int disp);
-// SetFacePosition
+void SetFacePosition(int slot, int x, int y);
 
 struct UnkFaceProc
 {

@@ -50,9 +50,9 @@ void StartAvailableTurnEvents(void);
 // sub_80795FC
 // sub_08078E54
 // sub_8079688
-// IsThereClosedDoorAt
+// IsThereClosedChestAt
 // StartAvailableChestTileEvent
-// sub_08078F24
+// IsThereClosedDoorAt
 // StartAvailableDoorTileEvent
 // sub_08078F68
 // sub_8079754
@@ -97,11 +97,11 @@ bool sub_08079104(void);
 // nullsub_67
 // nullsub_68
 // SetChapterFlag
-// CheckPermanentFlag
+// CheckChapterFlag
 // ClearChapterFlag
 void ResetChapterFlags(void);
 // SetPermanentFlag
-// CheckChapterFlag
+// CheckPermanentFlag
 // ClearPermanentFlag
 void ResetPermanentFlags(void);
 void SetFlag(int flag);
@@ -165,10 +165,10 @@ int GetChapterFlagBitsSize(void);
 // sub_08079C48
 // sub_08079C64
 // sub_08079CCC
-// IsPidBlueDeployed
+s8 IsPidBlueDeployed(u8 pid);
 // sub_08079D20
 // sub_807A7A4
-// IsPidBlue
+s8 IsPidBlue(u8 pid);
 // sub_08079D7C
 // sub_08079D8C
 // sub_08079D9C
@@ -199,8 +199,8 @@ int GetChapterFlagBitsSize(void);
 // sub_807A9C0
 // sub_807A9D0
 // sub_807A9E0
-// AreAnyEnemyUnitDead
-// GetDeadEnemyAmount
+// AreAnyEnemyUnitsAlive
+// GetAliveEnemyAmount
 void sub_807AA5C(void);
 // sub_0807A000
 // sub_0807A03C
@@ -234,7 +234,7 @@ void sub_807AA5C(void);
 // sub_0807A2C8
 // sub_0807A2DC
 // sub_0807A2F0
-// sub_0807A304
+bool sub_0807A304(void);
 // sub_0807A318
 // sub_807ADA8
 // sub_807ADC4
@@ -242,9 +242,9 @@ void sub_807AA5C(void);
 // sub_807ADFC
 // sub_0807A3A4
 // sub_0807A3B8
-// IsTactFemale
+bool IsTactFemale(void);
 // sub_0807A3D8
-// IsTutorialDisabled
+// IsTutorialDisabled: returns int (eventinfo.c), but eventscr2.c needs a bool prototype to match
 // GmUnitFadeExists
 // sub_0807A408
 // sub_0807A420

@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 #include "gbafe/sio_core.h"
 
 u8 sub_08049280(const struct MenuItemDef * def, int number)

@@ -131,6 +131,15 @@ void EndMuralBackground_(void);
 void Prep_DrawChapterGoal(int vram_offset, int pal_bank);
 void PrepAtMenu_OnInit(struct ProcAtMenu *proc);
 
+// prep_menu.c
+void StartPrepScreenMenu(ProcPtr proc);
+void SetPrepScreenMenuOnBPress(const void * func);
+void SetPrepScreenMenuOnStartPress(const void * func);
+void SetPrepScreenMenuOnEnd(const void * func);
+void SetPrepScreenMenuItem(int index, const void * func, int color, int msg, int msg_rtext);
+void SetPrepScreenMenuSelectedItem(int index);
+void DrawPrepScreenMenuFrameAt(int x, int y);
+
 struct ProcPrepMenuDesc {
     PROC_HEADER;
 
@@ -563,7 +572,8 @@ void PrepItemSupply_Loop_UnitInvKeyHandler(struct PrepItemSupplyProc * proc);
 void StartPrepItemSupplyProc(struct Unit * unit, ProcPtr parent);
 void sub_08097488(void);
 void sub_080974A8(void);
-// StartBmSupply
+void StartBmSupply(struct Unit * unit, ProcPtr parent);
+void MaybeStartSelectConvoyItemProc(struct Unit * unit, ProcPtr parent);
 struct PrepItemListProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;

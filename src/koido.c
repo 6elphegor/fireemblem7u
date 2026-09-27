@@ -15,7 +15,6 @@ struct KoidoProc {
 extern struct ProcCmd CONST_DATA sProcScr_KOIDO[];
 extern struct ProcCmd CONST_DATA sProcScr_KOIDOAMM[];
 
-struct MuProc * StartMu(struct Unit * unit);
 void EndMu(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * script);
 bool MuExistsActive(void);

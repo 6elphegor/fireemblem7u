@@ -1228,7 +1228,7 @@ struct FaceProc * StartBmFace(int slot, int fid, int x, int y, int disp)
     return proc;
 }
 
-void SetFacePosition(s32 slot, s16 x, s16 y)
+void SetFacePosition(int slot, int x, int y)
 {
     gFaces[slot]->x_disp = x;
     gFaces[slot]->y_disp = y;

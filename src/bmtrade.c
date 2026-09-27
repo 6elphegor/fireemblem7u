@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 #include "gbafe/bmtrade.h"
 
 void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)

@@ -30,7 +30,7 @@ extern AnimScr AnimScr_LuceOBJ_B[];
 extern u16 Pal_LuceOBJ[];
 extern u16 Img_LuceOBJ[];
 
-void StartSpellBG_IvaldiBG1(struct Anim * anim);
+void StartSpellBG_LuceBG(struct Anim * anim);
 void sub_08061658(struct Anim * anim, int terminator);
 void sub_08061760(struct Anim * anim, int terminator);
 void sub_080617DC(struct Anim * anim, int terminator);
@@ -72,7 +72,7 @@ void sub_08061434(struct ProcEfx * proc)
     }
     else if (proc->timer == duration + 11)
     {
-        StartSpellBG_IvaldiBG1(anim);
+        StartSpellBG_LuceBG(anim);
         PlaySFX(0x2C4, 0x100, 0x78, 0);
     }
     else if (proc->timer == duration + 26)
@@ -114,7 +114,7 @@ void sub_08061434(struct ProcEfx * proc)
     }
 }
 
-void StartSpellBG_IvaldiBG1(struct Anim * anim)
+void StartSpellBG_LuceBG(struct Anim * anim)
 {
     struct ProcEfxBG * proc;
 

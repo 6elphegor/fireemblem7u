@@ -103,6 +103,6 @@ void DisableAllLightRunes(void);
 void EnableAllLightRunes(void);
 
 int GetTrueTerrainAt(int x, int y); /* GetTrueTerrainAt */
-bool8 CheckChapterFlag(int flag);
+bool8 CheckPermanentFlag(int flag);
 extern u8 CONST_DATA gEvent_GameOver[];
 void RefreshTerrainMap(void);

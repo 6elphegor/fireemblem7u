@@ -25,7 +25,6 @@ extern const u8 gUnknown_081D527E[];
 void * memcpy(void * dst, const void * src, unsigned long n);
 
 void InitSioBG(void);
-void sub_08047BD4(int a, int b);
 void sub_08047CA8(void);
 void sub_08049220(void);
 void StartLinkArenaTitleBanner(ProcPtr parent, int size);

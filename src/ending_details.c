@@ -246,7 +246,7 @@ char * GetPidDefeatedEndingString(int pid)
     int chapter;
 
     if (type == 4)
-        pid = CheckChapterFlag(0x7D) ? 0x15 : 0xF;
+        pid = CheckPermanentFlag(0x7D) ? 0x15 : 0xF;
 
     chapter = GetPidStats(pid)->defeat_chapter;
 

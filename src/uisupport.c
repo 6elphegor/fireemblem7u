@@ -59,7 +59,7 @@ extern int sSupportScreenUnitCount;
 int GetSupportScreenCharIdAt(int idx);
 int GetSupportScreenPartnerCount(int charId);
 int GetClassSMSId(int classId);
-void PutUnitSpriteForClassId(int layer, int x, int y, int oam2, int classId);
+void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int classId);
 void SyncUnitSpriteSheet(void);
 void ResetUnitSprites(void);
 ProcPtr StartMenuScrollBar(ProcPtr parent);
@@ -76,14 +76,14 @@ void sub_0809B440(struct SupportScreenProc * proc);
 void sub_0809BE80(struct SupportScreenProc * proc, int line);
 
 extern u8 Tsa_0840EBE8[];
-extern u8 Img_08403A48[];
+extern u8 Img_SysBlackBox[];
 extern struct ProcCmd CONST_DATA gProcScr_SupportScreen[];
 extern u16 CONST_DATA Sprite_08CC58D4[];
 extern int TacticianBirthAffins[];
 extern u16 Pal_08194714[];
 
 void StartSupportUnitSubScreen(s8 fromPrepScreen, int idx, ProcPtr parent);
-int GetSupportTalkSong(u8 a, u8 charA, u8 charB, int rank);
+int GetSupportTalkSong(struct SupportTalkEnt const * ent, u8 charA, u8 charB, int rank);
 char * GetTacticianName(void);
 struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
 
@@ -95,7 +95,6 @@ extern u16 Pal_0840E4EC[];
 
 void DrawSupportSubScreenSprites(struct SubScreenProc * proc);
 void StartSupportViewerTalk(u8 charA, u8 charB, int rank);
-void SetFacePosition(int slot, int x, int y);
 void sub_0809BF78(int idx);
 int UiSupport_GetSupportTalkSong(int idx, int partner, int rank);
 
@@ -518,7 +517,7 @@ void SupportScreen_SetupGraphics(struct SupportScreenProc * proc)
     StartBmFace(0, 0x41, 56, -10, 0x901);
     InitTalk(0x28, 0, 1);
 
-    Decompress(Img_08403A48, (void *) 0x06017800);
+    Decompress(Img_SysBlackBox, (void *) 0x06017800);
 
     if (proc->fromPrepScreen)
         proc->unk_30 = 0xF6F;
@@ -776,7 +775,7 @@ void sub_0809BF78(int idx)
 }
 int UiSupport_GetSupportTalkSong(int idx, int partner, int rank)
 {
-    return GetSupportTalkSong(0, GetSupportScreenCharIdAt(idx), GetSupportScreenPartnerCharId(idx, partner), rank);
+    return GetSupportTalkSong(NULL, GetSupportScreenCharIdAt(idx), GetSupportScreenPartnerCharId(idx, partner), rank);
 }
 void sub_0809BFCC(struct SupportTactProc * proc)
 {

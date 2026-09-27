@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmmenu.h"
 #include "gbafe/bmmap.h"
 #include "gbafe/bmidoten.h"
 #include "gbafe/playerphase.h"
@@ -171,12 +170,12 @@ void DisplayUnitEffectRange(struct Unit * unit)
 
     if (!(gActiveUnit->state & US_HAS_MOVED))
     {
-        BmMapFillg(gBmMapOther, 0);
+        BmMapFill(gBmMapOther, 0);
 
         if (UnitHasMagicRank(unit))
             GenerateMagicSealMap(1);
 
-        BmMapFillg(gBmMapRange, 0);
+        BmMapFill(gBmMapRange, 0);
 
         switch (GetUnitWeaponUsabilityBits(gActiveUnit))
         {
@@ -254,7 +253,7 @@ void PlayerPhase_DisplayDangerZone(void)
 {
     GenerateDangerZoneRange(gBmSt.swap_action_range_count & 1);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     PlaySoundEffect(0x388);
 
@@ -544,7 +543,7 @@ bool TryMakeCantoUnit(ProcPtr proc)
     if (!CanActiveUnitStillMove())
         return FALSE;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     UnitBeginCantoAction(gActiveUnit);
 

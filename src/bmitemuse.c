@@ -1,6 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
-#include "gbafe/bmitemuse.h"
 
 #define gMapMovementSigned ((s8 **) gBmMapMovement)
 #define gMapRangeSigned ((s8 **) gBmMapRange)
@@ -327,7 +325,7 @@ s8 CanUnitUseChestKeyItem(struct Unit * unit)
     if (gBmMapTerrain[unit->yPos][unit->xPos] != TERRAIN_CHEST)
         return FALSE;
 
-    if (!IsThereClosedDoorAt(unit->xPos, unit->yPos))
+    if (!IsThereClosedChestAt(unit->xPos, unit->yPos))
         return FALSE;
 
     return TRUE;
@@ -496,10 +494,10 @@ void DoUseRescueStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        NewTargetSelection_Specialized(gSelectInfo_WarpUnit, StaffSelectOnSelect),
+        NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, StaffSelectOnSelect),
         DecodeMsg(0x72C));
 }
 
@@ -507,10 +505,10 @@ void DoUseSpecialDance(struct Unit * unit, void (*func)(struct Unit *), int msg)
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        NewTargetSelection_Specialized(gSelectInfo_WarpUnit, StaffSelectOnSelect),
+        NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, StaffSelectOnSelect),
         DecodeMsg(msg));
 }
 
@@ -638,10 +636,10 @@ void DoUseWarpStaff(struct Unit * unit)
 {
     MakeTargetListForWarp(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        NewTargetSelection_Specialized(gSelectInfo_WarpUnit, WarpOnSelectTarget),
+        NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, WarpOnSelectTarget),
         DecodeMsg(0x72B));
 
     PlaySoundEffect(0x38A);
@@ -661,10 +659,10 @@ void DoUsePutTrap(struct Unit * unit, void (*func)(struct Unit *), int msg)
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        NewTargetSelection_Specialized(gSelectInfo_PutTrap, OnSelectPutTrap),
+        NewTargetSelection_Specialized(&gSelectInfo_PutTrap, OnSelectPutTrap),
         DecodeMsg(msg));
 
     PlaySoundEffect(0x38A);
@@ -677,7 +675,7 @@ u8 RepairSelectOnSelect(ProcPtr proc, struct SelectTarget * target)
     gActionSt.target = target->uid;
 
     StartEquipInfoWindow(
-        StartMenu(gMenuInfo_RepairItems),
+        StartMenu(&gMenuInfo_RepairItems),
         GetUnit(gActionSt.target),
         16, 11);
 
@@ -691,10 +689,10 @@ void DoUseRepairStaff(struct Unit * unit)
 {
     MakeTargetListForHammerne(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        StartMapSelect(gSelectInfo_Repair),
+        StartMapSelect(&gSelectInfo_Repair),
         DecodeMsg(0x72E));
 
     PlaySoundEffect(0x38A);
@@ -778,10 +776,10 @@ void DoUseHealStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        StartMapSelect(gSelectInfo_Heal),
+        StartMapSelect(&gSelectInfo_Heal),
         DecodeMsg(0x72A));
 }
 
@@ -789,10 +787,10 @@ void DoUseRestoreStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        StartMapSelect(gSelectInfo_Restore),
+        StartMapSelect(&gSelectInfo_Restore),
         DecodeMsg(0x72D));
 }
 
@@ -811,10 +809,10 @@ void DoUseBarrierStaff(struct Unit * unit)
 {
     MakeTargetListForBarrier(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        StartMapSelect(gSelectInfo_Barrier),
+        StartMapSelect(&gSelectInfo_Barrier),
         DecodeMsg(0x72F));
 }
 
@@ -833,10 +831,10 @@ void DoUseAttackStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
-        StartMapSelect(gSelectInfo_OffensiveStaff),
+        StartMapSelect(&gSelectInfo_OffensiveStaff),
         DecodeMsg(0x731));
 }
 
@@ -871,7 +869,7 @@ int sub_08027E68(struct Unit * unit)
 void sub_08027E9C(void)
 {
     StartSubtitleHelp(
-        NewTargetSelection_Specialized(gSelectInfo_WarpUnit, StaffSelectOnSelect),
+        NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, StaffSelectOnSelect),
         DecodeMsg(0x72C));
 }
 

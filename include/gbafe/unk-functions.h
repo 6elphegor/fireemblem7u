@@ -937,7 +937,7 @@ int GetClassReelEntry(int, int);
 // ShopDrawSellItemLine
 // Shop_InitBuyState
 // Shop_Loop_BuyKeyHandler
-// Shop_HandleBuyConfirmPrompt_
+// Shop_HandleBuyConfirmPrompt
 // Shop_TryAddItemToInventory
 // Shop_HandleSendToConvoyPrompt
 // Shop_NoSendToConvoyDialogue

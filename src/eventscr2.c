@@ -1,9 +1,7 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/unk-functions.h"
 
 /* not yet declared elsewhere */
-struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 void StartMuDeathFade(struct MuProc * mu);
 int GetMapChangeIdAt(int x, int y);
@@ -21,7 +19,6 @@ struct EventCursorProc {
 extern struct ProcCmd CONST_DATA ProcScr_EventFlashCursor[];
 extern struct ProcCmd CONST_DATA ProcScr_EventCursor[];
 
-bool IsPidBlueDeployed(int pid);
 bool IsTutorialDisabled(void);
 void RemoveMapChangeTrap(int id);
 void UpdateRoofedUnits(void);
@@ -232,7 +229,7 @@ void EventMovementWait(struct EventProc * proc)
 
     if (!active)
     {
-        BmMapFillg(gBmMapOther, 0);
+        BmMapFill(gBmMapOther, 0);
         proc->idle_func = NULL;
     }
 }
@@ -242,7 +239,7 @@ int EvtCmd_WaitForMovement(struct EventProc * proc)
     if (MuExistsActive())
         return EVENT_CMDRET_REPEAT;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;

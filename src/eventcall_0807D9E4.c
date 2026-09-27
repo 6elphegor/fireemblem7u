@@ -5,13 +5,11 @@
 /* Chapter-specific event-call helpers */
 
 s8 sub_08079D20(void);
-s8 sub_0807A304(void);
 void UnitGetDeathDropLocation(struct Unit * unit, int * xOut, int * yOut);
 s8 sub_0807A1F8(void);
 void EndTalk(void);
 bool IsTalkActive(void);
 ProcPtr StartTalkExt(int x, int y, char const * str, ProcPtr parent);
-void SetTalkPrintColor(int color);
 
 struct EventLoadPos
 {
@@ -618,7 +616,7 @@ void sub_0807E1C0(void)
     struct Unit * leader;
     int i;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     leader = GetUnitFromCharId(0x27);
     FakeLoadUnit(gUnk_08CE0978, leader);
@@ -672,7 +670,7 @@ void sub_0807E348(void)
     struct UnitDefinition const * def = gUnk_08CE09B8;
     int i;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     for (i = 1; i < 0x40; i++)
     {
