@@ -66,8 +66,22 @@ void ResetTitleBgAffin(u8 bg)
     BgAffineSet(&data, dst, 1);
 }
 
-void Title_InitSpriteAnim(struct ProcTitle * proc, bool anim_en);
-ASM_FUNC("asm/nonmatching/code_080BA42C.s");
+void Title_InitSpriteAnim(struct ProcTitle * proc, bool anim_en)
+{
+    int x;
+    const u16 * ap_scr;
+
+    x = anim_en ? 0 : 0x100;
+
+    ApplyPalettes(Pal_TitleSprites, 0x10, 5);
+    Decompress(Img_TitleSprites, OBJ_VRAM0);
+
+    ap_scr = SpirteAnim_TitleText;
+
+    proc->approcs[0] = StartSpriteAnimProc(ap_scr, x + 0x78, 0x48, 0x800, 0, 0xA);
+    proc->approcs[1] = StartSpriteAnimProc(ap_scr, x + 0x78, 0x4C, 0x400, 1, 0xA);
+    proc->approcs[5] = StartSpriteAnimProc(ap_scr, x + 0x78, 0x90, 0x400, 6, 0xA);
+}
 
 
 
