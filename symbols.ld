@@ -771,3 +771,8 @@ AnimScr_EfxChill1_R = 0x08BD5644;
 AnimScr_EfxChill1_L = 0x08BD5848;
 AnimScr_EfxChill2_R = 0x08BD5BFC;
 AnimScr_EfxChill2_L = 0x08BD5FB0;
+/* cp_perform */
+ProcScr_08B85854 = 0x08B85854;
+ProcScr_AiTargetCursor = 0x08B96F7C;
+PopupScr_AiPillage = 0x08B9701C;
+gWorkingMoveScr = 0x02033E00;
