@@ -7,7 +7,7 @@ sub_080218E0: @ 0x080218E0
 	push {lr}
 	ldr r0, _080218F8 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08023F64
+	bl MakeTakeTargetList
 	ldr r0, _080218FC @ =0x08B95CD8
 	bl StartMapSelect
 	movs r0, #7

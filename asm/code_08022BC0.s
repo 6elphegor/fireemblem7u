@@ -13,12 +13,12 @@ sub_08022BC0: @ 0x08022BC0
 	cmp r0, #0
 	bne _08022BEC
 	adds r0, r2, #0
-	bl sub_080240C8
+	bl MakeTargetListForSupport
 	bl CountTargets
 	cmp r0, #0
 	beq _08022BEC
 	ldr r0, [r4]
-	bl sub_08024094
+	bl MakeTalkTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _08022BF4

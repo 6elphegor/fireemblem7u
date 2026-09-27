@@ -24,7 +24,7 @@ sub_08021898: @ 0x08021898
 	cmp r2, #0
 	bne _080218D8
 	adds r0, r3, #0
-	bl sub_08023F64
+	bl MakeTakeTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _080218D8
