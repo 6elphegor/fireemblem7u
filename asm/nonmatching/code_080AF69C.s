@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AF69C
-sub_080AF69C: @ 0x080AF69C
+	thumb_func_start PutClassIntroIcons
+PutClassIntroIcons: @ 0x080AF69C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

@@ -884,26 +884,26 @@ void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // Decompress tsa to
 
 // sub_80AFE38
 // sub_80AFF74
-// sub_080AF234
+// ClassIntro_LoopFadeIn
 // sub_80B00A0
 // sub_80B0100
 // ClassIntro_OnEnd
-void sub_080AF344(ProcPtr parent, int);
+ProcPtr StartClassNameIntro(ProcPtr parent, int);
 // sub_80B018C
 // sub_80B01BC
 // sub_80B0300
 // sub_80B0330
 // sub_80B03B4
 // sub_80B03D4
-// sub_080AF590
-// sub_080AF5FC
-// sub_080AF69C
-// sub_080AF768
-// sub_080AF7A0
-// sub_080AF7E4
-// sub_080AF80C
-// sub_080AF844
-// sub_080AF864
+// ClassIntroIcon_Init
+// PutClassIntroIconLine
+// PutClassIntroIcons
+// ClassIntroIcon_LoopLine
+// ClassIntroIcon_LoopFadeIn
+// ClassIntroIcon_LoopDisplay
+// ClassIntroIcon_LoopFadeOut
+// StartClassNameIntroIcon
+// ClassReel_VCountHandler
 // sub_80B0714
 // sub_80B07EC
 // sub_080AFDC0

@@ -430,7 +430,7 @@ _080AFC18:
 	movs r1, #0xd0
 	movs r2, #0x68
 	bl sub_08055308
-	ldr r0, _080AFDBC @ =sub_080AF864
+	ldr r0, _080AFDBC @ =ClassReel_VCountHandler
 	bl SetOnHBlankA
 	add sp, #0x3c
 	pop {r3, r4, r5}
@@ -457,4 +457,4 @@ _080AFDAC: .4byte 0x0200DB40
 _080AFDB0: .4byte 0x0000FFFF
 _080AFDB4: .4byte 0x06010000
 _080AFDB8: .4byte 0x0200DB68
-_080AFDBC: .4byte sub_080AF864
+_080AFDBC: .4byte ClassReel_VCountHandler

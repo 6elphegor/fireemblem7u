@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AF368
-sub_080AF368: @ 0x080AF368
+	thumb_func_start ClassIntroLetter_LoopFadeIn
+ClassIntroLetter_LoopFadeIn: @ 0x080AF368
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -92,7 +92,7 @@ sub_080AF368: @ 0x080AF368
 	mov r1, sb
 	adds r2, r4, #0
 	adds r3, r5, #0
-	bl sub_080AEFA8
+	bl PutClassIntroLetter
 	ldrh r0, [r7, #0x2a]
 	adds r0, #4
 	strh r0, [r7, #0x2a]
@@ -136,7 +136,7 @@ _080AF444:
 	str r0, [sp, #8]
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080AEFA8
+	bl PutClassIntroLetter
 	ldrh r0, [r7, #0x2a]
 	adds r0, #0x10
 	strh r0, [r7, #0x2a]

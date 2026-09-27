@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080AF4D4
-sub_080AF4D4: @ 0x080AF4D4
+	thumb_func_start ClassIntroLetter_LoopFadeOut
+ClassIntroLetter_LoopFadeOut: @ 0x080AF4D4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -42,7 +42,7 @@ sub_080AF4D4: @ 0x080AF4D4
 	mov r0, ip
 	adds r2, r4, #0
 	movs r3, #0x18
-	bl sub_080AEFA8
+	bl PutClassIntroLetter
 	ldrh r0, [r5, #0x2a]
 	cmp r0, r6
 	bne _080AF53E
