@@ -1625,12 +1625,6 @@ SECTIONS
         build/src/eventcall_0807CEC8.o(.text);
         build/src/eventcall_ninian.o(.text);
         build/src/eventcall_0807D9E4.o(.text);
-        build/asm/code_0807E1C0.o(.text);
-        build/asm/code_0807E348.o(.text);
-        build/asm/code_0807E3B0.o(.text);
-        build/asm/code_0807E3DC.o(.text);
-        build/asm/code_0807E3FC.o(.text);
-        build/asm/code_0807E420.o(.text);
         build/src/eventcall_firedragonsprite.o(.text);
         build/src/eventcall_0807F9EC.o(.text);
         build/src/statscreenfx.o(.text);

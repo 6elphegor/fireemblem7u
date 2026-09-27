@@ -1,5 +1,6 @@
 #include "gbafe.h"
 #include "gbafe/bmusailment.h"
+#include "gbafe/bmmap.h"
 
 /* Chapter-specific event-call helpers */
 
@@ -25,6 +26,18 @@ struct EventCallLookupEnt
 };
 
 extern struct EventCallLookupEnt CONST_DATA gUnk_08CBF3AC[];
+
+extern struct UnitDefinition CONST_DATA gUnk_08CE0898[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE08B8[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE08D8[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE08F8[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE0978[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE0998[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE09B8[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE0B18[];
+extern struct UnitDefinition CONST_DATA gUnk_08CE0B38[];
+
+void sub_08011DAC(struct UnitDefinition const * def, int arg);
 
 struct Event_0807DC14Sub
 {
@@ -597,4 +610,122 @@ void Finial_EventLoadAllies4(struct EventProc * proc)
 void sub_0807E1AC(void)
 {
     StartStatusHealEffect(GetUnitFromCharId(0x27), NULL);
+}
+
+void sub_0807E1C0(void)
+{
+    struct UnitDefinition const * def = gUnk_08CE08F8;
+    struct Unit * leader;
+    int i;
+
+    BmMapFillg(gBmMapOther, 0);
+
+    leader = GetUnitFromCharId(0x27);
+    FakeLoadUnit(gUnk_08CE0978, leader);
+
+    leader = GetUnitFromCharId(0x01);
+    FakeLoadUnit(gUnk_08CE0998, leader);
+
+    leader = GetUnitFromCharId(0x01);
+    FakeLoadUnit(gUnk_08CE0898, leader);
+
+    leader = GetUnitFromCharId(0x02);
+    FakeLoadUnit(gUnk_08CE08B8, leader);
+
+    leader = GetUnitFromCharId(0x2D);
+    FakeLoadUnit(gUnk_08CE08D8, leader);
+
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        switch (unit->pCharacterData->number)
+        {
+        case 0x01:
+        case 0x02:
+        case 0x26:
+        case 0x27:
+        case 0x2D:
+            continue;
+        }
+
+        if (unit->state & US_UNAVAILABLE)
+            continue;
+
+        FakeLoadUnit(def, unit);
+        def++;
+
+        if (def->pid == 0)
+            break;
+    }
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+}
+
+void sub_0807E348(void)
+{
+    struct UnitDefinition const * def = gUnk_08CE09B8;
+    int i;
+
+    BmMapFillg(gBmMapOther, 0);
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->pCharacterData->number == 0x26)
+            continue;
+
+        if (unit->pCharacterData->number == 0x27)
+            continue;
+
+        if (unit->state & US_UNAVAILABLE)
+            continue;
+
+        FakeLoadUnit(def, unit);
+        def++;
+
+        if (def->pid == 0)
+            break;
+    }
+
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+}
+
+void sub_0807E3B0(struct UnitDefinition const * def, int pid)
+{
+    struct Unit * unit = GetUnitFromCharId(pid);
+
+    if (!(unit->state & (US_DEAD | US_NOT_DEPLOYED)))
+        sub_08011DAC(def, 0);
+    else
+        unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
+}
+
+void sub_0807E3DC(void)
+{
+    sub_0807E3B0(gUnk_08CE0B18, 0x27);
+    sub_0807E3B0(gUnk_08CE0B38, 0x26);
+}
+
+void sub_0807E3FC(void)
+{
+    EventLoadUnit(0x26, 0, 14, 18, 14, 18, 0, NULL);
+}
+
+void ForceDisplayDragonSprite(void)
+{
+    struct Unit * unit = GetUnitFromCharId(0x25);
+
+    if (unit != NULL)
+        unit->state &= ~US_BIT16;
 }
