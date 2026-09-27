@@ -638,14 +638,8 @@ void TalkToggleInvertedPalette(int id)
     }
 }
 
-#if NONMATCHING
-
-// ldrb r0, [r1, #0x12]
-// instead of
-// movs r0, #0x12
-// ldrsb r0, [r1, r0]
-
-int TalkInterpret(ProcPtr proc) {
+int TalkInterpret(ProcPtr proc)
+{
     struct Proc* unkProc;
     int i;
 
@@ -668,7 +662,7 @@ int TalkInterpret(ProcPtr proc) {
 
                 Text_Skip(TALK_TEXT_BY_LINE(sTalkSt->line_active), 6);
 
-                if (sTalkSt->instant_print || sTalkSt->print_delay <= 0) {
+                if (*(s8 *)&sTalkSt->instant_print || sTalkSt->print_delay <= 0) {
                     return 2;
                 }
 
@@ -727,7 +721,7 @@ int TalkInterpret(ProcPtr proc) {
         case 0x05:
         case 0x06:
         case 0x07:
-            if (sTalkSt->instant_print) {
+            if (*(s8 *)&sTalkSt->instant_print) {
                 sTalkSt->str++;
                 return 2;
             }
@@ -919,7 +913,7 @@ int TalkInterpret(ProcPtr proc) {
                     return 3;
 
                 case 0x05:
-                    sub_080144CC(sTalkSt->number, sTalkSt->buf_number_str);
+                    NumberToStringAscii(sTalkSt->number, sTalkSt->buf_number_str);
 
                     sTalkSt->str--;
                     sTalkSt->str_back = sTalkSt->str;
@@ -1018,14 +1012,6 @@ int TalkInterpret(ProcPtr proc) {
     return 1;
 }
 
-#else
-
-NAKEDFUNC
-int TalkInterpret(ProcPtr proc);
-ASM_FUNC("asm/nonmatching/code_080085BC.s");
-
-
-#endif
 
 void SetActiveTalkFace(int face)
 {
