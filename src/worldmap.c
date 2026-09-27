@@ -276,7 +276,34 @@ void WmCanvas_Scroll(int dx, int dy)
     SetBgOffset(2, gWmCanvas.offX, gWmCanvas.offY);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3070.s");
+void WmCanvas_PutPixel(int x, int y, u8 color)
+{
+    int tx, ty;
+    u16 * tile;
+    u32 * p;
+
+    x += gWmCanvas.offX;
+    y += gWmCanvas.offY;
+
+    tx = x >> 3;
+    ty = y >> 3;
+
+    if ((unsigned) tx > 0x1F || (unsigned) ty > 0x1F)
+        return;
+
+    tile = (u16 *) ((u8 *) &gWmCanvas + (tx * 2 + ty * 0x40));
+
+    if (*tile == 0xFFFF)
+    {
+        *tile = gWmCanvas.nextTile;
+        gBg2Tm[ty * 0x20 + tx] = *tile + 0xA080;
+        gWmCanvas.nextTile++;
+        EnableBgSync(BG2_SYNC_BIT);
+    }
+
+    p = (u32 *) (VRAM + 0x1000 + *tile * 0x20);
+    p[y & 7] |= (color & 0xF) << ((x & 7) * 4);
+}
 
 void WmCanvas_FillQuad(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3, u8 color)
 {
