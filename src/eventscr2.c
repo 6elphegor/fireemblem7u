@@ -1,7 +1,9 @@
 #include "gbafe.h"
 #include "gbafe/bmtarget.h"
+#include "gbafe/unk-functions.h"
 
 /* defined in other event engine modules */
+void StartGiveItem(struct Unit * unit, int iid, struct EventProc * proc);
 void LoadUnitCore(struct UnitDefinition const * def, struct EventProc * proc);
 void FakeLoadUnit(struct UnitDefinition const * def, struct Unit * unit);
 bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y);
@@ -9,6 +11,10 @@ bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def);
 int GetNextAvailableBlueUnitId(int id);
 
 /* not yet declared elsewhere */
+bool IsPidBlueDeployed(int pid);
+bool IsTutorialDisabled(void);
+void RemoveMapChangeTrap(int id);
+void UpdateRoofedUnits(void);
 s8 MuExistsActive(void);
 
 extern struct UnitDefinition sEventLoadUnitBuf;
@@ -384,45 +390,305 @@ int EvtCmd_GotoIfySkipText(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800D600.s");
+int EvtCmd_GotoIfyFlag(struct EventProc * proc)
+{
+    EventScr const * it = proc->script_start;
+    int label = proc->script[1];
 
-ASM_FUNC("asm/nonmatching/code_0800D66C.s");
+    if (!CheckFlag(proc->script[2]))
+        return EVENT_CMDRET_CONTINUE;
 
-ASM_FUNC("asm/nonmatching/code_0800D6D8.s");
+    while (*it != 0)
+    {
+        if ((*it & 0xFFFF) == 0x44 && it[1] == label)
+        {
+            proc->script = it + gEventCmdTable[0x44].length;
+            return EVENT_CMDRET_JUMPED;
+        }
 
-ASM_FUNC("asm/nonmatching/code_0800D768.s");
+        it += gEventCmdTable[*it & 0xFFFF].length;
+    }
 
-ASM_FUNC("asm/nonmatching/code_0800D78C.s");
+    return EVENT_CMDRET_YIELD;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800D7B0.s");
+int EvtCmd_GotoIfnFlag(struct EventProc * proc)
+{
+    EventScr const * it = proc->script_start;
+    int label = proc->script[1];
 
-ASM_FUNC("asm/nonmatching/code_0800D7F4.s");
+    if (CheckFlag(proc->script[2]))
+        return EVENT_CMDRET_CONTINUE;
 
-ASM_FUNC("asm/nonmatching/code_0800D814.s");
+    while (*it != 0)
+    {
+        if ((*it & 0xFFFF) == 0x44 && it[1] == label)
+        {
+            proc->script = it + gEventCmdTable[0x44].length;
+            return EVENT_CMDRET_JUMPED;
+        }
 
-ASM_FUNC("asm/nonmatching/code_0800D834.s");
+        it += gEventCmdTable[*it & 0xFFFF].length;
+    }
 
-ASM_FUNC("asm/nonmatching/code_0800D868.s");
+    return EVENT_CMDRET_YIELD;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800D8C0.s");
+int EvtCmd_GotoIfyActive(struct EventProc * proc)
+{
+    EventScr const * it = proc->script_start;
+    EventScr const * script = proc->script;
+    int label = script[1];
 
-ASM_FUNC("asm/nonmatching/code_0800D8E4.s");
+    if (SCR_HI16(script[0]) != 0)
+    {
+        if (gActiveUnit->pCharacterData->number != (u8) script[2])
+            return EVENT_CMDRET_CONTINUE;
+    }
+    else
+    {
+        if (gActiveUnit->pCharacterData->number == (u8) script[2])
+            return EVENT_CMDRET_CONTINUE;
+    }
 
-ASM_FUNC("asm/nonmatching/code_0800D91C.s");
+    while (*it != 0)
+    {
+        if ((*it & 0xFFFF) == 0x44 && it[1] == label)
+        {
+            proc->script = it + gEventCmdTable[0x44].length;
+            return EVENT_CMDRET_JUMPED;
+        }
 
-ASM_FUNC("asm/nonmatching/code_0800D928.s");
+        it += gEventCmdTable[*it & 0xFFFF].length;
+    }
 
-ASM_FUNC("asm/nonmatching/code_0800D94C.s");
+    return EVENT_CMDRET_YIELD;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800D970.s");
+int EvtCmd_GotoIfyEliwoodMode(struct EventProc * proc)
+{
+    if (gPlaySt.chapterModeIndex == 2)
+        return EventGotoLabel(proc, proc->script[1]);
 
-ASM_FUNC("asm/nonmatching/code_0800D988.s");
+    return EVENT_CMDRET_CONTINUE;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800D9B0.s");
+int EvtCmd_GotoIfyHectorMode(struct EventProc * proc)
+{
+    if (gPlaySt.chapterModeIndex == 3)
+        return EventGotoLabel(proc, proc->script[1]);
 
-ASM_FUNC("asm/nonmatching/code_0800D9D0.s");
+    return EVENT_CMDRET_CONTINUE;
+}
 
-ASM_FUNC("asm/nonmatching/code_0800D9F0.s");
+int EvtCmd_GotoIfyDifficulty(struct EventProc * proc)
+{
+    EventScr const * script = proc->script;
+
+    if (SCR_HI16(script[0]) != 0)
+    {
+        if (!(gPlaySt.chapterStateBits & 0x40))
+            goto no;
+    }
+    else
+    {
+        if (gPlaySt.chapterStateBits & 0x40)
+            goto no;
+    }
+
+    return EventGotoLabel(proc, script[1]);
+
+no:
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_GotoIfnTalkYes(struct EventProc * proc)
+{
+    if (GetTalkChoiceResult() != 1)
+        return EventGotoLabel(proc, proc->script[1]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_GotoIfnTalkYes2(struct EventProc * proc)
+{
+    if (GetTalkChoiceResult() != 1)
+        return EventGotoLabel(proc, proc->script[1]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_GotoIfnTutorial(struct EventProc * proc)
+{
+    if ((gPlaySt.chapterStateBits & 0x40) || IsTutorialDisabled())
+        return EventGotoLabel(proc, proc->script[1]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_GotoIfnDeadAndFlagOnce(struct EventProc * proc)
+{
+    u16 pid = SCR_LO16(proc->script[2]);
+    int flag = proc->script[3];
+    int i;
+
+    for (i = 1; i < 0x40; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (unit == NULL || unit->pCharacterData == NULL)
+            continue;
+
+        if (!(unit->state & US_DEAD))
+            continue;
+
+        if (unit->pCharacterData->number != pid)
+            continue;
+
+        if (CheckFlag(flag))
+            break;
+
+        SetFlag(flag);
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    return EventGotoLabel(proc, proc->script[1]);
+}
+
+int EvtCmd_GotoIfyTurnCountReached(struct EventProc * proc)
+{
+    if (gPlaySt.chapterTurnNumber >= SCR_HI16(proc->script[0]))
+        return EventGotoLabel(proc, proc->script[1]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_GotoIfxDeployed(struct EventProc * proc)
+{
+    EventScr const * script = proc->script;
+
+    if (SCR_HI16(script[0]) != 0)
+    {
+        if (!IsPidBlueDeployed((u8) script[2]))
+            return EVENT_CMDRET_CONTINUE;
+    }
+    else
+    {
+        if (IsPidBlueDeployed((u8) script[2]))
+            return EVENT_CMDRET_CONTINUE;
+    }
+
+    return EventGotoLabel(proc, proc->script[1]);
+}
+
+int EvtCmd_Jump(struct EventProc * proc)
+{
+    EventScr const * target = (EventScr const *) proc->script[1];
+
+    proc->script = target;
+    proc->script_start = target;
+
+    return EVENT_CMDRET_JUMPED;
+}
+
+int EvtCmd_SkipNIfyFunc(struct EventProc * proc)
+{
+    if (((u8 (*)(void)) proc->script[1])())
+        proc->ignore_count = SCR_HI16(proc->script[0]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_SkipNIfnFunc(struct EventProc * proc)
+{
+    if (!((u8 (*)(void)) proc->script[1])())
+        proc->ignore_count = SCR_HI16(proc->script[0]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_GiveItem(struct EventProc * proc)
+{
+    u16 iid = SCR_LO16(proc->script[1]);
+    return EventGiveItem(gActiveUnit, iid, proc);
+}
+
+int EvtCmd_GiveItemToPid(struct EventProc * proc)
+{
+    EventScr const * script = proc->script;
+    int pid = SCR_LO16(script[1]);
+    u16 iid = SCR_LO16(script[2]);
+
+    if (pid == 0)
+        pid = proc->pid_param;
+
+    return EventGiveItem(GetUnitFromCharId(pid), iid, proc);
+}
+
+int EvtCmd_GiveItemToLeader(struct EventProc * proc)
+{
+    u16 iid = SCR_LO16(proc->script[1]);
+
+    return EventGiveItem(GetUnitFromCharId(GetPlayerLeaderUnitId()), iid, proc);
+}
+
+int EventGiveItem(struct Unit * unit, u16 iid, struct EventProc * proc)
+{
+    if (iid == 0)
+        iid = proc->iid_param;
+
+    StartGiveItem(unit, iid, proc);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_MapChange(struct EventProc * proc)
+{
+    u32 param = SCR_HI16(proc->script[0]);
+    u16 id = param;
+    u16 remove_prev;
+
+    if (id == 0xFFFF)
+    {
+        id = proc->map_change_param;
+        remove_prev = 0;
+    }
+    else
+    {
+        id = id & 0x7FFF;
+        remove_prev = param & 0x8000;
+    }
+
+    if (!proc->unk_4D)
+    {
+        RenderMapForFade();
+
+        ApplyMapChange(id);
+
+        if (remove_prev)
+            RemoveMapChangeTrap(id - 1);
+
+        AddMapChangeTrap(id);
+        RefreshTerrainMap();
+        UpdateRoofedUnits();
+        RenderMap();
+
+        StartMapFade(TRUE);
+    }
+    else
+    {
+        ApplyMapChange(id);
+
+        if (remove_prev)
+            RemoveMapChangeTrap(id - 1);
+
+        AddMapChangeTrap(id);
+        RefreshTerrainMap();
+        UpdateRoofedUnits();
+    }
+
+    return EVENT_CMDRET_YIELD;
+}
 
 ASM_FUNC("asm/nonmatching/code_0800DA88.s");
 

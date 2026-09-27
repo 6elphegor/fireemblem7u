@@ -717,6 +717,8 @@ int EvtCmd_Stop(struct EventProc * proc);
 int EvtCmd_Label(struct EventProc * proc);
 int EventGotoLabel(struct EventProc * proc, int label);
 
+int EvtCmd_GotoIfyFlag(struct EventProc * proc);
+int EventGiveItem(struct Unit * unit, u16 iid, struct EventProc * proc);
 /* ---- end eventscr2.c ---- */
 
 
