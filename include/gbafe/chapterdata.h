@@ -114,9 +114,13 @@ struct ChapterInfo {
     /* 8F */ u8 destPosY;
 
     /* 90 */ u8 unk90; // ?
-    /* 91 */ u8 default_background;
+    /* 91 */ u8 unk91; // ? (default_background in FE7J)
     /* 92 */ u8 unk92; // ?
     /* 93 */ u8 unk93; // ?
+    /* 94 */ u8 unk94; // ?
+    /* 95 */ u8 default_background;
+    /* 96 */ u8 unk96; // ?
+    /* 97 */ u8 unk97; // ?
 };
 
 struct ChapterEventGroup
