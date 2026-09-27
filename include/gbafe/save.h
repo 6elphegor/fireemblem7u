@@ -103,11 +103,11 @@ void WriteSaveBlockInfo(struct SaveBlockInfo * block_info, int save_id);
 void * GetSaveWriteAddr(int save_id);
 void * GetSaveReadAddr(int save_id);
 // ??? sub_809F344
-// ??? sub_0809E954
-// ??? sub_0809E974
-// ??? sub_0809E99C
-// ??? sub_0809E9C4
-// ??? sub_0809E9DC
+// ??? WritePermanentFlags
+// ??? ReadChapterFlags
+// ??? ReadPermanentFlags
+// ??? WriteSupplyItems
+// ??? ReadSupplyItems
 s32 sub_0809E9FC(void);
 // ??? sub_0809EA58
 // ??? sub_809F48C

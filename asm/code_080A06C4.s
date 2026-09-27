@@ -120,13 +120,13 @@ _080A07A6:
 	movs r1, #0xf3
 	lsls r1, r1, #3
 	adds r0, r7, r1
-	bl sub_0809E9C4
+	bl WriteSupplyItems
 	adds r0, r7, #0
 	bl ClearPidChStatsSaveData
 	movs r2, #0xd8
 	lsls r2, r2, #4
 	adds r0, r7, r2
-	bl sub_0809E954
+	bl WritePermanentFlags
 	ldr r0, _080A080C @ =0x00011217
 	str r0, [sp]
 	mov r0, sp
