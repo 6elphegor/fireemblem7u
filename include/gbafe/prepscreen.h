@@ -341,16 +341,16 @@ void sub_08091DBC(struct PrepItemScreenProc * proc);
 void sub_0809210C(struct PrepItemScreenProc * proc);
 void sub_0809218C(struct PrepItemScreenProc * proc);
 void sub_080921E8(struct PrepItemScreenProc * proc);
-void sub_8092B30(struct PrepItemScreenProc * proc);
+void sub_08092220(struct PrepItemScreenProc * proc);
 // sub_08092578
 void sub_080925D0(struct PrepItemScreenProc * proc);
 void sub_080926F8(struct PrepItemScreenProc * proc);
 void PrepItemScreen_Loop_MainKeyHandler(struct PrepItemScreenProc * proc);
 void StartPrepItemTradeScreen(struct PrepItemScreenProc * proc);
-void sub_8093198(struct PrepItemScreenProc * proc);
-void sub_80931B0(struct PrepItemScreenProc * proc);
+void sub_0809288C(struct PrepItemScreenProc * proc);
+void sub_080928A4(struct PrepItemScreenProc * proc);
 void StartPrepArmory(struct PrepItemScreenProc * proc);
-void sub_80931E0(struct PrepItemScreenProc * proc);
+void sub_080928D4(struct PrepItemScreenProc * proc);
 // UpdatePrepItemScreenFace
 // EndPrepItemScreenFace
 // StartPrepItemScreen

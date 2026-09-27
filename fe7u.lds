@@ -5195,7 +5195,7 @@ SECTIONS
         build/asm/code_08091298.o(.text);
         build/asm/code_080912CC.o(.text);
         build/asm/code_080912EC.o(.text);
-        build/asm/code_08091324.o(.text);
+        build/src/prep_itemscreen.o(.text);
         build/asm/code_08091354.o(.text);
         build/asm/code_0809138C.o(.text);
         build/asm/code_080913D8.o(.text);
