@@ -616,3 +616,7 @@ gItemSelectMenuFont = 0x02002774;
 gStaffItemSelectMenuDef = 0x08B95A1C;
 gSelectInfo_Talk = 0x08B95C38;
 gSelectInfo_Support = 0x08B95C18;
+gStealItemMenuDef = 0x08B95920;
+gSelectInfo_Steal = 0x08B95BF8;
+gSelectInfo_Dance = 0x08B95B98;
+Tsa_StealMenuFrame = 0x081960D4;

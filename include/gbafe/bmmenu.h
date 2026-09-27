@@ -5,6 +5,7 @@
 #include "text.h"
 
 struct Unit;
+struct Trap;
 
 /* ---- uimenu (struct layouts as in fireemblem8u) ---- */
 
@@ -132,7 +133,7 @@ int GetSomeFacingDirection(int xFrom, int yFrom, int xTo, int yTo);
 void Make6CKOIDOAMM(struct Unit * unit, int facing);
 
 void BmMapFillg(u8 ** map, int value);
-void MapAddInBoundedRange(int x, int y, int minRange, int maxRange);
+void MapAddInBoundedRange(short x, short y, short minRange, short maxRange);
 int GetUnitWeaponReach(struct Unit * unit, int slot);
 void BuildUnitStandingRangeForReach(struct Unit * unit, int reach);
 void ListAttackTargetsForWeapon(struct Unit * unit, int item);
@@ -171,6 +172,29 @@ void StartBmSupply(struct Unit * unit, ProcPtr parent);
 void StartAvailableTileEvent(s8 x, s8 y);
 s8 ArenaIsUnitAllowed(struct Unit * unit);
 void sub_080B267C(void);   /* StartArenaScreen */
+
+void FillBallistaRangeMaybe(struct Unit * unit);
+void SetWorkingBmMap(u8 ** map);
+int GetItemMinRange(int item);
+int GetItemMaxRange(int item);
+void MakeTargetListForSteal(struct Unit * unit);
+void StartUnitInventoryInfoWindow(ProcPtr parent);
+void StartSubtitleHelp(ProcPtr parent, const char * str);
+void RefreshUnitStealInventoryInfoWindow(struct Unit * unit);
+s8 IsItemStealable(int item);
+void sub_08031DFC(ProcPtr parent);   /* StartUnitHpInfoWindow */
+void sub_0803202C(ProcPtr parent);   /* RefreshUnitTakeRescueInfoWindows */
+void sub_080321E0(ProcPtr parent);   /* StartUnitGiveInfoWindows */
+void RefreshUnitHpInfoWindow(struct Unit * unit);
+void RefreshUnitRescueInfoWindows(struct Unit * unit);
+void RefreshUnitGiveInfoWindows(struct Unit * unit);
+void RefreshUnitTakeInfoWindows(struct Unit * unit);
+void RefreshUnitInventoryInfoWindow(struct Unit * unit);
+void RideBallista(struct Unit * unit);
+void TryRemoveUnitFromBallista(struct Unit * unit);
+void StartMu(struct Unit * unit);
+s8 sub_080347E4(struct Trap * trap);   /* IsBallista */
+int sub_0803483C(struct Trap * trap);  /* GetBallistaItemUses */
 
 /* ---- bmmenu.c ---- */
 
