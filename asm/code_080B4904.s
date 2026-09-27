@@ -144,7 +144,7 @@ _080B49CA:
 	movs r1, #0
 	bl StartMuInternal
 	str r0, [r6, #0x58]
-	bl sub_0806DAB4
+	bl HideMu
 	adds r1, r6, #0
 	adds r1, #0x29
 	movs r0, #2
@@ -153,7 +153,7 @@ _080B49CA:
 	movs r1, #2
 	bl SetMuFacing
 	ldr r0, [r6, #0x58]
-	bl sub_0806BC88
+	bl StartUiStandingMu
 	adds r0, r6, #0
 	adds r0, #0x2b
 	mov r1, sl

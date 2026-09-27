@@ -8,3 +8,4 @@
 -nostdinc
 -Wno-implicit-int
 -Wno-implicit-function-declaration
+-Iinclude/gbafe

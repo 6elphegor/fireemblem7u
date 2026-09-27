@@ -63,7 +63,7 @@ _0801938E:
 	cmp r1, r0
 	blt _0801934A
 _0801939A:
-	bl sub_0802BC80
+	bl RefreshAllLightRunes
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov sb, r4

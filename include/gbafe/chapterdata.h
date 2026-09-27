@@ -146,3 +146,10 @@ struct ChapterEventGroup
 };
 
 const struct ChapterInfo * GetChapterInfo(u32 chIndex);
+const void * GetChapterMapPointer(u32 chIndex);
+const void * GetChapterMapChanges(u32 chIndex);
+const char * GetChapterTitleName(u32 chIndex);
+u8 IsDifficultMode(void);
+
+extern const struct ChapterInfo gChapterDataTable[];
+extern const void * gChapterDataAssetTable[];

@@ -10,7 +10,7 @@ GetGameExpRank: @ 0x080B6424
 	mov r5, r8
 	push {r5, r6, r7}
 	sub sp, #0x10
-	bl sub_080A01BC
+	bl PidStatsGetTotalExpGain
 	mov sb, r0
 	movs r1, #0
 	add r0, sp, #0xc
@@ -40,7 +40,7 @@ _080B6458:
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080B64EC
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
 	ldr r1, [r4]
@@ -55,7 +55,7 @@ _080B6458:
 	ldrh r0, [r0]
 	adds r1, r0, r1
 	str r1, [sp]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
 	ldr r1, [r4]
@@ -70,7 +70,7 @@ _080B6458:
 	ldrh r0, [r0]
 	adds r1, r0, r1
 	str r1, [sp, #4]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
 	ldr r1, [r4]
@@ -85,7 +85,7 @@ _080B6458:
 	ldrh r0, [r0]
 	adds r1, r0, r1
 	str r1, [sp, #8]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
 	ldr r1, [r4]

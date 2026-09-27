@@ -36,7 +36,7 @@ _0808F630:
 	subs r1, #0x80
 	adds r0, r5, #0
 	movs r2, #0
-	bl sub_0802CBAC
+	bl GenerateItemPromotionBattle
 	ldr r1, _0808F684 @ =0x0203A3D8
 	movs r0, #0x88
 	lsls r0, r0, #1
