@@ -2778,3 +2778,5 @@ Pal_MapSpriteArena = 0x08194614;
 Pal_MapSpritePurple = 0x08194634;
 Pal_MapSpriteSepia = 0x08194654;
 sTornOutPixelLut = 0x08B93F18;
+gSMSHandleArray = 0x02039F1C;
+gSMSHandleIt = 0x0203A3CC;

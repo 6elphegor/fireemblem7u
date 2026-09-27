@@ -46,6 +46,20 @@ int ApplyUnitSpriteImage32x32(int slot, u32 id);
 extern u16 CONST_DATA sTornOutPixelLut[];
 int GetUnitSpritePalette(struct Unit const * unit);
 
+struct SMSHandle {
+    /* 00 */ struct SMSHandle * pNext;
+    /* 04 */ short xDisplay;
+    /* 06 */ short yDisplay;
+    /* 08 */ u16 oam2Base;
+    /* 0A */ u8 _u0A;
+    /* 0B */ s8 config;
+};
+
+extern struct SMSHandle gSMSHandleArray[];
+extern struct SMSHandle * gSMSHandleIt;
+
+struct SMSHandle * AddUnitSprite(int y);
+
 void IncUnitSpriteSyncFlag(void)
 {
     gSMSSyncFlag++;
@@ -449,5 +463,117 @@ int GetUnitSpritePalette(struct Unit const * unit)
 
     case FACTION_PURPLE:
         return 0xB;
+    }
+}
+
+void RefreshUnitSprites(void)
+{
+    struct SMSHandle * smsHandle;
+
+    struct Trap * trap;
+    int i;
+    u16 oam2 = 0;
+    struct SMSHandle * nullHandle = NULL;
+
+    gSMSHandleIt = &gSMSHandleArray[0];
+
+    gSMSHandleIt->pNext = nullHandle;
+    gSMSHandleIt->yDisplay = 0x400;
+
+    gSMSHandleIt = &gSMSHandleArray[1];
+
+    for (i = 1; i < FACTION_PURPLE + 6; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        unit->pMapSpriteHandle = NULL;
+
+        if (unit->state & (US_HIDDEN | US_CONCEALED))
+            continue;
+
+        if (gBmMapUnit[unit->yPos][unit->xPos] == 0)
+            continue;
+
+        smsHandle = AddUnitSprite(unit->yPos * 16);
+
+        smsHandle->yDisplay = unit->yPos * 16;
+        smsHandle->xDisplay = unit->xPos * 16;
+
+        smsHandle->oam2Base = UseUnitSprite(GetUnitSMSId(unit)) + 0x80 + (GetUnitDisplayedSpritePalette(unit) & 0xf) * 0x1000;
+
+        smsHandle->config = GetInfo(GetUnitSMSId(unit)).size;
+
+        if (unit->state & 0x100)
+            smsHandle->config += 3;
+
+        if (unit->state & 0x1000000)
+            smsHandle->config += 0x40;
+
+        unit->pMapSpriteHandle = smsHandle;
+    }
+
+    for (trap = GetTrap(0); trap->type != 0; trap++)
+    {
+        if (trap->type == 1 && trap->data[1] == 0)
+        {
+            switch (trap->extra)
+            {
+            case 0x34:
+                oam2 = UseUnitSprite(0x52) - 0x4000 + 0x80;
+                break;
+
+            case 0x35:
+                oam2 = UseUnitSprite(0x53) - 0x4000 + 0x80;
+                break;
+
+            case 0x36:
+                oam2 = UseUnitSprite(0x54) - 0x4000 + 0x80;
+                break;
+            }
+
+            smsHandle = AddUnitSprite(trap->yPos * 16);
+
+            smsHandle->yDisplay = trap->yPos * 16;
+            smsHandle->xDisplay = trap->xPos * 16;
+
+            smsHandle->oam2Base = oam2;
+
+            smsHandle->config = GetInfo(0x52).size;
+        }
+
+        if (trap->type == 0xC)
+        {
+            smsHandle = AddUnitSprite(trap->yPos * 16);
+            smsHandle->yDisplay = trap->yPos * 16;
+            smsHandle->xDisplay = trap->xPos * 16;
+
+            smsHandle->oam2Base = UseUnitSprite(0x57) - 0x5000 + 0x80;
+
+            smsHandle->config = GetInfo(0x57).size;
+        }
+    }
+
+    if (gSMSSyncFlag != 0)
+        ForceSyncUnitSpriteSheet();
+}
+
+struct SMSHandle * AddUnitSprite(int y)
+{
+    struct SMSHandle * it = gSMSHandleArray;
+
+    while (1)
+    {
+        if (it->pNext == NULL || it->pNext->yDisplay < y)
+        {
+            gSMSHandleIt->pNext = it->pNext;
+            gSMSHandleIt = (it->pNext = gSMSHandleIt) + 1;
+
+            return it->pNext;
+        }
+
+        it = it->pNext;
     }
 }
