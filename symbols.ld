@@ -776,3 +776,9 @@ ProcScr_08B85854 = 0x08B85854;
 ProcScr_AiTargetCursor = 0x08B96F7C;
 PopupScr_AiPillage = 0x08B9701C;
 gWorkingMoveScr = 0x02033E00;
+/* cp_battle */
+sCombatScoreCoefficients = 0x030013C0;
+gAiCombatScoreCoefficientTable = 0x081D36F4;
+gAiBallistaItemIdsInit = 0x081D3B64;
+sFriendZoneRangeScoreLut = 0x08B989FC;
+sRange3OffsetLut_ = 0x08B98A60;
