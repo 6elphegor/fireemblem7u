@@ -83,8 +83,7 @@ struct ChapterInfo {
     /* 60 */ u32 goldForFundsRankInEliwoodStory[2]; // FE7
     /* 68 */ u32 goldForFundsRankInHectorStory[2]; // FE7
 
-    /* 70 */ u16 msg_chapter_title_a;
-    /* 72 */ u16 msg_chapter_title_b;
+    /* 70 */ u16 msg_chapter_title[2];
 
     /* 74 */ u8 mapEventDataId;
     /* 75 */ u8 gmapEventId;
