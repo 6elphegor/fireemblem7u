@@ -505,7 +505,27 @@ u8 sub_0801BA54(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
     return 0;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801BB74.s");
+u8 sub_0801BB74(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    RandInit(GetGameTime());
+    InitUnits();
+
+    if (gpKeySt->held & L_BUTTON)
+        WriteNewGameSave(0, 1, 0);
+    else
+        WriteNewGameSave(0, 0, 0);
+
+    SetTacticianName(DecodeMsg(0x55B));
+
+    gPlaySt.chapterIndex = menuItemProc->itemNumber;
+
+    WriteGameSave(0);
+
+    CleanupUnitsBeforeChapter();
+    sub_08012B88();
+
+    return 2;
+}
 
 u8 sub_0801BBE0(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
 {
