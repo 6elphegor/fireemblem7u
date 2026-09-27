@@ -1195,14 +1195,7 @@ SECTIONS
         build/src/banim-efxmagic-phywpn.o(.text);
         build/src/banim-efxmagic-refresh.o(.text);
         build/src/banim-efxmagic-ballista.o(.text);
-        build/asm/code_0805743C.o(.text);
-        build/asm/code_08057478.o(.text);
-        build/asm/code_08057514.o(.text);
-        build/asm/code_080575D4.o(.text);
-        build/asm/code_08057608.o(.text);
-        build/asm/code_0805764C.o(.text);
-        build/asm/code_08057714.o(.text);
-        build/asm/code_08057750.o(.text);
+        build/src/banim-efxmagic-spell11.o(.text);
         build/asm/code_0805779C.o(.text);
         build/asm/code_080577D8.o(.text);
         build/asm/code_08057894.o(.text);
