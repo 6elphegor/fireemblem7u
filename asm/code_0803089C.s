@@ -27,7 +27,7 @@ _080308BC:
 	cmp r0, #0
 	bne _080308DA
 	bl SortPlayerUnitsForPrepScreen
-	bl sub_0800F0C8
+	bl InitPlayerUnitPositionsForPrepScreen
 	ldrb r0, [r5, #0x14]
 	orrs r0, r6
 	strb r0, [r5, #0x14]

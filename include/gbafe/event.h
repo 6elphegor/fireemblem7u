@@ -24,10 +24,10 @@ struct EventProc {
 
     /* 2C */ EventScr const * script_start;
     /* 30 */ EventScr const * script;
-    /* 38 */ EventScr const * script_return;
+    /* 34 */ EventScr const * script_return;     // script_start of the calling script (0 if none)
+    /* 38 */ EventScr const * script_return_pc;  // script position of the calling script
 
-    STRUCT_PAD(0x38, 0x40);
-
+    /* 3C */ void (* skip_func)(void);
     /* 40 */ void (* idle_func)(struct EventProc * proc);
     /* 44 */ struct UnitDefinition const * unit_info;
     /* 48 */ int talk_auto_msg;
@@ -36,16 +36,19 @@ struct EventProc {
     /* 4E */ u8 unk_4E;
     /* 4F */ u8 map_change_param;
     /* 50 */ u16 sleep_duration;
+    /* 52 */ s16 unk_52;
 
-    STRUCT_PAD(0x52, 0x55);
+    STRUCT_PAD(0x54, 0x55);
 
     /* 55 */ u8 pid_param; // TODO: what is this exactly?
     /* 56 */ u16 ignore_count;
-
-    STRUCT_PAD(0x58, 0x5C);
-
+    /* 58 */ int unk_58;
     /* 5C */ u16 iid_param;
     /* 5E */ u16 flags;
+
+    STRUCT_PAD(0x60, 0x68);
+
+    /* 68 */ s8 text_speed;
 };
 
 enum event_func_ret_idx {
@@ -85,7 +88,7 @@ enum event_func_ret_idx {
 // PopupProc_WaitForPress
 // sub_0800ACC4
 // sub_800ACC4
-// sub_0800AD28
+// SetPopupItem
 // SetPopupNumber
 // NewPopup_Simple
 // NewPopupCore
@@ -99,7 +102,7 @@ void Event_FadeOutOfSkip(struct EventProc * proc);
 // sub_800ADDC
 // sub_0800AE50
 // sub_0800AE8C
-void StartEvent();
+ProcPtr StartEvent();
 // StartEventLocking
 // StartEventInternal
 // sub_0800B0F0
@@ -317,7 +320,7 @@ bool IsEventRunning();
 // sub_800EC40
 // sub_0800ED4C
 void sub_0800ED68();
-void sub_0800ED78(int);
+ProcPtr sub_0800ED78(int msg);
 // CallMapSupportEvent
 // sub_0800EDAC
 // CallSupportViewerEvent
@@ -340,9 +343,9 @@ void sub_0800ED78(int);
 // sub_0800F06C
 void sub_0800F08C();
 int GetChapterAllyUnitCount(void);
-// sub_0800F0C8
+// InitPlayerUnitPositionsForPrepScreen
 // SyncUnitDeploymentState
-// sub_0800F1C0
+// AssignUnitToFreeDeploySlot
 // nullsub_29
 // sub_800F188
 // Event_SetExitMap
@@ -678,3 +681,255 @@ extern struct ProcCmd CONST_DATA ProcScr_ScreenFlashing[];
 extern struct ProcCmd CONST_DATA ProcScr_EventFadefx[];
 extern struct ProcCmd CONST_DATA ProcScr_EventSpriteAnim[];
 extern struct ProcCmd CONST_DATA ProcScr_Event_08B92414[];
+
+struct EventCmdInfo {
+    int (* func)(struct EventProc * proc);
+    int length; // in words
+};
+
+extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
+
+/* ---- event-engine.c (0x0800A618-0x0800B4C8) ---- */
+
+enum popup_opcode_index {
+    POPUP_OP_END,              /* 00 */
+    POPUP_OP_SPACE,            /* 01 */
+    POPUP_OP_ITEM_NAME,        /* 02 */
+    POPUP_OP_ITEM_STR_CAP,     /* 03 */
+    POPUP_OP_ITEM_STR,         /* 04 */
+    POPUP_OP_UNIT_NAME,        /* 05 */
+    POPUP_OP_MSG,              /* 06 */
+    POPUP_OP_STR,              /* 07 */
+    POPUP_OP_COLOR,            /* 08 */
+    POPUP_OP_ITEM_ICON,        /* 09 */
+    POPUP_OP_WTYPE_ICON,       /* 0A */
+    POPUP_OP_NUM,              /* 0B */
+    POPUP_OP_SOUND,            /* 0C */
+};
+
+struct PopupInstruction {
+    u8 opcode;
+    u32 data;
+};
+
+struct PopupProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct PopupInstruction const * inst;
+    /* 30 */ int clock;
+    /* 34 */ s8 x_tile_param;
+    /* 35 */ s8 y_tile_param;
+    /* 36 */ u8 window_kind;
+    /* 37 */ u8 x_tile;
+    /* 38 */ u8 y_tile;
+    /* 39 */ u8 x_tile_size;
+    /* 3A */ u8 y_tile_size;
+    /* 3B */ u8 text_color;
+    /* 3C */ STRUCT_PAD(0x3C, 0x3E);
+    /* 3E */ u16 icon;
+    /* 40 */ u16 icon_chr;
+    /* 42 */ u8 icon_pal;
+    /* 43 */ STRUCT_PAD(0x43, 0x44);
+    /* 44 */ u8 icon_x;
+    /* 45 */ STRUCT_PAD(0x45, 0x46);
+    /* 46 */ u16 x_gfx_size;
+    /* 48 */ u16 song;
+};
+
+struct PopupIconUpdateProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int x;
+    /* 30 */ int y;
+    /* 34 */ STRUCT_PAD(0x34, 0x4A);
+    /* 4A */ u16 oam2;
+};
+
+extern struct Unit * gPopupUnit;
+extern u16 gPopupItem;
+extern u32 gPopupNumber;
+
+extern struct ProcCmd CONST_DATA ProcScr_Popup[];
+extern struct ProcCmd CONST_DATA ProcScr_PopupUpdateIcon[];
+
+void LoadUnitCore(struct UnitDefinition const * def, struct EventProc * proc);
+void FakeLoadUnit(struct UnitDefinition const * def, struct Unit * unit);
+void sub_0800A71C(struct UnitDefinition const * def, struct Unit * unit, struct EventProc * proc, bool move);
+bool sub_0800A7A0(void);
+int sub_0800A7BC(void);
+int sub_0800A7CC(void);
+int ParsePopupInstAndGetLen(struct PopupProc * proc);
+void GeneratePopupText(struct PopupInstruction const * inst, struct Text text);
+void PopupProc_Init(struct PopupProc * proc);
+void PopupProc_PrepareGfx(struct PopupProc * proc);
+void PopupProc_MaybeSetVolume(struct PopupProc * proc);
+void PopupProc_PlaySound(struct PopupProc * proc);
+void PopupProc_MaybeResetVolume(struct PopupProc * proc);
+void PopupIconUpdateProc_Loop(struct PopupIconUpdateProc * proc);
+void PopupProc_GfxDraw(struct PopupProc * proc);
+void PopupProc_WaitForPress(struct PopupProc * proc);
+void PopupProc_GfxClear(struct PopupProc * proc);
+void SetPopupUnit(struct Unit * unit);
+void SetPopupItem(u16 item);
+void SetPopupNumber(u32 num);
+ProcPtr NewPopup_Simple(struct PopupInstruction const * inst, int clock, int window_kind, ProcPtr parent);
+ProcPtr NewPopupCore(struct PopupInstruction const * inst, int clock, int window_kind, int icon_chr, int icon_pal, ProcPtr parent);
+void EndPopups(void);
+void sub_0800ADB8(void);
+void sub_0800ADD0(ProcPtr proc);
+void sub_0800AE04(struct EventProc * proc);
+void sub_0800AE18(ProcPtr proc);
+void sub_0800AE34(ProcPtr proc);
+void sub_0800AE50(void);
+void sub_0800AE8C(ProcPtr proc);
+void EventForceSlowTextSpeed(struct EventProc * proc);
+void sub_0800AF20(struct EventProc * proc);
+ProcPtr StartEventLocking(EventScr const * script, ProcPtr parent);
+ProcPtr StartEventInternal(EventScr const * script, ProcPtr parent);
+void sub_0800B0F0(struct EventProc * proc);
+void sub_0800B104(void);
+void sub_0800B110(struct EventProc * proc);
+void sub_0800B130(struct EventProc * proc);
+void sub_0800B180(struct EventProc * proc);
+void sub_0800B198(struct EventProc * proc);
+bool Event_IsSkipAllowed(struct EventProc * proc);
+void Event_DarkenThenFunc(void (* func)(ProcPtr arg), ProcPtr arg);
+void Event_BeginSkip(struct EventProc * proc);
+void Event_MainLoop(struct EventProc * proc);
+void Event_WaitForFaceEnd(struct EventProc * proc);
+/* ---- end event-engine.c ---- */
+
+
+/* ---- eventscr.c (0x0800B90C-0x0800D01C) ---- */
+void EventStartTalk(struct EventProc * proc, int msg, bool init);
+void EventEndTalk(struct EventProc * proc);
+bool CanDisplayUnitMovement(struct EventProc * proc, int x, int y);
+void TryMoveUnit(struct Unit * unit, int x, int y, u8 move_closest);
+bool TryMoveUnitDisplayed(struct EventProc * proc, struct Unit * unit, int x, int y, u16 speed);
+bool DisplayMovement(struct EventProc * proc, struct Unit * unit, u8 const * move_script, u16 speed);
+int GetNextAvailableBlueUnitId(int uid);
+bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def);
+
+/* ---- end eventscr.c ---- */
+
+
+/* ---- eventscr2.c (0x0800D01C-0x0800E330) ---- */
+void EventUnitLoadWait(struct EventProc * proc);
+void EventUnitLoadAliveWait(struct EventProc * proc);
+void EventLoadUnitsAsParty(struct EventProc * proc);
+int EvtCmd_LoadUnit(struct EventProc * proc);
+void EventMovementWait(struct EventProc * proc);
+int EvtCmd_WaitForMovement(struct EventProc * proc);
+int EvtCmd_UnitCameraOn(struct EventProc * proc);
+int EvtCmd_UnitCameraOff(struct EventProc * proc);
+int Event3C_ASMC1(struct EventProc * proc);
+int Event3D_ASMC2(struct EventProc * proc);
+int Event3E_ASMC3(struct EventProc * proc);
+int Event3F_ASMC4(struct EventProc * proc);
+int Event40_ASMC5(struct EventProc * proc);
+int EvtCmd_Stop(struct EventProc * proc);
+int EvtCmd_Label(struct EventProc * proc);
+int EventGotoLabel(struct EventProc * proc, int label);
+
+int EvtCmd_GotoIfyFlag(struct EventProc * proc);
+int EventGiveItem(struct Unit * unit, u16 iid, struct EventProc * proc);
+void EventFlashCursorWait(struct EventProc * proc);
+void EventRemoveDisplayedWait(struct EventProc * proc);
+bool EventIsPidBlueForDisable(u8 pid);
+void EventSetUnitAi(struct Unit * unit, u8 ai1, u8 ai2, int unused);
+/* ---- end eventscr2.c ---- */
+
+
+/* ---- eventscr3.c (0x0800E330-0x0800EC40) ---- */
+
+struct EventWeatherChangeProc {
+    /* 00 */ PROC_HEADER;
+    STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 weather;
+};
+
+int EvtCmd_SetFlag(struct EventProc * proc);
+int EvtCmd_ClearFlag(struct EventProc * proc);
+int EvtCmd_PlayBgm(struct EventProc * proc);
+int EvtCmd_PlaySongExt(struct EventProc * proc);
+int EvtCmd_OverrideBgm(struct EventProc * proc);
+int EvtCmd_RestoreBgm(struct EventProc * proc);
+int EvtCmd_FadeBgmIn(struct EventProc * proc);
+int EvtCmd_FadeBgmOut(struct EventProc * proc);
+int EvtCmd_LowerBgmVolume(struct EventProc * proc);
+int EvtCmd_RestoreBgmVolume(struct EventProc * proc);
+int EvtCmd_PlaySe(struct EventProc * proc);
+int EventEndBattleMap(struct EventProc * proc);
+int EvtCmd_NextChapter(struct EventProc * proc);
+int Event80_CompleteGame(struct EventProc * proc);
+int EvtCmd_EndLynCampaign(struct EventProc * proc);
+int EvtCmd_SetMap(struct EventProc * proc);
+int EvtCmd_SetMapId(struct EventProc * proc);
+void Event_EndSkip(struct EventProc * proc);
+int EvtCmd_NoSkip(struct EventProc * proc);
+int EvtCmd_NoSkipTalk(struct EventProc * proc);
+int EvtCmd_NoSkipTalkSlow(struct EventProc * proc);
+int EvtCmd_YesSkip(struct EventProc * proc);
+int EvtCmd_SilentSkip(struct EventProc * proc);
+int EvtCmd_NoSkipUnlessNewGamePlus(struct EventProc * proc);
+int EvtCmd_NoSkipTalkSlowUnlessNewGamePlus(struct EventProc * proc);
+int EvtCmd_NoSkipSlowUnlessNewGamePlus(struct EventProc * proc);
+int EvtCmd_FadeToBlack(struct EventProc * proc);
+int EvtCmd_FadeFromBlack(struct EventProc * proc);
+int EvtCmd_LynModeDeathFadeToBlack(struct EventProc * proc);
+int EvtCmd_FadeToWhite(struct EventProc * proc);
+int EvtCmd_FadeFromWhite(struct EventProc * proc);
+int EvtCmd_ExitMap(struct EventProc * proc);
+int EvtCmd_EnterMap(struct EventProc * proc);
+int sub_0800E8A4(struct EventProc * proc);
+int sub_0800E8CC(struct EventProc * proc);
+int EvtCmd_GiveGold(struct EventProc * proc);
+int EvtCmd_FightScript(struct EventProc * proc);
+void EventScriptedBattleWait(struct EventProc * proc);
+void EventScriptedBattleWaitB(struct EventProc * proc);
+int EvtCmd_SetNoReloadGfx(struct EventProc * proc);
+int EvtCmd_OnSkipFunc(struct EventProc * proc);
+int EvtCmd_ClearOnSkipFunc(struct EventProc * proc);
+int EvtCmd_SetWeatherWithFade(struct EventProc * proc);
+int EvtCmd_SetWeather(struct EventProc * proc);
+void EventWeatherChangeWithFade_SetWeather(struct EventWeatherChangeProc * proc);
+int EvtCmd_SetVision(struct EventProc * proc);
+int EvtCmd_SetVisionInstant(struct EventProc * proc);
+int EvtCmd_BreakItemSeal(struct EventProc * proc);
+int EvtCmd_EnqueueEvent(struct EventProc * proc);
+
+/* ---- end eventscr3.c ---- */
+
+
+/* ---- eventscr4.c (0x0800EC40-0x0800F9B0) ---- */
+int Event00_(struct EventProc * proc);
+int Event01(struct EventProc * proc);
+bool sub_0800ED34(void);
+void sub_0800ED4C(void);
+ProcPtr CallMapSupportEvent(int msg, int song);
+void sub_0800EDAC(struct EventProc * proc);
+ProcPtr CallSupportViewerEvent(int msg);
+void sub_0800EDE0(u16 item, ProcPtr parent);
+void sub_0800EE04(u16 item, ProcPtr parent);
+void sub_0800EE28(u16 item, ProcPtr parent);
+void StartPopup_800EE4C(int num, ProcPtr parent);
+void StartPopup_800EE90(int num, ProcPtr parent);
+void StartPopup_800EEB0(struct Unit * unit, u16 item, ProcPtr parent);
+void StartStoleItemPopup(u16 item, ProcPtr parent);
+void sub_0800EF3C(ProcPtr parent);
+void StartGiveItem(struct Unit * unit, u16 item, ProcPtr parent);
+void sub_0800EFCC(u16 iid);
+void sub_0800EFE8(u16 pid, u16 iid);
+void sub_0800F010(int gold);
+void sub_0800F028(u8 param);
+void sub_0800F044(u16 iid, u8 param);
+void sub_0800F06C(int gold, u8 param);
+void InitPlayerUnitPositionsForPrepScreen(void);
+void SyncUnitDeploymentState(void);
+void AssignUnitToFreeDeploySlot(struct Unit * unit);
+void sub_0800F27C(void);
+void Event_SetExitMap(struct EventProc * proc);
+void Event_SetEnterMap(struct EventProc * proc);
+
+/* ---- end eventscr4.c ---- */
+
