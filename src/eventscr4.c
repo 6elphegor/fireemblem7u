@@ -65,29 +65,8 @@ int WmToScreenX(int x);
 int WmToScreenY(int y);
 void Event_CgTalkOnSkip(struct EventProc * proc);
 
-extern struct FaceVramEnt CONST_DATA gFaceConfig_08B91AB8[];
-extern EventScr CONST_DATA EventScr_08B91AD8[];
-extern EventScr CONST_DATA EventScr_08B91AE8[];
-extern EventScr CONST_DATA EventScr_08B91B10[];
-extern EventScr CONST_DATA EventScr_08B91DF4[];
-extern EventScr CONST_DATA EventScr_08B91E0C[];
-extern EventScr CONST_DATA EventScr_08B91E28[];
-extern EventScr CONST_DATA EventScr_08B91E40[];
-extern EventScr CONST_DATA EventScr_08B91E4C[];
-extern EventScr CONST_DATA EventScr_08B91E68[];
 
-extern struct PopupInstruction CONST_DATA gPopup_08B91B34[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91B7C[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91BC4[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91BE4[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91C2C[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91C64[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91CBC[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91D04[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91D5C[];
-extern struct PopupInstruction CONST_DATA gPopup_08B91DA4[];
 
-extern struct ProcCmd CONST_DATA ProcScr_GiveItem[];
 
 extern struct MusicPlayerInfo gUnk_03005D20;
 
@@ -99,6 +78,185 @@ struct GiveItemProc {
 };
 
 #define EVT_ARG_U16(proc, n) (((u16 const *)(proc)->script)[n])
+
+struct GiveItemProc;
+struct EventFaceDeamonProc;
+void EventFaceDeamonDelete(struct EventFaceDeamonProc * proc);
+void GiveItem_DoGiveItem(struct GiveItemProc * proc);
+void GiveItem_DoPopup(struct GiveItemProc * proc);
+void sub_0800F5AC(void);
+void sub_0800F5B0(void);
+void sub_0800F604(void);
+void sub_0800F608(void);
+
+CONST_DATA struct FaceVramEnt gFaceConfig_08B91AB8[] = {
+    { 0x800, 3 },
+    { 0x800, 3 },
+    { 0x800, 3 },
+    { 0x800, 3 },
+};
+
+CONST_DATA EventScr EventScr_08B91AD8[] = {
+    0x13, 2, 0xA, 0,
+};
+
+CONST_DATA EventScr EventScr_08B91AE8[] = {
+    2, 0x3E, (EventScr) sub_0800EDAC, 0x13, 9, 0x3E, (EventScr) sub_0800EF3C, 0x10002,
+    0xA, 0,
+};
+
+CONST_DATA EventScr EventScr_08B91B10[] = {
+    6, 0x10008F, 0x93, 0x13, 0x10008E, 0x92, 0x10002, 0xA,
+    0,
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91B34[] = {
+    { 0xC, 0x37C },
+    { 8, 2 },
+    { 3, 0 },
+    { 1, 1 },
+    { 9, 0 },
+    { 1, 1 },
+    { 8, 0 },
+    { 6, 0x751 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91B7C[] = {
+    { 0xC, 0x37C },
+    { 8, 2 },
+    { 3, 0 },
+    { 1, 1 },
+    { 9, 0 },
+    { 1, 1 },
+    { 8, 0 },
+    { 6, 0x752 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91BC4[] = {
+    { 0xC, 0x37A },
+    { 0xA, 0 },
+    { 6, 0x750 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91BE4[] = {
+    { 0xC, 0x37A },
+    { 8, 0 },
+    { 6, 0x754 },
+    { 8, 2 },
+    { 0xB, 0 },
+    { 1, 3 },
+    { 8, 0 },
+    { 6, 0x753 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91C2C[] = {
+    { 0xC, 0x37C },
+    { 8, 2 },
+    { 0xB, 0 },
+    { 1, 3 },
+    { 8, 0 },
+    { 6, 0x756 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91C64[] = {
+    { 0xC, 0x37A },
+    { 8, 0 },
+    { 6, 0x754 },
+    { 8, 2 },
+    { 4, 0 },
+    { 1, 1 },
+    { 9, 0 },
+    { 8, 0 },
+    { 1, 1 },
+    { 6, 0x12B2 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91CBC[] = {
+    { 0xC, 0x37C },
+    { 8, 2 },
+    { 3, 0 },
+    { 1, 1 },
+    { 9, 0 },
+    { 1, 1 },
+    { 8, 0 },
+    { 6, 0x757 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91D04[] = {
+    { 0xC, 0x37A },
+    { 8, 0 },
+    { 6, 0x755 },
+    { 8, 2 },
+    { 4, 0 },
+    { 1, 1 },
+    { 9, 0 },
+    { 1, 1 },
+    { 8, 0 },
+    { 6, 0x12B2 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91D5C[] = {
+    { 0xC, 0x37C },
+    { 8, 2 },
+    { 3, 0 },
+    { 1, 1 },
+    { 9, 0 },
+    { 1, 1 },
+    { 8, 0 },
+    { 6, 0x758 },
+    { 0, 0 },
+};
+
+CONST_DATA struct PopupInstruction gPopup_08B91DA4[] = {
+    { 0xC, 0x37A },
+    { 8, 0 },
+    { 6, 0x759 },
+    { 0, 0 },
+};
+
+CONST_DATA struct ProcCmd ProcScr_GiveItem[] = {
+    PROC_YIELD,
+    PROC_CALL(GiveItem_DoPopup),
+    PROC_YIELD,
+    PROC_CALL(GiveItem_DoGiveItem),
+    PROC_YIELD,
+    PROC_END,
+};
+
+CONST_DATA EventScr EventScr_08B91DF4[] = {
+    0x86, 0x93, 0x5B, 0, 0xA, 0,
+};
+
+CONST_DATA EventScr EventScr_08B91E0C[] = {
+    0x86, 0x93, 0x5C, 0, 0, 0xA, 0,
+};
+
+CONST_DATA EventScr EventScr_08B91E28[] = {
+    0x86, 0x93, 0x5E, 0, 0xA, 0,
+};
+
+CONST_DATA EventScr EventScr_08B91E40[] = {
+    0xFFFF005F, 0xA, 0,
+};
+
+CONST_DATA EventScr EventScr_08B91E4C[] = {
+    0xFFFF005F, 0x86, 0x93, 0x5B, 0, 0xA, 0,
+};
+
+CONST_DATA EventScr EventScr_08B91E68[] = {
+    0xFFFF005F, 0x86, 0x93, 0x5E, 0, 0xA, 0, 0x8000F,
+    0, 0xE, 0, 2, (EventScr) sub_0800F5AC, 3, (EventScr) sub_0800F5B0, 0,
+    0, 0x8000F, 0, 4, (EventScr) EventFaceDeamonDelete, 0xE, 0, 2,
+    (EventScr) sub_0800F604, 3, (EventScr) sub_0800F608, 0, 0,
+};
 
 int Event00_(struct EventProc * proc)
 {

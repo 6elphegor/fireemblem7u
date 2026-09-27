@@ -1,5 +1,13 @@
 #include "gbafe.h"
 
+struct EventMuWaitProc;
+void WaitForMu_OnLoop(struct EventMuWaitProc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_08B91A08[] = {
+    PROC_REPEAT(WaitForMu_OnLoop),
+    PROC_END,
+};
+
 int EvtCmd_Sleep(struct EventProc * proc)
 {
     // script[1]: duration
@@ -294,7 +302,6 @@ struct EventMuWaitProc {
     /* 54 */ struct MuProc * mu;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_08B91A08[];
 
 void EventStartTalk(struct EventProc * proc, int msg, bool init)
 {
