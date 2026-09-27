@@ -405,7 +405,31 @@ void WmMoveCamera(int dx, int dy)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3338.s");
+void WmUpdateCamera(int x, int y)
+{
+    if (gWmSt.mode != 1)
+        return;
+
+    if (x != -1 && y != -1)
+    {
+        gWmSt.tx = x;
+        gWmSt.ty = y;
+    }
+
+    {
+        struct WmSt * st = &gWmSt;
+
+        if (*(u32 *) &st->tx == *(u32 *) &st->x)
+            return;
+
+        WmDrawMapRegion(st->x / 8, st->y / 8, st->tx / 8, st->ty / 8);
+    }
+
+    SetBgOffset(3, gWmSt.tx & 0xFF, gWmSt.ty & 0xFF);
+
+    gWmSt.x = gWmSt.tx;
+    gWmSt.y = gWmSt.ty;
+}
 
 int WmGetCameraX(void)
 {
