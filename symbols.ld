@@ -1080,3 +1080,7 @@ sUnitStackBase = 0x0203A7E8;
 sUnitStackTop = 0x0203A7EC;
 sUnitStackSize = 0x0203A7F0;
 gUnitArrayBlue = 0x0202BD50;
+ProcScr_UnitInfoWindow = 0x08B96998;
+Tsa_UnitInfoWindowHeader = 0x08196084;
+sRescueUnitInfoWindows = 0x0203A8E4;
+gUnitInfoWindowFactionPalLut = 0x081C4060;
