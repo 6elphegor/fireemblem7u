@@ -273,7 +273,138 @@ void sub_08040870(ProcPtr proc)
     return;
 }
 
-ASM_FUNC("asm/nonmatching/code_080408B8.s");
+void sub_080408B8(struct SioBatProc * proc)
+{
+    int i;
+    u8 buf[4];
+    u8 recvBuf[4];
+
+    int timeouts = 0;
+    u16 got = 0;
+    struct SioBatProc_Unk2C * unk_2c = proc->unk_2c;
+
+    gUnk_Sio_0203DD28 = 0;
+    buf[0] = 0;
+
+    sub_08040640();
+
+    if (Proc_Find(ProcScr_SIOCON) != NULL)
+    {
+        if ((gpKeySt->pressed & B_BUTTON) != 0)
+        {
+            SioPlaySoundEffect(1);
+            EndLinkArenaButtonSpriteDraw();
+            sub_08040610();
+            sub_08040634();
+            Proc_Goto(proc, 2);
+        }
+
+        return;
+    }
+
+    EndLinkArenaButtonSpriteDraw();
+
+    unk_2c->unk_34 = gSioSt->selfId;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (gSioSt->timeoutClock[i] > 60)
+        {
+            timeouts++;
+        }
+    }
+
+    if (gSioSt->playerStatus[gSioSt->selfId] == 2)
+    {
+        sub_08040610();
+        sub_08040634();
+        Proc_Goto(proc, 2);
+        return;
+    }
+
+    if ((sub_0803CD64() == 0) || (gSioSt->unk_01E > 60) || (timeouts != 0))
+    {
+        sub_08040610();
+        sub_08040634();
+        sub_08040870(proc);
+        proc->unk_30 = 0;
+        PutSioText(0x3C6, 1); // "Setting up. Please wait..."
+        StartLinkArenaButtonSpriteDraw(192, 16, proc);
+        return;
+    }
+
+    if ((gSioSt->selfId == 0) && (sub_0803CDE8() == 1))
+    {
+        if (proc->unk_30 != 2)
+        {
+            proc->unk_30 = 2;
+            PutSioText(0x3C8, 1); // "Press START to begin."
+        }
+
+        if ((gpKeySt->pressed & START_BUTTON) != 0)
+        {
+            gSioSt->unk_004 = 6;
+            gSioSt->unk_01E = 0;
+
+            for (i = 0; i < 4; i++)
+            {
+                gSioSt->timeoutClock[i] = 0;
+            }
+
+            SioPlaySoundEffect(2);
+
+            gSioSt->unk_007 = sub_0803CCC4();
+            gLinkArenaSt.unk_A0 = gSioSt->unk_007;
+            sub_0803D674();
+
+            buf[0] = 0x18;
+            proc->unk_34 = SioEmitData(buf, 4);
+
+            Proc_Break(proc);
+            return;
+        }
+    }
+    else if (proc->unk_30 != 1)
+    {
+        proc->unk_30 = 1;
+        PutSioText(0x3C7, 1); // "Please wait..."
+    }
+
+    if (((gSioSt->selfId != 0) && (sub_0803CD1C(gSioSt->selfId) != 0)))
+    {
+        got = SioReceiveData(buf, recvBuf, 0);
+        if (got != 0)
+        {
+            gSioSt->unk_004 = 6;
+            gSioSt->unk_01E = 0;
+
+            for (i = 0; i < 4; i++)
+            {
+                gSioSt->timeoutClock[i] = 0;
+            }
+
+            gSioSt->unk_007 = sub_0803CCC4();
+            gLinkArenaSt.unk_A0 = gSioSt->unk_007;
+
+            sub_0803D674();
+            Proc_Break(proc);
+            return;
+        }
+    }
+
+    if ((GetGameTime() % 38) != 0)
+    {
+        return;
+    }
+
+    gUnknown_03004E80.kind = SIO_MSG_8C;
+    gUnknown_03004E80.sender = gSioSt->selfId;
+    gUnknown_03004E80.param = gSioSt->unk_000;
+
+    SioSend(&gUnknown_03004E80, 0x16);
+
+    return;
+}
 
 //! FE8U = 0x0804619C
 void sub_08040AE0(struct SioBatProc * proc)
