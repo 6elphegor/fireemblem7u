@@ -194,7 +194,11 @@ struct Unit {
 };
 
 extern struct Unit *gUnitLut[0x100];
+extern struct Unit gUnitArrayBlue[];
+extern struct Unit gUnitArrayRed[];
+extern struct Unit gUnitArrayGreen[];
 extern struct Unit *gActiveUnit;
+extern struct Unit gUnitArrayBlue[];
 
 struct UnitDefinition {
     /* 00 */ u8 pid;

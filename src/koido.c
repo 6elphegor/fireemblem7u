@@ -16,7 +16,6 @@ extern struct ProcCmd CONST_DATA sProcScr_KOIDO[];
 extern struct ProcCmd CONST_DATA sProcScr_KOIDOAMM[];
 
 struct MuProc * StartMu(struct Unit * unit);
-struct MuProc * sub_0806BA88(struct Unit * unit, int jid, int pal); // StartMuExt
 void EndMu(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * script);
 bool MuExistsActive(void);
@@ -53,8 +52,8 @@ struct MuProc * Make6CMOVEUNITForUnitBeingRescued(struct Unit * unit)
         return StartMu(unit);
     else
         return (CA_FEMALE & attributes)
-            ? sub_0806BA88(unit, 0x62, 0xC)
-            : sub_0806BA88(unit, 0x61, 0xC);
+            ? StartMuExt(unit, 0x62, 0xC)
+            : StartMuExt(unit, 0x61, 0xC);
 }
 
 void Loop6C_KOIDO(struct KoidoProc * proc)

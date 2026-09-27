@@ -21,7 +21,7 @@ sub_0808A61C: @ 0x0808A61C
 	ldr r0, [r0]
 	ldrb r0, [r0, #4]
 	bl PrepSetLatestCharId
-	bl sub_08088BE8
+	bl sub_809014C
 _0808A644:
 	ldr r2, _0808A6C8 @ =0x0202BBF8
 	adds r0, r4, #0

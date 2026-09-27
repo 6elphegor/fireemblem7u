@@ -82,7 +82,7 @@ void InitTraps(void);
 void InitChapterMap(int chapterId);
 void InitMapObstacles(void);
 void LoadChapterTraps(void);
-struct Proc * StartMu(struct Unit * unit);
+struct MuProc * StartMu(struct Unit * unit);
 void MU_SetDefaultFacing_Auto(void);
 void ArenaResume(struct Unit * unit);
 void BattleGenerateArena(struct Unit * unit);

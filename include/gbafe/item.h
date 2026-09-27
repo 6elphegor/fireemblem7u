@@ -173,6 +173,7 @@ int GetUnitStaffReachBits(struct Unit * unit);
 int GetConvoyItemCostSum(void);
 int GetUnitItemCostSum(void);
 s32 GetPartyTotalGoldValue(void);
+void SetGold(s32 amount);
 void BreakItemSealForPid(int item, u8 pid);
 bool IsItemUnsealedForUnit(struct Unit * unit, int item);
 int GetItemIndex(int item);

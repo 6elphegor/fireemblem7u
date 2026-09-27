@@ -133,7 +133,7 @@ _08041D1A:
 	adds r0, r4, #0
 	bl PutText
 	ldr r0, _08041ECC @ =0x0203DB68
-	bl sub_080A1F2C
+	bl ReadMultiArenaSaveRankings
 	bl sub_08041880
 	ldr r1, _08041ED0 @ =0x03002870
 	mov ip, r1

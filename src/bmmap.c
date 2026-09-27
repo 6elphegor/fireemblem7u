@@ -19,7 +19,6 @@ extern u8 ** sInitializingMap;
 extern u8 sBmMapMovementPool[MAP_POOL_SIZE];
 extern u8 sBmMapRangePool[MAP_POOL_SIZE];
 
-extern void * gChapterDataAssetTable[];
 extern u16 const gTerrainNameMsgTable[];
 extern s8 const TerrainTable_HealAmount[];
 extern s8 const TerrainTable_HealsStatus[];
@@ -279,7 +278,7 @@ void RefreshTerrainMap(void)
         for (ix = 0; ix < gBmMapSize.x; ++ix)
             gBmMapTerrain[iy][ix] = gTilesetTerrainLookup[gBmMapBaseTiles[iy][ix] >> 2];
 
-    sub_0802BC80();
+    RefreshAllLightRunes();
 }
 
 int GetTrueTerrainAt(int x, int y)

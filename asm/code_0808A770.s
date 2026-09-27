@@ -160,7 +160,7 @@ _0808A88E:
 	bge _0808A88E
 	bl ClearIcons
 	ldrb r0, [r4]
-	bl sub_08088CD4
+	bl sub_8090238
 	ldrh r0, [r5, #0x3e]
 	lsrs r4, r0, #4
 	adds r0, r4, #6

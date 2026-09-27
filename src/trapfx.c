@@ -26,13 +26,6 @@ struct ShowMapChangeProc {
     /* 34 */ int sndx;
 };
 
-struct MapChange {
-    /* 00 */ s8 id;
-    /* 01 */ u8 xOrigin, yOrigin;
-    /* 03 */ u8 xSize, ySize;
-};
-
-const struct MapChange * GetMapChange(int id);
 void StartMapFade(bool locksGame);
 
 extern u8 CONST_DATA Img_GasTrapVertical[];

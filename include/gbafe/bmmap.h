@@ -39,8 +39,6 @@ s8 GetTerrainHealsStatus(int terrain);
 void sub_08019B40(void);                                    // sub_801A278
 
 // defined elsewhere
-void const * GetChapterMapPointer(int chapterId);
 void ApplyEnabledMapChanges(void);
-void sub_0802BC80(void);                                    // RefreshAllLightRunes
 void SetWorkingBmMap(u8 ** map);
 int GetUnitFogViewRange(struct Unit * unit);

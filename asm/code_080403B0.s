@@ -37,7 +37,7 @@ sub_080403B0: @ 0x080403B0
 	mov r8, r0
 	ldr r6, _0804042C @ =0x0203DB68
 	adds r0, r6, #0
-	bl sub_080A1F2C
+	bl ReadMultiArenaSaveRankings
 	adds r0, r4, #0
 	mov r1, sb
 	adds r2, r5, #0
@@ -45,7 +45,7 @@ sub_080403B0: @ 0x080403B0
 	bl sub_08040280
 	str r0, [r7, #0x58]
 	adds r0, r6, #0
-	bl sub_080A1EF0
+	bl WriteMultiArenaSaveRankings
 	ldr r1, [r7, #0x58]
 	movs r0, #1
 	rsbs r0, r0, #0

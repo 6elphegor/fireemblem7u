@@ -3,6 +3,8 @@
 #include "gbafe/bmmap.h"
 #include "gbafe/bmidoten.h"
 #include "gbafe/playerphase.h"
+#include "gbafe/bmpatharrowdisp.h"
+#include "gbafe/prep_sallycursor.h"
 
 void PlayerPhase_Suspend(void)
 {
@@ -211,7 +213,7 @@ void DisplayUnitEffectRange(struct Unit * unit)
 
 void PlayerPhase_InitUnitMovementSelect(void)
 {
-    if (!sub_0806C040())
+    if (!MuExists())
     {
         if (UNIT_FACTION(gActiveUnit) == gPlaySt.faction)
         {
@@ -232,12 +234,12 @@ void PlayerPhase_InitUnitMovementSelect(void)
 
     if ((gActiveUnit->xPos == gBmSt.cursor.x) && (gActiveUnit->yPos == gBmSt.cursor.y))
     {
-        sub_0802FEF4(0);
+        PathArrowDisp_Init(0);
         PlaySoundEffect(0x389);
         return;
     }
 
-    sub_0802FEF4(1);
+    PathArrowDisp_Init(1);
 }
 
 void DisplayActiveUnitEffectRange(ProcPtr proc)
@@ -427,7 +429,7 @@ else_stmt:
     }
 
     if (GetPlayerSelectKind(gActiveUnit) == PLAYER_SELECT_CONTROL)
-        sub_0803030C();
+        DrawUpdatedPathArrow();
 
     PutMapCursor(gBmSt.cursor_sprite.x, gBmSt.cursor_sprite.y, 1);
 }
@@ -682,7 +684,7 @@ int GetPlayerSelectKind(struct Unit * unit)
 
     if (gBmSt.flags & BM_FLAG_4)
     {
-        if (!sub_0803077C(unit->pCharacterData->number))
+        if (!CanCharacterBePrepMoved(unit->pCharacterData->number))
             return PLAYER_SELECT_4;
 
         faction = FACTION_BLUE;

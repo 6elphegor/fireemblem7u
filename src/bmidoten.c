@@ -1,3 +1,8 @@
+// Declared ahead of the headers: agbcc emits the inline functions below in the
+// order they were first declared, and mapwork.h declares GetWorkingMoveCosts.
+void SetWorkingBmMap(unsigned char ** map);
+void MapAddInBoundedRange(short x, short y, short minRange, short maxRange);
+
 #include "gbafe.h"
 #include "gbafe/bmmap.h"
 #include "gbafe/bmidoten.h"

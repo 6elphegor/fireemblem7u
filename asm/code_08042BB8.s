@@ -17,7 +17,7 @@ sub_08042BB8: @ 0x08042BB8
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08042BDC
-	bl sub_080A1AC8
+	bl WriteNewMultiArenaSave
 _08042BDC:
 	ldr r1, _08042C28 @ =0x0203D90C
 	movs r0, #0

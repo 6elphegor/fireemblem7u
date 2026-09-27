@@ -79,7 +79,6 @@ struct MenuProc * StartAdjustedMenu(const struct MenuDef * def, int xSubject, in
 void EndPlayerPhaseSideWindows(void);
 void UnitBeginAction(struct Unit * unit);
 void UnitBeginCantoAction(struct Unit * unit);
-void PidStatsAddActAmt(int pid);
 int GetUnitWeaponUsabilityBits(struct Unit * unit);
 int GetCombinedEnemyWeaponUsabilityBits(void);
 void RefreshBMapGraphics(void);
@@ -93,11 +92,7 @@ void MU_SetDefaultFacing_Auto(void);                            // SetAutoMuDefa
 bool MuExistsActive(void);
 void SetAutoMuMoveScript(u8 const * script);
 bool sub_08026064(int x, int y);                               // IsUnitSpriteHoverEnabledAt
-void sub_0802FEF4(int arg);                                     // PathArrowDisp_Init
-void sub_0803030C(void);                                        // DrawUpdatedPathArrow
-bool sub_0803077C(int pid);                                    // CanCharacterBePrepMoved
 void sub_08032770(ProcPtr proc);
-bool sub_0806C040(void);                                       // MuExists
 void sub_08078FC8(void);                                        // TryCallSelectEvents
 s8 sub_08079004(void);                                          // StartAfterUnitMovedEvent
 s8 sub_0807905C(void);                                          // StartDestSelectedEvent

@@ -13,7 +13,7 @@ _080B699C:
 	subs r0, #4
 	cmp r0, sp
 	bge _080B699C
-	bl sub_080A01BC
+	bl PidStatsGetTotalExpGain
 	adds r1, r0, #0
 	ldr r4, _080B6A64 @ =0x000FFFFF
 	cmp r1, r4
@@ -35,7 +35,7 @@ _080B69B2:
 	subs r0, #1
 	bl GetChapterStats
 	adds r5, r0, #0
-	bl sub_080315E8
+	bl IsDifficultMode
 	ldr r6, _080B6A70 @ =0x08C9A200
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
@@ -50,7 +50,7 @@ _080B69B2:
 	adds r0, r0, r1
 	ldrh r0, [r0]
 	str r0, [sp]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
 	ldr r1, [r5]
@@ -63,7 +63,7 @@ _080B69B2:
 	adds r0, r0, r1
 	ldrh r0, [r0]
 	str r0, [sp, #4]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
 	ldr r1, [r5]
@@ -76,7 +76,7 @@ _080B69B2:
 	adds r0, r0, r1
 	ldrh r0, [r0]
 	str r0, [sp, #8]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x17
 	ldr r1, [r5]

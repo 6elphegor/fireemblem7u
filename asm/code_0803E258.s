@@ -26,7 +26,7 @@ sub_0803E258: @ 0x0803E258
 	adds r4, r4, r2
 	ldrb r2, [r4, #0x13]
 	ands r1, r2
-	bl sub_080A1D90
+	bl SwapMultiArenaSaveTeams
 	ldrb r1, [r5, #0x14]
 	ldrb r0, [r4, #0x14]
 	strb r0, [r5, #0x14]
@@ -39,7 +39,7 @@ sub_0803E258: @ 0x0803E258
 	adds r0, r7, #0
 	adds r1, r3, #0
 	adds r2, r5, #0
-	bl sub_080A1E8C
+	bl ReadMultiArenaSaveTeam
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0803E2CC
@@ -72,7 +72,7 @@ _0803E2CE:
 	adds r0, r6, #0
 	adds r1, r3, #0
 	adds r2, r4, #0
-	bl sub_080A1E8C
+	bl ReadMultiArenaSaveTeam
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0803E314
