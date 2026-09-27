@@ -81,6 +81,31 @@ extern struct ProcCmd CONST_DATA ProcScr_PlayerRankUnk_08CEEB84[];
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankFlash[];
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankScreen[];
 extern struct ProcCmd CONST_DATA ProcScr_EndingCgScroll[];
+extern struct ProcCmd CONST_DATA ProcScr_EndingCgScroll2[];
+extern u8 * CONST_DATA gpEndingCgScrollBlendTable;
+
+struct EndingCgScrollEnt {
+    /* 00 */ void const * img[7];
+    /* 1C */ void const * tsa[4];
+};
+
+struct EndingCgScrollProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int yPos;
+    /* 30 */ struct EndingCgScrollEnt const * lut;
+    /* 34 */ u8 imgIdx;
+    /* 35 */ u8 tsaIdx;
+    /* 36 */ u8 bank;
+    /* 38 */ u16 lastY;
+    /* 3C */ int speed;
+};
+
+extern struct EndingCgScrollEnt CONST_DATA gEndingCgScrollLut[];
+extern struct EndingCgScrollEnt CONST_DATA gEndingCgScroll2Lut[];
+extern u16 Pal_EndingCgScroll[];
+
+void EndingCgScroll_InitBlendTable(void);
+void EndingCgScroll_HBlank(void);
 
 void SetFacePosition(int slot, int x, int y);
 void DrawFinImage(void);
@@ -1105,10 +1130,88 @@ void StartEndingCgScroll(ProcPtr parent)
     Proc_StartBlocking(ProcScr_EndingCgScroll, parent);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B9FD8.s");
+void EndingCgScroll_Init(struct EndingCgScrollProc * proc)
+{
+    int i;
+
+    proc->yPos = 0;
+    proc->speed = 0x18;
+    proc->lastY = 0;
+    proc->lut = gEndingCgScrollLut;
+    proc->imgIdx = 0;
+    proc->tsaIdx = 0;
+    proc->bank = 0;
+
+    SetOnHBlankA(NULL);
+    InitBgs(NULL);
+    ResetText();
+
+    SetDispEnable(0, 0, 0, 0, 0);
+    SetBlendNone();
+
+    ApplyPalette(Pal_EndingCgScroll, 10);
+
+    for (i = 0; i < 7; i++)
+    {
+        if (proc->lut->img[i] != NULL)
+            Decompress(proc->lut->img[i], (void *) (VRAM + 0x8000 + proc->bank * 0x3800 + i * 0x800));
+    }
+
+    proc->imgIdx = 8;
+
+    SetBgOffset(3, 0, 0x60);
+    StartBgm(0x2A, 0);
+
+    SetBlendAlpha(0x10, 0);
+    SetBlendTargetA(0, 0, 0, 1, 0);
+    SetBlendTargetB(0, 0, 0, 0, 0);
+
+    gDispIo.blend_ct.target1_enable_bd = 1;
+    gDispIo.blend_ct.target2_enable_bd = 1;
+
+    EndingCgScroll_InitBlendTable();
+    SetOnHBlankA(EndingCgScroll_HBlank);
+}
+
 ASM_FUNC("asm/nonmatching/code_080BA10C.s");
+
 ASM_FUNC("asm/nonmatching/code_080BA25C.s");
-ASM_FUNC("asm/nonmatching/code_080BA30C.s");
-ASM_FUNC("asm/nonmatching/code_080BA350.s");
-ASM_FUNC("asm/nonmatching/code_080BA364.s");
-ASM_FUNC("asm/nonmatching/code_080BA3A0.s");
+
+void EndingCgScroll_End(void)
+{
+    SetOnHBlankA(NULL);
+    SetBlendDarken(0x10);
+    SetBlendTargetA(1, 1, 1, 1, 1);
+}
+
+void StartEndingCgScroll2(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_EndingCgScroll2, parent);
+}
+
+void EndingCgScroll_InitBlendTable(void)
+{
+    int i;
+
+    for (i = 0; i <= 0xA0; i++)
+    {
+        gpEndingCgScrollBlendTable[i] = 0x10;
+
+        if (i < 0x10)
+            gpEndingCgScrollBlendTable[i] = i;
+
+        if (i > 0x90)
+            gpEndingCgScrollBlendTable[i] = 0xA0 - i;
+    }
+}
+
+void EndingCgScroll_HBlank(void)
+{
+    u16 vcount = REG_VCOUNT + 1;
+
+    if (vcount > 0xA0)
+        vcount = 0;
+
+    REG_BLDALPHA = gpEndingCgScrollBlendTable[vcount];
+}
+

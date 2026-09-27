@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080BA10C
-sub_080BA10C: @ 0x080BA10C
+	thumb_func_start EndingCgScroll_Loop
+EndingCgScroll_Loop: @ 0x080BA10C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8

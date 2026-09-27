@@ -1268,9 +1268,9 @@ void sub_80BAAB8(/* TODO */);
 // sub_80BAAE0
 // sub_80BAC14
 // sub_80BAD64
-// sub_080BA30C
+// EndingCgScroll_End
 // sub_80BAE58
-// sub_080BA364
-// sub_080BA3A0
+// EndingCgScroll_InitBlendTable
+// EndingCgScroll_HBlank
 
 /* titlescreen.h */

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080BA25C
-sub_080BA25C: @ 0x080BA25C
+	thumb_func_start EndingCgScroll2_Init
+EndingCgScroll2_Init: @ 0x080BA25C
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r0, _080BA2FC @ =0x08CEEE68
