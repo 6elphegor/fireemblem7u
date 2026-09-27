@@ -3302,6 +3302,7 @@ gProcScr_BonusClaimHelpBox = 0x08CE4CF8;
 ProcScr_UnitListScreen_Field = 0x08CC3194;
 ProcScr_UnitListScreen_SoloAnim = 0x08CC336C;
 gUnknown_08A17B30 = 0x08CC342C;
+gUnknown_08A17B36 = 0x08CC3432;
 gUnknown_03001864 = 0x03001450;
 Pal_MenuScrollBar = 0x08405734;
 Img_MenuScrollBar = 0x08405690;

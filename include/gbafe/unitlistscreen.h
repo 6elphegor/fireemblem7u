@@ -132,6 +132,7 @@ extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_Field[];
 extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_PrepMenu[];
 extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_SoloAnim[];
 extern u8 CONST_DATA gUnknown_08A17B30[];
+extern u8 CONST_DATA gUnknown_08A17B36[];
 
 extern struct ProcCmd ProcScr_bmview[];
 extern u8 const Img_08A1CD68[];
