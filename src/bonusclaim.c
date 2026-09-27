@@ -3,7 +3,15 @@
 extern u16 const * const SpriteArray_08CE45A8[];
 extern u16 const * const SpriteArray_08CE45B4[];
 
+extern struct ProcCmd CONST_DATA ProcScr_08CE578C[];
+
 u32 GetGold(void);
+
+void AddGold(s32 amount);
+int GetConvoyItemCount(void);
+int AddItemToConvoy(int item);
+void StartBonusClaimHelpBox(int x, int y, int msg, ProcPtr parent);
+void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
 
 void PutChapterBannerSprites(void)
 {
@@ -235,16 +243,357 @@ void sub_080ACF08(void)
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
-ASM_FUNC("asm/nonmatching/code_080ACF5C.s");
-ASM_FUNC("asm/nonmatching/code_080AD1AC.s");
-ASM_FUNC("asm/nonmatching/code_080AD414.s");
-ASM_FUNC("asm/nonmatching/code_080AD484.s");
+void sub_080ACF5C(struct BonusClaimProc * proc)
+{
+    int i;
+
+    InitBgs(NULL);
+
+    ApplyPalettes(Pal_SaveMenuBackground, 0xC, 3);
+    Decompress(Img_MuralBackground, (void *) 0x06008000);
+    TmApplyTsa(gBg3Tm, Tsa_SaveMenuBackground, 0xC000);
+    EnableBgSync(BG3_SYNC_BIT);
+
+    UnpackUiWindowFrameGraphics();
+    ResetText();
+    InitIcons();
+    ApplyIconPalettes(4);
+    ApplySystemObjectsGraphics();
+
+    sub_080ACAF8();
+    sub_080ACF08();
+
+    SetWinEnable(0, 1, 0);
+    SetWin1Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 0, 1, 1);
+    SetWin1Box(0, 56, 240, 136);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 0;
+    gDispIo.bg3_ct.priority = 3;
+
+    InitBonusClaimData();
+
+    for (i = 0; i <= 5 && i < *gpBonusClaimItemCount; i++)
+    {
+        struct Text * th = gpBonusClaimText + i * 2;
+        InitText(th, 7);
+        th++;
+        InitText(th, 10);
+        DrawBonusClaimItemText(i);
+    }
+
+    for (i = 0; i < 2; i++)
+        InitText(gpBonusClaimText + 12 + i, 6);
+
+    InitText(gpBonusClaimText + 14, 15);
+
+    StartParallelWorker(PutChapterBannerSprites, proc);
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    SetOnHBlankA(sub_080ACB64);
+
+    proc->menuIndex = 0;
+    proc->unk_2c = 0;
+    proc->unk_2e = 0;
+    proc->submenuIndex = 0;
+    proc->targets = 2;
+
+    proc->unk_34 = NULL;
+
+    SetBgOffset(2, -64, (proc->unk_2c - 56) & 0xff);
+
+    ResetSysHandCursor(proc);
+    DisplaySysHandCursorTextShadow(0x600, 1);
+    {
+        int y = proc->menuIndex * 16;
+        int t = proc->unk_2c - 56;
+        ShowSysHandCursor(64, y - t, 13, 0x800);
+    }
+
+    StartGreenText(proc);
+
+    StartMenuScrollBar(proc);
+    PutMenuScrollBarAt(176, 68);
+    InitMenuScrollBarImg(0x200, 2);
+    UpdateMenuScrollBarConfig(7, proc->unk_2c, *gpBonusClaimItemCount, 5);
+
+    StartUiCursorHand(proc);
+
+    SetupBonusClaimTargets(proc);
+
+    LoadHelpBoxGfx((void *) 0x06013800, 5);
+}
+void sub_080AD1AC(struct BonusClaimProc * proc)
+{
+    u16 tmp;
+    struct BonusClaimEnt * ent;
+
+    int curIdx = proc->menuIndex;
+
+    if (proc->unk_2e == 0)
+    {
+        if (gpKeySt->pressed & A_BUTTON)
+        {
+            int itemIdx = gpBonusClaimItemList[curIdx].unk_00;
+
+            if (((1 << itemIdx) & GetBonusContentClaimFlags()) != 0)
+            {
+                StartBonusClaimHelpBox(-1, -1, 0x763, proc);
+                return;
+            }
+
+            if (proc->targets != 0)
+            {
+                struct BonusClaimEnt * ent2 = gpBonusClaimData;
+                ent2 += itemIdx;
+
+                switch (ent2->kind)
+                {
+                case BONUSKIND_ITEM0:
+                case BONUSKIND_ITEM1:
+                    Proc_Goto(proc, 1);
+                    PlaySoundEffect(0x38A);
+
+                default:
+                    return;
+
+                case BONUSKIND_MONEY:
+                    if (ent2->itemId == 0x97)
+                        AddGold(3000);
+
+                    ent = &gpBonusClaimData[itemIdx];
+
+                    if (ent->itemId == 0x98)
+                        AddGold(5000);
+
+                    SetBonusItemClaimed(proc->menuIndex);
+                    DrawBonusClaimItemText(proc->menuIndex);
+
+                    Proc_Goto(proc, 2);
+
+                    return;
+                }
+            }
+
+            PlaySoundEffect(0x38C);
+
+            return;
+        }
+
+        if (gpKeySt->pressed & B_BUTTON)
+        {
+            Proc_Break(proc);
+            PlaySoundEffect(0x38B);
+            return;
+        }
+
+        if (gpKeySt->repeated & DPAD_UP)
+            curIdx -= 1;
+
+        if (gpKeySt->repeated & DPAD_DOWN)
+            curIdx += 1;
+
+        if (proc->menuIndex != curIdx)
+        {
+            if (curIdx >= 0)
+            {
+                if (curIdx >= *gpBonusClaimItemCount)
+                    return;
+
+                PlaySoundEffect(0x386);
+
+                proc->menuIndex = curIdx;
+
+                if ((proc->menuIndex * 16 - proc->unk_2c == 0) && (proc->menuIndex != 0))
+                {
+                    proc->unk_2e = -1;
+                    DrawBonusClaimItemText(proc->menuIndex - 1);
+                }
+                else if ((proc->menuIndex * 16 - proc->unk_2c == 64) && (proc->menuIndex < *gpBonusClaimItemCount - 1))
+                {
+                    proc->unk_2e = 1;
+                    DrawBonusClaimItemText(proc->menuIndex + 1);
+                }
+                else
+                {
+                    {
+                        int y = proc->menuIndex * 16;
+                        int t = proc->unk_2c - 56;
+                        ShowSysHandCursor(64, y - t, 13, 0x800);
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        if (proc->unk_2e == 0)
+            return;
+    }
+
+    if (proc->unk_2e < 0)
+        proc->unk_2c -= 4;
+
+    if (proc->unk_2e > 0)
+        proc->unk_2c += 4;
+
+    tmp = (proc->unk_2c);
+    tmp &= 0xf;
+
+    if (tmp == 0)
+        proc->unk_2e = 0;
+
+    SetBgOffset(2, -64, (proc->unk_2c - 56) & 0xff);
+
+    UpdateMenuScrollBarConfig(7, proc->unk_2c, *gpBonusClaimItemCount, 5);
+}
+void sub_080AD414(struct BonusClaimProc * proc)
+{
+    int i;
+
+    for (i = 0; i < proc->targets; i++)
+    {
+        struct Unit * unit = gpBonusClaimConfig[i].unit;
+
+        if (gpBonusClaimConfig[i].hasInventorySpace != 0)
+            PutUnitSpriteForClassId(0, 88, 48 + i * 16, 0xc400, unit->pClassData->number);
+        else
+            PutUnitSpriteForClassId(0, 88, 48 + i * 16, 0xf400, unit->pClassData->number);
+    }
+
+    SyncUnitSpriteSheet();
+}
+void sub_080AD484(struct BonusClaimProc * proc)
+{
+    if (proc->unk_34 != NULL)
+    {
+        Proc_End(proc->unk_34);
+        proc->unk_34 = NULL;
+    }
+}
 ASM_FUNC("asm/nonmatching/code_080AD49C.s");
-ASM_FUNC("asm/nonmatching/code_080AD660.s");
-ASM_FUNC("asm/nonmatching/code_080AD6E4.s");
-ASM_FUNC("asm/nonmatching/code_080AD7B4.s");
+bool sub_080AD660(struct BonusClaimProc * proc)
+{
+    int itemId;
+
+    int tmp = proc->submenuIndex;
+    struct BonusClaimConfig * base = gpBonusClaimConfig;
+    struct BonusClaimConfig * unk = base - (-tmp);
+    struct Unit * unit = unk->unit;
+    struct BonusClaimItemEnt * itemEnt = gpBonusClaimItemList + proc->menuIndex;
+    int tmp2 = itemEnt->unk_00;
+
+    struct BonusClaimEnt * ent = gpBonusClaimData;
+    ent += tmp2;
+
+    itemId = ent->itemId;
+
+    if (unk->hasInventorySpace == 0)
+        return FALSE;
+
+    SetBonusItemClaimed(proc->menuIndex);
+    DrawBonusClaimItemText(proc->menuIndex);
+
+    if (unit->pCharacterData->number == 0x28)
+        AddItemToConvoy(MakeNewItem(itemId));
+    else
+        UnitAddItem(unit, MakeNewItem(itemId));
+
+    return TRUE;
+}
+
+void sub_080AD6E4(struct BonusClaimProc * proc)
+{
+    int tmp = proc->submenuIndex;
+
+    if (gpKeySt->pressed & A_BUTTON)
+    {
+        if (sub_080AD660(proc))
+        {
+            Proc_Goto(proc, 2);
+            return;
+        }
+
+        StartBonusClaimHelpBox(-1, -1, 0x764, proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & B_BUTTON)
+    {
+        Proc_Break(proc);
+        PlaySoundEffect(0x38B);
+        return;
+    }
+
+    if (gpKeySt->repeated & DPAD_UP)
+        tmp--;
+
+    if (gpKeySt->repeated & DPAD_DOWN)
+        tmp++;
+
+    if (((tmp != proc->submenuIndex) && (-1 < tmp)) && (tmp < proc->targets))
+    {
+        PlaySoundEffect(0x386);
+        proc->submenuIndex = tmp;
+        ShowSysHandCursor(88, proc->submenuIndex * 16 + 48, 8, 0x800);
+    }
+}
+void sub_080AD7B4(struct BonusClaimProc * proc)
+{
+    sub_080AD484(proc);
+
+    SetWinEnable(0, 1, 0);
+
+    TmFill(gBg1Tm, 0);
+    TmFill(gBg0Tm, 0);
+
+    sub_080ACF08();
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    DisableUiCursorHand(0);
+
+    {
+        int y = proc->menuIndex * 16;
+        int t = proc->unk_2c - 56;
+        ShowSysHandCursor(64, y - t, 13, 0x800);
+    }
+}
 ASM_FUNC("asm/nonmatching/code_080AD820.s");
-ASM_FUNC("asm/nonmatching/code_080ADA58.s");
-ASM_FUNC("asm/nonmatching/code_080ADA90.s");
-ASM_FUNC("asm/nonmatching/code_080ADADC.s");
-ASM_FUNC("asm/nonmatching/code_080ADAF8.s");
+void sub_080ADA58(struct BonusClaimProc * proc)
+{
+    proc->timer++;
+
+    if ((proc->timer > 30) && (gpKeySt->pressed & (A_BUTTON | B_BUTTON)))
+    {
+        Proc_Break(proc);
+        return;
+    }
+
+    if (proc->timer > 120)
+        Proc_Break(proc);
+}
+void sub_080ADA90(void)
+{
+    TmFill(gBg0Tm, 0);
+    TmFill(gBg1Tm, 0);
+    sub_080ACF08();
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+    SetWinEnable(0, 1, 0);
+    SetBgOffset(0, 0, 0);
+}
+void BonusClaim_OnEnd(struct BonusClaimProc * proc)
+{
+    EndGreenText();
+    EndAllProcChildren(proc);
+    SetOnHBlankA(NULL);
+}
+void sub_080ADAF8(ProcPtr parent)
+{
+    Proc_StartBlocking(ProcScr_08CE578C, parent);
+}

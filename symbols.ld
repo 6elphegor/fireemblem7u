@@ -2786,3 +2786,4 @@ gpBonusClaimText = 0x08CE5784;
 gpBonusClaimConfig = 0x08CE5788;
 SpriteArray_08CE45A8 = 0x08CE45A8;
 SpriteArray_08CE45B4 = 0x08CE45B4;
+ProcScr_08CE578C = 0x08CE578C;
