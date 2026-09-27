@@ -1,7 +1,7 @@
 #include "gbafe.h"
 
 int CountDigits(int number);
-void sub_08016668(struct Text * text, int item, int nameColor, u16 * mapOut); // DrawItemStatScreenLine
+void DrawItemStatScreenLine(struct Text * text, int item, int nameColor, u16 * mapOut); // DrawItemStatScreenLine
 char * GetItemRangeString(int item); // GetItemDisplayRangeString
 
 void DrawUiGaugeBitmapEdgeColumn(u8 * bitmap, int pixels_per_line, int column)
@@ -513,7 +513,7 @@ void PutStatScreenItemsPage(void)
                 ? TEXT_COLOR_SYSTEM_WHITE
                 : TEXT_COLOR_SYSTEM_GRAY;
 
-        sub_08016668(
+        DrawItemStatScreenLine(
             &gStatScreenSt.text[STATSCREEN_TEXT_ITEM_A + i],
             item, color,
             gUiTmScratchA + TM_OFFSET(1, 1 + i * 2));
