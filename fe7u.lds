@@ -18,13 +18,7 @@ SECTIONS
         build/src/move-data.o(.text);
         build/src/oam.o(.text);
         build/src/soundwrapper.o(.text);
-        build/asm/code_0800427C.o(.text);
-        build/asm/code_08004338.o(.text);
-        build/asm/code_08004364.o(.text);
-        build/asm/code_08004388.o(.text);
-        build/asm/code_080043B4.o(.text);
-        build/asm/code_080043E0.o(.text);
-        build/asm/code_08004408.o(.text);
+        build/src/ramfunc.o(.text);
         build/src/proc.o(.text);
         build/src/icon.o(.text);
         build/asm/code_08004EF8.o(.text);
