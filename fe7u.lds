@@ -1193,14 +1193,7 @@ SECTIONS
         build/src/banim-ekrarena.o(.text);
         build/src/banim-efxmagic.o(.text);
         build/src/banim-efxmagic-phywpn.o(.text);
-        build/asm/code_08056E7C.o(.text);
-        build/asm/code_08056EB4.o(.text);
-        build/asm/code_08056FC4.o(.text);
-        build/asm/code_08057024.o(.text);
-        build/asm/code_080570A0.o(.text);
-        build/asm/code_08057108.o(.text);
-        build/asm/code_0805713C.o(.text);
-        build/asm/code_08057174.o(.text);
+        build/src/banim-efxmagic-refresh.o(.text);
         build/asm/code_08057284.o(.text);
         build/asm/code_080572D4.o(.text);
         build/asm/code_08057394.o(.text);
