@@ -134,46 +134,48 @@ def load(paths):
     return funcs
 
 
-def main():
-    ref = load(sorted(Path(sys.argv[1]).rglob("*.o")))
-    ours_paths = [Path(p) for p in sys.argv[2:]] or sorted(Path("build").rglob("*.o"))
-    ours = load(ours_paths)
-
+def match(ref, ours):
+    """Map our function name -> (ref name, how) for unambiguous matches."""
     by_key_ref, by_key_ours = defaultdict(list), defaultdict(list)
     for f in ref.values():
         by_key_ref[f.key].append(f.name)
     for f in ours.values():
         by_key_ours[f.key].append(f.name)
 
-    match = {}  # our name -> (ref name, how)
+    found = {}  # our name -> (ref name, how)
     for key, names in by_key_ours.items():
         if len(names) == 1 and len(by_key_ref.get(key, ())) == 1:
-            match[names[0]] = (by_key_ref[key][0], "bytes")
+            found[names[0]] = (by_key_ref[key][0], "bytes")
 
     # Propagate through calls: identical call sites in matched pairs.
     changed = True
     while changed:
         changed = False
-        taken = {r for r, _ in match.values()}
-        for our_name, (ref_name, _) in list(match.items()):
+        taken = {r for r, _ in found.values()}
+        for our_name, (ref_name, _) in list(found.items()):
             a, b = ours[our_name], ref[ref_name]
             if a.masked.rstrip(b"\0") != b.masked.rstrip(b"\0"):
                 continue
             for off, callee in a.calls.items():
                 rc = b.calls.get(off)
-                if not rc or rc not in ref or callee in match or rc in taken or callee not in ours:
+                if not rc or rc not in ref or callee in found or rc in taken or callee not in ours:
                     continue
-                match[callee] = (rc, "call")
+                found[callee] = (rc, "call")
                 taken.add(rc)
                 changed = True
 
     # A reference name used for two of our functions is ambiguous: drop both.
     count = defaultdict(int)
-    for r, _ in match.values():
+    for r, _ in found.values():
         count[r] += 1
-    for our_name in sorted(match, key=lambda n: n):
-        r, how = match[our_name]
-        if count[r] == 1 and our_name != r:
+    return {o: m for o, m in found.items() if count[m[0]] == 1}
+
+
+def main():
+    ref = load(sorted(Path(sys.argv[1]).rglob("*.o")))
+    ours = load([Path(p) for p in sys.argv[2:]] or sorted(Path("build").rglob("*.o")))
+    for our_name, (r, how) in sorted(match(ref, ours).items()):
+        if our_name != r:
             print(our_name, r, how)
 
 

@@ -9,7 +9,7 @@ SECTIONS
     {
         build/asm/crt0.o(.text);
         build/asm/code_08000A50.o(.text);
-        build/src/proc.o(.text);
+        build/asm/code_080046A0.o(.text);
         build/asm/code_080046A8.o(.text);
         build/asm/code_08008094.o(.text);
         build/asm/code_0800F9B0.o(.text);

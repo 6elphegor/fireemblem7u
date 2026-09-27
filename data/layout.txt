@@ -1,0 +1,1 @@
+# rom|ram ADDR SIZE OBJECT(SECTION) -- see tools/gen_layout.py
