@@ -982,7 +982,7 @@ void EndingFog_Init(struct EndingTurnRecordProc * proc)
     ApplyPalette(Pal_ChapterIntroFog, 5);
 
     Decompress(Img_ChapterIntroFog, (void *) (VRAM + 0x4000));
-    sub_080AACD8(gBg2Tm, Tsa_QuintessenceFx, 0x5200);
+    PutCompressedTsa(gBg2Tm, Tsa_QuintessenceFx, 0x5200);
 
     EnableBgSync(BG2_SYNC_BIT);
 

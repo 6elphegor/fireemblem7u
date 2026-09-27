@@ -24,7 +24,7 @@ struct EventInfo
 const struct UnitDefinition * sub_08079280(void);  // GetChapterAllyUnitDataPointer
 void TrySwitchViewedUnit(int x, int y);
 void EndPlayerPhaseSideWindows(void);
-void sub_0808FE48(ProcPtr proc);                    // StartPrepScreenMenu
+void StartPrepScreenMenu(ProcPtr proc);                    // StartPrepScreenMenu
 void SetPrepScreenMenuItem(int index, void * func, int color, int msg, int msgHelp);
 void SetPrepScreenMenuOnBPress(void * func);
 void SetPrepScreenMenuOnStartPress(void * func);
@@ -37,7 +37,7 @@ void UnitBeginAction(struct Unit * unit);
 void StartPrepUnitSwap(ProcPtr parent, struct Unit * unit, int x, int y);
 void sub_08018980(void);                            // LoadUnitPrepScreenPositions
 void InitPlayerUnitPositionsForPrepScreen(void);                            // InitPlayerUnitPositionsForPrepScreen
-void sub_080A3284(void);                            // StartMinimapPrepPhase
+void StartMinimapPlayerPhase(void);                            // StartMinimapPrepPhase
 int SearchAvailableEvent(struct EventInfo * info);          // SearchAvailableEvent
 void StartArmoryScreenOrphaned(struct Unit * unit, const u16 * items); // StartArmoryScreen
 void StartVendorScreenOrphaned(struct Unit * unit, const u16 * items); // StartVendorScreen
@@ -247,7 +247,7 @@ void PrepScreenProc_StartMapMenu(struct ProcPrepSallyCursor * proc)
     EndPlayerPhaseSideWindows();
     HideMoveRangeGraphics();
 
-    sub_0808FE48(proc);
+    StartPrepScreenMenu(proc);
 
     SetPrepScreenMenuItem(PREP_MAPMENU_VIEW_MAP, PrepMapMenu_OnViewMap, 0, 0x114F, 0x383);
     SetPrepScreenMenuItem(PREP_MAPMENU_FORMATION, PrepMapMenu_OnFormation, 0, 0x114E, 0x384);
@@ -500,7 +500,7 @@ void PrepScreenProc_MapIdle(struct ProcPrepSallyCursor * proc)
             if (gpKeySt->pressed & START_BUTTON)
             {
                 EndPlayerPhaseSideWindows();
-                sub_080A3284();
+                StartMinimapPlayerPhase();
                 Proc_Goto(proc, PL_SALLYCURSOR_MAP_IDLE);
                 return;
             }

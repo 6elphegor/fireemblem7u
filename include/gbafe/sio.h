@@ -452,11 +452,11 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_08049364
 // sub_08049374
 // MultiBootInit
-// sub_08049424
+// MultiBootMain
 // MultiBootSend
 // MultiBootStartProbe
-// sub_08049880
-// sub_08049944
-// sub_08049954
+// MultiBootStartMaster
+// MultiBootCheckComplete
+// MultiBootHandShake
 // MultiBootWaitCycles
 // MultiBootWaitSendDone

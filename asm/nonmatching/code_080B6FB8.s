@@ -45,7 +45,7 @@ _080B6FDC:
 	bne _080B6FDC
 	adds r0, r7, #0
 	ldr r1, [r4]
-	bl sub_080AAAA8
+	bl AppendChapterNumberString
 	str r0, [r5]
 	adds r0, r7, #0
 	bl GetChapterInfo
@@ -91,7 +91,7 @@ _080B7068: .4byte 0x08CEDDFC
 _080B706C:
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_080AABD0
+	bl CopyTextChar
 	b _080B6FDC
 _080B7076:
 	ldr r1, [r4]
@@ -111,7 +111,7 @@ _080B7076:
 _080B7092:
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_080AABD0
+	bl CopyTextChar
 	b _080B7076
 _080B709C:
 	ldr r0, [r6]

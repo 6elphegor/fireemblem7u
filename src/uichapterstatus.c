@@ -258,7 +258,7 @@ void ChapterStatus_Init(struct ChapterStatusProc * proc)
 
     ApplyPalettes(Pal_ChapterStatusUi, 1, 3);
     Decompress(Img_ChapterStatusUi, (void *) 0x06005800);
-    sub_080AACD8(gBg2Tm, Tsa_ChapterStatusUi, TILEREF(0x2C0, 1));
+    PutCompressedTsa(gBg2Tm, Tsa_ChapterStatusUi, TILEREF(0x2C0, 1));
 
     SetBlendNone();
 

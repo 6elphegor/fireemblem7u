@@ -1436,7 +1436,7 @@ void BmBgfx_Loop(struct ProcBmBgfx * proc)
                     if (proc->size_per_fx == 0x8000)
                         SetBgChrOffset(proc->bg, (proc->vram_base + (proc->flip << 0xf)) & 0xFFFF);
 
-                    sub_080AACD8(
+                    PutCompressedTsa(
                         GetBgTilemap(proc->bg), conf->data,
                         (u16)((proc->pal_bank << 0xc) +
                               (((proc->vram_base_offset + proc->flip * proc->size_per_fx) << 0x11) >> 0x16)));

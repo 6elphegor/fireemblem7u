@@ -134,7 +134,7 @@ void sub_080A4E58(void);
 // ??? sub_080A50CC
 // ??? sub_80A5DF0
 // ??? sub_080A511C
-// ??? sub_080A5130
+// ??? SaveMenuCopyPalette
 // ??? sub_080A5148
 // ??? sub_080A5214
 // ??? SaveDraw_Init
@@ -174,16 +174,16 @@ ProcPtr StartSpinRotation(ProcPtr parent);
 // ??? sub_080A5E8C
 // ??? sub_080A5EAC
 // ??? StartSaveDrawCursor
-// ??? sub_080A5EF0
+// ??? SaveMenuInitSubBoxText
 // ??? SaveMenuDrawSubSelBoxExt
 // ??? SaveMenuDrawSubSelBox
 // ??? sub_080A5FD0
-// ??? sub_080A6004
-// ??? sub_080A6018
-// ??? sub_080A602C
+// ??? AddMainMenuOption
+// ??? AddExtraMenuOption
+// ??? InitSaveMenuChoice
 // ??? SaveMenuModifySaveSlot
 // ??? SaveMenuTryMoveSaveSlotCursor
-// ??? sub_080A6220
+// ??? SaveMenuHasOptions
 // ??? sub_080A6238
 // ??? StartSqMask
 // ??? SaveBgUp_Loop
@@ -191,7 +191,7 @@ ProcPtr StartSpinRotation(ProcPtr parent);
 
 /* savemenu_difficulty */
 // ??? sub_080A6398
-// ??? sub_080A649C
+// ??? SaveMenuInitSlotPalette
 // ??? sub_080A652C
 // ??? SaveMenuGetValidMenuAmt
 // ??? nullsub_84

@@ -23,7 +23,7 @@ void PutDragonGateFlame(int ix, int iy)
 
     ApplyPalette(Pal_DragonGateFlame, BGPAL_BM_0);
     Decompress(Img_DragonGateFlame, (void *)BG_VRAM + 0x800);
-    sub_080AACD8(gBg0Tm, Tsa_DragonGateFlame, 0x0040);
+    PutCompressedTsa(gBg0Tm, Tsa_DragonGateFlame, 0x0040);
 
     EnableBgSync(BG0_SYNC_BIT);
     SetBgOffset(BG_0, ix, iy);

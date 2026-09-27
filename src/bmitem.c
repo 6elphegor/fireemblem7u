@@ -1,6 +1,6 @@
 #include "gbafe.h"
 
-char * sub_08012F14(int a, int b, s8 c);
+char * MsgExpandWithArticle(int a, int b, s8 c);
 bool IsUnitMagicSealed(struct Unit * unit);
 bool CanUnitUseItem(struct Unit * unit, int item);
 u16 * GetConvoyItemArray(void);
@@ -26,7 +26,7 @@ inline char * GetItemName(int item)
     char * result;
 
     DecodeMsg(GetItemData(ITEM_INDEX(item))->nameTextId);
-    result = sub_08012F14(0, 0, 0);
+    result = MsgExpandWithArticle(0, 0, 0);
 
     return result;
 }
@@ -48,7 +48,7 @@ inline char * GetItemNameWithArticle(int item, u8 capitalize)
         no_article = TRUE;
     }
 
-    return sub_08012F14(1, no_article, capitalize);
+    return MsgExpandWithArticle(1, no_article, capitalize);
 }
 
 inline int GetItemDescMsg(int item)

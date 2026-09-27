@@ -283,7 +283,7 @@ void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc)
     sub_08091944(0x5000, 5);
     sub_08091994(0x3000, 10);
 
-    sub_080AACD8(gBg1Tm, Tsa_0840E5D4, 0x5280);
+    PutCompressedTsa(gBg1Tm, Tsa_0840E5D4, 0x5280);
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
 

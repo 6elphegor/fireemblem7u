@@ -67,7 +67,7 @@ void StartSwingSwordfx(ProcPtr proc)
 {
     Decompress(Img_SwingSword, (void *)BG_VRAM + 0x5000);
     ApplyPalette(Pal_SwingSword, 2);
-    sub_080AACD8(gBg0Tm + 2, Tsa_SwingSword, 0x2280);
+    PutCompressedTsa(gBg0Tm + 2, Tsa_SwingSword, 0x2280);
     EnableBgSync(BG0_SYNC_BIT);
 
     SetDispEnable(1, 0, 0, 0, 0);

@@ -11,6 +11,7 @@ struct BonusClaimEnt {
 
 extern struct BonusClaimEnt gBonusClaimData[];
 extern CONST_DATA struct BonusClaimEnt * gpBonusClaimData;
+extern CONST_DATA struct BonusClaimEnt * gpSaveDrawBonusClaimData; // second ROM copy of the same pointer (savedraw)
 
 enum {
     BONUSKIND_ITEM0 = 0,

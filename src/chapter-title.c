@@ -257,3 +257,16 @@ int GetChapterTitle(struct PlaySt * playst)
     return playst->chapterIndex;
 }
 
+
+void CopyChrPixel(u8 * src, u8 * dst, int srcX, int srcY, int dstX, int dstY)
+{
+    u32 * srcLine = (u32 *) (src + (srcX >> 3) * 0x20 + (srcY >> 3) * 0x400 + (srcY & 7) * 4);
+    int shift = (srcX & 7) * 4;
+    u32 pixel = *srcLine & (0xF << shift);
+
+    if (pixel != 0)
+    {
+        u32 * dstLine = (u32 *) (dst + (dstX >> 3) * 0x20 + (dstY >> 3) * 0x400 + (dstY & 7) * 4);
+        *dstLine |= (pixel >> shift) << ((dstX & 7) * 4);
+    }
+}

@@ -493,7 +493,7 @@ void sub_080B7C5C(struct EpilogueProc * proc)
     SetBlendConfig(0, 0x10, 0, 0);
     Decompress(Img_OneYearLater, (void *) (VRAM + 0x800));
     ApplyPaletteExt(Pal_OneYearLater, 0xA0, 0x20);
-    sub_080AACD8(gBg0Tm, Tsa_OneYearLater, 0x5040);
+    PutCompressedTsa(gBg0Tm, Tsa_OneYearLater, 0x5040);
     EnableBgSync(BG0_SYNC_BIT);
     proc->timer = 0;
 }

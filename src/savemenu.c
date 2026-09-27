@@ -9,20 +9,20 @@ extern u16 const gUnk_08413A10[];
 extern u8 const gUnk_084130A4[];
 extern u8 const gGfx_SupportMenu[];
 
-void sub_080A5130(u16 const * src, u16 * dst, int count);
+void SaveMenuCopyPalette(u16 const * src, u16 * dst, int count);
 void sub_080A5FD0(void);
 void sub_080A6398(u8 slot, struct SaveMenuProc * proc);
-void sub_080A649C(u8 slot);
-void sub_080A5EF0(void);
+void SaveMenuInitSlotPalette(u8 slot);
+void SaveMenuInitSubBoxText(void);
 struct SaveMenuUnkProc2 * StartSaveDraw(ProcPtr parent);
-void sub_080A602C(struct SaveMenuProc * proc);
+void InitSaveMenuChoice(struct SaveMenuProc * proc);
 u8 SaveMenuGetValidMenuAmt(int flag, struct SaveMenuProc * proc);
 u8 SaveMenuModifySaveSlot(u8 slot, int a, int b);
 s8 SaveMenuTryMoveSaveSlotCursor(struct SaveMenuProc * proc, int dir);
 void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, int flag);
 void SaveMenuWriteNewGame(struct SaveMenuProc * proc);
 void ExecSaveMenuMiscOption(struct SaveMenuProc * proc);
-s8 sub_080A6220(struct SaveMenuProc * proc);
+s8 SaveMenuHasOptions(struct SaveMenuProc * proc);
 s8 sub_080A474C(struct SaveMenuProc * proc, int direction);
 void sub_080A4830(int x, int y, int msgId, ProcPtr parent);
 void StartSqMask(ProcPtr parent, int a, int b);
@@ -279,7 +279,7 @@ void ProcSaveMenu_InitScreen(struct SaveMenuProc * proc)
 
     ApplyPalettes(Pal_SaveMenuWindow, 0x11, 8);
     ApplyPalette(gUnk_084139F0, 0x15);
-    sub_080A5130(gUnk_08413A10, gUnk_Savemenu_02000004, 2);
+    SaveMenuCopyPalette(gUnk_08413A10, gUnk_Savemenu_02000004, 2);
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
 
@@ -323,8 +323,8 @@ void ProcSaveMenu_InitScreen(struct SaveMenuProc * proc)
     for (i = 0; i < 4; i++)
         sub_080A6398(i, proc);
 
-    sub_080A649C(proc->copy_from_id);
-    sub_080A5EF0();
+    SaveMenuInitSlotPalette(proc->copy_from_id);
+    SaveMenuInitSubBoxText();
 
     EnableBgSync(BG1_SYNC_BIT);
 
@@ -341,7 +341,7 @@ void ProcSaveMenu_InitScreen(struct SaveMenuProc * proc)
 void SaveMenu_LoadExtraMenuGraphics(struct SaveMenuProc * proc)
 {
     Decompress(gUnk_084130A4, (void *) 0x06013800);
-    sub_080A602C(proc);
+    InitSaveMenuChoice(proc);
 
     if (proc->action_flag == 0x20)
     {
@@ -757,11 +757,11 @@ void SaveMenuWaitSlotBoxScrolling(struct SaveMenuProc * proc)
         else
             PutChapterTitleGfx(((u32) (proc->copy_from_id * 0x800 + 0xB40 * 0x20) & 0x0001FFFF) >> 5, -1);
 
-        sub_080A649C(proc->copy_from_id);
+        SaveMenuInitSlotPalette(proc->copy_from_id);
     }
     else if (proc->anim_clock == 0x20)
     {
-        sub_080A602C(proc);
+        InitSaveMenuChoice(proc);
 
         if (proc->action_flag == 0x10)
         {
@@ -772,7 +772,7 @@ void SaveMenuWaitSlotBoxScrolling(struct SaveMenuProc * proc)
         {
             Proc_Goto(proc, 0x11);
         }
-        else if (sub_080A6220(proc))
+        else if (SaveMenuHasOptions(proc))
         {
             if (proc->unk_2D != (u8) -1)
             {
@@ -1289,9 +1289,9 @@ void SaveMenu_ReloadScreenFormDifficulty(struct SaveMenuProc * proc)
     gUnk_Savemenu_02000000 = 100;
     gUnk_Savemenu_02000001 = 10;
 
-    sub_080A5EF0();
+    SaveMenuInitSubBoxText();
     SaveMenuPutChapterTitle(proc);
-    sub_080A649C(proc->copy_from_id);
+    SaveMenuInitSlotPalette(proc->copy_from_id);
 
     Proc_UnblockEachMarked(0xC);
     Proc_UnblockEachMarked(0xD);

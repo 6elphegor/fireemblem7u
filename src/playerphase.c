@@ -147,7 +147,7 @@ else_stmt:
                 }
 
                 EndPlayerPhaseSideWindows();
-                sub_080A3284();
+                StartMinimapPlayerPhase();
 
                 Proc_Goto(proc, 9);
 

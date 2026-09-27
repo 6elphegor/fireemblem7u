@@ -201,7 +201,7 @@ void sub_08099728(struct PrepRankProc * proc)
     sub_08099358(proc);
 
     sub_08091944(0x5000, 5);
-    sub_080AACD8(gBg1Tm, Tsa_0840EA38, 0x5280);
+    PutCompressedTsa(gBg1Tm, Tsa_0840EA38, 0x5280);
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
 
@@ -529,7 +529,7 @@ void sub_0809A024(struct PrepRankProc * proc)
             proc->ranks[i] |= 0xFF;
     }
 
-    sub_080AACD8(gBg1Tm, Tsa_0840EAF0, 0x5280);
+    PutCompressedTsa(gBg1Tm, Tsa_0840EAF0, 0x5280);
 
     sub_08099BA4(proc);
     sub_08099A48(proc);

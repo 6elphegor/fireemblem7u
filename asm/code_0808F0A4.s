@@ -206,7 +206,7 @@ _0808F1A0:
 	ldr r0, _0808F31C @ =0x02023578
 	ldr r1, _0808F320 @ =0x084050D8
 	ldr r2, _0808F324 @ =0x0000F2C0
-	bl sub_080AACD8
+	bl PutCompressedTsa
 	adds r7, r6, #0
 	adds r7, #0x4c
 	movs r0, #0x64

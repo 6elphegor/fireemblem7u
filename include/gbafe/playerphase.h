@@ -97,6 +97,6 @@ void sub_08078FC8(void);                                        // TryCallSelect
 s8 sub_08079004(void);                                          // StartAfterUnitMovedEvent
 s8 sub_0807905C(void);                                          // StartDestSelectedEvent
 void sub_080790C0(void);                                        // sub_80832CC
-void sub_080A3284(void);                                        // StartMinimapPlayerPhase
+void StartMinimapPlayerPhase(void);                                        // StartMinimapPlayerPhase
 bool IsMapFadeActive(void);                                     // DoesBMXFADEExist
 void StartMapFade(bool locksGame);                              // NewBMXFADE

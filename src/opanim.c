@@ -300,7 +300,7 @@ void sub_080BB98C(struct OpAnimProc * proc)
 
     ApplyPaletteExt(gUnk_085ECDF4, 0x140, 0x20);
     Decompress(gUnk_085ECE14, (void *) 0x0600C000);
-    sub_080AACD8(gBg3Tm, gUnk_085ED0DC, 0xA200);
+    PutCompressedTsa(gBg3Tm, gUnk_085ED0DC, 0xA200);
     EnableBgSync(BG3_SYNC_BIT);
 
     proc->unk_2C = 0;
@@ -333,7 +333,7 @@ void OpAnim_DrawWater(struct OpAnimProc * proc)
 {
     ApplyPaletteExt(gUnk_08600544, 0x1C0, 0x20);
     Decompress(gUnk_085FF1D4, (void *) 0x06008000);
-    sub_080AACD8(gBg0Tm, gUnk_0860029C, 0xE000);
+    PutCompressedTsa(gBg0Tm, gUnk_0860029C, 0xE000);
 
     gDispIo.bg0_ct.size = 0;
     gDispIo.bg0_ct.wrap = 1;
@@ -405,7 +405,7 @@ void sub_080BBC80(void)
     TmFill(gBg0Tm, 0);
     ApplyPaletteExt(gUnk_0867451C, 0x1A0, 0x20);
     CpuFastCopy(gUnk_08CEF080, (void *) 0x06008000, 0x2000);
-    sub_080AACD8(gBg0Tm, gUnk_086756A0, 0xD000);
+    PutCompressedTsa(gBg0Tm, gUnk_086756A0, 0xD000);
     EnableBgSync(BG0_SYNC_BIT);
 
     SetBlendAlpha(0, 0x10);
@@ -418,7 +418,7 @@ void sub_080BBD28(void)
     TmFill(gBg0Tm, 0);
     ApplyPaletteExt(gUnk_086758C0, 0x1A0, 0x20);
     CpuFastCopy(gUnk_08CEF07C, (void *) 0x06008000, 0x2000);
-    sub_080AACD8(gBg0Tm, gUnk_08676BB8, 0xD000);
+    PutCompressedTsa(gBg0Tm, gUnk_08676BB8, 0xD000);
     EnableBgSync(BG0_SYNC_BIT);
 
     SetBlendAlpha(0, 0x10);
@@ -432,7 +432,7 @@ void sub_080BBDD0(void)
     TmFill(gBg0Tm, 0);
     ApplyPaletteExt(gUnk_08616D74, 0x1A0, 0x20);
     CpuFastCopy(gUnk_08CEF078, (void *) 0x06008000, 0x1000);
-    sub_080AACD8(gBg0Tm + 0x40, gUnk_08616D94, 0xD000);
+    PutCompressedTsa(gBg0Tm + 0x40, gUnk_08616D94, 0xD000);
 
     gUnkOpAnim_03001620 |= 0x20;
 
@@ -670,7 +670,7 @@ void OpAnim_DrawCloud(struct OpAnimProc * proc)
 
     ApplyPaletteExt(gUnk_086727E0, 0x1C0, 0x20);
     Decompress(gUnk_08672800, (void *) 0x06000000);
-    sub_080AACD8(gBg1Tm, gUnk_08673AD8, 0xE000);
+    PutCompressedTsa(gBg1Tm, gUnk_08673AD8, 0xE000);
 
     ApplyPaletteExt(gUnk_085ED1C4, 0x300, 0x20);
     Decompress(gUnk_085ED1E4, (void *) 0x06010000);
@@ -787,7 +787,7 @@ bool sub_080BC6A8(struct OpAnimSubProc * proc)
         break;
 
     case 2:
-        sub_080AACD8(gBg3Tm, proc->unk_3C->tsa, 0xF200 + (proc->unk_30 << 8));
+        PutCompressedTsa(gBg3Tm, proc->unk_3C->tsa, 0xF200 + (proc->unk_30 << 8));
         proc->unk_30 = 1 - proc->unk_30;
         EnableBgSync(BG3_SYNC_BIT);
         break;

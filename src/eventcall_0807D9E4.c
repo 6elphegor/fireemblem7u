@@ -37,7 +37,7 @@ extern struct UnitDefinition CONST_DATA gUnk_08CE09B8[];
 extern struct UnitDefinition CONST_DATA gUnk_08CE0B18[];
 extern struct UnitDefinition CONST_DATA gUnk_08CE0B38[];
 
-void sub_08011DAC(struct UnitDefinition const * def, int arg);
+void EventLoadUnitFromDef(struct UnitDefinition const * def, int arg);
 
 struct Event_0807DC14Sub
 {
@@ -706,7 +706,7 @@ void sub_0807E3B0(struct UnitDefinition const * def, int pid)
     struct Unit * unit = GetUnitFromCharId(pid);
 
     if (!(unit->state & (US_DEAD | US_NOT_DEPLOYED)))
-        sub_08011DAC(def, 0);
+        EventLoadUnitFromDef(def, 0);
     else
         unit->state |= US_HIDDEN | US_NOT_DEPLOYED;
 }

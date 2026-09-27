@@ -39,7 +39,7 @@ void sub_0807C41C(struct ProcFlameBreathfx * proc)
 
     Decompress(Img_FlameBreathfx, (void *)BG_VRAM + 0x800);
     ApplyPalette(Pal_FlameBreathfx, 5);
-    sub_080AACD8(gBg0Tm, tsalut[proc->type], 0x5040);
+    PutCompressedTsa(gBg0Tm, tsalut[proc->type], 0x5040);
 
     SetBgOffset(BG_0, (-proc->x) & 0xFF, (-proc->y) & 0xFF);
     EnableBgSync(BG0_SYNC_BIT);

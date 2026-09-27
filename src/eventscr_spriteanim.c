@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/bmmap.h"
 
 void EventSpriteAnim_Init(struct ProcEventSpriteAnim * proc)
 {
@@ -136,3 +137,168 @@ PROC_LABEL(0),
 u16 CONST_DATA gUnk_08B9246C[] = {
     0x403, 0x402, 0x400, 0x401
 };
+
+struct ProcEventWarpLoad
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int x;
+    /* 30 */ int y;
+
+    STRUCT_PAD(0x34, 0x54);
+
+    /* 54 */ struct UnitDefinition const * def;
+
+    STRUCT_PAD(0x58, 0x64);
+
+    /* 64 */ s16 skip;
+};
+
+extern s8 CONST_DATA gUnk_08BE3888[];
+extern struct UnitDefinition sEventLoadUnitBuf;
+
+void StartEventWarpAnim(ProcPtr parent, int x, int y, s8 kind, s8 flag);
+
+int EventEA_StartMixPalette(struct EventProc * proc)
+{
+    u16 * palA = (u16 *) proc->script[1];
+    u16 * palB = (u16 *) proc->script[2];
+    int conf = proc->script[3];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+        return EVENT_CMDRET_CONTINUE;
+
+    StartMixPalette(palA, palB, conf & 0xFF, (conf >> 0x10) & 0xFF, (conf >> 0x18) & 0xFF, proc);
+}
+
+int EventEB_EndMixPalette(struct EventProc * proc)
+{
+    EndMixPalette();
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int sub_08011D30(struct EventProc * proc)
+{
+    return EVENT_CMDRET_CONTINUE;
+}
+
+void EventLoadUnit(int pid, int jid, int x_load, int y_load, int x_move, int y_move, int faction_id, void * unk)
+{
+    CpuFastFill(0, &sEventLoadUnitBuf, sizeof(sEventLoadUnitBuf));
+
+    sEventLoadUnitBuf.faction_id = faction_id;
+    sEventLoadUnitBuf.level = 1;
+
+    sEventLoadUnitBuf.pid = pid;
+    sEventLoadUnitBuf.jid = jid;
+    sEventLoadUnitBuf.x_load = x_load;
+    sEventLoadUnitBuf.y_load = y_load;
+    sEventLoadUnitBuf.x_move = x_move;
+    sEventLoadUnitBuf.y_move = y_move;
+
+    LoadUnitCore(&sEventLoadUnitBuf, unk);
+}
+
+void EventLoadUnitFromDef(struct UnitDefinition const * def, int flag)
+{
+    CpuFastFill(0, &sEventLoadUnitBuf, sizeof(sEventLoadUnitBuf));
+
+    sEventLoadUnitBuf.faction_id = def->faction_id;
+    sEventLoadUnitBuf.level = def->level;
+
+    sEventLoadUnitBuf.pid = def->pid;
+    sEventLoadUnitBuf.jid = def->jid;
+
+    if (flag)
+    {
+        sEventLoadUnitBuf.x_load = def->x_load;
+        sEventLoadUnitBuf.y_load = def->y_load;
+    }
+    else
+    {
+        sEventLoadUnitBuf.x_load = def->x_move;
+        sEventLoadUnitBuf.y_load = def->y_move;
+    }
+
+    sEventLoadUnitBuf.x_move = def->x_move;
+    sEventLoadUnitBuf.y_move = def->y_move;
+
+    LoadUnitCore(&sEventLoadUnitBuf, (void *) flag);
+}
+
+void sub_08011E28(ProcPtr p)
+{
+    struct ProcEventWarpLoad * proc = p;
+    struct UnitDefinition const * def = proc->def;
+
+    if (def->pid == 0)
+    {
+        Proc_End(proc);
+        return;
+    }
+
+    proc->x = def->x_move;
+    proc->y = def->y_move;
+
+    if (gBmMapUnit[proc->y][proc->x] != 0)
+    {
+        int ix, iy;
+        int best = 0xFF;
+        int bestX = -1;
+        int bestY = -1;
+
+        GenerateExtendedMovementMap(proc->x, proc->y, gUnk_08BE3888);
+
+        for (iy = 0; iy < gBmMapSize.y; iy++)
+        {
+            for (ix = 0; ix < gBmMapSize.x; ix++)
+            {
+                if (best <= gBmMapMovement[iy][ix])
+                    continue;
+
+                if (gBmMapUnit[iy][ix] != 0)
+                    continue;
+
+                best = gBmMapMovement[iy][ix];
+                bestX = ix;
+                bestY = iy;
+            }
+        }
+
+        proc->x = bestX;
+        proc->y = bestY;
+    }
+
+    EnsureCameraOntoPosition(proc, proc->x, proc->y);
+}
+
+void sub_08011F10(ProcPtr p)
+{
+    struct ProcEventWarpLoad * proc = p;
+    struct UnitDefinition const * def = proc->def;
+    struct UnitDefinition buf;
+
+    StartEventWarpAnim(proc, proc->x, proc->y, 1, 1);
+
+    buf = *def;
+
+    buf.x_load = buf.x_move = proc->x;
+    buf.y_load = buf.y_move = proc->y;
+
+    LoadUnit(&buf);
+
+    proc->def = def + 1;
+}
+
+int EvtCmd_WarpLoadUnits(struct EventProc * proc)
+{
+    struct ProcEventWarpLoad * child;
+
+    BmMapFillg(gBmMapOther, 0);
+
+    child = Proc_StartBlocking(ProcScr_Event_08B92414, proc);
+    child->def = (struct UnitDefinition const *) proc->script[1];
+    child->skip = (proc->unk_4D || (proc->flags & EVENT_FLAG_SKIPPED)) ? TRUE : FALSE;
+
+    return EVENT_CMDRET_YIELD;
+}
