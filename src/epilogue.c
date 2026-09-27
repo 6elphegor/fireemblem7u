@@ -43,6 +43,26 @@ extern u16 Pal_EpilogueText[];
 extern void const * const gEpilogueEndScroll[];
 extern int const gEpilogueEndMsgs[];
 
+struct EpilogueUnitInfo {
+    /* 00 */ int pid;
+    /* 04 */ int msgAlive;
+    /* 08 */ int msgDead;
+};
+
+struct EpilogueEnt {
+    /* 00 */ u8 defeatChapter; // 0xFF (-1 as s8) if alive
+    /* 01 */ u8 battles;
+    /* 02 */ u8 wins;
+    /* 03 */ u8 losses;
+    /* 04 */ u8 lines;
+    /* 08 */ struct EpilogueUnitInfo const * info;
+};
+
+extern struct EpilogueUnitInfo const gEpilogueUnitInfo[];
+extern struct EpilogueEnt * const gpEpilogueEnts;
+extern int gEpilogueTotalLines;
+extern int gEpilogueEntCount;
+
 void ClearEpilogueTexts(void);
 void EpilogueText_Center(struct Text * text, char const * str);
 void sub_080B6C14(void);
@@ -94,7 +114,40 @@ void sub_080B6C14(void)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B6C8C.s");
+void sub_080B6C8C(void)
+{
+    struct EpilogueUnitInfo const * info = gEpilogueUnitInfo;
+    struct EpilogueEnt * ent = gpEpilogueEnts;
+
+    CpuFill16(0, ent, 0xB4);
+
+    gEpilogueEntCount = 0;
+
+    for (; info->pid != 0; info++)
+    {
+        struct Unit * unit;
+        struct PidStats * stats;
+
+        if (info->pid == 0xCD)
+        {
+            ent->info = info;
+            ent++;
+            gEpilogueEntCount++;
+        }
+        else if ((unit = GetUnitFromCharId(info->pid)) != NULL)
+        {
+            stats = GetPidStats(info->pid);
+
+            ent->info = info;
+            ent->wins = stats->win_count > 0xFF ? 0xFF : stats->win_count;
+            ent->losses = stats->loss_count;
+            ent->battles = stats->win_count > 0xFF ? 0xFF : stats->battle_count;
+            ent->defeatChapter = (unit->state & US_DEAD) ? stats->defeat_chapter : 0xFF;
+            ent++;
+            gEpilogueEntCount++;
+        }
+    }
+}
 int CountEpilogueLines(char const * str)
 {
     int lines = 0;
@@ -116,6 +169,7 @@ int CountEpilogueLines(char const * str)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B6D64.s");
+
 void sub_080B6DD4(void)
 {
     sub_080B6C8C();
