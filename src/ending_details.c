@@ -89,6 +89,26 @@ struct PlayerRankProc {
 };
 
 void StartPlayerRankFlash(int pal, ProcPtr parent);
+void PlayerRank_PutSprites(struct PlayerRankProc * proc);
+
+int GetGameTacticsRank(void);
+int GetGameSurvivalRank(void);
+int GetGameExpRank(void);
+int GetGameCombatRank(void);
+int GetGameFundsRank(void);
+int GetOverallRank(int tacticsRank, int survivalRank, int fundsRank, int combatRank, int expRank);
+int sub_080B663C(int param_1, int param_2, int param_3);
+int GetChapterTacticsRank(void);
+int GetChapterSurvivalRank(void);
+int GetChapterCombatRank(void);
+
+extern u8 const Tsa_PlayerRankBg[];
+extern u16 const Pal_PlayerRankBg[];
+extern u8 const Img_PlayerRankLetters[];
+extern u16 const Pal_PlayerRankLetters[];
+extern u16 const Pal_PlayerRankUnk_085DFA90[];
+extern u16 Pal_PlayerRankUnk_085DFAB0[];
+extern u16 const Pal_PlayerRankUnk_085DFAF0[];
 
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankUnk_08CEEB84[];
 extern struct ProcCmd CONST_DATA ProcScr_PlayerRankFlash[];
@@ -1094,7 +1114,73 @@ void TurnRecord_Loop_Main(struct EndingTurnRecordProc * proc)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B96FC.s");
-ASM_FUNC("asm/nonmatching/code_080B9B38.s");
+void PlayerRank_Init(struct PlayerRankProc * proc)
+{
+    u16 hours, minutes, seconds;
+    u16 i;
+    u16 * tm;
+
+    proc->timer = 0;
+    proc->idx = 0;
+
+    UnpackUiWindowFrameGraphics();
+
+    TmApplyTsa_thm(gBg1Tm, Tsa_PlayerRankBg, 0x1000);
+    ApplyPaletteExt(Pal_PlayerRankBg, 0x300, 0x40);
+    Decompress(Img_PlayerRankLetters, (void *) 0x06011000);
+
+    for (i = 0; i < 5; i++)
+        ApplyPaletteExt(Pal_PlayerRankLetters, (i + 0x1A) * 0x20, 0x20);
+
+    ApplyPaletteExt(Pal_PlayerRankUnk_085DFAF0, 0x3E0, 0x20);
+    ApplyPaletteExt(Pal_PlayerRankUnk_085DFA90, 0x2C0, 0x20);
+    ApplyPaletteExt(Pal_PlayerRankUnk_085DFAB0, 0x2E0, 0x20);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    if (gPlaySt.chapterStateBits & 0x80)
+    {
+        FormatTime(GetGameTime() - gPlaySt.time_chapter_started, &hours, &minutes, &seconds);
+
+        proc->ranks[0] = GetChapterTacticsRank();
+        proc->ranks[1] = GetChapterSurvivalRank();
+        proc->ranks[2] = GetChapterCombatRank();
+        proc->ranks[3] = sub_080B663C(proc->ranks[0], proc->ranks[1], proc->ranks[2]);
+
+        StartBgm(0x29, NULL);
+    }
+    else
+    {
+        FormatTime(GetGameTotalTime_unused(), &hours, &minutes, &seconds);
+
+        proc->ranks[0] = GetGameTacticsRank();
+        proc->ranks[1] = GetGameSurvivalRank();
+        proc->ranks[2] = GetGameFundsRank();
+        proc->ranks[3] = GetGameExpRank();
+        proc->ranks[4] = GetGameCombatRank();
+        proc->ranks[5] = GetOverallRank(proc->ranks[0], proc->ranks[1], proc->ranks[2], proc->ranks[3], proc->ranks[4]);
+
+        StartBgm(0x29, NULL);
+    }
+
+    tm = gBg0Tm + TM_OFFSET(0, 17);
+
+    PutNumber(tm + 5, 2, hours);
+    PutSpecialChar(tm + 6, 2, 0x20);
+    PutNumber2Digit(tm + 8, 2, minutes);
+    PutSpecialChar(tm + 9, 2, 0x20);
+    PutNumber2Digit(tm + 11, 2, seconds);
+
+    for (i = 0; i < 6; i++)
+    {
+        proc->scales[i] = 0;
+        proc->unk_46[i] = 1;
+        proc->counts[i] = 0;
+    }
+
+    StartParallelWorker(PlayerRank_PutSprites, proc);
+    StartMixPalette(Pal_PlayerRankUnk_085DFAB0, Pal_PlayerRankUnk_085DFAB0 + 0x10, 2, 0x17, 1, proc);
+}
 void PlayerRank_StartScreen(ProcPtr parent)
 {
     SetBlendAlpha(8, 0x10);
