@@ -54,11 +54,11 @@ def partial_source(text, entry):
     def asm_line(addr):
         return f'ASM_FUNC("asm/nonmatching/code_{addr:08X}.s");\n'
 
-    def need(name):
+    def need(name, status="c"):
         if name not in defs:
             raise SystemExit(f"{name}: definition not found in source")
         a, o, b = defs[name]
-        if re.search(r"\binline\b", text[a:o]):
+        if status == "asm" and re.search(r"\binline\b", text[a:o]):
             raise SystemExit(f"{name}: inline function can't be replaced by asm")
         return a, o, b
 
@@ -71,7 +71,7 @@ def partial_source(text, entry):
             else:
                 inserts[anchor] = inserts.get(anchor, "") + "\n" + asm_line(addr)
             continue
-        a, o, b = need(name)
+        a, o, b = need(name, status)
         if status == "asm":
             edits.append((a, b, csrc.prototype(text, a, o) + "\n" + asm_line(addr)))
         anchor = b
