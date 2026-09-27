@@ -2336,6 +2336,7 @@ ProcScr_AtMenu = 0x08CC3BDC;
 ProcScr_SIORESULT_NewHighScore = 0x08B99560;
 Tsa_SioResultRankings = 0x081C87A0;
 gSioPlayerMsgLut = 0x081D53B0;
+gUnknown_081D5394 = 0x081D5394;
 gSioRankMsgLut = 0x081D539C;
 gSioStr_Pts = 0x081D53C8;
 gUnknown_081C7FC4 = 0x081C7FC4;
