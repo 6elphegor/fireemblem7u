@@ -231,12 +231,25 @@ void sub_080A69E0(struct ProcTactInfo *proc)
 	UpdateTactMainHandShadow(proc->cur_index, proc);
 }
 
-void TactInfo_IntroDialogue1(struct ProcTactInfo *proc);
-ASM_FUNC("asm/nonmatching/code_080A6A14.s");
+void TactInfo_IntroDialogue1(struct ProcTactInfo *proc)
+{
+	if (!IsGamePlayedThrough()) {
+		EndSysHandCursor();
+		sub_080A66C4();
+		StartBoxDialogueExt(0x30, 0x5A, 0x791, OBJ_VRAM0 + 0x6000, 0xD, proc);
+		SetDialogueBoxConfig(0x70);
+	}
+}
 
 
-void TactInfo_IntroDialogue2(struct ProcTactInfo *proc);
-ASM_FUNC("asm/nonmatching/code_080A6A54.s");
+void TactInfo_IntroDialogue2(struct ProcTactInfo *proc)
+{
+	EndSysHandCursor();
+	sub_080A66C4();
+	StartBoxDialogueExt(0x70, 0x5A, 0x792, OBJ_VRAM0 + 0x6000, 0xD, proc);
+	SetDialogueBoxConfig(0x70);
+	SetTalkChoiceResult(TALK_RESULT_YES);
+}
 
 
 void TactInfo_HandleIntroDialoguePrompt(struct ProcTactInfo *proc)
@@ -248,8 +261,14 @@ void TactInfo_HandleIntroDialoguePrompt(struct ProcTactInfo *proc)
 		Proc_Goto(proc, PL_TACTINFO_FADE_END);
 }
 
-void sub_080A6AC4(struct ProcTactInfo *proc);
-ASM_FUNC("asm/nonmatching/code_080A6AC4.s");
+void sub_080A6AC4(struct ProcTactInfo *proc)
+{
+	EndSysHandCursor();
+	sub_080A66C4();
+	StartBoxDialogueExt(0x60, 0x5A, 0x793, OBJ_VRAM0 + 0x6000, 0xD, proc);
+	SetDialogueBoxConfig(0xF0);
+	SetTalkChoiceResult(TALK_RESULT_YES);
+}
 
 
 void sub_080A6B00(struct ProcTactInfo *proc)
