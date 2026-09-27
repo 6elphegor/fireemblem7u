@@ -640,3 +640,33 @@ ProcScr_Unk_08CEE0C4 = 0x08CEE0C4;
 ProcScr_OpeningSeqence = 0x08CEF10C;
 BmBgfxConf_DeadDragonFlame = 0x08CF0214;
 BmBgfxConf_DragonFlame = 0x08CF09B8;
+
+/* event engine (0x0800A618-0x0800F9B0) shared */
+gBmMapOther = 0x0202E3F4;
+ProcScr_UnkEvt = 0x08B90D88;
+gEventCmdTable = 0x08B90E48;
+
+/* event-engine.c */
+
+/* end event-engine.c */
+
+
+/* eventscr.c */
+
+/* end eventscr.c */
+
+
+/* eventscr2.c */
+
+/* end eventscr2.c */
+
+
+/* eventscr3.c */
+
+/* end eventscr3.c */
+
+
+/* eventscr4.c */
+
+/* end eventscr4.c */
+
