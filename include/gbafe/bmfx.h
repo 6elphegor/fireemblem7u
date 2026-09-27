@@ -147,7 +147,7 @@ void ChapterIntro_LoopHOpenText(struct ProcChapterIntrofx * proc);
 void ChapterIntro_BeginVOpenText(struct ProcChapterIntrofx * proc);
 void ChapterIntro_LoopVOpenText(struct ProcChapterIntrofx * proc);
 void sub_0801FA30(struct ProcChapterIntrofx * proc);
-void ChapterIntro_Loop_0801E1F8(struct ProcChapterIntrofx * proc);
+void sub_0801FA88(struct ProcChapterIntrofx * proc);
 void ChapterIntro_Begin_0801FF18(struct ProcChapterIntrofx * proc);
 void sub_0801FAD4(struct ProcChapterIntrofx * proc);
 void ChapterIntro_801FFA8(void);

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0801FCDC
-sub_0801FCDC: @ 0x0801FCDC
+	thumb_func_start ChapterIntro_LoopFadeToMap
+ChapterIntro_LoopFadeToMap: @ 0x0801FCDC
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	bl GetGameTime

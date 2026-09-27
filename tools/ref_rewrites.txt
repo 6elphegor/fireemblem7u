@@ -1,5 +1,6 @@
 # reference identifier -> ours, applied when porting (tools/apply_port.py)
 ChapterIntro_Begin_0801FE98 sub_0801FA30
+ChapterIntro_Loop_0801E1F8 sub_0801FA88
 ChapterIntro_Loop_0801FF3C sub_0801FAD4
 Event81_800E4A8 EvtCmd_EndLynCampaign
 Event98_800EA74 EvtCmd_ClearOnSkipFunc

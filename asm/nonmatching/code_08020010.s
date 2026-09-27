@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08020010
-sub_08020010: @ 0x08020010
+	thumb_func_start ChapterIntro_LoopFastFadeToMap
+ChapterIntro_LoopFastFadeToMap: @ 0x08020010
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl ColorFadeTick_thm
