@@ -197,7 +197,7 @@ _08016308:
 	beq _08016320
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08017178
+	bl IsItemUnsealedForUnit
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08016346

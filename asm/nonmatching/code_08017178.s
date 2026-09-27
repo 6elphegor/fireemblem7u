@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08017178
-sub_08017178: @ 0x08017178
+	thumb_func_start IsItemUnsealedForUnit
+IsItemUnsealedForUnit: @ 0x08017178
 	adds r3, r0, #0
 	cmp r1, #0
 	bne _08017182

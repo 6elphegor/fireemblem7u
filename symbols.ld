@@ -617,3 +617,4 @@ sPalFadeSt = 0x0202B5B8;
 sPutStringText = 0x03000430;
 gMPlayTable = 0x0869D668;
 gSongTable = 0x0869D6E0;
+gItemData = 0x08BE222C;

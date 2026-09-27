@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08017340
-sub_08017340: @ 0x08017340
+	thumb_func_start GetItemCost
+GetItemCost: @ 0x08017340
 	adds r3, r0, #0
 	movs r0, #0xff
 	ands r0, r3

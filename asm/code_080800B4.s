@@ -74,7 +74,7 @@ _0808014A:
 	ldr r3, _08080248 @ =0x0200323E
 	adds r3, r6, r3
 	adds r1, r5, #0
-	bl sub_08016668
+	bl DrawItemStatScreenLine
 	movs r0, #2
 	add r8, r0
 	adds r6, #0x80

@@ -11,7 +11,7 @@ sub_080B1D40: @ 0x080B1D40
 	str r1, [r7, #4]
 	ldr r1, [r7, #4]
 	adds r0, r1, #0
-	bl sub_08017340
+	bl GetItemCost
 	str r0, [r7, #8]
 	ldr r0, [r7]
 	movs r1, #0x72

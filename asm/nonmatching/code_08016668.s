@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08016668
-sub_08016668: @ 0x08016668
+	thumb_func_start DrawItemStatScreenLine
+DrawItemStatScreenLine: @ 0x08016668
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
