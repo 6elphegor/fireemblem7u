@@ -447,7 +447,26 @@ void sub_0801B924(void)
     PutBuildInfo(gBg2Tm + 0x20);
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B990.s");
+int sub_0801B990(struct MenuProc * menuProc)
+{
+    struct SaveBlockInfo block;
+
+    menuProc->menuItems[4]->itemNumber = 0;
+
+    EnableBgSync(BG0_SYNC_BIT);
+
+    if ((ReadSaveBlockInfo(&block, 3) != 1) || (((block.checksum32 + (block.checksum32 >> 0x10)) & 0xff)) != 0)
+    {
+        StartFace(0, 0xB7, 32, 80, 0x103);
+        StartFace(1, 0xB6, 208, 80, 0x102);
+        return 0;
+    }
+
+    StartFace(0, 0xB4, 32, 80, 0x103);
+    StartFace(1, 0xB2, 208, 80, 0x102);
+
+    return 0;
+}
 
 int sub_0801BA10(void)
 {
