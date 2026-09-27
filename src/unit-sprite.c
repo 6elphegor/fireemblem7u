@@ -61,6 +61,16 @@ extern struct SMSHandle * gSMSHandleIt;
 struct SMSHandle * AddUnitSprite(int y);
 void PutChapterMarkedTileIconOam(void);
 
+extern u16 const sRescuePalLut[3];
+extern u16 * CONST_DATA sSleepIconSprites[];
+extern u16 * CONST_DATA sBerserkIconSprites[];
+extern u16 * CONST_DATA sSilenceIconSprites[];
+extern u16 * CONST_DATA sPoisonIconSprites[];
+extern u16 CONST_DATA sSprite_StatusUpIcon[];
+
+void * memcpy(void * dst, const void * src, unsigned long n);
+u8 GetUnitSpriteHideFlag(struct Unit * unit);
+
 void IncUnitSpriteSyncFlag(void)
 {
     gSMSSyncFlag++;
@@ -672,4 +682,168 @@ void PutChapterMarkedTileIconOam(void)
         return;
 
     PutOamHiRam(OAM1_X(0x200 + x + 4), OAM0_Y(0x100 + y + 7), Sprite_8x8, 0xC51);
+}
+
+void PutUnitSpriteIconsOam(void)
+{
+    u8 protectCharacterId;
+    int i;
+    int x;
+    int y;
+    s8 displayRescueIcon;
+
+    int poisonIconFrame;
+    int sleepIconFrame;
+    int berserkIconFrame;
+    int silenceIconFrame;
+
+    u16 rescuePalLut[3];
+
+    memcpy(rescuePalLut, sRescuePalLut, sizeof(rescuePalLut));
+
+    // NOTE: chapterdata.h names 0x92 destPosX, but it is the protected character here
+    protectCharacterId = GetChapterInfo(gPlaySt.chapterIndex)->destPosX;
+
+    displayRescueIcon = (GetGameTime() % 32) < 20 ? 1 : 0;
+
+    poisonIconFrame = GetGameTime() / 8 % 12;
+    sleepIconFrame = GetGameTime() / 16 % 7;
+    berserkIconFrame = GetGameTime() / 8 % 9;
+    silenceIconFrame = GetGameTime() / 4 % 18;
+
+    if (CheckFlag(0x91) != 0)
+        return;
+
+    PutChapterMarkedTileIconOam();
+
+    for (i = 1; i < 0xc0; i++)
+    {
+        struct Unit * unit = GetUnit(i);
+
+        if (!UNIT_IS_VALID(unit))
+            continue;
+
+        if (unit->state & US_HIDDEN)
+            continue;
+
+        if (GetUnitSpriteHideFlag(unit) != 0)
+            continue;
+
+        switch (unit->statusIndex)
+        {
+        case UNIT_STATUS_POISON:
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                break;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                break;
+
+            PutOamHiRam(OAM1_X(0x200 + x - 2), OAM0_Y(0x100 + y - 4), sPoisonIconSprites[poisonIconFrame], 0);
+            break;
+
+        case UNIT_STATUS_SILENCED:
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                break;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                break;
+
+            PutOamHiRam(OAM1_X(0x200 + x - 2), OAM0_Y(0x100 + y - 4), sSilenceIconSprites[silenceIconFrame], 0);
+            break;
+
+        case UNIT_STATUS_SLEEP:
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                break;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                break;
+
+            PutOamHiRam(OAM1_X(0x200 + x + 2), OAM0_Y(0x100 + y), sSleepIconSprites[sleepIconFrame], 0);
+            break;
+
+        case UNIT_STATUS_BERSERK:
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                break;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                break;
+
+            PutOamHiRam(OAM1_X(0x200 + x + 1), OAM0_Y(0x100 + y - 5), sBerserkIconSprites[berserkIconFrame], 0);
+            break;
+
+        case UNIT_STATUS_ATTACK:
+        case UNIT_STATUS_DEFENSE:
+        case UNIT_STATUS_CRIT:
+        case UNIT_STATUS_AVOID:
+            if (!displayRescueIcon)
+                continue;
+
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                break;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                break;
+
+            PutOamHiRam(OAM1_X(0x200 + x - 1), OAM0_Y(0x100 + y - 5), sSprite_StatusUpIcon, 0);
+            break;
+        }
+
+        if (!displayRescueIcon)
+            continue;
+
+        if (unit->state & US_RESCUING)
+        {
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                continue;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                continue;
+
+            PutOamHiRam(OAM1_X(0x200 + x + 9), OAM0_Y(0x100 + y + 7), Sprite_8x8, (rescuePalLut[unit->rescue >> 6] & 0xf) * 0x1000 + 0x803);
+        }
+        else if ((UNIT_FACTION(unit) != FACTION_BLUE) && (UNIT_CATTRIBUTES(unit) & CA_BOSS))
+        {
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                continue;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                continue;
+
+            PutOamHiRam(OAM1_X(0x200 + x + 9), OAM0_Y(0x100 + y + 7), Sprite_8x8, 0x810);
+        }
+        else if (protectCharacterId == unit->pCharacterData->number)
+        {
+            x = unit->xPos * 16 - gBmSt.camera.x;
+            y = unit->yPos * 16 - gBmSt.camera.y;
+
+            if (x < -16 || x > DISPLAY_WIDTH)
+                continue;
+
+            if (y < -16 || y > DISPLAY_HEIGHT)
+                continue;
+
+            PutOamHiRam(OAM1_X(0x200 + x + 9), OAM0_Y(0x100 + y + 7), Sprite_8x8, 0x811);
+        }
+    }
 }
