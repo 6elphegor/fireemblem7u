@@ -618,3 +618,4 @@ sPutStringText = 0x03000430;
 gMPlayTable = 0x0869D668;
 gSongTable = 0x0869D6E0;
 gItemData = 0x08BE222C;
+ItemEffectiveness_08C97ED2 = 0x08C97ED2;
