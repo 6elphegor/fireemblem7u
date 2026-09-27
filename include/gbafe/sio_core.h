@@ -746,3 +746,44 @@ void UpdateLinkArenaMenuScrollBar(u8 a, s16 b);
 void ScrollMultiArenaTeamSprites(int amount);
 void * memcpy(void * dst, const void * src, unsigned long n);
 void m4aMPlayFadeOut(struct MusicPlayerInfo * mplayInfo, u16 speed);
+
+#define MULTIARENA_TEAMNAME_SIZE 18
+#define MULTIARENA_MAX_TEAMS 10
+#define MULTIARENA_MAX_RANKINGS 10
+
+struct MultiArenaRankingEnt {
+    /* 00 */ u32 ranking : 2;
+    /*    */ u32 player_count : 2;
+    /*    */ u32 mode : 1;
+    /*    */ u32 points : 27;
+    /* 04 */ char name[12];
+};
+
+extern struct MultiArenaRankingEnt gSioResultRankings[];
+extern const int gLinkArenaStatusMsg[];
+extern char gUnknown_03004E86[];
+extern u8 const gUnknown_080D9E44[];
+extern const u8 gUnknown_085AC604[];
+extern const u8 Img_LinkArenaPlayerBanners[];
+extern struct ProcCmd CONST_DATA ProcScr_SIOCON[];
+extern struct ProcCmd CONST_DATA ProcScr_SIOVSYNC[];
+extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN[];
+extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN2[];
+
+s8 sub_080A1C44(int team, char * dst); // ReadMultiArenaSaveTeamName
+s8 sub_080A1E8C(int team, struct Unit * units_dst, char * name_dst); // ReadMultiArenaSaveTeam
+void sub_080A1EF0(struct MultiArenaRankingEnt const * src); // WriteMultiArenaSaveRankings
+void sub_080A1F2C(struct MultiArenaRankingEnt * dst); // ReadMultiArenaSaveRankings
+int sub_0804528C(void); // FE8U sub_8049A60
+void sub_08048E0C(struct Unit * unit); // FE8U sub_804D40C
+ProcPtr StartTalkExt(int, int, const char *, ProcPtr);
+void SetTalkFlag(int);
+void SetTalkPrintDelay(int a);
+void SetTalkPrintColor(int a);
+void StartLinkArenaButtonSpriteDraw(int x, int y, ProcPtr parent);
+ProcPtr StartLinkArenaVersusSpriteDraw(int x, int y, ProcPtr parent);
+void StartSioErrorScreen(void);
+
+extern const u8 gUnknown_080D9D5E[];
+extern const int gUnknown_081D5254[];
+extern u8 * CONST_DATA gUnknown_08B98CA8[];

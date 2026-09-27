@@ -13,7 +13,6 @@ extern u16 sWriteCursor;
 extern u16 sReadCursor[4];
 extern u16 sRecvCursor[4];
 
-void StartSioErrorScreen(void);
 // TODO: what to do here? This is improvable
 struct SioRegs
 {
