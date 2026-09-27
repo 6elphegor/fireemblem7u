@@ -1223,20 +1223,20 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? StartSpellAnimThorsIre
 // ??? StartSpellAnimNinisGrace
 // ??? StartSpellAnimSetsLitany
-// ??? sub_080623B4
+// ??? efxDancepara_Loop
 // ??? NewEfxDamageMojiEffect
 // ??? efxDamageMojiEffectMain
 // ??? NewEfxDamageMojiEffectOBJ
-// ??? sub_08062550
+// ??? efxDamageMojiEffectOBJMain
 void NewEfxPierceCritical(struct Anim * anim);
-// ??? sub_080625A0
-// ??? sub_080625D0
-// ??? sub_08062620
-// ??? sub_08062648
+// ??? efxCriricalEffectMain
+// ??? NewEfxCriricalEffectBG
+// ??? efxCriricalEffectBGMain
+// ??? NewEfxCriricalEffectBGCOL
 // ??? sub_8062E60
 void NewEfxNormalEffect(struct Anim * anim);
-// ??? sub_080626D4
-// ??? sub_08062714
+// ??? efxNormalEffectMain
+// ??? NewEfxNormalEffectBG
 // ??? sub_8062F88
 void NewEfxYushaSpinShield(struct Anim * anim, int type);
 // ??? sub_8063008
