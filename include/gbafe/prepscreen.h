@@ -264,7 +264,7 @@ struct ProcPrepMuralBackground {
 
 void PrepMuralBackground_Init(struct ProcPrepMuralBackground *proc);
 void PrepMuralBackground_Loop(struct ProcPrepMuralBackground *proc);
-void StartPrepMuralBackground(void *vram, int pal_bank);
+struct ProcPrepMuralBackground * StartPrepMuralBackground(ProcPtr parent, int pal_bank);
 void EndPrepMuralBackground(void);
 // sub_080907D4
 

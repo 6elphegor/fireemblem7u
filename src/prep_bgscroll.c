@@ -47,56 +47,25 @@ struct ProcCmd CONST_DATA ProcScr_PrepMuralBackground[] = {
     PROC_END,
 };
 
-#if 0
-void PrepMuralBackground_Init(struct ProcPrepMuralBackground *proc)
+ASM_FUNC("asm/nonmatching/code_080905D4.s");
+
+ASM_FUNC("asm/nonmatching/code_08090690.s");
+
+struct ProcPrepMuralBackground * StartPrepMuralBackground(ProcPtr parent, int pal_bank)
 {
-	u16 iy;
+    struct ProcPrepMuralBackground *proc;
 
-	TmFill(gBg3Tm, 0);
+    Decompress(Img_PrepMuralBackground, (void *)(BG_VRAM + GetBgChrOffset(3)));
+    ApplyPalette(Pal_PrepMuralBackground, pal_bank);
 
-	(void)GetGameTime();
-	proc->timer = 0;
+    Proc_End(Proc_Find(ProcScr_PrepMuralBackground));
+    proc = Proc_Start(ProcScr_PrepMuralBackground, parent);
+    proc->pal_bank = pal_bank;
 
-	for (iy = 0; iy < 0x20; iy++) {
-		u16 ix;
-
-		for (ix = 0; ix < 0x1E; ix++) {
-			u32 r4 = iy + proc->timer / 8;
-			int r1 = 0x27 - (r4 % 0x28);
-
-			gBg3Tm[(r4 & 0x1F) * 0x20 + ix] = TsaConfig_PrepMuralBackground[r1 * 30 + ix] + proc->pal_bank * 0x1000;
-		}
-	}
-
-	EnableBgSync(BG3_SYNC_BIT);
-	proc->unk_2C = 0;
-	SetBgOffset(BG_3, 0, proc->timer & 0xFF);
-	REG_BG3VOFS = proc->timer & 0xFF;
+    return proc;
 }
 
-void PrepMuralBackground_Loop(struct ProcPrepMuralBackground *proc)
+void EndPrepMuralBackground(void)
 {
-	if (proc->unk_2C == 3) {
-		if (++proc->timer == 0x500)
-			proc->timer = 0;
-
-		SetBgOffset(BG_3, 0, proc->timer & 0xFF);
-		REG_BG3VOFS = proc->timer & 0xFF;
-		proc->unk_2C = 0;
-	}
-
-	proc->unk_2C++;
-
-	if ((proc->timer & 7) == 0) {
-		int r4 = (proc->timer / 8 - 1) & 0x1F;
-		int r0 = (proc->timer / 8 + 0x1F) % 0x28;
-		u16 ix = 0;
-
-		for (; ix < 0x1E; ix++) {
-			gBg3Tm[ix + r4 * 0x20] = TsaConfig_PrepMuralBackground[(0x27 - r0) * 30 + ix] + proc->pal_bank * 0x1000;
-		}
-
-		CpuFastCopy(gBg3Tm + r4 * 0x20, (void *)(VRAM + GetBgTilemapOffset(3)), 0x20);
-	}
+    Proc_End(Proc_Find(ProcScr_PrepMuralBackground));
 }
-#endif
