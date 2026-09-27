@@ -2,15 +2,15 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08020098
-sub_08020098: @ 0x08020098
+	thumb_func_start ChapterIntro_SetTimer
+ChapterIntro_SetTimer: @ 0x08020098
 	adds r1, #0x4c
 	strh r0, [r1]
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080200A0
-sub_080200A0: @ 0x080200A0
+	thumb_func_start ChapterIntro_TickTimer
+ChapterIntro_TickTimer: @ 0x080200A0
 	push {lr}
 	adds r3, r0, #0
 	adds r0, #0x52
@@ -36,15 +36,15 @@ _080200CA:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080200D0
-sub_080200D0: @ 0x080200D0
+	thumb_func_start ChapterIntro_SetFasten
+ChapterIntro_SetFasten: @ 0x080200D0
 	adds r0, #0x52
 	movs r1, #2
 	strh r1, [r0]
 	bx lr
 
-	thumb_func_start sub_080200D8
-sub_080200D8: @ 0x080200D8
+	thumb_func_start ChapterIntro_8021188
+ChapterIntro_8021188: @ 0x080200D8
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetGameTime
@@ -52,7 +52,7 @@ sub_080200D8: @ 0x080200D8
 	ands r1, r0
 	cmp r1, #0
 	bne _0802010C
-	bl sub_080C57C4
+	bl ColorFadeTick_thm
 	ldr r0, _08020114 @ =0x0202BBF8
 	ldrb r0, [r0, #0xe]
 	lsls r0, r0, #0x18
@@ -63,7 +63,7 @@ sub_080200D8: @ 0x080200D8
 	bne _08020102
 	bl ApplyFlamesWeatherGradient
 _08020102:
-	bl sub_0802DE6C
+	bl EnableTilesetPalAnim
 	adds r0, r4, #0
 	bl Proc_Break
 _0802010C:
@@ -73,8 +73,8 @@ _0802010C:
 	.align 2, 0
 _08020114: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08020118
-sub_08020118: @ 0x08020118
+	thumb_func_start GameOverScreen_RandomScroll_Init
+GameOverScreen_RandomScroll_Init: @ 0x08020118
 	adds r2, r0, #0
 	movs r0, #0x2e
 	str r0, [r2, #0x34]
@@ -161,8 +161,8 @@ sub_08020158: @ 0x08020158
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080201C8
-sub_080201C8: @ 0x080201C8
+	thumb_func_start GameOverScreenHBlank
+GameOverScreenHBlank: @ 0x080201C8
 	push {lr}
 	ldr r0, _08020204 @ =0x04000006
 	ldrh r0, [r0]
@@ -231,10 +231,10 @@ sub_0802020C: @ 0x0802020C
 	strb r0, [r4, #0x18]
 	movs r0, #2
 	movs r1, #0
-	bl sub_08001434
+	bl SetBgChrOffset
 	movs r0, #3
 	movs r1, #0
-	bl sub_08001434
+	bl SetBgChrOffset
 	ldr r0, _08020324 @ =0x08402250
 	ldr r1, _08020328 @ =0x06001000
 	bl Decompress
@@ -258,11 +258,11 @@ sub_0802020C: @ 0x0802020C
 	ldr r1, _08020340 @ =0x084025C8
 	movs r2, #0x80
 	bl TmApplyTsa_t
-	bl sub_0801F488
-	bl sub_0801F3B4
+	bl PutScreenFogEffectOverlayed
+	bl PutScreenFogEffect
 	movs r0, #0xc
 	bl EnableBgSync
-	ldr r0, _08020344 @ =sub_080201C8
+	ldr r0, _08020344 @ =GameOverScreenHBlank
 	bl SetOnHBlankA
 	adds r2, r4, #0
 	adds r2, #0x3c
@@ -294,25 +294,25 @@ sub_0802020C: @ 0x0802020C
 	adds r1, r2, #0
 	orrs r0, r1
 	strh r0, [r4, #0x3c]
-	bl sub_080020BC
+	bl ColorFadeInit
 	ldr r4, _08020350 @ =0x02022860
 	adds r0, r4, #0
 	movs r1, #0
 	movs r2, #1
 	movs r3, #1
-	bl sub_080020F4
+	bl MaybeSmoothChangeSomePal
 	adds r4, #0x80
 	adds r0, r4, #0
 	movs r1, #4
 	movs r2, #1
 	movs r3, #1
-	bl sub_080020F4
+	bl MaybeSmoothChangeSomePal
 	adds r5, #0x4c
 	movs r0, #0x15
 	strh r0, [r5]
 	movs r4, #9
 _0802030C:
-	bl sub_080C57C4
+	bl ColorFadeTick_thm
 	subs r4, #1
 	cmp r4, #0
 	bge _0802030C
@@ -330,13 +330,13 @@ _08020334: .4byte 0x06002000
 _08020338: .4byte 0x08402588
 _0802033C: .4byte 0x02022EAE
 _08020340: .4byte 0x084025C8
-_08020344: .4byte sub_080201C8
+_08020344: .4byte GameOverScreenHBlank
 _08020348: .4byte 0x0000FFE0
 _0802034C: .4byte 0x0000E0FF
 _08020350: .4byte 0x02022860
 
-	thumb_func_start sub_08020354
-sub_08020354: @ 0x08020354
+	thumb_func_start GameOverScreen_LoopFadeIn
+GameOverScreen_LoopFadeIn: @ 0x08020354
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetGameTime
@@ -344,7 +344,7 @@ sub_08020354: @ 0x08020354
 	ands r1, r0
 	cmp r1, #0
 	bne _08020382
-	bl sub_080C57C4
+	bl ColorFadeTick_thm
 	bl EnablePalSync
 	adds r1, r4, #0
 	adds r1, #0x4c
@@ -361,8 +361,8 @@ _08020382:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08020388
-sub_08020388: @ 0x08020388
+	thumb_func_start GameOverScreen_BeginIdle
+GameOverScreen_BeginIdle: @ 0x08020388
 	adds r0, #0x4e
 	ldr r1, _08020390 @ =0x000005DC
 	strh r1, [r0]
@@ -403,10 +403,10 @@ _080203C6:
 	.align 2, 0
 _080203CC: .4byte 0x08B857F8
 
-	thumb_func_start sub_080203D0
-sub_080203D0: @ 0x080203D0
+	thumb_func_start GameOverScreen_BeginFadeOut
+GameOverScreen_BeginFadeOut: @ 0x080203D0
 	push {r4, r5, lr}
-	bl sub_080020BC
+	bl ColorFadeInit
 	ldr r4, _08020404 @ =0x02022860
 	movs r5, #1
 	rsbs r5, r5, #0
@@ -414,13 +414,13 @@ sub_080203D0: @ 0x080203D0
 	movs r1, #0
 	movs r2, #1
 	adds r3, r5, #0
-	bl sub_080020F4
+	bl MaybeSmoothChangeSomePal
 	adds r4, #0x80
 	adds r0, r4, #0
 	movs r1, #4
 	movs r2, #1
 	adds r3, r5, #0
-	bl sub_080020F4
+	bl MaybeSmoothChangeSomePal
 	movs r0, #4
 	bl FadeBgmOut
 	pop {r4, r5}
@@ -429,11 +429,11 @@ sub_080203D0: @ 0x080203D0
 	.align 2, 0
 _08020404: .4byte 0x02022860
 
-	thumb_func_start sub_08020408
-sub_08020408: @ 0x08020408
+	thumb_func_start GameOverScreen_LoopFadeOut
+GameOverScreen_LoopFadeOut: @ 0x08020408
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080C57C4
+	bl ColorFadeTick_thm
 	bl EnablePalSync
 	adds r1, r4, #0
 	adds r1, #0x4c
@@ -547,7 +547,7 @@ _080204C6:
 	blt _080204F8
 	movs r0, #0xb6
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080204F8:
 	ldr r3, _0802055C @ =0x03002870
 	adds r2, r3, #0
@@ -683,8 +683,8 @@ sub_080205E0: @ 0x080205E0
 _08020614: .4byte 0x03002870
 _08020618: .4byte 0x02022C60
 
-	thumb_func_start sub_0802061C
-sub_0802061C: @ 0x0802061C
+	thumb_func_start StartLightRuneAnim3
+StartLightRuneAnim3: @ 0x0802061C
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0
@@ -720,8 +720,8 @@ sub_0802061C: @ 0x0802061C
 _08020660: .4byte 0x08B93B74
 _08020664: .4byte 0x0202BBB8
 
-	thumb_func_start sub_08020668
-sub_08020668: @ 0x08020668
+	thumb_func_start ProcDanceAnim_Init
+ProcDanceAnim_Init: @ 0x08020668
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r0, _080206F8 @ =0x081B9BDC
@@ -800,8 +800,8 @@ _08020710: .4byte 0x03002870
 _08020714: .4byte 0x0000FFE0
 _08020718: .4byte 0x0000E0FF
 
-	thumb_func_start sub_0802071C
-sub_0802071C: @ 0x0802071C
+	thumb_func_start ProcDanceAnim_Loop
+ProcDanceAnim_Loop: @ 0x0802071C
 	push {r4, lr}
 	sub sp, #0x38
 	adds r4, r0, #0
@@ -858,8 +858,8 @@ sub_08020784: @ 0x08020784
 	strh r1, [r0]
 	bx lr
 
-	thumb_func_start sub_0802078C
-sub_0802078C: @ 0x0802078C
+	thumb_func_start ProcDanceAnim_Loop_Blend
+ProcDanceAnim_Loop_Blend: @ 0x0802078C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _080207D8 @ =0x03002870
@@ -900,8 +900,8 @@ _080207D0:
 	.align 2, 0
 _080207D8: .4byte 0x03002870
 
-	thumb_func_start sub_080207DC
-sub_080207DC: @ 0x080207DC
+	thumb_func_start StartDanceringAnim
+StartDanceringAnim: @ 0x080207DC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r1, _08020838 @ =0x0203A3D8
@@ -993,7 +993,7 @@ _08020872:
 	cmp r0, #0
 	blt _080208A2
 	movs r0, #0xb4
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080208A2:
 	ldr r3, _0802091C @ =0x03002870
 	adds r2, r3, #0
@@ -1142,7 +1142,7 @@ WarpEffect_Finish: @ 0x080209C4
 	cmp r0, #0
 	blt _080209D8
 	movs r0, #0xb5
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080209D8:
 	ldr r0, _080209F0 @ =0x02022C60
 	movs r1, #0
@@ -1454,8 +1454,8 @@ sub_08020C14: @ 0x08020C14
 _08020C54: .4byte 0x08B93C7C
 _08020C58: .4byte 0x0202BBB8
 
-	thumb_func_start sub_08020C5C
-sub_08020C5C: @ 0x08020C5C
+	thumb_func_start ProcWhiteCircleFx_Loop
+ProcWhiteCircleFx_Loop: @ 0x08020C5C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1502,7 +1502,7 @@ _08020CA2:
 	muls r2, r1, r2
 	adds r1, r2, #0
 	adds r0, r0, r1
-	bl sub_080BFA68
+	bl Sqrt
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	add r0, sb
@@ -1671,7 +1671,7 @@ _08020D96:
 	bl ClearUi
 	movs r0, #0
 	movs r1, #0
-	bl sub_08001434
+	bl SetBgChrOffset
 	ldr r0, _08020E30 @ =0x08B93CA4
 	adds r1, r5, #0
 	bl SpawnProc
@@ -1691,8 +1691,8 @@ _08020E28: .4byte 0x0000FFE0
 _08020E2C: .4byte 0x0000E0FF
 _08020E30: .4byte 0x08B93CA4
 
-	thumb_func_start sub_08020E34
-sub_08020E34: @ 0x08020E34
+	thumb_func_start ProcEmitSingleStar_Init
+ProcEmitSingleStar_Init: @ 0x08020E34
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0
@@ -1771,7 +1771,7 @@ _08020EBA:
 	lsls r0, r0, #4
 	str r0, [sp]
 	movs r0, #0xa
-	bl sub_080069F4
+	bl PutSprite
 _08020ECE:
 	add sp, #4
 	pop {r4}
@@ -1780,8 +1780,8 @@ _08020ECE:
 	.align 2, 0
 _08020ED8: .4byte 0x08B905B0
 
-	thumb_func_start sub_08020EDC
-sub_08020EDC: @ 0x08020EDC
+	thumb_func_start Calcs_Interpolate
+Calcs_Interpolate: @ 0x08020EDC
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -1797,7 +1797,7 @@ sub_08020EDC: @ 0x08020EDC
 	str r4, [sp]
 	movs r0, #0
 	adds r3, r6, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r5]
 	mov r0, r8
 	ldr r1, [r0]
@@ -1805,7 +1805,7 @@ sub_08020EDC: @ 0x08020EDC
 	movs r0, #0
 	mov r2, sb
 	adds r3, r6, #0
-	bl sub_08012FE8
+	bl Interpolate
 	mov r1, r8
 	str r0, [r1]
 	add sp, #4
@@ -1886,7 +1886,7 @@ _08020F5C:
 _08020FA6:
 	str r0, [sp]
 	adds r0, r4, #0
-	bl sub_08020EDC
+	bl Calcs_Interpolate
 	mov r2, r8
 	ldrh r1, [r2]
 	adds r1, #1
@@ -1948,7 +1948,7 @@ _08021028:
 	str r4, [sp]
 _0802102A:
 	adds r0, r7, #0
-	bl sub_08020EDC
+	bl Calcs_Interpolate
 	mov r5, r8
 	ldrh r0, [r5]
 	adds r0, #1
@@ -2042,8 +2042,8 @@ _080210D8: .4byte 0x03002870
 _080210DC: .4byte 0x0000FFE0
 _080210E0: .4byte 0x0000E0FF
 
-	thumb_func_start sub_080210E4
-sub_080210E4: @ 0x080210E4
+	thumb_func_start StartEmitStarsAnim
+StartEmitStarsAnim: @ 0x080210E4
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -2056,7 +2056,7 @@ sub_080210E4: @ 0x080210E4
 	ldr r0, _0802113C @ =0x08B93CEC
 	ldr r1, _08021140 @ =0x06014000
 	movs r2, #0x20
-	bl sub_08003078
+	bl RegisterDataMove
 	ldr r0, _08021144 @ =0x08B93CD4
 	adds r1, r6, #0
 	bl SpawnProc
@@ -2092,8 +2092,8 @@ _08021140: .4byte 0x06014000
 _08021144: .4byte 0x08B93CD4
 _08021148: .4byte 0x0000FFFF
 
-	thumb_func_start sub_0802114C
-sub_0802114C: @ 0x0802114C
+	thumb_func_start ClearEmitedStars
+ClearEmitedStars: @ 0x0802114C
 	push {lr}
 	ldr r0, _08021160 @ =0x08B93CD4
 	bl Proc_Find
@@ -2115,8 +2115,8 @@ sub_08021164: @ 0x08021164
 	.align 2, 0
 _08021170: .4byte 0x08B93CD4
 
-	thumb_func_start sub_08021174
-sub_08021174: @ 0x08021174
+	thumb_func_start SwingSwordfx_Init
+SwingSwordfx_Init: @ 0x08021174
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r3, _080211A4 @ =0x02022860
@@ -2144,8 +2144,8 @@ _08021182:
 _080211A4: .4byte 0x02022860
 _080211A8: .4byte 0x00007FFF
 
-	thumb_func_start sub_080211AC
-sub_080211AC: @ 0x080211AC
+	thumb_func_start SwingSwordfx_Loop
+SwingSwordfx_Loop: @ 0x080211AC
 	push {r4, r5, r6, lr}
 	sub sp, #0x50
 	adds r5, r0, #0
@@ -2215,8 +2215,8 @@ sub_0802120C: @ 0x0802120C
 	.align 2, 0
 _08021230: .4byte 0x03002870
 
-	thumb_func_start sub_08021234
-sub_08021234: @ 0x08021234
+	thumb_func_start StartSwingSwordfx
+StartSwingSwordfx: @ 0x08021234
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080212B4 @ =0x081BAC1C
@@ -2286,8 +2286,8 @@ _080212CC: .4byte 0x0000FFE0
 _080212D0: .4byte 0x0000E0FF
 _080212D4: .4byte 0x08B93D0C
 
-	thumb_func_start sub_080212D8
-sub_080212D8: @ 0x080212D8
+	thumb_func_start ProcMineFxFunc
+ProcMineFxFunc: @ 0x080212D8
 	push {lr}
 	ldr r0, _080212F0 @ =0x0202BBF8
 	adds r0, #0x41
@@ -2296,7 +2296,7 @@ sub_080212D8: @ 0x080212D8
 	cmp r0, #0
 	blt _080212EC
 	ldr r0, _080212F4 @ =0x000002F9
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080212EC:
 	pop {r0}
 	bx r0
@@ -2304,8 +2304,8 @@ _080212EC:
 _080212F0: .4byte 0x0202BBF8
 _080212F4: .4byte 0x000002F9
 
-	thumb_func_start sub_080212F8
-sub_080212F8: @ 0x080212F8
+	thumb_func_start StartMineAnim
+StartMineAnim: @ 0x080212F8
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -2342,7 +2342,7 @@ sub_080212F8: @ 0x080212F8
 	str r1, [sp, #4]
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	ldr r0, _08021370 @ =0x08B93D44
 	adds r1, r4, #0
 	bl SpawnProc
@@ -2553,8 +2553,8 @@ sub_080214DC: @ 0x080214DC
 	.align 2, 0
 _080214F0: .4byte 0x02022C60
 
-	thumb_func_start sub_080214F4
-sub_080214F4: @ 0x080214F4
+	thumb_func_start NinianStartTransformToHunman
+NinianStartTransformToHunman: @ 0x080214F4
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -2592,8 +2592,8 @@ sub_08021540: @ 0x08021540
 	movs r0, #0x17
 	bx lr
 
-	thumb_func_start sub_08021544
-sub_08021544: @ 0x08021544
+	thumb_func_start MapMenu_Suspend_Available
+MapMenu_Suspend_Available: @ 0x08021544
 	ldr r1, _08021554 @ =0x0202BBF8
 	movs r0, #8
 	ldrb r1, [r1, #0x14]
@@ -2640,14 +2640,14 @@ sub_08021580: @ 0x08021580
 	.align 2, 0
 _08021590: .4byte 0x08B93374
 
-	thumb_func_start sub_08021594
-sub_08021594: @ 0x08021594
+	thumb_func_start MapMenu_UnitCommand
+MapMenu_UnitCommand: @ 0x08021594
 	push {lr}
 	ldr r0, _080215AC @ =0x08B93374
 	bl Proc_Find
 	movs r1, #0xa
 	bl Proc_Goto
-	bl sub_0808AAF4
+	bl StartUnitListScreenField
 	movs r0, #0x17
 	pop {r1}
 	bx r1
@@ -2666,18 +2666,18 @@ sub_080215B0: @ 0x080215B0
 	.align 2, 0
 _080215C0: .4byte 0x08CE5BF0
 
-	thumb_func_start sub_080215C4
-sub_080215C4: @ 0x080215C4
+	thumb_func_start MapMenu_StatusCommand
+MapMenu_StatusCommand: @ 0x080215C4
 	push {lr}
 	movs r0, #0
-	bl sub_08087190
+	bl NewChapterStatusScreen
 	movs r0, #0x17
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080215D4
-sub_080215D4: @ 0x080215D4
+	thumb_func_start MapMenu_DangerZone_UnusedEffect
+MapMenu_DangerZone_UnusedEffect: @ 0x080215D4
 	push {lr}
 	ldr r0, _080215F4 @ =0x03004690
 	movs r1, #0
@@ -2739,8 +2739,8 @@ sub_08021630: @ 0x08021630
 	.align 2, 0
 _08021640: .4byte 0x08B93DA4
 
-	thumb_func_start sub_08021644
-sub_08021644: @ 0x08021644
+	thumb_func_start EffectWait
+EffectWait: @ 0x08021644
 	ldr r1, _08021650 @ =0x0203A85C
 	movs r0, #1
 	strb r0, [r1, #0x11]
@@ -2749,17 +2749,17 @@ sub_08021644: @ 0x08021644
 	.align 2, 0
 _08021650: .4byte 0x0203A85C
 
-	thumb_func_start sub_08021654
-sub_08021654: @ 0x08021654
+	thumb_func_start GenericSelection_BackToUM
+GenericSelection_BackToUM: @ 0x08021654
 	push {lr}
-	bl sub_0804AF00
+	bl EndTargetSelection
 	ldr r0, _080216A0 @ =0x02023C60
 	movs r1, #0
 	bl TmFill
 	movs r0, #4
 	bl EnableBgSync
 	bl ResetTextFont
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	ldr r0, _080216A4 @ =0x08B95AAC
 	ldr r2, _080216A8 @ =0x0202BBB8
 	movs r3, #0x1c
@@ -2769,7 +2769,7 @@ sub_08021654: @ 0x08021654
 	subs r1, r1, r2
 	movs r2, #1
 	movs r3, #0x16
-	bl sub_0804AB00
+	bl StartSemiCenteredOrphanMenu
 	ldr r1, _080216AC @ =0x03004690
 	ldr r2, [r1]
 	movs r1, #0x10
@@ -2798,7 +2798,7 @@ sub_080216B0: @ 0x080216B0
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08015D70
+	bl IsCameraNotWatchingPosition
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08021702
@@ -2836,8 +2836,8 @@ _08021708: .4byte 0x03004690
 _0802170C: .4byte 0x08B92E38
 _08021710: .4byte 0x0202BBB8
 
-	thumb_func_start sub_08021714
-sub_08021714: @ 0x08021714
+	thumb_func_start BackToUnitMenu_RestartMenu
+BackToUnitMenu_RestartMenu: @ 0x08021714
 	push {lr}
 	ldr r0, _08021730 @ =0x08B95AAC
 	ldr r2, _08021734 @ =0x0202BBB8
@@ -2848,23 +2848,23 @@ sub_08021714: @ 0x08021714
 	subs r1, r1, r2
 	movs r2, #1
 	movs r3, #0x16
-	bl sub_0804AB00
+	bl StartSemiCenteredOrphanMenu
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08021730: .4byte 0x08B95AAC
 _08021734: .4byte 0x0202BBB8
 
-	thumb_func_start sub_08021738
-sub_08021738: @ 0x08021738
+	thumb_func_start GenericSelection_BackToUM_CamWait
+GenericSelection_BackToUM_CamWait: @ 0x08021738
 	push {lr}
-	bl sub_0804AF00
+	bl EndTargetSelection
 	ldr r0, _08021764 @ =0x02023C60
 	movs r1, #0
 	bl TmFill
 	movs r0, #4
 	bl EnableBgSync
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	bl ResetTextFont
 	ldr r0, _08021768 @ =0x08B93DDC
 	movs r1, #3
@@ -2876,8 +2876,8 @@ sub_08021738: @ 0x08021738
 _08021764: .4byte 0x02023C60
 _08021768: .4byte 0x08B93DDC
 
-	thumb_func_start sub_0802176C
-sub_0802176C: @ 0x0802176C
+	thumb_func_start ItemMenu_ButtonBPressed
+ItemMenu_ButtonBPressed: @ 0x0802176C
 	push {lr}
 	ldr r0, _080217A0 @ =0x02023C60
 	movs r1, #0
@@ -2894,8 +2894,8 @@ sub_0802176C: @ 0x0802176C
 	subs r1, r1, r2
 	movs r2, #1
 	movs r3, #0x16
-	bl sub_0804AB00
-	bl sub_0801D2D4
+	bl StartSemiCenteredOrphanMenu
+	bl HideMoveRangeGraphics
 	movs r0, #0x3b
 	pop {r1}
 	bx r1
@@ -2909,8 +2909,8 @@ sub_080217AC: @ 0x080217AC
 	movs r0, #0
 	bx lr
 
-	thumb_func_start sub_080217B0
-sub_080217B0: @ 0x080217B0
+	thumb_func_start RescueUsability
+RescueUsability: @ 0x080217B0
 	push {lr}
 	ldr r0, _080217DC @ =0x03004690
 	ldr r2, [r0]
@@ -2925,7 +2925,7 @@ sub_080217B0: @ 0x080217B0
 	cmp r1, #0
 	bne _080217E0
 	adds r0, r2, #0
-	bl sub_08023E38
+	bl MakeRescueTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _080217E0
@@ -2945,7 +2945,7 @@ sub_080217E8: @ 0x080217E8
 	push {lr}
 	ldr r0, _08021800 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08023E38
+	bl MakeRescueTargetList
 	ldr r0, _08021804 @ =0x08B95D18
 	bl StartMapSelect
 	movs r0, #7
@@ -2967,8 +2967,8 @@ sub_08021808: @ 0x08021808
 	.align 2, 0
 _08021818: .4byte 0x0203A85C
 
-	thumb_func_start sub_0802181C
-sub_0802181C: @ 0x0802181C
+	thumb_func_start DropUsability
+DropUsability: @ 0x0802181C
 	push {lr}
 	ldr r0, _08021848 @ =0x03004690
 	ldr r2, [r0]
@@ -2982,7 +2982,7 @@ sub_0802181C: @ 0x0802181C
 	cmp r1, #0
 	beq _0802184C
 	adds r0, r2, #0
-	bl sub_08023EC4
+	bl MakeDropTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _0802184C
@@ -2997,12 +2997,12 @@ _0802184E:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08021854
-sub_08021854: @ 0x08021854
+	thumb_func_start DropEffect
+DropEffect: @ 0x08021854
 	push {lr}
 	ldr r0, _0802186C @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08023EC4
+	bl MakeDropTargetList
 	ldr r0, _08021870 @ =0x08B95CF8
 	bl StartMapSelect
 	movs r0, #0x17
@@ -3137,15 +3137,15 @@ sub_08021948: @ 0x08021948
 _08021960: .4byte 0x03004690
 _08021964: .4byte 0x08B95CB8
 
-	thumb_func_start sub_08021968
-sub_08021968: @ 0x08021968
+	thumb_func_start MakeUnitRescueTransferGraphics
+MakeUnitRescueTransferGraphics: @ 0x08021968
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
 	ldrb r0, [r4, #0x1b]
 	bl GetUnit
 	adds r6, r0, #0
-	bl sub_0803279C
+	bl EndSubtitleHelp
 	movs r0, #0x10
 	ldrsb r0, [r5, r0]
 	movs r1, #0x11
@@ -3154,10 +3154,10 @@ sub_08021968: @ 0x08021968
 	ldrsb r2, [r4, r2]
 	movs r3, #0x11
 	ldrsb r3, [r4, r3]
-	bl sub_0801D3DC
+	bl GetSomeFacingDirection
 	adds r1, r0, #0
 	adds r0, r6, #0
-	bl sub_0801D4D0
+	bl Make6CKOIDOAMM
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -3180,7 +3180,7 @@ sub_0802199C: @ 0x0802199C
 	bl GetUnit
 	adds r1, r0, #0
 	adds r0, r5, #0
-	bl sub_08021968
+	bl MakeUnitRescueTransferGraphics
 	ldrb r0, [r4, #0xd]
 	bl GetUnit
 	adds r5, r0, #0
@@ -3214,7 +3214,7 @@ sub_080219EC: @ 0x080219EC
 	bl GetUnit
 	adds r1, r0, #0
 	adds r0, r5, #0
-	bl sub_08021968
+	bl MakeUnitRescueTransferGraphics
 	ldrb r0, [r4, #0xc]
 	bl GetUnit
 	adds r5, r0, #0
@@ -3297,7 +3297,7 @@ StartFightBallistaReview: @ 0x08021A98
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	ldr r1, [r4]
 	adds r0, r5, #0
 	movs r2, #0xf
@@ -3331,7 +3331,7 @@ StartFightItemReview: @ 0x08021AE4
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	ldr r1, [r4]
 	adds r0, r5, #0
 	movs r2, #0xf
@@ -3347,8 +3347,8 @@ StartFightItemReview: @ 0x08021AE4
 _08021B2C: .4byte 0x08B95A88
 _08021B30: .4byte 0x03004690
 
-	thumb_func_start sub_08021B34
-sub_08021B34: @ 0x08021B34
+	thumb_func_start DisplayUnitStandingAttackRange
+DisplayUnitStandingAttackRange: @ 0x08021B34
 	push {r4, r5, lr}
 	ldr r0, _08021B70 @ =0x0202E3E4
 	ldr r0, [r0]
@@ -3374,7 +3374,7 @@ sub_08021B34: @ 0x08021B34
 	ldrsb r1, [r2, r1]
 	movs r2, #1
 	movs r3, #0xa
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 	b _08021B8C
 	.align 2, 0
 _08021B70: .4byte 0x0202E3E4
@@ -3389,7 +3389,7 @@ _08021B7C:
 	bl BuildUnitStandingRangeForReach
 _08021B8C:
 	movs r0, #3
-	bl sub_0801D2A0
+	bl DisplayMoveRangeGraphics
 	movs r0, #0
 	pop {r4, r5}
 	pop {r1}
@@ -3399,13 +3399,13 @@ _08021B8C:
 	thumb_func_start sub_08021B9C
 sub_08021B9C: @ 0x08021B9C
 	push {lr}
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	movs r0, #0
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08021BA8
-sub_08021BA8: @ 0x08021BA8
+	thumb_func_start WeaponSelectMenu_IsAvailable
+WeaponSelectMenu_IsAvailable: @ 0x08021BA8
 	push {r4, r5, lr}
 	ldr r5, _08021BE8 @ =0x03004690
 	ldr r0, [r5]
@@ -3442,8 +3442,8 @@ _08021BEE:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08021BF4
-sub_08021BF4: @ 0x08021BF4
+	thumb_func_start WeaponSelectMenu_Selected
+WeaponSelectMenu_Selected: @ 0x08021BF4
 	push {r4, lr}
 	ldr r4, _08021C2C @ =0x03004690
 	ldr r0, [r4]
@@ -3471,8 +3471,8 @@ _08021C2C: .4byte 0x03004690
 _08021C30: .4byte 0x0203A85C
 _08021C34: .4byte 0x08B95C98
 
-	thumb_func_start sub_08021C38
-sub_08021C38: @ 0x08021C38
+	thumb_func_start WeaponSelectMenu_Draw
+WeaponSelectMenu_Draw: @ 0x08021C38
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	ldr r0, _08021C80 @ =0x03004690
@@ -3502,7 +3502,7 @@ sub_08021C38: @ 0x08021C38
 	ldr r1, _08021C84 @ =0x02022C60
 	adds r3, r3, r1
 	adds r1, r4, #0
-	bl sub_08016470
+	bl DrawItemMenuLine
 	movs r0, #0
 	pop {r4, r5, r6}
 	pop {r1}
@@ -3511,14 +3511,14 @@ sub_08021C38: @ 0x08021C38
 _08021C80: .4byte 0x03004690
 _08021C84: .4byte 0x02022C60
 
-	thumb_func_start sub_08021C88
-sub_08021C88: @ 0x08021C88
+	thumb_func_start WeaponSelectMenu_SwitchIn
+WeaponSelectMenu_SwitchIn: @ 0x08021C88
 	push {r4, r5, lr}
 	adds r5, r1, #0
 	adds r5, #0x3c
 	movs r0, #0
 	ldrsb r0, [r5, r0]
-	bl sub_0801DFC0
+	bl UpdateMenuItemPanel
 	ldr r0, _08021CD0 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #1
@@ -3537,7 +3537,7 @@ sub_08021C88: @ 0x08021C88
 	ldr r0, [r4]
 	bl BuildUnitStandingRangeForReach
 	movs r0, #2
-	bl sub_0801D2A0
+	bl DisplayMoveRangeGraphics
 	movs r0, #0
 	pop {r4, r5}
 	pop {r1}
@@ -3556,7 +3556,7 @@ sub_08021CDC: @ 0x08021CDC
 	ands r1, r0
 	cmp r1, #0
 	bne _08021CEE
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 _08021CEE:
 	movs r0, #0
 	pop {r1}
@@ -3628,8 +3628,8 @@ sub_08021D54: @ 0x08021D54
 	.align 2, 0
 _08021D64: .4byte 0x08B93E0C
 
-	thumb_func_start sub_08021D68
-sub_08021D68: @ 0x08021D68
+	thumb_func_start AttackMapSelect_SwitchIn
+AttackMapSelect_SwitchIn: @ 0x08021D68
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r1, #0
@@ -3641,7 +3641,7 @@ sub_08021D68: @ 0x08021D68
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	cmp r0, #0
@@ -3653,7 +3653,7 @@ sub_08021D68: @ 0x08021D68
 	strb r0, [r1, #0x14]
 	ldrb r0, [r4, #3]
 	strb r0, [r1, #0x15]
-	bl sub_0802A254
+	bl InitObstacleBattleUnit
 _08021D9E:
 	ldr r1, _08021DBC @ =0x0203A85C
 	ldrb r0, [r1, #0x12]
@@ -3682,7 +3682,7 @@ _08021DC4:
 	adds r2, r3, #0
 	bl BattleGenerateSimulation
 _08021DD8:
-	bl sub_08034164
+	bl UpdateBattleForecastContents
 	movs r0, #0
 	add sp, #4
 	pop {r4, r5}
@@ -3691,16 +3691,16 @@ _08021DD8:
 	.align 2, 0
 _08021DE8: .4byte 0x03004690
 
-	thumb_func_start sub_08021DEC
-sub_08021DEC: @ 0x08021DEC
+	thumb_func_start AttackMapSelect_End
+AttackMapSelect_End: @ 0x08021DEC
 	push {lr}
 	ldr r0, _08021E0C @ =0x02023C60
 	movs r1, #0
 	bl TmFill
 	movs r0, #4
 	bl EnableBgSync
-	bl sub_0801D2D4
-	bl sub_0803418C
+	bl HideMoveRangeGraphics
+	bl CloseBattleForecast
 	movs r0, #0
 	pop {r1}
 	bx r1
@@ -3735,7 +3735,7 @@ sub_08021E10: @ 0x08021E10
 	cmp r0, #0
 	bne _08021E5C
 	adds r0, r2, #0
-	bl sub_08023D64
+	bl MakeTradeTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _08021E5C
@@ -3751,13 +3751,13 @@ _08021E5E:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08021E64
-sub_08021E64: @ 0x08021E64
+	thumb_func_start TradeCommandEffect
+TradeCommandEffect: @ 0x08021E64
 	push {lr}
 	bl ClearUi
 	ldr r0, _08021E80 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08023D64
+	bl MakeTradeTargetList
 	ldr r0, _08021E84 @ =0x08B95C78
 	bl StartMapSelect
 	movs r0, #7
@@ -3817,7 +3817,7 @@ _08021EDC:
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08078BD0
+	bl GetAvailableTileEventCommand
 	movs r1, #3
 	cmp r0, #0xf
 	bne _08021EF4
@@ -3883,7 +3883,7 @@ _08021F54:
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08078BD0
+	bl GetAvailableTileEventCommand
 	cmp r0, #0xe
 	beq _08021F74
 _08021F68:
@@ -3894,7 +3894,7 @@ _08021F6C: .4byte 0x03004690
 _08021F70: .4byte 0x0202E3E0
 _08021F74:
 	ldr r0, [r4]
-	bl sub_0801878C
+	bl IsUnitMagicSealed
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08021F84
@@ -3942,7 +3942,7 @@ sub_08021FB4: @ 0x08021FB4
 	cmp r0, #0
 	bne _08022012
 	adds r0, r2, #0
-	bl sub_08024478
+	bl MakeTargetListForRefresh
 	bl CountTargets
 	cmp r0, #0
 	beq _08021FDC
@@ -3964,7 +3964,7 @@ _08021FE6:
 	bne _08021FFE
 	ldr r0, [r6]
 	adds r1, r4, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08021FD2
@@ -4053,8 +4053,8 @@ _0802208E:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08022094
-sub_08022094: @ 0x08022094
+	thumb_func_start PlayCommandEffect
+PlayCommandEffect: @ 0x08022094
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4066,7 +4066,7 @@ sub_08022094: @ 0x08022094
 	movs r7, #0
 	ldr r6, _0802210C @ =0x03004690
 	ldr r0, [r6]
-	bl sub_08024478
+	bl MakeTargetListForRefresh
 	bl CountTargets
 	rsbs r1, r0, #0
 	orrs r1, r0
@@ -4084,7 +4084,7 @@ _080220C4:
 	bne _080220DE
 	ldr r0, [r6]
 	adds r1, r4, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080220DE
@@ -4108,7 +4108,7 @@ _080220F2:
 	bne _08022110
 	mov r0, sb
 	mov r1, sl
-	bl sub_080236C0
+	bl ItemMenu_Select1stCommand
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	b _08022150
@@ -4130,7 +4130,7 @@ _08022110:
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	ldr r1, [r4]
 	adds r0, r5, #0
 	movs r2, #0xf
@@ -4153,8 +4153,8 @@ _08022150:
 _08022160: .4byte 0x08B959F8
 _08022164: .4byte 0x03004690
 
-	thumb_func_start sub_08022168
-sub_08022168: @ 0x08022168
+	thumb_func_start RefreshMapSelect_Select
+RefreshMapSelect_Select: @ 0x08022168
 	ldr r2, _08022178 @ =0x0203A85C
 	movs r0, #4
 	strb r0, [r2, #0x11]
@@ -4213,7 +4213,7 @@ sub_0802219C: @ 0x0802219C
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	ldr r1, [r4]
 	adds r0, r5, #0
 	movs r2, #0xf
@@ -4233,8 +4233,8 @@ _080221FA:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08022204
-sub_08022204: @ 0x08022204
+	thumb_func_start ItemSelectMenu_TextDraw
+ItemSelectMenu_TextDraw: @ 0x08022204
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -4257,7 +4257,7 @@ sub_08022204: @ 0x08022204
 	beq _08022240
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_08021C38
+	bl WeaponSelectMenu_Draw
 	movs r0, #0
 	b _08022280
 	.align 2, 0
@@ -4272,7 +4272,7 @@ _08022240:
 _0802224E:
 	ldr r0, [r7]
 	adds r1, r5, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	lsrs r2, r0, #0x18
 _0802225A:
@@ -4290,7 +4290,7 @@ _0802225A:
 	ldr r1, _08022288 @ =0x02022C60
 	adds r3, r3, r1
 	adds r1, r5, #0
-	bl sub_08016470
+	bl DrawItemMenuLine
 	movs r0, #1
 	bl EnableBgSync
 _08022280:
@@ -4300,8 +4300,8 @@ _08022280:
 	.align 2, 0
 _08022288: .4byte 0x02022C60
 
-	thumb_func_start sub_0802228C
-sub_0802228C: @ 0x0802228C
+	thumb_func_start ItemSelectMenu_Usability
+ItemSelectMenu_Usability: @ 0x0802228C
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
@@ -4326,11 +4326,11 @@ _080222AC:
 	beq _080222C2
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_08021BA8
+	bl WeaponSelectMenu_IsAvailable
 _080222C2:
 	ldr r0, [r7]
 	adds r1, r4, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	movs r1, #2
 	cmp r0, #0
@@ -4400,7 +4400,7 @@ sub_0802234C: @ 0x0802234C
 	adds r1, #0x3c
 	movs r0, #0
 	ldrsb r0, [r1, r0]
-	bl sub_0801DFC0
+	bl UpdateMenuItemPanel
 	pop {r1}
 	bx r1
 
@@ -4446,8 +4446,8 @@ sub_080223A4: @ 0x080223A4
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080223B0
-sub_080223B0: @ 0x080223B0
+	thumb_func_start MenuCommand_SelectNo
+MenuCommand_SelectNo: @ 0x080223B0
 	push {lr}
 	movs r0, #0
 	bl SetTextFont
@@ -4478,7 +4478,7 @@ sub_080223EC: @ 0x080223EC
 	movs r0, #0
 	bl SetTextFont
 	bl ResetTextFont
-	bl sub_0804A490
+	bl EndAllMenus
 	movs r0, #0x31
 	pop {r1}
 	bx r1
@@ -4491,7 +4491,7 @@ sub_08022404: @ 0x08022404
 	adds r4, r0, #0
 	bl sub_080223EC
 	adds r0, r4, #0
-	bl sub_080223B0
+	bl MenuCommand_SelectNo
 	ldr r0, _08022454 @ =0x08B95A40
 	bl StartMenu
 	adds r5, r0, #0
@@ -4507,7 +4507,7 @@ sub_08022404: @ 0x08022404
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	ldr r1, [r4]
 	adds r0, r5, #0
 	movs r2, #0xf
@@ -4529,7 +4529,7 @@ sub_0802245C: @ 0x0802245C
 	bl sub_080223EC
 	ldr r6, _080224E4 @ =0x03004690
 	ldr r0, [r6]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	beq _080224FC
 	ldr r0, _080224E8 @ =0x0200323C
@@ -4572,7 +4572,7 @@ sub_0802245C: @ 0x0802245C
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	ldr r1, [r6]
 	adds r0, r4, #0
 	movs r2, #0xf
@@ -4590,7 +4590,7 @@ _080224F8: .4byte 0x08B95A40
 _080224FC:
 	bl ClearUi
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	ldr r0, _08022528 @ =0x08B95AAC
 	ldr r2, _0802252C @ =0x0202BBB8
 	movs r3, #0x1c
@@ -4600,7 +4600,7 @@ _080224FC:
 	subs r1, r1, r2
 	movs r2, #1
 	movs r3, #0x16
-	bl sub_0804AB00
+	bl StartSemiCenteredOrphanMenu
 	movs r0, #0x1b
 _0802251E:
 	add sp, #4
@@ -4656,7 +4656,7 @@ _08022588:
 	ldr r0, _080225A4 @ =0x03004690
 	ldr r0, [r0]
 	adds r1, r4, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	movs r1, #2
 	cmp r0, #0
@@ -4755,7 +4755,7 @@ sub_08022624: @ 0x08022624
 	adds r1, #0x1e
 	adds r1, r1, r2
 	ldrh r1, [r1]
-	bl sub_08026F4C
+	bl GetItemCantUseMsgid
 	adds r1, r0, #0
 	adds r0, r4, #0
 	bl MenuFrozenHelpBox
@@ -4775,7 +4775,7 @@ _0802265C:
 	adds r1, #0x1e
 	adds r1, r1, r2
 	ldrh r1, [r1]
-	bl sub_080270FC
+	bl DoItemUse
 	ldr r0, _080226A8 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -4783,12 +4783,12 @@ _0802265C:
 	cmp r0, #0
 	blt _08022688
 	ldr r0, _080226AC @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08022688:
 	movs r0, #0
 	bl SetTextFont
 	bl ResetTextFont
-	bl sub_0804A490
+	bl EndAllMenus
 	movs r0, #0x21
 _08022698:
 	pop {r4}
@@ -4833,8 +4833,8 @@ _080226E6:
 	.align 2, 0
 _080226EC: .4byte 0x00000737
 
-	thumb_func_start sub_080226F0
-sub_080226F0: @ 0x080226F0
+	thumb_func_start ItemSubMenu_TradeItem
+ItemSubMenu_TradeItem: @ 0x080226F0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -4846,10 +4846,10 @@ sub_080226F0: @ 0x080226F0
 	adds r0, r4, #0
 	bl sub_080223EC
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08021E64
+	bl TradeCommandEffect
 	movs r0, #1
 	pop {r4, r5}
 	pop {r1}
@@ -4915,15 +4915,15 @@ _0802278E:
 	.align 2, 0
 _08022794: .4byte 0x00000739
 
-	thumb_func_start sub_08022798
-sub_08022798: @ 0x08022798
+	thumb_func_start MenuCommand_SelectYes
+MenuCommand_SelectYes: @ 0x08022798
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _080227C4 @ =0x03004690
 	ldr r0, [r0]
 	ldr r4, _080227C8 @ =0x0203A85C
 	ldrb r1, [r4, #0x12]
-	bl sub_08018D50
+	bl UnitRemoveItem
 	ldrb r0, [r4, #0x12]
 	cmp r0, #0
 	beq _080227B6
@@ -4942,8 +4942,8 @@ _080227C4: .4byte 0x03004690
 _080227C8: .4byte 0x0203A85C
 _080227CC: .4byte 0x02022C60
 
-	thumb_func_start sub_080227D0
-sub_080227D0: @ 0x080227D0
+	thumb_func_start BallistaRangeMenu_BallistaUsability
+BallistaRangeMenu_BallistaUsability: @ 0x080227D0
 	push {lr}
 	ldr r0, _080227E4 @ =0x03004690
 	ldr r2, [r0]
@@ -4961,7 +4961,7 @@ _080227E8:
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_080346C8
+	bl GetBallistaItemAt
 	movs r1, #0xff
 	lsls r1, r1, #8
 	ands r1, r0
@@ -4975,8 +4975,8 @@ _08022804:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08022808
-sub_08022808: @ 0x08022808
+	thumb_func_start BallistaRangeMenu_Draw
+BallistaRangeMenu_Draw: @ 0x08022808
 	push {r4, r5, lr}
 	adds r4, r1, #0
 	movs r5, #0
@@ -4994,7 +4994,7 @@ _0802281A:
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_080346C8
+	bl GetBallistaItemAt
 	adds r1, r0, #0
 	adds r0, r4, #0
 	adds r0, #0x34
@@ -5008,7 +5008,7 @@ _0802281A:
 	lsls r3, r3, #1
 	ldr r4, _08022854 @ =0x02022C60
 	adds r3, r3, r4
-	bl sub_08016470
+	bl DrawItemMenuLine
 	pop {r4, r5}
 	pop {r1}
 	bx r1
@@ -5016,8 +5016,8 @@ _0802281A:
 _08022850: .4byte 0x03004690
 _08022854: .4byte 0x02022C60
 
-	thumb_func_start sub_08022858
-sub_08022858: @ 0x08022858
+	thumb_func_start BallistaRangeMenu_Select
+BallistaRangeMenu_Select: @ 0x08022858
 	push {lr}
 	bl ClearUi
 	ldr r1, _08022878 @ =0x0203A85C
@@ -5025,7 +5025,7 @@ sub_08022858: @ 0x08022858
 	strb r0, [r1, #0x12]
 	ldr r0, _0802287C @ =0x03004690
 	ldr r0, [r0]
-	bl sub_080241AC
+	bl FillBallistaRangeMaybe
 	ldr r0, _08022880 @ =0x08B95C98
 	bl StartMapSelect
 	movs r0, #0x26
@@ -5036,8 +5036,8 @@ _08022878: .4byte 0x0203A85C
 _0802287C: .4byte 0x03004690
 _08022880: .4byte 0x08B95C98
 
-	thumb_func_start sub_08022884
-sub_08022884: @ 0x08022884
+	thumb_func_start FillBallistaRange
+FillBallistaRange: @ 0x08022884
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -5051,7 +5051,7 @@ sub_08022884: @ 0x08022884
 	movs r1, #0
 	bl MapFill
 	ldr r0, [r4]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	ldr r4, _08022908 @ =0x03004690
 	ldr r1, [r4]
 	movs r0, #0x10
@@ -5059,9 +5059,9 @@ sub_08022884: @ 0x08022884
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_080346C8
+	bl GetBallistaItemAt
 	adds r5, r0, #0
-	bl sub_0801DFC0
+	bl UpdateMenuItemPanel
 	ldr r0, [r4]
 	movs r6, #0x10
 	ldrsb r6, [r0, r6]
@@ -5070,21 +5070,21 @@ sub_08022884: @ 0x08022884
 	asrs r0, r0, #0x18
 	mov r8, r0
 	adds r0, r5, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
 	adds r0, r6, #0
 	mov r1, r8
 	adds r2, r4, #0
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 	movs r0, #2
-	bl sub_0801D2A0
+	bl DisplayMoveRangeGraphics
 	movs r0, #0
 	pop {r3}
 	mov r8, r3
@@ -5096,8 +5096,8 @@ _08022900: .4byte 0x0202E3E4
 _08022904: .4byte 0x0202E3E8
 _08022908: .4byte 0x03004690
 
-	thumb_func_start sub_0802290C
-sub_0802290C: @ 0x0802290C
+	thumb_func_start StaffCommandUsability
+StaffCommandUsability: @ 0x0802290C
 	push {r4, r5, r6, lr}
 	ldr r0, _08022920 @ =0x03004690
 	ldr r2, [r0]
@@ -5125,12 +5125,12 @@ _08022930:
 	ldr r5, _0802295C @ =0x03004690
 	ldr r0, [r5]
 	adds r1, r4, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08022960
 	ldr r0, [r5]
-	bl sub_0801878C
+	bl IsUnitMagicSealed
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08022924
@@ -5185,7 +5185,7 @@ sub_08022984: @ 0x08022984
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	ldr r1, [r4]
 	adds r0, r5, #0
 	movs r2, #0xf
@@ -5208,15 +5208,15 @@ _080229E4:
 	.align 2, 0
 _080229EC: .4byte 0x0000073B
 
-	thumb_func_start sub_080229F0
-sub_080229F0: @ 0x080229F0
+	thumb_func_start StaffCommandRange
+StaffCommandRange: @ 0x080229F0
 	push {r4, r5, r6, lr}
 	ldr r5, _08022A2C @ =0x03004690
 	ldr r0, [r5]
 	movs r4, #1
 	rsbs r4, r4, #0
 	adds r1, r4, #0
-	bl sub_08016F10
+	bl GetUnitItemUseReachBits
 	adds r6, r0, #0
 	ldr r0, _08022A30 @ =0x0202E3E4
 	ldr r0, [r0]
@@ -5230,7 +5230,7 @@ sub_080229F0: @ 0x080229F0
 	adds r1, r6, #0
 	bl BuildUnitStandingRangeForReach
 	movs r0, #5
-	bl sub_0801D2A0
+	bl DisplayMoveRangeGraphics
 	movs r0, #0
 	pop {r4, r5, r6}
 	pop {r1}
@@ -5243,13 +5243,13 @@ _08022A34: .4byte 0x0202E3E8
 	thumb_func_start sub_08022A38
 sub_08022A38: @ 0x08022A38
 	push {lr}
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	movs r0, #0
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08022A44
-sub_08022A44: @ 0x08022A44
+	thumb_func_start StaffItemSelect_Usability
+StaffItemSelect_Usability: @ 0x08022A44
 	push {r4, r5, lr}
 	ldr r5, _08022A70 @ =0x03004690
 	ldr r0, [r5]
@@ -5263,7 +5263,7 @@ sub_08022A44: @ 0x08022A44
 	bne _08022A74
 	ldr r0, [r5]
 	adds r1, r4, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08022A74
@@ -5299,7 +5299,7 @@ sub_08022A7C: @ 0x08022A7C
 	adds r1, #0x1e
 	adds r1, r1, r2
 	ldrh r1, [r1]
-	bl sub_080270FC
+	bl DoItemUse
 	movs r0, #7
 	pop {r4, r5}
 	pop {r1}
@@ -5311,13 +5311,13 @@ _08022AB8: .4byte 0x0203A85C
 	thumb_func_start sub_08022ABC
 sub_08022ABC: @ 0x08022ABC
 	push {lr}
-	bl sub_08022204
+	bl ItemSelectMenu_TextDraw
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08022AC8
-sub_08022AC8: @ 0x08022AC8
+	thumb_func_start StaffItemSelect_OnHover
+StaffItemSelect_OnHover: @ 0x08022AC8
 	push {r4, r5, r6, lr}
 	adds r4, r1, #0
 	ldr r5, _08022B10 @ =0x03004690
@@ -5325,11 +5325,11 @@ sub_08022AC8: @ 0x08022AC8
 	adds r4, #0x3c
 	movs r1, #0
 	ldrsb r1, [r4, r1]
-	bl sub_08016F10
+	bl GetUnitItemUseReachBits
 	adds r6, r0, #0
 	movs r0, #0
 	ldrsb r0, [r4, r0]
-	bl sub_0801DFC0
+	bl UpdateMenuItemPanel
 	ldr r0, _08022B14 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #1
@@ -5343,7 +5343,7 @@ sub_08022AC8: @ 0x08022AC8
 	adds r1, r6, #0
 	bl BuildUnitStandingRangeForReach
 	movs r0, #4
-	bl sub_0801D2A0
+	bl DisplayMoveRangeGraphics
 	movs r0, #0
 	pop {r4, r5, r6}
 	pop {r1}
@@ -5362,7 +5362,7 @@ sub_08022B1C: @ 0x08022B1C
 	ands r1, r0
 	cmp r1, #0
 	bne _08022B2E
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 _08022B2E:
 	movs r0, #0
 	pop {r1}
@@ -5527,8 +5527,8 @@ sub_08022C44: @ 0x08022C44
 	.align 2, 0
 _08022C54: .4byte 0x0203A85C
 
-	thumb_func_start sub_08022C58
-sub_08022C58: @ 0x08022C58
+	thumb_func_start DoorCommandUsability
+DoorCommandUsability: @ 0x08022C58
 	push {r4, lr}
 	ldr r4, _08022C78 @ =0x03004690
 	ldr r2, [r4]
@@ -5550,7 +5550,7 @@ _08022C78: .4byte 0x03004690
 _08022C7C:
 	ldr r0, [r4]
 	movs r1, #0x1e
-	bl sub_08024298
+	bl MakeTargetListForDoorAndBridges
 	bl CountTargets
 	movs r1, #3
 	cmp r0, #0
@@ -5584,8 +5584,8 @@ sub_08022C98: @ 0x08022C98
 _08022CB8: .4byte 0x0203A85C
 _08022CBC: .4byte 0x03004690
 
-	thumb_func_start sub_08022CC0
-sub_08022CC0: @ 0x08022CC0
+	thumb_func_start ChestCommandUsability
+ChestCommandUsability: @ 0x08022CC0
 	push {r4, lr}
 	ldr r4, _08022CE0 @ =0x03004690
 	ldr r2, [r4]
@@ -5606,7 +5606,7 @@ _08022CDC:
 _08022CE0: .4byte 0x03004690
 _08022CE4:
 	ldr r0, [r4]
-	bl sub_08027354
+	bl CanUnitUseChestKeyItem
 	lsls r0, r0, #0x18
 	movs r1, #3
 	cmp r0, #0
@@ -5656,10 +5656,10 @@ sub_08022D20: @ 0x08022D20
 	cmp r0, #0
 	bne _08022DAC
 	adds r0, r2, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	bne _08022D50
-	bl sub_0802E770
+	bl GetConvoyItemCount
 	cmp r0, #0
 	beq _08022DAC
 _08022D50:
@@ -5725,7 +5725,7 @@ sub_08022DB4: @ 0x08022DB4
 	ldr r0, _08022DD0 @ =0x03004690
 	ldr r0, [r0]
 	movs r1, #0
-	bl sub_080974CC
+	bl StartBmSupply
 	movs r0, #0x17
 	pop {r1}
 	bx r1
@@ -5752,7 +5752,7 @@ _08022DEC:
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_08078BD0
+	bl GetAvailableTileEventCommand
 	movs r1, #3
 	cmp r0, #0x13
 	bne _08022E00
@@ -5774,7 +5774,7 @@ sub_08022E08: @ 0x08022E08
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08078C14
+	bl StartAvailableTileEvent
 	movs r0, #0x17
 	pop {r1}
 	bx r1
@@ -5800,7 +5800,7 @@ _08022E40:
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_08078BD0
+	bl GetAvailableTileEventCommand
 	movs r1, #3
 	cmp r0, #0x14
 	bne _08022E54
@@ -5822,7 +5822,7 @@ sub_08022E5C: @ 0x08022E5C
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08078C14
+	bl StartAvailableTileEvent
 	movs r0, #0x17
 	pop {r1}
 	bx r1
@@ -5848,7 +5848,7 @@ _08022E94:
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_08078BD0
+	bl GetAvailableTileEventCommand
 	movs r1, #3
 	cmp r0, #0x15
 	bne _08022EA8
@@ -5870,7 +5870,7 @@ sub_08022EB0: @ 0x08022EB0
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08078C14
+	bl StartAvailableTileEvent
 	movs r0, #0x17
 	pop {r1}
 	bx r1
@@ -5908,7 +5908,7 @@ _08022F00: .4byte 0x03004690
 _08022F04: .4byte 0x0202E3E0
 _08022F08:
 	adds r0, r2, #0
-	bl sub_0802F158
+	bl ArenaIsUnitAllowed
 	lsls r0, r0, #0x18
 	movs r1, #2
 	cmp r0, #0
@@ -5931,7 +5931,7 @@ sub_08022F20: @ 0x08022F20
 	bne _08022F5C
 	ldr r0, _08022F44 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_0801878C
+	bl IsUnitMagicSealed
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08022F4C
@@ -5973,8 +5973,8 @@ sub_08022F6C: @ 0x08022F6C
 	.align 2, 0
 _08022F74: .4byte 0x0203A85C
 
-	thumb_func_start sub_08022F78
-sub_08022F78: @ 0x08022F78
+	thumb_func_start StealCommandUsability
+StealCommandUsability: @ 0x08022F78
 	push {r4, lr}
 	ldr r4, _08022FAC @ =0x03004690
 	ldr r2, [r4]
@@ -5993,7 +5993,7 @@ sub_08022F78: @ 0x08022F78
 	cmp r0, #0
 	bne _08022FA8
 	adds r0, r2, #0
-	bl sub_08024504
+	bl MakeTargetListForSteal
 	bl CountTargets
 	cmp r0, #0
 	bne _08022FB0
@@ -6004,7 +6004,7 @@ _08022FA8:
 _08022FAC: .4byte 0x03004690
 _08022FB0:
 	ldr r0, [r4]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #5
 	beq _08022FBE
 	movs r0, #1
@@ -6027,7 +6027,7 @@ sub_08022FC8: @ 0x08022FC8
 	bl ClearUi
 	ldr r0, _08022FE8 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08024504
+	bl MakeTargetListForSteal
 	ldr r0, _08022FEC @ =0x08B95BF8
 	bl StartMapSelect
 	movs r0, #7
@@ -6049,12 +6049,12 @@ _08022FFC: .4byte 0x0000074B
 sub_08023000: @ 0x08023000
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08031A74
+	bl StartUnitInventoryInfoWindow
 	ldr r0, _0802301C @ =0x00000721
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6069,18 +6069,18 @@ sub_08023020: @ 0x08023020
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031BA8
+	bl RefreshUnitStealInventoryInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08023044
-sub_08023044: @ 0x08023044
+	thumb_func_start StealMapSelect_Select
+StealMapSelect_Select: @ 0x08023044
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -6093,7 +6093,7 @@ sub_08023044: @ 0x08023044
 	ldr r0, _080230D8 @ =0x08B95920
 	bl StartMenu
 	adds r0, r4, #0
-	bl sub_0804AF00
+	bl EndTargetSelection
 	ldr r0, _080230DC @ =0x020234E4
 	ldr r1, _080230E0 @ =0x081960D4
 	movs r2, #0x80
@@ -6104,7 +6104,7 @@ sub_08023044: @ 0x08023044
 	ldr r0, [r0]
 	ldrh r0, [r0]
 	bl GetMsg
-	bl sub_080055FC
+	bl GetStringTextLen
 	movs r4, #0x38
 	subs r4, r4, r0
 	lsrs r0, r4, #0x1f
@@ -6123,7 +6123,7 @@ sub_08023044: @ 0x08023044
 	adds r1, r5, #0
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r5, #0x80
 	ldrb r0, [r6, #0xd]
 	bl GetUnit
@@ -6133,7 +6133,7 @@ sub_08023044: @ 0x08023044
 	lsls r2, r2, #2
 	adds r0, r5, #0
 	movs r3, #5
-	bl sub_080072D0
+	bl PutFace80x72_Core
 	movs r0, #0
 	add sp, #8
 	pop {r4, r5, r6}
@@ -6146,8 +6146,8 @@ _080230DC: .4byte 0x020234E4
 _080230E0: .4byte 0x081960D4
 _080230E4: .4byte 0x02022D26
 
-	thumb_func_start sub_080230E8
-sub_080230E8: @ 0x080230E8
+	thumb_func_start StealItemMenuCommand_Usability
+StealItemMenuCommand_Usability: @ 0x080230E8
 	push {r4, r5, lr}
 	adds r4, r1, #0
 	ldr r5, _08023104 @ =0x0203A85C
@@ -6183,8 +6183,8 @@ _08023124:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0802312C
-sub_0802312C: @ 0x0802312C
+	thumb_func_start StealItemMenuCommand_Draw
+StealItemMenuCommand_Draw: @ 0x0802312C
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	ldr r0, _08023178 @ =0x0203A85C
@@ -6216,7 +6216,7 @@ sub_0802312C: @ 0x0802312C
 	ldr r1, _0802317C @ =0x02022C60
 	adds r3, r3, r1
 	adds r1, r4, #0
-	bl sub_08016470
+	bl DrawItemMenuLine
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
@@ -6254,8 +6254,8 @@ _080231AE:
 	.align 2, 0
 _080231B4: .4byte 0x0000073F
 
-	thumb_func_start sub_080231B8
-sub_080231B8: @ 0x080231B8
+	thumb_func_start ConvoyMenu_HelpBox
+ConvoyMenu_HelpBox: @ 0x080231B8
 	push {r4, lr}
 	adds r4, r1, #0
 	adds r4, #0x3c
@@ -6271,7 +6271,7 @@ sub_080231B8: @ 0x080231B8
 	lsls r1, r1, #3
 	ldr r2, _080231E0 @ =0x0202BBB8
 	ldrh r2, [r2, #0x2c]
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #0
 	b _08023204
 	.align 2, 0
@@ -6291,7 +6291,7 @@ _080231E4:
 	adds r3, #0x1e
 	adds r3, r3, r2
 	ldrh r2, [r3]
-	bl sub_0808198C
+	bl StartItemHelpBox
 _08023204:
 	pop {r4}
 	pop {r1}
@@ -6299,8 +6299,8 @@ _08023204:
 	.align 2, 0
 _0802320C: .4byte 0x03004690
 
-	thumb_func_start sub_08023210
-sub_08023210: @ 0x08023210
+	thumb_func_start ItemMenu_HelpBox
+ItemMenu_HelpBox: @ 0x08023210
 	push {r4, lr}
 	adds r4, r1, #0
 	ldr r0, _08023244 @ =0x0203A85C
@@ -6320,15 +6320,15 @@ sub_08023210: @ 0x08023210
 	adds r0, r0, r2
 	ldrh r2, [r0]
 	adds r0, r3, #0
-	bl sub_0808198C
+	bl StartItemHelpBox
 	pop {r4}
 	pop {r1}
 	bx r1
 	.align 2, 0
 _08023244: .4byte 0x0203A85C
 
-	thumb_func_start sub_08023248
-sub_08023248: @ 0x08023248
+	thumb_func_start BallistaRangeMenuHelpBox
+BallistaRangeMenuHelpBox: @ 0x08023248
 	push {r4, r5, lr}
 	movs r0, #0x2a
 	ldrsh r5, [r1, r0]
@@ -6343,11 +6343,11 @@ sub_08023248: @ 0x08023248
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_080346C8
+	bl GetBallistaItemAt
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_0808198C
+	bl StartItemHelpBox
 	pop {r4, r5}
 	pop {r1}
 	bx r1
@@ -6370,11 +6370,11 @@ sub_08023288: @ 0x08023288
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031E10
+	bl RefreshUnitHpInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6389,7 +6389,7 @@ sub_080232AC: @ 0x080232AC
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6404,11 +6404,11 @@ sub_080232CC: @ 0x080232CC
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08032064
+	bl RefreshUnitRescueInfoWindows
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6422,7 +6422,7 @@ sub_080232F0: @ 0x080232F0
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6443,7 +6443,7 @@ sub_08023310: @ 0x08023310
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6458,11 +6458,11 @@ sub_08023330: @ 0x08023330
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08032218
+	bl RefreshUnitGiveInfoWindows
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6477,7 +6477,7 @@ sub_08023354: @ 0x08023354
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6492,11 +6492,11 @@ sub_08023374: @ 0x08023374
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_0803211C
+	bl RefreshUnitTakeInfoWindows
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6506,32 +6506,32 @@ sub_08023374: @ 0x08023374
 sub_08023398: @ 0x08023398
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08031A74
+	bl StartUnitInventoryInfoWindow
 	movs r0, #0xe4
 	lsls r0, r0, #3
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080233B8
-sub_080233B8: @ 0x080233B8
+	thumb_func_start TradeSelection_OnChange
+TradeSelection_OnChange: @ 0x080233B8
 	push {r4, lr}
 	adds r4, r1, #0
 	movs r0, #0
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	bl ClearIcons
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031A98
+	bl RefreshUnitInventoryInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6546,7 +6546,7 @@ sub_080233E0: @ 0x080233E0
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6561,11 +6561,11 @@ sub_08023400: @ 0x08023400
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031E10
+	bl RefreshUnitHpInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6580,7 +6580,7 @@ sub_08023424: @ 0x08023424
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6595,11 +6595,11 @@ sub_08023444: @ 0x08023444
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031E10
+	bl RefreshUnitHpInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6621,11 +6621,11 @@ sub_08023474: @ 0x08023474
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031E10
+	bl RefreshUnitHpInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -6662,7 +6662,7 @@ sub_08023498: @ 0x08023498
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	beq _080234EC
 	ldrb r0, [r0, #2]
@@ -6688,7 +6688,7 @@ sub_080234F4: @ 0x080234F4
 	strb r0, [r1, #0x11]
 	ldr r4, _0802351C @ =0x03004690
 	ldr r0, [r4]
-	bl sub_08034770
+	bl RideBallista
 	bl EndAllMus
 	ldr r0, [r4]
 	bl StartMu
@@ -6735,7 +6735,7 @@ sub_08023550: @ 0x08023550
 	strb r0, [r1, #0x11]
 	ldr r4, _08023578 @ =0x03004690
 	ldr r0, [r4]
-	bl sub_080347A8
+	bl TryRemoveUnitFromBallista
 	bl EndAllMus
 	ldr r0, [r4]
 	bl StartMu
@@ -6829,7 +6829,7 @@ GetUnitAttackBallistaCommandAvailability: @ 0x080235F8
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_0802BA70
+	bl GetTrapAt
 	adds r4, r0, #0
 	bl sub_080347E4
 	lsls r0, r0, #0x18
@@ -6864,12 +6864,12 @@ _08023650:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08023658
-sub_08023658: @ 0x08023658
+	thumb_func_start ItemMenu_Is1stCommandAvailable
+ItemMenu_Is1stCommandAvailable: @ 0x08023658
 	push {lr}
 	ldr r0, _08023670 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08024478
+	bl MakeTargetListForRefresh
 	bl CountTargets
 	cmp r0, #0
 	beq _08023674
@@ -6884,8 +6884,8 @@ _08023676:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0802367C
-sub_0802367C: @ 0x0802367C
+	thumb_func_start ItemMenu_Draw1stCommand
+ItemMenu_Draw1stCommand: @ 0x0802367C
 	push {r4, r5, lr}
 	adds r4, r1, #0
 	adds r5, r4, #0
@@ -6908,7 +6908,7 @@ sub_0802367C: @ 0x0802367C
 	ldr r0, _080236BC @ =0x02022C60
 	adds r1, r1, r0
 	adds r0, r5, #0
-	bl sub_08005590
+	bl PutText
 	movs r0, #0
 	pop {r4, r5}
 	pop {r1}
@@ -6917,8 +6917,8 @@ sub_0802367C: @ 0x0802367C
 _080236B8: .4byte 0x0202BBB8
 _080236BC: .4byte 0x02022C60
 
-	thumb_func_start sub_080236C0
-sub_080236C0: @ 0x080236C0
+	thumb_func_start ItemMenu_Select1stCommand
+ItemMenu_Select1stCommand: @ 0x080236C0
 	push {lr}
 	adds r1, #0x3d
 	ldrb r1, [r1]
@@ -6926,7 +6926,7 @@ sub_080236C0: @ 0x080236C0
 	beq _080236E4
 	ldr r0, _080236DC @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08024478
+	bl MakeTargetListForRefresh
 	ldr r0, _080236E0 @ =0x08B95B98
 	bl StartMapSelect
 	movs r0, #0x27
@@ -6941,8 +6941,8 @@ _080236E6:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080236EC
-sub_080236EC: @ 0x080236EC
+	thumb_func_start ItemMenu_AreOtherCommandsAvailable
+ItemMenu_AreOtherCommandsAvailable: @ 0x080236EC
 	push {r4, r5, lr}
 	ldr r5, _08023718 @ =0x03004690
 	ldr r0, [r5]
@@ -6957,7 +6957,7 @@ sub_080236EC: @ 0x080236EC
 	bne _0802371C
 	ldr r0, [r5]
 	adds r1, r4, #0
-	bl sub_08026CD0
+	bl CanUnitUseItem
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0802371C
@@ -6972,8 +6972,8 @@ _0802371E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08023724
-sub_08023724: @ 0x08023724
+	thumb_func_start ItemMenu_DrawOtherCommands
+ItemMenu_DrawOtherCommands: @ 0x08023724
 	push {r4, lr}
 	adds r2, r1, #0
 	ldr r0, _08023764 @ =0x03004690
@@ -7000,7 +7000,7 @@ sub_08023724: @ 0x08023724
 	ldr r2, _08023768 @ =0x02022C60
 	adds r3, r3, r2
 	movs r2, #1
-	bl sub_08016470
+	bl DrawItemMenuLine
 	movs r0, #0
 	pop {r4}
 	pop {r1}
@@ -7026,7 +7026,7 @@ sub_0802376C: @ 0x0802376C
 	adds r1, #0x1e
 	adds r1, r1, r2
 	ldrh r1, [r1]
-	bl sub_080270FC
+	bl DoItemUse
 	movs r0, #7
 	pop {r4}
 	pop {r1}
@@ -7035,8 +7035,8 @@ sub_0802376C: @ 0x0802376C
 _08023798: .4byte 0x0203A85C
 _0802379C: .4byte 0x03004690
 
-	thumb_func_start sub_080237A0
-sub_080237A0: @ 0x080237A0
+	thumb_func_start ItemMenu_SwitchIn
+ItemMenu_SwitchIn: @ 0x080237A0
 	push {lr}
 	adds r1, #0x3c
 	movs r0, #0
@@ -7044,13 +7044,13 @@ sub_080237A0: @ 0x080237A0
 	cmp r0, #0
 	bne _080237B4
 	movs r0, #5
-	bl sub_0801DFC0
+	bl UpdateMenuItemPanel
 	b _080237BE
 _080237B4:
 	movs r0, #0
 	ldrsb r0, [r1, r0]
 	subs r0, #1
-	bl sub_0801DFC0
+	bl UpdateMenuItemPanel
 _080237BE:
 	pop {r1}
 	bx r1
@@ -7061,8 +7061,8 @@ sub_080237C4: @ 0x080237C4
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080237C8
-sub_080237C8: @ 0x080237C8
+	thumb_func_start ItemMenuHelpBox
+ItemMenuHelpBox: @ 0x080237C8
 	push {r4, lr}
 	adds r3, r1, #0
 	adds r2, r3, #0
@@ -7093,15 +7093,15 @@ _080237F6:
 	movs r4, #0x2c
 	ldrsh r1, [r3, r4]
 	lsls r1, r1, #3
-	bl sub_0808198C
+	bl StartItemHelpBox
 	pop {r4}
 	pop {r1}
 	bx r1
 	.align 2, 0
 _0802380C: .4byte 0x03004690
 
-	thumb_func_start sub_08023810
-sub_08023810: @ 0x08023810
+	thumb_func_start CountFactionMoveableUnits
+CountFactionMoveableUnits: @ 0x08023810
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	movs r6, #0
@@ -7154,8 +7154,8 @@ _08023860:
 	.align 2, 0
 _08023870: .4byte 0x000100AE
 
-	thumb_func_start sub_08023874
-sub_08023874: @ 0x08023874
+	thumb_func_start CountFactionUnitsWithoutFlags
+CountFactionUnitsWithoutFlags: @ 0x08023874
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r7, r1, #0
@@ -7203,8 +7203,8 @@ _080238BE:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080238C4
-sub_080238C4: @ 0x080238C4
+	thumb_func_start AreUnitIdsSameFaction
+AreUnitIdsSameFaction: @ 0x080238C4
 	movs r2, #0xc0
 	ands r1, r2
 	movs r3, #0
@@ -7217,8 +7217,8 @@ _080238D2:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080238D8
-sub_080238D8: @ 0x080238D8
+	thumb_func_start GetActiveFactionAlliance
+GetActiveFactionAlliance: @ 0x080238D8
 	ldr r1, _080238E8 @ =0x0202BBF8
 	movs r0, #0x80
 	ldrb r1, [r1, #0xf]
@@ -7229,8 +7229,8 @@ sub_080238D8: @ 0x080238D8
 	.align 2, 0
 _080238E8: .4byte 0x0202BBF8
 
-	thumb_func_start sub_080238EC
-sub_080238EC: @ 0x080238EC
+	thumb_func_start GetActiveFactionOpposingAlliance
+GetActiveFactionOpposingAlliance: @ 0x080238EC
 	ldr r1, _08023900 @ =0x0202BBF8
 	movs r2, #0x80
 	movs r0, #0x80
@@ -7265,8 +7265,8 @@ _0802391C:
 _08023920: .4byte 0x0202BBF8
 _08023924: .4byte 0x000F423F
 
-	thumb_func_start sub_08023928
-sub_08023928: @ 0x08023928
+	thumb_func_start AddGold
+AddGold: @ 0x08023928
 	ldr r2, _0802393C @ =0x0202BBF8
 	ldr r1, [r2, #8]
 	adds r1, r1, r0
@@ -7338,8 +7338,8 @@ _080239A4: .4byte 0x0202E3D8
 _080239A8: .4byte 0x0202E3E4
 _080239AC: .4byte 0x0202E3DC
 
-	thumb_func_start sub_080239B0
-sub_080239B0: @ 0x080239B0
+	thumb_func_start ForEachUnitInRange
+ForEachUnitInRange: @ 0x080239B0
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r0, _08023A10 @ =0x0202E3D8
@@ -7395,8 +7395,8 @@ _08023A10: .4byte 0x0202E3D8
 _08023A14: .4byte 0x0202E3E8
 _08023A18: .4byte 0x0202E3DC
 
-	thumb_func_start sub_08023A1C
-sub_08023A1C: @ 0x08023A1C
+	thumb_func_start ForEachPosInRange
+ForEachPosInRange: @ 0x08023A1C
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r0, _08023A6C @ =0x0202E3D8
@@ -7444,8 +7444,8 @@ _08023A64:
 _08023A6C: .4byte 0x0202E3D8
 _08023A70: .4byte 0x0202E3E8
 
-	thumb_func_start sub_08023A74
-sub_08023A74: @ 0x08023A74
+	thumb_func_start ForEachAdjacentUnit
+ForEachAdjacentUnit: @ 0x08023A74
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -7455,22 +7455,22 @@ sub_08023A74: @ 0x08023A74
 	adds r1, r5, #0
 	movs r2, #1
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	movs r3, #1
 	rsbs r3, r3, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r2, #0
-	bl sub_0801A2D4
+	bl MapAddInRange
 	adds r0, r6, #0
-	bl sub_080239B0
+	bl ForEachUnitInRange
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08023AA8
-sub_08023AA8: @ 0x08023AA8
+	thumb_func_start ForEachAdjacentPosition
+ForEachAdjacentPosition: @ 0x08023AA8
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -7480,22 +7480,22 @@ sub_08023AA8: @ 0x08023AA8
 	adds r1, r5, #0
 	movs r2, #1
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	movs r3, #1
 	rsbs r3, r3, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r2, #0
-	bl sub_0801A2D4
+	bl MapAddInRange
 	adds r0, r6, #0
-	bl sub_08023A1C
+	bl ForEachPosInRange
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08023ADC
-sub_08023ADC: @ 0x08023ADC
+	thumb_func_start ForEachPosIn12Range
+ForEachPosIn12Range: @ 0x08023ADC
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -7505,22 +7505,22 @@ sub_08023ADC: @ 0x08023ADC
 	adds r1, r5, #0
 	movs r2, #2
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	movs r3, #1
 	rsbs r3, r3, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r2, #0
-	bl sub_0801A2D4
+	bl MapAddInRange
 	adds r0, r6, #0
-	bl sub_08023A1C
+	bl ForEachPosInRange
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08023B10
-sub_08023B10: @ 0x08023B10
+	thumb_func_start ForEachUnitInMagBy2Range
+ForEachUnitInMagBy2Range: @ 0x08023B10
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -7540,15 +7540,15 @@ sub_08023B10: @ 0x08023B10
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	movs r3, #1
 	rsbs r3, r3, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r2, #0
-	bl sub_0801A2D4
+	bl MapAddInRange
 	mov r0, r8
-	bl sub_080239B0
+	bl ForEachUnitInRange
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -7557,8 +7557,8 @@ sub_08023B10: @ 0x08023B10
 	.align 2, 0
 _08023B5C: .4byte 0x02033E40
 
-	thumb_func_start sub_08023B60
-sub_08023B60: @ 0x08023B60
+	thumb_func_start TryAddTrapsToTargetList
+TryAddTrapsToTargetList: @ 0x08023B60
 	push {r4, r5, r6, lr}
 	movs r0, #0
 	bl GetTrap
@@ -7656,8 +7656,8 @@ _08023C12:
 _08023C18: .4byte 0x0202E3E0
 _08023C1C: .4byte 0x0202E3E8
 
-	thumb_func_start sub_08023C20
-sub_08023C20: @ 0x08023C20
+	thumb_func_start AddUnitToTargetListIfNotAllied
+AddUnitToTargetListIfNotAllied: @ 0x08023C20
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08023C54 @ =0x02033E40
@@ -7706,22 +7706,22 @@ ListAttackTargetsForWeapon: @ 0x08023C58
 	movs r1, #0
 	bl MapFill
 	mov r0, r8
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	mov r0, r8
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
 	adds r0, r5, #0
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_0801B19C
-	ldr r0, _08023CBC @ =sub_08023C20
-	bl sub_080239B0
-	bl sub_08023B60
+	bl MapAddInBoundedRange
+	ldr r0, _08023CBC @ =AddUnitToTargetListIfNotAllied
+	bl ForEachUnitInRange
+	bl TryAddTrapsToTargetList
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -7730,10 +7730,10 @@ ListAttackTargetsForWeapon: @ 0x08023C58
 	.align 2, 0
 _08023CB4: .4byte 0x02033E40
 _08023CB8: .4byte 0x0202E3E8
-_08023CBC: .4byte sub_08023C20
+_08023CBC: .4byte AddUnitToTargetListIfNotAllied
 
-	thumb_func_start sub_08023CC0
-sub_08023CC0: @ 0x08023CC0
+	thumb_func_start TryAddUnitToTradeTargetList
+TryAddUnitToTradeTargetList: @ 0x08023CC0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, _08023D60 @ =0x02033E40
@@ -7743,7 +7743,7 @@ sub_08023CC0: @ 0x08023CC0
 	asrs r0, r0, #0x18
 	movs r1, #0xb
 	ldrsb r1, [r4, r1]
-	bl sub_080238C4
+	bl AreUnitIdsSameFaction
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08023D5A
@@ -7817,8 +7817,8 @@ _08023D5A:
 	.align 2, 0
 _08023D60: .4byte 0x02033E40
 
-	thumb_func_start sub_08023D64
-sub_08023D64: @ 0x08023D64
+	thumb_func_start MakeTradeTargetList
+MakeTradeTargetList: @ 0x08023D64
 	push {r4, r5, r6, r7, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -7830,11 +7830,11 @@ sub_08023D64: @ 0x08023D64
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r7, _08023DD4 @ =sub_08023CC0
+	ldr r7, _08023DD4 @ =TryAddUnitToTradeTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
 	adds r2, r7, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	ldr r0, [r6]
 	ldr r0, [r0, #0xc]
 	movs r1, #0x10
@@ -7867,10 +7867,10 @@ _08023DC6:
 	.align 2, 0
 _08023DCC: .4byte 0x02033E40
 _08023DD0: .4byte 0x0202E3E8
-_08023DD4: .4byte sub_08023CC0
+_08023DD4: .4byte TryAddUnitToTradeTargetList
 
-	thumb_func_start sub_08023DD8
-sub_08023DD8: @ 0x08023DD8
+	thumb_func_start TryAddUnitToRescueTargetList
+TryAddUnitToRescueTargetList: @ 0x08023DD8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, _08023E34 @ =0x02033E40
@@ -7917,8 +7917,8 @@ _08023E2C:
 	.align 2, 0
 _08023E34: .4byte 0x02033E40
 
-	thumb_func_start sub_08023E38
-sub_08023E38: @ 0x08023E38
+	thumb_func_start MakeRescueTargetList
+MakeRescueTargetList: @ 0x08023E38
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -7930,20 +7930,20 @@ sub_08023E38: @ 0x08023E38
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _08023E68 @ =sub_08023DD8
+	ldr r2, _08023E68 @ =TryAddUnitToRescueTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08023E60: .4byte 0x02033E40
 _08023E64: .4byte 0x0202E3E8
-_08023E68: .4byte sub_08023DD8
+_08023E68: .4byte TryAddUnitToRescueTargetList
 
-	thumb_func_start sub_08023E6C
-sub_08023E6C: @ 0x08023E6C
+	thumb_func_start TryAddToDropTargetList
+TryAddToDropTargetList: @ 0x08023E6C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r6, r1, #0
@@ -7966,7 +7966,7 @@ sub_08023E6C: @ 0x08023E6C
 	ldr r1, [r1]
 	adds r1, r1, r4
 	ldrb r1, [r1]
-	bl sub_08018D68
+	bl CanUnitCrossTerrain
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08023EB0
@@ -7984,8 +7984,8 @@ _08023EB8: .4byte 0x0202E3DC
 _08023EBC: .4byte 0x02033E40
 _08023EC0: .4byte 0x0202E3E0
 
-	thumb_func_start sub_08023EC4
-sub_08023EC4: @ 0x08023EC4
+	thumb_func_start MakeDropTargetList
+MakeDropTargetList: @ 0x08023EC4
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -7997,20 +7997,20 @@ sub_08023EC4: @ 0x08023EC4
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _08023EF4 @ =sub_08023E6C
+	ldr r2, _08023EF4 @ =TryAddToDropTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023AA8
+	bl ForEachAdjacentPosition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08023EEC: .4byte 0x02033E40
 _08023EF0: .4byte 0x0202E3E8
-_08023EF4: .4byte sub_08023E6C
+_08023EF4: .4byte TryAddToDropTargetList
 
-	thumb_func_start sub_08023EF8
-sub_08023EF8: @ 0x08023EF8
+	thumb_func_start TryAddRescuedUnitToTakeTargetList
+TryAddRescuedUnitToTakeTargetList: @ 0x08023EF8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _08023F60 @ =0x02033E40
@@ -8020,7 +8020,7 @@ sub_08023EF8: @ 0x08023EF8
 	asrs r0, r0, #0x18
 	movs r1, #0xb
 	ldrsb r1, [r5, r1]
-	bl sub_080238C4
+	bl AreUnitIdsSameFaction
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08023F5A
@@ -8076,17 +8076,17 @@ sub_08023F64: @ 0x08023F64
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _08023F94 @ =sub_08023EF8
+	ldr r2, _08023F94 @ =TryAddRescuedUnitToTakeTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08023F8C: .4byte 0x02033E40
 _08023F90: .4byte 0x0202E3E8
-_08023F94: .4byte sub_08023EF8
+_08023F94: .4byte TryAddRescuedUnitToTakeTargetList
 
 	thumb_func_start sub_08023F98
 sub_08023F98: @ 0x08023F98
@@ -8099,7 +8099,7 @@ sub_08023F98: @ 0x08023F98
 	asrs r0, r0, #0x18
 	movs r1, #0xb
 	ldrsb r1, [r4, r1]
-	bl sub_080238C4
+	bl AreUnitIdsSameFaction
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0802400C
@@ -8167,7 +8167,7 @@ sub_08024018: @ 0x08024018
 	ldr r2, _08024048 @ =sub_08023F98
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -8230,7 +8230,7 @@ sub_08024094: @ 0x08024094
 	ldr r2, _080240C4 @ =sub_0802404C
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -8251,7 +8251,7 @@ sub_080240C8: @ 0x080240C8
 	adds r0, r2, #0
 	bl BeginTargetList
 	ldr r0, [r4]
-	bl sub_08026628
+	bl GetUnitSupporterCount
 	adds r6, r0, #0
 	movs r5, #0
 	cmp r5, r6
@@ -8260,7 +8260,7 @@ sub_080240C8: @ 0x080240C8
 _080240EC:
 	ldr r0, [r7]
 	adds r1, r5, #0
-	bl sub_0802664C
+	bl GetUnitSupportUnit
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _08024160
@@ -8289,7 +8289,7 @@ _0802411E:
 	bne _08024160
 	ldr r0, [r7]
 	adds r1, r5, #0
-	bl sub_08026778
+	bl CanUnitSupportNow
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08024160
@@ -8327,8 +8327,8 @@ _08024166:
 _0802416C: .4byte 0x02033E40
 _08024170: .4byte 0x0001002C
 
-	thumb_func_start sub_08024174
-sub_08024174: @ 0x08024174
+	thumb_func_start AddUnitToTargetListIfAllied
+AddUnitToTargetListIfAllied: @ 0x08024174
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080241A8 @ =0x02033E40
@@ -8357,8 +8357,8 @@ _080241A2:
 	.align 2, 0
 _080241A8: .4byte 0x02033E40
 
-	thumb_func_start sub_080241AC
-sub_080241AC: @ 0x080241AC
+	thumb_func_start FillBallistaRangeMaybe
+FillBallistaRangeMaybe: @ 0x080241AC
 	push {r4, r5, r6, r7, lr}
 	movs r5, #0x10
 	ldrsb r5, [r0, r5]
@@ -8371,7 +8371,7 @@ sub_080241AC: @ 0x080241AC
 	bl BeginTargetList
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08034710
+	bl GetSomeBallistaItemAt
 	adds r7, r0, #0
 	cmp r7, #0
 	beq _08024206
@@ -8380,22 +8380,22 @@ sub_080241AC: @ 0x080241AC
 	movs r1, #0
 	bl MapFill
 	adds r0, r7, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	adds r0, r7, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
 	adds r0, r5, #0
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_0801B19C
-	ldr r0, _08024214 @ =sub_08024174
-	bl sub_080239B0
-	bl sub_08023B60
+	bl MapAddInBoundedRange
+	ldr r0, _08024214 @ =AddUnitToTargetListIfAllied
+	bl ForEachUnitInRange
+	bl TryAddTrapsToTargetList
 _08024206:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -8403,10 +8403,10 @@ _08024206:
 	.align 2, 0
 _0802420C: .4byte 0x02033E40
 _08024210: .4byte 0x0202E3E8
-_08024214: .4byte sub_08024174
+_08024214: .4byte AddUnitToTargetListIfAllied
 
-	thumb_func_start sub_08024218
-sub_08024218: @ 0x08024218
+	thumb_func_start TryAddClosedDoorToTargetList
+TryAddClosedDoorToTargetList: @ 0x08024218
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -8439,8 +8439,8 @@ _0802424E:
 	.align 2, 0
 _08024254: .4byte 0x0202E3E0
 
-	thumb_func_start sub_08024258
-sub_08024258: @ 0x08024258
+	thumb_func_start TryAddBridgeToTargetList
+TryAddBridgeToTargetList: @ 0x08024258
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -8473,8 +8473,8 @@ _0802428E:
 	.align 2, 0
 _08024294: .4byte 0x0202E3E0
 
-	thumb_func_start sub_08024298
-sub_08024298: @ 0x08024298
+	thumb_func_start MakeTargetListForDoorAndBridges
+MakeTargetListForDoorAndBridges: @ 0x08024298
 	push {r4, r5, r6, lr}
 	adds r4, r1, #0
 	movs r5, #0x10
@@ -8491,26 +8491,26 @@ sub_08024298: @ 0x08024298
 	beq _080242D4
 	cmp r4, #0x1e
 	bne _080242DE
-	ldr r2, _080242D0 @ =sub_08024218
+	ldr r2, _080242D0 @ =TryAddClosedDoorToTargetList
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08023AA8
+	bl ForEachAdjacentPosition
 	b _080242DE
 	.align 2, 0
 _080242C8: .4byte 0x02033E40
 _080242CC: .4byte 0x0202E3E8
-_080242D0: .4byte sub_08024218
+_080242D0: .4byte TryAddClosedDoorToTargetList
 _080242D4:
-	ldr r2, _080242E4 @ =sub_08024258
+	ldr r2, _080242E4 @ =TryAddBridgeToTargetList
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08023AA8
+	bl ForEachAdjacentPosition
 _080242DE:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080242E4: .4byte sub_08024258
+_080242E4: .4byte TryAddBridgeToTargetList
 
 	thumb_func_start sub_080242E8
 sub_080242E8: @ 0x080242E8
@@ -8549,18 +8549,18 @@ _080242FC:
 	adds r0, r0, r2
 	ldrb r6, [r0]
 	adds r0, r6, #0
-	bl sub_08019B20
+	bl GetTerrainHealAmount
 	cmp r0, #0
 	beq _08024372
 	adds r0, r5, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r4, r0, #0
 	adds r0, r5, #0
 	bl GetUnitMaxHp
 	cmp r4, r0
 	beq _08024372
 	adds r0, r6, #0
-	bl sub_08019B20
+	bl GetTerrainHealAmount
 	adds r4, r0, #0
 	adds r0, r5, #0
 	bl GetUnitMaxHp
@@ -8577,7 +8577,7 @@ _080242FC:
 	bl EnlistTarget
 _08024372:
 	adds r0, r6, #0
-	bl sub_08019B30
+	bl GetTerrainHealsStatus
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080243A0
@@ -8612,8 +8612,8 @@ _080243A0:
 _080243B4: .4byte 0x0001002C
 _080243B8: .4byte 0x0202E3E0
 
-	thumb_func_start sub_080243BC
-sub_080243BC: @ 0x080243BC
+	thumb_func_start MakePoisonDamageTargetList
+MakePoisonDamageTargetList: @ 0x080243BC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -8672,8 +8672,8 @@ _0802441A:
 	.align 2, 0
 _08024430: .4byte 0x0001002C
 
-	thumb_func_start sub_08024434
-sub_08024434: @ 0x08024434
+	thumb_func_start TryAddUnitToRefreshTargetList
+TryAddUnitToRefreshTargetList: @ 0x08024434
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08024474 @ =0x02033E40
@@ -8683,7 +8683,7 @@ sub_08024434: @ 0x08024434
 	asrs r0, r0, #0x18
 	movs r1, #0xb
 	ldrsb r1, [r4, r1]
-	bl sub_080238C4
+	bl AreUnitIdsSameFaction
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0802446C
@@ -8707,8 +8707,8 @@ _0802446C:
 	.align 2, 0
 _08024474: .4byte 0x02033E40
 
-	thumb_func_start sub_08024478
-sub_08024478: @ 0x08024478
+	thumb_func_start MakeTargetListForRefresh
+MakeTargetListForRefresh: @ 0x08024478
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -8720,20 +8720,20 @@ sub_08024478: @ 0x08024478
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _080244A8 @ =sub_08024434
+	ldr r2, _080244A8 @ =TryAddUnitToRefreshTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _080244A0: .4byte 0x02033E40
 _080244A4: .4byte 0x0202E3E8
-_080244A8: .4byte sub_08024434
+_080244A8: .4byte TryAddUnitToRefreshTargetList
 
-	thumb_func_start sub_080244AC
-sub_080244AC: @ 0x080244AC
+	thumb_func_start AddAsTarget_IfCanStealFrom
+AddAsTarget_IfCanStealFrom: @ 0x080244AC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	movs r0, #0xc0
@@ -8780,8 +8780,8 @@ _080244FC:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08024504
-sub_08024504: @ 0x08024504
+	thumb_func_start MakeTargetListForSteal
+MakeTargetListForSteal: @ 0x08024504
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -8793,20 +8793,20 @@ sub_08024504: @ 0x08024504
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _08024534 @ =sub_080244AC
+	ldr r2, _08024534 @ =AddAsTarget_IfCanStealFrom
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0802452C: .4byte 0x02033E40
 _08024530: .4byte 0x0202E3E8
-_08024534: .4byte sub_080244AC
+_08024534: .4byte AddAsTarget_IfCanStealFrom
 
-	thumb_func_start sub_08024538
-sub_08024538: @ 0x08024538
+	thumb_func_start TryAddUnitToHealTargetList
+TryAddUnitToHealTargetList: @ 0x08024538
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08024588 @ =0x02033E40
@@ -8826,7 +8826,7 @@ sub_08024538: @ 0x08024538
 	cmp r0, #0
 	bne _08024582
 	adds r0, r5, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r4, r0, #0
 	adds r0, r5, #0
 	bl GetUnitMaxHp
@@ -8860,20 +8860,20 @@ sub_0802458C: @ 0x0802458C
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _080245BC @ =sub_08024538
+	ldr r2, _080245BC @ =TryAddUnitToHealTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _080245B4: .4byte 0x02033E40
 _080245B8: .4byte 0x0202E3E8
-_080245BC: .4byte sub_08024538
+_080245BC: .4byte TryAddUnitToHealTargetList
 
-	thumb_func_start sub_080245C0
-sub_080245C0: @ 0x080245C0
+	thumb_func_start MakeTargetListForRangedHeal
+MakeTargetListForRangedHeal: @ 0x080245C0
 	push {r4, r5, r6, lr}
 	movs r5, #0x10
 	ldrsb r5, [r0, r5]
@@ -8894,16 +8894,16 @@ sub_080245C0: @ 0x080245C0
 	adds r0, r5, #0
 	adds r1, r6, #0
 	movs r3, #1
-	bl sub_0801A2D4
-	ldr r0, _08024608 @ =sub_08024538
-	bl sub_080239B0
+	bl MapAddInRange
+	ldr r0, _08024608 @ =TryAddUnitToHealTargetList
+	bl ForEachUnitInRange
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08024600: .4byte 0x02033E40
 _08024604: .4byte 0x0202E3E8
-_08024608: .4byte sub_08024538
+_08024608: .4byte TryAddUnitToHealTargetList
 
 	thumb_func_start sub_0802460C
 sub_0802460C: @ 0x0802460C
@@ -8963,7 +8963,7 @@ sub_0802465C: @ 0x0802465C
 	ldr r2, _0802468C @ =sub_0802460C
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -8972,8 +8972,8 @@ _08024684: .4byte 0x02033E40
 _08024688: .4byte 0x0202E3E8
 _0802468C: .4byte sub_0802460C
 
-	thumb_func_start sub_08024690
-sub_08024690: @ 0x08024690
+	thumb_func_start TryAddUnitToBarrierTargetList
+TryAddUnitToBarrierTargetList: @ 0x08024690
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080246DC @ =0x02033E40
@@ -9026,17 +9026,17 @@ sub_080246E0: @ 0x080246E0
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _08024710 @ =sub_08024690
+	ldr r2, _08024710 @ =TryAddUnitToBarrierTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08024708: .4byte 0x02033E40
 _0802470C: .4byte 0x0202E3E8
-_08024710: .4byte sub_08024690
+_08024710: .4byte TryAddUnitToBarrierTargetList
 
 	thumb_func_start sub_08024714
 sub_08024714: @ 0x08024714
@@ -9078,7 +9078,7 @@ sub_0802474C: @ 0x0802474C
 	movs r1, #0
 	bl MapFill
 	ldr r0, _08024770 @ =sub_08024714
-	bl sub_08023B10
+	bl ForEachUnitInMagBy2Range
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -9216,7 +9216,7 @@ sub_08024858: @ 0x08024858
 	movs r1, #0
 	bl MapFill
 	ldr r0, _0802487C @ =sub_08024774
-	bl sub_08023B10
+	bl ForEachUnitInMagBy2Range
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -9234,7 +9234,7 @@ sub_08024880: @ 0x08024880
 	movs r1, #0
 	bl MapFill
 	ldr r0, _080248A4 @ =sub_080247C0
-	bl sub_08023B10
+	bl ForEachUnitInMagBy2Range
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -9252,7 +9252,7 @@ sub_080248A8: @ 0x080248A8
 	movs r1, #0
 	bl MapFill
 	ldr r0, _080248CC @ =sub_0802480C
-	bl sub_08023B10
+	bl ForEachUnitInMagBy2Range
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -9306,7 +9306,7 @@ sub_08024908: @ 0x08024908
 	ldr r2, _08024938 @ =sub_080248D0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -9328,20 +9328,20 @@ sub_0802493C: @ 0x0802493C
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _0802496C @ =sub_08024218
+	ldr r2, _0802496C @ =TryAddClosedDoorToTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023ADC
+	bl ForEachPosIn12Range
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08024964: .4byte 0x02033E40
 _08024968: .4byte 0x0202E3E8
-_0802496C: .4byte sub_08024218
+_0802496C: .4byte TryAddClosedDoorToTargetList
 
-	thumb_func_start sub_08024970
-sub_08024970: @ 0x08024970
+	thumb_func_start TryAddUnitToHammerneTargetList
+TryAddUnitToHammerneTargetList: @ 0x08024970
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, _08024990 @ =0x02033E40
@@ -9351,7 +9351,7 @@ sub_08024970: @ 0x08024970
 	asrs r0, r0, #0x18
 	movs r1, #0xb
 	ldrsb r1, [r4, r1]
-	bl sub_080238C4
+	bl AreUnitIdsSameFaction
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080249C0
@@ -9400,17 +9400,17 @@ sub_080249C8: @ 0x080249C8
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _080249F8 @ =sub_08024970
+	ldr r2, _080249F8 @ =TryAddUnitToHammerneTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _080249F0: .4byte 0x02033E40
 _080249F4: .4byte 0x0202E3E8
-_080249F8: .4byte sub_08024970
+_080249F8: .4byte TryAddUnitToHammerneTargetList
 
 	thumb_func_start sub_080249FC
 sub_080249FC: @ 0x080249FC
@@ -9425,7 +9425,7 @@ sub_080249FC: @ 0x080249FC
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
 	bl BeginTargetList
-	bl sub_080238D8
+	bl GetActiveFactionAlliance
 	adds r7, r0, #0
 	adds r6, r7, #1
 	b _08024A74
@@ -9444,7 +9444,7 @@ _08024A1E:
 	cmp r0, #0
 	bne _08024A70
 	adds r0, r5, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r4, r0, #0
 	adds r0, r5, #0
 	bl GetUnitMaxHp
@@ -9502,7 +9502,7 @@ _08024A9C:
 	ldrsb r0, [r4, r0]
 	bl GetUnit
 	adds r5, r0, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	movs r1, #3
 	ldrsb r1, [r4, r1]
 	cmp r0, r1
@@ -9511,10 +9511,10 @@ _08024A9C:
 	ldrb r0, [r0, #4]
 	movs r1, #0
 	mov r2, r8
-	bl sub_0809FEE8
+	bl PidStatsRecordDefeatInfo
 	ldr r0, [r5]
 	ldrb r0, [r0, #4]
-	bl sub_0809FDFC
+	bl PidStatsRecordLoseData
 _08024ACE:
 	adds r6, #1
 	cmp r6, r7
@@ -9527,8 +9527,8 @@ _08024AD4:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08024AE0
-sub_08024AE0: @ 0x08024AE0
+	thumb_func_start TryAddToMineTargetList
+TryAddToMineTargetList: @ 0x08024AE0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -9562,13 +9562,13 @@ _08024B10:
 	ldr r1, [r1]
 	adds r1, r1, r4
 	ldrb r1, [r1]
-	bl sub_08018D68
+	bl CanUnitCrossTerrain
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08024B48
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	beq _08024B3C
 	ldrb r0, [r0, #2]
@@ -9591,8 +9591,8 @@ _08024B58: .4byte 0x0202E3EC
 _08024B5C: .4byte 0x02033E40
 _08024B60: .4byte 0x0202E3E0
 
-	thumb_func_start sub_08024B64
-sub_08024B64: @ 0x08024B64
+	thumb_func_start MakeTargetListForDanceRing
+MakeTargetListForDanceRing: @ 0x08024B64
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -9604,17 +9604,17 @@ sub_08024B64: @ 0x08024B64
 	ldr r0, [r0]
 	movs r1, #0
 	bl MapFill
-	ldr r2, _08024B94 @ =sub_08024AE0
+	ldr r2, _08024B94 @ =TryAddToMineTargetList
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023AA8
+	bl ForEachAdjacentPosition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08024B8C: .4byte 0x02033E40
 _08024B90: .4byte 0x0202E3E8
-_08024B94: .4byte sub_08024AE0
+_08024B94: .4byte TryAddToMineTargetList
 
 	thumb_func_start sub_08024B98
 sub_08024B98: @ 0x08024B98
@@ -9631,7 +9631,7 @@ sub_08024B98: @ 0x08024B98
 	cmp r0, #0
 	bne _08024BDE
 	adds r0, r4, #0
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	bne _08024BDE
 	ldr r1, _08024BE8 @ =0x08BE3C16
@@ -9660,8 +9660,8 @@ _08024BE4: .4byte 0x0202E3DC
 _08024BE8: .4byte 0x08BE3C16
 _08024BEC: .4byte 0x0202E3E0
 
-	thumb_func_start sub_08024BF0
-sub_08024BF0: @ 0x08024BF0
+	thumb_func_start MakeTargetListForMine
+MakeTargetListForMine: @ 0x08024BF0
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r0, r4]
@@ -9676,7 +9676,7 @@ sub_08024BF0: @ 0x08024BF0
 	ldr r2, _08024C20 @ =sub_08024B98
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023AA8
+	bl ForEachAdjacentPosition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -9728,7 +9728,7 @@ sub_08024C54: @ 0x08024C54
 	ldr r2, _08024C84 @ =sub_08024C24
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08023A74
+	bl ForEachAdjacentUnit
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -9824,8 +9824,8 @@ _08024D20: .4byte 0x02039F18
 _08024D24: .4byte 0x02039F14
 _08024D28: .4byte 0x02033E44
 
-	thumb_func_start sub_08024D2C
-sub_08024D2C: @ 0x08024D2C
+	thumb_func_start ResetUnitSpritesB
+ResetUnitSpritesB: @ 0x08024D2C
 	push {r4, r5, r6, lr}
 	movs r2, #0xcf
 	ldr r5, _08024D54 @ =0x02039F18
@@ -9852,8 +9852,8 @@ _08024D54: .4byte 0x02039F18
 _08024D58: .4byte 0x02039F14
 _08024D5C: .4byte 0x02033E44
 
-	thumb_func_start sub_08024D60
-sub_08024D60: @ 0x08024D60
+	thumb_func_start StartUiSMS
+StartUiSMS: @ 0x08024D60
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -9899,12 +9899,12 @@ _08024DAE:
 _08024DB8:
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl sub_08025028
+	bl ApplyUnitSpriteImage16x32
 	b _08024DCA
 _08024DC2:
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl sub_08025118
+	bl ApplyUnitSpriteImage32x32
 _08024DCA:
 	ldr r2, _08024DE8 @ =0x02033E44
 	add r2, r8
@@ -9925,8 +9925,8 @@ _08024DD6:
 	.align 2, 0
 _08024DE8: .4byte 0x02033E44
 
-	thumb_func_start sub_08024DEC
-sub_08024DEC: @ 0x08024DEC
+	thumb_func_start UseUnitSprite
+UseUnitSprite: @ 0x08024DEC
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	ldr r0, _08024E24 @ =0x02033E44
@@ -9979,7 +9979,7 @@ _08024E54:
 	ldr r4, _08024E6C @ =0x02039F18
 	ldr r0, [r4]
 	adds r1, r6, #0
-	bl sub_08025028
+	bl ApplyUnitSpriteImage16x32
 	lsrs r1, r0, #0x1f
 	adds r0, r0, r1
 	asrs r0, r0, #1
@@ -10001,7 +10001,7 @@ _08024E70:
 _08024E80:
 	ldr r0, [r4]
 	adds r1, r6, #0
-	bl sub_08025118
+	bl ApplyUnitSpriteImage32x32
 	lsrs r1, r0, #0x1f
 	adds r0, r0, r1
 	asrs r0, r0, #1
@@ -10207,8 +10207,8 @@ _0802501C: .4byte 0x02033F14
 _08025020: .4byte 0x01000010
 _08025024: .4byte 0x08B93E44
 
-	thumb_func_start sub_08025028
-sub_08025028: @ 0x08025028
+	thumb_func_start ApplyUnitSpriteImage16x32
+ApplyUnitSpriteImage16x32: @ 0x08025028
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -10324,8 +10324,8 @@ _0802510C: .4byte 0x08B93E58
 _08025110: .4byte 0x08B93E44
 _08025114: .4byte 0x02033F14
 
-	thumb_func_start sub_08025118
-sub_08025118: @ 0x08025118
+	thumb_func_start ApplyUnitSpriteImage32x32
+ApplyUnitSpriteImage32x32: @ 0x08025118
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -10443,8 +10443,8 @@ _08025200: .4byte 0x08B93E58
 _08025204: .4byte 0x08B93E44
 _08025208: .4byte 0x02033F14
 
-	thumb_func_start sub_0802520C
-sub_0802520C: @ 0x0802520C
+	thumb_func_start TornOutUnitSprite
+TornOutUnitSprite: @ 0x0802520C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -10452,9 +10452,9 @@ sub_0802520C: @ 0x0802520C
 	push {r5, r6, r7}
 	sub sp, #0xc
 	str r1, [sp]
-	bl sub_08017610
+	bl GetUnitSMSId
 	str r0, [sp, #4]
-	bl sub_08024DEC
+	bl UseUnitSprite
 	lsls r6, r0, #5
 	ldr r1, _08025274 @ =0x08B93F18
 	ldr r2, [sp]
@@ -10827,8 +10827,8 @@ _0802550C: .4byte 0x06011800
 _08025510: .4byte 0x06011C00
 _08025514: .4byte 0x02033E44
 
-	thumb_func_start sub_08025518
-sub_08025518: @ 0x08025518
+	thumb_func_start SyncUnitSpriteSheet
+SyncUnitSpriteSheet: @ 0x08025518
 	push {r4, r5, lr}
 	bl GetGameTime
 	movs r1, #0x48
@@ -10904,7 +10904,7 @@ _080255AE:
 	ldr r1, _080255C0 @ =0x06011000
 	movs r2, #0x80
 	lsls r2, r2, #6
-	bl sub_08003078
+	bl RegisterDataMove
 	b _080255D4
 	.align 2, 0
 _080255BC: .4byte 0x02035F14
@@ -10916,7 +10916,7 @@ _080255C4:
 	ldr r1, _080255DC @ =0x06011000
 	movs r2, #0x80
 	lsls r2, r2, #6
-	bl sub_08003078
+	bl RegisterDataMove
 _080255D4:
 	pop {r0}
 	bx r0
@@ -10984,8 +10984,8 @@ _08025648: .4byte 0x02035F14
 _0802564C: .4byte 0x02037F14
 _08025650: .4byte 0x08B93E48
 
-	thumb_func_start sub_08025654
-sub_08025654: @ 0x08025654
+	thumb_func_start SetStandingMuFacing
+SetStandingMuFacing: @ 0x08025654
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -11031,7 +11031,7 @@ _080256A2:
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r2, #0x40
-	bl sub_08003078
+	bl RegisterDataMove
 	movs r0, #0x80
 	lsls r0, r0, #3
 	adds r5, r5, r0
@@ -11047,8 +11047,8 @@ _080256BA:
 _080256C0: .4byte 0x02033F14
 _080256C4: .4byte 0x08B93E48
 
-	thumb_func_start sub_080256C8
-sub_080256C8: @ 0x080256C8
+	thumb_func_start GetUnitDisplayedSpritePalette
+GetUnitDisplayedSpritePalette: @ 0x080256C8
 	push {lr}
 	adds r2, r0, #0
 	ldr r1, [r2, #0xc]
@@ -11155,7 +11155,7 @@ _08025744:
 	cmp r0, #0
 	beq _080257EE
 	lsls r0, r2, #4
-	bl sub_080258D8
+	bl AddUnitSprite
 	adds r5, r0, #0
 	movs r0, #0x11
 	ldrsb r0, [r6, r0]
@@ -11166,11 +11166,11 @@ _08025744:
 	lsls r0, r0, #4
 	strh r0, [r5, #4]
 	adds r0, r6, #0
-	bl sub_08017610
-	bl sub_08024DEC
+	bl GetUnitSMSId
+	bl UseUnitSprite
 	adds r4, r0, #0
 	adds r0, r6, #0
-	bl sub_080256C8
+	bl GetUnitDisplayedSpritePalette
 	adds r4, #0x80
 	movs r1, #0xf
 	ands r1, r0
@@ -11178,7 +11178,7 @@ _08025744:
 	adds r4, r4, r1
 	strh r4, [r5, #8]
 	adds r0, r6, #0
-	bl sub_08017610
+	bl GetUnitSMSId
 	ldr r2, _0802583C @ =0x08C99700
 	movs r1, #0x7f
 	ands r1, r0
@@ -11259,7 +11259,7 @@ _08025852:
 _08025856:
 	movs r0, #0x54
 _08025858:
-	bl sub_08024DEC
+	bl UseUnitSprite
 	adds r0, r0, r6
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
@@ -11267,7 +11267,7 @@ _08025858:
 _08025864:
 	ldrb r1, [r4, #1]
 	lsls r0, r1, #4
-	bl sub_080258D8
+	bl AddUnitSprite
 	adds r5, r0, #0
 	ldrb r2, [r4, #1]
 	lsls r0, r2, #4
@@ -11285,7 +11285,7 @@ _08025882:
 	bne _080258B0
 	ldrb r1, [r4, #1]
 	lsls r0, r1, #4
-	bl sub_080258D8
+	bl AddUnitSprite
 	adds r5, r0, #0
 	ldrb r2, [r4, #1]
 	lsls r0, r2, #4
@@ -11294,7 +11294,7 @@ _08025882:
 	lsls r0, r1, #4
 	strh r0, [r5, #4]
 	movs r0, #0x57
-	bl sub_08024DEC
+	bl UseUnitSprite
 	ldr r2, _080258D0 @ =0xFFFFB080
 	adds r0, r0, r2
 	strh r0, [r5, #8]
@@ -11323,8 +11323,8 @@ _080258C4:
 _080258D0: .4byte 0xFFFFB080
 _080258D4: .4byte 0x0203A3D0
 
-	thumb_func_start sub_080258D8
-sub_080258D8: @ 0x080258D8
+	thumb_func_start AddUnitSprite
+AddUnitSprite: @ 0x080258D8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r2, _080258F4 @ =0x02039F1C
@@ -11354,12 +11354,12 @@ _080258FC:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08025910
-sub_08025910: @ 0x08025910
+	thumb_func_start PutUnitSpritesOam
+PutUnitSpritesOam: @ 0x08025910
 	push {r4, r5, r6, lr}
 	ldr r0, _08025984 @ =0x02039F1C
 	ldr r6, [r0]
-	bl sub_08025B54
+	bl PutUnitSpriteIconsOam
 	cmp r6, #0
 	bne _08025920
 	b _08025A92
@@ -11643,8 +11643,8 @@ _08025B48: .4byte 0x00000107
 _08025B4C: .4byte 0x08B905B0
 _08025B50: .4byte 0x00000C51
 
-	thumb_func_start sub_08025B54
-sub_08025B54: @ 0x08025B54
+	thumb_func_start PutUnitSpriteIconsOam
+PutUnitSpriteIconsOam: @ 0x08025B54
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -11723,7 +11723,7 @@ _08025BF2:
 	b _08025F56
 _08025BFE:
 	adds r0, r4, #0
-	bl sub_080265A8
+	bl GetUnitSpriteHideFlag
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08025C0C
@@ -12178,8 +12178,8 @@ sub_08025F9C: @ 0x08025F9C
 	.align 2, 0
 _08025FA4: .4byte 0x0203A3D4
 
-	thumb_func_start sub_08025FA8
-sub_08025FA8: @ 0x08025FA8
+	thumb_func_start UnitSpriteHoverUpdate
+UnitSpriteHoverUpdate: @ 0x08025FA8
 	push {r4, lr}
 	ldr r2, _0802600C @ =0x0202BBB8
 	movs r1, #0x16
@@ -12311,8 +12311,8 @@ _080260AE:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080260B4
-sub_080260B4: @ 0x080260B4
+	thumb_func_start PutUnitSprite
+PutUnitSprite: @ 0x080260B4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -12323,9 +12323,9 @@ sub_080260B4: @ 0x080260B4
 	adds r7, r2, #0
 	adds r4, r3, #0
 	adds r0, r4, #0
-	bl sub_08017610
+	bl GetUnitSMSId
 	adds r5, r0, #0
-	bl sub_08024DEC
+	bl UseUnitSprite
 	adds r6, r0, #0
 	mov r1, r8
 	adds r1, #0x10
@@ -12358,7 +12358,7 @@ _08026108:
 	b _0802618A
 _0802610E:
 	adds r0, r4, #0
-	bl sub_080256C8
+	bl GetUnitDisplayedSpritePalette
 	movs r1, #0xf
 	ands r1, r0
 	lsls r1, r1, #0xc
@@ -12371,13 +12371,13 @@ _0802610E:
 	mov r0, sb
 	mov r1, r8
 	adds r2, r7, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _0802618A
 	.align 2, 0
 _08026134: .4byte 0x08B905B8
 _08026138:
 	adds r0, r4, #0
-	bl sub_080256C8
+	bl GetUnitDisplayedSpritePalette
 	movs r1, #0xf
 	ands r1, r0
 	lsls r1, r1, #0xc
@@ -12391,13 +12391,13 @@ _08026138:
 	str r1, [sp]
 	mov r0, sb
 	mov r1, r8
-	bl sub_080069F4
+	bl PutSprite
 	b _0802618A
 	.align 2, 0
 _08026160: .4byte 0x08B905D8
 _08026164:
 	adds r0, r4, #0
-	bl sub_080256C8
+	bl GetUnitDisplayedSpritePalette
 	movs r4, #0xf
 	ands r4, r0
 	lsls r4, r4, #0xc
@@ -12412,7 +12412,7 @@ _08026164:
 	ldr r3, _08026198 @ =0x08B905C0
 	str r4, [sp]
 	mov r0, sb
-	bl sub_080069F4
+	bl PutSprite
 _0802618A:
 	add sp, #4
 	pop {r3, r4}
@@ -12424,8 +12424,8 @@ _0802618A:
 	.align 2, 0
 _08026198: .4byte 0x08B905C0
 
-	thumb_func_start sub_0802619C
-sub_0802619C: @ 0x0802619C
+	thumb_func_start PutUnitSpriteForClassId
+PutUnitSpriteForClassId: @ 0x0802619C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -12437,9 +12437,9 @@ sub_0802619C: @ 0x0802619C
 	ldr r0, [sp, #0x20]
 	lsls r3, r3, #0x10
 	lsrs r7, r3, #0x10
-	bl sub_08018814
+	bl GetClassSMSId
 	mov r8, r0
-	bl sub_08024DEC
+	bl UseUnitSprite
 	adds r4, r0, #0
 	adds r4, #0x80
 	adds r1, r6, #0
@@ -12479,7 +12479,7 @@ _080261FA:
 	mov r0, sb
 	adds r1, r6, #0
 	adds r2, r5, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _0802623C
 	.align 2, 0
 _0802620C: .4byte 0x08B905B8
@@ -12491,7 +12491,7 @@ _08026210:
 	str r0, [sp]
 	mov r0, sb
 	adds r1, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _0802623C
 	.align 2, 0
 _08026224: .4byte 0x08B905D8
@@ -12504,7 +12504,7 @@ _08026228:
 	adds r0, r7, r4
 	str r0, [sp]
 	mov r0, sb
-	bl sub_080069F4
+	bl PutSprite
 _0802623C:
 	add sp, #4
 	pop {r3, r4}
@@ -12526,9 +12526,9 @@ sub_08026250: @ 0x08026250
 	adds r5, r1, #0
 	adds r4, r2, #0
 	adds r0, r3, #0
-	bl sub_08018814
+	bl GetClassSMSId
 	adds r6, r0, #0
-	bl sub_08024DEC
+	bl UseUnitSprite
 	adds r7, r0, #0
 	adds r7, #0x80
 	adds r1, r5, #0
@@ -12581,7 +12581,7 @@ _080262C4:
 	str r7, [sp]
 	mov r0, r8
 	adds r1, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080262F4
 	.align 2, 0
 _080262D0: .4byte 0x08B905D8
@@ -12600,7 +12600,7 @@ _080262D4:
 	ldr r3, _08026304 @ =0x08B905C0
 	str r7, [sp]
 	mov r0, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 _080262F4:
 	add sp, #4
 	pop {r3}
@@ -12625,7 +12625,7 @@ sub_08026308: @ 0x08026308
 	ldr r4, [sp, #0x20]
 	lsls r3, r3, #0x10
 	lsrs r7, r3, #0x10
-	bl sub_08018814
+	bl GetClassSMSId
 	adds r2, r0, #0
 	ldr r0, _0802635C @ =0x08B93E48
 	lsls r4, r4, #2
@@ -12666,7 +12666,7 @@ _08026364:
 	str r0, [sp]
 	mov r0, r8
 	adds r1, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _08026390
 	.align 2, 0
 _08026378: .4byte 0x08B905D8
@@ -12679,7 +12679,7 @@ _0802637C:
 	adds r0, r7, r4
 	str r0, [sp]
 	mov r0, r8
-	bl sub_080069F4
+	bl PutSprite
 _08026390:
 	add sp, #4
 	pop {r3}
@@ -12702,9 +12702,9 @@ sub_080263A0: @ 0x080263A0
 	adds r6, r2, #0
 	adds r7, r3, #0
 	ldr r0, [sp, #0x20]
-	bl sub_08017610
+	bl GetUnitSMSId
 	adds r4, r0, #0
-	bl sub_08024DEC
+	bl UseUnitSprite
 	adds r5, r0, #0
 	adds r5, #0x80
 	mov r1, r8
@@ -12749,7 +12749,7 @@ _080263FA:
 	mov r0, sb
 	mov r1, r8
 	adds r2, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _0802646A
 	.align 2, 0
 _0802641C: .4byte 0x08B905B8
@@ -12767,7 +12767,7 @@ _08026420:
 	str r1, [sp]
 	mov r0, sb
 	mov r1, r8
-	bl sub_080069F4
+	bl PutSprite
 	b _0802646A
 	.align 2, 0
 _08026444: .4byte 0x08B905D8
@@ -12786,7 +12786,7 @@ _08026448:
 	ldr r3, _08026478 @ =0x08B905C0
 	str r4, [sp]
 	mov r0, sb
-	bl sub_080069F4
+	bl PutSprite
 _0802646A:
 	add sp, #4
 	pop {r3, r4}
@@ -12798,8 +12798,8 @@ _0802646A:
 	.align 2, 0
 _08026478: .4byte 0x08B905C0
 
-	thumb_func_start sub_0802647C
-sub_0802647C: @ 0x0802647C
+	thumb_func_start PutBlendWindowUnitSprite
+PutBlendWindowUnitSprite: @ 0x0802647C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -12810,9 +12810,9 @@ sub_0802647C: @ 0x0802647C
 	adds r6, r2, #0
 	mov r8, r3
 	ldr r0, [sp, #0x20]
-	bl sub_08017610
+	bl GetUnitSMSId
 	adds r5, r0, #0
-	bl sub_08024DEC
+	bl UseUnitSprite
 	adds r4, r0, #0
 	adds r4, #0x80
 	adds r1, r7, #0
@@ -12851,13 +12851,13 @@ _080264D6:
 	mov r0, sb
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	ldr r3, _080264FC @ =0x08B9416A
 	str r4, [sp]
 	mov r0, sb
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _08026550
 	.align 2, 0
 _080264F8: .4byte 0x08B94152
@@ -12871,13 +12871,13 @@ _08026500:
 	mov r0, sb
 	adds r1, r7, #0
 	adds r2, r5, #0
-	bl sub_080069F4
+	bl PutSprite
 	ldr r3, _08026528 @ =0x08B94172
 	str r4, [sp]
 	mov r0, sb
 	adds r1, r7, #0
 	adds r2, r5, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _08026550
 	.align 2, 0
 _08026524: .4byte 0x08B9415A
@@ -12892,13 +12892,13 @@ _0802652C:
 	mov r0, sb
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	ldr r3, _08026564 @ =0x08B9417A
 	str r4, [sp]
 	mov r0, sb
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 _08026550:
 	add sp, #4
 	pop {r3, r4}
@@ -12954,8 +12954,8 @@ ShowUnitSprite: @ 0x08026598
 _080265A6:
 	bx lr
 
-	thumb_func_start sub_080265A8
-sub_080265A8: @ 0x080265A8
+	thumb_func_start GetUnitSpriteHideFlag
+GetUnitSpriteHideFlag: @ 0x080265A8
 	ldr r1, [r0, #0x3c]
 	cmp r1, #0
 	beq _080265BC
@@ -13030,8 +13030,8 @@ _08026618:
 	.align 2, 0
 _08026624: .4byte 0x08B93F18
 
-	thumb_func_start sub_08026628
-sub_08026628: @ 0x08026628
+	thumb_func_start GetUnitSupporterCount
+GetUnitSupporterCount: @ 0x08026628
 	ldr r0, [r0]
 	ldr r0, [r0, #0x2c]
 	cmp r0, #0
@@ -13043,8 +13043,8 @@ _08026634:
 _08026636:
 	bx lr
 
-	thumb_func_start sub_08026638
-sub_08026638: @ 0x08026638
+	thumb_func_start GetUnitSupportPid
+GetUnitSupportPid: @ 0x08026638
 	ldr r0, [r0]
 	ldr r0, [r0, #0x2c]
 	cmp r0, #0
@@ -13058,11 +13058,11 @@ _08026648:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0802664C
-sub_0802664C: @ 0x0802664C
+	thumb_func_start GetUnitSupportUnit
+GetUnitSupportUnit: @ 0x0802664C
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
-	bl sub_08026638
+	bl GetUnitSupportPid
 	lsls r0, r0, #0x18
 	lsrs r7, r0, #0x18
 	movs r0, #0xc0
@@ -13099,8 +13099,8 @@ _0802668C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08026694
-sub_08026694: @ 0x08026694
+	thumb_func_start GetUnitSupportLevel
+GetUnitSupportLevel: @ 0x08026694
 	adds r0, #0x32
 	adds r0, r0, r1
 	ldrb r0, [r0]
@@ -13124,11 +13124,11 @@ _080266B4:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080266B8
-sub_080266B8: @ 0x080266B8
+	thumb_func_start GetUnitTotalSupportLevel
+GetUnitTotalSupportLevel: @ 0x080266B8
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
-	bl sub_08026628
+	bl GetUnitSupporterCount
 	adds r5, r0, #0
 	movs r4, #0
 	movs r6, #0
@@ -13137,7 +13137,7 @@ sub_080266B8: @ 0x080266B8
 _080266CA:
 	adds r0, r7, #0
 	adds r1, r4, #0
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	adds r6, r6, r0
 	adds r4, #1
 	cmp r4, r5
@@ -13173,7 +13173,7 @@ sub_080266E4: @ 0x080266E4
 	ldrb r5, [r7]
 	ldr r4, _08026740 @ =0x08B94184
 	adds r0, r2, #0
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r1, [r0]
@@ -13199,8 +13199,8 @@ _08026730:
 _0802673C: .4byte 0x0202BBF8
 _08026740: .4byte 0x08B94184
 
-	thumb_func_start sub_08026744
-sub_08026744: @ 0x08026744
+	thumb_func_start UnitGainSupportLevel
+UnitGainSupportLevel: @ 0x08026744
 	push {r4, lr}
 	adds r2, r0, #0
 	adds r2, #0x32
@@ -13214,7 +13214,7 @@ sub_08026744: @ 0x08026744
 	strh r2, [r3, #0x16]
 	ldr r2, [r0]
 	ldrb r4, [r2, #4]
-	bl sub_08026638
+	bl GetUnitSupportPid
 	adds r1, r0, #0
 	lsls r1, r1, #0x18
 	lsrs r1, r1, #0x18
@@ -13226,8 +13226,8 @@ sub_08026744: @ 0x08026744
 	.align 2, 0
 _08026774: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08026778
-sub_08026778: @ 0x08026778
+	thumb_func_start CanUnitSupportNow
+CanUnitSupportNow: @ 0x08026778
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -13243,18 +13243,18 @@ sub_08026778: @ 0x08026778
 	bne _080267D6
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08026BF0
+	bl HasUnitGainedSupportLevel
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080267D6
 	adds r0, r5, #0
-	bl sub_080266B8
+	bl GetUnitTotalSupportLevel
 	cmp r0, #4
 	bgt _080267D6
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_0802664C
-	bl sub_080266B8
+	bl GetUnitSupportUnit
+	bl GetUnitTotalSupportLevel
 	cmp r0, #4
 	bgt _080267D6
 	adds r0, r5, #0
@@ -13264,7 +13264,7 @@ sub_08026778: @ 0x08026778
 	ldr r4, _080267E0 @ =0x08B94184
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -13288,8 +13288,8 @@ _080267EE:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080267F4
-sub_080267F4: @ 0x080267F4
+	thumb_func_start GetUnitInitialSupportExp
+GetUnitInitialSupportExp: @ 0x080267F4
 	ldr r0, [r0]
 	ldr r0, [r0, #0x2c]
 	cmp r0, #0
@@ -13305,13 +13305,13 @@ _08026808:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0802680C
-sub_0802680C: @ 0x0802680C
+	thumb_func_start GetUnitSupportNumByPid
+GetUnitSupportNumByPid: @ 0x0802680C
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	lsls r1, r1, #0x18
 	lsrs r7, r1, #0x18
-	bl sub_08026628
+	bl GetUnitSupporterCount
 	adds r5, r0, #0
 	movs r4, #0
 	cmp r4, r5
@@ -13319,7 +13319,7 @@ sub_0802680C: @ 0x0802680C
 _08026820:
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_08026638
+	bl GetUnitSupportPid
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, r7
@@ -13344,7 +13344,7 @@ ClearUnitSupports: @ 0x08026844
 	mov r7, r8
 	push {r7}
 	adds r5, r0, #0
-	bl sub_08026628
+	bl GetUnitSupporterCount
 	adds r7, r0, #0
 	movs r6, #0
 	cmp r6, r7
@@ -13353,14 +13353,14 @@ ClearUnitSupports: @ 0x08026844
 _0802685A:
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_0802664C
+	bl GetUnitSupportUnit
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _08026886
 	ldr r0, [r5]
 	ldrb r1, [r0, #4]
 	adds r0, r4, #0
-	bl sub_0802680C
+	bl GetUnitSupportNumByPid
 	adds r1, r4, #0
 	adds r1, #0x32
 	adds r1, r1, r0
@@ -13383,8 +13383,8 @@ _0802688C:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08026898
-sub_08026898: @ 0x08026898
+	thumb_func_start DoTurnSupportExp
+DoTurnSupportExp: @ 0x08026898
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -13416,11 +13416,11 @@ _080268B4:
 	cmp r0, #0
 	bne _0802697E
 	adds r0, r5, #0
-	bl sub_080266B8
+	bl GetUnitTotalSupportLevel
 	cmp r0, #4
 	bgt _0802697E
 	adds r0, r5, #0
-	bl sub_08026628
+	bl GetUnitSupporterCount
 	mov r8, r0
 	movs r7, #0
 	cmp r7, r8
@@ -13428,7 +13428,7 @@ _080268B4:
 _080268EC:
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl sub_0802664C
+	bl GetUnitSupportUnit
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _08026978
@@ -13491,7 +13491,7 @@ _08026956:
 	bne _08026978
 _08026966:
 	adds r0, r4, #0
-	bl sub_080266B8
+	bl GetUnitTotalSupportLevel
 	cmp r0, #4
 	bgt _08026978
 	adds r0, r5, #0
@@ -13581,8 +13581,8 @@ sub_080269B0: @ 0x080269B0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08026A08
-sub_08026A08: @ 0x08026A08
+	thumb_func_start InitBonuses
+InitBonuses: @ 0x08026A08
 	movs r1, #0
 	strb r1, [r0, #1]
 	strb r1, [r0, #2]
@@ -13605,9 +13605,9 @@ sub_08026A18: @ 0x08026A18
 	movs r0, #0
 	mov sb, r0
 	adds r0, r6, #0
-	bl sub_08026A08
+	bl InitBonuses
 	adds r0, r7, #0
-	bl sub_08026628
+	bl GetUnitSupporterCount
 	mov sl, r0
 	movs r1, #0
 	mov r8, r1
@@ -13621,7 +13621,7 @@ _08026A46:
 	mov sb, r1
 	adds r0, r7, #0
 	mov r1, r8
-	bl sub_0802664C
+	bl GetUnitSupportUnit
 	adds r5, r0, #0
 	cmp r5, #0
 	beq _08026ADC
@@ -13661,10 +13661,10 @@ _08026A8C:
 	ldr r0, [r7]
 	ldrb r1, [r0, #4]
 	adds r0, r5, #0
-	bl sub_0802680C
+	bl GetUnitSupportNumByPid
 	adds r1, r0, #0
 	adds r0, r5, #0
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	adds r4, r0, #0
 	ldr r0, [r5]
 	ldrb r1, [r0, #9]
@@ -13673,7 +13673,7 @@ _08026A8C:
 	bl sub_080269B0
 	adds r0, r7, #0
 	mov r1, r8
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	adds r5, r0, #0
 	ldr r0, [r7]
 	ldrb r1, [r0, #9]
@@ -13740,10 +13740,10 @@ _08026B34:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08026B38
-sub_08026B38: @ 0x08026B38
+	thumb_func_start GetAffinityIconByPid
+GetAffinityIconByPid: @ 0x08026B38
 	push {lr}
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _08026B48
@@ -13756,8 +13756,8 @@ _08026B4C:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08026B50
-sub_08026B50: @ 0x08026B50
+	thumb_func_start GetSupportLevelSpecialChar
+GetSupportLevelSpecialChar: @ 0x08026B50
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -13775,8 +13775,8 @@ sub_08026B50: @ 0x08026B50
 	.align 2, 0
 _08026B70: .4byte 0x081C3CC0
 
-	thumb_func_start sub_08026B74
-sub_08026B74: @ 0x08026B74
+	thumb_func_start GetAffinityName
+GetAffinityName: @ 0x08026B74
 	push {r4, r5, lr}
 	sub sp, #0x20
 	mov r2, sp
@@ -13811,7 +13811,7 @@ sub_08026BA0: @ 0x08026BA0
 	bl GetUnitByPid
 	adds r7, r0, #0
 	adds r1, r5, #0
-	bl sub_0802680C
+	bl GetUnitSupportNumByPid
 	adds r2, r0, #0
 	adds r1, r7, #0
 	adds r1, #0x39
@@ -13825,7 +13825,7 @@ sub_08026BA0: @ 0x08026BA0
 	bl GetUnitByPid
 	adds r7, r0, #0
 	adds r1, r6, #0
-	bl sub_0802680C
+	bl GetUnitSupportNumByPid
 	adds r2, r0, #0
 	adds r0, r7, #0
 	adds r0, #0x39
@@ -13837,8 +13837,8 @@ sub_08026BA0: @ 0x08026BA0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08026BF0
-sub_08026BF0: @ 0x08026BF0
+	thumb_func_start HasUnitGainedSupportLevel
+HasUnitGainedSupportLevel: @ 0x08026BF0
 	adds r0, #0x39
 	movs r2, #1
 	lsls r2, r1
@@ -13852,8 +13852,8 @@ sub_08026BF0: @ 0x08026BF0
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08026C08
-sub_08026C08: @ 0x08026C08
+	thumb_func_start ArePidsAtMaxSupport
+ArePidsAtMaxSupport: @ 0x08026C08
 	push {r4, r5, lr}
 	adds r4, r1, #0
 	lsls r0, r0, #0x18
@@ -13863,10 +13863,10 @@ sub_08026C08: @ 0x08026C08
 	bl GetUnitByPid
 	adds r5, r0, #0
 	adds r1, r4, #0
-	bl sub_0802680C
+	bl GetUnitSupportNumByPid
 	adds r1, r0, #0
 	adds r0, r5, #0
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	cmp r0, #2
 	bgt _08026C30
 	movs r0, #0
@@ -13878,8 +13878,8 @@ _08026C32:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08026C38
-sub_08026C38: @ 0x08026C38
+	thumb_func_start SwapUnitStats
+SwapUnitStats: @ 0x08026C38
 	adds r2, r0, #0
 	adds r3, r1, #0
 	cmp r2, #0
@@ -13958,8 +13958,8 @@ _08026CCC:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08026CD0
-sub_08026CD0: @ 0x08026CD0
+	thumb_func_start CanUnitUseItem
+CanUnitUseItem: @ 0x08026CD0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -14079,15 +14079,15 @@ _08026E54:
 	.align 2, 0
 _08026E58: .4byte sub_0802458C
 _08026E5C:
-	ldr r1, _08026E60 @ =sub_080245C0
+	ldr r1, _08026E60 @ =MakeTargetListForRangedHeal
 	b _08026F22
 	.align 2, 0
-_08026E60: .4byte sub_080245C0
+_08026E60: .4byte MakeTargetListForRangedHeal
 _08026E64:
-	ldr r1, _08026E68 @ =sub_080245C0
+	ldr r1, _08026E68 @ =MakeTargetListForRangedHeal
 	b _08026F22
 	.align 2, 0
-_08026E68: .4byte sub_080245C0
+_08026E68: .4byte MakeTargetListForRangedHeal
 _08026E6C:
 	ldr r1, _08026E70 @ =sub_0802465C
 	b _08026F22
@@ -14145,7 +14145,7 @@ _08026EBE:
 	b _08026F28
 _08026EC8:
 	adds r0, r4, #0
-	bl sub_080272E4
+	bl CanUnitUseHealItem
 	b _08026F28
 _08026ED0:
 	adds r0, r4, #0
@@ -14161,26 +14161,26 @@ _08026EE0:
 	b _08026F28
 _08026EE8:
 	adds r0, r4, #0
-	bl sub_08027354
+	bl CanUnitUseChestKeyItem
 	b _08026F28
 _08026EF0:
 	adds r0, r4, #0
-	bl sub_08027390
+	bl CanUnitUseDoorKeyItem
 	b _08026F28
 _08026EF8:
 	adds r0, r4, #0
-	bl sub_080273B8
+	bl CanUnitUseLockpickItem
 	b _08026F28
 _08026F00:
-	ldr r1, _08026F04 @ =sub_08024B64
+	ldr r1, _08026F04 @ =MakeTargetListForDanceRing
 	b _08026F22
 	.align 2, 0
-_08026F04: .4byte sub_08024B64
+_08026F04: .4byte MakeTargetListForDanceRing
 _08026F08:
-	ldr r1, _08026F0C @ =sub_08024BF0
+	ldr r1, _08026F0C @ =MakeTargetListForMine
 	b _08026F22
 	.align 2, 0
-_08026F0C: .4byte sub_08024BF0
+_08026F0C: .4byte MakeTargetListForMine
 _08026F10:
 	ldr r1, _08026F1C @ =0x0202BBF8
 	ldrb r2, [r1, #0xd]
@@ -14194,7 +14194,7 @@ _08026F20:
 	ldr r1, _08026F30 @ =sub_08024C54
 _08026F22:
 	adds r0, r4, #0
-	bl sub_080272D0
+	bl HasSelectTarget
 _08026F28:
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
@@ -14217,8 +14217,8 @@ _08026F46:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08026F4C
-sub_08026F4C: @ 0x08026F4C
+	thumb_func_start GetItemCantUseMsgid
+GetItemCantUseMsgid: @ 0x08026F4C
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
 	adds r0, r6, #0
@@ -14371,14 +14371,14 @@ _080270F2:
 	.align 2, 0
 _080270F8: .4byte 0x00000744
 
-	thumb_func_start sub_080270FC
-sub_080270FC: @ 0x080270FC
+	thumb_func_start DoItemUse
+DoItemUse: @ 0x080270FC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
 	bl ClearUi
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	adds r0, r4, #0
 	bl GetItemIid
 	subs r0, #0x4a
@@ -14454,17 +14454,17 @@ _08027200:
 	.align 2, 0
 _08027204: .4byte sub_0802458C
 _08027208:
-	ldr r1, _08027214 @ =sub_080245C0
+	ldr r1, _08027214 @ =MakeTargetListForRangedHeal
 _0802720A:
 	adds r0, r5, #0
 	bl sub_08027CBC
 	b _080272CA
 	.align 2, 0
-_08027214: .4byte sub_080245C0
+_08027214: .4byte MakeTargetListForRangedHeal
 _08027218:
 	ldr r1, _08027224 @ =sub_0802474C
 	adds r0, r5, #0
-	bl sub_08027698
+	bl DoUseRescueStaff
 	b _080272CA
 	.align 2, 0
 _08027224: .4byte sub_0802474C
@@ -14514,24 +14514,24 @@ _08027274:
 	b _080272CA
 _0802727C:
 	adds r0, r5, #0
-	bl sub_0802764C
+	bl SetStaffUseAction
 	b _080272CA
 _08027284:
-	ldr r1, _0802728C @ =sub_08024B64
+	ldr r1, _0802728C @ =MakeTargetListForDanceRing
 	ldr r2, _08027290 @ =0x00000732
 	b _08027298
 	.align 2, 0
-_0802728C: .4byte sub_08024B64
+_0802728C: .4byte MakeTargetListForDanceRing
 _08027290: .4byte 0x00000732
 _08027294:
-	ldr r1, _080272A0 @ =sub_08024BF0
+	ldr r1, _080272A0 @ =MakeTargetListForMine
 	ldr r2, _080272A4 @ =0x00000733
 _08027298:
 	adds r0, r5, #0
 	bl sub_08027A30
 	b _080272CA
 	.align 2, 0
-_080272A0: .4byte sub_08024BF0
+_080272A0: .4byte MakeTargetListForMine
 _080272A4: .4byte 0x00000733
 _080272A8:
 	adds r0, r5, #0
@@ -14541,7 +14541,7 @@ _080272B0:
 	ldr r1, _080272BC @ =sub_08024C54
 	ldr r2, _080272C0 @ =0x00000734
 	adds r0, r5, #0
-	bl sub_080276D8
+	bl DoUseSpecialDance
 	b _080272CA
 	.align 2, 0
 _080272BC: .4byte sub_08024C54
@@ -14554,8 +14554,8 @@ _080272CA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080272D0
-sub_080272D0: @ 0x080272D0
+	thumb_func_start HasSelectTarget
+HasSelectTarget: @ 0x080272D0
 	push {lr}
 	bl _call_via_r1
 	bl CountTargets
@@ -14566,11 +14566,11 @@ _080272E0:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080272E4
-sub_080272E4: @ 0x080272E4
+	thumb_func_start CanUnitUseHealItem
+CanUnitUseHealItem: @ 0x080272E4
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r5, r0, #0
 	adds r0, r4, #0
 	bl GetUnitMaxHp
@@ -14642,8 +14642,8 @@ _08027350:
 _08027352:
 	bx lr
 
-	thumb_func_start sub_08027354
-sub_08027354: @ 0x08027354
+	thumb_func_start CanUnitUseChestKeyItem
+CanUnitUseChestKeyItem: @ 0x08027354
 	push {lr}
 	movs r3, #0x11
 	ldrsb r3, [r0, r3]
@@ -14660,7 +14660,7 @@ sub_08027354: @ 0x08027354
 	bne _08027388
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_08078EE0
+	bl IsThereClosedDoorAt
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08027388
@@ -14675,30 +14675,30 @@ _0802738A:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08027390
-sub_08027390: @ 0x08027390
+	thumb_func_start CanUnitUseDoorKeyItem
+CanUnitUseDoorKeyItem: @ 0x08027390
 	push {lr}
 	movs r1, #0x1e
-	bl sub_08024298
+	bl MakeTargetListForDoorAndBridges
 	bl CountTargets
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080273A4
-sub_080273A4: @ 0x080273A4
+	thumb_func_start CanUnitOpenBridge
+CanUnitOpenBridge: @ 0x080273A4
 	push {lr}
 	movs r1, #0x14
-	bl sub_08024298
+	bl MakeTargetListForDoorAndBridges
 	bl CountTargets
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080273B8
-sub_080273B8: @ 0x080273B8
+	thumb_func_start CanUnitUseLockpickItem
+CanUnitUseLockpickItem: @ 0x080273B8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4]
@@ -14711,17 +14711,17 @@ sub_080273B8: @ 0x080273B8
 	cmp r0, #0
 	beq _080273F2
 	adds r0, r4, #0
-	bl sub_08027354
+	bl CanUnitUseChestKeyItem
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080273F6
 	adds r0, r4, #0
-	bl sub_08027390
+	bl CanUnitUseDoorKeyItem
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080273F6
 	adds r0, r4, #0
-	bl sub_080273A4
+	bl CanUnitOpenBridge
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080273F6
@@ -15002,10 +15002,10 @@ _08027642:
 	.align 2, 0
 _08027648: .4byte 0x03004440
 
-	thumb_func_start sub_0802764C
-sub_0802764C: @ 0x0802764C
+	thumb_func_start SetStaffUseAction
+SetStaffUseAction: @ 0x0802764C
 	push {lr}
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	ldr r0, _0802766C @ =0x02023C60
 	movs r1, #0
 	bl TmFill
@@ -15029,22 +15029,22 @@ sub_08027674: @ 0x08027674
 	.align 2, 0
 _0802767C: .4byte 0x0203A85C
 
-	thumb_func_start sub_08027680
-sub_08027680: @ 0x08027680
+	thumb_func_start StaffSelectOnSelect
+StaffSelectOnSelect: @ 0x08027680
 	push {lr}
 	ldr r2, _08027694 @ =0x0203A85C
 	ldrb r0, [r1, #2]
 	strb r0, [r2, #0xd]
 	movs r0, #0
-	bl sub_0802764C
+	bl SetStaffUseAction
 	movs r0, #0x17
 	pop {r1}
 	bx r1
 	.align 2, 0
 _08027694: .4byte 0x0203A85C
 
-	thumb_func_start sub_08027698
-sub_08027698: @ 0x08027698
+	thumb_func_start DoUseRescueStaff
+DoUseRescueStaff: @ 0x08027698
 	push {r4, lr}
 	bl _call_via_r1
 	ldr r0, _080276C8 @ =0x0202E3E4
@@ -15053,25 +15053,25 @@ sub_08027698: @ 0x08027698
 	rsbs r1, r1, #0
 	bl MapFill
 	ldr r0, _080276CC @ =0x08B95BD8
-	ldr r1, _080276D0 @ =sub_08027680
-	bl sub_0804AEF0
+	ldr r1, _080276D0 @ =StaffSelectOnSelect
+	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	ldr r0, _080276D4 @ =0x0000072C
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _080276C8: .4byte 0x0202E3E4
 _080276CC: .4byte 0x08B95BD8
-_080276D0: .4byte sub_08027680
+_080276D0: .4byte StaffSelectOnSelect
 _080276D4: .4byte 0x0000072C
 
-	thumb_func_start sub_080276D8
-sub_080276D8: @ 0x080276D8
+	thumb_func_start DoUseSpecialDance
+DoUseSpecialDance: @ 0x080276D8
 	push {r4, r5, lr}
 	adds r5, r2, #0
 	bl _call_via_r1
@@ -15081,21 +15081,21 @@ sub_080276D8: @ 0x080276D8
 	rsbs r1, r1, #0
 	bl MapFill
 	ldr r0, _08027710 @ =0x08B95BD8
-	ldr r1, _08027714 @ =sub_08027680
-	bl sub_0804AEF0
+	ldr r1, _08027714 @ =StaffSelectOnSelect
+	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	adds r0, r5, #0
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0802770C: .4byte 0x0202E3E4
 _08027710: .4byte 0x08B95BD8
-_08027714: .4byte sub_08027680
+_08027714: .4byte StaffSelectOnSelect
 
 	thumb_func_start sub_08027718
 sub_08027718: @ 0x08027718
@@ -15107,7 +15107,7 @@ sub_08027718: @ 0x08027718
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r6, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	ldr r5, _080277BC @ =0x0203A85C
 	ldrb r0, [r5, #0xd]
 	bl GetUnit
@@ -15120,14 +15120,14 @@ sub_08027718: @ 0x08027718
 	adds r0, r6, #0
 	adds r1, r4, #0
 	bl CameraMoveWatchPosition
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	ldr r0, _080277C0 @ =0x03004690
 	ldr r4, [r0]
 	ldrb r0, [r5, #0xd]
 	bl GetUnit
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_0801DBC4
+	bl FillWarpRangeMap
 	ldr r1, _080277C4 @ =0x0202BBB8
 	movs r0, #0xfd
 	ldrb r2, [r1, #4]
@@ -15136,7 +15136,7 @@ sub_08027718: @ 0x08027718
 	mov r8, r2
 	strb r0, [r1, #4]
 	movs r0, #1
-	bl sub_0801D2A0
+	bl DisplayMoveRangeGraphics
 	ldrb r0, [r5, #0xd]
 	bl GetUnit
 	movs r4, #0x10
@@ -15149,13 +15149,13 @@ sub_08027718: @ 0x08027718
 	bl SetMapCursorPosition
 	ldr r0, _080277C8 @ =0x08196228
 	movs r1, #0
-	bl sub_08011FC4
+	bl StartSpriteAnim
 	adds r4, r0, #0
 	mov r0, r8
 	strh r0, [r4, #0x22]
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_0801225C
+	bl SetSpriteAnimId
 	str r4, [r6, #0x54]
 	adds r6, #0x4a
 	movs r0, #2
@@ -15212,7 +15212,7 @@ sub_080277CC: @ 0x080277CC
 	strb r0, [r1, #0x14]
 	ldr r0, _08027854 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_0802764C
+	bl SetStaffUseAction
 	ldr r0, _08027858 @ =0x02023C60
 	movs r1, #0
 	bl TmFill
@@ -15225,7 +15225,7 @@ sub_080277CC: @ 0x080277CC
 	cmp r0, #0
 	blt _080278F0
 	ldr r0, _08027860 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080278F0
 	.align 2, 0
 _08027844: .4byte 0x0202BBB8
@@ -15245,7 +15245,7 @@ _08027864:
 	blt _08027878
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08027878:
 	ldr r0, _080278FC @ =0x08B857F8
 	ldr r1, [r0]
@@ -15269,7 +15269,7 @@ _08027878:
 	cmp r0, #0
 	blt _080278AE
 	ldr r0, _08027904 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080278AE:
 	lsls r0, r6, #0x18
 	asrs r3, r0, #0x18
@@ -15287,7 +15287,7 @@ _080278AE:
 	bne _080278CC
 	movs r1, #1
 _080278CC:
-	bl sub_0801225C
+	bl SetSpriteAnimId
 _080278D0:
 	ldr r0, [r5, #0x54]
 	ldr r3, _08027908 @ =0x0202BBB8
@@ -15301,7 +15301,7 @@ _080278D0:
 	movs r5, #0xe
 	ldrsh r3, [r3, r5]
 	subs r2, r2, r3
-	bl sub_08012000
+	bl DisplaySpriteAnim
 	asrs r0, r4, #0x18
 	strh r0, [r6]
 _080278F0:
@@ -15315,13 +15315,13 @@ _08027900: .4byte 0x02023C60
 _08027904: .4byte 0x0000038B
 _08027908: .4byte 0x0202BBB8
 
-	thumb_func_start sub_0802790C
-sub_0802790C: @ 0x0802790C
+	thumb_func_start WarpSelect_OnConfirm
+WarpSelect_OnConfirm: @ 0x0802790C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	bl ResetTextFont
-	bl sub_0801D2D4
-	bl sub_0803279C
+	bl HideMoveRangeGraphics
+	bl EndSubtitleHelp
 	ldr r4, _08027944 @ =0x03004690
 	ldr r1, [r4]
 	movs r0, #0x10
@@ -15343,12 +15343,12 @@ sub_0802790C: @ 0x0802790C
 	.align 2, 0
 _08027944: .4byte 0x03004690
 
-	thumb_func_start sub_08027948
-sub_08027948: @ 0x08027948
+	thumb_func_start WarpSelect_OnCancel
+WarpSelect_OnCancel: @ 0x08027948
 	push {lr}
 	bl ResetTextFont
-	bl sub_0801D2D4
-	bl sub_0803279C
+	bl HideMoveRangeGraphics
+	bl EndSubtitleHelp
 	ldr r0, _08027974 @ =0x03004690
 	ldr r1, [r0]
 	movs r0, #0x10
@@ -15366,22 +15366,22 @@ sub_08027948: @ 0x08027948
 _08027974: .4byte 0x03004690
 _08027978: .4byte 0x08B93DDC
 
-	thumb_func_start sub_0802797C
-sub_0802797C: @ 0x0802797C
+	thumb_func_start WarpSelect_OnEnd
+WarpSelect_OnEnd: @ 0x0802797C
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	ldr r0, [r4, #0x54]
-	bl sub_08011FEC
+	bl EndSpriteAnim
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08027990
-sub_08027990: @ 0x08027990
+	thumb_func_start WarpOnSelectTarget
+WarpOnSelectTarget: @ 0x08027990
 	push {r4, lr}
 	adds r4, r1, #0
-	bl sub_0804AF00
+	bl EndTargetSelection
 	ldr r1, _080279B0 @ =0x0203A85C
 	ldrb r0, [r4, #2]
 	strb r0, [r1, #0xd]
@@ -15406,14 +15406,14 @@ sub_080279B8: @ 0x080279B8
 	rsbs r1, r1, #0
 	bl MapFill
 	ldr r0, _08027A00 @ =0x08B95BD8
-	ldr r1, _08027A04 @ =sub_08027990
-	bl sub_0804AEF0
+	ldr r1, _08027A04 @ =WarpOnSelectTarget
+	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	ldr r0, _08027A08 @ =0x0000072B
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	ldr r0, _08027A0C @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -15421,7 +15421,7 @@ sub_080279B8: @ 0x080279B8
 	cmp r0, #0
 	blt _080279F4
 	ldr r0, _08027A10 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080279F4:
 	pop {r4}
 	pop {r0}
@@ -15429,13 +15429,13 @@ _080279F4:
 	.align 2, 0
 _080279FC: .4byte 0x0202E3E4
 _08027A00: .4byte 0x08B95BD8
-_08027A04: .4byte sub_08027990
+_08027A04: .4byte WarpOnSelectTarget
 _08027A08: .4byte 0x0000072B
 _08027A0C: .4byte 0x0202BBF8
 _08027A10: .4byte 0x0000038A
 
-	thumb_func_start sub_08027A14
-sub_08027A14: @ 0x08027A14
+	thumb_func_start OnSelectPutTrap
+OnSelectPutTrap: @ 0x08027A14
 	push {lr}
 	ldr r2, _08027A2C @ =0x0203A85C
 	ldrb r0, [r1]
@@ -15443,7 +15443,7 @@ sub_08027A14: @ 0x08027A14
 	ldrb r0, [r1, #1]
 	strb r0, [r2, #0x14]
 	movs r0, #0
-	bl sub_0802764C
+	bl SetStaffUseAction
 	movs r0, #0x17
 	pop {r1}
 	bx r1
@@ -15461,14 +15461,14 @@ sub_08027A30: @ 0x08027A30
 	rsbs r1, r1, #0
 	bl MapFill
 	ldr r0, _08027A78 @ =0x08B95BB8
-	ldr r1, _08027A7C @ =sub_08027A14
-	bl sub_0804AEF0
+	ldr r1, _08027A7C @ =OnSelectPutTrap
+	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	adds r0, r5, #0
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	ldr r0, _08027A80 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -15476,7 +15476,7 @@ sub_08027A30: @ 0x08027A30
 	cmp r0, #0
 	blt _08027A6E
 	ldr r0, _08027A84 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08027A6E:
 	pop {r4, r5}
 	pop {r0}
@@ -15484,7 +15484,7 @@ _08027A6E:
 	.align 2, 0
 _08027A74: .4byte 0x0202E3E4
 _08027A78: .4byte 0x08B95BB8
-_08027A7C: .4byte sub_08027A14
+_08027A7C: .4byte OnSelectPutTrap
 _08027A80: .4byte 0x0202BBF8
 _08027A84: .4byte 0x0000038A
 
@@ -15519,7 +15519,7 @@ sub_08027A88: @ 0x08027A88
 	bl StartFace
 	movs r0, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	movs r0, #0x17
 	add sp, #4
 	pop {r4, r5}
@@ -15545,7 +15545,7 @@ sub_08027AE8: @ 0x08027AE8
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	ldr r0, _08027B34 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -15553,7 +15553,7 @@ sub_08027AE8: @ 0x08027AE8
 	cmp r0, #0
 	blt _08027B22
 	ldr r0, _08027B38 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08027B22:
 	pop {r4}
 	pop {r0}
@@ -15573,11 +15573,11 @@ sub_08027B3C: @ 0x08027B3C
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031CBC
+	bl RefreshHammerneUnitInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -15586,7 +15586,7 @@ sub_08027B3C: @ 0x08027B3C
 	thumb_func_start sub_08027B60
 sub_08027B60: @ 0x08027B60
 	push {lr}
-	bl sub_08031A74
+	bl StartUnitInventoryInfoWindow
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -15597,7 +15597,7 @@ sub_08027B6C: @ 0x08027B6C
 	adds r1, #0x3c
 	movs r0, #0
 	ldrsb r0, [r1, r0]
-	bl sub_0801DFC0
+	bl UpdateMenuItemPanel
 	pop {r1}
 	bx r1
 
@@ -15606,8 +15606,8 @@ sub_08027B7C: @ 0x08027B7C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08027B80
-sub_08027B80: @ 0x08027B80
+	thumb_func_start RepairMenuItemIsAvailable
+RepairMenuItemIsAvailable: @ 0x08027B80
 	push {r4, lr}
 	adds r4, r1, #0
 	ldr r0, _08027B9C @ =0x0203A85C
@@ -15638,8 +15638,8 @@ _08027BB0:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08027BB8
-sub_08027BB8: @ 0x08027BB8
+	thumb_func_start RepairMenuItemDraw
+RepairMenuItemDraw: @ 0x08027BB8
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	ldr r0, _08027C0C @ =0x0203A85C
@@ -15671,7 +15671,7 @@ sub_08027BB8: @ 0x08027BB8
 	ldr r1, _08027C10 @ =0x02022C60
 	adds r3, r3, r1
 	adds r1, r4, #0
-	bl sub_0801650C
+	bl DrawItemMenuLineLong
 	movs r0, #1
 	bl EnableBgSync
 	movs r0, #0
@@ -15756,7 +15756,7 @@ _08027C9A:
 	strb r0, [r1, #0x15]
 	ldr r0, _08027CB8 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_0802764C
+	bl SetStaffUseAction
 	movs r0, #0x37
 _08027CAE:
 	pop {r4, r5, r6, r7}
@@ -15782,7 +15782,7 @@ sub_08027CBC: @ 0x08027CBC
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -15807,7 +15807,7 @@ sub_08027CF8: @ 0x08027CF8
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -15832,11 +15832,11 @@ sub_08027D40: @ 0x08027D40
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031E7C
+	bl RefreshUnitHpStatusInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -15858,7 +15858,7 @@ sub_08027D64: @ 0x08027D64
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -15883,11 +15883,11 @@ sub_08027DAC: @ 0x08027DAC
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
-	bl sub_08031F04
+	bl RefreshUnitResChangeInfoWindow
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -15909,7 +15909,7 @@ sub_08027DD0: @ 0x08027DD0
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -15926,15 +15926,15 @@ sub_08027E0C: @ 0x08027E0C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08027E18
-sub_08027E18: @ 0x08027E18
+	thumb_func_start AttackStaffMapSelect_SwitchIn
+AttackStaffMapSelect_SwitchIn: @ 0x08027E18
 	push {r4, r5, r6, lr}
 	adds r4, r1, #0
 	movs r0, #0
 	ldrsb r0, [r4, r0]
 	movs r1, #1
 	ldrsb r1, [r4, r1]
-	bl sub_0801EC10
+	bl ChangeActiveUnitFacing
 	movs r0, #2
 	ldrsb r0, [r4, r0]
 	bl GetUnit
@@ -15949,7 +15949,7 @@ sub_08027E18: @ 0x08027E18
 	bl GetOffensiveStaffAccuracy
 	adds r1, r0, #0
 	adds r0, r6, #0
-	bl sub_08031F7C
+	bl RefreshUnitStaffOffenseInfoWindow
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
@@ -15959,7 +15959,7 @@ _08027E54: .4byte 0x03004690
 	thumb_func_start sub_08027E58
 sub_08027E58: @ 0x08027E58
 	push {lr}
-	bl sub_0803279C
+	bl EndSubtitleHelp
 	bl ClearUi
 	pop {r0}
 	bx r0
@@ -15983,7 +15983,7 @@ sub_08027E68: @ 0x08027E68
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	bne _08027E94
 	movs r0, #1
@@ -15999,19 +15999,19 @@ _08027E96:
 sub_08027E9C: @ 0x08027E9C
 	push {r4, lr}
 	ldr r0, _08027EBC @ =0x08B95BD8
-	ldr r1, _08027EC0 @ =sub_08027680
-	bl sub_0804AEF0
+	ldr r1, _08027EC0 @ =StaffSelectOnSelect
+	bl NewTargetSelection_Specialized
 	adds r4, r0, #0
 	ldr r0, _08027EC4 @ =0x0000072C
 	bl GetMsg
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08032560
+	bl StartSubtitleHelp
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08027EBC: .4byte 0x08B95BD8
-_08027EC0: .4byte sub_08027680
+_08027EC0: .4byte StaffSelectOnSelect
 _08027EC4: .4byte 0x0000072C
 

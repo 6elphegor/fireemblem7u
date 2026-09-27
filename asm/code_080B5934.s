@@ -55,7 +55,7 @@ sub_080B5990: @ 0x080B5990
 	movs r1, #0
 	mov sb, r1
 	str r1, [r0, #0x2c]
-	bl sub_0807685C
+	bl InitScanlineEffect
 	ldr r2, _080B5A78 @ =0x030028AC
 	mov ip, r2
 	ldr r0, _080B5A7C @ =0x0000FFE0
@@ -938,8 +938,8 @@ _080B6080: .4byte 0x06008000
 _080B6084: .4byte 0x02024460
 _080B6088: .4byte 0x085D5B38
 
-	thumb_func_start sub_080B608C
-sub_080B608C: @ 0x080B608C
+	thumb_func_start WorldFlushInit
+WorldFlushInit: @ 0x080B608C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -947,7 +947,7 @@ sub_080B608C: @ 0x080B608C
 	push {r5, r6, r7}
 	movs r1, #0
 	str r1, [r0, #0x2c]
-	bl sub_0807685C
+	bl InitScanlineEffect
 	ldr r2, _080B6178 @ =0x030028AC
 	mov ip, r2
 	ldr r0, _080B617C @ =0x0000FFE0
@@ -1045,7 +1045,7 @@ sub_080B608C: @ 0x080B608C
 	cmp r0, #0
 	blt _080B6168
 	ldr r0, _080B618C @ =0x00000269
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B6168:
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -1062,8 +1062,8 @@ _080B6184: .4byte sub_080B5FE0
 _080B6188: .4byte 0x0202BBF8
 _080B618C: .4byte 0x00000269
 
-	thumb_func_start sub_080B6190
-sub_080B6190: @ 0x080B6190
+	thumb_func_start WorldFlushOut
+WorldFlushOut: @ 0x080B6190
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -1127,7 +1127,7 @@ _080B6208: .4byte 0x03002870
 	thumb_func_start sub_080B620C
 sub_080B620C: @ 0x080B620C
 	push {lr}
-	bl sub_08012504
+	bl EndEachSpriteAnimProc
 	ldr r3, _080B6260 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -1252,8 +1252,8 @@ sub_080B62C4: @ 0x080B62C4
 	.align 2, 0
 _080B62F0: .4byte 0x08CE7848
 
-	thumb_func_start sub_080B62F4
-sub_080B62F4: @ 0x080B62F4
+	thumb_func_start GetGameTacticsRank
+GetGameTacticsRank: @ 0x080B62F4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1376,15 +1376,15 @@ _080B63D4:
 	.align 2, 0
 _080B63E8: .4byte 0x08C9A200
 
-	thumb_func_start sub_080B63EC
-sub_080B63EC: @ 0x080B63EC
+	thumb_func_start GetGameSurvivalRank
+GetGameSurvivalRank: @ 0x080B63EC
 	push {lr}
 	sub sp, #4
 	ldr r1, _080B6420 @ =0x085E9AC0
 	mov r0, sp
 	movs r2, #4
 	bl memcpy
-	bl sub_080B6798
+	bl GetGameDeathCount
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	movs r1, #0
@@ -1407,8 +1407,8 @@ _080B6418:
 	.align 2, 0
 _080B6420: .4byte 0x085E9AC0
 
-	thumb_func_start sub_080B6424
-sub_080B6424: @ 0x080B6424
+	thumb_func_start GetGameExpRank
+GetGameExpRank: @ 0x080B6424
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1531,15 +1531,15 @@ _080B6504:
 	.align 2, 0
 _080B6518: .4byte 0x08C9A200
 
-	thumb_func_start sub_080B651C
-sub_080B651C: @ 0x080B651C
+	thumb_func_start GetGameCombatRank
+GetGameCombatRank: @ 0x080B651C
 	push {lr}
 	sub sp, #4
 	ldr r1, _080B654C @ =0x085E9AC4
 	mov r0, sp
 	movs r2, #4
 	bl memcpy
-	bl sub_080B67D0
+	bl GetGameWinPerc
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	movs r1, #0
@@ -1560,13 +1560,13 @@ _080B6544:
 	.align 2, 0
 _080B654C: .4byte 0x085E9AC4
 
-	thumb_func_start sub_080B6550
-sub_080B6550: @ 0x080B6550
+	thumb_func_start GetGameFundsRank
+GetGameFundsRank: @ 0x080B6550
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
 	push {r6, r7}
-	bl sub_08017120
+	bl GetPartyTotalGoldValue
 	mov r8, r0
 	movs r6, #0
 	bl GetChapterCompletionStatsListCount
@@ -1646,8 +1646,8 @@ _080B65E4:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080B65F0
-sub_080B65F0: @ 0x080B65F0
+	thumb_func_start GetOverallRank
+GetOverallRank: @ 0x080B65F0
 	push {r4, r5, r6, lr}
 	ldr r6, [sp, #0x10]
 	ldr r4, _080B6634 @ =0x08CED678
@@ -1726,21 +1726,21 @@ sub_080B6674: @ 0x080B6674
 	mov r6, r8
 	push {r6}
 	sub sp, #4
-	bl sub_080B62F4
+	bl GetGameTacticsRank
 	mov r8, r0
-	bl sub_080B63EC
+	bl GetGameSurvivalRank
 	adds r6, r0, #0
-	bl sub_080B6550
+	bl GetGameFundsRank
 	adds r5, r0, #0
-	bl sub_080B6424
+	bl GetGameExpRank
 	adds r4, r0, #0
-	bl sub_080B651C
+	bl GetGameCombatRank
 	str r0, [sp]
 	mov r0, r8
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_080B65F0
+	bl GetOverallRank
 	add sp, #4
 	pop {r3}
 	mov r8, r3
@@ -1869,8 +1869,8 @@ _080B678C:
 _080B6790: .4byte 0x08CED6BA
 _080B6794: .4byte 0x08CED6C4
 
-	thumb_func_start sub_080B6798
-sub_080B6798: @ 0x080B6798
+	thumb_func_start GetGameDeathCount
+GetGameDeathCount: @ 0x080B6798
 	push {r4, r5, lr}
 	movs r5, #0
 	movs r4, #1
@@ -1901,12 +1901,12 @@ _080B67BC:
 	.align 2, 0
 _080B67CC: .4byte 0x00010004
 
-	thumb_func_start sub_080B67D0
-sub_080B67D0: @ 0x080B67D0
+	thumb_func_start GetGameWinPerc
+GetGameWinPerc: @ 0x080B67D0
 	push {r4, lr}
-	bl sub_080A0124
+	bl PidStatsGetTotalBattleAmt
 	adds r4, r0, #0
-	bl sub_080A0148
+	bl PidStatsGetTotalWinAmt
 	movs r1, #0x64
 	muls r0, r1, r0
 	adds r1, r4, #0
@@ -1936,7 +1936,7 @@ _080B67F6:
 	cmp r0, #4
 	bne _080B682A
 	ldrb r0, [r2, #4]
-	bl sub_080A0550
+	bl GetPidStats
 	ldrb r0, [r0, #5]
 	lsls r1, r0, #0x1a
 	lsrs r1, r1, #0x1a
@@ -1968,7 +1968,7 @@ sub_080B6844: @ 0x080B6844
 	thumb_func_start sub_080B6848
 sub_080B6848: @ 0x080B6848
 	push {r4, r5, r6, lr}
-	bl sub_08017120
+	bl GetPartyTotalGoldValue
 	ldr r1, _080B6890 @ =0x0202BBF8
 	ldr r5, [r1, #0x30]
 	subs r5, r0, r5
@@ -2030,15 +2030,15 @@ _080B68BC:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080B68C4
-sub_080B68C4: @ 0x080B68C4
+	thumb_func_start GetChapterWinPerc
+GetChapterWinPerc: @ 0x080B68C4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
 	push {r6, r7}
-	bl sub_080A0124
+	bl PidStatsGetTotalBattleAmt
 	adds r4, r0, #0
-	bl sub_080A0148
+	bl PidStatsGetTotalWinAmt
 	adds r5, r0, #0
 	ldr r7, _080B68F8 @ =0x000FFFFF
 	cmp r4, r7
@@ -2111,15 +2111,15 @@ _080B694C:
 _080B6958: .4byte 0xFFF00000
 _080B695C: .4byte 0x00000FFF
 
-	thumb_func_start sub_080B6960
-sub_080B6960: @ 0x080B6960
+	thumb_func_start GetChapterCombatRank
+GetChapterCombatRank: @ 0x080B6960
 	push {lr}
 	sub sp, #4
 	ldr r1, _080B6990 @ =0x085E9AC4
 	mov r0, sp
 	movs r2, #4
 	bl memcpy
-	bl sub_080B68C4
+	bl GetChapterWinPerc
 	adds r2, r0, #0
 	movs r1, #0
 _080B6976:
@@ -2248,8 +2248,8 @@ _080B6A68: .4byte 0x0202BBF8
 _080B6A6C: .4byte 0xF00000FF
 _080B6A70: .4byte 0x08C9A200
 
-	thumb_func_start sub_080B6A74
-sub_080B6A74: @ 0x080B6A74
+	thumb_func_start ComputeChapterRankings
+ComputeChapterRankings: @ 0x080B6A74
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	bl GetChapterCompletionStatsListCount
@@ -2289,7 +2289,7 @@ sub_080B6A74: @ 0x080B6A74
 	ands r0, r2
 	orrs r0, r1
 	str r0, [r6, #0x3c]
-	bl sub_080B6960
+	bl GetChapterCombatRank
 	movs r1, #7
 	ands r0, r1
 	lsls r0, r0, #6
@@ -2329,7 +2329,7 @@ _080B6AF6:
 	lsls r4, r6, #0x17
 	lsrs r4, r4, #0x1d
 	str r4, [sp]
-	bl sub_080B65F0
+	bl GetOverallRank
 	ldrh r2, [r5, #0x2c]
 	lsls r1, r2, #0x13
 	lsrs r1, r1, #0x17
@@ -2446,7 +2446,7 @@ _080B6BDA:
 	bgt _080B6C04
 	movs r0, #0
 	ldr r1, [sp, #0x24]
-	bl sub_0809F86C
+	bl ModifySaveLinkArenaStruct2B
 _080B6C04:
 	add sp, #4
 	pop {r3, r4, r5}
@@ -2560,7 +2560,7 @@ _080B6CD0:
 	cmp r6, #0
 	beq _080B6D36
 	ldrb r0, [r5]
-	bl sub_080A0550
+	bl GetPidStats
 	adds r2, r0, #0
 	str r5, [r4, #8]
 	movs r1, #3
@@ -2729,7 +2729,7 @@ _080B6DFC:
 	bl InitSpriteText
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	adds r4, #8
 	subs r5, #1
 	cmp r5, #0
@@ -2755,7 +2755,7 @@ sub_080B6E28: @ 0x080B6E28
 _080B6E38:
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	adds r5, #8
 	subs r4, #1
 	cmp r4, #0
@@ -2780,7 +2780,7 @@ sub_080B6E58: @ 0x080B6E58
 	adds r5, r5, r4
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	movs r0, #0
 	bl SetTextFont
 	pop {r4, r5}
@@ -2811,7 +2811,7 @@ _080B6E8E:
 _080B6EA4:
 	adds r0, r1, #0
 	mov r1, sp
-	bl sub_08005658
+	bl GetCharTextLen
 	adds r1, r0, #0
 	ldr r0, [sp]
 	adds r4, r4, r0
@@ -2854,7 +2854,7 @@ sub_080B6ECC: @ 0x080B6ECC
 	movs r1, #2
 	bl Text_SetColor
 	adds r0, r5, #0
-	bl sub_080AAD00
+	bl CountDigits
 	adds r1, r0, #0
 	lsls r1, r1, #3
 	adds r1, #0x40
@@ -2879,7 +2879,7 @@ sub_080B6ECC: @ 0x080B6ECC
 	movs r1, #2
 	bl Text_SetColor
 	adds r0, r6, #0
-	bl sub_080AAD00
+	bl CountDigits
 	adds r1, r0, #0
 	lsls r1, r1, #3
 	adds r1, #0x68
@@ -2904,7 +2904,7 @@ sub_080B6ECC: @ 0x080B6ECC
 	movs r1, #2
 	bl Text_SetColor
 	mov r0, r8
-	bl sub_080AAD00
+	bl CountDigits
 	adds r1, r0, #0
 	lsls r1, r1, #3
 	adds r1, #0x90
@@ -2986,13 +2986,13 @@ _080B7022:
 	mov r1, sp
 	bl GetMsgTo
 	ldr r1, [r4]
-	bl sub_080AAA7C
+	bl AppendString
 	str r0, [r5]
 	ldr r0, _080B7054 @ =0x0000118B
 	mov r1, sp
 	bl GetMsgTo
 	ldr r1, [r5]
-	bl sub_080AAA7C
+	bl AppendString
 	str r0, [r5]
 	b _080B6FDC
 	.align 2, 0
@@ -3072,7 +3072,7 @@ sub_080B70B4: @ 0x080B70B4
 	bl SetTextFontGlyphs
 	adds r0, r7, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	adds r0, r7, #0
 	movs r1, #1
 	bl Text_SetColor
@@ -3551,7 +3551,7 @@ _080B747A:
 	lsls r3, r3, #3
 	adds r2, r4, r3
 	ldr r3, _080B74B0 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #4
 	adds r7, #0x20
 	subs r6, #1
@@ -3616,7 +3616,7 @@ _080B74F0:
 	lsls r3, r3, #3
 	adds r2, r4, r3
 	ldr r3, _080B752C @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r7, #4
 	adds r6, #0x20
 	subs r5, #1
@@ -3699,7 +3699,7 @@ sub_080B7530: @ 0x080B7530
 	strb r0, [r1]
 	ldr r0, _080B75D4 @ =sub_080B74B4
 	adds r1, r4, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -3830,7 +3830,7 @@ _080B76B4: .4byte 0x03002870
 sub_080B76B8: @ 0x080B76B8
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	ldr r0, [r4, #0x34]
 	ldm r0!, {r1}
 	str r0, [r4, #0x34]
@@ -4056,7 +4056,7 @@ sub_080B7810: @ 0x080B7810
 	bl sub_080B6E28
 	ldr r0, _080B78D4 @ =sub_080B7408
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	adds r6, r5, #0
 	adds r6, #0x51
 	strb r4, [r6]
@@ -4080,7 +4080,7 @@ _080B78A6:
 	strb r1, [r0]
 	ldr r0, _080B78D8 @ =sub_080B77DC
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	add sp, #0x64
 	pop {r4, r5, r6}
 	pop {r0}
@@ -4405,10 +4405,10 @@ sub_080B7B18: @ 0x080B7B18
 	cmp r2, #0x10
 	bne _080B7B64
 	adds r0, r4, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	ldr r0, _080B7B70 @ =sub_080B77DC
 	adds r1, r4, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	adds r0, r4, #0
 	bl Proc_Break
 _080B7B64:
@@ -4515,10 +4515,10 @@ _080B7C24: .4byte 0x08CEDC98
 	thumb_func_start sub_080B7C28
 sub_080B7C28: @ 0x080B7C28
 	push {lr}
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	movs r0, #0
 	bl SetOnHBlankA
-	bl sub_080AA45C
+	bl WipeAllPalette
 	pop {r0}
 	bx r0
 
@@ -4666,7 +4666,7 @@ sub_080B7D0C: @ 0x080B7D0C
 	movs r1, #1
 	rsbs r1, r1, #0
 	movs r0, #0
-	bl sub_08083254
+	bl InitBoxDialogue
 	movs r1, #4
 	rsbs r1, r1, #0
 	ldr r2, _080B7D84 @ =0x000009F3
@@ -4741,7 +4741,7 @@ sub_080B7DAC: @ 0x080B7DAC
 	movs r1, #1
 	rsbs r1, r1, #0
 	movs r0, #0
-	bl sub_08083254
+	bl InitBoxDialogue
 	movs r1, #4
 	rsbs r1, r1, #0
 	ldr r2, _080B7E1C @ =0x000009F5
@@ -4812,7 +4812,7 @@ sub_080B7E3C: @ 0x080B7E3C
 	movs r1, #1
 	rsbs r1, r1, #0
 	movs r0, #0
-	bl sub_08083254
+	bl InitBoxDialogue
 	movs r1, #4
 	rsbs r1, r1, #0
 	ldr r2, _080B7EAC @ =0x000009F4
@@ -4883,12 +4883,12 @@ sub_080B7EF8: @ 0x080B7EF8
 	adds r4, r0, #0
 	adds r5, r1, #0
 	movs r0, #1
-	bl sub_080AAA9C
+	bl AppendCharacter
 	adds r5, r0, #0
 	ldr r6, _080B7F4C @ =0x085E9ACC
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	adds r0, r4, #0
 	bl GetChapterInfo
@@ -4906,11 +4906,11 @@ _080B7F26:
 	ldrh r0, [r0]
 	bl GetMsg
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	pop {r4, r5, r6}
 	pop {r1}
@@ -4931,7 +4931,7 @@ sub_080B7F54: @ 0x080B7F54
 	cmp r6, #4
 	bne _080B7F78
 	movs r0, #0x7d
-	bl sub_08079858
+	bl CheckChapterFlag
 	lsls r0, r0, #0x18
 	movs r5, #0xf
 	cmp r0, #0
@@ -4940,7 +4940,7 @@ sub_080B7F54: @ 0x080B7F54
 _080B7F78:
 	lsls r0, r5, #0x18
 	lsrs r0, r0, #0x18
-	bl sub_080A0550
+	bl GetPidStats
 	ldrb r0, [r0, #5]
 	lsls r0, r0, #0x1a
 	lsrs r7, r0, #0x1a
@@ -4969,7 +4969,7 @@ _080B7FBC:
 	ldr r0, _080B7FD8 @ =0x00001019
 	bl GetMsg
 	adds r1, r4, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r1, r4, #0
@@ -4984,7 +4984,7 @@ _080B7FE0:
 	ldr r0, _080B7FFC @ =0x0000101A
 	bl GetMsg
 	adds r1, r4, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r1, r4, #0
@@ -4999,7 +4999,7 @@ _080B8004:
 	ldr r0, _080B8020 @ =0x0000101A
 	bl GetMsg
 	adds r1, r4, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r1, r4, #0
@@ -5018,7 +5018,7 @@ _080B8028:
 	ldr r0, _080B804C @ =0x0000101A
 	bl GetMsg
 	adds r1, r4, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r1, r4, #0
@@ -5033,7 +5033,7 @@ _080B8054:
 	ldr r0, _080B8070 @ =0x00001019
 	bl GetMsg
 	adds r1, r4, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r1, r4, #0
@@ -5056,7 +5056,7 @@ _080B8084:
 _080B8086:
 	bl GetMsg
 	adds r1, r4, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r4, r0, #0
 	adds r0, r7, #0
 	adds r1, r4, #0
@@ -5067,7 +5067,7 @@ _080B809E:
 	bl GetMsg
 _080B80A2:
 	adds r1, r4, #0
-	bl sub_080AAA7C
+	bl AppendString
 	b _080B80B8
 	.align 2, 0
 _080B80AC: .4byte 0x00001092
@@ -5085,8 +5085,8 @@ _080B80BC:
 	.align 2, 0
 _080B80C4: .4byte 0x08CEE15C
 
-	thumb_func_start sub_080B80C8
-sub_080B80C8: @ 0x080B80C8
+	thumb_func_start SetupCharacterEndingGfx
+SetupCharacterEndingGfx: @ 0x080B80C8
 	push {lr}
 	ldr r0, _080B80E0 @ =0x085DC154
 	ldr r1, _080B80E4 @ =0x06005000
@@ -5257,7 +5257,7 @@ sub_080B8230: @ 0x080B8230
 	movs r0, #0
 	bl InitBgs
 	bl InitFaces
-	bl sub_080B80C8
+	bl SetupCharacterEndingGfx
 	ldr r3, _080B8284 @ =0x03002870
 	adds r1, r3, #0
 	adds r1, #0x3c
@@ -5308,8 +5308,8 @@ _080B8298:
 	.align 2, 0
 _080B82A8: .4byte 0x08CEE630
 
-	thumb_func_start sub_080B82AC
-sub_080B82AC: @ 0x080B82AC
+	thumb_func_start CharacterEnding_80B69D4
+CharacterEnding_80B69D4: @ 0x080B82AC
 	push {lr}
 	ldr r0, _080B82DC @ =0x02022C60
 	movs r1, #0
@@ -5321,7 +5321,7 @@ sub_080B82AC: @ 0x080B82AC
 	movs r1, #0
 	bl TmFill
 	bl ClearTalk
-	bl sub_080B8E98
+	bl EndEndingBattleText
 	bl sub_080B80F0
 	movs r0, #7
 	bl EnableBgSync
@@ -5332,8 +5332,8 @@ _080B82DC: .4byte 0x02022C60
 _080B82E0: .4byte 0x02023460
 _080B82E4: .4byte 0x02023C60
 
-	thumb_func_start sub_080B82E8
-sub_080B82E8: @ 0x080B82E8
+	thumb_func_start GetUnitForCharacterEnding
+GetUnitForCharacterEnding: @ 0x080B82E8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #1
@@ -5368,8 +5368,8 @@ _080B831E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080B8324
-sub_080B8324: @ 0x080B8324
+	thumb_func_start GetUnitASupporterPid
+GetUnitASupporterPid: @ 0x080B8324
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	cmp r5, #0
@@ -5378,7 +5378,7 @@ sub_080B8324: @ 0x080B8324
 _080B832E:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08026638
+	bl GetUnitSupportPid
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	b _080B8352
@@ -5387,7 +5387,7 @@ _080B833C:
 _080B833E:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	cmp r0, #3
 	beq _080B832E
 	adds r4, #1
@@ -5407,7 +5407,7 @@ sub_080B8358: @ 0x080B8358
 	adds r0, r1, #0
 	ldr r1, [r0]
 	ldrb r5, [r1, #4]
-	bl sub_080B8324
+	bl GetUnitASupporterPid
 	adds r2, r0, #0
 	cmp r2, #0
 	bne _080B838C
@@ -5507,7 +5507,7 @@ _080B83F4:
 _080B840C: .4byte 0x0202BBF8
 _080B8410:
 	ldrb r0, [r5, #1]
-	bl sub_080B82E8
+	bl GetUnitForCharacterEnding
 	adds r1, r0, #0
 	str r1, [r4, #0x38]
 	cmp r1, #0
@@ -5536,12 +5536,12 @@ _080B843A:
 	b _080B8488
 _080B8448:
 	ldrb r0, [r2, #2]
-	bl sub_080B82E8
+	bl GetUnitForCharacterEnding
 	str r0, [r4, #0x3c]
 	cmp r0, #0
 	beq _080B84C2
 	ldr r0, [r4, #0x38]
-	bl sub_080B8324
+	bl GetUnitASupporterPid
 	ldr r1, [r4, #0x30]
 	ldrb r1, [r1, #2]
 	cmp r0, r1
@@ -5550,12 +5550,12 @@ _080B8448:
 _080B8464:
 	movs r0, #1
 	bl GetUnitByPid
-	bl sub_080B8324
+	bl GetUnitASupporterPid
 	cmp r0, #0x25
 	beq _080B84C2
 	ldr r0, [r4, #0x30]
 	ldrb r0, [r0, #2]
-	bl sub_080B82E8
+	bl GetUnitForCharacterEnding
 	b _080B8482
 _080B847C:
 	movs r0, #0xf
@@ -5630,32 +5630,32 @@ _080B8500:
 	ldr r0, [r3, #0x30]
 	ldr r1, [r3, #0x38]
 	adds r2, r3, #0
-	bl sub_080B88C0
+	bl StartSoloEndingBattleDisplay
 	b _080B8522
 _080B850C:
 	ldr r0, [r3, #0x30]
 	ldr r1, [r3, #0x38]
 	ldr r2, [r3, #0x3c]
-	bl sub_080B8C8C
+	bl StartPairedEndingBattleDisplay
 	b _080B8522
 _080B8518:
 	ldr r0, [r3, #0x30]
 	ldr r1, [r3, #0x38]
 	ldr r2, [r3, #0x3c]
-	bl sub_080B8C8C
+	bl StartPairedEndingBattleDisplay
 _080B8522:
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080B8528
-sub_080B8528: @ 0x080B8528
+	thumb_func_start CharacterEnding_StartBattleDisplayText
+CharacterEnding_StartBattleDisplayText: @ 0x080B8528
 	push {lr}
 	adds r3, r0, #0
 	ldr r0, [r3, #0x30]
 	ldr r1, [r3, #0x38]
 	ldr r2, [r3, #0x3c]
-	bl sub_080B8E78
+	bl StartEndingBattleText
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -5666,7 +5666,7 @@ sub_080B853C: @ 0x080B853C
 	movs r0, #0
 	bl InitBgs
 	bl ClearTalk
-	bl sub_080B8E98
+	bl EndEndingBattleText
 	ldr r3, _080B859C @ =0x03002870
 	adds r1, r3, #0
 	adds r1, #0x3c
@@ -5719,8 +5719,8 @@ sub_080B85A8: @ 0x080B85A8
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080B85B4
-sub_080B85B4: @ 0x080B85B4
+	thumb_func_start CharacterEnding_Unused_80B6C74
+CharacterEnding_Unused_80B6C74: @ 0x080B85B4
 	push {lr}
 	adds r2, r0, #0
 	ldr r0, [r2, #0x30]
@@ -5764,7 +5764,7 @@ _080B85EE:
 	beq _080B8642
 	ldr r0, [r0]
 	ldrb r0, [r0, #4]
-	bl sub_080A0550
+	bl GetPidStats
 	adds r1, r0, #0
 	lsls r2, r6, #1
 	adds r0, r5, #0
@@ -5881,7 +5881,7 @@ _080B86DE:
 	movs r2, #0
 	str r2, [sp]
 	str r6, [sp, #4]
-	bl sub_08005AD4
+	bl PutDrawText
 	b _080B8828
 	.align 2, 0
 _080B8708: .4byte 0x00001078
@@ -5905,7 +5905,7 @@ _080B8714:
 	str r4, [sp]
 	str r6, [sp, #4]
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080B885C @ =0x000012AB
 	bl GetMsg
 	adds r2, r0, #0
@@ -5917,7 +5917,7 @@ _080B8714:
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080B8860 @ =0x000012AC
 	bl GetMsg
 	adds r2, r0, #0
@@ -5929,7 +5929,7 @@ _080B8714:
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0x20
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080B8864 @ =0x000012AD
 	bl GetMsg
 	adds r2, r0, #0
@@ -5941,10 +5941,10 @@ _080B8714:
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0x40
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r1, r8
 	ldrh r0, [r1, #0x3c]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	adds r0, #0x62
 	ldr r1, [r7]
@@ -5953,10 +5953,10 @@ _080B8714:
 	ldrh r2, [r4, #0x3c]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r4, #0x40
 	ldrh r0, [r4]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	adds r0, #0x6a
 	ldr r1, [r7]
@@ -5964,10 +5964,10 @@ _080B8714:
 	ldrh r2, [r4]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r4, #4
 	ldrh r0, [r4]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	adds r0, #0x72
 	ldr r1, [r7]
@@ -5975,7 +5975,7 @@ _080B8714:
 	ldrh r2, [r4]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	ldr r2, _080B8868 @ =0x08BDCE4C
 	mov r1, r8
 	ldr r0, [r1, #0x38]
@@ -5991,7 +5991,7 @@ _080B8714:
 	str r0, [sp]
 	movs r0, #0
 	movs r3, #0x38
-	bl sub_08007BCC
+	bl StartBmFace
 	mov r4, r8
 	ldr r0, [r4, #0x2c]
 	ldr r0, [r0, #0xc]
@@ -6000,13 +6000,13 @@ _080B8714:
 	cmp r0, #0
 	beq _080B8828
 	movs r0, #0x16
-	bl sub_080136F8
+	bl ArchivePalette
 	movs r3, #0x80
 	lsls r3, r3, #0xf
 	movs r0, #0xc0
 	movs r1, #0xc0
 	movs r2, #0xc0
-	bl sub_08013728
+	bl WriteFadedPaletteFromArchive
 _080B8828:
 	movs r2, #0
 	mov r0, r8
@@ -6063,7 +6063,7 @@ sub_080B8874: @ 0x080B8874
 	ands r1, r0
 	movs r0, #0
 	movs r2, #0x38
-	bl sub_08007CF0
+	bl SetFacePosition
 _080B88A0:
 	subs r0, r6, r4
 	movs r1, #0
@@ -6080,8 +6080,8 @@ _080B88B2:
 _080B88B8: .4byte 0x08CEE91C
 _080B88BC: .4byte 0x000001FF
 
-	thumb_func_start sub_080B88C0
-sub_080B88C0: @ 0x080B88C0
+	thumb_func_start StartSoloEndingBattleDisplay
+StartSoloEndingBattleDisplay: @ 0x080B88C0
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -6147,7 +6147,7 @@ sub_080B88E0: @ 0x080B88E0
 	mov r8, r2
 	str r2, [sp]
 	str r5, [sp, #4]
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080B8B64 @ =0x000012AB
 	bl GetMsg
 	adds r2, r0, #0
@@ -6161,7 +6161,7 @@ sub_080B88E0: @ 0x080B88E0
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080B8B6C @ =0x000012AC
 	mov sl, r0
 	bl GetMsg
@@ -6175,7 +6175,7 @@ sub_080B88E0: @ 0x080B88E0
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0x20
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080B8B70 @ =0x000012AD
 	mov sb, r0
 	bl GetMsg
@@ -6189,9 +6189,9 @@ sub_080B88E0: @ 0x080B88E0
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0x40
-	bl sub_08005AD4
+	bl PutDrawText
 	ldrh r0, [r7, #0x3c]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	adds r0, r0, r5
 	ldr r1, [r4]
@@ -6199,11 +6199,11 @@ sub_080B88E0: @ 0x080B88E0
 	ldrh r2, [r7, #0x3c]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r5, r7, #0
 	adds r5, #0x40
 	ldrh r0, [r5]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	ldr r1, _080B8B74 @ =0x0000044A
 	adds r0, r0, r1
@@ -6212,10 +6212,10 @@ sub_080B88E0: @ 0x080B88E0
 	ldrh r2, [r5]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r5, #4
 	ldrh r0, [r5]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	ldr r2, _080B8B78 @ =0x00000452
 	adds r0, r0, r2
@@ -6224,7 +6224,7 @@ sub_080B88E0: @ 0x080B88E0
 	ldrh r2, [r5]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	ldr r0, [r7, #0x38]
 	ldrb r0, [r0, #2]
 	bl sub_080B7EB0
@@ -6243,7 +6243,7 @@ sub_080B88E0: @ 0x080B88E0
 	str r2, [sp]
 	str r5, [sp, #4]
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080B8B64 @ =0x000012AB
 	bl GetMsg
 	adds r2, r0, #0
@@ -6256,7 +6256,7 @@ sub_080B88E0: @ 0x080B88E0
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r0, sl
 	bl GetMsg
 	adds r2, r0, #0
@@ -6269,7 +6269,7 @@ sub_080B88E0: @ 0x080B88E0
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0x20
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r0, sb
 	bl GetMsg
 	adds r2, r0, #0
@@ -6282,9 +6282,9 @@ sub_080B88E0: @ 0x080B88E0
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0x40
-	bl sub_08005AD4
+	bl PutDrawText
 	ldrh r0, [r7, #0x3e]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	adds r0, #0x62
 	ldr r1, [r4]
@@ -6292,11 +6292,11 @@ sub_080B88E0: @ 0x080B88E0
 	ldrh r2, [r7, #0x3e]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r5, r7, #0
 	adds r5, #0x42
 	ldrh r0, [r5]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	adds r0, #0x6a
 	ldr r1, [r4]
@@ -6304,10 +6304,10 @@ sub_080B88E0: @ 0x080B88E0
 	ldrh r2, [r5]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r5, #4
 	ldrh r0, [r5]
-	bl sub_080AAD00
+	bl CountDigits
 	lsls r0, r0, #1
 	adds r0, #0x72
 	ldr r1, [r4]
@@ -6315,7 +6315,7 @@ sub_080B88E0: @ 0x080B88E0
 	ldrh r2, [r5]
 	adds r0, r1, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	mov r0, r8
 	str r0, [r7, #0x34]
 	ldr r2, _080B8B80 @ =0x03002870
@@ -6348,7 +6348,7 @@ sub_080B88E0: @ 0x080B88E0
 	str r0, [sp]
 	movs r0, #0
 	movs r3, #0x30
-	bl sub_08007BCC
+	bl StartBmFace
 	ldr r0, [r7, #0x38]
 	ldrb r0, [r0, #2]
 	subs r0, #1
@@ -6361,7 +6361,7 @@ sub_080B88E0: @ 0x080B88E0
 	str r0, [sp]
 	movs r0, #1
 	movs r3, #0x30
-	bl sub_08007BCC
+	bl StartBmFace
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -6388,8 +6388,8 @@ _080B8B84: .4byte 0x08BDCE4C
 _080B8B88: .4byte 0x00000503
 _080B8B8C: .4byte 0x00000502
 
-	thumb_func_start sub_080B8B90
-sub_080B8B90: @ 0x080B8B90
+	thumb_func_start PairedEndingBattleDisp_Loop_SlideIn
+PairedEndingBattleDisp_Loop_SlideIn: @ 0x080B8B90
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -6410,13 +6410,13 @@ sub_080B8B90: @ 0x080B8B90
 	ands r1, r6
 	movs r0, #0
 	movs r2, #0x30
-	bl sub_08007CF0
+	bl SetFacePosition
 	adds r4, #0xb0
 	ands r4, r6
 	movs r0, #1
 	adds r1, r4, #0
 	movs r2, #0x30
-	bl sub_08007CF0
+	bl SetFacePosition
 	adds r0, r5, #0
 	movs r1, #0
 	bl sub_080B8160
@@ -6516,8 +6516,8 @@ _080B8C80:
 	.align 2, 0
 _080B8C88: .4byte 0x03002870
 
-	thumb_func_start sub_080B8C8C
-sub_080B8C8C: @ 0x080B8C8C
+	thumb_func_start StartPairedEndingBattleDisplay
+StartPairedEndingBattleDisplay: @ 0x080B8C8C
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -6566,7 +6566,7 @@ _080B8CD6:
 	adds r0, r0, r4
 	ldr r1, _080B8D14 @ =0x02022C64
 	adds r1, r7, r1
-	bl sub_08005590
+	bl PutText
 	adds r7, #0x80
 	adds r5, #1
 	cmp r5, #4
@@ -6769,8 +6769,8 @@ _080B8E70:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080B8E78
-sub_080B8E78: @ 0x080B8E78
+	thumb_func_start StartEndingBattleText
+StartEndingBattleText: @ 0x080B8E78
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -6787,8 +6787,8 @@ sub_080B8E78: @ 0x080B8E78
 	.align 2, 0
 _080B8E94: .4byte 0x08CEE988
 
-	thumb_func_start sub_080B8E98
-sub_080B8E98: @ 0x080B8E98
+	thumb_func_start EndEndingBattleText
+EndEndingBattleText: @ 0x080B8E98
 	push {lr}
 	ldr r0, _080B8EA4 @ =0x08CEE988
 	bl Proc_EndEach
@@ -6797,8 +6797,8 @@ sub_080B8E98: @ 0x080B8E98
 	.align 2, 0
 _080B8EA4: .4byte 0x08CEE988
 
-	thumb_func_start sub_080B8EA8
-sub_080B8EA8: @ 0x080B8EA8
+	thumb_func_start DrawFinImage
+DrawFinImage: @ 0x080B8EA8
 	push {lr}
 	ldr r0, _080B8ED4 @ =0x085DDC7C
 	movs r1, #0xe0
@@ -6857,7 +6857,7 @@ sub_080B8EEC: @ 0x080B8EEC
 	.align 2, 0
 _080B8F30: .4byte 0x02024460
 _080B8F34:
-	bl sub_080B8EA8
+	bl DrawFinImage
 _080B8F38:
 	ldr r3, _080B8F60 @ =0x03002870
 	adds r1, r3, #0
@@ -6970,7 +6970,7 @@ sub_080B8FBC: @ 0x080B8FBC
 	strh r1, [r2, #0x3c]
 	adds r0, #0x4c
 	strh r3, [r0]
-	bl sub_080B8EA8
+	bl DrawFinImage
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -7408,7 +7408,7 @@ sub_080B9340: @ 0x080B9340
 	ldr r2, [sp, #8]
 	cmp r2, r0
 	bne _080B9408
-	bl sub_0809FC5C
+	bl GetGameTotalTurnCount
 	adds r4, r0, #0
 	ldr r0, _080B9404 @ =0x000012D1
 	bl GetMsg
@@ -7426,7 +7426,7 @@ sub_080B9340: @ 0x080B9340
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r5, #0
 	adds r0, #0x17
 	lsls r0, r0, #1
@@ -7434,7 +7434,7 @@ sub_080B9340: @ 0x080B9340
 	adds r0, r0, r1
 	movs r1, #2
 	adds r2, r4, #0
-	bl sub_080061D8
+	bl PutNumber
 	mov r2, sb
 	ldr r0, [r2]
 	adds r0, #0x90
@@ -7443,7 +7443,7 @@ sub_080B9340: @ 0x080B9340
 	lsls r1, r1, #1
 	ldr r3, _080B93FC @ =0x02023460
 	adds r1, r1, r3
-	bl sub_08005590
+	bl PutText
 	movs r0, #0
 	b _080B9638
 	.align 2, 0
@@ -7505,7 +7505,7 @@ _080B9456:
 	str r2, [sp, #4]
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r4, r7, #0
 	b _080B9542
 	.align 2, 0
@@ -7521,7 +7521,7 @@ _080B9484:
 	ldr r2, _080B94EC @ =0x02023460
 	mov sb, r2
 	add r1, sb
-	bl sub_08005590
+	bl PutText
 	movs r7, #0
 	adds r5, r4, #0
 	mov r3, r8
@@ -7536,7 +7536,7 @@ _080B94A6:
 	add r0, sb
 	movs r1, #2
 	mov r2, r8
-	bl sub_080061D8
+	bl PutNumber
 	cmp r6, #0x19
 	bne _080B94F4
 	ldr r0, _080B94F0 @ =0x00001189
@@ -7557,7 +7557,7 @@ _080B94A6:
 	str r3, [sp, #4]
 	movs r2, #2
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	b _080B9542
 	.align 2, 0
 _080B94E8: .4byte 0x08CEEBA4
@@ -7600,7 +7600,7 @@ _080B9508:
 	str r3, [sp, #4]
 	movs r2, #2
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 _080B9542:
 	cmp r6, #0x2f
 	bgt _080B956C
@@ -7660,7 +7660,7 @@ _080B958C:
 	str r2, [sp]
 	str r3, [sp, #4]
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	b _080B960E
 	.align 2, 0
 _080B95C0: .4byte 0x0202BBF8
@@ -7697,7 +7697,7 @@ _080B95E0:
 	str r2, [sp]
 	str r3, [sp, #4]
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 _080B960E:
 	adds r0, r5, #0
 	adds r0, #0x14
@@ -7707,7 +7707,7 @@ _080B960E:
 	adds r0, r0, r4
 	movs r1, #2
 	adds r2, r7, #0
-	bl sub_080061D8
+	bl PutNumber
 	ldr r0, _080B964C @ =0x08CEEBA4
 	ldr r0, [r0]
 	adds r0, #0x90
@@ -7716,7 +7716,7 @@ _080B960E:
 	adds r1, #3
 	lsls r1, r1, #1
 	adds r1, r1, r4
-	bl sub_08005590
+	bl PutText
 _080B9636:
 	ldr r0, [sp, #0xc]
 _080B9638:
@@ -7836,7 +7836,7 @@ sub_080B96FC: @ 0x080B96FC
 	movs r0, #2
 	movs r1, #0x18
 	movs r2, #0x14
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B98F4 @ =0x08CEEAE4
 	movs r0, #0xc9
 	lsls r0, r0, #7
@@ -7844,7 +7844,7 @@ sub_080B96FC: @ 0x080B96FC
 	movs r0, #2
 	movs r1, #0x10
 	movs r2, #0x80
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, _080B98F8 @ =0x0202BBF8
 	movs r0, #0x80
 	ldrb r1, [r1, #0x14]
@@ -7859,19 +7859,19 @@ _080B973A:
 	movs r0, #2
 	movs r1, #0x10
 	movs r2, #0x38
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B9904 @ =0x08CEEA9E
 	str r4, [sp]
 	movs r0, #2
 	movs r1, #0x80
 	movs r2, #0x38
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B9908 @ =0x08CEEABA
 	str r4, [sp]
 	movs r0, #2
 	movs r1, #0x10
 	movs r2, #0x58
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B990C @ =0x08CEEAD6
 	movs r0, #0xe9
 	lsls r0, r0, #7
@@ -7879,7 +7879,7 @@ _080B973A:
 	movs r0, #2
 	movs r1, #0x80
 	movs r2, #0x58
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r7, #0
 	ldr r0, [sp, #4]
 	adds r0, #0x4c
@@ -7936,7 +7936,7 @@ _080B9786:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	movs r0, #1
 	ands r0, r7
 	lsls r1, r0, #3
@@ -7968,7 +7968,7 @@ _080B9786:
 	adds r0, r0, r4
 	str r0, [sp]
 	movs r0, #2
-	bl sub_08006A34
+	bl PutSpriteExt
 _080B9834:
 	movs r0, #2
 	add r8, r0
@@ -8030,7 +8030,7 @@ _080B984C:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	movs r0, #1
 	ands r0, r7
 	lsls r1, r0, #3
@@ -8055,7 +8055,7 @@ _080B984C:
 	ldr r0, _080B9920 @ =0x0000F480
 	str r0, [sp]
 	movs r0, #2
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080B9AF6
 	.align 2, 0
 _080B98EC: .4byte 0x08CEEA70
@@ -8079,31 +8079,31 @@ _080B9924:
 	movs r0, #2
 	movs r1, #0x10
 	movs r2, #0x30
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B9B10 @ =0x08CEEA9E
 	str r4, [sp]
 	movs r0, #2
 	movs r1, #0x80
 	movs r2, #0x30
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B9B14 @ =0x08CEEAC8
 	str r4, [sp]
 	movs r0, #2
 	movs r1, #0x10
 	movs r2, #0x48
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B9B18 @ =0x08CEEAAC
 	str r4, [sp]
 	movs r0, #2
 	movs r1, #0x80
 	movs r2, #0x48
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B9B1C @ =0x08CEEABA
 	str r4, [sp]
 	movs r0, #2
 	movs r1, #0x10
 	movs r2, #0x60
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B9B20 @ =0x08CEEAD6
 	movs r0, #0xe9
 	lsls r0, r0, #7
@@ -8111,7 +8111,7 @@ _080B9924:
 	movs r0, #2
 	movs r1, #0x80
 	movs r2, #0x60
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r7, #0
 	ldr r0, [sp, #4]
 	adds r0, #0x4c
@@ -8168,7 +8168,7 @@ _080B998C:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	movs r0, #1
 	ands r0, r7
 	lsls r1, r0, #3
@@ -8202,7 +8202,7 @@ _080B998C:
 	adds r0, r0, r4
 	str r0, [sp]
 	movs r0, #2
-	bl sub_08006A34
+	bl PutSpriteExt
 _080B9A3E:
 	movs r0, #2
 	add r8, r0
@@ -8262,7 +8262,7 @@ _080B9A3E:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	movs r0, #1
 	ands r0, r7
 	lsls r1, r0, #3
@@ -8289,7 +8289,7 @@ _080B9A3E:
 	ldr r0, _080B9B34 @ =0x0000F480
 	str r0, [sp]
 	movs r0, #2
-	bl sub_08006A34
+	bl PutSpriteExt
 _080B9AF6:
 	add sp, #8
 	pop {r3, r4, r5}
@@ -8395,7 +8395,7 @@ _080B9B7C:
 	adds r4, r5, #0
 	adds r4, #0x3b
 	strb r0, [r4]
-	bl sub_080B6960
+	bl GetChapterCombatRank
 	adds r2, r5, #0
 	adds r2, #0x3c
 	strb r0, [r2]
@@ -8422,29 +8422,29 @@ _080B9C30: .4byte 0x085DFA90
 _080B9C34: .4byte 0x085DFAB0
 _080B9C38: .4byte 0x0202BBF8
 _080B9C3C:
-	bl sub_0809FC30
+	bl GetGameTotalTime_unused
 	add r1, sp, #8
 	mov r2, sb
 	mov r3, sl
 	bl FormatTime
-	bl sub_080B62F4
+	bl GetGameTacticsRank
 	movs r7, #0x3a
 	adds r7, r7, r5
 	mov r8, r7
 	strb r0, [r7]
-	bl sub_080B63EC
+	bl GetGameSurvivalRank
 	adds r7, r5, #0
 	adds r7, #0x3b
 	strb r0, [r7]
-	bl sub_080B6550
+	bl GetGameFundsRank
 	adds r4, r5, #0
 	adds r4, #0x3c
 	strb r0, [r4]
-	bl sub_080B6424
+	bl GetGameExpRank
 	adds r6, r5, #0
 	adds r6, #0x3d
 	strb r0, [r6]
-	bl sub_080B651C
+	bl GetGameCombatRank
 	movs r1, #0x3e
 	adds r1, r1, r5
 	mov ip, r1
@@ -8457,7 +8457,7 @@ _080B9C3C:
 	mov r6, ip
 	ldrb r4, [r6]
 	str r4, [sp]
-	bl sub_080B65F0
+	bl GetOverallRank
 	adds r1, r5, #0
 	adds r1, #0x3f
 	strb r0, [r1]
@@ -8471,12 +8471,12 @@ _080B9CA2:
 	add r1, sp, #8
 	ldrh r2, [r1]
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r0, r4, #0
 	adds r0, #0xc
 	movs r1, #2
 	movs r2, #0x20
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #0
 	adds r0, #0x10
 	mov r7, sb
@@ -8487,7 +8487,7 @@ _080B9CA2:
 	adds r0, #0x12
 	movs r1, #2
 	movs r2, #0x20
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #0
 	adds r0, #0x16
 	mov r1, sl
@@ -8523,7 +8523,7 @@ _080B9CFE:
 	bls _080B9CFE
 	ldr r0, _080B9D4C @ =sub_080B96FC
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r0, _080B9D50 @ =0x085DFAB0
 	adds r1, r0, #0
 	adds r1, #0x20
@@ -8532,7 +8532,7 @@ _080B9CFE:
 	str r5, [sp, #4]
 	movs r2, #2
 	movs r3, #0x17
-	bl sub_080AA92C
+	bl StartMixPalette
 	add sp, #0x10
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -8616,7 +8616,7 @@ sub_080B9DD4: @ 0x080B9DD4
 	adds r4, r0, #0
 	ldr r0, [r4, #0x58]
 	adds r0, #0x10
-	bl sub_080136F8
+	bl ArchivePalette
 	movs r2, #0x80
 	lsls r2, r2, #1
 	movs r3, #0x80
@@ -8796,7 +8796,7 @@ _080B9F22:
 	cmp r0, #0
 	blt _080B9F3A
 	movs r0, #0x85
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B9F3A:
 	adds r0, r4, #0
 	bl Proc_Break
@@ -9406,8 +9406,8 @@ _080BA3DC:
 _080BA3EC: .4byte 0x04000006
 _080BA3F0: .4byte 0x04000012
 
-	thumb_func_start sub_080BA3F4
-sub_080BA3F4: @ 0x080BA3F4
+	thumb_func_start ResetTitleBgAffin
+ResetTitleBgAffin: @ 0x080BA3F4
 	push {lr}
 	sub sp, #0x14
 	lsls r0, r0, #0x18
@@ -9430,15 +9430,15 @@ sub_080BA3F4: @ 0x080BA3F4
 _080BA41A:
 	mov r0, sp
 	movs r2, #1
-	bl sub_080BFA08
+	bl BgAffineSet
 	add sp, #0x14
 	pop {r0}
 	bx r0
 	.align 2, 0
 _080BA428: .4byte 0x030028C8
 
-	thumb_func_start sub_080BA42C
-sub_080BA42C: @ 0x080BA42C
+	thumb_func_start Title_InitSpriteAnim
+Title_InitSpriteAnim: @ 0x080BA42C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -9470,7 +9470,7 @@ _080BA442:
 	adds r0, r5, #0
 	adds r1, r6, #0
 	movs r2, #0x48
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	str r0, [r7, #0x30]
 	movs r0, #0x80
 	lsls r0, r0, #3
@@ -9482,7 +9482,7 @@ _080BA442:
 	adds r1, r6, #0
 	movs r2, #0x4c
 	mov r3, r8
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	str r0, [r7, #0x34]
 	movs r0, #6
 	str r0, [sp]
@@ -9491,7 +9491,7 @@ _080BA442:
 	adds r1, r6, #0
 	movs r2, #0x90
 	mov r3, r8
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	str r0, [r7, #0x44]
 	add sp, #8
 	pop {r3}
@@ -9505,8 +9505,8 @@ _080BA4B0: .4byte 0x0866FD80
 _080BA4B4: .4byte 0x06010000
 _080BA4B8: .4byte 0x08672570
 
-	thumb_func_start sub_080BA4BC
-sub_080BA4BC: @ 0x080BA4BC
+	thumb_func_start Title_InitBg
+Title_InitBg: @ 0x080BA4BC
 	push {lr}
 	ldr r0, _080BA520 @ =0x0866AF6C
 	movs r1, #0xf0
@@ -9660,7 +9660,7 @@ sub_080BA564: @ 0x080BA564
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_080BA3F4
+	bl ResetTitleBgAffin
 	adds r2, r5, #0
 	adds r2, #0x3c
 	adds r1, r4, #0
@@ -9720,18 +9720,18 @@ _080BA6A8: .4byte 0x02023460
 _080BA6AC: .4byte 0x02023C60
 _080BA6B0: .4byte 0x02024460
 
-	thumb_func_start sub_080BA6B4
-sub_080BA6B4: @ 0x080BA6B4
+	thumb_func_start Title_InitDisp
+Title_InitDisp: @ 0x080BA6B4
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #1
-	bl sub_080BA42C
+	bl Title_InitSpriteAnim
 	adds r0, r4, #0
-	bl sub_080BA4BC
+	bl Title_InitBg
 	movs r0, #0xe
 	bl EnableBgSync
 	adds r0, r4, #0
-	bl sub_080BABB8
+	bl Title_StartTextFlame
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -9746,9 +9746,9 @@ sub_080BA6D8: @ 0x080BA6D8
 	bl SetOnHBlankA
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_080BA42C
+	bl Title_InitSpriteAnim
 	adds r0, r4, #0
-	bl sub_080BA4BC
+	bl Title_InitBg
 	ldr r0, _080BA758 @ =0x08CEFA40
 	movs r5, #0
 	str r5, [sp]
@@ -9762,7 +9762,7 @@ sub_080BA6D8: @ 0x080BA6D8
 	movs r1, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_080AA78C
+	bl StartBmBgfx
 	ldr r2, _080BA75C @ =0x03002870
 	movs r0, #1
 	ldrb r1, [r2, #1]
@@ -9786,7 +9786,7 @@ sub_080BA6D8: @ 0x080BA6D8
 	cmp r0, #0
 	blt _080BA744
 	movs r0, #0x63
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080BA744:
 	adds r0, r4, #0
 	adds r0, #0x50
@@ -9820,7 +9820,7 @@ sub_080BA764: @ 0x080BA764
 	movs r1, #0x78
 	movs r2, #0x3c
 	movs r3, #0x78
-	bl sub_080BAFE8
+	bl TitleSpriteBlendIN
 _080BA78A:
 	ldrb r0, [r6]
 	subs r0, #0x30
@@ -9933,7 +9933,7 @@ _080BA84A:
 	str r5, [sp, #0xc]
 	movs r2, #0
 	movs r3, #0x78
-	bl sub_080BB028
+	bl TitleSpriteBlendOUT
 _080BA86C:
 	ldrb r0, [r4]
 	adds r0, #1
@@ -10044,7 +10044,7 @@ sub_080BA918: @ 0x080BA918
 	movs r1, #0x78
 	movs r2, #0x90
 	movs r3, #0x78
-	bl sub_080BAFE8
+	bl TitleSpriteBlendIN
 	b _080BA97A
 _080BA94C:
 	ldrb r1, [r1]
@@ -10093,7 +10093,7 @@ sub_080BA998: @ 0x080BA998
 	movs r0, #0
 	bl SetOnHBlankA
 	adds r0, r4, #0
-	bl sub_080BABB8
+	bl Title_StartTextFlame
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -10137,7 +10137,7 @@ sub_080BA9B0: @ 0x080BA9B0
 	cmp r0, #0
 	blt _080BA9FE
 	ldr r0, _080BAA18 @ =0x0000038D
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080BA9FE:
 	movs r0, #0
 	bl SetNextGameAction
@@ -10168,20 +10168,20 @@ _080BAA32:
 sub_080BAA38: @ 0x080BAA38
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	adds r4, #0x30
 	movs r5, #5
 _080BAA44:
 	ldr r0, [r4]
 	cmp r0, #0
 	beq _080BAA4E
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 _080BAA4E:
 	adds r4, #4
 	subs r5, #1
 	cmp r5, #0
 	bge _080BAA44
-	bl sub_08012504
+	bl EndEachSpriteAnimProc
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4, r5}
@@ -10227,7 +10227,7 @@ sub_080BAA90: @ 0x080BAA90
 	movs r2, #0xa
 	str r2, [sp, #4]
 	movs r2, #0x80
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	str r0, [r4, #0x3c]
 	movs r1, #0x80
 	str r1, [sp]
@@ -10237,7 +10237,7 @@ sub_080BAA90: @ 0x080BAA90
 	movs r1, #0x78
 	movs r2, #0x80
 	movs r3, #0x78
-	bl sub_080BAFE8
+	bl TitleSpriteBlendIN
 	add sp, #0xc
 	pop {r4}
 	pop {r0}
@@ -10245,8 +10245,8 @@ sub_080BAA90: @ 0x080BAA90
 	.align 2, 0
 _080BAAD0: .4byte 0x08672570
 
-	thumb_func_start sub_080BAAD4
-sub_080BAAD4: @ 0x080BAAD4
+	thumb_func_start StartTitleScreen_WithMusic
+StartTitleScreen_WithMusic: @ 0x080BAAD4
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080BAAF0 @ =0x08CEEF6C
@@ -10262,8 +10262,8 @@ sub_080BAAD4: @ 0x080BAAD4
 	.align 2, 0
 _080BAAF0: .4byte 0x08CEEF6C
 
-	thumb_func_start sub_080BAAF4
-sub_080BAAF4: @ 0x080BAAF4
+	thumb_func_start StartTitleScreen_FlagFalse
+StartTitleScreen_FlagFalse: @ 0x080BAAF4
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080BAB08 @ =0x08CEEF6C
@@ -10276,8 +10276,8 @@ sub_080BAAF4: @ 0x080BAAF4
 	.align 2, 0
 _080BAB08: .4byte 0x08CEEF6C
 
-	thumb_func_start sub_080BAB0C
-sub_080BAB0C: @ 0x080BAB0C
+	thumb_func_start StartTitleScreen_FlagTrue
+StartTitleScreen_FlagTrue: @ 0x080BAB0C
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080BAB20 @ =0x08CEEF6C
@@ -10365,8 +10365,8 @@ _080BABAC: .4byte 0x02000000
 _080BABB0: .4byte 0x02000002
 _080BABB4: .4byte 0x030028AC
 
-	thumb_func_start sub_080BABB8
-sub_080BABB8: @ 0x080BABB8
+	thumb_func_start Title_StartTextFlame
+Title_StartTextFlame: @ 0x080BABB8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -10401,7 +10401,7 @@ sub_080BABB8: @ 0x080BABB8
 	str r1, [sp, #4]
 	movs r1, #0x78
 	movs r3, #0
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	movs r0, #0x21
 	rsbs r0, r0, #0
 	ldrb r1, [r7, #1]
@@ -10536,7 +10536,7 @@ sub_080BABB8: @ 0x080BABB8
 	bl sub_080AACD8
 	movs r0, #1
 	bl EnableBgSync
-	bl sub_0807685C
+	bl InitScanlineEffect
 	ldr r0, _080BAD74 @ =sub_080BAB24
 	bl SetOnHBlankA
 	ldr r0, _080BAD78 @ =0x08CEF034
@@ -10569,8 +10569,8 @@ _080BAD70: .4byte 0x0000C280
 _080BAD74: .4byte sub_080BAB24
 _080BAD78: .4byte 0x08CEF034
 
-	thumb_func_start sub_080BAD7C
-sub_080BAD7C: @ 0x080BAD7C
+	thumb_func_start TitleFlame_Init
+TitleFlame_Init: @ 0x080BAD7C
 	adds r1, r0, #0
 	adds r1, #0x64
 	movs r2, #0
@@ -10634,7 +10634,7 @@ _080BADDC:
 _080BADF0:
 	movs r0, #1
 	movs r1, #0
-	bl sub_0807751C
+	bl GetScanlineBuf
 	adds r5, #0x64
 	movs r6, #0
 	ldrsh r1, [r5, r6]
@@ -10648,7 +10648,7 @@ _080BADF0:
 	bl sub_08076FC4
 	movs r0, #1
 	movs r1, #0xa0
-	bl sub_0807751C
+	bl GetScanlineBuf
 	movs r7, #0
 	ldrsh r1, [r5, r7]
 	movs r3, #0xc
@@ -10657,7 +10657,7 @@ _080BADF0:
 	ldrsh r3, [r4, r7]
 	str r6, [sp]
 	bl sub_08076FC4
-	bl sub_080770C8
+	bl SwapScanlineBufs
 	ldrh r2, [r4, #0x10]
 	movs r0, #0
 	movs r1, #0
@@ -10759,7 +10759,7 @@ _080BAEE0:
 	ldr r2, [r5, #0x44]
 	movs r3, #1
 	rsbs r3, r3, #0
-	bl sub_080124DC
+	bl SetSpriteAnimProcParameters
 	b _080BAFDA
 _080BAEFE:
 	subs r4, r7, r6
@@ -10860,7 +10860,7 @@ _080BAFB4:
 	movs r3, #1
 	rsbs r3, r3, #0
 	mov r1, sb
-	bl sub_080124DC
+	bl SetSpriteAnimProcParameters
 	b _080BAFDA
 	.align 2, 0
 _080BAFC8: .4byte 0x03002870
@@ -10870,7 +10870,7 @@ _080BAFCC:
 	rsbs r3, r3, #0
 	mov r1, sb
 	mov r2, r8
-	bl sub_080124DC
+	bl SetSpriteAnimProcParameters
 _080BAFDA:
 	pop {r3, r4}
 	mov r8, r3
@@ -10880,8 +10880,8 @@ _080BAFDA:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080BAFE8
-sub_080BAFE8: @ 0x080BAFE8
+	thumb_func_start TitleSpriteBlendIN
+TitleSpriteBlendIN: @ 0x080BAFE8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -10914,8 +10914,8 @@ sub_080BAFE8: @ 0x080BAFE8
 	.align 2, 0
 _080BB024: .4byte 0x08CEF054
 
-	thumb_func_start sub_080BB028
-sub_080BB028: @ 0x080BB028
+	thumb_func_start TitleSpriteBlendOUT
+TitleSpriteBlendOUT: @ 0x080BB028
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -10962,8 +10962,8 @@ sub_080BB070: @ 0x080BB070
 	.align 2, 0
 _080BB07C: .4byte 0x0200750C
 
-	thumb_func_start sub_080BB080
-sub_080BB080: @ 0x080BB080
+	thumb_func_start InitOpScanlineBuf
+InitOpScanlineBuf: @ 0x080BB080
 	push {r4, r5, lr}
 	sub sp, #4
 	movs r5, #0
@@ -11000,8 +11000,8 @@ _080BB0C4: .4byte 0x010000A0
 _080BB0C8: .4byte 0x020072B4
 _080BB0CC: .4byte 0x02007018
 
-	thumb_func_start sub_080BB0D0
-sub_080BB0D0: @ 0x080BB0D0
+	thumb_func_start SwapOpScanlineBufs
+SwapOpScanlineBufs: @ 0x080BB0D0
 	ldr r0, _080BB0DC @ =0x020072B4
 	ldr r2, [r0]
 	ldr r1, [r0, #4]
@@ -11212,7 +11212,7 @@ _080BB274:
 	cmp r1, #0x7f
 	ble _080BB1B6
 _080BB27E:
-	bl sub_080BB0D0
+	bl SwapOpScanlineBufs
 	ldr r0, _080BB29C @ =0x02007018
 	ldr r1, [r0]
 	ldr r2, [r0, #8]
@@ -11252,7 +11252,7 @@ sub_080BB2AC: @ 0x080BB2AC
 	ldr r0, _080BB30C @ =0x02007508
 	movs r4, #0
 	str r4, [r0]
-	bl sub_080BB080
+	bl InitOpScanlineBuf
 	ldr r0, _080BB310 @ =0x0200751C
 	movs r1, #0xa0
 	str r1, [r0]
@@ -11313,8 +11313,8 @@ sub_080BB32C: @ 0x080BB32C
 _080BB34C: .4byte 0x02007508
 _080BB350: .4byte 0x02007500
 
-	thumb_func_start sub_080BB354
-sub_080BB354: @ 0x080BB354
+	thumb_func_start HBlank_80BBDD0
+HBlank_80BBDD0: @ 0x080BB354
 	push {r4, r5, r6, lr}
 	ldr r0, _080BB4A4 @ =0x04000006
 	ldrh r0, [r0]
@@ -11524,11 +11524,11 @@ sub_080BB4E8: @ 0x080BB4E8
 	ldr r0, _080BB51C @ =0x020072BC
 	str r4, [r0]
 	bl sub_080BB2AC
-	bl sub_080BB080
+	bl InitOpScanlineBuf
 	bl sub_080BB070
 	movs r0, #0
 	bl SetOnHBlankA
-	ldr r0, _080BB520 @ =sub_080BB354
+	ldr r0, _080BB520 @ =HBlank_80BBDD0
 	bl SetOnHBlankA
 	adds r5, #0x4c
 	strh r4, [r5]
@@ -11538,7 +11538,7 @@ sub_080BB4E8: @ 0x080BB4E8
 	.align 2, 0
 _080BB518: .4byte 0x03001620
 _080BB51C: .4byte 0x020072BC
-_080BB520: .4byte sub_080BB354
+_080BB520: .4byte HBlank_80BBDD0
 
 	thumb_func_start sub_080BB524
 sub_080BB524: @ 0x080BB524
@@ -11679,7 +11679,7 @@ _080BB5E8:
 	movs r2, #0xa
 	str r2, [sp, #4]
 	movs r2, #0x50
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 _080BB63A:
 	ldr r4, _080BB674 @ =0x03001620
 	ldr r0, [r4]
@@ -11847,7 +11847,7 @@ _080BB786:
 	movs r0, #4
 	ldr r2, _080BB7D4 @ =0x00000484
 	ldr r3, _080BB7D8 @ =0x08B90600
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #1
 	cmp r4, #3
 	ble _080BB786
@@ -11867,7 +11867,7 @@ _080BB79A:
 	movs r1, #8
 	movs r2, #0x80
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0x92
 	lsls r0, r0, #5
 	str r0, [sp]
@@ -11875,7 +11875,7 @@ _080BB79A:
 	movs r1, #8
 	movs r2, #0x90
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080BB7F2
 	.align 2, 0
 _080BB7D0: .4byte 0x03001620
@@ -11890,7 +11890,7 @@ _080BB7E0:
 	movs r0, #4
 	movs r1, #8
 	movs r2, #0x90
-	bl sub_08006A34
+	bl PutSpriteExt
 _080BB7F2:
 	add sp, #4
 	pop {r4, r5, r6}
@@ -11998,7 +11998,7 @@ _080BB866:
 	ands r0, r1
 	strb r0, [r4, #1]
 	movs r0, #2
-	bl sub_080BA3F4
+	bl ResetTitleBgAffin
 	bl sub_08002CA4
 	lsls r0, r0, #0x18
 	cmp r0, #0
@@ -12207,8 +12207,8 @@ _080BBAB8: .4byte 0x0000FFE0
 _080BBABC: .4byte 0x0000E0FF
 _080BBAC0: .4byte 0x02024460
 
-	thumb_func_start sub_080BBAC4
-sub_080BBAC4: @ 0x080BBAC4
+	thumb_func_start OpAnim_DrawWater
+OpAnim_DrawWater: @ 0x080BBAC4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080BBB14 @ =0x08600544
@@ -12233,7 +12233,7 @@ sub_080BBAC4: @ 0x080BBAC4
 	strb r0, [r2, #0xd]
 	movs r0, #1
 	bl EnableBgSync
-	bl sub_080BB080
+	bl InitOpScanlineBuf
 	ldr r2, _080BBB2C @ =0x03001620
 	ldr r0, [r2]
 	movs r1, #1
@@ -12362,10 +12362,10 @@ sub_080BBBB8: @ 0x080BBBB8
 	adds r0, #0x3c
 	strb r4, [r0]
 	bl sub_080BCAFC
-	bl sub_080A931C
+	bl EndAllParallelWorkers
 	ldr r0, _080BBC54 @ =sub_080BB76C
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	adds r0, r5, #0
 	bl sub_080BCE20
 	adds r1, r6, #0
@@ -12411,7 +12411,7 @@ sub_080BBC5C: @ 0x080BBC5C
 	str r1, [sp, #4]
 	movs r1, #0x78
 	movs r2, #0x50
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	add sp, #8
 	pop {r0}
 	bx r0
@@ -12947,7 +12947,7 @@ sub_080BC0A4: @ 0x080BC0A4
 	lsls r1, r1, #1
 	orrs r0, r1
 	str r0, [r2]
-	bl sub_080136AC
+	bl ArchiveCurrentPalettes
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -12968,7 +12968,7 @@ sub_080BC0C4: @ 0x080BC0C4
 	adds r1, r4, #0
 	adds r2, r4, #0
 	movs r3, #1
-	bl sub_08013728
+	bl WriteFadedPaletteFromArchive
 	movs r0, #0x80
 	lsls r0, r0, #2
 	cmp r4, r0
@@ -12996,7 +12996,7 @@ sub_080BC104: @ 0x080BC104
 	movs r0, #0
 	bl SetOnHBlankA
 	bl sub_080BC5CC
-	bl sub_080AA480
+	bl EndFadeInOut
 	movs r0, #0
 	str r0, [sp]
 	ldr r1, _080BC158 @ =0x02022860
@@ -13020,8 +13020,8 @@ sub_080BC104: @ 0x080BC104
 	ands r0, r1
 	strb r0, [r2, #1]
 	movs r0, #2
-	bl sub_080BA3F4
-	bl sub_08012504
+	bl ResetTitleBgAffin
+	bl EndEachSpriteAnimProc
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -13241,8 +13241,8 @@ _080BC300:
 	.align 2, 0
 _080BC308: .4byte 0x08659C9C
 
-	thumb_func_start sub_080BC30C
-sub_080BC30C: @ 0x080BC30C
+	thumb_func_start OpAnim_DrawCloud
+OpAnim_DrawCloud: @ 0x080BC30C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -13276,7 +13276,7 @@ sub_080BC30C: @ 0x080BC30C
 	ldr r0, _080BC444 @ =0x02024460
 	movs r1, #0
 	bl TmFill
-	bl sub_080A931C
+	bl EndAllParallelWorkers
 	movs r2, #4
 	rsbs r2, r2, #0
 	adds r0, r2, #0
@@ -13313,7 +13313,7 @@ sub_080BC30C: @ 0x080BC30C
 	movs r1, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_080AA78C
+	bl StartBmBgfx
 	ldr r1, _080BC450 @ =0x03001620
 	ldr r0, [r1]
 	movs r4, #0x10
@@ -13498,7 +13498,7 @@ _080BC50A:
 	adds r0, #1
 	strb r4, [r0]
 	movs r0, #0
-	bl sub_080AA76C
+	bl BmBgfxSetLoopEN
 	adds r0, r5, #0
 	bl Proc_Break
 	ldr r0, _080BC56C @ =0x02022860
@@ -13907,7 +13907,7 @@ sub_080BC7E4: @ 0x080BC7E4
 	ldr r0, [r5, #0x14]
 	movs r1, #0
 	bl Proc_Goto
-	bl sub_080BB080
+	bl InitOpScanlineBuf
 	ldr r1, _080BC8BC @ =0x02007018
 	movs r0, #0xc0
 	lsls r0, r0, #2
@@ -14031,7 +14031,7 @@ sub_080BC960: @ 0x080BC960
 	cmp r0, #0
 	blt _080BC97C
 	movs r0, #0x62
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080BC97C:
 	ldr r0, _080BC990 @ =0x08CEF284
 	adds r1, r4, #0
@@ -14836,7 +14836,7 @@ _080BCED4:
 	mov r1, sl
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	ldr r1, [sp, #4]
 	ldrh r1, [r1, #0x2c]
 	lsls r0, r1, #9
@@ -14855,7 +14855,7 @@ _080BCED4:
 	movs r0, #4
 	mov r1, r8
 	mov r2, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, [sp, #4]
 	ldrh r0, [r1, #0x2e]
 	adds r0, #1
@@ -14975,8 +14975,8 @@ _080BD00E:
 	.align 2, 0
 _080BD088: .4byte 0x02022860
 
-	thumb_func_start sub_080BD08C
-sub_080BD08C: @ 0x080BD08C
+	thumb_func_start Proc_08DB9398_Loop
+Proc_08DB9398_Loop: @ 0x080BD08C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x30]
@@ -15323,7 +15323,7 @@ sub_080BD310: @ 0x080BD310
 	str r5, [sp, #4]
 	adds r0, r6, #0
 	mov r3, r8
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	str r0, [r4, #0x2c]
 	movs r0, #0x3a
 	ldrsh r1, [r4, r0]
@@ -15334,7 +15334,7 @@ sub_080BD310: @ 0x080BD310
 	str r5, [sp, #4]
 	adds r0, r6, #0
 	mov r3, r8
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	str r0, [r4, #0x30]
 	add sp, #8
 	pop {r3}
@@ -15405,7 +15405,7 @@ _080BD378:
 	bge _080BD3E4
 _080BD3D2:
 	adds r0, r7, #0
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 	movs r0, #0
 	mov r1, r8
 	str r0, [r1]
@@ -15420,7 +15420,7 @@ _080BD3E4:
 	adds r0, r7, #0
 	movs r3, #0xe6
 	lsls r3, r3, #6
-	bl sub_080124DC
+	bl SetSpriteAnimProcParameters
 _080BD3F6:
 	movs r3, #1
 	add sb, r3
@@ -15580,7 +15580,7 @@ _080BD51A:
 	str r0, [sp]
 	movs r0, #4
 	adds r2, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _080BD534:
 	ldr r0, [r4, #0x34]
 	adds r0, #1
@@ -15680,7 +15680,7 @@ _080BD5DA:
 	lsrs r4, r3, #8
 	adds r7, #2
 	adds r0, r6, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0x1f
 	mov r2, r8
 	ands r1, r2
@@ -15727,7 +15727,7 @@ _080BD638:
 	adds r4, r0, #0
 	lsls r4, r4, #5
 	adds r0, r6, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0x1f
 	mov r2, r8
 	ands r1, r2

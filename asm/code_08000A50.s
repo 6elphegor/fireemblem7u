@@ -47,17 +47,17 @@ AgbMain: @ 0x08000A50
 	bl InitKeySt
 	ldr r0, [r4]
 	bl RefreshKeySt
-	bl sub_0800427C
-	bl sub_0809E404
-	bl sub_08004420
+	bl InitRamFuncs
+	bl SramInit
+	bl Proc_Init
 	bl sub_08011FAC
-	bl sub_0806BA4C
+	bl MU_Init
 	ldr r0, _08000B14 @ =0x42D690E9
 	bl RandInitB
 	bl RandNextB
 	bl RandInit
 	bl sub_0809F924
-	bl sub_080BE510
+	bl m4aSoundInit
 	bl sub_08003F6C
 	ldr r0, _08000B18 @ =OnVBlank
 	bl SetOnVBlank
@@ -79,8 +79,8 @@ _08000B10: .4byte 0x08B857F8
 _08000B14: .4byte 0x42D690E9
 _08000B18: .4byte OnVBlank
 
-	thumb_func_start sub_08000B1C
-sub_08000B1C: @ 0x08000B1C
+	thumb_func_start PutBuildInfo
+PutBuildInfo: @ 0x08000B1C
 	sub sp, #0x10
 	push {r4, lr}
 	add r4, sp, #0x18
@@ -127,7 +127,7 @@ _08000B6A:
 	adds r2, r1, #0
 	lsls r1, r2, #2
 	adds r0, r0, r1
-	ldr r1, _08000B84 @ =sub_08000BB0
+	ldr r1, _08000B84 @ =DummyIrqRoutine
 	str r1, [r0]
 	ldr r0, [r7]
 	adds r1, r0, #1
@@ -135,7 +135,7 @@ _08000B6A:
 	b _08000B62
 	.align 2, 0
 _08000B80: .4byte 0x030028E0
-_08000B84: .4byte sub_08000BB0
+_08000B84: .4byte DummyIrqRoutine
 _08000B88:
 	ldr r0, _08000BA4 @ =IntrMain
 	ldr r1, _08000BA8 @ =0x03003950
@@ -154,8 +154,8 @@ _08000BA4: .4byte IntrMain
 _08000BA8: .4byte 0x03003950
 _08000BAC: .4byte 0x03007FFC
 
-	thumb_func_start sub_08000BB0
-sub_08000BB0: @ 0x08000BB0
+	thumb_func_start DummyIrqRoutine
+DummyIrqRoutine: @ 0x08000BB0
 	push {r7, lr}
 	mov r7, sp
 	pop {r7}
@@ -762,8 +762,8 @@ EnableBgSync: @ 0x08000FFC
 	.align 2, 0
 _08001014: .4byte 0x0300000C
 
-	thumb_func_start sub_08001018
-sub_08001018: @ 0x08001018
+	thumb_func_start EnableBgSyncById
+EnableBgSyncById: @ 0x08001018
 	push {r4, r7, lr}
 	mov r7, sp
 	ldr r1, _08001034 @ =0x0300000C
@@ -781,8 +781,8 @@ sub_08001018: @ 0x08001018
 	.align 2, 0
 _08001034: .4byte 0x0300000C
 
-	thumb_func_start sub_08001038
-sub_08001038: @ 0x08001038
+	thumb_func_start DisableBgSync
+DisableBgSync: @ 0x08001038
 	push {r4, r7, lr}
 	mov r7, sp
 	ldr r1, _08001058 @ =0x0300000C
@@ -814,8 +814,8 @@ EnablePalSync: @ 0x0800105C
 	.align 2, 0
 _0800106C: .4byte 0x0300000D
 
-	thumb_func_start sub_08001070
-sub_08001070: @ 0x08001070
+	thumb_func_start DisablePalSync
+DisablePalSync: @ 0x08001070
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _08001080 @ =0x0300000D
@@ -983,8 +983,8 @@ _080011A2:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080011B0
-sub_080011B0: @ 0x080011B0
+	thumb_func_start SyncDispIo
+SyncDispIo: @ 0x080011B0
 	push {r7, lr}
 	mov r7, sp
 	movs r0, #0x80
@@ -1142,8 +1142,8 @@ _0800133C: .4byte 0x030028D0
 _08001340: .4byte 0x0400003C
 _08001344: .4byte 0x030028D4
 
-	thumb_func_start sub_08001348
-sub_08001348: @ 0x08001348
+	thumb_func_start GetBgCt
+GetBgCt: @ 0x08001348
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -1201,7 +1201,7 @@ GetBgChrOffset: @ 0x08001398
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_08001348
+	bl GetBgCt
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r0]
@@ -1219,8 +1219,8 @@ _080013C4:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080013CC
-sub_080013CC: @ 0x080013CC
+	thumb_func_start GetBgChrId
+GetBgChrId: @ 0x080013CC
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -1249,8 +1249,8 @@ _080013F6:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08001400
-sub_08001400: @ 0x08001400
+	thumb_func_start GetBgTilemapOffset
+GetBgTilemapOffset: @ 0x08001400
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -1260,7 +1260,7 @@ sub_08001400: @ 0x08001400
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_08001348
+	bl GetBgCt
 	str r0, [r7, #4]
 	ldr r0, [r7, #4]
 	ldr r1, [r0]
@@ -1278,8 +1278,8 @@ _0800142C:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08001434
-sub_08001434: @ 0x08001434
+	thumb_func_start SetBgChrOffset
+SetBgChrOffset: @ 0x08001434
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -1290,7 +1290,7 @@ sub_08001434: @ 0x08001434
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_08001348
+	bl GetBgCt
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r2, [r7, #4]
@@ -1314,8 +1314,8 @@ sub_08001434: @ 0x08001434
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08001478
-sub_08001478: @ 0x08001478
+	thumb_func_start SetBgTilemapOffset
+SetBgTilemapOffset: @ 0x08001478
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -1326,7 +1326,7 @@ sub_08001478: @ 0x08001478
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_08001348
+	bl GetBgCt
 	str r0, [r7, #8]
 	ldr r0, [r7, #4]
 	lsls r1, r0, #0x15
@@ -1368,8 +1368,8 @@ _080014D0:
 	.align 2, 0
 _080014D8: .4byte 0x02024C60
 
-	thumb_func_start sub_080014DC
-sub_080014DC: @ 0x080014DC
+	thumb_func_start SetBgScreenSize
+SetBgScreenSize: @ 0x080014DC
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -1380,7 +1380,7 @@ sub_080014DC: @ 0x080014DC
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_08001348
+	bl GetBgCt
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	ldr r2, [r7, #4]
@@ -1400,8 +1400,8 @@ sub_080014DC: @ 0x080014DC
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08001518
-sub_08001518: @ 0x08001518
+	thumb_func_start SetBgBpp
+SetBgBpp: @ 0x08001518
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -1412,7 +1412,7 @@ sub_08001518: @ 0x08001518
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_08001348
+	bl GetBgCt
 	str r0, [r7, #8]
 	ldr r0, [r7, #8]
 	movs r1, #0
@@ -1437,8 +1437,8 @@ _0800153E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0800155C
-sub_0800155C: @ 0x0800155C
+	thumb_func_start ApplyColorAddition_ClampMax
+ApplyColorAddition_ClampMax: @ 0x0800155C
 	push {r7, lr}
 	sub sp, #0x1c
 	mov r7, sp
@@ -1545,8 +1545,8 @@ _0800161C:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08001624
-sub_08001624: @ 0x08001624
+	thumb_func_start ApplyColorAddition_ClampMin
+ApplyColorAddition_ClampMin: @ 0x08001624
 	push {r7, lr}
 	sub sp, #0x1c
 	mov r7, sp
@@ -1653,8 +1653,8 @@ _080016E4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080016EC
-sub_080016EC: @ 0x080016EC
+	thumb_func_start SyncBgsAndPal
+SyncBgsAndPal: @ 0x080016EC
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _080017AC @ =0x0300000C
@@ -1774,7 +1774,7 @@ _080017D0:
 	movs r2, #0
 	ldrsb r2, [r1, r2]
 	adds r0, r2, #0
-	bl sub_0800155C
+	bl ApplyColorAddition_ClampMax
 	b _08001804
 	.align 2, 0
 _080017F0: .4byte 0x03002870
@@ -1785,7 +1785,7 @@ _080017F4:
 	movs r2, #0
 	ldrsb r2, [r1, r2]
 	adds r0, r2, #0
-	bl sub_08001624
+	bl ApplyColorAddition_ClampMin
 _08001804:
 	pop {r7}
 	pop {r0}
@@ -1819,8 +1819,8 @@ TmFill: @ 0x08001810
 	.align 2, 0
 _0800183C: .4byte 0x01000200
 
-	thumb_func_start sub_08001840
-sub_08001840: @ 0x08001840
+	thumb_func_start SetBlankChr
+SetBlankChr: @ 0x08001840
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -1833,7 +1833,7 @@ sub_08001840: @ 0x08001840
 	adds r1, r0, r2
 	movs r0, #0
 	movs r2, #0x20
-	bl sub_080030FC
+	bl RegisterDataFill
 	add sp, #4
 	pop {r7}
 	pop {r0}
@@ -1894,8 +1894,8 @@ _080018C4: .4byte 0x03002870
 _080018C8: .4byte 0x04000200
 _080018CC: .4byte 0x0000FFFE
 
-	thumb_func_start sub_080018D0
-sub_080018D0: @ 0x080018D0
+	thumb_func_start SetOnVMatch
+SetOnVMatch: @ 0x080018D0
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -1955,8 +1955,8 @@ _0800193C: .4byte 0x03002870
 _08001940: .4byte 0x04000200
 _08001944: .4byte 0x0000FFFB
 
-	thumb_func_start sub_08001948
-sub_08001948: @ 0x08001948
+	thumb_func_start SetNextVCount
+SetNextVCount: @ 0x08001948
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -1994,8 +1994,8 @@ sub_08001948: @ 0x08001948
 	.align 2, 0
 _0800198C: .4byte 0x04000004
 
-	thumb_func_start sub_08001990
-sub_08001990: @ 0x08001990
+	thumb_func_start SetVCount
+SetVCount: @ 0x08001990
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -2017,8 +2017,8 @@ sub_08001990: @ 0x08001990
 	.align 2, 0
 _080019B4: .4byte 0x03002870
 
-	thumb_func_start sub_080019B8
-sub_080019B8: @ 0x080019B8
+	thumb_func_start SetMainFunc
+SetMainFunc: @ 0x080019B8
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -2051,8 +2051,8 @@ _080019E8:
 	.align 2, 0
 _080019F0: .4byte 0x02024C70
 
-	thumb_func_start sub_080019F4
-sub_080019F4: @ 0x080019F4
+	thumb_func_start RefreshKeyStFromKeys
+RefreshKeyStFromKeys: @ 0x080019F4
 	push {r4, r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -2329,7 +2329,7 @@ _08001BFC:
 	lsls r2, r0, #0x10
 	asrs r1, r2, #0x10
 	ldr r0, [r7]
-	bl sub_080019F4
+	bl RefreshKeyStFromKeys
 	add sp, #8
 	pop {r7}
 	pop {r0}
@@ -2338,8 +2338,8 @@ _08001BFC:
 _08001C14: .4byte 0x04000130
 _08001C18: .4byte 0x0300000E
 
-	thumb_func_start sub_08001C1C
-sub_08001C1C: @ 0x08001C1C
+	thumb_func_start ClearKeySt
+ClearKeySt: @ 0x08001C1C
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -2433,8 +2433,8 @@ InitKeySt: @ 0x08001C50
 	.align 2, 0
 _08001CCC: .4byte 0x0300000E
 
-	thumb_func_start sub_08001CD0
-sub_08001CD0: @ 0x08001CD0
+	thumb_func_start SetkeyStIgnoredMask
+SetkeyStIgnoredMask: @ 0x08001CD0
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -2450,8 +2450,8 @@ sub_08001CD0: @ 0x08001CD0
 	.align 2, 0
 _08001CE8: .4byte 0x0300000E
 
-	thumb_func_start sub_08001CEC
-sub_08001CEC: @ 0x08001CEC
+	thumb_func_start KeyProcMain
+KeyProcMain: @ 0x08001CEC
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -2505,8 +2505,8 @@ sub_08001CEC: @ 0x08001CEC
 	.align 2, 0
 _08001D50: .4byte 0x08B857F8
 
-	thumb_func_start sub_08001D54
-sub_08001D54: @ 0x08001D54
+	thumb_func_start NewKeyStSetter
+NewKeyStSetter: @ 0x08001D54
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -2971,8 +2971,8 @@ _080020B4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080020BC
-sub_080020BC: @ 0x080020BC
+	thumb_func_start ColorFadeInit
+ColorFadeInit: @ 0x080020BC
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -3004,8 +3004,8 @@ _080020EC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080020F4
-sub_080020F4: @ 0x080020F4
+	thumb_func_start MaybeSmoothChangeSomePal
+MaybeSmoothChangeSomePal: @ 0x080020F4
 	push {r4, r5, r7, lr}
 	sub sp, #0x20
 	mov r7, sp
@@ -3520,8 +3520,8 @@ _080024B4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080024BC
-sub_080024BC: @ 0x080024BC
+	thumb_func_start ColorFadeSetupFromBlack
+ColorFadeSetupFromBlack: @ 0x080024BC
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -3675,8 +3675,8 @@ _080025DC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080025E4
-sub_080025E4: @ 0x080025E4
+	thumb_func_start ColorFadeSetupFromColorToWhite
+ColorFadeSetupFromColorToWhite: @ 0x080025E4
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -3839,8 +3839,8 @@ _08002714:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0800271C
-sub_0800271C: @ 0x0800271C
+	thumb_func_start ColorFadeSetupFromWhite
+ColorFadeSetupFromWhite: @ 0x0800271C
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -4003,8 +4003,8 @@ _0800284C:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08002854
-sub_08002854: @ 0x08002854
+	thumb_func_start ColorFadeTick2
+ColorFadeTick2: @ 0x08002854
 	push {r4, r7, lr}
 	sub sp, #0x14
 	mov r7, sp
@@ -4332,19 +4332,19 @@ _08002AC8:
 	ldrh r1, [r2]
 	adds r2, #2
 	str r2, [r7]
-	bl sub_08001434
+	bl SetBgChrOffset
 	ldr r0, [r7, #0x1c]
 	ldr r2, [r7]
 	ldrh r1, [r2]
 	adds r2, #2
 	str r2, [r7]
-	bl sub_08001478
+	bl SetBgTilemapOffset
 	ldr r0, [r7, #0x1c]
 	ldr r2, [r7]
 	ldrh r1, [r2]
 	adds r2, #2
 	str r2, [r7]
-	bl sub_080014DC
+	bl SetBgScreenSize
 	ldr r1, [r7, #0x1c]
 	adds r0, r1, #0
 	lsls r2, r0, #0x10
@@ -4355,7 +4355,7 @@ _08002AC8:
 	bl SetBgOffset
 	ldr r1, [r7, #0x1c]
 	adds r0, r1, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	adds r1, r0, #0
 	adds r0, r1, #0
 	movs r1, #0
@@ -4380,11 +4380,11 @@ _08002AC8:
 	.align 2, 0
 _08002B3C: .4byte 0x01000010
 _08002B40:
-	bl sub_0801551C
+	bl InitBmBgLayers
 	movs r0, #0xf
 	bl EnableBgSync
 	movs r0, #0
-	bl sub_0800322C
+	bl InitOam
 	ldr r0, _08002BE0 @ =0x02022860
 	ldrh r1, [r0]
 	movs r2, #0
@@ -4460,8 +4460,8 @@ _08002B40:
 _08002BE0: .4byte 0x02022860
 _08002BE4: .4byte 0x03002870
 
-	thumb_func_start sub_08002BE8
-sub_08002BE8: @ 0x08002BE8
+	thumb_func_start GetBgTilemap
+GetBgTilemap: @ 0x08002BE8
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -4637,7 +4637,7 @@ SoftResetIfKeyCombo: @ 0x08002CF4
 	bne _08002D24
 	bl sub_08002C8C
 	movs r0, #0xfe
-	bl sub_080BFA40
+	bl SoftReset
 	b _08002D40
 	.align 2, 0
 _08002D1C: .4byte 0x08B857F8
@@ -4650,7 +4650,7 @@ _08002D24:
 	bne _08002D40
 	bl sub_08002C8C
 	movs r0, #0xfe
-	bl sub_080BFA40
+	bl SoftReset
 	b _08002D40
 	.align 2, 0
 _08002D3C: .4byte 0x08B857F8
@@ -4704,9 +4704,9 @@ sub_08002D48: @ 0x08002D48
 	orrs r1, r3
 	adds r2, r1, #0
 	strh r2, [r0]
-	bl sub_080BFA58
+	bl SoundBiasReset
 	svc #3
-	bl sub_080BFA60
+	bl SoundBiasSet
 	ldr r0, _08002DB8 @ =0x04000200
 	adds r1, r7, #4
 	ldrh r2, [r1]
@@ -4919,8 +4919,8 @@ SetOnHBlankB: @ 0x08002F34
 	.align 2, 0
 _08002F50: .4byte 0x03002F38
 
-	thumb_func_start sub_08002F54
-sub_08002F54: @ 0x08002F54
+	thumb_func_start GetBgFromPtr
+GetBgFromPtr: @ 0x08002F54
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -4991,8 +4991,8 @@ _08002FD2:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08002FDC
-sub_08002FDC: @ 0x08002FDC
+	thumb_func_start ClearMoveList
+ClearMoveList: @ 0x08002FDC
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -5072,8 +5072,8 @@ _08003064:
 	.align 2, 0
 _08003074: .4byte 0x02024C9C
 
-	thumb_func_start sub_08003078
-sub_08003078: @ 0x08003078
+	thumb_func_start RegisterDataMove
+RegisterDataMove: @ 0x08003078
 	push {r7, lr}
 	sub sp, #0x10
 	mov r7, sp
@@ -5141,8 +5141,8 @@ _080030C6:
 _080030F4: .4byte 0x02024C94
 _080030F8: .4byte 0x02024C9C
 
-	thumb_func_start sub_080030FC
-sub_080030FC: @ 0x080030FC
+	thumb_func_start RegisterDataFill
+RegisterDataFill: @ 0x080030FC
 	push {r7, lr}
 	sub sp, #0x10
 	mov r7, sp
@@ -5204,8 +5204,8 @@ sub_080030FC: @ 0x080030FC
 _08003170: .4byte 0x02024C94
 _08003174: .4byte 0x02024C9C
 
-	thumb_func_start sub_08003178
-sub_08003178: @ 0x08003178
+	thumb_func_start ApplyDataMoves
+ApplyDataMoves: @ 0x08003178
 	push {r4, r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -5292,15 +5292,15 @@ _0800320E:
 	str r1, [r7, #4]
 	b _08003186
 _0800321E:
-	bl sub_08002FDC
+	bl ClearMoveList
 	add sp, #0xc
 	pop {r4, r7}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0800322C
-sub_0800322C: @ 0x0800322C
+	thumb_func_start InitOam
+InitOam: @ 0x0800322C
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -5377,8 +5377,8 @@ _080032BC: .4byte 0x03000028
 _080032C0: .4byte 0x03002930
 _080032C4: .4byte 0x03000018
 
-	thumb_func_start sub_080032C8
-sub_080032C8: @ 0x080032C8
+	thumb_func_start GetOamSplice
+GetOamSplice: @ 0x080032C8
 	push {r7, lr}
 	mov r7, sp
 	ldr r0, _080032D4 @ =0x03000028
@@ -5393,8 +5393,8 @@ _080032D8:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080032E0
-sub_080032E0: @ 0x080032E0
+	thumb_func_start SyncHiOam
+SyncHiOam: @ 0x080032E0
 	push {r4, r7, lr}
 	mov r7, sp
 	ldr r1, _08003324 @ =0x03000018
@@ -5434,8 +5434,8 @@ _0800332C: .4byte 0x03003948
 _08003330: .4byte 0x03002930
 _08003334: .4byte 0x0300291C
 
-	thumb_func_start sub_08003338
-sub_08003338: @ 0x08003338
+	thumb_func_start SyncLoOam
+SyncLoOam: @ 0x08003338
 	push {r4, r7, lr}
 	mov r7, sp
 	ldr r0, _08003348 @ =0x03000028
@@ -5475,8 +5475,8 @@ _0800337A:
 _08003380: .4byte 0x03000028
 _08003384: .4byte 0x03002860
 
-	thumb_func_start sub_08003388
-sub_08003388: @ 0x08003388
+	thumb_func_start SetObjAffine
+SetObjAffine: @ 0x08003388
 	push {r4, r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -5577,8 +5577,8 @@ sub_08003388: @ 0x08003388
 	.align 2, 0
 _0800344C: .4byte 0x03002930
 
-	thumb_func_start sub_08003450
-sub_08003450: @ 0x08003450
+	thumb_func_start PutUnkSprite
+PutUnkSprite: @ 0x08003450
 	push {r4, r7, lr}
 	sub sp, #0x14
 	mov r7, sp
@@ -5688,8 +5688,8 @@ _08003508:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08003510
-sub_08003510: @ 0x08003510
+	thumb_func_start Sound_SetBGMVolume
+Sound_SetBGMVolume: @ 0x08003510
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -5898,7 +5898,7 @@ _080036B6:
 	adds r1, r2, #0
 	lsls r2, r1, #0x10
 	lsrs r1, r2, #0x10
-	bl sub_080BE73C
+	bl m4aMPlayFadeOutPause
 	ldr r0, _0800370C @ =0x02024E1C
 	ldrb r1, [r0, #6]
 	movs r2, #0
@@ -5926,8 +5926,8 @@ _08003704: .4byte 0x03005B10
 _08003708: .4byte 0x03005D20
 _0800370C: .4byte 0x02024E1C
 
-	thumb_func_start sub_08003710
-sub_08003710: @ 0x08003710
+	thumb_func_start Sound_FadeOutSE
+Sound_FadeOutSE: @ 0x08003710
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -6139,8 +6139,8 @@ StartBgmExt: @ 0x080038AC
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080038CC
-sub_080038CC: @ 0x080038CC
+	thumb_func_start MusicFi_OnLoop
+MusicFi_OnLoop: @ 0x080038CC
 	push {r4, r7, lr}
 	sub sp, #0xc
 	add r7, sp, #4
@@ -6160,7 +6160,7 @@ sub_080038CC: @ 0x080038CC
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r7, #4]
 	ldr r0, _0800396C @ =0x03005B10
 	ldr r1, _08003970 @ =0x0000FFFF
@@ -6372,7 +6372,7 @@ _08003A90:
 	ldr r1, _08003AF0 @ =0x03005D20
 	adds r0, r1, #0
 	movs r1, #3
-	bl sub_080BE73C
+	bl m4aMPlayFadeOutPause
 _08003ABA:
 	ldr r0, _08003AEC @ =0x02024E1C
 	ldrb r1, [r0, #6]
@@ -6556,8 +6556,8 @@ _08003C1C: .4byte 0x03005B10
 _08003C20: .4byte 0x03005D20
 _08003C24: .4byte 0x02024E1C
 
-	thumb_func_start sub_08003C28
-sub_08003C28: @ 0x08003C28
+	thumb_func_start MakeBgmOverridePersist
+MakeBgmOverridePersist: @ 0x08003C28
 	push {r7, lr}
 	mov r7, sp
 	ldr r1, _08003C40 @ =0x0202BBF8
@@ -6685,8 +6685,8 @@ _08003D02:
 _08003D18: .4byte 0x08B8583C
 _08003D1C: .4byte 0x0300003C
 
-	thumb_func_start sub_08003D20
-sub_08003D20: @ 0x08003D20
+	thumb_func_start MusicVc_OnLoop
+MusicVc_OnLoop: @ 0x08003D20
 	push {r4, r5, r7, lr}
 	sub sp, #0xc
 	add r7, sp, #4
@@ -6719,7 +6719,7 @@ sub_08003D20: @ 0x08003D20
 	ldrsh r0, [r4, r5]
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r7, #4]
 	ldr r1, [r7, #4]
 	adds r0, r1, #0
@@ -6748,7 +6748,7 @@ sub_08003D20: @ 0x08003D20
 	lsls r0, r1, #0x10
 	lsrs r1, r0, #0x10
 	adds r0, r1, #0
-	bl sub_080BE660
+	bl m4aSongNumStop
 	ldr r0, _08003DD8 @ =0x02024E1C
 	ldrb r1, [r0, #6]
 	movs r2, #0
@@ -6802,8 +6802,8 @@ _08003DFC:
 _08003E04: .4byte 0x02024E1C
 _08003E08: .4byte 0x0300003C
 
-	thumb_func_start sub_08003E0C
-sub_08003E0C: @ 0x08003E0C
+	thumb_func_start DelaySong_OnLoop
+DelaySong_OnLoop: @ 0x08003E0C
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -6952,7 +6952,7 @@ PlaySongCore: @ 0x08003F14
 	bl sub_08003FC0
 	movs r0, #0
 	ldr r1, [r7]
-	bl sub_0809F748
+	bl UnlockSoundRoomSong
 _08003F32:
 	ldr r0, [r7, #4]
 	cmp r0, #0
@@ -6965,7 +6965,7 @@ _08003F32:
 	adds r1, r1, r2
 	ldr r2, [r1]
 	adds r1, r2, #0
-	bl sub_080BECC8
+	bl MPlayStart_rev01
 	b _08003F62
 	.align 2, 0
 _08003F50: .4byte 0x0869D6E0
@@ -6975,7 +6975,7 @@ _08003F54:
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08003F62:
 	add sp, #8
 	pop {r7}
@@ -7020,7 +7020,7 @@ sub_08003F8C: @ 0x08003F8C
 	ldr r0, [r7]
 	lsls r1, r0, #8
 	adds r0, r1, #0
-	bl sub_080BEAAC
+	bl SoundMode_rev01
 	add sp, #4
 	pop {r7}
 	pop {r0}
@@ -7198,8 +7198,8 @@ _080040EE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080040F8
-sub_080040F8: @ 0x080040F8
+	thumb_func_start CallSomeSoundMaybe
+CallSomeSoundMaybe: @ 0x080040F8
 	push {r7, lr}
 	sub sp, #0x14
 	mov r7, sp
@@ -7300,8 +7300,8 @@ _080041B6:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080041C0
-sub_080041C0: @ 0x080041C0
+	thumb_func_start MusicProc4Exists
+MusicProc4Exists: @ 0x080041C0
 	push {r7, lr}
 	mov r7, sp
 	ldr r1, _080041D4 @ =0x08B85864
@@ -7398,8 +7398,8 @@ _08004270: .4byte 0x03005B10
 _08004274: .4byte 0x03005D20
 _08004278: .4byte 0x02024E1C
 
-	thumb_func_start sub_0800427C
-sub_0800427C: @ 0x0800427C
+	thumb_func_start InitRamFuncs
+InitRamFuncs: @ 0x0800427C
 	push {r4, r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -7568,8 +7568,8 @@ PutOamLoRam: @ 0x080043B4
 	.align 2, 0
 _080043DC: .4byte 0x03003944
 
-	thumb_func_start sub_080043E0
-sub_080043E0: @ 0x080043E0
+	thumb_func_start MapFloodCoreStepRam
+MapFloodCoreStepRam: @ 0x080043E0
 	push {r7, lr}
 	sub sp, #0xc
 	mov r7, sp
@@ -7602,8 +7602,8 @@ MapFloodCoreRam: @ 0x08004408
 	.align 2, 0
 _0800441C: .4byte 0x03002918
 
-	thumb_func_start sub_08004420
-sub_08004420: @ 0x08004420
+	thumb_func_start Proc_Init
+Proc_Init: @ 0x08004420
 	push {r4, r5, r6, r7, lr}
 	movs r4, #0
 	ldr r7, _08004484 @ =0x02024E28
@@ -7667,7 +7667,7 @@ SpawnProc: @ 0x08004494
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r6, r1, #0
-	bl sub_0800459C
+	bl AllocateProcess
 	adds r5, r0, #0
 	str r4, [r5]
 	str r4, [r5, #4]
@@ -7701,7 +7701,7 @@ _080044D6:
 	bl sub_080045DC
 _080044DE:
 	adds r0, r5, #0
-	bl sub_08004B84
+	bl RunProcessScript
 	adds r1, r5, #0
 	adds r1, #0x27
 	movs r0, #0xf7
@@ -7741,19 +7741,19 @@ _08004522:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08004528
-sub_08004528: @ 0x08004528
+	thumb_func_start DeleteProcessRecursive
+DeleteProcessRecursive: @ 0x08004528
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
 	beq _08004536
-	bl sub_08004528
+	bl DeleteProcessRecursive
 _08004536:
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	beq _08004540
-	bl sub_08004528
+	bl DeleteProcessRecursive
 _08004540:
 	adds r6, r4, #0
 	adds r6, #0x27
@@ -7769,7 +7769,7 @@ _08004540:
 	bl _call_via_r1
 _0800455A:
 	adds r0, r4, #0
-	bl sub_080045AC
+	bl FreeProcess
 	str r5, [r4]
 	str r5, [r4, #0xc]
 	movs r0, #1
@@ -7796,16 +7796,16 @@ Proc_End: @ 0x08004584
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _08004596
-	bl sub_080045F0
+	bl UnlinkProcess
 	adds r0, r4, #0
-	bl sub_08004528
+	bl DeleteProcessRecursive
 _08004596:
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0800459C
-sub_0800459C: @ 0x0800459C
+	thumb_func_start AllocateProcess
+AllocateProcess: @ 0x0800459C
 	ldr r1, _080045A8 @ =0x02026A2C
 	ldr r2, [r1]
 	ldm r2!, {r0}
@@ -7814,8 +7814,8 @@ sub_0800459C: @ 0x0800459C
 	.align 2, 0
 _080045A8: .4byte 0x02026A2C
 
-	thumb_func_start sub_080045AC
-sub_080045AC: @ 0x080045AC
+	thumb_func_start FreeProcess
+FreeProcess: @ 0x080045AC
 	ldr r2, _080045B8 @ =0x02026A2C
 	ldr r1, [r2]
 	subs r1, #4
@@ -7858,8 +7858,8 @@ _080045EA:
 	str r1, [r2, #0x14]
 	bx lr
 
-	thumb_func_start sub_080045F0
-sub_080045F0: @ 0x080045F0
+	thumb_func_start UnlinkProcess
+UnlinkProcess: @ 0x080045F0
 	adds r2, r0, #0
 	ldr r1, [r2, #0x1c]
 	cmp r1, #0
@@ -7899,14 +7899,14 @@ _08004628:
 	.align 2, 0
 _08004630: .4byte 0x02026A30
 
-	thumb_func_start sub_08004634
-sub_08004634: @ 0x08004634
+	thumb_func_start RunProcessRecursive
+RunProcessRecursive: @ 0x08004634
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
 	beq _08004642
-	bl sub_08004634
+	bl RunProcessRecursive
 _08004642:
 	adds r0, r4, #0
 	adds r0, #0x28
@@ -7925,7 +7925,7 @@ _08004642:
 	cmp r0, #0
 	bne _0800466E
 	adds r0, r4, #0
-	bl sub_08004B84
+	bl RunProcessScript
 	ldr r0, [r4, #0xc]
 	cmp r0, #0
 	beq _08004676
@@ -7943,18 +7943,18 @@ _08004680:
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	beq _0800468A
-	bl sub_08004634
+	bl RunProcessRecursive
 _0800468A:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08004690
-sub_08004690: @ 0x08004690
+	thumb_func_start Proc_Run
+Proc_Run: @ 0x08004690
 	push {lr}
 	cmp r0, #0
 	beq _0800469A
-	bl sub_08004634
+	bl RunProcessRecursive
 _0800469A:
 	pop {r0}
 	bx r0

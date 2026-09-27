@@ -26,32 +26,32 @@ DivRem: @ 0x080BFA18
 _080BFA20:
 	.byte 0x13, 0xDF, 0x70, 0x47
 
-	thumb_func_start sub_080BFA24
-sub_080BFA24: @ 0x080BFA24
+	thumb_func_start LZ77UnCompVram
+LZ77UnCompVram: @ 0x080BFA24
 	svc #0x12
 	bx lr
 
-	thumb_func_start sub_080BFA28
-sub_080BFA28: @ 0x080BFA28
+	thumb_func_start LZ77UnCompWram
+LZ77UnCompWram: @ 0x080BFA28
 	svc #0x11
 	bx lr
 
-	thumb_func_start sub_080BFA2C
-sub_080BFA2C: @ 0x080BFA2C
+	thumb_func_start MultiBoot
+MultiBoot: @ 0x080BFA2C
 	movs r1, #1
 	svc #0x25
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080BFA34
-sub_080BFA34: @ 0x080BFA34
+	thumb_func_start ObjAffineSet
+ObjAffineSet: @ 0x080BFA34
 	svc #0xf
 	bx lr
 _080BFA38:
 	.byte 0x15, 0xDF, 0x70, 0x47, 0x14, 0xDF, 0x70, 0x47
 
-	thumb_func_start sub_080BFA40
-sub_080BFA40: @ 0x080BFA40
+	thumb_func_start SoftReset
+SoftReset: @ 0x080BFA40
 	ldr r3, _080BFA50 @ =0x04000208
 	movs r2, #0
 	strb r2, [r3]
@@ -64,27 +64,27 @@ sub_080BFA40: @ 0x080BFA40
 _080BFA50: .4byte 0x04000208
 _080BFA54: .4byte 0x03007F00
 
-	thumb_func_start sub_080BFA58
-sub_080BFA58: @ 0x080BFA58
+	thumb_func_start SoundBiasReset
+SoundBiasReset: @ 0x080BFA58
 	movs r0, #0
 	svc #0x19
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080BFA60
-sub_080BFA60: @ 0x080BFA60
+	thumb_func_start SoundBiasSet
+SoundBiasSet: @ 0x080BFA60
 	movs r0, #1
 	svc #0x19
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080BFA68
-sub_080BFA68: @ 0x080BFA68
+	thumb_func_start Sqrt
+Sqrt: @ 0x080BFA68
 	svc #8
 	bx lr
 
-	thumb_func_start sub_080BFA6C
-sub_080BFA6C: @ 0x080BFA6C
+	thumb_func_start VBlankIntrWait
+VBlankIntrWait: @ 0x080BFA6C
 	movs r2, #0
 	svc #5
 	bx lr
@@ -137,8 +137,8 @@ _080BFAF4:
 	.byte 0x06, 0xD0, 0x60, 0x1E, 0x08, 0xE0, 0x00, 0x00, 0x04, 0x02, 0x00, 0x04, 0xFC, 0xFF, 0x00, 0x00
 	.byte 0x01, 0x3B, 0x93, 0x42, 0xEF, 0xD1, 0x00, 0x20, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
 
-	thumb_func_start sub_080BFB40
-sub_080BFB40: @ 0x080BFB40
+	thumb_func_start SetSramFastFunc
+SetSramFastFunc: @ 0x080BFB40
 	ldr r2, _080BFB54 @ =0x080BFA75
 	movs r0, #1
 	eors r2, r0
@@ -170,7 +170,7 @@ _080BFB6C:
 	movs r0, #1
 	eors r2, r0
 	ldr r3, _080BFB98 @ =0x03002258
-	ldr r0, _080BFB9C @ =sub_080BFB40
+	ldr r0, _080BFB9C @ =SetSramFastFunc
 	ldr r1, _080BFB94 @ =0x080BFAF5
 	subs r0, r0, r1
 	lsls r0, r0, #0xf
@@ -180,7 +180,7 @@ _080BFB8C: .4byte 0x03005E70
 _080BFB90: .4byte 0x030022F9
 _080BFB94: .4byte 0x080BFAF5
 _080BFB98: .4byte 0x03002258
-_080BFB9C: .4byte sub_080BFB40
+_080BFB9C: .4byte SetSramFastFunc
 _080BFBA0:
 	ldrh r0, [r2]
 	strh r0, [r3]

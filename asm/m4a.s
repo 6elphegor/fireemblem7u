@@ -5,8 +5,8 @@
 _080BD850:
 	.byte 0x00, 0xA2, 0x10, 0x47, 0x90, 0x21, 0x83, 0xE0, 0x00, 0x00, 0x83, 0xE2, 0x1E, 0xFF, 0x2F, 0xE1
 
-	thumb_func_start sub_080BD860
-sub_080BD860: @ 0x080BD860
+	thumb_func_start SoundMain
+SoundMain: @ 0x080BD860
 	ldr r0, _080BD8CC @ =0x03007FF0
 	ldr r0, [r0]
 	ldr r2, _080BD8D0 @ =0x68736D53
@@ -143,8 +143,8 @@ _080BDC84:
 	.byte 0x02, 0xD0, 0x40, 0x20, 0x01, 0x43, 0x21, 0x70, 0x20, 0x1C, 0xFF, 0xF7, 0xE1, 0xFF, 0x64, 0x6B
 	.byte 0x00, 0x2C, 0xF2, 0xD1, 0x00, 0x20, 0x28, 0x70, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 
-	thumb_func_start sub_080BDCF0
-sub_080BDCF0: @ 0x080BDCF0
+	thumb_func_start MPlyJmpTblCopy
+MPlyJmpTblCopy: @ 0x080BDCF0
 	mov ip, lr
 	movs r1, #0x24
 	ldr r2, _080BDD20 @ =0x08677370
@@ -205,8 +205,8 @@ _080BDD24:
 	.byte 0x13, 0x78, 0x01, 0x32, 0x02, 0x48, 0xC0, 0x18, 0xFF, 0xF7, 0x3D, 0xFF, 0x03, 0x70, 0x60, 0x47
 	.byte 0x60, 0x00, 0x00, 0x04
 
-	thumb_func_start sub_080BDEB4
-sub_080BDEB4: @ 0x080BDEB4
+	thumb_func_start m4aSoundVSync
+m4aSoundVSync: @ 0x080BDEB4
 	ldr r0, _080BE160 @ =0x03007FF0
 	ldr r0, [r0]
 	ldr r2, _080BE164 @ =0x68736D53
@@ -295,8 +295,8 @@ _080BE15C:
 _080BE160: .4byte 0x03007FF0
 _080BE164: .4byte 0x68736D53
 
-	thumb_func_start sub_080BE168
-sub_080BE168: @ 0x080BE168
+	thumb_func_start TrackStop_rev01
+TrackStop_rev01: @ 0x080BE168
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	ldrb r1, [r5]
@@ -389,8 +389,8 @@ _080BE1AC:
 	.byte 0x70, 0x47, 0x00, 0x00, 0x02, 0x1C, 0x53, 0x6B, 0x03, 0x48, 0x83, 0x42, 0x03, 0xD1, 0x50, 0x68
 	.byte 0x02, 0x49, 0x08, 0x40, 0x50, 0x60, 0x70, 0x47, 0x53, 0x6D, 0x73, 0x68, 0xFF, 0xFF, 0xFF, 0x7F
 
-	thumb_func_start sub_080BE4F0
-sub_080BE4F0: @ 0x080BE4F0
+	thumb_func_start MPlayFadeOut
+MPlayFadeOut: @ 0x080BE4F0
 	adds r2, r0, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
@@ -408,8 +408,8 @@ _080BE508:
 	.align 2, 0
 _080BE50C: .4byte 0x68736D53
 
-	thumb_func_start sub_080BE510
-sub_080BE510: @ 0x080BE510
+	thumb_func_start m4aSoundInit
+m4aSoundInit: @ 0x080BE510
 	push {r4, r5, r6, lr}
 	ldr r0, _080BE564 @ =0x080BD8E5
 	movs r1, #2
@@ -419,11 +419,11 @@ sub_080BE510: @ 0x080BE510
 	ldr r2, _080BE56C @ =0x04000100
 	bl CpuSet
 	ldr r0, _080BE570 @ =0x03004AE0
-	bl sub_080BE910
+	bl SoundInit_rev01
 	ldr r0, _080BE574 @ =0x03005BE0
-	bl sub_080BE7CC
+	bl MPlayExtender
 	ldr r0, _080BE578 @ =0x0094D700
-	bl sub_080BEAAC
+	bl SoundMode_rev01
 	ldr r0, _080BE57C @ =0x00000009
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
@@ -436,7 +436,7 @@ _080BE542:
 	ldr r1, [r5, #4]
 	ldrb r2, [r5, #8]
 	adds r0, r4, #0
-	bl sub_080BEC50
+	bl MPlayOpen_rev01
 	ldrh r0, [r5, #0xa]
 	strb r0, [r4, #0xb]
 	ldr r0, _080BE584 @ =0x03005DE0
@@ -460,16 +460,16 @@ _080BE57C: .4byte 0x00000009
 _080BE580: .4byte 0x0869D668
 _080BE584: .4byte 0x03005DE0
 
-	thumb_func_start sub_080BE588
-sub_080BE588: @ 0x080BE588
+	thumb_func_start m4aSoundMain
+m4aSoundMain: @ 0x080BE588
 	push {lr}
-	bl sub_080BD860
+	bl SoundMain
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080BE594
-sub_080BE594: @ 0x080BE594
+	thumb_func_start m4aSongNumStart
+m4aSongNumStart: @ 0x080BE594
 	push {lr}
 	lsls r0, r0, #0x10
 	ldr r2, _080BE5B8 @ =0x0869D668
@@ -484,7 +484,7 @@ sub_080BE594: @ 0x080BE594
 	ldr r2, [r1]
 	ldr r1, [r0]
 	adds r0, r2, #0
-	bl sub_080BECC8
+	bl MPlayStart_rev01
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -502,8 +502,8 @@ _080BE5C0:
 	.byte 0x4A, 0x68, 0x88, 0x88, 0x00, 0x28, 0x04, 0xD1, 0x08, 0x1C, 0x19, 0x1C, 0x00, 0xF0, 0x3C, 0xFB
 	.byte 0x04, 0xE0, 0x00, 0x2A, 0x02, 0xDA, 0x08, 0x1C, 0xFF, 0xF7, 0x3C, 0xFF, 0x01, 0xBC, 0x00, 0x47
 
-	thumb_func_start sub_080BE660
-sub_080BE660: @ 0x080BE660
+	thumb_func_start m4aSongNumStop
+m4aSongNumStop: @ 0x080BE660
 	push {lr}
 	lsls r0, r0, #0x10
 	ldr r2, _080BE68C @ =0x0869D668
@@ -545,13 +545,13 @@ m4aMPlayFadeOut: @ 0x080BE72C
 	push {lr}
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_080BE4F0
+	bl MPlayFadeOut
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080BE73C
-sub_080BE73C: @ 0x080BE73C
+	thumb_func_start m4aMPlayFadeOutPause
+m4aMPlayFadeOutPause: @ 0x080BE73C
 	adds r2, r0, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
@@ -612,7 +612,7 @@ _080BE790:
 	cmp r0, #0
 	beq _080BE7BE
 	adds r0, r4, #0
-	bl sub_080BE8FC
+	bl Clear64byte_rev
 	strb r7, [r4]
 	movs r0, #2
 	strb r0, [r4, #0xf]
@@ -633,8 +633,8 @@ _080BE7C6:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080BE7CC
-sub_080BE7CC: @ 0x080BE7CC
+	thumb_func_start MPlayExtender
+MPlayExtender: @ 0x080BE7CC
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -681,9 +681,9 @@ sub_080BE7CC: @ 0x080BE7CC
 	str r0, [r1, #0x70]
 	ldr r0, _080BE8BC @ =0x080BE3DD
 	str r0, [r1, #0x74]
-	ldr r0, _080BE8C0 @ =sub_080BEA08
+	ldr r0, _080BE8C0 @ =SampFreqSet_rev01
 	str r0, [r1, #0x78]
-	ldr r0, _080BE8C4 @ =sub_080BE168
+	ldr r0, _080BE8C4 @ =TrackStop_rev01
 	str r0, [r1, #0x7c]
 	adds r2, r1, #0
 	adds r2, #0x80
@@ -747,8 +747,8 @@ _080BE8B0: .4byte 0x080BE445
 _080BE8B4: .4byte 0x080BE459
 _080BE8B8: .4byte 0x080BF8E1
 _080BE8BC: .4byte 0x080BE3DD
-_080BE8C0: .4byte sub_080BEA08
-_080BE8C4: .4byte sub_080BE168
+_080BE8C0: .4byte SampFreqSet_rev01
+_080BE8C4: .4byte TrackStop_rev01
 _080BE8C8: .4byte 0x080BEDED
 _080BE8CC: .4byte 0x080BEEB5
 _080BE8D0: .4byte 0x080BF0C9
@@ -760,8 +760,8 @@ _080BE8E4:
 	.byte 0x2A, 0xDF, 0x70, 0x47, 0x00, 0xB5, 0x03, 0x49, 0x09, 0x68, 0x01, 0xF0
 	.byte 0xAF, 0xF9, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xD8, 0x5B, 0x00, 0x03
 
-	thumb_func_start sub_080BE8FC
-sub_080BE8FC: @ 0x080BE8FC
+	thumb_func_start Clear64byte_rev
+Clear64byte_rev: @ 0x080BE8FC
 	push {lr}
 	ldr r1, _080BE90C @ =0x03005BDC
 	ldr r1, [r1]
@@ -771,8 +771,8 @@ sub_080BE8FC: @ 0x080BE8FC
 	.align 2, 0
 _080BE90C: .4byte 0x03005BDC
 
-	thumb_func_start sub_080BE910
-sub_080BE910: @ 0x080BE910
+	thumb_func_start SoundInit_rev01
+SoundInit_rev01: @ 0x080BE910
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -853,11 +853,11 @@ _080BE93A:
 	str r0, [r5, #0x3c]
 	ldr r4, _080BEA00 @ =0x03005B50
 	adds r0, r4, #0
-	bl sub_080BDCF0
+	bl MPlyJmpTblCopy
 	str r4, [r5, #0x34]
 	movs r0, #0x80
 	lsls r0, r0, #0xb
-	bl sub_080BEA08
+	bl SampFreqSet_rev01
 	ldr r0, _080BEA04 @ =0x68736D53
 	str r0, [r5]
 	add sp, #4
@@ -882,8 +882,8 @@ _080BE9FC: .4byte 0x080BFA01
 _080BEA00: .4byte 0x03005B50
 _080BEA04: .4byte 0x68736D53
 
-	thumb_func_start sub_080BEA08
-sub_080BEA08: @ 0x080BEA08
+	thumb_func_start SampFreqSet_rev01
+SampFreqSet_rev01: @ 0x080BEA08
 	push {r4, r5, r6, lr}
 	adds r2, r0, #0
 	ldr r0, _080BEA88 @ =0x03007FF0
@@ -927,7 +927,7 @@ sub_080BEA08: @ 0x080BEA08
 	bl __divsi3
 	rsbs r0, r0, #0
 	strh r0, [r4]
-	bl sub_080BEC14
+	bl SoundVSyncOn_rev01
 	ldr r1, _080BEAA8 @ =0x04000006
 _080BEA6C:
 	ldrb r0, [r1]
@@ -955,8 +955,8 @@ _080BEAA0: .4byte 0x04000100
 _080BEAA4: .4byte 0x00044940
 _080BEAA8: .4byte 0x04000006
 
-	thumb_func_start sub_080BEAAC
-sub_080BEAAC: @ 0x080BEAAC
+	thumb_func_start SoundMode_rev01
+SoundMode_rev01: @ 0x080BEAAC
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	ldr r0, _080BEB38 @ =0x03007FF0
@@ -1022,9 +1022,9 @@ _080BEB1A:
 	ands r4, r3
 	cmp r4, #0
 	beq _080BEB2E
-	bl sub_080BEB98
+	bl SoundVSyncOff_rev01
 	adds r0, r4, #0
-	bl sub_080BEA08
+	bl SampFreqSet_rev01
 _080BEB2E:
 	ldr r0, _080BEB3C @ =0x68736D53
 	str r0, [r5]
@@ -1044,8 +1044,8 @@ _080BEB44:
 	.byte 0x40, 0x34, 0x04, 0x2D, 0xF5, 0xDD, 0x03, 0x48, 0x30, 0x60, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
 	.byte 0xF0, 0x7F, 0x00, 0x03, 0x53, 0x6D, 0x73, 0x68
 
-	thumb_func_start sub_080BEB98
-sub_080BEB98: @ 0x080BEB98
+	thumb_func_start SoundVSyncOff_rev01
+SoundVSyncOff_rev01: @ 0x080BEB98
 	push {lr}
 	sub sp, #4
 	ldr r0, _080BEBF8 @ =0x03007FF0
@@ -1104,8 +1104,8 @@ _080BEC08: .4byte 0x040000D0
 _080BEC0C: .4byte 0x040000C6
 _080BEC10: .4byte 0x05000318
 
-	thumb_func_start sub_080BEC14
-sub_080BEC14: @ 0x080BEC14
+	thumb_func_start SoundVSyncOn_rev01
+SoundVSyncOn_rev01: @ 0x080BEC14
 	push {r4, lr}
 	ldr r0, _080BEC44 @ =0x03007FF0
 	ldr r2, [r0]
@@ -1135,8 +1135,8 @@ _080BEC44: .4byte 0x03007FF0
 _080BEC48: .4byte 0x68736D53
 _080BEC4C: .4byte 0x040000C6
 
-	thumb_func_start sub_080BEC50
-sub_080BEC50: @ 0x080BEC50
+	thumb_func_start MPlayOpen_rev01
+MPlayOpen_rev01: @ 0x080BEC50
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r6, r1, #0
@@ -1157,7 +1157,7 @@ _080BEC64:
 	adds r0, r1, #1
 	str r0, [r5]
 	adds r0, r7, #0
-	bl sub_080BE8FC
+	bl Clear64byte_rev
 	str r6, [r7, #0x2c]
 	strb r4, [r7, #8]
 	movs r0, #0x80
@@ -1199,8 +1199,8 @@ _080BECBC: .4byte 0x03007FF0
 _080BECC0: .4byte 0x68736D53
 _080BECC4: .4byte 0x080BDF01
 
-	thumb_func_start sub_080BECC8
-sub_080BECC8: @ 0x080BECC8
+	thumb_func_start MPlayStart_rev01
+MPlayStart_rev01: @ 0x080BECC8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -1266,7 +1266,7 @@ _080BED0A:
 _080BED3E:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_080BE168
+	bl TrackStop_rev01
 	movs r0, #0xc0
 	strb r0, [r4]
 	mov r1, r8
@@ -1294,7 +1294,7 @@ _080BED6A:
 _080BED74:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_080BE168
+	bl TrackStop_rev01
 	mov r0, r8
 	strb r0, [r4]
 	adds r6, #1
@@ -1309,7 +1309,7 @@ _080BED8A:
 	cmp r0, #0
 	beq _080BED9A
 	ldrb r0, [r7, #3]
-	bl sub_080BEAAC
+	bl SoundMode_rev01
 _080BED9A:
 	ldr r0, _080BEDA8 @ =0x68736D53
 	str r0, [r5, #0x34]
@@ -1344,7 +1344,7 @@ m4aMPlayStop: @ 0x080BEDAC
 _080BEDCE:
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_080BE168
+	bl TrackStop_rev01
 	subs r4, #1
 	adds r5, #0x50
 	cmp r4, #0
@@ -1546,8 +1546,8 @@ _080BF5A4:
 	.byte 0xEC, 0xDC, 0x04, 0x48, 0x60, 0x63, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47, 0x53, 0x6D, 0x73, 0x68
 
-	thumb_func_start sub_080BF618
-sub_080BF618: @ 0x080BF618
+	thumb_func_start MPlayPanpotControl
+MPlayPanpotControl: @ 0x080BF618
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -1663,13 +1663,13 @@ _080BF680:
 	.byte 0x0A, 0x1C, 0x27, 0x32, 0x10, 0x70, 0x08, 0x6C, 0x01, 0x30, 0x08, 0x64, 0x70, 0x47, 0x00, 0x00
 	.byte 0x70, 0x47, 0x00, 0x00
 
-	thumb_func_start sub_080BFA04
-sub_080BFA04: @ 0x080BFA04
+	thumb_func_start ArcTan2
+ArcTan2: @ 0x080BFA04
 	svc #0xa
 	bx lr
 
-	thumb_func_start sub_080BFA08
-sub_080BFA08: @ 0x080BFA08
+	thumb_func_start BgAffineSet
+BgAffineSet: @ 0x080BFA08
 	svc #0xe
 	bx lr
 

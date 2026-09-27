@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0809F388
-sub_0809F388: @ 0x0809F388
+	thumb_func_start GenerateGameRankSaveData
+GenerateGameRankSaveData: @ 0x0809F388
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -42,7 +42,7 @@ sub_0809F388: @ 0x0809F388
 	ands r0, r1
 	orrs r0, r5
 	strb r0, [r7, #2]
-	bl sub_08017120
+	bl GetPartyTotalGoldValue
 	movs r2, #7
 	ands r2, r0
 	lsls r2, r2, #5
@@ -191,12 +191,12 @@ _0809F4EE:
 	cmp r0, #0
 	bne _0809F548
 	ldrb r0, [r2, #4]
-	bl sub_080A0210
+	bl PidStatsGetFavval
 	cmp r0, sb
 	ble _0809F548
 	ldr r0, [r4]
 	ldrb r0, [r0, #4]
-	bl sub_080A0210
+	bl PidStatsGetFavval
 	mov sb, r0
 	ldr r0, [r4]
 	ldrb r2, [r0, #4]
@@ -223,7 +223,7 @@ _0809F548:
 	adds r5, #1
 	cmp r5, #0x3f
 	ble _0809F4EE
-	bl sub_080B62F4
+	bl GetGameTacticsRank
 	movs r5, #7
 	ands r0, r5
 	lsls r0, r0, #4
@@ -233,7 +233,7 @@ _0809F548:
 	ands r1, r2
 	orrs r1, r0
 	strb r1, [r7]
-	bl sub_080B6550
+	bl GetGameFundsRank
 	ands r0, r5
 	lsls r0, r0, #2
 	movs r1, #0x1d
@@ -242,7 +242,7 @@ _0809F548:
 	ands r1, r3
 	orrs r1, r0
 	strb r1, [r7, #1]
-	bl sub_080B63EC
+	bl GetGameSurvivalRank
 	movs r1, #7
 	ands r0, r1
 	lsls r0, r0, #7
@@ -251,14 +251,14 @@ _0809F548:
 	ands r1, r2
 	orrs r1, r0
 	strh r1, [r7]
-	bl sub_080B6424
+	bl GetGameExpRank
 	lsls r0, r0, #5
 	movs r1, #0x1f
 	ldrb r3, [r7, #1]
 	ands r1, r3
 	orrs r1, r0
 	strb r1, [r7, #1]
-	bl sub_080B651C
+	bl GetGameCombatRank
 	ands r0, r5
 	movs r4, #8
 	rsbs r4, r4, #0
@@ -279,7 +279,7 @@ _0809F548:
 	lsls r4, r4, #0x1d
 	lsrs r4, r4, #0x1d
 	str r4, [sp]
-	bl sub_080B65F0
+	bl GetOverallRank
 	ands r0, r5
 	lsls r0, r0, #1
 	movs r1, #0xf
@@ -297,7 +297,7 @@ _0809F548:
 	ands r1, r3
 	orrs r1, r0
 	strh r1, [r7, #0xa]
-	bl sub_0802E6E4
+	bl GetTacticianName
 	adds r1, r0, #0
 	mov r0, sl
 	bl strcpy
@@ -314,11 +314,11 @@ _0809F60C: .4byte 0x00010004
 _0809F610: .4byte 0xFFFFFC7F
 _0809F614: .4byte 0xFFFFF81F
 
-	thumb_func_start sub_0809F618
-sub_0809F618: @ 0x0809F618
+	thumb_func_start SaveEndgameRankings
+SaveEndgameRankings: @ 0x0809F618
 	push {r4, r5, r6, lr}
 	sub sp, #0x30
-	bl sub_0809F218
+	bl GetNextChapterMode
 	adds r6, r0, #0
 	ldr r0, _0809F664 @ =0x0202BBF8
 	ldrb r0, [r0, #0x14]
@@ -329,21 +329,21 @@ sub_0809F618: @ 0x0809F618
 	adds r0, r5, #0
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_0809F388
+	bl GenerateGameRankSaveData
 	mov r0, sp
 	adds r1, r6, #0
 	adds r2, r4, #0
 	bl sub_0809F224
 	mov r0, sp
 	adds r1, r5, #0
-	bl sub_0809F2C8
+	bl JudgeGameRankSaveData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F65A
 	adds r0, r5, #0
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_0809F288
+	bl SaveNewRankData
 _0809F65A:
 	add sp, #0x30
 	pop {r4, r5, r6}
@@ -363,19 +363,19 @@ sub_0809F668: @ 0x0809F668
 	mov r1, sp
 	bl CpuSet
 	mov r0, sp
-	bl sub_0809F6E4
+	bl WriteSoundRoomSaveData
 	add sp, #0x28
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0809F688: .4byte 0x01000012
 
-	thumb_func_start sub_0809F68C
-sub_0809F68C: @ 0x0809F68C
+	thumb_func_start LoadAndVerifySoundRoomData
+LoadAndVerifySoundRoomData: @ 0x0809F68C
 	push {r4, lr}
 	sub sp, #0x24
 	adds r4, r0, #0
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F6D8
@@ -394,7 +394,7 @@ _0809F6A2:
 	bl _call_via_r3
 	adds r0, r4, #0
 	movs r1, #0x20
-	bl sub_0809E4C4
+	bl Checksum16
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldrh r4, [r4, #0x20]
@@ -415,12 +415,12 @@ _0809F6DA:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809F6E4
-sub_0809F6E4: @ 0x0809F6E4
+	thumb_func_start WriteSoundRoomSaveData
+WriteSoundRoomSaveData: @ 0x0809F6E4
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x20
-	bl sub_0809E4C4
+	bl Checksum16
 	strh r0, [r4, #0x20]
 	ldr r0, _0809F708 @ =0x08CE3B58
 	ldr r1, [r0]
@@ -436,8 +436,8 @@ sub_0809F6E4: @ 0x0809F6E4
 _0809F708: .4byte 0x08CE3B58
 _0809F70C: .4byte 0x000070FC
 
-	thumb_func_start sub_0809F710
-sub_0809F710: @ 0x0809F710
+	thumb_func_start IsSoundRoomSongUnlocked
+IsSoundRoomSongUnlocked: @ 0x0809F710
 	push {r4, r5, lr}
 	sub sp, #0x24
 	adds r4, r0, #0
@@ -446,7 +446,7 @@ sub_0809F710: @ 0x0809F710
 	bne _0809F724
 	mov r4, sp
 	mov r0, sp
-	bl sub_0809F68C
+	bl LoadAndVerifySoundRoomData
 _0809F724:
 	asrs r0, r5, #5
 	lsls r0, r0, #2
@@ -469,8 +469,8 @@ _0809F740:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809F748
-sub_0809F748: @ 0x0809F748
+	thumb_func_start UnlockSoundRoomSong
+UnlockSoundRoomSong: @ 0x0809F748
 	push {r4, r5, lr}
 	sub sp, #0x24
 	adds r4, r0, #0
@@ -479,7 +479,7 @@ sub_0809F748: @ 0x0809F748
 	bne _0809F762
 	mov r4, sp
 	mov r0, sp
-	bl sub_0809F68C
+	bl LoadAndVerifySoundRoomData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F784
@@ -499,15 +499,15 @@ _0809F762:
 	orrs r1, r2
 	str r1, [r3]
 	adds r0, r4, #0
-	bl sub_0809F6E4
+	bl WriteSoundRoomSaveData
 _0809F784:
 	add sp, #0x24
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0809F78C
-sub_0809F78C: @ 0x0809F78C
+	thumb_func_start EraseLinkArenaStruct2
+EraseLinkArenaStruct2: @ 0x0809F78C
 	push {lr}
 	sub sp, #0x18
 	add r0, sp, #0x14
@@ -517,19 +517,19 @@ sub_0809F78C: @ 0x0809F78C
 	mov r1, sp
 	bl CpuSet
 	mov r0, sp
-	bl sub_0809F808
+	bl WriteLinkArenaStruct2
 	add sp, #0x18
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0809F7AC: .4byte 0x0100000A
 
-	thumb_func_start sub_0809F7B0
-sub_0809F7B0: @ 0x0809F7B0
+	thumb_func_start LoadAndVerfyLinkArenaStruct2
+LoadAndVerfyLinkArenaStruct2: @ 0x0809F7B0
 	push {r4, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F7FC
@@ -548,7 +548,7 @@ _0809F7C6:
 	bl _call_via_r3
 	adds r0, r4, #0
 	movs r1, #0x10
-	bl sub_0809E4C4
+	bl Checksum16
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldrh r4, [r4, #0x10]
@@ -569,12 +569,12 @@ _0809F7FE:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809F808
-sub_0809F808: @ 0x0809F808
+	thumb_func_start WriteLinkArenaStruct2
+WriteLinkArenaStruct2: @ 0x0809F808
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x10
-	bl sub_0809E4C4
+	bl Checksum16
 	strh r0, [r4, #0x10]
 	ldr r0, _0809F82C @ =0x08CE3B58
 	ldr r1, [r0]
@@ -590,8 +590,8 @@ sub_0809F808: @ 0x0809F808
 _0809F82C: .4byte 0x08CE3B58
 _0809F830: .4byte 0x00007120
 
-	thumb_func_start sub_0809F834
-sub_0809F834: @ 0x0809F834
+	thumb_func_start ModifySaveLinkArenaStruct2A
+ModifySaveLinkArenaStruct2A: @ 0x0809F834
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -600,7 +600,7 @@ sub_0809F834: @ 0x0809F834
 	bne _0809F848
 	mov r4, sp
 	mov r0, sp
-	bl sub_0809F7B0
+	bl LoadAndVerfyLinkArenaStruct2
 _0809F848:
 	asrs r0, r5, #5
 	lsls r0, r0, #2
@@ -623,8 +623,8 @@ _0809F864:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809F86C
-sub_0809F86C: @ 0x0809F86C
+	thumb_func_start ModifySaveLinkArenaStruct2B
+ModifySaveLinkArenaStruct2B: @ 0x0809F86C
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -633,7 +633,7 @@ sub_0809F86C: @ 0x0809F86C
 	bne _0809F886
 	mov r4, sp
 	mov r0, sp
-	bl sub_0809F7B0
+	bl LoadAndVerfyLinkArenaStruct2
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F8A8
@@ -653,7 +653,7 @@ _0809F886:
 	orrs r1, r2
 	str r1, [r3]
 	adds r0, r4, #0
-	bl sub_0809F808
+	bl WriteLinkArenaStruct2
 _0809F8A8:
 	add sp, #0x14
 	pop {r4, r5}
@@ -730,49 +730,49 @@ sub_0809F924: @ 0x0809F924
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809F936
-	bl sub_0809E5AC
+	bl InitGlobalSaveInfo
 _0809F936:
 	movs r0, #0
-	bl sub_0809F134
+	bl LoadBonusContentData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809F946
-	bl sub_0809E6AC
+	bl EraseBonusContentData
 _0809F946:
 	movs r0, #0
-	bl sub_0809F000
+	bl ReadFe6LinkSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809F956
-	bl sub_0809E688
+	bl ResetFe6LinkSaveInfo
 _0809F956:
 	movs r0, #0
-	bl sub_0809F0D8
+	bl LoadAndVerfyRankData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809F966
-	bl sub_0809F1F4
+	bl EraseSaveRankData
 _0809F966:
 	movs r0, #0
-	bl sub_0809F68C
+	bl LoadAndVerifySoundRoomData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809F976
 	bl sub_0809F668
 _0809F976:
 	movs r0, #0
-	bl sub_0809F7B0
+	bl LoadAndVerfyLinkArenaStruct2
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809F986
-	bl sub_0809F78C
+	bl EraseLinkArenaStruct2
 _0809F986:
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809F98C
-sub_0809F98C: @ 0x0809F98C
+	thumb_func_start ClearPidChStatsSaveData
+ClearPidChStatsSaveData: @ 0x0809F98C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -846,8 +846,8 @@ _0809FA20: .4byte 0x01000060
 _0809FA24: .4byte 0xFF0000FF
 _0809FA28: .4byte 0x0203E79C
 
-	thumb_func_start sub_0809FA2C
-sub_0809FA2C: @ 0x0809FA2C
+	thumb_func_start ClearPidStats_ret
+ClearPidStats_ret: @ 0x0809FA2C
 	push {lr}
 	ldr r1, _0809FA48 @ =0x0202BBF8
 	ldr r0, _0809FA4C @ =0xFFFFE00F
@@ -856,15 +856,15 @@ sub_0809FA2C: @ 0x0809FA2C
 	strh r0, [r1, #0x2c]
 	movs r0, #0
 	bl SetGold
-	bl sub_0809FA50
+	bl ClearPidStats
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0809FA48: .4byte 0x0202BBF8
 _0809FA4C: .4byte 0xFFFFE00F
 
-	thumb_func_start sub_0809FA50
-sub_0809FA50: @ 0x0809FA50
+	thumb_func_start ClearPidStats
+ClearPidStats: @ 0x0809FA50
 	push {r4, r5, lr}
 	sub sp, #4
 	mov r0, sp
@@ -889,7 +889,7 @@ sub_0809FA50: @ 0x0809FA50
 	ldr r1, _0809FAA0 @ =0xFFF00000
 	ands r0, r1
 	str r0, [r4, #0x34]
-	bl sub_08017120
+	bl GetPartyTotalGoldValue
 	str r0, [r4, #0x30]
 	add sp, #4
 	pop {r4, r5}
@@ -902,8 +902,8 @@ _0809FA98: .4byte 0x0202BBF8
 _0809FA9C: .4byte 0xF00000FF
 _0809FAA0: .4byte 0xFFF00000
 
-	thumb_func_start sub_0809FAA4
-sub_0809FAA4: @ 0x0809FAA4
+	thumb_func_start ReadPidStats
+ReadPidStats: @ 0x0809FAA4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0809FAC4 @ =0x03005E70
@@ -923,8 +923,8 @@ _0809FAC4: .4byte 0x03005E70
 _0809FAC8: .4byte 0x0203E7A0
 _0809FACC: .4byte 0x0203E79C
 
-	thumb_func_start sub_0809FAD0
-sub_0809FAD0: @ 0x0809FAD0
+	thumb_func_start ReadChapterStats
+ReadChapterStats: @ 0x0809FAD0
 	push {lr}
 	ldr r2, _0809FAE4 @ =0x03005E70
 	ldr r1, _0809FAE8 @ =0x0203EC00
@@ -937,8 +937,8 @@ sub_0809FAD0: @ 0x0809FAD0
 _0809FAE4: .4byte 0x03005E70
 _0809FAE8: .4byte 0x0203EC00
 
-	thumb_func_start sub_0809FAEC
-sub_0809FAEC: @ 0x0809FAEC
+	thumb_func_start WritePidStats
+WritePidStats: @ 0x0809FAEC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0809FB08 @ =0x0203E7A0
@@ -955,8 +955,8 @@ sub_0809FAEC: @ 0x0809FAEC
 _0809FB08: .4byte 0x0203E7A0
 _0809FB0C: .4byte 0x0203E79C
 
-	thumb_func_start sub_0809FB10
-sub_0809FB10: @ 0x0809FB10
+	thumb_func_start WriteChapterStats
+WriteChapterStats: @ 0x0809FB10
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _0809FB20 @ =0x0203EC00
@@ -976,8 +976,8 @@ GetChapterCompletionStatsEnt: @ 0x0809FB24
 	.align 2, 0
 _0809FB2C: .4byte 0x0203EC00
 
-	thumb_func_start sub_0809FB30
-sub_0809FB30: @ 0x0809FB30
+	thumb_func_start IsChapterStatsValid
+IsChapterStatsValid: @ 0x0809FB30
 	ldr r1, _0809FB40 @ =0x0000FF80
 	ldrh r0, [r0]
 	ands r1, r0
@@ -1051,8 +1051,8 @@ _0809FBA6:
 	.align 2, 0
 _0809FBB0: .4byte 0x0000FF80
 
-	thumb_func_start sub_0809FBB4
-sub_0809FBB4: @ 0x0809FBB4
+	thumb_func_start GetNextChapterStatsEntry
+GetNextChapterStatsEntry: @ 0x0809FBB4
 	push {lr}
 	bl GetChapterCompletionStatsListCount
 	cmp r0, #0
@@ -1070,8 +1070,8 @@ _0809FBD0:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809FBD4
-sub_0809FBD4: @ 0x0809FBD4
+	thumb_func_start RegisterChapterStats
+RegisterChapterStats: @ 0x0809FBD4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	bl GetChapterCompletionStatsListCount
@@ -1117,8 +1117,8 @@ _0809FC06:
 	.align 2, 0
 _0809FC2C: .4byte 0x0000EA60
 
-	thumb_func_start sub_0809FC30
-sub_0809FC30: @ 0x0809FC30
+	thumb_func_start GetGameTotalTime_unused
+GetGameTotalTime_unused: @ 0x0809FC30
 	push {r4, r5, r6, r7, lr}
 	movs r6, #0
 	bl GetChapterCompletionStatsListCount
@@ -1142,8 +1142,8 @@ _0809FC54:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809FC5C
-sub_0809FC5C: @ 0x0809FC5C
+	thumb_func_start GetGameTotalTurnCount
+GetGameTotalTurnCount: @ 0x0809FC5C
 	push {r4, r5, r6, lr}
 	movs r6, #0
 	bl GetChapterCompletionStatsListCount
@@ -1263,8 +1263,8 @@ _0809FD26:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809FD30
-sub_0809FD30: @ 0x0809FD30
+	thumb_func_start PidStatsAddBattleAmt
+PidStatsAddBattleAmt: @ 0x0809FD30
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	movs r0, #0xc0
@@ -1277,7 +1277,7 @@ sub_0809FD30: @ 0x0809FD30
 	adds r5, r0, #0
 	cmp r0, #0x45
 	bhi _0809FD84
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _0809FD84
@@ -1305,7 +1305,7 @@ _0809FD7A:
 	ldr r0, [r4]
 	ldrb r0, [r0, #4]
 	movs r1, #4
-	bl sub_080A0248
+	bl PidStatsAddFavval
 _0809FD84:
 	pop {r4, r5}
 	pop {r0}
@@ -1325,7 +1325,7 @@ sub_0809FD9C: @ 0x0809FD9C
 	cmp r4, #0x45
 	bhi _0809FDEE
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _0809FDEE
@@ -1357,7 +1357,7 @@ sub_0809FD9C: @ 0x0809FD9C
 _0809FDE6:
 	adds r0, r5, #0
 	movs r1, #0x10
-	bl sub_080A0248
+	bl PidStatsAddFavval
 _0809FDEE:
 	pop {r4, r5}
 	pop {r0}
@@ -1366,8 +1366,8 @@ _0809FDEE:
 _0809FDF4: .4byte 0x0203E790
 _0809FDF8: .4byte 0x000003E7
 
-	thumb_func_start sub_0809FDFC
-sub_0809FDFC: @ 0x0809FDFC
+	thumb_func_start PidStatsRecordLoseData
+PidStatsRecordLoseData: @ 0x0809FDFC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -1375,14 +1375,14 @@ sub_0809FDFC: @ 0x0809FDFC
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
 	mov r8, r4
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809FECC
 	cmp r4, #0x45
 	bhi _0809FECC
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _0809FECC
@@ -1425,12 +1425,12 @@ sub_0809FDFC: @ 0x0809FDFC
 	movs r1, #0x80
 	rsbs r1, r1, #0
 	mov r0, r8
-	bl sub_080A0248
-	bl sub_080A1918
+	bl PidStatsAddFavval
+	bl GetLastSuspendSaveId
 	adds r4, r0, #0
 	adds r4, #3
 	adds r0, r4, #0
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r1, r0, #0
 	ldr r2, _0809FEE4 @ =0x000019DC
 	adds r0, r6, r2
@@ -1440,12 +1440,12 @@ sub_0809FDFC: @ 0x0809FDFC
 	bl WriteAndVerifySramFast
 	mov r0, sp
 	adds r1, r4, #0
-	bl sub_0809E6FC
+	bl ReadSaveBlockInfo
 	mov r0, sp
 	adds r1, r4, #0
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	ldrb r0, [r7, #0xc]
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r1, r0, #0
 	movs r2, #0x85
 	lsls r2, r2, #4
@@ -1456,10 +1456,10 @@ sub_0809FDFC: @ 0x0809FDFC
 	bl WriteAndVerifySramFast
 	ldrb r1, [r7, #0xc]
 	mov r0, sp
-	bl sub_0809E6FC
+	bl ReadSaveBlockInfo
 	ldrb r1, [r7, #0xc]
 	mov r0, sp
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 _0809FECC:
 	add sp, #0x10
 	pop {r3}
@@ -1473,8 +1473,8 @@ _0809FEDC: .4byte 0x0202BBB8
 _0809FEE0: .4byte 0x0202BBF8
 _0809FEE4: .4byte 0x000019DC
 
-	thumb_func_start sub_0809FEE8
-sub_0809FEE8: @ 0x0809FEE8
+	thumb_func_start PidStatsRecordDefeatInfo
+PidStatsRecordDefeatInfo: @ 0x0809FEE8
 	push {r4, r5, r6, lr}
 	adds r4, r2, #0
 	lsls r0, r0, #0x18
@@ -1484,7 +1484,7 @@ sub_0809FEE8: @ 0x0809FEE8
 	lsrs r6, r1, #0x18
 	cmp r0, #0x45
 	bhi _0809FF52
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _0809FF52
@@ -1538,8 +1538,8 @@ _0809FF60: .4byte 0x000003FF
 _0809FF64: .4byte 0xFF003FFF
 _0809FF68: .4byte 0xFF803FFF
 
-	thumb_func_start sub_0809FF6C
-sub_0809FF6C: @ 0x0809FF6C
+	thumb_func_start PidStatsAddActAmt
+PidStatsAddActAmt: @ 0x0809FF6C
 	push {r4, r5, lr}
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -1547,7 +1547,7 @@ sub_0809FF6C: @ 0x0809FF6C
 	cmp r4, #0x45
 	bhi _0809FFA0
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _0809FFA0
@@ -1564,7 +1564,7 @@ sub_0809FF6C: @ 0x0809FF6C
 _0809FF98:
 	adds r0, r5, #0
 	movs r1, #2
-	bl sub_080A0248
+	bl PidStatsAddFavval
 _0809FFA0:
 	pop {r4, r5}
 	pop {r0}
@@ -1572,8 +1572,8 @@ _0809FFA0:
 	.align 2, 0
 _0809FFA8: .4byte 0x0203E790
 
-	thumb_func_start sub_0809FFAC
-sub_0809FFAC: @ 0x0809FFAC
+	thumb_func_start PidStatsAddStatView
+PidStatsAddStatView: @ 0x0809FFAC
 	push {r4, r5, lr}
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -1581,7 +1581,7 @@ sub_0809FFAC: @ 0x0809FFAC
 	cmp r4, #0x45
 	bhi _0809FFE0
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _0809FFE0
@@ -1598,7 +1598,7 @@ sub_0809FFAC: @ 0x0809FFAC
 _0809FFD8:
 	adds r0, r5, #0
 	movs r1, #2
-	bl sub_080A0248
+	bl PidStatsAddFavval
 _0809FFE0:
 	pop {r4, r5}
 	pop {r0}
@@ -1606,8 +1606,8 @@ _0809FFE0:
 	.align 2, 0
 _0809FFE8: .4byte 0x0203E790
 
-	thumb_func_start sub_0809FFEC
-sub_0809FFEC: @ 0x0809FFEC
+	thumb_func_start PidStatsAddDeployAmt
+PidStatsAddDeployAmt: @ 0x0809FFEC
 	push {r4, r5, lr}
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -1615,7 +1615,7 @@ sub_0809FFEC: @ 0x0809FFEC
 	cmp r4, #0x45
 	bhi _080A0030
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _080A0030
@@ -1640,7 +1640,7 @@ sub_0809FFEC: @ 0x0809FFEC
 _080A0028:
 	adds r0, r5, #0
 	movs r1, #0x40
-	bl sub_080A0248
+	bl PidStatsAddFavval
 _080A0030:
 	pop {r4, r5}
 	pop {r0}
@@ -1648,8 +1648,8 @@ _080A0030:
 	.align 2, 0
 _080A0038: .4byte 0x0203E790
 
-	thumb_func_start sub_080A003C
-sub_080A003C: @ 0x080A003C
+	thumb_func_start PidStatsAddMove
+PidStatsAddMove: @ 0x080A003C
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	lsls r0, r0, #0x18
@@ -1658,7 +1658,7 @@ sub_080A003C: @ 0x080A003C
 	cmp r4, #0x45
 	bhi _080A0090
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _080A0090
@@ -1690,7 +1690,7 @@ _080A0076:
 	strb r0, [r3, #8]
 	adds r0, r6, #0
 	movs r1, #2
-	bl sub_080A0248
+	bl PidStatsAddFavval
 _080A0090:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -1708,7 +1708,7 @@ PidStatsAddExpGained: @ 0x080A009C
 	cmp r4, #0x45
 	bhi _080A00E8
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _080A00E8
@@ -1736,7 +1736,7 @@ _080A00D2:
 	str r0, [r2, #8]
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_080A0248
+	bl PidStatsAddFavval
 _080A00E8:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -1746,32 +1746,32 @@ _080A00F0: .4byte 0x0203E790
 _080A00F4: .4byte 0x00000FFF
 _080A00F8: .4byte 0xFF000FFF
 
-	thumb_func_start sub_080A00FC
-sub_080A00FC: @ 0x080A00FC
+	thumb_func_start PidStatsSubFavval08
+PidStatsSubFavval08: @ 0x080A00FC
 	push {lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #8
 	rsbs r1, r1, #0
-	bl sub_080A0248
+	bl PidStatsAddFavval
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A0110
-sub_080A0110: @ 0x080A0110
+	thumb_func_start PidStatsSubFavval100
+PidStatsSubFavval100: @ 0x080A0110
 	push {lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r1, _080A0120 @ =0xFFFFFF00
-	bl sub_080A0248
+	bl PidStatsAddFavval
 	pop {r0}
 	bx r0
 	.align 2, 0
 _080A0120: .4byte 0xFFFFFF00
 
-	thumb_func_start sub_080A0124
-sub_080A0124: @ 0x080A0124
+	thumb_func_start PidStatsGetTotalBattleAmt
+PidStatsGetTotalBattleAmt: @ 0x080A0124
 	push {r4, lr}
 	movs r3, #0
 	ldr r2, _080A0144 @ =0x0203E7A0
@@ -1792,8 +1792,8 @@ _080A012C:
 	.align 2, 0
 _080A0144: .4byte 0x0203E7A0
 
-	thumb_func_start sub_080A0148
-sub_080A0148: @ 0x080A0148
+	thumb_func_start PidStatsGetTotalWinAmt
+PidStatsGetTotalWinAmt: @ 0x080A0148
 	push {r4, r5, lr}
 	movs r3, #0
 	ldr r0, _080A0174 @ =0x0203E7A0
@@ -1836,8 +1836,8 @@ _080A017E:
 	.align 2, 0
 _080A018C: .4byte 0x0203E7A0
 
-	thumb_func_start sub_080A0190
-sub_080A0190: @ 0x080A0190
+	thumb_func_start PidStatsGetTotalLevel
+PidStatsGetTotalLevel: @ 0x080A0190
 	push {r4, r5, r6, lr}
 	movs r6, #0
 	ldr r5, _080A01B8 @ =0x0203E7A0
@@ -1879,15 +1879,15 @@ _080A01C2:
 	.align 2, 0
 _080A01D8: .4byte 0x0203E7A0
 
-	thumb_func_start sub_080A01DC
-sub_080A01DC: @ 0x080A01DC
+	thumb_func_start PidStatsGetExpGain
+PidStatsGetExpGain: @ 0x080A01DC
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r4, r0, #0
 	cmp r0, #0x45
 	bhi _080A01FC
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _080A01FC
@@ -1910,15 +1910,15 @@ _080A020A:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A0210
-sub_080A0210: @ 0x080A0210
+	thumb_func_start PidStatsGetFavval
+PidStatsGetFavval: @ 0x080A0210
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r4, r0, #0
 	cmp r0, #0x45
 	bhi _080A0230
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _080A0230
@@ -1942,8 +1942,8 @@ _080A0242:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A0248
-sub_080A0248: @ 0x080A0248
+	thumb_func_start PidStatsAddFavval
+PidStatsAddFavval: @ 0x080A0248
 	push {r4, r5, lr}
 	adds r5, r1, #0
 	lsls r0, r0, #0x18
@@ -1951,7 +1951,7 @@ sub_080A0248: @ 0x080A0248
 	adds r4, r0, #0
 	cmp r0, #0x45
 	bhi _080A02AA
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _080A02AA
@@ -2002,14 +2002,14 @@ _080A02AA:
 _080A02B0: .4byte 0x0000FFFF
 _080A02B4: .4byte 0xFF0000FF
 
-	thumb_func_start sub_080A02B8
-sub_080A02B8: @ 0x080A02B8
+	thumb_func_start PidStatsRecordBattleRes
+PidStatsRecordBattleRes: @ 0x080A02B8
 	push {r4, r5, r6, r7, lr}
 	movs r7, #0
 	movs r5, #0
 	ldr r4, _080A0314 @ =0x0203A3F0
 	adds r0, r4, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bne _080A02CE
 	adds r7, r4, #0
@@ -2017,7 +2017,7 @@ sub_080A02B8: @ 0x080A02B8
 _080A02CE:
 	ldr r6, _080A0318 @ =0x0203A470
 	adds r0, r6, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bne _080A02DE
 	adds r7, r6, #0
@@ -2045,7 +2045,7 @@ _080A02F8:
 	bne _080A030E
 	ldr r0, [r7]
 	ldrb r0, [r0, #4]
-	bl sub_0809FDFC
+	bl PidStatsRecordLoseData
 _080A030E:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -2054,8 +2054,8 @@ _080A030E:
 _080A0314: .4byte 0x0203A3F0
 _080A0318: .4byte 0x0203A470
 
-	thumb_func_start sub_080A031C
-sub_080A031C: @ 0x080A031C
+	thumb_func_start IsPlaythroughIdUnique
+IsPlaythroughIdUnique: @ 0x080A031C
 	push {r4, r5, r6, lr}
 	sub sp, #0xac
 	adds r6, r0, #0
@@ -2075,13 +2075,13 @@ _080A032C:
 	add r5, sp, #0x64
 _080A033E:
 	adds r0, r4, #0
-	bl sub_080A09A0
+	bl IsSaveValid
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A035C
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080A09B4
+	bl ReadGameSavePlaySt
 	ldrb r0, [r5, #0x18]
 	cmp r0, r6
 	bne _080A035C
@@ -2099,13 +2099,13 @@ _080A0364:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A036C
-sub_080A036C: @ 0x080A036C
+	thumb_func_start GetNewPlaythroughId
+GetNewPlaythroughId: @ 0x080A036C
 	push {r4, lr}
 	movs r4, #1
 _080A0370:
 	adds r0, r4, #0
-	bl sub_080A031C
+	bl IsPlaythroughIdUnique
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A0380
@@ -2139,8 +2139,8 @@ _080A039E:
 	adds r0, r2, #0
 	bx lr
 
-	thumb_func_start sub_080A03A8
-sub_080A03A8: @ 0x080A03A8
+	thumb_func_start GetGlobalCompletionCount
+GetGlobalCompletionCount: @ 0x080A03A8
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
@@ -2158,8 +2158,8 @@ _080A03C2:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A03C8
-sub_080A03C8: @ 0x080A03C8
+	thumb_func_start RegisterCompletedPlaythrough
+RegisterCompletedPlaythrough: @ 0x080A03C8
 	push {r4, lr}
 	movs r3, #0
 	adds r4, r0, #0
@@ -2194,8 +2194,8 @@ _080A03F8:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A0400
-sub_080A0400: @ 0x080A0400
+	thumb_func_start SavePlayThroughData
+SavePlayThroughData: @ 0x080A0400
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
@@ -2203,7 +2203,7 @@ sub_080A0400: @ 0x080A0400
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080A041A
-	bl sub_0809E5AC
+	bl InitGlobalSaveInfo
 	mov r0, sp
 	bl LoadMetaSave
 _080A041A:
@@ -2283,8 +2283,8 @@ _080A0496:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A049C
-sub_080A049C: @ 0x080A049C
+	thumb_func_start WriteCompletedPlaythroughSaveData
+WriteCompletedPlaythroughSaveData: @ 0x080A049C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x64
 	bl sub_080A0458
@@ -2300,13 +2300,13 @@ sub_080A049C: @ 0x080A049C
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080A04C8
-	bl sub_0809E5AC
+	bl InitGlobalSaveInfo
 	mov r0, sp
 	bl LoadMetaSave
 _080A04C8:
 	ldrb r1, [r7, #0x18]
 	mov r0, sp
-	bl sub_080A03C8
+	bl RegisterCompletedPlaythrough
 	mov r1, sp
 	movs r0, #1
 	ldrb r2, [r1, #0xe]
@@ -2364,14 +2364,14 @@ _080A0522:
 	bgt _080A053A
 	movs r0, #0
 	movs r1, #0x70
-	bl sub_0809F748
+	bl UnlockSoundRoomSong
 	b _080A0546
 _080A053A:
 	cmp r5, #3
 	bgt _080A0546
 	movs r0, #0
 	movs r1, #0x71
-	bl sub_0809F748
+	bl UnlockSoundRoomSong
 _080A0546:
 	add sp, #0x64
 	pop {r4, r5, r6, r7}
@@ -2379,8 +2379,8 @@ _080A0546:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A0550
-sub_080A0550: @ 0x080A0550
+	thumb_func_start GetPidStats
+GetPidStats: @ 0x080A0550
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
@@ -2388,7 +2388,7 @@ sub_080A0550: @ 0x080A0550
 	cmp r4, #0x45
 	bhi _080A0574
 	adds r0, r4, #0
-	bl sub_08018D38
+	bl GetCharacterData
 	ldrb r0, [r0, #9]
 	cmp r0, #0
 	beq _080A0574
@@ -2405,24 +2405,24 @@ _080A0576:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A057C
-sub_080A057C: @ 0x080A057C
+	thumb_func_start GetBonusContentClaimFlags
+GetBonusContentClaimFlags: @ 0x080A057C
 	ldr r0, _080A0584 @ =0x0203ECC0
 	ldr r0, [r0]
 	bx lr
 	.align 2, 0
 _080A0584: .4byte 0x0203ECC0
 
-	thumb_func_start sub_080A0588
-sub_080A0588: @ 0x080A0588
+	thumb_func_start SetBonusContentClaimFlags
+SetBonusContentClaimFlags: @ 0x080A0588
 	ldr r1, _080A0590 @ =0x0203ECC0
 	str r0, [r1]
 	bx lr
 	.align 2, 0
 _080A0590: .4byte 0x0203ECC0
 
-	thumb_func_start sub_080A0594
-sub_080A0594: @ 0x080A0594
+	thumb_func_start WriteBonusContentClaimFlags
+WriteBonusContentClaimFlags: @ 0x080A0594
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080A05A8 @ =0x0203ECC0
@@ -2436,8 +2436,8 @@ sub_080A0594: @ 0x080A0594
 _080A05A8: .4byte 0x0203ECC0
 _080A05AC: .4byte 0x00000D88
 
-	thumb_func_start sub_080A05B0
-sub_080A05B0: @ 0x080A05B0
+	thumb_func_start ReadBonusContentClaimFlags
+ReadBonusContentClaimFlags: @ 0x080A05B0
 	push {lr}
 	ldr r2, _080A05C8 @ =0x03005E70
 	ldr r1, _080A05CC @ =0x00000D88
@@ -2453,8 +2453,8 @@ _080A05C8: .4byte 0x03005E70
 _080A05CC: .4byte 0x00000D88
 _080A05D0: .4byte 0x0203ECC0
 
-	thumb_func_start sub_080A05D4
-sub_080A05D4: @ 0x080A05D4
+	thumb_func_start WriteLastGameSaveId
+WriteLastGameSaveId: @ 0x080A05D4
 	push {r4, lr}
 	sub sp, #0x64
 	adds r4, r0, #0
@@ -2464,14 +2464,14 @@ sub_080A05D4: @ 0x080A05D4
 	adds r0, #0x62
 	strb r4, [r0]
 	mov r0, sp
-	bl sub_0809E598
+	bl WriteGlobalSaveInfoNoChecksum
 	add sp, #0x64
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A05F4
-sub_080A05F4: @ 0x080A05F4
+	thumb_func_start ReadLastGameSaveId
+ReadLastGameSaveId: @ 0x080A05F4
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
@@ -2500,44 +2500,44 @@ sub_080A061C: @ 0x080A061C
 	sub sp, #0x58
 	adds r5, r0, #0
 	movs r0, #3
-	bl sub_080A1384
+	bl IsValidSuspendSave
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A0644
 	add r4, sp, #0x10
 	movs r0, #3
 	adds r1, r4, #0
-	bl sub_080A13D8
+	bl ReadSuspendSavePlaySt
 	ldrb r0, [r4, #0xc]
 	cmp r0, r5
 	bne _080A0644
 	movs r0, #3
-	bl sub_080A10D8
+	bl InvalidateSuspendSave
 _080A0644:
 	mov r1, sp
 	movs r0, #0xff
 	strb r0, [r1, #6]
 	mov r0, sp
 	adds r1, r5, #0
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x58
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A065C
-sub_080A065C: @ 0x080A065C
+	thumb_func_start CopyGameSave
+CopyGameSave: @ 0x080A065C
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
 	push {r5, r6}
 	sub sp, #0x10
 	mov sb, r1
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	adds r6, r0, #0
 	mov r0, sb
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	mov r8, r0
 	ldr r0, _080A06B4 @ =0x03005E70
 	ldr r4, _080A06B8 @ =0x02020140
@@ -2558,7 +2558,7 @@ sub_080A065C: @ 0x080A065C
 	strb r0, [r1, #6]
 	mov r0, sp
 	mov r1, sb
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x10
 	pop {r3, r4}
 	mov r8, r3
@@ -2581,7 +2581,7 @@ SaveNewGame: @ 0x080A06C4
 	mov r8, r0
 	adds r4, r1, #0
 	adds r5, r2, #0
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r7, r0, #0
 	cmp r5, #0
 	bne _080A06E0
@@ -2592,11 +2592,11 @@ _080A06E0:
 	bl SetGameTime
 	adds r0, r4, #0
 	bl InitPlayConfig
-	bl sub_080174D8
-	bl sub_0802E708
+	bl InitUnits
+	bl ClearSupplyItems
 	bl ClearPermanentFlags
 	movs r0, #3
-	bl sub_080A10D8
+	bl InvalidateSuspendSave
 	ldr r4, _080A07F4 @ =0x0202BBF8
 	adds r1, r4, #0
 	adds r1, #0x2c
@@ -2644,11 +2644,11 @@ _080A0750:
 	movs r0, #0xd
 	strb r0, [r4, #0xe]
 _080A0758:
-	bl sub_080A036C
+	bl GetNewPlaythroughId
 	strb r0, [r4, #0x18]
 	mov r0, r8
 	strb r0, [r4, #0xc]
-	bl sub_080A03A8
+	bl GetGlobalCompletionCount
 	movs r1, #0x1f
 	ands r0, r1
 	lsls r0, r0, #7
@@ -2662,9 +2662,9 @@ _080A0758:
 	movs r2, #0x48
 	bl WriteAndVerifySramFast
 	movs r0, #0
-	bl sub_080A0588
+	bl SetBonusContentClaimFlags
 	adds r0, r7, #0
-	bl sub_080A0594
+	bl WriteBonusContentClaimFlags
 	mov r0, sp
 	adds r0, #0x36
 	movs r1, #0
@@ -2692,7 +2692,7 @@ _080A07A6:
 	adds r0, r7, r1
 	bl sub_0809E9C4
 	adds r0, r7, #0
-	bl sub_0809F98C
+	bl ClearPidChStatsSaveData
 	movs r2, #0xd8
 	lsls r2, r2, #4
 	adds r0, r7, r2
@@ -2702,9 +2702,9 @@ _080A07A6:
 	mov r0, sp
 	strb r4, [r0, #6]
 	mov r1, r8
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	mov r0, r8
-	bl sub_080A05D4
+	bl WriteLastGameSaveId
 	add sp, #0x38
 	pop {r3}
 	mov r8, r3
@@ -2720,8 +2720,8 @@ _080A0804: .4byte 0xFFFFF07F
 _080A0808: .4byte 0x01000012
 _080A080C: .4byte 0x00011217
 
-	thumb_func_start sub_080A0810
-sub_080A0810: @ 0x080A0810
+	thumb_func_start WriteGameSave
+WriteGameSave: @ 0x080A0810
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2729,10 +2729,10 @@ sub_080A0810: @ 0x080A0810
 	push {r5, r6, r7}
 	sub sp, #0x74
 	mov sb, r0
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r7, r0, #0
 	movs r0, #3
-	bl sub_080A10D8
+	bl InvalidateSuspendSave
 	ldr r4, _080A08E0 @ =0x0202BBF8
 	mov r0, sb
 	strb r0, [r4, #0xc]
@@ -2754,7 +2754,7 @@ _080A0850:
 	mov r1, sl
 	adds r0, r6, r1
 	adds r1, r4, #0
-	bl sub_080A0A60
+	bl WriteGameSavePackedUnit
 	adds r4, #0x24
 	adds r6, #0x48
 	subs r5, #1
@@ -2785,13 +2785,13 @@ _080A0870:
 	movs r1, #0x86
 	lsls r1, r1, #4
 	adds r0, r7, r1
-	bl sub_0809FAEC
+	bl WritePidStats
 	movs r1, #0xcc
 	lsls r1, r1, #4
 	adds r0, r7, r1
-	bl sub_0809FB10
+	bl WriteChapterStats
 	adds r0, r7, #0
-	bl sub_080A0594
+	bl WriteBonusContentClaimFlags
 	movs r1, #0xd8
 	lsls r1, r1, #4
 	adds r0, r7, r1
@@ -2801,9 +2801,9 @@ _080A0870:
 	mov r0, sp
 	strb r4, [r0, #6]
 	mov r1, sb
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	mov r0, sb
-	bl sub_080A05D4
+	bl WriteLastGameSaveId
 	add sp, #0x74
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -2817,14 +2817,14 @@ _080A08E0: .4byte 0x0202BBF8
 _080A08E4: .4byte 0x0202BD50
 _080A08E8: .4byte 0x00011217
 
-	thumb_func_start sub_080A08EC
-sub_080A08EC: @ 0x080A08EC
+	thumb_func_start ReadGameSave
+ReadGameSave: @ 0x080A08EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
 	push {r6, r7}
 	mov sb, r0
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	adds r7, r0, #0
 	bl ClearMenuOverrides
 	ldr r1, _080A0990 @ =0x0202BBB8
@@ -2834,7 +2834,7 @@ sub_080A08EC: @ 0x080A08EC
 	cmp r0, #0
 	bne _080A0912
 	movs r0, #3
-	bl sub_080A10D8
+	bl InvalidateSuspendSave
 _080A0912:
 	ldr r0, _080A0994 @ =0x03005E70
 	ldr r4, _080A0998 @ =0x0202BBF8
@@ -2847,7 +2847,7 @@ _080A0912:
 	bl SetGameTime
 	mov r0, sb
 	strb r0, [r4, #0xc]
-	bl sub_080174D8
+	bl InitUnits
 	movs r6, #0
 	adds r4, r7, #0
 	adds r4, #0x48
@@ -2858,7 +2858,7 @@ _080A093C:
 	mov r0, r8
 	adds r1, r6, r0
 	adds r0, r4, #0
-	bl sub_080A0E9C
+	bl LoadSavedUnit
 	adds r6, #0x48
 	adds r4, #0x24
 	subs r5, #1
@@ -2875,15 +2875,15 @@ _080A093C:
 	movs r1, #0x86
 	lsls r1, r1, #4
 	adds r0, r7, r1
-	bl sub_0809FAA4
+	bl ReadPidStats
 	movs r1, #0xcc
 	lsls r1, r1, #4
 	adds r0, r7, r1
-	bl sub_0809FAD0
+	bl ReadChapterStats
 	adds r0, r7, #0
-	bl sub_080A05B0
+	bl ReadBonusContentClaimFlags
 	mov r0, sb
-	bl sub_080A05D4
+	bl WriteLastGameSaveId
 	pop {r3, r4}
 	mov r8, r3
 	mov sb, r4
@@ -2896,23 +2896,23 @@ _080A0994: .4byte 0x03005E70
 _080A0998: .4byte 0x0202BBF8
 _080A099C: .4byte 0x0202BD50
 
-	thumb_func_start sub_080A09A0
-sub_080A09A0: @ 0x080A09A0
+	thumb_func_start IsSaveValid
+IsSaveValid: @ 0x080A09A0
 	push {lr}
 	adds r1, r0, #0
 	movs r0, #0
-	bl sub_0809E6FC
+	bl ReadSaveBlockInfo
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A09B4
-sub_080A09B4: @ 0x080A09B4
+	thumb_func_start ReadGameSavePlaySt
+ReadGameSavePlaySt: @ 0x080A09B4
 	push {r4, lr}
 	adds r4, r1, #0
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	ldr r1, _080A09D0 @ =0x03005E70
 	ldr r3, [r1]
 	adds r1, r4, #0
@@ -2924,11 +2924,11 @@ sub_080A09B4: @ 0x080A09B4
 	.align 2, 0
 _080A09D0: .4byte 0x03005E70
 
-	thumb_func_start sub_080A09D4
-sub_080A09D4: @ 0x080A09D4
+	thumb_func_start LoadSavedBonusClaimFlags
+LoadSavedBonusClaimFlags: @ 0x080A09D4
 	push {lr}
 	sub sp, #4
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	ldr r1, _080A09F4 @ =0x03005E70
 	ldr r2, _080A09F8 @ =0x00000D88
 	adds r0, r0, r2
@@ -2981,18 +2981,18 @@ _080A0A2C:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A0A30
-sub_080A0A30: @ 0x080A0A30
+	thumb_func_start IsGameSaveNotFirstChapter
+IsGameSaveNotFirstChapter: @ 0x080A0A30
 	push {r4, lr}
 	sub sp, #0x48
 	adds r4, r0, #0
-	bl sub_080A09A0
+	bl IsSaveValid
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A0A54
 	adds r0, r4, #0
 	mov r1, sp
-	bl sub_080A09B4
+	bl ReadGameSavePlaySt
 	mov r0, sp
 	bl sub_080A0A10
 	lsls r0, r0, #0x18
@@ -3007,8 +3007,8 @@ _080A0A56:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A0A60
-sub_080A0A60: @ 0x080A0A60
+	thumb_func_start WriteGameSavePackedUnit
+WriteGameSavePackedUnit: @ 0x080A0A60
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -3549,8 +3549,8 @@ _080A0E90: .4byte 0xFFFC000F
 _080A0E94: .4byte 0xFFFFF000
 _080A0E98: .4byte 0x00000FFF
 
-	thumb_func_start sub_080A0E9C
-sub_080A0E9C: @ 0x080A0E9C
+	thumb_func_start LoadSavedUnit
+LoadSavedUnit: @ 0x080A0E9C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -3563,7 +3563,7 @@ sub_080A0E9C: @ 0x080A0E9C
 	bl _call_via_r3
 	mov r0, sp
 	ldrb r0, [r0, #0x14]
-	bl sub_08018D38
+	bl GetCharacterData
 	str r0, [r4]
 	mov r0, sp
 	ldrb r0, [r0]
@@ -3812,7 +3812,7 @@ _080A1082:
 	bl GetUnitMaxHp
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08018C40
+	bl SetUnitHp
 	movs r0, #0
 	mov r2, r8
 	strb r0, [r2]
@@ -3844,8 +3844,8 @@ _080A10C2:
 _080A10D0: .4byte 0x03005E70
 _080A10D4: .4byte 0x00000FFF
 
-	thumb_func_start sub_080A10D8
-sub_080A10D8: @ 0x080A10D8
+	thumb_func_start InvalidateSuspendSave
+InvalidateSuspendSave: @ 0x080A10D8
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
@@ -3854,20 +3854,20 @@ sub_080A10D8: @ 0x080A10D8
 	strb r0, [r1, #6]
 	mov r0, sp
 	adds r1, r4, #0
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	cmp r4, #3
 	bne _080A10F8
 	mov r0, sp
 	movs r1, #4
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 _080A10F8:
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A1100
-sub_080A1100: @ 0x080A1100
+	thumb_func_start WriteSuspendSave
+WriteSuspendSave: @ 0x080A1100
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -3881,14 +3881,14 @@ sub_080A1100: @ 0x080A1100
 	ands r0, r1
 	cmp r0, #0
 	bne _080A120C
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A120C
-	bl sub_080A1938
+	bl GetNextSuspendSaveId
 	add r8, r0
 	mov r0, r8
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r7, r0, #0
 	bl GetGameTime
 	str r0, [r4]
@@ -3911,7 +3911,7 @@ _080A115C:
 	adds r1, r5, #0
 	adds r5, #0x34
 	adds r0, r6, #0
-	bl sub_080A13EC
+	bl EncodeSuspendSavePackedUnit
 	adds r6, #0x48
 	subs r4, #1
 	cmp r4, #0
@@ -3925,7 +3925,7 @@ _080A1178:
 	adds r1, r5, #0
 	adds r5, #0x34
 	adds r0, r6, #0
-	bl sub_080A13EC
+	bl EncodeSuspendSavePackedUnit
 	adds r6, #0x48
 	subs r4, #1
 	cmp r4, #0
@@ -3936,7 +3936,7 @@ _080A118E:
 	adds r1, r5, #0
 	adds r5, #0x34
 	adds r0, r6, #0
-	bl sub_080A13EC
+	bl EncodeSuspendSavePackedUnit
 	adds r6, #0x48
 	subs r4, #1
 	cmp r4, #0
@@ -3958,15 +3958,15 @@ _080A118E:
 	bl sub_0809E9C4
 	ldr r1, _080A1240 @ =0x000019EC
 	adds r0, r7, r1
-	bl sub_0809FAEC
+	bl WritePidStats
 	ldr r1, _080A1244 @ =0x00001E4C
 	adds r0, r7, r1
-	bl sub_0809FB10
+	bl WriteChapterStats
 	ldr r1, _080A1248 @ =0x00001724
 	adds r0, r7, r1
-	bl sub_080A18D8
+	bl WriteTraps
 	mov r0, sl
-	bl sub_0804ABB4
+	bl GetForceDisabledMenuItems
 	ldr r0, _080A124C @ =0x00001F0C
 	adds r1, r7, r0
 	mov r0, sl
@@ -3979,11 +3979,11 @@ _080A118E:
 	strb r0, [r1, #6]
 	mov r0, sp
 	mov r1, r8
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	ldr r0, _080A1254 @ =0x0202BBB8
 	adds r0, #0x3c
 	strb r4, [r0]
-	bl sub_080A1948
+	bl WriteSwappedSuspendSaveId
 _080A120C:
 	add sp, #0x20
 	pop {r3, r4, r5}
@@ -4010,14 +4010,14 @@ _080A124C: .4byte 0x00001F0C
 _080A1250: .4byte 0x00020509
 _080A1254: .4byte 0x0202BBB8
 
-	thumb_func_start sub_080A1258
-sub_080A1258: @ 0x080A1258
+	thumb_func_start ReadSuspendSave
+ReadSuspendSave: @ 0x080A1258
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
 	ldr r1, _080A1344 @ =0x0203ECC4
 	ldrb r1, [r1]
 	adds r0, r1, r0
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	adds r6, r0, #0
 	ldr r5, _080A1348 @ =0x03005E70
 	ldr r4, _080A134C @ =0x0202BBF8
@@ -4034,7 +4034,7 @@ sub_080A1258: @ 0x080A1258
 	movs r2, #0x1c
 	bl _call_via_r3
 	bl sub_0802F208
-	bl sub_080174D8
+	bl InitUnits
 	movs r4, #0
 	movs r5, #0
 _080A1296:
@@ -4044,7 +4044,7 @@ _080A1296:
 	adds r0, r6, r0
 	ldr r1, _080A1354 @ =0x0202BD50
 	adds r1, r5, r1
-	bl sub_080A16C0
+	bl ReadSuspendSavePackedUnit
 	adds r5, #0x48
 	adds r4, #1
 	cmp r4, #0x33
@@ -4059,7 +4059,7 @@ _080A12B2:
 	adds r0, r6, r0
 	ldr r1, _080A135C @ =0x0202CEC0
 	adds r1, r5, r1
-	bl sub_080A16C0
+	bl ReadSuspendSavePackedUnit
 	adds r5, #0x48
 	adds r4, #1
 	cmp r4, #0x31
@@ -4074,17 +4074,17 @@ _080A12D0:
 	adds r0, r6, r0
 	ldr r1, _080A1364 @ =0x0202DCD0
 	adds r1, r5, r1
-	bl sub_080A16C0
+	bl ReadSuspendSavePackedUnit
 	adds r5, #0x48
 	adds r4, #1
 	cmp r4, #9
 	ble _080A12D0
 	ldr r1, _080A1368 @ =0x000019EC
 	adds r0, r6, r1
-	bl sub_0809FAA4
+	bl ReadPidStats
 	ldr r2, _080A136C @ =0x00001E4C
 	adds r0, r6, r2
-	bl sub_0809FAD0
+	bl ReadChapterStats
 	ldr r1, _080A1370 @ =0x00001924
 	adds r0, r6, r1
 	bl sub_0809E9DC
@@ -4096,7 +4096,7 @@ _080A12D0:
 	bl sub_0809E974
 	ldr r2, _080A137C @ =0x00001724
 	adds r0, r6, r2
-	bl sub_080A18F4
+	bl ReadTraps
 	ldr r1, _080A1348 @ =0x03005E70
 	ldr r2, _080A1380 @ =0x00001F0C
 	adds r0, r6, r2
@@ -4105,11 +4105,11 @@ _080A12D0:
 	movs r2, #0x10
 	bl _call_via_r3
 	mov r0, sp
-	bl sub_0804ABF4
+	bl SetForceDisabledMenuItems
 	ldr r0, _080A134C @ =0x0202BBF8
 	ldrb r0, [r0, #0xc]
-	bl sub_080A09D4
-	bl sub_080A0588
+	bl LoadSavedBonusClaimFlags
+	bl SetBonusContentClaimFlags
 	add sp, #0x10
 	pop {r4, r5, r6}
 	pop {r0}
@@ -4132,32 +4132,32 @@ _080A1378: .4byte 0x00001F24
 _080A137C: .4byte 0x00001724
 _080A1380: .4byte 0x00001F0C
 
-	thumb_func_start sub_080A1384
-sub_080A1384: @ 0x080A1384
+	thumb_func_start IsValidSuspendSave
+IsValidSuspendSave: @ 0x080A1384
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A13C8
 	cmp r4, #3
 	bne _080A13C8
 	ldr r4, _080A13CC @ =0x0203ECC4
-	bl sub_080A1918
+	bl GetLastSuspendSaveId
 	strb r0, [r4]
 	adds r1, r0, #0
 	adds r1, #3
 	movs r0, #0
-	bl sub_0809E6FC
+	bl ReadSaveBlockInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080A13D0
-	bl sub_080A1938
+	bl GetNextSuspendSaveId
 	strb r0, [r4]
 	adds r1, r0, #0
 	adds r1, #3
 	movs r0, #0
-	bl sub_0809E6FC
+	bl ReadSaveBlockInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080A13D0
@@ -4175,20 +4175,20 @@ _080A13D2:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A13D8
-sub_080A13D8: @ 0x080A13D8
+	thumb_func_start ReadSuspendSavePlaySt
+ReadSuspendSavePlaySt: @ 0x080A13D8
 	push {lr}
 	ldr r2, _080A13E8 @ =0x0203ECC4
 	ldrb r2, [r2]
 	adds r0, r2, r0
-	bl sub_080A09B4
+	bl ReadGameSavePlaySt
 	pop {r0}
 	bx r0
 	.align 2, 0
 _080A13E8: .4byte 0x0203ECC4
 
-	thumb_func_start sub_080A13EC
-sub_080A13EC: @ 0x080A13EC
+	thumb_func_start EncodeSuspendSavePackedUnit
+EncodeSuspendSavePackedUnit: @ 0x080A13EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4549,8 +4549,8 @@ _080A16B4: .4byte 0xFFFFFC7F
 _080A16B8: .4byte 0x00003FFF
 _080A16BC: .4byte 0xFFFC000F
 
-	thumb_func_start sub_080A16C0
-sub_080A16C0: @ 0x080A16C0
+	thumb_func_start ReadSuspendSavePackedUnit
+ReadSuspendSavePackedUnit: @ 0x080A16C0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4565,7 +4565,7 @@ sub_080A16C0: @ 0x080A16C0
 	bl _call_via_r3
 	mov r0, sp
 	ldrb r0, [r0]
-	bl sub_08018D38
+	bl GetCharacterData
 	str r0, [r6]
 	mov r0, sp
 	ldrb r0, [r0, #1]
@@ -4821,8 +4821,8 @@ _080A18C0:
 _080A18D0: .4byte 0x03005E70
 _080A18D4: .4byte 0x00003FFF
 
-	thumb_func_start sub_080A18D8
-sub_080A18D8: @ 0x080A18D8
+	thumb_func_start WriteTraps
+WriteTraps: @ 0x080A18D8
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0
@@ -4836,8 +4836,8 @@ sub_080A18D8: @ 0x080A18D8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A18F4
-sub_080A18F4: @ 0x080A18F4
+	thumb_func_start ReadTraps
+ReadTraps: @ 0x080A18F4
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _080A1914 @ =0x03005E70
@@ -4855,8 +4855,8 @@ sub_080A18F4: @ 0x080A18F4
 	.align 2, 0
 _080A1914: .4byte 0x03005E70
 
-	thumb_func_start sub_080A1918
-sub_080A1918: @ 0x080A1918
+	thumb_func_start GetLastSuspendSaveId
+GetLastSuspendSaveId: @ 0x080A1918
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
@@ -4875,18 +4875,18 @@ _080A1932:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A1938
-sub_080A1938: @ 0x080A1938
+	thumb_func_start GetNextSuspendSaveId
+GetNextSuspendSaveId: @ 0x080A1938
 	push {lr}
-	bl sub_080A1918
+	bl GetLastSuspendSaveId
 	adds r1, r0, #0
 	movs r0, #1
 	subs r0, r0, r1
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A1948
-sub_080A1948: @ 0x080A1948
+	thumb_func_start WriteSwappedSuspendSaveId
+WriteSwappedSuspendSaveId: @ 0x080A1948
 	push {lr}
 	sub sp, #0x64
 	mov r0, sp
@@ -4901,14 +4901,14 @@ sub_080A1948: @ 0x080A1948
 _080A1960:
 	strb r2, [r1]
 	mov r0, sp
-	bl sub_0809E598
+	bl WriteGlobalSaveInfoNoChecksum
 	add sp, #0x64
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A1970
-sub_080A1970: @ 0x080A1970
+	thumb_func_start SramChecksum32
+SramChecksum32: @ 0x080A1970
 	push {r4, r5, lr}
 	adds r5, r1, #0
 	ldr r1, _080A1990 @ =0x03005E70
@@ -4919,7 +4919,7 @@ sub_080A1970: @ 0x080A1970
 	bl _call_via_r3
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080C57D4
+	bl Checksum32_thm
 	pop {r4, r5}
 	pop {r1}
 	bx r1
@@ -4927,15 +4927,15 @@ sub_080A1970: @ 0x080A1970
 _080A1990: .4byte 0x03005E70
 _080A1994: .4byte 0x02020140
 
-	thumb_func_start sub_080A1998
-sub_080A1998: @ 0x080A1998
+	thumb_func_start VerifySaveBlockChecksum
+VerifySaveBlockChecksum: @ 0x080A1998
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldrh r5, [r4, #0xa]
 	ldrh r0, [r4, #8]
-	bl sub_0809E6D8
+	bl SramOffsetToAddr
 	adds r1, r5, #0
-	bl sub_080A1970
+	bl SramChecksum32
 	ldr r1, [r4, #0xc]
 	cmp r1, r0
 	bne _080A19B4
@@ -4948,15 +4948,15 @@ _080A19B6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A19BC
-sub_080A19BC: @ 0x080A19BC
+	thumb_func_start PopulateSaveBlockChecksum
+PopulateSaveBlockChecksum: @ 0x080A19BC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldrh r5, [r4, #0xa]
 	ldrh r0, [r4, #8]
-	bl sub_0809E6D8
+	bl SramOffsetToAddr
 	adds r1, r5, #0
-	bl sub_080A1970
+	bl SramChecksum32
 	str r0, [r4, #0xc]
 	pop {r4, r5}
 	pop {r0}
@@ -4977,7 +4977,7 @@ _080A19E0:
 	str r0, [r4, #0x3c]
 	adds r0, r4, #0
 	movs r1, #0x24
-	bl sub_080A1970
+	bl SramChecksum32
 	adds r0, r6, r0
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
@@ -4996,7 +4996,7 @@ _080A1A04:
 	str r0, [r4, #0x3c]
 	adds r0, r4, #0
 	movs r1, #0x24
-	bl sub_080A1970
+	bl SramChecksum32
 	adds r0, r6, r0
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
@@ -5015,7 +5015,7 @@ _080A1A28:
 	str r0, [r4, #0x3c]
 	adds r0, r4, #0
 	movs r1, #0x24
-	bl sub_080A1970
+	bl SramChecksum32
 	adds r0, r6, r0
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
@@ -5024,7 +5024,7 @@ _080A1A40:
 	subs r5, #1
 	cmp r5, #0
 	bge _080A1A28
-	bl sub_08079924
+	bl GetPermanentFlagBits
 	adds r4, r0, #0
 	bl sub_0807992C
 	adds r1, r0, #0
@@ -5032,7 +5032,7 @@ _080A1A40:
 	adds r1, r1, r0
 	asrs r1, r1, #1
 	adds r0, r4, #0
-	bl sub_080A1970
+	bl SramChecksum32
 	adds r0, r6, r0
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
@@ -5044,7 +5044,7 @@ _080A1A40:
 	adds r1, r1, r0
 	asrs r1, r1, #1
 	adds r0, r4, #0
-	bl sub_080A1970
+	bl SramChecksum32
 	adds r0, r6, r0
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
@@ -5052,7 +5052,7 @@ _080A1A40:
 	bl GetTrap
 	movs r1, #0x80
 	lsls r1, r1, #1
-	bl sub_080A1970
+	bl SramChecksum32
 	adds r0, r6, r0
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
@@ -5077,7 +5077,7 @@ sub_080A1AB4: @ 0x080A1AB4
 	push {lr}
 	adds r1, r0, #0
 	movs r0, #0
-	bl sub_0809E6FC
+	bl ReadSaveBlockInfo
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
@@ -5093,7 +5093,7 @@ sub_080A1AC8: @ 0x080A1AC8
 	push {r5, r6, r7}
 	sub sp, #0x60
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	mov r8, r0
 	add r0, sp, #0x50
 	movs r4, #0
@@ -5206,7 +5206,7 @@ _080A1B6C:
 	str r0, [sp, #0x40]
 	mov r0, r8
 	ldr r1, [sp, #0x5c]
-	bl sub_0803D948
+	bl SioStrCpy
 	mov r0, sl
 	adds r1, r5, #0
 	movs r2, #0x10
@@ -5225,7 +5225,7 @@ _080A1B6C:
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x60
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -5247,7 +5247,7 @@ sub_080A1C10: @ 0x080A1C10
 	adds r4, r0, #0
 	adds r5, r1, #0
 	movs r0, #5
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	ldr r2, _080A1C38 @ =0x03005E70
 	movs r1, #0xc8
 	muls r1, r4, r1
@@ -5276,7 +5276,7 @@ sub_080A1C44: @ 0x080A1C44
 	adds r4, r0, #0
 	adds r5, r1, #0
 	movs r0, #5
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	ldr r2, _080A1C78 @ =0x03005E70
 	movs r1, #0xc8
 	muls r1, r4, r1
@@ -5291,7 +5291,7 @@ sub_080A1C44: @ 0x080A1C44
 	beq _080A1C80
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0803D948
+	bl SioStrCpy
 	movs r0, #1
 	b _080A1C82
 	.align 2, 0
@@ -5311,7 +5311,7 @@ sub_080A1C88: @ 0x080A1C88
 	adds r4, r0, #0
 	adds r5, r1, #0
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r1, r0, #0
 	movs r0, #0xc8
 	muls r0, r4, r0
@@ -5326,7 +5326,7 @@ sub_080A1C88: @ 0x080A1C88
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x10
 	pop {r4, r5}
 	pop {r0}
@@ -5340,7 +5340,7 @@ sub_080A1CC4: @ 0x080A1CC4
 	sub sp, #0x14
 	adds r6, r0, #0
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r4, r0, #0
 	add r0, sp, #0x10
 	movs r1, #0
@@ -5363,7 +5363,7 @@ sub_080A1CC4: @ 0x080A1CC4
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x14
 	pop {r4, r5, r6}
 	pop {r0}
@@ -5383,10 +5383,10 @@ sub_080A1D18: @ 0x080A1D18
 	adds r6, r0, #0
 	mov sb, r1
 	movs r0, #5
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	adds r4, r0, #0
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r5, r0, #0
 	ldr r1, _080A1D84 @ =0x03005E70
 	movs r0, #0xc8
@@ -5415,7 +5415,7 @@ sub_080A1D18: @ 0x080A1D18
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x10
 	pop {r3, r4}
 	mov r8, r3
@@ -5439,10 +5439,10 @@ sub_080A1D90: @ 0x080A1D90
 	mov r8, r0
 	mov sl, r1
 	movs r0, #5
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	adds r5, r0, #0
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r6, r0, #0
 	ldr r0, _080A1E1C @ =0x03005E70
 	mov sb, r0
@@ -5483,7 +5483,7 @@ sub_080A1D90: @ 0x080A1D90
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x10
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -5498,8 +5498,8 @@ _080A1E20: .4byte 0x0203ECC8
 _080A1E24: .4byte 0x0203ED90
 _080A1E28: .4byte 0x00020112
 
-	thumb_func_start sub_080A1E2C
-sub_080A1E2C: @ 0x080A1E2C
+	thumb_func_start WriteMultiArenaSaveTeam
+WriteMultiArenaSaveTeam: @ 0x080A1E2C
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -5508,7 +5508,7 @@ sub_080A1E2C: @ 0x080A1E2C
 	mov r8, r1
 	adds r6, r2, #0
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r5, r0, #0
 	movs r0, #0xc8
 	muls r4, r0, r4
@@ -5523,7 +5523,7 @@ sub_080A1E2C: @ 0x080A1E2C
 _080A1E58:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080A0A60
+	bl WriteGameSavePackedUnit
 	adds r5, #0x24
 	adds r4, #0x48
 	subs r6, #1
@@ -5536,7 +5536,7 @@ _080A1E58:
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x10
 	pop {r3}
 	mov r8, r3
@@ -5555,7 +5555,7 @@ sub_080A1E8C: @ 0x080A1E8C
 	adds r6, r1, #0
 	adds r5, r2, #0
 	movs r0, #5
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	adds r7, r0, #0
 	ldr r1, _080A1EE0 @ =0x03005E70
 	movs r0, #0xc8
@@ -5572,7 +5572,7 @@ sub_080A1E8C: @ 0x080A1E8C
 _080A1EBA:
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_080A0E9C
+	bl LoadSavedUnit
 	adds r6, #0x48
 	adds r4, #0x24
 	subs r5, #1
@@ -5605,7 +5605,7 @@ sub_080A1EF0: @ 0x080A1EF0
 	sub sp, #0x10
 	adds r4, r0, #0
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r1, r0, #0
 	ldr r0, _080A1F24 @ =0x000007D4
 	adds r1, r1, r0
@@ -5619,7 +5619,7 @@ sub_080A1EF0: @ 0x080A1EF0
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
@@ -5633,7 +5633,7 @@ sub_080A1F2C: @ 0x080A1F2C
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #5
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	ldr r1, _080A1F4C @ =0x03005E70
 	ldr r2, _080A1F50 @ =0x000007D4
 	adds r0, r0, r2
@@ -5654,7 +5654,7 @@ sub_080A1F54: @ 0x080A1F54
 	sub sp, #0x10
 	adds r4, r0, #0
 	movs r0, #5
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	adds r1, r0, #0
 	movs r0, #0xfa
 	lsls r0, r0, #3
@@ -5669,7 +5669,7 @@ sub_080A1F54: @ 0x080A1F54
 	strb r0, [r1, #6]
 	mov r0, sp
 	movs r1, #5
-	bl sub_0809E7A0
+	bl WriteSaveBlockInfo
 	add sp, #0x10
 	pop {r4}
 	pop {r0}
@@ -5682,7 +5682,7 @@ sub_080A1F90: @ 0x080A1F90
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #5
-	bl sub_0809E918
+	bl GetSaveReadAddr
 	ldr r1, _080A1FB4 @ =0x03005E70
 	movs r2, #0xfa
 	lsls r2, r2, #3
@@ -5697,8 +5697,8 @@ sub_080A1F90: @ 0x080A1F90
 	.align 2, 0
 _080A1FB4: .4byte 0x03005E70
 
-	thumb_func_start sub_080A1FB8
-sub_080A1FB8: @ 0x080A1FB8
+	thumb_func_start IsMultiArenaSaveReady
+IsMultiArenaSaveReady: @ 0x080A1FB8
 	push {r4, lr}
 	sub sp, #0xc
 	movs r0, #5
@@ -5731,8 +5731,8 @@ _080A1FE8:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A1FF0
-sub_080A1FF0: @ 0x080A1FF0
+	thumb_func_start GetMinimapConnectKindAt
+GetMinimapConnectKindAt: @ 0x080A1FF0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	movs r2, #0
@@ -5779,8 +5779,8 @@ _080A2036:
 	.align 2, 0
 _080A2040: .4byte 0x0202E3E0
 
-	thumb_func_start sub_080A2044
-sub_080A2044: @ 0x080A2044
+	thumb_func_start NormalizeSeaMinimapTerrain
+NormalizeSeaMinimapTerrain: @ 0x080A2044
 	cmp r0, #0x36
 	beq _080A2056
 	cmp r0, #0x36
@@ -5797,8 +5797,8 @@ _080A2058:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A205C
-sub_080A205C: @ 0x080A205C
+	thumb_func_start GetMinimapSeaKindAt
+GetMinimapSeaKindAt: @ 0x080A205C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -5812,7 +5812,7 @@ sub_080A205C: @ 0x080A205C
 	ldr r0, [r0]
 	adds r0, r0, r6
 	ldrb r0, [r0]
-	bl sub_080A2044
+	bl NormalizeSeaMinimapTerrain
 	adds r7, r0, #0
 	mov r1, r8
 	ldr r0, [r1]
@@ -5820,7 +5820,7 @@ sub_080A205C: @ 0x080A205C
 	ldr r0, [r0, #4]
 	adds r0, r0, r6
 	ldrb r0, [r0]
-	bl sub_080A2044
+	bl NormalizeSeaMinimapTerrain
 	cmp r0, r7
 	bne _080A2092
 	movs r4, #1
@@ -5833,7 +5833,7 @@ _080A2092:
 	ldr r0, [r0]
 	adds r0, r0, r6
 	ldrb r0, [r0]
-	bl sub_080A2044
+	bl NormalizeSeaMinimapTerrain
 	cmp r0, r7
 	bne _080A20AC
 	adds r4, #1
@@ -5845,7 +5845,7 @@ _080A20AC:
 	ldr r0, [r0]
 	adds r0, r6, r0
 	ldrb r0, [r0, #1]
-	bl sub_080A2044
+	bl NormalizeSeaMinimapTerrain
 	cmp r0, r7
 	bne _080A20C4
 	adds r4, #1
@@ -5858,7 +5858,7 @@ _080A20C4:
 	adds r0, r6, r0
 	subs r0, #1
 	ldrb r0, [r0]
-	bl sub_080A2044
+	bl NormalizeSeaMinimapTerrain
 	cmp r0, r7
 	bne _080A20DE
 	adds r4, #1
@@ -5872,8 +5872,8 @@ _080A20DE:
 	.align 2, 0
 _080A20EC: .4byte 0x0202E3E0
 
-	thumb_func_start sub_080A20F0
-sub_080A20F0: @ 0x080A20F0
+	thumb_func_start NormalizeWaterMinimapTerrain
+NormalizeWaterMinimapTerrain: @ 0x080A20F0
 	cmp r0, #0x17
 	beq _080A2106
 	cmp r0, #0x17
@@ -5892,8 +5892,8 @@ _080A2108:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A210C
-sub_080A210C: @ 0x080A210C
+	thumb_func_start GetMinimapWaterKindAt
+GetMinimapWaterKindAt: @ 0x080A210C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -5907,7 +5907,7 @@ sub_080A210C: @ 0x080A210C
 	ldr r0, [r0]
 	adds r0, r0, r6
 	ldrb r0, [r0]
-	bl sub_080A20F0
+	bl NormalizeWaterMinimapTerrain
 	adds r7, r0, #0
 	mov r1, r8
 	ldr r0, [r1]
@@ -5915,7 +5915,7 @@ sub_080A210C: @ 0x080A210C
 	ldr r0, [r0, #4]
 	adds r0, r0, r6
 	ldrb r0, [r0]
-	bl sub_080A20F0
+	bl NormalizeWaterMinimapTerrain
 	cmp r0, r7
 	bne _080A2142
 	movs r4, #1
@@ -5928,7 +5928,7 @@ _080A2142:
 	ldr r0, [r0]
 	adds r0, r0, r6
 	ldrb r0, [r0]
-	bl sub_080A20F0
+	bl NormalizeWaterMinimapTerrain
 	cmp r0, r7
 	bne _080A215C
 	adds r4, #1
@@ -5940,7 +5940,7 @@ _080A215C:
 	ldr r0, [r0]
 	adds r0, r6, r0
 	ldrb r0, [r0, #1]
-	bl sub_080A20F0
+	bl NormalizeWaterMinimapTerrain
 	cmp r0, r7
 	bne _080A2174
 	adds r4, #1
@@ -5953,7 +5953,7 @@ _080A2174:
 	adds r0, r6, r0
 	subs r0, #1
 	ldrb r0, [r0]
-	bl sub_080A20F0
+	bl NormalizeWaterMinimapTerrain
 	cmp r0, r7
 	bne _080A218E
 	adds r4, #1
@@ -5967,8 +5967,8 @@ _080A218E:
 	.align 2, 0
 _080A219C: .4byte 0x0202E3E0
 
-	thumb_func_start sub_080A21A0
-sub_080A21A0: @ 0x080A21A0
+	thumb_func_start GetMinimapRiverKindAt
+GetMinimapRiverKindAt: @ 0x080A21A0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -6060,8 +6060,8 @@ _080A2238:
 	.align 2, 0
 _080A2240: .4byte 0x0202E3E0
 
-	thumb_func_start sub_080A2244
-sub_080A2244: @ 0x080A2244
+	thumb_func_start GetMinimapCliffKindAt
+GetMinimapCliffKindAt: @ 0x080A2244
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r0, _080A227C @ =0x0202E3E0
@@ -6239,8 +6239,8 @@ _080A2364:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A236C
-sub_080A236C: @ 0x080A236C
+	thumb_func_start GetMinimapStairTileAt
+GetMinimapStairTileAt: @ 0x080A236C
 	adds r2, r0, #0
 	ldr r0, _080A23A4 @ =0x0202E3E0
 	ldr r0, [r0]
@@ -6276,8 +6276,8 @@ _080A23A8:
 _080A23AA:
 	bx lr
 
-	thumb_func_start sub_080A23AC
-sub_080A23AC: @ 0x080A23AC
+	thumb_func_start GetMinimapDoorTileAt
+GetMinimapDoorTileAt: @ 0x080A23AC
 	ldr r2, _080A23C4 @ =0x0202E3E0
 	ldr r2, [r2]
 	lsls r1, r1, #2
@@ -6303,8 +6303,8 @@ _080A23D4:
 _080A23D6:
 	bx lr
 
-	thumb_func_start sub_080A23D8
-sub_080A23D8: @ 0x080A23D8
+	thumb_func_start GetMinimapBridgeKindAt
+GetMinimapBridgeKindAt: @ 0x080A23D8
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	ldr r7, _080A2420 @ =0x0202E3E0
@@ -6374,8 +6374,8 @@ _080A244C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A2454
-sub_080A2454: @ 0x080A2454
+	thumb_func_start GetMinimapTileAt
+GetMinimapTileAt: @ 0x080A2454
 	push {lr}
 	adds r2, r0, #0
 	adds r3, r1, #0
@@ -6470,7 +6470,7 @@ _080A2584:
 _080A2588:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A1FF0
+	bl GetMinimapConnectKindAt
 	adds r0, #0x40
 	b _080A263C
 _080A2594:
@@ -6500,7 +6500,7 @@ _080A25B0:
 _080A25B4:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A21A0
+	bl GetMinimapRiverKindAt
 	adds r0, #0x60
 	b _080A263C
 _080A25C0:
@@ -6512,18 +6512,18 @@ _080A25C4:
 _080A25C8:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A23D8
+	bl GetMinimapBridgeKindAt
 	b _080A263C
 _080A25D2:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A210C
+	bl GetMinimapWaterKindAt
 	adds r0, #0x30
 	b _080A263C
 _080A25DE:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A205C
+	bl GetMinimapSeaKindAt
 	adds r0, #0x30
 	b _080A263C
 _080A25EA:
@@ -6535,7 +6535,7 @@ _080A25EE:
 _080A25F2:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A23AC
+	bl GetMinimapDoorTileAt
 	b _080A263C
 _080A25FC:
 	movs r0, #0xe
@@ -6552,7 +6552,7 @@ _080A2608:
 _080A260C:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A2244
+	bl GetMinimapCliffKindAt
 	adds r0, #0x50
 	b _080A263C
 _080A2618:
@@ -6564,12 +6564,12 @@ _080A261C:
 _080A2620:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A236C
+	bl GetMinimapStairTileAt
 	b _080A263C
 _080A262A:
 	adds r0, r2, #0
 	adds r1, r3, #0
-	bl sub_080A1FF0
+	bl GetMinimapConnectKindAt
 	adds r0, #0x20
 	b _080A263C
 _080A2636:
@@ -6581,10 +6581,10 @@ _080A263C:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A2640
-sub_080A2640: @ 0x080A2640
+	thumb_func_start GetMinimapTerrainCellAt
+GetMinimapTerrainCellAt: @ 0x080A2640
 	push {lr}
-	bl sub_080A2454
+	bl GetMinimapTileAt
 	lsls r0, r0, #5
 	ldr r1, _080A2650 @ =0x02020140
 	adds r0, r0, r1
@@ -6593,8 +6593,8 @@ sub_080A2640: @ 0x080A2640
 	.align 2, 0
 _080A2650: .4byte 0x02020140
 
-	thumb_func_start sub_080A2654
-sub_080A2654: @ 0x080A2654
+	thumb_func_start GetMinimapObjectCellAt
+GetMinimapObjectCellAt: @ 0x080A2654
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -6633,8 +6633,8 @@ _080A2696:
 	.align 2, 0
 _080A26A0: .4byte 0x02020140
 
-	thumb_func_start sub_080A26A4
-sub_080A26A4: @ 0x080A26A4
+	thumb_func_start DrawMinimapInternal
+DrawMinimapInternal: @ 0x080A26A4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -6684,11 +6684,11 @@ _080A26E2:
 _080A26F8:
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_080A2640
+	bl GetMinimapTerrainCellAt
 	adds r5, r0, #0
 	mov r0, sl
 	mov r1, r8
-	bl sub_080A2640
+	bl GetMinimapTerrainCellAt
 	adds r1, r0, #0
 	ldrh r0, [r5]
 	strh r0, [r4]
@@ -6720,11 +6720,11 @@ _080A26F8:
 	adds r4, #2
 	adds r0, r6, #0
 	mov r1, sb
-	bl sub_080A2640
+	bl GetMinimapTerrainCellAt
 	adds r5, r0, #0
 	mov r0, sl
 	mov r1, sb
-	bl sub_080A2640
+	bl GetMinimapTerrainCellAt
 	adds r1, r0, #0
 	ldrh r0, [r5]
 	strh r0, [r4]
@@ -6792,11 +6792,11 @@ _080A26F8:
 _080A27D6:
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_080A2654
+	bl GetMinimapObjectCellAt
 	adds r5, r0, #0
 	mov r0, sl
 	mov r1, r8
-	bl sub_080A2654
+	bl GetMinimapObjectCellAt
 	adds r1, r0, #0
 	ldrh r0, [r5]
 	strh r0, [r4]
@@ -6828,11 +6828,11 @@ _080A27D6:
 	adds r4, #2
 	adds r0, r6, #0
 	mov r1, sb
-	bl sub_080A2654
+	bl GetMinimapObjectCellAt
 	adds r5, r0, #0
 	mov r0, sl
 	mov r1, sb
-	bl sub_080A2654
+	bl GetMinimapObjectCellAt
 	adds r1, r0, #0
 	ldrh r0, [r5]
 	strh r0, [r4]
@@ -6923,17 +6923,17 @@ sub_080A28CC: @ 0x080A28CC
 	blt _080A28E4
 	movs r0, #0xe6
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A28E4:
 	adds r0, r4, #0
-	bl sub_080A3148
+	bl Minimap_InitProcVars
 	movs r4, #1
 	rsbs r4, r4, #0
 	adds r0, r4, #0
-	bl sub_080A2E6C
+	bl ApplyMinimapGraphics
 	movs r0, #0
 	adds r1, r4, #0
-	bl sub_080A26A4
+	bl DrawMinimapInternal
 	movs r0, #3
 	bl EnableBgSync
 	pop {r4}
@@ -7168,7 +7168,7 @@ _080A2ABC:
 	str r4, [sp]
 	movs r0, #5
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r7, r0, #0
 	adds r1, r7, #0
 	cmp r7, #0
@@ -7348,7 +7348,7 @@ sub_080A2C30: @ 0x080A2C30
 	cmp r0, #0
 	blt _080A2C46
 	ldr r0, _080A2C98 @ =0x00000399
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A2C46:
 	ldr r2, _080A2C9C @ =0x030028AC
 	ldr r0, _080A2CA0 @ =0x0000FFE0
@@ -7444,7 +7444,7 @@ _080A2CF4:
 	str r4, [sp]
 	movs r0, #2
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r7, r0, #0
 	cmp r7, #0
 	bge _080A2D1A
@@ -7613,8 +7613,8 @@ _080A2E60: .4byte 0x03002870
 _080A2E64: .4byte 0x02000504
 _080A2E68: .4byte 0x080C5A48
 
-	thumb_func_start sub_080A2E6C
-sub_080A2E6C: @ 0x080A2E6C
+	thumb_func_start ApplyMinimapGraphics
+ApplyMinimapGraphics: @ 0x080A2E6C
 	push {r4, lr}
 	adds r4, r0, #0
 	cmp r4, #0
@@ -7642,8 +7642,8 @@ _080A2EA0: .4byte 0x02020140
 _080A2EA4: .4byte 0x0840F8B0
 _080A2EA8: .4byte 0x0840F8D0
 
-	thumb_func_start sub_080A2EAC
-sub_080A2EAC: @ 0x080A2EAC
+	thumb_func_start InitMinimapFlashPalette
+InitMinimapFlashPalette: @ 0x080A2EAC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -7778,8 +7778,8 @@ sub_080A2F74: @ 0x080A2F74
 _080A2FB0: .4byte 0x0840F963
 _080A2FB4: .4byte 0x02022860
 
-	thumb_func_start sub_080A2FB8
-sub_080A2FB8: @ 0x080A2FB8
+	thumb_func_start Minimap_PutViewport
+Minimap_PutViewport: @ 0x080A2FB8
 	push {r4, lr}
 	sub sp, #0x1c
 	adds r4, r0, #0
@@ -7988,8 +7988,8 @@ _080A3134:
 _080A3140: .4byte 0x0202BBB8
 _080A3144: .4byte 0x08B857F8
 
-	thumb_func_start sub_080A3148
-sub_080A3148: @ 0x080A3148
+	thumb_func_start Minimap_InitProcVars
+Minimap_InitProcVars: @ 0x080A3148
 	adds r2, r0, #0
 	adds r2, #0x4a
 	movs r1, #0
@@ -8007,8 +8007,8 @@ sub_080A3148: @ 0x080A3148
 	.align 2, 0
 _080A3164: .4byte 0x0202E3D8
 
-	thumb_func_start sub_080A3168
-sub_080A3168: @ 0x080A3168
+	thumb_func_start Minimap_AdjustCursorOnClose
+Minimap_AdjustCursorOnClose: @ 0x080A3168
 	push {lr}
 	adds r0, #0x4a
 	movs r1, #0
@@ -8051,7 +8051,7 @@ sub_080A31A4: @ 0x080A31A4
 	adds r0, r4, #0
 	bl sub_080A3004
 	adds r0, r4, #0
-	bl sub_080A2FB8
+	bl Minimap_PutViewport
 	adds r0, r4, #0
 	bl sub_080A3080
 	ldr r0, _080A3208 @ =0x08B857F8
@@ -8154,8 +8154,8 @@ sub_080A3284: @ 0x080A3284
 	.align 2, 0
 _080A3294: .4byte 0x08CE3B6C
 
-	thumb_func_start sub_080A3298
-sub_080A3298: @ 0x080A3298
+	thumb_func_start DrawMinimap
+DrawMinimap: @ 0x080A3298
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -8169,10 +8169,10 @@ sub_080A3298: @ 0x080A3298
 	adds r0, r5, #0
 	bl InitChapterPreviewMap
 	adds r0, r4, #0
-	bl sub_080A2E6C
+	bl ApplyMinimapGraphics
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_080A26A4
+	bl DrawMinimapInternal
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -8180,8 +8180,8 @@ sub_080A3298: @ 0x080A3298
 _080A32CC: .4byte 0x02022C60
 _080A32D0: .4byte 0x02023460
 
-	thumb_func_start sub_080A32D4
-sub_080A32D4: @ 0x080A32D4
+	thumb_func_start SaveMenuOnHBlank
+SaveMenuOnHBlank: @ 0x080A32D4
 	push {lr}
 	ldr r0, _080A3310 @ =0x04000006
 	ldrh r0, [r0]
@@ -8246,8 +8246,8 @@ _080A3348: .4byte 0x04000050
 _080A334C: .4byte 0x04000052
 _080A3350: .4byte 0x02000001
 
-	thumb_func_start sub_080A3354
-sub_080A3354: @ 0x080A3354
+	thumb_func_start SaveMenu_HandleExtraMiscOption
+SaveMenu_HandleExtraMiscOption: @ 0x080A3354
 	push {lr}
 	movs r1, #0x12
 	bl Proc_Goto
@@ -8259,8 +8259,8 @@ sub_080A3354: @ 0x080A3354
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A336C
-sub_080A336C: @ 0x080A336C
+	thumb_func_start SaveMenuIndexToValidBitfile
+SaveMenuIndexToValidBitfile: @ 0x080A336C
 	push {r4, r5, lr}
 	adds r5, r1, #0
 	lsls r0, r0, #0x18
@@ -8294,8 +8294,8 @@ _080A339C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A33A4
-sub_080A33A4: @ 0x080A33A4
+	thumb_func_start SaveMenuGetBitfileByMask
+SaveMenuGetBitfileByMask: @ 0x080A33A4
 	push {r4, r5, lr}
 	lsls r0, r0, #0x18
 	lsrs r5, r0, #0x18
@@ -8331,8 +8331,8 @@ _080A33D8:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A33E0
-sub_080A33E0: @ 0x080A33E0
+	thumb_func_start BitfileToIndex
+BitfileToIndex: @ 0x080A33E0
 	lsls r0, r0, #0x18
 	lsrs r2, r0, #0x18
 	movs r1, #0
@@ -8355,8 +8355,8 @@ _080A3400:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A3404
-sub_080A3404: @ 0x080A3404
+	thumb_func_start SaveMenu_StartHelpBox
+SaveMenu_StartHelpBox: @ 0x080A3404
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x3f
@@ -8369,7 +8369,7 @@ sub_080A3404: @ 0x080A3404
 	cmp r1, #0
 	bne _080A3428
 _080A341A:
-	bl sub_08081B44
+	bl CloseHelpBox
 	adds r1, r4, #0
 	adds r1, #0x3e
 	movs r0, #0
@@ -8399,11 +8399,11 @@ _080A3440:
 	bne _080A3464
 	ldr r0, _080A346C @ =0x06013800
 	movs r1, #9
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	ldr r2, _080A3470 @ =0x000003B2
 	movs r0, #0x30
 	movs r1, #0x30
-	bl sub_08081A94
+	bl StartHelpBoxExt_Unk
 	movs r0, #1
 	strb r0, [r4]
 _080A3464:
@@ -8419,7 +8419,7 @@ sub_080A3474: @ 0x080A3474
 	push {r4, r5, lr}
 	sub sp, #0x48
 	adds r4, r0, #0
-	bl sub_080A09A0
+	bl IsSaveValid
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080A3488
@@ -8428,7 +8428,7 @@ sub_080A3474: @ 0x080A3474
 _080A3488:
 	adds r0, r4, #0
 	mov r1, sp
-	bl sub_080A09B4
+	bl ReadGameSavePlaySt
 	mov r1, sp
 	adds r1, #0x2b
 	movs r0, #1
@@ -8467,7 +8467,7 @@ _080A34B8:
 	.align 2, 0
 _080A34D8: .4byte 0x0202BBF8
 _080A34DC:
-	bl sub_0802E6EC
+	bl SetTacticianName
 _080A34E0:
 	ldr r2, _080A3518 @ =0x0202BBF8
 	add r0, sp, #0x2c
@@ -8500,8 +8500,8 @@ _080A350E:
 	.align 2, 0
 _080A3518: .4byte 0x0202BBF8
 
-	thumb_func_start sub_080A351C
-sub_080A351C: @ 0x080A351C
+	thumb_func_start SaveMenuPostChapterHandleHelpBox
+SaveMenuPostChapterHandleHelpBox: @ 0x080A351C
 	push {r4, r5, r6, lr}
 	adds r2, r0, #0
 	movs r6, #8
@@ -8523,7 +8523,7 @@ sub_080A351C: @ 0x080A351C
 	ands r0, r1
 	cmp r0, #0
 	beq _080A35B0
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #7
 	strb r0, [r5]
 	b _080A35B0
@@ -8552,7 +8552,7 @@ _080A3554:
 	blt _080A35B0
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A35B0
 	.align 2, 0
 _080A3588: .4byte 0x08B857F8
@@ -8564,13 +8564,13 @@ _080A3590:
 	bgt _080A35B0
 	ldr r0, _080A35CC @ =0x06013800
 	movs r1, #9
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	ldrb r4, [r4]
 	lsls r1, r4, #5
 	adds r1, #0x2c
 	ldr r2, _080A35D0 @ =0x0000FFFF
 	movs r0, #0x48
-	bl sub_0808198C
+	bl StartItemHelpBox
 	strb r6, [r5]
 _080A35B0:
 	adds r1, r5, #0
@@ -8598,13 +8598,13 @@ _080A35D6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080A35DC
-sub_080A35DC: @ 0x080A35DC
+	thumb_func_start SaveMenuPutChapterTitle
+SaveMenuPutChapterTitle: @ 0x080A35DC
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	movs r0, #0xac
 	lsls r0, r0, #4
-	bl sub_080823E0
+	bl PutChapterTitleBG
 	movs r4, #0
 	ldr r6, _080A360C @ =0x0001FFFF
 	movs r5, #0xb4
@@ -8620,7 +8620,7 @@ _080A35F0:
 	ands r0, r6
 	lsrs r0, r0, #5
 	ldrb r1, [r1]
-	bl sub_08082308
+	bl PutChapterTitleGfx
 	b _080A361E
 	.align 2, 0
 _080A360C: .4byte 0x0001FFFF
@@ -8630,7 +8630,7 @@ _080A3610:
 	lsrs r0, r0, #5
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082308
+	bl PutChapterTitleGfx
 _080A361E:
 	movs r0, #0x80
 	lsls r0, r0, #4
@@ -8704,8 +8704,8 @@ sub_080A3630: @ 0x080A3630
 _080A36A4: .4byte 0x08CE3C0C
 _080A36A8: .4byte 0x03002870
 
-	thumb_func_start sub_080A36AC
-sub_080A36AC: @ 0x080A36AC
+	thumb_func_start ProcSaveMenu_InitScreen
+ProcSaveMenu_InitScreen: @ 0x080A36AC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -8825,7 +8825,7 @@ _080A375E:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	adds r7, #1
 	cmp r7, #3
 	ble _080A375E
@@ -8849,7 +8849,7 @@ _080A375E:
 	ldr r1, _080A38C0 @ =0x02000001
 	movs r0, #0xa
 	strb r0, [r1]
-	ldr r0, _080A38C4 @ =sub_080A32D4
+	ldr r0, _080A38C4 @ =SaveMenuOnHBlank
 	bl SetOnHBlankA
 	ldr r4, _080A38C8 @ =0x0840FEB4
 	movs r0, #2
@@ -8899,13 +8899,13 @@ _080A381E:
 	strh r0, [r1]
 	bl EnablePalSync
 	mov r0, r8
-	bl sub_080A35DC
+	bl SaveMenuPutChapterTitle
 	mov r0, r8
-	bl sub_080A5C48
+	bl StartSaveDraw
 	mov r2, r8
 	str r0, [r2, #0x58]
 	mov r0, r8
-	bl sub_080A5CE0
+	bl StartSpinRotation
 	mov r1, r8
 	str r0, [r1, #0x5c]
 	add sp, #4
@@ -8932,14 +8932,14 @@ _080A38B4: .4byte 0x080C5A48
 _080A38B8: .4byte 0x080C5AC8
 _080A38BC: .4byte 0x02000000
 _080A38C0: .4byte 0x02000001
-_080A38C4: .4byte sub_080A32D4
+_080A38C4: .4byte SaveMenuOnHBlank
 _080A38C8: .4byte 0x0840FEB4
 _080A38CC: .4byte 0x02024460
 _080A38D0: .4byte 0x08411F34
 _080A38D4: .4byte 0x02022860
 
-	thumb_func_start sub_080A38D8
-sub_080A38D8: @ 0x080A38D8
+	thumb_func_start SaveMenu_LoadExtraMenuGraphics
+SaveMenu_LoadExtraMenuGraphics: @ 0x080A38D8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r0, _080A3908 @ =0x084130A4
@@ -8954,7 +8954,7 @@ sub_080A38D8: @ 0x080A38D8
 	bne _080A3910
 	movs r0, #0x20
 	adds r1, r5, #0
-	bl sub_080A6634
+	bl SaveMenuGetValidMenuAmt
 	adds r1, r5, #0
 	adds r1, #0x2b
 	strb r0, [r1]
@@ -8983,7 +8983,7 @@ _080A3910:
 	subs r0, #0x16
 	ldrb r0, [r0]
 	ldrb r1, [r2]
-	bl sub_080A336C
+	bl SaveMenuIndexToValidBitfile
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	strh r0, [r6]
@@ -9008,8 +9008,8 @@ _080A395A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A3960
-sub_080A3960: @ 0x080A3960
+	thumb_func_start SaveMenuInit
+SaveMenuInit: @ 0x080A3960
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r1, r5, #0
@@ -9017,7 +9017,7 @@ sub_080A3960: @ 0x080A3960
 	movs r4, #0
 	movs r0, #5
 	strb r0, [r1]
-	bl sub_080A05F4
+	bl ReadLastGameSaveId
 	adds r1, r5, #0
 	adds r1, #0x2c
 	strb r0, [r1]
@@ -9044,8 +9044,8 @@ sub_080A3960: @ 0x080A3960
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A39A4
-sub_080A39A4: @ 0x080A39A4
+	thumb_func_start SaveMenuInitUnused
+SaveMenuInitUnused: @ 0x080A39A4
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r1, r5, #0
@@ -9053,7 +9053,7 @@ sub_080A39A4: @ 0x080A39A4
 	movs r4, #0
 	movs r0, #5
 	strb r0, [r1]
-	bl sub_080A05F4
+	bl ReadLastGameSaveId
 	adds r1, r5, #0
 	adds r1, #0x2c
 	strb r0, [r1]
@@ -9080,8 +9080,8 @@ sub_080A39A4: @ 0x080A39A4
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A39E8
-sub_080A39E8: @ 0x080A39E8
+	thumb_func_start SaveMenu_080A465C
+SaveMenu_080A465C: @ 0x080A39E8
 	push {lr}
 	adds r1, r0, #0
 	adds r1, #0x2e
@@ -9153,7 +9153,7 @@ _080A3A5E:
 	cmp r0, #0
 	blt _080A3A9A
 	ldr r0, _080A3A78 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A3A9A
 	.align 2, 0
 _080A3A74: .4byte 0x0202BBF8
@@ -9172,7 +9172,7 @@ _080A3A7C:
 	cmp r0, #0
 	blt _080A3A9A
 	ldr r0, _080A3AF8 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3A9A:
 	ldr r0, _080A3AFC @ =0x08B857F8
 	ldr r0, [r0]
@@ -9189,7 +9189,7 @@ _080A3AAA:
 	adds r1, r5, #0
 	adds r1, #0x2b
 	ldrb r1, [r1]
-	bl sub_080A336C
+	bl SaveMenuIndexToValidBitfile
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r4, r5, #0
@@ -9202,7 +9202,7 @@ _080A3AAA:
 	cmp r0, #0
 	blt _080A3AD6
 	ldr r0, _080A3B00 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3AD6:
 	adds r1, r5, #0
 	adds r1, #0x29
@@ -9266,34 +9266,34 @@ _080A3B88:
 	strb r1, [r0]
 	b _080A3BFC
 _080A3B94:
-	bl sub_080A05F4
+	bl ReadLastGameSaveId
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #1
 	movs r2, #1
-	bl sub_080A6114
+	bl SaveMenuModifySaveSlot
 	adds r1, r5, #0
 	adds r1, #0x2c
 	strb r0, [r1]
 	b _080A3BFC
 _080A3BAC:
-	bl sub_080A05F4
+	bl ReadLastGameSaveId
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #1
 	movs r2, #1
-	bl sub_080A6114
+	bl SaveMenuModifySaveSlot
 	adds r1, r5, #0
 	adds r1, #0x2c
 	strb r0, [r1]
 	b _080A3BFC
 _080A3BC4:
-	bl sub_080A05F4
+	bl ReadLastGameSaveId
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #1
 	movs r2, #1
-	bl sub_080A6114
+	bl SaveMenuModifySaveSlot
 	adds r1, r5, #0
 	adds r1, #0x2c
 	strb r0, [r1]
@@ -9304,14 +9304,14 @@ _080A3BDC:
 	ldrb r0, [r4]
 	movs r1, #0
 	movs r2, #1
-	bl sub_080A6114
+	bl SaveMenuModifySaveSlot
 	strb r0, [r4]
 	bl sub_0809E9FC
 	cmp r0, #0
 	bne _080A3C06
 	movs r0, #0
 	movs r1, #0
-	bl sub_080A4E34
+	bl SaveMenu_SetDifficultyChoice
 _080A3BFC:
 	adds r0, r5, #0
 	movs r1, #3
@@ -9356,7 +9356,7 @@ _080A3C3C:
 	cmp r0, #0
 	blt _080A3C56
 	ldr r0, _080A3C74 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3C56:
 	adds r0, r5, #0
 	movs r1, #0x12
@@ -9374,8 +9374,8 @@ _080A3C68:
 _080A3C70: .4byte 0x0202BBF8
 _080A3C74: .4byte 0x0000038B
 
-	thumb_func_start sub_080A3C78
-sub_080A3C78: @ 0x080A3C78
+	thumb_func_start SaveMenuWriteNewGame
+SaveMenuWriteNewGame: @ 0x080A3C78
 	push {r4, lr}
 	adds r3, r0, #0
 	movs r2, #1
@@ -9420,7 +9420,7 @@ sub_080A3CAC: @ 0x080A3CAC
 	cmp r0, #0
 	blt _080A3CCC
 	ldr r0, _080A3CE8 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3CCC:
 	adds r0, r4, #0
 	adds r0, #0x42
@@ -9461,14 +9461,14 @@ _080A3D00:
 	strb r0, [r1]
 	adds r0, r4, #0
 	movs r1, #1
-	bl sub_080A6184
+	bl SaveMenuTryMoveSaveSlotCursor
 	b _080A3E88
 _080A3D1C:
 	ldrb r0, [r1]
 	adds r1, r4, #0
 	adds r1, #0x2c
 	ldrb r1, [r1]
-	bl sub_080A065C
+	bl CopyGameSave
 	adds r0, r4, #0
 	movs r1, #6
 	bl Proc_Goto
@@ -9482,7 +9482,7 @@ _080A3D38:
 	strb r0, [r5]
 	adds r0, r4, #0
 	movs r1, #1
-	bl sub_080A5F98
+	bl SaveMenuDrawSubSelBox
 	b _080A3D54
 _080A3D44:
 	adds r1, r4, #0
@@ -9491,10 +9491,10 @@ _080A3D44:
 	strb r0, [r1]
 	adds r0, r4, #0
 	movs r1, #1
-	bl sub_080A5F98
+	bl SaveMenuDrawSubSelBox
 _080A3D54:
 	adds r0, r4, #0
-	bl sub_080A3404
+	bl SaveMenu_StartHelpBox
 	b _080A3E88
 _080A3D5C:
 	adds r5, r4, #0
@@ -9525,7 +9525,7 @@ _080A3D7E:
 	adds r0, r4, #0
 	adds r0, #0x2c
 	ldrb r0, [r0]
-	bl sub_080A08EC
+	bl ReadGameSave
 	adds r0, r4, #0
 	movs r1, #0xe
 	b _080A3DE6
@@ -9543,10 +9543,10 @@ _080A3D9A:
 	cmp r0, #0
 	blt _080A3DB8
 	ldr r0, _080A3DC4 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3DB8:
 	adds r0, r4, #0
-	bl sub_080A3354
+	bl SaveMenu_HandleExtraMiscOption
 	b _080A3E7A
 	.align 2, 0
 _080A3DC0: .4byte 0x0202BBF8
@@ -9555,7 +9555,7 @@ _080A3DC8:
 	cmp r1, #1
 	bne _080A3E08
 	adds r0, r4, #0
-	bl sub_080A3C78
+	bl SaveMenuWriteNewGame
 	b _080A3E32
 _080A3DD4:
 	cmp r1, #1
@@ -9575,7 +9575,7 @@ _080A3DE6:
 	cmp r0, #0
 	blt _080A3E7A
 	ldr r0, _080A3E04 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A3E7A
 	.align 2, 0
 _080A3E00: .4byte 0x0202BBF8
@@ -9588,7 +9588,7 @@ _080A3E08:
 	cmp r0, #0
 	blt _080A3E7A
 	ldr r0, _080A3E20 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A3E7A
 	.align 2, 0
 _080A3E1C: .4byte 0x0202BBF8
@@ -9599,7 +9599,7 @@ _080A3E24:
 	adds r0, r4, #0
 	adds r0, #0x2c
 	ldrb r0, [r0]
-	bl sub_080A0810
+	bl WriteGameSave
 _080A3E32:
 	adds r0, r4, #0
 	movs r1, #6
@@ -9612,7 +9612,7 @@ _080A3E32:
 	blt _080A3E7A
 	movs r0, #0xe0
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A3E7A
 	.align 2, 0
 _080A3E50: .4byte 0x0202BBF8
@@ -9633,13 +9633,13 @@ _080A3E54:
 	cmp r0, #0
 	blt _080A3E7A
 	ldr r0, _080A3E94 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3E7A:
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_080A5F98
+	bl SaveMenuDrawSubSelBox
 	adds r0, r4, #0
-	bl sub_080A3404
+	bl SaveMenu_StartHelpBox
 _080A3E88:
 	pop {r4, r5}
 	pop {r0}
@@ -9657,7 +9657,7 @@ sub_080A3E98: @ 0x080A3E98
 	movs r0, #5
 	strb r0, [r1]
 	adds r0, r5, #0
-	bl sub_080A351C
+	bl SaveMenuPostChapterHandleHelpBox
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A3EB2
@@ -9690,7 +9690,7 @@ _080A3ED8:
 	adds r0, r5, #0
 	movs r1, #1
 _080A3EE4:
-	bl sub_080A6184
+	bl SaveMenuTryMoveSaveSlotCursor
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A3F70
@@ -9701,7 +9701,7 @@ _080A3EE4:
 	cmp r0, #0
 	blt _080A3F70
 	ldr r0, _080A3F08 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A3F70
 	.align 2, 0
 _080A3F04: .4byte 0x0202BBF8
@@ -9725,10 +9725,10 @@ _080A3F0C:
 	cmp r0, #0
 	blt _080A3F34
 	ldr r0, _080A3F44 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3F34:
 	adds r0, r5, #0
-	bl sub_080A3404
+	bl SaveMenu_StartHelpBox
 	b _080A3F70
 	.align 2, 0
 _080A3F3C: .4byte 0x08B857F8
@@ -9750,10 +9750,10 @@ _080A3F48:
 	cmp r0, #0
 	blt _080A3F6A
 	ldr r0, _080A3FA8 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3F6A:
 	adds r0, r5, #0
-	bl sub_080A3404
+	bl SaveMenu_StartHelpBox
 _080A3F70:
 	ldr r0, _080A3FAC @ =0x08B857F8
 	ldr r0, [r0]
@@ -9825,10 +9825,10 @@ _080A3FE8:
 	cmp r0, #0
 	blt _080A3FFA
 	ldr r0, _080A4008 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A3FFA:
 	adds r0, r5, #0
-	bl sub_080A3354
+	bl SaveMenu_HandleExtraMiscOption
 	b _080A40E4
 	.align 2, 0
 _080A4004: .4byte 0x0202BBF8
@@ -9846,7 +9846,7 @@ _080A400C:
 	cmp r0, #0
 	blt _080A4028
 	ldr r0, _080A4034 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A4028:
 	adds r0, r5, #0
 	bl sub_080A3CAC
@@ -9856,7 +9856,7 @@ _080A4030: .4byte 0x0202BBF8
 _080A4034: .4byte 0x0000038A
 _080A4038:
 	adds r0, r5, #0
-	bl sub_080A3C78
+	bl SaveMenuWriteNewGame
 	adds r0, r5, #0
 	movs r1, #6
 	bl Proc_Goto
@@ -9868,7 +9868,7 @@ _080A4038:
 	blt _080A40E4
 	movs r0, #0xe0
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A40E4
 	.align 2, 0
 _080A405C: .4byte 0x0202BBF8
@@ -9887,16 +9887,16 @@ _080A4060:
 	cmp r0, #0
 	blt _080A4080
 	ldr r0, _080A409C @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A4080:
 	ldrb r0, [r4]
 	cmp r0, #0
 	beq _080A40A0
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_080A5F98
+	bl SaveMenuDrawSubSelBox
 	adds r0, r5, #0
-	bl sub_080A3404
+	bl SaveMenu_StartHelpBox
 	b _080A40E4
 	.align 2, 0
 _080A4098: .4byte 0x0202BBF8
@@ -9950,8 +9950,8 @@ sub_080A40EC: @ 0x080A40EC
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A40F8
-sub_080A40F8: @ 0x080A40F8
+	thumb_func_start SaveMenuRegisterSlotSelected
+SaveMenuRegisterSlotSelected: @ 0x080A40F8
 	adds r3, r0, #0
 	adds r3, #0x2e
 	movs r2, #0
@@ -9998,7 +9998,7 @@ sub_080A4108: @ 0x080A4108
 	ands r0, r1
 	lsrs r0, r0, #5
 	ldrb r1, [r2]
-	bl sub_08082308
+	bl PutChapterTitleGfx
 	b _080A4172
 	.align 2, 0
 _080A4158: .4byte 0x0001FFFF
@@ -10012,7 +10012,7 @@ _080A415C:
 	lsrs r0, r0, #5
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082308
+	bl PutChapterTitleGfx
 _080A4172:
 	ldrb r0, [r4]
 	bl sub_080A649C
@@ -10069,7 +10069,7 @@ _080A41DC:
 	ldrb r0, [r4]
 	movs r1, #1
 	movs r2, #1
-	bl sub_080A6114
+	bl SaveMenuModifySaveSlot
 	strb r0, [r4]
 _080A41EC:
 	adds r0, r7, #0
@@ -10093,7 +10093,7 @@ _080A41F6:
 	strb r1, [r0]
 	adds r0, #5
 	ldrb r0, [r0]
-	bl sub_080A336C
+	bl SaveMenuIndexToValidBitfile
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r1, r7, #0
@@ -10106,7 +10106,7 @@ _080A41F6:
 	cmp r0, #0
 	blt _080A4236
 	ldr r0, _080A4244 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A4236:
 	adds r0, r7, #0
 	movs r1, #4
@@ -10231,7 +10231,7 @@ _080A42C0:
 _080A4338:
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	b _080A43C4
 	.align 2, 0
 _080A4344: .4byte 0x080C5A48
@@ -10292,7 +10292,7 @@ _080A4348:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 _080A43C4:
 	mov r1, sl
 	ldrb r0, [r1]
@@ -10620,7 +10620,7 @@ _080A4612:
 	cmp r0, #0
 	blt _080A4630
 	ldr r0, _080A4684 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A4630:
 	ldr r0, _080A4688 @ =0x08B857F8
 	ldr r0, [r0]
@@ -10633,7 +10633,7 @@ _080A4630:
 	adds r0, #0x32
 	ldrb r0, [r0]
 	ldrb r1, [r5]
-	bl sub_080A336C
+	bl SaveMenuIndexToValidBitfile
 	adds r5, r4, #0
 	adds r5, #0x35
 	movs r6, #0
@@ -10646,7 +10646,7 @@ _080A4630:
 	cmp r0, #0
 	blt _080A4666
 	ldr r0, _080A468C @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A4666:
 	adds r0, r4, #0
 	adds r0, #0x29
@@ -10672,12 +10672,12 @@ _080A4690:
 	cmp r0, #0x40
 	bne _080A4702
 _080A4698:
-	bl sub_080A05F4
+	bl ReadLastGameSaveId
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #1
 	movs r2, #1
-	bl sub_080A6114
+	bl SaveMenuModifySaveSlot
 	adds r1, r4, #0
 	adds r1, #0x2c
 	strb r0, [r1]
@@ -10689,7 +10689,7 @@ _080A4698:
 	cmp r0, #0
 	blt _080A46C4
 	ldr r0, _080A46D0 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A46C4:
 	adds r0, r4, #0
 	movs r1, #0xc
@@ -10718,14 +10718,14 @@ _080A46F0:
 	movs r1, #0xc0
 _080A46F2:
 	movs r3, #0x18
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	adds r0, r4, #0
 	movs r1, #0xe
 	bl Proc_Goto
 	b _080A473A
 _080A4702:
 	adds r0, r4, #0
-	bl sub_080A3354
+	bl SaveMenu_HandleExtraMiscOption
 	adds r0, r4, #0
 	movs r1, #0x12
 	bl Proc_Goto
@@ -10748,7 +10748,7 @@ _080A4712:
 	cmp r0, #0
 	blt _080A473A
 	ldr r0, _080A4748 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A473A:
 	add sp, #4
 	pop {r4, r5, r6, r7}
@@ -10808,7 +10808,7 @@ _080A4784:
 	cmp r0, #0
 	blt _080A4762
 	ldr r0, _080A47A8 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A4762
 	.align 2, 0
 _080A47A4: .4byte 0x0202BBF8
@@ -10826,11 +10826,11 @@ sub_080A47B4: @ 0x080A47B4
 	adds r4, r0, #0
 	ldr r0, _080A47E4 @ =0x06013800
 	movs r1, #9
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	ldr r0, [r4, #0x2c]
 	ldr r1, [r4, #0x30]
 	ldr r2, [r4, #0x58]
-	bl sub_08081A94
+	bl StartHelpBoxExt_Unk
 	ldr r0, _080A47E8 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -10839,7 +10839,7 @@ sub_080A47B4: @ 0x080A47B4
 	blt _080A47DE
 	movs r0, #0xe4
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A47DE:
 	pop {r4}
 	pop {r0}
@@ -10866,9 +10866,9 @@ sub_080A47EC: @ 0x080A47EC
 	cmp r0, #0
 	blt _080A4810
 	ldr r0, _080A482C @ =0x00000391
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A4810:
-	bl sub_08081B44
+	bl CloseHelpBox
 	adds r0, r4, #0
 	bl Proc_Break
 _080A481A:
@@ -10954,7 +10954,7 @@ _080A4896:
 	cmp r0, #0
 	blt _080A48EE
 	ldr r0, _080A48C8 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A48EE
 	.align 2, 0
 _080A48C0: .4byte 0x08B857F8
@@ -10976,7 +10976,7 @@ _080A48CC:
 	cmp r0, #0
 	blt _080A48EE
 	ldr r0, _080A4934 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A48EE:
 	ldr r0, _080A4938 @ =0x08B857F8
 	ldr r0, [r0]
@@ -11039,7 +11039,7 @@ _080A4946:
 	bne _080A4990
 _080A4966:
 	adds r0, r2, #0
-	bl sub_080A08EC
+	bl ReadGameSave
 	adds r0, r4, #0
 	movs r1, #0xe
 	bl Proc_Goto
@@ -11050,7 +11050,7 @@ _080A4966:
 	cmp r0, #0
 	blt _080A49FE
 	ldr r0, _080A498C @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A49FE
 	.align 2, 0
 _080A4988: .4byte 0x0202BBF8
@@ -11081,7 +11081,7 @@ _080A49AC:
 	cmp r0, #0
 	blt _080A49C6
 	ldr r0, _080A49E4 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A49C6:
 	adds r0, r4, #0
 	adds r0, #0x36
@@ -11090,9 +11090,9 @@ _080A49C6:
 	beq _080A49E8
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_080A5F98
+	bl SaveMenuDrawSubSelBox
 	adds r0, r4, #0
-	bl sub_080A3404
+	bl SaveMenu_StartHelpBox
 	b _080A49FE
 	.align 2, 0
 _080A49E0: .4byte 0x0202BBF8
@@ -11121,7 +11121,7 @@ sub_080A4A0C: @ 0x080A4A0C
 	adds r4, r0, #0
 	movs r1, #1
 	movs r2, #2
-	bl sub_080A6334
+	bl StartSqMask
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -11135,7 +11135,7 @@ sub_080A4A24: @ 0x080A4A24
 	ldr r0, [r4, #0x60]
 	cmp r0, #0
 	beq _080A4A32
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 _080A4A32:
 	ldr r0, [r4, #0x58]
 	bl Proc_End
@@ -11189,7 +11189,7 @@ _080A4A98:
 	cmp r0, #0
 	beq _080A4AAE
 	movs r0, #3
-	bl sub_080A1258
+	bl ReadSuspendSave
 	movs r0, #4
 	bl SetNextGameAction
 	b _080A4AD6
@@ -11200,7 +11200,7 @@ _080A4AAE:
 	beq _080A4AC8
 	adds r4, #0x2c
 	ldrb r0, [r4]
-	bl sub_080A08EC
+	bl ReadGameSave
 	ldrb r0, [r4]
 	adds r0, #1
 	bl SetNextGameAction
@@ -11234,7 +11234,7 @@ sub_080A4ADC: @ 0x080A4ADC
 	ldr r0, [r4, #0x60]
 	cmp r0, #0
 	beq _080A4B04
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 _080A4B04:
 	adds r0, r4, #0
 	adds r0, #0x35
@@ -11273,8 +11273,8 @@ _080A4B40:
 	.align 2, 0
 _080A4B48: .4byte 0x08CC51D0
 
-	thumb_func_start sub_080A4B4C
-sub_080A4B4C: @ 0x080A4B4C
+	thumb_func_start SaveMenuPostExtraMiscScreen
+SaveMenuPostExtraMiscScreen: @ 0x080A4B4C
 	push {lr}
 	adds r1, r0, #0
 	adds r1, #0x35
@@ -11488,15 +11488,15 @@ sub_080A4C94: @ 0x080A4C94
 	strb r0, [r1]
 	bl sub_080A5EF0
 	adds r0, r4, #0
-	bl sub_080A35DC
+	bl SaveMenuPutChapterTitle
 	adds r0, r4, #0
 	adds r0, #0x2c
 	ldrb r0, [r0]
 	bl sub_080A649C
 	movs r0, #0xc
-	bl sub_0800480C
+	bl Proc_UnblockEachMarked
 	movs r0, #0xd
-	bl sub_0800480C
+	bl Proc_UnblockEachMarked
 	movs r0, #3
 	bl EnableBgSync
 	adds r0, r4, #0
@@ -11559,7 +11559,7 @@ sub_080A4D74: @ 0x080A4D74
 	bne _080A4D8E
 	movs r0, #0xc0
 	movs r1, #8
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 _080A4D8E:
 	pop {r0}
 	bx r0
@@ -11581,13 +11581,13 @@ _080A4DA4:
 	thumb_func_start sub_080A4DA8
 sub_080A4DA8: @ 0x080A4DA8
 	push {lr}
-	bl sub_08082014
+	bl EndHelpPromptSprite
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A4DB4
-sub_080A4DB4: @ 0x080A4DB4
+	thumb_func_start StartMainMenu
+StartMainMenu: @ 0x080A4DB4
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080A4DE4 @ =0x08CE3C54
@@ -11656,8 +11656,8 @@ sub_080A4E20: @ 0x080A4E20
 	.align 2, 0
 _080A4E30: .4byte 0x08CE4034
 
-	thumb_func_start sub_080A4E34
-sub_080A4E34: @ 0x080A4E34
+	thumb_func_start SaveMenu_SetDifficultyChoice
+SaveMenu_SetDifficultyChoice: @ 0x080A4E34
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -11740,7 +11740,7 @@ sub_080A4E58: @ 0x080A4E58
 	ldr r1, _080A4F4C @ =0x02000000
 	movs r0, #0x64
 	strb r0, [r1]
-	ldr r0, _080A4F50 @ =sub_080A32D4
+	ldr r0, _080A4F50 @ =SaveMenuOnHBlank
 	bl SetOnHBlankA
 	ldr r0, _080A4F54 @ =0x084138F0
 	movs r1, #0x88
@@ -11787,7 +11787,7 @@ _080A4F40: .4byte 0x08CE3C0C
 _080A4F44: .4byte 0x03002870
 _080A4F48: .4byte 0x02000001
 _080A4F4C: .4byte 0x02000000
-_080A4F50: .4byte sub_080A32D4
+_080A4F50: .4byte SaveMenuOnHBlank
 _080A4F54: .4byte 0x084138F0
 _080A4F58: .4byte 0x0840F9A0
 _080A4F5C: .4byte 0x08418E44
@@ -11814,7 +11814,7 @@ sub_080A4F74: @ 0x080A4F74
 	mov r0, sp
 	bl CpuSet
 	ldr r0, [r4]
-	bl sub_0809F134
+	bl LoadBonusContentData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A500C
@@ -11846,7 +11846,7 @@ _080A4FAE:
 	strb r0, [r1]
 	movs r0, #0
 	movs r1, #0x75
-	bl sub_0809F748
+	bl UnlockSoundRoomSong
 _080A4FD8:
 	mov r1, r8
 	ldr r0, [r1]
@@ -11862,7 +11862,7 @@ _080A4FD8:
 	strb r0, [r1]
 	movs r0, #0
 	movs r1, #0x76
-	bl sub_0809F748
+	bl UnlockSoundRoomSong
 _080A4FF8:
 	adds r6, #0x14
 	subs r7, #1
@@ -11885,7 +11885,7 @@ _080A501C: .4byte 0x01000142
 _080A5020:
 	ldr r0, _080A5038 @ =0x06013800
 	movs r1, #9
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 _080A5028:
 	add sp, #4
 	pop {r3, r4}
@@ -11910,7 +11910,7 @@ sub_080A503C: @ 0x080A503C
 	ldr r2, _080A506C @ =0x00000765
 	movs r0, #0x40
 	movs r1, #0x30
-	bl sub_08081A94
+	bl StartHelpBoxExt_Unk
 	ldr r0, _080A5070 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -11918,7 +11918,7 @@ sub_080A503C: @ 0x080A503C
 	cmp r0, #0
 	blt _080A5080
 	ldr r0, _080A5074 @ =0x0000037B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A5080
 	.align 2, 0
 _080A506C: .4byte 0x00000765
@@ -11945,7 +11945,7 @@ sub_080A5084: @ 0x080A5084
 	ldr r2, _080A50B4 @ =0x00000766
 	movs r0, #0x40
 	movs r1, #0x30
-	bl sub_08081A94
+	bl StartHelpBoxExt_Unk
 	ldr r0, _080A50B8 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -11953,7 +11953,7 @@ sub_080A5084: @ 0x080A5084
 	cmp r0, #0
 	blt _080A50C8
 	ldr r0, _080A50BC @ =0x0000037B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A50C8
 	.align 2, 0
 _080A50B4: .4byte 0x00000766
@@ -11985,7 +11985,7 @@ sub_080A50CC: @ 0x080A50CC
 	ands r0, r1
 	cmp r0, #0
 	beq _080A5100
-	bl sub_08081B44
+	bl CloseHelpBox
 	adds r0, r4, #0
 	bl Proc_Break
 	b _080A5100
@@ -12005,7 +12005,7 @@ sub_080A5108: @ 0x080A5108
 	push {lr}
 	ldr r0, _080A5118 @ =0x08CE40F4
 	ldr r0, [r0]
-	bl sub_0809F190
+	bl SaveBonusContentData
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -12209,7 +12209,7 @@ _080A5280:
 	lsls r0, r0, #6
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 	mov r1, sb
 	adds r1, #0x10
 	adds r2, r7, #0
@@ -12220,7 +12220,7 @@ _080A5280:
 	mov r8, r0
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 	add r0, sp, #4
 	adds r6, r7, #0
 	subs r6, #8
@@ -12244,7 +12244,7 @@ _080A5280:
 	movs r0, #0xd
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	add r5, sp, #4
 	adds r0, r5, #0
 	ldrh r4, [r0]
@@ -12279,7 +12279,7 @@ _080A52FE:
 	movs r0, #0xd
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A532C:
 	mov r5, sb
 	adds r5, #0x22
@@ -12297,7 +12297,7 @@ _080A532C:
 	movs r0, #0xd
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	mov r1, sb
 	adds r1, #0x2a
 	subs r2, r7, #7
@@ -12305,7 +12305,7 @@ _080A532C:
 	mov r0, r8
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x10
 	mov r1, sp
 	ldrh r0, [r1, #6]
@@ -12320,7 +12320,7 @@ _080A532C:
 	movs r0, #0xd
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	mov r1, sp
 	ldrh r0, [r1, #6]
@@ -12335,7 +12335,7 @@ _080A532C:
 	movs r0, #0xd
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	mov r1, sb
 	adds r1, #0x42
 	adds r2, r7, #1
@@ -12344,7 +12344,7 @@ _080A532C:
 	mov r0, r8
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x10
 	mov r1, sp
 	ldrh r0, [r1, #8]
@@ -12359,7 +12359,7 @@ _080A532C:
 	movs r0, #0xd
 	adds r1, r5, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	mov r1, sp
 	ldrh r0, [r1, #8]
@@ -12374,7 +12374,7 @@ _080A532C:
 	movs r0, #0xd
 	adds r1, r5, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #0xc
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -12389,8 +12389,8 @@ _080A5414: .4byte 0x08CE4286
 _080A5418: .4byte 0x08CE42C0
 _080A541C: .4byte 0x08CE4294
 
-	thumb_func_start sub_080A5420
-sub_080A5420: @ 0x080A5420
+	thumb_func_start SaveDraw_Init
+SaveDraw_Init: @ 0x080A5420
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r6, r0, #0
@@ -12415,22 +12415,22 @@ sub_080A5420: @ 0x080A5420
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08003388
+	bl SetObjAffine
 	str r4, [sp]
 	movs r0, #1
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08003388
+	bl SetObjAffine
 	str r4, [sp]
 	movs r0, #2
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08003388
+	bl SetObjAffine
 	strh r7, [r6, #0x2a]
 	adds r0, r6, #0
-	bl sub_080A5EDC
+	bl StartSaveDrawCursor
 	str r0, [r6, #0x34]
 	adds r0, r6, #0
 	adds r0, #0x39
@@ -12455,7 +12455,7 @@ _080A5490:
 	str r7, [sp]
 	movs r4, #4
 	str r4, [sp, #4]
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	ldr r1, [r6, #0x14]
 	str r0, [r1, #0x60]
 _080A54AE:
@@ -12542,7 +12542,7 @@ sub_080A5514: @ 0x080A5514
 	str r0, [sp]
 	movs r0, #4
 	mov r2, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #8
 	mov r0, sb
 	ands r6, r0
@@ -12559,7 +12559,7 @@ sub_080A5514: @ 0x080A5514
 	movs r0, #4
 	adds r1, r6, #0
 	mov r2, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -12603,7 +12603,7 @@ sub_080A5590: @ 0x080A5590
 	str r0, [sp]
 	movs r0, #4
 	mov r2, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #8
 	mov r0, sb
 	ands r6, r0
@@ -12620,7 +12620,7 @@ sub_080A5590: @ 0x080A5590
 	movs r0, #4
 	adds r1, r6, #0
 	mov r2, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -12766,7 +12766,7 @@ _080A568C:
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl sub_08003388
+	bl SetObjAffine
 _080A5720:
 	ldr r0, [r7, #0x14]
 	adds r0, #0x44
@@ -12815,7 +12815,7 @@ sub_080A5748: @ 0x080A5748
 	movs r0, #4
 	movs r1, #0x38
 	adds r2, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, [r4, #0x14]
 	adds r0, r1, #0
 	adds r0, #0x46
@@ -12825,7 +12825,7 @@ sub_080A5748: @ 0x080A5748
 	adds r0, r1, #0
 	adds r0, #0x35
 	ldrb r0, [r0]
-	bl sub_080A33E0
+	bl BitfileToIndex
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #6
@@ -12854,7 +12854,7 @@ _080A57C4:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0x40
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080A5806
 	.align 2, 0
 _080A57D4: .4byte 0x000001FF
@@ -12863,7 +12863,7 @@ _080A57DC:
 	adds r0, r1, #0
 	adds r0, #0x42
 	ldrb r0, [r0]
-	bl sub_080A33E0
+	bl BitfileToIndex
 	lsls r0, r0, #0x18
 	adds r2, r5, #0
 	adds r2, #9
@@ -12878,7 +12878,7 @@ _080A57DC:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0x40
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A5806:
 	add sp, #4
 	pop {r4, r5}
@@ -12952,10 +12952,10 @@ _080A5882:
 	adds r0, #0x30
 	ldrb r0, [r0]
 	adds r1, r7, #0
-	bl sub_080A336C
+	bl SaveMenuIndexToValidBitfile
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
-	bl sub_080A33E0
+	bl BitfileToIndex
 	lsls r0, r0, #0x18
 	lsrs r3, r0, #0x18
 	mov r1, r8
@@ -13059,10 +13059,10 @@ _080A5956:
 	adds r0, #0x32
 	ldrb r0, [r0]
 	adds r1, r7, #0
-	bl sub_080A336C
+	bl SaveMenuIndexToValidBitfile
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
-	bl sub_080A33E0
+	bl BitfileToIndex
 	lsls r0, r0, #0x18
 	lsrs r3, r0, #0x18
 	mov r0, r8
@@ -13189,7 +13189,7 @@ _080A5A2C:
 	str r0, [sp]
 	movs r0, #4
 	mov r3, ip
-	bl sub_08006A34
+	bl PutSpriteExt
 	mov r1, r8
 	ldr r0, [r1, #0x14]
 	adds r0, #0x2f
@@ -13211,7 +13211,7 @@ _080A5A2C:
 	str r4, [sp]
 	movs r0, #4
 	adds r2, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r7, #1
 	cmp r7, #2
 	ble _080A5A0C
@@ -13232,7 +13232,7 @@ _080A5A2C:
 	ldr r0, [r2, #0x60]
 	cmp r0, #0
 	beq _080A5AC6
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 	mov r2, r8
 	ldr r1, [r2, #0x14]
 	movs r0, #0
@@ -13273,7 +13273,7 @@ _080A5B08:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0xca
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080A5B78
 	.align 2, 0
 _080A5B14: .4byte 0x08CE41B4
@@ -13294,7 +13294,7 @@ _080A5B18:
 	adds r2, #0x34
 	movs r3, #0xb0
 	lsls r3, r3, #1
-	bl sub_080124DC
+	bl SetSpriteAnimProcParameters
 	b _080A5B78
 _080A5B3E:
 	ldr r0, [r2, #0x60]
@@ -13305,7 +13305,7 @@ _080A5B3E:
 	adds r2, #0x34
 	movs r3, #0xb0
 	lsls r3, r3, #1
-	bl sub_080124DC
+	bl SetSpriteAnimProcParameters
 	mov r1, r8
 	ldr r0, [r1, #0x14]
 	adds r2, r0, #0
@@ -13323,7 +13323,7 @@ _080A5B3E:
 	lsls r0, r0, #7
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A5B78:
 	mov r2, r8
 	ldr r1, [r2, #0x14]
@@ -13347,7 +13347,7 @@ _080A5B78:
 	movs r0, #4
 	movs r1, #0x28
 	movs r2, #0x80
-	bl sub_08006A34
+	bl PutSpriteExt
 	mov r3, r8
 	ldr r0, [r3, #0x14]
 	adds r0, #0x36
@@ -13363,7 +13363,7 @@ _080A5B78:
 	lsls r0, r0, #3
 	adds r0, #0x34
 	movs r1, #0x88
-	bl sub_08049F58
+	bl PutUiHand
 	mov r1, r8
 	ldr r0, [r1, #0x14]
 	adds r0, #0x2c
@@ -13426,8 +13426,8 @@ _080A5C30:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A5C48
-sub_080A5C48: @ 0x080A5C48
+	thumb_func_start StartSaveDraw
+StartSaveDraw: @ 0x080A5C48
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080A5C58 @ =0x08CE42EC
@@ -13437,8 +13437,8 @@ sub_080A5C48: @ 0x080A5C48
 	.align 2, 0
 _080A5C58: .4byte 0x08CE42EC
 
-	thumb_func_start sub_080A5C5C
-sub_080A5C5C: @ 0x080A5C5C
+	thumb_func_start SpinRotation_Init
+SpinRotation_Init: @ 0x080A5C5C
 	adds r2, r0, #0
 	adds r1, r2, #0
 	adds r1, #0x39
@@ -13466,8 +13466,8 @@ sub_080A5C5C: @ 0x080A5C5C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A5C90
-sub_080A5C90: @ 0x080A5C90
+	thumb_func_start SpinRotation_Loop
+SpinRotation_Loop: @ 0x080A5C90
 	push {lr}
 	sub sp, #8
 	ldrh r1, [r0, #0x2a]
@@ -13485,28 +13485,28 @@ sub_080A5C90: @ 0x080A5C90
 	movs r0, #2
 	movs r2, #0
 	movs r3, #0
-	bl sub_080A9DE8
+	bl BgAffinRotScaling
 	movs r1, #0x80
 	lsls r1, r1, #2
 	movs r2, #0x80
 	lsls r2, r2, #1
 	movs r0, #2
-	bl sub_080A9E7C
+	bl BgAffinScaling
 	movs r0, #0x4c
 	str r0, [sp]
 	movs r0, #2
 	movs r1, #0x78
 	movs r2, #0xa0
 	movs r3, #0x4c
-	bl sub_080A9ECC
-	bl sub_080011B0
+	bl BgAffinAnchoring
+	bl SyncDispIo
 	add sp, #8
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A5CE0
-sub_080A5CE0: @ 0x080A5CE0
+	thumb_func_start StartSpinRotation
+StartSpinRotation: @ 0x080A5CE0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A5CF4 @ =0x08CE4314
@@ -13519,8 +13519,8 @@ sub_080A5CE0: @ 0x080A5CE0
 	.align 2, 0
 _080A5CF4: .4byte 0x08CE4314
 
-	thumb_func_start sub_080A5CF8
-sub_080A5CF8: @ 0x080A5CF8
+	thumb_func_start SaveDrawCursor_Init
+SaveDrawCursor_Init: @ 0x080A5CF8
 	adds r2, r0, #0
 	adds r1, r2, #0
 	adds r1, #0x31
@@ -13548,8 +13548,8 @@ sub_080A5CF8: @ 0x080A5CF8
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A5D2C
-sub_080A5D2C: @ 0x080A5D2C
+	thumb_func_start SaveDrawCursor_Loop
+SaveDrawCursor_Loop: @ 0x080A5D2C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -13644,7 +13644,7 @@ _080A5DAC:
 	movs r0, #4
 	adds r1, r3, #0
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	orrs r6, r4
 	ldrh r1, [r7, #0x2a]
 	lsrs r0, r1, #3
@@ -13657,7 +13657,7 @@ _080A5DAC:
 	movs r0, #4
 	adds r1, r6, #0
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080A5E28
 	.align 2, 0
 _080A5E04: .4byte 0x08CE41AC
@@ -13676,7 +13676,7 @@ _080A5E08:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A5E28:
 	adds r1, r7, #0
 	adds r1, #0x2c
@@ -13707,7 +13707,7 @@ _080A5E40:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #6
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A5E60:
 	adds r1, r7, #0
 	adds r1, #0x34
@@ -13779,8 +13779,8 @@ sub_080A5EAC: @ 0x080A5EAC
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A5EDC
-sub_080A5EDC: @ 0x080A5EDC
+	thumb_func_start StartSaveDrawCursor
+StartSaveDrawCursor: @ 0x080A5EDC
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080A5EEC @ =0x08CE433C
@@ -13808,8 +13808,8 @@ _080A5F0C: .4byte 0x02000044
 _080A5F10: .4byte 0x0600C020
 _080A5F14: .4byte 0x0200005C
 
-	thumb_func_start sub_080A5F18
-sub_080A5F18: @ 0x080A5F18
+	thumb_func_start SaveMenuDrawSubSelBoxExt
+SaveMenuDrawSubSelBoxExt: @ 0x080A5F18
 	push {r4, r5, lr}
 	lsls r1, r1, #0x18
 	cmp r1, #0
@@ -13840,7 +13840,7 @@ sub_080A5F18: @ 0x080A5F18
 	bl Text_DrawString
 	ldr r1, _080A5F78 @ =0x020238AE
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	b _080A5F88
 	.align 2, 0
 _080A5F6C: .4byte 0x02000044
@@ -13862,8 +13862,8 @@ _080A5F88:
 	.align 2, 0
 _080A5F94: .4byte 0x020238AE
 
-	thumb_func_start sub_080A5F98
-sub_080A5F98: @ 0x080A5F98
+	thumb_func_start SaveMenuDrawSubSelBox
+SaveMenuDrawSubSelBox: @ 0x080A5F98
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	lsls r4, r1, #0x18
@@ -13871,7 +13871,7 @@ sub_080A5F98: @ 0x080A5F98
 	ldr r5, _080A5FCC @ =0x08CE435C
 	adds r0, #0x42
 	ldrb r0, [r0]
-	bl sub_080A33E0
+	bl BitfileToIndex
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x16
 	adds r0, r0, r5
@@ -13879,7 +13879,7 @@ sub_080A5F98: @ 0x080A5F98
 	lsls r4, r4, #0x18
 	asrs r4, r4, #0x18
 	adds r1, r4, #0
-	bl sub_080A5F18
+	bl SaveMenuDrawSubSelBoxExt
 	cmp r4, #0
 	bne _080A5FC6
 	adds r0, r6, #0
@@ -14002,7 +14002,7 @@ _080A6090:
 	movs r1, #0x10
 	bl sub_080A6004
 _080A609C:
-	bl sub_0809EA80
+	bl IsExtraLinkArenaEnabled
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A60AE
@@ -14018,7 +14018,7 @@ _080A60AE:
 	movs r1, #2
 	bl sub_080A6018
 _080A60C0:
-	bl sub_0809EAE0
+	bl IsExtraSupportViewerEnabled
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A60D2
@@ -14026,7 +14026,7 @@ _080A60C0:
 	movs r1, #4
 	bl sub_080A6018
 _080A60D2:
-	bl sub_0809EAFC
+	bl GetRankDataValidBitMap
 	cmp r0, #0
 	beq _080A60E2
 	adds r0, r4, #0
@@ -14059,8 +14059,8 @@ _080A610E:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A6114
-sub_080A6114: @ 0x080A6114
+	thumb_func_start SaveMenuModifySaveSlot
+SaveMenuModifySaveSlot: @ 0x080A6114
 	push {r4, r5, r6, lr}
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -14073,7 +14073,7 @@ sub_080A6114: @ 0x080A6114
 	lsls r6, r1, #0x18
 _080A6128:
 	adds r0, r4, #0
-	bl sub_080A09A0
+	bl IsSaveValid
 	lsls r0, r0, #0x18
 	cmp r0, r6
 	beq _080A614E
@@ -14100,7 +14100,7 @@ _080A6152:
 	lsls r6, r1, #0x18
 _080A6156:
 	adds r0, r4, #0
-	bl sub_080A09A0
+	bl IsSaveValid
 	lsls r0, r0, #0x18
 	cmp r0, r6
 	beq _080A614E
@@ -14126,8 +14126,8 @@ _080A617C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080A6184
-sub_080A6184: @ 0x080A6184
+	thumb_func_start SaveMenuTryMoveSaveSlotCursor
+SaveMenuTryMoveSaveSlotCursor: @ 0x080A6184
 	push {r4, r5, lr}
 	mov ip, r0
 	lsls r1, r1, #0x18
@@ -14202,7 +14202,7 @@ _080A61F6:
 	beq _080A6214
 	ldrb r0, [r4]
 	asrs r2, r2, #0x18
-	bl sub_080A6114
+	bl SaveMenuModifySaveSlot
 	strb r0, [r4]
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
@@ -14365,8 +14365,8 @@ _080A632C:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A6334
-sub_080A6334: @ 0x080A6334
+	thumb_func_start StartSqMask
+StartSqMask: @ 0x080A6334
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0
@@ -14392,14 +14392,14 @@ sub_080A6334: @ 0x080A6334
 	.align 2, 0
 _080A6364: .4byte 0x08CE4378
 
-	thumb_func_start sub_080A6368
-sub_080A6368: @ 0x080A6368
+	thumb_func_start SaveBgUp_Loop
+SaveBgUp_Loop: @ 0x080A6368
 	push {lr}
 	ldr r0, _080A637C @ =0x02023C60
 	ldr r1, _080A6380 @ =0x06007000
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl sub_08003078
+	bl RegisterDataMove
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -14428,16 +14428,16 @@ sub_080A6398: @ 0x080A6398
 	cmp r4, #2
 	bhi _080A645C
 	adds r0, r4, #0
-	bl sub_080A09A0
+	bl IsSaveValid
 	lsls r0, r0, #0x18
 	asrs r2, r0, #0x18
 	cmp r2, #0
 	beq _080A6428
 	adds r0, r4, #0
 	mov r1, sp
-	bl sub_080A09B4
+	bl ReadGameSavePlaySt
 	mov r0, sp
-	bl sub_080824A4
+	bl GetChapterTitle
 	adds r1, r5, #0
 	adds r1, #0x37
 	adds r1, r1, r4
@@ -14521,13 +14521,13 @@ _080A645C:
 	cmp r1, r0
 	bne _080A6492
 	movs r0, #3
-	bl sub_080A1384
+	bl IsValidSuspendSave
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A648E
 	movs r0, #3
 	mov r1, sp
-	bl sub_080A13D8
+	bl ReadSuspendSavePlaySt
 	mov r0, sp
 	ldrb r0, [r0, #0xc]
 	adds r1, r5, #0
@@ -14602,10 +14602,10 @@ _080A64F6:
 	adds r0, r4, #0
 	orrs r0, r1
 	adds r1, r6, #0
-	bl sub_08082058
+	bl PutChapterTitlePalette
 	adds r0, r4, #0
 	adds r1, r7, #0
-	bl sub_08082058
+	bl PutChapterTitlePalette
 	adds r7, #2
 	adds r6, #2
 	adds r5, #1
@@ -14756,8 +14756,8 @@ _080A6612:
 _080A662C: .4byte 0x083FE32A
 _080A6630: .4byte 0x083FE42A
 
-	thumb_func_start sub_080A6634
-sub_080A6634: @ 0x080A6634
+	thumb_func_start SaveMenuGetValidMenuAmt
+SaveMenuGetValidMenuAmt: @ 0x080A6634
 	push {r4, lr}
 	adds r4, r1, #0
 	lsls r0, r0, #0x18
@@ -14798,7 +14798,7 @@ sub_080A6664: @ 0x080A6664
 	bne _080A6680
 	ldr r0, _080A66A4 @ =0x06016000
 	movs r1, #0xd
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	movs r0, #1
 	strb r0, [r4]
 _080A6680:
@@ -14814,7 +14814,7 @@ _080A6680:
 	lsls r2, r2, #2
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_0808190C
+	bl StartHelpBox
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -14823,11 +14823,11 @@ _080A66A4: .4byte 0x06016000
 _080A66A8: .4byte 0x08CE45C0
 _080A66AC: .4byte 0x08CE45D8
 
-	thumb_func_start sub_080A66B0
-sub_080A66B0: @ 0x080A66B0
+	thumb_func_start TactInfo_CloseHelpbox
+TactInfo_CloseHelpbox: @ 0x080A66B0
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08081B44
+	bl CloseHelpBox
 	adds r4, #0x30
 	movs r0, #0
 	strb r0, [r4]
@@ -14842,7 +14842,7 @@ sub_080A66C4: @ 0x080A66C4
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080A66D4
-	bl sub_0803279C
+	bl EndSubtitleHelp
 _080A66D4:
 	pop {r0}
 	bx r0
@@ -14867,8 +14867,8 @@ _080A66F4:
 	.align 2, 0
 _080A66FC: .4byte 0x0000078F
 
-	thumb_func_start sub_080A6700
-sub_080A6700: @ 0x080A6700
+	thumb_func_start UpdateTactMainHandShadow
+UpdateTactMainHandShadow: @ 0x080A6700
 	push {r4, lr}
 	ldr r1, _080A6724 @ =0x08CE45C0
 	lsls r0, r0, #3
@@ -14881,7 +14881,7 @@ sub_080A6700: @ 0x080A6700
 	movs r3, #0xc0
 	lsls r3, r3, #4
 	adds r0, r4, #0
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -14900,7 +14900,7 @@ sub_080A6728: @ 0x080A6728
 	ldrsh r2, [r0, r3]
 	movs r0, #0
 	movs r3, #0
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -14925,7 +14925,7 @@ _080A6766:
 	bl InitSpriteText
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	adds r4, #8
 	subs r5, #1
 	cmp r5, #0
@@ -14936,7 +14936,7 @@ _080A6766:
 	movs r2, #0x20
 	bl ApplyPaletteExt
 	ldr r5, _080A681C @ =0x02000084
-	bl sub_0802E6E4
+	bl GetTacticianName
 	adds r3, r0, #0
 	adds r0, r5, #0
 	movs r1, #0
@@ -14985,7 +14985,7 @@ _080A6766:
 	adds r1, #0x79
 	movs r2, #0xa0
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	movs r0, #0
 	bl SetTextFont
 	pop {r4, r5, r6, r7}
@@ -15013,7 +15013,7 @@ _080A6836:
 	adds r1, r5, #0
 	movs r2, #0x28
 	ldr r3, _080A6898 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	adds r5, #0x20
 	subs r4, #1
@@ -15028,7 +15028,7 @@ _080A6854:
 	adds r1, r5, #0
 	movs r2, #0x48
 	ldr r3, _080A6898 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	adds r5, #0x20
 	subs r4, #1
@@ -15043,7 +15043,7 @@ _080A6872:
 	adds r1, r5, #0
 	movs r2, #0x48
 	ldr r3, _080A6898 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	adds r5, #0x20
 	subs r4, #1
@@ -15069,7 +15069,7 @@ sub_080A68A4: @ 0x080A68A4
 	movs r0, #0xf2
 	lsls r0, r0, #3
 	bl GetMsg
-	bl sub_0802E6EC
+	bl SetTacticianName
 	ldr r1, _080A68D8 @ =0x0202BBF8
 	adds r2, r1, #0
 	adds r2, #0x2b
@@ -15165,20 +15165,20 @@ sub_080A68DC: @ 0x080A68DC
 	ldr r2, _080A69D4 @ =0x0000F080
 	bl TmApplyTsa_t
 	mov r0, sb
-	bl sub_080A89B4
+	bl StartUiCursorHand
 	ldr r1, _080A69D8 @ =0x06008000
 	movs r0, #0
 	movs r2, #0xa
 	movs r3, #1
-	bl sub_0807F96C
+	bl StartMuralBackgroundExt
 	bl sub_080A6748
 	ldr r0, _080A69DC @ =sub_080A682C
 	mov r1, sb
-	bl sub_080A92F8
+	bl StartParallelWorker
 	movs r0, #0xb4
 	movs r1, #0x10
 	mov r2, sb
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov sb, r4
@@ -15202,27 +15202,27 @@ _080A69DC: .4byte sub_080A682C
 sub_080A69E0: @ 0x080A69E0
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080A9580
+	bl EndSysHandCursor
 	adds r0, r4, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	adds r0, r4, #0
 	bl sub_080A66D8
 	ldr r0, [r4, #0x2c]
 	adds r1, r4, #0
-	bl sub_080A6700
+	bl UpdateTactMainHandShadow
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A6A14
-sub_080A6A14: @ 0x080A6A14
+	thumb_func_start TactInfo_IntroDialogue1
+TactInfo_IntroDialogue1: @ 0x080A6A14
 	push {r4, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -15230,7 +15230,7 @@ sub_080A6A14: @ 0x080A6A14
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080A6A44
-	bl sub_080A9580
+	bl EndSysHandCursor
 	bl sub_080A66C4
 	ldr r2, _080A6A4C @ =0x00000791
 	ldr r3, _080A6A50 @ =0x06016000
@@ -15239,7 +15239,7 @@ sub_080A6A14: @ 0x080A6A14
 	str r4, [sp, #4]
 	movs r0, #0x30
 	movs r1, #0x5a
-	bl sub_08083668
+	bl StartBoxDialogueExt
 	movs r0, #0x70
 	bl SetBoxTalkFlags
 _080A6A44:
@@ -15251,12 +15251,12 @@ _080A6A44:
 _080A6A4C: .4byte 0x00000791
 _080A6A50: .4byte 0x06016000
 
-	thumb_func_start sub_080A6A54
-sub_080A6A54: @ 0x080A6A54
+	thumb_func_start TactInfo_IntroDialogue2
+TactInfo_IntroDialogue2: @ 0x080A6A54
 	push {r4, lr}
 	sub sp, #8
 	adds r4, r0, #0
-	bl sub_080A9580
+	bl EndSysHandCursor
 	bl sub_080A66C4
 	ldr r2, _080A6A88 @ =0x00000792
 	ldr r3, _080A6A8C @ =0x06016000
@@ -15265,11 +15265,11 @@ sub_080A6A54: @ 0x080A6A54
 	str r4, [sp, #4]
 	movs r0, #0x70
 	movs r1, #0x5a
-	bl sub_08083668
+	bl StartBoxDialogueExt
 	movs r0, #0x70
 	bl SetBoxTalkFlags
 	movs r0, #1
-	bl sub_08009FDC
+	bl SetTalkChoiceResult
 	add sp, #8
 	pop {r4}
 	pop {r0}
@@ -15278,8 +15278,8 @@ sub_080A6A54: @ 0x080A6A54
 _080A6A88: .4byte 0x00000792
 _080A6A8C: .4byte 0x06016000
 
-	thumb_func_start sub_080A6A90
-sub_080A6A90: @ 0x080A6A90
+	thumb_func_start TactInfo_HandleIntroDialoguePrompt
+TactInfo_HandleIntroDialoguePrompt: @ 0x080A6A90
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetTalkResult
@@ -15310,7 +15310,7 @@ sub_080A6AC4: @ 0x080A6AC4
 	push {r4, lr}
 	sub sp, #8
 	adds r4, r0, #0
-	bl sub_080A9580
+	bl EndSysHandCursor
 	bl sub_080A66C4
 	ldr r2, _080A6AF8 @ =0x00000793
 	ldr r3, _080A6AFC @ =0x06016000
@@ -15319,11 +15319,11 @@ sub_080A6AC4: @ 0x080A6AC4
 	str r4, [sp, #4]
 	movs r0, #0x60
 	movs r1, #0x5a
-	bl sub_08083668
+	bl StartBoxDialogueExt
 	movs r0, #0xf0
 	bl SetBoxTalkFlags
 	movs r0, #1
-	bl sub_08009FDC
+	bl SetTalkChoiceResult
 	add sp, #8
 	pop {r4}
 	pop {r0}
@@ -15363,10 +15363,10 @@ _080A6B2C:
 sub_080A6B34: @ 0x080A6B34
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0807FA04
-	bl sub_0808E46C
+	bl EndMuralBackground
+	bl EndMuralBackground_
 	adds r0, r4, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -15396,7 +15396,7 @@ sub_080A6B4C: @ 0x080A6B4C
 	cmp r0, #0
 	blt _080A6B7E
 	ldr r0, _080A6B98 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A6B7E:
 	ldr r0, [r4, #0x2c]
 	cmp r0, #1
@@ -15448,7 +15448,7 @@ _080A6BCA:
 	cmp r0, #0
 	blt _080A6CAE
 	ldr r0, _080A6BF4 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A6CAE
 	.align 2, 0
 _080A6BF0: .4byte 0x0202BBF8
@@ -15472,7 +15472,7 @@ _080A6C0A:
 	cmp r0, #0
 	beq _080A6C20
 	adds r0, r4, #0
-	bl sub_080A66B0
+	bl TactInfo_CloseHelpbox
 _080A6C20:
 	ldr r2, _080A6CB4 @ =0x08B857F8
 	ldr r1, [r2]
@@ -15538,7 +15538,7 @@ _080A6C7A:
 _080A6C94:
 	ldr r0, [r4, #0x2c]
 	adds r1, r4, #0
-	bl sub_080A6700
+	bl UpdateTactMainHandShadow
 	ldr r0, _080A6CB8 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -15546,7 +15546,7 @@ _080A6C94:
 	cmp r0, #0
 	blt _080A6CAE
 	ldr r0, _080A6CBC @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A6CAE:
 	pop {r4, r5}
 	pop {r0}
@@ -15559,8 +15559,8 @@ _080A6CBC: .4byte 0x00000385
 	thumb_func_start sub_080A6CC0
 sub_080A6CC0: @ 0x080A6CC0
 	push {lr}
-	bl sub_080A05F4
-	bl sub_080A0810
+	bl ReadLastGameSaveId
+	bl WriteGameSave
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -15622,11 +15622,11 @@ _080A6CEC:
 	str r4, [sp, #4]
 	movs r0, #0x38
 	movs r1, #0x20
-	bl sub_08083668
+	bl StartBoxDialogueExt
 	movs r0, #0xf0
 	bl SetBoxTalkFlags
 	movs r0, #2
-	bl sub_08009FDC
+	bl SetTalkChoiceResult
 _080A6D52:
 	add sp, #8
 	pop {r4}
@@ -15706,8 +15706,8 @@ sub_080A6DD0: @ 0x080A6DD0
 	.align 2, 0
 _080A6DDC: .4byte 0x08CE475C
 
-	thumb_func_start sub_080A6DE0
-sub_080A6DE0: @ 0x080A6DE0
+	thumb_func_start Tact_ClearNrVrams
+Tact_ClearNrVrams: @ 0x080A6DE0
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r5, r0, #0
@@ -15763,7 +15763,7 @@ sub_080A6E2C: @ 0x080A6E2C
 	adds r4, #0x20
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	movs r0, #0
 	bl SetTextFont
 	movs r0, #2
@@ -15802,7 +15802,7 @@ sub_080A6E78: @ 0x080A6E78
 	movs r1, #0xb
 	movs r2, #0x1a
 	movs r3, #6
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #2
 	bl EnableBgSync
 	ldr r5, [r4, #0x2c]
@@ -15822,7 +15822,7 @@ sub_080A6E78: @ 0x080A6E78
 	lsls r3, r3, #4
 	adds r0, r4, #0
 	movs r2, #2
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r4, _080A6F30 @ =0x0200006C
 	adds r0, r4, #0
 	bl SetTextFont
@@ -15887,7 +15887,7 @@ _080A6F4A:
 	adds r1, r5, #0
 	movs r2, #0x60
 	ldr r3, _080A7000 @ =0x08B90600
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #8
 	adds r5, #0x40
 	subs r4, #1
@@ -15909,7 +15909,7 @@ _080A6F4A:
 	cmp r0, #0
 	blt _080A6F86
 	ldr r0, _080A700C @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A6F86:
 	ldr r0, [r7, #0x2c]
 	adds r5, #0x2b
@@ -15929,7 +15929,7 @@ _080A6F86:
 	adds r1, #0x79
 	movs r2, #0xa0
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	ldr r4, _080A7018 @ =0x0200006C
 	adds r0, r4, #0
 	bl SetTextFont
@@ -15938,7 +15938,7 @@ _080A6F86:
 	ldr r0, _080A701C @ =0x06011000
 	movs r1, #8
 	movs r2, #8
-	bl sub_080A6DE0
+	bl Tact_ClearNrVrams
 	ldrb r5, [r5]
 	lsrs r0, r5, #4
 	bl sub_080A6DB0
@@ -15981,7 +15981,7 @@ _080A7020:
 	cmp r0, #0
 	blt _080A703A
 	ldr r0, _080A7048 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A703A:
 	adds r0, r7, #0
 	bl Proc_Break
@@ -16109,7 +16109,7 @@ _080A7104:
 	lsls r3, r3, #4
 	adds r0, r4, #0
 	movs r2, #2
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _080A7154 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -16117,7 +16117,7 @@ _080A7104:
 	cmp r0, #0
 	blt _080A7144
 	ldr r0, _080A7158 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A7144:
 	add sp, #4
 	pop {r3, r4}
@@ -16142,7 +16142,7 @@ sub_080A715C: @ 0x080A715C
 	adds r4, #0x20
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	movs r0, #0
 	bl SetTextFont
 	movs r0, #2
@@ -16182,7 +16182,7 @@ sub_080A71A8: @ 0x080A71A8
 	movs r1, #0xb
 	movs r2, #0xa
 	movs r3, #4
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #2
 	bl EnableBgSync
 	ldr r0, [r4, #0x2c]
@@ -16192,7 +16192,7 @@ sub_080A71A8: @ 0x080A71A8
 	lsls r3, r3, #4
 	movs r1, #0x60
 	movs r2, #3
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _080A7224 @ =0x0200006C
 	bl SetTextFont
 	movs r0, #0
@@ -16241,7 +16241,7 @@ _080A7240:
 	adds r1, r5, #0
 	movs r2, #0x60
 	ldr r3, _080A72E4 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	adds r5, #0x20
 	subs r4, #1
@@ -16263,7 +16263,7 @@ _080A7240:
 	cmp r0, #0
 	blt _080A727C
 	ldr r0, _080A72F0 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A727C:
 	ldr r1, [r7, #0x2c]
 	adds r4, #0x2c
@@ -16283,7 +16283,7 @@ _080A727C:
 	ldr r0, _080A72F8 @ =0x06011000
 	movs r1, #0x10
 	movs r2, #8
-	bl sub_080A6DE0
+	bl Tact_ClearNrVrams
 	ldrb r4, [r4]
 	lsls r0, r4, #0x1f
 	lsrs r0, r0, #0x1f
@@ -16325,7 +16325,7 @@ _080A72FC:
 	cmp r0, #0
 	blt _080A7316
 	ldr r0, _080A7324 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A7316:
 	adds r0, r7, #0
 	bl Proc_Break
@@ -16384,7 +16384,7 @@ _080A7370:
 	lsls r3, r3, #4
 	movs r1, #0x60
 	movs r2, #3
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _080A73A4 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -16392,7 +16392,7 @@ _080A7370:
 	cmp r0, #0
 	blt _080A7398
 	ldr r0, _080A73A8 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A7398:
 	add sp, #4
 	pop {r3}
@@ -16416,7 +16416,7 @@ sub_080A73AC: @ 0x080A73AC
 	adds r4, #0x20
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	movs r0, #0
 	bl SetTextFont
 	movs r0, #2
@@ -16509,8 +16509,8 @@ _080A7428:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A7480
-sub_080A7480: @ 0x080A7480
+	thumb_func_start InitModeSelectAnims
+InitModeSelectAnims: @ 0x080A7480
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16638,7 +16638,7 @@ _080A74B8:
 	str r5, [r4, #0x24]
 	adds r0, r3, #0
 	str r3, [sp, #0x18]
-	bl sub_08054EC8
+	bl NewEkrUnitMainMini
 	adds r4, #0x28
 	movs r2, #0x28
 	add sl, r2
@@ -16672,8 +16672,8 @@ _080A75C0: .4byte 0x08CE4824
 _080A75C4: .4byte 0x08CE4830
 _080A75C8: .4byte 0x0000FFFF
 
-	thumb_func_start sub_080A75CC
-sub_080A75CC: @ 0x080A75CC
+	thumb_func_start EndModeSelectAnims
+EndModeSelectAnims: @ 0x080A75CC
 	push {r4, r5, lr}
 	cmp r0, #0
 	ble _080A75E4
@@ -16719,7 +16719,7 @@ sub_080A75F0: @ 0x080A75F0
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r1, r8
 	ldr r0, [r1, #0x2c]
 	bl GetMsg
@@ -16732,7 +16732,7 @@ sub_080A75F0: @ 0x080A75F0
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #2
 	bl EnableBgSync
 	add sp, #8
@@ -16783,7 +16783,7 @@ sub_080A7668: @ 0x080A7668
 	adds r1, r6, #0
 	movs r2, #2
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r5, #8
 	adds r4, r4, r5
 	ldr r0, [r4]
@@ -16796,7 +16796,7 @@ sub_080A7668: @ 0x080A7668
 	adds r1, r6, #0
 	movs r2, #2
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #2
 	bl EnableBgSync
 	add sp, #8
@@ -16843,7 +16843,7 @@ _080A772C:
 	str r3, [sp, #4]
 	adds r0, r5, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #2
 	bl EnableBgSync
 	adds r0, r4, #0
@@ -16901,7 +16901,7 @@ _080A779C:
 	str r3, [sp, #4]
 	adds r0, r4, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 _080A77AA:
 	add sp, #8
 	pop {r4, r5, r6, r7}
@@ -16912,8 +16912,8 @@ _080A77B4: .4byte 0x000012BB
 _080A77B8: .4byte 0x020000C4
 _080A77BC: .4byte 0x020237FE
 
-	thumb_func_start sub_080A77C0
-sub_080A77C0: @ 0x080A77C0
+	thumb_func_start StartModeSelectFace
+StartModeSelectFace: @ 0x080A77C0
 	push {r4, r5, lr}
 	sub sp, #0x10
 	add r2, sp, #4
@@ -16929,9 +16929,9 @@ sub_080A77C0: @ 0x080A77C0
 	movs r0, #0
 	movs r2, #0xcc
 	movs r3, #0x48
-	bl sub_08007BCC
+	bl StartBmFace
 	adds r4, r0, #0
-	bl sub_0800751C
+	bl StartFaceFadeIn
 	adds r0, r4, #0
 	add sp, #0x10
 	pop {r4, r5}
@@ -16940,8 +16940,8 @@ sub_080A77C0: @ 0x080A77C0
 	.align 2, 0
 _080A77F4: .4byte 0x08418DB4
 
-	thumb_func_start sub_080A77F8
-sub_080A77F8: @ 0x080A77F8
+	thumb_func_start LoadModeSelectChapterGfx
+LoadModeSelectChapterGfx: @ 0x080A77F8
 	push {r4, r5, lr}
 	sub sp, #0x30
 	adds r4, r0, #0
@@ -17138,8 +17138,8 @@ _080A7954:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A796C
-sub_080A796C: @ 0x080A796C
+	thumb_func_start ModeSelectSpriteDraw_Init
+ModeSelectSpriteDraw_Init: @ 0x080A796C
 	push {r4, lr}
 	mov ip, r0
 	movs r1, #0
@@ -17247,13 +17247,13 @@ _080A7A2A:
 	movs r0, #2
 	movs r2, #0
 	movs r3, #0
-	bl sub_080A9DE8
+	bl BgAffinRotScaling
 	movs r1, #0xa0
 	lsls r1, r1, #2
 	movs r2, #0x80
 	lsls r2, r2, #1
 	movs r0, #2
-	bl sub_080A9E7C
+	bl BgAffinScaling
 	movs r7, #0x34
 	ldrsh r1, [r5, r7]
 	movs r0, #0x38
@@ -17262,7 +17262,7 @@ _080A7A2A:
 	str r0, [sp]
 	movs r0, #2
 	movs r3, #0x4c
-	bl sub_080A9ECC
+	bl BgAffinAnchoring
 	ldr r4, _080A7A98 @ =0x02000001
 	ldr r0, [r5, #0x48]
 	str r0, [sp]
@@ -17317,7 +17317,7 @@ _080A7AAE:
 	movs r2, #0xbc
 	lsls r2, r2, #4
 	movs r0, #0x6c
-	bl sub_0804A1E8
+	bl DisplayFrozenUiHandExt
 	b _080A7AEA
 _080A7AD6:
 	adds r0, r5, #0
@@ -17328,7 +17328,7 @@ _080A7AD6:
 	movs r2, #0xbc
 	lsls r2, r2, #4
 	movs r0, #0x6c
-	bl sub_0804A174
+	bl DisplayUiHandExt
 _080A7AEA:
 	ldr r3, _080A7B68 @ =0x08CE483C
 	movs r4, #0xb0
@@ -17337,19 +17337,19 @@ _080A7AEA:
 	movs r0, #0xd
 	movs r1, #0
 	movs r2, #8
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080A7B6C @ =0x08CE4856
 	str r4, [sp]
 	movs r0, #0xd
 	movs r1, #0x14
 	movs r2, #0x1c
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080A7B70 @ =0x08CE489C
 	str r4, [sp]
 	movs r0, #0xd
 	movs r1, #0x28
 	movs r2, #0x40
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, [r5, #0x2c]
 	asrs r0, r0, #2
 	movs r1, #1
@@ -17361,7 +17361,7 @@ _080A7AEA:
 	movs r0, #0xd
 	movs r1, #8
 	movs r2, #0x82
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A7B32:
 	ldr r0, [r5, #0x2c]
 	cmp r0, #0
@@ -17376,7 +17376,7 @@ _080A7B3C:
 	movs r0, #0xd
 	movs r1, #0x6c
 	movs r2, #0x18
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, [r5, #0x30]
 	bl sub_080A73F8
 	ldr r0, [r5, #0x30]
@@ -17608,8 +17608,8 @@ sub_080A7C84: @ 0x080A7C84
 	lsls r1, r1, #2
 	movs r2, #0x20
 	bl ApplyPaletteExt
-	bl sub_08054E88
-	bl sub_08063FE0
+	bl NewEfxAnimeDrvProc
+	bl ResetClassReelSpell
 	ldr r0, _080A7DE8 @ =0x08CE48F0
 	adds r1, r6, #0
 	bl SpawnProc
@@ -17760,7 +17760,7 @@ _080A7E54:
 	bl sub_080A7BB4
 	ldrb r0, [r5]
 	mov r1, r8
-	bl sub_080A7480
+	bl InitModeSelectAnims
 	movs r4, #0
 	ldrb r1, [r5]
 	cmp r4, r1
@@ -17775,24 +17775,24 @@ _080A7E6A:
 _080A7E78:
 	bl sub_080A7B98
 	adds r0, r6, #0
-	bl sub_080A8CD4
+	bl StartUiSpinningArrows
 	movs r4, #0xd2
 	lsls r4, r4, #4
 	movs r0, #0
 	adds r1, r4, #0
 	movs r2, #9
-	bl sub_080A8CE8
+	bl LoadUiSpinningArrowGfx
 	movs r0, #0
 	adds r1, r4, #0
 	movs r2, #9
-	bl sub_080A8CE8
+	bl LoadUiSpinningArrowGfx
 	movs r0, #0x1e
 	movs r1, #0x3d
 	movs r2, #0x44
 	movs r3, #0x3d
-	bl sub_080A8D70
+	bl SetUiSpinningArrowPositions
 	movs r0, #3
-	bl sub_080A8D54
+	bl SetUiSpinningArrowConfig
 	ldr r4, _080A8044 @ =0x020000A4
 	ldr r1, _080A8048 @ =0x0600E000
 	movs r0, #0x80
@@ -17842,7 +17842,7 @@ _080A7E78:
 	ldrb r0, [r2]
 	add r0, r8
 	ldrb r0, [r0]
-	bl sub_080A77C0
+	bl StartModeSelectFace
 	str r0, [r6, #0x3c]
 	bl sub_080A75F0
 	mov r1, sl
@@ -17922,7 +17922,7 @@ _080A7E78:
 	ldrb r0, [r2]
 	add r0, r8
 	ldrb r0, [r0]
-	bl sub_080A77F8
+	bl LoadModeSelectChapterGfx
 	ldr r4, _080A8050 @ =0x080C5A48
 	movs r7, #0x80
 	adds r7, r7, r4
@@ -17965,7 +17965,7 @@ _080A7E78:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	add sp, #0x10
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -18039,8 +18039,8 @@ _080A80B8:
 	.align 2, 0
 _080A80C0: .4byte 0x03002870
 
-	thumb_func_start sub_080A80C4
-sub_080A80C4: @ 0x080A80C4
+	thumb_func_start ModeSelect_TransitionSplitClose
+ModeSelect_TransitionSplitClose: @ 0x080A80C4
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x2c]
@@ -18167,7 +18167,7 @@ sub_080A817C: @ 0x080A817C
 	cmp r0, #0
 	blt _080A81B2
 	ldr r0, _080A81C4 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A81B2:
 	adds r0, r4, #0
 	movs r1, #0
@@ -18244,7 +18244,7 @@ _080A8232:
 _080A8240:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080A840E
 	.align 2, 0
 _080A824C: .4byte 0x0202BBF8
@@ -18256,7 +18256,7 @@ _080A8250:
 	cmp r0, #0
 	blt _080A8262
 	ldr r0, _080A8270 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A8262:
 	adds r0, r4, #0
 	movs r1, #1
@@ -18289,7 +18289,7 @@ _080A828E:
 	bl Proc_Goto
 	movs r0, #1
 _080A82A2:
-	bl sub_080A8D98
+	bl SetUiSpinningArrowFastMaybe
 	ldr r0, _080A82C0 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -18297,7 +18297,7 @@ _080A82A2:
 	cmp r0, #0
 	blt _080A82B8
 	ldr r0, _080A82C4 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A82B8:
 	adds r0, r4, #0
 	bl sub_080A8120
@@ -18320,7 +18320,7 @@ _080A82C8:
 	cmp r0, #0
 	blt _080A82E8
 	ldr r0, _080A834C @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A82E8:
 	adds r0, r4, #0
 	movs r1, #3
@@ -18389,7 +18389,7 @@ _080A835E:
 	adds r4, #0x43
 	adds r1, r4, r1
 	ldrb r1, [r1]
-	bl sub_080A4E34
+	bl SaveMenu_SetDifficultyChoice
 	ldrb r5, [r5]
 	adds r4, r5, r4
 	ldrb r0, [r4]
@@ -18420,14 +18420,14 @@ _080A8388:
 	cmp r0, #0
 	blt _080A83B2
 	ldr r0, _080A8418 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080A83B2:
 	adds r0, r4, #0
 	movs r1, #4
 	bl Proc_Goto
 	movs r0, #3
 	movs r1, #0
-	bl sub_080A4E34
+	bl SaveMenu_SetDifficultyChoice
 _080A83C2:
 	ldr r0, [r4, #0x50]
 	adds r0, #1
@@ -18635,7 +18635,7 @@ sub_080A84F8: @ 0x080A84F8
 	ldrb r1, [r1]
 	adds r0, r1, r0
 	ldrb r0, [r0]
-	bl sub_080A77F8
+	bl LoadModeSelectChapterGfx
 _080A855A:
 	mov r2, r8
 	ldr r0, [r2, #0x2c]
@@ -18648,7 +18648,7 @@ _080A855A:
 	ldrb r1, [r1]
 	adds r0, r1, r0
 	ldrb r0, [r0]
-	bl sub_080A77C0
+	bl StartModeSelectFace
 	mov r3, r8
 	str r0, [r3, #0x3c]
 _080A8578:
@@ -18718,7 +18718,7 @@ _080A85A8:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	adds r0, r7, #0
 	bl sub_080A7C08
 	add sp, #4
@@ -18738,10 +18738,10 @@ sub_080A8624: @ 0x080A8624
 	adds r4, r0, #0
 	adds r0, #0x4c
 	ldrb r0, [r0]
-	bl sub_080A75CC
-	bl sub_08054EA8
+	bl EndModeSelectAnims
+	bl EndEfxAnimeDrvProc
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	adds r4, #0x42
 	movs r0, #1
 	ldrb r4, [r4]
@@ -18778,8 +18778,8 @@ sub_080A8664: @ 0x080A8664
 	.align 2, 0
 _080A8678: .4byte 0x08CE4930
 
-	thumb_func_start sub_080A867C
-sub_080A867C: @ 0x080A867C
+	thumb_func_start StartModeSelect
+StartModeSelect: @ 0x080A867C
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0809E9FC
@@ -19018,7 +19018,7 @@ sub_080A8838: @ 0x080A8838
 	mov sb, r1
 	movs r0, #3
 	ands r0, r3
-	bl sub_08002BE8
+	bl GetBgTilemap
 	str r0, [sp]
 	lsls r4, r4, #5
 	adds r4, r4, r5
@@ -19104,8 +19104,8 @@ _080A88E8:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A88F8
-sub_080A88F8: @ 0x080A88F8
+	thumb_func_start UiCursorHand_Init
+UiCursorHand_Init: @ 0x080A88F8
 	push {r4, r5, r6, lr}
 	movs r2, #0
 	adds r4, r0, #0
@@ -19130,8 +19130,8 @@ _080A890A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A8924
-sub_080A8924: @ 0x080A8924
+	thumb_func_start UiCursorHand_Loop
+UiCursorHand_Loop: @ 0x080A8924
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -19182,7 +19182,7 @@ _080A8930:
 	str r0, [sp]
 	movs r0, #3
 	ldr r3, _080A898C @ =0x08CE49F0
-	bl sub_080069F4
+	bl PutSprite
 	b _080A899E
 	.align 2, 0
 _080A898C: .4byte 0x08CE49F0
@@ -19192,7 +19192,7 @@ _080A8990:
 	str r0, [sp]
 	movs r0, #3
 	ldr r3, _080A89B0 @ =0x08CE49E8
-	bl sub_080069F4
+	bl PutSprite
 _080A899E:
 	adds r4, #4
 	adds r7, #1
@@ -19205,8 +19205,8 @@ _080A899E:
 	.align 2, 0
 _080A89B0: .4byte 0x08CE49E8
 
-	thumb_func_start sub_080A89B4
-sub_080A89B4: @ 0x080A89B4
+	thumb_func_start StartUiCursorHand
+StartUiCursorHand: @ 0x080A89B4
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080A89C4 @ =0x08CE49F8
@@ -19216,8 +19216,8 @@ sub_080A89B4: @ 0x080A89B4
 	.align 2, 0
 _080A89C4: .4byte 0x08CE49F8
 
-	thumb_func_start sub_080A89C8
-sub_080A89C8: @ 0x080A89C8
+	thumb_func_start SetUiCursorHandConfig
+SetUiCursorHandConfig: @ 0x080A89C8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -19273,8 +19273,8 @@ _080A8A34: .4byte 0x060100C0
 _080A8A38: .4byte 0x08194398
 _080A8A3C: .4byte 0x060104C0
 
-	thumb_func_start sub_080A8A40
-sub_080A8A40: @ 0x080A8A40
+	thumb_func_start UiCursorHand_SetPosition
+UiCursorHand_SetPosition: @ 0x080A8A40
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -19304,8 +19304,8 @@ _080A8A6E:
 	.align 2, 0
 _080A8A74: .4byte 0x08CE49F8
 
-	thumb_func_start sub_080A8A78
-sub_080A8A78: @ 0x080A8A78
+	thumb_func_start DisableUiCursorHand
+DisableUiCursorHand: @ 0x080A8A78
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A8A94 @ =0x08CE49F8
@@ -19323,8 +19323,8 @@ _080A8A8E:
 	.align 2, 0
 _080A8A94: .4byte 0x08CE49F8
 
-	thumb_func_start sub_080A8A98
-sub_080A8A98: @ 0x080A8A98
+	thumb_func_start DisableAllUiCursorHand
+DisableAllUiCursorHand: @ 0x080A8A98
 	push {lr}
 	ldr r0, _080A8AB8 @ =0x08CE49F8
 	bl Proc_Find
@@ -19345,8 +19345,8 @@ _080A8AB4:
 	.align 2, 0
 _080A8AB8: .4byte 0x08CE49F8
 
-	thumb_func_start sub_080A8ABC
-sub_080A8ABC: @ 0x080A8ABC
+	thumb_func_start BlockUiCursorHand
+BlockUiCursorHand: @ 0x080A8ABC
 	push {lr}
 	ldr r0, _080A8AD4 @ =0x08CE49F8
 	bl Proc_Find
@@ -19360,8 +19360,8 @@ _080A8ACE:
 	.align 2, 0
 _080A8AD4: .4byte 0x08CE49F8
 
-	thumb_func_start sub_080A8AD8
-sub_080A8AD8: @ 0x080A8AD8
+	thumb_func_start UnblockUiCursorHand
+UnblockUiCursorHand: @ 0x080A8AD8
 	push {lr}
 	ldr r0, _080A8AF0 @ =0x08CE49F8
 	bl Proc_Find
@@ -19375,8 +19375,8 @@ _080A8AEA:
 	.align 2, 0
 _080A8AF0: .4byte 0x08CE49F8
 
-	thumb_func_start sub_080A8AF4
-sub_080A8AF4: @ 0x080A8AF4
+	thumb_func_start EndUiCursorHand
+EndUiCursorHand: @ 0x080A8AF4
 	push {lr}
 	ldr r0, _080A8B04 @ =0x08CE49F8
 	bl Proc_Find
@@ -19386,8 +19386,8 @@ sub_080A8AF4: @ 0x080A8AF4
 	.align 2, 0
 _080A8B04: .4byte 0x08CE49F8
 
-	thumb_func_start sub_080A8B08
-sub_080A8B08: @ 0x080A8B08
+	thumb_func_start UiSpinningArrows_Init
+UiSpinningArrows_Init: @ 0x080A8B08
 	movs r1, #0
 	str r1, [r0, #0x2c]
 	adds r2, r0, #0
@@ -19503,7 +19503,7 @@ _080A8BB8:
 	adds r0, r4, r0
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A8BE2:
 	ldr r0, [r5, #0x30]
 	movs r1, #2
@@ -19528,7 +19528,7 @@ _080A8BE2:
 	adds r0, r4, r0
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A8C14:
 	ldr r0, [r5, #0x2c]
 	cmp r0, #1
@@ -19582,7 +19582,7 @@ _080A8C4A:
 	movs r0, #0xd
 	adds r1, r7, #0
 	mov r2, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A8C7C:
 	ldr r0, [r5, #0x30]
 	movs r1, #2
@@ -19611,7 +19611,7 @@ _080A8C7C:
 	str r0, [sp]
 	movs r0, #0xd
 	mov r2, sl
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A8CB6:
 	add sp, #4
 	pop {r3, r4, r5}
@@ -19626,8 +19626,8 @@ _080A8CC8: .4byte 0x000001FF
 _080A8CCC: .4byte 0x08CE4A28
 _080A8CD0: .4byte 0x08CE4A36
 
-	thumb_func_start sub_080A8CD4
-sub_080A8CD4: @ 0x080A8CD4
+	thumb_func_start StartUiSpinningArrows
+StartUiSpinningArrows: @ 0x080A8CD4
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080A8CE4 @ =0x08CE4A40
@@ -19637,8 +19637,8 @@ sub_080A8CD4: @ 0x080A8CD4
 	.align 2, 0
 _080A8CE4: .4byte 0x08CE4A40
 
-	thumb_func_start sub_080A8CE8
-sub_080A8CE8: @ 0x080A8CE8
+	thumb_func_start LoadUiSpinningArrowGfx
+LoadUiSpinningArrowGfx: @ 0x080A8CE8
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -19688,8 +19688,8 @@ _080A8D48: .4byte 0x0840D224
 _080A8D4C: .4byte 0x06010000
 _080A8D50: .4byte 0x0840D150
 
-	thumb_func_start sub_080A8D54
-sub_080A8D54: @ 0x080A8D54
+	thumb_func_start SetUiSpinningArrowConfig
+SetUiSpinningArrowConfig: @ 0x080A8D54
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A8D6C @ =0x08CE4A40
@@ -19704,8 +19704,8 @@ _080A8D64:
 	.align 2, 0
 _080A8D6C: .4byte 0x08CE4A40
 
-	thumb_func_start sub_080A8D70
-sub_080A8D70: @ 0x080A8D70
+	thumb_func_start SetUiSpinningArrowPositions
+SetUiSpinningArrowPositions: @ 0x080A8D70
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -19726,8 +19726,8 @@ _080A8D8C:
 	.align 2, 0
 _080A8D94: .4byte 0x08CE4A40
 
-	thumb_func_start sub_080A8D98
-sub_080A8D98: @ 0x080A8D98
+	thumb_func_start SetUiSpinningArrowFastMaybe
+SetUiSpinningArrowFastMaybe: @ 0x080A8D98
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A8DCC @ =0x08CE4A40
@@ -19760,8 +19760,8 @@ _080A8DC6:
 	.align 2, 0
 _080A8DCC: .4byte 0x08CE4A40
 
-	thumb_func_start sub_080A8DD0
-sub_080A8DD0: @ 0x080A8DD0
+	thumb_func_start EndUiSpinningArrows
+EndUiSpinningArrows: @ 0x080A8DD0
 	push {lr}
 	ldr r0, _080A8DE0 @ =0x08CE4A40
 	bl Proc_Find
@@ -19771,15 +19771,15 @@ sub_080A8DD0: @ 0x080A8DD0
 	.align 2, 0
 _080A8DE0: .4byte 0x08CE4A40
 
-	thumb_func_start sub_080A8DE4
-sub_080A8DE4: @ 0x080A8DE4
+	thumb_func_start ParallelFiniteLoop_Init
+ParallelFiniteLoop_Init: @ 0x080A8DE4
 	movs r1, #0
 	str r1, [r0, #0x30]
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A8DEC
-sub_080A8DEC: @ 0x080A8DEC
+	thumb_func_start ParallelFiniteLoop_Loop
+ParallelFiniteLoop_Loop: @ 0x080A8DEC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, [r4, #0x30]
@@ -19800,8 +19800,8 @@ _080A8E06:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A8E14
-sub_080A8E14: @ 0x080A8E14
+	thumb_func_start StartParallelFiniteLoop
+StartParallelFiniteLoop: @ 0x080A8E14
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -19917,7 +19917,7 @@ _080A8E9C:
 	movs r0, #0xd
 	mov r2, ip
 	ldr r3, _080A8FD4 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0
 	ldrsh r1, [r6, r0]
 	mov r2, sb
@@ -19938,7 +19938,7 @@ _080A8E9C:
 	movs r0, #0xd
 	mov r2, ip
 	ldr r3, _080A8FD4 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r3, #0xc0
 	lsls r3, r3, #6
 	adds r1, r3, #0
@@ -19964,7 +19964,7 @@ _080A8E9C:
 	movs r0, #0xd
 	mov r2, ip
 	ldr r3, _080A8FD4 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0
 	ldrsh r1, [r6, r0]
 	mov r2, sb
@@ -19992,7 +19992,7 @@ _080A8E9C:
 	str r0, [sp]
 	movs r0, #0xd
 	ldr r3, _080A8FD4 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	mov r7, sb
 	movs r0, #0
 	ldrsb r0, [r7, r0]
@@ -20026,7 +20026,7 @@ _080A8FB0:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A8FD8 @ =0x08B90608
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x20
 	subs r4, #4
 	cmp r4, #3
@@ -20047,7 +20047,7 @@ _080A8FDC:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A9080 @ =0x08B905E8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x10
 	subs r4, #2
 _080A8FFA:
@@ -20067,7 +20067,7 @@ _080A9002:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A9084 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	subs r4, #1
 	cmp r4, #0
@@ -20113,7 +20113,7 @@ _080A905C:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A9088 @ =0x08B90608
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x20
 	subs r4, #4
 	cmp r4, #3
@@ -20135,7 +20135,7 @@ _080A908C:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A9134 @ =0x08B905E8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x10
 	subs r4, #2
 _080A90AA:
@@ -20155,7 +20155,7 @@ _080A90B2:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A9138 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	subs r4, #1
 	cmp r4, #0
@@ -20204,7 +20204,7 @@ _080A9114:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A913C @ =0x08B90608
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x20
 	subs r4, #4
 	cmp r4, #3
@@ -20224,7 +20224,7 @@ _080A9140:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A91A4 @ =0x08B905E8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x10
 	subs r4, #2
 _080A915A:
@@ -20242,7 +20242,7 @@ _080A9162:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	ldr r3, _080A91A8 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	subs r4, #1
 	cmp r4, #0
@@ -20272,8 +20272,8 @@ _080A9194:
 _080A91A4: .4byte 0x08B905E8
 _080A91A8: .4byte 0x08B905B0
 
-	thumb_func_start sub_080A91AC
-sub_080A91AC: @ 0x080A91AC
+	thumb_func_start NewSysBlackBoxHandler
+NewSysBlackBoxHandler: @ 0x080A91AC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _080A91CC @ =0x08CE4A80
@@ -20289,8 +20289,8 @@ sub_080A91AC: @ 0x080A91AC
 	.align 2, 0
 _080A91CC: .4byte 0x08CE4A80
 
-	thumb_func_start sub_080A91D0
-sub_080A91D0: @ 0x080A91D0
+	thumb_func_start SysBlackBoxSetGfx
+SysBlackBoxSetGfx: @ 0x080A91D0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A91F8 @ =0x08CE4A80
@@ -20315,8 +20315,8 @@ _080A91F8: .4byte 0x08CE4A80
 _080A91FC: .4byte 0x08403A48
 _080A9200: .4byte 0x06010000
 
-	thumb_func_start sub_080A9204
-sub_080A9204: @ 0x080A9204
+	thumb_func_start EnableSysBlackBox
+EnableSysBlackBox: @ 0x080A9204
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -20369,8 +20369,8 @@ _080A925C:
 	.align 2, 0
 _080A9268: .4byte 0x08CE4A80
 
-	thumb_func_start sub_080A926C
-sub_080A926C: @ 0x080A926C
+	thumb_func_start DisableSysBlackBox
+DisableSysBlackBox: @ 0x080A926C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A9288 @ =0x08CE4A80
@@ -20403,8 +20403,8 @@ _080A929E:
 	.align 2, 0
 _080A92A4: .4byte 0x08CE4A80
 
-	thumb_func_start sub_080A92A8
-sub_080A92A8: @ 0x080A92A8
+	thumb_func_start UnblockAllSysBlackBoxs
+UnblockAllSysBlackBoxs: @ 0x080A92A8
 	push {r4, lr}
 	ldr r0, _080A92D0 @ =0x08CE4A80
 	bl Proc_Find
@@ -20417,7 +20417,7 @@ sub_080A92A8: @ 0x080A92A8
 	adds r0, #0x4e
 	ldrh r0, [r0]
 	lsls r0, r0, #5
-	bl sub_080A91D0
+	bl SysBlackBoxSetGfx
 _080A92C8:
 	pop {r4}
 	pop {r0}
@@ -20425,8 +20425,8 @@ _080A92C8:
 	.align 2, 0
 _080A92D0: .4byte 0x08CE4A80
 
-	thumb_func_start sub_080A92D4
-sub_080A92D4: @ 0x080A92D4
+	thumb_func_start EndSysBlackBoxs
+EndSysBlackBoxs: @ 0x080A92D4
 	push {lr}
 	ldr r0, _080A92E4 @ =0x08CE4A80
 	bl Proc_Find
@@ -20436,8 +20436,8 @@ sub_080A92D4: @ 0x080A92D4
 	.align 2, 0
 _080A92E4: .4byte 0x08CE4A80
 
-	thumb_func_start sub_080A92E8
-sub_080A92E8: @ 0x080A92E8
+	thumb_func_start ParallelWorker_OnLoop
+ParallelWorker_OnLoop: @ 0x080A92E8
 	push {lr}
 	ldr r1, [r0, #0x14]
 	ldr r2, [r0, #0x2c]
@@ -20446,12 +20446,12 @@ sub_080A92E8: @ 0x080A92E8
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A92F8
-sub_080A92F8: @ 0x080A92F8
+	thumb_func_start StartParallelWorker
+StartParallelWorker: @ 0x080A92F8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl sub_080A9338
+	bl GetParallelWorker
 	cmp r0, #0
 	bne _080A9310
 	ldr r0, _080A9318 @ =0x08CE4AB0
@@ -20465,8 +20465,8 @@ _080A9310:
 	.align 2, 0
 _080A9318: .4byte 0x08CE4AB0
 
-	thumb_func_start sub_080A931C
-sub_080A931C: @ 0x080A931C
+	thumb_func_start EndAllParallelWorkers
+EndAllParallelWorkers: @ 0x080A931C
 	push {lr}
 	b _080A9324
 _080A9320:
@@ -20481,8 +20481,8 @@ _080A9324:
 	.align 2, 0
 _080A9334: .4byte 0x08CE4AB0
 
-	thumb_func_start sub_080A9338
-sub_080A9338: @ 0x080A9338
+	thumb_func_start GetParallelWorker
+GetParallelWorker: @ 0x080A9338
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0
@@ -20495,7 +20495,7 @@ _080A9340:
 	b _080A9358
 _080A934A:
 	ldr r0, _080A9360 @ =0x08CE4AB0
-	bl sub_08004C5C
+	bl Proc_FindAfter
 	adds r1, r0, #0
 	cmp r1, #0
 	bne _080A9340
@@ -20507,8 +20507,8 @@ _080A9358:
 	.align 2, 0
 _080A9360: .4byte 0x08CE4AB0
 
-	thumb_func_start sub_080A9364
-sub_080A9364: @ 0x080A9364
+	thumb_func_start DisplayExtendedSysHand
+DisplayExtendedSysHand: @ 0x080A9364
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -20549,7 +20549,7 @@ sub_080A9364: @ 0x080A9364
 	adds r4, r0, r4
 	str r4, [sp]
 	movs r0, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r4, #1
 	ldrh r1, [r5, #0x38]
 	cmp r4, r1
@@ -20572,7 +20572,7 @@ _080A93C4:
 	str r0, [sp]
 	movs r0, #4
 	ldr r3, _080A9430 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #1
 	ldrh r0, [r5, #0x38]
 	cmp r4, r0
@@ -20596,7 +20596,7 @@ _080A93F2:
 	adds r0, #2
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -20607,20 +20607,20 @@ _080A9428: .4byte 0x0202BBF8
 _080A942C: .4byte 0x0840DD24
 _080A9430: .4byte 0x08B905B0
 
-	thumb_func_start sub_080A9434
-sub_080A9434: @ 0x080A9434
+	thumb_func_start SysHandCursor_Init
+SysHandCursor_Init: @ 0x080A9434
 	adds r0, #0x35
 	movs r1, #0
 	strb r1, [r0]
 	bx lr
 
-	thumb_func_start sub_080A943C
-sub_080A943C: @ 0x080A943C
+	thumb_func_start SysHandCursor_Loop
+SysHandCursor_Loop: @ 0x080A943C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]
 	ldr r1, [r4, #0x30]
-	bl sub_08049F58
+	bl PutUiHand
 	adds r0, r4, #0
 	adds r0, #0x35
 	ldrb r0, [r0]
@@ -20629,7 +20629,7 @@ sub_080A943C: @ 0x080A943C
 	cmp r0, #0
 	beq _080A945C
 	adds r0, r4, #0
-	bl sub_080A9364
+	bl DisplayExtendedSysHand
 _080A945C:
 	adds r0, r4, #0
 	adds r0, #0x34
@@ -20641,15 +20641,15 @@ _080A945C:
 	ldr r0, [r4, #0x2c]
 	ldr r1, [r4, #0x30]
 	adds r1, #2
-	bl sub_08015A5C
+	bl DisplayBmTextShadow
 _080A9474:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A947C
-sub_080A947C: @ 0x080A947C
+	thumb_func_start ResetSysHandCursor
+ResetSysHandCursor: @ 0x080A947C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _080A949C @ =0x08CE4AC8
@@ -20665,8 +20665,8 @@ sub_080A947C: @ 0x080A947C
 	.align 2, 0
 _080A949C: .4byte 0x08CE4AC8
 
-	thumb_func_start sub_080A94A0
-sub_080A94A0: @ 0x080A94A0
+	thumb_func_start DisplaySysHandCursorTextShadow
+DisplaySysHandCursorTextShadow: @ 0x080A94A0
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -20698,8 +20698,8 @@ _080A94D8: .4byte 0x08CE4AC8
 _080A94DC: .4byte 0x0840E098
 _080A94E0: .4byte 0x06010000
 
-	thumb_func_start sub_080A94E4
-sub_080A94E4: @ 0x080A94E4
+	thumb_func_start SetSysHandCursorXPos
+SetSysHandCursorXPos: @ 0x080A94E4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A94FC @ =0x08CE4AC8
@@ -20730,8 +20730,8 @@ _080A9510:
 	.align 2, 0
 _080A9518: .4byte 0x08CE4AC8
 
-	thumb_func_start sub_080A951C
-sub_080A951C: @ 0x080A951C
+	thumb_func_start ShowSysHandCursor
+ShowSysHandCursor: @ 0x080A951C
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -20769,8 +20769,8 @@ _080A955C:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080A9564
-sub_080A9564: @ 0x080A9564
+	thumb_func_start HideSysHandCursor
+HideSysHandCursor: @ 0x080A9564
 	push {lr}
 	ldr r0, _080A957C @ =0x08CE4AC8
 	bl Proc_Find
@@ -20784,8 +20784,8 @@ _080A9576:
 	.align 2, 0
 _080A957C: .4byte 0x08CE4AC8
 
-	thumb_func_start sub_080A9580
-sub_080A9580: @ 0x080A9580
+	thumb_func_start EndSysHandCursor
+EndSysHandCursor: @ 0x080A9580
 	push {lr}
 	ldr r0, _080A9590 @ =0x08CE4AC8
 	bl Proc_Find
@@ -20795,8 +20795,8 @@ sub_080A9580: @ 0x080A9580
 	.align 2, 0
 _080A9590: .4byte 0x08CE4AC8
 
-	thumb_func_start sub_080A9594
-sub_080A9594: @ 0x080A9594
+	thumb_func_start ConfigSysHandCursorShadowEnabled
+ConfigSysHandCursorShadowEnabled: @ 0x080A9594
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -20913,7 +20913,7 @@ _080A9636:
 	mov r3, r8
 	str r3, [sp]
 	ldr r3, _080A98B8 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrb r0, [r5, #1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
@@ -20932,7 +20932,7 @@ _080A9636:
 	mov r3, r8
 	str r3, [sp]
 	ldr r3, _080A98B8 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrb r0, [r5, #1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
@@ -20956,7 +20956,7 @@ _080A9636:
 	mov r3, r8
 	str r3, [sp]
 	ldr r3, _080A98B8 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrb r0, [r5, #1]
 	ldr r1, _080A98B4 @ =0x000001FF
 	ldrh r2, [r5, #2]
@@ -20975,7 +20975,7 @@ _080A9636:
 	mov r3, r8
 	str r3, [sp]
 	ldr r3, _080A98B8 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r7, #1
 	ldrb r0, [r5, #6]
 	subs r0, #4
@@ -21000,7 +21000,7 @@ _080A96FC:
 	ands r2, r3
 	str r6, [sp]
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrb r0, [r5, #1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
@@ -21020,7 +21020,7 @@ _080A96FC:
 	ands r2, r3
 	str r6, [sp]
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r7, #4
 	ldrb r0, [r5, #6]
 	subs r0, #4
@@ -21050,7 +21050,7 @@ _080A9760:
 	ands r2, r3
 	str r6, [sp]
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrb r0, [r5, #1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
@@ -21070,7 +21070,7 @@ _080A9760:
 	ands r2, r3
 	str r6, [sp]
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r7, #2
 	ldrb r0, [r5, #6]
 	subs r0, #2
@@ -21100,7 +21100,7 @@ _080A97C4:
 	ands r2, r3
 	str r6, [sp]
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrb r0, [r5, #1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
@@ -21120,7 +21120,7 @@ _080A97C4:
 	ands r2, r3
 	str r6, [sp]
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r7, #1
 	ldrb r0, [r5, #6]
 	subs r0, #1
@@ -21155,7 +21155,7 @@ _080A982E:
 	ldr r3, [sp, #8]
 	str r3, [sp]
 	ldr r3, _080A98B8 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrb r0, [r5, #1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
@@ -21176,7 +21176,7 @@ _080A982E:
 	ldr r3, [sp, #8]
 	str r3, [sp]
 	ldr r3, _080A98B8 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r6, #1
 	ldrb r0, [r5, #6]
 	subs r0, #4
@@ -21200,7 +21200,7 @@ _080A9884:
 	adds r3, #5
 	str r3, [sp]
 	ldr r3, _080A98BC @ =0x08B90608
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	ldrb r0, [r5, #6]
 	subs r0, #4
@@ -21229,7 +21229,7 @@ _080A98C4:
 	adds r3, #5
 	str r3, [sp]
 	ldr r3, _080A98F4 @ =0x08B905E8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #2
 _080A98EA:
 	ldrb r0, [r5, #6]
@@ -21256,7 +21256,7 @@ _080A98F8:
 	adds r3, #5
 	str r3, [sp]
 	ldr r3, _080A9948 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #1
 _080A991E:
 	ldrb r0, [r5, #6]
@@ -21285,8 +21285,8 @@ _080A9938:
 	.align 2, 0
 _080A9948: .4byte 0x08B905B0
 
-	thumb_func_start sub_080A994C
-sub_080A994C: @ 0x080A994C
+	thumb_func_start NewSysGrayBox
+NewSysGrayBox: @ 0x080A994C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r6, r1, #0
@@ -21318,8 +21318,8 @@ _080A9988: .4byte 0x081D7E54
 _080A998C: .4byte 0x06010000
 _080A9990: .4byte 0x02022880
 
-	thumb_func_start sub_080A9994
-sub_080A9994: @ 0x080A9994
+	thumb_func_start EnableUnransportWindow
+EnableUnransportWindow: @ 0x080A9994
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -21360,8 +21360,8 @@ _080A99D4:
 	.align 2, 0
 _080A99E0: .4byte 0x08CE4AF8
 
-	thumb_func_start sub_080A99E4
-sub_080A99E4: @ 0x080A99E4
+	thumb_func_start DisableSysGrayBox
+DisableSysGrayBox: @ 0x080A99E4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A9A08 @ =0x08CE4AF8
@@ -21479,7 +21479,7 @@ _080A9A6A:
 	mov r4, sb
 	ldrh r4, [r4]
 	str r4, [sp]
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #0x20
 _080A9AC2:
 	ldrb r0, [r7]
@@ -21499,7 +21499,7 @@ _080A9AC2:
 	ldrh r1, [r4]
 	str r1, [sp]
 	adds r1, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, [sp, #0x28]
 	ldrb r3, [r0]
 	adds r0, r3, #0
@@ -21523,7 +21523,7 @@ _080A9AC2:
 	ldrh r1, [r7]
 	str r1, [sp]
 	adds r1, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080A9B50
 	.align 2, 0
 _080A9B1C: .4byte 0x08418DF8
@@ -21549,7 +21549,7 @@ _080A9B24:
 	ldrh r1, [r1]
 	str r1, [sp]
 	adds r1, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _080A9B50:
 	ldr r7, [sp, #0x28]
 	adds r7, #8
@@ -21571,8 +21571,8 @@ _080A9B64:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080A9B74
-sub_080A9B74: @ 0x080A9B74
+	thumb_func_start StartSysBrownBox
+StartSysBrownBox: @ 0x080A9B74
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -21587,7 +21587,7 @@ sub_080A9B74: @ 0x080A9B74
 	lsrs r5, r5, #0x10
 	lsls r6, r6, #0x10
 	lsrs r6, r6, #0x10
-	bl sub_080A9C88
+	bl EndSysBrownBox
 	ldr r0, _080A9BE4 @ =0x08CE4C18
 	adds r1, r7, #0
 	bl SpawnProc
@@ -21630,8 +21630,8 @@ _080A9BE8: .4byte 0x0840F238
 _080A9BEC: .4byte 0x06010000
 _080A9BF0: .4byte 0x0840624C
 
-	thumb_func_start sub_080A9BF4
-sub_080A9BF4: @ 0x080A9BF4
+	thumb_func_start EnableSysBrownBox
+EnableSysBrownBox: @ 0x080A9BF4
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -21666,8 +21666,8 @@ sub_080A9BF4: @ 0x080A9BF4
 _080A9C34: .4byte 0x08CE4C18
 _080A9C38: .4byte 0x000001FF
 
-	thumb_func_start sub_080A9C3C
-sub_080A9C3C: @ 0x080A9C3C
+	thumb_func_start DisableSysBrownBox
+DisableSysBrownBox: @ 0x080A9C3C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080A9C5C @ =0x08CE4C18
@@ -21687,8 +21687,8 @@ _080A9C56:
 	.align 2, 0
 _080A9C5C: .4byte 0x08CE4C18
 
-	thumb_func_start sub_080A9C60
-sub_080A9C60: @ 0x080A9C60
+	thumb_func_start SetSysBrownBoxWidth
+SetSysBrownBoxWidth: @ 0x080A9C60
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	lsls r1, r1, #0x18
@@ -21709,8 +21709,8 @@ _080A9C7C:
 	.align 2, 0
 _080A9C84: .4byte 0x08CE4C18
 
-	thumb_func_start sub_080A9C88
-sub_080A9C88: @ 0x080A9C88
+	thumb_func_start EndSysBrownBox
+EndSysBrownBox: @ 0x080A9C88
 	push {lr}
 	ldr r0, _080A9C98 @ =0x08CE4C18
 	bl Proc_Find
@@ -21834,7 +21834,7 @@ _080A9D70:
 	bl InitSpriteText
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	adds r4, #8
 	subs r5, #1
 	cmp r5, #0
@@ -21864,8 +21864,8 @@ _080A9DB4: .4byte 0x08CE4C38
 _080A9DB8: .4byte 0x06010000
 _080A9DBC: .4byte 0x08194674
 
-	thumb_func_start sub_080A9DC0
-sub_080A9DC0: @ 0x080A9DC0
+	thumb_func_start EndAllProcChildren
+EndAllProcChildren: @ 0x080A9DC0
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #0
@@ -21876,7 +21876,7 @@ _080A9DC8:
 _080A9DCE:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08004C90
+	bl Proc_FindAfterWithParent
 	adds r4, r0, #0
 	cmp r4, #0
 	bne _080A9DC8
@@ -21890,8 +21890,8 @@ sub_080A9DE4: @ 0x080A9DE4
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080A9DE8
-sub_080A9DE8: @ 0x080A9DE8
+	thumb_func_start BgAffinRotScaling
+BgAffinRotScaling: @ 0x080A9DE8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -21957,7 +21957,7 @@ _080A9E20:
 _080A9E64:
 	mov r0, sp
 	movs r2, #1
-	bl sub_080BFA08
+	bl BgAffineSet
 	add sp, #0x14
 	pop {r3}
 	mov r8, r3
@@ -21967,8 +21967,8 @@ _080A9E64:
 	.align 2, 0
 _080A9E78: .4byte 0x030028C8
 
-	thumb_func_start sub_080A9E7C
-sub_080A9E7C: @ 0x080A9E7C
+	thumb_func_start BgAffinScaling
+BgAffinScaling: @ 0x080A9E7C
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
@@ -22011,8 +22011,8 @@ _080A9E92:
 	.align 2, 0
 _080A9EC8: .4byte 0x030028B8
 
-	thumb_func_start sub_080A9ECC
-sub_080A9ECC: @ 0x080A9ECC
+	thumb_func_start BgAffinAnchoring
+BgAffinAnchoring: @ 0x080A9ECC
 	push {r4, r5, r6, r7, lr}
 	ldr r4, [sp, #0x14]
 	lsls r0, r0, #0x18
@@ -22066,8 +22066,8 @@ _080A9EEC:
 	.align 2, 0
 _080A9F30: .4byte 0x030028B8
 
-	thumb_func_start sub_080A9F34
-sub_080A9F34: @ 0x080A9F34
+	thumb_func_start BgAffinRotScalingHighPrecision
+BgAffinRotScalingHighPrecision: @ 0x080A9F34
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -22117,7 +22117,7 @@ _080A9F58:
 _080A9F90:
 	mov r0, sp
 	movs r2, #1
-	bl sub_080BFA08
+	bl BgAffineSet
 	add sp, #0x14
 	pop {r3}
 	mov r8, r3
@@ -22127,8 +22127,8 @@ _080A9F90:
 	.align 2, 0
 _080A9FA4: .4byte 0x030028C8
 
-	thumb_func_start sub_080A9FA8
-sub_080A9FA8: @ 0x080A9FA8
+	thumb_func_start BgAffinScalingHighPrecision
+BgAffinScalingHighPrecision: @ 0x080A9FA8
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
@@ -22163,8 +22163,8 @@ _080A9FB6:
 	.align 2, 0
 _080A9FE4: .4byte 0x030028B8
 
-	thumb_func_start sub_080A9FE8
-sub_080A9FE8: @ 0x080A9FE8
+	thumb_func_start BgAffinAnchoringHighPrecision
+BgAffinAnchoringHighPrecision: @ 0x080A9FE8
 	push {r4, r5, r6, lr}
 	adds r5, r3, #0
 	lsls r0, r0, #0x18
@@ -22357,8 +22357,8 @@ _080AA146:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AA154
-sub_080AA154: @ 0x080AA154
+	thumb_func_start SetBlankBgColor
+SetBlankBgColor: @ 0x080AA154
 	push {r4, lr}
 	movs r3, #0x1f
 	ands r1, r3
@@ -22377,11 +22377,11 @@ sub_080AA154: @ 0x080AA154
 	.align 2, 0
 _080AA174: .4byte 0x02022860
 
-	thumb_func_start sub_080AA178
-sub_080AA178: @ 0x080AA178
+	thumb_func_start FadeInOut_Init
+FadeInOut_Init: @ 0x080AA178
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080136AC
+	bl ArchiveCurrentPalettes
 	movs r0, #0
 	str r0, [r4, #0x2c]
 	pop {r4}
@@ -22415,7 +22415,7 @@ _080AA1B2:
 	ldr r3, [r4, #0x34]
 	adds r0, r2, #0
 	adds r1, r2, #0
-	bl sub_08013728
+	bl WriteFadedPaletteFromArchive
 	ldr r0, [r4, #0x2c]
 	cmp r0, #0x80
 	bne _080AA1C8
@@ -22456,7 +22456,7 @@ _080AA1FC:
 	ldr r3, [r4, #0x34]
 	adds r0, r2, #0
 	adds r1, r2, #0
-	bl sub_08013728
+	bl WriteFadedPaletteFromArchive
 	ldr r0, [r4, #0x2c]
 	cmp r0, #0x80
 	bne _080AA212

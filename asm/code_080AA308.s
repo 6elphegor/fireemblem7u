@@ -183,8 +183,8 @@ sub_080AA434: @ 0x080AA434
 _080AA454: .4byte 0x08CE4C80
 _080AA458: .4byte 0x0000FFFF
 
-	thumb_func_start sub_080AA45C
-sub_080AA45C: @ 0x080AA45C
+	thumb_func_start WipeAllPalette
+WipeAllPalette: @ 0x080AA45C
 	push {lr}
 	sub sp, #4
 	movs r0, #0
@@ -201,8 +201,8 @@ sub_080AA45C: @ 0x080AA45C
 _080AA478: .4byte 0x02022860
 _080AA47C: .4byte 0x01000100
 
-	thumb_func_start sub_080AA480
-sub_080AA480: @ 0x080AA480
+	thumb_func_start EndFadeInOut
+EndFadeInOut: @ 0x080AA480
 	push {lr}
 	ldr r0, _080AA49C @ =0x08CE4C50
 	bl Proc_Find
@@ -216,8 +216,8 @@ sub_080AA480: @ 0x080AA480
 _080AA49C: .4byte 0x08CE4C50
 _080AA4A0: .4byte 0x08CE4C80
 
-	thumb_func_start sub_080AA4A4
-sub_080AA4A4: @ 0x080AA4A4
+	thumb_func_start BmBgfx_Init
+BmBgfx_Init: @ 0x080AA4A4
 	adds r2, r0, #0
 	movs r0, #0
 	str r0, [r2, #0x2c]
@@ -462,10 +462,10 @@ _080AA642:
 	adds r1, r1, r2
 	ldr r2, _080AA6A0 @ =0x0000FFFF
 	ands r1, r2
-	bl sub_08001434
+	bl SetBgChrOffset
 _080AA668:
 	ldrb r0, [r7]
-	bl sub_08002BE8
+	bl GetBgTilemap
 	ldr r1, [r6, #4]
 	adds r2, r5, #0
 	adds r2, #0x35
@@ -527,8 +527,8 @@ _080AA6D8:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AA6E4
-sub_080AA6E4: @ 0x080AA6E4
+	thumb_func_start BmBgfx_End
+BmBgfx_End: @ 0x080AA6E4
 	push {r4, lr}
 	adds r1, r0, #0
 	ldr r0, [r1, #0x2c]
@@ -539,9 +539,9 @@ sub_080AA6E4: @ 0x080AA6E4
 	adds r4, #0x34
 	ldrb r0, [r4]
 	ldr r1, [r1, #0x3c]
-	bl sub_08001434
+	bl SetBgChrOffset
 	ldrb r0, [r4]
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
@@ -602,8 +602,8 @@ sub_080AA758: @ 0x080AA758
 	.align 2, 0
 _080AA768: .4byte 0x08CE4CB0
 
-	thumb_func_start sub_080AA76C
-sub_080AA76C: @ 0x080AA76C
+	thumb_func_start BmBgfxSetLoopEN
+BmBgfxSetLoopEN: @ 0x080AA76C
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -620,8 +620,8 @@ _080AA780:
 	.align 2, 0
 _080AA788: .4byte 0x08CE4CB0
 
-	thumb_func_start sub_080AA78C
-sub_080AA78C: @ 0x080AA78C
+	thumb_func_start StartBmBgfx
+StartBmBgfx: @ 0x080AA78C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -709,8 +709,8 @@ _080AA822:
 	.align 2, 0
 _080AA830: .4byte 0x08CE4CB0
 
-	thumb_func_start sub_080AA834
-sub_080AA834: @ 0x080AA834
+	thumb_func_start MixPaletteCore
+MixPaletteCore: @ 0x080AA834
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -819,8 +819,8 @@ sub_080AA8F8: @ 0x080AA8F8
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080AA900
-sub_080AA900: @ 0x080AA900
+	thumb_func_start MixPalette_Loop
+MixPalette_Loop: @ 0x080AA900
 	push {lr}
 	adds r2, r0, #0
 	ldr r0, [r2, #0x38]
@@ -841,12 +841,12 @@ _080AA918:
 	adds r1, r0, #0
 _080AA922:
 	adds r0, r2, #0
-	bl sub_080AA834
+	bl MixPaletteCore
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AA92C
-sub_080AA92C: @ 0x080AA92C
+	thumb_func_start StartMixPalette
+StartMixPalette: @ 0x080AA92C
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -886,8 +886,8 @@ sub_080AA964: @ 0x080AA964
 	.align 2, 0
 _080AA974: .4byte 0x08CE4CD8
 
-	thumb_func_start sub_080AA978
-sub_080AA978: @ 0x080AA978
+	thumb_func_start StartSpriteAnimfx
+StartSpriteAnimfx: @ 0x080AA978
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -933,7 +933,7 @@ _080AA9BC:
 	mov r0, r8
 	mov r1, sb
 	ldr r2, [sp, #0x24]
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	add sp, #8
 	pop {r3, r4}
 	mov r8, r3
@@ -945,8 +945,8 @@ _080AA9BC:
 _080AA9E4: .4byte 0x000003FF
 _080AA9E8: .4byte 0x06010000
 
-	thumb_func_start sub_080AA9EC
-sub_080AA9EC: @ 0x080AA9EC
+	thumb_func_start GetBgXOffset
+GetBgXOffset: @ 0x080AA9EC
 	cmp r0, #1
 	beq _080AAA10
 	cmp r0, #1
@@ -986,8 +986,8 @@ _080AAA2C:
 	.align 2, 0
 _080AAA30: .4byte 0x03002870
 
-	thumb_func_start sub_080AAA34
-sub_080AAA34: @ 0x080AAA34
+	thumb_func_start GetBgYOffset
+GetBgYOffset: @ 0x080AAA34
 	cmp r0, #1
 	beq _080AAA58
 	cmp r0, #1
@@ -1027,8 +1027,8 @@ _080AAA74:
 	.align 2, 0
 _080AAA78: .4byte 0x03002870
 
-	thumb_func_start sub_080AAA7C
-sub_080AAA7C: @ 0x080AAA7C
+	thumb_func_start AppendString
+AppendString: @ 0x080AAA7C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -1044,8 +1044,8 @@ sub_080AAA7C: @ 0x080AAA7C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080AAA9C
-sub_080AAA9C: @ 0x080AAA9C
+	thumb_func_start AppendCharacter
+AppendCharacter: @ 0x080AAA9C
 	strb r0, [r1]
 	adds r1, #1
 	movs r0, #0
@@ -1093,7 +1093,7 @@ _080AAAD8:
 	adds r1, r4, #0
 	bl GetMsgTo
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	ldr r0, _080AAB10 @ =0x0000118B
 	adds r1, r4, #0
@@ -1109,7 +1109,7 @@ _080AAB14:
 	adds r1, r6, #0
 	bl GetMsgTo
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	cmp r4, #9
 	ble _080AAB46
@@ -1122,7 +1122,7 @@ _080AAB14:
 	adds r1, r6, #0
 	bl GetMsgTo
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 _080AAB46:
 	adds r0, r4, #0
@@ -1134,7 +1134,7 @@ _080AAB46:
 	adds r1, r6, #0
 	bl GetMsgTo
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	adds r0, r7, #0
 	bl GetChapterInfo
@@ -1157,7 +1157,7 @@ _080AAB76:
 	adds r1, r6, #0
 	bl GetMsgTo
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 _080AAB94:
 	ldr r4, _080AABCC @ =0x0000118B
@@ -1165,14 +1165,14 @@ _080AAB94:
 	adds r1, r6, #0
 	bl GetMsgTo
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	adds r0, r4, #0
 	adds r1, r6, #0
 _080AABAA:
 	bl GetMsgTo
 	adds r1, r5, #0
-	bl sub_080AAA7C
+	bl AppendString
 	adds r5, r0, #0
 	add sp, #0x48
 	pop {r4, r5, r6, r7}
@@ -1192,7 +1192,7 @@ sub_080AABD0: @ 0x080AABD0
 	adds r6, r1, #0
 	ldr r0, [r5]
 	mov r1, sp
-	bl sub_08005658
+	bl GetCharTextLen
 	adds r4, r0, #0
 	ldr r1, [r5]
 	subs r4, r4, r1
@@ -1229,7 +1229,7 @@ sub_080AAC10: @ 0x080AAC10
 	movs r0, #0
 	str r0, [sp]
 	movs r2, #0
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -1245,7 +1245,7 @@ sub_080AAC2C: @ 0x080AAC2C
 	str r1, [sp]
 	adds r1, r2, #0
 	movs r3, #0x20
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -1263,12 +1263,12 @@ sub_080AAC48: @ 0x080AAC48
 	blt _080AAC60
 	movs r0, #0xe4
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080AAC60:
 	ldr r0, [r4, #0x2c]
 	ldr r1, [r4, #0x30]
 	ldr r2, [r4, #0x58]
-	bl sub_08081940
+	bl StartHelpBox_Unk
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -1295,9 +1295,9 @@ sub_080AAC74: @ 0x080AAC74
 	cmp r0, #0
 	blt _080AAC9E
 	ldr r0, _080AACB4 @ =0x00000391
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080AAC9E:
-	bl sub_08081B44
+	bl CloseHelpBox
 _080AACA2:
 	pop {r0}
 	bx r0
@@ -1307,8 +1307,8 @@ _080AACAC: .4byte 0x0000030B
 _080AACB0: .4byte 0x0202BBF8
 _080AACB4: .4byte 0x00000391
 
-	thumb_func_start sub_080AACB8
-sub_080AACB8: @ 0x080AACB8
+	thumb_func_start StartBonusClaimHelpBox
+StartBonusClaimHelpBox: @ 0x080AACB8
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1345,8 +1345,8 @@ sub_080AACD8: @ 0x080AACD8
 	.align 2, 0
 _080AACFC: .4byte 0x02020140
 
-	thumb_func_start sub_080AAD00
-sub_080AAD00: @ 0x080AAD00
+	thumb_func_start CountDigits
+CountDigits: @ 0x080AAD00
 	push {r4, lr}
 	movs r4, #0
 _080AAD04:
@@ -1440,8 +1440,8 @@ _080AAD90:
 	adds r0, r2, #0
 	bx lr
 
-	thumb_func_start sub_080AAD94
-sub_080AAD94: @ 0x080AAD94
+	thumb_func_start CountSecretSoundRoomSongs
+CountSecretSoundRoomSongs: @ 0x080AAD94
 	push {r4, r5, lr}
 	movs r3, #0
 	movs r4, #0
@@ -1474,8 +1474,8 @@ _080AADC4:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080AADCC
-sub_080AADCC: @ 0x080AADCC
+	thumb_func_start IsSoundRoomSongPlayable
+IsSoundRoomSongPlayable: @ 0x080AADCC
 	asrs r3, r1, #5
 	lsls r3, r3, #2
 	adds r3, r3, r0
@@ -1495,8 +1495,8 @@ _080AADE8:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080AADEC
-sub_080AADEC: @ 0x080AADEC
+	thumb_func_start CountDisplayedSoundRoomSongs
+CountDisplayedSoundRoomSongs: @ 0x080AADEC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	movs r2, #0
@@ -1572,7 +1572,7 @@ sub_080AAE40: @ 0x080AAE40
 	adds r5, #0x33
 	strb r4, [r5]
 	mov r0, sp
-	bl sub_0809F68C
+	bl LoadAndVerifySoundRoomData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080AAF76
@@ -1631,7 +1631,7 @@ _080AAED6:
 	cmp r0, #0
 	bge _080AAE9C
 _080AAEE8:
-	bl sub_080AAD94
+	bl CountSecretSoundRoomSongs
 	adds r1, r0, #0
 	movs r0, #0x64
 	mov r2, r8
@@ -1704,7 +1704,7 @@ _080AAF68:
 	bge _080AAF10
 _080AAF76:
 	adds r0, r7, #0
-	bl sub_080AADEC
+	bl CountDisplayedSoundRoomSongs
 	adds r1, r7, #0
 	adds r1, #0x36
 	strb r0, [r1]
@@ -1725,8 +1725,8 @@ sub_080AAF9C: @ 0x080AAF9C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080AAFA0
-sub_080AAFA0: @ 0x080AAFA0
+	thumb_func_start SoundRoomSongChange_FadeOutPrevious
+SoundRoomSongChange_FadeOutPrevious: @ 0x080AAFA0
 	push {r4, lr}
 	sub sp, #4
 	ldr r4, [r0, #0x14]
@@ -1736,7 +1736,7 @@ sub_080AAFA0: @ 0x080AAFA0
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0x78
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	adds r4, #0x3f
 	movs r0, #1
 	strb r0, [r4]
@@ -1760,13 +1760,13 @@ sub_080AAFC4: @ 0x080AAFC4
 	ldrsb r1, [r0, r1]
 	adds r0, r4, #0
 	movs r2, #0
-	bl sub_080ABAB4
+	bl StartSoundRoomSong
 	adds r0, r4, #0
 	adds r0, #0x32
 	ldrb r0, [r0]
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
-	bl sub_080AC384
+	bl DrawSoundRoomSongTitle
 	ldr r0, [r5, #0x14]
 	bl sub_080AB4EC
 	ldr r1, [r5, #0x14]
@@ -1780,8 +1780,8 @@ sub_080AAFC4: @ 0x080AAFC4
 	.align 2, 0
 _080AB008: .4byte 0x08CE548C
 
-	thumb_func_start sub_080AB00C
-sub_080AB00C: @ 0x080AB00C
+	thumb_func_start PlayNextShuffledSong
+PlayNextShuffledSong: @ 0x080AB00C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080AB044 @ =0x08CE5490
@@ -1814,8 +1814,8 @@ _080AB03C:
 _080AB044: .4byte 0x08CE5490
 _080AB048: .4byte 0x08CE548C
 
-	thumb_func_start sub_080AB04C
-sub_080AB04C: @ 0x080AB04C
+	thumb_func_start InitSoundRoomShuffleBuffer
+InitSoundRoomShuffleBuffer: @ 0x080AB04C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2001,7 +2001,7 @@ _080AB1AA:
 	ldr r1, [sp]
 	strb r0, [r1]
 	mov r0, sb
-	bl sub_080AB00C
+	bl PlayNextShuffledSong
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -2036,7 +2036,7 @@ _080AB1D6:
 	adds r0, r4, #0
 	adds r1, r2, #0
 	movs r2, #0x20
-	bl sub_080ABAB4
+	bl StartSoundRoomSong
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080AB20E
@@ -2045,7 +2045,7 @@ _080AB1D6:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
-	bl sub_080AC384
+	bl DrawSoundRoomSongTitle
 	movs r0, #1
 	b _080AB220
 _080AB20E:
@@ -2089,7 +2089,7 @@ _080AB236:
 	adds r0, r4, #0
 	adds r1, r2, #0
 	movs r2, #0x20
-	bl sub_080ABAB4
+	bl StartSoundRoomSong
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080AB26E
@@ -2098,7 +2098,7 @@ _080AB236:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
-	bl sub_080AC384
+	bl DrawSoundRoomSongTitle
 	movs r0, #1
 	b _080AB280
 _080AB26E:
@@ -2118,8 +2118,8 @@ _080AB280:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080AB288
-sub_080AB288: @ 0x080AB288
+	thumb_func_start UpdateVolumeGraphBuffer
+UpdateVolumeGraphBuffer: @ 0x080AB288
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -2150,8 +2150,8 @@ _080AB29C:
 	.align 2, 0
 _080AB2BC: .4byte 0x0201EA9C
 
-	thumb_func_start sub_080AB2C0
-sub_080AB2C0: @ 0x080AB2C0
+	thumb_func_start InitSoundRoomVolumeGraph
+InitSoundRoomVolumeGraph: @ 0x080AB2C0
 	push {r4, r5, lr}
 	movs r1, #0
 	ldr r5, _080AB2F8 @ =0x08413C9C
@@ -2317,12 +2317,12 @@ _080AB3E6:
 	adds r0, r0, r5
 	asrs r1, r0, #2
 	movs r0, #0
-	bl sub_080AB288
+	bl UpdateVolumeGraphBuffer
 	lsls r0, r7, #1
 	adds r0, r0, r7
 	asrs r1, r0, #2
 	movs r0, #1
-	bl sub_080AB288
+	bl UpdateVolumeGraphBuffer
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -2372,7 +2372,7 @@ sub_080AB440: @ 0x080AB440
 	ldr r2, _080AB4BC @ =0x01000008
 	bl CpuSet
 	mov r0, sp
-	bl sub_0809F7B0
+	bl LoadAndVerfyLinkArenaStruct2
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080AB4D6
@@ -2578,7 +2578,7 @@ _080AB5C6:
 	orrs r3, r0
 _080AB5D0:
 	adds r0, r3, #0
-	bl sub_080A8D54
+	bl SetUiSpinningArrowConfig
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -2601,7 +2601,7 @@ sub_080AB5DC: @ 0x080AB5DC
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #2
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r0}
 	bx r0
 
@@ -2672,7 +2672,7 @@ _080AB670: .4byte 0x02023C60
 _080AB674:
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_080AADCC
+	bl IsSoundRoomSongPlayable
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080AB686
@@ -2708,7 +2708,7 @@ _080AB69C:
 	movs r1, #1
 	movs r2, #0x14
 	movs r3, #0x14
-	bl sub_080063AC
+	bl PutTwoSpecialChar
 	b _080AB730
 	.align 2, 0
 _080AB6C4: .4byte 0x08CE4D28
@@ -2737,7 +2737,7 @@ _080AB6D8:
 	adds r0, r0, r1
 	adds r2, r4, #1
 	adds r1, r5, #0
-	bl sub_080061D8
+	bl PutNumber
 	b _080AB730
 	.align 2, 0
 _080AB700: .4byte 0x02023C60
@@ -2802,11 +2802,11 @@ sub_080AB75C: @ 0x080AB75C
 _080AB76E:
 	ldrb r2, [r1]
 	adds r1, r3, #0
-	bl sub_080061D8
+	bl PutNumber
 	ldr r0, _080AB788 @ =0x0201EA90
 	adds r1, r4, #0
 	adds r1, #8
-	bl sub_08005590
+	bl PutText
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -2881,7 +2881,7 @@ sub_080AB79C: @ 0x080AB79C
 	ands r2, r0
 	strb r2, [r7, #1]
 	movs r0, #0
-	bl sub_08001840
+	bl SetBlankChr
 	ldr r0, _080ABA68 @ =0x02022C60
 	movs r1, #0
 	bl TmFill
@@ -2936,25 +2936,25 @@ sub_080AB79C: @ 0x080AB79C
 	bl sub_080AB440
 	bl sub_080AC2C0
 	adds r0, r4, #0
-	bl sub_080ABB38
+	bl TryDrawSoundRoomSongTitle
 	adds r0, r4, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xa0
 	lsls r0, r0, #2
 	movs r1, #2
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	adds r0, r4, #0
-	bl sub_080A8CD4
+	bl StartUiSpinningArrows
 	movs r1, #0xd0
 	lsls r1, r1, #3
 	movs r0, #1
 	movs r2, #3
-	bl sub_080A8CE8
+	bl LoadUiSpinningArrowGfx
 	movs r0, #0x90
 	movs r1, #0x38
 	movs r2, #0x90
 	movs r3, #0x90
-	bl sub_080A8D70
+	bl SetUiSpinningArrowPositions
 	adds r0, r4, #0
 	bl sub_080AB5AC
 	adds r0, r4, #0
@@ -2977,19 +2977,19 @@ sub_080AB79C: @ 0x080AB79C
 	movs r1, #1
 	movs r2, #0x1a
 	movs r3, #6
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	str r5, [sp]
 	movs r0, #0xb
 	movs r1, #7
 	movs r2, #0x11
 	movs r3, #0xc
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	str r5, [sp]
 	movs r0, #2
 	movs r1, #0xb
 	movs r2, #9
 	movs r3, #8
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #0xb1
 	lsls r0, r0, #2
 	add r0, sl
@@ -3003,7 +3003,7 @@ sub_080AB79C: @ 0x080AB79C
 	movs r1, #7
 	movs r2, #9
 	movs r3, #4
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r3, #0xb6
 	lsls r3, r3, #1
 	add sl, r3
@@ -3122,10 +3122,10 @@ sub_080AB79C: @ 0x080AB79C
 	strh r0, [r7, #0x3c]
 	adds r0, r4, #0
 	bl StartGreenText
-	bl sub_080AB2C0
+	bl InitSoundRoomVolumeGraph
 	ldr r0, _080ABAAC @ =sub_080AB78C
 	adds r1, r4, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r0, _080ABAB0 @ =0x08CE54B4
 	adds r1, r4, #0
 	bl SpawnProc
@@ -3159,14 +3159,14 @@ _080ABAA8: .4byte 0x0000E0FF
 _080ABAAC: .4byte sub_080AB78C
 _080ABAB0: .4byte 0x08CE54B4
 
-	thumb_func_start sub_080ABAB4
-sub_080ABAB4: @ 0x080ABAB4
+	thumb_func_start StartSoundRoomSong
+StartSoundRoomSong: @ 0x080ABAB4
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r4, r0, #0
 	adds r5, r1, #0
 	adds r6, r2, #0
-	bl sub_080041C0
+	bl MusicProc4Exists
 	lsls r0, r0, #0x18
 	asrs r3, r0, #0x18
 	cmp r3, #0
@@ -3185,7 +3185,7 @@ sub_080ABAB4: @ 0x080ABAB4
 	str r3, [sp]
 	adds r1, r2, #0
 	adds r3, r6, #0
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	movs r0, #1
 	b _080ABAF6
 	.align 2, 0
@@ -3199,12 +3199,12 @@ _080ABAF6:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080ABB00
-sub_080ABB00: @ 0x080ABB00
+	thumb_func_start StopSoundRoomSong
+StopSoundRoomSong: @ 0x080ABB00
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
-	bl sub_080041C0
+	bl MusicProc4Exists
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #0
@@ -3217,7 +3217,7 @@ sub_080ABB00: @ 0x080ABB00
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0x18
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	adds r0, r5, #0
 	adds r0, #0x2f
 	strb r4, [r0]
@@ -3229,23 +3229,23 @@ _080ABB30:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080ABB38
-sub_080ABB38: @ 0x080ABB38
+	thumb_func_start TryDrawSoundRoomSongTitle
+TryDrawSoundRoomSongTitle: @ 0x080ABB38
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r4, #0x35
 	ldrb r1, [r4]
-	bl sub_080AADCC
+	bl IsSoundRoomSongPlayable
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080ABB52
 	ldrb r0, [r4]
-	bl sub_080AC384
+	bl DrawSoundRoomSongTitle
 	b _080ABB5A
 _080ABB52:
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_080AC384
+	bl DrawSoundRoomSongTitle
 _080ABB5A:
 	pop {r4}
 	pop {r0}
@@ -3338,7 +3338,7 @@ _080ABBEC:
 _080ABBF8:
 	strb r0, [r2]
 	adds r0, r4, #0
-	bl sub_080ABB38
+	bl TryDrawSoundRoomSongTitle
 	adds r0, r4, #0
 	bl sub_080AB604
 	adds r5, r4, #0
@@ -3431,7 +3431,7 @@ _080ABCB4:
 	cmp r0, #0
 	beq _080ABCC4
 	adds r0, r4, #0
-	bl sub_080ABB00
+	bl StopSoundRoomSong
 	b _080ABD44
 _080ABCC4:
 	movs r0, #1
@@ -3442,14 +3442,14 @@ _080ABCC4:
 	adds r5, #0x35
 	ldrb r1, [r5]
 	adds r0, r4, #0
-	bl sub_080AADCC
+	bl IsSoundRoomSongPlayable
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080ABCFC
 	ldrb r1, [r5]
 	adds r0, r4, #0
 	movs r2, #0x20
-	bl sub_080ABAB4
+	bl StartSoundRoomSong
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080ABD44
@@ -3467,7 +3467,7 @@ _080ABCFC:
 	blt _080ABD44
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080ABD44
 	.align 2, 0
 _080ABD14: .4byte 0x0202BBF8
@@ -3476,7 +3476,7 @@ _080ABD18:
 	ands r0, r1
 	cmp r0, #0
 	beq _080ABD34
-	bl sub_080041C0
+	bl MusicProc4Exists
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080ABD44
@@ -3503,7 +3503,7 @@ sub_080ABD4C: @ 0x080ABD4C
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
-	bl sub_080041C0
+	bl MusicProc4Exists
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #0
@@ -3513,7 +3513,7 @@ sub_080ABD4C: @ 0x080ABD4C
 	movs r1, #0
 	movs r2, #0xc0
 	movs r3, #0x18
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	adds r0, r4, #0
 	bl Proc_Break
 _080ABD72:
@@ -3526,7 +3526,7 @@ _080ABD72:
 	thumb_func_start sub_080ABD7C
 sub_080ABD7C: @ 0x080ABD7C
 	push {lr}
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	ldr r0, _080ABD8C @ =0x08CE54B4
 	bl Proc_EndEach
 	pop {r0}
@@ -3717,7 +3717,7 @@ sub_080ABEF4: @ 0x080ABEF4
 	movs r1, #0
 	movs r2, #0
 	movs r3, #0x1a
-	bl sub_08049B78
+	bl PutUiWindowFrame
 	ldr r0, [r6]
 	movs r1, #4
 	str r1, [sp]
@@ -3726,7 +3726,7 @@ sub_080ABEF4: @ 0x080ABEF4
 	movs r1, #0
 	movs r2, #7
 	movs r3, #9
-	bl sub_08049B78
+	bl PutUiWindowFrame
 	ldr r0, [r6]
 	movs r1, #0xb0
 	lsls r1, r1, #2
@@ -3744,7 +3744,7 @@ sub_080ABEF4: @ 0x080ABEF4
 	movs r1, #0xa
 	movs r2, #7
 	movs r3, #0x11
-	bl sub_08049B78
+	bl PutUiWindowFrame
 	ldr r0, [r6]
 	ldr r1, _080ABFB4 @ =0x000004D4
 	adds r0, r0, r1
@@ -3767,9 +3767,9 @@ sub_080ABEF4: @ 0x080ABEF4
 	ldr r1, _080ABFC4 @ =0x08413D90
 	mov r2, r8
 	bl TmApplyTsa_t
-	bl sub_080A9564
+	bl HideSysHandCursor
 	movs r0, #0
-	bl sub_080A8D54
+	bl SetUiSpinningArrowConfig
 	movs r0, #0x3a
 	add sb, r0
 	mov r1, sb
@@ -3878,11 +3878,11 @@ _080AC068:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080AC070
-sub_080AC070: @ 0x080AC070
+	thumb_func_start SoundRoomUi_80AFCE4
+SoundRoomUi_80AFCE4: @ 0x080AC070
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080ABB38
+	bl TryDrawSoundRoomSongTitle
 	adds r4, #0x3a
 	movs r0, #0
 	strb r0, [r4]
@@ -3929,15 +3929,15 @@ _080AC0CA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AC0D0
-sub_080AC0D0: @ 0x080AC0D0
+	thumb_func_start SoundRoomUi_80AFD48
+SoundRoomUi_80AFD48: @ 0x080AC0D0
 	push {lr}
 	adds r2, r0, #0
 	adds r2, #0x3a
 	movs r1, #0
 	strb r1, [r2]
 	strh r1, [r0, #0x2c]
-	bl sub_080AB04C
+	bl InitSoundRoomShuffleBuffer
 	pop {r0}
 	bx r0
 
@@ -4041,7 +4041,7 @@ sub_080AC174: @ 0x080AC174
 	cmp r1, r0
 	blt _080AC1B4
 	adds r0, r4, #0
-	bl sub_080AB00C
+	bl PlayNextShuffledSong
 	b _080AC216
 	.align 2, 0
 _080AC1B0: .4byte 0x08CE4D28
@@ -4259,8 +4259,8 @@ _080AC378: .4byte 0x0001FFFF
 _080AC37C: .4byte 0x000003FF
 _080AC380: .4byte 0x08418E40
 
-	thumb_func_start sub_080AC384
-sub_080AC384: @ 0x080AC384
+	thumb_func_start DrawSoundRoomSongTitle
+DrawSoundRoomSongTitle: @ 0x080AC384
 	push {r4, r5, lr}
 	adds r1, r0, #0
 	movs r0, #1
@@ -4289,7 +4289,7 @@ _080AC3A6:
 	adds r4, #0x18
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	movs r0, #0xa0
 	adds r1, r5, #0
 	bl GetStringTextCenteredPos
@@ -4373,7 +4373,7 @@ sub_080AC3F8: @ 0x080AC3F8
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	movs r4, #0
 	ldr r6, _080AC4BC @ =0x0201EA98
 	movs r5, #0x28
@@ -4391,7 +4391,7 @@ _080AC482:
 	lsls r2, r2, #1
 	add r2, sl
 	ldr r3, _080AC4C0 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x20
 	adds r4, #1
 	cmp r4, #4
@@ -4410,8 +4410,8 @@ _080AC4B8: .4byte 0x080C5A48
 _080AC4BC: .4byte 0x0201EA98
 _080AC4C0: .4byte 0x08B905F8
 
-	thumb_func_start sub_080AC4C4
-sub_080AC4C4: @ 0x080AC4C4
+	thumb_func_start DrawSoundRoomVolumeGraphSprites
+DrawSoundRoomVolumeGraphSprites: @ 0x080AC4C4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -4441,7 +4441,7 @@ _080AC4E8:
 	movs r0, #0
 	mov r2, r8
 	ldr r3, _080AC548 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	adds r6, #1
 	cmp r6, #2
@@ -4468,7 +4468,7 @@ _080AC514:
 	str r0, [sp]
 	movs r0, #0
 	mov r2, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 _080AC532:
 	add sp, #4
 	pop {r3, r4}
@@ -4502,7 +4502,7 @@ _080AC55A:
 	adds r0, #0x18
 	adds r1, r6, #0
 	adds r2, r3, #0
-	bl sub_080AC4C4
+	bl DrawSoundRoomVolumeGraphSprites
 	adds r6, #8
 	adds r5, #0x31
 	subs r4, #1
@@ -4514,8 +4514,8 @@ _080AC55A:
 	.align 2, 0
 _080AC584: .4byte 0x0201EA9C
 
-	thumb_func_start sub_080AC588
-sub_080AC588: @ 0x080AC588
+	thumb_func_start DrawMusicPlayerTime
+DrawMusicPlayerTime: @ 0x080AC588
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -4541,7 +4541,7 @@ sub_080AC588: @ 0x080AC588
 	movs r0, #0
 	adds r1, r6, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r1, r6, #0
 	adds r1, #0x28
 	ldr r0, _080AC614 @ =0x08CE56BC
@@ -4552,14 +4552,14 @@ sub_080AC588: @ 0x080AC588
 	str r5, [sp]
 	movs r0, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r1, r6, #0
 	adds r1, #0x30
 	ldr r3, _080AC618 @ =0x08CE5662
 	str r5, [sp]
 	movs r0, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	mov r0, r8
 	cmp r0, #9
 	ble _080AC61C
@@ -4574,7 +4574,7 @@ sub_080AC588: @ 0x080AC588
 	movs r0, #0
 	adds r1, r4, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080AC62E
 	.align 2, 0
 _080AC610: .4byte 0x08CE5654
@@ -4588,7 +4588,7 @@ _080AC61C:
 	str r5, [sp]
 	movs r0, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _080AC62E:
 	adds r5, r6, #0
 	adds r5, #0x40
@@ -4605,7 +4605,7 @@ _080AC62E:
 	movs r0, #0
 	adds r1, r5, #0
 	adds r2, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r3, r4}
 	mov r8, r3
@@ -4665,7 +4665,7 @@ sub_080AC66C: @ 0x080AC66C
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r2, r4, #1
 	ands r2, r5
 	ldr r3, _080AC770 @ =0x08CE562C
@@ -4674,7 +4674,7 @@ sub_080AC66C: @ 0x080AC66C
 	str r5, [sp]
 	movs r0, #0
 	movs r1, #0x88
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrh r1, [r6, #0x2c]
 	lsls r0, r1, #5
 	adds r0, r0, r1
@@ -4697,11 +4697,11 @@ sub_080AC66C: @ 0x080AC66C
 	str r5, [sp]
 	movs r0, #0
 	adds r2, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldrh r2, [r6, #0x2c]
 	movs r0, #0x3c
 	adds r1, r4, #0
-	bl sub_080AC588
+	bl DrawMusicPlayerTime
 _080AC712:
 	adds r6, #0x3d
 	movs r1, #0
@@ -4716,7 +4716,7 @@ _080AC712:
 	str r4, [sp]
 	movs r0, #0xb
 	movs r2, #0x58
-	bl sub_080069F4
+	bl PutSprite
 	movs r1, #0
 	ldrsb r1, [r6, r1]
 	lsls r1, r1, #3
@@ -4726,7 +4726,7 @@ _080AC712:
 	str r4, [sp]
 	movs r0, #0xb
 	movs r2, #0x68
-	bl sub_080069F4
+	bl PutSprite
 	movs r1, #0
 	ldrsb r1, [r6, r1]
 	lsls r1, r1, #3
@@ -4736,7 +4736,7 @@ _080AC712:
 	str r4, [sp]
 	movs r0, #0xb
 	movs r2, #0x78
-	bl sub_080069F4
+	bl PutSprite
 	adds r0, r7, #0
 	bl sub_080AC54C
 	add sp, #4
@@ -4770,7 +4770,7 @@ sub_080AC7A0: @ 0x080AC7A0
 	adds r0, #0x4c
 	movs r1, #0
 	strh r1, [r0]
-	bl sub_080136AC
+	bl ArchiveCurrentPalettes
 	pop {r0}
 	bx r0
 
@@ -4793,7 +4793,7 @@ sub_080AC7B0: @ 0x080AC7B0
 	adds r0, r4, #0
 	adds r1, r4, #0
 	adds r2, r4, #0
-	bl sub_08013728
+	bl WriteFadedPaletteFromArchive
 	cmp r4, #0
 	bne _080AC7E0
 	adds r0, r5, #0
@@ -4817,13 +4817,13 @@ sub_080AC7E8: @ 0x080AC7E8
 	movs r2, #8
 	movs r3, #8
 	bl PutCgBackground
-	bl sub_080136AC
+	bl ArchiveCurrentPalettes
 	movs r3, #0xff
 	lsls r3, r3, #8
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
-	bl sub_08013728
+	bl WriteFadedPaletteFromArchive
 	movs r0, #8
 	bl EnableBgSync
 	adds r4, #0x4c
@@ -4852,7 +4852,7 @@ sub_080AC82C: @ 0x080AC82C
 	adds r0, r4, #0
 	adds r1, r4, #0
 	adds r2, r4, #0
-	bl sub_08013728
+	bl WriteFadedPaletteFromArchive
 	movs r0, #0x80
 	lsls r0, r0, #1
 	cmp r4, r0
@@ -5042,7 +5042,7 @@ sub_080AC940: @ 0x080AC940
 	ands r0, r1
 	strb r0, [r4, #1]
 	adds r0, r5, #0
-	bl sub_080A5CE0
+	bl StartSpinRotation
 	str r0, [r5, #0x54]
 	movs r0, #3
 	ldrb r2, [r4, #0xc]
@@ -5107,7 +5107,7 @@ sub_080ACA48: @ 0x080ACA48
 	movs r0, #4
 	movs r1, #0x38
 	movs r2, #8
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, _080ACA8C @ =0x08CE456C
 	ldr r0, [r4, #0x58]
 	lsls r0, r0, #2
@@ -5119,7 +5119,7 @@ sub_080ACA48: @ 0x080ACA48
 	movs r0, #4
 	movs r1, #0x40
 	movs r2, #0x10
-	bl sub_08006A34
+	bl PutSpriteExt
 _080ACA80:
 	add sp, #4
 	pop {r4}
@@ -5165,7 +5165,7 @@ sub_080ACABC: @ 0x080ACABC
 	movs r0, #4
 	movs r1, #0xc
 	movs r2, #8
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, _080ACAF4 @ =0x08CE45A8
 	ldr r3, [r0]
 	movs r0, #0x90
@@ -5174,7 +5174,7 @@ sub_080ACABC: @ 0x080ACABC
 	movs r0, #4
 	movs r1, #0x18
 	movs r2, #0x10
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -5214,21 +5214,21 @@ _080ACB28:
 	movs r0, #1
 	orrs r0, r4
 	movs r1, #0x18
-	bl sub_08082058
+	bl PutChapterTitlePalette
 	adds r0, r4, #0
 	movs r1, #0x19
-	bl sub_08082058
+	bl PutChapterTitlePalette
 	bl EnablePalSync
 	movs r0, #0xac
 	lsls r0, r0, #4
-	bl sub_080823E0
+	bl PutChapterTitleBG
 	movs r4, #0xb4
 	lsls r4, r4, #4
 	adds r0, r5, #0
-	bl sub_080824A4
+	bl GetChapterTitle
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08082308
+	bl PutChapterTitleGfx
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -5312,7 +5312,7 @@ sub_080ACBC8: @ 0x080ACBC8
 	ldr r2, _080ACC40 @ =0x01000142
 	bl CpuSet
 	ldr r0, [r4]
-	bl sub_0809F134
+	bl LoadBonusContentData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080ACCCE
@@ -5366,7 +5366,7 @@ _080ACC5A:
 	movs r6, #0
 	strb r3, [r0]
 	str r3, [sp, #4]
-	bl sub_080A057C
+	bl GetBonusContentClaimFlags
 	movs r2, #1
 	adds r1, r2, #0
 	ldr r3, [sp, #4]
@@ -5416,7 +5416,7 @@ _080ACCB6:
 	str r1, [r0]
 	ldr r0, _080ACCDC @ =0x08CE5778
 	ldr r0, [r0]
-	bl sub_0809F190
+	bl SaveBonusContentData
 _080ACCCE:
 	mov r2, r8
 	cmp r2, #0
@@ -5533,7 +5533,7 @@ _080ACDA0:
 	mov r0, r8
 	ldr r2, [sp, #0xc]
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r0, sl
 	adds r0, #0x16
 	adds r5, r4, r0
@@ -5547,14 +5547,14 @@ _080ACDCA:
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r7, #0
 	bl GetItemIcon
 	adds r1, r0, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
 	mov r0, sb
-	bl sub_08004E28
+	bl PutIcon
 	b _080ACE1C
 _080ACDEE:
 	adds r0, r7, #0
@@ -5568,14 +5568,14 @@ _080ACDEE:
 	mov r0, r8
 	ldr r2, [sp, #0xc]
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r7, #0
 	bl GetItemIcon
 	adds r1, r0, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
 	mov r0, sb
-	bl sub_08004E28
+	bl PutIcon
 _080ACE1C:
 	movs r0, #4
 	bl EnableBgSync
@@ -5590,8 +5590,8 @@ _080ACE22:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080ACE34
-sub_080ACE34: @ 0x080ACE34
+	thumb_func_start SetBonusItemClaimed
+SetBonusItemClaimed: @ 0x080ACE34
 	push {r4, r5, lr}
 	ldr r1, _080ACE5C @ =0x08CE577C
 	lsls r0, r0, #2
@@ -5599,12 +5599,12 @@ sub_080ACE34: @ 0x080ACE34
 	adds r4, r4, r0
 	movs r5, #0
 	ldrsb r5, [r4, r5]
-	bl sub_080A057C
+	bl GetBonusContentClaimFlags
 	adds r1, r0, #0
 	movs r0, #1
 	lsls r0, r5
 	orrs r0, r1
-	bl sub_080A0588
+	bl SetBonusContentClaimFlags
 	movs r0, #0
 	strb r0, [r4, #1]
 	pop {r4, r5}
@@ -5661,8 +5661,8 @@ _080ACE88:
 	str r2, [r1, #4]
 	adds r4, #1
 	adds r0, r2, #0
-	bl sub_08017610
-	bl sub_08024DEC
+	bl GetUnitSMSId
+	bl UseUnitSprite
 	b _080ACEEA
 	.align 2, 0
 _080ACEC4: .4byte 0x0202BBF8
@@ -5678,8 +5678,8 @@ _080ACED0:
 	str r2, [r1, #4]
 	adds r4, #1
 	adds r0, r2, #0
-	bl sub_08017610
-	bl sub_08024DEC
+	bl GetUnitSMSId
+	bl UseUnitSprite
 _080ACEEA:
 	adds r5, #1
 	cmp r5, #0x3f
@@ -5705,25 +5705,25 @@ sub_080ACF08: @ 0x080ACF08
 	movs r1, #6
 	movs r2, #0x12
 	movs r3, #0xc
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #1
 	str r0, [sp]
 	movs r0, #0x12
 	movs r1, #0x11
 	movs r2, #0xa
 	movs r3, #3
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	ldr r4, _080ACF58 @ =0x02023112
 	bl GetGold
 	adds r2, r0, #0
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r4, #2
 	adds r0, r4, #0
 	movs r1, #3
 	movs r2, #0x1e
-	bl sub_0800615C
+	bl PutSpecialChar
 	movs r0, #3
 	bl EnableBgSync
 	add sp, #4
@@ -5902,7 +5902,7 @@ _080AD0A4:
 	bl InitText
 	ldr r0, _080AD19C @ =sub_080ACABC
 	adds r1, r6, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	movs r0, #2
 	bl EnableBgSync
 	ldr r0, _080AD1A0 @ =sub_080ACB64
@@ -5927,11 +5927,11 @@ _080AD0A4:
 	movs r0, #2
 	bl SetBgOffset
 	adds r0, r6, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	ldr r2, [sp]
 	ldrb r2, [r2]
 	lsls r1, r2, #4
@@ -5943,32 +5943,32 @@ _080AD0A4:
 	lsls r3, r3, #4
 	movs r0, #0x40
 	movs r2, #0xd
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	adds r0, r6, #0
 	bl StartGreenText
 	adds r0, r6, #0
-	bl sub_08090490
+	bl StartMenuScrollBar
 	movs r0, #0xb0
 	movs r1, #0x44
-	bl sub_080904A4
+	bl PutMenuScrollBarAt
 	movs r0, #0x80
 	lsls r0, r0, #2
 	movs r1, #2
-	bl sub_080904F8
+	bl InitMenuScrollBarImg
 	ldrh r1, [r6, #0x2c]
 	ldr r0, _080AD194 @ =0x08CE5780
 	ldr r0, [r0]
 	ldrh r2, [r0]
 	movs r0, #7
 	movs r3, #5
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 	adds r0, r6, #0
-	bl sub_080A89B4
+	bl StartUiCursorHand
 	adds r0, r6, #0
 	bl sub_080ACE60
 	ldr r0, _080AD1A8 @ =0x06013800
 	movs r1, #5
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -6024,7 +6024,7 @@ _080AD1CC:
 	adds r0, r0, r1
 	movs r4, #0
 	ldrsb r4, [r0, r4]
-	bl sub_080A057C
+	bl GetBonusContentClaimFlags
 	adds r1, r7, #0
 	lsls r1, r4
 	ands r1, r0
@@ -6035,7 +6035,7 @@ _080AD1CC:
 	ldr r2, _080AD210 @ =0x00000763
 	adds r0, r1, #0
 	adds r3, r5, #0
-	bl sub_080AACB8
+	bl StartBonusClaimHelpBox
 	b _080AD402
 	.align 2, 0
 _080AD208: .4byte 0x08B857F8
@@ -6078,7 +6078,7 @@ _080AD240:
 	b _080AD402
 _080AD256:
 	ldr r0, _080AD264 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080AD402
 	.align 2, 0
 _080AD260: .4byte 0x0202BBF8
@@ -6088,7 +6088,7 @@ _080AD268:
 	cmp r1, #0x97
 	bne _080AD274
 	ldr r0, _080AD29C @ =0x00000BB8
-	bl sub_08023928
+	bl AddGold
 _080AD274:
 	ldr r0, [r7]
 	adds r0, r0, r4
@@ -6096,10 +6096,10 @@ _080AD274:
 	cmp r0, #0x98
 	bne _080AD284
 	ldr r0, _080AD2A0 @ =0x00001388
-	bl sub_08023928
+	bl AddGold
 _080AD284:
 	ldrb r0, [r6]
-	bl sub_080ACE34
+	bl SetBonusItemClaimed
 	ldrb r0, [r6]
 	bl sub_080ACCF4
 	adds r0, r5, #0
@@ -6120,7 +6120,7 @@ _080AD2A4:
 _080AD2B2:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080AD402
 	.align 2, 0
 _080AD2BC: .4byte 0x0202BBF8
@@ -6140,7 +6140,7 @@ _080AD2C0:
 	b _080AD402
 _080AD2DC:
 	ldr r0, _080AD2E8 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080AD402
 	.align 2, 0
 _080AD2E4: .4byte 0x0202BBF8
@@ -6176,7 +6176,7 @@ _080AD302:
 	cmp r0, #0
 	blt _080AD328
 	ldr r0, _080AD354 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080AD328:
 	strb r4, [r6]
 	ldrb r2, [r6]
@@ -6236,7 +6236,7 @@ _080AD390:
 	lsls r3, r3, #4
 	movs r0, #0x40
 	movs r2, #0xd
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _080AD3A8:
 	adds r0, r5, #0
 	adds r0, #0x2e
@@ -6284,7 +6284,7 @@ _080AD3E2:
 	ldrh r2, [r0]
 	movs r0, #7
 	movs r3, #5
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 _080AD402:
 	pop {r3}
 	mov r8, r3
@@ -6325,7 +6325,7 @@ _080AD426:
 	adds r2, r4, #0
 	movs r3, #0xc4
 	lsls r3, r3, #8
-	bl sub_0802619C
+	bl PutUnitSpriteForClassId
 	b _080AD468
 	.align 2, 0
 _080AD450: .4byte 0x08CE5788
@@ -6338,7 +6338,7 @@ _080AD454:
 	adds r2, r4, #0
 	movs r3, #0xf4
 	lsls r3, r3, #8
-	bl sub_0802619C
+	bl PutUnitSpriteForClassId
 _080AD468:
 	adds r4, #0x10
 	adds r5, #1
@@ -6348,7 +6348,7 @@ _080AD468:
 	cmp r5, r0
 	blt _080AD426
 _080AD476:
-	bl sub_08025518
+	bl SyncUnitSpriteSheet
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}
@@ -6393,7 +6393,7 @@ sub_080AD49C: @ 0x080AD49C
 	movs r0, #0xa
 	movs r1, #5
 	movs r2, #0xb
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	ldr r3, _080AD5B0 @ =0x03002870
 	movs r0, #0x20
 	ldrb r1, [r3, #1]
@@ -6445,7 +6445,7 @@ sub_080AD49C: @ 0x080AD49C
 	movs r0, #0
 	movs r1, #0x40
 	movs r3, #1
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	ldr r0, [sp, #4]
 	adds r0, #0x2a
 	ldrb r0, [r0]
@@ -6455,7 +6455,7 @@ sub_080AD49C: @ 0x080AD49C
 	lsls r3, r3, #4
 	movs r0, #0x58
 	movs r2, #8
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	cmp r5, #0
 	beq _080AD63A
 	ldr r0, _080AD5B4 @ =0x02022C7A
@@ -6485,7 +6485,7 @@ _080AD566:
 	ldrb r0, [r0, #4]
 	cmp r0, #0x28
 	bne _080AD5C0
-	bl sub_0802E770
+	bl GetConvoyItemCount
 	adds r5, r0, #0
 	cmp r5, #0x64
 	bne _080AD592
@@ -6494,7 +6494,7 @@ _080AD592:
 	adds r0, r6, #0
 	movs r1, #0
 	adds r2, r7, #0
-	bl sub_08005588
+	bl Text_SetParams
 	ldr r0, _080AD5BC @ =0x0000125A
 	bl GetMsg
 	adds r1, r0, #0
@@ -6509,7 +6509,7 @@ _080AD5B8: .4byte 0x08CE5788
 _080AD5BC: .4byte 0x0000125A
 _080AD5C0:
 	adds r0, r4, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r5, r0, #0
 	cmp r5, #5
 	bne _080AD5CE
@@ -6518,7 +6518,7 @@ _080AD5CE:
 	adds r0, r6, #0
 	movs r1, #0
 	adds r2, r7, #0
-	bl sub_08005588
+	bl Text_SetParams
 	ldr r0, [r4]
 	ldrh r0, [r0]
 	bl GetMsg
@@ -6544,7 +6544,7 @@ _080AD604:
 	strb r1, [r0]
 	adds r0, r6, #0
 	mov r1, sl
-	bl sub_08005590
+	bl PutText
 	movs r1, #1
 	cmp r7, #0
 	bne _080AD616
@@ -6552,7 +6552,7 @@ _080AD604:
 _080AD616:
 	ldr r0, [sp, #8]
 	adds r2, r5, #0
-	bl sub_080061D8
+	bl PutNumber
 	adds r6, #8
 	ldr r3, [sp, #8]
 	adds r3, #0x80
@@ -6570,7 +6570,7 @@ _080AD616:
 _080AD63A:
 	ldr r0, _080AD65C @ =sub_080AD414
 	ldr r1, [sp, #4]
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r1, [sp, #4]
 	str r0, [r1, #0x34]
 	add sp, #0xc
@@ -6624,7 +6624,7 @@ _080AD6A4: .4byte 0x08CE577C
 _080AD6A8: .4byte 0x08CE5774
 _080AD6AC:
 	adds r0, r4, #0
-	bl sub_080ACE34
+	bl SetBonusItemClaimed
 	ldrb r0, [r6]
 	bl sub_080ACCF4
 	ldr r0, [r7]
@@ -6633,14 +6633,14 @@ _080AD6AC:
 	bne _080AD6CC
 	adds r0, r5, #0
 	bl CreateItem
-	bl sub_0802E790
+	bl AddItemToConvoy
 	b _080AD6DA
 _080AD6CC:
 	adds r0, r5, #0
 	bl CreateItem
 	adds r1, r0, #0
 	adds r0, r7, #0
-	bl sub_08017654
+	bl UnitAddItem
 _080AD6DA:
 	movs r0, #1
 _080AD6DC:
@@ -6680,7 +6680,7 @@ _080AD718:
 	ldr r2, _080AD728 @ =0x00000764
 	adds r0, r1, #0
 	adds r3, r5, #0
-	bl sub_080AACB8
+	bl StartBonusClaimHelpBox
 	b _080AD7A6
 	.align 2, 0
 _080AD728: .4byte 0x00000764
@@ -6698,7 +6698,7 @@ _080AD72C:
 	cmp r0, #0
 	blt _080AD7A6
 	ldr r0, _080AD754 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080AD7A6
 	.align 2, 0
 _080AD750: .4byte 0x0202BBF8
@@ -6734,7 +6734,7 @@ _080AD76E:
 	cmp r0, #0
 	blt _080AD794
 	ldr r0, _080AD7B0 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080AD794:
 	strb r4, [r6]
 	lsls r1, r4, #4
@@ -6743,7 +6743,7 @@ _080AD794:
 	lsls r3, r3, #4
 	movs r0, #0x58
 	movs r2, #8
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _080AD7A6:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -6777,7 +6777,7 @@ sub_080AD7B4: @ 0x080AD7B4
 	movs r0, #3
 	bl EnableBgSync
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	adds r0, r4, #0
 	adds r0, #0x29
 	ldrb r0, [r0]
@@ -6790,7 +6790,7 @@ sub_080AD7B4: @ 0x080AD7B4
 	lsls r3, r3, #4
 	movs r0, #0x40
 	movs r2, #0xd
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6853,11 +6853,11 @@ sub_080AD820: @ 0x080AD820
 	bl EnableBgSync
 	adds r0, r4, #0
 	bl sub_080AD484
-	bl sub_080A05F4
-	bl sub_080A0810
+	bl ReadLastGameSaveId
+	bl WriteGameSave
 	movs r0, #0
 	str r0, [r4, #0x30]
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	ldrb r6, [r6]
 	lsls r1, r6, #4
 	movs r2, #0x2c
@@ -6868,13 +6868,13 @@ sub_080AD820: @ 0x080AD820
 	lsls r3, r3, #4
 	movs r0, #0x40
 	movs r2, #0xd
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	adds r0, r5, #0
 	bl ClearText
 	adds r0, r5, #0
 	movs r1, #0
 	movs r2, #0
-	bl sub_08005588
+	bl Text_SetParams
 	adds r0, r5, #0
 	movs r1, #0
 	bl Text_SetCursor
@@ -6887,10 +6887,10 @@ sub_080AD820: @ 0x080AD820
 	bl GetItemNameWithArticle
 	mov r8, r0
 	adds r0, r7, #0
-	bl sub_080055FC
+	bl GetStringTextLen
 	adds r4, r0, #0
 	mov r0, r8
-	bl sub_080055FC
+	bl GetStringTextLen
 	adds r0, r4, r0
 	adds r4, r0, #7
 	cmp r4, #0
@@ -6919,7 +6919,7 @@ _080AD8FE:
 	add r0, sl
 	adds r1, r1, r0
 	adds r0, r5, #0
-	bl sub_08005590
+	bl PutText
 	adds r4, #5
 	adds r4, r6, r4
 	lsls r4, r4, #1
@@ -6933,7 +6933,7 @@ _080AD8FE:
 	movs r2, #0x80
 	lsls r2, r2, #7
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 	ldr r1, _080AD970 @ =0x08CE5774
 	ldr r0, [r1]
 	ldr r2, [sp, #0x30]
@@ -6963,7 +6963,7 @@ _080AD98C:
 	cmp r0, #0
 	blt _080AD9BA
 	ldr r0, _080AD9A4 @ =0x0000037A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080AD9BA
 	.align 2, 0
 _080AD9A0: .4byte 0x0202BBF8
@@ -6976,7 +6976,7 @@ _080AD9A8:
 	cmp r0, #0
 	blt _080AD9BA
 	movs r0, #0xb9
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080AD9BA:
 	ldr r0, _080ADA4C @ =0x02023460
 	movs r1, #3
@@ -6988,7 +6988,7 @@ _080AD9BA:
 	adds r1, r6, #0
 	movs r2, #0xa
 	mov r3, sb
-	bl sub_08049B78
+	bl PutUiWindowFrame
 	ldr r0, _080ADA50 @ =0x03002870
 	mov ip, r0
 	movs r0, #0x20
@@ -7115,13 +7115,13 @@ _080ADAD0: .4byte 0x02022C60
 _080ADAD4: .4byte 0x02023460
 _080ADAD8: .4byte 0x03002870
 
-	thumb_func_start sub_080ADADC
-sub_080ADADC: @ 0x080ADADC
+	thumb_func_start BonusClaim_OnEnd
+BonusClaim_OnEnd: @ 0x080ADADC
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08006018
+	bl EndGreenText
 	adds r0, r4, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4}
@@ -7164,8 +7164,8 @@ _080ADB2C: .4byte 0x020144F4
 _080ADB30: .4byte 0x08CE583C
 _080ADB34: .4byte 0x0202BBF8
 
-	thumb_func_start sub_080ADB38
-sub_080ADB38: @ 0x080ADB38
+	thumb_func_start GetSelectedGameOption
+GetSelectedGameOption: @ 0x080ADB38
 	ldr r0, _080ADB44 @ =0x08CE583C
 	ldr r0, [r0]
 	ldrh r0, [r0, #0x2a]
@@ -7400,7 +7400,7 @@ sub_080ADCC4: @ 0x080ADCC4
 	str r3, [sp, #4]
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	add sp, #8
 	pop {r4, r5, r6}
 	pop {r0}
@@ -7456,7 +7456,7 @@ sub_080ADD34: @ 0x080ADD34
 	adds r1, r5, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	add sp, #8
 	pop {r3, r4}
 	mov r8, r3
@@ -7562,7 +7562,7 @@ _080ADE52:
 	lsls r1, r1, #1
 	ldr r2, _080ADE8C @ =0x02023C60
 	adds r1, r1, r2
-	bl sub_08005590
+	bl PutText
 	add sp, #0xc
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -7577,15 +7577,15 @@ _080ADE84: .4byte 0x08CE58D8
 _080ADE88: .4byte 0x08CE583C
 _080ADE8C: .4byte 0x02023C60
 
-	thumb_func_start sub_080ADE90
-sub_080ADE90: @ 0x080ADE90
+	thumb_func_start ConfigSprites_Init
+ConfigSprites_Init: @ 0x080ADE90
 	push {lr}
 	movs r0, #1
 	movs r1, #0x12
-	bl sub_08004D44
+	bl ApplyIconPalette
 	movs r0, #0x80
 	movs r1, #3
-	bl sub_080B1F6C
+	bl UnpackUiVArrowGfx
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -7629,7 +7629,7 @@ sub_080ADEA8: @ 0x080ADEA8
 	adds r4, #0x20
 	movs r0, #0x10
 	adds r1, r4, #0
-	bl sub_0804A004
+	bl DisplayFrozenUiHand
 	adds r0, r5, #0
 	bl sub_080AE360
 	ldr r2, _080ADF94 @ =0x08CE58D8
@@ -7642,7 +7642,7 @@ sub_080ADEA8: @ 0x080ADEA8
 	ldrb r0, [r0, #8]
 	subs r0, #2
 	adds r1, r4, #0
-	bl sub_08049F58
+	bl PutUiHand
 	ldr r1, [r6]
 	movs r2, #0x34
 	ldrsh r0, [r1, r2]
@@ -7674,7 +7674,7 @@ _080ADF3A:
 	movs r3, #0
 	bl sub_080B1FB0
 _080ADF58:
-	bl sub_080ADB38
+	bl GetSelectedGameOption
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080ADF80
@@ -7962,16 +7962,16 @@ _080AE1F0: .4byte 0x00000404
 _080AE1F4: .4byte 0x0841E204
 _080AE1F8: .4byte 0x08CE5BB8
 
-	thumb_func_start sub_080AE1FC
-sub_080AE1FC: @ 0x080AE1FC
+	thumb_func_start WindowColorOptionChangeHandler
+WindowColorOptionChangeHandler: @ 0x080AE1FC
 	push {lr}
-	bl sub_080AE27C
+	bl GenericOptionChangeHandler
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080AE210
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_08049B24
+	bl UnpackUiWindowFrameGraphics2
 _080AE210:
 	movs r0, #0
 	pop {r1}
@@ -7982,7 +7982,7 @@ _080AE210:
 sub_080AE218: @ 0x080AE218
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080AE27C
+	bl GenericOptionChangeHandler
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080AE274
@@ -8027,8 +8027,8 @@ _080AE274:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080AE27C
-sub_080AE27C: @ 0x080AE27C
+	thumb_func_start GenericOptionChangeHandler
+GenericOptionChangeHandler: @ 0x080AE27C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -8119,7 +8119,7 @@ _080AE30E:
 	cmp r0, #0
 	blt _080AE342
 	ldr r0, _080AE35C @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080AE342:
 	adds r0, r7, #0
 	pop {r3}
@@ -8685,7 +8685,7 @@ _080AE794:
 	cmp r0, #0
 	blt _080AE81A
 	ldr r0, _080AE7C0 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080AE81A
 	.align 2, 0
 _080AE7B8: .4byte 0x08B857F8
@@ -8729,7 +8729,7 @@ _080AE800:
 	cmp r0, #0
 	blt _080AE812
 	ldr r0, _080AE830 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080AE812:
 	adds r1, r5, #0
 	adds r1, #0x36
@@ -8848,7 +8848,7 @@ _080AE8E6:
 	cmp r0, #0
 	blt _080AE9AC
 	ldr r0, _080AE914 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080AE9AC
 	.align 2, 0
 _080AE908: .4byte 0x08CE583C
@@ -8943,7 +8943,7 @@ _080AE9AC:
 sub_080AE9C0: @ 0x080AE9C0
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0807FA04
+	bl EndMuralBackground
 	ldr r0, _080AE9E4 @ =0x08CE5BB8
 	bl Proc_EndEach
 	ldr r0, _080AE9E8 @ =0x08CE5B98
@@ -8960,7 +8960,7 @@ _080AE9E4: .4byte 0x08CE5BB8
 _080AE9E8: .4byte 0x08CE5B98
 _080AE9EC:
 	adds r0, r4, #0
-	bl sub_0808AB64
+	bl StartUnitListScreenForSoloAnim
 	adds r0, r4, #0
 	movs r1, #0
 	bl Proc_Goto
@@ -8978,8 +8978,8 @@ sub_080AEA04: @ 0x080AEA04
 	strb r1, [r0]
 	bx lr
 
-	thumb_func_start sub_080AEA0C
-sub_080AEA0C: @ 0x080AEA0C
+	thumb_func_start ColFadeOut_Init
+ColFadeOut_Init: @ 0x080AEA0C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r3, [r5, #0x5c]
@@ -9406,8 +9406,8 @@ sub_080AED04: @ 0x080AED04
 	strb r0, [r4]
 	movs r0, #0
 	bl InitBgs
-	bl sub_08054E88
-	bl sub_08063FE0
+	bl NewEfxAnimeDrvProc
+	bl ResetClassReelSpell
 	movs r5, #0
 	str r5, [r6, #0x38]
 	str r5, [r6, #0x3c]
@@ -9468,7 +9468,7 @@ sub_080AED8C: @ 0x080AED8C
 	bl Proc_Find
 	bl Proc_End
 	adds r0, r4, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	movs r0, #1
 	bl FadeBgmOut
 	ldr r2, _080AEDEC @ =0x03002870
@@ -9524,7 +9524,7 @@ _080AEE0E:
 	adds r5, r4, #0
 	adds r5, #0x34
 	ldrb r1, [r5]
-	bl sub_080B02B0
+	bl GetClassReelEntry
 	str r0, [r4, #0x4c]
 	cmp r0, #0
 	bne _080AEE34
@@ -9547,7 +9547,7 @@ _080AEE34:
 _080AEE48:
 	ldr r1, [r4, #0x4c]
 	adds r0, r4, #0
-	bl sub_080B0088
+	bl StartClassAnimDisplay
 	movs r0, #1
 	strb r0, [r6]
 	b _080AEE6A
@@ -9580,7 +9580,7 @@ sub_080AEE74: @ 0x080AEE74
 	ldrb r0, [r0]
 	adds r1, #0x34
 	ldrb r1, [r1]
-	bl sub_080B02B0
+	bl GetClassReelEntry
 	cmp r0, #0
 	bne _080AEE9C
 	movs r0, #1
@@ -9594,8 +9594,8 @@ _080AEE9E:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080AEEA4
-sub_080AEEA4: @ 0x080AEEA4
+	thumb_func_start SetLordSelectState
+SetLordSelectState: @ 0x080AEEA4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080AEEBC @ =0x08CE5E44
@@ -9619,19 +9619,19 @@ sub_080AEEC0: @ 0x080AEEC0
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AEECC
-sub_080AEECC: @ 0x080AEECC
+	thumb_func_start ClassReel_OnEnd
+ClassReel_OnEnd: @ 0x080AEECC
 	push {lr}
-	bl sub_080A9DC0
-	bl sub_08054EA8
+	bl EndAllProcChildren
+	bl EndEfxAnimeDrvProc
 	movs r0, #0
 	bl sub_080126E4
-	bl sub_08064010
+	bl EndActiveClassReelBgColorProc
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080AEEE4
-sub_080AEEE4: @ 0x080AEEE4
+	thumb_func_start StartLordSelect
+StartLordSelect: @ 0x080AEEE4
 	push {r4, lr}
 	adds r4, r0, #0
 	lsls r4, r4, #0x18
@@ -9885,7 +9885,7 @@ _080AF05C:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	ldr r0, _080AF0F4 @ =0x000001FF
 	ldr r3, [sp, #0xc]
 	ands r3, r0
@@ -9902,7 +9902,7 @@ _080AF05C:
 	adds r0, r6, r0
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 _080AF0E0:
 	add sp, #0x18
 	pop {r3, r4, r5}
@@ -10196,12 +10196,12 @@ _080AF326:
 	.align 2, 0
 _080AF330: .4byte 0x02000000
 
-	thumb_func_start sub_080AF334
-sub_080AF334: @ 0x080AF334
+	thumb_func_start ClassIntro_OnEnd
+ClassIntro_OnEnd: @ 0x080AF334
 	push {lr}
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	movs r0, #3
-	bl sub_080AEEA4
+	bl SetLordSelectState
 	pop {r0}
 	bx r0
 
@@ -10221,8 +10221,8 @@ sub_080AF344: @ 0x080AF344
 	.align 2, 0
 _080AF35C: .4byte 0x08CE5EC0
 
-	thumb_func_start sub_080AF360
-sub_080AF360: @ 0x080AF360
+	thumb_func_start OpAnimBldAlphaInit
+OpAnimBldAlphaInit: @ 0x080AF360
 	movs r1, #0
 	strh r1, [r0, #0x2a]
 	bx lr
@@ -10591,7 +10591,7 @@ _080AF61A:
 	movs r1, #0x74
 	movs r2, #0x48
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r5, #0
 	cmp r5, r8
 	bge _080AF686
@@ -10608,13 +10608,13 @@ _080AF636:
 	adds r1, r4, #0
 	movs r2, #0x48
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r7, [sp]
 	movs r0, #4
 	adds r1, r6, #0
 	movs r2, #0x48
 	mov r3, sb
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _080AF67C
 	.align 2, 0
 _080AF65C: .4byte 0x08CE6104
@@ -10624,13 +10624,13 @@ _080AF660:
 	adds r1, r4, #0
 	movs r2, #0x48
 	ldr r3, _080AF694 @ =0x08CE60FC
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r7, [sp]
 	movs r0, #4
 	adds r1, r6, #0
 	movs r2, #0x48
 	ldr r3, _080AF698 @ =0x08CE610C
-	bl sub_08006A34
+	bl PutSpriteExt
 _080AF67C:
 	adds r6, #8
 	subs r4, #8
@@ -10725,7 +10725,7 @@ _080AF70E:
 	str r0, [sp]
 	movs r0, #4
 	movs r2, #0x50
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x20
 _080AF730:
 	adds r6, #4
@@ -10738,7 +10738,7 @@ _080AF730:
 	movs r0, #4
 	movs r1, #0x90
 	movs r2, #0x50
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -11325,13 +11325,13 @@ _080AFC18:
 	ldr r0, _080AFD7C @ =0x0200FB68
 	adds r0, r4, r0
 	mov r1, r8
-	bl sub_08005590
+	bl PutText
 	ldr r1, [sp, #0x38]
 	adds r0, r1, r7
 	ldrb r2, [r0]
 	mov r0, sl
 	movs r1, #0
-	bl sub_080061D8
+	bl PutNumber
 	movs r2, #0x80
 	add sl, r2
 	add r8, r2
@@ -11350,8 +11350,8 @@ _080AFC18:
 	movs r1, #2
 	movs r2, #0
 	bl InitTalk
-	bl sub_08007F64
-	bl sub_080097FC
+	bl SetInitTalkTextFont
+	bl ClearTalkText
 	bl EndTalk
 	mov r4, sb
 	ldr r0, [r4, #0x34]
@@ -11360,7 +11360,7 @@ _080AFC18:
 	movs r1, #0xf
 	bl StartTalkMsg
 	movs r0, #0
-	bl sub_080080F4
+	bl SetTalkPrintColor
 	movs r0, #1
 	bl SetTalkFlag
 	movs r0, #2
@@ -11372,7 +11372,7 @@ _080AFC18:
 	movs r0, #0x40
 	bl SetTalkFlag
 	movs r0, #4
-	bl sub_080080D8
+	bl SetTalkPrintDelay
 	ldr r0, _080AFD80 @ =0x02000040
 	ldr r3, [r4, #0x34]
 	movs r1, #0xa
@@ -11435,7 +11435,7 @@ _080AFC18:
 	str r2, [r1, #0x20]
 	ldr r2, _080AFDA8 @ =sub_080AF8C4
 	str r2, [r1, #0x24]
-	bl sub_08054EC8
+	bl NewEkrUnitMainMini
 	ldr r4, _080AFDAC @ =0x0200DB40
 	mov r0, sb
 	ldr r1, [r0, #0x34]
@@ -11644,7 +11644,7 @@ _080AFE34:
 	bl Proc_Break
 	ldr r0, _080AFEE8 @ =sub_080AFDC0
 	adds r1, r7, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	b _080AFEF0
 	.align 2, 0
 _080AFEE4: .4byte 0x03002870
@@ -11682,8 +11682,8 @@ _080AFEF0:
 _080AFF28: .4byte 0x02000040
 _080AFF2C: .4byte 0x0200DB40
 
-	thumb_func_start sub_080AFF30
-sub_080AFF30: @ 0x080AFF30
+	thumb_func_start ClassInfoDisplay_ExecScript
+ClassInfoDisplay_ExecScript: @ 0x080AFF30
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x38]
@@ -11753,8 +11753,8 @@ _080AFFB6:
 	.align 2, 0
 _080AFFC0: .4byte 0x02000040
 
-	thumb_func_start sub_080AFFC4
-sub_080AFFC4: @ 0x080AFFC4
+	thumb_func_start ClassInfoDisplay_LoopScript
+ClassInfoDisplay_LoopScript: @ 0x080AFFC4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x38]
@@ -11816,17 +11816,17 @@ _080B003C:
 	.align 2, 0
 _080B0044: .4byte 0x02000040
 
-	thumb_func_start sub_080B0048
-sub_080B0048: @ 0x080B0048
+	thumb_func_start ClassInfoDisplay_OnEnd
+ClassInfoDisplay_OnEnd: @ 0x080B0048
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0
 	bl SetOnHBlankA
 	bl EndTalk
-	bl sub_08064010
+	bl EndActiveClassReelBgColorProc
 	ldr r0, _080B0080 @ =0x0200DB40
 	bl sub_080552DC
-	bl sub_08063FF4
+	bl EndActiveClassReelSpell
 	ldr r0, _080B0084 @ =0x02000040
 	bl sub_08054EF0
 	ldr r0, [r4, #0x3c]
@@ -11835,7 +11835,7 @@ sub_080B0048: @ 0x080B0048
 	bl Proc_End
 _080B0074:
 	movs r0, #2
-	bl sub_080AEEA4
+	bl SetLordSelectState
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -11843,8 +11843,8 @@ _080B0074:
 _080B0080: .4byte 0x0200DB40
 _080B0084: .4byte 0x02000040
 
-	thumb_func_start sub_080B0088
-sub_080B0088: @ 0x080B0088
+	thumb_func_start StartClassAnimDisplay
+StartClassAnimDisplay: @ 0x080B0088
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -11981,7 +11981,7 @@ _080B017A:
 	adds r1, r4, #0
 	adds r2, r7, #0
 	adds r2, #0xf
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #8
 	subs r6, #1
 	cmp r6, #0
@@ -12006,7 +12006,7 @@ _080B019A:
 	lsls r0, r0, #7
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 _080B01C2:
 	ldr r0, [sp, #0xc]
 	mov sb, r0
@@ -12060,7 +12060,7 @@ _080B01FC:
 	lsls r0, r0, #7
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r1, #4
 	ldrsb r1, [r4, r1]
 	subs r1, r6, r1
@@ -12074,7 +12074,7 @@ _080B01FC:
 	lsls r0, r0, #7
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #5
 	ldrsb r0, [r4, r0]
 	movs r1, #4
@@ -12135,8 +12135,8 @@ sub_080B02A8: @ 0x080B02A8
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080B02B0
-sub_080B02B0: @ 0x080B02B0
+	thumb_func_start GetClassReelEntry
+GetClassReelEntry: @ 0x080B02B0
 	adds r3, r1, #0
 	ldr r1, _080B02C8 @ =0x08CE6BDC
 	lsls r0, r0, #2
@@ -12251,8 +12251,8 @@ sub_080B034C: @ 0x080B034C
 	ldr r0, [r0]
 	adds r1, r1, r0
 	str r1, [r7, #8]
-	bl sub_08007F64
-	bl sub_080097FC
+	bl SetInitTalkTextFont
+	bl ClearTalkText
 	ldr r1, [r7, #8]
 	adds r0, r1, #0
 	bl GetMsg
@@ -12260,9 +12260,9 @@ sub_080B034C: @ 0x080B034C
 	ldr r3, [r7, #4]
 	movs r0, #8
 	movs r1, #2
-	bl sub_08007F78
+	bl StartTalkExt
 	movs r0, #0
-	bl sub_080080F4
+	bl SetTalkPrintColor
 	movs r0, #1
 	bl SetTalkFlag
 	movs r0, #2
@@ -12270,7 +12270,7 @@ sub_080B034C: @ 0x080B034C
 	movs r0, #4
 	bl SetTalkFlag
 	movs r0, #1
-	bl sub_08008E28
+	bl SetActiveTalkFace
 	add sp, #0xc
 	pop {r7}
 	pop {r0}
@@ -12380,7 +12380,7 @@ sub_080B0454: @ 0x080B0454
 	adds r1, r7, #0
 	adds r1, #8
 	strb r0, [r1]
-	bl sub_08085C7C
+	bl EndPlayerPhaseSideWindows
 	ldr r0, [r7, #0xc]
 	cmp r0, #0
 	beq _080B0484
@@ -12513,7 +12513,7 @@ _080B0548:
 	ldr r0, [r7]
 	ldr r1, [r0, #0x2c]
 	adds r0, r1, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	ldr r1, [r7]
 	adds r2, r1, #0
 	adds r1, #0x5b
@@ -12654,7 +12654,7 @@ _080B0660:
 	ldr r0, [r7]
 	ldr r1, [r0, #0x2c]
 	adds r0, r1, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	bne _080B0680
 	movs r0, #0x1b
@@ -12963,7 +12963,7 @@ _080B084C:
 	subs r2, #0x48
 	subs r1, r0, r2
 	movs r0, #0x38
-	bl sub_08049F58
+	bl PutUiHand
 	ldr r1, [r7]
 	adds r0, r1, #0
 	adds r1, #0x62
@@ -13001,7 +13001,7 @@ _080B084C:
 	adds r3, r0, r2
 	ldrh r2, [r3]
 	movs r0, #0x38
-	bl sub_0808198C
+	bl StartItemHelpBox
 _080B092E:
 	bl sub_080B1F2C
 	bl sub_080B25A0
@@ -13037,7 +13037,7 @@ _080B0940:
 	ands r1, r2
 	adds r2, r1, #0
 	strb r2, [r0]
-	bl sub_08081B44
+	bl CloseHelpBox
 _080B0978:
 	b _080B0AA4
 	.align 2, 0
@@ -13095,7 +13095,7 @@ _080B0982:
 	adds r3, r0, r2
 	ldrh r2, [r3]
 	movs r0, #0x38
-	bl sub_0808198C
+	bl StartItemHelpBox
 	b _080B0AA4
 	.align 2, 0
 _080B09EC: .4byte 0x08B857F8
@@ -13143,7 +13143,7 @@ _080B0A44: .4byte 0x08B857F8
 _080B0A48:
 	ldr r1, [r7, #8]
 	adds r0, r1, #0
-	bl sub_08009FE8
+	bl SetTalkNumber
 	movs r0, #0x24
 	ldr r1, [r7]
 	bl sub_080B034C
@@ -13173,7 +13173,7 @@ _080B0A60:
 	bne _080B0A8E
 	ldr r1, _080B0AA0 @ =0x0000038B
 	adds r0, r1, #0
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B0A8E:
 	ldr r0, [r7]
 	movs r1, #7
@@ -13232,7 +13232,7 @@ sub_080B0AE0: @ 0x080B0AE0
 	ldrb r0, [r1]
 	cmp r0, #4
 	bls _080B0B1C
-	bl sub_0802E818
+	bl HasConvoyAccess
 	lsls r1, r0, #0x18
 	asrs r0, r1, #0x18
 	cmp r0, #0
@@ -13263,7 +13263,7 @@ _080B0B1C:
 	adds r1, #0x30
 	adds r2, r1, r2
 	ldrh r1, [r2]
-	bl sub_08017654
+	bl UnitAddItem
 	ldr r0, [r7]
 	bl sub_080B2020
 	ldr r0, [r7]
@@ -13313,7 +13313,7 @@ sub_080B0B84: @ 0x080B0B84
 	sub sp, #4
 	mov r7, sp
 	str r0, [r7]
-	bl sub_0802E818
+	bl HasConvoyAccess
 	lsls r1, r0, #0x18
 	asrs r0, r1, #0x18
 	cmp r0, #0
@@ -13350,7 +13350,7 @@ sub_080B0BB4: @ 0x080B0BB4
 	adds r1, r0, r1
 	ldrh r2, [r1]
 	adds r0, r2, #0
-	bl sub_0802E790
+	bl AddItemToConvoy
 	ldr r0, [r7]
 	bl sub_080B2020
 	add sp, #4
@@ -13378,7 +13378,7 @@ sub_080B0BFC: @ 0x080B0BFC
 	sub sp, #4
 	mov r7, sp
 	str r0, [r7]
-	bl sub_0802E770
+	bl GetConvoyItemCount
 	cmp r0, #0x63
 	bgt _080B0C14
 	ldr r0, [r7]
@@ -13535,7 +13535,7 @@ _080B0CE0:
 	subs r2, #0x48
 	subs r1, r0, r2
 	movs r0, #0x38
-	bl sub_08049F58
+	bl PutUiHand
 	ldr r1, [r7]
 	adds r0, r1, #0
 	adds r1, #0x62
@@ -13574,7 +13574,7 @@ _080B0CE0:
 	adds r3, r0, r2
 	ldrh r2, [r3]
 	movs r0, #0x38
-	bl sub_0808198C
+	bl StartItemHelpBox
 _080B0D88:
 	bl sub_080B25A0
 	lsls r1, r0, #0x18
@@ -13609,7 +13609,7 @@ _080B0D96:
 	ands r1, r2
 	adds r2, r1, #0
 	strb r2, [r0]
-	bl sub_08081B44
+	bl CloseHelpBox
 _080B0DCE:
 	b _080B0F14
 	.align 2, 0
@@ -13668,7 +13668,7 @@ _080B0DD6:
 	adds r3, r0, r2
 	ldrh r2, [r3]
 	movs r0, #0x38
-	bl sub_0808198C
+	bl StartItemHelpBox
 	b _080B0F14
 	.align 2, 0
 _080B0E44: .4byte 0x08B857F8
@@ -13723,11 +13723,11 @@ _080B0E98:
 	adds r1, r0, r1
 	ldrh r2, [r1]
 	adds r0, r2, #0
-	bl sub_080B1D90
+	bl GetItemSellPrice
 	lsls r2, r0, #0x10
 	lsrs r1, r2, #0x10
 	adds r0, r1, #0
-	bl sub_08009FE8
+	bl SetTalkNumber
 	movs r0, #0x24
 	ldr r1, [r7]
 	bl sub_080B034C
@@ -13757,7 +13757,7 @@ _080B0ECE:
 	bne _080B0EFC
 	ldr r1, _080B0F10 @ =0x0000038B
 	adds r0, r1, #0
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B0EFC:
 	ldr r0, [r7]
 	movs r1, #8
@@ -13794,7 +13794,7 @@ _080B0F36:
 _080B0F3C:
 	movs r0, #0xb9
 	movs r1, #8
-	bl sub_08014DE0
+	bl PlaySeDelayed
 	ldr r0, _080B0FC8 @ =0x0203A85C
 	ldrb r1, [r0, #0x11]
 	movs r2, #0
@@ -13819,7 +13819,7 @@ _080B0F3C:
 	adds r1, r0, r1
 	ldrh r2, [r1]
 	adds r0, r2, #0
-	bl sub_080B1D90
+	bl GetItemSellPrice
 	lsls r1, r0, #0x10
 	lsrs r0, r1, #0x10
 	ldr r1, [r7, #4]
@@ -13834,7 +13834,7 @@ _080B0F3C:
 	adds r1, r2, #0
 	adds r2, #0x5c
 	ldrb r1, [r2]
-	bl sub_08018D50
+	bl UnitRemoveItem
 	ldr r0, [r7]
 	bl sub_080B0520
 	ldr r0, [r7]
@@ -13953,7 +13953,7 @@ sub_080B1068: @ 0x080B1068
 	adds r0, r1, #0
 	bl Proc_EndEach
 	ldr r0, _080B108C @ =0x08C9D00C
-	ldr r1, _080B1090 @ =sub_0806DADC
+	ldr r1, _080B1090 @ =ShowMu
 	bl Proc_ForEach
 	add sp, #4
 	pop {r7}
@@ -13962,7 +13962,7 @@ sub_080B1068: @ 0x080B1068
 	.align 2, 0
 _080B1088: .4byte 0x08CE7280
 _080B108C: .4byte 0x08C9D00C
-_080B1090: .4byte sub_0806DADC
+_080B1090: .4byte ShowMu
 
 	thumb_func_start sub_080B1094
 sub_080B1094: @ 0x080B1094
@@ -14081,7 +14081,7 @@ _080B10F0:
 	subs r2, #0x48
 	subs r1, r0, r2
 	movs r0, #0x38
-	bl sub_08049F58
+	bl PutUiHand
 	ldr r1, [r7]
 	adds r0, r1, #0
 	adds r1, #0x62
@@ -14119,7 +14119,7 @@ _080B10F0:
 	adds r3, r0, r2
 	ldrh r2, [r3]
 	movs r0, #0x38
-	bl sub_0808198C
+	bl StartItemHelpBox
 _080B11D2:
 	bl sub_080B1F2C
 	bl sub_080B25A0
@@ -14155,7 +14155,7 @@ _080B11E4:
 	ands r1, r2
 	adds r2, r1, #0
 	strb r2, [r0]
-	bl sub_08081B44
+	bl CloseHelpBox
 _080B121C:
 	b _080B12D8
 	.align 2, 0
@@ -14213,7 +14213,7 @@ _080B1226:
 	adds r3, r0, r2
 	ldrh r2, [r3]
 	movs r0, #0x38
-	bl sub_0808198C
+	bl StartItemHelpBox
 	b _080B12D8
 	.align 2, 0
 _080B1290: .4byte 0x08B857F8
@@ -14239,7 +14239,7 @@ _080B1294:
 	bne _080B12C2
 	ldr r1, _080B12D4 @ =0x0000038B
 	adds r0, r1, #0
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B12C2:
 	ldr r0, [r7]
 	movs r1, #0xc
@@ -14428,7 +14428,7 @@ _080B137A:
 	lsls r1, r1, #2
 	adds r0, r1, #0
 	movs r1, #3
-	bl sub_080B1F6C
+	bl UnpackUiVArrowGfx
 	ldr r0, [r7]
 	bl sub_080B0320
 	movs r1, #1
@@ -14436,7 +14436,7 @@ _080B137A:
 	movs r1, #0x20
 	movs r2, #8
 	movs r3, #3
-	bl sub_08008F18
+	bl StartTalkFace
 	ldr r0, _080B1498 @ =0x083F42D0
 	ldr r1, _080B149C @ =0x02020140
 	bl Decompress
@@ -14451,7 +14451,7 @@ _080B137A:
 	movs r1, #8
 	movs r2, #0x14
 	movs r3, #0xc
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #2
 	bl EnableBgSync
 	ldr r0, [r7]
@@ -14930,7 +14930,7 @@ sub_080B1844: @ 0x080B1844
 	ldr r0, [r7]
 	movs r1, #3
 	movs r2, #0x1e
-	bl sub_0800615C
+	bl PutSpecialChar
 	add sp, #4
 	pop {r7}
 	pop {r0}
@@ -14988,7 +14988,7 @@ sub_080B18B0: @ 0x080B18B0
 	adds r2, r0, #0
 	ldr r0, [r7]
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	movs r0, #1
 	bl EnableBgSync
 	add sp, #4
@@ -15060,7 +15060,7 @@ _080B193C:
 	lsls r2, r1, #1
 	ldr r3, _080B1978 @ =0x02023C6E
 	adds r1, r2, r3
-	bl sub_080055E0
+	bl PutBlankText
 	ldr r0, [r7, #4]
 	adds r1, r0, #1
 	str r1, [r7, #4]
@@ -15301,7 +15301,7 @@ _080B1B24:
 	lsls r2, r1, #1
 	ldr r3, _080B1B60 @ =0x02023C6E
 	adds r1, r2, r3
-	bl sub_080055E0
+	bl PutBlankText
 	ldr r0, [r7, #4]
 	adds r1, r0, #1
 	str r1, [r7, #4]
@@ -15467,7 +15467,7 @@ sub_080B1C70: @ 0x080B1C70
 	ldr r3, [r7, #0xc]
 	ldr r0, [r7]
 	adds r1, r4, #0
-	bl sub_08016470
+	bl DrawItemMenuLine
 	ldr r0, [r7, #0xc]
 	adds r4, r0, #0
 	adds r4, #0x22
@@ -15482,7 +15482,7 @@ _080B1CB8:
 _080B1CBA:
 	ldr r2, [r7, #0x10]
 	adds r0, r4, #0
-	bl sub_080061D8
+	bl PutNumber
 	add sp, #0x14
 	pop {r4, r7}
 	pop {r0}
@@ -15507,7 +15507,7 @@ sub_080B1CCC: @ 0x080B1CCC
 	ldr r3, [r7, #0xc]
 	ldr r0, [r7]
 	adds r1, r4, #0
-	bl sub_08016470
+	bl DrawItemMenuLine
 	ldr r1, [r7, #4]
 	adds r0, r1, #0
 	bl sub_080B1DB8
@@ -15520,12 +15520,12 @@ sub_080B1CCC: @ 0x080B1CCC
 	adds r4, #0x22
 	ldr r1, [r7, #4]
 	adds r0, r1, #0
-	bl sub_080B1D90
+	bl GetItemSellPrice
 	lsls r1, r0, #0x10
 	lsrs r2, r1, #0x10
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	b _080B1D32
 _080B1D1E:
 	ldr r1, _080B1D3C @ =0x0000127E
@@ -15557,7 +15557,7 @@ sub_080B1D40: @ 0x080B1D40
 	str r0, [r7, #8]
 	ldr r0, [r7]
 	movs r1, #0x72
-	bl sub_080176F8
+	bl UnitHasItem
 	lsls r1, r0, #0x18
 	asrs r0, r1, #0x18
 	cmp r0, #0
@@ -15588,8 +15588,8 @@ _080B1D86:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080B1D90
-sub_080B1D90: @ 0x080B1D90
+	thumb_func_start GetItemSellPrice
+GetItemSellPrice: @ 0x080B1D90
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
@@ -15627,7 +15627,7 @@ sub_080B1DB8: @ 0x080B1DB8
 	b _080B1DE8
 _080B1DD2:
 	ldr r0, [r7]
-	bl sub_080B1D90
+	bl GetItemSellPrice
 	lsls r1, r0, #0x10
 	lsrs r0, r1, #0x10
 	cmp r0, #0
@@ -15767,7 +15767,7 @@ sub_080B1E28: @ 0x080B1E28
 	movs r1, #1
 	rsbs r1, r1, #0
 	movs r0, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -15823,8 +15823,8 @@ _080B1F64:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080B1F6C
-sub_080B1F6C: @ 0x080B1F6C
+	thumb_func_start UnpackUiVArrowGfx
+UnpackUiVArrowGfx: @ 0x080B1F6C
 	push {r7, lr}
 	sub sp, #8
 	mov r7, sp
@@ -15904,7 +15904,7 @@ _080B1FF6:
 	adds r4, r4, r0
 	str r4, [sp]
 	movs r0, #2
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #0x1c
 	pop {r4, r7}
 	pop {r0}
@@ -15920,7 +15920,7 @@ sub_080B2020: @ 0x080B2020
 	str r0, [r7]
 	movs r0, #0xb9
 	movs r1, #8
-	bl sub_08014DE0
+	bl PlaySeDelayed
 	ldr r0, _080B2094 @ =0x0203A85C
 	ldrb r1, [r0, #0x11]
 	movs r2, #0
@@ -16099,7 +16099,7 @@ _080B216E:
 	bne _080B218E
 	ldr r1, _080B2198 @ =0x00000386
 	adds r0, r1, #0
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B218E:
 	ldr r1, [r7]
 	adds r0, r1, #0
@@ -16875,7 +16875,7 @@ sub_080B26C4: @ 0x080B26C4
 	movs r1, #0x20
 	movs r2, #8
 	movs r3, #3
-	bl sub_08008F18
+	bl StartTalkFace
 	ldr r0, _080B2A24 @ =0x083F42D0
 	ldr r1, _080B2A28 @ =0x02020140
 	bl Decompress
@@ -17317,7 +17317,7 @@ sub_080B2AC0: @ 0x080B2AC0
 	bl ArenaGetMatchupGoldValue
 	adds r1, r0, #0
 	adds r0, r1, #0
-	bl sub_08009FE8
+	bl SetTalkNumber
 	movs r0, #0x41
 	ldr r1, [r7]
 	bl sub_080B2DAC
@@ -17400,7 +17400,7 @@ sub_080B2B44: @ 0x080B2B44
 	cmp r0, #0
 	bne _080B2B7A
 	movs r0, #0xb9
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B2B7A:
 	ldr r1, _080B2B94 @ =0x02022E16
 	adds r0, r1, #0
@@ -17493,7 +17493,7 @@ sub_080B2BE4: @ 0x080B2BE4
 	ldr r0, _080B2C5C @ =0x03004690
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_0809FD30
+	bl PidStatsAddBattleAmt
 	bl EndAllMus
 	ldr r0, _080B2C58 @ =0x0203A85C
 	ldrb r1, [r0, #0x15]
@@ -17504,7 +17504,7 @@ sub_080B2BE4: @ 0x080B2BE4
 	ldr r0, _080B2C5C @ =0x03004690
 	ldr r1, [r0]
 	adds r0, r1, #0
-	bl sub_0802A6E0
+	bl BattleGenerateArena
 	bl BeginBattleAnimations
 	add sp, #4
 	pop {r7}
@@ -17522,7 +17522,7 @@ sub_080B2C60: @ 0x080B2C60
 	mov r7, sp
 	str r0, [r7]
 	ldr r0, [r7]
-	bl sub_08014BA4
+	bl StartPartialGameLock
 	add sp, #4
 	pop {r7}
 	pop {r0}
@@ -17570,7 +17570,7 @@ _080B2CBA:
 	adds r1, r0, #0
 	lsls r2, r1, #1
 	adds r0, r2, #0
-	bl sub_08009FE8
+	bl SetTalkNumber
 	movs r0, #0x45
 	ldr r1, [r7]
 	bl sub_080B2DAC
@@ -17645,7 +17645,7 @@ _080B2D44:
 	cmp r0, #0
 	bne _080B2D62
 	movs r0, #0xb9
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080B2D62:
 	ldr r0, [r7]
 	movs r1, #0x3c
@@ -17674,7 +17674,7 @@ sub_080B2D80: @ 0x080B2D80
 	adds r0, r1, #0
 	bl Proc_EndEach
 	ldr r0, _080B2DA4 @ =0x08C9D00C
-	ldr r1, _080B2DA8 @ =sub_0806DADC
+	ldr r1, _080B2DA8 @ =ShowMu
 	bl Proc_ForEach
 	add sp, #4
 	pop {r7}
@@ -17683,7 +17683,7 @@ sub_080B2D80: @ 0x080B2D80
 	.align 2, 0
 _080B2DA0: .4byte 0x08CE7280
 _080B2DA4: .4byte 0x08C9D00C
-_080B2DA8: .4byte sub_0806DADC
+_080B2DA8: .4byte ShowMu
 
 	thumb_func_start sub_080B2DAC
 sub_080B2DAC: @ 0x080B2DAC
@@ -17692,17 +17692,17 @@ sub_080B2DAC: @ 0x080B2DAC
 	mov r7, sp
 	str r0, [r7]
 	str r1, [r7, #4]
-	bl sub_08007F64
-	bl sub_080097FC
+	bl SetInitTalkTextFont
+	bl ClearTalkText
 	ldr r0, [r7]
 	bl GetMsg
 	adds r2, r0, #0
 	ldr r3, [r7, #4]
 	movs r0, #8
 	movs r1, #2
-	bl sub_08007F78
+	bl StartTalkExt
 	movs r0, #0
-	bl sub_080080F4
+	bl SetTalkPrintColor
 	movs r0, #1
 	bl SetTalkFlag
 	movs r0, #2
@@ -17710,7 +17710,7 @@ sub_080B2DAC: @ 0x080B2DAC
 	movs r0, #4
 	bl SetTalkFlag
 	movs r0, #1
-	bl sub_08008E28
+	bl SetActiveTalkFace
 	add sp, #8
 	pop {r7}
 	pop {r0}
@@ -17729,7 +17729,7 @@ sub_080B2DF8: @ 0x080B2DF8
 	movs r1, #9
 	movs r2, #0x10
 	movs r3, #6
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #0
 	bl SetTextFont
 	bl InitSystemTextFont
@@ -17741,14 +17741,14 @@ sub_080B2DF8: @ 0x080B2DF8
 	adds r2, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08014698
+	bl PutString
 	ldr r0, _080B2E9C @ =0x02022EF8
 	ldr r1, _080B2EA0 @ =0x0203A7F4
 	ldr r3, [r1, #4]
 	movs r2, #8
 	ldrsb r2, [r3, r2]
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	ldr r4, _080B2EA4 @ =0x02022F70
 	ldr r0, _080B2EA0 @ =0x0203A7F4
 	ldr r1, [r0, #4]
@@ -17759,7 +17759,7 @@ sub_080B2DF8: @ 0x080B2DF8
 	adds r2, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08014698
+	bl PutString
 	ldr r4, _080B2EA8 @ =0x02022EFE
 	ldr r0, _080B2EA0 @ =0x0203A7F4
 	ldr r1, [r0, #4]
@@ -17770,7 +17770,7 @@ sub_080B2DF8: @ 0x080B2DF8
 	adds r2, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08014698
+	bl PutString
 	ldr r4, _080B2EAC @ =0x02022F7E
 	ldr r0, _080B2EA0 @ =0x0203A7F4
 	ldrh r1, [r0, #0x1c]
@@ -17779,7 +17779,7 @@ sub_080B2DF8: @ 0x080B2DF8
 	adds r2, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08014698
+	bl PutString
 	add sp, #8
 	pop {r4, r7}
 	pop {r0}
@@ -17916,7 +17916,7 @@ sub_080B2F74: @ 0x080B2F74
 	adds r2, r1, #0
 	strb r2, [r0, #0x16]
 	movs r0, #3
-	bl sub_080A1100
+	bl WriteSuspendSave
 	pop {r7}
 	pop {r0}
 	bx r0
@@ -18565,7 +18565,7 @@ _080B3426:
 	mov r3, r8
 	ands r2, r3
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0x80
 	lsls r0, r0, #6
 	adds r4, r4, r0
@@ -18576,7 +18576,7 @@ _080B3426:
 	mov r3, r8
 	ands r2, r3
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x20
 	ldr r0, [sp, #0x14]
 	subs r0, #0x28
@@ -18607,7 +18607,7 @@ _080B347A:
 	mov r3, r8
 	ands r2, r3
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0x80
 	lsls r0, r0, #6
 	adds r4, r4, r0
@@ -18618,7 +18618,7 @@ _080B347A:
 	mov r3, r8
 	ands r2, r3
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x10
 	ldr r0, [sp, #0x14]
 	subs r0, #0x18
@@ -18649,7 +18649,7 @@ _080B34CE:
 	mov r3, r8
 	ands r2, r3
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0x80
 	lsls r0, r0, #6
 	adds r4, r4, r0
@@ -18660,7 +18660,7 @@ _080B34CE:
 	mov r3, r8
 	ands r2, r3
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	ldr r0, [sp, #0x14]
 	subs r0, #8
@@ -18692,7 +18692,7 @@ _080B3524:
 	ands r1, r2
 	adds r2, r4, #0
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r7, [sp]
 	movs r0, #2
 	movs r3, #0x80
@@ -18700,7 +18700,7 @@ _080B3524:
 	adds r1, r6, r3
 	adds r2, r4, #0
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x20
 	mov r0, sb
 	subs r0, #0x28
@@ -18731,7 +18731,7 @@ _080B3572:
 	ands r1, r2
 	adds r2, r4, #0
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r7, [sp]
 	movs r0, #2
 	movs r3, #0x80
@@ -18739,7 +18739,7 @@ _080B3572:
 	adds r1, r6, r3
 	adds r2, r4, #0
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0x10
 	mov r0, sb
 	subs r0, #0x18
@@ -18770,7 +18770,7 @@ _080B35C0:
 	ands r1, r2
 	adds r2, r4, #0
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r7, [sp]
 	movs r0, #2
 	movs r3, #0x80
@@ -18778,7 +18778,7 @@ _080B35C0:
 	adds r1, r6, r3
 	adds r2, r4, #0
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #8
 	mov r0, sb
 	subs r0, #8
@@ -18803,7 +18803,7 @@ _080B35F2:
 	adds r1, r6, #0
 	adds r2, r4, #0
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r5, [sp, #0x14]
 	subs r5, #8
 	mov r1, sl
@@ -18816,7 +18816,7 @@ _080B35F2:
 	movs r0, #2
 	adds r2, r4, #0
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0x80
 	lsls r0, r0, #6
 	adds r6, r6, r0
@@ -18830,7 +18830,7 @@ _080B35F2:
 	adds r1, r6, #0
 	adds r2, r4, #0
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0xc0
 	lsls r0, r0, #6
 	adds r5, r5, r0
@@ -18840,7 +18840,7 @@ _080B35F2:
 	adds r1, r5, #0
 	adds r2, r4, #0
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _080B366A:
 	add sp, #0x18
 	pop {r3, r4, r5}
@@ -18967,7 +18967,7 @@ sub_080B3720: @ 0x080B3720
 	adds r0, r3, #0
 	bl Proc_Break
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #4
@@ -19360,7 +19360,7 @@ sub_080B39D8: @ 0x080B39D8
 	movs r4, #0xd
 	str r4, [sp, #4]
 	mov r2, ip
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	mov r5, sb
 	str r0, [r5]
 	mov r1, sl
@@ -19447,7 +19447,7 @@ sub_080B3AFC: @ 0x080B3AFC
 	ldr r0, [r5]
 	cmp r0, #0
 	beq _080B3B66
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 	movs r0, #0
 	str r0, [r5]
 	adds r1, r4, #0
@@ -19523,7 +19523,7 @@ _080B3BA8:
 	ldr r0, [r4]
 	cmp r0, #0
 	beq _080B3BB4
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 	str r7, [r4]
 _080B3BB4:
 	adds r4, #8
@@ -19553,8 +19553,8 @@ _080B3BD2:
 	.align 2, 0
 _080B3BE4: .4byte 0x08CE7630
 
-	thumb_func_start sub_080B3BE8
-sub_080B3BE8: @ 0x080B3BE8
+	thumb_func_start WmMergeMonsters
+WmMergeMonsters: @ 0x080B3BE8
 	push {lr}
 	ldr r0, _080B3C00 @ =0x08CE7630
 	bl Proc_Find
@@ -19696,7 +19696,7 @@ _080B3CEC:
 	movs r0, #2
 	movs r1, #0
 	adds r2, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080B3D1C @ =0x08CE760E
 	movs r0, #0x80
 	lsls r0, r0, #6
@@ -19704,7 +19704,7 @@ _080B3CEC:
 	movs r0, #1
 	movs r1, #0
 	adds r2, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _080B3D10:
 	add sp, #4
 	pop {r4}
@@ -19884,7 +19884,7 @@ sub_080B3E20: @ 0x080B3E20
 	str r3, [sp]
 	adds r0, r6, #0
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _080B3E6A:
 	add sp, #4
 	pop {r4, r5, r6, r7}
@@ -19923,7 +19923,7 @@ sub_080B3E98: @ 0x080B3E98
 	strb r1, [r2]
 	ldr r0, [r0, #0x58]
 	ldrb r1, [r2]
-	bl sub_0806BF4C
+	bl SetMuFacing
 _080B3EAE:
 	pop {r0}
 	bx r0
@@ -20137,7 +20137,7 @@ _080B3FEC:
 	adds r1, r5, #0
 	muls r1, r5, r1
 	adds r0, r0, r1
-	bl sub_080BFA68
+	bl Sqrt
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	ldr r3, [r6, #0x5c]
@@ -20193,7 +20193,7 @@ _080B409E:
 	asrs r0, r0, #0x10
 	lsls r1, r5, #0x10
 	asrs r1, r1, #0x10
-	bl sub_080BFA04
+	bl ArcTan2
 	lsls r0, r0, #0x10
 	lsrs r1, r0, #0x18
 	adds r2, r6, #0
@@ -20406,7 +20406,7 @@ _080B4224:
 	b _080B4256
 _080B423E:
 	ldr r0, [r6, #0x58]
-	bl sub_0806DADC
+	bl ShowMu
 	b _080B4256
 _080B4246:
 	adds r1, r6, #0
@@ -20453,9 +20453,9 @@ _080B4278:
 	ldr r3, [sp, #0x10]
 	subs r2, r3, r2
 	subs r2, #0xc
-	bl sub_0806DAFC
+	bl SetMuScreenPosition
 	ldr r0, [r6, #0x58]
-	bl sub_0806DADC
+	bl ShowMu
 	b _080B42BA
 	.align 2, 0
 _080B42AC: .4byte 0x02000000
@@ -20850,7 +20850,7 @@ _080B4566:
 	cmp r0, sb
 	bne _080B4598
 	adds r0, r6, #0
-	bl sub_08006D50
+	bl EndFaceById
 	ldr r0, [r7, #0x40]
 	adds r0, r0, r4
 	adds r0, #0x34
@@ -20892,11 +20892,11 @@ _080B45BA:
 	cmp r0, #1
 	bne _080B45EC
 	adds r0, r4, #0
-	bl sub_08006D9C
+	bl GetFaceDisp
 	ldr r1, _080B460C @ =0xFFFFFBFF
 	ands r1, r0
 	adds r0, r4, #0
-	bl sub_08006D68
+	bl SetFaceDisp
 	ldr r0, [r7, #0x40]
 	adds r0, r0, r5
 	adds r0, #0x34
@@ -21453,7 +21453,7 @@ _080B49CA:
 	strb r0, [r1]
 	ldr r0, [r6, #0x58]
 	movs r1, #2
-	bl sub_0806BF4C
+	bl SetMuFacing
 	ldr r0, [r6, #0x58]
 	bl sub_0806BC88
 	adds r0, r6, #0
@@ -21701,7 +21701,7 @@ sub_080B4B8C: @ 0x080B4B8C
 	str r4, [sp]
 	movs r4, #7
 	str r4, [sp, #4]
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	ldr r1, [r6, #0x38]
 	adds r1, #0x30
 	adds r1, r1, r5
@@ -21735,7 +21735,7 @@ sub_080B4C28: @ 0x080B4C28
 	ldr r0, [r1]
 	cmp r0, #0
 	beq _080B4C4A
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 _080B4C4A:
 	ldr r0, [r5, #0x38]
 	adds r0, #0x30
@@ -21810,7 +21810,7 @@ sub_080B4C60: @ 0x080B4C60
 	str r7, [sp]
 	movs r4, #0xa
 	str r4, [sp, #4]
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	ldr r1, [r6, #0x3c]
 	adds r1, #0x30
 	adds r1, r1, r5
@@ -21853,7 +21853,7 @@ sub_080B4D14: @ 0x080B4D14
 	ldr r0, [r1]
 	cmp r0, #0
 	beq _080B4D36
-	bl sub_080124F8
+	bl EndSpriteAnimProc
 _080B4D36:
 	ldr r0, [r5, #0x3c]
 	adds r0, #0x30
@@ -21933,7 +21933,7 @@ _080B4DC4:
 	adds r0, r7, #0
 	mov r1, sb
 	movs r3, #0x28
-	bl sub_08007BCC
+	bl StartBmFace
 	adds r2, r0, #0
 	str r2, [r5, #4]
 	movs r1, #0xc0
@@ -21980,7 +21980,7 @@ _080B4E26:
 	strb r0, [r1]
 	adds r0, r7, #0
 	movs r1, #5
-	bl sub_08007A64
+	bl SetFaceBlinkControlById
 	movs r6, #0
 	movs r0, #1
 	strb r0, [r5, #8]
@@ -22068,12 +22068,12 @@ sub_080B4E88: @ 0x080B4E88
 	cmp r0, #0
 	bne _080B4F28
 	adds r0, r4, #0
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r1, #0x80
 	lsls r1, r1, #3
 	orrs r1, r0
 	adds r0, r4, #0
-	bl sub_08006D68
+	bl SetFaceDisp
 	movs r0, #0xff
 	lsls r0, r0, #8
 	mov r2, sb
@@ -22223,7 +22223,7 @@ sub_080B4FE4: @ 0x080B4FE4
 	lsls r0, r0, #2
 	movs r1, #2
 	movs r2, #2
-	bl sub_08007E98
+	bl InitSpriteTalk
 	ldr r0, _080B502C @ =0x02000815
 	ldrb r0, [r0]
 	lsrs r1, r0, #3
@@ -22232,7 +22232,7 @@ sub_080B4FE4: @ 0x080B4FE4
 	adds r2, r4, #0
 	bl StartTalkMsg
 	movs r0, #4
-	bl sub_080080D8
+	bl SetTalkPrintDelay
 	movs r0, #0x20
 	bl SetTalkFlag
 	movs r0, #0x80
@@ -22286,7 +22286,7 @@ WorldMap_Init: @ 0x080B5030
 	mov r0, sp
 	bl SetFaceConfig
 	bl ResetUnitSprites
-	bl sub_0806BA4C
+	bl MU_Init
 	bl ApplyUnitSpritePalettes
 	ldr r1, _080B50C0 @ =0x0202BBB8
 	movs r0, #0
@@ -22437,7 +22437,7 @@ sub_080B50C4: @ 0x080B50C4
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0
-	bl sub_080AA154
+	bl SetBlankBgColor
 	mov r2, r8
 	ldrb r2, [r2]
 	ands r6, r2
@@ -22522,7 +22522,7 @@ sub_080B5280: @ 0x080B5280
 	movs r0, #0
 	bl SetOnHBlankA
 	bl EndTalk
-	bl sub_080097FC
+	bl ClearTalkText
 	bl ResetUnitSprites
 	ldr r2, _080B52C8 @ =0x03002870
 	adds r1, r2, #0
@@ -22561,7 +22561,7 @@ sub_080B52D0: @ 0x080B52D0
 	ands r0, r1
 	cmp r0, #0
 	beq _080B533A
-	bl sub_0807685C
+	bl InitScanlineEffect
 	ldr r0, _080B5340 @ =sub_08077860
 	bl SetOnHBlankB
 	movs r0, #0
@@ -22915,8 +22915,8 @@ sub_080B5554: @ 0x080B5554
 	.align 2, 0
 _080B5588: .4byte 0x08CE76E8
 
-	thumb_func_start sub_080B558C
-sub_080B558C: @ 0x080B558C
+	thumb_func_start EndWM
+EndWM: @ 0x080B558C
 	push {lr}
 	ldr r0, _080B55B4 @ =0x08CE4C50
 	bl Proc_Find
@@ -22925,7 +22925,7 @@ sub_080B558C: @ 0x080B558C
 	bl Proc_Find
 	bl Proc_End
 	bl ClearTalk
-	bl sub_08012504
+	bl EndEachSpriteAnimProc
 	movs r0, #0
 	bl InitBgs
 	pop {r0}
@@ -23142,8 +23142,8 @@ _080B575A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080B5760
-sub_080B5760: @ 0x080B5760
+	thumb_func_start WmMergeFace
+WmMergeFace: @ 0x080B5760
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

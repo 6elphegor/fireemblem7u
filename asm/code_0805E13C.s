@@ -10,9 +10,9 @@ sub_0805E13C: @ 0x0805E13C
 	sub sp, #8
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r6, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -33,7 +33,7 @@ sub_0805E13C: @ 0x0805E13C
 	movs r3, #2
 	ldrsh r2, [r2, r3]
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 _0805E180:
 	ldrh r0, [r4, #0x2c]
 	cmp r0, #0x64
@@ -41,7 +41,7 @@ _0805E180:
 	ldr r0, [r4, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0805E190:
 	movs r2, #0x2c
 	ldrsh r1, [r4, r2]
@@ -50,7 +50,7 @@ _0805E190:
 	cmp r1, r0
 	bne _0805E1D8
 	adds r0, r5, #0
-	bl sub_0805E378
+	bl StartSubSpell_efxSleepOBJ2
 	adds r0, r5, #0
 	bl sub_0805E3CC
 	ldr r0, [r4, #0x5c]
@@ -62,14 +62,14 @@ _0805E190:
 	movs r1, #0
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_08055F08
+	bl NewEfxALPHA
 	str r7, [sp]
 	str r7, [sp, #4]
 	adds r0, r5, #0
 	movs r1, #0xe6
 	movs r2, #0x14
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	b _0805E22E
 	.align 2, 0
 _0805E1D4: .4byte 0x0000011B
@@ -86,17 +86,17 @@ _0805E1D8:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r5, #0
-	bl sub_080503E0
+	bl StartBattleAnimStatusChgHitEffects
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _0805E22E
 	adds r0, r5, #0
-	bl sub_0804F840
+	bl GetUnitEfxDebuff
 	cmp r0, #0
 	bne _0805E22E
 	adds r0, r5, #0
 	movs r1, #2
-	bl sub_0804F810
+	bl SetUnitEfxDebuff
 	b _0805E22E
 _0805E20E:
 	movs r2, #0xb9
@@ -108,8 +108,8 @@ _0805E20E:
 	ldrh r3, [r5, #0x10]
 	orrs r0, r3
 	strh r0, [r5, #0x10]
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r4, #0
 	bl Proc_Break
 _0805E22E:
@@ -144,19 +144,19 @@ sub_0805E23C: @ 0x0805E23C
 	str r0, [r5, #0x50]
 	ldr r0, _0805E2AC @ =0x082751D0
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, _0805E2B0 @ =0x08274304
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050040
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_SetSomeColorEffect
 	ldr r0, _0805E2B4 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _0805E2C2
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805E2B8
 	movs r0, #1
@@ -190,7 +190,7 @@ sub_0805E2C8: @ 0x0805E2C8
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -203,19 +203,19 @@ sub_0805E2C8: @ 0x0805E2C8
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _0805E314
 _0805E2F6:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _0805E314
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805E31C @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0805E314:
@@ -244,15 +244,15 @@ sub_0805E320: @ 0x0805E320
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r0, _0805E370 @ =0x08276198
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805E374 @ =0x08275FB0
 	movs r1, #0x80
 	lsls r1, r1, #4
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -264,8 +264,8 @@ _0805E36C: .4byte 0x08BCC1E0
 _0805E370: .4byte 0x08276198
 _0805E374: .4byte 0x08275FB0
 
-	thumb_func_start sub_0805E378
-sub_0805E378: @ 0x0805E378
+	thumb_func_start StartSubSpell_efxSleepOBJ2
+StartSubSpell_efxSleepOBJ2: @ 0x0805E378
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -283,7 +283,7 @@ sub_0805E378: @ 0x0805E378
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldrh r1, [r0, #4]
 	subs r1, #8
@@ -326,8 +326,8 @@ sub_0805E3CC: @ 0x0805E3CC
 _0805E3E8: .4byte 0x0201774C
 _0805E3EC: .4byte 0x08BA341C
 
-	thumb_func_start sub_0805E3F0
-sub_0805E3F0: @ 0x0805E3F0
+	thumb_func_start efxSleepSE_PlaySE
+efxSleepSE_PlaySE: @ 0x0805E3F0
 	push {r4, lr}
 	movs r3, #0x8e
 	lsls r3, r3, #1
@@ -338,7 +338,7 @@ sub_0805E3F0: @ 0x0805E3F0
 	ldrsh r2, [r0, r4]
 	adds r0, r3, #0
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -358,9 +358,9 @@ _0805E41C: .4byte 0x0201774C
 sub_0805E420: @ 0x0805E420
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _0805E458 @ =0x08BA3464
 	movs r1, #3
 	bl SpawnProc
@@ -369,10 +369,10 @@ sub_0805E420: @ 0x0805E420
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -389,9 +389,9 @@ sub_0805E45C: @ 0x0805E45C
 	sub sp, #8
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r6, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r5, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -406,7 +406,7 @@ sub_0805E45C: @ 0x0805E45C
 	ldr r0, [r4, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0805E492:
 	movs r2, #0x2c
 	ldrsh r1, [r4, r2]
@@ -422,7 +422,7 @@ _0805E492:
 	movs r1, #0x28
 	movs r2, #0x1e
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	movs r4, #0x10
 	str r4, [sp]
 	str r7, [sp, #4]
@@ -430,35 +430,35 @@ _0805E492:
 	movs r1, #0x47
 	movs r2, #0x1e
 	movs r3, #8
-	bl sub_08055F08
+	bl NewEfxALPHA
 	str r5, [sp]
 	str r7, [sp, #4]
 	adds r0, r6, #0
 	movs r1, #0x66
 	movs r2, #0x1e
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	str r4, [sp]
 	str r7, [sp, #4]
 	adds r0, r6, #0
 	movs r1, #0x85
 	movs r2, #0x1e
 	movs r3, #8
-	bl sub_08055F08
+	bl NewEfxALPHA
 	str r7, [sp]
 	str r7, [sp, #4]
 	adds r0, r6, #0
 	movs r1, #0xa4
 	movs r2, #0x3c
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	ldr r0, _0805E508 @ =0x00000103
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r3, #2
 	ldrsh r2, [r6, r3]
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _0805E570
 	.align 2, 0
 _0805E508: .4byte 0x00000103
@@ -479,7 +479,7 @@ _0805E51C:
 	movs r1, #1
 	movs r2, #5
 	movs r3, #0
-	bl sub_0804F598
+	bl NewEfxFlashUnit
 	b _0805E570
 _0805E532:
 	adds r0, r5, #0
@@ -494,7 +494,7 @@ _0805E532:
 	adds r0, #0x29
 	ldrb r1, [r0]
 	adds r0, r6, #0
-	bl sub_080503E0
+	bl StartBattleAnimStatusChgHitEffects
 	b _0805E570
 _0805E550:
 	movs r2, #0x96
@@ -506,8 +506,8 @@ _0805E550:
 	ldrh r3, [r6, #0x10]
 	orrs r0, r3
 	strh r0, [r6, #0x10]
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r4, #0
 	bl Proc_Break
 _0805E570:
@@ -542,8 +542,8 @@ sub_0805E57C: @ 0x0805E57C
 	str r1, [r0, #0x54]
 	ldr r0, _0805E5CC @ =0x08272DBC
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050040
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_SetSomeColorEffect
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -563,7 +563,7 @@ sub_0805E5D0: @ 0x0805E5D0
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r3, r0, #0x10
 	cmp r3, #0
@@ -577,24 +577,24 @@ sub_0805E5D0: @ 0x0805E5D0
 	ldr r1, [r1]
 	adds r2, r4, r2
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	adds r4, r4, r5
 	ldr r0, [r4]
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	b _0805E62A
 _0805E60C:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r3, r0
 	bne _0805E62A
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805E630 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0805E62A:
@@ -623,15 +623,15 @@ sub_0805E634: @ 0x0805E634
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r0, _0805E684 @ =0x082761B8
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805E688 @ =0x08275FB0
 	movs r1, #0x80
 	lsls r1, r1, #4
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -657,9 +657,9 @@ _0805E698: .4byte 0x0201774C
 sub_0805E69C: @ 0x0805E69C
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _0805E6D4 @ =0x08BA351C
 	movs r1, #3
 	bl SpawnProc
@@ -668,10 +668,10 @@ sub_0805E69C: @ 0x0805E69C
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -686,9 +686,9 @@ sub_0805E6D8: @ 0x0805E6D8
 	sub sp, #4
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r6, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -701,7 +701,7 @@ sub_0805E6D8: @ 0x0805E6D8
 	ldr r0, [r4, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0805E706:
 	movs r0, #0x2c
 	ldrsh r1, [r4, r0]
@@ -715,7 +715,7 @@ _0805E706:
 	bl sub_0805E7B8
 	adds r0, r5, #0
 	movs r1, #0x4a
-	bl sub_0805E93C
+	bl StartSubSpell_efxBerserkCLONE
 	movs r4, #0x80
 	lsls r4, r4, #1
 	movs r0, #1
@@ -724,17 +724,17 @@ _0805E706:
 	movs r1, #0x4a
 	movs r2, #0xa
 	adds r3, r4, #0
-	bl sub_080558BC
+	bl NewefxRestRST
 	adds r0, r5, #0
 	movs r1, #0x4a
 	movs r2, #0
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	movs r1, #2
 	ldrsh r2, [r5, r1]
 	movs r0, #0xf9
 	adds r1, r4, #0
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _0805E7AE
 _0805E754:
 	adds r0, r6, #0
@@ -743,7 +743,7 @@ _0805E754:
 	bne _0805E790
 	adds r0, r5, #0
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	movs r0, #9
 	ldrh r1, [r5, #0x10]
 	orrs r0, r1
@@ -751,17 +751,17 @@ _0805E754:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r5, #0
-	bl sub_080503E0
+	bl StartBattleAnimStatusChgHitEffects
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _0805E7AE
 	adds r0, r5, #0
-	bl sub_0804F840
+	bl GetUnitEfxDebuff
 	cmp r0, #0
 	bne _0805E7AE
 	adds r0, r5, #0
 	movs r1, #4
-	bl sub_0804F810
+	bl SetUnitEfxDebuff
 	b _0805E7AE
 _0805E790:
 	adds r0, r6, #0
@@ -772,8 +772,8 @@ _0805E790:
 	ldrh r1, [r5, #0x10]
 	orrs r0, r1
 	strh r0, [r5, #0x10]
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r4, #0
 	bl Proc_Break
 _0805E7AE:
@@ -803,11 +803,11 @@ sub_0805E7B8: @ 0x0805E7B8
 	strh r4, [r0, #0x2e]
 	ldr r0, _0805E8B8 @ =0x082761D8
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, _0805E8BC @ =0x082739E4
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _0805E8C0 @ =0x08273AE4
 	ldr r1, _0805E8C4 @ =0x02023460
 	movs r2, #1
@@ -816,10 +816,10 @@ sub_0805E7B8: @ 0x0805E7B8
 	str r2, [sp, #4]
 	movs r2, #0x20
 	movs r3, #0x20
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	ldr r0, _0805E8C8 @ =0x03002870
 	mov ip, r0
 	mov r2, ip
@@ -932,8 +932,8 @@ sub_0805E8D8: @ 0x0805E8D8
 	lsls r1, r2, #0x10
 	cmp r0, r1
 	bne _0805E924
-	bl sub_08050018
-	bl sub_08050118
+	bl SpellFx_ClearBG1
+	bl SpellFx_ClearColorEffects
 	ldr r0, [r5, #0x1c]
 	ldr r1, _0805E930 @ =0xFFFFF7FF
 	ands r0, r1
@@ -962,8 +962,8 @@ _0805E930: .4byte 0xFFFFF7FF
 _0805E934: .4byte 0x0000F3FF
 _0805E938: .4byte 0x0201774C
 
-	thumb_func_start sub_0805E93C
-sub_0805E93C: @ 0x0805E93C
+	thumb_func_start StartSubSpell_efxBerserkCLONE
+StartSubSpell_efxBerserkCLONE: @ 0x0805E93C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1015,7 +1015,7 @@ sub_0805E968: @ 0x0805E968
 	orrs r0, r1
 	strh r0, [r2, #8]
 	mov r0, sp
-	bl sub_0800667C
+	bl AnimDisplay
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
 	strh r0, [r4, #0x2c]
@@ -1060,13 +1060,13 @@ sub_0805E9DC: @ 0x0805E9DC
 	adds r4, r0, #0
 	str r5, [r4, #0x5c]
 	adds r0, r5, #0
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	ldr r3, _0805EA2C @ =0x08BA14DC
 	ldr r0, [r4, #0x5c]
 	str r3, [sp]
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r1, _0805EA30 @ =0x0000F3FF
 	ldrh r2, [r0, #8]
@@ -1094,7 +1094,7 @@ sub_0805EA34: @ 0x0805EA34
 	subs r1, #1
 	str r1, [r2]
 	ldr r0, [r0, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -1112,11 +1112,11 @@ sub_0805EA4C: @ 0x0805EA4C
 	strh r0, [r1, #6]
 	ldr r0, _0805EA80 @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EA84 @ =0x082761F8
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1139,11 +1139,11 @@ sub_0805EA88: @ 0x0805EA88
 	strh r0, [r1, #6]
 	ldr r0, _0805EABC @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EAC0 @ =0x082761F8
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1166,11 +1166,11 @@ sub_0805EAC4: @ 0x0805EAC4
 	strh r0, [r1, #6]
 	ldr r0, _0805EAF8 @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EAFC @ =0x082761F8
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1193,11 +1193,11 @@ sub_0805EB00: @ 0x0805EB00
 	strh r0, [r1, #6]
 	ldr r0, _0805EB34 @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EB38 @ =0x082761F8
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1220,11 +1220,11 @@ sub_0805EB3C: @ 0x0805EB3C
 	strh r0, [r1, #6]
 	ldr r0, _0805EB70 @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EB74 @ =0x082761F8
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1247,11 +1247,11 @@ sub_0805EB78: @ 0x0805EB78
 	strh r0, [r1, #6]
 	ldr r0, _0805EBAC @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EBB0 @ =0x08276690
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1274,11 +1274,11 @@ sub_0805EBB4: @ 0x0805EBB4
 	strh r0, [r1, #6]
 	ldr r0, _0805EBE8 @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EBEC @ =0x08276690
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1301,11 +1301,11 @@ sub_0805EBF0: @ 0x0805EBF0
 	strh r0, [r1, #6]
 	ldr r0, _0805EC24 @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EC28 @ =0x08276690
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1328,11 +1328,11 @@ sub_0805EC2C: @ 0x0805EC2C
 	strh r0, [r1, #6]
 	ldr r0, _0805EC60 @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EC64 @ =0x08276690
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1355,11 +1355,11 @@ sub_0805EC68: @ 0x0805EC68
 	strh r0, [r1, #6]
 	ldr r0, _0805EC9C @ =0x08276AB0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805ECA0 @ =0x08276690
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -1374,9 +1374,9 @@ _0805ECA0: .4byte 0x08276690
 sub_0805ECA4: @ 0x0805ECA4
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _0805ECDC @ =0x08BA3624
 	movs r1, #3
 	bl SpawnProc
@@ -1385,10 +1385,10 @@ sub_0805ECA4: @ 0x0805ECA4
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -1402,9 +1402,9 @@ sub_0805ECE0: @ 0x0805ECE0
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r4, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r6, r0, #0
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -1417,7 +1417,7 @@ sub_0805ECE0: @ 0x0805ECE0
 	ldr r0, [r5, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0805ED0C:
 	movs r0, #0x2c
 	ldrsh r1, [r5, r0]
@@ -1429,7 +1429,7 @@ _0805ED0C:
 	adds r0, r4, #0
 	bl sub_0805EE60
 	adds r0, r4, #0
-	bl sub_0805EEB8
+	bl StartSubSpell_efxMshieldBGOBJ2
 	movs r0, #0x81
 	lsls r0, r0, #1
 	movs r1, #0x80
@@ -1437,7 +1437,7 @@ _0805ED0C:
 	movs r3, #2
 	ldrsh r2, [r4, r3]
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _0805EDA6
 _0805ED3C:
 	adds r0, r6, #0
@@ -1450,7 +1450,7 @@ _0805ED3C:
 	bne _0805ED54
 _0805ED4C:
 	adds r0, r4, #0
-	bl sub_0805EEB8
+	bl StartSubSpell_efxMshieldBGOBJ2
 	b _0805EDA6
 _0805ED54:
 	adds r0, r6, #0
@@ -1461,7 +1461,7 @@ _0805ED54:
 	movs r1, #1
 	movs r2, #5
 	movs r3, #0
-	bl sub_0804F598
+	bl NewEfxFlashUnit
 	b _0805EDA6
 _0805ED6A:
 	adds r0, r6, #0
@@ -1476,7 +1476,7 @@ _0805ED6A:
 	adds r0, #0x29
 	ldrb r1, [r0]
 	adds r0, r4, #0
-	bl sub_080503E0
+	bl StartBattleAnimStatusChgHitEffects
 	b _0805EDA6
 _0805ED88:
 	adds r0, r6, #0
@@ -1487,8 +1487,8 @@ _0805ED88:
 	ldrh r3, [r4, #0x10]
 	orrs r0, r3
 	strh r0, [r4, #0x10]
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r5, #0
 	bl Proc_Break
 _0805EDA6:
@@ -1518,12 +1518,12 @@ sub_0805EDAC: @ 0x0805EDAC
 	str r1, [r0, #0x50]
 	ldr r0, _0805EE00 @ =0x0827747C
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, _0805EE04 @ =0x08276BF0
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050040
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_SetSomeColorEffect
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -1543,7 +1543,7 @@ sub_0805EE08: @ 0x0805EE08
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -1556,19 +1556,19 @@ sub_0805EE08: @ 0x0805EE08
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _0805EE54
 _0805EE36:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _0805EE54
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805EE5C @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0805EE54:
@@ -1597,15 +1597,15 @@ sub_0805EE60: @ 0x0805EE60
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r0, _0805EEB0 @ =0x0827798C
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805EEB4 @ =0x08275FB0
 	movs r1, #0x80
 	lsls r1, r1, #4
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -1617,8 +1617,8 @@ _0805EEAC: .4byte 0x08BD0C48
 _0805EEB0: .4byte 0x0827798C
 _0805EEB4: .4byte 0x08275FB0
 
-	thumb_func_start sub_0805EEB8
-sub_0805EEB8: @ 0x0805EEB8
+	thumb_func_start StartSubSpell_efxMshieldBGOBJ2
+StartSubSpell_efxMshieldBGOBJ2: @ 0x0805EEB8
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -1636,7 +1636,7 @@ sub_0805EEB8: @ 0x0805EEB8
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	add sp, #4
 	pop {r4, r5}
@@ -1651,7 +1651,7 @@ _0805EEF4: .4byte 0x08BD0D98
 sub_0805EEF8: @ 0x0805EEF8
 	push {lr}
 	ldr r0, [r0, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	ldr r1, _0805EF0C @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
@@ -1665,9 +1665,9 @@ _0805EF0C: .4byte 0x0201774C
 sub_0805EF10: @ 0x0805EF10
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _0805EF48 @ =0x08BA36A8
 	movs r1, #3
 	bl SpawnProc
@@ -1676,10 +1676,10 @@ sub_0805EF10: @ 0x0805EF10
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -1693,9 +1693,9 @@ sub_0805EF4C: @ 0x0805EF4C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r6, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -1707,7 +1707,7 @@ sub_0805EF4C: @ 0x0805EF4C
 	ldr r0, [r4, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0805EF76:
 	movs r0, #0x2c
 	ldrsh r1, [r4, r0]
@@ -1716,7 +1716,7 @@ _0805EF76:
 	bne _0805EF8A
 	adds r0, r5, #0
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _0805F018
 _0805EF8A:
 	adds r0, r6, #0
@@ -1724,7 +1724,7 @@ _0805EF8A:
 	cmp r1, r0
 	bne _0805EFAC
 	adds r0, r5, #0
-	bl sub_0805F0DC
+	bl StartSubSpell_efxShineBG2
 	movs r0, #0xaf
 	lsls r0, r0, #2
 	movs r1, #0x80
@@ -1732,7 +1732,7 @@ _0805EF8A:
 	movs r3, #2
 	ldrsh r2, [r5, r3]
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _0805F018
 _0805EFAC:
 	adds r0, r6, #0
@@ -1741,9 +1741,9 @@ _0805EFAC:
 	bne _0805EFC4
 	adds r0, r5, #0
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	adds r0, r5, #0
-	bl sub_0805F288
+	bl StartSubSpell_efxShineOBJRND
 	b _0805F018
 _0805EFC4:
 	adds r0, r6, #0
@@ -1751,7 +1751,7 @@ _0805EFC4:
 	cmp r1, r0
 	bne _0805EFDA
 	adds r0, r5, #0
-	bl sub_0805F020
+	bl StartSubSpell_efxShineBG
 	adds r0, r5, #0
 	bl sub_0805F1FC
 	b _0805F018
@@ -1767,20 +1767,20 @@ _0805EFDA:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r5, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _0805F018
 	adds r0, r5, #0
-	bl sub_08067D14
+	bl EfxPlayHittedSFX
 	b _0805F018
 _0805F002:
 	adds r0, r6, #0
 	adds r0, #0x23
 	cmp r1, r0
 	bne _0805F018
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r4, #0
 	bl Proc_Break
 _0805F018:
@@ -1789,8 +1789,8 @@ _0805F018:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0805F020
-sub_0805F020: @ 0x0805F020
+	thumb_func_start StartSubSpell_efxShineBG
+StartSubSpell_efxShineBG: @ 0x0805F020
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _0805F060 @ =0x0201774C
@@ -1816,7 +1816,7 @@ sub_0805F020: @ 0x0805F020
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -1836,7 +1836,7 @@ sub_0805F078: @ 0x0805F078
 	adds r1, r7, #0
 	adds r1, #0x44
 	ldr r2, [r7, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r4, r0, #0x10
 	cmp r4, #0
@@ -1849,25 +1849,25 @@ sub_0805F078: @ 0x0805F078
 	ldr r0, [r0]
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, [r7, #0x5c]
 	adds r5, r4, r5
 	ldr r1, [r5]
 	adds r4, r4, r6
 	ldr r2, [r4]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _0805F0D2
 _0805F0B4:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r4, r0
 	bne _0805F0D2
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805F0D8 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r7, #0
 	bl Proc_Break
 _0805F0D2:
@@ -1877,8 +1877,8 @@ _0805F0D2:
 	.align 2, 0
 _0805F0D8: .4byte 0x0201774C
 
-	thumb_func_start sub_0805F0DC
-sub_0805F0DC: @ 0x0805F0DC
+	thumb_func_start StartSubSpell_efxShineBG2
+StartSubSpell_efxShineBG2: @ 0x0805F0DC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r1, _0805F138 @ =0x0201774C
@@ -1900,18 +1900,18 @@ sub_0805F0DC: @ 0x0805F0DC
 	str r0, [r5, #0x50]
 	ldr r0, _0805F148 @ =0x08290954
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, _0805F14C @ =0x08290678
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _0805F150 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _0805F15E
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805F154
 	movs r0, #1
@@ -1933,13 +1933,13 @@ _0805F154:
 	movs r2, #0
 	bl SetBgOffset
 _0805F15E:
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0805F168
-sub_0805F168: @ 0x0805F168
+	thumb_func_start efxShineBG2_Loop
+efxShineBG2_Loop: @ 0x0805F168
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -1947,7 +1947,7 @@ sub_0805F168: @ 0x0805F168
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -1960,14 +1960,14 @@ sub_0805F168: @ 0x0805F168
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	ldr r0, _0805F1B0 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _0805F1EE
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	cmp r1, #0
 	bne _0805F1B8
@@ -1984,7 +1984,7 @@ _0805F1BC:
 	movs r1, #3
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 	b _0805F1EE
 	.align 2, 0
 _0805F1CC: .4byte 0x0202349A
@@ -1993,12 +1993,12 @@ _0805F1D0:
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _0805F1EE
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805F1F8 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0805F1EE:
@@ -2031,7 +2031,7 @@ sub_0805F1FC: @ 0x0805F1FC
 	str r1, [r0, #0x4c]
 	adds r0, r1, #0
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -2049,7 +2049,7 @@ sub_0805F240: @ 0x0805F240
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -2058,7 +2058,7 @@ sub_0805F240: @ 0x0805F240
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _0805F27C
 _0805F266:
 	movs r0, #1
@@ -2078,8 +2078,8 @@ _0805F27C:
 	.align 2, 0
 _0805F284: .4byte 0x0201774C
 
-	thumb_func_start sub_0805F288
-sub_0805F288: @ 0x0805F288
+	thumb_func_start StartSubSpell_efxShineOBJRND
+StartSubSpell_efxShineOBJRND: @ 0x0805F288
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _0805F2C0 @ =0x0201774C
@@ -2097,11 +2097,11 @@ sub_0805F288: @ 0x0805F288
 	strh r2, [r0, #0x30]
 	ldr r0, _0805F2C8 @ =0x0829162C
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805F2CC @ =0x08291368
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -2124,7 +2124,7 @@ sub_0805F2D0: @ 0x0805F2D0
 	cmp r0, r1
 	bne _0805F36C
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805F320
 	ldr r0, [r5, #0x5c]
@@ -2147,7 +2147,7 @@ sub_0805F2D0: @ 0x0805F2D0
 	ldrsh r1, [r2, r4]
 	adds r2, r3, r1
 	adds r1, r6, #0
-	bl sub_0805F37C
+	bl StartSubSpell_efxShineOBJ
 	b _0805F34C
 	.align 2, 0
 _0805F31C: .4byte 0x08BA3758
@@ -2172,7 +2172,7 @@ _0805F320:
 	ldrsh r1, [r2, r4]
 	adds r2, r3, r1
 	adds r1, r6, #0
-	bl sub_0805F37C
+	bl StartSubSpell_efxShineOBJ
 _0805F34C:
 	movs r0, #0
 	strh r0, [r5, #0x2c]
@@ -2197,8 +2197,8 @@ _0805F36C:
 _0805F374: .4byte 0x08BA3758
 _0805F378: .4byte 0x0201774C
 
-	thumb_func_start sub_0805F37C
-sub_0805F37C: @ 0x0805F37C
+	thumb_func_start StartSubSpell_efxShineOBJ
+StartSubSpell_efxShineOBJ: @ 0x0805F37C
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -2224,7 +2224,7 @@ sub_0805F37C: @ 0x0805F37C
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	strh r6, [r0, #2]
 	mov r1, r8
@@ -2268,9 +2268,9 @@ _0805F3FC: .4byte 0x0201774C
 sub_0805F400: @ 0x0805F400
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _0805F438 @ =0x08BA3780
 	movs r1, #3
 	bl SpawnProc
@@ -2279,10 +2279,10 @@ sub_0805F400: @ 0x0805F400
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -2299,9 +2299,9 @@ sub_0805F43C: @ 0x0805F43C
 	sub sp, #8
 	adds r6, r0, #0
 	ldr r0, [r6, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r4, r0, #0
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
@@ -2315,7 +2315,7 @@ sub_0805F43C: @ 0x0805F43C
 	bne _0805F470
 	ldr r0, [r6, #0x5c]
 	subs r1, #1
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0805F470:
 	movs r3, #0x2c
 	ldrsh r1, [r6, r3]
@@ -2359,7 +2359,7 @@ _0805F470:
 	movs r1, #0
 	movs r2, #0xa
 	movs r3, #0
-	bl sub_08055F08
+	bl NewEfxALPHA
 	movs r4, #0x80
 	lsls r4, r4, #1
 	movs r0, #2
@@ -2368,7 +2368,7 @@ _0805F470:
 	movs r1, #0x14
 	movs r2, #0xf
 	adds r3, r4, #0
-	bl sub_080558BC
+	bl NewefxRestRST
 	adds r1, r0, #0
 	adds r0, r5, #0
 	movs r2, #0x14
@@ -2378,12 +2378,12 @@ _0805F470:
 	adds r0, r5, #0
 	movs r1, #0x14
 	movs r3, #0
-	bl sub_08055CD0
+	bl NewEfxRestWINH
 	ldr r0, _0805F508 @ =0x000002BD
 	adds r1, r4, #0
 	movs r2, #0x78
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _0805F62A
 	.align 2, 0
 _0805F504: .4byte 0x03002870
@@ -2397,9 +2397,9 @@ _0805F50C:
 	adds r0, r5, #0
 	movs r1, #0x15
 	movs r2, #1
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	adds r0, r5, #0
-	bl sub_0805FAE8
+	bl StartSubSpell_efxLunaOBJ
 	mov r3, r8
 	str r3, [sp]
 	str r3, [sp, #4]
@@ -2407,7 +2407,7 @@ _0805F50C:
 	movs r1, #0
 	movs r2, #0x19
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	b _0805F62A
 _0805F53C:
 	adds r0, r4, #0
@@ -2420,7 +2420,7 @@ _0805F53C:
 	movs r3, #2
 	ldrsh r2, [r5, r3]
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 	b _0805F62A
 	.align 2, 0
 _0805F558: .4byte 0x000002BE
@@ -2459,18 +2459,18 @@ _0805F55C:
 	movs r1, #0
 	movs r2, #0xa
 	movs r3, #0
-	bl sub_08055F08
+	bl NewEfxALPHA
 	movs r0, #1
 	str r0, [sp]
 	adds r0, r5, #0
 	movs r1, #0x41
 	movs r2, #2
 	movs r3, #0x80
-	bl sub_080558BC
+	bl NewefxRestRST
 	adds r0, r5, #0
 	movs r1, #0x44
 	movs r2, #0
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	b _0805F62A
 	.align 2, 0
 _0805F5C4: .4byte 0x03002870
@@ -2481,7 +2481,7 @@ _0805F5C8:
 	bne _0805F5FA
 	adds r0, r5, #0
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	movs r0, #9
 	ldrh r1, [r5, #0x10]
 	orrs r0, r1
@@ -2490,12 +2490,12 @@ _0805F5C8:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r5, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _0805F62A
 	adds r0, r5, #0
-	bl sub_08067D14
+	bl EfxPlayHittedSFX
 	b _0805F62A
 _0805F5FA:
 	adds r0, r4, #0
@@ -2507,15 +2507,15 @@ _0805F5FA:
 	movs r2, #0
 	bl SetBgOffset
 	ldr r0, [r6, #0x5c]
-	bl sub_0805FA00
+	bl StartSubSpell_efxLunaBG3
 	b _0805F62A
 _0805F614:
 	adds r0, r4, #0
 	adds r0, #0xbe
 	cmp r1, r0
 	bne _0805F62A
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r6, #0
 	bl Proc_Break
 _0805F62A:
@@ -2549,12 +2549,12 @@ sub_0805F638: @ 0x0805F638
 	str r1, [r0, #0x50]
 	ldr r0, _0805F68C @ =0x0829211C
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, _0805F690 @ =0x0829164C
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050040
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_SetSomeColorEffect
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -2574,7 +2574,7 @@ sub_0805F694: @ 0x0805F694
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -2587,19 +2587,19 @@ sub_0805F694: @ 0x0805F694
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _0805F6E0
 _0805F6C2:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _0805F6E0
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805F6E8 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0805F6E0:
@@ -2619,14 +2619,14 @@ sub_0805F6EC: @ 0x0805F6EC
 	strh r1, [r0, #0x2c]
 	strh r1, [r0, #0x2e]
 	str r1, [r0, #0x44]
-	bl sub_0805F7C8
+	bl StartSubSpell_efxLunaSCR2
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0805F708: .4byte 0x08BA37B4
 
-	thumb_func_start sub_0805F70C
-sub_0805F70C: @ 0x0805F70C
+	thumb_func_start efxLunaSCR_Loop
+efxLunaSCR_Loop: @ 0x0805F70C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -2722,8 +2722,8 @@ _0805F7A2:
 	.align 2, 0
 _0805F7C4: .4byte 0xFFFF0000
 
-	thumb_func_start sub_0805F7C8
-sub_0805F7C8: @ 0x0805F7C8
+	thumb_func_start StartSubSpell_efxLunaSCR2
+StartSubSpell_efxLunaSCR2: @ 0x0805F7C8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0805F7E4 @ =0x08BA37CC
@@ -2755,7 +2755,7 @@ sub_0805F7E8: @ 0x0805F7E8
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r5, #0x44]
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -2796,17 +2796,17 @@ sub_0805F82C: @ 0x0805F82C
 	ldr r0, _0805F898 @ =0x0829226C
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _0805F89C @ =0x082929CC
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050018
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_ClearBG1
 	ldr r0, _0805F8A0 @ =0x08292BAC
 	ldr r4, _0805F8A4 @ =0x02019784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805F8AC
 	ldr r1, _0805F8A8 @ =0x02023460
@@ -2817,7 +2817,7 @@ sub_0805F82C: @ 0x0805F82C
 	adds r0, r4, #0
 	movs r2, #0x1e
 	movs r3, #0x20
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _0805F8C0
 	.align 2, 0
 _0805F890: .4byte 0x0201774C
@@ -2836,18 +2836,18 @@ _0805F8AC:
 	adds r0, r4, #0
 	movs r2, #0x1e
 	movs r3, #0x20
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _0805F8C0:
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	ldr r0, _0805F8F0 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _0805F8FE
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805F8F4
 	movs r0, #1
@@ -2885,12 +2885,12 @@ _0805F91C: .4byte 0x03002870
 	thumb_func_start sub_0805F920
 sub_0805F920: @ 0x0805F920
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805F938 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -2944,7 +2944,7 @@ sub_0805F968: @ 0x0805F968
 	str r1, [r0, #0x4c]
 	adds r0, r1, #0
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -2972,7 +2972,7 @@ sub_0805F9C0: @ 0x0805F9C0
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -2981,7 +2981,7 @@ sub_0805F9C0: @ 0x0805F9C0
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 _0805F9E4:
 	ldrh r0, [r4, #0x2e]
 	adds r0, #1
@@ -2998,8 +2998,8 @@ _0805F9FA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0805FA00
-sub_0805FA00: @ 0x0805FA00
+	thumb_func_start StartSubSpell_efxLunaBG3
+StartSubSpell_efxLunaBG3: @ 0x0805FA00
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r1, _0805FA58 @ =0x0201774C
@@ -3023,15 +3023,15 @@ sub_0805FA00: @ 0x0805FA00
 	str r0, [r5, #0x54]
 	ldr r0, _0805FA6C @ =0x08295850
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050040
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_SetSomeColorEffect
 	ldr r0, _0805FA70 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _0805FA7E
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805FA74
 	movs r0, #1
@@ -3065,7 +3065,7 @@ sub_0805FA84: @ 0x0805FA84
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r3, r0, #0x10
 	cmp r3, #0
@@ -3079,24 +3079,24 @@ sub_0805FA84: @ 0x0805FA84
 	ldr r1, [r1]
 	adds r2, r4, r2
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	adds r4, r4, r5
 	ldr r0, [r4]
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	b _0805FADE
 _0805FAC0:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r3, r0
 	bne _0805FADE
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805FAE4 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0805FADE:
@@ -3106,8 +3106,8 @@ _0805FADE:
 	.align 2, 0
 _0805FAE4: .4byte 0x0201774C
 
-	thumb_func_start sub_0805FAE8
-sub_0805FAE8: @ 0x0805FAE8
+	thumb_func_start StartSubSpell_efxLunaOBJ
+StartSubSpell_efxLunaOBJ: @ 0x0805FAE8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #0
@@ -3122,11 +3122,11 @@ _0805FAEE:
 	bls _0805FAEE
 	ldr r0, _0805FB1C @ =0x082967F4
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0805FB20 @ =0x082963F4
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -3156,7 +3156,7 @@ sub_0805FB24: @ 0x0805FB24
 	str r3, [sp]
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	strh r5, [r0, #6]
 	ldr r1, _0805FB90 @ =0x0000F3FF
@@ -3201,7 +3201,7 @@ sub_0805FB94: @ 0x0805FB94
 	movs r0, #4
 	movs r1, #0
 	movs r2, #0x32
-	bl sub_08012FE8
+	bl Interpolate
 	ldrh r2, [r4, #0x30]
 	movs r3, #0x80
 	lsls r3, r3, #2
@@ -3345,7 +3345,7 @@ sub_0805FCAC: @ 0x0805FCAC
 	movs r0, #1
 	movs r1, #0x32
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	ldrh r2, [r5, #0x30]
 	movs r3, #0x80
 	lsls r3, r3, #3
@@ -3397,7 +3397,7 @@ _0805FD12:
 	subs r1, #1
 	str r1, [r0]
 	ldr r0, [r5, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r5, #0
 	bl Proc_Break
 _0805FD34:
@@ -3448,7 +3448,7 @@ sub_0805FD74: @ 0x0805FD74
 	movs r0, #4
 	movs r1, #0x80
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r4, #0x4c]
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -3476,9 +3476,9 @@ _0805FDB8: .4byte 0x0201774C
 sub_0805FDBC: @ 0x0805FDBC
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _0805FDF4 @ =0x08BA39AC
 	movs r1, #3
 	bl SpawnProc
@@ -3487,10 +3487,10 @@ sub_0805FDBC: @ 0x0805FDBC
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -3504,9 +3504,9 @@ sub_0805FDF8: @ 0x0805FDF8
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r4, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r6, r0, #0
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -3518,7 +3518,7 @@ sub_0805FDF8: @ 0x0805FDF8
 	ldr r0, [r5, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0805FE22:
 	movs r0, #0x2c
 	ldrsh r1, [r5, r0]
@@ -3526,11 +3526,11 @@ _0805FE22:
 	cmp r1, r0
 	bne _0805FE3E
 	movs r0, #0xf
-	bl sub_08060160
+	bl StartSubSpell_efxExcaliburSCR
 	adds r0, r4, #0
 	movs r1, #0xf
 	movs r2, #1
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	b _0805FE84
 _0805FE3E:
 	adds r0, r6, #2
@@ -3546,7 +3546,7 @@ _0805FE3E:
 	movs r3, #2
 	ldrsh r2, [r4, r3]
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _0805FE84
 	.align 2, 0
 _0805FE64: .4byte 0x000002BF
@@ -3563,7 +3563,7 @@ _0805FE68:
 	movs r3, #2
 	ldrsh r2, [r2, r3]
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 _0805FE84:
 	adds r7, r5, #0
 	adds r7, #0x29
@@ -3577,7 +3577,7 @@ _0805FE84:
 	cmp r1, r0
 	bne _0805FEAC
 	adds r0, r4, #0
-	bl sub_080605F0
+	bl StartSubSpell_efxExcaliburOBJ
 	adds r0, r4, #0
 	bl sub_08060298
 	adds r0, r4, #0
@@ -3591,16 +3591,16 @@ _0805FEAC:
 	bne _0805FED6
 	adds r0, r4, #0
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	movs r0, #9
 	ldrh r1, [r4, #0x10]
 	orrs r0, r1
 	strh r0, [r4, #0x10]
 	ldrb r1, [r7]
 	adds r0, r4, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 	adds r0, r4, #0
-	bl sub_08067D14
+	bl EfxPlayHittedSFX
 _0805FED6:
 	movs r3, #0x2c
 	ldrsh r1, [r5, r3]
@@ -3619,8 +3619,8 @@ _0805FEEE:
 	adds r0, #0x69
 	cmp r1, r0
 	bne _0805FF40
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r5, #0
 	bl Proc_Break
 	b _0805FF40
@@ -3637,7 +3637,7 @@ _0805FF0A:
 	strh r0, [r4, #0x10]
 	ldrb r1, [r7]
 	adds r0, r4, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 _0805FF26:
 	movs r3, #0x2c
 	ldrsh r1, [r5, r3]
@@ -3645,8 +3645,8 @@ _0805FF26:
 	adds r0, #0x33
 	cmp r1, r0
 	bne _0805FF40
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r5, #0
 	bl Proc_Break
 _0805FF40:
@@ -3674,12 +3674,12 @@ sub_0805FF48: @ 0x0805FF48
 	ldr r0, _0805FFA4 @ =0x08296814
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050018
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_ClearBG1
 	ldr r0, _0805FFA8 @ =0x08296DA4
 	ldr r1, _0805FFAC @ =0x02019784
-	bl sub_080BFA28
-	bl sub_08050040
+	bl LZ77UnCompWram
+	bl SpellFx_SetSomeColorEffect
 	ldr r2, _0805FFB0 @ =0x03002870
 	movs r0, #0x21
 	rsbs r0, r0, #0
@@ -3705,12 +3705,12 @@ _0805FFB0: .4byte 0x03002870
 	thumb_func_start sub_0805FFB4
 sub_0805FFB4: @ 0x0805FFB4
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _0805FFCC @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -3722,7 +3722,7 @@ sub_0805FFD0: @ 0x0805FFD0
 	sub sp, #8
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08060000
 	ldr r0, _0805FFF8 @ =0x02019784
@@ -3733,7 +3733,7 @@ sub_0805FFD0: @ 0x0805FFD0
 	str r2, [sp, #4]
 	movs r2, #0x20
 	movs r3, #0x20
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _08060014
 	.align 2, 0
 _0805FFF8: .4byte 0x02019784
@@ -3747,7 +3747,7 @@ _08060000:
 	str r2, [sp, #4]
 	movs r2, #0x20
 	movs r3, #0x20
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _08060014:
 	movs r0, #2
 	bl EnableBgSync
@@ -3765,7 +3765,7 @@ _08060014:
 	strh r0, [r4, #0x2e]
 	strh r2, [r4, #0x32]
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0806004C
 	movs r0, #0x80
@@ -3802,7 +3802,7 @@ sub_08060064: @ 0x08060064
 	ldrsh r0, [r4, r5]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	ldr r1, _080600AC @ =0x03002870
 	strh r0, [r1, #0x20]
 	ldrh r0, [r4, #0x2c]
@@ -3868,7 +3868,7 @@ sub_080600D0: @ 0x080600D0
 	str r1, [r0, #0x4c]
 	adds r0, r1, #0
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -3896,7 +3896,7 @@ sub_08060124: @ 0x08060124
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -3905,7 +3905,7 @@ sub_08060124: @ 0x08060124
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _08060158
 _0806014A:
 	movs r0, #1
@@ -3920,8 +3920,8 @@ _08060158:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08060160
-sub_08060160: @ 0x08060160
+	thumb_func_start StartSubSpell_efxExcaliburSCR
+StartSubSpell_efxExcaliburSCR: @ 0x08060160
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08060180 @ =0x08BA3A1C
@@ -3932,15 +3932,15 @@ sub_08060160: @ 0x08060160
 	strh r1, [r0, #0x2e]
 	str r1, [r0, #0x44]
 	adds r1, r4, #0
-	bl sub_08060234
+	bl StartSubSpell_efxExcaliburSCR2
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08060180: .4byte 0x08BA3A1C
 
-	thumb_func_start sub_08060184
-sub_08060184: @ 0x08060184
+	thumb_func_start efxExcaliburSCR_Loop
+efxExcaliburSCR_Loop: @ 0x08060184
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -4031,8 +4031,8 @@ _08060214:
 	.align 2, 0
 _08060230: .4byte 0xFFFF0000
 
-	thumb_func_start sub_08060234
-sub_08060234: @ 0x08060234
+	thumb_func_start StartSubSpell_efxExcaliburSCR2
+StartSubSpell_efxExcaliburSCR2: @ 0x08060234
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -4064,7 +4064,7 @@ sub_08060254: @ 0x08060254
 	str r0, [sp]
 	movs r0, #4
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r5, #0x44]
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -4105,8 +4105,8 @@ sub_08060298: @ 0x08060298
 	ldr r0, _080602E4 @ =0x08296F50
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050018
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_ClearBG1
 	ldr r0, _080602E8 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -4114,7 +4114,7 @@ sub_08060298: @ 0x08060298
 	bne _080602F4
 	ldr r0, _080602EC @ =0x0829803C
 	ldr r1, _080602F0 @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	b _080602FC
 	.align 2, 0
 _080602DC: .4byte 0x0201774C
@@ -4126,10 +4126,10 @@ _080602F0: .4byte 0x02019784
 _080602F4:
 	ldr r0, _0806031C @ =0x08298470
 	ldr r1, _08060320 @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _080602FC:
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08060328
 	ldr r0, _08060320 @ =0x02019784
@@ -4140,7 +4140,7 @@ _080602FC:
 	str r2, [sp, #4]
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _0806033C
 	.align 2, 0
 _0806031C: .4byte 0x08298470
@@ -4155,11 +4155,11 @@ _08060328:
 	str r2, [sp, #4]
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _0806033C:
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -4187,12 +4187,12 @@ _08060378: .4byte 0x03002870
 	thumb_func_start sub_0806037C
 sub_0806037C: @ 0x0806037C
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08060394 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -4239,7 +4239,7 @@ sub_080603B8: @ 0x080603B8
 	str r1, [r0, #0x4c]
 	adds r0, r1, #0
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -4257,7 +4257,7 @@ sub_080603FC: @ 0x080603FC
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -4266,7 +4266,7 @@ sub_080603FC: @ 0x080603FC
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _08060438
 _08060422:
 	movs r0, #1
@@ -4307,8 +4307,8 @@ sub_08060444: @ 0x08060444
 	ldr r0, _08060490 @ =0x0828EAD8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050018
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_ClearBG1
 	ldr r0, _08060494 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -4316,7 +4316,7 @@ sub_08060444: @ 0x08060444
 	bne _080604A0
 	ldr r0, _08060498 @ =0x0828FDC0
 	ldr r1, _0806049C @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	b _080604A8
 	.align 2, 0
 _08060488: .4byte 0x0201774C
@@ -4328,10 +4328,10 @@ _0806049C: .4byte 0x02019784
 _080604A0:
 	ldr r0, _080604C8 @ =0x0829021C
 	ldr r1, _080604CC @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _080604A8:
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080604D4
 	ldr r0, _080604CC @ =0x02019784
@@ -4342,7 +4342,7 @@ _080604A8:
 	str r2, [sp, #4]
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _080604E8
 	.align 2, 0
 _080604C8: .4byte 0x0829021C
@@ -4357,11 +4357,11 @@ _080604D4:
 	str r2, [sp, #4]
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _080604E8:
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -4389,12 +4389,12 @@ _08060524: .4byte 0x03002870
 	thumb_func_start sub_08060528
 sub_08060528: @ 0x08060528
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08060540 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -4441,7 +4441,7 @@ sub_08060564: @ 0x08060564
 	str r1, [r0, #0x4c]
 	adds r0, r1, #0
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -4459,7 +4459,7 @@ sub_080605A8: @ 0x080605A8
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -4468,7 +4468,7 @@ sub_080605A8: @ 0x080605A8
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _080605E4
 _080605CE:
 	movs r0, #1
@@ -4488,8 +4488,8 @@ _080605E4:
 	.align 2, 0
 _080605EC: .4byte 0x0201774C
 
-	thumb_func_start sub_080605F0
-sub_080605F0: @ 0x080605F0
+	thumb_func_start StartSubSpell_efxExcaliburOBJ
+StartSubSpell_efxExcaliburOBJ: @ 0x080605F0
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -4511,7 +4511,7 @@ sub_080605F0: @ 0x080605F0
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r1, [r4, #0x5c]
 	ldrh r1, [r1, #2]
@@ -4521,11 +4521,11 @@ sub_080605F0: @ 0x080605F0
 	strh r1, [r0, #4]
 	ldr r0, _08060654 @ =0x08298D38
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08060658 @ =0x082988DC
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -4565,9 +4565,9 @@ _08060684: .4byte 0x0201774C
 sub_08060688: @ 0x08060688
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _080606C0 @ =0x08BA3BE4
 	movs r1, #3
 	bl SpawnProc
@@ -4576,10 +4576,10 @@ sub_08060688: @ 0x08060688
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -4596,9 +4596,9 @@ sub_080606C4: @ 0x080606C4
 	sub sp, #8
 	adds r6, r0, #0
 	ldr r0, [r6, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r4, r0, #0
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
@@ -4612,7 +4612,7 @@ sub_080606C4: @ 0x080606C4
 	bne _080606F8
 	ldr r0, [r6, #0x5c]
 	subs r1, #1
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _080606F8:
 	movs r3, #0x2c
 	ldrsh r1, [r6, r3]
@@ -4647,7 +4647,7 @@ _080606F8:
 	movs r1, #0
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_08055F08
+	bl NewEfxALPHA
 	mov r0, r8
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -4655,7 +4655,7 @@ _080606F8:
 	movs r1, #0x32
 	movs r2, #0xa
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	ldr r0, _08060764 @ =0x000002C7
 	movs r1, #0x80
 	lsls r1, r1, #1
@@ -4673,7 +4673,7 @@ _08060768:
 	ldr r0, [r6, #0x5c]
 	movs r1, #0x5a
 	movs r2, #0xa
-	bl sub_080561D0
+	bl StartSpellThing_MagicQuake
 	adds r0, r5, #0
 	movs r1, #0x54
 	bl sub_080609E4
@@ -4701,7 +4701,7 @@ _08060768:
 	movs r1, #0
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_08055F08
+	bl NewEfxALPHA
 	movs r0, #0xb2
 	lsls r0, r0, #2
 	b _08060862
@@ -4728,7 +4728,7 @@ _080607D2:
 _080607E2:
 	adds r0, r5, #0
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _0806089E
 _080607EC:
 	adds r0, r4, #0
@@ -4737,7 +4737,7 @@ _080607EC:
 	bne _0806081E
 	adds r0, r5, #0
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	movs r0, #9
 	ldrh r1, [r5, #0x10]
 	orrs r0, r1
@@ -4746,12 +4746,12 @@ _080607EC:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r5, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _0806089E
 	adds r0, r5, #0
-	bl sub_08067D14
+	bl EfxPlayHittedSFX
 	b _0806089E
 _0806081E:
 	adds r0, r4, #0
@@ -4763,8 +4763,8 @@ _0806081E:
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq _0806089E
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r6, #0
 	bl Proc_Break
 	b _0806089E
@@ -4776,12 +4776,12 @@ _08060840:
 	ldr r0, [r6, #0x5c]
 	movs r1, #0xf
 	movs r2, #9
-	bl sub_080561D0
+	bl StartSpellThing_MagicQuake
 	adds r0, r5, #0
 	movs r1, #0x1e
 	bl sub_08060AEC
 	adds r0, r5, #0
-	bl sub_08060BD0
+	bl StartSubSpell_efxGespenstBGCOL2
 	ldr r0, _08060870 @ =0x000002C9
 _08060862:
 	movs r1, #0x80
@@ -4789,7 +4789,7 @@ _08060862:
 	movs r2, #0x78
 _08060868:
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _0806089E
 	.align 2, 0
 _08060870: .4byte 0x000002C9
@@ -4801,15 +4801,15 @@ _08060874:
 	ldr r0, [r6, #0x5c]
 	movs r1, #0xf
 	movs r2, #8
-	bl sub_080561D0
+	bl StartSpellThing_MagicQuake
 	b _0806089E
 _08060888:
 	adds r0, r4, #0
 	adds r0, #0xcc
 	cmp r1, r0
 	bne _0806089E
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r6, #0
 	bl Proc_Break
 _0806089E:
@@ -4845,10 +4845,10 @@ sub_080608AC: @ 0x080608AC
 	ldr r0, _08060920 @ =0x08298D58
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08060924 @ =0x08299F70
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -4859,7 +4859,7 @@ sub_080608AC: @ 0x080608AC
 	cmp r0, #0
 	beq _08060936
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0806092C
 	movs r0, #1
@@ -4881,7 +4881,7 @@ _0806092C:
 	movs r2, #0
 	bl SetBgOffset
 _08060936:
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -4895,7 +4895,7 @@ sub_08060940: @ 0x08060940
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -4908,14 +4908,14 @@ sub_08060940: @ 0x08060940
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	ldr r0, _08060994 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _080609D6
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	cmp r1, #0
 	bne _0806099C
@@ -4924,7 +4924,7 @@ sub_08060940: @ 0x08060940
 	movs r1, #3
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 	b _080609AC
 	.align 2, 0
 _08060994: .4byte 0x0203E02C
@@ -4936,7 +4936,7 @@ _0806099C:
 	movs r1, #3
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 _080609AC:
 	movs r0, #2
 	bl EnableBgSync
@@ -4948,12 +4948,12 @@ _080609B8:
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _080609D6
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _080609E0 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _080609D6:
@@ -4984,15 +4984,15 @@ sub_080609E4: @ 0x080609E4
 	ldr r0, _08060A74 @ =0x0829C5B8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08060A78 @ =0x0829CFA8
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050018
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_ClearBG1
 	ldr r0, _08060A7C @ =0x0829D028
 	ldr r4, _08060A80 @ =0x02019784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r1, _08060A84 @ =0x02023460
 	movs r0, #1
 	str r0, [sp]
@@ -5001,10 +5001,10 @@ sub_080609E4: @ 0x080609E4
 	adds r0, r4, #0
 	movs r2, #0x20
 	movs r3, #0x20
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -5037,12 +5037,12 @@ _08060A88: .4byte 0x03002870
 	thumb_func_start sub_08060A8C
 sub_08060A8C: @ 0x08060A8C
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08060AA4 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -5053,7 +5053,7 @@ sub_08060AA8: @ 0x08060AA8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08060AC4
 	ldr r1, _08060AC0 @ =0x03002870
@@ -5105,15 +5105,15 @@ sub_08060AEC: @ 0x08060AEC
 	ldr r0, _08060B7C @ =0x0829B1BC
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08060B80 @ =0x0829C01C
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050018
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_ClearBG1
 	ldr r0, _08060B84 @ =0x0829C15C
 	ldr r4, _08060B88 @ =0x02019784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r1, _08060B8C @ =0x02023460
 	movs r0, #1
 	str r0, [sp]
@@ -5122,10 +5122,10 @@ sub_08060AEC: @ 0x08060AEC
 	adds r0, r4, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -5158,12 +5158,12 @@ _08060B90: .4byte 0x03002870
 	thumb_func_start sub_08060B94
 sub_08060B94: @ 0x08060B94
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08060BAC @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -5188,8 +5188,8 @@ _08060BCA:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08060BD0
-sub_08060BD0: @ 0x08060BD0
+	thumb_func_start StartSubSpell_efxGespenstBGCOL2
+StartSubSpell_efxGespenstBGCOL2: @ 0x08060BD0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _08060C04 @ =0x0201774C
@@ -5210,7 +5210,7 @@ sub_08060BD0: @ 0x08060BD0
 	str r1, [r0, #0x4c]
 	ldr r0, _08060C14 @ =0x0829B13C
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -5229,7 +5229,7 @@ sub_08060C18: @ 0x08060C18
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -5238,7 +5238,7 @@ sub_08060C18: @ 0x08060C18
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _08060C54
 _08060C3E:
 	movs r0, #1
@@ -5281,7 +5281,7 @@ sub_08060C60: @ 0x08060C60
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	movs r1, #0x78
 	strh r1, [r0, #2]
@@ -5289,11 +5289,11 @@ sub_08060C60: @ 0x08060C60
 	strh r1, [r0, #4]
 	ldr r0, _08060CC0 @ =0x0829DA8C
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08060CC4 @ =0x0829D2A0
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}
@@ -5322,7 +5322,7 @@ sub_08060CC8: @ 0x08060CC8
 	subs r1, #1
 	str r1, [r0]
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _08060CF0:
@@ -5347,13 +5347,13 @@ sub_08060CFC: @ 0x08060CFC
 	adds r4, r0, #0
 	str r5, [r4, #0x5c]
 	adds r0, r5, #0
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	ldr r3, _08060D60 @ =0x08BA14DC
 	ldr r0, [r4, #0x5c]
 	str r3, [sp]
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r1, _08060D64 @ =0x0000F3FF
 	ldrh r2, [r0, #8]
@@ -5365,11 +5365,11 @@ sub_08060CFC: @ 0x08060CFC
 	strh r1, [r0, #8]
 	ldr r0, _08060D68 @ =0x0829DDB8
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08060D6C @ =0x0829DAAC
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -5390,7 +5390,7 @@ sub_08060D70: @ 0x08060D70
 	subs r1, #1
 	str r1, [r2]
 	ldr r0, [r0, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -5445,9 +5445,9 @@ _08060DD8: .4byte 0x08BD4300
 sub_08060DDC: @ 0x08060DDC
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _08060E14 @ =0x08BA3D04
 	movs r1, #3
 	bl SpawnProc
@@ -5456,10 +5456,10 @@ sub_08060DDC: @ 0x08060DDC
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -5474,9 +5474,9 @@ sub_08060E18: @ 0x08060E18
 	sub sp, #8
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r2, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -5487,7 +5487,7 @@ sub_08060E18: @ 0x08060E18
 	cmp r0, #1
 	bne _08060E54
 	adds r0, r5, #0
-	bl sub_08060F70
+	bl StartSubSpell_efxOuraBG_A
 	ldr r0, _08060E50 @ =0x000002C1
 	movs r1, #0x80
 	lsls r1, r1, #1
@@ -5501,7 +5501,7 @@ _08060E54:
 	cmp r0, #0xe
 	bne _08060E60
 	adds r0, r5, #0
-	bl sub_08061004
+	bl StartSubSpell_efxOuraBG_B
 	b _08060F66
 _08060E60:
 	cmp r0, #0x2c
@@ -5521,10 +5521,10 @@ _08060E78:
 	ldr r0, [r4, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 	adds r0, r5, #0
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _08060F66
 _08060E90:
 	movs r0, #0x2c
@@ -5548,7 +5548,7 @@ _08060EA4:
 	ldrsh r2, [r5, r3]
 _08060EB6:
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _08060F66
 	.align 2, 0
 _08060EC0: .4byte 0x000002C3
@@ -5571,7 +5571,7 @@ _08060ED8:
 	adds r0, r5, #0
 	bl sub_08061184
 	adds r0, r5, #0
-	bl sub_080612A4
+	bl StartSubSpell_efxOuraBGCOL
 	b _08060F66
 _08060EEE:
 	adds r0, r2, #0
@@ -5580,7 +5580,7 @@ _08060EEE:
 	bne _08060F1E
 	adds r0, r5, #0
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	movs r0, #9
 	ldrh r1, [r5, #0x10]
 	orrs r0, r1
@@ -5588,12 +5588,12 @@ _08060EEE:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r5, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _08060F66
 	adds r0, r5, #0
-	bl sub_08067D14
+	bl EfxPlayHittedSFX
 	b _08060F66
 _08060F1E:
 	adds r0, r2, #0
@@ -5603,12 +5603,12 @@ _08060F1E:
 	ldr r0, [r4, #0x5c]
 	movs r1, #0x55
 	movs r2, #1
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	ldr r0, [r4, #0x5c]
 	movs r1, #0x38
-	bl sub_080559A4
+	bl NewEfxTwobaiRST
 	adds r0, r5, #0
-	bl sub_08061334
+	bl StartSubSpell_efxOuraBG3
 	str r6, [sp]
 	str r6, [sp, #4]
 	adds r0, r5, #0
@@ -5616,15 +5616,15 @@ _08060F1E:
 	movs r2, #0xc
 _08060F48:
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	b _08060F66
 _08060F50:
 	adds r0, r2, #0
 	adds r0, #0xf5
 	cmp r1, r0
 	bne _08060F66
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r4, #0
 	bl Proc_Break
 _08060F66:
@@ -5634,8 +5634,8 @@ _08060F66:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08060F70
-sub_08060F70: @ 0x08060F70
+	thumb_func_start StartSubSpell_efxOuraBG_A
+StartSubSpell_efxOuraBG_A: @ 0x08060F70
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r1, _08060FD4 @ =0x0201774C
@@ -5658,10 +5658,10 @@ sub_08060F70: @ 0x08060F70
 	ldr r0, _08060FE4 @ =0x0829DDD8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08060FE8 @ =0x0829E750
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -5672,7 +5672,7 @@ sub_08060F70: @ 0x08060F70
 	cmp r0, #0
 	bne _08060FFA
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08060FF0
 	movs r0, #1
@@ -5694,13 +5694,13 @@ _08060FF0:
 	movs r2, #0
 	bl SetBgOffset
 _08060FFA:
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08061004
-sub_08061004: @ 0x08061004
+	thumb_func_start StartSubSpell_efxOuraBG_B
+StartSubSpell_efxOuraBG_B: @ 0x08061004
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r1, _08061068 @ =0x0201774C
@@ -5723,10 +5723,10 @@ sub_08061004: @ 0x08061004
 	ldr r0, _08061078 @ =0x0829DDD8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _0806107C @ =0x0829E750
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -5737,7 +5737,7 @@ sub_08061004: @ 0x08061004
 	cmp r0, #0
 	beq _0806108E
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08061084
 	movs r0, #1
@@ -5759,7 +5759,7 @@ _08061084:
 	movs r2, #0
 	bl SetBgOffset
 _0806108E:
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -5788,10 +5788,10 @@ sub_08061098: @ 0x08061098
 	ldr r0, _0806110C @ =0x0829DDD8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08061110 @ =0x0829E750
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -5802,7 +5802,7 @@ sub_08061098: @ 0x08061098
 	cmp r0, #0
 	beq _08061122
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08061118
 	movs r0, #1
@@ -5824,7 +5824,7 @@ _08061118:
 	movs r2, #0
 	bl SetBgOffset
 _08061122:
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -5837,7 +5837,7 @@ sub_0806112C: @ 0x0806112C
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -5850,19 +5850,19 @@ sub_0806112C: @ 0x0806112C
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _08061178
 _0806115A:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _08061178
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08061180 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08061178:
@@ -5893,8 +5893,8 @@ sub_08061184: @ 0x08061184
 	ldr r0, _080611D0 @ =0x0828EAD8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050018
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_ClearBG1
 	ldr r0, _080611D4 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -5902,7 +5902,7 @@ sub_08061184: @ 0x08061184
 	bne _080611E0
 	ldr r0, _080611D8 @ =0x0828FDC0
 	ldr r1, _080611DC @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	b _080611E8
 	.align 2, 0
 _080611C8: .4byte 0x0201774C
@@ -5914,10 +5914,10 @@ _080611DC: .4byte 0x02019784
 _080611E0:
 	ldr r0, _08061208 @ =0x0829021C
 	ldr r1, _0806120C @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _080611E8:
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08061214
 	ldr r0, _0806120C @ =0x02019784
@@ -5928,7 +5928,7 @@ _080611E8:
 	str r2, [sp, #4]
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _08061228
 	.align 2, 0
 _08061208: .4byte 0x0829021C
@@ -5943,11 +5943,11 @@ _08061214:
 	str r2, [sp, #4]
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _08061228:
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -5975,12 +5975,12 @@ _08061264: .4byte 0x03002870
 	thumb_func_start sub_08061268
 sub_08061268: @ 0x08061268
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08061280 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -6005,8 +6005,8 @@ _0806129E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080612A4
-sub_080612A4: @ 0x080612A4
+	thumb_func_start StartSubSpell_efxOuraBGCOL
+StartSubSpell_efxOuraBGCOL: @ 0x080612A4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _080612DC @ =0x0201774C
@@ -6028,7 +6028,7 @@ sub_080612A4: @ 0x080612A4
 	str r0, [r1, #0x4c]
 	adds r0, #0x60
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6046,7 +6046,7 @@ sub_080612EC: @ 0x080612EC
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -6055,7 +6055,7 @@ sub_080612EC: @ 0x080612EC
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _08061328
 _08061312:
 	movs r0, #1
@@ -6075,8 +6075,8 @@ _08061328:
 	.align 2, 0
 _08061330: .4byte 0x0201774C
 
-	thumb_func_start sub_08061334
-sub_08061334: @ 0x08061334
+	thumb_func_start StartSubSpell_efxOuraBG3
+StartSubSpell_efxOuraBG3: @ 0x08061334
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _0806137C @ =0x0201774C
@@ -6099,12 +6099,12 @@ sub_08061334: @ 0x08061334
 	str r1, [r0, #0x54]
 	ldr r0, _08061390 @ =0x082AEF60
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6124,7 +6124,7 @@ sub_08061394: @ 0x08061394
 	adds r1, r7, #0
 	adds r1, #0x44
 	ldr r2, [r7, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r4, r0, #0x10
 	cmp r4, #0
@@ -6137,25 +6137,25 @@ sub_08061394: @ 0x08061394
 	ldr r0, [r0]
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, [r7, #0x5c]
 	adds r5, r4, r5
 	ldr r1, [r5]
 	adds r4, r4, r6
 	ldr r2, [r4]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _080613EE
 _080613D0:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r4, r0
 	bne _080613EE
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _080613F4 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r7, #0
 	bl Proc_Break
 _080613EE:
@@ -6169,9 +6169,9 @@ _080613F4: .4byte 0x0201774C
 sub_080613F8: @ 0x080613F8
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_0804FB6C
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl NewEfxSpellCast
+	bl SpellFx_SetBG1Position
 	ldr r0, _08061430 @ =0x08BA3E5C
 	movs r1, #3
 	bl SpawnProc
@@ -6180,10 +6180,10 @@ sub_080613F8: @ 0x080613F8
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -6200,9 +6200,9 @@ sub_08061434: @ 0x08061434
 	sub sp, #8
 	adds r6, r0, #0
 	ldr r0, [r6, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r4, r0, #0
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
@@ -6216,7 +6216,7 @@ sub_08061434: @ 0x08061434
 	bne _08061468
 	ldr r0, [r6, #0x5c]
 	subs r1, #1
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _08061468:
 	movs r0, #0x2c
 	ldrsh r1, [r6, r0]
@@ -6225,7 +6225,7 @@ _08061468:
 	bne _0806147C
 	adds r0, r5, #0
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _0806158E
 _0806147C:
 	adds r0, r4, #0
@@ -6233,7 +6233,7 @@ _0806147C:
 	cmp r1, r0
 	bne _08061490
 	adds r0, r5, #0
-	bl sub_0806159C
+	bl StartSpellBG_IvaldiBG1
 	movs r0, #0xb1
 	lsls r0, r0, #2
 	b _08061566
@@ -6269,7 +6269,7 @@ _08061490:
 	movs r1, #0xa
 	movs r2, #0xa
 	movs r3, #0
-	bl sub_08055F08
+	bl NewEfxALPHA
 	ldr r0, _080614DC @ =0x000002C5
 	b _08061566
 	.align 2, 0
@@ -6310,12 +6310,12 @@ _0806150E:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r5, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _0806158E
 	adds r0, r5, #0
-	bl sub_08067D14
+	bl EfxPlayHittedSFX
 	b _0806158E
 _08061538:
 	adds r0, r4, #0
@@ -6325,7 +6325,7 @@ _08061538:
 	adds r0, r5, #0
 	movs r1, #0x64
 	movs r2, #0xa
-	bl sub_080561D0
+	bl StartSpellThing_MagicQuake
 	adds r0, r5, #0
 	movs r1, #0x64
 	bl sub_08061658
@@ -6336,14 +6336,14 @@ _08061538:
 	movs r1, #0x50
 	movs r2, #0x14
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	ldr r0, _08061574 @ =0x000002C6
 _08061566:
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 	b _0806158E
 	.align 2, 0
 _08061574: .4byte 0x000002C6
@@ -6352,8 +6352,8 @@ _08061578:
 	adds r0, #0xf5
 	cmp r1, r0
 	bne _0806158E
-	bl sub_0804FFFC
-	bl sub_0804FBC4
+	bl SpellFx_Finish
+	bl RegisterEfxSpellCastEnd
 	adds r0, r6, #0
 	bl Proc_Break
 _0806158E:
@@ -6365,8 +6365,8 @@ _0806158E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0806159C
-sub_0806159C: @ 0x0806159C
+	thumb_func_start StartSpellBG_IvaldiBG1
+StartSpellBG_IvaldiBG1: @ 0x0806159C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _080615E8 @ =0x0201774C
@@ -6388,15 +6388,15 @@ sub_0806159C: @ 0x0806159C
 	ldr r0, _080615F8 @ =0x0829DDD8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _080615FC @ =0x0829E750
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6416,7 +6416,7 @@ sub_08061600: @ 0x08061600
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -6429,19 +6429,19 @@ sub_08061600: @ 0x08061600
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _0806164C
 _0806162E:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _0806164C
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08061654 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0806164C:
@@ -6471,15 +6471,15 @@ sub_08061658: @ 0x08061658
 	ldr r0, _080616E8 @ =0x082B0CFC
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _080616EC @ =0x082B125C
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050018
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_ClearBG1
 	ldr r0, _080616F0 @ =0x082B127C
 	ldr r4, _080616F4 @ =0x02019784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r1, _080616F8 @ =0x02023460
 	movs r0, #1
 	str r0, [sp]
@@ -6488,10 +6488,10 @@ sub_08061658: @ 0x08061658
 	adds r0, r4, #0
 	movs r2, #0x20
 	movs r3, #0x20
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -6524,12 +6524,12 @@ _080616FC: .4byte 0x03002870
 	thumb_func_start sub_08061700
 sub_08061700: @ 0x08061700
 	push {lr}
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08061718 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -6540,7 +6540,7 @@ sub_0806171C: @ 0x0806171C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08061738
 	ldr r1, _08061734 @ =0x03002870
@@ -6595,7 +6595,7 @@ sub_08061760: @ 0x08061760
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	movs r1, #0x78
 	strh r1, [r0, #2]
@@ -6611,11 +6611,11 @@ sub_08061760: @ 0x08061760
 	strh r1, [r0, #8]
 	ldr r0, _080617D4 @ =0x082B3D5C
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _080617D8 @ =0x082B3A2C
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}
@@ -6651,7 +6651,7 @@ sub_080617DC: @ 0x080617DC
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	movs r1, #0x78
 	strh r1, [r0, #2]
@@ -6692,7 +6692,7 @@ sub_08061840: @ 0x08061840
 	subs r1, #1
 	str r1, [r0]
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _08061868:
@@ -6721,7 +6721,7 @@ sub_08061874: @ 0x08061874
 	strh r5, [r0, #0x2e]
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -6742,7 +6742,7 @@ sub_080618AC: @ 0x080618AC
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	ldr r0, _08061908 @ =0x02022860
 	ldr r4, _0806190C @ =0x020165C8
@@ -6754,7 +6754,7 @@ sub_080618AC: @ 0x080618AC
 	movs r1, #0
 	movs r2, #0x20
 	adds r3, r5, #0
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
 	strh r0, [r6, #0x2c]
@@ -6805,18 +6805,18 @@ sub_08061914: @ 0x08061914
 	ldr r0, _080619A8 @ =0x082B1BB8
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	subs r4, #0x20
 	adds r0, r4, #0
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, [r5, #0x5c]
 	ldr r2, _080619AC @ =0x082B35D0
 	adds r1, r2, #0
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	ldr r0, _080619B0 @ =0x02000000
 	ldr r0, [r0]
-	bl sub_08064AB0
+	bl GetEkrDragonStatusType
 	cmp r0, #0
 	bne _080619B8
 	ldr r3, _080619B4 @ =0x03002870
@@ -6876,7 +6876,7 @@ _080619B8:
 	strb r0, [r3, #0x14]
 _080619E4:
 	ldr r0, [r5, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	ldr r6, _08061A2C @ =0x0000F3FF
 	adds r1, r6, #0
 	ldrh r2, [r7, #8]
@@ -6892,7 +6892,7 @@ _080619E4:
 	orrs r1, r5
 	strh r1, [r0, #8]
 	ldr r4, _08061A30 @ =0x02000010
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r1, [r0]
@@ -6918,10 +6918,10 @@ sub_08061A34: @ 0x08061A34
 	sub sp, #4
 	adds r5, r0, #0
 	ldr r0, [r5, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r6, r0, #0
 	ldr r4, _08061ADC @ =0x02000010
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r4, [r0]
@@ -6941,7 +6941,7 @@ _08061A62:
 	adds r1, r5, #0
 	adds r1, #0x44
 	ldr r2, [r5, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r3, r0, #0x10
 	cmp r3, #0
@@ -6968,7 +6968,7 @@ _08061A88:
 	str r0, [r1]
 	ldr r0, _08061AEC @ =0x02000000
 	ldr r0, [r0]
-	bl sub_08064AB0
+	bl GetEkrDragonStatusType
 	cmp r0, #0
 	bne _08061AF4
 	ldr r3, _08061AF0 @ =0x03002870
@@ -7066,9 +7066,9 @@ _08061B64: .4byte 0x0000F3FF
 sub_08061B68: @ 0x08061B68
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
+	bl SpellFx_Begin
 	bl sub_0804FD1C
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _08061BA0 @ =0x08BA3F24
 	movs r1, #3
 	bl SpawnProc
@@ -7077,10 +7077,10 @@ sub_08061B68: @ 0x08061B68
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -7095,9 +7095,9 @@ sub_08061BA4: @ 0x08061BA4
 	sub sp, #8
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r6, r0, #0
-	bl sub_08050778
+	bl EfxGetCamMovDuration
 	adds r5, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -7110,7 +7110,7 @@ sub_08061BA4: @ 0x08061BA4
 	ldr r0, [r4, #0x5c]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _08061BD2:
 	movs r0, #0x2c
 	ldrsh r1, [r4, r0]
@@ -7159,12 +7159,12 @@ _08061C20:
 	adds r4, #0x29
 	ldrb r1, [r4]
 	adds r0, r6, #0
-	bl sub_08050140
+	bl StartBattleAnimHitEffectsDefault
 	ldrb r0, [r4]
 	cmp r0, #0
 	bne _08061D18
 	adds r0, r6, #0
-	bl sub_08067D14
+	bl EfxPlayHittedSFX
 	b _08061D18
 _08061C48:
 	adds r0, r5, #0
@@ -7176,7 +7176,7 @@ _08061C48:
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq _08061D18
-	bl sub_0804FFFC
+	bl SpellFx_Finish
 	bl sub_0804FD6C
 	adds r0, r4, #0
 	bl Proc_Break
@@ -7189,19 +7189,19 @@ _08061C6A:
 	ldr r0, [r4, #0x5c]
 	movs r1, #0x50
 	movs r2, #9
-	bl sub_080561D0
+	bl StartSpellThing_MagicQuake
 	adds r0, r6, #0
 	movs r1, #0x1e
 	bl sub_08060AEC
 	adds r0, r6, #0
-	bl sub_08060BD0
+	bl StartSubSpell_efxGespenstBGCOL2
 	ldr r0, _08061C9C @ =0x000002FE
 _08061C8C:
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 	b _08061D18
 	.align 2, 0
 _08061C9C: .4byte 0x000002FE
@@ -7212,7 +7212,7 @@ _08061CA0:
 	bne _08061CB2
 	ldr r0, [r4, #0x5c]
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _08061D18
 _08061CB2:
 	adds r0, r5, #0
@@ -7222,19 +7222,19 @@ _08061CB2:
 	ldr r0, [r4, #0x5c]
 	movs r1, #0x46
 	movs r2, #1
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	ldr r0, [r4, #0x5c]
 	movs r1, #0x32
-	bl sub_080559A4
+	bl NewEfxTwobaiRST
 	ldr r0, [r4, #0x5c]
-	bl sub_08061FDC
+	bl StartSubSpell_efxSuperdruidBG3
 	str r7, [sp]
 	str r7, [sp, #4]
 	adds r0, r6, #0
 	movs r1, #0x10
 	movs r2, #0xa
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	b _08061D18
 _08061CE4:
 	adds r0, r5, #0
@@ -7258,7 +7258,7 @@ _08061D02:
 	adds r0, r5, r2
 	cmp r1, r0
 	bne _08061D18
-	bl sub_0804FFFC
+	bl SpellFx_Finish
 	adds r0, r4, #0
 	bl Proc_Break
 _08061D18:
@@ -7291,10 +7291,10 @@ sub_08061D24: @ 0x08061D24
 	ldr r0, _08061D68 @ =0x082D9800
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	ldr r0, _08061D6C @ =0x082D9C74
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -7393,7 +7393,7 @@ sub_08061DE8: @ 0x08061DE8
 	adds r0, r6, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r5, #0x60]
 	mov r1, r8
 	strh r1, [r0, #2]
@@ -7421,7 +7421,7 @@ _08061E54: .4byte 0x0000F3FF
 sub_08061E58: @ 0x08061E58
 	push {lr}
 	ldr r0, [r0, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	ldr r1, _08061E6C @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
@@ -7450,7 +7450,7 @@ sub_08061E70: @ 0x08061E70
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	movs r1, #0x78
 	strh r1, [r0, #2]
@@ -7466,7 +7466,7 @@ sub_08061E70: @ 0x08061E70
 	strh r1, [r0, #8]
 	movs r1, #0x14
 	strh r1, [r0, #0xa]
-	bl sub_080065F8
+	bl AnimSort
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -7481,7 +7481,7 @@ _08061ED0: .4byte 0x0000F3FF
 sub_08061ED4: @ 0x08061ED4
 	push {lr}
 	ldr r0, [r0, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	ldr r1, _08061EE8 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
@@ -7531,8 +7531,8 @@ sub_08061F08: @ 0x08061F08
 	str r2, [r0, #0x58]
 	ldr r0, _08061F5C @ =0x082C5C08
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050040
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_SetSomeColorEffect
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -7554,7 +7554,7 @@ sub_08061F60: @ 0x08061F60
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -7572,7 +7572,7 @@ sub_08061F60: @ 0x08061F60
 	movs r1, #0x80
 	lsls r1, r1, #6
 	adds r0, r2, #0
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 _08061F9A:
 	ldr r0, [r6]
 	str r0, [r4, #0x58]
@@ -7582,19 +7582,19 @@ _08061F9A:
 	mov r3, r8
 	adds r2, r5, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _08061FCE
 _08061FB0:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r1, r0
 	bne _08061FCE
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08061FD8 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08061FCE:
@@ -7606,8 +7606,8 @@ _08061FCE:
 	.align 2, 0
 _08061FD8: .4byte 0x0201774C
 
-	thumb_func_start sub_08061FDC
-sub_08061FDC: @ 0x08061FDC
+	thumb_func_start StartSubSpell_efxSuperdruidBG3
+StartSubSpell_efxSuperdruidBG3: @ 0x08061FDC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _08062024 @ =0x0201774C
@@ -7631,8 +7631,8 @@ sub_08061FDC: @ 0x08061FDC
 	str r2, [r0, #0x58]
 	ldr r0, _08062038 @ =0x082D8260
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050040
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -7659,7 +7659,7 @@ sub_0806203C: @ 0x0806203C
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -7677,7 +7677,7 @@ sub_0806203C: @ 0x0806203C
 	movs r1, #0x80
 	lsls r1, r1, #6
 	adds r0, r2, #0
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 _08062078:
 	ldr r0, [r6]
 	str r0, [r4, #0x58]
@@ -7687,14 +7687,14 @@ _08062078:
 	mov r3, r8
 	adds r2, r5, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	ldr r0, _080620B4 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _080620F6
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	cmp r1, #0
 	bne _080620BC
@@ -7703,7 +7703,7 @@ _08062078:
 	movs r1, #3
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 	b _080620CC
 	.align 2, 0
 _080620B4: .4byte 0x0203E02C
@@ -7715,7 +7715,7 @@ _080620BC:
 	movs r1, #3
 	movs r2, #0x14
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 _080620CC:
 	movs r0, #2
 	bl EnableBgSync
@@ -7727,12 +7727,12 @@ _080620D8:
 	rsbs r0, r0, #0
 	cmp r1, r0
 	bne _080620F6
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08062104 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _080620F6:
@@ -7807,7 +7807,7 @@ _08062174:
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	ldr r7, _080621D8 @ =0x020165C8
 	ldr r6, _080621DC @ =0x02022860
@@ -7821,7 +7821,7 @@ _08062174:
 	movs r1, #0
 	movs r2, #0x20
 	adds r3, r4, #0
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
 	strh r0, [r5, #0x2c]
@@ -7871,7 +7871,7 @@ sub_080621E4: @ 0x080621E4
 	adds r0, r4, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r5, #0x60]
 	ldrh r1, [r4, #2]
 	strh r1, [r0, #2]
@@ -7880,10 +7880,10 @@ sub_080621E4: @ 0x080621E4
 	ldr r0, _0806223C @ =0x082D9C94
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	ldr r0, _08062240 @ =0x082DA240
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -7924,7 +7924,7 @@ sub_08062254: @ 0x08062254
 	adds r0, r4, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r5, #0x60]
 	ldrh r1, [r4, #2]
 	strh r1, [r0, #2]
@@ -7933,10 +7933,10 @@ sub_08062254: @ 0x08062254
 	ldr r0, _080622AC @ =0x082D9C94
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	ldr r0, _080622B0 @ =0x082DA240
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -7958,12 +7958,12 @@ sub_080622B4: @ 0x080622B4
 	.align 2, 0
 _080622C0: .4byte 0x0201774C
 
-	thumb_func_start sub_080622C4
-sub_080622C4: @ 0x080622C4
+	thumb_func_start StartSpellAnimFillasMight
+StartSpellAnimFillasMight: @ 0x080622C4
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl SpellFx_SetBG1Position
 	ldr r0, _080622FC @ =0x08BA41BC
 	movs r1, #3
 	bl SpawnProc
@@ -7974,10 +7974,10 @@ sub_080622C4: @ 0x080622C4
 	movs r0, #1
 	str r0, [r4, #0x44]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -7986,12 +7986,12 @@ sub_080622C4: @ 0x080622C4
 	.align 2, 0
 _080622FC: .4byte 0x08BA41BC
 
-	thumb_func_start sub_08062300
-sub_08062300: @ 0x08062300
+	thumb_func_start StartSpellAnimThorsIre
+StartSpellAnimThorsIre: @ 0x08062300
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl SpellFx_SetBG1Position
 	ldr r0, _08062338 @ =0x08BA41BC
 	movs r1, #3
 	bl SpawnProc
@@ -8002,10 +8002,10 @@ sub_08062300: @ 0x08062300
 	movs r0, #2
 	str r0, [r4, #0x44]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -8014,12 +8014,12 @@ sub_08062300: @ 0x08062300
 	.align 2, 0
 _08062338: .4byte 0x08BA41BC
 
-	thumb_func_start sub_0806233C
-sub_0806233C: @ 0x0806233C
+	thumb_func_start StartSpellAnimNinisGrace
+StartSpellAnimNinisGrace: @ 0x0806233C
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl SpellFx_SetBG1Position
 	ldr r0, _08062374 @ =0x08BA41BC
 	movs r1, #3
 	bl SpawnProc
@@ -8030,10 +8030,10 @@ sub_0806233C: @ 0x0806233C
 	movs r0, #3
 	str r0, [r4, #0x44]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -8042,12 +8042,12 @@ sub_0806233C: @ 0x0806233C
 	.align 2, 0
 _08062374: .4byte 0x08BA41BC
 
-	thumb_func_start sub_08062378
-sub_08062378: @ 0x08062378
+	thumb_func_start StartSpellAnimSetsLitany
+StartSpellAnimSetsLitany: @ 0x08062378
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0804FFF0
-	bl sub_08050008
+	bl SpellFx_Begin
+	bl SpellFx_SetBG1Position
 	ldr r0, _080623B0 @ =0x08BA41BC
 	movs r1, #3
 	bl SpawnProc
@@ -8058,10 +8058,10 @@ sub_08062378: @ 0x08062378
 	movs r0, #4
 	str r0, [r4, #0x44]
 	adds r0, r5, #0
-	bl sub_08054804
+	bl GetAnimRoundTypeAnotherSide
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805468C
+	bl CheckRoundMiss
 	adds r4, #0x29
 	strb r0, [r4]
 	pop {r4, r5}
@@ -8076,7 +8076,7 @@ sub_080623B4: @ 0x080623B4
 	sub sp, #8
 	adds r5, r0, #0
 	ldr r0, [r5, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r4, r0, #0
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -8089,17 +8089,17 @@ sub_080623B4: @ 0x080623B4
 	bne _08062448
 	ldr r1, [r5, #0x44]
 	adds r0, r4, #0
-	bl sub_08056FC4
+	bl StartSubSpell_efxSongBG
 	ldr r1, [r5, #0x44]
 	adds r0, r4, #0
-	bl sub_080570A0
+	bl StartSubSpell_efxSongOBJ
 	adds r0, r4, #0
 	movs r1, #0x82
 	movs r2, #1
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	adds r0, r4, #0
 	movs r1, #0x64
-	bl sub_080559A4
+	bl NewEfxTwobaiRST
 	ldr r3, _0806245C @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -8123,21 +8123,21 @@ sub_080623B4: @ 0x080623B4
 	movs r1, #0
 	movs r2, #8
 	movs r3, #0
-	bl sub_08055F08
+	bl NewEfxALPHA
 	str r6, [sp]
 	str r6, [sp, #4]
 	adds r0, r4, #0
 	movs r1, #0x3c
 	movs r2, #0x28
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r0, #2
 	ldrsh r2, [r4, r0]
 	movs r0, #0xef
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 _08062448:
 	movs r1, #0x2c
 	ldrsh r0, [r5, r1]
@@ -8157,7 +8157,7 @@ _08062460:
 	ldrh r1, [r4, #0x10]
 	orrs r0, r1
 	strh r0, [r4, #0x10]
-	bl sub_0804FFFC
+	bl SpellFx_Finish
 	adds r0, r5, #0
 	bl Proc_Break
 _08062476:
@@ -8167,8 +8167,8 @@ _08062476:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08062480
-sub_08062480: @ 0x08062480
+	thumb_func_start NewEfxDamageMojiEffect
+NewEfxDamageMojiEffect: @ 0x08062480
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -8182,7 +8182,7 @@ sub_08062480: @ 0x08062480
 	strb r5, [r0]
 	ldr r0, _080624AC @ =0x081D9FDC
 	ldr r1, _080624B0 @ =0x06012000
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -8191,8 +8191,8 @@ _080624A8: .4byte 0x08BA41D4
 _080624AC: .4byte 0x081D9FDC
 _080624B0: .4byte 0x06012000
 
-	thumb_func_start sub_080624B4
-sub_080624B4: @ 0x080624B4
+	thumb_func_start efxDamageMojiEffectMain
+efxDamageMojiEffectMain: @ 0x080624B4
 	push {lr}
 	adds r1, r0, #0
 	ldrh r0, [r1, #0x2c]
@@ -8205,7 +8205,7 @@ sub_080624B4: @ 0x080624B4
 	ldr r0, [r1, #0x5c]
 	adds r1, #0x29
 	ldrb r1, [r1]
-	bl sub_080624E0
+	bl NewEfxDamageMojiEffectOBJ
 	b _080624DC
 _080624D2:
 	cmp r0, #0xa
@@ -8216,8 +8216,8 @@ _080624DC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080624E0
-sub_080624E0: @ 0x080624E0
+	thumb_func_start NewEfxDamageMojiEffectOBJ
+NewEfxDamageMojiEffectOBJ: @ 0x080624E0
 	push {r4, r5, r6, lr}
 	sub sp, #0xc
 	adds r5, r0, #0
@@ -8244,7 +8244,7 @@ _0806250C:
 	ldr r4, _0806254C @ =0x08B9DA64
 _08062512:
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	movs r2, #0xa2
 	lsls r2, r2, #7
 	cmp r0, #0
@@ -8264,7 +8264,7 @@ _08062524:
 	str r2, [sp, #8]
 	adds r2, r4, #0
 	movs r3, #2
-	bl sub_08067300
+	bl NewEkrsubAnimeEmulator
 	str r0, [r6, #0x60]
 	add sp, #0xc
 	pop {r4, r5, r6}
@@ -8299,11 +8299,11 @@ _08062578:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08062580
-sub_08062580: @ 0x08062580
+	thumb_func_start NewEfxPierceCritical
+NewEfxPierceCritical: @ 0x08062580
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _0806259C @ =0x08BA4204
 	movs r1, #3
 	bl SpawnProc
@@ -8356,15 +8356,15 @@ sub_080625D0: @ 0x080625D0
 	ldr r0, _08062610 @ =0x081F1864
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08062614 @ =0x081F2944
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, [r4, #0x5c]
 	ldr r1, _08062618 @ =0x081F2B44
 	ldr r2, _0806261C @ =0x081F2FE4
-	bl sub_080504DC
-	bl sub_08050040
+	bl SpellFx_WriteBgMap
+	bl SpellFx_SetSomeColorEffect
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -8386,8 +8386,8 @@ sub_08062620: @ 0x08062620
 	asrs r0, r0, #0x10
 	cmp r0, #0x11
 	bne _08062640
-	bl sub_08050018
-	bl sub_08050118
+	bl SpellFx_ClearBG1
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08062640:
@@ -8427,7 +8427,7 @@ sub_08062678: @ 0x08062678
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -8436,7 +8436,7 @@ sub_08062678: @ 0x08062678
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _080626AC
 _0806269E:
 	movs r0, #1
@@ -8451,11 +8451,11 @@ _080626AC:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080626B4
-sub_080626B4: @ 0x080626B4
+	thumb_func_start NewEfxNormalEffect
+NewEfxNormalEffect: @ 0x080626B4
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _080626D0 @ =0x08BA4254
 	movs r1, #3
 	bl SpawnProc
@@ -8473,7 +8473,7 @@ sub_080626D4: @ 0x080626D4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r1, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -8484,7 +8484,7 @@ sub_080626D4: @ 0x080626D4
 	bne _080626F8
 	ldr r0, [r4, #0x5c]
 	movs r1, #4
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _0806270E
 _080626F8:
 	cmp r0, #4
@@ -8525,19 +8525,19 @@ sub_08062714: @ 0x08062714
 	str r0, [r5, #0x50]
 	ldr r0, _08062784 @ =0x081F398C
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, _08062788 @ =0x081F35C4
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050040
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_SetSomeColorEffect
 	ldr r0, _0806278C @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _0806279A
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08062790
 	movs r0, #1
@@ -8571,7 +8571,7 @@ sub_080627A0: @ 0x080627A0
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -8584,19 +8584,19 @@ sub_080627A0: @ 0x080627A0
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _080627EC
 _080627CE:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _080627EC
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _080627F4 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _080627EC:
@@ -8606,8 +8606,8 @@ _080627EC:
 	.align 2, 0
 _080627F4: .4byte 0x0201774C
 
-	thumb_func_start sub_080627F8
-sub_080627F8: @ 0x080627F8
+	thumb_func_start NewEfxYushaSpinShield
+NewEfxYushaSpinShield: @ 0x080627F8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -8619,7 +8619,7 @@ sub_080627F8: @ 0x080627F8
 	strh r1, [r0, #0x2c]
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0806282C
+	bl NewEfxYushaSpinShieldOBJ
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -8634,8 +8634,8 @@ sub_08062820: @ 0x08062820
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0806282C
-sub_0806282C: @ 0x0806282C
+	thumb_func_start NewEfxYushaSpinShieldOBJ
+NewEfxYushaSpinShieldOBJ: @ 0x0806282C
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -8666,7 +8666,7 @@ _08062864:
 	str r2, [sp]
 	adds r0, r6, #0
 	adds r1, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	adds r4, r0, #0
 	str r4, [r5, #0x60]
 	movs r0, #0xc0
@@ -8676,7 +8676,7 @@ _08062864:
 	movs r5, #0
 	strh r0, [r4, #8]
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08062898
 	movs r1, #0xe4
@@ -8698,8 +8698,8 @@ _0806289C:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080628AC
-sub_080628AC: @ 0x080628AC
+	thumb_func_start efxYushaSpinShieldOBJ_806CD14
+efxYushaSpinShieldOBJ_806CD14: @ 0x080628AC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, [r5, #0x60]
@@ -8716,7 +8716,7 @@ sub_080628AC: @ 0x080628AC
 	cmp r0, #0
 	bne _080628E4
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080628DC
 	ldr r0, _080628D8 @ =0x08BAEC94
@@ -8730,7 +8730,7 @@ _080628DC:
 _080628E0: .4byte 0x08BAD9F4
 _080628E4:
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080628F8
 	ldr r0, _080628F4 @ =0x08BB1234
@@ -8754,8 +8754,8 @@ _0806290A:
 	.align 2, 0
 _08062910: .4byte 0x08BAFF64
 
-	thumb_func_start sub_08062914
-sub_08062914: @ 0x08062914
+	thumb_func_start efxYushaSpinShieldOBJ_806CD7C
+efxYushaSpinShieldOBJ_806CD7C: @ 0x08062914
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, [r1, #0x5c]
@@ -8777,12 +8777,12 @@ _08062936:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0806293C
-sub_0806293C: @ 0x0806293C
+	thumb_func_start efxYushaSpinShieldOBJ_806CDA4
+efxYushaSpinShieldOBJ_806CDA4: @ 0x0806293C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, [r5, #0x60]
-	bl sub_0804D574
+	bl CheckEkrHitDone
 	cmp r0, #1
 	bne _08062996
 	adds r0, r5, #0
@@ -8791,7 +8791,7 @@ sub_0806293C: @ 0x0806293C
 	cmp r0, #0
 	bne _08062970
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08062968
 	ldr r0, _08062964 @ =0x08BAECBC
@@ -8805,7 +8805,7 @@ _08062968:
 _0806296C: .4byte 0x08BADA1C
 _08062970:
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08062984
 	ldr r0, _08062980 @ =0x08BB125C
@@ -8829,8 +8829,8 @@ _08062996:
 	.align 2, 0
 _0806299C: .4byte 0x08BAFF8C
 
-	thumb_func_start sub_080629A0
-sub_080629A0: @ 0x080629A0
+	thumb_func_start efxYushaSpinShieldOBJ_806CE08
+efxYushaSpinShieldOBJ_806CE08: @ 0x080629A0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -8843,7 +8843,7 @@ sub_080629A0: @ 0x080629A0
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _080629C2:
@@ -8851,8 +8851,8 @@ _080629C2:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080629C8
-sub_080629C8: @ 0x080629C8
+	thumb_func_start NewEfxHurtmutEff00
+NewEfxHurtmutEff00: @ 0x080629C8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, _080629F4 @ =0x0201774C
@@ -8870,7 +8870,7 @@ sub_080629C8: @ 0x080629C8
 	cmp r0, #0
 	bne _08062A00
 	adds r0, r4, #0
-	bl sub_08062A18
+	bl NewEfxHurtmutEff00OBJ
 	b _08062A06
 	.align 2, 0
 _080629F4: .4byte 0x0201774C
@@ -8878,7 +8878,7 @@ _080629F8: .4byte 0x08BA42F4
 _080629FC: .4byte 0x0203E02C
 _08062A00:
 	adds r0, r4, #0
-	bl sub_08062B18
+	bl NewEfxHurtmutEff01OBJ
 _08062A06:
 	pop {r4, r5}
 	pop {r0}
@@ -8892,8 +8892,8 @@ sub_08062A0C: @ 0x08062A0C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08062A18
-sub_08062A18: @ 0x08062A18
+	thumb_func_start NewEfxHurtmutEff00OBJ
+NewEfxHurtmutEff00OBJ: @ 0x08062A18
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -8913,7 +8913,7 @@ sub_08062A18: @ 0x08062A18
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	add sp, #4
 	pop {r4, r5}
@@ -8930,7 +8930,7 @@ sub_08062A5C: @ 0x08062A5C
 	adds r5, r0, #0
 	ldr r4, [r5, #0x60]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #1
 	bne _08062A74
 	ldr r0, _08062A70 @ =0x08BA8230
@@ -8946,11 +8946,11 @@ _08062A76:
 	strh r0, [r4, #6]
 	ldr r0, _08062AA0 @ =0x081F02C0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08062AA4 @ =0x081EF23C
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r5, #0
 	bl Proc_Break
 	pop {r4, r5}
@@ -8967,7 +8967,7 @@ sub_08062AA8: @ 0x08062AA8
 	adds r5, r0, #0
 	ldr r4, [r5, #0x60]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #1
 	bne _08062AC0
 	ldr r0, _08062ABC @ =0x08BA8884
@@ -8983,11 +8983,11 @@ _08062AC2:
 	strh r0, [r4, #6]
 	ldr r0, _08062AEC @ =0x081F02C0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08062AF0 @ =0x081EFADC
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r5, #0
 	bl Proc_Break
 	pop {r4, r5}
@@ -9007,7 +9007,7 @@ sub_08062AF4: @ 0x08062AF4
 	subs r0, #1
 	str r0, [r1]
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -9016,8 +9016,8 @@ sub_08062AF4: @ 0x08062AF4
 	.align 2, 0
 _08062B14: .4byte 0x0201774C
 
-	thumb_func_start sub_08062B18
-sub_08062B18: @ 0x08062B18
+	thumb_func_start NewEfxHurtmutEff01OBJ
+NewEfxHurtmutEff01OBJ: @ 0x08062B18
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -9037,7 +9037,7 @@ sub_08062B18: @ 0x08062B18
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	add sp, #4
 	pop {r4, r5}
@@ -9054,7 +9054,7 @@ sub_08062B5C: @ 0x08062B5C
 	adds r5, r0, #0
 	ldr r4, [r5, #0x60]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #1
 	bne _08062B74
 	ldr r0, _08062B70 @ =0x08BA8278
@@ -9070,11 +9070,11 @@ _08062B76:
 	strh r0, [r4, #6]
 	ldr r0, _08062BA0 @ =0x081F02C0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08062BA4 @ =0x081EF23C
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r5, #0
 	bl Proc_Break
 	pop {r4, r5}
@@ -9091,7 +9091,7 @@ sub_08062BA8: @ 0x08062BA8
 	adds r5, r0, #0
 	ldr r4, [r5, #0x60]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #1
 	bne _08062BC0
 	ldr r0, _08062BBC @ =0x08BA8894
@@ -9107,11 +9107,11 @@ _08062BC2:
 	strh r0, [r4, #6]
 	ldr r0, _08062BEC @ =0x081F02C0
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08062BF0 @ =0x081EFADC
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r5, #0
 	bl Proc_Break
 	pop {r4, r5}
@@ -9131,7 +9131,7 @@ sub_08062BF4: @ 0x08062BF4
 	subs r0, #1
 	str r0, [r1]
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -9140,8 +9140,8 @@ sub_08062BF4: @ 0x08062BF4
 	.align 2, 0
 _08062C14: .4byte 0x0201774C
 
-	thumb_func_start sub_08062C18
-sub_08062C18: @ 0x08062C18
+	thumb_func_start NewEfxMagfcast
+NewEfxMagfcast: @ 0x08062C18
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r7, r1, #0
@@ -9149,7 +9149,7 @@ sub_08062C18: @ 0x08062C18
 	ldr r4, [r0]
 	cmp r4, #0
 	bne _08062C70
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _08062C60 @ =0x08BA437C
 	movs r1, #3
 	bl SpawnProc
@@ -9158,7 +9158,7 @@ sub_08062C18: @ 0x08062C18
 	strh r4, [r5, #0x2c]
 	ldr r4, _08062C64 @ =0x0203E08E
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
@@ -9185,8 +9185,8 @@ _08062C70:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08062C78
-sub_08062C78: @ 0x08062C78
+	thumb_func_start EfxMagfcastMain
+EfxMagfcastMain: @ 0x08062C78
 	push {lr}
 	adds r1, r0, #0
 	ldrh r0, [r1, #0x2c]
@@ -9268,23 +9268,23 @@ _08062D04:
 	adds r0, r1, r6
 	ldrb r1, [r0, #0x14]
 	adds r0, r6, #0
-	bl sub_080677A4
+	bl EfxPlaySEwithCmdCtrl
 _08062D1A:
 	ldr r0, _08062D58 @ =0x081F832C
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08062D5C @ =0x081F9080
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050040
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_SetSomeColorEffect
 	ldr r0, _08062D60 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _08062D6E
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08062D64
 	movs r0, #1
@@ -9316,7 +9316,7 @@ sub_08062D74: @ 0x08062D74
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -9329,19 +9329,19 @@ sub_08062D74: @ 0x08062D74
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _08062DC0
 _08062DA2:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _08062DC0
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08062DC8 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_End
 _08062DC0:
@@ -9351,8 +9351,8 @@ _08062DC0:
 	.align 2, 0
 _08062DC8: .4byte 0x0201774C
 
-	thumb_func_start sub_08062DCC
-sub_08062DCC: @ 0x08062DCC
+	thumb_func_start NewEfxSunakemuri
+NewEfxSunakemuri: @ 0x08062DCC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -9367,7 +9367,7 @@ sub_08062DCC: @ 0x08062DCC
 	strh r4, [r0, #0x2c]
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08062E08
+	bl NewEfxSunakemuriOBJ
 _08062DEE:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -9384,8 +9384,8 @@ sub_08062DFC: @ 0x08062DFC
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08062E08
-sub_08062E08: @ 0x08062E08
+	thumb_func_start NewEfxSunakemuriOBJ
+NewEfxSunakemuriOBJ: @ 0x08062E08
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -9420,11 +9420,11 @@ _08062E44:
 	str r2, [sp]
 	adds r0, r6, #0
 	adds r1, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r5, #0x60]
 	ldr r4, _08062E90 @ =0x0203E0D8
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
@@ -9522,7 +9522,7 @@ _08062F9C:
 _08062FA0: .4byte 0x081FB454
 _08062FA4:
 	ldr r0, [r5, #0x5c]
-	bl sub_08067C6C
+	bl IsAnimSoundInPositionMaybe
 	cmp r0, #0
 	beq _08062FB8
 	ldr r0, _08062FB4 @ =0x081FB454
@@ -9533,19 +9533,19 @@ _08062FB8:
 	ldr r0, _08062FC4 @ =0x081FB474
 _08062FBA:
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	b _08062FD0
 	.align 2, 0
 _08062FC4: .4byte 0x081FB474
 _08062FC8:
 	ldr r0, _08062FE4 @ =0x081FB494
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 _08062FD0:
 	ldr r0, _08062FE8 @ =0x081FAFE4
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}
@@ -9554,8 +9554,8 @@ _08062FD0:
 _08062FE4: .4byte 0x081FB494
 _08062FE8: .4byte 0x081FAFE4
 
-	thumb_func_start sub_08062FEC
-sub_08062FEC: @ 0x08062FEC
+	thumb_func_start EfxSunakemuriOBJMain
+EfxSunakemuriOBJMain: @ 0x08062FEC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -9570,7 +9570,7 @@ sub_08062FEC: @ 0x08062FEC
 	subs r1, #1
 	str r1, [r0]
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _08063012:
@@ -9580,8 +9580,8 @@ _08063012:
 	.align 2, 0
 _08063018: .4byte 0x0201774C
 
-	thumb_func_start sub_0806301C
-sub_0806301C: @ 0x0806301C
+	thumb_func_start NewEfxLokmsuna
+NewEfxLokmsuna: @ 0x0806301C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08063040 @ =0x0201774C
@@ -9594,7 +9594,7 @@ sub_0806301C: @ 0x0806301C
 	str r5, [r0, #0x5c]
 	strh r4, [r0, #0x2c]
 	adds r0, r5, #0
-	bl sub_08063054
+	bl NewEfxLokmsunaOBJ
 _0806303A:
 	pop {r4, r5}
 	pop {r0}
@@ -9611,8 +9611,8 @@ sub_08063048: @ 0x08063048
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08063054
-sub_08063054: @ 0x08063054
+	thumb_func_start NewEfxLokmsunaOBJ
+NewEfxLokmsunaOBJ: @ 0x08063054
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -9633,7 +9633,7 @@ sub_08063054: @ 0x08063054
 	str r2, [sp]
 	adds r0, r5, #0
 	adds r1, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	adds r6, r0, #0
 	str r6, [r4, #0x60]
 	ldr r0, _080630B0 @ =0x00000FFF
@@ -9641,7 +9641,7 @@ sub_08063054: @ 0x08063054
 	ands r0, r1
 	strh r0, [r6, #8]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080630B4
 	movs r1, #0xe0
@@ -9664,7 +9664,7 @@ _080630B8:
 	ldr r0, _080630D4 @ =0x082DE400
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -9672,8 +9672,8 @@ _080630B8:
 	.align 2, 0
 _080630D4: .4byte 0x082DE400
 
-	thumb_func_start sub_080630D8
-sub_080630D8: @ 0x080630D8
+	thumb_func_start EfxLokmsunaIOBJMain
+EfxLokmsunaIOBJMain: @ 0x080630D8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -9688,7 +9688,7 @@ sub_080630D8: @ 0x080630D8
 	subs r1, #1
 	str r1, [r0]
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _080630FE:
@@ -9730,26 +9730,26 @@ sub_08063124: @ 0x08063124
 	movs r1, #1
 	movs r2, #0x28
 	movs r3, #0
-	bl sub_0804F598
+	bl NewEfxFlashUnit
 	b _0806318A
 _08063146:
 	cmp r0, #0xa
 	bne _08063154
 	adds r0, r6, #0
 	movs r1, #0x14
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _0806318A
 _08063154:
 	cmp r0, #0x2d
 	bne _0806318A
 	ldr r5, _08063190 @ =0x02000000
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r5
 	ldr r4, [r0]
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -9801,19 +9801,19 @@ sub_080631B0: @ 0x080631B0
 	bne _080631CE
 	adds r0, r6, #0
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	b _08063204
 _080631CE:
 	cmp r0, #6
 	bne _08063204
 	ldr r5, _0806320C @ =0x02000000
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r5
 	ldr r4, [r0]
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -9835,8 +9835,8 @@ _08063204:
 	.align 2, 0
 _0806320C: .4byte 0x02000000
 
-	thumb_func_start sub_08063210
-sub_08063210: @ 0x08063210
+	thumb_func_start NewEfxSongOBJ2
+NewEfxSongOBJ2: @ 0x08063210
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -9858,15 +9858,15 @@ sub_08063210: @ 0x08063210
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r0, _0806327C @ =0x081EB900
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08063280 @ =0x081EB78C
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	movs r1, #0x80
 	lsls r1, r1, #1
 	ldr r0, [r4, #0x5c]
@@ -9874,7 +9874,7 @@ sub_08063210: @ 0x08063210
 	ldrsh r2, [r0, r3]
 	movs r0, #0xee
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -9886,8 +9886,8 @@ _08063278: .4byte 0x08BA6660
 _0806327C: .4byte 0x081EB900
 _08063280: .4byte 0x081EB78C
 
-	thumb_func_start sub_08063284
-sub_08063284: @ 0x08063284
+	thumb_func_start EfxSongOBJ2Main
+EfxSongOBJ2Main: @ 0x08063284
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -9904,7 +9904,7 @@ sub_08063284: @ 0x08063284
 	ldrsh r2, [r0, r3]
 	movs r0, #0xee
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 _080632A8:
 	movs r0, #0x2c
 	ldrsh r1, [r4, r0]
@@ -9913,7 +9913,7 @@ _080632A8:
 	cmp r1, r0
 	ble _080632C8
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	ldr r1, _080632D0 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
@@ -9927,8 +9927,8 @@ _080632C8:
 	.align 2, 0
 _080632D0: .4byte 0x0201774C
 
-	thumb_func_start sub_080632D4
-sub_080632D4: @ 0x080632D4
+	thumb_func_start NewEfxDanceOBJ
+NewEfxDanceOBJ: @ 0x080632D4
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -9950,15 +9950,15 @@ sub_080632D4: @ 0x080632D4
 	adds r0, r5, #0
 	adds r1, r3, #0
 	adds r2, r3, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r4, #0x60]
 	ldr r0, _08063340 @ =0x081EB900
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08063344 @ =0x081EB78C
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	movs r1, #0x80
 	lsls r1, r1, #1
 	ldr r0, [r4, #0x5c]
@@ -9966,7 +9966,7 @@ sub_080632D4: @ 0x080632D4
 	ldrsh r2, [r0, r3]
 	movs r0, #0xe1
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -9991,7 +9991,7 @@ sub_08063348: @ 0x08063348
 	cmp r0, r1
 	ble _08063370
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	ldr r1, _08063378 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
@@ -10005,12 +10005,12 @@ _08063370:
 	.align 2, 0
 _08063378: .4byte 0x0201774C
 
-	thumb_func_start sub_0806337C
-sub_0806337C: @ 0x0806337C
+	thumb_func_start NewEfxSpecalEffect
+NewEfxSpecalEffect: @ 0x0806337C
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r4, _080633B0 @ =0x02017768
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
@@ -10018,13 +10018,13 @@ sub_0806337C: @ 0x0806337C
 	cmp r0, #0
 	bne _080633CA
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #1
 	strh r1, [r0]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080633B8
 	ldr r0, _080633B4 @ =0x0203E094
@@ -10038,19 +10038,19 @@ _080633BA:
 	ldr r0, [r0]
 	adds r0, #0x4a
 	ldrh r0, [r0]
-	bl sub_080533B0
+	bl IsWeaponLegency
 	lsls r0, r0, #0x10
 	cmp r0, #0
 	bne _08063400
 _080633CA:
 	ldr r4, _080633FC @ =0x02000000
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r4
 	ldr r6, [r0]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -10079,7 +10079,7 @@ _08063400:
 	movs r0, #0xf0
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 	adds r0, r5, #0
 	bl sub_08063438
 _08063422:
@@ -10101,7 +10101,7 @@ sub_0806342C: @ 0x0806342C
 sub_08063438: @ 0x08063438
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _08063454 @ =0x08BA44DC
 	movs r1, #3
 	bl SpawnProc
@@ -10126,7 +10126,7 @@ sub_08063458: @ 0x08063458
 	cmp r0, #1
 	bne _08063472
 	ldr r0, [r6, #0x5c]
-	bl sub_080634C8
+	bl NewEfxSRankWeaponEffectBG
 	b _080634BC
 _08063472:
 	cmp r0, #0x15
@@ -10134,7 +10134,7 @@ _08063472:
 	ldr r0, [r6, #0x5c]
 	movs r1, #0x2d
 	movs r2, #1
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	bl sub_0806353C
 	b _080634BC
 _08063486:
@@ -10142,12 +10142,12 @@ _08063486:
 	bne _080634BC
 	ldr r5, _080634C4 @ =0x02000000
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r5
 	ldr r4, [r0]
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -10169,8 +10169,8 @@ _080634BC:
 	.align 2, 0
 _080634C4: .4byte 0x02000000
 
-	thumb_func_start sub_080634C8
-sub_080634C8: @ 0x080634C8
+	thumb_func_start NewEfxSRankWeaponEffectBG
+NewEfxSRankWeaponEffectBG: @ 0x080634C8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08063504 @ =0x08BA44F4
@@ -10183,15 +10183,15 @@ sub_080634C8: @ 0x080634C8
 	ldr r0, _08063508 @ =0x081F3440
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _0806350C @ =0x081F3500
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, [r4, #0x5c]
 	ldr r2, _08063510 @ =0x081F3520
 	adds r1, r2, #0
-	bl sub_080504DC
-	bl sub_08050040
+	bl SpellFx_WriteBgMap
+	bl SpellFx_SetSomeColorEffect
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -10201,8 +10201,8 @@ _08063508: .4byte 0x081F3440
 _0806350C: .4byte 0x081F3500
 _08063510: .4byte 0x081F3520
 
-	thumb_func_start sub_08063514
-sub_08063514: @ 0x08063514
+	thumb_func_start EfxSRankWeaponEffectBGMain
+EfxSRankWeaponEffectBGMain: @ 0x08063514
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -10212,8 +10212,8 @@ sub_08063514: @ 0x08063514
 	asrs r0, r0, #0x10
 	cmp r0, #0x3c
 	bne _08063534
-	bl sub_08050018
-	bl sub_08050118
+	bl SpellFx_ClearBG1
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08063534:
@@ -10232,14 +10232,14 @@ sub_0806353C: @ 0x0806353C
 	strh r1, [r0, #0x2c]
 	strh r1, [r0, #0x2e]
 	str r1, [r0, #0x44]
-	bl sub_080635E0
+	bl NewEfxSRankWeaponEffectSCR2
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08063558: .4byte 0x08BA450C
 
-	thumb_func_start sub_0806355C
-sub_0806355C: @ 0x0806355C
+	thumb_func_start EfxSRankWeaponEffectSCRMain
+EfxSRankWeaponEffectSCRMain: @ 0x0806355C
 	push {r4, r5, r6, r7, lr}
 	mov ip, r0
 	ldr r0, _080635A4 @ =0x0201FDAC
@@ -10309,8 +10309,8 @@ _080635C6:
 	.align 2, 0
 _080635DC: .4byte 0xFFFF0000
 
-	thumb_func_start sub_080635E0
-sub_080635E0: @ 0x080635E0
+	thumb_func_start NewEfxSRankWeaponEffectSCR2
+NewEfxSRankWeaponEffectSCR2: @ 0x080635E0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080635FC @ =0x08BA4524
@@ -10342,7 +10342,7 @@ sub_08063600: @ 0x08063600
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r5, #0x44]
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -10366,7 +10366,7 @@ _0806363C:
 sub_08063644: @ 0x08063644
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _08063660 @ =0x08BA462C
 	movs r1, #3
 	bl SpawnProc
@@ -10398,13 +10398,13 @@ sub_08063664: @ 0x08063664
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r4, #0
-	bl sub_080675C8
+	bl EfxPlaySE
 	ldr r0, [r5, #0x5c]
 	movs r2, #2
 	ldrsh r1, [r0, r2]
 	adds r0, r4, #0
 	movs r2, #1
-	bl sub_080676E8
+	bl M4aPlayWithPostionCtrl
 _0806369A:
 	ldrh r0, [r5, #0x2c]
 	cmp r0, #0x64
@@ -10441,12 +10441,12 @@ sub_080636AC: @ 0x080636AC
 	str r1, [r0, #0x50]
 	ldr r0, _0806373C @ =0x081FAC38
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	ldr r0, _08063740 @ =0x081F9FC4
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
-	bl sub_08050040
+	bl SpellFx_RegisterBgGfx
+	bl SpellFx_SetSomeColorEffect
 	ldr r3, _08063744 @ =0x03002870
 	movs r1, #4
 	rsbs r1, r1, #0
@@ -10493,7 +10493,7 @@ sub_08063748: @ 0x08063748
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -10506,7 +10506,7 @@ sub_08063748: @ 0x08063748
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 _08063774:
 	ldrh r0, [r4, #0x2e]
 	adds r0, #1
@@ -10538,12 +10538,12 @@ _08063774:
 	ldrb r1, [r3, #0x14]
 	orrs r0, r1
 	strb r0, [r3, #0x14]
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _080637D0 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _080637C6:
@@ -10554,14 +10554,14 @@ _080637C6:
 _080637CC: .4byte 0x03002870
 _080637D0: .4byte 0x0201774C
 
-	thumb_func_start sub_080637D4
-sub_080637D4: @ 0x080637D4
+	thumb_func_start NewEfxMantBatabata
+NewEfxMantBatabata: @ 0x080637D4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
 	sub sp, #4
 	adds r7, r0, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _08063800 @ =0x0203E08E
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -10661,11 +10661,11 @@ _080638CC:
 	adds r1, r4, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	adds r4, r0, #0
 	str r4, [r6, #0x60]
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _08063930 @ =0x02000010
 	lsls r0, r0, #2
 	adds r0, r0, r1
@@ -10678,9 +10678,9 @@ _080638CC:
 	strh r0, [r4, #8]
 	movs r0, #0x64
 	strh r0, [r4, #0xa]
-	bl sub_080065F8
+	bl AnimSort
 	adds r0, r7, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08063934
 	movs r1, #0xe4
@@ -10700,8 +10700,8 @@ _08063938:
 	orrs r0, r1
 	strh r0, [r4, #8]
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
-	bl sub_0805484C
+	bl GetAnimPosition
+	bl SetAnimStateHidden
 	add sp, #4
 	pop {r3}
 	mov r8, r3
@@ -10710,8 +10710,8 @@ _08063938:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08063958
-sub_08063958: @ 0x08063958
+	thumb_func_start EfxMantBatabata_Loop1
+EfxMantBatabata_Loop1: @ 0x08063958
 	push {lr}
 	adds r2, r0, #0
 	ldr r1, [r2, #0x60]
@@ -10735,24 +10735,24 @@ _0806397E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08063984
-sub_08063984: @ 0x08063984
+	thumb_func_start EfxMantBatabata_Loop2
+EfxMantBatabata_Loop2: @ 0x08063984
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, [r4, #0x60]
 	ldr r0, [r4, #0x5c]
 	ldrh r0, [r0, #2]
 	strh r0, [r1, #2]
-	bl sub_0804D574
+	bl CheckEkrHitDone
 	cmp r0, #1
 	bne _080639BE
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
-	bl sub_08054884
+	bl GetAnimPosition
+	bl SetAnimStateUnHidden
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _080639C4 @ =0x02000010
 	lsls r0, r0, #2
 	adds r0, r0, r1
@@ -10771,7 +10771,7 @@ _080639C4: .4byte 0x02000010
 sub_080639C8: @ 0x080639C8
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _080639E4 @ =0x08BA468C
 	movs r1, #3
 	bl SpawnProc
@@ -10784,8 +10784,8 @@ sub_080639C8: @ 0x080639C8
 	.align 2, 0
 _080639E4: .4byte 0x08BA468C
 
-	thumb_func_start sub_080639E8
-sub_080639E8: @ 0x080639E8
+	thumb_func_start EfxChillEffectMain
+EfxChillEffectMain: @ 0x080639E8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -10796,9 +10796,9 @@ sub_080639E8: @ 0x080639E8
 	cmp r0, #1
 	bne _08063A08
 	ldr r0, [r4, #0x5c]
-	bl sub_08063A2C
+	bl NewEfxChillEffectBG
 	ldr r0, [r4, #0x5c]
-	bl sub_08063ADC
+	bl NewEfxChillEffectBGCOL
 	b _08063A24
 _08063A08:
 	cmp r0, #3
@@ -10808,7 +10808,7 @@ _08063A08:
 _08063A10:
 	ldr r0, [r4, #0x5c]
 	movs r1, #5
-	bl sub_0804F058
+	bl NewEfxFlashBgBlack
 	b _08063A24
 _08063A1A:
 	cmp r0, #0x24
@@ -10821,8 +10821,8 @@ _08063A24:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08063A2C
-sub_08063A2C: @ 0x08063A2C
+	thumb_func_start NewEfxChillEffectBG
+NewEfxChillEffectBG: @ 0x08063A2C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _08063A70 @ =0x0201774C
@@ -10845,7 +10845,7 @@ sub_08063A2C: @ 0x08063A2C
 	ldr r0, _08063A80 @ =0x08296F50
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -10868,7 +10868,7 @@ sub_08063A84: @ 0x08063A84
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -10881,19 +10881,19 @@ sub_08063A84: @ 0x08063A84
 	ldr r1, [r1]
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _08063AD0
 _08063AB2:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _08063AD0
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	ldr r1, _08063AD8 @ =0x0201774C
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1]
-	bl sub_08050118
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08063AD0:
@@ -10903,8 +10903,8 @@ _08063AD0:
 	.align 2, 0
 _08063AD8: .4byte 0x0201774C
 
-	thumb_func_start sub_08063ADC
-sub_08063ADC: @ 0x08063ADC
+	thumb_func_start NewEfxChillEffectBGCOL
+NewEfxChillEffectBGCOL: @ 0x08063ADC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08063B00 @ =0x08BA46C8
@@ -10934,7 +10934,7 @@ sub_08063B0C: @ 0x08063B0C
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -10943,7 +10943,7 @@ sub_08063B0C: @ 0x08063B0C
 	lsls r1, r1, #5
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08050634
+	bl SpellFx_RegisterBgPal
 	b _08063B40
 _08063B32:
 	movs r0, #1
@@ -10958,8 +10958,8 @@ _08063B40:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08063B48
-sub_08063B48: @ 0x08063B48
+	thumb_func_start NewEfxChillAnime
+NewEfxChillAnime: @ 0x08063B48
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -10991,11 +10991,11 @@ _08063B68:
 	adds r1, r4, #0
 	adds r2, r6, #0
 	adds r3, r4, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	adds r4, r0, #0
 	str r4, [r5, #0x60]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _08063BCC @ =0x02000010
 	lsls r0, r0, #2
 	adds r0, r0, r1
@@ -11008,9 +11008,9 @@ _08063B68:
 	strh r0, [r4, #8]
 	movs r0, #0x64
 	strh r0, [r4, #0xa]
-	bl sub_080065F8
+	bl AnimSort
 	adds r0, r7, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08063BD0
 	movs r1, #0xe4
@@ -11030,8 +11030,8 @@ _08063BD4:
 	orrs r0, r1
 	strh r0, [r4, #8]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
-	bl sub_0805484C
+	bl GetAnimPosition
+	bl SetAnimStateHidden
 	add sp, #4
 	pop {r3}
 	mov r8, r3
@@ -11056,12 +11056,12 @@ sub_08063BF4: @ 0x08063BF4
 	cmp r0, #0x14
 	bne _08063C60
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
-	bl sub_08054884
+	bl GetAnimPosition
+	bl SetAnimStateUnHidden
 	ldr r0, [r6, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _08063C68 @ =0x02000010
 	lsls r0, r0, #2
 	adds r0, r0, r1
@@ -11069,12 +11069,12 @@ sub_08063BF4: @ 0x08063BF4
 	str r1, [r0]
 	ldr r5, _08063C6C @ =0x02000000
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r5
 	ldr r4, [r0]
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -11101,7 +11101,7 @@ _08063C6C: .4byte 0x02000000
 sub_08063C70: @ 0x08063C70
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08050008
+	bl SpellFx_SetBG1Position
 	ldr r0, _08063C8C @ =0x08BA4700
 	movs r1, #3
 	bl SpawnProc
@@ -11120,7 +11120,7 @@ sub_08063C90: @ 0x08063C90
 	sub sp, #4
 	adds r6, r0, #0
 	ldr r0, [r6, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r1, r0, #0
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
@@ -11132,7 +11132,7 @@ sub_08063C90: @ 0x08063C90
 	adds r0, r1, #0
 	bl sub_08063D44
 	ldr r0, [r6, #0x5c]
-	bl sub_08054764
+	bl CheckRoundCrit
 	cmp r0, #1
 	bne _08063CC2
 	movs r0, #0xba
@@ -11147,7 +11147,7 @@ _08063CC4:
 	movs r3, #2
 	ldrsh r2, [r2, r3]
 	movs r3, #1
-	bl sub_080681E4
+	bl PlaySFX
 	b _08063D38
 	.align 2, 0
 _08063CD8: .4byte 0x000002E3
@@ -11156,29 +11156,29 @@ _08063CDC:
 	bne _08063D02
 	ldr r0, [r6, #0x5c]
 	movs r1, #0x41
-	bl sub_08063E5C
+	bl NewEfxDrsmmoyaScroll
 	adds r1, r0, #0
 	ldr r0, [r6, #0x5c]
 	movs r2, #0xa
 	str r2, [sp]
 	movs r3, #0x2d
-	bl sub_08063F04
+	bl NewEfxDrsmmoyaScrollCOL
 	ldr r0, [r6, #0x5c]
 	movs r1, #0x41
 	movs r2, #1
-	bl sub_08055E14
+	bl NewEfxRestWINH_
 	b _08063D38
 _08063D02:
 	cmp r0, #0x6f
 	bne _08063D38
 	ldr r5, _08063D40 @ =0x02000000
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r5
 	ldr r4, [r0]
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -11224,8 +11224,8 @@ sub_08063D44: @ 0x08063D44
 	str r1, [r5, #0x58]
 	ldr r0, _08063DD0 @ =0x082B83B4
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050040
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_SetSomeColorEffect
 	ldr r3, _08063DD4 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -11251,7 +11251,7 @@ sub_08063D44: @ 0x08063D44
 	cmp r0, #0
 	beq _08063DE6
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08063DDC
 	movs r0, #1
@@ -11277,8 +11277,8 @@ _08063DE6:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08063DEC
-sub_08063DEC: @ 0x08063DEC
+	thumb_func_start EfxDrsmmoyaBG_Loop
+EfxDrsmmoyaBG_Loop: @ 0x08063DEC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -11287,7 +11287,7 @@ sub_08063DEC: @ 0x08063DEC
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -11305,7 +11305,7 @@ sub_08063DEC: @ 0x08063DEC
 	movs r1, #0x80
 	lsls r1, r1, #6
 	adds r0, r2, #0
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 _08063E26:
 	ldr r0, [r6]
 	str r0, [r4, #0x58]
@@ -11315,15 +11315,15 @@ _08063E26:
 	mov r3, r8
 	adds r2, r5, r3
 	ldr r2, [r2]
-	bl sub_080504DC
+	bl SpellFx_WriteBgMap
 	b _08063E52
 _08063E3C:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r1, r0
 	bne _08063E52
-	bl sub_08050018
-	bl sub_08050118
+	bl SpellFx_ClearBG1
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08063E52:
@@ -11333,8 +11333,8 @@ _08063E52:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08063E5C
-sub_08063E5C: @ 0x08063E5C
+	thumb_func_start NewEfxDrsmmoyaScroll
+NewEfxDrsmmoyaScroll: @ 0x08063E5C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -11355,8 +11355,8 @@ sub_08063E5C: @ 0x08063E5C
 	.align 2, 0
 _08063E80: .4byte 0x08BA4798
 
-	thumb_func_start sub_08063E84
-sub_08063E84: @ 0x08063E84
+	thumb_func_start EfxDrsmmoyaScroll_Loop
+EfxDrsmmoyaScroll_Loop: @ 0x08063E84
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -11420,8 +11420,8 @@ _08063EF8: .4byte 0x0201FDB8
 _08063EFC: .4byte 0x0201FEF8
 _08063F00: .4byte 0x080C5A48
 
-	thumb_func_start sub_08063F04
-sub_08063F04: @ 0x08063F04
+	thumb_func_start NewEfxDrsmmoyaScrollCOL
+NewEfxDrsmmoyaScrollCOL: @ 0x08063F04
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -11449,8 +11449,8 @@ sub_08063F04: @ 0x08063F04
 	.align 2, 0
 _08063F38: .4byte 0x08BA47B0
 
-	thumb_func_start sub_08063F3C
-sub_08063F3C: @ 0x08063F3C
+	thumb_func_start EfxDrsmmoyaScrollCOL_Loop1
+EfxDrsmmoyaScrollCOL_Loop1: @ 0x08063F3C
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -11463,7 +11463,7 @@ sub_08063F3C: @ 0x08063F3C
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r4, #0x48]
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -11483,8 +11483,8 @@ _08063F74:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08063F7C
-sub_08063F7C: @ 0x08063F7C
+	thumb_func_start EfxDrsmmoyaScrollCOL_Delay
+EfxDrsmmoyaScrollCOL_Delay: @ 0x08063F7C
 	push {lr}
 	adds r2, r0, #0
 	ldrh r0, [r2, #0x2c]
@@ -11504,8 +11504,8 @@ _08063F9A:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08063FA0
-sub_08063FA0: @ 0x08063FA0
+	thumb_func_start EfxDrsmmoyaScrollCOL_Loop3
+EfxDrsmmoyaScrollCOL_Loop3: @ 0x08063FA0
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -11518,7 +11518,7 @@ sub_08063FA0: @ 0x08063FA0
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	str r0, [r4, #0x48]
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -11538,8 +11538,8 @@ _08063FD8:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08063FE0
-sub_08063FE0: @ 0x08063FE0
+	thumb_func_start ResetClassReelSpell
+ResetClassReelSpell: @ 0x08063FE0
 	ldr r0, _08063FEC @ =0x0203E0F4
 	movs r1, #0
 	str r1, [r0]
@@ -11550,8 +11550,8 @@ sub_08063FE0: @ 0x08063FE0
 _08063FEC: .4byte 0x0203E0F4
 _08063FF0: .4byte 0x0203E0F8
 
-	thumb_func_start sub_08063FF4
-sub_08063FF4: @ 0x08063FF4
+	thumb_func_start EndActiveClassReelSpell
+EndActiveClassReelSpell: @ 0x08063FF4
 	push {r4, lr}
 	ldr r4, _0806400C @ =0x0203E0F4
 	ldr r0, [r4]
@@ -11567,8 +11567,8 @@ _08064006:
 	.align 2, 0
 _0806400C: .4byte 0x0203E0F4
 
-	thumb_func_start sub_08064010
-sub_08064010: @ 0x08064010
+	thumb_func_start EndActiveClassReelBgColorProc
+EndActiveClassReelBgColorProc: @ 0x08064010
 	push {r4, lr}
 	ldr r4, _08064028 @ =0x0203E0F8
 	ldr r0, [r4]
@@ -11584,35 +11584,35 @@ _08064022:
 	.align 2, 0
 _08064028: .4byte 0x0203E0F8
 
-	thumb_func_start sub_0806402C
-sub_0806402C: @ 0x0806402C
+	thumb_func_start SetActiveClassReelSpell
+SetActiveClassReelSpell: @ 0x0806402C
 	ldr r1, _08064034 @ =0x0203E0F4
 	str r0, [r1]
 	bx lr
 	.align 2, 0
 _08064034: .4byte 0x0203E0F4
 
-	thumb_func_start sub_08064038
-sub_08064038: @ 0x08064038
+	thumb_func_start SetActiveCRSpellBgColorProc
+SetActiveCRSpellBgColorProc: @ 0x08064038
 	ldr r1, _08064040 @ =0x0203E0F8
 	str r0, [r1]
 	bx lr
 	.align 2, 0
 _08064040: .4byte 0x0203E0F8
 
-	thumb_func_start sub_08064044
-sub_08064044: @ 0x08064044
+	thumb_func_start GetMagicEffectBufferFor
+GetMagicEffectBufferFor: @ 0x08064044
 	ldr r0, [r0, #0x44]
 	ldr r0, [r0, #0x30]
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0806404C
-sub_0806404C: @ 0x0806404C
+	thumb_func_start SetCRSpellBgPosition
+SetCRSpellBgPosition: @ 0x0806404C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08064068
 	ldr r0, _08064064 @ =0x081D8599
@@ -11653,11 +11653,11 @@ _08064070:
 	.align 2, 0
 _080640A0: .4byte 0x081D859E
 
-	thumb_func_start sub_080640A4
-sub_080640A4: @ 0x080640A4
+	thumb_func_start ClearCRSpellBgTmBuf
+ClearCRSpellBgTmBuf: @ 0x080640A4
 	push {r4, lr}
 	sub sp, #4
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r4, r0, #0
 	movs r0, #0
 	str r0, [sp]
@@ -11687,7 +11687,7 @@ sub_080640D4: @ 0x080640D4
 	adds r6, r3, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	mov r8, r0
 	cmp r4, #0
 	bne _080640F4
@@ -11697,7 +11697,7 @@ _080640F4:
 	adds r0, r6, #0
 _080640F6:
 	movs r1, #0x78
-	bl sub_08006594
+	bl AnimCreate
 	adds r2, r0, #0
 	mov r1, r8
 	ldrh r1, [r1, #0x10]
@@ -11721,8 +11721,8 @@ _080640F6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08064128
-sub_08064128: @ 0x08064128
+	thumb_func_start CRSpell_WriteBgMap
+CRSpell_WriteBgMap: @ 0x08064128
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r6, r2, #0
@@ -11731,13 +11731,13 @@ sub_08064128: @ 0x08064128
 	lsls r3, r3, #0x10
 	lsrs r3, r3, #0x10
 	adds r5, r3, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r4, r0, #0
 	cmp r5, #1
 	bne _0806414A
 	ldr r1, [r4, #0x1c]
 	adds r0, r6, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _0806414A:
 	adds r2, r6, #0
 	cmp r5, #1
@@ -11754,7 +11754,7 @@ _08064152:
 	adds r0, r2, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _08064180
 _0806416C:
 	ldr r1, [r4, #0x14]
@@ -11765,7 +11765,7 @@ _0806416C:
 	adds r0, r2, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _08064180:
 	movs r0, #1
 	ldrh r4, [r4, #0x12]
@@ -11777,11 +11777,11 @@ _08064180:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064194
-sub_08064194: @ 0x08064194
+	thumb_func_start CRSpell_RegisterBgGfx
+CRSpell_RegisterBgGfx: @ 0x08064194
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r4, r0, #0
 	ldrh r0, [r4, #0xa]
 	lsls r5, r0, #5
@@ -11790,22 +11790,22 @@ sub_08064194: @ 0x08064194
 	adds r5, r5, r0
 	ldr r1, [r4, #0x18]
 	adds r0, r6, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, [r4, #0x18]
 	movs r2, #0x80
 	lsls r2, r2, #6
 	adds r1, r5, #0
-	bl sub_08003078
+	bl RegisterDataMove
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080641C4
-sub_080641C4: @ 0x080641C4
+	thumb_func_start CRSpell_RegisterBgPal
+CRSpell_RegisterBgPal: @ 0x080641C4
 	push {r4, lr}
 	adds r4, r1, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	ldrh r0, [r0, #0xc]
 	lsls r1, r0, #5
 	ldr r0, _080641E8 @ =0x02022860
@@ -11824,7 +11824,7 @@ _080641E8: .4byte 0x02022860
 sub_080641EC: @ 0x080641EC
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r4, r0, #0
 	ldrh r0, [r4, #0xe]
 	lsls r5, r0, #5
@@ -11832,12 +11832,12 @@ sub_080641EC: @ 0x080641EC
 	adds r5, r5, r0
 	ldr r1, [r4, #0x20]
 	adds r0, r6, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, [r4, #0x20]
 	movs r2, #0x80
 	lsls r2, r2, #5
 	adds r1, r5, #0
-	bl sub_08003078
+	bl RegisterDataMove
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -11848,7 +11848,7 @@ _08064218: .4byte 0x06010000
 sub_0806421C: @ 0x0806421C
 	push {r4, lr}
 	adds r4, r1, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	ldrh r0, [r0, #0x10]
 	lsls r1, r0, #5
 	ldr r0, _08064240 @ =0x02022A60
@@ -11863,11 +11863,11 @@ sub_0806421C: @ 0x0806421C
 	.align 2, 0
 _08064240: .4byte 0x02022A60
 
-	thumb_func_start sub_08064244
-sub_08064244: @ 0x08064244
+	thumb_func_start StartClassReelSpellAnim
+StartClassReelSpellAnim: @ 0x08064244
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	ldr r1, _08064264 @ =0x08BA47D8
 	ldrh r0, [r0]
 	lsls r0, r0, #2
@@ -11894,7 +11894,7 @@ sub_0806426C: @ 0x0806426C
 	movs r1, #3
 	bl SpawnProc
 	adds r5, r0, #0
-	bl sub_0806402C
+	bl SetActiveClassReelSpell
 	str r4, [r5, #0x5c]
 	pop {r4, r5}
 	pop {r0}
@@ -11902,28 +11902,28 @@ sub_0806426C: @ 0x0806426C
 	.align 2, 0
 _08064288: .4byte 0x08BA47F8
 
-	thumb_func_start sub_0806428C
-sub_0806428C: @ 0x0806428C
+	thumb_func_start efxopFire_Loop_Main
+efxopFire_Loop_Main: @ 0x0806428C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
-	bl sub_080642AC
+	bl StartCRSubSpell_efxopFireBG
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
-	bl sub_08064358
+	bl StartCRSubSpell_efxopFireOBJ
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080642AC
-sub_080642AC: @ 0x080642AC
+	thumb_func_start StartCRSubSpell_efxopFireBG
+StartCRSubSpell_efxopFireBG: @ 0x080642AC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r6, r0, #0
 	ldr r0, _080642F8 @ =0x08BA4820
 	adds r1, r4, #0
@@ -11939,15 +11939,15 @@ sub_080642AC: @ 0x080642AC
 	str r0, [r4, #0x4c]
 	ldr r1, _08064304 @ =0x081FD2CC
 	adds r0, r5, #0
-	bl sub_080641C4
+	bl CRSpell_RegisterBgPal
 	ldr r0, [r4, #0x5c]
 	ldr r1, _08064308 @ =0x081FC6D4
-	bl sub_08064194
+	bl CRSpell_RegisterBgGfx
 	ldr r0, [r6, #0x24]
 	bl _call_via_r0
 	ldr r0, [r4, #0x5c]
 	adds r1, r6, #0
-	bl sub_0806404C
+	bl SetCRSpellBgPosition
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -11958,15 +11958,15 @@ _08064300: .4byte 0x08BA4838
 _08064304: .4byte 0x081FD2CC
 _08064308: .4byte 0x081FC6D4
 
-	thumb_func_start sub_0806430C
-sub_0806430C: @ 0x0806430C
+	thumb_func_start efxopFireBG_Loop
+efxopFireBG_Loop: @ 0x0806430C
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x2c
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -11978,7 +11978,7 @@ sub_0806430C: @ 0x0806430C
 	ldr r2, [r1]
 	movs r1, #1
 	movs r3, #1
-	bl sub_08064128
+	bl CRSpell_WriteBgMap
 	b _08064350
 _08064338:
 	movs r0, #1
@@ -11986,8 +11986,8 @@ _08064338:
 	cmp r1, r0
 	bne _08064350
 	ldr r0, [r4, #0x5c]
-	bl sub_080640A4
-	bl sub_08050118
+	bl ClearCRSpellBgTmBuf
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08064350:
@@ -11996,12 +11996,12 @@ _08064350:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064358
-sub_08064358: @ 0x08064358
+	thumb_func_start StartCRSubSpell_efxopFireOBJ
+StartCRSubSpell_efxopFireOBJ: @ 0x08064358
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r7, r0, #0
 	ldr r0, _08064394 @ =0x08BA4868
 	adds r1, r4, #0
@@ -12018,7 +12018,7 @@ sub_08064358: @ 0x08064358
 	adds r4, r0, #0
 	str r4, [r6, #0x60]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080643A0
 	ldrh r0, [r5, #2]
@@ -12068,7 +12068,7 @@ sub_080643D8: @ 0x080643D8
 	cmp r0, #0x32
 	ble _080643F6
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _080643F6:
@@ -12084,7 +12084,7 @@ sub_080643FC: @ 0x080643FC
 	movs r1, #3
 	bl SpawnProc
 	adds r5, r0, #0
-	bl sub_0806402C
+	bl SetActiveClassReelSpell
 	str r4, [r5, #0x5c]
 	pop {r4, r5}
 	pop {r0}
@@ -12092,30 +12092,30 @@ sub_080643FC: @ 0x080643FC
 	.align 2, 0
 _08064418: .4byte 0x08BA4880
 
-	thumb_func_start sub_0806441C
-sub_0806441C: @ 0x0806441C
+	thumb_func_start efxopThunder_Loop_Main
+efxopThunder_Loop_Main: @ 0x0806441C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
-	bl sub_08064444
+	bl StartCRSubSpell_efxopThunderBG
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
-	bl sub_08064524
+	bl StartCRSubSpell_efxopThunderBGCOL
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
-	bl sub_08064598
+	bl StartCRSubSpell_efxopThunderOBJ
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08064444
-sub_08064444: @ 0x08064444
+	thumb_func_start StartCRSubSpell_efxopThunderBG
+StartCRSubSpell_efxopThunderBG: @ 0x08064444
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r6, r0, #0
 	ldr r0, _0806448C @ =0x08BA48A8
 	movs r1, #3
@@ -12131,15 +12131,15 @@ sub_08064444: @ 0x08064444
 	str r0, [r4, #0x4c]
 	ldr r1, _08064498 @ =0x081FBD70
 	adds r0, r5, #0
-	bl sub_080641C4
+	bl CRSpell_RegisterBgPal
 	ldr r0, [r4, #0x5c]
 	ldr r1, _0806449C @ =0x081FB4B4
-	bl sub_08064194
+	bl CRSpell_RegisterBgGfx
 	ldr r0, [r6, #0x24]
 	bl _call_via_r0
 	ldr r0, [r4, #0x5c]
 	adds r1, r6, #0
-	bl sub_0806404C
+	bl SetCRSpellBgPosition
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -12150,21 +12150,21 @@ _08064494: .4byte 0x08BA48C0
 _08064498: .4byte 0x081FBD70
 _0806449C: .4byte 0x081FB4B4
 
-	thumb_func_start sub_080644A0
-sub_080644A0: @ 0x080644A0
+	thumb_func_start efxopThunderBG_Loop
+efxopThunderBG_Loop: @ 0x080644A0
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r4, r0, #0
 	movs r7, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r6, r0, #0
 	adds r0, r4, #0
 	adds r0, #0x2c
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r5, r0, #0x10
 	cmp r5, #0
@@ -12176,7 +12176,7 @@ sub_080644A0: @ 0x080644A0
 	ldr r2, [r1]
 	movs r1, #0
 	movs r3, #1
-	bl sub_08064128
+	bl CRSpell_WriteBgMap
 	cmp r5, #0
 	bne _080644E4
 	ldrh r0, [r6, #0xa]
@@ -12197,7 +12197,7 @@ _080644F0:
 	str r7, [sp]
 	movs r1, #2
 	movs r2, #0x14
-	bl sub_080669B4
+	bl FillBGRect
 	b _0806451A
 _08064502:
 	movs r0, #1
@@ -12205,8 +12205,8 @@ _08064502:
 	cmp r5, r0
 	bne _0806451A
 	ldr r0, [r4, #0x5c]
-	bl sub_080640A4
-	bl sub_08050118
+	bl ClearCRSpellBgTmBuf
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _0806451A:
@@ -12216,15 +12216,15 @@ _0806451A:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064524
-sub_08064524: @ 0x08064524
+	thumb_func_start StartCRSubSpell_efxopThunderBGCOL
+StartCRSubSpell_efxopThunderBGCOL: @ 0x08064524
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _0806454C @ =0x08BA48C8
 	movs r1, #3
 	bl SpawnProc
 	adds r4, r0, #0
-	bl sub_08064038
+	bl SetActiveCRSpellBgColorProc
 	str r5, [r4, #0x5c]
 	movs r0, #0
 	strh r0, [r4, #0x2c]
@@ -12249,7 +12249,7 @@ sub_08064558: @ 0x08064558
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -12258,14 +12258,14 @@ sub_08064558: @ 0x08064558
 	ldr r0, [r4, #0x5c]
 	lsls r2, r2, #5
 	adds r1, r1, r2
-	bl sub_080641C4
+	bl CRSpell_RegisterBgPal
 	b _08064590
 _0806457E:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _08064590
-	bl sub_08064010
+	bl EndActiveClassReelBgColorProc
 	adds r0, r4, #0
 	bl Proc_Break
 _08064590:
@@ -12274,11 +12274,11 @@ _08064590:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064598
-sub_08064598: @ 0x08064598
+	thumb_func_start StartCRSubSpell_efxopThunderOBJ
+StartCRSubSpell_efxopThunderOBJ: @ 0x08064598
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r7, r0, #0
 	ldr r0, _080645D4 @ =0x08BA48E8
 	movs r1, #3
@@ -12295,7 +12295,7 @@ sub_08064598: @ 0x08064598
 	adds r4, r0, #0
 	str r4, [r6, #0x60]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080645E0
 	ldrh r0, [r5, #2]
@@ -12343,7 +12343,7 @@ sub_08064614: @ 0x08064614
 	cmp r0, #0x32
 	ble _08064632
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _08064632:
@@ -12377,7 +12377,7 @@ sub_08064654: @ 0x08064654
 	bl sub_080648AC
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
-	bl sub_080646C8
+	bl StartCRSubSpell_efxopLiveBG
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
 	bl sub_08064768
@@ -12405,13 +12405,13 @@ sub_08064654: @ 0x08064654
 	movs r1, #1
 	movs r2, #0xc
 	movs r3, #0
-	bl sub_080647DC
+	bl StartCRSubSpell_efxopLiveALPHA
 	ldr r0, [r4, #0x5c]
 	str r4, [sp]
 	movs r1, #0x23
 	movs r2, #0x19
 	movs r3, #1
-	bl sub_080647DC
+	bl StartCRSubSpell_efxopLiveALPHA
 	adds r0, r4, #0
 	bl Proc_Break
 	add sp, #4
@@ -12421,17 +12421,17 @@ sub_08064654: @ 0x08064654
 	.align 2, 0
 _080646C4: .4byte 0x03002870
 
-	thumb_func_start sub_080646C8
-sub_080646C8: @ 0x080646C8
+	thumb_func_start StartCRSubSpell_efxopLiveBG
+StartCRSubSpell_efxopLiveBG: @ 0x080646C8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r6, r0, #0
 	ldr r0, _0806470C @ =0x08BA4928
 	movs r1, #3
 	bl SpawnProc
 	adds r4, r0, #0
-	bl sub_0806402C
+	bl SetActiveClassReelSpell
 	str r5, [r4, #0x5c]
 	movs r0, #0
 	strh r0, [r4, #0x2c]
@@ -12442,12 +12442,12 @@ sub_080646C8: @ 0x080646C8
 	str r0, [r4, #0x4c]
 	ldr r1, _08064718 @ =0x08269CF8
 	adds r0, r5, #0
-	bl sub_08064194
+	bl CRSpell_RegisterBgGfx
 	ldr r0, [r6, #0x24]
 	bl _call_via_r0
 	ldr r0, [r4, #0x5c]
 	adds r1, r6, #0
-	bl sub_0806404C
+	bl SetCRSpellBgPosition
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -12457,15 +12457,15 @@ _08064710: .4byte 0x081E98B6
 _08064714: .4byte 0x08BA4940
 _08064718: .4byte 0x08269CF8
 
-	thumb_func_start sub_0806471C
-sub_0806471C: @ 0x0806471C
+	thumb_func_start efxopLiveBG_Loop
+efxopLiveBG_Loop: @ 0x0806471C
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x2c
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -12477,7 +12477,7 @@ sub_0806471C: @ 0x0806471C
 	ldr r2, [r1]
 	movs r1, #1
 	movs r3, #0
-	bl sub_08064128
+	bl CRSpell_WriteBgMap
 	b _08064760
 _08064748:
 	movs r0, #1
@@ -12485,8 +12485,8 @@ _08064748:
 	cmp r1, r0
 	bne _08064760
 	ldr r0, [r4, #0x5c]
-	bl sub_080640A4
-	bl sub_08050118
+	bl ClearCRSpellBgTmBuf
+	bl SpellFx_ClearColorEffects
 	adds r0, r4, #0
 	bl Proc_Break
 _08064760:
@@ -12503,7 +12503,7 @@ sub_08064768: @ 0x08064768
 	movs r1, #3
 	bl SpawnProc
 	adds r4, r0, #0
-	bl sub_08064038
+	bl SetActiveCRSpellBgColorProc
 	str r5, [r4, #0x5c]
 	movs r0, #0
 	strh r0, [r4, #0x2c]
@@ -12528,7 +12528,7 @@ sub_0806479C: @ 0x0806479C
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -12537,14 +12537,14 @@ sub_0806479C: @ 0x0806479C
 	ldr r0, [r4, #0x5c]
 	lsls r2, r2, #5
 	adds r1, r1, r2
-	bl sub_080641C4
+	bl CRSpell_RegisterBgPal
 	b _080647D4
 _080647C2:
 	movs r0, #1
 	rsbs r0, r0, #0
 	cmp r2, r0
 	bne _080647D4
-	bl sub_08064010
+	bl EndActiveClassReelBgColorProc
 	adds r0, r4, #0
 	bl Proc_Break
 _080647D4:
@@ -12553,8 +12553,8 @@ _080647D4:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080647DC
-sub_080647DC: @ 0x080647DC
+	thumb_func_start StartCRSubSpell_efxopLiveALPHA
+StartCRSubSpell_efxopLiveALPHA: @ 0x080647DC
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -12635,7 +12635,7 @@ _0806485E:
 	movs r1, #0x10
 	movs r2, #0
 _0806486E:
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	ldr r3, _080648A8 @ =0x03002870
 	adds r2, r3, #0
@@ -12671,7 +12671,7 @@ _080648A8: .4byte 0x03002870
 sub_080648AC: @ 0x080648AC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r6, r0, #0
 	ldr r0, _08064900 @ =0x08BA4984
 	movs r1, #3
@@ -12724,7 +12724,7 @@ sub_08064910: @ 0x08064910
 	cmp r0, r1
 	bne _08064930
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _08064930:
@@ -12741,7 +12741,7 @@ sub_08064938: @ 0x08064938
 	movs r1, #3
 	bl SpawnProc
 	adds r5, r0, #0
-	bl sub_0806402C
+	bl SetActiveClassReelSpell
 	str r4, [r5, #0x5c]
 	pop {r4, r5}
 	pop {r0}
@@ -12755,19 +12755,19 @@ sub_08064958: @ 0x08064958
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
 	adds r1, r4, #0
-	bl sub_08064970
+	bl StartCRSubSpell_efxopLightningBG
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08064970
-sub_08064970: @ 0x08064970
+	thumb_func_start StartCRSubSpell_efxopLightningBG
+StartCRSubSpell_efxopLightningBG: @ 0x08064970
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
-	bl sub_08064044
+	bl GetMagicEffectBufferFor
 	adds r6, r0, #0
 	ldr r0, _080649B4 @ =0x08BA49C4
 	adds r1, r4, #0
@@ -12790,7 +12790,7 @@ sub_08064970: @ 0x08064970
 	bl _call_via_r0
 	ldr r0, [r4, #0x5c]
 	adds r1, r6, #0
-	bl sub_0806404C
+	bl SetCRSpellBgPosition
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -12801,15 +12801,15 @@ _080649BC: .4byte 0x08BA4AE4
 _080649C0: .4byte 0x08BA49DC
 _080649C4: .4byte 0x08BA4A60
 
-	thumb_func_start sub_080649C8
-sub_080649C8: @ 0x080649C8
+	thumb_func_start efxopLightningBG_Loop
+efxopLightningBG_Loop: @ 0x080649C8
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r0, #0x2c
 	adds r1, r7, #0
 	adds r1, #0x44
 	ldr r2, [r7, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r4, r0, #0x10
 	cmp r4, #0
@@ -12821,17 +12821,17 @@ sub_080649C8: @ 0x080649C8
 	lsls r4, r4, #2
 	adds r1, r4, r1
 	ldr r1, [r1]
-	bl sub_08064194
+	bl CRSpell_RegisterBgGfx
 	ldr r0, [r7, #0x5c]
 	adds r5, r4, r5
 	ldr r1, [r5]
-	bl sub_080641C4
+	bl CRSpell_RegisterBgPal
 	ldr r0, [r7, #0x5c]
 	adds r4, r4, r6
 	ldr r2, [r4]
 	movs r1, #0
 	movs r3, #1
-	bl sub_08064128
+	bl CRSpell_WriteBgMap
 	b _08064A24
 _08064A0C:
 	movs r0, #1
@@ -12839,8 +12839,8 @@ _08064A0C:
 	cmp r4, r0
 	bne _08064A24
 	ldr r0, [r7, #0x5c]
-	bl sub_080640A4
-	bl sub_08050118
+	bl ClearCRSpellBgTmBuf
+	bl SpellFx_ClearColorEffects
 	adds r0, r7, #0
 	bl Proc_Break
 _08064A24:
@@ -12860,16 +12860,16 @@ sub_08064A2C: @ 0x08064A2C
 	.align 2, 0
 _08064A38: .4byte 0x02020040
 
-	thumb_func_start sub_08064A3C
-sub_08064A3C: @ 0x08064A3C
+	thumb_func_start GetKeyStatus_IgnoreMask
+GetKeyStatus_IgnoreMask: @ 0x08064A3C
 	ldr r0, _08064A44 @ =0x02020040
 	ldrh r0, [r0]
 	bx lr
 	.align 2, 0
 _08064A44: .4byte 0x02020040
 
-	thumb_func_start sub_08064A48
-sub_08064A48: @ 0x08064A48
+	thumb_func_start ResetEkrDragonStatus
+ResetEkrDragonStatus: @ 0x08064A48
 	ldr r1, _08064A64 @ =0x02020040
 	movs r0, #0
 	strh r0, [r1]
@@ -12888,10 +12888,10 @@ sub_08064A48: @ 0x08064A48
 _08064A64: .4byte 0x02020040
 _08064A68: .4byte 0x02020050
 
-	thumb_func_start sub_08064A6C
-sub_08064A6C: @ 0x08064A6C
+	thumb_func_start GetEkrDragonStatus
+GetEkrDragonStatus: @ 0x08064A6C
 	push {lr}
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	beq _08064A80
 	ldr r0, _08064A7C @ =0x02020050
@@ -12906,20 +12906,20 @@ _08064A82:
 	.align 2, 0
 _08064A88: .4byte 0x02020040
 
-	thumb_func_start sub_08064A8C
-sub_08064A8C: @ 0x08064A8C
+	thumb_func_start GetEkrDragonStatusAttr
+GetEkrDragonStatusAttr: @ 0x08064A8C
 	push {lr}
-	bl sub_08064A6C
+	bl GetEkrDragonStatus
 	ldrh r0, [r0, #2]
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08064A98
-sub_08064A98: @ 0x08064A98
+	thumb_func_start AddEkrDragonStatusAttr
+AddEkrDragonStatusAttr: @ 0x08064A98
 	push {r4, lr}
 	lsls r4, r1, #0x10
 	lsrs r4, r4, #0x10
-	bl sub_08064A6C
+	bl GetEkrDragonStatus
 	ldrh r1, [r0, #2]
 	orrs r4, r1
 	strh r4, [r0, #2]
@@ -12928,28 +12928,28 @@ sub_08064A98: @ 0x08064A98
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064AB0
-sub_08064AB0: @ 0x08064AB0
+	thumb_func_start GetEkrDragonStatusType
+GetEkrDragonStatusType: @ 0x08064AB0
 	push {lr}
-	bl sub_08064ABC
+	bl GetEkrDragonStatusType_
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08064ABC
-sub_08064ABC: @ 0x08064ABC
+	thumb_func_start GetEkrDragonStatusType_
+GetEkrDragonStatusType_: @ 0x08064ABC
 	push {lr}
-	bl sub_08064A6C
+	bl GetEkrDragonStatus
 	ldrh r0, [r0]
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08064AC8
-sub_08064AC8: @ 0x08064AC8
+	thumb_func_start AddEkrDragonStatusType
+AddEkrDragonStatusType: @ 0x08064AC8
 	push {r4, lr}
 	lsls r4, r1, #0x10
 	lsrs r4, r4, #0x10
-	bl sub_08064A6C
+	bl GetEkrDragonStatus
 	ldrh r1, [r0]
 	orrs r4, r1
 	strh r4, [r0]
@@ -12958,21 +12958,21 @@ sub_08064AC8: @ 0x08064AC8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064AE0
-sub_08064AE0: @ 0x08064AE0
+	thumb_func_start CheckInEkrDragon
+CheckInEkrDragon: @ 0x08064AE0
 	push {lr}
-	bl sub_08064A3C
+	bl GetKeyStatus_IgnoreMask
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08064AEC
-sub_08064AEC: @ 0x08064AEC
+	thumb_func_start EkrDragonTmCpyHFlip
+EkrDragonTmCpyHFlip: @ 0x08064AEC
 	push {r4, r5, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _08064B28
 	asrs r2, r4, #3
@@ -12995,7 +12995,7 @@ sub_08064AEC: @ 0x08064AEC
 	movs r3, #0
 	str r3, [sp, #0xc]
 	movs r3, #0x42
-	bl sub_08066BDC
+	bl EfxTmCpyExtHFlip
 _08064B28:
 	add sp, #0x10
 	pop {r4, r5}
@@ -13005,13 +13005,13 @@ _08064B28:
 _08064B30: .4byte 0x02019784
 _08064B34: .4byte 0x0201D41C
 
-	thumb_func_start sub_08064B38
-sub_08064B38: @ 0x08064B38
+	thumb_func_start EkrDragonTmCpyExt
+EkrDragonTmCpyExt: @ 0x08064B38
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x10
 	adds r7, r0, #0
 	adds r6, r1, #0
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _08064B86
 	asrs r4, r7, #3
@@ -13039,7 +13039,7 @@ sub_08064B38: @ 0x08064B38
 	adds r0, r4, #0
 	movs r1, #0x42
 	movs r3, #0x20
-	bl sub_08066B2C
+	bl EfxTmCpyExt
 	movs r0, #8
 	bl EnableBgSync
 _08064B86:
@@ -13051,8 +13051,8 @@ _08064B86:
 _08064B90: .4byte 0x0201D45E
 _08064B94: .4byte 0x02024460
 
-	thumb_func_start sub_08064B98
-sub_08064B98: @ 0x08064B98
+	thumb_func_start EkrDragonTmCpyWithDistance
+EkrDragonTmCpyWithDistance: @ 0x08064B98
 	push {lr}
 	ldr r0, _08064BB0 @ =0x0203E02C
 	movs r1, #0
@@ -13077,22 +13077,22 @@ _08064BBE:
 	movs r0, #0xc0
 _08064BC0:
 	movs r1, #0
-	bl sub_08064AEC
+	bl EkrDragonTmCpyHFlip
 	b _08064BD2
 _08064BC8:
 	movs r0, #0x10
 	rsbs r0, r0, #0
 	movs r1, #0
-	bl sub_08064AEC
+	bl EkrDragonTmCpyHFlip
 _08064BD2:
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064BD8
-sub_08064BD8: @ 0x08064BD8
+	thumb_func_start EkrDragonIntroDone
+EkrDragonIntroDone: @ 0x08064BD8
 	push {lr}
-	bl sub_08064A8C
+	bl GetEkrDragonStatusAttr
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	movs r1, #2
@@ -13107,10 +13107,10 @@ _08064BF0:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08064BF4
-sub_08064BF4: @ 0x08064BF4
+	thumb_func_start CheckEkrDragonEndingDone
+CheckEkrDragonEndingDone: @ 0x08064BF4
 	push {lr}
-	bl sub_08064A8C
+	bl GetEkrDragonStatusAttr
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	movs r1, #8
@@ -13125,11 +13125,11 @@ _08064C0C:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08064C10
-sub_08064C10: @ 0x08064C10
+	thumb_func_start NewEkrDragon
+NewEkrDragon: @ 0x08064C10
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
-	bl sub_08064A6C
+	bl GetEkrDragonStatus
 	adds r6, r0, #0
 	ldr r0, _08064C3C @ =0x08BD9318
 	movs r1, #3
@@ -13138,7 +13138,7 @@ sub_08064C10: @ 0x08064C10
 	str r4, [r6, #4]
 	adds r0, r5, #0
 	movs r1, #1
-	bl sub_08064A98
+	bl AddEkrDragonStatusAttr
 	str r5, [r6, #0xc]
 	str r5, [r4, #0x5c]
 	movs r0, #0
@@ -13149,28 +13149,28 @@ sub_08064C10: @ 0x08064C10
 	.align 2, 0
 _08064C3C: .4byte 0x08BD9318
 
-	thumb_func_start sub_08064C40
-sub_08064C40: @ 0x08064C40
+	thumb_func_start SetEkrDragonExit
+SetEkrDragonExit: @ 0x08064C40
 	push {lr}
 	movs r1, #4
-	bl sub_08064A98
+	bl AddEkrDragonStatusAttr
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08064C4C
-sub_08064C4C: @ 0x08064C4C
+	thumb_func_start SetEfxDragonDeadFallHead
+SetEfxDragonDeadFallHead: @ 0x08064C4C
 	push {lr}
 	movs r1, #0x80
 	lsls r1, r1, #5
-	bl sub_08064A98
+	bl AddEkrDragonStatusAttr
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08064C5C
-sub_08064C5C: @ 0x08064C5C
+	thumb_func_start CheckEfxDragonDeadFallHead
+CheckEfxDragonDeadFallHead: @ 0x08064C5C
 	push {lr}
-	bl sub_08064A8C
+	bl GetEkrDragonStatusAttr
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	movs r1, #0x80
@@ -13187,27 +13187,27 @@ _08064C76:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08064C7C
-sub_08064C7C: @ 0x08064C7C
+	thumb_func_start InitEkrDragonStatus
+InitEkrDragonStatus: @ 0x08064C7C
 	push {lr}
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _08064C8C
 	movs r0, #0
-	bl sub_0805484C
+	bl SetAnimStateHidden
 _08064C8C:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08064C90
-sub_08064C90: @ 0x08064C90
+	thumb_func_start EkrDragonUpdateFlashingUnit
+EkrDragonUpdateFlashingUnit: @ 0x08064C90
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _08064CCA
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08064CBC
 	ldr r0, _08064CB4 @ =0x081D97D0
@@ -13233,15 +13233,15 @@ _08064CCA:
 _08064CD0: .4byte 0x081D97D0
 _08064CD4: .4byte 0x02022940
 
-	thumb_func_start sub_08064CD8
-sub_08064CD8: @ 0x08064CD8
+	thumb_func_start BanimSetFrontPaletteForDragon
+BanimSetFrontPaletteForDragon: @ 0x08064CD8
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _08064D12
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08064D04
 	ldr r0, _08064CFC @ =0x082E0FEC
@@ -13267,8 +13267,8 @@ _08064D12:
 _08064D18: .4byte 0x082E0FEC
 _08064D1C: .4byte 0x02022940
 
-	thumb_func_start sub_08064D20
-sub_08064D20: @ 0x08064D20
+	thumb_func_start EkrDragonUpdatePal_08065510
+EkrDragonUpdatePal_08065510: @ 0x08064D20
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08064D44 @ =0x082E589C
@@ -13281,7 +13281,7 @@ sub_08064D20: @ 0x08064D20
 	movs r1, #4
 	movs r2, #1
 	adds r3, r5, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -13289,15 +13289,15 @@ sub_08064D20: @ 0x08064D20
 _08064D44: .4byte 0x082E589C
 _08064D48: .4byte 0x020228E0
 
-	thumb_func_start sub_08064D4C
-sub_08064D4C: @ 0x08064D4C
+	thumb_func_start EkrDragon_Preparefx
+EkrDragon_Preparefx: @ 0x08064D4C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
 	movs r1, #0x8a
-	bl sub_080532C0
+	bl EkrPrepareBanimfx
 	ldr r0, [r4, #0x5c]
-	bl sub_08065548
+	bl NewEkrDragonBaseHide
 	ldr r1, _08064D70 @ =0x0203E024
 	movs r0, #0x13
 	strh r0, [r1]
@@ -13309,8 +13309,8 @@ sub_08064D4C: @ 0x08064D4C
 	.align 2, 0
 _08064D70: .4byte 0x0203E024
 
-	thumb_func_start sub_08064D74
-sub_08064D74: @ 0x08064D74
+	thumb_func_start EkrDragon_CustomBgFadeIn
+EkrDragon_CustomBgFadeIn: @ 0x08064D74
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -13321,8 +13321,8 @@ sub_08064D74: @ 0x08064D74
 	movs r0, #1
 	movs r1, #4
 	movs r2, #0x10
-	bl sub_08012FE8
-	bl sub_080672C4
+	bl Interpolate
+	bl EfxChapterMapFadeOUT
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
 	strh r0, [r4, #0x2c]
@@ -13368,10 +13368,10 @@ sub_08064DB0: @ 0x08064DB0
 	strb r0, [r3, #0x14]
 	ldr r0, _08064E50 @ =0x082DE7E8
 	ldr r1, _08064E54 @ =0x06008000
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	ldr r0, _08064E58 @ =0x082E10CC
 	ldr r1, _08064E5C @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, _08064E60 @ =0x082E0FEC
 	ldr r1, _08064E64 @ =0x02022920
 	movs r2, #8
@@ -13383,18 +13383,18 @@ sub_08064DB0: @ 0x08064DB0
 	bl TmFill
 	movs r0, #0
 	movs r1, #0x78
-	bl sub_08064AEC
+	bl EkrDragonTmCpyHFlip
 	movs r0, #0xf8
 	rsbs r0, r0, #0
 	movs r1, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	bl EnablePalSync
 	movs r1, #0x80
 	lsls r1, r1, #3
 	movs r0, #0x78
 	movs r2, #0x60
 	movs r3, #2
-	bl sub_08065CDC
+	bl NewEkrDragonBg3HfScrollHandler
 	str r0, [r4, #0x64]
 	movs r0, #0x78
 	movs r1, #0
@@ -13434,7 +13434,7 @@ sub_08064E70: @ 0x08064E70
 	ldrsh r0, [r5, r4]
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	movs r2, #0xa0
 	lsls r2, r2, #1
@@ -13445,10 +13445,10 @@ sub_08064E70: @ 0x08064E70
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	ldrh r1, [r5, #0x2c]
 	adds r1, #1
 	strh r1, [r5, #0x2c]
@@ -13472,7 +13472,7 @@ _08064ECC:
 	movs r0, #0xe6
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 _08064EE0:
 	add sp, #4
 	pop {r4, r5}
@@ -13503,7 +13503,7 @@ _08064F10:
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	ldr r0, [r4, #0x5c]
-	bl sub_080656BC
+	bl NewEkrDragonTunkFace
 	adds r2, r0, #0
 	str r2, [r4, #0x64]
 	movs r1, #0
@@ -13554,7 +13554,7 @@ sub_08064F5C: @ 0x08064F5C
 	strh r0, [r5, #0x2c]
 	ldr r0, [r5, #0x5c]
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	adds r0, r5, #0
 	bl Proc_Break
 	b _08064FDA
@@ -13570,7 +13570,7 @@ _08064F84:
 	movs r4, #0x10
 	str r4, [sp]
 	movs r0, #1
-	bl sub_08012FE8
+	bl Interpolate
 	strh r0, [r6, #0x32]
 	movs r0, #0x3c
 	ldrsh r2, [r6, r0]
@@ -13580,7 +13580,7 @@ _08064F84:
 	ldrsh r3, [r5, r0]
 	str r4, [sp]
 	movs r0, #1
-	bl sub_08012FE8
+	bl Interpolate
 	strh r0, [r6, #0x3a]
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -13597,7 +13597,7 @@ _08064F84:
 	strh r0, [r5, #0x2c]
 	ldr r0, [r5, #0x5c]
 	movs r1, #0xa
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	adds r0, r5, #0
 	bl Proc_Break
 _08064FDA:
@@ -13628,7 +13628,7 @@ sub_08064FE4: @ 0x08064FE4
 	bl sub_08065B90
 	str r0, [r6, #0x58]
 	ldr r0, [r6, #0x5c]
-	bl sub_08065B04
+	bl NewEkrDragonFireBG2
 	str r0, [r6, #0x48]
 	adds r0, r6, #0
 	bl Proc_Break
@@ -13664,16 +13664,16 @@ _08065024:
 	strh r0, [r1, #0x3a]
 	movs r0, #8
 	movs r1, #0
-	bl sub_0804E73C
+	bl NewEfxQuakePure
 	str r0, [r6, #0x54]
 	ldr r0, [r6, #0x5c]
 	movs r1, #0x9d
 	lsls r1, r1, #1
-	bl sub_080664C0
+	bl NewEkrDragonFireBg3
 	ldr r0, _080650F0 @ =0x082E1218
 	ldr r4, _080650F4 @ =0x02019784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r5, _080650F8 @ =0x001F001F
 	str r5, [sp]
 	movs r0, #0xf0
@@ -13688,12 +13688,12 @@ _08065024:
 	ldr r0, _08065100 @ =0x02024460
 	movs r1, #0x1f
 	bl TmFill
-	bl sub_08064B98
+	bl EkrDragonTmCpyWithDistance
 	ldr r0, _08065104 @ =0x0201FB00
 	ldr r0, [r0]
 	movs r2, #0x3a
 	ldrsh r1, [r6, r2]
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	ldr r0, [r6, #0x5c]
 	bl sub_08065904
 	str r0, [r6, #0x68]
@@ -13706,7 +13706,7 @@ _08065024:
 	bl sub_08065B90
 	str r0, [r6, #0x58]
 	ldr r0, [r6, #0x5c]
-	bl sub_08065B04
+	bl NewEkrDragonFireBG2
 	str r0, [r6, #0x48]
 	movs r0, #0xbc
 	lsls r0, r0, #2
@@ -13714,7 +13714,7 @@ _08065024:
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 	adds r0, r6, #0
 	bl Proc_Break
 _080650E6:
@@ -13759,7 +13759,7 @@ _0806512C:
 	ldrsh r0, [r5, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r7, r0, #0
 	ldr r1, [r5, #0x64]
 	ldr r0, [r5, #0x5c]
@@ -13800,7 +13800,7 @@ _0806512C:
 	lsls r2, r2, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	movs r2, #0
 	ldrsh r1, [r4, r2]
 	mov r3, r8
@@ -13809,7 +13809,7 @@ _0806512C:
 	movs r6, #2
 	ldrsh r1, [r4, r6]
 	adds r1, r7, r1
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	ldrh r1, [r4]
 	ldrh r2, [r4, #2]
 	movs r0, #2
@@ -13839,7 +13839,7 @@ _0806512C:
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r3, [r4]
 	ldrh r1, [r6]
 	adds r0, r3, r1
@@ -13852,7 +13852,7 @@ _0806512C:
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 	ldrh r1, [r5, #0x2c]
 	adds r1, #1
 	strh r1, [r5, #0x2c]
@@ -13883,11 +13883,11 @@ _0806512C:
 	movs r4, #2
 	ldrsh r2, [r3, r4]
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	mov r1, r8
 	ldr r0, [r1]
 	adds r1, r7, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	movs r0, #2
 	movs r1, #0
 	movs r2, #0
@@ -13904,7 +13904,7 @@ _0806512C:
 	rsbs r1, r3, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r4, [r6]
 	rsbs r0, r4, #0
 	lsls r0, r0, #0x10
@@ -13913,7 +13913,7 @@ _0806512C:
 	rsbs r1, r6, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 	ldr r0, [r5, #0x54]
 	bl Proc_End
 	adds r0, r5, #0
@@ -13943,21 +13943,21 @@ sub_080652C0: @ 0x080652C0
 	cmp r0, #2
 	bne _0806531C
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
-	bl sub_08054884
+	bl GetAnimPosition
+	bl SetAnimStateUnHidden
 	ldr r0, _08065308 @ =0x082E1218
 	ldr r1, _0806530C @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, _08065310 @ =0x001F001F
 	bl sub_080507B8
 	ldr r0, _08065314 @ =0x02024460
 	movs r1, #0x1f
 	bl TmFill
-	bl sub_08064B98
+	bl EkrDragonTmCpyWithDistance
 	ldr r0, _08065318 @ =0x0201FB00
 	ldr r0, [r0]
 	movs r1, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	adds r0, r4, #0
 	bl Proc_Break
 	b _08065388
@@ -13979,13 +13979,13 @@ _0806531C:
 	ldr r0, [r4, #0x64]
 	movs r1, #0x3c
 	movs r2, #9
-	bl sub_080665B4
+	bl NewEkrDragonBarkQuake
 	ldr r0, _08065394 @ =0x000002F1
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 _08065342:
 	ldr r0, _08065398 @ =0x00000195
 	ldrh r1, [r4, #0x2c]
@@ -13996,21 +13996,21 @@ _08065342:
 	ldr r0, [r4, #0x64]
 	bl Proc_End
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
-	bl sub_08054884
+	bl GetAnimPosition
+	bl SetAnimStateUnHidden
 	ldr r0, _0806539C @ =0x082E1218
 	ldr r1, _080653A0 @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, _080653A4 @ =0x001F001F
 	bl sub_080507B8
 	ldr r0, _080653A8 @ =0x02024460
 	movs r1, #0x1f
 	bl TmFill
-	bl sub_08064B98
+	bl EkrDragonTmCpyWithDistance
 	ldr r0, _080653AC @ =0x0201FB00
 	ldr r0, [r0]
 	movs r1, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	adds r0, r4, #0
 	bl Proc_Break
 _08065388:
@@ -14027,28 +14027,28 @@ _080653A4: .4byte 0x001F001F
 _080653A8: .4byte 0x02024460
 _080653AC: .4byte 0x0201FB00
 
-	thumb_func_start sub_080653B0
-sub_080653B0: @ 0x080653B0
+	thumb_func_start EkrDragon_TriggerIntroDone
+EkrDragon_TriggerIntroDone: @ 0x080653B0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08065EB8
+	bl NewEkrDragonFxMain
 	str r0, [r4, #0x50]
 	ldr r0, [r4, #0x5c]
 	movs r1, #2
-	bl sub_08064A98
+	bl AddEkrDragonStatusAttr
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080653D0
-sub_080653D0: @ 0x080653D0
+	thumb_func_start EkrDragon_InBattleIDLE
+EkrDragon_InBattleIDLE: @ 0x080653D0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08064A8C
+	bl GetEkrDragonStatusAttr
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	movs r1, #4
@@ -14064,16 +14064,16 @@ sub_080653D0: @ 0x080653D0
 	ldr r0, [r4, #0x50]
 	bl Proc_End
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C5C
+	bl CheckEfxDragonDeadFallHead
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08065410
 	ldr r0, [r4, #0x5c]
-	bl sub_08066018
+	bl NewEkrDragonBodyBlack
 	b _08065416
 _08065410:
 	ldr r0, [r4, #0x5c]
-	bl sub_080661B8
+	bl NewEkrDragonTunk
 _08065416:
 	str r0, [r4, #0x50]
 	adds r0, r4, #0
@@ -14134,24 +14134,24 @@ sub_08065444: @ 0x08065444
 	orrs r0, r1
 	strb r0, [r3, #0x18]
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
-	bl sub_0805484C
+	bl GetAnimPosition
+	bl SetAnimStateHidden
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _080654CC @ =0x0203E010
 	lsls r0, r0, #1
 	adds r0, r0, r1
 	movs r1, #0
 	strh r1, [r0]
 	ldr r0, [r4, #0x5c]
-	bl sub_080655E0
+	bl NewEkrDragonBaseAppear
 	ldr r0, _080654D0 @ =0x02024460
 	ldr r1, _080654D4 @ =0x0000601F
 	bl TmFill
 	movs r0, #8
 	bl EnableBgSync
 	movs r0, #0x10
-	bl sub_080672C4
+	bl EfxChapterMapFadeOUT
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -14163,8 +14163,8 @@ _080654CC: .4byte 0x0203E010
 _080654D0: .4byte 0x02024460
 _080654D4: .4byte 0x0000601F
 
-	thumb_func_start sub_080654D8
-sub_080654D8: @ 0x080654D8
+	thumb_func_start EkrDragon_ReloadCustomBgAndFadeOut
+EkrDragon_ReloadCustomBgAndFadeOut: @ 0x080654D8
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -14186,8 +14186,8 @@ _080654F6:
 	movs r0, #4
 	movs r1, #0x10
 	movs r2, #4
-	bl sub_08012FE8
-	bl sub_080672C4
+	bl Interpolate
+	bl EfxChapterMapFadeOUT
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
 	strh r0, [r4, #0x2c]
@@ -14207,21 +14207,21 @@ _08065524:
 	.align 2, 0
 _0806552C: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08065530
-sub_08065530: @ 0x08065530
+	thumb_func_start EkrDragon_TriggerEnding
+EkrDragon_TriggerEnding: @ 0x08065530
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
 	movs r1, #8
-	bl sub_08064A98
+	bl AddEkrDragonStatusAttr
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08065548
-sub_08065548: @ 0x08065548
+	thumb_func_start NewEkrDragonBaseHide
+NewEkrDragonBaseHide: @ 0x08065548
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08065568 @ =0x08BD93A0
@@ -14239,8 +14239,8 @@ sub_08065548: @ 0x08065548
 	.align 2, 0
 _08065568: .4byte 0x08BD93A0
 
-	thumb_func_start sub_0806556C
-sub_0806556C: @ 0x0806556C
+	thumb_func_start EkrDragonBaseHide_Loop
+EkrDragonBaseHide_Loop: @ 0x0806556C
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -14251,7 +14251,7 @@ sub_0806556C: @ 0x0806556C
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	ldr r0, _080655CC @ =0x02020060
 	ldr r4, _080655D0 @ =0x020228E0
@@ -14263,7 +14263,7 @@ sub_0806556C: @ 0x0806556C
 	movs r1, #4
 	movs r2, #2
 	adds r3, r5, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
@@ -14297,8 +14297,8 @@ sub_080655D4: @ 0x080655D4
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080655E0
-sub_080655E0: @ 0x080655E0
+	thumb_func_start NewEkrDragonBaseAppear
+NewEkrDragonBaseAppear: @ 0x080655E0
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -14316,7 +14316,7 @@ sub_080655E0: @ 0x080655E0
 	movs r1, #0x20
 	movs r2, #0x20
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 	ldr r0, _0806563C @ =0x0201FAD0
 	bl sub_08054F30
 	ldr r4, _08065640 @ =0x020228E0
@@ -14329,7 +14329,7 @@ sub_080655E0: @ 0x080655E0
 	movs r1, #4
 	movs r2, #2
 	movs r3, #0x10
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	adds r0, r5, #0
 	add sp, #4
 	pop {r4, r5}
@@ -14342,8 +14342,8 @@ _0806563C: .4byte 0x0201FAD0
 _08065640: .4byte 0x020228E0
 _08065644: .4byte 0x02020060
 
-	thumb_func_start sub_08065648
-sub_08065648: @ 0x08065648
+	thumb_func_start EkrDragonBaseAppear_Loop
+EkrDragonBaseAppear_Loop: @ 0x08065648
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -14354,7 +14354,7 @@ sub_08065648: @ 0x08065648
 	movs r0, #1
 	movs r1, #0x10
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	ldr r0, _080656A8 @ =0x02020060
 	ldr r4, _080656AC @ =0x020228E0
@@ -14366,7 +14366,7 @@ sub_08065648: @ 0x08065648
 	movs r1, #4
 	movs r2, #2
 	adds r3, r5, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
@@ -14400,8 +14400,8 @@ sub_080656B0: @ 0x080656B0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080656BC
-sub_080656BC: @ 0x080656BC
+	thumb_func_start NewEkrDragonTunkFace
+NewEkrDragonTunkFace: @ 0x080656BC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _0806570C @ =0x08BD93E0
@@ -14412,13 +14412,13 @@ sub_080656BC: @ 0x080656BC
 	ldr r0, _08065710 @ =0x082E1A30
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	ldr r0, _08065714 @ =0x082E4064
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08065718 @ =0x08BDAC58
 	movs r1, #0x14
-	bl sub_08006594
+	bl AnimCreate
 	movs r2, #0
 	movs r1, #0xa1
 	lsls r1, r1, #6
@@ -14458,7 +14458,7 @@ sub_0806571C: @ 0x0806571C
 	cmp r0, #1
 	bne _08065740
 	ldr r0, [r4, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 _08065740:
@@ -14480,17 +14480,17 @@ sub_08065748: @ 0x08065748
 	ldr r4, _08065790 @ =0x08BDABA0
 	ldr r0, _08065794 @ =0x082E4064
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _08065798 @ =0x082E1A30
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	ldr r0, [r5, #0x5c]
 	str r4, [sp]
 	adds r1, r4, #0
 	adds r2, r4, #0
 	adds r3, r4, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r5, #0x60]
 	movs r0, #0
 	strh r0, [r5, #0x2c]
@@ -14509,12 +14509,12 @@ _08065798: .4byte 0x082E1A30
 sub_0806579C: @ 0x0806579C
 	push {lr}
 	ldr r0, [r0, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080657A8
-sub_080657A8: @ 0x080657A8
+	thumb_func_start EfxDragonDeadFallBody_Loop1
+EfxDragonDeadFallBody_Loop1: @ 0x080657A8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r2, [r4, #0x60]
@@ -14538,11 +14538,11 @@ sub_080657A8: @ 0x080657A8
 	strh r3, [r2, #6]
 	ldr r0, _080657F4 @ =0x082E4064
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _080657F8 @ =0x082E2910
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 _080657EA:
@@ -14554,8 +14554,8 @@ _080657F0: .4byte 0x08BDAC60
 _080657F4: .4byte 0x082E4064
 _080657F8: .4byte 0x082E2910
 
-	thumb_func_start sub_080657FC
-sub_080657FC: @ 0x080657FC
+	thumb_func_start EfxDragonDeadFallBody_Loop2
+EfxDragonDeadFallBody_Loop2: @ 0x080657FC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, [r4, #0x60]
@@ -14572,11 +14572,11 @@ sub_080657FC: @ 0x080657FC
 	bne _08065830
 	ldr r0, _08065838 @ =0x082E4064
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0806583C @ =0x082E1A30
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	adds r0, r4, #0
 	bl Proc_Break
 _08065830:
@@ -14587,8 +14587,8 @@ _08065830:
 _08065838: .4byte 0x082E4064
 _0806583C: .4byte 0x082E1A30
 
-	thumb_func_start sub_08065840
-sub_08065840: @ 0x08065840
+	thumb_func_start EfxDragonDeadFallBody_Blocking
+EfxDragonDeadFallBody_Blocking: @ 0x08065840
 	ldr r2, [r0, #0x60]
 	ldrh r1, [r0, #0x32]
 	strh r1, [r2, #2]
@@ -14609,17 +14609,17 @@ sub_0806584C: @ 0x0806584C
 	ldr r4, _08065894 @ =0x08BDACB0
 	ldr r0, _08065898 @ =0x082E4064
 	movs r1, #0x20
-	bl sub_080505F0
+	bl SpellFx_RegisterObjPal
 	ldr r0, _0806589C @ =0x082E35CC
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_080505C8
+	bl SpellFx_RegisterObjGfx
 	ldr r0, [r5, #0x5c]
 	str r4, [sp]
 	adds r1, r4, #0
 	adds r2, r4, #0
 	adds r3, r4, #0
-	bl sub_0805041C
+	bl EfxCreateFrontAnim
 	str r0, [r5, #0x60]
 	movs r0, #0
 	strh r0, [r5, #0x2c]
@@ -14638,12 +14638,12 @@ _0806589C: .4byte 0x082E35CC
 sub_080658A0: @ 0x080658A0
 	push {lr}
 	ldr r0, [r0, #0x60]
-	bl sub_08006650
+	bl AnimDelete
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080658AC
-sub_080658AC: @ 0x080658AC
+	thumb_func_start EfxDragonDeadFallHead_Loop1
+EfxDragonDeadFallHead_Loop1: @ 0x080658AC
 	push {lr}
 	adds r2, r0, #0
 	ldr r1, [r2, #0x60]
@@ -14713,18 +14713,18 @@ sub_08065904: @ 0x08065904
 	.align 2, 0
 _08065924: .4byte 0x08BD9450
 
-	thumb_func_start sub_08065928
-sub_08065928: @ 0x08065928
+	thumb_func_start EkrDragonFlashingWingBg_Loop
+EkrDragonFlashingWingBg_Loop: @ 0x08065928
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08064A8C
+	bl GetEkrDragonStatusAttr
 	movs r1, #2
 	ands r1, r0
 	cmp r1, #0
 	beq _08065944
 	ldr r0, [r4, #0x5c]
-	bl sub_0804F840
+	bl GetUnitEfxDebuff
 	cmp r0, #0
 	bne _08065A0A
 _08065944:
@@ -14763,14 +14763,14 @@ _08065970:
 	ldr r0, [r4, #0x5c]
 	movs r1, #0x3c
 	movs r2, #0xa
-	bl sub_080561D0
+	bl StartSpellThing_MagicQuake
 _0806598C:
 	adds r0, r4, #0
 	adds r0, #0x2c
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -14802,7 +14802,7 @@ _080659D2:
 	bne _080659E8
 	ldr r0, [r4, #0x5c]
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	ldr r0, [r4, #0x44]
 	adds r0, #1
 	str r0, [r4, #0x44]
@@ -14853,18 +14853,18 @@ sub_08065A10: @ 0x08065A10
 	.align 2, 0
 _08065A30: .4byte 0x08BD9468
 
-	thumb_func_start sub_08065A34
-sub_08065A34: @ 0x08065A34
+	thumb_func_start EkrDragonFlashingWingObj_Loop
+EkrDragonFlashingWingObj_Loop: @ 0x08065A34
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08064A8C
+	bl GetEkrDragonStatusAttr
 	movs r1, #2
 	ands r1, r0
 	cmp r1, #0
 	beq _08065A50
 	ldr r0, [r4, #0x5c]
-	bl sub_0804F840
+	bl GetUnitEfxDebuff
 	cmp r0, #0
 	bne _08065AFE
 _08065A50:
@@ -14901,7 +14901,7 @@ _08065A82:
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -14933,7 +14933,7 @@ _08065AC6:
 	bne _08065ADC
 	ldr r0, [r4, #0x5c]
 	movs r1, #5
-	bl sub_0804EFDC
+	bl NewEfxFlashBgWhite
 	ldr r0, [r4, #0x44]
 	adds r0, #1
 	str r0, [r4, #0x44]
@@ -14964,8 +14964,8 @@ _08065AFE:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08065B04
-sub_08065B04: @ 0x08065B04
+	thumb_func_start NewEkrDragonFireBG2
+NewEkrDragonFireBG2: @ 0x08065B04
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -14978,11 +14978,11 @@ sub_08065B04: @ 0x08065B04
 	strh r0, [r5, #0x2c]
 	ldr r0, _08065B6C @ =0x082E4D30
 	ldr r1, _08065B70 @ =0x06005000
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	ldr r0, _08065B74 @ =0x082E58BC
 	ldr r6, _08065B78 @ =0x02019784
 	adds r1, r6, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, _08065B7C @ =0x082E589C
 	ldr r1, _08065B80 @ =0x020228E0
 	movs r2, #8
@@ -15000,7 +15000,7 @@ sub_08065B04: @ 0x08065B04
 	adds r1, r4, #0
 	movs r2, #0x20
 	movs r3, #0x20
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #4
 	bl EnableBgSync
 	adds r0, r5, #0
@@ -15041,8 +15041,8 @@ sub_08065B90: @ 0x08065B90
 	.align 2, 0
 _08065BA4: .4byte 0x08BD94A0
 
-	thumb_func_start sub_08065BA8
-sub_08065BA8: @ 0x08065BA8
+	thumb_func_start EkrDragonBg2ScrollHandler_Loop
+EkrDragonBg2ScrollHandler_Loop: @ 0x08065BA8
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	ldr r0, _08065BEC @ =0x0201FB20
@@ -15197,8 +15197,8 @@ _08065CD0: .4byte 0x0201FB24
 _08065CD4: .4byte 0x0201FC6C
 _08065CD8: .4byte 0x0201FB28
 
-	thumb_func_start sub_08065CDC
-sub_08065CDC: @ 0x08065CDC
+	thumb_func_start NewEkrDragonBg3HfScrollHandler
+NewEkrDragonBg3HfScrollHandler: @ 0x08065CDC
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -15389,8 +15389,8 @@ sub_08065E48: @ 0x08065E48
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08065E54
-sub_08065E54: @ 0x08065E54
+	thumb_func_start EkrDragonBg3HfScroll_Loop
+EkrDragonBg3HfScroll_Loop: @ 0x08065E54
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _08065E6C @ =0x0201FDAC
@@ -15438,8 +15438,8 @@ _08065EAC: .4byte 0x0201FDB0
 _08065EB0: .4byte 0x0201FEF8
 _08065EB4: .4byte 0x0201FDB4
 
-	thumb_func_start sub_08065EB8
-sub_08065EB8: @ 0x08065EB8
+	thumb_func_start NewEkrDragonFxMain
+NewEkrDragonFxMain: @ 0x08065EB8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08065EE0 @ =0x08BD9510
@@ -15522,7 +15522,7 @@ _08065F58:
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r2, r0, #0x10
 	cmp r2, #0
@@ -15532,12 +15532,12 @@ _08065F58:
 	adds r0, r0, r1
 	ldr r0, [r0]
 	ldr r1, _08065F90 @ =0x02019784
-	bl sub_080BFA28
-	bl sub_08064B98
+	bl LZ77UnCompWram
+	bl EkrDragonTmCpyWithDistance
 	ldr r0, _08065F94 @ =0x0201FB00
 	ldr r0, [r0]
 	movs r1, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	b _0806600C
 	.align 2, 0
 _08065F8C: .4byte 0x082DE7A4
@@ -15553,7 +15553,7 @@ _08065F98:
 	cmp r0, #0
 	bne _08065FBC
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r1, r0, #0
 	movs r0, #8
 	ldrh r1, [r1, #0x10]
@@ -15562,7 +15562,7 @@ _08065F98:
 	beq _0806600C
 	b _08065FD6
 _08065FBC:
-	bl sub_0804D574
+	bl CheckEkrHitDone
 	cmp r0, #1
 	bne _0806600C
 	b _08066000
@@ -15597,7 +15597,7 @@ _08065FEA:
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 _08066000:
 	movs r0, #0
 	strh r0, [r4, #0x2c]
@@ -15612,8 +15612,8 @@ _0806600C:
 	.align 2, 0
 _08066014: .4byte 0x000002F2
 
-	thumb_func_start sub_08066018
-sub_08066018: @ 0x08066018
+	thumb_func_start NewEkrDragonBodyBlack
+NewEkrDragonBodyBlack: @ 0x08066018
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08066038 @ =0x08BD9530
@@ -15632,8 +15632,8 @@ sub_08066018: @ 0x08066018
 	.align 2, 0
 _08066038: .4byte 0x08BD9530
 
-	thumb_func_start sub_0806603C
-sub_0806603C: @ 0x0806603C
+	thumb_func_start EkrDragonBodyBlack_Loop
+EkrDragonBodyBlack_Loop: @ 0x0806603C
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -15644,7 +15644,7 @@ sub_0806603C: @ 0x0806603C
 	movs r0, #4
 	movs r1, #0
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	ldr r0, _080660BC @ =0x082E0FEC
 	ldr r4, _080660C0 @ =0x02022920
@@ -15663,14 +15663,14 @@ sub_0806603C: @ 0x0806603C
 	movs r1, #6
 	movs r2, #1
 	adds r3, r5, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	adds r0, r4, #0
 	movs r1, #0x17
 	movs r2, #1
 	adds r3, r5, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	adds r0, r5, #0
-	bl sub_08064D20
+	bl EkrDragonUpdatePal_08065510
 	bl EnablePalSync
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
@@ -15715,7 +15715,7 @@ sub_080660CC: @ 0x080660CC
 	ldr r0, _08066158 @ =0x082E17A4
 	ldr r6, _0806615C @ =0x02019784
 	adds r1, r6, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	movs r1, #0xf0
 	lsls r1, r1, #3
 	adds r0, r6, r1
@@ -15739,7 +15739,7 @@ sub_080660CC: @ 0x080660CC
 	str r1, [sp, #0xc]
 	subs r1, #1
 	movs r3, #0x42
-	bl sub_08066BDC
+	bl EfxTmCpyExtHFlip
 	adds r4, #2
 	lsls r0, r4, #5
 	adds r0, r0, r4
@@ -15759,7 +15759,7 @@ sub_080660CC: @ 0x080660CC
 	rsbs r1, r1, #0
 	adds r2, r5, #0
 	movs r3, #0x42
-	bl sub_08066BDC
+	bl EfxTmCpyExtHFlip
 	add sp, #0x10
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -15803,7 +15803,7 @@ sub_08066164: @ 0x08066164
 	adds r0, r4, #0
 	movs r1, #0x42
 	movs r3, #0x20
-	bl sub_08066B2C
+	bl EfxTmCpyExt
 	movs r0, #8
 	bl EnableBgSync
 	add sp, #0x10
@@ -15814,8 +15814,8 @@ sub_08066164: @ 0x08066164
 _080661B0: .4byte 0x0201D41C
 _080661B4: .4byte 0x02024460
 
-	thumb_func_start sub_080661B8
-sub_080661B8: @ 0x080661B8
+	thumb_func_start NewEkrDragonTunk
+NewEkrDragonTunk: @ 0x080661B8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, _080661F0 @ =0x08BD9550
@@ -15868,7 +15868,7 @@ sub_080661FC: @ 0x080661FC
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 _08066228:
 	ldrh r0, [r5, #0x2c]
 	cmp r0, #0x23
@@ -15882,7 +15882,7 @@ _08066228:
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 _08066246:
 	ldrh r1, [r5, #0x2c]
 	cmp r1, #0x32
@@ -15896,14 +15896,14 @@ _08066246:
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 _08066264:
 	ldrh r2, [r5, #0x2c]
 	cmp r2, #0x36
 	bne _080662C2
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
-	bl sub_0805484C
+	bl GetAnimPosition
+	bl SetAnimStateHidden
 	movs r4, #0x80
 	lsls r4, r4, #1
 	strh r4, [r5, #0x3a]
@@ -15924,7 +15924,7 @@ _08066264:
 	strh r0, [r1, #0x3a]
 	ldr r0, _080662E4 @ =0x082E1218
 	ldr r1, _080662E8 @ =0x02019784
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r0, _080662EC @ =0x001F001F
 	bl sub_080507B8
 	ldr r0, _080662F0 @ =0x02024460
@@ -15974,7 +15974,7 @@ sub_080662F4: @ 0x080662F4
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r1, r0, #0
 	ldr r2, [r4, #0x64]
 	ldr r0, [r4, #0x5c]
@@ -16034,7 +16034,7 @@ sub_080662F4: @ 0x080662F4
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r3, [r5]
 	ldrh r1, [r6]
 	adds r0, r3, r1
@@ -16047,7 +16047,7 @@ sub_080662F4: @ 0x080662F4
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 	ldrh r1, [r4, #0x2c]
 	adds r1, #1
 	strh r1, [r4, #0x2c]
@@ -16070,14 +16070,14 @@ _080663C6:
 	bne _080663EC
 	movs r0, #8
 	movs r1, #0
-	bl sub_0804E73C
+	bl NewEfxQuakePure
 	str r0, [r4, #0x54]
 	ldr r0, _080664B8 @ =0x000002F3
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r2, #0x78
 	movs r3, #0
-	bl sub_080681E4
+	bl PlaySFX
 _080663EC:
 	ldrh r3, [r4, #0x30]
 	cmp r3, #0x3c
@@ -16086,7 +16086,7 @@ _080663EC:
 	bl Proc_End
 	movs r0, #9
 	movs r1, #0
-	bl sub_0804E73C
+	bl NewEfxQuakePure
 	str r0, [r4, #0x54]
 _08066402:
 	ldrh r0, [r4, #0x30]
@@ -16096,7 +16096,7 @@ _08066402:
 	bl Proc_End
 	movs r0, #0xa
 	movs r1, #0
-	bl sub_0804E73C
+	bl NewEfxQuakePure
 	str r0, [r4, #0x54]
 _08066418:
 	ldrh r1, [r4, #0x30]
@@ -16138,7 +16138,7 @@ _08066428:
 	rsbs r1, r2, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r3, [r6]
 	rsbs r0, r3, #0
 	lsls r0, r0, #0x10
@@ -16147,9 +16147,9 @@ _08066428:
 	rsbs r1, r6, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 	movs r0, #0x10
-	bl sub_08064D20
+	bl EkrDragonUpdatePal_08065510
 _0806648E:
 	movs r0, #0xc8
 	lsls r0, r0, #1
@@ -16177,8 +16177,8 @@ sub_080664BC: @ 0x080664BC
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080664C0
-sub_080664C0: @ 0x080664C0
+	thumb_func_start NewEkrDragonFireBg3
+NewEkrDragonFireBg3: @ 0x080664C0
 	push {r4, r5, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -16194,15 +16194,15 @@ sub_080664C0: @ 0x080664C0
 	ldr r0, _08066530 @ =0x082E4164
 	movs r1, #0x80
 	lsls r1, r1, #6
-	bl sub_0805060C
+	bl SpellFx_RegisterBgGfx
 	ldr r0, _08066534 @ =0x082E4B54
 	movs r1, #0x20
-	bl sub_08050634
-	bl sub_08050018
+	bl SpellFx_RegisterBgPal
+	bl SpellFx_ClearBG1
 	ldr r0, _08066538 @ =0x082E4B74
 	ldr r4, _0806653C @ =0x02019784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r1, _08066540 @ =0x02023460
 	movs r0, #1
 	str r0, [sp]
@@ -16211,10 +16211,10 @@ sub_080664C0: @ 0x080664C0
 	adds r0, r4, #0
 	movs r2, #0x20
 	movs r3, #0x20
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	movs r0, #2
 	bl EnableBgSync
-	bl sub_08050040
+	bl SpellFx_SetSomeColorEffect
 	movs r0, #1
 	movs r1, #0
 	movs r2, #0
@@ -16234,14 +16234,14 @@ _08066540: .4byte 0x02023460
 	thumb_func_start sub_08066544
 sub_08066544: @ 0x08066544
 	push {lr}
-	bl sub_08050018
-	bl sub_08050118
+	bl SpellFx_ClearBG1
+	bl SpellFx_ClearColorEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08066554
-sub_08066554: @ 0x08066554
+	thumb_func_start EkrDragonFireBG3_Loop
+EkrDragonFireBG3_Loop: @ 0x08066554
 	push {r4, lr}
 	sub sp, #8
 	adds r2, r0, #0
@@ -16271,7 +16271,7 @@ sub_08066554: @ 0x08066554
 	movs r1, #0
 	movs r2, #0x1e
 	movs r3, #0x10
-	bl sub_08055F08
+	bl NewEfxALPHA
 	b _080665AC
 	.align 2, 0
 _08066594: .4byte 0x03002870
@@ -16291,8 +16291,8 @@ _080665AC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080665B4
-sub_080665B4: @ 0x080665B4
+	thumb_func_start NewEkrDragonBarkQuake
+NewEkrDragonBarkQuake: @ 0x080665B4
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -16306,7 +16306,7 @@ sub_080665B4: @ 0x080665B4
 	str r6, [r4, #0x5c]
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_0804E73C
+	bl NewEfxQuakePure
 	str r0, [r4, #0x60]
 	movs r0, #0
 	strh r0, [r4, #0x2c]
@@ -16361,7 +16361,7 @@ sub_080665EC: @ 0x080665EC
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r1, [r4]
 	ldrh r2, [r7]
 	adds r0, r1, r2
@@ -16374,7 +16374,7 @@ sub_080665EC: @ 0x080665EC
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 	ldrh r1, [r4]
 	ldrh r2, [r4, #2]
 	movs r0, #3
@@ -16410,7 +16410,7 @@ sub_080665EC: @ 0x080665EC
 	lsrs r6, r2, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	lsls r5, r5, #0x10
 	asrs r5, r5, #0x10
 	lsls r4, r4, #0x10
@@ -16418,7 +16418,7 @@ sub_080665EC: @ 0x080665EC
 	movs r0, #1
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	mov r2, r8
 	ldr r1, [sp]
 	strh r2, [r1, #0x32]
@@ -16448,7 +16448,7 @@ sub_080665EC: @ 0x080665EC
 	rsbs r1, r2, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r3, [r7]
 	rsbs r0, r3, #0
 	lsls r0, r0, #0x10
@@ -16457,7 +16457,7 @@ sub_080665EC: @ 0x080665EC
 	rsbs r1, r7, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 	movs r0, #3
 	movs r1, #0
 	movs r2, #0
@@ -16482,7 +16482,7 @@ sub_080665EC: @ 0x080665EC
 	movs r0, #0
 	ldrsh r2, [r3, r0]
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	lsls r5, r5, #0x10
@@ -16490,7 +16490,7 @@ sub_080665EC: @ 0x080665EC
 	movs r0, #1
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	mov r2, r8
 	ldr r1, [sp]
 	strh r2, [r1, #0x32]
@@ -16549,8 +16549,8 @@ sub_08066794: @ 0x08066794
 _080667CC: .4byte 0x08BD95B0
 _080667D0: .4byte 0x03002870
 
-	thumb_func_start sub_080667D4
-sub_080667D4: @ 0x080667D4
+	thumb_func_start EkrDragonScreenFlashing_Loop1
+EkrDragonScreenFlashing_Loop1: @ 0x080667D4
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -16561,7 +16561,7 @@ sub_080667D4: @ 0x080667D4
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r6, r0, #0
 	ldr r0, _0806683C @ =0x02022860
 	ldr r4, _08066840 @ =0x020165C8
@@ -16574,13 +16574,13 @@ sub_080667D4: @ 0x080667D4
 	movs r1, #0
 	movs r2, #0x20
 	adds r3, r6, #0
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl CpuFastSet
-	bl sub_08001070
+	bl DisablePalSync
 	ldrh r0, [r7, #0x2c]
 	adds r0, #1
 	strh r0, [r7, #0x2c]
@@ -16602,8 +16602,8 @@ _08066834:
 _0806683C: .4byte 0x02022860
 _08066840: .4byte 0x020165C8
 
-	thumb_func_start sub_08066844
-sub_08066844: @ 0x08066844
+	thumb_func_start EkrDragonScreenFlashing_Loop2
+EkrDragonScreenFlashing_Loop2: @ 0x08066844
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r0, _08066894 @ =0x02022860
@@ -16617,13 +16617,13 @@ sub_08066844: @ 0x08066844
 	movs r1, #0
 	movs r2, #0x20
 	movs r3, #0x10
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl CpuFastSet
-	bl sub_08001070
+	bl DisablePalSync
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
 	strh r0, [r6, #0x2c]
@@ -16644,8 +16644,8 @@ _0806688E:
 _08066894: .4byte 0x02022860
 _08066898: .4byte 0x020165C8
 
-	thumb_func_start sub_0806689C
-sub_0806689C: @ 0x0806689C
+	thumb_func_start EkrDragonScreenFlashing_Loop3
+EkrDragonScreenFlashing_Loop3: @ 0x0806689C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -16656,7 +16656,7 @@ sub_0806689C: @ 0x0806689C
 	movs r0, #0
 	movs r1, #0x10
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r6, r0, #0
 	ldr r0, _08066904 @ =0x02022860
 	ldr r4, _08066908 @ =0x020165C8
@@ -16669,13 +16669,13 @@ sub_0806689C: @ 0x0806689C
 	movs r1, #0
 	movs r2, #0x20
 	adds r3, r6, #0
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl CpuFastSet
-	bl sub_08001070
+	bl DisablePalSync
 	ldrh r0, [r7, #0x2c]
 	adds r0, #1
 	strh r0, [r7, #0x2c]
@@ -16789,8 +16789,8 @@ _080669A2:
 	.align 2, 0
 _080669B0: .4byte 0x00000FFF
 
-	thumb_func_start sub_080669B4
-sub_080669B4: @ 0x080669B4
+	thumb_func_start FillBGRect
+FillBGRect: @ 0x080669B4
 	push {r4, r5, r6, r7, lr}
 	adds r5, r3, #0
 	ldr r7, [sp, #0x14]

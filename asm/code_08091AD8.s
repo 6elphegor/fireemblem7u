@@ -46,7 +46,7 @@ _08091B18:
 	beq _08091B36
 	ldrb r4, [r6]
 	adds r4, #3
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r4, r0
 	bge _08091B36
 	ldrb r0, [r6]
@@ -80,7 +80,7 @@ _08091B52:
 	cmp r0, #1
 	bhi _08091B7C
 	adds r4, #1
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r4, r0
 	bge _08091B7C
 	ldrb r0, [r6]
@@ -94,7 +94,7 @@ _08091B7C:
 	bl __udivsi3
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x14
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -136,7 +136,7 @@ _08091BCC:
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x12
 	adds r0, #0x18
-	bl sub_080A94E4
+	bl SetSysHandCursorXPos
 	b _08091C1C
 _08091BEC:
 	ldrb r5, [r6]
@@ -159,7 +159,7 @@ _08091BEC:
 	lsls r3, r3, #4
 	adds r0, r4, #0
 	movs r2, #7
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _08091C1C:
 	ldr r0, _08091C34 @ =0x0202BBF8
 	adds r0, #0x41
@@ -168,7 +168,7 @@ _08091C1C:
 	cmp r0, #0
 	blt _08091C2E
 	ldr r0, _08091C38 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08091C2E:
 	movs r0, #1
 	b _08091C3E
@@ -194,7 +194,7 @@ sub_08091C48: @ 0x08091C48
 	bl __udivsi3
 	lsls r0, r0, #0x18
 	lsrs r7, r0, #0x14
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -242,10 +242,10 @@ sub_08091C48: @ 0x08091C48
 	movs r0, #0
 	adds r1, r4, #0
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 _08091CC8:
 	ldrh r4, [r6, #0x32]
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -256,7 +256,7 @@ _08091CC8:
 	movs r0, #6
 	adds r1, r4, #0
 	movs r3, #4
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 _08091CE8:
 	ldrh r2, [r6, #0x32]
 	subs r0, r7, r2
@@ -299,10 +299,10 @@ _08091CE8:
 	movs r0, #0
 	adds r1, r4, #0
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 _08091D44:
 	ldrh r4, [r6, #0x32]
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -313,7 +313,7 @@ _08091D44:
 	movs r0, #6
 	adds r1, r4, #0
 	movs r3, #4
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 _08091D64:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -321,17 +321,17 @@ _08091D64:
 	.align 2, 0
 _08091D6C: .4byte 0x0000FFD8
 
-	thumb_func_start sub_08091D70
-sub_08091D70: @ 0x08091D70
+	thumb_func_start PrepItemScreen_StartStatScreen
+PrepItemScreen_StartStatScreen: @ 0x08091D70
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08091824
+	bl PrepItemScreen_OnEnd
 	movs r0, #0x31
-	bl sub_0807FA2C
+	bl SetStatScreenExcludedUnitFlags
 	adds r0, r4, #0
 	adds r0, #0x29
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r4, #0
 	bl StartStatScreen
 	adds r0, r4, #0
@@ -341,12 +341,12 @@ sub_08091D70: @ 0x08091D70
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08091D9C
-sub_08091D9C: @ 0x08091D9C
+	thumb_func_start PrepItemScreen_ResumeFromStatScreen
+PrepItemScreen_ResumeFromStatScreen: @ 0x08091D9C
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080913FC
-	bl sub_0808E0DC
+	bl PrepItemScreen_SetupGfx
+	bl GetLatestUnitIndexInPrepListByUId
 	adds r1, r4, #0
 	adds r1, #0x29
 	strb r0, [r1]
@@ -401,7 +401,7 @@ _08091DEC:
 	lsrs r0, r0, #0x18
 	cmp r0, #1
 	bhi _08091E22
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	cmp r7, r0
 	bge _08091E22
@@ -433,7 +433,7 @@ _08091E26:
 	movs r0, #0
 	adds r1, r4, #0
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	adds r0, r6, #0
 	movs r1, #2
 	bl Proc_Goto
@@ -444,7 +444,7 @@ _08091E26:
 	cmp r0, #0
 	blt _08091EF0
 	ldr r0, _08091E78 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08091EF0
 	.align 2, 0
 _08091E74: .4byte 0x0202BBF8
@@ -464,7 +464,7 @@ _08091E7C:
 	cmp r0, #0
 	blt _08091EF0
 	ldr r0, _08091EA4 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08091EF0
 	.align 2, 0
 _08091EA0: .4byte 0x0202BBF8
@@ -478,18 +478,18 @@ _08091EA8:
 	adds r7, r6, #0
 	adds r7, #0x29
 	ldrb r0, [r7]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r0, #0
 	ldr r0, _08091EF8 @ =0x00000503
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0x44
 	movs r3, #0x4e
-	bl sub_080928EC
+	bl UpdatePrepItemScreenFace
 	ldr r4, _08091EFC @ =0x02012A20
 	ldr r5, _08091F00 @ =0x02022EA4
 	ldrb r0, [r7]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -531,7 +531,7 @@ sub_08091F04: @ 0x08091F04
 	adds r7, #8
 	adds r0, r7, #0
 	bl ClearText
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	movs r5, #0
 	cmp r0, #1
 	bgt _08091F3C
@@ -544,7 +544,7 @@ _08091F3C:
 	movs r1, #0
 	adds r2, r5, #0
 	bl Text_InsertDrawString
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	movs r5, #0
 	cmp r0, #1
 	bgt _08091F5A
@@ -560,7 +560,7 @@ _08091F5A:
 	adds r1, r6, #0
 	adds r1, #0x40
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	mov r0, r8
 	bl sub_080912EC
 	movs r4, #0
@@ -586,10 +586,10 @@ _08091F86:
 	cmp r0, #0
 	beq _08091FBE
 	mov r0, r8
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	ble _08091FBE
-	bl sub_0803DA14
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08091FC0
@@ -608,13 +608,13 @@ _08091FC0:
 	adds r1, r6, #0
 	adds r1, #0xc0
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	adds r4, #8
 	movs r0, #0xa0
 	lsls r0, r0, #1
 	adds r1, r6, r0
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	pop {r3, r4}
 	mov r8, r3
 	mov sb, r4
@@ -637,7 +637,7 @@ sub_08092010: @ 0x08092010
 	adds r5, r0, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	mov r8, r0
 	adds r1, r5, #0
 	adds r1, #0x31
@@ -675,7 +675,7 @@ _0809203A:
 	str r6, [sp]
 	adds r1, r7, #0
 	movs r3, #2
-	bl sub_08006F80
+	bl PutFaceChibi
 	ldr r5, _08092108 @ =0x02012A98
 	adds r0, r5, #0
 	bl ClearText
@@ -694,35 +694,35 @@ _0809203A:
 	str r4, [sp, #4]
 	adds r0, r5, #0
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r7, #0
 	adds r0, #0x8a
 	movs r1, #3
 	movs r2, #0x24
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r7, #0
 	adds r0, #0x8c
 	movs r1, #3
 	movs r2, #0x25
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r7, #0
 	adds r0, #0x92
 	movs r1, #3
 	movs r2, #0x1d
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r7, #0
 	adds r0, #0x90
 	mov r1, r8
 	movs r2, #8
 	ldrsb r2, [r1, r2]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r7, #0
 	adds r0, #0x96
 	mov r1, r8
 	ldrb r2, [r1, #9]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r0, #7
 	bl EnableBgSync
 	add sp, #8
@@ -781,12 +781,12 @@ sub_0809210C: @ 0x0809210C
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08092178
-	bl sub_080A8ABC
+	bl BlockUiCursorHand
 	b _0809217C
 	.align 2, 0
 _08092174: .4byte 0x02022EBE
 _08092178:
-	bl sub_080A8AD8
+	bl UnblockUiCursorHand
 _0809217C:
 	bl sub_08091914
 	movs r0, #1
@@ -802,18 +802,18 @@ sub_0809218C: @ 0x0809218C
 	ldr r5, _080921E0 @ =0x02022EC4
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl sub_08091F04
 	ldr r0, _080921E4 @ =sub_080918F4
 	adds r1, r4, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	movs r0, #0xc9
 	movs r1, #0x7b
 	adds r2, r4, #0
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	adds r4, #0x2d
 	ldrb r1, [r4]
 	movs r0, #1
@@ -826,7 +826,7 @@ sub_0809218C: @ 0x0809218C
 	movs r3, #0x80
 	lsls r3, r3, #3
 	movs r2, #3
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #1
 	bl EnableBgSync
 	pop {r4, r5}
@@ -842,7 +842,7 @@ sub_080921E8: @ 0x080921E8
 	adds r4, r0, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r5, r0, #0
 	adds r0, r4, #0
 	movs r1, #0
@@ -897,7 +897,7 @@ _08092236:
 	lsls r2, r2, #2
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_0808190C
+	bl StartHelpBox
 	b _08092564
 	.align 2, 0
 _08092268: .4byte 0x08B857F8
@@ -928,7 +928,7 @@ _08092290: @ jump table
 	.4byte _08092324 @ case 4
 	.4byte _0809233C @ case 5
 _080922A8:
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r0, #1
 	bgt _080922B2
 	b _080923E4
@@ -938,7 +938,7 @@ _080922B2:
 	bl Proc_Goto
 	b _080923BC
 _080922BC:
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r0, #1
 	bgt _080922C6
 	b _080923E4
@@ -951,7 +951,7 @@ _080922D0:
 	adds r0, r5, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	bl sub_080912EC
 	lsls r0, r0, #0x18
 	cmp r0, #0
@@ -973,11 +973,11 @@ _080922F0:
 	adds r0, r5, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
-	bl sub_080176DC
+	bl GetUnitFromPrepList
+	bl GetUnitItemCount
 	cmp r0, #0
 	ble _080923E4
-	bl sub_0803DA14
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080923E4
@@ -998,14 +998,14 @@ _08092324:
 	bl Proc_Goto
 	b _080923BC
 _0809233C:
-	bl sub_0803DA14
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809236C
 	adds r0, r5, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	ldr r0, [r0, #0xc]
 	movs r1, #8
 	ands r0, r1
@@ -1015,7 +1015,7 @@ _0809233C:
 	ldr r2, _08092368 @ =0x000003AE
 	adds r0, r1, #0
 	adds r3, r5, #0
-	bl sub_08090D20
+	bl StartPrepErrorHelpbox
 	b _08092564
 	.align 2, 0
 _08092368: .4byte 0x000003AE
@@ -1030,14 +1030,14 @@ _0809236C:
 	adds r6, r5, #0
 	adds r6, #0x2a
 	ldrb r0, [r6]
-	bl sub_0808DD18
-	bl sub_08092F08
+	bl GetUnitFromPrepList
+	bl PrepItemScreen_GiveAll
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080923E4
 	ldr r4, _080923D4 @ =0x02022EC4
 	ldrb r0, [r6]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -1045,7 +1045,7 @@ _0809236C:
 	ldr r5, _080923D8 @ =0x02012A20
 	subs r4, #0x20
 	ldrb r0, [r6]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -1063,7 +1063,7 @@ _080923BC:
 	b _08092564
 _080923CA:
 	ldr r0, _080923E0 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08092564
 	.align 2, 0
 _080923D4: .4byte 0x02022EC4
@@ -1081,7 +1081,7 @@ _080923E4:
 _080923F2:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08092564
 	.align 2, 0
 _080923FC: .4byte 0x0202BBF8
@@ -1099,7 +1099,7 @@ _08092400:
 	movs r0, #0xff
 	strb r0, [r2]
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	ldr r0, _0809243C @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -1107,7 +1107,7 @@ _08092400:
 	cmp r0, #0
 	blt _08092430
 	ldr r0, _08092440 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08092430:
 	adds r0, r5, #0
 	movs r1, #0
@@ -1125,7 +1125,7 @@ _08092444:
 	ands r0, r1
 	cmp r0, #0
 	beq _0809245C
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0xff
 	strb r0, [r4]
 _0809245C:
@@ -1236,7 +1236,7 @@ _08092508:
 	cmp r0, #0
 	blt _08092520
 	ldr r0, _08092570 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08092520:
 	ldrb r1, [r4]
 	movs r6, #1
@@ -1250,7 +1250,7 @@ _08092520:
 	movs r3, #0x80
 	lsls r3, r3, #3
 	movs r2, #3
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	adds r0, r5, #0
 	adds r0, #0x2c
 	ldrb r0, [r0]
@@ -1269,7 +1269,7 @@ _08092520:
 	lsls r2, r4, #2
 	adds r2, r2, r3
 	ldr r2, [r2]
-	bl sub_0808190C
+	bl StartHelpBox
 _08092564:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -1284,7 +1284,7 @@ sub_08092578: @ 0x08092578
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	ldr r4, _080925C8 @ =0x02012A20
@@ -1292,7 +1292,7 @@ sub_08092578: @ 0x08092578
 	adds r0, r6, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -1302,7 +1302,7 @@ sub_08092578: @ 0x08092578
 	adds r5, #0x1a
 	adds r6, #0x29
 	ldrb r0, [r6]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -1323,11 +1323,11 @@ sub_080925D0: @ 0x080925D0
 	sub sp, #4
 	adds r6, r0, #0
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	ldr r0, _080926E0 @ =0x02022C60
@@ -1375,7 +1375,7 @@ sub_080925D0: @ 0x080925D0
 	lsls r3, r3, #4
 	adds r0, r4, #0
 	movs r2, #7
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	adds r0, r6, #0
 	movs r1, #0
 	bl sub_08092ED4
@@ -1384,23 +1384,23 @@ sub_080925D0: @ 0x080925D0
 	adds r4, r6, #0
 	adds r4, #0x2a
 	ldrb r0, [r4]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r0, #0
 	ldr r0, _080926EC @ =0x00000503
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0x44
 	movs r3, #0x4e
-	bl sub_080928EC
+	bl UpdatePrepItemScreenFace
 	ldrb r0, [r7]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r0, #0
 	ldr r0, _080926F0 @ =0x00000502
 	str r0, [sp]
 	movs r0, #1
 	movs r2, #0xac
 	movs r3, #0x4e
-	bl sub_080928EC
+	bl UpdatePrepItemScreenFace
 	ldrb r5, [r4]
 	adds r0, r5, #0
 	movs r1, #3
@@ -1421,13 +1421,13 @@ sub_080925D0: @ 0x080925D0
 	movs r0, #0
 	adds r1, r4, #0
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	ldr r0, _080926F4 @ =sub_08092578
 	movs r1, #1
 	adds r2, r6, #0
-	bl sub_080A8E14
-	bl sub_080A8AD8
-	bl sub_08082014
+	bl StartParallelFiniteLoop
+	bl UnblockUiCursorHand
+	bl EndHelpPromptSprite
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -1449,8 +1449,8 @@ sub_080926F8: @ 0x080926F8
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08092708
-sub_08092708: @ 0x08092708
+	thumb_func_start PrepItemScreen_Loop_MainKeyHandler
+PrepItemScreen_Loop_MainKeyHandler: @ 0x08092708
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -1482,14 +1482,14 @@ _08092738:
 	adds r5, r6, #0
 	adds r5, #0x29
 	ldrb r0, [r5]
-	bl sub_0808DD18
-	bl sub_080176DC
+	bl GetUnitFromPrepList
+	bl GetUnitItemCount
 	adds r7, r0, #0
 	adds r4, r6, #0
 	adds r4, #0x2a
 	ldrb r0, [r4]
-	bl sub_0808DD18
-	bl sub_080176DC
+	bl GetUnitFromPrepList
+	bl GetUnitItemCount
 	ldrb r5, [r5]
 	ldrb r4, [r4]
 	cmp r5, r4
@@ -1509,7 +1509,7 @@ _0809276E:
 	cmp r0, #0
 	blt _08092846
 	ldr r0, _08092790 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08092846
 	.align 2, 0
 _0809278C: .4byte 0x0202BBF8
@@ -1523,7 +1523,7 @@ _08092794:
 	blt _08092846
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08092846
 	.align 2, 0
 _080927AC: .4byte 0x0202BBF8
@@ -1533,7 +1533,7 @@ _080927B0:
 	cmp r0, #0
 	beq _080927E4
 	movs r0, #1
-	bl sub_080929A4
+	bl EndPrepItemScreenFace
 	adds r0, r6, #0
 	movs r1, #2
 	bl Proc_Goto
@@ -1544,7 +1544,7 @@ _080927B0:
 	cmp r0, #0
 	blt _08092846
 	ldr r0, _080927E0 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08092846
 	.align 2, 0
 _080927DC: .4byte 0x0202BBF8
@@ -1558,18 +1558,18 @@ _080927E4:
 	adds r7, r6, #0
 	adds r7, #0x29
 	ldrb r0, [r7]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r0, #0
 	ldr r0, _08092850 @ =0x00000502
 	str r0, [sp]
 	movs r0, #1
 	movs r2, #0xac
 	movs r3, #0x4e
-	bl sub_080928EC
+	bl UpdatePrepItemScreenFace
 	ldr r4, _08092854 @ =0x02012A48
 	ldr r5, _08092858 @ =0x02022EBE
 	ldrb r0, [r7]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -1580,7 +1580,7 @@ _080927E4:
 	adds r0, r6, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -1601,24 +1601,24 @@ _08092850: .4byte 0x00000502
 _08092854: .4byte 0x02012A48
 _08092858: .4byte 0x02022EBE
 
-	thumb_func_start sub_0809285C
-sub_0809285C: @ 0x0809285C
+	thumb_func_start StartPrepItemTradeScreen
+StartPrepItemTradeScreen: @ 0x0809285C
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_08091824
+	bl PrepItemScreen_OnEnd
 	adds r0, r4, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r5, r0, #0
 	adds r0, r4, #0
 	adds r0, #0x29
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r0, #0
 	adds r0, r5, #0
 	adds r2, r4, #0
-	bl sub_08094948
+	bl StartPrepItemTradeScreenProc
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -1630,7 +1630,7 @@ sub_0809288C: @ 0x0809288C
 	adds r4, r0, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r4, #0
 	bl sub_080958B0
 	pop {r4}
@@ -1643,9 +1643,9 @@ sub_080928A4: @ 0x080928A4
 	adds r4, r0, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r4, #0
-	bl sub_0809746C
+	bl StartPrepItemSupplyProc
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -1656,7 +1656,7 @@ sub_080928BC: @ 0x080928BC
 	adds r4, r0, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r4, #0
 	bl sub_08098F70
 	pop {r4}
@@ -1669,15 +1669,15 @@ sub_080928D4: @ 0x080928D4
 	adds r4, r0, #0
 	adds r0, #0x2a
 	ldrb r0, [r0]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r4, #0
 	bl sub_08098588
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080928EC
-sub_080928EC: @ 0x080928EC
+	thumb_func_start UpdatePrepItemScreenFace
+UpdatePrepItemScreenFace: @ 0x080928EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -1706,7 +1706,7 @@ sub_080928EC: @ 0x080928EC
 	cmp r0, #0
 	beq _0809292A
 	adds r0, r4, #0
-	bl sub_08006D50
+	bl EndFaceById
 _0809292A:
 	cmp r6, #0
 	beq _0809296C
@@ -1721,7 +1721,7 @@ _0809292A:
 	mov r0, sb
 	str r0, [sp]
 	adds r0, r4, #0
-	bl sub_08007BCC
+	bl StartBmFace
 	b _0809296C
 	.align 2, 0
 _0809294C: .4byte 0x08CC4448
@@ -1734,10 +1734,10 @@ _08092950:
 	lsls r2, r0, #0x10
 	asrs r2, r2, #0x10
 	adds r0, r4, #0
-	bl sub_08007CF0
+	bl SetFacePosition
 	adds r0, r4, #0
 	mov r1, sb
-	bl sub_08006D84
+	bl SetFaceDispById
 _0809296C:
 	lsls r1, r4, #2
 	adds r0, r5, #0
@@ -1768,22 +1768,22 @@ _0809296C:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080929A4
-sub_080929A4: @ 0x080929A4
+	thumb_func_start EndPrepItemScreenFace
+EndPrepItemScreenFace: @ 0x080929A4
 	push {lr}
 	sub sp, #4
 	movs r1, #0
 	str r1, [sp]
 	movs r2, #0
 	movs r3, #0
-	bl sub_080928EC
+	bl UpdatePrepItemScreenFace
 	add sp, #4
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080929BC
-sub_080929BC: @ 0x080929BC
+	thumb_func_start StartPrepItemScreen
+StartPrepItemScreen: @ 0x080929BC
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080929CC @ =0x08CC4448
@@ -1822,7 +1822,7 @@ _08092A02:
 	mov r0, r8
 	cmp r0, #0
 	beq _08092AD2
-	bl sub_080176DC
+	bl GetUnitItemCount
 	str r0, [sp, #4]
 	movs r1, #0
 	mov sb, r1
@@ -1849,7 +1849,7 @@ _08092A24:
 	beq _08092A44
 	mov r0, r8
 	adds r1, r5, #0
-	bl sub_0802803C
+	bl CanUnitUseItemPrepScreen
 	b _08092A4C
 _08092A44:
 	mov r0, r8
@@ -1887,10 +1887,10 @@ _08092A84:
 	mov r0, sl
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	adds r0, r6, #0
 	ldr r1, [sp, #0xc]
-	bl sub_08005590
+	bl PutText
 	movs r4, #1
 	cmp r7, #0
 	bne _08092AA6
@@ -1901,7 +1901,7 @@ _08092AA6:
 	adds r2, r0, #0
 	ldr r0, [sp, #8]
 	adds r1, r4, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r6, #8
 	ldr r0, [sp, #8]
 	adds r0, #0x80
@@ -1938,7 +1938,7 @@ sub_08092AE4: @ 0x08092AE4
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x14
 	adds r6, r4, #0
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -1977,7 +1977,7 @@ _08092B30:
 	movs r0, #2
 	bl SetBgOffset
 	ldrh r4, [r5, #0x32]
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -1988,7 +1988,7 @@ _08092B30:
 	movs r0, #6
 	adds r1, r4, #0
 	movs r3, #4
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -2031,7 +2031,7 @@ _08092BA0:
 _08092BAC:
 	ldr r4, [sp]
 	add r4, r8
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r4, r0
 	bge _08092C08
 	mov r0, r8
@@ -2046,7 +2046,7 @@ _08092BAC:
 	cmp r1, #0
 	bne _08092BF8
 	adds r0, r4, #0
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r4, r0, #0
 	adds r0, r6, #0
 	movs r1, #0
@@ -2067,7 +2067,7 @@ _08092BF8:
 	ldr r0, _08092C30 @ =0x02023C60
 	adds r1, r1, r0
 	adds r0, r6, #0
-	bl sub_08005590
+	bl PutText
 _08092C08:
 	adds r6, #8
 	movs r0, #1
@@ -2102,8 +2102,8 @@ _08092C40:
 _08092C42:
 	bx lr
 
-	thumb_func_start sub_08092C44
-sub_08092C44: @ 0x08092C44
+	thumb_func_start PrepItem_DrawSMS
+PrepItem_DrawSMS: @ 0x08092C44
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	movs r6, #0
@@ -2142,26 +2142,26 @@ _08092C88:
 	movs r0, #0xff
 	ands r4, r0
 	adds r0, r6, #0
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r3, r0, #0
 	movs r0, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080260B4
+	bl PutUnitSprite
 _08092CA2:
 	adds r6, #1
 _08092CA4:
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r6, r0
 	blt _08092C4C
-	bl sub_08025518
+	bl SyncUnitSpriteSheet
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08092CB8
-sub_08092CB8: @ 0x08092CB8
+	thumb_func_start PrepItemDrawPopupBox
+PrepItemDrawPopupBox: @ 0x08092CB8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2187,7 +2187,7 @@ _08092CD8:
 	ldr r1, [sp, #4]
 	mov r2, sl
 	adds r3, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, [sp, #8]
 	lsls r1, r1, #3
 	mov sb, r1
@@ -2201,7 +2201,7 @@ _08092CD8:
 	movs r0, #4
 	mov r2, sl
 	adds r3, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r0, #0xc0
 	lsls r0, r0, #6
 	adds r4, r4, r0
@@ -2216,7 +2216,7 @@ _08092CD8:
 	adds r1, r4, #0
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, [sp, #4]
 	movs r0, #0x80
 	lsls r0, r0, #6
@@ -2226,7 +2226,7 @@ _08092CD8:
 	movs r0, #4
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	movs r5, #1
 	mov r3, sb
 	str r3, [sp, #0x18]
@@ -2251,14 +2251,14 @@ _08092D62:
 	adds r1, r4, #0
 	mov r2, sl
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r7, [sp]
 	movs r0, #4
 	adds r1, r6, #0
 	mov r2, sl
 	add r2, sb
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #0x10
 	adds r4, #0x10
 	adds r5, #2
@@ -2288,14 +2288,14 @@ _08092DAC:
 	adds r1, r4, #0
 	mov r2, sl
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r7, [sp]
 	movs r0, #4
 	adds r1, r6, #0
 	mov r2, sl
 	add r2, sb
 	mov r3, r8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #8
 	adds r4, #8
 	subs r5, #1
@@ -2322,7 +2322,7 @@ _08092DF0:
 	ldr r1, [sp, #4]
 	adds r2, r4, #0
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	str r5, [sp]
 	movs r0, #4
 	movs r1, #0x80
@@ -2330,7 +2330,7 @@ _08092DF0:
 	add r1, r8
 	adds r2, r4, #0
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #8
 	subs r6, #1
 	cmp r6, #0
@@ -2363,7 +2363,7 @@ _08092E3C:
 	mov r3, sl
 	adds r2, r3, r7
 	ldr r3, _08092ED0 @ =0x08B90608
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #0x20
 	adds r5, #4
 	cmp r5, sb
@@ -2384,7 +2384,7 @@ _08092E64:
 	mov r3, sl
 	adds r2, r3, r7
 	ldr r3, _08092EC8 @ =0x08B905E8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #0x10
 	adds r5, #2
 	ldr r0, [sp, #0x10]
@@ -2407,7 +2407,7 @@ _08092E90:
 	mov r3, sl
 	adds r2, r3, r6
 	ldr r3, _08092EC4 @ =0x08B905B0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #8
 	subs r5, #1
 	cmp r5, #0
@@ -2462,13 +2462,13 @@ _08092F00:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08092F08
-sub_08092F08: @ 0x08092F08
+	thumb_func_start PrepItemScreen_GiveAll
+PrepItemScreen_GiveAll: @ 0x08092F08
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r7, r0, #0
-	bl sub_08090C48
+	bl GetConvoyItemCount_
 	lsls r0, r0, #0x18
 	lsrs r6, r0, #0x18
 	movs r4, #0
@@ -2478,10 +2478,10 @@ sub_08092F08: @ 0x08092F08
 	bgt _08092F3E
 _08092F24:
 	ldrh r0, [r5, #0x1e]
-	bl sub_0802E790
+	bl AddItemToConvoy
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_08018D50
+	bl UnitRemoveItem
 	adds r4, #1
 	cmp r4, r7
 	bge _08092F3E
@@ -2501,8 +2501,8 @@ _08092F48:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08092F50
-sub_08092F50: @ 0x08092F50
+	thumb_func_start PrepUnit_DrawUnitListNames
+PrepUnit_DrawUnitListNames: @ 0x08092F50
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2521,20 +2521,20 @@ sub_08092F50: @ 0x08092F50
 _08092F70:
 	mov r0, r8
 	adds r4, r0, r7
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r4, r0
 	bge _08092FEA
 	adds r0, r4, #0
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r5, r0, #0
 	movs r6, #0
-	bl sub_0803DA14
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08092FA2
 	ldr r0, [r5]
 	ldrb r0, [r0, #4]
-	bl sub_0808DD78
+	bl IsCharacterForceDeployed
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08092FA2
@@ -2574,7 +2574,7 @@ _08092FAE:
 	adds r0, r4, #0
 	adds r2, r6, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 _08092FEA:
 	movs r0, #7
 	add sb, r0
@@ -2595,8 +2595,8 @@ _08092FEA:
 _0809300C: .4byte 0x02012AA0
 _08093010: .4byte 0x02023C60
 
-	thumb_func_start sub_08093014
-sub_08093014: @ 0x08093014
+	thumb_func_start PrepUpdateMenuTsaScroll
+PrepUpdateMenuTsaScroll: @ 0x08093014
 	push {lr}
 	lsls r0, r0, #1
 	movs r1, #0x1f
@@ -2615,8 +2615,8 @@ sub_08093014: @ 0x08093014
 	.align 2, 0
 _08093038: .4byte 0x02023C80
 
-	thumb_func_start sub_0809303C
-sub_0809303C: @ 0x0809303C
+	thumb_func_start PrepUnit_DrawSMSAndObjs
+PrepUnit_DrawSMSAndObjs: @ 0x0809303C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -2639,16 +2639,16 @@ _08093046:
 	adds r4, #0x70
 	adds r5, #0x18
 	adds r0, r6, #0
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r3, r0, #0
 	movs r0, #0
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_080260B4
+	bl PutUnitSprite
 _08093076:
 	adds r6, #1
 _08093078:
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	cmp r6, r0
 	blt _08093046
 	movs r0, #0xf
@@ -2750,7 +2750,7 @@ _08093136:
 	movs r0, #4
 	movs r1, #0x80
 	movs r2, #0x8e
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r1, r7, #0
 	adds r1, #0x37
 	ldrb r0, [r1]
@@ -2765,7 +2765,7 @@ _08093154:
 	ands r0, r1
 	cmp r0, #0
 	bne _08093196
-	bl sub_0803DA14
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08093188
@@ -2774,7 +2774,7 @@ _08093154:
 	movs r0, #4
 	movs r1, #0x80
 	movs r2, #0x7e
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _08093196
 	.align 2, 0
 _0809317C: .4byte 0x03002870
@@ -2786,9 +2786,9 @@ _08093188:
 	movs r0, #4
 	movs r1, #0x80
 	movs r2, #0x7e
-	bl sub_08006A34
+	bl PutSpriteExt
 _08093196:
-	bl sub_08025518
+	bl SyncUnitSpriteSheet
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -2796,8 +2796,8 @@ _08093196:
 	.align 2, 0
 _080931A4: .4byte 0x08CC482C
 
-	thumb_func_start sub_080931A8
-sub_080931A8: @ 0x080931A8
+	thumb_func_start PrepUnit_InitTexts
+PrepUnit_InitTexts: @ 0x080931A8
 	push {r4, r5, lr}
 	bl ResetText
 	ldr r5, _080931FC @ =0x02012AA0
@@ -2840,8 +2840,8 @@ _080931FC: .4byte 0x02012AA0
 _08093200: .4byte 0x02012B10
 _08093204: .4byte 0x02012B38
 
-	thumb_func_start sub_08093208
-sub_08093208: @ 0x08093208
+	thumb_func_start PrepUnit_InitGfx
+PrepUnit_InitGfx: @ 0x08093208
 	push {lr}
 	bl InitIcons
 	bl ApplySystemObjectsGraphics
@@ -2850,7 +2850,7 @@ sub_08093208: @ 0x08093208
 	movs r0, #0xc0
 	lsls r0, r0, #7
 	movs r1, #0xf
-	bl sub_0808DAC4
+	bl PutPrepMenuUiImg
 	ldr r0, _08093240 @ =0x02023460
 	ldr r1, _08093244 @ =0x08406FD0
 	movs r2, #0xf3
@@ -2873,10 +2873,10 @@ sub_08093250: @ 0x08093250
 	push {r4, lr}
 	sub sp, #8
 	adds r4, r1, #0
-	bl sub_080A91AC
+	bl NewSysBlackBoxHandler
 	adds r0, r4, #0
-	bl sub_080A91D0
-	bl sub_0803DA14
+	bl SysBlackBoxSetGfx
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08093284
@@ -2890,7 +2890,7 @@ sub_08093250: @ 0x08093250
 	movs r0, #0
 	movs r1, #4
 	movs r3, #0xc
-	bl sub_080A9204
+	bl EnableSysBlackBox
 	b _0809329C
 _08093284:
 	movs r2, #0x91
@@ -2903,7 +2903,7 @@ _08093284:
 	movs r0, #0
 	movs r1, #4
 	movs r3, #0xc
-	bl sub_080A9204
+	bl EnableSysBlackBox
 _0809329C:
 	movs r2, #0x90
 	lsls r2, r2, #3
@@ -2915,14 +2915,14 @@ _0809329C:
 	movs r0, #1
 	movs r1, #0x6c
 	movs r3, #0x10
-	bl sub_080A9204
+	bl EnableSysBlackBox
 	add sp, #8
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080932BC
-sub_080932BC: @ 0x080932BC
+	thumb_func_start PrepUnit_InitSMS
+PrepUnit_InitSMS: @ 0x080932BC
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -2933,10 +2933,10 @@ sub_080932BC: @ 0x080932BC
 	ldr r2, _080932F0 @ =0x01000008
 	mov r0, sp
 	bl CpuFastSet
-	bl sub_0808E32C
+	bl MakePrepUnitList
 	ldr r0, [r4, #0x14]
-	bl sub_0808E3E0
-	bl sub_0808E398
+	bl PrepAutoCapDeployUnits
+	bl PrepUpdateSMS
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -2945,8 +2945,8 @@ sub_080932BC: @ 0x080932BC
 _080932EC: .4byte 0x02022BC0
 _080932F0: .4byte 0x01000008
 
-	thumb_func_start sub_080932F4
-sub_080932F4: @ 0x080932F4
+	thumb_func_start PrepUnit_DrawLeftUnitName
+PrepUnit_DrawLeftUnitName: @ 0x080932F4
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -2969,7 +2969,7 @@ sub_080932F4: @ 0x080932F4
 	mov sb, r3
 	str r3, [sp]
 	movs r3, #2
-	bl sub_08006F80
+	bl PutFaceChibi
 	ldr r0, _080933B0 @ =0x02012B38
 	mov r8, r0
 	bl ClearText
@@ -2991,30 +2991,30 @@ sub_080932F4: @ 0x080932F4
 	mov r0, r8
 	movs r2, #0
 	adds r3, r6, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r4, #0
 	movs r1, #3
 	movs r2, #0x24
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #2
 	movs r1, #3
 	movs r2, #0x25
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #0
 	adds r0, #8
 	movs r1, #3
 	movs r2, #0x1d
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #6
 	movs r2, #8
 	ldrsb r2, [r5, r2]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r4, #0xc
 	ldrb r2, [r5, #9]
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r0, #1
 	bl EnableBgSync
 	add sp, #8
@@ -3028,17 +3028,17 @@ sub_080932F4: @ 0x080932F4
 _080933AC: .4byte 0x02022D2A
 _080933B0: .4byte 0x02012B38
 
-	thumb_func_start sub_080933B4
-sub_080933B4: @ 0x080933B4
+	thumb_func_start PrepUnit_DrawLeftUnitNameCur
+PrepUnit_DrawLeftUnitNameCur: @ 0x080933B4
 	push {lr}
 	ldrh r0, [r0, #0x2e]
-	bl sub_0808DD18
-	bl sub_080932F4
+	bl GetUnitFromPrepList
+	bl PrepUnit_DrawLeftUnitName
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080933C4
-sub_080933C4: @ 0x080933C4
+	thumb_func_start PrepUnit_DrawUnitItems
+PrepUnit_DrawUnitItems: @ 0x080933C4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -3054,7 +3054,7 @@ sub_080933C4: @ 0x080933C4
 	movs r3, #0
 	bl TmFillRect_t
 	adds r0, r7, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	str r0, [sp, #8]
 	movs r0, #0
 	mov r8, r0
@@ -3081,7 +3081,7 @@ _08093404:
 	mov r0, sb
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	mov r2, r8
 	lsls r1, r2, #3
 	ldr r0, _080934B4 @ =0x02012B10
@@ -3109,7 +3109,7 @@ _08093442:
 	adds r0, r5, #0
 	adds r2, r6, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r7, #0
 	adds r1, r4, #0
 	bl IsItemDisplayUseable
@@ -3124,7 +3124,7 @@ _08093472:
 	adds r2, r0, #0
 	mov r0, sl
 	adds r1, r5, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r0, #0x80
 	add sl, r0
 	add sb, r0
@@ -3152,8 +3152,8 @@ _080934B0: .4byte 0x02022DA2
 _080934B4: .4byte 0x02012B10
 _080934B8: .4byte 0x02022C62
 
-	thumb_func_start sub_080934BC
-sub_080934BC: @ 0x080934BC
+	thumb_func_start PrepUnit_DrawPickLeftBar
+PrepUnit_DrawPickLeftBar: @ 0x080934BC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r6, r0, #0
@@ -3172,12 +3172,12 @@ sub_080934BC: @ 0x080934BC
 	adds r0, r5, #0
 	movs r2, #0
 	movs r3, #0x28
-	bl sub_08005AD4
+	bl PutDrawText
 _080934E8:
 	adds r0, r5, #0
 	movs r1, #2
 	movs r2, #3
-	bl sub_08005518
+	bl ClearTextPart
 	ldr r0, _080935A0 @ =0x00001271
 	bl GetMsg
 	ldr r7, _0809359C @ =0x02022CBC
@@ -3188,7 +3188,7 @@ _080934E8:
 	adds r1, r7, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r4, r6, #0
 	adds r4, #0x29
 	adds r6, #0x2a
@@ -3211,7 +3211,7 @@ _0809351E:
 	bl Text_DrawNumber
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl sub_08005590
+	bl PutText
 	adds r0, r7, #0
 	adds r0, #0x16
 	movs r1, #4
@@ -3228,12 +3228,12 @@ _0809351E:
 	movs r1, #4
 _0809355E:
 	ldrb r2, [r4]
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r7, #0
 	adds r0, #0x1a
 	movs r1, #0
 	movs r2, #0x16
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r7, #0
 	adds r0, #0x1e
 	movs r1, #2
@@ -3244,7 +3244,7 @@ _0809355E:
 	movs r1, #4
 _08093580:
 	ldrb r2, [r6]
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r0, #1
 	bl EnableBgSync
 	add sp, #8
@@ -3257,8 +3257,8 @@ _08093598: .4byte 0x00001272
 _0809359C: .4byte 0x02022CBC
 _080935A0: .4byte 0x00001271
 
-	thumb_func_start sub_080935A4
-sub_080935A4: @ 0x080935A4
+	thumb_func_start PrepCheckCanSelectUnit
+PrepCheckCanSelectUnit: @ 0x080935A4
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r2, r1, #0
@@ -3279,7 +3279,7 @@ sub_080935A4: @ 0x080935A4
 	str r0, [r2, #0xc]
 	ldr r0, [r2]
 	ldrb r0, [r0, #4]
-	bl sub_0808DCB0
+	bl RegisterSioPid
 	ldr r0, _080935F0 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -3287,12 +3287,12 @@ sub_080935A4: @ 0x080935A4
 	cmp r0, #0
 	blt _080935E2
 	ldr r0, _080935F4 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080935E2:
 	ldrh r0, [r4, #0x2e]
 	lsrs r1, r0, #1
 	adds r0, r4, #0
-	bl sub_08092F50
+	bl PrepUnit_DrawUnitListNames
 	movs r0, #1
 	b _0809360E
 	.align 2, 0
@@ -3307,7 +3307,7 @@ _080935F8:
 	blt _0809360C
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809360C:
 	movs r0, #0
 _0809360E:
@@ -3317,14 +3317,14 @@ _0809360E:
 	.align 2, 0
 _08093614: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08093618
-sub_08093618: @ 0x08093618
+	thumb_func_start PrepCheckCanUnselectUnit
+PrepCheckCanUnselectUnit: @ 0x08093618
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
 	ldr r0, [r4]
 	ldrb r0, [r0, #4]
-	bl sub_0808DD78
+	bl IsCharacterForceDeployed
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08093670
@@ -3339,7 +3339,7 @@ sub_08093618: @ 0x08093618
 	str r0, [r4, #0xc]
 	ldr r0, [r4]
 	ldrb r0, [r0, #4]
-	bl sub_0808DCD8
+	bl RemoveSioPid
 	ldr r0, _08093668 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -3347,12 +3347,12 @@ sub_08093618: @ 0x08093618
 	cmp r0, #0
 	blt _08093658
 	ldr r0, _0809366C @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093658:
 	ldrh r0, [r5, #0x2e]
 	lsrs r1, r0, #1
 	adds r0, r5, #0
-	bl sub_08092F50
+	bl PrepUnit_DrawUnitListNames
 	movs r0, #1
 	b _08093686
 	.align 2, 0
@@ -3367,7 +3367,7 @@ _08093670:
 	blt _08093684
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093684:
 	movs r0, #0
 _08093686:
@@ -3377,12 +3377,12 @@ _08093686:
 	.align 2, 0
 _0809368C: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08093690
-sub_08093690: @ 0x08093690
+	thumb_func_start PrepUnit_HandlePressA
+PrepUnit_HandlePressA: @ 0x08093690
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2e]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r5, r0, #0
 	ldr r1, [r5, #0xc]
 	movs r0, #0x80
@@ -3405,7 +3405,7 @@ sub_08093690: @ 0x08093690
 	ldr r2, _080936CC @ =0x000003B1
 _080936C2:
 	adds r3, r4, #0
-	bl sub_08090D20
+	bl StartPrepErrorHelpbox
 	b _0809372C
 	.align 2, 0
 _080936CC: .4byte 0x000003B1
@@ -3414,7 +3414,7 @@ _080936D0:
 	ands r1, r0
 	cmp r1, #0
 	beq _0809371A
-	bl sub_0803DA14
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08093710
@@ -3442,12 +3442,12 @@ _0809370C: .4byte 0x000003AD
 _08093710:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080935A4
+	bl PrepCheckCanSelectUnit
 	b _08093722
 _0809371A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08093618
+	bl PrepCheckCanUnselectUnit
 _08093722:
 	lsls r0, r0, #0x18
 	cmp r0, #0
@@ -3465,7 +3465,7 @@ _0809372E:
 sub_08093734: @ 0x08093734
 	push {r4, r5, r6, lr}
 	sub sp, #8
-	bl sub_0803DA14
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	asrs r6, r0, #0x18
 	cmp r6, #0
@@ -3491,7 +3491,7 @@ sub_08093734: @ 0x08093734
 	str r4, [sp, #4]
 	adds r0, r5, #0
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #1
 	bl EnableBgSync
 _08093780:
@@ -3504,8 +3504,8 @@ _08093788: .4byte 0x0202BBF8
 _0809378C: .4byte 0x02012B40
 _08093790: .4byte 0x02023062
 
-	thumb_func_start sub_08093794
-sub_08093794: @ 0x08093794
+	thumb_func_start ShouldPrepUnitMenuScroll
+ShouldPrepUnitMenuScroll: @ 0x08093794
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x30]
@@ -3518,7 +3518,7 @@ sub_08093794: @ 0x08093794
 	ble _080937BE
 _080937A8:
 	adds r5, r1, #5
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	asrs r0, r0, #1
 	cmp r5, r0
@@ -3542,7 +3542,7 @@ _080937C4:
 sub_080937CC: @ 0x080937CC
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
-	bl sub_08093794
+	bl ShouldPrepUnitMenuScroll
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809380E
@@ -3550,7 +3550,7 @@ sub_080937CC: @ 0x080937CC
 	lsrs r4, r0, #1
 	ldrh r0, [r5, #0x30]
 	lsrs r6, r0, #4
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	asrs r1, r0, #1
 	cmp r4, r6
@@ -3587,7 +3587,7 @@ sub_08093814: @ 0x08093814
 	movs r5, #0
 	ldrh r0, [r0, #0x30]
 	lsrs r4, r0, #4
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	asrs r1, r0, #1
 	cmp r4, #0
@@ -3601,18 +3601,18 @@ _0809382A:
 	orrs r5, r0
 _08093834:
 	adds r0, r5, #0
-	bl sub_080A8D54
+	bl SetUiSpinningArrowConfig
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08093840
-sub_08093840: @ 0x08093840
+	thumb_func_start ProcPrepUnit_OnInit
+ProcPrepUnit_OnInit: @ 0x08093840
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0808E32C
-	bl sub_0808DD58
-	bl sub_0808E36C
+	bl MakePrepUnitList
+	bl PrepGetLatestCharId
+	bl UnitGetIndexInPrepList
 	movs r1, #0
 	strh r0, [r4, #0x2e]
 	ldr r0, [r4, #0x14]
@@ -3638,8 +3638,8 @@ sub_08093840: @ 0x08093840
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08093880
-sub_08093880: @ 0x08093880
+	thumb_func_start ProcPrepUnit_InitScreen
+ProcPrepUnit_InitScreen: @ 0x08093880
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08093A58 @ =0x08CC3B18
@@ -3711,8 +3711,8 @@ sub_08093880: @ 0x08093880
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_080931A8
-	bl sub_08093208
+	bl PrepUnit_InitTexts
+	bl PrepUnit_InitGfx
 	movs r1, #0x80
 	lsls r1, r1, #7
 	adds r0, r5, #0
@@ -3760,16 +3760,16 @@ sub_08093880: @ 0x08093880
 	ands r1, r2
 	strb r1, [r0]
 	adds r0, r5, #0
-	bl sub_080932BC
-	ldr r0, _08093A74 @ =sub_0809303C
+	bl PrepUnit_InitSMS
+	ldr r0, _08093A74 @ =PrepUnit_DrawSMSAndObjs
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	adds r0, r5, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	ldrh r1, [r5, #0x2e]
 	movs r2, #1
 	ands r2, r1
@@ -3785,14 +3785,14 @@ sub_08093880: @ 0x08093880
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #7
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	adds r0, r5, #0
-	bl sub_08090490
+	bl StartMenuScrollBar
 	movs r0, #0xe2
 	movs r1, #0x20
-	bl sub_080904A4
+	bl PutMenuScrollBarAt
 	ldrh r4, [r5, #0x30]
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	adds r2, r0, #0
 	subs r2, #1
 	lsrs r0, r2, #0x1f
@@ -3804,21 +3804,21 @@ sub_08093880: @ 0x08093880
 	movs r0, #0xa
 	adds r1, r4, #0
 	movs r3, #6
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 	movs r0, #0x80
 	lsls r0, r0, #2
 	movs r1, #2
-	bl sub_080904F8
+	bl InitMenuScrollBarImg
 	movs r0, #0x20
 	movs r1, #0x8c
 	adds r2, r5, #0
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	ldrh r0, [r5, #0x2e]
-	bl sub_0808DD18
-	bl sub_080933C4
+	bl GetUnitFromPrepList
+	bl PrepUnit_DrawUnitItems
 	ldrh r0, [r5, #0x2e]
-	bl sub_0808DD18
-	bl sub_080932F4
+	bl GetUnitFromPrepList
+	bl PrepUnit_DrawLeftUnitName
 	bl sub_08093734
 	movs r4, #0
 _08093A24:
@@ -3826,19 +3826,19 @@ _08093A24:
 	lsrs r1, r3, #4
 	adds r1, r1, r4
 	adds r0, r5, #0
-	bl sub_08092F50
+	bl PrepUnit_DrawUnitListNames
 	adds r4, #1
 	cmp r4, #5
 	ble _08093A24
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_080934BC
+	bl PrepUnit_DrawPickLeftBar
 	adds r0, r5, #0
 	bl StartGreenText
 	ldr r0, _08093A78 @ =0x06015000
 	movs r1, #5
-	bl sub_08082528
-	bl sub_0808E448
+	bl LoadHelpBoxGfx
+	bl PrepRestartMuralBackground
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -3850,19 +3850,19 @@ _08093A64: .4byte 0x02023460
 _08093A68: .4byte 0x02023C60
 _08093A6C: .4byte 0x0000FFE0
 _08093A70: .4byte 0x0000E0FF
-_08093A74: .4byte sub_0809303C
+_08093A74: .4byte PrepUnit_DrawSMSAndObjs
 _08093A78: .4byte 0x06015000
 
 	thumb_func_start sub_08093A7C
 sub_08093A7C: @ 0x08093A7C
 	push {lr}
-	bl sub_0809047C
-	bl sub_080A931C
-	bl sub_080A92D4
-	bl sub_080A9580
-	bl sub_08082014
-	bl sub_080A8DD0
-	bl sub_0808E46C
+	bl EndMenuScrollBar
+	bl EndAllParallelWorkers
+	bl EndSysBlackBoxs
+	bl EndSysHandCursor
+	bl EndHelpPromptSprite
+	bl EndUiSpinningArrows
+	bl EndMuralBackground_
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -3915,7 +3915,7 @@ _08093ACE:
 _08093AF2:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08093D4C
 	.align 2, 0
 _08093AFC: .4byte 0x08B857F8
@@ -3928,7 +3928,7 @@ _08093B04:
 	cmp r0, #0
 	blt _08093B16
 	ldr r0, _08093B24 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093B16:
 	adds r0, r5, #0
 	movs r1, #0x63
@@ -3949,7 +3949,7 @@ _08093B28:
 	cmp r0, #0
 	blt _08093B42
 	ldr r0, _08093B50 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093B42:
 	adds r0, r5, #0
 	movs r1, #3
@@ -3975,7 +3975,7 @@ _08093B68:
 	cmp r0, #0
 	beq _08093B8A
 	adds r0, r5, #0
-	bl sub_08093690
+	bl PrepUnit_HandlePressA
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08093B80
@@ -3983,7 +3983,7 @@ _08093B68:
 _08093B80:
 	adds r0, r5, #0
 	movs r1, #1
-	bl sub_080934BC
+	bl PrepUnit_DrawPickLeftBar
 	b _08093D4C
 _08093B8A:
 	movs r0, #2
@@ -3997,7 +3997,7 @@ _08093B8A:
 	cmp r0, #0
 	blt _08093BA4
 	ldr r0, _08093BB4 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093BA4:
 	adds r0, r5, #0
 	movs r1, #0xa
@@ -4029,7 +4029,7 @@ _08093BCE:
 	cmp r0, #0
 	bne _08093BF2
 	ldrh r4, [r5, #0x2e]
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	cmp r4, r0
 	bge _08093BF2
@@ -4053,7 +4053,7 @@ _08093C04:
 	beq _08093C20
 	ldrh r4, [r5, #0x2e]
 	adds r4, #2
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	subs r0, #1
 	cmp r4, r0
 	bgt _08093C20
@@ -4068,12 +4068,12 @@ _08093C20:
 	b _08093D4C
 _08093C2A:
 	ldrh r0, [r5, #0x2e]
-	bl sub_0808DD18
-	bl sub_080933C4
-	ldr r0, _08093C98 @ =sub_080933B4
+	bl GetUnitFromPrepList
+	bl PrepUnit_DrawUnitItems
+	ldr r0, _08093C98 @ =PrepUnit_DrawLeftUnitNameCur
 	movs r1, #1
 	adds r2, r5, #0
-	bl sub_080A8E14
+	bl StartParallelFiniteLoop
 	ldr r0, _08093C9C @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -4081,10 +4081,10 @@ _08093C2A:
 	cmp r0, #0
 	blt _08093C50
 	ldr r0, _08093CA0 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093C50:
 	adds r0, r5, #0
-	bl sub_08093794
+	bl ShouldPrepUnitMenuScroll
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08093CA4
@@ -4096,7 +4096,7 @@ _08093C50:
 	lsrs r1, r3, #4
 	subs r1, #1
 	adds r0, r5, #0
-	bl sub_08092F50
+	bl PrepUnit_DrawUnitListNames
 _08093C70:
 	ldrh r7, [r5, #0x2e]
 	ldrh r0, [r5, #0x2c]
@@ -4106,7 +4106,7 @@ _08093C70:
 	lsrs r1, r3, #4
 	adds r1, #6
 	adds r0, r5, #0
-	bl sub_08092F50
+	bl PrepUnit_DrawUnitListNames
 _08093C84:
 	movs r1, #1
 	ldrh r7, [r5, #0x2e]
@@ -4115,10 +4115,10 @@ _08093C84:
 	subs r0, r0, r1
 	lsls r0, r0, #3
 	adds r0, #0x70
-	bl sub_080A94E4
+	bl SetSysHandCursorXPos
 	b _08093CCA
 	.align 2, 0
-_08093C98: .4byte sub_080933B4
+_08093C98: .4byte PrepUnit_DrawLeftUnitNameCur
 _08093C9C: .4byte 0x0202BBF8
 _08093CA0: .4byte 0x00000385
 _08093CA4:
@@ -4139,7 +4139,7 @@ _08093CA4:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #7
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _08093CCA:
 	ldrh r0, [r5, #0x2c]
 	ldrh r1, [r5, #0x2e]
@@ -4173,11 +4173,11 @@ _08093CF6:
 	bne _08093D1C
 	lsrs r0, r1, #4
 	subs r0, #1
-	bl sub_08093014
+	bl PrepUpdateMenuTsaScroll
 	ldrh r1, [r5, #0x30]
 	lsrs r0, r1, #4
 	adds r0, #6
-	bl sub_08093014
+	bl PrepUpdateMenuTsaScroll
 	adds r0, r5, #0
 	bl sub_08093814
 	ldrh r0, [r5, #0x2e]
@@ -4191,7 +4191,7 @@ _08093D1C:
 	movs r1, #0
 	bl SetBgOffset
 	ldrh r4, [r5, #0x30]
-	bl sub_0808DD38
+	bl PrepGetUnitAmount
 	adds r2, r0, #0
 	subs r2, #1
 	lsrs r0, r2, #0x1f
@@ -4203,7 +4203,7 @@ _08093D1C:
 	movs r0, #0xa
 	adds r1, r4, #0
 	movs r3, #6
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 _08093D4C:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -4241,7 +4241,7 @@ _08093D72:
 	bne _08093D94
 	lsrs r0, r1, #4
 	subs r0, #1
-	bl sub_08093014
+	bl PrepUpdateMenuTsaScroll
 _08093D94:
 	pop {r4}
 	pop {r0}
@@ -4260,7 +4260,7 @@ sub_08093D9C: @ 0x08093D9C
 	lsrs r1, r1, #4
 	subs r1, #1
 	adds r0, r4, #0
-	bl sub_08092F50
+	bl PrepUnit_DrawUnitListNames
 _08093DB4:
 	ldrh r0, [r4, #0x34]
 	subs r0, #4
@@ -4300,7 +4300,7 @@ sub_08093DE8: @ 0x08093DE8
 	movs r0, #0xd0
 	movs r1, #0x68
 	movs r2, #0
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r0}
 	bx r0
 
@@ -4323,7 +4323,7 @@ sub_08093E00: @ 0x08093E00
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #7
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -4347,7 +4347,7 @@ sub_08093E2C: @ 0x08093E2C
 	blt _08093E52
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093E52:
 	ldr r0, _08093E80 @ =0x08B857F8
 	ldr r1, [r0]
@@ -4363,7 +4363,7 @@ _08093E52:
 	cmp r0, #0
 	blt _08093E72
 	ldr r0, _08093E88 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08093E72:
 	adds r0, r4, #0
 	bl Proc_Break
@@ -4376,8 +4376,8 @@ _08093E80: .4byte 0x08B857F8
 _08093E84: .4byte 0x0202BBF8
 _08093E88: .4byte 0x00000385
 
-	thumb_func_start sub_08093E8C
-sub_08093E8C: @ 0x08093E8C
+	thumb_func_start ProcPrepUnit_OnEnd
+ProcPrepUnit_OnEnd: @ 0x08093E8C
 	push {lr}
 	ldr r2, [r0, #0x14]
 	ldrh r1, [r0, #0x30]
@@ -4389,17 +4389,17 @@ sub_08093E8C: @ 0x08093E8C
 	adds r1, #0x2b
 	strb r2, [r1]
 	ldrh r0, [r0, #0x2e]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	ldr r0, [r0]
 	ldrb r0, [r0, #4]
-	bl sub_0808DD68
-	bl sub_0808E46C
+	bl PrepSetLatestCharId
+	bl EndMuralBackground_
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08093EB8
-sub_08093EB8: @ 0x08093EB8
+	thumb_func_start ProcPrepUnit_OnGameStart
+ProcPrepUnit_OnGameStart: @ 0x08093EB8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x14]
@@ -4421,12 +4421,12 @@ sub_08093ED8: @ 0x08093ED8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2e]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	ldr r0, [r0]
 	ldrb r0, [r0, #4]
-	bl sub_0808DD68
+	bl PrepSetLatestCharId
 	adds r0, r4, #0
-	bl sub_0808AB0C
+	bl StartUnitListScreenPrepMenu
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -4436,7 +4436,7 @@ sub_08093ED8: @ 0x08093ED8
 sub_08093EF8: @ 0x08093EF8
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_0808E110
+	bl PrepGetLatestUnitIndex
 	movs r1, #0
 	strh r0, [r4, #0x2c]
 	strh r0, [r4, #0x2e]
@@ -4515,9 +4515,9 @@ sub_08093F84: @ 0x08093F84
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0x11
-	bl sub_0807FA2C
+	bl SetStatScreenExcludedUnitFlags
 	ldrh r0, [r4, #0x2e]
-	bl sub_0808DD18
+	bl GetUnitFromPrepList
 	adds r1, r4, #0
 	bl StartStatScreen
 	pop {r4}
@@ -4528,8 +4528,8 @@ sub_08093F84: @ 0x08093F84
 sub_08093FA0: @ 0x08093FA0
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0808E32C
-	bl sub_0808E0DC
+	bl MakePrepUnitList
+	bl GetLatestUnitIndexInPrepListByUId
 	strh r0, [r4, #0x2c]
 	strh r0, [r4, #0x2e]
 	pop {r4}
@@ -4537,8 +4537,8 @@ sub_08093FA0: @ 0x08093FA0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08093FB8
-sub_08093FB8: @ 0x08093FB8
+	thumb_func_start PrepItemTrade_ApplyItemSwap
+PrepItemTrade_ApplyItemSwap: @ 0x08093FB8
 	push {r4, r5, r6, lr}
 	adds r6, r2, #0
 	lsls r1, r1, #1
@@ -4560,8 +4560,8 @@ sub_08093FB8: @ 0x08093FB8
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08093FE4
-sub_08093FE4: @ 0x08093FE4
+	thumb_func_start PrepItemTrade_DpadKeyHandler
+PrepItemTrade_DpadKeyHandler: @ 0x08093FE4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, [r4, #0x34]
@@ -4577,7 +4577,7 @@ sub_08093FE4: @ 0x08093FE4
 	cmp r0, #0
 	beq _0809405E
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r2, r0, #0
 	ldr r3, [r4, #0x38]
 	cmp r3, #0xff
@@ -4623,7 +4623,7 @@ _0809404A:
 	cmp r0, #0
 	blt _0809405E
 	ldr r0, _080940BC @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809405E:
 	ldr r0, _080940C0 @ =0x08B857F8
 	ldr r1, [r0]
@@ -4638,7 +4638,7 @@ _0809405E:
 	cmp r0, #0
 	bne _080940DA
 	ldr r0, [r4, #0x30]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r2, r0, #0
 	ldr r3, [r4, #0x38]
 	cmp r3, #0xff
@@ -4686,7 +4686,7 @@ _080940C6:
 	cmp r0, #0
 	blt _080940DA
 	ldr r0, _08094144 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080940DA:
 	ldr r0, _08094148 @ =0x08B857F8
 	ldr r1, [r0]
@@ -4702,7 +4702,7 @@ _080940DA:
 	adds r1, #0x2c
 	adds r1, r1, r0
 	ldr r0, [r1]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r3, r0, #0
 	ldr r1, [r4, #0x38]
 	cmp r1, #0xff
@@ -4736,7 +4736,7 @@ _0809411C:
 	cmp r0, #0
 	blt _0809417A
 	ldr r0, _0809414C @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809417A
 	.align 2, 0
 _08094140: .4byte 0x0202BBF8
@@ -4763,7 +4763,7 @@ _08094150:
 	cmp r0, #0
 	blt _0809417A
 	ldr r0, _080941E8 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809417A:
 	ldr r0, _080941E0 @ =0x08B857F8
 	ldr r1, [r0]
@@ -4779,7 +4779,7 @@ _0809417A:
 	adds r1, #0x2c
 	adds r1, r1, r0
 	ldr r0, [r1]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r3, r0, #0
 	ldr r1, [r4, #0x38]
 	cmp r1, #0xff
@@ -4814,7 +4814,7 @@ _080941BC:
 	cmp r0, #0
 	blt _08094212
 	ldr r0, _080941E8 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08094212
 	.align 2, 0
 _080941E0: .4byte 0x08B857F8
@@ -4838,7 +4838,7 @@ _080941EC:
 	cmp r0, #0
 	blt _08094212
 	ldr r0, _08094224 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08094212:
 	ldr r0, [r4, #0x34]
 	cmp r5, r0
@@ -4856,8 +4856,8 @@ _0809422A:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08094230
-sub_08094230: @ 0x08094230
+	thumb_func_start DrawPrepScreenItems
+DrawPrepScreenItems: @ 0x08094230
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4875,7 +4875,7 @@ sub_08094230: @ 0x08094230
 	movs r3, #0
 	bl TmFillRect_t
 	mov r0, sl
-	bl sub_080176DC
+	bl GetUnitItemCount
 	str r0, [sp, #0x10]
 	movs r0, #0
 	str r0, [sp, #0xc]
@@ -4897,7 +4897,7 @@ _0809426A:
 	beq _08094286
 	mov r0, sl
 	adds r1, r6, #0
-	bl sub_0802803C
+	bl CanUnitUseItemPrepScreen
 	b _0809428E
 _08094286:
 	mov r0, sl
@@ -4924,7 +4924,7 @@ _080942AC:
 	mov r0, sb
 	ldr r1, [sp, #0x14]
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r4, r8
 	adds r4, #0x16
 	movs r7, #1
@@ -4937,14 +4937,14 @@ _080942C8:
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r7, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r6, #0
 	bl GetItemIcon
 	adds r1, r0, #0
 	mov r0, r8
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	movs r0, #8
 	add sb, r0
 	ldr r1, [sp, #0x14]
@@ -4968,13 +4968,13 @@ _08094304:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08094314
-sub_08094314: @ 0x08094314
+	thumb_func_start DrawPrepScreenItemIcons
+DrawPrepScreenItemIcons: @ 0x08094314
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r7, r1, #0
 	adds r0, r7, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r6, r0, #0
 	movs r5, #0
 	cmp r5, r6
@@ -4990,7 +4990,7 @@ _08094328:
 	adds r0, r4, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	adds r4, #0x80
 	adds r5, #1
 	cmp r5, r6
@@ -5044,15 +5044,15 @@ sub_08094350: @ 0x08094350
 	orrs r0, r1
 	strb r0, [r3, #0x18]
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	bl ResetText
@@ -5074,10 +5074,10 @@ sub_08094350: @ 0x08094350
 	ldr r0, _08094454 @ =0x06014000
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	movs r0, #4
 	bl ApplyIconPalettes
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	ldr r0, _08094458 @ =0x02012A20
 	adds r6, r0, #0
 	adds r6, #0x28
@@ -5086,10 +5086,10 @@ sub_08094350: @ 0x08094350
 _08094416:
 	adds r0, r5, #0
 	movs r1, #7
-	bl sub_0800549C
+	bl InitTextDb
 	adds r0, r6, #0
 	movs r1, #7
-	bl sub_0800549C
+	bl InitTextDb
 	adds r6, #8
 	adds r5, #8
 	subs r4, #1
@@ -5116,7 +5116,7 @@ _08094458: .4byte 0x02012A20
 _0809445C:
 	mov r3, r8
 	ldr r0, [r3, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	bne _08094470
 	movs r0, #8
@@ -5141,7 +5141,7 @@ _08094476:
 	movs r0, #0
 	movs r2, #0x40
 	adds r3, r4, #0
-	bl sub_08007BCC
+	bl StartBmFace
 	mov r3, r8
 	ldr r0, [r3, #0x30]
 	bl GetUnitFid
@@ -5151,20 +5151,20 @@ _08094476:
 	movs r0, #1
 	movs r2, #0xae
 	adds r3, r4, #0
-	bl sub_08007BCC
+	bl StartBmFace
 	movs r6, #0
 	str r6, [sp]
 	movs r0, #1
 	movs r1, #8
 	movs r2, #0xe
 	movs r3, #0xc
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	str r6, [sp]
 	movs r0, #0xf
 	movs r1, #8
 	movs r2, #0xe
 	movs r3, #0xc
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #7
 	bl EnableBgSync
 	mov r4, r8
@@ -5173,7 +5173,7 @@ _08094476:
 	ldrh r0, [r0]
 	bl GetMsg
 	adds r7, r0, #0
-	bl sub_080055FC
+	bl GetStringTextLen
 	adds r3, r0, #0
 	movs r4, #0x30
 	subs r3, r4, r3
@@ -5188,14 +5188,14 @@ _08094476:
 	movs r0, #0
 	mov r1, sb
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r1, r8
 	ldr r0, [r1, #0x30]
 	ldr r0, [r0]
 	ldrh r0, [r0]
 	bl GetMsg
 	adds r7, r0, #0
-	bl sub_080055FC
+	bl GetStringTextLen
 	subs r4, r4, r0
 	lsrs r0, r4, #0x1f
 	adds r4, r4, r0
@@ -5207,7 +5207,7 @@ _08094476:
 	movs r0, #0
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #0x91
 	lsls r0, r0, #2
 	add r0, sb
@@ -5216,7 +5216,7 @@ _08094476:
 	ldr r2, [r3, #0x2c]
 	adds r1, r4, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	movs r0, #0x98
 	lsls r0, r0, #2
 	add r0, sb
@@ -5225,15 +5225,15 @@ _08094476:
 	ldr r2, [r1, #0x30]
 	adds r1, r4, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	mov r0, r8
-	bl sub_080A89B4
+	bl StartUiCursorHand
 	mov r0, r8
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	mov r2, r8
 	ldr r1, [r2, #0x34]
 	asrs r2, r1, #3
@@ -5249,11 +5249,11 @@ _08094476:
 	lsls r5, r5, #4
 	movs r2, #0xb
 	adds r3, r5, #0
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #0xc8
 	movs r1, #0x90
 	mov r2, r8
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	movs r1, #0xe0
 	lsls r1, r1, #4
 	movs r3, #0xc0
@@ -5265,7 +5265,7 @@ _08094476:
 	str r4, [sp, #4]
 	movs r0, #0xd
 	movs r2, #0xf
-	bl sub_080A9B74
+	bl StartSysBrownBox
 	movs r1, #0x28
 	rsbs r1, r1, #0
 	movs r4, #1
@@ -5273,12 +5273,12 @@ _08094476:
 	movs r0, #0
 	adds r2, r4, #0
 	movs r3, #1
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	movs r0, #1
 	movs r1, #0xb8
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	ldr r3, _08094624 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -5340,7 +5340,7 @@ sub_08094630: @ 0x08094630
 	bne _08094650
 	b _080948C4
 _08094650:
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0xff
 	b _08094924
 	.align 2, 0
@@ -5408,7 +5408,7 @@ _080946AE:
 	mov r1, r8
 	ands r3, r1
 	adds r1, r4, #0
-	bl sub_08090DEC
+	bl CheckValidLinkArenaItemSwap
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080946F0
@@ -5417,7 +5417,7 @@ _080946AE:
 	ldr r2, _080946EC @ =0x000003AE
 	adds r0, r1, #0
 	adds r3, r6, #0
-	bl sub_08090D20
+	bl StartPrepErrorHelpbox
 	b _08094926
 	.align 2, 0
 _080946EC: .4byte 0x000003AE
@@ -5436,21 +5436,21 @@ _080946F0:
 	ldr r2, [r2]
 	mov r4, r8
 	ands r3, r4
-	bl sub_08093FB8
+	bl PrepItemTrade_ApplyItemSwap
 	ldr r4, _08094754 @ =0x02022EA4
 	ldr r5, _08094758 @ =0x02012A20
 	ldr r2, [r6, #0x2c]
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	adds r4, #0x1c
 	adds r5, #0x28
 	ldr r2, [r6, #0x30]
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	movs r0, #1
 	bl EnableBgSync
 	ldr r0, [r6, #0x38]
@@ -5458,7 +5458,7 @@ _080946F0:
 	lsls r0, r0, #2
 	adds r0, r7, r0
 	ldr r0, [r0]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r2, r0, #0
 	cmp r2, #0
 	bne _0809475C
@@ -5491,10 +5491,10 @@ _08094772:
 	cmp r0, #0
 	blt _08094784
 	ldr r0, _080947B4 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08094784:
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	ldr r1, [r6, #0x38]
 	str r1, [r6, #0x34]
 	movs r0, #0xff
@@ -5511,7 +5511,7 @@ _08094784:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	b _08094926
 	.align 2, 0
 _080947B0: .4byte 0x0202BBF8
@@ -5537,7 +5537,7 @@ _080947C2:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _080947FC @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -5545,10 +5545,10 @@ _080947C2:
 	cmp r0, #0
 	blt _080947F4
 	ldr r0, _08094800 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080947F4:
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	b _08094926
 	.align 2, 0
 _080947FC: .4byte 0x0202BBF8
@@ -5568,7 +5568,7 @@ _08094804:
 	adds r1, #0x2c
 	adds r1, r1, r0
 	ldr r0, [r1]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r4, r0, #0
 	ldr r2, [r6, #0x34]
 	str r2, [r6, #0x38]
@@ -5583,7 +5583,7 @@ _08094804:
 	adds r2, #0x48
 	movs r0, #0
 	movs r3, #0
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	cmp r4, #4
 	bgt _08094854
 	ldr r0, [r6, #0x34]
@@ -5612,7 +5612,7 @@ _0809485C:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _08094890 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -5620,7 +5620,7 @@ _0809485C:
 	cmp r0, #0
 	blt _08094926
 	ldr r0, _08094894 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08094926
 	.align 2, 0
 _08094890: .4byte 0x0202BBF8
@@ -5639,14 +5639,14 @@ _08094898:
 	cmp r0, #0
 	blt _08094926
 	ldr r0, _080948C0 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08094926
 	.align 2, 0
 _080948BC: .4byte 0x0202BBF8
 _080948C0: .4byte 0x0000038B
 _080948C4:
 	adds r0, r6, #0
-	bl sub_08093FE4
+	bl PrepItemTrade_DpadKeyHandler
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08094926
@@ -5663,7 +5663,7 @@ _080948C4:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, [r6, #0x3c]
 	cmp r0, #0xff
 	beq _08094926
@@ -5689,7 +5689,7 @@ _080948C4:
 	lsls r1, r3, #4
 _0809491C:
 	adds r1, #0x48
-	bl sub_0808198C
+	bl StartItemHelpBox
 	ldr r0, [r6, #0x34]
 _08094924:
 	str r0, [r6, #0x3c]
@@ -5703,17 +5703,17 @@ _08094926:
 	thumb_func_start sub_08094930
 sub_08094930: @ 0x08094930
 	push {lr}
-	bl sub_0808E46C
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #1
-	bl sub_08006D50
+	bl EndFaceById
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08094948
-sub_08094948: @ 0x08094948
+	thumb_func_start StartPrepItemTradeScreenProc
+StartPrepItemTradeScreenProc: @ 0x08094948
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -5749,8 +5749,8 @@ sub_0809496C: @ 0x0809496C
 	.align 2, 0
 _08094988: .4byte 0x08CC49E4
 
-	thumb_func_start sub_0809498C
-sub_0809498C: @ 0x0809498C
+	thumb_func_start PrepItemUseTryMoveHand
+PrepItemUseTryMoveHand: @ 0x0809498C
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	ldr r5, _080949B8 @ =0x08B857F8
@@ -5764,7 +5764,7 @@ sub_0809498C: @ 0x0809498C
 	cmp r6, #0
 	beq _080949CE
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r2, r0, #0
 	ldr r0, [r4, #0x30]
 	cmp r0, #0
@@ -5791,7 +5791,7 @@ _080949CE:
 	cmp r0, #0
 	beq _08094A18
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	subs r0, #1
 	ldr r1, [r4, #0x30]
 	cmp r1, r0
@@ -5815,7 +5815,7 @@ _080949FA:
 	cmp r0, #0
 	blt _08094A0C
 	ldr r0, _08094A14 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08094A0C:
 	movs r0, #1
 	b _08094A1A
@@ -5858,7 +5858,7 @@ _08094A30:
 	adds r1, r5, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r0, r8
 	bl UnitKnowsMagic
 	lsls r0, r0, #0x18
@@ -5876,7 +5876,7 @@ _08094A30:
 	adds r0, r2, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	b _08094AB4
 	.align 2, 0
 _08094A88: .4byte 0x020129A8
@@ -5895,7 +5895,7 @@ _08094A98:
 	adds r0, r2, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 _08094AB4:
 	ldr r0, _08094BAC @ =0x000010FB
 	bl GetMsg
@@ -5909,7 +5909,7 @@ _08094AB4:
 	adds r1, r7, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _08094BB4 @ =0x000010FC
 	bl GetMsg
 	adds r2, r6, #0
@@ -5921,7 +5921,7 @@ _08094AB4:
 	adds r0, r2, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _08094BB8 @ =0x000010FD
 	bl GetMsg
 	adds r2, r6, #0
@@ -5933,7 +5933,7 @@ _08094AB4:
 	adds r0, r2, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _08094BBC @ =0x000010FE
 	bl GetMsg
 	adds r2, r6, #0
@@ -5945,7 +5945,7 @@ _08094AB4:
 	adds r0, r2, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _08094BC0 @ =0x000010FF
 	bl GetMsg
 	adds r2, r6, #0
@@ -5957,7 +5957,7 @@ _08094AB4:
 	adds r0, r2, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _08094BC4 @ =0x00001107
 	bl GetMsg
 	adds r2, r6, #0
@@ -5969,7 +5969,7 @@ _08094AB4:
 	adds r0, r2, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r1, r8
 	ldr r0, [r1, #4]
 	ldrh r0, [r0]
@@ -5985,17 +5985,17 @@ _08094AB4:
 	str r5, [sp]
 	str r4, [sp, #4]
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r1, _08094BCC @ =0xFFFFFE02
 	adds r0, r7, r1
 	movs r1, #3
 	movs r2, #0x24
-	bl sub_0800615C
+	bl PutSpecialChar
 	ldr r2, _08094BD0 @ =0xFFFFFE04
 	adds r0, r7, r2
 	movs r1, #3
 	movs r2, #0x25
-	bl sub_0800615C
+	bl PutSpecialChar
 	add sp, #8
 	pop {r3}
 	mov r8, r3
@@ -6015,8 +6015,8 @@ _08094BC8: .4byte 0xFFFFFE0A
 _08094BCC: .4byte 0xFFFFFE02
 _08094BD0: .4byte 0xFFFFFE04
 
-	thumb_func_start sub_08094BD4
-sub_08094BD4: @ 0x08094BD4
+	thumb_func_start DrawPrepScreenItemUseStatBars
+DrawPrepScreenItemUseStatBars: @ 0x08094BD4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -6024,10 +6024,10 @@ sub_08094BD4: @ 0x08094BD4
 	adds r5, r0, #0
 	mov r8, r1
 	movs r0, #2
-	bl sub_08049AF4
+	bl ApplyUiStatBarPal
 	add r4, sp, #0xc
 	adds r0, r5, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r1, r0, #0
 	lsls r0, r1, #1
 	adds r0, r0, r1
@@ -6165,7 +6165,7 @@ _08094CDC:
 	movs r1, #4
 	movs r3, #0xc0
 	lsls r3, r3, #6
-	bl sub_0807F848
+	bl PutDrawUiGauge
 	b _08094D50
 	.align 2, 0
 _08094D1C: .4byte 0x02022C60
@@ -6192,7 +6192,7 @@ _08094D20:
 	movs r1, #4
 	movs r3, #0x80
 	lsls r3, r3, #6
-	bl sub_0807F848
+	bl PutDrawUiGauge
 _08094D50:
 	adds r6, #4
 	movs r0, #0x80
@@ -6217,7 +6217,7 @@ sub_08094D74: @ 0x08094D74
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	ldr r6, _08094D90 @ =0x02023D8A
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r1, r0, #0
 	movs r0, #0xc0
 	ldrb r2, [r4, #0xb]
@@ -6239,11 +6239,11 @@ _08094D9C:
 	movs r5, #2
 _08094D9E:
 	adds r0, r4, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r2, r0, #0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	ldr r5, _08094EEC @ =0x02023E0A
 	adds r0, r4, #0
 	bl GetUnitPower
@@ -6261,7 +6261,7 @@ _08094DC6:
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r7, r5, #0
 	adds r7, #0x80
 	adds r0, r4, #0
@@ -6280,7 +6280,7 @@ _08094DF0:
 	adds r2, r0, #0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r0, #0x80
 	lsls r0, r0, #1
 	adds r7, r5, r0
@@ -6300,7 +6300,7 @@ _08094E1C:
 	adds r2, r0, #0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r7, r5, #0
 	subs r7, #0x74
 	adds r0, r4, #0
@@ -6315,7 +6315,7 @@ _08094E3E:
 	adds r2, r0, #0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r7, r5, #0
 	adds r7, #0xc
 	adds r0, r4, #0
@@ -6334,7 +6334,7 @@ _08094E68:
 	adds r2, r0, #0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r7, r5, #0
 	adds r7, #0x8c
 	adds r0, r4, #0
@@ -6353,7 +6353,7 @@ _08094E92:
 	adds r2, r0, #0
 	adds r0, r7, #0
 	adds r1, r6, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r1, #0x86
 	lsls r1, r1, #1
 	adds r6, r5, r1
@@ -6377,13 +6377,13 @@ _08094E92:
 _08094ECA:
 	adds r0, r6, #0
 	adds r2, r3, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	ldr r2, _08094EF0 @ =0xFFFFFE80
 	adds r0, r5, r2
 	movs r2, #8
 	ldrsb r2, [r4, r2]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r0, #4
 	bl EnableBgSync
 	pop {r4, r5, r6, r7}
@@ -6419,13 +6419,13 @@ sub_08094EF4: @ 0x08094EF4
 	adds r0, r0, r1
 	ldrh r4, [r0]
 	adds r0, r4, #0
-	bl sub_08017244
+	bl GetItemUseDescId
 	adds r5, r0, #0
 	cmp r5, #0
 	beq _08094FA2
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_0802803C
+	bl CanUnitUseItemPrepScreen
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08094F78
@@ -6444,7 +6444,7 @@ sub_08094EF4: @ 0x08094EF4
 	ldr r2, _08094F74 @ =0x02022FBE
 	mov r0, sp
 	movs r3, #3
-	bl sub_0800A00C
+	bl PrintStringToTexts
 	b _08094FA2
 	.align 2, 0
 _08094F70: .4byte 0x0840F3E4
@@ -6465,7 +6465,7 @@ _08094F78:
 	ldr r2, _08094FB0 @ =0x02022FBE
 	mov r0, sp
 	movs r3, #3
-	bl sub_0800A00C
+	bl PrintStringToTexts
 _08094FA2:
 	movs r0, #1
 	bl EnableBgSync
@@ -6489,14 +6489,14 @@ sub_08094FB4: @ 0x08094FB4
 	movs r0, #0
 	movs r1, #0x80
 	movs r2, #2
-	bl sub_0802619C
-	bl sub_08025518
+	bl PutUnitSpriteForClassId
+	bl SyncUnitSpriteSheet
 	add sp, #4
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08094FD8
-sub_08094FD8: @ 0x08094FD8
+	thumb_func_start PrepItemUse_OnInit
+PrepItemUse_OnInit: @ 0x08094FD8
 	movs r1, #0
 	str r1, [r0, #0x30]
 	movs r1, #0xff
@@ -6534,15 +6534,15 @@ sub_08094FE4: @ 0x08094FE4
 	movs r0, #0xff
 	str r0, [r7, #0x34]
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r2, #4
@@ -6586,17 +6586,17 @@ sub_08094FE4: @ 0x08094FE4
 	ldr r0, _080952F8 @ =0x06014000
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	movs r0, #4
 	bl ApplyIconPalettes
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	ldr r4, _080952FC @ =0x02012A20
 	movs r6, #4
 	mov sl, r6
 _080950B8:
 	adds r0, r4, #0
 	movs r1, #7
-	bl sub_0800549C
+	bl InitTextDb
 	adds r4, #8
 	movs r0, #1
 	rsbs r0, r0, #0
@@ -6651,7 +6651,7 @@ _080950D4:
 	bl sub_08094D74
 	ldr r0, [r7, #0x2c]
 	movs r1, #0
-	bl sub_08094BD4
+	bl DrawPrepScreenItemUseStatBars
 	ldr r0, [r7, #0x2c]
 	bl GetUnitFid
 	adds r1, r0, #0
@@ -6661,7 +6661,7 @@ _080950D4:
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0x40
-	bl sub_08007BCC
+	bl StartBmFace
 	movs r0, #0xc0
 	lsls r0, r0, #7
 	movs r1, #5
@@ -6686,20 +6686,20 @@ _080950D4:
 	str r7, [sp, #4]
 	movs r0, #0xd
 	movs r2, #0xf
-	bl sub_080A9B74
+	bl StartSysBrownBox
 	movs r1, #0x28
 	rsbs r1, r1, #0
 	movs r2, #1
 	rsbs r2, r2, #0
 	movs r0, #0
 	movs r3, #1
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	ldr r0, [r7, #0x2c]
 	ldr r0, [r0]
 	ldrh r0, [r0]
 	bl GetMsg
 	adds r4, r0, #0
-	bl sub_080055FC
+	bl GetStringTextLen
 	movs r3, #0x30
 	subs r3, r3, r0
 	lsrs r0, r3, #0x1f
@@ -6711,18 +6711,18 @@ _080950D4:
 	movs r0, #0
 	ldr r1, _08095310 @ =0x02022C60
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r7, #0
-	bl sub_080A89B4
+	bl StartUiCursorHand
 	adds r0, r7, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	ldr r0, _08095314 @ =sub_08094FB4
 	adds r1, r7, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r3, _080952F0 @ =0x03002870
 	mov ip, r3
 	movs r0, #0x20
@@ -6806,7 +6806,7 @@ _080950D4:
 	movs r0, #0xc4
 	movs r1, #0x90
 	adds r2, r7, #0
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	ldr r0, [r7, #0x2c]
 	ldr r1, [r7, #0x30]
 	bl sub_08094EF4
@@ -6815,7 +6815,7 @@ _080950D4:
 	ldr r2, [r7, #0x2c]
 	ldr r0, _08095320 @ =0x02022EA4
 	movs r3, #1
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	ldr r1, [r7, #0x30]
 	asrs r2, r1, #3
 	lsls r0, r2, #3
@@ -6829,10 +6829,10 @@ _080950D4:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, [r7, #0x2c]
-	bl sub_08017610
-	bl sub_08024DEC
+	bl GetUnitSMSId
+	bl UseUnitSprite
 	bl ForceSyncUnitSpriteSheet
 	add sp, #0x28
 	pop {r3, r4, r5}
@@ -6873,7 +6873,7 @@ sub_08095324: @ 0x08095324
 	ands r0, r1
 	cmp r0, #0
 	beq _08095404
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0xff
 	b _0809544C
 	.align 2, 0
@@ -6899,7 +6899,7 @@ _0809534C:
 	adds r1, #0x1e
 	adds r1, r1, r2
 	ldrh r1, [r1]
-	bl sub_0802803C
+	bl CanUnitUseItemPrepScreen
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080953BC
@@ -6910,7 +6910,7 @@ _0809534C:
 	movs r0, #0
 	movs r1, #0x10
 	movs r3, #0
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	str r5, [r4, #0x3c]
 	ldr r0, _080953B4 @ =0x0202BBF8
 	adds r0, #0x41
@@ -6919,7 +6919,7 @@ _0809534C:
 	cmp r0, #0
 	blt _080953A4
 	ldr r0, _080953B8 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080953A4:
 	adds r0, r4, #0
 	movs r1, #2
@@ -6938,7 +6938,7 @@ _080953BC:
 	blt _0809544E
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809544E
 	.align 2, 0
 _080953D4: .4byte 0x0202BBF8
@@ -6957,14 +6957,14 @@ _080953D8:
 	cmp r0, #0
 	blt _0809544E
 	ldr r0, _08095400 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809544E
 	.align 2, 0
 _080953FC: .4byte 0x0202BBF8
 _08095400: .4byte 0x0000038B
 _08095404:
 	adds r0, r4, #0
-	bl sub_0809498C
+	bl PrepItemUseTryMoveHand
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809544E
@@ -6975,7 +6975,7 @@ _08095404:
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, [r4, #0x2c]
 	ldr r1, [r4, #0x30]
 	bl sub_08094EF4
@@ -6994,7 +6994,7 @@ _08095430:
 	lsls r1, r3, #4
 	adds r1, #0x48
 	movs r0, #0x10
-	bl sub_0808198C
+	bl StartItemHelpBox
 	ldr r0, [r4, #0x30]
 _0809544C:
 	str r0, [r4, #0x38]
@@ -7006,11 +7006,11 @@ _0809544E:
 	thumb_func_start sub_08095454
 sub_08095454: @ 0x08095454
 	push {lr}
-	bl sub_0808E46C
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #1
-	bl sub_08006D50
+	bl EndFaceById
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -7034,7 +7034,7 @@ sub_0809546C: @ 0x0809546C
 	adds r1, r5, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r4, #0
 	bl ClearText
 	ldr r0, _080954E4 @ =0x000010EE
@@ -7046,7 +7046,7 @@ sub_0809546C: @ 0x0809546C
 	adds r1, r5, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r0, _080954E8 @ =0x000010EF
 	bl GetMsg
 	str r6, [sp]
@@ -7055,7 +7055,7 @@ sub_0809546C: @ 0x0809546C
 	adds r1, r5, #0
 	movs r2, #0
 	movs r3, #0x20
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #4
 	bl EnableBgSync
 	add sp, #8
@@ -7069,8 +7069,8 @@ _080954E0: .4byte 0x02023FC2
 _080954E4: .4byte 0x000010EE
 _080954E8: .4byte 0x000010EF
 
-	thumb_func_start sub_080954EC
-sub_080954EC: @ 0x080954EC
+	thumb_func_start PrepItemUseClearSubBox
+PrepItemUseClearSubBox: @ 0x080954EC
 	push {lr}
 	ldr r0, _08095504 @ =0x02023FC2
 	movs r1, #0xd
@@ -7096,7 +7096,7 @@ sub_08095508: @ 0x08095508
 	lsls r3, r3, #4
 	movs r1, #0x78
 	movs r2, #0
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -7113,7 +7113,7 @@ sub_08095528: @ 0x08095528
 	movs r1, #0x64
 	movs r2, #0xd
 	movs r3, #4
-	bl sub_08092CB8
+	bl PrepItemDrawPopupBox
 	ldr r5, _08095584 @ =0x08B857F8
 	ldr r1, [r5]
 	ldrh r3, [r1, #8]
@@ -7128,10 +7128,10 @@ sub_08095528: @ 0x08095528
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #0
-	bl sub_080A8A78
-	bl sub_080954EC
+	bl DisableUiCursorHand
+	bl PrepItemUseClearSubBox
 	ldr r0, _08095588 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -7139,7 +7139,7 @@ sub_08095528: @ 0x08095528
 	cmp r0, #0
 	blt _080955F6
 	ldr r0, _0809558C @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _080955F6
 	.align 2, 0
 _08095580: .4byte 0x0000A580
@@ -7152,11 +7152,11 @@ _08095590:
 	ands r2, r3
 	cmp r2, #0
 	beq _08095608
-	bl sub_080954EC
+	bl PrepItemUseClearSubBox
 	ldr r0, [r4, #0x3c]
 	cmp r0, #0
 	bne _080955CC
-	bl sub_080A9564
+	bl HideSysHandCursor
 	ldr r0, _080955C4 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -7164,7 +7164,7 @@ _08095590:
 	cmp r0, #0
 	blt _080955BA
 	ldr r0, _080955C8 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080955BA:
 	adds r0, r4, #0
 	movs r1, #3
@@ -7181,7 +7181,7 @@ _080955CC:
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _08095600 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -7189,10 +7189,10 @@ _080955CC:
 	cmp r0, #0
 	blt _080955F0
 	ldr r0, _08095604 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080955F0:
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 _080955F6:
 	adds r0, r4, #0
 	bl Proc_Break
@@ -7225,7 +7225,7 @@ _08095622:
 	lsls r3, r3, #4
 	movs r1, #0x78
 	movs r2, #0
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _08095654 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -7233,7 +7233,7 @@ _08095622:
 	cmp r0, #0
 	blt _0809564A
 	ldr r0, _08095658 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809564A:
 	add sp, #4
 	pop {r4, r5, r6, r7}
@@ -7325,7 +7325,7 @@ _08095754:
 	cmp r0, #0
 	blt _08095766
 	ldr r0, _08095778 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08095766:
 	adds r0, r4, #0
 	movs r1, #4
@@ -7352,8 +7352,8 @@ _0809577C:
 _08095820: .4byte 0x03002870
 _08095824: .4byte 0x0203A3D8
 
-	thumb_func_start sub_08095828
-sub_08095828: @ 0x08095828
+	thumb_func_start PrepItemUse_WaitPromotionDone
+PrepItemUse_WaitPromotionDone: @ 0x08095828
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetGameLock
@@ -7370,12 +7370,12 @@ _08095840:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08095848
-sub_08095848: @ 0x08095848
+	thumb_func_start PrepItemUse_PostPromotion
+PrepItemUse_PostPromotion: @ 0x08095848
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r1, r0, #0
 	cmp r1, #0
 	bne _08095862
@@ -7408,7 +7408,7 @@ sub_08095878: @ 0x08095878
 	movs r0, #0x49
 	adds r1, r2, #0
 	movs r3, #0x20
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -7423,7 +7423,7 @@ sub_08095894: @ 0x08095894
 	str r0, [sp]
 	movs r2, #0
 	movs r3, #0x10
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -7460,7 +7460,7 @@ sub_080958C8: @ 0x080958C8
 	bl GetItemIcon
 	mov r8, r0
 	mov r0, sl
-	bl sub_080055FC
+	bl GetStringTextLen
 	mov sb, r0
 	mov r1, sb
 	adds r1, #7
@@ -7494,7 +7494,7 @@ _0809590A:
 	movs r2, #0x80
 	lsls r2, r2, #7
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 _08095932:
 	ldr r4, _0809594C @ =0x02012A80
 	adds r0, r4, #0
@@ -7521,7 +7521,7 @@ _08095952:
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #4
 	bl EnableBgSync
 	lsls r0, r5, #3
@@ -7571,7 +7571,7 @@ sub_080959B0: @ 0x080959B0
 	adds r3, r7, #0
 	bl sub_08074474
 	ldr r0, [r4, #0x2c]
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r1, r7, #0
 	adds r1, #0x30
 	strb r0, [r1]
@@ -7627,11 +7627,11 @@ sub_080959B0: @ 0x080959B0
 	adds r6, r0, #0
 	ldr r0, [r4, #0x2c]
 	movs r1, #0
-	bl sub_08094BD4
+	bl DrawPrepScreenItemUseStatBars
 	ldr r0, [r4, #0x2c]
 	bl sub_08094D74
 	ldr r0, [r4, #0x2c]
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r1, r7, #0
 	adds r1, #0x38
 	strb r0, [r1]
@@ -7719,7 +7719,7 @@ _08095AFA:
 	cmp r0, #0
 	blt _08095B16
 	ldr r0, _08095B24 @ =0x0000037A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08095B16:
 	add sp, #4
 	pop {r4, r5, r6, r7}
@@ -7729,8 +7729,8 @@ _08095B16:
 _08095B20: .4byte 0x0202BBF8
 _08095B24: .4byte 0x0000037A
 
-	thumb_func_start sub_08095B28
-sub_08095B28: @ 0x08095B28
+	thumb_func_start PrepItemUseBooster_IDLE
+PrepItemUseBooster_IDLE: @ 0x08095B28
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -7740,7 +7740,7 @@ sub_08095B28: @ 0x08095B28
 	ldr r3, [r5, #0x4c]
 	ldr r4, _08095B64 @ =0x0000A580
 	str r4, [sp]
-	bl sub_08092CB8
+	bl PrepItemDrawPopupBox
 	ldr r0, [r5, #0x2c]
 	subs r0, #1
 	str r0, [r5, #0x2c]
@@ -7770,7 +7770,7 @@ sub_08095B6C: @ 0x08095B6C
 	push {r4, r5, lr}
 	ldr r4, [r0, #0x14]
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r5, r0, #0
 	ldr r0, _08095B94 @ =0x02023FFE
 	movs r1, #0xe
@@ -7799,25 +7799,25 @@ _08095BA2:
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _08095BB4:
 	ldr r0, _08095BE8 @ =0x02022EA4
 	ldr r1, _08095BEC @ =0x02012A20
 	ldr r2, [r4, #0x2c]
 	movs r3, #1
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	ldr r0, [r4, #0x2c]
 	ldr r1, [r4, #0x30]
 	bl sub_08094EF4
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	bl sub_0807453C
 	movs r0, #5
 	bl EnableBgSync
 	ldr r0, _08095BF0 @ =0x06014000
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -7839,7 +7839,7 @@ _08095BFE:
 	adds r1, r5, #0
 	movs r2, #0x10
 	ldr r3, _08095C24 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	adds r5, #0x20
 	subs r4, #1
@@ -7860,7 +7860,7 @@ sub_08095C28: @ 0x08095C28
 	adds r4, r0, #0
 	adds r5, r1, #0
 	ldr r0, _08095C60 @ =sub_08095BF4
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r0, _08095C64 @ =0x08CC4B7C
 	lsls r4, r4, #2
 	adds r4, r4, r0
@@ -7884,8 +7884,8 @@ _08095C60: .4byte sub_08095BF4
 _08095C64: .4byte 0x08CC4B7C
 _08095C68: .4byte 0x08CC4B88
 
-	thumb_func_start sub_08095C6C
-sub_08095C6C: @ 0x08095C6C
+	thumb_func_start StoreConvoyWeaponIconGraphics
+StoreConvoyWeaponIconGraphics: @ 0x08095C6C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08095C98 @ =0x08405EA4
@@ -7944,7 +7944,7 @@ sub_08095CA8: @ 0x08095CA8
 	mov r1, sl
 	adds r1, #6
 	ldr r0, [sp]
-	bl sub_08005590
+	bl PutText
 	b _08095DA6
 	.align 2, 0
 _08095CF4: .4byte 0x02012466
@@ -8000,11 +8000,11 @@ _08095D34:
 	adds r0, r4, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	adds r1, r5, #6
 	add r1, sl
 	mov r0, r8
-	bl sub_08005590
+	bl PutText
 	adds r5, #0x18
 	mov r1, sl
 	adds r4, r1, r5
@@ -8019,7 +8019,7 @@ _08095D84:
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r6, #1
 	ldr r0, [sp, #4]
 	adds r0, #7
@@ -8073,7 +8073,7 @@ _08095DE0:
 	adds r0, r4, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	adds r6, #4
 	adds r5, #1
 	adds r0, r7, #7
@@ -8150,10 +8150,10 @@ _08095E64:
 	movs r2, #0x80
 	lsls r2, r2, #7
 	adds r0, r5, #0
-	bl sub_08004E28
+	bl PutIcon
 	adds r1, r4, #6
 	adds r0, r7, #0
-	bl sub_08005590
+	bl PutText
 	adds r4, #0x18
 	movs r5, #1
 	mov r1, r8
@@ -8166,7 +8166,7 @@ _08095EB4:
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 _08095EC4:
 	pop {r3, r4}
 	mov r8, r3
@@ -8223,7 +8223,7 @@ sub_08095F14: @ 0x08095F14
 	movs r0, #0xff
 	strh r0, [r4, #0x36]
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	bne _08095F32
 	adds r1, r4, #0
@@ -8312,12 +8312,12 @@ _08095FC8: .4byte 0x08194674
 sub_08095FCC: @ 0x08095FCC
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
-	bl sub_08090C48
+	bl GetConvoyItemCount_
 	adds r5, r0, #0
 	lsls r5, r5, #0x18
 	lsrs r5, r5, #0x18
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r6, r0, #0
 	ldr r4, _08096044 @ =0x02012B50
 	adds r0, r4, #0
@@ -8327,7 +8327,7 @@ sub_08095FCC: @ 0x08095FCC
 	adds r4, #0x90
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	adds r7, r4, #0
 	movs r4, #0
 	cmp r5, #0x64
@@ -8391,7 +8391,7 @@ sub_08096054: @ 0x08096054
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #2
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r1, r6, #0
 	subs r1, #0x26
 	movs r2, #0x9c
@@ -8400,7 +8400,7 @@ sub_08096054: @ 0x08096054
 	str r0, [sp]
 	movs r0, #0x4a
 	movs r3, #2
-	bl sub_08006F80
+	bl PutFaceChibi
 	ldr r0, _0809610C @ =0x00001270
 	bl GetMsg
 	adds r4, #8
@@ -8410,10 +8410,10 @@ sub_08096054: @ 0x08096054
 	adds r1, r6, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r5, r6, #0
 	adds r5, #0xa
-	bl sub_08090C48
+	bl GetConvoyItemCount_
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	movs r4, #2
@@ -8421,23 +8421,23 @@ sub_08096054: @ 0x08096054
 	bne _080960C8
 	movs r4, #4
 _080960C8:
-	bl sub_08090C48
+	bl GetConvoyItemCount_
 	adds r2, r0, #0
 	lsls r2, r2, #0x18
 	lsrs r2, r2, #0x18
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_080061D8
+	bl PutNumber
 	adds r0, r6, #0
 	adds r0, #0xc
 	movs r1, #0
 	movs r2, #0x16
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r6, #0
 	adds r0, #0x12
 	movs r1, #2
 	movs r2, #0x64
-	bl sub_080061D8
+	bl PutNumber
 	movs r0, #1
 	bl EnableBgSync
 	add sp, #8
@@ -8460,7 +8460,7 @@ sub_08096110: @ 0x08096110
 	movs r1, #0x22
 	movs r2, #5
 	movs r3, #4
-	bl sub_08092CB8
+	bl PrepItemDrawPopupBox
 	ldr r4, _08096154 @ =0x08B905F8
 	ldr r0, _08096158 @ =0x0000B080
 	str r0, [sp]
@@ -8468,14 +8468,14 @@ sub_08096110: @ 0x08096110
 	movs r1, #0x48
 	movs r2, #0x26
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, _0809615C @ =0x0000B088
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0x48
 	movs r2, #0x36
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -8496,14 +8496,14 @@ sub_08096160: @ 0x08096160
 	movs r1, #0x22
 	movs r2, #5
 	movs r3, #2
-	bl sub_08092CB8
+	bl PrepItemDrawPopupBox
 	ldr r3, _08096190 @ =0x08B905F8
 	ldr r0, _08096194 @ =0x0000B080
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0x48
 	movs r2, #0x26
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -8522,14 +8522,14 @@ sub_08096198: @ 0x08096198
 	movs r1, #0x32
 	movs r2, #5
 	movs r3, #2
-	bl sub_08092CB8
+	bl PrepItemDrawPopupBox
 	ldr r3, _080961C8 @ =0x08B905F8
 	ldr r0, _080961CC @ =0x0000B088
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0x48
 	movs r2, #0x36
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -8574,13 +8574,13 @@ sub_080961D0: @ 0x080961D0
 	movs r0, #4
 	adds r1, r4, #0
 	movs r2, #0x18
-	bl sub_080069F4
+	bl PutSprite
 	ldr r3, _08096258 @ =0x08CC4F90
 	str r5, [sp]
 	movs r0, #4
 	adds r1, r4, #0
 	movs r2, #0x18
-	bl sub_080069F4
+	bl PutSprite
 	ldrb r7, [r7]
 	lsls r0, r7, #1
 	adds r6, #0x4c
@@ -8590,7 +8590,7 @@ sub_080961D0: @ 0x080961D0
 	ldrh r2, [r0]
 	movs r0, #0xb
 	movs r3, #7
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -8685,15 +8685,15 @@ sub_080962A0: @ 0x080962A0
 	ands r4, r6
 	strb r4, [r5, #1]
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r2, #4
@@ -8721,7 +8721,7 @@ sub_080962A0: @ 0x080962A0
 	bl ResetText
 	bl InitIcons
 	bl LoadUiFrameGraphics
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov sb, r4
@@ -8767,7 +8767,7 @@ sub_08096370: @ 0x08096370
 	ldr r0, _080965D4 @ =0x06016000
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	movs r0, #4
 	bl ApplyIconPalettes
 	movs r0, #0xa0
@@ -8795,24 +8795,24 @@ sub_08096370: @ 0x08096370
 	str r7, [sp, #4]
 	movs r0, #0xd
 	movs r2, #0xf
-	bl sub_080A9B74
+	bl StartSysBrownBox
 	movs r0, #0
 	movs r1, #0x98
 	movs r2, #6
 	movs r3, #2
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	ldr r0, [r7, #0x2c]
 	ldr r0, [r0]
 	ldrh r0, [r0]
 	bl GetMsg
 	adds r0, r7, #0
-	bl sub_080A89B4
+	bl StartUiCursorHand
 	adds r0, r7, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	ldr r1, _080965E0 @ =0x03002870
 	mov ip, r1
 	movs r6, #0x20
@@ -8890,7 +8890,7 @@ sub_08096370: @ 0x08096370
 	movs r0, #0xc8
 	movs r1, #0x90
 	adds r2, r7, #0
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	ldr r4, _080965E4 @ =0x02012B68
 	adds r0, r4, #0
 	movs r1, #4
@@ -8920,7 +8920,7 @@ _080964EA:
 _08096508:
 	adds r0, r4, #0
 	movs r1, #7
-	bl sub_0800549C
+	bl InitTextDb
 	adds r4, #8
 	subs r5, #1
 	cmp r5, #0
@@ -8931,7 +8931,7 @@ _08096508:
 	lsls r4, r4, #7
 	adds r0, r4, #0
 	movs r1, #6
-	bl sub_08095C6C
+	bl StoreConvoyWeaponIconGraphics
 	ldr r5, _080965F0 @ =0x02022D3E
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -8941,19 +8941,19 @@ _08096508:
 	ldr r1, _080965F8 @ =0x06015000
 	bl Decompress
 	adds r0, r7, #0
-	bl sub_08090490
+	bl StartMenuScrollBar
 	movs r0, #0xb0
 	lsls r0, r0, #7
 	movs r1, #6
-	bl sub_080904F8
+	bl InitMenuScrollBarImg
 	movs r0, #0xe2
 	movs r1, #0x30
-	bl sub_080904A4
-	bl sub_08090460
+	bl PutMenuScrollBarAt
+	bl TryHideMenuScrollBar
 	ldr r0, [r7, #0x2c]
 	ldrb r1, [r6]
 	movs r2, #1
-	bl sub_08091138
+	bl SomethingPrepListRelated
 	ldr r4, _080965E8 @ =0x02012BA0
 	ldr r1, _080965FC @ =0x02023C7E
 	ldrb r6, [r6]
@@ -8974,25 +8974,25 @@ _08096508:
 	adds r0, r5, #0
 	adds r1, r4, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	bl sub_08096054
 	adds r0, r7, #0
-	bl sub_080A8CD4
+	bl StartUiSpinningArrows
 	movs r1, #0xa0
 	lsls r1, r1, #2
 	movs r0, #0
 	movs r2, #2
-	bl sub_080A8CE8
+	bl LoadUiSpinningArrowGfx
 	movs r0, #0x78
 	movs r1, #0x18
 	movs r2, #0xea
 	movs r3, #0x18
-	bl sub_080A8D70
+	bl SetUiSpinningArrowPositions
 	movs r0, #3
-	bl sub_080A8D54
+	bl SetUiSpinningArrowConfig
 	ldr r0, _08096600 @ =sub_080961D0
 	adds r1, r7, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -9023,7 +9023,7 @@ sub_08096604: @ 0x08096604
 	adds r1, r4, #0
 	bl sub_08095C28
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	adds r0, r4, #0
 	bl sub_08095FCC
 	adds r0, r4, #0
@@ -9035,16 +9035,16 @@ sub_08096604: @ 0x08096604
 	lsls r3, r3, #3
 	movs r0, #0x44
 	movs r2, #4
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _0809665C @ =sub_08096160
-	bl sub_080A9338
+	bl GetParallelWorker
 	bl Proc_End
 	ldr r0, _08096660 @ =sub_08096198
-	bl sub_080A9338
+	bl GetParallelWorker
 	bl Proc_End
 	ldr r0, _08096664 @ =sub_08096110
 	adds r1, r4, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	movs r0, #7
 	bl EnableBgSync
 	pop {r4}
@@ -9086,13 +9086,13 @@ _0809668E:
 	.align 2, 0
 _08096698: .4byte 0x08B857F8
 _0809669C:
-	bl sub_08090C48
+	bl GetConvoyItemCount_
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #0x63
 	bhi _08096768
 	ldr r0, [r5, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	ble _08096768
 	ldrb r4, [r4]
@@ -9101,13 +9101,13 @@ _0809669C:
 	movs r0, #0
 	movs r1, #0x44
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	ldr r0, _080966F8 @ =sub_08096110
-	bl sub_080A9338
+	bl GetParallelWorker
 	bl Proc_End
 	ldr r0, _080966FC @ =sub_08096160
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	movs r0, #1
 	adds r1, r5, #0
 	bl sub_08095C28
@@ -9118,7 +9118,7 @@ _0809669C:
 	cmp r0, #0
 	blt _080966EE
 	ldr r0, _08096704 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080966EE:
 	adds r0, r5, #0
 	movs r1, #3
@@ -9131,7 +9131,7 @@ _08096700: .4byte 0x0202BBF8
 _08096704: .4byte 0x0000038A
 _08096708:
 	ldr r0, [r5, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #4
 	bgt _08096768
 	ldrb r4, [r4]
@@ -9140,13 +9140,13 @@ _08096708:
 	movs r0, #0
 	movs r1, #0x44
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	ldr r0, _08096758 @ =sub_08096110
-	bl sub_080A9338
+	bl GetParallelWorker
 	bl Proc_End
 	ldr r0, _0809675C @ =sub_08096198
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	movs r0, #2
 	adds r1, r5, #0
 	bl sub_08095C28
@@ -9157,7 +9157,7 @@ _08096708:
 	cmp r0, #0
 	blt _0809674E
 	ldr r0, _08096764 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809674E:
 	adds r0, r5, #0
 	movs r1, #4
@@ -9179,7 +9179,7 @@ _08096768:
 _08096776:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08096888
 	.align 2, 0
 _08096780: .4byte 0x0202BBF8
@@ -9198,7 +9198,7 @@ _08096784:
 	cmp r0, #0
 	blt _08096888
 	ldr r0, _080967AC @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08096888
 	.align 2, 0
 _080967A8: .4byte 0x0202BBF8
@@ -9216,7 +9216,7 @@ _080967B0:
 	adds r0, r0, r2
 	ldr r2, [r0]
 	movs r0, #0x44
-	bl sub_0808190C
+	bl StartHelpBox
 	strh r7, [r5, #0x38]
 	b _08096888
 	.align 2, 0
@@ -9230,7 +9230,7 @@ _080967D4:
 	ands r0, r1
 	cmp r0, #0
 	beq _080967F4
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0
 	strh r0, [r5, #0x38]
 	b _08096888
@@ -9293,7 +9293,7 @@ _08096844:
 	cmp r0, #0
 	blt _0809685C
 	ldr r0, _08096894 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809685C:
 	ldrb r3, [r4]
 	lsls r1, r3, #4
@@ -9302,7 +9302,7 @@ _0809685C:
 	lsls r3, r3, #3
 	movs r0, #0x44
 	movs r2, #4
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldrh r0, [r5, #0x38]
 	cmp r0, #0
 	beq _08096888
@@ -9314,7 +9314,7 @@ _0809685C:
 	adds r0, r0, r2
 	ldr r2, [r0]
 	movs r0, #0x44
-	bl sub_0808190C
+	bl StartHelpBox
 _08096888:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -9334,7 +9334,7 @@ sub_0809689C: @ 0x0809689C
 	adds r5, #0x35
 	ldrb r1, [r5]
 	movs r2, #1
-	bl sub_08091138
+	bl SomethingPrepListRelated
 	ldr r0, _0809692C @ =0x02012BA0
 	ldr r1, _08096930 @ =0x02023C7E
 	ldrb r3, [r5]
@@ -9348,7 +9348,7 @@ sub_0809689C: @ 0x0809689C
 	bl sub_08095CA8
 	ldr r0, _08096934 @ =0x02022EA4
 	ldr r1, [r4, #0x2c]
-	bl sub_08094314
+	bl DrawPrepScreenItemIcons
 	ldrb r1, [r5]
 	lsls r0, r1, #1
 	adds r7, r4, #0
@@ -9364,7 +9364,7 @@ sub_0809689C: @ 0x0809689C
 	lsls r3, r3, #4
 	movs r0, #0x80
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #5
 	bl EnableBgSync
 	ldrh r0, [r4, #0x38]
@@ -9388,7 +9388,7 @@ sub_0809689C: @ 0x0809689C
 	subs r0, #0x28
 	subs r1, r1, r0
 	movs r0, #0x80
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #1
 	b _08096946
 	.align 2, 0
@@ -9398,7 +9398,7 @@ _08096934: .4byte 0x02022EA4
 _08096938: .4byte 0x02012466
 _0809693C: .4byte 0x020117E4
 _08096940:
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0xff
 _08096946:
 	strh r0, [r4, #0x38]
@@ -9719,7 +9719,7 @@ _08096B7E:
 	lsls r3, r3, #4
 	movs r0, #0x80
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -9751,7 +9751,7 @@ sub_08096BB0: @ 0x08096BB0
 	bl sub_08095DC0
 	ldr r0, _08096C4C @ =0x02022EA4
 	ldr r1, [r4, #0x2c]
-	bl sub_08094314
+	bl DrawPrepScreenItemIcons
 	movs r0, #5
 	bl EnableBgSync
 	cmp r7, #0
@@ -9821,7 +9821,7 @@ sub_08096C60: @ 0x08096C60
 	push {r7}
 	adds r7, r0, #0
 	ldr r0, [r7, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r2, r0, #0
 	cmp r2, #5
 	beq _08096C7C
@@ -9840,7 +9840,7 @@ _08096C7C:
 _08096C8A:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08096DAE
 	.align 2, 0
 _08096C94: .4byte 0x02012466
@@ -9881,7 +9881,7 @@ _08096C9C:
 	mov r2, r8
 	ldrb r1, [r2]
 	movs r2, #1
-	bl sub_08091138
+	bl SomethingPrepListRelated
 	adds r0, r7, #0
 	bl sub_08096A98
 	bl InitIcons
@@ -9890,7 +9890,7 @@ _08096C9C:
 	ldr r2, [r7, #0x2c]
 	adds r1, r4, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	adds r4, #0x28
 	ldr r1, _08096D88 @ =0x02023C7E
 	mov r3, r8
@@ -9907,7 +9907,7 @@ _08096C9C:
 	ldr r0, _08096D8C @ =sub_08096C54
 	movs r1, #1
 	adds r2, r7, #0
-	bl sub_080A8E14
+	bl StartParallelFiniteLoop
 	mov r1, r8
 	ldrb r1, [r1]
 	lsls r0, r1, #1
@@ -9922,14 +9922,14 @@ _08096C9C:
 	lsls r3, r3, #4
 	movs r0, #0x80
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #5
 	bl EnableBgSync
 	ldr r1, _08096D90 @ =0x0203A85C
 	movs r0, #0x19
 	strb r0, [r1, #0x11]
 	ldr r0, [r7, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #5
 	bne _08096D9C
 	adds r0, r7, #0
@@ -9942,7 +9942,7 @@ _08096C9C:
 	cmp r0, #0
 	blt _08096DAE
 	ldr r0, _08096D98 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08096DAE
 	.align 2, 0
 _08096D7C: .4byte 0x020117E4
@@ -9961,7 +9961,7 @@ _08096D9C:
 	cmp r0, #0
 	blt _08096DAE
 	ldr r0, _08096DBC @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08096DAE:
 	pop {r3}
 	mov r8, r3
@@ -10031,7 +10031,7 @@ _08096DFE:
 	subs r0, #0x28
 	subs r1, r1, r0
 	movs r0, #0x80
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #1
 	strh r0, [r4, #0x38]
 	b _0809713E
@@ -10050,7 +10050,7 @@ _08096E44:
 _08096E52:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809713E
 	.align 2, 0
 _08096E5C: .4byte 0x0202BBF8
@@ -10077,7 +10077,7 @@ _08096E70:
 	cmp r0, #0
 	blt _08096E92
 	ldr r0, _08096E9C @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08096E92:
 	mov r0, sb
 	strh r0, [r4, #0x38]
@@ -10095,7 +10095,7 @@ _08096EA0:
 	mov r8, r2
 	cmp r0, #0
 	beq _08096EC0
-	bl sub_08081B44
+	bl CloseHelpBox
 	mov r1, sb
 	strh r1, [r4, #0x38]
 	b _0809713E
@@ -10112,7 +10112,7 @@ _08096EC0:
 	cmp r5, #0
 	beq _08096F0C
 	movs r0, #0
-	bl sub_080A8D98
+	bl SetUiSpinningArrowFastMaybe
 	ldr r0, _08096F04 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -10120,7 +10120,7 @@ _08096EC0:
 	cmp r0, #0
 	blt _08096EEA
 	ldr r0, _08096F08 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08096EEA:
 	adds r0, r4, #0
 	movs r1, #5
@@ -10141,7 +10141,7 @@ _08096F0C:
 	cmp r0, #0
 	beq _08096F4C
 	movs r0, #1
-	bl sub_080A8D98
+	bl SetUiSpinningArrowFastMaybe
 	ldr r0, _08096F44 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -10149,7 +10149,7 @@ _08096F0C:
 	cmp r0, #0
 	blt _08096F2C
 	ldr r0, _08096F48 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08096F2C:
 	adds r0, r4, #0
 	movs r1, #6
@@ -10316,7 +10316,7 @@ _0809704A:
 	cmp r0, #0
 	blt _08097072
 	ldr r0, _080970B8 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08097072:
 	ldrb r0, [r7]
 	lsls r1, r0, #1
@@ -10340,7 +10340,7 @@ _08097072:
 	adds r1, #0x10
 	movs r0, #0x80
 	mov r2, sb
-	bl sub_0808198C
+	bl StartItemHelpBox
 _080970A2:
 	adds r0, r4, #0
 	adds r0, #0x32
@@ -10375,7 +10375,7 @@ _080970BC:
 	subs r1, #0x10
 	movs r0, #0x80
 	mov r2, sb
-	bl sub_0808198C
+	bl StartItemHelpBox
 _080970EC:
 	adds r0, r4, #0
 	adds r0, #0x32
@@ -10402,7 +10402,7 @@ _08097100:
 	subs r1, r1, r0
 	movs r0, #0x80
 	mov r2, sb
-	bl sub_0808198C
+	bl StartItemHelpBox
 _08097120:
 	ldrb r7, [r7]
 	lsls r0, r7, #1
@@ -10417,7 +10417,7 @@ _08097120:
 	lsls r3, r3, #4
 	movs r0, #0x80
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _0809713E:
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -10442,7 +10442,7 @@ sub_0809714C: @ 0x0809714C
 	cmp r5, #0
 	beq _08097192
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r3, r0, #0
 	adds r2, r4, #0
 	adds r2, #0x31
@@ -10471,7 +10471,7 @@ _08097192:
 	cmp r0, #0
 	beq _080971E0
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r2, r4, #0
 	adds r2, #0x31
 	ldrb r1, [r2]
@@ -10497,7 +10497,7 @@ _080971C2:
 	cmp r0, #0
 	blt _080971D4
 	ldr r0, _080971DC @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080971D4:
 	movs r0, #1
 	b _080971E2
@@ -10522,7 +10522,7 @@ sub_080971E8: @ 0x080971E8
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -10540,7 +10540,7 @@ sub_08097204: @ 0x08097204
 	adds r1, #0x1e
 	adds r1, r1, r2
 	ldrh r4, [r1]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	ldr r0, [r5, #0x2c]
 	ldrb r2, [r7]
 	lsls r1, r2, #1
@@ -10551,16 +10551,16 @@ sub_08097204: @ 0x08097204
 	ldr r0, [r5, #0x2c]
 	bl UnitRemoveInvalidItems
 	adds r0, r4, #0
-	bl sub_08090F68
+	bl GetPrepPageForItem
 	adds r6, r5, #0
 	adds r6, #0x35
 	strb r0, [r6]
 	adds r0, r4, #0
-	bl sub_0802E790
+	bl AddItemToConvoy
 	ldr r0, [r5, #0x2c]
 	ldrb r1, [r6]
 	movs r2, #1
-	bl sub_08091138
+	bl SomethingPrepListRelated
 	adds r0, r5, #0
 	bl sub_08096A98
 	bl InitIcons
@@ -10569,7 +10569,7 @@ sub_08097204: @ 0x08097204
 	ldr r2, [r5, #0x2c]
 	adds r1, r4, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	adds r4, #0x28
 	ldr r1, _080972D4 @ =0x02023C7E
 	ldrb r6, [r6]
@@ -10585,18 +10585,18 @@ sub_08097204: @ 0x08097204
 	ldr r0, _080972D8 @ =sub_08096C54
 	movs r1, #1
 	adds r2, r5, #0
-	bl sub_080A8E14
+	bl StartParallelFiniteLoop
 	movs r0, #4
 	bl EnableBgSync
 	ldr r0, [r5, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r4, r0, #0
 	ldr r1, _080972DC @ =0x0203A85C
 	movs r0, #0x19
 	strb r0, [r1, #0x11]
 	cmp r4, #0
 	beq _080972AE
-	bl sub_08090C48
+	bl GetConvoyItemCount_
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #0x64
@@ -10612,7 +10612,7 @@ _080972AE:
 	cmp r0, #0
 	blt _08097314
 	ldr r0, _080972E4 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08097314
 	.align 2, 0
 _080972CC: .4byte 0x02022EA4
@@ -10630,7 +10630,7 @@ _080972E8:
 	cmp r0, #0
 	blt _080972FA
 	ldr r0, _08097320 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080972FA:
 	ldrb r0, [r7]
 	cmp r4, r0
@@ -10643,7 +10643,7 @@ _080972FA:
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _08097314:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -10667,7 +10667,7 @@ sub_08097324: @ 0x08097324
 	ands r0, r1
 	cmp r0, #0
 	beq _080973E8
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0
 	strh r0, [r4, #0x38]
 	b _0809742A
@@ -10695,7 +10695,7 @@ _0809734C:
 	lsls r1, r3, #4
 	adds r1, #0x48
 	movs r0, #0x10
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #1
 	strh r0, [r4, #0x38]
 	b _0809742A
@@ -10719,7 +10719,7 @@ _08097384:
 	ldr r2, _080973B0 @ =0x000003AE
 	adds r0, r1, #0
 	adds r3, r4, #0
-	bl sub_08090D20
+	bl StartPrepErrorHelpbox
 	b _0809742A
 	.align 2, 0
 _080973B0: .4byte 0x000003AE
@@ -10742,7 +10742,7 @@ _080973BC:
 	cmp r0, #0
 	blt _0809742A
 	ldr r0, _080973E4 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809742A
 	.align 2, 0
 _080973E0: .4byte 0x0202BBF8
@@ -10762,7 +10762,7 @@ _080973E8:
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldrh r0, [r4, #0x38]
 	cmp r0, #1
 	bne _0809742A
@@ -10777,7 +10777,7 @@ _080973E8:
 	lsls r1, r3, #4
 	adds r1, #0x48
 	movs r0, #0x10
-	bl sub_0808198C
+	bl StartItemHelpBox
 _0809742A:
 	pop {r4, r5}
 	pop {r0}
@@ -10801,8 +10801,8 @@ sub_08097430: @ 0x08097430
 _0809744C:
 	bl sub_080A9D08
 	adds r0, r4, #0
-	bl sub_080A9DC0
-	bl sub_0808E46C
+	bl EndAllProcChildren
+	bl EndMuralBackground_
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4}
@@ -10811,8 +10811,8 @@ _0809744C:
 	.align 2, 0
 _08097468: .4byte 0x08CC3BDC
 
-	thumb_func_start sub_0809746C
-sub_0809746C: @ 0x0809746C
+	thumb_func_start StartPrepItemSupplyProc
+StartPrepItemSupplyProc: @ 0x0809746C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08097484 @ =0x08CC4B94
@@ -10862,8 +10862,8 @@ _080974C0:
 	.align 2, 0
 _080974C8: .4byte 0x03004690
 
-	thumb_func_start sub_080974CC
-sub_080974CC: @ 0x080974CC
+	thumb_func_start StartBmSupply
+StartBmSupply: @ 0x080974CC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080974E8 @ =0x08CC4C74
@@ -10879,8 +10879,8 @@ sub_080974CC: @ 0x080974CC
 	.align 2, 0
 _080974E8: .4byte 0x08CC4C74
 
-	thumb_func_start sub_080974EC
-sub_080974EC: @ 0x080974EC
+	thumb_func_start MaybeStartSelectConvoyItemProc
+MaybeStartSelectConvoyItemProc: @ 0x080974EC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08097508 @ =0x08CC4C74
@@ -10896,8 +10896,8 @@ sub_080974EC: @ 0x080974EC
 	.align 2, 0
 _08097508: .4byte 0x08CC4C74
 
-	thumb_func_start sub_0809750C
-sub_0809750C: @ 0x0809750C
+	thumb_func_start PrepItemList_Init
+PrepItemList_Init: @ 0x0809750C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08097550 @ =0x08CC3BDC
@@ -10954,7 +10954,7 @@ sub_08097554: @ 0x08097554
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #1
 	bl EnableBgSync
 	add sp, #8
@@ -10966,8 +10966,8 @@ _08097590: .4byte 0x02022CC8
 _08097594: .4byte 0x00001262
 _08097598: .4byte 0x02012BE0
 
-	thumb_func_start sub_0809759C
-sub_0809759C: @ 0x0809759C
+	thumb_func_start PrepItemList_DrawCurrentOwnerText
+PrepItemList_DrawCurrentOwnerText: @ 0x0809759C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -11027,7 +11027,7 @@ _080975F8:
 	movs r2, #3
 _0809761C:
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	b _0809764C
 	.align 2, 0
 _08097624: .4byte 0x020117E4
@@ -11045,7 +11045,7 @@ _0809762C:
 	mov r1, r8
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 _0809764C:
 	movs r0, #1
 	bl EnableBgSync
@@ -11093,13 +11093,13 @@ sub_08097660: @ 0x08097660
 	movs r0, #4
 	adds r1, r4, #0
 	movs r2, #0x18
-	bl sub_080069F4
+	bl PutSprite
 	ldr r3, _080976E8 @ =0x08CC4F90
 	str r5, [sp]
 	movs r0, #4
 	adds r1, r4, #0
 	movs r2, #0x18
-	bl sub_080069F4
+	bl PutSprite
 	ldrb r7, [r7]
 	lsls r0, r7, #1
 	adds r6, #0x4a
@@ -11109,7 +11109,7 @@ sub_08097660: @ 0x08097660
 	ldrh r2, [r0]
 	movs r0, #0xb
 	movs r3, #7
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -11142,15 +11142,15 @@ sub_080976F0: @ 0x080976F0
 	movs r0, #0
 	bl InitBgs
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r1, #4
@@ -11209,10 +11209,10 @@ sub_080976F0: @ 0x080976F0
 	ldr r0, _08097A34 @ =0x06012000
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	movs r0, #4
 	bl ApplyIconPalettes
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	movs r0, #0xa0
 	lsls r0, r0, #7
 	movs r1, #5
@@ -11225,13 +11225,13 @@ sub_080976F0: @ 0x080976F0
 	movs r0, #7
 	bl EnableBgSync
 	adds r0, r7, #0
-	bl sub_080A89B4
+	bl StartUiCursorHand
 	adds r0, r7, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	movs r0, #0x20
 	mov r2, r8
 	ldrb r2, [r2, #1]
@@ -11286,7 +11286,7 @@ sub_080976F0: @ 0x080976F0
 	movs r0, #0xc8
 	movs r1, #0x90
 	adds r2, r7, #0
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	ldr r4, _08097A40 @ =0x02012B68
 	adds r0, r4, #0
 	movs r1, #6
@@ -11319,7 +11319,7 @@ _0809788C:
 _080978AA:
 	adds r0, r4, #0
 	movs r1, #7
-	bl sub_0800549C
+	bl InitTextDb
 	adds r4, #8
 	subs r5, #1
 	cmp r5, #0
@@ -11328,7 +11328,7 @@ _080978AA:
 	lsls r4, r4, #7
 	adds r0, r4, #0
 	movs r1, #6
-	bl sub_08095C6C
+	bl StoreConvoyWeaponIconGraphics
 	ldr r2, _08097A48 @ =0x02022D3E
 	mov sb, r2
 	mov r0, sb
@@ -11339,20 +11339,20 @@ _080978AA:
 	ldr r1, _08097A50 @ =0x06015000
 	bl Decompress
 	adds r0, r7, #0
-	bl sub_08090490
+	bl StartMenuScrollBar
 	movs r0, #0xb0
 	lsls r0, r0, #7
 	movs r1, #4
-	bl sub_080904F8
+	bl InitMenuScrollBarImg
 	movs r0, #0xe2
 	movs r1, #0x30
-	bl sub_080904A4
-	bl sub_08090460
+	bl PutMenuScrollBarAt
+	bl TryHideMenuScrollBar
 	ldr r0, [r7, #0x2c]
 	mov r3, r8
 	ldrb r1, [r3]
 	movs r2, #3
-	bl sub_08091138
+	bl SomethingPrepListRelated
 	adds r0, r7, #0
 	bl sub_08097DD4
 	ldr r5, _08097A44 @ =0x02012BA0
@@ -11375,25 +11375,25 @@ _080978AA:
 	subs r1, #0x28
 	ldr r2, [r7, #0x2c]
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	bl sub_08097554
 	adds r0, r7, #0
-	bl sub_080A8CD4
+	bl StartUiSpinningArrows
 	movs r1, #0xa0
 	lsls r1, r1, #2
 	movs r0, #0
 	movs r2, #2
-	bl sub_080A8CE8
+	bl LoadUiSpinningArrowGfx
 	movs r0, #0x78
 	movs r1, #0x18
 	movs r2, #0xea
 	movs r3, #0x18
-	bl sub_080A8D70
+	bl SetUiSpinningArrowPositions
 	movs r0, #3
-	bl sub_080A8D54
+	bl SetUiSpinningArrowConfig
 	ldr r0, _08097A58 @ =sub_08097660
 	adds r1, r7, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r0, [r7, #0x2c]
 	bl GetUnitFid
 	adds r1, r0, #0
@@ -11403,7 +11403,7 @@ _080978AA:
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0x40
-	bl sub_08007BCC
+	bl StartBmFace
 	ldr r0, [r7, #0x2c]
 	ldr r0, [r0]
 	ldrh r0, [r0]
@@ -11419,19 +11419,19 @@ _080978AA:
 	str r7, [sp, #4]
 	movs r0, #0xd
 	movs r2, #0xf
-	bl sub_080A9B74
+	bl StartSysBrownBox
 	movs r1, #0x28
 	rsbs r1, r1, #0
 	movs r2, #1
 	rsbs r2, r2, #0
 	movs r0, #0
 	movs r3, #1
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	movs r0, #1
 	movs r1, #0x98
 	movs r2, #6
 	movs r3, #2
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	ldr r3, _08097A30 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -11473,9 +11473,9 @@ _080978AA:
 	adds r0, r5, #0
 	ldr r1, _08097A68 @ =0x02022C60
 	movs r2, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r7, #0
-	bl sub_0809759C
+	bl PrepItemList_DrawCurrentOwnerText
 	add sp, #8
 	pop {r3, r4}
 	mov r8, r3
@@ -11512,10 +11512,10 @@ sub_08097A6C: @ 0x08097A6C
 	adds r0, #0x31
 	strb r1, [r0]
 	adds r0, r4, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	movs r0, #0
-	bl sub_08006D50
-	bl sub_0808E46C
+	bl EndFaceById
+	bl EndMuralBackground_
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -11532,7 +11532,7 @@ sub_08097A9C: @ 0x08097A9C
 	adds r5, #0x33
 	ldrb r1, [r5]
 	movs r2, #3
-	bl sub_08091138
+	bl SomethingPrepListRelated
 	adds r0, r4, #0
 	bl sub_08097CAC
 	ldr r0, _08097B3C @ =0x02012BA0
@@ -11548,7 +11548,7 @@ sub_08097A9C: @ 0x08097A9C
 	bl sub_08095CA8
 	ldr r0, _08097B44 @ =0x02022EA4
 	ldr r1, [r4, #0x2c]
-	bl sub_08094314
+	bl DrawPrepScreenItemIcons
 	ldrb r1, [r5]
 	lsls r0, r1, #1
 	adds r7, r4, #0
@@ -11564,13 +11564,13 @@ sub_08097A9C: @ 0x08097A9C
 	lsls r3, r3, #4
 	movs r0, #0x80
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #5
 	bl EnableBgSync
-	ldr r0, _08097B48 @ =sub_0809759C
+	ldr r0, _08097B48 @ =PrepItemList_DrawCurrentOwnerText
 	movs r1, #2
 	adds r2, r4, #0
-	bl sub_080A8E14
+	bl StartParallelFiniteLoop
 	ldrh r0, [r4, #0x36]
 	cmp r0, #0
 	beq _08097B5C
@@ -11592,18 +11592,18 @@ sub_08097A9C: @ 0x08097A9C
 	subs r0, #0x28
 	subs r1, r1, r0
 	movs r0, #0x80
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #1
 	b _08097B5A
 	.align 2, 0
 _08097B3C: .4byte 0x02012BA0
 _08097B40: .4byte 0x02023C7E
 _08097B44: .4byte 0x02022EA4
-_08097B48: .4byte sub_0809759C
+_08097B48: .4byte PrepItemList_DrawCurrentOwnerText
 _08097B4C: .4byte 0x02012466
 _08097B50: .4byte 0x020117E4
 _08097B54:
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0xff
 _08097B5A:
 	strh r0, [r4, #0x36]
@@ -11879,7 +11879,7 @@ sub_08097D30: @ 0x08097D30
 	bl sub_08095DC0
 	ldr r0, _08097DCC @ =0x02022EA4
 	ldr r1, [r4, #0x2c]
-	bl sub_08094314
+	bl DrawPrepScreenItemIcons
 	movs r0, #5
 	bl EnableBgSync
 	cmp r7, #0
@@ -12002,7 +12002,7 @@ _08097E36:
 	lsls r3, r3, #4
 	movs r0, #0x80
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -12071,7 +12071,7 @@ _08097EA8:
 	subs r0, #0x28
 	subs r1, r1, r0
 	movs r0, #0x80
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #1
 	strh r0, [r4, #0x36]
 	b _08098266
@@ -12099,7 +12099,7 @@ _08097F00:
 _08097F0E:
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08098266
 	.align 2, 0
 _08097F18: .4byte 0x02012466
@@ -12119,7 +12119,7 @@ _08097F20:
 	movs r0, #0
 	movs r1, #0x80
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	adds r0, r4, #0
 	movs r1, #7
 	b _08097F50
@@ -12139,7 +12139,7 @@ _08097F50:
 	b _08098266
 _08097F62:
 	ldr r0, _08097F70 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08098266
 	.align 2, 0
 _08097F6C: .4byte 0x0202BBF8
@@ -12159,7 +12159,7 @@ _08097F74:
 	cmp r0, #0
 	blt _08097F96
 	ldr r0, _08097FA0 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08097F96:
 	mov r3, sl
 	strh r3, [r4, #0x36]
@@ -12177,7 +12177,7 @@ _08097FA4:
 	mov r8, r2
 	cmp r0, #0
 	beq _08097FC4
-	bl sub_08081B44
+	bl CloseHelpBox
 	mov r0, sl
 	strh r0, [r4, #0x36]
 	b _08098266
@@ -12194,7 +12194,7 @@ _08097FC4:
 	cmp r5, #0
 	beq _08098010
 	movs r0, #0
-	bl sub_080A8D98
+	bl SetUiSpinningArrowFastMaybe
 	ldr r0, _08098008 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -12202,7 +12202,7 @@ _08097FC4:
 	cmp r0, #0
 	blt _08097FEE
 	ldr r0, _0809800C @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08097FEE:
 	adds r0, r4, #0
 	movs r1, #3
@@ -12223,7 +12223,7 @@ _08098010:
 	cmp r0, #0
 	beq _08098050
 	movs r0, #1
-	bl sub_080A8D98
+	bl SetUiSpinningArrowFastMaybe
 	ldr r0, _08098048 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -12231,7 +12231,7 @@ _08098010:
 	cmp r0, #0
 	blt _08098030
 	ldr r0, _0809804C @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08098030:
 	adds r0, r4, #0
 	movs r1, #4
@@ -12401,7 +12401,7 @@ _0809815E:
 	cmp r0, #0
 	blt _0809817A
 	ldr r0, _080981E0 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809817A:
 	ldrb r1, [r7]
 	lsls r0, r1, #1
@@ -12417,7 +12417,7 @@ _0809817A:
 	cmp r1, r0
 	beq _0809819A
 	adds r0, r4, #0
-	bl sub_0809759C
+	bl PrepItemList_DrawCurrentOwnerText
 _0809819A:
 	ldrb r3, [r7]
 	lsls r1, r3, #1
@@ -12441,7 +12441,7 @@ _0809819A:
 	adds r1, #0x10
 	movs r0, #0x80
 	mov r2, sl
-	bl sub_0808198C
+	bl StartItemHelpBox
 _080981CA:
 	adds r0, r4, #0
 	adds r0, #0x31
@@ -12476,7 +12476,7 @@ _080981E4:
 	subs r1, #0x10
 	movs r0, #0x80
 	mov r2, sl
-	bl sub_0808198C
+	bl StartItemHelpBox
 _08098214:
 	adds r0, r4, #0
 	adds r0, #0x31
@@ -12503,7 +12503,7 @@ _08098228:
 	subs r1, r1, r0
 	movs r0, #0x80
 	mov r2, sl
-	bl sub_0808198C
+	bl StartItemHelpBox
 _08098248:
 	ldrb r7, [r7]
 	lsls r0, r7, #1
@@ -12518,7 +12518,7 @@ _08098248:
 	lsls r3, r3, #4
 	movs r0, #0x80
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _08098266:
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -12533,7 +12533,7 @@ sub_08098274: @ 0x08098274
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r1, r0, #0
 	adds r0, r4, #0
 	adds r0, #0x30
@@ -12609,7 +12609,7 @@ _080982F2:
 	cmp r0, #0
 	blt _0809830A
 	ldr r0, _08098314 @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809830A:
 	movs r0, #1
 	b _0809831A
@@ -12628,7 +12628,7 @@ sub_08098320: @ 0x08098320
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r1, r0, #0
 	cmp r1, #5
 	bne _0809833C
@@ -12650,7 +12650,7 @@ _08098342:
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -12690,7 +12690,7 @@ sub_0809835C: @ 0x0809835C
 	ldr r0, [r6, #0x2c]
 	ldrb r1, [r7]
 	movs r2, #3
-	bl sub_08091138
+	bl SomethingPrepListRelated
 _080983A4:
 	adds r0, r6, #0
 	bl sub_08097CAC
@@ -12699,7 +12699,7 @@ _080983A4:
 	ldr r2, [r6, #0x2c]
 	adds r1, r4, #0
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	adds r4, #0x28
 	ldr r1, _08098408 @ =0x02023C7E
 	ldrb r7, [r7]
@@ -12712,10 +12712,10 @@ _080983A4:
 	ldr r3, [r6, #0x2c]
 	adds r0, r4, #0
 	bl sub_08095CA8
-	ldr r0, _0809840C @ =sub_0809759C
+	ldr r0, _0809840C @ =PrepItemList_DrawCurrentOwnerText
 	movs r1, #1
 	adds r2, r6, #0
-	bl sub_080A8E14
+	bl StartParallelFiniteLoop
 	movs r0, #4
 	bl EnableBgSync
 	ldr r0, _08098410 @ =0x0202BBF8
@@ -12725,7 +12725,7 @@ _080983A4:
 	cmp r0, #0
 	blt _080983F4
 	ldr r0, _08098414 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080983F4:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -12735,7 +12735,7 @@ _080983FC: .4byte 0x020117E4
 _08098400: .4byte 0x02022EA4
 _08098404: .4byte 0x02012B78
 _08098408: .4byte 0x02023C7E
-_0809840C: .4byte sub_0809759C
+_0809840C: .4byte PrepItemList_DrawCurrentOwnerText
 _08098410: .4byte 0x0202BBF8
 _08098414: .4byte 0x0000038A
 
@@ -12754,7 +12754,7 @@ sub_08098418: @ 0x08098418
 	ands r0, r1
 	cmp r0, #0
 	beq _08098508
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0
 	strh r0, [r5, #0x36]
 	b _0809854A
@@ -12782,7 +12782,7 @@ _08098440:
 	lsls r1, r3, #4
 	adds r1, #0x48
 	movs r0, #0x10
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #1
 	strh r0, [r5, #0x36]
 	b _0809854A
@@ -12809,7 +12809,7 @@ _08098478:
 	lsls r2, r2, #2
 	adds r2, r2, r4
 	ldrh r2, [r2, #2]
-	bl sub_08090E90
+	bl CheckValidLinkArenaItemSupply
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _080984C4
@@ -12818,14 +12818,14 @@ _08098478:
 	ldr r2, _080984C0 @ =0x000003AE
 	adds r0, r1, #0
 	adds r3, r5, #0
-	bl sub_08090D20
+	bl StartPrepErrorHelpbox
 	b _0809854A
 	.align 2, 0
 _080984BC: .4byte 0x020117E4
 _080984C0: .4byte 0x000003AE
 _080984C4:
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	adds r0, r5, #0
 	bl Proc_Break
 	adds r0, r5, #0
@@ -12837,7 +12837,7 @@ _080984D8:
 	cmp r0, #0
 	beq _08098508
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	adds r0, r5, #0
 	bl Proc_Break
 	ldr r0, _08098500 @ =0x0202BBF8
@@ -12847,7 +12847,7 @@ _080984D8:
 	cmp r0, #0
 	blt _0809854A
 	ldr r0, _08098504 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809854A
 	.align 2, 0
 _08098500: .4byte 0x0202BBF8
@@ -12867,7 +12867,7 @@ _08098508:
 	lsls r3, r3, #4
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldrh r0, [r5, #0x36]
 	cmp r0, #1
 	bne _0809854A
@@ -12882,14 +12882,14 @@ _08098508:
 	lsls r1, r3, #4
 	adds r1, #0x48
 	movs r0, #0x10
-	bl sub_0808198C
+	bl StartItemHelpBox
 _0809854A:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08098550
-sub_08098550: @ 0x08098550
+	thumb_func_start PrepItemList_StartTradeScreen
+PrepItemList_StartTradeScreen: @ 0x08098550
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r0, #0x33
@@ -12942,7 +12942,7 @@ _080985AA:
 	adds r1, r5, #0
 	movs r2, #0x10
 	ldr r3, _080985D0 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	adds r5, #0x20
 	subs r4, #1
@@ -12963,7 +12963,7 @@ sub_080985D4: @ 0x080985D4
 	adds r4, r0, #0
 	adds r5, r1, #0
 	ldr r0, _0809860C @ =sub_080985A0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r0, _08098610 @ =0x08CC4EB4
 	lsls r4, r4, #2
 	adds r4, r4, r0
@@ -13020,8 +13020,8 @@ _08098644: .4byte 0x04000006
 _08098648: .4byte 0x04000050
 _0809864C: .4byte 0x00000242
 
-	thumb_func_start sub_08098650
-sub_08098650: @ 0x08098650
+	thumb_func_start WmSell_Init
+WmSell_Init: @ 0x08098650
 	movs r2, #0
 	movs r1, #0
 	strh r1, [r0, #0x34]
@@ -13054,7 +13054,7 @@ sub_08098660: @ 0x08098660
 	bl SetTextFontGlyphs
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	movs r0, #0x93
 	lsls r0, r0, #5
 	bl GetMsg
@@ -13116,7 +13116,7 @@ sub_0809871C: @ 0x0809871C
 	movs r1, #0x68
 	movs r2, #8
 	movs r3, #4
-	bl sub_08092CB8
+	bl PrepItemDrawPopupBox
 	ldr r4, _0809877C @ =0x08B905F8
 	ldr r0, _08098780 @ =0x0000B088
 	str r0, [sp]
@@ -13124,28 +13124,28 @@ sub_0809871C: @ 0x0809871C
 	movs r1, #0xb0
 	movs r2, #0x6c
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, _08098784 @ =0x0000B08C
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0xd0
 	movs r2, #0x6c
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, _08098788 @ =0x0000B080
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0xa8
 	movs r2, #0x7c
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, _0809878C @ =0x0000B084
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0xc8
 	movs r2, #0x7c
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -13168,21 +13168,21 @@ sub_08098790: @ 0x08098790
 	movs r1, #0x8c
 	movs r2, #0x58
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r3, _080987D8 @ =0x08B905D0
 	ldr r0, _080987DC @ =0x0000B094
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0xac
 	movs r2, #0x58
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, _080987E0 @ =0x0000B098
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0x90
 	movs r2, #0x38
 	adds r3, r4, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -13194,8 +13194,8 @@ _080987D8: .4byte 0x08B905D0
 _080987DC: .4byte 0x0000B094
 _080987E0: .4byte 0x0000B098
 
-	thumb_func_start sub_080987E4
-sub_080987E4: @ 0x080987E4
+	thumb_func_start WmSell_DrawItemGoldValue
+WmSell_DrawItemGoldValue: @ 0x080987E4
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r6, _0809883C @ =0x02022F48
@@ -13207,7 +13207,7 @@ sub_080987E4: @ 0x080987E4
 	cmp r4, #0
 	beq _08098856
 	adds r0, r4, #0
-	bl sub_080B1D90
+	bl GetItemSellPrice
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	cmp r5, #0
@@ -13223,17 +13223,17 @@ _08098816:
 	adds r0, #0xa
 	movs r1, #1
 	movs r2, #0x14
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r6, #0
 	adds r0, #0xc
 	movs r1, #1
 	movs r2, #0x14
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r6, #0
 	adds r0, #0xe
 	movs r1, #1
 	movs r2, #0x14
-	bl sub_0800615C
+	bl PutSpecialChar
 	b _0809884C
 	.align 2, 0
 _0809883C: .4byte 0x02022F48
@@ -13242,12 +13242,12 @@ _08098840:
 	adds r0, #0xc
 	movs r1, #2
 	adds r2, r5, #0
-	bl sub_080061D8
+	bl PutNumber
 _0809884C:
 	ldr r0, _08098864 @ =0x02022F56
 	movs r1, #3
 	movs r2, #0x1e
-	bl sub_0800615C
+	bl PutSpecialChar
 _08098856:
 	movs r0, #1
 	bl EnableBgSync
@@ -13272,12 +13272,12 @@ sub_08098868: @ 0x08098868
 	adds r2, r0, #0
 	adds r0, r5, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r4, #0x10
 	adds r0, r4, #0
 	movs r1, #3
 	movs r2, #0x1e
-	bl sub_0800615C
+	bl PutSpecialChar
 	movs r0, #1
 	bl EnableBgSync
 	pop {r4, r5}
@@ -13308,7 +13308,7 @@ sub_080988A8: @ 0x080988A8
 	str r0, [sp, #4]
 	adds r0, r3, #0
 	movs r3, #2
-	bl sub_08005AD4
+	bl PutDrawText
 	subs r4, #0x26
 	movs r2, #0x9c
 	lsls r2, r2, #2
@@ -13317,7 +13317,7 @@ sub_080988A8: @ 0x080988A8
 	movs r0, #0x4a
 	adds r1, r4, #0
 	movs r3, #2
-	bl sub_08006F80
+	bl PutFaceChibi
 	movs r0, #1
 	bl EnableBgSync
 	add sp, #8
@@ -13347,15 +13347,15 @@ sub_08098908: @ 0x08098908
 	movs r0, #0
 	bl InitBgs
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r1, #4
@@ -13399,10 +13399,10 @@ sub_08098908: @ 0x08098908
 	ldr r0, _08098B58 @ =0x06012800
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	movs r0, #4
 	bl ApplyIconPalettes
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	movs r0, #0xa0
 	lsls r0, r0, #7
 	movs r1, #5
@@ -13427,15 +13427,15 @@ sub_08098908: @ 0x08098908
 	movs r0, #0
 	movs r2, #0x44
 	movs r3, #0x4a
-	bl sub_08007BCC
+	bl StartBmFace
 	mov r0, sb
-	bl sub_080A89B4
+	bl StartUiCursorHand
 	mov r0, sb
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	movs r5, #0x20
 	ldrb r0, [r7, #1]
 	orrs r0, r5
@@ -13509,7 +13509,7 @@ sub_08098908: @ 0x08098908
 	movs r0, #0xc8
 	movs r1, #0x90
 	mov r2, sb
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	ldr r4, _08098B68 @ =0x02012B68
 	adds r0, r4, #0
 	movs r1, #4
@@ -13540,11 +13540,11 @@ _08098AC4:
 	mov r3, sb
 	ldr r2, [r3, #0x2c]
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	bl sub_080988A8
 	ldr r0, _08098B78 @ =sub_08098790
 	mov r1, sb
-	bl sub_080A92F8
+	bl StartParallelWorker
 	mov r6, sb
 	ldr r0, [r6, #0x2c]
 	mov r1, sb
@@ -13554,7 +13554,7 @@ _08098AC4:
 	adds r0, #0x1e
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl sub_080987E4
+	bl WmSell_DrawItemGoldValue
 	bl sub_08098868
 	movs r1, #0xe0
 	lsls r1, r1, #4
@@ -13565,15 +13565,15 @@ _08098AC4:
 	str r6, [sp, #4]
 	movs r0, #0xd
 	movs r2, #0xf
-	bl sub_080A9B74
+	bl StartSysBrownBox
 	movs r0, #0
 	movs r1, #1
-	bl sub_080A9C60
+	bl SetSysBrownBoxWidth
 	movs r0, #0
 	movs r1, #0x88
 	movs r2, #0x36
 	movs r3, #2
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -13609,7 +13609,7 @@ sub_08098B7C: @ 0x08098B7C
 	cmp r5, #0
 	beq _08098BC2
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r3, r0, #0
 	adds r2, r4, #0
 	adds r2, #0x30
@@ -13638,7 +13638,7 @@ _08098BC2:
 	cmp r0, #0
 	beq _08098C10
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	adds r2, r4, #0
 	adds r2, #0x30
 	ldrb r1, [r2]
@@ -13664,7 +13664,7 @@ _08098BF2:
 	cmp r0, #0
 	blt _08098C04
 	ldr r0, _08098C0C @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08098C04:
 	movs r0, #1
 	b _08098C12
@@ -13686,7 +13686,7 @@ sub_08098C18: @ 0x08098C18
 	ldr r1, _08098C70 @ =0x02012B78
 	ldr r2, [r4, #0x2c]
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	ldr r0, [r4, #0x2c]
 	adds r5, r4, #0
 	adds r5, #0x30
@@ -13695,11 +13695,11 @@ sub_08098C18: @ 0x08098C18
 	adds r0, #0x1e
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl sub_080987E4
+	bl WmSell_DrawItemGoldValue
 	movs r0, #0
-	bl sub_080A8A78
+	bl DisableUiCursorHand
 	ldr r0, _08098C74 @ =sub_0809871C
-	bl sub_080A9338
+	bl GetParallelWorker
 	bl Proc_End
 	ldrb r5, [r5]
 	lsls r1, r5, #4
@@ -13708,7 +13708,7 @@ sub_08098C18: @ 0x08098C18
 	lsls r3, r3, #3
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #0
 	adds r1, r4, #0
 	bl sub_080985D4
@@ -13735,7 +13735,7 @@ sub_08098C78: @ 0x08098C78
 	ands r0, r1
 	cmp r0, #0
 	beq _08098D74
-	bl sub_08081B44
+	bl CloseHelpBox
 	movs r0, #0
 	strh r0, [r4, #0x34]
 	b _08098DC6
@@ -13765,7 +13765,7 @@ _08098CC6:
 	lsls r1, r3, #4
 	adds r1, #0x48
 	movs r0, #0x10
-	bl sub_0808198C
+	bl StartItemHelpBox
 	movs r0, #1
 	strh r0, [r4, #0x34]
 	b _08098DC6
@@ -13785,7 +13785,7 @@ _08098CDC:
 	adds r0, r0, r1
 	ldrh r5, [r0]
 	adds r0, r5, #0
-	bl sub_080B1D90
+	bl GetItemSellPrice
 	lsls r0, r0, #0x10
 	cmp r0, #0
 	beq _08098D0E
@@ -13802,7 +13802,7 @@ _08098D0E:
 	ldr r2, _08098D20 @ =0x0000073A
 	movs r0, #0x10
 	adds r3, r4, #0
-	bl sub_08090D20
+	bl StartPrepErrorHelpbox
 	b _08098DC6
 	.align 2, 0
 _08098D20: .4byte 0x0000073A
@@ -13817,7 +13817,7 @@ _08098D24:
 	cmp r0, #0
 	blt _08098DC6
 	ldr r0, _08098D44 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08098DC6
 	.align 2, 0
 _08098D40: .4byte 0x0202BBF8
@@ -13837,7 +13837,7 @@ _08098D48:
 	cmp r0, #0
 	blt _08098DC6
 	ldr r0, _08098D70 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08098DC6
 	.align 2, 0
 _08098D6C: .4byte 0x0202BBF8
@@ -13857,14 +13857,14 @@ _08098D74:
 	lsls r3, r3, #3
 	movs r0, #0x10
 	movs r2, #0xb
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, [r4, #0x2c]
 	ldrb r2, [r5]
 	lsls r1, r2, #1
 	adds r0, #0x1e
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl sub_080987E4
+	bl WmSell_DrawItemGoldValue
 	ldrh r0, [r4, #0x34]
 	cmp r0, #1
 	bne _08098DC6
@@ -13879,7 +13879,7 @@ _08098D74:
 	lsls r1, r3, #4
 	adds r1, #0x48
 	movs r0, #0x10
-	bl sub_0808198C
+	bl StartItemHelpBox
 _08098DC6:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -13895,7 +13895,7 @@ sub_08098DCC: @ 0x08098DCC
 	strb r0, [r5]
 	ldr r0, _08098E14 @ =sub_0809871C
 	adds r1, r4, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	adds r0, r4, #0
 	adds r0, #0x30
 	ldrb r0, [r0]
@@ -13904,7 +13904,7 @@ sub_08098DCC: @ 0x08098DCC
 	movs r0, #0
 	movs r1, #0x10
 	movs r3, #2
-	bl sub_080A89C8
+	bl SetUiCursorHandConfig
 	ldrb r5, [r5]
 	lsls r0, r5, #5
 	adds r0, #0xa4
@@ -13912,7 +13912,7 @@ sub_08098DCC: @ 0x08098DCC
 	lsls r3, r3, #3
 	movs r1, #0x7c
 	movs r2, #0
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	movs r0, #1
 	adds r1, r4, #0
 	bl sub_080985D4
@@ -13934,10 +13934,10 @@ sub_08098E18: @ 0x08098E18
 	adds r0, #0x1e
 	adds r0, r0, r1
 	ldrh r0, [r0]
-	bl sub_080B1D90
+	bl GetItemSellPrice
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
-	bl sub_08023928
+	bl AddGold
 	ldr r0, [r4, #0x2c]
 	ldrb r2, [r5]
 	lsls r1, r2, #1
@@ -13954,18 +13954,18 @@ sub_08098E18: @ 0x08098E18
 	cmp r0, #0
 	blt _08098E5E
 	movs r0, #0xb9
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08098E5E:
 	bl sub_08098868
 	ldr r0, [r4, #0x2c]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	bne _08098E90
 	ldr r0, _08098E88 @ =0x02022EA4
 	ldr r1, _08098E8C @ =0x02012B78
 	ldr r2, [r4, #0x2c]
 	movs r3, #0
-	bl sub_08094230
+	bl DrawPrepScreenItems
 	adds r0, r4, #0
 	movs r1, #3
 	bl Proc_Goto
@@ -14028,7 +14028,7 @@ _08098EDC:
 	cmp r0, #0
 	blt _08098F46
 	ldr r0, _08098EFC @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08098F46
 	.align 2, 0
 _08098EF8: .4byte 0x0202BBF8
@@ -14060,7 +14060,7 @@ _08098F1C:
 	cmp r0, #0
 	blt _08098F34
 	ldr r0, _08098F50 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08098F34:
 	ldrb r4, [r4]
 	lsls r0, r4, #5
@@ -14069,7 +14069,7 @@ _08098F34:
 	lsls r3, r3, #3
 	movs r1, #0x7c
 	movs r2, #0
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _08098F46:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -14082,9 +14082,9 @@ _08098F50: .4byte 0x00000387
 sub_08098F54: @ 0x08098F54
 	push {lr}
 	bl sub_080A9D08
-	bl sub_0808E46C
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r0}
@@ -14121,7 +14121,7 @@ sub_08098F88: @ 0x08098F88
 	movs r1, #7
 	movs r2, #0x11
 	movs r3, #4
-	bl sub_08087BFC
+	bl StartCgText
 	movs r0, #0x7c
 	bl SetCgFlags
 	add sp, #0x10
@@ -14213,7 +14213,7 @@ _08099036:
 	cmp r0, #0
 	blt _0809904E
 	ldr r0, _0809905C @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809904E:
 	movs r0, #1
 	b _08099062
@@ -14287,7 +14287,7 @@ _080990C0:
 	cmp r0, #0
 	blt _08099168
 	ldr r0, _080990DC @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08099168
 	.align 2, 0
 _080990D8: .4byte 0x0202BBF8
@@ -14301,7 +14301,7 @@ _080990E0:
 	blt _08099168
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08099168
 	.align 2, 0
 _080990F8: .4byte 0x0202BBF8
@@ -14320,7 +14320,7 @@ _080990FC:
 	cmp r0, #0
 	blt _08099168
 	ldr r0, _08099124 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08099168
 	.align 2, 0
 _08099120: .4byte 0x0202BBF8
@@ -14346,7 +14346,7 @@ _08099128:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #8
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r1, _08099170 @ =0x08CC50C0
 	ldrb r5, [r5]
 	lsls r0, r5, #2
@@ -14366,12 +14366,12 @@ _08099170: .4byte 0x08CC50C0
 sub_08099174: @ 0x08099174
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08087D44
+	bl EndCgText
 	adds r0, r4, #0
-	bl sub_080A9DC0
-	bl sub_0808E46C
+	bl EndAllProcChildren
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4}
@@ -14417,8 +14417,8 @@ _080991D6:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080991DC
-sub_080991DC: @ 0x080991DC
+	thumb_func_start StartFortuneSubMenu
+StartFortuneSubMenu: @ 0x080991DC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080991F4 @ =0x08CC4FE0
@@ -14477,8 +14477,8 @@ _0809923A:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08099240
-sub_08099240: @ 0x08099240
+	thumb_func_start GetChapterDivinationTextIdHectorStory
+GetChapterDivinationTextIdHectorStory: @ 0x08099240
 	push {r4, lr}
 	ldr r4, _08099264 @ =0x0202BBF8
 	movs r0, #0xe
@@ -14499,8 +14499,8 @@ _08099256:
 	.align 2, 0
 _08099264: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08099268
-sub_08099268: @ 0x08099268
+	thumb_func_start GetChapterDivinationTextIdBeginning
+GetChapterDivinationTextIdBeginning: @ 0x08099268
 	push {lr}
 	ldr r0, _08099280 @ =0x0202BBF8
 	ldrb r0, [r0, #0xe]
@@ -14544,8 +14544,8 @@ sub_080992A0: @ 0x080992A0
 	.align 2, 0
 _080992B8: .4byte 0x0202BBF8
 
-	thumb_func_start sub_080992BC
-sub_080992BC: @ 0x080992BC
+	thumb_func_start GetChapterDivinationPortrait
+GetChapterDivinationPortrait: @ 0x080992BC
 	push {lr}
 	ldr r0, _080992D4 @ =0x0202BBF8
 	ldrb r0, [r0, #0xe]
@@ -14562,10 +14562,10 @@ _080992D4: .4byte 0x0202BBF8
 	thumb_func_start sub_080992D8
 sub_080992D8: @ 0x080992D8
 	push {lr}
-	bl sub_08099240
+	bl GetChapterDivinationTextIdHectorStory
 	cmp r0, #0
 	beq _080992EE
-	bl sub_08099268
+	bl GetChapterDivinationTextIdBeginning
 	cmp r0, #0
 	bne _080992EE
 	movs r0, #1
@@ -14585,7 +14585,7 @@ sub_080992F4: @ 0x080992F4
 	ands r0, r1
 	cmp r0, #0
 	bne _0809930A
-	bl sub_08099240
+	bl GetChapterDivinationTextIdHectorStory
 	cmp r0, #0
 	bne _08099314
 _0809930A:
@@ -14603,7 +14603,7 @@ _08099316:
 	thumb_func_start sub_0809931C
 sub_0809931C: @ 0x0809931C
 	push {lr}
-	bl sub_080992BC
+	bl GetChapterDivinationPortrait
 	cmp r0, #0x41
 	beq _0809932A
 	movs r0, #0
@@ -14653,15 +14653,15 @@ sub_08099358: @ 0x08099358
 	movs r0, #0
 	bl InitBgs
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r1, #4
@@ -14703,7 +14703,7 @@ sub_08099358: @ 0x08099358
 	bl SetBgOffset
 	movs r0, #4
 	bl ApplyIconPalettes
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -14834,7 +14834,7 @@ _080994C6:
 	lsls r3, r3, #1
 	adds r2, r7, r3
 	mov r3, ip
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #0xf
 	adds r5, #1
 	ldrb r7, [r6]
@@ -14919,7 +14919,7 @@ _08099536:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	b _0809960A
 	.align 2, 0
 _0809959C: .4byte 0x08CC5100
@@ -14968,7 +14968,7 @@ _080995AC:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 _0809960A:
 	ldr r2, [sp, #4]
 	mov r8, r2
@@ -15011,7 +15011,7 @@ _08099640:
 	str r0, [sp, #4]
 	adds r0, r3, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r5, #0x80
 	adds r6, #1
 	cmp r6, #4
@@ -15036,27 +15036,27 @@ sub_08099684: @ 0x08099684
 	push {r5, r6, r7}
 	sub sp, #4
 	adds r7, r0, #0
-	bl sub_080B62F4
+	bl GetGameTacticsRank
 	adds r5, r7, #0
 	adds r5, #0x34
 	movs r6, #0
 	strb r0, [r5]
-	bl sub_080B63EC
+	bl GetGameSurvivalRank
 	movs r1, #0x35
 	adds r1, r1, r7
 	mov sl, r1
 	strb r0, [r1]
-	bl sub_080B6550
+	bl GetGameFundsRank
 	movs r2, #0x36
 	adds r2, r2, r7
 	mov sb, r2
 	strb r0, [r2]
-	bl sub_080B6424
+	bl GetGameExpRank
 	movs r3, #0x37
 	adds r3, r3, r7
 	mov r8, r3
 	strb r0, [r3]
-	bl sub_080B651C
+	bl GetGameCombatRank
 	adds r4, r7, #0
 	adds r4, #0x38
 	strb r0, [r4]
@@ -15069,7 +15069,7 @@ sub_08099684: @ 0x08099684
 	ldrb r3, [r5]
 	ldrb r4, [r4]
 	str r4, [sp]
-	bl sub_080B65F0
+	bl GetOverallRank
 	adds r1, r7, #0
 	adds r1, #0x39
 	strb r0, [r1]
@@ -15084,7 +15084,7 @@ sub_08099684: @ 0x08099684
 	bl ApplyPaletteExt
 	ldr r0, _08099724 @ =sub_08099474
 	adds r1, r7, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -15117,11 +15117,11 @@ sub_08099728: @ 0x08099728
 	movs r0, #7
 	bl EnableBgSync
 	adds r0, r4, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	ldr r0, _0809982C @ =0x03002870
 	mov ip, r0
 	movs r0, #0x21
@@ -15216,7 +15216,7 @@ _080997EC:
 	movs r0, #0x29
 	movs r1, #0xd8
 	movs r2, #0x58
-	bl sub_08008F18
+	bl StartTalkFace
 	b _0809984E
 	.align 2, 0
 _08099824: .4byte 0x02023460
@@ -15233,7 +15233,7 @@ _0809983C:
 	movs r0, #0x32
 	movs r1, #0xd8
 	movs r2, #0x58
-	bl sub_08008F18
+	bl StartTalkFace
 _0809984E:
 	add sp, #4
 	pop {r4, r5, r6, r7}
@@ -15295,12 +15295,12 @@ _080998B0: .4byte 0x00000F91
 sub_080998B4: @ 0x080998B4
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08087D44
+	bl EndCgText
 	adds r0, r4, #0
-	bl sub_080A9DC0
-	bl sub_0808E46C
+	bl EndAllProcChildren
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4}
@@ -15336,7 +15336,7 @@ _080998EE:
 	cmp r0, #0
 	blt _08099916
 	ldr r0, _08099924 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08099916:
 	pop {r4}
 	pop {r0}
@@ -15367,7 +15367,7 @@ sub_08099928: @ 0x08099928
 	movs r1, #0x13
 	movs r2, #0x12
 	movs r3, #4
-	bl sub_08087BFC
+	bl StartCgText
 	movs r0, #0x4e
 	bl SetCgFlags
 	add sp, #0x10
@@ -15440,7 +15440,7 @@ _080999CC:
 	movs r0, #0xd
 	adds r1, r4, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r4, #0xa
 	adds r5, #1
 	mov r0, sb
@@ -15476,7 +15476,7 @@ _080999F0:
 	ldr r0, _08099A44 @ =0x0000F380
 	str r0, [sp]
 	movs r0, #0xd
-	bl sub_08006A34
+	bl PutSpriteExt
 _08099A2A:
 	add sp, #8
 	pop {r3, r4, r5}
@@ -15545,11 +15545,11 @@ _08099A90:
 	cmp r0, #0
 	bne _08099AB8
 	movs r0, #0x20
-	bl sub_080136F8
+	bl ArchivePalette
 	movs r0, #0xc0
 	movs r1, #0xc0
 	movs r2, #0xc0
-	bl sub_08013690
+	bl SetPalFadeStClkEnd
 _08099AB8:
 	add sp, #0x10
 	pop {r4, r5, r6}
@@ -15609,7 +15609,7 @@ _08099AEC:
 	strb r0, [r2]
 	ldr r0, _08099B64 @ =sub_08099968
 	adds r1, r4, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	adds r0, r4, #0
 	bl StartGreenText
 	ldr r2, _08099B68 @ =0x03002870
@@ -15655,7 +15655,7 @@ _08099B86:
 	adds r0, r4, #0
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r4, #2
 	subs r5, #1
 	cmp r5, #0
@@ -15708,7 +15708,7 @@ _08099BD8:
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #0x40
 	adds r0, r0, r7
 	mov sb, r0
@@ -15749,7 +15749,7 @@ _08099C30:
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r4, #0x80
 	subs r6, #1
 	cmp r6, #0
@@ -15766,19 +15766,19 @@ _08099C30:
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r3, #0xf9
 	lsls r3, r3, #1
 	adds r0, r5, r3
 	ldr r2, [r7, #0x58]
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	movs r1, #0xfa
 	lsls r1, r1, #1
 	adds r0, r5, r1
 	movs r1, #3
 	movs r2, #0x1e
-	bl sub_0800615C
+	bl PutSpecialChar
 	ldr r0, _08099D58 @ =0x000012C5
 	bl GetMsg
 	ldr r2, _08099D5C @ =0x0000025E
@@ -15788,25 +15788,25 @@ _08099C30:
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r3, _08099D60 @ =0x0000026A
 	adds r0, r5, r3
 	movs r1, #0
 	movs r2, #0x20
-	bl sub_0800615C
+	bl PutSpecialChar
 	movs r1, #0x9c
 	lsls r1, r1, #2
 	adds r0, r5, r1
 	movs r1, #0
 	movs r2, #0x20
-	bl sub_0800615C
+	bl PutSpecialChar
 	movs r2, #0x9a
 	lsls r2, r2, #2
 	adds r0, r5, r2
 	mov r3, sb
 	ldrb r2, [r3]
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	ldr r1, _08099D64 @ =0x0000026E
 	adds r0, r5, r1
 	ldr r3, [sp, #0x14]
@@ -15829,7 +15829,7 @@ _08099C30:
 	movs r0, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r5, #0
 	adds r0, #0x58
 	ldr r2, _08099D6C @ =0x08CC51AC
@@ -15839,7 +15839,7 @@ _08099C30:
 	adds r1, r1, r2
 	ldr r2, [r1]
 	movs r1, #4
-	bl sub_0800615C
+	bl PutSpecialChar
 	mov r1, sl
 	ldrb r0, [r1]
 	cmp r0, #0
@@ -15853,7 +15853,7 @@ _08099C30:
 	movs r0, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	b _08099D8C
 	.align 2, 0
 _08099D44: .4byte 0x02023C60
@@ -15878,14 +15878,14 @@ _08099D74:
 	movs r0, #0
 	movs r2, #3
 	movs r3, #4
-	bl sub_08005AD4
+	bl PutDrawText
 _08099D8C:
 	ldr r4, _08099DE8 @ =0x02023CD0
 	ldr r3, [sp, #8]
 	ldrb r2, [r3]
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	ldr r0, _08099DEC @ =0x000012C8
 	bl GetMsg
 	adds r1, r4, #2
@@ -15895,7 +15895,7 @@ _08099D8C:
 	movs r0, #0
 	movs r2, #3
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	ldr r6, [sp, #0x10]
 	ldrb r0, [r6]
 	cmp r0, #0
@@ -15910,14 +15910,14 @@ _08099D8C:
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r0, r4, #0
 	adds r0, #0xc8
 	adds r1, r7, #0
 	adds r1, #0x3a
 	ldrb r2, [r1]
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	b _08099F86
 	.align 2, 0
 _08099DE4: .4byte 0x000012BB
@@ -15955,7 +15955,7 @@ _08099E10:
 	movs r0, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r6, #0
 	adds r7, #0x3d
 	mov sl, r7
@@ -15977,7 +15977,7 @@ _08099E42:
 	movs r0, #0
 	movs r2, #1
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r3, #3
 	mov r8, r3
 	str r3, [sp]
@@ -16002,7 +16002,7 @@ _08099E42:
 	movs r0, #0
 	movs r2, #1
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r0, r8
 	str r0, [sp]
 	movs r0, #0x16
@@ -16019,7 +16019,7 @@ _08099E42:
 	movs r0, #0
 	movs r2, #1
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	mov r3, r8
 	str r3, [sp]
 	movs r0, #0x16
@@ -16037,7 +16037,7 @@ _08099E42:
 	movs r0, #0
 	movs r2, #1
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #1
 	str r0, [sp]
 	movs r0, #0xe
@@ -16058,7 +16058,7 @@ _08099E42:
 	movs r0, #0
 	movs r2, #1
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	b _08099F58
 	.align 2, 0
 _08099F20: .4byte 0x08CC51C4
@@ -16079,7 +16079,7 @@ _08099F40:
 	movs r0, #0
 	movs r2, #1
 	movs r3, #4
-	bl sub_08005AD4
+	bl PutDrawText
 _08099F58:
 	movs r4, #5
 	str r4, [sp]
@@ -16121,25 +16121,25 @@ sub_08099FA0: @ 0x08099FA0
 	adds r4, r0, #0
 	bl sub_08099358
 	adds r0, r4, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	adds r0, r4, #0
-	bl sub_080A8CD4
+	bl StartUiSpinningArrows
 	movs r1, #0xa0
 	lsls r1, r1, #2
 	movs r0, #0
 	movs r2, #2
-	bl sub_080A8CE8
+	bl LoadUiSpinningArrowGfx
 	movs r0, #3
-	bl sub_080A8D54
+	bl SetUiSpinningArrowConfig
 	movs r0, #0
 	movs r1, #0x40
 	movs r2, #0xe8
 	movs r3, #0x40
-	bl sub_080A8D70
+	bl SetUiSpinningArrowPositions
 	ldr r3, _0809A020 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x34
@@ -16285,7 +16285,7 @@ _0809A062:
 	ldrb r3, [r7]
 	ldrb r4, [r4]
 	str r4, [sp]
-	bl sub_080B65F0
+	bl GetOverallRank
 	adds r1, r6, #0
 	adds r1, #0x39
 	strb r0, [r1]
@@ -16312,7 +16312,7 @@ _0809A062:
 	adds r0, r4, #0
 	bl strcpy
 	adds r0, r4, #0
-	bl sub_0802E6EC
+	bl SetTacticianName
 	b _0809A152
 	.align 2, 0
 _0809A140: .4byte 0x0100000C
@@ -16320,7 +16320,7 @@ _0809A144: .4byte 0x001FFFFF
 _0809A148:
 	ldr r0, _0809A190 @ =0x0000055B
 	bl GetMsg
-	bl sub_0802E6EC
+	bl SetTacticianName
 _0809A152:
 	ldrb r0, [r5]
 	cmp r0, #0
@@ -16399,8 +16399,8 @@ _0809A1D2:
 	movs r0, #7
 	bl EnableBgSync
 	movs r0, #0
-	bl sub_08006D50
-	bl sub_08087D44
+	bl EndFaceById
+	bl EndCgText
 	ldrb r0, [r4]
 	cmp r0, #0
 	beq _0809A25E
@@ -16422,7 +16422,7 @@ _0809A1D2:
 	str r5, [sp]
 	movs r1, #0xd8
 	movs r2, #0x58
-	bl sub_08008F18
+	bl StartTalkFace
 	ldrb r0, [r4]
 	adds r1, r6, #0
 	adds r1, #0x39
@@ -16443,7 +16443,7 @@ _0809A1D2:
 	movs r1, #0x13
 	movs r2, #0x12
 	movs r3, #4
-	bl sub_08087BFC
+	bl StartCgText
 	ldr r0, _0809A27C @ =0x000809FE
 	bl SetCgFlags
 _0809A25E:
@@ -16486,7 +16486,7 @@ sub_0809A280: @ 0x0809A280
 	cmp r0, #0
 	blt _0809A2B2
 	ldr r0, _0809A2D4 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809A2B2:
 	movs r1, #0x80
 	lsls r1, r1, #1
@@ -16494,7 +16494,7 @@ _0809A2B2:
 	movs r0, #0x5a
 	movs r2, #0xc0
 	movs r3, #0x18
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	adds r0, r4, #0
 	movs r1, #0
 	bl Proc_Goto
@@ -16531,7 +16531,7 @@ _0809A2D8:
 	cmp r0, #0
 	blt _0809A312
 	ldr r0, _0809A320 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809A312:
 	adds r0, r4, #0
 	movs r1, #3
@@ -16612,7 +16612,7 @@ _0809A396:
 	movs r4, #0
 	strh r0, [r6]
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	ldr r2, _0809A3F8 @ =0x08BDCE4C
 	subs r1, r7, #1
 	movs r0, #0x34
@@ -16624,7 +16624,7 @@ _0809A396:
 	str r4, [sp]
 	movs r1, #0xd8
 	movs r2, #0x58
-	bl sub_08008F18
+	bl StartTalkFace
 	movs r0, #0x28
 	movs r1, #0
 	movs r2, #1
@@ -16639,7 +16639,7 @@ _0809A396:
 	movs r1, #0x13
 	movs r2, #0x12
 	movs r3, #4
-	bl sub_08087BFC
+	bl StartCgText
 	ldr r0, _0809A400 @ =0x0002000A
 	bl SetCgFlags
 	add sp, #0x10
@@ -16720,7 +16720,7 @@ sub_0809A404: @ 0x0809A404
 	cmp r0, #0
 	blt _0809A48E
 	movs r0, #0xc8
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809A48E:
 	movs r0, #0x20
 	ldrb r3, [r4, #1]
@@ -16934,7 +16934,7 @@ sub_0809A560: @ 0x0809A560
 	movs r2, #0x58
 	subs r2, r2, r7
 	movs r0, #0
-	bl sub_08007CF0
+	bl SetFacePosition
 _0809A634:
 	ldr r0, [r6, #0x2c]
 	cmp r0, #0xa
@@ -16963,7 +16963,7 @@ sub_0809A650: @ 0x0809A650
 	cmp r0, #0
 	ble _0809A688
 	movs r0, #1
-	bl sub_080A8D98
+	bl SetUiSpinningArrowFastMaybe
 	adds r2, r4, #0
 	adds r2, #0x3c
 	ldrb r0, [r2]
@@ -16989,7 +16989,7 @@ _0809A688:
 	cmp r0, #0
 	bge _0809A6BA
 	movs r0, #0
-	bl sub_080A8D98
+	bl SetUiSpinningArrowFastMaybe
 	adds r2, r4, #0
 	adds r2, #0x3c
 	ldrb r0, [r2]
@@ -17121,7 +17121,7 @@ sub_0809A6C0: @ 0x0809A6C0
 	mov r0, r8
 	subs r2, r2, r0
 	movs r0, #0
-	bl sub_08007CF0
+	bl SetFacePosition
 _0809A7A6:
 	ldr r0, [r7, #0x2c]
 	cmp r0, #0xa
@@ -17312,7 +17312,7 @@ _0809A8FE:
 	adds r1, r5, #0
 	movs r2, #0x12
 	ldr r3, _0809A920 @ =0x08B905F8
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r6, #4
 	adds r5, #0x20
 	subs r4, #1
@@ -17361,7 +17361,7 @@ sub_0809A924: @ 0x0809A924
 	bl SetTextFontGlyphs
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	movs r0, #0x60
 	adds r1, r6, #0
 	bl GetStringTextCenteredPos
@@ -17386,7 +17386,7 @@ sub_0809A9A8: @ 0x0809A9A8
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r5, r0, #0
-	bl sub_080992BC
+	bl GetChapterDivinationPortrait
 	adds r6, r0, #0
 	ldr r4, _0809AAD8 @ =0x03002870
 	movs r0, #8
@@ -17397,15 +17397,15 @@ sub_0809A9A8: @ 0x0809A9A8
 	movs r0, #0
 	bl InitBgs
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r1, #4
@@ -17446,7 +17446,7 @@ sub_0809A9A8: @ 0x0809A9A8
 	bl SetBgOffset
 	movs r0, #4
 	bl ApplyIconPalettes
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	movs r0, #7
 	bl EnableBgSync
 	adds r0, r5, #0
@@ -17463,12 +17463,12 @@ sub_0809A9A8: @ 0x0809A9A8
 	str r5, [sp, #4]
 	movs r0, #0xd
 	movs r2, #0xf
-	bl sub_080A9B74
+	bl StartSysBrownBox
 	movs r0, #0
 	movs r1, #0x90
 	movs r2, #0x10
 	movs r3, #0
-	bl sub_080A9BF4
+	bl EnableSysBrownBox
 	movs r0, #0xe0
 	lsls r0, r0, #7
 	movs r1, #1
@@ -17490,10 +17490,10 @@ _0809AAA0:
 	movs r0, #0xf0
 	lsls r0, r0, #7
 	movs r1, #2
-	bl sub_0808E680
+	bl DrawAtMenuUpfx
 	ldr r0, _0809AAE8 @ =sub_0809A8E4
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	movs r0, #0x80
 	lsls r0, r0, #2
 	movs r1, #3
@@ -17541,7 +17541,7 @@ _0809AB1C:
 	adds r0, r6, #0
 	movs r1, #0xd4
 	movs r2, #0x52
-	bl sub_08008F18
+	bl StartTalkFace
 	add sp, #8
 	pop {r4, r5, r6}
 	pop {r0}
@@ -17554,7 +17554,7 @@ sub_0809AB38: @ 0x0809AB38
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
-	bl sub_08099268
+	bl GetChapterDivinationTextIdBeginning
 	str r0, [r4, #0x2c]
 	movs r3, #1
 	rsbs r3, r3, #0
@@ -17567,8 +17567,8 @@ sub_0809AB38: @ 0x0809AB38
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809AB78 @ =0x0004004E
 	orrs r0, r1
@@ -17586,7 +17586,7 @@ sub_0809AB7C: @ 0x0809AB7C
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
-	bl sub_08099240
+	bl GetChapterDivinationTextIdHectorStory
 	str r0, [r4, #0x2c]
 	movs r3, #1
 	rsbs r3, r3, #0
@@ -17598,8 +17598,8 @@ sub_0809AB7C: @ 0x0809AB7C
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809ABBC @ =0x0004000A
 	orrs r0, r1
@@ -17644,8 +17644,8 @@ _0809ABE2:
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809AC1C @ =0x0004000A
 	orrs r0, r1
@@ -17691,8 +17691,8 @@ _0809AC44:
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809AC78 @ =0x0006000A
 	orrs r0, r1
@@ -17714,7 +17714,7 @@ sub_0809AC7C: @ 0x0809AC7C
 	movs r0, #0x41
 	movs r1, #0xd4
 	movs r2, #0x52
-	bl sub_08008F18
+	bl StartTalkFace
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -17753,8 +17753,8 @@ _0809ACBE:
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809ACF8 @ =0x0004000A
 	orrs r0, r1
@@ -17771,12 +17771,12 @@ _0809ACF8: .4byte 0x0004000A
 sub_0809ACFC: @ 0x0809ACFC
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08087D44
+	bl EndCgText
 	adds r0, r4, #0
-	bl sub_080A9DC0
-	bl sub_0808E46C
+	bl EndAllProcChildren
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4}
@@ -17801,8 +17801,8 @@ sub_0809AD20: @ 0x0809AD20
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809AD60 @ =0x0004004E
 	orrs r0, r1
@@ -17830,7 +17830,7 @@ sub_0809AD64: @ 0x0809AD64
 	cmp r4, #0
 	ble _0809AD9A
 	rsbs r0, r4, #0
-	bl sub_08023928
+	bl AddGold
 	ldr r0, _0809ADA4 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -17838,7 +17838,7 @@ sub_0809AD64: @ 0x0809AD64
 	cmp r0, #0
 	blt _0809AD9A
 	movs r0, #0xb9
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809AD9A:
 	adds r0, r5, #0
 	movs r1, #0
@@ -17909,8 +17909,8 @@ _0809ADFE:
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809AE3C @ =0x0004004E
 	orrs r0, r1
@@ -17941,8 +17941,8 @@ sub_0809AE40: @ 0x0809AE40
 	movs r0, #0x16
 	movs r1, #0x10
 	adds r2, r3, #0
-	bl sub_08087BFC
-	bl sub_080874D8
+	bl StartCgText
+	bl GetCgTextFlags
 	adds r1, r0, #0
 	ldr r0, _0809AE80 @ =0x0004004E
 	orrs r0, r1
@@ -17966,7 +17966,7 @@ sub_0809AE84: @ 0x0809AE84
 	movs r0, #0x5e
 	adds r1, r2, #0
 	movs r3, #0x20
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -17982,7 +17982,7 @@ sub_0809AEA0: @ 0x0809AEA0
 	movs r0, #0x49
 	adds r1, r2, #0
 	movs r3, #0x20
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -18011,7 +18011,7 @@ _0809AECA:
 	cmp r0, #0
 	blt _0809AEEA
 	movs r0, #0xee
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809AEEA:
 	movs r0, #0
 	strh r0, [r4, #0x2a]
@@ -18195,16 +18195,16 @@ sub_0809B02C: @ 0x0809B02C
 	.align 2, 0
 _0809B03C: .4byte 0x08CC5760
 
-	thumb_func_start sub_0809B040
-sub_0809B040: @ 0x0809B040
+	thumb_func_start GetSupportScreenUnitCount
+GetSupportScreenUnitCount: @ 0x0809B040
 	ldr r0, _0809B048 @ =0x02012BF8
 	ldr r0, [r0]
 	bx lr
 	.align 2, 0
 _0809B048: .4byte 0x02012BF8
 
-	thumb_func_start sub_0809B04C
-sub_0809B04C: @ 0x0809B04C
+	thumb_func_start GetNextSupportScreenUnit
+GetNextSupportScreenUnit: @ 0x0809B04C
 	adds r1, r0, #0
 	ldr r0, _0809B05C @ =0x02012BF8
 	ldr r0, [r0]
@@ -18220,8 +18220,8 @@ _0809B060:
 _0809B062:
 	bx lr
 
-	thumb_func_start sub_0809B064
-sub_0809B064: @ 0x0809B064
+	thumb_func_start GetPreviousSupportScreenUnit
+GetPreviousSupportScreenUnit: @ 0x0809B064
 	cmp r0, #0
 	bne _0809B06C
 	ldr r0, _0809B070 @ =0x02012BF8
@@ -18232,8 +18232,8 @@ _0809B06C:
 	.align 2, 0
 _0809B070: .4byte 0x02012BF8
 
-	thumb_func_start sub_0809B074
-sub_0809B074: @ 0x0809B074
+	thumb_func_start GetSupportScreenPartnerSupportLevel
+GetSupportScreenPartnerSupportLevel: @ 0x0809B074
 	ldr r2, _0809B088 @ =0x08CC5798
 	ldr r3, [r2]
 	lsls r2, r0, #1
@@ -18247,8 +18247,8 @@ sub_0809B074: @ 0x0809B074
 	.align 2, 0
 _0809B088: .4byte 0x08CC5798
 
-	thumb_func_start sub_0809B08C
-sub_0809B08C: @ 0x0809B08C
+	thumb_func_start GetSupportScreenPartnerClassId
+GetSupportScreenPartnerClassId: @ 0x0809B08C
 	ldr r2, _0809B0A0 @ =0x08CC5798
 	ldr r3, [r2]
 	lsls r2, r0, #1
@@ -18262,8 +18262,8 @@ sub_0809B08C: @ 0x0809B08C
 	.align 2, 0
 _0809B0A0: .4byte 0x08CC5798
 
-	thumb_func_start sub_0809B0A4
-sub_0809B0A4: @ 0x0809B0A4
+	thumb_func_start GetSupportScreenPartnerIsAlive
+GetSupportScreenPartnerIsAlive: @ 0x0809B0A4
 	ldr r2, _0809B0BC @ =0x08CC5798
 	ldr r3, [r2]
 	lsls r2, r0, #1
@@ -18278,12 +18278,12 @@ sub_0809B0A4: @ 0x0809B0A4
 	.align 2, 0
 _0809B0BC: .4byte 0x08CC5798
 
-	thumb_func_start sub_0809B0C0
-sub_0809B0C0: @ 0x0809B0C0
+	thumb_func_start GetSupportScreenPartnerCharId
+GetSupportScreenPartnerCharId: @ 0x0809B0C0
 	push {r4, r5, lr}
 	adds r5, r1, #0
 	ldr r4, _0809B0E0 @ =0x08BDCE4C
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
@@ -18298,8 +18298,8 @@ sub_0809B0C0: @ 0x0809B0C0
 	.align 2, 0
 _0809B0E0: .4byte 0x08BDCE4C
 
-	thumb_func_start sub_0809B0E4
-sub_0809B0E4: @ 0x0809B0E4
+	thumb_func_start GetSupportScreenCharIdAt
+GetSupportScreenCharIdAt: @ 0x0809B0E4
 	ldr r1, _0809B0F4 @ =0x08CC5798
 	ldr r2, [r1]
 	lsls r1, r0, #1
@@ -18311,8 +18311,8 @@ sub_0809B0E4: @ 0x0809B0E4
 	.align 2, 0
 _0809B0F4: .4byte 0x08CC5798
 
-	thumb_func_start sub_0809B0F8
-sub_0809B0F8: @ 0x0809B0F8
+	thumb_func_start GetSupportScreenClassIdAt
+GetSupportScreenClassIdAt: @ 0x0809B0F8
 	ldr r1, _0809B108 @ =0x08CC5798
 	ldr r2, [r1]
 	lsls r1, r0, #1
@@ -18324,8 +18324,8 @@ sub_0809B0F8: @ 0x0809B0F8
 	.align 2, 0
 _0809B108: .4byte 0x08CC5798
 
-	thumb_func_start sub_0809B10C
-sub_0809B10C: @ 0x0809B10C
+	thumb_func_start GetSupportClassForCharId
+GetSupportClassForCharId: @ 0x0809B10C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #1
@@ -18413,11 +18413,11 @@ _0809B190:
 	ldrb r5, [r6, #1]
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0809EBC0
+	bl GetUnitsAverageSupportValue
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0809EE50
+	bl UpdateBestGlobalSupportValue
 	adds r6, #0x14
 _0809B1B8:
 	ldrb r0, [r6]
@@ -18508,7 +18508,7 @@ _0809B240:
 	cmp r0, #0
 	bne _0809B33A
 	ldrb r0, [r2, #4]
-	bl sub_0809C524
+	bl GetSupportScreenPartnerCount
 	cmp r0, #0
 	beq _0809B33A
 	mov r0, sb
@@ -18552,11 +18552,11 @@ _0809B240:
 _0809B2B6:
 	ldr r0, [r7]
 	adds r1, r6, #0
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	adds r4, r0, #0
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08026694
+	bl GetUnitSupportLevel
 	ldr r2, [r7]
 	mov r1, r8
 	ldr r3, [r1]
@@ -18568,7 +18568,7 @@ _0809B2B6:
 	adds r1, r1, r6
 	strb r0, [r1]
 	adds r0, r4, #0
-	bl sub_0809B10C
+	bl GetSupportClassForCharId
 	ldr r2, [r7]
 	mov r1, r8
 	ldr r3, [r1]
@@ -18634,7 +18634,7 @@ _0809B35C:
 	bl LoadMetaSave
 	ldr r0, _0809B3D4 @ =0x0000055B
 	bl GetMsg
-	bl sub_0802E6EC
+	bl SetTacticianName
 	movs r6, #0
 	add r0, sp, #0x28
 	mov sl, r0
@@ -18650,7 +18650,7 @@ _0809B378:
 	cmp r0, #0
 	beq _0809B42A
 	adds r0, r6, #0
-	bl sub_0809C524
+	bl GetSupportScreenPartnerCount
 	cmp r0, #0
 	beq _0809B42A
 	ldr r1, [r5]
@@ -18681,7 +18681,7 @@ _0809B378:
 	adds r1, #2
 	adds r0, r6, #0
 	mov r2, sl
-	bl sub_0809ED34
+	bl GetGlobalSupportListFromSave
 	movs r4, #0
 	b _0809B41A
 	.align 2, 0
@@ -18690,7 +18690,7 @@ _0809B3D8: .4byte 0x08BDCE4C
 _0809B3DC:
 	ldr r0, [r5]
 	adds r1, r4, #0
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	ldr r1, [r5]
 	ldr r3, [r7]
 	lsls r2, r1, #1
@@ -18719,7 +18719,7 @@ _0809B3DC:
 	adds r4, #1
 _0809B41A:
 	adds r0, r6, #0
-	bl sub_0809C524
+	bl GetSupportScreenPartnerCount
 	cmp r4, r0
 	blt _0809B3DC
 	ldr r0, [r5]
@@ -18759,8 +18759,8 @@ _0809B450:
 	cmp r0, #0
 	beq _0809B46C
 	adds r0, r1, #0
-	bl sub_08017610
-	bl sub_08024DEC
+	bl GetUnitSMSId
+	bl UseUnitSprite
 _0809B46C:
 	adds r4, #1
 	cmp r4, #0x3f
@@ -18778,8 +18778,8 @@ _0809B480:
 	ldr r0, [r0]
 	adds r0, r5, r0
 	ldrb r0, [r0, #1]
-	bl sub_08018814
-	bl sub_08024DEC
+	bl GetClassSMSId
+	bl UseUnitSprite
 	adds r5, #0x18
 	adds r4, #1
 	ldr r0, _0809B4A8 @ =0x02012BF8
@@ -18795,8 +18795,8 @@ _0809B49C:
 _0809B4A8: .4byte 0x02012BF8
 _0809B4AC: .4byte 0x08CC5798
 
-	thumb_func_start sub_0809B4B0
-sub_0809B4B0: @ 0x0809B4B0
+	thumb_func_start GetTotalSupportLevel
+GetTotalSupportLevel: @ 0x0809B4B0
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	movs r6, #0
@@ -18808,12 +18808,12 @@ _0809B4BC: .4byte 0x08BDCE78
 _0809B4C0:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_0809B074
+	bl GetSupportScreenPartnerSupportLevel
 	adds r6, r6, r0
 	adds r4, #1
 _0809B4CC:
 	adds r0, r5, #0
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
@@ -18828,8 +18828,8 @@ _0809B4CC:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809B4EC
-sub_0809B4EC: @ 0x0809B4EC
+	thumb_func_start Support_GetSupportLevelTextColor
+Support_GetSupportLevelTextColor: @ 0x0809B4EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -18839,7 +18839,7 @@ sub_0809B4EC: @ 0x0809B4EC
 	cmp r0, #0
 	beq _0809B508
 	adds r0, r6, #0
-	bl sub_0809B4B0
+	bl GetTotalSupportLevel
 	cmp r0, #5
 	beq _0809B54A
 	b _0809B550
@@ -18847,25 +18847,25 @@ _0809B508:
 	movs r0, #0
 	mov r8, r0
 	adds r0, r6, #0
-	bl sub_0809B4B0
+	bl GetTotalSupportLevel
 	mov sb, r0
 	adds r0, r6, #0
-	bl sub_0809B0E4
-	bl sub_0809C524
+	bl GetSupportScreenCharIdAt
+	bl GetSupportScreenPartnerCount
 	adds r7, r0, #0
 	movs r5, #0
 	cmp r8, r7
 	bge _0809B546
 _0809B526:
 	adds r0, r6, #0
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	adds r4, r0, #0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	adds r1, r0, #0
 	adds r0, r4, #0
-	bl sub_0809EBC0
+	bl GetUnitsAverageSupportValue
 	add r8, r0
 	adds r5, #1
 	cmp r5, r7
@@ -18898,7 +18898,7 @@ _0809B55A:
 sub_0809B568: @ 0x0809B568
 	push {r4, r5, r6, lr}
 	ldr r4, _0809B5E0 @ =0x02012A90
-	bl sub_0809EC90
+	bl GetTotalSupportCollection
 	adds r5, r0, #0
 	adds r4, #8
 	adds r0, r4, #0
@@ -18942,7 +18942,7 @@ _0809B5C2:
 	bl Text_InsertDrawString
 	ldr r1, _0809B5EC @ =0x02023108
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	movs r0, #1
 	bl EnableBgSync
 	pop {r4, r5, r6}
@@ -18954,8 +18954,8 @@ _0809B5E4: .4byte 0x000012C9
 _0809B5E8: .4byte 0x0840F420
 _0809B5EC: .4byte 0x02023108
 
-	thumb_func_start sub_0809B5F0
-sub_0809B5F0: @ 0x0809B5F0
+	thumb_func_start SupportScreen_OnInit
+SupportScreen_OnInit: @ 0x0809B5F0
 	movs r1, #0
 	str r1, [r0, #0x2c]
 	adds r2, r0, #0
@@ -18967,14 +18967,14 @@ sub_0809B5F0: @ 0x0809B5F0
 	str r1, [r0, #0x3c]
 	bx lr
 
-	thumb_func_start sub_0809B604
-sub_0809B604: @ 0x0809B604
+	thumb_func_start DrawSupportScreenUnitSprites
+DrawSupportScreenUnitSprites: @ 0x0809B604
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
 	sub sp, #4
 	mov r8, r0
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	adds r7, r0, #0
 	movs r6, #0
 	cmp r6, r7
@@ -18999,20 +18999,20 @@ _0809B61A:
 	cmp r0, #0x30
 	bhi _0809B658
 	adds r0, r6, #0
-	bl sub_0809B0F8
+	bl GetSupportScreenClassIdAt
 	str r0, [sp]
 	movs r0, #0
 	adds r1, r4, #0
 	adds r2, r5, #0
 	movs r3, #0xc8
 	lsls r3, r3, #8
-	bl sub_0802619C
+	bl PutUnitSpriteForClassId
 _0809B658:
 	adds r6, #1
 	cmp r6, r7
 	blt _0809B61A
 _0809B65E:
-	bl sub_08025518
+	bl SyncUnitSpriteSheet
 	add sp, #4
 	pop {r3}
 	mov r8, r3
@@ -19070,13 +19070,13 @@ _0809B6BE:
 	adds r0, #0x4c
 	cmp r0, #0x7b
 	ble _0809B6F8
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
 	cmp r5, r0
 	bne _0809B6EA
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -19114,15 +19114,15 @@ sub_0809B700: @ 0x0809B700
 	movs r0, #0
 	bl InitBgs
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r1, #4
@@ -19167,7 +19167,7 @@ sub_0809B700: @ 0x0809B700
 	lsrs r2, r2, #0x10
 	movs r0, #2
 	bl SetBgOffset
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	bl ApplyUnitSpritePalettes
 	bl ResetUnitSprites
 	adds r0, r7, #0
@@ -19183,15 +19183,15 @@ sub_0809B700: @ 0x0809B700
 	bl sub_080AACD8
 	movs r0, #7
 	bl EnableBgSync
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	cmp r0, #0
 	beq _0809B826
 	adds r0, r7, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	ldr r4, [r7, #0x38]
 	adds r0, r4, #0
 	movs r1, #3
@@ -19215,7 +19215,7 @@ _0809B812:
 	lsls r3, r3, #4
 	adds r0, r5, #0
 	movs r2, #7
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _0809B826:
 	ldr r1, _0809B930 @ =0x03002870
 	mov ip, r1
@@ -19330,7 +19330,7 @@ _0809B8D8:
 	movs r0, #0
 	movs r1, #0x41
 	movs r2, #0x38
-	bl sub_08007BCC
+	bl StartBmFace
 	movs r0, #0x28
 	movs r1, #0
 	movs r2, #1
@@ -19360,20 +19360,20 @@ _0809B95C:
 	ldr r0, _0809B9B0 @ =0x00000FC4
 _0809B95E:
 	str r0, [r7, #0x30]
-	ldr r0, _0809B9B4 @ =sub_0809B604
+	ldr r0, _0809B9B4 @ =DrawSupportScreenUnitSprites
 	adds r1, r7, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	adds r0, r7, #0
-	bl sub_08090490
+	bl StartMenuScrollBar
 	movs r0, #0x80
 	lsls r0, r0, #2
 	movs r1, #4
-	bl sub_080904F8
+	bl InitMenuScrollBarImg
 	movs r0, #0xd8
 	movs r1, #0x54
-	bl sub_080904A4
+	bl PutMenuScrollBarAt
 	ldrh r4, [r7, #0x34]
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -19384,8 +19384,8 @@ _0809B95E:
 	movs r0, #6
 	adds r1, r4, #0
 	movs r3, #4
-	bl sub_080904C4
-	bl sub_08090460
+	bl UpdateMenuScrollBarConfig
+	bl TryHideMenuScrollBar
 	ldr r1, [r7, #0x34]
 	cmp r1, #0
 	bge _0809B9AC
@@ -19395,7 +19395,7 @@ _0809B9AC:
 	b _0809B9C2
 	.align 2, 0
 _0809B9B0: .4byte 0x00000FC4
-_0809B9B4: .4byte sub_0809B604
+_0809B9B4: .4byte DrawSupportScreenUnitSprites
 _0809B9B8:
 	adds r0, r7, #0
 	adds r1, r4, #0
@@ -19418,7 +19418,7 @@ _0809B9CA:
 	strb r0, [r1]
 	ldr r0, _0809BA1C @ =0x06014800
 	movs r1, #0xa
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	ldr r2, _0809BA20 @ =0x03002870
 	movs r0, #1
 	ldrb r5, [r2, #1]
@@ -19435,7 +19435,7 @@ _0809B9CA:
 	movs r0, #0x10
 	movs r1, #0x8c
 	adds r2, r7, #0
-	bl sub_08081FBC
+	bl StartHelpPromptSprite
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -19452,12 +19452,12 @@ _0809BA20: .4byte 0x03002870
 sub_0809BA24: @ 0x0809BA24
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08087D44
+	bl EndCgText
 	adds r0, r4, #0
-	bl sub_080A9DC0
-	bl sub_0808E46C
+	bl EndAllProcChildren
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4}
@@ -19481,7 +19481,7 @@ sub_0809BA48: @ 0x0809BA48
 	movs r1, #7
 	movs r2, #0x11
 	movs r3, #4
-	bl sub_08087BFC
+	bl StartCgText
 	ldr r0, _0809BA7C @ =0x000008FC
 	bl SetCgFlags
 	add sp, #0x10
@@ -19499,7 +19499,7 @@ sub_0809BA80: @ 0x0809BA80
 	mov r5, r8
 	push {r5, r6, r7}
 	adds r6, r0, #0
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	cmp r0, #0
 	bne _0809BA96
 	b _0809BDB8
@@ -19545,7 +19545,7 @@ _0809BACA:
 	ands r0, r1
 	cmp r0, #0
 	beq _0809BBB4
-	bl sub_08081B44
+	bl CloseHelpBox
 	mov r0, sb
 	strb r4, [r0]
 	b _0809BDE0
@@ -19581,7 +19581,7 @@ _0809BB24:
 	adds r4, #0x4c
 	ldr r5, _0809BB50 @ =0x08BDCE4C
 	adds r0, r7, #0
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
@@ -19589,7 +19589,7 @@ _0809BB24:
 	ldrh r2, [r0, #2]
 	mov r0, r8
 	adds r1, r4, #0
-	bl sub_0808190C
+	bl StartHelpBox
 	movs r0, #1
 	mov r1, sb
 	strb r0, [r1]
@@ -19613,7 +19613,7 @@ _0809BB54:
 	b _0809BDE0
 _0809BB72:
 	ldr r0, _0809BB80 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809BDE0
 	.align 2, 0
 _0809BB7C: .4byte 0x0202BBF8
@@ -19635,7 +19635,7 @@ _0809BB84:
 	b _0809BDE0
 _0809BBA2:
 	ldr r0, _0809BBB0 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809BDE0
 	.align 2, 0
 _0809BBAC: .4byte 0x0202BBF8
@@ -19666,11 +19666,11 @@ _0809BBCE:
 	beq _0809BBFA
 	adds r0, r4, #1
 	str r0, [r6, #0x38]
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	ldr r1, [r6, #0x38]
 	cmp r1, r0
 	blt _0809BBFA
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	subs r0, #1
 	str r0, [r6, #0x38]
 _0809BBFA:
@@ -19690,7 +19690,7 @@ _0809BC0C:
 	beq _0809BC26
 	ldr r4, [r6, #0x38]
 	adds r4, #3
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	cmp r4, r0
 	bge _0809BC26
 	ldr r0, [r6, #0x38]
@@ -19723,7 +19723,7 @@ _0809BC3E:
 	cmp r0, #0
 	blt _0809BC5C
 	ldr r0, _0809BC84 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809BC5C:
 	cmp r4, #0xf
 	bgt _0809BC88
@@ -19748,7 +19748,7 @@ _0809BC84: .4byte 0x00000385
 _0809BC88:
 	cmp r4, #0x2f
 	ble _0809BCCA
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -19774,7 +19774,7 @@ _0809BCB8:
 	bl __modsi3
 	lsls r0, r0, #6
 	adds r0, #0x14
-	bl sub_080A94E4
+	bl SetSysHandCursorXPos
 	b _0809BCE4
 _0809BCCA:
 	ldr r0, [r6, #0x38]
@@ -19787,7 +19787,7 @@ _0809BCCA:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #7
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _0809BCE4:
 	mov r1, sb
 	movs r0, #0
@@ -19820,7 +19820,7 @@ _0809BD0E:
 	subs r4, r4, r0
 	ldr r5, _0809BDB0 @ =0x08BDCE4C
 	adds r0, r7, #0
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
@@ -19828,7 +19828,7 @@ _0809BD0E:
 	ldrh r2, [r0, #2]
 	mov r0, sb
 	adds r1, r4, #0
-	bl sub_0808190C
+	bl StartHelpBox
 _0809BD3A:
 	mov r7, r8
 	movs r0, #0
@@ -19868,7 +19868,7 @@ _0809BD6E:
 	strb r1, [r0]
 _0809BD7C:
 	ldrh r4, [r6, #0x34]
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	subs r0, #1
 	movs r1, #3
 	bl __divsi3
@@ -19879,7 +19879,7 @@ _0809BD7C:
 	movs r0, #6
 	adds r1, r4, #0
 	movs r3, #4
-	bl sub_080904C4
+	bl UpdateMenuScrollBarConfig
 	ldr r1, _0809BDB4 @ =0x0000FFD8
 	ldr r2, [r6, #0x34]
 	subs r2, #0x4c
@@ -19909,7 +19909,7 @@ _0809BDB8:
 	cmp r0, #0
 	blt _0809BDE0
 	ldr r0, _0809BDF8 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809BDE0:
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -19923,8 +19923,8 @@ _0809BDF0: .4byte 0x08B857F8
 _0809BDF4: .4byte 0x0202BBF8
 _0809BDF8: .4byte 0x0000038B
 
-	thumb_func_start sub_0809BDFC
-sub_0809BDFC: @ 0x0809BDFC
+	thumb_func_start SupportScreen_StartUnitSubMenu
+SupportScreen_StartUnitSubMenu: @ 0x0809BDFC
 	push {lr}
 	adds r2, r0, #0
 	adds r0, #0x42
@@ -19932,7 +19932,7 @@ sub_0809BDFC: @ 0x0809BDFC
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	ldr r1, [r2, #0x38]
-	bl sub_0809D754
+	bl StartSupportUnitSubScreen
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -19953,7 +19953,7 @@ sub_0809BE14: @ 0x0809BE14
 	movs r0, #0x5a
 	movs r2, #0xc0
 	movs r3, #0x18
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	b _0809BE48
 _0809BE36:
 	movs r2, #0x80
@@ -19963,15 +19963,15 @@ _0809BE36:
 	movs r0, #0x49
 	adds r1, r2, #0
 	movs r3, #0x18
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 _0809BE48:
 	add sp, #4
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809BE50
-sub_0809BE50: @ 0x0809BE50
+	thumb_func_start StartSupportScreenFromPrepScreen
+StartSupportScreenFromPrepScreen: @ 0x0809BE50
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _0809BE64 @ =0x08CC57F4
@@ -20028,7 +20028,7 @@ sub_0809BE80: @ 0x0809BE80
 _0809BEB8:
 	adds r0, r5, #0
 	bl ClearText
-	bl sub_0809B040
+	bl GetSupportScreenUnitCount
 	cmp r6, r0
 	bge _0809BF4E
 	adds r0, r7, #0
@@ -20046,7 +20046,7 @@ _0809BEB8:
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	adds r1, r6, #0
-	bl sub_0809B4EC
+	bl Support_GetSupportLevelTextColor
 	cmp r0, #1
 	beq _0809BF06
 	cmp r0, #1
@@ -20079,7 +20079,7 @@ _0809BF10:
 	mov r1, sl
 	bl Text_SetColor
 	adds r0, r6, #0
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
@@ -20096,7 +20096,7 @@ _0809BF10:
 	ldr r0, _0809BF74 @ =0x02023C60
 	adds r1, r1, r0
 	adds r0, r5, #0
-	bl sub_08005590
+	bl PutText
 _0809BF4E:
 	adds r5, #8
 	adds r6, #1
@@ -20133,28 +20133,28 @@ _0809BF88:
 	.align 2, 0
 _0809BF90: .4byte 0x08CC57F4
 
-	thumb_func_start sub_0809BF94
-sub_0809BF94: @ 0x0809BF94
+	thumb_func_start UiSupport_GetSupportTalkSong
+UiSupport_GetSupportTalkSong: @ 0x0809BF94
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
 	adds r5, r0, #0
 	adds r6, r1, #0
 	mov r8, r2
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	adds r4, r0, #0
 	lsls r4, r4, #0x18
 	lsrs r4, r4, #0x18
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	adds r2, r0, #0
 	lsls r2, r2, #0x18
 	lsrs r2, r2, #0x18
 	movs r0, #0
 	adds r1, r4, #0
 	mov r3, r8
-	bl sub_08078B4C
+	bl GetSupportTalkSong
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -20193,14 +20193,14 @@ _0809BFFA:
 	adds r1, r5, #0
 	mov r2, sb
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, _0809C040 @ =0x0000FF80
 	str r0, [sp]
 	movs r0, #4
 	adds r1, r4, #0
 	mov r2, sb
 	adds r3, r7, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	adds r5, #0xf
 	adds r4, #0xf
 	adds r6, #1
@@ -20237,7 +20237,7 @@ sub_0809C044: @ 0x0809C044
 	bl SetTextFont
 	movs r0, #1
 	bl SetTextFontGlyphs
-	bl sub_0802E6E4
+	bl GetTacticianName
 	adds r1, r4, #0
 	adds r4, #8
 	ldr r6, _0809C120 @ =0x02023D80
@@ -20249,7 +20249,7 @@ sub_0809C044: @ 0x0809C044
 	adds r1, r6, #0
 	movs r2, #4
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	subs r0, r6, #4
 	ldr r2, _0809C124 @ =0x081C3AC0
 	ldr r5, _0809C128 @ =0x0202BBF8
@@ -20263,7 +20263,7 @@ sub_0809C044: @ 0x0809C044
 	adds r1, #0x79
 	movs r2, #0xa0
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	ldrb r7, [r7]
 	lsrs r0, r7, #4
 	bl sub_080A6DB0
@@ -20281,7 +20281,7 @@ sub_0809C044: @ 0x0809C044
 	str r2, [sp]
 	str r7, [sp, #4]
 	movs r2, #4
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r5, #0x2c
 	ldrb r5, [r5]
 	lsls r0, r5, #0x1f
@@ -20302,7 +20302,7 @@ sub_0809C044: @ 0x0809C044
 	adds r0, r4, #0
 	adds r1, r6, #0
 	movs r2, #4
-	bl sub_08005AD4
+	bl PutDrawText
 	movs r0, #0
 	bl SetTextFont
 	movs r0, #4
@@ -20360,15 +20360,15 @@ sub_0809C154: @ 0x0809C154
 	movs r0, #0
 	bl InitBgs
 	movs r0, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	movs r1, #4
@@ -20405,7 +20405,7 @@ sub_0809C154: @ 0x0809C154
 	bl SetBgOffset
 	movs r0, #4
 	bl ApplyIconPalettes
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	ldr r0, _0809C314 @ =0x0841629C
 	ldr r1, _0809C318 @ =0x06000400
 	bl Decompress
@@ -20536,7 +20536,7 @@ _0809C2D0:
 	movs r0, #0x29
 	movs r1, #0xd8
 	movs r2, #0x58
-	bl sub_08008F18
+	bl StartTalkFace
 	b _0809C356
 	.align 2, 0
 _0809C310: .4byte 0x03002870
@@ -20560,7 +20560,7 @@ _0809C344:
 	movs r0, #0x32
 	movs r1, #0xd8
 	movs r2, #0x58
-	bl sub_08008F18
+	bl StartTalkFace
 _0809C356:
 	movs r0, #0
 	movs r1, #0
@@ -20582,7 +20582,7 @@ _0809C356:
 	bl ApplyPaletteExt
 	ldr r0, _0809C3D8 @ =sub_0809BFCC
 	mov r1, r8
-	bl sub_080A92F8
+	bl StartParallelWorker
 	ldr r0, _0809C3DC @ =0x08418C54
 	ldr r1, _0809C3E0 @ =0x06017800
 	bl Decompress
@@ -20598,7 +20598,7 @@ _0809C356:
 	str r1, [sp, #4]
 	movs r1, #0x86
 	movs r2, #0x6c
-	bl sub_0801245C
+	bl StartSpriteAnimProc
 	ldr r0, _0809C3F0 @ =0x00000FC3
 	mov r1, r8
 	str r0, [r1, #0x30]
@@ -20627,13 +20627,13 @@ _0809C3F0: .4byte 0x00000FC3
 sub_0809C3F4: @ 0x0809C3F4
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08012504
-	bl sub_08087D44
+	bl EndEachSpriteAnimProc
+	bl EndCgText
 	adds r0, r4, #0
-	bl sub_080A9DC0
-	bl sub_0808E46C
+	bl EndAllProcChildren
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	movs r0, #0
 	bl SetOnHBlankA
 	pop {r4}
@@ -20656,7 +20656,7 @@ sub_0809C41C: @ 0x0809C41C
 	movs r1, #0x13
 	movs r2, #0x12
 	movs r3, #4
-	bl sub_08087BFC
+	bl StartCgText
 	movs r0, #0x4e
 	bl SetCgFlags
 	add sp, #0x10
@@ -20693,7 +20693,7 @@ _0809C462:
 	cmp r0, #0
 	blt _0809C488
 	ldr r0, _0809C498 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809C488:
 	pop {r4}
 	pop {r0}
@@ -20771,8 +20771,8 @@ _0809C518: .4byte 0x02012BFC
 _0809C51C: .4byte 0x02022C60
 _0809C520: .4byte 0x02013BFC
 
-	thumb_func_start sub_0809C524
-sub_0809C524: @ 0x0809C524
+	thumb_func_start GetSupportScreenPartnerCount
+GetSupportScreenPartnerCount: @ 0x0809C524
 	ldr r2, _0809C53C @ =0x08BDCE4C
 	subs r0, #1
 	movs r1, #0x34
@@ -20806,7 +20806,7 @@ sub_0809C544: @ 0x0809C544
 	str r4, [sp]
 	movs r0, #4
 	movs r2, #0xa
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, [r6, #0x30]
 	adds r1, #0xa8
 	ands r1, r5
@@ -20814,7 +20814,7 @@ sub_0809C544: @ 0x0809C544
 	str r4, [sp]
 	movs r0, #4
 	movs r2, #0xa
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, [r6, #0x30]
 	adds r1, #0xc8
 	ands r1, r5
@@ -20822,7 +20822,7 @@ sub_0809C544: @ 0x0809C544
 	str r4, [sp]
 	movs r0, #4
 	movs r2, #0xa
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, [r6, #0x30]
 	adds r1, #0x20
 	ands r1, r5
@@ -20831,7 +20831,7 @@ sub_0809C544: @ 0x0809C544
 	str r4, [sp]
 	movs r0, #4
 	movs r2, #0x50
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r1, [r6, #0x30]
 	adds r1, #0xa0
 	ands r1, r5
@@ -20839,7 +20839,7 @@ sub_0809C544: @ 0x0809C544
 	str r4, [sp]
 	movs r0, #4
 	movs r2, #0x90
-	bl sub_08006A34
+	bl PutSpriteExt
 	ldr r0, [r6, #0x30]
 	adds r7, r0, #0
 	adds r7, #0x70
@@ -20883,7 +20883,7 @@ _0809C5E4:
 	movs r0, #0
 	adds r1, r7, #0
 	adds r2, r5, #0
-	bl sub_0802619C
+	bl PutUnitSpriteForClassId
 	adds r5, #0x10
 	adds r4, #1
 	adds r0, r6, #0
@@ -20902,8 +20902,8 @@ _0809C60E:
 	str r0, [sp]
 	movs r0, #4
 	movs r2, #0x90
-	bl sub_08006A34
-	bl sub_08025518
+	bl PutSpriteExt
+	bl SyncUnitSpriteSheet
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -20918,8 +20918,8 @@ _0809C648: .4byte 0x0000E280
 _0809C64C: .4byte 0x08CC596E
 _0809C650: .4byte 0x08CC4FC4
 
-	thumb_func_start sub_0809C654
-sub_0809C654: @ 0x0809C654
+	thumb_func_start DrawSupportSubScreenUnitPartnerText
+DrawSupportSubScreenUnitPartnerText: @ 0x0809C654
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -20953,7 +20953,7 @@ _0809C68E:
 	adds r0, r4, #0
 	movs r1, #1
 	movs r2, #0x14
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #4
@@ -20970,7 +20970,7 @@ _0809C6B0:
 	adds r0, r4, #0
 	movs r1, #1
 	movs r2, #0x14
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #1
@@ -20987,7 +20987,7 @@ _0809C6D2:
 	adds r0, r4, #0
 	movs r1, #1
 	movs r2, #0x14
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #2
@@ -21000,12 +21000,12 @@ _0809C6F0:
 	movs r7, #0
 	mov r2, sb
 	ldr r0, [r2, #0x2c]
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	str r0, [sp, #0x14]
 	mov r3, sb
 	ldr r0, [r3, #0x2c]
 	mov r1, sl
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	str r0, [sp, #0x18]
 	ldrb r4, [r4]
 	cmp r4, #2
@@ -21015,7 +21015,7 @@ _0809C710:
 	mov r4, sb
 	ldr r0, [r4, #0x2c]
 	mov r1, sl
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	subs r0, #1
 	movs r6, #0x34
 	muls r0, r6, r0
@@ -21039,13 +21039,13 @@ _0809C710:
 	movs r0, #0
 	adds r2, r7, #0
 	movs r3, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r5, #0xc
 	adds r4, r4, r5
 	mov r1, sb
 	ldr r0, [r1, #0x2c]
 	mov r1, sl
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	subs r0, #1
 	muls r0, r6, r0
 	ldr r2, _0809C7A0 @ =0x08BDCE4C
@@ -21055,10 +21055,10 @@ _0809C710:
 	movs r2, #0xe0
 	lsls r2, r2, #8
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 	ldr r0, [sp, #0x14]
 	ldr r1, [sp, #0x18]
-	bl sub_0809EBC0
+	bl GetUnitsAverageSupportValue
 	cmp r0, #2
 	bne _0809C7EC
 	movs r5, #0
@@ -21096,7 +21096,7 @@ _0809C7B0:
 	ldm r1!, {r2}
 	adds r1, r7, #0
 	str r3, [sp, #0x20]
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r4, #2
 	adds r5, #1
 	ldr r3, [sp, #0x20]
@@ -21110,7 +21110,7 @@ _0809C7B0:
 	adds r0, r0, r1
 	movs r1, #1
 	movs r2, #0x14
-	bl sub_0800615C
+	bl PutSpecialChar
 	b _0809C830
 	.align 2, 0
 _0809C7E8: .4byte 0x02023C60
@@ -21146,7 +21146,7 @@ _0809C814:
 	subs r3, #4
 	ldm r3!, {r2}
 	adds r1, r7, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r4, #2
 	adds r5, #1
 	cmp r5, #2
@@ -21163,8 +21163,8 @@ _0809C830:
 	.align 2, 0
 _0809C840: .4byte 0x02023C60
 
-	thumb_func_start sub_0809C844
-sub_0809C844: @ 0x0809C844
+	thumb_func_start DrawSupportSubScreenRemainingText
+DrawSupportSubScreenRemainingText: @ 0x0809C844
 	push {r4, r5, r6, lr}
 	sub sp, #0x20
 	adds r5, r0, #0
@@ -21186,10 +21186,10 @@ sub_0809C844: @ 0x0809C844
 	bl SetTextFontGlyphs
 	adds r0, r6, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	ldr r4, _0809C91C @ =0x08BDCE4C
 	ldr r0, [r5, #0x2c]
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
@@ -21259,8 +21259,8 @@ _0809C918: .4byte 0x08194674
 _0809C91C: .4byte 0x08BDCE4C
 _0809C920: .4byte 0x00001281
 
-	thumb_func_start sub_0809C924
-sub_0809C924: @ 0x0809C924
+	thumb_func_start InitSupportSubScreenPartners
+InitSupportSubScreenPartners: @ 0x0809C924
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -21286,7 +21286,7 @@ sub_0809C924: @ 0x0809C924
 _0809C950:
 	ldr r0, [r6, #0x2c]
 	adds r1, r4, #0
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	adds r7, r0, #0
 	mov r2, sl
 	adds r1, r2, r4
@@ -21354,7 +21354,7 @@ _0809C9C6:
 	strb r0, [r5]
 	ldr r0, [r6, #0x2c]
 	adds r1, r4, #0
-	bl sub_0809B0A4
+	bl GetSupportScreenPartnerIsAlive
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809C9F0
@@ -21362,7 +21362,7 @@ _0809C9C6:
 	strb r0, [r5]
 	ldr r0, [r6, #0x2c]
 	adds r1, r4, #0
-	bl sub_0809B074
+	bl GetSupportScreenPartnerSupportLevel
 	ldrb r1, [r7]
 	adds r0, r1, r0
 	strb r0, [r7]
@@ -21396,7 +21396,7 @@ sub_0809CA08: @ 0x0809CA08
 _0809CA1C:
 	ldr r0, [r5, #0x2c]
 	adds r1, r4, #0
-	bl sub_0809B074
+	bl GetSupportScreenPartnerSupportLevel
 	adds r1, r7, r4
 	strb r0, [r1]
 	adds r4, #1
@@ -21422,7 +21422,7 @@ sub_0809CA38: @ 0x0809CA38
 	cmp r5, #0
 	beq _0809CA5E
 	ldr r0, [r4, #0x2c]
-	bl sub_0809B4B0
+	bl GetTotalSupportLevel
 	movs r1, #5
 	subs r1, r1, r0
 	adds r0, r4, #0
@@ -21431,7 +21431,7 @@ sub_0809CA38: @ 0x0809CA38
 	b _0809CAAC
 _0809CA5E:
 	ldr r0, [r4, #0x2c]
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	mov sb, r0
 	adds r1, r4, #0
 	adds r1, #0x3d
@@ -21448,10 +21448,10 @@ _0809CA5E:
 _0809CA7E:
 	ldr r0, [r4, #0x2c]
 	adds r1, r5, #0
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	adds r1, r0, #0
 	mov r0, sb
-	bl sub_0809EBC0
+	bl GetUnitsAverageSupportValue
 	ldrb r1, [r6]
 	adds r0, r1, r0
 	strb r0, [r6]
@@ -21461,7 +21461,7 @@ _0809CA7E:
 	blt _0809CA7E
 _0809CA9C:
 	ldr r0, [r4, #0x2c]
-	bl sub_0809B4B0
+	bl GetTotalSupportLevel
 	mov r1, r8
 	ldrb r1, [r1]
 	subs r0, r1, r0
@@ -21485,14 +21485,14 @@ sub_0809CAB8: @ 0x0809CAB8
 _0809CAC4:
 	ldr r0, [r5, #0x2c]
 	adds r1, r4, #0
-	bl sub_0809B08C
+	bl GetSupportScreenPartnerClassId
 	adds r1, r5, #0
 	adds r1, #0x4e
 	adds r1, r1, r4
 	strb r0, [r1]
 	ldrb r0, [r1]
-	bl sub_08018814
-	bl sub_08024DEC
+	bl GetClassSMSId
+	bl UseUnitSprite
 	adds r4, #1
 _0809CAE0:
 	adds r0, r5, #0
@@ -21509,7 +21509,7 @@ _0809CAE0:
 _0809CAF8:
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_0809C654
+	bl DrawSupportSubScreenUnitPartnerText
 	adds r4, #1
 _0809CB02:
 	ldrb r0, [r6]
@@ -21545,7 +21545,7 @@ _0809CB18:
 	beq _0809CB80
 	ldr r0, [r7, #0x2c]
 	adds r1, r5, #0
-	bl sub_0809B074
+	bl GetSupportScreenPartnerSupportLevel
 	cmp r0, #0
 	ble _0809CB80
 	adds r6, r7, #0
@@ -21563,12 +21563,12 @@ _0809CB18:
 	ands r4, r1
 	ldr r0, [r7, #0x2c]
 	adds r1, r5, #0
-	bl sub_0809B074
+	bl GetSupportScreenPartnerSupportLevel
 	cmp r4, r0
 	blt _0809CB84
 	ldr r0, [r7, #0x2c]
 	adds r1, r5, #0
-	bl sub_0809B074
+	bl GetSupportScreenPartnerSupportLevel
 	movs r1, #0xfc
 	ldrb r2, [r6]
 	ands r1, r2
@@ -21601,13 +21601,13 @@ sub_0809CB8C: @ 0x0809CB8C
 	ands r0, r1
 	strb r0, [r2]
 	ldr r0, [r4, #0x2c]
-	bl sub_0809B0E4
-	bl sub_0809C524
+	bl GetSupportScreenCharIdAt
+	bl GetSupportScreenPartnerCount
 	adds r1, r4, #0
 	adds r1, #0x3c
 	strb r0, [r1]
 	adds r0, r4, #0
-	bl sub_0809C924
+	bl InitSupportSubScreenPartners
 	adds r0, r4, #0
 	bl sub_0809CA08
 	adds r0, r4, #0
@@ -21727,13 +21727,13 @@ sub_0809CC30: @ 0x0809CC30
 	orrs r0, r1
 	strb r0, [r2]
 	adds r0, r5, #0
-	bl sub_080A947C
+	bl ResetSysHandCursor
 	movs r0, #0xc0
 	lsls r0, r0, #3
 	movs r1, #1
-	bl sub_080A94A0
+	bl DisplaySysHandCursorTextShadow
 	movs r0, #1
-	bl sub_080A9594
+	bl ConfigSysHandCursorShadowEnabled
 	adds r1, r5, #0
 	adds r1, #0x3a
 	movs r0, #0xff
@@ -21758,7 +21758,7 @@ sub_0809CC30: @ 0x0809CC30
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #1
-	bl sub_080A951C
+	bl ShowSysHandCursor
 _0809CCFC:
 	movs r0, #0
 	movs r1, #0
@@ -21808,7 +21808,7 @@ _0809CCFC:
 	ldrb r2, [r0]
 	ands r1, r2
 	strb r1, [r0]
-	bl sub_0808E448
+	bl PrepRestartMuralBackground
 	movs r0, #0x80
 	lsls r0, r0, #7
 	movs r1, #5
@@ -21820,14 +21820,14 @@ _0809CCFC:
 	bl sub_080AACD8
 	ldr r4, _0809CDCC @ =0x08BDCE4C
 	ldr r0, [r5, #0x2c]
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
 	adds r0, r0, r4
 	ldrh r4, [r0, #6]
 	adds r0, r4, #0
-	bl sub_0800721C
+	bl ShouldFaceBeRaised
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809CDD0
@@ -21841,7 +21841,7 @@ _0809CCFC:
 	adds r1, r4, #0
 	movs r2, #0x38
 	movs r3, #0
-	bl sub_08007BCC
+	bl StartBmFace
 	b _0809CDE8
 	.align 2, 0
 _0809CDB4: .4byte 0x03002870
@@ -21862,7 +21862,7 @@ _0809CDD0:
 	adds r1, r4, #0
 	movs r2, #0x38
 	movs r3, #8
-	bl sub_08007BCC
+	bl StartBmFace
 _0809CDE8:
 	ldr r0, _0809CE20 @ =0x0840EDB8
 	ldr r1, _0809CE24 @ =0x06017000
@@ -21878,10 +21878,10 @@ _0809CDE8:
 	adds r0, r5, #0
 	bl sub_0809CAB8
 	adds r0, r5, #0
-	bl sub_0809C844
+	bl DrawSupportSubScreenRemainingText
 	ldr r0, _0809CE34 @ =sub_0809C544
 	adds r1, r5, #0
-	bl sub_080A92F8
+	bl StartParallelWorker
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}
@@ -21914,7 +21914,7 @@ sub_0809CE38: @ 0x0809CE38
 	cmp r0, #0
 	blt _0809CE60
 	ldr r0, _0809CE74 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809CE60:
 	adds r0, r6, #0
 	movs r1, #3
@@ -21977,7 +21977,7 @@ _0809CEBE:
 	cmp r0, #0
 	blt _0809CEE0
 	ldr r0, _0809CEF0 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809CEE0:
 	adds r0, r6, #0
 	movs r1, #2
@@ -22017,7 +22017,7 @@ _0809CF0E:
 	lsrs r1, r1, #2
 	movs r2, #7
 	ands r1, r2
-	bl sub_0809B074
+	bl GetSupportScreenPartnerSupportLevel
 	subs r0, #1
 	cmp r4, r0
 	bge _0809CF48
@@ -22077,7 +22077,7 @@ _0809CF88:
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #1
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	ldr r0, _0809CFC4 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -22085,7 +22085,7 @@ _0809CF88:
 	cmp r0, #0
 	blt _0809CFE8
 	ldr r0, _0809CFC8 @ =0x00000385
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0809CFE8
 	.align 2, 0
 _0809CFC0: .4byte 0x08B857F8
@@ -22104,7 +22104,7 @@ _0809CFCC:
 	blt _0809CFE8
 	movs r0, #0xe3
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809CFE8:
 	pop {r3}
 	mov r8, r3
@@ -22176,7 +22176,7 @@ sub_0809CFF8: @ 0x0809CFF8
 	bl LoadUiFrameGraphics
 	bl ApplySystemObjectsGraphics
 	ldr r0, [r5, #0x2c]
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	adds r4, r0, #0
 	lsls r4, r4, #0x18
 	lsrs r4, r4, #0x18
@@ -22186,7 +22186,7 @@ sub_0809CFF8: @ 0x0809CFF8
 	lsrs r1, r2, #2
 	movs r2, #7
 	ands r1, r2
-	bl sub_0809B0C0
+	bl GetSupportScreenPartnerCharId
 	adds r1, r0, #0
 	lsls r1, r1, #0x18
 	lsrs r1, r1, #0x18
@@ -22195,7 +22195,7 @@ sub_0809CFF8: @ 0x0809CFF8
 	ands r2, r5
 	adds r2, #1
 	adds r0, r4, #0
-	bl sub_08078AF4
+	bl StartSupportViewerTalk
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -22210,7 +22210,7 @@ sub_0809D0BC: @ 0x0809D0BC
 	adds r0, #0x3a
 	movs r4, #0
 	strb r4, [r0]
-	bl sub_080A9564
+	bl HideSysHandCursor
 	ldr r3, _0809D14C @ =0x03002870
 	movs r1, #4
 	rsbs r1, r1, #0
@@ -22270,7 +22270,7 @@ sub_0809D0BC: @ 0x0809D0BC
 	cmp r0, #0
 	blt _0809D144
 	movs r0, #0xc8
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0809D144:
 	pop {r4, r5}
 	pop {r0}
@@ -22427,7 +22427,7 @@ sub_0809D22C: @ 0x0809D22C
 	adds r0, #0x3f
 	ldrb r2, [r0]
 	movs r0, #0
-	bl sub_08007CF0
+	bl SetFacePosition
 	ldr r3, _0809D2D0 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -22455,7 +22455,7 @@ sub_0809D22C: @ 0x0809D22C
 	adds r0, r7, #0
 	bl Proc_Break
 	ldr r0, [r7, #0x2c]
-	bl sub_0809B04C
+	bl GetNextSupportScreenUnit
 	str r0, [r7, #0x2c]
 _0809D2C2:
 	pop {r3}
@@ -22512,7 +22512,7 @@ sub_0809D2D4: @ 0x0809D2D4
 	adds r0, #0x3f
 	ldrb r2, [r0]
 	movs r0, #0
-	bl sub_08007CF0
+	bl SetFacePosition
 	ldr r3, _0809D37C @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -22591,7 +22591,7 @@ sub_0809D380: @ 0x0809D380
 	adds r0, #0x3f
 	ldrb r2, [r0]
 	movs r0, #0
-	bl sub_08007CF0
+	bl SetFacePosition
 	ldr r3, _0809D424 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -22619,7 +22619,7 @@ sub_0809D380: @ 0x0809D380
 	adds r0, r7, #0
 	bl Proc_Break
 	ldr r0, [r7, #0x2c]
-	bl sub_0809B064
+	bl GetPreviousSupportScreenUnit
 	str r0, [r7, #0x2c]
 _0809D416:
 	pop {r3}
@@ -22677,7 +22677,7 @@ sub_0809D428: @ 0x0809D428
 	adds r0, #0x3f
 	ldrb r2, [r0]
 	movs r0, #0
-	bl sub_08007CF0
+	bl SetFacePosition
 	ldr r3, _0809D4D0 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -22742,13 +22742,13 @@ sub_0809D4D4: @ 0x0809D4D4
 	ands r0, r1
 	strb r0, [r2]
 	ldr r0, [r5, #0x2c]
-	bl sub_0809B0E4
-	bl sub_0809C524
+	bl GetSupportScreenCharIdAt
+	bl GetSupportScreenPartnerCount
 	adds r1, r5, #0
 	adds r1, #0x3c
 	strb r0, [r1]
 	adds r0, r5, #0
-	bl sub_0809C924
+	bl InitSupportSubScreenPartners
 	adds r0, r5, #0
 	bl sub_0809CA08
 	adds r0, r5, #0
@@ -22764,14 +22764,14 @@ sub_0809D4D4: @ 0x0809D4D4
 	bl sub_080AACD8
 	ldr r4, _0809D594 @ =0x08BDCE4C
 	ldr r0, [r5, #0x2c]
-	bl sub_0809B0E4
+	bl GetSupportScreenCharIdAt
 	subs r0, #1
 	movs r1, #0x34
 	muls r0, r1, r0
 	adds r0, r0, r4
 	ldrh r4, [r0, #6]
 	adds r0, r4, #0
-	bl sub_0800721C
+	bl ShouldFaceBeRaised
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809D598
@@ -22786,7 +22786,7 @@ sub_0809D4D4: @ 0x0809D4D4
 	adds r1, r4, #0
 	movs r2, #0x38
 	movs r3, #0
-	bl sub_08007BCC
+	bl StartBmFace
 	b _0809D5B0
 	.align 2, 0
 _0809D584: .4byte 0x02022C60
@@ -22805,12 +22805,12 @@ _0809D598:
 	adds r1, r4, #0
 	movs r2, #0x38
 	movs r3, #8
-	bl sub_08007BCC
+	bl StartBmFace
 _0809D5B0:
 	adds r0, r5, #0
 	bl sub_0809CAB8
 	adds r0, r5, #0
-	bl sub_0809C844
+	bl DrawSupportSubScreenRemainingText
 	bl sub_0809C49C
 	adds r1, r5, #0
 	adds r1, #0x3a
@@ -22916,7 +22916,7 @@ sub_0809D5D0: @ 0x0809D5D0
 	movs r3, #0x80
 	lsls r3, r3, #4
 	movs r2, #1
-	bl sub_080A951C
+	bl ShowSysHandCursor
 	adds r1, r4, #0
 	adds r1, #0x3a
 	movs r0, #0xff
@@ -22930,14 +22930,14 @@ _0809D69C: .4byte 0x03002870
 _0809D6A0: .4byte 0x0000FFE0
 _0809D6A4: .4byte 0x0000E0FF
 
-	thumb_func_start sub_0809D6A8
-sub_0809D6A8: @ 0x0809D6A8
+	thumb_func_start SupportSubScreen_OnEnd
+SupportSubScreen_OnEnd: @ 0x0809D6A8
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_080A9DC0
-	bl sub_0808E46C
+	bl EndAllProcChildren
+	bl EndMuralBackground_
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 	ldr r0, [r4, #0x2c]
 	bl sub_0809BF78
 	pop {r4}
@@ -22945,8 +22945,8 @@ sub_0809D6A8: @ 0x0809D6A8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809D6C8
-sub_0809D6C8: @ 0x0809D6C8
+	thumb_func_start SupportSubScreen_PrepareSupportConvo
+SupportSubScreen_PrepareSupportConvo: @ 0x0809D6C8
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -22960,7 +22960,7 @@ sub_0809D6C8: @ 0x0809D6C8
 	movs r2, #3
 	ands r2, r3
 	adds r2, #1
-	bl sub_0809BF94
+	bl UiSupport_GetSupportTalkSong
 	adds r4, #0x3e
 	movs r3, #0
 	strb r0, [r4]
@@ -22973,7 +22973,7 @@ sub_0809D6C8: @ 0x0809D6C8
 	movs r0, #0x30
 	movs r2, #0x80
 	movs r3, #0x10
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	b _0809D714
 _0809D704:
 	ldrb r0, [r4]
@@ -22982,7 +22982,7 @@ _0809D704:
 	str r3, [sp]
 	adds r1, r2, #0
 	movs r3, #0x10
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 _0809D714:
 	add sp, #4
 	pop {r4}
@@ -23003,7 +23003,7 @@ sub_0809D71C: @ 0x0809D71C
 	movs r0, #0x30
 	movs r1, #0x80
 	movs r3, #0x10
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	b _0809D74C
 _0809D73A:
 	movs r2, #0x80
@@ -23013,15 +23013,15 @@ _0809D73A:
 	movs r0, #0x30
 	adds r1, r2, #0
 	movs r3, #0x10
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 _0809D74C:
 	add sp, #4
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809D754
-sub_0809D754: @ 0x0809D754
+	thumb_func_start StartSupportUnitSubScreen
+StartSupportUnitSubScreen: @ 0x0809D754
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -23618,8 +23618,8 @@ _0809DBC6:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0809DBD8
-sub_0809DBD8: @ 0x0809DBD8
+	thumb_func_start ModifyPassword
+ModifyPassword: @ 0x0809DBD8
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r3, r0, #0
@@ -23877,8 +23877,8 @@ _0809DDD8:
 	.align 2, 0
 _0809DDE0: .4byte 0x02014438
 
-	thumb_func_start sub_0809DDE4
-sub_0809DDE4: @ 0x0809DDE4
+	thumb_func_start InitPassword
+InitPassword: @ 0x0809DDE4
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
@@ -24188,8 +24188,8 @@ _0809E08A:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809E094
-sub_0809E094: @ 0x0809E094
+	thumb_func_start PrintPassword
+PrintPassword: @ 0x0809E094
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -24218,7 +24218,7 @@ _0809E0C4:
 	adds r0, r1, r6
 	bl ClearText
 	movs r5, #2
-	bl sub_08005A80
+	bl InitTalkTextFont
 	movs r4, #0
 	ldr r7, [sp, #0x14]
 _0809E0D6:
@@ -24248,7 +24248,7 @@ _0809E0D6:
 	add r1, r8
 	movs r2, #1
 	adds r3, r5, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	adds r5, #0xb
 	adds r4, #1
 	adds r0, r4, #0
@@ -24300,20 +24300,20 @@ sub_0809E15C: @ 0x0809E15C
 	ldr r5, _0809E258 @ =0x020144E0
 	ldrb r2, [r5]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r7, #6
 	mov r8, r0
 	adds r0, r4, r0
 	ldrb r2, [r5, #2]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r1, #0x14
 	adds r1, r1, r7
 	mov sl, r1
 	adds r0, r4, r1
 	ldrb r2, [r5, #0xb]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r0, #0x1e
 	adds r0, r0, r7
 	mov sb, r0
@@ -24321,74 +24321,74 @@ sub_0809E15C: @ 0x0809E15C
 	ldrb r2, [r5, #0xa]
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r4, r6, #2
 	lsls r4, r4, #6
 	adds r0, r4, r7
 	ldrb r2, [r5, #3]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	add r8, r4
 	ldrb r2, [r5, #4]
 	mov r0, r8
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	movs r1, #0xc
 	adds r1, r1, r7
 	mov r8, r1
 	adds r0, r4, r1
 	ldrb r2, [r5, #5]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r7, #0
 	adds r0, #0x12
 	adds r0, r4, r0
 	ldrb r2, [r5, #6]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r7, #0
 	adds r0, #0x18
 	adds r0, r4, r0
 	ldrb r2, [r5, #7]
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	add sb, r4
 	ldrb r2, [r5, #9]
 	mov r0, sb
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r7, #0
 	adds r0, #0x24
 	adds r4, r4, r0
 	ldrb r2, [r5, #8]
 	adds r0, r4, #0
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r6, #4
 	lsls r6, r6, #6
 	add r8, r6
 	ldr r2, [r5, #0x10]
 	mov r0, r8
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	add sl, r6
 	ldrh r2, [r5, #0xc]
 	mov r0, sl
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r0, r7, #0
 	adds r0, #0x1a
 	adds r0, r6, r0
 	ldrb r2, [r5, #0xe]
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	adds r0, r7, #0
 	adds r0, #0x20
 	adds r6, r6, r0
 	ldrb r2, [r5, #0xf]
 	adds r0, r6, #0
 	movs r1, #2
-	bl sub_080061D8
+	bl PutNumber
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov sb, r4
@@ -24486,7 +24486,7 @@ sub_0809E25C: @ 0x0809E25C
 	movs r1, #6
 	movs r2, #0x1a
 	movs r3, #7
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #0xf
 	bl EnableBgSync
 	ldr r5, _0809E368 @ =0x0201440C
@@ -24520,15 +24520,15 @@ _0809E36C:
 	movs r0, #5
 	movs r1, #0x11
 	bl sub_0809D7B4
-	ldr r0, _0809E398 @ =sub_0809DDE4
-	bl sub_0809DBD8
+	ldr r0, _0809E398 @ =InitPassword
+	bl ModifyPassword
 	ldr r0, _0809E39C @ =0x0201440C
 	ldr r1, _0809E3A0 @ =0x08CC5ACC
-	bl sub_0809E094
+	bl PrintPassword
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0xa
-	bl sub_0807F8D4
+	bl StartMuralBackgroundAlt
 	str r0, [r6, #0x2c]
 _0809E38E:
 	add sp, #4
@@ -24536,7 +24536,7 @@ _0809E38E:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0809E398: .4byte sub_0809DDE4
+_0809E398: .4byte InitPassword
 _0809E39C: .4byte 0x0201440C
 _0809E3A0: .4byte 0x08CC5ACC
 
@@ -24600,15 +24600,15 @@ sub_0809E400: @ 0x0809E400
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0809E404
-sub_0809E404: @ 0x0809E404
+	thumb_func_start SramInit
+SramInit: @ 0x0809E404
 	push {r4, r5, lr}
 	sub sp, #8
 	ldr r0, _0809E45C @ =0x12345678
 	str r0, [sp]
 	ldr r0, _0809E460 @ =0x87654321
 	str r0, [sp, #4]
-	bl sub_080BFB40
+	bl SetSramFastFunc
 	ldr r2, _0809E464 @ =0x04000200
 	ldrh r0, [r2]
 	movs r3, #0x80
@@ -24652,8 +24652,8 @@ _0809E46C: .4byte 0x000073B8
 _0809E470: .4byte 0x03005E70
 _0809E474: .4byte 0x0203E79A
 
-	thumb_func_start sub_0809E478
-sub_0809E478: @ 0x0809E478
+	thumb_func_start IsSramWorking
+IsSramWorking: @ 0x0809E478
 	ldr r0, _0809E484 @ =0x0203E79A
 	ldrb r0, [r0]
 	lsls r0, r0, #0x18
@@ -24662,8 +24662,8 @@ sub_0809E478: @ 0x0809E478
 	.align 2, 0
 _0809E484: .4byte 0x0203E79A
 
-	thumb_func_start sub_0809E488
-sub_0809E488: @ 0x0809E488
+	thumb_func_start WipeSram
+WipeSram: @ 0x0809E488
 	push {r4, r5, r6, lr}
 	sub sp, #0x40
 	movs r1, #1
@@ -24695,8 +24695,8 @@ _0809E4A0:
 _0809E4BC: .4byte 0x08CE3B58
 _0809E4C0: .4byte 0x000001FF
 
-	thumb_func_start sub_0809E4C4
-sub_0809E4C4: @ 0x0809E4C4
+	thumb_func_start Checksum16
+Checksum16: @ 0x0809E4C4
 	push {r4, lr}
 	adds r2, r0, #0
 	movs r3, #0
@@ -24727,7 +24727,7 @@ LoadMetaSave: @ 0x0809E4F0
 	push {r4, r5, lr}
 	sub sp, #0x64
 	adds r5, r0, #0
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809E564
@@ -24744,7 +24744,7 @@ _0809E506:
 	bl _call_via_r3
 	ldr r1, _0809E558 @ =0x0840F430
 	adds r0, r5, #0
-	bl sub_080130B4
+	bl StringEquals
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809E564
@@ -24760,7 +24760,7 @@ _0809E506:
 	adds r4, #0x60
 	adds r0, r5, #0
 	movs r1, #0x50
-	bl sub_0809E4C4
+	bl Checksum16
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldrh r4, [r4]
@@ -24788,7 +24788,7 @@ SaveMetaSave: @ 0x0809E570
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x50
-	bl sub_0809E4C4
+	bl Checksum16
 	adds r1, r4, #0
 	adds r1, #0x60
 	strh r0, [r1]
@@ -24803,8 +24803,8 @@ SaveMetaSave: @ 0x0809E570
 	.align 2, 0
 _0809E594: .4byte 0x08CE3B58
 
-	thumb_func_start sub_0809E598
-sub_0809E598: @ 0x0809E598
+	thumb_func_start WriteGlobalSaveInfoNoChecksum
+WriteGlobalSaveInfoNoChecksum: @ 0x0809E598
 	push {lr}
 	ldr r1, _0809E5A8 @ =0x08CE3B58
 	ldr r1, [r1]
@@ -24815,14 +24815,14 @@ sub_0809E598: @ 0x0809E598
 	.align 2, 0
 _0809E5A8: .4byte 0x08CE3B58
 
-	thumb_func_start sub_0809E5AC
-sub_0809E5AC: @ 0x0809E5AC
+	thumb_func_start InitGlobalSaveInfo
+InitGlobalSaveInfo: @ 0x0809E5AC
 	push {r4, lr}
 	sub sp, #0x64
-	bl sub_0809E488
+	bl WipeSram
 	ldr r1, _0809E678 @ =0x0840F430
 	mov r0, sp
-	bl sub_080130DC
+	bl StringCopy
 	ldr r0, _0809E67C @ =0x00030317
 	str r0, [sp, #8]
 	mov r1, sp
@@ -24923,8 +24923,8 @@ _0809E67C: .4byte 0x00030317
 _0809E680: .4byte 0x0000200A
 _0809E684: .4byte 0xFF0000FF
 
-	thumb_func_start sub_0809E688
-sub_0809E688: @ 0x0809E688
+	thumb_func_start ResetFe6LinkSaveInfo
+ResetFe6LinkSaveInfo: @ 0x0809E688
 	push {lr}
 	sub sp, #0x28
 	add r0, sp, #0x24
@@ -24934,15 +24934,15 @@ sub_0809E688: @ 0x0809E688
 	mov r1, sp
 	bl CpuSet
 	mov r0, sp
-	bl sub_0809F058
+	bl WriteFe6LinkSaveInfo
 	add sp, #0x28
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0809E6A8: .4byte 0x01000012
 
-	thumb_func_start sub_0809E6AC
-sub_0809E6AC: @ 0x0809E6AC
+	thumb_func_start EraseBonusContentData
+EraseBonusContentData: @ 0x0809E6AC
 	push {r4, lr}
 	sub sp, #4
 	ldr r4, _0809E6D0 @ =0x02020140
@@ -24954,7 +24954,7 @@ sub_0809E6AC: @ 0x0809E6AC
 	adds r1, r4, #0
 	bl CpuSet
 	adds r0, r4, #0
-	bl sub_0809F190
+	bl SaveBonusContentData
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -24963,8 +24963,8 @@ sub_0809E6AC: @ 0x0809E6AC
 _0809E6D0: .4byte 0x02020140
 _0809E6D4: .4byte 0x01000142
 
-	thumb_func_start sub_0809E6D8
-sub_0809E6D8: @ 0x0809E6D8
+	thumb_func_start SramOffsetToAddr
+SramOffsetToAddr: @ 0x0809E6D8
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldr r1, _0809E6E8 @ =0x08CE3B58
@@ -24975,8 +24975,8 @@ sub_0809E6D8: @ 0x0809E6D8
 	.align 2, 0
 _0809E6E8: .4byte 0x08CE3B58
 
-	thumb_func_start sub_0809E6EC
-sub_0809E6EC: @ 0x0809E6EC
+	thumb_func_start SramAddrToOffset
+SramAddrToOffset: @ 0x0809E6EC
 	ldr r1, _0809E6F8 @ =0x08CE3B58
 	ldr r1, [r1]
 	subs r0, r0, r1
@@ -24986,8 +24986,8 @@ sub_0809E6EC: @ 0x0809E6EC
 	.align 2, 0
 _0809E6F8: .4byte 0x08CE3B58
 
-	thumb_func_start sub_0809E6FC
-sub_0809E6FC: @ 0x0809E6FC
+	thumb_func_start ReadSaveBlockInfo
+ReadSaveBlockInfo: @ 0x0809E6FC
 	push {r4, r5, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
@@ -25052,7 +25052,7 @@ _0809E77E:
 	cmp r0, r1
 	bne _0809E794
 	adds r0, r4, #0
-	bl sub_080A1998
+	bl VerifySaveBlockChecksum
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	b _0809E796
@@ -25067,8 +25067,8 @@ _0809E796:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809E7A0
-sub_0809E7A0: @ 0x0809E7A0
+	thumb_func_start WriteSaveBlockInfo
+WriteSaveBlockInfo: @ 0x0809E7A0
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r6, r1, #0
@@ -25077,7 +25077,7 @@ sub_0809E7A0: @ 0x0809E7A0
 	ldr r0, _0809E7D0 @ =0x0000200A
 	strh r0, [r4, #4]
 	adds r0, r6, #0
-	bl sub_0809E870
+	bl GetSaveWriteAddr
 	strh r0, [r4, #8]
 	cmp r6, #6
 	bgt _0809E826
@@ -25128,7 +25128,7 @@ _0809E808:
 	strh r5, [r4, #4]
 _0809E80E:
 	adds r0, r4, #0
-	bl sub_080A19BC
+	bl PopulateSaveBlockChecksum
 	ldr r0, _0809E82C @ =0x08CE3B58
 	lsls r2, r6, #4
 	adds r2, #0x64
@@ -25144,8 +25144,8 @@ _0809E826:
 	.align 2, 0
 _0809E82C: .4byte 0x08CE3B58
 
-	thumb_func_start sub_0809E830
-sub_0809E830: @ 0x0809E830
+	thumb_func_start EraseSaveBlockInfo
+EraseSaveBlockInfo: @ 0x0809E830
 	push {r4, lr}
 	sub sp, #0x14
 	adds r4, r0, #0
@@ -25176,8 +25176,8 @@ _0809E864: .4byte 0x0000FFFF
 _0809E868: .4byte 0x01000008
 _0809E86C: .4byte 0x08CE3B58
 
-	thumb_func_start sub_0809E870
-sub_0809E870: @ 0x0809E870
+	thumb_func_start GetSaveWriteAddr
+GetSaveWriteAddr: @ 0x0809E870
 	cmp r0, #6
 	bhi _0809E914
 	lsls r0, r0, #2
@@ -25257,16 +25257,16 @@ _0809E914:
 _0809E916:
 	bx lr
 
-	thumb_func_start sub_0809E918
-sub_0809E918: @ 0x0809E918
+	thumb_func_start GetSaveReadAddr
+GetSaveReadAddr: @ 0x0809E918
 	push {lr}
 	sub sp, #0x10
 	adds r1, r0, #0
 	mov r0, sp
-	bl sub_0809E6FC
+	bl ReadSaveBlockInfo
 	mov r0, sp
 	ldrh r0, [r0, #8]
-	bl sub_0809E6D8
+	bl SramOffsetToAddr
 	add sp, #0x10
 	pop {r1}
 	bx r1
@@ -25292,7 +25292,7 @@ sub_0809E934: @ 0x0809E934
 sub_0809E954: @ 0x0809E954
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_08079924
+	bl GetPermanentFlagBits
 	adds r5, r0, #0
 	bl sub_0807992C
 	adds r2, r0, #0
@@ -25328,7 +25328,7 @@ sub_0809E99C: @ 0x0809E99C
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r4, _0809E9C0 @ =0x03005E70
-	bl sub_08079924
+	bl GetPermanentFlagBits
 	adds r5, r0, #0
 	bl sub_0807992C
 	adds r2, r0, #0
@@ -25346,7 +25346,7 @@ _0809E9C0: .4byte 0x03005E70
 sub_0809E9C4: @ 0x0809E9C4
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0802E700
+	bl GetConvoyItemArray
 	adds r1, r4, #0
 	movs r2, #0xc8
 	bl WriteAndVerifySramFast
@@ -25360,7 +25360,7 @@ sub_0809E9DC: @ 0x0809E9DC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _0809E9F8 @ =0x03005E70
-	bl sub_0802E700
+	bl GetConvoyItemArray
 	adds r1, r0, #0
 	ldr r3, [r4]
 	adds r0, r5, #0
@@ -25385,7 +25385,7 @@ sub_0809E9FC: @ 0x0809E9FC
 	mov r0, sp
 	bl MetaSave_CountCompletedPlaythroughs
 	adds r5, r0, #0
-	bl sub_0809EFBC
+	bl CheckLinkedToFE6
 	rsbs r1, r0, #0
 	orrs r1, r0
 	asrs r4, r1, #0x1f
@@ -25448,10 +25448,10 @@ sub_0809EA7C: @ 0x0809EA7C
 	movs r0, #1
 	bx lr
 
-	thumb_func_start sub_0809EA80
-sub_0809EA80: @ 0x0809EA80
+	thumb_func_start IsExtraLinkArenaEnabled
+IsExtraLinkArenaEnabled: @ 0x0809EA80
 	push {r4, lr}
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809EA94
@@ -25464,14 +25464,14 @@ _0809EA94:
 	movs r4, #0
 _0809EA96:
 	adds r0, r4, #0
-	bl sub_080A0A30
+	bl IsGameSaveNotFirstChapter
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809EA90
 	adds r4, #1
 	cmp r4, #2
 	ble _0809EA96
-	bl sub_080A1FB8
+	bl IsMultiArenaSaveReady
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 _0809EAB0:
@@ -25504,8 +25504,8 @@ _0809EADA:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809EAE0
-sub_0809EAE0: @ 0x0809EAE0
+	thumb_func_start IsExtraSupportViewerEnabled
+IsExtraSupportViewerEnabled: @ 0x0809EAE0
 	push {r4, lr}
 	movs r0, #0
 	bl MetaSave_HasMetAnyCharacter
@@ -25519,8 +25519,8 @@ sub_0809EAE0: @ 0x0809EAE0
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809EAFC
-sub_0809EAFC: @ 0x0809EAFC
+	thumb_func_start GetRankDataValidBitMap
+GetRankDataValidBitMap: @ 0x0809EAFC
 	push {r4, lr}
 	sub sp, #0x94
 	movs r4, #0
@@ -25532,7 +25532,7 @@ sub_0809EAFC: @ 0x0809EAFC
 	b _0809EB70
 _0809EB10:
 	mov r0, sp
-	bl sub_0809F0D8
+	bl LoadAndVerfyRankData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809EB6E
@@ -25595,7 +25595,7 @@ sub_0809EB78: @ 0x0809EB78
 	push {r4, lr}
 	ldr r4, _0809EBB4 @ =0x02020140
 	adds r0, r4, #0
-	bl sub_0809F134
+	bl LoadBonusContentData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809EBB8
@@ -25632,8 +25632,8 @@ _0809EBBA:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809EBC0
-sub_0809EBC0: @ 0x0809EBC0
+	thumb_func_start GetUnitsAverageSupportValue
+GetUnitsAverageSupportValue: @ 0x0809EBC0
 	push {r4, r5, r6, r7, lr}
 	adds r2, r0, #0
 	ldr r7, _0809EBF0 @ =0x08CE3B5C
@@ -25694,8 +25694,8 @@ _0809EC1E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809EC24
-sub_0809EC24: @ 0x0809EC24
+	thumb_func_start GetTotalAverageSupportValue
+GetTotalAverageSupportValue: @ 0x0809EC24
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r4, _0809EC2C @ =0x08C9F9F4
@@ -25705,7 +25705,7 @@ _0809EC2C: .4byte 0x08C9F9F4
 _0809EC30:
 	ldrb r0, [r4]
 	ldrb r1, [r4, #1]
-	bl sub_0809EBC0
+	bl GetUnitsAverageSupportValue
 	adds r5, r5, r0
 	adds r4, #0x14
 _0809EC3C:
@@ -25718,8 +25718,8 @@ _0809EC3C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809EC4C
-sub_0809EC4C: @ 0x0809EC4C
+	thumb_func_start GetTotalGlobalSupportValue
+GetTotalGlobalSupportValue: @ 0x0809EC4C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x64
 	adds r4, r0, #0
@@ -25757,13 +25757,13 @@ _0809EC70:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809EC90
-sub_0809EC90: @ 0x0809EC90
+	thumb_func_start GetTotalSupportCollection
+GetTotalSupportCollection: @ 0x0809EC90
 	push {r4, r5, lr}
 	movs r0, #0
-	bl sub_0809EC4C
+	bl GetTotalGlobalSupportValue
 	adds r4, r0, #0
-	bl sub_0809EC24
+	bl GetTotalAverageSupportValue
 	adds r5, r0, #0
 	cmp r4, #0
 	ble _0809ECB6
@@ -25791,8 +25791,8 @@ _0809ECC8:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809ECD0
-sub_0809ECD0: @ 0x0809ECD0
+	thumb_func_start GetGlobalBestSupport
+GetGlobalBestSupport: @ 0x0809ECD0
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x68
 	adds r3, r0, #0
@@ -25847,8 +25847,8 @@ _0809ED18:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809ED34
-sub_0809ED34: @ 0x0809ED34
+	thumb_func_start GetGlobalSupportListFromSave
+GetGlobalSupportListFromSave: @ 0x0809ED34
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -26000,8 +26000,8 @@ _0809EE3A:
 	.align 2, 0
 _0809EE4C: .4byte 0x08BDCE4C
 
-	thumb_func_start sub_0809EE50
-sub_0809EE50: @ 0x0809EE50
+	thumb_func_start UpdateBestGlobalSupportValue
+UpdateBestGlobalSupportValue: @ 0x0809EE50
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x64
 	adds r5, r0, #0
@@ -26214,8 +26214,8 @@ _0809EFB6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809EFBC
-sub_0809EFBC: @ 0x0809EFBC
+	thumb_func_start CheckLinkedToFE6
+CheckLinkedToFE6: @ 0x0809EFBC
 	push {r4, lr}
 	sub sp, #0x88
 	add r4, sp, #0x24
@@ -26237,7 +26237,7 @@ _0809EFDC:
 	b _0809EFF8
 _0809EFE4:
 	mov r0, sp
-	bl sub_0809F000
+	bl ReadFe6LinkSaveInfo
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809EFF4
@@ -26252,12 +26252,12 @@ _0809EFF8:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809F000
-sub_0809F000: @ 0x0809F000
+	thumb_func_start ReadFe6LinkSaveInfo
+ReadFe6LinkSaveInfo: @ 0x0809F000
 	push {r4, lr}
 	sub sp, #0x24
 	adds r4, r0, #0
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F04C
@@ -26276,7 +26276,7 @@ _0809F016:
 	bl _call_via_r3
 	adds r0, r4, #0
 	movs r1, #0x22
-	bl sub_0809E4C4
+	bl Checksum16
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldrh r4, [r4, #0x22]
@@ -26297,12 +26297,12 @@ _0809F04E:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0809F058
-sub_0809F058: @ 0x0809F058
+	thumb_func_start WriteFe6LinkSaveInfo
+WriteFe6LinkSaveInfo: @ 0x0809F058
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x22
-	bl sub_0809E4C4
+	bl Checksum16
 	strh r0, [r4, #0x22]
 	ldr r0, _0809F07C @ =0x08CE3B58
 	ldr r1, [r0]
@@ -26374,11 +26374,11 @@ sub_0809F0D4: @ 0x0809F0D4
 	ldrh r0, [r0, #0x20]
 	bx lr
 
-	thumb_func_start sub_0809F0D8
-sub_0809F0D8: @ 0x0809F0D8
+	thumb_func_start LoadAndVerfyRankData
+LoadAndVerfyRankData: @ 0x0809F0D8
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F12C
@@ -26399,7 +26399,7 @@ _0809F0EC:
 	adds r4, #0x90
 	adds r0, r5, #0
 	movs r1, #0x90
-	bl sub_0809E4C4
+	bl Checksum16
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldrh r4, [r4]
@@ -26419,11 +26419,11 @@ _0809F12E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809F134
-sub_0809F134: @ 0x0809F134
+	thumb_func_start LoadBonusContentData
+LoadBonusContentData: @ 0x0809F134
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0809E478
+	bl IsSramWorking
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F188
@@ -26445,7 +26445,7 @@ _0809F148:
 	lsls r1, r1, #2
 	adds r4, r5, r1
 	adds r0, r5, #0
-	bl sub_0809E4C4
+	bl Checksum16
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	ldrh r4, [r4]
@@ -26465,14 +26465,14 @@ _0809F18A:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809F190
-sub_0809F190: @ 0x0809F190
+	thumb_func_start SaveBonusContentData
+SaveBonusContentData: @ 0x0809F190
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #0xa0
 	lsls r4, r4, #2
 	adds r1, r4, #0
-	bl sub_0809E4C4
+	bl Checksum16
 	adds r4, r5, r4
 	strh r0, [r4]
 	ldr r0, _0809F1BC @ =0x08CE3B58
@@ -26490,12 +26490,12 @@ sub_0809F190: @ 0x0809F190
 _0809F1BC: .4byte 0x08CE3B58
 _0809F1C0: .4byte 0x00007134
 
-	thumb_func_start sub_0809F1C4
-sub_0809F1C4: @ 0x0809F1C4
+	thumb_func_start SaveRankings
+SaveRankings: @ 0x0809F1C4
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x90
-	bl sub_0809E4C4
+	bl Checksum16
 	adds r1, r4, #0
 	adds r1, #0x90
 	strh r0, [r1]
@@ -26513,8 +26513,8 @@ sub_0809F1C4: @ 0x0809F1C4
 _0809F1EC: .4byte 0x08CE3B58
 _0809F1F0: .4byte 0x00007044
 
-	thumb_func_start sub_0809F1F4
-sub_0809F1F4: @ 0x0809F1F4
+	thumb_func_start EraseSaveRankData
+EraseSaveRankData: @ 0x0809F1F4
 	push {lr}
 	sub sp, #0x98
 	add r0, sp, #0x94
@@ -26524,15 +26524,15 @@ sub_0809F1F4: @ 0x0809F1F4
 	mov r1, sp
 	bl CpuSet
 	mov r0, sp
-	bl sub_0809F1C4
+	bl SaveRankings
 	add sp, #0x98
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0809F214: .4byte 0x0100004A
 
-	thumb_func_start sub_0809F218
-sub_0809F218: @ 0x0809F218
+	thumb_func_start GetNextChapterMode
+GetNextChapterMode: @ 0x0809F218
 	ldr r0, _0809F220 @ =0x0202BBF8
 	ldrb r0, [r0, #0x1b]
 	subs r0, #1
@@ -26560,7 +26560,7 @@ sub_0809F224: @ 0x0809F224
 	mov r1, sp
 	bl CpuSet
 	mov r0, sp
-	bl sub_0809F0D8
+	bl LoadAndVerfyRankData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0809F264
@@ -26590,15 +26590,15 @@ _0809F280:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0809F288
-sub_0809F288: @ 0x0809F288
+	thumb_func_start SaveNewRankData
+SaveNewRankData: @ 0x0809F288
 	push {r4, r5, r6, lr}
 	sub sp, #0x94
 	adds r6, r0, #0
 	adds r5, r1, #0
 	adds r4, r2, #0
 	mov r0, sp
-	bl sub_0809F0D8
+	bl LoadAndVerfyRankData
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0809F2BE
@@ -26616,7 +26616,7 @@ sub_0809F288: @ 0x0809F288
 	ldm r0!, {r2, r3, r4}
 	stm r1!, {r2, r3, r4}
 	mov r0, sp
-	bl sub_0809F1C4
+	bl SaveRankings
 _0809F2BE:
 	add sp, #0x94
 	pop {r4, r5, r6}
@@ -26624,8 +26624,8 @@ _0809F2BE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0809F2C8
-sub_0809F2C8: @ 0x0809F2C8
+	thumb_func_start JudgeGameRankSaveData
+JudgeGameRankSaveData: @ 0x0809F2C8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0

@@ -23,8 +23,8 @@ TmFillRect_t: @ 0x080C57BC
 _080C57C0:
 	.byte 0xF8, 0xEA, 0xFC, 0xEA
 
-	thumb_func_start sub_080C57C4
-sub_080C57C4: @ 0x080C57C4
+	thumb_func_start ColorFadeTick_thm
+ColorFadeTick_thm: @ 0x080C57C4
 	bx pc
 	nop
 _080C57C8:
@@ -37,8 +37,8 @@ TmCopyRect_t: @ 0x080C57CC
 _080C57D0:
 	.byte 0x02, 0xEB, 0xFC, 0xEA
 
-	thumb_func_start sub_080C57D4
-sub_080C57D4: @ 0x080C57D4
+	thumb_func_start Checksum32_thm
+Checksum32_thm: @ 0x080C57D4
 	bx pc
 	nop
 	.byte 0xE0, 0xEA, 0xFC, 0xEA

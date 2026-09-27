@@ -112,8 +112,8 @@ _08004752:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08004758
-sub_08004758: @ 0x08004758
+	thumb_func_start Proc_GotoScript
+Proc_GotoScript: @ 0x08004758
 	str r1, [r0, #4]
 	movs r1, #0
 	str r1, [r0, #0xc]
@@ -126,13 +126,13 @@ Proc_Mark: @ 0x08004760
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004768
-sub_08004768: @ 0x08004768
+	thumb_func_start Proc_SetEndCb
+Proc_SetEndCb: @ 0x08004768
 	str r1, [r0, #8]
 	bx lr
 
-	thumb_func_start sub_0800476C
-sub_0800476C: @ 0x0800476C
+	thumb_func_start Proc_ForAll
+Proc_ForAll: @ 0x0800476C
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r4, _08004790 @ =0x02024E28
@@ -178,8 +178,8 @@ _080047AA:
 	.align 2, 0
 _080047B8: .4byte 0x02024E28
 
-	thumb_func_start sub_080047BC
-sub_080047BC: @ 0x080047BC
+	thumb_func_start Proc_ForEachMarked
+Proc_ForEachMarked: @ 0x080047BC
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r6, r1, #0
@@ -227,8 +227,8 @@ _080047FE:
 	.align 2, 0
 _08004808: .4byte 0x02024E28
 
-	thumb_func_start sub_0800480C
-sub_0800480C: @ 0x0800480C
+	thumb_func_start Proc_UnblockEachMarked
+Proc_UnblockEachMarked: @ 0x0800480C
 	adds r3, r0, #0
 	movs r2, #0x3f
 	ldr r0, _08004830 @ =0x02024E28
@@ -252,8 +252,8 @@ _08004826:
 	.align 2, 0
 _08004830: .4byte 0x02024E28
 
-	thumb_func_start sub_08004834
-sub_08004834: @ 0x08004834
+	thumb_func_start Proc_EndEachMarked
+Proc_EndEachMarked: @ 0x08004834
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r4, _0800485C @ =0x02024E28
@@ -277,8 +277,8 @@ _0800484C:
 	.align 2, 0
 _0800485C: .4byte 0x02024E28
 
-	thumb_func_start sub_08004860
-sub_08004860: @ 0x08004860
+	thumb_func_start EndProc
+EndProc: @ 0x08004860
 	push {lr}
 	bl Proc_End
 	pop {r0}
@@ -288,40 +288,40 @@ sub_08004860: @ 0x08004860
 	thumb_func_start Proc_EndEach
 Proc_EndEach: @ 0x0800486C
 	push {lr}
-	ldr r1, _08004878 @ =sub_08004860
+	ldr r1, _08004878 @ =EndProc
 	bl Proc_ForEach
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08004878: .4byte sub_08004860
+_08004878: .4byte EndProc
 
-	thumb_func_start sub_0800487C
-sub_0800487C: @ 0x0800487C
+	thumb_func_start ClearNativeCallback
+ClearNativeCallback: @ 0x0800487C
 	push {lr}
 	bl Proc_Break
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08004888
-sub_08004888: @ 0x08004888
+	thumb_func_start Proc_BreakEach
+Proc_BreakEach: @ 0x08004888
 	push {lr}
-	ldr r1, _08004894 @ =sub_0800487C
+	ldr r1, _08004894 @ =ClearNativeCallback
 	bl Proc_ForEach
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08004894: .4byte sub_0800487C
+_08004894: .4byte ClearNativeCallback
 
-	thumb_func_start sub_08004898
-sub_08004898: @ 0x08004898
+	thumb_func_start ForAllFollowingProcs
+ForAllFollowingProcs: @ 0x08004898
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
 	beq _080048A8
-	bl sub_08004898
+	bl ForAllFollowingProcs
 _080048A8:
 	adds r0, r4, #0
 	bl sub_080BFC60
@@ -329,7 +329,7 @@ _080048A8:
 	cmp r0, #0
 	beq _080048BA
 	adds r1, r5, #0
-	bl sub_08004898
+	bl ForAllFollowingProcs
 _080048BA:
 	pop {r4, r5}
 	pop {r0}
@@ -345,7 +345,7 @@ sub_080048C0: @ 0x080048C0
 	cmp r0, #0
 	beq _080048D6
 	adds r1, r5, #0
-	bl sub_08004898
+	bl ForAllFollowingProcs
 _080048D6:
 	pop {r4, r5}
 	pop {r0}
@@ -359,8 +359,8 @@ sub_080048DC: @ 0x080048DC
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080048E8
-sub_080048E8: @ 0x080048E8
+	thumb_func_start ProcCmd_SET_NAME
+ProcCmd_SET_NAME: @ 0x080048E8
 	ldr r1, [r0, #4]
 	ldr r2, [r1, #4]
 	str r2, [r0, #0x10]
@@ -370,8 +370,8 @@ sub_080048E8: @ 0x080048E8
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080048F8
-sub_080048F8: @ 0x080048F8
+	thumb_func_start ProcCmd_CALL_ROUTINE
+ProcCmd_CALL_ROUTINE: @ 0x080048F8
 	push {lr}
 	ldr r1, [r0, #4]
 	ldr r2, [r1, #4]
@@ -382,8 +382,8 @@ sub_080048F8: @ 0x080048F8
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0800490C
-sub_0800490C: @ 0x0800490C
+	thumb_func_start ProcCmd_CALL_ROUTINE_2
+ProcCmd_CALL_ROUTINE_2: @ 0x0800490C
 	push {lr}
 	ldr r1, [r0, #4]
 	ldr r2, [r1, #4]
@@ -396,8 +396,8 @@ sub_0800490C: @ 0x0800490C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08004924
-sub_08004924: @ 0x08004924
+	thumb_func_start ProcCmd_CALL_ROUTINE_ARG
+ProcCmd_CALL_ROUTINE_ARG: @ 0x08004924
 	push {lr}
 	adds r1, r0, #0
 	ldr r2, [r1, #4]
@@ -414,8 +414,8 @@ sub_08004924: @ 0x08004924
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08004944
-sub_08004944: @ 0x08004944
+	thumb_func_start ProcCmd_WHILE_ROUTINE
+ProcCmd_WHILE_ROUTINE: @ 0x08004944
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
@@ -440,8 +440,8 @@ _0800496A:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08004970
-sub_08004970: @ 0x08004970
+	thumb_func_start ProcCmd_LOOP_ROUTINE
+ProcCmd_LOOP_ROUTINE: @ 0x08004970
 	ldr r1, [r0, #4]
 	ldr r2, [r1, #4]
 	str r2, [r0, #0xc]
@@ -451,14 +451,14 @@ sub_08004970: @ 0x08004970
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004980
-sub_08004980: @ 0x08004980
+	thumb_func_start ProcCmd_SET_DESTRUCTOR
+ProcCmd_SET_DESTRUCTOR: @ 0x08004980
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
 	ldr r1, [r0, #4]
 	adds r0, r4, #0
-	bl sub_08004768
+	bl Proc_SetEndCb
 	ldr r0, [r4, #4]
 	adds r0, #8
 	str r0, [r4, #4]
@@ -467,8 +467,8 @@ sub_08004980: @ 0x08004980
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0800499C
-sub_0800499C: @ 0x0800499C
+	thumb_func_start ProcCmd_NEW_CHILD
+ProcCmd_NEW_CHILD: @ 0x0800499C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
@@ -483,8 +483,8 @@ sub_0800499C: @ 0x0800499C
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080049B8
-sub_080049B8: @ 0x080049B8
+	thumb_func_start ProcCmd_NEW_CHILD_BLOCKING
+ProcCmd_NEW_CHILD_BLOCKING: @ 0x080049B8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
@@ -499,8 +499,8 @@ sub_080049B8: @ 0x080049B8
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080049D4
-sub_080049D4: @ 0x080049D4
+	thumb_func_start ProcCmd_NEW_MAIN_BUGGED
+ProcCmd_NEW_MAIN_BUGGED: @ 0x080049D4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
@@ -517,8 +517,8 @@ sub_080049D4: @ 0x080049D4
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080049F4
-sub_080049F4: @ 0x080049F4
+	thumb_func_start ProcCmd_WHILE_EXISTS
+ProcCmd_WHILE_EXISTS: @ 0x080049F4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
@@ -563,7 +563,7 @@ sub_08004A38: @ 0x08004A38
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #4]
-	bl sub_08004888
+	bl Proc_BreakEach
 	ldr r0, [r4, #4]
 	adds r0, #8
 	str r0, [r4, #4]
@@ -582,18 +582,18 @@ sub_08004A54: @ 0x08004A54
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004A60
-sub_08004A60: @ 0x08004A60
+	thumb_func_start ProcCmd_JUMP
+ProcCmd_JUMP: @ 0x08004A60
 	push {lr}
 	ldr r1, [r0, #4]
 	ldr r1, [r1, #4]
-	bl sub_08004758
+	bl Proc_GotoScript
 	movs r0, #1
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08004A70
-sub_08004A70: @ 0x08004A70
+	thumb_func_start ProcCmd_GOTO
+ProcCmd_GOTO: @ 0x08004A70
 	push {lr}
 	ldr r1, [r0, #4]
 	movs r2, #2
@@ -604,8 +604,8 @@ sub_08004A70: @ 0x08004A70
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08004A84
-sub_08004A84: @ 0x08004A84
+	thumb_func_start UpdateSleep
+UpdateSleep: @ 0x08004A84
 	push {lr}
 	adds r1, r0, #0
 	ldrh r0, [r1, #0x24]
@@ -631,7 +631,7 @@ sub_08004AA0: @ 0x08004AA0
 	cmp r0, #0
 	beq _08004AB4
 	strh r2, [r1, #0x24]
-	ldr r0, _08004AC0 @ =sub_08004A84
+	ldr r0, _08004AC0 @ =UpdateSleep
 	str r0, [r1, #0xc]
 _08004AB4:
 	ldr r0, [r1, #4]
@@ -640,10 +640,10 @@ _08004AB4:
 	movs r0, #0
 	bx lr
 	.align 2, 0
-_08004AC0: .4byte sub_08004A84
+_08004AC0: .4byte UpdateSleep
 
-	thumb_func_start sub_08004AC4
-sub_08004AC4: @ 0x08004AC4
+	thumb_func_start ProcCmd_SET_MARK
+ProcCmd_SET_MARK: @ 0x08004AC4
 	ldr r1, [r0, #4]
 	ldrh r1, [r1, #2]
 	adds r2, r0, #0
@@ -669,8 +669,8 @@ sub_08004AE4: @ 0x08004AE4
 	movs r0, #0
 	bx lr
 
-	thumb_func_start sub_08004AE8
-sub_08004AE8: @ 0x08004AE8
+	thumb_func_start ProcCmd_END_IF_DUPLICATE
+ProcCmd_END_IF_DUPLICATE: @ 0x08004AE8
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	ldr r2, _08004B14 @ =0x02024E28
@@ -706,8 +706,8 @@ _08004B20:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08004B28
-sub_08004B28: @ 0x08004B28
+	thumb_func_start ProcCmd_END_DUPLICATES
+ProcCmd_END_DUPLICATES: @ 0x08004B28
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r2, _08004B34 @ =0x02024E28
@@ -762,8 +762,8 @@ sub_08004B6C: @ 0x08004B6C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004B84
-sub_08004B84: @ 0x08004B84
+	thumb_func_start RunProcessScript
+RunProcessScript: @ 0x08004B84
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4]
@@ -802,23 +802,23 @@ _08004BC6:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08004BCC
-sub_08004BCC: @ 0x08004BCC
+	thumb_func_start PrintProcessName
+PrintProcessName: @ 0x08004BCC
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004BD0
-sub_08004BD0: @ 0x08004BD0
+	thumb_func_start PrintProcessNameRecursive
+PrintProcessNameRecursive: @ 0x08004BD0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
 	beq _08004BE0
-	bl sub_08004BD0
+	bl PrintProcessNameRecursive
 _08004BE0:
 	adds r0, r4, #0
-	bl sub_08004BCC
+	bl PrintProcessName
 	ldr r1, [r4, #0x18]
 	cmp r1, #0
 	beq _08004C00
@@ -827,7 +827,7 @@ _08004BE0:
 	str r0, [r5]
 	adds r0, r1, #0
 	adds r1, r5, #0
-	bl sub_08004BD0
+	bl PrintProcessNameRecursive
 	ldr r0, [r5]
 	subs r0, #2
 	str r0, [r5]
@@ -837,15 +837,15 @@ _08004C00:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08004C08
-sub_08004C08: @ 0x08004C08
+	thumb_func_start PrintProcessTree
+PrintProcessTree: @ 0x08004C08
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
 	movs r0, #4
 	str r0, [sp]
 	adds r0, r4, #0
-	bl sub_08004BCC
+	bl PrintProcessName
 	ldr r1, [r4, #0x18]
 	cmp r1, #0
 	beq _08004C32
@@ -854,7 +854,7 @@ sub_08004C08: @ 0x08004C08
 	str r0, [sp]
 	adds r0, r1, #0
 	mov r1, sp
-	bl sub_08004BD0
+	bl PrintProcessNameRecursive
 	ldr r0, [sp]
 	subs r0, #2
 	str r0, [sp]
@@ -870,13 +870,13 @@ sub_08004C3C: @ 0x08004C3C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004C40
-sub_08004C40: @ 0x08004C40
+	thumb_func_start Proc_SetRepeatCb
+Proc_SetRepeatCb: @ 0x08004C40
 	str r1, [r0, #0xc]
 	bx lr
 
-	thumb_func_start sub_08004C44
-sub_08004C44: @ 0x08004C44
+	thumb_func_start Proc_BlockSemaphore
+Proc_BlockSemaphore: @ 0x08004C44
 	adds r0, #0x28
 	ldrb r1, [r0]
 	adds r1, #1
@@ -884,8 +884,8 @@ sub_08004C44: @ 0x08004C44
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004C50
-sub_08004C50: @ 0x08004C50
+	thumb_func_start Proc_WakeSemaphore
+Proc_WakeSemaphore: @ 0x08004C50
 	adds r0, #0x28
 	ldrb r1, [r0]
 	subs r1, #1
@@ -893,8 +893,8 @@ sub_08004C50: @ 0x08004C50
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004C5C
-sub_08004C5C: @ 0x08004C5C
+	thumb_func_start Proc_FindAfter
+Proc_FindAfter: @ 0x08004C5C
 	adds r3, r0, #0
 	cmp r1, #0
 	bne _08004C70
@@ -926,8 +926,8 @@ _08004C88:
 	.align 2, 0
 _08004C8C: .4byte 0x02026928
 
-	thumb_func_start sub_08004C90
-sub_08004C90: @ 0x08004C90
+	thumb_func_start Proc_FindAfterWithParent
+Proc_FindAfterWithParent: @ 0x08004C90
 	adds r2, r0, #0
 	cmp r2, #0
 	bne _08004CA4
@@ -1027,8 +1027,8 @@ ApplyIconPalettes: @ 0x08004D2C
 	.align 2, 0
 _08004D40: .4byte 0x080CBEA4
 
-	thumb_func_start sub_08004D44
-sub_08004D44: @ 0x08004D44
+	thumb_func_start ApplyIconPalette
+ApplyIconPalette: @ 0x08004D44
 	push {lr}
 	lsls r0, r0, #5
 	ldr r2, _08004D58 @ =0x080CBEA4
@@ -1061,8 +1061,8 @@ _08004D6C:
 	.align 2, 0
 _08004D78: .4byte 0x02026D10
 
-	thumb_func_start sub_08004D7C
-sub_08004D7C: @ 0x08004D7C
+	thumb_func_start IconSlot2Chr
+IconSlot2Chr: @ 0x08004D7C
 	adds r1, r0, #0
 	lsls r1, r1, #2
 	movs r2, #0xc0
@@ -1074,8 +1074,8 @@ sub_08004D7C: @ 0x08004D7C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08004D90
-sub_08004D90: @ 0x08004D90
+	thumb_func_start GetNewIconSlot
+GetNewIconSlot: @ 0x08004D90
 	push {r4, lr}
 	movs r2, #0
 	ldr r4, _08004DA8 @ =0x02026D10
@@ -1101,8 +1101,8 @@ _08004DB6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08004DBC
-sub_08004DBC: @ 0x08004DBC
+	thumb_func_start GetIconChr
+GetIconChr: @ 0x08004DBC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, _08004DD8 @ =0x02026A50
@@ -1124,14 +1124,14 @@ _08004DDC:
 	adds r0, #1
 	strb r0, [r5]
 	adds r0, r4, #0
-	bl sub_08004D90
+	bl GetNewIconSlot
 	adds r0, #1
 	strb r0, [r5, #1]
 	lsls r4, r4, #7
 	ldr r0, _08004E20 @ =0x080C5EA4
 	adds r4, r4, r0
 	ldrb r0, [r5, #1]
-	bl sub_08004D7C
+	bl IconSlot2Chr
 	adds r1, r0, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0xb
@@ -1142,10 +1142,10 @@ _08004DDC:
 	adds r1, r1, r2
 	adds r0, r4, #0
 	movs r2, #0x80
-	bl sub_08003078
+	bl RegisterDataMove
 _08004E10:
 	ldrb r0, [r5, #1]
-	bl sub_08004D7C
+	bl IconSlot2Chr
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	pop {r4, r5}
@@ -1155,8 +1155,8 @@ _08004E10:
 _08004E20: .4byte 0x080C5EA4
 _08004E24: .4byte 0x0001FFE0
 
-	thumb_func_start sub_08004E28
-sub_08004E28: @ 0x08004E28
+	thumb_func_start PutIcon
+PutIcon: @ 0x08004E28
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r0, r1, #0
@@ -1172,7 +1172,7 @@ sub_08004E28: @ 0x08004E28
 	adds r1, #2
 	b _08004E70
 _08004E44:
-	bl sub_08004DBC
+	bl GetIconChr
 	adds r0, r0, r5
 	lsls r0, r0, #0x10
 	lsrs r1, r0, #0x10
@@ -1199,8 +1199,8 @@ _08004E70:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08004E78
-sub_08004E78: @ 0x08004E78
+	thumb_func_start ClearIcon
+ClearIcon: @ 0x08004E78
 	ldr r2, _08004E90 @ =0x02026D10
 	ldr r1, _08004E94 @ =0x02026A50
 	lsls r0, r0, #2
@@ -1216,8 +1216,8 @@ sub_08004E78: @ 0x08004E78
 _08004E90: .4byte 0x02026D10
 _08004E94: .4byte 0x02026A50
 
-	thumb_func_start sub_08004E98
-sub_08004E98: @ 0x08004E98
+	thumb_func_start PutIconObjImg
+PutIconObjImg: @ 0x08004E98
 	push {r4, r5, lr}
 	adds r2, r0, #0
 	ldr r5, _08004EC4 @ =0x06010000
@@ -1230,13 +1230,13 @@ sub_08004E98: @ 0x08004E98
 	movs r0, #0
 	adds r1, r5, #0
 	movs r2, #0x40
-	bl sub_080030FC
+	bl RegisterDataFill
 	movs r0, #0x80
 	lsls r0, r0, #3
 	adds r1, r5, r0
 	movs r0, #0
 	movs r2, #0x40
-	bl sub_080030FC
+	bl RegisterDataFill
 	b _08004EEC
 	.align 2, 0
 _08004EC4: .4byte 0x06010000
@@ -1248,14 +1248,14 @@ _08004ECC:
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r2, #0x40
-	bl sub_08003078
+	bl RegisterDataMove
 	adds r4, #0x40
 	movs r0, #0x80
 	lsls r0, r0, #3
 	adds r1, r5, r0
 	adds r0, r4, #0
 	movs r2, #0x40
-	bl sub_08003078
+	bl RegisterDataMove
 _08004EEC:
 	pop {r4, r5}
 	pop {r0}
@@ -1263,8 +1263,8 @@ _08004EEC:
 	.align 2, 0
 _08004EF4: .4byte 0x080C5EA4
 
-	thumb_func_start sub_08004EF8
-sub_08004EF8: @ 0x08004EF8
+	thumb_func_start DebugInitBg
+DebugInitBg: @ 0x08004EF8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -1275,10 +1275,10 @@ sub_08004EF8: @ 0x08004EF8
 _08004F06:
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_08001434
+	bl SetBgChrOffset
 	adds r0, r5, #0
 	movs r1, #0
-	bl sub_080014DC
+	bl SetBgScreenSize
 	ldr r0, _08004F5C @ =0x08B8590C
 	ldr r1, _08004F60 @ =0x0001FFFF
 	ands r1, r6
@@ -1287,7 +1287,7 @@ _08004F06:
 	adds r1, r1, r2
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl sub_08003078
+	bl RegisterDataMove
 	ldr r1, _08004F64 @ =0x02022860
 	movs r0, #0
 	strh r0, [r1]
@@ -1295,7 +1295,7 @@ _08004F06:
 	strh r0, [r1, #4]
 	bl EnablePalSync
 	adds r0, r5, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	movs r1, #0
 	bl TmFill
 	ldr r4, _08004F6C @ =0x02026D30
@@ -1303,7 +1303,7 @@ _08004F06:
 	str r6, [r4]
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080013CC
+	bl GetBgChrId
 	strh r0, [r4, #6]
 	pop {r4, r5, r6}
 	pop {r0}
@@ -1352,7 +1352,7 @@ _08004FA2:
 _08004FAE:
 	movs r7, #4
 	ldrsh r0, [r5, r7]
-	bl sub_08001018
+	bl EnableBgSyncById
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -1746,8 +1746,8 @@ _08005272:
 _08005278: .4byte 0x02026D30
 _0800527C: .4byte 0xFFFFFF00
 
-	thumb_func_start sub_08005280
-sub_08005280: @ 0x08005280
+	thumb_func_start SetupDebugFontForOBJ
+SetupDebugFontForOBJ: @ 0x08005280
 	push {r4, lr}
 	adds r2, r0, #0
 	adds r4, r1, #0
@@ -1778,7 +1778,7 @@ _0800528E:
 	adds r1, r1, r2
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl sub_08003078
+	bl RegisterDataMove
 	ldr r3, _08005304 @ =0x02022860
 	adds r1, r4, #0
 	adds r1, #0x10
@@ -1930,7 +1930,7 @@ InitTextFont: @ 0x080053D4
 	ldr r4, _08005408 @ =0x02028D58
 _080053DE:
 	str r1, [r4]
-	ldr r0, _0800540C @ =sub_0800587C
+	ldr r0, _0800540C @ =GetTextDrawDest
 	str r0, [r4, #0xc]
 	movs r1, #0
 	strh r3, [r4, #0x14]
@@ -1948,7 +1948,7 @@ _080053DE:
 	bx r0
 	.align 2, 0
 _08005408: .4byte 0x02028D58
-_0800540C: .4byte sub_0800587C
+_0800540C: .4byte GetTextDrawDest
 
 	thumb_func_start SetTextFontGlyphs
 SetTextFontGlyphs: @ 0x08005410
@@ -2028,8 +2028,8 @@ InitText: @ 0x08005474
 	.align 2, 0
 _08005498: .4byte 0x02028D70
 
-	thumb_func_start sub_0800549C
-sub_0800549C: @ 0x0800549C
+	thumb_func_start InitTextDb
+InitTextDb: @ 0x0800549C
 	push {r4, lr}
 	ldr r2, _080054C0 @ =0x02028D70
 	ldr r3, [r2]
@@ -2051,8 +2051,8 @@ sub_0800549C: @ 0x0800549C
 	.align 2, 0
 _080054C0: .4byte 0x02028D70
 
-	thumb_func_start sub_080054C4
-sub_080054C4: @ 0x080054C4
+	thumb_func_start InitTextList
+InitTextList: @ 0x080054C4
 	push {r4, lr}
 	adds r4, r0, #0
 	b _080054D4
@@ -2098,8 +2098,8 @@ ClearText: @ 0x080054E0
 	.align 2, 0
 _08005514: .4byte 0x02028D70
 
-	thumb_func_start sub_08005518
-sub_08005518: @ 0x08005518
+	thumb_func_start ClearTextPart
+ClearTextPart: @ 0x08005518
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	ldr r3, _08005554 @ =0x02028D70
@@ -2132,8 +2132,8 @@ sub_08005518: @ 0x08005518
 _08005554: .4byte 0x02028D70
 _08005558: .4byte 0x001FFFFF
 
-	thumb_func_start sub_0800555C
-sub_0800555C: @ 0x0800555C
+	thumb_func_start Text_GetChrOffset
+Text_GetChrOffset: @ 0x0800555C
 	ldrb r2, [r0, #4]
 	ldrb r3, [r0, #6]
 	adds r1, r2, #0
@@ -2145,8 +2145,8 @@ sub_0800555C: @ 0x0800555C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08005570
-sub_08005570: @ 0x08005570
+	thumb_func_start Text_GetCursor
+Text_GetCursor: @ 0x08005570
 	ldrb r0, [r0, #2]
 	bx lr
 
@@ -2167,20 +2167,20 @@ Text_SetColor: @ 0x08005580
 	strb r1, [r0, #3]
 	bx lr
 
-	thumb_func_start sub_08005584
-sub_08005584: @ 0x08005584
+	thumb_func_start Text_GetColor
+Text_GetColor: @ 0x08005584
 	ldrb r0, [r0, #3]
 	bx lr
 
-	thumb_func_start sub_08005588
-sub_08005588: @ 0x08005588
+	thumb_func_start Text_SetParams
+Text_SetParams: @ 0x08005588
 	strb r1, [r0, #2]
 	strb r2, [r0, #3]
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08005590
-sub_08005590: @ 0x08005590
+	thumb_func_start PutText
+PutText: @ 0x08005590
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r2, r1, #0
@@ -2224,8 +2224,8 @@ _080055D4:
 	.align 2, 0
 _080055DC: .4byte 0x02028D70
 
-	thumb_func_start sub_080055E0
-sub_080055E0: @ 0x080055E0
+	thumb_func_start PutBlankText
+PutBlankText: @ 0x080055E0
 	ldrb r0, [r0, #4]
 	cmp r0, #0
 	beq _080055FA
@@ -2243,8 +2243,8 @@ _080055EA:
 _080055FA:
 	bx lr
 
-	thumb_func_start sub_080055FC
-sub_080055FC: @ 0x080055FC
+	thumb_func_start GetStringTextLen
+GetStringTextLen: @ 0x080055FC
 	push {r4, r5, lr}
 	adds r2, r0, #0
 	movs r4, #0
@@ -2293,8 +2293,8 @@ _0800564C:
 	.align 2, 0
 _08005654: .4byte 0xFFFFFF00
 
-	thumb_func_start sub_08005658
-sub_08005658: @ 0x08005658
+	thumb_func_start GetCharTextLen
+GetCharTextLen: @ 0x08005658
 	push {r4, lr}
 	adds r2, r0, #0
 	adds r4, r1, #0
@@ -2342,7 +2342,7 @@ GetStringTextCenteredPos: @ 0x080056A8
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, r1, #0
-	bl sub_080055FC
+	bl GetStringTextLen
 	subs r4, r4, r0
 	lsrs r0, r4, #0x1f
 	adds r4, r4, r0
@@ -2353,8 +2353,8 @@ GetStringTextCenteredPos: @ 0x080056A8
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080056C4
-sub_080056C4: @ 0x080056C4
+	thumb_func_start GetStringTextBox
+GetStringTextBox: @ 0x080056C4
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
 	adds r5, r2, #0
@@ -2371,7 +2371,7 @@ _080056DA:
 	cmp r0, #1
 	bls _08005704
 	adds r0, r4, #0
-	bl sub_080055FC
+	bl GetStringTextLen
 	adds r1, r0, #0
 	ldr r0, [r6]
 	cmp r0, r1
@@ -2382,7 +2382,7 @@ _080056F0:
 	adds r0, #0x10
 	str r0, [r5]
 	adds r0, r4, #0
-	bl sub_0800570C
+	bl GetStringLineEnd
 	adds r4, r0, #0
 	ldrb r0, [r4]
 	cmp r0, #0
@@ -2393,8 +2393,8 @@ _08005704:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0800570C
-sub_0800570C: @ 0x0800570C
+	thumb_func_start GetStringLineEnd
+GetStringLineEnd: @ 0x0800570C
 	b _08005710
 _0800570E:
 	adds r0, #1
@@ -2552,7 +2552,7 @@ Text_DrawCharacter: @ 0x08005814
 	beq _08005834
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08005B9C
+	bl Text_DrawCharacterAscii
 	b _08005876
 	.align 2, 0
 _08005830: .4byte 0x02028D70
@@ -2597,8 +2597,8 @@ _08005876:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0800587C
-sub_0800587C: @ 0x0800587C
+	thumb_func_start GetTextDrawDest
+GetTextDrawDest: @ 0x0800587C
 	ldrb r2, [r0, #4]
 	ldrb r3, [r0, #6]
 	adds r1, r2, #0
@@ -2617,8 +2617,8 @@ sub_0800587C: @ 0x0800587C
 	.align 2, 0
 _0800589C: .4byte 0x02028D70
 
-	thumb_func_start sub_080058A0
-sub_080058A0: @ 0x080058A0
+	thumb_func_start GetColorLut
+GetColorLut: @ 0x080058A0
 	ldr r1, _080058AC @ =0x08B8610C
 	lsls r0, r0, #2
 	adds r0, r0, r1
@@ -2627,8 +2627,8 @@ sub_080058A0: @ 0x080058A0
 	.align 2, 0
 _080058AC: .4byte 0x08B8610C
 
-	thumb_func_start sub_080058B0
-sub_080058B0: @ 0x080058B0
+	thumb_func_start DrawTextGlyph
+DrawTextGlyph: @ 0x080058B0
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -2647,7 +2647,7 @@ sub_080058B0: @ 0x080058B0
 	mov r6, sb
 	adds r6, #8
 	ldrb r0, [r5, #3]
-	bl sub_080058A0
+	bl GetColorLut
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r4, #0
@@ -2666,8 +2666,8 @@ sub_080058B0: @ 0x080058B0
 	.align 2, 0
 _080058FC: .4byte 0x02028D70
 
-	thumb_func_start sub_08005900
-sub_08005900: @ 0x08005900
+	thumb_func_start DrawTextGlyphNoClear
+DrawTextGlyphNoClear: @ 0x08005900
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2691,11 +2691,11 @@ sub_08005900: @ 0x08005900
 	adds r3, #8
 	str r3, [sp, #0x14]
 	movs r0, #9
-	bl sub_080058A0
+	bl GetColorLut
 	mov sl, r0
 	ldr r6, [sp]
 	ldrb r0, [r6, #3]
-	bl sub_080058A0
+	bl GetColorLut
 	mov sb, r0
 	movs r0, #0xf
 	str r0, [sp, #8]
@@ -2843,7 +2843,7 @@ InitSystemTextFont: @ 0x08005A40
 	adds r0, r0, r1
 	movs r1, #0
 	strh r1, [r0]
-	ldr r0, _08005A7C @ =sub_080058B0
+	ldr r0, _08005A7C @ =DrawTextGlyph
 	str r0, [r2, #8]
 	movs r0, #0
 	bl SetTextFontGlyphs
@@ -2854,10 +2854,10 @@ InitSystemTextFont: @ 0x08005A40
 _08005A70: .4byte 0x08194674
 _08005A74: .4byte 0x02028D70
 _08005A78: .4byte 0x02022860
-_08005A7C: .4byte sub_080058B0
+_08005A7C: .4byte DrawTextGlyph
 
-	thumb_func_start sub_08005A80
-sub_08005A80: @ 0x08005A80
+	thumb_func_start InitTalkTextFont
+InitTalkTextFont: @ 0x08005A80
 	push {r4, lr}
 	ldr r0, _08005AB0 @ =0x08194694
 	ldr r4, _08005AB4 @ =0x02028D70
@@ -2873,7 +2873,7 @@ sub_08005A80: @ 0x08005A80
 	adds r0, r0, r1
 	movs r1, #0
 	strh r1, [r0]
-	ldr r0, _08005ABC @ =sub_080058B0
+	ldr r0, _08005ABC @ =DrawTextGlyph
 	str r0, [r2, #8]
 	movs r0, #1
 	bl SetTextFontGlyphs
@@ -2884,21 +2884,21 @@ sub_08005A80: @ 0x08005A80
 _08005AB0: .4byte 0x08194694
 _08005AB4: .4byte 0x02028D70
 _08005AB8: .4byte 0x02022860
-_08005ABC: .4byte sub_080058B0
+_08005ABC: .4byte DrawTextGlyph
 
-	thumb_func_start sub_08005AC0
-sub_08005AC0: @ 0x08005AC0
+	thumb_func_start SetTextDrawNoClear
+SetTextDrawNoClear: @ 0x08005AC0
 	ldr r0, _08005ACC @ =0x02028D70
 	ldr r1, [r0]
-	ldr r0, _08005AD0 @ =sub_08005900
+	ldr r0, _08005AD0 @ =DrawTextGlyphNoClear
 	str r0, [r1, #8]
 	bx lr
 	.align 2, 0
 _08005ACC: .4byte 0x02028D70
-_08005AD0: .4byte sub_08005900
+_08005AD0: .4byte DrawTextGlyphNoClear
 
-	thumb_func_start sub_08005AD4
-sub_08005AD4: @ 0x08005AD4
+	thumb_func_start PutDrawText
+PutDrawText: @ 0x08005AD4
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -2923,7 +2923,7 @@ _08005AEE:
 	bl Text_DrawString
 	adds r0, r4, #0
 	adds r1, r7, #0
-	bl sub_08005590
+	bl PutText
 	add sp, #8
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -3000,8 +3000,8 @@ _08005B8A:
 	.align 2, 0
 _08005B98: .4byte 0x02028D70
 
-	thumb_func_start sub_08005B9C
-sub_08005B9C: @ 0x08005B9C
+	thumb_func_start Text_DrawCharacterAscii
+Text_DrawCharacterAscii: @ 0x08005B9C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -3186,8 +3186,8 @@ _08005CEC: .4byte 0x44444444
 _08005CF0: .4byte 0x02028D70
 _08005CF4: .4byte 0x010000D8
 
-	thumb_func_start sub_08005CF8
-sub_08005CF8: @ 0x08005CF8
+	thumb_func_start SpriteText_DrawBackgroundExt
+SpriteText_DrawBackgroundExt: @ 0x08005CF8
 	push {lr}
 	sub sp, #4
 	movs r2, #0
@@ -3253,7 +3253,7 @@ DrawSpriteTextGlyph: @ 0x08005D48
 	adds r3, #8
 	str r3, [sp, #0xc]
 	ldrb r0, [r1, #3]
-	bl sub_080058A0
+	bl GetColorLut
 	mov r8, r0
 	movs r0, #0xff
 	mov sb, r0
@@ -3538,7 +3538,7 @@ _08005F84:
 	movs r0, #1
 	strb r0, [r5, #7]
 	adds r0, r6, #0
-	bl sub_0800570C
+	bl GetStringLineEnd
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
@@ -3603,8 +3603,8 @@ _08006010:
 	.align 2, 0
 _08006014: .4byte 0x08B86150
 
-	thumb_func_start sub_08006018
-sub_08006018: @ 0x08006018
+	thumb_func_start EndGreenText
+EndGreenText: @ 0x08006018
 	push {lr}
 	ldr r0, _08006024 @ =0x08B86150
 	bl Proc_EndEach
@@ -3682,7 +3682,7 @@ sub_08006084: @ 0x08006084
 	adds r7, r2, #0
 	adds r7, #8
 	adds r0, r1, #0
-	bl sub_080058A0
+	bl GetColorLut
 	adds r2, r0, #0
 	movs r6, #0xff
 	movs r3, #0xf
@@ -3746,8 +3746,8 @@ sub_080060E0: @ 0x080060E0
 _08006114: .4byte 0x02028D70
 _08006118: .4byte 0x08B901B0
 
-	thumb_func_start sub_0800611C
-sub_0800611C: @ 0x0800611C
+	thumb_func_start GetSpecialCharChr
+GetSpecialCharChr: @ 0x0800611C
 	push {lr}
 	adds r3, r0, #0
 	adds r2, r1, #0
@@ -3783,8 +3783,8 @@ _08006156:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0800615C
-sub_0800615C: @ 0x0800615C
+	thumb_func_start PutSpecialChar
+PutSpecialChar: @ 0x0800615C
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, r1, #0
@@ -3798,7 +3798,7 @@ sub_0800615C: @ 0x0800615C
 	strh r1, [r0]
 	b _0800618C
 _08006174:
-	bl sub_0800611C
+	bl GetSpecialCharChr
 	lsls r0, r0, #1
 	ldr r1, _08006194 @ =0x02028D70
 	ldr r1, [r1]
@@ -3816,8 +3816,8 @@ _0800618C:
 	.align 2, 0
 _08006194: .4byte 0x02028D70
 
-	thumb_func_start sub_08006198
-sub_08006198: @ 0x08006198
+	thumb_func_start PutNumberExt
+PutNumberExt: @ 0x08006198
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r7, r1, #0
@@ -3826,7 +3826,7 @@ sub_08006198: @ 0x08006198
 	cmp r4, #0
 	bne _080061AE
 	adds r2, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	b _080061D2
 _080061AE:
 	adds r0, r4, #0
@@ -3836,7 +3836,7 @@ _080061AE:
 	adds r2, r2, r6
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #0
 	movs r1, #0xa
 	bl __divsi3
@@ -3849,16 +3849,16 @@ _080061D2:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080061D8
-sub_080061D8: @ 0x080061D8
+	thumb_func_start PutNumber
+PutNumber: @ 0x080061D8
 	push {lr}
 	movs r3, #0
-	bl sub_08006198
+	bl PutNumberExt
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080061E4
-sub_080061E4: @ 0x080061E4
+	thumb_func_start PutNumberOrBlank
+PutNumberOrBlank: @ 0x080061E4
 	push {lr}
 	cmp r2, #0
 	blt _080061EE
@@ -3868,24 +3868,24 @@ _080061EE:
 	subs r0, #2
 	movs r2, #0x14
 	movs r3, #0x14
-	bl sub_080063AC
+	bl PutTwoSpecialChar
 	b _080061FE
 _080061FA:
-	bl sub_080061D8
+	bl PutNumber
 _080061FE:
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08006204
-sub_08006204: @ 0x08006204
+	thumb_func_start PutNumberTwoChr
+PutNumberTwoChr: @ 0x08006204
 	push {lr}
 	cmp r2, #0x64
 	bne _08006216
 	subs r0, #2
 	movs r2, #0x28
 	movs r3, #0x29
-	bl sub_080063AC
+	bl PutTwoSpecialChar
 	b _0800622E
 _08006216:
 	cmp r2, #0
@@ -3896,25 +3896,25 @@ _0800621E:
 	subs r0, #2
 	movs r2, #0x14
 	movs r3, #0x14
-	bl sub_080063AC
+	bl PutTwoSpecialChar
 	b _0800622E
 _0800622A:
-	bl sub_080061D8
+	bl PutNumber
 _0800622E:
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08006234
-sub_08006234: @ 0x08006234
+	thumb_func_start PutNumberSmall
+PutNumberSmall: @ 0x08006234
 	push {lr}
 	movs r3, #0xa
-	bl sub_08006198
+	bl PutNumberExt
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08006240
-sub_08006240: @ 0x08006240
+	thumb_func_start PutNumberBonus
+PutNumberBonus: @ 0x08006240
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -3923,7 +3923,7 @@ sub_08006240: @ 0x08006240
 	adds r0, r4, #0
 	movs r1, #4
 	movs r2, #0x15
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #2
 	cmp r5, #9
 	ble _0800625C
@@ -3931,7 +3931,7 @@ sub_08006240: @ 0x08006240
 _0800625C:
 	movs r1, #4
 	adds r2, r5, #0
-	bl sub_08006234
+	bl PutNumberSmall
 _08006264:
 	pop {r4, r5}
 	pop {r0}
@@ -3959,7 +3959,7 @@ _08006284:
 	ands r2, r5
 	adds r5, #1
 	movs r1, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r4, #2
 	subs r6, #1
 	cmp r6, #0
@@ -3977,8 +3977,8 @@ _08006284:
 	.align 2, 0
 _080062B4: .4byte 0x02022C60
 
-	thumb_func_start sub_080062B8
-sub_080062B8: @ 0x080062B8
+	thumb_func_start PutTime
+PutTime: @ 0x080062B8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4008,7 +4008,7 @@ sub_080062B8: @ 0x080062B8
 	adds r0, r7, #4
 	ldrh r2, [r1]
 	adds r1, r6, #0
-	bl sub_080061D8
+	bl PutNumber
 	ldrh r5, [r4]
 	adds r4, r7, #0
 	adds r4, #0xa
@@ -4018,7 +4018,7 @@ sub_080062B8: @ 0x080062B8
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	subs r4, #2
 	adds r0, r5, #0
 	movs r1, #0xa
@@ -4028,7 +4028,7 @@ sub_080062B8: @ 0x080062B8
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	mov r1, r8
 	ldrh r5, [r1]
 	adds r4, #8
@@ -4039,7 +4039,7 @@ sub_080062B8: @ 0x080062B8
 	adds r2, #0xa
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	subs r4, #2
 	adds r0, r5, #0
 	movs r1, #0xa
@@ -4050,7 +4050,7 @@ sub_080062B8: @ 0x080062B8
 	adds r2, #0xa
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	mov r0, sb
 	cmp r0, #0
 	beq _0800636C
@@ -4061,23 +4061,23 @@ _0800636C:
 	adds r0, r7, #6
 	adds r1, r6, #0
 	movs r2, #0x20
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r7, #0
 	adds r0, #0xc
 	adds r1, r6, #0
 	movs r2, #0x21
-	bl sub_0800615C
+	bl PutSpecialChar
 	b _0800639A
 _08006384:
 	adds r0, r7, #6
 	adds r1, r6, #0
 	movs r2, #0xff
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r7, #0
 	adds r0, #0xc
 	adds r1, r6, #0
 	movs r2, #0xff
-	bl sub_0800615C
+	bl PutSpecialChar
 _0800639A:
 	add sp, #0x10
 	pop {r3, r4, r5}
@@ -4089,18 +4089,18 @@ _0800639A:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080063AC
-sub_080063AC: @ 0x080063AC
+	thumb_func_start PutTwoSpecialChar
+PutTwoSpecialChar: @ 0x080063AC
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
 	adds r6, r3, #0
 	adds r4, #2
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r4, #0
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -4118,7 +4118,7 @@ sub_080063CC: @ 0x080063CC
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	subs r4, #2
 	adds r0, r5, #0
 	movs r1, #0xa
@@ -4128,7 +4128,7 @@ sub_080063CC: @ 0x080063CC
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -4147,7 +4147,7 @@ sub_08006408: @ 0x08006408
 	adds r2, #0xa
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	subs r4, #2
 	adds r0, r5, #0
 	movs r1, #0xa
@@ -4158,7 +4158,7 @@ sub_08006408: @ 0x08006408
 	adds r2, #0xa
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_0800615C
+	bl PutSpecialChar
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -4180,7 +4180,7 @@ sub_08006448: @ 0x08006448
 	adds r2, r2, r6
 	adds r0, r4, #0
 	mov r1, r8
-	bl sub_0800615C
+	bl PutSpecialChar
 	subs r4, #2
 	adds r0, r5, #0
 	movs r1, #0xa
@@ -4191,15 +4191,15 @@ sub_08006448: @ 0x08006448
 	adds r2, r2, r6
 	adds r0, r4, #0
 	mov r1, r8
-	bl sub_0800615C
+	bl PutSpecialChar
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08006490
-sub_08006490: @ 0x08006490
+	thumb_func_start AnimUpdateAll
+AnimUpdateAll: @ 0x08006490
 	push {r4, r5, lr}
 	movs r5, #0
 	ldr r0, _080064A0 @ =0x02029C88
@@ -4233,7 +4233,7 @@ _080064A6:
 	bne _080064DE
 _080064CA:
 	adds r0, r4, #0
-	bl sub_08006688
+	bl AnimInterpret
 	cmp r0, #1
 	bne _080064D6
 	movs r5, #1
@@ -4253,21 +4253,21 @@ _080064E6:
 	cmp r0, #0
 	bne _080064F4
 	adds r0, r4, #0
-	bl sub_08006850
+	bl AnimDisplayPrivate
 _080064F4:
 	ldr r0, [r4, #0x38]
 	cmp r0, #0
 	bne _080064A4
 	cmp r5, #1
 	bne _08006502
-	bl sub_080065F8
+	bl AnimSort
 _08006502:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08006508
-sub_08006508: @ 0x08006508
+	thumb_func_start AnimClearAll
+AnimClearAll: @ 0x08006508
 	ldr r0, _0800652C @ =0x02028E78
 	movs r1, #0xe1
 	lsls r1, r1, #4
@@ -4291,8 +4291,8 @@ _08006524:
 _0800652C: .4byte 0x02028E78
 _08006530: .4byte 0x02029C88
 
-	thumb_func_start sub_08006534
-sub_08006534: @ 0x08006534
+	thumb_func_start AnimCreate_unused
+AnimCreate_unused: @ 0x08006534
 	push {r4, lr}
 	adds r3, r0, #0
 	ldr r4, _08006588 @ =0x02028E78
@@ -4333,7 +4333,7 @@ _08006558:
 	str r1, [r4, #0x40]
 	str r1, [r4, #0x44]
 	adds r0, r4, #0
-	bl sub_08006808
+	bl AnimInsert
 	adds r0, r4, #0
 	b _0800658E
 	.align 2, 0
@@ -4345,8 +4345,8 @@ _0800658E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08006594
-sub_08006594: @ 0x08006594
+	thumb_func_start AnimCreate
+AnimCreate: @ 0x08006594
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	lsls r1, r1, #0x10
@@ -4389,7 +4389,7 @@ _080065BC:
 	str r1, [r4, #0x40]
 	str r1, [r4, #0x44]
 	adds r0, r4, #0
-	bl sub_08006808
+	bl AnimInsert
 	adds r0, r4, #0
 	b _080065F2
 	.align 2, 0
@@ -4401,8 +4401,8 @@ _080065F2:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080065F8
-sub_080065F8: @ 0x080065F8
+	thumb_func_start AnimSort
+AnimSort: @ 0x080065F8
 	push {r4, r5, lr}
 	ldr r4, _08006648 @ =0x02028E78
 	movs r1, #0xe1
@@ -4439,7 +4439,7 @@ _08006630:
 	cmp r0, #0
 	beq _0800663C
 	adds r0, r4, #0
-	bl sub_08006808
+	bl AnimInsert
 _0800663C:
 	adds r4, #0x48
 	cmp r4, r5
@@ -4452,8 +4452,8 @@ _08006642:
 _08006648: .4byte 0x02028E78
 _0800664C: .4byte 0x02029C88
 
-	thumb_func_start sub_08006650
-sub_08006650: @ 0x08006650
+	thumb_func_start AnimDelete
+AnimDelete: @ 0x08006650
 	adds r2, r0, #0
 	ldr r3, [r2, #0x34]
 	cmp r3, #0
@@ -4478,16 +4478,16 @@ _08006672:
 	str r0, [r2, #0x38]
 	bx lr
 
-	thumb_func_start sub_0800667C
-sub_0800667C: @ 0x0800667C
+	thumb_func_start AnimDisplay
+AnimDisplay: @ 0x0800667C
 	push {lr}
-	bl sub_08006850
+	bl AnimDisplayPrivate
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08006688
-sub_08006688: @ 0x08006688
+	thumb_func_start AnimInterpret
+AnimInterpret: @ 0x08006688
 	push {r4, r5, lr}
 	adds r2, r0, #0
 	movs r4, #0
@@ -4691,8 +4691,8 @@ _080067FC:
 	.align 2, 0
 _08006804: .4byte 0x0FFFFFFC
 
-	thumb_func_start sub_08006808
-sub_08006808: @ 0x08006808
+	thumb_func_start AnimInsert
+AnimInsert: @ 0x08006808
 	push {r4, lr}
 	adds r2, r0, #0
 	ldr r0, _0800681C @ =0x02029C88
@@ -4735,8 +4735,8 @@ _0800684A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08006850
-sub_08006850: @ 0x08006850
+	thumb_func_start AnimDisplayPrivate
+AnimDisplayPrivate: @ 0x08006850
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4890,8 +4890,8 @@ _08006970: .4byte 0x03002D30
 _08006974: .4byte 0x000001FF
 _08006978: .4byte 0x0000F3FF
 
-	thumb_func_start sub_0800697C
-sub_0800697C: @ 0x0800697C
+	thumb_func_start PutSpriteAffine
+PutSpriteAffine: @ 0x0800697C
 	push {r4, r5, r6, lr}
 	ldr r6, [sp, #0x10]
 	ldr r5, _080069AC @ =0x03002930
@@ -4919,8 +4919,8 @@ sub_0800697C: @ 0x0800697C
 	.align 2, 0
 _080069AC: .4byte 0x03002930
 
-	thumb_func_start sub_080069B0
-sub_080069B0: @ 0x080069B0
+	thumb_func_start ClearSprites
+ClearSprites: @ 0x080069B0
 	push {r4, r5, r6, lr}
 	movs r3, #0xf
 	ldr r2, _080069E8 @ =0x0202A48C
@@ -4955,8 +4955,8 @@ _080069E8: .4byte 0x0202A48C
 _080069EC: .4byte 0x03004190
 _080069F0: .4byte 0x02029C8C
 
-	thumb_func_start sub_080069F4
-sub_080069F4: @ 0x080069F4
+	thumb_func_start PutSprite
+PutSprite: @ 0x080069F4
 	push {r4, r5, r6, r7, lr}
 	ldr r6, _08006A28 @ =0x03004190
 	ldr r5, [r6]
@@ -4987,8 +4987,8 @@ _08006A28: .4byte 0x03004190
 _08006A2C: .4byte 0x0202A48C
 _08006A30: .4byte 0x000001FF
 
-	thumb_func_start sub_08006A34
-sub_08006A34: @ 0x08006A34
+	thumb_func_start PutSpriteExt
+PutSpriteExt: @ 0x08006A34
 	push {r4, r5, r6, r7, lr}
 	ldr r7, [sp, #0x14]
 	ldr r6, _08006A5C @ =0x03004190
@@ -5012,8 +5012,8 @@ sub_08006A34: @ 0x08006A34
 _08006A5C: .4byte 0x03004190
 _08006A60: .4byte 0x0202A48C
 
-	thumb_func_start sub_08006A64
-sub_08006A64: @ 0x08006A64
+	thumb_func_start PutSpriteLayerOam
+PutSpriteLayerOam: @ 0x08006A64
 	push {r4, lr}
 	lsls r0, r0, #4
 	ldr r1, _08006A90 @ =0x0202A48C
@@ -5041,8 +5041,8 @@ _08006A8A:
 	.align 2, 0
 _08006A90: .4byte 0x0202A48C
 
-	thumb_func_start sub_08006A94
-sub_08006A94: @ 0x08006A94
+	thumb_func_start SpriteRefresher_OnIdle
+SpriteRefresher_OnIdle: @ 0x08006A94
 	push {r4, lr}
 	sub sp, #4
 	adds r1, r0, #0
@@ -5056,15 +5056,15 @@ sub_08006A94: @ 0x08006A94
 	ldrh r0, [r0]
 	str r0, [sp]
 	adds r0, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08006ABC
-sub_08006ABC: @ 0x08006ABC
+	thumb_func_start StartSpriteRefresher
+StartSpriteRefresher: @ 0x08006ABC
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r7, r1, #0
@@ -5101,8 +5101,8 @@ _08006AD8:
 	.align 2, 0
 _08006AFC: .4byte 0x08B90648
 
-	thumb_func_start sub_08006B00
-sub_08006B00: @ 0x08006B00
+	thumb_func_start MoveSpriteRefresher
+MoveSpriteRefresher: @ 0x08006B00
 	push {r4, r5, lr}
 	adds r4, r1, #0
 	adds r5, r2, #0
@@ -5119,8 +5119,8 @@ _08006B10:
 	.align 2, 0
 _08006B1C: .4byte 0x08B90648
 
-	thumb_func_start sub_08006B20
-sub_08006B20: @ 0x08006B20
+	thumb_func_start GetFaceInfo
+GetFaceInfo: @ 0x08006B20
 	adds r1, r0, #0
 	lsls r0, r1, #3
 	subs r0, r0, r1
@@ -5137,7 +5137,7 @@ InitFaces: @ 0x08006B34
 	movs r4, #0
 _08006B38:
 	adds r0, r4, #0
-	bl sub_08006D50
+	bl EndFaceById
 	adds r4, #1
 	cmp r4, #3
 	ble _08006B38
@@ -5171,8 +5171,8 @@ _08006B5C:
 _08006B70: .4byte 0x08B90658
 _08006B74: .4byte 0x0202A58C
 
-	thumb_func_start sub_08006B78
-sub_08006B78: @ 0x08006B78
+	thumb_func_start GetFreeFaceSlot
+GetFreeFaceSlot: @ 0x08006B78
 	movs r1, #0
 	ldr r2, _08006B88 @ =0x030041C0
 _08006B7C:
@@ -5194,8 +5194,8 @@ _08006B98:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08006B9C
-sub_08006B9C: @ 0x08006B9C
+	thumb_func_start Face_OnInit
+Face_OnInit: @ 0x08006B9C
 	push {lr}
 	ldr r1, [r0, #0x2c]
 	ldr r2, [r1]
@@ -5220,7 +5220,7 @@ sub_08006BC4: @ 0x08006BC4
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
-	bl sub_08006D9C
+	bl GetFaceDisp
 	adds r2, r0, #0
 	movs r0, #0x80
 	lsls r0, r0, #3
@@ -5241,7 +5241,7 @@ sub_08006BC4: @ 0x08006BC4
 	ldr r3, [r4, #0x38]
 	ldrh r4, [r4, #0x3c]
 	str r4, [sp]
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -5257,7 +5257,7 @@ StartFaceAuto: @ 0x08006C08
 	adds r6, r1, #0
 	adds r7, r2, #0
 	adds r4, r3, #0
-	bl sub_08006B78
+	bl GetFreeFaceSlot
 	cmp r0, #0
 	blt _08006C2A
 	str r4, [sp]
@@ -5303,7 +5303,7 @@ _08006C5C:
 	adds r4, r0, #0
 	str r4, [r5]
 	mov r0, r8
-	bl sub_08006B20
+	bl GetFaceInfo
 	adds r5, r0, #0
 	movs r0, #0x80
 	lsls r0, r0, #6
@@ -5381,7 +5381,7 @@ _08006D08:
 	str r0, [r4, #0x30]
 	adds r0, r4, #0
 	ldr r1, [sp, #0x24]
-	bl sub_08006D68
+	bl SetFaceDisp
 	adds r0, r4, #0
 _08006D18:
 	add sp, #4
@@ -5396,8 +5396,8 @@ _08006D18:
 _08006D28: .4byte 0x08B908B8
 _08006D2C: .4byte 0x08B908D0
 
-	thumb_func_start sub_08006D30
-sub_08006D30: @ 0x08006D30
+	thumb_func_start EndFace
+EndFace: @ 0x08006D30
 	push {lr}
 	ldr r2, _08006D4C @ =0x030041C0
 	adds r1, r0, #0
@@ -5413,27 +5413,27 @@ sub_08006D30: @ 0x08006D30
 	.align 2, 0
 _08006D4C: .4byte 0x030041C0
 
-	thumb_func_start sub_08006D50
-sub_08006D50: @ 0x08006D50
+	thumb_func_start EndFaceById
+EndFaceById: @ 0x08006D50
 	push {lr}
 	ldr r1, _08006D64 @ =0x030041C0
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl sub_08006D30
+	bl EndFace
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08006D64: .4byte 0x030041C0
 
-	thumb_func_start sub_08006D68
-sub_08006D68: @ 0x08006D68
+	thumb_func_start SetFaceDisp
+SetFaceDisp: @ 0x08006D68
 	push {r4, lr}
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _08006D7A
 	str r1, [r4, #0x30]
-	bl sub_08006DB8
+	bl FaceRefreshSprite
 	ldr r0, [r4, #0x30]
 	b _08006D7C
 _08006D7A:
@@ -5444,39 +5444,39 @@ _08006D7C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08006D84
-sub_08006D84: @ 0x08006D84
+	thumb_func_start SetFaceDispById
+SetFaceDispById: @ 0x08006D84
 	push {lr}
 	ldr r2, _08006D98 @ =0x030041C0
 	lsls r0, r0, #2
 	adds r0, r0, r2
 	ldr r0, [r0]
-	bl sub_08006D68
+	bl SetFaceDisp
 	pop {r1}
 	bx r1
 	.align 2, 0
 _08006D98: .4byte 0x030041C0
 
-	thumb_func_start sub_08006D9C
-sub_08006D9C: @ 0x08006D9C
+	thumb_func_start GetFaceDisp
+GetFaceDisp: @ 0x08006D9C
 	ldr r0, [r0, #0x30]
 	bx lr
 
-	thumb_func_start sub_08006DA0
-sub_08006DA0: @ 0x08006DA0
+	thumb_func_start GetFaceDispById
+GetFaceDispById: @ 0x08006DA0
 	push {lr}
 	ldr r1, _08006DB4 @ =0x030041C0
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	ldr r0, [r0]
-	bl sub_08006D9C
+	bl GetFaceDisp
 	pop {r1}
 	bx r1
 	.align 2, 0
 _08006DB4: .4byte 0x030041C0
 
-	thumb_func_start sub_08006DB8
-sub_08006DB8: @ 0x08006DB8
+	thumb_func_start FaceRefreshSprite
+FaceRefreshSprite: @ 0x08006DB8
 	push {r4, lr}
 	adds r3, r0, #0
 	ldr r1, [r3, #0x30]
@@ -5598,8 +5598,8 @@ _08006E62:
 	.align 2, 0
 _08006E88: .4byte 0x0202A58C
 
-	thumb_func_start sub_08006E8C
-sub_08006E8C: @ 0x08006E8C
+	thumb_func_start PutFaceTm
+PutFaceTm: @ 0x08006E8C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -5683,8 +5683,8 @@ _08006F10:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08006F1C
-sub_08006F1C: @ 0x08006F1C
+	thumb_func_start UnpackFaceChibiGraphics
+UnpackFaceChibiGraphics: @ 0x08006F1C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -5693,7 +5693,7 @@ sub_08006F1C: @ 0x08006F1C
 	cmp r4, r0
 	ble _08006F58
 	adds r0, r4, #0
-	bl sub_08007598
+	bl GetFactionFaceImg
 	lsls r1, r5, #5
 	movs r3, #0xc0
 	lsls r3, r3, #0x13
@@ -5703,17 +5703,17 @@ sub_08006F1C: @ 0x08006F1C
 	adds r1, r1, r3
 	movs r2, #0x80
 	lsls r2, r2, #2
-	bl sub_08003078
+	bl RegisterDataMove
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_080075C8
+	bl ApplyFactionFacePal
 	b _08006F78
 	.align 2, 0
 _08006F50: .4byte 0x00007EFF
 _08006F54: .4byte 0x0001FFFF
 _08006F58:
 	adds r0, r4, #0
-	bl sub_08006B20
+	bl GetFaceInfo
 	adds r4, r0, #0
 	ldr r0, [r4, #4]
 	lsls r1, r5, #5
@@ -5731,8 +5731,8 @@ _08006F78:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08006F80
-sub_08006F80: @ 0x08006F80
+	thumb_func_start PutFaceChibi
+PutFaceChibi: @ 0x08006F80
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -5744,7 +5744,7 @@ sub_08006F80: @ 0x08006F80
 	lsrs r4, r4, #0x18
 	adds r1, r6, #0
 	adds r2, r5, #0
-	bl sub_08006F1C
+	bl UnpackFaceChibiGraphics
 	ldr r2, _08006FBC @ =0x000003FF
 	ands r2, r6
 	ldr r1, _08006FC0 @ =0x08B90830
@@ -5754,7 +5754,7 @@ sub_08006F80: @ 0x08006F80
 	asrs r4, r4, #0x18
 	mov r0, r8
 	adds r3, r4, #0
-	bl sub_08006E8C
+	bl PutFaceTm
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -5764,8 +5764,8 @@ sub_08006F80: @ 0x08006F80
 _08006FBC: .4byte 0x000003FF
 _08006FC0: .4byte 0x08B90830
 
-	thumb_func_start sub_08006FC4
-sub_08006FC4: @ 0x08006FC4
+	thumb_func_start UnpackFaceChibiSprGraphics
+UnpackFaceChibiSprGraphics: @ 0x08006FC4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -5781,7 +5781,7 @@ sub_08006FC4: @ 0x08006FC4
 	cmp r6, r0
 	ble _08007060
 	adds r0, r6, #0
-	bl sub_08007598
+	bl GetFactionFaceImg
 	lsls r1, r7, #5
 	ldr r5, _0800705C @ =0x0001FFFF
 	ands r1, r5
@@ -5789,9 +5789,9 @@ sub_08006FC4: @ 0x08006FC4
 	lsls r4, r4, #0x13
 	adds r1, r1, r4
 	movs r2, #0x80
-	bl sub_08003078
+	bl RegisterDataMove
 	adds r0, r6, #0
-	bl sub_08007598
+	bl GetFactionFaceImg
 	adds r0, #0x80
 	adds r1, r7, #0
 	adds r1, #0x20
@@ -5799,9 +5799,9 @@ sub_08006FC4: @ 0x08006FC4
 	ands r1, r5
 	adds r1, r1, r4
 	movs r2, #0x80
-	bl sub_08003078
+	bl RegisterDataMove
 	adds r0, r6, #0
-	bl sub_08007598
+	bl GetFactionFaceImg
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r0, r1
@@ -5810,9 +5810,9 @@ sub_08006FC4: @ 0x08006FC4
 	ands r1, r5
 	adds r1, r1, r4
 	movs r2, #0x80
-	bl sub_08003078
+	bl RegisterDataMove
 	adds r0, r6, #0
-	bl sub_08007598
+	bl GetFactionFaceImg
 	movs r1, #0xc0
 	lsls r1, r1, #1
 	adds r0, r0, r1
@@ -5822,11 +5822,11 @@ sub_08006FC4: @ 0x08006FC4
 	ands r1, r5
 	adds r1, r1, r4
 	movs r2, #0x80
-	bl sub_08003078
+	bl RegisterDataMove
 	mov r1, r8
 	adds r1, #0x10
 	adds r0, r6, #0
-	bl sub_080075C8
+	bl ApplyFactionFacePal
 	b _080070BC
 	.align 2, 0
 _08007054: .4byte 0xFFFFFE00
@@ -5834,7 +5834,7 @@ _08007058: .4byte 0x00007EFF
 _0800705C: .4byte 0x0001FFFF
 _08007060:
 	adds r0, r6, #0
-	bl sub_08006B20
+	bl GetFaceInfo
 	adds r5, r0, #0
 	ldr r0, [r5, #4]
 	mov r1, sp
@@ -5899,7 +5899,7 @@ sub_080070CC: @ 0x080070CC
 	ldrh r0, [r0, #0x3c]
 	str r0, [sp]
 	movs r0, #5
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -5907,8 +5907,8 @@ sub_080070CC: @ 0x080070CC
 	.align 2, 0
 _080070F8: .4byte 0x03002870
 
-	thumb_func_start sub_080070FC
-sub_080070FC: @ 0x080070FC
+	thumb_func_start StartFaceChibiStr
+StartFaceChibiStr: @ 0x080070FC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -5924,7 +5924,7 @@ sub_080070FC: @ 0x080070FC
 	lsrs r5, r5, #0x18
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl sub_08006FC4
+	bl UnpackFaceChibiSprGraphics
 	ldr r0, _08007144 @ =0x08B90844
 	adds r1, r7, #0
 	bl SpawnProc
@@ -5968,8 +5968,8 @@ sub_08007160: @ 0x08007160
 	.align 2, 0
 _0800716C: .4byte 0x08B90844
 
-	thumb_func_start sub_08007170
-sub_08007170: @ 0x08007170
+	thumb_func_start PutFace80x72_Standard
+PutFace80x72_Standard: @ 0x08007170
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r7, r1, #0
@@ -6012,8 +6012,8 @@ sub_08007170: @ 0x08007170
 	.align 2, 0
 _080071C0: .4byte 0x08195680
 
-	thumb_func_start sub_080071C4
-sub_080071C4: @ 0x080071C4
+	thumb_func_start PutFace80x72_Raised
+PutFace80x72_Raised: @ 0x080071C4
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r7, r1, #0
@@ -6057,8 +6057,8 @@ sub_080071C4: @ 0x080071C4
 	.align 2, 0
 _08007218: .4byte 0x08195738
 
-	thumb_func_start sub_0800721C
-sub_0800721C: @ 0x0800721C
+	thumb_func_start ShouldFaceBeRaised
+ShouldFaceBeRaised: @ 0x0800721C
 	subs r0, #0x1c
 	cmp r0, #0x25
 	bhi _080072CC
@@ -6116,8 +6116,8 @@ _080072CC:
 _080072CE:
 	bx lr
 
-	thumb_func_start sub_080072D0
-sub_080072D0: @ 0x080072D0
+	thumb_func_start PutFace80x72_Core
+PutFace80x72_Core: @ 0x080072D0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -6129,7 +6129,7 @@ sub_080072D0: @ 0x080072D0
 	cmp r5, #0
 	beq _08007380
 	adds r0, r5, #0
-	bl sub_08006B20
+	bl GetFaceInfo
 	adds r4, r0, #0
 	ldr r0, [r4, #8]
 	lsls r1, r7, #5
@@ -6149,7 +6149,7 @@ sub_080072D0: @ 0x080072D0
 	movs r2, #0x20
 	bl ApplyPaletteExt
 	adds r0, r5, #0
-	bl sub_0800721C
+	bl ShouldFaceBeRaised
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08007338
@@ -6159,7 +6159,7 @@ sub_080072D0: @ 0x080072D0
 	adds r1, r1, r0
 	mov r0, sb
 	adds r2, r4, #0
-	bl sub_080071C4
+	bl PutFace80x72_Raised
 	b _08007348
 	.align 2, 0
 _08007334: .4byte 0x000003FF
@@ -6170,7 +6170,7 @@ _08007338:
 	adds r1, r1, r0
 	mov r0, sb
 	adds r2, r4, #0
-	bl sub_08007170
+	bl PutFace80x72_Standard
 _08007348:
 	movs r2, #0
 	mov r0, sb
@@ -6199,7 +6199,7 @@ _08007360:
 	mov r0, sb
 	movs r2, #0xa
 	movs r3, #9
-	bl sub_0801331C
+	bl PutAppliedBitmap
 _08007380:
 	pop {r3, r4}
 	mov r8, r3
@@ -6210,8 +6210,8 @@ _08007380:
 	.align 2, 0
 _0800738C: .4byte 0x000003FF
 
-	thumb_func_start sub_08007390
-sub_08007390: @ 0x08007390
+	thumb_func_start BgFaceEyeBlink_Init
+BgFaceEyeBlink_Init: @ 0x08007390
 	movs r2, #0
 	str r2, [r0, #0x2c]
 	movs r1, #0x78
@@ -6219,8 +6219,8 @@ sub_08007390: @ 0x08007390
 	strh r2, [r0, #0x32]
 	bx lr
 
-	thumb_func_start sub_0800739C
-sub_0800739C: @ 0x0800739C
+	thumb_func_start BgFaceEyeBlink_Delay
+BgFaceEyeBlink_Delay: @ 0x0800739C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x38]
@@ -6229,7 +6229,7 @@ sub_0800739C: @ 0x0800739C
 	cmp r0, #0
 	bge _080073BC
 	adds r0, r4, #0
-	bl sub_08007A7C
+	bl GetFaceBlinkInterval
 	str r0, [r4, #0x38]
 	movs r0, #0
 	strh r0, [r4, #0x34]
@@ -6257,7 +6257,7 @@ sub_080073C4: @ 0x080073C4
 	adds r0, r4, #0
 	adds r0, #0x44
 	ldrh r0, [r0]
-	bl sub_08006B20
+	bl GetFaceInfo
 	adds r5, r0, #0
 	movs r6, #0
 	movs r1, #0x34
@@ -6302,10 +6302,10 @@ _08007434:
 	ands r2, r3
 	adds r1, r1, r2
 	adds r2, r5, #0
-	bl sub_08007170
+	bl PutFace80x72_Standard
 	ldr r0, [r4, #0x3c]
-	bl sub_08002F54
-	bl sub_08001018
+	bl GetBgFromPtr
+	bl EnableBgSyncById
 	adds r0, r4, #0
 	bl Proc_Break
 	b _080074BE
@@ -6315,7 +6315,7 @@ _08007468:
 	adds r0, r4, #0
 	adds r0, #0x44
 	ldrh r0, [r0]
-	bl sub_08006B20
+	bl GetFaceInfo
 	adds r5, r0, #0
 	ldrb r3, [r5, #0x17]
 	lsls r1, r3, #6
@@ -6347,8 +6347,8 @@ _08007468:
 	adds r1, #0x44
 	adds r2, #0x23
 	strh r2, [r1]
-	bl sub_08002F54
-	bl sub_08001018
+	bl GetBgFromPtr
+	bl EnableBgSyncById
 _080074B8:
 	ldrh r0, [r4, #0x34]
 	adds r0, #1
@@ -6358,8 +6358,8 @@ _080074BE:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080074C4
-sub_080074C4: @ 0x080074C4
+	thumb_func_start PutFace80x72
+PutFace80x72: @ 0x080074C4
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -6373,9 +6373,9 @@ sub_080074C4: @ 0x080074C4
 	mov r1, r8
 	adds r2, r5, #0
 	adds r3, r6, #0
-	bl sub_080072D0
+	bl PutFace80x72_Core
 	mov r0, r8
-	bl sub_08006B20
+	bl GetFaceInfo
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -6388,12 +6388,12 @@ _080074F4: .4byte 0x08B90870
 sub_080074F8: @ 0x080074F8
 	push {lr}
 	ldr r0, [r0, #0x54]
-	bl sub_08006D30
+	bl EndFace
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08007504
-sub_08007504: @ 0x08007504
+	thumb_func_start EndFaceIn8Frames
+EndFaceIn8Frames: @ 0x08007504
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08007518 @ =0x08B908A0
@@ -6406,14 +6406,14 @@ sub_08007504: @ 0x08007504
 	.align 2, 0
 _08007518: .4byte 0x08B908A0
 
-	thumb_func_start sub_0800751C
-sub_0800751C: @ 0x0800751C
+	thumb_func_start StartFaceFadeIn
+StartFaceFadeIn: @ 0x0800751C
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
 	adds r5, r0, #0
 	ldrh r0, [r5, #0x3e]
-	bl sub_08006B20
+	bl GetFaceInfo
 	mov r8, r0
 	ldr r6, _08007560 @ =0x0202A58C
 	adds r4, r5, #0
@@ -6447,7 +6447,7 @@ StartFaceFadeOut: @ 0x08007564
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x3e]
-	bl sub_08006B20
+	bl GetFaceInfo
 	ldr r1, _08007594 @ =0x0202A58C
 	adds r0, r4, #0
 	adds r0, #0x40
@@ -6460,15 +6460,15 @@ StartFaceFadeOut: @ 0x08007564
 	adds r2, r4, #0
 	bl StartPalFadeToBlack
 	adds r0, r4, #0
-	bl sub_08007504
+	bl EndFaceIn8Frames
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08007594: .4byte 0x0202A58C
 
-	thumb_func_start sub_08007598
-sub_08007598: @ 0x08007598
+	thumb_func_start GetFactionFaceImg
+GetFactionFaceImg: @ 0x08007598
 	push {r4, r5, lr}
 	sub sp, #0x1c
 	mov r2, sp
@@ -6492,8 +6492,8 @@ sub_08007598: @ 0x08007598
 _080075C0: .4byte 0x08193DA4
 _080075C4: .4byte 0xFFFF8100
 
-	thumb_func_start sub_080075C8
-sub_080075C8: @ 0x080075C8
+	thumb_func_start ApplyFactionFacePal
+ApplyFactionFacePal: @ 0x080075C8
 	push {r4, r5, r6, lr}
 	sub sp, #0x1c
 	mov r3, sp
@@ -6520,8 +6520,8 @@ sub_080075C8: @ 0x080075C8
 _080075F8: .4byte 0x08193DC0
 _080075FC: .4byte 0xFFFF8100
 
-	thumb_func_start sub_08007600
-sub_08007600: @ 0x08007600
+	thumb_func_start FaceMouth_Init
+FaceMouth_Init: @ 0x08007600
 	ldr r1, [r0, #0x14]
 	str r1, [r0, #0x2c]
 	movs r1, #0
@@ -6535,13 +6535,13 @@ sub_0800760C: @ 0x0800760C
 	sub sp, #4
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r1, #0x30
 	ands r1, r0
 	cmp r1, #0
 	bne _08007660
 	ldr r0, [r4, #0x2c]
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r1, #8
 	ands r1, r0
 	movs r3, #0
@@ -6577,7 +6577,7 @@ _08007660:
 	cmp r0, #0
 	bge _080076D0
 	ldr r0, [r4, #0x2c]
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r1, #8
 	ands r1, r0
 	movs r5, #0
@@ -6633,7 +6633,7 @@ _080076D0:
 	movs r1, #4
 	ldrb r2, [r2, #0x14]
 	subs r5, r1, r2
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r6, #1
 	ands r0, r6
 	cmp r0, #0
@@ -6649,7 +6649,7 @@ _080076E8:
 	subs r5, #0x10
 	ldr r1, _08007758 @ =0x000001FF
 	ands r5, r1
-	bl sub_08006D9C
+	bl GetFaceDisp
 	ands r0, r6
 	cmp r0, #0
 	beq _0800770A
@@ -6658,7 +6658,7 @@ _080076E8:
 	adds r5, r5, r0
 _0800770A:
 	ldr r0, [r4, #0x2c]
-	bl sub_08006D9C
+	bl GetFaceDisp
 	adds r2, r0, #0
 	movs r0, #0x80
 	lsls r0, r0, #3
@@ -6684,7 +6684,7 @@ _0800770A:
 	adds r1, #0x1c
 	str r1, [sp]
 	adds r1, r5, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	add sp, #4
 	pop {r4, r5, r6}
 	pop {r0}
@@ -6695,8 +6695,8 @@ _08007754: .4byte 0x06010000
 _08007758: .4byte 0x000001FF
 _0800775C: .4byte 0x08B905F8
 
-	thumb_func_start sub_08007760
-sub_08007760: @ 0x08007760
+	thumb_func_start PutFaceEyeSprite
+PutFaceEyeSprite: @ 0x08007760
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -6740,7 +6740,7 @@ _080077A0:
 	movs r1, #4
 	ldrb r2, [r2, #0x16]
 	subs r4, r1, r2
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r1, #1
 	mov r8, r1
 	ands r0, r1
@@ -6757,7 +6757,7 @@ _080077BA:
 	subs r4, #0x10
 	ldr r1, _08007838 @ =0x000001FF
 	ands r4, r1
-	bl sub_08006D9C
+	bl GetFaceDisp
 	mov r1, r8
 	ands r0, r1
 	cmp r0, #0
@@ -6767,7 +6767,7 @@ _080077BA:
 	adds r4, r4, r0
 _080077DE:
 	ldr r0, [r7, #0x2c]
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r1, #0x80
 	lsls r1, r1, #3
 	ands r0, r1
@@ -6788,7 +6788,7 @@ _080077DE:
 	cmp r0, #0
 	beq _08007840
 	adds r0, r2, #0
-	bl sub_08006D9C
+	bl GetFaceDisp
 	mov r1, r8
 	ands r0, r1
 	cmp r0, #0
@@ -6806,7 +6806,7 @@ _0800781A:
 	str r1, [sp]
 	adds r1, r4, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 	b _08007856
 	.align 2, 0
 _08007838: .4byte 0x000001FF
@@ -6821,7 +6821,7 @@ _08007840:
 	str r1, [sp]
 	adds r1, r4, #0
 	adds r2, r6, #0
-	bl sub_08006A34
+	bl PutSpriteExt
 _08007856:
 	add sp, #4
 	pop {r3, r4}
@@ -6833,8 +6833,8 @@ _08007856:
 	.align 2, 0
 _08007864: .4byte 0x08B905F8
 
-	thumb_func_start sub_08007868
-sub_08007868: @ 0x08007868
+	thumb_func_start FaceEye_Init
+FaceEye_Init: @ 0x08007868
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x14]
@@ -6844,7 +6844,7 @@ sub_08007868: @ 0x08007868
 	movs r4, #0
 	strh r0, [r5, #0x30]
 	adds r0, r5, #0
-	bl sub_08007A7C
+	bl GetFaceBlinkInterval
 	str r0, [r5, #0x38]
 	strh r4, [r5, #0x32]
 	movs r0, #0x30
@@ -6868,8 +6868,8 @@ _080078A0:
 	.align 2, 0
 _080078A8: .4byte 0x7FFFFFFF
 
-	thumb_func_start sub_080078AC
-sub_080078AC: @ 0x080078AC
+	thumb_func_start FaceEye_Delay
+FaceEye_Delay: @ 0x080078AC
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x38]
@@ -6887,7 +6887,7 @@ _080078C8:
 	cmp r0, #0
 	bge _080078DE
 	adds r0, r4, #0
-	bl sub_08007A7C
+	bl GetFaceBlinkInterval
 	str r0, [r4, #0x38]
 	strh r5, [r4, #0x34]
 	adds r0, r4, #0
@@ -6898,8 +6898,8 @@ _080078DE:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080078E4
-sub_080078E4: @ 0x080078E4
+	thumb_func_start FaceEye_PreSwitch
+FaceEye_PreSwitch: @ 0x080078E4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	movs r5, #2
@@ -6939,7 +6939,7 @@ _08007934:
 _0800793C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08007760
+	bl PutFaceEyeSprite
 	ldrh r0, [r4, #0x34]
 	adds r0, #1
 	strh r0, [r4, #0x34]
@@ -6954,8 +6954,8 @@ sub_08007950: @ 0x08007950
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08007958
-sub_08007958: @ 0x08007958
+	thumb_func_start FaceEye_DisplayFrame0
+FaceEye_DisplayFrame0: @ 0x08007958
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x34
@@ -6963,12 +6963,12 @@ sub_08007958: @ 0x08007958
 	cmp r0, #5
 	bgt _0800796C
 	adds r0, r4, #0
-	bl sub_080078E4
+	bl FaceEye_PreSwitch
 	b _08007984
 _0800796C:
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08007760
+	bl PutFaceEyeSprite
 	movs r1, #0x32
 	ldrsh r0, [r4, r1]
 	cmp r0, #0
@@ -6989,8 +6989,8 @@ sub_0800798C: @ 0x0800798C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08007994
-sub_08007994: @ 0x08007994
+	thumb_func_start FaceEye_DisplayFrame1
+FaceEye_DisplayFrame1: @ 0x08007994
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0x34
@@ -6998,12 +6998,12 @@ sub_08007994: @ 0x08007994
 	cmp r0, #2
 	bgt _080079A8
 	adds r0, r4, #0
-	bl sub_080078E4
+	bl FaceEye_PreSwitch
 	b _080079C0
 _080079A8:
 	adds r0, r4, #0
 	movs r1, #1
-	bl sub_08007760
+	bl PutFaceEyeSprite
 	movs r1, #0x32
 	ldrsh r0, [r4, r1]
 	cmp r0, #0
@@ -7024,8 +7024,8 @@ sub_080079C8: @ 0x080079C8
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080079D0
-sub_080079D0: @ 0x080079D0
+	thumb_func_start FaceEye_DisplayFrameFlip
+FaceEye_DisplayFrameFlip: @ 0x080079D0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	movs r5, #2
@@ -7068,7 +7068,7 @@ _08007A2C:
 	adds r1, r5, #0
 	adds r1, #0x80
 	adds r0, r4, #0
-	bl sub_08007760
+	bl PutFaceEyeSprite
 	ldrh r0, [r4, #0x34]
 	adds r0, #1
 	strh r0, [r4, #0x34]
@@ -7077,8 +7077,8 @@ _08007A2C:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08007A44
-sub_08007A44: @ 0x08007A44
+	thumb_func_start SetFaceBlinkControl
+SetFaceBlinkControl: @ 0x08007A44
 	push {r4, lr}
 	adds r2, r0, #0
 	cmp r1, #0
@@ -7089,28 +7089,28 @@ _08007A50:
 	ldr r4, [r2, #0x48]
 	strh r1, [r4, #0x30]
 	adds r0, r4, #0
-	bl sub_08007A7C
+	bl GetFaceBlinkInterval
 	str r0, [r4, #0x38]
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08007A64
-sub_08007A64: @ 0x08007A64
+	thumb_func_start SetFaceBlinkControlById
+SetFaceBlinkControlById: @ 0x08007A64
 	push {lr}
 	ldr r2, _08007A78 @ =0x030041C0
 	lsls r0, r0, #2
 	adds r0, r0, r2
 	ldr r0, [r0]
-	bl sub_08007A44
+	bl SetFaceBlinkControl
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08007A78: .4byte 0x030041C0
 
-	thumb_func_start sub_08007A7C
-sub_08007A7C: @ 0x08007A7C
+	thumb_func_start GetFaceBlinkInterval
+GetFaceBlinkInterval: @ 0x08007A7C
 	push {r4, lr}
 	adds r4, r0, #0
 	bl RandNextB
@@ -7160,8 +7160,8 @@ _08007AD0:
 	.align 2, 0
 _08007AD8: .4byte 0x7FFFFFFF
 
-	thumb_func_start sub_08007ADC
-sub_08007ADC: @ 0x08007ADC
+	thumb_func_start SetFaceEyeState
+SetFaceEyeState: @ 0x08007ADC
 	ldr r0, [r0, #0x48]
 	strh r1, [r0, #0x32]
 	bx lr
@@ -7174,7 +7174,7 @@ sub_08007AE4: @ 0x08007AE4
 	lsls r0, r0, #2
 	adds r0, r0, r2
 	ldr r0, [r0]
-	bl sub_08007ADC
+	bl SetFaceEyeState
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -7253,28 +7253,28 @@ sub_08007B70: @ 0x08007B70
 	movs r3, #0x13
 	bl StartFaceAuto
 	movs r1, #3
-	bl sub_08007A44
+	bl SetFaceBlinkControl
 	movs r0, #0x16
 	movs r1, #0x30
 	movs r2, #0x50
 	movs r3, #0x1b
 	bl StartFaceAuto
 	movs r1, #1
-	bl sub_08007A44
+	bl SetFaceBlinkControl
 	movs r0, #0x16
 	movs r1, #0xc0
 	movs r2, #0
 	movs r3, #0x12
 	bl StartFaceAuto
 	movs r1, #2
-	bl sub_08007A44
+	bl SetFaceBlinkControl
 	movs r0, #0x16
 	movs r1, #0xc0
 	movs r2, #0x50
 	movs r3, #0x1a
 	bl StartFaceAuto
 	movs r1, #4
-	bl sub_08007A44
+	bl SetFaceBlinkControl
 	ldr r0, _08007BC8 @ =0x08B90970
 	movs r1, #3
 	bl SpawnProc
@@ -7283,8 +7283,8 @@ sub_08007B70: @ 0x08007B70
 	.align 2, 0
 _08007BC8: .4byte 0x08B90970
 
-	thumb_func_start sub_08007BCC
-sub_08007BCC: @ 0x08007BCC
+	thumb_func_start StartBmFace
+StartBmFace: @ 0x08007BCC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -7312,7 +7312,7 @@ _08007BF4:
 	adds r5, r0, #0
 	str r5, [r4]
 	mov r0, sb
-	bl sub_08006B20
+	bl GetFaceInfo
 	mov r8, r0
 	movs r0, #0x80
 	lsls r0, r0, #6
@@ -7372,7 +7372,7 @@ _08007C5A:
 	ldr r0, [sp, #0x28]
 	str r0, [r5, #0x30]
 	adds r0, r5, #0
-	bl sub_08006DB8
+	bl FaceRefreshSprite
 	movs r1, #0xf0
 	lsls r1, r1, #2
 	ldr r2, [sp, #0x28]
@@ -7431,8 +7431,8 @@ _08007CDA:
 	.align 2, 0
 _08007CEC: .4byte 0x0202A58C
 
-	thumb_func_start sub_08007CF0
-sub_08007CF0: @ 0x08007CF0
+	thumb_func_start SetFacePosition
+SetFacePosition: @ 0x08007CF0
 	ldr r3, _08007D00 @ =0x030041C0
 	lsls r0, r0, #2
 	adds r0, r0, r3
@@ -7452,13 +7452,13 @@ sub_08007D04: @ 0x08007D04
 	ldr r0, [r0, #0x48]
 	cmp r0, #0
 	beq _08007D14
-	bl sub_08090CD4
+	bl TryLockProc
 _08007D14:
 	ldr r0, [r4, #0x2c]
 	ldr r0, [r0, #0x44]
 	cmp r0, #0
 	beq _08007D20
-	bl sub_08090CD4
+	bl TryLockProc
 _08007D20:
 	pop {r4}
 	pop {r0}
@@ -7470,7 +7470,7 @@ sub_08007D28: @ 0x08007D28
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x34]
-	bl sub_08006B20
+	bl GetFaceInfo
 	str r0, [r4, #0x30]
 	ldr r0, [r0]
 	ldr r5, _08007D78 @ =0x0202A58C
@@ -7524,13 +7524,13 @@ sub_08007D80: @ 0x08007D80
 	bl Proc_Goto
 	ldr r0, [r4, #0x2c]
 	ldr r0, [r0, #0x48]
-	bl sub_08090CE4
+	bl TryUnlockProc
 _08007DA4:
 	ldr r0, [r4, #0x2c]
 	ldr r0, [r0, #0x44]
 	cmp r0, #0
 	beq _08007DB0
-	bl sub_08090CE4
+	bl TryUnlockProc
 _08007DB0:
 	pop {r4}
 	pop {r0}
@@ -7553,8 +7553,8 @@ sub_08007DB8: @ 0x08007DB8
 	.align 2, 0
 _08007DD0: .4byte 0x08B90980
 
-	thumb_func_start sub_08007DD4
-sub_08007DD4: @ 0x08007DD4
+	thumb_func_start ClearTalkFaceRefs
+ClearTalkFaceRefs: @ 0x08007DD4
 	push {r4, lr}
 	movs r2, #0
 	ldr r4, _08007DF4 @ =0x08B909B8
@@ -7596,7 +7596,7 @@ InitTalk: @ 0x08007DF8
 	adds r2, r5, #0
 	movs r3, #2
 	bl InitTextFont
-	bl sub_08007F64
+	bl SetInitTalkTextFont
 	ldr r0, _08007E84 @ =0x08B909B8
 	ldr r0, [r0]
 	strb r6, [r0, #0xa]
@@ -7631,7 +7631,7 @@ _08007E4E:
 	movs r2, #0x20
 	bl ApplyPaletteExt
 _08007E70:
-	bl sub_08007DD4
+	bl ClearTalkFaceRefs
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -7644,8 +7644,8 @@ _08007E8C: .4byte 0x083FBD34
 _08007E90: .4byte 0x06000200
 _08007E94: .4byte 0x083FBFD0
 
-	thumb_func_start sub_08007E98
-sub_08007E98: @ 0x08007E98
+	thumb_func_start InitSpriteTalk
+InitSpriteTalk: @ 0x08007E98
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
 	adds r4, r2, #0
@@ -7735,19 +7735,19 @@ sub_08007F50: @ 0x08007F50
 	.align 2, 0
 _08007F60: .4byte 0x08194674
 
-	thumb_func_start sub_08007F64
-sub_08007F64: @ 0x08007F64
+	thumb_func_start SetInitTalkTextFont
+SetInitTalkTextFont: @ 0x08007F64
 	push {lr}
 	ldr r0, _08007F74 @ =0x030000E8
 	bl SetTextFont
-	bl sub_08005A80
+	bl InitTalkTextFont
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08007F74: .4byte 0x030000E8
 
-	thumb_func_start sub_08007F78
-sub_08007F78: @ 0x08007F78
+	thumb_func_start StartTalkExt
+StartTalkExt: @ 0x08007F78
 	push {r4, r5, r6, r7, lr}
 	adds r7, r3, #0
 	ldr r4, _08008000 @ =0x08B909B8
@@ -7774,7 +7774,7 @@ sub_08007F78: @ 0x08007F78
 	ldr r0, [r4]
 	strb r5, [r0, #0x14]
 	movs r0, #0xff
-	bl sub_08008E28
+	bl SetActiveTalkFace
 	ldr r1, [r4]
 	movs r0, #0xff
 	strb r0, [r1, #0xf]
@@ -7797,7 +7797,7 @@ sub_08007F78: @ 0x08007F78
 	ldr r0, [r4]
 	ldr r0, [r0]
 	movs r1, #0
-	bl sub_0800A11C
+	bl GetStrTalkLen
 	adds r0, #7
 	movs r1, #8
 	bl Div
@@ -7835,14 +7835,14 @@ StartTalkMsg: @ 0x0800801C
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #0
-	bl sub_08007F78
+	bl StartTalkExt
 	pop {r4, r5}
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0800803C
-sub_0800803C: @ 0x0800803C
+	thumb_func_start StartTalkMsgExt
+StartTalkMsgExt: @ 0x0800803C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -7853,16 +7853,16 @@ sub_0800803C: @ 0x0800803C
 	adds r0, r4, #0
 	adds r1, r5, #0
 	adds r3, r6, #0
-	bl sub_08007F78
+	bl StartTalkExt
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0800805C
-sub_0800805C: @ 0x0800805C
+	thumb_func_start StartTalk
+StartTalk: @ 0x0800805C
 	push {lr}
 	movs r3, #0
-	bl sub_08007F78
+	bl StartTalkExt
 	pop {r1}
 	bx r1
 
@@ -7876,8 +7876,8 @@ EndTalk: @ 0x08008068
 	.align 2, 0
 _08008074: .4byte 0x08B909D4
 
-	thumb_func_start sub_08008078
-sub_08008078: @ 0x08008078
+	thumb_func_start SetTalkLines
+SetTalkLines: @ 0x08008078
 	ldr r1, _08008080 @ =0x08B909B8
 	ldr r1, [r1]
 	strb r0, [r1, #0xa]

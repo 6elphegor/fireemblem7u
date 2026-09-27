@@ -47,8 +47,8 @@ CheckTalkFlag: @ 0x080080C8
 	.align 2, 0
 _080080D4: .4byte 0x08B909B8
 
-	thumb_func_start sub_080080D8
-sub_080080D8: @ 0x080080D8
+	thumb_func_start SetTalkPrintDelay
+SetTalkPrintDelay: @ 0x080080D8
 	ldr r2, _080080F0 @ =0x08B909B8
 	ldr r1, [r2]
 	strb r0, [r1, #0x13]
@@ -64,8 +64,8 @@ _080080EC:
 	.align 2, 0
 _080080F0: .4byte 0x08B909B8
 
-	thumb_func_start sub_080080F4
-sub_080080F4: @ 0x080080F4
+	thumb_func_start SetTalkPrintColor
+SetTalkPrintColor: @ 0x080080F4
 	push {r4, r5, r6, lr}
 	ldr r2, _08008128 @ =0x08B909B8
 	ldr r1, [r2]
@@ -123,7 +123,7 @@ TalkSkipListener_OnIdle: @ 0x08008130
 	ldr r0, _0800819C @ =0x08B909B8
 	ldr r0, [r0]
 	ldrb r0, [r0, #0x11]
-	bl sub_08009F94
+	bl SetTalkFaceNoMouthMove
 	adds r0, r4, #0
 	bl Proc_End
 	bl EndTalk
@@ -172,8 +172,8 @@ _080081D8: .4byte 0x08B90A4C
 _080081DC: .4byte 0x08B857F8
 _080081E0: .4byte 0x08B909B8
 
-	thumb_func_start sub_080081E4
-sub_080081E4: @ 0x080081E4
+	thumb_func_start Talk_OnInit
+Talk_OnInit: @ 0x080081E4
 	push {lr}
 	movs r0, #0x20
 	bl CheckTalkFlag
@@ -238,9 +238,9 @@ _08008256:
 _0800825C:
 	ldr r0, [r7]
 	ldrb r0, [r0, #0x11]
-	bl sub_08009F94
+	bl SetTalkFaceNoMouthMove
 	adds r0, r6, #0
-	bl sub_080085BC
+	bl TalkInterpret
 	cmp r0, #1
 	beq _080082B4
 	cmp r0, #1
@@ -290,7 +290,7 @@ _080082B4:
 	b _080082CC
 _080082C6:
 	adds r0, r6, #0
-	bl sub_08008478
+	bl TalkSpritePrepNextChar
 _080082CC:
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
@@ -324,7 +324,7 @@ _080082CC:
 	cmp r0, #0
 	blt _08008368
 	ldr r0, _08008324 @ =0x0000039A
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08008368
 	.align 2, 0
 _0800831C: .4byte 0x08B909B8
@@ -361,7 +361,7 @@ _08008350:
 	cmp r0, #0
 	blt _08008368
 	ldr r0, _08008388 @ =0x0000038E
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08008368:
 	ldr r1, [r7]
 	movs r0, #0x12
@@ -408,7 +408,7 @@ sub_0800838C: @ 0x0800838C
 	ldr r0, [r1]
 _080083B8:
 	movs r1, #0
-	bl sub_0800A11C
+	bl GetStrTalkLen
 	adds r0, #7
 	movs r1, #8
 	bl Div
@@ -420,7 +420,7 @@ _080083B8:
 	ldr r0, [r4]
 	ldrb r0, [r0, #0x11]
 	adds r1, r7, #0
-	bl sub_08009E7C
+	bl StartTalkOpen
 	ldr r0, [r4]
 	ldrb r4, [r0, #0x11]
 	movs r0, #0x10
@@ -471,9 +471,9 @@ _0800841C:
 	ldr r1, _08008474 @ =0x02022C60
 	adds r4, r4, r1
 	adds r1, r4, #0
-	bl sub_08005590
+	bl PutText
 	movs r0, #1
-	bl sub_0800A4F0
+	bl TalkBgSync
 	ldr r1, [r6]
 	movs r0, #1
 	strb r0, [r1, #0x15]
@@ -483,7 +483,7 @@ _08008458:
 	cmp r0, #0
 	beq _08008466
 	ldrb r0, [r1, #0x11]
-	bl sub_08009F88
+	bl SetTalkFaceMouthMove
 _08008466:
 	movs r0, #0
 _08008468:
@@ -494,8 +494,8 @@ _08008468:
 _08008470: .4byte 0x030000C8
 _08008474: .4byte 0x02022C60
 
-	thumb_func_start sub_08008478
-sub_08008478: @ 0x08008478
+	thumb_func_start TalkSpritePrepNextChar
+TalkSpritePrepNextChar: @ 0x08008478
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _08008498 @ =0x08B909B8
@@ -525,8 +525,8 @@ _080084AC:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080084B0
-sub_080084B0: @ 0x080084B0
+	thumb_func_start LockTalk
+LockTalk: @ 0x080084B0
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _080084C0 @ =0x08B90A04
@@ -632,8 +632,8 @@ _08008566:
 _08008570: .4byte 0x030000C8
 _08008574: .4byte 0x08B909B8
 
-	thumb_func_start sub_08008578
-sub_08008578: @ 0x08008578
+	thumb_func_start TalkToggleInvertedPalette
+TalkToggleInvertedPalette: @ 0x08008578
 	push {lr}
 	cmp r0, #0
 	beq _0800859C
@@ -665,8 +665,8 @@ _080085B0:
 _080085B4: .4byte 0x083FBFD0
 _080085B8: .4byte 0x08194674
 
-	thumb_func_start sub_080085BC
-sub_080085BC: @ 0x080085BC
+	thumb_func_start TalkInterpret
+TalkInterpret: @ 0x080085BC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -690,7 +690,7 @@ _080085CA:
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
 	adds r0, r4, #0
-	bl sub_0800A11C
+	bl GetStrTalkLen
 	adds r0, #7
 	movs r1, #8
 	bl Div
@@ -882,7 +882,7 @@ _08008858:
 	bl SpawnProcLocking
 	adds r4, r0, #0
 	movs r0, #4
-	bl sub_08009744
+	bl GetTalkPauseCmdDuration
 	adds r1, r4, #0
 	adds r1, #0x64
 	strh r0, [r1]
@@ -950,7 +950,7 @@ _080088D8:
 	.align 2, 0
 _080088EC: .4byte 0x08B90ACC
 _080088F0:
-	bl sub_080097FC
+	bl ClearTalkText
 _080088F4:
 	ldr r0, _080088FC @ =0x08B909B8
 	ldr r1, [r0]
@@ -967,7 +967,7 @@ _08008900:
 	lsls r0, r0, #3
 	ldr r1, _08008938 @ =0x030000C8
 	adds r0, r0, r1
-	bl sub_08005570
+	bl Text_GetCursor
 	ldr r3, [r7]
 	ldrb r2, [r3, #0xc]
 	lsls r1, r2, #3
@@ -980,7 +980,7 @@ _08008900:
 	adds r2, r2, r0
 	adds r2, #8
 	mov r0, r8
-	bl sub_080092BC
+	bl StartTalkWaitForInput
 	b _08008D2A
 	.align 2, 0
 _08008938: .4byte 0x030000C8
@@ -1005,7 +1005,7 @@ _08008950:
 	ldr r0, [r7]
 	ldr r0, [r0]
 	ldrb r0, [r0]
-	bl sub_08009744
+	bl GetTalkPauseCmdDuration
 	adds r1, r4, #0
 	adds r1, #0x64
 	strh r0, [r1]
@@ -1052,7 +1052,7 @@ _080089A6:
 _080089B0: .4byte 0x08B909B8
 _080089B4:
 	subs r0, #8
-	bl sub_08008E28
+	bl SetActiveTalkFace
 	ldr r1, [r4]
 	ldr r0, [r1]
 	adds r0, #1
@@ -1120,7 +1120,7 @@ _08008A3C: .4byte 0x08B909B8
 _08008A40:
 	ldr r0, [r7]
 	ldrb r0, [r0, #0x11]
-	bl sub_08009F94
+	bl SetTalkFaceNoMouthMove
 	ldr r0, [r7]
 	ldr r0, [r0]
 	ldrb r0, [r0]
@@ -1381,7 +1381,7 @@ _08008C9C:
 	b _08008D2A
 _08008CAE:
 	mov r0, r8
-	bl sub_080084B0
+	bl LockTalk
 	ldr r0, _08008CBC @ =0x08B909B8
 	ldr r1, [r0]
 	b _08008D2C
@@ -1392,7 +1392,7 @@ _08008CC0:
 	ldr r1, [r4]
 	ldr r0, [r1, #0x3c]
 	adds r1, #0x40
-	bl sub_08014590
+	bl NumberToStringAscii
 	ldr r1, [r4]
 	ldr r0, [r1]
 	subs r0, #1
@@ -1409,7 +1409,7 @@ _08008CE0:
 	ldr r0, [r1]
 	subs r0, #1
 	str r0, [r1, #4]
-	bl sub_0802E6E4
+	bl GetTacticianName
 	ldr r1, [r4]
 	str r0, [r1]
 	b _080085C6
@@ -1433,13 +1433,13 @@ _08008D10:
 	ldr r1, [r1]
 	ldrb r1, [r1]
 	subs r1, #0xa
-	bl sub_08008FC8
+	bl MoveTalkFace
 	ldr r0, [r7]
 	ldr r0, [r0]
 	ldrb r0, [r0]
 	subs r0, #0xa
 _08008D26:
-	bl sub_08008E28
+	bl SetActiveTalkFace
 _08008D2A:
 	ldr r1, [r7]
 _08008D2C:
@@ -1519,7 +1519,7 @@ _08008DA2:
 	ldr r0, [r1]
 	movs r1, #5
 _08008DB6:
-	bl sub_08007A44
+	bl SetFaceBlinkControl
 	b _08008876
 _08008DBC:
 	ldr r1, [r7]
@@ -1569,7 +1569,7 @@ _08008DFE:
 	ldr r0, [r1]
 	movs r1, #4
 _08008E12:
-	bl sub_08007ADC
+	bl SetFaceEyeState
 	b _08008876
 _08008E18:
 	movs r0, #1
@@ -1582,8 +1582,8 @@ _08008E1A:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08008E28
-sub_08008E28: @ 0x08008E28
+	thumb_func_start SetActiveTalkFace
+SetActiveTalkFace: @ 0x08008E28
 	ldr r1, _08008E30 @ =0x08B909B8
 	ldr r1, [r1]
 	strb r0, [r1, #0x11]
@@ -1602,9 +1602,9 @@ sub_08008E34: @ 0x08008E34
 	cmp r0, #0xff
 	bne _08008E4A
 	movs r0, #1
-	bl sub_08008E28
+	bl SetActiveTalkFace
 _08008E4A:
-	bl sub_0804B1EC
+	bl IsBattleDeamonActive
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08008E60
@@ -1618,7 +1618,7 @@ _08008E62:
 	ldr r4, _08008E94 @ =0x08B909B8
 	ldr r0, [r4]
 	ldrb r0, [r0, #0x11]
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	cmp r0, #0xe
 	bgt _08008E74
 	movs r0, #1
@@ -1663,7 +1663,7 @@ _08008EC0: .4byte 0xFFFFFF00
 _08008EC4: .4byte 0x08B909B8
 _08008EC8:
 	adds r0, r2, #0
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	adds r1, r0, #0
 	lsls r1, r1, #3
 	adds r0, r4, #0
@@ -1681,7 +1681,7 @@ _08008EC8:
 	lsls r0, r3, #2
 	adds r2, r2, r0
 	ldr r0, [r2]
-	bl sub_0800751C
+	bl StartFaceFadeIn
 	ldr r0, [r5]
 	ldrb r4, [r0, #0x11]
 	movs r0, #0x10
@@ -1698,8 +1698,8 @@ _08008F10:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08008F18
-sub_08008F18: @ 0x08008F18
+	thumb_func_start StartTalkFace
+StartTalkFace: @ 0x08008F18
 	push {r4, lr}
 	ldr r4, [sp, #8]
 	bl StartFaceAuto
@@ -1715,8 +1715,8 @@ sub_08008F18: @ 0x08008F18
 	.align 2, 0
 _08008F34: .4byte 0x08B909B8
 
-	thumb_func_start sub_08008F38
-sub_08008F38: @ 0x08008F38
+	thumb_func_start GetFaceIdByXPos
+GetFaceIdByXPos: @ 0x08008F38
 	push {r4, lr}
 	adds r3, r0, #0
 	movs r1, #0
@@ -1804,8 +1804,8 @@ _08008FC2:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08008FC8
-sub_08008FC8: @ 0x08008FC8
+	thumb_func_start MoveTalkFace
+MoveTalkFace: @ 0x08008FC8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -1825,12 +1825,12 @@ sub_08008FC8: @ 0x08008FC8
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r2, #1
-	bl sub_0800903C
+	bl StartTalkFaceMove
 _08008FF2:
 	adds r2, r7, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_0800903C
+	bl StartTalkFaceMove
 	mov r1, r8
 	ldr r0, [r1]
 	lsls r2, r5, #2
@@ -1867,15 +1867,15 @@ _08009036:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0800903C
-sub_0800903C: @ 0x0800903C
+	thumb_func_start StartTalkFaceMove
+StartTalkFaceMove: @ 0x0800903C
 	push {r4, r5, r6, r7, lr}
 	adds r6, r1, #0
 	lsls r2, r2, #0x18
 	lsrs r7, r2, #0x18
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	lsls r0, r0, #3
-	bl sub_08008F38
+	bl GetFaceIdByXPos
 	adds r5, r0, #0
 	movs r0, #1
 	rsbs r0, r0, #0
@@ -1920,7 +1920,7 @@ TalkFaceMove_OnInit: @ 0x08009094
 	adds r4, #0x66
 	movs r1, #0
 	ldrsh r0, [r4, r1]
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	adds r5, r6, #0
 	adds r5, #0x68
 	movs r2, #0
@@ -1931,7 +1931,7 @@ TalkFaceMove_OnInit: @ 0x08009094
 	bge _080090CE
 	movs r1, #0
 	ldrsh r0, [r4, r1]
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	lsls r0, r0, #3
 	movs r2, #0
 	ldrsh r1, [r5, r2]
@@ -1942,7 +1942,7 @@ TalkFaceMove_OnInit: @ 0x08009094
 _080090CE:
 	movs r1, #0
 	ldrsh r0, [r4, r1]
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	movs r2, #0
 	ldrsh r1, [r5, r2]
 	lsls r0, r0, #3
@@ -2066,7 +2066,7 @@ _080091AC:
 	adds r0, #0x66
 	movs r3, #0
 	ldrsh r0, [r0, r3]
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	adds r2, r0, #0
 	lsls r2, r2, #3
 	adds r0, r4, #0
@@ -2080,7 +2080,7 @@ _080091AC:
 	ldr r0, [r4, #0x5c]
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08012FE8
+	bl Interpolate
 	ldr r2, _080091EC @ =0x030041C0
 	movs r3, #0
 	ldrsh r1, [r5, r3]
@@ -2158,7 +2158,7 @@ TalkWaitForInput_OnIdle: @ 0x08009230
 	movs r0, #4
 	str r0, [sp]
 	movs r0, #2
-	bl sub_080069F4
+	bl PutSprite
 	b _08009290
 	.align 2, 0
 _0800926C: .4byte 0x08B90A8C
@@ -2177,7 +2177,7 @@ _08009270:
 	ldr r0, _080092B0 @ =0x0000B2BF
 	str r0, [sp]
 	movs r0, #0
-	bl sub_080069F4
+	bl PutSprite
 _08009290:
 	ldr r0, _080092B4 @ =0x08B857F8
 	ldr r1, [r0]
@@ -2203,8 +2203,8 @@ sub_080092B8: @ 0x080092B8
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080092BC
-sub_080092BC: @ 0x080092BC
+	thumb_func_start StartTalkWaitForInput
+StartTalkWaitForInput: @ 0x080092BC
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0
@@ -2226,8 +2226,8 @@ sub_080092BC: @ 0x080092BC
 	.align 2, 0
 _080092E4: .4byte 0x08B90A4C
 
-	thumb_func_start sub_080092E8
-sub_080092E8: @ 0x080092E8
+	thumb_func_start StartTalkWaitForInputUnk
+StartTalkWaitForInputUnk: @ 0x080092E8
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -2275,7 +2275,7 @@ sub_0800931C: @ 0x0800931C
 	movs r3, #0
 	bl TmFillRect_t
 	movs r0, #1
-	bl sub_0800A4F0
+	bl TalkBgSync
 	adds r1, r5, #0
 	adds r1, #0x64
 	movs r0, #0
@@ -2311,8 +2311,8 @@ _08009382:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08009388
-sub_08009388: @ 0x08009388
+	thumb_func_start TalkShiftClearAll_OnIdle
+TalkShiftClearAll_OnIdle: @ 0x08009388
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r5, #0
@@ -2336,7 +2336,7 @@ sub_08009388: @ 0x08009388
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08009798
+	bl ClearPutTalkText
 	adds r0, r5, #0
 	bl Proc_Break
 _080093C4:
@@ -2356,7 +2356,7 @@ sub_080093CC: @ 0x080093CC
 	adds r5, r2, #0
 	mov sb, r3
 	adds r0, r6, #0
-	bl sub_08005570
+	bl Text_GetCursor
 	adds r4, r0, #0
 	movs r0, #0x10
 	adds r0, r0, r4
@@ -2378,9 +2378,9 @@ sub_080093CC: @ 0x080093CC
 	bl Text_InsertDrawString
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_08005590
+	bl PutText
 	movs r0, #1
-	bl sub_0800A4F0
+	bl TalkBgSync
 	ldr r0, _08009474 @ =0x08B90B0C
 	ldr r1, [sp, #0x20]
 	bl SpawnProcLocking
@@ -2446,7 +2446,7 @@ sub_08009480: @ 0x08009480
 	cmp r0, #0
 	blt _080094A4
 	ldr r0, _080094B4 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080094A4:
 	ldr r1, _080094B8 @ =0x030000E0
 	movs r0, #0
@@ -2469,7 +2469,7 @@ _080094BC:
 	cmp r0, #0
 	blt _080094D8
 	ldr r0, _080094EC @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080094D8:
 	ldr r1, _080094F0 @ =0x030000E0
 	movs r2, #0x2a
@@ -2498,7 +2498,7 @@ _080094F4:
 	cmp r0, #0
 	blt _08009514
 	ldr r0, _08009580 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08009514:
 	strh r5, [r4, #0x2a]
 	ldr r0, [r4, #0x34]
@@ -2524,7 +2524,7 @@ _08009522:
 	cmp r0, #0
 	blt _08009548
 	ldr r0, _08009580 @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08009548:
 	movs r0, #2
 	strh r0, [r4, #0x2a]
@@ -2546,7 +2546,7 @@ _08009558:
 	subs r0, #4
 	movs r2, #0x2e
 	ldrsh r1, [r4, r2]
-	bl sub_08049F58
+	bl PutUiHand
 _08009574:
 	pop {r4, r5}
 	pop {r0}
@@ -2577,7 +2577,7 @@ sub_08009588: @ 0x08009588
 	movs r3, #0
 	bl TmFillRect_t
 	movs r0, #1
-	bl sub_0800A4F0
+	bl TalkBgSync
 	adds r4, #0x64
 	movs r0, #0
 	strh r0, [r4]
@@ -2643,7 +2643,7 @@ _08009612:
 	lsls r1, r1, #1
 	ldr r2, _080096B8 @ =0x02022C60
 	adds r1, r1, r2
-	bl sub_08005590
+	bl PutText
 	adds r5, #1
 	ldr r0, [r6]
 	ldrb r0, [r0, #0xa]
@@ -2690,7 +2690,7 @@ _08009646:
 	ldrb r1, [r4, #8]
 	bl Text_SetColor
 	movs r0, #1
-	bl sub_0800A4F0
+	bl TalkBgSync
 	adds r0, r7, #0
 	bl Proc_Break
 _080096A8:
@@ -2710,7 +2710,7 @@ sub_080096BC: @ 0x080096BC
 	lsls r0, r0, #2
 	ldr r2, _080096D0 @ =0x44444444
 	movs r1, #0x1a
-	bl sub_0800A534
+	bl CleanTalkObjects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -2770,8 +2770,8 @@ _08009714:
 _0800973C: .4byte 0x08B909B8
 _08009740: .4byte 0x030000C8
 
-	thumb_func_start sub_08009744
-sub_08009744: @ 0x08009744
+	thumb_func_start GetTalkPauseCmdDuration
+GetTalkPauseCmdDuration: @ 0x08009744
 	ldr r1, _08009750 @ =0x08B90B7C
 	subs r0, #4
 	lsls r0, r0, #2
@@ -2792,8 +2792,8 @@ ClearTalkBubble: @ 0x08009754
 	movs r1, #0
 	bl TmFill
 	movs r0, #2
-	bl sub_0800A4F0
-	bl sub_08009798
+	bl TalkBgSync
+	bl ClearPutTalkText
 	ldr r2, _08009794 @ =0x03002870
 	movs r0, #0x21
 	rsbs r0, r0, #0
@@ -2812,14 +2812,14 @@ _0800978C: .4byte 0x08B909B8
 _08009790: .4byte 0x02023460
 _08009794: .4byte 0x03002870
 
-	thumb_func_start sub_08009798
-sub_08009798: @ 0x08009798
+	thumb_func_start ClearPutTalkText
+ClearPutTalkText: @ 0x08009798
 	push {r4, r5, r6, lr}
 	ldr r0, _080097F0 @ =0x02022C60
 	movs r1, #0
 	bl TmFill
 	movs r0, #1
-	bl sub_0800A4F0
+	bl TalkBgSync
 	ldr r2, _080097F4 @ =0x08B909B8
 	ldr r0, [r2]
 	movs r1, #0
@@ -2861,8 +2861,8 @@ _080097F0: .4byte 0x02022C60
 _080097F4: .4byte 0x08B909B8
 _080097F8: .4byte 0x030000C8
 
-	thumb_func_start sub_080097FC
-sub_080097FC: @ 0x080097FC
+	thumb_func_start ClearTalkText
+ClearTalkText: @ 0x080097FC
 	push {r4, r5, r6, lr}
 	ldr r2, _08009848 @ =0x08B909B8
 	ldr r0, [r2]
@@ -2904,8 +2904,8 @@ _08009840:
 _08009848: .4byte 0x08B909B8
 _0800984C: .4byte 0x030000C8
 
-	thumb_func_start sub_08009850
-sub_08009850: @ 0x08009850
+	thumb_func_start PutTalkBubble
+PutTalkBubble: @ 0x08009850
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2927,7 +2927,7 @@ sub_08009850: @ 0x08009850
 	bgt _0800987A
 	movs r7, #0
 _0800987A:
-	bl sub_0804B1EC
+	bl IsBattleDeamonActive
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08009886
@@ -3017,7 +3017,7 @@ _08009906:
 	adds r1, r6, #0
 	mov r2, sb
 	adds r3, r4, #0
-	bl sub_08009C18
+	bl PutTalkBubbleTm
 	ldr r0, [r5]
 	adds r0, #0x83
 	ldrb r1, [r0]
@@ -3027,7 +3027,7 @@ _08009906:
 	beq _08009948
 	movs r0, #1
 	ands r0, r1
-	bl sub_08008578
+	bl TalkToggleInvertedPalette
 	ldr r1, [r5]
 	adds r1, #0x83
 	movs r0, #2
@@ -3046,16 +3046,16 @@ _08009948:
 	mov r1, r8
 	mov r2, sl
 	adds r3, r7, #0
-	bl sub_08009A90
+	bl PutTalkBubbleTail
 _08009962:
 	adds r0, r6, #0
 	mov r1, sb
 	adds r2, r4, #0
 	ldr r3, [sp, #4]
 	bl sub_08009A10
-	bl sub_0800998C
+	bl StartOpenTalkBubble
 	movs r0, #2
-	bl sub_0800A4F0
+	bl TalkBgSync
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -3067,8 +3067,8 @@ _08009962:
 	.align 2, 0
 _08009988: .4byte 0x08B909B8
 
-	thumb_func_start sub_0800998C
-sub_0800998C: @ 0x0800998C
+	thumb_func_start StartOpenTalkBubble
+StartOpenTalkBubble: @ 0x0800998C
 	push {lr}
 	ldr r0, _080099A0 @ =0x08B90B8C
 	movs r1, #3
@@ -3202,13 +3202,13 @@ sub_08009A10: @ 0x08009A10
 	.align 2, 0
 _08009A8C: .4byte 0x03002870
 
-	thumb_func_start sub_08009A90
-sub_08009A90: @ 0x08009A90
+	thumb_func_start PutTalkBubbleTail
+PutTalkBubbleTail: @ 0x08009A90
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	adds r4, r2, #0
 	adds r6, r3, #0
-	bl sub_08002BE8
+	bl GetBgTilemap
 	adds r3, r0, #0
 	cmp r6, #5
 	bls _08009AA4
@@ -3388,8 +3388,8 @@ _08009C0C: .4byte 0x00003017
 _08009C10: .4byte 0x00003817
 _08009C14: .4byte 0x00003818
 
-	thumb_func_start sub_08009C18
-sub_08009C18: @ 0x08009C18
+	thumb_func_start PutTalkBubbleTm
+PutTalkBubbleTm: @ 0x08009C18
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -3400,7 +3400,7 @@ sub_08009C18: @ 0x08009C18
 	str r2, [sp]
 	adds r5, r3, #0
 	ldr r4, [sp, #0x28]
-	bl sub_08002BE8
+	bl GetBgTilemap
 	adds r7, r0, #0
 	subs r5, #1
 	subs r4, #1
@@ -3609,8 +3609,8 @@ _08009DBC: .4byte 0x030028AC
 _08009DC0: .4byte 0x0000FFE0
 _08009DC4: .4byte 0x0000E0FF
 
-	thumb_func_start sub_08009DC8
-sub_08009DC8: @ 0x08009DC8
+	thumb_func_start TalkOpen_PutTalkBubble
+TalkOpen_PutTalkBubble: @ 0x08009DC8
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r0, #0x64
@@ -3628,7 +3628,7 @@ sub_08009DC8: @ 0x08009DC8
 	adds r3, #0x6a
 	movs r5, #0
 	ldrsh r3, [r3, r5]
-	bl sub_08009850
+	bl PutTalkBubble
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4, r5}
@@ -3650,7 +3650,7 @@ sub_08009DFC: @ 0x08009DFC
 	str r0, [sp]
 	movs r0, #4
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	lsrs r1, r0, #0x1f
 	adds r0, r0, r1
 	asrs r4, r0, #1
@@ -3701,15 +3701,15 @@ _08009E70:
 	.align 2, 0
 _08009E78: .4byte 0x03002870
 
-	thumb_func_start sub_08009E7C
-sub_08009E7C: @ 0x08009E7C
+	thumb_func_start StartTalkOpen
+StartTalkOpen: @ 0x08009E7C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08009ED8 @ =0x08B90B9C
 	bl SpawnProcLocking
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl sub_08009F04
+	bl GetTalkFaceHPos
 	adds r2, r4, #0
 	adds r2, #0x64
 	strh r0, [r2]
@@ -3775,11 +3775,11 @@ _08009F00:
 _08009F02:
 	bx lr
 
-	thumb_func_start sub_08009F04
-sub_08009F04: @ 0x08009F04
+	thumb_func_start GetTalkFaceHPos
+GetTalkFaceHPos: @ 0x08009F04
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0804B1EC
+	bl IsBattleDeamonActive
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08009F1E
@@ -3802,8 +3802,8 @@ _08009F26:
 	.align 2, 0
 _08009F2C: .4byte 0x08B90BCC
 
-	thumb_func_start sub_08009F30
-sub_08009F30: @ 0x08009F30
+	thumb_func_start SetTalkFaceDisp
+SetTalkFaceDisp: @ 0x08009F30
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r5, r0, #0
@@ -3821,7 +3821,7 @@ sub_08009F30: @ 0x08009F30
 	adds r0, #0x18
 	adds r0, r0, r5
 	ldr r0, [r0]
-	bl sub_08006D9C
+	bl GetFaceDisp
 	movs r1, #0x39
 	rsbs r1, r1, #0
 	ands r1, r0
@@ -3836,7 +3836,7 @@ sub_08009F30: @ 0x08009F30
 	add r2, sp
 	ldr r2, [r2]
 	orrs r1, r2
-	bl sub_08006D68
+	bl SetFaceDisp
 _08009F76:
 	add sp, #8
 	pop {r4, r5, r6}
@@ -3846,19 +3846,19 @@ _08009F76:
 _08009F80: .4byte 0x08193DF8
 _08009F84: .4byte 0x08B909B8
 
-	thumb_func_start sub_08009F88
-sub_08009F88: @ 0x08009F88
+	thumb_func_start SetTalkFaceMouthMove
+SetTalkFaceMouthMove: @ 0x08009F88
 	push {lr}
 	movs r1, #0x10
-	bl sub_08009F30
+	bl SetTalkFaceDisp
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08009F94
-sub_08009F94: @ 0x08009F94
+	thumb_func_start SetTalkFaceNoMouthMove
+SetTalkFaceNoMouthMove: @ 0x08009F94
 	push {lr}
 	movs r1, #0
-	bl sub_08009F30
+	bl SetTalkFaceDisp
 	pop {r0}
 	bx r0
 
@@ -3898,16 +3898,16 @@ GetTalkResult: @ 0x08009FD0
 	.align 2, 0
 _08009FD8: .4byte 0x030000E0
 
-	thumb_func_start sub_08009FDC
-sub_08009FDC: @ 0x08009FDC
+	thumb_func_start SetTalkChoiceResult
+SetTalkChoiceResult: @ 0x08009FDC
 	ldr r1, _08009FE4 @ =0x030000E0
 	str r0, [r1]
 	bx lr
 	.align 2, 0
 _08009FE4: .4byte 0x030000E0
 
-	thumb_func_start sub_08009FE8
-sub_08009FE8: @ 0x08009FE8
+	thumb_func_start SetTalkNumber
+SetTalkNumber: @ 0x08009FE8
 	ldr r1, _08009FF0 @ =0x08B909B8
 	ldr r1, [r1]
 	str r0, [r1, #0x3c]
@@ -3915,8 +3915,8 @@ sub_08009FE8: @ 0x08009FE8
 	.align 2, 0
 _08009FF0: .4byte 0x08B909B8
 
-	thumb_func_start sub_08009FF4
-sub_08009FF4: @ 0x08009FF4
+	thumb_func_start SetTalkUnkStr
+SetTalkUnkStr: @ 0x08009FF4
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _0800A008 @ =0x08B909B8
@@ -3928,8 +3928,8 @@ sub_08009FF4: @ 0x08009FF4
 	.align 2, 0
 _0800A008: .4byte 0x08B909B8
 
-	thumb_func_start sub_0800A00C
-sub_0800A00C: @ 0x0800A00C
+	thumb_func_start PrintStringToTexts
+PrintStringToTexts: @ 0x0800A00C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -3959,7 +3959,7 @@ _0800A032:
 	bne _0800A052
 	ldm r7!, {r0}
 	adds r1, r5, #0
-	bl sub_08005590
+	bl PutText
 	adds r5, #0x80
 	adds r6, #1
 	adds r4, #1
@@ -3976,7 +3976,7 @@ _0800A058:
 	lsls r1, r6, #7
 	ldr r2, [sp]
 	adds r1, r2, r1
-	bl sub_08005590
+	bl PutText
 _0800A068:
 	add sp, #4
 	pop {r3, r4, r5}
@@ -4020,7 +4020,7 @@ sub_0800A078: @ 0x0800A078
 	str r4, [sp]
 	movs r0, #3
 	mov r3, ip
-	bl sub_080069F4
+	bl PutSprite
 	ldr r1, [r7, #0x2c]
 	ldr r2, [r7, #0x30]
 	ldr r3, _0800A0F4 @ =0x08B90BEC
@@ -4035,7 +4035,7 @@ sub_0800A078: @ 0x0800A078
 	orrs r6, r5
 	str r6, [sp]
 	movs r0, #3
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -4063,14 +4063,14 @@ sub_0800A108: @ 0x0800A108
 	push {lr}
 	ldr r0, _0800A118 @ =sub_0800A0FC
 	movs r1, #1
-	bl sub_08014B34
+	bl CallDelayed
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0800A118: .4byte sub_0800A0FC
 
-	thumb_func_start sub_0800A11C
-sub_0800A11C: @ 0x0800A11C
+	thumb_func_start GetStrTalkLen
+GetStrTalkLen: @ 0x0800A11C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -4345,7 +4345,7 @@ _0800A460:
 	ldr r0, [r0]
 	ldr r0, [r0, #0x3c]
 	mov r1, sp
-	bl sub_08014590
+	bl NumberToStringAscii
 	mov r0, r8
 	lsls r1, r0, #0x18
 	asrs r1, r1, #0x18
@@ -4354,8 +4354,8 @@ _0800A460:
 	.align 2, 0
 _0800A478: .4byte 0x08B909B8
 _0800A47C:
-	bl sub_0802E6E4
-	bl sub_080055FC
+	bl GetTacticianName
+	bl GetStringTextLen
 	b _0800A496
 _0800A486:
 	ldr r0, _0800A49C @ =0x08B909B8
@@ -4365,7 +4365,7 @@ _0800A486:
 	lsls r1, r2, #0x18
 	asrs r1, r1, #0x18
 _0800A492:
-	bl sub_0800A11C
+	bl GetStrTalkLen
 _0800A496:
 	adds r6, r6, r0
 	b _0800A372
@@ -4398,7 +4398,7 @@ _0800A4C2:
 _0800A4C8:
 	add r1, sp, #0x20
 	adds r0, r4, #0
-	bl sub_08005658
+	bl GetCharTextLen
 	adds r4, r0, #0
 	ldr r0, [sp, #0x20]
 	adds r6, r6, r0
@@ -4423,8 +4423,8 @@ sub_0800A4EC: @ 0x0800A4EC
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0800A4F0
-sub_0800A4F0: @ 0x0800A4F0
+	thumb_func_start TalkBgSync
+TalkBgSync: @ 0x0800A4F0
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0x20
@@ -4463,8 +4463,8 @@ sub_0800A524: @ 0x0800A524
 	.align 2, 0
 _0800A530: .4byte 0x08B90C80
 
-	thumb_func_start sub_0800A534
-sub_0800A534: @ 0x0800A534
+	thumb_func_start CleanTalkObjects
+CleanTalkObjects: @ 0x0800A534
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -4504,8 +4504,8 @@ sub_0800A57C: @ 0x0800A57C
 	strh r1, [r0]
 	bx lr
 
-	thumb_func_start sub_0800A584
-sub_0800A584: @ 0x0800A584
+	thumb_func_start TalkAdvance_Loop
+TalkAdvance_Loop: @ 0x0800A584
 	push {r4, r5, r6, r7, lr}
 	adds r3, r0, #0
 	ldr r6, [r3, #0x4c]
@@ -4605,7 +4605,7 @@ LoadUnitWrapper: @ 0x0800A618
 	movs r6, #0
 	ldrb r0, [r5]
 	movs r1, #0
-	bl sub_08017D70
+	bl GetUnitFromCharIdAndFaction
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _0800A66E
@@ -4650,7 +4650,7 @@ _0800A682:
 	beq _0800A69E
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080178F4
+	bl UnitLoadItemsFromDefinition
 	ldr r0, [r4, #0xc]
 	ldr r1, _0800A700 @ =0xFFFEFFFF
 	ands r0, r1
@@ -4690,7 +4690,7 @@ _0800A6B4:
 	bl GetChapterInfo
 	ldrb r1, [r0, #0x14]
 	adds r0, r4, #0
-	bl sub_08017B4C
+	bl UnitApplyBonusLevels
 _0800A6E8:
 	adds r0, r5, #0
 	adds r1, r4, #0
@@ -4825,8 +4825,8 @@ sub_0800A7CC: @ 0x0800A7CC
 _0800A7DC: .4byte 0x08B90C9C
 _0800A7E0: .4byte 0x03000100
 
-	thumb_func_start sub_0800A7E4
-sub_0800A7E4: @ 0x0800A7E4
+	thumb_func_start ParsePopupInstAndGetLen
+ParsePopupInstAndGetLen: @ 0x0800A7E4
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
 	adds r6, r0, #0
@@ -4870,7 +4870,7 @@ _0800A842:
 	ldr r0, _0800A850 @ =0x0300010C
 	ldr r0, [r0]
 	mov r1, sp
-	bl sub_08014590
+	bl NumberToStringAscii
 	lsls r0, r0, #3
 	b _0800A902
 	.align 2, 0
@@ -4903,7 +4903,7 @@ _0800A874:
 	ldrb r1, [r0]
 	movs r0, #1
 _0800A88A:
-	bl sub_08004D44
+	bl ApplyIconPalette
 	adds r4, #0x10
 	b _0800A904
 	.align 2, 0
@@ -4911,11 +4911,11 @@ _0800A894: .4byte 0x03000108
 _0800A898:
 	ldr r0, [r5, #4]
 	bl GetMsg
-	bl sub_080055FC
+	bl GetStringTextLen
 	b _0800A902
 _0800A8A4:
 	ldr r0, [r5, #4]
-	bl sub_080055FC
+	bl GetStringTextLen
 	b _0800A902
 _0800A8AC:
 	ldr r0, _0800A8C0 @ =0x03000104
@@ -4923,7 +4923,7 @@ _0800A8AC:
 	ldr r0, [r0]
 	ldrh r0, [r0]
 	bl GetMsg
-	bl sub_080055FC
+	bl GetStringTextLen
 	b _0800A902
 	.align 2, 0
 _0800A8C0: .4byte 0x03000104
@@ -4931,7 +4931,7 @@ _0800A8C4:
 	ldr r0, _0800A8D4 @ =0x03000108
 	ldrh r0, [r0]
 	bl GetItemName
-	bl sub_080055FC
+	bl GetStringTextLen
 	b _0800A902
 	.align 2, 0
 _0800A8D4: .4byte 0x03000108
@@ -4940,7 +4940,7 @@ _0800A8D8:
 	ldrh r0, [r0]
 	movs r1, #1
 	bl GetItemNameWithArticle
-	bl sub_080055FC
+	bl GetStringTextLen
 	b _0800A902
 	.align 2, 0
 _0800A8E8: .4byte 0x03000108
@@ -4949,7 +4949,7 @@ _0800A8EC:
 	ldrh r0, [r0]
 	movs r1, #0
 	bl GetItemNameWithArticle
-	bl sub_080055FC
+	bl GetStringTextLen
 	b _0800A902
 	.align 2, 0
 _0800A8FC: .4byte 0x03000108
@@ -4971,8 +4971,8 @@ _0800A90E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0800A918
-sub_0800A918: @ 0x0800A918
+	thumb_func_start GeneratePopupText
+GeneratePopupText: @ 0x0800A918
 	push {r4, r5, lr}
 	sub sp, #0x18
 	adds r5, r0, #0
@@ -5007,7 +5007,7 @@ _0800A968:
 	ldr r0, _0800A97C @ =0x0300010C
 	ldr r0, [r0]
 	mov r1, sp
-	bl sub_08014590
+	bl NumberToStringAscii
 	add r0, sp, #0x10
 	mov r1, sp
 	bl Text_DrawString
@@ -5164,7 +5164,7 @@ sub_0800AA4C: @ 0x0800AA4C
 	ands r0, r1
 	strb r0, [r3, #1]
 	adds r0, r4, #0
-	bl sub_0800A7E4
+	bl ParsePopupInstAndGetLen
 	adds r4, #0x46
 	strh r0, [r4]
 	pop {r4}
@@ -5174,8 +5174,8 @@ sub_0800AA4C: @ 0x0800AA4C
 _0800AAB4: .4byte 0x06002000
 _0800AAB8: .4byte 0x03002870
 
-	thumb_func_start sub_0800AABC
-sub_0800AABC: @ 0x0800AABC
+	thumb_func_start PopupProc_MaybeSetVolume
+PopupProc_MaybeSetVolume: @ 0x0800AABC
 	push {lr}
 	adds r3, r0, #0
 	adds r0, #0x48
@@ -5191,8 +5191,8 @@ _0800AAD4:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0800AAD8
-sub_0800AAD8: @ 0x0800AAD8
+	thumb_func_start PopupProc_PlaySound
+PopupProc_PlaySound: @ 0x0800AAD8
 	push {lr}
 	adds r1, r0, #0
 	adds r1, #0x48
@@ -5206,15 +5206,15 @@ sub_0800AAD8: @ 0x0800AAD8
 	cmp r0, #0
 	blt _0800AAF6
 	ldrh r0, [r1]
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0800AAF6:
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0800AAFC: .4byte 0x0202BBF8
 
-	thumb_func_start sub_0800AB00
-sub_0800AB00: @ 0x0800AB00
+	thumb_func_start PopupProc_MaybeResetVolume
+PopupProc_MaybeResetVolume: @ 0x0800AB00
 	push {lr}
 	adds r3, r0, #0
 	adds r0, #0x48
@@ -5230,8 +5230,8 @@ _0800AB18:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0800AB1C
-sub_0800AB1C: @ 0x0800AB1C
+	thumb_func_start PopupIconUpdateProc_Loop
+PopupIconUpdateProc_Loop: @ 0x0800AB1C
 	push {r4, lr}
 	ldr r4, [r0, #0x2c]
 	ldr r1, [r0, #0x30]
@@ -5255,7 +5255,7 @@ sub_0800AB38: @ 0x0800AB38
 	push {r5, r6, r7}
 	sub sp, #0x10
 	adds r5, r0, #0
-	bl sub_0800A7E4
+	bl ParsePopupInstAndGetLen
 	adds r2, r5, #0
 	adds r2, #0x46
 	strh r0, [r2]
@@ -5311,7 +5311,7 @@ _0800AB9E:
 	mov r1, r8
 	adds r2, r4, #0
 	movs r3, #4
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r0, #0x37
 	adds r0, r0, r5
 	mov sl, r0
@@ -5346,7 +5346,7 @@ _0800AB9E:
 	ldr r0, [r5, #0x2c]
 	ldr r1, [sp, #4]
 	ldr r2, [sp, #8]
-	bl sub_0800A918
+	bl GeneratePopupText
 	ldr r6, _0800AC80 @ =0x0000FFFF
 	ldrh r3, [r5, #0x3e]
 	cmp r3, r6
@@ -5355,7 +5355,7 @@ _0800AB9E:
 	adds r1, r5, #0
 	adds r1, #0x40
 	ldrh r1, [r1]
-	bl sub_08004E98
+	bl PutIconObjImg
 _0800AC16:
 	mov r1, r8
 	adds r1, #1
@@ -5366,7 +5366,7 @@ _0800AC16:
 	ldr r0, _0800AC84 @ =0x02022C60
 	adds r1, r1, r0
 	add r0, sp, #4
-	bl sub_08005590
+	bl PutText
 	bl ResetText
 	ldrh r0, [r5, #0x3e]
 	cmp r0, r6
@@ -5412,8 +5412,8 @@ _0800AC80: .4byte 0x0000FFFF
 _0800AC84: .4byte 0x02022C60
 _0800AC88: .4byte 0x08B90D00
 
-	thumb_func_start sub_0800AC8C
-sub_0800AC8C: @ 0x0800AC8C
+	thumb_func_start PopupProc_WaitForPress
+PopupProc_WaitForPress: @ 0x0800AC8C
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, [r1, #0x30]
@@ -5502,16 +5502,16 @@ sub_0800AD28: @ 0x0800AD28
 	.align 2, 0
 _0800AD30: .4byte 0x03000108
 
-	thumb_func_start sub_0800AD34
-sub_0800AD34: @ 0x0800AD34
+	thumb_func_start SetPopupNumber
+SetPopupNumber: @ 0x0800AD34
 	ldr r1, _0800AD3C @ =0x0300010C
 	str r0, [r1]
 	bx lr
 	.align 2, 0
 _0800AD3C: .4byte 0x0300010C
 
-	thumb_func_start sub_0800AD40
-sub_0800AD40: @ 0x0800AD40
+	thumb_func_start NewPopup_Simple
+NewPopup_Simple: @ 0x0800AD40
 	push {r4, r5, lr}
 	sub sp, #8
 	movs r5, #0x90
@@ -5520,14 +5520,14 @@ sub_0800AD40: @ 0x0800AD40
 	str r4, [sp]
 	str r3, [sp, #4]
 	adds r3, r5, #0
-	bl sub_0800AD5C
+	bl NewPopupCore
 	add sp, #8
 	pop {r4, r5}
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0800AD5C
-sub_0800AD5C: @ 0x0800AD5C
+	thumb_func_start NewPopupCore
+NewPopupCore: @ 0x0800AD5C
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -5666,7 +5666,7 @@ _0800AE4C:
 	thumb_func_start sub_0800AE50
 sub_0800AE50: @ 0x0800AE50
 	push {lr}
-	bl sub_0802E368
+	bl RefreshBMapGraphics
 	bl UnlockBmDisplay
 	bl ReleaseMus
 	ldr r0, _0800AE84 @ =0x02022C60
@@ -5702,7 +5702,7 @@ sub_0800AE8C: @ 0x0800AE8C
 	movs r0, #2
 	bl EnableBgSync
 	bl ClearTalk
-	bl sub_0802E368
+	bl RefreshBMapGraphics
 	adds r1, r5, #0
 	adds r1, #0x5e
 	movs r0, #4
@@ -6076,7 +6076,7 @@ sub_0800B180: @ 0x0800B180
 	ands r1, r0
 	cmp r1, #0
 	beq _0800B192
-	bl sub_0802E3B0
+	bl EndMapMain
 _0800B192:
 	pop {r0}
 	bx r0
@@ -6117,7 +6117,7 @@ Event_IsSkipAllowed: @ 0x0800B1C4
 	ands r0, r1
 	cmp r0, #0
 	bne _0800B1E8
-	bl sub_0804B1EC
+	bl IsBattleDeamonActive
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0800B1E8
@@ -7490,19 +7490,19 @@ _0800BC00: @ jump table
 	.4byte _0800BC26 @ case 3
 	.4byte _0800BC2C @ case 4
 _0800BC14:
-	bl sub_080B62F4
+	bl GetGameTacticsRank
 	b _0800BC30
 _0800BC1A:
-	bl sub_080B63EC
+	bl GetGameSurvivalRank
 	b _0800BC30
 _0800BC20:
-	bl sub_080B6424
+	bl GetGameExpRank
 	b _0800BC30
 _0800BC26:
-	bl sub_080B651C
+	bl GetGameCombatRank
 	b _0800BC30
 _0800BC2C:
-	bl sub_080B6550
+	bl GetGameFundsRank
 _0800BC30:
 	movs r1, #0
 	cmp r0, #2
@@ -9578,7 +9578,7 @@ _0800CB9C:
 	movs r4, #1
 	rsbs r4, r4, #0
 _0800CBA4:
-	bl sub_0802C29C
+	bl DisableAllLightRunes
 	lsls r7, r5, #0x10
 	lsls r2, r4, #0x10
 	lsrs r0, r7, #0x10
@@ -9623,7 +9623,7 @@ _0800CBE0:
 	ldrsh r1, [r1, r2]
 	ldr r7, _0800CC54 @ =0x02033E00
 	adds r2, r7, #0
-	bl sub_08019E5C
+	bl BuildBestMoveScript
 	mov r0, sb
 	cmp r0, #0
 	beq _0800CC18
@@ -9648,7 +9648,7 @@ _0800CC18:
 	orrs r1, r0
 	mov r8, r1
 _0800CC30:
-	bl sub_0802C2DC
+	bl EnableAllLightRunes
 	mov r0, sl
 	adds r1, r6, #0
 	adds r2, r7, #0
@@ -11703,7 +11703,7 @@ _0800DAB8:
 	cmp r0, #0
 	blt _0800DB0A
 	movs r0, #0xbd
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _0800DB0A
 	.align 2, 0
 _0800DAF0: .4byte 0x00007FFF
@@ -11716,7 +11716,7 @@ _0800DAF8:
 	cmp r0, #0
 	blt _0800DB0A
 	movs r0, #0xbe
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0800DB0A:
 	adds r0, r4, #0
 	bl AddMapChangeTrap
@@ -13076,7 +13076,7 @@ EvtCmd_PlaySe: @ 0x0800E500
 	blt _0800E526
 	ldr r0, [r2, #0x30]
 	ldrh r0, [r0, #2]
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0800E526:
 	movs r0, #0
 	pop {r1}
@@ -13167,7 +13167,7 @@ EvtCmd_SetMap: @ 0x0800E5B4
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #4]
 	strb r0, [r1, #0xe]
-	bl sub_0802E0F4
+	bl RestartBattleMap
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #8]
 	lsls r0, r0, #4
@@ -13682,7 +13682,7 @@ EvtCmd_FightScript: @ 0x0800E948
 	push {r5, r6, r7}
 	sub sp, #4
 	mov r8, r0
-	bl sub_08053428
+	bl SetBattleScriptted
 	mov r1, r8
 	ldr r0, [r1, #0x30]
 	ldr r0, [r0, #4]
@@ -13825,7 +13825,7 @@ _0800EA60:
 	beq _0800EAA0
 _0800EA78:
 	bl BattleApplyUnitUpdates
-	bl sub_08053434
+	bl SetBattleUnscriptted
 	ldr r1, _0800EA9C @ =0x0203A85C
 	movs r0, #0
 	str r0, [r1, #0x18]
@@ -14169,7 +14169,7 @@ ClearTalk: @ 0x0800ECFC
 	ldr r0, _0800ED14 @ =0x08B907C0
 	bl Proc_EndEach
 	bl InitFaces
-	bl sub_08007DD4
+	bl ClearTalkFaceRefs
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -14185,8 +14185,8 @@ sub_0800ED1C: @ 0x0800ED1C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0800ED20
-sub_0800ED20: @ 0x0800ED20
+	thumb_func_start IsEventRunning
+IsEventRunning: @ 0x0800ED20
 	push {lr}
 	movs r0, #6
 	bl sub_080046F4
@@ -14216,11 +14216,11 @@ _0800ED48: .4byte 0x08B90D88
 sub_0800ED4C: @ 0x0800ED4C
 	push {lr}
 	movs r0, #6
-	bl sub_08004834
+	bl Proc_EndEachMarked
 	movs r0, #7
-	bl sub_08004834
+	bl Proc_EndEachMarked
 	movs r0, #5
-	bl sub_08004834
+	bl Proc_EndEachMarked
 	bl EndAllMus
 	pop {r0}
 	bx r0
@@ -14248,8 +14248,8 @@ sub_0800ED78: @ 0x0800ED78
 	.align 2, 0
 _0800ED8C: .4byte 0x08B91AD8
 
-	thumb_func_start sub_0800ED90
-sub_0800ED90: @ 0x0800ED90
+	thumb_func_start CallMapSupportEvent
+CallMapSupportEvent: @ 0x0800ED90
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -14280,8 +14280,8 @@ _0800EDC2:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0800EDC8
-sub_0800EDC8: @ 0x0800EDC8
+	thumb_func_start CallSupportViewerEvent
+CallSupportViewerEvent: @ 0x0800EDC8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0800EDDC @ =0x08B91B10
@@ -14304,7 +14304,7 @@ sub_0800EDE0: @ 0x0800EDE0
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -14322,7 +14322,7 @@ sub_0800EE04: @ 0x0800EE04
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -14340,7 +14340,7 @@ sub_0800EE28: @ 0x0800EE28
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -14351,7 +14351,7 @@ _0800EE48: .4byte 0x08B91BC4
 StartPopup_800EE4C: @ 0x0800EE4C
 	push {r4, lr}
 	adds r4, r1, #0
-	bl sub_0800AD34
+	bl SetPopupNumber
 	ldr r0, _0800EE70 @ =0x03004690
 	ldr r1, [r0]
 	movs r0, #0xc0
@@ -14363,7 +14363,7 @@ StartPopup_800EE4C: @ 0x0800EE4C
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	b _0800EE84
 	.align 2, 0
 _0800EE70: .4byte 0x03004690
@@ -14373,7 +14373,7 @@ _0800EE78:
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 _0800EE84:
 	pop {r4}
 	pop {r0}
@@ -14385,12 +14385,12 @@ _0800EE8C: .4byte 0x08B91C2C
 StartPopup_800EE90: @ 0x0800EE90
 	push {r4, lr}
 	adds r4, r1, #0
-	bl sub_0800AD34
+	bl SetPopupNumber
 	ldr r0, _0800EEAC @ =0x08B91BE4
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -14415,7 +14415,7 @@ StartPopup_800EEB0: @ 0x0800EEB0
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r5, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	b _0800EEE8
 	.align 2, 0
 _0800EED8: .4byte 0x08B91C64
@@ -14424,7 +14424,7 @@ _0800EEDC:
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r5, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 _0800EEE8:
 	pop {r4, r5}
 	pop {r0}
@@ -14432,8 +14432,8 @@ _0800EEE8:
 	.align 2, 0
 _0800EEF0: .4byte 0x08B91CBC
 
-	thumb_func_start sub_0800EEF4
-sub_0800EEF4: @ 0x0800EEF4
+	thumb_func_start StartStoleItemPopup
+StartStoleItemPopup: @ 0x0800EEF4
 	push {r4, lr}
 	adds r4, r1, #0
 	lsls r0, r0, #0x10
@@ -14450,7 +14450,7 @@ sub_0800EEF4: @ 0x0800EEF4
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	b _0800EF30
 	.align 2, 0
 _0800EF1C: .4byte 0x03004690
@@ -14460,7 +14460,7 @@ _0800EF24:
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r4, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 _0800EF30:
 	pop {r4}
 	pop {r0}
@@ -14475,7 +14475,7 @@ sub_0800EF3C: @ 0x0800EF3C
 	ldr r0, _0800EF50 @ =0x08B91DA4
 	movs r1, #0x60
 	movs r2, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -14670,8 +14670,8 @@ _0800F0A2:
 	.align 2, 0
 _0800F0A8: .4byte 0x08B90D88
 
-	thumb_func_start sub_0800F0AC
-sub_0800F0AC: @ 0x0800F0AC
+	thumb_func_start GetChapterAllyUnitCount
+GetChapterAllyUnitCount: @ 0x0800F0AC
 	push {lr}
 	bl sub_08079280
 	adds r1, r0, #0
@@ -14770,8 +14770,8 @@ _0800F156:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0800F164
-sub_0800F164: @ 0x0800F164
+	thumb_func_start SyncUnitDeploymentState
+SyncUnitDeploymentState: @ 0x0800F164
 	push {r4, r5, lr}
 	movs r4, #1
 	movs r5, #1
@@ -15045,7 +15045,7 @@ sub_0800F344: @ 0x0800F344
 	push {lr}
 	ldr r0, _0800F354 @ =0x03005B10
 	movs r1, #3
-	bl sub_080BE73C
+	bl m4aMPlayFadeOutPause
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -15160,7 +15160,7 @@ _0800F414: .4byte 0x03002870
 	thumb_func_start sub_0800F418
 sub_0800F418: @ 0x0800F418
 	push {lr}
-	bl sub_080B558C
+	bl EndWM
 	movs r0, #0
 	pop {r1}
 	bx r1
@@ -15378,7 +15378,7 @@ sub_0800F560: @ 0x0800F560
 	movs r1, #6
 	adds r2, r4, #0
 	adds r3, r5, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F5A2
 _0800F596:
 	lsls r2, r3, #0x10
@@ -15420,7 +15420,7 @@ sub_0800F5B4: @ 0x0800F5B4
 	cmp r1, #0
 	beq _0800F5D8
 	adds r0, r2, #0
-	bl sub_08006D50
+	bl EndFaceById
 	b _0800F5F8
 _0800F5D8:
 	cmp r3, #0
@@ -15431,7 +15431,7 @@ _0800F5D8:
 	adds r0, r3, #0
 	movs r1, #7
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F5F8
 _0800F5EE:
 	lsls r1, r4, #0x10
@@ -15456,12 +15456,12 @@ sub_0800F608: @ 0x0800F608
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0800F60C
-sub_0800F60C: @ 0x0800F60C
+	thumb_func_start EventFaceDeamonDelete
+EventFaceDeamonDelete: @ 0x0800F60C
 	push {lr}
 	movs r1, #0x2a
 	ldrsh r0, [r0, r1]
-	bl sub_08006D50
+	bl EndFaceById
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -15610,7 +15610,7 @@ _0800F6F0:
 	movs r1, #0
 	adds r2, r7, #0
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F726
 _0800F71A:
 	adds r0, r7, #0
@@ -15648,7 +15648,7 @@ sub_0800F730: @ 0x0800F730
 	adds r0, r3, #0
 	movs r1, #1
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F766
 _0800F760:
 	adds r0, r2, #0
@@ -15685,7 +15685,7 @@ sub_0800F770: @ 0x0800F770
 	movs r1, #2
 	adds r2, r3, #0
 	adds r3, r4, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F7AC
 _0800F7A4:
 	adds r0, r3, #0
@@ -15725,7 +15725,7 @@ _0800F7D6:
 	adds r0, r3, #0
 	movs r1, #3
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F7F2
 _0800F7EC:
 	adds r0, r2, #0
@@ -15779,7 +15779,7 @@ sub_0800F828: @ 0x0800F828
 	ands r1, r0
 	cmp r1, #0
 	bne _0800F83E
-	bl sub_080B3BE8
+	bl WmMergeMonsters
 	movs r0, #2
 	b _0800F840
 _0800F83E:
@@ -15812,7 +15812,7 @@ sub_0800F844: @ 0x0800F844
 	movs r1, #0xa
 	movs r2, #0
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F87C
 _0800F876:
 	adds r0, r3, #0
@@ -15847,7 +15847,7 @@ sub_0800F884: @ 0x0800F884
 	movs r1, #9
 	movs r2, #0
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F8BC
 _0800F8B6:
 	adds r0, r3, #0
@@ -15882,7 +15882,7 @@ sub_0800F8C4: @ 0x0800F8C4
 	movs r1, #0xc
 	movs r2, #0
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F8FC
 _0800F8F6:
 	adds r0, r3, #0
@@ -15917,7 +15917,7 @@ sub_0800F904: @ 0x0800F904
 	movs r1, #0xb
 	movs r2, #0
 	movs r3, #0
-	bl sub_080B5760
+	bl WmMergeFace
 	b _0800F93C
 _0800F936:
 	adds r0, r3, #0

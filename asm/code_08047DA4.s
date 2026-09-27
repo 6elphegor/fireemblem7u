@@ -92,7 +92,7 @@ _08047E34:
 	movs r0, #0xc
 	mov r2, r8
 	ldr r3, _08047E80 @ =0x08B9A3C8
-	bl sub_080069F4
+	bl PutSprite
 	adds r6, #8
 	adds r7, #1
 	cmp r7, #0x1f
@@ -331,7 +331,7 @@ sub_08047FF8: @ 0x08047FF8
 	ldrh r0, [r0]
 	str r0, [sp]
 	movs r0, #4
-	bl sub_080069F4
+	bl PutSprite
 	ldrb r5, [r5]
 	cmp r5, #2
 	bne _08048042
@@ -417,7 +417,7 @@ _080480AA:
 	adds r1, r5, #0
 	adds r2, r4, #0
 	adds r3, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	movs r2, #0x2a
 	ldrsh r5, [r7, r2]
 	movs r3, #0x34
@@ -440,7 +440,7 @@ _080480AA:
 	adds r1, r5, #0
 	adds r2, r4, #0
 	adds r3, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	movs r2, #0x2a
 	ldrsh r1, [r7, r2]
 	adds r1, #0x4b
@@ -455,7 +455,7 @@ _080480AA:
 	ldr r3, [r0]
 	movs r0, #0
 	str r0, [sp]
-	bl sub_08006A34
+	bl PutSpriteExt
 _0804812E:
 	add sp, #4
 	pop {r3}
@@ -472,8 +472,8 @@ _0804814C: .4byte 0x08B90620
 _08048150: .4byte 0x08B9A404
 _08048154: .4byte 0x0203D90C
 
-	thumb_func_start sub_08048158
-sub_08048158: @ 0x08048158
+	thumb_func_start StartSioMenuItem
+StartSioMenuItem: @ 0x08048158
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -530,8 +530,8 @@ sub_08048158: @ 0x08048158
 	.align 2, 0
 _080481C4: .4byte 0x08B9A410
 
-	thumb_func_start sub_080481C8
-sub_080481C8: @ 0x080481C8
+	thumb_func_start SioMenuItem_SetArrowConfig
+SioMenuItem_SetArrowConfig: @ 0x080481C8
 	push {r4, lr}
 	ldr r4, [sp, #8]
 	strh r1, [r0, #0x32]
@@ -543,8 +543,8 @@ sub_080481C8: @ 0x080481C8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080481DC
-sub_080481DC: @ 0x080481DC
+	thumb_func_start SioMenuItem_SetPosition
+SioMenuItem_SetPosition: @ 0x080481DC
 	strh r1, [r0, #0x2a]
 	strh r2, [r0, #0x2c]
 	bx lr
@@ -680,7 +680,7 @@ _080482E4:
 	movs r0, #0xb
 	movs r1, #0x50
 	movs r2, #0x20
-	bl sub_080069F4
+	bl PutSprite
 	movs r6, #0
 	ldr r0, [r7, #0x2c]
 	cmp r6, r0
@@ -702,7 +702,7 @@ _080482FA:
 	movs r0, #4
 	adds r2, r5, #0
 	ldr r3, _08048400 @ =0x081D55FE
-	bl sub_080069F4
+	bl PutSprite
 	adds r0, r7, #0
 	adds r0, #0x3a
 	adds r0, r0, r6
@@ -717,7 +717,7 @@ _080482FA:
 	movs r0, #4
 	adds r2, r5, #0
 	ldr r3, _08048404 @ =0x081D562C
-	bl sub_080069F4
+	bl PutSprite
 _0804833C:
 	adds r5, #0x18
 	adds r6, #1
@@ -799,7 +799,7 @@ _08048380:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	ldr r3, _0804841C @ =0x081D5646
 	movs r0, #0x80
 	lsls r0, r0, #8
@@ -807,7 +807,7 @@ _08048380:
 	movs r0, #4
 	movs r1, #0x78
 	movs r2, #0
-	bl sub_080069F4
+	bl PutSprite
 _080483F8:
 	bl sub_08048240
 	b _080484AE
@@ -827,7 +827,7 @@ _08048420:
 	movs r0, #0xb
 	movs r1, #0x50
 	movs r2, #0x20
-	bl sub_080069F4
+	bl PutSprite
 	movs r6, #0
 	ldr r0, [r7, #0x2c]
 	adds r1, r7, #0
@@ -860,7 +860,7 @@ _0804844C:
 	str r0, [sp]
 	movs r0, #2
 	mov r2, r8
-	bl sub_080069F4
+	bl PutSprite
 	ldrb r0, [r4]
 	cmp r0, #0
 	beq _08048490
@@ -911,7 +911,7 @@ _080484C2:
 	beq _080484D4
 	movs r0, #0xc0
 	movs r1, #0x10
-	bl sub_08047AB0
+	bl PutLinkArenaButtonSpriteAt
 _080484D4:
 	ldr r0, [r7, #0x48]
 	cmp r0, #0
@@ -923,7 +923,7 @@ _080484D4:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0x50
-	bl sub_080069F4
+	bl PutSprite
 _080484EC:
 	add sp, #8
 	pop {r3, r4, r5}
@@ -995,7 +995,7 @@ _08048544:
 	movs r0, #0xe0
 	movs r1, #0x28
 	movs r3, #6
-	bl sub_08048BE4
+	bl StartLinkArenaMenuScrollBar
 	adds r0, r6, #0
 	adds r0, #0x48
 	ldrb r0, [r0]
@@ -1008,7 +1008,7 @@ _08048544:
 	movs r0, #0x98
 	movs r2, #0x88
 	movs r3, #0x27
-	bl sub_0804862C
+	bl PutLinkArenaTeamSprites
 	adds r0, r4, #0
 	add sp, #8
 	pop {r3}
@@ -1020,8 +1020,8 @@ _08048544:
 _080485A4: .4byte 0x08B9A4A8
 _080485A8: .4byte 0x0000FFF8
 
-	thumb_func_start sub_080485AC
-sub_080485AC: @ 0x080485AC
+	thumb_func_start LATeamSpriteDraw_Loop
+LATeamSpriteDraw_Loop: @ 0x080485AC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1090,8 +1090,8 @@ _08048614:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804862C
-sub_0804862C: @ 0x0804862C
+	thumb_func_start PutLinkArenaTeamSprites
+PutLinkArenaTeamSprites: @ 0x0804862C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1127,8 +1127,8 @@ sub_0804862C: @ 0x0804862C
 	.align 2, 0
 _08048670: .4byte 0x08B9A4C0
 
-	thumb_func_start sub_08048674
-sub_08048674: @ 0x08048674
+	thumb_func_start ScrollMultiArenaTeamSprites
+ScrollMultiArenaTeamSprites: @ 0x08048674
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0804868C @ =0x08B9A4C0
@@ -1142,8 +1142,8 @@ sub_08048674: @ 0x08048674
 	.align 2, 0
 _0804868C: .4byte 0x08B9A4C0
 
-	thumb_func_start sub_08048690
-sub_08048690: @ 0x08048690
+	thumb_func_start UpdateNameEntrySpriteGlow
+UpdateNameEntrySpriteGlow: @ 0x08048690
 	push {r4, r5, r6, lr}
 	ldr r5, _080486D4 @ =0x081C8104
 	ldr r0, _080486D8 @ =0x0203DCE8
@@ -1207,15 +1207,15 @@ sub_080486E4: @ 0x080486E4
 	movs r4, #0
 	str r4, [sp]
 	movs r0, #2
-	bl sub_080069F4
+	bl PutSprite
 	ldr r1, [r7, #0x40]
 	adds r1, #0x60
 	ldr r3, _08048754 @ =0x081D5664
 	str r4, [sp]
 	movs r0, #2
 	movs r2, #0x30
-	bl sub_080069F4
-	bl sub_0803DA14
+	bl PutSprite
+	bl CheckInLinkArena
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #0
@@ -1225,7 +1225,7 @@ sub_080486E4: @ 0x080486E4
 	movs r0, #2
 	movs r1, #0x60
 	movs r2, #0x20
-	bl sub_080069F4
+	bl PutSprite
 	ldr r3, _0804875C @ =0x081D55FE
 	movs r0, #0x80
 	lsls r0, r0, #4
@@ -1233,7 +1233,7 @@ sub_080486E4: @ 0x080486E4
 	movs r0, #4
 	movs r1, #0x50
 	movs r2, #0x20
-	bl sub_080069F4
+	bl PutSprite
 	b _08048780
 	.align 2, 0
 _08048750: .4byte 0x08B9A4D8
@@ -1246,7 +1246,7 @@ _08048760:
 	movs r0, #2
 	movs r1, #0x58
 	movs r2, #0x20
-	bl sub_080069F4
+	bl PutSprite
 	ldr r3, _080487AC @ =0x081D5618
 	movs r0, #0x80
 	lsls r0, r0, #4
@@ -1254,7 +1254,7 @@ _08048760:
 	movs r0, #4
 	movs r1, #0x50
 	movs r2, #0x20
-	bl sub_080069F4
+	bl PutSprite
 _08048780:
 	movs r4, #3
 	ldr r0, _080487B0 @ =0x08B9A4E0
@@ -1274,7 +1274,7 @@ _0804878A:
 	movs r0, #4
 	movs r1, #0xc4
 	adds r2, r5, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _080487C6
 	.align 2, 0
 _080487A8: .4byte 0x08B9A436
@@ -1288,21 +1288,21 @@ _080487B4:
 	movs r0, #4
 	movs r1, #0xc4
 	adds r2, r5, #0
-	bl sub_080069F4
+	bl PutSprite
 _080487C6:
 	adds r6, #4
 	adds r5, #0x10
 	adds r4, #1
 	cmp r4, #4
 	ble _0804878A
-	bl sub_08048690
+	bl UpdateNameEntrySpriteGlow
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080487DC
-sub_080487DC: @ 0x080487DC
+	thumb_func_start StartNameEntrySpriteDraw
+StartNameEntrySpriteDraw: @ 0x080487DC
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -1333,8 +1333,8 @@ sub_080487DC: @ 0x080487DC
 	.align 2, 0
 _08048818: .4byte 0x08B9A4F4
 
-	thumb_func_start sub_0804881C
-sub_0804881C: @ 0x0804881C
+	thumb_func_start UpdateNameEntrySpriteDraw
+UpdateNameEntrySpriteDraw: @ 0x0804881C
 	push {r4, r5, lr}
 	ldr r4, [sp, #0xc]
 	ldr r5, [sp, #0x10]
@@ -1348,8 +1348,8 @@ sub_0804881C: @ 0x0804881C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08048834
-sub_08048834: @ 0x08048834
+	thumb_func_start RuleSettingSprites_Interactive_Loop
+RuleSettingSprites_Interactive_Loop: @ 0x08048834
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -1380,7 +1380,7 @@ _0804885A:
 	movs r0, #2
 	movs r1, #0x20
 	adds r2, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	adds r6, #0x18
 	subs r4, #1
 	cmp r4, #0
@@ -1388,15 +1388,15 @@ _0804885A:
 	adds r1, r7, #0
 	adds r1, #0x30
 	movs r0, #0x20
-	bl sub_0804A004
+	bl DisplayFrozenUiHand
 	movs r2, #0x2e
 	ldrsh r0, [r5, r2]
 	movs r2, #0x30
 	ldrsh r1, [r5, r2]
-	bl sub_08049F58
+	bl PutUiHand
 	movs r0, #0xc0
 	movs r1, #0x10
-	bl sub_08047AB0
+	bl PutLinkArenaButtonSpriteAt
 	add sp, #4
 	pop {r3}
 	mov r8, r3
@@ -1406,8 +1406,8 @@ _0804885A:
 	.align 2, 0
 _080488A4: .4byte 0x08B9A50C
 
-	thumb_func_start sub_080488A8
-sub_080488A8: @ 0x080488A8
+	thumb_func_start StartRuleSettingSpriteDrawInteractive
+StartRuleSettingSpriteDrawInteractive: @ 0x080488A8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _080488C8 @ =0x08B9A518
@@ -1424,15 +1424,15 @@ sub_080488A8: @ 0x080488A8
 	.align 2, 0
 _080488C8: .4byte 0x08B9A518
 
-	thumb_func_start sub_080488CC
-sub_080488CC: @ 0x080488CC
+	thumb_func_start UpdateRuleSettingSprites
+UpdateRuleSettingSprites: @ 0x080488CC
 	strh r1, [r0, #0x2c]
 	strh r2, [r0, #0x2e]
 	strh r3, [r0, #0x30]
 	bx lr
 
-	thumb_func_start sub_080488D4
-sub_080488D4: @ 0x080488D4
+	thumb_func_start UpdateSioMenuBurstGlow
+UpdateSioMenuBurstGlow: @ 0x080488D4
 	push {lr}
 	adds r1, r0, #0
 	ldr r2, _08048900 @ =0x081C8104
@@ -1459,8 +1459,8 @@ _08048900: .4byte 0x081C8104
 _08048904: .4byte 0x0203DCE8
 _08048908: .4byte 0x02022860
 
-	thumb_func_start sub_0804890C
-sub_0804890C: @ 0x0804890C
+	thumb_func_start SioMenuBurstFx_Loop
+SioMenuBurstFx_Loop: @ 0x0804890C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -1473,7 +1473,7 @@ sub_0804890C: @ 0x0804890C
 	ldrsh r5, [r0, r1]
 	lsls r4, r5, #1
 	adds r0, r5, #0
-	bl sub_080488D4
+	bl UpdateSioMenuBurstGlow
 	ldr r0, _080489AC @ =0x081D56E4
 	adds r4, #1
 	lsls r4, r4, #1
@@ -1492,7 +1492,7 @@ sub_0804890C: @ 0x0804890C
 	movs r4, #0
 	str r4, [sp]
 	movs r0, #2
-	bl sub_080069F4
+	bl PutSprite
 	ldr r1, [r7, #0x2c]
 	adds r1, r1, r6
 	adds r1, #0x10
@@ -1501,7 +1501,7 @@ sub_0804890C: @ 0x0804890C
 	ldr r3, _080489B4 @ =0x081D56BA
 	str r4, [sp]
 	movs r0, #2
-	bl sub_080069F4
+	bl PutSprite
 	ldr r1, [r7, #0x2c]
 	subs r1, r1, r6
 	ldr r2, [r7, #0x30]
@@ -1509,7 +1509,7 @@ sub_0804890C: @ 0x0804890C
 	ldr r3, _080489B8 @ =0x081D56C8
 	str r4, [sp]
 	movs r0, #2
-	bl sub_080069F4
+	bl PutSprite
 	ldr r1, [r7, #0x2c]
 	adds r1, r1, r6
 	adds r1, #0x10
@@ -1518,7 +1518,7 @@ sub_0804890C: @ 0x0804890C
 	ldr r3, _080489BC @ =0x081D56D6
 	str r4, [sp]
 	movs r0, #2
-	bl sub_080069F4
+	bl PutSprite
 	mov r1, r8
 	ldrh r0, [r1]
 	adds r0, #1
@@ -1715,7 +1715,7 @@ _08048AD2:
 	str r0, [sp]
 	movs r0, #3
 	mov r1, r8
-	bl sub_080069F4
+	bl PutSprite
 _08048B0A:
 	movs r3, #0x3e
 	ldrsh r0, [r7, r3]
@@ -1740,7 +1740,7 @@ _08048B14:
 	str r0, [sp]
 	movs r0, #3
 	mov r1, r8
-	bl sub_080069F4
+	bl PutSprite
 _08048B3A:
 	movs r6, #0
 	ldr r0, [r7, #0x34]
@@ -1754,7 +1754,7 @@ _08048B46:
 	mov r1, r8
 	adds r2, r4, #0
 	ldr r3, _08048BE0 @ =0x08B9A558
-	bl sub_080069F4
+	bl PutSprite
 	adds r4, #8
 	adds r6, #1
 	ldr r0, [r7, #0x34]
@@ -1773,7 +1773,7 @@ _08048B6A:
 	mov r1, r8
 	adds r2, r4, #0
 	ldr r3, _08048BE0 @ =0x08B9A558
-	bl sub_080069F4
+	bl PutSprite
 	adds r4, #8
 	subs r6, #1
 	cmp r6, #0
@@ -1790,14 +1790,14 @@ _08048B80:
 	movs r0, #2
 	mov r1, r8
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	movs r5, #2
 	str r5, [sp]
 	movs r0, #2
 	mov r1, r8
 	ldr r2, [sp, #0x20]
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	movs r1, #0x80
 	lsls r1, r1, #6
 	add r1, r8
@@ -1808,7 +1808,7 @@ _08048B80:
 	str r5, [sp]
 	movs r0, #2
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	ldrh r0, [r7, #0x3e]
 	ldr r1, [sp, #0x2c]
 	strh r0, [r1]
@@ -1826,8 +1826,8 @@ _08048BD8: .4byte 0x08B9A550
 _08048BDC: .4byte 0x08B9A548
 _08048BE0: .4byte 0x08B9A558
 
-	thumb_func_start sub_08048BE4
-sub_08048BE4: @ 0x08048BE4
+	thumb_func_start StartLinkArenaMenuScrollBar
+StartLinkArenaMenuScrollBar: @ 0x08048BE4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2184,7 +2184,7 @@ _08048E94:
 	str r0, [sp]
 	movs r0, #4
 	ldr r3, _08049048 @ =0x081D55FE
-	bl sub_080069F4
+	bl PutSprite
 	ldr r4, _0804904C @ =0x080C5AC8
 	movs r1, #0
 	ldrsh r0, [r4, r1]
@@ -2230,7 +2230,7 @@ _08048E94:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 	ldr r1, [r7, #0x38]
 	movs r0, #1
 	rsbs r0, r0, #0
@@ -2310,7 +2310,7 @@ _08048F56:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	adds r3, r4, #0
-	bl sub_08003388
+	bl SetObjAffine
 _08048FBE:
 	ldr r1, [r7, #0x2c]
 	subs r1, #0x30
@@ -2325,7 +2325,7 @@ _08048FBE:
 	movs r4, #0
 	str r4, [sp]
 	movs r0, #4
-	bl sub_080069F4
+	bl PutSprite
 	ldr r0, [sp, #4]
 	adds r0, #0x18
 	str r0, [sp, #4]
@@ -2354,7 +2354,7 @@ _08048FF2:
 	ldr r3, _0804905C @ =0x081D5744
 	str r4, [sp]
 	movs r0, #4
-	bl sub_080069F4
+	bl PutSprite
 	ldr r1, [r7, #0x2c]
 	subs r1, #0x40
 	ldr r2, [r7, #0x34]
@@ -2367,7 +2367,7 @@ _08048FF2:
 	ldr r3, _08049060 @ =0x081D574C
 	str r4, [sp]
 	movs r0, #4
-	bl sub_080069F4
+	bl PutSprite
 	bl sub_08048E28
 _08049036:
 	add sp, #8
@@ -2387,8 +2387,8 @@ _08049058: .4byte 0x08B9A5D0
 _0804905C: .4byte 0x081D5744
 _08049060: .4byte 0x081D574C
 
-	thumb_func_start sub_08049064
-sub_08049064: @ 0x08049064
+	thumb_func_start StartLinkArenaVersusSpriteDraw
+StartLinkArenaVersusSpriteDraw: @ 0x08049064
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -2585,7 +2585,7 @@ sub_080491C4: @ 0x080491C4
 	movs r0, #0
 	str r0, [sp]
 	movs r0, #4
-	bl sub_080069F4
+	bl PutSprite
 	bl sub_08049124
 _080491E6:
 	add sp, #4
@@ -2656,7 +2656,7 @@ sub_0804925C: @ 0x0804925C
 	str r0, [sp]
 	movs r0, #1
 	adds r1, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -2680,7 +2680,7 @@ sub_08049280: @ 0x08049280
 	cmp r1, #0
 	beq _080492C2
 	adds r0, r4, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	cmp r0, #2
 	ble _080492B0
 	movs r0, #2
@@ -2755,7 +2755,7 @@ sub_08049300: @ 0x08049300
 	lsls r0, r0, #0x18
 	lsrs r5, r0, #0x18
 	adds r0, r6, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	cmp r0, #2
 	ble _0804932E
 	movs r5, #0
@@ -2774,7 +2774,7 @@ _0804932E:
 	ldr r1, _08049360 @ =0x02022C60
 	adds r3, r3, r1
 	adds r1, r6, #0
-	bl sub_08016470
+	bl DrawItemMenuLine
 	movs r0, #1
 	bl EnableBgSync
 	pop {r4, r5, r6}
@@ -2850,8 +2850,8 @@ _080493DC: .4byte 0x0203DC9C
 _080493E0: .4byte 0x02022C60
 _080493E4: .4byte 0x02023460
 
-	thumb_func_start sub_080493E8
-sub_080493E8: @ 0x080493E8
+	thumb_func_start MultiBootInit
+MultiBootInit: @ 0x080493E8
 	adds r2, r0, #0
 	movs r1, #0
 	strb r1, [r2, #0x1e]
@@ -2918,7 +2918,7 @@ _0804944E:
 	cmp r4, #8
 	beq _08049478
 	adds r0, r6, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	movs r0, #8
 	eors r0, r4
 	b _08049802
@@ -2959,7 +2959,7 @@ _080494B4:
 	cmp r0, #0
 	bne _080494C4
 	adds r0, r6, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	movs r0, #0x71
 	b _08049802
 _080494C4:
@@ -3074,7 +3074,7 @@ _08049580:
 	cmp r2, r0
 	beq _080495A2
 	adds r0, r6, #0
-	bl sub_0804985C
+	bl MultiBootStartProbe
 	b _080495AC
 	.align 2, 0
 _08049598: .4byte 0x04000120
@@ -3227,7 +3227,7 @@ _0804969A:
 _080496AC:
 	orrs r1, r0
 	adds r0, r6, #0
-	bl sub_08049810
+	bl MultiBootSend
 	b _08049802
 	.align 2, 0
 _080496B8: .4byte 0x03001450
@@ -3255,7 +3255,7 @@ _080496CC:
 	orrs r5, r0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_08049810
+	bl MultiBootSend
 	b _08049802
 _080496F0:
 	movs r4, #3
@@ -3281,7 +3281,7 @@ _08049710:
 	cmp r4, #0
 	bne _080496FC
 	adds r0, r6, #0
-	bl sub_080BFA2C
+	bl MultiBoot
 	adds r4, r0, #0
 	cmp r4, #0
 	bne _08049734
@@ -3294,7 +3294,7 @@ _08049710:
 _08049730: .4byte 0x04000126
 _08049734:
 	adds r0, r6, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	movs r0, #0x1e
 	mov r1, sl
 	strb r0, [r1]
@@ -3358,7 +3358,7 @@ _080497A8:
 	cmp r0, #0
 	bne _080497B8
 	adds r0, r6, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	movs r0, #0x50
 	b _08049802
 _080497B8:
@@ -3381,7 +3381,7 @@ _080497C8:
 	ldrb r0, [r0]
 	orrs r1, r0
 	adds r0, r6, #0
-	bl sub_08049810
+	bl MultiBootSend
 	adds r4, r0, #0
 	cmp r4, #0
 	bne _08049802
@@ -3391,11 +3391,11 @@ _080497C8:
 	cmp r0, #1
 	bne _08049800
 _080497F0:
-	bl sub_08049A58
+	bl MultiBootWaitSendDone
 	b _0804944E
 _080497F6:
 	adds r0, r6, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	movs r0, #0x60
 	b _08049802
 _08049800:
@@ -3409,8 +3409,8 @@ _08049802:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08049810
-sub_08049810: @ 0x08049810
+	thumb_func_start MultiBootSend
+MultiBootSend: @ 0x08049810
 	push {r4, lr}
 	adds r2, r0, #0
 	lsls r1, r1, #0x10
@@ -3438,7 +3438,7 @@ _08049840: .4byte 0x0400012A
 _08049844: .4byte 0x00002083
 _08049848:
 	adds r0, r2, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	movs r0, #8
 	eors r4, r0
 	adds r0, r4, #0
@@ -3448,15 +3448,15 @@ _08049854:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0804985C
-sub_0804985C: @ 0x0804985C
+	thumb_func_start MultiBootStartProbe
+MultiBootStartProbe: @ 0x0804985C
 	push {lr}
 	adds r1, r0, #0
 	ldrb r0, [r1, #0x18]
 	cmp r0, #0
 	beq _0804986E
 	adds r0, r1, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	b _0804987A
 _0804986E:
 	adds r2, r1, #0
@@ -3504,7 +3504,7 @@ sub_08049880: @ 0x08049880
 	bls _080498C8
 _080498BC:
 	adds r0, r4, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	b _0804993C
 	.align 2, 0
 _080498C4: .4byte 0x0003FF00
@@ -3655,7 +3655,7 @@ _080499D0:
 	ldrh r1, [r3]
 _080499D2:
 	adds r0, r3, #0
-	bl sub_08049810
+	bl MultiBootSend
 	b _08049A38
 	.align 2, 0
 _080499DC: .4byte 0x04000126
@@ -3700,7 +3700,7 @@ _080499FC:
 _08049A28: .4byte 0x04000120
 _08049A2C:
 	adds r0, r3, #0
-	bl sub_080493E8
+	bl MultiBootInit
 	movs r0, #0x71
 	b _08049A38
 _08049A36:
@@ -3711,8 +3711,8 @@ _08049A38:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08049A40
-sub_08049A40: @ 0x08049A40
+	thumb_func_start MultiBootWaitCycles
+MultiBootWaitCycles: @ 0x08049A40
 	mov r2, pc
 	lsrs r2, r2, #0x18
 	movs r1, #0xc
@@ -3727,8 +3727,8 @@ _08049A52:
 	bgt _08049A52
 	bx lr
 
-	thumb_func_start sub_08049A58
-sub_08049A58: @ 0x08049A58
+	thumb_func_start MultiBootWaitSendDone
+MultiBootWaitSendDone: @ 0x08049A58
 	push {r4, r5, lr}
 	movs r2, #0
 	ldr r3, _08049A8C @ =0x04000128
@@ -3751,7 +3751,7 @@ _08049A6C:
 _08049A7C:
 	movs r0, #0x96
 	lsls r0, r0, #2
-	bl sub_08049A40
+	bl MultiBootWaitCycles
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -3759,8 +3759,8 @@ _08049A7C:
 _08049A8C: .4byte 0x04000128
 _08049A90: .4byte 0x0000795C
 
-	thumb_func_start sub_08049A94
-sub_08049A94: @ 0x08049A94
+	thumb_func_start ApplyUiWindowFramePal
+ApplyUiWindowFramePal: @ 0x08049A94
 	push {lr}
 	adds r3, r0, #0
 	cmp r3, #0
@@ -3784,8 +3784,8 @@ _08049A9E:
 _08049ABC: .4byte 0x08B9A830
 _08049AC0: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08049AC4
-sub_08049AC4: @ 0x08049AC4
+	thumb_func_start UnpackUiWindowFrameImg
+UnpackUiWindowFrameImg: @ 0x08049AC4
 	push {lr}
 	adds r3, r0, #0
 	cmp r3, #0
@@ -3809,8 +3809,8 @@ _08049AD0:
 _08049AEC: .4byte 0x08B9A840
 _08049AF0: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08049AF4
-sub_08049AF4: @ 0x08049AF4
+	thumb_func_start ApplyUiStatBarPal
+ApplyUiStatBarPal: @ 0x08049AF4
 	push {lr}
 	adds r3, r0, #0
 	cmp r3, #0
@@ -3834,8 +3834,8 @@ _08049AFE:
 _08049B1C: .4byte 0x08B9A850
 _08049B20: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08049B24
-sub_08049B24: @ 0x08049B24
+	thumb_func_start UnpackUiWindowFrameGraphics2
+UnpackUiWindowFrameGraphics2: @ 0x08049B24
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	cmp r5, #0
@@ -3850,7 +3850,7 @@ _08049B36:
 	lsls r5, r5, #2
 	adds r5, r5, r0
 	ldr r0, [r5]
-	bl sub_080131A8
+	bl GetDataSize
 	adds r6, r0, #0
 	ldr r4, _08049B74 @ =0x02022240
 	subs r4, r4, r6
@@ -3861,10 +3861,10 @@ _08049B36:
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	adds r2, r6, #0
-	bl sub_08003078
+	bl RegisterDataMove
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_08049A94
+	bl ApplyUiWindowFramePal
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -3873,8 +3873,8 @@ _08049B6C: .4byte 0x0202BBF8
 _08049B70: .4byte 0x08B9A840
 _08049B74: .4byte 0x02022240
 
-	thumb_func_start sub_08049B78
-sub_08049B78: @ 0x08049B78
+	thumb_func_start PutUiWindowFrame
+PutUiWindowFrame: @ 0x08049B78
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4066,8 +4066,8 @@ _08049C96:
 	.align 2, 0
 _08049CE0: .4byte 0x08B9A824
 
-	thumb_func_start sub_08049CE4
-sub_08049CE4: @ 0x08049CE4
+	thumb_func_start DrawUiFrame2
+DrawUiFrame2: @ 0x08049CE4
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -4386,8 +4386,8 @@ _08049F4C: .4byte 0x08B9A824
 _08049F50: .4byte 0x02023460
 _08049F54: .4byte 0x02022C60
 
-	thumb_func_start sub_08049F58
-sub_08049F58: @ 0x08049F58
+	thumb_func_start PutUiHand
+PutUiHand: @ 0x08049F58
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -4428,7 +4428,7 @@ _08049F80:
 	movs r0, #2
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -4439,8 +4439,8 @@ _08049FBC: .4byte 0x0203DCEC
 _08049FC0: .4byte 0x08B9A868
 _08049FC4: .4byte 0x08B9A860
 
-	thumb_func_start sub_08049FC8
-sub_08049FC8: @ 0x08049FC8
+	thumb_func_start PutUnkUiHand
+PutUnkUiHand: @ 0x08049FC8
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -4460,7 +4460,7 @@ sub_08049FC8: @ 0x08049FC8
 	movs r0, #2
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -4469,8 +4469,8 @@ sub_08049FC8: @ 0x08049FC8
 _08049FFC: .4byte 0x08B9A868
 _0804A000: .4byte 0x08B9A860
 
-	thumb_func_start sub_0804A004
-sub_0804A004: @ 0x0804A004
+	thumb_func_start DisplayFrozenUiHand
+DisplayFrozenUiHand: @ 0x0804A004
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -4481,7 +4481,7 @@ sub_0804A004: @ 0x0804A004
 	str r0, [sp]
 	movs r0, #3
 	adds r1, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4}
 	pop {r0}
@@ -4489,8 +4489,8 @@ sub_0804A004: @ 0x0804A004
 	.align 2, 0
 _0804A024: .4byte 0x08B9A860
 
-	thumb_func_start sub_0804A028
-sub_0804A028: @ 0x0804A028
+	thumb_func_start GetUiHandPrevX
+GetUiHandPrevX: @ 0x0804A028
 	ldr r0, _0804A030 @ =0x0203DCEC
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -4498,8 +4498,8 @@ sub_0804A028: @ 0x0804A028
 	.align 2, 0
 _0804A030: .4byte 0x0203DCEC
 
-	thumb_func_start sub_0804A034
-sub_0804A034: @ 0x0804A034
+	thumb_func_start GetUiHandPrevY
+GetUiHandPrevY: @ 0x0804A034
 	ldr r0, _0804A03C @ =0x0203DCEC
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -4524,8 +4524,8 @@ ClearUi: @ 0x0804A040
 _0804A05C: .4byte 0x02022C60
 _0804A060: .4byte 0x02023460
 
-	thumb_func_start sub_0804A064
-sub_0804A064: @ 0x0804A064
+	thumb_func_start DrawUiItemHover
+DrawUiItemHover: @ 0x0804A064
 	push {r4, r5, r6, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0
@@ -4574,8 +4574,8 @@ _0804A0BC: .4byte 0x0000106A
 _0804A0C0: .4byte 0x00001076
 _0804A0C4: .4byte 0x0000106B
 
-	thumb_func_start sub_0804A0C8
-sub_0804A0C8: @ 0x0804A0C8
+	thumb_func_start ClearUiItemHover
+ClearUiItemHover: @ 0x0804A0C8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -4642,8 +4642,8 @@ _0804A134:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804A148
-sub_0804A148: @ 0x0804A148
+	thumb_func_start UnpackUnkUiFrame
+UnpackUnkUiFrame: @ 0x0804A148
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0
@@ -4664,8 +4664,8 @@ sub_0804A148: @ 0x0804A148
 _0804A16C: .4byte 0x081D7B80
 _0804A170: .4byte 0x081D7DD4
 
-	thumb_func_start sub_0804A174
-sub_0804A174: @ 0x0804A174
+	thumb_func_start DisplayUiHandExt
+DisplayUiHandExt: @ 0x0804A174
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -4708,7 +4708,7 @@ _0804A19E:
 	movs r0, #2
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -4719,8 +4719,8 @@ _0804A1DC: .4byte 0x0203DCEC
 _0804A1E0: .4byte 0x08B9A868
 _0804A1E4: .4byte 0x08B9A860
 
-	thumb_func_start sub_0804A1E8
-sub_0804A1E8: @ 0x0804A1E8
+	thumb_func_start DisplayFrozenUiHandExt
+DisplayFrozenUiHandExt: @ 0x0804A1E8
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -4733,7 +4733,7 @@ sub_0804A1E8: @ 0x0804A1E8
 	movs r0, #3
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_080069F4
+	bl PutSprite
 	add sp, #4
 	pop {r4, r5}
 	pop {r0}
@@ -4745,15 +4745,15 @@ _0804A20C: .4byte 0x08B9A860
 LoadUiFrameGraphics: @ 0x0804A210
 	push {lr}
 	movs r0, #0
-	bl sub_08049AC4
+	bl UnpackUiWindowFrameImg
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_08049A94
+	bl ApplyUiWindowFramePal
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804A224
-sub_0804A224: @ 0x0804A224
+	thumb_func_start StartAdjustedMenu
+StartAdjustedMenu: @ 0x0804A224
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, r2, #0
@@ -4779,8 +4779,8 @@ _0804A236:
 	.align 2, 0
 _0804A250: .4byte 0xFFFFFF00
 
-	thumb_func_start sub_0804A254
-sub_0804A254: @ 0x0804A254
+	thumb_func_start StartLockingMenu
+StartLockingMenu: @ 0x0804A254
 	push {lr}
 	adds r2, r1, #0
 	ldr r1, [r0]
@@ -4842,7 +4842,7 @@ StartMenuExt: @ 0x0804A280
 	blt _0804A2CA
 	movs r0, #0xe2
 	lsls r0, r0, #2
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0804A2CA:
 	cmp r4, #0
 	beq _0804A2E8
@@ -4903,7 +4903,7 @@ _0804A314:
 _0804A33C:
 	adds r0, r1, r6
 	adds r1, r7, #0
-	bl sub_0804AC4C
+	bl OverriddenMenuAvailability
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
 	cmp r4, #0
@@ -5016,8 +5016,8 @@ _0804A418: .4byte 0x08B9A8A0
 _0804A41C: .4byte 0x08B9A8E0
 _0804A420: .4byte 0x08B857F8
 
-	thumb_func_start sub_0804A424
-sub_0804A424: @ 0x0804A424
+	thumb_func_start EndMenu
+EndMenu: @ 0x0804A424
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r0, #0x61
@@ -5070,20 +5070,20 @@ _0804A46C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0804A490
-sub_0804A490: @ 0x0804A490
+	thumb_func_start EndAllMenus
+EndAllMenus: @ 0x0804A490
 	push {lr}
 	ldr r0, _0804A4A0 @ =0x08B9A8A0
-	ldr r1, _0804A4A4 @ =sub_0804A424
+	ldr r1, _0804A4A4 @ =EndMenu
 	bl Proc_ForEach
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0804A4A0: .4byte 0x08B9A8A0
-_0804A4A4: .4byte sub_0804A424
+_0804A4A4: .4byte EndMenu
 
-	thumb_func_start sub_0804A4A8
-sub_0804A4A8: @ 0x0804A4A8
+	thumb_func_start Menu_OnInit
+Menu_OnInit: @ 0x0804A4A8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x30]
@@ -5151,7 +5151,7 @@ sub_0804A4E0: @ 0x0804A4E0
 	ldr r4, [r6, #0x30]
 	ldrb r4, [r4, #4]
 	str r4, [sp]
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	movs r7, #0
 	adds r0, r6, #0
 	adds r0, #0x60
@@ -5216,7 +5216,7 @@ _0804A582:
 	ldr r0, _0804A5DC @ =0x02022C60
 	adds r1, r1, r0
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 _0804A5B2:
 	adds r7, #1
 	mov r0, r8
@@ -5281,11 +5281,11 @@ sub_0804A5E0: @ 0x0804A5E0
 	cmp r0, #1
 	bne _0804A636
 	adds r0, r3, #0
-	bl sub_0804A064
+	bl DrawUiItemHover
 	b _0804A636
 _0804A630:
 	adds r0, r3, #0
-	bl sub_0804A0C8
+	bl ClearUiItemHover
 _0804A636:
 	pop {r4}
 	pop {r0}
@@ -5308,7 +5308,7 @@ sub_0804A63C: @ 0x0804A63C
 	bl sub_0804A8B0
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
-	bl sub_0804A004
+	bl DisplayFrozenUiHand
 	b _0804A726
 _0804A662:
 	movs r0, #0x80
@@ -5316,7 +5316,7 @@ _0804A662:
 	cmp r0, #0
 	beq _0804A672
 	adds r0, r5, #0
-	bl sub_0804A424
+	bl EndMenu
 	b _0804A726
 _0804A672:
 	adds r0, r5, #0
@@ -5329,7 +5329,7 @@ _0804A672:
 	cmp r0, #0
 	beq _0804A68E
 	adds r0, r5, #0
-	bl sub_0804A424
+	bl EndMenu
 _0804A68E:
 	movs r0, #4
 	ands r0, r4
@@ -5342,7 +5342,7 @@ _0804A68E:
 	cmp r0, #0
 	blt _0804A6A8
 	ldr r0, _0804A734 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0804A6A8:
 	movs r0, #8
 	ands r0, r4
@@ -5355,7 +5355,7 @@ _0804A6A8:
 	cmp r0, #0
 	blt _0804A6C2
 	ldr r0, _0804A738 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0804A6C2:
 	movs r0, #0x10
 	ands r0, r4
@@ -5369,7 +5369,7 @@ _0804A6CE:
 	cmp r0, #0
 	beq _0804A6DE
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 _0804A6DE:
 	movs r0, #0x80
 	ands r0, r4
@@ -5404,7 +5404,7 @@ _0804A6F2:
 	bl sub_0804AB58
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
-	bl sub_08049F58
+	bl PutUiHand
 _0804A726:
 	add sp, #8
 	pop {r4, r5, r6}
@@ -5494,7 +5494,7 @@ _0804A7A2:
 	cmp r0, #0
 	blt _0804A7D6
 	ldr r0, _0804A81C @ =0x00000386
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0804A7D6:
 	ldrb r0, [r4]
 	ldrb r1, [r5]
@@ -5562,7 +5562,7 @@ _0804A848:
 	beq _0804A870
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0804AC88
+	bl OverriddenMenuSelected
 	lsls r0, r0, #0x18
 	lsrs r6, r0, #0x18
 	cmp r6, #0xff
@@ -5656,18 +5656,18 @@ sub_0804A8FC: @ 0x0804A8FC
 	movs r0, #2
 	bx lr
 
-	thumb_func_start sub_0804A900
-sub_0804A900: @ 0x0804A900
+	thumb_func_start MenuAlwaysNotShown
+MenuAlwaysNotShown: @ 0x0804A900
 	movs r0, #3
 	bx lr
 
-	thumb_func_start sub_0804A904
-sub_0804A904: @ 0x0804A904
+	thumb_func_start MenuCancelSelect
+MenuCancelSelect: @ 0x0804A904
 	movs r0, #0x1b
 	bx lr
 
-	thumb_func_start sub_0804A908
-sub_0804A908: @ 0x0804A908
+	thumb_func_start MenuStdHelpBox
+MenuStdHelpBox: @ 0x0804A908
 	push {lr}
 	movs r2, #0x2a
 	ldrsh r0, [r1, r2]
@@ -5678,7 +5678,7 @@ sub_0804A908: @ 0x0804A908
 	ldr r1, [r1, #0x30]
 	ldrh r2, [r1, #6]
 	adds r1, r3, #0
-	bl sub_0808190C
+	bl StartHelpBox
 	pop {r1}
 	bx r1
 
@@ -5689,7 +5689,7 @@ sub_0804A924: @ 0x0804A924
 	movs r1, #1
 	rsbs r1, r1, #0
 	movs r0, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	ldr r2, [r4, #0x30]
 	adds r0, r4, #0
 	adds r0, #0x61
@@ -5724,7 +5724,7 @@ sub_0804A954: @ 0x0804A954
 	bl sub_0804AB58
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
-	bl sub_08049F58
+	bl PutUiHand
 	ldr r0, _0804A99C @ =0x08B857F8
 	ldr r1, [r0]
 	movs r0, #0x81
@@ -5733,10 +5733,10 @@ sub_0804A954: @ 0x0804A954
 	ands r0, r1
 	cmp r0, #0
 	beq _0804A9A4
-	bl sub_08081B44
+	bl CloseHelpBox
 	ldr r1, _0804A9A0 @ =0x08B9A888
 	adds r0, r5, #0
-	bl sub_08004758
+	bl Proc_GotoScript
 	b _0804A9CA
 	.align 2, 0
 _0804A99C: .4byte 0x08B857F8
@@ -5771,7 +5771,7 @@ _0804A9CA:
 sub_0804A9D4: @ 0x0804A9D4
 	push {lr}
 	ldr r1, _0804A9E0 @ =0x08B9A8E8
-	bl sub_08004758
+	bl Proc_GotoScript
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -5792,7 +5792,7 @@ sub_0804A9E4: @ 0x0804A9E4
 	bl sub_0804AB58
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
-	bl sub_0804A004
+	bl DisplayFrozenUiHand
 	ldr r0, _0804AA2C @ =0x08B857F8
 	ldr r1, [r0]
 	movs r0, #0x81
@@ -5801,10 +5801,10 @@ sub_0804A9E4: @ 0x0804A9E4
 	ands r0, r1
 	cmp r0, #0
 	beq _0804AA22
-	bl sub_08081B44
+	bl CloseHelpBox
 	ldr r1, _0804AA30 @ =0x08B9A888
 	adds r0, r5, #0
-	bl sub_08004758
+	bl Proc_GotoScript
 _0804AA22:
 	add sp, #8
 	pop {r4, r5}
@@ -5819,18 +5819,18 @@ MenuFrozenHelpBox: @ 0x0804AA34
 	push {r4, r5, lr}
 	adds r5, r1, #0
 	ldr r1, _0804AA64 @ =0x08B9A900
-	bl sub_08004758
+	bl Proc_GotoScript
 	movs r1, #1
 	rsbs r1, r1, #0
 	movs r0, #0
-	bl sub_08082528
-	bl sub_0804A028
+	bl LoadHelpBoxGfx
+	bl GetUiHandPrevX
 	adds r4, r0, #0
-	bl sub_0804A034
+	bl GetUiHandPrevY
 	adds r1, r0, #0
 	adds r0, r4, #0
 	adds r2, r5, #0
-	bl sub_0808190C
+	bl StartHelpBox
 	pop {r4, r5}
 	pop {r1}
 	bx r1
@@ -5852,7 +5852,7 @@ sub_0804AA68: @ 0x0804AA68
 	bl sub_0804AB58
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
-	bl sub_0804A004
+	bl DisplayFrozenUiHand
 	ldr r0, _0804AAA8 @ =0x08B857F8
 	ldr r1, [r0]
 	movs r0, #3
@@ -5862,7 +5862,7 @@ sub_0804AA68: @ 0x0804AA68
 	beq _0804AAA0
 	ldr r1, _0804AAAC @ =0x08B9A888
 	adds r0, r5, #0
-	bl sub_08004758
+	bl Proc_GotoScript
 _0804AAA0:
 	add sp, #8
 	pop {r4, r5}
@@ -5876,7 +5876,7 @@ _0804AAAC: .4byte 0x08B9A888
 sub_0804AAB0: @ 0x0804AAB0
 	push {lr}
 	ldr r1, _0804AABC @ =0x08B9A910
-	bl sub_08004758
+	bl Proc_GotoScript
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -5919,10 +5919,10 @@ _0804AAF8:
 	.align 2, 0
 _0804AAFC: .4byte 0x08B9A8A0
 
-	thumb_func_start sub_0804AB00
-sub_0804AB00: @ 0x0804AB00
+	thumb_func_start StartSemiCenteredOrphanMenu
+StartSemiCenteredOrphanMenu: @ 0x0804AB00
 	push {r4, r5, r6, r7, lr}
-	bl sub_0804A224
+	bl StartAdjustedMenu
 	adds r4, r0, #0
 	adds r1, r4, #0
 	adds r1, #0x60
@@ -6016,13 +6016,13 @@ _0804ABA4:
 	.align 2, 0
 _0804ABB0: .4byte 0x03001458
 
-	thumb_func_start sub_0804ABB4
-sub_0804ABB4: @ 0x0804ABB4
+	thumb_func_start GetForceDisabledMenuItems
+GetForceDisabledMenuItems: @ 0x0804ABB4
 	push {r4, r5, r6, lr}
 	movs r4, #0
 	adds r1, r0, #0
 	ldr r2, _0804ABD4 @ =0x03001458
-	ldr r5, _0804ABD8 @ =sub_0804A900
+	ldr r5, _0804ABD8 @ =MenuAlwaysNotShown
 	adds r3, r2, #4
 _0804ABC0:
 	movs r6, #2
@@ -6036,7 +6036,7 @@ _0804ABC0:
 	b _0804ABDE
 	.align 2, 0
 _0804ABD4: .4byte 0x03001458
-_0804ABD8: .4byte sub_0804A900
+_0804ABD8: .4byte MenuAlwaysNotShown
 _0804ABDC:
 	movs r0, #0
 _0804ABDE:
@@ -6052,8 +6052,8 @@ _0804ABDE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804ABF4
-sub_0804ABF4: @ 0x0804ABF4
+	thumb_func_start SetForceDisabledMenuItems
+SetForceDisabledMenuItems: @ 0x0804ABF4
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r4, #0
@@ -6063,7 +6063,7 @@ _0804ABFA:
 	cmp r0, #0
 	beq _0804AC0A
 	movs r1, #1
-	ldr r2, _0804AC18 @ =sub_0804A900
+	ldr r2, _0804AC18 @ =MenuAlwaysNotShown
 	bl SetMenuOverride
 _0804AC0A:
 	adds r4, #1
@@ -6073,7 +6073,7 @@ _0804AC0A:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804AC18: .4byte sub_0804A900
+_0804AC18: .4byte MenuAlwaysNotShown
 
 	thumb_func_start SetMenuOverride
 SetMenuOverride: @ 0x0804AC1C
@@ -6105,8 +6105,8 @@ _0804AC3E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804AC4C
-sub_0804AC4C: @ 0x0804AC4C
+	thumb_func_start OverriddenMenuAvailability
+OverriddenMenuAvailability: @ 0x0804AC4C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r2, _0804AC54 @ =0x03001458
@@ -6141,8 +6141,8 @@ _0804AC82:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0804AC88
-sub_0804AC88: @ 0x0804AC88
+	thumb_func_start OverriddenMenuSelected
+OverriddenMenuSelected: @ 0x0804AC88
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r3, r1, #0
@@ -6252,8 +6252,8 @@ EnlistTarget: @ 0x0804ACFC
 _0804AD48: .4byte 0x0203DCF8
 _0804AD4C: .4byte 0x0203DFF8
 
-	thumb_func_start sub_0804AD50
-sub_0804AD50: @ 0x0804AD50
+	thumb_func_start LinkTargets
+LinkTargets: @ 0x0804AD50
 	push {r4, r5, r6, lr}
 	movs r2, #0
 	ldr r0, _0804AD90 @ =0x0203DFF8
@@ -6292,8 +6292,8 @@ _0804AD7A:
 _0804AD90: .4byte 0x0203DFF8
 _0804AD94: .4byte 0x0203DCF8
 
-	thumb_func_start sub_0804AD98
-sub_0804AD98: @ 0x0804AD98
+	thumb_func_start TargetSelection_GetRealCursorPosition
+TargetSelection_GetRealCursorPosition: @ 0x0804AD98
 	ldr r3, [r0, #0x30]
 	movs r0, #0
 	ldrsb r0, [r3, r0]
@@ -6320,7 +6320,7 @@ sub_0804ADAC: @ 0x0804ADAC
 	add r2, sp, #4
 	adds r0, r4, #0
 	mov r1, sp
-	bl sub_0804AD98
+	bl TargetSelection_GetRealCursorPosition
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
 	movs r2, #4
@@ -6330,14 +6330,14 @@ _0804ADD6:
 	adds r0, r4, #0
 	bl sub_0804AF34
 	adds r0, r4, #0
-	bl sub_0804AFB0
+	bl TargetSelection_HandleSelectInput
 	adds r5, r0, #0
 	movs r0, #2
 	ands r0, r5
 	cmp r0, #0
 	beq _0804ADF2
 	adds r0, r4, #0
-	bl sub_0804AF00
+	bl EndTargetSelection
 _0804ADF2:
 	movs r0, #4
 	ands r0, r5
@@ -6350,7 +6350,7 @@ _0804ADF2:
 	cmp r0, #0
 	blt _0804AE0C
 	ldr r0, _0804AE80 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0804AE0C:
 	movs r0, #8
 	ands r0, r5
@@ -6363,7 +6363,7 @@ _0804AE0C:
 	cmp r0, #0
 	blt _0804AE26
 	ldr r0, _0804AE84 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0804AE26:
 	movs r0, #0x10
 	ands r0, r5
@@ -6376,7 +6376,7 @@ _0804AE32:
 	cmp r0, #0
 	beq _0804AE40
 	movs r0, #0
-	bl sub_08006D50
+	bl EndFaceById
 _0804AE40:
 	movs r0, #1
 	ands r0, r5
@@ -6385,7 +6385,7 @@ _0804AE40:
 	add r2, sp, #4
 	adds r0, r4, #0
 	mov r1, sp
-	bl sub_0804AD98
+	bl TargetSelection_GetRealCursorPosition
 	ldr r1, [sp]
 	asrs r1, r1, #4
 	ldr r2, [sp, #4]
@@ -6425,7 +6425,7 @@ StartMapSelect: @ 0x0804AE88
 	movs r0, #1
 	strb r0, [r1]
 	str r4, [r5, #0x2c]
-	bl sub_0804B15C
+	bl GetLinkedTargets
 	str r0, [r5, #0x30]
 	str r6, [r5, #0x38]
 	ldr r0, [r5, #0x2c]
@@ -6461,8 +6461,8 @@ _0804AEDA:
 _0804AEE8: .4byte 0x08B9A92C
 _0804AEEC: .4byte 0x08B857F8
 
-	thumb_func_start sub_0804AEF0
-sub_0804AEF0: @ 0x0804AEF0
+	thumb_func_start NewTargetSelection_Specialized
+NewTargetSelection_Specialized: @ 0x0804AEF0
 	push {r4, lr}
 	adds r4, r1, #0
 	bl StartMapSelect
@@ -6471,8 +6471,8 @@ sub_0804AEF0: @ 0x0804AEF0
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0804AF00
-sub_0804AF00: @ 0x0804AF00
+	thumb_func_start EndTargetSelection
+EndTargetSelection: @ 0x0804AF00
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]
@@ -6554,7 +6554,7 @@ _0804AF8C:
 	cmp r0, #0
 	blt _0804AF9E
 	ldr r0, _0804AFAC @ =0x00000387
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0804AF9E:
 	pop {r4}
 	pop {r0}
@@ -6564,8 +6564,8 @@ _0804AFA4: .4byte 0x08B857F8
 _0804AFA8: .4byte 0x0202BBF8
 _0804AFAC: .4byte 0x00000387
 
-	thumb_func_start sub_0804AFB0
-sub_0804AFB0: @ 0x0804AFB0
+	thumb_func_start TargetSelection_HandleSelectInput
+TargetSelection_HandleSelectInput: @ 0x0804AFB0
 	push {r4, lr}
 	adds r2, r0, #0
 	movs r4, #0
@@ -6652,8 +6652,8 @@ _0804B040:
 	.align 2, 0
 _0804B044: .4byte 0x08B9A92C
 
-	thumb_func_start sub_0804B048
-sub_0804B048: @ 0x0804B048
+	thumb_func_start GetFurthestTargetDistance
+GetFurthestTargetDistance: @ 0x0804B048
 	push {r4, r5, r6, r7, lr}
 	movs r7, #0
 	ldr r5, _0804B080 @ =0x0203DCF8
@@ -6707,8 +6707,8 @@ _0804B09E:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0804B0A8
-sub_0804B0A8: @ 0x0804B0A8
+	thumb_func_start GetLinkedTargetsNear
+GetLinkedTargetsNear: @ 0x0804B0A8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -6794,26 +6794,26 @@ _0804B140: .4byte 0x0203DCF4
 _0804B144: .4byte 0x08B9A964
 _0804B148: .4byte 0x0203DCF8
 
-	thumb_func_start sub_0804B14C
-sub_0804B14C: @ 0x0804B14C
+	thumb_func_start GetLinkedTargetsFar
+GetLinkedTargetsFar: @ 0x0804B14C
 	push {lr}
-	bl sub_0804AD50
+	bl LinkTargets
 	ldr r0, _0804B158 @ =0x0203DCF8
 	pop {r1}
 	bx r1
 	.align 2, 0
 _0804B158: .4byte 0x0203DCF8
 
-	thumb_func_start sub_0804B15C
-sub_0804B15C: @ 0x0804B15C
+	thumb_func_start GetLinkedTargets
+GetLinkedTargets: @ 0x0804B15C
 	push {lr}
-	bl sub_0804B048
+	bl GetFurthestTargetDistance
 	cmp r0, #2
 	bgt _0804B16C
-	bl sub_0804B0A8
+	bl GetLinkedTargetsNear
 	b _0804B170
 _0804B16C:
-	bl sub_0804B14C
+	bl GetLinkedTargetsFar
 _0804B170:
 	pop {r1}
 	bx r1
@@ -6838,24 +6838,24 @@ GetTarget: @ 0x0804B180
 	.align 2, 0
 _0804B190: .4byte 0x0203DCF8
 
-	thumb_func_start sub_0804B194
-sub_0804B194: @ 0x0804B194
+	thumb_func_start SetBanimLinkArenaFlag
+SetBanimLinkArenaFlag: @ 0x0804B194
 	ldr r1, _0804B19C @ =0x0203DFFC
 	str r0, [r1]
 	bx lr
 	.align 2, 0
 _0804B19C: .4byte 0x0203DFFC
 
-	thumb_func_start sub_0804B1A0
-sub_0804B1A0: @ 0x0804B1A0
+	thumb_func_start GetBanimLinkArenaFlag
+GetBanimLinkArenaFlag: @ 0x0804B1A0
 	ldr r0, _0804B1A8 @ =0x0203DFFC
 	ldr r0, [r0]
 	bx lr
 	.align 2, 0
 _0804B1A8: .4byte 0x0203DFFC
 
-	thumb_func_start sub_0804B1AC
-sub_0804B1AC: @ 0x0804B1AC
+	thumb_func_start NewEkrBattleDeamon
+NewEkrBattleDeamon: @ 0x0804B1AC
 	push {r4, lr}
 	ldr r4, _0804B1CC @ =0x0203E004
 	ldr r0, _0804B1D0 @ =0x08B9A99C
@@ -6885,8 +6885,8 @@ sub_0804B1D8: @ 0x0804B1D8
 	.align 2, 0
 _0804B1E8: .4byte 0x0203E004
 
-	thumb_func_start sub_0804B1EC
-sub_0804B1EC: @ 0x0804B1EC
+	thumb_func_start IsBattleDeamonActive
+IsBattleDeamonActive: @ 0x0804B1EC
 	ldr r0, _0804B1F8 @ =0x0203E000
 	ldr r0, [r0]
 	cmp r0, #1
@@ -6900,8 +6900,8 @@ _0804B1FC:
 _0804B1FE:
 	bx lr
 
-	thumb_func_start sub_0804B200
-sub_0804B200: @ 0x0804B200
+	thumb_func_start EkrBattleDeamon_OnEnd
+EkrBattleDeamon_OnEnd: @ 0x0804B200
 	push {lr}
 	ldr r1, _0804B210 @ =0x0203E000
 	movs r0, #0
@@ -6917,18 +6917,18 @@ sub_0804B214: @ 0x0804B214
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0804B218
-sub_0804B218: @ 0x0804B218
+	thumb_func_start NewEkrBattle
+NewEkrBattle: @ 0x0804B218
 	push {r4, lr}
-	bl sub_08006508
+	bl AnimClearAll
 	ldr r4, _0804B260 @ =0x02000064
 	ldr r0, _0804B264 @ =0x08B9A9BC
 	movs r1, #3
 	bl SpawnProc
 	str r0, [r4]
-	ldr r0, _0804B268 @ =sub_0804B284
-	bl sub_080019B8
-	bl sub_0804D4CC
+	ldr r0, _0804B268 @ =InBattleMainRoutine
+	bl SetMainFunc
+	bl EkrEfxStatusClear
 	ldr r0, _0804B26C @ =0x02017724
 	movs r1, #0
 	str r1, [r0]
@@ -6945,7 +6945,7 @@ sub_0804B218: @ 0x0804B218
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	bne _0804B258
-	bl sub_08067E48
+	bl EkrPlayMainBGM
 _0804B258:
 	pop {r4}
 	pop {r0}
@@ -6953,7 +6953,7 @@ _0804B258:
 	.align 2, 0
 _0804B260: .4byte 0x02000064
 _0804B264: .4byte 0x08B9A9BC
-_0804B268: .4byte sub_0804B284
+_0804B268: .4byte InBattleMainRoutine
 _0804B26C: .4byte 0x02017724
 _0804B270: .4byte 0x02000018
 _0804B274: .4byte 0x0200001C
@@ -6961,8 +6961,8 @@ _0804B278: .4byte 0x02000020
 _0804B27C: .4byte 0x02000024
 _0804B280: .4byte 0x0203E008
 
-	thumb_func_start sub_0804B284
-sub_0804B284: @ 0x0804B284
+	thumb_func_start InBattleMainRoutine
+InBattleMainRoutine: @ 0x0804B284
 	push {lr}
 	ldr r0, _0804B29C @ =0x08B857F8
 	ldr r0, [r0]
@@ -6971,7 +6971,7 @@ sub_0804B284: @ 0x0804B284
 	ldr r0, [r0]
 	cmp r0, #0
 	bne _0804B2A4
-	bl sub_0804B328
+	bl MainUpdateEkrBattle
 	b _0804B2B0
 	.align 2, 0
 _0804B29C: .4byte 0x08B857F8
@@ -6981,7 +6981,7 @@ _0804B2A4:
 	ldr r0, [r0]
 	cmp r0, #1
 	bne _0804B2B0
-	bl sub_0804B328
+	bl MainUpdateEkrBattle
 _0804B2B0:
 	ldr r0, _0804B2C8 @ =0x02017724
 	ldr r0, [r0]
@@ -7014,7 +7014,7 @@ _0804B2E6:
 	ldr r0, _0804B2F8 @ =0x02000064
 	ldr r0, [r0]
 	bl Proc_End
-	bl sub_08050A08
+	bl EkrBattleEndRountine
 	b _0804B308
 	.align 2, 0
 _0804B2F4: .4byte 0x0203E008
@@ -7023,7 +7023,7 @@ _0804B2FC:
 	ldr r0, _0804B31C @ =0x02000064
 	ldr r0, [r0]
 	bl Proc_End
-	bl sub_0804C438
+	bl EndEkrGauge
 _0804B308:
 	ldr r1, _0804B320 @ =0x0202BBB8
 	movs r0, #1
@@ -7031,7 +7031,7 @@ _0804B308:
 	ldr r0, _0804B324 @ =0x04000006
 	ldrh r0, [r0]
 	strh r0, [r1, #6]
-	bl sub_080BFA6C
+	bl VBlankIntrWait
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -7039,32 +7039,32 @@ _0804B31C: .4byte 0x02000064
 _0804B320: .4byte 0x0202BBB8
 _0804B324: .4byte 0x04000006
 
-	thumb_func_start sub_0804B328
-sub_0804B328: @ 0x0804B328
+	thumb_func_start MainUpdateEkrBattle
+MainUpdateEkrBattle: @ 0x0804B328
 	push {r4, lr}
-	bl sub_080069B0
-	bl sub_080676C4
+	bl ClearSprites
+	bl UnregisterEfxSoundSeExist
 	bl GetGameLock
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0804B344
 	ldr r0, _0804B394 @ =0x02026A30
 	ldr r0, [r0, #8]
-	bl sub_08004690
+	bl Proc_Run
 _0804B344:
 	ldr r4, _0804B394 @ =0x02026A30
 	ldr r0, [r4, #0xc]
-	bl sub_08004690
+	bl Proc_Run
 	ldr r0, [r4, #0x14]
-	bl sub_08004690
+	bl Proc_Run
 	movs r0, #0
-	bl sub_08006A64
+	bl PutSpriteLayerOam
 	ldr r0, [r4, #4]
-	bl sub_08004690
-	bl sub_08006490
-	bl sub_08053454
+	bl Proc_Run
+	bl AnimUpdateAll
+	bl BattleAIS_ExecCommands
 	ldr r0, [r4, #0x10]
-	bl sub_08004690
+	bl Proc_Run
 	ldr r1, _0804B398 @ =0x02000020
 	movs r0, #0
 	str r0, [r1]
@@ -7080,7 +7080,7 @@ _0804B344:
 	str r0, [r1]
 _0804B386:
 	movs r0, #0xd
-	bl sub_08006A64
+	bl PutSpriteLayerOam
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -7095,8 +7095,8 @@ sub_0804B3A4: @ 0x0804B3A4
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0804B3A8
-sub_0804B3A8: @ 0x0804B3A8
+	thumb_func_start EkrBattle_Init
+EkrBattle_Init: @ 0x0804B3A8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _0804B3C8 @ =0x0201FB00
@@ -7123,12 +7123,12 @@ _0804B3D4:
 _0804B3D8:
 	str r0, [r1]
 _0804B3DA:
-	bl sub_08054248
-	bl sub_08064C7C
+	bl InitMainAnims
+	bl InitEkrDragonStatus
 	ldr r0, _0804B3F4 @ =0x02000024
 	movs r1, #1
 	str r1, [r0]
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #1
 	bne _0804B3F8
 	movs r0, #0
@@ -7156,7 +7156,7 @@ _0804B418:
 	ldrb r0, [r1, #1]
 	ldrb r1, [r1]
 _0804B41E:
-	bl sub_080793F8
+	bl CheckBattleTalk
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	str r0, [r4, #0x54]
@@ -7170,8 +7170,8 @@ _0804B41E:
 	.align 2, 0
 _0804B438: .4byte 0x0203E09C
 
-	thumb_func_start sub_0804B43C
-sub_0804B43C: @ 0x0804B43C
+	thumb_func_start EkrBattle_Main
+EkrBattle_Main: @ 0x0804B43C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -7181,7 +7181,7 @@ sub_0804B43C: @ 0x0804B43C
 	asrs r0, r0, #0x10
 	cmp r0, #0x1f
 	bne _0804B484
-	bl sub_0804B1A0
+	bl GetBanimLinkArenaFlag
 	cmp r0, #1
 	beq _0804B47C
 	ldr r0, [r4, #0x54]
@@ -7193,17 +7193,17 @@ sub_0804B43C: @ 0x0804B43C
 _0804B462:
 	movs r0, #1
 	movs r1, #7
-	bl sub_08051A9C
+	bl NewEkrWindowAppear
 	movs r0, #1
 	movs r1, #7
 	movs r2, #0
-	bl sub_08051B80
-	ldr r0, _0804B478 @ =sub_0804B490
+	bl NewEkrNamewinAppear
+	ldr r0, _0804B478 @ =EkrBattleStartBattleQuote
 	b _0804B47E
 	.align 2, 0
-_0804B478: .4byte sub_0804B490
+_0804B478: .4byte EkrBattleStartBattleQuote
 _0804B47C:
-	ldr r0, _0804B48C @ =sub_0804B594
+	ldr r0, _0804B48C @ =EkrBattlePreDragonIntro
 _0804B47E:
 	str r0, [r4, #0xc]
 	movs r0, #0
@@ -7213,20 +7213,20 @@ _0804B484:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804B48C: .4byte sub_0804B594
+_0804B48C: .4byte EkrBattlePreDragonIntro
 
-	thumb_func_start sub_0804B490
-sub_0804B490: @ 0x0804B490
+	thumb_func_start EkrBattleStartBattleQuote
+EkrBattleStartBattleQuote: @ 0x0804B490
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
-	bl sub_08051AEC
+	bl CheckEkrWindowAppearUnexist
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _0804B51A
-	bl sub_0804C4E4
-	bl sub_0804CE30
+	bl EnableEkrGauge
+	bl AsyncEkrDispUP
 	movs r0, #0
 	str r0, [sp]
 	ldr r1, _0804B4F4 @ =0x02022C60
@@ -7244,7 +7244,7 @@ sub_0804B490: @ 0x0804B490
 	bl SetBgOffset
 	movs r0, #1
 	bl EnableBgSync
-	bl sub_0804C45C
+	bl EkrGauge_0804CC38
 	ldr r0, [r4, #0x54]
 	cmp r0, #1
 	bne _0804B516
@@ -7256,7 +7256,7 @@ sub_0804B490: @ 0x0804B490
 	ldr r1, _0804B504 @ =0x0203E09C
 	ldrb r0, [r1]
 	ldrb r1, [r1, #1]
-	bl sub_08079464
+	bl StartBattleTalk
 	b _0804B512
 	.align 2, 0
 _0804B4F4: .4byte 0x02022C60
@@ -7268,12 +7268,12 @@ _0804B508:
 	ldr r1, _0804B524 @ =0x0203E09C
 	ldrb r0, [r1, #1]
 	ldrb r1, [r1]
-	bl sub_08079464
+	bl StartBattleTalk
 _0804B512:
 	movs r0, #0
 	str r0, [r4, #0x54]
 _0804B516:
-	ldr r0, _0804B528 @ =sub_0804B52C
+	ldr r0, _0804B528 @ =EkrBattleWaitBattleQuote
 	str r0, [r4, #0xc]
 _0804B51A:
 	add sp, #4
@@ -7282,48 +7282,48 @@ _0804B51A:
 	bx r0
 	.align 2, 0
 _0804B524: .4byte 0x0203E09C
-_0804B528: .4byte sub_0804B52C
+_0804B528: .4byte EkrBattleWaitBattleQuote
 
-	thumb_func_start sub_0804B52C
-sub_0804B52C: @ 0x0804B52C
+	thumb_func_start EkrBattleWaitBattleQuote
+EkrBattleWaitBattleQuote: @ 0x0804B52C
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0800ED20
+	bl IsEventRunning
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0804B566
-	bl sub_0804D1D4
+	bl EfxPrepareScreenFx
 	movs r0, #1
 	bl EnableBgSync
 	movs r0, #0
 	movs r1, #7
-	bl sub_08051A9C
+	bl NewEkrWindowAppear
 	movs r0, #0
 	movs r1, #7
 	movs r2, #0
-	bl sub_08051B80
-	bl sub_0804C4F4
-	bl sub_0804CE40
-	bl sub_0804C44C
-	ldr r0, _0804B56C @ =sub_0804B570
+	bl NewEkrNamewinAppear
+	bl DisableEkrGauge
+	bl UnAsyncEkrDispUP
+	bl EkrGauge_0804CC28
+	ldr r0, _0804B56C @ =EkrBattleWaitWindowAppear
 	str r0, [r4, #0xc]
 _0804B566:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804B56C: .4byte sub_0804B570
+_0804B56C: .4byte EkrBattleWaitWindowAppear
 
-	thumb_func_start sub_0804B570
-sub_0804B570: @ 0x0804B570
+	thumb_func_start EkrBattleWaitWindowAppear
+EkrBattleWaitWindowAppear: @ 0x0804B570
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08051AEC
+	bl CheckEkrWindowAppearUnexist
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _0804B588
-	ldr r0, _0804B590 @ =sub_0804B594
+	ldr r0, _0804B590 @ =EkrBattlePreDragonIntro
 	str r0, [r4, #0xc]
 	movs r0, #0
 	strh r0, [r4, #0x2c]
@@ -7332,35 +7332,35 @@ _0804B588:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804B590: .4byte sub_0804B594
+_0804B590: .4byte EkrBattlePreDragonIntro
 
-	thumb_func_start sub_0804B594
-sub_0804B594: @ 0x0804B594
+	thumb_func_start EkrBattlePreDragonIntro
+EkrBattlePreDragonIntro: @ 0x0804B594
 	ldr r1, _0804B5A8 @ =0x0203E00C
 	movs r2, #0
 	ldrsh r1, [r1, r2]
 	str r1, [r0, #0x44]
 	movs r1, #0
 	str r1, [r0, #0x48]
-	ldr r1, _0804B5AC @ =sub_0804B5B0
+	ldr r1, _0804B5AC @ =EkrBattleExecDragonIntro
 	str r1, [r0, #0xc]
 	bx lr
 	.align 2, 0
 _0804B5A8: .4byte 0x0203E00C
-_0804B5AC: .4byte sub_0804B5B0
+_0804B5AC: .4byte EkrBattleExecDragonIntro
 
-	thumb_func_start sub_0804B5B0
-sub_0804B5B0: @ 0x0804B5B0
+	thumb_func_start EkrBattleExecDragonIntro
+EkrBattleExecDragonIntro: @ 0x0804B5B0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x48]
 	cmp r0, #2
 	bne _0804B5C4
-	ldr r0, _0804B5C0 @ =sub_0804B640
+	ldr r0, _0804B5C0 @ =EkrBattlePostDragonIntro
 	str r0, [r4, #0xc]
 	b _0804B612
 	.align 2, 0
-_0804B5C0: .4byte sub_0804B640
+_0804B5C0: .4byte EkrBattlePostDragonIntro
 _0804B5C4:
 	ldr r0, [r4, #0x44]
 	cmp r0, #0
@@ -7368,29 +7368,29 @@ _0804B5C4:
 	ldr r0, _0804B5E8 @ =0x02000000
 	ldr r0, [r0]
 	str r0, [r4, #0x5c]
-	bl sub_08064AB0
+	bl GetEkrDragonStatusType
 	cmp r0, #0
 	beq _0804B5E2
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C10
-	ldr r0, _0804B5EC @ =sub_0804B620
+	bl NewEkrDragon
+	ldr r0, _0804B5EC @ =EkrBattleWaitDragonIntro
 	str r0, [r4, #0xc]
 _0804B5E2:
 	movs r0, #1
 	b _0804B60A
 	.align 2, 0
 _0804B5E8: .4byte 0x02000000
-_0804B5EC: .4byte sub_0804B620
+_0804B5EC: .4byte EkrBattleWaitDragonIntro
 _0804B5F0:
 	ldr r0, _0804B618 @ =0x02000000
 	ldr r0, [r0, #8]
 	str r0, [r4, #0x5c]
-	bl sub_08064AB0
+	bl GetEkrDragonStatusType
 	cmp r0, #0
 	beq _0804B608
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C10
-	ldr r0, _0804B61C @ =sub_0804B620
+	bl NewEkrDragon
+	ldr r0, _0804B61C @ =EkrBattleWaitDragonIntro
 	str r0, [r4, #0xc]
 _0804B608:
 	movs r0, #0
@@ -7405,29 +7405,29 @@ _0804B612:
 	bx r0
 	.align 2, 0
 _0804B618: .4byte 0x02000000
-_0804B61C: .4byte sub_0804B620
+_0804B61C: .4byte EkrBattleWaitDragonIntro
 
-	thumb_func_start sub_0804B620
-sub_0804B620: @ 0x0804B620
+	thumb_func_start EkrBattleWaitDragonIntro
+EkrBattleWaitDragonIntro: @ 0x0804B620
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08064BD8
+	bl EkrDragonIntroDone
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _0804B636
-	ldr r0, _0804B63C @ =sub_0804B5B0
+	ldr r0, _0804B63C @ =EkrBattleExecDragonIntro
 	str r0, [r4, #0xc]
 _0804B636:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804B63C: .4byte sub_0804B5B0
+_0804B63C: .4byte EkrBattleExecDragonIntro
 
-	thumb_func_start sub_0804B640
-sub_0804B640: @ 0x0804B640
+	thumb_func_start EkrBattlePostDragonIntro
+EkrBattlePostDragonIntro: @ 0x0804B640
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0804B66C @ =0x0203E00C
@@ -7443,28 +7443,28 @@ sub_0804B640: @ 0x0804B640
 	ldr r0, [r0]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 	movs r0, #0
 	strh r0, [r4, #0x2c]
-	ldr r0, _0804B678 @ =sub_0804B68C
+	ldr r0, _0804B678 @ =ekrBattle_8050290
 	b _0804B67E
 	.align 2, 0
 _0804B66C: .4byte 0x0203E00C
 _0804B670: .4byte 0x02017744
 _0804B674: .4byte 0x02000000
-_0804B678: .4byte sub_0804B68C
+_0804B678: .4byte ekrBattle_8050290
 _0804B67C:
-	ldr r0, _0804B688 @ =sub_0804B6A8
+	ldr r0, _0804B688 @ =ekrBattleSetFlashingEffect
 _0804B67E:
 	str r0, [r4, #0xc]
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804B688: .4byte sub_0804B6A8
+_0804B688: .4byte ekrBattleSetFlashingEffect
 
-	thumb_func_start sub_0804B68C
-sub_0804B68C: @ 0x0804B68C
+	thumb_func_start ekrBattle_8050290
+ekrBattle_8050290: @ 0x0804B68C
 	adds r1, r0, #0
 	ldrh r0, [r1, #0x2c]
 	adds r0, #1
@@ -7473,28 +7473,28 @@ sub_0804B68C: @ 0x0804B68C
 	asrs r0, r0, #0x10
 	cmp r0, #8
 	bne _0804B6A0
-	ldr r0, _0804B6A4 @ =sub_0804B6A8
+	ldr r0, _0804B6A4 @ =ekrBattleSetFlashingEffect
 	str r0, [r1, #0xc]
 _0804B6A0:
 	bx lr
 	.align 2, 0
-_0804B6A4: .4byte sub_0804B6A8
+_0804B6A4: .4byte ekrBattleSetFlashingEffect
 
-	thumb_func_start sub_0804B6A8
-sub_0804B6A8: @ 0x0804B6A8
+	thumb_func_start ekrBattleSetFlashingEffect
+ekrBattleSetFlashingEffect: @ 0x0804B6A8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _0804B6EC @ =0x02000000
 	ldr r0, [r4]
-	bl sub_0804F698
+	bl NewEfxStatusUnit
 	ldr r0, [r4, #8]
-	bl sub_0804F698
+	bl NewEfxStatusUnit
 	ldr r1, _0804B6F0 @ =0x0203E0E4
 	movs r2, #0
 	ldrsh r0, [r1, r2]
 	movs r2, #2
 	ldrsh r1, [r1, r2]
-	bl sub_0804FA50
+	bl NewEfxWeaponIcon
 	ldr r1, _0804B6F4 @ =0x0203A3D8
 	movs r0, #0x40
 	ldrh r1, [r1]
@@ -7502,11 +7502,11 @@ sub_0804B6A8: @ 0x0804B6A8
 	cmp r0, #0
 	beq _0804B6DA
 	ldr r0, [r4]
-	bl sub_0804F7D0
+	bl DisableEfxStatusUnits
 _0804B6DA:
 	ldr r0, [r4]
-	bl sub_0804F37C
-	ldr r0, _0804B6F8 @ =sub_0804B6FC
+	bl NewEfxHpBarColorChange
+	ldr r0, _0804B6F8 @ =ekrBattleExecTriangleAtk
 	str r0, [r5, #0xc]
 	pop {r4, r5}
 	pop {r0}
@@ -7515,10 +7515,10 @@ _0804B6DA:
 _0804B6EC: .4byte 0x02000000
 _0804B6F0: .4byte 0x0203E0E4
 _0804B6F4: .4byte 0x0203A3D8
-_0804B6F8: .4byte sub_0804B6FC
+_0804B6F8: .4byte ekrBattleExecTriangleAtk
 
-	thumb_func_start sub_0804B6FC
-sub_0804B6FC: @ 0x0804B6FC
+	thumb_func_start ekrBattleExecTriangleAtk
+ekrBattleExecTriangleAtk: @ 0x0804B6FC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0804B714 @ =0x0203E0A0
@@ -7527,28 +7527,28 @@ sub_0804B6FC: @ 0x0804B6FC
 	beq _0804B720
 	ldr r0, _0804B718 @ =0x02000000
 	ldr r0, [r0, #8]
-	bl sub_0806A4BC
-	ldr r0, _0804B71C @ =sub_0804B730
+	bl NewEkrTriangle
+	ldr r0, _0804B71C @ =ekrBattleWaitTriangleIdle
 	b _0804B722
 	.align 2, 0
 _0804B714: .4byte 0x0203E0A0
 _0804B718: .4byte 0x02000000
-_0804B71C: .4byte sub_0804B730
+_0804B71C: .4byte ekrBattleWaitTriangleIdle
 _0804B720:
-	ldr r0, _0804B72C @ =sub_0804B758
+	ldr r0, _0804B72C @ =ekrBattleTriggerNewRoundStart
 _0804B722:
 	str r0, [r4, #0xc]
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804B72C: .4byte sub_0804B758
+_0804B72C: .4byte ekrBattleTriggerNewRoundStart
 
-	thumb_func_start sub_0804B730
-sub_0804B730: @ 0x0804B730
+	thumb_func_start ekrBattleWaitTriangleIdle
+ekrBattleWaitTriangleIdle: @ 0x0804B730
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0806A4A4
+	bl CheckEkrTriangleInvalid
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -7556,17 +7556,17 @@ sub_0804B730: @ 0x0804B730
 	bl sub_0806A4B8
 	movs r0, #0x1e
 	strh r0, [r4, #0x2c]
-	ldr r0, _0804B754 @ =sub_0804B758
+	ldr r0, _0804B754 @ =ekrBattleTriggerNewRoundStart
 	str r0, [r4, #0xc]
 _0804B74C:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804B754: .4byte sub_0804B758
+_0804B754: .4byte ekrBattleTriggerNewRoundStart
 
-	thumb_func_start sub_0804B758
-sub_0804B758: @ 0x0804B758
+	thumb_func_start ekrBattleTriggerNewRoundStart
+ekrBattleTriggerNewRoundStart: @ 0x0804B758
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldrh r0, [r5, #0x2c]
@@ -7621,7 +7621,7 @@ _0804B7BA:
 	ldr r0, _0804B7D4 @ =0x0201FAF8
 	str r7, [r0]
 	str r7, [r0, #4]
-	ldr r0, _0804B7D8 @ =sub_0804B7DC
+	ldr r0, _0804B7D8 @ =ekrBattle_80503EC
 	str r0, [r5, #0xc]
 _0804B7C4:
 	pop {r4, r5, r6, r7}
@@ -7631,22 +7631,22 @@ _0804B7C4:
 _0804B7CC: .4byte 0x0203E010
 _0804B7D0: .4byte 0x02000000
 _0804B7D4: .4byte 0x0201FAF8
-_0804B7D8: .4byte sub_0804B7DC
+_0804B7D8: .4byte ekrBattle_80503EC
 
-	thumb_func_start sub_0804B7DC
-sub_0804B7DC: @ 0x0804B7DC
+	thumb_func_start ekrBattle_80503EC
+ekrBattle_80503EC: @ 0x0804B7DC
 	ldr r2, _0804B7E8 @ =0x02000024
 	movs r1, #0
 	str r1, [r2]
-	ldr r1, _0804B7EC @ =sub_0804B7F0
+	ldr r1, _0804B7EC @ =ekrBattle_StartPromotion
 	str r1, [r0, #0xc]
 	bx lr
 	.align 2, 0
 _0804B7E8: .4byte 0x02000024
-_0804B7EC: .4byte sub_0804B7F0
+_0804B7EC: .4byte ekrBattle_StartPromotion
 
-	thumb_func_start sub_0804B7F0
-sub_0804B7F0: @ 0x0804B7F0
+	thumb_func_start ekrBattle_StartPromotion
+ekrBattle_StartPromotion: @ 0x0804B7F0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0804B808 @ =0x0203E02C
@@ -7655,13 +7655,13 @@ sub_0804B7F0: @ 0x0804B7F0
 	bne _0804B814
 	ldr r0, _0804B80C @ =0x02000000
 	ldr r0, [r0, #8]
-	bl sub_0806824C
-	ldr r0, _0804B810 @ =sub_0804B82C
+	bl NewEkrClassChg
+	ldr r0, _0804B810 @ =ekrBattle_WaitPromotionIdle
 	b _0804B81E
 	.align 2, 0
 _0804B808: .4byte 0x0203E02C
 _0804B80C: .4byte 0x02000000
-_0804B810: .4byte sub_0804B82C
+_0804B810: .4byte ekrBattle_WaitPromotionIdle
 _0804B814:
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -7676,19 +7676,19 @@ _0804B81E:
 	.align 2, 0
 _0804B828: .4byte sub_0804B858
 
-	thumb_func_start sub_0804B82C
-sub_0804B82C: @ 0x0804B82C
+	thumb_func_start ekrBattle_WaitPromotionIdle
+ekrBattle_WaitPromotionIdle: @ 0x0804B82C
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_08068220
+	bl EkrClasschgFinished
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
 	bne _0804B848
-	bl sub_08068238
+	bl EndEkrClasschg
 	ldr r0, _0804B850 @ =0x0203E0D4
 	strh r4, [r0]
-	ldr r0, _0804B854 @ =sub_0804BF14
+	ldr r0, _0804B854 @ =EkrBattleExecEkrLvup
 	str r0, [r5, #0xc]
 _0804B848:
 	pop {r4, r5}
@@ -7696,7 +7696,7 @@ _0804B848:
 	bx r0
 	.align 2, 0
 _0804B850: .4byte 0x0203E0D4
-_0804B854: .4byte sub_0804BF14
+_0804B854: .4byte EkrBattleExecEkrLvup
 
 	thumb_func_start sub_0804B858
 sub_0804B858: @ 0x0804B858
@@ -7737,7 +7737,7 @@ _0804B890:
 	adds r1, r1, r0
 	cmp r1, #2
 	bne _0804B93E
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #0
 	beq _0804B93C
 	ldr r5, _0804B8DC @ =0x0203E0D4
@@ -7790,16 +7790,16 @@ _0804B8FE:
 	b _0804B8F6
 _0804B910:
 	bl ArenaContinueBattle
-	bl sub_08052C9C
-	bl sub_08006508
-	bl sub_08054024
-	bl sub_08054248
+	bl ParseBattleHitToBanimCmd
+	bl AnimClearAll
+	bl UpdateBanimFrame
+	bl InitMainAnims
 	strh r4, [r6, #0x2c]
-	ldr r0, _0804B92C @ =sub_0804B758
+	ldr r0, _0804B92C @ =ekrBattleTriggerNewRoundStart
 	str r0, [r6, #0xc]
 	b _0804B93E
 	.align 2, 0
-_0804B92C: .4byte sub_0804B758
+_0804B92C: .4byte ekrBattleTriggerNewRoundStart
 _0804B930:
 	ldr r0, _0804B94C @ =0x0201FAF8
 	ldr r1, [r0]
@@ -7812,7 +7812,7 @@ _0804B93C:
 _0804B93E:
 	cmp r4, #1
 	bne _0804B946
-	ldr r0, _0804B950 @ =sub_0804B954
+	ldr r0, _0804B950 @ =ekrBattleOnBattleEnd
 	str r0, [r6, #0xc]
 _0804B946:
 	pop {r4, r5, r6}
@@ -7820,22 +7820,22 @@ _0804B946:
 	bx r0
 	.align 2, 0
 _0804B94C: .4byte 0x0201FAF8
-_0804B950: .4byte sub_0804B954
+_0804B950: .4byte ekrBattleOnBattleEnd
 
-	thumb_func_start sub_0804B954
-sub_0804B954: @ 0x0804B954
+	thumb_func_start ekrBattleOnBattleEnd
+ekrBattleOnBattleEnd: @ 0x0804B954
 	adds r2, r0, #0
 	adds r2, #0x29
 	movs r1, #0
 	strb r1, [r2]
-	ldr r1, _0804B964 @ =sub_0804B968
+	ldr r1, _0804B964 @ =ekrBattle_8050600
 	str r1, [r0, #0xc]
 	bx lr
 	.align 2, 0
-_0804B964: .4byte sub_0804B968
+_0804B964: .4byte ekrBattle_8050600
 
-	thumb_func_start sub_0804B968
-sub_0804B968: @ 0x0804B968
+	thumb_func_start ekrBattle_8050600
+ekrBattle_8050600: @ 0x0804B968
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r0, _0804B9D4 @ =0x02017728
@@ -7852,11 +7852,11 @@ sub_0804B968: @ 0x0804B968
 	cmp r6, #1
 	bne _0804B9CE
 	strh r4, [r5, #0x2c]
-	ldr r0, _0804B9DC @ =sub_0804B9EC
+	ldr r0, _0804B9DC @ =ekrBattle_WaitForPostBattleAct
 	str r0, [r5, #0xc]
 	ldr r4, _0804B9E0 @ =0x02000000
 	ldr r0, [r4]
-	bl sub_08064C5C
+	bl CheckEfxDragonDeadFallHead
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0804B9CE
@@ -7885,7 +7885,7 @@ _0804B9B8:
 	ldr r0, [r0]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0804B9CE:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -7893,13 +7893,13 @@ _0804B9CE:
 	.align 2, 0
 _0804B9D4: .4byte 0x02017728
 _0804B9D8: .4byte 0x02017738
-_0804B9DC: .4byte sub_0804B9EC
+_0804B9DC: .4byte ekrBattle_WaitForPostBattleAct
 _0804B9E0: .4byte 0x02000000
 _0804B9E4: .4byte 0x0203E0D4
 _0804B9E8: .4byte 0x02017744
 
-	thumb_func_start sub_0804B9EC
-sub_0804B9EC: @ 0x0804B9EC
+	thumb_func_start ekrBattle_WaitForPostBattleAct
+ekrBattle_WaitForPostBattleAct: @ 0x0804B9EC
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -7909,7 +7909,7 @@ sub_0804B9EC: @ 0x0804B9EC
 	asrs r0, r0, #0x10
 	cmp r0, #0x1d
 	ble _0804BA24
-	bl sub_0804B1A0
+	bl GetBanimLinkArenaFlag
 	cmp r0, #1
 	beq _0804BA20
 	ldr r0, _0804BA18 @ =0x0203E0D4
@@ -7919,13 +7919,13 @@ sub_0804B9EC: @ 0x0804B9EC
 	ldrsh r0, [r0, r2]
 	cmn r1, r0
 	beq _0804BA20
-	ldr r0, _0804BA1C @ =sub_0804BA30
+	ldr r0, _0804BA1C @ =ekrBattleExecExpGain
 	b _0804BA22
 	.align 2, 0
 _0804BA18: .4byte 0x0203E0D4
-_0804BA1C: .4byte sub_0804BA30
+_0804BA1C: .4byte ekrBattleExecExpGain
 _0804BA20:
-	ldr r0, _0804BA2C @ =sub_0804BF70
+	ldr r0, _0804BA2C @ =EkrBattleExecPopup
 _0804BA22:
 	str r0, [r4, #0xc]
 _0804BA24:
@@ -7933,10 +7933,10 @@ _0804BA24:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804BA2C: .4byte sub_0804BF70
+_0804BA2C: .4byte EkrBattleExecPopup
 
-	thumb_func_start sub_0804BA30
-sub_0804BA30: @ 0x0804BA30
+	thumb_func_start ekrBattleExecExpGain
+ekrBattleExecExpGain: @ 0x0804BA30
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -8013,7 +8013,7 @@ sub_0804BA30: @ 0x0804BA30
 	ldr r1, _0804BB48 @ =0x06002000
 	movs r2, #0xc0
 	lsls r2, r2, #2
-	bl sub_08003078
+	bl RegisterDataMove
 	ldr r0, _0804BB4C @ =0x081D9F50
 	ldr r1, _0804BB50 @ =0x020238AC
 	movs r2, #1
@@ -8022,7 +8022,7 @@ sub_0804BA30: @ 0x0804BA30
 	str r2, [sp, #4]
 	movs r2, #0x12
 	movs r3, #3
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	ldr r0, _0804BB54 @ =0x081D9FBC
 	ldr r1, _0804BB58 @ =0x02022880
 	movs r2, #8
@@ -8052,7 +8052,7 @@ sub_0804BA30: @ 0x0804BA30
 	orrs r0, r1
 	strb r0, [r7, #0x18]
 	movs r0, #1
-	bl sub_0804C48C
+	bl EkrGauge_0804CC68
 	ldr r0, _0804BB5C @ =0x0203E0D4
 	movs r2, #0
 	ldrsh r0, [r0, r2]
@@ -8095,7 +8095,7 @@ _0804BB6A:
 _0804BB88:
 	ldr r0, _0804BC04 @ =0x02019484
 	adds r1, r6, #0
-	bl sub_08066D78
+	bl EkrModifyBarfx
 	lsls r5, r5, #5
 	mov r8, r5
 	lsls r4, r4, #5
@@ -8135,7 +8135,7 @@ _0804BBA0:
 	movs r2, #0xf0
 	lsls r2, r2, #1
 	mov r0, sl
-	bl sub_08003078
+	bl RegisterDataMove
 	movs r0, #0
 	ldr r3, [sp, #8]
 	strh r0, [r3, #0x2c]
@@ -8242,11 +8242,11 @@ _0804BCA4:
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r4, #0
-	bl sub_080675C8
+	bl EfxPlaySE
 	adds r0, r4, #0
 	movs r1, #0x78
 	movs r2, #0
-	bl sub_080676E8
+	bl M4aPlayWithPostionCtrl
 _0804BCC0:
 	pop {r4}
 	pop {r0}
@@ -8288,7 +8288,7 @@ sub_0804BCD0: @ 0x0804BCD0
 _0804BD0C:
 	mov r0, r8
 	adds r1, r5, #0
-	bl sub_08066D78
+	bl EkrModifyBarfx
 	lsls r4, r4, #5
 	mov sb, r4
 	lsls r6, r6, #5
@@ -8330,7 +8330,7 @@ _0804BD26:
 	movs r2, #0xf0
 	lsls r2, r2, #1
 	mov r0, sl
-	bl sub_08003078
+	bl RegisterDataMove
 	ldrh r0, [r7, #0x2c]
 	adds r0, #1
 	strh r0, [r7, #0x2c]
@@ -8369,7 +8369,7 @@ sub_0804BDAC: @ 0x0804BDAC
 	bne _0804BDC0
 	movs r0, #0xe5
 	lsls r0, r0, #2
-	bl sub_0806767C
+	bl DoM4aSongNumStop
 _0804BDC0:
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -8401,11 +8401,11 @@ sub_0804BDE0: @ 0x0804BDE0
 	ble _0804BE00
 	movs r0, #0
 	strh r0, [r1, #0x2c]
-	ldr r0, _0804BDFC @ =sub_0804BE2C
+	ldr r0, _0804BDFC @ =EkrBattleLvupHanlder
 	str r0, [r1, #0xc]
 	b _0804BE26
 	.align 2, 0
-_0804BDFC: .4byte sub_0804BE2C
+_0804BDFC: .4byte EkrBattleLvupHanlder
 _0804BE00:
 	ldr r3, _0804BE28 @ =0x03002870
 	adds r1, r3, #0
@@ -8431,8 +8431,8 @@ _0804BE26:
 	.align 2, 0
 _0804BE28: .4byte 0x03002870
 
-	thumb_func_start sub_0804BE2C
-sub_0804BE2C: @ 0x0804BE2C
+	thumb_func_start EkrBattleLvupHanlder
+EkrBattleLvupHanlder: @ 0x0804BE2C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -8466,15 +8466,15 @@ _0804BE66:
 	adds r1, r1, r0
 	cmp r1, #0x63
 	ble _0804BE70
-	bl sub_0804C0B4
+	bl NewEkrLvlupFan
 _0804BE70:
 	movs r1, #0x2c
 	ldrsh r0, [r4, r1]
 	cmp r0, #0x28
 	ble _0804BF08
-	bl sub_08050018
+	bl SpellFx_ClearBG1
 	movs r0, #0
-	bl sub_0804C48C
+	bl EkrGauge_0804CC68
 	ldr r3, _0804BEE0 @ =0x03002870
 	movs r1, #4
 	rsbs r1, r1, #0
@@ -8534,13 +8534,13 @@ _0804BEF2:
 	adds r1, r1, r0
 	cmp r1, #0x63
 	ble _0804BF04
-	ldr r0, _0804BF00 @ =sub_0804BF14
+	ldr r0, _0804BF00 @ =EkrBattleExecEkrLvup
 	b _0804BF06
 	.align 2, 0
 _0804BEFC: .4byte 0x0203E0D0
-_0804BF00: .4byte sub_0804BF14
+_0804BF00: .4byte EkrBattleExecEkrLvup
 _0804BF04:
-	ldr r0, _0804BF10 @ =sub_0804BF70
+	ldr r0, _0804BF10 @ =EkrBattleExecPopup
 _0804BF06:
 	str r0, [r4, #0xc]
 _0804BF08:
@@ -8548,10 +8548,10 @@ _0804BF08:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804BF10: .4byte sub_0804BF70
+_0804BF10: .4byte EkrBattleExecPopup
 
-	thumb_func_start sub_0804BF14
-sub_0804BF14: @ 0x0804BF14
+	thumb_func_start EkrBattleExecEkrLvup
+EkrBattleExecEkrLvup: @ 0x0804BF14
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0804BF28 @ =0x0203E0D4
@@ -8569,85 +8569,85 @@ _0804BF30:
 	ldr r0, _0804BF44 @ =0x02000000
 	ldr r0, [r0, #8]
 _0804BF34:
-	bl sub_08068F90
-	ldr r0, _0804BF48 @ =sub_0804BF4C
+	bl NewEkrLevelup
+	ldr r0, _0804BF48 @ =EkrBattleWaitLvup
 	str r0, [r4, #0xc]
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0804BF44: .4byte 0x02000000
-_0804BF48: .4byte sub_0804BF4C
+_0804BF48: .4byte EkrBattleWaitLvup
 
-	thumb_func_start sub_0804BF4C
-sub_0804BF4C: @ 0x0804BF4C
+	thumb_func_start EkrBattleWaitLvup
+EkrBattleWaitLvup: @ 0x0804BF4C
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08068AFC
+	bl CheckEkrLvupDone
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _0804BF64
-	bl sub_08068B14
-	ldr r0, _0804BF6C @ =sub_0804BF70
+	bl EndEkrLevelUp
+	ldr r0, _0804BF6C @ =EkrBattleExecPopup
 	str r0, [r4, #0xc]
 _0804BF64:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804BF6C: .4byte sub_0804BF70
+_0804BF6C: .4byte EkrBattleExecPopup
 
-	thumb_func_start sub_0804BF70
-sub_0804BF70: @ 0x0804BF70
+	thumb_func_start EkrBattleExecPopup
+EkrBattleExecPopup: @ 0x0804BF70
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0806B40C
-	ldr r0, _0804BF84 @ =sub_0804BF88
+	bl NewEkrPopup
+	ldr r0, _0804BF84 @ =EkrBattleWaitPopup
 	str r0, [r4, #0xc]
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804BF84: .4byte sub_0804BF88
+_0804BF84: .4byte EkrBattleWaitPopup
 
-	thumb_func_start sub_0804BF88
-sub_0804BF88: @ 0x0804BF88
+	thumb_func_start EkrBattleWaitPopup
+EkrBattleWaitPopup: @ 0x0804BF88
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0806B068
+	bl CheckEkrPopupDone
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _0804BFA0
-	bl sub_0806B07C
-	ldr r0, _0804BFA8 @ =sub_0804BFAC
+	bl EndEkrPopup
+	ldr r0, _0804BFA8 @ =EkrBattlePrepareEnding
 	str r0, [r4, #0xc]
 _0804BFA0:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804BFA8: .4byte sub_0804BFAC
+_0804BFA8: .4byte EkrBattlePrepareEnding
 
-	thumb_func_start sub_0804BFAC
-sub_0804BFAC: @ 0x0804BFAC
+	thumb_func_start EkrBattlePrepareEnding
+EkrBattlePrepareEnding: @ 0x0804BFAC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _0804BFDC @ =0x02000000
 	ldr r0, [r4]
-	bl sub_0804F794
+	bl EndEfxStatusUnits
 	ldr r0, [r4, #8]
-	bl sub_0804F794
-	bl sub_0804FA98
-	bl sub_0804F46C
+	bl EndEfxStatusUnits
+	bl EndProcEfxWeaponIcon
+	bl EndEfxHPBarColorChange
 	ldr r0, _0804BFE0 @ =0x0203E00C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	str r0, [r5, #0x44]
 	movs r0, #0
 	str r0, [r5, #0x48]
-	ldr r0, _0804BFE4 @ =sub_0804BFE8
+	ldr r0, _0804BFE4 @ =EkrBattleStartDragonEnding
 	str r0, [r5, #0xc]
 	pop {r4, r5}
 	pop {r0}
@@ -8655,20 +8655,20 @@ sub_0804BFAC: @ 0x0804BFAC
 	.align 2, 0
 _0804BFDC: .4byte 0x02000000
 _0804BFE0: .4byte 0x0203E00C
-_0804BFE4: .4byte sub_0804BFE8
+_0804BFE4: .4byte EkrBattleStartDragonEnding
 
-	thumb_func_start sub_0804BFE8
-sub_0804BFE8: @ 0x0804BFE8
+	thumb_func_start EkrBattleStartDragonEnding
+EkrBattleStartDragonEnding: @ 0x0804BFE8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x48]
 	cmp r0, #2
 	bne _0804BFFC
-	ldr r0, _0804BFF8 @ =sub_0804C078
+	ldr r0, _0804BFF8 @ =EkrBattlePostDragonEnding
 	str r0, [r4, #0xc]
 	b _0804C04A
 	.align 2, 0
-_0804BFF8: .4byte sub_0804C078
+_0804BFF8: .4byte EkrBattlePostDragonEnding
 _0804BFFC:
 	ldr r0, [r4, #0x44]
 	cmp r0, #0
@@ -8676,29 +8676,29 @@ _0804BFFC:
 	ldr r0, _0804C020 @ =0x02000000
 	ldr r0, [r0]
 	str r0, [r4, #0x5c]
-	bl sub_08064AB0
+	bl GetEkrDragonStatusType
 	cmp r0, #0
 	beq _0804C01A
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C40
-	ldr r0, _0804C024 @ =sub_0804C058
+	bl SetEkrDragonExit
+	ldr r0, _0804C024 @ =EkrBattleWaitDragonEnding
 	str r0, [r4, #0xc]
 _0804C01A:
 	movs r0, #1
 	b _0804C042
 	.align 2, 0
 _0804C020: .4byte 0x02000000
-_0804C024: .4byte sub_0804C058
+_0804C024: .4byte EkrBattleWaitDragonEnding
 _0804C028:
 	ldr r0, _0804C050 @ =0x02000000
 	ldr r0, [r0, #8]
 	str r0, [r4, #0x5c]
-	bl sub_08064AB0
+	bl GetEkrDragonStatusType
 	cmp r0, #0
 	beq _0804C040
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C40
-	ldr r0, _0804C054 @ =sub_0804C058
+	bl SetEkrDragonExit
+	ldr r0, _0804C054 @ =EkrBattleWaitDragonEnding
 	str r0, [r4, #0xc]
 _0804C040:
 	movs r0, #0
@@ -8713,29 +8713,29 @@ _0804C04A:
 	bx r0
 	.align 2, 0
 _0804C050: .4byte 0x02000000
-_0804C054: .4byte sub_0804C058
+_0804C054: .4byte EkrBattleWaitDragonEnding
 
-	thumb_func_start sub_0804C058
-sub_0804C058: @ 0x0804C058
+	thumb_func_start EkrBattleWaitDragonEnding
+EkrBattleWaitDragonEnding: @ 0x0804C058
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08064BF4
+	bl CheckEkrDragonEndingDone
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _0804C06E
-	ldr r0, _0804C074 @ =sub_0804BFE8
+	ldr r0, _0804C074 @ =EkrBattleStartDragonEnding
 	str r0, [r4, #0xc]
 _0804C06E:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_0804C074: .4byte sub_0804BFE8
+_0804C074: .4byte EkrBattleStartDragonEnding
 
-	thumb_func_start sub_0804C078
-sub_0804C078: @ 0x0804C078
+	thumb_func_start EkrBattlePostDragonEnding
+EkrBattlePostDragonEnding: @ 0x0804C078
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _0804C0A4 @ =0x02017724
@@ -8749,10 +8749,10 @@ sub_0804C078: @ 0x0804C078
 	movs r0, #2
 	movs r1, #7
 	movs r2, #0
-	bl sub_08051B80
-	bl sub_080680DC
+	bl NewEkrNamewinAppear
+	bl EkrRestoreBGM
 _0804C09A:
-	ldr r0, _0804C0AC @ =sub_0804C0B0
+	ldr r0, _0804C0AC @ =EkrBattlePostEndDelay
 	str r0, [r4, #0xc]
 	pop {r4}
 	pop {r0}
@@ -8760,15 +8760,15 @@ _0804C09A:
 	.align 2, 0
 _0804C0A4: .4byte 0x02017724
 _0804C0A8: .4byte 0x0203E008
-_0804C0AC: .4byte sub_0804C0B0
+_0804C0AC: .4byte EkrBattlePostEndDelay
 
-	thumb_func_start sub_0804C0B0
-sub_0804C0B0: @ 0x0804C0B0
+	thumb_func_start EkrBattlePostEndDelay
+EkrBattlePostEndDelay: @ 0x0804C0B0
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0804C0B4
-sub_0804C0B4: @ 0x0804C0B4
+	thumb_func_start NewEkrLvlupFan
+NewEkrLvlupFan: @ 0x0804C0B4
 	push {lr}
 	ldr r0, _0804C0CC @ =0x08B9A9E4
 	movs r1, #3
@@ -8782,8 +8782,8 @@ sub_0804C0B4: @ 0x0804C0B4
 	.align 2, 0
 _0804C0CC: .4byte 0x08B9A9E4
 
-	thumb_func_start sub_0804C0D0
-sub_0804C0D0: @ 0x0804C0D0
+	thumb_func_start EkrLvupFanMain
+EkrLvupFanMain: @ 0x0804C0D0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -8797,11 +8797,11 @@ sub_0804C0D0: @ 0x0804C0D0
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r4, #0
-	bl sub_080675C8
+	bl EfxPlaySE
 	adds r0, r4, #0
 	movs r1, #0x78
 	movs r2, #0
-	bl sub_080676E8
+	bl M4aPlayWithPostionCtrl
 	b _0804C112
 	.align 2, 0
 _0804C0FC: .4byte 0x0000037B
@@ -8916,8 +8916,8 @@ _0804C1CA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804C1D0
-sub_0804C1D0: @ 0x0804C1D0
+	thumb_func_start NewEkrGauge
+NewEkrGauge: @ 0x0804C1D0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -8929,16 +8929,16 @@ sub_0804C1D0: @ 0x0804C1D0
 	bl SpawnProc
 	str r0, [r4]
 	movs r0, #0
-	bl sub_0804C48C
-	bl sub_0804C44C
-	bl sub_0804C4F4
-	bl sub_0804C4D4
+	bl EkrGauge_0804CC68
+	bl EkrGauge_0804CC28
+	bl DisableEkrGauge
+	bl EkrGauge_ClrInitFlag
 	ldr r1, _0804C224 @ =0x02000038
 	movs r2, #0
 	ldrsh r0, [r1, r2]
 	movs r2, #2
 	ldrsh r1, [r1, r2]
-	bl sub_0804C49C
+	bl EkrGauge_0804CC78
 	ldr r0, _0804C228 @ =0x0203E0B8
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -9006,10 +9006,10 @@ _0804C28C:
 	strh r0, [r1, #2]
 	ldr r0, _0804C3F0 @ =0x081D9020
 	ldr r1, _0804C3F4 @ =0x06013800
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	ldr r0, _0804C3F8 @ =0x081D90C0
 	ldr r1, _0804C3FC @ =0x06013C00
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	ldr r6, _0804C3DC @ =0x0203E020
 	movs r1, #0
 	ldrsh r0, [r6, r1]
@@ -9102,18 +9102,18 @@ _0804C342:
 	lsls r4, r4, #1
 	adds r0, r7, #0
 	adds r2, r4, #0
-	bl sub_08003078
+	bl RegisterDataMove
 	adds r0, r7, r4
 	ldr r1, _0804C428 @ =0x06013E00
 	adds r2, r4, #0
-	bl sub_08003078
+	bl RegisterDataMove
 	bl InitIcons
 	movs r0, #0
 	movs r1, #0x1d
-	bl sub_08004D44
+	bl ApplyIconPalette
 	movs r0, #0
 	movs r1, #0x1e
-	bl sub_08004D44
+	bl ApplyIconPalette
 	ldr r0, _0804C42C @ =0x0203E094
 	ldr r0, [r0]
 	adds r0, #0x4a
@@ -9121,7 +9121,7 @@ _0804C342:
 	bl GetItemIcon
 	movs r1, #0xee
 	lsls r1, r1, #1
-	bl sub_08004E98
+	bl PutIconObjImg
 	ldr r0, _0804C430 @ =0x0203E098
 	ldr r0, [r0]
 	adds r0, #0x4a
@@ -9129,7 +9129,7 @@ _0804C342:
 	bl GetItemIcon
 	movs r1, #0xef
 	lsls r1, r1, #1
-	bl sub_08004E98
+	bl PutIconObjImg
 	ldr r0, _0804C434 @ =0x0819431C
 	movs r1, #0x80
 	lsls r1, r1, #2
@@ -9167,8 +9167,8 @@ _0804C42C: .4byte 0x0203E094
 _0804C430: .4byte 0x0203E098
 _0804C434: .4byte 0x0819431C
 
-	thumb_func_start sub_0804C438
-sub_0804C438: @ 0x0804C438
+	thumb_func_start EndEkrGauge
+EndEkrGauge: @ 0x0804C438
 	push {lr}
 	ldr r0, _0804C448 @ =0x02000068
 	ldr r0, [r0]
@@ -9178,8 +9178,8 @@ sub_0804C438: @ 0x0804C438
 	.align 2, 0
 _0804C448: .4byte 0x02000068
 
-	thumb_func_start sub_0804C44C
-sub_0804C44C: @ 0x0804C44C
+	thumb_func_start EkrGauge_0804CC28
+EkrGauge_0804CC28: @ 0x0804C44C
 	ldr r0, _0804C458 @ =0x02000068
 	ldr r1, [r0]
 	movs r0, #0
@@ -9189,8 +9189,8 @@ sub_0804C44C: @ 0x0804C44C
 	.align 2, 0
 _0804C458: .4byte 0x02000068
 
-	thumb_func_start sub_0804C45C
-sub_0804C45C: @ 0x0804C45C
+	thumb_func_start EkrGauge_0804CC38
+EkrGauge_0804CC38: @ 0x0804C45C
 	ldr r0, _0804C468 @ =0x02000068
 	ldr r1, [r0]
 	movs r0, #1
@@ -9200,8 +9200,8 @@ sub_0804C45C: @ 0x0804C45C
 	.align 2, 0
 _0804C468: .4byte 0x02000068
 
-	thumb_func_start sub_0804C46C
-sub_0804C46C: @ 0x0804C46C
+	thumb_func_start EkrGauge_0804CC48
+EkrGauge_0804CC48: @ 0x0804C46C
 	ldr r0, _0804C478 @ =0x02000068
 	ldr r1, [r0]
 	movs r0, #1
@@ -9210,8 +9210,8 @@ sub_0804C46C: @ 0x0804C46C
 	.align 2, 0
 _0804C478: .4byte 0x02000068
 
-	thumb_func_start sub_0804C47C
-sub_0804C47C: @ 0x0804C47C
+	thumb_func_start EkrGauge_0804CC58
+EkrGauge_0804CC58: @ 0x0804C47C
 	ldr r0, _0804C488 @ =0x02000068
 	ldr r1, [r0]
 	movs r0, #1
@@ -9220,8 +9220,8 @@ sub_0804C47C: @ 0x0804C47C
 	.align 2, 0
 _0804C488: .4byte 0x02000068
 
-	thumb_func_start sub_0804C48C
-sub_0804C48C: @ 0x0804C48C
+	thumb_func_start EkrGauge_0804CC68
+EkrGauge_0804CC68: @ 0x0804C48C
 	lsls r0, r0, #0x10
 	ldr r1, _0804C498 @ =0x02000068
 	ldr r1, [r1]
@@ -9231,8 +9231,8 @@ sub_0804C48C: @ 0x0804C48C
 	.align 2, 0
 _0804C498: .4byte 0x02000068
 
-	thumb_func_start sub_0804C49C
-sub_0804C49C: @ 0x0804C49C
+	thumb_func_start EkrGauge_0804CC78
+EkrGauge_0804CC78: @ 0x0804C49C
 	ldr r2, _0804C4AC @ =0x02000068
 	ldr r2, [r2]
 	movs r3, #0
@@ -9244,8 +9244,8 @@ sub_0804C49C: @ 0x0804C49C
 	.align 2, 0
 _0804C4AC: .4byte 0x02000068
 
-	thumb_func_start sub_0804C4B0
-sub_0804C4B0: @ 0x0804C4B0
+	thumb_func_start EkrGauge_0804CC8C
+EkrGauge_0804CC8C: @ 0x0804C4B0
 	ldr r2, _0804C4C0 @ =0x02000068
 	ldr r2, [r2]
 	strh r0, [r2, #0x32]
@@ -9257,8 +9257,8 @@ sub_0804C4B0: @ 0x0804C4B0
 	.align 2, 0
 _0804C4C0: .4byte 0x02000068
 
-	thumb_func_start sub_0804C4C4
-sub_0804C4C4: @ 0x0804C4C4
+	thumb_func_start EkrGauge_SetInitFlag
+EkrGauge_SetInitFlag: @ 0x0804C4C4
 	ldr r0, _0804C4D0 @ =0x02000068
 	ldr r0, [r0]
 	adds r0, #0x29
@@ -9268,8 +9268,8 @@ sub_0804C4C4: @ 0x0804C4C4
 	.align 2, 0
 _0804C4D0: .4byte 0x02000068
 
-	thumb_func_start sub_0804C4D4
-sub_0804C4D4: @ 0x0804C4D4
+	thumb_func_start EkrGauge_ClrInitFlag
+EkrGauge_ClrInitFlag: @ 0x0804C4D4
 	ldr r0, _0804C4E0 @ =0x02000068
 	ldr r0, [r0]
 	adds r0, #0x29
@@ -9279,8 +9279,8 @@ sub_0804C4D4: @ 0x0804C4D4
 	.align 2, 0
 _0804C4E0: .4byte 0x02000068
 
-	thumb_func_start sub_0804C4E4
-sub_0804C4E4: @ 0x0804C4E4
+	thumb_func_start EnableEkrGauge
+EnableEkrGauge: @ 0x0804C4E4
 	ldr r0, _0804C4F0 @ =0x02000068
 	ldr r0, [r0]
 	adds r0, #0x2a
@@ -9290,8 +9290,8 @@ sub_0804C4E4: @ 0x0804C4E4
 	.align 2, 0
 _0804C4F0: .4byte 0x02000068
 
-	thumb_func_start sub_0804C4F4
-sub_0804C4F4: @ 0x0804C4F4
+	thumb_func_start DisableEkrGauge
+DisableEkrGauge: @ 0x0804C4F4
 	ldr r0, _0804C500 @ =0x02000068
 	ldr r0, [r0]
 	adds r0, #0x2a
@@ -9424,7 +9424,7 @@ _0804C5D2:
 	movs r1, #0x1e
 	movs r2, #8
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 	mov r3, sb
 	ldr r0, [r3, #0x4c]
 	cmp r0, #0
@@ -9446,7 +9446,7 @@ _0804C5D2:
 	adds r1, r5, #0
 	movs r2, #0xf
 	adds r3, r4, #0
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #0x80
 	str r0, [sp]
 	adds r0, r5, #0
@@ -9477,7 +9477,7 @@ _0804C624:
 	adds r1, r5, #0
 	movs r2, #0x10
 	adds r3, r4, #0
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #0x80
 	str r0, [sp]
 	adds r0, r5, #0
@@ -9703,12 +9703,12 @@ _0804C7E4:
 	ldr r1, _0804C864 @ =0x060139C0
 	adds r0, r7, #0
 	movs r2, #0x40
-	bl sub_08003078
+	bl RegisterDataMove
 	adds r0, r7, #0
 	adds r0, #0x40
 	ldr r1, _0804C868 @ =0x06013DC0
 	movs r2, #0x40
-	bl sub_08003078
+	bl RegisterDataMove
 _0804C820:
 	add r0, sp, #8
 	movs r4, #0
@@ -9728,7 +9728,7 @@ _0804C820:
 	strh r2, [r0, #4]
 	strh r4, [r0, #0xc]
 	movs r0, #0
-	bl sub_0804D594
+	bl EkrEfxIsUnitHittedNow
 	lsls r0, r0, #0x10
 	asrs r3, r0, #0x10
 	cmp r3, #1
@@ -9765,14 +9765,14 @@ _0804C874:
 	lsls r2, r2, #1
 	str r3, [sp]
 	movs r3, #0x80
-	bl sub_08067444
+	bl BanimUpdateSpriteRotScale
 _0804C89E:
 	mov r3, sb
 	ldr r0, [r3, #0x4c]
 	cmp r0, #0
 	bne _0804C8AC
 	add r0, sp, #8
-	bl sub_0800667C
+	bl AnimDisplay
 _0804C8AC:
 	movs r4, #0
 	str r4, [sp, #0x24]
@@ -9793,7 +9793,7 @@ _0804C8AC:
 	strh r2, [r0, #4]
 	strh r4, [r0, #0xc]
 	movs r0, #1
-	bl sub_0804D594
+	bl EkrEfxIsUnitHittedNow
 	lsls r0, r0, #0x10
 	asrs r3, r0, #0x10
 	cmp r3, #1
@@ -9825,14 +9825,14 @@ _0804C8F0:
 	lsls r2, r2, #1
 	str r3, [sp]
 	movs r3, #0x80
-	bl sub_08067444
+	bl BanimUpdateSpriteRotScale
 _0804C91A:
 	mov r3, sb
 	ldr r0, [r3, #0x50]
 	cmp r0, #0
 	bne _0804C928
 	add r0, sp, #8
-	bl sub_0800667C
+	bl AnimDisplay
 _0804C928:
 	ldr r4, [sp, #0xf8]
 	ldr r0, _0804CA18 @ =0xFFD80000
@@ -9932,7 +9932,7 @@ _0804C9C2:
 	add r1, sp, #0xe8
 	ldrh r1, [r1]
 	strh r1, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804C9E6:
 	lsls r1, r7, #0x10
 	asrs r1, r1, #0x10
@@ -9979,7 +9979,7 @@ _0804CA30:
 	strh r0, [r2, #8]
 	adds r0, r2, #0
 	strh r3, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CA4C:
 	ldr r2, [sp, #0x100]
 	ldr r3, _0804CB44 @ =0xFFD80000
@@ -10085,7 +10085,7 @@ _0804CAF2:
 	add r1, sp, #0xf0
 	ldrh r1, [r1]
 	strh r1, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CB16:
 	lsls r1, r7, #0x10
 	asrs r1, r1, #0x10
@@ -10131,7 +10131,7 @@ _0804CB5C:
 	strh r0, [r2, #8]
 	adds r0, r2, #0
 	strh r3, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CB78:
 	ldr r2, [sp, #0xd8]
 	cmp r2, #1
@@ -10140,7 +10140,7 @@ _0804CB78:
 	ldr r1, _0804CD34 @ =0x06013000
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl sub_08003078
+	bl RegisterDataMove
 _0804CB8A:
 	mov r3, sb
 	ldr r4, [r3, #0x4c]
@@ -10165,7 +10165,7 @@ _0804CB8A:
 	strh r0, [r1, #4]
 	adds r0, r1, #0
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 	str r4, [sp, #0x24]
 	ldr r0, _0804CD40 @ =0x08B9AA8C
 	str r0, [sp, #0x44]
@@ -10186,7 +10186,7 @@ _0804CB8A:
 	strh r0, [r1, #4]
 	adds r0, r1, #0
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CBE8:
 	mov r0, sb
 	ldr r4, [r0, #0x50]
@@ -10212,7 +10212,7 @@ _0804CBE8:
 	strh r0, [r1, #4]
 	adds r0, r1, #0
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 	str r4, [sp, #0x24]
 	ldr r0, _0804CD4C @ =0x08B9AAC8
 	str r0, [sp, #0x44]
@@ -10233,7 +10233,7 @@ _0804CBE8:
 	strh r0, [r1, #4]
 	adds r0, r1, #0
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CC48:
 	mov r0, sb
 	ldr r4, [r0, #0x4c]
@@ -10267,7 +10267,7 @@ _0804CC48:
 	adds r0, r1, #0
 	strh r5, [r0, #4]
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CC8E:
 	ldr r0, _0804CD58 @ =0x08B9AB04
 	str r0, [sp, #0x44]
@@ -10286,7 +10286,7 @@ _0804CC8E:
 	adds r0, r1, #0
 	strh r5, [r0, #4]
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CCB4:
 	mov r0, sb
 	ldr r4, [r0, #0x50]
@@ -10320,7 +10320,7 @@ _0804CCB4:
 	adds r0, r1, #0
 	strh r5, [r0, #4]
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CCFA:
 	ldr r0, _0804CD58 @ =0x08B9AB04
 	str r0, [sp, #0x44]
@@ -10339,7 +10339,7 @@ _0804CCFA:
 	adds r0, r1, #0
 	strh r5, [r0, #4]
 	strh r4, [r0, #0xc]
-	bl sub_0800667C
+	bl AnimDisplay
 _0804CD20:
 	add sp, #0x120
 	pop {r3, r4, r5}
@@ -10364,8 +10364,8 @@ _0804CD58: .4byte 0x08B9AB04
 _0804CD5C: .4byte 0x0000D1DC
 _0804CD60: .4byte 0x0000E1DE
 
-	thumb_func_start sub_0804CD64
-sub_0804CD64: @ 0x0804CD64
+	thumb_func_start NewEkrDispUP
+NewEkrDispUP: @ 0x0804CD64
 	push {r4, lr}
 	ldr r4, _0804CD8C @ =0x0200006C
 	ldr r0, _0804CD90 @ =0x08B9ABAC
@@ -10374,10 +10374,10 @@ sub_0804CD64: @ 0x0804CD64
 	str r0, [r4]
 	movs r0, #0
 	movs r1, #0
-	bl sub_0804CDE8
-	bl sub_0804CDA8
-	bl sub_0804CE40
-	bl sub_0804CE20
+	bl EkrDispUP_SetPositionUnsync
+	bl EkrDispUP_0804D584
+	bl UnAsyncEkrDispUP
+	bl UnsyncEkrDispUP
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -10385,8 +10385,8 @@ sub_0804CD64: @ 0x0804CD64
 _0804CD8C: .4byte 0x0200006C
 _0804CD90: .4byte 0x08B9ABAC
 
-	thumb_func_start sub_0804CD94
-sub_0804CD94: @ 0x0804CD94
+	thumb_func_start EndEkrDispUP
+EndEkrDispUP: @ 0x0804CD94
 	push {lr}
 	ldr r0, _0804CDA4 @ =0x0200006C
 	ldr r0, [r0]
@@ -10396,8 +10396,8 @@ sub_0804CD94: @ 0x0804CD94
 	.align 2, 0
 _0804CDA4: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CDA8
-sub_0804CDA8: @ 0x0804CDA8
+	thumb_func_start EkrDispUP_0804D584
+EkrDispUP_0804D584: @ 0x0804CDA8
 	ldr r0, _0804CDB4 @ =0x0200006C
 	ldr r1, [r0]
 	movs r0, #0
@@ -10418,8 +10418,8 @@ sub_0804CDB8: @ 0x0804CDB8
 	.align 2, 0
 _0804CDC4: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CDC8
-sub_0804CDC8: @ 0x0804CDC8
+	thumb_func_start EkrDispUP_0804D5A4
+EkrDispUP_0804D5A4: @ 0x0804CDC8
 	ldr r0, _0804CDD4 @ =0x0200006C
 	ldr r1, [r0]
 	movs r0, #1
@@ -10428,8 +10428,8 @@ sub_0804CDC8: @ 0x0804CDC8
 	.align 2, 0
 _0804CDD4: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CDD8
-sub_0804CDD8: @ 0x0804CDD8
+	thumb_func_start EkrDispUP_0804D5B4
+EkrDispUP_0804D5B4: @ 0x0804CDD8
 	ldr r0, _0804CDE4 @ =0x0200006C
 	ldr r1, [r0]
 	movs r0, #1
@@ -10438,8 +10438,8 @@ sub_0804CDD8: @ 0x0804CDD8
 	.align 2, 0
 _0804CDE4: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CDE8
-sub_0804CDE8: @ 0x0804CDE8
+	thumb_func_start EkrDispUP_SetPositionUnsync
+EkrDispUP_SetPositionUnsync: @ 0x0804CDE8
 	ldr r2, _0804CDF8 @ =0x0200006C
 	ldr r2, [r2]
 	movs r3, #0
@@ -10451,8 +10451,8 @@ sub_0804CDE8: @ 0x0804CDE8
 	.align 2, 0
 _0804CDF8: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CDFC
-sub_0804CDFC: @ 0x0804CDFC
+	thumb_func_start EkrDispUP_SetPositionSync
+EkrDispUP_SetPositionSync: @ 0x0804CDFC
 	ldr r2, _0804CE0C @ =0x0200006C
 	ldr r2, [r2]
 	strh r0, [r2, #0x32]
@@ -10464,8 +10464,8 @@ sub_0804CDFC: @ 0x0804CDFC
 	.align 2, 0
 _0804CE0C: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CE10
-sub_0804CE10: @ 0x0804CE10
+	thumb_func_start SyncEkrDispUP
+SyncEkrDispUP: @ 0x0804CE10
 	ldr r0, _0804CE1C @ =0x0200006C
 	ldr r0, [r0]
 	adds r0, #0x29
@@ -10475,8 +10475,8 @@ sub_0804CE10: @ 0x0804CE10
 	.align 2, 0
 _0804CE1C: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CE20
-sub_0804CE20: @ 0x0804CE20
+	thumb_func_start UnsyncEkrDispUP
+UnsyncEkrDispUP: @ 0x0804CE20
 	ldr r0, _0804CE2C @ =0x0200006C
 	ldr r0, [r0]
 	adds r0, #0x29
@@ -10486,8 +10486,8 @@ sub_0804CE20: @ 0x0804CE20
 	.align 2, 0
 _0804CE2C: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CE30
-sub_0804CE30: @ 0x0804CE30
+	thumb_func_start AsyncEkrDispUP
+AsyncEkrDispUP: @ 0x0804CE30
 	ldr r0, _0804CE3C @ =0x0200006C
 	ldr r0, [r0]
 	adds r0, #0x2a
@@ -10497,8 +10497,8 @@ sub_0804CE30: @ 0x0804CE30
 	.align 2, 0
 _0804CE3C: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CE40
-sub_0804CE40: @ 0x0804CE40
+	thumb_func_start UnAsyncEkrDispUP
+UnAsyncEkrDispUP: @ 0x0804CE40
 	ldr r0, _0804CE4C @ =0x0200006C
 	ldr r0, [r0]
 	adds r0, #0x2a
@@ -10508,8 +10508,8 @@ sub_0804CE40: @ 0x0804CE40
 	.align 2, 0
 _0804CE4C: .4byte 0x0200006C
 
-	thumb_func_start sub_0804CE50
-sub_0804CE50: @ 0x0804CE50
+	thumb_func_start ekrDispUPMain
+ekrDispUPMain: @ 0x0804CE50
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -10569,7 +10569,7 @@ _0804CEAE:
 	movs r1, #0x1e
 	movs r2, #7
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 	cmp r6, #0
 	ble _0804CF3A
 	ldr r0, [r7, #0x4c]
@@ -10591,7 +10591,7 @@ _0804CEAE:
 	adds r1, r5, #0
 	movs r2, #0xf
 	adds r3, r4, #0
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #0x80
 	str r0, [sp]
 	adds r0, r5, #0
@@ -10619,7 +10619,7 @@ _0804CF00:
 	str r1, [sp, #4]
 	adds r1, r5, #0
 	adds r3, r4, #0
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #0x80
 	str r0, [sp]
 	adds r0, r5, #0
@@ -10644,8 +10644,8 @@ _0804CF50: .4byte 0x02022C60
 _0804CF54: .4byte 0x081D8C34
 _0804CF58: .4byte 0x081D8CE8
 
-	thumb_func_start sub_0804CF5C
-sub_0804CF5C: @ 0x0804CF5C
+	thumb_func_start EfxClearScreenFx
+EfxClearScreenFx: @ 0x0804CF5C
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
 	ldr r4, _0804D050 @ =0x03002870
@@ -10683,33 +10683,33 @@ sub_0804CF5C: @ 0x0804CF5C
 	bl SetBgOffset
 	movs r0, #0
 	movs r1, #0
-	bl sub_08001434
+	bl SetBgChrOffset
 	movs r0, #1
 	movs r1, #0
-	bl sub_08001434
+	bl SetBgChrOffset
 	movs r0, #2
 	movs r1, #0
-	bl sub_08001434
+	bl SetBgChrOffset
 	movs r1, #0x80
 	lsls r1, r1, #8
 	movs r0, #3
-	bl sub_08001434
+	bl SetBgChrOffset
 	movs r1, #0xc0
 	lsls r1, r1, #7
 	movs r0, #0
-	bl sub_08001478
+	bl SetBgTilemapOffset
 	movs r1, #0xd0
 	lsls r1, r1, #7
 	movs r0, #1
-	bl sub_08001478
+	bl SetBgTilemapOffset
 	movs r1, #0xe0
 	lsls r1, r1, #7
 	movs r0, #2
-	bl sub_08001478
+	bl SetBgTilemapOffset
 	movs r1, #0xf0
 	lsls r1, r1, #7
 	movs r0, #3
-	bl sub_08001478
+	bl SetBgTilemapOffset
 	movs r1, #4
 	rsbs r1, r1, #0
 	adds r0, r1, #0
@@ -10747,7 +10747,7 @@ sub_0804CF5C: @ 0x0804CF5C
 	adds r1, r6, #0
 	adds r2, r5, #0
 	bl CpuFastSet
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #0
 	bne _0804D064
 	bl sub_0804D0B8
@@ -10765,7 +10765,7 @@ _0804D064:
 	adds r2, r5, #0
 	bl CpuFastSet
 _0804D070:
-	bl sub_0804D1D4
+	bl EfxPrepareScreenFx
 	bl EnablePalSync
 	movs r0, #1
 	bl EnableBgSync
@@ -10931,8 +10931,8 @@ _0804D1C8: .4byte 0x02000044
 _0804D1CC: .4byte 0x08B9B29C
 _0804D1D0: .4byte 0x0203E00E
 
-	thumb_func_start sub_0804D1D4
-sub_0804D1D4: @ 0x0804D1D4
+	thumb_func_start EfxPrepareScreenFx
+EfxPrepareScreenFx: @ 0x0804D1D4
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	ldr r4, _0804D214 @ =0x08194674
@@ -10949,10 +10949,10 @@ sub_0804D1D4: @ 0x0804D1D4
 	movs r2, #0xa0
 	movs r3, #2
 	bl InitTextFont
-	bl sub_08005AC0
+	bl SetTextDrawNoClear
 	ldr r0, _0804D220 @ =0x081D88B4
 	ldr r1, _0804D224 @ =0x06001000
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	ldr r0, _0804D228 @ =0x0203E010
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -10988,7 +10988,7 @@ _0804D23E:
 	bl Text_SetCursor
 	ldr r0, _0804D280 @ =0x081D8ABC
 	ldr r1, _0804D284 @ =0x06001400
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl Text_DrawString
@@ -11026,7 +11026,7 @@ _0804D29E:
 	bl Text_SetCursor
 	ldr r0, _0804D2E0 @ =0x081D8B0C
 	ldr r1, _0804D2E4 @ =0x06001580
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl Text_DrawString
@@ -11064,7 +11064,7 @@ _0804D2FE:
 	bl Text_SetCursor
 	ldr r0, _0804D340 @ =0x081D8B78
 	ldr r1, _0804D344 @ =0x06001740
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl Text_DrawString
@@ -11102,7 +11102,7 @@ _0804D35E:
 	bl Text_SetCursor
 	ldr r0, _0804D41C @ =0x081D8BC8
 	ldr r1, _0804D420 @ =0x060018C0
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl Text_DrawString
@@ -11120,7 +11120,7 @@ _0804D35E:
 	adds r1, r6, #0
 	movs r2, #2
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	adds r4, #0x3e
 	movs r5, #0x80
 	str r5, [sp]
@@ -11179,8 +11179,8 @@ _0804D430: .4byte 0x081D8FA0
 _0804D434: .4byte 0x020228A0
 _0804D438: .4byte 0x02000038
 
-	thumb_func_start sub_0804D43C
-sub_0804D43C: @ 0x0804D43C
+	thumb_func_start GetBanimInitPosReal
+GetBanimInitPosReal: @ 0x0804D43C
 	push {r4, r5, lr}
 	ldr r0, _0804D454 @ =0x0203E02C
 	movs r1, #0
@@ -11219,12 +11219,12 @@ _0804D47C:
 	ldr r4, _0804D4B0 @ =0x0203E09C
 	ldrb r0, [r4]
 	ldrb r1, [r4, #1]
-	bl sub_080793F8
+	bl CheckBattleTalk
 	lsls r0, r0, #0x18
 	asrs r5, r0, #0x18
 	ldrb r0, [r4, #1]
 	ldrb r1, [r4]
-	bl sub_080793F8
+	bl CheckBattleTalk
 	lsls r0, r0, #0x18
 	asrs r1, r0, #0x18
 _0804D4A4:
@@ -11251,8 +11251,8 @@ _0804D4C6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0804D4CC
-sub_0804D4CC: @ 0x0804D4CC
+	thumb_func_start EkrEfxStatusClear
+EkrEfxStatusClear: @ 0x0804D4CC
 	ldr r1, _0804D528 @ =0x02017728
 	movs r0, #0
 	str r0, [r1]
@@ -11319,8 +11319,8 @@ _0804D568: .4byte 0x0201776C
 _0804D56C: .4byte 0x02017778
 _0804D570: .4byte 0x0201777C
 
-	thumb_func_start sub_0804D574
-sub_0804D574: @ 0x0804D574
+	thumb_func_start CheckEkrHitDone
+CheckEkrHitDone: @ 0x0804D574
 	ldr r0, _0804D588 @ =0x02017728
 	ldr r0, [r0]
 	cmp r0, #0
@@ -11339,8 +11339,8 @@ _0804D590:
 _0804D592:
 	bx lr
 
-	thumb_func_start sub_0804D594
-sub_0804D594: @ 0x0804D594
+	thumb_func_start EkrEfxIsUnitHittedNow
+EkrEfxIsUnitHittedNow: @ 0x0804D594
 	ldr r1, _0804D5A0 @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11350,8 +11350,8 @@ sub_0804D594: @ 0x0804D594
 	.align 2, 0
 _0804D5A0: .4byte 0x02017780
 
-	thumb_func_start sub_0804D5A4
-sub_0804D5A4: @ 0x0804D5A4
+	thumb_func_start NewEfxHPBar
+NewEfxHPBar: @ 0x0804D5A4
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r1, _0804D5D4 @ =0x02017728
@@ -11366,7 +11366,7 @@ sub_0804D5A4: @ 0x0804D5A4
 	adds r6, r0, #0
 	str r4, [r6, #0x64]
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804D5E0
 	ldr r0, _0804D5DC @ =0x02000000
@@ -11387,7 +11387,7 @@ _0804D5E8:
 	str r0, [r6, #0x60]
 	ldr r4, _0804D640 @ =0x0203E05E
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
@@ -11396,21 +11396,21 @@ _0804D5E8:
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r5, r5, #1
 	adds r5, r5, r0
 	adds r0, r5, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	str r0, [r6, #0x4c]
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0xf
 	adds r4, r4, r0
 	adds r0, r4, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	str r0, [r6, #0x50]
@@ -11434,7 +11434,7 @@ _0804D646:
 	str r1, [r6, #0x54]
 	str r1, [r6, #0x58]
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804D66C @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11453,12 +11453,12 @@ sub_0804D670: @ 0x0804D670
 	adds r5, r0, #0
 	ldr r4, _0804D714 @ =0x02000000
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r4
 	ldr r6, [r0]
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -11480,7 +11480,7 @@ sub_0804D670: @ 0x0804D670
 	adds r0, r1, r0
 	strh r0, [r5, #0x2e]
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804D718 @ =0x0203E0B8
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11504,7 +11504,7 @@ _0804D6D2:
 	bne _0804D774
 	ldr r4, _0804D71C @ =0x0203E05E
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	ldrh r1, [r0]
@@ -11512,7 +11512,7 @@ _0804D6D2:
 	movs r4, #0
 	strh r1, [r0]
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804D720 @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11520,7 +11520,7 @@ _0804D6D2:
 	ldr r0, [r5, #0x50]
 	cmp r0, #0
 	bne _0804D768
-	bl sub_0804B1A0
+	bl GetBanimLinkArenaFlag
 	cmp r0, #1
 	bne _0804D724
 	movs r0, #0
@@ -11533,10 +11533,10 @@ _0804D720: .4byte 0x02017780
 _0804D724:
 	ldr r4, _0804D748 @ =0x0203E09C
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r0, r0, r4
 	ldrb r0, [r0]
-	bl sub_08079514
+	bl CheckBattleDefeatTalk
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 _0804D738:
@@ -11544,17 +11544,17 @@ _0804D738:
 	bne _0804D74C
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl sub_0804E018
+	bl NewEfxDeadEvent
 	b _0804D768
 	.align 2, 0
 _0804D748: .4byte 0x0203E09C
 _0804D74C:
-	bl sub_08055544
+	bl PlayDeathSoundForArena
 	adds r0, r6, #0
 	adds r1, r7, #0
-	bl sub_0804E1F4
+	bl NewEfxDead
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804D770 @ =0x0203E010
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11579,8 +11579,8 @@ _0804D780:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804D788
-sub_0804D788: @ 0x0804D788
+	thumb_func_start EfxHpBar_MoveCameraOnEnd
+EfxHpBar_MoveCameraOnEnd: @ 0x0804D788
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _0804D7D0 @ =0x0201774C
@@ -11595,12 +11595,12 @@ sub_0804D788: @ 0x0804D788
 	movs r0, #1
 	strh r0, [r5, #0x2e]
 	ldr r0, [r5, #0x64]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r4, r0, #0
-	bl sub_080547E4
+	bl GetAnimNextRoundType
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
-	bl sub_0805471C
+	bl CheckRound2
 	cmp r0, #1
 	bne _0804D81A
 	ldr r0, _0804D7D8 @ =0x0203E02C
@@ -11628,19 +11628,19 @@ _0804D7F4:
 	movs r0, #0x10
 	strh r0, [r5, #0x2e]
 	adds r0, r4, #0
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 	b _0804D81A
 _0804D808:
 	movs r0, #0x14
 	strh r0, [r5, #0x2e]
 	adds r0, r4, #0
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 _0804D81A:
 	adds r0, r5, #0
 	bl Proc_Break
@@ -11650,8 +11650,8 @@ _0804D820:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804D828
-sub_0804D828: @ 0x0804D828
+	thumb_func_start EfxHpBar_WaitCameraMove
+EfxHpBar_WaitCameraMove: @ 0x0804D828
 	push {lr}
 	adds r2, r0, #0
 	ldrh r0, [r2, #0x2c]
@@ -11665,7 +11665,7 @@ sub_0804D828: @ 0x0804D828
 	cmp r1, r0
 	bne _0804D84E
 	ldr r0, [r2, #0x64]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	movs r0, #4
 	bl EnableBgSync
 	b _0804D864
@@ -11686,8 +11686,8 @@ _0804D864:
 	.align 2, 0
 _0804D868: .4byte 0x02017728
 
-	thumb_func_start sub_0804D86C
-sub_0804D86C: @ 0x0804D86C
+	thumb_func_start NewEfxHpBarResire
+NewEfxHpBarResire: @ 0x0804D86C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r1, _0804D8A4 @ =0x02017728
@@ -11701,10 +11701,10 @@ sub_0804D86C: @ 0x0804D86C
 	bl SpawnProc
 	adds r6, r0, #0
 	adds r0, r4, #0
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	str r0, [r6, #0x64]
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804D8B0
 	ldr r0, _0804D8AC @ =0x02000000
@@ -11725,7 +11725,7 @@ _0804D8B8:
 	str r0, [r6, #0x60]
 	ldr r4, _0804D910 @ =0x0203E05E
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
@@ -11734,21 +11734,21 @@ _0804D8B8:
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r5, r5, #1
 	adds r5, r5, r0
 	adds r0, r5, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	str r0, [r6, #0x4c]
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0xf
 	adds r4, r4, r0
 	adds r0, r4, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	str r0, [r6, #0x50]
@@ -11777,7 +11777,7 @@ _0804D916:
 	ldr r0, _0804D944 @ =0x02017750
 	str r1, [r0]
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804D948 @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11796,9 +11796,9 @@ sub_0804D94C: @ 0x0804D94C
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, [r5, #0x58]
 	cmp r1, #0
 	bne _0804D99C
@@ -11815,7 +11815,7 @@ sub_0804D94C: @ 0x0804D94C
 	adds r0, r1, r0
 	strh r0, [r5, #0x2e]
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804D9E8 @ =0x0203E0B8
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11839,7 +11839,7 @@ _0804D99C:
 	bne _0804D9F8
 	ldr r4, _0804D9EC @ =0x0203E05E
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	ldrh r1, [r0]
@@ -11847,7 +11847,7 @@ _0804D99C:
 	movs r4, #0
 	strh r1, [r0]
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804D9F0 @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11900,7 +11900,7 @@ sub_0804DA0C: @ 0x0804DA0C
 	ble _0804DAA6
 	ldr r4, _0804DA88 @ =0x0203E05E
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
@@ -11909,21 +11909,21 @@ sub_0804DA0C: @ 0x0804DA0C
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r5, r5, #1
 	adds r5, r5, r0
 	adds r0, r5, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	str r0, [r6, #0x4c]
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0xf
 	adds r4, r4, r0
 	adds r0, r4, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	str r0, [r6, #0x50]
@@ -11953,7 +11953,7 @@ _0804DA8E:
 	adds r0, r6, #0
 	bl Proc_Break
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804DAAC @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -11974,19 +11974,19 @@ sub_0804DAB0: @ 0x0804DAB0
 	adds r5, r0, #0
 	ldr r4, _0804DB88 @ =0x02000000
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r4
 	ldr r7, [r0]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #3
 	adds r0, r0, r4
 	ldr r6, [r0]
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, #1
 	lsls r0, r0, #2
@@ -12009,7 +12009,7 @@ sub_0804DAB0: @ 0x0804DAB0
 	adds r0, r1, r0
 	strh r0, [r5, #0x2e]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804DB8C @ =0x0203E0B8
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -12021,12 +12021,12 @@ sub_0804DAB0: @ 0x0804DAB0
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r4, #0
-	bl sub_080675C8
+	bl EfxPlaySE
 	movs r0, #2
 	ldrsh r1, [r7, r0]
 	adds r0, r4, #0
 	movs r2, #1
-	bl sub_080676E8
+	bl M4aPlayWithPostionCtrl
 	movs r2, #0x2e
 	ldrsh r1, [r5, r2]
 	ldr r0, [r5, #0x50]
@@ -12043,7 +12043,7 @@ _0804DB42:
 	bne _0804DBEC
 	ldr r4, _0804DB94 @ =0x0203E05E
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	ldrh r1, [r0]
@@ -12051,7 +12051,7 @@ _0804DB42:
 	movs r4, #0
 	strh r1, [r0]
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804DB98 @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -12061,7 +12061,7 @@ _0804DB42:
 	ldrb r0, [r0]
 	cmp r0, #1
 	bne _0804DBE0
-	bl sub_0804B1A0
+	bl GetBanimLinkArenaFlag
 	cmp r0, #1
 	bne _0804DB9C
 	movs r0, #0
@@ -12075,10 +12075,10 @@ _0804DB98: .4byte 0x02017780
 _0804DB9C:
 	ldr r4, _0804DBC0 @ =0x0203E09C
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r0, r0, r4
 	ldrb r0, [r0]
-	bl sub_08079514
+	bl CheckBattleDefeatTalk
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 _0804DBB0:
@@ -12086,17 +12086,17 @@ _0804DBB0:
 	bne _0804DBC4
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_0804E018
+	bl NewEfxDeadEvent
 	b _0804DBE0
 	.align 2, 0
 _0804DBC0: .4byte 0x0203E09C
 _0804DBC4:
-	bl sub_08055544
+	bl PlayDeathSoundForArena
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_0804E1F4
+	bl NewEfxDead
 	ldr r0, [r5, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804DBE8 @ =0x0203E010
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -12123,8 +12123,8 @@ _0804DBF8:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804DC04
-sub_0804DC04: @ 0x0804DC04
+	thumb_func_start NewEfxAvoid
+NewEfxAvoid: @ 0x0804DC04
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r1, _0804DC34 @ =0x02017728
@@ -12139,7 +12139,7 @@ sub_0804DC04: @ 0x0804DC04
 	adds r4, r0, #0
 	strh r5, [r4, #0x2c]
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804DC40
 	ldr r0, _0804DC3C @ =0x02000000
@@ -12160,7 +12160,7 @@ _0804DC48:
 	str r0, [r4, #0x60]
 	ldr r0, [r4, #0x60]
 	movs r1, #1
-	bl sub_08062480
+	bl NewEfxDamageMojiEffect
 	str r6, [r4, #0x64]
 	adds r1, r4, #0
 	adds r1, #0x29
@@ -12169,12 +12169,12 @@ _0804DC48:
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r0, #0xd7
-	bl sub_080675C8
+	bl EfxPlaySE
 	movs r0, #2
 	ldrsh r1, [r6, r0]
 	movs r0, #0xd7
 	movs r2, #1
-	bl sub_080676E8
+	bl M4aPlayWithPostionCtrl
 _0804DC72:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -12182,8 +12182,8 @@ _0804DC72:
 	.align 2, 0
 _0804DC78: .4byte 0x02000000
 
-	thumb_func_start sub_0804DC7C
-sub_0804DC7C: @ 0x0804DC7C
+	thumb_func_start EfxAvoidMain
+EfxAvoidMain: @ 0x0804DC7C
 	push {lr}
 	adds r1, r0, #0
 	ldrh r0, [r1, #0x2c]
@@ -12199,8 +12199,8 @@ _0804DC94:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804DC98
-sub_0804DC98: @ 0x0804DC98
+	thumb_func_start NewEfxHpBarLive
+NewEfxHpBarLive: @ 0x0804DC98
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r1, _0804DCC8 @ =0x02017728
@@ -12214,7 +12214,7 @@ sub_0804DC98: @ 0x0804DC98
 	bl SpawnProc
 	adds r6, r0, #0
 	adds r0, r7, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804DCD4
 	ldr r0, _0804DCD0 @ =0x02000000
@@ -12235,7 +12235,7 @@ _0804DCDC:
 	str r0, [r6, #0x60]
 	ldr r4, _0804DD38 @ =0x0203E05E
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
@@ -12244,21 +12244,21 @@ _0804DCDC:
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r5, r5, #1
 	adds r5, r5, r0
 	adds r0, r5, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	str r0, [r6, #0x4c]
 	ldr r0, [r6, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0xf
 	adds r4, r4, r0
 	adds r0, r4, #0
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	str r1, [r6, #0x50]
@@ -12291,7 +12291,7 @@ _0804DD4A:
 	strh r0, [r6, #0x2e]
 	str r7, [r6, #0x64]
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804DD6C @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -12325,7 +12325,7 @@ sub_0804DD70: @ 0x0804DD70
 	adds r0, r1, r0
 	strh r0, [r5, #0x2e]
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804DE04 @ =0x0203E0B8
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -12337,12 +12337,12 @@ sub_0804DD70: @ 0x0804DD70
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r4, #0
-	bl sub_080675C8
+	bl EfxPlaySE
 	movs r0, #2
 	ldrsh r1, [r6, r0]
 	adds r0, r4, #0
 	movs r2, #1
-	bl sub_080676E8
+	bl M4aPlayWithPostionCtrl
 	movs r2, #0x2e
 	ldrsh r1, [r5, r2]
 	ldr r0, [r5, #0x50]
@@ -12359,7 +12359,7 @@ _0804DDCE:
 	bne _0804DE14
 	ldr r4, _0804DE0C @ =0x0203E05E
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	ldrh r1, [r0]
@@ -12367,7 +12367,7 @@ _0804DDCE:
 	movs r4, #0
 	strh r1, [r0]
 	adds r0, r6, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804DE10 @ =0x02017780
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -12393,8 +12393,8 @@ _0804DE20:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804DE28
-sub_0804DE28: @ 0x0804DE28
+	thumb_func_start NewEfxNoDmage
+NewEfxNoDmage: @ 0x0804DE28
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -12420,7 +12420,7 @@ sub_0804DE28: @ 0x0804DE28
 	str r5, [r4, #0x64]
 	ldr r0, [r4, #0x5c]
 	movs r1, #0
-	bl sub_08062480
+	bl NewEfxDamageMojiEffect
 	ldr r0, [r4, #0x5c]
 	ldr r1, [r4, #0x60]
 	bl sub_0804DED0
@@ -12438,7 +12438,7 @@ sub_0804DE7C: @ 0x0804DE7C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r5, r0, #0
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
@@ -12447,7 +12447,7 @@ sub_0804DE7C: @ 0x0804DE7C
 	bne _0804DEC4
 	ldr r6, _0804DECC @ =0x0203E05E
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r6
 	ldrh r1, [r0]
@@ -12459,7 +12459,7 @@ sub_0804DE7C: @ 0x0804DE7C
 	cmp r0, #1
 	bne _0804DEBE
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r6
 	ldrh r1, [r0]
@@ -12517,7 +12517,7 @@ sub_0804DEF4: @ 0x0804DEF4
 	cmp r1, r0
 	bne _0804DF5C
 	mov r0, r8
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r5, _0804DF54 @ =0x02000028
 	lsls r0, r0, #1
 	adds r0, r0, r5
@@ -12528,7 +12528,7 @@ sub_0804DEF4: @ 0x0804DEF4
 	mov r2, r8
 	strh r0, [r2, #2]
 	ldr r0, [r7, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r5
 	ldrh r0, [r0]
@@ -12545,7 +12545,7 @@ _0804DF54: .4byte 0x02000028
 _0804DF58: .4byte 0x0201FB00
 _0804DF5C:
 	mov r0, r8
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #1
 	bne _0804DF78
 	movs r2, #0x2c
@@ -12565,7 +12565,7 @@ _0804DF78:
 	ldrh r4, [r0]
 _0804DF82:
 	ldr r0, [r7, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r6, _0804DFC8 @ =0x02000028
 	lsls r0, r0, #1
 	adds r0, r0, r6
@@ -12579,7 +12579,7 @@ _0804DF82:
 	mov r2, r8
 	strh r1, [r2, #2]
 	ldr r0, [r7, #0x60]
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r6
 	ldr r1, [r5]
@@ -12602,8 +12602,8 @@ _0804DFBC:
 _0804DFC8: .4byte 0x02000028
 _0804DFCC: .4byte 0x0201FB00
 
-	thumb_func_start sub_0804DFD0
-sub_0804DFD0: @ 0x0804DFD0
+	thumb_func_start NewEfxStatusCHG
+NewEfxStatusCHG: @ 0x0804DFD0
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r1, _0804DFF4 @ =0x02017728
@@ -12625,8 +12625,8 @@ _0804DFEC:
 _0804DFF4: .4byte 0x02017728
 _0804DFF8: .4byte 0x08B9ACB4
 
-	thumb_func_start sub_0804DFFC
-sub_0804DFFC: @ 0x0804DFFC
+	thumb_func_start EfxStatusCHGMain
+EfxStatusCHGMain: @ 0x0804DFFC
 	push {lr}
 	adds r1, r0, #0
 	ldrh r0, [r1, #0x2c]
@@ -12642,8 +12642,8 @@ _0804E014:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804E018
-sub_0804E018: @ 0x0804E018
+	thumb_func_start NewEfxDeadEvent
+NewEfxDeadEvent: @ 0x0804E018
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -12667,7 +12667,7 @@ sub_0804E040: @ 0x0804E040
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r0, [r5, #0x5c]
-	bl sub_080547A8
+	bl GetAnimAnotherSide
 	adds r7, r0, #0
 	movs r6, #0
 	ldr r0, _0804E0AC @ =0x0201774C
@@ -12680,7 +12680,7 @@ sub_0804E040: @ 0x0804E040
 	bne _0804E072
 	ldr r4, _0804E0B4 @ =0x0201FAF8
 	adds r0, r7, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -12698,7 +12698,7 @@ _0804E072:
 	cmp r0, #0
 	beq _0804E0A0
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804E0BC @ =0x02017744
 	ldr r1, [r1]
 	cmp r0, r1
@@ -12706,7 +12706,7 @@ _0804E072:
 	movs r1, #1
 	rsbs r1, r1, #0
 	adds r0, r7, #0
-	bl sub_0804E498
+	bl NewEfxFarAttackWithDistance
 	movs r0, #0
 	strh r0, [r5, #0x2c]
 _0804E0A0:
@@ -12736,11 +12736,11 @@ sub_0804E0C0: @ 0x0804E0C0
 	bne _0804E0EA
 	movs r0, #1
 	movs r1, #7
-	bl sub_08051A9C
+	bl NewEkrWindowAppear
 	movs r0, #1
 	movs r1, #7
 	movs r2, #0
-	bl sub_08051B80
+	bl NewEkrNamewinAppear
 	adds r0, r4, #0
 	bl Proc_Break
 _0804E0EA:
@@ -12753,13 +12753,13 @@ sub_0804E0F0: @ 0x0804E0F0
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
-	bl sub_08051AEC
+	bl CheckEkrWindowAppearUnexist
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _0804E14E
-	bl sub_0804C4E4
-	bl sub_0804CE30
+	bl EnableEkrGauge
+	bl AsyncEkrDispUP
 	movs r0, #0
 	str r0, [sp]
 	ldr r1, _0804E158 @ =0x02022C60
@@ -12777,13 +12777,13 @@ sub_0804E0F0: @ 0x0804E0F0
 	bl SetBgOffset
 	movs r0, #1
 	bl EnableBgSync
-	bl sub_0804C45C
+	bl EkrGauge_0804CC38
 	ldr r4, _0804E164 @ =0x0203E09C
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r0, r0, r4
 	ldrb r0, [r0]
-	bl sub_08079624
+	bl DisplayDefeatTalkForPid
 	adds r0, r5, #0
 	bl Proc_Break
 _0804E14E:
@@ -12801,18 +12801,18 @@ _0804E164: .4byte 0x0203E09C
 sub_0804E168: @ 0x0804E168
 	push {r4, r5, lr}
 	adds r4, r0, #0
-	bl sub_0800ED20
+	bl IsEventRunning
 	lsls r0, r0, #0x18
 	asrs r5, r0, #0x18
 	cmp r5, #0
 	bne _0804E1C0
-	bl sub_08055544
+	bl PlayDeathSoundForArena
 	ldr r0, [r4, #0x5c]
 	ldr r1, [r4, #0x60]
-	bl sub_0804E1F4
-	bl sub_0804D1D4
+	bl NewEfxDead
+	bl EfxPrepareScreenFx
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804E1C8 @ =0x0203E010
 	lsls r0, r0, #1
 	adds r0, r0, r1
@@ -12821,14 +12821,14 @@ sub_0804E168: @ 0x0804E168
 	bl EnableBgSync
 	movs r0, #0
 	movs r1, #7
-	bl sub_08051A9C
+	bl NewEkrWindowAppear
 	movs r0, #0
 	movs r1, #7
 	movs r2, #0
-	bl sub_08051B80
-	bl sub_0804C4F4
-	bl sub_0804CE40
-	bl sub_0804C44C
+	bl NewEkrNamewinAppear
+	bl DisableEkrGauge
+	bl UnAsyncEkrDispUP
+	bl EkrGauge_0804CC28
 	adds r0, r4, #0
 	bl Proc_Break
 _0804E1C0:
@@ -12842,7 +12842,7 @@ _0804E1C8: .4byte 0x0203E010
 sub_0804E1CC: @ 0x0804E1CC
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08051AEC
+	bl CheckEkrWindowAppearUnexist
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -12859,8 +12859,8 @@ _0804E1E8:
 	.align 2, 0
 _0804E1F0: .4byte 0x02017738
 
-	thumb_func_start sub_0804E1F4
-sub_0804E1F4: @ 0x0804E1F4
+	thumb_func_start NewEfxDead
+NewEfxDead: @ 0x0804E1F4
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -12880,7 +12880,7 @@ sub_0804E1F4: @ 0x0804E1F4
 	strh r1, [r0, #0x2c]
 	strh r1, [r0, #0x2e]
 	adds r0, r4, #0
-	bl sub_0804F7D0
+	bl DisableEfxStatusUnits
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -12901,11 +12901,11 @@ sub_0804E234: @ 0x0804E234
 	ldr r0, [r0]
 	cmp r0, #0
 	bne _0804E272
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804E260
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C4C
+	bl SetEfxDragonDeadFallHead
 	b _0804E268
 	.align 2, 0
 _0804E258: .4byte 0x0201774C
@@ -12937,7 +12937,7 @@ sub_0804E278: @ 0x0804E278
 	cmp r1, #0x1e
 	bne _0804E2BE
 	adds r0, r5, #0
-	bl sub_08064C5C
+	bl CheckEfxDragonDeadFallHead
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -12948,12 +12948,12 @@ sub_0804E278: @ 0x0804E278
 	movs r1, #0x80
 	lsls r1, r1, #1
 	movs r0, #0xd6
-	bl sub_080675C8
+	bl EfxPlaySE
 	movs r0, #2
 	ldrsh r1, [r5, r0]
 	movs r0, #0xd6
 	movs r2, #1
-	bl sub_080676E8
+	bl M4aPlayWithPostionCtrl
 	movs r0, #0x32
 	strh r0, [r4, #0x2e]
 	b _0804E2DA
@@ -13067,7 +13067,7 @@ sub_0804E36C: @ 0x0804E36C
 	movs r0, #0xa
 	strh r0, [r4, #0xa]
 	strh r0, [r5, #0xa]
-	bl sub_080065F8
+	bl AnimSort
 	ldr r2, _0804E3D8 @ =0x03002870
 	adds r1, r2, #0
 	adds r1, #0x3c
@@ -13174,7 +13174,7 @@ _0804E458:
 	movs r0, #0
 	movs r1, #0x10
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	ldr r3, _0804E494 @ =0x03002870
 	adds r2, r3, #0
 	adds r2, #0x3c
@@ -13199,8 +13199,8 @@ _0804E48A:
 	.align 2, 0
 _0804E494: .4byte 0x03002870
 
-	thumb_func_start sub_0804E498
-sub_0804E498: @ 0x0804E498
+	thumb_func_start NewEfxFarAttackWithDistance
+NewEfxFarAttackWithDistance: @ 0x0804E498
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	lsls r1, r1, #0x10
@@ -13230,7 +13230,7 @@ _0804E4D0:
 	bl SpawnProc
 	adds r4, r0, #0
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r2, r4, #0
 	adds r2, #0x29
 	movs r1, #0
@@ -13349,7 +13349,7 @@ sub_0804E5AC: @ 0x0804E5AC
 	movs r1, #0x32
 	ldrsh r0, [r4, r1]
 	movs r1, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	movs r1, #0x32
 	ldrsh r0, [r4, r1]
 	bl sub_0804E6DC
@@ -13376,7 +13376,7 @@ sub_0804E5DC: @ 0x0804E5DC
 	ldrsh r0, [r4, r5]
 	str r0, [sp]
 	movs r0, #1
-	bl sub_08012FE8
+	bl Interpolate
 	adds r1, r0, #0
 	ldr r5, _0804E644 @ =0x0201FB00
 	str r1, [r5]
@@ -13384,10 +13384,10 @@ sub_0804E5DC: @ 0x0804E5DC
 	bl sub_0804E574
 	ldr r0, [r5]
 	movs r1, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	ldr r0, [r5]
 	bl sub_0804E6DC
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #0
 	beq _0804E622
 	ldr r0, [r5]
@@ -13428,7 +13428,7 @@ sub_0804E648: @ 0x0804E648
 	ldrsh r0, [r4, r5]
 	str r0, [sp]
 	movs r0, #4
-	bl sub_08012FE8
+	bl Interpolate
 	adds r1, r0, #0
 	ldr r5, _0804E6B0 @ =0x0201FB00
 	str r1, [r5]
@@ -13436,10 +13436,10 @@ sub_0804E648: @ 0x0804E648
 	bl sub_0804E574
 	ldr r0, [r5]
 	movs r1, #0
-	bl sub_08064B38
+	bl EkrDragonTmCpyExt
 	ldr r0, [r5]
 	bl sub_0804E6DC
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #0
 	beq _0804E68E
 	ldr r0, [r5]
@@ -13488,10 +13488,10 @@ sub_0804E6DC: @ 0x0804E6DC
 	push {r4, r5, lr}
 	sub sp, #0x10
 	adds r5, r0, #0
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	bne _0804E72C
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #0
 	bne _0804E72C
 	asrs r4, r5, #3
@@ -13517,7 +13517,7 @@ sub_0804E6DC: @ 0x0804E6DC
 	adds r0, r4, #0
 	movs r1, #0x42
 	movs r3, #0x20
-	bl sub_08066B2C
+	bl EfxTmCpyExt
 	movs r0, #4
 	bl EnableBgSync
 _0804E72C:
@@ -13529,8 +13529,8 @@ _0804E72C:
 _0804E734: .4byte 0x0201C906
 _0804E738: .4byte 0x02023C60
 
-	thumb_func_start sub_0804E73C
-sub_0804E73C: @ 0x0804E73C
+	thumb_func_start NewEfxQuakePure
+NewEfxQuakePure: @ 0x0804E73C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -13621,8 +13621,8 @@ _0804E7E0:
 	.align 2, 0
 _0804E7E8: .4byte 0x02017760
 
-	thumb_func_start sub_0804E7EC
-sub_0804E7EC: @ 0x0804E7EC
+	thumb_func_start NewEfxHitQuakePure
+NewEfxHitQuakePure: @ 0x0804E7EC
 	push {lr}
 	ldr r0, _0804E7FC @ =0x08B9AE04
 	movs r1, #3
@@ -13637,8 +13637,8 @@ sub_0804E800: @ 0x0804E800
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0804E804
-sub_0804E804: @ 0x0804E804
+	thumb_func_start NewEfxQuake
+NewEfxQuake: @ 0x0804E804
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0804E814 @ =0x02017748
@@ -13799,17 +13799,17 @@ sub_0804E900: @ 0x0804E900
 	movs r3, #0
 	ldrsh r2, [r2, r3]
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	lsls r1, r4, #0x10
 	asrs r1, r1, #0x10
 	adds r2, r5, #0
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	movs r0, #2
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804E96A
 	ldrh r1, [r6, #0x34]
@@ -13844,7 +13844,7 @@ _0804E98C:
 	ldrh r2, [r5, #2]
 	movs r0, #2
 	bl SetBgOffset
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804E9CC
 	ldrh r2, [r6, #0x34]
@@ -13860,7 +13860,7 @@ _0804E98C:
 	movs r0, #3
 	bl SetBgOffset
 _0804E9CC:
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804E9EC
 	ldr r4, _0804E9E8 @ =0x02000028
@@ -13918,13 +13918,13 @@ _0804E9F8:
 	lsls r2, r3, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	lsls r1, r4, #0x10
 	asrs r1, r1, #0x10
 	lsls r2, r5, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	b _0804EA9E
 	.align 2, 0
 _0804EA58: .4byte 0x02000028
@@ -13938,7 +13938,7 @@ _0804EA6C:
 	cmp r0, #2
 	bgt _0804EA9E
 	ldr r0, [r6, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804EA90
 	lsls r1, r7, #0x10
@@ -13947,7 +13947,7 @@ _0804EA6C:
 	lsls r2, r4, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	b _0804EA9E
 _0804EA90:
 	lsls r1, r4, #0x10
@@ -13955,7 +13955,7 @@ _0804EA90:
 	lsls r2, r5, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 _0804EA9E:
 	pop {r3}
 	mov r8, r3
@@ -13963,8 +13963,8 @@ _0804EA9E:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804EAA8
-sub_0804EAA8: @ 0x0804EAA8
+	thumb_func_start NewEfxHitQuake
+NewEfxHitQuake: @ 0x0804EAA8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -14036,7 +14036,7 @@ _0804EB2A:
 	str r0, [r5, #0x44]
 	movs r0, #1
 	str r0, [r5, #0x48]
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _0804EB44
@@ -14046,7 +14046,7 @@ _0804EB2A:
 	.align 2, 0
 _0804EB40: .4byte 0x081D7F00
 _0804EB44:
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #0
 	beq _0804EB50
 	str r4, [r5, #0x64]
@@ -14063,7 +14063,7 @@ _0804EB50:
 _0804EB60: .4byte 0x0203E02C
 _0804EB64:
 	ldr r0, [r5, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804EB94 @ =0x0201FB00
 	ldr r1, [r1]
 	ldr r2, _0804EB98 @ =0x02000030
@@ -14074,7 +14074,7 @@ _0804EB64:
 	lsls r1, r1, #0x10
 	lsrs r4, r1, #0x10
 	mov r0, r8
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804EBA0
 	movs r0, #0x40
@@ -14095,7 +14095,7 @@ _0804EBA0:
 	ldr r0, _0804EBD0 @ =0x08B9CAF8
 _0804EBAA:
 	movs r1, #5
-	bl sub_08006594
+	bl AnimCreate
 	adds r1, r0, #0
 	lsls r0, r4, #0x10
 	asrs r0, r0, #0x10
@@ -14122,17 +14122,17 @@ _0804EBDC:
 	str r1, [r5, #0x64]
 	ldr r4, _0804EC68 @ =0x0200003C
 	mov r0, r8
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
 	ldr r1, _0804EC6C @ =0x06011800
 	movs r2, #0x80
 	lsls r2, r2, #4
-	bl sub_08003078
+	bl RegisterDataMove
 	ldr r4, _0804EC70 @ =0x0203E024
 	mov r0, sb
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	ldrh r0, [r0]
@@ -14140,7 +14140,7 @@ _0804EBDC:
 	bne _0804EC20
 	ldr r4, _0804EC74 @ =0x0200004C
 	mov r0, sb
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -14150,7 +14150,7 @@ _0804EBDC:
 _0804EC20:
 	ldr r4, _0804EC74 @ =0x0200004C
 	mov r0, r8
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -14162,7 +14162,7 @@ _0804EC20:
 	movs r1, #0
 	ldrsh r4, [r0, r1]
 	mov r0, r8
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
@@ -14215,7 +14215,7 @@ _0804ECA6:
 	movs r1, #0
 	movs r2, #0
 	bl SetBgOffset
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804ECFA
 	movs r0, #3
@@ -14231,7 +14231,7 @@ _0804ECD8:
 	blt _0804ECFA
 	cmp r0, #2
 	bgt _0804ECFA
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804ECF2
 	movs r0, #3
@@ -14246,7 +14246,7 @@ _0804ECFA:
 	ldr r0, [r7, #0x64]
 	cmp r0, #0
 	beq _0804ED0A
-	bl sub_08006650
+	bl AnimDelete
 	ldr r0, _0804EDA0 @ =0x0201FAD0
 	bl sub_08055320
 _0804ED0A:
@@ -14267,12 +14267,12 @@ _0804ED0A:
 	movs r3, #0
 	ldrsh r2, [r2, r3]
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	lsls r1, r4, #0x10
 	asrs r1, r1, #0x10
 	adds r2, r5, #0
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	ldr r1, _0804EDAC @ =0x02017740
 	movs r0, #0
 	str r0, [r1]
@@ -14281,7 +14281,7 @@ _0804ED0A:
 	ldrb r0, [r0]
 	cmp r0, #1
 	bne _0804ED92
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804ED5E
 	movs r0, #3
@@ -14302,7 +14302,7 @@ _0804ED5E:
 	rsbs r1, r6, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r1, [r4]
 	rsbs r0, r1, #0
 	lsls r0, r0, #0x10
@@ -14311,7 +14311,7 @@ _0804ED5E:
 	rsbs r1, r4, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 _0804ED92:
 	adds r0, r7, #0
 	bl Proc_End
@@ -14332,7 +14332,7 @@ _0804EDB4:
 	cmp r0, #0
 	beq _0804EDE0
 	ldr r0, [r7, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	lsls r0, r1, #4
 	subs r0, r0, r1
@@ -14343,7 +14343,7 @@ _0804EDB4:
 	movs r1, #0xf
 	movs r2, #5
 	movs r3, #0
-	bl sub_080669B4
+	bl FillBGRect
 _0804EDE0:
 	ldr r4, _0804EE40 @ =0x02017760
 	movs r3, #0x2c
@@ -14368,7 +14368,7 @@ _0804EDE0:
 	cmp r0, #0
 	beq _0804EE4C
 	ldr r0, [r7, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804EE44 @ =0x0201FB00
 	ldr r1, [r1]
 	ldr r2, _0804EE48 @ =0x02000030
@@ -14405,7 +14405,7 @@ _0804EE56:
 	ldrb r0, [r0]
 	cmp r0, #1
 	bne _0804EED0
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804EE7A
 	mov r0, r8
@@ -14443,7 +14443,7 @@ _0804EE7A:
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C4B0
+	bl EkrGauge_0804CC8C
 	ldrh r1, [r5]
 	ldrh r2, [r4]
 	adds r0, r1, r2
@@ -14456,9 +14456,9 @@ _0804EE7A:
 	rsbs r1, r1, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
-	bl sub_0804CDFC
+	bl EkrDispUP_SetPositionSync
 _0804EED0:
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804EEE4
 	ldr r0, _0804EF0C @ =0x02017760
@@ -14467,7 +14467,7 @@ _0804EED0:
 	movs r0, #3
 	bl SetBgOffset
 _0804EEE4:
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804EF20
 	ldr r3, _0804EF14 @ =0x02000028
@@ -14535,13 +14535,13 @@ _0804EF3C:
 	lsls r2, r3, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	lsls r1, r4, #0x10
 	asrs r1, r1, #0x10
 	lsls r2, r5, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	b _0804EFCE
 	.align 2, 0
 _0804EF88: .4byte 0x02000028
@@ -14555,7 +14555,7 @@ _0804EF9C:
 	cmp r0, #2
 	bgt _0804EFCE
 	ldr r0, [r7, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804EFC0
 	lsls r1, r6, #0x10
@@ -14564,7 +14564,7 @@ _0804EF9C:
 	lsls r2, r4, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	b _0804EFCE
 _0804EFC0:
 	lsls r1, r4, #0x10
@@ -14572,7 +14572,7 @@ _0804EFC0:
 	lsls r2, r5, #0x10
 	asrs r2, r2, #0x10
 	movs r0, #1
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 _0804EFCE:
 	add sp, #4
 	pop {r3}
@@ -14582,8 +14582,8 @@ _0804EFCE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804EFDC
-sub_0804EFDC: @ 0x0804EFDC
+	thumb_func_start NewEfxFlashBgWhite
+NewEfxFlashBgWhite: @ 0x0804EFDC
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -14611,8 +14611,8 @@ _0804F00C: .4byte 0x08B9AE4C
 _0804F010: .4byte 0x020165C8
 _0804F014: .4byte 0x01000100
 
-	thumb_func_start sub_0804F018
-sub_0804F018: @ 0x0804F018
+	thumb_func_start NewEfxFlashBgRed
+NewEfxFlashBgRed: @ 0x0804F018
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -14640,8 +14640,8 @@ _0804F04C: .4byte 0x001F001F
 _0804F050: .4byte 0x020165C8
 _0804F054: .4byte 0x01000100
 
-	thumb_func_start sub_0804F058
-sub_0804F058: @ 0x0804F058
+	thumb_func_start NewEfxFlashBgBlack
+NewEfxFlashBgBlack: @ 0x0804F058
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -14667,8 +14667,8 @@ _0804F084: .4byte 0x08B9AE4C
 _0804F088: .4byte 0x020165C8
 _0804F08C: .4byte 0x01000100
 
-	thumb_func_start sub_0804F090
-sub_0804F090: @ 0x0804F090
+	thumb_func_start NewEfxFlashBgDirectly
+NewEfxFlashBgDirectly: @ 0x0804F090
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -14685,8 +14685,8 @@ sub_0804F090: @ 0x0804F090
 	.align 2, 0
 _0804F0AC: .4byte 0x08B9AE4C
 
-	thumb_func_start sub_0804F0B0
-sub_0804F0B0: @ 0x0804F0B0
+	thumb_func_start EfxFlashBgMain
+EfxFlashBgMain: @ 0x0804F0B0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0804F0E4 @ =0x020165C8
@@ -14695,7 +14695,7 @@ sub_0804F0B0: @ 0x0804F0B0
 	movs r2, #0x80
 	lsls r2, r2, #1
 	bl CpuFastSet
-	bl sub_08001070
+	bl DisablePalSync
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
 	strh r0, [r4, #0x2c]
@@ -14724,8 +14724,8 @@ sub_0804F0E8: @ 0x0804F0E8
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804F0FC
-sub_0804F0FC: @ 0x0804F0FC
+	thumb_func_start NewEfxWhiteOUT
+NewEfxWhiteOUT: @ 0x0804F0FC
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -14744,8 +14744,8 @@ sub_0804F0FC: @ 0x0804F0FC
 	.align 2, 0
 _0804F11C: .4byte 0x08B9AE74
 
-	thumb_func_start sub_0804F120
-sub_0804F120: @ 0x0804F120
+	thumb_func_start EfxWhiteOutMain1
+EfxWhiteOutMain1: @ 0x0804F120
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r0, _0804F170 @ =0x02022860
@@ -14759,13 +14759,13 @@ sub_0804F120: @ 0x0804F120
 	movs r1, #0
 	movs r2, #0x20
 	movs r3, #0x10
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl CpuFastSet
-	bl sub_08001070
+	bl DisablePalSync
 	ldrh r0, [r6, #0x2c]
 	adds r0, #1
 	strh r0, [r6, #0x2c]
@@ -14786,8 +14786,8 @@ _0804F16A:
 _0804F170: .4byte 0x02022860
 _0804F174: .4byte 0x020165C8
 
-	thumb_func_start sub_0804F178
-sub_0804F178: @ 0x0804F178
+	thumb_func_start EfxWhiteOutMain2
+EfxWhiteOutMain2: @ 0x0804F178
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -14799,7 +14799,7 @@ sub_0804F178: @ 0x0804F178
 	movs r0, #0
 	movs r1, #0x10
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r6, r0, #0
 	ldr r0, _0804F1E0 @ =0x02022860
 	ldr r4, _0804F1E4 @ =0x020165C8
@@ -14812,13 +14812,13 @@ sub_0804F178: @ 0x0804F178
 	movs r1, #0
 	movs r2, #0x20
 	adds r3, r6, #0
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	adds r0, r4, #0
 	adds r2, r5, #0
 	bl CpuFastSet
-	bl sub_08001070
+	bl DisablePalSync
 	ldrh r0, [r7, #0x2c]
 	adds r0, #1
 	strh r0, [r7, #0x2c]
@@ -14849,8 +14849,8 @@ sub_0804F1E8: @ 0x0804F1E8
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0804F1FC
-sub_0804F1FC: @ 0x0804F1FC
+	thumb_func_start NewEfxFlashHPBar
+NewEfxFlashHPBar: @ 0x0804F1FC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -14879,8 +14879,8 @@ _0804F22A:
 	.align 2, 0
 _0804F230: .4byte 0x08B9AE9C
 
-	thumb_func_start sub_0804F234
-sub_0804F234: @ 0x0804F234
+	thumb_func_start EfxWhiteInMain1
+EfxWhiteInMain1: @ 0x0804F234
 	push {lr}
 	adds r2, r0, #0
 	ldrh r0, [r2, #0x2c]
@@ -14903,7 +14903,7 @@ sub_0804F254: @ 0x0804F254
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F290
 	ldr r0, _0804F274 @ =0x0203E0B8
@@ -14966,12 +14966,12 @@ _0804F2D8:
 _0804F2E0: .4byte 0x081D9730
 _0804F2E4: .4byte 0x02022BE0
 
-	thumb_func_start sub_0804F2E8
-sub_0804F2E8: @ 0x0804F2E8
+	thumb_func_start EfxFlashHPBarRestorePal
+EfxFlashHPBarRestorePal: @ 0x0804F2E8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F328
 	ldr r0, _0804F310 @ =0x0203E0B8
@@ -15036,8 +15036,8 @@ _0804F362:
 _0804F374: .4byte 0x081D9730
 _0804F378: .4byte 0x02022BE0
 
-	thumb_func_start sub_0804F37C
-sub_0804F37C: @ 0x0804F37C
+	thumb_func_start NewEfxHpBarColorChange
+NewEfxHpBarColorChange: @ 0x0804F37C
 	push {r4, r5, r6, lr}
 	mov r6, sl
 	mov r5, sb
@@ -15075,7 +15075,7 @@ sub_0804F37C: @ 0x0804F37C
 	ldr r6, _0804F450 @ =0x0201F93C
 	adds r1, r6, #0
 	movs r2, #0x10
-	bl sub_08067114
+	bl EfxSplitColor
 	movs r1, #0
 	ldrsh r0, [r5, r1]
 	lsls r0, r0, #5
@@ -15085,7 +15085,7 @@ sub_0804F37C: @ 0x0804F37C
 	ldr r4, _0804F458 @ =0x0201F96C
 	adds r1, r4, #0
 	movs r2, #0x10
-	bl sub_08067114
+	bl EfxSplitColor
 	ldr r2, _0804F45C @ =0x0201F99C
 	movs r0, #5
 	mov r8, r0
@@ -15101,7 +15101,7 @@ sub_0804F37C: @ 0x0804F37C
 	ldr r6, _0804F460 @ =0x0201F9FC
 	adds r1, r6, #0
 	movs r2, #0x10
-	bl sub_08067114
+	bl EfxSplitColor
 	movs r1, #2
 	ldrsh r0, [r5, r1]
 	lsls r0, r0, #5
@@ -15109,7 +15109,7 @@ sub_0804F37C: @ 0x0804F37C
 	ldr r4, _0804F464 @ =0x0201FA2C
 	adds r1, r4, #0
 	movs r2, #0x10
-	bl sub_08067114
+	bl EfxSplitColor
 	ldr r2, _0804F468 @ =0x0201FA5C
 	mov r0, r8
 	str r0, [sp]
@@ -15140,8 +15140,8 @@ _0804F460: .4byte 0x0201F9FC
 _0804F464: .4byte 0x0201FA2C
 _0804F468: .4byte 0x0201FA5C
 
-	thumb_func_start sub_0804F46C
-sub_0804F46C: @ 0x0804F46C
+	thumb_func_start EndEfxHPBarColorChange
+EndEfxHPBarColorChange: @ 0x0804F46C
 	push {lr}
 	ldr r0, _0804F47C @ =0x0201777C
 	ldr r0, [r0]
@@ -15162,8 +15162,8 @@ sub_0804F480: @ 0x0804F480
 	.align 2, 0
 _0804F48C: .4byte 0x0201777C
 
-	thumb_func_start sub_0804F490
-sub_0804F490: @ 0x0804F490
+	thumb_func_start EfxHpBarColorChange_804FC6C
+EfxHpBarColorChange_804FC6C: @ 0x0804F490
 	ldr r0, _0804F49C @ =0x0201777C
 	ldr r0, [r0]
 	adds r0, #0x29
@@ -15173,8 +15173,8 @@ sub_0804F490: @ 0x0804F490
 	.align 2, 0
 _0804F49C: .4byte 0x0201777C
 
-	thumb_func_start sub_0804F4A0
-sub_0804F4A0: @ 0x0804F4A0
+	thumb_func_start EfxHPBarColorChangeMain
+EfxHPBarColorChangeMain: @ 0x0804F4A0
 	push {r4, r5, lr}
 	sub sp, #0xc
 	adds r4, r0, #0
@@ -15187,7 +15187,7 @@ sub_0804F4A0: @ 0x0804F4A0
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	cmp r0, #0
@@ -15199,7 +15199,7 @@ _0804F4C6:
 	adds r1, r4, #0
 	adds r1, #0x4c
 	ldr r2, [r4, #0x50]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	cmp r0, #0
@@ -15224,7 +15224,7 @@ _0804F4DE:
 	adds r1, r2, #0
 	adds r2, r3, #0
 	adds r3, r5, #0
-	bl sub_0806722C
+	bl EfxDecodeSplitedPalette
 	b _0804F52C
 	.align 2, 0
 _0804F508: .4byte 0x0203E0B8
@@ -15259,7 +15259,7 @@ _0804F52C:
 	adds r1, r2, #0
 	adds r2, r3, #0
 	adds r3, r5, #0
-	bl sub_0806722C
+	bl EfxDecodeSplitedPalette
 	b _0804F584
 	.align 2, 0
 _0804F558: .4byte 0x081D9730
@@ -15288,8 +15288,8 @@ _0804F588:
 _0804F590: .4byte 0x081D9730
 _0804F594: .4byte 0x02022BE0
 
-	thumb_func_start sub_0804F598
-sub_0804F598: @ 0x0804F598
+	thumb_func_start NewEfxFlashUnit
+NewEfxFlashUnit: @ 0x0804F598
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -15333,7 +15333,7 @@ sub_0804F5D4: @ 0x0804F5D4
 	cmp r0, r1
 	blt _0804F632
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F60C
 	ldr r0, _0804F604 @ =0x081D97D0
@@ -15341,7 +15341,7 @@ sub_0804F5D4: @ 0x0804F5D4
 	movs r2, #8
 	bl CpuFastSet
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C90
+	bl EkrDragonUpdateFlashingUnit
 	b _0804F61C
 	.align 2, 0
 _0804F604: .4byte 0x081D97D0
@@ -15352,7 +15352,7 @@ _0804F60C:
 	movs r2, #8
 	bl CpuFastSet
 	ldr r0, [r4, #0x5c]
-	bl sub_08064C90
+	bl EkrDragonUpdateFlashingUnit
 _0804F61C:
 	bl EnablePalSync
 	movs r0, #0x2c
@@ -15371,12 +15371,12 @@ _0804F632:
 _0804F638: .4byte 0x081D97D0
 _0804F63C: .4byte 0x02022B80
 
-	thumb_func_start sub_0804F640
-sub_0804F640: @ 0x0804F640
+	thumb_func_start EfxFlashUnitRestorePal
+EfxFlashUnitRestorePal: @ 0x0804F640
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F66C
 	ldr r0, _0804F664 @ =0x02000054
@@ -15385,7 +15385,7 @@ sub_0804F640: @ 0x0804F640
 	movs r2, #8
 	bl CpuFastSet
 	ldr r0, [r4, #0x5c]
-	bl sub_08064CD8
+	bl BanimSetFrontPaletteForDragon
 	b _0804F67E
 	.align 2, 0
 _0804F664: .4byte 0x02000054
@@ -15397,7 +15397,7 @@ _0804F66C:
 	movs r2, #8
 	bl CpuFastSet
 	ldr r0, [r4, #0x5c]
-	bl sub_08064CD8
+	bl BanimSetFrontPaletteForDragon
 _0804F67E:
 	bl EnablePalSync
 	adds r0, r4, #0
@@ -15409,12 +15409,12 @@ _0804F67E:
 _0804F690: .4byte 0x02000054
 _0804F694: .4byte 0x02022B80
 
-	thumb_func_start sub_0804F698
-sub_0804F698: @ 0x0804F698
+	thumb_func_start NewEfxStatusUnit
+NewEfxStatusUnit: @ 0x0804F698
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r5, r0, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F6B0
 	ldr r0, _0804F6AC @ =0x0203E094
@@ -15454,13 +15454,13 @@ _0804F6E4:
 	strh r1, [r4, #0x34]
 	strh r1, [r4, #0x32]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	ldr r1, _0804F748 @ =0x0201776C
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	str r4, [r0]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F754
 	ldr r5, _0804F74C @ =0x02000054
@@ -15468,13 +15468,13 @@ _0804F6E4:
 	ldr r4, _0804F750 @ =0x02022260
 	adds r1, r4, #0
 	movs r2, #0x10
-	bl sub_08067114
+	bl EfxSplitColor
 	ldr r0, [r5]
 	adds r5, r4, #0
 	adds r5, #0x30
 	adds r1, r5, #0
 	movs r2, #0x10
-	bl sub_08067154
+	bl EfxSplitColorPetrify
 	movs r0, #0xc0
 	lsls r0, r0, #1
 	adds r2, r4, r0
@@ -15499,13 +15499,13 @@ _0804F754:
 	ldr r4, _0804F790 @ =0x020222C0
 	adds r1, r4, #0
 	movs r2, #0x10
-	bl sub_08067114
+	bl EfxSplitColor
 	ldr r0, [r5, #4]
 	adds r5, r4, #0
 	adds r5, #0x30
 	adds r1, r5, #0
 	movs r2, #0x10
-	bl sub_08067154
+	bl EfxSplitColorPetrify
 	movs r0, #0xa8
 	lsls r0, r0, #2
 	adds r2, r4, r0
@@ -15524,25 +15524,25 @@ _0804F784:
 _0804F78C: .4byte 0x02000054
 _0804F790: .4byte 0x020222C0
 
-	thumb_func_start sub_0804F794
-sub_0804F794: @ 0x0804F794
+	thumb_func_start EndEfxStatusUnits
+EndEfxStatusUnits: @ 0x0804F794
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r5, _0804F7CC @ =0x0201776C
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r5
 	ldr r0, [r0]
 	cmp r0, #0
 	beq _0804F7C6
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r5
 	ldr r0, [r0]
 	bl Proc_End
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r5
 	movs r1, #0
@@ -15554,11 +15554,11 @@ _0804F7C6:
 	.align 2, 0
 _0804F7CC: .4byte 0x0201776C
 
-	thumb_func_start sub_0804F7D0
-sub_0804F7D0: @ 0x0804F7D0
+	thumb_func_start DisableEfxStatusUnits
+DisableEfxStatusUnits: @ 0x0804F7D0
 	push {r4, lr}
 	ldr r4, _0804F7EC @ =0x0201776C
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -15571,11 +15571,11 @@ sub_0804F7D0: @ 0x0804F7D0
 	.align 2, 0
 _0804F7EC: .4byte 0x0201776C
 
-	thumb_func_start sub_0804F7F0
-sub_0804F7F0: @ 0x0804F7F0
+	thumb_func_start EnableEfxStatusUnits
+EnableEfxStatusUnits: @ 0x0804F7F0
 	push {r4, lr}
 	ldr r4, _0804F80C @ =0x0201776C
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -15588,13 +15588,13 @@ sub_0804F7F0: @ 0x0804F7F0
 	.align 2, 0
 _0804F80C: .4byte 0x0201776C
 
-	thumb_func_start sub_0804F810
-sub_0804F810: @ 0x0804F810
+	thumb_func_start SetUnitEfxDebuff
+SetUnitEfxDebuff: @ 0x0804F810
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
 	ldr r4, _0804F83C @ =0x0201776C
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -15605,7 +15605,7 @@ sub_0804F810: @ 0x0804F810
 	movs r1, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_0804F85C
+	bl EfxStatusUnitFlashing
 _0804F834:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -15613,11 +15613,11 @@ _0804F834:
 	.align 2, 0
 _0804F83C: .4byte 0x0201776C
 
-	thumb_func_start sub_0804F840
-sub_0804F840: @ 0x0804F840
+	thumb_func_start GetUnitEfxDebuff
+GetUnitEfxDebuff: @ 0x0804F840
 	push {r4, lr}
 	ldr r4, _0804F858 @ =0x0201776C
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #2
 	adds r0, r0, r4
 	ldr r0, [r0]
@@ -15628,8 +15628,8 @@ sub_0804F840: @ 0x0804F840
 	.align 2, 0
 _0804F858: .4byte 0x0201776C
 
-	thumb_func_start sub_0804F85C
-sub_0804F85C: @ 0x0804F85C
+	thumb_func_start EfxStatusUnitFlashing
+EfxStatusUnitFlashing: @ 0x0804F85C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -15638,7 +15638,7 @@ sub_0804F85C: @ 0x0804F85C
 	adds r7, r1, #0
 	adds r5, r2, #0
 	adds r6, r3, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F8C4
 	ldr r0, _0804F8B8 @ =0x02000054
@@ -15655,19 +15655,19 @@ sub_0804F85C: @ 0x0804F85C
 	movs r1, #0x17
 	movs r2, #1
 	adds r3, r7, #0
-	bl sub_08066FE8
-	bl sub_08064AE0
+	bl EfxPalFlashingInOut
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _0804F8E6
 	mov r0, r8
-	bl sub_08064CD8
+	bl BanimSetFrontPaletteForDragon
 	str r5, [sp]
 	str r6, [sp, #4]
 	adds r0, r4, #0
 	movs r1, #6
 	movs r2, #1
 	adds r3, r7, #0
-	bl sub_08066FE8
+	bl EfxPalFlashingInOut
 	b _0804F8E6
 	.align 2, 0
 _0804F8B8: .4byte 0x02000054
@@ -15688,7 +15688,7 @@ _0804F8C4:
 	movs r1, #0x19
 	movs r2, #1
 	adds r3, r7, #0
-	bl sub_08066FE8
+	bl EfxPalFlashingInOut
 _0804F8E6:
 	add sp, #8
 	pop {r3}
@@ -15701,13 +15701,13 @@ _0804F8F4: .4byte 0x02000054
 _0804F8F8: .4byte 0x02022B80
 _0804F8FC: .4byte 0xFFFFFCE0
 
-	thumb_func_start sub_0804F900
-sub_0804F900: @ 0x0804F900
+	thumb_func_start EfxStatusUnit_Loop
+EfxStatusUnit_Loop: @ 0x0804F900
 	push {r4, r5, r6, lr}
 	sub sp, #0xc
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_0804F840
+	bl GetUnitEfxDebuff
 	cmp r0, #0
 	beq _0804F9F6
 	adds r0, r4, #0
@@ -15729,7 +15729,7 @@ _0804F92A:
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r1, r0, #0x10
 	cmp r1, #0
@@ -15789,11 +15789,11 @@ _0804F98E:
 	ldrsh r2, [r4, r3]
 	movs r5, #0x36
 	ldrsh r3, [r4, r5]
-	bl sub_0804F85C
+	bl EfxStatusUnitFlashing
 	b _0804F9F2
 _0804F9A2:
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804F9D4
 	ldr r0, _0804F9CC @ =0x02022B40
@@ -15809,7 +15809,7 @@ _0804F9A2:
 	ldrsh r4, [r4, r6]
 	str r4, [sp, #4]
 	str r5, [sp, #8]
-	bl sub_0806722C
+	bl EfxDecodeSplitedPalette
 	b _0804F9F2
 	.align 2, 0
 _0804F9CC: .4byte 0x02022B40
@@ -15828,7 +15828,7 @@ _0804F9D4:
 	ldrsh r4, [r4, r6]
 	str r4, [sp, #4]
 	str r5, [sp, #8]
-	bl sub_0806722C
+	bl EfxDecodeSplitedPalette
 _0804F9F2:
 	bl EnablePalSync
 _0804F9F6:
@@ -15845,7 +15845,7 @@ sub_0804FA08: @ 0x0804FA08
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x5c]
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0804FA2C
 	ldr r0, _0804FA24 @ =0x02000054
@@ -15865,7 +15865,7 @@ _0804FA2C:
 	bl CpuFastSet
 _0804FA38:
 	ldr r0, [r4, #0x5c]
-	bl sub_08064CD8
+	bl BanimSetFrontPaletteForDragon
 	bl EnablePalSync
 	pop {r4}
 	pop {r0}
@@ -15874,8 +15874,8 @@ _0804FA38:
 _0804FA48: .4byte 0x02000054
 _0804FA4C: .4byte 0x02022B80
 
-	thumb_func_start sub_0804FA50
-sub_0804FA50: @ 0x0804FA50
+	thumb_func_start NewEfxWeaponIcon
+NewEfxWeaponIcon: @ 0x0804FA50
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -15909,8 +15909,8 @@ _0804FA8C: .4byte 0x08B9AF3C
 _0804FA90: .4byte 0x081D8406
 _0804FA94: .4byte 0x02017774
 
-	thumb_func_start sub_0804FA98
-sub_0804FA98: @ 0x0804FA98
+	thumb_func_start EndProcEfxWeaponIcon
+EndProcEfxWeaponIcon: @ 0x0804FA98
 	push {r4, lr}
 	ldr r4, _0804FAB0 @ =0x02017774
 	ldr r0, [r4]
@@ -15926,8 +15926,8 @@ _0804FAAA:
 	.align 2, 0
 _0804FAB0: .4byte 0x02017774
 
-	thumb_func_start sub_0804FAB4
-sub_0804FAB4: @ 0x0804FAB4
+	thumb_func_start DisableEfxWeaponIcon
+DisableEfxWeaponIcon: @ 0x0804FAB4
 	ldr r0, _0804FAC0 @ =0x02017774
 	ldr r1, [r0]
 	movs r0, #1
@@ -15936,8 +15936,8 @@ sub_0804FAB4: @ 0x0804FAB4
 	.align 2, 0
 _0804FAC0: .4byte 0x02017774
 
-	thumb_func_start sub_0804FAC4
-sub_0804FAC4: @ 0x0804FAC4
+	thumb_func_start EnableEfxWeaponIcon
+EnableEfxWeaponIcon: @ 0x0804FAC4
 	ldr r0, _0804FAD0 @ =0x02017774
 	ldr r1, [r0]
 	movs r0, #0
@@ -15959,7 +15959,7 @@ sub_0804FAD4: @ 0x0804FAD4
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	cmp r0, #0
@@ -15971,24 +15971,24 @@ _0804FAFA:
 	beq _0804FB14
 	movs r0, #0
 	movs r1, #0x1d
-	bl sub_08004D44
+	bl ApplyIconPalette
 	ldr r0, _0804FB38 @ =0x02022860
 	ldr r3, [r4, #0x4c]
 	movs r1, #0x1d
 	movs r2, #1
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 _0804FB14:
 	ldr r0, [r4, #0x58]
 	cmp r0, #0
 	beq _0804FB2E
 	movs r0, #0
 	movs r1, #0x1e
-	bl sub_08004D44
+	bl ApplyIconPalette
 	ldr r0, _0804FB38 @ =0x02022860
 	ldr r3, [r4, #0x4c]
 	movs r1, #0x1e
 	movs r2, #1
-	bl sub_08066F64
+	bl EfxPalWhiteInOut
 _0804FB2E:
 	bl EnablePalSync
 _0804FB32:
@@ -16008,14 +16008,14 @@ sub_0804FB3C: @ 0x0804FB3C
 	beq _0804FB52
 	movs r0, #0
 	movs r1, #0x1d
-	bl sub_08004D44
+	bl ApplyIconPalette
 _0804FB52:
 	ldr r0, [r4, #0x58]
 	cmp r0, #0
 	beq _0804FB60
 	movs r0, #0
 	movs r1, #0x1e
-	bl sub_08004D44
+	bl ApplyIconPalette
 _0804FB60:
 	bl EnablePalSync
 	pop {r4}
@@ -16023,10 +16023,10 @@ _0804FB60:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0804FB6C
-sub_0804FB6C: @ 0x0804FB6C
+	thumb_func_start NewEfxSpellCast
+NewEfxSpellCast: @ 0x0804FB6C
 	push {r4, r5, lr}
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	adds r4, r0, #0
 	cmp r4, #0
 	bne _0804FBB8
@@ -16065,8 +16065,8 @@ _0804FBB8:
 	.align 2, 0
 _0804FBC0: .4byte 0x02017778
 
-	thumb_func_start sub_0804FBC4
-sub_0804FBC4: @ 0x0804FBC4
+	thumb_func_start RegisterEfxSpellCastEnd
+RegisterEfxSpellCastEnd: @ 0x0804FBC4
 	ldr r0, _0804FBD8 @ =0x02017778
 	ldr r0, [r0]
 	cmp r0, #0
@@ -16109,7 +16109,7 @@ sub_0804FBF8: @ 0x0804FBF8
 	movs r0, #0
 	movs r1, #0
 	movs r2, #8
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	ldr r0, _0804FC54 @ =0x0201C784
 	ldr r4, _0804FC58 @ =0x02022920
@@ -16121,7 +16121,7 @@ sub_0804FBF8: @ 0x0804FBF8
 	movs r1, #6
 	movs r2, #0xa
 	adds r3, r5, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	ldrh r1, [r6, #0x2c]
 	adds r1, #1
@@ -16158,7 +16158,7 @@ sub_0804FC5C: @ 0x0804FC5C
 	movs r1, #6
 	movs r2, #0xa
 	movs r3, #8
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	adds r0, r5, #0
 	adds r0, #0x29
 	ldrb r0, [r0]
@@ -16189,7 +16189,7 @@ sub_0804FC9C: @ 0x0804FC9C
 	movs r0, #0
 	movs r1, #8
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	ldr r7, _0804FD10 @ =0x0201C784
 	ldr r6, _0804FD14 @ =0x02022920
@@ -16202,7 +16202,7 @@ sub_0804FC9C: @ 0x0804FC9C
 	movs r1, #6
 	movs r2, #0xa
 	adds r3, r4, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	ldrh r1, [r5, #0x2c]
 	adds r1, #1
@@ -16326,9 +16326,9 @@ sub_0804FDA0: @ 0x0804FDA0
 	movs r0, #0
 	movs r1, #4
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
-	bl sub_080672C4
+	bl EfxChapterMapFadeOUT
 	b _0804FE00
 	.align 2, 0
 _0804FDCC: .4byte 0x0203E00A
@@ -16341,17 +16341,17 @@ _0804FDD0:
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	movs r2, #0
 	ldrsh r0, [r6, r2]
 	subs r0, #1
-	bl sub_0806AFFC
+	bl PutBanimBgPAL
 	ldr r0, _0804FE24 @ =0x02022860
 	movs r1, #6
 	movs r2, #0xa
 	adds r3, r4, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 _0804FE00:
 	ldrh r1, [r5, #0x2c]
@@ -16391,7 +16391,7 @@ sub_0804FE28: @ 0x0804FE28
 	str r0, [r4, #0x4c]
 	ldr r0, _0804FE68 @ =0x082C7ED0
 	ldr r1, _0804FE6C @ =0x06008000
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	ldr r0, _0804FE70 @ =0x082CD6C4
 	ldr r1, _0804FE74 @ =0x02022920
 	movs r2, #8
@@ -16420,7 +16420,7 @@ sub_0804FE78: @ 0x0804FE78
 	adds r1, r4, #0
 	adds r1, #0x44
 	ldr r2, [r4, #0x48]
-	bl sub_080506E4
+	bl EfxAdvanceFrameLut
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
 	cmp r0, #0
@@ -16430,7 +16430,7 @@ sub_0804FE78: @ 0x0804FE78
 	adds r0, r0, r1
 	ldr r0, [r0]
 	adds r1, r5, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	ldr r1, _0804FEF8 @ =0x02024460
 	movs r0, #6
 	str r0, [sp]
@@ -16439,7 +16439,7 @@ sub_0804FE78: @ 0x0804FE78
 	adds r0, r5, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 	movs r0, #8
 	bl EnableBgSync
 _0804FEBC:
@@ -16457,7 +16457,7 @@ _0804FEBC:
 	movs r1, #6
 	movs r2, #0xa
 	movs r3, #0x10
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	adds r0, r4, #0
 	bl Proc_Break
@@ -16495,13 +16495,13 @@ _0804FF2C:
 	movs r2, #0
 	ldrsh r0, [r1, r2]
 	subs r0, #1
-	bl sub_0806B020
+	bl PutBanimBG
 _0804FF36:
 	ldr r0, _0804FF5C @ =0x02022860
 	movs r1, #6
 	movs r2, #0xa
 	movs r3, #0x10
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	movs r0, #0
 	strh r0, [r4, #0x2c]
@@ -16533,9 +16533,9 @@ sub_0804FF60: @ 0x0804FF60
 	movs r0, #0
 	movs r1, #0x10
 	movs r2, #4
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
-	bl sub_080672C4
+	bl EfxChapterMapFadeOUT
 	b _0804FFC0
 	.align 2, 0
 _0804FF8C: .4byte 0x0203E00A
@@ -16548,17 +16548,17 @@ _0804FF90:
 	movs r0, #0
 	movs r1, #0x10
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	movs r2, #0
 	ldrsh r0, [r6, r2]
 	subs r0, #1
-	bl sub_0806AFFC
+	bl PutBanimBgPAL
 	ldr r0, _0804FFE8 @ =0x02022860
 	movs r1, #6
 	movs r2, #0xa
 	adds r3, r4, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 _0804FFC0:
 	ldrh r1, [r5, #0x2c]
@@ -16585,8 +16585,8 @@ _0804FFE0:
 _0804FFE8: .4byte 0x02022860
 _0804FFEC: .4byte 0x02017778
 
-	thumb_func_start sub_0804FFF0
-sub_0804FFF0: @ 0x0804FFF0
+	thumb_func_start SpellFx_Begin
+SpellFx_Begin: @ 0x0804FFF0
 	ldr r1, _0804FFF8 @ =0x0201772C
 	movs r0, #1
 	str r0, [r1]
@@ -16594,8 +16594,8 @@ sub_0804FFF0: @ 0x0804FFF0
 	.align 2, 0
 _0804FFF8: .4byte 0x0201772C
 
-	thumb_func_start sub_0804FFFC
-sub_0804FFFC: @ 0x0804FFFC
+	thumb_func_start SpellFx_Finish
+SpellFx_Finish: @ 0x0804FFFC
 	ldr r1, _08050004 @ =0x0201772C
 	movs r0, #0
 	str r0, [r1]
@@ -16603,8 +16603,8 @@ sub_0804FFFC: @ 0x0804FFFC
 	.align 2, 0
 _08050004: .4byte 0x0201772C
 
-	thumb_func_start sub_08050008
-sub_08050008: @ 0x08050008
+	thumb_func_start SpellFx_SetBG1Position
+SpellFx_SetBG1Position: @ 0x08050008
 	push {lr}
 	movs r0, #1
 	movs r1, #0
@@ -16613,8 +16613,8 @@ sub_08050008: @ 0x08050008
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08050018
-sub_08050018: @ 0x08050018
+	thumb_func_start SpellFx_ClearBG1
+SpellFx_ClearBG1: @ 0x08050018
 	push {lr}
 	sub sp, #4
 	movs r0, #0
@@ -16632,8 +16632,8 @@ sub_08050018: @ 0x08050018
 _08050038: .4byte 0x02023460
 _0805003C: .4byte 0x01000200
 
-	thumb_func_start sub_08050040
-sub_08050040: @ 0x08050040
+	thumb_func_start SpellFx_SetSomeColorEffect
+SpellFx_SetSomeColorEffect: @ 0x08050040
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -16740,8 +16740,8 @@ _0805010C: .4byte 0x03002870
 _08050110: .4byte 0x0000FFE0
 _08050114: .4byte 0x0000E0FF
 
-	thumb_func_start sub_08050118
-sub_08050118: @ 0x08050118
+	thumb_func_start SpellFx_ClearColorEffects
+SpellFx_ClearColorEffects: @ 0x08050118
 	ldr r3, _0805013C @ =0x03002870
 	adds r1, r3, #0
 	adds r1, #0x3c
@@ -16762,12 +16762,12 @@ sub_08050118: @ 0x08050118
 	.align 2, 0
 _0805013C: .4byte 0x03002870
 
-	thumb_func_start sub_08050140
-sub_08050140: @ 0x08050140
+	thumb_func_start StartBattleAnimHitEffectsDefault
+StartBattleAnimHitEffectsDefault: @ 0x08050140
 	push {lr}
 	movs r2, #3
 	movs r3, #4
-	bl sub_08050160
+	bl StartBattleAnimHitEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -16777,13 +16777,13 @@ sub_08050150: @ 0x08050150
 	push {lr}
 	movs r2, #5
 	movs r3, #5
-	bl sub_08050160
+	bl StartBattleAnimHitEffects
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08050160
-sub_08050160: @ 0x08050160
+	thumb_func_start StartBattleAnimHitEffects
+StartBattleAnimHitEffects: @ 0x08050160
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16793,7 +16793,7 @@ sub_08050160: @ 0x08050160
 	adds r4, r1, #0
 	str r2, [sp]
 	mov sl, r3
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805018C
 	ldr r0, _08050188 @ =0x02000000
@@ -16825,23 +16825,23 @@ _080501A4:
 _080501A8: .4byte 0x02000000
 _080501AC:
 	adds r0, r7, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	ldrh r0, [r7, #0xe]
 	subs r0, #1
 	lsls r0, r0, #1
 	adds r0, r0, r1
-	bl sub_08053314
+	bl GetBattleAnimRoundTypeFlags
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	ldrh r0, [r5, #0xe]
 	subs r0, #1
 	lsls r0, r0, #1
 	adds r0, r0, r1
-	bl sub_08053314
+	bl GetBattleAnimRoundTypeFlags
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
 	lsls r0, r6, #0x10
@@ -16852,12 +16852,12 @@ _080501AC:
 	cmp r0, #0
 	beq _080501FC
 	adds r0, r7, #0
-	bl sub_0804F840
+	bl GetUnitEfxDebuff
 	cmp r0, #0
 	bne _080501FC
 	adds r0, r7, #0
 	movs r1, #1
-	bl sub_0804F810
+	bl SetUnitEfxDebuff
 _080501FC:
 	lsls r0, r4, #0x10
 	asrs r1, r0, #0x10
@@ -16868,12 +16868,12 @@ _080501FC:
 	cmp r1, #0
 	beq _0805021E
 	adds r0, r5, #0
-	bl sub_0804F840
+	bl GetUnitEfxDebuff
 	cmp r0, #0
 	bne _0805021E
 	adds r0, r5, #0
 	movs r1, #1
-	bl sub_0804F810
+	bl SetUnitEfxDebuff
 _0805021E:
 	lsls r0, r6, #0x10
 	asrs r0, r0, #0x10
@@ -16894,46 +16894,46 @@ _08050234:
 _0805023C:
 	ldr r4, _080502A4 @ =0x0203E05E
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
 	ldrsh r6, [r0, r1]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
 	ldrsh r4, [r0, r1]
 	adds r4, #1
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	lsls r0, r6, #1
 	adds r0, r0, r1
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r6, r0, #0x10
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	lsls r0, r4, #1
 	adds r0, r0, r1
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r4, r0, #0x10
 	cmp r6, r4
 	beq _080502CA
 	adds r0, r5, #0
-	bl sub_0804D5A4
+	bl NewEfxHPBar
 	adds r0, r7, #0
-	bl sub_08054764
+	bl CheckRoundCrit
 	cmp r0, #1
 	bne _080502A8
 	adds r0, r5, #0
 	adds r1, r7, #0
 	mov r2, sl
-	bl sub_0804EAA8
+	bl NewEfxHitQuake
 	b _080502B2
 	.align 2, 0
 _080502A4: .4byte 0x0203E05E
@@ -16941,27 +16941,27 @@ _080502A8:
 	adds r0, r5, #0
 	adds r1, r7, #0
 	ldr r2, [sp]
-	bl sub_0804EAA8
+	bl NewEfxHitQuake
 _080502B2:
 	adds r0, r5, #0
 	movs r1, #0
 	movs r2, #5
-	bl sub_0804F1FC
+	bl NewEfxFlashHPBar
 	adds r0, r5, #0
 	movs r1, #0
 	movs r2, #8
 	movs r3, #0
-	bl sub_0804F598
+	bl NewEfxFlashUnit
 	b _080502DC
 _080502CA:
 	adds r0, r5, #0
 	mov r1, r8
 	movs r2, #0
-	bl sub_0804DE28
+	bl NewEfxNoDmage
 	b _080502DC
 _080502D6:
 	adds r0, r5, #0
-	bl sub_0804DC04
+	bl NewEfxAvoid
 _080502DC:
 	add sp, #4
 	pop {r3, r4, r5}
@@ -16972,14 +16972,14 @@ _080502DC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080502EC
-sub_080502EC: @ 0x080502EC
+	thumb_func_start StartBattleAnimResireHitEffects
+StartBattleAnimResireHitEffects: @ 0x080502EC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
 	push {r6, r7}
 	mov sb, r1
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805030C
 	ldr r0, _08050308 @ =0x02000000
@@ -16998,32 +16998,32 @@ _08050314:
 	mov r8, r0
 	ldr r4, _08050370 @ =0x0203E05E
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
 	ldrsh r6, [r0, r1]
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	lsls r0, r0, #1
 	adds r0, r0, r4
 	movs r1, #0
 	ldrsh r4, [r0, r1]
 	adds r4, #1
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	lsls r0, r6, #1
 	adds r0, r0, r1
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r6, r0, #0x10
 	adds r0, r5, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	adds r1, r0, #0
 	lsls r0, r4, #1
 	adds r0, r0, r1
-	bl sub_08053340
+	bl GetEfxHp
 	lsls r0, r0, #0x10
 	asrs r4, r0, #0x10
 	mov r0, sb
@@ -17039,31 +17039,31 @@ _08050374:
 	cmp r6, r4
 	beq _080503B6
 	adds r0, r5, #0
-	bl sub_0804D86C
+	bl NewEfxHpBarResire
 	adds r0, r7, #0
-	bl sub_08054764
+	bl CheckRoundCrit
 	cmp r0, #1
 	bne _08050394
 	adds r0, r5, #0
 	adds r1, r7, #0
 	movs r2, #4
-	bl sub_0804EAA8
+	bl NewEfxHitQuake
 	b _0805039E
 _08050394:
 	adds r0, r5, #0
 	adds r1, r7, #0
 	movs r2, #3
-	bl sub_0804EAA8
+	bl NewEfxHitQuake
 _0805039E:
 	adds r0, r5, #0
 	movs r1, #0
 	movs r2, #5
-	bl sub_0804F1FC
+	bl NewEfxFlashHPBar
 	adds r0, r5, #0
 	movs r1, #0
 	movs r2, #8
 	movs r3, #0
-	bl sub_0804F598
+	bl NewEfxFlashUnit
 	b _080503D2
 _080503B6:
 	ldr r1, _080503C8 @ =0x02017750
@@ -17072,13 +17072,13 @@ _080503B6:
 	adds r0, r5, #0
 	mov r1, r8
 	movs r2, #1
-	bl sub_0804DE28
+	bl NewEfxNoDmage
 	b _080503D2
 	.align 2, 0
 _080503C8: .4byte 0x02017750
 _080503CC:
 	adds r0, r5, #0
-	bl sub_0804DC04
+	bl NewEfxAvoid
 _080503D2:
 	pop {r3, r4}
 	mov r8, r3
@@ -17088,11 +17088,11 @@ _080503D2:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080503E0
-sub_080503E0: @ 0x080503E0
+	thumb_func_start StartBattleAnimStatusChgHitEffects
+StartBattleAnimStatusChgHitEffects: @ 0x080503E0
 	push {r4, lr}
 	adds r4, r1, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080503F8
 	ldr r0, _080503F4 @ =0x02000000
@@ -17112,17 +17112,17 @@ _080503FC:
 	.align 2, 0
 _08050408: .4byte 0x02000000
 _0805040C:
-	bl sub_0804DFD0
+	bl NewEfxStatusCHG
 	b _08050416
 _08050412:
-	bl sub_0804DC04
+	bl NewEfxAvoid
 _08050416:
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0805041C
-sub_0805041C: @ 0x0805041C
+	thumb_func_start EfxCreateFrontAnim
+EfxCreateFrontAnim: @ 0x0805041C
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	adds r7, r1, #0
@@ -17134,7 +17134,7 @@ sub_0805041C: @ 0x0805041C
 	cmp r0, #0
 	bne _08050448
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08050444
 	adds r0, r7, #0
@@ -17146,7 +17146,7 @@ _08050444:
 	b _08050458
 _08050448:
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08050456
 	adds r0, r5, #0
@@ -17155,7 +17155,7 @@ _08050456:
 	ldr r0, [sp, #0x14]
 _08050458:
 	movs r1, #0x78
-	bl sub_08006594
+	bl AnimCreate
 	adds r1, r0, #0
 	movs r0, #0xa1
 	lsls r0, r0, #6
@@ -17170,8 +17170,8 @@ _08050458:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08050478
-sub_08050478: @ 0x08050478
+	thumb_func_start EfxCreateBackAnim
+EfxCreateBackAnim: @ 0x08050478
 	push {r4, lr}
 	sub sp, #8
 	adds r3, r0, #0
@@ -17184,7 +17184,7 @@ sub_08050478: @ 0x08050478
 	adds r4, r1, #0
 _0805048C:
 	adds r0, r3, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _080504B4
 	ldr r1, _080504B0 @ =0x02023460
@@ -17195,7 +17195,7 @@ _0805048C:
 	adds r0, r4, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _080504C8
 	.align 2, 0
 _080504AC: .4byte 0x0203E02C
@@ -17209,7 +17209,7 @@ _080504B4:
 	adds r0, r4, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _080504C8:
 	movs r0, #2
 	bl EnableBgSync
@@ -17220,8 +17220,8 @@ _080504C8:
 	.align 2, 0
 _080504D8: .4byte 0x02023460
 
-	thumb_func_start sub_080504DC
-sub_080504DC: @ 0x080504DC
+	thumb_func_start SpellFx_WriteBgMap
+SpellFx_WriteBgMap: @ 0x080504DC
 	push {r4, r5, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -17233,7 +17233,7 @@ sub_080504DC: @ 0x080504DC
 	bne _08050500
 	ldr r1, _080504FC @ =0x02019784
 	adds r0, r3, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	b _08050508
 	.align 2, 0
 _080504F8: .4byte 0x0203E02C
@@ -17241,11 +17241,11 @@ _080504FC: .4byte 0x02019784
 _08050500:
 	ldr r1, _0805052C @ =0x02019784
 	adds r0, r2, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _08050508:
 	ldr r5, _0805052C @ =0x02019784
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _08050534
 	ldr r1, _08050530 @ =0x02023460
@@ -17256,7 +17256,7 @@ _08050508:
 	adds r0, r5, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _08050548
 	.align 2, 0
 _0805052C: .4byte 0x02019784
@@ -17270,7 +17270,7 @@ _08050534:
 	adds r0, r5, #0
 	movs r2, #0x1e
 	movs r3, #0x14
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _08050548:
 	movs r0, #2
 	bl EnableBgSync
@@ -17281,8 +17281,8 @@ _08050548:
 	.align 2, 0
 _08050558: .4byte 0x02023460
 
-	thumb_func_start sub_0805055C
-sub_0805055C: @ 0x0805055C
+	thumb_func_start SpellFx_WriteBgMapExt
+SpellFx_WriteBgMapExt: @ 0x0805055C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r4, r0, #0
@@ -17291,9 +17291,9 @@ sub_0805055C: @ 0x0805055C
 	adds r6, r3, #0
 	ldr r7, _08050594 @ =0x02019784
 	adds r1, r7, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	adds r0, r4, #0
-	bl sub_08054678
+	bl GetAnimPosition
 	cmp r0, #0
 	bne _0805059C
 	ldr r1, _08050598 @ =0x02023460
@@ -17306,7 +17306,7 @@ sub_0805055C: @ 0x0805055C
 	adds r0, #0xff
 	str r0, [sp, #4]
 	adds r0, r7, #0
-	bl sub_08066AFC
+	bl EfxTmCpyBgHFlip
 	b _080505B4
 	.align 2, 0
 _08050594: .4byte 0x02019784
@@ -17322,7 +17322,7 @@ _0805059C:
 	adds r0, #0xff
 	str r0, [sp, #4]
 	adds r0, r7, #0
-	bl sub_08066ACC
+	bl EfxTmCpyBG
 _080505B4:
 	movs r0, #2
 	bl EnableBgSync
@@ -17333,18 +17333,18 @@ _080505B4:
 	.align 2, 0
 _080505C4: .4byte 0x02023460
 
-	thumb_func_start sub_080505C8
-sub_080505C8: @ 0x080505C8
+	thumb_func_start SpellFx_RegisterObjGfx
+SpellFx_RegisterObjGfx: @ 0x080505C8
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
 	ldr r5, _080505E8 @ =0x06010800
 	ldr r4, _080505EC @ =0x0201A784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	adds r0, r4, #0
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08003078
+	bl RegisterDataMove
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -17352,8 +17352,8 @@ sub_080505C8: @ 0x080505C8
 _080505E8: .4byte 0x06010800
 _080505EC: .4byte 0x0201A784
 
-	thumb_func_start sub_080505F0
-sub_080505F0: @ 0x080505F0
+	thumb_func_start SpellFx_RegisterObjPal
+SpellFx_RegisterObjPal: @ 0x080505F0
 	push {lr}
 	adds r2, r1, #0
 	ldr r1, _08050608 @ =0x02022AA0
@@ -17366,18 +17366,18 @@ sub_080505F0: @ 0x080505F0
 	.align 2, 0
 _08050608: .4byte 0x02022AA0
 
-	thumb_func_start sub_0805060C
-sub_0805060C: @ 0x0805060C
+	thumb_func_start SpellFx_RegisterBgGfx
+SpellFx_RegisterBgGfx: @ 0x0805060C
 	push {r4, r5, r6, lr}
 	adds r6, r1, #0
 	ldr r5, _0805062C @ =0x06002000
 	ldr r4, _08050630 @ =0x02017784
 	adds r1, r4, #0
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 	adds r0, r4, #0
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08003078
+	bl RegisterDataMove
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -17385,8 +17385,8 @@ sub_0805060C: @ 0x0805060C
 _0805062C: .4byte 0x06002000
 _08050630: .4byte 0x02017784
 
-	thumb_func_start sub_08050634
-sub_08050634: @ 0x08050634
+	thumb_func_start SpellFx_RegisterBgPal
+SpellFx_RegisterBgPal: @ 0x08050634
 	push {lr}
 	adds r2, r1, #0
 	ldr r1, _0805064C @ =0x02022880
@@ -17489,8 +17489,8 @@ _080506D8:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080506E4
-sub_080506E4: @ 0x080506E4
+	thumb_func_start EfxAdvanceFrameLut
+EfxAdvanceFrameLut: @ 0x080506E4
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	adds r3, r1, #0
@@ -17575,8 +17575,8 @@ sub_0805076C: @ 0x0805076C
 	.align 2, 0
 _08050774: .4byte 0x0201775C
 
-	thumb_func_start sub_08050778
-sub_08050778: @ 0x08050778
+	thumb_func_start EfxGetCamMovDuration
+EfxGetCamMovDuration: @ 0x08050778
 	ldr r0, _08050788 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -17628,8 +17628,8 @@ sub_080507B8: @ 0x080507B8
 _080507D0: .4byte 0x0201D41C
 _080507D4: .4byte 0x05000948
 
-	thumb_func_start sub_080507D8
-sub_080507D8: @ 0x080507D8
+	thumb_func_start SetEkrFrontAnimPostion
+SetEkrFrontAnimPostion: @ 0x080507D8
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
 	lsls r2, r2, #0x10
@@ -17673,8 +17673,8 @@ sub_08050814: @ 0x08050814
 	.align 2, 0
 _0805081C: .4byte 0x0201FABC
 
-	thumb_func_start sub_08050820
-sub_08050820: @ 0x08050820
+	thumb_func_start NewEfxspdquake
+NewEfxspdquake: @ 0x08050820
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _0805083C @ =0x08B9AFE4
@@ -17818,13 +17818,13 @@ sub_08050918: @ 0x08050918
 	movs r0, #0
 	ldrsh r2, [r3, r0]
 	movs r0, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	movs r0, #1
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_080507D8
+	bl SetEkrFrontAnimPostion
 	ldr r0, _08050974 @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -17855,37 +17855,37 @@ _08050986:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08050994
-sub_08050994: @ 0x08050994
+	thumb_func_start SetupBanim
+SetupBanim: @ 0x08050994
 	push {lr}
-	bl sub_08051D50
+	bl PrepareBattleGraphicsMaybe
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080509A4
-sub_080509A4: @ 0x080509A4
+	thumb_func_start BeginAnimsOnBattleAnimations
+BeginAnimsOnBattleAnimations: @ 0x080509A4
 	push {lr}
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #1
 	bne _080509B4
-	bl sub_08055570
+	bl BeginAnimsOnBattle_Arena
 	b _080509F4
 _080509B4:
-	bl sub_0806B78C
+	bl CheckBanimHensei
 	cmp r0, #1
 	bne _080509C2
-	bl sub_0806B7A8
+	bl BeginAnimsOnBattle_Hensei
 	b _080509F4
 _080509C2:
-	bl sub_0804B1AC
-	bl sub_08006508
-	bl sub_0804D43C
+	bl NewEkrBattleDeamon
+	bl AnimClearAll
+	bl GetBanimInitPosReal
 	ldr r1, _080509F8 @ =0x02017744
 	str r0, [r1]
-	bl sub_08050AAC
+	bl NewEkrBattleStarting
 	ldr r0, _080509FC @ =0x02000000
 	movs r1, #0
 	str r1, [r0]
@@ -17895,8 +17895,8 @@ _080509C2:
 	ldr r0, _08050A00 @ =0x02000010
 	str r1, [r0]
 	str r1, [r0, #4]
-	ldr r0, _08050A04 @ =sub_08050A38
-	bl sub_080019B8
+	ldr r0, _08050A04 @ =MainUpdate_8055C68
+	bl SetMainFunc
 	movs r0, #0
 	bl SetOnHBlankA
 _080509F4:
@@ -17906,68 +17906,68 @@ _080509F4:
 _080509F8: .4byte 0x02017744
 _080509FC: .4byte 0x02000000
 _08050A00: .4byte 0x02000010
-_08050A04: .4byte sub_08050A38
+_08050A04: .4byte MainUpdate_8055C68
 
-	thumb_func_start sub_08050A08
-sub_08050A08: @ 0x08050A08
+	thumb_func_start EkrBattleEndRountine
+EkrBattleEndRountine: @ 0x08050A08
 	push {lr}
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #1
 	bne _08050A18
-	bl sub_08055594
+	bl ExecBattleAnimArenaExit
 	b _08050A30
 _08050A18:
-	bl sub_0806B78C
+	bl CheckBanimHensei
 	cmp r0, #1
 	bne _08050A26
-	bl sub_0806B7CC
+	bl ExecEkrHenseiEnd
 	b _08050A30
 _08050A26:
-	bl sub_08050EB4
-	ldr r0, _08050A34 @ =sub_08050A38
-	bl sub_080019B8
+	bl NewEkrbattleending
+	ldr r0, _08050A34 @ =MainUpdate_8055C68
+	bl SetMainFunc
 _08050A30:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08050A34: .4byte sub_08050A38
+_08050A34: .4byte MainUpdate_8055C68
 
-	thumb_func_start sub_08050A38
-sub_08050A38: @ 0x08050A38
+	thumb_func_start MainUpdate_8055C68
+MainUpdate_8055C68: @ 0x08050A38
 	push {r4, lr}
 	ldr r0, _08050A9C @ =0x08B857F8
 	ldr r0, [r0]
 	bl RefreshKeySt
-	bl sub_080069B0
+	bl ClearSprites
 	ldr r4, _08050AA0 @ =0x02026A30
 	ldr r0, [r4, #4]
-	bl sub_08004690
+	bl Proc_Run
 	bl GetGameLock
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08050A5E
 	ldr r0, [r4, #8]
-	bl sub_08004690
+	bl Proc_Run
 _08050A5E:
 	ldr r0, [r4, #0xc]
-	bl sub_08004690
+	bl Proc_Run
 	ldr r0, [r4, #0x14]
-	bl sub_08004690
+	bl Proc_Run
 	movs r0, #0
-	bl sub_08006A64
+	bl PutSpriteLayerOam
 	ldr r0, [r4, #0x10]
-	bl sub_08004690
-	bl sub_08006490
-	bl sub_08053454
+	bl Proc_Run
+	bl AnimUpdateAll
+	bl BattleAIS_ExecCommands
 	movs r0, #0xd
-	bl sub_08006A64
+	bl PutSpriteLayerOam
 	ldr r1, _08050AA4 @ =0x0202BBB8
 	movs r0, #1
 	strb r0, [r1]
 	ldr r0, _08050AA8 @ =0x04000006
 	ldrh r0, [r0]
 	strh r0, [r1, #6]
-	bl sub_080BFA6C
+	bl VBlankIntrWait
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -17977,8 +17977,8 @@ _08050AA0: .4byte 0x02026A30
 _08050AA4: .4byte 0x0202BBB8
 _08050AA8: .4byte 0x04000006
 
-	thumb_func_start sub_08050AAC
-sub_08050AAC: @ 0x08050AAC
+	thumb_func_start NewEkrBattleStarting
+NewEkrBattleStarting: @ 0x08050AAC
 	push {lr}
 	ldr r0, _08050ABC @ =0x08B9B004
 	movs r1, #3
@@ -18146,7 +18146,7 @@ _08050BEC:
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r6, r0, #0
 	movs r0, #0x3a
 	ldrsh r2, [r7, r0]
@@ -18157,7 +18157,7 @@ _08050BEC:
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	movs r0, #0x34
 	ldrsh r2, [r7, r0]
@@ -18168,7 +18168,7 @@ _08050BEC:
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0xf0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	movs r0, #0x3c
 	ldrsh r2, [r7, r0]
@@ -18179,7 +18179,7 @@ _08050BEC:
 	str r0, [sp]
 	movs r0, #0
 	movs r1, #0xa0
-	bl sub_08012FE8
+	bl Interpolate
 	ldr r1, _08050CD4 @ =0x03002870
 	movs r2, #0x2d
 	adds r2, r2, r1
@@ -18216,7 +18216,7 @@ _08050BEC:
 	orrs r0, r1
 	strb r0, [r2]
 	movs r0, #0
-	bl sub_0800322C
+	bl InitOam
 	bl LockBmDisplay
 	mov r0, sb
 	mov r2, r8
@@ -18230,7 +18230,7 @@ _08050BEC:
 	movs r1, #6
 	movs r2, #0xa
 	movs r3, #4
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	bl EndAllMus
 	adds r0, r7, #0
@@ -18247,8 +18247,8 @@ _08050CC4:
 _08050CD4: .4byte 0x03002870
 _08050CD8: .4byte 0x02022860
 
-	thumb_func_start sub_08050CDC
-sub_08050CDC: @ 0x08050CDC
+	thumb_func_start ekrBaStart_InitBattleScreen
+ekrBaStart_InitBattleScreen: @ 0x08050CDC
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08050D08 @ =0x0203E008
@@ -18256,8 +18256,8 @@ sub_08050CDC: @ 0x08050CDC
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	bne _08050D40
-	bl sub_0804C1D0
-	bl sub_0804CD64
+	bl NewEkrGauge
+	bl NewEkrDispUP
 	ldr r0, _08050D0C @ =0x0203E02C
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -18277,37 +18277,37 @@ _08050D10:
 	ldrsh r0, [r4, r1]
 	cmp r0, #0
 	bne _08050D22
-	bl sub_0804C46C
-	bl sub_0804CDC8
+	bl EkrGauge_0804CC48
+	bl EkrDispUP_0804D5A4
 _08050D22:
 	movs r1, #2
 	ldrsh r0, [r4, r1]
 	cmp r0, #0
 	bne _08050D40
-	bl sub_0804C47C
-	bl sub_0804CDD8
+	bl EkrGauge_0804CC58
+	bl EkrDispUP_0804D5B4
 	b _08050D40
 	.align 2, 0
 _08050D34: .4byte 0x0203E010
 _08050D38:
-	bl sub_0804C46C
-	bl sub_0804CDC8
+	bl EkrGauge_0804CC48
+	bl EkrDispUP_0804D5A4
 _08050D40:
-	bl sub_0804CF5C
+	bl EfxClearScreenFx
 	movs r0, #0
-	bl sub_080516E8
+	bl NewEkrUnitKakudai
 	movs r0, #0
-	bl sub_08051274
+	bl NewEkrBaseKaiten
 	movs r0, #0
 	movs r1, #0xb
-	bl sub_08051A9C
+	bl NewEkrWindowAppear
 	movs r0, #0
 	movs r1, #0xb
 	movs r2, #0
-	bl sub_08051B80
+	bl NewEkrNamewinAppear
 	movs r0, #0
 	movs r1, #0xb
-	bl sub_08051C80
+	bl NewEkrBaseAppear
 	movs r0, #0
 	strh r0, [r5, #0x2c]
 	adds r0, r5, #0
@@ -18317,8 +18317,8 @@ _08050D40:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08050D7C
-sub_08050D7C: @ 0x08050D7C
+	thumb_func_start ekrBaStart_ExecEkrBattle6C
+ekrBaStart_ExecEkrBattle6C: @ 0x08050D7C
 	push {r4, lr}
 	adds r4, r0, #0
 	ldrh r0, [r4, #0x2c]
@@ -18333,11 +18333,11 @@ sub_08050D7C: @ 0x08050D7C
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _08050DA0
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _08050DB0
 _08050DA0:
-	bl sub_0804B218
+	bl NewEkrBattle
 	adds r0, r4, #0
 	bl Proc_End
 	b _08050DBC
@@ -18345,7 +18345,7 @@ _08050DA0:
 _08050DAC: .4byte 0x0203E00A
 _08050DB0:
 	strh r0, [r4, #0x2c]
-	bl sub_0804B218
+	bl NewEkrBattle
 	adds r0, r4, #0
 	bl Proc_Break
 _08050DBC:
@@ -18354,8 +18354,8 @@ _08050DBC:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08050DC4
-sub_08050DC4: @ 0x08050DC4
+	thumb_func_start ekrBaStart_8055FE8
+ekrBaStart_8055FE8: @ 0x08050DC4
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -18366,8 +18366,8 @@ sub_08050DC4: @ 0x08050DC4
 	movs r0, #0
 	movs r1, #4
 	movs r2, #0x10
-	bl sub_08012FE8
-	bl sub_080672C4
+	bl Interpolate
+	bl EfxChapterMapFadeOUT
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
 	strh r0, [r4, #0x2c]
@@ -18385,8 +18385,8 @@ _08050DF8:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08050E00
-sub_08050E00: @ 0x08050E00
+	thumb_func_start ekrBaStart_8056024
+ekrBaStart_8056024: @ 0x08050E00
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08050E14 @ =0x0203E00E
@@ -18409,12 +18409,12 @@ _08050E20:
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	subs r0, #1
-	bl sub_0806B020
+	bl PutBanimBG
 	ldr r0, _08050E50 @ =0x02022860
 	movs r1, #6
 	movs r2, #0xa
 	movs r3, #0x10
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -18425,8 +18425,8 @@ _08050E48: .4byte 0x0201FACC
 _08050E4C: .4byte 0x0203E00A
 _08050E50: .4byte 0x02022860
 
-	thumb_func_start sub_08050E54
-sub_08050E54: @ 0x08050E54
+	thumb_func_start ekrBaStart_8056078
+ekrBaStart_8056078: @ 0x08050E54
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -18437,18 +18437,18 @@ sub_08050E54: @ 0x08050E54
 	movs r0, #0
 	movs r1, #0x10
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	ldr r0, _08050EAC @ =0x0203E00A
 	movs r1, #0
 	ldrsh r0, [r0, r1]
 	subs r0, #1
-	bl sub_0806AFFC
+	bl PutBanimBgPAL
 	ldr r0, _08050EB0 @ =0x02022860
 	movs r1, #6
 	movs r2, #0xa
 	adds r3, r4, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -18470,8 +18470,8 @@ _08050EA2:
 _08050EAC: .4byte 0x0203E00A
 _08050EB0: .4byte 0x02022860
 
-	thumb_func_start sub_08050EB4
-sub_08050EB4: @ 0x08050EB4
+	thumb_func_start NewEkrbattleending
+NewEkrbattleending: @ 0x08050EB4
 	push {lr}
 	ldr r0, _08050EC8 @ =0x08B9B04C
 	movs r1, #3
@@ -18493,7 +18493,7 @@ sub_08050ECC: @ 0x08050ECC
 	ldrsh r0, [r7, r1]
 	cmp r0, #0
 	beq _08050EE6
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	adds r6, r0, #0
 	cmp r6, #0
 	beq _08050EF4
@@ -18511,17 +18511,17 @@ _08050EF4:
 	movs r0, #0
 	movs r1, #0
 	movs r2, #0x10
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	movs r1, #0
 	ldrsh r0, [r7, r1]
 	subs r0, #1
-	bl sub_0806AFFC
+	bl PutBanimBgPAL
 	ldr r0, _08050F40 @ =0x02022860
 	movs r1, #6
 	movs r2, #0xa
 	adds r3, r4, #0
-	bl sub_08066EE8
+	bl EfxPalBlackInOut
 	bl EnablePalSync
 	ldrh r0, [r5, #0x2c]
 	adds r0, #1
@@ -18550,7 +18550,7 @@ sub_08050F44: @ 0x08050F44
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _08050F5A
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	beq _08050F68
 _08050F5A:
@@ -18566,7 +18566,7 @@ _08050F68:
 	asrs r0, r0, #0x18
 	bl ApplyChapterMapGraphics
 	movs r0, #0x10
-	bl sub_080672C4
+	bl EfxChapterMapFadeOUT
 	bl RenderMap
 	movs r0, #3
 	movs r1, #0
@@ -18591,7 +18591,7 @@ sub_08050F98: @ 0x08050F98
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	beq _08050FB2
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	adds r5, r0, #0
 	cmp r5, #0
 	beq _08050FC0
@@ -18609,8 +18609,8 @@ _08050FC0:
 	movs r0, #0
 	movs r1, #0x10
 	movs r2, #4
-	bl sub_08012FE8
-	bl sub_080672C4
+	bl Interpolate
+	bl EfxChapterMapFadeOUT
 	ldrh r0, [r4, #0x2c]
 	adds r0, #1
 	strh r0, [r4, #0x2c]
@@ -18627,8 +18627,8 @@ _08050FEC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08050FF4
-sub_08050FF4: @ 0x08050FF4
+	thumb_func_start ekrBattleEnding_8056228
+ekrBattleEnding_8056228: @ 0x08050FF4
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0
@@ -18652,17 +18652,17 @@ sub_08050FF4: @ 0x08050FF4
 	adds r0, #8
 	strh r0, [r4, #0x3c]
 	strh r0, [r4, #0x3a]
-	bl sub_08006508
+	bl AnimClearAll
 	movs r0, #1
-	bl sub_080516E8
+	bl NewEkrUnitKakudai
 	movs r0, #1
-	bl sub_08051274
-	movs r0, #1
-	movs r1, #0xb
-	bl sub_08051A9C
+	bl NewEkrBaseKaiten
 	movs r0, #1
 	movs r1, #0xb
-	bl sub_08051C80
+	bl NewEkrWindowAppear
+	movs r0, #1
+	movs r1, #0xb
+	bl NewEkrBaseAppear
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
@@ -18683,10 +18683,10 @@ sub_08051054: @ 0x08051054
 	asrs r0, r0, #0x10
 	cmp r0, #0xc
 	ble _080510D4
-	bl sub_0804C438
+	bl EndEkrGauge
 	adds r0, r4, #0
 	bl Proc_Break
-	bl sub_0801551C
+	bl InitBmBgLayers
 	ldr r0, _080510DC @ =0x03002870
 	mov ip, r0
 	movs r0, #0x20
@@ -18751,7 +18751,7 @@ sub_080510E0: @ 0x080510E0
 	movs r0, #0xf
 	strh r0, [r5, #0x2e]
 	bl ResetUnitSprites
-	bl sub_0802E314
+	bl BMapDispResume_FromBattleDelayed
 	bl RefreshUnitSprites
 	bl ForceSyncUnitSpriteSheet
 	bl ApplyUnitSpritePalettes
@@ -18788,15 +18788,15 @@ sub_080510E0: @ 0x080510E0
 	ldrb r2, [r1]
 	orrs r0, r2
 	strb r0, [r1]
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #1
 	beq _08051150
 	bl ApplyChapterMapPalettes
 _08051150:
-	bl sub_0804B1A0
+	bl GetBanimLinkArenaFlag
 	cmp r0, #1
 	bne _0805115C
-	bl sub_08044FB8
+	bl LoadLinkArenaFogPlaceholder
 _0805115C:
 	adds r0, r5, #0
 	bl Proc_Break
@@ -18831,7 +18831,7 @@ _08051188:
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r6, r0, #0
 	movs r0, #0x3a
 	ldrsh r1, [r7, r0]
@@ -18842,7 +18842,7 @@ _08051188:
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r5, r0, #0
 	movs r0, #0x34
 	ldrsh r1, [r7, r0]
@@ -18853,7 +18853,7 @@ _08051188:
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0xf0
-	bl sub_08012FE8
+	bl Interpolate
 	adds r4, r0, #0
 	movs r0, #0x3c
 	ldrsh r1, [r7, r0]
@@ -18864,7 +18864,7 @@ _08051188:
 	str r0, [sp]
 	movs r0, #0
 	movs r2, #0xa0
-	bl sub_08012FE8
+	bl Interpolate
 	ldr r1, _08051250 @ =0x03002870
 	movs r2, #0x2d
 	adds r2, r2, r1
@@ -18925,15 +18925,15 @@ sub_0805125C: @ 0x0805125C
 	push {r4, lr}
 	adds r4, r0, #0
 	bl sub_0804B1D8
-	bl sub_0802E29C
+	bl RefreshBMapDisplay_FromBattle
 	adds r0, r4, #0
 	bl Proc_Break
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08051274
-sub_08051274: @ 0x08051274
+	thumb_func_start NewEkrBaseKaiten
+NewEkrBaseKaiten: @ 0x08051274
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	ldr r3, _080512DC @ =0x03002870
@@ -19044,7 +19044,7 @@ _0805133E:
 	ldr r0, [r0]
 	adds r6, r1, #0
 	ldr r1, _08051374 @ =0x06010000
-	bl sub_080BFA24
+	bl LZ77UnCompVram
 	ldr r0, _08051378 @ =0x081E7FF8
 	ldr r1, _0805137C @ =0x02022AE0
 	movs r2, #1
@@ -19124,7 +19124,7 @@ _080513FA:
 	adds r0, r6, r0
 	ldr r0, [r0]
 	movs r1, #0x64
-	bl sub_08006594
+	bl AnimCreate
 	adds r2, r0, #0
 	str r2, [r5, #0x5c]
 	movs r0, #0x90
@@ -19214,7 +19214,7 @@ _080514B2:
 	adds r0, r6, r0
 	ldr r0, [r0]
 	movs r1, #0x64
-	bl sub_08006594
+	bl AnimCreate
 	adds r2, r0, #0
 	str r2, [r5, #0x5c]
 	movs r0, #0x90
@@ -19307,7 +19307,7 @@ _08051576:
 	adds r0, r6, r0
 	ldr r0, [r0]
 	movs r1, #0x64
-	bl sub_08006594
+	bl AnimCreate
 	adds r2, r0, #0
 	str r2, [r5, #0x5c]
 	movs r0, #0x90
@@ -19370,7 +19370,7 @@ _080515FA:
 	adds r0, r6, r0
 	ldr r0, [r0]
 	movs r1, #0x64
-	bl sub_08006594
+	bl AnimCreate
 	adds r2, r0, #0
 	str r2, [r5, #0x5c]
 	movs r0, #0x90
@@ -19411,8 +19411,8 @@ _08051642:
 	.align 2, 0
 _08051648: .4byte 0x08B9B1F4
 
-	thumb_func_start sub_0805164C
-sub_0805164C: @ 0x0805164C
+	thumb_func_start EkrBaseKaitenMain
+EkrBaseKaitenMain: @ 0x0805164C
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -19424,7 +19424,7 @@ sub_0805164C: @ 0x0805164C
 	cmp r1, r0
 	blt _0805166E
 	adds r0, r5, #0
-	bl sub_08006650
+	bl AnimDelete
 	adds r0, r4, #0
 	bl Proc_Break
 	b _080516DE
@@ -19442,7 +19442,7 @@ _0805166E:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	strh r0, [r5, #2]
 	movs r0, #0x3a
 	ldrsh r1, [r4, r0]
@@ -19460,7 +19460,7 @@ _08051698:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	strh r0, [r5, #2]
 	movs r0, #0x3c
 	ldrsh r1, [r4, r0]
@@ -19473,7 +19473,7 @@ _080516BA:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	strh r0, [r5, #4]
 	ldrh r2, [r4, #0x2c]
 	movs r0, #0x2c
@@ -19491,8 +19491,8 @@ _080516DE:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080516E8
-sub_080516E8: @ 0x080516E8
+	thumb_func_start NewEkrUnitKakudai
+NewEkrUnitKakudai: @ 0x080516E8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _08051714 @ =0x08B9B214
@@ -19522,7 +19522,7 @@ _0805171C:
 	ldrsh r5, [r0, r1]
 	cmp r5, #1
 	bne _08051730
-	bl sub_08064AE0
+	bl CheckInEkrDragon
 	cmp r0, #0
 	bne _08051730
 	str r5, [r4, #0x4c]
@@ -19552,8 +19552,8 @@ _08051756:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0805175C
-sub_0805175C: @ 0x0805175C
+	thumb_func_start UnitKakudai1
+UnitKakudai1: @ 0x0805175C
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r1, _0805186C @ =0x081D8594
@@ -19566,7 +19566,7 @@ sub_0805175C: @ 0x0805175C
 	lsls r0, r0, #2
 	adds r0, r0, r1
 	ldrb r6, [r0]
-	bl sub_08054024
+	bl UpdateBanimFrame
 	ldr r0, [r4, #0x44]
 	cmp r0, #0
 	bne _08051794
@@ -19579,7 +19579,7 @@ sub_0805175C: @ 0x0805175C
 	ldr r0, _0805187C @ =0x02022860
 	movs r1, #0x17
 	movs r2, #1
-	bl sub_080670A0
+	bl EfxPalModifyPetrifyEffect
 _08051794:
 	ldr r5, _08051880 @ =0x0203E010
 	ldrh r3, [r5]
@@ -19598,7 +19598,7 @@ _08051794:
 	adds r1, r1, r2
 	str r1, [r4, #0x54]
 	ldr r1, _08051890 @ =0x02000088
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _080517BA:
 	ldrh r5, [r5, #2]
 	cmp r5, #1
@@ -19616,26 +19616,26 @@ _080517BA:
 	adds r1, r1, r2
 	str r1, [r4, #0x58]
 	ldr r1, _080518A0 @ =0x02002088
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _080517DE:
 	ldr r5, _080518A4 @ =0x0203E0B0
 	ldr r0, [r5]
 	cmp r0, #0
 	beq _080517EC
 	ldr r1, _080518A8 @ =0x02001088
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _080517EC:
 	ldr r0, [r5, #4]
 	cmp r0, #0
 	beq _080517F8
 	ldr r1, _080518AC @ =0x02003088
-	bl sub_080BFA28
+	bl LZ77UnCompWram
 _080517F8:
 	ldr r1, _080518B0 @ =0x06014000
 	ldr r0, _08051890 @ =0x02000088
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08003078
+	bl RegisterDataMove
 	movs r0, #0
 	strh r0, [r4, #0x2c]
 	movs r0, #0xb
@@ -19729,8 +19729,8 @@ _080518D8:
 	.align 2, 0
 _080518E4: .4byte 0x081D85A4
 
-	thumb_func_start sub_080518E8
-sub_080518E8: @ 0x080518E8
+	thumb_func_start UnitKakudai2
+UnitKakudai2: @ 0x080518E8
 	push {r4, r5, r6, r7, lr}
 	ldr r4, _08051908 @ =0xFFFFFCB4
 	add sp, r4
@@ -19773,7 +19773,7 @@ _08051930:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	lsls r0, r0, #0x10
 	lsrs r7, r0, #0x10
 	ldr r0, [r4, #0x4c]
@@ -19786,7 +19786,7 @@ _08051930:
 	str r1, [sp]
 	add r1, sp, #4
 	adds r2, r3, #0
-	bl sub_08067444
+	bl BanimUpdateSpriteRotScale
 	ldr r0, [r4, #0x44]
 	cmp r0, #0
 	bne _0805198E
@@ -19800,7 +19800,7 @@ _08051930:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	movs r0, #0x3a
@@ -19824,7 +19824,7 @@ _0805198E:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	movs r0, #0x3a
@@ -19837,7 +19837,7 @@ _0805198E:
 	movs r0, #0
 	movs r1, #0x58
 _080519BC:
-	bl sub_08012FE8
+	bl Interpolate
 	lsls r0, r0, #0x10
 	lsrs r1, r0, #0x10
 	add r2, sp, #4
@@ -19853,7 +19853,7 @@ _080519BC:
 	strh r1, [r5, #8]
 	str r0, [r5, #0x1c]
 	adds r0, r5, #0
-	bl sub_0800667C
+	bl AnimDisplay
 _080519E2:
 	ldr r1, [r4, #0x50]
 	cmp r1, #1
@@ -19864,7 +19864,7 @@ _080519E2:
 	str r1, [sp]
 	add r1, sp, #4
 	adds r2, r3, #0
-	bl sub_08067444
+	bl BanimUpdateSpriteRotScale
 	ldr r0, [r4, #0x44]
 	cmp r0, #0
 	bne _08051A2E
@@ -19878,7 +19878,7 @@ _080519E2:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	movs r0, #0x3c
@@ -19902,7 +19902,7 @@ _08051A2E:
 	ldrsh r0, [r4, r6]
 	str r0, [sp]
 	movs r0, #0
-	bl sub_08012FE8
+	bl Interpolate
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	movs r0, #0x3c
@@ -19915,7 +19915,7 @@ _08051A2E:
 	movs r0, #0
 	movs r1, #0x58
 _08051A5C:
-	bl sub_08012FE8
+	bl Interpolate
 	lsls r0, r0, #0x10
 	lsrs r1, r0, #0x10
 	add r2, sp, #4
@@ -19931,7 +19931,7 @@ _08051A5C:
 	strh r1, [r5, #8]
 	str r0, [r5, #0x1c]
 	adds r0, r5, #0
-	bl sub_0800667C
+	bl AnimDisplay
 _08051A82:
 	movs r3, #0xd3
 	lsls r3, r3, #2
@@ -19949,8 +19949,8 @@ sub_08051A90: @ 0x08051A90
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08051A9C
-sub_08051A9C: @ 0x08051A9C
+	thumb_func_start NewEkrWindowAppear
+NewEkrWindowAppear: @ 0x08051A9C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -19975,11 +19975,11 @@ _08051ABE:
 	adds r1, r1, r2
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C49C
+	bl EkrGauge_0804CC78
 	ldr r1, _08051AE8 @ =0x0201FAC0
 	movs r0, #1
 	str r0, [r1]
-	bl sub_0804C4D4
+	bl EkrGauge_ClrInitFlag
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -19988,8 +19988,8 @@ _08051AE0: .4byte 0x08B9B23C
 _08051AE4: .4byte 0x02000038
 _08051AE8: .4byte 0x0201FAC0
 
-	thumb_func_start sub_08051AEC
-sub_08051AEC: @ 0x08051AEC
+	thumb_func_start CheckEkrWindowAppearUnexist
+CheckEkrWindowAppearUnexist: @ 0x08051AEC
 	ldr r0, _08051AF8 @ =0x0201FAC0
 	ldr r0, [r0]
 	cmp r0, #0
@@ -20003,8 +20003,8 @@ _08051AFC:
 _08051AFE:
 	bx lr
 
-	thumb_func_start sub_08051B00
-sub_08051B00: @ 0x08051B00
+	thumb_func_start EkrWindowAppearMain
+EkrWindowAppearMain: @ 0x08051B00
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -20018,7 +20018,7 @@ sub_08051B00: @ 0x08051B00
 	ldr r1, _08051B28 @ =0x0201FAC0
 	movs r0, #0
 	str r0, [r1]
-	bl sub_0804C4C4
+	bl EkrGauge_SetInitFlag
 	adds r0, r4, #0
 	bl Proc_Break
 	b _08051B74
@@ -20051,7 +20051,7 @@ _08051B4A:
 	movs r0, #4
 	movs r1, #0
 _08051B5C:
-	bl sub_08012FE8
+	bl Interpolate
 	adds r2, r0, #0
 	ldr r1, _08051B7C @ =0x02000038
 	movs r3, #0
@@ -20060,7 +20060,7 @@ _08051B5C:
 	adds r1, r1, r2
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_0804C49C
+	bl EkrGauge_0804CC78
 _08051B74:
 	add sp, #4
 	pop {r4}
@@ -20069,8 +20069,8 @@ _08051B74:
 	.align 2, 0
 _08051B7C: .4byte 0x02000038
 
-	thumb_func_start sub_08051B80
-sub_08051B80: @ 0x08051B80
+	thumb_func_start NewEkrNamewinAppear
+NewEkrNamewinAppear: @ 0x08051B80
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -20090,19 +20090,19 @@ sub_08051B80: @ 0x08051B80
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
 	movs r0, #0
-	bl sub_0804CDE8
+	bl EkrDispUP_SetPositionUnsync
 	b _08051BBC
 	.align 2, 0
 _08051BB0: .4byte 0x08B9B254
 _08051BB4:
 	movs r0, #0
 	movs r1, #0
-	bl sub_0804CDE8
+	bl EkrDispUP_SetPositionUnsync
 _08051BBC:
 	ldr r1, _08051BCC @ =0x0201FAC4
 	movs r0, #1
 	str r0, [r1]
-	bl sub_0804CE20
+	bl UnsyncEkrDispUP
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -20144,8 +20144,8 @@ _08051C00:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08051C04
-sub_08051C04: @ 0x08051C04
+	thumb_func_start EkrNamewinAppearMain
+EkrNamewinAppearMain: @ 0x08051C04
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -20159,11 +20159,11 @@ sub_08051C04: @ 0x08051C04
 	ldr r0, _08051C34 @ =0x0201FAC4
 	movs r1, #0
 	str r1, [r0]
-	bl sub_0804CE10
+	bl SyncEkrDispUP
 	ldr r0, [r4, #0x44]
 	cmp r0, #2
 	bne _08051C2C
-	bl sub_0804CD94
+	bl EndEkrDispUP
 _08051C2C:
 	adds r0, r4, #0
 	bl Proc_Break
@@ -20184,7 +20184,7 @@ _08051C38:
 	str r0, [sp]
 	movs r0, #1
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	b _08051C6C
 _08051C58:
 	ldr r2, [r4, #0x48]
@@ -20195,12 +20195,12 @@ _08051C58:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 _08051C6C:
 	lsls r1, r0, #0x10
 	lsrs r1, r1, #0x10
 	movs r0, #0
-	bl sub_0804CDE8
+	bl EkrDispUP_SetPositionUnsync
 _08051C76:
 	add sp, #4
 	pop {r4}
@@ -20208,8 +20208,8 @@ _08051C76:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08051C80
-sub_08051C80: @ 0x08051C80
+	thumb_func_start NewEkrBaseAppear
+NewEkrBaseAppear: @ 0x08051C80
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -20259,8 +20259,8 @@ _08051CD8:
 _08051CDA:
 	bx lr
 
-	thumb_func_start sub_08051CDC
-sub_08051CDC: @ 0x08051CDC
+	thumb_func_start EkrBaseAppearMain
+EkrBaseAppearMain: @ 0x08051CDC
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
@@ -20294,7 +20294,7 @@ _08051D04:
 	str r0, [sp]
 	movs r0, #1
 	movs r2, #0
-	bl sub_08012FE8
+	bl Interpolate
 	b _08051D3C
 _08051D26:
 	movs r2, #0x50
@@ -20306,7 +20306,7 @@ _08051D26:
 	str r0, [sp]
 	movs r0, #4
 	movs r1, #0
-	bl sub_08012FE8
+	bl Interpolate
 _08051D3C:
 	lsls r2, r0, #0x10
 	lsrs r2, r2, #0x10
@@ -20319,8 +20319,8 @@ _08051D48:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08051D50
-sub_08051D50: @ 0x08051D50
+	thumb_func_start PrepareBattleGraphicsMaybe
+PrepareBattleGraphicsMaybe: @ 0x08051D50
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -20329,7 +20329,7 @@ sub_08051D50: @ 0x08051D50
 	sub sp, #0x2c
 	movs r0, #1
 	str r0, [sp, #0x20]
-	bl sub_08064A48
+	bl ResetEkrDragonStatus
 	ldr r1, _08051D78 @ =0x0203A3D8
 	movs r0, #0x20
 	ldrh r1, [r1]
@@ -20352,13 +20352,13 @@ _08051D82:
 	cmp r0, #0
 	bne _08051D9C
 	movs r0, #0
-	bl sub_0804B194
+	bl SetBanimLinkArenaFlag
 	b _08051DA2
 	.align 2, 0
 _08051D98: .4byte 0x0202BBB8
 _08051D9C:
 	movs r0, #1
-	bl sub_0804B194
+	bl SetBanimLinkArenaFlag
 _08051DA2:
 	ldr r1, _08051DBC @ =0x0203A3D8
 	movs r0, #0x10
@@ -20417,14 +20417,14 @@ _08051E10:
 	adds r0, r4, #0
 	ldrb r1, [r5, #0xb]
 	ands r0, r1
-	bl sub_08053298
+	bl GetAllegienceId
 	lsls r0, r0, #0x10
 	lsrs r7, r0, #0x10
 	ldr r0, _08051E4C @ =0x0203A470
 	ldrb r0, [r0, #0xb]
 	ands r4, r0
 	adds r0, r4, #0
-	bl sub_08053298
+	bl GetAllegienceId
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10
 	ldr r1, _08051E50 @ =0x0203A3D8
@@ -20454,7 +20454,7 @@ _08051E64:
 	bl GetItemIid
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
-	bl sub_0806B9EC
+	bl GetWeaponAnimActorCount
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	str r0, [sp, #0x20]
@@ -20464,7 +20464,7 @@ _08051E78:
 	strh r0, [r1, #2]
 	strh r0, [r1]
 	movs r4, #0
-	bl sub_0804B1A0
+	bl GetBanimLinkArenaFlag
 	cmp r0, #1
 	beq _08051EA0
 	lsls r0, r7, #0x10
@@ -20717,7 +20717,7 @@ _0805206E:
 	mov r0, sl
 	mov r1, r8
 	mov r3, sp
-	bl sub_08052858
+	bl GetBattleAnimationId_WithUnique
 	ldr r5, _080520A8 @ =0x0203E08E
 	ldr r4, _080520AC @ =0x0203E018
 	strh r0, [r4]
@@ -20728,7 +20728,7 @@ _0805206E:
 	add r3, sp, #4
 	ldr r0, [sp, #0x18]
 	mov r1, sb
-	bl sub_08052858
+	bl GetBattleAnimationId_WithUnique
 	strh r0, [r4, #2]
 	strh r0, [r5, #2]
 	ldr r0, [sp, #0x1c]
@@ -20751,7 +20751,7 @@ _080520B0:
 	mov r0, sl
 	mov r1, r8
 	mov r3, sp
-	bl sub_08052858
+	bl GetBattleAnimationId_WithUnique
 	ldr r2, _0805223C @ =0x0203E08E
 	ldr r1, _08052240 @ =0x0203E018
 	strh r0, [r1]
@@ -20766,7 +20766,7 @@ _080520D2:
 	add r3, sp, #4
 	ldr r0, [sp, #0x18]
 	mov r1, sb
-	bl sub_08052858
+	bl GetBattleAnimationId_WithUnique
 	ldr r2, _0805223C @ =0x0203E08E
 	ldr r1, _08052240 @ =0x0203E018
 	strh r0, [r1, #2]
@@ -20778,7 +20778,7 @@ _080520F0:
 	beq _08052104
 	ldr r1, [sp]
 	mov r0, sl
-	bl sub_0805322C
+	bl GetBattleAnimCharacterUniquePalIndex
 	ldr r1, _08052244 @ =0x0203E01C
 	strh r0, [r1]
 _08052104:
@@ -20789,7 +20789,7 @@ _08052104:
 	beq _0805211A
 	ldr r1, [sp, #4]
 	ldr r0, [sp, #0x18]
-	bl sub_0805322C
+	bl GetBattleAnimCharacterUniquePalIndex
 	ldr r1, _08052244 @ =0x0203E01C
 	strh r0, [r1, #2]
 _0805211A:
@@ -20801,7 +20801,7 @@ _0805211A:
 	ldr r1, [sp, #8]
 	adds r1, #0x4a
 	ldrh r1, [r1]
-	bl sub_08053250
+	bl FilterBattleAnimCharacterPalette
 	ldr r1, _08052248 @ =0x0203E0A8
 	str r0, [r1]
 _08052132:
@@ -20814,7 +20814,7 @@ _08052132:
 	ldr r1, [sp, #0xc]
 	adds r1, #0x4a
 	ldrh r1, [r1]
-	bl sub_08053250
+	bl FilterBattleAnimCharacterPalette
 	ldr r1, _08052248 @ =0x0203E0A8
 	str r0, [r1, #4]
 _0805214C:
@@ -20847,7 +20847,7 @@ _0805214C:
 	bl GetChapterInfo
 	ldrb r1, [r0, #0x13]
 	adds r0, r4, #0
-	bl sub_08052954
+	bl GetBanimTerrainGround
 	strh r0, [r5]
 _0805218E:
 	mov r4, r8
@@ -20861,7 +20861,7 @@ _0805218E:
 	bl GetChapterInfo
 	ldrb r1, [r0, #0x13]
 	adds r0, r4, #0
-	bl sub_08052954
+	bl GetBanimTerrainGround
 	strh r0, [r5, #2]
 _080521AC:
 	ldr r1, _0805225C @ =0x0202BBB8
@@ -20883,7 +20883,7 @@ _080521AC:
 	bl GetChapterInfo
 	ldrb r1, [r0, #0x13]
 	movs r0, #0x30
-	bl sub_08052954
+	bl GetBanimTerrainGround
 	strh r0, [r5]
 _080521DA:
 	mov r2, r8
@@ -20898,10 +20898,10 @@ _080521DA:
 	bl GetChapterInfo
 	ldrb r1, [r0, #0x13]
 	adds r0, r4, #0
-	bl sub_08052954
+	bl GetBanimTerrainGround
 	strh r0, [r5, #2]
 _080521FA:
-	bl sub_0806B78C
+	bl CheckBanimHensei
 	cmp r0, #1
 	bne _08052212
 	ldr r1, _08052250 @ =0x0203E028
@@ -21006,7 +21006,7 @@ _080522B6:
 	ldrsb r0, [r2, r0]
 	strh r0, [r1, #2]
 _080522D2:
-	bl sub_08052C9C
+	bl ParseBattleHitToBanimCmd
 	ldr r0, _080522F8 @ =0x0203E02C
 	ldrh r0, [r0]
 	cmp r0, #4
@@ -21057,7 +21057,7 @@ _08052330:
 	ldr r0, [sp, #0xc]
 	adds r0, #0x4a
 	ldrh r0, [r0]
-	bl sub_08053374
+	bl IsItemDisplayedInBattle
 	lsls r0, r0, #0x10
 	cmp r0, #0
 	bne _0805236C
@@ -21122,7 +21122,7 @@ _080523B0:
 	mov r4, sl
 	ldrb r4, [r4, #0xb]
 	ands r0, r4
-	bl sub_08053298
+	bl GetAllegienceId
 	ldr r1, _080525D0 @ =0x0203E020
 	strh r0, [r1]
 _080523CA:
@@ -21135,7 +21135,7 @@ _080523CA:
 	ldr r1, [sp, #0x18]
 	ldrb r1, [r1, #0xb]
 	ands r0, r1
-	bl sub_08053298
+	bl GetAllegienceId
 	ldr r1, _080525D0 @ =0x0203E020
 	strh r0, [r1, #2]
 _080523E4:
@@ -21473,7 +21473,7 @@ _08052664:
 _08052668:
 	str r0, [r1, #4]
 _0805266A:
-	bl sub_0804B1A0
+	bl GetBanimLinkArenaFlag
 	cmp r0, #1
 	beq _0805267E
 	ldr r0, _0805268C @ =0x0202BBF8
@@ -21530,7 +21530,7 @@ _080526D0:
 	bl sub_08052A30
 	strh r0, [r5]
 _080526E6:
-	bl sub_0806B78C
+	bl CheckBanimHensei
 	cmp r0, #1
 	bne _080526F4
 	ldr r1, _0805282C @ =0x0203E00A
@@ -21557,7 +21557,7 @@ _0805270A:
 	bne _0805271C
 	movs r4, #1
 _0805271C:
-	bl sub_080554F0
+	bl GetBattleAnimArenaFlag
 	cmp r0, #1
 	bne _08052726
 	movs r4, #1
@@ -21569,14 +21569,14 @@ _08052726:
 	bne _08052732
 	movs r4, #1
 _08052732:
-	bl sub_08053440
+	bl CheckBattleScriptted
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _08052740
 	movs r4, #1
 _08052740:
-	bl sub_08053434
+	bl SetBattleUnscriptted
 	ldr r0, _08052830 @ =0x0203E02C
 	ldrh r0, [r0]
 	cmp r0, #4
@@ -21715,8 +21715,8 @@ _08052846:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08052858
-sub_08052858: @ 0x08052858
+	thumb_func_start GetBattleAnimationId_WithUnique
+GetBattleAnimationId_WithUnique: @ 0x08052858
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -21738,7 +21738,7 @@ sub_08052858: @ 0x08052858
 	cmp r0, #9
 	bne _08052898
 	mov r0, r8
-	bl sub_08053374
+	bl IsItemDisplayedInBattle
 	lsls r0, r0, #0x10
 	cmp r0, #0
 	bne _08052898
@@ -21853,8 +21853,8 @@ _08052944:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08052954
-sub_08052954: @ 0x08052954
+	thumb_func_start GetBanimTerrainGround
+GetBanimTerrainGround: @ 0x08052954
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	lsls r1, r1, #0x10
@@ -22252,8 +22252,8 @@ _08052C90:
 	.align 2, 0
 _08052C98: .4byte 0x0203E00C
 
-	thumb_func_start sub_08052C9C
-sub_08052C9C: @ 0x08052C9C
+	thumb_func_start ParseBattleHitToBanimCmd
+ParseBattleHitToBanimCmd: @ 0x08052C9C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -22645,7 +22645,7 @@ _08052F8C:
 	cmp r0, r2
 	bne _08052FE8
 	lsls r0, r7, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r2, sb
 	movs r1, #3
 	ldrsb r1, [r2, r1]
@@ -22679,7 +22679,7 @@ _08052FE8:
 	mov r2, r8
 	lsls r0, r2, #1
 	adds r0, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r5, sb
 	movs r1, #3
 	ldrsb r1, [r5, r1]
@@ -22722,7 +22722,7 @@ _08053028:
 	mov r2, r8
 	lsls r0, r2, #1
 	adds r0, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r5, sb
 	movs r1, #3
 	ldrsb r1, [r5, r1]
@@ -22745,7 +22745,7 @@ _0805305C:
 	adds r0, r0, r4
 	strh r2, [r0]
 	lsls r0, r7, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r2, sb
 	movs r1, #3
 	ldrsb r1, [r2, r1]
@@ -22770,7 +22770,7 @@ _080530A0: .4byte 0x0203E062
 _080530A4: .4byte 0x0203E0BC
 _080530A8:
 	lsls r0, r7, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r2, sb
 	movs r1, #3
 	ldrsb r1, [r2, r1]
@@ -22791,7 +22791,7 @@ _080530C0:
 	mov r5, r8
 	lsls r0, r5, #1
 	adds r0, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r2, sb
 	movs r1, #3
 	ldrsb r1, [r2, r1]
@@ -22830,7 +22830,7 @@ _08053110:
 	mov r1, r8
 	lsls r0, r1, #1
 	adds r0, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r2, sb
 	movs r1, #3
 	ldrsb r1, [r2, r1]
@@ -22885,7 +22885,7 @@ _08053184: .4byte 0x0203E014
 _08053188: .4byte 0x0203E062
 _0805318C:
 	lsls r0, r7, #1
-	bl sub_08053340
+	bl GetEfxHp
 	mov r2, sb
 	movs r1, #3
 	ldrsb r1, [r2, r1]

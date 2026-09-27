@@ -27,7 +27,7 @@ sub_08030F54: @ 0x08030F54
 	ldrb r2, [r1, #4]
 	ands r0, r2
 	strb r0, [r1, #4]
-	bl sub_0801D2D4
+	bl HideMoveRangeGraphics
 	bl RefreshEntityMaps
 	bl RefreshUnitSprites
 	ldr r0, _08030FBC @ =0x0202BBF8
@@ -37,7 +37,7 @@ sub_08030F54: @ 0x08030F54
 	cmp r0, #0
 	blt _08030FA4
 	ldr r0, _08030FC0 @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08030FA4:
 	adds r0, r5, #0
 	movs r1, #9
@@ -80,7 +80,7 @@ _08030FF6:
 	beq _08031018
 	bl EndAllMus
 	movs r0, #0x1f
-	bl sub_0807FA2C
+	bl SetStatScreenExcludedUnitFlags
 	adds r0, r4, #0
 	bl GetUnit
 	adds r1, r5, #0
@@ -120,7 +120,7 @@ _08031018:
 	cmp r0, #0
 	blt _0803105E
 	ldr r0, _0803108C @ =0x0000038B
-	bl sub_080BE594
+	bl m4aSongNumStart
 _0803105E:
 	ldr r1, _08031074 @ =0x0202BBB8
 	movs r3, #0x20
@@ -149,7 +149,7 @@ sub_08031090: @ 0x08031090
 	movs r0, #0
 	bl InitBgs
 	adds r0, r4, #0
-	bl sub_080A9DC0
+	bl EndAllProcChildren
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -163,7 +163,7 @@ sub_080310A8: @ 0x080310A8
 	ldr r2, [r5]
 	cmp r2, #0
 	bne _080310C8
-	bl sub_0802E368
+	bl RefreshBMapGraphics
 	adds r0, r6, #0
 	movs r1, #0xc
 	bl Proc_Goto
@@ -189,7 +189,7 @@ _080310C8:
 	rsbs r1, r1, #0
 	ands r0, r1
 	str r0, [r2, #0xc]
-	bl sub_0802E368
+	bl RefreshBMapGraphics
 	ldr r2, [r5]
 	movs r0, #0x11
 	ldrsb r0, [r2, r0]
@@ -227,7 +227,7 @@ sub_08031124: @ 0x08031124
 	movs r2, #0x20
 	movs r3, #0
 	bl StartBgmVolumeChange
-	bl sub_0800F164
+	bl SyncUnitDeploymentState
 	adds r0, r4, #0
 	bl sub_080A4E0C
 	pop {r4}
@@ -259,7 +259,7 @@ sub_0803115C: @ 0x0803115C
 	movs r0, #0x49
 	adds r1, r2, #0
 	movs r3, #0x18
-	bl sub_080040F8
+	bl CallSomeSoundMaybe
 	add sp, #4
 	pop {r0}
 	bx r0
@@ -280,7 +280,7 @@ sub_0803117C: @ 0x0803117C
 	cmp r0, #0
 	bne _080311CA
 	ldr r0, _080311D8 @ =0x02020140
-	bl sub_0802E8D0
+	bl InitUnitStack
 	movs r4, #1
 _0803119E:
 	adds r0, r4, #0
@@ -297,12 +297,12 @@ _0803119E:
 	cmp r0, #0
 	bne _080311C0
 	adds r0, r2, #0
-	bl sub_0802E8EC
+	bl PushUnit
 _080311C0:
 	adds r4, #1
 	cmp r4, #0x3f
 	ble _0803119E
-	bl sub_0802E960
+	bl LoadPlayerUnitsFromUnitStack2
 _080311CA:
 	pop {r4}
 	pop {r0}
@@ -313,8 +313,8 @@ _080311D4: .4byte 0x0202BBB8
 _080311D8: .4byte 0x02020140
 _080311DC: .4byte 0x0001000C
 
-	thumb_func_start sub_080311E0
-sub_080311E0: @ 0x080311E0
+	thumb_func_start EndPrepScreen
+EndPrepScreen: @ 0x080311E0
 	push {r4, lr}
 	movs r4, #1
 _080311E4:
@@ -340,13 +340,13 @@ _080311E4:
 	cmp r1, #0
 	beq _0803121C
 	ldrb r0, [r3, #4]
-	bl sub_080A0110
+	bl PidStatsSubFavval100
 	b _08031222
 	.align 2, 0
 _08031218: .4byte 0x02010004
 _0803121C:
 	ldrb r0, [r3, #4]
-	bl sub_0809FFEC
+	bl PidStatsAddDeployAmt
 _08031222:
 	adds r4, #1
 	cmp r4, #0x3f
@@ -386,8 +386,8 @@ _08031266:
 	.align 2, 0
 _0803126C: .4byte 0x08B96460
 
-	thumb_func_start sub_08031270
-sub_08031270: @ 0x08031270
+	thumb_func_start CanUnitUseVisit
+CanUnitUseVisit: @ 0x08031270
 	push {r4, r5, r6, r7, lr}
 	ldr r0, _08031284 @ =0x03004690
 	ldr r0, [r0]
@@ -445,7 +445,7 @@ _080312D4:
 	lsls r0, r4, #0x18
 	asrs r0, r0, #0x18
 	asrs r1, r7, #0x18
-	bl sub_08078BD0
+	bl GetAvailableTileEventCommand
 	cmp r0, #0xe
 	beq _08031288
 _080312E2:
@@ -467,8 +467,8 @@ _080312F8: .4byte 0x0202E3D8
 _080312FC: .4byte 0x0202E3E4
 _08031300: .4byte 0x0202E3E0
 
-	thumb_func_start sub_08031304
-sub_08031304: @ 0x08031304
+	thumb_func_start CanUnitUseSeize
+CanUnitUseSeize: @ 0x08031304
 	push {r4, r5, r6, lr}
 	ldr r0, _08031324 @ =0x03004690
 	ldr r2, [r0]
@@ -516,7 +516,7 @@ _08031346:
 	lsls r0, r4, #0x18
 	asrs r0, r0, #0x18
 	asrs r1, r6, #0x18
-	bl sub_08078BD0
+	bl GetAvailableTileEventCommand
 	cmp r0, #0xf
 	beq _08031328
 _08031366:
@@ -537,8 +537,8 @@ _08031374:
 _0803137C: .4byte 0x0202E3D8
 _08031380: .4byte 0x0202E3E4
 
-	thumb_func_start sub_08031384
-sub_08031384: @ 0x08031384
+	thumb_func_start CanUnitUseAttack
+CanUnitUseAttack: @ 0x08031384
 	push {r4, lr}
 	movs r0, #0
 	movs r1, #0
@@ -549,12 +549,12 @@ sub_08031384: @ 0x08031384
 	bl MapFill
 	ldr r4, _080313C0 @ =0x03004690
 	ldr r0, [r4]
-	bl sub_0801A4D4
+	bl GenerateUnitCompleteAttackRange
 	ldr r1, _080313C4 @ =0x02033E40
 	ldr r0, [r4]
 	str r0, [r1]
-	ldr r0, _080313C8 @ =sub_08023C20
-	bl sub_080239B0
+	ldr r0, _080313C8 @ =AddUnitToTargetListIfNotAllied
+	bl ForEachUnitInRange
 	bl CountTargets
 	cmp r0, #0
 	beq _080313B6
@@ -567,14 +567,14 @@ _080313B6:
 _080313BC: .4byte 0x0202E3E8
 _080313C0: .4byte 0x03004690
 _080313C4: .4byte 0x02033E40
-_080313C8: .4byte sub_08023C20
+_080313C8: .4byte AddUnitToTargetListIfNotAllied
 
-	thumb_func_start sub_080313CC
-sub_080313CC: @ 0x080313CC
+	thumb_func_start CanActiveUnitUseRescue
+CanActiveUnitUseRescue: @ 0x080313CC
 	push {lr}
 	ldr r0, _080313E4 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08023E38
+	bl MakeRescueTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _080313E0
@@ -585,12 +585,12 @@ _080313E0:
 	.align 2, 0
 _080313E4: .4byte 0x03004690
 
-	thumb_func_start sub_080313E8
-sub_080313E8: @ 0x080313E8
+	thumb_func_start CanActiveUnitUseTrade
+CanActiveUnitUseTrade: @ 0x080313E8
 	push {lr}
 	ldr r0, _08031400 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_08023D64
+	bl MakeTradeTargetList
 	bl CountTargets
 	cmp r0, #0
 	beq _080313FC
@@ -601,27 +601,27 @@ _080313FC:
 	.align 2, 0
 _08031400: .4byte 0x03004690
 
-	thumb_func_start sub_08031404
-sub_08031404: @ 0x08031404
+	thumb_func_start GetUnitCommandUseFlags
+GetUnitCommandUseFlags: @ 0x08031404
 	push {r4, lr}
 	bl GetGameTime
-	bl sub_08031270
+	bl CanUnitUseVisit
 	adds r4, r0, #0
 	lsls r4, r4, #0x18
 	asrs r4, r4, #9
-	bl sub_08031304
+	bl CanUnitUseSeize
 	lsls r0, r0, #0x18
 	asrs r0, r0, #8
 	orrs r4, r0
-	bl sub_08031384
+	bl CanUnitUseAttack
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x17
 	orrs r4, r0
-	bl sub_080313CC
+	bl CanActiveUnitUseRescue
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x10
 	orrs r4, r0
-	bl sub_080313E8
+	bl CanActiveUnitUseTrade
 	lsls r0, r0, #0x18
 	asrs r0, r0, #1
 	orrs r4, r0
@@ -645,7 +645,7 @@ sub_08031444: @ 0x08031444
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
 	bl MapFloodUnitMovement
-	bl sub_08031404
+	bl GetUnitCommandUseFlags
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -673,7 +673,7 @@ sub_08031470: @ 0x08031470
 	adds r0, r0, r1
 	movs r1, #0
 	strb r1, [r0]
-	bl sub_08031404
+	bl GetUnitCommandUseFlags
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -821,8 +821,8 @@ GetChapterMapChanges: @ 0x080315A0
 	.align 2, 0
 _080315B8: .4byte 0x08C9C9C8
 
-	thumb_func_start sub_080315BC
-sub_080315BC: @ 0x080315BC
+	thumb_func_start GetChapterEventInfo
+GetChapterEventInfo: @ 0x080315BC
 	push {r4, lr}
 	ldr r4, _080315D4 @ =0x08C9C9C8
 	bl GetChapterInfo
@@ -911,7 +911,7 @@ sub_08031600: @ 0x08031600
 	adds r0, #3
 	str r0, [sp]
 	movs r0, #2
-	bl sub_080069F4
+	bl PutSprite
 	b _08031682
 	.align 2, 0
 _0803166C: .4byte 0x081C4060
@@ -930,8 +930,8 @@ _08031682:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_0803168C
-sub_0803168C: @ 0x0803168C
+	thumb_func_start NewUnitInfoWindow
+NewUnitInfoWindow: @ 0x0803168C
 	push {r4, lr}
 	adds r1, r0, #0
 	ldr r0, _080316B4 @ =0x08B96998
@@ -939,7 +939,7 @@ sub_0803168C: @ 0x0803168C
 	adds r4, r0, #0
 	adds r0, #0x30
 	movs r1, #6
-	bl sub_0800549C
+	bl InitTextDb
 	bl ClearIcons
 	movs r0, #4
 	bl ApplyIconPalettes
@@ -958,7 +958,7 @@ sub_080316B8: @ 0x080316B8
 	ldr r0, [r0]
 	ldrh r0, [r0]
 	bl GetMsg
-	bl sub_080055FC
+	bl GetStringTextLen
 	cmp r0, #0x27
 	bgt _080316DE
 	adds r2, r4, #0
@@ -989,8 +989,8 @@ _080316EC:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08031700
-sub_08031700: @ 0x08031700
+	thumb_func_start UnitInfoWindow_DrawBase
+UnitInfoWindow_DrawBase: @ 0x08031700
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1024,7 +1024,7 @@ _08031724:
 	adds r0, r6, #0
 	adds r1, r4, #0
 	ldr r2, [sp, #0x2c]
-	bl sub_08049CE4
+	bl DrawUiFrame2
 	lsls r0, r7, #5
 	adds r0, r0, r6
 	lsls r0, r0, #1
@@ -1110,7 +1110,7 @@ _080317C0:
 	ldr r0, _0803182C @ =0x02022C60
 	adds r1, r1, r0
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	movs r0, #3
 	bl EnableBgSync
 	adds r0, r5, #0
@@ -1131,8 +1131,8 @@ _08031824: .4byte 0x00001026
 _08031828: .4byte 0x0000100C
 _0803182C: .4byte 0x02022C60
 
-	thumb_func_start sub_08031830
-sub_08031830: @ 0x08031830
+	thumb_func_start GetUnitInfoWindowX
+GetUnitInfoWindowX: @ 0x08031830
 	adds r2, r1, #0
 	ldrb r0, [r0, #0x10]
 	lsls r0, r0, #0x18
@@ -1155,8 +1155,8 @@ _08031854:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08031858
-sub_08031858: @ 0x08031858
+	thumb_func_start DrawUnitHpText
+DrawUnitHpText: @ 0x08031858
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1176,7 +1176,7 @@ sub_08031858: @ 0x08031858
 	movs r2, #3
 	bl Text_InsertDrawString
 	adds r0, r5, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x20
@@ -1196,8 +1196,8 @@ sub_08031858: @ 0x08031858
 _080318B0: .4byte 0x000010F4
 _080318B4: .4byte 0x000012B0
 
-	thumb_func_start sub_080318B8
-sub_080318B8: @ 0x080318B8
+	thumb_func_start DrawUnitConText
+DrawUnitConText: @ 0x080318B8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
@@ -1230,8 +1230,8 @@ sub_080318B8: @ 0x080318B8
 	.align 2, 0
 _080318FC: .4byte 0x00001107
 
-	thumb_func_start sub_08031900
-sub_08031900: @ 0x08031900
+	thumb_func_start DrawUnitAidText
+DrawUnitAidText: @ 0x08031900
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1256,8 +1256,8 @@ sub_08031900: @ 0x08031900
 	.align 2, 0
 _08031934: .4byte 0x00001108
 
-	thumb_func_start sub_08031938
-sub_08031938: @ 0x08031938
+	thumb_func_start PutUnitAidIconForTextAt
+PutUnitAidIconForTextAt: @ 0x08031938
 	push {r4, lr}
 	lsls r4, r2, #5
 	adds r4, #4
@@ -1275,15 +1275,15 @@ sub_08031938: @ 0x08031938
 	movs r2, #0xa0
 	lsls r2, r2, #7
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08031968: .4byte 0x02022C60
 
-	thumb_func_start sub_0803196C
-sub_0803196C: @ 0x0803196C
+	thumb_func_start DrawUnitStatusText
+DrawUnitStatusText: @ 0x0803196C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1296,7 +1296,7 @@ sub_0803196C: @ 0x0803196C
 	movs r2, #3
 	bl Text_InsertDrawString
 	adds r0, r5, #0
-	bl sub_08018CF0
+	bl GetUnitStatusName
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x20
@@ -1308,8 +1308,8 @@ sub_0803196C: @ 0x0803196C
 	.align 2, 0
 _080319A0: .4byte 0x0000110A
 
-	thumb_func_start sub_080319A4
-sub_080319A4: @ 0x080319A4
+	thumb_func_start DrawUnitResChangeText
+DrawUnitResChangeText: @ 0x080319A4
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1351,8 +1351,8 @@ sub_080319A4: @ 0x080319A4
 _08031A00: .4byte 0x000010FF
 _08031A04: .4byte 0x000012B1
 
-	thumb_func_start sub_08031A08
-sub_08031A08: @ 0x08031A08
+	thumb_func_start DrawUnitResUnkText
+DrawUnitResUnkText: @ 0x08031A08
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1377,8 +1377,8 @@ sub_08031A08: @ 0x08031A08
 	.align 2, 0
 _08031A3C: .4byte 0x000010FF
 
-	thumb_func_start sub_08031A40
-sub_08031A40: @ 0x08031A40
+	thumb_func_start DrawAccuracyText
+DrawAccuracyText: @ 0x08031A40
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -1401,17 +1401,17 @@ sub_08031A40: @ 0x08031A40
 	.align 2, 0
 _08031A70: .4byte 0x00001104
 
-	thumb_func_start sub_08031A74
-sub_08031A74: @ 0x08031A74
+	thumb_func_start StartUnitInventoryInfoWindow
+StartUnitInventoryInfoWindow: @ 0x08031A74
 	push {r4, r5, lr}
-	bl sub_0803168C
+	bl NewUnitInfoWindow
 	adds r4, r0, #0
 	adds r4, #0x38
 	movs r5, #4
 _08031A80:
 	adds r0, r4, #0
 	movs r1, #7
-	bl sub_0800549C
+	bl InitTextDb
 	adds r4, #8
 	subs r5, #1
 	cmp r5, #0
@@ -1421,8 +1421,8 @@ _08031A80:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08031A98
-sub_08031A98: @ 0x08031A98
+	thumb_func_start RefreshUnitInventoryInfoWindow
+RefreshUnitInventoryInfoWindow: @ 0x08031A98
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1430,11 +1430,11 @@ sub_08031A98: @ 0x08031A98
 	push {r5, r6, r7}
 	sub sp, #0xc
 	str r0, [sp, #8]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	mov sl, r0
 	ldr r0, [sp, #8]
 	movs r1, #0xd
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r5, r0, #0
 	movs r0, #0xd
 	str r0, [sp]
@@ -1449,7 +1449,7 @@ _08031AC6:
 	ldr r1, [sp, #8]
 	adds r2, r5, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	adds r4, r0, #0
 	mov r0, sl
 	cmp r0, #0
@@ -1470,7 +1470,7 @@ _08031AC6:
 	ldr r0, _08031B0C @ =0x02022C60
 	adds r1, r1, r0
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	b _08031B94
 	.align 2, 0
 _08031B08: .4byte 0x0000126D
@@ -1512,20 +1512,20 @@ _08031B38:
 	bl Text_DrawString
 	adds r0, r5, #0
 	mov r1, r8
-	bl sub_08005590
+	bl PutText
 	adds r0, r4, #0
 	bl GetItemUses
 	adds r2, r0, #0
 	adds r0, r7, #0
 	movs r1, #2
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	adds r0, r4, #0
 	bl GetItemIcon
 	adds r1, r0, #0
 	adds r0, r6, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	adds r6, #0x80
 	adds r7, #0x80
 	movs r0, #0x80
@@ -1547,8 +1547,8 @@ _08031B94:
 	.align 2, 0
 _08031BA4: .4byte 0x02022C60
 
-	thumb_func_start sub_08031BA8
-sub_08031BA8: @ 0x08031BA8
+	thumb_func_start RefreshUnitStealInventoryInfoWindow
+RefreshUnitStealInventoryInfoWindow: @ 0x08031BA8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1556,11 +1556,11 @@ sub_08031BA8: @ 0x08031BA8
 	push {r5, r6, r7}
 	sub sp, #0x20
 	str r0, [sp, #8]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	str r0, [sp, #0xc]
 	ldr r0, [sp, #8]
 	movs r1, #0xd
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	str r0, [sp, #0x10]
 	movs r0, #0xd
 	str r0, [sp]
@@ -1570,7 +1570,7 @@ sub_08031BA8: @ 0x08031BA8
 	ldr r1, [sp, #8]
 	ldr r2, [sp, #0x10]
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	movs r1, #0
 	mov sl, r1
 	ldr r1, [sp, #0xc]
@@ -1621,7 +1621,7 @@ _08031C24:
 	mov r8, r0
 	add r1, r8
 	adds r0, r7, #0
-	bl sub_08005590
+	bl PutText
 	ldr r1, [sp, #0x14]
 	lsls r0, r1, #1
 	mov r1, r8
@@ -1637,7 +1637,7 @@ _08031C5A:
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	ldr r4, [sp, #0x1c]
 	adds r4, #1
 	ldr r1, [sp, #0x10]
@@ -1650,7 +1650,7 @@ _08031C5A:
 	adds r0, r4, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	ldr r0, [sp, #0x14]
 	adds r0, #0x40
 	str r0, [sp, #0x14]
@@ -1678,8 +1678,8 @@ _08031CA6:
 	.align 2, 0
 _08031CB8: .4byte 0x02022C60
 
-	thumb_func_start sub_08031CBC
-sub_08031CBC: @ 0x08031CBC
+	thumb_func_start RefreshHammerneUnitInfoWindow
+RefreshHammerneUnitInfoWindow: @ 0x08031CBC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -1687,11 +1687,11 @@ sub_08031CBC: @ 0x08031CBC
 	push {r5, r6, r7}
 	sub sp, #0x1c
 	str r0, [sp, #8]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	str r0, [sp, #0x10]
 	ldr r0, [sp, #8]
 	movs r1, #0x10
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	mov sb, r0
 	movs r0, #0x10
 	str r0, [sp]
@@ -1701,7 +1701,7 @@ sub_08031CBC: @ 0x08031CBC
 	ldr r1, [sp, #8]
 	mov r2, sb
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	movs r1, #0
 	str r1, [sp, #0xc]
 	ldr r2, [sp, #0x10]
@@ -1748,13 +1748,13 @@ _08031D28:
 	mov r8, r2
 	add r1, r8
 	adds r0, r7, #0
-	bl sub_08005590
+	bl PutText
 	ldr r1, [sp, #0x14]
 	lsls r0, r1, #1
 	add r0, r8
 	adds r1, r5, #0
 	movs r2, #0x16
-	bl sub_0800615C
+	bl PutSpecialChar
 	adds r0, r6, #0
 	bl IsItemRepairable
 	lsls r0, r0, #0x18
@@ -1773,7 +1773,7 @@ _08031D72:
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	mov r4, sl
 	adds r4, #0xe
 	add r4, sb
@@ -1784,7 +1784,7 @@ _08031D72:
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080061E4
+	bl PutNumberOrBlank
 	mov r4, sl
 	adds r4, #1
 	add r4, sb
@@ -1796,7 +1796,7 @@ _08031D72:
 	adds r0, r4, #0
 	movs r2, #0x80
 	lsls r2, r2, #7
-	bl sub_08004E28
+	bl PutIcon
 	ldr r2, [sp, #0x14]
 	adds r2, #0x40
 	str r2, [sp, #0x14]
@@ -1829,21 +1829,21 @@ _08031DF8: .4byte 0x02022C60
 	thumb_func_start sub_08031DFC
 sub_08031DFC: @ 0x08031DFC
 	push {lr}
-	bl sub_0803168C
+	bl NewUnitInfoWindow
 	adds r0, #0x38
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08031E10
-sub_08031E10: @ 0x08031E10
+	thumb_func_start RefreshUnitHpInfoWindow
+RefreshUnitHpInfoWindow: @ 0x08031E10
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r6, r0, #0
 	movs r1, #0xa
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r4, r0, #0
 	movs r0, #0xa
 	str r0, [sp]
@@ -1853,19 +1853,19 @@ sub_08031E10: @ 0x08031E10
 	adds r1, r6, #0
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	adds r5, r0, #0
 	adds r5, #0x38
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08031858
+	bl DrawUnitHpText
 	adds r4, #0x61
 	lsls r4, r4, #1
 	ldr r0, _08031E58 @ =0x02022C60
 	adds r4, r4, r0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08005590
+	bl PutText
 	add sp, #8
 	pop {r4, r5, r6}
 	pop {r0}
@@ -1876,21 +1876,21 @@ _08031E58: .4byte 0x02022C60
 	thumb_func_start sub_08031E5C
 sub_08031E5C: @ 0x08031E5C
 	push {r4, lr}
-	bl sub_0803168C
+	bl NewUnitInfoWindow
 	adds r4, r0, #0
 	adds r0, #0x38
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	adds r4, #0x40
 	adds r0, r4, #0
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08031E7C
-sub_08031E7C: @ 0x08031E7C
+	thumb_func_start RefreshUnitHpStatusInfoWindow
+RefreshUnitHpStatusInfoWindow: @ 0x08031E7C
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -1898,7 +1898,7 @@ sub_08031E7C: @ 0x08031E7C
 	sub sp, #8
 	mov r8, r0
 	movs r1, #0xa
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r4, r0, #0
 	movs r0, #0xa
 	str r0, [sp]
@@ -1908,13 +1908,13 @@ sub_08031E7C: @ 0x08031E7C
 	mov r1, r8
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	adds r5, r0, #0
 	adds r6, r5, #0
 	adds r6, #0x38
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_08031858
+	bl DrawUnitHpText
 	adds r1, r4, #0
 	adds r1, #0x61
 	lsls r1, r1, #1
@@ -1922,17 +1922,17 @@ sub_08031E7C: @ 0x08031E7C
 	mov sb, r0
 	add r1, sb
 	adds r0, r6, #0
-	bl sub_08005590
+	bl PutText
 	adds r5, #0x40
 	adds r0, r5, #0
 	mov r1, r8
-	bl sub_0803196C
+	bl DrawUnitStatusText
 	adds r4, #0xa1
 	lsls r4, r4, #1
 	add r4, sb
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08005590
+	bl PutText
 	add sp, #8
 	pop {r3, r4}
 	mov r8, r3
@@ -1946,21 +1946,21 @@ _08031EEC: .4byte 0x02022C60
 	thumb_func_start sub_08031EF0
 sub_08031EF0: @ 0x08031EF0
 	push {lr}
-	bl sub_0803168C
+	bl NewUnitInfoWindow
 	adds r0, #0x38
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08031F04
-sub_08031F04: @ 0x08031F04
+	thumb_func_start RefreshUnitResChangeInfoWindow
+RefreshUnitResChangeInfoWindow: @ 0x08031F04
 	push {r4, r5, r6, lr}
 	sub sp, #8
 	adds r6, r0, #0
 	movs r1, #0xa
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r4, r0, #0
 	movs r0, #0xa
 	str r0, [sp]
@@ -1970,7 +1970,7 @@ sub_08031F04: @ 0x08031F04
 	adds r1, r6, #0
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	adds r5, r0, #0
 	adds r5, #0x38
 	adds r0, r6, #0
@@ -1981,14 +1981,14 @@ sub_08031F04: @ 0x08031F04
 	subs r2, r2, r0
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080319A4
+	bl DrawUnitResChangeText
 	adds r4, #0x61
 	lsls r4, r4, #1
 	ldr r0, _08031F58 @ =0x02022C60
 	adds r4, r4, r0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08005590
+	bl PutText
 	add sp, #8
 	pop {r4, r5, r6}
 	pop {r0}
@@ -1999,21 +1999,21 @@ _08031F58: .4byte 0x02022C60
 	thumb_func_start sub_08031F5C
 sub_08031F5C: @ 0x08031F5C
 	push {r4, lr}
-	bl sub_0803168C
+	bl NewUnitInfoWindow
 	adds r4, r0, #0
 	adds r0, #0x38
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	adds r4, #0x40
 	adds r0, r4, #0
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	pop {r4}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08031F7C
-sub_08031F7C: @ 0x08031F7C
+	thumb_func_start RefreshUnitStaffOffenseInfoWindow
+RefreshUnitStaffOffenseInfoWindow: @ 0x08031F7C
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -2022,7 +2022,7 @@ sub_08031F7C: @ 0x08031F7C
 	adds r6, r0, #0
 	mov sb, r1
 	movs r1, #0xa
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r4, r0, #0
 	movs r0, #0xa
 	str r0, [sp]
@@ -2032,7 +2032,7 @@ sub_08031F7C: @ 0x08031F7C
 	adds r1, r6, #0
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	adds r5, r0, #0
 	movs r0, #0x38
 	adds r0, r0, r5
@@ -2045,24 +2045,24 @@ sub_08031F7C: @ 0x08031F7C
 	subs r2, r2, r0
 	mov r0, r8
 	adds r1, r6, #0
-	bl sub_08031A08
+	bl DrawUnitResUnkText
 	adds r1, r4, #0
 	adds r1, #0x61
 	lsls r1, r1, #1
 	ldr r6, _08031FF8 @ =0x02022C60
 	adds r1, r1, r6
 	mov r0, r8
-	bl sub_08005590
+	bl PutText
 	adds r5, #0x40
 	adds r0, r5, #0
 	mov r1, sb
-	bl sub_08031A40
+	bl DrawAccuracyText
 	adds r4, #0xa1
 	lsls r4, r4, #1
 	adds r4, r4, r6
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08005590
+	bl PutText
 	add sp, #8
 	pop {r3, r4}
 	mov r8, r3
@@ -2073,22 +2073,22 @@ sub_08031F7C: @ 0x08031F7C
 	.align 2, 0
 _08031FF8: .4byte 0x02022C60
 
-	thumb_func_start sub_08031FFC
-sub_08031FFC: @ 0x08031FFC
+	thumb_func_start StartUnitRescueInfoWindowsCore
+StartUnitRescueInfoWindowsCore: @ 0x08031FFC
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_0803168C
+	bl NewUnitInfoWindow
 	ldr r4, _08032028 @ =0x0203A8E4
 	str r0, [r4]
 	adds r0, #0x38
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	adds r0, r5, #0
-	bl sub_0803168C
+	bl NewUnitInfoWindow
 	str r0, [r4, #4]
 	adds r0, #0x38
 	movs r1, #8
-	bl sub_0800549C
+	bl InitTextDb
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -2104,7 +2104,7 @@ sub_0803202C: @ 0x0803202C
 	movs r0, #4
 	bl ApplyIconPalettes
 	adds r0, r4, #0
-	bl sub_08031FFC
+	bl StartUnitRescueInfoWindowsCore
 	ldr r0, _08032060 @ =0x08B90640
 	str r0, [sp]
 	movs r0, #6
@@ -2113,7 +2113,7 @@ sub_0803202C: @ 0x0803202C
 	movs r1, #2
 	movs r2, #0
 	movs r3, #0
-	bl sub_08006ABC
+	bl StartSpriteRefresher
 	add sp, #8
 	pop {r4}
 	pop {r0}
@@ -2121,8 +2121,8 @@ sub_0803202C: @ 0x0803202C
 	.align 2, 0
 _08032060: .4byte 0x08B90640
 
-	thumb_func_start sub_08032064
-sub_08032064: @ 0x08032064
+	thumb_func_start RefreshUnitRescueInfoWindows
+RefreshUnitRescueInfoWindows: @ 0x08032064
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2131,7 +2131,7 @@ sub_08032064: @ 0x08032064
 	sub sp, #8
 	mov r8, r0
 	movs r1, #0xa
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r4, r0, #0
 	bl ClearUi
 	ldr r6, _0803210C @ =0x0203A8E4
@@ -2145,11 +2145,11 @@ sub_08032064: @ 0x08032064
 	str r2, [sp, #4]
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	ldr r0, [r6]
 	adds r0, #0x38
 	ldr r1, [r5]
-	bl sub_08031900
+	bl DrawUnitAidText
 	ldr r0, [r6]
 	adds r0, #0x38
 	adds r1, r4, #0
@@ -2158,11 +2158,11 @@ sub_08032064: @ 0x08032064
 	ldr r2, _08032114 @ =0x02022C60
 	mov sb, r2
 	add r1, sb
-	bl sub_08005590
+	bl PutText
 	ldr r0, [r5]
 	adds r1, r4, #1
 	movs r2, #3
-	bl sub_08031938
+	bl PutUnitAidIconForTextAt
 	ldr r0, [r6, #4]
 	str r7, [sp]
 	mov r1, sl
@@ -2170,24 +2170,24 @@ sub_08032064: @ 0x08032064
 	mov r1, r8
 	adds r2, r4, #0
 	movs r3, #6
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	ldr r0, [r6, #4]
 	adds r0, #0x38
 	mov r1, r8
-	bl sub_080318B8
+	bl DrawUnitConText
 	ldr r0, [r6, #4]
 	adds r0, #0x38
 	ldr r2, _08032118 @ =0x00000121
 	adds r1, r4, r2
 	lsls r1, r1, #1
 	add r1, sb
-	bl sub_08005590
+	bl PutText
 	adds r4, #4
 	lsls r4, r4, #3
 	movs r0, #0
 	adds r1, r4, #0
 	movs r2, #0x27
-	bl sub_08006B00
+	bl MoveSpriteRefresher
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -2202,8 +2202,8 @@ _08032110: .4byte 0x03004690
 _08032114: .4byte 0x02022C60
 _08032118: .4byte 0x00000121
 
-	thumb_func_start sub_0803211C
-sub_0803211C: @ 0x0803211C
+	thumb_func_start RefreshUnitTakeInfoWindows
+RefreshUnitTakeInfoWindows: @ 0x0803211C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -2212,7 +2212,7 @@ sub_0803211C: @ 0x0803211C
 	sub sp, #8
 	adds r5, r0, #0
 	movs r1, #0xa
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r4, r0, #0
 	bl ClearUi
 	ldrb r0, [r5, #0x1b]
@@ -2230,11 +2230,11 @@ sub_0803211C: @ 0x0803211C
 	str r2, [sp, #4]
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	ldr r0, [r6]
 	adds r0, #0x38
 	ldr r1, [r5]
-	bl sub_08031900
+	bl DrawUnitAidText
 	ldr r0, [r6]
 	adds r0, #0x38
 	adds r1, r4, #0
@@ -2243,11 +2243,11 @@ sub_0803211C: @ 0x0803211C
 	ldr r2, _080321D8 @ =0x02022C60
 	mov r8, r2
 	add r1, r8
-	bl sub_08005590
+	bl PutText
 	ldr r0, [r5]
 	adds r1, r4, #1
 	movs r2, #3
-	bl sub_08031938
+	bl PutUnitAidIconForTextAt
 	ldr r0, [r6, #4]
 	mov r1, sl
 	str r1, [sp]
@@ -2256,24 +2256,24 @@ sub_0803211C: @ 0x0803211C
 	adds r1, r7, #0
 	adds r2, r4, #0
 	movs r3, #6
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	ldr r0, [r6, #4]
 	adds r0, #0x38
 	adds r1, r7, #0
-	bl sub_080318B8
+	bl DrawUnitConText
 	ldr r0, [r6, #4]
 	adds r0, #0x38
 	ldr r2, _080321DC @ =0x00000121
 	adds r1, r4, r2
 	lsls r1, r1, #1
 	add r1, r8
-	bl sub_08005590
+	bl PutText
 	adds r4, #4
 	lsls r4, r4, #3
 	movs r0, #0
 	adds r1, r4, #0
 	movs r2, #0x27
-	bl sub_08006B00
+	bl MoveSpriteRefresher
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -2297,7 +2297,7 @@ sub_080321E0: @ 0x080321E0
 	movs r0, #4
 	bl ApplyIconPalettes
 	adds r0, r4, #0
-	bl sub_08031FFC
+	bl StartUnitRescueInfoWindowsCore
 	ldr r0, _08032214 @ =0x08B905B8
 	str r0, [sp]
 	movs r0, #6
@@ -2306,7 +2306,7 @@ sub_080321E0: @ 0x080321E0
 	movs r1, #2
 	movs r2, #0
 	movs r3, #0
-	bl sub_08006ABC
+	bl StartSpriteRefresher
 	add sp, #8
 	pop {r4}
 	pop {r0}
@@ -2314,8 +2314,8 @@ sub_080321E0: @ 0x080321E0
 	.align 2, 0
 _08032214: .4byte 0x08B905B8
 
-	thumb_func_start sub_08032218
-sub_08032218: @ 0x08032218
+	thumb_func_start RefreshUnitGiveInfoWindows
+RefreshUnitGiveInfoWindows: @ 0x08032218
 	push {r4, r5, r6, lr}
 	mov r6, sl
 	mov r5, sb
@@ -2324,7 +2324,7 @@ sub_08032218: @ 0x08032218
 	sub sp, #8
 	mov r8, r0
 	movs r1, #0xa
-	bl sub_08031830
+	bl GetUnitInfoWindowX
 	adds r4, r0, #0
 	ldr r0, _080322CC @ =0x03004690
 	ldr r0, [r0]
@@ -2343,11 +2343,11 @@ sub_08032218: @ 0x08032218
 	adds r1, r6, #0
 	adds r2, r4, #0
 	movs r3, #0
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	ldr r0, [r5]
 	adds r0, #0x38
 	adds r1, r6, #0
-	bl sub_080318B8
+	bl DrawUnitConText
 	ldr r0, [r5]
 	adds r0, #0x38
 	adds r1, r4, #0
@@ -2355,7 +2355,7 @@ sub_08032218: @ 0x08032218
 	lsls r1, r1, #1
 	ldr r6, _080322D4 @ =0x02022C60
 	adds r1, r1, r6
-	bl sub_08005590
+	bl PutText
 	ldr r0, [r5, #4]
 	mov r1, sl
 	str r1, [sp]
@@ -2364,28 +2364,28 @@ sub_08032218: @ 0x08032218
 	mov r1, r8
 	adds r2, r4, #0
 	movs r3, #6
-	bl sub_08031700
+	bl UnitInfoWindow_DrawBase
 	ldr r0, [r5, #4]
 	adds r0, #0x38
 	mov r1, r8
-	bl sub_08031900
+	bl DrawUnitAidText
 	ldr r0, [r5, #4]
 	adds r0, #0x38
 	ldr r2, _080322D8 @ =0x00000121
 	adds r1, r4, r2
 	lsls r1, r1, #1
 	adds r1, r1, r6
-	bl sub_08005590
+	bl PutText
 	adds r1, r4, #1
 	mov r0, r8
 	movs r2, #9
-	bl sub_08031938
+	bl PutUnitAidIconForTextAt
 	adds r4, #4
 	lsls r4, r4, #3
 	movs r0, #0
 	adds r1, r4, #0
 	movs r2, #0x27
-	bl sub_08006B00
+	bl MoveSpriteRefresher
 	add sp, #8
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -2400,8 +2400,8 @@ _080322D0: .4byte 0x0203A8E4
 _080322D4: .4byte 0x02022C60
 _080322D8: .4byte 0x00000121
 
-	thumb_func_start sub_080322DC
-sub_080322DC: @ 0x080322DC
+	thumb_func_start PutSubtitleHelpText
+PutSubtitleHelpText: @ 0x080322DC
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0
@@ -2436,7 +2436,7 @@ _080322E6:
 	adds r1, r4, #0
 	adds r2, r7, #0
 	ldr r3, _0803233C @ =0x08B905F8
-	bl sub_080069F4
+	bl PutSprite
 	adds r5, #1
 	cmp r5, #8
 	ble _080322E6
@@ -2449,8 +2449,8 @@ _08032334: .4byte 0x08B969A8
 _08032338: .4byte 0x00004240
 _0803233C: .4byte 0x08B905F8
 
-	thumb_func_start sub_08032340
-sub_08032340: @ 0x08032340
+	thumb_func_start InitSubtitleHelpText
+InitSubtitleHelpText: @ 0x08032340
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -2476,7 +2476,7 @@ _0803236E:
 	bl InitSpriteText
 	adds r0, r4, #0
 	movs r1, #0
-	bl sub_08005CF8
+	bl SpriteText_DrawBackgroundExt
 	adds r0, r4, #0
 	movs r1, #0
 	bl Text_SetColor
@@ -2502,17 +2502,17 @@ _080323A4:
 	bl Text_DrawCharacter
 	adds r5, r0, #0
 	adds r0, r4, #0
-	bl sub_08005570
+	bl Text_GetCursor
 	cmp r0, #0xe0
 	ble _080323DA
 	subs r5, #1
 	adds r4, #8
 	adds r0, r5, #0
 	mov r1, sp
-	bl sub_08005658
+	bl GetCharTextLen
 	adds r0, r7, #0
 	adds r0, #0x48
-	bl sub_08005570
+	bl Text_GetCursor
 	adds r1, r0, #0
 	ldr r0, [sp]
 	subs r1, r1, r0
@@ -2525,7 +2525,7 @@ _080323DA:
 	bhi _080323A4
 _080323E0:
 	ldr r0, [r7, #0x2c]
-	bl sub_080055FC
+	bl GetStringTextLen
 	adds r0, #0x10
 	asrs r0, r0, #5
 	adds r1, r0, #1
@@ -2545,8 +2545,8 @@ _080323F2:
 _08032404: .4byte 0x06014800
 _08032408: .4byte 0x08194694
 
-	thumb_func_start sub_0803240C
-sub_0803240C: @ 0x0803240C
+	thumb_func_start SubtitleHelpDarkenerOnHBlank
+SubtitleHelpDarkenerOnHBlank: @ 0x0803240C
 	ldr r0, _08032434 @ =0x04000006
 	ldrh r0, [r0]
 	adds r1, r0, #0
@@ -2595,20 +2595,20 @@ _08032464: .4byte 0x08B969C2
 _08032468: .4byte 0x0202BBB8
 _0803246C: .4byte 0x04000050
 
-	thumb_func_start sub_08032470
-sub_08032470: @ 0x08032470
+	thumb_func_start SubtitleHelpDarkener_Init
+SubtitleHelpDarkener_Init: @ 0x08032470
 	push {lr}
 	ldr r0, _08032484 @ =0x0202BBB8
 	adds r0, #0x38
 	movs r1, #8
 	strb r1, [r0]
-	ldr r0, _08032488 @ =sub_0803240C
+	ldr r0, _08032488 @ =SubtitleHelpDarkenerOnHBlank
 	bl SetOnHBlankA
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08032484: .4byte 0x0202BBB8
-_08032488: .4byte sub_0803240C
+_08032488: .4byte SubtitleHelpDarkenerOnHBlank
 
 	thumb_func_start sub_0803248C
 sub_0803248C: @ 0x0803248C
@@ -2625,8 +2625,8 @@ _0803249C:
 	.align 2, 0
 _080324A0: .4byte 0x0202BBB8
 
-	thumb_func_start sub_080324A4
-sub_080324A4: @ 0x080324A4
+	thumb_func_start SubtitleHelpDarkener_FadeOut
+SubtitleHelpDarkener_FadeOut: @ 0x080324A4
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r1, _080324CC @ =0x0202BBB8
@@ -2649,8 +2649,8 @@ _080324C6:
 	.align 2, 0
 _080324CC: .4byte 0x0202BBB8
 
-	thumb_func_start sub_080324D0
-sub_080324D0: @ 0x080324D0
+	thumb_func_start SubtitleHelp_Init
+SubtitleHelp_Init: @ 0x080324D0
 	push {lr}
 	adds r2, r0, #0
 	adds r2, #0x58
@@ -2667,25 +2667,25 @@ sub_080324D0: @ 0x080324D0
 	.align 2, 0
 _080324EC: .4byte 0x08B969E4
 
-	thumb_func_start sub_080324F0
-sub_080324F0: @ 0x080324F0
+	thumb_func_start SubtitleHelp_OnEnd
+SubtitleHelp_OnEnd: @ 0x080324F0
 	push {lr}
 	ldr r0, _0803250C @ =0x0202BBB8
 	ldrh r1, [r0, #0x2a]
 	subs r1, #0x10
 	strh r1, [r0, #0x2a]
 	movs r0, #0
-	bl sub_08015DB0
+	bl CameraMove_801622C
 	ldr r0, _08032510 @ =0x08B969E4
-	bl sub_08004888
+	bl Proc_BreakEach
 	pop {r0}
 	bx r0
 	.align 2, 0
 _0803250C: .4byte 0x0202BBB8
 _08032510: .4byte 0x08B969E4
 
-	thumb_func_start sub_08032514
-sub_08032514: @ 0x08032514
+	thumb_func_start SubtitleHelp_Loop
+SubtitleHelp_Loop: @ 0x08032514
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r1, _0803255C @ =0x08B96A0C
@@ -2696,7 +2696,7 @@ sub_08032514: @ 0x08032514
 	adds r0, r0, r1
 	ldrb r1, [r0]
 	adds r0, r5, #0
-	bl sub_080322DC
+	bl PutSubtitleHelpText
 	ldrh r1, [r4]
 	movs r2, #0
 	ldrsh r0, [r4, r2]
@@ -2726,8 +2726,8 @@ _08032556:
 	.align 2, 0
 _0803255C: .4byte 0x08B96A0C
 
-	thumb_func_start sub_08032560
-sub_08032560: @ 0x08032560
+	thumb_func_start StartSubtitleHelp
+StartSubtitleHelp: @ 0x08032560
 	push {r4, lr}
 	adds r2, r0, #0
 	adds r4, r1, #0
@@ -2741,7 +2741,7 @@ sub_08032560: @ 0x08032560
 	adds r1, r2, #0
 	bl SpawnProc
 	str r4, [r0, #0x2c]
-	bl sub_08032340
+	bl InitSubtitleHelpText
 	bl sub_08019B40
 	ldr r1, _0803259C @ =0x0202BBB8
 	ldrh r0, [r1, #0x2a]
@@ -2785,7 +2785,7 @@ sub_080325A0: @ 0x080325A0
 	cmp r0, #0
 	blt _080325E0
 	ldr r0, _08032618 @ =0x0000038A
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080325E0:
 	adds r3, r4, #0
 	adds r3, #0x42
@@ -2840,7 +2840,7 @@ _08032638:
 	movs r1, #0x38
 	adds r2, r6, #0
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	movs r0, #0xa1
 	lsls r0, r0, #2
 	adds r0, r5, r0
@@ -2849,7 +2849,7 @@ _08032638:
 	movs r1, #0x58
 	adds r2, r6, #0
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	movs r0, #0xa2
 	lsls r0, r0, #2
 	adds r0, r5, r0
@@ -2858,7 +2858,7 @@ _08032638:
 	movs r1, #0x78
 	adds r2, r6, #0
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	ldr r4, _080326C8 @ =0x08B905B8
 	movs r0, #0xa3
 	lsls r0, r0, #2
@@ -2868,7 +2868,7 @@ _08032638:
 	movs r1, #0x98
 	adds r2, r6, #0
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	ldr r7, _080326CC @ =0x08B905D0
 	ldr r0, _080326D0 @ =0x0000028E
 	adds r0, r5, r0
@@ -2877,7 +2877,7 @@ _08032638:
 	movs r1, #0xa8
 	adds r2, r6, #0
 	adds r3, r7, #0
-	bl sub_080069F4
+	bl PutSprite
 	mov r3, r8
 	ldrb r3, [r3]
 	lsls r0, r3, #0x1a
@@ -2890,7 +2890,7 @@ _08032638:
 	movs r1, #0xb0
 	adds r2, r6, #0
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	b _080326FE
 	.align 2, 0
 _080326C0: .4byte 0x0202BBF8
@@ -2907,7 +2907,7 @@ _080326D8:
 	movs r1, #0xb0
 	adds r2, r6, #0
 	adds r3, r4, #0
-	bl sub_080069F4
+	bl PutSprite
 	movs r0, #0xa5
 	lsls r0, r0, #2
 	adds r0, r5, r0
@@ -2916,7 +2916,7 @@ _080326D8:
 	movs r1, #0xc0
 	adds r2, r6, #0
 	adds r3, r7, #0
-	bl sub_080069F4
+	bl PutSprite
 _080326FE:
 	add sp, #4
 	pop {r3}
@@ -2985,7 +2985,7 @@ sub_08032770: @ 0x08032770
 	bl SpawnProcLocking
 	movs r1, #0
 	str r1, [r0, #0x2c]
-	bl sub_08032340
+	bl InitSubtitleHelpText
 	bl sub_08019B40
 	ldr r1, _08032798 @ =0x0202BBB8
 	ldrh r0, [r1, #0x2a]
@@ -2997,8 +2997,8 @@ sub_08032770: @ 0x08032770
 _08032794: .4byte 0x08B96A54
 _08032798: .4byte 0x0202BBB8
 
-	thumb_func_start sub_0803279C
-sub_0803279C: @ 0x0803279C
+	thumb_func_start EndSubtitleHelp
+EndSubtitleHelp: @ 0x0803279C
 	push {lr}
 	ldr r0, _080327A8 @ =0x08B96A14
 	bl Proc_EndEach
@@ -3039,7 +3039,7 @@ sub_080327C4: @ 0x080327C4
 _080327E2:
 	str r7, [r4, #0x2c]
 	adds r0, r4, #0
-	bl sub_08032340
+	bl InitSubtitleHelpText
 	adds r1, r4, #0
 	adds r1, #0x58
 	movs r0, #0x1f
@@ -3050,8 +3050,8 @@ _080327E2:
 	.align 2, 0
 _080327F8: .4byte 0x08B96A14
 
-	thumb_func_start sub_080327FC
-sub_080327FC: @ 0x080327FC
+	thumb_func_start ApplyHazardHealing
+ApplyHazardHealing: @ 0x080327FC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -3064,9 +3064,9 @@ sub_080327FC: @ 0x080327FC
 _08032810:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08018C7C
+	bl AddUnitHp
 	adds r0, r4, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bgt _08032828
 	adds r0, r4, #0
@@ -3074,16 +3074,16 @@ _08032810:
 _08032828:
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_0802F754
+	bl DropRescueOnDeath
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08032838
-sub_08032838: @ 0x08032838
+	thumb_func_start RenderMapForFogFadeIfUnitDied
+RenderMapForFogFadeIfUnitDied: @ 0x08032838
 	push {lr}
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bne _0803284E
 	ldr r0, _08032854 @ =0x0202BBF8
@@ -3097,8 +3097,8 @@ _0803284E:
 	.align 2, 0
 _08032854: .4byte 0x0202BBF8
 
-	thumb_func_start sub_08032858
-sub_08032858: @ 0x08032858
+	thumb_func_start BeginUnitHealAnim
+BeginUnitHealAnim: @ 0x08032858
 	push {r4, r5, lr}
 	adds r4, r1, #0
 	movs r1, #1
@@ -3113,7 +3113,7 @@ sub_08032858: @ 0x08032858
 	strh r1, [r0]
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08018C7C
+	bl AddUnitHp
 	ldr r0, _0803289C @ =0x0203A50C
 	ldr r1, [r0]
 	adds r0, r5, #0
@@ -3131,8 +3131,8 @@ sub_08032858: @ 0x08032858
 _08032898: .4byte 0x0203A3F0
 _0803289C: .4byte 0x0203A50C
 
-	thumb_func_start sub_080328A0
-sub_080328A0: @ 0x080328A0
+	thumb_func_start BeginUnitPoisonDamageAnim
+BeginUnitPoisonDamageAnim: @ 0x080328A0
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -3143,7 +3143,7 @@ sub_080328A0: @ 0x080328A0
 	rsbs r4, r4, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08018C7C
+	bl AddUnitHp
 	movs r0, #0x13
 	ldrsb r0, [r5, r0]
 	cmp r0, #0
@@ -3172,7 +3172,7 @@ _080328E8:
 	bl BattleHitTerminate
 	bl sub_0806EFC4
 	adds r0, r6, #0
-	bl sub_08032838
+	bl RenderMapForFogFadeIfUnitDied
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -3180,8 +3180,8 @@ _080328E8:
 _080328FC: .4byte 0x0203A3F0
 _08032900: .4byte 0x0203A50C
 
-	thumb_func_start sub_08032904
-sub_08032904: @ 0x08032904
+	thumb_func_start BeginUnitCritDamageAnim
+BeginUnitCritDamageAnim: @ 0x08032904
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r4, r1, #0
@@ -3192,7 +3192,7 @@ sub_08032904: @ 0x08032904
 	rsbs r4, r4, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08018C7C
+	bl AddUnitHp
 	movs r0, #0x13
 	ldrsb r0, [r5, r0]
 	cmp r0, #0
@@ -3225,7 +3225,7 @@ _08032954:
 	bl BattleHitTerminate
 	bl sub_0806F050
 	adds r0, r6, #0
-	bl sub_08032838
+	bl RenderMapForFogFadeIfUnitDied
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -3233,8 +3233,8 @@ _08032954:
 _08032968: .4byte 0x0203A3F0
 _0803296C: .4byte 0x0203A50C
 
-	thumb_func_start sub_08032970
-sub_08032970: @ 0x08032970
+	thumb_func_start KillAllRedUnits_Init
+KillAllRedUnits_Init: @ 0x08032970
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r0, #0
@@ -3278,8 +3278,8 @@ _080329AE:
 	.align 2, 0
 _080329C4: .4byte 0x0001000C
 
-	thumb_func_start sub_080329C8
-sub_080329C8: @ 0x080329C8
+	thumb_func_start KillAllRedUnits_Loop
+KillAllRedUnits_Loop: @ 0x080329C8
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r5, #0
@@ -3350,8 +3350,8 @@ _08032A5A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08032A60
-sub_08032A60: @ 0x08032A60
+	thumb_func_start StatusHealEffect_OverlayBg_Init
+StatusHealEffect_OverlayBg_Init: @ 0x08032A60
 	push {r4, r5, r6, lr}
 	bl ClearUi
 	ldr r0, _08032AB4 @ =0x083FE094
@@ -3507,8 +3507,8 @@ _08032BA0: .4byte 0x03002870
 _08032BA4: .4byte 0x0000FFE0
 _08032BA8: .4byte 0x0000E0FF
 
-	thumb_func_start sub_08032BAC
-sub_08032BAC: @ 0x08032BAC
+	thumb_func_start StatusHealEffect_BlendedSprite_Loop
+StatusHealEffect_BlendedSprite_Loop: @ 0x08032BAC
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -3531,7 +3531,7 @@ sub_08032BAC: @ 0x08032BAC
 	lsls r3, r3, #6
 	str r4, [sp]
 	movs r0, #4
-	bl sub_0802647C
+	bl PutBlendWindowUnitSprite
 	adds r1, r5, #0
 	adds r1, #0x4c
 	ldrh r0, [r1]
@@ -3562,8 +3562,8 @@ sub_08032C04: @ 0x08032C04
 	.align 2, 0
 _08032C14: .4byte 0x03004690
 
-	thumb_func_start sub_08032C18
-sub_08032C18: @ 0x08032C18
+	thumb_func_start StatusHealEffect_BlendSpriteAnim_InitIn
+StatusHealEffect_BlendSpriteAnim_InitIn: @ 0x08032C18
 	adds r2, r0, #0
 	adds r2, #0x4c
 	movs r3, #0
@@ -3575,8 +3575,8 @@ sub_08032C18: @ 0x08032C18
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08032C2C
-sub_08032C2C: @ 0x08032C2C
+	thumb_func_start StatusHealEffect_BlendSpriteAnim_InitOut
+StatusHealEffect_BlendSpriteAnim_InitOut: @ 0x08032C2C
 	adds r2, r0, #0
 	adds r2, #0x4c
 	movs r1, #0xf
@@ -3685,8 +3685,8 @@ _08032CD6:
 	.align 2, 0
 _08032CF0: .4byte 0x02022C20
 
-	thumb_func_start sub_08032CF4
-sub_08032CF4: @ 0x08032CF4
+	thumb_func_start StatusHealEffect_PalSpriteAnim_SetOutlineIntensity
+StatusHealEffect_PalSpriteAnim_SetOutlineIntensity: @ 0x08032CF4
 	push {lr}
 	adds r3, r1, #0
 	cmp r3, #0x1f
@@ -3712,8 +3712,8 @@ _08032D04:
 _08032D1C: .4byte 0x02022860
 _08032D20: .4byte 0x0000025E
 
-	thumb_func_start sub_08032D24
-sub_08032D24: @ 0x08032D24
+	thumb_func_start StatusHealEffect_PalSpriteAnim_LoopIn
+StatusHealEffect_PalSpriteAnim_LoopIn: @ 0x08032D24
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r5, #0
@@ -3721,7 +3721,7 @@ sub_08032D24: @ 0x08032D24
 	movs r0, #0
 	ldrsh r1, [r4, r0]
 	adds r0, r5, #0
-	bl sub_08032CF4
+	bl StatusHealEffect_PalSpriteAnim_SetOutlineIntensity
 	ldrh r0, [r4]
 	adds r0, #1
 	strh r0, [r4]
@@ -3736,8 +3736,8 @@ _08032D4A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08032D50
-sub_08032D50: @ 0x08032D50
+	thumb_func_start StatusHealEffect_PalSpriteAnim_LoopOut
+StatusHealEffect_PalSpriteAnim_LoopOut: @ 0x08032D50
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r5, #0
@@ -3745,7 +3745,7 @@ sub_08032D50: @ 0x08032D50
 	movs r0, #0
 	ldrsh r1, [r4, r0]
 	adds r0, r5, #0
-	bl sub_08032CF4
+	bl StatusHealEffect_PalSpriteAnim_SetOutlineIntensity
 	ldrh r0, [r4]
 	subs r0, #1
 	strh r0, [r4]
@@ -3806,8 +3806,8 @@ sub_08032D7C: @ 0x08032D7C
 	.align 2, 0
 _08032DD0: .4byte 0x03002870
 
-	thumb_func_start sub_08032DD4
-sub_08032DD4: @ 0x08032DD4
+	thumb_func_start StartStatusHealEffect
+StartStatusHealEffect: @ 0x08032DD4
 	push {lr}
 	adds r2, r1, #0
 	ldr r1, _08032DFC @ =0x03004690
@@ -3824,7 +3824,7 @@ sub_08032DD4: @ 0x08032DD4
 	cmp r0, #0
 	blt _08032E10
 	movs r0, #0xaa
-	bl sub_080BE594
+	bl m4aSongNumStart
 	b _08032E10
 	.align 2, 0
 _08032DFC: .4byte 0x03004690
@@ -3840,8 +3840,8 @@ _08032E10:
 	.align 2, 0
 _08032E14: .4byte 0x08B96B74
 
-	thumb_func_start sub_08032E18
-sub_08032E18: @ 0x08032E18
+	thumb_func_start TerrainHealDisplay_Init
+TerrainHealDisplay_Init: @ 0x08032E18
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08032E34 @ =0x0202BBF8
@@ -3866,8 +3866,8 @@ _08032E40:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08032E48
-sub_08032E48: @ 0x08032E48
+	thumb_func_start MassEffectDisplay_Check
+MassEffectDisplay_Check: @ 0x08032E48
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r5, r7, #0
@@ -3920,7 +3920,7 @@ _08032EB0: .4byte 0x0202BBF8
 _08032EB4: .4byte 0x0202E3EC
 _08032EB8:
 	adds r0, r6, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bne _08032ECA
 	adds r0, r7, #0
@@ -3931,8 +3931,8 @@ _08032ECA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08032ED0
-sub_08032ED0: @ 0x08032ED0
+	thumb_func_start MassEffectDisplay_Watch
+MassEffectDisplay_Watch: @ 0x08032ED0
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x4c
@@ -3950,8 +3950,8 @@ sub_08032ED0: @ 0x08032ED0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08032EF4
-sub_08032EF4: @ 0x08032EF4
+	thumb_func_start TerrainHealDisplay_Display
+TerrainHealDisplay_Display: @ 0x08032EF4
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r0, #0x4c
@@ -3969,7 +3969,7 @@ sub_08032EF4: @ 0x08032EF4
 	bge _08032F20
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_08032DD4
+	bl StartStatusHealEffect
 	b _08032F30
 _08032F20:
 	adds r0, r4, #0
@@ -3977,15 +3977,15 @@ _08032F20:
 	movs r1, #3
 	ldrsb r1, [r5, r1]
 	adds r0, r4, #0
-	bl sub_08032858
+	bl BeginUnitHealAnim
 _08032F30:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08032F38
-sub_08032F38: @ 0x08032F38
+	thumb_func_start FinishDamageDisplay
+FinishDamageDisplay: @ 0x08032F38
 	push {lr}
 	bl EndAllMus
 	ldr r0, _08032F5C @ =0x0203A3F0
@@ -4005,8 +4005,8 @@ _08032F56:
 _08032F5C: .4byte 0x0203A3F0
 _08032F60: .4byte 0x0203A85C
 
-	thumb_func_start sub_08032F64
-sub_08032F64: @ 0x08032F64
+	thumb_func_start TerrainHealDisplay_Next
+TerrainHealDisplay_Next: @ 0x08032F64
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r0, #0x4c
@@ -4025,7 +4025,7 @@ sub_08032F64: @ 0x08032F64
 	adds r0, r5, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_080327FC
+	bl ApplyHazardHealing
 	b _08032FA0
 _08032F92:
 	movs r2, #3
@@ -4033,7 +4033,7 @@ _08032F92:
 	movs r3, #1
 	rsbs r3, r3, #0
 	adds r0, r5, #0
-	bl sub_080327FC
+	bl ApplyHazardHealing
 _08032FA0:
 	adds r1, r5, #0
 	adds r1, #0x4c
@@ -4044,13 +4044,13 @@ _08032FA0:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08032FB0
-sub_08032FB0: @ 0x08032FB0
+	thumb_func_start PoisonDamageDisplay_Init
+PoisonDamageDisplay_Init: @ 0x08032FB0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08032FD4 @ =0x0202BBF8
 	ldrb r0, [r0, #0xf]
-	bl sub_080243BC
+	bl MakePoisonDamageTargetList
 	movs r0, #4
 	bl sub_08024A88
 	bl CountTargets
@@ -4072,8 +4072,8 @@ _08032FE0:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08032FE8
-sub_08032FE8: @ 0x08032FE8
+	thumb_func_start PoisonDamageDisplay_Display
+PoisonDamageDisplay_Display: @ 0x08032FE8
 	push {r4, r5, lr}
 	adds r0, #0x4c
 	movs r1, #0
@@ -4088,13 +4088,13 @@ sub_08032FE8: @ 0x08032FE8
 	movs r1, #3
 	ldrsb r1, [r5, r1]
 	adds r0, r4, #0
-	bl sub_080328A0
+	bl BeginUnitPoisonDamageAnim
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08033014
-sub_08033014: @ 0x08033014
+	thumb_func_start PoisonDamageDisplay_Next
+PoisonDamageDisplay_Next: @ 0x08033014
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r6, #0
@@ -4113,26 +4113,26 @@ sub_08033014: @ 0x08033014
 	movs r3, #1
 	rsbs r3, r3, #0
 	adds r0, r6, #0
-	bl sub_080327FC
+	bl ApplyHazardHealing
 	ldrh r0, [r5]
 	adds r0, #1
 	strh r0, [r5]
 	ldr r0, _08033080 @ =0x0203A85C
 	ldrb r0, [r0, #0xc]
 	bl GetUnit
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bne _08033064
-	bl sub_08079140
+	bl CheckForWaitEvents
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08033064
-	bl sub_08079180
+	bl RunWaitEvents
 _08033064:
 	ldr r0, _08033080 @ =0x0203A85C
 	ldrb r0, [r0, #0xc]
 	bl GetUnit
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bgt _08033078
 	bl RefreshUnitSprites
@@ -4192,7 +4192,7 @@ sub_080330A8: @ 0x080330A8
 	ldrsb r0, [r7, r0]
 	bl GetUnit
 	adds r1, r6, #0
-	bl sub_08032DD4
+	bl StartStatusHealEffect
 _080330EA:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -4226,8 +4226,8 @@ sub_08033118: @ 0x08033118
 	strh r1, [r0]
 	bx lr
 
-	thumb_func_start sub_08033120
-sub_08033120: @ 0x08033120
+	thumb_func_start TrapDamageDisplay_Check
+TrapDamageDisplay_Check: @ 0x08033120
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r4, r7, #0
@@ -4284,7 +4284,7 @@ _08033190: .4byte 0x0202BBF8
 _08033194: .4byte 0x0202E3EC
 _08033198:
 	adds r0, r6, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bne _080331AA
 	adds r0, r7, #0
@@ -4321,8 +4321,8 @@ _080331DA:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080331E0
-sub_080331E0: @ 0x080331E0
+	thumb_func_start TrapDamageDisplay_Display
+TrapDamageDisplay_Display: @ 0x080331E0
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r0, #0x4c
@@ -4366,7 +4366,7 @@ _08033228:
 	movs r2, #1
 	ldrsb r2, [r4, r2]
 	adds r0, r5, #0
-	bl sub_0801ED90
+	bl StartFireTrapAnim1
 	b _0803329A
 _08033238:
 	movs r1, #0
@@ -4375,7 +4375,7 @@ _08033238:
 	ldrsb r2, [r4, r2]
 	adds r0, r5, #0
 	movs r3, #3
-	bl sub_0801ED04
+	bl StartGasTrapAnim
 	b _0803329A
 _0803324A:
 	movs r1, #0
@@ -4384,7 +4384,7 @@ _0803324A:
 	ldrsb r2, [r4, r2]
 	adds r0, r5, #0
 	movs r3, #2
-	bl sub_0801ED04
+	bl StartGasTrapAnim
 	b _0803329A
 _0803325C:
 	movs r1, #0
@@ -4393,7 +4393,7 @@ _0803325C:
 	ldrsb r2, [r4, r2]
 	adds r0, r5, #0
 	movs r3, #0
-	bl sub_0801ED04
+	bl StartGasTrapAnim
 	b _0803329A
 _0803326E:
 	movs r1, #0
@@ -4402,13 +4402,13 @@ _0803326E:
 	ldrsb r2, [r4, r2]
 	adds r0, r5, #0
 	movs r3, #1
-	bl sub_0801ED04
+	bl StartGasTrapAnim
 	b _0803329A
 _08033280:
 	movs r1, #0
 	ldrsb r1, [r4, r1]
 	adds r0, r5, #0
-	bl sub_0801EF48
+	bl StartArrowTrapAnim
 	b _0803329A
 _0803328C:
 	movs r1, #0
@@ -4416,7 +4416,7 @@ _0803328C:
 	movs r2, #1
 	ldrsb r2, [r4, r2]
 	adds r0, r5, #0
-	bl sub_0801EFCC
+	bl StartShowMapChangeAnim
 _0803329A:
 	adds r1, r5, #0
 	adds r1, #0x4c
@@ -4442,7 +4442,7 @@ _080332AE:
 	bl GetUnit
 	movs r1, #3
 	ldrsb r1, [r4, r1]
-	bl sub_080328A0
+	bl BeginUnitPoisonDamageAnim
 	b _080332EA
 	.align 2, 0
 _080332D8: .4byte 0x0203A85C
@@ -4451,14 +4451,14 @@ _080332DC:
 	bl GetUnit
 	movs r1, #3
 	ldrsb r1, [r4, r1]
-	bl sub_08032904
+	bl BeginUnitCritDamageAnim
 _080332EA:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080332F0
-sub_080332F0: @ 0x080332F0
+	thumb_func_start TrapDamageDisplay_Next
+TrapDamageDisplay_Next: @ 0x080332F0
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r0, #0x4c
@@ -4479,7 +4479,7 @@ sub_080332F0: @ 0x080332F0
 	adds r0, r6, #0
 	adds r1, r5, #0
 	movs r3, #1
-	bl sub_080327FC
+	bl ApplyHazardHealing
 	b _08033334
 _08033322:
 	movs r2, #3
@@ -4489,10 +4489,10 @@ _08033322:
 	rsbs r3, r3, #0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_080327FC
+	bl ApplyHazardHealing
 _08033334:
 	adds r0, r5, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bgt _08033342
 	bl RefreshUnitSprites
@@ -4507,8 +4507,8 @@ _08033342:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08033354
-sub_08033354: @ 0x08033354
+	thumb_func_start GetBattleForecastPanelSide
+GetBattleForecastPanelSide: @ 0x08033354
 	ldr r0, _08033370 @ =0x0203A470
 	ldrb r0, [r0, #0x10]
 	lsls r0, r0, #0x18
@@ -4537,15 +4537,15 @@ _08033384:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08033388
-sub_08033388: @ 0x08033388
+	thumb_func_start InitBattleForecastIconPaletteBuffer
+InitBattleForecastIconPaletteBuffer: @ 0x08033388
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
 	push {r6, r7}
 	movs r0, #0
 	movs r1, #3
-	bl sub_08004D44
+	bl ApplyIconPalette
 	movs r1, #1
 	ldr r0, _08033408 @ =0x02022860
 	mov sb, r0
@@ -4610,8 +4610,8 @@ _080333EC:
 _08033408: .4byte 0x02022860
 _0803340C: .4byte 0x0200300C
 
-	thumb_func_start sub_08033410
-sub_08033410: @ 0x08033410
+	thumb_func_start InitBattleForecastLabels
+InitBattleForecastLabels: @ 0x08033410
 	push {r4, r5, r6, r7, lr}
 	movs r7, #0
 _08033414:
@@ -4648,8 +4648,8 @@ _08033414:
 _08033458: .4byte 0x02002FDC
 _0803345C: .4byte 0x081C4068
 
-	thumb_func_start sub_08033460
-sub_08033460: @ 0x08033460
+	thumb_func_start PutBattleForecastUnitName
+PutBattleForecastUnitName: @ 0x08033460
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -4673,7 +4673,7 @@ sub_08033460: @ 0x08033460
 	mov r1, r8
 	movs r2, #0
 	adds r3, r5, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	add sp, #8
 	pop {r3}
 	mov r8, r3
@@ -4681,8 +4681,8 @@ sub_08033460: @ 0x08033460
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_080334A4
-sub_080334A4: @ 0x080334A4
+	thumb_func_start PutBattleForecastItemName
+PutBattleForecastItemName: @ 0x080334A4
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -4705,7 +4705,7 @@ sub_080334A4: @ 0x080334A4
 	mov r1, r8
 	movs r2, #0
 	adds r3, r5, #0
-	bl sub_08005AD4
+	bl PutDrawText
 	add sp, #8
 	pop {r3}
 	mov r8, r3
@@ -4714,8 +4714,8 @@ sub_080334A4: @ 0x080334A4
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080334E8
-sub_080334E8: @ 0x080334E8
+	thumb_func_start BattleForecastHitCountUpdate
+BattleForecastHitCountUpdate: @ 0x080334E8
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r3, r1, #0
@@ -4744,8 +4744,8 @@ _08033516:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_0803351C
-sub_0803351C: @ 0x0803351C
+	thumb_func_start InitBattleForecastBattleStats
+InitBattleForecastBattleStats: @ 0x0803351C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -4764,7 +4764,7 @@ sub_0803351C: @ 0x0803351C
 	str r0, [sp, #0xc]
 	add r1, sp, #4
 	mov r0, sp
-	bl sub_0802903C
+	bl BattleGetFollowUpOrder
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	mov r8, r0
@@ -4792,7 +4792,7 @@ _08033574:
 	adds r0, r7, #0
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_080334E8
+	bl BattleForecastHitCountUpdate
 	mov r0, r8
 	cmp r0, #0
 	beq _08033594
@@ -4801,7 +4801,7 @@ _08033574:
 	bne _08033594
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_080334E8
+	bl BattleForecastHitCountUpdate
 _08033594:
 	ldr r4, _08033660 @ =0x0203A3F0
 	adds r0, r4, #0
@@ -4861,7 +4861,7 @@ _080335FC:
 	adds r0, r5, #0
 	adds r1, r4, #0
 	adds r2, r6, #0
-	bl sub_080334E8
+	bl BattleForecastHitCountUpdate
 	mov r0, r8
 	cmp r0, #0
 	beq _0803361C
@@ -4870,7 +4870,7 @@ _080335FC:
 	bne _0803361C
 	adds r1, r4, #0
 	adds r2, r6, #0
-	bl sub_080334E8
+	bl BattleForecastHitCountUpdate
 _0803361C:
 	ldr r4, _08033664 @ =0x0203A470
 	adds r0, r4, #0
@@ -4910,8 +4910,8 @@ _08033652:
 _08033660: .4byte 0x0203A3F0
 _08033664: .4byte 0x0203A470
 
-	thumb_func_start sub_08033668
-sub_08033668: @ 0x08033668
+	thumb_func_start DrawBattleForecastContentsStandard
+DrawBattleForecastContentsStandard: @ 0x08033668
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	ldr r0, _080336E4 @ =0x0200373C
@@ -4931,13 +4931,13 @@ sub_08033668: @ 0x08033668
 	adds r5, #0x38
 	ldr r2, _080336F0 @ =0x0203A3F0
 	adds r1, r5, #0
-	bl sub_08033460
+	bl PutBattleForecastUnitName
 	ldr r1, _080336F4 @ =0x000002C2
 	adds r0, r4, r1
 	ldr r7, _080336F8 @ =0x0203A470
 	adds r1, r5, #0
 	adds r2, r7, #0
-	bl sub_08033460
+	bl PutBattleForecastUnitName
 	ldr r3, _080336FC @ =0x00000342
 	adds r4, r4, r3
 	adds r6, #0x48
@@ -4946,7 +4946,7 @@ sub_08033668: @ 0x08033668
 	ldrh r2, [r0]
 	adds r0, r4, #0
 	adds r1, r6, #0
-	bl sub_080334A4
+	bl PutBattleForecastItemName
 	adds r0, r7, #0
 	adds r0, #0x48
 	ldrh r0, [r0]
@@ -5000,7 +5000,7 @@ _0803371A:
 	ldr r0, _08033738 @ =0x02003300
 	movs r1, #2
 	movs r2, #0xff
-	bl sub_08006204
+	bl PutNumberTwoChr
 	b _0803374A
 	.align 2, 0
 _08033730: .4byte 0x0203A470
@@ -5012,13 +5012,13 @@ _0803373C:
 	lsls r2, r2, #0x18
 	asrs r2, r2, #0x18
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 _0803374A:
 	ldr r5, _080337B8 @ =0x02003380
 	adds r0, r5, #0
 	movs r1, #2
 	adds r2, r4, #0
-	bl sub_08006204
+	bl PutNumberTwoChr
 	adds r0, r5, #0
 	adds r0, #0x80
 	ldr r4, _080337BC @ =0x0203A470
@@ -5027,7 +5027,7 @@ _0803374A:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r5, r1
@@ -5036,7 +5036,7 @@ _0803374A:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	ldr r2, _080337C0 @ =0x0203A3F0
 	adds r0, r2, #0
 	adds r0, #0x5a
@@ -5061,7 +5061,7 @@ _08033798:
 	subs r0, #0x74
 	movs r1, #2
 	movs r2, #0xff
-	bl sub_08006204
+	bl PutNumberTwoChr
 	b _080337D2
 	.align 2, 0
 _080337B4: .4byte 0x02003300
@@ -5074,13 +5074,13 @@ _080337C4:
 	movs r2, #0
 	ldrsb r2, [r1, r2]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 _080337D2:
 	ldr r5, _08033874 @ =0x0200338C
 	adds r0, r5, #0
 	movs r1, #2
 	adds r2, r4, #0
-	bl sub_08006204
+	bl PutNumberTwoChr
 	adds r0, r5, #0
 	adds r0, #0x80
 	ldr r6, _08033878 @ =0x0203A3F0
@@ -5089,7 +5089,7 @@ _080337D2:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r5, r1
@@ -5098,28 +5098,28 @@ _080337D2:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	adds r0, r5, #0
 	subs r0, #0x88
 	movs r1, #3
 	movs r2, #0x22
 	movs r3, #0x23
-	bl sub_080063AC
+	bl PutTwoSpecialChar
 	ldr r4, _0803387C @ =0x02002FDC
 	adds r1, r5, #0
 	subs r1, #0xa
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	adds r0, r4, #0
 	adds r0, #8
 	adds r1, r5, #0
 	adds r1, #0x76
-	bl sub_08005590
+	bl PutText
 	adds r4, #0x10
 	adds r1, r5, #0
 	adds r1, #0xf6
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	movs r0, #0xbf
 	lsls r0, r0, #1
 	adds r4, r5, r0
@@ -5131,7 +5131,7 @@ _080337D2:
 	movs r2, #0x80
 	lsls r2, r2, #7
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 	ldr r1, _08033884 @ =0xFFFFFEF2
 	adds r4, r5, r1
 	adds r0, r6, #0
@@ -5142,7 +5142,7 @@ _080337D2:
 	movs r2, #0xc0
 	lsls r2, r2, #6
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -5153,8 +5153,8 @@ _0803387C: .4byte 0x02002FDC
 _08033880: .4byte 0x0203A470
 _08033884: .4byte 0xFFFFFEF2
 
-	thumb_func_start sub_08033888
-sub_08033888: @ 0x08033888
+	thumb_func_start DrawBattleForecastContentsExtended
+DrawBattleForecastContentsExtended: @ 0x08033888
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r0, _0803390C @ =0x0200373C
@@ -5174,13 +5174,13 @@ sub_08033888: @ 0x08033888
 	adds r4, #0x38
 	ldr r2, _08033918 @ =0x0203A3F0
 	adds r1, r4, #0
-	bl sub_08033460
+	bl PutBattleForecastUnitName
 	ldr r1, _0803391C @ =0x000003C2
 	adds r0, r7, r1
 	ldr r6, _08033920 @ =0x0203A470
 	adds r1, r4, #0
 	adds r2, r6, #0
-	bl sub_08033460
+	bl PutBattleForecastUnitName
 	ldr r2, _08033924 @ =0x00000442
 	adds r0, r7, r2
 	adds r5, #0x48
@@ -5188,7 +5188,7 @@ sub_08033888: @ 0x08033888
 	adds r1, #0x4a
 	ldrh r2, [r1]
 	adds r1, r5, #0
-	bl sub_080334A4
+	bl PutBattleForecastItemName
 	adds r0, r6, #0
 	adds r0, #0x48
 	ldrh r0, [r0]
@@ -5213,7 +5213,7 @@ _080338F0:
 	adds r0, #0xc4
 	movs r1, #2
 	movs r2, #0xff
-	bl sub_08006204
+	bl PutNumberTwoChr
 	b _08033938
 	.align 2, 0
 _0803390C: .4byte 0x0200373C
@@ -5230,7 +5230,7 @@ _08033928:
 	lsls r2, r2, #0x18
 	asrs r2, r2, #0x18
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 _08033938:
 	ldr r5, _080339B8 @ =0x02003380
 	ldr r4, _080339BC @ =0x0203A470
@@ -5240,7 +5240,7 @@ _08033938:
 	ldrsh r2, [r0, r3]
 	adds r0, r5, #0
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	adds r0, r5, #0
 	adds r0, #0x80
 	adds r1, r4, #0
@@ -5248,7 +5248,7 @@ _08033938:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r5, r1
@@ -5257,7 +5257,7 @@ _08033938:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0xc0
 	lsls r1, r1, #1
 	adds r0, r5, r1
@@ -5266,7 +5266,7 @@ _08033938:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r0, r5, r1
@@ -5275,7 +5275,7 @@ _08033938:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	ldr r0, _080339C0 @ =0x0203A3F0
 	adds r1, r0, #0
 	adds r1, #0x72
@@ -5287,7 +5287,7 @@ _08033938:
 	subs r0, #0x74
 	movs r1, #2
 	movs r2, #0xff
-	bl sub_08006204
+	bl PutNumberTwoChr
 	b _080339D2
 	.align 2, 0
 _080339B8: .4byte 0x02003380
@@ -5299,7 +5299,7 @@ _080339C4:
 	movs r2, #0
 	ldrsb r2, [r1, r2]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 _080339D2:
 	ldr r5, _08033ABC @ =0x0200338C
 	ldr r6, _08033AC0 @ =0x0203A3F0
@@ -5309,7 +5309,7 @@ _080339D2:
 	ldrsh r2, [r0, r1]
 	adds r0, r5, #0
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	adds r0, r5, #0
 	adds r0, #0x80
 	adds r1, r6, #0
@@ -5317,7 +5317,7 @@ _080339D2:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0x80
 	lsls r1, r1, #1
 	adds r0, r5, r1
@@ -5326,7 +5326,7 @@ _080339D2:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0xc0
 	lsls r1, r1, #1
 	adds r0, r5, r1
@@ -5335,7 +5335,7 @@ _080339D2:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r0, r5, r1
@@ -5344,40 +5344,40 @@ _080339D2:
 	movs r3, #0
 	ldrsh r2, [r1, r3]
 	movs r1, #2
-	bl sub_08006204
+	bl PutNumberTwoChr
 	adds r0, r5, #0
 	subs r0, #0x88
 	movs r1, #3
 	movs r2, #0x22
 	movs r3, #0x23
-	bl sub_080063AC
+	bl PutTwoSpecialChar
 	ldr r4, _08033AC4 @ =0x02002FF4
 	adds r1, r5, #0
 	subs r1, #0xa
 	adds r0, r4, #0
-	bl sub_08005590
+	bl PutText
 	adds r0, r4, #0
 	adds r0, #8
 	adds r1, r5, #0
 	adds r1, #0x76
-	bl sub_08005590
+	bl PutText
 	adds r0, r4, #0
 	subs r0, #0x10
 	adds r1, r5, #0
 	adds r1, #0xf6
-	bl sub_08005590
+	bl PutText
 	adds r0, r4, #0
 	subs r0, #8
 	movs r2, #0xbb
 	lsls r2, r2, #1
 	adds r1, r5, r2
-	bl sub_08005590
+	bl PutText
 	adds r0, r4, #0
 	adds r0, #0x10
 	movs r3, #0xfb
 	lsls r3, r3, #1
 	adds r1, r5, r3
-	bl sub_08005590
+	bl PutText
 	ldr r0, _08033AC8 @ =0x0000027E
 	adds r4, r5, r0
 	ldr r0, _08033ACC @ =0x0203A470
@@ -5388,7 +5388,7 @@ _080339D2:
 	movs r2, #0x80
 	lsls r2, r2, #7
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 	ldr r1, _08033AD0 @ =0xFFFFFEF2
 	adds r4, r5, r1
 	adds r0, r6, #0
@@ -5399,7 +5399,7 @@ _080339D2:
 	movs r2, #0xc0
 	lsls r2, r2, #6
 	adds r0, r4, #0
-	bl sub_08004E28
+	bl PutIcon
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -5411,8 +5411,8 @@ _08033AC8: .4byte 0x0000027E
 _08033ACC: .4byte 0x0203A470
 _08033AD0: .4byte 0xFFFFFEF2
 
-	thumb_func_start sub_08033AD4
-sub_08033AD4: @ 0x08033AD4
+	thumb_func_start DrawBattleForecastContents
+DrawBattleForecastContents: @ 0x08033AD4
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r1, #0
@@ -5428,23 +5428,23 @@ sub_08033AD4: @ 0x08033AD4
 	b _08033B08
 _08033AEE:
 	adds r0, r4, #0
-	bl sub_0803351C
+	bl InitBattleForecastBattleStats
 	adds r0, r4, #0
-	bl sub_08033668
+	bl DrawBattleForecastContentsStandard
 	b _08033B08
 _08033AFC:
 	adds r0, r4, #0
-	bl sub_0803351C
+	bl InitBattleForecastBattleStats
 	adds r0, r4, #0
-	bl sub_08033888
+	bl DrawBattleForecastContentsExtended
 _08033B08:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08033B10
-sub_08033B10: @ 0x08033B10
+	thumb_func_start GetFactionBattleForecastFramePalette
+GetFactionBattleForecastFramePalette: @ 0x08033B10
 	cmp r0, #0x40
 	beq _08033B38
 	cmp r0, #0x40
@@ -5480,8 +5480,8 @@ _08033B42:
 	.align 2, 0
 _08033B44: .4byte 0x08195C0C
 
-	thumb_func_start sub_08033B48
-sub_08033B48: @ 0x08033B48
+	thumb_func_start InitBattleForecastFramePalettes
+InitBattleForecastFramePalettes: @ 0x08033B48
 	push {r4, lr}
 	ldr r0, _08033B7C @ =0x0203A3F0
 	ldrb r0, [r0, #0xb]
@@ -5489,7 +5489,7 @@ sub_08033B48: @ 0x08033B48
 	asrs r0, r0, #0x18
 	movs r4, #0xc0
 	ands r0, r4
-	bl sub_08033B10
+	bl GetFactionBattleForecastFramePalette
 	movs r1, #0x20
 	movs r2, #0x20
 	bl ApplyPaletteExt
@@ -5499,7 +5499,7 @@ sub_08033B48: @ 0x08033B48
 	cmp r0, #0
 	beq _08033B84
 	ands r0, r4
-	bl sub_08033B10
+	bl GetFactionBattleForecastFramePalette
 	movs r1, #0x40
 	movs r2, #0x20
 	bl ApplyPaletteExt
@@ -5509,7 +5509,7 @@ _08033B7C: .4byte 0x0203A3F0
 _08033B80: .4byte 0x0203A470
 _08033B84:
 	movs r0, #0xc0
-	bl sub_08033B10
+	bl GetFactionBattleForecastFramePalette
 	movs r1, #0x40
 	movs r2, #0x20
 	bl ApplyPaletteExt
@@ -5533,7 +5533,7 @@ sub_08033B98: @ 0x08033B98
 	adds r0, r4, #0
 	movs r2, #4
 	movs r3, #2
-	bl sub_08013238
+	bl Copy2dChr
 	ldr r0, _08033C20 @ =0x08195FB0
 	movs r1, #0x90
 	lsls r1, r1, #2
@@ -5541,20 +5541,20 @@ sub_08033B98: @ 0x08033B98
 	bl ApplyPaletteExt
 	bl ResetTextFont
 	bl InitIcons
-	bl sub_08033388
-	bl sub_08033410
+	bl InitBattleForecastIconPaletteBuffer
+	bl InitBattleForecastLabels
 	adds r0, r5, #0
 	adds r0, #0x38
 	movs r1, #6
-	bl sub_0800549C
+	bl InitTextDb
 	adds r0, r5, #0
 	adds r0, #0x40
 	movs r1, #6
-	bl sub_0800549C
+	bl InitTextDb
 	adds r0, r5, #0
 	adds r0, #0x48
 	movs r1, #7
-	bl sub_0800549C
+	bl InitTextDb
 	ldr r2, _08033C24 @ =0x0000FFFF
 	movs r0, #1
 	movs r1, #0
@@ -5580,13 +5580,13 @@ sub_08033C28: @ 0x08033C28
 	push {lr}
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_08049B24
+	bl UnpackUiWindowFrameGraphics2
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08033C38
-sub_08033C38: @ 0x08033C38
+	thumb_func_start PutBattleForecastTilemaps
+PutBattleForecastTilemaps: @ 0x08033C38
 	push {r4, lr}
 	adds r1, r0, #0
 	adds r1, #0x32
@@ -5641,8 +5641,8 @@ _08033CA8: .4byte 0x02022C88
 _08033CAC: .4byte 0x0200373C
 _08033CB0: .4byte 0x02023488
 
-	thumb_func_start sub_08033CB4
-sub_08033CB4: @ 0x08033CB4
+	thumb_func_start PutBattleForecastWeaponTriangleArrows
+PutBattleForecastWeaponTriangleArrows: @ 0x08033CB4
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	movs r6, #0
@@ -5696,7 +5696,7 @@ _08033CE8:
 	movs r2, #1
 _08033D12:
 	adds r0, r3, #0
-	bl sub_08015AA8
+	bl PutSysArrow
 _08033D18:
 	cmp r6, #0
 	beq _08033D48
@@ -5721,7 +5721,7 @@ _08033D18:
 	movs r2, #1
 _08033D42:
 	adds r0, r3, #0
-	bl sub_08015AA8
+	bl PutSysArrow
 _08033D48:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -5730,8 +5730,8 @@ _08033D48:
 _08033D50: .4byte 0x0203A3F0
 _08033D54: .4byte 0x0203A470
 
-	thumb_func_start sub_08033D58
-sub_08033D58: @ 0x08033D58
+	thumb_func_start PutBattleForecastMultipliers
+PutBattleForecastMultipliers: @ 0x08033D58
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r7, r0, #0
@@ -5781,7 +5781,7 @@ sub_08033D58: @ 0x08033D58
 	adds r0, r0, r4
 	str r0, [sp]
 	movs r0, #4
-	bl sub_080069F4
+	bl PutSprite
 _08033DBE:
 	adds r4, r7, #0
 	adds r4, #0x51
@@ -5798,7 +5798,7 @@ _08033DBE:
 	adds r0, r0, r4
 	str r0, [sp]
 	movs r0, #4
-	bl sub_080069F4
+	bl PutSprite
 _08033DE0:
 	add sp, #4
 	pop {r4, r5, r6, r7}
@@ -5809,8 +5809,8 @@ _08033DE8: .4byte 0x080C5A48
 _08033DEC: .4byte 0x08B905B8
 _08033DF0: .4byte 0x000022E6
 
-	thumb_func_start sub_08033DF4
-sub_08033DF4: @ 0x08033DF4
+	thumb_func_start UpdateBattleForecastEffectivenessPalettes
+UpdateBattleForecastEffectivenessPalettes: @ 0x08033DF4
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r0, #0x52
@@ -5869,8 +5869,8 @@ _08033E4E:
 	.align 2, 0
 _08033E64: .4byte 0x0200300C
 
-	thumb_func_start sub_08033E68
-sub_08033E68: @ 0x08033E68
+	thumb_func_start BattleForecast_LoopDisplay
+BattleForecast_LoopDisplay: @ 0x08033E68
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0x2c]
@@ -5883,7 +5883,7 @@ sub_08033E68: @ 0x08033E68
 	asrs r0, r0, #0x18
 	cmp r0, #0
 	beq _08033EB0
-	bl sub_08033354
+	bl GetBattleForecastPanelSide
 	adds r1, r0, #0
 	cmp r1, #0
 	beq _08033EA0
@@ -5899,10 +5899,10 @@ sub_08033E68: @ 0x08033E68
 	b _08033ECC
 _08033EA0:
 	adds r0, r4, #0
-	bl sub_08033AD4
+	bl DrawBattleForecastContents
 	adds r0, r4, #0
-	bl sub_08033C38
-	bl sub_08033B48
+	bl PutBattleForecastTilemaps
+	bl InitBattleForecastFramePalettes
 _08033EB0:
 	adds r0, r4, #0
 	adds r0, #0x32
@@ -5910,23 +5910,23 @@ _08033EB0:
 	cmp r0, #1
 	bne _08033ECC
 	adds r0, r4, #0
-	bl sub_08033CB4
+	bl PutBattleForecastWeaponTriangleArrows
 	adds r0, r4, #0
-	bl sub_08033D58
+	bl PutBattleForecastMultipliers
 	adds r0, r4, #0
-	bl sub_08033DF4
+	bl UpdateBattleForecastEffectivenessPalettes
 _08033ECC:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08033ED4
-sub_08033ED4: @ 0x08033ED4
+	thumb_func_start BattleForecast_OnNewBattle
+BattleForecast_OnNewBattle: @ 0x08033ED4
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08033AD4
-	bl sub_08033354
+	bl DrawBattleForecastContents
+	bl GetBattleForecastPanelSide
 	adds r1, r4, #0
 	adds r1, #0x35
 	movs r2, #0
@@ -5952,7 +5952,7 @@ _08033F06:
 	adds r1, #0x31
 	movs r0, #0
 	strb r0, [r1]
-	bl sub_08033B48
+	bl InitBattleForecastFramePalettes
 	pop {r4}
 	pop {r0}
 	bx r0
@@ -6245,8 +6245,8 @@ _08034158:
 	.align 2, 0
 _08034160: .4byte 0x0202E3E4
 
-	thumb_func_start sub_08034164
-sub_08034164: @ 0x08034164
+	thumb_func_start UpdateBattleForecastContents
+UpdateBattleForecastContents: @ 0x08034164
 	push {lr}
 	ldr r0, _08034188 @ =0x08B96D5C
 	bl Proc_Find
@@ -6268,8 +6268,8 @@ _08034184:
 	.align 2, 0
 _08034188: .4byte 0x08B96D5C
 
-	thumb_func_start sub_0803418C
-sub_0803418C: @ 0x0803418C
+	thumb_func_start CloseBattleForecast
+CloseBattleForecast: @ 0x0803418C
 	push {r4, lr}
 	ldr r0, _080341B4 @ =0x08B96D5C
 	bl Proc_Find
@@ -6298,8 +6298,8 @@ _080341C0:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080341C8
-sub_080341C8: @ 0x080341C8
+	thumb_func_start StartBattleForecastHelpBox
+StartBattleForecastHelpBox: @ 0x080341C8
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r0, _08034214 @ =0x08B96D5C
@@ -6327,7 +6327,7 @@ _080341F8:
 	movs r1, #1
 	rsbs r1, r1, #0
 	movs r0, #0
-	bl sub_08082528
+	bl LoadHelpBoxGfx
 	adds r0, r4, #0
 	adds r0, #0x32
 	ldrb r0, [r0]
@@ -6343,7 +6343,7 @@ _08034218:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	movs r3, #0
-	bl sub_08081CB8
+	bl StartMovingHelpBoxExt
 	b _08034238
 	.align 2, 0
 _08034228: .4byte 0x08CC2568
@@ -6352,7 +6352,7 @@ _0803422C:
 	adds r1, r6, #0
 	adds r2, r5, #0
 	movs r3, #0
-	bl sub_08081CB8
+	bl StartMovingHelpBoxExt
 _08034238:
 	movs r0, #0
 	pop {r4, r5, r6}
@@ -6361,8 +6361,8 @@ _08034238:
 	.align 2, 0
 _08034240: .4byte 0x08CC2610
 
-	thumb_func_start sub_08034244
-sub_08034244: @ 0x08034244
+	thumb_func_start GetBkselHelpBoxMsg
+GetBkselHelpBoxMsg: @ 0x08034244
 	lsls r1, r1, #0x18
 	movs r2, #0
 	cmp r1, #0
@@ -6385,8 +6385,8 @@ _0803425A:
 	.align 2, 0
 _08034264: .4byte 0x08B96DD4
 
-	thumb_func_start sub_08034268
-sub_08034268: @ 0x08034268
+	thumb_func_start HbPopulate_BkselWTriEffA
+HbPopulate_BkselWTriEffA: @ 0x08034268
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08034290 @ =0x08B96D5C
@@ -6399,7 +6399,7 @@ sub_08034268: @ 0x08034268
 	movs r1, #0
 	ldrsb r1, [r0, r1]
 	adds r0, r2, #0
-	bl sub_08034244
+	bl GetBkselHelpBoxMsg
 	adds r4, #0x4c
 	strh r0, [r4]
 	pop {r4}
@@ -6409,8 +6409,8 @@ sub_08034268: @ 0x08034268
 _08034290: .4byte 0x08B96D5C
 _08034294: .4byte 0x0203A3F0
 
-	thumb_func_start sub_08034298
-sub_08034298: @ 0x08034298
+	thumb_func_start HbPopulate_BkselWTriEffB
+HbPopulate_BkselWTriEffB: @ 0x08034298
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080342C0 @ =0x08B96D5C
@@ -6423,7 +6423,7 @@ sub_08034298: @ 0x08034298
 	movs r1, #0
 	ldrsb r1, [r0, r1]
 	adds r0, r2, #0
-	bl sub_08034244
+	bl GetBkselHelpBoxMsg
 	adds r4, #0x4c
 	strh r0, [r4]
 	pop {r4}
@@ -6433,17 +6433,17 @@ sub_08034298: @ 0x08034298
 _080342C0: .4byte 0x08B96D5C
 _080342C4: .4byte 0x0203A470
 
-	thumb_func_start sub_080342C8
-sub_080342C8: @ 0x080342C8
+	thumb_func_start RegisterTrapDeathBWL
+RegisterTrapDeathBWL: @ 0x080342C8
 	push {r4, lr}
 	ldr r4, [r0, #0x54]
 	adds r0, r4, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0xa
 	bgt _080342DE
 	ldr r0, [r4]
 	ldrb r0, [r0, #4]
-	bl sub_0809FDFC
+	bl PidStatsRecordLoseData
 _080342DE:
 	pop {r4}
 	pop {r0}
@@ -6458,7 +6458,7 @@ sub_080342E4: @ 0x080342E4
 	ldrb r2, [r2, #0x11]
 	lsls r2, r2, #0x18
 	asrs r2, r2, #0x18
-	bl sub_0801ED90
+	bl StartFireTrapAnim1
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -6477,8 +6477,8 @@ sub_080342FC: @ 0x080342FC
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08034314
-sub_08034314: @ 0x08034314
+	thumb_func_start ApplyTrapDamageAnim
+ApplyTrapDamageAnim: @ 0x08034314
 	push {r4, lr}
 	ldr r4, [r0, #0x54]
 	adds r0, #0x50
@@ -6509,7 +6509,7 @@ _08034338:
 _0803434C: .4byte 0x03004690
 _08034350:
 	adds r0, r4, #0
-	bl sub_0806E2B8
+	bl GetUnitMu
 	bl EndMu
 _0803435A:
 	ldr r1, _08034370 @ =0x0203A85C
@@ -6517,15 +6517,15 @@ _0803435A:
 	strb r0, [r1, #0x15]
 	adds r0, r4, #0
 	movs r1, #0xa
-	bl sub_08032904
+	bl BeginUnitCritDamageAnim
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
 _08034370: .4byte 0x0203A85C
 
-	thumb_func_start sub_08034374
-sub_08034374: @ 0x08034374
+	thumb_func_start ApplyTrapDamageReal
+ApplyTrapDamageReal: @ 0x08034374
 	push {r4, r5, r6, lr}
 	ldr r4, [r0, #0x54]
 	movs r2, #0xa
@@ -6533,9 +6533,9 @@ sub_08034374: @ 0x08034374
 	movs r3, #1
 	rsbs r3, r3, #0
 	adds r1, r4, #0
-	bl sub_080327FC
+	bl ApplyHazardHealing
 	adds r0, r4, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	bne _080343B2
 	ldr r5, _080343B8 @ =0x03004690
@@ -6545,12 +6545,12 @@ sub_08034374: @ 0x08034374
 	ldrb r0, [r0, #4]
 	movs r1, #0
 	movs r2, #3
-	bl sub_0809FEE8
-	bl sub_08079140
+	bl PidStatsRecordDefeatInfo
+	bl CheckForWaitEvents
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080343B0
-	bl sub_08079180
+	bl RunWaitEvents
 _080343B0:
 	str r6, [r5]
 _080343B2:
@@ -6560,15 +6560,15 @@ _080343B2:
 	.align 2, 0
 _080343B8: .4byte 0x03004690
 
-	thumb_func_start sub_080343BC
-sub_080343BC: @ 0x080343BC
+	thumb_func_start GetPickTrapType
+GetPickTrapType: @ 0x080343BC
 	push {r4, lr}
 	adds r4, r0, #0
 	movs r0, #0x10
 	ldrsb r0, [r4, r0]
 	movs r1, #0x11
 	ldrsb r1, [r4, r1]
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	beq _08034426
 	ldrb r3, [r0, #2]
@@ -6607,7 +6607,7 @@ _080343FC:
 	cmp r0, #0
 	beq _0803441E
 	adds r0, r4, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #5
 	beq _08034426
 	movs r0, #0xf
@@ -6628,14 +6628,14 @@ _0803442C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08034434
-sub_08034434: @ 0x08034434
+	thumb_func_start ExecTrap
+ExecTrap: @ 0x08034434
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
 	adds r4, r2, #0
 	adds r0, r5, #0
-	bl sub_080343BC
+	bl GetPickTrapType
 	cmp r0, #0xb
 	beq _08034464
 	cmp r0, #0xb
@@ -6678,7 +6678,7 @@ _0803448C:
 	ldrsb r0, [r5, r0]
 	movs r1, #0x11
 	ldrsb r1, [r5, r1]
-	bl sub_0802BA70
+	bl GetTrapAt
 	bl RemoveTrap
 	ldr r0, _080344C4 @ =0x0202BBF8
 	adds r0, #0x41
@@ -6687,7 +6687,7 @@ _0803448C:
 	cmp r0, #0
 	blt _080344AE
 	movs r0, #0xb1
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080344AE:
 	movs r4, #1
 	rsbs r4, r4, #0
@@ -6696,7 +6696,7 @@ _080344AE:
 	adds r2, r0, #0
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_0801F100
+	bl NewPopup2_PlanA
 	b _08034510
 	.align 2, 0
 _080344C4: .4byte 0x0202BBF8
@@ -6706,7 +6706,7 @@ _080344CC:
 	ldrsb r0, [r5, r0]
 	movs r1, #0x11
 	ldrsb r1, [r5, r1]
-	bl sub_0802BA70
+	bl GetTrapAt
 	bl RemoveTrap
 	ldr r0, _08034518 @ =0x0202BBF8
 	adds r0, #0x41
@@ -6715,7 +6715,7 @@ _080344CC:
 	cmp r0, #0
 	blt _080344EE
 	movs r0, #0xb1
-	bl sub_080BE594
+	bl m4aSongNumStart
 _080344EE:
 	movs r4, #1
 	rsbs r4, r4, #0
@@ -6724,12 +6724,12 @@ _080344EE:
 	adds r2, r0, #0
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_0801F100
+	bl NewPopup2_PlanA
 	movs r0, #0x79
 	bl CreateItem
 	adds r1, r0, #0
 	adds r0, r5, #0
-	bl sub_08017654
+	bl UnitAddItem
 _08034510:
 	movs r0, #0
 	pop {r4, r5, r6}
@@ -6739,17 +6739,17 @@ _08034510:
 _08034518: .4byte 0x0202BBF8
 _0803451C: .4byte 0x0000071B
 
-	thumb_func_start sub_08034520
-sub_08034520: @ 0x08034520
+	thumb_func_start HandlePostActionTraps
+HandlePostActionTraps: @ 0x08034520
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r4, _08034540 @ =0x03004690
 	ldr r0, [r4]
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	cmp r0, #0
 	ble _0803453A
 	ldr r0, [r4]
-	bl sub_080343BC
+	bl GetPickTrapType
 	cmp r0, #0
 	bne _08034544
 _0803453A:
@@ -6763,7 +6763,7 @@ _08034544:
 	strb r0, [r1, #0x16]
 	strb r0, [r1, #0x11]
 	movs r0, #3
-	bl sub_080A1100
+	bl WriteSuspendSave
 	bl GetBattleAnimKind
 	cmp r0, #1
 	bne _0803455E
@@ -6772,7 +6772,7 @@ _0803455E:
 	ldr r1, [r4]
 	adds r0, r5, #0
 	movs r2, #0
-	bl sub_08034434
+	bl ExecTrap
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 _0803456C:
@@ -6782,8 +6782,8 @@ _0803456C:
 	.align 2, 0
 _08034574: .4byte 0x0203A85C
 
-	thumb_func_start sub_08034578
-sub_08034578: @ 0x08034578
+	thumb_func_start ExecTrapAfterWarp
+ExecTrapAfterWarp: @ 0x08034578
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08034598 @ =0x0203A85C
@@ -6792,7 +6792,7 @@ sub_08034578: @ 0x08034578
 	adds r1, r0, #0
 	adds r0, r4, #0
 	movs r2, #1
-	bl sub_08034434
+	bl ExecTrap
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r4}
@@ -6801,25 +6801,25 @@ sub_08034578: @ 0x08034578
 	.align 2, 0
 _08034598: .4byte 0x0203A85C
 
-	thumb_func_start sub_0803459C
-sub_0803459C: @ 0x0803459C
+	thumb_func_start ExecTrapAfterDropAction
+ExecTrapAfterDropAction: @ 0x0803459C
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
 	adds r0, r4, #0
-	bl sub_080343BC
+	bl GetPickTrapType
 	cmp r0, #0
 	beq _080345BC
 	adds r0, r5, #0
 	adds r1, r4, #0
 	movs r2, #2
-	bl sub_08034434
+	bl ExecTrap
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	b _080345D4
 _080345BC:
 	adds r0, r4, #0
-	bl sub_0806E2B8
+	bl GetUnitMu
 	bl EndMu
 	bl RenderMap
 	bl RefreshEntityMaps
@@ -6831,18 +6831,18 @@ _080345D4:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080345DC
-sub_080345DC: @ 0x080345DC
+	thumb_func_start ExecTrapAfterDeathDrop
+ExecTrapAfterDeathDrop: @ 0x080345DC
 	push {lr}
 	movs r2, #3
-	bl sub_08034434
+	bl ExecTrap
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080345EC
-sub_080345EC: @ 0x080345EC
+	thumb_func_start LoadChapterTraps
+LoadChapterTraps: @ 0x080345EC
 	push {r4, r5, lr}
 	sub sp, #4
 	bl sub_080791F0
@@ -6877,14 +6877,14 @@ _0803463C:
 	ldrb r0, [r5, #1]
 	ldrb r1, [r5, #2]
 	ldrb r2, [r5, #3]
-	bl sub_08034740
+	bl AddBallista
 	b _08034688
 _08034648:
 	ldrb r0, [r5, #1]
 	ldrb r1, [r5, #2]
 	ldrb r2, [r5, #4]
 	ldrb r3, [r5, #5]
-	bl sub_0802BB24
+	bl AddFireTile
 	b _08034688
 _08034656:
 	ldrb r0, [r5, #1]
@@ -6893,24 +6893,24 @@ _08034656:
 	ldrb r3, [r5, #4]
 	ldrb r4, [r5, #5]
 	str r4, [sp]
-	bl sub_0802BB40
+	bl AddGasTrap
 	b _08034688
 _08034668:
 	ldrb r0, [r5, #1]
 	ldrb r1, [r5, #2]
-	bl sub_0802BB98
+	bl AddTrap8
 	b _08034688
 _08034672:
 	ldrb r0, [r5, #1]
 	ldrb r1, [r5, #2]
 	ldrb r2, [r5, #3]
-	bl sub_0802BBA8
+	bl AddTrap9
 	b _08034688
 _0803467E:
 	ldrb r0, [r5, #1]
 	ldrb r1, [r5, #2]
 	movs r3, #0
-	bl sub_0802BACC
+	bl AddTrap
 _08034688:
 	adds r5, #6
 _0803468A:
@@ -6922,10 +6922,10 @@ _0803468A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08034698
-sub_08034698: @ 0x08034698
+	thumb_func_start GetRiddenBallistaAt
+GetRiddenBallistaAt: @ 0x08034698
 	push {lr}
-	bl sub_0802BA70
+	bl GetTrapAt
 	adds r1, r0, #0
 	cmp r1, #0
 	beq _080346AA
@@ -6954,10 +6954,10 @@ _080346C2:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080346C8
-sub_080346C8: @ 0x080346C8
+	thumb_func_start GetBallistaItemAt
+GetBallistaItemAt: @ 0x080346C8
 	push {lr}
-	bl sub_0802BA70
+	bl GetTrapAt
 	adds r2, r0, #0
 	cmp r2, #0
 	beq _080346DA
@@ -7001,10 +7001,10 @@ _0803470A:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08034710
-sub_08034710: @ 0x08034710
+	thumb_func_start GetSomeBallistaItemAt
+GetSomeBallistaItemAt: @ 0x08034710
 	push {lr}
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	beq _08034720
 	ldrb r1, [r0, #2]
@@ -7033,13 +7033,13 @@ _0803473A:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08034740
-sub_08034740: @ 0x08034740
+	thumb_func_start AddBallista
+AddBallista: @ 0x08034740
 	push {r4, r5, r6, lr}
 	adds r5, r2, #0
 	movs r2, #1
 	movs r3, #0
-	bl sub_0802BACC
+	bl AddTrap
 	adds r4, r0, #0
 	adds r0, r5, #0
 	bl GetItemIid
@@ -7056,15 +7056,15 @@ sub_08034740: @ 0x08034740
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08034770
-sub_08034770: @ 0x08034770
+	thumb_func_start RideBallista
+RideBallista: @ 0x08034770
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r0, #0x10
 	ldrsb r0, [r5, r0]
 	movs r1, #0x11
 	ldrsb r1, [r5, r1]
-	bl sub_0802BA70
+	bl GetTrapAt
 	adds r4, r0, #0
 	movs r0, #1
 	strb r0, [r4, #5]
@@ -7084,8 +7084,8 @@ sub_08034770: @ 0x08034770
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080347A8
-sub_080347A8: @ 0x080347A8
+	thumb_func_start TryRemoveUnitFromBallista
+TryRemoveUnitFromBallista: @ 0x080347A8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, [r4, #0xc]
@@ -7204,22 +7204,22 @@ _08034858:
 _0803485A:
 	bx lr
 
-	thumb_func_start sub_0803485C
-sub_0803485C: @ 0x0803485C
+	thumb_func_start ClearBallistaOccupied
+ClearBallistaOccupied: @ 0x0803485C
 	movs r1, #0
 	strb r1, [r0, #5]
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08034864
-sub_08034864: @ 0x08034864
+	thumb_func_start SetBallistaOccupied
+SetBallistaOccupied: @ 0x08034864
 	movs r1, #1
 	strb r1, [r0, #5]
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_0803486C
-sub_0803486C: @ 0x0803486C
+	thumb_func_start GetCurrentPromotedLevelBonus
+GetCurrentPromotedLevelBonus: @ 0x0803486C
 	ldr r1, _0803487C @ =0x0202BBF8
 	movs r0, #0x40
 	ldrb r1, [r1, #0x14]
@@ -7295,8 +7295,8 @@ _080348DC:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_080348E0
-sub_080348E0: @ 0x080348E0
+	thumb_func_start AiPhase_Begin
+AiPhase_Begin: @ 0x080348E0
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r2, _0803493C @ =0x0203A8EC
@@ -7333,8 +7333,8 @@ _08034906:
 	adds r1, #4
 	movs r0, #0
 	strb r0, [r1]
-	bl sub_08039704
-	bl sub_0803715C
+	bl AiUpdateUnitsSeekHealing
+	bl SetupUnitInventoryAIFlags
 	ldr r0, _08034948 @ =0x08B96ED4
 	adds r1, r6, #0
 	bl SpawnProcLocking
@@ -7347,8 +7347,8 @@ _08034940: .4byte 0x081D3A60
 _08034944: .4byte 0x0202BBF8
 _08034948: .4byte 0x08B96ED4
 
-	thumb_func_start sub_0803494C
-sub_0803494C: @ 0x0803494C
+	thumb_func_start AiPhaseBerserkInit
+AiPhaseBerserkInit: @ 0x0803494C
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r0, _0803499C @ =0x0203A8EC
@@ -7379,8 +7379,8 @@ _0803496E:
 	adds r0, r0, r5
 	ldr r0, [r0]
 	str r0, [r1]
-	bl sub_08039704
-	bl sub_0803715C
+	bl AiUpdateUnitsSeekHealing
+	bl SetupUnitInventoryAIFlags
 	ldr r0, _080349A8 @ =0x08B96EEC
 	adds r1, r6, #0
 	bl SpawnProcLocking
@@ -7393,8 +7393,8 @@ _080349A0: .4byte 0x081D3A60
 _080349A4: .4byte 0x0202BBF8
 _080349A8: .4byte 0x08B96EEC
 
-	thumb_func_start sub_080349AC
-sub_080349AC: @ 0x080349AC
+	thumb_func_start AiPhaseCleanup
+AiPhaseCleanup: @ 0x080349AC
 	ldr r0, _080349B8 @ =0x0203A8EC
 	adds r0, #0x7b
 	movs r1, #0
@@ -7403,8 +7403,8 @@ sub_080349AC: @ 0x080349AC
 	.align 2, 0
 _080349B8: .4byte 0x0203A8EC
 
-	thumb_func_start sub_080349BC
-sub_080349BC: @ 0x080349BC
+	thumb_func_start CpOrderMain
+CpOrderMain: @ 0x080349BC
 	push {r4, lr}
 	ldr r4, _080349DC @ =0x08B96F0C
 	ldr r2, _080349E0 @ =0x0203A8EC
@@ -7486,7 +7486,7 @@ _08034A48:
 	strb r1, [r2]
 	str r0, [r0, #0x74]
 	ldr r1, _08034A80 @ =0x030047A0
-	ldr r0, _08034A84 @ =sub_08034EDC
+	ldr r0, _08034A84 @ =AiDecideMain
 	str r0, [r1]
 	ldr r0, _08034A88 @ =0x08B96F44
 	mov r1, r8
@@ -7504,25 +7504,25 @@ _08034A74: .4byte 0x081D3658
 _08034A78: .4byte 0x00000427
 _08034A7C: .4byte 0x0203A8EC
 _08034A80: .4byte 0x030047A0
-_08034A84: .4byte sub_08034EDC
+_08034A84: .4byte AiDecideMain
 _08034A88: .4byte 0x08B96F44
 
-	thumb_func_start sub_08034A8C
-sub_08034A8C: @ 0x08034A8C
+	thumb_func_start CpOrderFunc_BeginDecide
+CpOrderFunc_BeginDecide: @ 0x08034A8C
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_08034BE4
+	bl BuildAiUnitList
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _08034AB6
-	bl sub_08034C84
+	bl SortAiUnitList
 	ldr r0, _08034ABC @ =0x0203A8EC
 	adds r2, r4, r0
 	movs r1, #0
 	strb r1, [r2]
 	str r0, [r0, #0x74]
 	ldr r1, _08034AC0 @ =0x030047A0
-	ldr r0, _08034AC4 @ =sub_08034EDC
+	ldr r0, _08034AC4 @ =AiDecideMain
 	str r0, [r1]
 	ldr r0, _08034AC8 @ =0x08B96F44
 	adds r1, r5, #0
@@ -7534,11 +7534,11 @@ _08034AB6:
 	.align 2, 0
 _08034ABC: .4byte 0x0203A8EC
 _08034AC0: .4byte 0x030047A0
-_08034AC4: .4byte sub_08034EDC
+_08034AC4: .4byte AiDecideMain
 _08034AC8: .4byte 0x08B96F44
 
-	thumb_func_start sub_08034ACC
-sub_08034ACC: @ 0x08034ACC
+	thumb_func_start GetUnitBattleAiPriority
+GetUnitBattleAiPriority: @ 0x08034ACC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -7577,7 +7577,7 @@ _08034AFE:
 	cmp r1, #0
 	beq _08034B36
 	adds r0, r4, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	cmp r0, #1
 	ble _08034B2C
 	adds r0, r7, #1
@@ -7636,7 +7636,7 @@ sub_08034B6C: @ 0x08034B6C
 	asrs r0, r0, #0x18
 	adds r4, r1, r0
 	adds r0, r5, #0
-	bl sub_08018C20
+	bl GetUnitLeaderCharId
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
 	adds r6, r2, #0
@@ -7682,7 +7682,7 @@ _08034BCE:
 	b _08034BDE
 _08034BD4:
 	adds r0, r5, #0
-	bl sub_08034ACC
+	bl GetUnitBattleAiPriority
 	adds r4, r4, r0
 _08034BDC:
 	adds r0, r4, #0
@@ -7691,8 +7691,8 @@ _08034BDE:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08034BE4
-sub_08034BE4: @ 0x08034BE4
+	thumb_func_start BuildAiUnitList
+BuildAiUnitList: @ 0x08034BE4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -7770,8 +7770,8 @@ _08034C78: .4byte 0x081D3658
 _08034C7C: .4byte 0x00000427
 _08034C80: .4byte 0x0203A8EC
 
-	thumb_func_start sub_08034C84
-sub_08034C84: @ 0x08034C84
+	thumb_func_start SortAiUnitList
+SortAiUnitList: @ 0x08034C84
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -7860,7 +7860,7 @@ _08034D1C:
 _08034D20:
 	strb r0, [r1, #0x16]
 	movs r0, #3
-	bl sub_080A1100
+	bl WriteSuspendSave
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -7927,7 +7927,7 @@ _08034D84:
 	adds r0, #0x7a
 	strb r5, [r0]
 	bl AiRefreshDangerMap
-	bl sub_08034E30
+	bl AiClearDecision
 	ldr r0, _08034E00 @ =0x030047A0
 	ldr r0, [r0]
 	bl _call_via_r0
@@ -7986,8 +7986,8 @@ _08034E2A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08034E30
-sub_08034E30: @ 0x08034E30
+	thumb_func_start AiClearDecision
+AiClearDecision: @ 0x08034E30
 	ldr r1, _08034E4C @ =0x0203A97C
 	movs r0, #0
 	strb r0, [r1]
@@ -8005,8 +8005,8 @@ sub_08034E30: @ 0x08034E30
 	.align 2, 0
 _08034E4C: .4byte 0x0203A97C
 
-	thumb_func_start sub_08034E50
-sub_08034E50: @ 0x08034E50
+	thumb_func_start AiSetDecision
+AiSetDecision: @ 0x08034E50
 	push {r4, r5, r6, lr}
 	mov r6, sb
 	mov r5, r8
@@ -8041,8 +8041,8 @@ sub_08034E50: @ 0x08034E50
 _08034E8C: .4byte 0x0203A97C
 _08034E90: .4byte 0x0202BD48
 
-	thumb_func_start sub_08034E94
-sub_08034E94: @ 0x08034E94
+	thumb_func_start AiUpdateDecision
+AiUpdateDecision: @ 0x08034E94
 	push {r4, r5, lr}
 	ldr r4, [sp, #0xc]
 	lsls r0, r0, #0x18
@@ -8084,8 +8084,8 @@ _08034ECC:
 	.align 2, 0
 _08034ED8: .4byte 0x0203A97C
 
-	thumb_func_start sub_08034EDC
-sub_08034EDC: @ 0x08034EDC
+	thumb_func_start AiDecideMain
+AiDecideMain: @ 0x08034EDC
 	push {r4, r5, lr}
 	ldr r2, _08034F34 @ =0x08B96F14
 	ldr r0, _08034F38 @ =0x0203A8EC
@@ -8148,7 +8148,7 @@ sub_08034F40: @ 0x08034F40
 	bne _08034FE8
 	ldr r4, _08034F90 @ =0x03004690
 	ldr r0, [r4]
-	bl sub_0803975C
+	bl AiUpdateGetUnitIsHealing
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -8164,12 +8164,12 @@ sub_08034F40: @ 0x08034F40
 	ands r0, r1
 	cmp r0, #0
 	beq _08034F94
-	bl sub_08039894
+	bl AiTryMoveTowardsEscape
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _08034F94
-	bl sub_08039D74
+	bl AiTryDanceOrStealAfterMove
 	b _08034FE8
 	.align 2, 0
 _08034F8C: .4byte 0x0203A8EC
@@ -8190,12 +8190,12 @@ _08034F94:
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	ldr r0, _08034FC8 @ =0x0203A97C
 	ldrb r0, [r0, #0xa]
 	cmp r0, #1
 	bne _08034FE8
-	bl sub_08039DA0
+	bl AiTryActionAfterMove
 	b _08034FE8
 	.align 2, 0
 _08034FC8: .4byte 0x0203A97C
@@ -8206,12 +8206,12 @@ _08034FCC:
 	ands r0, r1
 	cmp r0, #0
 	beq _08034FE8
-	bl sub_08039894
+	bl AiTryMoveTowardsEscape
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	bne _08034FE8
-	bl sub_08039D74
+	bl AiTryDanceOrStealAfterMove
 _08034FE8:
 	add sp, #8
 	pop {r4}
@@ -8228,7 +8228,7 @@ sub_08034FF0: @ 0x08034FF0
 	ands r0, r1
 	cmp r0, #0
 	bne _08035004
-	bl sub_0803BA18
+	bl AiTryDoSpecialItems
 _08035004:
 	pop {r0}
 	bx r0
@@ -8246,7 +8246,7 @@ sub_0803500C: @ 0x0803500C
 	ands r0, r1
 	cmp r0, #0
 	beq _08035028
-	bl sub_080384EC
+	bl AiDoBerserkAction
 	b _0803503E
 	.align 2, 0
 _08035024: .4byte 0x0203A8EC
@@ -8259,7 +8259,7 @@ _08035028:
 	adds r4, #1
 	cmp r4, #0xff
 	ble _08035028
-	bl sub_0803760C
+	bl AiExecFallbackScriptA
 _0803503E:
 	pop {r4}
 	pop {r0}
@@ -8281,7 +8281,7 @@ sub_08035044: @ 0x08035044
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_08034698
+	bl GetRiddenBallistaAt
 	cmp r0, #0
 	bne _0803509A
 _08035068:
@@ -8292,7 +8292,7 @@ _08035068:
 	ands r0, r1
 	cmp r0, #0
 	beq _08035084
-	bl sub_0803850C
+	bl AiDoBerserkMove
 	b _0803509A
 	.align 2, 0
 _0803507C: .4byte 0x03004690
@@ -8306,7 +8306,7 @@ _08035084:
 	adds r4, #1
 	cmp r4, #0xff
 	ble _08035084
-	bl sub_0803769C
+	bl AiExecFallbackScriptB
 _0803509A:
 	pop {r4}
 	pop {r0}
@@ -8349,8 +8349,8 @@ _080350D4:
 	.align 2, 0
 _080350E0: .4byte 0x08B857F8
 
-	thumb_func_start sub_080350E4
-sub_080350E4: @ 0x080350E4
+	thumb_func_start StartAiTargetCursor
+StartAiTargetCursor: @ 0x080350E4
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -8370,8 +8370,8 @@ sub_080350E4: @ 0x080350E4
 	.align 2, 0
 _08035108: .4byte 0x08B96F7C
 
-	thumb_func_start sub_0803510C
-sub_0803510C: @ 0x0803510C
+	thumb_func_start CpPerform_UpdateMapMusic
+CpPerform_UpdateMapMusic: @ 0x0803510C
 	push {lr}
 	ldr r0, _08035120 @ =0x08B85854
 	bl Proc_Find
@@ -8464,8 +8464,8 @@ _080351B8:
 	.align 2, 0
 _080351C0: .4byte 0x03004690
 
-	thumb_func_start sub_080351C4
-sub_080351C4: @ 0x080351C4
+	thumb_func_start CpPerform_BeginUnitMovement
+CpPerform_BeginUnitMovement: @ 0x080351C4
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r6, _08035228 @ =0x03004690
@@ -8477,19 +8477,19 @@ sub_080351C4: @ 0x080351C4
 	bl MapFloodUnit
 	ldr r0, _0803522C @ =0x0202E3E4
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	ldr r4, _08035230 @ =0x0203A97C
 	ldrb r0, [r4, #2]
 	ldrb r1, [r4, #3]
 	ldr r7, _08035234 @ =0x02033E00
 	adds r2, r7, #0
-	bl sub_08019E5C
+	bl BuildBestMoveScript
 	ldr r0, [r6]
 	movs r1, #0x10
 	ldrsb r1, [r0, r1]
 	movs r2, #0x11
 	ldrsb r2, [r0, r2]
-	bl sub_0801A044
+	bl UnitApplyWorkingMovementScript
 	ldr r1, _08035238 @ =0x0203A85C
 	ldrb r0, [r1, #0xe]
 	strb r0, [r4, #2]
@@ -8503,7 +8503,7 @@ sub_080351C4: @ 0x080351C4
 	bl StartMu
 	bl SetAutoMuDefaultFacing
 	adds r0, r7, #0
-	bl sub_0806C00C
+	bl SetAutoMuMoveScript
 _08035222:
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -8530,7 +8530,7 @@ AiEndMuAndRefreshUnits: @ 0x0803523C
 	bl RenderMapForFade
 	ldrb r0, [r4, #2]
 	ldrb r1, [r4, #3]
-	bl sub_080181D0
+	bl MoveActiveUnit
 	bl RefreshEntityMaps
 	bl RenderMap
 	movs r0, #1
@@ -8573,7 +8573,7 @@ sub_08035294: @ 0x08035294
 	bne _080352D2
 	ldrb r0, [r4, #8]
 	ldrb r1, [r4, #9]
-	bl sub_0802BA70
+	bl GetTrapAt
 	ldrb r1, [r0]
 	strb r1, [r5, #0x13]
 	ldrb r1, [r0, #1]
@@ -8629,7 +8629,7 @@ sub_0803530C: @ 0x0803530C
 	lsls r0, r2, #1
 	adds r0, r0, r2
 	add r0, sp
-	bl sub_0806C00C
+	bl SetAutoMuMoveScript
 _0803533A:
 	add sp, #0xc
 	pop {r4}
@@ -8658,13 +8658,13 @@ sub_0803534C: @ 0x0803534C
 	ldr r0, _08035394 @ =0x03004690
 	ldr r0, [r0]
 	adds r1, r5, #0
-	bl sub_08017654
+	bl UnitAddItem
 	ldrb r1, [r4, #7]
 	adds r0, r6, #0
-	bl sub_08018D50
+	bl UnitRemoveItem
 	adds r0, r5, #0
 	mov r1, r8
-	bl sub_0800EEF4
+	bl StartStoleItemPopup
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -8715,7 +8715,7 @@ _080353E4:
 	asrs r0, r0, #0x18
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08078C14
+	bl StartAvailableTileEvent
 	ldr r0, _08035418 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -8723,13 +8723,13 @@ _080353E4:
 	cmp r0, #0
 	blt _08035404
 	movs r0, #0xab
-	bl sub_080BE594
+	bl m4aSongNumStart
 _08035404:
 	ldr r0, _0803541C @ =0x08B9701C
 	movs r1, #0x60
 	movs r2, #0
 	adds r3, r5, #0
-	bl sub_0800AD40
+	bl NewPopup_Simple
 _08035410:
 	movs r0, #1
 	pop {r4, r5}
@@ -8739,8 +8739,8 @@ _08035410:
 _08035418: .4byte 0x0202BBF8
 _0803541C: .4byte 0x08B9701C
 
-	thumb_func_start sub_08035420
-sub_08035420: @ 0x08035420
+	thumb_func_start AiStaffAction
+AiStaffAction: @ 0x08035420
 	push {r4, lr}
 	ldr r4, _0803544C @ =0x03004690
 	ldr r2, [r4]
@@ -8798,8 +8798,8 @@ sub_0803548C: @ 0x0803548C
 	movs r0, #1
 	bx lr
 
-	thumb_func_start sub_08035490
-sub_08035490: @ 0x08035490
+	thumb_func_start AiTalkAction
+AiTalkAction: @ 0x08035490
 	push {r4, r5, lr}
 	ldr r2, _080354CC @ =0x03004690
 	ldr r1, [r2]
@@ -8821,7 +8821,7 @@ sub_08035490: @ 0x08035490
 	ldr r0, [r0]
 	ldrb r1, [r0, #4]
 	adds r0, r4, #0
-	bl sub_08078A40
+	bl StartCharacterEvent
 _080354C2:
 	movs r0, #1
 	pop {r4, r5}
@@ -8843,7 +8843,7 @@ sub_080354D4: @ 0x080354D4
 	ldrb r0, [r3, #3]
 	strb r0, [r2, #0x11]
 	ldr r0, [r1]
-	bl sub_08034770
+	bl RideBallista
 	movs r0, #1
 	pop {r1}
 	bx r1
@@ -8863,7 +8863,7 @@ sub_080354FC: @ 0x080354FC
 	ldrb r0, [r3, #3]
 	strb r0, [r2, #0x11]
 	ldr r0, [r1]
-	bl sub_080347A8
+	bl TryRemoveUnitFromBallista
 	movs r0, #1
 	pop {r1}
 	bx r1
@@ -8952,7 +8952,7 @@ _080355AA:
 	ldrb r0, [r7, #3]
 	strb r0, [r1, #0x11]
 	ldr r0, [r4]
-	bl sub_08034770
+	bl RideBallista
 	ldr r0, [r4]
 	bl StartMu
 	bl SetAutoMuDefaultFacing
@@ -8988,7 +8988,7 @@ _08035612:
 	lsls r1, r5, #4
 	movs r2, #2
 	mov r3, r8
-	bl sub_080350E4
+	bl StartAiTargetCursor
 _08035628:
 	pop {r3}
 	mov r8, r3
@@ -9054,27 +9054,27 @@ _080356B0: .4byte sub_08035790
 _080356B4:
 	adds r0, r4, #0
 	bl sub_0803530C
-	ldr r0, _080356C0 @ =sub_08035794
+	ldr r0, _080356C0 @ =AiEscapeAction
 	b _08035706
 	.align 2, 0
-_080356C0: .4byte sub_08035794
+_080356C0: .4byte AiEscapeAction
 _080356C4:
 	adds r0, r4, #0
 	bl sub_0803534C
-	ldr r0, _080356D0 @ =sub_080357B8
+	ldr r0, _080356D0 @ =AiWaitAndClearScreenAction
 	b _08035706
 	.align 2, 0
-_080356D0: .4byte sub_080357B8
+_080356D0: .4byte AiWaitAndClearScreenAction
 _080356D4:
 	ldr r0, _080356D8 @ =sub_08035398
 	b _08035706
 	.align 2, 0
 _080356D8: .4byte sub_08035398
 _080356DC:
-	ldr r0, _080356E0 @ =sub_08035420
+	ldr r0, _080356E0 @ =AiStaffAction
 	b _08035706
 	.align 2, 0
-_080356E0: .4byte sub_08035420
+_080356E0: .4byte AiStaffAction
 _080356E4:
 	ldr r0, _080356E8 @ =sub_08035458
 	b _08035706
@@ -9086,10 +9086,10 @@ _080356EC:
 	.align 2, 0
 _080356F0: .4byte sub_0803548C
 _080356F4:
-	ldr r0, _080356F8 @ =sub_08035490
+	ldr r0, _080356F8 @ =AiTalkAction
 	b _08035706
 	.align 2, 0
-_080356F8: .4byte sub_08035490
+_080356F8: .4byte AiTalkAction
 _080356FC:
 	ldr r0, _08035700 @ =sub_080354D4
 	b _08035706
@@ -9106,8 +9106,8 @@ _08035708:
 	.align 2, 0
 _08035710: .4byte sub_080354FC
 
-	thumb_func_start sub_08035714
-sub_08035714: @ 0x08035714
+	thumb_func_start CpPerform_WaitAction
+CpPerform_WaitAction: @ 0x08035714
 	push {r4, lr}
 	adds r4, r0, #0
 	adds r1, r4, #0
@@ -9140,11 +9140,11 @@ _08035738:
 _08035750: .4byte 0x03004690
 _08035754: .4byte 0x0203A97C
 
-	thumb_func_start sub_08035758
-sub_08035758: @ 0x08035758
+	thumb_func_start CpPerform_Cleanup
+CpPerform_Cleanup: @ 0x08035758
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08039704
+	bl AiUpdateUnitsSeekHealing
 	bl AiEndMuAndRefreshUnits
 	ldr r0, _08035788 @ =0x03004690
 	ldr r1, [r0]
@@ -9173,8 +9173,8 @@ sub_08035790: @ 0x08035790
 	movs r0, #1
 	bx lr
 
-	thumb_func_start sub_08035794
-sub_08035794: @ 0x08035794
+	thumb_func_start AiEscapeAction
+AiEscapeAction: @ 0x08035794
 	push {lr}
 	bl MuExistsActive
 	lsls r0, r0, #0x18
@@ -9194,8 +9194,8 @@ _080357AE:
 	.align 2, 0
 _080357B4: .4byte 0x03004690
 
-	thumb_func_start sub_080357B8
-sub_080357B8: @ 0x080357B8
+	thumb_func_start AiWaitAndClearScreenAction
+AiWaitAndClearScreenAction: @ 0x080357B8
 	push {lr}
 	adds r0, #0x30
 	ldrb r0, [r0]
@@ -9220,16 +9220,16 @@ _080357DE:
 _080357E4: .4byte 0x02022C60
 _080357E8: .4byte 0x02023460
 
-	thumb_func_start sub_080357EC
-sub_080357EC: @ 0x080357EC
+	thumb_func_start CpPerform_EquipBest
+CpPerform_EquipBest: @ 0x080357EC
 	push {r4, r5, r6, lr}
 	sub sp, #0x18
-	bl sub_080399C4
+	bl AiCanEquip
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803582A
 	add r0, sp, #4
-	bl sub_080399F8
+	bl AiEquipGetFlags
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803582A
@@ -9243,12 +9243,12 @@ sub_080357EC: @ 0x080357EC
 	str r6, [sp]
 	adds r2, r4, #0
 	adds r3, r5, #0
-	bl sub_08039B04
+	bl AiEquipGetDanger
 	ldrh r0, [r4]
 	ldrh r1, [r5]
 	ldrh r2, [r6]
 	add r3, sp, #4
-	bl sub_08039CA4
+	bl AiEquipBestConsideringDanger
 _0803582A:
 	add sp, #0x18
 	pop {r4, r5, r6}
@@ -9314,8 +9314,8 @@ _08035898:
 _0803589A:
 	bx lr
 
-	thumb_func_start sub_0803589C
-sub_0803589C: @ 0x0803589C
+	thumb_func_start AiFindTargetInReachByCharId
+AiFindTargetInReachByCharId: @ 0x0803589C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -9332,7 +9332,7 @@ sub_0803589C: @ 0x0803589C
 	adds r0, r4, #0
 	adds r1, r5, #0
 	bl MapFloodRange_Unitless
-	bl sub_0801A1E8
+	bl MarkWorkingMapEdges
 	ldr r0, _0803593C @ =0x0000FFFF
 	strh r0, [r6]
 	movs r5, #1
@@ -9435,8 +9435,8 @@ _0803597E:
 	.align 2, 0
 _08035988: .4byte 0x0203A8EC
 
-	thumb_func_start sub_0803598C
-sub_0803598C: @ 0x0803598C
+	thumb_func_start AiFindTargetInReachByClassId
+AiFindTargetInReachByClassId: @ 0x0803598C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -9521,8 +9521,8 @@ _08035A2E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08035A38
-sub_08035A38: @ 0x08035A38
+	thumb_func_start AiFindTargetInReachByFunc
+AiFindTargetInReachByFunc: @ 0x08035A38
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -9687,7 +9687,7 @@ sub_08035B54: @ 0x08035B54
 	adds r2, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_0803BF60
+	bl GenerateExtendedMovementMapOnRangeNeglectWall
 	ldr r2, _08035B98 @ =0x0000FFFF
 	str r2, [sp, #0xc]
 	ldr r0, _08035B9C @ =0x0202E3D8
@@ -9805,8 +9805,8 @@ _08035C60:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08035C70
-sub_08035C70: @ 0x08035C70
+	thumb_func_start AiRandomMove
+AiRandomMove: @ 0x08035C70
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -9902,7 +9902,7 @@ _08035D0A:
 	adds r0, r2, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _08035D30:
 	add sp, #0x14
 	pop {r3, r4}
@@ -9917,8 +9917,8 @@ _08035D44: .4byte 0x0202E3E4
 _08035D48: .4byte 0x0202E3DC
 _08035D4C: .4byte 0xFFFF0000
 
-	thumb_func_start sub_08035D50
-sub_08035D50: @ 0x08035D50
+	thumb_func_start AiReachesByBirdsEyeDistance
+AiReachesByBirdsEyeDistance: @ 0x08035D50
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
@@ -9944,7 +9944,7 @@ _08035D6A:
 _08035D7A:
 	adds r5, r3, r0
 	adds r0, r6, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	movs r1, #0x1d
 	ldrsb r1, [r4, r1]
 	ldr r2, [r4, #4]
@@ -9995,7 +9995,7 @@ _08035DD0:
 	adds r6, r1, r0
 _08035DD4:
 	adds r0, r7, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	movs r1, #0x1d
 	ldrsb r1, [r4, r1]
 	ldr r2, [r4, #4]
@@ -10024,8 +10024,8 @@ _08035E04:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08035E0C
-sub_08035E0C: @ 0x08035E0C
+	thumb_func_start AiIsInShortList
+AiIsInShortList: @ 0x08035E0C
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
 	b _08035E1C
@@ -10045,8 +10045,8 @@ _08035E24:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08035E28
-sub_08035E28: @ 0x08035E28
+	thumb_func_start AiIsInByteList
+AiIsInByteList: @ 0x08035E28
 	lsls r1, r1, #0x18
 	lsrs r1, r1, #0x18
 	b _08035E38
@@ -10066,8 +10066,8 @@ _08035E40:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08035E44
-sub_08035E44: @ 0x08035E44
+	thumb_func_start AiFindClosestTerrainPosition
+AiFindClosestTerrainPosition: @ 0x08035E44
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -10111,7 +10111,7 @@ _08035E78:
 	adds r0, r0, r4
 	ldrb r1, [r0]
 	ldr r0, [sp]
-	bl sub_08035E28
+	bl AiIsInByteList
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08035F0A
@@ -10148,7 +10148,7 @@ _08035ED0:
 	asrs r0, r0, #0x10
 	lsls r1, r5, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08036514
+	bl AiCountNearbyEnemyUnits
 	cmp r0, #0
 	bne _08035F0A
 _08035EEA:
@@ -10201,8 +10201,8 @@ _08035F36:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08035F48
-sub_08035F48: @ 0x08035F48
+	thumb_func_start AiGetPositionRange
+AiGetPositionRange: @ 0x08035F48
 	push {r4, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0
@@ -10249,8 +10249,8 @@ _08035F98:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08035FA0
-sub_08035FA0: @ 0x08035FA0
+	thumb_func_start AiFindClosestTerrainAdjacentPosition
+AiFindClosestTerrainAdjacentPosition: @ 0x08035FA0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -10297,7 +10297,7 @@ _08035FD8:
 	adds r0, r0, r5
 	ldrb r1, [r0]
 	ldr r0, [sp, #4]
-	bl sub_08035E28
+	bl AiIsInByteList
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080360A4
@@ -10335,16 +10335,16 @@ _08036034:
 	asrs r0, r0, #0x10
 	lsls r1, r6, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08036514
+	bl AiCountNearbyEnemyUnits
 	cmp r0, #0
 	bne _080360A4
 _0803604E:
 	mov r4, sp
 	adds r0, r5, #0
 	adds r1, r6, #0
-	ldr r2, _080360D0 @ =sub_08035F48
+	ldr r2, _080360D0 @ =AiGetPositionRange
 	mov r3, sp
-	bl sub_08036810
+	bl AiFindBestAdjacentPositionByFunc
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080360A4
@@ -10401,7 +10401,7 @@ _080360C0: .4byte 0x0202E3E8
 _080360C4: .4byte 0x0202E3E0
 _080360C8: .4byte 0x0202E3DC
 _080360CC: .4byte 0x03004690
-_080360D0: .4byte sub_08035F48
+_080360D0: .4byte AiGetPositionRange
 _080360D4:
 	movs r0, #1
 _080360D6:
@@ -10498,9 +10498,9 @@ _08036168:
 _0803617E:
 	adds r0, r6, #0
 	adds r1, r7, #0
-	ldr r2, _08036194 @ =sub_08035F48
+	ldr r2, _08036194 @ =AiGetPositionRange
 	mov r3, sp
-	bl sub_08036810
+	bl AiFindBestAdjacentPositionByFunc
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08036192
@@ -10508,7 +10508,7 @@ _0803617E:
 _08036192:
 	b _08036234
 	.align 2, 0
-_08036194: .4byte sub_08035F48
+_08036194: .4byte AiGetPositionRange
 _08036198:
 	ldr r0, [sp, #8]
 	adds r0, #1
@@ -10573,7 +10573,7 @@ _08036206:
 	ldrsh r0, [r5, r1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
-	bl sub_08036514
+	bl AiCountNearbyEnemyUnits
 	cmp r0, #0
 	bne _080362C0
 _0803621C:
@@ -10622,7 +10622,7 @@ _0803626A:
 	ldrsh r0, [r5, r1]
 	movs r2, #2
 	ldrsh r1, [r5, r2]
-	bl sub_08036514
+	bl AiCountNearbyEnemyUnits
 	cmp r0, #0
 	bne _080362C0
 _08036280:
@@ -10708,8 +10708,8 @@ _0803630A:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0803631C
-sub_0803631C: @ 0x0803631C
+	thumb_func_start AiCountUnitsInRange
+AiCountUnitsInRange: @ 0x0803631C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -10772,8 +10772,8 @@ _08036384: .4byte 0x0202E3D8
 _08036388: .4byte 0x0202E3E8
 _0803638C: .4byte 0x0202E3DC
 
-	thumb_func_start sub_08036390
-sub_08036390: @ 0x08036390
+	thumb_func_start AiCountEnemyUnitsInRange
+AiCountEnemyUnitsInRange: @ 0x08036390
 	push {r4, r5, r6, r7, lr}
 	movs r6, #0
 	ldr r0, _080363FC @ =0x0202E3D8
@@ -10837,8 +10837,8 @@ _08036400: .4byte 0x0202E3E8
 _08036404: .4byte 0x0202E3DC
 _08036408: .4byte 0x0202BD48
 
-	thumb_func_start sub_0803640C
-sub_0803640C: @ 0x0803640C
+	thumb_func_start AiCountAlliedUnitsInRange
+AiCountAlliedUnitsInRange: @ 0x0803640C
 	push {r4, r5, r6, r7, lr}
 	movs r6, #0
 	ldr r0, _08036478 @ =0x0202E3D8
@@ -10903,8 +10903,8 @@ _0803647C: .4byte 0x0202E3E8
 _08036480: .4byte 0x0202E3DC
 _08036484: .4byte 0x0202BD48
 
-	thumb_func_start sub_08036488
-sub_08036488: @ 0x08036488
+	thumb_func_start AiCountNearbyUnits
+AiCountNearbyUnits: @ 0x08036488
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -10976,8 +10976,8 @@ _08036508: .4byte 0x0000270F
 _0803650C: .4byte 0x0202E3D8
 _08036510: .4byte 0x0202E3DC
 
-	thumb_func_start sub_08036514
-sub_08036514: @ 0x08036514
+	thumb_func_start AiCountNearbyEnemyUnits
+AiCountNearbyEnemyUnits: @ 0x08036514
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -11055,8 +11055,8 @@ _080365A4: .4byte 0x0202E3D8
 _080365A8: .4byte 0x0202E3DC
 _080365AC: .4byte 0x0202BD48
 
-	thumb_func_start sub_080365B0
-sub_080365B0: @ 0x080365B0
+	thumb_func_start AiCountNearbyAlliedUnits
+AiCountNearbyAlliedUnits: @ 0x080365B0
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -11180,12 +11180,12 @@ _0803668E:
 	lsls r5, r6, #0x10
 	asrs r5, r5, #0x10
 	mov r0, sb
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	mov r0, sb
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
@@ -11193,7 +11193,7 @@ _0803668E:
 	mov r2, r8
 	asrs r1, r2, #0x10
 	adds r2, r4, #0
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 _080366C8:
 	subs r6, #1
 	cmp r6, #0
@@ -11215,8 +11215,8 @@ _080366E4: .4byte 0x0202E3E8
 _080366E8: .4byte 0x0202E3D8
 _080366EC: .4byte 0x0202E3E4
 
-	thumb_func_start sub_080366F0
-sub_080366F0: @ 0x080366F0
+	thumb_func_start AiMakeMoveRangeUnitPowerMaps
+AiMakeMoveRangeUnitPowerMaps: @ 0x080366F0
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	bl GetUnitPower
@@ -11263,7 +11263,7 @@ _08036732:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 _08036750:
 	subs r4, #1
 	cmp r4, #0
@@ -11326,12 +11326,12 @@ _080367AE:
 	lsls r5, r6, #0x10
 	asrs r5, r5, #0x10
 	mov r0, sb
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	mov r0, sb
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
@@ -11339,7 +11339,7 @@ _080367AE:
 	mov r2, r8
 	asrs r1, r2, #0x10
 	adds r2, r4, #0
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 _080367E8:
 	subs r6, #1
 	cmp r6, #0
@@ -11361,8 +11361,8 @@ _08036804: .4byte 0x0202E3E8
 _08036808: .4byte 0x0202E3D8
 _0803680C: .4byte 0x0202E3E4
 
-	thumb_func_start sub_08036810
-sub_08036810: @ 0x08036810
+	thumb_func_start AiFindBestAdjacentPositionByFunc
+AiFindBestAdjacentPositionByFunc: @ 0x08036810
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -11428,8 +11428,8 @@ _0803687E:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0803688C
-sub_0803688C: @ 0x0803688C
+	thumb_func_start AiGetItemStealRank
+AiGetItemStealRank: @ 0x0803688C
 	push {r4, lr}
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
@@ -11458,8 +11458,8 @@ _080368B0:
 _080368B8: .4byte 0x08B97290
 _080368BC: .4byte 0x0000FFFF
 
-	thumb_func_start sub_080368C0
-sub_080368C0: @ 0x080368C0
+	thumb_func_start AiGetUnitStealItemSlot
+AiGetUnitStealItemSlot: @ 0x080368C0
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	movs r6, #0xff
@@ -11476,7 +11476,7 @@ _080368CA:
 	movs r0, #0xff
 	ands r1, r0
 	adds r0, r1, #0
-	bl sub_0803688C
+	bl AiGetItemStealRank
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r6, r0
@@ -11495,8 +11495,8 @@ _080368F6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08036900
-sub_08036900: @ 0x08036900
+	thumb_func_start AiFindSafestReachableLocation
+AiFindSafestReachableLocation: @ 0x08036900
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -11623,8 +11623,8 @@ _080369E6:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080369F4
-sub_080369F4: @ 0x080369F4
+	thumb_func_start AiFindPillageLocation
+AiFindPillageLocation: @ 0x080369F4
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r4, r1, #0
@@ -11634,7 +11634,7 @@ sub_080369F4: @ 0x080369F4
 	bl SetWorkingMoveTable
 	ldr r0, _08036A78 @ =0x0202E3E8
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	ldr r2, [r5]
 	movs r0, #0x10
 	ldrsb r0, [r2, r0]
@@ -11645,7 +11645,7 @@ sub_080369F4: @ 0x080369F4
 	movs r2, #0x7c
 	bl BeginMapFlood
 	adds r0, r4, #0
-	bl sub_08036A8C
+	bl AiGetChestUnlockItemSlot
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	ldr r6, _08036A7C @ =0x08B97098
@@ -11656,7 +11656,7 @@ _08036A34:
 	adds r0, r6, #0
 	movs r1, #1
 	adds r2, r7, #0
-	bl sub_08035E44
+	bl AiFindClosestTerrainPosition
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -11674,7 +11674,7 @@ _08036A34:
 	adds r0, r6, #0
 	movs r1, #0
 	adds r2, r7, #0
-	bl sub_08035E44
+	bl AiFindClosestTerrainPosition
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -11693,15 +11693,15 @@ _08036A86:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08036A8C
-sub_08036A8C: @ 0x08036A8C
+	thumb_func_start AiGetChestUnlockItemSlot
+AiGetChestUnlockItemSlot: @ 0x08036A8C
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	movs r5, #0
 	strb r5, [r6]
 	ldr r4, _08036AAC @ =0x03004690
 	ldr r0, [r4]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #5
 	bne _08036AB4
 	ldr r1, [r4]
@@ -11757,8 +11757,8 @@ _08036AF8:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08036B00
-sub_08036B00: @ 0x08036B00
+	thumb_func_start AiTryMoveTowards
+AiTryMoveTowards: @ 0x08036B00
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -11801,7 +11801,7 @@ sub_08036B00: @ 0x08036B00
 	adds r0, r2, #0
 	ldr r2, [sp, #0xc]
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 	b _08036CB8
 	.align 2, 0
 _08036B5C: .4byte 0x03004690
@@ -11829,7 +11829,7 @@ _08036B84:
 	asrs r1, r1, #0x10
 	ldr r2, _08036BC4 @ =0x03004690
 	ldr r2, [r2]
-	bl sub_0803C0FC
+	bl AiMapFloodRangeFrom
 _08036B94:
 	ldr r4, _08036BC4 @ =0x03004690
 	ldr r0, [r4]
@@ -11977,7 +11977,7 @@ _08036C90:
 	adds r0, r2, #0
 	ldr r2, [sp, #0xc]
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _08036CB8:
 	add sp, #0x18
 	pop {r3, r4, r5}
@@ -12042,7 +12042,7 @@ sub_08036CEC: @ 0x08036CEC
 	adds r0, r2, #0
 	ldr r2, [sp, #0xc]
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 	b _08036EA4
 	.align 2, 0
 _08036D48: .4byte 0x03004690
@@ -12059,7 +12059,7 @@ _08036D4C:
 	adds r2, r0, #0
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_0803BF60
+	bl GenerateExtendedMovementMapOnRangeNeglectWall
 	b _08036D80
 	.align 2, 0
 _08036D6C: .4byte 0x03004690
@@ -12218,7 +12218,7 @@ _08036E7C:
 	adds r0, r2, #0
 	ldr r2, [sp, #0xc]
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _08036EA4:
 	add sp, #0x18
 	pop {r3, r4, r5}
@@ -12420,8 +12420,8 @@ _08037032:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08037044
-sub_08037044: @ 0x08037044
+	thumb_func_start AiGetClassRank
+AiGetClassRank: @ 0x08037044
 	push {r4, lr}
 	lsls r0, r0, #0x18
 	lsrs r4, r0, #0x18
@@ -12456,8 +12456,8 @@ _08037072:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0803707C
-sub_0803707C: @ 0x0803707C
+	thumb_func_start AiUnitWithCharIdExists
+AiUnitWithCharIdExists: @ 0x0803707C
 	push {r4, r5, lr}
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
@@ -12502,8 +12502,8 @@ _080370C0:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_080370C8
-sub_080370C8: @ 0x080370C8
+	thumb_func_start AiIsWithinRectDistance
+AiIsWithinRectDistance: @ 0x080370C8
 	push {r4, r5, r6, lr}
 	ldr r4, [sp, #0x10]
 	lsls r1, r1, #0x10
@@ -12543,8 +12543,8 @@ _08037106:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0803710C
-sub_0803710C: @ 0x0803710C
+	thumb_func_start AiLocationIsPillageTarget
+AiLocationIsPillageTarget: @ 0x0803710C
 	push {lr}
 	sub sp, #4
 	lsls r0, r0, #0x18
@@ -12574,7 +12574,7 @@ _08037138:
 	b _08037150
 _08037142:
 	mov r0, sp
-	bl sub_08036A8C
+	bl AiGetChestUnlockItemSlot
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -12589,8 +12589,8 @@ _08037156:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_0803715C
-sub_0803715C: @ 0x0803715C
+	thumb_func_start SetupUnitInventoryAIFlags
+SetupUnitInventoryAIFlags: @ 0x0803715C
 	push {r4, r5, r6, r7, lr}
 	ldr r0, _08037210 @ =0x0203A8EC
 	adds r0, #0x85
@@ -12659,7 +12659,7 @@ _080371D8:
 	bl sub_08037218
 	adds r0, r5, #0
 	adds r1, r4, #0
-	bl sub_08037260
+	bl SetupUnitHealStaffAIFlags
 _080371E8:
 	adds r6, #1
 	cmp r6, #4
@@ -12673,7 +12673,7 @@ _080371E8:
 	bne _080371A6
 _080371FC:
 	adds r0, r5, #0
-	bl sub_080372AC
+	bl SaveNumberOfAlliedUnitsIn0To8Range
 _08037202:
 	adds r4, r7, #0
 	cmp r4, #0x3f
@@ -12728,8 +12728,8 @@ _0803725A:
 	pop {r0}
 	bx r0
 
-	thumb_func_start sub_08037260
-sub_08037260: @ 0x08037260
+	thumb_func_start SetupUnitHealStaffAIFlags
+SetupUnitHealStaffAIFlags: @ 0x08037260
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	lsls r1, r1, #0x10
@@ -12742,7 +12742,7 @@ sub_08037260: @ 0x08037260
 	cmp r1, #0
 	beq _08037284
 	adds r0, r4, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	cmp r0, #1
 	ble _08037284
 	movs r5, #0x40
@@ -12769,8 +12769,8 @@ _0803729E:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080372AC
-sub_080372AC: @ 0x080372AC
+	thumb_func_start SaveNumberOfAlliedUnitsIn0To8Range
+SaveNumberOfAlliedUnitsIn0To8Range: @ 0x080372AC
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -12787,7 +12787,7 @@ sub_080372AC: @ 0x080372AC
 	ldrsb r1, [r6, r1]
 	movs r2, #1
 	movs r3, #8
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 	ldr r0, _08037348 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -12854,8 +12854,8 @@ _08037344: .4byte 0x0202E3E4
 _08037348: .4byte 0x0202E3D8
 _0803734C: .4byte 0x0202E3DC
 
-	thumb_func_start sub_08037350
-sub_08037350: @ 0x08037350
+	thumb_func_start CharStoreAI
+CharStoreAI: @ 0x08037350
 	adds r3, r0, #0
 	ldrb r0, [r1, #0xc]
 	adds r2, r3, #0
@@ -12940,11 +12940,11 @@ _080373AE:
 _080373EA:
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08039304
+	bl AiGetTerrainCombatPositionScoreComponent
 	adds r4, r0, #0
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_08039344
+	bl AiGetFriendZoneCombatPositionScoreComponent
 	adds r4, r4, r0
 	ldr r0, _08037448 @ =0x0202E3F4
 	ldr r0, [r0]
@@ -12999,7 +12999,7 @@ _08037452:
 sub_08037460: @ 0x08037460
 	push {r4, r5, r6, lr}
 	movs r6, #0
-	bl sub_080238D8
+	bl GetActiveFactionAlliance
 	adds r5, r0, #0
 	adds r4, r5, #1
 	b _0803749A
@@ -13208,7 +13208,7 @@ sub_080375B8: @ 0x080375B8
 	ldr r2, _08037608 @ =0x030013B4
 	movs r1, #0
 	str r1, [r2]
-	bl sub_080376D8
+	bl AiScript_Exec
 	movs r0, #0
 	ldrsb r0, [r4, r0]
 	pop {r4}
@@ -13221,8 +13221,8 @@ _08037600: .4byte 0x03004690
 _08037604: .4byte 0x030013B0
 _08037608: .4byte 0x030013B4
 
-	thumb_func_start sub_0803760C
-sub_0803760C: @ 0x0803760C
+	thumb_func_start AiExecFallbackScriptA
+AiExecFallbackScriptA: @ 0x0803760C
 	push {r4, lr}
 	ldr r1, _08037634 @ =0x030013B8
 	ldr r0, _08037638 @ =0x08B970A4
@@ -13236,7 +13236,7 @@ sub_0803760C: @ 0x0803760C
 	ldr r0, _08037644 @ =0x03004690
 	ldr r0, [r0]
 	adds r0, #0x43
-	bl sub_080376D8
+	bl AiScript_Exec
 	movs r0, #0
 	ldrsb r0, [r4, r0]
 	pop {r4}
@@ -13275,7 +13275,7 @@ sub_08037648: @ 0x08037648
 	ldr r2, _08037698 @ =0x030013B4
 	movs r1, #1
 	str r1, [r2]
-	bl sub_080376D8
+	bl AiScript_Exec
 	movs r0, #0
 	ldrsb r0, [r4, r0]
 	pop {r4}
@@ -13288,8 +13288,8 @@ _08037690: .4byte 0x03004690
 _08037694: .4byte 0x030013B0
 _08037698: .4byte 0x030013B4
 
-	thumb_func_start sub_0803769C
-sub_0803769C: @ 0x0803769C
+	thumb_func_start AiExecFallbackScriptB
+AiExecFallbackScriptB: @ 0x0803769C
 	push {r4, lr}
 	ldr r1, _080376C4 @ =0x030013B8
 	ldr r0, _080376C8 @ =0x08B970B4
@@ -13303,7 +13303,7 @@ sub_0803769C: @ 0x0803769C
 	ldr r0, _080376D4 @ =0x03004690
 	ldr r0, [r0]
 	adds r0, #0x45
-	bl sub_080376D8
+	bl AiScript_Exec
 	movs r0, #0
 	ldrsb r0, [r4, r0]
 	pop {r4}
@@ -13316,8 +13316,8 @@ _080376CC: .4byte 0x030013B0
 _080376D0: .4byte 0x030013B4
 _080376D4: .4byte 0x03004690
 
-	thumb_func_start sub_080376D8
-sub_080376D8: @ 0x080376D8
+	thumb_func_start AiScript_Exec
+AiScript_Exec: @ 0x080376D8
 	push {r4, lr}
 	sub sp, #0x70
 	adds r4, r0, #0
@@ -13452,8 +13452,8 @@ _080377D8:
 	.align 2, 0
 _080377E4: .4byte 0x030013B0
 
-	thumb_func_start sub_080377E8
-sub_080377E8: @ 0x080377E8
+	thumb_func_start AiScriptCmd_01_FunctionCall
+AiScriptCmd_01_FunctionCall: @ 0x080377E8
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r2, _0803780C @ =0x030013BC
@@ -13476,8 +13476,8 @@ _0803780C: .4byte 0x030013BC
 _08037810: .4byte 0x030013B8
 _08037814: .4byte 0x030013B0
 
-	thumb_func_start sub_08037818
-sub_08037818: @ 0x08037818
+	thumb_func_start AiScriptCmd_02_ChangeAi
+AiScriptCmd_02_ChangeAi: @ 0x08037818
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0
 	ldr r0, _08037878 @ =0x030013B8
@@ -13608,8 +13608,8 @@ _08037904:
 	.align 2, 0
 _08037910: .4byte 0x030013B0
 
-	thumb_func_start sub_08037914
-sub_08037914: @ 0x08037914
+	thumb_func_start AiIsUnitEnemy
+AiIsUnitEnemy: @ 0x08037914
 	push {lr}
 	adds r1, r0, #0
 	ldr r0, _08037938 @ =0x03004690
@@ -13635,8 +13635,8 @@ _0803793E:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08037944
-sub_08037944: @ 0x08037944
+	thumb_func_start AiIsUnitNonActive
+AiIsUnitNonActive: @ 0x08037944
 	ldr r1, _08037950 @ =0x03004690
 	ldr r1, [r1]
 	cmp r0, r1
@@ -13650,8 +13650,8 @@ _08037954:
 _08037956:
 	bx lr
 
-	thumb_func_start sub_08037958
-sub_08037958: @ 0x08037958
+	thumb_func_start AiIsUnitEnemyAndNotInScrList
+AiIsUnitEnemyAndNotInScrList: @ 0x08037958
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08037990 @ =0x030013B8
@@ -13659,7 +13659,7 @@ sub_08037958: @ 0x08037958
 	ldr r0, [r0, #8]
 	ldr r1, [r4]
 	ldrb r1, [r1, #4]
-	bl sub_08035E0C
+	bl AiIsInShortList
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -13687,8 +13687,8 @@ _0803799A:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080379A0
-sub_080379A0: @ 0x080379A0
+	thumb_func_start AiIsUnitEnemyOrInScrList
+AiIsUnitEnemyOrInScrList: @ 0x080379A0
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _080379D8 @ =0x030013B8
@@ -13696,7 +13696,7 @@ sub_080379A0: @ 0x080379A0
 	ldr r0, [r0, #8]
 	ldr r1, [r4]
 	ldrb r1, [r1, #4]
-	bl sub_08035E0C
+	bl AiIsInShortList
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -13725,8 +13725,8 @@ _080379E2:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_080379E8
-sub_080379E8: @ 0x080379E8
+	thumb_func_start AiIsUnitEnemyAndScrCharId
+AiIsUnitEnemyAndScrCharId: @ 0x080379E8
 	push {lr}
 	adds r2, r0, #0
 	ldr r0, [r2]
@@ -13759,8 +13759,8 @@ _08037A22:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08037A28
-sub_08037A28: @ 0x08037A28
+	thumb_func_start AiIsUnitEnemyAndScrClassId
+AiIsUnitEnemyAndScrClassId: @ 0x08037A28
 	push {lr}
 	adds r2, r0, #0
 	ldr r0, [r2, #4]
@@ -13793,8 +13793,8 @@ _08037A62:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08037A68
-sub_08037A68: @ 0x08037A68
+	thumb_func_start AiScriptCmd_04_ActionOnSelectedCharacter
+AiScriptCmd_04_ActionOnSelectedCharacter: @ 0x08037A68
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	movs r0, #0x64
@@ -13806,15 +13806,15 @@ sub_08037A68: @ 0x08037A68
 	ldrb r1, [r1, #1]
 	cmp r0, r1
 	bhi _08037AE8
-	ldr r0, _08037ABC @ =sub_08037914
-	bl sub_0803AAD8
+	ldr r0, _08037ABC @ =AiIsUnitEnemy
+	bl AiTryDoStaff
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #0
 	bne _08037AF0
 	ldr r0, [r5]
 	ldrh r0, [r0, #4]
-	bl sub_0803707C
+	bl AiUnitWithCharIdExists
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -13833,14 +13833,14 @@ sub_08037A68: @ 0x08037A68
 	b _08037AD6
 	.align 2, 0
 _08037AB8: .4byte 0x030013B8
-_08037ABC: .4byte sub_08037914
+_08037ABC: .4byte AiIsUnitEnemy
 _08037AC0: .4byte 0x0203A8EC
 _08037AC4:
-	ldr r0, _08037ACC @ =sub_080379E8
-	bl sub_08038558
+	ldr r0, _08037ACC @ =AiIsUnitEnemyAndScrCharId
+	bl AiAttemptOffensiveAction
 	b _08037AF0
 	.align 2, 0
-_08037ACC: .4byte sub_080379E8
+_08037ACC: .4byte AiIsUnitEnemyAndScrCharId
 _08037AD0:
 	ldr r0, _08037AE0 @ =0x0203A8EC
 	adds r0, #0x86
@@ -13868,8 +13868,8 @@ _08037AF0:
 	.align 2, 0
 _08037AFC: .4byte 0x0203A8EC
 
-	thumb_func_start sub_08037B00
-sub_08037B00: @ 0x08037B00
+	thumb_func_start AiScriptCmd_05_DoStandardAction
+AiScriptCmd_05_DoStandardAction: @ 0x08037B00
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r0, #0x64
@@ -13884,30 +13884,30 @@ sub_08037B00: @ 0x08037B00
 	ldr r0, [r1, #8]
 	cmp r0, #0
 	bne _08037B3C
-	ldr r4, _08037B38 @ =sub_08037914
+	ldr r4, _08037B38 @ =AiIsUnitEnemy
 	adds r0, r4, #0
-	bl sub_0803AAD8
+	bl AiTryDoStaff
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08037B60
 	adds r0, r4, #0
-	bl sub_08038558
+	bl AiAttemptOffensiveAction
 	b _08037B60
 	.align 2, 0
 _08037B34: .4byte 0x030013B8
-_08037B38: .4byte sub_08037914
+_08037B38: .4byte AiIsUnitEnemy
 _08037B3C:
-	ldr r0, _08037B50 @ =sub_080379A0
-	bl sub_0803AAD8
+	ldr r0, _08037B50 @ =AiIsUnitEnemyOrInScrList
+	bl AiTryDoStaff
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08037B60
-	ldr r0, _08037B54 @ =sub_08037958
-	bl sub_08038558
+	ldr r0, _08037B54 @ =AiIsUnitEnemyAndNotInScrList
+	bl AiAttemptOffensiveAction
 	b _08037B60
 	.align 2, 0
-_08037B50: .4byte sub_080379A0
-_08037B54: .4byte sub_08037958
+_08037B50: .4byte AiIsUnitEnemyOrInScrList
+_08037B54: .4byte AiIsUnitEnemyAndNotInScrList
 _08037B58:
 	ldr r0, _08037B6C @ =0x0203A8EC
 	adds r0, #0x79
@@ -13949,19 +13949,19 @@ sub_08037B78: @ 0x08037B78
 	ldrb r2, [r0]
 	orrs r1, r2
 	strb r1, [r0]
-	ldr r4, _08037BBC @ =sub_08037914
+	ldr r4, _08037BBC @ =AiIsUnitEnemy
 	adds r0, r4, #0
-	bl sub_0803AAD8
+	bl AiTryDoStaff
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08037BC8
 	adds r0, r4, #0
-	bl sub_08038558
+	bl AiAttemptOffensiveAction
 	b _08037BC8
 	.align 2, 0
 _08037BB4: .4byte 0x030013B8
 _08037BB8: .4byte 0x0203A8EC
-_08037BBC: .4byte sub_08037914
+_08037BBC: .4byte AiIsUnitEnemy
 _08037BC0:
 	ldr r0, _08037BD4 @ =0x0203A8EC
 	adds r0, #0x79
@@ -13977,8 +13977,8 @@ _08037BC8:
 	.align 2, 0
 _08037BD4: .4byte 0x0203A8EC
 
-	thumb_func_start sub_08037BD8
-sub_08037BD8: @ 0x08037BD8
+	thumb_func_start AiScriptCmd_08_DoStandardActionAgainstClass
+AiScriptCmd_08_DoStandardActionAgainstClass: @ 0x08037BD8
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	movs r0, #0x64
@@ -13990,18 +13990,18 @@ sub_08037BD8: @ 0x08037BD8
 	ldrb r1, [r1, #1]
 	cmp r0, r1
 	bhi _08037C10
-	ldr r4, _08037C0C @ =sub_08037A28
+	ldr r4, _08037C0C @ =AiIsUnitEnemyAndScrClassId
 	adds r0, r4, #0
-	bl sub_0803AAD8
+	bl AiTryDoStaff
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08037C18
 	adds r0, r4, #0
-	bl sub_08038558
+	bl AiAttemptOffensiveAction
 	b _08037C18
 	.align 2, 0
 _08037C08: .4byte 0x030013B8
-_08037C0C: .4byte sub_08037A28
+_08037C0C: .4byte AiIsUnitEnemyAndScrClassId
 _08037C10:
 	ldr r0, _08037C24 @ =0x0203A8EC
 	adds r0, #0x79
@@ -14021,8 +14021,8 @@ _08037C24: .4byte 0x0203A8EC
 sub_08037C28: @ 0x08037C28
 	push {r4, lr}
 	adds r4, r0, #0
-	ldr r0, _08037C40 @ =sub_08037914
-	bl sub_0803AAD8
+	ldr r0, _08037C40 @ =AiIsUnitEnemy
+	bl AiTryDoStaff
 	ldrb r0, [r4]
 	adds r0, #1
 	strb r0, [r4]
@@ -14030,14 +14030,14 @@ sub_08037C28: @ 0x08037C28
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08037C40: .4byte sub_08037914
+_08037C40: .4byte AiIsUnitEnemy
 
 	thumb_func_start sub_08037C44
 sub_08037C44: @ 0x08037C44
 	push {r4, lr}
 	adds r4, r0, #0
-	ldr r0, _08037C5C @ =sub_08037914
-	bl sub_0803AAD8
+	ldr r0, _08037C5C @ =AiIsUnitEnemy
+	bl AiTryDoStaff
 	ldrb r0, [r4]
 	adds r0, #1
 	strb r0, [r4]
@@ -14045,14 +14045,14 @@ sub_08037C44: @ 0x08037C44
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08037C5C: .4byte sub_08037914
+_08037C5C: .4byte AiIsUnitEnemy
 
 	thumb_func_start sub_08037C60
 sub_08037C60: @ 0x08037C60
 	push {r4, lr}
 	adds r4, r0, #0
-	ldr r0, _08037C78 @ =sub_08037914
-	bl sub_0803AAD8
+	ldr r0, _08037C78 @ =AiIsUnitEnemy
+	bl AiTryDoStaff
 	ldrb r0, [r4]
 	adds r0, #1
 	strb r0, [r4]
@@ -14060,7 +14060,7 @@ sub_08037C60: @ 0x08037C60
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08037C78: .4byte sub_08037914
+_08037C78: .4byte AiIsUnitEnemy
 
 	thumb_func_start sub_08037C7C
 sub_08037C7C: @ 0x08037C7C
@@ -14075,7 +14075,7 @@ sub_08037C7C: @ 0x08037C7C
 	movs r2, #1
 	str r2, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	ldr r0, _08037CC4 @ =0x0203A97C
 	ldrb r1, [r0, #0xa]
 	cmp r1, #1
@@ -14101,8 +14101,8 @@ _08037CB6:
 _08037CC0: .4byte 0x030013B8
 _08037CC4: .4byte 0x0203A97C
 
-	thumb_func_start sub_08037CC8
-sub_08037CC8: @ 0x08037CC8
+	thumb_func_start AiScriptCmd_0D_MoveTowardsCharacterUntilInRange
+AiScriptCmd_0D_MoveTowardsCharacterUntilInRange: @ 0x08037CC8
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r7, r0, #0
@@ -14111,7 +14111,7 @@ sub_08037CC8: @ 0x08037CC8
 	ldr r0, [r0, #4]
 	add r5, sp, #4
 	adds r1, r5, #0
-	bl sub_0803589C
+	bl AiFindTargetInReachByCharId
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -14125,7 +14125,7 @@ sub_08037CC8: @ 0x08037CC8
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	add r0, sp, #4
 	movs r1, #0
 	ldrsh r0, [r0, r1]
@@ -14135,7 +14135,7 @@ sub_08037CC8: @ 0x08037CC8
 	ldrb r2, [r5, #2]
 	ldrb r3, [r5, #3]
 	str r4, [sp]
-	bl sub_080370C8
+	bl AiIsWithinRectDistance
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -14165,7 +14165,7 @@ _08037D44:
 	movs r1, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08034E94
+	bl AiUpdateDecision
 	ldr r0, _08037D64 @ =0x0203A8EC
 	adds r0, #0x86
 	movs r1, #2
@@ -14199,8 +14199,8 @@ sub_08037D84: @ 0x08037D84
 	strb r1, [r0]
 	bx lr
 
-	thumb_func_start sub_08037D8C
-sub_08037D8C: @ 0x08037D8C
+	thumb_func_start AiScriptCmd_0F_MoveTowardsUnitWithClass
+AiScriptCmd_0F_MoveTowardsUnitWithClass: @ 0x08037D8C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r6, r0, #0
@@ -14209,7 +14209,7 @@ sub_08037D8C: @ 0x08037D8C
 	ldr r0, [r0, #4]
 	add r5, sp, #4
 	adds r1, r5, #0
-	bl sub_0803598C
+	bl AiFindTargetInReachByClassId
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -14223,7 +14223,7 @@ sub_08037D8C: @ 0x08037D8C
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 _08037DBE:
 	ldrb r0, [r6]
 	adds r0, #1
@@ -14240,7 +14240,7 @@ sub_08037DD0: @ 0x08037DD0
 	push {r4, r5, lr}
 	sub sp, #0x14
 	adds r5, r0, #0
-	bl sub_0803BA18
+	bl AiTryDoSpecialItems
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -14277,7 +14277,7 @@ _08037E20:
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	add r1, sp, #0xc
-	bl sub_080369F4
+	bl AiFindPillageLocation
 	lsls r0, r0, #0x18
 	asrs r2, r0, #0x18
 	cmp r2, #1
@@ -14289,11 +14289,11 @@ _08037E20:
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	ldr r4, _08037EA0 @ =0x0203A97C
 	ldrb r0, [r4, #2]
 	ldrb r1, [r4, #3]
-	bl sub_0803710C
+	bl AiLocationIsPillageTarget
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -14308,7 +14308,7 @@ _08037E20:
 	str r4, [sp, #8]
 	movs r2, #4
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 	ldr r3, _08037EA4 @ =0x030013B8
 	ldr r0, [r3]
 	ldrb r0, [r0, #3]
@@ -14354,8 +14354,8 @@ _08037EBC:
 	.align 2, 0
 _08037EC4: .4byte 0x030013B0
 
-	thumb_func_start sub_08037EC8
-sub_08037EC8: @ 0x08037EC8
+	thumb_func_start AiScriptCmd_11_MoveTowardsSafety
+AiScriptCmd_11_MoveTowardsSafety: @ 0x08037EC8
 	push {r4, r5, lr}
 	sub sp, #0x10
 	adds r5, r0, #0
@@ -14363,7 +14363,7 @@ sub_08037EC8: @ 0x08037EC8
 	ldr r0, [r0]
 	add r4, sp, #0xc
 	adds r1, r4, #0
-	bl sub_08036900
+	bl AiFindSafestReachableLocation
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -14378,7 +14378,7 @@ sub_08037EC8: @ 0x08037EC8
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _08037EFA:
 	ldrb r0, [r5]
 	adds r0, #1
@@ -14400,10 +14400,10 @@ sub_08037F0C: @ 0x08037F0C
 	ldr r0, [r0, #8]
 	cmp r0, #0
 	bne _08037F50
-	ldr r0, _08037F4C @ =sub_08037914
+	ldr r0, _08037F4C @ =AiIsUnitEnemy
 	add r5, sp, #4
 	adds r1, r5, #0
-	bl sub_08035A38
+	bl AiFindTargetInReachByFunc
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -14417,16 +14417,16 @@ sub_08037F0C: @ 0x08037F0C
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	b _08037F78
 	.align 2, 0
 _08037F48: .4byte 0x030013B8
-_08037F4C: .4byte sub_08037914
+_08037F4C: .4byte AiIsUnitEnemy
 _08037F50:
-	ldr r0, _08037F88 @ =sub_08037958
+	ldr r0, _08037F88 @ =AiIsUnitEnemyAndNotInScrList
 	add r5, sp, #4
 	adds r1, r5, #0
-	bl sub_08035A38
+	bl AiFindTargetInReachByFunc
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -14440,7 +14440,7 @@ _08037F50:
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 _08037F78:
 	ldrb r0, [r7]
 	adds r0, #1
@@ -14450,7 +14450,7 @@ _08037F78:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08037F88: .4byte sub_08037958
+_08037F88: .4byte AiIsUnitEnemyAndNotInScrList
 
 	thumb_func_start sub_08037F8C
 sub_08037F8C: @ 0x08037F8C
@@ -14462,7 +14462,7 @@ sub_08037F8C: @ 0x08037F8C
 	ldr r0, [r0, #8]
 	cmp r0, #0
 	bne _08037FD0
-	ldr r0, _08037FCC @ =sub_08037914
+	ldr r0, _08037FCC @ =AiIsUnitEnemy
 	add r5, sp, #4
 	adds r1, r5, #0
 	bl sub_08035B54
@@ -14483,9 +14483,9 @@ sub_08037F8C: @ 0x08037F8C
 	b _08037FF8
 	.align 2, 0
 _08037FC8: .4byte 0x030013B8
-_08037FCC: .4byte sub_08037914
+_08037FCC: .4byte AiIsUnitEnemy
 _08037FD0:
-	ldr r0, _08038008 @ =sub_08037958
+	ldr r0, _08038008 @ =AiIsUnitEnemyAndNotInScrList
 	add r5, sp, #4
 	adds r1, r5, #0
 	bl sub_08035B54
@@ -14512,7 +14512,7 @@ _08037FF8:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08038008: .4byte sub_08037958
+_08038008: .4byte AiIsUnitEnemyAndNotInScrList
 
 	thumb_func_start sub_0803800C
 sub_0803800C: @ 0x0803800C
@@ -14528,11 +14528,11 @@ sub_08038014: @ 0x08038014
 	strb r1, [r0]
 	bx lr
 
-	thumb_func_start sub_0803801C
-sub_0803801C: @ 0x0803801C
+	thumb_func_start AiScriptCmd_16_RandomMovement
+AiScriptCmd_16_RandomMovement: @ 0x0803801C
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_08035C70
+	bl AiRandomMove
 	ldrb r0, [r4]
 	adds r0, #1
 	strb r0, [r4]
@@ -14550,7 +14550,7 @@ sub_08038030: @ 0x08038030
 	ldrb r2, [r1, #0xa]
 	orrs r0, r2
 	strb r0, [r1, #0xa]
-	bl sub_08039894
+	bl AiTryMoveTowardsEscape
 	ldrb r0, [r4]
 	adds r0, #1
 	strb r0, [r4]
@@ -14565,11 +14565,11 @@ sub_08038054: @ 0x08038054
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
-	bl sub_08039304
+	bl AiGetTerrainCombatPositionScoreComponent
 	adds r4, r0, #0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_08039344
+	bl AiGetFriendZoneCombatPositionScoreComponent
 	adds r4, r4, r0
 	ldr r0, _0803809C @ =0x0202E3E4
 	ldr r0, [r0]
@@ -14648,12 +14648,12 @@ _080380E6:
 	movs r1, #0
 	bl MapFill
 	mov r0, r8
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	mov r0, r8
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
@@ -14662,7 +14662,7 @@ _080380E6:
 	ldr r2, [sp, #0x1c]
 	asrs r1, r2, #0x10
 	adds r2, r4, #0
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 	ldr r0, _080381F4 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -14828,7 +14828,7 @@ _0803824C:
 	adds r0, r0, r4
 	ldrb r1, [r0]
 	ldr r0, [sp]
-	bl sub_08035E28
+	bl AiIsInByteList
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080382DE
@@ -14865,7 +14865,7 @@ _080382A4:
 	asrs r0, r0, #0x10
 	lsls r1, r5, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08036514
+	bl AiCountNearbyEnemyUnits
 	cmp r0, #0
 	bne _080382DE
 _080382BE:
@@ -14951,7 +14951,7 @@ sub_0803831C: @ 0x0803831C
 	ldrsh r0, [r4, r1]
 	movs r2, #2
 	ldrsh r1, [r4, r2]
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	bne _0803837A
 	movs r1, #0
@@ -14959,7 +14959,7 @@ sub_0803831C: @ 0x0803831C
 	movs r2, #2
 	ldrsh r1, [r4, r2]
 	adds r1, #1
-	bl sub_0802BA70
+	bl GetTrapAt
 	cmp r0, #0
 	beq _080383D0
 _0803837A:
@@ -14978,7 +14978,7 @@ _0803837A:
 	str r2, [sp, #8]
 	movs r2, #1
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 	b _080383CA
 	.align 2, 0
 _080383A0: .4byte 0x03004690
@@ -14991,7 +14991,7 @@ _080383A8:
 	str r6, [sp]
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	b _080383CA
 _080383BC:
 	ldr r0, _080383D8 @ =0x0203A8EC
@@ -15014,8 +15014,8 @@ _080383D0:
 _080383D8: .4byte 0x0203A8EC
 _080383DC: .4byte 0x030013B0
 
-	thumb_func_start sub_080383E0
-sub_080383E0: @ 0x080383E0
+	thumb_func_start AiScriptCmd_19_MoveTowardsTerrain
+AiScriptCmd_19_MoveTowardsTerrain: @ 0x080383E0
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r7, r0, #0
@@ -15036,7 +15036,7 @@ sub_080383E0: @ 0x080383E0
 	add r5, sp, #4
 	movs r1, #0
 	adds r2, r5, #0
-	bl sub_08035E44
+	bl AiFindClosestTerrainPosition
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -15050,7 +15050,7 @@ sub_080383E0: @ 0x080383E0
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	b _08038446
 	.align 2, 0
 _08038430: .4byte 0x03004690
@@ -15075,8 +15075,8 @@ _08038446:
 _08038454: .4byte 0x0203A8EC
 _08038458: .4byte 0x030013B0
 
-	thumb_func_start sub_0803845C
-sub_0803845C: @ 0x0803845C
+	thumb_func_start AiScriptCmd_1A_MoveTowardsTerrain
+AiScriptCmd_1A_MoveTowardsTerrain: @ 0x0803845C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r7, r0, #0
@@ -15097,7 +15097,7 @@ sub_0803845C: @ 0x0803845C
 	add r5, sp, #4
 	movs r1, #0
 	adds r2, r5, #0
-	bl sub_08035E44
+	bl AiFindClosestTerrainPosition
 	lsls r0, r0, #0x18
 	asrs r4, r0, #0x18
 	cmp r4, #1
@@ -15111,7 +15111,7 @@ sub_0803845C: @ 0x0803845C
 	ldrb r3, [r2, #2]
 	str r4, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	b _080384C2
 	.align 2, 0
 _080384AC: .4byte 0x03004690
@@ -15136,8 +15136,8 @@ _080384C2:
 _080384D0: .4byte 0x0203A8EC
 _080384D4: .4byte 0x030013B0
 
-	thumb_func_start sub_080384D8
-sub_080384D8: @ 0x080384D8
+	thumb_func_start AiScriptCmd_1B_NoOp
+AiScriptCmd_1B_NoOp: @ 0x080384D8
 	ldrb r1, [r0]
 	adds r1, #1
 	strb r1, [r0]
@@ -15148,31 +15148,31 @@ sub_080384D8: @ 0x080384D8
 	.align 2, 0
 _080384E8: .4byte 0x030013B0
 
-	thumb_func_start sub_080384EC
-sub_080384EC: @ 0x080384EC
+	thumb_func_start AiDoBerserkAction
+AiDoBerserkAction: @ 0x080384EC
 	push {lr}
-	ldr r0, _08038504 @ =sub_08037914
-	bl sub_0803AAD8
+	ldr r0, _08038504 @ =AiIsUnitEnemy
+	bl AiTryDoStaff
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08038500
-	ldr r0, _08038508 @ =sub_08037944
-	bl sub_08038558
+	ldr r0, _08038508 @ =AiIsUnitNonActive
+	bl AiAttemptOffensiveAction
 _08038500:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08038504: .4byte sub_08037914
-_08038508: .4byte sub_08037944
+_08038504: .4byte AiIsUnitEnemy
+_08038508: .4byte AiIsUnitNonActive
 
-	thumb_func_start sub_0803850C
-sub_0803850C: @ 0x0803850C
+	thumb_func_start AiDoBerserkMove
+AiDoBerserkMove: @ 0x0803850C
 	push {r4, lr}
 	sub sp, #8
-	ldr r0, _08038540 @ =sub_08037944
+	ldr r0, _08038540 @ =AiIsUnitNonActive
 	add r4, sp, #4
 	adds r1, r4, #0
-	bl sub_08035A38
+	bl AiFindTargetInReachByFunc
 	lsls r0, r0, #0x18
 	asrs r2, r0, #0x18
 	cmp r2, #1
@@ -15185,14 +15185,14 @@ sub_0803850C: @ 0x0803850C
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 _08038536:
 	add sp, #8
 	pop {r4}
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08038540: .4byte sub_08037944
+_08038540: .4byte AiIsUnitNonActive
 
 	thumb_func_start sub_08038544
 sub_08038544: @ 0x08038544
@@ -15203,14 +15203,14 @@ sub_08038544: @ 0x08038544
 sub_08038548: @ 0x08038548
 	push {lr}
 	ldrb r0, [r0]
-	bl sub_08037044
+	bl AiGetClassRank
 	movs r0, #1
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08038558
-sub_08038558: @ 0x08038558
+	thumb_func_start AiAttemptOffensiveAction
+AiAttemptOffensiveAction: @ 0x08038558
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -15252,13 +15252,13 @@ sub_08038558: @ 0x08038558
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08034698
+	bl GetRiddenBallistaAt
 	cmp r0, #0
 	beq _080385B6
 	b _0803871E
 _080385B6:
 	ldr r0, [r6]
-	bl sub_080347A8
+	bl TryRemoveUnitFromBallista
 	b _0803865E
 	.align 2, 0
 _080385C0: .4byte 0x03004690
@@ -15274,13 +15274,13 @@ _080385C8:
 	cmp r0, #0
 	beq _080385FE
 	adds r0, r3, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #4
 	bgt _080385FE
 	ldr r0, [r6]
 	bl MapFloodUnit
 	bl sub_0801A0FC
-	bl sub_08038C44
+	bl AiAttemptStealActionWithinMovement
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -15331,11 +15331,11 @@ _08038648:
 	beq _0803865E
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 _0803865E:
 	ldr r0, _080387A8 @ =0x0202E3E8
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	movs r0, #0
 	mov r8, r0
 	ldr r1, _080387A4 @ =0x03004690
@@ -15384,18 +15384,18 @@ _08038696:
 	ldr r0, [r2]
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_08035D50
+	bl AiReachesByBirdsEyeDistance
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08038702
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08038964
+	bl AiFillReversedAttackRangeMap
 	ldrb r0, [r4, #0xb]
 	mov r3, sb
 	strb r0, [r3, #2]
 	add r0, sp, #0xc
-	bl sub_08038DA4
+	bl AiSimulateBestBattleAgainstTarget
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08038702
@@ -15440,7 +15440,7 @@ _0803871E:
 	beq _08038754
 	ldr r0, [sp, #0x24]
 	add r1, sp, #0xc
-	bl sub_08038A7C
+	bl AiAttemptBallistaCombat
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -15473,7 +15473,7 @@ _08038762:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #1
-	bl sub_08034E50
+	bl AiSetDecision
 	mov r3, sp
 	movs r1, #0x1c
 	ldrsb r1, [r3, r1]
@@ -15483,7 +15483,7 @@ _08038762:
 	beq _08038792
 	ldr r0, _080387A4 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_080347A8
+	bl TryRemoveUnitFromBallista
 _08038792:
 	add sp, #0x28
 	pop {r3, r4, r5}
@@ -15542,15 +15542,15 @@ sub_080387B0: @ 0x080387B0
 	ldrb r1, [r1, #0x11]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl sub_08034698
+	bl GetRiddenBallistaAt
 	cmp r0, #0
 	bne _080388D2
 	ldr r0, [r6]
-	bl sub_080347A8
+	bl TryRemoveUnitFromBallista
 _08038814:
 	ldr r0, _0803895C @ =0x0202E3E8
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	movs r0, #0
 	mov sb, r0
 	ldr r0, [r6]
@@ -15597,18 +15597,18 @@ _08038848:
 	ldr r0, [r2]
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_08035D50
+	bl AiReachesByBirdsEyeDistance
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080388B6
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08038964
+	bl AiFillReversedAttackRangeMap
 	ldrb r0, [r4, #0xb]
 	mov r3, sl
 	strb r0, [r3, #2]
 	add r0, sp, #0xc
-	bl sub_08038DA4
+	bl AiSimulateBestBattleAgainstTarget
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080388B6
@@ -15654,7 +15654,7 @@ _080388D2:
 	beq _0803890A
 	ldr r0, [sp, #0x24]
 	add r1, sp, #0xc
-	bl sub_08038A7C
+	bl AiAttemptBallistaCombat
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -15687,7 +15687,7 @@ _08038918:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #1
-	bl sub_08034E50
+	bl AiSetDecision
 	movs r1, #4
 	ldrsb r1, [r4, r1]
 	movs r0, #1
@@ -15696,7 +15696,7 @@ _08038918:
 	beq _08038944
 	ldr r0, _08038954 @ =0x03004690
 	ldr r0, [r0]
-	bl sub_080347A8
+	bl TryRemoveUnitFromBallista
 _08038944:
 	add sp, #0x28
 	pop {r3, r4, r5}
@@ -15712,8 +15712,8 @@ _08038958: .4byte 0x0202E3E4
 _0803895C: .4byte 0x0202E3E8
 _08038960: .4byte 0x00010025
 
-	thumb_func_start sub_08038964
-sub_08038964: @ 0x08038964
+	thumb_func_start AiFillReversedAttackRangeMap
+AiFillReversedAttackRangeMap: @ 0x08038964
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -15731,19 +15731,19 @@ sub_08038964: @ 0x08038964
 	asrs r4, r4, #0x18
 	mov r8, r4
 	adds r0, r5, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	adds r0, r5, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
 	adds r0, r6, #0
 	mov r1, r8
 	adds r2, r4, #0
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6}
@@ -15752,8 +15752,8 @@ sub_08038964: @ 0x08038964
 	.align 2, 0
 _080389B4: .4byte 0x0202E3E8
 
-	thumb_func_start sub_080389B8
-sub_080389B8: @ 0x080389B8
+	thumb_func_start AiFloodMovementAndRange
+AiFloodMovementAndRange: @ 0x080389B8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -15770,7 +15770,7 @@ sub_080389B8: @ 0x080389B8
 	bl SetWorkingMoveTable
 	ldr r0, _08038A70 @ =0x0202E3E4
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	movs r0, #0x10
 	ldrsb r0, [r5, r0]
 	movs r1, #0x11
@@ -15813,12 +15813,12 @@ _08038A1C:
 	lsls r5, r6, #0x10
 	asrs r5, r5, #0x10
 	mov r0, sl
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	mov r0, sl
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
@@ -15826,7 +15826,7 @@ _08038A1C:
 	mov r2, r8
 	asrs r1, r2, #0x10
 	adds r2, r4, #0
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 _08038A56:
 	subs r6, #1
 	cmp r6, #0
@@ -15848,8 +15848,8 @@ _08038A70: .4byte 0x0202E3E4
 _08038A74: .4byte 0x0202E3E8
 _08038A78: .4byte 0x0202E3D8
 
-	thumb_func_start sub_08038A7C
-sub_08038A7C: @ 0x08038A7C
+	thumb_func_start AiAttemptBallistaCombat
+AiAttemptBallistaCombat: @ 0x08038A7C
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -15893,7 +15893,7 @@ _08038ABC:
 	adds r0, r4, #0
 	adds r1, r7, #0
 	str r2, [sp, #0x14]
-	bl sub_080346C8
+	bl GetBallistaItemAt
 	lsls r0, r0, #0x10
 	lsrs r5, r0, #0x10
 	ldr r2, [sp, #0x14]
@@ -15973,18 +15973,18 @@ _08038B3E:
 	ldr r0, [r0]
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl sub_08035D50
+	bl AiReachesByBirdsEyeDistance
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08038BAC
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08038964
+	bl AiFillReversedAttackRangeMap
 	ldrb r0, [r4, #0xb]
 	strb r0, [r6, #2]
 	mov r0, sp
 	adds r1, r5, #0
-	bl sub_08038E64
+	bl AiSimulateBestBallistaBattleAgainstTarget
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08038BAC
@@ -16082,8 +16082,8 @@ _08038C3C:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08038C44
-sub_08038C44: @ 0x08038C44
+	thumb_func_start AiAttemptStealActionWithinMovement
+AiAttemptStealActionWithinMovement: @ 0x08038C44
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -16148,7 +16148,7 @@ _08038C82:
 	mov r1, r8
 	ldr r2, _08038D60 @ =sub_08038BEC
 	add r3, sp, #0xc
-	bl sub_08036810
+	bl AiFindBestAdjacentPositionByFunc
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08038D38
@@ -16169,7 +16169,7 @@ _08038C82:
 	cmp r1, r0
 	blt _08038D38
 	adds r0, r4, #0
-	bl sub_080368C0
+	bl AiGetUnitStealItemSlot
 	lsls r6, r0, #0x18
 	asrs r1, r6, #0x18
 	cmp r1, #0
@@ -16179,7 +16179,7 @@ _08038C82:
 	adds r0, #0x1e
 	adds r0, r0, r1
 	ldrb r0, [r0]
-	bl sub_0803688C
+	bl AiGetItemStealRank
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r3, [sp, #0x14]
@@ -16242,7 +16242,7 @@ _08038D68:
 	str r2, [sp, #8]
 	movs r2, #3
 	ldr r3, [sp, #0x18]
-	bl sub_08034E50
+	bl AiSetDecision
 	movs r0, #1
 _08038D90:
 	add sp, #0x24
@@ -16256,8 +16256,8 @@ _08038D90:
 	.align 2, 0
 _08038DA0: .4byte 0x03004690
 
-	thumb_func_start sub_08038DA4
-sub_08038DA4: @ 0x08038DA4
+	thumb_func_start AiSimulateBestBattleAgainstTarget
+AiSimulateBestBattleAgainstTarget: @ 0x08038DA4
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -16316,7 +16316,7 @@ _08038E0A:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	str r3, [sp]
-	bl sub_08038F38
+	bl AiGetCombatPositionScore
 	ldr r3, [sp]
 	cmp r0, r3
 	bls _08038E22
@@ -16335,7 +16335,7 @@ _08038E2E:
 	cmp r3, #0
 	beq _08038E54
 	adds r0, r7, #0
-	bl sub_08038FA4
+	bl AiSimulateBattleAgainstTargetAtPosition
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	b _08038E56
@@ -16356,8 +16356,8 @@ _08038E56:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08038E64
-sub_08038E64: @ 0x08038E64
+	thumb_func_start AiSimulateBestBallistaBattleAgainstTarget
+AiSimulateBestBallistaBattleAgainstTarget: @ 0x08038E64
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -16427,7 +16427,7 @@ _08038EE0:
 	adds r1, r5, #0
 	adds r2, r7, #0
 	str r3, [sp]
-	bl sub_08038F38
+	bl AiGetCombatPositionScore
 	ldr r3, [sp]
 	cmp r0, r3
 	bls _08038EF8
@@ -16446,7 +16446,7 @@ _08038F04:
 	cmp r3, #0
 	beq _08038F28
 	adds r0, r7, #0
-	bl sub_08038FA4
+	bl AiSimulateBattleAgainstTargetAtPosition
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	b _08038F2A
@@ -16467,8 +16467,8 @@ _08038F2A:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08038F38
-sub_08038F38: @ 0x08038F38
+	thumb_func_start AiGetCombatPositionScore
+AiGetCombatPositionScore: @ 0x08038F38
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	adds r5, r1, #0
@@ -16477,15 +16477,15 @@ sub_08038F38: @ 0x08038F38
 	adds r2, r0, #0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_080392B4
+	bl AiGetInRangeCombatPositionScoreComponent
 	adds r4, r0, #0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_08039304
+	bl AiGetTerrainCombatPositionScoreComponent
 	adds r4, r4, r0
 	adds r0, r6, #0
 	adds r1, r5, #0
-	bl sub_08039344
+	bl AiGetFriendZoneCombatPositionScoreComponent
 	adds r4, r4, r0
 	ldr r0, _08038F94 @ =0x0202E3E4
 	ldr r0, [r0]
@@ -16521,8 +16521,8 @@ sub_08038FA0: @ 0x08038FA0
 	movs r0, #0
 	bx lr
 
-	thumb_func_start sub_08038FA4
-sub_08038FA4: @ 0x08038FA4
+	thumb_func_start AiSimulateBattleAgainstTargetAtPosition
+AiSimulateBattleAgainstTargetAtPosition: @ 0x08038FA4
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -16574,8 +16574,8 @@ _08039008:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08039010
-sub_08039010: @ 0x08039010
+	thumb_func_start AiGetDamageDealtCombatScoreComponent
+AiGetDamageDealtCombatScoreComponent: @ 0x08039010
 	push {r4, lr}
 	ldr r3, _08039020 @ =0x0203A470
 	movs r0, #0x13
@@ -16738,7 +16738,7 @@ sub_08039138: @ 0x08039138
 	ldr r0, _08039164 @ =0x0203A470
 	ldr r0, [r0, #4]
 	ldrb r0, [r0, #4]
-	bl sub_08037044
+	bl AiGetClassRank
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r1, _08039168 @ =0x030013C0
@@ -16773,8 +16773,8 @@ sub_0803916C: @ 0x0803916C
 _0803917C: .4byte 0x0202BBF8
 _08039180: .4byte 0x030013C0
 
-	thumb_func_start sub_08039184
-sub_08039184: @ 0x08039184
+	thumb_func_start AiGetDamageTakenScoreComponent
+AiGetDamageTakenScoreComponent: @ 0x08039184
 	push {lr}
 	ldr r2, _08039198 @ =0x0203A470
 	adds r0, r2, #0
@@ -16891,7 +16891,7 @@ sub_08039240: @ 0x08039240
 	ldr r1, _080392A4 @ =0x081D36F4
 	adds r0, r0, r1
 	str r0, [r2]
-	bl sub_08039010
+	bl AiGetDamageDealtCombatScoreComponent
 	adds r4, r0, #0
 	adds r5, r4, #0
 	bl sub_08039070
@@ -16902,7 +16902,7 @@ sub_08039240: @ 0x08039240
 	adds r4, r4, r0
 	bl sub_0803916C
 	adds r4, r4, r0
-	bl sub_08039184
+	bl AiGetDamageTakenScoreComponent
 	subs r4, r4, r0
 	bl sub_080391E4
 	subs r4, r4, r0
@@ -16931,8 +16931,8 @@ _080392AA:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_080392B4
-sub_080392B4: @ 0x080392B4
+	thumb_func_start AiGetInRangeCombatPositionScoreComponent
+AiGetInRangeCombatPositionScoreComponent: @ 0x080392B4
 	push {r4, r5, lr}
 	movs r4, #0x10
 	ldrsb r4, [r2, r4]
@@ -16959,11 +16959,11 @@ _080392D4:
 	cmp r4, #0
 	beq _080392FA
 	adds r0, r4, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	cmp r5, r0
 	bgt _080392F6
 	adds r0, r4, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	cmp r5, r0
 	bge _080392FA
 _080392F6:
@@ -16977,8 +16977,8 @@ _080392FC:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08039304
-sub_08039304: @ 0x08039304
+	thumb_func_start AiGetTerrainCombatPositionScoreComponent
+AiGetTerrainCombatPositionScoreComponent: @ 0x08039304
 	ldr r2, _0803933C @ =0x0202E3E0
 	ldr r2, [r2]
 	lsls r1, r1, #2
@@ -17011,8 +17011,8 @@ sub_08039304: @ 0x08039304
 _0803933C: .4byte 0x0202E3E0
 _08039340: .4byte 0x03004690
 
-	thumb_func_start sub_08039344
-sub_08039344: @ 0x08039344
+	thumb_func_start AiGetFriendZoneCombatPositionScoreComponent
+AiGetFriendZoneCombatPositionScoreComponent: @ 0x08039344
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -17339,7 +17339,7 @@ _0803959E:
 	adds r0, r0, r4
 	ldrb r1, [r0]
 	ldr r0, _0803960C @ =0x08B98AC4
-	bl sub_08035E28
+	bl AiIsInByteList
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _08039618
@@ -17418,7 +17418,7 @@ _08039664:
 	asrs r0, r0, #0x10
 	lsls r1, r7, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08036514
+	bl AiCountNearbyEnemyUnits
 	adds r2, r0, #0
 	ldr r0, [sp]
 	cmp r2, r0
@@ -17497,8 +17497,8 @@ _080396F2:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08039704
-sub_08039704: @ 0x08039704
+	thumb_func_start AiUpdateUnitsSeekHealing
+AiUpdateUnitsSeekHealing: @ 0x08039704
 	push {r4, r5, r6, lr}
 	sub sp, #0xc
 	ldr r0, _08039754 @ =0x0202BBF8
@@ -17527,7 +17527,7 @@ _08039728:
 	cmp r0, #0
 	beq _08039740
 	adds r0, r1, #0
-	bl sub_0803975C
+	bl AiUpdateGetUnitIsHealing
 _08039740:
 	adds r4, #1
 	adds r5, #1
@@ -17543,11 +17543,11 @@ _0803974A:
 _08039754: .4byte 0x0202BBF8
 _08039758: .4byte 0x081D3B68
 
-	thumb_func_start sub_0803975C
-sub_0803975C: @ 0x0803975C
+	thumb_func_start AiUpdateGetUnitIsHealing
+AiUpdateGetUnitIsHealing: @ 0x0803975C
 	push {r4, r5, lr}
 	adds r5, r0, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	movs r1, #0x64
 	adds r4, r0, #0
 	muls r4, r1, r4
@@ -17655,7 +17655,7 @@ _08039808:
 	add r5, sp, #0xc
 	adds r0, r2, #0
 	adds r1, r5, #0
-	bl sub_08036900
+	bl AiFindSafestReachableLocation
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -17690,7 +17690,7 @@ _08039860:
 _08039878:
 	movs r2, #6
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 	movs r0, #1
 	b _0803988C
 _08039884:
@@ -17705,15 +17705,15 @@ _0803988C:
 	pop {r1}
 	bx r1
 
-	thumb_func_start sub_08039894
-sub_08039894: @ 0x08039894
+	thumb_func_start AiTryMoveTowardsEscape
+AiTryMoveTowardsEscape: @ 0x08039894
 	push {r4, r5, r6, lr}
 	sub sp, #0xc
 	ldr r6, _08039904 @ =0x03004690
 	ldr r0, [r6]
 	movs r1, #0x7c
 	bl MapFloodUnitMovement
-	bl sub_0803993C
+	bl GetEscapePointStructThingMaybe
 	adds r4, r0, #0
 	cmp r4, #0
 	beq _08039930
@@ -17743,7 +17743,7 @@ sub_08039894: @ 0x08039894
 	adds r1, r5, #0
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	ldr r1, _0803990C @ =0x0203A97C
 	ldrb r0, [r1, #2]
 	ldrb r1, [r1, #3]
@@ -17755,7 +17755,7 @@ sub_08039894: @ 0x08039894
 	movs r2, #0
 	str r2, [sp, #8]
 	movs r2, #2
-	bl sub_08034E50
+	bl AiSetDecision
 	movs r0, #1
 	b _08039932
 	.align 2, 0
@@ -17769,7 +17769,7 @@ _08039910:
 	adds r1, r5, #0
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	ldr r0, _0803992C @ =0x0203A97C
 	ldrb r0, [r0, #0xa]
 	lsls r0, r0, #0x18
@@ -17786,8 +17786,8 @@ _08039932:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0803993C
-sub_0803993C: @ 0x0803993C
+	thumb_func_start GetEscapePointStructThingMaybe
+GetEscapePointStructThingMaybe: @ 0x0803993C
 	push {r4, r5, r6, lr}
 	movs r1, #0
 	movs r5, #0
@@ -17864,8 +17864,8 @@ _080399B6:
 _080399BC: .4byte 0x08B971C0
 _080399C0: .4byte 0x0202E3E4
 
-	thumb_func_start sub_080399C4
-sub_080399C4: @ 0x080399C4
+	thumb_func_start AiCanEquip
+AiCanEquip: @ 0x080399C4
 	ldr r0, _080399EC @ =0x03004690
 	ldr r2, [r0]
 	ldr r0, [r2, #0xc]
@@ -17894,15 +17894,15 @@ _080399F4:
 _080399F6:
 	bx lr
 
-	thumb_func_start sub_080399F8
-sub_080399F8: @ 0x080399F8
+	thumb_func_start AiEquipGetFlags
+AiEquipGetFlags: @ 0x080399F8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
 	adds r4, r0, #0
 	ldr r5, _08039A10 @ =0x03004690
 	ldr r0, [r5]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #0
 	bne _08039A14
 	movs r0, #0
@@ -17954,7 +17954,7 @@ _08039A62:
 	cmp r1, #0
 	beq _08039ABC
 	adds r0, r5, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	cmp r0, #1
 	ble _08039A82
 	movs r0, #2
@@ -17963,7 +17963,7 @@ _08039A62:
 	strh r0, [r6]
 _08039A82:
 	adds r0, r5, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	cmp r0, #1
 	bne _08039A94
 	movs r0, #1
@@ -18028,8 +18028,8 @@ _08039AF6:
 	.align 2, 0
 _08039B00: .4byte 0x03004690
 
-	thumb_func_start sub_08039B04
-sub_08039B04: @ 0x08039B04
+	thumb_func_start AiEquipGetDanger
+AiEquipGetDanger: @ 0x08039B04
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18079,7 +18079,7 @@ _08039B32:
 	adds r0, r5, #0
 	ldr r1, [sp, #4]
 	ldr r2, [sp, #8]
-	bl sub_08039D04
+	bl AiIsWithinFlyingDistance
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _08039C22
@@ -18098,11 +18098,11 @@ _08039B32:
 	beq _08039C22
 	adds r0, r5, #0
 	mov r1, sp
-	bl sub_08039D48
+	bl StoreItemAndGetUnitAttack
 	adds r6, r0, #0
 	mov r0, sp
 	ldrh r0, [r0]
-	bl sub_0801736C
+	bl GetItemMinRange
 	cmp r0, #1
 	ble _08039BB0
 	ldr r2, [sp, #0xc]
@@ -18113,7 +18113,7 @@ _08039B32:
 _08039BB0:
 	mov r0, sp
 	ldrh r0, [r0]
-	bl sub_08017384
+	bl GetItemMaxRange
 	cmp r0, #1
 	bne _08039BC6
 	ldr r7, [sp, #0x10]
@@ -18198,8 +18198,8 @@ _08039C4C: .4byte 0x0202BD48
 _08039C50: .4byte 0x0202E3E4
 _08039C54: .4byte 0x0202E3D8
 
-	thumb_func_start sub_08039C58
-sub_08039C58: @ 0x08039C58
+	thumb_func_start AiEquipBestMatch
+AiEquipBestMatch: @ 0x08039C58
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	movs r5, #1
@@ -18240,8 +18240,8 @@ _08039C98:
 	.align 2, 0
 _08039CA0: .4byte 0x03004690
 
-	thumb_func_start sub_08039CA4
-sub_08039CA4: @ 0x08039CA4
+	thumb_func_start AiEquipBestConsideringDanger
+AiEquipBestConsideringDanger: @ 0x08039CA4
 	push {lr}
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
@@ -18253,12 +18253,12 @@ sub_08039CA4: @ 0x08039CA4
 	blo _08039CC0
 	movs r0, #1
 	adds r1, r3, #0
-	bl sub_08039C58
+	bl AiEquipBestMatch
 	b _08039CC8
 _08039CC0:
 	movs r0, #2
 	adds r1, r3, #0
-	bl sub_08039C58
+	bl AiEquipBestMatch
 _08039CC8:
 	pop {r0}
 	bx r0
@@ -18297,8 +18297,8 @@ _08039CFC:
 	.align 2, 0
 _08039D00: .4byte 0x03004690
 
-	thumb_func_start sub_08039D04
-sub_08039D04: @ 0x08039D04
+	thumb_func_start AiIsWithinFlyingDistance
+AiIsWithinFlyingDistance: @ 0x08039D04
 	push {r4, r5, lr}
 	adds r3, r0, #0
 	adds r4, r1, #0
@@ -18339,8 +18339,8 @@ _08039D40:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08039D48
-sub_08039D48: @ 0x08039D48
+	thumb_func_start StoreItemAndGetUnitAttack
+StoreItemAndGetUnitAttack: @ 0x08039D48
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -18361,8 +18361,8 @@ sub_08039D48: @ 0x08039D48
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08039D74
-sub_08039D74: @ 0x08039D74
+	thumb_func_start AiTryDanceOrStealAfterMove
+AiTryDanceOrStealAfterMove: @ 0x08039D74
 	push {r4, lr}
 	ldr r4, _08039D9C @ =0x0203A97C
 	ldrb r0, [r4]
@@ -18370,14 +18370,14 @@ sub_08039D74: @ 0x08039D74
 	beq _08039D96
 	ldrb r0, [r4, #2]
 	ldrb r1, [r4, #3]
-	bl sub_08039DD8
+	bl AiTryDoDanceAdjacent
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	beq _08039D96
 	ldrb r0, [r4, #2]
 	ldrb r1, [r4, #3]
-	bl sub_08039EFC
+	bl AiTryDoStealAdjacent
 _08039D96:
 	pop {r4}
 	pop {r0}
@@ -18385,20 +18385,20 @@ _08039D96:
 	.align 2, 0
 _08039D9C: .4byte 0x0203A97C
 
-	thumb_func_start sub_08039DA0
-sub_08039DA0: @ 0x08039DA0
+	thumb_func_start AiTryActionAfterMove
+AiTryActionAfterMove: @ 0x08039DA0
 	push {r4, lr}
 	ldr r4, _08039DD4 @ =0x0203A97C
 	ldrb r0, [r4, #2]
 	ldrb r1, [r4, #3]
-	bl sub_08039DD8
+	bl AiTryDoDanceAdjacent
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
 	beq _08039DCC
 	ldrb r0, [r4, #2]
 	ldrb r1, [r4, #3]
-	bl sub_08039EFC
+	bl AiTryDoStealAdjacent
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -18413,8 +18413,8 @@ _08039DCC:
 	.align 2, 0
 _08039DD4: .4byte 0x0203A97C
 
-	thumb_func_start sub_08039DD8
-sub_08039DD8: @ 0x08039DD8
+	thumb_func_start AiTryDoDanceAdjacent
+AiTryDoDanceAdjacent: @ 0x08039DD8
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18446,7 +18446,7 @@ sub_08039DD8: @ 0x08039DD8
 	ldr r1, [sp, #0xc]
 	movs r2, #1
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	ldr r0, _08039EC0 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -18548,7 +18548,7 @@ _08039ECC:
 	str r2, [sp, #8]
 	movs r2, #7
 	mov r3, sb
-	bl sub_08034E50
+	bl AiSetDecision
 	movs r0, #1
 _08039EEA:
 	add sp, #0x10
@@ -18561,8 +18561,8 @@ _08039EEA:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_08039EFC
-sub_08039EFC: @ 0x08039EFC
+	thumb_func_start AiTryDoStealAdjacent
+AiTryDoStealAdjacent: @ 0x08039EFC
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r7, r1, #0
@@ -18594,8 +18594,8 @@ sub_08039EFC: @ 0x08039EFC
 	adds r1, r7, #0
 	movs r2, #1
 	movs r3, #0x78
-	bl sub_0801A2D4
-	bl sub_08038C44
+	bl MapAddInRange
+	bl AiAttemptStealActionWithinMovement
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, r5
@@ -18650,7 +18650,7 @@ _08039F88:
 	str r0, [sp, #8]
 	adds r0, r2, #0
 	movs r2, #1
-	bl sub_08034E50
+	bl AiSetDecision
 	movs r0, #1
 	b _0803A070
 	.align 2, 0
@@ -18669,19 +18669,19 @@ _08039FB8:
 	mov r8, r1
 	asrs r5, r1, #0x10
 	adds r0, r7, #0
-	bl sub_0801736C
+	bl GetItemMinRange
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	asrs r4, r4, #0x10
 	adds r0, r7, #0
-	bl sub_08017384
+	bl GetItemMaxRange
 	adds r3, r0, #0
 	lsls r3, r3, #0x10
 	asrs r3, r3, #0x10
 	adds r0, r6, #0
 	adds r1, r5, #0
 	adds r2, r4, #0
-	bl sub_0801B19C
+	bl MapAddInBoundedRange
 	ldr r0, _0803A084 @ =0x0202E3D8
 	movs r3, #2
 	ldrsh r0, [r0, r3]
@@ -18733,7 +18733,7 @@ _0803A00E:
 	ldr r0, [sp, #0xc]
 	mov r1, sl
 	adds r2, r5, #0
-	bl sub_080392B4
+	bl AiGetInRangeCombatPositionScoreComponent
 	cmp r0, #0
 	bne _08039F88
 _0803A062:
@@ -18822,7 +18822,7 @@ sub_0803A0C0: @ 0x0803A0C0
 	beq _0803A164
 	ldr r0, [r4]
 	adds r1, r5, #0
-	bl sub_080389B8
+	bl AiFloodMovementAndRange
 	ldr r0, _0803A15C @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -18879,7 +18879,7 @@ _0803A164:
 	bl SetWorkingMoveTable
 	ldr r0, _0803A1F8 @ =0x0202E3E8
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	ldr r1, [r4]
 	movs r0, #0x10
 	ldrsb r0, [r1, r0]
@@ -19009,7 +19009,7 @@ sub_0803A204: @ 0x0803A204
 	ldr r0, [r5]
 	ldr r1, [sp, #4]
 	mov r2, sl
-	bl sub_080389B8
+	bl AiFloodMovementAndRange
 	ldr r0, _0803A2A4 @ =0x0202E3E8
 	ldr r1, [r0]
 	mov r2, sb
@@ -19038,7 +19038,7 @@ _0803A2A8:
 	bl SetWorkingMoveTable
 	ldr r4, _0803A35C @ =0x0202E3E8
 	ldr r0, [r4]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	ldr r1, [r5]
 	movs r0, #0x10
 	ldrsb r0, [r1, r0]
@@ -19072,7 +19072,7 @@ _0803A2E2:
 	beq _0803A306
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 _0803A306:
 	ldr r1, _0803A360 @ =0x0202E3D8
 	movs r2, #2
@@ -19152,7 +19152,7 @@ _0803A394:
 	cmp r5, #0
 	bge _0803A312
 _0803A39A:
-	ldr r0, _0803A3CC @ =sub_08037914
+	ldr r0, _0803A3CC @ =AiIsUnitEnemy
 	bl sub_080387B0
 	ldr r0, _0803A3D0 @ =0x0203A97C
 	ldrb r0, [r0, #0xa]
@@ -19165,7 +19165,7 @@ _0803A3A8:
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 _0803A3B8:
 	movs r0, #1
 	add sp, #8
@@ -19177,7 +19177,7 @@ _0803A3B8:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_0803A3CC: .4byte sub_08037914
+_0803A3CC: .4byte AiIsUnitEnemy
 _0803A3D0: .4byte 0x0203A97C
 
 	thumb_func_start sub_0803A3D4
@@ -19198,7 +19198,7 @@ _0803A3EC: .4byte 0x03004690
 	thumb_func_start sub_0803A3F0
 sub_0803A3F0: @ 0x0803A3F0
 	push {r4, r5, lr}
-	bl sub_080238D8
+	bl GetActiveFactionAlliance
 	adds r4, r0, #1
 	adds r0, #0x80
 	cmp r4, r0
@@ -19225,7 +19225,7 @@ _0803A41C: .4byte 0x0203A8EC
 	thumb_func_start sub_0803A420
 sub_0803A420: @ 0x0803A420
 	push {r4, r5, lr}
-	bl sub_080238D8
+	bl GetActiveFactionAlliance
 	adds r4, r0, #1
 	adds r0, #0x80
 	cmp r4, r0
@@ -19249,8 +19249,8 @@ _0803A43C:
 	.align 2, 0
 _0803A44C: .4byte 0x0203A8EC
 
-	thumb_func_start sub_0803A450
-sub_0803A450: @ 0x0803A450
+	thumb_func_start AiTryMoveToSpecificPosition
+AiTryMoveToSpecificPosition: @ 0x0803A450
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	ldr r7, _0803A484 @ =0x03004690
@@ -19323,8 +19323,8 @@ _0803A4CE:
 	.align 2, 0
 _0803A4D4: .4byte 0x0202E3E4
 
-	thumb_func_start sub_0803A4D8
-sub_0803A4D8: @ 0x0803A4D8
+	thumb_func_start AiCountEnemyInRangeOrTryMoveToSpecificPosition
+AiCountEnemyInRangeOrTryMoveToSpecificPosition: @ 0x0803A4D8
 	push {r4, lr}
 	sub sp, #8
 	ldr r4, _0803A508 @ =0x03004690
@@ -19336,7 +19336,7 @@ sub_0803A4D8: @ 0x0803A4D8
 	beq _0803A510
 	ldr r0, [r4]
 	bl AiMakeMoveRangeMapsForUnitAndWeapon
-	bl sub_08036390
+	bl AiCountEnemyUnitsInRange
 	adds r1, r0, #0
 	cmp r1, #0
 	beq _0803A516
@@ -19354,7 +19354,7 @@ _0803A510:
 _0803A516:
 	add r4, sp, #4
 	adds r0, r4, #0
-	bl sub_0803A450
+	bl AiTryMoveToSpecificPosition
 	lsls r0, r0, #0x18
 	asrs r2, r0, #0x18
 	cmp r2, #1
@@ -19370,7 +19370,7 @@ _0803A52A:
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	movs r0, #1
 _0803A540:
 	add sp, #8
@@ -19431,7 +19431,7 @@ sub_0803A58C: @ 0x0803A58C
 	movs r0, #8
 	movs r1, #0
 	adds r2, r5, #0
-	bl sub_08034E94
+	bl AiUpdateDecision
 	movs r0, #1
 	add sp, #4
 	pop {r4, r5}
@@ -19451,7 +19451,7 @@ sub_0803A5BC: @ 0x0803A5BC
 	ldr r4, _0803A5F8 @ =0x03004690
 	ldr r6, [r4]
 	adds r0, r6, #0
-	bl sub_08018C20
+	bl GetUnitLeaderCharId
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	cmp r0, #0
@@ -19488,7 +19488,7 @@ _0803A60E:
 	adds r5, #1
 	cmp r5, #0xff
 	ble _0803A60E
-	bl sub_0803760C
+	bl AiExecFallbackScriptA
 _0803A624:
 	ldr r1, _0803A63C @ =0x0203A97C
 	ldrb r2, [r1, #0xa]
@@ -19510,7 +19510,7 @@ _0803A644:
 	movs r1, #0
 _0803A64A:
 	strb r1, [r0]
-	bl sub_08034E30
+	bl AiClearDecision
 	ldr r1, _0803A678 @ =0x03004690
 	ldr r0, [r1]
 	adds r0, #0x42
@@ -19574,7 +19574,7 @@ sub_0803A6BC: @ 0x0803A6BC
 	ldrb r1, [r0]
 	strb r1, [r2]
 	ldrb r0, [r0]
-	bl sub_0803707C
+	bl AiUnitWithCharIdExists
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -19589,7 +19589,7 @@ _0803A6DC: .4byte 0x0203A988
 _0803A6E0: .4byte 0x0203A8EC
 _0803A6E4:
 	ldr r0, _0803A710 @ =sub_0803A680
-	bl sub_08038558
+	bl AiAttemptOffensiveAction
 	ldr r0, _0803A714 @ =0x0203A8EC
 	adds r1, r0, #0
 	adds r1, #0x86
@@ -19605,7 +19605,7 @@ _0803A6E4:
 	ldrb r0, [r0, #6]
 	strb r0, [r1]
 _0803A706:
-	bl sub_08034E30
+	bl AiClearDecision
 _0803A70A:
 	movs r0, #0
 	pop {r1}
@@ -19720,13 +19720,13 @@ sub_0803A7C8: @ 0x0803A7C8
 	bl GetUnit
 	adds r4, r0, #0
 	ldr r0, _0803A81C @ =sub_0803A71C
-	bl sub_08038558
+	bl AiAttemptOffensiveAction
 	ldr r5, _0803A820 @ =0x0203A97C
 	ldrb r0, [r5, #0xa]
 	cmp r0, #1
 	beq _0803A80E
 	ldr r0, _0803A824 @ =sub_0803A754
-	bl sub_08038558
+	bl AiAttemptOffensiveAction
 	ldrb r5, [r5, #0xa]
 	cmp r5, #1
 	beq _0803A80E
@@ -19738,7 +19738,7 @@ sub_0803A7C8: @ 0x0803A7C8
 	str r2, [sp]
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 _0803A80E:
 	movs r0, #1
 	add sp, #4
@@ -19767,18 +19767,18 @@ sub_0803A828: @ 0x0803A828
 	ldrb r4, [r4]
 	cmp r0, r4
 	bhi _0803A864
-	ldr r4, _0803A860 @ =sub_08037914
+	ldr r4, _0803A860 @ =AiIsUnitEnemy
 	adds r0, r4, #0
-	bl sub_0803AAD8
+	bl AiTryDoStaff
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0803A86C
 	adds r0, r4, #0
-	bl sub_08038558
+	bl AiAttemptOffensiveAction
 	b _0803A86C
 	.align 2, 0
 _0803A85C: .4byte 0x0203A8EC
-_0803A860: .4byte sub_08037914
+_0803A860: .4byte AiIsUnitEnemy
 _0803A864:
 	adds r1, r3, #0
 	adds r1, #0x79
@@ -19801,7 +19801,7 @@ sub_0803A874: @ 0x0803A874
 	ldrb r1, [r4]
 	cmp r0, r1
 	bhi _0803A8B0
-	bl sub_0803BA18
+	bl AiTryDoSpecialItems
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	bne _0803A8B8
@@ -19812,11 +19812,11 @@ sub_0803A874: @ 0x0803A874
 	ldrb r4, [r4, #1]
 	cmp r0, r4
 	bhi _0803A8B8
-	ldr r0, _0803A8AC @ =sub_08037914
-	bl sub_08038558
+	ldr r0, _0803A8AC @ =AiIsUnitEnemy
+	bl AiAttemptOffensiveAction
 	b _0803A8B8
 	.align 2, 0
-_0803A8AC: .4byte sub_08037914
+_0803A8AC: .4byte AiIsUnitEnemy
 _0803A8B0:
 	ldr r0, _0803A8C0 @ =0x0203A8EC
 	adds r0, #0x79
@@ -19857,7 +19857,7 @@ sub_0803A8C4: @ 0x0803A8C4
 	ldrsb r0, [r2, r0]
 	movs r1, #0x11
 	ldrsb r1, [r2, r1]
-	bl sub_08034698
+	bl GetRiddenBallistaAt
 	cmp r0, #0
 	beq _0803A900
 	b _0803AA28
@@ -19874,7 +19874,7 @@ _0803A900:
 	str r2, [sp, #8]
 	movs r2, #0xa
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 	b _0803AA28
 	.align 2, 0
 _0803A920: .4byte 0x0000FFFF
@@ -19909,7 +19909,7 @@ _0803A94E:
 	bhi _0803A9A4
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_08034698
+	bl GetRiddenBallistaAt
 	cmp r0, #0
 	beq _0803A9A4
 	mov r1, r8
@@ -19964,7 +19964,7 @@ _0803A9B0:
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 _0803A9CE:
 	ldr r1, _0803AA08 @ =0x0203A97C
 	ldrb r2, [r1, #0xa]
@@ -19985,7 +19985,7 @@ _0803A9CE:
 	movs r1, #0
 	movs r2, #0
 	movs r3, #0
-	bl sub_08034E94
+	bl AiUpdateDecision
 	b _0803AA28
 	.align 2, 0
 _0803A9FC: .4byte 0x0202E3D8
@@ -20032,7 +20032,7 @@ sub_0803AA40: @ 0x0803AA40
 	adds r0, r2, #0
 	movs r2, #0
 	movs r3, #0xff
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	movs r0, #1
 	add sp, #4
 	pop {r1}
@@ -20050,8 +20050,8 @@ sub_0803AA60: @ 0x0803AA60
 	.align 2, 0
 _0803AA6C: .4byte 0x0203A8EC
 
-	thumb_func_start sub_0803AA70
-sub_0803AA70: @ 0x0803AA70
+	thumb_func_start GetAiStaffFuncIndex
+GetAiStaffFuncIndex: @ 0x0803AA70
 	push {r4, r5, r6, lr}
 	lsls r0, r0, #0x10
 	lsrs r4, r0, #0x10
@@ -20107,8 +20107,8 @@ _0803AACC:
 	.align 2, 0
 _0803AAD4: .4byte 0x081D3B74
 
-	thumb_func_start sub_0803AAD8
-sub_0803AAD8: @ 0x0803AAD8
+	thumb_func_start AiTryDoStaff
+AiTryDoStaff: @ 0x0803AAD8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -20137,11 +20137,11 @@ _0803AB00:
 	cmp r1, #0
 	beq _0803AB4C
 	adds r0, r4, #0
-	bl sub_080173B8
+	bl GetItemRequiredExp
 	cmp r0, r6
 	blt _0803AB4C
 	adds r0, r4, #0
-	bl sub_0803AA70
+	bl GetAiStaffFuncIndex
 	adds r1, r0, #0
 	movs r0, #1
 	rsbs r0, r0, #0
@@ -20160,7 +20160,7 @@ _0803AB00:
 	cmp r0, #0
 	beq _0803AB4C
 	adds r0, r4, #0
-	bl sub_080173B8
+	bl GetItemRequiredExp
 	lsls r0, r0, #0x18
 	lsrs r6, r0, #0x18
 _0803AB4C:
@@ -20190,8 +20190,8 @@ _0803AB74: .4byte 0x03004690
 _0803AB78: .4byte 0x081D3B78
 _0803AB7C: .4byte 0x0203A97C
 
-	thumb_func_start sub_0803AB80
-sub_0803AB80: @ 0x0803AB80
+	thumb_func_start GetAiSafestAccessibleAdjacentPosition
+GetAiSafestAccessibleAdjacentPosition: @ 0x0803AB80
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -20238,11 +20238,11 @@ _0803ABD2:
 	adds r0, r5, #0
 	adds r1, r7, #0
 	str r2, [sp, #8]
-	bl sub_08039304
+	bl AiGetTerrainCombatPositionScoreComponent
 	adds r4, r0, #0
 	adds r0, r5, #0
 	adds r1, r7, #0
-	bl sub_08039344
+	bl AiGetFriendZoneCombatPositionScoreComponent
 	adds r4, r4, r0
 	ldr r0, _0803AC34 @ =0x0202E3F4
 	ldr r0, [r0]
@@ -20316,7 +20316,7 @@ sub_0803AC50: @ 0x0803AC50
 	ldr r0, [r0]
 	bl sub_0803758C
 	ldr r0, [sp, #0x18]
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	bl sub_0801A0FC
 	ldr r0, _0803ADAC @ =0x0203A8EC
 	adds r1, r0, #0
@@ -20395,7 +20395,7 @@ _0803AD02:
 	beq _0803AD66
 _0803AD14:
 	adds r0, r5, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	movs r1, #0x64
 	adds r4, r0, #0
 	muls r4, r1, r4
@@ -20412,7 +20412,7 @@ _0803AD14:
 	adds r0, r6, #0
 	adds r1, r7, #0
 	adds r2, r5, #0
-	bl sub_0803AB80
+	bl GetAiSafestAccessibleAdjacentPosition
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803AD66
@@ -20456,7 +20456,7 @@ _0803AD72:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #5
-	bl sub_08034E50
+	bl AiSetDecision
 _0803AD96:
 	add sp, #0x24
 	pop {r3, r4, r5}
@@ -20508,7 +20508,7 @@ _0803ADFA:
 	ldr r0, [r0]
 	bl sub_0803758C
 	ldr r0, [sp, #0x18]
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	adds r1, r4, #0
 	adds r1, #0x7c
 	ldrb r0, [r1]
@@ -20597,7 +20597,7 @@ _0803AE8A:
 	ldrb r3, [r6, #0x11]
 	str r0, [sp]
 	adds r0, r4, #0
-	bl sub_080370C8
+	bl AiIsWithinRectDistance
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803AF38
@@ -20615,7 +20615,7 @@ _0803AE8A:
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	add r5, sp, #0xc
 	adds r0, r5, #0
 	bl sub_08037380
@@ -20623,7 +20623,7 @@ _0803AE8A:
 	cmp r0, #0
 	beq _0803AF38
 	adds r0, r6, #0
-	bl sub_08018A70
+	bl GetUnitCurrentHp
 	movs r1, #0x64
 	adds r4, r0, #0
 	muls r4, r1, r4
@@ -20680,7 +20680,7 @@ _0803AF44:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #5
-	bl sub_08034E50
+	bl AiSetDecision
 _0803AF68:
 	add sp, #0x20
 	pop {r3, r4, r5}
@@ -20728,7 +20728,7 @@ sub_0803AF98: @ 0x0803AF98
 	bl sub_0803758C
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	ldr r0, _0803B090 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -20777,7 +20777,7 @@ _0803B018:
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	bl sub_080374AC
 	cmp r0, r8
 	ble _0803B044
@@ -20811,7 +20811,7 @@ _0803B050:
 	str r2, [sp, #8]
 	movs r2, #5
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _0803B078:
 	add sp, #0x10
 	pop {r3, r4, r5}
@@ -20862,7 +20862,7 @@ _0803B0D4:
 	bl sub_0803758C
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	bl sub_0801A0FC
 	ldr r0, _0803B1F0 @ =0x0202E3D8
 	movs r1, #2
@@ -20930,7 +20930,7 @@ _0803B150:
 	adds r0, r4, #0
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl sub_0803AB80
+	bl GetAiSafestAccessibleAdjacentPosition
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803B194
@@ -20983,7 +20983,7 @@ _0803B1A0:
 	lsrs r2, r2, #0x18
 	str r2, [sp, #8]
 	movs r2, #5
-	bl sub_08034E50
+	bl AiSetDecision
 _0803B1D6:
 	add sp, #0x24
 	pop {r3, r4, r5}
@@ -21030,7 +21030,7 @@ sub_0803B1FC: @ 0x0803B1FC
 	bl sub_0803758C
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	bl sub_0801A0FC
 	ldr r0, _0803B334 @ =0x0202E3D8
 	movs r1, #2
@@ -21100,7 +21100,7 @@ _0803B2A6:
 	adds r0, r4, #0
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl sub_0803AB80
+	bl GetAiSafestAccessibleAdjacentPosition
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803B2EE
@@ -21143,7 +21143,7 @@ _0803B2FA:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #5
-	bl sub_08034E50
+	bl AiSetDecision
 _0803B31A:
 	add sp, #0x24
 	pop {r3, r4, r5}
@@ -21209,8 +21209,8 @@ _0803B390:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0803B398
-sub_0803B398: @ 0x0803B398
+	thumb_func_start GetAiSilenceEffectivenessScore
+GetAiSilenceEffectivenessScore: @ 0x0803B398
 	push {r4, r5, lr}
 	adds r5, r0, #0
 	ldr r0, _0803B3B4 @ =0x03004690
@@ -21284,7 +21284,7 @@ _0803B41C:
 	bl sub_0803758C
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	movs r4, #1
 	mov sb, r4
 _0803B430:
@@ -21350,7 +21350,7 @@ _0803B46C:
 	ldrb r3, [r6, #0x11]
 	str r0, [sp]
 	adds r0, r4, #0
-	bl sub_080370C8
+	bl AiIsWithinRectDistance
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803B528
@@ -21360,7 +21360,7 @@ _0803B46C:
 	cmp r0, #0
 	beq _0803B528
 	adds r0, r6, #0
-	bl sub_0803B398
+	bl GetAiSilenceEffectivenessScore
 	lsls r0, r0, #0x18
 	lsrs r7, r0, #0x18
 	cmp r7, #0
@@ -21383,7 +21383,7 @@ _0803B46C:
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	add r4, sp, #0xc
 	adds r0, r4, #0
 	bl sub_08037380
@@ -21426,7 +21426,7 @@ _0803B534:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #5
-	bl sub_08034E50
+	bl AiSetDecision
 _0803B558:
 	add sp, #0x24
 	pop {r3, r4, r5}
@@ -21474,7 +21474,7 @@ _0803B5A8:
 	bl sub_0803758C
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	movs r4, #1
 	mov r8, r4
 _0803B5BC:
@@ -21533,7 +21533,7 @@ _0803B5F8:
 	ldrb r3, [r6, #0x11]
 	str r0, [sp]
 	adds r0, r4, #0
-	bl sub_080370C8
+	bl AiIsWithinRectDistance
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803B6AA
@@ -21568,7 +21568,7 @@ _0803B5F8:
 	adds r0, r4, #0
 	adds r1, r5, #0
 	movs r3, #1
-	bl sub_0801A2D4
+	bl MapAddInRange
 	add r4, sp, #0xc
 	adds r0, r4, #0
 	bl sub_08037380
@@ -21612,7 +21612,7 @@ _0803B6B6:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #5
-	bl sub_08034E50
+	bl AiSetDecision
 _0803B6DA:
 	add sp, #0x20
 	pop {r3, r4, r5}
@@ -21658,7 +21658,7 @@ sub_0803B6FC: @ 0x0803B6FC
 	bl sub_0803758C
 	movs r0, #1
 	rsbs r0, r0, #0
-	bl sub_0801B148
+	bl GenerateMagicSealMap
 	bl sub_0801A0FC
 	ldr r0, _0803B830 @ =0x0202E3D8
 	movs r1, #2
@@ -21721,7 +21721,7 @@ _0803B7A6:
 	adds r0, r4, #0
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl sub_0803AB80
+	bl GetAiSafestAccessibleAdjacentPosition
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803B7EA
@@ -21767,7 +21767,7 @@ _0803B7F6:
 	str r2, [sp, #4]
 	str r2, [sp, #8]
 	movs r2, #5
-	bl sub_08034E50
+	bl AiSetDecision
 _0803B816:
 	add sp, #0x24
 	pop {r3, r4, r5}
@@ -21805,7 +21805,7 @@ sub_0803B83C: @ 0x0803B83C
 	ldr r0, [r0]
 	bl GetUnitMovementCost
 	str r0, [sp, #0x10]
-	bl sub_080238D8
+	bl GetActiveFactionAlliance
 	str r0, [sp, #0x14]
 	adds r4, r0, #0
 	adds r4, #1
@@ -21985,8 +21985,8 @@ _0803B9B2:
 	bx r1
 	.align 2, 0
 
-	thumb_func_start sub_0803B9C4
-sub_0803B9C4: @ 0x0803B9C4
+	thumb_func_start GetSpecialItemFuncIndex
+GetSpecialItemFuncIndex: @ 0x0803B9C4
 	push {r4, r5, r6, lr}
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
@@ -22032,8 +22032,8 @@ _0803BA0C:
 	.align 2, 0
 _0803BA14: .4byte 0x081D3BDC
 
-	thumb_func_start sub_0803BA18
-sub_0803BA18: @ 0x0803BA18
+	thumb_func_start AiTryDoSpecialItems
+AiTryDoSpecialItems: @ 0x0803BA18
 	push {r4, r5, r6, lr}
 	ldr r1, _0803BA2C @ =0x0203A8EC
 	adds r1, #0x7b
@@ -22060,7 +22060,7 @@ _0803BA3E:
 	cmp r0, #0
 	beq _0803BA64
 	adds r0, r4, #0
-	bl sub_0803B9C4
+	bl GetSpecialItemFuncIndex
 	adds r1, r0, #0
 	movs r0, #1
 	rsbs r0, r0, #0
@@ -22138,7 +22138,7 @@ sub_0803BAA8: @ 0x0803BAA8
 	movs r2, #1
 	str r2, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	ldr r4, _0803BB3C @ =0x0203A97C
 	ldrb r0, [r4, #0xa]
 	cmp r0, #1
@@ -22152,7 +22152,7 @@ sub_0803BAA8: @ 0x0803BAA8
 	ldrb r3, [r4, #3]
 	movs r5, #0
 	str r5, [sp]
-	bl sub_080370C8
+	bl AiIsWithinRectDistance
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -22166,7 +22166,7 @@ sub_0803BAA8: @ 0x0803BAA8
 	str r5, [sp, #8]
 	movs r2, #6
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _0803BB26:
 	add sp, #0x10
 	pop {r4, r5, r6}
@@ -22194,7 +22194,7 @@ sub_0803BB40: @ 0x0803BB40
 	beq _0803BC12
 	ldr r4, _0803BB84 @ =0x03004690
 	ldr r0, [r4]
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #4
 	ble _0803BB88
 	ldr r2, [r4]
@@ -22226,7 +22226,7 @@ _0803BB88:
 	cmp r0, #0
 	beq _0803BC12
 	adds r0, r2, #0
-	bl sub_080176DC
+	bl GetUnitItemCount
 	cmp r0, #4
 	ble _0803BBAA
 	orrs r5, r4
@@ -22251,7 +22251,7 @@ _0803BBAA:
 	movs r5, #0
 	str r5, [sp]
 	movs r2, #0
-	bl sub_08036B00
+	bl AiTryMoveTowards
 	ldr r4, _0803BC24 @ =0x0203A97C
 	ldrb r0, [r4, #0xa]
 	cmp r0, #1
@@ -22264,7 +22264,7 @@ _0803BBAA:
 	ldrb r2, [r4, #2]
 	ldrb r3, [r4, #3]
 	str r5, [sp]
-	bl sub_080370C8
+	bl AiIsWithinRectDistance
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -22278,7 +22278,7 @@ _0803BBAA:
 	str r5, [sp, #8]
 	movs r2, #6
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _0803BC12:
 	add sp, #0x10
 	pop {r4, r5, r6, r7}
@@ -22313,7 +22313,7 @@ sub_0803BC28: @ 0x0803BC28
 	add r4, sp, #0xc
 	adds r0, r2, #0
 	adds r1, r4, #0
-	bl sub_08036900
+	bl AiFindSafestReachableLocation
 	lsls r0, r0, #0x18
 	asrs r0, r0, #0x18
 	cmp r0, #1
@@ -22331,7 +22331,7 @@ sub_0803BC28: @ 0x0803BC28
 	str r2, [sp, #8]
 	movs r2, #6
 	movs r3, #0
-	bl sub_08034E50
+	bl AiSetDecision
 _0803BC7E:
 	add sp, #0x10
 	pop {r4, r5}
@@ -22398,7 +22398,7 @@ sub_0803BCE8: @ 0x0803BCE8
 	ldr r0, _0803BD2C @ =0x08B98AE8
 	movs r1, #0
 	adds r2, r4, #0
-	bl sub_08035FA0
+	bl AiFindClosestTerrainAdjacentPosition
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803BD34
@@ -22439,7 +22439,7 @@ sub_0803BD3C: @ 0x0803BD3C
 	ldr r0, _0803BD58 @ =0x08B98AEA
 	movs r1, #0
 	adds r2, r4, #0
-	bl sub_08035E44
+	bl AiFindClosestTerrainPosition
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _0803BD5C
@@ -22534,8 +22534,8 @@ _0803BDF6:
 _0803BDFC: .4byte 0x0202E3E4
 _0803BE00: .4byte 0x0202E3DC
 
-	thumb_func_start sub_0803BE04
-sub_0803BE04: @ 0x0803BE04
+	thumb_func_start AiSetMovCostTableWithPassableWalls
+AiSetMovCostTableWithPassableWalls: @ 0x0803BE04
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	movs r2, #1
@@ -22632,7 +22632,7 @@ sub_0803BEA0: @ 0x0803BEA0
 	bl SetWorkingMoveTable
 	ldr r0, _0803BECC @ =0x0202E3E4
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	movs r0, #0x10
 	ldrsb r0, [r4, r0]
 	movs r1, #0x11
@@ -22655,7 +22655,7 @@ sub_0803BED0: @ 0x0803BED0
 	bl SetWorkingMoveTable
 	ldr r0, _0803BEFC @ =0x0202E3E8
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	movs r0, #0x10
 	ldrsb r0, [r4, r0]
 	movs r1, #0x11
@@ -22675,10 +22675,10 @@ sub_0803BF00: @ 0x0803BF00
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetUnitMovementCost
-	bl sub_0803BE04
+	bl AiSetMovCostTableWithPassableWalls
 	ldr r0, _0803BF2C @ =0x0202E3E4
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	movs r0, #0x10
 	ldrsb r0, [r4, r0]
 	movs r1, #0x11
@@ -22698,10 +22698,10 @@ sub_0803BF30: @ 0x0803BF30
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetUnitMovementCost
-	bl sub_0803BE04
+	bl AiSetMovCostTableWithPassableWalls
 	ldr r0, _0803BF5C @ =0x0202E3E4
 	ldr r0, [r0]
-	bl sub_0801B190
+	bl SetWorkingBmMap
 	movs r0, #0x10
 	ldrsb r0, [r4, r0]
 	movs r1, #0x11
