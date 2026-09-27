@@ -632,9 +632,7 @@ SECTIONS
         build/asm/code_0801DA14.o(.text);
         build/asm/code_0801DA94.o(.text);
         build/asm/code_0801DB0C.o(.text);
-        build/asm/code_0801DB58.o(.text);
-        build/asm/code_0801DB94.o(.text);
-        build/asm/code_0801DBC4.o(.text);
+        build/src/fogmap.o(.text);
         build/asm/code_0801DD6C.o(.text);
         build/asm/code_0801DEFC.o(.text);
         build/asm/code_0801DFC0.o(.text);
