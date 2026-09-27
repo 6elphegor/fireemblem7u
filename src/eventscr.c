@@ -265,7 +265,6 @@ void SetTalkFunc(ProcFunc func);
 bool IsTalkLocked(void);
 void ResumeTalk(void);
 bool IsTalkActive(void);
-bool IsTactFemale(void);
 int GetGameTacticsRank(void);
 int GetGameSurvivalRank(void);
 int GetGameExpRank(void);

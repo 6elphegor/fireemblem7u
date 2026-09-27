@@ -588,7 +588,7 @@ int sub_0807A3B8(void)
     return gPlaySt.tact_enabled;
 }
 
-int IsTactFemale(void)
+bool IsTactFemale(void)
 {
     return gPlaySt.tact_gender;
 }

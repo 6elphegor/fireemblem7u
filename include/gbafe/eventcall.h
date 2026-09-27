@@ -242,7 +242,7 @@ bool sub_0807A304(void);
 // sub_807ADFC
 // sub_0807A3A4
 // sub_0807A3B8
-// IsTactFemale
+bool IsTactFemale(void);
 // sub_0807A3D8
 // IsTutorialDisabled: returns int (eventinfo.c), but eventscr2.c needs a bool prototype to match
 // GmUnitFadeExists
