@@ -87,7 +87,7 @@ void MU_SetDefaultFacing_Auto(void);
 void ArenaResume(struct Unit * unit);
 void BattleGenerateArena(struct Unit * unit);
 void BeginBattleAnimations(void);
-void sub_080B26A4(void);
+void StartArenaResultsScreen(void);
 void WriteCompletedPlaythroughSaveData(void);
 char * strcpy(char * dst, const char * src);
 
@@ -1309,7 +1309,7 @@ void ResumeMapMainDuringArena(struct MapMainProc * mapMain)
 
     Proc_Goto(mapMain, 8);
 
-    sub_080B26A4();
+    StartArenaResultsScreen();
 }
 
 void ResumeMapMainDuringPhaseChange(struct MapMainProc * mapMain)

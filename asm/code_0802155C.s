@@ -9,7 +9,7 @@ sub_0802155C: @ 0x0802155C
 	ldrb r1, [r1]
 	cmp r1, #2
 	beq _0802156E
-	bl sub_080B2F28
+	bl CallSuspendPromptEvent
 	movs r0, #0x17
 	b _08021576
 _0802156E:
