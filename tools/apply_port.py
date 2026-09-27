@@ -23,6 +23,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import csrc  # noqa: E402
 from elf32 import Elf, SHN_COMMON, SHN_UNDEF, STT_FUNC, STT_SECTION  # noqa: E402
 
 ADDR_NAME = re.compile(r"^(.*?_)([0-9A-Fa-f]{7,8})$")
@@ -41,6 +42,47 @@ def us_name(name, addr):
     if m.group(2).islower():
         s = s.lower()
     return m.group(1) + s
+
+
+def partial_source(text, entry):
+    """Rewrite a reference C file for a partial port: functions that don't
+    match become ASM_FUNC of our asm (keeping a prototype), FE7U-only
+    functions are inserted as ASM_FUNC in ROM order."""
+    defs = {name: (a, o, b) for name, a, o, b in csrc.functions(text)}
+    edits = []  # (start, end, replacement)
+
+    def asm_line(addr):
+        return f'ASM_FUNC("asm/nonmatching/code_{addr:08X}.s");\n'
+
+    def need(name):
+        if name not in defs:
+            raise SystemExit(f"{name}: definition not found in source")
+        a, o, b = defs[name]
+        if re.search(r"\binline\b", text[a:o]):
+            raise SystemExit(f"{name}: inline function can't be replaced by asm")
+        return a, o, b
+
+    first_def = min((d[0] for d in defs.values()), default=len(text))
+    anchor, pending = None, []
+    for addr, name, status in entry["funcs"]:
+        if name is None:
+            if anchor is None:
+                pending.append(addr)
+            else:
+                edits.append((anchor, anchor, "\n" + asm_line(addr)))
+            continue
+        a, o, b = need(name)
+        if status == "asm":
+            edits.append((a, b, csrc.prototype(text, a, o) + "\n" + asm_line(addr)))
+        anchor = b
+    if pending:
+        edits.append((first_def, first_def, "".join(asm_line(x) for x in pending) + "\n"))
+    for name in entry.get("dropped", []):
+        a, o, b = need(name)
+        edits.append((a, b, csrc.prototype(text, a, o)))
+    for a, b, rep in sorted(edits, key=lambda x: (x[0], x[1]), reverse=True):
+        text = text[:a] + rep + text[b:]
+    return text
 
 
 def run(*cmd):
@@ -99,16 +141,18 @@ def main():
     run(sys.executable, "tools/rename.py", str(rn))
 
     # ---- sources --------------------------------------------------------
-    if Path("include").exists():
-        shutil.rmtree("include")
-    shutil.copytree(ref / "include", "include", ignore=shutil.ignore_patterns("*.inc"))
-    sysutil = Path("include/gbafe/sysutil.h")
-    sysutil.write_text(sysutil.read_text().replace("} BITPACKED;", "};"))
+    if not Path("include/gbafe.h").exists():  # first port: adopt the headers
+        shutil.copytree(ref / "include", "include", ignore=shutil.ignore_patterns("*.inc"), dirs_exist_ok=True)
+        sysutil = Path("include/gbafe/sysutil.h")
+        sysutil.write_text(sysutil.read_text().replace("} BITPACKED;", "};"))
     targets = list(Path("include").rglob("*.h"))
     Path("src").mkdir(exist_ok=True)
     for stem in files:
         dst = Path("src") / f"{stem[4:]}.c"
-        shutil.copy(ref / "src" / f"{stem[4:]}.c", dst)
+        text = (ref / "src" / f"{stem[4:]}.c").read_text(encoding="utf-8")
+        if "funcs" in files[stem]:
+            text = partial_source(text, files[stem])
+        dst.write_text(text, encoding="utf-8")
         targets.append(dst)
     pat = re.compile(r"\b(" + "|".join(map(re.escape, sorted(rewrite, key=len, reverse=True))) + r")\b")
     for t in targets:
@@ -143,15 +187,20 @@ def main():
         if not inside or inside[0][0] != start:
             sys.exit(f"{stem}: no asm file starts at {start:#x}")
         text_lds = lds.read_text()
-        for i, (_, asm) in enumerate(inside):
-            if "\t.global _" in asm.read_text():
+        keep_asm = {a for a, _, st in f.get("funcs", []) if st == "asm"}
+        Path("asm/nonmatching").mkdir(exist_ok=True)
+        for i, (a, asm) in enumerate(inside):
+            if a not in keep_asm and "\t.global _" in asm.read_text():
                 sys.exit(f"{stem}: labels in {asm} are referenced from elsewhere")
             entry = f"build/asm/{asm.stem}.o(.text);"
             if i == 0:
                 text_lds = text_lds.replace(entry, f"build/src/{stem[4:]}.o(.text);")
             else:
                 text_lds = re.sub(rf"^\s*{re.escape(entry)}\n", "", text_lds, flags=re.M)
-            asm.unlink()
+            if a in keep_asm:
+                asm.rename(Path("asm/nonmatching") / asm.name)
+            else:
+                asm.unlink()
         lds.write_text(text_lds)
 
     # ---- data layout ------------------------------------------------------
