@@ -19,7 +19,7 @@ sub_08074A28: @ 0x08074A28
 	adds r0, r1, #0
 	movs r1, #1
 	movs r2, #1
-	bl sub_08074008
+	bl PutManimLevelUpFrame
 	movs r0, #0
 	str r0, [r7, #4]
 _08074A52:
@@ -38,7 +38,7 @@ _08074A60:
 	str r1, [sp]
 	movs r1, #1
 	movs r2, #1
-	bl sub_0807416C
+	bl PutManimLevelUpStat
 	ldr r0, [r7, #4]
 	adds r1, r0, #1
 	str r1, [r7, #4]
@@ -214,7 +214,7 @@ _08074A7C:
 	movs r1, #3
 	movs r2, #1
 	ldr r3, [r7]
-	bl sub_08074474
+	bl StartManimLevelUpStatGainLabels
 	add sp, #0xc
 	pop {r7}
 	pop {r0}

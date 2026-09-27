@@ -13,7 +13,7 @@ sub_080959B0: @ 0x080959B0
 	movs r1, #3
 	movs r2, #0
 	adds r3, r7, #0
-	bl sub_08074474
+	bl StartManimLevelUpStatGainLabels
 	ldr r0, [r4, #0x2c]
 	bl GetUnitCurrentHp
 	adds r1, r7, #0
@@ -149,7 +149,7 @@ _08095ACC:
 	ldrb r2, [r2]
 	ldrb r3, [r3]
 	subs r2, r2, r3
-	bl sub_08074744
+	bl StartPrepItemBoostStatGainLabelAnim
 _08095AFA:
 	adds r4, #1
 	cmp r4, #7

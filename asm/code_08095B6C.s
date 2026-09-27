@@ -48,7 +48,7 @@ _08095BB4:
 	bl sub_08094EF4
 	movs r0, #0
 	bl DisableUiCursorHand
-	bl sub_0807453C
+	bl EndManimLevelUpStatGainLabels
 	movs r0, #5
 	bl EnableBgSync
 	ldr r0, _08095BF0 @ =0x06014000

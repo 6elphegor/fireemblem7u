@@ -121,6 +121,29 @@ struct ManimBgScrollProc {
     /* 6A */ u16 y_inc;
 };
 
+struct ManimLevelUpLabelInfo {
+    /* 00 */ u8 x;
+    /* 01 */ u8 y;
+    /* 02 */ STRUCT_PAD(0x02, 0x04);
+    /* 04 */ int const * msg[2];
+};
+
+struct ManimLevelUpStatGainLabelProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2A);
+    /* 2A */ u16 chr;
+    /* 2C */ u16 pal;
+    /* 2E */ u16 sprite_layer;
+};
+
+struct ManimLevelUpLabelColorProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x54);
+    /* 54 */ s32 clock;
+    /* 58 */ STRUCT_PAD(0x58, 0x64);
+    /* 64 */ s16 pal;
+};
+
 struct ManimEffectProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Unit * unit;
@@ -279,15 +302,15 @@ void SetDefaultManimScreenConf(void);
 void StartManimBgScroll(int bg, int x_inc, int y_inc, ProcPtr parent);
 // sub_807475C
 void ManimBgScroll_Main(struct ManimBgScrollProc * proc);
-// sub_08074008
-// sub_0807416C
-// sub_080741F4
-// sub_0807436C
+void PutManimLevelUpFrame(int actor, int x, int y);
+void PutManimLevelUpStat(int actor, int x, int y, int stat_num, bool after_gain);
+int GetManimLevelUpStatGain(int actor, int stat_num);
+int GetManimLevelUpBaseStat(int actor, int stat_num);
 // sub_8074C5C
-// sub_08074474
+void StartManimLevelUpStatGainLabels(int chr, int pal, int sprite_layer, ProcPtr parent);
 // sub_8074D38
-// sub_08074554
-// sub_08074744
+void StartManimLevelUpStatGainLabelAnim(int x, int y, int stat_num, int stat_gain);
+void StartPrepItemBoostStatGainLabelAnim(int x, int y, int stat_gain);
 // StartManimLevelUp
 // sub_080748D0
 // sub_080749F4
@@ -379,3 +402,5 @@ void StartManimSleepFx(struct Unit * unit);
 void StartManimSilenceFx(struct Unit * unit);
 void StartManimBarrierFx(struct Unit * unit);
 void EndManimBgScroll(void);
+void ManimLevelUpStatGainLabel_Finish(struct ManimLevelUpStatGainLabelProc * proc);
+void EndManimLevelUpStatGainLabels(void);

@@ -52,7 +52,7 @@ _08074DD6:
 	ldr r2, [r7, #4]
 	adds r0, r1, #0
 	adds r1, r2, #0
-	bl sub_080741F4
+	bl GetManimLevelUpStatGain
 	cmp r0, #0
 	beq _08074DEC
 	b _08074DF4
@@ -77,7 +77,7 @@ _08074E02:
 	str r1, [sp]
 	movs r1, #1
 	movs r2, #1
-	bl sub_0807416C
+	bl PutManimLevelUpStat
 	movs r0, #1
 	bl EnableBgSync
 	ldr r0, _08074E98 @ =0x08C9DDB4
@@ -115,12 +115,12 @@ _08074E02:
 	ldr r2, [r7, #4]
 	adds r0, r1, #0
 	adds r1, r2, #0
-	bl sub_080741F4
+	bl GetManimLevelUpStatGain
 	adds r3, r0, #0
 	adds r0, r4, #0
 	adds r1, r5, #0
 	adds r2, r6, #0
-	bl sub_08074554
+	bl StartManimLevelUpStatGainLabelAnim
 	ldr r1, [r7]
 	adds r0, r1, #0
 	adds r1, #0x30
