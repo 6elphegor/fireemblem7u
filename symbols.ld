@@ -2014,3 +2014,7 @@ Sprite_WmIcon = 0x08422160;
 ProcScr_WorldMap = 0x08CE76E8;
 gWmFaceConfig = 0x085E9AA0;
 gWmEventScripts = 0x08C9CDA4;
+ProcScr_WmCmd = 0x08CE77A8;
+ProcScr_WmPalFadeOut = 0x08CE77C0;
+ProcScr_WmPalFadeIn = 0x08CE77D8;
+Pal_WmMapSprite = 0x08194594;

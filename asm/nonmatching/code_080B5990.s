@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B5990
-sub_080B5990: @ 0x080B5990
+	thumb_func_start WmSpotlight_Init
+WmSpotlight_Init: @ 0x080B5990
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

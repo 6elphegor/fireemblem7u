@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B5A84
-sub_080B5A84: @ 0x080B5A84
+	thumb_func_start WmSpotlight_Loop
+WmSpotlight_Loop: @ 0x080B5A84
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	movs r0, #0x18

@@ -159,6 +159,17 @@ struct WmCmdProc {
 };
 
 extern struct ProcCmd CONST_DATA ProcScr_BmFadeIN[];
+extern struct ProcCmd CONST_DATA ProcScr_WmCmd[];
+extern struct ProcCmd CONST_DATA ProcScr_WmPalFadeOut[];
+extern struct ProcCmd CONST_DATA ProcScr_WmPalFadeIn[];
+extern u16 Pal_WmMapSprite[];
+
+struct WmPalFadeProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int timer;
+    /* 30 */ int pal;
+    /* 34 */ u16 colors[15];
+};
 extern EventScr const * CONST_DATA gWmEventScripts[];
 
 void sub_08077680(int y);
@@ -169,8 +180,8 @@ void EndWmSpriteAnim(u32 slot);
 void StartWmMuMove(int idx, int x, int y, u32 flags);
 void sub_080B4D4C(int slot, int fid, u16 flags);
 void sub_080B4E88(int slot, u16 flags);
-void sub_080B5844(int a);
-void sub_080B5934(int a);
+void StartWmPalFadeOut(int a);
+void StartWmPalFadeIn(int a);
 
 void EndWmIcon(int idx);
 void EndWmIcon2(int idx);
@@ -1113,11 +1124,11 @@ void WmCmd_Loop(struct WmCmdProc * proc)
         break;
 
     case 10:
-        sub_080B5844(proc->args[4]);
+        StartWmPalFadeOut(proc->args[4]);
         break;
 
     case 9:
-        sub_080B5934(proc->args[4]);
+        StartWmPalFadeIn(proc->args[4]);
         break;
 
     case 12:
@@ -1132,14 +1143,109 @@ void WmCmd_Loop(struct WmCmdProc * proc)
     Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5760.s");
-ASM_FUNC("asm/nonmatching/code_080B57AC.s");
-ASM_FUNC("asm/nonmatching/code_080B5844.s");
-ASM_FUNC("asm/nonmatching/code_080B58A0.s");
-ASM_FUNC("asm/nonmatching/code_080B5934.s");
+void WmMergeFace(int delay, u8 cmd, int a0, int a3, int a1, int a2, int a4)
+{
+    ProcPtr parent = Proc_Find(ProcScr_WorldMap);
+    struct WmCmdProc * proc = Proc_Start(ProcScr_WmCmd, parent);
+
+    proc->delay = delay;
+    proc->cmd = cmd;
+    proc->args[0] = a0;
+    proc->args[3] = a3;
+    proc->args[1] = a1;
+    proc->args[2] = a2;
+    proc->args[4] = a4;
+}
+
+void WmPalFade_LoopOut(struct WmPalFadeProc * proc)
+{
+    int i;
+
+    u16 * palIt = &PAL_COLOR(proc->pal, 1);
+    u16 * it = proc->colors;
+
+    proc->timer++;
+
+    for (i = 1; i < 0x10; i++)
+    {
+        *palIt = ((((*it & 0x1f) * (0x20 - proc->timer)) >> 5) & 0x1f) +
+            ((((0x20 - proc->timer) * (*it & 0x3e0)) >> 5) & 0x3e0) +
+            ((((0x20 - proc->timer) * (*it & 0x7c00)) >> 5) & 0x7c00);
+        it++;
+        palIt++;
+    }
+
+    EnablePalSync();
+
+    if (proc->timer == 0x20)
+        Proc_Break(proc);
+}
+
+void StartWmPalFadeOut(int color)
+{
+    int i;
+
+    ProcPtr parent = Proc_Find(ProcScr_WorldMap);
+    struct WmPalFadeProc * proc = Proc_Start(ProcScr_WmPalFadeOut, parent);
+
+    proc->pal = color & 0x1f;
+    proc->timer = 0;
+
+    ApplyPalettes(Pal_WmMapSprite, 0x1C, 4);
+
+    for (i = 1; i < 0x10; i++)
+        proc->colors[i - 1] = PAL_COLOR(color & 0x1f, i);
+}
+
+void WmPalFade_LoopIn(struct WmPalFadeProc * proc)
+{
+    int i;
+
+    u16 * palIt = &PAL_COLOR(proc->pal, 1);
+    u16 * it = proc->colors;
+
+    proc->timer++;
+
+    for (i = 1; i < 0x10; i++)
+    {
+        *palIt = ((((*it & 0x1f) * proc->timer) >> 5) & 0x1f) + (((proc->timer * (*it & 0x3e0)) >> 5) & 0x3e0) +
+            (((proc->timer * (*it & 0x7c00)) >> 5) & 0x7c00);
+        it++;
+        palIt++;
+    }
+
+    EnablePalSync();
+
+    if (proc->timer == 0x20)
+        Proc_Break(proc);
+}
+
+void StartWmPalFadeIn(int color)
+{
+    int i;
+
+    ProcPtr parent = Proc_Find(ProcScr_WorldMap);
+    struct WmPalFadeProc * proc = Proc_Start(ProcScr_WmPalFadeIn, parent);
+
+    proc->pal = color & 0x1f;
+    proc->timer = 0;
+
+    ApplyPalettes(Pal_WmMapSprite, 0x1C, 4);
+
+    for (i = 1; i < 0x10; i++)
+        proc->colors[i - 1] = PAL_COLOR(color & 0x1f, i);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B5990.s");
 ASM_FUNC("asm/nonmatching/code_080B5A84.s");
-ASM_FUNC("asm/nonmatching/code_080B5B00.s");
+void WmEndSpotlight(void)
+{
+    gWmHBlankFlags &= ~2;
+
+    SetBlendConfig(0, 0, 0, 0);
+    SetWinEnable(0, 0, 0);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B5B44.s");
 ASM_FUNC("asm/nonmatching/code_080B5B6C.s");
 ASM_FUNC("asm/nonmatching/code_080B5B80.s");

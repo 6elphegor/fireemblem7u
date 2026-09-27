@@ -35,8 +35,8 @@ void EndWmMu(int a);
 void StartWmSpriteAnim(int a, int b);
 void EndWmSpriteAnim(int a);
 void EndAllWmSpriteAnims(void);
-void sub_080B5844(int a);
-void sub_080B5934(int a);
+void StartWmPalFadeOut(int a);
+void StartWmPalFadeIn(int a);
 void WmMu_EndFlash(int a);
 void WmMu_StartFlash(int a);
 void nullsub_5(int a, int b, int c);
@@ -830,7 +830,7 @@ int sub_0800F844(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 10, 0, 0, skipped, skipped, a);
         else
-            sub_080B5844(a);
+            StartWmPalFadeOut(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -847,7 +847,7 @@ int sub_0800F884(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 9, 0, 0, skipped, skipped, a);
         else
-            sub_080B5934(a);
+            StartWmPalFadeIn(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
