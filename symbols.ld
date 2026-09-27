@@ -480,3 +480,6 @@ Tsa_DragonGateLight = 0x081BC784;
 Img_DragonGateDragon = 0x081BCB1C;
 Pal_DragonGateDragon = 0x081BD758;
 Tsa_DragonGateDragon = 0x081BD958;
+Img_DragonGateFlame = 0x081B93C8;
+Pal_DragonGateFlame = 0x081B9790;
+Tsa_DragonGateFlame = 0x081B97B0;
