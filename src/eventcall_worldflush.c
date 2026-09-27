@@ -3,7 +3,7 @@
 void sub_0807764C(int x, int y, int r);
 void sub_080777E4(void);
 
-extern struct ProcCmd CONST_DATA ProcScr_WorldFlush[];
+extern struct ProcCmd CONST_DATA ProcScr_EventWorldFlush[];
 
 struct ProcWorldFlush
 {
@@ -61,5 +61,5 @@ void sub_0807CE60(struct ProcWorldFlush * proc)
 
 void sub_0807CEB4(ProcPtr proc)
 {
-    Proc_StartBlocking(ProcScr_WorldFlush, proc);
+    Proc_StartBlocking(ProcScr_EventWorldFlush, proc);
 }
