@@ -16,7 +16,13 @@ struct AdjPosLutEnt {
     int y;
 };
 
-extern struct AdjPosLutEnt CONST_DATA sAiAdjacentPositionLut[];
+
+CONST_DATA struct AdjPosLutEnt sAiAdjacentPositionLut[] = {
+    { 1, 0 },
+    { -1, 0 },
+    { 0, 1 },
+    { 0, -1 },
+};
 
 int GetAiStaffFuncIndex(u16 item)
 {

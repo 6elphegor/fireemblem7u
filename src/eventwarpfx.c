@@ -9,10 +9,59 @@ extern u8 CONST_DATA Img_EventWarp[];
 extern u16 CONST_DATA Pal_EventWarp[];
 extern u8 CONST_DATA Tsa_EventWarp[];
 
-extern struct VectorBmfx CONST_DATA Vectors_EventWarp1[17];
-extern struct VectorBmfx CONST_DATA Vectors_EventWarp2[17];
 
-extern struct ProcCmd CONST_DATA ProcScr_EventWrapAnim[];
+
+void ProcEventWrapAnim_End(struct ProcBmFx * proc);
+void ProcEventWrapAnim_Init(struct ProcBmFx * proc);
+void ProcEventWrapAnim_Loop(struct ProcBmFx * proc);
+
+CONST_DATA struct VectorBmfx Vectors_EventWarp1[17] = {
+    { 0, 0, 0 },
+    { 4, 0, 0 },
+    { 8, 0, 0 },
+    { 0xC, 0, 0 },
+    { 0x10, 0, 0 },
+    { 0x14, 0, 0 },
+    { 0x18, 0, 0 },
+    { 0x1C, 0, 0 },
+    { 0, 7, 0 },
+    { 4, 7, 0 },
+    { 8, 7, 0 },
+    { 0xC, 7, 0 },
+    { 0x10, 7, 0 },
+    { 0x14, 7, 0 },
+    { 0x18, 7, 0 },
+    { 0x1C, 7, 0 },
+    { 0xFF, 0xFF, 0 },
+};
+
+CONST_DATA struct VectorBmfx Vectors_EventWarp2[17] = {
+    { 0x1C, 7, 0 },
+    { 0x18, 7, 0 },
+    { 0x14, 7, 0 },
+    { 0x10, 7, 0 },
+    { 0xC, 7, 0 },
+    { 8, 7, 0 },
+    { 4, 7, 0 },
+    { 0, 7, 0 },
+    { 0x1C, 0, 0 },
+    { 0x18, 0, 0 },
+    { 0x14, 0, 0 },
+    { 0x10, 0, 0 },
+    { 0xC, 0, 0 },
+    { 8, 0, 0 },
+    { 4, 0, 0 },
+    { 0, 0, 0 },
+    { 0xFF, 0xFF, 0 },
+};
+
+CONST_DATA struct ProcCmd ProcScr_EventWrapAnim[] = {
+    PROC_YIELD,
+    PROC_CALL(ProcEventWrapAnim_Init),
+    PROC_REPEAT(ProcEventWrapAnim_Loop),
+    PROC_CALL(ProcEventWrapAnim_End),
+    PROC_END,
+};
 
 void ProcEventWrapAnim_Init(struct ProcBmFx * proc)
 {

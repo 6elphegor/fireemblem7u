@@ -3,10 +3,42 @@
 int GetGold(void);
 u16 GetItemSellPrice(int item);
 
-extern int CONST_DATA gShopSellTextIndexLookup[];
-extern char * CONST_DATA gpShopSellStringBuffer;
-extern struct ProcCmd CONST_DATA gProcScr_PrepWMShopSell[];
 extern u8 Tsa_0840E6AC[];
+
+CONST_DATA int gShopSellTextIndexLookup[] = {
+    4707, 4708,
+};
+
+CONST_DATA char * gpShopSellStringBuffer = (char *) 0x0200E68C;
+
+CONST_DATA struct ProcCmd gProcScr_PrepWMShopSell[] = {
+    { 14, 0, NULL },
+    { 11, 0, NULL },
+    { 2, 0, WmSell_Init },
+    { 2, 0, WmSell_Setup },
+    { 24, 16, NewFadeIn },
+    { 20, 0, FadeInExists },
+    { 11, 1, NULL },
+    { 2, 0, sub_08098C18 },
+    { 3, 0, WmSell_OnLoop_MainKeyHandler },
+    { 11, 2, NULL },
+    { 2, 0, sub_08098DCC },
+    { 3, 0, WmSell_OnLoop_ConfirmSellKeyHandler },
+    { 11, 3, NULL },
+    { 24, 16, NewFadeOut },
+    { 20, 0, FadeOutExists },
+    { 2, 0, WmSell_OnEnd },
+    { 0, 0, NULL },
+    { 1, 0, (void *) 0x04064000 },
+    { 1, 0, (void *) 0x04084000 },
+    { 1, 0, (void *) 0x040A4000 },
+    { 1, 0, (void *) 0x040C4000 },
+    { 1, 0, (void *) 0x040E4000 },
+    { 1, 0, (void *) 0x04104000 },
+    { 1, 0, (void *) 0x04124000 },
+    { 1, 0, (void *) 0x04144000 },
+    { 1, 0, (void *) 0x04164000 },
+};
 
 void WmSell_DrawSupplyDialogueSpriteText(void)
 {

@@ -1,22 +1,5 @@
 #include "gbafe.h"
 
-extern s8 CONST_DATA gUnitBurstMapUiTextXTable[];
-extern s8 CONST_DATA gUnitBurstMapUiTextYTable[];
-extern s8 CONST_DATA gUnitBurstMapUiXOffsetTable[];
-extern s8 CONST_DATA gUnitBurstMapUiYOffsetTable[];
-extern u8 const * CONST_DATA gUnitBurstMapUiTopTsaLut[];
-extern s8 CONST_DATA sMMBSlideInWidthLut[];
-extern s8 CONST_DATA sMMBSlideOutWidthLut[];
-extern s8 CONST_DATA sTerrainSlideInWidthLut[];
-extern s8 CONST_DATA sTerrainSlideOutWidthLut[];
-extern struct ProcCmd CONST_DATA gProcScr_TerrainDisplay[];
-extern struct ProcCmd CONST_DATA gProcScr_UnitDisplay_MinimugBox[];
-extern struct ProcCmd CONST_DATA gProcScr_UnitDisplay_Burst[];
-extern struct ProcCmd CONST_DATA gProcScr_SideWindowMaker[];
-extern s8 CONST_DATA sGoalSlideInWidthLut[];
-extern s8 CONST_DATA sGoalSlideOutWidthLut[];
-extern struct ProcCmd CONST_DATA gProcScr_GoalDisplay[];
-extern struct ProcCmd CONST_DATA gProcScr_PrepMap_MenuButtonDisplay[];
 
 extern u16 const gPal_PlayerInterface_Blue[];
 extern u16 const gPal_PlayerInterface_Red[];
@@ -42,7 +25,147 @@ extern u8 const Tsa_TerrainMapUi_ObstacleFullHp[];
 char const * GetTerrainName(int terrain);
 void GenNumberStr(int number); // StoreNumberStringToSmallBuffer
 void nullsub_7(void);
-void GenNumberOrBlankStr(int number); // StoreNumberStringOrDashesToSmallBuffer
+void GenNumberOrBlankStr(int number); void IsMapFadeActive(ProcPtr proc);
+
+CONST_DATA struct PlayerInterfaceConfigEntry sPlayerInterfaceConfigLut[4] = {
+    { 1, 1, -1, 1, 1, -1, { 0 } },
+    { -1, 1, -1, -1, 1, 1, { 0 } },
+    { 1, 1, -1, -1, 1, -1, { 0 } },
+    { -1, 1, -1, -1, 1, -1, { 0 } },
+};
+
+CONST_DATA s8 gUnitBurstMapUiTextXTable[] = {
+    1, 1, 1, 1, 1, 1,
+};
+
+CONST_DATA s8 gUnitBurstMapUiTextYTable[] = {
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 3, 3, 3, 3,
+    3, 3,
+};
+
+CONST_DATA s8 gUnitBurstMapUiXOffsetTable[] = {
+    0, -1, -6, 0, -1, -6,
+};
+
+CONST_DATA s8 gUnitBurstMapUiYOffsetTable[] = {
+    -6, -6, -6, 3, 3, 3,
+};
+
+CONST_DATA u8 const * gUnitBurstMapUiTopTsaLut[] = {
+    (u8 *) 0x08404688,
+    (u8 *) 0x084046DC,
+    (u8 *) 0x08404730,
+    (u8 *) 0x08404784,
+    (u8 *) 0x084047D8,
+    (u8 *) 0x0840482C,
+};
+
+CONST_DATA s8 sMMBSlideInWidthLut[] = {
+    5, 9, 11, 12,
+};
+
+CONST_DATA s8 sMMBSlideOutWidthLut[] = {
+    11, 7, 0,
+};
+
+CONST_DATA s8 sTerrainSlideInWidthLut[] = {
+    4, 5, 6,
+};
+
+CONST_DATA s8 sTerrainSlideOutWidthLut[] = {
+    5, 4, 0, 0, 0, 0,
+};
+
+CONST_DATA struct ProcCmd gProcScr_TerrainDisplay[] = {
+    PROC_19,
+    PROC_19,
+    PROC_YIELD,
+    PROC_CALL(TerrainDisplay_Init),
+    PROC_LABEL(0),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_REPEAT(TerrainDisplay_Loop_OnSideChange),
+    PROC_REPEAT(TerrainDisplay_Loop_SlideIn),
+    PROC_REPEAT(TerrainDisplay_Loop_Display),
+    PROC_REPEAT(TerrainDisplay_Loop_SlideOut),
+    PROC_GOTO(0),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_UnitDisplay_MinimugBox[] = {
+    PROC_19,
+    PROC_19,
+    PROC_YIELD,
+    PROC_CALL(MMB_Init),
+    PROC_LABEL(0),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_REPEAT(MMB_Loop_OnSideChange),
+    PROC_REPEAT(MMB_Loop_SlideIn),
+    PROC_LABEL(2),
+    PROC_REPEAT(MMB_Loop_Display),
+    PROC_LABEL(3),
+    PROC_REPEAT(MMB_Loop_SlideOut),
+    PROC_GOTO(0),
+    PROC_LABEL(1),
+    PROC_CALL(MMB_CheckForUnit),
+    PROC_GOTO(2),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_UnitDisplay_Burst[] = {
+    PROC_19,
+    PROC_19,
+    PROC_YIELD,
+    PROC_CALL(BurstDisplay_Init),
+    PROC_REPEAT(BurstDisplay_Loop_Display),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_SideWindowMaker[] = {
+    PROC_WHILE(IsMapFadeActive),
+    PROC_CALL(InitPlayerPhaseInterface),
+    PROC_END,
+};
+
+CONST_DATA s8 sGoalSlideInWidthLut[] = {
+    1, 3, 4, 5, 6,
+};
+
+CONST_DATA s8 sGoalSlideOutWidthLut[] = {
+    3, 1, 0,
+};
+
+CONST_DATA struct ProcCmd gProcScr_GoalDisplay[] = {
+    PROC_19,
+    PROC_19,
+    PROC_YIELD,
+    PROC_CALL(GoalDisplay_Init),
+    PROC_LABEL(0),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_REPEAT(GoalDisplay_Loop_OnSideChange),
+    PROC_REPEAT(GoalDisplay_Loop_SlideIn),
+    PROC_REPEAT(GoalDisplay_Loop_Display),
+    PROC_REPEAT(GoalDisplay_Loop_SlideOut),
+    PROC_GOTO(0),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd gProcScr_PrepMap_MenuButtonDisplay[] = {
+    PROC_19,
+    PROC_YIELD,
+    PROC_CALL(MenuButtonDisp_Init),
+    PROC_LABEL(0),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_WHILE(IsAnyPlayerSideWindowRetracting),
+    PROC_CALL(MenuButtonDisp_UpdateCursorPos),
+    PROC_REPEAT(MenuButtonDisp_Loop_OnSlideIn),
+    PROC_REPEAT(MenuButtonDisp_Loop_Display),
+    PROC_REPEAT(MenuButtonDisp_Loop_OnSlideOut),
+    PROC_GOTO(0),
+    PROC_END,
+};
+
+// StoreNumberStringOrDashesToSmallBuffer
 
 int GetWindowQuadrant(int x, int y)
 {

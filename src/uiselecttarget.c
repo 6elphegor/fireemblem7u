@@ -35,12 +35,38 @@ extern struct Vec2 sSelectTargetRoot;
 extern struct SelectTarget sSelectTargetList[];
 extern int sSelectTargetCount;
 
-extern struct ProcCmd CONST_DATA ProcScr_TargetSelection[];
-extern struct NearTargetLinkOffset CONST_DATA gNearTargetLinkOrder[13];
 
 void TargetSelection_HandleMoveInput(struct SelectTargetProc * proc);
 int TargetSelection_HandleSelectInput(struct SelectTargetProc * proc);
 struct SelectTarget * GetLinkedTargets(void);
+
+void TargetSelection_Loop(struct SelectTargetProc * proc);
+
+CONST_DATA struct ProcCmd ProcScr_TargetSelection[] = {
+    PROC_LABEL(0),
+    PROC_SLEEP(1),
+    PROC_REPEAT(TargetSelection_Loop),
+    PROC_SLEEP(1),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_GOTO(0),
+    PROC_END,
+};
+
+CONST_DATA struct NearTargetLinkOffset gNearTargetLinkOrder[13] = {
+    { 0, 0 },
+    { 0, -2 },
+    { 0, -1 },
+    { 1, -1 },
+    { 1, 0 },
+    { 2, 0 },
+    { 1, 1 },
+    { 0, 1 },
+    { 0, 2 },
+    { -1, 1 },
+    { -1, 0 },
+    { -2, 0 },
+    { -1, -1 },
+};
 
 void BeginTargetList(int x, int y)
 {
