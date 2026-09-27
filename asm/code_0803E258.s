@@ -105,7 +105,7 @@ _0803E316:
 	adds r1, #0x28
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	mov r2, r8
 	ldr r0, [r2, #0x30]
 	bl Proc_End

@@ -89,7 +89,7 @@ _0803E230:
 	adds r1, #0x28
 	lsls r1, r1, #0x10
 	asrs r1, r1, #0x10
-	bl sub_08048C50
+	bl UpdateLinkArenaMenuScrollBar
 	movs r0, #2
 	bl EnableBgSync
 	pop {r3, r4}

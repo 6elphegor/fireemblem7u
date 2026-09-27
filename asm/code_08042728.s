@@ -125,7 +125,7 @@ _08042810:
 	bge _08042810
 	ldr r0, [r6, #0x2c]
 	movs r1, #0
-	bl sub_08047D80
+	bl StartLinkArenaTitleBanner
 	ldr r1, _080428B0 @ =0x081D541C
 	ldr r0, [r6, #0x48]
 	lsls r0, r0, #1

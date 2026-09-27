@@ -183,7 +183,7 @@ _080419B8:
 	bl StartLinkArenaMenuScrollBar
 	adds r0, r7, #0
 	movs r1, #5
-	bl sub_08047D80
+	bl StartLinkArenaTitleBanner
 	ldr r0, _08041B44 @ =0x0203D90C
 	ldrb r0, [r0]
 	str r0, [sp]
