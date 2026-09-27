@@ -90,10 +90,13 @@ void PrepScreenMenu_OnSupport(struct ProcAtMenu * proc);
 void PrepScreenMenu_OnSave(struct ProcAtMenu * proc);
 int PrepScreenMenu_OnStartPress(struct ProcAtMenu * proc);
 // PrepScreenMenu_808E57C
+void sub_0808DC3C(struct ProcAtMenu * proc);
 int PrepScreenMenu_OnBPress(struct ProcAtMenu * proc);
 void PrepScreenMenu_OnCheckMap(struct ProcAtMenu * proc);
 // nullsub_74
 // nullsub_75
+void nullsub_74(void);
+void nullsub_75(void);
 void ResetSioPidPool(void);
 void RegisterSioPid(u8 val);
 void RemoveSioPid(u8 val);
@@ -105,10 +108,12 @@ int PrepGetLatestCharId();
 void PrepSetLatestCharId(int val);
 // IsCharacterForceDeployed
 // CalcForceDeployedUnitCounts
+bool IsCharacterForceDeployed(int pid);
+s32 CalcForceDeployedUnitCounts(void);
 bool SomeLeftoverFunctionThatReturns0(struct Unit *unit);
 bool IsUnitInCurrentRoster(struct Unit *unit);
 // AtMenu_AddPrepScreenSupportMenuItem
-int CanPrepScreenCheckMap(void);
+bool CanPrepScreenCheckMap(void);
 void InitPrepScreenMainMenu(struct ProcAtMenu *proc);
 int GetLatestUnitIndexInPrepListByUId(void);
 int PrepGetLatestUnitIndex(void);

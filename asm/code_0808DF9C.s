@@ -32,7 +32,7 @@ InitPrepScreenMainMenu: @ 0x0808DF9C
 	asrs r0, r0, #0x18
 	cmp r0, #0
 	beq _0808E008
-	ldr r1, _0808E000 @ =sub_0808DC88
+	ldr r1, _0808E000 @ =PrepScreenMenu_OnCheckMap
 	ldr r3, _0808E004 @ =0x00001141
 	str r4, [sp]
 	movs r0, #7
@@ -44,10 +44,10 @@ _0808DFF0: .4byte PrepScreenMenu_OnPickUnits
 _0808DFF4: .4byte 0x0000113D
 _0808DFF8: .4byte PrepScreenMenu_OnItems
 _0808DFFC: .4byte 0x0000113E
-_0808E000: .4byte sub_0808DC88
+_0808E000: .4byte PrepScreenMenu_OnCheckMap
 _0808E004: .4byte 0x00001141
 _0808E008:
-	ldr r1, _0808E038 @ =sub_0808DC88
+	ldr r1, _0808E038 @ =PrepScreenMenu_OnCheckMap
 	ldr r3, _0808E03C @ =0x00001141
 	str r0, [sp]
 	movs r0, #7
@@ -71,7 +71,7 @@ _0808E016:
 	bl SetPrepScreenMenuItem
 	b _0808E074
 	.align 2, 0
-_0808E038: .4byte sub_0808DC88
+_0808E038: .4byte PrepScreenMenu_OnCheckMap
 _0808E03C: .4byte 0x00001141
 _0808E040: .4byte 0x0202BBF8
 _0808E044: .4byte PrepScreenMenu_OnSave
@@ -96,7 +96,7 @@ _0808E048:
 	movs r2, #0
 	bl SetPrepScreenMenuItem
 _0808E074:
-	ldr r0, _0808E0CC @ =sub_0808DC5C
+	ldr r0, _0808E0CC @ =PrepScreenMenu_OnBPress
 	bl SetPrepScreenMenuOnBPress
 	ldr r0, _0808E0D0 @ =PrepScreenMenu_OnStartPress
 	bl SetPrepScreenMenuOnStartPress
@@ -128,7 +128,7 @@ _0808E0BC: .4byte PrepScreenMenu_OnItems
 _0808E0C0: .4byte 0x0000113E
 _0808E0C4: .4byte sub_0808DC3C
 _0808E0C8: .4byte 0x00001152
-_0808E0CC: .4byte sub_0808DC5C
+_0808E0CC: .4byte PrepScreenMenu_OnBPress
 _0808E0D0: .4byte PrepScreenMenu_OnStartPress
 _0808E0D4: .4byte 0x02022C60
 _0808E0D8: .4byte 0x02023460
