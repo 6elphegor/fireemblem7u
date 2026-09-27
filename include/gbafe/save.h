@@ -229,9 +229,41 @@ void SavePlayThroughData(void);
 struct PidStats * GetPidStats(u8 pid);
 #define UNIT_SAVE_AMOUNT_BLUE 52
 
-struct GameSavePackedUnit {
-    /* 00 */ u8 raw[0x24];
+enum {
+    PACKED_US_DEAD       = (1 << 0),
+    PACKED_US_UNDEPLOYED = (1 << 1),
+    PACKED_US_SOLO_ANIM1 = (1 << 2),
+    PACKED_US_SOLO_ANIM2 = (1 << 3),
+    PACKED_US_METIS_TOME = (1 << 4),
+    PACKED_US_B5         = (1 << 5),
+    PACKED_US_B6         = (1 << 6),
 };
+
+struct GameSavePackedUnit {
+    /* 00 */ u32 jid : 7;
+             u32 level : 5;
+             u32 exp : 7;
+             u32 xPos : 6;
+             u32 yPos : 6;
+             u32 flags : 13;
+             u32 max_hp : 6;
+             u32 pow : 5;
+             u32 skl : 5;
+             u32 spd : 5;
+             u32 def : 5;
+             u32 res : 5;
+             u32 lck : 5;
+             u32 con_bonus : 5;
+             u32 mov_bonus : 5;
+             u32 item1 : 14;
+             u32 item2 : 14;
+             u32 item3 : 14;
+             u32 item4 : 14;
+             u32 item5 : 14;
+    /* 14 */ u8 pid;
+    /* 15 */ u8 ranks[8];
+    /* 1D */ u8 supports[7];
+} __attribute__((packed));
 
 struct GameSaveBlock {
     /* 000 */ struct PlaySt playSt;
@@ -247,7 +279,43 @@ struct GameSaveBlock {
 #define UNIT_SAVE_AMOUNT_GREEN 10
 
 struct SuspendSavePackedUnit {
-    /* 00 */ u8 raw[0x34];
+    /* 00 */ u8 pid;
+    /* 01 */ u8 jid;
+    /* 02 */ u8 ai1;
+    /* 03 */ u8 rescue;
+    /* 04 */ u32 state;
+    /* 08 */ u16 item1; // top 2 bits: supportBits
+    /* 0A */ u16 item2;
+    /* 0C */ u16 item3;
+    /* 0E */ u8 maxHP;
+    /* 0F */ u8 curHP;
+    /* 10 */ u8 exp;
+    /* 11 */ u8 aiFlags;
+    /* 12 */ u8 ranks[8];
+    /* 1A */ u8 supports[7];
+    /* 21 */ u8 ai1data;
+    /* 22 */ u8 ai2;
+    /* 23 */ u8 ai2data;
+    /* 24 */ u32 level : 5;
+             u32 xPos : 6;
+             u32 yPos : 6;
+             u32 pow : 5;
+             u32 skl : 5;
+             u32 spd : 5;
+    /* 28 */ u32 def : 5;
+             u32 res : 5;
+             u32 lck : 5;
+             u32 conBonus : 5;
+             u32 statusIndex : 3;
+             u32 statusDuration : 3;
+             u32 torchDuration : 3;
+             u32 barrierDuration : 3;
+    /* 2C */ u32 movBonus : 4;
+             u32 item4 : 14;
+             u32 item5 : 14;
+    /* 30 */ u8 ballistaIndex; // bit 7: supportBits
+    /* 31 */ u8 unk31;
+    /* 32 */ u16 ai3And4;
 };
 
 struct SuspendSaveBlock {
