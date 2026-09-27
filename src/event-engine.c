@@ -605,7 +605,7 @@ ProcPtr StartEventInternal(EventScr const * script, ProcPtr parent)
     else
         proc->unk_4D = FALSE;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (proc->script[0])
     {

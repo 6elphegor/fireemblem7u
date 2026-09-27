@@ -86,7 +86,7 @@ void TryAddUnitToDanceRingTargetList(struct Unit * unit);
 void MakeTargetListForDanceRing(struct Unit * unit);
 
 // Declarations of functions from other modules not yet in their headers.
-void BmMapFillg(u8 ** map, int value);
+void BmMapFill(u8 ** map, int value);
 void MapAddInRange(int x, int y, int range, int value);
 void MapAddInBoundedRange(short x, short y, short minRange, short maxRange);
 int GetTerrainHealAmount(int terrain);

@@ -616,7 +616,7 @@ void sub_0807E1C0(void)
     struct Unit * leader;
     int i;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     leader = GetUnitFromCharId(0x27);
     FakeLoadUnit(gUnk_08CE0978, leader);
@@ -670,7 +670,7 @@ void sub_0807E348(void)
     struct UnitDefinition const * def = gUnk_08CE09B8;
     int i;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     for (i = 1; i < 0x40; i++)
     {

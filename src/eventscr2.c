@@ -229,7 +229,7 @@ void EventMovementWait(struct EventProc * proc)
 
     if (!active)
     {
-        BmMapFillg(gBmMapOther, 0);
+        BmMapFill(gBmMapOther, 0);
         proc->idle_func = NULL;
     }
 }
@@ -239,7 +239,7 @@ int EvtCmd_WaitForMovement(struct EventProc * proc)
     if (MuExistsActive())
         return EVENT_CMDRET_REPEAT;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;

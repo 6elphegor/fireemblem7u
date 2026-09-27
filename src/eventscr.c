@@ -1223,7 +1223,7 @@ void WaitForMu_OnLoop(struct EventMuWaitProc * proc)
 
 int EvtCmd_LoadUnits(struct EventProc * proc)
 {
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[1];
 
@@ -1239,7 +1239,7 @@ int EvtCmd_LoadUnits(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsAlive(struct EventProc * proc)
 {
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[1];
 
@@ -1261,7 +1261,7 @@ int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
     if (gPlaySt.chapterModeIndex != (u8)proc->script[1])
         return EVENT_CMDRET_CONTINUE;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[2];
 
@@ -1277,7 +1277,7 @@ int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
 
 int EvtCmd_LoadUnitsParty(struct EventProc * proc)
 {
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     proc->unit_info = (struct UnitDefinition const *)proc->script[1];
     EventLoadUnitsAsParty(proc);
@@ -1289,7 +1289,7 @@ int EvtCmd_LoadUnitsPartyIfScenario(struct EventProc * proc)
 {
     if (gPlaySt.chapterModeIndex == (u8)proc->script[1])
     {
-        BmMapFillg(gBmMapOther, 0);
+        BmMapFill(gBmMapOther, 0);
 
         proc->unit_info = (struct UnitDefinition const *)proc->script[2];
         EventLoadUnitsAsParty(proc);
@@ -1310,7 +1310,7 @@ int EvtCmd_LoadUnitsByMode(struct EventProc * proc)
     if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
         mode += 2;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (mode)
     {
@@ -1355,7 +1355,7 @@ int EvtCmd_LoadUnitsPartyByMode(struct EventProc * proc)
     if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
         mode += 2;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (mode)
     {

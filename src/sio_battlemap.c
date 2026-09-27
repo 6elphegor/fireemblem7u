@@ -443,8 +443,8 @@ void sub_08044DCC(void)
 {
     int i;
 
-    BmMapFillg(gBmMapUnit, 0);
-    BmMapFillg(gBmMapFog, 1);
+    BmMapFill(gBmMapUnit, 0);
+    BmMapFill(gBmMapFog, 1);
 
     for (i = FACTION_BLUE + 1; i < FACTION_PURPLE + 6; i++)
     {
@@ -533,7 +533,7 @@ void sub_08044F3C(void)
     sub_08044D14();
     sub_08044D2C();
 
-    BmMapFillg(gBmMapFog, gPlaySt.chapterVisionRange == 0);
+    BmMapFill(gBmMapFog, gPlaySt.chapterVisionRange == 0);
 
     sub_08044DCC();
 

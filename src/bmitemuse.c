@@ -494,7 +494,7 @@ void DoUseRescueStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, StaffSelectOnSelect),
@@ -505,7 +505,7 @@ void DoUseSpecialDance(struct Unit * unit, void (*func)(struct Unit *), int msg)
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, StaffSelectOnSelect),
@@ -636,7 +636,7 @@ void DoUseWarpStaff(struct Unit * unit)
 {
     MakeTargetListForWarp(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         NewTargetSelection_Specialized(&gSelectInfo_WarpUnit, WarpOnSelectTarget),
@@ -659,7 +659,7 @@ void DoUsePutTrap(struct Unit * unit, void (*func)(struct Unit *), int msg)
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         NewTargetSelection_Specialized(&gSelectInfo_PutTrap, OnSelectPutTrap),
@@ -689,7 +689,7 @@ void DoUseRepairStaff(struct Unit * unit)
 {
     MakeTargetListForHammerne(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         StartMapSelect(&gSelectInfo_Repair),
@@ -776,7 +776,7 @@ void DoUseHealStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         StartMapSelect(&gSelectInfo_Heal),
@@ -787,7 +787,7 @@ void DoUseRestoreStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         StartMapSelect(&gSelectInfo_Restore),
@@ -809,7 +809,7 @@ void DoUseBarrierStaff(struct Unit * unit)
 {
     MakeTargetListForBarrier(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         StartMapSelect(&gSelectInfo_Barrier),
@@ -831,7 +831,7 @@ void DoUseAttackStaff(struct Unit * unit, void (*func)(struct Unit *))
 {
     func(unit);
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 
     StartSubtitleHelp(
         StartMapSelect(&gSelectInfo_OffensiveStaff),

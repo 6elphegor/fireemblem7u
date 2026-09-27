@@ -58,8 +58,8 @@ void Prep_ShowDeployableTiles(void)
 {
     const struct UnitDefinition * uDef = sub_08079280();
 
-    BmMapFillg(gBmMapRange, 0);
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
+    BmMapFill(gBmMapMovement, -1);
 
     uDef += CalcForceDeployedUnitCounts();
 

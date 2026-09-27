@@ -62,7 +62,7 @@ bool CanUnitUseSeize(void)
 bool CanUnitUseAttack(void)
 {
     BeginTargetList(0, 0);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
     GenerateUnitCompleteAttackRange(gActiveUnit);
     gSubjectUnit = gActiveUnit;
     ForEachUnitInRange(AddUnitToTargetListIfNotAllied);
@@ -104,7 +104,7 @@ int sub_08031444(void)
 
 int sub_08031470(void)
 {
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
     gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
     return GetUnitCommandUseFlags();
 }
@@ -117,7 +117,7 @@ void sub_080314AC(struct Unit * unit)
 
     int reach = GetUnitWeaponReach(unit, -1);
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     for (i = FACTION_RED + 1; i < FACTION_RED + 0x40; i++)
     {

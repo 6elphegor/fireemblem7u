@@ -622,7 +622,7 @@ s8 sub_080380A8(int x, int y, struct Vec2 * out, u8 * itemSlotOut)
         if (!CanUnitUseWeapon(gActiveUnit, item))
             continue;
 
-        BmMapFillg(gBmMapRange, 0);
+        BmMapFill(gBmMapRange, 0);
         MapAddInBoundedRange(x, y, GetItemMinRange(item), GetItemMaxRange(item));
 
         for (iy = gBmMapSize.y - 1; iy >= 0; iy--)

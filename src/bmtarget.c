@@ -143,7 +143,7 @@ void ListAttackTargetsForWeapon(struct Unit * unit, int item)
 
     BeginTargetList(x, y);
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     MapAddInBoundedRange(x, y, GetItemMinRange(item), GetItemMaxRange(item));
 
@@ -187,7 +187,7 @@ void MakeTradeTargetList(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
     ForEachAdjacentUnit(x, y, TryAddUnitToTradeTargetList);
 
     if (gSubjectUnit->state & US_RESCUING)
@@ -227,7 +227,7 @@ void MakeRescueTargetList(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToRescueTargetList);
 }
@@ -250,7 +250,7 @@ void MakeDropTargetList(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentPosition(x, y, TryAddToDropTargetList);
 }
@@ -279,7 +279,7 @@ void MakeTakeTargetList(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddRescuedUnitToTakeTargetList);
 }
@@ -311,7 +311,7 @@ void MakeGiveTargetList(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToGiveTargetList);
 }
@@ -334,7 +334,7 @@ void MakeTalkTargetList(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToTalkTargetList);
 }
@@ -394,7 +394,7 @@ void FillBallistaRangeMaybe(struct Unit * unit)
     item = GetSomeBallistaItemAt(x, y);
     if (item != 0)
     {
-        BmMapFillg(gBmMapRange, 0);
+        BmMapFill(gBmMapRange, 0);
 
         MapAddInBoundedRange(x, y, GetItemMinRange(item), GetItemMaxRange(item));
 
@@ -433,7 +433,7 @@ void MakeTargetListForDoorAndBridges(struct Unit * unit, int terrain)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     switch (terrain)
     {
@@ -524,7 +524,7 @@ void MakeTargetListForRefresh(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToRefreshTargetList);
 }
@@ -556,7 +556,7 @@ void MakeTargetListForSteal(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, AddAsTarget_IfCanStealFrom);
 }
@@ -582,7 +582,7 @@ void MakeTargetListForAdjacentHeal(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToHealTargetList);
 }
@@ -596,7 +596,7 @@ void MakeTargetListForRangedHeal(struct Unit * unit)
 
     BeginTargetList(x, y);
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     MapAddInRange(x, y, GetUnitMagRange(gSubjectUnit), 1);
 
@@ -624,7 +624,7 @@ void MakeTargetListForRestore(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToRestoreTargetList);
 }
@@ -650,7 +650,7 @@ void MakeTargetListForBarrier(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToBarrierTargetList);
 }
@@ -667,7 +667,7 @@ void MakeTargetListForRescueStaff(struct Unit * unit)
 {
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachUnitInMagBy2Range(TryAddUnitToRescueStaffTargetList);
 }
@@ -709,7 +709,7 @@ void MakeTargetListForSilence(struct Unit * unit)
 {
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachUnitInMagBy2Range(TryAddUnitToSilenceTargetList);
 }
@@ -718,7 +718,7 @@ void MakeTargetListForSleep(struct Unit * unit)
 {
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachUnitInMagBy2Range(TryAddUnitToSleepTargetList);
 }
@@ -727,7 +727,7 @@ void MakeTargetListForBerserk(struct Unit * unit)
 {
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachUnitInMagBy2Range(TryAddUnitToBerserkTargetList);
 }
@@ -747,7 +747,7 @@ void MakeTargetListForWarp(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToWarpTargetList);
 }
@@ -759,7 +759,7 @@ void MakeTargetListForUnlock(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachPosIn12Range(x, y, TryAddClosedDoorToTargetList);
 }
@@ -788,7 +788,7 @@ void MakeTargetListForHammerne(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToHammerneTargetList);
 }
@@ -869,7 +869,7 @@ void MakeTargetListForMine(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
     ForEachAdjacentPosition(x, y, TryAddToMineTargetList);
 }
 
@@ -898,7 +898,7 @@ void MakeTargetListForLightRune(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentPosition(x, y, TryAddToLightRuneTargetList);
 }
@@ -921,7 +921,7 @@ void MakeTargetListForDanceRing(struct Unit * unit)
 
     gSubjectUnit = unit;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddUnitToDanceRingTargetList);
 }

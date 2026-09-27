@@ -698,7 +698,7 @@ void AiMakeMoveRangeMapsForUnitAndWeapon(struct Unit * unit, u16 item)
     int iy;
 
     GenerateUnitMovementMap(unit);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -720,7 +720,7 @@ void AiMakeMoveRangeUnitPowerMaps(struct Unit * unit)
     int power = GetUnitPower(unit) > 20 ? 20 : GetUnitPower(unit);
 
     GenerateUnitMovementMap(unit);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -740,7 +740,7 @@ void sub_08036770(struct Unit * unit, u16 item)
     int iy;
 
     GenerateUnitMovementMap(unit);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {
@@ -846,7 +846,7 @@ s8 AiFindSafestReachableLocation(struct Unit * unit, struct Vec2 * out)
 
     if (gAiState.flags & AI_FLAG_STAY)
     {
-        BmMapFillg(gBmMapMovement, -1);
+        BmMapFill(gBmMapMovement, -1);
         gBmMapMovement[unit->yPos][unit->xPos] = 0;
     }
     else
@@ -1282,7 +1282,7 @@ void SaveNumberOfAlliedUnitsIn0To8Range(struct Unit * unit)
 
     int count = 0;
 
-    BmMapFillg(gBmMapMovement, 0);
+    BmMapFill(gBmMapMovement, 0);
     MapAddInBoundedRange(unit->xPos, unit->yPos, 1, 8);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)

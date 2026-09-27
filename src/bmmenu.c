@@ -411,8 +411,8 @@ u8 StartFightItemReview(struct MenuProc * menu, struct MenuItemProc * menuItem)
 
 int DisplayUnitStandingAttackRange(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
-    BmMapFillg(gBmMapMovement, -1);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
 
     if (gActiveUnit->state & US_IN_BALLISTA)
     {
@@ -491,8 +491,8 @@ int WeaponSelectMenu_SwitchIn(struct MenuProc * menu, struct MenuItemProc * menu
 
     UpdateMenuItemPanel(menuItem->itemNumber);
 
-    BmMapFillg(gBmMapMovement, -1);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
 
     reach = GetUnitWeaponReach(gActiveUnit, menuItem->itemNumber);
     BuildUnitStandingRangeForReach(gActiveUnit, reach);
@@ -1133,8 +1133,8 @@ int FillBallistaRange(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
     int item;
 
-    BmMapFillg(gBmMapMovement, -1);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
 
     SetWorkingBmMap(gBmMapRange);
 
@@ -1207,8 +1207,8 @@ int StaffCommandRange(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
     int reach = GetUnitItemUseReachBits(gActiveUnit, -1);
 
-    BmMapFillg(gBmMapMovement, -1);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
 
     BuildUnitStandingRangeForReach(gActiveUnit, reach);
 
@@ -1261,8 +1261,8 @@ int StaffItemSelect_OnHover(struct MenuProc * menu, struct MenuItemProc * menuIt
 
     UpdateMenuItemPanel(menuItem->itemNumber);
 
-    BmMapFillg(gBmMapMovement, -1);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
 
     BuildUnitStandingRangeForReach(gActiveUnit, reach);
 

@@ -47,7 +47,7 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
 
     if (gActiveUnit->state & US_IN_BALLISTA)
     {
-        BmMapFillg(gBmMapMovement, -1);
+        BmMapFill(gBmMapMovement, -1);
         gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
 
         if (GetRiddenBallistaAt(gActiveUnit->xPos, gActiveUnit->yPos) != 0)
@@ -71,7 +71,7 @@ s8 AiAttemptOffensiveAction(s8 (* isEnemy)(struct Unit * unit))
 
         if (gAiState.flags & AI_FLAG_STAY)
         {
-            BmMapFillg(gBmMapMovement, -1);
+            BmMapFill(gBmMapMovement, -1);
             gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
         }
         else
@@ -155,7 +155,7 @@ s8 AiAttemptCombatWithinMovement(s8 (* isEnemy)(struct Unit * unit))
 
     if (gActiveUnit->state & US_IN_BALLISTA)
     {
-        BmMapFillg(gBmMapMovement, -1);
+        BmMapFill(gBmMapMovement, -1);
         gBmMapMovement[gActiveUnit->yPos][gActiveUnit->xPos] = 0;
 
         if (GetRiddenBallistaAt(gActiveUnit->xPos, gActiveUnit->yPos) == 0)
@@ -236,7 +236,7 @@ else_stmt:
 
 void AiFillReversedAttackRangeMap(struct Unit * unit, u16 item)
 {
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
     MapAddInBoundedRange(unit->xPos, unit->yPos, GetItemMinRange(item), GetItemMaxRange(item));
 }
 
@@ -250,7 +250,7 @@ void AiFloodMovementAndRange(struct Unit * unit, u16 move, u16 item)
     SetWorkingBmMap(gBmMapMovement);
     BeginMapFlood(unit->xPos, unit->yPos, move, unit->index);
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     for (iy = gBmMapSize.y - 1; iy >= 0; iy--)
     {

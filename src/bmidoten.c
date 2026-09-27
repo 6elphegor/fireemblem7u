@@ -94,7 +94,7 @@ void BeginMapFlood(int x, int y, int movement, int unitId)
 
     gMovMapFillState.maxMovementValue = MAP_MOVEMENT_MAX;
 
-    BmMapFillg(gWorkingBmMap, -1);
+    BmMapFill(gWorkingBmMap, -1);
 
     gMovMapFillState.dst->xPos = x;
     gMovMapFillState.dst->yPos = y;
@@ -731,7 +731,7 @@ void GenerateDangerZoneRange(s8 boolDisplayStaffRange)
 
     prevHasMagicRank = -1;
 
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     enemyFaction = GetActiveFactionOpposingAlliance();
 
@@ -760,7 +760,7 @@ void GenerateDangerZoneRange(s8 boolDisplayStaffRange)
 
         if (prevHasMagicRank != hasMagicRank)
         {
-            BmMapFillg(gBmMapOther, 0);
+            BmMapFill(gBmMapOther, 0);
 
             if (hasMagicRank)
                 GenerateMagicSealMap(1);

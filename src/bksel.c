@@ -579,7 +579,7 @@ void NewBattleForecast(ProcPtr unused)
         break;
     }
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 }
 
 void UpdateBattleForecastContents(void)
