@@ -67,7 +67,7 @@ PROC_LABEL(2),
     PROC_CALL(RenderMap),
     PROC_CALL(StartMapSongBgm),
 
-    PROC_CALL(sub_08013FBC),
+    PROC_CALL(StartMidFadeFromBlack),
     PROC_REPEAT(WaitForFade),
 
     PROC_GOTO(3),
@@ -76,7 +76,7 @@ PROC_LABEL(4),
     PROC_CALL(RenderMap),
     PROC_CALL(StartMapSongBgm),
 
-    PROC_CALL(sub_08013FBC),
+    PROC_CALL(StartMidFadeFromBlack),
     PROC_REPEAT(WaitForFade),
 
     PROC_REPEAT(BmMain_ResumePlayerPhase),
@@ -95,7 +95,7 @@ PROC_LABEL(6),
     PROC_CALL(RenderMap),
     PROC_CALL(StartMapSongBgm),
 
-    PROC_CALL(sub_08013FBC),
+    PROC_CALL(StartMidFadeFromBlack),
     PROC_REPEAT(WaitForFade),
 
     PROC_GOTO(7),
@@ -104,7 +104,7 @@ PROC_LABEL(5),
     PROC_CALL(RenderMap),
     PROC_CALL(StartMapSongBgm),
 
-    PROC_CALL(sub_08013FBC),
+    PROC_CALL(StartMidFadeFromBlack),
     PROC_REPEAT(WaitForFade),
 
     PROC_START_CHILD_BLOCKING(ProcScr_08B96EA8),

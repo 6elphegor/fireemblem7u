@@ -6,7 +6,7 @@
 sub_0806B98C: @ 0x0806B98C
 	push {r4, lr}
 	adds r4, r0, #0
-	bl sub_0804B1D8
+	bl EndEkrBattleDeamon
 	bl EndEkrGauge
 	ldr r0, _0806B9B0 @ =OnMain
 	bl SetMainFunc

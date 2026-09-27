@@ -36,7 +36,7 @@ int GetPlayerSelectKind(struct Unit * unit);
 void UnitBeginAction(struct Unit * unit);
 void StartPrepUnitSwap(ProcPtr parent, struct Unit * unit, int x, int y);
 void sub_08018980(void);                            // LoadUnitPrepScreenPositions
-void sub_0800F0C8(void);                            // InitPlayerUnitPositionsForPrepScreen
+void InitPlayerUnitPositionsForPrepScreen(void);                            // InitPlayerUnitPositionsForPrepScreen
 void sub_080A3284(void);                            // StartMinimapPrepPhase
 int sub_0807812C(struct EventInfo * info);          // SearchAvailableEvent
 void sub_080B03D4(struct Unit * unit, const u16 * items); // StartArmoryScreen
@@ -366,7 +366,7 @@ void InitPrepScreenUnitsAndCamera(ProcPtr proc)
     if (!(gPlaySt.chapterStateBits & PLAY_FLAG_PREPSCREEN))
     {
         SortPlayerUnitsForPrepScreen();
-        sub_0800F0C8();
+        InitPlayerUnitPositionsForPrepScreen();
         gPlaySt.chapterStateBits |= PLAY_FLAG_PREPSCREEN;
     }
 

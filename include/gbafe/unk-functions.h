@@ -70,7 +70,7 @@ void ResumeChapterFromSuspend(/* TODO */);
 // RefreshBMapDisplay_FromBattle
 // BMapDispResume_FromBattleDelayed
 // InitMoreBMapGraphics
-// RefreshBMapGraphics
+void RefreshBMapGraphics(void);
 // StartMapMain
 // EndMapMain
 void CleanupUnitsBeforeChapter(void);
@@ -308,9 +308,9 @@ void sub_080327C4(ProcPtr proc, const char *str);
 // PoisonDamageDisplay_Init
 // PoisonDamageDisplay_Display
 // PoisonDamageDisplay_Next
-// sub_08033084
-// sub_080330A8
-// sub_080330F4
+// StatusDecayDisplay_Init
+// StatusDecayDisplay_Display
+// StatusDecayDisplay_Next
 // sub_8033648
 // TrapDamageDisplay_Check
 // TrapDamageDisplay_Watch
