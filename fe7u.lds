@@ -177,10 +177,7 @@ SECTIONS
         build/src/lightrunefx.o(.text);
         build/src/danceringfx.o(.text);
         build/src/eventwarpfx.o(.text);
-        build/asm/code_08020AD0.o(.text);
-        build/asm/code_08020B84.o(.text);
-        build/asm/code_08020BFC.o(.text);
-        build/asm/code_08020C14.o(.text);
+        build/src/bmfx_08020AD0.o(.text);
         build/asm/code_08020C5C.o(.text);
         build/asm/code_08020D18.o(.text);
         build/asm/code_08020D6C.o(.text);
