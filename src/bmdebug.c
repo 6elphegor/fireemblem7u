@@ -1,6 +1,26 @@
 #include "gbafe.h"
 #include "gbafe/bmmenu.h"
 
+struct DebugMonitorProc {
+    PROC_HEADER;
+
+    /* 29 */ u8 _pad_29[0x58 - 0x29];
+    /* 58 */ int weather;
+    /* 5C */ u8 _pad_5C[0x66 - 0x5C];
+    /* 66 */ s16 displayInfo;
+};
+
+struct DebugOnOffMsgs { int msg[2]; };
+struct DebugWeatherMsgs { int msg[7]; };
+
+extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
+extern const struct DebugOnOffMsgs sDebugOnOffMsgs;
+extern const struct DebugWeatherMsgs sDebugWeatherMsgs;
+
+void SetupDebugFontForOBJ(int vramOffset, int palId);
+void SetWeather(int weather);
+
+
 void DebugPutStr(u16 * tm, char const * str);
 void EndMapMain(void);
 void sub_08012B88(void);
@@ -226,19 +246,112 @@ u8 EndMenuAndClear(struct MenuProc * menuProc, struct MenuItemProc * menuItemPro
     return 1;
 }
 
-ASM_FUNC("asm/nonmatching/code_0801B598.s");
+int DebugMapMenu_DisplayInfoDraw(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    struct DebugOnOffMsgs msgs = sDebugOnOffMsgs;
+    struct DebugMonitorProc * proc = Proc_Find(ProcScr_DebugMonitor);
 
-ASM_FUNC("asm/nonmatching/code_0801B61C.s");
+    ClearText(&menuItemProc->text);
+    Text_InsertDrawString(&menuItemProc->text, 8, 0, DecodeMsg(0x1247));
+    Text_InsertDrawString(&menuItemProc->text, 64, 2, DecodeMsg(msgs.msg[proc->displayInfo]));
+    PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
 
-ASM_FUNC("asm/nonmatching/code_0801B668.s");
+    return 0;
+}
 
-ASM_FUNC("asm/nonmatching/code_0801B66C.s");
+u8 DebugMapMenu_DisplayInfoIdle(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    struct DebugMonitorProc * proc = Proc_Find(ProcScr_DebugMonitor);
 
-ASM_FUNC("asm/nonmatching/code_0801B6F8.s");
+    if (gpKeySt->pressed & (A_BUTTON | DPAD_RIGHT | DPAD_LEFT))
+    {
+        proc->displayInfo ^= 1;
+        DebugMapMenu_DisplayInfoDraw(menuProc, menuItemProc);
+        SetupDebugFontForOBJ(-1, 9);
+    }
 
-ASM_FUNC("asm/nonmatching/code_0801B7A0.s");
+    return 0;
+}
 
-ASM_FUNC("asm/nonmatching/code_0801B7A4.s");
+u8 DebugMapMenu_DisplayInfoEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    return 0;
+}
+
+int DebugMenu_WeatherDraw(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    struct DebugWeatherMsgs msgs = sDebugWeatherMsgs;
+    struct DebugMonitorProc * proc = Proc_Find(ProcScr_DebugMonitor);
+
+    ClearText(&menuItemProc->text);
+    Text_InsertDrawString(&menuItemProc->text, 8, 0, DecodeMsg(0x124F));
+    Text_InsertDrawString(&menuItemProc->text, 64, 2, DecodeMsg(msgs.msg[proc->weather % 7]));
+    PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
+
+    return 0;
+}
+
+u8 DebugMenu_WeatherIdle(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    struct DebugMonitorProc * proc;
+
+    if (gpKeySt->pressed & (A_BUTTON | DPAD_RIGHT | DPAD_LEFT))
+    {
+        proc = Proc_Find(ProcScr_DebugMonitor);
+        proc->weather++;
+
+        DebugMenu_WeatherDraw(menuProc, menuItemProc);
+
+        switch (proc->weather % 7)
+        {
+        case 0:
+            SetWeather(0);
+            break;
+
+        case 1:
+            SetWeather(6);
+            break;
+
+        case 2:
+            SetWeather(1);
+            break;
+
+        case 3:
+            SetWeather(2);
+            break;
+
+        case 4:
+            SetWeather(4);
+            break;
+
+        case 5:
+            SetWeather(3);
+            break;
+
+        case 6:
+            SetWeather(5);
+            break;
+        }
+    }
+
+    return 0;
+}
+
+u8 DebugMenu_WeatherEffect(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    return 0;
+}
+
+int DebugMenu_ClearDraw(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
+{
+    ClearText(&menuItemProc->text);
+    Text_InsertDrawString(&menuItemProc->text, 8, 0, DecodeMsg(0x1250));
+    Text_InsertDrawString(&menuItemProc->text, 0x48, 2, DecodeMsg(0x1251));
+    Text_InsertDrawNumberOrBlank(&menuItemProc->text, 0x40, 2, GetGlobalCompletionCount() + 1);
+    PutText(&menuItemProc->text, gBg0Tm + TM_OFFSET(menuItemProc->xTile, menuItemProc->yTile));
+
+    return 0;
+}
 
 ASM_FUNC("asm/nonmatching/code_0801B814.s");
 
