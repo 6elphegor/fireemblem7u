@@ -1,6 +1,8 @@
 OUTPUT_ARCH(arm)
 ENTRY(_entry)
 
+INCLUDE symbols.ld
+
 SECTIONS
 {
     . = 0x08000000;
@@ -15,6 +17,8 @@ SECTIONS
         build/asm/code_0800F9B0.o(.text);
         build/asm/code_08016428.o(.text);
         build/asm/code_08020098.o(.text);
+        build/src/gold.o(.text);
+        build/asm/code_08023944.o(.text);
         build/asm/code_08027EC8.o(.text);
         build/asm/code_08030F54.o(.text);
         build/asm/code_0803BF60.o(.text);
@@ -38,8 +42,10 @@ SECTIONS
 
     .rodata :
     {
-        build/data/data.o(.rodata);
+        INCLUDE build/layout.ld
     } = 0
+
+    INCLUDE build/ram.ld
 
     /DISCARD/ :
     {

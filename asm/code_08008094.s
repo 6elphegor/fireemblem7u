@@ -5912,7 +5912,7 @@ _0800B03E:
 	ldr r0, _0800B060 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0]
 	subs r0, #0x86
@@ -6169,7 +6169,7 @@ EventDarkenThenFunc_OnLoop: @ 0x0800B220
 	cmp r0, #0x10
 	bne _0800B240
 	ldr r0, [r4, #0x4c]
-	bl sub_080BFC60
+	bl _call_via_r5
 	adds r0, r4, #0
 	bl Proc_Break
 _0800B240:
@@ -9804,7 +9804,7 @@ EvtCmd_LoadUnits: @ 0x0800CD64
 	ldr r0, _0800CD90 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #4]
 	str r0, [r4, #0x44]
@@ -9839,7 +9839,7 @@ EvtCmd_LoadUnitsAlive: @ 0x0800CDA8
 	ldr r0, _0800CDD4 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #4]
 	str r0, [r4, #0x44]
@@ -9892,7 +9892,7 @@ _0800CE08:
 	ldr r0, _0800CE40 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #8]
 	str r0, [r4, #0x44]
@@ -9930,7 +9930,7 @@ EvtCmd_LoadUnitsParty: @ 0x0800CE58
 	ldr r0, _0800CE7C @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #4]
 	str r0, [r4, #0x44]
@@ -9961,7 +9961,7 @@ _0800CE98:
 	ldr r0, _0800CEB8 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #8]
 	str r0, [r4, #0x44]
@@ -9995,7 +9995,7 @@ _0800CED8:
 	ldr r0, _0800CEF8 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	cmp r4, #1
 	beq _0800CEFC
 	cmp r4, #1
@@ -10072,7 +10072,7 @@ _0800CF60:
 	ldr r0, _0800CF80 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	cmp r4, #1
 	beq _0800CF84
 	cmp r4, #1
@@ -10568,7 +10568,7 @@ EventMovementWait: @ 0x0800D2F4
 	ldr r0, _0800D318 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	str r4, [r5, #0x40]
 _0800D310:
 	pop {r4, r5}
@@ -10591,7 +10591,7 @@ _0800D32E:
 	ldr r0, _0800D34C @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	adds r1, r4, #0
 	adds r1, #0x5e
 	movs r0, #4
@@ -13213,7 +13213,7 @@ Event_EndSkip: @ 0x0800E614
 	movs r4, #0
 	strh r0, [r1]
 	bl ApplySystemGraphics
-	bl ApplyChapterMapPalettes
+	bl UnpackChapterMapPalette
 	bl ApplyUnitSpritePalettes
 	ldr r2, _0800E660 @ =0x03002870
 	movs r0, #1
@@ -14202,7 +14202,7 @@ _0800ED2E:
 sub_0800ED34: @ 0x0800ED34
 	push {lr}
 	ldr r0, _0800ED48 @ =0x08B90D88
-	bl sub_080046C8
+	bl Proc_FindNonBlocked
 	cmp r0, #0
 	beq _0800ED42
 	movs r0, #1
@@ -15056,7 +15056,7 @@ sub_0800F358: @ 0x0800F358
 	push {lr}
 	ldr r0, _0800F368 @ =0x03005B10
 	movs r1, #2
-	bl m4aMPlayFadeIn
+	bl m4aMPlayFadeInContinue
 	pop {r0}
 	bx r0
 	.align 2, 0

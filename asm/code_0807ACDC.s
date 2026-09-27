@@ -6797,7 +6797,7 @@ sub_0807E1C0: @ 0x0807E1C0
 	ldr r0, _0807E244 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r0, #0x27
 	bl GetUnitByPid
 	adds r1, r0, #0
@@ -6935,7 +6935,7 @@ sub_0807E348: @ 0x0807E348
 	ldr r0, _0807E3A8 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r4, #1
 _0807E358:
 	adds r0, r4, #0

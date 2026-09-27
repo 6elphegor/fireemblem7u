@@ -4979,7 +4979,7 @@ EvtCmd_WarpLoadUnits: @ 0x08011F58
 	ldr r0, _08011FA4 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _08011FA8 @ =0x08B92414
 	adds r1, r4, #0
 	bl SpawnProcLocking

@@ -521,7 +521,7 @@ m4aSongNumStop: @ 0x080BE660
 	cmp r1, r0
 	bne _080BE686
 	adds r0, r2, #0
-	bl m4aMPlayStop
+	bl MPlayStop_rev01
 _080BE686:
 	pop {r0}
 	bx r0
@@ -569,8 +569,8 @@ _080BE752:
 _080BE754: .4byte 0x68736D53
 _080BE758: .4byte 0x00000101
 
-	thumb_func_start m4aMPlayFadeIn
-m4aMPlayFadeIn: @ 0x080BE75C
+	thumb_func_start m4aMPlayFadeInContinue
+m4aMPlayFadeInContinue: @ 0x080BE75C
 	adds r2, r0, #0
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
@@ -1322,8 +1322,8 @@ _080BED9E:
 	.align 2, 0
 _080BEDA8: .4byte 0x68736D53
 
-	thumb_func_start m4aMPlayStop
-m4aMPlayStop: @ 0x080BEDAC
+	thumb_func_start MPlayStop_rev01
+MPlayStop_rev01: @ 0x080BEDAC
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0
 	ldr r1, [r6, #0x34]

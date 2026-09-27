@@ -4772,7 +4772,7 @@ _0804A236:
 	adds r0, r4, #0
 	adds r1, r2, #0
 	movs r2, #0
-	bl StartMenuExt
+	bl StartLockingMenuExt
 	pop {r4}
 	pop {r1}
 	bx r1
@@ -4784,7 +4784,7 @@ StartLockingMenu: @ 0x0804A254
 	push {lr}
 	adds r2, r1, #0
 	ldr r1, [r0]
-	bl StartMenuExt
+	bl StartLockingMenuExt
 	pop {r1}
 	bx r1
 	.align 2, 0
@@ -4793,7 +4793,7 @@ StartLockingMenu: @ 0x0804A254
 sub_0804A264: @ 0x0804A264
 	push {lr}
 	movs r2, #0
-	bl StartMenuExt
+	bl StartLockingMenuExt
 	pop {r1}
 	bx r1
 
@@ -4802,13 +4802,13 @@ StartMenu: @ 0x0804A270
 	push {lr}
 	ldr r1, [r0]
 	movs r2, #0
-	bl StartMenuExt
+	bl StartLockingMenuExt
 	pop {r1}
 	bx r1
 	.align 2, 0
 
-	thumb_func_start StartMenuExt
-StartMenuExt: @ 0x0804A280
+	thumb_func_start StartLockingMenuExt
+StartLockingMenuExt: @ 0x0804A280
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -18791,7 +18791,7 @@ sub_080510E0: @ 0x080510E0
 	bl GetBattleAnimArenaFlag
 	cmp r0, #1
 	beq _08051150
-	bl ApplyChapterMapPalettes
+	bl UnpackChapterMapPalette
 _08051150:
 	bl GetBanimLinkArenaFlag
 	cmp r0, #1

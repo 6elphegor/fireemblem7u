@@ -4208,7 +4208,7 @@ _08084E54:
 	.align 2, 0
 _08084E58: .4byte 0x0840457C
 _08084E5C:
-	bl sub_08019450
+	bl nullsub_7
 _08084E60:
 	lsls r1, r5, #5
 	adds r0, r4, #0

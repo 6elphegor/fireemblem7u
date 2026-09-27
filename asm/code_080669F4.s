@@ -1247,7 +1247,7 @@ _080672B8:
 EfxChapterMapFadeOUT: @ 0x080672C4
 	push {r4, lr}
 	adds r4, r0, #0
-	bl ApplyChapterMapPalettes
+	bl UnpackChapterMapPalette
 	ldr r0, _080672E4 @ =0x02022860
 	movs r1, #6
 	movs r2, #0xa
@@ -1763,7 +1763,7 @@ _080676B0: .4byte 0x0202BBB8
 StopBGM1: @ 0x080676B4
 	push {lr}
 	ldr r0, _080676C0 @ =0x03005B10
-	bl m4aMPlayStop
+	bl MPlayStop_rev01
 	pop {r0}
 	bx r0
 	.align 2, 0

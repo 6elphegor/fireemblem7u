@@ -5676,13 +5676,13 @@ _08018D80:
 	pop {r1}
 	bx r1
 
-	thumb_func_start InitMapForChapter
-InitMapForChapter: @ 0x08018D88
+	thumb_func_start InitChapterMap
+InitChapterMap: @ 0x08018D88
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0
 	ldr r0, _08018E40 @ =0x02001000
 	adds r1, r4, #0
-	bl UnpackRawMap
+	bl UnpackChapterMap
 	adds r0, r4, #0
 	bl ApplyChapterMapGraphics
 	ldr r0, _08018E44 @ =0x0202E3F8
@@ -5693,7 +5693,7 @@ InitMapForChapter: @ 0x08018D88
 	movs r7, #2
 	ldrsh r3, [r4, r7]
 	adds r1, r6, #0
-	bl MapInit
+	bl BmMapInit
 	ldr r0, _08018E50 @ =0x0202EBB0
 	ldr r5, _08018E54 @ =0x0202E3E0
 	movs r1, #0
@@ -5701,48 +5701,48 @@ InitMapForChapter: @ 0x08018D88
 	movs r7, #2
 	ldrsh r3, [r4, r7]
 	adds r1, r5, #0
-	bl MapInit
+	bl BmMapInit
 	ldr r0, _08018E58 @ =0x03000440
 	ldr r1, _08018E5C @ =0x0202E3E4
 	movs r3, #0
 	ldrsh r2, [r4, r3]
 	movs r7, #2
 	ldrsh r3, [r4, r7]
-	bl MapInit
+	bl BmMapInit
 	ldr r0, _08018E60 @ =0x03000BF8
 	ldr r1, _08018E64 @ =0x0202E3E8
 	movs r3, #0
 	ldrsh r2, [r4, r3]
 	movs r7, #2
 	ldrsh r3, [r4, r7]
-	bl MapInit
+	bl BmMapInit
 	ldr r0, _08018E68 @ =0x0202F368
 	ldr r1, _08018E6C @ =0x0202E3EC
 	movs r3, #0
 	ldrsh r2, [r4, r3]
 	movs r7, #2
 	ldrsh r3, [r4, r7]
-	bl MapInit
+	bl BmMapInit
 	ldr r0, _08018E70 @ =0x0202FB20
 	ldr r1, _08018E74 @ =0x0202E3F0
 	movs r3, #0
 	ldrsh r2, [r4, r3]
 	movs r7, #2
 	ldrsh r3, [r4, r7]
-	bl MapInit
+	bl BmMapInit
 	ldr r0, _08018E78 @ =0x020302D8
 	ldr r1, _08018E7C @ =0x0202E3F4
 	movs r3, #0
 	ldrsh r2, [r4, r3]
 	movs r7, #2
 	ldrsh r3, [r4, r7]
-	bl MapInit
+	bl BmMapInit
 	ldr r0, [r6]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r5]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	bl InitMetatilesMap
 	bl ApplyEnabledMapChanges
 	bl RefreshTerrainMap
@@ -5779,7 +5779,7 @@ InitChapterPreviewMap: @ 0x08018E84
 	push {r4, r5, r6, lr}
 	adds r1, r0, #0
 	ldr r0, _08018ED4 @ =0x02001000
-	bl UnpackRawMap
+	bl UnpackChapterMap
 	ldr r0, _08018ED8 @ =0x0202E3F8
 	ldr r6, _08018EDC @ =0x0202E3DC
 	ldr r4, _08018EE0 @ =0x0202E3D8
@@ -5788,7 +5788,7 @@ InitChapterPreviewMap: @ 0x08018E84
 	movs r1, #2
 	ldrsh r3, [r4, r1]
 	adds r1, r6, #0
-	bl MapInit
+	bl BmMapInit
 	ldr r0, _08018EE4 @ =0x0202EBB0
 	ldr r5, _08018EE8 @ =0x0202E3E0
 	movs r1, #0
@@ -5796,13 +5796,13 @@ InitChapterPreviewMap: @ 0x08018E84
 	movs r1, #2
 	ldrsh r3, [r4, r1]
 	adds r1, r5, #0
-	bl MapInit
+	bl BmMapInit
 	ldr r0, [r6]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r5]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	bl InitMetatilesMap
 	bl RefreshTerrainMap
 	pop {r4, r5, r6}
@@ -6016,7 +6016,7 @@ RefreshAutoWaterShadows: @ 0x08019040
 	ldrb r1, [r1, #0xe]
 	lsls r1, r1, #0x18
 	asrs r1, r1, #0x18
-	bl UnpackRawMap
+	bl UnpackChapterMap
 	bl InitMetatilesMap
 	bl ApplyEnabledMapChanges
 	bl RefreshTerrainMap
@@ -6027,8 +6027,8 @@ RefreshAutoWaterShadows: @ 0x08019040
 _08019064: .4byte 0x02001000
 _08019068: .4byte 0x0202BBF8
 
-	thumb_func_start MapInit
-MapInit: @ 0x0801906C
+	thumb_func_start BmMapInit
+BmMapInit: @ 0x0801906C
 	push {r4, r5, r6, r7, lr}
 	mov ip, r1
 	adds r6, r2, #0
@@ -6063,8 +6063,8 @@ _08019098:
 	.align 2, 0
 _080190A8: .4byte 0x03000438
 
-	thumb_func_start MapFill
-MapFill: @ 0x080190AC
+	thumb_func_start BmMapFillg
+BmMapFillg: @ 0x080190AC
 	push {r4, r5, lr}
 	sub sp, #4
 	adds r5, r0, #0
@@ -6171,8 +6171,8 @@ _08019168:
 	.align 2, 0
 _08019170: .4byte 0x0202E3D8
 
-	thumb_func_start UnpackRawMap
-UnpackRawMap: @ 0x08019174
+	thumb_func_start UnpackChapterMap
+UnpackChapterMap: @ 0x08019174
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r6, r1, #0
@@ -6261,8 +6261,8 @@ _08019230: .4byte 0x08C9C9C8
 _08019234: .4byte 0x06008000
 _08019238: .4byte 0x0600C000
 
-	thumb_func_start ApplyChapterMapPalettes
-ApplyChapterMapPalettes: @ 0x0801923C
+	thumb_func_start UnpackChapterMapPalette
+UnpackChapterMapPalette: @ 0x0801923C
 	push {r4, lr}
 	ldr r4, _08019264 @ =0x08C9C9C8
 	ldr r0, _08019268 @ =0x0202BBF8
@@ -6540,8 +6540,8 @@ _08019444: .4byte 0x08B932B4
 _08019448: .4byte 0x02030A90
 _0801944C: .4byte 0x0202E3EC
 
-	thumb_func_start sub_08019450
-sub_08019450: @ 0x08019450
+	thumb_func_start nullsub_7
+nullsub_7: @ 0x08019450
 	bx lr
 	.align 2, 0
 
@@ -6558,7 +6558,7 @@ PutLimitViewSquare: @ 0x08019454
 	adds r4, r4, r0
 	cmp r4, #0
 	bne _0801946E
-	bl sub_08019450
+	bl nullsub_7
 _0801946E:
 	ldr r0, _08019490 @ =0x0202E3E4
 	ldr r0, [r0]
@@ -7380,11 +7380,11 @@ RefreshEntityMaps: @ 0x08019ABC
 	ldr r0, _08019AF8 @ =0x0202E3DC
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _08019AFC @ =0x0202E3F0
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _08019B00 @ =0x0202E3EC
 	ldr r2, [r0]
 	movs r1, #0
@@ -7395,7 +7395,7 @@ RefreshEntityMaps: @ 0x08019ABC
 	movs r1, #1
 _08019AE2:
 	adds r0, r2, #0
-	bl MapFill
+	bl BmMapFillg
 	bl RefreshTorchlightsOnBmMap
 	bl RefreshUnitsOnBmMap
 	bl RefreshMinesOnBmMap
@@ -7485,8 +7485,8 @@ _08019B94: .4byte 0x02030A90
 _08019B98: .4byte 0x000003FF
 _08019B9C: .4byte 0x02022860
 
-	thumb_func_start MapFloodUnit
-MapFloodUnit: @ 0x08019BA0
+	thumb_func_start RevertMapChange
+RevertMapChange: @ 0x08019BA0
 	push {r4, lr}
 	adds r4, r0, #0
 	bl GetUnitMovementCost
@@ -7694,7 +7694,7 @@ _08019D32:
 	ldr r0, [r4]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r6, #4]
 	strb r5, [r0]
 	ldr r0, [r6, #4]
@@ -10155,7 +10155,7 @@ sub_0801B008: @ 0x0801B008
 	ldr r0, _0801B038 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	bl GetActiveFactionOpposingAlliance
 	mov sb, r0
 	mov r6, sb
@@ -10235,7 +10235,7 @@ _0801B086:
 	ldr r0, _0801B100 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	cmp r5, #0
 	beq _0801B0DC
 	movs r0, #1
@@ -12803,7 +12803,7 @@ sub_0801C4D0: @ 0x0801C4D0
 	ldr r0, _0801C540 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	adds r0, r6, #0
 	bl UnitKnowsMagic
 	lsls r0, r0, #0x18
@@ -12815,7 +12815,7 @@ _0801C518:
 	ldr r0, _0801C544 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r5]
 	bl GetUnitWeaponUsabilityBits
 	cmp r0, #2
@@ -12977,7 +12977,7 @@ sub_0801C65C: @ 0x0801C65C
 	ldr r0, [r0]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _0801C6B8 @ =0x0202BBF8
 	adds r0, #0x41
 	ldrb r0, [r0]
@@ -13608,7 +13608,7 @@ _0801CBF4:
 	ldr r0, _0801CC34 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r5]
 	bl UnitBeginReMoveAction
 	ldr r2, [r5]
@@ -15633,11 +15633,11 @@ FillWarpRangeMap: @ 0x0801DBC4
 	ldr r0, [r6]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _0801DC94 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [r6]
 	bl SetWorkingBmMap
 	mov r0, r8

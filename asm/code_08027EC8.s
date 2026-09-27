@@ -11764,7 +11764,7 @@ FlamesWeatherInitGradient: @ 0x0802DA04
 	mov r6, sb
 	mov r5, r8
 	push {r5, r6, r7}
-	bl ApplyChapterMapPalettes
+	bl UnpackChapterMapPalette
 	movs r1, #0
 	ldr r0, _0802DA88 @ =0x02022860
 	mov sl, r0
@@ -12586,7 +12586,7 @@ StartBattleMap: @ 0x0802E028
 	bl InitBmBgLayers
 	movs r0, #0xe
 	ldrsb r0, [r4, r0]
-	bl InitMapForChapter
+	bl InitChapterMap
 	bl InitMapObstacles
 	bl GetGameTime
 	str r0, [r4, #4]
@@ -12652,7 +12652,7 @@ RestartBattleMap: @ 0x0802E0F4
 	bl InitBmBgLayers
 	movs r0, #0xe
 	ldrsb r0, [r4, r0]
-	bl InitMapForChapter
+	bl InitChapterMap
 	bl InitMapObstacles
 	bl LoadChapterTraps
 	bl BMapVSync_End
@@ -12708,7 +12708,7 @@ sub_0802E190: @ 0x0802E190
 	bl ResetUnitSprites
 	movs r0, #0xe
 	ldrsb r0, [r4, r0]
-	bl InitMapForChapter
+	bl InitChapterMap
 	ldr r4, _0802E210 @ =0x0202BBB8
 	adds r1, r4, #0
 	adds r1, #0x3c
@@ -17006,12 +17006,12 @@ Prep_ShowDeployableTiles: @ 0x0803034C
 	ldr r5, _080303A0 @ =0x0202E3E8
 	ldr r0, [r5]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _080303A4 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	bl CalcForceDeployedUnitCounts
 	lsls r0, r0, #4
 	adds r4, r4, r0

@@ -17690,11 +17690,11 @@ sub_08044DCC: @ 0x08044DCC
 	ldr r0, _08044E24 @ =0x0202E3DC
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _08044E28 @ =0x0202E3EC
 	ldr r0, [r0]
 	movs r1, #1
-	bl MapFill
+	bl BmMapFillg
 	movs r4, #1
 _08044DE4:
 	adds r0, r4, #0
@@ -17855,7 +17855,7 @@ sub_08044ED8: @ 0x08044ED8
 	ldrb r0, [r0, #0x12]
 	strb r0, [r4, #0x15]
 	movs r0, #0x41
-	bl InitMapForChapter
+	bl InitChapterMap
 	bl GetGameTime
 	str r0, [r4, #4]
 	add sp, #4
@@ -17883,7 +17883,7 @@ sub_08044F3C: @ 0x08044F3C
 	movs r1, #1
 _08044F5A:
 	adds r0, r2, #0
-	bl MapFill
+	bl BmMapFillg
 	bl sub_08044DCC
 	bl RenderMap
 	pop {r0}

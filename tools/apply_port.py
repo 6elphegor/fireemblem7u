@@ -99,6 +99,7 @@ def main():
     sysutil = Path("include/gbafe/sysutil.h")
     sysutil.write_text(sysutil.read_text().replace("} BITPACKED;", "};"))
     targets = list(Path("include").rglob("*.h"))
+    Path("src").mkdir(exist_ok=True)
     for stem in files:
         dst = Path("src") / f"{stem[4:]}.c"
         shutil.copy(ref / "src" / f"{stem[4:]}.c", dst)

@@ -24,8 +24,8 @@ _080046BC:
 _080046C6:
 	bx lr
 
-	thumb_func_start sub_080046C8
-sub_080046C8: @ 0x080046C8
+	thumb_func_start Proc_FindNonBlocked
+Proc_FindNonBlocked: @ 0x080046C8
 	adds r3, r0, #0
 	ldr r1, _080046E4 @ =0x02024E28
 	movs r2, #0
@@ -142,7 +142,7 @@ _08004774:
 	cmp r0, #0
 	beq _08004780
 	adds r0, r4, #0
-	bl sub_080BFC64
+	bl _call_via_r6
 _08004780:
 	subs r5, #1
 	adds r4, #0x6c
@@ -166,7 +166,7 @@ _0800479E:
 	cmp r0, r7
 	bne _080047AA
 	adds r0, r4, #0
-	bl sub_080BFC64
+	bl _call_via_r6
 _080047AA:
 	subs r5, #1
 	adds r4, #0x6c
@@ -192,7 +192,7 @@ _080047C6:
 	cmp r0, r7
 	bne _080047D6
 	adds r0, r4, #0
-	bl sub_080BFC64
+	bl _call_via_r6
 _080047D6:
 	subs r5, #1
 	adds r4, #0x6c
@@ -324,7 +324,7 @@ ForAllFollowingProcs: @ 0x08004898
 	bl ForAllFollowingProcs
 _080048A8:
 	adds r0, r4, #0
-	bl sub_080BFC60
+	bl _call_via_r5
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	beq _080048BA
@@ -340,7 +340,7 @@ sub_080048C0: @ 0x080048C0
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	bl sub_080BFC60
+	bl _call_via_r5
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	beq _080048D6
@@ -802,8 +802,8 @@ _08004BC6:
 	pop {r0}
 	bx r0
 
-	thumb_func_start PrintProcessName
-PrintProcessName: @ 0x08004BCC
+	thumb_func_start nullsub_2
+nullsub_2: @ 0x08004BCC
 	bx lr
 	.align 2, 0
 
@@ -818,7 +818,7 @@ PrintProcessNameRecursive: @ 0x08004BD0
 	bl PrintProcessNameRecursive
 _08004BE0:
 	adds r0, r4, #0
-	bl PrintProcessName
+	bl nullsub_2
 	ldr r1, [r4, #0x18]
 	cmp r1, #0
 	beq _08004C00
@@ -845,7 +845,7 @@ PrintProcessTree: @ 0x08004C08
 	movs r0, #4
 	str r0, [sp]
 	adds r0, r4, #0
-	bl PrintProcessName
+	bl nullsub_2
 	ldr r1, [r4, #0x18]
 	cmp r1, #0
 	beq _08004C32
@@ -865,8 +865,8 @@ _08004C32:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start sub_08004C3C
-sub_08004C3C: @ 0x08004C3C
+	thumb_func_start nullsub_22
+nullsub_22: @ 0x08004C3C
 	bx lr
 	.align 2, 0
 

@@ -6276,10 +6276,10 @@ _080039A0:
 	str r0, [r7, #0xc]
 	ldr r1, _08003A60 @ =0x03005B10
 	adds r0, r1, #0
-	bl m4aMPlayStop
+	bl MPlayStop_rev01
 	ldr r1, _08003A64 @ =0x03005D20
 	adds r0, r1, #0
-	bl m4aMPlayStop
+	bl MPlayStop_rev01
 	ldr r1, [r7, #8]
 	ldr r0, [r7]
 	bl PlaySongCore
@@ -6434,7 +6434,7 @@ _08003B24:
 	ldr r1, _08003B84 @ =0x03005D20
 	adds r0, r1, #0
 	movs r1, #6
-	bl m4aMPlayFadeIn
+	bl m4aMPlayFadeInContinue
 	ldr r0, _08003B88 @ =0x02024E1C
 	ldrb r1, [r0, #6]
 	movs r2, #0
@@ -6512,7 +6512,7 @@ _08003BBC:
 	adds r1, r7, #0
 	ldrh r2, [r1]
 	adds r1, r2, #0
-	bl m4aMPlayFadeIn
+	bl m4aMPlayFadeInContinue
 	ldr r0, _08003C24 @ =0x02024E1C
 	ldrb r1, [r0, #6]
 	movs r2, #0
@@ -7693,12 +7693,12 @@ SpawnProc: @ 0x08004494
 	bgt _080044D6
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080045BC
+	bl InsertRootProcess
 	b _080044DE
 _080044D6:
 	adds r0, r5, #0
 	adds r1, r6, #0
-	bl sub_080045DC
+	bl InsertChildProcess
 _080044DE:
 	adds r0, r5, #0
 	bl RunProcessScript
@@ -7825,8 +7825,8 @@ FreeProcess: @ 0x080045AC
 	.align 2, 0
 _080045B8: .4byte 0x02026A2C
 
-	thumb_func_start sub_080045BC
-sub_080045BC: @ 0x080045BC
+	thumb_func_start InsertRootProcess
+InsertRootProcess: @ 0x080045BC
 	adds r2, r0, #0
 	adds r3, r1, #0
 	lsls r1, r3, #2
@@ -7844,8 +7844,8 @@ _080045D0:
 	.align 2, 0
 _080045D8: .4byte 0x02026A30
 
-	thumb_func_start sub_080045DC
-sub_080045DC: @ 0x080045DC
+	thumb_func_start InsertChildProcess
+InsertChildProcess: @ 0x080045DC
 	adds r2, r0, #0
 	ldr r0, [r1, #0x18]
 	cmp r0, #0

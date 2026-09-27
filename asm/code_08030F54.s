@@ -546,7 +546,7 @@ CanUnitUseAttack: @ 0x08031384
 	ldr r0, _080313BC @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r4, _080313C0 @ =0x03004690
 	ldr r0, [r4]
 	bl GenerateUnitCompleteAttackRange
@@ -659,7 +659,7 @@ sub_08031470: @ 0x08031470
 	ldr r0, [r4]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _080314A8 @ =0x03004690
 	ldr r2, [r0]
 	movs r0, #0x11
@@ -691,7 +691,7 @@ sub_080314AC: @ 0x080314AC
 	ldr r0, _08031560 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r5, #0x81
 	ldr r6, _08031564 @ =0x0203A85C
 _080314C6:
@@ -6237,7 +6237,7 @@ _0803414C:
 	ldr r0, [r0]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 _08034158:
 	pop {r4}
 	pop {r0}
@@ -8474,7 +8474,7 @@ CpPerform_BeginUnitMovement: @ 0x080351C4
 	ldr r0, [r6]
 	bl HideUnitSprite
 	ldr r0, [r6]
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r0, _0803522C @ =0x0202E3E4
 	ldr r0, [r0]
 	bl SetWorkingBmMap
@@ -9817,7 +9817,7 @@ AiRandomMove: @ 0x08035C70
 	mov sb, r0
 	ldr r0, _08035C94 @ =0x03004690
 	ldr r0, [r0]
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r3, _08035C98 @ =0x0000FFFF
 	ldr r0, _08035C9C @ =0x0202E3D8
 	ldrh r0, [r0, #2]
@@ -11145,11 +11145,11 @@ AiMakeMoveRangeMapsForUnitAndWeapon: @ 0x08036650
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
 	mov sb, r1
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r0, _080366E4 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _080366E8 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -11230,11 +11230,11 @@ _08036706:
 	movs r7, #0x14
 _08036708:
 	adds r0, r4, #0
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r0, _08036764 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _08036768 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -11291,11 +11291,11 @@ sub_08036770: @ 0x08036770
 	lsls r1, r1, #0x10
 	lsrs r1, r1, #0x10
 	mov sb, r1
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r0, _08036804 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _08036808 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -11517,7 +11517,7 @@ AiFindSafestReachableLocation: @ 0x08036900
 	ldr r0, [r4]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r0, #0x11
 	ldrsb r0, [r5, r0]
 	ldr r1, [r4]
@@ -11535,7 +11535,7 @@ _08036944: .4byte 0x0203A8EC
 _08036948: .4byte 0x0202E3E4
 _0803694C:
 	adds r0, r5, #0
-	bl MapFloodUnit
+	bl RevertMapChange
 _08036952:
 	ldr r1, _080369D0 @ =0x0202E3D8
 	movs r2, #2
@@ -11833,7 +11833,7 @@ _08036B84:
 _08036B94:
 	ldr r4, _08036BC4 @ =0x03004690
 	ldr r0, [r4]
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r2, [r4]
 	movs r0, #0x11
 	ldrsb r0, [r2, r0]
@@ -12074,7 +12074,7 @@ _08036D70:
 _08036D80:
 	ldr r4, _08036DB0 @ =0x03004690
 	ldr r0, [r4]
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r2, [r4]
 	movs r0, #0x11
 	ldrsb r0, [r2, r0]
@@ -12780,7 +12780,7 @@ SaveNumberOfAlliedUnitsIn0To8Range: @ 0x080372AC
 	ldr r0, _08037344 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r0, #0x10
 	ldrsb r0, [r6, r0]
 	movs r1, #0x11
@@ -13176,7 +13176,7 @@ sub_0803758C: @ 0x0803758C
 _080375A8: .4byte 0x0203A8EC
 _080375AC:
 	adds r0, r2, #0
-	bl MapFloodUnit
+	bl RevertMapChange
 _080375B2:
 	pop {r0}
 	bx r0
@@ -14620,7 +14620,7 @@ sub_080380A8: @ 0x080380A8
 	str r1, [sp, #0x14]
 	ldr r4, _080381EC @ =0x03004690
 	ldr r0, [r4]
-	bl MapFloodUnit
+	bl RevertMapChange
 	movs r2, #0
 	str r2, [sp, #8]
 	ldr r0, [r4]
@@ -14646,7 +14646,7 @@ _080380E6:
 	ldr r0, _080381F0 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	mov r0, r8
 	bl GetItemMinRange
 	adds r4, r0, #0
@@ -15234,7 +15234,7 @@ AiAttemptOffensiveAction: @ 0x08038558
 	ldr r0, [r4]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r2, [r6]
 	movs r0, #0x11
 	ldrsb r0, [r2, r0]
@@ -15278,7 +15278,7 @@ _080385C8:
 	cmp r0, #4
 	bgt _080385FE
 	ldr r0, [r6]
-	bl MapFloodUnit
+	bl RevertMapChange
 	bl sub_0801A0FC
 	bl AiAttemptStealActionWithinMovement
 	lsls r0, r0, #0x18
@@ -15299,7 +15299,7 @@ _080385FE:
 	ldr r0, [r4]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _0803863C @ =0x03004690
 	ldr r2, [r0]
 	movs r0, #0x11
@@ -15321,7 +15321,7 @@ _0803863C: .4byte 0x03004690
 _08038640:
 	ldr r0, _080387A4 @ =0x03004690
 	ldr r0, [r0]
-	bl MapFloodUnit
+	bl RevertMapChange
 _08038648:
 	ldr r0, _080387A4 @ =0x03004690
 	ldr r0, [r0]
@@ -15524,7 +15524,7 @@ sub_080387B0: @ 0x080387B0
 	ldr r0, [r4]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r2, [r6]
 	movs r0, #0x11
 	ldrsb r0, [r2, r0]
@@ -15723,7 +15723,7 @@ AiFillReversedAttackRangeMap: @ 0x08038964
 	ldr r0, _080389B4 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r6, #0x10
 	ldrsb r6, [r4, r6]
 	ldrb r4, [r4, #0x11]
@@ -15782,7 +15782,7 @@ AiFloodMovementAndRange: @ 0x080389B8
 	ldr r0, _08038A74 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _08038A78 @ =0x0202E3D8
 	movs r1, #2
 	ldrsh r0, [r0, r1]
@@ -17087,7 +17087,7 @@ AiRefreshDangerMap: @ 0x080393BC
 	ldr r0, _080393E4 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	bl AiFillDangerMap
 _080393DC:
 	pop {r0}
@@ -18050,7 +18050,7 @@ AiEquipGetDanger: @ 0x08039B04
 	ldr r0, _08039C48 @ =0x0202E3F4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r4, #1
 _08039B32:
 	adds r0, r4, #0
@@ -18084,7 +18084,7 @@ _08039B32:
 	cmp r0, #0
 	beq _08039C22
 	adds r0, r5, #0
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r4, _08039C50 @ =0x0202E3E4
 	ldr r1, [r4]
 	ldr r7, [sp, #8]
@@ -18441,7 +18441,7 @@ AiTryDoDanceAdjacent: @ 0x08039DD8
 	ldr r0, [r0]
 	movs r1, #1
 	rsbs r1, r1, #0
-	bl MapFill
+	bl BmMapFillg
 	mov r0, sl
 	ldr r1, [sp, #0xc]
 	movs r2, #1
@@ -18582,7 +18582,7 @@ AiTryDoStealAdjacent: @ 0x08039EFC
 	movs r5, #1
 	rsbs r5, r5, #0
 	adds r1, r5, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r1, [r4]
 	lsls r0, r7, #2
 	adds r0, r0, r1
@@ -18659,7 +18659,7 @@ _08039FB8:
 	ldr r0, _0803A080 @ =0x0202E3E4
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, [sp, #0xc]
 	lsls r0, r0, #0x10
 	mov sb, r0
@@ -19064,7 +19064,7 @@ _0803A2E2:
 	ldr r0, [r4]
 	strb r7, [r0, #0x11]
 	ldr r0, [r4]
-	bl MapFloodUnit
+	bl RevertMapChange
 	ldr r0, [r4]
 	bl UnitKnowsMagic
 	lsls r0, r0, #0x18
@@ -19350,7 +19350,7 @@ _0803A508: .4byte 0x03004690
 _0803A50C: .4byte 0x0203A8EC
 _0803A510:
 	ldr r0, [r4]
-	bl MapFloodUnit
+	bl RevertMapChange
 _0803A516:
 	add r4, sp, #4
 	adds r0, r4, #0
@@ -20604,7 +20604,7 @@ _0803AE8A:
 	ldr r0, _0803AF94 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r4, #0x10
 	ldrsb r4, [r6, r4]
 	movs r5, #0x11
@@ -20769,7 +20769,7 @@ _0803B018:
 	ldr r0, _0803B0A0 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	ldr r0, _0803B08C @ =0x03004690
 	ldr r0, [r0]
 	bl GetUnitMagRange
@@ -21371,7 +21371,7 @@ _0803B46C:
 	ldr r0, _0803B574 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r4, #0x10
 	ldrsb r4, [r6, r4]
 	movs r5, #0x11
@@ -21557,7 +21557,7 @@ _0803B5F8:
 	ldr r0, _0803B6F8 @ =0x0202E3E8
 	ldr r0, [r0]
 	movs r1, #0
-	bl MapFill
+	bl BmMapFillg
 	movs r4, #0x10
 	ldrsb r4, [r6, r4]
 	movs r5, #0x11

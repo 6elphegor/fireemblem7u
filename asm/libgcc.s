@@ -27,13 +27,13 @@ _call_via_r4: @ 0x080BFC5C
 	bx r4
 	nop
 
-	thumb_func_start sub_080BFC60
-sub_080BFC60: @ 0x080BFC60
+	thumb_func_start _call_via_r5
+_call_via_r5: @ 0x080BFC60
 	bx r5
 	nop
 
-	thumb_func_start sub_080BFC64
-sub_080BFC64: @ 0x080BFC64
+	thumb_func_start _call_via_r6
+_call_via_r6: @ 0x080BFC64
 	bx r6
 	nop
 
