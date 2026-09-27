@@ -241,6 +241,7 @@ Pal_08404D90 Pal_083FE2F8
 Pal_08404ED0 Pal_083FE438
 Pal_08408CC8 Pal_08402230
 Pal_08428A80 Pal_0840DD24
+Pal_08434448 Pal_084150C0
 Pal_IceBmBgfx_08199A94 Pal_IceBmBgfx_0819D880
 Pal_StatScreen_084038AC Pal_StatScreen_083FCE0C
 ProcScr_08D87F68 ProcScr_08CBFCB4
@@ -318,6 +319,7 @@ Sprites_08D8C7E8 Sprites_08CC4270
 Sprites_08D8C880 Sprites_08CC4308
 StartEvent sub_0800AF5C
 StartMidLockingFadeFromBlack StartMidLockingFadeToBlack
+Tsa_084352FC Tsa_08415AC0
 Tsa_ChapterTitle_08408BD4 Tsa_ChapterTitle_0840213C
 Tsa_EkrDragon_082E7170 Tsa_EkrDragon_082E14FC
 Tsa_EkrDragon_082E7418 Tsa_EkrDragon_082E17A4

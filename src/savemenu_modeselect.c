@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+void sub_080AACD8(u16 * tm, void const * tsa, u16 tileref); // decompress TSA to gBuf, then TmApplyTsa
+
 struct ModeSelectProc
 {
     /* 00 */ PROC_HEADER;
@@ -663,8 +665,141 @@ struct FaceVramEnt CONST_DATA FaceConfig_ModeSelect[] = {
     },
 };
 
-void ModeSelect_Init(struct ModeSelectProc * proc);
-ASM_FUNC("asm/nonmatching/code_080A7C84.s");
+void ModeSelect_Init(struct ModeSelectProc * proc)
+{
+    s32 i;
+
+    ApplySystemObjectsGraphics();
+
+    SetBgOffset(1, 8, -8);
+
+    Proc_BlockEachMarked(0xC);
+    Proc_BlockEachMarked(0xD);
+
+    gUnk_Savemenu_02000000 = 100;
+
+    SetFaceConfig(FaceConfig_ModeSelect);
+
+    ApplyPalette(Pal_ModeSelect_Menu, 0xF);
+
+    Decompress(Img_ModeSelect_Menu, (void *)(0x6000000 + GetBgChrOffset(1)));
+    TmApplyTsa_thm(gBg0Tm, Tsa_ModeSelect_Menu, 0);
+    sub_080AACD8(gBg1Tm, Tsa_08415AC0, 0xf000); // this loads the "claw menu" and bg of the chapters
+    ApplyPalette(Pal_084150C0, 0x1B);
+
+    Decompress(Img_ModeSelect_Sprites, (void *)0x6010000);
+    ApplyPalette(Pal_ModeSelect_Sprites, 0x1A);
+
+    NewEfxAnimeDrvProc();
+    ResetClassReelSpell();
+
+    proc->unk_38 = Proc_Start(ProcScr_ModeSelectSpriteDraw, proc);
+    sub_080A7BDC(0, 0x70);
+
+    proc->unk_41 = 0;
+    proc->activeLordCount = 0;
+
+    proc->unk_40 = sub_0809E9FC();
+
+    if ((proc->unk_42 & 1) != 0)
+    {
+        s32 gUnk_08439414[] = {
+            4,
+            0x10,
+        };
+
+        proc->activeLordCount = 2;
+        proc->unk_49[0] = 1;
+        proc->unk_49[1] = 2;
+
+        for (i = 0; i < proc->activeLordCount; i++)
+        {
+            if ((gPlaySt.chapterStateBits & PLAY_FLAG_HARD))
+            {
+                if ((proc->unk_40 & gUnk_08439414[i]))
+                    proc->unk_43[i] = 1;
+                else
+                    proc->unk_43[i] = 0;
+            }
+            else
+            {
+                proc->unk_43[i] = 0;
+            }
+        }
+    }
+    else
+    {
+        proc->unk_49[0] = 0;
+        proc->activeLordCount++;
+
+        if ((proc->unk_40 & 2) != 0)
+        {
+            proc->unk_49[proc->activeLordCount] = 1;
+            proc->activeLordCount++;
+        }
+
+        if ((proc->unk_40 & 8) != 0)
+        {
+            proc->unk_49[proc->activeLordCount] = 2;
+            proc->activeLordCount++;
+        }
+
+        for (i = 0; i < proc->activeLordCount; i++)
+        {
+            proc->unk_43[i] = 0;
+        }
+    }
+
+    sub_080A7BB4(proc->activeLordCount);
+    InitModeSelectAnims(proc->activeLordCount, proc->unk_49);
+
+    for (i = 0; i < proc->activeLordCount; i++)
+    {
+        sub_080A7860(i);
+    }
+
+    sub_080A7B98();
+    StartUiSpinningArrows(proc);
+    LoadUiSpinningArrowGfx(0, 0xd20, 9);
+    LoadUiSpinningArrowGfx(0, 0xd20, 9);
+    SetUiSpinningArrowPositions(30, 61, 68, 61);
+    SetUiSpinningArrowConfig(3);
+
+    InitTextFont(&gUnk_020000A4.font, (void *)0x600E000, 0x100, 0xe);
+
+    InitText(&gUnk_020000A4.text[0], 5);
+    InitText(&gUnk_020000A4.text[1], 9);
+    InitText(&gUnk_020000A4.text[2], 5);
+    InitText(&gUnk_020000A4.text[3], 8);
+    InitText(&gUnk_020000A4.text[4], 4);
+    InitText(&gUnk_020000A4.text[5], 10);
+    InitText(&gUnk_020000A4.text[6], 5);
+
+    proc->unk_30 = proc->unk_41 * sub_080A7C4C() * 0x10;
+
+    proc->pFaceProc = StartModeSelectFace(proc->unk_49[proc->unk_41]);
+    PutModeSelectLabelText();
+    PutModeSelectCharacterText(proc->unk_49[proc->unk_41]);
+    PutModeSelectDifficultyText(proc);
+    sub_080A7C24(proc->unk_43[proc->unk_41], proc->unk_42);
+    sub_080A7C08(proc->unk_30);
+
+    EnableBgSync(3);
+
+    proc->rotateTimer = 0;
+    proc->unk_50 = 0;
+
+    SetWinEnable(1, 0, 0);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWin0Box(0, 0x50, 0xf0, 0x50);
+    SetWOutLayers(0, 0, 0, 0, 0);
+
+    LoadModeSelectChapterGfx(proc->unk_49[proc->unk_41]);
+
+    SetObjAffineAuto(0, 0, 0x100, 0x100);
+
+    return;
+}
 
 
 void ModeSelect_TransitionSplitOpen(struct ModeSelectProc * proc)
