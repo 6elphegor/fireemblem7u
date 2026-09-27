@@ -213,7 +213,7 @@ _0809CDE8:
 	bl sub_0809CAB8
 	adds r0, r5, #0
 	bl DrawSupportSubScreenRemainingText
-	ldr r0, _0809CE34 @ =sub_0809C544
+	ldr r0, _0809CE34 @ =DrawSupportSubScreenSprites
 	adds r1, r5, #0
 	bl StartParallelWorker
 	add sp, #4
@@ -226,4 +226,4 @@ _0809CE24: .4byte 0x06017000
 _0809CE28: .4byte 0x0840E40C
 _0809CE2C: .4byte 0x06017800
 _0809CE30: .4byte 0x0840E4EC
-_0809CE34: .4byte sub_0809C544
+_0809CE34: .4byte DrawSupportSubScreenSprites

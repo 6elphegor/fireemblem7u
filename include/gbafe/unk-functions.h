@@ -691,7 +691,7 @@ int GetTotalSupportLevel(int idx);
 // sub_0809C44C
 // sub_0809C49C
 int GetSupportScreenPartnerCount(int charId);
-// sub_0809C544
+// DrawSupportSubScreenSprites
 // DrawSupportSubScreenUnitPartnerText
 // DrawSupportSubScreenRemainingText
 // InitSupportSubScreenPartners

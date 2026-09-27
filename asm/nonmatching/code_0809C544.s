@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0809C544
-sub_0809C544: @ 0x0809C544
+	thumb_func_start DrawSupportSubScreenSprites
+DrawSupportSubScreenSprites: @ 0x0809C544
 	push {r4, r5, r6, r7, lr}
 	sub sp, #4
 	adds r6, r0, #0

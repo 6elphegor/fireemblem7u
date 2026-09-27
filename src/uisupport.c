@@ -37,6 +37,25 @@ struct SupportTactProc {
     /* 34 */ int count;
 };
 
+struct SubScreenProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int unitIdx;
+    /* 30 */ int x;
+    /* 34 */ int y;
+    /* 38 */ s8 fromPrepScreen;
+    /* 39 */ u8 unk_39;
+    /* 3A */ u8 unk_3a;
+    /* 3B */ u8 unk_3b;
+    /* 3C */ u8 partnerCount;
+    /* 3D */ u8 remainingSupports;
+    /* 3E */ u8 songId;
+    /* 3F */ u8 unk_3f;
+    /* 40 */ u8 partnerState[7];
+    /* 47 */ u8 supportLevel[7];
+    /* 4E */ u8 partnerClassId[7];
+};
+
 extern struct SupportScreenUnit * CONST_DATA sSupportScreenUnits;
 extern int sSupportScreenUnitCount;
 extern struct SupportTalkEnt CONST_DATA gSupportTalkList[];
@@ -77,6 +96,25 @@ extern u16 Pal_08194714[];
 void StartSupportUnitSubScreen(s8 fromPrepScreen, int idx, ProcPtr parent);
 int GetSupportTalkSong(u8 a, u8 charA, u8 charB, int rank);
 char * GetTacticianName(void);
+struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
+s8 sub_08088A90(void);
+
+extern struct Font gPrepItemTextFont;
+extern u16 gUnk_02012BFC[];
+extern u16 Pal_TactInfoBg[];
+extern u8 Img_TactInfoBg[];
+extern u8 Tsa_TactInfoBg[];
+extern u8 Img_0840E830[];
+extern u16 Pal_0840E978[];
+extern u8 Img_08418C54[];
+extern u16 Pal_08418D40[];
+extern u16 SpriteAnim_08418D60[];
+extern u16 CONST_DATA Sprite_08CC593C[];
+extern u16 CONST_DATA Sprite_08CC5944[];
+extern u16 CONST_DATA Sprite_08CC5952[];
+extern u16 CONST_DATA Sprite_08CC5960[];
+extern u16 CONST_DATA Sprite_08CC596E[];
+extern u16 CONST_DATA Sprite_08CC4FC4[];
 
 
 int GetSupportScreenUnitCount(void)
@@ -784,12 +822,136 @@ void sub_0809C12C(struct SupportTactProc * proc)
     proc->count = n;
     proc->unk_2c = 0;
 }
-ASM_FUNC("asm/nonmatching/code_0809C154.s");
-ASM_FUNC("asm/nonmatching/code_0809C3F4.s");
-ASM_FUNC("asm/nonmatching/code_0809C41C.s");
-ASM_FUNC("asm/nonmatching/code_0809C44C.s");
-ASM_FUNC("asm/nonmatching/code_0809C49C.s");
-ASM_FUNC("asm/nonmatching/code_0809C524.s");
+void sub_0809C154(struct SupportTactProc * proc)
+{
+    int i;
+    struct Font * font;
+
+    gDispIo.disp_ct.mode = 0;
+
+    InitBgs(NULL);
+
+    TmFill(GetBgTilemap(0), 0);
+    TmFill(GetBgTilemap(1), 0);
+    TmFill(GetBgTilemap(2), 0);
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 3;
+    gDispIo.bg2_ct.priority = 0;
+    gDispIo.bg3_ct.priority = 3;
+
+    InitFaces();
+    ResetText();
+    InitIcons();
+    ApplySystemObjectsGraphics();
+
+    SetBgOffset(0, 0, 0);
+    SetBgOffset(1, 0, 0);
+    SetBgOffset(2, 0, 0);
+
+    ApplyIconPalettes(4);
+    PrepRestartMuralBackground();
+
+    Decompress(Img_TactInfoBg, (void *) 0x06000400);
+    ApplyPalette(Pal_TactInfoBg, 0xF);
+
+    CpuFastFill(0, gBuf, 0x440);
+    TmApplyTsa((u16 *) gBuf, Tsa_TactInfoBg, 0xF020);
+    CpuFastCopy(gBuf + 0x40, gBg1Tm, 0x440);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
+
+    SetWinEnable(0, 0, 0);
+    SetWin0Box(128, 40, 224, 152);
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 0, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 1;
+
+    SetBlendConfig(0, 8, 8, 8);
+
+    font = &gPrepItemTextFont;
+    InitTextFont(font, (void *) 0x06004000, 0x200, 0);
+    SetTextFont(font);
+
+    for (i = 0; i < 12; i++)
+        InitText((struct Text *) (font + 1) + i, 8);
+
+    InitText(&gPrepItemTexts[29], 8);
+    SetTextFont(NULL);
+
+    sub_0809C044();
+
+    if (gPlaySt.chapterModeIndex == 3)
+        StartTalkFace(0x29, 0xD8, 0x58, 0x102, 0);
+    else
+        StartTalkFace(0x32, 0xD8, 0x58, 0x102, 0);
+
+    InitTalk(0, 0, 1);
+
+    Decompress(Img_0840E830, (void *) 0x06017000);
+    CpuFastFill(0, PAL_OBJ(0xE), 0x20);
+    ApplyPalette(Pal_0840E978, 0x1F);
+
+    StartParallelWorker(sub_0809BFCC, proc);
+
+    Decompress(Img_08418C54, (void *) 0x06017800);
+    ApplyPalette(Pal_08418D40, 0x1D);
+    StartSpriteAnimProc(SpriteAnim_08418D60, 0x86, 0x6C, 0xDBC0, 0, 0xD);
+
+    proc->unk_30 = 0xFC3;
+}
+void sub_0809C3F4(ProcPtr proc)
+{
+    EndEachSpriteAnimProc();
+    EndCgText();
+    EndAllProcChildren(proc);
+    EndMuralBackground_();
+    EndFaceById(0);
+    SetOnHBlankA(NULL);
+}
+void sub_0809C41C(struct SupportTactProc * proc)
+{
+    StartCgText(0x16, 0x13, 0x12, 4, proc->unk_30, (void *) 0x06011000, 10, 0);
+    SetCgTextFlags(0x4E);
+}
+void sub_0809C44C(ProcPtr proc)
+{
+    if (!sub_08088A90())
+    {
+        Proc_Break(proc);
+        return;
+    }
+
+    if (gpKeySt->pressed & START_BUTTON)
+    {
+        Proc_Break(proc);
+        PlaySoundEffect(0x38B);
+    }
+}
+void sub_0809C49C(void)
+{
+    int ix;
+    int iy;
+
+    for (ix = 0; ix < 30; ix++)
+    {
+        for (iy = 0; iy < 20; iy++)
+        {
+            *(gUnk_02012BFC + TM_OFFSET(ix, iy + 0x00)) = gBg0Tm[TM_OFFSET(ix, iy)];
+            *(gUnk_02012BFC + TM_OFFSET(ix, iy + 0x20)) = gBg1Tm[TM_OFFSET(ix, iy)];
+            *(gUnk_02012BFC + TM_OFFSET(ix, iy + 0x40)) = gBg2Tm[TM_OFFSET(ix, iy)];
+        }
+    }
+}
+int GetSupportScreenPartnerCount(int charId)
+{
+    if (gCharacterData[charId - 1].pSupportData == NULL)
+        return 0;
+
+    return gCharacterData[charId - 1].pSupportData->count;
+}
 ASM_FUNC("asm/nonmatching/code_0809C544.s");
 ASM_FUNC("asm/nonmatching/code_0809C654.s");
 ASM_FUNC("asm/nonmatching/code_0809C844.s");
