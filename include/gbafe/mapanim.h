@@ -51,6 +51,16 @@ struct ManimExpBarProc {
     /* 6A */ s16 timer;
 };
 
+struct ManimInfoWindowProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2A);
+    /* 2A */ s16 clock;
+    /* 2C */ u16 unk_2C;
+    /* 2E */ u8 x;
+    /* 2F */ u8 y;
+    /* 30 */ ProcPtr parent;
+};
+
 void Manim_StoleItemPopup(ProcPtr proc);
 void Manim_WeaponBrokePopup(ProcPtr proc);
 bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
@@ -84,21 +94,21 @@ void StartBattleManim(void);
 void InitManimHits(struct BattleUnit * actor, struct BattleUnit * target, struct BattleHit * hit);
 void InitManimActors(struct BattleUnit * actor, struct BattleUnit * target, struct BattleHit * hit);
 int GetFacingFromTo(int x_from, int y_from, int x_to, int y_to);
-// UnpackManimWindowDigits
-// PutManimWindowNumber
-// UnpackManimWindowGraphics
-// PutManimWindowBarTile
-// PutManimWindowBar
-// EndManimInfoWindow
-// StartManimInfoWindow
-// ManimWindow_Clear
-// sub_0806F7FC
-// sub_0806F910
-// sub_0806FA6C
-// sub_0806FB4C
-// sub_0806FBA4
-// sub_0806FD48
-// sub_0806FE34
+void UnpackManimWindowDigits(int chr);
+void PutManimWindowNumber(u16 * tm, int num, int tileref, int len, u16 blankref);
+void UnpackManimWindowGraphics(u8 const * img);
+void PutManimWindowBarTile(u16 * tm, int * pval, int pal, int max, int base);
+void PutManimWindowBar(u16 * tm, int max, int cur, int pal_id, u16 const * info);
+void EndManimInfoWindow(void);
+void StartManimInfoWindow(int x, int y, ProcPtr parent);
+void ManimWindow_Clear(ProcPtr proc);
+void ManimInfoWindow_Init(struct ManimInfoWindowProc * proc);
+void ManimInfoWindow_UpdateHp(struct ManimInfoWindowProc * proc);
+void PutManimInfoWindowHp(struct ManimInfoWindowProc * proc, int actor);
+u16 const * GetManimInfoWindowPal(struct Unit * unit);
+void PutManimInfoWindow(struct ManimInfoWindowProc * proc, int actor, int x_offset);
+void ManimInfoWindow_InitShake(struct ManimInfoWindowProc * proc);
+void ManimInfoWindow_Shake(struct ManimInfoWindowProc * proc);
 // sub_0806FF18
 // sub_0806FF88
 // sub_0807003C
