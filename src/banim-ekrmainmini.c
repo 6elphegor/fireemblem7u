@@ -175,10 +175,10 @@ void sub_08054A8C(struct Anim * anim)
     }
 }
 
-#if NONMATCHING
 // 0.59 ekrmainmini:InitMainMiniAnim
 void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
 {
+    struct BattleAnimCharaPal * cbapt = character_battle_animation_palette_table;
     u32 modeA;
     u32 configA;
     u32 modeB;
@@ -272,20 +272,14 @@ void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
     LZ77UnCompWram(ba[pAnimBuf->animId].pal, pAnimBuf->unk_20);
 
     if (pAnimBuf->charPalId != -1)
-    {
-        struct BattleAnimCharaPal * cbap = &character_battle_animation_palette_table[pAnimBuf->charPalId];
-        LZ77UnCompWram(cbap->pal, pAnimBuf->unk_20);
-    }
+        LZ77UnCompWram(cbapt[pAnimBuf->charPalId].pal, pAnimBuf->unk_20);
 
-    CpuFastSet(&PAL_BUF_COLOR(((u16 *)pAnimBuf->unk_20), pAnimBuf->genericPalId, 0), PAL_OBJ(pAnimBuf->oam2Pal), 8);
+    CpuFastSet(pAnimBuf->unk_20 + pAnimBuf->genericPalId * 0x20, pAnimBuf->oam2Pal * 0x10 + gPal + 0x100, 8);
 
     EnablePalSync();
 
     pAnimBuf->unk_2C = 0;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08054AF0.s");
-#endif
 
 #if NONMATCHING
 void sub_08054C8C(struct AnimBuffer * pAnimBuf)

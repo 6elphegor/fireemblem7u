@@ -2776,6 +2776,7 @@ gBolganoneOBJ2XOffsets = 0x081E8978;
 gBolganoneOBJDurations = 0x081E88CA;
 gBolganoneOBJTypes = 0x081E88DA;
 banim_data = 0x08E00008;
+character_battle_animation_palette_table = 0x08FD8008;
 gEkrMainBgmPlaying = 0x020200A0;
 gEfxSoundSeExist = 0x020200A4;
 ProcScr_efxSoundSE = 0x08BDAF68;
