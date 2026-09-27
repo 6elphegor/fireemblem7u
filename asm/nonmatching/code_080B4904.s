@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B4904
-sub_080B4904: @ 0x080B4904
+	thumb_func_start StartWmMuMove
+StartWmMuMove: @ 0x080B4904
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

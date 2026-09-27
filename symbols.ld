@@ -2013,3 +2013,4 @@ ProcScr_WmUnitManager = 0x08CE76C8;
 Sprite_WmIcon = 0x08422160;
 ProcScr_WorldMap = 0x08CE76E8;
 gWmFaceConfig = 0x085E9AA0;
+gWmEventScripts = 0x08C9CDA4;

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B5430
-sub_080B5430: @ 0x080B5430
+	thumb_func_start WorldMap_LoopScrollCamera
+WorldMap_LoopScrollCamera: @ 0x080B5430
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

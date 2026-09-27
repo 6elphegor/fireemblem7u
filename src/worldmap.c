@@ -151,6 +151,27 @@ ProcPtr StartTalkMsg(int x, int y, int id);
 void SetTalkPrintDelay(int delay);
 void StartWmFade(int mode, int x, int y, ProcPtr parent);
 
+struct WmCmdProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int delay;
+    /* 30 */ u8 cmd;
+    /* 34 */ int args[5];
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_BmFadeIN[];
+extern EventScr const * CONST_DATA gWmEventScripts[];
+
+void sub_08077680(int y);
+void sub_08077860(void);
+void sub_08004234(void);
+void StartWmSpriteAnim(u32 slot, int id);
+void EndWmSpriteAnim(u32 slot);
+void StartWmMuMove(int idx, int x, int y, u32 flags);
+void sub_080B4D4C(int slot, int fid, u16 flags);
+void sub_080B4E88(int slot, u16 flags);
+void sub_080B5844(int a);
+void sub_080B5934(int a);
+
 void EndWmIcon(int idx);
 void EndWmIcon2(int idx);
 
@@ -918,20 +939,199 @@ void WorldMap_Init(void)
 }
 
 ASM_FUNC("asm/nonmatching/code_080B50C4.s");
-ASM_FUNC("asm/nonmatching/code_080B5280.s");
-ASM_FUNC("asm/nonmatching/code_080B52CC.s");
-ASM_FUNC("asm/nonmatching/code_080B52D0.s");
-ASM_FUNC("asm/nonmatching/code_080B5350.s");
-ASM_FUNC("asm/nonmatching/code_080B5420.s");
+void WorldMap_OnEnd(struct WorldMapProc * proc)
+{
+    SetOnHBlankB(NULL);
+    SetOnHBlankA(NULL);
+
+    EndTalk();
+    ClearTalkText();
+    ResetUnitSprites();
+
+    SetBlendDarken(0x10);
+
+    proc->unk_54 = 0;
+}
+
+void sub_080B52CC(void)
+{
+}
+
+void WorldMap_InitOpenEffect(struct WorldMapProc * proc)
+{
+    if (proc->flags & 8)
+    {
+        InitScanlineEffect();
+        SetOnHBlankB(sub_08077860);
+        sub_08077680(0);
+
+        SetBlendAlpha(0x10, 0x10);
+        SetBlendTargetA(0, 0, 0, 1, 0);
+        SetBlendTargetB(0, 0, 0, 0, 0);
+
+        gDispIo.blend_ct.target1_enable_bd = 1;
+        gDispIo.blend_ct.target2_enable_bd = 1;
+    }
+}
+
+void WorldMap_LoopOpenEffect(struct WorldMapProc * proc)
+{
+    int max = 0x30;
+    int t;
+
+    if (proc->flags & 0x20)
+        proc->unk_48 += 2;
+    else
+        proc->unk_48 += 1;
+
+    if (proc->flags & 0x40)
+        t = proc->unk_48 >> 1;
+    else
+        t = proc->unk_48;
+
+    if (proc->flags & 8)
+        sub_08077680(0x70 - (max - t) * 0x70 * (max - t) / (max * max));
+
+    if (t == max)
+    {
+        Proc_Break(proc);
+
+        if (proc->flags & 8)
+        {
+            SetOnHBlankB(NULL);
+
+            SetBlendConfig(0, 0, 0, 0);
+            SetBlendTargetA(0, 0, 0, 0, 0);
+            SetBlendTargetB(0, 0, 1, 0, 0);
+
+            gDispIo.blend_ct.target1_enable_bd = 0;
+            gDispIo.blend_ct.target2_enable_bd = 0;
+        }
+    }
+}
+
+void WorldMap_InitScrollCamera(struct WorldMapProc * proc)
+{
+    proc->unk_40 = 0;
+    proc->unk_54 = 1;
+}
+
 ASM_FUNC("asm/nonmatching/code_080B5430.s");
-ASM_FUNC("asm/nonmatching/code_080B5554.s");
-ASM_FUNC("asm/nonmatching/code_080B558C.s");
-ASM_FUNC("asm/nonmatching/code_080B55BC.s");
-ASM_FUNC("asm/nonmatching/code_080B55E4.s");
-ASM_FUNC("asm/nonmatching/code_080B5624.s");
-ASM_FUNC("asm/nonmatching/code_080B5630.s");
-ASM_FUNC("asm/nonmatching/code_080B5644.s");
-ASM_FUNC("asm/nonmatching/code_080B565C.s");
+void StartWorldMap(u8 mode, int x, int y, u32 flags)
+{
+    struct WorldMapProc * proc = Proc_Start(ProcScr_WorldMap, PROC_TREE_3);
+
+    proc->mode = mode;
+    proc->x = x;
+    proc->y = y;
+    proc->flags = flags;
+}
+
+void EndWM(void)
+{
+    Proc_End(Proc_Find(ProcScr_BmFadeIN));
+    Proc_End(Proc_Find(ProcScr_WorldMap));
+
+    ClearTalk();
+    EndEachSpriteAnimProc();
+    InitBgs(NULL);
+}
+
+void WorldMap_StartBgm(u32 flags)
+{
+    if (flags & 0x10)
+        StartBgm(GetChapterInfo(gPlaySt.chapterIndex)->song_prologue_lyn, NULL);
+}
+
+void WorldMap_StartEvent(void)
+{
+    if (gWmEventScripts[GetChapterInfo(gPlaySt.chapterIndex)->gmapEventId] != NULL)
+        StartEvent(gWmEventScripts[GetChapterInfo(gPlaySt.chapterIndex)->gmapEventId]);
+}
+
+void WorldMap_FadeBgm(void)
+{
+    FadeBgmOut(4);
+}
+
+void WorldMap_EndEvent(void)
+{
+    sub_08004234();
+    EndWmUnitManager();
+    WmSetUnk02(0);
+}
+
+bool IsWorldMapActive(void)
+{
+    return Proc_Find(ProcScr_WorldMap) ? TRUE : FALSE;
+}
+
+void WmCmd_Loop(struct WmCmdProc * proc)
+{
+    if (proc->delay > 0)
+    {
+        proc->delay--;
+        return;
+    }
+
+    switch (proc->cmd)
+    {
+    case 0:
+        StartWmMuMove(proc->args[0], proc->args[1], proc->args[2], proc->args[4]);
+        break;
+
+    case 1:
+        EndWmMu(proc->args[0]);
+        break;
+
+    case 2:
+        StartWmSpriteAnim(proc->args[0], proc->args[3]);
+        break;
+
+    case 3:
+        EndWmSpriteAnim(proc->args[0]);
+        break;
+
+    case 4:
+        ((void (*)(int, s16, s16, u8)) StartWmIcon)(proc->args[0], proc->args[1], proc->args[2], proc->args[4]);
+        break;
+
+    case 5:
+        ((void (*)(int, s16, s16, u8)) StartWmIcon2)(proc->args[0], proc->args[1], proc->args[2], proc->args[4]);
+        break;
+
+    case 6:
+        sub_080B4D4C(proc->args[0], proc->args[3], proc->args[4]);
+        break;
+
+    case 7:
+        sub_080B4E88(proc->args[0], proc->args[4]);
+        break;
+
+    case 8:
+        WmStartScrollCamera(proc->args[1], proc->args[2], proc->args[4]);
+        break;
+
+    case 10:
+        sub_080B5844(proc->args[4]);
+        break;
+
+    case 9:
+        sub_080B5934(proc->args[4]);
+        break;
+
+    case 12:
+        WmMu_EndFlash(proc->args[4]);
+        break;
+
+    case 11:
+        WmMu_StartFlash(proc->args[4]);
+        break;
+    }
+
+    Proc_Break(proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_080B5760.s");
 ASM_FUNC("asm/nonmatching/code_080B57AC.s");
 ASM_FUNC("asm/nonmatching/code_080B5844.s");

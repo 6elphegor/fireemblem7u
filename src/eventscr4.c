@@ -30,7 +30,7 @@ void sub_080B4E88(int a, u16 b);
 void WmStartTalk(int a);
 void OpenWmTextBox(int a);
 void CloseWmTextBox(void);
-void sub_080B4904(int a, int b, int c, int d);
+void StartWmMuMove(int a, int b, int c, int d);
 void EndWmMu(int a);
 void StartWmSpriteAnim(int a, int b);
 void EndWmSpriteAnim(int a);
@@ -519,8 +519,8 @@ void sub_0800F358(void)
     m4aMPlayFadeInContinue(&gUnk_03005B10, 2);
 }
 
-void sub_080B5554(u8 a, int x, int y, int c);
-void sub_080B55BC(int c);
+void StartWorldMap(u8 a, int x, int y, int c);
+void WorldMap_StartBgm(int c);
 
 int sub_0800F36C(struct EventProc * proc)
 {
@@ -532,8 +532,8 @@ int sub_0800F36C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B5554(a, x, y, c);
-    sub_080B55BC(c);
+    StartWorldMap(a, x, y, c);
+    WorldMap_StartBgm(c);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -733,7 +733,7 @@ int sub_0800F6B8(struct EventProc * proc)
         if (e != 0)
             WmMergeFace(e, 0, a, 0, b, c, d);
         else
-            sub_080B4904(a, b, c, d);
+            StartWmMuMove(a, b, c, d);
     }
 
     return EVENT_CMDRET_CONTINUE;
