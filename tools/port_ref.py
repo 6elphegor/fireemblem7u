@@ -88,7 +88,6 @@ class Analysis:
         self.sym_addr = {}         # ref data symbol -> FE7U address
         self.sym_src = {}
         self.learned = {}          # ref func -> our func, from calls
-        self.call_alias = {}       # (obj, ref veneer) -> our copy actually called
         self.base = {}             # (obj stem, section name) -> FE7U address
         self.orphans = {}          # obj stem -> our functions with no ref counterpart
         self.problems = defaultdict(list)
@@ -127,10 +126,12 @@ class Analysis:
                     raise Conflict(f"{where}: call to {sym.name} -> {t:#x}, not a function")
                 self.learned[sym.name] = self.ours.by_addr[t]
             elif self.ours.addr[f] != t:
-                d = self.defs.get(sym.name)
-                if not (d and d[1].size and d[1].size <= 8) or t not in self.ours.by_addr:
+                # Tiny stubs (interworking veneers) exist in several identical
+                # copies; the call site says which copy this one is.
+                tiny = lambda a: self.ours.next_func(a) - a <= 12
+                if t not in self.ours.by_addr or not (tiny(t) and tiny(self.ours.addr[f])):
                     raise Conflict(f"{where}: call to {sym.name} hits {t:#x}, expected {f}")
-                self.call_alias[(where.split(':')[0], sym.name)] = self.ours.by_addr[t]
+                self.fmap[sym.name] = self.ours.by_addr[t]
             return
         if rtype != R_ARM_ABS32:
             raise Conflict(f"{where}: unsupported reloc type {rtype}")
@@ -304,7 +305,6 @@ def main():
             "files": plan,
             "sym_addr": a.sym_addr,
             "fmap": {**a.fmap, **a.learned},
-            "call_alias": {f"{k[0]}:{k[1]}": v for k, v in a.call_alias.items()},
         }
         Path(sys.argv[sys.argv.index("--json") + 1]).write_text(json.dumps(out, indent=1, sort_keys=True))
 

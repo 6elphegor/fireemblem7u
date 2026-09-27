@@ -25,8 +25,9 @@ make                    # builds fe7u.gba and checks its SHA1
 | `asm/code_*.s` | Game code not yet decompiled, named by start address |
 | `asm/m4a.s`, `libagb.s`, `libgcc.s`, `libc.s`, `veneers.s` | Library code |
 | `src/` | Decompiled C |
-| `include/` | Headers |
-| `data/data.s` | ROM data (incbin) |
+| `include/` | Headers (adopted from FireEmblem7J) |
+| `data/layout.txt` | FE7U addresses of C data sections (ROM and RAM); everything else in the data region is incbin'd |
+| `symbols.ld` | FE7U addresses of data symbols not yet defined in C |
 | `fe7u.lds` | Linker script — object order defines the ROM layout |
 
 ## Decompiling a function
@@ -38,6 +39,24 @@ tools/carve.py FuncName NextFuncName   # FuncName now alone in asm/code_<ADDR>.s
 Write the C for it in `src/`, delete that asm file, point its line in
 `fe7u.lds` at `build/src/<file>.o`, and run `make` until it prints `OK`.
 Adjacent functions from the same original module go in the same C file.
+
+## Porting from other decomps
+
+Much of the engine matches FireEmblem7J (and, less often, fireemblem8u)
+byte-for-byte.  With the reference project's sources compiled to unlinked
+objects in `REF/objs/` (same compiler and flags as the reference build):
+
+```sh
+tools/match_names.py REF/objs            # our sub_XXXXXXXX that match named ref functions
+tools/port_ref.py REF/objs --json plan.json   # which ref C files port as-is, and why not
+tools/apply_port.py REF plan.json [src_foo ...]
+make
+```
+
+`port_ref.py` requires every function and data section of a file to match
+FE7U after relocation, and derives FE7U addresses for everything the file
+references.  Files it rejects usually differ between versions and need
+real decompilation work.
 
 ## Regenerating the disassembly
 
