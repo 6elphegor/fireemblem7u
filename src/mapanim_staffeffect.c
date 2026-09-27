@@ -59,6 +59,17 @@ extern u8 CONST_DATA gManimWaveLut[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimShiftingSineWaveScanlineBuf[];
 extern struct ProcCmd CONST_DATA ProcScr_ManimWaveFx[];
 
+extern u8 const Img_ManimSilenceBg[];
+extern u8 const Img_ManimSilenceObj[];
+extern u16 const Pal_ManimSilence[];
+extern u16 const SpriteAnim_ManimSilence[];
+extern u8 const Img_ManimBarrier[];
+extern u16 const Pal_ManimBarrier[];
+extern u8 const Tsa_ManimBarrier[];
+extern u8 const gManimBarrierFrameLut[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimSilence[];
+extern struct ProcCmd CONST_DATA ProcScr_ManimBarrier[];
+
 void StartManimLatonaFx(struct Unit * unit)
 {
     struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimLatona, PROC_TREE_3);
@@ -697,13 +708,95 @@ void ManimWaveFx_Shrink(struct ManimEffectProc * proc)
     sub_08076D8C(proc->x, proc->y, --proc->unk_48, 12, gManimWaveLut);
 }
 
-ASM_FUNC("asm/nonmatching/code_08073550.s");
-ASM_FUNC("asm/nonmatching/code_080735B8.s");
-ASM_FUNC("asm/nonmatching/code_080736EC.s");
-ASM_FUNC("asm/nonmatching/code_080737D8.s");
-ASM_FUNC("asm/nonmatching/code_08073878.s");
-ASM_FUNC("asm/nonmatching/code_080738E0.s");
-ASM_FUNC("asm/nonmatching/code_080739B0.s");
+void StartManimSilenceFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimSilence, PROC_TREE_3);
+
+    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
+    proc->y = ((SCREEN_TILE_Y(unit->yPos) << 1) + 1) * 8;
+}
+
+void ManimSilenceFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x83, proc->x);
+
+    SetBgOffset(2, 0, 0);
+    SetDefaultManimScreenConf();
+
+    Decompress(Img_ManimSilenceBg, (void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20);
+    Decompress(Img_ManimSilenceObj, OBJ_VRAM0 + 0x1C0 * 0x20);
+    ApplyPalette(Pal_ManimSilence, 4);
+    ApplyPalette(Pal_ManimSilence, 0x10 + 4);
+
+    StartSpriteAnimProc(SpriteAnim_ManimSilence, proc->x, proc->y | OAM0_BLEND, TILEREF(0x1C0, 4), 0, 2);
+
+    proc->unk_48 = 0;
+
+    SetBlendTargetA(0, 0, 0, 0, 1);
+    SetBlendBackdropA(0);
+    SetBlendConfig(BLEND_EFFECT_NONE, 0x10, 0x10, 0);
+}
+
+void ManimSilenceFx_Start(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x84, proc->x);
+
+    sub_080147BC(gBg2Tm, proc->x / 8 - 2, proc->y / 8 - 2, TILEREF(0x140, 4), 4, 4);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendBackdropA(0);
+    SetBlendAlpha(0x10, 0x10);
+}
+
+void ManimSilenceFx_Main(struct ManimEffectProc * proc)
+{
+    SetBlendAlpha(Interpolate(0, 0x10, 0, proc->unk_48++, 30), 0x10);
+
+    if (proc->unk_48 >= 30)
+        Proc_Break(proc);
+}
+
+void StartManimBarrierFx(struct Unit * unit)
+{
+    struct ManimEffectProc * proc = Proc_Start(ProcScr_ManimBarrier, PROC_TREE_3);
+
+    proc->x = ((SCREEN_TILE_X(unit->xPos) << 1) + 1) * 8;
+    proc->y = ((SCREEN_TILE_Y(unit->yPos) << 1) + 1) * 8;
+}
+
+void ManimBarrierFx_Init(struct ManimEffectProc * proc)
+{
+    PlaySeSpacial(0x88, proc->x);
+
+    SetBgOffset(2, 0, 0);
+    SetDefaultManimScreenConf();
+
+    SetBlendAlpha(0x10, 0x10);
+
+    Decompress(Img_ManimBarrier, (void *)(VRAM) + GetBgChrOffset(2) + 0x140 * 0x20);
+    ApplyPalette(Pal_ManimBarrier, 4);
+
+    proc->unk_48 = 0;
+    proc->frame_idx = 0;
+}
+
+void ManimBarrierFx_Main(struct ManimEffectProc * proc)
+{
+    sub_080149A8(
+        gBg2Tm,
+        proc->x / 8 - 2, proc->y / 8 - 8,
+        TILEREF(0x140, 4),
+        4, 10, Tsa_ManimBarrier,
+        gManimBarrierFrameLut[proc->unk_48++]);
+
+    EnableBgSync(BG2_SYNC_BIT);
+
+    if (gManimBarrierFrameLut[proc->unk_48] == 0xFF)
+        Proc_Break(proc);
+}
+
 ASM_FUNC("asm/nonmatching/code_08073A54.s");
 ASM_FUNC("asm/nonmatching/code_08073ABC.s");
 ASM_FUNC("asm/nonmatching/code_08073AF0.s");

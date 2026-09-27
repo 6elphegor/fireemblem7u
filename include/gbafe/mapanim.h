@@ -252,12 +252,12 @@ void ManimWaveFx_Init(struct ManimEffectProc * proc);
 void ManimWaveFx_Expand(struct ManimEffectProc * proc);
 void ManimWaveFx_Shrink(struct ManimEffectProc * proc);
 // sub_8073D3C
-// sub_080735B8
-// sub_080736EC
-// sub_080737D8
+void ManimSilenceFx_Init(struct ManimEffectProc * proc);
+void ManimSilenceFx_Start(struct ManimEffectProc * proc);
+void ManimSilenceFx_Main(struct ManimEffectProc * proc);
 // sub_8074064
-// sub_080738E0
-// sub_080739B0
+void ManimBarrierFx_Init(struct ManimEffectProc * proc);
+void ManimBarrierFx_Main(struct ManimEffectProc * proc);
 // sub_08073A54
 // sub_08073ABC
 // sub_08073AF0
@@ -365,3 +365,5 @@ void ManimRepairFx_Main(struct ManimEffectProc * proc);
 void StartManimRestoreFx(struct Unit * unit);
 void ManimRestoreFx_Main(struct ManimEffectProc * proc);
 void StartManimSleepFx(struct Unit * unit);
+void StartManimSilenceFx(struct Unit * unit);
+void StartManimBarrierFx(struct Unit * unit);
