@@ -71,7 +71,7 @@ extern s16 gUnk_020144F4;
 
 void StartUnitListScreenForSoloAnim(ProcPtr parent);
 
-void sub_080B1FB0(int x, int y, u16 oam2, int flag);
+void DisplayUiVArrow(int x, int y, u16 oam2, int flip);
 void UnpackUiVArrowGfx(int chr, int pal);
 u8 GetGameOption(u8 index);
 void SetGameOption(u8 index, u8 value);
@@ -210,10 +210,10 @@ void DrawConfigUiSprites(void)
     if (gConfigUiState->maxOption > 6)
     {
         if (gConfigUiState->headOptionIdx != 0)
-            sub_080B1FB0(100, 29, 0x3080, 1);
+            DisplayUiVArrow(100, 29, 0x3080, 1);
 
         if (gConfigUiState->headOptionIdx < gConfigUiState->maxOption - 6)
-            sub_080B1FB0(100, 125, 0x3080, 0);
+            DisplayUiVArrow(100, 125, 0x3080, 0);
     }
 
     if ((GetSelectedGameOption() == 0) && (GetSelectedOptionValue() == 3))

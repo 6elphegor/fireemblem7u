@@ -43,7 +43,7 @@ extern struct ProcCmd CONST_DATA ProcScr_08CE4034[];
 extern struct ProcCmd CONST_DATA ProcScr_08CC51D0[];
 
 ProcPtr StartSoundRoomScreen(ProcPtr parent);
-void sub_0809BE68(ProcPtr parent);
+void StartSupportScreen(ProcPtr parent);
 void sub_080A511C(ProcPtr parent);
 
 CONST_DATA u16 BgConfig_SaveMenu[] = {
@@ -1204,7 +1204,7 @@ void SaveMenuStartExtraMiscScreen(struct SaveMenuProc * proc)
         return;
 
     case 0x04:
-        sub_0809BE68(proc);
+        StartSupportScreen(proc);
         return;
 
     case 0x08:
