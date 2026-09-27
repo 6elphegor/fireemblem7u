@@ -22,7 +22,7 @@ ASFLAGS  := -mcpu=arm7tdmi -I asm -I include
 
 SHASUM := $(shell command -v sha1sum || echo shasum)
 
-C_SRCS   := $(wildcard src/*.c)
+C_SRCS   := $(wildcard src/*.c) $(wildcard src/data/*.c)
 ASM_SRCS := $(wildcard asm/*.s) $(wildcard src/*.s)
 C_OBJS   := $(patsubst %.c,build/%.o,$(C_SRCS))
 ASM_OBJS := $(patsubst %.s,build/%.o,$(ASM_SRCS))
