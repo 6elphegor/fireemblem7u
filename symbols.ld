@@ -806,3 +806,9 @@ gGreenAiEscapePoints = 0x08B971C0;
 gAI3HealingThresholdTable = 0x08B9727C;
 gAiSpecificPositionLists = 0x08B972E8;
 sTerrainList_Fort = 0x08B98AC4;
+/* cp_utility */
+sRange3OffsetLut = 0x08B97034;
+gTerrainList_LootableVillages = 0x08B97098;
+gTerrainList_LootableVillagesAndChests = 0x08B9709C;
+gAiClassRankLists = 0x08B970C8;
+gAiStealPriorityItemList = 0x08B97290;
