@@ -22,7 +22,59 @@ void StartShowMapChangeAnim(ProcPtr parent, int x, int y);
 extern u8 CONST_DATA Img_StatusHealEffect[];
 extern u16 CONST_DATA Pal_StatusHealEffect[];
 extern u8 CONST_DATA Tsa_StatusHealEffect[];
-extern struct ProcCmd CONST_DATA ProcScr_StatusHealEffect[];
+
+CONST_DATA struct ProcCmd gProcScr_Unused_KillAllRedUnits[] = {
+    PROC_CALL(KillAllRedUnits_Init),
+    PROC_LABEL(0),
+    PROC_REPEAT(KillAllRedUnits_Loop),
+    PROC_SLEEP(32),
+    PROC_CALL(EndAllMus),
+    PROC_GOTO(0),
+    PROC_LABEL(99),
+    PROC_CALL(RefreshEntityMaps),
+    PROC_CALL(RenderMap),
+    PROC_CALL(RefreshUnitSprites),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_StatusHealEffect_OverlayBg[] = {
+    PROC_CALL(StatusHealEffect_OverlayBg_Init),
+    PROC_REPEAT(StatusHealEffect_OverlayBg_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_StatusHealEffect_BlendedSprite[] = {
+    PROC_CALL(StatusHealEffect_BlendedSprite_Init),
+    PROC_REPEAT(StatusHealEffect_BlendedSprite_Loop),
+    PROC_CALL(StatusHealEffect_BlendedSprite_Finish),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_StatusHealEffect_BlendAnim[] = {
+    PROC_CALL(StatusHealEffect_BlendSpriteAnim_InitIn),
+    PROC_REPEAT(StatusHealEffect_BlendSpriteAnim_Loop),
+    PROC_SLEEP(32),
+    PROC_CALL(StatusHealEffect_BlendSpriteAnim_InitOut),
+    PROC_REPEAT(StatusHealEffect_BlendSpriteAnim_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd sProcScr_StatusHealEffect_PalAnim[] = {
+    PROC_CALL(StatusHealEffect_PalSpriteAnim_Init),
+    PROC_REPEAT(StatusHealEffect_PalSpriteAnim_LoopIn),
+    PROC_REPEAT(StatusHealEffect_PalSpriteAnim_LoopOut),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_StatusHealEffect[] = {
+    PROC_START_CHILD(sProcScr_StatusHealEffect_OverlayBg),
+    PROC_START_CHILD(sProcScr_StatusHealEffect_BlendedSprite),
+    PROC_START_CHILD(sProcScr_StatusHealEffect_BlendAnim),
+    PROC_START_CHILD(sProcScr_StatusHealEffect_PalAnim),
+    PROC_SLEEP(66),
+    PROC_CALL(StatusHealEffect_Finish),
+    PROC_END,
+};
 
 void ApplyHazardHealing(ProcPtr proc, struct Unit * unit, int hp, int status)
 {

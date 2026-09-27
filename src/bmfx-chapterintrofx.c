@@ -104,6 +104,14 @@ PROC_LABEL(99),
     PROC_END,
 };
 
+struct ProcCmd CONST_DATA ProcScr_BmMain_08B93ADC[] = {
+    PROC_CALL(ChapterIntro_801FFA8),
+    PROC_CALL(ChapterIntro_InitMapDisplay),
+    PROC_CALL(ChapterIntro_BeginFadeToMap),
+    PROC_REPEAT(ChapterIntro_8021188),
+    PROC_END,
+};
+
 void PutChapterIntroMotif(void)
 {
     int ix, iy;

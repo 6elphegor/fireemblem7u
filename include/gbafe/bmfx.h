@@ -167,7 +167,7 @@ void ChapterIntro_SetSkipTarget(int skip, struct ProcChapterIntrofx * proc);
 void ChapterIntro_SetTimer(int timer, struct ProcChapterIntrofx * proc);
 void ChapterIntro_TickTimer(struct ProcChapterIntrofx * proc);
 void ChapterIntro_SetFasten(struct ProcChapterIntrofx * proc);
-// ChapterIntro_8021188
+void ChapterIntro_8021188(struct ProcChapterIntrofx * proc);
 // GameOverScreen_RandomScroll_Init
 // GameOverScreen_RandomScroll_Loop
 // GameOverScreenHBlank

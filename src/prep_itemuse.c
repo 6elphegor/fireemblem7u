@@ -9,6 +9,56 @@ void BeginBattleAnimations(void);
 
 extern u8 Tsa_0840E50C[];
 
+extern struct ProcCmd CONST_DATA ProcScr_PrepItemUseBooster[];
+
+CONST_DATA struct ProcCmd ProcScr_PrepItemUseScreen[] = {
+    PROC_YIELD,
+    PROC_LABEL(0),
+    PROC_CALL(PrepItemUse_OnInit),
+    PROC_CALL(PrepItemUse_InitDisplay),
+    PROC_CALL_ARG(NewFadeIn, 16),
+    PROC_WHILE(FadeInExists),
+    PROC_LABEL(1),
+    PROC_REPEAT(PrepItemUse_CtrlLoop),
+    PROC_LABEL(2),
+    PROC_CALL(PrepItemUse_ConfirmWindowInit),
+    PROC_REPEAT(PrepItemUse_ConfirmWindowCtrlLoop),
+    PROC_GOTO(1),
+    PROC_LABEL(3),
+    PROC_CALL(PrepItemUse_HandleItemEffect),
+    PROC_START_CHILD_BLOCKING(ProcScr_PrepItemUseBooster),
+    PROC_GOTO(1),
+    PROC_LABEL(4),
+    PROC_CALL(sub_08095894),
+    PROC_CALL_ARG(NewFadeOut, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_CALL(PrepItemUse_ExecPromotionItemUnused),
+    PROC_REPEAT(PrepItemUse_WaitPromotionDone),
+    PROC_SLEEP(8),
+    PROC_CALL(PrepItemUse_ResetBgmAfterPromo),
+    PROC_SLEEP(30),
+    PROC_CALL(PrepItemUse_PostPromotion),
+    PROC_CALL(PrepItemUse_InitDisplay),
+    PROC_CALL_ARG(NewFadeIn, 16),
+    PROC_WHILE(FadeInExists),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_GOTO(1),
+    PROC_LABEL(5),
+    PROC_CALL_ARG(NewFadeOut, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(6),
+    PROC_CALL(ProcPrepItemUse_OnEnd),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_PrepItemUseBooster[] = {
+    PROC_SET_END_CB(PrepItemUseBooster_OnEnd),
+    PROC_CALL(PrepItemUseBooster_OnInit),
+    PROC_REPEAT(PrepItemUseBooster_IDLE),
+    PROC_END,
+};
+
 bool PrepItemUseTryMoveHand(struct ProcPrepItemUse * proc)
 {
     u16 keys;

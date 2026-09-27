@@ -31,7 +31,36 @@ extern u16 CONST_DATA Pal_GameOverText1[];
 extern u16 CONST_DATA Pal_GameOverText2[];
 extern u8 CONST_DATA Tsa_GameOverFx[];
 
-extern struct ProcCmd CONST_DATA ProcScr_GameOverScreen[];
+
+void GameOverScreen_BeginFadeOut(struct ProcGameOverScreen * proc);
+void GameOverScreen_BeginIdle(struct ProcGameOverScreen * proc);
+void GameOverScreen_End(struct ProcGameOverScreen * proc);
+void GameOverScreen_Init(struct ProcGameOverScreen * proc);
+void GameOverScreen_LoopFadeIn(struct ProcGameOverScreen * proc);
+void GameOverScreen_LoopFadeOut(struct ProcGameOverScreen * proc);
+void GameOverScreen_LoopIdle(struct ProcGameOverScreen * proc);
+void GameOverScreen_RandomScroll_Init(struct ProcGameOverScroll * proc);
+void GameOverScreen_RandomScroll_Loop(struct ProcGameOverScroll * proc);
+
+CONST_DATA struct ProcCmd ProcScr_GameOverScreen_RandomScroll[] = {
+    PROC_CALL(GameOverScreen_RandomScroll_Init),
+    PROC_REPEAT(GameOverScreen_RandomScroll_Loop),
+    PROC_END,
+};
+
+CONST_DATA struct ProcCmd ProcScr_GameOverScreen[] = {
+    PROC_SET_END_CB(GameOverScreen_End),
+    PROC_CALL(GameOverScreen_Init),
+    PROC_CALL(EndAllMus),
+    PROC_START_CHILD(ProcScr_GameOverScreen_RandomScroll),
+    PROC_REPEAT(GameOverScreen_LoopFadeIn),
+    PROC_CALL(GameOverScreen_BeginIdle),
+    PROC_REPEAT(GameOverScreen_LoopIdle),
+    PROC_LABEL(99),
+    PROC_CALL(GameOverScreen_BeginFadeOut),
+    PROC_REPEAT(GameOverScreen_LoopFadeOut),
+    PROC_END,
+};
 
 void GameOverScreen_RandomScroll_Init(struct ProcGameOverScroll * proc)
 {
