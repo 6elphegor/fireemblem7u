@@ -3,6 +3,8 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+extern const u16 gUnknown_08B99880[];
+
 struct Fe6LinkMsgEnt
 {
     /* 00 */ u16 msg;
@@ -15,7 +17,7 @@ extern struct Text gUnk_Sio_02000C58;
 extern const u8 gUnknown_081D2B3C[];
 extern const u16 gUnknown_081D3598[];
 
-void sub_08043828(struct Text * th, int a, int b, int color);
+void sub_08043828(struct Text * th, int num, u8 center, int color);
 
 extern struct ProcCmd CONST_DATA ProcScr_08B9998C[];
 extern struct ProcCmd CONST_DATA ProcScr_08B99870[];
@@ -197,7 +199,73 @@ bool sub_08043788(void * data)
     return FALSE;
 }
 ASM_FUNC("asm/nonmatching/code_08043798.s");
-ASM_FUNC("asm/nonmatching/code_08043828.s");
+void sub_08043828(struct Text * th, int num, u8 center, int color)
+{
+    int widths[4];
+    int total;
+    int tens, ones;
+    int half;
+    const u16 * onesMsg;
+    int x = 0;
+
+    if (num == 0)
+        return;
+
+    if (num == 50)
+    {
+        total = GetStringTextLen(DecodeMsg(0x1186));
+
+        if (center)
+            x = (0x30 - total) >> 1;
+
+        Text_InsertDrawString(th, x, color, DecodeMsg(0x1186));
+        return;
+    }
+
+    // BUG: widths[0] is never initialized
+    total = widths[0];
+
+    tens = (num >> 1) / 10;
+    ones = (num >> 1) % 10;
+
+    if (tens != 0)
+    {
+        widths[1] = GetStringTextLen(DecodeMsg(gUnknown_08B99880[tens])) - 1;
+        total += widths[1];
+    }
+
+    onesMsg = &gUnknown_08B99880[ones];
+    widths[2] = GetStringTextLen(DecodeMsg(*onesMsg)) - 1;
+    total += widths[2];
+
+    widths[3] = GetStringTextLen(DecodeMsg(0x1185));
+    total += widths[3];
+
+    half = num & 1;
+
+    if (half)
+        total += GetStringTextLen(DecodeMsg(0x1188));
+
+    if (center)
+        x = (0x30 - total) >> 1;
+
+    x += widths[0];
+
+    if (tens != 0)
+    {
+        Text_InsertDrawString(th, x, color, DecodeMsg(gUnknown_08B99880[tens]));
+        x += widths[1];
+    }
+
+    Text_InsertDrawString(th, x, color, DecodeMsg(*onesMsg));
+    x += widths[2];
+
+    Text_InsertDrawString(th, x, color, DecodeMsg(0x1185));
+    x += widths[3];
+
+    if (half)
+        Text_InsertDrawString(th, x, color, DecodeMsg(0x1188));
+}
 void sub_0804397C(struct Text * th, int color, int idx)
 {
     const struct Fe6LinkMsgEnt * table = gUnknown_08B99894;
