@@ -1916,3 +1916,4 @@ ProcScr_08CBB47C = 0x08CBB47C;
 ProcScr_08CBB48C = 0x08CBB48C;
 Img_NinianDragonSprite = 0x081BE108;
 SpriteAnim_NinianDragon = 0x081BE4D8;
+gUnk_08CBF3AC = 0x08CBF3AC;

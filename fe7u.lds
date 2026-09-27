@@ -1624,17 +1624,7 @@ SECTIONS
         build/src/eventcall_worldflush.o(.text);
         build/src/eventcall_0807CEC8.o(.text);
         build/src/eventcall_ninian.o(.text);
-        build/asm/code_0807D9E4.o(.text);
-        build/asm/code_0807DA14.o(.text);
-        build/asm/code_0807DA68.o(.text);
-        build/asm/code_0807DA8C.o(.text);
-        build/asm/code_0807DAA8.o(.text);
-        build/asm/code_0807DAC4.o(.text);
-        build/asm/code_0807DB74.o(.text);
-        build/asm/code_0807DBA0.o(.text);
-        build/asm/code_0807DBF4.o(.text);
-        build/asm/code_0807DC14.o(.text);
-        build/asm/code_0807DC30.o(.text);
+        build/src/eventcall_0807D9E4.o(.text);
         build/asm/code_0807DC5C.o(.text);
         build/asm/code_0807DD94.o(.text);
         build/asm/code_0807DDD0.o(.text);
