@@ -5,7 +5,9 @@
 struct SaveDrawCursorProc
 {
     /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x2D);
+    /* 29 */ u8 unk_29;
+    /* 2A */ u16 unk_2a;
+    /* 2C */ u8 unk_2c;
     /* 2D */ u8 unk_2d;
     /* 2E */ u8 unk_2e;
     /* 2F */ u8 unk_2f;
@@ -28,7 +30,7 @@ struct SqMaskProc
 {
     /* 00 */ PROC_HEADER;
     /* 29 */ u8 unk_29;
-    /* 2A */ u8 unk_2a;
+    /* 2A */ s8 unk_2a;
     /* 2B */ u8 unk_2b;
 };
 
@@ -93,7 +95,19 @@ ProcPtr StartSpinRotation(ProcPtr parent)
     return proc;
 }
 
-ASM_FUNC("asm/nonmatching/code_080A5CF8.s");
+void SaveDrawCursor_Init(struct SaveDrawCursorProc * proc)
+{
+    proc->unk_31 = 0;
+    proc->unk_2a = 0;
+    proc->unk_2d = 0;
+    proc->unk_2e = 0;
+    proc->unk_2f = 0;
+    proc->unk_30 = 0;
+    proc->unk_32 = 0;
+    proc->unk_33 = 0;
+    proc->unk_35 = 0;
+    proc->unk_2c = 0;
+}
 ASM_FUNC("asm/nonmatching/code_080A5D2C.s");
 void sub_080A5E8C(int a, int b, int c, struct SaveDrawProcFx * proc)
 {
@@ -315,7 +329,27 @@ bool SaveMenuHasOptions(struct SaveMenuProc * proc)
 
     return false;
 }
-ASM_FUNC("asm/nonmatching/code_080A6238.s");
+void SqMask_Loop(struct SqMaskProc * proc)
+{
+    proc->unk_29 += proc->unk_2b;
+
+    SetWinEnable(0, 1, 0);
+
+    if (proc->unk_2a >= 1)
+    {
+        SetWin1Box(proc->unk_29 * 3, proc->unk_29 * 2, -0x10 - (proc->unk_29 * 3), -0x60 - (proc->unk_29 * 2));
+    }
+    else
+    {
+        SetWin1Box(0x78 - (proc->unk_29 * 3), 0x50 - (proc->unk_29 * 2), proc->unk_29 * 3 + 0x78, proc->unk_29 * 2 + 0x50);
+    }
+
+    SetWin1Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(0, 0, 0, 0, 0);
+
+    if (proc->unk_29 > 0x27)
+        Proc_Break(proc);
+}
 void StartSqMask(ProcPtr parent, u8 b, u8 c)
 {
     struct SqMaskProc * proc = Proc_StartBlocking(ProcScr_SqMask, parent);
