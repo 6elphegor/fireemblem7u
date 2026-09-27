@@ -3,6 +3,12 @@
 
 // FE6 <-> FE7 link / GameCube link (FE7-only, no FE8U counterpart)
 
+extern struct ProcCmd CONST_DATA ProcScr_08B9998C[];
+extern struct ProcCmd CONST_DATA ProcScr_08B99870[];
+extern struct ProcCmd CONST_DATA ProcScr_08B999D8[];
+
+void sub_080ACA90(ProcPtr proc);
+
 struct Fe6LinkProc
 {
     /* 00 */ PROC_HEADER;
@@ -16,6 +22,8 @@ struct Fe6LinkProc
     /* 5C */ int unk_5c;
     /* 60 */ int unk_60;
     /* 64 */ s16 unk_64;
+    /* 66 */ s16 unk_66;
+    /* 68 */ s16 unk_68;
 };
 
 struct Fe6LinkSaveInfo
@@ -180,11 +188,46 @@ ASM_FUNC("asm/nonmatching/code_08043B1C.s");
 ASM_FUNC("asm/nonmatching/code_08043C0C.s");
 ASM_FUNC("asm/nonmatching/code_08043CC8.s");
 ASM_FUNC("asm/nonmatching/code_08043DB8.s");
-ASM_FUNC("asm/nonmatching/code_08043EA0.s");
-ASM_FUNC("asm/nonmatching/code_08043EB4.s");
-ASM_FUNC("asm/nonmatching/code_08043F04.s");
-ASM_FUNC("asm/nonmatching/code_08043F1C.s");
+ProcPtr sub_08043EA0(ProcPtr parent)
+{
+    return Proc_Start(ProcScr_08B9998C, parent);
+}
+void sub_08043EB4(struct Fe6LinkProc * proc)
+{
+    ApplySystemGraphics();
+    sub_080ACA90(proc);
+    Proc_EndEach(ProcScr_08B99870);
+
+    proc->unk_54 = sub_08043EA0(proc);
+
+    UnpackUiWindowFrameGraphics();
+    PutUiWindowFrame(gBg1Tm, 18, 16, 11, 4, 0, 0);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+}
+void sub_08043F04(struct Fe6LinkProc * proc)
+{
+    if (proc->unk_54->unk_50 == 0)
+        Proc_Break(proc);
+}
+void sub_08043F1C(struct Fe6LinkProc * proc)
+{
+    PutUiWindowFrame(gBg1Tm, 2, 9, 16, 6, 0, 0);
+    EnableBgSync(BG1_SYNC_BIT);
+    proc->unk_68 = 0;
+}
 ASM_FUNC("asm/nonmatching/code_08043F50.s");
-ASM_FUNC("asm/nonmatching/code_0804408C.s");
-ASM_FUNC("asm/nonmatching/code_080440AC.s");
-ASM_FUNC("asm/nonmatching/code_080440B8.s");
+void sub_0804408C(ProcPtr proc)
+{
+    if (gpKeySt->pressed & (A_BUTTON | START_BUTTON))
+        Proc_Break(proc);
+}
+void FE6Link_CallBack(void)
+{
+    SoundVSyncOn_rev01();
+}
+void GC_ConnectToFE6(ProcPtr parent)
+{
+    UnpackUiWindowFrameGraphics();
+    InitTextFont(&Font_0203DB64, (void *)0x06001800, 0xc0, 0);
+    Proc_StartBlocking(ProcScr_08B999D8, parent);
+}
