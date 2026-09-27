@@ -102,7 +102,7 @@ void Event_FadeOutOfSkip(struct EventProc * proc);
 // sub_800ADDC
 // sub_0800AE50
 // sub_0800AE8C
-void StartEvent();
+ProcPtr StartEvent();
 // StartEventLocking
 // StartEventInternal
 // sub_0800B0F0
@@ -320,7 +320,7 @@ bool IsEventRunning();
 // sub_800EC40
 // sub_0800ED4C
 void sub_0800ED68();
-void sub_0800ED78(int);
+ProcPtr sub_0800ED78(int msg);
 // CallMapSupportEvent
 // sub_0800EDAC
 // CallSupportViewerEvent
@@ -343,9 +343,9 @@ void sub_0800ED78(int);
 // sub_0800F06C
 void sub_0800F08C();
 int GetChapterAllyUnitCount(void);
-// sub_0800F0C8
+// InitPlayerUnitPositionsForPrepScreen
 // SyncUnitDeploymentState
-// sub_0800F1C0
+// AssignUnitToFreeDeploySlot
 // nullsub_29
 // sub_800F188
 // Event_SetExitMap
@@ -710,6 +710,34 @@ extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
 
 
 /* ---- eventscr4.c (0x0800EC40-0x0800F9B0) ---- */
+int Event00_(struct EventProc * proc);
+int Event01(struct EventProc * proc);
+bool sub_0800ED34(void);
+void sub_0800ED4C(void);
+ProcPtr CallMapSupportEvent(int msg, int song);
+void sub_0800EDAC(struct EventProc * proc);
+ProcPtr CallSupportViewerEvent(int msg);
+void sub_0800EDE0(u16 item, ProcPtr parent);
+void sub_0800EE04(u16 item, ProcPtr parent);
+void sub_0800EE28(u16 item, ProcPtr parent);
+void StartPopup_800EE4C(int num, ProcPtr parent);
+void StartPopup_800EE90(int num, ProcPtr parent);
+void StartPopup_800EEB0(struct Unit * unit, u16 item, ProcPtr parent);
+void StartStoleItemPopup(u16 item, ProcPtr parent);
+void sub_0800EF3C(ProcPtr parent);
+void StartGiveItem(struct Unit * unit, u16 item, ProcPtr parent);
+void sub_0800EFCC(u16 iid);
+void sub_0800EFE8(u16 pid, u16 iid);
+void sub_0800F010(int gold);
+void sub_0800F028(u8 param);
+void sub_0800F044(u16 iid, u8 param);
+void sub_0800F06C(int gold, u8 param);
+void InitPlayerUnitPositionsForPrepScreen(void);
+void SyncUnitDeploymentState(void);
+void AssignUnitToFreeDeploySlot(struct Unit * unit);
+void sub_0800F27C(void);
+void Event_SetExitMap(struct EventProc * proc);
+void Event_SetEnterMap(struct EventProc * proc);
 
 /* ---- end eventscr4.c ---- */
 
