@@ -49,7 +49,7 @@ void sub_080B6C14(void);
 void sub_080B6C8C(void);
 void sub_080B6D64(void);
 void sub_080B6DD4(void);
-void sub_080B7408(ProcPtr proc);
+void sub_080B7408(struct EpilogueProc * proc);
 void sub_080B74B4(ProcPtr proc);
 
 struct CGDataEnt {
@@ -63,6 +63,8 @@ struct CGDataEnt const * GetCG(int idx);
 int CountDigits(int number);
 void sub_080010F4(u16 const * src, int a, int b, int c);
 void EpiloguePutBgRow(int idx, void const * img, u8 const * tsa);
+void InitBoxDialogue(void * vram_dst, int pal);
+void StartBoxDialogueSimple(int x, int y, int msg, ProcPtr parent);
 
 ASM_FUNC("asm/nonmatching/code_080B6C14.s");
 ASM_FUNC("asm/nonmatching/code_080B6C8C.s");
@@ -266,7 +268,39 @@ ProcPtr StartEpilogueScroll(void const * const * data, int speed, ProcPtr parent
     return proc;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B7408.s");
+void sub_080B7408(struct EpilogueProc * proc)
+{
+    int i, j;
+    int m = 0xF0;
+
+    for (i = 0; i < 10; i++)
+    {
+        int y = i * 24 - proc->unk_46 + 0xA0;
+
+        if (y < 0)
+        {
+            int r = (-y) % m;
+
+            if (r < 0x18)
+                y = 0x100 - r;
+            else
+                y = m - r;
+        }
+
+        y &= 0xFF;
+
+        if (y > 0x9F)
+        {
+            if (y <= 0xE8)
+                continue;
+        }
+
+        for (j = 0; j < 7; j++)
+            PutSpriteExt(4, 8 + j * 0x20, y + 0x400, Sprite_32x16,
+                (((u32) (i * 0x800 + 0x1000) & 0x1FFFF) >> 5) + 0xA400 + j * 4);
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B74B4.s");
 void EpilogueText_Init(struct EpilogueProc * proc)
 {
@@ -472,7 +506,18 @@ void sub_080B7CD0(struct EpilogueProc * proc)
         Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B7D0C.s");
+void sub_080B7D0C(struct EpilogueProc * proc)
+{
+    SetNextGameAction(0xC);
+    InitBgs(NULL);
+    SetBlendConfig(0, 0x10, 0, 0);
+    ApplySystemObjectsGraphics();
+    SetDispEnable(1, 1, 1, 1, 1);
+    InitBoxDialogue(NULL, -1);
+    StartBoxDialogueSimple(0, -4, 0x9F3, proc);
+    SetDialogueBoxConfig(0x190);
+}
+
 void sub_080B7D88(struct EpilogueProc * proc)
 {
     if (GetTalkChoiceResult() == 2)
@@ -481,7 +526,17 @@ void sub_080B7D88(struct EpilogueProc * proc)
         Proc_Goto(proc, 0);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B7DAC.s");
+void sub_080B7DAC(struct EpilogueProc * proc)
+{
+    InitBgs(NULL);
+    SetBlendConfig(0, 0x10, 0, 0);
+    ApplySystemObjectsGraphics();
+    SetDispEnable(1, 1, 1, 1, 1);
+    InitBoxDialogue(NULL, -1);
+    StartBoxDialogueSimple(0, -4, 0x9F5, proc);
+    SetDialogueBoxConfig(0x190);
+}
+
 void sub_080B7E20(void)
 {
     if (GetTalkChoiceResult() == 2)
@@ -490,4 +545,14 @@ void sub_080B7E20(void)
         SetNextGameAction(0xC);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B7E3C.s");
+void sub_080B7E3C(struct EpilogueProc * proc)
+{
+    InitBgs(NULL);
+    SetBlendConfig(0, 0x10, 0, 0);
+    ApplySystemObjectsGraphics();
+    SetDispEnable(1, 1, 1, 1, 1);
+    InitBoxDialogue(NULL, -1);
+    StartBoxDialogueSimple(0, -4, 0x9F4, proc);
+    SetDialogueBoxConfig(0x110);
+}
+
