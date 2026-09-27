@@ -655,8 +655,8 @@ void sub_08043068(void);
 bool sub_0804307C(void);
 void XMapTransfer_8048730(void);
 void sub_08043130(void);
-void Shop_HandleBuyConfirmPrompt(struct Proc * proc);
-void sub_08043170(void);
+void Shop_HandleBuyConfirmPrompt(ProcPtr proc);
+void sub_08043170(ProcPtr proc);
 void EraseSaveData(void);
 
 struct LAPointsBoxProc
