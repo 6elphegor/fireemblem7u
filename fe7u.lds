@@ -1143,10 +1143,7 @@ SECTIONS
         build/asm/code_080210E4.o(.text);
         build/asm/code_0802114C.o(.text);
         build/asm/code_08021164.o(.text);
-        build/asm/code_08021174.o(.text);
-        build/asm/code_080211AC.o(.text);
-        build/asm/code_0802120C.o(.text);
-        build/asm/code_08021234.o(.text);
+        build/src/bmfx-swingsword.o(.text);
         build/src/bmfx-minefx.o(.text);
         build/src/bmfx-niniantransform.o(.text);
         build/asm/code_08021540.o(.text);

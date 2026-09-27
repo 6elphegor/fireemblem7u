@@ -787,6 +787,7 @@ int GetSupportScreenPartnerCount(int charId);
 // sub_080AB5DC
 // sub_080AB604
 // sub_080AB654
+void sub_080AACD8(u16 * tm, u8 const * tsa, u16 tileref); // Decompress to gBuf + TmApplyTsa
 // sub_080AB75C
 // sub_080AB78C
 // sub_080AB79C
