@@ -598,7 +598,7 @@ void sub_080AB654(struct SoundRoomProc * proc)
         if (i >= 99)
             PutNumber(gBg2Tm + TM_OFFSET(13 + (i % 4) * 4, (((i / 4) * 2 + 8) & 0x1f)), color, i + 1);
         else
-            sub_080063CC(gBg2Tm + TM_OFFSET(13 + (i % 4) * 4, (((i / 4) * 2 + 8) & 0x1f)), color, i + 1);
+            PutNumber2Digit(gBg2Tm + TM_OFFSET(13 + (i % 4) * 4, (((i / 4) * 2 + 8) & 0x1f)), color, i + 1);
     }
 
     EnableBgSync(BG2_SYNC_BIT);
@@ -1292,4 +1292,64 @@ void SoundRoom_DrawSprites_Loop(struct SoundRoomSpriteDrawProc * proc)
 ProcPtr DrawSoundRoomSprites(ProcPtr parent)
 {
     return Proc_Start(gProcScr_SoundRoomDrawSprites, parent);
+}
+
+struct SoundRoomBgProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ s16 timer;
+    /* 4E */ STRUCT_PAD(0x4E, 0x58);
+    /* 58 */ int bg;
+};
+
+extern struct ProcCmd CONST_DATA ProcScr_08CE5704[];
+
+void sub_080AC7A0(struct SoundRoomBgProc * proc)
+{
+    proc->timer = 0;
+    ArchiveCurrentPalettes();
+}
+void sub_080AC7B0(struct SoundRoomBgProc * proc)
+{
+    int val = 0x100 - (proc->timer++ << 4);
+
+    WriteFadedPaletteFromArchive(val, val, val, 0xFF00);
+
+    if (val == 0)
+        Proc_Break(proc);
+}
+void sub_080AC7E8(struct SoundRoomBgProc * proc)
+{
+    PutCgBackground(gBg3Tm, 0x8000, 8, 8, proc->bg);
+    ArchiveCurrentPalettes();
+    WriteFadedPaletteFromArchive(0, 0, 0, 0xFF00);
+    EnableBgSync(BG3_SYNC_BIT);
+    proc->timer = 0;
+}
+void sub_080AC82C(struct SoundRoomBgProc * proc)
+{
+    int val = proc->timer++ << 4;
+
+    WriteFadedPaletteFromArchive(val, val, val, 0xFF00);
+
+    if (val == 0x100)
+        Proc_Break(proc);
+}
+bool sub_080AC860(void)
+{
+    if (Proc_Find(ProcScr_08CE5704) != NULL)
+        return TRUE;
+
+    return FALSE;
+}
+void sub_080AC87C(int bg, ProcPtr parent)
+{
+    struct SoundRoomBgProc * proc;
+
+    if (!sub_080AC860())
+    {
+        proc = Proc_Start(ProcScr_08CE5704, parent);
+        proc->bg = bg;
+    }
 }

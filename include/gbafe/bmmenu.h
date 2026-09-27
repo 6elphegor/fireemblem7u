@@ -170,7 +170,7 @@ s8 sub_08079D9C(void);   /* HasConvoyAccess */
 void StartBmSupply(struct Unit * unit, ProcPtr parent);
 void StartAvailableTileEvent(s8 x, s8 y);
 s8 ArenaIsUnitAllowed(struct Unit * unit);
-void sub_080B267C(void);   /* StartArenaScreen */
+void StartArenaScreen(void);   /* StartArenaScreen */
 
 void FillBallistaRangeMaybe(struct Unit * unit);
 void SetWorkingBmMap(u8 ** map);

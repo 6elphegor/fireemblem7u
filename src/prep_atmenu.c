@@ -6,7 +6,6 @@ void sub_080AACD8(u16 * tm, void const * src, u16 tileref); // Decompress to gGe
 void DrawPrepScreenMenuFrameAt(int x, int y);
 void ShowPrepScreenMenuFrozenHand(void);
 void StartChapterStatusScreen_FromPrep(ProcPtr parent);
-void StartPrepItemScreen(ProcPtr parent);
 void StartFortuneSubMenu(int kind, ProcPtr parent);
 void SyncUnitDeploymentState(void);
 void sub_0807CC38(ProcPtr proc);
@@ -25,7 +24,6 @@ struct ProcAtUnkMenu {
     /* 64 */ u16 unk64;
 };
 
-void sub_0808F808(int x, int y, int unk, int oam2);
 
 struct ProcPrepPromote {
     /* 00 */ PROC_HEADER;
@@ -33,7 +31,6 @@ struct ProcPrepPromote {
     /* 4C */ s16 game_lock;
 };
 
-void StartTalkFace(int fid, int x, int y, int disp, int talkFace);
 void GenerateItemPromotionBattle(struct Unit * unit, int itemIdx, s8 unk);
 void BeginBattleAnimations(void);
 

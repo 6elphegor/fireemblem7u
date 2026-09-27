@@ -594,7 +594,7 @@ PROC_LABEL(14),
     PROC_WHILE(IsEventRunning),
 
     PROC_CALL(GameCtrl_SavePlayThroughData),
-    PROC_CALL(sub_080B90AC),
+    PROC_CALL(StartFinScreen),
     PROC_SLEEP(30),
 
     PROC_GOTO(3),

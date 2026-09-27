@@ -40,9 +40,9 @@ extern u8 const Tsa_TerrainMapUi_ObstacleLabels[];
 extern u8 const Tsa_TerrainMapUi_ObstacleFullHp[];
 
 char const * GetTerrainName(int terrain);
-void sub_08005044(int number); // StoreNumberStringToSmallBuffer
+void GenNumberStr(int number); // StoreNumberStringToSmallBuffer
 void nullsub_7(void);
-void sub_08005080(int number); // StoreNumberStringOrDashesToSmallBuffer
+void GenNumberOrBlankStr(int number); // StoreNumberStringOrDashesToSmallBuffer
 
 int GetWindowQuadrant(int x, int y)
 {
@@ -500,17 +500,17 @@ void UnitMapUiUpdate(struct PlayerInterfaceProc * proc, struct Unit * unit)
             EnableBgSync(BG0_SYNC_BIT);
 
             if (GetUnitCurrentHp(unit) >= 100)
-                sub_08005080(0xFF);
+                GenNumberOrBlankStr(0xFF);
             else
-                sub_08005080(GetUnitCurrentHp(unit));
+                GenNumberOrBlankStr(GetUnitCurrentHp(unit));
 
             proc->hpCurHi = gNumberStr[6] - '0';
             proc->hpCurLo = gNumberStr[7] - '0';
 
             if (GetUnitMaxHp(unit) >= 100)
-                sub_08005080(0xFF);
+                GenNumberOrBlankStr(0xFF);
             else
-                sub_08005080(GetUnitMaxHp(unit));
+                GenNumberOrBlankStr(GetUnitMaxHp(unit));
 
             proc->hpMaxHi = gNumberStr[6] - '0';
             proc->hpMaxLo = gNumberStr[7] - '0';
@@ -686,10 +686,10 @@ void DrawTerrainDisplayWindow(struct PlayerInterfaceProc * proc)
 
     if (TerrainTable_MovCost_BerserkerNormal[terrainId] > 0)
     {
-        sub_08005044(TerrainTable_Def_Common[terrainId]);
+        GenNumberStr(TerrainTable_Def_Common[terrainId]);
         PutDigits(gUiTmScratchA + TM_OFFSET(4, 14), gNumberStr + 7, TILEREF(0x128, 0), 2);
 
-        sub_08005044(TerrainTable_Avo_Common[terrainId]);
+        GenNumberStr(TerrainTable_Avo_Common[terrainId]);
         PutDigits(gUiTmScratchA + TM_OFFSET(4, 15), gNumberStr + 7, TILEREF(0x128, 0), 2);
     }
 
@@ -707,7 +707,7 @@ void DrawTerrainDisplayWindow(struct PlayerInterfaceProc * proc)
         }
         else
         {
-            sub_08005044(num);
+            GenNumberStr(num);
             PutDigits(gUiTmScratchA + TM_OFFSET(4, 15), gNumberStr + 7, TILEREF(0x128, 0), 2);
         }
 
@@ -718,7 +718,7 @@ void DrawTerrainDisplayWindow(struct PlayerInterfaceProc * proc)
     case TERRAIN_KILLERBALLISTA:
         TmApplyTsa(gUiTmScratchA + TM_OFFSET(1, 14), Tsa_TerrainMapUi_BallistaLabels, TILEREF(0x100, 0));
 
-        sub_08005044(GetObstacleHpAt(gBmSt.cursor.x, gBmSt.cursor.y));
+        GenNumberStr(GetObstacleHpAt(gBmSt.cursor.x, gBmSt.cursor.y));
         PutDigits(gUiTmScratchA + TM_OFFSET(4, 14), gNumberStr + 7, TILEREF(0x128, 0), 2);
 
         break;

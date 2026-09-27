@@ -22,7 +22,7 @@ void BattleApplyMiscAction(ProcPtr proc);
 void BeginBattleAnimations(void);
 void StartCharacterEvent(u8 pidA, u8 pidB);
 void StartSupportTalk(u8 pidA, u8 pidB, int level);
-void sub_0806F0DC(void);
+void BeginMapAnimForSteal(void);
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 void UnitGetDeathDropLocation(struct Unit * unit, int * xOut, int * yOut);
 void StartMuDeathFade(struct MuProc * proc);
@@ -281,7 +281,7 @@ s8 ActionSteal(ProcPtr proc)
     BattleApplyMiscAction(proc);
 
     EndAllMus();
-    sub_0806F0DC();
+    BeginMapAnimForSteal();
 
     return 0;
 }

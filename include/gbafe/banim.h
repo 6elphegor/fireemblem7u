@@ -702,7 +702,7 @@ void sub_08054C8C(struct AnimBuffer *);
 // ??? sub_08054E00
 void sub_08054E10(struct AnimBuffer *, s16, s16);
 // ??? sub_08054E2C
-// ??? sub_08054E3C
+s8 sub_08054E3C(struct AnimBuffer *);
 void sub_08054E5C(struct AnimBuffer *);
 // ??? sub_08054E70
 void NewEfxAnimeDrvProc(void);
@@ -712,8 +712,8 @@ void NewEkrUnitMainMini(struct AnimBuffer *);
 void sub_08054EF0(struct AnimBuffer *);
 // ??? EkrUnitMainMiniMain
 void sub_08054F30(struct BanimUnkStructComm * conf); // FE8U: void sub_805AA68(struct BanimUnkStructComm * buf)
-// ??? sub_080552DC
-// ??? sub_08055308
+void sub_080552DC(struct BanimUnkStructComm * conf);
+void sub_08055308(struct BanimUnkStructComm * conf, s16 x1, s16 y1, s16 x2, s16 y2);
 // ??? sub_08055320
 // ??? sub_08055468
 // ??? sub_8055CCC
@@ -1369,7 +1369,7 @@ void EfxDrsmmoyaScrollCOL_Loop1(struct ProcEfxDrsmmoyaScrollCOL * proc);
 void EfxDrsmmoyaScrollCOL_Delay(struct ProcEfxDrsmmoyaScrollCOL * proc);
 void EfxDrsmmoyaScrollCOL_Loop3(struct ProcEfxDrsmmoyaScrollCOL * proc);
 void ResetClassReelSpell(void);
-// ??? EndActiveClassReelSpell
+void EndActiveClassReelSpell(void);
 void EndActiveClassReelBgColorProc(void);
 // ??? SetActiveClassReelSpell
 // ??? SetActiveCRSpellBgColorProc

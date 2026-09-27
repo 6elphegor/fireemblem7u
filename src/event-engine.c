@@ -447,7 +447,7 @@ bool IsMapFadeActive(void);
 void EndMapMain(void);
 void sub_080143E0(void);
 void SetMuMaxWalkSpeed(void);
-bool sub_080B5644(void);
+bool IsWorldMapActive(void);
 
 extern u8 gEventQueueCount;
 extern EventScr const * gEventQueue[];
@@ -798,7 +798,7 @@ void Event_BeginSkip(struct EventProc * proc)
 
     if (!sub_0800A4E8())
     {
-        if (sub_080B5644())
+        if (IsWorldMapActive())
         {
             sub_0800B198(proc);
         }

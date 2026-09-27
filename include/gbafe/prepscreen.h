@@ -152,7 +152,7 @@ void PrepMenuDescOnParse(struct ProcPrepMenuDesc * proc);
 void PrepMenuDescOnDraw(void);
 void StartPrepMenuDescHandler(int msg, ProcPtr parent);
 // StartPrepAtSubMenuUI
-// DrawAtMenuUpfx
+void DrawAtMenuUpfx(int tile, int pal);
 void AtMenu_Reinitialize(struct ProcAtMenu *proc);
 void EndPrepAtMenuIfNoUnitAvailable(struct ProcAtMenu *proc);
 void AtMenu_UpdateDesc(struct ProcAtMenu *proc);
@@ -170,7 +170,7 @@ void AtMenu_LockGame(struct ProcAtMenu *proc);
 void AtMenu_UnlockGame(struct ProcAtMenu *proc);
 // StartPrepAtMenu
 // StartPrepAtMenuWithConfig
-bool HasConvoyAccess_(int kind);
+bool HasConvoyAccess_(); // takes an int (kind); prep_itemscreen.c calls it without one
 // sub_0808EF94
 // sub_0808EFFC
 // sub_808F970
@@ -191,7 +191,7 @@ void sub_0808F7A8(struct ProcAtMenu *proc);
 // sub_8090104
 // sub_8090118
 // sub_8090130
-// sub_0808F808
+void sub_0808F808(int xOam1, int yOam0, int config, u16 oam2);
 // PrepScreenSprite_OnDraw
 // nullsub_77
 
@@ -287,7 +287,7 @@ ProcPtr StartSallyCirProc(ProcPtr parent, u8 unk);
 // sub_08090A58
 // sub_08090B18
 // sub_8091588
-// GetConvoyItemCount_
+u8 GetConvoyItemCount_(void);
 void ViewCounter_Loop(ProcPtr proc);
 // StartViewCounter
 void TryLockProc(ProcPtr proc);
@@ -299,7 +299,7 @@ ProcPtr StartPrepErrorHelpbox(int x, int y, int msgId, ProcPtr parent);
 // CountUnitUsableWeapons
 // sub_08090DB0
 s8 sub_08090DB0(struct Unit * unit);
-// CheckValidLinkArenaItemSwap
+s8 CheckValidLinkArenaItemSwap(struct Unit * unitA, int slotA, struct Unit * unitB, int slotB);
 // CheckValidLinkArenaItemSupply
 // sub_08090EE8
 // sub_08090F30
@@ -321,8 +321,24 @@ struct PrepItemTypePageEnt {
 // CanUnitPrepScreenUse
 
 struct PrepItemScreenProc {
-    PROC_HEADER;
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 hoverUnitIdx;
+    /* 2A */ u8 selectedUnitIdx;
+    /* 2B */ s8 hasConvoyAccess;
+    /* 2C */ u8 helpboxActiveIdx;
+    /* 2D */ u8 popupPromptIdx;
+    /* 2E */ u8 unk_2e;
+    /* 2F */ u8 unk_2f;
+    /* 30 */ u8 scrollAmount;
+    /* 31 */ s8 unitSelected;
+    /* 32 */ u16 scrollOffset;
+    /* 34 */ u16 xFacePosBySlot[2];
+    /* 38 */ u16 yFacePosBySlot[2];
+    /* 3C */ u16 faceDispBySlot[2];
+    /* 40 */ struct Unit * pUnits[2];
 };
+
+extern struct Text gPrepItemTexts[31];
 
 void PrepItemScreen_OnHBlank(void);
 void PrepItemScreen_Init(struct PrepItemScreenProc * proc);
@@ -330,26 +346,26 @@ void PrepItemScreen_DrawFunds(void);
 void PrepItemScreen_HideFunds(void);
 void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc);
 void PrepItemScreen_OnEnd(struct PrepItemScreenProc * proc);
-// sub_08091868
-// sub_080918B4
-// sub_080918D4
-// sub_080918F4
-// sub_08091914
-// sub_08091944
-// sub_08091994
+void sub_08091868(u16 * tm);
+void sub_080918B4(void);
+void sub_080918D4(void);
+void sub_080918F4(void);
+void sub_08091914(void);
+void sub_08091944(int vram, int pal);
+void sub_08091994(int vram, int pal);
 void PrepItemScreen_Reinit(struct PrepItemScreenProc * proc);
-// sub_08091AD8
-// sub_08091C48
+s8 sub_08091AD8(struct PrepItemScreenProc * proc);
+void sub_08091C48(struct PrepItemScreenProc * proc);
 void PrepItemScreen_StartStatScreen(struct PrepItemScreenProc * proc);
 void PrepItemScreen_ResumeFromStatScreen(struct PrepItemScreenProc * proc);
 void sub_08091DBC(struct PrepItemScreenProc * proc);
-// sub_08091F04
-// sub_08092010
+void sub_08091F04(struct PrepItemScreenProc * proc, u16 * tm, struct Unit * unit);
+void sub_08092010(struct PrepItemScreenProc * proc);
 void sub_0809210C(struct PrepItemScreenProc * proc);
 void sub_0809218C(struct PrepItemScreenProc * proc);
 void sub_080921E8(struct PrepItemScreenProc * proc);
 void sub_08092220(struct PrepItemScreenProc * proc);
-// sub_08092578
+void sub_08092578(struct PrepItemScreenProc * proc);
 void sub_080925D0(struct PrepItemScreenProc * proc);
 void sub_080926F8(struct PrepItemScreenProc * proc);
 void PrepItemScreen_Loop_MainKeyHandler(struct PrepItemScreenProc * proc);
@@ -358,47 +374,60 @@ void sub_0809288C(struct PrepItemScreenProc * proc);
 void sub_080928A4(struct PrepItemScreenProc * proc);
 void StartPrepArmory(struct PrepItemScreenProc * proc);
 void sub_080928D4(struct PrepItemScreenProc * proc);
-// UpdatePrepItemScreenFace
-// EndPrepItemScreenFace
-// StartPrepItemScreen
-// sub_080929D0
-// sub_08092AE4
-// sub_08092B6C
-// sub_08092C34
-// PrepItem_DrawSMS
-// PrepItemDrawPopupBox
-// sub_08092ED4
-// PrepItemScreen_GiveAll
-
+void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp);
+void EndPrepItemScreenFace(int slot);
+ProcPtr StartPrepItemScreen(ProcPtr parent);
+void sub_080929D0(struct Text * text, u16 * tm, struct Unit * unit, u16 flags);
+void sub_08092AE4(struct PrepItemScreenProc * proc);
+void sub_08092B6C(struct PrepItemScreenProc * proc, u8 row, s8 flag);
+bool sub_08092C34(u32 x, int y);
+void PrepItem_DrawSMS(struct PrepItemScreenProc * proc);
+void PrepItemDrawPopupBox(int x, int y, int w, int h, int oam2);
+void sub_08092ED4(struct PrepItemScreenProc * proc, u8 flag);
+bool PrepItemScreen_GiveAll(struct Unit * unit);
 struct ProcPrepUnit {
-    PROC_HEADER;
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 cur_counter; // Total unit number to be on battle
+    /* 2A */ u8 max_counter; // Total unit number can be on battle
+    /* 2B */ u8 unk_2B;
+    /* 2C */ u16 list_num_pre; // pre unit index in prep-list(for scroll)
+    /* 2E */ u16 list_num_cur; // current unit index in prep-list
+    /* 30 */ u16 yDiff_cur; // y Pos offset of Unit SMS (current)
+    /* 32 */ u16 unk_32;
+    /* 34 */ u16 unk_34;
+    /* 36 */ u8 scroll_val; // each px to scroll at each frame
+    /* 37 */ u8 button_blank;
+    /* 38 */ u8 pad_38[0x3C - 0x38];
+    /* 3C */ u16 unk_3C;
 };
+
+extern struct Text gPrepUnitTexts[0x16];
 
 void PrepUnit_DrawUnitListNames(struct ProcPrepUnit *proc, int line);
 void PrepUpdateMenuTsaScroll(int val);
 void PrepUnit_DrawSMSAndObjs(struct ProcPrepUnit *proc);
 void PrepUnit_InitTexts(void);
 void PrepUnit_InitGfx(void);
-// sub_08093250
+void sub_08093250(ProcPtr parent, u32 obj_offset);
 void PrepUnit_InitSMS(struct ProcPrepUnit *proc);
 void PrepUnit_DrawLeftUnitName(struct Unit *unit);
 void PrepUnit_DrawLeftUnitNameCur(struct ProcPrepUnit *proc);
 void PrepUnit_DrawUnitItems(struct Unit *unit);
 void PrepUnit_DrawPickLeftBar(struct ProcPrepUnit *proc, s8 val);
-bool PrepCheckCanSelectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
-bool PrepCheckCanUnselectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
-bool PrepUnit_HandlePressA(struct ProcPrepUnit *proc);
-// sub_08093734
-bool ShouldPrepUnitMenuScroll(struct ProcPrepUnit *proc);
-// sub_080937CC
-// sub_08093814
+s8 PrepCheckCanSelectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
+s8 PrepCheckCanUnselectUnit(struct ProcPrepUnit *proc, struct Unit *unit);
+s8 PrepUnit_HandlePressA(struct ProcPrepUnit *proc);
+void sub_08093734(void);
+s8 ShouldPrepUnitMenuScroll(struct ProcPrepUnit *proc);
+void sub_080937CC(struct ProcPrepUnit * proc);
+void sub_08093814(struct ProcPrepUnit * proc);
 void ProcPrepUnit_OnInit(struct ProcPrepUnit *proc);
 void ProcPrepUnit_InitScreen(struct ProcPrepUnit *proc);
 void sub_08093A7C(struct ProcPrepUnit *proc);
 void ProcPrepUnit_Idle(struct ProcPrepUnit *proc);
 void sub_08093D54(struct ProcPrepUnit *proc);
 void sub_08093D9C(struct ProcPrepUnit *proc);
-// nullsub_11
+void nullsub_11(void);
 void sub_08093DE8(struct ProcPrepUnit *proc);
 void sub_08093E00(struct ProcPrepUnit *proc);
 void sub_08093E2C(struct ProcPrepUnit *proc);
@@ -411,22 +440,43 @@ void PrepUnitEnableDisp(struct ProcPrepUnit *proc);
 void sub_08093F84(struct ProcPrepUnit *proc);
 void sub_08093FA0(struct ProcPrepUnit *proc);
 
-// PrepItemTrade_ApplyItemSwap
-// PrepItemTrade_DpadKeyHandler
-// DrawPrepScreenItems
-// DrawPrepScreenItemIcons
-// sub_08094350
-// sub_08094630
-// PrepItemTrade_OnEnd
-// StartPrepItemTradeScreenProc
-// sub_0809496C
-// PrepItemUseTryMoveHand
-// DrawPrepScreenItemUseStatLabels
-// DrawPrepScreenItemUseStatBars
-// sub_08094D74
+struct PrepMenuTradeProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * units[2];
+    /* 34 */ int cursorItemSlot; // 0x0-0x4 = left side, 0x8-0xC = right side
+    /* 38 */ int selectedItemSlot;
+    /* 3C */ int helpBoxItemSlot;
+    /* 40 */ int unk_40;
+};
+
+void PrepItemTrade_ApplyItemSwap(struct Unit * unitA, int itemSlotA, struct Unit * unitB, int itemSlotB);
+s8 PrepItemTrade_DpadKeyHandler(struct PrepMenuTradeProc * proc);
+void DrawPrepScreenItems(u16 * tm, struct Text * th, struct Unit * unit, u8 checkPrepUsability);
+void DrawPrepScreenItemIcons(u16 * tm, struct Unit * unit);
+void PrepItemTrade_Init(struct PrepMenuTradeProc * proc);
+void PrepItemTrade_Loop_MainKeyHandler(struct PrepMenuTradeProc * proc);
+void PrepItemTrade_OnEnd(void);
+void StartPrepItemTradeScreenProc(struct Unit * unitA, struct Unit * unitB, ProcPtr parent);
+void sub_0809496C(struct Unit * unitA, struct Unit * unitB, int rightItemIdx, ProcPtr parent);
+struct ProcPrepItemUse {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * unit;
+    /* 30 */ int slot;
+    /* 34 */ int unk34;
+    /* 38 */ int slot_rtext;
+    /* 3C */ int pos_subbox;
+    /* 40 */ int game_lock;
+};
+
+bool PrepItemUseTryMoveHand(struct ProcPrepItemUse * proc);
+void DrawPrepScreenItemUseStatLabels(struct Unit * unit);
+void DrawPrepScreenItemUseStatBars(struct Unit * unit, int mask);
+void DrawPrepScreenItemUseStatValues(struct Unit * unit);
 // sub_8095750
-// sub_08094FB4
-// PrepItemUse_OnInit
+void PrepItemUseParallel_UpdateSMS(struct ProcPrepItemUse * proc);
+void PrepItemUse_OnInit(struct ProcPrepItemUse * proc);
 // sub_8095830
 // sub_8095B64
 // sub_8095C90
@@ -434,115 +484,176 @@ void sub_08093FA0(struct ProcPrepUnit *proc);
 // sub_8095D1C
 // sub_8095D38
 // sub_8095D58
-// PrepItemUse_HandleItemEffect
+void PrepItemUse_HandleItemEffect(struct ProcPrepItemUse * proc);
 // PrepItemUse_ExecPromotionItem
-// PrepItemUse_WaitPromotionDone
-// PrepItemUse_PostPromotion
-// PrepItemUse_ResetBgmAfterPromo
-// sub_08095894
+void PrepItemUse_WaitPromotionDone(struct ProcPrepItemUse * proc);
+void PrepItemUse_PostPromotion(struct ProcPrepItemUse * proc);
+void PrepItemUse_ResetBgmAfterPromo(void);
+void sub_08095894(void);
 // StartPrepItemUseScreen
-// PrepItemUseBooster_OnDraw
-// PrepItemUseBooster_OnInit
-// PrepItemUseBooster_IDLE
-// PrepItemUseBooster_OnEnd
+struct ProcPrepItemUseBooster {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int timer;
+    /* 30 */ u8 status_pre[8];
+    /* 38 */ u8 status_pst[8];
+    /* 40 */ int xpos, ypos, width, height;
+};
+
+void PrepItemUseBooster_OnDraw(struct ProcPrepItemUseBooster * proc, int x, int y, int msg, int item);
+void PrepItemUseBooster_OnInit(struct ProcPrepItemUseBooster * proc);
+void PrepItemUseBooster_IDLE(struct ProcPrepItemUseBooster * proc);
+void PrepItemUseBooster_OnEnd(struct ProcPrepItemUseBooster * proc);
+struct PrepItemSupplyProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * unit;
+    /* 30 */ u8 unk_30;
+    /* 31 */ u8 unitInvIdx;
+    /* 32 */ s8 scrollAmount;
+    /* 33 */ u8 unk_33;
+    /* 34 */ u8 unk_34;
+    /* 35 */ u8 currentPage;
+    /* 36 */ u16 unk_36;
+    /* 38 */ u16 unk_38;
+    /* 3A */ u16 idxPerPage[9];
+    /* 4C */ u16 yOffsetPerPage[9];
+};
+
+struct PrepItemSuppyText {
+    /* 00 */ struct Font font;
+    /* 18 */ struct Text th[18];
+};
+
+extern struct PrepItemSuppyText PrepItemSuppyTexts;
+
 // sub_80963FC
-// sub_08095C28
-// StoreConvoyWeaponIconGraphics
-// sub_08095CA8
-// sub_08095DC0
-// sub_08095E24
-// sub_08095ED8
-// sub_08095F14
-// sub_08095F90
-// sub_08095FCC
-// sub_08096054
-// sub_08096110
-// sub_08096160
-// sub_08096198
-// sub_080961D0
-// sub_08096260
+void sub_08095C28(int idx, ProcPtr proc);
+void StoreConvoyWeaponIconGraphics(int vramOffset, int pal);
+void sub_08095CA8(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit);
+void sub_08095DC0(u16 * tm, int yLines);
+void sub_08095E24(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit);
+void PrepItemSupply_OnHBlank(void);
+void PrepItemSupply_Init(struct PrepItemSupplyProc * proc);
+void sub_08095F90(void);
+void sub_08095FCC(struct PrepItemSupplyProc * proc);
+void sub_08096054(void);
+void PutGiveTakeBoxSprites(void);
+void PutGiveSprites(void);
+void PutTakeSprites(void);
+void Supply_PutHighlightedCategorySprites(struct PrepItemSupplyProc * proc);
+void sub_08096260(u16 * tm, u32 chr, int pal);
 // sub_8096A78
-// sub_08096604
-// sub_08096668
-// sub_0809689C
-// sub_08096950
-// sub_080969F4
-// sub_08096A98
-// sub_08096B1C
-// sub_08096BB0
-// sub_08096C54
-// sub_08096C60
-// sub_08096DC0
-// sub_0809714C
-// sub_080971E8
-// sub_08097204
-// sub_08097324
+void sub_08096604(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_Loop_GiveTakeKeyHandler(struct PrepItemSupplyProc * proc);
+void sub_0809689C(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_SwitchPageLeft(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_SwitchPageRight(struct PrepItemSupplyProc * proc);
+void sub_08096A98(struct PrepItemSupplyProc * proc);
+void sub_08096B1C(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_ScrollVertical(struct PrepItemSupplyProc * proc, int amount);
+void sub_08096C54(void);
+void sub_08096C60(struct PrepItemSupplyProc * proc);
+void sub_08096DC0(struct PrepItemSupplyProc * proc);
+s8 sub_0809714C(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_SwitchToUnitInventory(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_GiveItemToSupply(struct PrepItemSupplyProc * proc);
+void PrepItemSupply_Loop_UnitInvKeyHandler(struct PrepItemSupplyProc * proc);
 // sub_8097BBC
-// StartPrepItemSupplyProc
-// sub_08097488
-// sub_080974A8
+void StartPrepItemSupplyProc(struct Unit * unit, ProcPtr parent);
+void sub_08097488(void);
+void sub_080974A8(void);
 // StartBmSupply
-// MaybeStartSelectConvoyItemProc
-// PrepItemList_Init
-// sub_08097554
-// PrepItemList_DrawCurrentOwnerText
-// sub_08097660
-// sub_080976F0
-// sub_08097A6C
-// sub_08097A9C
-// sub_08097B64
-// sub_08097C08
-// sub_08097CAC
-// sub_08097D30
+struct PrepItemListProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct Unit * unit;
+    /* 30 */ u8 unitInvIdx;
+    /* 31 */ s8 scrollAmount;
+    /* 32 */ u8 unk_32;
+    /* 33 */ u8 currentPage;
+    /* 34 */ u16 unk_34;
+    /* 36 */ u16 unk_36;
+    /* 38 */ u16 idxPerPage[9];
+    /* 4A */ u16 yOffsetPerPage[9];
+};
+
+void PrepItemList_Init(struct PrepItemListProc * proc);
+void sub_08097554(void);
+void PrepItemList_DrawCurrentOwnerText(struct PrepItemListProc * proc);
+void List_PutHighlightedCategorySprites(struct PrepItemListProc * proc);
+void PrepItemList_InitGfx(struct PrepItemListProc * proc);
+void PrepItemList_OnEnd(struct PrepItemListProc * proc);
+void sub_08097A9C(struct PrepItemListProc * proc);
+void PrepItemList_SwitchPageLeft(struct PrepItemListProc * proc);
+void PrepItemList_SwitchPageRight(struct PrepItemListProc * proc);
+void sub_08097CAC(struct PrepItemListProc * proc);
+void PrepItemList_ScrollVertical(struct PrepItemListProc * proc, int amount);
 // sub_8098558
-// sub_08097DD4
-// sub_08097E68
-// sub_08098274
-// sub_08098320
-// sub_0809835C
-// sub_08098418
-// PrepItemList_StartTradeScreen
+void sub_08097DD4(struct PrepItemListProc * proc);
+void PrepItemList_Loop_MainKeyHandler(struct PrepItemListProc * proc);
+s8 sub_08098274(struct PrepItemListProc * proc);
+void PrepItemList_SwitchToUnitInventory(struct PrepItemListProc * proc);
+void sub_0809835C(struct PrepItemListProc * proc);
+void PrepItemList_Loop_UnitInvKeyHandler(struct PrepItemListProc * proc);
+void PrepItemList_StartTradeScreen(struct PrepItemListProc * proc);
 // StartPrepItemListScreenProc
-// WmSell_DrawSupplyDialogueSpriteText
-// sub_080985D4
-// sub_08098618
-// WmSell_Init
-// sub_08098660
-// sub_0809871C
-// sub_08098790
-// WmSell_DrawItemGoldValue
-// sub_08098868
-// sub_080988A8
-// sub_08098908
-// sub_08098B7C
-// sub_08098C18
-// sub_08098C78
-// sub_08098DCC
-// sub_08098E18
-// sub_08098EA8
-// WmSell_OnEnd
+struct WmSellProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ struct Unit * unit;
+    /* 30 */ u8 unk_30;
+    /* 31 */ u8 unk_31;
+    /* 32 */ u16 unk_32;
+    /* 34 */ u16 unk_34;
+};
+
+void WmSell_DrawSupplyDialogueSpriteText(void);
+void sub_080985D4(int index, ProcPtr parent);
+void sub_08098618(void);
+void WmSell_Init(struct WmSellProc * proc);
+void sub_08098660(void);
+void WmSell_DrawSellOptionSpriteText(void);
+void WmSell_DrawValueSpriteText(void);
+void WmSell_DrawItemGoldValue(int item);
+void WmSell_DrawPartyFunds(void);
+void WmSell_PutSupplyFaceAndText(void);
+void WmSell_Setup(struct WmSellProc * proc);
+s8 WmSell_MainLoop_HandleDpadKeys(struct WmSellProc * proc);
+void sub_08098C18(struct WmSellProc * proc);
+void WmSell_OnLoop_MainKeyHandler(struct WmSellProc * proc);
+void sub_08098DCC(struct WmSellProc * proc);
+void WmSell_ConfirmSellItem(struct WmSellProc * proc);
+void WmSell_OnLoop_ConfirmSellKeyHandler(struct WmSellProc * proc);
+void WmSell_OnEnd(void);
 // StartWorldMapSellScreen
-// sub_08098F88
+struct PrepProcA1962C {
+    /* 00 */ PROC_HEADER;
+
+    /* 29 */ u8 unk_29;
+    /* 2C */ int unk_2c;
+    /* 30 */ s8 unk_30[4];
+};
+
+void sub_08098F88(struct PrepProcA1962C * proc);
 // FortuneSubMenu_Init_Null
 // nullsub_79
 // FortuneSubMenu_Unused_SetAvailableOptions
 // FortuneSubMenu_Unused_SetupText
-// sub_08098FC4
-// sub_08099068
+s8 sub_08098FC4(struct PrepProcA1962C * proc);
+void sub_08099068(struct PrepProcA1962C * proc);
 // sub_8099B2C
-// sub_08099198
-// StartFortuneSubMenu
-// sub_080991F8
-// GetChapterDivinationTextIdHectorStory
-// GetChapterDivinationTextIdBeginning
+void FortuneSubMenu_HandleOptionSwitch(struct PrepProcA1962C * proc);
+void StartFortuneSubMenu(int option, ProcPtr parent);
+int GetChapterDivinationTextIdHectorStory(void);
+int GetChapterDivinationTextIdBeginning(void);
 // sub_8099C44
-// sub_080992A0
-// GetChapterDivinationPortrait
-// sub_080992D8
-// sub_080992F4
-// sub_0809931C
-// sub_08099330
-// sub_08099340
+int GetChapterDivinationFee(void);
+int GetChapterDivinationPortrait(void);
+s8 sub_080992D8(void);
+s8 sub_080992F4(void);
+s8 sub_0809931C(void);
+s8 sub_08099330(void);
+s8 sub_08099340(void);
 // sub_08099358
 // sub_8099DC0
 // sub_08099408
@@ -595,13 +706,53 @@ void sub_08093FA0(struct ProcPrepUnit *proc);
 // sub_0809AF94
 // sub_809BA00
 
+void StartPrepItemUseScreen(struct Unit * unit, ProcPtr parent);
+
+void StartWorldMapSellScreen(struct Unit * unit, ProcPtr parent);
+
+void StartPrepItemListScreenProc(struct Unit * unit, ProcPtr parent);
+
+void DrawPrepScreenItemUseDesc(struct Unit * unit, int slot);
+
+void PrepItemUse_InitDisplay(struct ProcPrepItemUse * proc);
+
+void PrepItemUse_CtrlLoop(struct ProcPrepItemUse * proc);
+
+void ProcPrepItemUse_OnEnd(void);
+
+void PrepItemUseDrawSubBox(void);
+
+void PrepItemUseClearSubBox(void);
+
+void PrepItemUse_ConfirmWindowInit(struct ProcPrepItemUse * proc);
+
+void PrepItemUse_ConfirmWindowCtrlLoop(struct ProcPrepItemUse * proc);
+
+void PrepItemUse_ExecPromotionItemUnused(struct ProcPrepItemUse * proc);
+
+void sub_08095BF4(void);
+
+void sub_080962A0(struct PrepItemSupplyProc * proc);
+
+void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc);
+
+void PrepItemSupply_OnEnd(struct PrepItemSupplyProc * proc);
+
+void sub_08098FBC(void);
+
+void sub_08098FC0(void);
+
+void FortuneSubMenu_OnOptionSelected(ProcPtr proc);
+
+int GetChapterDivinationTextIdEnding(void);
+
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 extern EWRAM_OVERLAY(0) struct Text gPrepMainMenuTexts[10];
 
 extern CONST_DATA u16 gBgConfig_PrepScreen[];
 extern CONST_DATA int Msgs_PrepMainMenuHelpbox[][3];
 extern struct ProcCmd ProcScr_PrepMenuDescHandler[];
-// ??? ProcScr_AtMenu
+extern struct ProcCmd CONST_DATA ProcScr_AtMenu[];
 extern struct ProcCmd ProcScr_PrepPromoteDebug[];
 // ??? ProcScr_AtUnkMenu
 // ??? Sprite_08CC3FB6

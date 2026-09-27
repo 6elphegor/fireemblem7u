@@ -42,199 +42,362 @@ struct ManimSt {
 
 extern struct ManimSt EWRAM_DATA gManimSt;
 
-// Manim_StoleItemPopup
-// Manim_WeaponBrokePopup
-// ManimShouldBuDisplayWeaponBroke
-// Manim_WeaponLevelGainedPopup
-// ManimShouldBuDisplayWeaponLevelGained
-// Manim_PrepareBattleTalk
-// Manim_Finish
-// sub_0806E4AC
-// sub_0806E58C
-// sub_0806E5D4
-// sub_0806E5F4
-// sub_0806E644
-// sub_0806E670
-// sub_0806E6B0
-// sub_0806E750
-// sub_0806E7C4
-// sub_0806E8D8
-// sub_0806EA94
-// sub_0806EADC
-// sub_0806EAEC
-// sub_0806EB20
-// InitManimActor
-// sub_0806EC18
-// InitManimActorFacings
-// sub_0806EDAC
-// sub_0806EFC4
-// sub_0806F050
-// sub_0806F0DC
-// sub_0806F190
-// StartBattleManim
-// InitManimHits
-// InitManimActors
-// GetFacingFromTo
-// UnpackManimWindowDigits
-// PutManimWindowNumber
-// UnpackManimWindowGraphics
-// PutManimWindowBarTile
-// PutManimWindowBar
-// EndManimInfoWindow
-// StartManimInfoWindow
-// ManimWindow_Clear
-// sub_0806F7FC
-// sub_0806F910
-// sub_0806FA6C
-// sub_0806FB4C
-// sub_0806FBA4
-// sub_0806FD48
-// sub_0806FE34
-// sub_0806FF18
-// sub_0806FF88
-// sub_0807003C
-// sub_0807006C
-// sub_0807010C
-// sub_080701FC
-// sub_080702D8
+struct ManimExpBarProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 exp_from;
+    /* 66 */ s16 exp_to;
+    /* 68 */ s16 actor;
+    /* 6A */ s16 timer;
+};
+
+struct ManimInfoWindowProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2A);
+    /* 2A */ s16 clock;
+    /* 2C */ u16 unk_2C;
+    /* 2E */ u8 x;
+    /* 2F */ u8 y;
+    /* 30 */ ProcPtr parent;
+};
+
+struct ManimDebugProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 actor;
+    /* 66 */ s16 field;
+};
+
+struct ManimDebugInfoEntry {
+    /* 00 */ s16 data[10];
+    /* 14 */ struct Text text[10];
+};
+
+struct ManimDebugInfo {
+    /* 00 */ STRUCT_PAD(0x00, 0x08);
+    /* 08 */ struct ManimDebugInfoEntry infos[2];
+};
+
+struct ManimDebugFieldInfo {
+    /* 00 */ u8 width;
+    /* 01 */ s8 up, down, left, right;
+    /* 05 */ u8 min, max;
+    /* 07 */ STRUCT_PAD(0x07, 0x08);
+};
+
+struct ManimShineProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int x;
+    /* 30 */ int y;
+    /* 34 */ STRUCT_PAD(0x34, 0x44);
+    /* 44 */ s16 timer;
+    /* 46 */ STRUCT_PAD(0x46, 0x54);
+    /* 54 */ int size;
+    /* 58 */ int fade_duration;
+    /* 5C */ STRUCT_PAD(0x5C, 0x64);
+    /* 64 */ s16 timer2;
+};
+
+struct ManimAnimatorProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct Unit * unit;
+    /* 30 */ STRUCT_PAD(0x30, 0x40);
+    /* 40 */ u16 ca;
+    /* 42 */ u16 cb;
+    /* 44 */ STRUCT_PAD(0x44, 0x50);
+    /* 50 */ void const * img;
+    /* 54 */ void const * pal;
+    /* 58 */ u16 song;
+};
+
+struct ManimBgScrollProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x58);
+    /* 58 */ int bg;
+    /* 5C */ STRUCT_PAD(0x5C, 0x64);
+    /* 64 */ u16 x;
+    /* 66 */ u16 x_inc;
+    /* 68 */ u16 y;
+    /* 6A */ u16 y_inc;
+};
+
+struct ManimLevelUpLabelInfo {
+    /* 00 */ u8 x;
+    /* 01 */ u8 y;
+    /* 02 */ STRUCT_PAD(0x02, 0x04);
+    /* 04 */ int const * msg[2];
+};
+
+extern struct ManimLevelUpLabelInfo CONST_DATA gManimLevelUpLabelInfoList[];
+extern u16 const Pal_ManimLevelUpStatGain[];
+
+struct ManimLevelUpStatGainLabelProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2A);
+    /* 2A */ u16 chr;
+    /* 2C */ u16 pal;
+    /* 2E */ u16 sprite_layer;
+};
+
+struct ManimLevelUpLabelColorProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x54);
+    /* 54 */ s32 clock;
+    /* 58 */ STRUCT_PAD(0x58, 0x64);
+    /* 64 */ s16 pal;
+};
+
+struct ManimLevelUpProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2E);
+    /* 2E */ s16 actor;
+    /* 30 */ u8 next_stat_num;
+    /* 31 */ u8 clock;
+    /* 32 */ s16 y_scroll_offset;
+};
+
+struct ManimShakeProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ s16 timer;
+};
+
+struct ManimStarProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2A);
+    /* 2A */ s16 x_center;
+    /* 2C */ s16 y_center;
+    /* 2E */ s16 lo;
+    /* 30 */ s16 hi;
+    /* 32 */ STRUCT_PAD(0x32, 0x36);
+    /* 36 */ u16 distance;
+    /* 38 */ u16 angle;
+    /* 3A */ u16 timer;
+    /* 3C */ u16 start;
+    /* 3E */ u16 end;
+    /* 40 */ u16 terminator;
+};
+
+struct ManimStarfxConf {
+    /* 00 */ u16 distance;
+    /* 02 */ u16 angle;
+    /* 04 */ int unk_04;
+};
+
+struct ManimEffectProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct Unit * unit;
+    /* 30 */ int x;
+    /* 34 */ int y;
+    /* 38 */ STRUCT_PAD(0x38, 0x40);
+    /* 40 */ u16 frame;
+    /* 42 */ u16 timer;
+    /* 44 */ u16 unk_44;
+    /* 46 */ u16 unk_46;
+    /* 48 */ s16 unk_48;
+    /* 4A */ s16 frame_idx;
+    /* 4C */ s16 unk_4C;
+    /* 4E */ STRUCT_PAD(0x4E, 0x50);
+    /* 50 */ void const * img;
+    /* 54 */ void const * pal;
+    /* 58 */ u16 unk_58;
+    /* 5A */ STRUCT_PAD(0x5A, 0x64);
+    /* 64 */ s16 unk_64;
+};
+
+void Manim_StoleItemPopup(ProcPtr proc);
+void Manim_WeaponBrokePopup(ProcPtr proc);
+bool ManimShouldBuDisplayWeaponBroke(struct BattleUnit * bu);
+void Manim_WeaponLevelGainedPopup(ProcPtr proc);
+bool ManimShouldBuDisplayWeaponLevelGained(struct BattleUnit * bu);
+void Manim_PrepareBattleTalk(ProcPtr proc);
+void Manim_Finish(ProcPtr proc);
+void Manim_AdvanceBattleRound(void);
+void Manim_PrepareNextBattleRound(ProcPtr proc);
+void Manim_DisplayRoundAnim(ProcPtr proc);
+void Manim_ShowPoisonEffectIfAny(ProcPtr proc);
+void Manim_MoveCameraOntoSubject(ProcPtr proc);
+void Manim_MoveCameraOntoTarget(ProcPtr proc);
+void Manim_DisplayDeathQuote(ProcPtr proc);
+void Manim_DisplayDeathFade(ProcPtr proc);
+void Manim_DisplayExpBar(ProcPtr proc);
+void Manim_InitInfoBox(ProcPtr proc);
+void Manim_CallBattleQuoteEvents(ProcPtr proc);
+void SetBattleMuPaletteByIndex(int actor);
+void SetBattleMuPalette(ProcPtr proc);
+void Manim_PlayStealSe(void);
+void InitManimActor(int actor, struct BattleUnit * bu, struct Unit * unit);
+void SetManimActorFacing(int actor, int target, int facing);
+void InitManimActorFacings(void);
+void SortManimActorLayers(void);
+void BeginMapAnimForPoisonDmg(void);
+void BeginMapAnimForCritAtk(void);
+void BeginMapAnimForSteal(void);
+void BeginMapAnimForDance(void);
+void StartBattleManim(void);
+void InitManimHits(struct BattleUnit * actor, struct BattleUnit * target, struct BattleHit * hit);
+void InitManimActors(struct BattleUnit * actor, struct BattleUnit * target, struct BattleHit * hit);
+int GetFacingFromTo(int x_from, int y_from, int x_to, int y_to);
+void UnpackManimWindowDigits(int chr);
+void PutManimWindowNumber(u16 * tm, int num, int tileref, int len, u16 blankref);
+void UnpackManimWindowGraphics(u8 const * img);
+void PutManimWindowBarTile(u16 * tm, int * pval, int pal, int max, int base);
+void PutManimWindowBar(u16 * tm, int max, int cur, int pal_id, u16 const * info);
+void EndManimInfoWindow(void);
+void StartManimInfoWindow(int x, int y, ProcPtr parent);
+void ManimWindow_Clear(ProcPtr proc);
+void ManimInfoWindow_Init(struct ManimInfoWindowProc * proc);
+void ManimInfoWindow_UpdateHp(struct ManimInfoWindowProc * proc);
+void PutManimInfoWindowHp(struct ManimInfoWindowProc * proc, int actor);
+u16 const * GetManimInfoWindowPal(struct Unit * unit);
+void PutManimInfoWindow(struct ManimInfoWindowProc * proc, int actor, int x_offset);
+void ManimInfoWindow_InitShake(struct ManimInfoWindowProc * proc);
+void ManimInfoWindow_Shake(struct ManimInfoWindowProc * proc);
+void PutManimExpBar(int x, int y, int exp);
+void ManimExpBar_Init(struct ManimExpBarProc * proc);
+void ManimExpBar_PlaySe(struct ManimExpBarProc * proc);
+void ManimExpBar_Increment(struct ManimExpBarProc * proc);
+void ManimExpBar_InitShake(struct ManimExpBarProc * proc);
+void ManimExpBar_Shake(struct ManimExpBarProc * proc);
+void ManimExpBar_LevelUpIfPossible(struct ManimExpBarProc * proc);
 // sub_8070AF8
-// sub_08070324
-// sub_08070784
-// sub_08070980
-// sub_08070B60
-// sub_08071088
-// sub_08071174
-// sub_080713EC
-// sub_08071424
-// sub_080714A0
-// sub_0807151C
-// sub_080715B0
-// sub_0807160C
-// sub_0807167C
+void ManimDebug_PutField(int num, int index, int color);
+void ManimDebug_Init(struct ManimDebugProc * proc);
+void ManimDebug_InitScreen(struct ManimDebugProc * proc);
+void ManimDebug_Loop(struct ManimDebugProc * proc);
+void ManimDebug_SetupBattleUnit(struct BattleUnit * bu, int actor);
+bool ManimDebug_SetupBattle(void);
+void ManimDebug_StartBattleAnim(ProcPtr proc);
+void StartManimMissAnim(struct Unit * unit);
+void StartManimNoDamageAnim(struct Unit * unit);
+void StartManimWallBreakAnim(struct Unit * unit, int arg);
+void ManimWallBreakAnim_Init(struct ManimEffectProc * proc);
+void StartManimPoisonAnim(struct Unit * unit);
+void ManimPoisonAnim_Init(struct ManimEffectProc * proc);
 // sub_8071ECC
-// sub_08071750
-// sub_08071888
+void ManimLatonaFx_Init(struct ManimEffectProc * proc);
+void ManimLatonaFx_Main(struct ManimEffectProc * proc);
 // sub_80721A4
-// sub_080719DC
-// sub_08071A60
-// sub_08071B34
+void ManimLatonaBlink_Init(struct ManimEffectProc * proc);
+void ManimLatonaBlink_Main(struct ManimEffectProc * proc);
+void StartManimLatonaShine(int x, int y, int size, int duration, int fade_duration, ProcPtr parent);
 // sub_8072374
 // sub_8072398
-// sub_08071BD0
-// sub_08071C70
-// sub_08071D28
-// sub_08071D70
-// sub_08071E4C
-// sub_08071ECC
-// sub_08071FD0
+void ManimLatonaShine_Start(struct ManimShineProc * proc);
+void ManimLatonaShine_FadeIn(struct ManimShineProc * proc);
+void ManimLatonaShine_Wait(struct ManimShineProc * proc);
+void ManimLatonaShine_FadeOut(struct ManimShineProc * proc);
+void StartManimAntitoxinFx(struct Unit * unit, u8 const * img, u16 const * pal);
+void ManimAntitoxinFx_Init(struct ManimEffectProc * proc);
+void ManimAntitoxinFx_Main(struct ManimEffectProc * proc);
 // sub_8072884
-// sub_08072104
-// sub_08072124
-// sub_08072180
-// sub_080722C0
-// sub_08072424
-// sub_08072588
-// sub_08072620
-// sub_080726C0
-// sub_0807272C
-// sub_08072784
-// sub_08072898
-// sub_080728F0
-// sub_08072A18
-// sub_08072B10
+void ManimStatusHealSe_Play(struct ManimEffectProc * proc);
+void StartManimEffectAnimator(struct Unit * unit, void const * img, void const * pal, u16 song);
+void ManimEffectAnimator_Init(struct ManimAnimatorProc * proc);
+void ManimEffectAnimator_FadeIn(struct ManimAnimatorProc * proc);
+void ManimEffectAnimator_FadeOut(struct ManimAnimatorProc * proc);
+void ManimSpellAnim_End(ProcPtr proc);
+void ManimSpellAnim_EndWithHBlank(ProcPtr proc);
+void StartManimWarpFlashy(struct Unit * unit, int arg_1, int arg_2);
+void ManimWarpFlashy_Init(struct ManimEffectProc * proc);
+void ManimWarpFlashy_Main(struct ManimEffectProc * proc);
+void StartManimTorchFx(struct Unit * unit);
+void ManimTorchFx_Init(struct ManimEffectProc * proc);
+void ManimTorchFx_Expand(struct ManimEffectProc * proc);
+void ManimTorchFx_Fade(struct ManimEffectProc * proc);
 // sub_80733F8
 // sub_807340C
-// sub_08072C90
+void ManimBerserkFx_Init(struct ManimEffectProc * proc);
 // sub_80734FC
-// sub_08072D7C
-// sub_08072D98
+void ManimRepairFx_PlaySe(struct ManimEffectProc * proc);
+void ManimRepairFx_Init(struct ManimEffectProc * proc);
 // sub_8073648
-// sub_08072F00
-// sub_08072FC0
+// ManimRepairFx_Blink
+void ManimRepairFx_FadeOut(struct ManimEffectProc * proc);
 // sub_807384C
-// sub_080730C8
+void ManimRestoreFx_Init(struct ManimEffectProc * proc);
 // sub_80738E0
 // sub_8073984
-// sub_08073200
-// sub_0807326C
-// sub_080732AC
-// sub_080732E8
-// sub_08073354
-// sub_08073438
-// sub_080734C4
+void ManimSleepFx_Init(struct ManimEffectProc * proc);
+void ManimSleepFx_Anim1(struct ManimEffectProc * proc);
+void ManimSleepFx_Anim2(struct ManimEffectProc * proc);
+void StartManimWaveFx(struct Unit * unit);
+void ManimWaveFx_Init(struct ManimEffectProc * proc);
+void ManimWaveFx_Expand(struct ManimEffectProc * proc);
+void ManimWaveFx_Shrink(struct ManimEffectProc * proc);
 // sub_8073D3C
-// sub_080735B8
-// sub_080736EC
-// sub_080737D8
+void ManimSilenceFx_Init(struct ManimEffectProc * proc);
+void ManimSilenceFx_Start(struct ManimEffectProc * proc);
+void ManimSilenceFx_Main(struct ManimEffectProc * proc);
 // sub_8074064
-// sub_080738E0
-// sub_080739B0
-// sub_08073A54
-// sub_08073ABC
-// sub_08073AF0
-// sub_08073B14
-// sub_08073C50
-// sub_08073D0C
-// sub_08073D80
-// sub_08073EF4
+void ManimBarrierFx_Init(struct ManimEffectProc * proc);
+void ManimBarrierFx_Main(struct ManimEffectProc * proc);
+void StartManimUnlockFx(int x, int y);
+void ManimUnlockFx_HideUnitAndOpenDoor(void);
+void ManimUnlockFx_UnhideUnit(void);
+void ManimUnlockFx_Init(struct ManimEffectProc * proc);
+void ManimUnlockFx_Open(struct ManimEffectProc * proc);
+void ManimUnlockFx_Close(struct ManimEffectProc * proc);
+void SetDefaultManimScreenConf(void);
+void StartManimBgScroll(int bg, int x_inc, int y_inc, ProcPtr parent);
 // sub_807475C
-// sub_08073F88
-// sub_08074008
-// sub_0807416C
-// sub_080741F4
-// sub_0807436C
+void ManimBgScroll_Main(struct ManimBgScrollProc * proc);
+void PutManimLevelUpFrame(int actor, int x, int y);
+void PutManimLevelUpStat(int actor, int x, int y, int stat_num, bool after_gain);
+int GetManimLevelUpStatGain(int actor, int stat_num);
+int GetManimLevelUpBaseStat(int actor, int stat_num);
 // sub_8074C5C
-// sub_08074474
+void StartManimLevelUpStatGainLabels(int chr, int pal, int sprite_layer, ProcPtr parent);
 // sub_8074D38
-// sub_08074554
-// sub_08074744
-// sub_0807489C
-// sub_080748D0
-// sub_080749F4
-// sub_08074A28
-// sub_08074BF8
-// sub_08074C10
-// sub_08074CA0
-// sub_08074D14
+void StartManimLevelUpStatGainLabelAnim(int x, int y, int stat_num, int stat_gain);
+void StartPrepItemBoostStatGainLabelAnim(int x, int y, int stat_gain);
+void StartManimLevelUp(int actor, ProcPtr parent);
+void InitManimLevelUpWindow(void);
+void ClearManimLevelUpWindow(void);
+void ManimLevelUp_InitMainScreen(struct ManimLevelUpProc * proc);
+void ManimLevelUpLabelColor_Init(struct ManimLevelUpLabelColorProc * proc);
+void ManimLevelUpLabelColor_Loop(struct ManimLevelUpLabelColorProc * proc);
+void ManimLevelUp_ScrollIn(struct ManimLevelUpProc * proc);
+void ManimLevelUp_ScrollOut(struct ManimLevelUpProc * proc);
 // sub_8075584
-// sub_08074F00
-// sub_08074F20
+void ManimLevelUp_DimBgm(struct ManimLevelUpProc * proc);
+void ManimLevelUp_StartLevelUpText(struct ManimLevelUpProc * proc);
 // sub_8075864
-// sub_080750A8
+void ManimLevelUp_RestoreBgm(struct ManimLevelUpProc * proc);
 // sub_8075898
 // sub_80758AC
-// sub_08075114
+void ManimSpellAssocFade_Main(ProcPtr proc);
 // sub_8075938
-// sub_080751A0
-// sub_080751E0
+void ManimSpellAssocResetPal_Main(ProcPtr proc);
+void StartManimBgShaker(void);
 // sub_80759C8
-// sub_08075218
-// sub_080752C8
-// sub_080752F4
-// sub_0807534C
-// sub_080753AC
-// sub_08075448
-// sub_08075528
-// sub_080755E0
-// sub_0807560C
-// sub_08075638
+void ManimBgShaker_Main(struct ManimShakeProc * proc);
+void LoadSparkGfx(void);
+void PutSparkGfx(int x, int y);
+void PutSparkGfxRotation(int x_center, int y_center, int distance, int angle);
+void ManimStarRotation_Init(struct ManimStarProc * proc);
+void ManimStarRotation_Main(struct ManimStarProc * proc);
+void StartManimStarRotation(int x_center, int y_center, int lo, int hi, int start, int end, int terminator);
+void StartManimStarExplosion(int x, int y);
+void StartManimStarImplosion(int x, int y);
+struct ProcCmd const * Manim_GetRoundProcScript(void);
 // sub_8075E34
 // sub_8075E68
-// sub_080756CC
-// sub_08075798
-// sub_080757DC
-// sub_08075820
+void Manim_StartDanceAnim(ProcPtr proc);
+void Manim_PlayDanceSe(void);
+void Manim_PlayRefreshSe(void);
+void Manim_StopDanceAnim(ProcPtr proc);
 // sub_807604C
-// sub_080758B0
-// sub_08075994
+void ManimMoveUnitTowardsTarget(struct MuProc * mu1, struct MuProc * mu2);
+void ManimMoveUnitAwayFromTarget(struct MuProc * mu1, struct MuProc * mu2);
 // sub_8076248
 // sub_80762CC
-// sub_08075B80
-// sub_08075BD0
-// sub_08075C20
-// sub_08075C90
-// sub_08076050
-// sub_08076124
+void Manim_MoveCameraOnSubject(ProcPtr proc);
+void Manim_MoveCameraOnTarget(ProcPtr proc);
+void Manim_SpellWarpMoveCamera(ProcPtr proc);
+void Manim_BeginRoundSpecificAnims(ProcPtr proc);
+void RegisterManimHpChange(int actor, int damage);
+void Manim_WaitForHpBar(ProcPtr proc);
 // sub_8076920
 // sub_8076950
 // sub_8076980
@@ -243,23 +406,72 @@ extern struct ManimSt EWRAM_DATA gManimSt;
 // sub_8076A1C
 // sub_8076A58
 // sub_8076A94
-// sub_08076300
+void Manim_CallSpellAssocMend(ProcPtr proc);
 // sub_8076B0C
 // sub_8076B48
-// sub_080763B4
-// sub_08076470
+void Manim_SpellWarpStartFlashy(ProcPtr proc);
+void Manim_SpellWarpStartFlashyAtNewPos(ProcPtr proc);
 // sub_8076C80
-// sub_080764E0
+void Manim_CallSpellAssocUnlock(ProcPtr proc);
 // sub_8076CD8
 // sub_8076D08
 // sub_8076D38
 // sub_8076D68
-// sub_080765C8
+void Manim_SpellWarpStartFlashFade(ProcPtr proc);
 // sub_8076DCC
 // sub_8076E00
-// sub_08076664
-// sub_080766D8
+void Manim_SpellWarpStartExplosion(ProcPtr proc);
+void Manim_SpellWarpStartImplosion(ProcPtr proc);
 // sub_8076F34
-// sub_08076798
+void Manim_SpellWarpSetNewPosition(ProcPtr proc);
 // sub_8076FFC
 // sub_8077014
+void StartManimDebug(void);
+void StartManimLatonaFx(struct Unit * unit);
+void ManimLatonaFx_ClearBg2(ProcPtr proc);
+void ManimLatonaShine_End(ProcPtr proc);
+void ManimLatonaShine_Init(ProcPtr proc);
+void StartManimStatusHealSe(struct Unit * unit);
+void ManimTorchFx_ResetHBlank(struct ManimEffectProc * proc);
+void StartManimBerserkFx(struct Unit * unit);
+void StartManimRepairFx(struct Unit * unit);
+void ManimRepairFx_Main(struct ManimEffectProc * proc);
+void StartManimRestoreFx(struct Unit * unit);
+void ManimRestoreFx_Main(struct ManimEffectProc * proc);
+void StartManimSleepFx(struct Unit * unit);
+void StartManimSilenceFx(struct Unit * unit);
+void StartManimBarrierFx(struct Unit * unit);
+void EndManimBgScroll(void);
+void ManimLevelUpStatGainLabel_Finish(struct ManimLevelUpStatGainLabelProc * proc);
+void EndManimLevelUpStatGainLabels(void);
+void ManimLevelUp_PutStatGainLabels(struct ManimLevelUpProc * proc);
+void ManimLevelUp_EndLevelUpText(struct ManimLevelUpProc * proc);
+void ManimLevelUp_Clear(struct ManimLevelUpProc * proc);
+void StartManimSpellAssocFadeExt(ProcPtr proc);
+void StartManimSpellAssocResetPalExt(ProcPtr proc);
+void ManimBgShaker_Init(struct ManimShakeProc * proc);
+void Manim_AnimateSubjectIdle(ProcPtr proc);
+void Manim_SubjectResetAnim(ProcPtr proc);
+void Manim_BeginSubjectFastAnim(ProcPtr proc);
+void Manim_MoveSubjectsTowardsTarget(ProcPtr proc);
+void Manim_MoveSubjectsAwayFromTarget(ProcPtr proc);
+void Manim_PoisonEffectOnTarget(ProcPtr proc);
+void Manim_CallSpellAssocSilence(ProcPtr proc);
+void Manim_CallSpellAssocBarrier(ProcPtr proc);
+void Manim_CallSpellAssocLatona(ProcPtr proc);
+void Manim_CallSpellAssocAntitoxin(ProcPtr proc);
+void Manim_CallSpellAssocPureWater(ProcPtr proc);
+void Manim_CallSpellAssocElixir(ProcPtr proc);
+void Manim_CallSpellAssocHeal(ProcPtr proc);
+void Manim_CallSpellAssocRecover(ProcPtr proc);
+void Manim_CallSpellAssocVulnerary(ProcPtr proc);
+void Manim_CallSpellAssocTorch(ProcPtr proc);
+void Manim_CallSpellAssocBerserk(ProcPtr proc);
+void Manim_CallSpellAssocRestore(ProcPtr proc);
+void Manim_CallSpellAssocSleep(ProcPtr proc);
+void Manim_CallSpellAssocRepair(ProcPtr proc);
+void Manim_SpellWarpEndFlashFade(ProcPtr proc);
+void Manim_SpellWarpMuHide(ProcPtr proc);
+void Manim_SpellWarpMuShow(ProcPtr proc);
+void Manim_StartSpellAssocFade(ProcPtr proc);
+void Manim_SpellAssocResetPal(ProcPtr proc);

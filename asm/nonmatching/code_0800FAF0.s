@@ -59,7 +59,7 @@ _0800FB3C:
 _0800FB54:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080B4F9C
+	bl WmStartScrollCamera
 _0800FB5C:
 	movs r0, #2
 _0800FB5E:
