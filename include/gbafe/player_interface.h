@@ -56,7 +56,7 @@ void MMB_Loop_SlideOut(struct PlayerInterfaceProc * proc);
 void TerrainDisplay_Loop_SlideIn(struct PlayerInterfaceProc * proc);
 void TerrainDisplay_Loop_SlideOut(struct PlayerInterfaceProc * proc);
 void ApplyUnitMapUiFramePal(int faction, int palId);
-void ClearUnitMapUiStatus(struct PlayerInterfaceProc * proc, u16 * buffer, struct Unit * unit);
+void ClearUnitMapUiStatus(u16 * buffer, struct Unit * unit);
 void PutUnitMapUiStatus(u16 * buffer, struct Unit * unit);
 void UnitMapUiUpdate(struct PlayerInterfaceProc * proc, struct Unit * unit);
 void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit);

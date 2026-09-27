@@ -18,6 +18,20 @@ extern s8 CONST_DATA sGoalSlideOutWidthLut[];
 extern struct ProcCmd CONST_DATA gProcScr_GoalDisplay[];
 extern struct ProcCmd CONST_DATA gProcScr_PrepMap_MenuButtonDisplay[];
 
+extern u16 const gPal_PlayerInterface_Blue[];
+extern u16 const gPal_PlayerInterface_Red[];
+extern u16 const gPal_PlayerInterface_Green[];
+extern u8 const Img_MapUiStatusAttack[];
+extern u8 const Img_MapUiStatusDefense[];
+extern u8 const Img_MapUiStatusCrit[];
+extern u8 const Img_MapUiStatusAvoid[];
+extern u8 const Tsa_MinimugBox[];
+
+extern char gNumberStr[];
+
+void nullsub_7(void);
+void sub_08005080(int number); // StoreNumberStringOrDashesToSmallBuffer
+
 int GetWindowQuadrant(int x, int y)
 {
     if (x < 0)
@@ -344,19 +358,216 @@ void sub_08084DE4(struct PlayerInterfaceProc * proc)
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
 
-ASM_FUNC("asm/nonmatching/code_08084E28.s");
+void ApplyUnitMapUiFramePal(int faction, int palId)
+{
+    u16 const * pal = NULL;
 
-ASM_FUNC("asm/nonmatching/code_08084E70.s");
+    switch (faction)
+    {
+    case FACTION_BLUE:
+        pal = gPal_PlayerInterface_Blue;
+        break;
 
-ASM_FUNC("asm/nonmatching/code_08084E90.s");
+    case FACTION_RED:
+        pal = gPal_PlayerInterface_Red;
+        break;
 
-ASM_FUNC("asm/nonmatching/code_08084EB4.s");
+    case FACTION_GREEN:
+        pal = gPal_PlayerInterface_Green;
+        break;
 
-ASM_FUNC("asm/nonmatching/code_08084EDC.s");
+    default:
+        nullsub_7();
+        break;
+    }
 
-ASM_FUNC("asm/nonmatching/code_08084FB4.s");
+    ApplyPalette(pal, palId);
+}
 
-ASM_FUNC("asm/nonmatching/code_08085110.s");
+int sub_08084E70(void)
+{
+    if (((gBmSt.cursor.x * 16) - gBmSt.camera.x) < DISPLAY_WIDTH / 2 - 8)
+        return +1;
+    else
+        return -1;
+}
+
+int sub_08084E90(void)
+{
+    if (((gBmSt.cursor.x * 16) - gBmSt.camera.x) > DISPLAY_WIDTH / 2 - 8)
+        return -1;
+    else
+        return +1;
+}
+
+void ClearUnitMapUiStatus(u16 * buffer, struct Unit * unit)
+{
+    buffer[0] = TILEREF(0x120, 0);
+    buffer[1] = TILEREF(0x121, 0);
+    buffer[2] = 0;
+    buffer[3] = TILEREF(0x13E, 0);
+    buffer[4] = TILEREF(0x13F, 0);
+    buffer[5] = 0;
+}
+
+void PutUnitMapUiStatus(u16 * buffer, struct Unit * unit)
+{
+    int tileIdx = TILEREF(0x100, 0);
+
+    if (unit == NULL)
+        return;
+
+    switch (unit->statusIndex)
+    {
+    case UNIT_STATUS_NONE:
+        return;
+
+    case UNIT_STATUS_SLEEP:
+        tileIdx += 0x60;
+        break;
+
+    case UNIT_STATUS_POISON:
+        tileIdx += 0x64;
+        break;
+
+    case UNIT_STATUS_BERSERK:
+        tileIdx += 0x68;
+        break;
+
+    case UNIT_STATUS_SILENCED:
+        tileIdx += 0x6C;
+        break;
+
+    case UNIT_STATUS_ATTACK:
+    case UNIT_STATUS_DEFENSE:
+    case UNIT_STATUS_CRIT:
+    case UNIT_STATUS_AVOID:
+        tileIdx += 0x70;
+        break;
+    }
+
+    switch (unit->statusIndex)
+    {
+    case UNIT_STATUS_ATTACK:
+        CpuFastCopy(Img_MapUiStatusAttack, (void *)(VRAM + 0x2E00), 4 * CHR_SIZE);
+        break;
+
+    case UNIT_STATUS_DEFENSE:
+        CpuFastCopy(Img_MapUiStatusDefense, (void *)(VRAM + 0x2E00), 4 * CHR_SIZE);
+        break;
+
+    case UNIT_STATUS_CRIT:
+        CpuFastCopy(Img_MapUiStatusCrit, (void *)(VRAM + 0x2E00), 4 * CHR_SIZE);
+        break;
+
+    case UNIT_STATUS_AVOID:
+        CpuFastCopy(Img_MapUiStatusAvoid, (void *)(VRAM + 0x2E00), 4 * CHR_SIZE);
+        break;
+    }
+
+    buffer[0] = tileIdx++;
+    buffer[1] = tileIdx++;
+    buffer[2] = tileIdx++;
+    buffer[3] = tileIdx++;
+    buffer[4] = 0;
+    buffer[5] = TILEREF(0x128 + unit->statusDuration, 0);
+}
+
+void UnitMapUiUpdate(struct PlayerInterfaceProc * proc, struct Unit * unit)
+{
+    if ((proc->unitClock & 63) == 0)
+    {
+        if ((proc->unitClock & 64) != 0)
+        {
+            PutUnitMapUiStatus(proc->statusTm, unit);
+            EnableBgSync(BG0_SYNC_BIT);
+        }
+        else
+        {
+            ClearUnitMapUiStatus(proc->statusTm, unit);
+            EnableBgSync(BG0_SYNC_BIT);
+
+            if (GetUnitCurrentHp(unit) >= 100)
+                sub_08005080(0xFF);
+            else
+                sub_08005080(GetUnitCurrentHp(unit));
+
+            proc->hpCurHi = gNumberStr[6] - '0';
+            proc->hpCurLo = gNumberStr[7] - '0';
+
+            if (GetUnitMaxHp(unit) >= 100)
+                sub_08005080(0xFF);
+            else
+                sub_08005080(GetUnitMaxHp(unit));
+
+            proc->hpMaxHi = gNumberStr[6] - '0';
+            proc->hpMaxLo = gNumberStr[7] - '0';
+        }
+    }
+
+    if ((proc->hideContents == false) && ((proc->unitClock & 64) == 0 || (unit->statusIndex == UNIT_STATUS_NONE)))
+    {
+        int xDigits;
+        int yDigits;
+
+        int xDigit1;
+
+        xDigits = proc->xHp * 8;
+        xDigit1 = xDigits + 16;
+
+        yDigits = proc->yHp * 8;
+
+        if (proc->hpCurHi != (u8)(' ' - '0'))
+            PutOamHiRam(xDigit1, yDigits, Sprite_8x8, proc->hpCurHi + OAM2_CHR(0x2E0) + OAM2_PAL(8));
+
+        PutOamHiRam(xDigits + 23, yDigits, Sprite_8x8, proc->hpCurLo + OAM2_CHR(0x2E0) + OAM2_PAL(8));
+        PutOamHiRam(xDigits + 34, yDigits, Sprite_8x8, proc->hpMaxHi + OAM2_CHR(0x2E0) + OAM2_PAL(8));
+        PutOamHiRam(xDigits + 41, yDigits, Sprite_8x8, proc->hpMaxLo + OAM2_CHR(0x2E0) + OAM2_PAL(8));
+    }
+}
+
+void DrawUnitMapUi(struct PlayerInterfaceProc * proc, struct Unit * unit)
+{
+    char const * str;
+    int pos;
+    int faceId;
+
+    CpuFastFill(0, gUiTmScratchA, 6 * CHR_SIZE * sizeof(u16));
+
+    str = DecodeMsg(unit->pCharacterData->nameTextId);
+    pos = GetStringTextCenteredPos(48, str);
+
+    ClearText(proc->texts);
+    Text_SetParams(proc->texts, pos, TEXT_COLOR_0030);
+    Text_DrawString(proc->texts, str);
+    PutText(proc->texts, gUiTmScratchA + TM_OFFSET(5, 1));
+
+    faceId = GetUnitMiniPortraitId(unit);
+
+    if (unit->state & US_BIT23)
+        faceId = faceId + 1;
+
+    PutFaceChibi(faceId, gUiTmScratchA + TM_OFFSET(1, 1), 0xF0, 4, 0);
+
+    proc->statusTm = gUiTmScratchA + TM_OFFSET(5, 3);
+    proc->unitClock = 0;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].xMinimug < 0)
+        proc->xHp = 5;
+    else
+        proc->xHp = 23;
+
+    if (sPlayerInterfaceConfigLut[proc->cursorQuadrant].yMinimug < 0)
+        proc->yHp = 3;
+    else
+        proc->yHp = 17;
+
+    UnitMapUiUpdate(proc, unit);
+    PutMapUiHpBar(gUiTmScratchA + TM_OFFSET(5, 4), unit, TILEREF(0x140, 3));
+
+    TmApplyTsa(gUiTmScratchB, Tsa_MinimugBox, TILEREF(0x100, 3));
+    ApplyUnitMapUiFramePal(UNIT_FACTION(unit), 3);
+}
 
 ASM_FUNC("asm/nonmatching/code_08085250.s");
 
