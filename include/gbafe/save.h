@@ -303,22 +303,131 @@ bool IsFirstChapterStatsPrologue(void);
 int GetCompletedPlaythroughKind(void);
 void WriteCompletedPlaythroughSaveData(void);
 struct PidStats * GetPidStats(u8 pid);
-// ??? GetBonusContentClaimFlags
-// ??? SetBonusContentClaimFlags
-// ??? WriteBonusContentClaimFlags
-// ??? ReadBonusContentClaimFlags
+#define UNIT_SAVE_AMOUNT_BLUE 52
+
+enum {
+    PACKED_US_DEAD       = (1 << 0),
+    PACKED_US_UNDEPLOYED = (1 << 1),
+    PACKED_US_SOLO_ANIM1 = (1 << 2),
+    PACKED_US_SOLO_ANIM2 = (1 << 3),
+    PACKED_US_METIS_TOME = (1 << 4),
+    PACKED_US_B5         = (1 << 5),
+    PACKED_US_B6         = (1 << 6),
+};
+
+struct GameSavePackedUnit {
+    /* 00 */ u32 jid : 7;
+             u32 level : 5;
+             u32 exp : 7;
+             u32 xPos : 6;
+             u32 yPos : 6;
+             u32 flags : 13;
+             u32 max_hp : 6;
+             u32 pow : 5;
+             u32 skl : 5;
+             u32 spd : 5;
+             u32 def : 5;
+             u32 res : 5;
+             u32 lck : 5;
+             u32 con_bonus : 5;
+             u32 mov_bonus : 5;
+             u32 item1 : 14;
+             u32 item2 : 14;
+             u32 item3 : 14;
+             u32 item4 : 14;
+             u32 item5 : 14;
+    /* 14 */ u8 pid;
+    /* 15 */ u8 ranks[8];
+    /* 1D */ u8 supports[7];
+} __attribute__((packed));
+
+struct GameSaveBlock {
+    /* 000 */ struct PlaySt playSt;
+    /* 048 */ struct GameSavePackedUnit units[UNIT_SAVE_AMOUNT_BLUE];
+    /* 798 */ u16 supplyItems[100];
+    /* 860 */ u8 pidStats[0xCC0 - 0x860];
+    /* CC0 */ u8 chapterStats[0xD80 - 0xCC0];
+    /* D80 */ u8 permanentFlags[0xD88 - 0xD80];
+    /* D88 */ u32 bonusClaimFlags;
+};
+
+#define UNIT_SAVE_AMOUNT_RED 50
+#define UNIT_SAVE_AMOUNT_GREEN 10
+
+struct SuspendSavePackedUnit {
+    /* 00 */ u8 pid;
+    /* 01 */ u8 jid;
+    /* 02 */ u8 ai1;
+    /* 03 */ u8 rescue;
+    /* 04 */ u32 state;
+    /* 08 */ u16 item1; // top 2 bits: supportBits
+    /* 0A */ u16 item2;
+    /* 0C */ u16 item3;
+    /* 0E */ u8 maxHP;
+    /* 0F */ u8 curHP;
+    /* 10 */ u8 exp;
+    /* 11 */ u8 aiFlags;
+    /* 12 */ u8 ranks[8];
+    /* 1A */ u8 supports[7];
+    /* 21 */ u8 ai1data;
+    /* 22 */ u8 ai2;
+    /* 23 */ u8 ai2data;
+    /* 24 */ u32 level : 5;
+             u32 xPos : 6;
+             u32 yPos : 6;
+             u32 pow : 5;
+             u32 skl : 5;
+             u32 spd : 5;
+    /* 28 */ u32 def : 5;
+             u32 res : 5;
+             u32 lck : 5;
+             u32 conBonus : 5;
+             u32 statusIndex : 3;
+             u32 statusDuration : 3;
+             u32 torchDuration : 3;
+             u32 barrierDuration : 3;
+    /* 2C */ u32 movBonus : 4;
+             u32 item4 : 14;
+             u32 item5 : 14;
+    /* 30 */ u8 ballistaIndex; // bit 7: supportBits
+    /* 31 */ u8 unk31;
+    /* 32 */ u16 ai3And4;
+};
+
+struct SuspendSaveBlock {
+    /* 0000 */ struct PlaySt playSt;
+    /* 0048 */ struct Action action;
+    /* 0064 */ struct SuspendSavePackedUnit blueUnits[UNIT_SAVE_AMOUNT_BLUE];
+    /* 0AF4 */ struct SuspendSavePackedUnit redUnits[UNIT_SAVE_AMOUNT_RED];
+    /* 151C */ struct SuspendSavePackedUnit greenUnits[UNIT_SAVE_AMOUNT_GREEN];
+    /* 1724 */ u8 traps[0x200];
+    /* 1924 */ u16 supplyItems[100];
+    /* 19EC */ u8 pidStats[0x1E4C - 0x19EC];
+    /* 1E4C */ u8 chapterStats[0x1F0C - 0x1E4C];
+    /* 1F0C */ u8 menuOverride[0x10];
+    /* 1F1C */ u8 permanentFlags[8];
+    /* 1F24 */ u8 chapterFlags[8];
+};
+
+extern u32 gBonusContentClaimFlags;
+extern u8 gSuspendSaveIdOffset;
+
+u32 GetBonusContentClaimFlags(void);
+void SetBonusContentClaimFlags(u32 flags);
+void WriteBonusContentClaimFlags(struct GameSaveBlock * sram_dest);
+void ReadBonusContentClaimFlags(struct GameSaveBlock const * sram_src);
 void WriteLastGameSaveId(int num);
 int ReadLastGameSaveId(void);
-// ??? sub_080A061C
+void InvalidateGameSave(int index);
 void CopyGameSave(int index_src, int index_dest);
-void WriteNewGameSave(int index, int isDifficult, int mode, int isTutorial);
+void WriteNewGameSave(int index, int isDifficult, int mode);
 void WriteGameSave(int slot);
 void ReadGameSave(int slot);
 bool IsSaveValid(int);
 void ReadGameSavePlaySt(s32, struct PlaySt *);
-// ??? LoadSavedBonusClaimFlags
-// ??? sub_080A09FC
-// ??? sub_080A0A10
+u32 LoadSavedBonusClaimFlags(int slot);
+bool sub_080A09FC(struct PlaySt * play_st);
+bool IsGameNotFirstChapter(struct PlaySt * play_st);
 bool IsGameSaveNotFirstChapter(int slot);
 void WriteGameSavePackedUnit(struct Unit *unit, void *sram_dest);
 void LoadSavedUnit(const void *sram_src, struct Unit *unit);
@@ -326,14 +435,14 @@ void InvalidateSuspendSave(int);
 void WriteSuspendSave(int saveBlockId);
 void ReadSuspendSave(int slot);
 u8 IsValidSuspendSave(int);
-// ??? ReadSuspendSavePlaySt
-// ??? EncodeSuspendSavePackedUnit
-// ??? ReadSuspendSavePackedUnit
-// ??? WriteTraps
-// ??? ReadTraps
+void ReadSuspendSavePlaySt(int slot, struct PlaySt * buf);
+void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf);
+void ReadSuspendSavePackedUnit(void const * sram_src, struct Unit * unit);
+void WriteTraps(void * sram_dest);
+void ReadTraps(void const * sram_src);
 int GetLastSuspendSaveId(void);
-// ??? GetNextSuspendSaveId
-// ??? WriteSwappedSuspendSaveId
+int GetNextSuspendSaveId(void);
+void WriteSwappedSuspendSaveId(void);
 int SramChecksum32(void const * sram_src, int size);
 bool VerifySaveBlockChecksum(struct SaveBlockInfo * block_info);
 void PopulateSaveBlockChecksum(struct SaveBlockInfo * block_info);

@@ -54,6 +54,8 @@ void TryUnlockParentProc(ProcPtr);
 
 void nullsub_38(void);
 void ClearMenuOverrides(void);
+void GetForceDisabledMenuItems(u8 * list);
+void SetForceDisabledMenuItems(u8 const * list);
 void sub_08002C74(void);
 void sub_08002C8C(void);
 bool sub_08002CA4(void);
@@ -84,7 +86,7 @@ void GameCtrl_SavePlayThroughData(void);
 char *GetTacticianName();
 void SetTacticianName(const char *name);
 u16 * GetConvoyItemArray(void);
-// ClearSupplyItems
+void ClearSupplyItems(void);
 // ShrinkConvoyItemList
 // GetConvoyItemCount
 // AddItemToConvoy
@@ -120,7 +122,8 @@ u16 * GetConvoyItemArray(void);
 // ArenaSetFallbackWeaponForUnit
 // ArenaSetFallbackWeaponsMaybe
 // sub_802F6C4
-// sub_0802F208
+void sub_0802F1F8(void); // StoreRNStateToActionStruct
+void sub_0802F208(void); // LoadRNStateFromActionStruct
 // DoAction
 // DoRescueAction
 // AfterDrop_CheckTrapAfterDropMaybe
