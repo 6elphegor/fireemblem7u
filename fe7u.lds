@@ -1176,7 +1176,6 @@ SECTIONS
         build/src/statscreen.o(.text);
         build/src/statscreen-helpbox.o(.text);
         build/src/chapter-title.o(.text);
-        build/asm/code_080824D4.o(.text);
         build/src/helpbox.o(.text);
         build/src/player_interface.o(.text);
         build/src/sioerror.o(.text);
