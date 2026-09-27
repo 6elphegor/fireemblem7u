@@ -29,7 +29,7 @@ _080B6570:
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080B65A2
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x16
 	ldr r1, [r4]

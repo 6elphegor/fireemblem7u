@@ -30,7 +30,7 @@ sub_080B4828: @ 0x080B4828
 	bl EnablePalSync
 	ldr r0, [r7, #0x58]
 	movs r1, #0xa
-	bl sub_0806E220
+	bl SetMuPal
 	movs r1, #1
 	strb r1, [r6, #8]
 	ldrb r0, [r6, #9]

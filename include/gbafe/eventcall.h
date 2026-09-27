@@ -3,29 +3,29 @@
 #include "global.h"
 #include "proc.h"
 
-// sub_08078100
-// sub_08078120
-// sub_0807812C
-// sub_08078180
+// StartEventFromInfo
+// SetEventInfoFlag
+// SearchAvailableEvent
+// SearchNextAvailableEvent
 // sub_8078980
-// sub_080781B4
+// EvCheck01_AFEV
 // sub_80789AC
 // sub_0807821C
 // sub_8078A8C
-// sub_080782FC
-// sub_080783F4
-// sub_08078478
+// EvCheck02_TURN
+// EvCheck03_CHAR
+// EvCheck04_CHARASM
 // EvCheck05_LOCA
 // EvCheck06_VILL
-// sub_08078520
+// EvCheck07_CHES
 // sub_8078D3C
 // sub_8078D80
-// sub_080785F4
-// sub_08078650
-// sub_080786B4
-// sub_080786E0
+// EvCheck0A_SHOP
+// EvCheck0B_AREA
+// EvCheck0C_
+// EvCheck0D_
 // EvCheck0E_
-// sub_08078738
+// EventInfoCheckTalk
 // CheckActiveUnitArea
 // CheckAnyBlueUnitArea
 // CheckAnyBlueUnitArea1
@@ -38,7 +38,7 @@
 // CheckAnyRedUnitArea
 bool CheckAvailableTurnEvent(void);
 void StartAvailableTurnEvents(void);
-// sub_080789FC
+// CheckForCharacterEvents
 // StartCharacterEvent
 // StartSupportTalk
 // StartSupportViewerTalk
@@ -65,7 +65,7 @@ void StartAvailableTurnEvents(void);
 // sub_080790B8
 // sub_080790BC
 // sub_8079890
-void sub_080790C4(void);
+s8 sub_080790C4(void);
 bool sub_08079104(void);
 // CheckForWaitEvents
 // RunWaitEvents
@@ -108,10 +108,10 @@ void SetFlag(int flag);
 bool CheckFlag(int);
 void ClearFlag(int flag);
 u8 * GetPermanentFlagBits(void);
-int sub_0807992C(void); // GetPermanentFlagBitsSize
-u8 * sub_08079930(void); // GetChapterFlagBits
-int sub_08079938(void); // GetChapterFlagBitsSize
-// sub_0807993C
+int GetPermanentFlagBitsSize(void);
+u8 * GetChapterFlagBits(void);
+int GetChapterFlagBitsSize(void);
+// CheckDifficultMode
 // sub_08079954
 // sub_08079990
 // sub_080799C8

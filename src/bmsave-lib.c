@@ -9,22 +9,22 @@ CONST_DATA int sSupportUnkLut[][2] = {
 
 void WriteChapterFlags(void * sram_dest)
 {
-    WriteAndVerifySramFast(sub_08079930(), sram_dest, sub_08079938());
+    WriteAndVerifySramFast(GetChapterFlagBits(), sram_dest, GetChapterFlagBitsSize());
 }
 
 void WritePermanentFlags(void * sram_dest)
 {
-    WriteAndVerifySramFast(GetPermanentFlagBits(), sram_dest, sub_0807992C());
+    WriteAndVerifySramFast(GetPermanentFlagBits(), sram_dest, GetPermanentFlagBitsSize());
 }
 
 void ReadChapterFlags(void const * sram_src)
 {
-    ReadSramFast(sram_src, sub_08079930(), sub_08079938());
+    ReadSramFast(sram_src, GetChapterFlagBits(), GetChapterFlagBitsSize());
 }
 
 void ReadPermanentFlags(void const * sram_src)
 {
-    ReadSramFast(sram_src, GetPermanentFlagBits(), sub_0807992C());
+    ReadSramFast(sram_src, GetPermanentFlagBits(), GetPermanentFlagBitsSize());
 }
 
 void WriteSupplyItems(void * sram_dest)
@@ -208,10 +208,10 @@ int GetUnitsAverageSupportValue(const int unitA, const int unitB)
 int GetTotalAverageSupportValue(void)
 {
     int ret = 0;
-    struct SupportTalkEnt * ent = gSupportTalkList;
+    struct SupportTalkEnt const * ent = gSupportTalkList;
 
-    for (; ent->pid_a != 0; ent++)
-        ret += GetUnitsAverageSupportValue(ent->pid_a, ent->pid_b);
+    for (; ent->pidA != 0; ent++)
+        ret += GetUnitsAverageSupportValue(ent->pidA, ent->pidB);
 
     return ret;
 }
@@ -262,7 +262,7 @@ int GetGlobalBestSupport(int unitA, int unitB, struct GlobalSaveInfo * info)
     int i = 0;
     int ret = 0;
     int tmp0, tmp1;
-    struct SupportTalkEnt * cur = gSupportTalkList;
+    struct SupportTalkEnt const * cur = gSupportTalkList;
 
     if (info == NULL)
     {
@@ -270,12 +270,12 @@ int GetGlobalBestSupport(int unitA, int unitB, struct GlobalSaveInfo * info)
         ReadGlobalSaveInfo(info);
     }
 
-    for (; cur->pid_a != 0; i++, cur++)
+    for (; cur->pidA != 0; i++, cur++)
     {
-        if (cur->pid_a == unitA && cur->pid_b == unitB)
+        if (cur->pidA == unitA && cur->pidB == unitB)
             break;
 
-        if (cur->pid_a == unitB && cur->pid_b == unitA)
+        if (cur->pidA == unitB && cur->pidB == unitA)
             break;
     }
 
@@ -288,7 +288,7 @@ int GetGlobalBestSupport(int unitA, int unitB, struct GlobalSaveInfo * info)
 void GetGlobalSupportListFromSave(int pid, u8 * data, struct GlobalSaveInfo * info)
 {
     struct GlobalSaveInfo local_info;
-    struct SupportTalkEnt * ptr;
+    struct SupportTalkEnt const * ptr;
     int i;
     int j;
 
@@ -313,10 +313,10 @@ void GetGlobalSupportListFromSave(int pid, u8 * data, struct GlobalSaveInfo * in
     {
         int tmp1, tmp2;
 
-        if (ptr->pid_a == 0)
+        if (ptr->pidA == 0)
             break;
 
-        if ((ptr->pid_a != pid) && (ptr->pid_b != pid))
+        if ((ptr->pidA != pid) && (ptr->pidB != pid))
             continue;
 
         tmp1 = j >> 2;
@@ -324,8 +324,8 @@ void GetGlobalSupportListFromSave(int pid, u8 * data, struct GlobalSaveInfo * in
 
         for (i = 0; i < gCharacterData[pid - 1].pSupportData->count; i++)
         {
-            if ((ptr->pid_a != gCharacterData[pid - 1].pSupportData->pids[i]) &&
-                (ptr->pid_b != gCharacterData[pid - 1].pSupportData->pids[i]))
+            if ((ptr->pidA != gCharacterData[pid - 1].pSupportData->pids[i]) &&
+                (ptr->pidB != gCharacterData[pid - 1].pSupportData->pids[i]))
             {
                 continue;
             }
@@ -346,7 +346,7 @@ bool UpdateBestGlobalSupportValue(int unitA, int unitB, int supportRank)
     int var0;
     int var1;
     struct GlobalSaveInfo info;
-    struct SupportTalkEnt * ptr;
+    struct SupportTalkEnt const * ptr;
 
     supportRank = supportRank & 3;
 
@@ -357,13 +357,13 @@ bool UpdateBestGlobalSupportValue(int unitA, int unitB, int supportRank)
 
     for (ptr = gSupportTalkList;; ptr++)
     {
-        if (ptr->pid_a == 0)
+        if (ptr->pidA == 0)
             break;
 
-        if ((ptr->pid_a == unitA) && (ptr->pid_b == unitB))
+        if ((ptr->pidA == unitA) && (ptr->pidB == unitB))
             break;
 
-        if ((ptr->pid_a == unitB) && (ptr->pid_b == unitA))
+        if ((ptr->pidA == unitB) && (ptr->pidB == unitA))
             break;
 
         convo++;

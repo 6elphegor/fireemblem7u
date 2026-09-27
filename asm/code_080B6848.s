@@ -15,7 +15,7 @@ sub_080B6848: @ 0x080B6848
 	bl GetChapterStats
 	adds r6, r0, #0
 	ldr r4, _080B6894 @ =0x08C9A200
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x16
 	ldr r1, [r6]

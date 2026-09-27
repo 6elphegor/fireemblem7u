@@ -32,7 +32,7 @@ _0801D432:
 	movs r1, #0x62
 _0801D436:
 	movs r2, #0xc
-	bl sub_0806BA88
+	bl StartMuExt
 _0801D43C:
 	pop {r1}
 	bx r1

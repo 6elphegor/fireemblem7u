@@ -32,8 +32,8 @@ u16 GetGameStateChecksum_Unused(void)
         ret += SramChecksum32(&gUnitArrayGreen[i], MULTIARENA_PACKEDUNIT_SIZE);
     }
 
-    ret += SramChecksum32(GetPermanentFlagBits(), sub_0807992C() / 2);
-    ret += SramChecksum32(sub_08079930(), sub_08079938() / 2);
+    ret += SramChecksum32(GetPermanentFlagBits(), GetPermanentFlagBitsSize() / 2);
+    ret += SramChecksum32(GetChapterFlagBits(), GetChapterFlagBitsSize() / 2);
     ret += SramChecksum32(GetTrap(0), 0x100);
 
     return ret;

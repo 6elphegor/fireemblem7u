@@ -316,7 +316,7 @@ _0801C974:
 	bl GetPlayerSelectKind
 	cmp r0, #2
 	bne _0801C984
-	bl sub_0803030C
+	bl DrawUpdatedPathArrow
 _0801C984:
 	ldr r1, _0801C9A0 @ =0x0202BBB8
 	movs r3, #0x20

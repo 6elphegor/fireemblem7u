@@ -14,7 +14,7 @@ sub_080B66B4: @ 0x080B66B4
 	muls r1, r0, r1
 	ldr r0, _080B6730 @ =0x08C9A200
 	adds r4, r1, r0
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r1, r4, #0
@@ -22,7 +22,7 @@ sub_080B66B4: @ 0x080B66B4
 	adds r1, r1, r0
 	ldrb r0, [r1]
 	str r0, [sp]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r1, r4, #0
@@ -30,7 +30,7 @@ sub_080B66B4: @ 0x080B66B4
 	adds r1, r1, r0
 	ldrb r0, [r1]
 	str r0, [sp, #4]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r1, r4, #0
@@ -38,7 +38,7 @@ sub_080B66B4: @ 0x080B66B4
 	adds r1, r1, r0
 	ldrb r0, [r1]
 	str r0, [sp, #8]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	adds r1, r4, #0

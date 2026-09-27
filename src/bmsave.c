@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/bmmind.h"
 
 // declared without prototypes: owned by other save modules
 void ClearPidChStatsSaveData();
@@ -435,7 +436,7 @@ void WriteSuspendSave(int slot)
     dest = GetSaveWriteAddr(slot);
     gPlaySt.time_saved = GetGameTime();
     WriteAndVerifySramFast(&gPlaySt, &dest->playSt, sizeof(gPlaySt));
-    sub_0802F1F8();
+    StoreRNStateToActionStruct();
     WriteAndVerifySramFast(&gActionSt, &dest->action, sizeof(struct Action));
 
     buf = (struct SuspendSavePackedUnit *) gBuf;
@@ -480,7 +481,7 @@ void ReadSuspendSave(int slot)
     SetGameTime(gPlaySt.time_saved);
 
     ReadSramFast(&src->action, &gActionSt, sizeof(struct Action));
-    sub_0802F208();
+    LoadRNStateFromActionStruct();
     InitUnits();
 
     for (i = 0; i < UNIT_SAVE_AMOUNT_BLUE; i++)

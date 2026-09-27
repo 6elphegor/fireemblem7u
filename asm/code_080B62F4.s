@@ -40,7 +40,7 @@ _080B6328:
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq _080B63BC
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r1, [r4]
@@ -55,7 +55,7 @@ _080B6328:
 	ldrb r0, [r0]
 	adds r1, r0, r1
 	str r1, [sp]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r1, [r4]
@@ -70,7 +70,7 @@ _080B6328:
 	ldrb r0, [r0]
 	adds r1, r0, r1
 	str r1, [sp, #4]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r1, [r4]
@@ -85,7 +85,7 @@ _080B6328:
 	ldrb r0, [r0]
 	adds r1, r0, r1
 	str r1, [sp, #8]
-	bl sub_080315E8
+	bl IsDifficultMode
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r1, [r4]
