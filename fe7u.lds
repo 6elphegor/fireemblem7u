@@ -153,7 +153,6 @@ SECTIONS
         build/asm/code_08006408.o(.text);
         build/asm/code_08006448.o(.text);
         build/src/anime.o(.text);
-        build/asm/code_08006850.o(.text);
         build/src/sprite.o(.text);
         build/src/face.o(.text);
         build/src/talk.o(.text);
