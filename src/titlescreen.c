@@ -187,8 +187,39 @@ void Title_StartBmBgfxAnim(struct ProcTitle * proc)
     proc->timer = 0;
 }
 
-void Title_BmBgfxAnimIN(struct ProcTitle * proc);
-ASM_FUNC("asm/nonmatching/code_080BA764.s");
+void Title_BmBgfxAnimIN(struct ProcTitle * proc)
+{
+    u8 tmp;
+
+    if (proc->timer == 8)
+        TitleSpriteBlendIN(proc->approcs[1], 0x78, 0x3C, 0x78, 0x4C, 0x10, proc);
+
+    tmp = proc->timer - 0x30;
+    if (tmp <= 0x20)
+    {
+        int pa = (proc->timer - 0x30) / 2;
+
+        if (proc->timer == 0x30)
+        {
+            SetBlendAlpha(0, 0x10);
+            SetBlendTargetA(0, 0, 1, 0, 0);
+            SetBlendTargetB(1, 1, 1, 1, 1);
+            SetDispEnable(1, 0, 1, 0, 1);
+
+            sub_080BD0D4(NULL, Pal_TitleAxe, 0xE, 0x20, proc);
+        }
+
+        SetBlendAlpha(pa, 0x10 - pa);
+        SetBgOffset(BG_2, 0, ((proc->timer - 0x30) >> 1) - 0x10);
+    }
+
+    if (proc->timer == 0x28)
+        TitleSpriteBlendOUT(proc->approcs[0], 0, 0, 0x78, 0x48, 0x10, 0, proc);
+
+    proc->timer++;
+    if (proc->timer == 0x64)
+        Proc_Break(proc);
+}
 
 
 void Title_ResetBmBgfxConf(struct ProcTitle * proc)
