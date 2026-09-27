@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B5B80
-sub_080B5B80: @ 0x080B5B80
+	thumb_func_start WmPutMapTile
+WmPutMapTile: @ 0x080B5B80
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r6, r0, #0

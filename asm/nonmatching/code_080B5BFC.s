@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B5BFC
-sub_080B5BFC: @ 0x080B5BFC
+	thumb_func_start WmDrawMapRegion
+WmDrawMapRegion: @ 0x080B5BFC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb
@@ -28,7 +28,7 @@ _080B5C22:
 	mov r1, r8
 	adds r0, r1, r4
 	adds r1, r7, #0
-	bl sub_080B5B80
+	bl WmPutMapTile
 	adds r4, #1
 	cmp r4, #0x1e
 	ble _080B5C22
@@ -51,7 +51,7 @@ _080B5C4C:
 	mov r1, r8
 	adds r0, r1, r4
 	adds r1, r5, #0
-	bl sub_080B5B80
+	bl WmPutMapTile
 	adds r4, #1
 	cmp r4, #0x1e
 	ble _080B5C4C
@@ -69,7 +69,7 @@ _080B5C68:
 _080B5C70:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080B5B80
+	bl WmPutMapTile
 	adds r4, #1
 	cmp r4, sb
 	blt _080B5C70
@@ -93,7 +93,7 @@ _080B5C90:
 _080B5C9A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080B5B80
+	bl WmPutMapTile
 	adds r4, #1
 	cmp r4, r7
 	blt _080B5C9A
@@ -118,7 +118,7 @@ _080B5CC4:
 	mov r1, r8
 	adds r0, r1, r4
 	adds r1, r5, #0
-	bl sub_080B5B80
+	bl WmPutMapTile
 	adds r4, #1
 	cmp r4, #0x1e
 	ble _080B5CC4
@@ -138,7 +138,7 @@ _080B5CE2:
 _080B5CEA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080B5B80
+	bl WmPutMapTile
 	adds r4, #1
 	cmp r4, sb
 	blt _080B5CEA
@@ -164,7 +164,7 @@ _080B5D0E:
 _080B5D18:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl sub_080B5B80
+	bl WmPutMapTile
 	adds r4, #1
 	cmp r4, r7
 	blt _080B5D18

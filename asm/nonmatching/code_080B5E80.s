@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B5E80
-sub_080B5E80: @ 0x080B5E80
+	thumb_func_start WmRedrawMapAt
+WmRedrawMapAt: @ 0x080B5E80
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl
 	mov r6, sb

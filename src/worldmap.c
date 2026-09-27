@@ -164,6 +164,33 @@ extern struct ProcCmd CONST_DATA ProcScr_WmPalFadeOut[];
 extern struct ProcCmd CONST_DATA ProcScr_WmPalFadeIn[];
 extern u16 Pal_WmMapSprite[];
 
+struct WmSpotlightProc {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ int timer;
+    /* 30 */ int x;
+    /* 34 */ int y;
+};
+
+struct CGDataEnt {
+    /* 00 */ u8 isSplit;
+    /* 04 */ void const * img;
+    /* 08 */ u8 const * tsa;
+    /* 0C */ u16 const * pal;
+};
+
+struct CGDataEnt const * GetCG(int idx);
+
+extern struct ProcCmd CONST_DATA ProcScr_WmSpotlight[];
+extern u16 const * CONST_DATA gWmMapTsaTable[];
+extern u8 const * CONST_DATA gWmMapImgTable[];
+extern u16 Pal_WmMap[];
+extern u16 Pal_WmMapA[];
+extern u8 Img_WmMapA[];
+extern u8 Tsa_WmMapA[];
+extern u16 Pal_WmMapB[];
+extern u8 Img_WmMapB[];
+extern u8 Tsa_WmMapB[];
+
 struct WmPalFadeProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ int timer;
@@ -201,9 +228,9 @@ extern struct WmSt gWmSt;
 extern struct WmCanvas gWmCanvas;
 
 bool sub_080AAD18(int x, int y, int x1, int y1, int x2, int y2, int x3, int y3);
-void sub_080B5D9C(int mode, int x, int y);
-void sub_080B5E80(int mode, int x, int y);
-void sub_080B5BFC(int x1, int y1, int x2, int y2);
+void WmDrawMap(int mode, int x, int y);
+void WmRedrawMapAt(int mode, int x, int y);
+void WmDrawMapRegion(int x1, int y1, int x2, int y2);
 void WmCanvas_PutPixel(int x, int y, u8 color);
 void WmUpdateCamera(int x, int y);
 
@@ -311,12 +338,12 @@ void WmSetCamera(u8 mode, int x, int y)
         gWmSt.ty = 0;
     }
 
-    sub_080B5D9C(gWmSt.mode, gWmSt.x, gWmSt.y);
+    WmDrawMap(gWmSt.mode, gWmSt.x, gWmSt.y);
 }
 
 void WmRedrawMap(void)
 {
-    sub_080B5E80(gWmSt.mode, gWmSt.x / 8, gWmSt.y / 8);
+    WmRedrawMapAt(gWmSt.mode, gWmSt.x / 8, gWmSt.y / 8);
 }
 
 void WmMoveCamera(int dx, int dy)
@@ -1246,12 +1273,69 @@ void WmEndSpotlight(void)
     SetWinEnable(0, 0, 0);
 }
 
-ASM_FUNC("asm/nonmatching/code_080B5B44.s");
-ASM_FUNC("asm/nonmatching/code_080B5B6C.s");
+void StartWmSpotlight(int x, int y)
+{
+    struct WmSpotlightProc * proc = Proc_Start(ProcScr_WmSpotlight, Proc_Find(ProcScr_WorldMap));
+
+    proc->x = x;
+    proc->y = y;
+}
+
+void EndWmSpotlightProc(void)
+{
+    Proc_End(Proc_Find(ProcScr_WmSpotlight));
+}
+
 ASM_FUNC("asm/nonmatching/code_080B5B80.s");
+
 ASM_FUNC("asm/nonmatching/code_080B5BFC.s");
-ASM_FUNC("asm/nonmatching/code_080B5D40.s");
-ASM_FUNC("asm/nonmatching/code_080B5D9C.s");
+void WmDrawCgMap(int idx)
+{
+    int i;
+    struct CGDataEnt const * cg = GetCG(idx);
+
+    ApplyPalettes(cg->pal, 0, 8);
+    SetBgOffset(3, 0, 0);
+
+    for (i = 0; i < 10; i++)
+        Decompress(((u8 const * const *) cg->img)[i], (void *) (VRAM + 0x8000 + i * 0x800));
+
+    TmApplyTsa_thm(gBg3Tm, cg->tsa, 0);
+    EnableBgSync(BG3_SYNC_BIT);
+}
+
+void WmDrawMap(int mode, int x, int y)
+{
+    switch (mode)
+    {
+    case 1:
+        ApplyPalettes(Pal_WmMap, 0, 4);
+        SetBgOffset(3, x & 0xFF, y & 0xFF);
+        WmDrawMapRegion(-1, -1, x / 8, y / 8);
+        break;
+
+    case 0:
+        ApplyPalettes(Pal_WmMapA, 0, 4);
+        SetBgOffset(3, 0, 0);
+        Decompress(Img_WmMapA, (void *) (VRAM + 0x8000));
+        TmApplyTsa_thm(gBg3Tm, Tsa_WmMapA, 0);
+        EnableBgSync(BG3_SYNC_BIT);
+        break;
+
+    case 2:
+        ApplyPalettes(Pal_WmMapB, 0, 4);
+        SetBgOffset(3, 0, 0);
+        Decompress(Img_WmMapB, (void *) (VRAM + 0x8000));
+        TmApplyTsa_thm(gBg3Tm, Tsa_WmMapB, 0);
+        EnableBgSync(BG3_SYNC_BIT);
+        break;
+
+    default:
+        WmDrawCgMap(mode - 3);
+        break;
+    }
+}
+
 ASM_FUNC("asm/nonmatching/code_080B5E80.s");
 ASM_FUNC("asm/nonmatching/code_080B5FC0.s");
 ASM_FUNC("asm/nonmatching/code_080B5FE0.s");

@@ -53,7 +53,7 @@ _080B3382:
 	adds r3, #7
 _080B338E:
 	asrs r3, r3, #3
-	bl sub_080B5BFC
+	bl WmDrawMapRegion
 	movs r2, #0xff
 	adds r1, r2, #0
 	ldrh r0, [r4, #8]

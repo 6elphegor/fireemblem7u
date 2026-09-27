@@ -23,8 +23,8 @@ void WmMergeMonsters(void);
 void sub_080B4F70(void);
 void sub_080B4F74(int a, int b);
 void WmStartFadeCamera(int a, int b, int c, int d);
-void sub_080B5B44(int a, int b);
-void sub_080B5B6C(void);
+void StartWmSpotlight(int a, int b);
+void EndWmSpotlightProc(void);
 void sub_080B4D4C(int a, int b, u16 c);
 void sub_080B4E88(int a, u16 b);
 void WmStartTalk(int a);
@@ -601,13 +601,13 @@ int sub_0800F4EC(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B5B44(a, b);
+    StartWmSpotlight(a, b);
     return EVENT_CMDRET_YIELD;
 }
 
 int sub_0800F540(struct EventProc * proc)
 {
-    sub_080B5B6C();
+    EndWmSpotlightProc();
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
