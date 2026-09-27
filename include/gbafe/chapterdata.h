@@ -98,8 +98,7 @@ struct ChapterInfo {
     /* 80 */ u8 prepScreenNumber[2];
     /* 82 */ u8 merchantPosX;
     /* 83 */ u8 merchantPosXInHectorStory; // FE7
-    /* 84 */ u8 merchantPosY;
-    /* 85 */ u8 merchantPosYInHectorStory; // FE7
+    /* 84 */ u8 prepScreenNumberUS[2]; // FE7U reads the prep screen config here (FE7J: 0x80); FE7J called these merchantPosY[InHectorStory]
 
     /* 86 */ s8 victorySongEnemyThreshold;
     /* 87 */ bool8 fadeToBlack;

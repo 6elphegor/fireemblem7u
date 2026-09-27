@@ -252,6 +252,7 @@ Pal_08402230 = 0x08402230;
 Img_ChapterTitleFont = 0x0840260C;
 Img_SysBlackBox = 0x08403A48;
 Pal_SysBrownBox = 0x0840624C;
+SpriteAnim_084062AC = 0x084062AC;
 Pal_0840DD24 = 0x0840DD24;
 Img_PrepTextShadow = 0x0840E098;
 Img_SysBrownBox = 0x0840F238;

@@ -279,8 +279,23 @@ void PrepScreenSprite_OnDraw(struct ProcPrepSpecialChar *proc)
 
 void nullsub_77(void) {}
 
-void ProcPrepSpChar_OnInit(struct ProcPrepSpecialChar *proc);
-ASM_FUNC("asm/nonmatching/code_0808F9B0.s");
+void ProcPrepSpChar_OnInit(struct ProcPrepSpecialChar *proc)
+{
+    proc->unk_2A = 0;
+    proc->timer = 0;
+
+    ForceSyncUnitSpriteSheet();
+
+    if (CheckInLinkArena())
+        proc->approc = StartSpriteAnimProc(SpriteAnim_084062AC, 0x78, 0x418, 0x2E40, 1, 0xD);
+    else {
+        proc->approc = StartSpriteAnimProc(SpriteAnim_084062AC, 0x78, 0x418, 0x2E40, 0, 0xD);
+        proc->config = GetChapterInfo(gPlaySt.chapterIndex)->prepScreenNumberUS[gPlaySt.chapterModeIndex != 3 ? 0 : 1];
+    }
+
+    proc->unk_2B = 0;
+    proc->blink_n = true;
+}
 
 
 void ProcPrepSpChar_Idle(struct ProcPrepSpecialChar *proc)
