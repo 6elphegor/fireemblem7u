@@ -9,7 +9,7 @@ sub_0809AD64: @ 0x0809AD64
 	bl GetTalkChoiceResult
 	cmp r0, #1
 	bne _0809ADB2
-	bl sub_080992A0
+	bl GetChapterDivinationFee
 	adds r4, r0, #0
 	bl GetGold
 	cmp r0, r4

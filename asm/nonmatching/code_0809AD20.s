@@ -7,7 +7,7 @@ sub_0809AD20: @ 0x0809AD20
 	push {r4, lr}
 	sub sp, #0x10
 	adds r4, r0, #0
-	bl sub_08099284
+	bl GetChapterDivinationTextIdEnding
 	str r0, [r4, #0x2c]
 	movs r3, #1
 	rsbs r3, r3, #0

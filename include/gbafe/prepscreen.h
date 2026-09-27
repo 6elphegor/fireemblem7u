@@ -620,27 +620,34 @@ void WmSell_ConfirmSellItem(struct WmSellProc * proc);
 void WmSell_OnLoop_ConfirmSellKeyHandler(struct WmSellProc * proc);
 void WmSell_OnEnd(void);
 // StartWorldMapSellScreen
-// sub_08098F88
+struct PrepProcA1962C {
+    /* 00 */ PROC_HEADER;
+
+    /* 29 */ u8 unk_29;
+    /* 2C */ int unk_2c;
+    /* 30 */ s8 unk_30[4];
+};
+
+void sub_08098F88(struct PrepProcA1962C * proc);
 // FortuneSubMenu_Init_Null
 // nullsub_79
 // FortuneSubMenu_Unused_SetAvailableOptions
 // FortuneSubMenu_Unused_SetupText
-// sub_08098FC4
-// sub_08099068
+s8 sub_08098FC4(struct PrepProcA1962C * proc);
+void sub_08099068(struct PrepProcA1962C * proc);
 // sub_8099B2C
-// sub_08099198
-// StartFortuneSubMenu
-// sub_080991F8
-// GetChapterDivinationTextIdHectorStory
-// GetChapterDivinationTextIdBeginning
+void FortuneSubMenu_HandleOptionSwitch(struct PrepProcA1962C * proc);
+void StartFortuneSubMenu(int option, ProcPtr parent);
+int GetChapterDivinationTextIdHectorStory(void);
+int GetChapterDivinationTextIdBeginning(void);
 // sub_8099C44
-// sub_080992A0
-// GetChapterDivinationPortrait
-// sub_080992D8
-// sub_080992F4
-// sub_0809931C
-// sub_08099330
-// sub_08099340
+int GetChapterDivinationFee(void);
+int GetChapterDivinationPortrait(void);
+s8 sub_080992D8(void);
+s8 sub_080992F4(void);
+s8 sub_0809931C(void);
+s8 sub_08099330(void);
+s8 sub_08099340(void);
 // sub_08099358
 // sub_8099DC0
 // sub_08099408
@@ -724,6 +731,14 @@ void sub_080962A0(struct PrepItemSupplyProc * proc);
 void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc);
 
 void PrepItemSupply_OnEnd(struct PrepItemSupplyProc * proc);
+
+void sub_08098FBC(void);
+
+void sub_08098FC0(void);
+
+void FortuneSubMenu_OnOptionSelected(ProcPtr proc);
+
+int GetChapterDivinationTextIdEnding(void);
 
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 extern EWRAM_OVERLAY(0) struct Text gPrepMainMenuTexts[10];

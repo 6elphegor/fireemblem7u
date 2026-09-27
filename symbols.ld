@@ -1393,3 +1393,5 @@ gShopSellTextIndexLookup = 0x08CC4EB4;
 gpShopSellStringBuffer = 0x08CC4EBC;
 gProcScr_PrepWMShopSell = 0x08CC4EC0;
 Tsa_0840E6AC = 0x0840E6AC;
+gProcScr_FortuneSubMenu = 0x08CC4FE0;
+gUnk_08CC50C0 = 0x08CC50C0;
