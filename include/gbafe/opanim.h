@@ -60,6 +60,45 @@ struct OpAnimCloudProc {
     /* 3A */ u16 unk_3A[4];
 };
 
+struct OpAnimBirdProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ ProcPtr anim[2];
+    /* 34 */ int x[2];
+    /* 3C */ int y[2];
+    /* 44 */ int vx[2];
+    /* 4C */ int vy[2];
+};
+
+struct OpAnimBgHeader {
+    /* 00 */ u16 const * pal;
+    /* 04 */ int pal_bank;
+    /* 08 */ int pal_count;
+    /* 0C */ void const * img;
+    /* 10 */ int chr_offset;
+    /* 14 */ int rows;
+};
+
+struct OpAnimBgFrame {
+    /* 00 */ void const * img;
+    /* 04 */ u16 const * tsa;
+};
+
+struct OpAnimBgConf {
+    /* 00 */ struct OpAnimBgHeader const * header;
+    /* 04 */ struct OpAnimBgFrame const * frames;
+};
+
+struct OpAnimBgProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ struct OpAnimBgConf const * conf;
+    /* 30 */ int bg;
+    /* 34 */ int count;
+    /* 38 */ int pos;
+    /* 3C */ int speed;
+};
+
 void sub_080BB070(void);
 void InitOpScanlineBuf(void);
 void SwapOpScanlineBufs(void);
@@ -142,22 +181,22 @@ void sub_080BCFCC(int a, int b, ProcPtr parent);
 void sub_080BCFE8(u16 const * src1, u16 const * src2, int pal, int k);
 void Proc_08DB9398_Loop(struct OpAnimSubProc * proc);
 void sub_080BD0D4(void * a, const u16 * pal, int pal_bank, int size, ProcPtr parent);
-// sub_080BD168
-// sub_080BD1A4
+void sub_080BD168(struct OpAnimSubProc * proc);
+void sub_080BD1A4(struct OpAnimSubProc * proc);
 void sub_080BD1DC(int a, u16 const * pal, int c, int d, int e, int f, ProcPtr parent);
-// sub_080BD310
-// sub_080BD364
+void sub_080BD310(struct OpAnimBirdProc * proc);
+void sub_080BD364(struct OpAnimBirdProc * proc);
 void sub_080BD424(int a, int b, int angle, int speed, ProcPtr parent);
-// sub_080BD4C4
-// sub_080BD4F4
+void sub_080BD4C4(struct OpAnimSubProc * proc);
+void sub_080BD4F4(struct OpAnimSubProc * proc);
 void sub_080BD548(ProcPtr proc);
 void sub_080BD55C(void);
 int sub_080BD570(struct OpAnimTextEntry const * entry);
-// sub_080BD588
-void sub_080BD688(ProcPtr proc, int val);
-// sub_080BD68C
-// sub_080BD698
-ProcPtr sub_080BD764(void const * a, int b, int c, int d, ProcPtr parent);
+void sub_080BD588(int bg, struct OpAnimBgConf const * conf, int row);
+void sub_080BD688(struct OpAnimBgProc * proc, int speed);
+void sub_080BD68C(struct OpAnimBgProc * proc);
+void sub_080BD698(struct OpAnimBgProc * proc);
+ProcPtr sub_080BD764(struct OpAnimBgConf const * conf, int bg, int pos, int speed, ProcPtr parent);
 
 struct OpScanlineSt {
     /* 00 */ int unk_00;

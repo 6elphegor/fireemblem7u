@@ -16,7 +16,7 @@ extern void * const gUnk_08CEF080;
 extern u16 const gUnk_085ECDF4[];
 extern u8 const gUnk_085ECE14[];
 extern u8 const gUnk_085ED0DC[];
-extern u8 const gUnk_08CEFA38[];
+extern struct OpAnimBgConf const gUnk_08CEFA38;
 extern u16 const gUnk_08673D38[];
 extern u8 const gUnk_08673D58[];
 extern u16 const gUnk_08600544[];
@@ -53,6 +53,13 @@ extern struct ProcCmd CONST_DATA ProcScr_08CEF3EC[];
 extern u8 * gUnk_08CEF074;
 extern u16 const gUnk_08CEF314[];
 extern struct OpAnimTextEntry const gUnk_08CEF4BC[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF40C[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF424[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF444[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF464[];
+extern struct ProcCmd CONST_DATA ProcScr_08CEF750[];
+extern u16 const gUnk_085E9AD4[];
+extern u8 const gUnk_085E9AF4[];
 
 void sub_08003F8C(int reverb);
 
@@ -297,7 +304,7 @@ void sub_080BB98C(struct OpAnimProc * proc)
     EnableBgSync(BG3_SYNC_BIT);
 
     proc->unk_2C = 0;
-    proc->unk_40 = sub_080BD764(gUnk_08CEFA38, 2, -1, 0, proc);
+    proc->unk_40 = sub_080BD764(&gUnk_08CEFA38, 2, -1, 0, proc);
 
     ApplyPaletteExt(gUnk_08673D38, 0x260, 0x20);
     Decompress(gUnk_08673D58, (void *) 0x06013000);
@@ -1114,17 +1121,148 @@ void Proc_08DB9398_Loop(struct OpAnimSubProc * proc)
     if (proc->unk_30 == 0x100 || proc->unk_30 == 0)
         Proc_Break(proc);
 }
-ASM_FUNC("asm/nonmatching/code_080BD0D4.s");
-ASM_FUNC("asm/nonmatching/code_080BD168.s");
-ASM_FUNC("asm/nonmatching/code_080BD1A4.s");
+void sub_080BD0D4(void * a, const u16 * pal, int pal_bank, int size, ProcPtr parent)
+{
+    struct OpAnimSubProc * proc = Proc_Start(ProcScr_08CEF40C, parent);
+
+    if (a == (void *) -1)
+    {
+        CpuFastCopy(gPal + pal_bank * 0x10, gUnkOpAnim_020072C0, 0x20);
+    }
+    else if (a == NULL)
+    {
+        CpuFastFill(0, gUnkOpAnim_020072C0, 0x20);
+    }
+    else
+    {
+        CpuFastCopy(a, gUnkOpAnim_020072C0, 0x20);
+    }
+
+    CpuFastCopy(pal, gUnkOpAnim_020072C0 + 0x10, 0x20);
+
+    proc->unk_30 = 0;
+    proc->unk_34 = pal_bank;
+    proc->unk_2C = size;
+
+    EnablePalSync();
+}
+void sub_080BD168(struct OpAnimSubProc * proc)
+{
+    proc->unk_30 += proc->unk_2C * 4;
+
+    if (proc->unk_30 > 0x100)
+        proc->unk_30 = 0x100;
+
+    sub_080BCFE8(gUnkOpAnim_020072C0 + 0x10, gUnkOpAnim_020072C0, proc->unk_34, proc->unk_30);
+
+    if (proc->unk_30 == 0x100)
+        Proc_Break(proc);
+}
+void sub_080BD1A4(struct OpAnimSubProc * proc)
+{
+    proc->unk_30 -= proc->unk_2C;
+
+    if (proc->unk_30 < 0)
+        proc->unk_30 = 0;
+
+    sub_080BCFE8(gUnkOpAnim_020072C0 + 0x10, gUnkOpAnim_020072C0, proc->unk_34, proc->unk_30);
+
+    if (proc->unk_30 == 0)
+        Proc_Break(proc);
+}
 ASM_FUNC("asm/nonmatching/code_080BD1DC.s");
-ASM_FUNC("asm/nonmatching/code_080BD310.s");
-ASM_FUNC("asm/nonmatching/code_080BD364.s");
-ASM_FUNC("asm/nonmatching/code_080BD424.s");
-ASM_FUNC("asm/nonmatching/code_080BD4C4.s");
-ASM_FUNC("asm/nonmatching/code_080BD4F4.s");
-ASM_FUNC("asm/nonmatching/code_080BD548.s");
-ASM_FUNC("asm/nonmatching/code_080BD55C.s");
+
+void sub_080BD310(struct OpAnimBirdProc * proc)
+{
+    proc->anim[0] = StartSpriteAnimProc(gUnk_086740B4, proc->x[0] >> 16, proc->y[0] >> 16, 0x3980, 5, 10);
+    proc->anim[1] = StartSpriteAnimProc(gUnk_086740B4, proc->x[1] >> 16, proc->y[1] >> 16, 0x3980, 6, 10);
+}
+void sub_080BD364(struct OpAnimBirdProc * proc)
+{
+    int i;
+
+    for (i = 0; i < 2; i++)
+    {
+        ProcPtr anim = proc->anim[i];
+
+        if (anim != NULL)
+        {
+            int x, y;
+
+            proc->vx[i] += gUnkOpAnim_0200750C.unk_08;
+            proc->vy[i] += gUnkOpAnim_0200750C.unk_0C;
+            proc->x[i] += proc->vx[i];
+            proc->y[i] += proc->vy[i];
+
+            x = (s16) (proc->x[i] >> 16);
+            y = proc->y[i] >> 16;
+
+            if (x < 0 || x > 0xF0 || y < 0)
+            {
+                EndSpriteAnimProc(anim);
+                proc->anim[i] = NULL;
+            }
+            else
+            {
+                SetSpriteAnimProcParameters(anim, x & 0x1FF, y & 0xFF, 0x3980);
+            }
+        }
+    }
+
+    if (proc->anim[0] == NULL && proc->anim[1] == NULL)
+        Proc_Break(proc);
+}
+void sub_080BD424(int x, int y, int angle, int speed, ProcPtr parent)
+{
+    struct OpAnimBirdProc * proc = Proc_Start(ProcScr_08CEF444, parent);
+
+    proc->x[0] = x << 16;
+    proc->y[0] = y << 16;
+    proc->x[1] = ((x + 0x80) & 0xFF) << 16;
+    proc->y[1] = (y << 16) + 0x20;
+
+    proc->vx[0] = COS_Q12(angle) * speed;
+    proc->vy[0] = SIN_Q12(angle) * speed;
+    proc->vx[1] = COS_Q12(angle + 4) * speed;
+    proc->vy[1] = SIN_Q12(angle + 4) * speed;
+
+    proc->anim[0] = NULL;
+    proc->anim[1] = NULL;
+}
+void sub_080BD4C4(struct OpAnimSubProc * proc)
+{
+    proc->unk_2C = 0x74;
+    proc->unk_30 = 0;
+    proc->unk_38 = 0;
+
+    ApplyPaletteExt(gUnk_085E9AD4, 0x280, 0x20);
+    Decompress(gUnk_085E9AF4, (void *) 0x06010000);
+}
+void sub_080BD4F4(struct OpAnimSubProc * proc)
+{
+    proc->unk_38++;
+    proc->unk_30 += proc->unk_38;
+
+    if (proc->unk_30 >= 0x50)
+    {
+        Proc_Break(proc);
+        Proc_Goto(proc->proc_parent, 2);
+    }
+    else
+    {
+        PutSpriteExt(4, proc->unk_2C, proc->unk_30, Sprite_8x8, (proc->unk_34 & 1) + 0x4400);
+    }
+
+    proc->unk_34++;
+}
+void sub_080BD548(ProcPtr proc)
+{
+    Proc_Start(ProcScr_08CEF464, proc);
+}
+void sub_080BD55C(void)
+{
+    Proc_End(Proc_Find(ProcScr_08CEF464));
+}
 int sub_080BD570(struct OpAnimTextEntry const * entry)
 {
     int i;
@@ -1142,7 +1280,51 @@ int sub_080BD570(struct OpAnimTextEntry const * entry)
     return i;
 }
 ASM_FUNC("asm/nonmatching/code_080BD588.s");
-ASM_FUNC("asm/nonmatching/code_080BD688.s");
-ASM_FUNC("asm/nonmatching/code_080BD68C.s");
-ASM_FUNC("asm/nonmatching/code_080BD698.s");
+
+void sub_080BD688(struct OpAnimBgProc * proc, int speed)
+{
+    proc->speed = speed;
+}
+void sub_080BD68C(struct OpAnimBgProc * proc)
+{
+    proc->speed = 0;
+    proc->count = 0;
+    proc->bg = 0;
+    proc->conf = NULL;
+}
+void sub_080BD698(struct OpAnimBgProc * proc)
+{
+    int prev = proc->pos >> 10;
+    int bgbits[4] = { BG0_SYNC_BIT, BG1_SYNC_BIT, BG2_SYNC_BIT, BG3_SYNC_BIT };
+    int cur;
+
+    if (proc->conf == NULL)
+        return;
+
+    proc->pos += proc->speed;
+
+    if (proc->pos < 0)
+    {
+        proc->pos = 0;
+        Proc_Break(proc);
+    }
+
+    if ((proc->pos >> 10) > (proc->count - 0x14) * 8)
+        Proc_Break(proc);
+
+    cur = proc->pos >> 10;
+
+    if (prev == cur)
+        return;
+
+    if (prev > cur && prev / 8 != cur / 8)
+        sub_080BD588(proc->bg, proc->conf, prev / 8 - 1);
+
+    if (prev < cur && (prev + 7) / 8 != (cur + 7) / 8)
+        sub_080BD588(proc->bg, proc->conf, prev / 8 + 0x14);
+
+    EnableBgSync(bgbits[proc->bg]);
+    SetBgOffset(proc->bg, 0, cur);
+}
+
 ASM_FUNC("asm/nonmatching/code_080BD764.s");
