@@ -104,7 +104,112 @@ void EfxPlaySound5CVol100(void)
 
 ASM_FUNC("asm/nonmatching/code_0806B0C0.s");
 
-ASM_FUNC("asm/nonmatching/code_0806B1A4.s");
+void DrawBattlePopup(struct ProcEkrPopup * proc, int type, u32 priv)
+{
+    const char * str;
+    int width1, width_popupbox, width5, xcursor;
+#ifndef NONMATCHING
+    register int width3 asm("r4");
+#else
+    int width3;
+#endif
+    struct Text * text;
+    struct Anim * anim;
+
+    LZ77UnCompVram(Img_EkrPopup, (void *)BG_VRAM + 0x2000);
+    LZ77UnCompWram(Tsa_EkrPopup, gEkrTsaBuffer);
+    InitTextFont(&gBanimFont, (void *)BG_VRAM + 0x20C0, 0x106, 1);
+    SetTextDrawNoClear();
+    CpuFastCopy(Pal_EkrPopup, PAL_BG(0x1), 0x20);
+
+    if (type == 0)
+    {
+        width1 = 0;
+        str = DecodeMsg(0x750);
+        width3 = GetStringTextLen(str) + 0x10;
+    }
+    else if (type == 1)
+    {
+        width1 = 0;
+        str = GetItemNameWithArticle(priv, 1);
+        width3 = GetStringTextLen(str) + 0x10;
+        str = DecodeMsg(0x751);
+        width3 = GetStringTextLen(str) + width3 + 0x04;
+    }
+    else
+    {
+        str = DecodeMsg(0x75A);
+        width1 = GetStringTextLen(str) + 2;
+        width3 = width1 + 0x10;
+    }
+
+    width_popupbox = (width3 + 7) >> 3;
+    MakeBattlePopupTileMapFromTSA(gBg1Tm, width_popupbox);
+
+    text = &gBanimText[0];
+    InitText(text, width_popupbox);
+    xcursor = (width_popupbox * 8 - width3) >> 1;
+    Text_SetCursor(text, xcursor);
+
+    LZ77UnCompVram(Img_EkrPopupText, (void *)BG_VRAM + 0x20C0);
+
+    if (type == 0)
+    {
+        Text_Skip(text, 0x10);
+        str = DecodeMsg(0x750);
+        Text_SetColor(text, TEXT_COLOR_SYSTEM_WHITE);
+        Text_DrawString(text, str);
+    }
+    else if (type == 1)
+    {
+        Text_Skip(text, 0x10);
+        str = GetItemNameWithArticle(priv, 1);
+        Text_SetColor(text, TEXT_COLOR_SYSTEM_GRAY);
+        Text_DrawString(text, str);
+        Text_Skip(text, 0x04);
+        str = DecodeMsg(0x751);
+        Text_SetColor(text, TEXT_COLOR_SYSTEM_WHITE);
+        Text_DrawString(text, str);
+    }
+    else
+    {
+        str = DecodeMsg(0x75A);
+        Text_SetColor(text, TEXT_COLOR_SYSTEM_WHITE);
+        Text_DrawString(text, str);
+    }
+
+    width5 = (0xF0 - (width_popupbox + 2) * 8) >> 1;
+    SetBgOffset(BG_1, -width5, 0xFFD0);
+    EnableBgSync(BG1_SYNC_BIT);
+
+    InitIcons();
+
+    if (type == 0)
+    {
+        ApplyIconPalette(1, 0x12);
+        PutIconObjImg(GetItemType(priv) + 0x70, 0x40);
+    }
+    else if (type == 1)
+    {
+        ApplyIconPalette(0, 0x12);
+        PutIconObjImg(GetItemIconId(priv), 0x40);
+    }
+    else
+    {
+        ApplyIconPalette(1, 0x12);
+        PutIconObjImg(priv + 0x70, 0x40);
+    }
+
+    anim = AnimCreate(AnimScr_EkrPopup, 0x96);
+    proc->anim = anim;
+    anim->oam2Base = OAM2_PAL(0x2) + OAM2_LAYER(0x1) + OAM2_CHR(0x0800 / 0x20);
+    anim->xPosition = width5 + ({ xcursor + 8; }) + width1;
+    anim->yPosition = 0x38;
+
+    EnablePalSync();
+    SetBlendNone();
+    SetWinEnable(0, 0, 0);
+}
 
 void NewEkrPopup(void)
 {
