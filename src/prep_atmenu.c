@@ -16,7 +16,9 @@ void ReorderPlayerUnitsBasedOnDeployment(void);
 
 struct ProcAtUnkMenu {
     /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x58);
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ u16 unk4C;
+    /* 4E */ STRUCT_PAD(0x4E, 0x58);
     /* 58 */ int unk58;
     /* 5C */ int unk5C;
     /* 60 */ STRUCT_PAD(0x60, 0x64);
@@ -828,7 +830,104 @@ bool sub_0808F034(void)
     return FALSE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0808F0A4.s");
+void AtUnkMenu_Reinitialize(struct ProcAtMenu * _proc)
+{
+    struct ProcAtUnkMenu * proc = (void *) _proc;
+    int i;
+
+    proc->unk58 = 0;
+
+    switch (gPlaySt.chapterIndex)
+    {
+    case 0x09:
+        if (sub_0808EFFC())
+            proc->unk58 = 8;
+        break;
+
+    case 0x11:
+        if (CheckFlag(0x6A))
+        {
+            proc->unk58 |= 4;
+
+            if (!(gPlaySt.chapterStateBits & 0x40))
+                proc->unk58 |= 1;
+        }
+        else
+        {
+            if (!(gPlaySt.chapterStateBits & 0x40))
+                proc->unk58 |= 2;
+        }
+        break;
+
+    case 0x14:
+        if (CheckFlag(0x6A))
+            proc->unk58 = 0;
+        else
+            proc->unk58 = 4;
+        break;
+    }
+
+    if (sub_0808F034())
+        proc->unk58 = 0x10;
+
+    if (proc->unk58 == 0)
+    {
+        Proc_Goto(proc, 200);
+        return;
+    }
+
+    InitBgs(NULL);
+    InitFaces();
+    ResetText();
+    UnpackUiWindowFrameGraphics();
+    ApplySystemObjectsGraphics();
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 2;
+    gDispIo.bg2_ct.priority = 1;
+    gDispIo.bg3_ct.priority = 3;
+
+    proc->unk5C = GetChapterInfo(gPlaySt.chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0];
+
+    DrawUiFrame2(1, 4, 10, 12, 0);
+
+    PutDrawText(NULL, gBg2Tm + TM_OFFSET(3, 5), 0, 0, 8, DecodeMsg(0x113D));
+    PutDrawText(NULL, gBg2Tm + TM_OFFSET(3, 7), 0, 0, 8, DecodeMsg(0x113E));
+    PutDrawText(NULL, gBg2Tm + TM_OFFSET(3, 9), 0, 0, 8, DecodeMsg(0x1146));
+    PutDrawText(NULL, gBg2Tm + TM_OFFSET(3, 11), 0, 0, 8, DecodeMsg(0x1141));
+    PutDrawText(NULL, gBg2Tm + TM_OFFSET(3, 13), 0, 0, 8, DecodeMsg(0x1140));
+
+    ApplyPalette(Pal_08404BBC, 0xF);
+    Decompress(Img_08404BDC, (void *) (BG_VRAM + 0x5800));
+    sub_080AACD8(gBg1Tm + TM_OFFSET(0xC, 0x4), Tsa_084050D8, OAM2_PAL(0xF) + OAM2_CHR(0x5800 / 0x20));
+
+    for (i = 0; i < 5; i++)
+        InitText(&gPrepMainMenuTexts[i + 5], 0xE);
+
+    Decompress(Img_PrepScreenTitle, OBJ_VRAM0 + 0x1000);
+    ApplyPalettes(Pal_SysBrownBox, 0x1E, 2);
+
+    EnableBgSync(BG1_SYNC_BIT);
+
+    StartPrepMuralBackground(NULL, 8);
+    StartSpriteAnimProc(SpriteAnim_084062AC, 0x78, 0x418, 0xEC80, 0, 0xD);
+
+    proc->unk4C = 0;
+
+    InitTalk(0x200, 3, 1);
+    ResetSysHandCursor(proc);
+    DisplaySysHandCursorTextShadow(0x600, 1);
+    DrawAtMenuUpfx(0x7800, 2);
+    Prep_DrawChapterGoal(0x5000, 4);
+
+    if (gPlaySt.chapterModeIndex == 1)
+        StartPrepMenuDescHandler(0x3E3, proc);
+    else
+        StartPrepMenuDescHandler(0x3E4, proc);
+
+    proc->unk64 = 0;
+    StartParallelWorker(sub_0808EF94, proc);
+}
 
 void sub_0808F36C(struct ProcAtMenu * proc)
 {
