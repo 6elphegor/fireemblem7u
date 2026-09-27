@@ -41,6 +41,23 @@ void sub_080B4890(int a);
 void sub_080B4828(int a);
 void nullsub_5(int a, int b, int c);
 void nullsub_6(void);
+void sub_080B4C60(int a, s16 b, s16 c, u8 d);
+void sub_080B4D14(int a);
+void sub_080B4B8C(int a, s16 b, s16 c, u8 d);
+void sub_080B4C28(int a);
+void sub_080B4F9C(int a, int b);
+
+void SetScriptedBattle(struct BattleHit * hits);
+void SetMenuOverride(int a, int b, void * func);
+int MenuAlwaysNotShown();
+int sub_0804A8FC();
+int sub_0804A8F8();
+int Get8(void);
+void StartBoxDialogueSimple(int x, int y, int msg, ProcPtr parent);
+bool IsTactFemale(void);
+void StartNoBoxTalk(ProcPtr parent);
+void StartTutorialCursors(int kind);
+void SetkeyStIgnoredMask(int mask);
 
 extern struct FaceVramEnt CONST_DATA gFaceConfig_08B91AB8[];
 extern EventScr CONST_DATA EventScr_08B91AD8[];
@@ -906,4 +923,148 @@ int sub_0800F998(struct EventProc * proc)
         nullsub_6();
 
     return EVENT_CMDRET_CONTINUE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0800F9B0.s");
+
+int sub_0800FA30(struct EventProc * proc)
+{
+    int a = proc->script[1];
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        sub_080B4D14(a);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0800FA50.s");
+
+int sub_0800FAD0(struct EventProc * proc)
+{
+    int a = proc->script[1];
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        sub_080B4C28(a);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0800FAF0.s");
+
+int EvtCmd_SetKeyIgnore(struct EventProc * proc)
+{
+    SetkeyStIgnoredMask(proc->script[1]);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_SetFightScriptOverride(struct EventProc * proc)
+{
+    SetScriptedBattle((struct BattleHit *) proc->script[1]);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_ClearMenuOverrides(struct EventProc * proc)
+{
+    ClearMenuOverrides();
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MenuOverrideHide(struct EventProc * proc)
+{
+    SetMenuOverride(proc->script[1], 1, MenuAlwaysNotShown);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MenuOverrideDisable(struct EventProc * proc)
+{
+    SetMenuOverride(proc->script[1], 1, sub_0804A8FC);
+    SetMenuOverride(proc->script[1], 2, Get8);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MenuOverrideEnable(struct EventProc * proc)
+{
+    SetMenuOverride(proc->script[1], 1, sub_0804A8F8);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_BoxTalk(struct EventProc * proc)
+{
+    u16 cfg = EVT_ARG_U16(proc, 1);
+    u16 flags = 0;
+
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        u16 y_raw;
+
+        StartBoxDialogueSimple(SCR_LO16_SIGN(proc->script[1]), (y_raw = EVT_ARG_U16(proc, 3)) & 0x8000 ? -1 : y_raw, proc->script[2], 0);
+
+        if (cfg & 1)
+            flags |= 0x10;
+
+        if (cfg & 2)
+            flags |= 0x80;
+
+        if (cfg & 4)
+            flags |= 0x100;
+
+        if (cfg & 8)
+            flags |= 0x20;
+
+        if (cfg != 0)
+            SetDialogueBoxConfig(flags);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_BoxTalkByTactGender(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+    {
+        u16 y_raw;
+
+        if (!IsTactFemale())
+            StartBoxDialogueSimple(SCR_LO16_SIGN(proc->script[1]), (y_raw = EVT_ARG_U16(proc, 3)) & 0x8000 ? -1 : y_raw, proc->script[2], 0);
+        else
+            StartBoxDialogueSimple(SCR_LO16_SIGN(proc->script[1]), (y_raw = EVT_ARG_U16(proc, 3)) & 0x8000 ? -1 : y_raw, proc->script[3], 0);
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int sub_0800FD34(struct EventProc * proc)
+{
+    if (!(proc->flags & EVENT_FLAG_SKIPPED))
+        StartNoBoxTalk(NULL);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_TutorialCursorsTargetMove(struct EventProc * proc)
+{
+    StartTutorialCursors(0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_TutorialCursors(struct EventProc * proc)
+{
+    if (proc->script[1] == 0)
+        StartTutorialCursors(1);
+    else
+        StartTutorialCursors(proc->script[1]);
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int sub_0800FD7C(struct EventProc * proc)
+{
+    EventScr const * script = (EventScr const *) proc->script[1];
+
+    proc->script_return = proc->script_start;
+    proc->script_return_pc = proc->script + 2;
+    proc->script = script;
+    proc->script_start = script;
+
+    return EVENT_CMDRET_JUMPED;
 }
