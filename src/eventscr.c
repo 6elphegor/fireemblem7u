@@ -257,7 +257,7 @@ void DisplayBackgroundNoClear(int background)
     gPal[0] = 0;
 }
 
-/* ---- decls ---- */
+/* functions defined elsewhere that are not declared in headers yet */
 ProcPtr StartTalkMsg(int x, int y, int id);
 void EndTalk(void);
 void SetTalkFlag(int talk_flags);
@@ -283,6 +283,14 @@ void sub_0806D4CC(struct MuProc * mu, int speed);
 bool IsMuActive(struct MuProc * mu);
 void EndMu(struct MuProc * mu);
 u8 IsPidBlue(u8 pid);
+u8 IsPidBlueDeployed(u8 pid);
+void BmMapFillg(u8 ** map, int value);
+void EventUnitLoadWait(struct EventProc * proc);
+void EventUnitLoadAliveWait(struct EventProc * proc);
+void EventLoadUnitsAsParty(struct EventProc * proc);
+
+extern u8 gEventSavedPosX[];
+extern u8 gEventSavedPosY[];
 
 struct EventMuWaitProc {
     /* 00 */ PROC_HEADER;
@@ -1016,8 +1024,74 @@ int EvtCmd_MovePidInstant(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
-ASM_FUNC("asm/nonmatching/code_0800C9AC.s");
-ASM_FUNC("asm/nonmatching/code_0800CA1C.s");
+int EvtCmd_SavePositionPid(struct EventProc * proc)
+{
+    struct Unit * unit;
+    int slot;
+
+    if (proc->script[1] == 0)
+    {
+        if (!IsPidBlueDeployed(GetPlayerLeaderUnitId()))
+            return EVENT_CMDRET_CONTINUE;
+
+        unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
+        slot = gPlaySt.chapterModeIndex;
+    }
+    else
+    {
+        if (!IsPidBlueDeployed(proc->script[1]))
+            return EVENT_CMDRET_CONTINUE;
+
+        unit = GetUnitFromCharId(proc->script[1]);
+        slot = proc->script[2];
+    }
+
+    gEventSavedPosX[slot] = unit->xPos;
+    gEventSavedPosY[slot] = unit->yPos;
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_MovePidToSavedPosition(struct EventProc * proc)
+{
+    struct Unit * unit;
+    int slot;
+    int x, y;
+
+    if (proc->script[1] == 0)
+    {
+        if (!IsPidBlueDeployed(GetPlayerLeaderUnitId()))
+            return EVENT_CMDRET_CONTINUE;
+
+        unit = GetUnitFromCharId(GetPlayerLeaderUnitId());
+        slot = gPlaySt.chapterModeIndex;
+    }
+    else
+    {
+        if (!IsPidBlueDeployed(proc->script[1]))
+            return EVENT_CMDRET_CONTINUE;
+
+        unit = GetUnitFromCharId(proc->script[1]);
+        slot = proc->script[2];
+    }
+
+    x = gEventSavedPosX[slot];
+    y = gEventSavedPosY[slot];
+
+    if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+    {
+        TryMoveUnit(unit, x, y, TRUE);
+        RefreshUnitSprites();
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    if (!CanDisplayUnitMovement(proc, unit->xPos, unit->yPos))
+        return EVENT_CMDRET_REPEAT;
+
+    TryMoveUnitDisplayed(proc, unit, x, y, 0);
+    return EVENT_CMDRET_CONTINUE;
+}
+
 void TryMoveUnit(struct Unit * unit, int x, int y, u8 move_closest)
 {
     struct Vec2 pos;
@@ -1153,12 +1227,192 @@ void WaitForMu_OnLoop(struct EventMuWaitProc * proc)
     Proc_Break(proc);
 }
 
-ASM_FUNC("asm/nonmatching/code_0800CD64.s");
-ASM_FUNC("asm/nonmatching/code_0800CDA8.s");
-ASM_FUNC("asm/nonmatching/code_0800CDEC.s");
-ASM_FUNC("asm/nonmatching/code_0800CE58.s");
-ASM_FUNC("asm/nonmatching/code_0800CE80.s");
-ASM_FUNC("asm/nonmatching/code_0800CEBC.s");
-ASM_FUNC("asm/nonmatching/code_0800CF44.s");
-ASM_FUNC("asm/nonmatching/code_0800CFAC.s");
-ASM_FUNC("asm/nonmatching/code_0800CFE4.s");
+int EvtCmd_LoadUnits(struct EventProc * proc)
+{
+    BmMapFillg(gBmMapOther, 0);
+
+    proc->unit_info = (struct UnitDefinition const *)proc->script[1];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EventUnitLoadWait(proc);
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    proc->idle_func = EventUnitLoadWait;
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_LoadUnitsAlive(struct EventProc * proc)
+{
+    BmMapFillg(gBmMapOther, 0);
+
+    proc->unit_info = (struct UnitDefinition const *)proc->script[1];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EventUnitLoadAliveWait(proc);
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    proc->idle_func = EventUnitLoadAliveWait;
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_LoadUnitsFiltered(struct EventProc * proc)
+{
+    if ((proc->script[1] & 0xFFFF0000) && !(gPlaySt.chapterStateBits & PLAY_FLAG_HARD))
+        return EVENT_CMDRET_CONTINUE;
+
+    if (gPlaySt.chapterModeIndex != (u8)proc->script[1])
+        return EVENT_CMDRET_CONTINUE;
+
+    BmMapFillg(gBmMapOther, 0);
+
+    proc->unit_info = (struct UnitDefinition const *)proc->script[2];
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EventUnitLoadWait(proc);
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    proc->idle_func = EventUnitLoadWait;
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_LoadUnitsParty(struct EventProc * proc)
+{
+    BmMapFillg(gBmMapOther, 0);
+
+    proc->unit_info = (struct UnitDefinition const *)proc->script[1];
+    EventLoadUnitsAsParty(proc);
+
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_LoadUnitsPartyIfScenario(struct EventProc * proc)
+{
+    if (gPlaySt.chapterModeIndex == (u8)proc->script[1])
+    {
+        BmMapFillg(gBmMapOther, 0);
+
+        proc->unit_info = (struct UnitDefinition const *)proc->script[2];
+        EventLoadUnitsAsParty(proc);
+
+        return EVENT_CMDRET_YIELD;
+    }
+
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int EvtCmd_LoadUnitsByMode(struct EventProc * proc)
+{
+    int mode = 0;
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_HARD)
+        mode = 1;
+
+    if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
+        mode += 2;
+
+    BmMapFillg(gBmMapOther, 0);
+
+    switch (mode)
+    {
+    case 1:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[2];
+        break;
+
+    case 2:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[3];
+        break;
+
+    case 3:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[4];
+        break;
+
+    case 0:
+    default:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[1];
+        break;
+    }
+
+    if (proc->unit_info == NULL)
+        return EVENT_CMDRET_CONTINUE;
+
+    if (proc->flags & EVENT_FLAG_SKIPPED)
+    {
+        EventUnitLoadWait(proc);
+        return EVENT_CMDRET_CONTINUE;
+    }
+
+    proc->idle_func = EventUnitLoadWait;
+    return EVENT_CMDRET_YIELD;
+}
+
+int EvtCmd_LoadUnitsPartyByMode(struct EventProc * proc)
+{
+    int mode = 0;
+
+    if (gPlaySt.chapterStateBits & PLAY_FLAG_HARD)
+        mode = 1;
+
+    if (gPlaySt.chapterModeIndex == CHAPTER_MODE_HECTOR)
+        mode += 2;
+
+    BmMapFillg(gBmMapOther, 0);
+
+    switch (mode)
+    {
+    case 1:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[2];
+        break;
+
+    case 2:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[3];
+        break;
+
+    case 3:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[4];
+        break;
+
+    case 0:
+    default:
+        proc->unit_info = (struct UnitDefinition const *)proc->script[1];
+        break;
+    }
+
+    EventLoadUnitsAsParty(proc);
+    return EVENT_CMDRET_CONTINUE;
+}
+
+int GetNextAvailableBlueUnitId(int uid)
+{
+    for (; uid < 0x40; uid++)
+    {
+        struct Unit * unit = GetUnit(uid);
+
+        if (unit == NULL)
+            continue;
+
+        if (unit->pCharacterData == NULL)
+            continue;
+
+        if (unit->state & (US_DEAD | US_NOT_DEPLOYED))
+            continue;
+
+        return uid;
+    }
+
+    return 0;
+}
+
+bool UnitInfoRequiresNoMovement(struct UnitDefinition const * def)
+{
+    if (def->x_load == def->x_move && def->y_load == def->y_move && gBmMapUnit[def->y_load][def->x_load] != 0)
+        return TRUE;
+
+    return FALSE;
+}
+

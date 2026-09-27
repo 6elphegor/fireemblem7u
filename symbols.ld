@@ -854,6 +854,8 @@ gEventCmdTable = 0x08B90E48;
 /* eventscr.c */
 gUnk_02033E00 = 0x02033E00;
 ProcScr_08B91A08 = 0x08B91A08;
+gEventSavedPosX = 0x0202A5AC;
+gEventSavedPosY = 0x0202A5B0;
 
 /* end eventscr.c */
 
