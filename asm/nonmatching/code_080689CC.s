@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080689CC
-sub_080689CC: @ 0x080689CC
+	thumb_func_start EfxBlackInOutUnitMain
+EfxBlackInOutUnitMain: @ 0x080689CC
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r5, r0, #0

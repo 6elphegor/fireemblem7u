@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806892C
-sub_0806892C: @ 0x0806892C
+	thumb_func_start EfxClasschgCloneMain
+EfxClasschgCloneMain: @ 0x0806892C
 	push {r4, lr}
 	sub sp, #0x48
 	adds r4, r0, #0

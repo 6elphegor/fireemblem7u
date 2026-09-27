@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080686D8
-sub_080686D8: @ 0x080686D8
+	thumb_func_start EfxClasschgBGSE01Main
+EfxClasschgBGSE01Main: @ 0x080686D8
 	push {lr}
 	adds r2, r0, #0
 	ldrh r0, [r2, #0x2c]

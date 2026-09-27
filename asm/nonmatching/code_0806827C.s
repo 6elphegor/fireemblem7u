@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_0806827C
-sub_0806827C: @ 0x0806827C
+	thumb_func_start EkrClasschgMain
+EkrClasschgMain: @ 0x0806827C
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -27,9 +27,9 @@ sub_0806827C: @ 0x0806827C
 	adds r0, r5, #0
 	bl DisableEfxStatusUnits
 	adds r0, r5, #0
-	bl sub_08068540
+	bl NewEkrClasschgBG1
 	adds r0, r5, #0
-	bl sub_08068638
+	bl NewEfxClasschgBGSE00
 	ldr r2, _080682D4 @ =0x03002870
 	movs r0, #0x21
 	rsbs r0, r0, #0
@@ -89,13 +89,13 @@ _0806832C:
 	ldr r0, [r4, #0x5c]
 	movs r1, #0xc
 	movs r2, #0
-	bl sub_08068994
+	bl NewEfxBlackInOutUnit
 	b _0806852A
 _0806833C:
 	cmp r1, #0x78
 	bne _08068348
 	ldr r0, [r4, #0x5c]
-	bl sub_0806873C
+	bl NewEfxClasschgOBJ
 	b _0806852A
 _08068348:
 	cmp r1, #0x80
@@ -138,9 +138,9 @@ _08068398:
 	cmp r1, #0xf2
 	bne _08068430
 	ldr r0, [r4, #0x5c]
-	bl sub_08068584
+	bl NewEkrClasschgBG2
 	ldr r0, [r4, #0x5c]
-	bl sub_080686BC
+	bl NewEfxClasschgBGSE01
 	ldr r6, _0806842C @ =0x03002870
 	movs r0, #0x21
 	rsbs r0, r0, #0
@@ -222,7 +222,7 @@ _08068430:
 	adds r0, r5, #0
 	movs r1, #0xc
 	movs r2, #1
-	bl sub_08068994
+	bl NewEfxBlackInOutUnit
 	b _0806852A
 	.align 2, 0
 _0806845C: .4byte 0x0000F3FF
@@ -232,7 +232,7 @@ _08068460:
 	cmp r1, r0
 	bne _08068482
 	adds r0, r5, #0
-	bl sub_0806873C
+	bl NewEfxClasschgOBJ
 	ldr r0, [r4, #0x5c]
 	movs r1, #0xa
 	bl NewEfxFlashBgWhite
@@ -277,7 +277,7 @@ _080684BC:
 	bne _0806851C
 	adds r0, r5, #0
 	movs r1, #0x82
-	bl sub_080687A0
+	bl NewEfxClasschgFIN
 	adds r0, r5, #0
 	movs r1, #0x82
 	bl NewEfxClasschgCLONE

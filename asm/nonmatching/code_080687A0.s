@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080687A0
-sub_080687A0: @ 0x080687A0
+	thumb_func_start NewEfxClasschgFIN
+NewEfxClasschgFIN: @ 0x080687A0
 	push {r4, r5, r6, r7, lr}
 	sub sp, #8
 	adds r5, r0, #0

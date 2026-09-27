@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08068994
-sub_08068994: @ 0x08068994
+	thumb_func_start NewEfxBlackInOutUnit
+NewEfxBlackInOutUnit: @ 0x08068994
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08068AB4
-sub_08068AB4: @ 0x08068AB4
+	thumb_func_start EfxClasschgRSTMain
+EfxClasschgRSTMain: @ 0x08068AB4
 	push {r4, r5, r6, lr}
 	sub sp, #4
 	adds r5, r0, #0

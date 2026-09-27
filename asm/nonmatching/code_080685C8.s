@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080685C8
-sub_080685C8: @ 0x080685C8
+	thumb_func_start EfxClasschgBgMain
+EfxClasschgBgMain: @ 0x080685C8
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}

@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_08068540
-sub_08068540: @ 0x08068540
+	thumb_func_start NewEkrClasschgBG1
+NewEkrClasschgBG1: @ 0x08068540
 	push {r4, lr}
 	adds r4, r0, #0
 	ldr r0, _08068570 @ =0x08BDB3B8
