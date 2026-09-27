@@ -314,8 +314,24 @@ struct PrepItemTypePageEnt {
 // CanUnitPrepScreenUse
 
 struct PrepItemScreenProc {
-    PROC_HEADER;
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 hoverUnitIdx;
+    /* 2A */ u8 selectedUnitIdx;
+    /* 2B */ s8 hasConvoyAccess;
+    /* 2C */ u8 helpboxActiveIdx;
+    /* 2D */ u8 popupPromptIdx;
+    /* 2E */ u8 unk_2e;
+    /* 2F */ u8 unk_2f;
+    /* 30 */ u8 scrollAmount;
+    /* 31 */ s8 unitSelected;
+    /* 32 */ u16 scrollOffset;
+    /* 34 */ u16 xFacePosBySlot[2];
+    /* 38 */ u16 yFacePosBySlot[2];
+    /* 3C */ u16 faceDispBySlot[2];
+    /* 40 */ struct Unit * pUnits[2];
 };
+
+extern struct Text gPrepItemTexts[32];
 
 void PrepItemScreen_OnHBlank(void);
 void PrepItemScreen_Init(struct PrepItemScreenProc * proc);
