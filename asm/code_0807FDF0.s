@@ -250,7 +250,7 @@ _0807FF20:
 	adds r4, r6, #0
 	adds r4, #0x78
 	ldr r0, [r6, #0xc]
-	bl sub_08018CC0
+	bl GetUnitRescueName
 	adds r3, r0, #0
 	adds r0, r4, #0
 	movs r1, #0x18

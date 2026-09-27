@@ -58,8 +58,8 @@ void sub_080126E4(ProcPtr);
 // GC_CallPostChapterSaveMenu
 // GC_SetEliwoodMode
 // GC_DarkenScreen
-// sub_8013128
-// sub_8013160
+// sub_08012A70
+// sub_08012AA8
 // GC_RememberChapterId
 // GC_RestoreChapterId
 // StartGame

@@ -686,7 +686,7 @@ _0808B2B8:
 	cmp r5, #0
 	beq _0808B300
 	adds r0, r2, #0
-	bl sub_08018CC0
+	bl GetUnitRescueName
 	adds r5, r0, #0
 	ldr r6, [sp, #0x50]
 	ldr r1, [sp, #0x2c]
