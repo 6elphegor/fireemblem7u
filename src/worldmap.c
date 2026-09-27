@@ -826,7 +826,53 @@ void WmSlots_UpdatePosition(int idx, struct WmSlotsProc * proc)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B43EC.s");
+void sub_080B43EC(struct WmUnitManagerProc * proc)
+{
+    int i;
+    u16 * flags;
+    struct WmSlotsProc * slots = proc->slots[3];
+
+    for (i = 0; i < 4; i++)
+    {
+        struct FaceProc * face;
+
+        if (slots->ent[i].anim != NULL)
+        {
+            int x;
+            face = (struct FaceProc *) slots->ent[i].anim;
+            x = slots->ent[i].x;
+            flags = (u16 *) &slots->ent[i].y;
+
+            if ((*flags & 0x800) && (*flags & 0xFF) < 0x10)
+            {
+                if (*flags & 0x100)
+                    face->x_disp = x + (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+
+                if (*flags & 0x200)
+                    face->x_disp = x - (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+
+                (*flags)++;
+            }
+
+            if ((*flags & 0x1000) && (*flags & 0xFF) < 0x10)
+            {
+                if (*flags & 0x100)
+                {
+                    int x2 = x - 0x20;
+                    face->x_disp = x2 + (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+                }
+
+                if (*flags & 0x200)
+                {
+                    int x2 = x + 0x20;
+                    face->x_disp = x2 - (0x10 - (*flags & 0xFF)) * 0x20 * (0x10 - (*flags & 0xFF)) / 0x100;
+                }
+
+                (*flags)++;
+            }
+        }
+    }
+}
 void sub_080B4510(struct WmUnitManagerProc * proc)
 {
     int i;
