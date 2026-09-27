@@ -2,6 +2,20 @@
 
 #include "global.h"
 
+struct UnitIconWait {
+    /* 00 */ u16 unk00;
+    /* 02 */ u16 size;
+    /* 04 */ u8 const * sheet;
+};
+
+enum {
+    UNIT_ICON_SIZE_16x16,
+    UNIT_ICON_SIZE_16x32,
+    UNIT_ICON_SIZE_32x32,
+};
+
+extern struct UnitIconWait CONST_DATA unit_icon_wait_table[];
+
 // ??? sub_8025114
 void ApplyUnitSpritePalettes(void);
 // ??? ApplyUnitSpriteSepiaPalette

@@ -5,22 +5,8 @@
  * (FE8U: bmudisp.c)
  */
 
-struct UnitIconWait {
-    /* 00 */ u16 unk00;
-    /* 02 */ u16 size;
-    /* 04 */ u8 const * sheet;
-};
-
-enum {
-    UNIT_ICON_SIZE_16x16,
-    UNIT_ICON_SIZE_16x32,
-    UNIT_ICON_SIZE_32x32,
-};
-
 #define UNITSPRITE_ID_BITS 7
 #define UNITSPRITE_MAX 0xD0
-
-extern struct UnitIconWait CONST_DATA unit_icon_wait_table[];
 
 extern u8 gUnitSpriteSlots[UNITSPRITE_MAX];
 extern u8 gSMSGfxBuffer[3][8 * 0x20 * 0x20];
