@@ -508,11 +508,11 @@ void SpellFx_SetSomeColorEffect(void);
 void SpellFx_ClearColorEffects(void);
 void StartBattleAnimHitEffectsDefault(struct Anim * anim, int type);
 // ??? sub_08050150
-void StartBattleAnimHitEffects(struct Anim * anim, int type);
+void StartBattleAnimHitEffects(struct Anim * anim, int type, int a, int b);
 void StartBattleAnimResireHitEffects(struct Anim * anim, int type);
 void StartBattleAnimStatusChgHitEffects(struct Anim * anim, int type);
 struct Anim * EfxCreateFrontAnim(struct Anim * anim, const AnimScr * scr1, const AnimScr * scr2, const AnimScr * scr3, const AnimScr * scr4);
-struct Anim * EfxCreateBackAnim(struct Anim * anim, const AnimScr * scr1, const AnimScr *scr2, const AnimScr * scr3, const AnimScr * scr4);
+void EfxCreateBackAnim(struct Anim * anim, const u16 * src1, const u16 * src2);
 void SpellFx_WriteBgMap(struct Anim * anim, const u16 * src1, const u16 * src2);
 // ??? SpellFx_WriteBgMapExt
 void SpellFx_RegisterObjGfx(const void * img, u32 size);
@@ -1371,12 +1371,12 @@ void EndActiveClassReelBgColorProc(void);
 // ??? GetMagicEffectBufferFor
 // ??? SetCRSpellBgPosition
 // ??? ClearCRSpellBgTmBuf
-// ??? sub_080640D4
+// ??? CRSpellCreateFrontAnim
 // ??? CRSpell_WriteBgMap
 // ??? CRSpell_RegisterBgGfx
 // ??? CRSpell_RegisterBgPal
-// ??? sub_080641EC
-// ??? sub_0806421C
+// ??? CRSpell_RegisterObjGfx
+// ??? CRSpell_RegisterObjPal
 // ??? StartClassReelSpellAnim
 // ??? nullsub_52
 // ??? sub_8064A54
@@ -1395,18 +1395,18 @@ void EndActiveClassReelBgColorProc(void);
 // ??? StartCRSubSpell_efxopThunderOBJ
 // ??? sub_8064DFC
 // ??? sub_8064E20
-// ??? sub_08064654
+// ??? efxopLive_Loop_Main
 // ??? StartCRSubSpell_efxopLiveBG
 // ??? efxopLiveBG_Loop
-// ??? sub_08064768
+// ??? StartCRSubSpell_efxopLiveBGCOL
 // ??? sub_8064F84
 // ??? StartCRSubSpell_efxopLiveALPHA
 // ??? sub_8064FF4
-// ??? sub_08064828
-// ??? sub_080648AC
-// ??? sub_08064910
+// ??? efxopLiveALPHA_Loop_B
+// ??? StartCRSubSpell_efxopLiveOBJ
+// ??? efxopLiveOBJ_Loop
 // ??? sub_8065120
-// ??? sub_08064958
+// ??? efxopLightning_Loop_Main
 // ??? StartCRSubSpell_efxopLightningBG
 // ??? efxopLightningBG_Loop
 
