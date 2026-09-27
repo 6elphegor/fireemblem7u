@@ -1477,7 +1477,7 @@ u8 ArenaCommandEffect(struct MenuProc * menu, struct MenuItemProc * menuItem)
         return MENU_ACT_SND6B;
     }
 
-    sub_080B267C();
+    StartArenaScreen();
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }

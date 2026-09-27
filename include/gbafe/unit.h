@@ -400,7 +400,7 @@ bool UnitAddItem(struct Unit *unit, int item);
 void UnitClearInventory(struct Unit * unit);
 void UnitRemoveInvalidItems(struct Unit *unit);
 int GetUnitItemCount(struct Unit *unit);
-// UnitHasItem
+bool UnitHasItem(struct Unit *unit, int item);
 // LoadUnits
 // sub_08017754
 struct Unit *LoadUnit(const struct UnitDefinition *uDef);

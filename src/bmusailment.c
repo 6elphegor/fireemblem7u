@@ -9,8 +9,8 @@ struct MuProc;
 void DropRescueOnDeath(ProcPtr proc, struct Unit * unit);
 void BattleInitItemEffect(struct Unit * actor, int itemSlot);
 void BeginBattleAnimations(void);
-void sub_0806EFC4(void); // BeginMapAnimForPoisonDmg
-void sub_0806F050(void); // BeginMapAnimForCritAtk
+void BeginMapAnimForPoisonDmg(void); // BeginMapAnimForPoisonDmg
+void BeginMapAnimForCritAtk(void); // BeginMapAnimForCritAtk
 struct MuProc * StartMu(struct Unit * unit);
 void StartMuDeathFade(struct MuProc * mu);
 void PutBlendWindowUnitSprite(int layer, int x, int y, int oam2, struct Unit * unit);
@@ -82,7 +82,7 @@ void BeginUnitPoisonDamageAnim(struct Unit * unit, int damage)
 
     BattleHitTerminate();
 
-    sub_0806EFC4();
+    BeginMapAnimForPoisonDmg();
 
     RenderMapForFogFadeIfUnitDied(unit);
 
@@ -108,7 +108,7 @@ void BeginUnitCritDamageAnim(struct Unit * unit, int damage)
 
     BattleHitTerminate();
 
-    sub_0806F050();
+    BeginMapAnimForCritAtk();
 
     RenderMapForFogFadeIfUnitDied(unit);
 

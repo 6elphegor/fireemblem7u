@@ -22,23 +22,23 @@ void WmMergeFace(int a, int b, int c, int d, int e, int f, int g);
 void WmMergeMonsters(void);
 void sub_080B4F70(void);
 void sub_080B4F74(int a, int b);
-void sub_080B4F78(int a, int b, int c, int d);
-void sub_080B5B44(int a, int b);
-void sub_080B5B6C(void);
+void WmStartFadeCamera(int a, int b, int c, int d);
+void StartWmSpotlight(int a, int b);
+void EndWmSpotlightProc(void);
 void sub_080B4D4C(int a, int b, u16 c);
 void sub_080B4E88(int a, u16 b);
-void sub_080B4FE4(int a);
-void sub_080B3D20(int a);
-void sub_080B3D78(void);
-void sub_080B4904(int a, int b, int c, int d);
-void sub_080B4ADC(int a);
-void sub_080B39D8(int a, int b);
-void sub_080B3AFC(int a);
-void sub_080B3B70(void);
-void sub_080B5844(int a);
-void sub_080B5934(int a);
-void sub_080B4890(int a);
-void sub_080B4828(int a);
+void WmStartTalk(int a);
+void OpenWmTextBox(int a);
+void CloseWmTextBox(void);
+void StartWmMuMove(int a, int b, int c, int d);
+void EndWmMu(int a);
+void StartWmSpriteAnim(int a, int b);
+void EndWmSpriteAnim(int a);
+void EndAllWmSpriteAnims(void);
+void StartWmPalFadeOut(int a);
+void StartWmPalFadeIn(int a);
+void WmMu_EndFlash(int a);
+void WmMu_StartFlash(int a);
 void nullsub_5(int a, int b, int c);
 void nullsub_6(void);
 
@@ -519,8 +519,8 @@ void sub_0800F358(void)
     m4aMPlayFadeInContinue(&gUnk_03005B10, 2);
 }
 
-void sub_080B5554(u8 a, int x, int y, int c);
-void sub_080B55BC(int c);
+void StartWorldMap(u8 a, int x, int y, int c);
+void WorldMap_StartBgm(int c);
 
 int sub_0800F36C(struct EventProc * proc)
 {
@@ -532,8 +532,8 @@ int sub_0800F36C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B5554(a, x, y, c);
-    sub_080B55BC(c);
+    StartWorldMap(a, x, y, c);
+    WorldMap_StartBgm(c);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -588,7 +588,7 @@ int sub_0800F494(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B4F78(a, b, c, d);
+    WmStartFadeCamera(a, b, c, d);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -601,13 +601,13 @@ int sub_0800F4EC(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B5B44(a, b);
+    StartWmSpotlight(a, b);
     return EVENT_CMDRET_YIELD;
 }
 
 int sub_0800F540(struct EventProc * proc)
 {
-    sub_080B5B6C();
+    EndWmSpotlightProc();
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
@@ -683,7 +683,7 @@ int sub_0800F61C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B4FE4(proc->script[1]);
+    WmStartTalk(proc->script[1]);
     proc->idle_func = EventEndTalk;
 
     if (proc->flags & EVENT_FLAG_NOSKIPTALK)
@@ -697,7 +697,7 @@ int sub_0800F65C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D20(1);
+    OpenWmTextBox(1);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -706,7 +706,7 @@ int sub_0800F67C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D20(0);
+    OpenWmTextBox(0);
     return EVENT_CMDRET_YIELD;
 }
 
@@ -715,7 +715,7 @@ int sub_0800F69C(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3D78();
+    CloseWmTextBox();
     return EVENT_CMDRET_YIELD;
 }
 
@@ -733,7 +733,7 @@ int sub_0800F6B8(struct EventProc * proc)
         if (e != 0)
             WmMergeFace(e, 0, a, 0, b, c, d);
         else
-            sub_080B4904(a, b, c, d);
+            StartWmMuMove(a, b, c, d);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -750,7 +750,7 @@ int sub_0800F730(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 1, a, 0, skipped, skipped, skipped);
         else
-            sub_080B4ADC(a);
+            EndWmMu(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -768,7 +768,7 @@ int sub_0800F770(struct EventProc * proc)
         if (c != 0)
             WmMergeFace(c, 2, a, b, skipped, skipped, skipped);
         else
-            sub_080B39D8(a, b);
+            StartWmSpriteAnim(a, b);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -786,7 +786,7 @@ int sub_0800F7B8(struct EventProc * proc)
     if (b != 0)
         WmMergeFace(b, 3, a, 0, skipped, skipped, skipped);
     else
-        sub_080B3AFC(a);
+        EndWmSpriteAnim(a);
 
     return EVENT_CMDRET_YIELD;
 }
@@ -801,7 +801,7 @@ int sub_0800F804(struct EventProc * proc)
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
 
-    sub_080B3B70();
+    EndAllWmSpriteAnims();
     return EVENT_CMDRET_YIELD;
 }
 
@@ -830,7 +830,7 @@ int sub_0800F844(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 10, 0, 0, skipped, skipped, a);
         else
-            sub_080B5844(a);
+            StartWmPalFadeOut(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -847,7 +847,7 @@ int sub_0800F884(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 9, 0, 0, skipped, skipped, a);
         else
-            sub_080B5934(a);
+            StartWmPalFadeIn(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -864,7 +864,7 @@ int sub_0800F8C4(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 12, 0, 0, skipped, skipped, a);
         else
-            sub_080B4890(a);
+            WmMu_EndFlash(a);
     }
 
     return EVENT_CMDRET_CONTINUE;
@@ -881,7 +881,7 @@ int sub_0800F904(struct EventProc * proc)
         if (b != 0)
             WmMergeFace(b, 11, 0, 0, skipped, skipped, a);
         else
-            sub_080B4828(a);
+            WmMu_StartFlash(a);
     }
 
     return EVENT_CMDRET_CONTINUE;

@@ -246,7 +246,7 @@ struct PidStats
 struct ChapterStats {
     /* 00 */ u16 chapter_index : 7;
              u16 chapter_turn  : 9;
-    /* 02 */ u16 chapter_time;
+             u16 chapter_time  : 16;
 };
 
 #define WIN_ARRAY_NUM 0x30

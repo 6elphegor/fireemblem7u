@@ -110,14 +110,14 @@ void InitTalk(int chr, int lines, bool unpack_bubble);
 // ??? InitSpriteTalk
 // ??? sub_08007F50
 void SetInitTalkTextFont();
-// ??? StartTalkExt
+ProcPtr StartTalkExt(int x, int y, char const * str, ProcPtr parent);
 // ??? StartTalkMsg
 // ??? StartTalkMsgExt
 // ??? StartTalk
-// ??? EndTalk
+void EndTalk(void);
 // ??? SetTalkLines
 void ClearAllTalkFlags(void);
-// ??? SetTalkFlag
+void SetTalkFlag(int flag);
 // ??? SetTalkFunc
 // ??? ClearTalkFlag
 // ??? CheckTalkFlag
@@ -136,7 +136,7 @@ bool TalkSpritePrepNextChar(ProcPtr proc);
 int TalkInterpret(ProcPtr proc);
 void SetActiveTalkFace(int);
 void sub_08008E34(ProcPtr proc);
-// ??? StartTalkFace
+struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
 // ??? GetFaceIdByXPos
 void sub_08008F6C(int talk_face, int toBack);
 void MoveTalkFace(int talkFaceFrom, int talkFaceTo);

@@ -8,7 +8,7 @@ EvtCmd_MenuOverrideDisable: @ 0x0800FBAC
 	adds r4, r0, #0
 	ldr r0, [r4, #0x30]
 	ldr r0, [r0, #4]
-	ldr r2, _0800FBD0 @ =sub_0804A8FC
+	ldr r2, _0800FBD0 @ =MenuAlwaysDisabled
 	movs r1, #1
 	bl SetMenuOverride
 	ldr r0, [r4, #0x30]
@@ -21,5 +21,5 @@ EvtCmd_MenuOverrideDisable: @ 0x0800FBAC
 	pop {r1}
 	bx r1
 	.align 2, 0
-_0800FBD0: .4byte sub_0804A8FC
+_0800FBD0: .4byte MenuAlwaysDisabled
 _0800FBD4: .4byte Get8
