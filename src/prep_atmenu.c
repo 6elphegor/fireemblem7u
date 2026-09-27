@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/cgtext.h"
 
 void sub_080AACD8(u16 * tm, void const * src, u16 tileref); // Decompress to gGenericBuffer, then TmApplyTsa
 
@@ -15,13 +16,24 @@ void ReorderPlayerUnitsBasedOnDeployment(void);
 
 struct ProcAtUnkMenu {
     /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x5C);
+    /* 29 */ STRUCT_PAD(0x29, 0x58);
+    /* 58 */ int unk58;
     /* 5C */ int unk5C;
     /* 60 */ STRUCT_PAD(0x60, 0x64);
     /* 64 */ u16 unk64;
 };
 
 void sub_0808F808(int x, int y, int unk, int oam2);
+
+struct ProcPrepPromote {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ s16 game_lock;
+};
+
+void StartTalkFace(int fid, int x, int y, int disp, int talkFace);
+void GenerateItemPromotionBattle(struct Unit * unit, int itemIdx, s8 unk);
+void BeginBattleAnimations(void);
 
 extern int CONST_DATA gAtSubMenuMsgs[];
 extern u8 CONST_DATA Tsa_PrepMenuFrame[];
@@ -814,4 +826,196 @@ bool sub_0808F034(void)
     }
 
     return FALSE;
+}
+
+ASM_FUNC("asm/nonmatching/code_0808F0A4.s");
+
+void sub_0808F36C(struct ProcAtMenu * proc)
+{
+    SetBlendAlpha(0xE, 0x8);
+    SetBlendTargetA(0, 0, 0, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+}
+
+void sub_0808F3B8(struct ProcAtMenu * _proc)
+{
+    struct ProcAtUnkMenu * proc = (void *) _proc;
+
+    if (!(proc->unk58 & 0x10))
+        proc->unk64 = 1;
+}
+
+void sub_0808F3D0(struct ProcAtMenu * _proc)
+{
+    struct ProcAtUnkMenu * proc = (void *) _proc;
+
+    if (!(proc->unk58 & 8))
+    {
+        Proc_Goto(proc, 1);
+        return;
+    }
+
+    ShowSysHandCursor(0x14, 0x28, 6, 0x800);
+    StartTalkFace(0x20, 0xD4, 0x50, 0x82, 0);
+    StartCgText(0x16, 0x12, -1, -1, 0xFCE, (void *) 0x06011800, -1, NULL);
+    SetCgTextFlags(0x2000A);
+}
+
+void sub_0808F43C(struct ProcAtMenu * _proc)
+{
+    struct ProcAtUnkMenu * proc = (void *) _proc;
+
+    if (!(proc->unk58 & 4))
+    {
+        Proc_Goto(proc, 2);
+        return;
+    }
+
+    ShowSysHandCursor(0x14, 0x38, 6, 0x800);
+    StartTalkFace(0x4A, 0xD4, 0x50, 0x82, 0);
+    StartCgText(0x16, 0x12, -1, -1, 0xFC6, (void *) 0x06011800, -1, NULL);
+    SetCgTextFlags(0x2000A);
+}
+
+void sub_0808F4A8(struct ProcAtMenu * _proc)
+{
+    struct ProcAtUnkMenu * proc = (void *) _proc;
+    int msg = 0;
+
+    if (!(proc->unk58 & 3))
+    {
+        Proc_Goto(proc, 3);
+        return;
+    }
+
+    if (proc->unk58 & 1)
+        msg = 0xFC7;
+
+    if (proc->unk58 & 2)
+        msg = 0xFC8;
+
+    ShowSysHandCursor(0x14, 0x48, 6, 0x800);
+    StartTalkFace(0x4B, 0xD4, 0x50, 0x82, 0);
+    StartCgText(0x16, 0x12, -1, -1, msg, (void *) 0x06011800, -1, NULL);
+    SetCgTextFlags(0x2000A);
+}
+
+void sub_0808F52C(struct ProcAtMenu * _proc)
+{
+    struct ProcAtUnkMenu * proc = (void *) _proc;
+
+    if (!(proc->unk58 & 0x10))
+    {
+        Proc_Goto(proc, 0xA);
+        return;
+    }
+
+    ShowSysHandCursor(0x14, 0x28, 6, 0x800);
+    StartTalkFace(0x4A, 0xD4, 0x50, 0x82, 0);
+    StartCgText(0x16, 0x12, -1, -1, 0xFCD, (void *) 0x06011800, -1, NULL);
+    SetCgTextFlags(0x2000A);
+}
+
+void sub_0808F598(struct ProcAtMenu * _proc)
+{
+    struct ProcAtUnkMenu * proc = (void *) _proc;
+
+    proc->unk64 = 0;
+}
+
+void sub_0808F5A0(struct ProcAtMenu * proc)
+{
+    EndCgText();
+    ClearTalk();
+    EndEachSpriteAnimProc();
+    EndPrepMuralBackground();
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBlendDarken(16);
+    SetBlendTargetA(1, 1, 1, 1, 1);
+}
+
+void ConvoyPromotion_Init(ProcPtr _proc)
+{
+    struct ProcPrepPromote * proc = _proc;
+    struct Unit * unit;
+
+    unit = GetUnitFromCharId(0x28);
+
+    if (!unit)
+    {
+        Proc_End(proc);
+        return;
+    }
+
+    proc->game_lock = GetGameLock();
+    SetWinEnable(0, 0, 0);
+
+    GenerateItemPromotionBattle(unit, -1, 0);
+    gBattleStats.config = BATTLE_CONFIG_PROMOTION | BATTLE_CONFIG_PROMOTION_PREP;
+    gBattleActor.weaponBefore = 0;
+    gBattleTarget.weaponBefore = 0;
+    BeginBattleAnimations();
+}
+
+void sub_0808F690(ProcPtr _proc)
+{
+    struct ProcPrepPromote * proc = _proc;
+
+    if (proc->game_lock == GetGameLock())
+        Proc_Break(proc);
+}
+
+void NullExpForChar100AndResetScreen(ProcPtr proc)
+{
+    struct Unit * unit = GetUnitFromCharId(0x28);
+
+    if (unit)
+        unit->exp = -1;
+
+    SetBlendDarken(16);
+    SetDispEnable(0, 0, 0, 0, 0);
+    CallSomeSoundMaybe(0x49, 0x100, 0x100, 0x20, NULL);
+}
+
+void PrepPromoteDebugMaybe(struct ProcAtMenu * proc)
+{
+    EndCgText();
+    ClearTalk();
+    EndEachSpriteAnimProc();
+    EndPrepMuralBackground();
+
+    gDispIo.bg0_ct.priority = 0;
+    gDispIo.bg1_ct.priority = 1;
+    gDispIo.bg2_ct.priority = 2;
+    gDispIo.bg3_ct.priority = 3;
+
+    SetBlendDarken(16);
+    SetBlendTargetA(1, 1, 1, 1, 1);
+    EndAllProcChildren(proc);
+    Proc_StartBlocking(ProcScr_PrepPromoteDebug, proc);
+}
+
+void sub_0808F7A8(struct ProcAtMenu * proc)
+{
+    CallSomeSoundMaybe(0, 0x100, 0, 0x20, NULL);
+}
+
+void NewPrepScreenTraineePromotionManager(void)
+{
+    Proc_Start(ProcScr_AtUnkMenu, PROC_TREE_3);
+}
+
+int PrepScreenTraineePromotionManagerExists(ProcPtr proc)
+{
+    return Proc_Find(ProcScr_AtUnkMenu) ? TRUE : FALSE;
+}
+
+int PrepAtMenuExists(ProcPtr proc)
+{
+    return Proc_Find(ProcScr_AtMenu) ? TRUE : FALSE;
 }
