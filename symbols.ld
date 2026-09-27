@@ -862,6 +862,15 @@ gEventCmdTable = 0x08B90E48;
 
 
 /* eventscr3.c */
+gUnk_03005A90 = 0x03005A90;
+gUnk_03005AD0 = 0x03005AD0;
+gUnk_03005CE0 = 0x03005CE0;
+gUnk_03005D20 = 0x03005D20;
+gUnk_03005D60 = 0x03005D60;
+gUnk_03005DF0 = 0x03005DF0;
+gUnk_03005E30 = 0x03005E30;
+gAiDecision = 0x0203A97C;
+ProcScr_EventWeatherChangeWithFade = 0x08B91A78;
 
 /* end eventscr3.c */
 
