@@ -799,7 +799,177 @@ void WmMuMove_SetFacing(struct WmMuMoveProc * proc, int facing)
     }
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3EB4.s");
+void WmMuMove_Loop(struct WmMuMoveProc * proc)
+{
+    int idx = proc->pos >> 20;
+    int t = (proc->pos << 12) >> 22;
+    int facing;
+    int x, y;
+
+    if (proc->count != 0)
+    {
+    facing = proc->facing;
+
+    if (idx < proc->count - 1)
+    {
+        if (proc->lastIdx != idx)
+            proc->delay = ((proc->flags >> 21) & 3) * 30;
+
+        if (proc->delay != 0)
+        {
+            proc->delay--;
+            x = proc->curX;
+            y = proc->curY;
+        }
+        else
+        {
+            int x0, x1, x2, x3;
+            int y0, y1, y2, y3;
+            int dx, dy;
+            u16 speed;
+            u32 old;
+            int step;
+            u8 angle;
+
+            x0 = idx > 0 ? proc->xs[idx - 1] : proc->xs[idx];
+            x1 = proc->xs[idx];
+            x2 = proc->xs[idx + 1];
+            x3 = idx < proc->count - 2 ? proc->xs[idx + 2] : x2;
+
+            y0 = idx > 0 ? proc->ys[idx - 1] : proc->ys[idx];
+            y1 = proc->ys[idx];
+            y2 = proc->ys[idx + 1];
+            y3 = idx < proc->count - 2 ? proc->ys[idx + 2] : y2;
+
+            x = sub_080A86A0(x0, x1, x2, x3, t);
+            y = sub_080A86A0(y0, y1, y2, y3, t);
+
+            dx = sub_080A8778(x0, x1, x2, x3, t);
+            dy = sub_080A8778(y0, y1, y2, y3, t);
+
+            speed = Sqrt(dx * dx + dy * dy);
+
+            old = proc->dist;
+            proc->dist += speed;
+
+            if ((proc->flags & 0x1000000) && ((u32) proc->dist >> 12) > (old >> 12))
+                StartWmMarker(x, y, 0, proc);
+
+            step = 0x40000 / (speed + 1);
+
+            if (step < 0x200)
+                step = 0x200;
+
+            if (proc->flags & 0x1000)
+                step <<= 1;
+
+            if (proc->flags & 0x100000)
+                step >>= 1;
+
+            proc->pos += step;
+
+            angle = ArcTan2(dx, dy) >> 8;
+
+            if (proc->first)
+            {
+                if (angle <= 0x20 || angle >= 0xE1)
+                    facing = 1;
+
+                if (angle >= 0x21 && angle <= 0x60)
+                    facing = 2;
+
+                if (angle >= 0x61 && angle <= 0xA0)
+                    facing = 0;
+
+                if (angle >= 0xA1 && angle <= 0xE0)
+                    facing = 3;
+
+                proc->first = 0;
+            }
+            else
+            {
+                if (angle <= 0x1C || angle >= 0xE5)
+                    facing = 1;
+
+                if (angle >= 0x25 && angle <= 0x5C)
+                    facing = 2;
+
+                if (angle >= 0x65 && angle <= 0x9C)
+                    facing = 0;
+
+                if (angle >= 0xA5 && angle <= 0xDC)
+                    facing = 3;
+            }
+
+            WmMuMove_SetFacing(proc, facing);
+
+            if (proc->flags & 0x8000)
+            {
+                int sx = x - gWmSt.x;
+                int sy = y - gWmSt.y;
+                int ox = proc->curX - gWmSt.x;
+                int mx = sx - 8;
+                int oy = proc->curY - gWmSt.y;
+                int my = sy - 12;
+                int cdx = sx - ox;
+                int cdy = sy - oy;
+
+                if ((cdx < 0 && mx > 0x70) || (cdx > 0 && mx < 0x80))
+                    cdx = 0;
+
+                if ((cdy < 0 && my > 0x40) || (cdy > 0 && my < 0x50))
+                    cdy = 0;
+
+                if (cdx != 0 || cdy != 0)
+                {
+                    WmMoveCamera(cdx, cdy);
+                    WmUpdateCamera(-1, -1);
+                }
+            }
+
+            if (proc->flags & 0x2000000)
+                WmSetUnk02(1);
+        }
+    }
+    else
+    {
+        x = proc->xs[proc->count - 1];
+        y = proc->ys[proc->count - 1];
+
+        switch (proc->flags & 0x300)
+        {
+        case 0x200:
+            proc->first = 1;
+            WmMuMove_SetFacing(proc, 4);
+            break;
+
+        case 0x100:
+            ShowMu(proc->mu);
+            break;
+
+        case 0:
+            proc->first = 1;
+            WmMuMove_SetFacing(proc, 0xF);
+            break;
+        }
+
+        if (proc->flags & 0x2000000)
+            WmSetUnk02(0);
+    }
+
+    proc->curX = x;
+    proc->curY = y;
+
+    SetMuScreenPosition(proc->mu, x - gWmSt.x - 8, y - gWmSt.y - 12);
+    ShowMu(proc->mu);
+    }
+    else
+    {
+        HideMu(proc->mu);
+    }
+
+    proc->lastIdx = idx;
+}
 void WmMuMove_OnEnd(struct WmMuMoveProc * proc)
 {
     if (proc->mu != NULL)
