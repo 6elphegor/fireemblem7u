@@ -36,7 +36,7 @@ _08040740:
 	ldr r4, _0804084C @ =0x0203D90C
 	ldrb r0, [r4, #3]
 	add r1, sp, #8
-	bl sub_080A1C44
+	bl ReadMultiArenaSaveTeamName
 	ldr r0, _08040850 @ =0x0203DA60
 	bl SetTextFont
 	bl InitSystemTextFont

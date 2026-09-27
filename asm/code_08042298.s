@@ -19,7 +19,7 @@ sub_08042298: @ 0x08042298
 	movs r0, #1
 	bl SioPlaySoundEffect
 	ldr r0, _080423B8 @ =0x0203DA0C
-	bl sub_080A1F54
+	bl WriteMultiArenaSaveConfig
 	adds r0, r6, #0
 	bl Proc_Break
 _080422C2:

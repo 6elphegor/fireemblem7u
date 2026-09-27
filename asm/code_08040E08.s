@@ -26,7 +26,7 @@ sub_08040E08: @ 0x08040E08
 	ldrb r0, [r0, #3]
 	ldr r4, _08040ED0 @ =0x08B99084
 	ldr r1, [r4]
-	bl sub_080A1C10
+	bl ReadMultiArenaSaveTeamRaw
 	movs r6, #0
 	ldr r0, _08040ED4 @ =0x0203DCC0
 	mov sl, r0

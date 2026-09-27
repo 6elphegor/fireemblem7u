@@ -24,7 +24,7 @@ EvtCmd_NextChapter: @ 0x0800E540
 	cmp r0, #0
 	bne _0800E572
 	adds r0, r4, #0
-	bl StartSlowLockingFadeFromBlack
+	bl StartSlowLockingFadeToBlack
 _0800E572:
 	cmp r5, #0x2f
 	beq _0800E57C

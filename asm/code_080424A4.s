@@ -13,7 +13,7 @@ sub_080424A4: @ 0x080424A4
 	bl memcpy
 	ldr r4, _0804253C @ =0x0203DA0C
 	adds r0, r4, #0
-	bl sub_080A1F90
+	bl ReadMultiArenaSaveConfig
 	ldrb r4, [r4]
 	lsls r0, r4, #0x1c
 	lsrs r0, r0, #0x1f

@@ -61,7 +61,7 @@ _0809DD0E:
 	ldr r4, _0809DD60 @ =0x02014438
 	adds r1, r1, r4
 	mov r0, r8
-	bl sub_080BFC70
+	bl _call_via_r9
 	ldr r0, [r5]
 	adds r0, r0, r4
 	ldr r4, _0809DD58 @ =0x020144D8

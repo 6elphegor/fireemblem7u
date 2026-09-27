@@ -14,7 +14,7 @@ sub_0800F3D4: @ 0x0800F3D4
 	cmp r0, #0
 	bne _0800F3F0
 	adds r0, r2, #0
-	bl StartSlowLockingFadeFromBlack
+	bl StartSlowLockingFadeToBlack
 	movs r0, #2
 	b _0800F410
 _0800F3F0:

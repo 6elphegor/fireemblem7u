@@ -322,23 +322,54 @@ u8 IsValidSuspendSave(int);
 int SramChecksum32(void const * sram_src, int size);
 bool VerifySaveBlockChecksum(struct SaveBlockInfo * block_info);
 void PopulateSaveBlockChecksum(struct SaveBlockInfo * block_info);
-// ??? sub_080A19D8
-// ??? sub_080A1AAC
-// ??? sub_80A2448
-// ??? sub_080A1AC8
-// ??? sub_80A25A4
-// ??? sub_80A25D8
-// ??? sub_80A261C
-// ??? sub_80A2658
-// ??? sub_80A26AC
-// ??? sub_80A2724
-// ??? WriteMultiArenaSaveTeam
-// ??? sub_80A2820
-// ??? sub_80A2884
-// ??? sub_80A28C0
-// ??? sub_080A1F54
-// ??? sub_080A1F90
-// ??? IsMultiArenaSaveReady
+u16 GetGameStateChecksum_Unused(void);
+void sub_080A1AAC(void);
+bool IsMultiArenaSaveValid(int index);
+
+#define MULTIARENA_TEAMNAME_SIZE 10
+#define MULTIARENA_UNITS_PER_TEAM 5
+#define MULTIARENA_MAX_TEAMS 10
+#define MULTIARENA_MAX_RANKINGS 10
+#define MULTIARENA_PACKEDUNIT_SIZE 0x24
+
+struct MultiArenaRankingEnt {
+    /* 00 */ u32 ranking : 2;
+    /*    */ u32 player_count : 2;
+    /*    */ u32 mode : 1;
+    /*    */ u32 points : 27;
+    /* 04 */ char name[0xC];
+};
+
+struct MultiArenaSaveTeam {
+    /* 00 */ char name[MULTIARENA_TEAMNAME_SIZE];
+    /* 0A */ u8 unk_0A[0x14 - 0x0A];
+    /* 14 */ u8 units[MULTIARENA_UNITS_PER_TEAM][MULTIARENA_PACKEDUNIT_SIZE];
+};
+
+struct MultiArenaSaveBlock {
+    /* 000 */ struct MultiArenaSaveTeam teams[MULTIARENA_MAX_TEAMS];
+    /* 7D0 */ u16 config;
+    /* 7D4 */ struct MultiArenaRankingEnt rankings[MULTIARENA_MAX_RANKINGS];
+};
+
+extern struct MultiArenaRankingEnt const gInitialMultiArenaRankings[MULTIARENA_MAX_RANKINGS];
+extern struct MultiArenaSaveTeam gMultiArenaSaveTeamBufA;
+extern struct MultiArenaSaveTeam gMultiArenaSaveTeamBufB;
+
+void WriteNewMultiArenaSave(void);
+bool ReadMultiArenaSaveTeamRaw(int team, struct MultiArenaSaveTeam * dst);
+bool ReadMultiArenaSaveTeamName(int team, char * dst);
+void WriteMultiArenaSaveTeamName(int team, char * name);
+void WipeMultiArenaSaveTeam(int team);
+void CopyMultiArenaSaveTeam(int team_src, int team_dst);
+void SwapMultiArenaSaveTeams(int team_a, int team_b);
+void WriteMultiArenaSaveTeam(int team, struct Unit * units_src, char const * name_src);
+bool ReadMultiArenaSaveTeam(int team, struct Unit * units_dst, char * name_dst);
+void WriteMultiArenaSaveRankings(struct MultiArenaRankingEnt const * src);
+void ReadMultiArenaSaveRankings(struct MultiArenaRankingEnt * dst);
+void WriteMultiArenaSaveConfig(void const * config_src);
+void ReadMultiArenaSaveConfig(void * config_dst);
+bool IsMultiArenaSaveReady(void);
 // ??? LoadAndVerfySuspendSave
 // ??? ReadExtraMapSaveHead
 // ??? GetExtraMapMapReadAddr
