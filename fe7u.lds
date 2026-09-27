@@ -241,9 +241,6 @@ SECTIONS
         build/src/sio_battlemap.o(.text);
         build/src/sio_080470B8.o(.text);
         build/src/sio_mu.o(.text);
-        build/asm/code_08047B34.o(.text);
-        build/asm/code_08047BD4.o(.text);
-        build/asm/code_08047C38.o(.text);
         build/src/sio_uiutils.o(.text);
         build/asm/code_08049280.o(.text);
         build/asm/code_080492CC.o(.text);

@@ -386,7 +386,7 @@ void GC_ConnectToFE6(/* TODO */);
 // LAButtonSprites_Loop
 // StartLinkArenaButtonSpriteDraw
 // EndLinkArenaButtonSpriteDraw
-// sub_08047B34
+// InitSioBG
 // sub_08047BD4
 // sub_08047C38
 // sub_08047CA8

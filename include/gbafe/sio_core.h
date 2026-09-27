@@ -733,7 +733,7 @@ extern const u16 Pal_TacticianSelObj[];
 
 // sio_uiutils / sio_mu and other helpers (FE7U names)
 
-void sub_08047B34(void);
+void InitSioBG(void);
 void sub_08047BD4(int a, int b);
 void sub_08047CA8(void);
 void sub_08049220(void);

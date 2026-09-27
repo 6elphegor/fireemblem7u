@@ -201,7 +201,7 @@ void SioPostBattle_Init(struct SioPostBattleProc * proc)
     int i;
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_TacticianSelObj, (void *)(0x06014800));
     Decompress(Img_LinkArenaPlayerBanners, (void *)(0x06016000));

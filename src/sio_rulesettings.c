@@ -67,7 +67,7 @@ void SioRuleSettings_Init(struct ProcSioRuleSettings * proc)
     memcpy(title, gUnknown_081D53E4, 14);
 
     ClearSioBG();
-    sub_08047B34();
+    InitSioBG();
 
     Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
     ApplyPalette(Pal_LinkArenaRankIcons, 6);
