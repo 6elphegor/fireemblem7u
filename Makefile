@@ -26,10 +26,10 @@ C_SRCS   := $(wildcard src/*.c)
 ASM_SRCS := $(wildcard asm/*.s) $(wildcard src/*.s)
 C_OBJS   := $(patsubst %.c,build/%.o,$(C_SRCS))
 ASM_OBJS := $(patsubst %.s,build/%.o,$(ASM_SRCS))
-OBJS := $(C_OBJS) $(ASM_OBJS) build/data.o
+OBJS := $(C_OBJS) $(ASM_OBJS) build/data.o build/msg_data.o
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
-.PHONY: all compare clean
+.PHONY: all compare clean msgheader
 .DELETE_ON_ERROR:
 
 all: compare
@@ -51,9 +51,9 @@ build/fe7u.ld: $(LDS)
 	@mkdir -p $(@D)
 	sed -E 's#build/asm/([A-Za-z0-9_]+\.o)\(#*asm.a:\1(#' $< > $@
 
-$(ELF): $(C_OBJS) build/asm.a build/data.o build/fe7u.ld $(LAYOUT) symbols.ld
+$(ELF): $(C_OBJS) build/asm.a build/data.o build/msg_data.o build/fe7u.ld $(LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
-	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive build/data.o
+	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive build/data.o build/msg_data.o
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
@@ -81,6 +81,20 @@ $(LAYOUT): data/layout.txt tools/gen_layout.py
 
 build/data.o: build/data.s baserom.gba
 	$(AS) $(ASFLAGS) -o $@ $<
+
+# Game text: texts/*.txt -> Huffman-compressed messages, tree and gMsgTable.
+TEXTS := texts/texts.txt texts/textdefs.txt
+
+build/msg_data.s: $(TEXTS) tools/textencode.py
+	@mkdir -p $(@D)
+	python3 tools/textencode.py $(TEXTS) $@
+
+build/msg_data.o: build/msg_data.s
+	$(AS) $(ASFLAGS) -o $@ $<
+
+# Regenerate include/constants/msg.h after adding/removing messages.
+msgheader:
+	python3 tools/textencode.py $(TEXTS) build/msg_data.s --header include/constants/msg.h
 
 clean:
 	rm -rf build $(ROM) $(ELF) $(MAP)
