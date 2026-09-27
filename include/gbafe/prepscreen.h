@@ -156,7 +156,7 @@ void StartPrepMenuDescHandler(int msg, ProcPtr parent);
 void AtMenu_Reinitialize(struct ProcAtMenu *proc);
 void EndPrepAtMenuIfNoUnitAvailable(struct ProcAtMenu *proc);
 void AtMenu_UpdateDesc(struct ProcAtMenu *proc);
-// sub_0808E9A8
+// AtMenu_DrawSubmenuTexts
 // CleanupPrepMenuScreen
 void AtMenu_SetupCtrlUI(struct ProcAtMenu *proc);
 void AtMenu_CtrlLoop(struct ProcAtMenu *proc);

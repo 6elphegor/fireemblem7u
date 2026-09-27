@@ -945,17 +945,6 @@ SECTIONS
         build/asm/code_0808E1B0.o(.text);
         build/src/preputil_unitlist.o(.text);
         build/src/prep_atmenu.o(.text);
-        build/asm/code_0808E980.o(.text);
-        build/asm/code_0808E9A8.o(.text);
-        build/asm/code_0808EA2C.o(.text);
-        build/asm/code_0808EA58.o(.text);
-        build/asm/code_0808EA80.o(.text);
-        build/asm/code_0808EC90.o(.text);
-        build/asm/code_0808ECC8.o(.text);
-        build/asm/code_0808ED34.o(.text);
-        build/asm/code_0808ED70.o(.text);
-        build/asm/code_0808EE04.o(.text);
-        build/asm/code_0808EE78.o(.text);
         build/asm/code_0808EE98.o(.text);
         build/asm/code_0808EEB0.o(.text);
         build/asm/code_0808EEC8.o(.text);

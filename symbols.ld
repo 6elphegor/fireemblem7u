@@ -2880,3 +2880,5 @@ gBattleScripted = 0x0203E0EC;
 Pal_BallistaRegular = 0x081DA224;
 Pal_BallistaLong = 0x081DA204;
 Pal_BallistaKiller = 0x081DA244;
+gAtSubMenuMsgs = 0x08CC50A0;
+Tsa_PrepMenuFrame = 0x084050D8;

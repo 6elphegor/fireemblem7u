@@ -2,6 +2,21 @@
 
 void sub_080AACD8(u16 * tm, void const * src, u16 tileref); // Decompress to gGenericBuffer, then TmApplyTsa
 
+void DrawPrepScreenMenuFrameAt(int x, int y);
+void ShowPrepScreenMenuFrozenHand(void);
+void StartChapterStatusScreen_FromPrep(ProcPtr parent);
+void StartPrepItemScreen(ProcPtr parent);
+void StartFortuneSubMenu(int kind, ProcPtr parent);
+void SyncUnitDeploymentState(void);
+void sub_0807CC38(ProcPtr proc);
+void sub_0803DA24(void);
+void EndPrepScreen(void);
+void ReorderPlayerUnitsBasedOnDeployment(void);
+
+extern int CONST_DATA gAtSubMenuMsgs[];
+extern u8 CONST_DATA Tsa_PrepMenuFrame[];
+extern struct ProcCmd CONST_DATA ProcScr_PrepUnitScreen[];
+
 struct ProcCmd CONST_DATA ProcScr_PrepMenuDescHandler[] = {
     PROC_CALL(PrepMenuDescOnInit),
     PROC_SLEEP(1),
@@ -406,4 +421,249 @@ void EndPrepAtMenuIfNoUnitAvailable(struct ProcAtMenu * proc)
         proc->end_prep = TRUE;
         Proc_Goto(proc, 6);
     }
+}
+
+void AtMenu_UpdateDesc(struct ProcAtMenu * proc)
+{
+    int val = GetActivePrepMenuItemIndex();
+
+    if (proc->unk_35 != val)
+    {
+        StartPrepMenuDescHandler(GetPrepMainMenuInfoxMsg(), proc);
+        proc->unk_35 = val;
+    }
+}
+
+void AtMenu_DrawSubmenuTexts(struct ProcAtMenu * proc)
+{
+    int i, mask, tile;
+
+    struct Text * th = &gPrepMainMenuTexts[1];
+    int height = GetPrepOptionCount(proc->cmd_mask);
+    DrawUiFrame2(5, 6, 9, 2 * height + 2, 1);
+
+    i = 0;
+    tile = 0x1C0;
+
+    for (; i < 4; i++)
+    {
+        mask = proc->cmd_mask >> i;
+
+        if (1 & mask)
+        {
+            ClearText(th);
+            PutDrawText(th, (void *) (gBg0Tm + TM_OFFSET(6, 0)) + tile, TEXT_COLOR_SYSTEM_WHITE, 0, 0, DecodeMsg(gAtSubMenuMsgs[i]));
+
+            th++;
+            tile += 0x80;
+        }
+    }
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+void CleanupPrepMenuScreen(ProcPtr proc)
+{
+    TmFillRect(gBg0Tm + TM_OFFSET(5, 6), 8, 9, 0);
+    TmFillRect(gBg1Tm + TM_OFFSET(5, 6), 8, 9, 0);
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+void AtMenu_SetupCtrlUI(struct ProcAtMenu * proc)
+{
+    ShowPrepScreenMenuFrozenHand();
+    AtMenu_DrawSubmenuTexts(proc);
+    ShowSysHandCursor(0x2C, proc->hand_pos * 16 + 0x38, 7, 0x400);
+}
+
+void AtMenu_CtrlLoop(struct ProcAtMenu * proc)
+{
+    const int msg_list[] = {
+        0x378,
+        0x37B,
+        0x379,
+        0x37A,
+    };
+
+    int line_old = proc->hand_pos;
+
+    int xPos = 0x2C;
+    int yPos = proc->hand_pos * 16 + 0x38;
+
+    if (proc->do_help)
+    {
+        if ((R_BUTTON | B_BUTTON) & gpKeySt->pressed)
+        {
+            CloseHelpBox();
+            proc->do_help = 0;
+            return;
+        }
+    }
+    else
+    {
+        if (A_BUTTON & gpKeySt->pressed)
+        {
+            PlaySoundEffect(0x38A);
+
+            if (3 == PrepOptionCountToRealIndexByMask(proc->hand_pos, proc->cmd_mask))
+                CallSomeSoundMaybe(0x5E, 0x100, 0x100, 0x20, NULL);
+
+            proc->state = 4;
+            Proc_Goto(proc, 8);
+            return;
+        }
+
+        if (R_BUTTON & gpKeySt->pressed)
+        {
+            proc->do_help = 1;
+            StartHelpBox(xPos, yPos, msg_list[PrepOptionCountToRealIndexByMask(proc->hand_pos, proc->cmd_mask)]);
+            return;
+        }
+
+        if (B_BUTTON & gpKeySt->pressed)
+        {
+            CleanupPrepMenuScreen(proc);
+            sub_080AACD8(gBg1Tm + TM_OFFSET(12, 4), Tsa_PrepMenuFrame, 0x33C0);
+            DrawPrepScreenMenuFrameAt(1, 4);
+            PlaySoundEffect(0x38B);
+            Proc_Break(proc);
+            return;
+        }
+    }
+
+    if (DPAD_UP & gpKeySt->repeated)
+    {
+        if (proc->hand_pos)
+            proc->hand_pos = proc->hand_pos - 1;
+        else if (DPAD_UP & gpKeySt->pressed)
+            proc->hand_pos = GetPrepOptionCount(proc->cmd_mask) - 1;
+    }
+
+    if (DPAD_DOWN & gpKeySt->repeated)
+    {
+        if (proc->hand_pos < (GetPrepOptionCount(proc->cmd_mask) - 1))
+            proc->hand_pos = proc->hand_pos + 1;
+        else if (DPAD_DOWN & gpKeySt->pressed)
+            proc->hand_pos = 0;
+    }
+
+    if (line_old != proc->hand_pos)
+    {
+        yPos = proc->hand_pos * 16 + 0x38;
+
+        if (proc->do_help)
+            StartHelpBox(xPos, yPos, msg_list[PrepOptionCountToRealIndexByMask(proc->hand_pos, proc->cmd_mask)]);
+
+        ShowSysHandCursor(xPos, yPos, 7, 0x400);
+        PlaySoundEffect(0x386);
+    }
+}
+
+void AtMenuSetUnitStateAndEndFlag(struct ProcAtMenu * proc)
+{
+    int i;
+    struct Unit * unit;
+
+    for (i = 1; i < 64; i++)
+    {
+        unit = GetUnit(i);
+
+        if (!(UNIT_IS_VALID(unit)))
+            continue;
+
+        unit->state &= ~US_BIT25;
+    }
+
+    proc->end_prep = 1;
+}
+
+void AtMenu_ResetScreenEffect(struct ProcAtMenu * proc)
+{
+    EndAllProcChildren(proc);
+    EndMuralBackground_();
+    EndPrepSpecialCharEffect();
+    InitBgs(NULL);
+    SetBlendConfig(3, 0, 0, 0x10);
+    SetBlendTargetA(1, 1, 1, 1, 1);
+    SetBlendBackdropA(1);
+
+    if (proc->end_prep)
+        sub_0807CC38(proc);
+}
+
+void AtMenu_ResetBmUiEffect(struct ProcAtMenu * proc)
+{
+    ReorderPlayerUnitsBasedOnDeployment();
+
+    if (proc->end_prep)
+        EndPrepScreen();
+    else if (CheckInLinkArena())
+        sub_0803DA24();
+
+    SyncUnitDeploymentState();
+    ResetUnitSprites();
+    RefreshEntityMaps();
+    RefreshUnitSprites();
+}
+
+void AtMenu_StartSubmenu(struct ProcAtMenu * proc)
+{
+    StartPrepAtSubMenuUI(proc);
+
+    switch (proc->state)
+    {
+    case 5:
+        StartChapterStatusScreen_FromPrep(proc);
+        break;
+
+    case 2:
+        StartPrepItemScreen(proc);
+        break;
+
+    case 1:
+        Proc_StartBlocking(ProcScr_PrepUnitScreen, proc);
+        break;
+
+    case 4:
+        StartFortuneSubMenu(PrepOptionCountToRealIndexByMask(proc->hand_pos, proc->cmd_mask), proc);
+        break;
+
+    case 3:
+        StartBgmVolumeChange(0x100, 0x80, 0x20, NULL);
+        SyncUnitDeploymentState();
+        sub_080A4E0C(proc);
+        break;
+    }
+
+    Proc_Break(proc);
+}
+
+void AtMenu_OnSubmenuEnd(struct ProcAtMenu * proc)
+{
+    if (3 == proc->state)
+        StartBgmVolumeChange(0x80, 0x100, 0x20, NULL);
+
+    switch (proc->state)
+    {
+    case 4:
+        Proc_Goto(proc, 0xD);
+        break;
+
+    case 3:
+        Proc_Goto(proc, 7);
+        break;
+
+    case 1:
+    case 2:
+    case 5:
+        Proc_Goto(proc, 9);
+        break;
+    }
+
+    proc->state = 0;
+}
+
+void AtMenu_EnableDisp(void)
+{
+    SetDispEnable(1, 1, 1, 1, 1);
 }
