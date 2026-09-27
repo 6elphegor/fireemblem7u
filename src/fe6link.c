@@ -30,7 +30,7 @@ extern struct ProcCmd CONST_DATA ProcScr_08B999D8[];
 
 void sub_080ACA90(ProcPtr proc);
 
-struct Fe6LinkProc
+struct Fe6LinkMenuProc
 {
     /* 00 */ PROC_HEADER;
     /* 29 */ STRUCT_PAD(0x29, 0x2C);
@@ -41,7 +41,14 @@ struct Fe6LinkProc
     /* 48 */ int unk_48;
     /* 4C */ int unk_4c;
     /* 50 */ int unk_50;
-    /* 54 */ struct Fe6LinkProc * unk_54;
+    /* 54 */ int unk_54;
+};
+
+struct Fe6LinkProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x54);
+    /* 54 */ struct Fe6LinkMenuProc * unk_54;
     /* 58 */ int unk_58;
     /* 5C */ int unk_5c;
     /* 60 */ int unk_60;
@@ -208,7 +215,7 @@ void sub_080436A0(struct Fe6LinkProc * proc)
 }
 void sub_08043700(struct Fe6LinkProc * proc)
 {
-    struct Fe6LinkProc * child = proc->unk_54;
+    struct Fe6LinkMenuProc * child = proc->unk_54;
 
     if ((gpKeySt->pressed & DPAD_UP) && child->unk_44 > 0)
     {
@@ -387,7 +394,7 @@ void sub_08043B1C(int time)
     if (Div(hours, 10) > 0)
         PutSprite(4, 0xA0, 0x88, gUnknown_08B9997C, Div(hours, 10));
 }
-void sub_08043C0C(struct Fe6LinkProc * proc)
+void sub_08043C0C(struct Fe6LinkMenuProc * proc)
 {
     int i;
 
@@ -407,9 +414,79 @@ void sub_08043C0C(struct Fe6LinkProc * proc)
         Proc_Break(proc);
     }
 }
-ASM_FUNC("asm/nonmatching/code_08043CC8.s");
-ASM_FUNC("asm/nonmatching/code_08043DB8.s");
-ProcPtr sub_08043EA0(ProcPtr parent)
+void sub_08043CC8(struct Fe6LinkMenuProc * proc)
+{
+    int i;
+
+    for (i = 0; i < 3; i++)
+    {
+        int x, y;
+
+        if (i != proc->unk_44)
+        {
+            x = Interpolate(INTERPOLATE_RCUBIC, proc->unk_38[i], 0x140, proc->unk_54, 16);
+            y = proc->unk_3e[i];
+        }
+        else
+        {
+            x = proc->unk_38[i];
+            y = Interpolate(INTERPOLATE_RSQUARE, proc->unk_3e[i], proc->unk_3e[0], proc->unk_54, 16);
+        }
+
+        PutSprite(4, x, y, gUnknown_08B99968, (proc->unk_2c[i] & 0xF) << 12);
+        PutSprite(4, x + 0x28, y + 8, gUnknown_08B9993C, i << 6);
+    }
+
+    sub_08043B1C(gUnk_Sio_02000C04.unk_0c[proc->unk_44]);
+
+    if (proc->unk_50 == 2)
+    {
+        proc->unk_54 = 0;
+        Proc_Break(proc);
+    }
+
+    if (proc->unk_54 < 16)
+        proc->unk_54++;
+    else
+        proc->unk_50 = 0;
+}
+void sub_08043DB8(struct Fe6LinkMenuProc * proc)
+{
+    int i;
+
+    for (i = 0; i < 3; i++)
+    {
+        int x, y;
+
+        if (i != proc->unk_44)
+        {
+            x = Interpolate(INTERPOLATE_RCUBIC, 0xF0, proc->unk_38[i], proc->unk_54, 16);
+            y = proc->unk_3e[i];
+        }
+        else
+        {
+            x = proc->unk_38[i];
+            y = Interpolate(INTERPOLATE_RSQUARE, proc->unk_3e[0], proc->unk_3e[i], proc->unk_54, 16);
+        }
+
+        PutSprite(4, x, y, gUnknown_08B99968, (proc->unk_2c[i] & 0xF) << 12);
+        PutSprite(4, x + 0x28, y + 8, gUnknown_08B9993C, i << 6);
+    }
+
+    sub_08043B1C(gUnk_Sio_02000C04.unk_0c[proc->unk_44]);
+
+    if (proc->unk_54 < 16)
+    {
+        proc->unk_54++;
+    }
+    else
+    {
+        proc->unk_54 = 0;
+        proc->unk_50 = 0;
+        Proc_Goto(proc, 0);
+    }
+}
+struct Fe6LinkMenuProc * sub_08043EA0(ProcPtr parent)
 {
     return Proc_Start(ProcScr_08B9998C, parent);
 }
