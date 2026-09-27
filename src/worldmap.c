@@ -487,11 +487,64 @@ void WmSpriteAnims_Init(struct WmSpriteAnimsProc * proc)
         proc->slots[i].anim = NULL;
 }
 
-ASM_FUNC("asm/nonmatching/code_080B3940.s");
+void WmSpriteAnims_Loop(struct WmSpriteAnimsProc * proc)
+{
+    if (proc->count == 0)
+        return;
+
+    if (proc->fade != 0)
+    {
+        if (proc->blend == 0)
+            EndAllWmSpriteAnims();
+        else
+            proc->blend--;
+    }
+    else
+    {
+        u32 t;
+        int b;
+
+        if ((++proc->timer >> 3) == 0x10)
+            proc->timer = 0;
+
+        t = proc->timer >> 3;
+
+        if ((t & 0xF) > 7)
+            b = 10 - (t & 7);
+        else
+            b = (t & 7) + 2;
+
+        proc->blend = b * 4;
+    }
+
+    SetBlendConfig(0, proc->blend >> 2, 0x10, 0);
+}
 
 ASM_FUNC("asm/nonmatching/code_080B39D8.s");
 
-ASM_FUNC("asm/nonmatching/code_080B3AFC.s");
+void EndWmSpriteAnim(u32 slot)
+{
+    struct WmSpriteAnimsProc * proc = Proc_Find(ProcScr_WmSpriteAnims);
+
+    if (slot > 3 || proc == NULL)
+        return;
+
+    if (proc->slots[slot].anim == NULL)
+        return;
+
+    EndSpriteAnimProc(proc->slots[slot].anim);
+    proc->slots[slot].anim = NULL;
+
+    if (--proc->count == 0)
+    {
+        proc->chr = 0;
+        proc->timer = 0;
+    }
+    else if (proc->chr == proc->slots[slot].chr + gWmSpriteAnimTable[proc->slots[slot].id].size)
+    {
+        proc->chr = proc->slots[slot].chr;
+    }
+}
 
 void EndAllWmSpriteAnims(void)
 {
