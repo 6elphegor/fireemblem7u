@@ -497,7 +497,7 @@ def gen_characters():
         f.append(f".defaultClass = {cls(rd8(a + 5))},")
         f.append(f".portraitId = 0x{rd16(a + 6):X},")
         f.append(f".miniPortrait = 0x{rd8(a + 8):X},")
-        f.append(f".affinity = {rd8(a + 9)},")
+        f.append(f".affinity = AFFINITY_{rd8(a + 9)}," if rd8(a + 9) else ".affinity = 0,")
         f.append(f".sort_order = {rd8(a + 0xA)},")
         f.append("")
         f += [f".base{s} = {rds8(a + 0xB + j)},"
@@ -524,6 +524,24 @@ def gen_characters():
         out.append("    },")
     out.append("};")
     write("characters.c", out)
+
+
+# --- affinity bonuses -----------------------------------------------------------
+
+AFFINITY_TABLE, AFFINITY_COUNT = 0x08C9A1C0, 8
+
+
+def gen_affinity():
+    out = HEADER + ["// Per-affinity support bonuses, terminated by affinity 0", "",
+                    "CONST_DATA struct SupportBonuses AffinityBonuses[] = {"]
+    for i in range(AFFINITY_COUNT):
+        a = AFFINITY_TABLE + i * 8
+        assert rd8(a + 7) == 0
+        aff = rd8(a)
+        f = [f"AFFINITY_{aff}" if aff else "0"] + [str(rd8(a + j)) for j in range(1, 7)]
+        out.append("    { " + ", ".join(f) + " },")
+    out.append("};")
+    write("affinity.c", out)
 
 
 # --- chapters -----------------------------------------------------------------
@@ -636,6 +654,7 @@ def main():
     gen_itembonus()
     gen_banimconf()
     gen_chapters()
+    gen_affinity()
 
 
 if __name__ == "__main__":

@@ -59,7 +59,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_LORD_ELIWOOD,
         .portraitId = 0x2,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 1,
 
         .baseLevel = 1,
@@ -91,7 +91,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_LORD_HECTOR,
         .portraitId = 0xC,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 2,
 
         .baseLevel = 1,
@@ -124,7 +124,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_LORD_LYN,
         .portraitId = 0x16,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 3,
 
         .baseLevel = 1,
@@ -157,7 +157,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_MERCENARY,
         .portraitId = 0x23,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 8,
 
         .baseLevel = 1,
@@ -191,7 +191,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WARRIOR,
         .portraitId = 0x24,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 5,
 
         .baseLevel = 3,
@@ -223,7 +223,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_MYRMIDON,
         .portraitId = 0x2C,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 6,
 
         .baseLevel = 1,
@@ -258,7 +258,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SWORDMASTER,
         .portraitId = 0x26,
         .miniPortrait = 0x0,
-        .affinity = 6,
+        .affinity = AFFINITY_6,
         .sort_order = 7,
 
         .baseLevel = 1,
@@ -290,7 +290,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_FIGHTER,
         .portraitId = 0x27,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 8,
 
         .baseLevel = 3,
@@ -323,7 +323,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_FIGHTER,
         .portraitId = 0x28,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 9,
 
         .baseLevel = 2,
@@ -385,7 +385,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_KNIGHT,
         .portraitId = 0x29,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 10,
 
         .baseLevel = 9,
@@ -418,7 +418,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_BERSERKER,
         .portraitId = 0x50,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 11,
 
         .baseLevel = 18,
@@ -449,7 +449,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_ARCHER,
         .portraitId = 0x2B,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 12,
 
         .baseLevel = 3,
@@ -481,7 +481,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_ARCHER_F,
         .portraitId = 0x48,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 13,
 
         .baseLevel = 1,
@@ -515,7 +515,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SNIPER_F,
         .portraitId = 0x3B,
         .miniPortrait = 0x0,
-        .affinity = 6,
+        .affinity = AFFINITY_6,
         .sort_order = 14,
 
         .baseLevel = 1,
@@ -548,7 +548,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_MONK,
         .portraitId = 0x3D,
         .miniPortrait = 0x0,
-        .affinity = 6,
+        .affinity = AFFINITY_6,
         .sort_order = 15,
 
         .baseLevel = 3,
@@ -583,7 +583,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_CLERIC,
         .portraitId = 0x3E,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 16,
 
         .baseLevel = 1,
@@ -617,7 +617,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_BISHOP,
         .portraitId = 0x45,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 17,
 
         .baseLevel = 16,
@@ -649,7 +649,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_MAGE,
         .portraitId = 0x38,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 18,
 
         .baseLevel = 1,
@@ -682,7 +682,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_MAGE_F,
         .portraitId = 0x39,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 19,
 
         .baseLevel = 5,
@@ -717,7 +717,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SAGE,
         .portraitId = 0x3A,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 20,
 
         .baseLevel = 6,
@@ -749,7 +749,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SHAMAN,
         .portraitId = 0x3C,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 21,
 
         .baseLevel = 8,
@@ -781,7 +781,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_CAVALIER,
         .portraitId = 0x2F,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 22,
 
         .baseLevel = 1,
@@ -813,7 +813,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_CAVALIER,
         .portraitId = 0x30,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 23,
 
         .baseLevel = 1,
@@ -844,7 +844,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_CAVALIER,
         .portraitId = 0x31,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 24,
 
         .baseLevel = 2,
@@ -876,7 +876,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PALADIN,
         .portraitId = 0x32,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 25,
 
         .baseLevel = 1,
@@ -908,7 +908,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_TROUBADOUR,
         .portraitId = 0x3F,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 26,
 
         .baseLevel = 3,
@@ -942,7 +942,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_NOMAD,
         .portraitId = 0x2E,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 27,
 
         .baseLevel = 7,
@@ -974,7 +974,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PEGASUS_KNIGHT,
         .portraitId = 0x33,
         .miniPortrait = 0x0,
-        .affinity = 6,
+        .affinity = AFFINITY_6,
         .sort_order = 28,
 
         .baseLevel = 1,
@@ -1007,7 +1007,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PEGASUS_KNIGHT,
         .portraitId = 0x35,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 29,
 
         .baseLevel = 7,
@@ -1041,7 +1041,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PEGASUS_KNIGHT,
         .portraitId = 0x40,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 30,
 
         .baseLevel = 12,
@@ -1075,7 +1075,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WYVERN_RIDER,
         .portraitId = 0x36,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 31,
 
         .baseLevel = 7,
@@ -1107,7 +1107,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WYVERN_LORD_F,
         .portraitId = 0x37,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 32,
 
         .baseLevel = 9,
@@ -1140,7 +1140,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_BERSERKER,
         .portraitId = 0x1F,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 33,
 
         .baseLevel = 4,
@@ -1173,7 +1173,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_THIEF,
         .portraitId = 0x20,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 34,
 
         .baseLevel = 2,
@@ -1206,7 +1206,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_ASSASSIN,
         .portraitId = 0x21,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 35,
 
         .baseLevel = 13,
@@ -1238,7 +1238,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_DANCER,
         .portraitId = 0x1C,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 36,
 
         .baseLevel = 1,
@@ -1271,7 +1271,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_BARD,
         .portraitId = 0x41,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 37,
 
         .baseLevel = 1,
@@ -1302,7 +1302,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_ARCHSAGE,
         .portraitId = 0x1B,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 38,
 
         .baseLevel = 20,
@@ -1334,7 +1334,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_TRANSPORTER_TENT,
         .portraitId = 0x4A,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 39,
 
         .baseLevel = 5,
@@ -1364,7 +1364,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_BARD,
         .portraitId = 0x41,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 37,
 
         .baseLevel = 1,
@@ -1395,7 +1395,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_GENERAL,
         .portraitId = 0x4E,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 0,
 
         .baseLevel = 16,
@@ -1425,7 +1425,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WYVERN_LORD_F,
         .portraitId = 0x37,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 32,
 
         .baseLevel = 9,
@@ -1457,7 +1457,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_KNIGHT,
         .portraitId = 0x49,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 40,
 
         .baseLevel = 12,
@@ -1490,7 +1490,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_LORD_LYN,
         .portraitId = 0x16,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 3,
 
         .baseLevel = 4,
@@ -1524,7 +1524,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_ARCHER,
         .portraitId = 0x2B,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 12,
 
         .baseLevel = 4,
@@ -1557,7 +1557,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_CAVALIER,
         .portraitId = 0x2F,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 22,
 
         .baseLevel = 5,
@@ -1590,7 +1590,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_CAVALIER,
         .portraitId = 0x30,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 23,
 
         .baseLevel = 4,
@@ -1622,7 +1622,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PEGASUS_KNIGHT,
         .portraitId = 0x33,
         .miniPortrait = 0x0,
-        .affinity = 6,
+        .affinity = AFFINITY_6,
         .sort_order = 28,
 
         .baseLevel = 3,
@@ -1656,7 +1656,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_NOMAD,
         .portraitId = 0x2E,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 27,
 
         .baseLevel = 9,
@@ -1689,7 +1689,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PIRATE,
         .portraitId = 0x2A,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 0,
 
         .baseLevel = 8,
@@ -1722,7 +1722,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PALADIN_F,
         .portraitId = 0x46,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 30,
 
         .baseLevel = 1,
@@ -1756,7 +1756,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_PEER_4C,
         .portraitId = 0x4C,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 0,
 
         .baseLevel = 1,
@@ -1786,7 +1786,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_THIEF,
         .portraitId = 0x25,
         .miniPortrait = 0x0,
-        .affinity = 4,
+        .affinity = AFFINITY_4,
         .sort_order = 35,
 
         .baseLevel = 12,
@@ -1821,7 +1821,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SWORDMASTER_F,
         .portraitId = 0x2D,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 28,
 
         .baseLevel = 5,
@@ -1854,7 +1854,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_HERO,
         .portraitId = 0x47,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 0,
 
         .baseLevel = 8,
@@ -1886,7 +1886,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_THIEF_F,
         .portraitId = 0x57,
         .miniPortrait = 0x0,
-        .affinity = 3,
+        .affinity = AFFINITY_3,
         .sort_order = 39,
 
         .baseLevel = 14,
@@ -1918,7 +1918,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_DRUID,
         .portraitId = 0x5C,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 22,
 
         .baseLevel = 18,
@@ -1948,7 +1948,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_MAGIC_SEAL,
         .portraitId = 0x7D,
         .miniPortrait = 0x0,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 0,
 
         .baseLevel = 1,
@@ -2697,7 +2697,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WARRIOR,
         .portraitId = 0x7E,
         .miniPortrait = 0x0,
-        .affinity = 1,
+        .affinity = AFFINITY_1,
         .sort_order = 0,
 
         .baseLevel = 8,
@@ -2729,7 +2729,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WARRIOR,
         .portraitId = 0x7F,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 0,
 
         .baseLevel = 9,
@@ -3196,7 +3196,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SWORDMASTER,
         .portraitId = 0x65,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 0,
 
         .baseLevel = 12,
@@ -3230,7 +3230,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_HERO,
         .portraitId = 0x66,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 0,
 
         .baseLevel = 12,
@@ -3264,7 +3264,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SWORDMASTER,
         .portraitId = 0x65,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 0,
 
         .baseLevel = 18,
@@ -3297,7 +3297,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_HERO,
         .portraitId = 0x66,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 0,
 
         .baseLevel = 18,
@@ -4160,7 +4160,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WARRIOR,
         .portraitId = 0x64,
         .miniPortrait = 0x0,
-        .affinity = 6,
+        .affinity = AFFINITY_6,
         .sort_order = 0,
 
         .baseLevel = 18,
@@ -4223,7 +4223,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_FIRE_DRAGON,
         .portraitId = 0x0,
         .miniPortrait = 0x1,
-        .affinity = 5,
+        .affinity = AFFINITY_5,
         .sort_order = 0,
 
         .baseLevel = 20,
@@ -7368,7 +7368,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_SWORDMASTER,
         .portraitId = 0x96,
         .miniPortrait = 0x0,
-        .affinity = 7,
+        .affinity = AFFINITY_7,
         .sort_order = 0,
 
         .baseLevel = 20,
@@ -7402,7 +7402,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_HERO,
         .portraitId = 0x97,
         .miniPortrait = 0x0,
-        .affinity = 2,
+        .affinity = AFFINITY_2,
         .sort_order = 0,
 
         .baseLevel = 20,
@@ -7436,7 +7436,7 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .defaultClass = CLASS_WARRIOR,
         .portraitId = 0x98,
         .miniPortrait = 0x0,
-        .affinity = 6,
+        .affinity = AFFINITY_6,
         .sort_order = 0,
 
         .baseLevel = 20,

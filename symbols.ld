@@ -679,7 +679,6 @@ EkrBg3HfScrollingConf = 0x08BDACBC;
 MoveTable_Flying = TerrainTable_MovCost_FlyNormal;
 MoveTable_Ballista = TerrainTable_MovCost_Ballista;
 FaceInfoTable = 0x08C96584;
-AffinityBonuses = 0x08C9A1C0;
 ProcScr_FlameBreathfx = 0x08CA7864;
 ProcScr_StatScreenPageName = 0x08CC1E18;
 ProcScr_StatScreen = 0x08CC1F6C;
