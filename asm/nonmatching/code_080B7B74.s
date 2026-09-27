@@ -2,8 +2,8 @@
 
 	.syntax unified
 
-	thumb_func_start sub_080B7B74
-sub_080B7B74: @ 0x080B7B74
+	thumb_func_start Epilogue_StartEndScroll
+Epilogue_StartEndScroll: @ 0x080B7B74
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	ldr r0, _080B7BC0 @ =0x08CEDC98

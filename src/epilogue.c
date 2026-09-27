@@ -68,16 +68,16 @@ void ClearEpilogueTexts(void);
 void ClearEpilogueText(int idx);
 ProcPtr StartEpilogueCg(int cg, ProcPtr parent);
 void EpilogueText_Center(struct Text * text, char const * str);
-void sub_080B6C14(void);
-void sub_080B6C8C(void);
-void sub_080B6D64(void);
-void sub_080B6FB8(int chapter, char * str);
+void Epilogue_HBlank(void);
+void InitEpilogueEntries(void);
+void CountEpilogueEntryLines(void);
+void EpilogueInsertDefeatChapter(int chapter, char * str);
 char * sub_080AAAA8(int chapter, char * dst);
 int sub_080AABD0(char ** src, char ** dst);
-void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr);
-void sub_080B6DD4(void);
-void sub_080B7408(struct EpilogueProc * proc);
-void sub_080B74B4(ProcPtr proc);
+void DrawEpilogueEntryText(int entIdx, int textIdx, int mode, char const ** pstr);
+void InitEpilogueData(void);
+void Epilogue_PutTextSprites(struct EpilogueProc * proc);
+void EpilogueText_PutSprites(ProcPtr proc);
 
 struct CGDataEnt {
     /* 00 */ u8 isSplit;
@@ -93,7 +93,7 @@ void EpiloguePutBgRow(int idx, void const * img, u8 const * tsa);
 void InitBoxDialogue(void * vram_dst, int pal);
 void StartBoxDialogueSimple(int x, int y, int msg, ProcPtr parent);
 
-void sub_080B6C14(void)
+void Epilogue_HBlank(void)
 {
     u16 vcount = REG_VCOUNT + 1;
 
@@ -121,7 +121,7 @@ void sub_080B6C14(void)
     }
 }
 
-void sub_080B6C8C(void)
+void InitEpilogueEntries(void)
 {
     struct EpilogueUnitInfo const * info = gEpilogueUnitInfo;
     struct EpilogueEnt * ent = gpEpilogueEnts;
@@ -177,10 +177,10 @@ int CountEpilogueLines(char const * str)
 
 ASM_FUNC("asm/nonmatching/code_080B6D64.s");
 
-void sub_080B6DD4(void)
+void InitEpilogueData(void)
 {
-    sub_080B6C8C();
-    sub_080B6D64();
+    InitEpilogueEntries();
+    CountEpilogueEntryLines();
 }
 
 void InitEpilogueTexts(void)
@@ -274,7 +274,7 @@ void EpilogueText_DrawStats(struct Text * text, int battles, int wins, int losse
     Text_DrawNumber(text, losses);
 }
 
-void sub_080B6FB8(int chapter, char * str)
+void EpilogueInsertDefeatChapter(int chapter, char * str)
 {
     char buf[0x80];
     char * src;
@@ -337,7 +337,7 @@ copy_back:
 end:
     *src = *dst;
 }
-void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr)
+void DrawEpilogueEntryText(int entIdx, int textIdx, int mode, char const ** pstr)
 {
     struct EpilogueEnt * ent = &gpEpilogueEnts[entIdx];
     struct EpilogueUnitInfo const * info = ent->info;
@@ -361,7 +361,7 @@ void sub_080B70B4(int entIdx, int textIdx, int mode, char const ** pstr)
         else if ((s8) ent->defeatChapter >= 0)
         {
             *pstr = DecodeMsg(info->msgDead);
-            sub_080B6FB8((s8) ent->defeatChapter, (char *) *pstr);
+            EpilogueInsertDefeatChapter((s8) ent->defeatChapter, (char *) *pstr);
         }
         else
         {
@@ -525,7 +525,7 @@ ProcPtr StartEpilogueScroll(void const * const * data, int speed, ProcPtr parent
     return proc;
 }
 
-void sub_080B7408(struct EpilogueProc * proc)
+void Epilogue_PutTextSprites(struct EpilogueProc * proc)
 {
     int i, j;
     int m = 0xF0;
@@ -558,7 +558,7 @@ void sub_080B7408(struct EpilogueProc * proc)
     }
 }
 
-void sub_080B74B4(ProcPtr proc)
+void EpilogueText_PutSprites(ProcPtr proc)
 {
     int i, j;
 
@@ -593,7 +593,7 @@ void EpilogueText_Init(struct EpilogueProc * proc)
     SetBlendTargetB(1, 1, 1, 1, 1);
     gDispIo.blend_ct.target2_enable_bd = 1;
 
-    StartParallelWorker(sub_080B74B4, proc);
+    StartParallelWorker(EpilogueText_PutSprites, proc);
 }
 
 void EpilogueText_Loop(struct EpilogueProc * proc)
@@ -699,7 +699,7 @@ void Epilogue_Init(struct EpilogueProc * proc)
     proc->unk_4c = 0;
     proc->unk_4e = 0;
 
-    sub_080B6DD4();
+    InitEpilogueData();
 }
 
 void Epilogue_SkipWatcher(struct EpilogueProc * proc)
@@ -722,7 +722,7 @@ void Epilogue_InitMain(struct EpilogueProc * proc)
 
     ApplyPalette(Pal_EpilogueText, 0x1A);
 
-    SetOnHBlankA(sub_080B6C14);
+    SetOnHBlankA(Epilogue_HBlank);
 
     SetBlendConfig(0, 0x10, 0, 0);
     SetBlendTargetA(0, 0, 0, 0, 0);
@@ -731,7 +731,7 @@ void Epilogue_InitMain(struct EpilogueProc * proc)
 
     ClearEpilogueTexts();
 
-    StartParallelWorker(sub_080B7408, proc);
+    StartParallelWorker(Epilogue_PutTextSprites, proc);
 
     proc->unk_51 = 0;
 
@@ -743,7 +743,7 @@ void Epilogue_InitMain(struct EpilogueProc * proc)
     StartParallelWorker(Epilogue_SkipWatcher, proc);
 }
 
-void sub_080B78DC(struct EpilogueProc * proc)
+void Epilogue_LoopMain(struct EpilogueProc * proc)
 {
     int timer = proc->timer;
 
@@ -769,7 +769,7 @@ void sub_080B78DC(struct EpilogueProc * proc)
 
             if (proc->unk_4c < gEpilogueEntCount - 1)
             {
-                sub_080B70B4(proc->unk_4c, row % 10, proc->unk_4e, &proc->str);
+                DrawEpilogueEntryText(proc->unk_4c, row % 10, proc->unk_4e, &proc->str);
                 proc->unk_4e++;
 
                 if (gpEpilogueEnts[proc->unk_4c].lines == proc->unk_4e)
@@ -788,19 +788,19 @@ void sub_080B78DC(struct EpilogueProc * proc)
     proc->timer++;
     proc->unk_46 = proc->timer / 3;
 }
-void sub_080B7A0C(struct EpilogueProc * proc)
+void Epilogue_InitLastEntry(struct EpilogueProc * proc)
 {
     proc->timer = 0;
     proc->unk_46 = 0;
     SetOnHBlankA(NULL);
 }
 
-void sub_080B7A24(struct EpilogueProc * proc)
+void Epilogue_LoopLastEntry(struct EpilogueProc * proc)
 {
     if ((s16) (proc->timer % 72) == 0)
     {
         int row = (s16) (proc->unk_46 / 24);
-        sub_080B70B4(gEpilogueEntCount - 1, row % 10, row % 10, &proc->str);
+        DrawEpilogueEntryText(gEpilogueEntCount - 1, row % 10, row % 10, &proc->str);
     }
 
     if ((gpKeySt->held & A_BUTTON) && (s16) (proc->timer % 3) == 0)
@@ -821,7 +821,7 @@ void sub_080B7A24(struct EpilogueProc * proc)
         proc->timer = 0;
     }
 }
-void sub_080B7B18(struct EpilogueProc * proc)
+void Epilogue_LoopBlendOut(struct EpilogueProc * proc)
 {
     proc->timer++;
     SetBlendConfig(0, 0x10 - (proc->timer >> 2), proc->timer >> 2, 0);
@@ -835,7 +835,7 @@ void sub_080B7B18(struct EpilogueProc * proc)
 }
 
 #if NONMATCHING
-void sub_080B7B74(struct EpilogueProc * proc)
+void Epilogue_StartEndScroll(struct EpilogueProc * proc)
 {
     Proc_Goto(StartEpilogueScroll(gEpilogueEndScroll, 2, proc), 0);
     ClearEpilogueTexts();
@@ -847,12 +847,12 @@ void sub_080B7B74(struct EpilogueProc * proc)
 ASM_FUNC("asm/nonmatching/code_080B7B74.s");
 #endif
 
-void sub_080B7BC8(struct EpilogueProc * proc)
+void Epilogue_StartEndText(struct EpilogueProc * proc)
 {
     StartEpilogueText(gEpilogueEndMsgs, 8, proc);
 }
 
-void sub_080B7BDC(struct EpilogueProc * proc)
+void Epilogue_LoopEndFade(struct EpilogueProc * proc)
 {
     proc->timer++;
     if ((proc->timer & 1) == 0)
@@ -865,25 +865,25 @@ void sub_080B7BDC(struct EpilogueProc * proc)
     }
 }
 
-void sub_080B7C28(struct EpilogueProc * proc)
+void Epilogue_End(struct EpilogueProc * proc)
 {
     EndAllProcChildren(proc);
     SetOnHBlankA(NULL);
     WipeAllPalette();
 }
 
-void sub_080B7C3C(struct EpilogueProc * proc)
+void Epilogue_EnableSkip(struct EpilogueProc * proc)
 {
     if (proc->unk_51)
         proc->skippable = 1;
 }
 
-void sub_080B7C54(struct EpilogueProc * proc)
+void Epilogue_DisableSkip(struct EpilogueProc * proc)
 {
     proc->skippable = 0;
 }
 
-void sub_080B7C5C(struct EpilogueProc * proc)
+void OneYearLater_Init(struct EpilogueProc * proc)
 {
     InitBgs(NULL);
     SetBlendConfig(0, 0x10, 0, 0);
@@ -894,7 +894,7 @@ void sub_080B7C5C(struct EpilogueProc * proc)
     proc->timer = 0;
 }
 
-void sub_080B7CD0(struct EpilogueProc * proc)
+void OneYearLater_Loop(struct EpilogueProc * proc)
 {
     if (++proc->timer == 0x3C)
         Proc_Break(proc);
@@ -902,7 +902,7 @@ void sub_080B7CD0(struct EpilogueProc * proc)
         Proc_Break(proc);
 }
 
-void sub_080B7D0C(struct EpilogueProc * proc)
+void PostEpilogue_StartTalk9F3(struct EpilogueProc * proc)
 {
     SetNextGameAction(0xC);
     InitBgs(NULL);
@@ -914,7 +914,7 @@ void sub_080B7D0C(struct EpilogueProc * proc)
     SetDialogueBoxConfig(0x190);
 }
 
-void sub_080B7D88(struct EpilogueProc * proc)
+void PostEpilogue_HandleTalk9F3(struct EpilogueProc * proc)
 {
     if (GetTalkChoiceResult() == 2)
         Proc_Goto(proc, 1);
@@ -922,7 +922,7 @@ void sub_080B7D88(struct EpilogueProc * proc)
         Proc_Goto(proc, 0);
 }
 
-void sub_080B7DAC(struct EpilogueProc * proc)
+void PostEpilogue_StartTalk9F5(struct EpilogueProc * proc)
 {
     InitBgs(NULL);
     SetBlendConfig(0, 0x10, 0, 0);
@@ -933,7 +933,7 @@ void sub_080B7DAC(struct EpilogueProc * proc)
     SetDialogueBoxConfig(0x190);
 }
 
-void sub_080B7E20(void)
+void PostEpilogue_HandleTalk9F5(void)
 {
     if (GetTalkChoiceResult() == 2)
         SetNextGameAction(5);
@@ -941,7 +941,7 @@ void sub_080B7E20(void)
         SetNextGameAction(0xC);
 }
 
-void sub_080B7E3C(struct EpilogueProc * proc)
+void PostEpilogue_StartTalk9F4(struct EpilogueProc * proc)
 {
     InitBgs(NULL);
     SetBlendConfig(0, 0x10, 0, 0);
