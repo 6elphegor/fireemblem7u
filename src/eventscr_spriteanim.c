@@ -294,7 +294,7 @@ int EvtCmd_WarpLoadUnits(struct EventProc * proc)
 {
     struct ProcEventWarpLoad * child;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     child = Proc_StartBlocking(ProcScr_Event_08B92414, proc);
     child->def = (struct UnitDefinition const *) proc->script[1];

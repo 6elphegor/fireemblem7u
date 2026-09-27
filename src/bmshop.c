@@ -5,12 +5,7 @@
 
 // FE8U: bmshop.c (compiled at -O0 in FE7)
 
-u32 GetGold(void);
-void SetGold(s32 amount);
-void SetTalkPrintColor(int color);
-s8 HasConvoyAccess(void);
-int AddItemToConvoy(int item);
-int GetConvoyItemCount(void);
+int GetGold(void);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 
@@ -292,7 +287,7 @@ void Shop_Loop_BuyKeyHandler(struct ProcShop * proc)
     }
 }
 
-void Shop_HandleBuyConfirmPrompt_(struct ProcShop * proc)
+void Shop_HandleBuyConfirmPrompt(struct ProcShop * proc)
 {
     switch (GetTalkChoiceResult()) {
     case 1:

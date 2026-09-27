@@ -1,6 +1,5 @@
 #include "gbafe.h"
 #include "gbafe/bmmap.h"
-#include "gbafe/bmtarget.h"
 
 #define gMapMovementSigned ((s8 **) gBmMapMovement)
 #define gMapRangeSigned ((s8 **) gBmMapRange)
@@ -39,8 +38,8 @@ void InitChapterMap(int chapterId)
     BmMapInit(sBmMapHiddenPool,   &gBmMapHidden,   gBmMapSize.x, gBmMapSize.y);
     BmMapInit(sBmMapOtherPool,    &gBmMapOther,    gBmMapSize.x, gBmMapSize.y);
 
-    BmMapFillg(gBmMapUnit, 0);
-    BmMapFillg(gBmMapTerrain, 0);
+    BmMapFill(gBmMapUnit, 0);
+    BmMapFill(gBmMapTerrain, 0);
 
     InitMetatilesMap();
     ApplyEnabledMapChanges();
@@ -57,8 +56,8 @@ void InitChapterPreviewMap(int chapterId)
     BmMapInit(sBmMapUnitPool,    &gBmMapUnit,    gBmMapSize.x, gBmMapSize.y);
     BmMapInit(sBmMapTerrainPool, &gBmMapTerrain, gBmMapSize.x, gBmMapSize.y);
 
-    BmMapFillg(gBmMapUnit, 0);
-    BmMapFillg(gBmMapTerrain, 0);
+    BmMapFill(gBmMapUnit, 0);
+    BmMapFill(gBmMapTerrain, 0);
 
     InitMetatilesMap();
     RefreshTerrainMap();
@@ -170,7 +169,7 @@ void BmMapInit(void * buffer, u8 *** outHandle, int x, int y)
     *outHandle = sInitializingMap + 2;
 }
 
-void BmMapFillg(u8 ** map, int value)
+void BmMapFill(u8 ** map, int value)
 {
     int size = (gBmMapSize.y + 4) * (gBmMapSize.x + 2);
 
@@ -620,10 +619,10 @@ void RefreshMinesOnBmMap(void)
 
 void RefreshEntityMaps(void)
 {
-    BmMapFillg(gBmMapUnit, 0);
-    BmMapFillg(gBmMapHidden, 0);
+    BmMapFill(gBmMapUnit, 0);
+    BmMapFill(gBmMapHidden, 0);
 
-    BmMapFillg(gBmMapFog, !gPlaySt.chapterVisionRange ? 1 : 0);
+    BmMapFill(gBmMapFog, !gPlaySt.chapterVisionRange ? 1 : 0);
 
     RefreshTorchlightsOnBmMap();
     RefreshUnitsOnBmMap();

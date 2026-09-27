@@ -13,7 +13,7 @@ void InitChapterPreviewMap(int chapterId);                  // InitMapForMinimap
 void ApplyAutoWaterShadows(void);                           // sub_8019624
 void RefreshAutoWaterShadows(void);                         // sub_8019778
 void BmMapInit(void * buffer, u8 *** outHandle, int x, int y);
-void BmMapFillg(u8 ** map, int value);                      // BmMapFill
+void BmMapFill(u8 ** map, int value);
 void BmMapFillEdges(u8 ** map, u8 value);
 void UnpackChapterMap(void * into, int chapterId);
 void UnpackChapterMapGraphics(int chapterId);

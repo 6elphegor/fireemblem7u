@@ -1,6 +1,5 @@
 #include "gbafe.h"
 #include "gbafe/bksel.h"
-#include "gbafe/bmmenu.h"
 
 // Battle forecast (FE8U: bksel.c)
 
@@ -20,7 +19,7 @@ extern u8 gGfx_BattleForecastFrame[];
 extern u8 gBattleForecast_x2x4Gfx[];
 extern u16 gBattleForecast_x2x4Pal[];
 extern u16 gObject_16x16[];
-extern struct ProcCmd CONST_DATA ProcScr_08B90D88[];
+extern struct ProcCmd CONST_DATA gProcScr_EventEngine[];
 extern struct HelpBoxInfo CONST_DATA gHelpInfo_MbpHp;
 extern struct HelpBoxInfo CONST_DATA gHelpInfo_CbpHp;
 
@@ -550,7 +549,7 @@ void BattleForecast_LoopSlideOut(struct BattleForecastProc * proc)
 
 bool Bksel_WaitMapEventEngine(void)
 {
-    if (Proc_Find(ProcScr_08B90D88))
+    if (Proc_Find(gProcScr_EventEngine))
         return TRUE;
 
     return FALSE;
@@ -580,7 +579,7 @@ void NewBattleForecast(ProcPtr unused)
         break;
     }
 
-    BmMapFillg(gBmMapMovement, -1);
+    BmMapFill(gBmMapMovement, -1);
 }
 
 void UpdateBattleForecastContents(void)

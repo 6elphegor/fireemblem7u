@@ -206,7 +206,7 @@ void StartTacticianNameSelect(ProcPtr parent);
 // sub_8043864
 // sub_80438C0
 // sub_80438E0
-// Shop_HandleBuyConfirmPrompt
+// SioEvent_GotoLabel1UnlessYes
 // sub_08043170
 void sub_8043948(/* TODO */);
 void CallEraseSaveEvent(ProcPtr proc); // FE7J sub_8043948

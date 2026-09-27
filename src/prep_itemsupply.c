@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmcontainer.h"
 
 extern u16 Pal_08405EA4[];
 extern u8 Img_08405B4C[];

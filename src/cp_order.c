@@ -1,6 +1,5 @@
 #include "gbafe.h"
 #include "gbafe/cp_common.h"
-#include "gbafe/bmtarget.h"
 
 // AI unit ordering (FE8U: cp_order.c)
 

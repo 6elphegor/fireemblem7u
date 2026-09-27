@@ -714,7 +714,7 @@ void EfxLokmsunaIOBJMain(struct ProcEfxOBJ * proc)
 extern struct ProcCmd ProcScr_efxKingPika[];
 extern struct ProcCmd ProcScr_efxFlashFX[];
 
-void NewEfxFlashUnit(struct Anim * anim, int a, int b, int c);
+void NewEfxFlashUnit(struct Anim * anim, u16 a, u16 b, int c);
 
 void NewEfxKingPika(struct Anim * anim)
 {

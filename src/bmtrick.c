@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 
 // FE7 trap type values (differ from FE8 past TRAP_MINE)
 #define FE7_TRAP_LIGHT_RUNE 12
@@ -561,7 +560,7 @@ void StartTrapDamageMapAnim(void)
 
 void PostTrapExecFlag(void)
 {
-    if (CheckChapterFlag(0x65))
+    if (CheckPermanentFlag(0x65))
         StartEvent(gEvent_GameOver);
 }
 

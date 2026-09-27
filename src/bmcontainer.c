@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmcontainer.h"
 
 // Convoy (FE8U: bmcontainer.c)
 
@@ -87,7 +86,7 @@ int GetConvoyItemSlot(int item)
     return -1;
 }
 
-bool8 HasConvoyAccess(void)
+bool HasConvoyAccess(void)
 {
     int i;
 

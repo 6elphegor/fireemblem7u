@@ -110,7 +110,6 @@ extern struct LinkArenaStMaybe gLinkArenaSt;
 extern struct SioUnknown_0203DD90 gUnk_Sio_0203DD90;
 extern char gUnk_Sio_0203DAC5[][19];
 extern struct AiState gAiState;
-extern u8 gWorkingMovementScript[];
 
 extern const u8 gUnknown_080D9F28[][4];
 extern const struct Vec2 gUnknown_080D9F48[];
@@ -135,7 +134,7 @@ extern struct ProcCmd CONST_DATA gUnknown_085AA5BC[];
 extern u8 CONST_DATA gLut_LinkArenaFogPlaceholder_YOffset[];
 extern struct ProcCmd CONST_DATA ProcScr_DrawLinkArenaFogPlaceholders[];
 extern struct ProcCmd CONST_DATA gUnknown_085AA75C[];
-extern u8 CONST_DATA gUnknown_085AADA0[];
+extern const struct MenuDef gUnknown_085AADA0;
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 extern u16 CONST_DATA EventScr_LinkArenaSurrenderPrompt[];
 extern u16 CONST_DATA EventScr_LinkArenaNoDamagePrompt[];
@@ -184,11 +183,9 @@ void StartLinkArenaMUDeathFade(struct MuProc * muProc);
 ProcPtr StartSioWarpFx(struct Unit * unit, struct MuProc * muProc, int x, int y, int facing, u8 playStepSe, ProcPtr parent);
 void sub_08048E0C(struct Unit * unit);
 
-void BmMapFillg(u8 ** map, int value);
 void InitTraps(void);
 void InitChapterMap(int chapterId);
 void RenderMap(void);
-struct MuProc * StartMu(struct Unit * unit);
 void DisableMuCamera(struct MuProc * proc);
 void SetMuMoveScript(struct MuProc * proc, u8 const * script);
 void SetMuScreenPosition(struct MuProc * proc, int x, int y);
@@ -198,15 +195,9 @@ bool MuExistsActive(void);
 void SetupDebugFontForOBJ(int a, int b);
 bool CanUnitUseWeapon(struct Unit * unit, int item);
 int GetItemAttributes(int item);
-int GetItemMinRange(int item);
-int GetItemMaxRange(int item);
-ProcPtr StartMenu(const void * def);
 void NewBattleForecast(ProcPtr proc);
-void BattleGenerateSimulation(struct Unit * actor, struct Unit * target, int x, int y, int itemSlot);
 void BattleGenerateReal(struct Unit * actor, struct Unit * target);
-void UpdateBattleForecastContents(void);
-void CloseBattleForecast(void);
-void AiSimulateBattleAgainstTargetAtPosition(struct AiCombatSimulationSt * sim);
+s8 AiSimulateBattleAgainstTargetAtPosition(struct AiCombatSimulationSt * sim);
 void StartAiTargetCursor(int x, int y, int kind, ProcPtr parent);
 int GetUnitDisplayedSpritePalette(struct Unit * unit);
 int GetFacingFromTo(int x1, int y1, int x2, int y2);
@@ -451,8 +442,8 @@ void sub_08044DCC(void)
 {
     int i;
 
-    BmMapFillg(gBmMapUnit, 0);
-    BmMapFillg(gBmMapFog, 1);
+    BmMapFill(gBmMapUnit, 0);
+    BmMapFill(gBmMapFog, 1);
 
     for (i = FACTION_BLUE + 1; i < FACTION_PURPLE + 6; i++)
     {
@@ -541,7 +532,7 @@ void sub_08044F3C(void)
     sub_08044D14();
     sub_08044D2C();
 
-    BmMapFillg(gBmMapFog, gPlaySt.chapterVisionRange == 0);
+    BmMapFill(gBmMapFog, gPlaySt.chapterVisionRange == 0);
 
     sub_08044DCC();
 
@@ -1192,7 +1183,7 @@ void sub_08045960(struct SioProc85AA1AC * proc)
     proc->unk_64 = GetGameLock();
     ApplyIconPalettes(4);
 
-    StartMenu(gUnknown_085AADA0);
+    StartMenu(&gUnknown_085AADA0);
 
     return;
 }
@@ -2528,10 +2519,10 @@ void LAUnitDeaths_FindNextAndStart(struct SioBattleMapProc * proc)
 
     mu = StartMu(unit);
 
-    gWorkingMovementScript[0] = MOVE_CMD_MOVE_DOWN;
-    gWorkingMovementScript[1] = MOVE_CMD_HALT;
+    gWorkingMoveScr[0] = MOVE_CMD_MOVE_DOWN;
+    gWorkingMoveScr[1] = MOVE_CMD_HALT;
 
-    SetMuMoveScript(mu, gWorkingMovementScript);
+    SetMuMoveScript(mu, gWorkingMoveScr);
 
     StartLinkArenaMUDeathFade(mu);
 
@@ -2693,11 +2684,11 @@ void sub_08046FE8(struct SioBattleMapProc * proc)
 
         mu = StartMu(&gBattleTarget.unit);
 
-        gWorkingMovementScript[0] = GetFacingFromTo(
+        gWorkingMoveScr[0] = GetFacingFromTo(
             gBattleActor.unit.xPos, gBattleActor.unit.yPos, gBattleTarget.unit.xPos, gBattleTarget.unit.yPos);
-        gWorkingMovementScript[1] = MOVE_CMD_HALT;
+        gWorkingMoveScr[1] = MOVE_CMD_HALT;
 
-        SetMuMoveScript(mu, gWorkingMovementScript);
+        SetMuMoveScript(mu, gWorkingMoveScr);
         StartLinkArenaMUDeathFade(mu);
 
         proc->unk_54 = mu;

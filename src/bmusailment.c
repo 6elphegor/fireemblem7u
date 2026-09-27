@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/bmusailment.h"
 
 // Terrain healing, poison and trap damage displays (FE8U: bmusailment.c)
@@ -11,7 +10,6 @@ void BattleInitItemEffect(struct Unit * actor, int itemSlot);
 void BeginBattleAnimations(void);
 void BeginMapAnimForPoisonDmg(void); // BeginMapAnimForPoisonDmg
 void BeginMapAnimForCritAtk(void); // BeginMapAnimForCritAtk
-struct MuProc * StartMu(struct Unit * unit);
 void StartMuDeathFade(struct MuProc * mu);
 void PutBlendWindowUnitSprite(int layer, int x, int y, int oam2, struct Unit * unit);
 bool CheckForWaitEvents(void);

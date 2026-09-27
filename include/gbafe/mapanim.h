@@ -27,7 +27,7 @@ struct MapAnimActor {
 struct ManimSt {
     /* 00 */ struct MapAnimActor actor[4];
     /* 50 */ struct BattleHit * hit_it;
-    /* 54 */ struct ProcScr const * special_proc_scr;
+    /* 54 */ struct ProcCmd const * special_proc_scr;
     /* 58 */ u8 attacker_actor;
     /* 59 */ u8 defender_actor;
     /* 5A */ u16 hit_attributes;

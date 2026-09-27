@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 #include "gbafe/unitinfowindow.h"
 
 // Unit info windows used by map target selection (FE8U: unitinfowindow.c)

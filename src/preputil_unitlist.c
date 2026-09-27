@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmcontainer.h"
 
 extern u8 gPrepUnitPool[];
 

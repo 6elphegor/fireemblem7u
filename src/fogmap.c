@@ -34,8 +34,8 @@ void FillWarpRangeMap(struct Unit * unit_act, struct Unit * unit_tar)
 {
     int x, y;
 
-    BmMapFillg(gBmMapMovement, -1);
-    BmMapFillg(gBmMapRange, 0);
+    BmMapFill(gBmMapMovement, -1);
+    BmMapFill(gBmMapRange, 0);
     SetWorkingBmMap(gBmMapMovement);
 
     x = unit_tar->xPos;

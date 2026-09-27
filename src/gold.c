@@ -1,6 +1,6 @@
 #include "gbafe.h"
 
-u32 GetGold() {
+int GetGold(void) {
 	return gPlaySt.partyGoldAmount;
 }
 

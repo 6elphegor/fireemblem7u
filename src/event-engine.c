@@ -1,5 +1,4 @@
 #include "gbafe.h"
-#include "gbafe/bmtarget.h"
 
 bool sub_08079954(struct Unit * unit);
 bool sub_08079A14(struct Unit * unit);
@@ -457,7 +456,7 @@ extern struct ProcCmd CONST_DATA ProcScr_EventFadeOutOfBackgroundTalk[];
 extern struct ProcCmd CONST_DATA ProcScr_08B90D40[];
 extern struct ProcCmd CONST_DATA ProcScr_EventFadeOutOfSkip[];
 extern struct ProcCmd CONST_DATA ProcScr_EventDarkenThenFunc[];
-extern struct ProcCmd CONST_DATA ProcScr_08B969E4[];
+extern struct ProcCmd CONST_DATA ProcScr_SubtitleHelpDarkener[];
 
 void sub_0800ADD0(ProcPtr proc);
 
@@ -606,7 +605,7 @@ ProcPtr StartEventInternal(EventScr const * script, ProcPtr parent)
     else
         proc->unk_4D = FALSE;
 
-    BmMapFillg(gBmMapOther, 0);
+    BmMapFill(gBmMapOther, 0);
 
     switch (proc->script[0])
     {
@@ -821,7 +820,7 @@ void Event_BeginSkip(struct EventProc * proc)
 
 void Event_MainLoop(struct EventProc * proc)
 {
-    if (Proc_Find(ProcScr_08B969E4))
+    if (Proc_Find(ProcScr_SubtitleHelpDarkener))
         return;
 
     if (IsSubtitleHelpActive())

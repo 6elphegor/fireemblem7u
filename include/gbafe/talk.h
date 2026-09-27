@@ -121,8 +121,8 @@ void SetTalkFlag(int flag);
 // ??? SetTalkFunc
 // ??? ClearTalkFlag
 // ??? CheckTalkFlag
-// ??? SetTalkPrintDelay
-// ??? SetTalkPrintColor
+// SetTalkPrintDelay(s8 delay): not declared here yet, worldmap.c declares it with an int parameter
+void SetTalkPrintColor(u8 color);
 // ??? TalkSkipListener_OnIdle
 // ??? Talk_OnInit
 // ??? sub_08008218
