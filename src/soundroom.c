@@ -1293,3 +1293,10 @@ ProcPtr DrawSoundRoomSprites(ProcPtr parent)
 {
     return Proc_Start(gProcScr_SoundRoomDrawSprites, parent);
 }
+
+ASM_FUNC("asm/nonmatching/code_080AC7A0.s");
+ASM_FUNC("asm/nonmatching/code_080AC7B0.s");
+ASM_FUNC("asm/nonmatching/code_080AC7E8.s");
+ASM_FUNC("asm/nonmatching/code_080AC82C.s");
+ASM_FUNC("asm/nonmatching/code_080AC860.s");
+ASM_FUNC("asm/nonmatching/code_080AC87C.s");
