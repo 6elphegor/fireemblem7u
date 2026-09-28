@@ -1,3 +1,9 @@
+# Eliwood mode Ch. 29x "Battle Preparations" from a save
+# (tests/saves/shops.txt): world map, scenes, the preparations screen (pick
+# units, unit info, item trade, fortune: rankings, tactician, check map,
+# the save menu, "deploy Merlinus?"), an armory (buy, sell), a vendor, the
+# arena (a won fight), five turns to the end of the chapter (ending scenes,
+# save screen) and the next chapter's world map events.
 sram tests/saves/shops.txt
 wait 300
 press Start

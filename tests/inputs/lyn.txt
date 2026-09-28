@@ -1,3 +1,5 @@
+# Lyn mode Ch. 5 "Beyond the Borders" from a save (tests/saves/lyn.txt):
+# world map, scenes, a green unit's battle (Erk's Fire), tutorial hints.
 sram tests/saves/lyn.txt
 wait 300
 press Start

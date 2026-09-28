@@ -1,0 +1,17 @@
+# Eliwood mode, start of Ch. 13 (the ch13.txt party, same start positions)
+# set up for unit actions: Lowen can promote, Hector and Matthew can
+# support, Serra has a Barrier staff, stat boosters -- tools/mksave.py.
+chapter CHAPTER_0F
+mode eliwood
+gold 5000
+textspeed 3
+unit CHARACTER_ELIWOOD items=ITEM_SWORD_RAPIER,ITEM_BOOSTER_POW,ITEM_VULNERARY
+unit CHARACTER_HECTOR items=ITEM_AXE_IRON,ITEM_BOOSTER_HP supports=CHARACTER_MATTHEW:80
+unit CHARACTER_MARCUS items=ITEM_SWORD_IRON,ITEM_LANCE_IRON
+unit CHARACTER_LOWEN level=10 items=ITEM_LANCE_IRON,ITEM_KNIGHTCREST
+unit CHARACTER_REBECCA items=ITEM_BOW_IRON
+unit CHARACTER_DORCAS items=ITEM_AXE_IRON,ITEM_BOOSTER_CON
+unit CHARACTER_BARTRE items=ITEM_AXE_IRON
+unit CHARACTER_OSWIN items=ITEM_LANCE_IRON
+unit CHARACTER_SERRA items=ITEM_STAFF_BARRIER,ITEM_STAFF_HEAL ranks=0,0,0,0,121,0,0,0
+unit CHARACTER_MATTHEW items=ITEM_SWORD_IRON supports=CHARACTER_HECTOR:80

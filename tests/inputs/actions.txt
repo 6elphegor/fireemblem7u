@@ -1,0 +1,174 @@
+# Unit actions in Eliwood mode Ch. 13 (tests/saves/actions.txt): a stat
+# booster (Energy Ring), promotion with a Knight Crest (the class change
+# animation), a support conversation (Hector and Matthew, level C), the
+# Barrier staff, rescue, suspend and "Resume Chapter" (the suspend save),
+# end turn and the enemy phase.
+sram tests/saves/actions.txt
+wait 300
+press Start
+wait 120
+press Start
+wait 120
+shot main_menu
+press A
+wait 120
+shot file_select
+press A
+wait 60
+repeat 94
+press A
+wait 40
+end
+wait 100
+press Start
+wait 200
+shot map_start
+press A
+wait 90
+press A
+wait 150
+shot eli_menu
+press A
+wait 90
+shot eli_items
+press Down 1 40
+press A
+wait 60
+shot ring_menu
+press A
+wait 120
+shot ring_use
+repeat 1
+press A
+wait 90
+shot ring
+end
+wait 200
+shot eli_done
+press Right 4 30
+wait 30
+press Up 1 30
+wait 60
+shot on_lowen
+press A
+wait 90
+press A
+wait 150
+shot lowen_menu
+press Down 1 40
+press A
+wait 90
+shot lowen_items
+press Down 1 40
+press A
+wait 60
+press A
+wait 150
+shot crest_use
+repeat 9
+press A
+wait 90
+shot promo
+end
+wait 300
+shot promo_done
+press Left 1 40
+wait 30
+press A
+wait 90
+press A
+wait 150
+shot hector_menu
+press A
+wait 90
+shot support_target
+press A
+wait 120
+repeat 23
+press A
+wait 50
+shot sup
+end
+wait 200
+shot support_done
+press Left 3 30
+wait 30
+press Up 2 30
+wait 60
+shot on_serra
+press A
+wait 90
+press Down 1 30
+wait 30
+press A
+wait 150
+shot serra_menu
+press A
+wait 90
+shot serra_staff
+press A
+wait 90
+shot serra_target
+press A
+wait 60
+repeat 8
+wait 60
+shot barrier
+end
+wait 120
+press Left 1 30
+wait 30
+press Down 1 30
+wait 60
+shot on_dorcas
+press A
+wait 90
+press A
+wait 150
+shot dorcas_menu
+press A
+wait 90
+shot rescue_target
+press A
+wait 200
+shot rescued
+press Left 5 20
+wait 60
+press A
+wait 90
+shot map_menu
+press Down 3 40
+shot suspend_sel
+press A
+wait 150
+shot quit_prompt
+press A
+wait 200
+shot quit_msg
+press A
+wait 600
+shot title
+press Start
+wait 200
+shot main_menu_resume
+press A
+wait 400
+shot resume_file
+press A
+wait 400
+shot resumed
+press R
+wait 120
+shot resumed_stat
+press B
+wait 120
+press A
+wait 90
+press Up 1 60
+shot end_sel
+press A
+repeat 8
+press B
+wait 148
+shot enemy_phase
+end

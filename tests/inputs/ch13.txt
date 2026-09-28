@@ -1,3 +1,10 @@
+# Eliwood mode Ch. 13 "In Search of Truth" from a generated save
+# (tests/saves/ch13.txt): world map event, title card, opening scenes (A
+# presses), the stat screen (pages, help boxes, next unit), a unit's move
+# range, the item menu (equip), trade, the unit list pages, chapter status,
+# options, and four turns of enemy phase with battle animations.
+# Written with `tools/emutest.py record SCRIPT --dump` (PNGs and memory at
+# each checkpoint: unit and cursor positions).
 sram tests/saves/ch13.txt
 wait 300
 press Start

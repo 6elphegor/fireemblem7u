@@ -1,3 +1,6 @@
+# Hector mode Ch. 25 "Crazed Beast" from a save (tests/saves/hector.txt):
+# world map, scenes, preparations, the minimap, three turns (wyvern and
+# pegasus battles) up to Eliwood's death and the game over screen.
 sram tests/saves/hector.txt
 wait 300
 press Start

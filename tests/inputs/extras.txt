@@ -1,3 +1,6 @@
+# The Extras menu of a completed game (tests/saves/extras.txt): the sound
+# room (four songs), the link arena menus, the support viewer (two support
+# conversations played).
 sram tests/saves/extras.txt
 wait 300
 press Start

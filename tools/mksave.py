@@ -23,7 +23,11 @@ include/constants/*.h, numbers are decimal or 0x hex):
   textspeed N              config text speed: 0 slow, 1 normal (the default,
                            as InitPlayConfig), 2 fast, 3 max (GetTextPrintDelay)
   unit PID [class=JID] [level=N] [items=ITEM,ITEM:USES,...] [undeployed] [dead]
-                           the next blue unit (gUnitArrayBlue order)
+        [ranks=R,R,R,R,R,R,R,R] [supports=PID:POINTS,...]
+                           the next blue unit (gUnitArrayBlue order); ranks
+                           are the 8 weapon rank points (default the
+                           character's), supports the support points with
+                           those partners
   supply ITEM ...          convoy items (full uses)
   completed                global save info: the game has been completed
                            (the Extras menu: sound room, support viewer...)
@@ -128,10 +132,21 @@ class Rom:
         return (uses << 8) | item
 
 
-def game_unit(rom, pid, jid=None, level=None, items=(), flags=0):
+def game_unit(rom, pid, jid=None, level=None, items=(), flags=0, ranks=None, supports=()):
     """struct GameSavePackedUnit (0x24 bytes) for a character with its
-    base stats (character + class bases, as UnitInitFromDefinition)."""
+    base stats (character + class bases, as UnitInitFromDefinition).
+    ranks: 8 weapon ranks (default the character's); supports: (partner
+    pid, points), placed at the partner's index in the character's
+    struct SupportData (include/gbafe/support.h)."""
     c = rom.char(pid)
+    sup = bytearray(7)
+    if supports:
+        sd = struct.unpack_from("<I", c, 0x2C)[0]
+        pids = list(rom.at(sd, 7)) if sd else []
+        for partner, points in supports:
+            if partner not in pids:
+                raise SystemExit(f"character {pid:#x} has no support with {partner:#x}")
+            sup[pids.index(partner)] = points
     jid = jid or c[5]
     k = rom.cls(jid)
     s8 = lambda b: b - 256 if b > 127 else b  # noqa: E731
@@ -144,7 +159,8 @@ def game_unit(rom, pid, jid=None, level=None, items=(), flags=0):
     bits = [(7, jid), (5, level), (7, 0), (6, 0x3F), (6, 0x3F), (13, flags),
             (6, hp), (5, pow_), (5, skl), (5, spd), (5, def_), (5, res), (5, lck),
             (5, 0), (5, 0)] + [(14, i) for i in items]
-    return pack_bits(bits, 20) + bytes([pid]) + bytes(c[0x14:0x1C]) + bytes(7)
+    ranks = bytes(ranks) if ranks is not None else bytes(c[0x14:0x1C])
+    return pack_bits(bits, 20) + bytes([pid]) + ranks + bytes(sup)
 
 
 def play_st(slot, ch, mode, hard, gold, textspeed):
@@ -217,7 +233,10 @@ def build(desc, rom):
                 items.append(rom.new_item(num(name), num(uses) if uses else None))
             cur["units"].append(game_unit(
                 rom, pid, num(opts["class"]) if "class" in opts else None,
-                num(opts["level"]) if "level" in opts else None, items, flags))
+                num(opts["level"]) if "level" in opts else None, items, flags,
+                [num(r) for r in opts["ranks"].split(",")] if "ranks" in opts else None,
+                [tuple(num(x) for x in s.split(":")) for s in opts["supports"].split(",")]
+                if "supports" in opts else ()))
             known.add(pid)
         elif cmd == "supply":
             cur["supply"] += [rom.new_item(num(a)) for a in args]

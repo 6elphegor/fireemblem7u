@@ -1,3 +1,6 @@
+# Eliwood mode Final Chapter "Light" from a save (tests/saves/final.txt):
+# scenes, preparations, scenes skipped with Start, the minimap, three turns
+# with enemy phases (morph archers, magic, death quotes).
 sram tests/saves/final.txt
 wait 300
 press Start
