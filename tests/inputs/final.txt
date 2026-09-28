@@ -1,0 +1,51 @@
+sram tests/saves/final.txt
+wait 300
+press Start
+wait 120
+press Start
+wait 120
+shot main_menu
+press A
+wait 120
+shot file_select
+press A
+wait 60
+repeat 60
+press A
+wait 40
+end
+wait 300
+shot final_prep
+press B
+wait 150
+press B
+wait 150
+shot final_prep2
+press Start
+wait 400
+shot final_fight
+repeat 4
+press Start
+wait 240
+shot final_skip
+end
+wait 200
+repeat 3
+press A
+wait 90
+press A
+wait 150
+press Up 1 60
+press A
+wait 120
+press A
+wait 90
+press Up 1 60
+shot turn_end
+press A
+repeat 10
+press B
+wait 148
+shot enemy_phase
+end
+end

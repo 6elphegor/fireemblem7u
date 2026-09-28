@@ -1,0 +1,47 @@
+sram tests/saves/lyn.txt
+wait 300
+press Start
+wait 120
+press Start
+wait 120
+shot main_menu
+press A
+wait 120
+shot file_select
+press A
+wait 60
+repeat 10
+repeat 5
+press A
+wait 40
+end
+shot l
+end
+repeat 8
+repeat 5
+press A
+wait 40
+end
+shot l2
+end
+wait 300
+shot lyn_map
+repeat 1
+press A
+wait 90
+press A
+wait 150
+press Up 1 60
+press A
+wait 120
+press A
+wait 90
+press Up 1 60
+shot turn_end
+press A
+repeat 10
+press B
+wait 148
+shot enemy_phase
+end
+end

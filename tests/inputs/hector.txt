@@ -1,0 +1,51 @@
+sram tests/saves/hector.txt
+wait 300
+press Start
+wait 120
+press Start
+wait 120
+shot main_menu
+press A
+wait 120
+shot file_select
+press A
+wait 60
+repeat 12
+repeat 5
+press A
+wait 40
+end
+shot h
+end
+repeat 50
+press A
+wait 40
+end
+shot h_before_fight
+repeat 4
+press Start
+wait 240
+shot h_skip
+end
+wait 200
+press Start
+wait 200
+repeat 3
+press A
+wait 90
+press A
+wait 150
+press Up 1 60
+press A
+wait 120
+press A
+wait 90
+press Up 1 60
+shot turn_end
+press A
+repeat 10
+press B
+wait 148
+shot enemy_phase
+end
+end
