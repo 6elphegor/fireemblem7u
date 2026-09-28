@@ -327,16 +327,47 @@ installed (mgba 0.10.5_2 wants ffmpeg 8; the core itself doesn't use it):
   `A | B | differing pixels (magenta)`, for the first frames whose
   pictures differ as well; checkpoints (`shot`) save A's picture.
   Everything goes to `build/emutest/SCRIPT/`.
-* The scripts are `tests/inputs/*.txt` (format in `tools/emutest.py`):
-  `opening.txt` leaves the game alone for 19,600 frames (opening story,
-  title, the class reels' battle animations, the attract loop);
-  `prologue.txt` starts a new game and plays the start of the prologue
-  (menus, tactician info, dialogue, moving Lyn, the tutorial battle with
-  its battle animations, enemy phase), 12,850 frames.
+* Later chapters without playing there: a script whose first command is
+  `sram tests/saves/NAME.txt` boots both ROMs with a save memory image that
+  `tools/mksave.py` builds from that description: up to three game saves
+  (chapter, mode, gold, text speed, units with the base stats read from the
+  ROM, weapon ranks, support points, convoy) and the global save info
+  (completed game, characters met, supports seen, sound room songs).  Only
+  IDs (the names of `include/constants/*.h`) are committed; the layout and
+  checksums follow `src/save_core.c` and `src/bmsave.c`.  "Continue" then
+  starts that chapter the way the game does (world map event, title card,
+  scenes, preparations).  The image is copied into memory; nothing is
+  written back.
+* The scripts are `tests/inputs/*.txt` (format in `tools/emutest.py`),
+  150,904 frames in all:
+
+  | script | frames | what it reaches |
+  |---|---|---|
+  | `opening.txt` | 19,600 | opening story, title, class reels' battle animations, attract loop |
+  | `prologue.txt` | 12,850 | new game: menus, tactician info, prologue dialogue, moving Lyn, the tutorial battle, enemy phase |
+  | `lyn.txt` | 8,418 | Lyn mode Ch. 5 from a save: world map, scenes, a green unit's battle (Fire), tutorial hints |
+  | `ch13.txt` | 18,740 | Eliwood mode Ch. 13: world map, title card, scenes, stat screen pages and help, move range, item menu, trade, unit list, chapter status, options, four enemy phases |
+  | `actions.txt` | 18,250 | Ch. 13: stat booster, promotion (class change animation), support conversation, Barrier staff, rescue, suspend and Resume Chapter, enemy phase |
+  | `shops.txt` | 34,114 | Ch. 29x: preparations (pick units, unit info, item trade, fortune, check map, save menu), armory (buy, sell), vendor, arena, chapter end scenes, save screen, next chapter's world map |
+  | `hector.txt` | 15,266 | Hector mode Ch. 25: world map, preparations, minimap, wyvern/pegasus battles, a lord's death, game over |
+  | `final.txt` | 13,298 | Final Chapter: preparations, scenes skipped with Start, late-game battles (morph archers, magic) |
+  | `extras.txt` | 10,368 | completed game: sound room (four songs), link arena menus, support viewer (two conversations) |
+
+  `make emutest` takes about 2.5 minutes per B ROM (shifted and
+  modern-neutral each) on an M-series Mac.
 * Writing a script: `tools/emutest.py record SCRIPT --every 60` runs A alone
   and writes a PNG every 60 frames plus contact sheets
   (`build/emutest/record_NAME/sheet_*.png`) to check that the inputs do what
-  they should.
+  they should; `--dump` also saves A's memory at every checkpoint (unit
+  positions are in `gUnitArrayBlue`, the map cursor in `gBmSt`).  Menus
+  and dialogue take a variable number of presses, so check every step on
+  the pictures.  Don't return to the title with the soft reset
+  (A+B+Select+Start) between checkpoints: the save menu's spinning
+  background (`SpinRotation_Init`, `src/savedrawfx.c`) never sets its
+  angle (`proc->angle`), so after a soft reset it starts from whatever an
+  old proc left in that RAM; it differed between the two ROMs (a stale
+  value derived from a ROM address), a false alarm.  From power-on the
+  proc pool is zeroed and the menus are identical.  Suspend and quit, or use separate scripts.
 
 Finding the pointer behind a difference: the first differing frame shows
 what broke (the class reels' battle platforms were garbage before the
@@ -426,7 +457,21 @@ What is and isn't guaranteed:
   wrong data once something before its target changed size (the check's
   "risk" line counts the candidates: mostly graphics, tile maps and packed
   values that only look like addresses, plus the dead data from another
-  build).  `make emutest` shows what that breaks; then teach
+  build).  Reviewed (2026-09-28) for the 1,712 such words in the
+  `data/rom` incbins: 1,095 lie in 0x08CF6A94-0x08D00000, after the FE6
+  multiboot image, which nothing outside that range points into (proc
+  scripts, sprite and frame tables of another build: the self-referencing
+  0x08CF8CA8 image/palette pair table, 0x08CFF86C's list); 482 in named
+  graphics, palettes and tile maps (`Img_`, `Pal_`, `Tsa_`...; tile map
+  pairs like 0x08540854); 48 in the multiboot image; 29 in the unreferenced
+  ROM tail after the battle animation palette table (0x08FDECEC-, noise and
+  ARM code); 34 among palette-like or tile-like halfwords; 7 in map change
+  tiles and `NOT_POINTERS`; the last 17 were checked one by one (packed
+  bytes, 4bpp pixels 0x0888xxxx, palettes).  One was a real pointer
+  (`gEndingCgScroll2Lut[1].tsa[0]`, now decoded from the struct).  The
+  words in the C and event data (each file's few) are packed unit
+  definitions (e.g. 0x081C081C: coordinates in `Units_Ch25_*`) and
+  terrain/class tables.  `make emutest` shows what that breaks; then teach
   `tools/dataptrs.py` the structure (see "Runtime test").
 * Code that depends on absolute data addresses: none known.  The ROM
   header and its checksum don't cover the data, nothing reads the ROM size,
