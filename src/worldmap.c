@@ -1803,27 +1803,48 @@ void WorldMap_InitScrollCamera(struct WorldMapProc * proc)
     proc->unk_54 = 1;
 }
 
-#if NONMATCHING
+// FAKEMATCH (found by an Opus 5.5 agent): dummies pinned to r5-r7 and live
+// only across WmGetCameraY() push camX into r8; the u/t1 pins and the barriers
+// on t and proc fix the loop's register choices.
 void WorldMap_LoopScrollCamera(struct WorldMapProc * proc)
 {
-    int camX = WmGetCameraX();
-    int camY = WmGetCameraY();
-    int x = camX;
-    int y = camY;
+    int camX;
+    int camY;
+    int x;
+    int y;
+    register int dummy0 asm("r5");
+    register int dummy1 asm("r6");
+    register int dummy2 asm("r7");
 
-    while ((s16) proc->unk_40 < 0x100 && x == camX && y == camY)
+    camX = WmGetCameraX();
+    asm("" : "=r"(dummy0), "=r"(dummy1), "=r"(dummy2));
+    camY = WmGetCameraY();
+    asm("" : : "r"(dummy0), "r"(dummy1), "r"(dummy2));
+
+    x = camX;
+    y = camY;
+
+    while ((((s16) proc->unk_40 < 0x100) && (x == camX)) && (y == camY))
     {
-        int t, d;
+        int t;
+        int d;
+        register int t1 asm("r1");
+        int d1;
+        register int u asm("r0");
 
         proc->unk_40 += proc->speed;
 
-        t = 0x100 - (s16) proc->unk_40;
-        d = ABS(proc->targetX - proc->camX);
-        x = d - d * t * t / 0x10000;
+        u = (s16) proc->unk_40;
+        t1 = 0x100 - u;
+        d1 = ((proc->targetX - proc->camX) >= 0) ? (proc->targetX - proc->camX) : (-(proc->targetX - proc->camX));
+        x = d1 - d1 * t1 * t1 / 0x10000;
+        asm("" : "+r"(proc));
 
         t = 0x100 - (s16) proc->unk_40;
-        d = ABS(proc->targetY - proc->camY);
-        y = d - d * t * t / 0x10000;
+        asm("" : "+r"(t));
+        d = ((proc->targetY - proc->camY) >= 0) ? (proc->targetY - proc->camY) : (-(proc->targetY - proc->camY));
+        y = d - (((d * t) * t) / 0x10000);
+        asm("" : "+r"(proc));
     }
 
     if (proc->targetX > proc->camX)
@@ -1845,9 +1866,6 @@ void WorldMap_LoopScrollCamera(struct WorldMapProc * proc)
         proc->unk_54 = 0;
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B5430.s");
-#endif
 void StartWorldMap(u8 mode, int x, int y, u32 flags)
 {
     struct WorldMapProc * proc = Proc_Start(ProcScr_WorldMap, PROC_TREE_3);

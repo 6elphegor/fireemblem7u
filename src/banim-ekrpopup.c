@@ -102,13 +102,20 @@ void EfxPlaySound5CVol100(void)
     EfxPlaySE(0x37C, 0x100);
 }
 
-#if NONMATCHING
-// FE8U port; register allocation and constant rematerialization differ
+// FAKEMATCH (found by an Opus 5.5 agent): the original never keeps 0x1100 in a
+// register and rebuilds it at every use. The r10 clobber in the loop keeps sl
+// free (the original pushes it but never uses it). The 160 empty asm
+// statements stretch constant's lifetime so it gets no register at all (150 is
+// the tested minimum), and the r5 clobber fixes an r4/r5 swap.
+#define ASM_BARRIER_10 asm(""); asm(""); asm(""); asm(""); asm(""); asm(""); asm(""); asm(""); asm(""); asm("")
 void MakeBattlePopupTileMapFromTSA(u16 * tm, u16 width)
 {
     u32 i;
-    u16 * ekrTsaBuf = gEkrTsaBuffer;
+    u16 * ekrTsaBuf;
     s32 constant = 0x1100;
+
+    asm("" : : : "r5");
+    ekrTsaBuf = gEkrTsaBuffer;
 
     tm[0x00] = ekrTsaBuf[0x00] + constant;
     tm[0x20] = ekrTsaBuf[0x18] + constant;
@@ -117,20 +124,33 @@ void MakeBattlePopupTileMapFromTSA(u16 * tm, u16 width)
 
     for (i = 0; i < width; i++)
     {
-        tm[0x01 + i] = ekrTsaBuf[0x01 + i] + constant;
-        tm[0x21 + i] = ekrTsaBuf[0x19 + i] + constant;
-        tm[0x41 + i] = ekrTsaBuf[0x31 + i] + constant;
-        tm[0x61 + i] = ekrTsaBuf[0x49 + i] + constant;
+        u16 * src = &ekrTsaBuf[0x01 + i];
+        s32 v0 = src[0x00] + constant;
+        u16 * dst = &tm[0x01 + i];
+
+        dst[0x00] = v0;
+        dst[0x20] = src[0x18] + constant;
+        {
+            s32 v2 = src[0x30] + constant;
+            dst[0x40] = v2;
+        }
+        dst[0x60] = src[0x48] + constant;
+
+        asm("" : : : "r10");
     }
 
-    tm[0x01 + i] = ekrTsaBuf[0x17] + constant;
+    tm[0x01 + i] = ekrTsaBuf[0x17] + 0x1100;
     tm[0x21 + i] = ekrTsaBuf[0x2F] + constant;
     tm[0x41 + i] = ekrTsaBuf[0x47] + constant;
     tm[0x61 + i] = ekrTsaBuf[0x5F] + constant;
+
+    ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10;
+    ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10;
+    ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10;
+    ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10; ASM_BARRIER_10;
+    asm("" : : "g"(constant));
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0806B0C0.s");
-#endif
+#undef ASM_BARRIER_10
 
 void DrawBattlePopup(struct ProcEkrPopup * proc, int type, u32 priv)
 {
