@@ -1244,11 +1244,11 @@ void sub_0808A770(struct UnitListScreenProc * proc)
     Proc_Break(proc);
 }
 
-#if NONMATCHING
-// port of FE8U's (also nonmatching) sub_8091F10; register allocation differs throughout
+// Sharing r3 = r4 & 0x1f across both branches (a function-scope pseudo)
+// gives the original register allocation and 16-byte frame.
 void sub_0808A92C(struct UnitListScreenProc * proc)
 {
-    int r4, r5;
+    int r4, r5, r3;
 
     proc->unk_38 += gUnknown_08A17B36[proc->unk_3c];
 
@@ -1265,7 +1265,8 @@ void sub_0808A92C(struct UnitListScreenProc * proc)
         {
             for (r4 = proc->unk_3e / 8; r4 < proc->unk_3e / 8 + 12; r4++)
             {
-                gBg0Tm[(r4 & 0x1f) * 0x20 + (({r5 + 0x1c;}) - proc->unk_38)] = gUnknown_0200D7E0[r4 & 0x1f][r5 + 8];
+                r3 = r4 & 0x1f;
+                gBg0Tm[r3 * 0x20 + (({r5 + 0x1c;}) - proc->unk_38)] = gUnknown_0200D7E0[r3][r5 + 8];
             }
 
             for (r4 = 0; r4 < 2; r4++)
@@ -1280,12 +1281,13 @@ void sub_0808A92C(struct UnitListScreenProc * proc)
         {
             for (r4 = proc->unk_3e / 8; r4 < proc->unk_3e / 8 + 12; r4++)
             {
-                gBg0Tm[(r4 & 0x1f) * 0x20 + ({r5 + 8;})] = gUnknown_0200D7E0[r4 & 0x1f][({r5 + 0x1c;}) - proc->unk_38];
+                r3 = r4 & 0x1f;
+                gBg0Tm[({r3 * 0x20 + 8;}) + r5] = gUnknown_0200D7E0[r3][({r5 + 0x1c;}) - proc->unk_38];
             }
 
             for (r4 = 0; r4 < 2; r4++)
             {
-                gBg2Tm[(r4 + 5) * 0x20 + (r5 + 8)] = gUnknown_0200DFE0[r4][({r5 + 0x1c;}) - proc->unk_38];
+                gBg2Tm[(r4 + 5) * 0x20 + r5 + 8] = gUnknown_0200DFE0[r4][({r5 + 0x1c;}) - proc->unk_38];
             }
         }
     }
@@ -1297,9 +1299,6 @@ void sub_0808A92C(struct UnitListScreenProc * proc)
         Proc_Break(proc);
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0808A92C.s");
-#endif
 
 void StartUnitListScreenField(void)
 {
