@@ -60,6 +60,27 @@ all: $(if $(filter 1,$(MODERN)),modern,compare)
 compare: $(ROM)
 	@$(SHASUM) -c fe7u.sha1
 
+# Clear errors for the setup steps, before make tries anything (macOS's
+# make 3.81 otherwise stops silently on a missing baserom.gba).  Assets are
+# extracted from baserom.gba only after checking that it is the right ROM.
+ROM_CHECK = test "$$($(SHASUM) baserom.gba | cut -d' ' -f1)" = "$$(cut -d' ' -f1 fe7u.sha1)"
+ROM_WRONG = baserom.gba is not Fire Emblem (USA, Australia), sha1 $(shell sed 's/ .*//' fe7u.sha1) (see README)
+ifeq ($(filter-out clean,$(or $(MAKECMDGOALS),all)),)
+else ifeq ($(wildcard baserom.gba),)
+$(error baserom.gba not found: copy your Fire Emblem (USA) ROM there (see README))
+else ifeq ($(wildcard $(CC1)),)
+$(error $(CC1) not found: run tools/setup.sh first (see README))
+else ifeq ($(wildcard build/baserom.ok),)
+ifneq ($(shell $(ROM_CHECK) && echo ok),ok)
+$(error $(ROM_WRONG))
+endif
+endif
+
+build/baserom.ok: baserom.gba
+	@mkdir -p $(@D)
+	@$(ROM_CHECK) || { echo "$(ROM_WRONG)." >&2; exit 1; }
+	@touch $@
+
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to 0x09000000 $< $@
 
@@ -129,7 +150,7 @@ build/graphics.mk: data/graphics.txt tools/gfx.py
 	@mkdir -p $(@D)
 	python3 tools/gfx.py makefile > $@
 
-graphics/.extracted: data/graphics.txt | baserom.gba
+graphics/.extracted: data/graphics.txt | build/baserom.ok
 	python3 tools/gfx.py extract
 
 # Explicit targets (static pattern rules), so make never deletes them as
@@ -180,7 +201,7 @@ TEXTS := texts/texts.txt texts/textdefs.txt
 
 # texts.txt is the game's script, so it isn't in git: extract it from the ROM
 # the first time. After that it is the source of truth and is never overwritten.
-texts/texts.txt: | baserom.gba
+texts/texts.txt: | build/baserom.ok
 	python3 tools/textdecode.py baserom.gba
 
 build/msg_data.s: $(TEXTS) tools/textencode.py
@@ -194,11 +215,11 @@ build/msg_data.o: build/msg_data.s
 # build extracts them to sound/ (see tools/m4adis.py; sound/manifest.txt is
 # the committed part); after that sound/ is the source.  The tool never
 # overwrites a file: delete one and the next build extracts it again.
-build/sound.mk: sound/manifest.txt tools/m4adis.py | baserom.gba
+build/sound.mk: sound/manifest.txt tools/m4adis.py | build/baserom.ok
 	@mkdir -p $(@D)
 	python3 tools/m4adis.py --makefile > $@
 
-sound/.extracted: sound/manifest.txt | baserom.gba
+sound/.extracted: sound/manifest.txt | build/baserom.ok
 	python3 tools/m4adis.py
 
 # Explicit targets, so make never deletes them as intermediate files.
@@ -218,7 +239,7 @@ $(SOUND_OBJ): sound/sound.s $(SOUND_SRCS) include/MPlayDef.s include/m4a_data.in
 # the ROM the first time (banim/ is not in git) and is the source after that.
 # It is assembled with relocations for its sprite sheet pointers; the link
 # above resolves, compresses and places it.
-banim/.extracted: data/layout.txt | baserom.gba
+banim/.extracted: data/layout.txt | build/baserom.ok
 	python3 tools/banim.py extract
 
 $(BANIM_SRCS): banim/%.s: | banim/.extracted

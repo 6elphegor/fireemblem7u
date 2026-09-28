@@ -293,7 +293,7 @@ those by playing the game: it runs `fe7u.gba` (A) and the shifted build
 scripted keys, and compares them.
 
 ```sh
-brew install mgba            # libmgba + headers (MPL-2.0; not vendored)
+brew install mgba ffmpeg@8   # libmgba + headers (MPL-2.0; not vendored)
 make emutest                 # fe7u.gba vs build/shift/s.gba, every script
 make emutest EMUTEST_B=baserom.gba             # any ROM, e.g. fe7u_modern.gba
 make emutest EMUTEST_SCRIPTS=tests/inputs/opening.txt
