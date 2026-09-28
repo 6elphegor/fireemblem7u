@@ -356,7 +356,8 @@ void sub_0804C504(struct EkrGaugeStruct1 * buf, int a, int b)
     }
 }
 
-#if NONMATCHING
+// FAKEMATCH (found by an Opus 5.5 agent): spill slots are assigned by pseudo
+// number; the unused locals shift x and r7_ to the numbers the original had.
 void ekrGaugeMain(struct ProcEkrGauge * proc)
 {
     struct Anim AStack_130;
@@ -368,12 +369,16 @@ void ekrGaugeMain(struct ProcEkrGauge * proc)
     s32 r7;
     s32 r8;
     s32 r9;
+    s32 i;
+    s32 j;
     s16 r7_;
     s16 r6_;
     s16 r8_;
     s16 sp_d4;
     s32 hp_changed;
     s32 spDC;
+    s32 unused_pad0, unused_pad1, unused_pad2, unused_pad3, unused_pad4, unused_pad5, unused_pad6;
+    s32 unused_pad7, unused_pad8, unused_pad9, unused_pad10, unused_pad11, unused_pad12;
     s32 x;
     s32 y;
     s32 clk;
@@ -499,9 +504,6 @@ void ekrGaugeMain(struct ProcEkrGauge * proc)
     }
 
     if (hp_changed == 1) {
-        s32 i;
-        s32 j;
-
         CpuFastFill(0, gUnk_Banim_02016DC8, 0x80);
 
         for (i = 0; i < 2; i++) {
@@ -786,6 +788,3 @@ void ekrGaugeMain(struct ProcEkrGauge * proc)
         AnimDisplay(&AStack_130);
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0804C550.s");
-#endif

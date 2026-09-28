@@ -176,17 +176,24 @@ int GetBanimPalette(int banim_id, int pos)
         return banim_id;
     }
 }
-#if NONMATCHING
+// FAKEMATCH (found by an Opus 5.5 agent): banim2 is a copy of banim hidden
+// behind an asm barrier, so banim itself is only used in the left block and
+// gets reloaded there; cbapt is pinned to r10.
 void UpdateBanimFrame(void)
 {
+    int valid;
     int val, bid, bid_pal, chara_pal;
     struct BattleAnim * _banim, * banim = banim_data;
-    struct BattleAnimCharaPal * cbapt = character_battle_animation_palette_table;
+    struct BattleAnim * banim2 = banim;
+    register struct BattleAnimCharaPal * cbapt asm("r10") = character_battle_animation_palette_table;
+
+    asm("" : "+r"(banim2));
 
     gpImgSheet[1] = NULL;
     gpImgSheet[0] = NULL;
 
-    if (gBanimValid[POS_L] == true)
+    valid = gBanimValid[POS_L];
+    if (valid == 1)
     {
         bid = gBanimIdx[EKR_POS_L];
         bid_pal = gBanimFactionPal[EKR_POS_L];
@@ -195,9 +202,7 @@ void UpdateBanimFrame(void)
         _banim = &banim[bid];
         LZ77UnCompWram(_banim->script, gBanimScrLeft);
         gpBanimModesLeft = _banim->modes;
-
-        _banim = &banim[GetBanimPalette(bid, 0)];
-        LZ77UnCompWram(_banim->pal, gBanimPaletteLeft);
+        LZ77UnCompWram(banim[GetBanimPalette(bid, 0)].pal, gBanimPaletteLeft);
 
         if (chara_pal != -1)
         {
@@ -205,24 +210,26 @@ void UpdateBanimFrame(void)
             ApplyBanimUniquePalette((u32 *)gBanimPaletteLeft, POS_L);
         }
 
-        gpEfxUnitPaletteBackup[POS_L] = &PAL_BUF_COLOR(gBanimPaletteLeft, bid_pal, 0);
-        CpuFastCopy(&PAL_BUF_COLOR(gBanimPaletteLeft, bid_pal, 0), PAL_OBJ(0x7), 0x20);
-        CpuFastCopy(gBanimTriAtkPalettes[0], PAL_OBJ(0x8), 0x20);
+        gpEfxUnitPaletteBackup[POS_L] = &gBanimPaletteLeft[bid_pal * 0x10];
+        CpuFastSet(&gBanimPaletteLeft[bid_pal * 0x10], &gPal[0x17 * 0x10], 8);
+        CpuFastSet(gBanimTriAtkPalettes[0], &gPal[0x18 * 0x10], 8);
 
         EnablePalSync();
-        LZ77UnCompWram(banim[bid].oam_l, gBanimOaml);
+        LZ77UnCompWram(_banim->oam_l, gBanimOaml);
         gBanimOaml[0x57F0 / 4] = 1;
     }
 
-    if (gBanimValid[EKR_POS_R] == true)
+    valid = gBanimValid[EKR_POS_R];
+    if (valid == 1)
     {
         bid = gBanimIdx[EKR_POS_R];
         bid_pal = gBanimFactionPal[EKR_POS_R];
         chara_pal = gBanimUniquePal[EKR_POS_R];
 
-        LZ77UnCompWram(banim[bid].script, gBanimScrRight);
-        gpBanimModesRight = banim[bid].modes;
-        LZ77UnCompWram(banim[GetBanimPalette(bid, 1)].pal, gBanimPaletteRight);
+        _banim = (struct BattleAnim *)(bid * sizeof(struct BattleAnim) + (u32)banim2);
+        LZ77UnCompWram(_banim->script, gBanimScrRight);
+        gpBanimModesRight = _banim->modes;
+        LZ77UnCompWram(banim2[GetBanimPalette(bid, 1)].pal, gBanimPaletteRight);
 
         if (chara_pal != -1)
         {
@@ -230,35 +237,32 @@ void UpdateBanimFrame(void)
             ApplyBanimUniquePalette((u32 *)gBanimPaletteRight, POS_R);
         }
 
-        gpEfxUnitPaletteBackup[POS_R] = &PAL_BUF_COLOR(gBanimPaletteRight, bid_pal, 0);
-        CpuFastCopy(&PAL_BUF_COLOR(gBanimPaletteRight, bid_pal, 0), PAL_OBJ(0x9), 0x20);
-        CpuFastCopy(gBanimTriAtkPalettes[1], PAL_OBJ(0xA), 0x20);
+        gpEfxUnitPaletteBackup[POS_R] = &gBanimPaletteRight[bid_pal * 0x10];
+        CpuFastSet(&gBanimPaletteRight[bid_pal * 0x10], &gPal[0x19 * 0x10], 8);
+        CpuFastSet(gBanimTriAtkPalettes[1], &gPal[0x1A * 0x10], 8);
 
         EnablePalSync();
-        LZ77UnCompWram(banim[bid].oam_r, gBanimOamr2);
+        LZ77UnCompWram(_banim->oam_r, gBanimOamr2);
         gBanimOamr2[0x57F0 / 4] = 1;
     }
 
     if (gpEkrTriangleUnits[0] != NULL)
     {
         bid = GetBattleAnimationId_WithUnique(gpEkrTriangleUnits[POS_L], gpEkrTriangleUnits[POS_L]->pClassData->pBattleAnimDef, 0, &val);
-        gBanimTriAtkPalettes[POS_L] = banim[bid].pal;
+        gBanimTriAtkPalettes[POS_L] = banim2[bid].pal;
 
-        bid = GetBattleAnimCharacterUniquePalIndex(gpEkrTriangleUnits[POS_L], val);
-        if (bid != -1)
-            gBanimTriAtkPalettes[POS_L] = cbapt[bid].pal;
+        chara_pal = (s16)GetBattleAnimCharacterUniquePalIndex(gpEkrTriangleUnits[POS_L], val);
+        if (chara_pal != -1)
+            gBanimTriAtkPalettes[POS_L] = cbapt[chara_pal].pal;
 
         bid = GetBattleAnimationId_WithUnique(gpEkrTriangleUnits[POS_R], gpEkrTriangleUnits[POS_R]->pClassData->pBattleAnimDef, 0, &val);
-        gBanimTriAtkPalettes[POS_R] = banim[bid].pal;
+        gBanimTriAtkPalettes[POS_R] = banim2[bid].pal;
 
-        bid = GetBattleAnimCharacterUniquePalIndex(gpEkrTriangleUnits[POS_R], val);
-        if (bid != -1)
-            gBanimTriAtkPalettes[POS_R] = cbapt[bid].pal;
+        chara_pal = (s16)GetBattleAnimCharacterUniquePalIndex(gpEkrTriangleUnits[POS_R], val);
+        if (chara_pal != -1)
+            gBanimTriAtkPalettes[POS_R] = cbapt[chara_pal].pal;
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08054024.s");
-#endif
 
 extern s16 gEfxHpLutOff[];
 extern const u16 BanimLeftDefaultPos[];

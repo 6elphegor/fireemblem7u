@@ -660,7 +660,8 @@ void ArchivePalette(int index)
         dst[index].from_colors[i] = *src++;
 }
 
-#if NONMATCHING
+// FAKEMATCH (found by an Opus 5.5 agent): the scaled term pinned to r0 and a
+// barrier on the sum give the original "adds r1, r1, r0".
 // FE8U port; only the red-channel sum differs: the original emits "adds r1, r1, r0" (result in
 // the masked-color register), this gives "adds r0, r0, r1"
 void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
@@ -682,7 +683,12 @@ void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
             if ((1 << i) & mask) {
                 for (j = 0; j < 0x10; j++) {
                     u8 r __attribute__((unused)) = st[i].from_colors[j] & 0x1F;
-                    buffer[0x10 * i + j] = ((((0x1F - (st[i].from_colors[j] & 0x1F)) * a1) >> 8) + (st[i].from_colors[j] & 0x1F)) & 0x1F;
+                    int t = st[i].from_colors[j] & 0x1F;
+                    register int p asm("r0") = ((0x1F - t) * a1) >> 8;
+                    int sum = t + p;
+
+                    asm("" : "+r"(sum));
+                    buffer[0x10 * i + j] = sum & 0x1F;
                 }
             }
         }
@@ -743,9 +749,6 @@ void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
 
     EnablePalSync();
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08013728.s");
-#endif
 
 struct Proc08B928DC {
     PROC_HEADER;
