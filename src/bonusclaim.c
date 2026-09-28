@@ -644,19 +644,11 @@ void BonusClaim_EndSelectTargetSubMenu(struct BonusClaimProc * proc)
         ShowSysHandCursor(64, y - t, 13, 0x800);
     }
 }
-#if NONMATCHING
-// only difference left: the original keeps &gDispIo in ip (r12) for the window setup at the end
 void BonusClaim_DrawItemSentPopup(struct BonusClaimProc * proc)
 {
-#ifndef NONMATCHING
-    register const char * itemNameStr asm("r8");
-    register int width asm("sb");
-    register int w8 asm("r4");
-#else
     int w8;
     const char * itemNameStr;
     int width;
-#endif
     const char * otherStr;
     int x;
     struct Text * th;
@@ -713,8 +705,7 @@ void BonusClaim_DrawItemSentPopup(struct BonusClaimProc * proc)
     PutText(th, gBg0Tm + x + 0x141);
 
     w8 += 5;
-    w8 = x + w8;
-    PutIcon(gBg0Tm + w8 + 0x13C, GetItemIconId(itemId), 0x4000);
+    PutIcon(gBg0Tm + (x + w8) + 0x13C, GetItemIconId(itemId), 0x4000);
 
     ent2 = gpBonusClaimData;
     ent2 += idx;
@@ -745,9 +736,6 @@ void BonusClaim_DrawItemSentPopup(struct BonusClaimProc * proc)
 
     SetBgOffset(0, 0, -4);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080AD820.s");
-#endif
 void BonusClaim_Loop_PopupDisplayTimer(struct BonusClaimProc * proc)
 {
     proc->timer++;

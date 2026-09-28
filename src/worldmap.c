@@ -2121,10 +2121,12 @@ void EndWmSpotlightProc(void)
     Proc_End(Proc_Find(ProcScr_WmSpotlight));
 }
 
-#if NONMATCHING
-// differs only by a reserved (unused) 4-byte stack slot in the original
+// FAKEMATCH: the volatile unused local reproduces the original's reserved
+// 4-byte stack slot (found by Astra).
 void WmPutMapTile(int x, int y)
 {
+    volatile int unused;
+
     if (x < 0 || y < 0 || x > 127 || y > 85)
         return;
 
@@ -2132,9 +2134,6 @@ void WmPutMapTile(int x, int y)
     CpuFastSet(GetWmMapImgPtr(x, y), (void *) (VRAM + 0x8000 + ((y & 0x1F) * 0x20 + (x & 0x1F)) * 0x20), 8);
     EnableBgSync(BG3_SYNC_BIT);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B5B80.s");
-#endif
 
 void WmDrawMapRegion(int x1, int y1, int x2, int y2)
 {
