@@ -1505,7 +1505,6 @@ void EndingCgScroll_Init(struct EndingCgScrollProc * proc)
     SetOnHBlankA(EndingCgScroll_HBlank);
 }
 
-#if NONMATCHING
 void EndingCgScroll_Loop(struct EndingCgScrollProc * proc)
 {
     int row = (proc->lastY >> 3) & 0x1F;
@@ -1538,7 +1537,7 @@ void EndingCgScroll_Loop(struct EndingCgScrollProc * proc)
     {
         u8 const * tsa = proc->lut->tsa[proc->tsaIdx];
 
-        if (proc->tsaIdx == (row >> 3))
+        if (proc->tsaIdx == (row / 8))
         {
             if (tsa == NULL)
                 return;
@@ -1570,9 +1569,6 @@ void EndingCgScroll_Loop(struct EndingCgScrollProc * proc)
 
     proc->yPos += proc->speed;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080BA10C.s");
-#endif
 
 void EndingCgScroll2_Init(struct EndingCgScrollProc * proc)
 {

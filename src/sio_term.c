@@ -16,9 +16,7 @@ extern struct Text gSioTexts[];
 extern const u8 gUnknown_081D5394[];
 
 /* https://decomp.me/scratch/lXFC6 */
-#if NONMATCHING
-// functionally equivalent draft (FE8U sub_80469C4 adapted); stack frame is 4 bytes smaller,
-// the switch tails get cross-jumped differently and most of the loop pseudos land in other registers
+// FAKEMATCH (found by decomp-permuter): the notFirst local swaps r8/r9.
 void sub_080412E0(struct SioTermProc * proc)
 {
     int i;
@@ -28,6 +26,7 @@ void sub_080412E0(struct SioTermProc * proc)
     int local_38;
     int permuter, permuter2;
     u8 r1;
+    bool notFirst;
 
     local_38 = 0;
 
@@ -86,7 +85,8 @@ void sub_080412E0(struct SioTermProc * proc)
 
             }
 
-            if (IsGameNotFirstChapter(&playSt))
+            notFirst = IsGameNotFirstChapter(&playSt);
+            if (notFirst)
                 proc->unk_38[i] = proc->unk_2c[i];
             else
                 proc->unk_38[i] = -1;
@@ -134,7 +134,7 @@ void sub_080412E0(struct SioTermProc * proc)
         PutChapterTitlePalette(flags[i] | 1, i + 4);
         PutChapterTitlePalette(flags[i], i + 7);
         PutChapterTitleBgTsa(gBg1Tm + TM_OFFSET(2, 4 + i * permuter), i + 4);
-        PutChapterTitleGfx(((0x800 * i + 0x4400) & 0x1FFFF) / 0x20, proc->unk_2c[i]);
+        PutChapterTitleGfx(((0x800 * (u32) i + 0x4400) & 0x1FFFF) / 0x20, proc->unk_2c[i]);
         PutChapterTitleNameTsa(gBg0Tm + TM_OFFSET(3, 5 + i * permuter), i + 7);
     }
 
@@ -145,9 +145,6 @@ void sub_080412E0(struct SioTermProc * proc)
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080412E0.s");
-#endif
 
 //! FE8U = 0x08046C64
 void sub_08041584(int * cur, u8 bottom, u8 top, int * buf, u8 total)

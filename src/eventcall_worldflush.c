@@ -12,10 +12,12 @@ struct ProcWorldFlush
     /* 2C */ int timer;
 };
 
-#if NONMATCHING
-// window bitfield read-modify-writes: the original keeps each win_ct byte in a register and stores once; this version stores in between
+// FAKEMATCH: writing the win0 fields through a local pointer keeps each
+// win_ct byte in a register so it is stored once, as in the original.
 void sub_0807CC5C(struct ProcWorldFlush * proc)
 {
+    struct WinCnt * w;
+
     proc->timer = 0;
 
     InitScanlineEffect();
@@ -24,13 +26,18 @@ void sub_0807CC5C(struct ProcWorldFlush * proc)
     SetWin0Box(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
     SetWinEnable(1, 0, 0);
 
-    gDispIo.win_ct.win0_enable_blend = 1;
+    w = &gDispIo.win_ct;
+    w->win0_enable_blend = 1;
     gDispIo.win_ct.wout_enable_blend = 0;
 
-    SetWin0Layers(1, 1, 1, 1, 1);
+    w->win0_enable_bg0 = 1;
+    w->win0_enable_bg1 = 1;
+    w->win0_enable_bg2 = 1;
+    w->win0_enable_bg3 = 1;
+    w->win0_enable_obj = 1;
     SetWOutLayers(1, 1, 1, 1, 1);
 
-    gDispIo.win_ct.win0_enable_blend = 1;
+    w->win0_enable_blend = 1;
     gDispIo.win_ct.wout_enable_blend = 0;
 
     SetBlendBrighten(0);
@@ -39,9 +46,6 @@ void sub_0807CC5C(struct ProcWorldFlush * proc)
 
     PlaySoundEffect(0x269);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0807CC5C.s");
-#endif
 
 void sub_0807CD4C(struct ProcWorldFlush * proc)
 {

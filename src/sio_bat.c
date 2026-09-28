@@ -95,12 +95,13 @@ void sub_080403B0(struct SioBatProc * proc)
     return;
 }
 
-#if NONMATCHING
-// register allocation only (temporaries in r2 instead of r0/r1)
 extern u8 const gUnk_081D5352[];
 
+// FAKEMATCH (found by decomp-permuter): reading _unk2_ through a local
+// pointer puts the reload temporaries in r2.
 void sub_08040444(void)
 {
+    struct SioSaveConf * conf;
     int i;
     int j;
 
@@ -117,6 +118,7 @@ void sub_08040444(void)
         ReadMultiArenaSaveTeam(gLinkArenaSt.unk_06[i], unit, gUnk_Sio_0203DAC5[i]);
 
         gLinkArenaSt.unk_05 = gLinkArenaSt.unk_05;
+        conf = &gSioSaveConfig;
 
         for (j = 0; j < 5; j++)
         {
@@ -128,7 +130,7 @@ void sub_08040444(void)
             SetUnitStatus(unit, 0);
             unit->rescue = 0;
 
-            if ((gSioSaveConfig._unk2_) == 0)
+            if (conf->_unk2_ == 0)
                 sub_0803DD40(unit);
             else
                 sub_08048E0C(unit);
@@ -154,9 +156,6 @@ void sub_08040444(void)
 
     gLinkArenaSt.unk_A0 = gLinkArenaSt.unk_05 + 2;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08040444.s");
-#endif
 
 extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN2[];
 

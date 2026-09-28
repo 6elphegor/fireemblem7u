@@ -2006,6 +2006,7 @@ gUnknown_085A9884 = 0x08B99084;
 gUnknown_085ADDA8 = 0x081C8164;
 Tsa_SioResultRankings = 0x081C87A0;
 gSioPlayerMsgLut = 0x081D53B0;
+gUnk_081D5352 = 0x081D5352;
 gUnknown_081D5394 = 0x081D5394;
 gSioRankMsgLut = 0x081D539C;
 gSioStr_Pts = 0x081D53C8;
