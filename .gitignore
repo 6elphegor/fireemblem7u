@@ -2,8 +2,8 @@
 build/
 *.elf
 *.map
-tools/agbcc/
-tools/gbadisasm/
+tools/agbcc
+tools/gbadisasm
 __pycache__/
 .DS_Store
 .claude/
