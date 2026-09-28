@@ -1,0 +1,36 @@
+# Power on and leave the game alone: the opening, the title screen and the
+# attract mode (class reels with battle animations, the opening again).
+# No keys at all.  20,000 frames (5.5 minutes of game time).
+
+wait 150
+shot boot_nintendo_presents     # "2003 Nintendo Presents"
+wait 750
+shot opening_dragons            # the Scouring story: CG backgrounds, text
+wait 1800
+shot opening_war
+wait 1500
+shot opening_islands            # "on to the islands beyond."
+wait 900
+shot title_logo                 # FIRE EMBLEM logo animation
+wait 500
+shot title_press_start
+wait 700
+shot reel_lord                  # class reel: Lyn's battle animation, stats, platform
+wait 600
+shot reel_cavalier
+wait 600
+shot reel_pegasus_knight
+wait 600
+shot reel_archer
+wait 600
+shot reel_fighter
+wait 800
+shot reel_cleric
+wait 2100
+shot opening_again              # attract loop: the opening a second time
+wait 3600
+shot title_again
+wait 1800
+shot opening_third
+wait 2600
+shot end

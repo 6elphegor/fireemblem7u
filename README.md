@@ -21,6 +21,8 @@ assembly/libraries, and data after the code is still incbin'd from the ROM.
 
 Requires `arm-none-eabi` binutils, `make`, `python3`, and a C compiler for
 the host with libpng (found through `pkg-config` or `libpng-config`).
+The optional runtime test (`make emutest`, see CONTRIBUTING) also needs
+libmgba (`brew install mgba`).
 
 ```sh
 tools/setup.sh          # builds agbcc and gbadisasm into tools/
@@ -145,6 +147,9 @@ This project stands on the work of others:
 * [decomp-permuter](https://github.com/simonlindholm/decomp-permuter)
   (Simon Lindholm and contributors), which found several of the matches.
 * Astra, who matched a number of the last stragglers.
+* [mGBA](https://mgba.io) (Jeffrey Pfau and contributors; MPL-2.0): the
+  runtime test (`make emutest`, `tools/emutest.c`) links against libmgba
+  as an external dependency; nothing of it is included here.
 
 Neither FireEmblem7J nor fireemblem8u carries a license; their code is reused
 here following the usual practice among these community decompilations.

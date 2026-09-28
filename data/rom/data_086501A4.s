@@ -7932,23 +7932,43 @@ AnimScr_EfxLvupOBJ2:
 	.4byte gUnk_08B9C898 + 0x1
 	.4byte gUnk_08B9C934 + 0x1
 	.4byte gUnk_08B9C9C4 + 0x20000002
-	.incbin "baserom.gba", 0xb9ca70, 0x88
+	.incbin "baserom.gba", 0xb9ca70, 0x4
+
+	.global gUnk_08B9CA74
+gUnk_08B9CA74:
+	.incbin "baserom.gba", 0xb9ca74, 0x84
 
 	.global AnimScr_EkrMainMini_L_Far
 AnimScr_EkrMainMini_L_Far:
-	.incbin "baserom.gba", 0xb9caf8, 0x8c
+	.4byte gUnk_08B9CA74 + 0x10000000
+	.incbin "baserom.gba", 0xb9cafc, 0x4
+
+	.global gUnk_08B9CB00
+gUnk_08B9CB00:
+	.incbin "baserom.gba", 0xb9cb00, 0x84
 
 	.global AnimScr_EkrMainMini_R_Far
 AnimScr_EkrMainMini_R_Far:
-	.incbin "baserom.gba", 0xb9cb84, 0x80
+	.4byte gUnk_08B9CB00 + 0x10000000
+	.incbin "baserom.gba", 0xb9cb88, 0x4
+
+	.global gUnk_08B9CB8C
+gUnk_08B9CB8C:
+	.incbin "baserom.gba", 0xb9cb8c, 0x78
 
 	.global AnimScr_EkrMainMini_L_Close
 AnimScr_EkrMainMini_L_Close:
-	.incbin "baserom.gba", 0xb9cc04, 0x80
+	.4byte gUnk_08B9CB8C + 0x10000000
+	.incbin "baserom.gba", 0xb9cc08, 0x4
+
+	.global gUnk_08B9CC0C
+gUnk_08B9CC0C:
+	.incbin "baserom.gba", 0xb9cc0c, 0x78
 
 	.global AnimScr_EkrMainMini_R_Close
 AnimScr_EkrMainMini_R_Close:
-	.incbin "baserom.gba", 0xb9cc84, 0x7c
+	.4byte gUnk_08B9CC0C + 0x10000000
+	.incbin "baserom.gba", 0xb9cc88, 0x78
 
 	.global gUnk_08B9CD00
 gUnk_08B9CD00:
