@@ -55,6 +55,9 @@ bulk edits, `rm -rf build/asm build/src` before building.
      `fe7u.lds`.
 
 The compiler is `old_agbcc` at `-O2` (a few modules differ; see Makefile).
+`src/main.c` also needs `-mtpcs-frame`, which stock agbcc lacks:
+`tools/setup.sh` applies `tools/agbcc-tpcs-frame.patch` (a port of GCC 2.95's
+Thumb backtrace frames; output without the flag is unchanged).
 Matching tips: statement order, temporaries, `s8/u8/s16` vs `int`, and
 `if`/`switch` shape all change codegen; FE7J's sources show the idioms that
 match this compiler.

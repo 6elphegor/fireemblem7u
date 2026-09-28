@@ -8,6 +8,8 @@ trap 'rm -rf "$tmp"' EXIT
 
 if [ ! -x "$here/tools/agbcc/bin/agbcc" ]; then
     git clone -q https://github.com/pret/agbcc.git "$tmp/agbcc"
+    # adds -mtpcs-frame (GCC 2.95 Thumb backtrace frames), needed by src/main.c
+    git -C "$tmp/agbcc" apply "$here/tools/agbcc-tpcs-frame.patch"
     (cd "$tmp/agbcc" && ./build.sh >/dev/null)
     d="$here/tools/agbcc"
     mkdir -p "$d/bin" "$d/include" "$d/lib"

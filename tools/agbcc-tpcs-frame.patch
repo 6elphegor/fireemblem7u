@@ -1,0 +1,422 @@
+diff --git a/gcc/thumb.c b/gcc/thumb.c
+index f773ec0..978678b 100755
+--- a/gcc/thumb.c
++++ b/gcc/thumb.c
+@@ -552,6 +552,236 @@ number_of_first_bit_set(int mask)
+ /* Generate code to return from a thumb function.
+    If 'reg_containing_return_addr' is -1, then the return address is
+    actually on the stack, at the stack pointer.  */
++static void thumb_pushpop(FILE *f, int mask, int push);
++
++/* thumb_exit() for functions with a TPCS backtrace structure
++   (-mtpcs-frame), ported from GCC 2.95: pop the return address
++   and restore FP and SP from the backtrace structure.  */
++static void
++thumb_exit_backtrace(FILE *f, int reg_containing_return_addr)
++{
++    int regs_available_for_popping;
++    int regs_to_pop;
++    int pops_needed;
++    int available;
++    int required;
++    int mode;
++    int size;
++    int restore_a4 = FALSE;
++
++    /* Compute the registers we need to pop.  */
++    regs_to_pop = 0;
++    pops_needed = 0;
++
++    if (reg_containing_return_addr == -1)
++    {
++        regs_to_pop |= 1 << LINK_REGISTER;
++        ++pops_needed;
++    }
++
++    /* Restore frame pointer and stack pointer.  */
++    regs_to_pop |= (1 << FRAME_POINTER) | (1 << STACK_POINTER);
++    pops_needed += 2;
++
++    /* Find out how many of the (return) argument registers we can corrupt. */
++    regs_available_for_popping = 0;
++
++    if (current_function_return_rtx != 0)
++        mode = GET_MODE(current_function_return_rtx);
++    else
++        mode = DECL_MODE(DECL_RESULT(current_function_decl));
++
++    size = GET_MODE_SIZE(mode);
++
++    if (size == 0)
++    {
++        /* In a void function we can use any argument register.
++           In a function that returns a structure on the stack
++           we can use the second and third argument registers.  */
++        if (mode == VOIDmode)
++            regs_available_for_popping =
++                (1 << ARG_1_REGISTER)
++              | (1 << ARG_2_REGISTER)
++              | (1 << ARG_3_REGISTER);
++        else
++            regs_available_for_popping =
++                (1 << ARG_2_REGISTER)
++              | (1 << ARG_3_REGISTER);
++    }
++    else if (size <= 4)
++        regs_available_for_popping =
++            (1 << ARG_2_REGISTER)
++          | (1 << ARG_3_REGISTER);
++    else if (size <= 8)
++        regs_available_for_popping =
++            (1 << ARG_3_REGISTER);
++
++    /* Match registers to be popped with registers into which we pop them.  */
++    for (available = regs_available_for_popping,
++         required  = regs_to_pop;
++         required != 0 && available != 0;
++         available &= ~(available & - available),
++         required  &= ~(required  & - required))
++        --pops_needed;
++
++    /* If we have any popping registers left over, remove them.  */
++    if (available > 0)
++        regs_available_for_popping &= ~available;
++
++    /* Otherwise if we need another popping register we can use
++       the fourth argument register.  */
++    else if (pops_needed)
++    {
++        /* If we have not found any free argument registers and
++           reg a4 contains the return address, we must move it.  */
++        if (regs_available_for_popping == 0
++            && reg_containing_return_addr == ARG_4_REGISTER)
++        {
++            asm_fprintf(f, "\tmov\t%s, %s\n",
++                        reg_names[LINK_REGISTER], reg_names[ARG_4_REGISTER]);
++            reg_containing_return_addr = LINK_REGISTER;
++        }
++        else if (size > 12)
++        {
++            /* Register a4 is being used to hold part of the return value,
++               but we have dire need of a free, low register.  */
++            restore_a4 = TRUE;
++
++            asm_fprintf(f, "\tmov\t%s, %s\n",
++                        reg_names[IP_REGISTER], reg_names[ARG_4_REGISTER]);
++        }
++
++        if (reg_containing_return_addr != ARG_4_REGISTER)
++        {
++            /* The fourth argument register is available.  */
++            regs_available_for_popping |= 1 << ARG_4_REGISTER;
++
++            --pops_needed;
++        }
++    }
++
++    /* Pop as many registers as we can.  */
++    thumb_pushpop(f, regs_available_for_popping, FALSE);
++
++    /* Process the registers we popped.  */
++    if (reg_containing_return_addr == -1)
++    {
++        /* The return address was popped into the lowest numbered register.  */
++        regs_to_pop &= ~(1 << LINK_REGISTER);
++
++        reg_containing_return_addr =
++            number_of_first_bit_set(regs_available_for_popping);
++
++        /* Remove this register for the mask of available registers, so that
++           the return address will not be corrupted by futher pops.  */
++        regs_available_for_popping &= ~(1 << reg_containing_return_addr);
++    }
++
++    /* If we popped other registers then handle them here.  */
++    if (regs_available_for_popping)
++    {
++        int frame_pointer;
++
++        /* Work out which register currently contains the frame pointer.  */
++        frame_pointer = number_of_first_bit_set(regs_available_for_popping);
++
++        /* Move it into the correct place.  */
++        asm_fprintf(f, "\tmov\tfp, %s\n", reg_names[frame_pointer]);
++
++        /* (Temporarily) remove it from the mask of popped registers.  */
++        regs_available_for_popping &= ~(1 << frame_pointer);
++        regs_to_pop &= ~(1 << FRAME_POINTER);
++
++        if (regs_available_for_popping)
++        {
++            int stack_pointer;
++
++            /* We popped the stack pointer as well, find the register that
++               contains it.*/
++            stack_pointer = number_of_first_bit_set(regs_available_for_popping);
++
++            /* Move it into the stack register.  */
++            asm_fprintf(f, "\tmov\tsp, %s\n", reg_names[stack_pointer]);
++
++            /* At this point we have popped all necessary registers.  */
++        }
++        else
++        {
++            /* Since we have just move the popped value into the frame
++               pointer, the popping register is available for reuse, and
++               we know that we still have the stack pointer left to pop.  */
++            regs_available_for_popping |= (1 << frame_pointer);
++        }
++    }
++
++    /* If we still have registers left on the stack, but we no longer have
++       any registers into which we can pop them, then we must move the return
++       address into the link register and make available the register that
++       contained it.  */
++    if (regs_available_for_popping == 0 && pops_needed > 0)
++    {
++        regs_available_for_popping |= 1 << reg_containing_return_addr;
++
++        asm_fprintf(f, "\tmov\t%s, %s\n",
++                    reg_names[LINK_REGISTER],
++                    reg_names[reg_containing_return_addr]);
++
++        reg_containing_return_addr = LINK_REGISTER;
++    }
++
++    /* If we have registers left on the stack then pop some more.
++       We know that at most we will want to pop FP and SP.  */
++    if (pops_needed > 0)
++    {
++        int popped_into;
++        int move_to;
++
++        thumb_pushpop(f, regs_available_for_popping, FALSE);
++
++        /* We have popped either FP or SP.
++           Move whichever one it is into the correct register.  */
++        popped_into = number_of_first_bit_set(regs_available_for_popping);
++        move_to     = number_of_first_bit_set(regs_to_pop);
++
++        asm_fprintf(f, "\tmov\t%s, %s\n",
++                    reg_names[move_to], reg_names[popped_into]);
++
++        regs_to_pop &= ~(1 << move_to);
++
++        --pops_needed;
++    }
++
++    /* If we still have not popped everything then we must have only
++       had one register available to us and we are now popping the SP.  */
++    if (pops_needed > 0)
++    {
++        int popped_into;
++
++        thumb_pushpop(f, regs_available_for_popping, FALSE);
++
++        popped_into = number_of_first_bit_set(regs_available_for_popping);
++
++        asm_fprintf(f, "\tmov\tsp, %s\n", reg_names[popped_into]);
++    }
++
++    /* If necessary restore the a4 register.  */
++    if (restore_a4)
++    {
++        if (reg_containing_return_addr != LINK_REGISTER)
++        {
++            asm_fprintf(f, "\tmov\t%s, %s\n",
++                        reg_names[LINK_REGISTER], reg_names[ARG_4_REGISTER]);
++            reg_containing_return_addr = LINK_REGISTER;
++        }
++
++        asm_fprintf(f, "\tmov\t%s, %s\n",
++                    reg_names[ARG_4_REGISTER], reg_names[IP_REGISTER]);
++    }
++
++    /* Return to caller.  */
++    asm_fprintf(f, "\tbx\t%s\n", reg_names[reg_containing_return_addr]);
++}
++
+ static void
+ thumb_exit(FILE *f, int reg_containing_return_addr)
+ {
+@@ -560,6 +790,12 @@ thumb_exit(FILE *f, int reg_containing_return_addr)
+     int size;
+     int restore_a4 = FALSE;
+ 
++    if (TARGET_BACKTRACE)
++    {
++        thumb_exit_backtrace(f, reg_containing_return_addr);
++        return;
++    }
++
+     if (reg_containing_return_addr != -1)
+     {
+         /* If the return address is in a register,
+@@ -686,7 +922,7 @@ thumb_pushpop(FILE *f, int mask, int push)
+     {
+         /* Catch popping the PC.  */
+ 
+-        if (TARGET_THUMB_INTERWORK)
++        if (TARGET_THUMB_INTERWORK || TARGET_BACKTRACE)
+         {
+             /* The PC is never popped directly, instead
+                it is popped into r0-r3 and then BX is used. */
+@@ -744,6 +980,89 @@ far_jump_used_p()
+ 
+ static int return_used_this_function = 0;
+ 
++/* Emit the TPCS backtrace structure creation code (-mtpcs-frame),
++   ported from GCC 2.95.  The code looks like this:
++
++     0   .align 2
++     0   func:
++     0     sub   SP, #16         Reserve space for 4 registers.
++     2     push  {R7}            Get a work register.
++     4     add   R7, SP, #20     Get the stack pointer before the push.
++     6     str   R7, [SP, #8]    Store the stack pointer (before reserving the space).
++     8     mov   R7, PC          Get hold of the start of this code plus 12.
++    10     str   R7, [SP, #16]   Store it.
++    12     mov   R7, FP          Get hold of the current frame pointer.
++    14     str   R7, [SP, #4]    Store it.
++    16     mov   R7, LR          Get hold of the current return address.
++    18     str   R7, [SP, #12]   Store it.
++    20     add   R7, SP, #16     Point at the start of the backtrace structure.
++    22     mov   FP, R7          Put this value into the frame pointer.  */
++static void
++thumb_backtrace_prologue(FILE *f, int live_regs_mask)
++{
++    char *name;
++    int offset;
++    int work_register = 0;
++    char *fmt_add = flag_hex_asm ? "\tadd\t%s, sp, #0x%x\n" : "\tadd\t%s, sp, #%d\n";
++    char *fmt_str = flag_hex_asm ? "\tstr\t%s, [sp, #0x%x]\n" : "\tstr\t%s, [sp, #%d]\n";
++
++    if ((live_regs_mask & 0xFF) == 0)
++    {
++        /* See if the a4 register is free.  */
++        if (regs_ever_live[3] == 0)
++            work_register = 3;
++        else /* We must push a register of our own */
++            live_regs_mask |= (1 << 7);
++    }
++
++    if (work_register == 0)
++    {
++        /* Select a register from the list that will be pushed to use as our work register. */
++        for (work_register = 8; work_register--;)
++            if ((1 << work_register) & live_regs_mask)
++                break;
++    }
++
++    name = reg_names[work_register];
++
++    if (flag_hex_asm)
++        asm_fprintf(f, "\tsub\tsp, sp, #0x10\n");
++    else
++        asm_fprintf(f, "\tsub\tsp, sp, #16\n");
++
++    if (live_regs_mask)
++        thumb_pushpop(f, live_regs_mask, 1);
++
++    for (offset = 0, work_register = 1 << 15; work_register; work_register >>= 1)
++        if (work_register & live_regs_mask)
++            offset += 4;
++
++    asm_fprintf(f, fmt_add, name, offset + 16 + current_function_pretend_args_size);
++    asm_fprintf(f, fmt_str, name, offset + 4);
++
++    /* Make sure that the instruction fetching the PC is in the right place
++       to calculate "start of backtrace creation code + 12".  */
++    if (live_regs_mask)
++    {
++        asm_fprintf(f, "\tmov\t%s, pc\n", name);
++        asm_fprintf(f, fmt_str, name, offset + 12);
++        asm_fprintf(f, "\tmov\t%s, fp\n", name);
++        asm_fprintf(f, fmt_str, name, offset);
++    }
++    else
++    {
++        asm_fprintf(f, "\tmov\t%s, fp\n", name);
++        asm_fprintf(f, fmt_str, name, offset);
++        asm_fprintf(f, "\tmov\t%s, pc\n", name);
++        asm_fprintf(f, fmt_str, name, offset + 12);
++    }
++
++    asm_fprintf(f, "\tmov\t%s, lr\n", name);
++    asm_fprintf(f, fmt_str, name, offset + 8);
++    asm_fprintf(f, fmt_add, name, offset + 12);
++    asm_fprintf(f, "\tmov\tfp, %s\n", name);
++}
++
+ void
+ thumb_function_prologue(FILE *f, int frame_size)
+ {
+@@ -785,7 +1104,9 @@ thumb_function_prologue(FILE *f, int frame_size)
+     if (live_regs_mask || !leaf_function_p() || far_jump_used_p())
+         live_regs_mask |= 1 << 14;
+ 
+-    if (live_regs_mask)
++    if (TARGET_BACKTRACE)
++        thumb_backtrace_prologue(f, live_regs_mask);
++    else if (live_regs_mask)
+         thumb_pushpop(f, live_regs_mask, 1);
+ 
+     for (regno = 8; regno < 13; regno++)
+@@ -1064,7 +1385,15 @@ thumb_unexpanded_epilogue()
+ 
+     had_to_push_lr = (live_regs_mask || !leaf_function || far_jump_used_p());
+ 
+-    if (current_function_pretend_args_size == 0)
++    if (TARGET_BACKTRACE && ((live_regs_mask & 0xFF) == 0) && regs_ever_live[ARG_4_REGISTER] != 0)
++    {
++        /* The stack backtrace structure creation code had to
++           push R7 in order to get a work register, so we pop
++           it now.   */
++        live_regs_mask |= (1 << WORK_REGISTER);
++    }
++
++    if (current_function_pretend_args_size == 0 || TARGET_BACKTRACE)
+     {
+         if (had_to_push_lr)
+             live_regs_mask |= 1 << PROGRAM_COUNTER;
+diff --git a/gcc/thumb.h b/gcc/thumb.h
+index 9911f76..d1ceb21 100755
+--- a/gcc/thumb.h
++++ b/gcc/thumb.h
+@@ -49,6 +49,13 @@ extern int target_flags;
+ #define TARGET_DEFAULT          0 /* ARM_FLAG_THUMB */
+ #define TARGET_THUMB_INTERWORK	(target_flags & ARM_FLAG_THUMB)
+ 
++/* TPCS backtrace frame (-mtpcs-frame / -mtpcs-leaf-frame), from GCC 2.95.  */
++#define THUMB_FLAG_BACKTRACE			0x0002
++#define THUMB_FLAG_LEAF_BACKTRACE		0x0004
++#define TARGET_BACKTRACE	(leaf_function_p()			      \
++				 ? (target_flags & THUMB_FLAG_LEAF_BACKTRACE) \
++				 : (target_flags & THUMB_FLAG_BACKTRACE))
++
+ #define TARGET_LONG_CALLS		(target_flags & ARM_FLAG_LONG_CALLS)
+ 
+ /* SUBTARGET_SWITCHES is used to add flags on a per-config basis. */
+@@ -63,6 +70,10 @@ extern int target_flags;
+   {"long-calls",		ARM_FLAG_LONG_CALLS,		\
+    "Generate all call instructions as indirect calls"},		\
+   {"no-long-calls",	       -ARM_FLAG_LONG_CALLS, ""},	\
++  {"tpcs-frame",		    THUMB_FLAG_BACKTRACE},	\
++  {"no-tpcs-frame",                -THUMB_FLAG_BACKTRACE},	\
++  {"tpcs-leaf-frame",	  	    THUMB_FLAG_LEAF_BACKTRACE},	\
++  {"no-tpcs-leaf-frame",           -THUMB_FLAG_LEAF_BACKTRACE},	\
+   SUBTARGET_SWITCHES						\
+   {"",                          TARGET_DEFAULT}         	\
+ }
+@@ -616,6 +627,11 @@ int thumb_shiftable_const ();
+ 	  count_regs++;						\
+       if (count_regs || ! leaf_function_p () || far_jump_used_p())	\
+ 	(OFFSET) += 4 * (count_regs + 1);			\
++      if (TARGET_BACKTRACE) {					\
++	if ((count_regs & 0xFF) == 0 && (regs_ever_live[3] != 0))	\
++	  (OFFSET) += 20;					\
++	else							\
++	  (OFFSET) += 16; }					\
+     }								\
+   if ((TO) == STACK_POINTER_REGNUM)				\
+     (OFFSET) += current_function_outgoing_args_size;		\

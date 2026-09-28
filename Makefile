@@ -64,6 +64,7 @@ build/src/ramfunc.o: CFLAGS += -O0
 build/src/mu.o build/src/bmshop.o build/src/uiarena.o: CFLAGS += -O0
 build/src/mapanim.o build/src/mapanim_api.o build/src/mapanim_infobox.o build/src/mapanim_expbar.o build/src/mapanim_debug.o build/src/mapanim_specialeffect.o build/src/mapanim_staffeffect.o build/src/mapanim_lvupfx.o build/src/mapanim_lvup.o build/src/mapanim_spellassocfx.o build/src/mapanim_spellassoc.o build/src/scanline.o: CFLAGS += -O0
 build/src/agb-sram.o: CFLAGS += -O1
+build/src/main.o: CFLAGS += -mtpcs-frame
 
 # ASM_FUNC pulls asm/nonmatching/*.s into C objects via .include.
 $(C_OBJS): $(wildcard asm/nonmatching/*.s)

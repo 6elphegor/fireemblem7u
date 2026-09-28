@@ -5,12 +5,12 @@ extern const char gBuildDateStr[];
 extern const char gBuildNameStr[];
 
 void sub_080009FC(void);
-void sub_08003F6C(void);
+void Sound_SetDefaultMaxNumChannels(void);
 void StartGame(void);
 void DebugPutStr(u16 * tm, const char * str);
 
-// These were compiled with -mtpcs-frame, which old_agbcc doesn't support.
-#if NONMATCHING
+// main.c is compiled with -mtpcs-frame (see Makefile): the original has
+// TPCS backtrace frames. old_agbcc needs tools/agbcc-tpcs-frame.patch for it.
 void AgbMain(void)
 {
     DmaFill32(3, 0, (void *) IWRAM_START, 0x7F80);
@@ -40,7 +40,7 @@ void AgbMain(void)
     LoadAndVerifySramSaveData();
 
     m4aSoundInit();
-    sub_08003F6C();
+    Sound_SetDefaultMaxNumChannels();
 
     SetOnVBlank(OnVBlank);
     SetLang(0);
@@ -54,16 +54,9 @@ void AgbMain(void)
     }
 }
 
-#else
-ASM_FUNC("asm/nonmatching/code_08000A50.s");
-#endif
 
-#if NONMATCHING
 void PutBuildInfo(u16 * tm)
 {
     DebugPutStr(tm, gBuildDateStr);
     DebugPutStr(tm - 0x20, gBuildNameStr);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08000B1C.s");
-#endif
