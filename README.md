@@ -89,7 +89,6 @@ guaranteed.
 | Path | Contents |
 | --- | --- |
 | `asm/crt0.s` | ARM startup and IWRAM routines (`0x08000000`) |
-| `asm/code_*.s` | Game code not yet decompiled, named by start address |
 | `asm/m4a_1.s` + `src/m4a.c`, `src/m4a_tables.c` | MusicPlayer2000 sound engine (hand-written asm part + C part) |
 | `asm/libagb.s`, `veneers.s` | Library code; libc and libgcc are linked from agbcc's `libc.a`/`libgcc.a` (members listed in `fe7u.lds`) |
 | `src/` | Decompiled C |
