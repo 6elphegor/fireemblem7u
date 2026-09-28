@@ -1,5 +1,34 @@
 #include "gbafe.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_081F4254[];
+extern const u8 gUnk_081F57E4[];
+extern const u8 gUnk_081F6560[];
+extern const u8 gUnk_081F6580[];
+extern const u8 gUnk_081F65C0[];
+extern const u8 gUnk_081F6778[];
+extern const u8 gUnk_081F690C[];
+extern const u8 gUnk_081F6AC4[];
+extern const u8 gUnk_081F6C88[];
+extern const u8 gUnk_081F6DC4[];
+extern const u8 gUnk_081F6E5C[];
+extern const u8 gUnk_081F6F50[];
+extern const u8 gUnk_081F7040[];
+extern const u8 gUnk_081F7130[];
+extern const u8 gUnk_081F7298[];
+extern const u8 gUnk_081F73AC[];
+extern const u8 gUnk_081F7528[];
+extern const u8 gUnk_081F7650[];
+extern const u8 gUnk_081F7834[];
+extern const u8 gUnk_081F7984[];
+extern const u8 gUnk_081F7B10[];
+extern const u8 gUnk_081F7BFC[];
+extern const u8 gUnk_081F7CDC[];
+extern const u8 gUnk_081F7DD4[];
+extern const u8 gUnk_081F7EF8[];
+extern const u8 gUnk_081F8044[];
+extern const u8 gUnk_081F81B4[];
+
 /**
  * Class change (promotion) battle animation (fireemblem8u: banim-ekrclasschg.c)
  */
@@ -117,81 +146,81 @@ CONST_DATA struct ProcCmd ProcScr_efxClasschgBG[] = {
 };
 
 CONST_DATA u16 * TsaLut_EkrClasschgBG[] = {
-    (u16 *) 0x081F65C0,
-    (u16 *) 0x081F6778,
-    (u16 *) 0x081F690C,
-    (u16 *) 0x081F6AC4,
-    (u16 *) 0x081F6C88,
-    (u16 *) 0x081F6DC4,
-    (u16 *) 0x081F6E5C,
-    (u16 *) 0x081F6F50,
-    (u16 *) 0x081F7040,
-    (u16 *) 0x081F7130,
-    (u16 *) 0x081F7298,
-    (u16 *) 0x081F73AC,
-    (u16 *) 0x081F7528,
-    (u16 *) 0x081F7650,
-    (u16 *) 0x081F7834,
-    (u16 *) 0x081F7984,
-    (u16 *) 0x081F7B10,
-    (u16 *) 0x081F7BFC,
-    (u16 *) 0x081F7CDC,
-    (u16 *) 0x081F7DD4,
-    (u16 *) 0x081F7EF8,
-    (u16 *) 0x081F8044,
-    (u16 *) 0x081F81B4,
+    (u16 *) gUnk_081F65C0,
+    (u16 *) gUnk_081F6778,
+    (u16 *) gUnk_081F690C,
+    (u16 *) gUnk_081F6AC4,
+    (u16 *) gUnk_081F6C88,
+    (u16 *) gUnk_081F6DC4,
+    (u16 *) gUnk_081F6E5C,
+    (u16 *) gUnk_081F6F50,
+    (u16 *) gUnk_081F7040,
+    (u16 *) gUnk_081F7130,
+    (u16 *) gUnk_081F7298,
+    (u16 *) gUnk_081F73AC,
+    (u16 *) gUnk_081F7528,
+    (u16 *) gUnk_081F7650,
+    (u16 *) gUnk_081F7834,
+    (u16 *) gUnk_081F7984,
+    (u16 *) gUnk_081F7B10,
+    (u16 *) gUnk_081F7BFC,
+    (u16 *) gUnk_081F7CDC,
+    (u16 *) gUnk_081F7DD4,
+    (u16 *) gUnk_081F7EF8,
+    (u16 *) gUnk_081F8044,
+    (u16 *) gUnk_081F81B4,
 };
 
 CONST_DATA u16 * ImgLut_EkrClasschgBG[] = {
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F4254,
-    (u16 *) 0x081F57E4,
-    (u16 *) 0x081F57E4,
-    (u16 *) 0x081F57E4,
-    (u16 *) 0x081F57E4,
-    (u16 *) 0x081F57E4,
-    (u16 *) 0x081F57E4,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F4254,
+    (u16 *) gUnk_081F57E4,
+    (u16 *) gUnk_081F57E4,
+    (u16 *) gUnk_081F57E4,
+    (u16 *) gUnk_081F57E4,
+    (u16 *) gUnk_081F57E4,
+    (u16 *) gUnk_081F57E4,
 };
 
 CONST_DATA u16 * PalLut_EkrClasschgBG[] = {
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6560,
-    (u16 *) 0x081F6580,
-    (u16 *) 0x081F6580,
-    (u16 *) 0x081F6580,
-    (u16 *) 0x081F6580,
-    (u16 *) 0x081F6580,
-    (u16 *) 0x081F6580,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6560,
+    (u16 *) gUnk_081F6580,
+    (u16 *) gUnk_081F6580,
+    (u16 *) gUnk_081F6580,
+    (u16 *) gUnk_081F6580,
+    (u16 *) gUnk_081F6580,
+    (u16 *) gUnk_081F6580,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxClasschgBGSE00[] = {

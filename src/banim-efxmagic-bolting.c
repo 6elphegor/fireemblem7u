@@ -1,5 +1,21 @@
 #include "gbafe.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_0820ABBC[];
+extern const u8 gUnk_0820B78C[];
+extern const u8 gUnk_0820C7F8[];
+extern const u8 gUnk_0820D5E4[];
+extern const u8 gUnk_0820D778[];
+extern const u8 gUnk_0820D980[];
+extern const u8 gUnk_0820DAE4[];
+extern const u8 gUnk_0820DBC4[];
+extern const u8 gUnk_0820DCDC[];
+extern const u8 gUnk_0820DE88[];
+extern const u8 gUnk_0820DFA8[];
+extern const u8 gUnk_0820E094[];
+extern const u8 gUnk_0820E17C[];
+extern const u8 gUnk_0820E214[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -41,31 +57,31 @@ CONST_DATA struct ProcCmd gProcScr_efxThunderstormBG[] = {
 };
 
 CONST_DATA u16 * ImgArray_BoltingBg[] = {
-    (u16 *) 0x0820ABBC,
-    (u16 *) 0x0820ABBC,
-    (u16 *) 0x0820ABBC,
-    (u16 *) 0x0820ABBC,
-    (u16 *) 0x0820B78C,
-    (u16 *) 0x0820B78C,
-    (u16 *) 0x0820B78C,
-    (u16 *) 0x0820B78C,
-    (u16 *) 0x0820B78C,
-    (u16 *) 0x0820B78C,
-    (u16 *) 0x0820C7F8,
+    (u16 *) gUnk_0820ABBC,
+    (u16 *) gUnk_0820ABBC,
+    (u16 *) gUnk_0820ABBC,
+    (u16 *) gUnk_0820ABBC,
+    (u16 *) gUnk_0820B78C,
+    (u16 *) gUnk_0820B78C,
+    (u16 *) gUnk_0820B78C,
+    (u16 *) gUnk_0820B78C,
+    (u16 *) gUnk_0820B78C,
+    (u16 *) gUnk_0820B78C,
+    (u16 *) gUnk_0820C7F8,
 };
 
 CONST_DATA u16 * TsaArray_BoltingBg[] = {
-    (u16 *) 0x0820D5E4,
-    (u16 *) 0x0820D778,
-    (u16 *) 0x0820D980,
-    (u16 *) 0x0820DAE4,
-    (u16 *) 0x0820DBC4,
-    (u16 *) 0x0820DCDC,
-    (u16 *) 0x0820DE88,
-    (u16 *) 0x0820DFA8,
-    (u16 *) 0x0820E094,
-    (u16 *) 0x0820E17C,
-    (u16 *) 0x0820E214,
+    (u16 *) gUnk_0820D5E4,
+    (u16 *) gUnk_0820D778,
+    (u16 *) gUnk_0820D980,
+    (u16 *) gUnk_0820DAE4,
+    (u16 *) gUnk_0820DBC4,
+    (u16 *) gUnk_0820DCDC,
+    (u16 *) gUnk_0820DE88,
+    (u16 *) gUnk_0820DFA8,
+    (u16 *) gUnk_0820E094,
+    (u16 *) gUnk_0820E17C,
+    (u16 *) gUnk_0820E214,
 };
 
 CONST_DATA struct ProcCmd gProcScr_efxThunderstormOBJ[] = {

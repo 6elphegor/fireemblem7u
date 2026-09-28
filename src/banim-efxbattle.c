@@ -1,6 +1,13 @@
 #include "gbafe.h"
 #include "gbafe/banim_ekrdragon.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_081D8166[];
+extern const u8 gUnk_081D8178[];
+extern const u8 gUnk_081D819A[];
+extern const u8 gUnk_081D81AC[];
+extern const u8 gUnk_081D81BE[];
+
 /**
  * Battle camera scrolling and screen quakes (fireemblem8u: banim-efxbattle.c)
  */
@@ -107,15 +114,15 @@ CONST_DATA const void * EfxQuakePureVecs[] = {
     NULL,
     gEfxQuakeVecs4,
     NULL,
-    (const void *) 0x081D8166,
+    (const void *) gUnk_081D8166,
     NULL,
-    (const void *) 0x081D8178,
+    (const void *) gUnk_081D8178,
     NULL,
-    (const void *) 0x081D819A,
+    (const void *) gUnk_081D819A,
     NULL,
-    (const void *) 0x081D81AC,
+    (const void *) gUnk_081D81AC,
     NULL,
-    (const void *) 0x081D81BE,
+    (const void *) gUnk_081D81BE,
     NULL,
 };
 

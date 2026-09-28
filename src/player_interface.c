@@ -1,5 +1,13 @@
 #include "gbafe.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_08404688[];
+extern const u8 gUnk_084046DC[];
+extern const u8 gUnk_08404730[];
+extern const u8 gUnk_08404784[];
+extern const u8 gUnk_084047D8[];
+extern const u8 gUnk_0840482C[];
+
 extern u16 const gPal_PlayerInterface_Blue[];
 extern u16 const gPal_PlayerInterface_Red[];
 extern u16 const gPal_PlayerInterface_Green[];
@@ -52,12 +60,12 @@ CONST_DATA s8 gUnitBurstMapUiYOffsetTable[] = {
 };
 
 CONST_DATA u8 const * gUnitBurstMapUiTopTsaLut[] = {
-    (u8 *) 0x08404688,
-    (u8 *) 0x084046DC,
-    (u8 *) 0x08404730,
-    (u8 *) 0x08404784,
-    (u8 *) 0x084047D8,
-    (u8 *) 0x0840482C,
+    (u8 *) gUnk_08404688,
+    (u8 *) gUnk_084046DC,
+    (u8 *) gUnk_08404730,
+    (u8 *) gUnk_08404784,
+    (u8 *) gUnk_084047D8,
+    (u8 *) gUnk_0840482C,
 };
 
 CONST_DATA s8 sMMBSlideInWidthLut[] = {

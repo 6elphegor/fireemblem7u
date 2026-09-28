@@ -1,5 +1,183 @@
 #include "gbafe.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_083B8CAC[];
+extern const u8 gUnk_083B9670[];
+extern const u8 gUnk_083B97C8[];
+extern const u8 gUnk_083B9F88[];
+extern const u8 gUnk_083BA0E0[];
+extern const u8 gUnk_083BA990[];
+extern const u8 gUnk_083BAAE8[];
+extern const u8 gUnk_083BB458[];
+extern const u8 gUnk_083BB5B8[];
+extern const u8 gUnk_083BBE44[];
+extern const u8 gUnk_083BBFA4[];
+extern const u8 gUnk_083BCA90[];
+extern const u8 gUnk_083BCBE8[];
+extern const u8 gUnk_083BD38C[];
+extern const u8 gUnk_083BD4E4[];
+extern const u8 gUnk_083BDC4C[];
+extern const u8 gUnk_083BDDA4[];
+extern const u8 gUnk_083BE700[];
+extern const u8 gUnk_083BE860[];
+extern const u8 gUnk_083BF1E0[];
+extern const u8 gUnk_083BF340[];
+extern const u8 gUnk_083BFB28[];
+extern const u8 gUnk_083BFC80[];
+extern const u8 gUnk_083C04C4[];
+extern const u8 gUnk_083C061C[];
+extern const u8 gUnk_083C0E68[];
+extern const u8 gUnk_083C0FC8[];
+extern const u8 gUnk_083C184C[];
+extern const u8 gUnk_083C19AC[];
+extern const u8 gUnk_083C21A8[];
+extern const u8 gUnk_083C2300[];
+extern const u8 gUnk_083C2D0C[];
+extern const u8 gUnk_083C2E64[];
+extern const u8 gUnk_083C3758[];
+extern const u8 gUnk_083C38B0[];
+extern const u8 gUnk_083C4364[];
+extern const u8 gUnk_083C44C4[];
+extern const u8 gUnk_083C4C88[];
+extern const u8 gUnk_083C4DE0[];
+extern const u8 gUnk_083C55D4[];
+extern const u8 gUnk_083C572C[];
+extern const u8 gUnk_083C5F54[];
+extern const u8 gUnk_083C60AC[];
+extern const u8 gUnk_083C6920[];
+extern const u8 gUnk_083C6A78[];
+extern const u8 gUnk_083C7164[];
+extern const u8 gUnk_083C72BC[];
+extern const u8 gUnk_083C79D4[];
+extern const u8 gUnk_083C7B2C[];
+extern const u8 gUnk_083C8398[];
+extern const u8 gUnk_083C84F8[];
+extern const u8 gUnk_083C8D4C[];
+extern const u8 gUnk_083C8EAC[];
+extern const u8 gUnk_083C96EC[];
+extern const u8 gUnk_083C9844[];
+extern const u8 gUnk_083CA110[];
+extern const u8 gUnk_083CA268[];
+extern const u8 gUnk_083CABDC[];
+extern const u8 gUnk_083CAD34[];
+extern const u8 gUnk_083CB718[];
+extern const u8 gUnk_083CB870[];
+extern const u8 gUnk_083CC054[];
+extern const u8 gUnk_083CC1AC[];
+extern const u8 gUnk_083CC9E0[];
+extern const u8 gUnk_083CCB38[];
+extern const u8 gUnk_083CD41C[];
+extern const u8 gUnk_083CD574[];
+extern const u8 gUnk_083CDE30[];
+extern const u8 gUnk_083CDF88[];
+extern const u8 gUnk_083CE8D0[];
+extern const u8 gUnk_083CEA28[];
+extern const u8 gUnk_083CF3CC[];
+extern const u8 gUnk_083CF524[];
+extern const u8 gUnk_083CFEC8[];
+extern const u8 gUnk_083D0020[];
+extern const u8 gUnk_083D0A28[];
+extern const u8 gUnk_083D0B80[];
+extern const u8 gUnk_083D1494[];
+extern const u8 gUnk_083D15EC[];
+extern const u8 gUnk_083D1F88[];
+extern const u8 gUnk_083D20E0[];
+extern const u8 gUnk_083D2A68[];
+extern const u8 gUnk_083D2BC0[];
+extern const u8 gUnk_083D35DC[];
+extern const u8 gUnk_083D3734[];
+extern const u8 gUnk_083D4454[];
+extern const u8 gUnk_083D45AC[];
+extern const u8 gUnk_083D5340[];
+extern const u8 gUnk_083D5498[];
+extern const u8 gUnk_083D61E8[];
+extern const u8 gUnk_083D6348[];
+extern const u8 gUnk_083D7154[];
+extern const u8 gUnk_083D72BC[];
+extern const u8 gUnk_083D7A68[];
+extern const u8 gUnk_083D7BC0[];
+extern const u8 gUnk_083D83F0[];
+extern const u8 gUnk_083D8548[];
+extern const u8 gUnk_083D8E78[];
+extern const u8 gUnk_083D8FD0[];
+extern const u8 gUnk_083D98D0[];
+extern const u8 gUnk_083D9A28[];
+extern const u8 gUnk_083DA2A4[];
+extern const u8 gUnk_083DA3FC[];
+extern const u8 gUnk_083DABFC[];
+extern const u8 gUnk_083DAD54[];
+extern const u8 gUnk_083DB4FC[];
+extern const u8 gUnk_083DB654[];
+extern const u8 gUnk_083DBA34[];
+extern const u8 gUnk_083DBB8C[];
+extern const u8 gUnk_083DC578[];
+extern const u8 gUnk_083DC770[];
+extern const u8 gUnk_083DCF00[];
+extern const u8 gUnk_083DD090[];
+extern const u8 gUnk_083DD7F8[];
+extern const u8 gUnk_083DD950[];
+extern const u8 gUnk_083DDFA0[];
+extern const u8 gUnk_083DE0F8[];
+extern const u8 gUnk_083DE518[];
+extern const u8 gUnk_083DE670[];
+extern const u8 gUnk_083DEF18[];
+extern const u8 gUnk_083DF070[];
+extern const u8 gUnk_083DFC14[];
+extern const u8 gUnk_083DFD6C[];
+extern const u8 gUnk_083E0450[];
+extern const u8 gUnk_083E05A8[];
+extern const u8 gUnk_083E0C9C[];
+extern const u8 gUnk_083E0DF4[];
+extern const u8 gUnk_083E11D8[];
+extern const u8 gUnk_083E1330[];
+extern const u8 gUnk_083E1A64[];
+extern const u8 gUnk_083E1BBC[];
+extern const u8 gUnk_083E2438[];
+extern const u8 gUnk_083E2590[];
+extern const u8 gUnk_083E2AE4[];
+extern const u8 gUnk_083E2C3C[];
+extern const u8 gUnk_083E3248[];
+extern const u8 gUnk_083E33A0[];
+extern const u8 gUnk_083E3880[];
+extern const u8 gUnk_083E39D8[];
+extern const u8 gUnk_083E3DC8[];
+extern const u8 gUnk_083E3F20[];
+extern const u8 gUnk_083E4410[];
+extern const u8 gUnk_083E4568[];
+extern const u8 gUnk_083E4954[];
+extern const u8 gUnk_083E4AAC[];
+extern const u8 gUnk_083E4EBC[];
+extern const u8 gUnk_083E5014[];
+extern const u8 gUnk_083E54BC[];
+extern const u8 gUnk_083E5614[];
+extern const u8 gUnk_083E5CD4[];
+extern const u8 gUnk_083E5E2C[];
+extern const u8 gUnk_083E623C[];
+extern const u8 gUnk_083E6394[];
+extern const u8 gUnk_083E69B8[];
+extern const u8 gUnk_083E6B10[];
+extern const u8 gUnk_083E716C[];
+extern const u8 gUnk_083E72C4[];
+extern const u8 gUnk_083E7CEC[];
+extern const u8 gUnk_083E7E44[];
+extern const u8 gUnk_083E84CC[];
+extern const u8 gUnk_083E8624[];
+extern const u8 gUnk_083E8CAC[];
+extern const u8 gUnk_083E8E04[];
+extern const u8 gUnk_083E948C[];
+extern const u8 gUnk_083E95E4[];
+extern const u8 gUnk_083E9B38[];
+extern const u8 gUnk_083E9CA0[];
+extern const u8 gUnk_083EA18C[];
+extern const u8 gUnk_083EA2E4[];
+extern const u8 gUnk_083EA880[];
+extern const u8 gUnk_083EA9E8[];
+extern const u8 gUnk_083EB02C[];
+extern const u8 gUnk_083EB194[];
+extern const u8 gUnk_083EB800[];
+extern const u8 gUnk_083EB968[];
+extern const u8 gUnk_083EBCFC[];
+
 // not yet declared in headers
 int GetUnitSpritePalette(struct Unit * unit);
 void SetStandingMuFacing(int slot, u8 * vram);
@@ -183,105 +361,105 @@ struct ProcCmd CONST_DATA ProcScr_MuHitFlash[] = {
 
 // Map sprite graphics and animation of each class
 CONST_DATA struct MuInfo gMuInfoTable[] = {
-    [CLASS_LORD_ELIWOOD - 1] = { (u8 const *) 0x083B8CAC, (u16 const *) 0x083B9670 },
-    [CLASS_LORD_LYN - 1] = { (u8 const *) 0x083B97C8, (u16 const *) 0x083B9F88 },
-    [CLASS_LORD_HECTOR - 1] = { (u8 const *) 0x083BA0E0, (u16 const *) 0x083BA990 },
-    [CLASS_KNIGHT_LORD_04 - 1] = { (u8 const *) 0x083B8CAC, (u16 const *) 0x083B9670 },
-    [CLASS_BLADE_LORD_05 - 1] = { (u8 const *) 0x083B97C8, (u16 const *) 0x083B9F88 },
-    [CLASS_GREAT_LORD_06 - 1] = { (u8 const *) 0x083BA0E0, (u16 const *) 0x083BA990 },
-    [CLASS_KNIGHT_LORD - 1] = { (u8 const *) 0x083BAAE8, (u16 const *) 0x083BB458 },
-    [CLASS_BLADE_LORD - 1] = { (u8 const *) 0x083BB5B8, (u16 const *) 0x083BBE44 },
-    [CLASS_GREAT_LORD - 1] = { (u8 const *) 0x083BBFA4, (u16 const *) 0x083BCA90 },
-    [CLASS_MERCENARY - 1] = { (u8 const *) 0x083BCBE8, (u16 const *) 0x083BD38C },
-    [CLASS_MERCENARY_F - 1] = { (u8 const *) 0x083BD4E4, (u16 const *) 0x083BDC4C },
-    [CLASS_HERO - 1] = { (u8 const *) 0x083BDDA4, (u16 const *) 0x083BE700 },
-    [CLASS_HERO_F - 1] = { (u8 const *) 0x083BE860, (u16 const *) 0x083BF1E0 },
-    [CLASS_MYRMIDON - 1] = { (u8 const *) 0x083BF340, (u16 const *) 0x083BFB28 },
-    [CLASS_MYRMIDON_F - 1] = { (u8 const *) 0x083BFC80, (u16 const *) 0x083C04C4 },
-    [CLASS_SWORDMASTER - 1] = { (u8 const *) 0x083C061C, (u16 const *) 0x083C0E68 },
-    [CLASS_SWORDMASTER_F - 1] = { (u8 const *) 0x083C0FC8, (u16 const *) 0x083C184C },
-    [CLASS_FIGHTER - 1] = { (u8 const *) 0x083C19AC, (u16 const *) 0x083C21A8 },
-    [CLASS_WARRIOR - 1] = { (u8 const *) 0x083C2300, (u16 const *) 0x083C2D0C },
-    [CLASS_KNIGHT - 1] = { (u8 const *) 0x083C2E64, (u16 const *) 0x083C3758 },
-    [CLASS_KNIGHT_F - 1] = { (u8 const *) 0x083C2E64, (u16 const *) 0x083C3758 },
-    [CLASS_GENERAL - 1] = { (u8 const *) 0x083C38B0, (u16 const *) 0x083C4364 },
-    [CLASS_GENERAL_F - 1] = { (u8 const *) 0x083C38B0, (u16 const *) 0x083C4364 },
-    [CLASS_ARCHER - 1] = { (u8 const *) 0x083C44C4, (u16 const *) 0x083C4C88 },
-    [CLASS_ARCHER_F - 1] = { (u8 const *) 0x083C4DE0, (u16 const *) 0x083C55D4 },
-    [CLASS_SNIPER - 1] = { (u8 const *) 0x083C572C, (u16 const *) 0x083C5F54 },
-    [CLASS_SNIPER_F - 1] = { (u8 const *) 0x083C60AC, (u16 const *) 0x083C6920 },
-    [CLASS_MONK - 1] = { (u8 const *) 0x083C6A78, (u16 const *) 0x083C7164 },
-    [CLASS_CLERIC - 1] = { (u8 const *) 0x083C72BC, (u16 const *) 0x083C79D4 },
-    [CLASS_BISHOP - 1] = { (u8 const *) 0x083C7B2C, (u16 const *) 0x083C8398 },
-    [CLASS_BISHOP_F - 1] = { (u8 const *) 0x083C84F8, (u16 const *) 0x083C8D4C },
-    [CLASS_MAGE - 1] = { (u8 const *) 0x083C8EAC, (u16 const *) 0x083C96EC },
-    [CLASS_MAGE_F - 1] = { (u8 const *) 0x083C9844, (u16 const *) 0x083CA110 },
-    [CLASS_SAGE - 1] = { (u8 const *) 0x083CA268, (u16 const *) 0x083CABDC },
-    [CLASS_SAGE_F - 1] = { (u8 const *) 0x083CAD34, (u16 const *) 0x083CB718 },
-    [CLASS_SHAMAN - 1] = { (u8 const *) 0x083CB870, (u16 const *) 0x083CC054 },
-    [CLASS_SHAMAN_F - 1] = { (u8 const *) 0x083CC1AC, (u16 const *) 0x083CC9E0 },
-    [CLASS_DRUID - 1] = { (u8 const *) 0x083CCB38, (u16 const *) 0x083CD41C },
-    [CLASS_DRUID_F - 1] = { (u8 const *) 0x083CD574, (u16 const *) 0x083CDE30 },
-    [CLASS_CAVALIER - 1] = { (u8 const *) 0x083CDF88, (u16 const *) 0x083CE8D0 },
-    [CLASS_CAVALIER_F - 1] = { (u8 const *) 0x083CDF88, (u16 const *) 0x083CE8D0 },
-    [CLASS_PALADIN - 1] = { (u8 const *) 0x083CEA28, (u16 const *) 0x083CF3CC },
-    [CLASS_PALADIN_F - 1] = { (u8 const *) 0x083CEA28, (u16 const *) 0x083CF3CC },
-    [CLASS_TROUBADOUR - 1] = { (u8 const *) 0x083CF524, (u16 const *) 0x083CFEC8 },
-    [CLASS_VALKYRIE - 1] = { (u8 const *) 0x083D0020, (u16 const *) 0x083D0A28 },
-    [CLASS_NOMAD - 1] = { (u8 const *) 0x083D0B80, (u16 const *) 0x083D1494 },
-    [CLASS_NOMAD_F - 1] = { (u8 const *) 0x083D15EC, (u16 const *) 0x083D1F88 },
-    [CLASS_NOMAD_TROOPER - 1] = { (u8 const *) 0x083D20E0, (u16 const *) 0x083D2A68 },
-    [CLASS_NOMAD_TROOPER_F - 1] = { (u8 const *) 0x083D2BC0, (u16 const *) 0x083D35DC },
-    [CLASS_PEGASUS_KNIGHT - 1] = { (u8 const *) 0x083D3734, (u16 const *) 0x083D4454 },
-    [CLASS_FALCOKNIGHT - 1] = { (u8 const *) 0x083D45AC, (u16 const *) 0x083D5340 },
-    [CLASS_WYVERN_RIDER - 1] = { (u8 const *) 0x083D5498, (u16 const *) 0x083D61E8 },
-    [CLASS_WYVERN_RIDER_F - 1] = { (u8 const *) 0x083D5498, (u16 const *) 0x083D61E8 },
-    [CLASS_WYVERN_LORD - 1] = { (u8 const *) 0x083D6348, (u16 const *) 0x083D7154 },
-    [CLASS_WYVERN_LORD_F - 1] = { (u8 const *) 0x083D6348, (u16 const *) 0x083D7154 },
-    [CLASS_SOLDIER - 1] = { (u8 const *) 0x083D72BC, (u16 const *) 0x083D7A68 },
-    [CLASS_BRIGAND - 1] = { (u8 const *) 0x083D7BC0, (u16 const *) 0x083D83F0 },
-    [CLASS_PIRATE - 1] = { (u8 const *) 0x083D8548, (u16 const *) 0x083D8E78 },
-    [CLASS_BERSERKER - 1] = { (u8 const *) 0x083D8FD0, (u16 const *) 0x083D98D0 },
-    [CLASS_THIEF - 1] = { (u8 const *) 0x083D9A28, (u16 const *) 0x083DA2A4 },
-    [CLASS_THIEF_F - 1] = { (u8 const *) 0x083DA3FC, (u16 const *) 0x083DABFC },
-    [CLASS_ASSASSIN - 1] = { (u8 const *) 0x083DAD54, (u16 const *) 0x083DB4FC },
-    [CLASS_CIVILIAN - 1] = { (u8 const *) 0x083DB654, (u16 const *) 0x083DBA34 },
-    [CLASS_DANCER - 1] = { (u8 const *) 0x083DBB8C, (u16 const *) 0x083DC578 },
-    [CLASS_BARD - 1] = { (u8 const *) 0x083DC770, (u16 const *) 0x083DCF00 },
-    [CLASS_ARCHSAGE - 1] = { (u8 const *) 0x083DD090, (u16 const *) 0x083DD7F8 },
-    [CLASS_MAGIC_SEAL - 1] = { (u8 const *) 0x083DD950, (u16 const *) 0x083DDFA0 },
-    [CLASS_TRANSPORTER_TENT - 1] = { (u8 const *) 0x083DE0F8, (u16 const *) 0x083DE518 },
-    [CLASS_DARK_DRUID - 1] = { (u8 const *) 0x083DE670, (u16 const *) 0x083DEF18 },
-    [CLASS_FIRE_DRAGON - 1] = { (u8 const *) 0x083DF070, (u16 const *) 0x083DFC14 },
-    [CLASS_CIVILIAN_47 - 1] = { (u8 const *) 0x083DFD6C, (u16 const *) 0x083E0450 },
-    [CLASS_CIVILIAN_48 - 1] = { (u8 const *) 0x083E05A8, (u16 const *) 0x083E0C9C },
-    [CLASS_CHILD_49 - 1] = { (u8 const *) 0x083E0DF4, (u16 const *) 0x083E11D8 },
-    [CLASS_BRAMIMOND - 1] = { (u8 const *) 0x083E1330, (u16 const *) 0x083E1A64 },
-    [CLASS_PEER_4B - 1] = { (u8 const *) 0x083E1BBC, (u16 const *) 0x083E2438 },
-    [CLASS_PEER_4C - 1] = { (u8 const *) 0x083E2590, (u16 const *) 0x083E2AE4 },
-    [CLASS_PRINCE_4D - 1] = { (u8 const *) 0x083E2C3C, (u16 const *) 0x083E3248 },
-    [CLASS_QUEEN - 1] = { (u8 const *) 0x083E33A0, (u16 const *) 0x083E3880 },
-    [CLASS_CIVILIAN_4F - 1] = { (u8 const *) 0x083E39D8, (u16 const *) 0x083E3DC8 },
-    [CLASS_CORSAIR - 1] = { (u8 const *) 0x083D8548, (u16 const *) 0x083D8E78 },
-    [CLASS_PRINCE_51 - 1] = { (u8 const *) 0x083E3F20, (u16 const *) 0x083E4410 },
-    [CLASS_PRINCE_52 - 1] = { (u8 const *) 0x083E4568, (u16 const *) 0x083E4954 },
-    [CLASS_PRINCE_53 - 1] = { (u8 const *) 0x083E4AAC, (u16 const *) 0x083E4EBC },
-    [CLASS_CHILD_54 - 1] = { (u8 const *) 0x083E5014, (u16 const *) 0x083E54BC },
-    [CLASS_FIRE_DRAGON_55 - 1] = { (u8 const *) 0x083E5614, (u16 const *) 0x083E5CD4 },
-    [CLASS_WARRIOR_56 - 1] = { (u8 const *) 0x083E5E2C, (u16 const *) 0x083E623C },
-    [CLASS_CHILD_57 - 1] = { (u8 const *) 0x083E6394, (u16 const *) 0x083E69B8 },
-    [CLASS_CHILD_58 - 1] = { (u8 const *) 0x083E6B10, (u16 const *) 0x083E716C },
-    [CLASS_TRANSPORTER_WAGON - 1] = { (u8 const *) 0x083E72C4, (u16 const *) 0x083E7CEC },
-    [CLASS_SAGE_5A - 1] = { (u8 const *) 0x083CAD34, (u16 const *) 0x083CB718 },
-    [CLASS_5B - 1] = { (u8 const *) 0x083E7E44, (u16 const *) 0x083E84CC },
-    [CLASS_5C - 1] = { (u8 const *) 0x083E8624, (u16 const *) 0x083E8CAC },
-    [CLASS_5D - 1] = { (u8 const *) 0x083E8E04, (u16 const *) 0x083E948C },
-    [CLASS_5E - 1] = { (u8 const *) 0x083E95E4, (u16 const *) 0x083E9B38 },
-    [CLASS_5F - 1] = { (u8 const *) 0x083E9CA0, (u16 const *) 0x083EA18C },
-    [CLASS_60 - 1] = { (u8 const *) 0x083EA2E4, (u16 const *) 0x083EA880 },
-    [CLASS_61 - 1] = { (u8 const *) 0x083EA9E8, (u16 const *) 0x083EB02C },
-    [CLASS_62 - 1] = { (u8 const *) 0x083EB194, (u16 const *) 0x083EB800 },
-    [CLASS_63 - 1] = { (u8 const *) 0x083EB968, (u16 const *) 0x083EBCFC },
+    [CLASS_LORD_ELIWOOD - 1] = { (u8 const *) gUnk_083B8CAC, (u16 const *) gUnk_083B9670 },
+    [CLASS_LORD_LYN - 1] = { (u8 const *) gUnk_083B97C8, (u16 const *) gUnk_083B9F88 },
+    [CLASS_LORD_HECTOR - 1] = { (u8 const *) gUnk_083BA0E0, (u16 const *) gUnk_083BA990 },
+    [CLASS_KNIGHT_LORD_04 - 1] = { (u8 const *) gUnk_083B8CAC, (u16 const *) gUnk_083B9670 },
+    [CLASS_BLADE_LORD_05 - 1] = { (u8 const *) gUnk_083B97C8, (u16 const *) gUnk_083B9F88 },
+    [CLASS_GREAT_LORD_06 - 1] = { (u8 const *) gUnk_083BA0E0, (u16 const *) gUnk_083BA990 },
+    [CLASS_KNIGHT_LORD - 1] = { (u8 const *) gUnk_083BAAE8, (u16 const *) gUnk_083BB458 },
+    [CLASS_BLADE_LORD - 1] = { (u8 const *) gUnk_083BB5B8, (u16 const *) gUnk_083BBE44 },
+    [CLASS_GREAT_LORD - 1] = { (u8 const *) gUnk_083BBFA4, (u16 const *) gUnk_083BCA90 },
+    [CLASS_MERCENARY - 1] = { (u8 const *) gUnk_083BCBE8, (u16 const *) gUnk_083BD38C },
+    [CLASS_MERCENARY_F - 1] = { (u8 const *) gUnk_083BD4E4, (u16 const *) gUnk_083BDC4C },
+    [CLASS_HERO - 1] = { (u8 const *) gUnk_083BDDA4, (u16 const *) gUnk_083BE700 },
+    [CLASS_HERO_F - 1] = { (u8 const *) gUnk_083BE860, (u16 const *) gUnk_083BF1E0 },
+    [CLASS_MYRMIDON - 1] = { (u8 const *) gUnk_083BF340, (u16 const *) gUnk_083BFB28 },
+    [CLASS_MYRMIDON_F - 1] = { (u8 const *) gUnk_083BFC80, (u16 const *) gUnk_083C04C4 },
+    [CLASS_SWORDMASTER - 1] = { (u8 const *) gUnk_083C061C, (u16 const *) gUnk_083C0E68 },
+    [CLASS_SWORDMASTER_F - 1] = { (u8 const *) gUnk_083C0FC8, (u16 const *) gUnk_083C184C },
+    [CLASS_FIGHTER - 1] = { (u8 const *) gUnk_083C19AC, (u16 const *) gUnk_083C21A8 },
+    [CLASS_WARRIOR - 1] = { (u8 const *) gUnk_083C2300, (u16 const *) gUnk_083C2D0C },
+    [CLASS_KNIGHT - 1] = { (u8 const *) gUnk_083C2E64, (u16 const *) gUnk_083C3758 },
+    [CLASS_KNIGHT_F - 1] = { (u8 const *) gUnk_083C2E64, (u16 const *) gUnk_083C3758 },
+    [CLASS_GENERAL - 1] = { (u8 const *) gUnk_083C38B0, (u16 const *) gUnk_083C4364 },
+    [CLASS_GENERAL_F - 1] = { (u8 const *) gUnk_083C38B0, (u16 const *) gUnk_083C4364 },
+    [CLASS_ARCHER - 1] = { (u8 const *) gUnk_083C44C4, (u16 const *) gUnk_083C4C88 },
+    [CLASS_ARCHER_F - 1] = { (u8 const *) gUnk_083C4DE0, (u16 const *) gUnk_083C55D4 },
+    [CLASS_SNIPER - 1] = { (u8 const *) gUnk_083C572C, (u16 const *) gUnk_083C5F54 },
+    [CLASS_SNIPER_F - 1] = { (u8 const *) gUnk_083C60AC, (u16 const *) gUnk_083C6920 },
+    [CLASS_MONK - 1] = { (u8 const *) gUnk_083C6A78, (u16 const *) gUnk_083C7164 },
+    [CLASS_CLERIC - 1] = { (u8 const *) gUnk_083C72BC, (u16 const *) gUnk_083C79D4 },
+    [CLASS_BISHOP - 1] = { (u8 const *) gUnk_083C7B2C, (u16 const *) gUnk_083C8398 },
+    [CLASS_BISHOP_F - 1] = { (u8 const *) gUnk_083C84F8, (u16 const *) gUnk_083C8D4C },
+    [CLASS_MAGE - 1] = { (u8 const *) gUnk_083C8EAC, (u16 const *) gUnk_083C96EC },
+    [CLASS_MAGE_F - 1] = { (u8 const *) gUnk_083C9844, (u16 const *) gUnk_083CA110 },
+    [CLASS_SAGE - 1] = { (u8 const *) gUnk_083CA268, (u16 const *) gUnk_083CABDC },
+    [CLASS_SAGE_F - 1] = { (u8 const *) gUnk_083CAD34, (u16 const *) gUnk_083CB718 },
+    [CLASS_SHAMAN - 1] = { (u8 const *) gUnk_083CB870, (u16 const *) gUnk_083CC054 },
+    [CLASS_SHAMAN_F - 1] = { (u8 const *) gUnk_083CC1AC, (u16 const *) gUnk_083CC9E0 },
+    [CLASS_DRUID - 1] = { (u8 const *) gUnk_083CCB38, (u16 const *) gUnk_083CD41C },
+    [CLASS_DRUID_F - 1] = { (u8 const *) gUnk_083CD574, (u16 const *) gUnk_083CDE30 },
+    [CLASS_CAVALIER - 1] = { (u8 const *) gUnk_083CDF88, (u16 const *) gUnk_083CE8D0 },
+    [CLASS_CAVALIER_F - 1] = { (u8 const *) gUnk_083CDF88, (u16 const *) gUnk_083CE8D0 },
+    [CLASS_PALADIN - 1] = { (u8 const *) gUnk_083CEA28, (u16 const *) gUnk_083CF3CC },
+    [CLASS_PALADIN_F - 1] = { (u8 const *) gUnk_083CEA28, (u16 const *) gUnk_083CF3CC },
+    [CLASS_TROUBADOUR - 1] = { (u8 const *) gUnk_083CF524, (u16 const *) gUnk_083CFEC8 },
+    [CLASS_VALKYRIE - 1] = { (u8 const *) gUnk_083D0020, (u16 const *) gUnk_083D0A28 },
+    [CLASS_NOMAD - 1] = { (u8 const *) gUnk_083D0B80, (u16 const *) gUnk_083D1494 },
+    [CLASS_NOMAD_F - 1] = { (u8 const *) gUnk_083D15EC, (u16 const *) gUnk_083D1F88 },
+    [CLASS_NOMAD_TROOPER - 1] = { (u8 const *) gUnk_083D20E0, (u16 const *) gUnk_083D2A68 },
+    [CLASS_NOMAD_TROOPER_F - 1] = { (u8 const *) gUnk_083D2BC0, (u16 const *) gUnk_083D35DC },
+    [CLASS_PEGASUS_KNIGHT - 1] = { (u8 const *) gUnk_083D3734, (u16 const *) gUnk_083D4454 },
+    [CLASS_FALCOKNIGHT - 1] = { (u8 const *) gUnk_083D45AC, (u16 const *) gUnk_083D5340 },
+    [CLASS_WYVERN_RIDER - 1] = { (u8 const *) gUnk_083D5498, (u16 const *) gUnk_083D61E8 },
+    [CLASS_WYVERN_RIDER_F - 1] = { (u8 const *) gUnk_083D5498, (u16 const *) gUnk_083D61E8 },
+    [CLASS_WYVERN_LORD - 1] = { (u8 const *) gUnk_083D6348, (u16 const *) gUnk_083D7154 },
+    [CLASS_WYVERN_LORD_F - 1] = { (u8 const *) gUnk_083D6348, (u16 const *) gUnk_083D7154 },
+    [CLASS_SOLDIER - 1] = { (u8 const *) gUnk_083D72BC, (u16 const *) gUnk_083D7A68 },
+    [CLASS_BRIGAND - 1] = { (u8 const *) gUnk_083D7BC0, (u16 const *) gUnk_083D83F0 },
+    [CLASS_PIRATE - 1] = { (u8 const *) gUnk_083D8548, (u16 const *) gUnk_083D8E78 },
+    [CLASS_BERSERKER - 1] = { (u8 const *) gUnk_083D8FD0, (u16 const *) gUnk_083D98D0 },
+    [CLASS_THIEF - 1] = { (u8 const *) gUnk_083D9A28, (u16 const *) gUnk_083DA2A4 },
+    [CLASS_THIEF_F - 1] = { (u8 const *) gUnk_083DA3FC, (u16 const *) gUnk_083DABFC },
+    [CLASS_ASSASSIN - 1] = { (u8 const *) gUnk_083DAD54, (u16 const *) gUnk_083DB4FC },
+    [CLASS_CIVILIAN - 1] = { (u8 const *) gUnk_083DB654, (u16 const *) gUnk_083DBA34 },
+    [CLASS_DANCER - 1] = { (u8 const *) gUnk_083DBB8C, (u16 const *) gUnk_083DC578 },
+    [CLASS_BARD - 1] = { (u8 const *) gUnk_083DC770, (u16 const *) gUnk_083DCF00 },
+    [CLASS_ARCHSAGE - 1] = { (u8 const *) gUnk_083DD090, (u16 const *) gUnk_083DD7F8 },
+    [CLASS_MAGIC_SEAL - 1] = { (u8 const *) gUnk_083DD950, (u16 const *) gUnk_083DDFA0 },
+    [CLASS_TRANSPORTER_TENT - 1] = { (u8 const *) gUnk_083DE0F8, (u16 const *) gUnk_083DE518 },
+    [CLASS_DARK_DRUID - 1] = { (u8 const *) gUnk_083DE670, (u16 const *) gUnk_083DEF18 },
+    [CLASS_FIRE_DRAGON - 1] = { (u8 const *) gUnk_083DF070, (u16 const *) gUnk_083DFC14 },
+    [CLASS_CIVILIAN_47 - 1] = { (u8 const *) gUnk_083DFD6C, (u16 const *) gUnk_083E0450 },
+    [CLASS_CIVILIAN_48 - 1] = { (u8 const *) gUnk_083E05A8, (u16 const *) gUnk_083E0C9C },
+    [CLASS_CHILD_49 - 1] = { (u8 const *) gUnk_083E0DF4, (u16 const *) gUnk_083E11D8 },
+    [CLASS_BRAMIMOND - 1] = { (u8 const *) gUnk_083E1330, (u16 const *) gUnk_083E1A64 },
+    [CLASS_PEER_4B - 1] = { (u8 const *) gUnk_083E1BBC, (u16 const *) gUnk_083E2438 },
+    [CLASS_PEER_4C - 1] = { (u8 const *) gUnk_083E2590, (u16 const *) gUnk_083E2AE4 },
+    [CLASS_PRINCE_4D - 1] = { (u8 const *) gUnk_083E2C3C, (u16 const *) gUnk_083E3248 },
+    [CLASS_QUEEN - 1] = { (u8 const *) gUnk_083E33A0, (u16 const *) gUnk_083E3880 },
+    [CLASS_CIVILIAN_4F - 1] = { (u8 const *) gUnk_083E39D8, (u16 const *) gUnk_083E3DC8 },
+    [CLASS_CORSAIR - 1] = { (u8 const *) gUnk_083D8548, (u16 const *) gUnk_083D8E78 },
+    [CLASS_PRINCE_51 - 1] = { (u8 const *) gUnk_083E3F20, (u16 const *) gUnk_083E4410 },
+    [CLASS_PRINCE_52 - 1] = { (u8 const *) gUnk_083E4568, (u16 const *) gUnk_083E4954 },
+    [CLASS_PRINCE_53 - 1] = { (u8 const *) gUnk_083E4AAC, (u16 const *) gUnk_083E4EBC },
+    [CLASS_CHILD_54 - 1] = { (u8 const *) gUnk_083E5014, (u16 const *) gUnk_083E54BC },
+    [CLASS_FIRE_DRAGON_55 - 1] = { (u8 const *) gUnk_083E5614, (u16 const *) gUnk_083E5CD4 },
+    [CLASS_WARRIOR_56 - 1] = { (u8 const *) gUnk_083E5E2C, (u16 const *) gUnk_083E623C },
+    [CLASS_CHILD_57 - 1] = { (u8 const *) gUnk_083E6394, (u16 const *) gUnk_083E69B8 },
+    [CLASS_CHILD_58 - 1] = { (u8 const *) gUnk_083E6B10, (u16 const *) gUnk_083E716C },
+    [CLASS_TRANSPORTER_WAGON - 1] = { (u8 const *) gUnk_083E72C4, (u16 const *) gUnk_083E7CEC },
+    [CLASS_SAGE_5A - 1] = { (u8 const *) gUnk_083CAD34, (u16 const *) gUnk_083CB718 },
+    [CLASS_5B - 1] = { (u8 const *) gUnk_083E7E44, (u16 const *) gUnk_083E84CC },
+    [CLASS_5C - 1] = { (u8 const *) gUnk_083E8624, (u16 const *) gUnk_083E8CAC },
+    [CLASS_5D - 1] = { (u8 const *) gUnk_083E8E04, (u16 const *) gUnk_083E948C },
+    [CLASS_5E - 1] = { (u8 const *) gUnk_083E95E4, (u16 const *) gUnk_083E9B38 },
+    [CLASS_5F - 1] = { (u8 const *) gUnk_083E9CA0, (u16 const *) gUnk_083EA18C },
+    [CLASS_60 - 1] = { (u8 const *) gUnk_083EA2E4, (u16 const *) gUnk_083EA880 },
+    [CLASS_61 - 1] = { (u8 const *) gUnk_083EA9E8, (u16 const *) gUnk_083EB02C },
+    [CLASS_62 - 1] = { (u8 const *) gUnk_083EB194, (u16 const *) gUnk_083EB800 },
+    [CLASS_63 - 1] = { (u8 const *) gUnk_083EB968, (u16 const *) gUnk_083EBCFC },
 };
 
 #define MU_PAL_OBJ(pal) (gPal + ((((pal) + 0x10) * 0x20) >> 1))

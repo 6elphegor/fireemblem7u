@@ -1,6 +1,14 @@
 #include "gbafe.h"
 #include "gbafe/msg.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_08193E00[];
+extern const u8 gUnk_08193E08[];
+extern const u8 gUnk_08193E10[];
+extern const u8 gUnk_08193E14[];
+extern const u8 gUnk_08193E18[];
+extern const u8 gUnk_08193E1C[];
+
 struct MsgBuffer
 {
     /* 0000 */ char buffer1[0x400];
@@ -20,12 +28,12 @@ extern char const * CONST_DATA gMsgTable[];
 char * GetTacticianName(void);
 
 CONST_DATA char const * gArticleStrTable[][2] = {
-    (char const *) 0x08193E1C,
-    (char const *) 0x08193E18,
-    (char const *) 0x08193E14,
-    (char const *) 0x08193E10,
-    (char const *) 0x08193E08,
-    (char const *) 0x08193E00,
+    (char const *) gUnk_08193E1C,
+    (char const *) gUnk_08193E18,
+    (char const *) gUnk_08193E14,
+    (char const *) gUnk_08193E10,
+    (char const *) gUnk_08193E08,
+    (char const *) gUnk_08193E00,
 };
 
 char * DecodeMsg(int id)

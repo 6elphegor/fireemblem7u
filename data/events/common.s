@@ -25,7 +25,7 @@ gEvent_GameOver:
 
 	.global SpriteAnimConf_08CB401C
 SpriteAnimConf_08CB401C:
-	.4byte 0, 0x081C270C, 0x081C3260
+	.4byte 0, gUnk_081C270C, gUnk_081C3260
 	.2byte 0x0, 0x200
 	.byte 11, 1, 0, 0
 
@@ -211,7 +211,7 @@ MoveScr_08CBC877:
 
 	.global SpriteAnimConf_08CBCA60
 SpriteAnimConf_08CBCA60:
-	.4byte 0, 0x081BE518, 0x081BEE14
+	.4byte 0, gUnk_081BE518, gUnk_081BEE14
 	.2byte 0x0, 0x200
 	.byte 12, 1, 0, 0
 

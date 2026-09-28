@@ -1,5 +1,59 @@
 #include "gbafe.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_0829E770[];
+extern const u8 gUnk_0829E810[];
+extern const u8 gUnk_0829E8B8[];
+extern const u8 gUnk_0829E960[];
+extern const u8 gUnk_0829EA0C[];
+extern const u8 gUnk_0829EAC4[];
+extern const u8 gUnk_0829EB7C[];
+extern const u8 gUnk_0829EC2C[];
+extern const u8 gUnk_0829ECD8[];
+extern const u8 gUnk_0829ED80[];
+extern const u8 gUnk_0829EE20[];
+extern const u8 gUnk_0829EEBC[];
+extern const u8 gUnk_0829EF54[];
+extern const u8 gUnk_0829F06C[];
+extern const u8 gUnk_0829F1A8[];
+extern const u8 gUnk_0829F2F8[];
+extern const u8 gUnk_0829F434[];
+extern const u8 gUnk_0829F538[];
+extern const u8 gUnk_0829F5DC[];
+extern const u8 gUnk_0829F678[];
+extern const u8 gUnk_0829F714[];
+extern const u8 gUnk_0829F7B0[];
+extern const u8 gUnk_0829F84C[];
+extern const u8 gUnk_0829F8E8[];
+extern const u8 gUnk_0829F9A4[];
+extern const u8 gUnk_0829FA94[];
+extern const u8 gUnk_0829FB98[];
+extern const u8 gUnk_0829FC9C[];
+extern const u8 gUnk_0829FDA0[];
+extern const u8 gUnk_082A11B4[];
+extern const u8 gUnk_082A26E0[];
+extern const u8 gUnk_082A3C5C[];
+extern const u8 gUnk_082A51E4[];
+extern const u8 gUnk_082A65D4[];
+extern const u8 gUnk_082A78E0[];
+extern const u8 gUnk_082A8C54[];
+extern const u8 gUnk_082AA140[];
+extern const u8 gUnk_082AB4EC[];
+extern const u8 gUnk_082AC89C[];
+extern const u8 gUnk_082ADBB8[];
+extern const u8 gUnk_082AEF80[];
+extern const u8 gUnk_082AF1F8[];
+extern const u8 gUnk_082AF470[];
+extern const u8 gUnk_082AF6E8[];
+extern const u8 gUnk_082AF960[];
+extern const u8 gUnk_082AFBD0[];
+extern const u8 gUnk_082AFE2C[];
+extern const u8 gUnk_082B00A4[];
+extern const u8 gUnk_082B031C[];
+extern const u8 gUnk_082B0594[];
+extern const u8 gUnk_082B080C[];
+extern const u8 gUnk_082B0A84[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -48,34 +102,34 @@ CONST_DATA struct ProcCmd ProcScr_efxOuraBG[] = {
 };
 
 CONST_DATA u16 * TsaArray_AuraBg1[] = {
-    (u16 *) 0x0829E770,
-    (u16 *) 0x0829E810,
-    (u16 *) 0x0829E8B8,
-    (u16 *) 0x0829E960,
-    (u16 *) 0x0829EA0C,
-    (u16 *) 0x0829EAC4,
-    (u16 *) 0x0829EB7C,
-    (u16 *) 0x0829EC2C,
-    (u16 *) 0x0829ECD8,
-    (u16 *) 0x0829ED80,
-    (u16 *) 0x0829EE20,
-    (u16 *) 0x0829EEBC,
-    (u16 *) 0x0829EF54,
-    (u16 *) 0x0829F06C,
-    (u16 *) 0x0829F1A8,
-    (u16 *) 0x0829F2F8,
-    (u16 *) 0x0829F434,
-    (u16 *) 0x0829F538,
-    (u16 *) 0x0829F5DC,
-    (u16 *) 0x0829F678,
-    (u16 *) 0x0829F714,
-    (u16 *) 0x0829F7B0,
-    (u16 *) 0x0829F84C,
-    (u16 *) 0x0829F8E8,
-    (u16 *) 0x0829F9A4,
-    (u16 *) 0x0829FA94,
-    (u16 *) 0x0829FB98,
-    (u16 *) 0x0829FC9C,
+    (u16 *) gUnk_0829E770,
+    (u16 *) gUnk_0829E810,
+    (u16 *) gUnk_0829E8B8,
+    (u16 *) gUnk_0829E960,
+    (u16 *) gUnk_0829EA0C,
+    (u16 *) gUnk_0829EAC4,
+    (u16 *) gUnk_0829EB7C,
+    (u16 *) gUnk_0829EC2C,
+    (u16 *) gUnk_0829ECD8,
+    (u16 *) gUnk_0829ED80,
+    (u16 *) gUnk_0829EE20,
+    (u16 *) gUnk_0829EEBC,
+    (u16 *) gUnk_0829EF54,
+    (u16 *) gUnk_0829F06C,
+    (u16 *) gUnk_0829F1A8,
+    (u16 *) gUnk_0829F2F8,
+    (u16 *) gUnk_0829F434,
+    (u16 *) gUnk_0829F538,
+    (u16 *) gUnk_0829F5DC,
+    (u16 *) gUnk_0829F678,
+    (u16 *) gUnk_0829F714,
+    (u16 *) gUnk_0829F7B0,
+    (u16 *) gUnk_0829F84C,
+    (u16 *) gUnk_0829F8E8,
+    (u16 *) gUnk_0829F9A4,
+    (u16 *) gUnk_0829FA94,
+    (u16 *) gUnk_0829FB98,
+    (u16 *) gUnk_0829FC9C,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxOuraBG2[] = {
@@ -99,33 +153,33 @@ CONST_DATA struct ProcCmd ProcScr_efxOuraBG3[] = {
 };
 
 CONST_DATA u16 * TsaArray_AuraBg3[] = {
-    (u16 *) 0x082AEF80,
-    (u16 *) 0x082AF1F8,
-    (u16 *) 0x082AF470,
-    (u16 *) 0x082AF6E8,
-    (u16 *) 0x082AF960,
-    (u16 *) 0x082AFBD0,
-    (u16 *) 0x082AFE2C,
-    (u16 *) 0x082B00A4,
-    (u16 *) 0x082B031C,
-    (u16 *) 0x082B0594,
-    (u16 *) 0x082B080C,
-    (u16 *) 0x082B0A84,
+    (u16 *) gUnk_082AEF80,
+    (u16 *) gUnk_082AF1F8,
+    (u16 *) gUnk_082AF470,
+    (u16 *) gUnk_082AF6E8,
+    (u16 *) gUnk_082AF960,
+    (u16 *) gUnk_082AFBD0,
+    (u16 *) gUnk_082AFE2C,
+    (u16 *) gUnk_082B00A4,
+    (u16 *) gUnk_082B031C,
+    (u16 *) gUnk_082B0594,
+    (u16 *) gUnk_082B080C,
+    (u16 *) gUnk_082B0A84,
 };
 
 CONST_DATA u16 * ImgArray_AuraBg3[] = {
-    (u16 *) 0x0829FDA0,
-    (u16 *) 0x082A11B4,
-    (u16 *) 0x082A26E0,
-    (u16 *) 0x082A3C5C,
-    (u16 *) 0x082A51E4,
-    (u16 *) 0x082A65D4,
-    (u16 *) 0x082A78E0,
-    (u16 *) 0x082A8C54,
-    (u16 *) 0x082AA140,
-    (u16 *) 0x082AB4EC,
-    (u16 *) 0x082AC89C,
-    (u16 *) 0x082ADBB8,
+    (u16 *) gUnk_0829FDA0,
+    (u16 *) gUnk_082A11B4,
+    (u16 *) gUnk_082A26E0,
+    (u16 *) gUnk_082A3C5C,
+    (u16 *) gUnk_082A51E4,
+    (u16 *) gUnk_082A65D4,
+    (u16 *) gUnk_082A78E0,
+    (u16 *) gUnk_082A8C54,
+    (u16 *) gUnk_082AA140,
+    (u16 *) gUnk_082AB4EC,
+    (u16 *) gUnk_082AC89C,
+    (u16 *) gUnk_082ADBB8,
 };
 
 // 9.99 efxmagic-aura:StartSpellAnimAura

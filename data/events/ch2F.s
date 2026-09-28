@@ -85,7 +85,7 @@ MoveScr_08CBFC5B:
 
 	.global SpriteAnimConf_08CBFC60
 SpriteAnimConf_08CBFC60:
-	.4byte Pal_NinianDispfx, Img_NinianDispfx, 0x081AB284
+	.4byte Pal_NinianDispfx, Img_NinianDispfx, gUnk_081AB284
 	.2byte 0x0, 0x280
 	.byte 5, 1, 0, 0
 

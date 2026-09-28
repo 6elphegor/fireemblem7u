@@ -1,5 +1,48 @@
 #include "gbafe.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_081D8448[];
+extern const u8 gUnk_081D8458[];
+extern const u8 gUnk_081D8468[];
+extern const u8 gUnk_081D8478[];
+extern const u8 gUnk_081D8488[];
+extern const u8 gUnk_081D8498[];
+extern const u8 gUnk_081D84A8[];
+extern const u8 gUnk_081D84B8[];
+extern const u8 gUnk_081D84C8[];
+extern const u8 gUnk_081D84D8[];
+extern const u8 gUnk_081D84E8[];
+extern const u8 gUnk_081D84F8[];
+extern const u8 gUnk_081E67D0[];
+extern const u8 gUnk_081E6CD4[];
+extern const u8 gUnk_081E7160[];
+extern const u8 gUnk_081E75B8[];
+extern const u8 gUnk_081E7AEC[];
+extern const u8 gUnk_08B9E798[];
+extern const u8 gUnk_08B9E7BC[];
+extern const u8 gUnk_08B9F428[];
+extern const u8 gUnk_08B9F448[];
+extern const u8 gUnk_08B9F46C[];
+extern const u8 gUnk_08B9F490[];
+extern const u8 gUnk_08B9F4B0[];
+extern const u8 gUnk_08B9F4D4[];
+extern const u8 gUnk_08B9FCD8[];
+extern const u8 gUnk_08B9FCFC[];
+extern const u8 gUnk_08B9FD20[];
+extern const u8 gUnk_08B9FD44[];
+extern const u8 gUnk_08BA0B18[];
+extern const u8 gUnk_08BA0B3C[];
+extern const u8 gUnk_08BA0B60[];
+extern const u8 gUnk_08BA0B84[];
+extern const u8 gUnk_08BA0BA8[];
+extern const u8 gUnk_08BA0BCC[];
+extern const u8 gUnk_08BA0BF0[];
+extern const u8 gUnk_08BA0C14[];
+extern const u8 gUnk_08BA1340[];
+extern const u8 gUnk_08BA1364[];
+extern const u8 gUnk_08BA1388[];
+extern const u8 gUnk_08BA13AC[];
+
 struct ProcEkrBaseKaiten {
     /* 00 */ PROC_HEADER;
     /* 29 */ u8 unk29;
@@ -100,124 +143,124 @@ CONST_DATA struct ProcCmd ProcScr_EkrBaseKaiten[] = {
 };
 
 CONST_DATA const u8 * Imgs_085B9B84[] = {
-    (const u8 *) 0x081E6CD4,
+    (const u8 *) gUnk_081E6CD4,
     NULL,
-    (const u8 *) 0x081E6CD4,
+    (const u8 *) gUnk_081E6CD4,
     NULL,
-    (const u8 *) 0x081E67D0,
+    (const u8 *) gUnk_081E67D0,
     NULL,
-    (const u8 *) 0x081E6CD4,
+    (const u8 *) gUnk_081E6CD4,
     NULL,
 };
 
 CONST_DATA const u8 * Imgs_085B9BA4[] = {
-    (const u8 *) 0x081E7160,
-    (const u8 *) 0x081E75B8,
-    (const u8 *) 0x081E75B8,
-    (const u8 *) 0x081E75B8,
-    (const u8 *) 0x081E7AEC,
-    (const u8 *) 0x081E75B8,
-    (const u8 *) 0x081E75B8,
-    (const u8 *) 0x081E75B8,
+    (const u8 *) gUnk_081E7160,
+    (const u8 *) gUnk_081E75B8,
+    (const u8 *) gUnk_081E75B8,
+    (const u8 *) gUnk_081E75B8,
+    (const u8 *) gUnk_081E7AEC,
+    (const u8 *) gUnk_081E75B8,
+    (const u8 *) gUnk_081E75B8,
+    (const u8 *) gUnk_081E75B8,
 };
 
 CONST_DATA u32 * AnimScrs_085B9BC4[] = {
-    (u32 *) 0x08B9F428,
+    (u32 *) gUnk_08B9F428,
     NULL,
-    (u32 *) 0x08B9F448,
+    (u32 *) gUnk_08B9F448,
     NULL,
-    (u32 *) 0x08B9E798,
+    (u32 *) gUnk_08B9E798,
     NULL,
-    (u32 *) 0x08B9F46C,
+    (u32 *) gUnk_08B9F46C,
     NULL,
 };
 
 CONST_DATA u32 * AnimScrs_085B9BE4[] = {
-    (u32 *) 0x08B9FCFC,
-    (u32 *) 0x08BA0B60,
-    (u32 *) 0x08BA0B60,
-    (u32 *) 0x08BA0B60,
-    (u32 *) 0x08BA1364,
-    (u32 *) 0x08BA0B84,
-    (u32 *) 0x08BA0B84,
-    (u32 *) 0x08BA0B84,
+    (u32 *) gUnk_08B9FCFC,
+    (u32 *) gUnk_08BA0B60,
+    (u32 *) gUnk_08BA0B60,
+    (u32 *) gUnk_08BA0B60,
+    (u32 *) gUnk_08BA1364,
+    (u32 *) gUnk_08BA0B84,
+    (u32 *) gUnk_08BA0B84,
+    (u32 *) gUnk_08BA0B84,
 };
 
 CONST_DATA u32 * AnimScrs_085B9C04[] = {
-    (u32 *) 0x08B9FCD8,
-    (u32 *) 0x08BA0B18,
-    (u32 *) 0x08BA0B18,
-    (u32 *) 0x08BA0B18,
-    (u32 *) 0x08BA1340,
-    (u32 *) 0x08BA0B3C,
-    (u32 *) 0x08BA0B3C,
-    (u32 *) 0x08BA0B3C,
+    (u32 *) gUnk_08B9FCD8,
+    (u32 *) gUnk_08BA0B18,
+    (u32 *) gUnk_08BA0B18,
+    (u32 *) gUnk_08BA0B18,
+    (u32 *) gUnk_08BA1340,
+    (u32 *) gUnk_08BA0B3C,
+    (u32 *) gUnk_08BA0B3C,
+    (u32 *) gUnk_08BA0B3C,
 };
 
 CONST_DATA u32 * AnimScrs_085B9C24[] = {
-    (u32 *) 0x08B9F490,
+    (u32 *) gUnk_08B9F490,
     NULL,
-    (u32 *) 0x08B9F4B0,
+    (u32 *) gUnk_08B9F4B0,
     NULL,
-    (u32 *) 0x08B9E7BC,
+    (u32 *) gUnk_08B9E7BC,
     NULL,
-    (u32 *) 0x08B9F4D4,
+    (u32 *) gUnk_08B9F4D4,
     NULL,
 };
 
 CONST_DATA u32 * AnimScrs_085B9C44[] = {
-    (u32 *) 0x08B9FD44,
-    (u32 *) 0x08BA0BF0,
-    (u32 *) 0x08BA0BF0,
-    (u32 *) 0x08BA0BF0,
-    (u32 *) 0x08BA13AC,
-    (u32 *) 0x08BA0C14,
-    (u32 *) 0x08BA0C14,
-    (u32 *) 0x08BA0C14,
+    (u32 *) gUnk_08B9FD44,
+    (u32 *) gUnk_08BA0BF0,
+    (u32 *) gUnk_08BA0BF0,
+    (u32 *) gUnk_08BA0BF0,
+    (u32 *) gUnk_08BA13AC,
+    (u32 *) gUnk_08BA0C14,
+    (u32 *) gUnk_08BA0C14,
+    (u32 *) gUnk_08BA0C14,
 };
 
 CONST_DATA u32 * AnimScrs_085B9C64[] = {
-    (u32 *) 0x08B9FD20,
-    (u32 *) 0x08BA0BA8,
-    (u32 *) 0x08BA0BA8,
-    (u32 *) 0x08BA0BA8,
-    (u32 *) 0x08BA1388,
-    (u32 *) 0x08BA0BCC,
-    (u32 *) 0x08BA0BCC,
-    (u32 *) 0x08BA0BCC,
+    (u32 *) gUnk_08B9FD20,
+    (u32 *) gUnk_08BA0BA8,
+    (u32 *) gUnk_08BA0BA8,
+    (u32 *) gUnk_08BA0BA8,
+    (u32 *) gUnk_08BA1388,
+    (u32 *) gUnk_08BA0BCC,
+    (u32 *) gUnk_08BA0BCC,
+    (u32 *) gUnk_08BA0BCC,
 };
 
 CONST_DATA const u16 * gUnknown_085B9C84[] = {
-    (const u16 *) 0x081D8458,
+    (const u16 *) gUnk_081D8458,
     NULL,
-    (const u16 *) 0x081D8468,
+    (const u16 *) gUnk_081D8468,
     NULL,
-    (const u16 *) 0x081D8448,
+    (const u16 *) gUnk_081D8448,
     NULL,
-    (const u16 *) 0x081D8478,
+    (const u16 *) gUnk_081D8478,
     NULL,
 };
 
 CONST_DATA const u16 * gUnknown_085B9CA4[] = {
-    (const u16 *) 0x081D8498,
-    (const u16 *) 0x081D84C8,
-    (const u16 *) 0x081D84C8,
-    (const u16 *) 0x081D84C8,
-    (const u16 *) 0x081D84F8,
-    (const u16 *) 0x081D84D8,
-    (const u16 *) 0x081D84D8,
-    (const u16 *) 0x081D84D8,
+    (const u16 *) gUnk_081D8498,
+    (const u16 *) gUnk_081D84C8,
+    (const u16 *) gUnk_081D84C8,
+    (const u16 *) gUnk_081D84C8,
+    (const u16 *) gUnk_081D84F8,
+    (const u16 *) gUnk_081D84D8,
+    (const u16 *) gUnk_081D84D8,
+    (const u16 *) gUnk_081D84D8,
 };
 
 CONST_DATA const u16 * gUnknown_085B9CC4[] = {
-    (const u16 *) 0x081D8488,
-    (const u16 *) 0x081D84A8,
-    (const u16 *) 0x081D84A8,
-    (const u16 *) 0x081D84A8,
-    (const u16 *) 0x081D84E8,
-    (const u16 *) 0x081D84B8,
-    (const u16 *) 0x081D84B8,
-    (const u16 *) 0x081D84B8,
+    (const u16 *) gUnk_081D8488,
+    (const u16 *) gUnk_081D84A8,
+    (const u16 *) gUnk_081D84A8,
+    (const u16 *) gUnk_081D84A8,
+    (const u16 *) gUnk_081D84E8,
+    (const u16 *) gUnk_081D84B8,
+    (const u16 *) gUnk_081D84B8,
+    (const u16 *) gUnk_081D84B8,
 };
 
 CONST_DATA struct ProcCmd ProcScr_ekrUnitKakudai[] = {

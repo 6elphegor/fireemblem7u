@@ -1,6 +1,16 @@
 #include "gbafe.h"
 #include "gbafe/sio_core.h"
 
+// ROM data referenced below, defined in data/ (see tools/datasplit.py)
+extern const u8 gUnk_081D5298[];
+extern const u8 gUnk_081D52A0[];
+extern const u8 gUnk_081D52A8[];
+extern const u8 gUnk_081D52B0[];
+extern const u8 gUnk_081D52B8[];
+extern const u8 gUnk_081D52C0[];
+extern const u8 gUnk_081D52CE[];
+extern const u8 gUnk_081D52D6[];
+
 // FE8U: sio_postbattle.c
 
 /**
@@ -36,17 +46,17 @@ void FE6Link_Init(ProcPtr proc);
 void Set_0203DDDC(ProcPtr proc);
 
 CONST_DATA u16 const * SpriteArray_085A96D4[] = {
-    (u16 const *) 0x081D5298,
-    (u16 const *) 0x081D52A0,
-    (u16 const *) 0x081D52A8,
-    (u16 const *) 0x081D52B0,
+    (u16 const *) gUnk_081D5298,
+    (u16 const *) gUnk_081D52A0,
+    (u16 const *) gUnk_081D52A8,
+    (u16 const *) gUnk_081D52B0,
 };
 
 CONST_DATA u16 const * SpriteArray_085A96E4[] = {
-    (u16 const *) 0x081D52B8,
-    (u16 const *) 0x081D52C0,
-    (u16 const *) 0x081D52CE,
-    (u16 const *) 0x081D52D6,
+    (u16 const *) gUnk_081D52B8,
+    (u16 const *) gUnk_081D52C0,
+    (u16 const *) gUnk_081D52CE,
+    (u16 const *) gUnk_081D52D6,
 };
 
 CONST_DATA struct ProcCmd ProcScr_LinkArenaPostBattle_DrawSprites[] = {
