@@ -1016,7 +1016,44 @@ void sub_080BCB34(int w, int h, int count, int offset, int start)
 ASM_FUNC("asm/nonmatching/code_080BCB34.s");
 #endif
 
+#if NONMATCHING
+// Reconstructed by Astra; logic believed right (note *dst &= *src & ~mask,
+// not just ~mask), codegen doesn't match yet.
+void sub_080BCBFC(int w, int h, int count, int offset, int start)
+{
+    int x, y, i;
+    int idx = count * start;
+
+    for (y = 0; y < h; y++)
+    {
+        for (x = 0; x < w; x++)
+        {
+            for (i = 0; i < count; i++)
+            {
+                u32 * src;
+                u32 * dst;
+                u32 v;
+
+                idx &= 0x3F;
+
+                src = (u32 *) (gUnk_08CEF074 + offset + x * 0x20 + y * 0x400);
+                dst = (u32 *) (offset + x * 0x20 + y * 0x400 + 0x06014000);
+
+                v = gUnk_08CEF314[idx & 0x3F];
+
+                src += v >> 3;
+                dst += v >> 3;
+
+                *dst &= *src & ~(0xF << ((v & 7) * 4));
+
+                idx++;
+            }
+        }
+    }
+}
+#else
 ASM_FUNC("asm/nonmatching/code_080BCBFC.s");
+#endif
 
 void sub_080BCCC4(struct OpAnimTextProc * proc)
 {
