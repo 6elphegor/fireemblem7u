@@ -67,18 +67,27 @@ from the value alone: exact hits on labels/functions/symbols in structured
 surroundings, sub-object pointers next to those, AnimScr sprite words
 (`sprite + delay bits`, e.g. `.4byte gUnk_08B9D5B8 + 0x1`) and RAM address
 tables; graphics, tile maps and tables left over from another build stay
-raw.  Structures the code finds through its own tables are decoded
+raw.  A word is also taken when the same field of the records before and
+after it (8 to 64 bytes away) are pointers (R6: e.g. the class reel's
+name pointers into the middle of the string pool).  Structures the code finds through its own tables are decoded
 directly (`structures()`: every `struct MapChange` list, whose `data`
 fields are pointers and whose tile data is not), and nothing points into
 the middle of the music data or a battle animation script.  Words that
 only look like pointers go in `NOT_POINTERS` with the evidence (the code
-that reads them); `make shifttest` checks that those ranges and the map
+that reads them, or why they are dead: the proc scripts at
+0x08CF6D90-0x08CF89A8 are left over from another build, and four of
+their stale code pointers happen to equal `m4aMPlayAllStop`,
+`SetSramFastFunc`, libgcc's `_call_via_r1` and libc's `_read_r` + 1);
+`make shifttest` checks that those ranges and the map
 change tiles keep their bytes and that the structure fields are
 symbolized.  Targets without a label get `gUnk_<ADDR>`.  The tool reads function,
 source and RAM names from `fe7u.elf`, so `make` first.  After renaming a
 label in `data/rom/*.s`, rerun it to update the references
-(`tools/rename.py` also covers `data/`).  Not yet done: the FE6 link
-multiboot image.  The music data and the battle animation scripts (whose
+(`tools/rename.py` also covers `data/`).  The FE6 link multiboot image
+(`gFe6LinkMultiBootImage`, 0x08CF0CD0-0x08CF634C) stays raw: it is a
+program for the other GBA (a stub that decompresses an LZ77 payload to
+0x02010000); its only cartridge addresses are the FE6 cartridge's header
+(0x080000AC, 0x080000B2), nothing in this ROM.  The music data and the battle animation scripts (whose
 pointers are inside LZ77-compressed data) have their own tools (below).
 
 ### Graphics and compressed data
@@ -158,9 +167,9 @@ rounded down to 5 bits; a few palettes use bit 15, which JASC drops).  To
 see new colors in the PNG, delete it and `make` (it is re-extracted from
 the ROM, so do that before drawing).
 
-The size of an entry is fixed by the layout (the link fails with "wrong
-size" if a `.lz` changes length), so for now an edit must compress to the
-same number of bytes; moving data is not supported by the layout yet.
+In the matching build the size of an entry is fixed by the layout (the
+link fails with "wrong size" if a `.lz` changes length).  To change sizes,
+build with `make MODERN=1` (see "Modern build" below).
 
 * New blobs: after `tools/datasplit.py` marks more `@ LZ77` labels, run
   `tools/gfx.py scan` (adds manifest entries), `tools/gfx.py classify`,
@@ -214,8 +223,8 @@ table), and
 The scripts therefore follow their sheets when data moves (the shift test
 does exactly that; a few scripts compress to a different size there, and
 everything after them moves by that much more).  As elsewhere, a changed
-size still fails the normal link's "wrong size" ASSERT until the layout
-supports moving data.
+size fails the matching link's "wrong size" ASSERT; the modern build
+(`make MODERN=1`) runs the same loop without the ASSERTs.
 
 ### Music
 
@@ -252,7 +261,12 @@ changing the manifest, delete the files it affects to see the change.
 Manifest names that fall inside an object (old datasplit guesses in
 samples and tracks) are local labels, so tools/dataptrs.py doesn't take
 look-alike words elsewhere for pointers to them.  Sizes are fixed by the
-layout, like everything else in the data region.
+layout in the matching build, like everything else in the data region;
+the modern build lets them change.  Song headers, voice groups, samples,
+wave data and the tables are preceded by `.align 2, 0` (which adds nothing
+at their original addresses), so they stay aligned when the data before
+them changes size; files extracted before that was added lack it (delete
+`sound/` but the manifest and `make` to extract them again).
 
 In source, refer to ROM data by symbol, never by a `0x08xxxxxx`
 constant, and don't put ROM data addresses in `symbols.ld` (an absolute
@@ -330,6 +344,98 @@ single-sprite AnimScr scripts in `tools/dataptrs.py`'s R3 were symbolized);
 the memory dumps show which object holds the wrong data (there: a
 `ProcScr_ekrsubAnimeEmulator` proc and OAM); from its code, find the table
 it read, and teach `tools/dataptrs.py` its structure.
+
+## Modern build
+
+`make MODERN=1` (or `make modern`) links the same objects with the data
+region placed freely, so edited assets may change size: a PNG that
+compresses to a different length, a longer song, more text, a bigger event
+script.  It writes `fe7u_modern.gba`, `fe7u_modern.elf` and
+`fe7u_modern.map`, and its own files under `build/modern/`; the matching
+build (`fe7u.gba`, `build/layout.ld`) is not touched.
+
+* `tools/modern.py` copies `data/rom/*.s` to `build/modern/data/rom/`,
+  starting a new section right after every extracted asset (`.incbin` of a
+  file under `build/graphics/` or `graphics/`), and writes
+  `build/modern/layout.txt`: every data section with its original address.
+* `tools/gen_layout.py --modern` places them in ROM order with no address
+  or size ASSERTs.  Before each section it only pads up to the next
+  address congruent to the original one modulo 4
+  (`. += (ADDR - .) & 3`), so with unchanged sizes every section lands at
+  its original address and **the modern ROM is identical to baserom.gba**;
+  after a size change everything behind it moves and keeps the alignment
+  it had (up to 4).  Inside the other objects alignment comes from the
+  source: the music (`.align 2, 0` before headers, voice groups, samples),
+  the text (`.align` before the Huffman table), event files (`.align 2, 0`
+  before every 4-aligned object: `tools/evdis.py`), battle animation
+  scripts (`.balign 4`), C.
+* The three LZ77 palettes stored cut short (their last token overlaps the
+  next blob's first bytes) stay cut short while the built files still
+  overlap that way, and are stored whole (4 bytes longer) otherwise.
+* The battle animation scripts are compressed by the same fixpoint link
+  as in the matching build (`tools/banim.py link build/modern/banim`),
+  which never relied on the ASSERTs; RAM sections keep their addresses; the
+  code is linked as before (it was always position-independent source).
+  The link is made with `--emit-relocs` for the check below.  The ROM is
+  padded to 16 MiB if smaller; it may grow up to 32 MiB (0x0A000000).
+
+Checking a modern ROM against the original:
+
+```sh
+make                    # the matching build first: fe7u.elf is the reference
+make MODERN=1           # fe7u_modern.gba (unmodified sources: == baserom.gba)
+make modern-check       # tools/moderncheck.py
+make modern-resizetest  # tools/modernresize.py: size-changed ROMs, checked
+make emutest EMUTEST_B=fe7u_modern.gba            # runtime comparison
+make emutest EMUTEST_B=fe7u_modern_neutral.gba
+```
+
+`tools/moderncheck.py [ELF [ROM]]` matches both ROMs through anchors (every
+data section's original and new address, every symbol both ELFs define
+once), lists the ranges that changed size, and checks that every
+relocation of the modern link (code literal pools, data pointer words,
+music, text table, events, C data: 55,000) holds its original value with
+the target moved like the object it pointed at, that every battle
+animation sheet pointer moved with its sheet, that all other bytes are the
+original ones, and that no object lost its alignment; if a message was
+edited it compares the decoded texts instead of the re-encoded bytes.
+`WRONG: 0` is the pass mark.  It also counts, as a risk, raw words that
+hold the original address of something that moved.
+
+`tools/modernresize.py [neutral|literal|edited]` backs up the files it
+touches, changes them, builds `fe7u_modern_MODE.gba` (with `.elf` and
+`.map`, ready for `make emutest EMUTEST_B=...`), checks it, and restores
+the files (your own edits in them are kept):
+`neutral` appends unused bytes to three LZ77 streams (a background at the
+start of the data, a portrait, a battle background at the end) and an
+unreachable byte to a song, so the game must play exactly the same;
+`literal` stores the three blobs with literals only (same data, slower to
+decompress, so a scene may start a frame later); `edited` changes pixels
+in the background and the portrait PNGs, adds a wait to a song and
+lengthens a message.
+
+What is and isn't guaranteed:
+
+* Every pointer the sources express as a symbol follows its target:
+  data/rom `.4byte` words, C and event data, code literal pools, the
+  music, the text table, battle animation sheets.  Checked by
+  `tools/moderncheck.py` and, at run time, by `make emutest`.
+* Pointers that are still raw bytes do not move.  `tools/dataptrs.py`
+  finds pointers in `data/rom` from structure, not from every word; a
+  pointer it misses keeps the old address and makes the game read the
+  wrong data once something before its target changed size (the check's
+  "risk" line counts the candidates: mostly graphics, tile maps and packed
+  values that only look like addresses, plus the dead data from another
+  build).  `make emutest` shows what that breaks; then teach
+  `tools/dataptrs.py` the structure (see "Runtime test").
+* Code that depends on absolute data addresses: none known.  The ROM
+  header and its checksum don't cover the data, nothing reads the ROM size,
+  the save code only uses SRAM, and `gFe6LinkMultiBootImageEnd` is the
+  image's label + its size.  Sizes and offsets that the data itself
+  stores (e.g. a table of offsets into an asset) are raw data; edit them
+  with the asset.
+* Only the data region moves; code edits were always free (the code is C
+  and assembly), as long as `fe7u.gba: OK` is not the goal.
 
 ## Decompiling a function
 

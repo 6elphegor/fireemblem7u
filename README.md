@@ -55,6 +55,16 @@ only structure (labels, pointers, manifests) and the tools.
 `baserom.gba` is still needed at build time: the rest of the data after the
 code (`0x080C57DC` onward) is incbin'd from it until it is split out.
 
+## Modern build
+
+`make MODERN=1` builds `fe7u_modern.gba` from the same sources with the
+data region linked without fixed addresses, so edited graphics, music,
+text and events may change size (everything after them moves; every
+pointer the sources hold as a symbol follows).  With unmodified sources it
+is identical to the original ROM.  `make modern-check` compares it with the
+original object by object; see CONTRIBUTING, "Modern build", for what is
+guaranteed.
+
 ## Layout
 
 | Path | Contents |

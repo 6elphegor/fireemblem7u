@@ -3,7 +3,7 @@
 
   tools/moderncheck.py [MODERN_ELF [MODERN_ROM]]      (or: make modern-check)
 
-Defaults: build/modern/fe7u_modern.elf and fe7u_modern.gba.  The original
+Defaults: fe7u_modern.elf and fe7u_modern.gba.  The original
 is baserom.gba, with its symbol addresses from fe7u.elf (the last matching
 build: build it before editing assets, since an edited asset makes the
 matching link fail).
@@ -46,6 +46,7 @@ import banim, elf32, gfx  # noqa: E401,E402
 
 ROM_BASE = 0x08000000
 DATA_START = 0x080C57DC
+MSG_COUNT = 0x133E  # messages in gMsgTable (tools/textdecode.py)
 ROM_LIMIT = 0x0A000000
 MODERN_DIR = Path("build/modern")
 
@@ -86,7 +87,7 @@ def map_sections(path):
 
 
 def main():
-    melf = Path(sys.argv[1] if len(sys.argv) > 1 else MODERN_DIR / "fe7u_modern.elf")
+    melf = Path(sys.argv[1] if len(sys.argv) > 1 else "fe7u_modern.elf")
     mrom_path = Path(sys.argv[2] if len(sys.argv) > 2 else "fe7u_modern.gba")
     mmap = melf.with_suffix(".map")
     if not Path("fe7u.elf").exists():
@@ -258,12 +259,47 @@ def main():
         i = bisect.bisect_right(bstarts, a) - 1
         return i >= 0 and a < banim_ranges[i][0] + banim_ranges[i][1]
 
+    # --- texts: if any message changed, the Huffman code is new and every
+    # message's bytes differ; compare the decoded texts instead ---------------
+    def messages(rom, syms):
+        def u16(a):
+            return struct.unpack_from("<H", rom, a - ROM_BASE)[0]
+
+        def u32(a):
+            return struct.unpack_from("<I", rom, a - ROM_BASE)[0]
+        table, root = syms["gMsgHuffmanTable"], u32(syms["gMsgHuffmanTableRoot"])
+        out = []
+        for i in range(MSG_COUNT):
+            a, text, byte, nbits = u32(syms["gMsgTable"] + 4 * i), bytearray(), 0, 0
+            while True:
+                node = root
+                while True:
+                    if nbits == 0:
+                        byte, nbits, a = rom[a - ROM_BASE], 8, a + 1
+                    bit, byte, nbits = byte & 1, byte >> 1, nbits - 1
+                    node = table + 4 * u16(node + 2 * bit)
+                    value = u32(node)
+                    if value & 0x80000000:
+                        break
+                text += struct.pack("<H", value & 0xFFFF) if value & 0xFF00 else bytes([value & 0xFF])
+                if not value & 0xFF00 and not value & 0xFF:
+                    break
+            out.append(bytes(text))
+        return out
+    omsgs, mmsgs = messages(orig, osyms), messages(mod, msyms)
+    changed_msgs = [i for i in range(MSG_COUNT) if omsgs[i] != mmsgs[i]]
+    print(f"messages: {MSG_COUNT}; text changed: {len(changed_msgs)} "
+          + " ".join(f"MSG_{i:03X}" for i in changed_msgs[:10]))
+    text_obj = next(((a, a + n) for a, n, obj in layout if obj == "build/msg_data.o(.rodata)"), (0, 0))
+
     # --- every other byte -------------------------------------------------------
     bad_bytes = []
     for i, o in enumerate(olist):
         no = olist[i + 1] if i + 1 < len(olist) else end_o
         if in_resized(o) or in_banim(o) or no <= o:
             continue
+        if changed_msgs and text_obj[0] <= o < text_obj[1]:
+            continue  # re-encoded: compared as text above
         m = mlist[i]
         ob, mb = orig[o - ROM_BASE:no - ROM_BASE], mod[m - ROM_BASE:m + no - o - ROM_BASE]
         if ob == mb:

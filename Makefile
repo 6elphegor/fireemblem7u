@@ -264,7 +264,7 @@ emutest: build/tools/emutest $(EMUTEST_A) $(EMUTEST_B)
 # (--emit-relocs) for tools/moderncheck.py.
 MODERN_DIR := build/modern
 MODERN_ROM := fe7u_modern.gba
-MODERN_ELF := $(MODERN_DIR)/fe7u_modern.elf
+MODERN_ELF := fe7u_modern.elf
 MODERN_ROMDATA_OBJS := $(patsubst data/rom/%.s,$(MODERN_DIR)/data/rom/%.o,$(ROMDATA_SRCS))
 MODERN_LAYOUT := $(MODERN_DIR)/data.s $(MODERN_DIR)/layout.ld $(MODERN_DIR)/ram.ld
 
@@ -298,7 +298,7 @@ $(MODERN_DIR)/fe7u.ld: build/fe7u.ld
 
 $(MODERN_ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(MODERN_DIR)/fe7u.ld $(MODERN_LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
-	python3 tools/banim.py link $(MODERN_DIR)/banim -- $(LD) -T $(MODERN_DIR)/fe7u.ld -Map $(MODERN_DIR)/fe7u_modern.map --emit-relocs --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(MODERN_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+	python3 tools/banim.py link $(MODERN_DIR)/banim -- $(LD) -T $(MODERN_DIR)/fe7u.ld -Map fe7u_modern.map --emit-relocs --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(MODERN_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 
 # Compare fe7u_modern.gba with the original (baserom.gba, fe7u.elf from the
 # last matching build): every pointer must point at the same object in both.
@@ -316,4 +316,4 @@ msgheader:
 	python3 tools/textencode.py $(TEXTS) build/msg_data.s --header include/constants/msg.h
 
 clean:
-	rm -rf build $(ROM) $(ELF) $(MAP) $(MODERN_ROM) fe7u_modern_neutral.gba fe7u_modern_edited.gba
+	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map
