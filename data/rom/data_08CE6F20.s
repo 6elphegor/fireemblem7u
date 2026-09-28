@@ -1524,7 +1524,9 @@ gEndingCgScroll2Lut:
 	.4byte gUnk_085E91A4
 	.4byte gUnk_085E93A8
 	.4byte gUnk_085E95AC
-	.incbin "baserom.gba", 0xceee94, 0x2c
+	.incbin "baserom.gba", 0xceee94, 0x1c
+	.4byte gUnk_085E97B0
+	.incbin "baserom.gba", 0xceeeb4, 0xc
 
 	.global ProcScr_EndingCgScroll2
 ProcScr_EndingCgScroll2:

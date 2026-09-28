@@ -371,7 +371,11 @@ gUnk_085E9504:
 
 	.global gUnk_085E95AC
 gUnk_085E95AC:
-	.incbin "baserom.gba", 0x5e95ac, 0x28c
+	.incbin "baserom.gba", 0x5e95ac, 0x204
+
+	.global gUnk_085E97B0
+gUnk_085E97B0:
+	.incbin "baserom.gba", 0x5e97b0, 0x88
 
 	.global gUnk_085E9838
 gUnk_085E9838:

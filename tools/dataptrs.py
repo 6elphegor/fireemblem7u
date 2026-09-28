@@ -49,8 +49,8 @@ Which decodable words are pointers (the structure evidence).  Terms:
   R4  RAM target: structured, and an R1/R3 pointer or an exact RAM symbol
       word within +-16 bytes (RAM address tables, proc / sound structs).
   R5  a pointer field of a structure found from the code's own tables
-      (structures() below: the struct MapChange lists), whatever its
-      surroundings.
+      (structures() below: the struct MapChange lists, the ending CG
+      scroll tables), whatever its surroundings.
   R6  record stride: a data target whose words S bytes before and after
       (8 <= S <= 64) are both accepted data pointers -- the same field of
       the neighbouring records (the class reel's name pointers into the
@@ -113,6 +113,11 @@ WHOLE_OBJS = ("build/sound/sound.o(", "build/banim/banim.o(")
 CHAPTER_INFO_SIZE = 0x98
 CHAPTER_ASSET_MAP_CHANGES = 0x0B
 MAP_CHANGE_SIZE = 12  # struct MapChange (include/gbafe/terrain.h)
+# struct EndingCgScrollEnt (src/ending_details.c) arrays: (name, entries).
+# gEndingCgScrollLut runs up to gEndingCgScroll2Lut (6 * 0x2C bytes), which
+# is followed by unrelated data (0x0E, then a code pointer table) after 2.
+ENDING_CG_SCROLL_ENT_SIZE = 0x2C
+ENDING_CG_SCROLL_LUTS = (("gEndingCgScrollLut", 6), ("gEndingCgScroll2Lut", 2))
 
 
 def structures(rom, syms):
@@ -144,6 +149,19 @@ def structures(rom, syms):
             fields.add(a + 8)
             plain.append((data, data + 2 * w * h))
             a += MAP_CHANGE_SIZE
+    # Ending CG scroll tables (src/ending_details.c): struct EndingCgScrollEnt
+    # {const void *img[7]; const void *tsa[4];}.  The scroll proc walks the
+    # table with proc->lut++ and Decompress()es / TmApplyTsa()s every
+    # non-NULL field, so all eleven words of every entry are pointers or
+    # NULL (e.g. gEndingCgScroll2Lut[1].tsa[0] at 0x08CEEEB0, which the
+    # neighbour rules miss because the entry is otherwise empty).
+    for name, count in ENDING_CG_SCROLL_LUTS:
+        lut, _ = syms.named[name]
+        for a in range(lut, lut + count * ENDING_CG_SCROLL_ENT_SIZE, 4):
+            v = word(a)
+            if v:
+                assert DATA_START <= v < ROM_END, f"{name}: field {a:#x} = {v:#x}"
+                fields.add(a)
     return fields, plain
 
 
