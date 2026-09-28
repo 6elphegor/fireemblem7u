@@ -391,8 +391,8 @@ void StartEvtBgFadeToMap(int flags, ProcPtr parent)
     proc->speed = flags & 0xFF;
 }
 
-#if NONMATCHING
-// one instruction short: the original has a dead 'ldrb r2, [r4]' before the ldrsb
+// FAKEMATCH (found by Astra): the volatile read into an unused register
+// variable reproduces a dead "ldrb r2, [r4]" in the original.
 int EvtCmd_BgFadeToMap(struct EventProc * proc)
 {
     int flags = proc->script[1];
@@ -401,6 +401,7 @@ int EvtCmd_BgFadeToMap(struct EventProc * proc)
     if (skipped)
     {
         u8 * bg = (u8 *) &proc->background;
+        register u8 old asm("r2") = *(volatile u8 *) bg;
 
         if ((s8) *bg != -1)
         {
@@ -425,6 +426,3 @@ int EvtCmd_BgFadeToMap(struct EventProc * proc)
         return EVENT_CMDRET_YIELD;
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080110B8.s");
-#endif

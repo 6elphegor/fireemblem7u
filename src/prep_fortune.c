@@ -121,16 +121,14 @@ void FortuneSubMenu_HandleOptionSwitch(struct PrepProcA1962C * proc)
         break;
     }
 }
-#if NONMATCHING
-// the original has a dead "adds r1, r0, #0" copy of the proc pointer before storing unk_29
+// FAKEMATCH (found by Astra): pinning proc to r1 and keeping it live
+// reproduces the original's dead "adds r1, r0, #0".
 void StartFortuneSubMenu(int option, ProcPtr parent)
 {
-    struct PrepProcA1962C * proc = Proc_StartBlocking(gProcScr_FortuneSubMenu, parent);
+    register struct PrepProcA1962C * proc asm("r1") = Proc_StartBlocking(gProcScr_FortuneSubMenu, parent);
     proc->unk_29 = option;
+    asm("" : : "r"(proc));
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080991DC.s");
-#endif
 
 s8 sub_080991F8(int var)
 {

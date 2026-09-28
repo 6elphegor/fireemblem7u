@@ -1065,8 +1065,8 @@ void TextNop2(void)
 {
 }
 
-#if NONMATCHING
-// the lut loads get moved next to their uses; the original keeps both loads early (dst ends up in r8)
+// FAKEMATCH (found by Astra): register pins and empty asm statements
+// keep the two table loads where the original has them.
 void DrawSpecialCharGlyph(int chr, int color, struct Glyph const * glyph)
 {
     int i;
@@ -1077,15 +1077,16 @@ void DrawSpecialCharGlyph(int chr, int color, struct Glyph const * glyph)
     for (i = 0; i < 16; i++)
     {
         u32 bits = *src++;
-        u16 lo = lut[bits & 0xFF];
-        u16 hi = lut[(bits >> 8) & 0xFF];
+        register u32 lo asm("r4") = lut[bits & 0xFF];
+        register u32 hi asm("r5") = lut[(bits >> 8) & 0xFF];
+        register u32 value asm("r0");
 
-        *dst++ = (hi << 16) + lo;
+        asm("" : "+r"(lo));
+        asm("" : "+r"(hi));
+        value = (hi << 16) + lo;
+        *dst++ = value;
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08006084.s");
-#endif
 
 int AddSpecialChar(struct SpecialCharSt * st, int color, int id)
 {
