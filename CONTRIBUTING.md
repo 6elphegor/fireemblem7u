@@ -269,6 +269,68 @@ region.  It also decompresses every battle animation script from both ROMs
 and checks that each sheet pointer moved with its sheet and nothing else
 changed.  `WRONG` (the total on the last line) must be 0.
 
+### Runtime test
+
+`make shifttest` can only check the words we made symbolic.  A pointer
+that was never found is still raw bytes, still holds the old address in a
+moved ROM, and makes the game read the wrong data.  `make emutest` catches
+those by playing the game: it runs `fe7u.gba` (A) and the shifted build
+`build/shift/s.gba` (B) side by side in mGBA, frame by frame with the same
+scripted keys, and compares them.
+
+```sh
+brew install mgba            # libmgba + headers (MPL-2.0; not vendored)
+make emutest                 # fe7u.gba vs build/shift/s.gba, every script
+make emutest EMUTEST_B=baserom.gba             # any ROM, e.g. fe7u_modern.gba
+make emutest EMUTEST_SCRIPTS=tests/inputs/opening.txt
+```
+
+If `build/tools/emutest` stops with `Library not loaded: .../libavcodec.62.dylib`,
+Homebrew's mgba bottle was built against an older ffmpeg than the one
+installed (mgba 0.10.5_2 wants ffmpeg 8; the core itself doesn't use it):
+`brew install ffmpeg@8`.  `tools/emutest.py` puts keg-only
+`ffmpeg@N/lib` directories on `DYLD_FALLBACK_LIBRARY_PATH`.
+
+* `tools/emutest.c` (built as `build/tools/emutest` against libmgba, found
+  with `pkg-config libmgba` or Homebrew) runs one or two ROMs headless.
+  Every run starts from power-on with mGBA's HLE BIOS (no BIOS file, and
+  the boot logo is skipped), empty save memory (no `.sav` is read or
+  written), no RTC, and mGBA's defaults instead of the user's config, so
+  it is deterministic: a ROM against itself, or `fe7u.gba` against
+  `baserom.gba`, is identical in every frame.  (HLE BIOS calls such as
+  `LZ77UnCompWram` take mGBA's estimated time, not the real BIOS's; both
+  ROMs get the same.)
+* Each frame it compares the picture, the sound samples, palette, VRAM and
+  OAM (any difference there fails the test), and EWRAM/IWRAM.  RAM holds
+  ROM data addresses, which legitimately differ, so a RAM word of B equal
+  to A's word after mapping it through the two ELFs' symbols (B address ->
+  same symbol + offset in A; `ptrmap.txt`) counts as equal.  Remaining RAM
+  differences are listed with RAM symbol names but don't fail the test:
+  the ones seen so far are low halfwords of moved pointers left in reused
+  proc slots (marked `half of a moved pointer?`).
+* At the first difference it saves both ROMs' memory
+  (`memdiff_FRAME_{A,B}.{ewram,iwram,vram,pal,oam}.bin`) and pictures
+  `A | B | differing pixels (magenta)`, for the first frames whose
+  pictures differ as well; checkpoints (`shot`) save A's picture.
+  Everything goes to `build/emutest/SCRIPT/`.
+* The scripts are `tests/inputs/*.txt` (format in `tools/emutest.py`):
+  `opening.txt` leaves the game alone for 19,600 frames (opening story,
+  title, the class reels' battle animations, the attract loop);
+  `prologue.txt` starts a new game and plays the start of the prologue
+  (menus, tactician info, dialogue, moving Lyn, the tutorial battle with
+  its battle animations, enemy phase), 12,850 frames.
+* Writing a script: `tools/emutest.py record SCRIPT --every 60` runs A alone
+  and writes a PNG every 60 frames plus contact sheets
+  (`build/emutest/record_NAME/sheet_*.png`) to check that the inputs do what
+  they should.
+
+Finding the pointer behind a difference: the first differing frame shows
+what broke (the class reels' battle platforms were garbage before the
+single-sprite AnimScr scripts in `tools/dataptrs.py`'s R3 were symbolized);
+the memory dumps show which object holds the wrong data (there: a
+`ProcScr_ekrsubAnimeEmulator` proc and OAM); from its code, find the table
+it read, and teach `tools/dataptrs.py` its structure.
+
 ## Decompiling a function
 
 1. Find it: `asm/nonmatching/code_<ADDR>.s` (inside a C module) or

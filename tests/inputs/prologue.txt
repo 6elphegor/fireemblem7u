@@ -1,0 +1,79 @@
+# New game through the start of the prologue (Lyn's tutorial): title,
+# main menu, save file select, tactician info, the prologue title card and
+# CG/portrait dialogue, the first map, moving Lyn, attacking the bandit
+# (battle animations, both phases), victory.  ~12,900 frames.
+#
+# The tutorial only accepts the moves it asks for; A presses on anything else
+# repeat its hint, so the counts below matter.  Found by recording with
+#   tools/emutest.py record tests/inputs/prologue.txt --every 60
+# and looking at the frames (build/emutest/record_prologue/).
+
+wait 300
+press Start                     # skip the opening
+wait 120
+shot title
+press Start
+wait 120
+shot main_menu                  # "New Game" (empty save)
+press A
+wait 120
+shot file_select                # three empty files
+press A
+wait 120
+shot tactician_info             # "Personal Information" (Mark, January, Male)
+repeat 9                        # the tactician explanations
+press A
+wait 60
+end
+shot enter_information          # "Enter information?" Yes / No
+press Right                     # No: keep the default name and birthday
+wait 30
+press A
+wait 120
+shot prologue_start             # after the "Prologue: A Girl from the Plains" card
+repeat 20
+press A
+wait 60
+end
+shot yurt_dialogue              # Lyn in the yurt (portrait, background)
+repeat 62                       # rest of the dialogue and the tutorial's hints
+press A
+wait 60
+end
+wait 60
+shot tutorial_move_hint         # "Place your cursor there, and then press A"
+press Left 5 20                 # Lyn's move: the flashing square 5 tiles left
+wait 30
+shot move_arrow
+press A
+wait 60
+shot move_menu                  # Wait
+repeat 19                       # Wait, enemy phase, "Select Lyn", hints
+press A
+wait 60
+end
+wait 60
+shot attack_hint                # move next to the bandit
+press Up 1 30                   # the square right of the bandit
+shot attack_square
+press A
+wait 60
+shot attack_menu                # Attack
+repeat 4                        # hints, Attack; weapon select
+press A
+wait 60
+end
+shot weapon_select
+press A
+wait 60
+shot battle_forecast
+repeat 6                        # the battle animation plays by itself; the
+                                # turn ends by itself too (Lyn is the only unit)
+wait 60
+shot battle
+end
+repeat 30                       # enemy phase: the bandit attacks, dies;
+press A                         # player phase, "Victory!", next hints
+wait 60
+shot after_battle
+end

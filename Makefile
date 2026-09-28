@@ -51,7 +51,7 @@ OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
-.PHONY: all compare clean msgheader shifttest
+.PHONY: all compare clean msgheader shifttest emutest
 .DELETE_ON_ERROR:
 
 all: compare
@@ -230,6 +230,31 @@ build/banim/%.script.o: banim/%.s include/banim_script.inc
 # Relink with padding before the data region and check every pointer moved.
 shifttest: $(ROM)
 	python3 tools/shifttest.py
+
+# The shifted ROM itself (same relink as shifttest).
+build/shift/s.gba: $(ROM) tools/shifttest.py
+	python3 tools/shifttest.py
+
+# Runtime test: play ROM A and ROM B in mGBA with the scripted inputs in
+# tests/inputs/ and compare pictures, sound and memory frame by frame
+# (tools/emutest.py; CONTRIBUTING, "Runtime test").  Needs libmgba (mGBA,
+# MPL-2.0; `brew install mgba`), found with pkg-config or Homebrew.
+#   make emutest                                 fe7u.gba vs the shifted build
+#   make emutest EMUTEST_B=fe7u_modern.gba       any other ROM
+#   make emutest EMUTEST_SCRIPTS=tests/inputs/opening.txt
+EMUTEST_A ?= $(ROM)
+EMUTEST_B ?= build/shift/s.gba
+EMUTEST_SCRIPTS ?=
+MGBA_PREFIX = $(shell brew --prefix mgba 2>/dev/null)
+MGBA_CFLAGS = $(shell pkg-config --cflags libmgba 2>/dev/null || echo -I$(MGBA_PREFIX)/include)
+MGBA_LIBS = $(shell pkg-config --libs libmgba 2>/dev/null || echo -L$(MGBA_PREFIX)/lib -Wl,-rpath,$(MGBA_PREFIX)/lib -lmgba)
+
+build/tools/emutest: tools/emutest.c
+	@mkdir -p $(@D)
+	$(HOSTCC) -O2 -Wall $(MGBA_CFLAGS) -o $@ $< $(MGBA_LIBS) -lz
+
+emutest: build/tools/emutest $(EMUTEST_A) $(EMUTEST_B)
+	python3 tools/emutest.py compare -a $(EMUTEST_A) -b $(EMUTEST_B) $(EMUTEST_SCRIPTS)
 
 # Regenerate include/constants/msg.h after adding/removing messages.
 msgheader:
