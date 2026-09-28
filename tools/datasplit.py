@@ -27,8 +27,8 @@ Labels (a chunk boundary is placed at each one):
     Thumb code address) or the target is itself an LZ77 blob, so isolated
     pointer-looking words in graphics are skipped.
 Also labeled: the sprite sheets that battle animation scripts point at from
-inside their compressed data (entries of FORMAT banim_script in
-data/graphics.txt).
+inside their compressed data (the scripts are placed from source by
+data/layout.txt, see tools/banim.py).
 Targets strictly inside an LZ77 blob get no new label (only an existing
 name can split a blob, e.g. FaceInfoTable, which code addresses one entry
 before the table).
@@ -72,6 +72,13 @@ ELF = "fe7u.elf"
 # text bitstream, and the music data (tools/m4adis.py; samples look like
 # anything, and its real pointers stay inside it).
 EXCLUDE_SCAN = {"build/msg_data.o(.rodata)", "build/sound/sound.o(.rodata)"}
+# Compressed battle animation scripts (tools/banim.py), one section each:
+# also not scanned (their pointers are inside the compressed data).
+BANIM_OBJ = "build/banim/banim.o("
+
+
+def excluded(obj):
+    return obj in EXCLUDE_SCAN or obj.startswith(BANIM_OBJ)
 SYM_RE = re.compile(r"\s*([A-Za-z_]\w*)\s*=\s*(0x[0-9A-Fa-f]+)\s*;")
 
 
@@ -263,18 +270,18 @@ def main():
     # --- pointer targets from data already in source
     src_targets = set()
     for addr, size, obj in placed:
-        if obj in EXCLUDE_SCAN:
+        if excluded(obj):
             continue
         for a in range((addr + 3) & ~3, addr + size - 3, 4):
             if is_data(word(a)) and word(a) % 2 == 0:
                 src_targets.add(word(a))
 
     # --- pointer targets inside compressed data: the sprite sheets named by
-    # battle animation scripts (FORMAT banim_script in data/graphics.txt)
+    # battle animation scripts (placed from banim/*.s, tools/banim.py)
     lz_targets = set()
-    for a, e in gfx_manifest().items():
-        if e.fmt == "banim_script":
-            lz_targets |= banim_sheets(rom, a)
+    for addr, size, obj in placed:
+        if obj.startswith(BANIM_OBJ):
+            lz_targets |= banim_sheets(rom, addr)
 
     # --- pointer words inside the gaps
     gap_words = []  # (addr, value) for every 4-aligned word pointing into ROM

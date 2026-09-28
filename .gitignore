@@ -11,3 +11,4 @@ texts/texts.txt
 /graphics/
 /sound/*
 !/sound/manifest.txt
+/banim/

@@ -71,8 +71,8 @@ raw.  Targets without a label get `gUnk_<ADDR>`.  The tool reads function,
 source and RAM names from `fe7u.elf`, so `make` first.  After renaming a
 label in `data/rom/*.s`, rerun it to update the references
 (`tools/rename.py` also covers `data/`).  Not yet done: the FE6 link
-multiboot image and pointers inside LZ77-compressed data (battle animation
-scripts).  The music data has its own tool (below).
+multiboot image.  The music data and the battle animation scripts (whose
+pointers are inside LZ77-compressed data) have their own tools (below).
 
 ### Compressed data and graphics
 
@@ -92,19 +92,65 @@ listed in `data/graphics.txt` (`ADDR SIZE FORMAT NAME`, see
   are stored cut short (their last token overlaps the next blob's header);
   those incbin only SIZE bytes.  A name defined inside a blob (FaceInfoTable)
   becomes `.set NAME, BLOB + offset`.
-* FORMAT is informational (`4bpp`, `tsa`, `palette`, `banim_script`,
-  `banim_oam`, `unknown`); `tools/gfx.py classify` fills it in from the
+* FORMAT is informational (`4bpp`, `tsa`, `palette`, `banim_oam`,
+  `unknown`); `tools/gfx.py classify` fills it in from the
   battle animation / terrain tables and label names.  No PNG conversion yet.
 * New blobs: after `tools/datasplit.py` marks more `@ LZ77` labels, run
   `tools/gfx.py scan` (adds manifest entries), `tools/gfx.py classify`,
   then `tools/datasplit.py` again.  Renaming an entry (NAME may contain
   `/`) also needs a `tools/datasplit.py` run; rename the `.bin` along.
 * datasplit also labels the sprite sheets that compressed battle animation
-  scripts (`banim_script`) point at, so they are found as blobs too.
+  scripts point at, so they are found as blobs too.  The scripts themselves
+  are not in this manifest (see below).
 
 The size of a blob is fixed by the layout (the link fails with "wrong
 size" if a `.lz` changes length), so editing graphics that change size
 means moving data, which the layout does not support yet.
+
+### Battle animation scripts
+
+A battle animation (`struct BattleAnim`, `banim_data`) points at an
+LZ77-compressed script and, right after it, the script's mode table.  The
+script is u32 commands: `0x86NNDDDD SHEET OAM` (a frame: SHEET is an
+absolute pointer to an LZ77 4bpp sprite sheet, OAM a byte offset into the
+animation's OAM data, DDDD the duration, NN a frame number), `0x850000CC`
+(command CC: hits, sounds, effects...) and `0x80000000` (end of a mode;
+modes are `enum banim_mode_index`).  The mode table holds the offset of
+each mode in the decompressed script, then as many zeros.  SHEET is the
+only pointer; everything else is relative.
+
+The 162 scripts are placed from source like the music: each is a section
+of `build/banim/banim.o` in `data/layout.txt` (`rom ADDR SIZE
+build/banim/banim.o(.rodata.NAME)`, SIZE = compressed script + mode
+table), and
+
+* `tools/banim.py extract` (run by the first `make`) writes
+  `banim/NAME.s`: `include/banim_script.inc` macros (`banim_frame
+  DURATION, NUM, SHEET_LABEL, OAM`, `banim_cmd`, `banim_end_mode`,
+  `banim_mode N`, `banim_modes TABLE_LABEL`).  `banim/` is not in git; the
+  file is the source from then on (delete it to extract it again).  Label
+  names come from `data/rom/*.s` (the sheets' labels, and the script and
+  mode table names used by `banim_data`); rename a sheet there and in
+  `banim/` alike.
+* It is assembled to `build/banim/NAME.script.o`, uncompressed, with a
+  relocation per sheet pointer (not linked into the ROM).
+* The link is run by `tools/banim.py link`, because the compressed bytes
+  depend on the sheet addresses, which depend on the compressed sizes of
+  everything before them.  It resolves each script's relocations with the
+  addresses of a trial link, compresses the result (`build/banim/NAME.lz`),
+  assembles `build/banim/banim.o` (label, `.lz`, mode table label and
+  offsets computed by the assembler from the `banim_mode` markers), and
+  relinks, until no script changes; then the real link (with the layout
+  ASSERTs) runs.  The first trial starts from the previous build's contents
+  or the layout's label addresses, so a normal build needs one trial link.
+  If sizes kept oscillating it would pad the `.lz` files to the largest size
+  seen.
+
+The scripts therefore follow their sheets when data moves (the shift test
+does exactly that; a few scripts compress to a different size there, and
+everything after them moves by that much more).  As elsewhere, a changed
+size still fails the normal link's "wrong size" ASSERT until the layout
+supports moving data.
 
 ### Music
 
@@ -144,9 +190,14 @@ address doesn't move; it also overrides a definition in source).  Declare
 a `data/rom` label as `extern const u8 gUnk_<ADDR>[];` if no header has it.
 To check that a change keeps the data relocatable, run `make shifttest`
 (`tools/shifttest.py`). It relinks with 0x100 bytes of padding before the
-data region and compares the result with `baserom.gba` shifted by 0x100:
-only pointer words may differ, by exactly 0x100 when they point into the
-data region. `WRONG` must be 0.
+data region (recompressing the battle animation scripts for it, in
+`build/shift/banim`) and compares the result with `baserom.gba`, each
+layout entry at the address the shifted link's map gives it (0x100 later,
+plus any compressed script size change before it): only pointer words may
+differ, by exactly their target's move when they point into the data
+region.  It also decompresses every battle animation script from both ROMs
+and checks that each sheet pointer moved with its sheet and nothing else
+changed.  `WRONG` (the total on the last line) must be 0.
 
 ## Decompiling a function
 
