@@ -20,7 +20,7 @@ import subprocess
 import sys
 from pathlib import Path
 sys.path.insert(0, "tools")
-import banim, datasplit as ds, elf32, gfx
+import banim, dataptrs, datasplit as ds, elf32, gfx
 
 SHIFT = int(sys.argv[1], 0) if len(sys.argv) > 1 else 0x100
 out = Path("build/shift"); out.mkdir(exist_ok=True)
@@ -275,5 +275,28 @@ for a in range(ds.ROM_BASE, ds.DATA_START, 4):
     if ds.DATA_START <= v < ds.ROM_END and sw(a) == v:
         lit += 1
 print(f"code-region words holding data-region addresses that did not move: {lit}")
-wrong = len(bad_ptr) + len(bad_rel) + len(bad_sheet) + len(bad_other) + len(bad_modes) + len(bad_src)
+
+# Regression checks for tools/dataptrs.py's structure knowledge: data known
+# to hold no pointer (map change tiles, NOT_POINTERS -- words there that look
+# like pointers, e.g. 0x08CE3110 or 0x08CE605C) must keep its bytes and have
+# no .4byte word, and the structure pointer fields it finds (map change data
+# pointers, e.g. 0x08CE27F8) must be symbolized.
+dsyms = dataptrs.Symbols("fe7u.elf", lambda a: False)
+fields, _ = dataptrs.structures(orig, dsyms)
+raw = dataptrs.raw_ranges(orig, dsyms)
+bad_raw = [a for s, e in raw for a in range(s, e)
+           if orig[a - ds.ROM_BASE] != sh[mv(a) - ds.ROM_BASE]]
+bad_raw += [p for p in ptrs if any(s < p + 4 and p < e for s, e in raw)]
+# (a field in a source section is a relocation, checked above)
+missed = sorted(f for f in fields if f not in ptrs and owner(f) == "data/rom")
+print(f"raw ranges (no pointers): {len(raw)}, {sum(e - s for s, e in raw)} bytes; "
+      f"changed or symbolized: {len(bad_raw)}; structure pointer fields: {len(fields)}, "
+      f"not symbolized: {len(missed)}")
+for a in sorted(set(bad_raw))[:10]:
+    print("  raw data changed %08X" % a)
+for a in missed[:10]:
+    print("  pointer field left raw %08X" % a)
+
+wrong = (len(bad_ptr) + len(bad_rel) + len(bad_sheet) + len(bad_other) + len(bad_modes) + len(bad_src)
+         + len(bad_raw) + len(missed))
 print(f"WRONG: {wrong}")

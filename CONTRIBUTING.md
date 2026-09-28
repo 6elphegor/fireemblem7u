@@ -67,7 +67,14 @@ from the value alone: exact hits on labels/functions/symbols in structured
 surroundings, sub-object pointers next to those, AnimScr sprite words
 (`sprite + delay bits`, e.g. `.4byte gUnk_08B9D5B8 + 0x1`) and RAM address
 tables; graphics, tile maps and tables left over from another build stay
-raw.  Targets without a label get `gUnk_<ADDR>`.  The tool reads function,
+raw.  Structures the code finds through its own tables are decoded
+directly (`structures()`: every `struct MapChange` list, whose `data`
+fields are pointers and whose tile data is not), and nothing points into
+the middle of the music data or a battle animation script.  Words that
+only look like pointers go in `NOT_POINTERS` with the evidence (the code
+that reads them); `make shifttest` checks that those ranges and the map
+change tiles keep their bytes and that the structure fields are
+symbolized.  Targets without a label get `gUnk_<ADDR>`.  The tool reads function,
 source and RAM names from `fe7u.elf`, so `make` first.  After renaming a
 label in `data/rom/*.s`, rerun it to update the references
 (`tools/rename.py` also covers `data/`).  Not yet done: the FE6 link

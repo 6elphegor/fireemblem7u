@@ -21,7 +21,8 @@ Labels (a chunk boundary is placed at each one):
     Huffman text bitstream and the music data); odd ones there were all
     packed halfwords;
   * pointer targets referenced from 4-aligned words inside the gaps, only if
-    the target is 4-aligned, the word is not inside an LZ77 blob, and the
+    the target is 4-aligned, the word is not inside an LZ77 blob or data
+    tools/dataptrs.py knows holds no pointer (raw_ranges), and the
     word sits next to another plausible pointer (a word within +-16 bytes,
     not in an LZ77 blob, holding a 4-aligned data-region address or an odd
     Thumb code address) or the target is itself an LZ77 blob, so isolated
@@ -285,12 +286,23 @@ def main():
         if obj.startswith(BANIM_OBJ):
             lz_targets |= banim_sheets(rom, addr)
 
-    # --- pointer words inside the gaps
+    # --- pointer words inside the gaps (not in data known to hold none,
+    # tools/dataptrs.py's raw_ranges: map change tiles, NOT_POINTERS)
+    if not Path(ELF).exists():
+        sys.exit(f"{ELF} is needed for symbol names: run make first")
+    syms = dataptrs.Symbols(ELF, in_gap)
+    raw = dataptrs.raw_ranges(rom, syms)
+    raw_starts = [r[0] for r in raw]
+
+    def is_raw(a):
+        i = bisect.bisect_right(raw_starts, a + 3) - 1
+        return i >= 0 and a < raw[i][1]
+
     gap_words = []  # (addr, value) for every 4-aligned word pointing into ROM
     for start, end in gaps:
         for a in range((start + 3) & ~3, end - 3, 4):
             v = word(a)
-            if ROM_BASE <= v < ROM_END:
+            if ROM_BASE <= v < ROM_END and not is_raw(a):
                 gap_words.append((a, v))
 
     # --- LZ77 blobs at 4-aligned pointer targets, to a fixpoint
@@ -341,9 +353,6 @@ def main():
             new_labels += 1
 
     # --- symbolic pointer words (tools/dataptrs.py)
-    if not Path(ELF).exists():
-        sys.exit(f"{ELF} is needed for symbol names: run make first")
-    syms = dataptrs.Symbols(ELF, in_gap)
     trusted = code_targets | src_targets | set(blobs) | {
         a for a, ns in names.items() if any(not n.startswith("gUnk_") for n in ns)}
     ptrs, ptr_labels = dataptrs.find_pointers(

@@ -47,6 +47,19 @@ Which decodable words are pointers (the structure evidence).  Terms:
       noise-like, and a STOP / END / LOOP / jump terminator.
   R4  RAM target: structured, and an R1/R3 pointer or an exact RAM symbol
       word within +-16 bytes (RAM address tables, proc / sound structs).
+  R5  a pointer field of a structure found from the code's own tables
+      (structures() below: the struct MapChange lists), whatever its
+      surroundings.
+Never pointers (the words are left raw and give no neighbour evidence):
+  * the data of those structures that holds no pointer (map change tile
+    data: u16 metatile ids, e.g. 0x08D0 0x00D4 read as a word is a label
+    address);
+  * NOT_POINTERS: ranges whose consumer shows they hold no pointer, each
+    with its evidence;
+  * a target strictly inside the music data or a battle animation script
+    (placed whole from sound/ and banim/; code and tables only ever point
+    at their start or at a named object in them), e.g. OAM attribute
+    0x089B next to a zero halfword reads as music sample + 0x275C.
 Acceptance is iterated to a fixpoint with the labels it creates, so running
 the tool again gives the same output.  Everything else stays incbin'd;
 `tools/datasplit.py --stats` counts the words per rule.
@@ -64,6 +77,64 @@ SKIP_RANGES = [
     # gFe6LinkMultiBootImage: a separate program linked for EWRAM.
     (0x08CF0CD0, 0x08CF634C),
 ]
+
+# Data that holds no pointer although some of its words look like one.
+# (start, end, evidence); words overlapping a range are never symbolized.
+NOT_POINTERS = [
+    # SpriteLut_GaugePips' four sprites (src/opinfo.c passes each to
+    # PutSpriteExt as a u16 OAM list: count 1, then attr0 attr1 attr2).
+    # attr2 = 0x089B..0x089E (priority 2, tile 0x9B..) above attr1 = 0 reads
+    # as 0x089B0000, which is inside a music sample.
+    (0x08CE6058, 0x08CE6078, "SpriteLut_GaugePips sprites (u16 OAM lists)"),
+]
+
+# Placed objects that nothing points into (only at their start, or at a
+# global name defined in them): the music data (tools/m4adis.py) and the
+# battle animation scripts (tools/banim.py).
+WHOLE_OBJS = ("build/sound/sound.o(", "build/banim/banim.o(")
+
+# struct ChapterInfo (include/gbafe/chapterdata.h): size, and the offset of
+# asset_map_changes, an index into gChapterDataAssetTable.
+CHAPTER_INFO_SIZE = 0x98
+CHAPTER_ASSET_MAP_CHANGES = 0x0B
+MAP_CHANGE_SIZE = 12  # struct MapChange (include/gbafe/terrain.h)
+
+
+def structures(rom, syms):
+    """Structures found the way the game finds them.  Returns (pointer field
+    addresses, [(start, end)] of their data that holds no pointer).
+
+    Map changes: GetMapChange (src/bmtrick.c) walks
+    gChapterDataAssetTable[GetChapterInfo(ch)->asset_map_changes], a list of
+    struct MapChange {s8 id; u8 x, y, xSize, ySize; const u16 *data;} ended
+    by a negative id; ApplyMapChange reads xSize * ySize u16 metatile ids
+    from data."""
+    def word(a):
+        return struct.unpack_from("<I", rom, a - ROM_BASE)[0]
+
+    fields, plain = set(), []
+    chapters, csize = syms.named["gChapterDataTable"]
+    assets, _ = syms.named["gChapterDataAssetTable"]
+    assert csize % CHAPTER_INFO_SIZE == 0, "struct ChapterInfo size changed?"
+    lists = set()
+    for c in range(chapters, chapters + csize, CHAPTER_INFO_SIZE):
+        lst = word(assets + 4 * rom[c + CHAPTER_ASSET_MAP_CHANGES - ROM_BASE])
+        if lst:
+            lists.add(lst)
+    for a in lists:
+        while rom[a - ROM_BASE] < 0x80:
+            data = word(a + 8)
+            w, h = rom[a + 3 - ROM_BASE], rom[a + 4 - ROM_BASE]
+            assert DATA_START <= data < ROM_END, f"map change {a:#x}: data {data:#x}"
+            fields.add(a + 8)
+            plain.append((data, data + 2 * w * h))
+            a += MAP_CHANGE_SIZE
+    return fields, plain
+
+
+def raw_ranges(rom, syms):
+    """Sorted (start, end) ranges whose words are never pointers."""
+    return sorted(structures(rom, syms)[1] + [(s, e) for s, e, _ in NOT_POINTERS])
 
 
 def is_rom(v):
@@ -91,10 +162,12 @@ class Symbols:
         self.code = {}     # even address -> name (Thumb NOTYPE labels)
         self.data = {}     # data-region address -> name
         self.ram = {}      # RAM address -> (name, size)
+        self.named = {}    # name -> (address, size), every global
         pick = {}
         for s in elf32.Elf(elf_path).symbols:
             if s.bind != 1 or s.shndx in (0, 0xFFF2) or not s.name or s.name.startswith("$"):
                 continue
+            self.named.setdefault(s.name, (s.value, s.size))
             if s.shndx == 0xFFF1 and not is_ram(s.value):
                 continue  # absolute ROM addresses (symbols.ld) would not move
             if s.type not in (0, 1, 2):
@@ -193,6 +266,8 @@ def find_pointers(rom, gaps, placed, names, trusted, blobs, blob_lookup, syms):
         if i < 0 or syms.data_sorted[i] < p[0]:
             return None
         base = syms.data_sorted[i]
+        if base != v and p[2].startswith(WHOLE_OBJS):
+            return None  # never into the music data or a battle animation script
         return ("sym", base, v - base, 2 if base == v else 0)
 
     def ram_target(v):
@@ -215,10 +290,18 @@ def find_pointers(rom, gaps, placed, names, trusted, blobs, blob_lookup, syms):
         return data_target(v, labels)
 
     # --- words to look at --------------------------------------------------
+    struct_fields, _ = structures(rom, syms)
+    raw = raw_ranges(rom, syms)
+    raw_starts = [r[0] for r in raw]
+
+    def is_raw(a):  # the word at a overlaps data that holds no pointer
+        i = bisect.bisect_right(raw_starts, a + 3) - 1
+        return i >= 0 and a < raw[i][1]
+
     words = {}
     for s, e in gaps:
         for a in range((s + 3) & ~3, e - 3, 4):
-            if not skipped(a) and not blob_lookup(a):
+            if not skipped(a) and not blob_lookup(a) and not is_raw(a):
                 words[a] = word(a)
 
     def struct_ok(a):
@@ -334,6 +417,10 @@ def find_pointers(rom, gaps, placed, names, trusted, blobs, blob_lookup, syms):
             if any(a + k in strong or a + k in dec and is_ram(words[a + k]) and dec[a + k][3] == 2
                    for k in near):
                 acc[a] = d[:3] + ("R4",)
+        for a in struct_fields:  # R5
+            d = plain(words[a], labels) if a in words else None
+            if a not in acc and d:
+                acc[a] = d[:3] + ("R5",)
         new = {t[1] for t in acc.values() if t[0] == "label" and t[1] not in labels}
         if not new:
             break

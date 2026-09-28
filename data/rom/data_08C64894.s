@@ -4322,7 +4322,13 @@ gUnk_08CE2780:
 
 	.global gUnk_08CE27F0
 gUnk_08CE27F0:
-	.incbin "baserom.gba", 0xce27f0, 0x30
+	.incbin "baserom.gba", 0xce27f0, 0x8
+	.4byte gUnk_08CE2594
+	.incbin "baserom.gba", 0xce27fc, 0x8
+	.4byte gUnk_08CE2684
+	.incbin "baserom.gba", 0xce2808, 0x8
+	.4byte gUnk_08CE2780
+	.incbin "baserom.gba", 0xce2814, 0xc
 
 	.global gUnk_08CE2820
 gUnk_08CE2820:
@@ -4854,10 +4860,7 @@ gUnk_08CE3074:
 
 	.global gUnk_08CE30B0
 gUnk_08CE30B0:
-	.incbin "baserom.gba", 0xce30b0, 0x60
-	.4byte gUnk_08D000D4
-	.4byte EventScr_08CC08C4 + 0x8
-	.incbin "baserom.gba", 0xce3118, 0x58
+	.incbin "baserom.gba", 0xce30b0, 0xc0
 
 	.global gUnk_08CE3170
 gUnk_08CE3170:
@@ -6500,8 +6503,7 @@ ProcScr_ClassStatsDisplay:
 
 	.global gUnk_08CE6058
 gUnk_08CE6058:
-	.incbin "baserom.gba", 0xce6058, 0x4
-	.4byte DirectSoundData_089AD8A4 + 0x275c
+	.incbin "baserom.gba", 0xce6058, 0x8
 
 	.global gUnk_08CE6060
 gUnk_08CE6060:
@@ -6509,13 +6511,11 @@ gUnk_08CE6060:
 
 	.global gUnk_08CE6068
 gUnk_08CE6068:
-	.incbin "baserom.gba", 0xce6068, 0x4
-	.4byte DirectSoundData_089CE5E8 + 0x1a18
+	.incbin "baserom.gba", 0xce6068, 0x8
 
 	.global gUnk_08CE6070
 gUnk_08CE6070:
-	.incbin "baserom.gba", 0xce6070, 0x4
-	.4byte DirectSoundData_089DB9E0 + 0x4620
+	.incbin "baserom.gba", 0xce6070, 0x8
 
 	.global SpriteLut_GaugePips
 SpriteLut_GaugePips:

@@ -2880,11 +2880,7 @@ gUnk_08CFFF68:
 	.4byte gUnk_08CFFF60
 	.4byte gUnk_08CFFF68
 	.4byte gUnk_08CFFF68
-	.incbin "baserom.gba", 0xcfff78, 0x15c
-
-	.global gUnk_08D000D4
-gUnk_08D000D4:
-	.incbin "baserom.gba", 0xd000d4, 0x110b4
+	.incbin "baserom.gba", 0xcfff78, 0x11210
 
 	.global gUnk_08D11188
 gUnk_08D11188:
