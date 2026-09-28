@@ -47,8 +47,8 @@ not in git, and from then on builds from them:
   425 samples (`.bin`) and 11 programmable waves; `tools/m4adis.py`,
   driven by the committed `sound/manifest.txt`.
 
-Delete such a file to re-extract it (for `sound/`, delete `sound/sound.s`;
-for `banim/`, the script's `.s`).  Assets are never committed: git holds
+No tool overwrites a file there: delete one to extract it again from the
+ROM.  Assets are never committed: git holds
 only structure (labels, pointers, manifests) and the tools.
 `baserom.gba` is still needed at build time: the rest of the data after the
 code (`0x080C57DC` onward) is incbin'd from it until it is split out.

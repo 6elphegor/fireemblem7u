@@ -242,8 +242,13 @@ writes
 Every pointer in the region is a label (+ offset), including the 2,537
 unaligned ones in track data, so the music moves with the layout;
 `make shifttest` checks each relocated field.  Edit the files in `sound/`
-freely (`as --MD` tracks the includes); running `tools/m4adis.py` again
-overwrites them all (delete `sound/sound.s` and `make` does the same).
+freely (`as --MD` tracks the includes): like `tools/gfx.py extract`,
+`tools/m4adis.py` only writes files that are missing, never over an
+existing one, so deleting a file (or all of `sound/` but the manifest) and
+running `make` extracts it again with the ROM's bytes.  `make` runs the tool
+when `sound/.extracted` is older than the manifest or a file it extracts
+(`build/sound.mk`, from `tools/m4adis.py --makefile`) is missing.  After
+changing the manifest, delete the files it affects to see the change.
 Manifest names that fall inside an object (old datasplit guesses in
 samples and tracks) are local labels, so tools/dataptrs.py doesn't take
 look-alike words elsewhere for pointers to them.  Sizes are fixed by the

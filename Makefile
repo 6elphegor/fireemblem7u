@@ -37,7 +37,9 @@ ROMDATA_OBJS := $(patsubst %.s,build/%.o,$(ROMDATA_SRCS))
 -include build/graphics.mk
 LZ77 := build/tools/lz77
 GBAGFX := build/tools/gbagfx
-# Music (m4a) data, extracted from the ROM into sound/ by tools/m4adis.py.
+# Music (m4a) data, extracted from the ROM into sound/ by tools/m4adis.py;
+# build/sound.mk lists the files it extracts (SOUND_SRCS).
+-include build/sound.mk
 SOUND_OBJ := build/sound/sound.o
 # Battle animation scripts, extracted into banim/ by tools/banim.py, which
 # also compresses them at link time into build/banim/banim.o.
@@ -189,14 +191,22 @@ build/msg_data.o: build/msg_data.s
 
 # Music: songs, voice groups and samples aren't in git either.  The first
 # build extracts them to sound/ (see tools/m4adis.py; sound/manifest.txt is
-# the committed part); after that sound/ is the source.  Delete
-# sound/sound.s (or run the tool) to extract again.
-sound/sound.s: | baserom.gba
+# the committed part); after that sound/ is the source.  The tool never
+# overwrites a file: delete one and the next build extracts it again.
+build/sound.mk: sound/manifest.txt tools/m4adis.py | baserom.gba
+	@mkdir -p $(@D)
+	python3 tools/m4adis.py --makefile > $@
+
+sound/.extracted: sound/manifest.txt | baserom.gba
 	python3 tools/m4adis.py
+
+# Explicit targets, so make never deletes them as intermediate files.
+sound/sound.s $(filter-out sound/sound.s,$(SOUND_SRCS)): | sound/.extracted
+	@test -f $@ || python3 tools/m4adis.py
 
 # as --MD lists every .include/.incbin; the empty rules (like gcc -MP) keep
 # make going if one of them disappears.
-$(SOUND_OBJ): sound/sound.s include/MPlayDef.s include/m4a_data.inc
+$(SOUND_OBJ): sound/sound.s $(SOUND_SRCS) include/MPlayDef.s include/m4a_data.inc
 	@mkdir -p $(@D)
 	$(AS) $(ASFLAGS) --MD $(@:.o=.d) -o $@ $<
 	@sed -e 's/^[^:]*://' -e 's/\\$$//' $(@:.o=.d) | tr ' ' '\n' | grep . | sed 's/$$/:/' >> $(@:.o=.d)
