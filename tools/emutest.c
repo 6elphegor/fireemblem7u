@@ -4,7 +4,8 @@
  *
  *   emutest [options] ROM_A [ROM_B]
  *     -p PLAN     input plan (tools/emutest.py compiles tests/inputs/NAME.txt
- *                 into it): "frames N", "keys FRAME MASK", "shot FRAME NAME"
+ *                 into it): "frames N", "keys FRAME MASK", "shot FRAME NAME",
+ *                 "sram PATH" (a save memory image both ROMs start with)
  *     -o DIR      output directory (PNGs, memory dumps)
  *     -m MAP      B->A address map for ROM pointers in B's RAM: lines
  *                 "B_START B_END DELTA" (hex); a word of B's EWRAM/IWRAM in
@@ -16,8 +17,9 @@
  *
  * Output on stdout is line-oriented ("key value ..."), read by emutest.py.
  * Each run starts from power-on with mGBA's HLE BIOS (no BIOS file), empty
- * save memory (no .sav is read or written), no RTC and the user's mGBA
- * config ignored, so it is deterministic.
+ * save memory (no .sav is read or written) unless the plan names an image
+ * (tools/mksave.py makes them; it is copied into memory, never written back),
+ * no RTC and the user's mGBA config ignored, so it is deterministic.
  *
  * mGBA (libmgba) is MPL-2.0 and is linked, not vendored.
  */
@@ -74,6 +76,9 @@ static void die(const char *fmt, ...)
 	exit(2);
 }
 
+static void *sramImage;
+static size_t sramSize;
+
 static void emuOpen(struct emu *e, const char *path)
 {
 	e->path = path;
@@ -96,7 +101,10 @@ static void emuOpen(struct emu *e, const char *path)
 		die("can't open %s", path);
 	if (!e->core->loadROM(e->core, vf))
 		die("can't load %s", path);
-	/* No loadSave: save memory starts blank (0xFF) in memory every run. */
+	/* Save memory starts blank (0xFF) in memory every run, or as a copy of
+	 * the plan's image (a memory VFile: nothing is written to disk). */
+	if (sramImage && !e->core->loadSave(e->core, VFileMemChunk(sramImage, sramSize)))
+		die("can't load the save image");
 	e->core->reset(e->core);
 }
 
@@ -303,6 +311,19 @@ static void loadPlan(const char *path)
 			if (nkeyevs == kcap)
 				keyevs = realloc(keyevs, (kcap *= 2) * sizeof *keyevs);
 			keyevs[nkeyevs++] = (struct keyev){ a, b };
+		} else if (!strncmp(line, "sram ", 5)) {
+			char *p = line + 5;
+			p[strcspn(p, "\r\n")] = 0;
+			FILE *s = fopen(p, "rb");
+			if (!s)
+				die("can't open %s", p);
+			fseek(s, 0, SEEK_END);
+			sramSize = ftell(s);
+			fseek(s, 0, SEEK_SET);
+			sramImage = malloc(sramSize);
+			if (fread(sramImage, 1, sramSize, s) != sramSize)
+				die("can't read %s", p);
+			fclose(s);
 		} else if (sscanf(line, "shot %u %127s", &a, name) == 2) {
 			if (nshots == scap)
 				shots = realloc(shots, (scap *= 2) * sizeof *shots);

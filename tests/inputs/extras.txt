@@ -1,0 +1,113 @@
+sram tests/saves/extras.txt
+wait 300
+press Start
+wait 120
+press Start
+wait 120
+shot main_menu
+press Up
+wait 30
+press A
+wait 120
+shot extras
+press Down 1 40
+press A
+wait 180
+shot sound_room
+press A
+wait 400
+shot song1
+press Down 5 20
+press Right 2 20
+wait 60
+press A
+wait 400
+shot song2
+press Down 7 12
+press Right 1 20
+wait 60
+press A
+wait 400
+shot song3
+press Down 12 12
+wait 60
+press A
+wait 400
+shot song4
+press B
+wait 60
+press Start
+wait 180
+shot extras_back
+press Up 1 40
+press A
+wait 240
+shot link_arena
+press A
+wait 120
+shot link_arena2
+press B
+wait 120
+press B
+wait 120
+press B
+wait 180
+shot link_arena_back
+press Start
+wait 180
+press Up
+wait 30
+press A
+wait 180
+shot extras2
+press Down 2 40
+press A
+wait 180
+shot support
+press A
+wait 120
+shot support2
+press A
+wait 120
+shot support3
+press A
+wait 120
+shot support4
+repeat 10
+press A
+wait 60
+shot support_talk
+end
+repeat 20
+press A
+wait 50
+end
+wait 200
+shot support_done
+press B
+wait 120
+shot support_list
+press Right 1 30
+press Down 2 30
+press R
+wait 90
+shot support_info
+press B
+wait 60
+press A
+wait 120
+shot support_partners2
+press Down 1 30
+press A
+wait 120
+repeat 20
+press A
+wait 50
+end
+shot support_talk2
+wait 200
+press B
+wait 120
+press B
+wait 120
+shot support_exit

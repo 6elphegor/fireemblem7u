@@ -33,6 +33,10 @@ Input scripts (tests/inputs/*.txt), one command per line, `#` comments:
                           plus video and memory hashes, at the current frame
                           (repeated names get _2, _3...)
   repeat N ... end        repeat a block
+  sram DESC               (first line only) boot with the save memory that
+                          tools/mksave.py makes from DESC (tests/saves/*.txt:
+                          a later chapter with a party, the extras unlocked);
+                          without it the save memory starts empty
 
 KEYS: A B Select Start Right Left Up Down R L, joined with `+` (`A+B`).
 """
@@ -64,7 +68,7 @@ def keymask(spec):
 
 
 def compile_script(path):
-    """Script -> (frames, [(frame, keymask)], [(frame, name)])."""
+    """Script -> (frames, [(frame, keymask)], [(frame, name)], sram DESC or None)."""
     lines = []
     for n, l in enumerate(Path(path).read_text().splitlines(), 1):
         l = l.split("#", 1)[0].split()
@@ -72,6 +76,7 @@ def compile_script(path):
             lines.append((n, l))
     events, shots, used = [], [], set()
     frame = 0
+    sram = None
 
     def setkeys(m):
         if events and events[-1][0] == frame:
@@ -80,7 +85,7 @@ def compile_script(path):
             events.append((frame, m))
 
     def run(block):
-        nonlocal frame
+        nonlocal frame, sram
         i = 0
         while i < len(block):
             n, (cmd, *args) = block[i]
@@ -111,6 +116,10 @@ def compile_script(path):
                         frame += 2
                         setkeys(0)
                         frame += gap
+                elif cmd == "sram":
+                    if frame or events or shots or sram:
+                        raise SystemExit(f"{path}:{n}: sram must come first")
+                    sram = args[0]
                 elif cmd == "shot":
                     # the frame just run (the picture after the previous command)
                     name, k = args[0], 1
@@ -126,13 +135,19 @@ def compile_script(path):
             i += 1
 
     run(lines)
-    return frame, events, shots
+    return frame, events, shots, sram
 
 
 def write_plan(script, out):
-    frames, events, shots = compile_script(script)
+    frames, events, shots, sram = compile_script(script)
     with open(out / "plan.txt", "w") as f:
         f.write(f"frames {frames}\n")
+        if sram:
+            # (reads base stats and item uses from baserom.gba: the same
+            # values in every build, so A and B boot with the same image)
+            subprocess.run([sys.executable, "tools/mksave.py", sram, str(out / "sram.bin")],
+                           check=True)
+            f.write(f"sram {out / 'sram.bin'}\n")
         for fr, m in events:
             f.write(f"keys {fr} {m:x}\n")
         for fr, name in shots:
@@ -325,7 +340,7 @@ def record(script, rom, args):
     pngs = sorted(str(p) for p in out.glob("*.png"))
     shots = [f"{out}/{l.split()[2]}.png" for l in text.splitlines() if l.startswith("shot ")]
     if args.every:
-        pngs = sorted(str(p) for p in out.glob("f*.png"))
+        pngs = sorted(str(p) for p in out.glob("f[0-9]*.png"))
         sheet(out / "sheet_every.png", 6, pngs)
     if shots:
         sheet(out / "sheet_shots.png", 4, shots)
