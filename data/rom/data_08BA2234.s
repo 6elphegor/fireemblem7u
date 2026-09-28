@@ -7893,7 +7893,11 @@ AnimScr_FimbulvetrOBJ2:
 
 	.global gUnk_08BB9258
 gUnk_08BB9258:
-	.incbin "baserom.gba", 0xbb9258, 0x30
+	.incbin "baserom.gba", 0xbb9258, 0x18
+
+	.global gUnk_08BB9270
+gUnk_08BB9270:
+	.incbin "baserom.gba", 0xbb9270, 0x18
 
 	.global AnimScr_FimbulvetrOBJ2Fall_TypeA
 AnimScr_FimbulvetrOBJ2Fall_TypeA:
@@ -7902,7 +7906,8 @@ AnimScr_FimbulvetrOBJ2Fall_TypeA:
 
 	.global AnimScr_FimbulvetrOBJ2Fall_TypeB
 AnimScr_FimbulvetrOBJ2Fall_TypeB:
-	.incbin "baserom.gba", 0xbb9290, 0x8
+	.4byte gUnk_08BB9270 + 0x10000000
+	.incbin "baserom.gba", 0xbb9294, 0x4
 
 	.global gUnk_08BB9298
 gUnk_08BB9298:
@@ -12148,31 +12153,61 @@ gUnk_08BD2258:
 	.incbin "baserom.gba", 0xbd2364, 0x4
 	.4byte gUnk_08BD21F8 + 0x1
 	.4byte gUnk_08BD2258 + 0x1
-	.incbin "baserom.gba", 0xbd2370, 0xe8
+	.incbin "baserom.gba", 0xbd2370, 0x4
+
+	.global gUnk_08BD2374
+gUnk_08BD2374:
+	.incbin "baserom.gba", 0xbd2374, 0x48
+
+	.global gUnk_08BD23BC
+gUnk_08BD23BC:
+	.incbin "baserom.gba", 0xbd23bc, 0x24
+
+	.global gUnk_08BD23E0
+gUnk_08BD23E0:
+	.incbin "baserom.gba", 0xbd23e0, 0x24
+
+	.global gUnk_08BD2404
+gUnk_08BD2404:
+	.incbin "baserom.gba", 0xbd2404, 0x18
+
+	.global gUnk_08BD241C
+gUnk_08BD241C:
+	.incbin "baserom.gba", 0xbd241c, 0x18
+
+	.global gUnk_08BD2434
+gUnk_08BD2434:
+	.incbin "baserom.gba", 0xbd2434, 0x24
 
 	.global AnimScr_BolganoneOBJChild_5
 AnimScr_BolganoneOBJChild_5:
-	.incbin "baserom.gba", 0xbd2458, 0x8
+	.4byte gUnk_08BD2374 + 0x10000000
+	.incbin "baserom.gba", 0xbd245c, 0x4
 
 	.global AnimScr_BolganoneOBJChild_3
 AnimScr_BolganoneOBJChild_3:
-	.incbin "baserom.gba", 0xbd2460, 0x8
+	.4byte gUnk_08BD23BC + 0x10000000
+	.incbin "baserom.gba", 0xbd2464, 0x4
 
 	.global AnimScr_BolganoneOBJChild_2
 AnimScr_BolganoneOBJChild_2:
-	.incbin "baserom.gba", 0xbd2468, 0x8
+	.4byte gUnk_08BD23E0 + 0x10000000
+	.incbin "baserom.gba", 0xbd246c, 0x4
 
 	.global AnimScr_BolganoneOBJChild_1
 AnimScr_BolganoneOBJChild_1:
-	.incbin "baserom.gba", 0xbd2470, 0x8
+	.4byte gUnk_08BD2404 + 0x10000000
+	.incbin "baserom.gba", 0xbd2474, 0x4
 
 	.global AnimScr_BolganoneOBJChild_0
 AnimScr_BolganoneOBJChild_0:
-	.incbin "baserom.gba", 0xbd2478, 0x8
+	.4byte gUnk_08BD241C + 0x10000000
+	.incbin "baserom.gba", 0xbd247c, 0x4
 
 	.global AnimScr_BolganoneOBJChild_4
 AnimScr_BolganoneOBJChild_4:
-	.incbin "baserom.gba", 0xbd2480, 0x8
+	.4byte gUnk_08BD2434 + 0x10000000
+	.incbin "baserom.gba", 0xbd2484, 0x4
 
 	.global gUnk_08BD2488
 gUnk_08BD2488:

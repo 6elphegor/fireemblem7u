@@ -43,8 +43,9 @@ Which decodable words are pointers (the structure evidence).  Terms:
       AnimScr instructions (force sprite within 64 KiB, pointer instruction
       to a function / data, 0x80000000 | type<<24 control with type <= 6;
       FRAME (type 6) takes two extra words, the first an image sheet
-      pointer), with at least two sprite words, fewer than half of them
-      noise-like, and a STOP / END / LOOP / jump terminator.
+      pointer), with at least two sprite words (one if the run starts at a
+      trusted address: a script code or source points at), fewer than half
+      of them noise-like, and a STOP / END / LOOP / jump terminator.
   R4  RAM target: structured, and an R1/R3 pointer or an exact RAM symbol
       word within +-16 bytes (RAM address tables, proc / sound structs).
   R5  a pointer field of a structure found from the code's own tables
@@ -380,7 +381,9 @@ def find_pointers(rom, gaps, placed, names, trusted, blobs, blob_lookup, syms):
                     if t:
                         term = True
                         break
-                if term and sprites >= 2 and 2 * noisy < sprites:
+                # one sprite is enough for a script the code points at
+                # (AnimScr_EkrMainMini_*: a sprite, then STOP)
+                if term and (sprites >= 2 or sprites and a in trusted) and 2 * noisy < sprites:
                     out.update(run)
                 a = max(b, a + 4)
         return out
