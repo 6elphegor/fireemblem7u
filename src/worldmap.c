@@ -2311,10 +2311,12 @@ void WorldFlush_Prepare(struct WmSpotlightProc * proc)
     proc->y = 0x60;
 }
 
-#if NONMATCHING
-// the original merges the win_ct bitfield read-modify-writes (one load/store per byte)
+// FAKEMATCH: same as sub_0807CC5C; writing the win0 fields through a local
+// pointer keeps each win_ct byte in a register so it is stored once.
 void WorldFlushInit(struct WmSpotlightProc * proc)
 {
+    struct WinCnt * w;
+
     proc->timer = 0;
 
     InitScanlineEffect();
@@ -2324,13 +2326,18 @@ void WorldFlushInit(struct WmSpotlightProc * proc)
     SetWin0Box(0, 0, 240, 160);
     SetWinEnable(1, 0, 0);
 
-    gDispIo.win_ct.win0_enable_blend = 1;
+    w = &gDispIo.win_ct;
+    w->win0_enable_blend = 1;
     gDispIo.win_ct.wout_enable_blend = 0;
 
-    SetWin0Layers(1, 1, 1, 1, 1);
+    w->win0_enable_bg0 = 1;
+    w->win0_enable_bg1 = 1;
+    w->win0_enable_bg2 = 1;
+    w->win0_enable_bg3 = 1;
+    w->win0_enable_obj = 1;
     SetWOutLayers(1, 1, 1, 1, 1);
 
-    gDispIo.win_ct.win0_enable_blend = 1;
+    w->win0_enable_blend = 1;
     gDispIo.win_ct.wout_enable_blend = 0;
 
     SetBlendConfig(2, 0, 0, 0);
@@ -2342,9 +2349,6 @@ void WorldFlushInit(struct WmSpotlightProc * proc)
 
     PlaySoundEffect(0x269);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B608C.s");
-#endif
 void WorldFlushOut(struct WmSpotlightProc * proc)
 {
     int max = 64;

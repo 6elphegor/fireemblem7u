@@ -471,7 +471,8 @@ void PutClassIntroIconLine(u8 len, u8 flag)
     }
 }
 
-#if NONMATCHING
+// FAKEMATCH (found by an Opus 5.5 agent): b pinned to r1 inside the loop
+// init stops gcse hoisting b << 5 above the palette loop.
 void PutClassIntroIcons(u8 a, u8 b, u8 c)
 {
     int i;
@@ -497,9 +498,7 @@ void PutClassIntroIcons(u8 a, u8 b, u8 c)
 
     EnablePalSync();
 
-    tmp = ((4 - b) << 5);
-
-    for (i = 0, object = SpriteLut_ClassIntroIcons, tmp2 = tmp + 8; i < 8; object++, i++)
+    for (i = 0, tmp = ({ register int bb asm("r1") = b; (bb << 5) - 0x88; }), object = SpriteLut_ClassIntroIcons, tmp2 = -tmp; i < 8; object++, i++)
     {
         if (((c >> i) & 1) != 0)
         {
@@ -510,9 +509,6 @@ void PutClassIntroIcons(u8 a, u8 b, u8 c)
 
     PutSpriteExt(4, 0x90, 0x50, Sprite_ClassIntroIconFrame, oam2);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080AF69C.s");
-#endif
 
 void ClassIntroIcon_LoopLine(struct OpInfoIconProc * proc)
 {
