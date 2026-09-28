@@ -32,18 +32,7 @@ def ow(a): return struct.unpack_from("<I", orig, a - ds.ROM_BASE)[0]
 def sw(a): return struct.unpack_from("<I", sh, a - ds.ROM_BASE)[0]
 
 # expected pointer words in data/rom: parse .4byte lines
-ptrs = {}
-for f in sorted(Path("data/rom").glob("*.s")):
-    pos = None
-    for line in f.read_text().splitlines():
-        s = line.split("@")[0].strip()
-        if m := re.match(r"\.section\s+\.rodata\.([0-9A-F]{8})", s):
-            pos = int(m.group(1), 16)
-        elif s.startswith(".incbin"):
-            pos += int(s.split(",")[2], 0)
-        elif s.startswith(".4byte"):
-            ptrs[pos] = s.split(None, 1)[1]
-            pos += 4
+ptrs = {a: e for kind, a, e, _ in ds.walk_rom_files() if kind == "ptr"}
 
 def moves(v):  # does the value's target lie in the shifted region?
     t = v & 0x0FFFFFFF if (v >> 28) and (v & 0x0F000000) == 0x08000000 else v

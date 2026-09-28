@@ -7,52 +7,52 @@
 
 	.global gUnk_083154BC
 gUnk_083154BC:  @ LZ77
-	.incbin "baserom.gba", 0x3154bc, 0x57f4
+	.incbin "build/graphics/gUnk_083154BC.lz"
 
 	.global gUnk_0831ACB0
 gUnk_0831ACB0:  @ LZ77
-	.incbin "baserom.gba", 0x31acb0, 0x3184
+	.incbin "build/graphics/gUnk_0831ACB0.lz"
 
 	.global gUnk_0831DE34
 gUnk_0831DE34:  @ LZ77
-	.incbin "baserom.gba", 0x31de34, 0x5288
+	.incbin "build/graphics/gUnk_0831DE34.lz"
 
 	.global gUnk_083230BC
 gUnk_083230BC:  @ LZ77
-	.incbin "baserom.gba", 0x3230bc, 0x6478
+	.incbin "build/graphics/gUnk_083230BC.lz"
 
 	.global gUnk_08329534
 gUnk_08329534:  @ LZ77
-	.incbin "baserom.gba", 0x329534, 0x6c0c
+	.incbin "build/graphics/gUnk_08329534.lz"
 
 	.global gUnk_08330140
 gUnk_08330140:  @ LZ77
-	.incbin "baserom.gba", 0x330140, 0x6de4
+	.incbin "build/graphics/gUnk_08330140.lz"
 
 	.global gUnk_08336F24
 gUnk_08336F24:  @ LZ77
-	.incbin "baserom.gba", 0x336f24, 0x4d4c
+	.incbin "build/graphics/gUnk_08336F24.lz"
 
 	.global gUnk_0833BC70
 gUnk_0833BC70:  @ LZ77
-	.incbin "baserom.gba", 0x33bc70, 0x3658
+	.incbin "build/graphics/gUnk_0833BC70.lz"
 
 	.global gUnk_0833F2C8
 gUnk_0833F2C8:  @ LZ77
-	.incbin "baserom.gba", 0x33f2c8, 0x7228
+	.incbin "build/graphics/gUnk_0833F2C8.lz"
 
 	.global gUnk_083464F0
 gUnk_083464F0:  @ LZ77
-	.incbin "baserom.gba", 0x3464f0, 0x625c
+	.incbin "build/graphics/gUnk_083464F0.lz"
 
 	.global gUnk_0834C74C
 gUnk_0834C74C:  @ LZ77
-	.incbin "baserom.gba", 0x34c74c, 0x6c00
+	.incbin "build/graphics/gUnk_0834C74C.lz"
 
 	.global gUnk_0835334C
 gUnk_0835334C:  @ LZ77
-	.incbin "baserom.gba", 0x35334c, 0xbb0
+	.incbin "build/graphics/gUnk_0835334C.lz"
 
 	.global gUnk_08353EFC
 gUnk_08353EFC:  @ LZ77
-	.incbin "baserom.gba", 0x353efc, 0x958
+	.incbin "build/graphics/gUnk_08353EFC.lz"

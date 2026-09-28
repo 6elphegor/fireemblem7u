@@ -7,7 +7,7 @@
 
 	.global gUnk_08182AE0
 gUnk_08182AE0:  @ LZ77
-	.incbin "baserom.gba", 0x182ae0, 0x3a20
+	.incbin "build/graphics/gUnk_08182AE0.lz"
 
 	.global gUnk_08186500
 gUnk_08186500:
@@ -19,7 +19,7 @@ gUnk_081869B4:
 
 	.global gUnk_08186AB4
 gUnk_08186AB4:  @ LZ77
-	.incbin "baserom.gba", 0x186ab4, 0x4068
+	.incbin "build/graphics/gUnk_08186AB4.lz"
 
 	.global gUnk_0818AB1C
 gUnk_0818AB1C:
@@ -31,7 +31,7 @@ gUnk_0818AFD0:
 
 	.global gUnk_0818B0D0
 gUnk_0818B0D0:  @ LZ77
-	.incbin "baserom.gba", 0x18b0d0, 0x980
+	.incbin "build/graphics/gUnk_0818B0D0.lz"
 
 	.global gUnk_0818BA50
 gUnk_0818BA50:
@@ -43,7 +43,7 @@ gUnk_0818BF04:
 
 	.global Img_DragonsGate
 Img_DragonsGate:  @ LZ77
-	.incbin "baserom.gba", 0x18c004, 0x32d0
+	.incbin "build/graphics/Img_DragonsGate.lz"
 
 	.global Tsa_DragonsGate
 Tsa_DragonsGate:
@@ -55,7 +55,7 @@ Pal_DragonsGate:
 
 	.global Img_NilsInDragonsGate
 Img_NilsInDragonsGate:  @ LZ77
-	.incbin "baserom.gba", 0x18f8b0, 0x358
+	.incbin "build/graphics/Img_NilsInDragonsGate.lz"
 
 	.global Tsa_NilsInDragonsGate
 Tsa_NilsInDragonsGate:
@@ -67,7 +67,7 @@ Pal_NilsInDragonsGate:
 
 	.global gUnk_08190104
 gUnk_08190104:  @ LZ77
-	.incbin "baserom.gba", 0x190104, 0x36d4
+	.incbin "build/graphics/gUnk_08190104.lz"
 
 	.global gUnk_081937D8
 gUnk_081937D8:

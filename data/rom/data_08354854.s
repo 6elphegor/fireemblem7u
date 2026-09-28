@@ -7,43 +7,43 @@
 
 	.global gUnk_08354854
 gUnk_08354854:  @ LZ77
-	.incbin "baserom.gba", 0x354854, 0xfb8
+	.incbin "build/graphics/gUnk_08354854.lz"
 
 	.global gUnk_0835580C
 gUnk_0835580C:  @ LZ77
-	.incbin "baserom.gba", 0x35580c, 0x17c4
+	.incbin "build/graphics/gUnk_0835580C.lz"
 
 	.global gUnk_08356FD0
 gUnk_08356FD0:  @ LZ77
-	.incbin "baserom.gba", 0x356fd0, 0x104c
+	.incbin "build/graphics/gUnk_08356FD0.lz"
 
 	.global gUnk_0835801C
 gUnk_0835801C:  @ LZ77
-	.incbin "baserom.gba", 0x35801c, 0x12e8
+	.incbin "build/graphics/gUnk_0835801C.lz"
 
 	.global gUnk_08359304
 gUnk_08359304:  @ LZ77
-	.incbin "baserom.gba", 0x359304, 0xc38
+	.incbin "build/graphics/gUnk_08359304.lz"
 
 	.global gUnk_08359F3C
 gUnk_08359F3C:  @ LZ77
-	.incbin "baserom.gba", 0x359f3c, 0x17f0
+	.incbin "build/graphics/gUnk_08359F3C.lz"
 
 	.global gUnk_0835B72C
 gUnk_0835B72C:  @ LZ77
-	.incbin "baserom.gba", 0x35b72c, 0xf10
+	.incbin "build/graphics/gUnk_0835B72C.lz"
 
 	.global gUnk_0835C63C
 gUnk_0835C63C:  @ LZ77
-	.incbin "baserom.gba", 0x35c63c, 0x1514
+	.incbin "build/graphics/gUnk_0835C63C.lz"
 
 	.global gUnk_0835DB50
 gUnk_0835DB50:  @ LZ77
-	.incbin "baserom.gba", 0x35db50, 0x12c0
+	.incbin "build/graphics/gUnk_0835DB50.lz"
 
 	.global gUnk_0835EE10
 gUnk_0835EE10:  @ LZ77
-	.incbin "baserom.gba", 0x35ee10, 0x14a8
+	.incbin "build/graphics/gUnk_0835EE10.lz"
 
 	.global gUnk_083602B8
 gUnk_083602B8:
@@ -191,631 +191,631 @@ gUnk_08362E78:
 
 	.global gUnk_08362FB8
 gUnk_08362FB8:  @ LZ77
-	.incbin "baserom.gba", 0x362fb8, 0x108
+	.incbin "build/graphics/gUnk_08362FB8.lz"
 
 	.global gUnk_083630C0
 gUnk_083630C0:  @ LZ77
-	.incbin "baserom.gba", 0x3630c0, 0x108
+	.incbin "build/graphics/gUnk_083630C0.lz"
 
 	.global gUnk_083631C8
 gUnk_083631C8:  @ LZ77
-	.incbin "baserom.gba", 0x3631c8, 0x160
+	.incbin "build/graphics/gUnk_083631C8.lz"
 
 	.global gUnk_08363328
 gUnk_08363328:  @ LZ77
-	.incbin "baserom.gba", 0x363328, 0x14c
+	.incbin "build/graphics/gUnk_08363328.lz"
 
 	.global gUnk_08363474
 gUnk_08363474:  @ LZ77
-	.incbin "baserom.gba", 0x363474, 0x13c
+	.incbin "build/graphics/gUnk_08363474.lz"
 
 	.global gUnk_083635B0
 gUnk_083635B0:  @ LZ77
-	.incbin "baserom.gba", 0x3635b0, 0x144
+	.incbin "build/graphics/gUnk_083635B0.lz"
 
 	.global gUnk_083636F4
 gUnk_083636F4:  @ LZ77
-	.incbin "baserom.gba", 0x3636f4, 0x10c
+	.incbin "build/graphics/gUnk_083636F4.lz"
 
 	.global gUnk_08363800
 gUnk_08363800:  @ LZ77
-	.incbin "baserom.gba", 0x363800, 0x100
+	.incbin "build/graphics/gUnk_08363800.lz"
 
 	.global gUnk_08363900
 gUnk_08363900:  @ LZ77
-	.incbin "baserom.gba", 0x363900, 0x138
+	.incbin "build/graphics/gUnk_08363900.lz"
 
 	.global gUnk_08363A38
 gUnk_08363A38:  @ LZ77
-	.incbin "baserom.gba", 0x363a38, 0x144
+	.incbin "build/graphics/gUnk_08363A38.lz"
 
 	.global gUnk_08363B7C
 gUnk_08363B7C:  @ LZ77
-	.incbin "baserom.gba", 0x363b7c, 0xdc
+	.incbin "build/graphics/gUnk_08363B7C.lz"
 
 	.global gUnk_08363C58
 gUnk_08363C58:  @ LZ77
-	.incbin "baserom.gba", 0x363c58, 0xd4
+	.incbin "build/graphics/gUnk_08363C58.lz"
 
 	.global gUnk_08363D2C
 gUnk_08363D2C:  @ LZ77
-	.incbin "baserom.gba", 0x363d2c, 0x154
+	.incbin "build/graphics/gUnk_08363D2C.lz"
 
 	.global gUnk_08363E80
 gUnk_08363E80:  @ LZ77
-	.incbin "baserom.gba", 0x363e80, 0x164
+	.incbin "build/graphics/gUnk_08363E80.lz"
 
 	.global gUnk_08363FE4
 gUnk_08363FE4:  @ LZ77
-	.incbin "baserom.gba", 0x363fe4, 0x124
+	.incbin "build/graphics/gUnk_08363FE4.lz"
 
 	.global gUnk_08364108
 gUnk_08364108:  @ LZ77
-	.incbin "baserom.gba", 0x364108, 0x134
+	.incbin "build/graphics/gUnk_08364108.lz"
 
 	.global gUnk_0836423C
 gUnk_0836423C:  @ LZ77
-	.incbin "baserom.gba", 0x36423c, 0xac
+	.incbin "build/graphics/gUnk_0836423C.lz"
 
 	.global gUnk_083642E8
 gUnk_083642E8:  @ LZ77
-	.incbin "baserom.gba", 0x3642e8, 0xe4
+	.incbin "build/graphics/gUnk_083642E8.lz"
 
 	.global gUnk_083643CC
 gUnk_083643CC:  @ LZ77
-	.incbin "baserom.gba", 0x3643cc, 0xf4
+	.incbin "build/graphics/gUnk_083643CC.lz"
 
 	.global gUnk_083644C0
 gUnk_083644C0:  @ LZ77
-	.incbin "baserom.gba", 0x3644c0, 0x294
+	.incbin "build/graphics/gUnk_083644C0.lz"
 
 	.global gUnk_08364754
 gUnk_08364754:  @ LZ77
-	.incbin "baserom.gba", 0x364754, 0x204
+	.incbin "build/graphics/gUnk_08364754.lz"
 
 	.global gUnk_08364958
 gUnk_08364958:  @ LZ77
-	.incbin "baserom.gba", 0x364958, 0x1dc
+	.incbin "build/graphics/gUnk_08364958.lz"
 
 	.global gUnk_08364B34
 gUnk_08364B34:  @ LZ77
-	.incbin "baserom.gba", 0x364b34, 0x508
+	.incbin "build/graphics/gUnk_08364B34.lz"
 
 	.global gUnk_0836503C
 gUnk_0836503C:  @ LZ77
-	.incbin "baserom.gba", 0x36503c, 0x118
+	.incbin "build/graphics/gUnk_0836503C.lz"
 
 	.global gUnk_08365154
 gUnk_08365154:  @ LZ77
-	.incbin "baserom.gba", 0x365154, 0x27c
+	.incbin "build/graphics/gUnk_08365154.lz"
 
 	.global gUnk_083653D0
 gUnk_083653D0:  @ LZ77
-	.incbin "baserom.gba", 0x3653d0, 0x2d8
+	.incbin "build/graphics/gUnk_083653D0.lz"
 
 	.global gUnk_083656A8
 gUnk_083656A8:  @ LZ77
-	.incbin "baserom.gba", 0x3656a8, 0x2d8
+	.incbin "build/graphics/gUnk_083656A8.lz"
 
 	.global gUnk_08365980
 gUnk_08365980:  @ LZ77
-	.incbin "baserom.gba", 0x365980, 0x518
+	.incbin "build/graphics/gUnk_08365980.lz"
 
 	.global gUnk_08365E98
 gUnk_08365E98:  @ LZ77
-	.incbin "baserom.gba", 0x365e98, 0x1f8
+	.incbin "build/graphics/gUnk_08365E98.lz"
 
 	.global gUnk_08366090
 gUnk_08366090:  @ LZ77
-	.incbin "baserom.gba", 0x366090, 0x2e8
+	.incbin "build/graphics/gUnk_08366090.lz"
 
 	.global gUnk_08366378
 gUnk_08366378:  @ LZ77
-	.incbin "baserom.gba", 0x366378, 0x290
+	.incbin "build/graphics/gUnk_08366378.lz"
 
 	.global gUnk_08366608
 gUnk_08366608:  @ LZ77
-	.incbin "baserom.gba", 0x366608, 0x348
+	.incbin "build/graphics/gUnk_08366608.lz"
 
 	.global gUnk_08366950
 gUnk_08366950:  @ LZ77
-	.incbin "baserom.gba", 0x366950, 0x3b4
+	.incbin "build/graphics/gUnk_08366950.lz"
 
 	.global gUnk_08366D04
 gUnk_08366D04:  @ LZ77
-	.incbin "baserom.gba", 0x366d04, 0x360
+	.incbin "build/graphics/gUnk_08366D04.lz"
 
 	.global gUnk_08367064
 gUnk_08367064:  @ LZ77
-	.incbin "baserom.gba", 0x367064, 0x2c0
+	.incbin "build/graphics/gUnk_08367064.lz"
 
 	.global gUnk_08367324
 gUnk_08367324:  @ LZ77
-	.incbin "baserom.gba", 0x367324, 0x368
+	.incbin "build/graphics/gUnk_08367324.lz"
 
 	.global gUnk_0836768C
 gUnk_0836768C:  @ LZ77
-	.incbin "baserom.gba", 0x36768c, 0x1d0
+	.incbin "build/graphics/gUnk_0836768C.lz"
 
 	.global gUnk_0836785C
 gUnk_0836785C:  @ LZ77
-	.incbin "baserom.gba", 0x36785c, 0x224
+	.incbin "build/graphics/gUnk_0836785C.lz"
 
 	.global gUnk_08367A80
 gUnk_08367A80:  @ LZ77
-	.incbin "baserom.gba", 0x367a80, 0x2bc
+	.incbin "build/graphics/gUnk_08367A80.lz"
 
 	.global gUnk_08367D3C
 gUnk_08367D3C:  @ LZ77
-	.incbin "baserom.gba", 0x367d3c, 0x270
+	.incbin "build/graphics/gUnk_08367D3C.lz"
 
 	.global gUnk_08367FAC
 gUnk_08367FAC:  @ LZ77
-	.incbin "baserom.gba", 0x367fac, 0x270
+	.incbin "build/graphics/gUnk_08367FAC.lz"
 
 	.global gUnk_0836821C
 gUnk_0836821C:  @ LZ77
-	.incbin "baserom.gba", 0x36821c, 0x21c
+	.incbin "build/graphics/gUnk_0836821C.lz"
 
 	.global gUnk_08368438
 gUnk_08368438:  @ LZ77
-	.incbin "baserom.gba", 0x368438, 0x218
+	.incbin "build/graphics/gUnk_08368438.lz"
 
 	.global gUnk_08368650
 gUnk_08368650:  @ LZ77
-	.incbin "baserom.gba", 0x368650, 0x24c
+	.incbin "build/graphics/gUnk_08368650.lz"
 
 	.global gUnk_0836889C
 gUnk_0836889C:  @ LZ77
-	.incbin "baserom.gba", 0x36889c, 0x1d0
+	.incbin "build/graphics/gUnk_0836889C.lz"
 
 	.global gUnk_08368A6C
 gUnk_08368A6C:  @ LZ77
-	.incbin "baserom.gba", 0x368a6c, 0x22c
+	.incbin "build/graphics/gUnk_08368A6C.lz"
 
 	.global gUnk_08368C98
 gUnk_08368C98:  @ LZ77
-	.incbin "baserom.gba", 0x368c98, 0x1d0
+	.incbin "build/graphics/gUnk_08368C98.lz"
 
 	.global gUnk_08368E68
 gUnk_08368E68:  @ LZ77
-	.incbin "baserom.gba", 0x368e68, 0x2d4
+	.incbin "build/graphics/gUnk_08368E68.lz"
 
 	.global gUnk_0836913C
 gUnk_0836913C:  @ LZ77
-	.incbin "baserom.gba", 0x36913c, 0x140
+	.incbin "build/graphics/gUnk_0836913C.lz"
 
 	.global gUnk_0836927C
 gUnk_0836927C:  @ LZ77
-	.incbin "baserom.gba", 0x36927c, 0x320
+	.incbin "build/graphics/gUnk_0836927C.lz"
 
 	.global gUnk_0836959C
 gUnk_0836959C:  @ LZ77
-	.incbin "baserom.gba", 0x36959c, 0x1b4
+	.incbin "build/graphics/gUnk_0836959C.lz"
 
 	.global gUnk_08369750
 gUnk_08369750:  @ LZ77
-	.incbin "baserom.gba", 0x369750, 0x25c
+	.incbin "build/graphics/gUnk_08369750.lz"
 
 	.global gUnk_083699AC
 gUnk_083699AC:  @ LZ77
-	.incbin "baserom.gba", 0x3699ac, 0x204
+	.incbin "build/graphics/gUnk_083699AC.lz"
 
 	.global gUnk_08369BB0
 gUnk_08369BB0:  @ LZ77
-	.incbin "baserom.gba", 0x369bb0, 0xe0
+	.incbin "build/graphics/gUnk_08369BB0.lz"
 
 	.global gUnk_08369C90
 gUnk_08369C90:  @ LZ77
-	.incbin "baserom.gba", 0x369c90, 0x1c4
+	.incbin "build/graphics/gUnk_08369C90.lz"
 
 	.global gUnk_08369E54
 gUnk_08369E54:  @ LZ77
-	.incbin "baserom.gba", 0x369e54, 0x254
+	.incbin "build/graphics/gUnk_08369E54.lz"
 
 	.global gUnk_0836A0A8
 gUnk_0836A0A8:  @ LZ77
-	.incbin "baserom.gba", 0x36a0a8, 0x204
+	.incbin "build/graphics/gUnk_0836A0A8.lz"
 
 	.global gUnk_0836A2AC
 gUnk_0836A2AC:  @ LZ77
-	.incbin "baserom.gba", 0x36a2ac, 0x1e0
+	.incbin "build/graphics/gUnk_0836A2AC.lz"
 
 	.global gUnk_0836A48C
 gUnk_0836A48C:  @ LZ77
-	.incbin "baserom.gba", 0x36a48c, 0x124
+	.incbin "build/graphics/gUnk_0836A48C.lz"
 
 	.global gUnk_0836A5B0
 gUnk_0836A5B0:  @ LZ77
-	.incbin "baserom.gba", 0x36a5b0, 0x204
+	.incbin "build/graphics/gUnk_0836A5B0.lz"
 
 	.global gUnk_0836A7B4
 gUnk_0836A7B4:  @ LZ77
-	.incbin "baserom.gba", 0x36a7b4, 0x18c
+	.incbin "build/graphics/gUnk_0836A7B4.lz"
 
 	.global gUnk_0836A940
 gUnk_0836A940:  @ LZ77
-	.incbin "baserom.gba", 0x36a940, 0x124
+	.incbin "build/graphics/gUnk_0836A940.lz"
 
 	.global gUnk_0836AA64
 gUnk_0836AA64:  @ LZ77
-	.incbin "baserom.gba", 0x36aa64, 0x148
+	.incbin "build/graphics/gUnk_0836AA64.lz"
 
 	.global gUnk_0836ABAC
 gUnk_0836ABAC:  @ LZ77
-	.incbin "baserom.gba", 0x36abac, 0x138
+	.incbin "build/graphics/gUnk_0836ABAC.lz"
 
 	.global gUnk_0836ACE4
 gUnk_0836ACE4:  @ LZ77
-	.incbin "baserom.gba", 0x36ace4, 0x11c
+	.incbin "build/graphics/gUnk_0836ACE4.lz"
 
 	.global gUnk_0836AE00
 gUnk_0836AE00:  @ LZ77
-	.incbin "baserom.gba", 0x36ae00, 0x100
+	.incbin "build/graphics/gUnk_0836AE00.lz"
 
 	.global gUnk_0836AF00
 gUnk_0836AF00:  @ LZ77
-	.incbin "baserom.gba", 0x36af00, 0x11c
+	.incbin "build/graphics/gUnk_0836AF00.lz"
 
 	.global gUnk_0836B01C
 gUnk_0836B01C:  @ LZ77
-	.incbin "baserom.gba", 0x36b01c, 0x3c0c
+	.incbin "build/graphics/gUnk_0836B01C.lz"
 
 	.global gUnk_0836EC28
 gUnk_0836EC28:  @ LZ77
-	.incbin "baserom.gba", 0x36ec28, 0x3cc8
+	.incbin "build/graphics/gUnk_0836EC28.lz"
 
 	.global unit_icon_wait_LordEliwood_sheet
 unit_icon_wait_LordEliwood_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3728f0, 0x18c
+	.incbin "build/graphics/unit_icon_wait_LordEliwood_sheet.lz"
 
 	.global unit_icon_wait_LordLyn_sheet
 unit_icon_wait_LordLyn_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x372a7c, 0x11c
+	.incbin "build/graphics/unit_icon_wait_LordLyn_sheet.lz"
 
 	.global unit_icon_wait_LordHector_sheet
 unit_icon_wait_LordHector_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x372b98, 0x1d8
+	.incbin "build/graphics/unit_icon_wait_LordHector_sheet.lz"
 
 	.global unit_icon_wait_KnightLord_sheet
 unit_icon_wait_KnightLord_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x372d70, 0x1f0
+	.incbin "build/graphics/unit_icon_wait_KnightLord_sheet.lz"
 
 	.global unit_icon_wait_BladeLord_sheet
 unit_icon_wait_BladeLord_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x372f60, 0x12c
+	.incbin "build/graphics/unit_icon_wait_BladeLord_sheet.lz"
 
 	.global unit_icon_wait_GreatLord_sheet
 unit_icon_wait_GreatLord_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37308c, 0x1e4
+	.incbin "build/graphics/unit_icon_wait_GreatLord_sheet.lz"
 
 	.global unit_icon_wait_Mercenary_sheet
 unit_icon_wait_Mercenary_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373270, 0x138
+	.incbin "build/graphics/unit_icon_wait_Mercenary_sheet.lz"
 
 	.global unit_icon_wait_MercenaryF_sheet
 unit_icon_wait_MercenaryF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3733a8, 0x190
+	.incbin "build/graphics/unit_icon_wait_MercenaryF_sheet.lz"
 
 	.global unit_icon_wait_Hero_sheet
 unit_icon_wait_Hero_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373538, 0x160
+	.incbin "build/graphics/unit_icon_wait_Hero_sheet.lz"
 
 	.global unit_icon_wait_HeroF_sheet
 unit_icon_wait_HeroF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373698, 0x13c
+	.incbin "build/graphics/unit_icon_wait_HeroF_sheet.lz"
 
 	.global unit_icon_wait_Myrmidon_sheet
 unit_icon_wait_Myrmidon_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3737d4, 0x114
+	.incbin "build/graphics/unit_icon_wait_Myrmidon_sheet.lz"
 
 	.global unit_icon_wait_MyrmidonF_sheet
 unit_icon_wait_MyrmidonF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3738e8, 0x110
+	.incbin "build/graphics/unit_icon_wait_MyrmidonF_sheet.lz"
 
 	.global unit_icon_wait_Swordmaster_sheet
 unit_icon_wait_Swordmaster_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3739f8, 0xe8
+	.incbin "build/graphics/unit_icon_wait_Swordmaster_sheet.lz"
 
 	.global unit_icon_wait_SwordmasterF_sheet
 unit_icon_wait_SwordmasterF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373ae0, 0xdc
+	.incbin "build/graphics/unit_icon_wait_SwordmasterF_sheet.lz"
 
 	.global unit_icon_wait_Fighter_sheet
 unit_icon_wait_Fighter_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373bbc, 0x12c
+	.incbin "build/graphics/unit_icon_wait_Fighter_sheet.lz"
 
 	.global unit_icon_wait_Warrior_sheet
 unit_icon_wait_Warrior_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373ce8, 0x180
+	.incbin "build/graphics/unit_icon_wait_Warrior_sheet.lz"
 
 	.global unit_icon_wait_Knight_sheet
 unit_icon_wait_Knight_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373e68, 0x10c
+	.incbin "build/graphics/unit_icon_wait_Knight_sheet.lz"
 
 	.global unit_icon_wait_General_sheet
 unit_icon_wait_General_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x373f74, 0x1a0
+	.incbin "build/graphics/unit_icon_wait_General_sheet.lz"
 
 	.global unit_icon_wait_Archer_sheet
 unit_icon_wait_Archer_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374114, 0x118
+	.incbin "build/graphics/unit_icon_wait_Archer_sheet.lz"
 
 	.global unit_icon_wait_ArcherF_sheet
 unit_icon_wait_ArcherF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37422c, 0x114
+	.incbin "build/graphics/unit_icon_wait_ArcherF_sheet.lz"
 
 	.global unit_icon_wait_Sniper_sheet
 unit_icon_wait_Sniper_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374340, 0x144
+	.incbin "build/graphics/unit_icon_wait_Sniper_sheet.lz"
 
 	.global unit_icon_wait_SniperF_sheet
 unit_icon_wait_SniperF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374484, 0x124
+	.incbin "build/graphics/unit_icon_wait_SniperF_sheet.lz"
 
 	.global unit_icon_wait_Monk_sheet
 unit_icon_wait_Monk_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3745a8, 0x11c
+	.incbin "build/graphics/unit_icon_wait_Monk_sheet.lz"
 
 	.global unit_icon_wait_Cleric_sheet
 unit_icon_wait_Cleric_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3746c4, 0x13c
+	.incbin "build/graphics/unit_icon_wait_Cleric_sheet.lz"
 
 	.global unit_icon_wait_Bishop_sheet
 unit_icon_wait_Bishop_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374800, 0x154
+	.incbin "build/graphics/unit_icon_wait_Bishop_sheet.lz"
 
 	.global unit_icon_wait_BishopF_sheet
 unit_icon_wait_BishopF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374954, 0x158
+	.incbin "build/graphics/unit_icon_wait_BishopF_sheet.lz"
 
 	.global unit_icon_wait_Mage_sheet
 unit_icon_wait_Mage_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374aac, 0x138
+	.incbin "build/graphics/unit_icon_wait_Mage_sheet.lz"
 
 	.global unit_icon_wait_MageF_sheet
 unit_icon_wait_MageF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374be4, 0x140
+	.incbin "build/graphics/unit_icon_wait_MageF_sheet.lz"
 
 	.global unit_icon_wait_Sage_sheet
 unit_icon_wait_Sage_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374d24, 0x15c
+	.incbin "build/graphics/unit_icon_wait_Sage_sheet.lz"
 
 	.global unit_icon_wait_SageF_sheet
 unit_icon_wait_SageF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374e80, 0x160
+	.incbin "build/graphics/unit_icon_wait_SageF_sheet.lz"
 
 	.global unit_icon_wait_Shaman_sheet
 unit_icon_wait_Shaman_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x374fe0, 0x158
+	.incbin "build/graphics/unit_icon_wait_Shaman_sheet.lz"
 
 	.global unit_icon_wait_ShamanF_sheet
 unit_icon_wait_ShamanF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x375138, 0x144
+	.incbin "build/graphics/unit_icon_wait_ShamanF_sheet.lz"
 
 	.global unit_icon_wait_Druid_sheet
 unit_icon_wait_Druid_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37527c, 0x174
+	.incbin "build/graphics/unit_icon_wait_Druid_sheet.lz"
 
 	.global unit_icon_wait_DruidF_sheet
 unit_icon_wait_DruidF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3753f0, 0x14c
+	.incbin "build/graphics/unit_icon_wait_DruidF_sheet.lz"
 
 	.global unit_icon_wait_Cavalier_sheet
 unit_icon_wait_Cavalier_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37553c, 0x1bc
+	.incbin "build/graphics/unit_icon_wait_Cavalier_sheet.lz"
 
 	.global unit_icon_wait_Paladin_sheet
 unit_icon_wait_Paladin_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3756f8, 0x1d0
+	.incbin "build/graphics/unit_icon_wait_Paladin_sheet.lz"
 
 	.global unit_icon_wait_Troubadour_sheet
 unit_icon_wait_Troubadour_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3758c8, 0x1bc
+	.incbin "build/graphics/unit_icon_wait_Troubadour_sheet.lz"
 
 	.global unit_icon_wait_Valkyrie_sheet
 unit_icon_wait_Valkyrie_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x375a84, 0x1b0
+	.incbin "build/graphics/unit_icon_wait_Valkyrie_sheet.lz"
 
 	.global unit_icon_wait_Nomad_sheet
 unit_icon_wait_Nomad_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x375c34, 0x1d0
+	.incbin "build/graphics/unit_icon_wait_Nomad_sheet.lz"
 
 	.global unit_icon_wait_NomadF_sheet
 unit_icon_wait_NomadF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x375e04, 0x1dc
+	.incbin "build/graphics/unit_icon_wait_NomadF_sheet.lz"
 
 	.global unit_icon_wait_NomadTrooper_sheet
 unit_icon_wait_NomadTrooper_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x375fe0, 0x1dc
+	.incbin "build/graphics/unit_icon_wait_NomadTrooper_sheet.lz"
 
 	.global unit_icon_wait_NomadTrooperF_sheet
 unit_icon_wait_NomadTrooperF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3761bc, 0x1e4
+	.incbin "build/graphics/unit_icon_wait_NomadTrooperF_sheet.lz"
 
 	.global unit_icon_wait_PegasusKnight_sheet
 unit_icon_wait_PegasusKnight_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3763a0, 0x1a4
+	.incbin "build/graphics/unit_icon_wait_PegasusKnight_sheet.lz"
 
 	.global unit_icon_wait_Falcoknight_sheet
 unit_icon_wait_Falcoknight_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x376544, 0x1ac
+	.incbin "build/graphics/unit_icon_wait_Falcoknight_sheet.lz"
 
 	.global unit_icon_wait_WyvernRider_sheet
 unit_icon_wait_WyvernRider_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3766f0, 0x1f4
+	.incbin "build/graphics/unit_icon_wait_WyvernRider_sheet.lz"
 
 	.global unit_icon_wait_WyvernLord_sheet
 unit_icon_wait_WyvernLord_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3768e4, 0x1f4
+	.incbin "build/graphics/unit_icon_wait_WyvernLord_sheet.lz"
 
 	.global unit_icon_wait_Soldier_sheet
 unit_icon_wait_Soldier_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x376ad8, 0x154
+	.incbin "build/graphics/unit_icon_wait_Soldier_sheet.lz"
 
 	.global unit_icon_wait_Brigand_sheet
 unit_icon_wait_Brigand_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x376c2c, 0x174
+	.incbin "build/graphics/unit_icon_wait_Brigand_sheet.lz"
 
 	.global unit_icon_wait_Pirate_sheet
 unit_icon_wait_Pirate_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x376da0, 0x17c
+	.incbin "build/graphics/unit_icon_wait_Pirate_sheet.lz"
 
 	.global unit_icon_wait_Berserker_sheet
 unit_icon_wait_Berserker_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x376f1c, 0x1d8
+	.incbin "build/graphics/unit_icon_wait_Berserker_sheet.lz"
 
 	.global unit_icon_wait_Thief_sheet
 unit_icon_wait_Thief_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3770f4, 0x13c
+	.incbin "build/graphics/unit_icon_wait_Thief_sheet.lz"
 
 	.global unit_icon_wait_ThiefF_sheet
 unit_icon_wait_ThiefF_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377230, 0x130
+	.incbin "build/graphics/unit_icon_wait_ThiefF_sheet.lz"
 
 	.global unit_icon_wait_Assassin_sheet
 unit_icon_wait_Assassin_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377360, 0x13c
+	.incbin "build/graphics/unit_icon_wait_Assassin_sheet.lz"
 
 	.global unit_icon_wait_Civilian_sheet
 unit_icon_wait_Civilian_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37749c, 0x88
+	.incbin "build/graphics/unit_icon_wait_Civilian_sheet.lz"
 
 	.global unit_icon_wait_Dancer_sheet
 unit_icon_wait_Dancer_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377524, 0x118
+	.incbin "build/graphics/unit_icon_wait_Dancer_sheet.lz"
 
 	.global unit_icon_wait_Bard_sheet
 unit_icon_wait_Bard_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37763c, 0x100
+	.incbin "build/graphics/unit_icon_wait_Bard_sheet.lz"
 
 	.global unit_icon_wait_Archsage_sheet
 unit_icon_wait_Archsage_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37773c, 0x10c
+	.incbin "build/graphics/unit_icon_wait_Archsage_sheet.lz"
 
 	.global unit_icon_wait_MagicSeal_sheet
 unit_icon_wait_MagicSeal_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377848, 0xf8
+	.incbin "build/graphics/unit_icon_wait_MagicSeal_sheet.lz"
 
 	.global unit_icon_wait_TransporterTent_sheet
 unit_icon_wait_TransporterTent_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377940, 0xf4
+	.incbin "build/graphics/unit_icon_wait_TransporterTent_sheet.lz"
 
 	.global unit_icon_wait_DarkDruid_sheet
 unit_icon_wait_DarkDruid_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377a34, 0x1bc
+	.incbin "build/graphics/unit_icon_wait_DarkDruid_sheet.lz"
 
 	.global unit_icon_wait_FireDragon_sheet
 unit_icon_wait_FireDragon_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377bf0, 0x3c0
+	.incbin "build/graphics/unit_icon_wait_FireDragon_sheet.lz"
 
 	.global unit_icon_wait_Civilian47_sheet
 unit_icon_wait_Civilian47_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x377fb0, 0xe0
+	.incbin "build/graphics/unit_icon_wait_Civilian47_sheet.lz"
 
 	.global unit_icon_wait_Civilian48_sheet
 unit_icon_wait_Civilian48_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378090, 0xe4
+	.incbin "build/graphics/unit_icon_wait_Civilian48_sheet.lz"
 
 	.global unit_icon_wait_Child49_sheet
 unit_icon_wait_Child49_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378174, 0x84
+	.incbin "build/graphics/unit_icon_wait_Child49_sheet.lz"
 
 	.global unit_icon_wait_Bramimond_sheet
 unit_icon_wait_Bramimond_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3781f8, 0x188
+	.incbin "build/graphics/unit_icon_wait_Bramimond_sheet.lz"
 
 	.global unit_icon_wait_Peer4b_sheet
 unit_icon_wait_Peer4b_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378380, 0xdc
+	.incbin "build/graphics/unit_icon_wait_Peer4b_sheet.lz"
 
 	.global unit_icon_wait_Peer4c_sheet
 unit_icon_wait_Peer4c_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x37845c, 0x114
+	.incbin "build/graphics/unit_icon_wait_Peer4c_sheet.lz"
 
 	.global unit_icon_wait_Prince4d_sheet
 unit_icon_wait_Prince4d_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378570, 0xd8
+	.incbin "build/graphics/unit_icon_wait_Prince4d_sheet.lz"
 
 	.global unit_icon_wait_Queen_sheet
 unit_icon_wait_Queen_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378648, 0xb4
+	.incbin "build/graphics/unit_icon_wait_Queen_sheet.lz"
 
 	.global unit_icon_wait_Civilian4f_sheet
 unit_icon_wait_Civilian4f_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3786fc, 0x98
+	.incbin "build/graphics/unit_icon_wait_Civilian4f_sheet.lz"
 
 	.global unit_icon_wait_Prince51_sheet
 unit_icon_wait_Prince51_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378794, 0xbc
+	.incbin "build/graphics/unit_icon_wait_Prince51_sheet.lz"
 
 	.global unit_icon_wait_Prince52_sheet
 unit_icon_wait_Prince52_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378850, 0x8c
+	.incbin "build/graphics/unit_icon_wait_Prince52_sheet.lz"
 
 	.global unit_icon_wait_Prince53_sheet
 unit_icon_wait_Prince53_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3788dc, 0xb4
+	.incbin "build/graphics/unit_icon_wait_Prince53_sheet.lz"
 
 	.global unit_icon_wait_Child54_sheet
 unit_icon_wait_Child54_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378990, 0x80
+	.incbin "build/graphics/unit_icon_wait_Child54_sheet.lz"
 
 	.global unit_icon_wait_FireDragon55_sheet
 unit_icon_wait_FireDragon55_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378a10, 0x200
+	.incbin "build/graphics/unit_icon_wait_FireDragon55_sheet.lz"
 
 	.global unit_icon_wait_Warrior56_sheet
 unit_icon_wait_Warrior56_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378c10, 0x138
+	.incbin "build/graphics/unit_icon_wait_Warrior56_sheet.lz"
 
 	.global unit_icon_wait_Child57_sheet
 unit_icon_wait_Child57_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378d48, 0xd0
+	.incbin "build/graphics/unit_icon_wait_Child57_sheet.lz"
 
 	.global unit_icon_wait_Child58_sheet
 unit_icon_wait_Child58_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378e18, 0xd4
+	.incbin "build/graphics/unit_icon_wait_Child58_sheet.lz"
 
 	.global unit_icon_wait_TransporterWagon_sheet
 unit_icon_wait_TransporterWagon_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x378eec, 0x1a8
+	.incbin "build/graphics/unit_icon_wait_TransporterWagon_sheet.lz"
 
 	.global unit_icon_wait_Class5B_sheet
 unit_icon_wait_Class5B_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x379094, 0x194
+	.incbin "build/graphics/unit_icon_wait_Class5B_sheet.lz"
 
 	.global unit_icon_wait_Class5C_sheet
 unit_icon_wait_Class5C_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x379228, 0x194
+	.incbin "build/graphics/unit_icon_wait_Class5C_sheet.lz"
 
 	.global unit_icon_wait_Class5D_sheet
 unit_icon_wait_Class5D_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3793bc, 0x194
+	.incbin "build/graphics/unit_icon_wait_Class5D_sheet.lz"
 
 	.global unit_icon_wait_Class5E_sheet
 unit_icon_wait_Class5E_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x379550, 0x174
+	.incbin "build/graphics/unit_icon_wait_Class5E_sheet.lz"
 
 	.global unit_icon_wait_Class5F_sheet
 unit_icon_wait_Class5F_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3796c4, 0x174
+	.incbin "build/graphics/unit_icon_wait_Class5F_sheet.lz"
 
 	.global unit_icon_wait_Class60_sheet
 unit_icon_wait_Class60_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x379838, 0x174
+	.incbin "build/graphics/unit_icon_wait_Class60_sheet.lz"
 
 	.global unit_icon_wait_Class61_sheet
 unit_icon_wait_Class61_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3799ac, 0x38
+	.incbin "build/graphics/unit_icon_wait_Class61_sheet.lz"
 
 	.global unit_icon_wait_Class62_sheet
 unit_icon_wait_Class62_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x3799e4, 0x38
+	.incbin "build/graphics/unit_icon_wait_Class62_sheet.lz"
 
 	.global unit_icon_wait_Class63_sheet
 unit_icon_wait_Class63_sheet:  @ LZ77
-	.incbin "baserom.gba", 0x379a1c, 0x130
+	.incbin "build/graphics/unit_icon_wait_Class63_sheet.lz"
 
 	.global gUnk_08379B4C
 gUnk_08379B4C:

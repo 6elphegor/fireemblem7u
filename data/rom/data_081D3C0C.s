@@ -1710,7 +1710,7 @@ gUiItemHoverModel:
 
 	.global gUnk_081D5844
 gUnk_081D5844:  @ LZ77
-	.incbin "baserom.gba", 0x1d5844, 0x8ac
+	.incbin "build/graphics/gUnk_081D5844.lz"
 
 	.global Pal_UiWindowFrame1
 Pal_UiWindowFrame1:
@@ -1722,7 +1722,7 @@ gUnk_081D6110:
 
 	.global gUnk_081D6130
 gUnk_081D6130:  @ LZ77
-	.incbin "baserom.gba", 0x1d6130, 0x8b4
+	.incbin "build/graphics/gUnk_081D6130.lz"
 
 	.global Pal_081D69E4
 Pal_081D69E4:
@@ -1734,7 +1734,7 @@ gUnk_081D6A04:
 
 	.global gUnk_081D6A24
 gUnk_081D6A24:  @ LZ77
-	.incbin "baserom.gba", 0x1d6a24, 0x880
+	.incbin "build/graphics/gUnk_081D6A24.lz"
 
 	.global Pal_081D72A4
 Pal_081D72A4:
@@ -1746,7 +1746,7 @@ gUnk_081D72C4:
 
 	.global gUnk_081D72E4
 gUnk_081D72E4:  @ LZ77
-	.incbin "baserom.gba", 0x1d72e4, 0x83c
+	.incbin "build/graphics/gUnk_081D72E4.lz"
 
 	.global Pal_081D7B20
 Pal_081D7B20:
@@ -1758,7 +1758,7 @@ gUnk_081D7B40:
 
 	.global Img_UnkUiFrame
 Img_UnkUiFrame:  @ LZ77
-	.incbin "baserom.gba", 0x1d7b80, 0x254
+	.incbin "build/graphics/Img_UnkUiFrame.lz"
 
 	.global Pal_UnkUiFrame
 Pal_UnkUiFrame:
@@ -1766,7 +1766,7 @@ Pal_UnkUiFrame:
 
 	.global Img_SysGrayBox
 Img_SysGrayBox:  @ LZ77
-	.incbin "baserom.gba", 0x1d7e54, 0x90
+	.incbin "build/graphics/Img_SysGrayBox.lz"
 
 	.global gEfxNoDmgBgShakeOff
 gEfxNoDmgBgShakeOff:

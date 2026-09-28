@@ -25,6 +25,9 @@ Labels (a chunk boundary is placed at each one):
     not in an LZ77 blob, holding a 4-aligned data-region address or an odd
     Thumb code address) or the target is itself an LZ77 blob, so isolated
     pointer-looking words in graphics are skipped.
+Also labeled: the sprite sheets that battle animation scripts point at from
+inside their compressed data (entries of FORMAT banim_script in
+data/graphics.txt).
 Targets strictly inside an LZ77 blob get no new label (only an existing
 name can split a blob, e.g. FaceInfoTable, which code addresses one entry
 before the table).
@@ -36,6 +39,11 @@ extent is what the pointer-in-blob check uses.  New labels are gUnk_<ADDR>.
 Pointer targets inside placed sections are ignored (source defines them).
 A label that falls inside a newly placed section is reported: define it in
 that section's source.  Files are ~256 KiB, split at label boundaries.
+
+Extracted LZ77 data: every data/graphics.txt entry (tools/gfx.py) inside a
+gap is written as `.incbin "build/graphics/NAME.lz"` (with `, 0, SIZE` for
+the few streams stored cut short) instead of baserom bytes; a label strictly
+inside one is defined as `.set NAME, BLOB + offset`.
 
 Pointer words: 4-aligned words that tools/dataptrs.py recognizes as real
 pointers (see its docstring for the rules) are written as
@@ -57,6 +65,7 @@ DATA_START = 0x080C57DC
 ROM_END = 0x09000000
 FILE_SIZE = 0x40000
 OUT_DIR = Path("data/rom")
+GFX_MANIFEST = Path("data/graphics.txt")
 ELF = "fe7u.elf"
 EXCLUDE_SCAN = {"build/msg_data.o(.rodata)"}
 SYM_RE = re.compile(r"\s*([A-Za-z_]\w*)\s*=\s*(0x[0-9A-Fa-f]+)\s*;")
@@ -71,24 +80,62 @@ def read_layout(path):
     return sorted(rows)
 
 
-def read_existing_labels():
-    """(name, addr) for every label in data/rom/*.s."""
-    labels = []
+def walk_rom_files(gfx=None):
+    """Parse data/rom/*.s into a list of (kind, addr, arg, extra):
+    ("section", start, None, end), ("label", addr, name, is_lz77),
+    ("ptr", addr, expr, None), ("incbin", addr, size, path).
+    gfx is tools/gfx.py's manifest ({addr: Entry}), giving the size of
+    `.incbin "build/graphics/NAME.lz"` lines that have no explicit size."""
+    if gfx is None:
+        gfx = gfx_manifest()
+    items, addr_of = [], {}
     for f in sorted(OUT_DIR.glob("*.s")):
-        pos = None
+        pos, sec = None, None
         for line in f.read_text().splitlines():
-            line = line.split("@")[0].strip()
-            if m := re.match(r"\.section\s+\.rodata\.([0-9A-F]{8})", line):
+            code = line.split("@")[0].strip()
+            if m := re.match(r"\.section\s+\.rodata\.([0-9A-F]{8})", code):
+                if sec is not None:
+                    items[sec] = items[sec][:3] + (pos,)
                 pos = int(m.group(1), 16)
-            elif m := re.match(r"([A-Za-z_]\w*):$", line):
-                labels.append((m.group(1), pos))
-            elif m := re.match(r'\.incbin\s+"baserom\.gba",\s*(\w+),\s*(\w+)', line):
+                sec = len(items)
+                items.append(("section", pos, None, None))
+            elif m := re.match(r"([A-Za-z_]\w*):$", code):
+                items.append(("label", pos, m.group(1), "@ LZ77" in line))
+                addr_of[m.group(1)] = pos
+            elif m := re.match(r"\.set\s+([A-Za-z_]\w*)\s*,\s*([A-Za-z_]\w*)\s*\+\s*(\w+)$", code):
+                a = addr_of[m.group(2)] + int(m.group(3), 0)
+                items.append(("label", a, m.group(1), False))
+                addr_of[m.group(1)] = a
+            elif m := re.match(r'\.incbin\s+"baserom\.gba",\s*(\w+),\s*(\w+)', code):
                 off, size = int(m.group(1), 0), int(m.group(2), 0)
                 assert ROM_BASE + off == pos, f"{f}: incbin at {off:#x} expected {pos:#x}"
+                items.append(("incbin", pos, size, "baserom.gba"))
                 pos += size
-            elif line.startswith(".4byte"):
+            elif m := re.match(r'\.incbin\s+"([^"]+)"(?:\s*,\s*0\s*,\s*(\w+))?$', code):
+                if m.group(2):
+                    size = int(m.group(2), 0)
+                elif pos in gfx:
+                    size = gfx[pos].size
+                else:
+                    sys.exit(f"{f}: {m.group(1)} at {pos:#x} is not in {GFX_MANIFEST}; rerun tools/datasplit.py")
+                items.append(("incbin", pos, size, m.group(1)))
+                pos += size
+            elif code.startswith(".4byte"):
+                items.append(("ptr", pos, code.split(None, 1)[1], None))
                 pos += 4
-    return labels
+        if sec is not None:
+            items[sec] = items[sec][:3] + (pos,)
+    return items
+
+
+def read_existing_labels():
+    """(name, addr) for every label in data/rom/*.s."""
+    return [(name, addr) for kind, addr, name, _ in walk_rom_files() if kind == "label"]
+
+
+def gfx_manifest():
+    import gfx
+    return gfx.read_manifest(GFX_MANIFEST)
 
 
 def lz77_length(rom, off):
@@ -119,6 +166,15 @@ def lz77_length(rom, off):
                 out += 1
                 p += 1
     return p - off if out == size else None
+
+
+def banim_sheets(rom, addr):
+    """Sprite sheet addresses in the LZ77-compressed battle animation script
+    at addr: the word after each frame command (0x86xxxxxx)."""
+    import gfx
+    data, _ = gfx.lz77_decompress(rom, addr - ROM_BASE)
+    return {w for i in range(4, len(data) - 3, 4)
+            if data[i - 1] == 0x86 and ROM_BASE <= (w := int.from_bytes(data[i:i + 4], "little")) < ROM_END}
 
 
 def in_ranges(starts, ranges, addr):
@@ -209,6 +265,13 @@ def main():
             if is_data(word(a)) and word(a) % 2 == 0:
                 src_targets.add(word(a))
 
+    # --- pointer targets inside compressed data: the sprite sheets named by
+    # battle animation scripts (FORMAT banim_script in data/graphics.txt)
+    lz_targets = set()
+    for a, e in gfx_manifest().items():
+        if e.fmt == "banim_script":
+            lz_targets |= banim_sheets(rom, a)
+
     # --- pointer words inside the gaps
     gap_words = []  # (addr, value) for every 4-aligned word pointing into ROM
     for start, end in gaps:
@@ -225,7 +288,7 @@ def main():
             lz_cache[a] = lz77_length(rom, a - ROM_BASE) if a % 4 == 0 else None
         return lz_cache[a]
 
-    trusted = code_targets | src_targets
+    trusted = code_targets | src_targets | lz_targets
     blobs = {}
     for _ in range(20):
         rs, ranges = blob_ranges(blobs)
@@ -255,7 +318,7 @@ def main():
         return in_ranges(rs, ranges, t) and t not in blobs
 
     new_labels = 0
-    for t in code_targets | src_targets | data_targets:
+    for t in code_targets | src_targets | data_targets | lz_targets:
         if in_gap(t) and t not in names and not inside_blob(t):
             name = f"gUnk_{t:08X}"
             while name in all_names:
@@ -300,22 +363,41 @@ def main():
               f"new labels at pointer targets {len(ptr_labels)}")
         return
 
-    write_files(gaps, names, blobs, exprs)
+    # --- extracted LZ77 data (data/graphics.txt, tools/gfx.py)
+    gfx = {}
+    for a, e in gfx_manifest().items():
+        i = bisect.bisect_right(gap_starts, a) - 1
+        if i < 0 or not gaps[i][0] <= a < a + e.size <= gaps[i][1]:
+            print(f"warning: {GFX_MANIFEST}: {e.name} ({a:#x}) is not inside one gap; left incbin'd",
+                  file=sys.stderr)
+            continue
+        if inside := [p for p in exprs if a <= p < a + e.size]:
+            sys.exit(f"{GFX_MANIFEST}: pointer word at {inside[0]:#x} inside {e.name}")
+        if a not in names:
+            names[a] = [f"gUnk_{a:08X}"]
+        gfx[a] = e
+
+    write_files(gaps, names, blobs, exprs, gfx)
     Path("symbols.ld").write_text("".join(keep_lines))
 
 
-def write_files(gaps, names, blobs, exprs):
+def write_files(gaps, names, blobs, exprs, gfx):
     label_addrs = sorted(names)
     ptr_addrs = sorted(exprs)
+    gfx_starts, gfx_ranges = blob_ranges({a: e.size for a, e in gfx.items()})
 
     def labels_in(lo, hi):  # label addresses in [lo, hi)
         return label_addrs[bisect.bisect_left(label_addrs, lo):bisect.bisect_left(label_addrs, hi)]
+
+    def cuttable(lo, hi):  # labels in [lo, hi) not strictly inside extracted data
+        return [a for a in labels_in(lo, hi)
+                if a in gfx or not in_ranges(gfx_starts, gfx_ranges, a)]
 
     # Cut each gap into pieces of at most ~FILE_SIZE, only at labels.
     pieces = []
     for s, end in gaps:
         while end - s > FILE_SIZE:
-            inside = labels_in(s + 1, end)
+            inside = cuttable(s + 1, end)
             before = [a for a in inside if a <= s + FILE_SIZE]
             if not inside:
                 break
@@ -347,16 +429,31 @@ def write_files(gaps, names, blobs, exprs):
             layout.append(f"rom 0x{s:08X} 0x{e - s:X} build/data/rom/{fname}.o(.rodata.{s:08X})\n")
             cuts = labels_in(s, e)
             bounds = ([s] if not cuts or cuts[0] != s else []) + cuts + [e]
+            gfx_end, gfx_label = s, None
             for a, b in zip(bounds, bounds[1:]):
-                if a in names:
+                if a in names and a < gfx_end:
+                    # a name inside extracted data: defined relative to its start
+                    for n in names[a]:
+                        out.append(f"\t.global {n}\n")
+                    for n in names[a]:
+                        out.append(f"\t.set {n}, {gfx_label} + {a - gfx_start:#x}\n")
+                elif a in names:
                     lz_note = "  @ LZ77" if a in blobs else ""
                     out.append("\n")
                     for n in names[a]:
                         out.append(f"\t.global {n}\n")
                     for n in names[a]:
                         out.append(f"{n}:{lz_note}\n")
-                pos = a
-                for p in ptr_addrs[bisect.bisect_left(ptr_addrs, a):bisect.bisect_left(ptr_addrs, b)]:
+                if a in gfx:
+                    g = gfx[a]
+                    # a stream cut short (overlapping what follows): only SIZE bytes
+                    padded = (blobs[a] + 3) & ~3 if a in blobs else g.size
+                    size = f", 0, {g.size:#x}" if g.size < padded else ""
+                    out.append(f'\t.incbin "{g.lz.as_posix()}"{size}\n')
+                    gfx_start, gfx_end, gfx_label = a, a + g.size, names[a][0]
+                    assert gfx_end <= e, f"{g.name} crosses the end of its section"
+                pos = max(a, gfx_end)
+                for p in ptr_addrs[bisect.bisect_left(ptr_addrs, pos):bisect.bisect_left(ptr_addrs, b)]:
                     if p > pos:
                         out.append(f'\t.incbin "baserom.gba", {pos - ROM_BASE:#x}, {p - pos:#x}\n')
                     out.append(f"\t.4byte {exprs[p]}\n")

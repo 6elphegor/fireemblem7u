@@ -75,6 +75,38 @@ label in `data/rom/*.s`, rerun it to update the references
 unaligned track pointers), the FE6 link multiboot image, and pointers
 inside LZ77-compressed data (battle animation scripts).
 
+### Compressed data and graphics
+
+Every LZ77 blob `tools/datasplit.py` finds (the ones marked `@ LZ77`) is
+listed in `data/graphics.txt` (`ADDR SIZE FORMAT NAME`, see
+`tools/gfx.py`) and built from an extracted file instead of the ROM:
+
+* `make` runs `tools/gfx.py extract` when `graphics/.extracted` is missing
+  or older than the manifest; it writes `graphics/NAME.bin` (the
+  decompressed data) for every entry that has none and never overwrites
+  one.  `graphics/` is not in git -- asset bytes never are.
+* `graphics/NAME.bin` is compressed to `build/graphics/NAME.lz` by
+  `build/tools/lz77` (`tools/lz77.c`, built by `make`), and the
+  `data/rom/*.s` line at ADDR is `.incbin "build/graphics/NAME.lz"`.
+  The compressor reproduces all of the game's LZ77 data exactly
+  (`tools/gfx.py check` verifies it against `baserom.gba`).  Three streams
+  are stored cut short (their last token overlaps the next blob's header);
+  those incbin only SIZE bytes.  A name defined inside a blob (FaceInfoTable)
+  becomes `.set NAME, BLOB + offset`.
+* FORMAT is informational (`4bpp`, `tsa`, `palette`, `banim_script`,
+  `banim_oam`, `unknown`); `tools/gfx.py classify` fills it in from the
+  battle animation / terrain tables and label names.  No PNG conversion yet.
+* New blobs: after `tools/datasplit.py` marks more `@ LZ77` labels, run
+  `tools/gfx.py scan` (adds manifest entries), `tools/gfx.py classify`,
+  then `tools/datasplit.py` again.  Renaming an entry (NAME may contain
+  `/`) also needs a `tools/datasplit.py` run; rename the `.bin` along.
+* datasplit also labels the sprite sheets that compressed battle animation
+  scripts (`banim_script`) point at, so they are found as blobs too.
+
+The size of a blob is fixed by the layout (the link fails with "wrong
+size" if a `.lz` changes length), so editing graphics that change size
+means moving data, which the layout does not support yet.
+
 In source, refer to ROM data by symbol, never by a `0x08xxxxxx`
 constant, and don't put ROM data addresses in `symbols.ld` (an absolute
 address doesn't move; it also overrides a definition in source).  Declare

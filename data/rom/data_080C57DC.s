@@ -158,7 +158,7 @@ gUnk_080CCD04:
 
 	.global gUnk_080CCD24
 gUnk_080CCD24:  @ LZ77
-	.incbin "baserom.gba", 0xccd24, 0x3ad4
+	.incbin "build/graphics/gUnk_080CCD24.lz"
 
 	.global gUnk_080D07F8
 gUnk_080D07F8:
@@ -182,7 +182,7 @@ gUnk_080D0D08:
 
 	.global gUnk_080D0DAC
 gUnk_080D0DAC:  @ LZ77
-	.incbin "baserom.gba", 0xd0dac, 0x3a74
+	.incbin "build/graphics/gUnk_080D0DAC.lz"
 
 	.global gUnk_080D4820
 gUnk_080D4820:
@@ -194,7 +194,7 @@ gUnk_080D4CD4:
 
 	.global gUnk_080D4DD4
 gUnk_080D4DD4:  @ LZ77
-	.incbin "baserom.gba", 0xd4dd4, 0x34d8
+	.incbin "build/graphics/gUnk_080D4DD4.lz"
 
 	.global gUnk_080D82AC
 gUnk_080D82AC:
@@ -210,7 +210,7 @@ gUnk_080D8860:
 
 	.global gUnk_080D8960
 gUnk_080D8960:  @ LZ77
-	.incbin "baserom.gba", 0xd8960, 0x32d8
+	.incbin "build/graphics/gUnk_080D8960.lz"
 
 	.global gUnk_080DBC38
 gUnk_080DBC38:
@@ -238,7 +238,7 @@ gUnk_080DC4EC:
 
 	.global gUnk_080DC5EC
 gUnk_080DC5EC:  @ LZ77
-	.incbin "baserom.gba", 0xdc5ec, 0x3578
+	.incbin "build/graphics/gUnk_080DC5EC.lz"
 
 	.global gUnk_080DFB64
 gUnk_080DFB64:
@@ -250,7 +250,7 @@ gUnk_080E0018:
 
 	.global gUnk_080E0118
 gUnk_080E0118:  @ LZ77
-	.incbin "baserom.gba", 0xe0118, 0x2a40
+	.incbin "build/graphics/gUnk_080E0118.lz"
 
 	.global gUnk_080E2B58
 gUnk_080E2B58:
@@ -262,7 +262,7 @@ gUnk_080E300C:
 
 	.global gUnk_080E310C
 gUnk_080E310C:  @ LZ77
-	.incbin "baserom.gba", 0xe310c, 0x3268
+	.incbin "build/graphics/gUnk_080E310C.lz"
 
 	.global gUnk_080E6374
 gUnk_080E6374:
@@ -274,7 +274,7 @@ gUnk_080E6828:
 
 	.global gUnk_080E6928
 gUnk_080E6928:  @ LZ77
-	.incbin "baserom.gba", 0xe6928, 0x2d74
+	.incbin "build/graphics/gUnk_080E6928.lz"
 
 	.global gUnk_080E969C
 gUnk_080E969C:
@@ -286,7 +286,7 @@ gUnk_080E9B50:
 
 	.global gUnk_080E9C50
 gUnk_080E9C50:  @ LZ77
-	.incbin "baserom.gba", 0xe9c50, 0x30d8
+	.incbin "build/graphics/gUnk_080E9C50.lz"
 
 	.global gUnk_080ECD28
 gUnk_080ECD28:
@@ -298,7 +298,7 @@ gUnk_080ED1DC:
 
 	.global gUnk_080ED2DC
 gUnk_080ED2DC:  @ LZ77
-	.incbin "baserom.gba", 0xed2dc, 0x326c
+	.incbin "build/graphics/gUnk_080ED2DC.lz"
 
 	.global gUnk_080F0548
 gUnk_080F0548:
@@ -310,7 +310,7 @@ gUnk_080F09FC:
 
 	.global gUnk_080F0AFC
 gUnk_080F0AFC:  @ LZ77
-	.incbin "baserom.gba", 0xf0afc, 0x1f64
+	.incbin "build/graphics/gUnk_080F0AFC.lz"
 
 	.global gUnk_080F2A60
 gUnk_080F2A60:
@@ -322,7 +322,7 @@ gUnk_080F2F14:
 
 	.global gUnk_080F3014
 gUnk_080F3014:  @ LZ77
-	.incbin "baserom.gba", 0xf3014, 0x2f20
+	.incbin "build/graphics/gUnk_080F3014.lz"
 
 	.global gUnk_080F5F34
 gUnk_080F5F34:
@@ -338,7 +338,7 @@ gUnk_080F64E8:
 
 	.global gUnk_080F65E8
 gUnk_080F65E8:  @ LZ77
-	.incbin "baserom.gba", 0xf65e8, 0x31e4
+	.incbin "build/graphics/gUnk_080F65E8.lz"
 
 	.global gUnk_080F97CC
 gUnk_080F97CC:
@@ -354,7 +354,7 @@ gUnk_080F9D80:
 
 	.global gUnk_080F9E80
 gUnk_080F9E80:  @ LZ77
-	.incbin "baserom.gba", 0xf9e80, 0x3b00
+	.incbin "build/graphics/gUnk_080F9E80.lz"
 
 	.global gUnk_080FD980
 gUnk_080FD980:
@@ -366,7 +366,7 @@ gUnk_080FDE34:
 
 	.global gUnk_080FDF34
 gUnk_080FDF34:  @ LZ77
-	.incbin "baserom.gba", 0xfdf34, 0x2d2c
+	.incbin "build/graphics/gUnk_080FDF34.lz"
 
 	.global gUnk_08100C60
 gUnk_08100C60:
@@ -382,7 +382,7 @@ gUnk_08101214:
 
 	.global gUnk_08101314
 gUnk_08101314:  @ LZ77
-	.incbin "baserom.gba", 0x101314, 0x3cf4
+	.incbin "build/graphics/gUnk_08101314.lz"
 
 	.global gUnk_08105008
 gUnk_08105008:
