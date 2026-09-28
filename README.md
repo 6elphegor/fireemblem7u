@@ -88,8 +88,29 @@ tools/split_disasm.py full.s
 The final veneer at `0x080C57D4` is truncated by gbadisasm and must be
 completed by hand (`bx pc; nop; .byte 0xE0, 0xEA, 0xFC, 0xEA`).
 
-## References
+## Credits
 
-* [fireemblem8u](https://github.com/FireEmblemUniverse/fireemblem8u) — FE8 decomp; shares most of the engine.
-* [FireEmblem7J](https://github.com/MokhaLeee/FireEmblem7J) — FE7 (Japan) decomp.
-* [StanHash/fe7_us](https://github.com/StanHash/fe7_us) — FE7U disassembly; source of the initial function list in `tools/fe7u.cfg`.
+This project stands on the work of others:
+
+* [FireEmblem7J](https://github.com/MokhaLeee/FireEmblem7J) (MokhaLeee and
+  contributors), the decompilation of the Japanese release of the same game.
+  Most of our C modules and headers were adopted from it, verbatim or with
+  small changes, and its names take priority in this codebase.
+* [fireemblem8u](https://github.com/FireEmblemUniverse/fireemblem8u)
+  (FireEmblemUniverse and contributors), the FE8 decompilation. FE8 shares
+  most of the engine, and many functions and structures were ported from it.
+* [StanHash/fe7_us](https://github.com/StanHash/fe7_us), a disassembly of this
+  ROM and the source of the initial function list in `tools/fe7u.cfg`.
+* [pret/agbcc](https://github.com/pret/agbcc), the compiler used to build the
+  game.
+* GCC 2.95.3: `tools/agbcc-tpcs-frame.patch` ports its Thumb backtrace-frame
+  code (`-mtpcs-frame`) back into agbcc. The patch is derived from GCC and is
+  under the GPL, like agbcc itself.
+* [gbadisasm](https://github.com/camthesaxman/gbadisasm) (camthesaxman),
+  which produced the original disassembly.
+* [decomp-permuter](https://github.com/simonlindholm/decomp-permuter)
+  (Simon Lindholm and contributors), which found several of the matches.
+* Astra, who matched a number of the last stragglers.
+
+Neither FireEmblem7J nor fireemblem8u carries a license; their code is reused
+here following the usual practice among these community decompilations.

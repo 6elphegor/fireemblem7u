@@ -1,3 +1,11 @@
+Adds -mtpcs-frame / -mtpcs-leaf-frame (Thumb TPCS backtrace frames) to
+pret/agbcc's old_agbcc, needed to match src/main.c (AgbMain, PutBuildInfo).
+
+The frame code is ported from GCC 2.95.3's gcc/config/arm/thumb.c and
+thumb.h (Free Software Foundation), so this patch is under the GNU GPL
+(version 2 or later), like GCC and agbcc. Without the flag, the patched
+compiler's output is unchanged. Applied by tools/setup.sh with git apply.
+
 diff --git a/gcc/thumb.c b/gcc/thumb.c
 index f773ec0..978678b 100755
 --- a/gcc/thumb.c
