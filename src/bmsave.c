@@ -531,12 +531,12 @@ void ReadSuspendSavePlaySt(int slot, struct PlaySt * buf)
     ReadGameSavePlaySt(slot + gSuspendSaveIdOffset, buf);
 }
 
-#if NONMATCHING
-// everything up to the two copy loops matches; gcse hoists the address computations for the
-// ai*/aiFlags copies above the loops, and their register/stack-slot assignment and which
-// addresses get CSEd from each other (orig: unit+0x45 from unit+0x43, unit+0x40 from unit+0x44) differ
+// FAKEMATCH (found by decomp-permuter): the dummy item3 store used as the shift
+// amount and the redundant if/else around the ranks copy only steer register
+// allocation; behaviour is the same as the plain copy.
 void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf)
 {
+    struct Unit * new_var;
     int i;
     struct SuspendSavePackedUnit * unit_su = buf;
 
@@ -565,19 +565,26 @@ void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf)
     unit_su->statusIndex = unit->statusIndex;
     unit_su->statusDuration = unit->statusDuration;
     unit_su->torchDuration = unit->torchDuration;
+    new_var = unit;
     unit_su->barrierDuration = unit->barrierDuration;
     unit_su->rescue = unit->rescue;
-    unit_su->movBonus = unit->movBonus;
+    unit_su->movBonus = new_var->movBonus;
 
-    unit_su->ballistaIndex = (unit->ballistaIndex & 0x7F) | (unit->supportBits & 0x01) << 7;
-    unit_su->item1 = (unit->items[0] & 0x3FFF) | (unit->supportBits & 0x06) << 13;
-    unit_su->item2 = (unit->items[1] & 0x3FFF) | (unit->supportBits & 0x18) << 11;
-    unit_su->item3 = (unit->items[2] & 0x3FFF) | (unit->supportBits & 0x60) << 9;
+    unit_su->ballistaIndex = (unit->ballistaIndex & 0x7F) | ((unit->supportBits & 0x01) << 7);
+    unit_su->item1 = (unit->items[0] & 0x3FFF) | ((unit->supportBits & 0x06) << 13);
+    unit_su->item2 = (unit->items[1] & 0x3FFF) | ((unit->supportBits & 0x18) << 11);
+    unit_su->item3 = 9;
+    unit_su->item3 = (unit->items[2] & 0x3FFF) | ((unit->supportBits & 0x60) << unit_su->item3);
     unit_su->item4 = unit->items[3];
     unit_su->item5 = unit->items[4];
 
     for (i = 0; i < 8; i++)
-        unit_su->ranks[i] = unit->ranks[i];
+    {
+        if (unit || unit_su)
+            unit_su->ranks[i] = unit->ranks[i];
+        else
+            unit_su->ranks[i] = unit->ranks[i];
+    }
 
     for (i = 0; i < UNIT_SUPPORT_MAX_COUNT; i++)
         unit_su->supports[i] = unit->supports[i];
@@ -590,9 +597,6 @@ void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf)
     unit_su->unk31 = unit->_u46;
     unit_su->aiFlags = unit->aiFlags;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080A13EC.s");
-#endif
 
 void ReadSuspendSavePackedUnit(void const * sram_src, struct Unit * unit)
 {
