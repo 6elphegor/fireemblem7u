@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rename symbols across asm/, src/, include/ and tools/fe7u.cfg.
+"""Rename symbols across asm/, src/, include/, data/ and tools/fe7u.cfg.
 
 Usage: tools/rename.py RENAMES.txt      (lines: "old_name new_name")
        tools/rename.py OLD NEW
@@ -13,7 +13,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-FILES = [*Path("asm").rglob("*.s"), *Path("src").rglob("*.[chs]"), *Path("include").rglob("*.h"), Path("fe7u.lds")]
+FILES = [*Path("asm").rglob("*.s"), *Path("src").rglob("*.[chs]"), *Path("include").rglob("*.h"),
+         *Path("data").rglob("*.s"), Path("fe7u.lds")]
 CFG = Path("tools/fe7u.cfg")
 IDENT = re.compile(r"[A-Za-z_]\w*")
 
