@@ -19,16 +19,35 @@ assembly/libraries, and data after the code is still incbin'd from the ROM.
 
 ## Setup
 
-Requires `arm-none-eabi` binutils, `make`, `python3`, and a C compiler for
-the host with libpng (found through `pkg-config` or `libpng-config`).
-The optional runtime test (`make emutest`, see CONTRIBUTING) also needs
-libmgba (`brew install mgba`).
+Requires `git`, GNU `make` (macOS's 3.81 is fine), `python3` (3.9 or
+later; standard library only), `arm-none-eabi` binutils 2.39 or later (the
+link uses `--no-warn-rwx-segments`; no ARM gcc is needed), and a C
+compiler for the host with libpng (found through `pkg-config` or
+`libpng-config`):
 
 ```sh
-tools/setup.sh          # builds agbcc and gbadisasm into tools/
-cp /path/to/rom.gba baserom.gba
-make                    # builds fe7u.gba and checks its SHA1
+brew install arm-none-eabi-binutils libpng pkg-config    # macOS (plus Xcode's command line tools)
+sudo apt install build-essential git python3 binutils-arm-none-eabi libpng-dev pkg-config   # Debian/Ubuntu
 ```
+
+The optional runtime test (`make emutest`, see CONTRIBUTING) also needs
+libmgba: `brew install mgba ffmpeg@8` (Homebrew's mgba bottle links an
+older ffmpeg than the current one).
+
+```sh
+tools/setup.sh          # clones and builds agbcc (patched) and gbadisasm into tools/
+cp /path/to/rom.gba baserom.gba
+make -j8                # builds fe7u.gba and checks its SHA1
+```
+
+`tools/setup.sh` needs network access (it clones
+[pret/agbcc](https://github.com/pret/agbcc) and
+[gbadisasm](https://github.com/camthesaxman/gbadisasm), which downloads
+Capstone) and takes about a minute; nothing after it does.  `baserom.gba`
+must be the USA/Australia ROM with the SHA1 above; `make` checks it before
+extracting anything.  The first `make` takes about a minute (half that with
+`-j`) and the checkout grows to about 250 MB; after that, `make` with
+nothing changed is instant.  The path may contain spaces.
 
 The first `make` also extracts assets from `baserom.gba` into files that are
 not in git, and from then on builds from them:
@@ -70,7 +89,6 @@ guaranteed.
 | Path | Contents |
 | --- | --- |
 | `asm/crt0.s` | ARM startup and IWRAM routines (`0x08000000`) |
-| `asm/code_*.s` | Game code not yet decompiled, named by start address |
 | `asm/m4a_1.s` + `src/m4a.c`, `src/m4a_tables.c` | MusicPlayer2000 sound engine (hand-written asm part + C part) |
 | `asm/libagb.s`, `veneers.s` | Library code; libc and libgcc are linked from agbcc's `libc.a`/`libgcc.a` (members listed in `fe7u.lds`) |
 | `src/` | Decompiled C |
