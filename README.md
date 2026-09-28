@@ -4,6 +4,21 @@ A matching decompilation of *Fire Emblem* (GBA, `AE7E`). It builds:
 
 * `fe7u.gba` — `sha1: c735fdbb9e8abe19e0c6a44708df19acc962e204`
 
+## Status
+
+All game code is in C and matches, except one function:
+`ClassIntroLetter_LoopFadeIn` (`0x080AF368`, `src/opinfo.c`), which is still
+built from its original assembly via `ASM_FUNC`
+(`asm/nonmatching/code_080AF368.s`). Its C draft sits in the `#if NONMATCHING`
+block above it. Help matching it is welcome: see CONTRIBUTING.md. Fake matches
+(register pins, empty `asm` barriers) are acceptable if commented.
+
+The sound engine's hand-written part, libagb, libc and libgcc are linked as
+assembly/libraries, and data after the code is still incbin'd from the ROM.
+
+`src/main.c` needs `-mtpcs-frame`, which stock agbcc lacks;
+`tools/setup.sh` patches it in (`tools/agbcc-tpcs-frame.patch`).
+
 ## Setup
 
 Requires `arm-none-eabi` binutils, `make`, `python3`, and a C compiler for the host.

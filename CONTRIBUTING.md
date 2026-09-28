@@ -5,11 +5,13 @@ The goal is C that compiles to the exact bytes of the original ROM.
 
 ## Setup (including in a git worktree)
 
-`baserom.gba` and `tools/agbcc/` are not in git. In a fresh worktree:
+`baserom.gba` and `tools/agbcc/` are not in git. Run `tools/setup.sh` once
+and copy your ROM to `baserom.gba` (see README). In an extra git worktree,
+symlink both from the main checkout instead of rebuilding:
 
 ```sh
-ln -s "/Users/belphegor/Fire Emblem/baserom.gba" baserom.gba
-ln -s "/Users/belphegor/Fire Emblem/tools/agbcc" tools/agbcc
+ln -s /path/to/main/checkout/baserom.gba baserom.gba
+ln -s /path/to/main/checkout/tools/agbcc tools/agbcc
 make -j10
 ```
 
@@ -39,9 +41,9 @@ bulk edits, `rm -rf build/asm build/src` before building.
 1. Find it: `asm/nonmatching/code_<ADDR>.s` (inside a C module) or
    `asm/code_<ADDR>.s` (not in any module yet).
 2. Write C.  Good references:
-   * FireEmblem7J (`/private/tmp/claude-501/-Users-belphegor-Fire-Emblem/bf1905e3-923e-418b-951a-7850f33a76fb/scratchpad/FireEmblem7J`) — same game, Japanese release.
+   * [FireEmblem7J](https://github.com/MokhaLeee/FireEmblem7J) — same game, Japanese release.
      A nonmatching function is usually its JP version with small changes.
-   * fireemblem8u (`.../scratchpad/fe8u`) — same engine, often near-identical code.
+   * [fireemblem8u](https://github.com/FireEmblemUniverse/fireemblem8u) — same engine, often near-identical code.
 3. Compile and compare: `make`, then `tools/romdiff.py` lists differing
    ranges by symbol.  `build/src/<module>.s` is the compiler's output;
    compare it against the original asm.
