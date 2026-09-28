@@ -1,0 +1,263 @@
+sram tests/saves/shops.txt
+wait 300
+press Start
+wait 120
+press Start
+wait 120
+shot main_menu
+press A
+wait 120
+shot file_select
+press A
+wait 60
+repeat 72
+press A
+wait 40
+end
+wait 400
+shot prep_menu
+press A
+wait 90
+shot pick
+press Down 2 30
+press A
+wait 40
+shot pick_toggle
+press Down 4 30
+press A
+wait 40
+shot pick_toggle2
+press R
+wait 90
+shot pick_info
+press B
+wait 60
+press B
+wait 120
+shot prep_menu2
+press Down 1 40
+press A
+wait 120
+shot items
+press A
+wait 90
+shot items_unit
+press A
+wait 90
+shot items_unit2
+press B
+wait 90
+press B
+wait 90
+press B
+wait 120
+shot prep_menu3
+press Down 1 40
+press A
+wait 120
+shot fortune
+repeat 6
+press A
+wait 60
+shot fortune_talk
+end
+wait 120
+press B
+wait 150
+press B
+wait 150
+press B
+wait 150
+shot prep_top
+press Down 3 60
+press A
+wait 180
+shot check_map
+press A
+wait 120
+shot check_map2
+press Down 1 60
+press A
+wait 180
+shot check_map3
+press B
+wait 150
+press B
+wait 150
+press B
+wait 150
+shot prep_top2
+press Up 1 60
+press A
+wait 180
+shot save_menu
+press A
+wait 120
+shot save_menu2
+press B
+wait 150
+press B
+wait 150
+press B
+wait 150
+shot prep_top3
+press Start
+wait 200
+shot deploy_merlinus
+press A
+wait 400
+shot fight
+repeat 8
+press A
+wait 50
+end
+wait 300
+shot map0
+press B
+wait 60
+shot map1
+wait 200
+press Right 5 30
+wait 30
+press Down 2 30
+wait 30
+shot on_marcus
+press A
+wait 60
+press Right 1 30
+wait 30
+press Up 2 30
+wait 30
+shot marcus_dest
+press A
+wait 150
+shot marcus_menu
+press A
+wait 200
+shot armory
+repeat 6
+press A
+wait 90
+shot armory_a
+end
+press B
+wait 120
+shot armory_b
+press Right 1 30
+press A
+wait 120
+shot sell
+press A
+wait 90
+shot sell2
+press A
+wait 90
+shot sell3
+press B
+wait 120
+press B
+wait 120
+press B
+wait 200
+shot after_armory
+press A
+wait 120
+press A
+wait 120
+shot marcus_waited
+press Down 2 30
+wait 30
+press A
+wait 60
+press Right 2 30
+wait 30
+press Down 1 30
+wait 30
+shot lowen_dest
+press A
+wait 150
+shot lowen_menu
+press A
+wait 200
+shot vendor
+repeat 3
+press A
+wait 90
+shot vendor_a
+end
+press B
+wait 120
+press B
+wait 120
+press B
+wait 200
+shot after_vendor
+press A
+wait 200
+press A
+wait 120
+shot canto_l2
+press Up 1 40
+press A
+wait 150
+shot lowen_waited
+press Left 4 30
+wait 30
+press Down 4 30
+wait 60
+shot on_matthew
+press A
+wait 60
+press Left 3 30
+wait 30
+press Up 2 30
+wait 30
+shot matthew_dest
+press A
+wait 150
+shot matthew_menu
+press A
+wait 200
+shot arena
+repeat 4
+press A
+wait 60
+end
+shot arena_wager
+repeat 12
+press A
+wait 60
+end
+shot arena_won
+wait 200
+shot arena_done
+press A
+wait 90
+shot end_menu
+press Up 1 40
+press A
+wait 600
+shot turn2
+repeat 5
+press A
+wait 90
+press A
+wait 150
+press Up 1 60
+press A
+wait 120
+press A
+wait 90
+press Up 1 60
+shot turn_end
+press A
+wait 600
+shot turn
+end
+repeat 24
+repeat 5
+press A
+wait 50
+end
+shot chapter_end
+end

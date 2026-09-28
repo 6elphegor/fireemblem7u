@@ -14,6 +14,7 @@
  *     -d N        dump PNGs of the first N frames whose pictures differ
  *     -s N        stop N frames after the first divergence (default: run on)
  *     -e N        also save a PNG of A every N frames (script development)
+ *     -D 1        also save A's memory at every checkpoint (NAME_A.ewram.bin...)
  *
  * Output on stdout is line-oriented ("key value ..."), read by emutest.py.
  * Each run starts from power-on with mGBA's HLE BIOS (no BIOS file), empty
@@ -393,14 +394,14 @@ static int videoEqual(struct emu *a, struct emu *b)
 
 static void usage(void)
 {
-	fprintf(stderr, "usage: emutest -p PLAN -o DIR [-m MAP] [-l LOG] [-d N] [-s N] [-e N] ROM_A [ROM_B]\n");
+	fprintf(stderr, "usage: emutest -p PLAN -o DIR [-m MAP] [-l LOG] [-d N] [-s N] [-e N] [-D 1] ROM_A [ROM_B]\n");
 	exit(2);
 }
 
 int main(int argc, char **argv)
 {
 	const char *plan = NULL, *out = NULL, *map = NULL, *logPath = NULL;
-	long dumpDiffs = 4, stopAfter = -1, every = 0;
+	long dumpDiffs = 4, stopAfter = -1, every = 0, dumpShots = 0;
 	int i;
 	for (i = 1; i < argc && argv[i][0] == '-'; i++) {
 		if (i + 1 >= argc)
@@ -413,6 +414,7 @@ int main(int argc, char **argv)
 		case 'd': dumpDiffs = atol(argv[++i]); break;
 		case 's': stopAfter = atol(argv[++i]); break;
 		case 'e': every = atol(argv[++i]); break;
+		case 'D': dumpShots = atol(argv[++i]); break;
 		default: usage();
 		}
 	}
@@ -521,6 +523,10 @@ int main(int argc, char **argv)
 		while (si < nshots && shots[si].frame <= frame) {
 			if (shots[si].frame == frame) {
 				savePng(&a, out, shots[si].name);
+				if (dumpShots) {
+					snprintf(name, sizeof name, "%s_A", shots[si].name);
+					dumpMemory(&a, out, name);
+				}
 				printf("shot %u %s %016llx %016llx", frame, shots[si].name,
 				       (unsigned long long)hashVideo(&a), (unsigned long long)hashRegions(&a));
 				if (two) {

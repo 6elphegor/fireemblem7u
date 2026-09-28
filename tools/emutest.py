@@ -333,6 +333,8 @@ def record(script, rom, args):
     cmd = ["-p", str(out / "plan.txt"), "-o", str(out)]
     if args.every:
         cmd += ["-e", str(args.every)]
+    if args.dump:
+        cmd += ["-D", "1"]
     if args.log:
         cmd += ["-l", str(out / "frames.log")]
     text = run_bin(cmd + [str(rom)])
@@ -405,6 +407,8 @@ def main():
     r.add_argument("script")
     r.add_argument("-a", default="fe7u.gba")
     r.add_argument("--every", type=int, default=0, help="also save a PNG every N frames")
+    r.add_argument("--dump", action="store_true",
+                   help="also save the memory at every checkpoint (NAME_A.ewram.bin...)")
     r.add_argument("--log", action="store_true")
     s = sub.add_parser("sheet")
     s.add_argument("out")
