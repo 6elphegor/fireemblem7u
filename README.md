@@ -6,12 +6,10 @@ A matching decompilation of *Fire Emblem* (GBA, `AE7E`). It builds:
 
 ## Status
 
-All game code is in C and matches, except one function:
-`ClassIntroLetter_LoopFadeIn` (`0x080AF368`, `src/opinfo.c`), which is still
-built from its original assembly via `ASM_FUNC`
-(`asm/nonmatching/code_080AF368.s`). Its C draft sits in the `#if NONMATCHING`
-block above it. Help matching it is welcome: see CONTRIBUTING.md. Fake matches
-(register pins, empty `asm` barriers) are acceptable if commented.
+Every game function is decompiled to C and matches the original bytes. Some
+of the last ones are "fake matches" (register pins, empty `asm` barriers);
+each is marked `FAKEMATCH` with a comment explaining the trick, and cleaner
+C for any of them is welcome.
 
 The sound engine's hand-written part, libagb, libc and libgcc are linked as
 assembly/libraries, and data after the code is still incbin'd from the ROM.

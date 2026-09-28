@@ -340,20 +340,36 @@ void ClassIntroLetter_Init(struct OpInfoViewProc * proc)
     proc->timer = 0;
 }
 
-#if NONMATCHING
+// The if-branch is plain C: (sin * radius) >> 12 gives the original ldrsh
+// loads, and x/y at function scope, reused by the else branch, give its
+// register choices and 24-byte frame.
+// FAKEMATCH (else branch, found by an Opus 5.5 agent): timer and its copies
+// are pinned to r1/r0/r2 (c is a dead copy the original has); the empty
+// ++/-- ifs split basic blocks so the index and 0x100 land in r6/r8; the r0
+// statement expressions build 0x100 as 0x18 + 0xe8; the function-pointer cast
+// (int 5th parameter) avoids truncating timer to u16.
 void ClassIntroLetter_LoopFadeIn(struct OpInfoViewProc * proc)
 {
+    int x, y;
+
     if (proc->index == 0)
     {
-        int x0 = COS_Q12(0x60) >> 6;
-        int y0 = (SIN_Q12(0x60) * 3) >> 9;
-        int angle = 0xC0 - proc->timer;
-        int x = COS_Q12(angle) >> 6;
-        int y = (SIN_Q12(angle) * 3) >> 9;
-        u16 scale = 0x200 - (proc->timer << 8) / 0x60;
+        int x0;
+        int y0;
+        int angle;
+        u16 scale;
 
-        PutClassIntroLetter(proc->tile, proc->index, (proc->x + x - x0) & 0x1FF, (y - (y0 - 0x18)) & 0x1FF,
-            scale, scale, 8 - proc->timer / 12);
+        x0 = (gSinLut[0x40 + 0x60] * 0x40) >> 12;
+        y0 = (gSinLut[0x60] * 0x18) >> 12;
+
+        angle = 0xC0 - proc->timer;
+        x = (gSinLut[0x40 + (angle & 0xFF)] * 0x40) >> 12;
+        y = (gSinLut[angle & 0xFF] * 0x18) >> 12;
+
+        scale = 0x200 - ((proc->timer << 8) / 0x60);
+
+        PutClassIntroLetter(proc->tile, proc->index, ((proc->x + x) - x0) & 0x1FF, ((0x18 + y) - y0) & 0x1FF,
+            scale, scale, 8 - ({ proc->timer + 0; }) / 12);
 
         proc->timer += 4;
 
@@ -365,10 +381,25 @@ void ClassIntroLetter_LoopFadeIn(struct OpInfoViewProc * proc)
     }
     else
     {
-        int a = 0x10 - (proc->timer >> 4);
+        {
+            register int timer asm("r1") = proc->timer;
+            register int b asm("r0") = timer;
+            register int c asm("r2") = timer;
+            int t4;
 
-        PutClassIntroLetter(proc->tile, proc->index, proc->x - a, 0x18 - a, proc->timer, 0x100,
-            0x10 - (proc->timer >> 4));
+            asm("" : : "r"(c));
+            t4 = b >> 4;
+            x = 0x10 - t4;
+            asm("" : : "r"(x));
+            y = x;
+
+            ((void (*)(u16, u8, int, int, int, u16, u8)) PutClassIntroLetter)(proc->tile, proc->index,
+                ({ register int px asm("r0"); if (t4) { ++t4; --t4; } px = proc->x; px; }) - y,
+                ({ register int k asm("r0") = 0x18; k; }) - y,
+                timer, 0x100, 0x10 - t4);
+
+            if (c) { ++c; --c; }
+        }
 
         proc->timer += 0x10;
 
@@ -379,9 +410,6 @@ void ClassIntroLetter_LoopFadeIn(struct OpInfoViewProc * proc)
         }
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080AF368.s");
-#endif
 void ClassIntroLetter_LoopDisplay(struct OpInfoViewProc * proc)
 {
     PutClassIntroLetter(proc->tile, proc->index, proc->x, 0x18, 0x100, 0x100, 0);
