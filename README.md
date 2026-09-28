@@ -29,6 +29,9 @@ cp /path/to/rom.gba baserom.gba
 make                    # builds fe7u.gba and checks its SHA1
 ```
 
+The first `make` also extracts the game script to `texts/texts.txt` (not in
+git; edit it there to change in-game text).
+
 `baserom.gba` is still needed at build time: everything after the code
 (`0x080C57DC` onward) is incbin'd from it until data is split out.
 

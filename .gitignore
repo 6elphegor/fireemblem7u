@@ -7,3 +7,4 @@ tools/gbadisasm/
 __pycache__/
 .DS_Store
 .claude/
+texts/texts.txt

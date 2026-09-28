@@ -100,6 +100,11 @@ build/data.o: build/data.s baserom.gba
 # Game text: texts/*.txt -> Huffman-compressed messages, tree and gMsgTable.
 TEXTS := texts/texts.txt texts/textdefs.txt
 
+# texts.txt is the game's script, so it isn't in git: extract it from the ROM
+# the first time. After that it is the source of truth and is never overwritten.
+texts/texts.txt: | baserom.gba
+	python3 tools/textdecode.py baserom.gba
+
 build/msg_data.s: $(TEXTS) tools/textencode.py
 	@mkdir -p $(@D)
 	python3 tools/textencode.py $(TEXTS) $@
