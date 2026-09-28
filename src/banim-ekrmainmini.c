@@ -281,8 +281,8 @@ void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
     pAnimBuf->unk_2C = 0;
 }
 
-#if NONMATCHING
-// only register allocation differs in the character palette tail (table pointer should be in r7)
+// FAKEMATCH (found by Astra): an empty tied asm operand pins the palette
+// table base in r7 and a clobber keeps the later temporary out of it.
 void sub_08054C8C(struct AnimBuffer * pAnimBuf)
 {
     u32 modeA;
@@ -388,19 +388,19 @@ void sub_08054C8C(struct AnimBuffer * pAnimBuf)
 
     if (pAnimBuf->charPalId != -1)
     {
-        struct BattleAnimCharaPal * cbap = &character_battle_animation_palette_table[pAnimBuf->charPalId];
-        LZ77UnCompWram(cbap->pal, pAnimBuf->unk_20);
+        register int offset asm("r0") = pAnimBuf->charPalId * sizeof(struct BattleAnimCharaPal);
+        register struct BattleAnimCharaPal * base asm("r7");
+        asm("" : "=r"(base) : "0"(character_battle_animation_palette_table));
+        LZ77UnCompWram(((struct BattleAnimCharaPal *)((u32)offset + (u32)base))->pal, pAnimBuf->unk_20);
     }
 
+    asm("" : : : "r7");
     CpuFastCopy(pAnimBuf->unk_20 + pAnimBuf->genericPalId * 0x20, pAnimBuf->oam2Pal * 0x10 + gPal + 0x100, 0x20);
 
     EnablePalSync();
 
     return;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08054C8C.s");
-#endif
 
 // 1.00 ekrmainmini:sub_805A930
 void sub_08054E00(struct AnimBuffer * pAnimBuf, int animId, int charPalId)

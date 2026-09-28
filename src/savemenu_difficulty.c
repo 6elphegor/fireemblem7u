@@ -56,16 +56,11 @@ void sub_080A6398(u8 slot, struct SaveMenuProc * proc)
         }
     }
 }
-#if NONMATCHING
-// only difference: the constant 0x40 for mode 3 gets hoisted into r9
+// FAKEMATCH (found by Astra): an empty read/write asm constraint on the
+// 0x40 mask stops it from being hoisted into r9.
 void SaveMenuInitSlotPalette(u8 slot)
 {
     int i;
-#ifndef NONMATCHING
-    register u32 r1 asm("r1");
-#else
-    u32 r1;
-#endif
 
     for (i = 0; i < 3; i++)
     {
@@ -84,7 +79,9 @@ void SaveMenuInitSlotPalette(u8 slot)
 
         if (gPlayStChapterMode[i] == 3)
         {
-            flags |= 0x40;
+            register int mask asm("r0") = 0x40;
+            asm("" : "+r"(mask));
+            flags |= mask;
             flags = (u8)flags;
         }
 
@@ -100,9 +97,7 @@ void SaveMenuInitSlotPalette(u8 slot)
 
     EnablePalSync();
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080A649C.s");
-#endif
+
 void sub_080A652C(int param_1, int param_2)
 {
     int slot;
