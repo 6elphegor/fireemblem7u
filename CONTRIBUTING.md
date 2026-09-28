@@ -70,10 +70,9 @@ tables; graphics, tile maps and tables left over from another build stay
 raw.  Targets without a label get `gUnk_<ADDR>`.  The tool reads function,
 source and RAM names from `fe7u.elf`, so `make` first.  After renaming a
 label in `data/rom/*.s`, rerun it to update the references
-(`tools/rename.py` also covers `data/`).  Not yet done: m4a sound data
-(0x08677648-0x08AEAE8C: voice groups, song table, samples, songs with
-unaligned track pointers), the FE6 link multiboot image, and pointers
-inside LZ77-compressed data (battle animation scripts).
+(`tools/rename.py` also covers `data/`).  Not yet done: the FE6 link
+multiboot image and pointers inside LZ77-compressed data (battle animation
+scripts).  The music data has its own tool (below).
 
 ### Compressed data and graphics
 
@@ -106,6 +105,38 @@ listed in `data/graphics.txt` (`ADDR SIZE FORMAT NAME`, see
 The size of a blob is fixed by the layout (the link fails with "wrong
 size" if a `.lz` changes length), so editing graphics that change size
 means moving data, which the layout does not support yet.
+
+### Music
+
+The m4a (MusicPlayer2000) data, 0x08677648-0x08AEAE8C, is one placed
+section, `build/sound/sound.o(.rodata)`, assembled from `sound/sound.s`.
+`sound/` is extracted by `tools/m4adis.py` on the first `make` and is not
+in git, except `sound/manifest.txt`: the region, `gMPlayTable` and
+`gSongTable`, the programmable wave table, and older names kept at their
+addresses.  The tool follows every song header and every track's command
+stream (GOTO / PATT / REPT / conditional MEMACC, with the engine's running
+status), the voice groups (drum sets, key splits) and the samples, and
+writes
+
+* `sound/songs/songNNN.s` -- tracks with `include/MPlayDef.s` names, then
+  the header; NNN is the first song id using it.  Labels: `songNNN`,
+  `songNNN_T` (track T), `songNNN_T_ADDR` (jump targets, local);
+* `sound/voicegroups/voicegroupNNN.s` -- `include/m4a_data.inc` voice
+  macros (pret's `music_voice.inc` names), NNN in ROM order;
+* `sound/direct_sound_samples/ADDR.bin` (WaveData: 16-byte header + PCM),
+  `sound/programmable_wave_samples/NNN.pcm`;
+* `sound/song_table.s`, `sound/music_player_table.s`, and `sound/sound.s`,
+  which includes all of them in ROM order (plus a few unreferenced bytes).
+
+Every pointer in the region is a label (+ offset), including the 2,537
+unaligned ones in track data, so the music moves with the layout;
+`make shifttest` checks each relocated field.  Edit the files in `sound/`
+freely (`as --MD` tracks the includes); running `tools/m4adis.py` again
+overwrites them all (delete `sound/sound.s` and `make` does the same).
+Manifest names that fall inside an object (old datasplit guesses in
+samples and tracks) are local labels, so tools/dataptrs.py doesn't take
+look-alike words elsewhere for pointers to them.  Sizes are fixed by the
+layout, like everything else in the data region.
 
 In source, refer to ROM data by symbol, never by a `0x08xxxxxx`
 constant, and don't put ROM data addresses in `symbols.ld` (an absolute

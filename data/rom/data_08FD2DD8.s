@@ -778,13 +778,7 @@ gUnk_08FF0A10:
 	.4byte gMPlayInfo_SE7
 	.incbin "baserom.gba", 0xfff708, 0xc
 	.4byte gMPlayJumpTable
-	.incbin "baserom.gba", 0xfff718, 0x3c
-	.4byte gUnk_086D6568
-	.4byte gUnk_086D9BB8
-	.incbin "baserom.gba", 0xfff75c, 0x78
-	.4byte gUnk_08A22ED0
-	.4byte gUnk_08A23180
-	.incbin "baserom.gba", 0xfff7dc, 0x11c
+	.incbin "baserom.gba", 0xfff718, 0x1e0
 
 	.global gUnk_08FFF8F8
 gUnk_08FFF8F8:

@@ -61,9 +61,6 @@ LOCAL = 0x10000
 
 # Left raw for dedicated passes:
 SKIP_RANGES = [
-    # m4a sound data: voice groups, gMPlayTable, gSongTable, samples and
-    # songs (track data holds unaligned GOTO/PATT pointers).
-    (0x08677648, 0x08AEAE8C),
     # gFe6LinkMultiBootImage: a separate program linked for EWRAM.
     (0x08CF0CD0, 0x08CF634C),
 ]

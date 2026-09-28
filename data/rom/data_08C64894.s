@@ -6501,22 +6501,21 @@ ProcScr_ClassStatsDisplay:
 	.global gUnk_08CE6058
 gUnk_08CE6058:
 	.incbin "baserom.gba", 0xce6058, 0x4
-	.4byte gUnk_089B0000
+	.4byte DirectSoundData_089AD8A4 + 0x275c
 
 	.global gUnk_08CE6060
 gUnk_08CE6060:
-	.incbin "baserom.gba", 0xce6060, 0x4
-	.4byte gUnk_089C0000
+	.incbin "baserom.gba", 0xce6060, 0x8
 
 	.global gUnk_08CE6068
 gUnk_08CE6068:
 	.incbin "baserom.gba", 0xce6068, 0x4
-	.4byte gUnk_089D0000
+	.4byte DirectSoundData_089CE5E8 + 0x1a18
 
 	.global gUnk_08CE6070
 gUnk_08CE6070:
 	.incbin "baserom.gba", 0xce6070, 0x4
-	.4byte gUnk_089E0000
+	.4byte DirectSoundData_089DB9E0 + 0x4620
 
 	.global SpriteLut_GaugePips
 SpriteLut_GaugePips:

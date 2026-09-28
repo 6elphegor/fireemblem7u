@@ -37,7 +37,9 @@ GFX_NAMES := $(shell awk '/^0x/ {print $$4}' data/graphics.txt)
 GFX_BINS := $(GFX_NAMES:%=graphics/%.bin)
 GFX_LZ := $(GFX_NAMES:%=build/graphics/%.lz)
 LZ77 := build/tools/lz77
-OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) build/data.o build/msg_data.o
+# Music (m4a) data, extracted from the ROM into sound/ by tools/m4adis.py.
+SOUND_OBJ := build/sound/sound.o
+OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) build/data.o build/msg_data.o
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
@@ -63,9 +65,9 @@ build/fe7u.ld: $(LDS)
 	@mkdir -p $(@D)
 	sed -E 's#build/asm/([A-Za-z0-9_]+\.o)\(#*asm.a:\1(#' $< > $@
 
-$(ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) $(ROMDATA_OBJS) build/data.o build/msg_data.o build/fe7u.ld $(LAYOUT) symbols.ld
+$(ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) build/data.o build/msg_data.o build/fe7u.ld $(LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
-	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(ROMDATA_OBJS) build/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) build/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
@@ -142,6 +144,22 @@ build/msg_data.s: $(TEXTS) tools/textencode.py
 
 build/msg_data.o: build/msg_data.s
 	$(AS) $(ASFLAGS) -o $@ $<
+
+# Music: songs, voice groups and samples aren't in git either.  The first
+# build extracts them to sound/ (see tools/m4adis.py; sound/manifest.txt is
+# the committed part); after that sound/ is the source.  Delete
+# sound/sound.s (or run the tool) to extract again.
+sound/sound.s: | baserom.gba
+	python3 tools/m4adis.py
+
+# as --MD lists every .include/.incbin; the empty rules (like gcc -MP) keep
+# make going if one of them disappears.
+$(SOUND_OBJ): sound/sound.s include/MPlayDef.s include/m4a_data.inc
+	@mkdir -p $(@D)
+	$(AS) $(ASFLAGS) --MD $(@:.o=.d) -o $@ $<
+	@sed -e 's/^[^:]*://' -e 's/\\$$//' $(@:.o=.d) | tr ' ' '\n' | grep . | sed 's/$$/:/' >> $(@:.o=.d)
+
+-include $(SOUND_OBJ:.o=.d)
 
 # Relink with padding before the data region and check every pointer moved.
 shifttest: $(ROM)

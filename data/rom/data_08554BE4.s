@@ -35,11 +35,7 @@ gUnk_0855B264:  @ LZ77
 
 	.global gUnk_0855FF7C
 gUnk_0855FF7C:
-	.incbin "baserom.gba", 0x55ff7c, 0xb4
-	.4byte EventScr_08CC0C14 + 0x1a0
-	.incbin "baserom.gba", 0x560034, 0x4
-	.4byte gUnk_088810EC
-	.incbin "baserom.gba", 0x56003c, 0x40
+	.incbin "baserom.gba", 0x55ff7c, 0x100
 
 	.global gUnk_0856007C
 gUnk_0856007C:

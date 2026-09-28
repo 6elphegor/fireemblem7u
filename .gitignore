@@ -9,3 +9,5 @@ __pycache__/
 .claude/
 texts/texts.txt
 /graphics/
+/sound/*
+!/sound/manifest.txt

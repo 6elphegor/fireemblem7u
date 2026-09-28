@@ -87,9 +87,7 @@ gUnk_083A6B4C:
 
 	.global gUnk_083A7B4C
 gUnk_083A7B4C:
-	.incbin "baserom.gba", 0x3a7b4c, 0xa00
-	.4byte gUnk_08888800
-	.incbin "baserom.gba", 0x3a8550, 0x5fc
+	.incbin "baserom.gba", 0x3a7b4c, 0x1000
 
 	.global gUnk_083A8B4C
 gUnk_083A8B4C:

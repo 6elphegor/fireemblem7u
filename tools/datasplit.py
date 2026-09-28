@@ -17,8 +17,9 @@ Labels (a chunk boundary is placed at each one):
   * pointer targets referenced from code: a Thumb `ldr rX, [pc, #n]` or ARM
     `ldr rX, [pc, #n]` whose literal is a data-region address;
   * even pointer targets referenced from 4-aligned words in sections that
-    are already in source (data/layout.txt entries, except the Huffman text
-    bitstream build/msg_data.o); odd ones there were all packed halfwords;
+    are already in source (data/layout.txt entries, except EXCLUDE_SCAN: the
+    Huffman text bitstream and the music data); odd ones there were all
+    packed halfwords;
   * pointer targets referenced from 4-aligned words inside the gaps, only if
     the target is 4-aligned, the word is not inside an LZ77 blob, and the
     word sits next to another plausible pointer (a word within +-16 bytes,
@@ -67,7 +68,10 @@ FILE_SIZE = 0x40000
 OUT_DIR = Path("data/rom")
 GFX_MANIFEST = Path("data/graphics.txt")
 ELF = "fe7u.elf"
-EXCLUDE_SCAN = {"build/msg_data.o(.rodata)"}
+# Placed sections whose words are not scanned for pointer targets: the Huffman
+# text bitstream, and the music data (tools/m4adis.py; samples look like
+# anything, and its real pointers stay inside it).
+EXCLUDE_SCAN = {"build/msg_data.o(.rodata)", "build/sound/sound.o(.rodata)"}
 SYM_RE = re.compile(r"\s*([A-Za-z_]\w*)\s*=\s*(0x[0-9A-Fa-f]+)\s*;")
 
 

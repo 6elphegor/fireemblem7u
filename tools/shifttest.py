@@ -7,7 +7,7 @@ and check every data word.  Run from the repo root after `make`.
 import re, subprocess, sys, struct, bisect, collections
 from pathlib import Path
 sys.path.insert(0, "tools")
-import datasplit as ds, dataptrs
+import datasplit as ds, dataptrs, elf32
 
 SHIFT = int(sys.argv[1], 0) if len(sys.argv) > 1 else 0x100
 out = Path("build/shift"); out.mkdir(exist_ok=True)
@@ -52,6 +52,46 @@ print(f"data/rom pointer words: {len(ptrs)}; moved by {SHIFT:#x}: {ok_moved}; un
 for x in bad_ptr[:20]:
     print("  wrong %08X %08X -> %08X  %s" % x)
 
+# Objects placed whole whose pointer fields need not be aligned (music track
+# data, tools/m4adis.py): every R_ARM_ABS32 relocation is a pointer field.
+RELOC_OBJS = {"build/sound/sound.o(.rodata)"}
+def ou(a): return struct.unpack_from("<I", orig, a - ds.ROM_BASE)[0]
+def su(a): return struct.unpack_from("<I", sh, a - ds.ROM_BASE)[0]
+rel_ptrs, rel_bytes, rel_ranges = {}, set(), []
+for addr, size, obj in ds.read_layout("data/layout.txt"):
+    if obj in RELOC_OBJS:
+        path, sec = obj[:-1].split("(")
+        rel_ranges.append((addr, size, obj))
+        for off, typ, sym in elf32.Elf(path).section(sec).relocs:
+            if typ == elf32.R_ARM_ABS32:
+                rel_ptrs[addr + off] = sym.name
+                rel_bytes.update(range(addr + off, addr + off + 4))
+bad_rel, rel_moved, rel_fixed = [], 0, 0
+for a, e in rel_ptrs.items():
+    o, s_ = ou(a), su(a + SHIFT)
+    want = (o + SHIFT) & 0xFFFFFFFF if moves(o) else o
+    if s_ != want:
+        bad_rel.append((a, o, s_, e))
+    elif s_ != o:
+        rel_moved += 1
+    else:
+        rel_fixed += 1
+for addr, size, obj in rel_ranges:
+    n = sum(addr <= a < addr + size for a in rel_ptrs)
+    una = sum(addr <= a < addr + size and a % 4 != 0 for a in rel_ptrs)
+    raw_data = raw_rom = 0
+    for a in range((addr + 3) & ~3, addr + size - 3, 4):
+        if a in rel_bytes or a + 3 in rel_bytes:
+            continue
+        v = ow(a)
+        raw_rom += ds.ROM_BASE <= v < ds.ROM_END
+        raw_data += ds.DATA_START <= v < ds.ROM_END
+    print(f"{obj} {addr:#010x}-{addr + size:#010x}: pointer fields {n} (unaligned {una}); "
+          f"4-aligned words left raw holding a data-region address {raw_data} (any ROM address {raw_rom})")
+print(f"relocated pointer fields: {len(rel_ptrs)}; moved by {SHIFT:#x}: {rel_moved}; unchanged (RAM targets): {rel_fixed}; WRONG: {len(bad_rel)}")
+for x in bad_rel[:20]:
+    print("  wrong %08X %08X -> %08X  %s" % x)
+
 # every other byte of the data region must be the original byte, shifted
 diff_words = collections.Counter()
 other = []
@@ -73,7 +113,7 @@ while i < n:
             if ob[k] != sb[k]:
                 a = ds.DATA_START + k
                 w = a & ~3
-                if w in ptrs:
+                if w in ptrs or a in rel_bytes:
                     continue
                 other.append(a)
     i = j
