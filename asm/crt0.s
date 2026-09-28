@@ -113,6 +113,10 @@ _080001F8:
 _0800021C: .4byte 0x03007FFC
 _08000220: .4byte AgbMain
 _08000224: .4byte 0x030028E0
+@ Start of the ARM code InitRamFuncs copies to IWRAM (gRamFuncBuffer),
+@ including this literal pool.
+	.global ArmCodeStart
+ArmCodeStart:
 _08000228: .4byte 0x02022860
 _0800022C: .4byte 0x02022260
 _08000230: .4byte 0x02022240
@@ -588,6 +592,10 @@ _080008B0:
 _080009F4:
 	pop {r4, r5, r6, lr}
 	bx lr
+
+@ End of the ARM code copied to IWRAM.
+	.global ArmCodeEnd
+ArmCodeEnd:
 
 	thumb_func_start sub_080009FC
 sub_080009FC: @ 0x080009FC
