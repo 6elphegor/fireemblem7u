@@ -79,10 +79,11 @@ In source, refer to ROM data by symbol, never by a `0x08xxxxxx`
 constant, and don't put ROM data addresses in `symbols.ld` (an absolute
 address doesn't move; it also overrides a definition in source).  Declare
 a `data/rom` label as `extern const u8 gUnk_<ADDR>[];` if no header has it.
-To check that a change keeps the data relocatable, relink with
-`. += 0x100;` at the top of `build/layout.ld` and its `ASSERT`s removed,
-and compare the result with `baserom.gba` shifted by 0x100: only pointer
-words may differ, by exactly 0x100 when they point into the data region.
+To check that a change keeps the data relocatable, run `make shifttest`
+(`tools/shifttest.py`). It relinks with 0x100 bytes of padding before the
+data region and compares the result with `baserom.gba` shifted by 0x100:
+only pointer words may differ, by exactly 0x100 when they point into the
+data region. `WRONG` must be 0.
 
 ## Decompiling a function
 

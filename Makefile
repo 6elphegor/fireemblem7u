@@ -35,7 +35,7 @@ OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) build/data.o build/m
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
-.PHONY: all compare clean msgheader
+.PHONY: all compare clean msgheader shifttest
 .DELETE_ON_ERROR:
 
 all: compare
@@ -117,6 +117,10 @@ build/msg_data.s: $(TEXTS) tools/textencode.py
 
 build/msg_data.o: build/msg_data.s
 	$(AS) $(ASFLAGS) -o $@ $<
+
+# Relink with padding before the data region and check every pointer moved.
+shifttest: $(ROM)
+	python3 tools/shifttest.py
 
 # Regenerate include/constants/msg.h after adding/removing messages.
 msgheader:
