@@ -426,6 +426,17 @@ LOCAL_IMAGE_ARRAYS = {"sub_080099A4"}
 
 
 def classify():
+    """Update data/graphics.txt (repeated until it no longer changes: palette
+    entries added by one pass can give the next one better names)."""
+    import gfx
+    for _ in range(4):
+        before = gfx.MANIFEST.read_text()
+        classify_once()
+        if gfx.MANIFEST.read_text() == before:
+            break
+
+
+def classify_once():
     import gfx
     rom = Path("baserom.gba").read_bytes()
     entries = gfx.read_manifest()
@@ -440,6 +451,7 @@ def classify():
     votes = formats(refs, data_of)
     # battle animation tables (gbafe/banim.h): name[12] then pointers
     banim = {}
+    scripts = []  # (banim_data index, abbr, script addr, palette addr)
     for table, stride, fields in (
             ("banim_data", 0x20, {0x10: "banim_script", 0x14: "banim_oam", 0x18: "banim_oam", 0x1C: "palette"}),
             ("character_battle_animation_palette_table", 0x10, {0xC: "palette"}),
@@ -452,15 +464,16 @@ def classify():
                 if t in entries:
                     votes[t].add(fmt, f"{table}.{off:#x}")
                     banim.setdefault(t, (table, i, abbr, off))
+            if table == "banim_data":
+                scripts.append((i, abbr, refs.word(a + 0x10), refs.word(a + 0x1C)))
             a += stride
             i += 1
     sheets = {}  # sheet addr -> (banim_data index, abbr, k, palette addr)
-    for t, (table, i, abbr, off) in list(banim.items()):
-        if table == "banim_data" and off == 0x10:
-            for k, s in enumerate(sorted(datasplit.banim_sheets(rom, t))):
-                if s in entries:
-                    votes[s].add("4bpp", "banim script frame")
-                    sheets.setdefault(s, (i, abbr, k, banim_pal(rom, refs, t)))
+    for i, abbr, script, pal in scripts:
+        for k, s in enumerate(sorted(datasplit.banim_sheets(rom, script))):
+            if s in entries:
+                votes[s].add("4bpp", "banim script frame")
+                sheets.setdefault(s, (i, abbr, k, pal))
     for a, fmt in LOOKED_AT.items():
         if a in entries:
             votes[a].add(fmt, "looked at")
@@ -499,10 +512,19 @@ def classify():
             e.fmt = fmt
             changed += 1
 
+    old_names = {e.name: a for a, e in entries.items()}
     names = Namer(entries)
     pairs = Pairs(refs, entries, names)
     name_entries(refs, entries, names, pairs, banim, sheets, data_of)
     pair_functions(refs, entries, pairs)
+    # plain palettes without a better name: after the (first) image using them
+    for img, (pa, bank) in sorted(pairs.pal.items()):
+        if entries[pa].raw and not Namer.generic(entries[img].name):
+            names.set(pa, entries[img].name + "_pal")
+    # renamed palettes: update the images' references
+    for e in entries.values():
+        if e.pal and e.pal[0] in old_names:
+            e.opts["pal"] = entries[old_names[e.pal[0]]].name + (f":{e.pal[1]}" if e.pal[1] else "")
     # image layouts and palettes
     for a, e in entries.items():
         if e.fmt not in gfx.IMAGE_FORMATS:
@@ -528,16 +550,6 @@ def classify():
     print(f"{changed} formats changed; {len(entries)} entries: {dict(sorted(counts.items()))}")
     print(f"{len(imgs)} images, {sum(1 for e in imgs if e.pal)} with a palette; "
           f"{pairs.created} plain palettes added")
-
-
-def banim_pal(rom, refs, script):
-    """The palette of the battle animation whose script is at script."""
-    a = refs.addr("banim_data")
-    while 0x20 < rom[a - ROM_BASE] < 0x7F:
-        if refs.word(a + 0x10) == script:
-            return refs.word(a + 0x1C)
-        a += 0x20
-    return None
 
 
 def default_width(ntiles):
@@ -744,6 +756,10 @@ def name_entries(refs, entries, names, pairs, banim, sheets, data_of):
                  "pal_anims": f"map/pal_anims_{idx:02X}", "map_changes": f"map/changes_{ch}"}.get(tag)
             if n:
                 names.set(a, n)
+    for line in Path("src/data/chapterassets.c").read_text().splitlines():
+        m = re.search(r"\(void const \*\) (\w+), // pal: (.*)", line)
+        if m and m.group(1) in refs.label_addr:  # plain chapter palettes
+            pairs.palette(refs.addr(m.group(1)), 10, "map/palette_" + chapter_name(": " + m.group(2)))
     # chapter tilesets shown with the palette of the first chapter using them
     chap_pal, chap_img = {}, {}
     for line in Path("src/data/chapterassets.c").read_text().splitlines():
@@ -806,6 +822,8 @@ def name_entries(refs, entries, names, pairs, banim, sheets, data_of):
     skip = {"FaceInfoTable", "gBackgroundTable", "gBattleBGDataTable", "banim_data",
             "gChapterDataAssetTable", "gMuInfoTable", "gCGDataTable", None}
     for a, e in entries.items():
+        if e.raw:
+            continue  # plain palettes are named after their images
         for table, ta, off in refs.data.get(a, []):
             if table not in skip:
                 stride = DATA_TABLES.get(table, (4,))[0]
@@ -827,6 +845,12 @@ def table_dir(table):
         return "ending"
     if "bmbgfx" in t:
         return "bmfx"
+    if table.startswith(("gWm", "Wm")):
+        return "world_map"
+    if "manim" in t:
+        return "mapanim"
+    if table.startswith(("gUi", "Ui")):
+        return "ui"
     if "efx" in t or "bg" in t or "classreel" in t or "spell" in t or "ekr" in t or "08ba1" in t:
         return "efx"
     return "misc"
@@ -856,10 +880,10 @@ def pair_functions(refs, entries, pairs):
             for t in refs.ctab.get(n, []):
                 if t.table:
                     members[t.table].add(a)
-    for func in set(refs.cfunc) | set(refs.fidents):
+    for func in sorted(set(refs.cfunc) | set(refs.fidents), key=str):
         calls = refs.cfunc.get(func, [])
         imgs, pals = [], []
-        for table in refs.fidents.get(func, ()):
+        for table in sorted(refs.fidents.get(func, ())):
             if table in members and not table.startswith(("BmBgfxConf_", "gChapterDataAssetTable")):
                 imgs += [(a, table_kind(table)) for a in members[table]]
         for c in calls:

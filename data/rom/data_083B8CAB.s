@@ -783,7 +783,6 @@ Img_ManimLevelUpText:  @ LZ77
 Pal_ManimLevelUpStatGain:
 Pal_ManimLevelUp:
 	.incbin "graphics/Pal_ManimLevelUpStatGain.gbapal"
-	.incbin "baserom.gba", 0x3f3470, 0x40
 
 	.global Img_ManimLevelUpStatGain
 Img_ManimLevelUpStatGain:  @ LZ77
@@ -823,15 +822,15 @@ Pal_ManimInfoWindowPurple:
 
 	.global gUnk_083F424C
 gUnk_083F424C:  @ LZ77
-	.incbin "build/graphics/misc/Tsa_ManimInfoWindowLut_00.lz"
+	.incbin "build/graphics/mapanim/Tsa_ManimInfoWindowLut_00.lz"
 
 	.global gUnk_083F4278
 gUnk_083F4278:  @ LZ77
-	.incbin "build/graphics/misc/Tsa_ManimInfoWindowLut_00_2.lz"
+	.incbin "build/graphics/mapanim/Tsa_ManimInfoWindowLut_00_2.lz"
 
 	.global gUnk_083F42A4
 gUnk_083F42A4:  @ LZ77
-	.incbin "build/graphics/misc/Tsa_ManimInfoWindowLut_01.lz"
+	.incbin "build/graphics/mapanim/Tsa_ManimInfoWindowLut_01.lz"
 
 	.global Tsa_ShopWindows
 Tsa_ShopWindows:  @ LZ77

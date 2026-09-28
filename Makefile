@@ -39,7 +39,13 @@ LZ77 := build/tools/lz77
 GBAGFX := build/tools/gbagfx
 # Music (m4a) data, extracted from the ROM into sound/ by tools/m4adis.py.
 SOUND_OBJ := build/sound/sound.o
-OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) build/data.o build/msg_data.o
+# Battle animation scripts, extracted into banim/ by tools/banim.py, which
+# also compresses them at link time into build/banim/banim.o.
+BANIM_NAMES := $(shell sed -n 's/^rom .* build\/banim\/banim\.o(\.rodata\.\(.*\))$$/\1/p' data/layout.txt)
+BANIM_SRCS := $(BANIM_NAMES:%=banim/%.s)
+BANIM_OBJS := $(BANIM_NAMES:%=build/banim/%.script.o)
+BANIM_OBJ := build/banim/banim.o
+OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJ) build/data.o build/msg_data.o
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
@@ -65,9 +71,11 @@ build/fe7u.ld: $(LDS)
 	@mkdir -p $(@D)
 	sed -E 's#build/asm/([A-Za-z0-9_]+\.o)\(#*asm.a:\1(#' $< > $@
 
-$(ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) build/data.o build/msg_data.o build/fe7u.ld $(LAYOUT) symbols.ld
+# tools/banim.py link runs the link command, iterating until the compressed
+# battle animation scripts match the addresses they point at.
+$(ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py build/data.o build/msg_data.o build/fe7u.ld $(LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
-	$(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) build/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+	python3 tools/banim.py link build/banim -- $(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJ) build/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 
 # Library/low-level modules were built with different optimization.
 build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
@@ -194,6 +202,20 @@ $(SOUND_OBJ): sound/sound.s include/MPlayDef.s include/m4a_data.inc
 	@sed -e 's/^[^:]*://' -e 's/\\$$//' $(@:.o=.d) | tr ' ' '\n' | grep . | sed 's/$$/:/' >> $(@:.o=.d)
 
 -include $(SOUND_OBJ:.o=.d)
+
+# Battle animation scripts (tools/banim.py): banim/NAME.s is extracted from
+# the ROM the first time (banim/ is not in git) and is the source after that.
+# It is assembled with relocations for its sprite sheet pointers; the link
+# above resolves, compresses and places it.
+banim/.extracted: data/layout.txt | baserom.gba
+	python3 tools/banim.py extract
+
+$(BANIM_SRCS): banim/%.s: | banim/.extracted
+	@test -f $@ || python3 tools/banim.py extract
+
+build/banim/%.script.o: banim/%.s include/banim_script.inc
+	@mkdir -p $(@D)
+	$(AS) $(ASFLAGS) -o $@ $<
 
 # Relink with padding before the data region and check every pointer moved.
 shifttest: $(ROM)

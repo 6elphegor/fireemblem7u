@@ -523,7 +523,7 @@ gUnk_081AB284:
 
 	.global gUnk_081AB504
 gUnk_081AB504:
-	.incbin "graphics/gUnk_081AB504.gbapal"
+	.incbin "graphics/bmfx/BmBgfxConf_NinianDisp_00_pal.gbapal"
 
 	.global gUnk_081AB524
 gUnk_081AB524:  @ LZ77
@@ -1385,7 +1385,7 @@ Pal_085ADE68:
 
 	.global gUnknown_085ADDA8
 gUnknown_085ADDA8:
-	.incbin "graphics/gUnknown_085ADDA8.gbapal"
+	.incbin "graphics/Img_LinkArenaPlayerBanners_pal.gbapal"
 
 	.global Pal_LinkArenaMuralBackground
 Pal_LinkArenaMuralBackground:

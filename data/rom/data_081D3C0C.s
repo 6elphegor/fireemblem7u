@@ -1710,7 +1710,7 @@ gUiItemHoverModel:
 
 	.global gUnk_081D5844
 gUnk_081D5844:  @ LZ77
-	.incbin "build/graphics/misc/UiWindowFrameImgLut_00.lz"
+	.incbin "build/graphics/ui/UiWindowFrameImgLut_00.lz"
 
 	.global Pal_UiWindowFrame1
 Pal_UiWindowFrame1:
@@ -1722,7 +1722,7 @@ gUnk_081D6110:
 
 	.global gUnk_081D6130
 gUnk_081D6130:  @ LZ77
-	.incbin "build/graphics/misc/UiWindowFrameImgLut_01.lz"
+	.incbin "build/graphics/ui/UiWindowFrameImgLut_01.lz"
 
 	.global Pal_081D69E4
 Pal_081D69E4:
@@ -1734,7 +1734,7 @@ gUnk_081D6A04:
 
 	.global gUnk_081D6A24
 gUnk_081D6A24:  @ LZ77
-	.incbin "build/graphics/misc/UiWindowFrameImgLut_02.lz"
+	.incbin "build/graphics/ui/UiWindowFrameImgLut_02.lz"
 
 	.global Pal_081D72A4
 Pal_081D72A4:
@@ -1746,7 +1746,7 @@ gUnk_081D72C4:
 
 	.global gUnk_081D72E4
 gUnk_081D72E4:  @ LZ77
-	.incbin "build/graphics/misc/UiWindowFrameImgLut_03.lz"
+	.incbin "build/graphics/ui/UiWindowFrameImgLut_03.lz"
 
 	.global Pal_081D7B20
 Pal_081D7B20:

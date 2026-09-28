@@ -62,7 +62,10 @@ static unsigned char *ConvertBitDepth(unsigned char *src, int srcBitDepth, int d
 
         for (j = 8 - srcBitDepth; j >= 0; j -= srcBitDepth)
         {
-            unsigned char pixel = ((srcByte >> j) % (1 << srcBitDepth)) % (1 << destBitDepth);
+            unsigned char pixel = (srcByte >> j) % (1 << srcBitDepth);
+            // (fe7u) don't wrap colors the tiles can't hold
+            if (pixel >= (1 << destBitDepth))
+                FATAL_ERROR("Color index %d does not fit in %d bits per pixel.\n", pixel, destBitDepth);
             *dest |= pixel << destBit;
             destBit -= destBitDepth;
             if (destBit < 0)

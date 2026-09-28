@@ -95,7 +95,7 @@ OpBmBgfx_086597C4:  @ LZ77
 
 	.global gUnk_08659C9C
 gUnk_08659C9C:
-	.incbin "graphics/gUnk_08659C9C.gbapal"
+	.incbin "graphics/OpBmBgfx_086686EC_pal.gbapal"
 	.incbin "baserom.gba", 0x659cbc, 0x20
 
 	.global OpBmBgfx_08659CDC

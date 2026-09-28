@@ -47,23 +47,23 @@ gUnk_0835EE10:  @ LZ77
 
 	.global gUnk_083602B8
 gUnk_083602B8:
-	.incbin "baserom.gba", 0x3602b8, 0x140
+	.incbin "graphics/map/palette_ch3D.gbapal"
 
 	.global gUnk_083603F8
 gUnk_083603F8:
-	.incbin "baserom.gba", 0x3603f8, 0x140
+	.incbin "graphics/map/palette_ch3A.gbapal"
 
 	.global gUnk_08360538
 gUnk_08360538:
-	.incbin "baserom.gba", 0x360538, 0x140
+	.incbin "graphics/map/palette_ch37.gbapal"
 
 	.global gUnk_08360678
 gUnk_08360678:
-	.incbin "baserom.gba", 0x360678, 0x140
+	.incbin "graphics/map/palette_ch35.gbapal"
 
 	.global gUnk_083607B8
 gUnk_083607B8:
-	.incbin "baserom.gba", 0x3607b8, 0x140
+	.incbin "graphics/map/palette_ch30.gbapal"
 
 	.global gUnk_083608F8
 gUnk_083608F8:
@@ -71,11 +71,11 @@ gUnk_083608F8:
 
 	.global gUnk_08360A38
 gUnk_08360A38:
-	.incbin "baserom.gba", 0x360a38, 0x140
+	.incbin "graphics/map/palette_ch2D.gbapal"
 
 	.global gUnk_08360B78
 gUnk_08360B78:
-	.incbin "baserom.gba", 0x360b78, 0x140
+	.incbin "graphics/map/palette_ch2B.gbapal"
 
 	.global gUnk_08360CB8
 gUnk_08360CB8:
@@ -87,11 +87,11 @@ gUnk_08360DF8:
 
 	.global gUnk_08360F38
 gUnk_08360F38:
-	.incbin "baserom.gba", 0x360f38, 0x140
+	.incbin "graphics/map/palette_ch26.gbapal"
 
 	.global gUnk_08361078
 gUnk_08361078:
-	.incbin "baserom.gba", 0x361078, 0x140
+	.incbin "graphics/map/palette_ch25.gbapal"
 
 	.global gUnk_083611B8
 gUnk_083611B8:
@@ -99,11 +99,11 @@ gUnk_083611B8:
 
 	.global gUnk_083612F8
 gUnk_083612F8:
-	.incbin "baserom.gba", 0x3612f8, 0x140
+	.incbin "graphics/map/palette_ch21.gbapal"
 
 	.global gUnk_08361438
 gUnk_08361438:
-	.incbin "baserom.gba", 0x361438, 0x140
+	.incbin "graphics/map/palette_ch1E.gbapal"
 
 	.global gUnk_08361578
 gUnk_08361578:
@@ -111,11 +111,11 @@ gUnk_08361578:
 
 	.global gUnk_083616B8
 gUnk_083616B8:
-	.incbin "baserom.gba", 0x3616b8, 0x140
+	.incbin "graphics/map/palette_ch1C.gbapal"
 
 	.global gUnk_083617F8
 gUnk_083617F8:
-	.incbin "baserom.gba", 0x3617f8, 0x140
+	.incbin "graphics/map/palette_ch1B.gbapal"
 
 	.global gUnk_08361938
 gUnk_08361938:
@@ -123,11 +123,11 @@ gUnk_08361938:
 
 	.global gUnk_08361A78
 gUnk_08361A78:
-	.incbin "baserom.gba", 0x361a78, 0x140
+	.incbin "graphics/map/palette_ch18.gbapal"
 
 	.global gUnk_08361BB8
 gUnk_08361BB8:
-	.incbin "baserom.gba", 0x361bb8, 0x140
+	.incbin "graphics/map/palette_ch17.gbapal"
 
 	.global gUnk_08361CF8
 gUnk_08361CF8:
@@ -135,35 +135,35 @@ gUnk_08361CF8:
 
 	.global gUnk_08361E38
 gUnk_08361E38:
-	.incbin "baserom.gba", 0x361e38, 0x140
+	.incbin "graphics/map/palette_ch15.gbapal"
 
 	.global gUnk_08361F78
 gUnk_08361F78:
-	.incbin "baserom.gba", 0x361f78, 0x140
+	.incbin "graphics/map/palette_ch14.gbapal"
 
 	.global gUnk_083620B8
 gUnk_083620B8:
-	.incbin "baserom.gba", 0x3620b8, 0x140
+	.incbin "graphics/map/palette_ch11.gbapal"
 
 	.global gUnk_083621F8
 gUnk_083621F8:
-	.incbin "baserom.gba", 0x3621f8, 0x140
+	.incbin "graphics/map/palette_ch10.gbapal"
 
 	.global gUnk_08362338
 gUnk_08362338:
-	.incbin "baserom.gba", 0x362338, 0x140
+	.incbin "graphics/map/palette_ch0D.gbapal"
 
 	.global gUnk_08362478
 gUnk_08362478:
-	.incbin "baserom.gba", 0x362478, 0x140
+	.incbin "graphics/map/palette_ch0B.gbapal"
 
 	.global gUnk_083625B8
 gUnk_083625B8:
-	.incbin "baserom.gba", 0x3625b8, 0x140
+	.incbin "graphics/map/palette_ch08.gbapal"
 
 	.global gUnk_083626F8
 gUnk_083626F8:
-	.incbin "baserom.gba", 0x3626f8, 0x140
+	.incbin "graphics/map/palette_ch06.gbapal"
 
 	.global gUnk_08362838
 gUnk_08362838:
@@ -183,7 +183,7 @@ gUnk_08362BF8:
 
 	.global gUnk_08362D38
 gUnk_08362D38:
-	.incbin "baserom.gba", 0x362d38, 0x140
+	.incbin "graphics/map/palette_ch01.gbapal"
 
 	.global gUnk_08362E78
 gUnk_08362E78:

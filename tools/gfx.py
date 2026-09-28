@@ -250,7 +250,11 @@ def png_palette(rom, entries_by_name, e):
     p = entries_by_name.get(pname)
     if p is None:
         sys.exit(f"{MANIFEST}: {e.name}: no palette entry {pname}")
-    data = rom_data(rom, p)[bank * 32:]
+    if p.raw:  # (a bank past the entry: the palette goes on after the next label)
+        off = p.addr - ROM_BASE + bank * 32
+        data = rom[off:off + ncolors * 2]
+    else:
+        data = rom_data(rom, p)[bank * 32:]
     colors = [struct.unpack_from("<H", data, i)[0] for i in range(0, min(len(data), ncolors * 2) - 1, 2)]
     return b"".join(gba_to_rgb(c) for c in colors) + gray[len(colors) * 3:]
 
@@ -323,6 +327,9 @@ def extract():
         if not e.src.exists():
             write_source(rom, by_name, e, e.src)
             count += 1
+        elif e.raw and not e.is_image and e.src.stat().st_size != e.size:
+            print(f"warning: {e.src} is not {e.size:#x} bytes like its manifest entry; "
+                  f"delete it to extract it again", file=sys.stderr)
     GFX_DIR.mkdir(exist_ok=True)
     (GFX_DIR / ".extracted").touch()
     print(f"extracted {count} files to {GFX_DIR}/")

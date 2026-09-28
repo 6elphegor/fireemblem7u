@@ -386,7 +386,7 @@ Pal_Wm_084225A8:
 
 	.global gUnk_084225C8
 gUnk_084225C8:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_00.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_00.lz"
 
 	.global gUnk_08422AC4
 gUnk_08422AC4:
@@ -394,7 +394,7 @@ gUnk_08422AC4:
 
 	.global gUnk_08422B7C
 gUnk_08422B7C:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_01.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_01.lz"
 
 	.global gUnk_08423080
 gUnk_08423080:
@@ -402,7 +402,7 @@ gUnk_08423080:
 
 	.global gUnk_08423168
 gUnk_08423168:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_02.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_02.lz"
 
 	.global gUnk_084236A4
 gUnk_084236A4:
@@ -410,7 +410,7 @@ gUnk_084236A4:
 
 	.global gUnk_084237DC
 gUnk_084237DC:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_04.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_04.lz"
 
 	.global gUnk_08423B48
 gUnk_08423B48:
@@ -418,7 +418,7 @@ gUnk_08423B48:
 
 	.global gUnk_08423BFC
 gUnk_08423BFC:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_03.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_03.lz"
 
 	.global gUnk_0842418C
 gUnk_0842418C:
@@ -426,7 +426,7 @@ gUnk_0842418C:
 
 	.global gUnk_08424240
 gUnk_08424240:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_05.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_05.lz"
 
 	.global gUnk_0842458C
 gUnk_0842458C:
@@ -434,7 +434,7 @@ gUnk_0842458C:
 
 	.global gUnk_08424640
 gUnk_08424640:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_06.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_06.lz"
 
 	.global gUnk_084249C0
 gUnk_084249C0:
@@ -442,7 +442,7 @@ gUnk_084249C0:
 
 	.global gUnk_08424A48
 gUnk_08424A48:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_07.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_07.lz"
 
 	.global gUnk_08424BB0
 gUnk_08424BB0:
@@ -450,7 +450,7 @@ gUnk_08424BB0:
 
 	.global gUnk_08424BEC
 gUnk_08424BEC:  @ LZ77
-	.incbin "build/graphics/misc/WmSpriteAnimTable_08.lz"
+	.incbin "build/graphics/world_map/WmSpriteAnimTable_08.lz"
 
 	.global gUnk_08424C9C
 gUnk_08424C9C:
