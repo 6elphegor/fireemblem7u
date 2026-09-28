@@ -159,15 +159,13 @@ void sub_0809945C(int pal, ProcPtr parent)
     struct PrepRankPalAnimProc * proc = Proc_Start(ProcScr_08CC5114, parent);
     proc->pal = pal;
 }
-#if NONMATCHING
-// register allocation only: the original has x in r4, j in r5 and the reduced &proc->ranks[i]
-// pointer in r6 (here: rank pointer in r4, x in r6); without the j pin it drifts further
+// FAKEMATCH: j is pinned to r5; x doubles as the affine scale, as in the
+// original, which puts it in r4.
 void sub_08099474(struct PrepRankProc * proc)
 {
     int i;
     register int j asm("r5");
     int x, y;
-    int scale;
     u8 * rank;
     u16 const * const * sprites;
 
@@ -202,20 +200,17 @@ void sub_08099474(struct PrepRankProc * proc)
 
     for (i = 0; i < 5; i++)
     {
-        scale = (proc->timer - (i + 1) * 8) * 32;
+        x = (proc->timer - (i + 1) * 8) * 32;
 
-        if (scale > 0x100)
-            scale = 0x100;
+        if (x > 0x100)
+            x = 0x100;
 
-        if (scale > 0x20)
-            SetObjAffineAuto(i, 0, scale, 0x100);
+        if (x > 0x20)
+            SetObjAffineAuto(i, 0, x, 0x100);
         else
             SetObjAffineAuto(i, 0, 0x20, 0x100);
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08099474.s");
-#endif
 void sub_08099628(void)
 {
     int i;

@@ -476,14 +476,12 @@ void sub_080AD484(struct BonusClaimProc * proc)
         proc->unk_34 = NULL;
     }
 }
-#if NONMATCHING
-// the original counts the loop down in a separate register (i eliminated); here i stays a biv
 void BonusClaim_StartSelectTargetSubMenu(struct BonusClaimProc * proc)
 {
     int i;
 
     struct Text * th = gpBonusClaimText + 12;
-    u8 sl = proc->targets;
+    int sl = proc->targets;
     int tmp = (proc->targets * 2);
 
     DrawUiFrame2(10, 5, 11, tmp + 2, 1);
@@ -511,7 +509,7 @@ void BonusClaim_StartSelectTargetSubMenu(struct BonusClaimProc * proc)
 
     ShowSysHandCursor(88, proc->submenuIndex * 16 + 48, 8, 0x800);
 
-    for (i = 0; i != sl; th++, i++)
+    for (i = 0; i < sl; th++, i++)
     {
         int count;
         int color = 0;
@@ -549,14 +547,11 @@ void BonusClaim_StartSelectTargetSubMenu(struct BonusClaimProc * proc)
 
         PutText(th, tm + 0xc0 + 0x40 * i);
 
-        PutNumber(tm + 0xc6 + 0x40 * i, color == 0 ? 2 : 1, count);
+        PutNumber(tm + 0x40 * (i + 3) + 6, color == 0 ? 2 : 1, count);
     }
 
     proc->unk_34 = StartParallelWorker(BonusClaim_DrawTargetUnitSprites, proc);
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080AD49C.s");
-#endif
 bool TryClaimBonusItem(struct BonusClaimProc * proc)
 {
     int itemId;

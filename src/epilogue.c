@@ -175,12 +175,14 @@ int CountEpilogueLines(char const * str)
     }
 }
 
-#if NONMATCHING
+// FAKEMATCH (found by an Opus 5.5 agent): a pointer pinned to r1 and
+// re-taken through an alias symbol reproduces the original's reload.
 void CountEpilogueEntryLines(void)
 {
     struct EpilogueEnt * ent = gpEpilogueEnts;
+    register int * t asm("r1") = &gEpilogueTotalLines;
 
-    gEpilogueTotalLines = 0;
+    *t = 0;
 
     for (; ent->info != NULL; ent++)
     {
@@ -193,14 +195,16 @@ void CountEpilogueEntryLines(void)
         {
             ent->lines = CountEpilogueLines(DecodeMsg((s8) ent->defeatChapter >= 0 ? ent->info->msgDead : ent->info->msgAlive));
             gEpilogueTotalLines += ent->lines;
+
+            {
+                extern int gEpilogueTotalLinesAlias asm("gEpilogueTotalLines");
+                t = &gEpilogueTotalLinesAlias;
+            }
         }
     }
 
-    gEpilogueTotalLines += 5;
+    *t += 5;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B6D64.s");
-#endif
 
 void InitEpilogueData(void)
 {

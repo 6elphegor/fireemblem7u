@@ -538,10 +538,8 @@ void sub_8090D00(struct UnitListScreenProc * proc)
     }
 }
 
-#if NONMATCHING
-
-// only the stack slots of spilled pointers differ
-
+// FAKEMATCH (found by an Opus 5.5 agent): the trailing empty asm changes the
+// insn count, which reorders GCSE pseudos and so their stack slots.
 void sub_8090D80(struct UnitListScreenProc * proc)
 {
     int i;
@@ -680,13 +678,9 @@ void sub_8090D80(struct UnitListScreenProc * proc)
         proc->pMuralProc = StartMuralBackgroundAlt(NULL, NULL, 10);
 
     LoadHelpBoxGfx(NULL, -1);
+    asm("");
 }
 
-#else
-
-ASM_FUNC("asm/nonmatching/code_08089794.s");
-
-#endif
 
 void UnitList_Init(struct UnitListScreenProc * proc)
 {

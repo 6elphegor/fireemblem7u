@@ -1085,7 +1085,7 @@ void TurnRecord_SetupText(void)
     Text_DrawString(gpTurnRecordTexts + 19, DecodeMsg(0x1185));
 }
 
-#if NONMATCHING
+// Two switches on chapterIndex (as in FE8U) give the original compare tree.
 int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId)
 {
     int r6;
@@ -1121,19 +1121,20 @@ int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId)
     {
         int chapterIndex = chapterStats->chapter_index;
         int num = GetChapterInfo(chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0] >> 1;
+        int digits;
 
-        if (chapterIndex == 0)
+        switch (chapterIndex)
         {
-            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + ({r6 + x;}), 3, 0, chapterIncrement, DecodeMsg(0x1187));
-        }
-        else if (chapterIndex >= 0x2E && chapterIndex <= 0x2F)
-        {
-            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + ({r6 + x;}), 3, 0, chapterIncrement, DecodeMsg(0x1186));
-        }
-        else
-        {
-            int digits;
+        case 0:
+            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(x, y), 3, 0, chapterIncrement, DecodeMsg(0x1187));
+            break;
 
+        case 0x2E:
+        case 0x2F:
+            PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(x, y), 3, 0, chapterIncrement, DecodeMsg(0x1186));
+            break;
+
+        default:
             PutText(gpTurnRecordTexts + 19, gBg1Tm + TM_OFFSET(x, y));
 
             digits = 0;
@@ -1141,40 +1142,41 @@ int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId)
             if (num > 9)
                 digits = 1;
 
-            PutNumber(gBg1Tm + TM_OFFSET(digits + 2 + x, y), 2, num);
+            PutNumber(gBg1Tm + TM_OFFSET(digits + (2 + x), y), 2, num);
 
             if (chapterIndex == 0x19)
-                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + 3 + x, y), 2, 0, 0, DecodeMsg(0x1189));
+                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + (3 + x), y), 2, 0, 0, DecodeMsg(0x1189));
             else if (GetChapterInfo(chapterIndex)->prepScreenNumber[gPlaySt.chapterModeIndex == 3 ? 1 : 0] & 1)
-                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + 3 + x, y), 2, 0, 0, DecodeMsg(0x1188));
+                PutDrawText(gpTurnRecordTexts + textIndex, gBg1Tm + TM_OFFSET(digits + (3 + x), y), 2, 0, 0, DecodeMsg(0x1188));
+            break;
         }
 
-        if (chapterIndex >= 0x2E && chapterIndex <= 0x2F)
+        switch (chapterIndex)
         {
+        case 0x2E:
+        case 0x2F:
             chapterTurn = chapterStats->chapter_turn;
             ++chapterStats;
             chapterTurn += chapterStats->chapter_turn;
             chapterIncrement = 1;
-        }
-        else
-        {
+            break;
+
+        default:
             chapterTurn = chapterStats->chapter_turn;
+            break;
         }
 
         if (chapterIndex == 0x19)
-            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + (8 + x);}), 0, 0, 0, DecodeMsg(GetChapterInfo(0x19)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
+            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + TM_OFFSET(8 + x, y), 0, 0, 0, DecodeMsg(GetChapterInfo(0x19)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
         else
-            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + ({r6 + (5 + x);}), 0, 0, 0, DecodeMsg(GetChapterInfo(chapterIndex)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
+            PutDrawText(gpTurnRecordTexts + 9 + textIndex, gBg1Tm + TM_OFFSET(5 + x, y), 0, 0, 0, DecodeMsg(GetChapterInfo(chapterIndex)->unk74[gPlaySt.chapterModeIndex == 3 ? 1 : 0]));
 
-        PutNumber(gBg1Tm + ({r6 + (20 + x);}), 2, chapterTurn);
-        PutText(gpTurnRecordTexts + 18, gBg1Tm + ({r6 + (21 + x);}));
+        PutNumber(gBg1Tm + TM_OFFSET(20 + x, y), 2, chapterTurn);
+        PutText(gpTurnRecordTexts + 18, gBg1Tm + TM_OFFSET(21 + x, y));
     }
 
     return chapterIncrement;
 }
-#else
-ASM_FUNC("asm/nonmatching/code_080B9340.s");
-#endif
 void TurnRecord_Loop_Main(struct EndingTurnRecordProc * proc)
 {
     int y = proc->yPos >> 6;

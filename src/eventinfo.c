@@ -1406,8 +1406,6 @@ bool CheckBattleTalk(u8 pidA, u8 pidB)
     return FALSE;
 }
 
-#if NONMATCHING
-// register allocation: pidA needs a second pseudo (r7) for the triangle-attack lookup
 void StartBattleTalk(u8 pidA, u8 pidB)
 {
     struct BattleTalkExtEnt const * ext = sub_080792C4(pidA, pidB);
@@ -1428,7 +1426,23 @@ void StartBattleTalk(u8 pidA, u8 pidB)
         return;
     }
 
-    if ((ent = sub_08079320(pidA, gBattleTalkList)) != NULL || (ent = sub_08079320(pidB, gBattleTalkList)) != NULL)
+    ent = sub_08079320(pidA, gBattleTalkList);
+
+    if (ent != NULL)
+    {
+        if (ent->msg != 0)
+        {
+            sub_0800ED78(ent->msg);
+            sub_0800ADB8();
+        }
+
+        SetFlag(ent->flag);
+        return;
+    }
+
+    ent = sub_08079320(pidB, gBattleTalkList);
+
+    if (ent != NULL)
     {
         if (ent->msg != 0)
         {
@@ -1449,9 +1463,6 @@ void StartBattleTalk(u8 pidA, u8 pidB)
         SetFlag(ent->flag);
     }
 }
-#else
-ASM_FUNC("asm/nonmatching/code_08079464.s");
-#endif
 
 bool CheckBattleDefeatTalk(u8 pid)
 {
