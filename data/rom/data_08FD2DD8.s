@@ -255,483 +255,483 @@ character_battle_animation_palette_table:
 
 	.global gUnk_08FD9000
 gUnk_08FD9000:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9000.lz"
+	.incbin "build/graphics/banim/chara_pal/01_lin.lz"
 
 	.global gUnk_08FD9050
 gUnk_08FD9050:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9050.lz"
+	.incbin "build/graphics/banim/chara_pal/02_rebacca.lz"
 
 	.global gUnk_08FD90B4
 gUnk_08FD90B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD90B4.lz"
+	.incbin "build/graphics/banim/chara_pal/03_will.lz"
 
 	.global gUnk_08FD9114
 gUnk_08FD9114:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9114.lz"
+	.incbin "build/graphics/banim/chara_pal/04_boies.lz"
 
 	.global gUnk_08FD9180
 gUnk_08FD9180:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9180.lz"
+	.incbin "build/graphics/banim/chara_pal/05_bool.lz"
 
 	.global gUnk_08FD91EC
 gUnk_08FD91EC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD91EC.lz"
+	.incbin "build/graphics/banim/chara_pal/06_bowker.lz"
 
 	.global gUnk_08FD9258
 gUnk_08FD9258:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9258.lz"
+	.incbin "build/graphics/banim/chara_pal/07_eagler.lz"
 
 	.global gUnk_08FD92D8
 gUnk_08FD92D8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD92D8.lz"
+	.incbin "build/graphics/banim/chara_pal/08_osin.lz"
 
 	.global gUnk_08FD935C
 gUnk_08FD935C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD935C.lz"
+	.incbin "build/graphics/banim/chara_pal/09_wallace.lz"
 
 	.global gUnk_08FD93DC
 gUnk_08FD93DC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD93DC.lz"
+	.incbin "build/graphics/banim/chara_pal/0A_wire.lz"
 
 	.global gUnk_08FD9448
 gUnk_08FD9448:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9448.lz"
+	.incbin "build/graphics/banim/chara_pal/0B_yog.lz"
 
 	.global gUnk_08FD94B4
 gUnk_08FD94B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD94B4.lz"
+	.incbin "build/graphics/banim/chara_pal/0C_jaffar.lz"
 
 	.global gUnk_08FD9508
 gUnk_08FD9508:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9508.lz"
+	.incbin "build/graphics/banim/chara_pal/0D_jerme.lz"
 
 	.global gUnk_08FD955C
 gUnk_08FD955C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD955C.lz"
+	.incbin "build/graphics/banim/chara_pal/0E_lagarto.lz"
 
 	.global gUnk_08FD95B8
 gUnk_08FD95B8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD95B8.lz"
+	.incbin "build/graphics/banim/chara_pal/0F_matthew.lz"
 
 	.global gUnk_08FD9610
 gUnk_08FD9610:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9610.lz"
+	.incbin "build/graphics/banim/chara_pal/10_batta.lz"
 
 	.global gUnk_08FD9664
 gUnk_08FD9664:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9664.lz"
+	.incbin "build/graphics/banim/chara_pal/11_bug.lz"
 
 	.global gUnk_08FD96B4
 gUnk_08FD96B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD96B4.lz"
+	.incbin "build/graphics/banim/chara_pal/12_carjiga.lz"
 
 	.global gUnk_08FD9704
 gUnk_08FD9704:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9704.lz"
+	.incbin "build/graphics/banim/chara_pal/13_migal.lz"
 
 	.global gUnk_08FD9754
 gUnk_08FD9754:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9754.lz"
+	.incbin "build/graphics/banim/chara_pal/14_zagan.lz"
 
 	.global gUnk_08FD97A8
 gUnk_08FD97A8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD97A8.lz"
+	.incbin "build/graphics/banim/chara_pal/15_zugu.lz"
 
 	.global gUnk_08FD97F8
 gUnk_08FD97F8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD97F8.lz"
+	.incbin "build/graphics/banim/chara_pal/16_hawkeye.lz"
 
 	.global gUnk_08FD9848
 gUnk_08FD9848:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9848.lz"
+	.incbin "build/graphics/banim/chara_pal/17_serra.lz"
 
 	.global gUnk_08FD98A8
 gUnk_08FD98A8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD98A8.lz"
+	.incbin "build/graphics/banim/chara_pal/18_kenneth.lz"
 
 	.global gUnk_08FD9908
 gUnk_08FD9908:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9908.lz"
+	.incbin "build/graphics/banim/chara_pal/19_renato.lz"
 
 	.global gUnk_08FD9970
 gUnk_08FD9970:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9970.lz"
+	.incbin "build/graphics/banim/chara_pal/1A_ruthea.lz"
 
 	.global gUnk_08FD99DC
 gUnk_08FD99DC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD99DC.lz"
+	.incbin "build/graphics/banim/chara_pal/1B_lin.lz"
 
 	.global gUnk_08FD9A2C
 gUnk_08FD9A2C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9A2C.lz"
+	.incbin "build/graphics/banim/chara_pal/1C_haken.lz"
 
 	.global gUnk_08FD9A84
 gUnk_08FD9A84:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9A84.lz"
+	.incbin "build/graphics/banim/chara_pal/1D_kaim.lz"
 
 	.global gUnk_08FD9AD4
 gUnk_08FD9AD4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9AD4.lz"
+	.incbin "build/graphics/banim/chara_pal/1E_leyvan.lz"
 
 	.global gUnk_08FD9B2C
 gUnk_08FD9B2C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9B2C.lz"
+	.incbin "build/graphics/banim/chara_pal/1F_linus.lz"
 
 	.global gUnk_08FD9B7C
 gUnk_08FD9B7C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9B7C.lz"
+	.incbin "build/graphics/banim/chara_pal/20_nils.lz"
 
 	.global gUnk_08FD9BDC
 gUnk_08FD9BDC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9BDC.lz"
+	.incbin "build/graphics/banim/chara_pal/21_darts.lz"
 
 	.global gUnk_08FD9C34
 gUnk_08FD9C34:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9C34.lz"
+	.incbin "build/graphics/banim/chara_pal/22_fergus.lz"
 
 	.global gUnk_08FD9C84
 gUnk_08FD9C84:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9C84.lz"
+	.incbin "build/graphics/banim/chara_pal/23_georg.lz"
 
 	.global gUnk_08FD9CD4
 gUnk_08FD9CD4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9CD4.lz"
+	.incbin "build/graphics/banim/chara_pal/24_ninian.lz"
 
 	.global gUnk_08FD9D44
 gUnk_08FD9D44:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9D44.lz"
+	.incbin "build/graphics/banim/chara_pal/25_heath.lz"
 
 	.global gUnk_08FD9DB4
 gUnk_08FD9DB4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9DB4.lz"
+	.incbin "build/graphics/banim/chara_pal/26_heath.lz"
 
 	.global gUnk_08FD9E34
 gUnk_08FD9E34:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9E34.lz"
+	.incbin "build/graphics/banim/chara_pal/27_vaida.lz"
 
 	.global gUnk_08FD9EAC
 gUnk_08FD9EAC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9EAC.lz"
+	.incbin "build/graphics/banim/chara_pal/28_nergal.lz"
 
 	.global gUnk_08FD9F08
 gUnk_08FD9F08:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9F08.lz"
+	.incbin "build/graphics/banim/chara_pal/29_canas.lz"
 
 	.global gUnk_08FD9F5C
 gUnk_08FD9F5C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9F5C.lz"
+	.incbin "build/graphics/banim/chara_pal/2A_teodor.lz"
 
 	.global gUnk_08FD9FAC
 gUnk_08FD9FAC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD9FAC.lz"
+	.incbin "build/graphics/banim/chara_pal/2B_eliwod.lz"
 
 	.global gUnk_08FDA00C
 gUnk_08FDA00C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA00C.lz"
+	.incbin "build/graphics/banim/chara_pal/2C_farina.lz"
 
 	.global gUnk_08FDA07C
 gUnk_08FDA07C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA07C.lz"
+	.incbin "build/graphics/banim/chara_pal/2D_fiora.lz"
 
 	.global gUnk_08FDA0EC
 gUnk_08FDA0EC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA0EC.lz"
+	.incbin "build/graphics/banim/chara_pal/2E_flolina.lz"
 
 	.global gUnk_08FDA15C
 gUnk_08FDA15C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA15C.lz"
+	.incbin "build/graphics/banim/chara_pal/2F_bartr.lz"
 
 	.global gUnk_08FDA1B4
 gUnk_08FDA1B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA1B4.lz"
+	.incbin "build/graphics/banim/chara_pal/30_dorcas.lz"
 
 	.global gUnk_08FDA20C
 gUnk_08FDA20C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA20C.lz"
+	.incbin "build/graphics/banim/chara_pal/31_belnald.lz"
 
 	.global gUnk_08FDA27C
 gUnk_08FDA27C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA27C.lz"
+	.incbin "build/graphics/banim/chara_pal/32_darren.lz"
 
 	.global gUnk_08FDA2EC
 gUnk_08FDA2EC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA2EC.lz"
+	.incbin "build/graphics/banim/chara_pal/33_osin.lz"
 
 	.global gUnk_08FDA374
 gUnk_08FDA374:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA374.lz"
+	.incbin "build/graphics/banim/chara_pal/34_wallace.lz"
 
 	.global gUnk_08FDA3FC
 gUnk_08FDA3FC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA3FC.lz"
+	.incbin "build/graphics/banim/chara_pal/35_wranglen.lz"
 
 	.global gUnk_08FDA46C
 gUnk_08FDA46C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA46C.lz"
+	.incbin "build/graphics/banim/chara_pal/36_hector.lz"
 
 	.global gUnk_08FDA4C8
 gUnk_08FDA4C8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA4C8.lz"
+	.incbin "build/graphics/banim/chara_pal/37_hector.lz"
 
 	.global gUnk_08FDA524
 gUnk_08FDA524:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA524.lz"
+	.incbin "build/graphics/banim/chara_pal/38_eliwod.lz"
 
 	.global gUnk_08FDA57C
 gUnk_08FDA57C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA57C.lz"
+	.incbin "build/graphics/banim/chara_pal/39_nino.lz"
 
 	.global gUnk_08FDA5E8
 gUnk_08FDA5E8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA5E8.lz"
+	.incbin "build/graphics/banim/chara_pal/3A_erk.lz"
 
 	.global gUnk_08FDA65C
 gUnk_08FDA65C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA65C.lz"
+	.incbin "build/graphics/banim/chara_pal/3B_beard.lz"
 
 	.global gUnk_08FDA6B8
 gUnk_08FDA6B8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA6B8.lz"
+	.incbin "build/graphics/banim/chara_pal/3C_glass.lz"
 
 	.global gUnk_08FDA714
 gUnk_08FDA714:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA714.lz"
+	.incbin "build/graphics/banim/chara_pal/3D_leyvan.lz"
 
 	.global gUnk_08FDA780
 gUnk_08FDA780:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA780.lz"
+	.incbin "build/graphics/banim/chara_pal/3E_pson.lz"
 
 	.global gUnk_08FDA7DC
 gUnk_08FDA7DC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA7DC.lz"
+	.incbin "build/graphics/banim/chara_pal/3F_ruthea.lz"
 
 	.global gUnk_08FDA83C
 gUnk_08FDA83C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA83C.lz"
+	.incbin "build/graphics/banim/chara_pal/40_guy.lz"
 
 	.global gUnk_08FDA89C
 gUnk_08FDA89C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA89C.lz"
+	.incbin "build/graphics/banim/chara_pal/41_ruth.lz"
 
 	.global gUnk_08FDA910
 gUnk_08FDA910:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA910.lz"
+	.incbin "build/graphics/banim/chara_pal/42_siren.lz"
 
 	.global gUnk_08FDA984
 gUnk_08FDA984:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDA984.lz"
+	.incbin "build/graphics/banim/chara_pal/43_ruth.lz"
 
 	.global gUnk_08FDAA14
 gUnk_08FDAA14:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAA14.lz"
+	.incbin "build/graphics/banim/chara_pal/44_uhai.lz"
 
 	.global gUnk_08FDAA8C
 gUnk_08FDAA8C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAA8C.lz"
+	.incbin "build/graphics/banim/chara_pal/45_isadora.lz"
 
 	.global gUnk_08FDAB04
 gUnk_08FDAB04:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAB04.lz"
+	.incbin "build/graphics/banim/chara_pal/46_camlann.lz"
 
 	.global gUnk_08FDAB7C
 gUnk_08FDAB7C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAB7C.lz"
+	.incbin "build/graphics/banim/chara_pal/47_damian.lz"
 
 	.global gUnk_08FDABF4
 gUnk_08FDABF4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDABF4.lz"
+	.incbin "build/graphics/banim/chara_pal/48_ubands.lz"
 
 	.global gUnk_08FDAC6C
 gUnk_08FDAC6C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAC6C.lz"
+	.incbin "build/graphics/banim/chara_pal/49_kent.lz"
 
 	.global gUnk_08FDACF8
 gUnk_08FDACF8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDACF8.lz"
+	.incbin "build/graphics/banim/chara_pal/4A_lowen.lz"
 
 	.global gUnk_08FDAD84
 gUnk_08FDAD84:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAD84.lz"
+	.incbin "build/graphics/banim/chara_pal/4B_marcus.lz"
 
 	.global gUnk_08FDAE10
 gUnk_08FDAE10:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAE10.lz"
+	.incbin "build/graphics/banim/chara_pal/4C_maxime.lz"
 
 	.global gUnk_08FDAE88
 gUnk_08FDAE88:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAE88.lz"
+	.incbin "build/graphics/banim/chara_pal/4D_pascal.lz"
 
 	.global gUnk_08FDAF00
 gUnk_08FDAF00:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAF00.lz"
+	.incbin "build/graphics/banim/chara_pal/4E_sain.lz"
 
 	.global gUnk_08FDAF8C
 gUnk_08FDAF8C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAF8C.lz"
+	.incbin "build/graphics/banim/chara_pal/4F_farina.lz"
 
 	.global gUnk_08FDAFF8
 gUnk_08FDAFF8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDAFF8.lz"
+	.incbin "build/graphics/banim/chara_pal/50_fiora.lz"
 
 	.global gUnk_08FDB064
 gUnk_08FDB064:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB064.lz"
+	.incbin "build/graphics/banim/chara_pal/51_flolina.lz"
 
 	.global gUnk_08FDB0D4
 gUnk_08FDB0D4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB0D4.lz"
+	.incbin "build/graphics/banim/chara_pal/52_darts.lz"
 
 	.global gUnk_08FDB134
 gUnk_08FDB134:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB134.lz"
+	.incbin "build/graphics/banim/chara_pal/53_serra.lz"
 
 	.global gUnk_08FDB194
 gUnk_08FDB194:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB194.lz"
+	.incbin "build/graphics/banim/chara_pal/54_limstella.lz"
 
 	.global gUnk_08FDB1FC
 gUnk_08FDB1FC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB1FC.lz"
+	.incbin "build/graphics/banim/chara_pal/55_nino.lz"
 
 	.global gUnk_08FDB26C
 gUnk_08FDB26C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB26C.lz"
+	.incbin "build/graphics/banim/chara_pal/56_sonia.lz"
 
 	.global gUnk_08FDB2D4
 gUnk_08FDB2D4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB2D4.lz"
+	.incbin "build/graphics/banim/chara_pal/57_aion.lz"
 
 	.global gUnk_08FDB340
 gUnk_08FDB340:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB340.lz"
+	.incbin "build/graphics/banim/chara_pal/58_erk.lz"
 
 	.global gUnk_08FDB3B8
 gUnk_08FDB3B8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB3B8.lz"
+	.incbin "build/graphics/banim/chara_pal/59_pant.lz"
 
 	.global gUnk_08FDB430
 gUnk_08FDB430:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB430.lz"
+	.incbin "build/graphics/banim/chara_pal/5A_canas.lz"
 
 	.global gUnk_08FDB484
 gUnk_08FDB484:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB484.lz"
+	.incbin "build/graphics/banim/chara_pal/5B_hintz.lz"
 
 	.global gUnk_08FDB4D4
 gUnk_08FDB4D4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB4D4.lz"
+	.incbin "build/graphics/banim/chara_pal/5C_zoldam.lz"
 
 	.global gUnk_08FDB524
 gUnk_08FDB524:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB524.lz"
+	.incbin "build/graphics/banim/chara_pal/5D_luise.lz"
 
 	.global gUnk_08FDB588
 gUnk_08FDB588:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB588.lz"
+	.incbin "build/graphics/banim/chara_pal/5E_rebacca.lz"
 
 	.global gUnk_08FDB5EC
 gUnk_08FDB5EC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB5EC.lz"
+	.incbin "build/graphics/banim/chara_pal/5F_denning.lz"
 
 	.global gUnk_08FDB644
 gUnk_08FDB644:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB644.lz"
+	.incbin "build/graphics/banim/chara_pal/60_will.lz"
 
 	.global gUnk_08FDB6A4
 gUnk_08FDB6A4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB6A4.lz"
+	.incbin "build/graphics/banim/chara_pal/61_elic.lz"
 
 	.global gUnk_08FDB720
 gUnk_08FDB720:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB720.lz"
+	.incbin "build/graphics/banim/chara_pal/62_kent.lz"
 
 	.global gUnk_08FDB798
 gUnk_08FDB798:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB798.lz"
+	.incbin "build/graphics/banim/chara_pal/63_lowen.lz"
 
 	.global gUnk_08FDB810
 gUnk_08FDB810:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB810.lz"
+	.incbin "build/graphics/banim/chara_pal/64_sain.lz"
 
 	.global gUnk_08FDB888
 gUnk_08FDB888:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB888.lz"
+	.incbin "build/graphics/banim/chara_pal/65_athos.lz"
 
 	.global gUnk_08FDB8E4
 gUnk_08FDB8E4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB8E4.lz"
+	.incbin "build/graphics/banim/chara_pal/66_karla.lz"
 
 	.global gUnk_08FDB944
 gUnk_08FDB944:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB944.lz"
+	.incbin "build/graphics/banim/chara_pal/67_guy.lz"
 
 	.global gUnk_08FDB9A8
 gUnk_08FDB9A8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDB9A8.lz"
+	.incbin "build/graphics/banim/chara_pal/68_karel.lz"
 
 	.global gUnk_08FDBA08
 gUnk_08FDBA08:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBA08.lz"
+	.incbin "build/graphics/banim/chara_pal/69_lloyd.lz"
 
 	.global gUnk_08FDBA58
 gUnk_08FDBA58:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBA58.lz"
+	.incbin "build/graphics/banim/chara_pal/6A_laila.lz"
 
 	.global gUnk_08FDBAA8
 gUnk_08FDBAA8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBAA8.lz"
+	.incbin "build/graphics/banim/chara_pal/6B_lagarto.lz"
 
 	.global gUnk_08FDBB0C
 gUnk_08FDBB0C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBB0C.lz"
+	.incbin "build/graphics/banim/chara_pal/6C_matthew.lz"
 
 	.global gUnk_08FDBB74
 gUnk_08FDBB74:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBB74.lz"
+	.incbin "build/graphics/banim/chara_pal/6D_priscilla.lz"
 
 	.global gUnk_08FDBBD0
 gUnk_08FDBBD0:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBBD0.lz"
+	.incbin "build/graphics/banim/chara_pal/6E_priscilla.lz"
 
 	.global gUnk_08FDBC3C
 gUnk_08FDBC3C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBC3C.lz"
+	.incbin "build/graphics/banim/chara_pal/6F_ursula.lz"
 
 	.global gUnk_08FDBCA0
 gUnk_08FDBCA0:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBCA0.lz"
+	.incbin "build/graphics/banim/chara_pal/70_baltr.lz"
 
 	.global gUnk_08FDBCFC
 gUnk_08FDBCFC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBCFC.lz"
+	.incbin "build/graphics/banim/chara_pal/71_brendan.lz"
 
 	.global gUnk_08FDBD58
 gUnk_08FDBD58:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBD58.lz"
+	.incbin "build/graphics/banim/chara_pal/72_dorcas.lz"
 
 	.global gUnk_08FDBDB4
 gUnk_08FDBDB4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBDB4.lz"
+	.incbin "build/graphics/banim/chara_pal/73_gaitz.lz"
 
 	.global gUnk_08FDBE14
 gUnk_08FDBE14:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBE14.lz"
+	.incbin "build/graphics/banim/chara_pal/74_jasmine.lz"
 
 	.global gUnk_08FDBE70
 gUnk_08FDBE70:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBE70.lz"
+	.incbin "build/graphics/banim/chara_pal/75_olg.lz"
 
 	.global gUnk_08FDBECC
 gUnk_08FDBECC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBECC.lz"
+	.incbin "build/graphics/banim/chara_pal/76_paul.lz"
 
 	.global gUnk_08FDBF28
 gUnk_08FDBF28:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBF28.lz"
+	.incbin "build/graphics/banim/chara_pal/77_kishuna.lz"
 
 	.global gUnk_08FDBF64
 gUnk_08FDBF64:  @ LZ77
-	.incbin "build/graphics/gUnk_08FDBF64.lz"
+	.incbin "build/graphics/banim/chara_pal/78_groznyi.lz"
 	.incbin "baserom.gba", 0xfdbfb8, 0x2d34
 
 	.global gUnk_08FDECEC

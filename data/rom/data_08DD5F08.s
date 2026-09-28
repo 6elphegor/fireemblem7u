@@ -987,39 +987,39 @@ banim_data:
 
 	.global gUnk_08E02000
 gUnk_08E02000:  @ LZ77
-	.incbin "build/graphics/gUnk_08E02000.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/sheet_0.lz"
 
 	.global gUnk_08E02F20
 gUnk_08E02F20:  @ LZ77
-	.incbin "build/graphics/gUnk_08E02F20.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/sheet_1.lz"
 
 	.global gUnk_08E03FF0
 gUnk_08E03FF0:  @ LZ77
-	.incbin "build/graphics/gUnk_08E03FF0.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/sheet_2.lz"
 
 	.global gUnk_08E050E8
 gUnk_08E050E8:  @ LZ77
-	.incbin "build/graphics/gUnk_08E050E8.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/sheet_3.lz"
 
 	.global gUnk_08E05E7C
 gUnk_08E05E7C:  @ LZ77
-	.incbin "build/graphics/gUnk_08E05E7C.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/sheet_4.lz"
 
 	.global gUnk_08E06CB0
 gUnk_08E06CB0:  @ LZ77
-	.incbin "build/graphics/gUnk_08E06CB0.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/sheet_5.lz"
 
 	.global gUnk_08E07958
 gUnk_08E07958:  @ LZ77
-	.incbin "build/graphics/gUnk_08E07958.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/pal.lz"
 
 	.global gUnk_08E079BC
 gUnk_08E079BC:  @ LZ77
-	.incbin "build/graphics/gUnk_08E079BC.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/oam_l.lz"
 
 	.global gUnk_08E08900
 gUnk_08E08900:  @ LZ77
-	.incbin "build/graphics/gUnk_08E08900.lz"
+	.incbin "build/graphics/banim/001_erlm_sw1/oam_r.lz"
 
 	.global gUnk_08E0981C
 gUnk_08E0981C:  @ LZ77
@@ -1031,15 +1031,15 @@ gUnk_08E09D10:
 
 	.global gUnk_08E09D70
 gUnk_08E09D70:  @ LZ77
-	.incbin "build/graphics/gUnk_08E09D70.lz"
+	.incbin "build/graphics/banim/002_erlm_sw1/pal.lz"
 
 	.global gUnk_08E09DD4
 gUnk_08E09DD4:  @ LZ77
-	.incbin "build/graphics/gUnk_08E09DD4.lz"
+	.incbin "build/graphics/banim/002_erlm_sw1/oam_l.lz"
 
 	.global gUnk_08E09E8C
 gUnk_08E09E8C:  @ LZ77
-	.incbin "build/graphics/gUnk_08E09E8C.lz"
+	.incbin "build/graphics/banim/002_erlm_sw1/oam_r.lz"
 
 	.global gUnk_08E09F40
 gUnk_08E09F40:  @ LZ77
@@ -1051,39 +1051,39 @@ gUnk_08E09FC4:
 
 	.global gUnk_08E0A024
 gUnk_08E0A024:  @ LZ77
-	.incbin "build/graphics/gUnk_08E0A024.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/sheet_0.lz"
 
 	.global gUnk_08E0B304
 gUnk_08E0B304:  @ LZ77
-	.incbin "build/graphics/gUnk_08E0B304.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/sheet_1.lz"
 
 	.global gUnk_08E0C52C
 gUnk_08E0C52C:  @ LZ77
-	.incbin "build/graphics/gUnk_08E0C52C.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/sheet_2.lz"
 
 	.global gUnk_08E0D874
 gUnk_08E0D874:  @ LZ77
-	.incbin "build/graphics/gUnk_08E0D874.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/sheet_3.lz"
 
 	.global gUnk_08E0EA0C
 gUnk_08E0EA0C:  @ LZ77
-	.incbin "build/graphics/gUnk_08E0EA0C.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/sheet_4.lz"
 
 	.global gUnk_08E0FA5C
 gUnk_08E0FA5C:  @ LZ77
-	.incbin "build/graphics/gUnk_08E0FA5C.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/sheet_5.lz"
 
 	.global gUnk_08E10654
 gUnk_08E10654:  @ LZ77
-	.incbin "build/graphics/gUnk_08E10654.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/pal.lz"
 
 	.global gUnk_08E106AC
 gUnk_08E106AC:  @ LZ77
-	.incbin "build/graphics/gUnk_08E106AC.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/oam_l.lz"
 
 	.global gUnk_08E11428
 gUnk_08E11428:  @ LZ77
-	.incbin "build/graphics/gUnk_08E11428.lz"
+	.incbin "build/graphics/banim/003_lokm_sw1/oam_r.lz"
 
 	.global gUnk_08E1219C
 gUnk_08E1219C:  @ LZ77
@@ -1095,16 +1095,16 @@ gUnk_08E12554:
 
 	.global gUnk_08E125B4
 gUnk_08E125B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08E125B4.lz"
+	.incbin "build/graphics/banim/004_lokd_sw1/sheet_0.lz"
 
 	.global gUnk_08E13298
 gUnk_08E13298:  @ LZ77
-	.incbin "build/graphics/gUnk_08E13298.lz"
+	.incbin "build/graphics/banim/004_lokd_sw1/sheet_1.lz"
 
 	.global gUnk_08E140E4
 gUnk_08E140E4:  @ LZ77
-	.incbin "build/graphics/gUnk_08E140E4.lz"
+	.incbin "build/graphics/banim/004_lokd_sw1/sheet_2.lz"
 
 	.global gUnk_08E14DC0
 gUnk_08E14DC0:  @ LZ77
-	.incbin "build/graphics/gUnk_08E14DC0.lz"
+	.incbin "build/graphics/banim/004_lokd_sw1/sheet_3.lz"

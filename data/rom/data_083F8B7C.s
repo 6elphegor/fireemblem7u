@@ -15,7 +15,7 @@ Img_ManimSilenceBg:  @ LZ77
 
 	.global Pal_ManimSilence
 Pal_ManimSilence:
-	.incbin "baserom.gba", 0x3f90cc, 0x20
+	.incbin "graphics/Pal_ManimSilence.gbapal"
 
 	.global SpriteAnim_ManimSilence
 SpriteAnim_ManimSilence:
@@ -39,7 +39,7 @@ Pal_ManimInfoWindowDigits:
 
 	.global gUnk_083FA298
 gUnk_083FA298:  @ LZ77
-	.incbin "build/graphics/gUnk_083FA298.lz"
+	.incbin "build/graphics/bg/bg_5E.lz"
 
 	.global gUnk_083FAF7C
 gUnk_083FAF7C:
@@ -47,11 +47,12 @@ gUnk_083FAF7C:
 
 	.global gUnk_083FB430
 gUnk_083FB430:
-	.incbin "baserom.gba", 0x3fb430, 0x80
+	.incbin "graphics/bg/bg_5E_pal.gbapal"
+	.incbin "baserom.gba", 0x3fb450, 0x60
 
 	.global gUnk_083FB4B0
 gUnk_083FB4B0:  @ LZ77
-	.incbin "build/graphics/gUnk_083FB4B0.lz"
+	.incbin "build/graphics/bg/bg_5F.lz"
 
 	.global gUnk_083FB860
 gUnk_083FB860:
@@ -59,7 +60,7 @@ gUnk_083FB860:
 
 	.global gUnk_083FBD14
 gUnk_083FBD14:
-	.incbin "baserom.gba", 0x3fbd14, 0x20
+	.incbin "graphics/bg/bg_5F_pal.gbapal"
 
 	.global gUnk_083FBD34
 gUnk_083FBD34:  @ LZ77
@@ -87,7 +88,7 @@ gUnk_083FBF80:  @ LZ77
 
 	.global gUnk_083FBFD0
 gUnk_083FBFD0:
-	.incbin "baserom.gba", 0x3fbfd0, 0x20
+	.incbin "graphics/gUnk_083FBFD0.gbapal"
 
 	.section .rodata.083FC9FB, "a"
 	.incbin "baserom.gba", 0x3fc9fb, 0x1
@@ -126,7 +127,7 @@ Img_StatScreen_083FCC90:  @ LZ77
 
 	.global Pal_StatScreen_083FCE0C
 Pal_StatScreen_083FCE0C:
-	.incbin "baserom.gba", 0x3fce0c, 0x20
+	.incbin "graphics/Pal_StatScreen_083FCE0C.gbapal"
 
 	.global Tsa_Statscreen_Pag1_083FCE2C
 Tsa_Statscreen_Pag1_083FCE2C:  @ LZ77
@@ -202,7 +203,7 @@ Img_PathArrow:  @ LZ77
 
 	.global Pal_PathArrow
 Pal_PathArrow:
-	.incbin "baserom.gba", 0x3fe074, 0x20
+	.incbin "graphics/Pal_PathArrow.gbapal"
 
 	.global Img_StatusHealEffect
 Img_StatusHealEffect:  @ LZ77
@@ -210,7 +211,7 @@ Img_StatusHealEffect:  @ LZ77
 
 	.global Pal_StatusHealEffect
 Pal_StatusHealEffect:
-	.incbin "baserom.gba", 0x3fe11c, 0x20
+	.incbin "graphics/Pal_StatusHealEffect.gbapal"
 
 	.global Tsa_StatusHealEffect
 Tsa_StatusHealEffect:
@@ -258,7 +259,8 @@ Img_ChapterIntroFog:  @ LZ77
 
 	.global Pal_ChapterIntroFog
 Pal_ChapterIntroFog:
-	.incbin "baserom.gba", 0x401404, 0x3f0
+	.incbin "graphics/Pal_ChapterIntroFog.gbapal"
+	.incbin "baserom.gba", 0x401424, 0x3d0
 
 	.global Img_ChapterTitleBG
 Img_ChapterTitleBG:  @ LZ77
@@ -492,7 +494,7 @@ gStatScreenWeaponExpLabelsMagicalInfo:
 
 	.global Pal_08404BBC
 Pal_08404BBC:
-	.incbin "baserom.gba", 0x404bbc, 0x20
+	.incbin "graphics/Pal_08404BBC.gbapal"
 
 	.global Img_08404BDC
 Img_08404BDC:  @ LZ77
@@ -512,7 +514,7 @@ Img_SubtitleHelpToggle:  @ LZ77
 
 	.global Pal_SubtitleHelpToggle
 Pal_SubtitleHelpToggle:
-	.incbin "baserom.gba", 0x405670, 0x20
+	.incbin "graphics/Pal_SubtitleHelpToggle.gbapal"
 
 	.global Img_MenuScrollBar
 Img_MenuScrollBar:  @ LZ77
@@ -520,7 +522,7 @@ Img_MenuScrollBar:  @ LZ77
 
 	.global Pal_MenuScrollBar
 Pal_MenuScrollBar:
-	.incbin "baserom.gba", 0x405734, 0x20
+	.incbin "graphics/Pal_MenuScrollBar.gbapal"
 
 	.global Img_08405754
 Img_08405754:  @ LZ77
@@ -528,7 +530,8 @@ Img_08405754:  @ LZ77
 
 	.global gUnknown_08405B0C
 gUnknown_08405B0C:
-	.incbin "baserom.gba", 0x405b0c, 0x40
+	.incbin "graphics/gUnknown_08405B0C.gbapal"
+	.incbin "baserom.gba", 0x405b2c, 0x20
 
 	.global Img_08405B4C
 Img_08405B4C:  @ LZ77
@@ -540,7 +543,7 @@ Img_08405CE4:  @ LZ77
 
 	.global Pal_08405EA4
 Pal_08405EA4:
-	.incbin "baserom.gba", 0x405ea4, 0x20
+	.incbin "graphics/Pal_08405EA4.gbapal"
 
 	.global Img_PrepScreenTitle
 Img_PrepScreenTitle:  @ LZ77
@@ -548,7 +551,7 @@ Img_PrepScreenTitle:  @ LZ77
 
 	.global Pal_SysBrownBox
 Pal_SysBrownBox:
-	.incbin "baserom.gba", 0x40624c, 0x40
+	.incbin "graphics/Pal_SysBrownBox.gbapal"
 
 	.global gUnknown_08A1BD40
 gUnknown_08A1BD40:
@@ -624,7 +627,7 @@ gUnk_0840C7CE:
 
 	.global Pal_PrepMuralBackground
 Pal_PrepMuralBackground:
-	.incbin "baserom.gba", 0x40d130, 0x20
+	.incbin "graphics/Pal_PrepMuralBackground.gbapal"
 
 	.global Img_UiVArrow
 	.global Img_SpinningArrow
@@ -646,7 +649,8 @@ Img_08A1CD68:  @ LZ77
 
 	.global Pal_0840DCE4
 Pal_0840DCE4:
-	.incbin "baserom.gba", 0x40dce4, 0x40
+	.incbin "graphics/Pal_0840DCE4.gbapal"
+	.incbin "baserom.gba", 0x40dd04, 0x20
 
 	.global Pal_0840DD24
 	.global Pal_08A1D448
@@ -660,7 +664,7 @@ Img_PrepAtMenuUpfx:  @ LZ77
 
 	.global Pal_PrepAtMenuUpfx
 Pal_PrepAtMenuUpfx:
-	.incbin "baserom.gba", 0x40e058, 0x20
+	.incbin "graphics/Pal_PrepAtMenuUpfx.gbapal"
 
 	.global Pal_PrepScreenTitleSprites
 Pal_PrepScreenTitleSprites:
@@ -680,7 +684,7 @@ Img_0840E368:  @ LZ77
 
 	.global Pal_0840E3EC
 Pal_0840E3EC:
-	.incbin "baserom.gba", 0x40e3ec, 0x20
+	.incbin "graphics/Pal_0840E3EC.gbapal"
 
 	.global Img_0840E40C
 Img_0840E40C:  @ LZ77
@@ -688,7 +692,7 @@ Img_0840E40C:  @ LZ77
 
 	.global Pal_0840E4EC
 Pal_0840E4EC:
-	.incbin "baserom.gba", 0x40e4ec, 0x20
+	.incbin "graphics/Pal_0840E4EC.gbapal"
 
 	.global Tsa_0840E50C
 Tsa_0840E50C:  @ LZ77
@@ -712,7 +716,8 @@ Img_0840E830:  @ LZ77
 
 	.global Pal_0840E978
 Pal_0840E978:
-	.incbin "baserom.gba", 0x40e978, 0xc0
+	.incbin "graphics/Pal_0840E978.gbapal"
+	.incbin "baserom.gba", 0x40e998, 0xa0
 
 	.global Tsa_0840EA38
 Tsa_0840EA38:  @ LZ77
@@ -762,7 +767,7 @@ gPal_08A1FFD0:
 
 	.global Pal_SaveMenuBackground
 Pal_SaveMenuBackground:
-	.incbin "baserom.gba", 0x40f9a0, 0x60
+	.incbin "graphics/Pal_SaveMenuBackground.gbapal"
 
 	.global Tsa_SaveMenuBackground
 Tsa_SaveMenuBackground:
@@ -788,7 +793,7 @@ gUnk_084130A4:  @ LZ77
 	.global gPal_SupportMenu
 Pal_SaveMenuWindow:
 gPal_SupportMenu:
-	.incbin "baserom.gba", 0x4138f0, 0x100
+	.incbin "graphics/Pal_SaveMenuWindow.gbapal"
 
 	.global gUnk_084139F0
 gUnk_084139F0:
@@ -808,7 +813,7 @@ Img_SoundRoomVolumeGraph:  @ LZ77
 
 	.global Pal_SoundRoomVolumeGraph
 Pal_SoundRoomVolumeGraph:
-	.incbin "baserom.gba", 0x413d0c, 0x60
+	.incbin "graphics/Pal_SoundRoomVolumeGraph.gbapal"
 
 	.global gUnknown_08A2C908
 gUnknown_08A2C908:  @ LZ77
@@ -824,7 +829,7 @@ Img_SoundRoomUiElements:  @ LZ77
 
 	.global Pal_SoundRoomUiElements
 Pal_SoundRoomUiElements:
-	.incbin "baserom.gba", 0x414844, 0x40
+	.incbin "graphics/Pal_SoundRoomUiElements.gbapal"
 
 	.global gUnknown_08A2C4C8
 gUnknown_08A2C4C8:
@@ -856,7 +861,7 @@ Img_ModeSelect_Menu:  @ LZ77
 
 	.global Pal_ModeSelect_Menu
 Pal_ModeSelect_Menu:
-	.incbin "baserom.gba", 0x415aa0, 0x20
+	.incbin "graphics/Pal_ModeSelect_Menu.gbapal"
 
 	.global Tsa_08415AC0
 Tsa_08415AC0:  @ LZ77
@@ -916,7 +921,7 @@ Pal_ModeSelect_Sprites:
 
 	.global Pal_TactInfoBg
 Pal_TactInfoBg:
-	.incbin "baserom.gba", 0x41627c, 0x20
+	.incbin "graphics/Pal_TactInfoBg.gbapal"
 
 	.global Img_TactInfoBg
 Img_TactInfoBg:  @ LZ77

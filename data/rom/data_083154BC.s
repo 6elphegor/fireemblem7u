@@ -7,52 +7,52 @@
 
 	.global gUnk_083154BC
 gUnk_083154BC:  @ LZ77
-	.incbin "build/graphics/gUnk_083154BC.lz"
+	.incbin "build/graphics/map/obj_C1.lz"
 
 	.global gUnk_0831ACB0
 gUnk_0831ACB0:  @ LZ77
-	.incbin "build/graphics/gUnk_0831ACB0.lz"
+	.incbin "build/graphics/map/obj_AE.lz"
 
 	.global gUnk_0831DE34
 gUnk_0831DE34:  @ LZ77
-	.incbin "build/graphics/gUnk_0831DE34.lz"
+	.incbin "build/graphics/map/obj_A7.lz"
 
 	.global gUnk_083230BC
 gUnk_083230BC:  @ LZ77
-	.incbin "build/graphics/gUnk_083230BC.lz"
+	.incbin "build/graphics/map/obj_91.lz"
 
 	.global gUnk_08329534
 gUnk_08329534:  @ LZ77
-	.incbin "build/graphics/gUnk_08329534.lz"
+	.incbin "build/graphics/map/obj_7B.lz"
 
 	.global gUnk_08330140
 gUnk_08330140:  @ LZ77
-	.incbin "build/graphics/gUnk_08330140.lz"
+	.incbin "build/graphics/map/obj_6A.lz"
 
 	.global gUnk_08336F24
 gUnk_08336F24:  @ LZ77
-	.incbin "build/graphics/gUnk_08336F24.lz"
+	.incbin "build/graphics/map/obj_5B.lz"
 
 	.global gUnk_0833BC70
 gUnk_0833BC70:  @ LZ77
-	.incbin "build/graphics/gUnk_0833BC70.lz"
+	.incbin "build/graphics/map/obj_16.lz"
 
 	.global gUnk_0833F2C8
 gUnk_0833F2C8:  @ LZ77
-	.incbin "build/graphics/gUnk_0833F2C8.lz"
+	.incbin "build/graphics/map/obj_10.lz"
 
 	.global gUnk_083464F0
 gUnk_083464F0:  @ LZ77
-	.incbin "build/graphics/gUnk_083464F0.lz"
+	.incbin "build/graphics/map/obj_0A.lz"
 
 	.global gUnk_0834C74C
 gUnk_0834C74C:  @ LZ77
-	.incbin "build/graphics/gUnk_0834C74C.lz"
+	.incbin "build/graphics/map/obj_01.lz"
 
 	.global gUnk_0835334C
 gUnk_0835334C:  @ LZ77
-	.incbin "build/graphics/gUnk_0835334C.lz"
+	.incbin "build/graphics/map/tileconfig_C3.lz"
 
 	.global gUnk_08353EFC
 gUnk_08353EFC:  @ LZ77
-	.incbin "build/graphics/gUnk_08353EFC.lz"
+	.incbin "build/graphics/map/tileconfig_B0.lz"

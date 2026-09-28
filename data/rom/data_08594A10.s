@@ -95,4 +95,4 @@ gUnk_085D085C:
 
 	.global Pal_WmMapA
 Pal_WmMapA:
-	.incbin "baserom.gba", 0x5d0a40, 0x80
+	.incbin "graphics/Pal_WmMapA.gbapal"

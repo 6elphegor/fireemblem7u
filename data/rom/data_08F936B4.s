@@ -7,31 +7,31 @@
 
 	.global gUnk_08F936B4
 gUnk_08F936B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08F936B4.lz"
+	.incbin "build/graphics/banim/099_mygm_sw1/sheet_0.lz"
 
 	.global gUnk_08F9473C
 gUnk_08F9473C:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9473C.lz"
+	.incbin "build/graphics/banim/099_mygm_sw1/sheet_1.lz"
 
 	.global gUnk_08F95854
 gUnk_08F95854:  @ LZ77
-	.incbin "build/graphics/gUnk_08F95854.lz"
+	.incbin "build/graphics/banim/099_mygm_sw1/sheet_2.lz"
 
 	.global gUnk_08F967C4
 gUnk_08F967C4:  @ LZ77
-	.incbin "build/graphics/gUnk_08F967C4.lz"
+	.incbin "build/graphics/banim/099_mygm_sw1/sheet_3.lz"
 
 	.global gUnk_08F97430
 gUnk_08F97430:  @ LZ77
-	.incbin "build/graphics/gUnk_08F97430.lz"
+	.incbin "build/graphics/banim/099_mygm_sw1/pal.lz"
 
 	.global gUnk_08F97498
 gUnk_08F97498:  @ LZ77
-	.incbin "build/graphics/gUnk_08F97498.lz"
+	.incbin "build/graphics/banim/099_mygm_sw1/oam_l.lz"
 
 	.global gUnk_08F9807C
 gUnk_08F9807C:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9807C.lz"
+	.incbin "build/graphics/banim/099_mygm_sw1/oam_r.lz"
 
 	.global gUnk_08F98C50
 gUnk_08F98C50:  @ LZ77
@@ -43,15 +43,15 @@ gUnk_08F9901C:
 
 	.global gUnk_08F9907C
 gUnk_08F9907C:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9907C.lz"
+	.incbin "build/graphics/banim/09A_mygm_sw1/pal.lz"
 
 	.global gUnk_08F990E4
 gUnk_08F990E4:  @ LZ77
-	.incbin "build/graphics/gUnk_08F990E4.lz"
+	.incbin "build/graphics/banim/09A_mygm_sw1/oam_l.lz"
 
 	.global gUnk_08F99198
 gUnk_08F99198:  @ LZ77
-	.incbin "build/graphics/gUnk_08F99198.lz"
+	.incbin "build/graphics/banim/09A_mygm_sw1/oam_r.lz"
 
 	.global gUnk_08F9924C
 gUnk_08F9924C:  @ LZ77
@@ -63,31 +63,31 @@ gUnk_08F992D4:
 
 	.global gUnk_08F99334
 gUnk_08F99334:  @ LZ77
-	.incbin "build/graphics/gUnk_08F99334.lz"
+	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_0.lz"
 
 	.global gUnk_08F9A410
 gUnk_08F9A410:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9A410.lz"
+	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_1.lz"
 
 	.global gUnk_08F9B2C8
 gUnk_08F9B2C8:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9B2C8.lz"
+	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_2.lz"
 
 	.global gUnk_08F9C54C
 gUnk_08F9C54C:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9C54C.lz"
+	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_3.lz"
 
 	.global gUnk_08F9CDD4
 gUnk_08F9CDD4:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9CDD4.lz"
+	.incbin "build/graphics/banim/09B_swgm_sw1/pal.lz"
 
 	.global gUnk_08F9CE38
 gUnk_08F9CE38:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9CE38.lz"
+	.incbin "build/graphics/banim/09B_swgm_sw1/oam_l.lz"
 
 	.global gUnk_08F9DA44
 gUnk_08F9DA44:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9DA44.lz"
+	.incbin "build/graphics/banim/09B_swgm_sw1/oam_r.lz"
 
 	.global gUnk_08F9E640
 gUnk_08F9E640:  @ LZ77
@@ -99,15 +99,15 @@ gUnk_08F9EADC:
 
 	.global gUnk_08F9EB3C
 gUnk_08F9EB3C:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9EB3C.lz"
+	.incbin "build/graphics/banim/09C_swgm_sw1/pal.lz"
 
 	.global gUnk_08F9EBA0
 gUnk_08F9EBA0:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9EBA0.lz"
+	.incbin "build/graphics/banim/09C_swgm_sw1/oam_l.lz"
 
 	.global gUnk_08F9EBF4
 gUnk_08F9EBF4:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9EBF4.lz"
+	.incbin "build/graphics/banim/09C_swgm_sw1/oam_r.lz"
 
 	.global gUnk_08F9EC44
 gUnk_08F9EC44:  @ LZ77
@@ -119,23 +119,23 @@ gUnk_08F9ECA8:
 
 	.global gUnk_08F9ED08
 gUnk_08F9ED08:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9ED08.lz"
+	.incbin "build/graphics/banim/09D_brsm_ax1/sheet_0.lz"
 
 	.global gUnk_08F9FF00
 gUnk_08F9FF00:  @ LZ77
-	.incbin "build/graphics/gUnk_08F9FF00.lz"
+	.incbin "build/graphics/banim/09D_brsm_ax1/sheet_1.lz"
 
 	.global gUnk_08FA106C
 gUnk_08FA106C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA106C.lz"
+	.incbin "build/graphics/banim/09D_brsm_ax1/pal.lz"
 
 	.global gUnk_08FA10B8
 gUnk_08FA10B8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA10B8.lz"
+	.incbin "build/graphics/banim/09D_brsm_ax1/oam_l.lz"
 
 	.global gUnk_08FA1978
 gUnk_08FA1978:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA1978.lz"
+	.incbin "build/graphics/banim/09D_brsm_ax1/oam_r.lz"
 
 	.global gUnk_08FA222C
 gUnk_08FA222C:  @ LZ77
@@ -147,19 +147,19 @@ gUnk_08FA2470:
 
 	.global gUnk_08FA24D0
 gUnk_08FA24D0:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA24D0.lz"
+	.incbin "build/graphics/banim/09E_brsm_ax1/sheet_1.lz"
 
 	.global gUnk_08FA3164
 gUnk_08FA3164:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA3164.lz"
+	.incbin "build/graphics/banim/09E_brsm_ax1/pal.lz"
 
 	.global gUnk_08FA31B0
 gUnk_08FA31B0:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA31B0.lz"
+	.incbin "build/graphics/banim/09E_brsm_ax1/oam_l.lz"
 
 	.global gUnk_08FA33DC
 gUnk_08FA33DC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA33DC.lz"
+	.incbin "build/graphics/banim/09E_brsm_ax1/oam_r.lz"
 
 	.global gUnk_08FA360C
 gUnk_08FA360C:  @ LZ77
@@ -171,15 +171,15 @@ gUnk_08FA3718:
 
 	.global gUnk_08FA3778
 gUnk_08FA3778:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA3778.lz"
+	.incbin "build/graphics/banim/09F_brsm_ax1/pal.lz"
 
 	.global gUnk_08FA37C4
 gUnk_08FA37C4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA37C4.lz"
+	.incbin "build/graphics/banim/09F_brsm_ax1/oam_l.lz"
 
 	.global gUnk_08FA3868
 gUnk_08FA3868:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA3868.lz"
+	.incbin "build/graphics/banim/09F_brsm_ax1/oam_r.lz"
 
 	.global gUnk_08FA390C
 gUnk_08FA390C:  @ LZ77
@@ -191,19 +191,19 @@ gUnk_08FA398C:
 
 	.global gUnk_08FA39EC
 gUnk_08FA39EC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA39EC.lz"
+	.incbin "build/graphics/banim/0A0_silm_no1/sheet_0.lz"
 
 	.global gUnk_08FA4038
 gUnk_08FA4038:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4038.lz"
+	.incbin "build/graphics/banim/0A0_silm_no1/pal.lz"
 
 	.global gUnk_08FA4090
 gUnk_08FA4090:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4090.lz"
+	.incbin "build/graphics/banim/0A0_silm_no1/oam_l.lz"
 
 	.global gUnk_08FA4114
 gUnk_08FA4114:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4114.lz"
+	.incbin "build/graphics/banim/0A0_silm_no1/oam_r.lz"
 
 	.global gUnk_08FA4190
 gUnk_08FA4190:  @ LZ77
@@ -215,19 +215,19 @@ gUnk_08FA422C:
 
 	.global gUnk_08FA428C
 gUnk_08FA428C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA428C.lz"
+	.incbin "build/graphics/banim/0A1_yuso_no1/sheet_0.lz"
 
 	.global gUnk_08FA4DAC
 gUnk_08FA4DAC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4DAC.lz"
+	.incbin "build/graphics/banim/0A1_yuso_no1/pal.lz"
 
 	.global gUnk_08FA4DE4
 gUnk_08FA4DE4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4DE4.lz"
+	.incbin "build/graphics/banim/0A1_yuso_no1/oam_l.lz"
 
 	.global gUnk_08FA4E2C
 gUnk_08FA4E2C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4E2C.lz"
+	.incbin "build/graphics/banim/0A1_yuso_no1/oam_r.lz"
 
 	.global gUnk_08FA4E70
 gUnk_08FA4E70:  @ LZ77
@@ -239,15 +239,15 @@ gUnk_08FA4E98:
 
 	.global gUnk_08FA4EF8
 gUnk_08FA4EF8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4EF8.lz"
+	.incbin "build/graphics/banim/0A2_yuso_no1/pal.lz"
 
 	.global gUnk_08FA4F30
 gUnk_08FA4F30:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4F30.lz"
+	.incbin "build/graphics/banim/0A2_yuso_no1/oam_l.lz"
 
 	.global gUnk_08FA4F80
 gUnk_08FA4F80:  @ LZ77
-	.incbin "build/graphics/gUnk_08FA4F80.lz"
+	.incbin "build/graphics/banim/0A2_yuso_no1/oam_r.lz"
 
 	.global gUnk_08FA4FD0
 gUnk_08FA4FD0:  @ LZ77
@@ -605,283 +605,283 @@ battle_terrain_table:
 
 	.global gUnk_08FC0C00
 gUnk_08FC0C00:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC0C00.lz"
+	.incbin "build/graphics/btl_terrain/00_heichi1.lz"
 
 	.global gUnk_08FC1444
 gUnk_08FC1444:
-	.incbin "baserom.gba", 0xfc1444, 0x20
+	.incbin "graphics/btl_terrain/00_heichi1_pal.gbapal"
 
 	.global gUnk_08FC1464
 gUnk_08FC1464:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC1464.lz"
+	.incbin "build/graphics/btl_terrain/01_arechi1.lz"
 
 	.global gUnk_08FC1C28
 gUnk_08FC1C28:
-	.incbin "baserom.gba", 0xfc1c28, 0x20
+	.incbin "graphics/btl_terrain/01_arechi1_pal.gbapal"
 
 	.global gUnk_08FC1C48
 gUnk_08FC1C48:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC1C48.lz"
+	.incbin "build/graphics/btl_terrain/02_jyoumon1.lz"
 
 	.global gUnk_08FC2570
 gUnk_08FC2570:
-	.incbin "baserom.gba", 0xfc2570, 0x20
+	.incbin "graphics/btl_terrain/02_jyoumon1_pal.gbapal"
 
 	.global gUnk_08FC2590
 gUnk_08FC2590:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC2590.lz"
+	.incbin "build/graphics/btl_terrain/03_bukiya1.lz"
 
 	.global gUnk_08FC2D38
 gUnk_08FC2D38:
-	.incbin "baserom.gba", 0xfc2d38, 0x20
+	.incbin "graphics/btl_terrain/03_bukiya1_pal.gbapal"
 
 	.global gUnk_08FC2D58
 gUnk_08FC2D58:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC2D58.lz"
+	.incbin "build/graphics/btl_terrain/04_gake1.lz"
 
 	.global gUnk_08FC34C4
 gUnk_08FC34C4:
-	.incbin "baserom.gba", 0xfc34c4, 0x20
+	.incbin "graphics/btl_terrain/04_gake1_pal.gbapal"
 
 	.global gUnk_08FC34E4
 gUnk_08FC34E4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC34E4.lz"
+	.incbin "build/graphics/btl_terrain/05_gyokuza1.lz"
 
 	.global gUnk_08FC3BAC
 gUnk_08FC3BAC:
-	.incbin "baserom.gba", 0xfc3bac, 0x20
+	.incbin "graphics/btl_terrain/05_gyokuza1_pal.gbapal"
 
 	.global gUnk_08FC3BCC
 gUnk_08FC3BCC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC3BCC.lz"
+	.incbin "build/graphics/btl_terrain/06_haikyo1.lz"
 
 	.global gUnk_08FC4394
 gUnk_08FC4394:
-	.incbin "baserom.gba", 0xfc4394, 0x20
+	.incbin "graphics/btl_terrain/06_haikyo1_pal.gbapal"
 
 	.global gUnk_08FC43B4
 gUnk_08FC43B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC43B4.lz"
+	.incbin "build/graphics/btl_terrain/07_hanebashi1.lz"
 
 	.global gUnk_08FC4C24
 gUnk_08FC4C24:
-	.incbin "baserom.gba", 0xfc4c24, 0x20
+	.incbin "graphics/btl_terrain/07_hanebashi1_pal.gbapal"
 
 	.global gUnk_08FC4C44
 gUnk_08FC4C44:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC4C44.lz"
+	.incbin "build/graphics/btl_terrain/08_hasi1.lz"
 
 	.global gUnk_08FC54DC
 gUnk_08FC54DC:
-	.incbin "baserom.gba", 0xfc54dc, 0x20
+	.incbin "graphics/btl_terrain/08_hasi1_pal.gbapal"
 
 	.global gUnk_08FC54FC
 gUnk_08FC54FC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC54FC.lz"
+	.incbin "build/graphics/btl_terrain/09_sabaku1.lz"
 
 	.global gUnk_08FC5B30
 gUnk_08FC5B30:
-	.incbin "baserom.gba", 0xfc5b30, 0x20
+	.incbin "graphics/btl_terrain/09_sabaku1_pal.gbapal"
 
 	.global gUnk_08FC5B50
 gUnk_08FC5B50:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC5B50.lz"
+	.incbin "build/graphics/btl_terrain/0A_kawa1.lz"
 
 	.global gUnk_08FC6224
 gUnk_08FC6224:
-	.incbin "baserom.gba", 0xfc6224, 0x20
+	.incbin "graphics/btl_terrain/0A_kawa1_pal.gbapal"
 
 	.global gUnk_08FC6244
 gUnk_08FC6244:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC6244.lz"
+	.incbin "build/graphics/btl_terrain/0B_mura1.lz"
 
 	.global gUnk_08FC6A18
 gUnk_08FC6A18:
-	.incbin "baserom.gba", 0xfc6a18, 0x20
+	.incbin "graphics/btl_terrain/0B_mura1_pal.gbapal"
 
 	.global gUnk_08FC6A38
 gUnk_08FC6A38:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC6A38.lz"
+	.incbin "build/graphics/btl_terrain/0C_umi1.lz"
 
 	.global gUnk_08FC7118
 gUnk_08FC7118:
-	.incbin "baserom.gba", 0xfc7118, 0x20
+	.incbin "graphics/btl_terrain/0C_umi1_pal.gbapal"
 
 	.global gUnk_08FC7138
 gUnk_08FC7138:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC7138.lz"
+	.incbin "build/graphics/btl_terrain/0D_mizuiumi1.lz"
 
 	.global gUnk_08FC7760
 gUnk_08FC7760:
-	.incbin "baserom.gba", 0xfc7760, 0x20
+	.incbin "graphics/btl_terrain/0D_mizuiumi1_pal.gbapal"
 
 	.global gUnk_08FC7780
 gUnk_08FC7780:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC7780.lz"
+	.incbin "build/graphics/btl_terrain/0E_azukarijo1.lz"
 
 	.global gUnk_08FC7F50
 gUnk_08FC7F50:
-	.incbin "baserom.gba", 0xfc7f50, 0x20
+	.incbin "graphics/btl_terrain/0E_azukarijo1_pal.gbapal"
 
 	.global gUnk_08FC7F70
 gUnk_08FC7F70:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC7F70.lz"
+	.incbin "build/graphics/btl_terrain/0F_douguya1.lz"
 
 	.global gUnk_08FC8760
 gUnk_08FC8760:
-	.incbin "baserom.gba", 0xfc8760, 0x20
+	.incbin "graphics/btl_terrain/0F_douguya1_pal.gbapal"
 
 	.global gUnk_08FC8780
 gUnk_08FC8780:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC8780.lz"
+	.incbin "build/graphics/btl_terrain/10_fukaimori1.lz"
 
 	.global gUnk_08FC9030
 gUnk_08FC9030:
-	.incbin "baserom.gba", 0xfc9030, 0x20
+	.incbin "graphics/btl_terrain/10_fukaimori1_pal.gbapal"
 
 	.global gUnk_08FC9050
 gUnk_08FC9050:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC9050.lz"
+	.incbin "build/graphics/btl_terrain/11_michi1.lz"
 
 	.global gUnk_08FC9824
 gUnk_08FC9824:
-	.incbin "baserom.gba", 0xfc9824, 0x20
+	.incbin "graphics/btl_terrain/11_michi1_pal.gbapal"
 
 	.global gUnk_08FC9844
 gUnk_08FC9844:  @ LZ77
-	.incbin "build/graphics/gUnk_08FC9844.lz"
+	.incbin "build/graphics/btl_terrain/12_minka1.lz"
 
 	.global gUnk_08FCA078
 gUnk_08FCA078:
-	.incbin "baserom.gba", 0xfca078, 0x20
+	.incbin "graphics/btl_terrain/12_minka1_pal.gbapal"
 
 	.global gUnk_08FCA098
 gUnk_08FCA098:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCA098.lz"
+	.incbin "build/graphics/btl_terrain/13_mori1.lz"
 
 	.global gUnk_08FCA910
 gUnk_08FCA910:
-	.incbin "baserom.gba", 0xfca910, 0x20
+	.incbin "graphics/btl_terrain/13_mori1_pal.gbapal"
 
 	.global gUnk_08FCA930
 gUnk_08FCA930:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCA930.lz"
+	.incbin "build/graphics/btl_terrain/14_siroyuka1.lz"
 
 	.global gUnk_08FCAFF4
 gUnk_08FCAFF4:
-	.incbin "baserom.gba", 0xfcaff4, 0x20
+	.incbin "graphics/btl_terrain/14_siroyuka1_pal.gbapal"
 
 	.global gUnk_08FCB014
 gUnk_08FCB014:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCB014.lz"
+	.incbin "build/graphics/btl_terrain/15_sunachi1.lz"
 
 	.global gUnk_08FCB69C
 gUnk_08FCB69C:
-	.incbin "baserom.gba", 0xfcb69c, 0x20
+	.incbin "graphics/btl_terrain/15_sunachi1_pal.gbapal"
 
 	.global gUnk_08FCB6BC
 gUnk_08FCB6BC:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCB6BC.lz"
+	.incbin "build/graphics/btl_terrain/16_takaiyama1.lz"
 
 	.global gUnk_08FCBDEC
 gUnk_08FCBDEC:
-	.incbin "baserom.gba", 0xfcbdec, 0x20
+	.incbin "graphics/btl_terrain/16_takaiyama1_pal.gbapal"
 
 	.global gUnk_08FCBE0C
 gUnk_08FCBE0C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCBE0C.lz"
+	.incbin "build/graphics/btl_terrain/17_toride1.lz"
 
 	.global gUnk_08FCC4D0
 gUnk_08FCC4D0:
-	.incbin "baserom.gba", 0xfcc4d0, 0x20
+	.incbin "graphics/btl_terrain/17_toride1_pal.gbapal"
 
 	.global gUnk_08FCC4F0
 gUnk_08FCC4F0:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCC4F0.lz"
+	.incbin "build/graphics/btl_terrain/18_tougijou1.lz"
 
 	.global gUnk_08FCCC6C
 gUnk_08FCCC6C:
-	.incbin "baserom.gba", 0xfccc6c, 0x20
+	.incbin "graphics/btl_terrain/18_tougijou1_pal.gbapal"
 
 	.global gUnk_08FCCC8C
 gUnk_08FCCC8C:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCCC8C.lz"
+	.incbin "build/graphics/btl_terrain/19_yama1.lz"
 
 	.global gUnk_08FCD410
 gUnk_08FCD410:
-	.incbin "baserom.gba", 0xfcd410, 0x20
+	.incbin "graphics/btl_terrain/19_yama1_pal.gbapal"
 
 	.global gUnk_08FCD430
 gUnk_08FCD430:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCD430.lz"
+	.incbin "build/graphics/btl_terrain/1A_mahouyuka1.lz"
 
 	.global gUnk_08FCDD38
 gUnk_08FCDD38:
-	.incbin "baserom.gba", 0xfcdd38, 0x20
+	.incbin "graphics/btl_terrain/1A_mahouyuka1_pal.gbapal"
 
 	.global gUnk_08FCDD58
 gUnk_08FCDD58:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCDD58.lz"
+	.incbin "build/graphics/btl_terrain/1B_kabe1.lz"
 
 	.global gUnk_08FCE420
 gUnk_08FCE420:
-	.incbin "baserom.gba", 0xfce420, 0x20
+	.incbin "graphics/btl_terrain/1B_kabe1_pal.gbapal"
 
 	.global gUnk_08FCE440
 gUnk_08FCE440:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCE440.lz"
+	.incbin "build/graphics/btl_terrain/1C_kowaretakabe.lz"
 
 	.global gUnk_08FCEAB8
 gUnk_08FCEAB8:
-	.incbin "baserom.gba", 0xfceab8, 0x20
+	.incbin "graphics/btl_terrain/1C_kowaretakabe_pal.gbapal"
 
 	.global gUnk_08FCEAD8
 gUnk_08FCEAD8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCEAD8.lz"
+	.incbin "build/graphics/btl_terrain/1D_kowaretakabe.lz"
 
 	.global gUnk_08FCF194
 gUnk_08FCF194:
-	.incbin "baserom.gba", 0xfcf194, 0x20
+	.incbin "graphics/btl_terrain/1D_kowaretakabe_pal.gbapal"
 
 	.global gUnk_08FCF1B4
 gUnk_08FCF1B4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCF1B4.lz"
+	.incbin "build/graphics/btl_terrain/1E_hasira1.lz"
 
 	.global gUnk_08FCF890
 gUnk_08FCF890:
-	.incbin "baserom.gba", 0xfcf890, 0x20
+	.incbin "graphics/btl_terrain/1E_hasira1_pal.gbapal"
 
 	.global gUnk_08FCF8B0
 gUnk_08FCF8B0:  @ LZ77
-	.incbin "build/graphics/gUnk_08FCF8B0.lz"
+	.incbin "build/graphics/btl_terrain/1F_takarabako1.lz"
 
 	.global gUnk_08FD0014
 gUnk_08FD0014:
-	.incbin "baserom.gba", 0xfd0014, 0x20
+	.incbin "graphics/btl_terrain/1F_takarabako1_pal.gbapal"
 
 	.global gUnk_08FD0034
 gUnk_08FD0034:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD0034.lz"
+	.incbin "build/graphics/btl_terrain/20_killerarechi.lz"
 
 	.global gUnk_08FD08B8
 gUnk_08FD08B8:
-	.incbin "baserom.gba", 0xfd08b8, 0x20
+	.incbin "graphics/btl_terrain/20_killerarechi_pal.gbapal"
 
 	.global gUnk_08FD08D8
 gUnk_08FD08D8:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD08D8.lz"
+	.incbin "build/graphics/btl_terrain/21_mon1.lz"
 
 	.global gUnk_08FD0F84
 gUnk_08FD0F84:
-	.incbin "baserom.gba", 0xfd0f84, 0x20
+	.incbin "graphics/btl_terrain/21_mon1_pal.gbapal"
 
 	.global gUnk_08FD0FA4
 gUnk_08FD0FA4:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD0FA4.lz"
+	.incbin "build/graphics/btl_terrain/22_tuusintougi1.lz"
 
 	.global gUnk_08FD15F8
 gUnk_08FD15F8:
-	.incbin "baserom.gba", 0xfd15f8, 0x20
+	.incbin "graphics/btl_terrain/22_tuusintougi1_pal.gbapal"
 
 	.global gUnk_08FD1618
 gUnk_08FD1618:
@@ -1045,11 +1045,11 @@ gUnk_08FD1AF8:
 
 	.global gUnk_08FD1B18
 gUnk_08FD1B18:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD1B18.lz"
+	.incbin "build/graphics/btl_terrain/55_maruta1.lz"
 
 	.global gUnk_08FD2260
 gUnk_08FD2260:
-	.incbin "baserom.gba", 0xfd2260, 0x20
+	.incbin "graphics/btl_terrain/55_maruta1_pal.gbapal"
 
 	.global gUnk_08FD2280
 gUnk_08FD2280:
@@ -1125,8 +1125,8 @@ gUnk_08FD24A0:
 
 	.global gUnk_08FD24C0
 gUnk_08FD24C0:  @ LZ77
-	.incbin "build/graphics/gUnk_08FD24C0.lz"
+	.incbin "build/graphics/btl_terrain/68_fune1.lz"
 
 	.global gUnk_08FD2DB8
 gUnk_08FD2DB8:
-	.incbin "baserom.gba", 0xfd2db8, 0x20
+	.incbin "graphics/btl_terrain/68_fune1_pal.gbapal"

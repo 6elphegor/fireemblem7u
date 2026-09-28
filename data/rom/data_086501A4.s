@@ -19,7 +19,7 @@ FireRingBgfx_086512A8:  @ LZ77
 
 	.global OpBmBgfx_08651548
 OpBmBgfx_08651548:
-	.incbin "baserom.gba", 0x651548, 0x20
+	.incbin "graphics/OpBmBgfx_08651548.gbapal"
 
 	.global OpBmBgfx_08651568
 OpBmBgfx_08651568:  @ LZ77
@@ -95,7 +95,8 @@ OpBmBgfx_086597C4:  @ LZ77
 
 	.global gUnk_08659C9C
 gUnk_08659C9C:
-	.incbin "baserom.gba", 0x659c9c, 0x40
+	.incbin "graphics/gUnk_08659C9C.gbapal"
+	.incbin "baserom.gba", 0x659cbc, 0x20
 
 	.global OpBmBgfx_08659CDC
 OpBmBgfx_08659CDC:
@@ -311,7 +312,7 @@ Tsa_TitleAxe:  @ LZ77
 
 	.global Pal_TitleSprites
 Pal_TitleSprites:
-	.incbin "baserom.gba", 0x66fce0, 0xa0
+	.incbin "graphics/Pal_TitleSprites.gbapal"
 
 	.global Img_TitleSprites
 Img_TitleSprites:  @ LZ77
@@ -371,7 +372,7 @@ gUnk_08676BB8:  @ LZ77
 
 	.global Pal_TitleTextFlame
 Pal_TitleTextFlame:
-	.incbin "baserom.gba", 0x676e04, 0x20
+	.incbin "graphics/Pal_TitleTextFlame.gbapal"
 
 	.global Img_TitleTextFlame
 Img_TitleTextFlame:  @ LZ77

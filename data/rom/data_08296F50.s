@@ -31,7 +31,7 @@ Img_ExcaliburSprites:  @ LZ77
 
 	.global Pal_ExcaliburSprites
 Pal_ExcaliburSprites:
-	.incbin "baserom.gba", 0x298d38, 0x20
+	.incbin "graphics/Pal_ExcaliburSprites.gbapal"
 
 	.global Img_GespenstBG
 Img_GespenstBG:  @ LZ77
@@ -39,55 +39,55 @@ Img_GespenstBG:  @ LZ77
 
 	.global Pal_GespenstBG
 Pal_GespenstBG:
-	.incbin "baserom.gba", 0x299f70, 0x20
+	.incbin "graphics/Pal_GespenstBG.gbapal"
 
 	.global gUnk_08299F90
 gUnk_08299F90:  @ LZ77
-	.incbin "build/graphics/gUnk_08299F90.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_00.lz"
 
 	.global gUnk_0829A084
 gUnk_0829A084:  @ LZ77
-	.incbin "build/graphics/gUnk_0829A084.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_01.lz"
 
 	.global gUnk_0829A178
 gUnk_0829A178:  @ LZ77
-	.incbin "build/graphics/gUnk_0829A178.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_02.lz"
 
 	.global gUnk_0829A26C
 gUnk_0829A26C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829A26C.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_03.lz"
 
 	.global gUnk_0829A3E4
 gUnk_0829A3E4:  @ LZ77
-	.incbin "build/graphics/gUnk_0829A3E4.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_04.lz"
 
 	.global gUnk_0829A55C
 gUnk_0829A55C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829A55C.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_05.lz"
 
 	.global gUnk_0829A6D4
 gUnk_0829A6D4:  @ LZ77
-	.incbin "build/graphics/gUnk_0829A6D4.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_06.lz"
 
 	.global gUnk_0829A8B0
 gUnk_0829A8B0:  @ LZ77
-	.incbin "build/graphics/gUnk_0829A8B0.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_07.lz"
 
 	.global gUnk_0829AA8C
 gUnk_0829AA8C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829AA8C.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_08.lz"
 
 	.global gUnk_0829AC68
 gUnk_0829AC68:  @ LZ77
-	.incbin "build/graphics/gUnk_0829AC68.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_09.lz"
 
 	.global gUnk_0829AE04
 gUnk_0829AE04:  @ LZ77
-	.incbin "build/graphics/gUnk_0829AE04.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_0A.lz"
 
 	.global gUnk_0829AFA0
 gUnk_0829AFA0:  @ LZ77
-	.incbin "build/graphics/gUnk_0829AFA0.lz"
+	.incbin "build/graphics/efx/TsaArray_GespenstBG_0B.lz"
 
 	.global Pal_0829B13C
 Pal_0829B13C:
@@ -99,7 +99,8 @@ Img_GespenstBg4:  @ LZ77
 
 	.global Pal_GespenstBg4
 Pal_GespenstBg4:
-	.incbin "baserom.gba", 0x29c01c, 0x140
+	.incbin "graphics/Pal_GespenstBg4.gbapal"
+	.incbin "baserom.gba", 0x29c03c, 0x120
 
 	.global Tsa_GespenstBg4
 Tsa_GespenstBg4:  @ LZ77
@@ -111,7 +112,8 @@ Img_GespenstBG2:  @ LZ77
 
 	.global Pal_GespenstBG2
 Pal_GespenstBG2:
-	.incbin "baserom.gba", 0x29cfa8, 0x80
+	.incbin "graphics/Pal_GespenstBG2.gbapal"
+	.incbin "baserom.gba", 0x29cfc8, 0x60
 
 	.global Tsa_GespenstBG2
 Tsa_GespenstBG2:  @ LZ77
@@ -123,7 +125,7 @@ Img_GespenstOBJ:  @ LZ77
 
 	.global Pal_GespenstOBJ
 Pal_GespenstOBJ:
-	.incbin "baserom.gba", 0x29da8c, 0x20
+	.incbin "graphics/Pal_GespenstOBJ.gbapal"
 
 	.global Img_GespenstOBJ2
 Img_GespenstOBJ2:  @ LZ77
@@ -131,7 +133,7 @@ Img_GespenstOBJ2:  @ LZ77
 
 	.global Pal_GespenstOBJ2
 Pal_GespenstOBJ2:
-	.incbin "baserom.gba", 0x29ddb8, 0x20
+	.incbin "graphics/Pal_GespenstOBJ2.gbapal"
 
 	.global Img_AuraBg1
 Img_AuraBg1:  @ LZ77
@@ -139,219 +141,219 @@ Img_AuraBg1:  @ LZ77
 
 	.global Pal_AuraBg1
 Pal_AuraBg1:
-	.incbin "baserom.gba", 0x29e750, 0x20
+	.incbin "graphics/Pal_AuraBg1.gbapal"
 
 	.global gUnk_0829E770
 gUnk_0829E770:  @ LZ77
-	.incbin "build/graphics/gUnk_0829E770.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_00.lz"
 
 	.global gUnk_0829E810
 gUnk_0829E810:  @ LZ77
-	.incbin "build/graphics/gUnk_0829E810.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_01.lz"
 
 	.global gUnk_0829E8B8
 gUnk_0829E8B8:  @ LZ77
-	.incbin "build/graphics/gUnk_0829E8B8.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_02.lz"
 
 	.global gUnk_0829E960
 gUnk_0829E960:  @ LZ77
-	.incbin "build/graphics/gUnk_0829E960.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_03.lz"
 
 	.global gUnk_0829EA0C
 gUnk_0829EA0C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829EA0C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_04.lz"
 
 	.global gUnk_0829EAC4
 gUnk_0829EAC4:  @ LZ77
-	.incbin "build/graphics/gUnk_0829EAC4.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_05.lz"
 
 	.global gUnk_0829EB7C
 gUnk_0829EB7C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829EB7C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_06.lz"
 
 	.global gUnk_0829EC2C
 gUnk_0829EC2C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829EC2C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_07.lz"
 
 	.global gUnk_0829ECD8
 gUnk_0829ECD8:  @ LZ77
-	.incbin "build/graphics/gUnk_0829ECD8.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_08.lz"
 
 	.global gUnk_0829ED80
 gUnk_0829ED80:  @ LZ77
-	.incbin "build/graphics/gUnk_0829ED80.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_09.lz"
 
 	.global gUnk_0829EE20
 gUnk_0829EE20:  @ LZ77
-	.incbin "build/graphics/gUnk_0829EE20.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_0A.lz"
 
 	.global gUnk_0829EEBC
 gUnk_0829EEBC:  @ LZ77
-	.incbin "build/graphics/gUnk_0829EEBC.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_0B.lz"
 
 	.global gUnk_0829EF54
 gUnk_0829EF54:  @ LZ77
-	.incbin "build/graphics/gUnk_0829EF54.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_0C.lz"
 
 	.global gUnk_0829F06C
 gUnk_0829F06C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F06C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_0D.lz"
 
 	.global gUnk_0829F1A8
 gUnk_0829F1A8:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F1A8.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_0E.lz"
 
 	.global gUnk_0829F2F8
 gUnk_0829F2F8:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F2F8.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_0F.lz"
 
 	.global gUnk_0829F434
 gUnk_0829F434:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F434.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_10.lz"
 
 	.global gUnk_0829F538
 gUnk_0829F538:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F538.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_11.lz"
 
 	.global gUnk_0829F5DC
 gUnk_0829F5DC:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F5DC.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_12.lz"
 
 	.global gUnk_0829F678
 gUnk_0829F678:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F678.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_13.lz"
 
 	.global gUnk_0829F714
 gUnk_0829F714:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F714.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_14.lz"
 
 	.global gUnk_0829F7B0
 gUnk_0829F7B0:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F7B0.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_15.lz"
 
 	.global gUnk_0829F84C
 gUnk_0829F84C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F84C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_16.lz"
 
 	.global gUnk_0829F8E8
 gUnk_0829F8E8:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F8E8.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_17.lz"
 
 	.global gUnk_0829F9A4
 gUnk_0829F9A4:  @ LZ77
-	.incbin "build/graphics/gUnk_0829F9A4.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_18.lz"
 
 	.global gUnk_0829FA94
 gUnk_0829FA94:  @ LZ77
-	.incbin "build/graphics/gUnk_0829FA94.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_19.lz"
 
 	.global gUnk_0829FB98
 gUnk_0829FB98:  @ LZ77
-	.incbin "build/graphics/gUnk_0829FB98.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_1A.lz"
 
 	.global gUnk_0829FC9C
 gUnk_0829FC9C:  @ LZ77
-	.incbin "build/graphics/gUnk_0829FC9C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg1_1B.lz"
 
 	.global gUnk_0829FDA0
 gUnk_0829FDA0:  @ LZ77
-	.incbin "build/graphics/gUnk_0829FDA0.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_00.lz"
 
 	.global gUnk_082A11B4
 gUnk_082A11B4:  @ LZ77
-	.incbin "build/graphics/gUnk_082A11B4.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_01.lz"
 
 	.global gUnk_082A26E0
 gUnk_082A26E0:  @ LZ77
-	.incbin "build/graphics/gUnk_082A26E0.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_02.lz"
 
 	.global gUnk_082A3C5C
 gUnk_082A3C5C:  @ LZ77
-	.incbin "build/graphics/gUnk_082A3C5C.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_03.lz"
 
 	.global gUnk_082A51E4
 gUnk_082A51E4:  @ LZ77
-	.incbin "build/graphics/gUnk_082A51E4.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_04.lz"
 
 	.global gUnk_082A65D4
 gUnk_082A65D4:  @ LZ77
-	.incbin "build/graphics/gUnk_082A65D4.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_05.lz"
 
 	.global gUnk_082A78E0
 gUnk_082A78E0:  @ LZ77
-	.incbin "build/graphics/gUnk_082A78E0.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_06.lz"
 
 	.global gUnk_082A8C54
 gUnk_082A8C54:  @ LZ77
-	.incbin "build/graphics/gUnk_082A8C54.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_07.lz"
 
 	.global gUnk_082AA140
 gUnk_082AA140:  @ LZ77
-	.incbin "build/graphics/gUnk_082AA140.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_08.lz"
 
 	.global gUnk_082AB4EC
 gUnk_082AB4EC:  @ LZ77
-	.incbin "build/graphics/gUnk_082AB4EC.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_09.lz"
 
 	.global gUnk_082AC89C
 gUnk_082AC89C:  @ LZ77
-	.incbin "build/graphics/gUnk_082AC89C.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_0A.lz"
 
 	.global gUnk_082ADBB8
 gUnk_082ADBB8:  @ LZ77
-	.incbin "build/graphics/gUnk_082ADBB8.lz"
+	.incbin "build/graphics/efx/ImgArray_AuraBg3_0B.lz"
 
 	.global Pal_AuraBg3
 Pal_AuraBg3:
-	.incbin "baserom.gba", 0x2aef60, 0x20
+	.incbin "graphics/Pal_AuraBg3.gbapal"
 
 	.global gUnk_082AEF80
 gUnk_082AEF80:  @ LZ77
-	.incbin "build/graphics/gUnk_082AEF80.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_00.lz"
 
 	.global gUnk_082AF1F8
 gUnk_082AF1F8:  @ LZ77
-	.incbin "build/graphics/gUnk_082AF1F8.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_01.lz"
 
 	.global gUnk_082AF470
 gUnk_082AF470:  @ LZ77
-	.incbin "build/graphics/gUnk_082AF470.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_02.lz"
 
 	.global gUnk_082AF6E8
 gUnk_082AF6E8:  @ LZ77
-	.incbin "build/graphics/gUnk_082AF6E8.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_03.lz"
 
 	.global gUnk_082AF960
 gUnk_082AF960:  @ LZ77
-	.incbin "build/graphics/gUnk_082AF960.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_04.lz"
 
 	.global gUnk_082AFBD0
 gUnk_082AFBD0:  @ LZ77
-	.incbin "build/graphics/gUnk_082AFBD0.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_05.lz"
 
 	.global gUnk_082AFE2C
 gUnk_082AFE2C:  @ LZ77
-	.incbin "build/graphics/gUnk_082AFE2C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_06.lz"
 
 	.global gUnk_082B00A4
 gUnk_082B00A4:  @ LZ77
-	.incbin "build/graphics/gUnk_082B00A4.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_07.lz"
 
 	.global gUnk_082B031C
 gUnk_082B031C:  @ LZ77
-	.incbin "build/graphics/gUnk_082B031C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_08.lz"
 
 	.global gUnk_082B0594
 gUnk_082B0594:  @ LZ77
-	.incbin "build/graphics/gUnk_082B0594.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_09.lz"
 
 	.global gUnk_082B080C
 gUnk_082B080C:  @ LZ77
-	.incbin "build/graphics/gUnk_082B080C.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_0A.lz"
 
 	.global gUnk_082B0A84
 gUnk_082B0A84:  @ LZ77
-	.incbin "build/graphics/gUnk_082B0A84.lz"
+	.incbin "build/graphics/efx/TsaArray_AuraBg3_0B.lz"
 
 	.global Img_LuceBG2
 Img_LuceBG2:  @ LZ77
@@ -359,7 +361,7 @@ Img_LuceBG2:  @ LZ77
 
 	.global Pal_LuceBG2
 Pal_LuceBG2:
-	.incbin "baserom.gba", 0x2b125c, 0x20
+	.incbin "graphics/Pal_LuceBG2.gbapal"
 
 	.global Tsa_LuceBG2
 Tsa_LuceBG2:  @ LZ77
@@ -367,51 +369,51 @@ Tsa_LuceBG2:  @ LZ77
 
 	.global gUnk_082B13E0
 gUnk_082B13E0:  @ LZ77
-	.incbin "build/graphics/gUnk_082B13E0.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_00.lz"
 
 	.global gUnk_082B1480
 gUnk_082B1480:  @ LZ77
-	.incbin "build/graphics/gUnk_082B1480.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_01.lz"
 
 	.global gUnk_082B152C
 gUnk_082B152C:  @ LZ77
-	.incbin "build/graphics/gUnk_082B152C.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_02.lz"
 
 	.global gUnk_082B15D0
 gUnk_082B15D0:  @ LZ77
-	.incbin "build/graphics/gUnk_082B15D0.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_03.lz"
 
 	.global gUnk_082B167C
 gUnk_082B167C:  @ LZ77
-	.incbin "build/graphics/gUnk_082B167C.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_04.lz"
 
 	.global gUnk_082B1730
 gUnk_082B1730:  @ LZ77
-	.incbin "build/graphics/gUnk_082B1730.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_05.lz"
 
 	.global gUnk_082B17E8
 gUnk_082B17E8:  @ LZ77
-	.incbin "build/graphics/gUnk_082B17E8.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_06.lz"
 
 	.global gUnk_082B1894
 gUnk_082B1894:  @ LZ77
-	.incbin "build/graphics/gUnk_082B1894.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_07.lz"
 
 	.global gUnk_082B193C
 gUnk_082B193C:  @ LZ77
-	.incbin "build/graphics/gUnk_082B193C.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_08.lz"
 
 	.global gUnk_082B19E4
 gUnk_082B19E4:  @ LZ77
-	.incbin "build/graphics/gUnk_082B19E4.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_09.lz"
 
 	.global gUnk_082B1A84
 gUnk_082B1A84:  @ LZ77
-	.incbin "build/graphics/gUnk_082B1A84.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_0A.lz"
 
 	.global gUnk_082B1B20
 gUnk_082B1B20:  @ LZ77
-	.incbin "build/graphics/gUnk_082B1B20.lz"
+	.incbin "build/graphics/efx/TsaArray_LuceBG_0B.lz"
 
 	.global Img_LuceBGCOL
 Img_LuceBGCOL:  @ LZ77
@@ -419,7 +421,7 @@ Img_LuceBGCOL:  @ LZ77
 
 	.global Pal_LuceBGCOL
 Pal_LuceBGCOL:
-	.incbin "baserom.gba", 0x2b3590, 0x20
+	.incbin "graphics/Pal_LuceBGCOL.gbapal"
 
 	.global gUnk_082B35B0
 gUnk_082B35B0:
@@ -435,7 +437,7 @@ Img_LuceOBJ:  @ LZ77
 
 	.global Pal_LuceOBJ
 Pal_LuceOBJ:
-	.incbin "baserom.gba", 0x2b3d5c, 0x20
+	.incbin "graphics/Pal_LuceOBJ.gbapal"
 
 	.global Pal_EfxChillEffectBG
 Pal_EfxChillEffectBG:
@@ -443,15 +445,15 @@ Pal_EfxChillEffectBG:
 
 	.global gUnk_082B3E3C
 gUnk_082B3E3C:  @ LZ77
-	.incbin "build/graphics/gUnk_082B3E3C.lz"
+	.incbin "build/graphics/efx/TsaLut_EfxChillEffectBG_00.lz"
 
 	.global gUnk_082B4208
 gUnk_082B4208:  @ LZ77
-	.incbin "build/graphics/gUnk_082B4208.lz"
+	.incbin "build/graphics/efx/TsaLut_EfxChillEffectBG_01.lz"
 
 	.global gUnk_082B4664
 gUnk_082B4664:  @ LZ77
-	.incbin "build/graphics/gUnk_082B4664.lz"
+	.incbin "build/graphics/efx/TsaLut_EfxChillEffectBG_02.lz"
 
 	.global Tsa_EfxDrsmmoyaBgRight1
 Tsa_EfxDrsmmoyaBgRight1:  @ LZ77
@@ -528,83 +530,83 @@ Tsa_EfxDrsmmoyaBgLeft13:  @ LZ77
 
 	.global gUnk_082BAA3C
 gUnk_082BAA3C:  @ LZ77
-	.incbin "build/graphics/gUnk_082BAA3C.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_00.lz"
 
 	.global gUnk_082BC034
 gUnk_082BC034:  @ LZ77
-	.incbin "build/graphics/gUnk_082BC034.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_02.lz"
 
 	.global gUnk_082BD270
 gUnk_082BD270:  @ LZ77
-	.incbin "build/graphics/gUnk_082BD270.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_03.lz"
 
 	.global gUnk_082BE988
 gUnk_082BE988:  @ LZ77
-	.incbin "build/graphics/gUnk_082BE988.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_04.lz"
 
 	.global gUnk_082C0320
 gUnk_082C0320:  @ LZ77
-	.incbin "build/graphics/gUnk_082C0320.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_05.lz"
 
 	.global gUnk_082C1A44
 gUnk_082C1A44:  @ LZ77
-	.incbin "build/graphics/gUnk_082C1A44.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_06.lz"
 
 	.global gUnk_082C2E50
 gUnk_082C2E50:  @ LZ77
-	.incbin "build/graphics/gUnk_082C2E50.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_07.lz"
 
 	.global gUnk_082C3CF4
 gUnk_082C3CF4:  @ LZ77
-	.incbin "build/graphics/gUnk_082C3CF4.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_08.lz"
 
 	.global gUnk_082C4B9C
 gUnk_082C4B9C:  @ LZ77
-	.incbin "build/graphics/gUnk_082C4B9C.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBG_09.lz"
 
 	.global Pal_EreshkigalBG
 Pal_EreshkigalBG:
-	.incbin "baserom.gba", 0x2c5c08, 0x20
+	.incbin "graphics/Pal_EreshkigalBG.gbapal"
 
 	.global gUnk_082C5C28
 gUnk_082C5C28:  @ LZ77
-	.incbin "build/graphics/gUnk_082C5C28.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_00.lz"
 
 	.global gUnk_082C5D84
 gUnk_082C5D84:  @ LZ77
-	.incbin "build/graphics/gUnk_082C5D84.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_01.lz"
 
 	.global gUnk_082C60D4
 gUnk_082C60D4:  @ LZ77
-	.incbin "build/graphics/gUnk_082C60D4.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_02.lz"
 
 	.global gUnk_082C6424
 gUnk_082C6424:  @ LZ77
-	.incbin "build/graphics/gUnk_082C6424.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_03.lz"
 
 	.global gUnk_082C6834
 gUnk_082C6834:  @ LZ77
-	.incbin "build/graphics/gUnk_082C6834.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_04.lz"
 
 	.global gUnk_082C6C88
 gUnk_082C6C88:  @ LZ77
-	.incbin "build/graphics/gUnk_082C6C88.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_05.lz"
 
 	.global gUnk_082C70BC
 gUnk_082C70BC:  @ LZ77
-	.incbin "build/graphics/gUnk_082C70BC.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_06.lz"
 
 	.global gUnk_082C74D0
 gUnk_082C74D0:  @ LZ77
-	.incbin "build/graphics/gUnk_082C74D0.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_07.lz"
 
 	.global gUnk_082C7860
 gUnk_082C7860:  @ LZ77
-	.incbin "build/graphics/gUnk_082C7860.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_08.lz"
 
 	.global gUnk_082C7B80
 gUnk_082C7B80:  @ LZ77
-	.incbin "build/graphics/gUnk_082C7B80.lz"
+	.incbin "build/graphics/efx/TsaArray_EreshkigalBG_09.lz"
 
 	.global Img_EfxSpellCastBg
 Img_EfxSpellCastBg:  @ LZ77
@@ -616,48 +618,48 @@ Pal_EfxSpellCastBg:
 
 	.global gUnk_082CD6E4
 gUnk_082CD6E4:  @ LZ77
-	.incbin "build/graphics/gUnk_082CD6E4.lz"
+	.incbin "build/graphics/efx/TsaList_EfxSpellCastBg_00.lz"
 
 	.global gUnk_082CDAF8
 gUnk_082CDAF8:  @ LZ77
-	.incbin "build/graphics/gUnk_082CDAF8.lz"
+	.incbin "build/graphics/efx/TsaList_EfxSpellCastBg_01.lz"
 
 	.global gUnk_082CDF18
 gUnk_082CDF18:  @ LZ77
-	.incbin "build/graphics/gUnk_082CDF18.lz"
+	.incbin "build/graphics/efx/TsaList_EfxSpellCastBg_02.lz"
 
 	.global gUnk_082CE338
 gUnk_082CE338:  @ LZ77
-	.incbin "build/graphics/gUnk_082CE338.lz"
+	.incbin "build/graphics/efx/TsaList_EfxSpellCastBg_03.lz"
 
 	.global gUnk_082CE758
 gUnk_082CE758:  @ LZ77
-	.incbin "build/graphics/gUnk_082CE758.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_00.lz"
 
 	.global gUnk_082CEF68
 gUnk_082CEF68:  @ LZ77
-	.incbin "build/graphics/gUnk_082CEF68.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_01.lz"
 
 	.global gUnk_082CFC74
 gUnk_082CFC74:  @ LZ77
-	.incbin "build/graphics/gUnk_082CFC74.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_02.lz"
 
 	.global gUnk_082D0E94
 gUnk_082D0E94:  @ LZ77
-	.incbin "build/graphics/gUnk_082D0E94.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_03.lz"
 
 	.global gUnk_082D1DA0
 gUnk_082D1DA0:  @ LZ77
-	.incbin "build/graphics/gUnk_082D1DA0.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_04.lz"
 
 	.global gUnk_082D2E88
 gUnk_082D2E88:  @ LZ77
-	.incbin "build/graphics/gUnk_082D2E88.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_05.lz"
 
 	.global gUnk_082D3FA0
 gUnk_082D3FA0:  @ LZ77
-	.incbin "build/graphics/gUnk_082D3FA0.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_06.lz"
 
 	.global gUnk_082D4E90
 gUnk_082D4E90:  @ LZ77
-	.incbin "build/graphics/gUnk_082D4E90.lz"
+	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_07.lz"

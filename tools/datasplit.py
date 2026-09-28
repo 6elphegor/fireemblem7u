@@ -41,10 +41,12 @@ Pointer targets inside placed sections are ignored (source defines them).
 A label that falls inside a newly placed section is reported: define it in
 that section's source.  Files are ~256 KiB, split at label boundaries.
 
-Extracted LZ77 data: every data/graphics.txt entry (tools/gfx.py) inside a
-gap is written as `.incbin "build/graphics/NAME.lz"` (with `, 0, SIZE` for
-the few streams stored cut short) instead of baserom bytes; a label strictly
-inside one is defined as `.set NAME, BLOB + offset`.
+Extracted data: every data/graphics.txt entry (tools/gfx.py) inside a gap
+is written as an incbin of what the build makes of it instead of baserom
+bytes: `.incbin "build/graphics/NAME.lz"` for LZ77 data (with `, 0, SIZE`
+for the few streams stored cut short), or the plain data for `raw` entries
+(`build/graphics/NAME.4bpp` of a PNG, `graphics/NAME.gbapal`); a label
+strictly inside one is defined as `.set NAME, BLOB + offset`.
 
 Pointer words: 4-aligned words that tools/dataptrs.py recognizes as real
 pointers (see its docstring for the rules) are written as
@@ -89,7 +91,7 @@ def walk_rom_files(gfx=None):
     ("section", start, None, end), ("label", addr, name, is_lz77),
     ("ptr", addr, expr, None), ("incbin", addr, size, path).
     gfx is tools/gfx.py's manifest ({addr: Entry}), giving the size of
-    `.incbin "build/graphics/NAME.lz"` lines that have no explicit size."""
+    `.incbin` lines of extracted data that have no explicit size."""
     if gfx is None:
         gfx = gfx_manifest()
     items, addr_of = [], {}
@@ -453,7 +455,7 @@ def write_files(gaps, names, blobs, exprs, gfx):
                     # a stream cut short (overlapping what follows): only SIZE bytes
                     padded = (blobs[a] + 3) & ~3 if a in blobs else g.size
                     size = f", 0, {g.size:#x}" if g.size < padded else ""
-                    out.append(f'\t.incbin "{g.lz.as_posix()}"{size}\n')
+                    out.append(f'\t.incbin "{g.built.as_posix()}"{size}\n')
                     gfx_start, gfx_end, gfx_label = a, a + g.size, names[a][0]
                     assert gfx_end <= e, f"{g.name} crosses the end of its section"
                 pos = max(a, gfx_end)

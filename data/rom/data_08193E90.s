@@ -11,7 +11,7 @@ Gfx_MiscUiGraphics:  @ LZ77
 
 	.global Pal_MiscUiGraphics
 Pal_MiscUiGraphics:
-	.incbin "baserom.gba", 0x19431c, 0x40
+	.incbin "graphics/Pal_MiscUiGraphics.gbapal"
 
 	.global Img_UiCursorHandTop
 Img_UiCursorHandTop:  @ LZ77
@@ -26,7 +26,7 @@ Img_UiCursorHandBottom:  @ LZ77
 	.global Pal_MapSprite
 Pal_WmMapSprite:
 Pal_MapSprite:
-	.incbin "baserom.gba", 0x194594, 0x80
+	.incbin "graphics/unit_icon/map_sprite_pal.gbapal"
 
 	.global Pal_MapSpriteArena
 Pal_MapSpriteArena:
@@ -42,7 +42,7 @@ Pal_MapSpriteSepia:
 
 	.global Pal_Text
 Pal_Text:
-	.incbin "baserom.gba", 0x194674, 0x20
+	.incbin "graphics/Pal_Text.gbapal"
 
 	.global Pal_SubtitleHelpText
 Pal_SubtitleHelpText:
@@ -50,7 +50,7 @@ Pal_SubtitleHelpText:
 
 	.global Pal_HelpBox
 Pal_HelpBox:
-	.incbin "baserom.gba", 0x1946b4, 0x20
+	.incbin "graphics/Pal_HelpBox.gbapal"
 
 	.global gPal_HelpTextBox
 gPal_HelpTextBox:
@@ -148,7 +148,8 @@ gBattleForecast_x2x4Gfx:  @ LZ77
 
 	.global gBattleForecast_x2x4Pal
 gBattleForecast_x2x4Pal:
-	.incbin "baserom.gba", 0x195fb0, 0xd4
+	.incbin "graphics/gBattleForecast_x2x4Pal.gbapal"
+	.incbin "baserom.gba", 0x195fd0, 0xb4
 
 	.global Tsa_UnitInfoWindowHeader
 Tsa_UnitInfoWindowHeader:
@@ -180,11 +181,11 @@ Img_GasTrapHorizontal:  @ LZ77
 
 	.global Pal_GasTrap
 Pal_GasTrap:
-	.incbin "baserom.gba", 0x1973f4, 0x20
+	.incbin "graphics/Pal_GasTrap.gbapal"
 
 	.global Pal_ArrowTrap
 Pal_ArrowTrap:
-	.incbin "baserom.gba", 0x197414, 0x20
+	.incbin "graphics/Pal_ArrowTrap.gbapal"
 
 	.global Img_ArrowTrap
 Img_ArrowTrap:  @ LZ77
@@ -224,7 +225,7 @@ SpriteAnim_PikeTrap:
 
 	.global Pal_PikeTrap
 Pal_PikeTrap:
-	.incbin "baserom.gba", 0x199438, 0x20
+	.incbin "graphics/Pal_PikeTrap.gbapal"
 
 	.global Img_SandstormParticles
 Img_SandstormParticles:  @ LZ77
@@ -240,7 +241,8 @@ Img_FlamesParticles:  @ LZ77
 
 	.global Pal_FlamesParticles
 Pal_FlamesParticles:
-	.incbin "baserom.gba", 0x1995b8, 0x40
+	.incbin "graphics/Pal_FlamesParticles.gbapal"
+	.incbin "baserom.gba", 0x1995d8, 0x20
 
 	.global Img_CloudsWeather
 Img_CloudsWeather:  @ LZ77
@@ -248,7 +250,7 @@ Img_CloudsWeather:  @ LZ77
 
 	.global Pal_CloudsWeather
 Pal_CloudsWeather:
-	.incbin "baserom.gba", 0x199b14, 0x20
+	.incbin "graphics/Pal_CloudsWeather.gbapal"
 
 	.global Img_LightRune
 Img_LightRune:  @ LZ77
@@ -256,7 +258,7 @@ Img_LightRune:  @ LZ77
 
 	.global Pal_LightRune
 Pal_LightRune:
-	.incbin "baserom.gba", 0x19b258, 0x20
+	.incbin "graphics/Pal_LightRune.gbapal"
 
 	.global Tsa_LightRune
 Tsa_LightRune:  @ LZ77
@@ -268,7 +270,7 @@ Img_Unk_0819B558:  @ LZ77
 
 	.global Pal_Unk_0819C56C
 Pal_Unk_0819C56C:
-	.incbin "baserom.gba", 0x19c56c, 0x20
+	.incbin "graphics/Pal_Unk_0819C56C.gbapal"
 
 	.global Tsa_Unk_0819C58C
 Tsa_Unk_0819C58C:  @ LZ77
@@ -280,7 +282,7 @@ Img_EventWarp:  @ LZ77
 
 	.global Pal_EventWarp
 Pal_EventWarp:
-	.incbin "baserom.gba", 0x19cf90, 0x20
+	.incbin "graphics/Pal_EventWarp.gbapal"
 
 	.global Tsa_EventWarp
 Tsa_EventWarp:  @ LZ77
@@ -300,7 +302,8 @@ Img_EventSnowStormfx:  @ LZ77
 
 	.global Pal_EventSnowStormfx
 Pal_EventSnowStormfx:
-	.incbin "baserom.gba", 0x19d6e4, 0x40
+	.incbin "graphics/Pal_EventSnowStormfx.gbapal"
+	.incbin "baserom.gba", 0x19d704, 0x20
 
 	.global Tsa_EventSnowStormfx
 Tsa_EventSnowStormfx:  @ LZ77
@@ -308,7 +311,7 @@ Tsa_EventSnowStormfx:  @ LZ77
 
 	.global Pal_IceBmBgfx_0819D880
 Pal_IceBmBgfx_0819D880:
-	.incbin "baserom.gba", 0x19d880, 0x20
+	.incbin "graphics/Pal_IceBmBgfx_0819D880.gbapal"
 
 	.global Img_IceBmBgfx_0819D8A0
 Img_IceBmBgfx_0819D8A0:  @ LZ77
@@ -416,7 +419,7 @@ Img_FlameBreathfx:  @ LZ77
 
 	.global Pal_FlameBreathfx
 Pal_FlameBreathfx:
-	.incbin "baserom.gba", 0x1a71c8, 0x20
+	.incbin "graphics/Pal_FlameBreathfx.gbapal"
 
 	.global Tsa_FlameBreathfxR
 Tsa_FlameBreathfxR:  @ LZ77
@@ -428,7 +431,7 @@ Tsa_FlameBreathfxL:  @ LZ77
 
 	.global Pal_EventThunderfx
 Pal_EventThunderfx:
-	.incbin "baserom.gba", 0x1a755c, 0x20
+	.incbin "graphics/Pal_EventThunderfx.gbapal"
 
 	.global Img_EventThunderfx1
 Img_EventThunderfx1:  @ LZ77
@@ -496,7 +499,7 @@ Img_NinianDispfx:  @ LZ77
 
 	.global Pal_NinianDispfx
 Pal_NinianDispfx:
-	.incbin "baserom.gba", 0x1aa898, 0x20
+	.incbin "graphics/Pal_NinianDispfx.gbapal"
 
 	.global SpritAnim_NinianDispfx
 SpritAnim_NinianDispfx:
@@ -520,135 +523,135 @@ gUnk_081AB284:
 
 	.global gUnk_081AB504
 gUnk_081AB504:
-	.incbin "baserom.gba", 0x1ab504, 0x20
+	.incbin "graphics/gUnk_081AB504.gbapal"
 
 	.global gUnk_081AB524
 gUnk_081AB524:  @ LZ77
-	.incbin "build/graphics/gUnk_081AB524.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00.lz"
 
 	.global gUnk_081ABCD8
 gUnk_081ABCD8:  @ LZ77
-	.incbin "build/graphics/gUnk_081ABCD8.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_2.lz"
 
 	.global gUnk_081AC3A0
 gUnk_081AC3A0:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC3A0.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_3.lz"
 
 	.global gUnk_081AC3D8
 gUnk_081AC3D8:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC3D8.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_4.lz"
 
 	.global gUnk_081AC420
 gUnk_081AC420:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC420.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_5.lz"
 
 	.global gUnk_081AC494
 gUnk_081AC494:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC494.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_6.lz"
 
 	.global gUnk_081AC52C
 gUnk_081AC52C:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC52C.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_7.lz"
 
 	.global gUnk_081AC5BC
 gUnk_081AC5BC:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC5BC.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_8.lz"
 
 	.global gUnk_081AC63C
 gUnk_081AC63C:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC63C.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_9.lz"
 
 	.global gUnk_081AC6B0
 gUnk_081AC6B0:  @ LZ77
-	.incbin "build/graphics/gUnk_081AC6B0.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_10.lz"
 
 	.global gUnk_081AD0A4
 gUnk_081AD0A4:  @ LZ77
-	.incbin "build/graphics/gUnk_081AD0A4.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_11.lz"
 
 	.global gUnk_081AD9D0
 gUnk_081AD9D0:  @ LZ77
-	.incbin "build/graphics/gUnk_081AD9D0.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_12.lz"
 
 	.global gUnk_081ADA48
 gUnk_081ADA48:  @ LZ77
-	.incbin "build/graphics/gUnk_081ADA48.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_13.lz"
 
 	.global gUnk_081ADAC8
 gUnk_081ADAC8:  @ LZ77
-	.incbin "build/graphics/gUnk_081ADAC8.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_14.lz"
 
 	.global gUnk_081ADB54
 gUnk_081ADB54:  @ LZ77
-	.incbin "build/graphics/gUnk_081ADB54.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_15.lz"
 
 	.global gUnk_081ADBF0
 gUnk_081ADBF0:  @ LZ77
-	.incbin "build/graphics/gUnk_081ADBF0.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_16.lz"
 
 	.global gUnk_081ADCA0
 gUnk_081ADCA0:  @ LZ77
-	.incbin "build/graphics/gUnk_081ADCA0.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_17.lz"
 
 	.global gUnk_081AE774
 gUnk_081AE774:  @ LZ77
-	.incbin "build/graphics/gUnk_081AE774.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_18.lz"
 
 	.global gUnk_081AED08
 gUnk_081AED08:  @ LZ77
-	.incbin "build/graphics/gUnk_081AED08.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_19.lz"
 
 	.global gUnk_081AEDC8
 gUnk_081AEDC8:  @ LZ77
-	.incbin "build/graphics/gUnk_081AEDC8.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_20.lz"
 
 	.global gUnk_081AEE9C
 gUnk_081AEE9C:  @ LZ77
-	.incbin "build/graphics/gUnk_081AEE9C.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_21.lz"
 
 	.global gUnk_081AEF38
 gUnk_081AEF38:  @ LZ77
-	.incbin "build/graphics/gUnk_081AEF38.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_22.lz"
 
 	.global gUnk_081AF934
 gUnk_081AF934:  @ LZ77
-	.incbin "build/graphics/gUnk_081AF934.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_23.lz"
 
 	.global gUnk_081B0044
 gUnk_081B0044:  @ LZ77
-	.incbin "build/graphics/gUnk_081B0044.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_24.lz"
 
 	.global gUnk_081B00FC
 gUnk_081B00FC:  @ LZ77
-	.incbin "build/graphics/gUnk_081B00FC.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_25.lz"
 
 	.global gUnk_081B01C4
 gUnk_081B01C4:  @ LZ77
-	.incbin "build/graphics/gUnk_081B01C4.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_26.lz"
 
 	.global gUnk_081B02A4
 gUnk_081B02A4:  @ LZ77
-	.incbin "build/graphics/gUnk_081B02A4.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_27.lz"
 
 	.global gUnk_081B0B38
 gUnk_081B0B38:  @ LZ77
-	.incbin "build/graphics/gUnk_081B0B38.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_28.lz"
 
 	.global gUnk_081B0EE8
 gUnk_081B0EE8:  @ LZ77
-	.incbin "build/graphics/gUnk_081B0EE8.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_29.lz"
 
 	.global gUnk_081B0F78
 gUnk_081B0F78:  @ LZ77
-	.incbin "build/graphics/gUnk_081B0F78.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_30.lz"
 
 	.global gUnk_081B1038
 gUnk_081B1038:  @ LZ77
-	.incbin "build/graphics/gUnk_081B1038.lz"
+	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_31.lz"
 
 	.global FireRingBgfx_081B10F4
 FireRingBgfx_081B10F4:
-	.incbin "baserom.gba", 0x1b10f4, 0x20
+	.incbin "graphics/FireRingBgfx_081B10F4.gbapal"
 
 	.global FireRingBgfx_081B1114
 FireRingBgfx_081B1114:  @ LZ77
@@ -796,7 +799,7 @@ Img_DragonGateFlame:  @ LZ77
 
 	.global Pal_DragonGateFlame
 Pal_DragonGateFlame:
-	.incbin "baserom.gba", 0x1b9790, 0x20
+	.incbin "graphics/Pal_DragonGateFlame.gbapal"
 
 	.global Tsa_DragonGateFlame
 Tsa_DragonGateFlame:  @ LZ77
@@ -804,7 +807,7 @@ Tsa_DragonGateFlame:  @ LZ77
 
 	.global Pal_QuintessenceFx
 Pal_QuintessenceFx:
-	.incbin "baserom.gba", 0x1b98c8, 0x20
+	.incbin "graphics/Pal_QuintessenceFx.gbapal"
 
 	.global Tsa_QuintessenceFx
 Tsa_QuintessenceFx:  @ LZ77
@@ -820,7 +823,7 @@ Tsa_DanceringFx:  @ LZ77
 
 	.global Pal_DanceringFx
 Pal_DanceringFx:
-	.incbin "baserom.gba", 0x1babfc, 0x20
+	.incbin "graphics/Pal_DanceringFx.gbapal"
 
 	.global Img_SwingSword
 Img_SwingSword:  @ LZ77
@@ -828,7 +831,8 @@ Img_SwingSword:  @ LZ77
 
 	.global Pal_SwingSword
 Pal_SwingSword:
-	.incbin "baserom.gba", 0x1bafd4, 0x200
+	.incbin "graphics/Pal_SwingSword.gbapal"
+	.incbin "baserom.gba", 0x1baff4, 0x1e0
 
 	.global Tsa_SwingSword
 Tsa_SwingSword:  @ LZ77
@@ -840,7 +844,7 @@ Img_DragonGateLight:  @ LZ77
 
 	.global Pal_DragonGateLight
 Pal_DragonGateLight:
-	.incbin "baserom.gba", 0x1bc744, 0x20
+	.incbin "graphics/Pal_DragonGateLight.gbapal"
 
 	.global gUnk_081C0A70
 gUnk_081C0A70:
@@ -865,7 +869,8 @@ Img_DragonGateDragon:  @ LZ77
 
 	.global Pal_DragonGateDragon
 Pal_DragonGateDragon:
-	.incbin "baserom.gba", 0x1bd758, 0x200
+	.incbin "graphics/Pal_DragonGateDragon.gbapal"
+	.incbin "baserom.gba", 0x1bd778, 0x1e0
 
 	.global Tsa_DragonGateDragon
 Tsa_DragonGateDragon:  @ LZ77
@@ -925,7 +930,8 @@ Img_DragonFlameImpact:  @ LZ77
 
 	.global Pal_DragonFlameImpact
 Pal_DragonFlameImpact:
-	.incbin "baserom.gba", 0x1c23c8, 0x200
+	.incbin "graphics/Pal_DragonFlameImpact.gbapal"
+	.incbin "baserom.gba", 0x1c23e8, 0x1e0
 
 	.global Tsa_DragonFlameImpact
 Tsa_DragonFlameImpact:  @ LZ77
@@ -961,7 +967,7 @@ Img_OneYearLater:  @ LZ77
 
 	.global Pal_OneYearLater
 Pal_OneYearLater:
-	.incbin "baserom.gba", 0x1c39a4, 0x20
+	.incbin "graphics/Pal_OneYearLater.gbapal"
 
 	.global Tsa_OneYearLater
 Tsa_OneYearLater:  @ LZ77
@@ -1333,15 +1339,16 @@ Img_LinkArena_FogUnitPlaceholder:  @ LZ77
 
 	.global Pal_LinkArenaMenu
 Pal_LinkArenaMenu:
-	.incbin "baserom.gba", 0x1c7ea4, 0x60
+	.incbin "graphics/Pal_LinkArenaMenu.gbapal"
 
 	.global Pal_TacticianSelObj
 Pal_TacticianSelObj:
-	.incbin "baserom.gba", 0x1c7f04, 0x80
+	.incbin "graphics/Pal_TacticianSelObj.gbapal"
 
 	.global Pal_LinkArenaRankIcons
 Pal_LinkArenaRankIcons:
-	.incbin "baserom.gba", 0x1c7f84, 0x40
+	.incbin "graphics/Pal_LinkArenaRankIcons.gbapal"
+	.incbin "baserom.gba", 0x1c7fa4, 0x20
 
 	.global gUnknown_081C7FC4
 gUnknown_081C7FC4:
@@ -1349,7 +1356,8 @@ gUnknown_081C7FC4:
 
 	.global Pal_08B9A3D0
 Pal_08B9A3D0:
-	.incbin "baserom.gba", 0x1c8004, 0xa0
+	.incbin "graphics/Pal_08B9A3D0.gbapal"
+	.incbin "baserom.gba", 0x1c8024, 0x80
 
 	.global Pal_LinkArenaPlacementRanks
 Pal_LinkArenaPlacementRanks:
@@ -1361,7 +1369,7 @@ gUnknown_085ADDE8:
 
 	.global Pal_LinkArenaActiveBannerFx
 Pal_LinkArenaActiveBannerFx:
-	.incbin "baserom.gba", 0x1c80e4, 0x20
+	.incbin "graphics/Pal_LinkArenaActiveBannerFx.gbapal"
 
 	.global gUnknown_085ADE28
 gUnknown_085ADE28:
@@ -1377,7 +1385,7 @@ Pal_085ADE68:
 
 	.global gUnknown_085ADDA8
 gUnknown_085ADDA8:
-	.incbin "baserom.gba", 0x1c8164, 0x20
+	.incbin "graphics/gUnknown_085ADDA8.gbapal"
 
 	.global Pal_LinkArenaMuralBackground
 Pal_LinkArenaMuralBackground:
@@ -1465,7 +1473,7 @@ Tsa_SioBg:  @ LZ77
 
 	.global Pal_SioBg
 Pal_SioBg:
-	.incbin "baserom.gba", 0x1ce21c, 0x40
+	.incbin "graphics/Pal_SioBg.gbapal"
 
 	.global gUnknown_081CE25C
 gUnknown_081CE25C:  @ LZ77
@@ -1501,7 +1509,7 @@ gUnknown_081D2700:  @ LZ77
 
 	.global gUnknown_081D2B1C
 gUnknown_081D2B1C:
-	.incbin "baserom.gba", 0x1d2b1c, 0x20
+	.incbin "graphics/gUnknown_081D2B1C.gbapal"
 
 	.global gUnknown_081D2B3C
 gUnknown_081D2B3C:  @ LZ77

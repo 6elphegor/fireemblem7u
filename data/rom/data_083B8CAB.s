@@ -8,7 +8,7 @@
 
 	.global gUnk_083B8CAC
 gUnk_083B8CAC:  @ LZ77
-	.incbin "build/graphics/gUnk_083B8CAC.lz"
+	.incbin "build/graphics/unit_icon/move/lord_eliwood.lz"
 
 	.global gUnk_083B9670
 gUnk_083B9670:
@@ -16,7 +16,7 @@ gUnk_083B9670:
 
 	.global gUnk_083B97C8
 gUnk_083B97C8:  @ LZ77
-	.incbin "build/graphics/gUnk_083B97C8.lz"
+	.incbin "build/graphics/unit_icon/move/lord_lyn.lz"
 
 	.global gUnk_083B9F88
 gUnk_083B9F88:
@@ -24,7 +24,7 @@ gUnk_083B9F88:
 
 	.global gUnk_083BA0E0
 gUnk_083BA0E0:  @ LZ77
-	.incbin "build/graphics/gUnk_083BA0E0.lz"
+	.incbin "build/graphics/unit_icon/move/lord_hector.lz"
 
 	.global gUnk_083BA990
 gUnk_083BA990:
@@ -32,7 +32,7 @@ gUnk_083BA990:
 
 	.global gUnk_083BAAE8
 gUnk_083BAAE8:  @ LZ77
-	.incbin "build/graphics/gUnk_083BAAE8.lz"
+	.incbin "build/graphics/unit_icon/move/knight_lord.lz"
 
 	.global gUnk_083BB458
 gUnk_083BB458:
@@ -40,7 +40,7 @@ gUnk_083BB458:
 
 	.global gUnk_083BB5B8
 gUnk_083BB5B8:  @ LZ77
-	.incbin "build/graphics/gUnk_083BB5B8.lz"
+	.incbin "build/graphics/unit_icon/move/blade_lord.lz"
 
 	.global gUnk_083BBE44
 gUnk_083BBE44:
@@ -48,7 +48,7 @@ gUnk_083BBE44:
 
 	.global gUnk_083BBFA4
 gUnk_083BBFA4:  @ LZ77
-	.incbin "build/graphics/gUnk_083BBFA4.lz"
+	.incbin "build/graphics/unit_icon/move/great_lord.lz"
 
 	.global gUnk_083BCA90
 gUnk_083BCA90:
@@ -56,7 +56,7 @@ gUnk_083BCA90:
 
 	.global gUnk_083BCBE8
 gUnk_083BCBE8:  @ LZ77
-	.incbin "build/graphics/gUnk_083BCBE8.lz"
+	.incbin "build/graphics/unit_icon/move/mercenary.lz"
 
 	.global gUnk_083BD38C
 gUnk_083BD38C:
@@ -64,7 +64,7 @@ gUnk_083BD38C:
 
 	.global gUnk_083BD4E4
 gUnk_083BD4E4:  @ LZ77
-	.incbin "build/graphics/gUnk_083BD4E4.lz"
+	.incbin "build/graphics/unit_icon/move/mercenary_f.lz"
 
 	.global gUnk_083BDC4C
 gUnk_083BDC4C:
@@ -72,7 +72,7 @@ gUnk_083BDC4C:
 
 	.global gUnk_083BDDA4
 gUnk_083BDDA4:  @ LZ77
-	.incbin "build/graphics/gUnk_083BDDA4.lz"
+	.incbin "build/graphics/unit_icon/move/hero.lz"
 
 	.global gUnk_083BE700
 gUnk_083BE700:
@@ -80,7 +80,7 @@ gUnk_083BE700:
 
 	.global gUnk_083BE860
 gUnk_083BE860:  @ LZ77
-	.incbin "build/graphics/gUnk_083BE860.lz"
+	.incbin "build/graphics/unit_icon/move/hero_f.lz"
 
 	.global gUnk_083BF1E0
 gUnk_083BF1E0:
@@ -88,7 +88,7 @@ gUnk_083BF1E0:
 
 	.global gUnk_083BF340
 gUnk_083BF340:  @ LZ77
-	.incbin "build/graphics/gUnk_083BF340.lz"
+	.incbin "build/graphics/unit_icon/move/myrmidon.lz"
 
 	.global gUnk_083BFB28
 gUnk_083BFB28:
@@ -96,7 +96,7 @@ gUnk_083BFB28:
 
 	.global gUnk_083BFC80
 gUnk_083BFC80:  @ LZ77
-	.incbin "build/graphics/gUnk_083BFC80.lz"
+	.incbin "build/graphics/unit_icon/move/myrmidon_f.lz"
 
 	.global gUnk_083C04C4
 gUnk_083C04C4:
@@ -104,7 +104,7 @@ gUnk_083C04C4:
 
 	.global gUnk_083C061C
 gUnk_083C061C:  @ LZ77
-	.incbin "build/graphics/gUnk_083C061C.lz"
+	.incbin "build/graphics/unit_icon/move/swordmaster.lz"
 
 	.global gUnk_083C0E68
 gUnk_083C0E68:
@@ -112,7 +112,7 @@ gUnk_083C0E68:
 
 	.global gUnk_083C0FC8
 gUnk_083C0FC8:  @ LZ77
-	.incbin "build/graphics/gUnk_083C0FC8.lz"
+	.incbin "build/graphics/unit_icon/move/swordmaster_f.lz"
 
 	.global gUnk_083C184C
 gUnk_083C184C:
@@ -120,7 +120,7 @@ gUnk_083C184C:
 
 	.global gUnk_083C19AC
 gUnk_083C19AC:  @ LZ77
-	.incbin "build/graphics/gUnk_083C19AC.lz"
+	.incbin "build/graphics/unit_icon/move/fighter.lz"
 
 	.global gUnk_083C21A8
 gUnk_083C21A8:
@@ -128,7 +128,7 @@ gUnk_083C21A8:
 
 	.global gUnk_083C2300
 gUnk_083C2300:  @ LZ77
-	.incbin "build/graphics/gUnk_083C2300.lz"
+	.incbin "build/graphics/unit_icon/move/warrior.lz"
 
 	.global gUnk_083C2D0C
 gUnk_083C2D0C:
@@ -136,7 +136,7 @@ gUnk_083C2D0C:
 
 	.global gUnk_083C2E64
 gUnk_083C2E64:  @ LZ77
-	.incbin "build/graphics/gUnk_083C2E64.lz"
+	.incbin "build/graphics/unit_icon/move/knight.lz"
 
 	.global gUnk_083C3758
 gUnk_083C3758:
@@ -144,7 +144,7 @@ gUnk_083C3758:
 
 	.global gUnk_083C38B0
 gUnk_083C38B0:  @ LZ77
-	.incbin "build/graphics/gUnk_083C38B0.lz"
+	.incbin "build/graphics/unit_icon/move/general.lz"
 
 	.global gUnk_083C4364
 gUnk_083C4364:
@@ -152,7 +152,7 @@ gUnk_083C4364:
 
 	.global gUnk_083C44C4
 gUnk_083C44C4:  @ LZ77
-	.incbin "build/graphics/gUnk_083C44C4.lz"
+	.incbin "build/graphics/unit_icon/move/archer.lz"
 
 	.global gUnk_083C4C88
 gUnk_083C4C88:
@@ -160,7 +160,7 @@ gUnk_083C4C88:
 
 	.global gUnk_083C4DE0
 gUnk_083C4DE0:  @ LZ77
-	.incbin "build/graphics/gUnk_083C4DE0.lz"
+	.incbin "build/graphics/unit_icon/move/archer_f.lz"
 
 	.global gUnk_083C55D4
 gUnk_083C55D4:
@@ -168,7 +168,7 @@ gUnk_083C55D4:
 
 	.global gUnk_083C572C
 gUnk_083C572C:  @ LZ77
-	.incbin "build/graphics/gUnk_083C572C.lz"
+	.incbin "build/graphics/unit_icon/move/sniper.lz"
 
 	.global gUnk_083C5F54
 gUnk_083C5F54:
@@ -176,7 +176,7 @@ gUnk_083C5F54:
 
 	.global gUnk_083C60AC
 gUnk_083C60AC:  @ LZ77
-	.incbin "build/graphics/gUnk_083C60AC.lz"
+	.incbin "build/graphics/unit_icon/move/sniper_f.lz"
 
 	.global gUnk_083C6920
 gUnk_083C6920:
@@ -184,7 +184,7 @@ gUnk_083C6920:
 
 	.global gUnk_083C6A78
 gUnk_083C6A78:  @ LZ77
-	.incbin "build/graphics/gUnk_083C6A78.lz"
+	.incbin "build/graphics/unit_icon/move/monk.lz"
 
 	.global gUnk_083C7164
 gUnk_083C7164:
@@ -192,7 +192,7 @@ gUnk_083C7164:
 
 	.global gUnk_083C72BC
 gUnk_083C72BC:  @ LZ77
-	.incbin "build/graphics/gUnk_083C72BC.lz"
+	.incbin "build/graphics/unit_icon/move/cleric.lz"
 
 	.global gUnk_083C79D4
 gUnk_083C79D4:
@@ -200,7 +200,7 @@ gUnk_083C79D4:
 
 	.global gUnk_083C7B2C
 gUnk_083C7B2C:  @ LZ77
-	.incbin "build/graphics/gUnk_083C7B2C.lz"
+	.incbin "build/graphics/unit_icon/move/bishop.lz"
 
 	.global gUnk_083C8398
 gUnk_083C8398:
@@ -208,7 +208,7 @@ gUnk_083C8398:
 
 	.global gUnk_083C84F8
 gUnk_083C84F8:  @ LZ77
-	.incbin "build/graphics/gUnk_083C84F8.lz"
+	.incbin "build/graphics/unit_icon/move/bishop_f.lz"
 
 	.global gUnk_083C8D4C
 gUnk_083C8D4C:
@@ -216,7 +216,7 @@ gUnk_083C8D4C:
 
 	.global gUnk_083C8EAC
 gUnk_083C8EAC:  @ LZ77
-	.incbin "build/graphics/gUnk_083C8EAC.lz"
+	.incbin "build/graphics/unit_icon/move/mage.lz"
 
 	.global gUnk_083C96EC
 gUnk_083C96EC:
@@ -224,7 +224,7 @@ gUnk_083C96EC:
 
 	.global gUnk_083C9844
 gUnk_083C9844:  @ LZ77
-	.incbin "build/graphics/gUnk_083C9844.lz"
+	.incbin "build/graphics/unit_icon/move/mage_f.lz"
 
 	.global gUnk_083CA110
 gUnk_083CA110:
@@ -232,7 +232,7 @@ gUnk_083CA110:
 
 	.global gUnk_083CA268
 gUnk_083CA268:  @ LZ77
-	.incbin "build/graphics/gUnk_083CA268.lz"
+	.incbin "build/graphics/unit_icon/move/sage.lz"
 
 	.global gUnk_083CABDC
 gUnk_083CABDC:
@@ -240,7 +240,7 @@ gUnk_083CABDC:
 
 	.global gUnk_083CAD34
 gUnk_083CAD34:  @ LZ77
-	.incbin "build/graphics/gUnk_083CAD34.lz"
+	.incbin "build/graphics/unit_icon/move/sage_f.lz"
 
 	.global gUnk_083CB718
 gUnk_083CB718:
@@ -248,7 +248,7 @@ gUnk_083CB718:
 
 	.global gUnk_083CB870
 gUnk_083CB870:  @ LZ77
-	.incbin "build/graphics/gUnk_083CB870.lz"
+	.incbin "build/graphics/unit_icon/move/shaman.lz"
 
 	.global gUnk_083CC054
 gUnk_083CC054:
@@ -256,7 +256,7 @@ gUnk_083CC054:
 
 	.global gUnk_083CC1AC
 gUnk_083CC1AC:  @ LZ77
-	.incbin "build/graphics/gUnk_083CC1AC.lz"
+	.incbin "build/graphics/unit_icon/move/shaman_f.lz"
 
 	.global gUnk_083CC9E0
 gUnk_083CC9E0:
@@ -264,7 +264,7 @@ gUnk_083CC9E0:
 
 	.global gUnk_083CCB38
 gUnk_083CCB38:  @ LZ77
-	.incbin "build/graphics/gUnk_083CCB38.lz"
+	.incbin "build/graphics/unit_icon/move/druid.lz"
 
 	.global gUnk_083CD41C
 gUnk_083CD41C:
@@ -276,7 +276,7 @@ gUnk_083CD51C:
 
 	.global gUnk_083CD574
 gUnk_083CD574:  @ LZ77
-	.incbin "build/graphics/gUnk_083CD574.lz"
+	.incbin "build/graphics/unit_icon/move/druid_f.lz"
 
 	.global gUnk_083CDE30
 gUnk_083CDE30:
@@ -284,7 +284,7 @@ gUnk_083CDE30:
 
 	.global gUnk_083CDF88
 gUnk_083CDF88:  @ LZ77
-	.incbin "build/graphics/gUnk_083CDF88.lz"
+	.incbin "build/graphics/unit_icon/move/cavalier.lz"
 
 	.global gUnk_083CE8D0
 gUnk_083CE8D0:
@@ -292,7 +292,7 @@ gUnk_083CE8D0:
 
 	.global gUnk_083CEA28
 gUnk_083CEA28:  @ LZ77
-	.incbin "build/graphics/gUnk_083CEA28.lz"
+	.incbin "build/graphics/unit_icon/move/paladin.lz"
 
 	.global gUnk_083CF3CC
 gUnk_083CF3CC:
@@ -300,7 +300,7 @@ gUnk_083CF3CC:
 
 	.global gUnk_083CF524
 gUnk_083CF524:  @ LZ77
-	.incbin "build/graphics/gUnk_083CF524.lz"
+	.incbin "build/graphics/unit_icon/move/troubadour.lz"
 
 	.global gUnk_083CFEC8
 gUnk_083CFEC8:
@@ -308,7 +308,7 @@ gUnk_083CFEC8:
 
 	.global gUnk_083D0020
 gUnk_083D0020:  @ LZ77
-	.incbin "build/graphics/gUnk_083D0020.lz"
+	.incbin "build/graphics/unit_icon/move/valkyrie.lz"
 
 	.global gUnk_083D0A28
 gUnk_083D0A28:
@@ -316,7 +316,7 @@ gUnk_083D0A28:
 
 	.global gUnk_083D0B80
 gUnk_083D0B80:  @ LZ77
-	.incbin "build/graphics/gUnk_083D0B80.lz"
+	.incbin "build/graphics/unit_icon/move/nomad.lz"
 
 	.global gUnk_083D1494
 gUnk_083D1494:
@@ -324,7 +324,7 @@ gUnk_083D1494:
 
 	.global gUnk_083D15EC
 gUnk_083D15EC:  @ LZ77
-	.incbin "build/graphics/gUnk_083D15EC.lz"
+	.incbin "build/graphics/unit_icon/move/nomad_f.lz"
 
 	.global gUnk_083D1F88
 gUnk_083D1F88:
@@ -332,7 +332,7 @@ gUnk_083D1F88:
 
 	.global gUnk_083D20E0
 gUnk_083D20E0:  @ LZ77
-	.incbin "build/graphics/gUnk_083D20E0.lz"
+	.incbin "build/graphics/unit_icon/move/nomad_trooper.lz"
 
 	.global gUnk_083D2A68
 gUnk_083D2A68:
@@ -340,7 +340,7 @@ gUnk_083D2A68:
 
 	.global gUnk_083D2BC0
 gUnk_083D2BC0:  @ LZ77
-	.incbin "build/graphics/gUnk_083D2BC0.lz"
+	.incbin "build/graphics/unit_icon/move/nomad_trooper_f.lz"
 
 	.global gUnk_083D35DC
 gUnk_083D35DC:
@@ -348,7 +348,7 @@ gUnk_083D35DC:
 
 	.global gUnk_083D3734
 gUnk_083D3734:  @ LZ77
-	.incbin "build/graphics/gUnk_083D3734.lz"
+	.incbin "build/graphics/unit_icon/move/pegasus_knight.lz"
 
 	.global gUnk_083D4454
 gUnk_083D4454:
@@ -356,7 +356,7 @@ gUnk_083D4454:
 
 	.global gUnk_083D45AC
 gUnk_083D45AC:  @ LZ77
-	.incbin "build/graphics/gUnk_083D45AC.lz"
+	.incbin "build/graphics/unit_icon/move/falcoknight.lz"
 
 	.global gUnk_083D5340
 gUnk_083D5340:
@@ -364,7 +364,7 @@ gUnk_083D5340:
 
 	.global gUnk_083D5498
 gUnk_083D5498:  @ LZ77
-	.incbin "build/graphics/gUnk_083D5498.lz"
+	.incbin "build/graphics/unit_icon/move/wyvern_rider.lz"
 
 	.global gUnk_083D61E8
 gUnk_083D61E8:
@@ -372,7 +372,7 @@ gUnk_083D61E8:
 
 	.global gUnk_083D6348
 gUnk_083D6348:  @ LZ77
-	.incbin "build/graphics/gUnk_083D6348.lz"
+	.incbin "build/graphics/unit_icon/move/wyvern_lord.lz"
 
 	.global gUnk_083D7154
 gUnk_083D7154:
@@ -380,7 +380,7 @@ gUnk_083D7154:
 
 	.global gUnk_083D72BC
 gUnk_083D72BC:  @ LZ77
-	.incbin "build/graphics/gUnk_083D72BC.lz"
+	.incbin "build/graphics/unit_icon/move/soldier.lz"
 
 	.global gUnk_083D7A68
 gUnk_083D7A68:
@@ -388,7 +388,7 @@ gUnk_083D7A68:
 
 	.global gUnk_083D7BC0
 gUnk_083D7BC0:  @ LZ77
-	.incbin "build/graphics/gUnk_083D7BC0.lz"
+	.incbin "build/graphics/unit_icon/move/brigand.lz"
 
 	.global gUnk_083D83F0
 gUnk_083D83F0:
@@ -396,7 +396,7 @@ gUnk_083D83F0:
 
 	.global gUnk_083D8548
 gUnk_083D8548:  @ LZ77
-	.incbin "build/graphics/gUnk_083D8548.lz"
+	.incbin "build/graphics/unit_icon/move/pirate.lz"
 
 	.global gUnk_083D8E78
 gUnk_083D8E78:
@@ -404,7 +404,7 @@ gUnk_083D8E78:
 
 	.global gUnk_083D8FD0
 gUnk_083D8FD0:  @ LZ77
-	.incbin "build/graphics/gUnk_083D8FD0.lz"
+	.incbin "build/graphics/unit_icon/move/berserker.lz"
 
 	.global gUnk_083D98D0
 gUnk_083D98D0:
@@ -412,7 +412,7 @@ gUnk_083D98D0:
 
 	.global gUnk_083D9A28
 gUnk_083D9A28:  @ LZ77
-	.incbin "build/graphics/gUnk_083D9A28.lz"
+	.incbin "build/graphics/unit_icon/move/thief.lz"
 
 	.global gUnk_083DA2A4
 gUnk_083DA2A4:
@@ -420,7 +420,7 @@ gUnk_083DA2A4:
 
 	.global gUnk_083DA3FC
 gUnk_083DA3FC:  @ LZ77
-	.incbin "build/graphics/gUnk_083DA3FC.lz"
+	.incbin "build/graphics/unit_icon/move/thief_f.lz"
 
 	.global gUnk_083DABFC
 gUnk_083DABFC:
@@ -428,7 +428,7 @@ gUnk_083DABFC:
 
 	.global gUnk_083DAD54
 gUnk_083DAD54:  @ LZ77
-	.incbin "build/graphics/gUnk_083DAD54.lz"
+	.incbin "build/graphics/unit_icon/move/assassin.lz"
 
 	.global gUnk_083DB4FC
 gUnk_083DB4FC:
@@ -436,7 +436,7 @@ gUnk_083DB4FC:
 
 	.global gUnk_083DB654
 gUnk_083DB654:  @ LZ77
-	.incbin "build/graphics/gUnk_083DB654.lz"
+	.incbin "build/graphics/unit_icon/move/civilian.lz"
 
 	.global gUnk_083DBA34
 gUnk_083DBA34:
@@ -444,7 +444,7 @@ gUnk_083DBA34:
 
 	.global gUnk_083DBB8C
 gUnk_083DBB8C:  @ LZ77
-	.incbin "build/graphics/gUnk_083DBB8C.lz"
+	.incbin "build/graphics/unit_icon/move/dancer.lz"
 
 	.global gUnk_083DC578
 gUnk_083DC578:
@@ -452,7 +452,7 @@ gUnk_083DC578:
 
 	.global gUnk_083DC770
 gUnk_083DC770:  @ LZ77
-	.incbin "build/graphics/gUnk_083DC770.lz"
+	.incbin "build/graphics/unit_icon/move/bard.lz"
 
 	.global gUnk_083DCF00
 gUnk_083DCF00:
@@ -460,7 +460,7 @@ gUnk_083DCF00:
 
 	.global gUnk_083DD090
 gUnk_083DD090:  @ LZ77
-	.incbin "build/graphics/gUnk_083DD090.lz"
+	.incbin "build/graphics/unit_icon/move/archsage.lz"
 
 	.global gUnk_083DD7F8
 gUnk_083DD7F8:
@@ -468,7 +468,7 @@ gUnk_083DD7F8:
 
 	.global gUnk_083DD950
 gUnk_083DD950:  @ LZ77
-	.incbin "build/graphics/gUnk_083DD950.lz"
+	.incbin "build/graphics/unit_icon/move/magic_seal.lz"
 
 	.global gUnk_083DDFA0
 gUnk_083DDFA0:
@@ -476,7 +476,7 @@ gUnk_083DDFA0:
 
 	.global gUnk_083DE0F8
 gUnk_083DE0F8:  @ LZ77
-	.incbin "build/graphics/gUnk_083DE0F8.lz"
+	.incbin "build/graphics/unit_icon/move/transporter_tent.lz"
 
 	.global gUnk_083DE518
 gUnk_083DE518:
@@ -484,7 +484,7 @@ gUnk_083DE518:
 
 	.global gUnk_083DE670
 gUnk_083DE670:  @ LZ77
-	.incbin "build/graphics/gUnk_083DE670.lz"
+	.incbin "build/graphics/unit_icon/move/dark_druid.lz"
 
 	.global gUnk_083DEF18
 gUnk_083DEF18:
@@ -492,7 +492,7 @@ gUnk_083DEF18:
 
 	.global gUnk_083DF070
 gUnk_083DF070:  @ LZ77
-	.incbin "build/graphics/gUnk_083DF070.lz"
+	.incbin "build/graphics/unit_icon/move/fire_dragon.lz"
 
 	.global gUnk_083DFC14
 gUnk_083DFC14:
@@ -500,7 +500,7 @@ gUnk_083DFC14:
 
 	.global gUnk_083DFD6C
 gUnk_083DFD6C:  @ LZ77
-	.incbin "build/graphics/gUnk_083DFD6C.lz"
+	.incbin "build/graphics/unit_icon/move/civilian_47.lz"
 
 	.global gUnk_083E0450
 gUnk_083E0450:
@@ -508,7 +508,7 @@ gUnk_083E0450:
 
 	.global gUnk_083E05A8
 gUnk_083E05A8:  @ LZ77
-	.incbin "build/graphics/gUnk_083E05A8.lz"
+	.incbin "build/graphics/unit_icon/move/civilian_48.lz"
 
 	.global gUnk_083E0C9C
 gUnk_083E0C9C:
@@ -516,7 +516,7 @@ gUnk_083E0C9C:
 
 	.global gUnk_083E0DF4
 gUnk_083E0DF4:  @ LZ77
-	.incbin "build/graphics/gUnk_083E0DF4.lz"
+	.incbin "build/graphics/unit_icon/move/child_49.lz"
 
 	.global gUnk_083E11D8
 gUnk_083E11D8:
@@ -524,7 +524,7 @@ gUnk_083E11D8:
 
 	.global gUnk_083E1330
 gUnk_083E1330:  @ LZ77
-	.incbin "build/graphics/gUnk_083E1330.lz"
+	.incbin "build/graphics/unit_icon/move/bramimond.lz"
 
 	.global gUnk_083E1A64
 gUnk_083E1A64:
@@ -532,7 +532,7 @@ gUnk_083E1A64:
 
 	.global gUnk_083E1BBC
 gUnk_083E1BBC:  @ LZ77
-	.incbin "build/graphics/gUnk_083E1BBC.lz"
+	.incbin "build/graphics/unit_icon/move/peer_4b.lz"
 
 	.global gUnk_083E2438
 gUnk_083E2438:
@@ -540,7 +540,7 @@ gUnk_083E2438:
 
 	.global gUnk_083E2590
 gUnk_083E2590:  @ LZ77
-	.incbin "build/graphics/gUnk_083E2590.lz"
+	.incbin "build/graphics/unit_icon/move/peer_4c.lz"
 
 	.global gUnk_083E2AE4
 gUnk_083E2AE4:
@@ -548,7 +548,7 @@ gUnk_083E2AE4:
 
 	.global gUnk_083E2C3C
 gUnk_083E2C3C:  @ LZ77
-	.incbin "build/graphics/gUnk_083E2C3C.lz"
+	.incbin "build/graphics/unit_icon/move/prince_4d.lz"
 
 	.global gUnk_083E3248
 gUnk_083E3248:
@@ -556,7 +556,7 @@ gUnk_083E3248:
 
 	.global gUnk_083E33A0
 gUnk_083E33A0:  @ LZ77
-	.incbin "build/graphics/gUnk_083E33A0.lz"
+	.incbin "build/graphics/unit_icon/move/queen.lz"
 
 	.global gUnk_083E3880
 gUnk_083E3880:
@@ -564,7 +564,7 @@ gUnk_083E3880:
 
 	.global gUnk_083E39D8
 gUnk_083E39D8:  @ LZ77
-	.incbin "build/graphics/gUnk_083E39D8.lz"
+	.incbin "build/graphics/unit_icon/move/civilian_4f.lz"
 
 	.global gUnk_083E3DC8
 gUnk_083E3DC8:
@@ -572,7 +572,7 @@ gUnk_083E3DC8:
 
 	.global gUnk_083E3F20
 gUnk_083E3F20:  @ LZ77
-	.incbin "build/graphics/gUnk_083E3F20.lz"
+	.incbin "build/graphics/unit_icon/move/prince_51.lz"
 
 	.global gUnk_083E4410
 gUnk_083E4410:
@@ -580,7 +580,7 @@ gUnk_083E4410:
 
 	.global gUnk_083E4568
 gUnk_083E4568:  @ LZ77
-	.incbin "build/graphics/gUnk_083E4568.lz"
+	.incbin "build/graphics/unit_icon/move/prince_52.lz"
 
 	.global gUnk_083E4954
 gUnk_083E4954:
@@ -588,7 +588,7 @@ gUnk_083E4954:
 
 	.global gUnk_083E4AAC
 gUnk_083E4AAC:  @ LZ77
-	.incbin "build/graphics/gUnk_083E4AAC.lz"
+	.incbin "build/graphics/unit_icon/move/prince_53.lz"
 
 	.global gUnk_083E4EBC
 gUnk_083E4EBC:
@@ -596,7 +596,7 @@ gUnk_083E4EBC:
 
 	.global gUnk_083E5014
 gUnk_083E5014:  @ LZ77
-	.incbin "build/graphics/gUnk_083E5014.lz"
+	.incbin "build/graphics/unit_icon/move/child_54.lz"
 
 	.global gUnk_083E54BC
 gUnk_083E54BC:
@@ -604,7 +604,7 @@ gUnk_083E54BC:
 
 	.global gUnk_083E5614
 gUnk_083E5614:  @ LZ77
-	.incbin "build/graphics/gUnk_083E5614.lz"
+	.incbin "build/graphics/unit_icon/move/fire_dragon_55.lz"
 
 	.global gUnk_083E5CD4
 gUnk_083E5CD4:
@@ -612,7 +612,7 @@ gUnk_083E5CD4:
 
 	.global gUnk_083E5E2C
 gUnk_083E5E2C:  @ LZ77
-	.incbin "build/graphics/gUnk_083E5E2C.lz"
+	.incbin "build/graphics/unit_icon/move/warrior_56.lz"
 
 	.global gUnk_083E623C
 gUnk_083E623C:
@@ -620,7 +620,7 @@ gUnk_083E623C:
 
 	.global gUnk_083E6394
 gUnk_083E6394:  @ LZ77
-	.incbin "build/graphics/gUnk_083E6394.lz"
+	.incbin "build/graphics/unit_icon/move/child_57.lz"
 
 	.global gUnk_083E69B8
 gUnk_083E69B8:
@@ -628,7 +628,7 @@ gUnk_083E69B8:
 
 	.global gUnk_083E6B10
 gUnk_083E6B10:  @ LZ77
-	.incbin "build/graphics/gUnk_083E6B10.lz"
+	.incbin "build/graphics/unit_icon/move/child_58.lz"
 
 	.global gUnk_083E716C
 gUnk_083E716C:
@@ -636,7 +636,7 @@ gUnk_083E716C:
 
 	.global gUnk_083E72C4
 gUnk_083E72C4:  @ LZ77
-	.incbin "build/graphics/gUnk_083E72C4.lz"
+	.incbin "build/graphics/unit_icon/move/transporter_wagon.lz"
 
 	.global gUnk_083E7CEC
 gUnk_083E7CEC:
@@ -644,7 +644,7 @@ gUnk_083E7CEC:
 
 	.global gUnk_083E7E44
 gUnk_083E7E44:  @ LZ77
-	.incbin "build/graphics/gUnk_083E7E44.lz"
+	.incbin "build/graphics/unit_icon/move/5b.lz"
 
 	.global gUnk_083E84CC
 gUnk_083E84CC:
@@ -652,7 +652,7 @@ gUnk_083E84CC:
 
 	.global gUnk_083E8624
 gUnk_083E8624:  @ LZ77
-	.incbin "build/graphics/gUnk_083E8624.lz"
+	.incbin "build/graphics/unit_icon/move/5c.lz"
 
 	.global gUnk_083E8CAC
 gUnk_083E8CAC:
@@ -660,7 +660,7 @@ gUnk_083E8CAC:
 
 	.global gUnk_083E8E04
 gUnk_083E8E04:  @ LZ77
-	.incbin "build/graphics/gUnk_083E8E04.lz"
+	.incbin "build/graphics/unit_icon/move/5d.lz"
 
 	.global gUnk_083E948C
 gUnk_083E948C:
@@ -668,7 +668,7 @@ gUnk_083E948C:
 
 	.global gUnk_083E95E4
 gUnk_083E95E4:  @ LZ77
-	.incbin "build/graphics/gUnk_083E95E4.lz"
+	.incbin "build/graphics/unit_icon/move/5e.lz"
 
 	.global gUnk_083E9B38
 gUnk_083E9B38:
@@ -676,7 +676,7 @@ gUnk_083E9B38:
 
 	.global gUnk_083E9CA0
 gUnk_083E9CA0:  @ LZ77
-	.incbin "build/graphics/gUnk_083E9CA0.lz"
+	.incbin "build/graphics/unit_icon/move/5f.lz"
 
 	.global gUnk_083EA18C
 gUnk_083EA18C:
@@ -684,7 +684,7 @@ gUnk_083EA18C:
 
 	.global gUnk_083EA2E4
 gUnk_083EA2E4:  @ LZ77
-	.incbin "build/graphics/gUnk_083EA2E4.lz"
+	.incbin "build/graphics/unit_icon/move/60.lz"
 
 	.global gUnk_083EA880
 gUnk_083EA880:
@@ -692,7 +692,7 @@ gUnk_083EA880:
 
 	.global gUnk_083EA9E8
 gUnk_083EA9E8:  @ LZ77
-	.incbin "build/graphics/gUnk_083EA9E8.lz"
+	.incbin "build/graphics/unit_icon/move/61.lz"
 
 	.global gUnk_083EB02C
 gUnk_083EB02C:
@@ -700,7 +700,7 @@ gUnk_083EB02C:
 
 	.global gUnk_083EB194
 gUnk_083EB194:  @ LZ77
-	.incbin "build/graphics/gUnk_083EB194.lz"
+	.incbin "build/graphics/unit_icon/move/62.lz"
 
 	.global gUnk_083EB800
 gUnk_083EB800:
@@ -708,7 +708,7 @@ gUnk_083EB800:
 
 	.global gUnk_083EB968
 gUnk_083EB968:  @ LZ77
-	.incbin "build/graphics/gUnk_083EB968.lz"
+	.incbin "build/graphics/unit_icon/move/63.lz"
 
 	.global gUnk_083EBCFC
 gUnk_083EBCFC:
@@ -752,7 +752,7 @@ Tsa_ArenaBuildingFront:
 
 	.global Pal_ArenaBuildingFront
 Pal_ArenaBuildingFront:
-	.incbin "baserom.gba", 0x3f2acc, 0x80
+	.incbin "graphics/Pal_ArenaBuildingFront.gbapal"
 
 	.global Img_ManimMiss
 Img_ManimMiss:  @ LZ77
@@ -782,7 +782,8 @@ Img_ManimLevelUpText:  @ LZ77
 	.global Pal_ManimLevelUp
 Pal_ManimLevelUpStatGain:
 Pal_ManimLevelUp:
-	.incbin "baserom.gba", 0x3f3450, 0x60
+	.incbin "graphics/Pal_ManimLevelUpStatGain.gbapal"
+	.incbin "baserom.gba", 0x3f3470, 0x40
 
 	.global Img_ManimLevelUpStatGain
 Img_ManimLevelUpStatGain:  @ LZ77
@@ -822,15 +823,15 @@ Pal_ManimInfoWindowPurple:
 
 	.global gUnk_083F424C
 gUnk_083F424C:  @ LZ77
-	.incbin "build/graphics/gUnk_083F424C.lz"
+	.incbin "build/graphics/misc/Tsa_ManimInfoWindowLut_00.lz"
 
 	.global gUnk_083F4278
 gUnk_083F4278:  @ LZ77
-	.incbin "build/graphics/gUnk_083F4278.lz"
+	.incbin "build/graphics/misc/Tsa_ManimInfoWindowLut_00_2.lz"
 
 	.global gUnk_083F42A4
 gUnk_083F42A4:  @ LZ77
-	.incbin "build/graphics/gUnk_083F42A4.lz"
+	.incbin "build/graphics/misc/Tsa_ManimInfoWindowLut_01.lz"
 
 	.global Tsa_ShopWindows
 Tsa_ShopWindows:  @ LZ77
@@ -847,7 +848,8 @@ Img_WallBreakAnim:  @ LZ77
 
 	.global Pal_WallBreakAnim
 Pal_WallBreakAnim:
-	.incbin "baserom.gba", 0x3f46f0, 0x40
+	.incbin "graphics/Pal_WallBreakAnim.gbapal"
+	.incbin "baserom.gba", 0x3f4710, 0x20
 
 	.global Img_MuFogBump
 Img_MuFogBump:  @ LZ77
@@ -859,7 +861,7 @@ Img_ManimPoison:  @ LZ77
 
 	.global Pal_ManimPoison
 Pal_ManimPoison:
-	.incbin "baserom.gba", 0x3f4be8, 0x20
+	.incbin "graphics/Pal_ManimPoison.gbapal"
 
 	.global Img_ManimWarpFlashy
 	.global Img_LinkArenaWarpFx
@@ -871,7 +873,7 @@ Img_LinkArenaWarpFx:  @ LZ77
 	.global Pal_LinkArenaWarpFx
 Pal_ManimWarpFlashy:
 Pal_LinkArenaWarpFx:
-	.incbin "baserom.gba", 0x3f4e68, 0x20
+	.incbin "graphics/Pal_ManimWarpFlashy.gbapal"
 
 	.global Img_ManimWarpFlashyFrames
 Img_ManimWarpFlashyFrames:
@@ -883,7 +885,8 @@ Img_ManimSpark:  @ LZ77
 
 	.global Pal_ManimSpark
 Pal_ManimSpark:
-	.incbin "baserom.gba", 0x3f51a8, 0x40
+	.incbin "graphics/Pal_ManimSpark.gbapal"
+	.incbin "baserom.gba", 0x3f51c8, 0x20
 
 	.global Img_ManimAntitoxin
 Img_ManimAntitoxin:  @ LZ77
@@ -927,7 +930,7 @@ Img_ManimTorch:  @ LZ77
 
 	.global Pal_ManimTorch
 Pal_ManimTorch:
-	.incbin "baserom.gba", 0x3f7030, 0x20
+	.incbin "graphics/Pal_ManimTorch.gbapal"
 
 	.global Img_ManimUnlockObj
 Img_ManimUnlockObj:  @ LZ77
@@ -935,7 +938,7 @@ Img_ManimUnlockObj:  @ LZ77
 
 	.global Pal_ManimUnlockObj
 Pal_ManimUnlockObj:
-	.incbin "baserom.gba", 0x3f70a4, 0x20
+	.incbin "graphics/Pal_ManimUnlockObj.gbapal"
 
 	.global Img_ManimUnlockBg
 Img_ManimUnlockBg:  @ LZ77
@@ -971,7 +974,7 @@ Img_ManimBerserk:  @ LZ77
 
 	.global Pal_ManimBerserk
 Pal_ManimBerserk:
-	.incbin "baserom.gba", 0x3f8a8c, 0x20
+	.incbin "graphics/Pal_ManimBerserk.gbapal"
 
 	.global SpriteAnim_ManimBerserk
 SpriteAnim_ManimBerserk:
