@@ -5,25 +5,30 @@
 
 	.section .rodata.ev_08CA5AF0, "a"
 
+	.align 2, 0
 	.global EvList_Ch28_Turn
 EvList_Ch28_Turn:
 	TURN 0, EventScr_08CBC9D0, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch28_Character
 EvList_Ch28_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch28_Location
 EvList_Ch28_Location:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch28_Misc
 EvList_Ch28_Misc:
 	AFEV 0, gEvent_GameOver, 0x65
 	AREA 0, EventScr_08CBCA30, 8, 3, 8, 3
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch28
 ChapterEvents_Ch28:
 	.4byte EvList_Ch28_Turn                  @ turn
@@ -45,6 +50,7 @@ ChapterEvents_Ch28:
 
 	.section .rodata.ev_08CBC880, "a"
 
+	.align 2, 0
 	.global EventScr_Ch28_Beginning
 EventScr_Ch28_Beginning:
 	FADI 4
@@ -106,6 +112,7 @@ EventScr_Ch28_Beginning:
 	REMA_PREP
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBC9D0
 EventScr_08CBC9D0:
 	LOU2_BY_MODE Units_Ch28_Player, Units_Ch28_PlayerHard, Units_Ch28_Player, Units_Ch28_PlayerHard
@@ -122,6 +129,7 @@ EventScr_08CBC9D0:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBCA30
 EventScr_08CBCA30:
 	IFAF 9, sub_0807A2F0
@@ -133,6 +141,7 @@ EventScr_08CBCA30:
 
 	.section .rodata.ev_08CBCA7C, "a"
 
+	.align 2, 0
 	.global EventScr_Ch28_Ending
 EventScr_Ch28_Ending:
 	ASMC sub_08079B5C
@@ -270,6 +279,7 @@ EventScr_Ch28_Ending:
 
 	.section .rodata.ev_08CC0EC0, "a"
 
+	.align 2, 0
 	.global EventScr_08CC0EC0
 EventScr_08CC0EC0:
 	TEX1_IF_ASM IsAnyLordInCombat, MSG_E00, MSG_E01 @ ...... ...I don't understand... you seem....fami / ...The seal... ... protecting ...Beyond my power

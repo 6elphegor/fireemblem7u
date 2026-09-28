@@ -5,16 +5,19 @@
 
 	.section .rodata.ev_08CA5B68, "a"
 
+	.align 2, 0
 	.global EvList_Ch29_Turn
 EvList_Ch29_Turn:
 	TURN 0, EventScr_08CBD3DC, 1, 0, FACTION_BLUE, 0
 	TURN 0, EventScr_08CBD464, 0xA, 0, FACTION_BLUE, 5
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch29_Character
 EvList_Ch29_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch29_Location
 EvList_Ch29_Location:
 	CHES 8, ITEM_PUREWATER, 0, 0x10, 0xF, 0x12
@@ -22,12 +25,14 @@ EvList_Ch29_Location:
 	CHES 0xA, ITEM_AXE_WOLF_BEIL, 0, 0x1C, 1, 0x12
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch29_Misc
 EvList_Ch29_Misc:
 	AFEV 0, gEvent_GameOver, 0x65
 	AREA 0, EventScr_08CBD434, 4, 1, 4, 1
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch29
 ChapterEvents_Ch29:
 	.4byte EvList_Ch29_Turn                  @ turn
@@ -49,6 +54,7 @@ ChapterEvents_Ch29:
 
 	.section .rodata.ev_08CBD39C, "a"
 
+	.align 2, 0
 	.global EventScr_Ch29_Beginning
 EventScr_Ch29_Beginning:
 	MUSI
@@ -66,6 +72,7 @@ EventScr_Ch29_Beginning:
 	REMA_PREP
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBD3DC
 EventScr_08CBD3DC:
 	LOU2 Units_Ch29_Player
@@ -83,6 +90,7 @@ EventScr_08CBD3DC:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBD434
 EventScr_08CBD434:
 	IFAF 9, sub_0807A2F0
@@ -92,6 +100,7 @@ EventScr_08CBD434:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBD464
 EventScr_08CBD464:
 	CHAI_POS 11, 13, 0xF00
@@ -116,6 +125,7 @@ EventScr_08CBD464:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch29_Ending
 EventScr_Ch29_Ending:
 	MUEN 4
@@ -212,6 +222,7 @@ EventScr_Ch29_Ending:
 
 	.section .rodata.ev_08CC0EDC, "a"
 
+	.align 2, 0
 	.global EventScr_08CC0EDC
 EventScr_08CC0EDC:
 	TEX1_IF_ASM IsHectorInCombat, MSG_E24, MSG_E25 @ Tremendous... ...strength... Truly...like...his. / ...Seal... ...... could not... ...prote...ct...
@@ -221,6 +232,7 @@ EventScr_08CC0EDC:
 
 	.section .rodata.ev_08CDC3B4, "a"
 
+	.align 2, 0
 	.global Units_Ch29_Player
 Units_Ch29_Player:
 	UNIT CHARACTER_HECTOR, CLASS_GREAT_LORD, CHARACTER_NONE, 3, FACTION_ID_BLUE, 1, 25, 13, 25, 13, ITEM_AXE_IRON, ITEM_AXE_HANDAXE, ITEM_AXE_HAMMER, ITEM_AXE_SWORDREAVER
@@ -228,12 +240,14 @@ Units_Ch29_Player:
 	UNIT CHARACTER_PRISCILLA, CLASS_VALKYRIE, CHARACTER_NONE, 5, FACTION_ID_BLUE, 1, 24, 15, 24, 15, ITEM_STAFF_MEND, ITEM_STAFF_PHYSIC, ITEM_STAFF_RESTORE, ITEM_ANIMA_FIRE
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch29_PlayerHard
 Units_Ch29_PlayerHard:
 	UNIT CHARACTER_HECTOR, CLASS_GREAT_LORD, CHARACTER_NONE, 3, FACTION_ID_BLUE, 1, 25, 13, 25, 13, ITEM_AXE_IRON, ITEM_AXE_HANDAXE, ITEM_AXE_HAMMER, ITEM_AXE_SWORDREAVER
 	UNIT CHARACTER_MATTHEW, CLASS_THIEF, CHARACTER_NONE, 17, FACTION_ID_BLUE, 1, 26, 14, 26, 14, ITEM_SWORD_IRON, ITEM_LOCKPICK
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch29_Initial
 Units_Ch29_Initial:
 	UNIT CHARACTER_KAIM, CLASS_HERO, CHARACTER_NONE, 16, FACTION_ID_RED, 0, 4, 1, 4, 1, ITEM_AXE_TOMAHAWK, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0xA
@@ -260,6 +274,7 @@ Units_Ch29_Initial:
 	UNIT CHARACTER_GUARDIAN_F2, CLASS_THIEF, CHARACTER_KAIM, 20, FACTION_ID_RED, 1, 23, 5, 23, 5, ITEM_SWORD_IRON, ITEM_CHESTKEY, ITEM_NONE, ITEM_NONE, 0x10, 0x5, 0xA
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch29_InitialHectorHard
 Units_Ch29_InitialHectorHard:
 	UNIT CHARACTER_KAIM, CLASS_HERO, CHARACTER_NONE, 16, FACTION_ID_RED, 0, 4, 1, 4, 1, ITEM_AXE_TOMAHAWK, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0xA
@@ -286,6 +301,7 @@ Units_Ch29_InitialHectorHard:
 	UNIT CHARACTER_GUARDIAN_F2, CLASS_THIEF, CHARACTER_KAIM, 20, FACTION_ID_RED, 1, 23, 5, 23, 5, ITEM_SWORD_IRON, ITEM_CHESTKEY, ITEM_NONE, ITEM_NONE, 0x10, 0x5, 0xA
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CDC704
 Units_08CDC704:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 18, FACTION_ID_BLUE, 1, 8, 3, 8, 3, ITEM_SWORD_STEEL, ITEM_SWORD_RAPIER, ITEM_SWORD_KILLER
@@ -294,6 +310,7 @@ Units_08CDC704:
 	UNIT CHARACTER_ATHOS, CLASS_ARCHSAGE, CHARACTER_NONE, 20, FACTION_ID_GREEN, 0, 6, 4, 6, 4, ITEM_ANIMA_FORBLAZE, ITEM_LIGHT_AUREOLA, ITEM_SWORD_DURANDAL, ITEM_AXE_ARMADS
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CDC754
 Units_08CDC754:
 	UNIT CHARACTER_HECTOR, CLASS_GREAT_LORD, CHARACTER_NONE, 3, FACTION_ID_BLUE, 1, 4, 5, 4, 5, ITEM_AXE_IRON, ITEM_AXE_HANDAXE, ITEM_AXE_HAMMER, ITEM_AXE_SWORDREAVER
@@ -301,16 +318,19 @@ Units_08CDC754:
 	UNIT CHARACTER_NILS, CLASS_BARD, CHARACTER_NONE, 3, FACTION_ID_BLUE, 0, 3, 4, 3, 4, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CDC794
 Units_08CDC794:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 18, FACTION_ID_BLUE, 1, 4, 2, 5, 4, ITEM_SWORD_STEEL, ITEM_SWORD_RAPIER, ITEM_SWORD_KILLER
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CDC7B4
 Units_08CDC7B4:
 	UNIT CHARACTER_ATHOS, CLASS_ARCHSAGE, CHARACTER_NONE, 20, FACTION_ID_GREEN, 0, 4, 2, 4, 3, ITEM_ANIMA_FORBLAZE
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CDC7D4
 EventScr_08CDC7D4:	@ unreferenced
 	LOU1 Units_Ch29_Player
@@ -318,6 +338,7 @@ EventScr_08CDC7D4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDC7E8
 EventScr_08CDC7E8:	@ unreferenced
 	LOU1 Units_Ch29_PlayerHard
@@ -325,6 +346,7 @@ EventScr_08CDC7E8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDC7FC
 EventScr_08CDC7FC:	@ unreferenced
 	UNIT_CAM_OFF
@@ -334,6 +356,7 @@ EventScr_08CDC7FC:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDC818
 EventScr_08CDC818:	@ unreferenced
 	LOU1 Units_Ch29_InitialHectorHard
@@ -341,6 +364,7 @@ EventScr_08CDC818:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDC82C
 EventScr_08CDC82C:	@ unreferenced
 	LOU1 Units_08CDC704
@@ -348,6 +372,7 @@ EventScr_08CDC82C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDC840
 EventScr_08CDC840:	@ unreferenced
 	LOU1 Units_08CDC754
@@ -355,6 +380,7 @@ EventScr_08CDC840:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDC854
 EventScr_08CDC854:	@ unreferenced
 	LOU1 Units_08CDC794
@@ -362,6 +388,7 @@ EventScr_08CDC854:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDC868
 EventScr_08CDC868:	@ unreferenced
 	LOU1 Units_08CDC7B4

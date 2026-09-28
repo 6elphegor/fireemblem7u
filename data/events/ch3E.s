@@ -5,23 +5,28 @@
 
 	.section .rodata.ev_08CA6D50, "a"
 
+	.align 2, 0
 	.global EvList_Ch3E_Turn
 EvList_Ch3E_Turn:
 	TURN 0, EventScr_08CE1294, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch3E_Character
 EvList_Ch3E_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch3E_Location
 EvList_Ch3E_Location:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch3E_Misc
 EvList_Ch3E_Misc:
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch3E
 ChapterEvents_Ch3E:
 	.4byte EvList_Ch3E_Turn                  @ turn
@@ -43,11 +48,13 @@ ChapterEvents_Ch3E:
 
 	.section .rodata.ev_08CC050C, "a"
 
+	.align 2, 0
 	.global EventScr_Ch3E_Beginning
 EventScr_Ch3E_Beginning:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch3E_Ending
 EventScr_Ch3E_Ending:
 	REMA
@@ -55,15 +62,18 @@ EventScr_Ch3E_Ending:
 
 	.section .rodata.ev_08CE1264, "a"
 
+	.align 2, 0
 	.global Units_Ch3E_Player
 Units_Ch3E_Player:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 1, FACTION_ID_BLUE, 0, 8, 8, 8, 8, ITEM_SWORD_RAPIER, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch3E_Initial
 Units_Ch3E_Initial:
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CE1294
 EventScr_08CE1294:
 	LOU1 Units_Ch3E_Player
@@ -71,6 +81,7 @@ EventScr_08CE1294:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CE12A8
 EventScr_08CE12A8:	@ unreferenced
 	UNIT_CAM_OFF

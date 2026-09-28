@@ -5,6 +5,7 @@
 
 	.section .rodata.ev_08CA3B60, "a"
 
+	.align 2, 0
 	.global EvList_Ch1D_Turn
 EvList_Ch1D_Turn:
 	TURN 0, EventScr_08CB5A24, 1, 0, FACTION_BLUE, 0
@@ -27,6 +28,7 @@ EvList_Ch1D_Turn:
 	TURN 0, EventScr_08CD26D0, 6, 8, FACTION_BLUE, 5
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch1D_Character
 EvList_Ch1D_Character:
 	CHAR 7, EventScr_08CB5BA8, CHARACTER_ELIWOOD, CHARACTER_HAWKEYE, 1
@@ -39,11 +41,13 @@ EvList_Ch1D_Character:
 	CHAR 8, EventScr_08CB5C14, CHARACTER_PENT, CHARACTER_HECTOR, 2
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch1D_Location
 EvList_Ch1D_Location:
 	LOCA 0, EventScr_08CB5C68, 0xC, 0xD, 0xE
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch1D_Misc
 EvList_Ch1D_Misc:
 	ASME 0, EventScr_Ch1D_Ending, sub_08079FE8
@@ -56,6 +60,7 @@ EvList_Ch1D_Misc:
 	AREA 0xE, EventScr_08CB5E04, 4, 0xC, 5, 0xD
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch1D
 ChapterEvents_Ch1D:
 	.4byte EvList_Ch1D_Turn                  @ turn
@@ -77,6 +82,7 @@ ChapterEvents_Ch1D:
 
 	.section .rodata.ev_08CB57DC, "a"
 
+	.align 2, 0
 	.global EventScr_Ch1D_Beginning
 EventScr_Ch1D_Beginning:
 	UNIT_CAM_OFF
@@ -175,6 +181,7 @@ EventScr_Ch1D_Beginning:
 	REMA_PREP
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5A24
 EventScr_08CB5A24:
 	LOU2_BY_MODE Units_Ch1D_Player, Units_Ch1D_PlayerHard, Units_Ch1D_PlayerHector, Units_Ch1D_PlayerHectorHard
@@ -204,6 +211,7 @@ EventScr_08CB5A24:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5AEC
 EventScr_08CB5AEC:
 	MUEN 4
@@ -224,6 +232,7 @@ EventScr_08CB5AEC:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5B48
 EventScr_08CB5B48:
 	MUEN 4
@@ -236,6 +245,7 @@ EventScr_08CB5B48:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5B80
 EventScr_08CB5B80:	@ unreferenced
 	SOUN 0x3A2
@@ -243,6 +253,7 @@ EventScr_08CB5B80:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5B90
 EventScr_08CB5B90:
 	EVBIT_NOSKIP
@@ -252,6 +263,7 @@ EventScr_08CB5B90:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5BA8
 EventScr_08CB5BA8:
 	MUSS 0x42
@@ -262,6 +274,7 @@ EventScr_08CB5BA8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5BD0
 EventScr_08CB5BD0:
 	MUSS 0x42
@@ -272,6 +285,7 @@ EventScr_08CB5BD0:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5BF8
 EventScr_08CB5BF8:
 	MUSI
@@ -281,6 +295,7 @@ EventScr_08CB5BF8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5C14
 EventScr_08CB5C14:
 	MUSI
@@ -290,6 +305,7 @@ EventScr_08CB5C14:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global MsgList_08CB5C30
 MsgList_08CB5C30:
 	.4byte MSG_C35                           @ You know what? I'm watching the house all by mys
@@ -307,6 +323,7 @@ MsgList_08CB5C30:
 	.4byte MSG_C37                           @ You know what? I'm watching the house all by mys
 	.4byte MSG_C38
 
+	.align 2, 0
 	.global EventScr_08CB5C68
 EventScr_08CB5C68:
 	MUSI
@@ -326,6 +343,7 @@ EventScr_08CB5C68:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5CC4
 EventScr_08CB5CC4:
 	IFAT 1, sub_0807D2B0
@@ -339,6 +357,7 @@ EventScr_08CB5CC4:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5D04
 EventScr_08CB5D04:
 	IFAT 1, sub_0807D2B0
@@ -352,6 +371,7 @@ EventScr_08CB5D04:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5D44
 EventScr_08CB5D44:
 	IFAT 1, sub_0807D2B0
@@ -365,6 +385,7 @@ EventScr_08CB5D44:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5D84
 EventScr_08CB5D84:
 	IFAT 1, sub_0807D2B0
@@ -378,6 +399,7 @@ EventScr_08CB5D84:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5DC4
 EventScr_08CB5DC4:
 	IFAT 1, sub_0807D2B0
@@ -391,6 +413,7 @@ EventScr_08CB5DC4:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB5E04
 EventScr_08CB5E04:
 	IFAT 1, sub_0807D2B0
@@ -404,6 +427,7 @@ EventScr_08CB5E04:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch1D_Ending
 EventScr_Ch1D_Ending:
 	MUEN 2
@@ -485,29 +509,34 @@ EventScr_Ch1D_Ending:
 
 	.section .rodata.ev_08CD237C, "a"
 
+	.align 2, 0
 	.global Units_08CD237C
 Units_08CD237C:
 	UNIT CHARACTER_BANDIT_E8, CLASS_WYVERN_RIDER, CHARACTER_PAUL, 9, FACTION_ID_RED, 1, 2, 15, 2, 15, ITEM_LANCE_STEEL, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0xA
 	UNIT CHARACTER_BANDIT_E8, CLASS_WYVERN_RIDER, CHARACTER_PAUL, 9, FACTION_ID_RED, 1, 0, 4, 0, 4, ITEM_LANCE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0xA
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CD23AC
 Units_08CD23AC:
 	UNIT CHARACTER_BANDIT_E8, CLASS_WYVERN_RIDER, CHARACTER_PAUL, 9, FACTION_ID_RED, 1, 4, 15, 4, 15, ITEM_LANCE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0xA
 	UNIT CHARACTER_BANDIT_E8, CLASS_WYVERN_RIDER, CHARACTER_PAUL, 9, FACTION_ID_RED, 1, 0, 2, 0, 2, ITEM_LANCE_STEEL, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0xA
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CD23DC
 Units_08CD23DC:
 	UNIT CHARACTER_BANDIT_E8, CLASS_MAGE, CHARACTER_PAUL, 9, FACTION_ID_RED, 1, 4, 2, 4, 2, ITEM_ANIMA_THUNDER, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0xA
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CD23FC
 Units_08CD23FC:
 	UNIT CHARACTER_BANDIT_E8, CLASS_SHAMAN, CHARACTER_PAUL, 9, FACTION_ID_RED, 1, 0, 11, 0, 11, ITEM_DARK_FLUX, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0xA
 	UNIT CHARACTER_BANDIT_E8, CLASS_SHAMAN, CHARACTER_PAUL, 9, FACTION_ID_RED, 1, 0, 3, 0, 3, ITEM_DARK_FLUX, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0xA
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CD242C
 Units_08CD242C:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 14, FACTION_ID_BLUE, 1, 16, 4, 16, 4, ITEM_SWORD_IRON, ITEM_SWORD_RAPIER
@@ -516,6 +545,7 @@ Units_08CD242C:
 	UNIT CHARACTER_NINIAN, CLASS_DANCER, CHARACTER_NONE, 5, FACTION_ID_BLUE, 1, 16, 5, 16, 5, ITEM_ELIXIR, ITEM_ELIXIR
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CD247C
 Units_08CD247C:
 	UNIT CHARACTER_CITIZEN_DA, CLASS_BARD, CHARACTER_NONE, 1, FACTION_ID_GREEN, 0, 20, 7, 20, 7, ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x6, 0x3, 0x2
@@ -523,6 +553,7 @@ Units_08CD247C:
 
 	.section .rodata.ev_08CD2694, "a"
 
+	.align 2, 0
 	.global EventScr_08CD2694
 EventScr_08CD2694:
 	LOU1 Units_08CD237C
@@ -530,6 +561,7 @@ EventScr_08CD2694:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CD26A8
 EventScr_08CD26A8:
 	LOU1 Units_08CD23AC
@@ -537,6 +569,7 @@ EventScr_08CD26A8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CD26BC
 EventScr_08CD26BC:
 	LOU1 Units_08CD23DC
@@ -544,6 +577,7 @@ EventScr_08CD26BC:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CD26D0
 EventScr_08CD26D0:
 	LOU1 Units_08CD23FC
@@ -551,6 +585,7 @@ EventScr_08CD26D0:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CD26E4
 EventScr_08CD26E4:	@ unreferenced
 	LOU1 Units_08CD242C
@@ -558,6 +593,7 @@ EventScr_08CD26E4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CD26F8
 EventScr_08CD26F8:	@ unreferenced
 	LOU1 Units_08CD247C
@@ -565,6 +601,7 @@ EventScr_08CD26F8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CD270C
 EventScr_08CD270C:	@ unreferenced
 	LOU1 Units_08CD249C
@@ -572,6 +609,7 @@ EventScr_08CD270C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CD2720
 EventScr_08CD2720:	@ unreferenced
 	LOU1 Units_08CD251C

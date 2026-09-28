@@ -5,6 +5,7 @@
 
 	.section .rodata.ev_08CA13E0, "a"
 
+	.align 2, 0
 	.global EvList_Ch08_Turn
 EvList_Ch08_Turn:
 	TURN 0, EventScr_08CAD43C, 1, 0, FACTION_BLUE, 0
@@ -12,14 +13,17 @@ EvList_Ch08_Turn:
 	TURN 0, EventScr_08CC70E0, 4, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch08_TutorialD
 EvList_Ch08_TutorialD:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch08_Character
 EvList_Ch08_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch08_Location
 EvList_Ch08_Location:
 	DOOR 0, EVENT_NOSCRIPT, 2, 3, 0x10
@@ -27,24 +31,29 @@ EvList_Ch08_Location:
 	CHES 0, ITEM_AXE_HAMMER, 0, 3, 9, 0x12
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch08_TutorialC
 EvList_Ch08_TutorialC:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch08_TutorialA
 EvList_Ch08_TutorialA:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch08_TutorialB
 EvList_Ch08_TutorialB:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch08_Misc
 EvList_Ch08_Misc:
 	ASME 0, EventScr_Ch08_Ending, sub_08079FE8
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch08
 ChapterEvents_Ch08:
 	.4byte EvList_Ch08_Turn                  @ turn
@@ -66,6 +75,7 @@ ChapterEvents_Ch08:
 
 	.section .rodata.ev_08CAD2A8, "a"
 
+	.align 2, 0
 	.global EventScr_Ch08_Beginning
 EventScr_Ch08_Beginning:
 	UNIT_CAM_OFF
@@ -137,6 +147,7 @@ EventScr_Ch08_Beginning:
 	REMA_PREP
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CAD43C
 EventScr_08CAD43C:
 	LOU2 Units_Ch08_Player
@@ -145,6 +156,7 @@ EventScr_08CAD43C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CAD454
 EventScr_08CAD454:
 	CAM1 CHARACTER_BEYARD
@@ -156,6 +168,7 @@ EventScr_08CAD454:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch08_Ending
 EventScr_Ch08_Ending:
 	MENU_OVERRIDE_CLEAR
@@ -188,6 +201,7 @@ EventScr_Ch08_Ending:
 
 	.section .rodata.ev_08CC6CD8, "a"
 
+	.align 2, 0
 	.global Units_08CC6CD8
 Units_08CC6CD8:
 	UNIT CHARACTER_WIL_TUTORIAL, CLASS_ARCHER, CHARACTER_LYN_TUTORIAL, 3, FACTION_ID_BLUE, 0, 6, 9, 13, 9, ITEM_BOW_IRON, ITEM_VULNERARY
@@ -195,6 +209,7 @@ Units_08CC6CD8:
 	UNIT CHARACTER_KENT_TUTORIAL, CLASS_CAVALIER, CHARACTER_LYN_TUTORIAL, 1, FACTION_ID_BLUE, 0, 5, 9, 12, 7, ITEM_SWORD_IRON, ITEM_LANCE_IRON, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC6D18
 Units_08CC6D18:
 	UNIT CHARACTER_SAIN_TUTORIAL, CLASS_CAVALIER, CHARACTER_LYN_TUTORIAL, 1, FACTION_ID_BLUE, 0, 6, 9, 10, 7, ITEM_SWORD_IRON, ITEM_LANCE_IRON, ITEM_VULNERARY
@@ -202,6 +217,7 @@ Units_08CC6D18:
 	UNIT CHARACTER_CITIZEN_DA, CLASS_DANCER, CHARACTER_NONE, 1, FACTION_ID_GREEN, 0, 4, 9, 10, 9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC6D58
 Units_08CC6D58:
 	UNIT CHARACTER_MATTHEW, CLASS_THIEF, CHARACTER_LYN_TUTORIAL, 2, FACTION_ID_BLUE, 0, 6, 9, 8, 7, ITEM_SWORD_IRON, ITEM_LOCKPICK
@@ -209,11 +225,13 @@ Units_08CC6D58:
 	UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, CHARACTER_NONE, 1, FACTION_ID_GREEN, 0, 4, 9, 8, 9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC6D98
 Units_08CC6D98:
 	UNIT CHARACTER_URSULA_51, CLASS_VALKYRIE, CHARACTER_NONE, 15, FACTION_ID_RED, 0, 10, 2, 10, 2, ITEM_ANIMA_BOLTING, ITEM_ANIMA_ELFIRE
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch08_Player
 Units_Ch08_Player:
 	UNIT CHARACTER_LYN_TUTORIAL, CLASS_LORD_LYN, CHARACTER_NONE, 1, FACTION_ID_BLUE, 0, 12, 14, 12, 14, ITEM_SWORD_MKATTI, ITEM_VULNERARY
@@ -228,6 +246,7 @@ Units_Ch08_Player:
 	UNIT CHARACTER_NILS, CLASS_BARD, CHARACTER_LYN_TUTORIAL, 1, FACTION_ID_BLUE, 0, 11, 13, 11, 13, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch08_PlayerHard
 Units_Ch08_PlayerHard:
 	UNIT CHARACTER_LYN_TUTORIAL, CLASS_LORD_LYN, CHARACTER_NONE, 1, FACTION_ID_BLUE, 0, 12, 14, 12, 14, ITEM_SWORD_MKATTI, ITEM_VULNERARY
@@ -242,6 +261,7 @@ Units_Ch08_PlayerHard:
 	UNIT CHARACTER_NILS, CLASS_BARD, CHARACTER_LYN_TUTORIAL, 1, FACTION_ID_BLUE, 0, 11, 13, 11, 13, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch08_Initial
 Units_Ch08_Initial:
 	UNIT CHARACTER_BEYARD, CLASS_MERCENARY, CHARACTER_NONE, 7, FACTION_ID_RED, 0, 2, 1, 2, 1, ITEM_SWORD_STEEL, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0x1
@@ -258,17 +278,20 @@ Units_Ch08_Initial:
 	UNIT CHARACTER_BLACK_FANG_AF, CLASS_MERCENARY, CHARACTER_BEYARD, 2, FACTION_ID_RED, 1, 11, 2, 11, 2, ITEM_SWORD_IRON, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x0, 0x3, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC6FE8
 Units_08CC6FE8:
 	UNIT CHARACTER_BLACK_FANG_B1, CLASS_SOLDIER, CHARACTER_BEYARD, 1, FACTION_ID_RED, 1, 11, 9, 11, 9, ITEM_LANCE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x1B, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC7008
 Units_08CC7008:
 	UNIT CHARACTER_BLACK_FANG_B5, CLASS_MAGE, CHARACTER_BEYARD, 1, FACTION_ID_RED, 1, 3, 1, 3, 1, ITEM_ANIMA_FIRE, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT CHARACTER_BLACK_FANG_B4, CLASS_SHAMAN, CHARACTER_BEYARD, 1, FACTION_ID_RED, 1, 1, 1, 1, 1, ITEM_DARK_FLUX, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CC7038
 EventScr_08CC7038:	@ unreferenced
 	LOU1 Units_08CC6CD8
@@ -276,6 +299,7 @@ EventScr_08CC7038:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC704C
 EventScr_08CC704C:	@ unreferenced
 	LOU1 Units_08CC6D18
@@ -283,6 +307,7 @@ EventScr_08CC704C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC7060
 EventScr_08CC7060:	@ unreferenced
 	LOU1 Units_08CC6D58
@@ -290,6 +315,7 @@ EventScr_08CC7060:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC7074
 EventScr_08CC7074:	@ unreferenced
 	LOU1 Units_08CC6D98
@@ -297,6 +323,7 @@ EventScr_08CC7074:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC7088
 EventScr_08CC7088:	@ unreferenced
 	LOU1 Units_Ch08_Player
@@ -304,6 +331,7 @@ EventScr_08CC7088:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC709C
 EventScr_08CC709C:	@ unreferenced
 	LOU1 Units_Ch08_PlayerHard
@@ -311,6 +339,7 @@ EventScr_08CC709C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC70B0
 EventScr_08CC70B0:	@ unreferenced
 	UNIT_CAM_OFF
@@ -320,6 +349,7 @@ EventScr_08CC70B0:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC70CC
 EventScr_08CC70CC:	@ unreferenced
 	LOU1 Units_08CC6FE8
@@ -327,6 +357,7 @@ EventScr_08CC70CC:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC70E0
 EventScr_08CC70E0:
 	LOU1 Units_08CC7008

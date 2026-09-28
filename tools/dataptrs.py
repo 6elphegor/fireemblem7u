@@ -50,6 +50,10 @@ Which decodable words are pointers (the structure evidence).  Terms:
   R5  a pointer field of a structure found from the code's own tables
       (structures() below: the struct MapChange lists), whatever its
       surroundings.
+  R6  record stride: a data target whose words S bytes before and after
+      (8 <= S <= 64) are both accepted data pointers -- the same field of
+      the neighbouring records (the class reel's name pointers into the
+      middle of the string pool, a help box's links).
 Never pointers (the words are left raw and give no neighbour evidence):
   * the data of those structures that holds no pointer (map change tile
     data: u16 metatile ids, e.g. 0x08D0 0x00D4 read as a word is a label
@@ -86,6 +90,16 @@ NOT_POINTERS = [
     # attr2 = 0x089B..0x089E (priority 2, tile 0x9B..) above attr1 = 0 reads
     # as 0x089B0000, which is inside a music sample.
     (0x08CE6058, 0x08CE6078, "SpriteLut_GaugePips sprites (u16 OAM lists)"),
+    # Dead proc scripts (0x08CF6D90-0x08CF89A8) left over from another build:
+    # nothing outside points at them, and 214 of their 220 code pointers land
+    # in the middle of FE7U functions (m4a, libagb, libc: 0x080BFAC9 in
+    # WriteSramFast, 0x080C3FF5 in abort...).  These four happen to equal a
+    # function start + 1 (m4aMPlayAllStop, SetSramFastFunc, the real libgcc
+    # _call_via_r1 and libc _read_r), which is a coincidence, not a call.
+    (0x08CF74E0, 0x08CF74E4, "stale proc code pointer (dead data, another build)"),
+    (0x08CF7F04, 0x08CF7F08, "stale proc code pointer (dead data, another build)"),
+    (0x08CF7F94, 0x08CF7F98, "stale proc code pointer (dead data, another build)"),
+    (0x08CF8978, 0x08CF897C, "stale proc code pointer (dead data, another build)"),
 ]
 
 # Placed objects that nothing points into (only at their start, or at a
@@ -421,6 +435,19 @@ def find_pointers(rom, gaps, placed, names, trusted, blobs, blob_lookup, syms):
             d = plain(words[a], labels) if a in words else None
             if a not in acc and d:
                 acc[a] = d[:3] + ("R5",)
+        # R6: the same field of the records before and after (stride S) is a
+        # data pointer, so this one is too (tables of structs whose pointer
+        # targets have no label of their own, e.g. a name + 8 in a string
+        # pool: those fail R1/R2).
+        for a, d in dec.items():
+            v = words[a]
+            if a in acc or not is_rom(v) or v < DATA_START or d[0] not in ("label", "sym"):
+                continue
+            for s in range(8, 68, 4):
+                lo, hi = acc.get(a - s), acc.get(a + s)
+                if lo and hi and lo[0] in ("label", "sym") and hi[0] in ("label", "sym"):
+                    acc[a] = d[:3] + ("R6",)
+                    break
         new = {t[1] for t in acc.values() if t[0] == "label" and t[1] not in labels}
         if not new:
             break

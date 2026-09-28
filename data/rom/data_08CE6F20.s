@@ -2070,9 +2070,7 @@ gUnk_08CF6D90:
 	.4byte gUnk_084354F8
 	.incbin "baserom.gba", 0xcf6da8, 0x49c
 	.4byte gUnk_084354F8
-	.incbin "baserom.gba", 0xcf7248, 0x298
-	.4byte m4aMPlayAllStop
-	.incbin "baserom.gba", 0xcf74e4, 0x1ac
+	.incbin "baserom.gba", 0xcf7248, 0x448
 
 	.global gUnk_08CF7690
 gUnk_08CF7690:
@@ -2083,11 +2081,7 @@ gUnk_08CF78F8:
 	.incbin "baserom.gba", 0xcf78f8, 0x268
 	.4byte gUnk_08CF7690
 	.4byte gUnk_08CF78F8
-	.incbin "baserom.gba", 0xcf7b68, 0x39c
-	.4byte SetSramFastFunc
-	.incbin "baserom.gba", 0xcf7f08, 0x8c
-	.4byte _call_via_r1
-	.incbin "baserom.gba", 0xcf7f98, 0x88
+	.incbin "baserom.gba", 0xcf7b68, 0x4b8
 
 	.global gUnk_08CF8020
 gUnk_08CF8020:
@@ -2147,9 +2141,7 @@ gUnk_08CF8078:
 	.4byte gUnk_085E8D80
 	.4byte gUnk_085E9168
 	.4byte gUnk_085E9504
-	.incbin "baserom.gba", 0xcf829c, 0x6dc
-	.4byte _read_r
-	.incbin "baserom.gba", 0xcf897c, 0x138
+	.incbin "baserom.gba", 0xcf829c, 0x818
 	.4byte gUnk_085F6B3C
 	.incbin "baserom.gba", 0xcf8ab8, 0x8
 	.4byte gUnk_085F6B3C
@@ -2190,7 +2182,11 @@ gUnk_08CF8CA8:
 	.4byte gUnk_0865C9A0
 	.incbin "baserom.gba", 0xcf9580, 0x8
 	.4byte gUnk_0865CE78
-	.incbin "baserom.gba", 0xcf958c, 0x2c
+	.incbin "baserom.gba", 0xcf958c, 0x8
+	.4byte gUnk_0865D740
+	.incbin "baserom.gba", 0xcf9598, 0x14
+	.4byte gUnk_0865E470
+	.incbin "baserom.gba", 0xcf95b0, 0x8
 	.4byte gUnk_0865ECEC
 	.incbin "baserom.gba", 0xcf95bc, 0x8
 	.4byte gUnk_0865F57C
@@ -2202,7 +2198,9 @@ gUnk_08CF8CA8:
 	.4byte gUnk_08660BCC
 	.incbin "baserom.gba", 0xcf95ec, 0x8
 	.4byte gUnk_086610B0
-	.incbin "baserom.gba", 0xcf95f8, 0x2c
+	.incbin "baserom.gba", 0xcf95f8, 0x8
+	.4byte gUnk_086619B8
+	.incbin "baserom.gba", 0xcf9604, 0x20
 	.4byte gUnk_086627CC
 	.incbin "baserom.gba", 0xcf9628, 0x8
 	.4byte gUnk_086647CC

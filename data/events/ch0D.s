@@ -5,15 +5,18 @@
 
 	.section .rodata.ev_08CA19B4, "a"
 
+	.align 2, 0
 	.global EvList_Ch0D_Turn
 EvList_Ch0D_Turn:
 	TURN 0, EventScr_Ch0D_Beginning, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch0D_Character
 EvList_Ch0D_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch0D_Location
 EvList_Ch0D_Location:
 	CHES 8, ITEM_REDGEM, 0, 0xB, 5, 0x12
@@ -24,12 +27,14 @@ EvList_Ch0D_Location:
 	DOOR 0, EVENT_NOSCRIPT, 0xF, 3, 0x10
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch0D_Misc
 EvList_Ch0D_Misc:
 	AFEV 0, EventScr_Ch0D_Ending, 2
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch0D
 ChapterEvents_Ch0D:
 	.4byte EvList_Ch0D_Turn                  @ turn
@@ -51,6 +56,7 @@ ChapterEvents_Ch0D:
 
 	.section .rodata.ev_08CAE5E8, "a"
 
+	.align 2, 0
 	.global MoveScr_08CAE5E8
 MoveScr_08CAE5E8:
 	.byte MV_SPEED, 0x38, MV_DOWN, MV_DOWN, MV_LEFT, MV_LEFT, MV_HALT
@@ -63,12 +69,14 @@ MoveScr_08CAE5EF:
 MoveScr_08CAE5F3:
 	.byte MV_SPEED, 0x38, MV_LEFT, MV_DOWN, MV_HALT
 
+	.align 2, 0
 	.global SpriteAnimConf_08CAE5F8
 SpriteAnimConf_08CAE5F8:
 	.4byte 0, gUnk_081C2CA0, gUnk_081C3260
 	.2byte 0x0, 0x200
 	.byte 10, 1, 0, 0
 
+	.align 2, 0
 	.global EventScr_Ch0D_Beginning
 EventScr_Ch0D_Beginning:
 	UNIT_CAM_OFF
@@ -193,6 +201,7 @@ EventScr_Ch0D_Beginning:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch0D_Ending
 EventScr_Ch0D_Ending:
 	MUEN 4
@@ -227,12 +236,14 @@ EventScr_Ch0D_Ending:
 
 	.section .rodata.ev_08CC803C, "a"
 
+	.align 2, 0
 	.global Units_Ch0D_Player
 Units_Ch0D_Player:
 	UNIT CHARACTER_HECTOR, CLASS_LORD_HECTOR, CHARACTER_NONE, 1, FACTION_ID_BLUE, 0, 15, 1, 15, 1, ITEM_AXE_WOLF_BEIL, ITEM_AXE_HANDAXE
 	UNIT CHARACTER_MATTHEW, CLASS_THIEF, CHARACTER_NONE, 2, FACTION_ID_BLUE, 0, 16, 2, 16, 2, ITEM_SWORD_IRON, ITEM_LOCKPICK
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch0D_Initial
 Units_Ch0D_Initial:
 	UNIT CHARACTER_WIRE, CLASS_KNIGHT, CHARACTER_NONE, 7, FACTION_ID_RED, 0, 1, 9, 1, 9, ITEM_LANCE_IRON, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0x9
@@ -246,26 +257,31 @@ Units_Ch0D_Initial:
 	UNIT CHARACTER_BLACK_FANG_DD, CLASS_ARCHER, CHARACTER_WIRE, 3, FACTION_ID_RED, 1, 5, 1, 5, 1, ITEM_BOW_IRON, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x0, 0x1C, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC810C
 Units_08CC810C:
 	UNIT CHARACTER_BLACK_FANG_DE, CLASS_THIEF, CHARACTER_WIRE, 1, FACTION_ID_RED, 1, 15, 11, 15, 11, ITEM_SWORD_IRON, ITEM_LOCKPICK, ITEM_NONE, ITEM_NONE, 0x6, 0x12, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC812C
 Units_08CC812C:
 	UNIT CHARACTER_HECTOR, CLASS_LORD_HECTOR, CHARACTER_NONE, 1, FACTION_ID_BLUE, 0, 14, 5, 10, 5, ITEM_AXE_WOLF_BEIL, ITEM_AXE_HANDAXE
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC814C
 Units_08CC814C:
 	UNIT CHARACTER_MATTHEW, CLASS_THIEF, CHARACTER_NONE, 2, FACTION_ID_BLUE, 0, 10, 3, 10, 3, ITEM_SWORD_IRON, ITEM_LOCKPICK
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC816C
 Units_08CC816C:
 	UNIT CHARACTER_CITIZEN_DA, CLASS_SOLDIER, CHARACTER_NONE, 5, FACTION_ID_RED, 1, 7, 5, 7, 5, ITEM_LANCE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CC818C
 EventScr_08CC818C:	@ unreferenced
 	LOU1 Units_Ch0D_Player
@@ -273,6 +289,7 @@ EventScr_08CC818C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC81A0
 EventScr_08CC81A0:	@ unreferenced
 	UNIT_CAM_OFF
@@ -282,6 +299,7 @@ EventScr_08CC81A0:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC81BC
 EventScr_08CC81BC:	@ unreferenced
 	LOU1 Units_08CC810C
@@ -289,6 +307,7 @@ EventScr_08CC81BC:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC81D0
 EventScr_08CC81D0:	@ unreferenced
 	LOU1 Units_08CC812C
@@ -296,6 +315,7 @@ EventScr_08CC81D0:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC81E4
 EventScr_08CC81E4:	@ unreferenced
 	LOU1 Units_08CC814C
@@ -303,6 +323,7 @@ EventScr_08CC81E4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC81F8
 EventScr_08CC81F8:	@ unreferenced
 	LOU1 Units_08CC816C

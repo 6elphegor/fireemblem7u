@@ -5,6 +5,7 @@
 
 	.section .rodata.ev_08CA71A8, "a"
 
+	.align 2, 0
 	.global Traps_Ch00
 Traps_Ch00:
 	TRAP_END
@@ -21,6 +22,7 @@ Traps_Ch02:
 Traps_Ch03:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch04
 Traps_Ch04:
 	TRAP_END
@@ -37,6 +39,7 @@ Traps_Ch06:
 Traps_Ch07:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch08
 Traps_Ch08:
 	TRAP_END
@@ -46,6 +49,7 @@ Traps_Ch09:
 	TRAP 1, 9, 8, 52, 0, 0
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch0A
 Traps_Ch0A:
 	TRAP_END
@@ -62,6 +66,7 @@ Traps_Ch0C:
 Traps_Ch0D:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch0E
 Traps_Ch0E:
 	TRAP_END
@@ -78,6 +83,7 @@ Traps_Ch10:
 Traps_Ch11:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch12
 Traps_Ch12:
 	TRAP_END
@@ -94,6 +100,7 @@ Traps_Ch14:
 Traps_Ch15:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch16
 Traps_Ch16:
 	TRAP_END
@@ -110,6 +117,7 @@ Traps_Ch18:
 Traps_Ch19:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch1A
 Traps_Ch1A:
 	TRAP_END
@@ -132,6 +140,7 @@ Traps_Ch1C:
 Traps_Ch1D:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch1E
 Traps_Ch1E:
 	TRAP_END
@@ -143,6 +152,7 @@ Traps_Ch1F:
 	TRAP 1, 11, 1, 53, 0, 0
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch20
 Traps_Ch20:
 	TRAP 1, 15, 6, 52, 0, 0
@@ -161,6 +171,7 @@ Traps_Ch22:
 Traps_Ch23:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch24
 Traps_Ch24:
 	TRAP_END
@@ -181,6 +192,7 @@ Traps_Ch27:
 	TRAP 1, 2, 7, 52, 0, 0
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch28
 Traps_Ch28:
 	TRAP 4, 11, 12, 0, 1, 1
@@ -214,6 +226,7 @@ Traps_Ch28:
 Traps_Ch29:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch2A
 Traps_Ch2A:
 	TRAP_END
@@ -245,6 +258,7 @@ Traps_Ch2E:
 Traps_Ch2F:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch30
 Traps_Ch30:
 	TRAP_END
@@ -261,6 +275,7 @@ Traps_Ch32:
 Traps_Ch33:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch34
 Traps_Ch34:
 	TRAP_END
@@ -277,6 +292,7 @@ Traps_Ch36:
 Traps_Ch37:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch38
 Traps_Ch38:
 	TRAP_END
@@ -293,6 +309,7 @@ Traps_Ch3A:
 Traps_Ch3B:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch3C
 Traps_Ch3C:
 	TRAP_END
@@ -309,6 +326,7 @@ Traps_Ch3E:
 Traps_Ch3F:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch40
 Traps_Ch40:
 	TRAP_END
@@ -325,6 +343,7 @@ Traps_Ch00_Hector:
 Traps_Ch01_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch02_Hector
 Traps_Ch02_Hector:
 	TRAP_END
@@ -341,6 +360,7 @@ Traps_Ch04_Hector:
 Traps_Ch05_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch06_Hector
 Traps_Ch06_Hector:
 	TRAP_END
@@ -357,6 +377,7 @@ Traps_Ch08_Hector:
 Traps_Ch09_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch0A_Hector
 Traps_Ch0A_Hector:
 	TRAP_END
@@ -373,6 +394,7 @@ Traps_Ch0C_Hector:
 Traps_Ch0D_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch0E_Hector
 Traps_Ch0E_Hector:
 	TRAP_END
@@ -389,6 +411,7 @@ Traps_Ch10_Hector:
 Traps_Ch11_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch12_Hector
 Traps_Ch12_Hector:
 	TRAP_END
@@ -407,6 +430,7 @@ Traps_Ch14_Hector:
 Traps_Ch15_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch16_Hector
 Traps_Ch16_Hector:
 	TRAP_END
@@ -425,6 +449,7 @@ Traps_Ch19_Hector:
 	TRAP 1, 12, 11, 52, 0, 0
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch1A_Hector
 Traps_Ch1A_Hector:
 	TRAP_END
@@ -436,6 +461,7 @@ Traps_Ch1B_Hector:
 	TRAP 1, 13, 11, 52, 0, 0
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch1C_Hector
 Traps_Ch1C_Hector:
 	TRAP 1, 16, 21, 52, 0, 0
@@ -460,6 +486,7 @@ Traps_Ch1F_Hector:
 	TRAP 1, 16, 11, 52, 0, 0
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch20_Hector
 Traps_Ch20_Hector:
 	TRAP 1, 10, 13, 52, 0, 0
@@ -497,6 +524,7 @@ Traps_Ch24_Hector:
 Traps_Ch25_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch26_Hector
 Traps_Ch26_Hector:
 	TRAP 1, 7, 9, 52, 0, 0
@@ -510,6 +538,7 @@ Traps_Ch26_Hector:
 Traps_Ch27_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch28_Hector
 Traps_Ch28_Hector:
 	TRAP_END
@@ -540,6 +569,7 @@ Traps_Ch2A_Hector:
 Traps_Ch2B_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch2C_Hector
 Traps_Ch2C_Hector:
 	TRAP 1, 10, 16, 52, 0, 0
@@ -557,6 +587,7 @@ Traps_Ch2C_Hector:
 Traps_Ch2D_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch2E_Hector
 Traps_Ch2E_Hector:
 	TRAP_END
@@ -573,6 +604,7 @@ Traps_Ch30_Hector:
 Traps_Ch31_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch32_Hector
 Traps_Ch32_Hector:
 	TRAP_END
@@ -589,6 +621,7 @@ Traps_Ch34_Hector:
 Traps_Ch35_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch36_Hector
 Traps_Ch36_Hector:
 	TRAP_END
@@ -605,6 +638,7 @@ Traps_Ch38_Hector:
 Traps_Ch39_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch3A_Hector
 Traps_Ch3A_Hector:
 	TRAP_END
@@ -621,6 +655,7 @@ Traps_Ch3C_Hector:
 Traps_Ch3D_Hector:
 	TRAP_END
 
+	.align 2, 0
 	.global Traps_Ch3E_Hector
 Traps_Ch3E_Hector:
 	TRAP_END

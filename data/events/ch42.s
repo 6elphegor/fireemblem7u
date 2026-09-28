@@ -5,15 +5,18 @@
 
 	.section .rodata.ev_08CA6E70, "a"
 
+	.align 2, 0
 	.global EvList_Ch42_Turn
 EvList_Ch42_Turn:
 	TURN 0, EventScr_Ch42_Beginning, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch42_Character
 EvList_Ch42_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch42_Location
 EvList_Ch42_Location:
 	LOCA 0, EventScr_08CC0664, 7, 0, 0xE
@@ -26,11 +29,13 @@ EvList_Ch42_Location:
 	LOCA 0, EventScr_08CC06A4, 7, 2, 0xE
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch42_Misc
 EvList_Ch42_Misc:
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch42
 ChapterEvents_Ch42:
 	.4byte EvList_Ch42_Turn                  @ turn
@@ -52,6 +57,7 @@ ChapterEvents_Ch42:
 
 	.section .rodata.ev_08CC0544, "a"
 
+	.align 2, 0
 	.global EventScr_Ch42_Beginning
 EventScr_Ch42_Beginning:
 	UNIT_CAM_OFF
@@ -84,6 +90,7 @@ EventScr_Ch42_Beginning:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0614
 EventScr_08CC0614:	@ unreferenced
 	MUSC SONG_0C
@@ -94,12 +101,14 @@ EventScr_08CC0614:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0630
 EventScr_08CC0630:	@ unreferenced
 	MUSC 0x38
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC063C
 EventScr_08CC063C:	@ unreferenced
 	FADI 0x10
@@ -112,51 +121,61 @@ EventScr_08CC063C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0664
 EventScr_08CC0664:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC066C
 EventScr_08CC066C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0674
 EventScr_08CC0674:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC067C
 EventScr_08CC067C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0684
 EventScr_08CC0684:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC068C
 EventScr_08CC068C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0694
 EventScr_08CC0694:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC069C
 EventScr_08CC069C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC06A4
 EventScr_08CC06A4:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch42_Ending
 EventScr_Ch42_Ending:
 	MUSC 0x38
@@ -171,6 +190,7 @@ EventScr_Ch42_Ending:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC06D8
 EventScr_08CC06D8:	@ unreferenced
 	TEX1_IF_ASM IsDorcasRecruited, MSG_7B1, MSG_8E4 @ Uggghh... Dorcas! Are you all right!? I... I mus / Aaah... I'm sorry, Natalie.
@@ -178,6 +198,7 @@ EventScr_08CC06D8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC06F4
 EventScr_08CC06F4:	@ unreferenced
 	TEX1 MSG_7AF                             @ Oh... I'm done for... Wil! Lyn, . I'm no use to
@@ -185,6 +206,7 @@ EventScr_08CC06F4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0708
 EventScr_08CC0708:	@ unreferenced
 	TEX1 MSG_7BC                             @ Ohhhh... Lucius! My apologies... I must withdraw
@@ -192,6 +214,7 @@ EventScr_08CC0708:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC071C
 EventScr_08CC071C:	@ unreferenced
 	TEX1_IF_ASM IsSerraRecruited, MSG_7B3, MSG_922 @ Owww! This can't be happening! Why me!? Serra! I / Oooh! This is unbearable... I suppose I'll just
@@ -199,6 +222,7 @@ EventScr_08CC071C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0738
 EventScr_08CC0738:	@ unreferenced
 	TEX1_IF_ASM IsErkRecruited, MSG_7B6, MSG_923 @ Argg... Erk! Please forgive me... I must rest. / Hmph...
@@ -206,6 +230,7 @@ EventScr_08CC0738:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0754
 EventScr_08CC0754:	@ unreferenced
 	TEX1 MSG_7A9                             @ Ahh! Defeat... Kent! Lady Lyndis, . I'm no good
@@ -213,6 +238,7 @@ EventScr_08CC0754:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0768
 EventScr_08CC0768:	@ unreferenced
 	TEX1 MSG_7AB                             @ NO!!! Oh, now I've done it... Sain! Lyndis, . I'
@@ -220,6 +246,7 @@ EventScr_08CC0768:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC077C
 EventScr_08CC077C:	@ unreferenced
 	TEX1 MSG_7B8                             @ ...Gaah... Rath! Must...withdraw... I'm sorry...
@@ -227,6 +254,7 @@ EventScr_08CC077C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0790
 EventScr_08CC0790:	@ unreferenced
 	TEX1 MSG_7AD                             @ Aaaiiieee!!! Florina! Lyn, I'm sorry. I... I can
@@ -234,6 +262,7 @@ EventScr_08CC0790:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC07A4
 EventScr_08CC07A4:	@ unreferenced
 	TEX1 MSG_7BA                             @ Ooh! That's it! Matthew! Lady Lyndis! ! I don't
@@ -241,6 +270,7 @@ EventScr_08CC07A4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC07B8
 EventScr_08CC07B8:	@ unreferenced
 	TEX1 MSG_7BE                             @ Nils! Are you all right? I'm sorry, Lyn... I've
@@ -248,6 +278,7 @@ EventScr_08CC07B8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC07CC
 EventScr_08CC07CC:	@ unreferenced
 	TEX1 MSG_7C0                             @ Curses! Looks like I relied too much on my armor
@@ -255,6 +286,7 @@ EventScr_08CC07CC:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC07E0
 EventScr_08CC07E0:	@ unreferenced
 	TEX1 MSG_7C2                             @ Mother... Father... Please...forgive me...
@@ -262,6 +294,7 @@ EventScr_08CC07E0:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC07F4
 EventScr_08CC07F4:	@ unreferenced
 	TEX1 MSG_7C4                             @ No! Not here! Not now... Forgive me, Eliwood. Te
@@ -269,6 +302,7 @@ EventScr_08CC07F4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0808
 EventScr_08CC0808:	@ unreferenced
 	TEX1 MSG_7A8                             @ No... It's not... I'm sorry, ... Everyone...forg
@@ -276,6 +310,7 @@ EventScr_08CC0808:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC081C
 EventScr_08CC081C:	@ unreferenced
 	TEX1 MSG_7C5                             @ Oh... But I have so... so much... Oh, ...
@@ -283,6 +318,7 @@ EventScr_08CC081C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0830
 EventScr_08CC0830:	@ unreferenced
 	TEX1 MSG_D86                             @ Mother...
@@ -290,6 +326,7 @@ EventScr_08CC0830:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0844
 EventScr_08CC0844:	@ unreferenced
 	TEX1 MSG_8F7                             @ Ah... Natalie!
@@ -298,6 +335,7 @@ EventScr_08CC0844:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0860
 EventScr_08CC0860:	@ unreferenced
 	TEX1 MSG_B1F                             @ Uugwoh... Can't believe... you...beat... me... Y
@@ -305,6 +343,7 @@ EventScr_08CC0860:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0874
 EventScr_08CC0874:	@ unreferenced
 	TEX1 MSG_C0F                             @ I'm sorry... Ninian... Nils!!
@@ -312,6 +351,7 @@ EventScr_08CC0874:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0888
 EventScr_08CC0888:	@ unreferenced
 	TEX1 MSG_7D2                             @ That does it! I'm leaving before all of my fines
@@ -319,6 +359,7 @@ EventScr_08CC0888:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC089C
 EventScr_08CC089C:	@ unreferenced
 	TEX1 MSG_A65                             @ This can't be happening! I only...wanted to sell
@@ -326,6 +367,7 @@ EventScr_08CC089C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC08B0
 EventScr_08CC08B0:	@ unreferenced
 	TEX1 MSG_7C7                             @ Urgh... No... Marcus? MARCUS!!!
@@ -333,6 +375,7 @@ EventScr_08CC08B0:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC08C4
 EventScr_08CC08C4:	@ unreferenced
 	TEX1 MSG_7FD                             @ Not yet... This cannot be where I am meant to fa
@@ -340,6 +383,7 @@ EventScr_08CC08C4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC08D8
 EventScr_08CC08D8:	@ unreferenced
 	TEX1 MSG_7CD                             @ Gaaaah... Oswin!! Lord Hector... I'm sorry, but.
@@ -347,6 +391,7 @@ EventScr_08CC08D8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC08EC
 EventScr_08CC08EC:	@ unreferenced
 	TEX1 MSG_7E1                             @ Ah... Ninian! Are you well? I'm sorry... I can..
@@ -354,6 +399,7 @@ EventScr_08CC08EC:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0900
 EventScr_08CC0900:	@ unreferenced
 	TEX1 MSG_7E0                             @ Ah... Ninian! I'm so sorry, Lord Eliwood... I...
@@ -361,6 +407,7 @@ EventScr_08CC0900:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC0914
 EventScr_08CC0914:	@ unreferenced
 	TEX1 MSG_7FA                             @ Forgive me... I'm done for... Nils!
@@ -370,6 +417,7 @@ EventScr_08CC0914:	@ unreferenced
 
 	.section .rodata.ev_08CE1384, "a"
 
+	.align 2, 0
 	.global Units_Ch42_Player
 Units_Ch42_Player:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 18, FACTION_ID_BLUE, 0, 0, 2, 0, 2, ITEM_SWORD_RAPIER, ITEM_VULNERARY, ITEM_MINE, ITEM_LIGHTRUNE
@@ -385,6 +433,7 @@ Units_Ch42_Player:
 	UNIT CHARACTER_MERLINUS, CLASS_TRANSPORTER_TENT, CHARACTER_ELIWOOD, 5, FACTION_ID_BLUE, 0, 6, 3, 6, 3
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CE1444
 Units_08CE1444:	@ unreferenced
 	UNIT CHARACTER_FARINA, CLASS_PEGASUS_KNIGHT, CHARACTER_ELIWOOD, 10, FACTION_ID_BLUE, 0, 0, 6, 0, 6, ITEM_LANCE_IRON, ITEM_LANCE_JAVELIN, ITEM_MINE, ITEM_LIGHTRUNE
@@ -393,10 +442,12 @@ Units_08CE1444:	@ unreferenced
 	UNIT CHARACTER_GEITZ, CLASS_WARRIOR, CHARACTER_ELIWOOD, 10, FACTION_ID_BLUE, 0, 0, 7, 0, 7, ITEM_AXE_KILLER, ITEM_AXE_IRON, ITEM_MINE, ITEM_LIGHTRUNE
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch42_Initial
 Units_Ch42_Initial:
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CE14A4
 Units_08CE14A4:
 	UNIT CHARACTER_BOIES, CLASS_GENERAL, CHARACTER_NONE, 12, FACTION_ID_RED, 0, 13, 4, 13, 4, ITEM_AXE_STEEL, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0x9
@@ -406,6 +457,7 @@ Units_08CE14A4:
 	UNIT CHARACTER_BANDIT_88, CLASS_KNIGHT, CHARACTER_BOIES, 18, FACTION_ID_RED, 1, 9, 7, 9, 7, ITEM_LANCE_STEEL, ITEM_LANCE_JAVELIN, ITEM_NONE, ITEM_NONE, 0x0, 0x3, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CE1504
 Units_08CE1504:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 15, FACTION_ID_BLUE, 0, 2, 4, 2, 4, ITEM_SWORD_RAPIER, ITEM_VULNERARY, ITEM_MINE, ITEM_LIGHTRUNE
@@ -437,6 +489,7 @@ Units_08CE1504:
 	UNIT CHARACTER_MERLINUS, CLASS_TRANSPORTER_TENT, CHARACTER_NONE, 5, FACTION_ID_BLUE, 0, 15, 5, 15, 5
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CE16C4
 Units_08CE16C4:
 	UNIT CHARACTER_BRAMIMOND, CLASS_DRUID, CHARACTER_NONE, 12, FACTION_ID_RED, 0, 1, 8, 1, 8, ITEM_DARK_NOSFERATU, ITEM_STAFF_HEAL, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0x9
@@ -472,6 +525,7 @@ Units_08CE16C4:
 	UNIT CHARACTER_GEORG, CLASS_BERSERKER, CHARACTER_NONE, 12, FACTION_ID_RED, 0, 16, 9, 16, 9, ITEM_AXE_IRON, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CE18C4
 Units_08CE18C4:
 	UNIT CHARACTER_LYN_TUTORIAL, CLASS_LORD_LYN, CHARACTER_NONE, 15, FACTION_ID_BLUE, 0, 2, 4, 2, 4, ITEM_SWORD_IRON, ITEM_VULNERARY, ITEM_MINE, ITEM_LIGHTRUNE
@@ -502,6 +556,7 @@ Units_08CE18C4:
 	UNIT CHARACTER_LEILA, CLASS_THIEF_F, CHARACTER_NONE, 15, FACTION_ID_BLUE, 1, 14, 5, 14, 5, ITEM_SWORD_IRON, ITEM_VULNERARY, ITEM_MINE, ITEM_LIGHTRUNE
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CE1A74
 Units_08CE1A74:
 	UNIT CHARACTER_KAIM, CLASS_HERO, CHARACTER_NONE, 15, FACTION_ID_RED, 0, 2, 8, 2, 8, ITEM_AXE_IRON, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0x9

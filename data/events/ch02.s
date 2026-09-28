@@ -5,22 +5,26 @@
 
 	.section .rodata.ev_08CA09B4, "a"
 
+	.align 2, 0
 	.global EvList_Ch02_Turn
 EvList_Ch02_Turn:
 	TURN 0, EventScr_Ch02_Beginning, 1, 0, FACTION_BLUE, 0
 	TURN 0, EventScr_08CA929C, 1, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch02_TutorialD
 EvList_Ch02_TutorialD:
 	TURN 0, EventScr_08CA9300, 2, 0, FACTION_BLUE, 0
 	TURN 0, EventScr_08CA933C, 3, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch02_Character
 EvList_Ch02_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch02_Location
 EvList_Ch02_Location:
 	LOCA 3, EVENT_NOSCRIPT, 0xB, 1, 0xF
@@ -29,6 +33,7 @@ EvList_Ch02_Location:
 	LOCA 0, EventScr_08CA93E0, 0, 7, 0xE
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch02_TutorialA
 EvList_Ch02_TutorialA:
 	AFEV 7, EventScr_08CA9418, 6
@@ -36,21 +41,25 @@ EvList_Ch02_TutorialA:
 	AFEV 0xB, EventScr_08CA9578, 0xA
 	EVLIST_END
 
+	.align 2, 0
 	.global AreaList_08CA0A5C
 AreaList_08CA0A5C:
 	.byte 0, 7, 0, 0
 	.byte 255, 0, 0, 0
 
+	.align 2, 0
 	.global AreaList_08CA0A64
 AreaList_08CA0A64:
 	.byte 1, 7, 0, 0
 	.byte 255, 0, 0, 0
 
+	.align 2, 0
 	.global AreaList_08CA0A6C
 AreaList_08CA0A6C:
 	.byte 0, 9, 0, 0
 	.byte 255, 0, 0, 0
 
+	.align 2, 0
 	.global EvList_Ch02_TutorialB
 EvList_Ch02_TutorialB:
 	TUTORIAL_POS 0xE, AreaList_08CA0A5C, EventScr_08CA96A8, 7
@@ -59,10 +68,12 @@ EvList_Ch02_TutorialB:
 	TUTORIAL_POS 0x10, AreaList_08CA0A6C, EventScr_08CA9724, 0xD
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch02_TutorialC
 EvList_Ch02_TutorialC:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch02_Misc
 EvList_Ch02_Misc:
 	AFEV 0x11, EventScr_08CA97A4, 7
@@ -73,6 +84,7 @@ EvList_Ch02_Misc:
 	AFEV 0x15, EventScr_08CA9960, 2
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch02
 ChapterEvents_Ch02:
 	.4byte EvList_Ch02_Turn                  @ turn
@@ -94,6 +106,7 @@ ChapterEvents_Ch02:
 
 	.section .rodata.ev_08CA9040, "a"
 
+	.align 2, 0
 	.global MoveScr_08CA9040
 MoveScr_08CA9040:
 	.byte MV_SPEED, 0x18, MV_LEFT, MV_UP, MV_HALT
@@ -102,20 +115,22 @@ MoveScr_08CA9040:
 MoveScr_08CA9045:
 	.byte MV_SPEED, 0x8, MV_UP, MV_LEFT, MV_SPEED, 0x30, MV_LEFT, MV_LEFT, MV_LEFT, MV_LEFT, MV_HALT
 
+	.align 2, 0
 	.global MoveScr_08CA9050
 MoveScr_08CA9050:
 	.byte MV_SPEED, 0x20, MV_LEFT, MV_HALT
 
+	.align 2, 0
 	.global MoveScr_08CA9054
 MoveScr_08CA9054:
 	.byte MV_SPEED, 0x10, MV_UP, MV_HALT
 
+	.align 2, 0
 	.global MoveScr_08CA9058
 MoveScr_08CA9058:
 	.byte MV_SPEED, 0x10, MV_LEFT, MV_UP, MV_HALT
 
-	.fill 3, 1, 0
-
+	.align 2, 0
 	.global EventScr_Ch02_Beginning
 EventScr_Ch02_Beginning:
 	UNIT_CAM_OFF
@@ -211,6 +226,7 @@ EventScr_Ch02_Beginning:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA929C
 EventScr_08CA929C:
 	IFDIFF 1, 0x63
@@ -230,6 +246,7 @@ EventScr_08CA929C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA9300
 EventScr_08CA9300:
 	IFTU 0x32
@@ -242,6 +259,7 @@ EventScr_08CA9300:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA933C
 EventScr_08CA933C:
 	IFTU 0x32
@@ -253,6 +271,7 @@ EventScr_08CA933C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA9370
 EventScr_08CA9370:
 	IGNORE_KEYS 0x0
@@ -268,6 +287,7 @@ EventScr_08CA9370:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA93A8
 EventScr_08CA93A8:
 	IGNORE_KEYS 0x0
@@ -283,6 +303,7 @@ EventScr_08CA93A8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA93E0
 EventScr_08CA93E0:
 	IGNORE_KEYS 0x0
@@ -298,6 +319,7 @@ EventScr_08CA93E0:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA9418
 EventScr_08CA9418:
 	EVBIT_SILENTSKIP
@@ -324,6 +346,7 @@ EventScr_08CA9418:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA94BC
 EventScr_08CA94BC:
 	EVBIT_SILENTSKIP
@@ -352,6 +375,7 @@ EventScr_08CA94BC:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA9578
 EventScr_08CA9578:
 	EVBIT_SILENTSKIP
@@ -396,6 +420,7 @@ EventScr_08CA9578:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA96A8
 EventScr_08CA96A8:
 	EVBIT_SILENTSKIP
@@ -409,6 +434,7 @@ EventScr_08CA96A8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA96E4
 EventScr_08CA96E4:
 	EVBIT_SILENTSKIP
@@ -422,6 +448,7 @@ EventScr_08CA96E4:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA9724
 EventScr_08CA9724:
 	EVBIT_SILENTSKIP
@@ -443,6 +470,7 @@ EventScr_08CA9724:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA97A4
 EventScr_08CA97A4:
 	EVBIT_SILENTSKIP
@@ -475,6 +503,7 @@ EventScr_08CA97A4:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA987C
 EventScr_08CA987C:
 	EVBIT_SILENTSKIP
@@ -488,6 +517,7 @@ EventScr_08CA987C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA98B8
 EventScr_08CA98B8:
 	EVBIT_SILENTSKIP
@@ -505,6 +535,7 @@ EventScr_08CA98B8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA991C
 EventScr_08CA991C:
 	EVBIT_SILENTSKIP
@@ -518,6 +549,7 @@ EventScr_08CA991C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CA9960
 EventScr_08CA9960:
 	EVBIT_SILENTSKIP
@@ -529,6 +561,7 @@ EventScr_08CA9960:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch02_Ending
 EventScr_Ch02_Ending:
 	MENU_OVERRIDE_CLEAR
@@ -635,6 +668,7 @@ EventScr_Ch02_Ending:
 
 	.section .rodata.ev_08CC5CE8, "a"
 
+	.align 2, 0
 	.global Units_Ch02_Player
 Units_Ch02_Player:
 	UNIT CHARACTER_LYN_TUTORIAL, CLASS_LORD_LYN, CHARACTER_NONE, 2, FACTION_ID_BLUE, 0, 2, 0, 2, 0, ITEM_SWORD_IRON, ITEM_VULNERARY
@@ -642,15 +676,18 @@ Units_Ch02_Player:
 	UNIT CHARACTER_KENT_TUTORIAL, CLASS_CAVALIER, CHARACTER_LYN_TUTORIAL, 1, FACTION_ID_BLUE, 0, 0, 0, 0, 0, ITEM_SWORD_IRON, ITEM_LANCE_IRON, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC5D28
 Units_08CC5D28:
 	UNIT CHARACTER_TACTICIAN, CLASS_PRINCE_51, CHARACTER_NONE, 1, FACTION_ID_GREEN, 0, 1, 0, 1, 3
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch02_Initial
 Units_Ch02_Initial:
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC5D58
 Units_08CC5D58:
 	UNIT CHARACTER_GLASS, CLASS_MERCENARY, CHARACTER_NONE, 3, FACTION_ID_RED, 0, 11, 9, 11, 2, ITEM_SWORD_IRON, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x3, 0x3, 0x2, 0x20
@@ -661,16 +698,19 @@ Units_08CC5D58:
 	UNIT CHARACTER_BANDIT_8B, CLASS_BRIGAND, CHARACTER_GLASS, 2, FACTION_ID_RED, 1, 12, 9, 13, 8, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x8, 0x3, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC5DC8
 Units_08CC5DC8:
 	UNIT CHARACTER_CITIZEN_DA, CLASS_BISHOP, CHARACTER_NONE, 1, FACTION_ID_GREEN, 0, 11, 1, 11, 1, ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x6, 0x3, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC5DE8
 Units_08CC5DE8:
 	UNIT CHARACTER_CITIZEN_DB, CLASS_CIVILIAN_48, CHARACTER_NONE, 1, FACTION_ID_GREEN, 0, 7, 5, 7, 5
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CC5E08
 EventScr_08CC5E08:	@ unreferenced
 	LOU1 Units_Ch02_Player
@@ -678,6 +718,7 @@ EventScr_08CC5E08:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC5E1C
 EventScr_08CC5E1C:	@ unreferenced
 	LOU1 Units_08CC5D28
@@ -685,6 +726,7 @@ EventScr_08CC5E1C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC5E30
 EventScr_08CC5E30:	@ unreferenced
 	UNIT_CAM_OFF
@@ -694,6 +736,7 @@ EventScr_08CC5E30:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC5E4C
 EventScr_08CC5E4C:	@ unreferenced
 	LOU1 Units_08CC5D58
@@ -701,6 +744,7 @@ EventScr_08CC5E4C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC5E60
 EventScr_08CC5E60:	@ unreferenced
 	LOU1 Units_08CC5DC8
@@ -708,6 +752,7 @@ EventScr_08CC5E60:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC5E74
 EventScr_08CC5E74:	@ unreferenced
 	LOU1 Units_08CC5DE8

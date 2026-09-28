@@ -5,6 +5,7 @@
 
 	.section .rodata.ev_08CA2CD8, "a"
 
+	.align 2, 0
 	.global EvList_Ch17_Turn
 EvList_Ch17_Turn:
 	TURN 0, EventScr_08CB2D9C, 1, 0, FACTION_BLUE, 0
@@ -19,21 +20,25 @@ EvList_Ch17_Turn:
 	TURN 0, EventScr_08CCD9A4, 3, 6, FACTION_BLUE, 4
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch17_Character
 EvList_Ch17_Character:
 	CHAR 7, EventScr_08CB2F04, CHARACTER_FLORINA, CHARACTER_FIORA, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch17_Location
 EvList_Ch17_Location:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch17_Misc
 EvList_Ch17_Misc:
 	AFEV 0, EventScr_Ch17_Ending, 2
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch17
 ChapterEvents_Ch17:
 	.4byte EvList_Ch17_Turn                  @ turn
@@ -55,11 +60,13 @@ ChapterEvents_Ch17:
 
 	.section .rodata.ev_08CB29A0, "a"
 
+	.align 2, 0
 	.global BattleScr_08CB29A0
 BattleScr_08CB29A0:
 	BATTLE_HIT 0x800, 0x1, 30
 	BATTLE_HIT 0x0, 0x80, 0
 
+	.align 2, 0
 	.global MoveScr_08CB29A8
 MoveScr_08CB29A8:
 	.byte MV_LEFT, MV_HALT
@@ -76,8 +83,7 @@ MoveScr_08CB29AD:
 MoveScr_08CB29B3:
 	.byte MV_DOWN, MV_LEFT, MV_LEFT, MV_LEFT, MV_DOWN, MV_DOWN, MV_HALT
 
-	.fill 2, 1, 0
-
+	.align 2, 0
 	.global EventScr_Ch17_Beginning
 EventScr_Ch17_Beginning:
 	UNIT_CAM_OFF
@@ -249,6 +255,7 @@ EventScr_Ch17_Beginning:
 	REMA_PREP
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB2D9C
 EventScr_08CB2D9C:
 	MUEN 4
@@ -294,6 +301,7 @@ EventScr_08CB2D9C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB2ED8
 EventScr_08CB2ED8:
 	MUSC 0x08
@@ -303,6 +311,7 @@ EventScr_08CB2ED8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CB2F04
 EventScr_08CB2F04:
 	MUSS 0x42
@@ -314,6 +323,7 @@ EventScr_08CB2F04:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch17_Ending
 EventScr_Ch17_Ending:
 	ASMC sub_08079B5C
@@ -369,6 +379,7 @@ EventScr_Ch17_Ending:
 
 	.section .rodata.ev_08CCCEB4, "a"
 
+	.align 2, 0
 	.global Units_Ch17_Player
 Units_Ch17_Player:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 9, FACTION_ID_BLUE, 1, 3, 6, 3, 6, ITEM_SWORD_RAPIER, ITEM_SWORD_IRON
@@ -385,6 +396,7 @@ Units_Ch17_Player:
 	UNIT CHARACTER_FLORINA, CLASS_PEGASUS_KNIGHT, CHARACTER_NONE, 7, FACTION_ID_BLUE, 1, 2, 8, 2, 8, ITEM_LANCE_SLIM, ITEM_LANCE_JAVELIN, ITEM_LANCE_IRON, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch17_PlayerHard
 Units_Ch17_PlayerHard:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 9, FACTION_ID_BLUE, 1, 3, 6, 3, 6, ITEM_SWORD_RAPIER, ITEM_SWORD_IRON
@@ -401,6 +413,7 @@ Units_Ch17_PlayerHard:
 	UNIT CHARACTER_MATTHEW, CLASS_THIEF, CHARACTER_NONE, 5, FACTION_ID_BLUE, 1, 5, 4, 5, 4, ITEM_SWORD_IRON, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch17_Initial
 Units_Ch17_Initial:
 	UNIT CHARACTER_UHAI_4B, CLASS_NOMAD_TROOPER, CHARACTER_NONE, 7, FACTION_ID_RED, 0, 13, 22, 13, 22, ITEM_SWORD_STEEL, ITEM_BOW_LONGBOW, ITEM_BOW_SHORTBOW, ITEM_ORIONSBOLT, 0x3, 0x3, 0x9
@@ -426,6 +439,7 @@ Units_Ch17_Initial:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_NOMAD, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 13, 21, 13, 21, ITEM_BOW_SHORTBOW, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x3, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch17_InitialHector
 Units_Ch17_InitialHector:
 	UNIT CHARACTER_UHAI_4B, CLASS_NOMAD_TROOPER, CHARACTER_NONE, 7, FACTION_ID_RED, 0, 13, 22, 13, 22, ITEM_SWORD_KILLER, ITEM_BOW_LONGBOW, ITEM_BOW_SHORTBOW, ITEM_ORIONSBOLT, 0x3, 0x3, 0x9
@@ -451,6 +465,7 @@ Units_Ch17_InitialHector:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_NOMAD, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 13, 21, 13, 21, ITEM_BOW_SHORTBOW, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x3, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch17_InitialHard
 Units_Ch17_InitialHard:
 	UNIT CHARACTER_UHAI_4B, CLASS_NOMAD_TROOPER, CHARACTER_NONE, 7, FACTION_ID_RED, 0, 13, 22, 13, 22, ITEM_SWORD_STEEL, ITEM_BOW_LONGBOW, ITEM_BOW_SHORTBOW, ITEM_ORIONSBOLT, 0x3, 0x3, 0x9
@@ -484,6 +499,7 @@ Units_Ch17_InitialHard:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_PIRATE, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 0, 1, 0, 1, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch17_InitialHectorHard
 Units_Ch17_InitialHectorHard:
 	UNIT CHARACTER_UHAI_4B, CLASS_NOMAD_TROOPER, CHARACTER_NONE, 7, FACTION_ID_RED, 0, 13, 22, 13, 22, ITEM_SWORD_KILLER, ITEM_BOW_LONGBOW, ITEM_BOW_SHORTBOW, ITEM_ORIONSBOLT, 0x3, 0x3, 0x9
@@ -521,41 +537,49 @@ Units_Ch17_InitialHectorHard:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_PIRATE, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 13, 12, 13, 12, ITEM_AXE_HANDAXE, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x1B, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD714
 Units_08CCD714:
 	UNIT CHARACTER_DART, CLASS_PIRATE, CHARACTER_NONE, 8, FACTION_ID_BLUE, 0, 8, 6, 8, 6, ITEM_AXE_STEEL, ITEM_AXE_HANDAXE, ITEM_TORCH
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD734
 Units_08CCD734:
 	UNIT CHARACTER_FIORA, CLASS_PEGASUS_KNIGHT, CHARACTER_NONE, 7, FACTION_ID_GREEN, 0, 3, 0, 3, 5, ITEM_LANCE_STEEL, ITEM_LANCE_JAVELIN, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD754
 Units_08CCD754:
 	UNIT CHARACTER_FIORA, CLASS_PEGASUS_KNIGHT, CHARACTER_NONE, 7, FACTION_ID_GREEN, 0, 3, 0, 3, 5, ITEM_LANCE_AXEREAVER, ITEM_LANCE_JAVELIN, ITEM_VULNERARY, ITEM_NONE, 0x0, 0x3, 0xE
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD774
 Units_08CCD774:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_PIRATE, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 14, 0, 14, 0, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD794
 Units_08CCD794:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_PEGASUS_KNIGHT, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 14, 0, 14, 0, ITEM_LANCE_JAVELIN, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0xD, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD7B4
 Units_08CCD7B4:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_PIRATE, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 2, 0, 2, 0, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x4, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD7D4
 Units_08CCD7D4:
 	UNIT CHARACTER_BLACK_FANG_6D, CLASS_NOMAD_F, CHARACTER_UHAI_4B, 6, FACTION_ID_RED, 1, 16, 19, 16, 19, ITEM_BOW_SHORTBOW, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0xD, 0x9
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD7F4
 Units_08CCD7F4:
 	UNIT CHARACTER_CITIZEN_DA, CLASS_SAGE, CHARACTER_NONE, 1, FACTION_ID_RED, 0, 9, 11, 9, 11
@@ -563,11 +587,13 @@ Units_08CCD7F4:
 	UNIT CHARACTER_JAFFAR, CLASS_ASSASSIN, CHARACTER_NONE, 13, FACTION_ID_RED, 0, 6, 11, 6, 11, ITEM_SWORD_KILLER
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD834
 Units_08CCD834:
 	UNIT CHARACTER_LEILA, CLASS_CIVILIAN, CHARACTER_NONE, 14, FACTION_ID_GREEN, 0, 7, 11, 7, 11, ITEM_SWORD_SILVER
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD854
 Units_08CCD854:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 9, FACTION_ID_BLUE, 1, 8, 3, 8, 3
@@ -577,11 +603,13 @@ Units_08CCD854:
 	UNIT CHARACTER_UHAI_4B, CLASS_NOMAD_TROOPER, CHARACTER_NONE, 7, FACTION_ID_RED, 0, 3, 10, 3, 10
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CCD8B4
 Units_08CCD8B4:
 	UNIT CHARACTER_LEILA, CLASS_CIVILIAN_4F, CHARACTER_NONE, 14, FACTION_ID_GREEN, 0, 5, 7, 5, 7, ITEM_SWORD_SILVER
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CCD8D4
 EventScr_08CCD8D4:	@ unreferenced
 	LOU1 Units_Ch17_Player
@@ -589,6 +617,7 @@ EventScr_08CCD8D4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD8E8
 EventScr_08CCD8E8:	@ unreferenced
 	LOU1 Units_Ch17_PlayerHard
@@ -596,6 +625,7 @@ EventScr_08CCD8E8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD8FC
 EventScr_08CCD8FC:	@ unreferenced
 	UNIT_CAM_OFF
@@ -605,6 +635,7 @@ EventScr_08CCD8FC:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD918
 EventScr_08CCD918:	@ unreferenced
 	LOU1 Units_Ch17_InitialHector
@@ -612,6 +643,7 @@ EventScr_08CCD918:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD92C
 EventScr_08CCD92C:	@ unreferenced
 	LOU1 Units_Ch17_InitialHard
@@ -619,6 +651,7 @@ EventScr_08CCD92C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD940
 EventScr_08CCD940:	@ unreferenced
 	LOU1 Units_Ch17_InitialHectorHard
@@ -626,6 +659,7 @@ EventScr_08CCD940:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD954
 EventScr_08CCD954:	@ unreferenced
 	LOU1 Units_08CCD714
@@ -633,6 +667,7 @@ EventScr_08CCD954:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD968
 EventScr_08CCD968:	@ unreferenced
 	LOU1 Units_08CCD734
@@ -640,6 +675,7 @@ EventScr_08CCD968:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD97C
 EventScr_08CCD97C:	@ unreferenced
 	LOU1 Units_08CCD754
@@ -647,6 +683,7 @@ EventScr_08CCD97C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD990
 EventScr_08CCD990:
 	LOU1 Units_08CCD774
@@ -654,6 +691,7 @@ EventScr_08CCD990:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD9A4
 EventScr_08CCD9A4:
 	LOU1 Units_08CCD794
@@ -661,6 +699,7 @@ EventScr_08CCD9A4:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD9B8
 EventScr_08CCD9B8:
 	LOU1 Units_08CCD7B4
@@ -668,6 +707,7 @@ EventScr_08CCD9B8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD9CC
 EventScr_08CCD9CC:
 	LOU1 Units_08CCD7D4
@@ -675,6 +715,7 @@ EventScr_08CCD9CC:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD9E0
 EventScr_08CCD9E0:	@ unreferenced
 	LOU1 Units_08CCD7F4
@@ -682,6 +723,7 @@ EventScr_08CCD9E0:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCD9F4
 EventScr_08CCD9F4:	@ unreferenced
 	LOU1 Units_08CCD834
@@ -689,6 +731,7 @@ EventScr_08CCD9F4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCDA08
 EventScr_08CCDA08:	@ unreferenced
 	LOU1 Units_08CCD854
@@ -696,6 +739,7 @@ EventScr_08CCDA08:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CCDA1C
 EventScr_08CCDA1C:	@ unreferenced
 	LOU1 Units_08CCD8B4

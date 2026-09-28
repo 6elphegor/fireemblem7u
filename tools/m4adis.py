@@ -158,6 +158,9 @@ def ram_names(path="symbols.ld"):
 
 
 # --- parsing ------------------------------------------------------------------
+ALIGN = "\t.align 2, 0\n"
+
+
 class Item:
     """A run of bytes at addr with its assembler text.  refs: {offset: target}
     for 4-byte pointer fields (the text refers to them as {0}, {1}... in
@@ -514,6 +517,9 @@ class Emitter:
         raw bytes split at the label."""
         out = []
         for it in items:
+            if it.size == 0:  # a directive before the labels (.align)
+                out.append(it.fmt)
+                continue
             out += self.label_lines(it.addr)
             inside = self.labels_inside(it.addr, it.size)
             if inside:
@@ -640,8 +646,10 @@ class Emitter:
                     end -= 1
             items += self.dead(a, end, hole_status)
             if end < nxt:
-                items.append(Item(end, nxt - end, "\t.align 2, 0\n"))
+                items.append(Item(end, nxt - end, ALIGN))
             a = nxt
+        if h % 4 == 0 and not (items and items[-1].fmt == ALIGN):
+            items.append(Item(h, 0, ALIGN))  # the header stays aligned if the tracks change size
         fields = [f"\t.byte\t{n}\t@ NumTrks\n", f"\t.byte\t{blocks}\t@ NumBlks\n",
                   f"\t.byte\t{prio}\t@ Priority\n", f"\t.byte\t{reverb}\t@ Reverb\n"]
         hdr = "".join(fields) + "\n\t.word\t{0}\n\n" + "".join("\t.word\t{%d}\n" % (i + 1) for i in range(n))
@@ -687,6 +695,11 @@ class Emitter:
         vg_starts = s.groups
         for lo, hi, kind, payload in s.chunks:
             top.append("\n")
+            # Objects the engine reads as words start 4-aligned whatever
+            # comes before them changes size to (the modern build moves
+            # data); at their original addresses the .align adds nothing.
+            if lo % 4 == 0 and kind in ("wave", "pwave", "header", "mplay", "songtable"):
+                top.append(ALIGN)
             if kind == "voices":
                 cuts = [g for g in vg_starts if lo <= g < hi]
                 bounds = ([lo] if not cuts or cuts[0] != lo else []) + cuts + [hi]
@@ -694,6 +707,8 @@ class Emitter:
                     name = s.labels[x][0] if x in vg_starts else f"voices_{x:08X}"
                     path = f"sound/voicegroups/{name}.s"
                     files[path] = self.voicegroup_file(x, y)
+                    if x % 4 == 0:
+                        top.append(ALIGN)
                     top.append(f'\t.include "{path}"\n')
             elif kind == "wave":
                 path = f"sound/direct_sound_samples/{payload:08X}.bin"

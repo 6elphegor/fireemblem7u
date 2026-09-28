@@ -5,12 +5,14 @@
 
 	.section .rodata.ev_08CA5F50, "a"
 
+	.align 2, 0
 	.global EvList_Ch2B_Turn
 EvList_Ch2B_Turn:
 	TURN 0, EventScr_08CBE018, 1, 0, FACTION_BLUE, 0
 	TURN 0, EventScr_Ch2B_Ending, 6, 0, FACTION_BLUE, 0
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch2B_Character
 EvList_Ch2B_Character:
 	CHAR_ASM 6, EventScr_08CBE0E8, CHARACTER_HECTOR, CHARACTER_LYN, sub_0807A1F8
@@ -22,6 +24,7 @@ EvList_Ch2B_Character:
 	CHAR 9, EventScr_08CBE164, CHARACTER_BARTRE, CHARACTER_KARLA, 2
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch2B_Location
 EvList_Ch2B_Location:
 	LOCA 0, EventScr_08CBE224, 0xD, 8, 0xE
@@ -33,12 +36,14 @@ EvList_Ch2B_Location:
 	SHOP 0, ShopList_08CA7186, 0xC, 5, 0x14
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch2B_Misc
 EvList_Ch2B_Misc:
 	AFEV 0, gEvent_GameOver, 0x65
 	AFEV 0xA, EventScr_08CBE290, 9
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch2B
 ChapterEvents_Ch2B:
 	.4byte EvList_Ch2B_Turn                  @ turn
@@ -60,12 +65,12 @@ ChapterEvents_Ch2B:
 
 	.section .rodata.ev_08CBDF20, "a"
 
+	.align 2, 0
 	.global MoveScr_08CBDF20
 MoveScr_08CBDF20:
 	.byte MV_UP, MV_HALT
 
-	.fill 2, 1, 0
-
+	.align 2, 0
 	.global EventScr_Ch2B_Beginning
 EventScr_Ch2B_Beginning:
 	LOU1 Units_08CDDD5C
@@ -108,6 +113,7 @@ EventScr_Ch2B_Beginning:
 	REMA_PREP
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBE018
 EventScr_08CBE018:
 	LOU2 Units_Ch2B_Player
@@ -144,6 +150,7 @@ EventScr_08CBE018:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBE0E8
 EventScr_08CBE0E8:
 	MUSS SONG_6A
@@ -155,6 +162,7 @@ EventScr_08CBE0E8:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBE118
 EventScr_08CBE118:
 	MUSS 0x58
@@ -164,6 +172,7 @@ EventScr_08CBE118:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBE134
 EventScr_08CBE134:
 	MUSS 0x41
@@ -174,12 +183,14 @@ EventScr_08CBE134:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global BattleScr_08CBE158
 BattleScr_08CBE158:	@ unreferenced
 	BATTLE_HIT 0x0, 0x1, 0
 	BATTLE_HIT 0x8, 0x8, 0
 	BATTLE_HIT 0x0, 0x80, 0
 
+	.align 2, 0
 	.global EventScr_08CBE164
 EventScr_08CBE164:
 	MUSS 0x3AC
@@ -206,12 +217,14 @@ EventScr_08CBE164:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global MsgList_08CBE218
 MsgList_08CBE218:
 	.4byte MSG_80F                           @ You've got quite a few rare items, don't you? Yo
 	.4byte MSG_810                           @ You look like you spend quite a bit of gold. Why
 	.4byte MSG_811                           @ Weapons and items can help build your fortune, y
 
+	.align 2, 0
 	.global EventScr_08CBE224
 EventScr_08CBE224:
 	MUSI
@@ -233,6 +246,7 @@ EventScr_08CBE224:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CBE290
 EventScr_08CBE290:
 	IFEM 9
@@ -265,6 +279,7 @@ EventScr_08CBE290:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch2B_Ending
 EventScr_Ch2B_Ending:
 	ASMC sub_08079B5C
@@ -346,6 +361,7 @@ EventScr_Ch2B_Ending:
 
 	.section .rodata.ev_08CDDC9C, "a"
 
+	.align 2, 0
 	.global Units_Ch2B_Player
 Units_Ch2B_Player:
 	UNIT CHARACTER_ELIWOOD, CLASS_KNIGHT_LORD, CHARACTER_NONE, 5, FACTION_ID_BLUE, 1, 4, 2, 4, 2, ITEM_SWORD_SILVER, ITEM_SWORD_RAPIER, ITEM_SWORD_KILLER, ITEM_LANCE_STEEL
@@ -360,10 +376,12 @@ Units_Ch2B_Player:
 	UNIT CHARACTER_MATTHEW, CLASS_THIEF, CHARACTER_NONE, 16, FACTION_ID_BLUE, 1, 8, 9, 8, 9, ITEM_SWORD_IRON, ITEM_LOCKPICK
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch2B_Initial
 Units_Ch2B_Initial:
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CDDD5C
 Units_08CDDD5C:
 	UNIT CHARACTER_ELIWOOD, CLASS_KNIGHT_LORD, CHARACTER_NONE, 5, FACTION_ID_BLUE, 1, 4, 4, 4, 4, ITEM_SWORD_SILVER, ITEM_SWORD_RAPIER, ITEM_SWORD_KILLER, ITEM_LANCE_STEEL
@@ -372,11 +390,13 @@ Units_08CDDD5C:
 	UNIT CHARACTER_MARCUS, CLASS_PALADIN, CHARACTER_NONE, 1, FACTION_ID_BLUE, 0, 5, 3, 5, 3, ITEM_SWORD_IRON, ITEM_LANCE_SILVER
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CDDDAC
 Units_08CDDDAC:
 	UNIT CHARACTER_MERLINUS, CLASS_TRANSPORTER_TENT, CHARACTER_NONE, 1, FACTION_ID_BLUE, 0, 3, 2, 3, 2
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CDDDCC
 Units_08CDDDCC:
 	UNIT CHARACTER_HECTOR, CLASS_GREAT_LORD, CHARACTER_NONE, 3, FACTION_ID_BLUE, 1, 0, 8, 3, 3, ITEM_AXE_SILVER, ITEM_AXE_HANDAXE, ITEM_AXE_HAMMER, ITEM_AXE_SWORDREAVER
@@ -384,11 +404,13 @@ Units_08CDDDCC:
 
 	.section .rodata.ev_08CDDE1C, "a"
 
+	.align 2, 0
 	.global Units_08CDDE1C
 Units_08CDDE1C:
 	UNIT CHARACTER_KARLA, CLASS_SWORDMASTER_F, CHARACTER_NONE, 5, FACTION_ID_GREEN, 0, 5, 7, 5, 7, ITEM_SWORD_SHAMSIR
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CDDE3C
 EventScr_08CDDE3C:	@ unreferenced
 	LOU1 Units_Ch2B_Player
@@ -396,6 +418,7 @@ EventScr_08CDDE3C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDDE50
 EventScr_08CDDE50:	@ unreferenced
 	UNIT_CAM_OFF
@@ -405,6 +428,7 @@ EventScr_08CDDE50:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDDE6C
 EventScr_08CDDE6C:	@ unreferenced
 	LOU1 Units_08CDDD5C
@@ -412,6 +436,7 @@ EventScr_08CDDE6C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDDE80
 EventScr_08CDDE80:	@ unreferenced
 	LOU1 Units_08CDDDAC
@@ -419,6 +444,7 @@ EventScr_08CDDE80:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDDE94
 EventScr_08CDDE94:	@ unreferenced
 	LOU1 Units_08CDDDCC
@@ -426,6 +452,7 @@ EventScr_08CDDE94:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDDEA8
 EventScr_08CDDEA8:	@ unreferenced
 	LOU1 Units_08CDDDEC
@@ -433,6 +460,7 @@ EventScr_08CDDEA8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CDDEBC
 EventScr_08CDDEBC:	@ unreferenced
 	LOU1 Units_08CDDE1C

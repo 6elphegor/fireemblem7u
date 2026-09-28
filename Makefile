@@ -51,10 +51,11 @@ OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 
-.PHONY: all compare clean msgheader shifttest
+.PHONY: all compare clean msgheader shifttest modern modern-check modern-resizetest
 .DELETE_ON_ERROR:
 
-all: compare
+# `make MODERN=1` (or `make modern`): the non-matching build, see below.
+all: $(if $(filter 1,$(MODERN)),modern,compare)
 
 compare: $(ROM)
 	@$(SHASUM) -c fe7u.sha1
@@ -231,9 +232,62 @@ build/banim/%.script.o: banim/%.s include/banim_script.inc
 shifttest: $(ROM)
 	python3 tools/shifttest.py
 
+# Modern build: the same objects, but the data region is linked without
+# fixed addresses (tools/modern.py, tools/gen_layout.py --modern), so assets
+# may change size.  Everything it makes is in build/modern/ and
+# fe7u_modern.gba; the matching build is not touched.  It keeps relocations
+# (--emit-relocs) for tools/moderncheck.py.
+MODERN_DIR := build/modern
+MODERN_ROM := fe7u_modern.gba
+MODERN_ELF := $(MODERN_DIR)/fe7u_modern.elf
+MODERN_ROMDATA_OBJS := $(patsubst data/rom/%.s,$(MODERN_DIR)/data/rom/%.o,$(ROMDATA_SRCS))
+MODERN_LAYOUT := $(MODERN_DIR)/data.s $(MODERN_DIR)/layout.ld $(MODERN_DIR)/ram.ld
+
+modern: $(MODERN_ROM)
+
+$(MODERN_ROM): $(MODERN_ELF)
+	$(OBJCOPY) -O binary --pad-to 0x09000000 $< $@
+	@echo "$@: built (modern layout, not checked against the original)"
+
+# data/rom/*.s split after every extracted asset, and the layout; the cut-short
+# streams depend on the built graphics.
+$(MODERN_DIR)/rom.stamp: $(ROMDATA_SRCS) $(LAYOUTS) data/graphics.txt tools/modern.py tools/gfx.py $(GFX_BUILT) | baserom.gba
+	@mkdir -p $(@D)
+	python3 tools/modern.py $(MODERN_DIR)
+
+$(MODERN_DIR)/layout.txt $(MODERN_ROMDATA_OBJS:.o=.s): $(MODERN_DIR)/rom.stamp ;
+
+$(MODERN_ROMDATA_OBJS): $(MODERN_DIR)/%.o: $(MODERN_DIR)/%.s baserom.gba $(GFX_BUILT)
+	$(AS) $(ASFLAGS) -o $@ $<
+
+$(MODERN_DIR)/layout.ld: $(MODERN_DIR)/layout.txt tools/gen_layout.py
+	python3 tools/gen_layout.py --modern $< $(MODERN_DIR)
+
+$(MODERN_DIR)/data.s $(MODERN_DIR)/ram.ld: $(MODERN_DIR)/layout.ld ;
+
+$(MODERN_DIR)/data.o: $(MODERN_DIR)/data.s baserom.gba
+	$(AS) $(ASFLAGS) -o $@ $<
+
+$(MODERN_DIR)/fe7u.ld: build/fe7u.ld
+	sed -e 's#INCLUDE build/layout.ld#INCLUDE $(MODERN_DIR)/layout.ld#' -e 's#INCLUDE build/ram.ld#INCLUDE $(MODERN_DIR)/ram.ld#' $< > $@
+
+$(MODERN_ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(MODERN_DIR)/fe7u.ld $(MODERN_LAYOUT) symbols.ld
+	@python3 tools/check_symbols.py
+	python3 tools/banim.py link $(MODERN_DIR)/banim -- $(LD) -T $(MODERN_DIR)/fe7u.ld -Map $(MODERN_DIR)/fe7u_modern.map --emit-relocs --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(MODERN_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+
+# Compare fe7u_modern.gba with the original (baserom.gba, fe7u.elf from the
+# last matching build): every pointer must point at the same object in both.
+modern-check: $(MODERN_ROM)
+	python3 tools/moderncheck.py
+
+# Build fe7u_modern_resized.gba with a few assets changed in size (tools/
+# modernresize.py edits, builds, checks and restores them).
+modern-resizetest:
+	python3 tools/modernresize.py
+
 # Regenerate include/constants/msg.h after adding/removing messages.
 msgheader:
 	python3 tools/textencode.py $(TEXTS) build/msg_data.s --header include/constants/msg.h
 
 clean:
-	rm -rf build $(ROM) $(ELF) $(MAP)
+	rm -rf build $(ROM) $(ELF) $(MAP) $(MODERN_ROM) fe7u_modern_resized.gba

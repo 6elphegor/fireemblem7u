@@ -1102,11 +1102,21 @@ def emit(out):
         for r in rs:
             lines.append(f'\t.section .rodata.ev_{r["start"]:08X}, "a"')
             lines.append("")
-            for kind, x in r["parts"]:
+            # In a section that starts 4-aligned, an object at a 4-aligned
+            # address gets `.align 2, 0` (which also makes the padding before
+            # it), so it stays aligned when something before it changes size
+            # (the modern build); at the original addresses it adds nothing.
+            aligned = r["start"] % 4 == 0
+            parts = r["parts"]
+            for i, (kind, x) in enumerate(parts):
                 if kind == "pad":
-                    lines.append(f"\t.fill {x}, 1, 0")
-                    lines.append("")
+                    nxt = parts[i + 1][1] if i + 1 < len(parts) and parts[i + 1][0] != "pad" else None
+                    if not (aligned and nxt is not None and nxt.addr % 4 == 0 and x < 4):
+                        lines.append(f"\t.fill {x}, 1, 0")
+                        lines.append("")
                     continue
+                if aligned and x.addr % 4 == 0:
+                    lines.append("\t.align 2, 0")
                 labels = inner.get(x.addr, {})
                 for la in [x.name] + sorted(labels.values()):
                     lines.append(f"\t.global {la}")

@@ -5,6 +5,7 @@
 
 	.section .rodata.ev_08CA1D98, "a"
 
+	.align 2, 0
 	.global EvList_Ch10_Turn
 EvList_Ch10_Turn:
 	TURN 0, EventScr_Ch10_Beginning, 1, 0, FACTION_BLUE, 0
@@ -25,21 +26,25 @@ EvList_Ch10_Turn:
 	TURN 0, EventScr_08CC9100, 4, 0, FACTION_RED, 4
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch10_Character
 EvList_Ch10_Character:
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch10_Location
 EvList_Ch10_Location:
 	VILL 8, EventScr_08CAFA4C, 0xE, 3, 0xE
 	LOCA 8, EVENT_NOSCRIPT, 0xE, 2, 0x1D
 	EVLIST_END
 
+	.align 2, 0
 	.global EvList_Ch10_Misc
 EvList_Ch10_Misc:
 	AFEV 0, gEvent_GameOver, 0x65
 	EVLIST_END
 
+	.align 2, 0
 	.global ChapterEvents_Ch10
 ChapterEvents_Ch10:
 	.4byte EvList_Ch10_Turn                  @ turn
@@ -61,6 +66,7 @@ ChapterEvents_Ch10:
 
 	.section .rodata.ev_08CAF970, "a"
 
+	.align 2, 0
 	.global EventScr_Ch10_Beginning
 EventScr_Ch10_Beginning:
 	UNIT_CAM_OFF
@@ -99,6 +105,7 @@ EventScr_Ch10_Beginning:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CAFA4C
 EventScr_08CAFA4C:
 	MUSI
@@ -116,6 +123,7 @@ EventScr_08CAFA4C:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_Ch10_Ending
 EventScr_Ch10_Ending:
 	MUEN 4
@@ -146,12 +154,14 @@ EventScr_Ch10_Ending:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global MoveScr_08CAFB18
 MoveScr_08CAFB18:	@ unreferenced
 	.byte MV_SPEED, 0x18, MV_RIGHT, MV_HALT
 
 	.section .rodata.ev_08CC8C64, "a"
 
+	.align 2, 0
 	.global Units_Ch10_Player
 Units_Ch10_Player:
 	UNIT CHARACTER_ELIWOOD, CLASS_LORD_ELIWOOD, CHARACTER_NONE, 5, FACTION_ID_BLUE, 1, 6, 10, 6, 10, ITEM_SWORD_RAPIER, ITEM_SWORD_IRON, ITEM_VULNERARY
@@ -167,6 +177,7 @@ Units_Ch10_Player:
 	UNIT CHARACTER_SERRA, CLASS_CLERIC, CHARACTER_NONE, 3, FACTION_ID_BLUE, 1, 10, 14, 10, 14, ITEM_STAFF_HEAL, ITEM_VULNERARY
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch10_Initial
 Units_Ch10_Initial:
 	UNIT CHARACTER_PUZON, CLASS_MERCENARY, CHARACTER_NONE, 10, FACTION_ID_RED, 0, 1, 3, 1, 3, ITEM_SWORD_STEEL, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x0, 0x3, 0x1
@@ -184,6 +195,7 @@ Units_Ch10_Initial:
 	UNIT CHARACTER_BANDIT_3E, CLASS_BRIGAND, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 8, 7, 8, 7, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_Ch10_InitialHector
 Units_Ch10_InitialHector:
 	UNIT CHARACTER_PUZON, CLASS_MERCENARY, CHARACTER_NONE, 10, FACTION_ID_RED, 0, 1, 3, 1, 3, ITEM_SWORD_STEEL, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0x0, 0x3, 0x1
@@ -201,6 +213,7 @@ Units_Ch10_InitialHector:
 	UNIT CHARACTER_BANDIT_3E, CLASS_MYRMIDON, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 8, 7, 8, 7, ITEM_SWORD_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC8EE4
 Units_08CC8EE4:
 	UNIT CHARACTER_BANDIT_3E, CLASS_BRIGAND, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 4, 14, 4, 14, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x1B, 0x1
@@ -209,6 +222,7 @@ Units_08CC8EE4:
 	UNIT CHARACTER_BANDIT_3E, CLASS_ARCHER, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 1, 11, 1, 11, ITEM_BOW_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC8F34
 Units_08CC8F34:
 	UNIT CHARACTER_BANDIT_3E, CLASS_BRIGAND, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 4, 14, 4, 14, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x1B, 0x1
@@ -221,34 +235,40 @@ Units_08CC8F34:
 	UNIT CHARACTER_BANDIT_3E, CLASS_BRIGAND, CHARACTER_PUZON, 2, FACTION_ID_RED, 1, 1, 13, 1, 13, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x1B, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC8FC4
 Units_08CC8FC4:
 	UNIT CHARACTER_BANDIT_3E, CLASS_BRIGAND, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 16, 12, 16, 12, ITEM_AXE_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x4, 0x1
 	UNIT CHARACTER_BANDIT_3E, CLASS_NOMAD, CHARACTER_PUZON, 2, FACTION_ID_RED, 1, 16, 13, 16, 13, ITEM_BOW_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC8FF4
 Units_08CC8FF4:
 	UNIT CHARACTER_BANDIT_3E, CLASS_MYRMIDON, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 1, 2, 1, 2, ITEM_SWORD_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT CHARACTER_BANDIT_3E, CLASS_NOMAD, CHARACTER_PUZON, 2, FACTION_ID_RED, 1, 0, 1, 0, 1, ITEM_BOW_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC9024
 Units_08CC9024:
 	UNIT CHARACTER_BANDIT_3E, CLASS_MERCENARY, CHARACTER_PUZON, 3, FACTION_ID_RED, 1, 1, 2, 1, 2, ITEM_SWORD_IRON, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT CHARACTER_BANDIT_3E, CLASS_MAGE, CHARACTER_PUZON, 2, FACTION_ID_RED, 1, 0, 1, 0, 1, ITEM_ANIMA_FIRE, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x0, 0x0, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC9054
 Units_08CC9054:
 	UNIT CHARACTER_MERLINUS, CLASS_CIVILIAN_47, CHARACTER_NONE, 1, FACTION_ID_GREEN, 0, 7, 9, 7, 9, ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE, 0x6, 0x3, 0x1
 	UNIT_END
 
+	.align 2, 0
 	.global Units_08CC9074
 Units_08CC9074:
 	UNIT CHARACTER_MERLINUS, CLASS_TRANSPORTER_TENT, CHARACTER_NONE, 5, FACTION_ID_BLUE, 0, 7, 9, 7, 9
 	UNIT_END
 
+	.align 2, 0
 	.global EventScr_08CC9094
 EventScr_08CC9094:	@ unreferenced
 	LOU1 Units_Ch10_Player
@@ -256,6 +276,7 @@ EventScr_08CC9094:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC90A8
 EventScr_08CC90A8:	@ unreferenced
 	UNIT_CAM_OFF
@@ -265,6 +286,7 @@ EventScr_08CC90A8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC90C4
 EventScr_08CC90C4:	@ unreferenced
 	LOU1 Units_Ch10_InitialHector
@@ -272,6 +294,7 @@ EventScr_08CC90C4:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC90D8
 EventScr_08CC90D8:	@ unreferenced
 	LOU1 Units_08CC8EE4
@@ -279,6 +302,7 @@ EventScr_08CC90D8:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC90EC
 EventScr_08CC90EC:	@ unreferenced
 	LOU1 Units_08CC8F34
@@ -286,6 +310,7 @@ EventScr_08CC90EC:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC9100
 EventScr_08CC9100:
 	LOU1 Units_08CC8FC4
@@ -293,6 +318,7 @@ EventScr_08CC9100:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC9114
 EventScr_08CC9114:
 	LOU1 Units_08CC8FF4
@@ -300,6 +326,7 @@ EventScr_08CC9114:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC9128
 EventScr_08CC9128:
 	LOU1 Units_08CC9024
@@ -307,6 +334,7 @@ EventScr_08CC9128:
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC913C
 EventScr_08CC913C:	@ unreferenced
 	LOU1 Units_08CC9054
@@ -314,6 +342,7 @@ EventScr_08CC913C:	@ unreferenced
 	REMA
 	ENDA
 
+	.align 2, 0
 	.global EventScr_08CC9150
 EventScr_08CC9150:	@ unreferenced
 	LOU1 Units_08CC9074
