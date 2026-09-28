@@ -60,11 +60,14 @@ end:
     ForceSyncUnitSpriteSheet();
 }
 
-#if NONMATCHING
-// only difference: "movs r0, #0" before "proc->idle_func = NULL" is CSEd away here
+// FAKEMATCH (found by decomp-permuter): routing NULL through new_var, assigned
+// inside the inner loop, keeps the original's "movs r0, #0" before the store.
+// If the inner loop runs zero times new_var is read uninitialized in C; the
+// compiled code is identical to the original, which stores whatever r0 holds.
 void EventUnitLoadAliveWait(struct EventProc * proc)
 {
     struct UnitDefinition const * def = proc->unit_info;
+    void * new_var;
 
     goto test;
 
@@ -76,11 +79,12 @@ loop:
         if (!(GetUnitFromCharId(def->pid)->state & US_DEAD))
             LoadUnitCore(def, NULL);
         def++;
+        new_var = NULL;
     inner_test:
         if (def->pid != 0)
             goto inner_loop;
 
-        proc->idle_func = NULL;
+        proc->idle_func = new_var;
         return;
     }
 
@@ -104,9 +108,6 @@ test:
 end:
     ForceSyncUnitSpriteSheet();
 }
-#else
-ASM_FUNC("asm/nonmatching/code_0800D098.s");
-#endif
 
 void EventLoadUnitsAsParty(struct EventProc * proc)
 {
