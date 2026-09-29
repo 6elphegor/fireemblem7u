@@ -5,7 +5,11 @@ the open question in `docs/port-notes.md`, section 1.  Status as of
 2026-09-29: batch 1 (proc scripts, 438 objects) merged; batch 2 (menus and
 UI tables, `tools/datac.py`) left 9,136 pointer words; batch 3 (animation
 scripts, sprite / image / TSA / glyph pointer tables, the battle animation
-tables) leaves 2,502.
+tables) leaves 2,502; the AI scripts and tables, the tileset animation
+tables, the link and trade events, the bare-RAM pointer variables
+(`src/data/ramptrs.c`) and the rest of the ROM-B files leave 3 (the dead
+block 0x08CF6A94-0x08CFFF78 and the RAM snapshot at 0x08FFF6E0 are marked
+`NOT_POINTERS` in `tools/dataptrs.py`).
 
 ## Decision
 
