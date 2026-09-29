@@ -1956,7 +1956,6 @@ extern const struct ProcCmd ProcScr_08B96EA8[];
 /* ui.h */
 
 // ??? gUnk_08C542F0
-// ??? FaceInfoTable
 // ??? gUnk_08D5FB8A
 // ??? gUnk_08D5FB95
 // ??? gUnk_08D5FB9B
