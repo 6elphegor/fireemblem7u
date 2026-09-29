@@ -1056,7 +1056,7 @@ ProcPtr StartEventInternal(EventScr const * script, ProcPtr parent)
     gEventQueueCount = 0;
     gEventQueue[0] = NULL;
 
-    if ((int) parent < 8)
+    if ((intptr_t) parent < 8)
         proc = Proc_Start(ProcScr_UnkEvt, parent);
     else
         proc = Proc_StartBlocking(ProcScr_UnkEvt, parent);

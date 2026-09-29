@@ -325,7 +325,7 @@ void ClassIntro_OnEnd(ProcPtr proc)
     SetLordSelectState(3);
 }
 
-ProcPtr StartClassNameIntro(ProcPtr parent, int ent)
+ProcPtr StartClassNameIntro(ProcPtr parent, intptr_t ent)
 {
     struct OpInfoEnterProc * proc = Proc_Start(ProcScr_ClassIntro, parent);
 
@@ -731,7 +731,12 @@ void ClassInfoDisplay_Init(struct OpInfoClassDisplayProc * proc)
         if (hasMagicRank != 0)
             Text_DrawString(&gClassReelTexts[i], DecodeMsg(hack.hack_2d[1][i]));
         else
+#if NONMATCHING
+            Text_DrawString(&gClassReelTexts[i], DecodeMsg(hack.hack_2d[0][i]));
+#else
+            // FAKEMATCH: hack_2d[0][i], through out-of-range indexes
             Text_DrawString(&gClassReelTexts[i], DecodeMsg(hack.hack_4d[0][i][1][-1]));
+#endif
 
         PutText(&gClassReelTexts[i], TM_OFFSET(1, i * 2 + 1) + buffer);
         PutNumber(TM_OFFSET(5, i * 2 + 1) + buffer, TEXT_COLOR_SYSTEM_WHITE, proc->stats[i]);
@@ -951,7 +956,7 @@ void ClassInfoDisplay_OnEnd(struct OpInfoClassDisplayProc * proc)
     SetLordSelectState(2);
 }
 
-ProcPtr StartClassAnimDisplay(ProcPtr parent, int ent)
+ProcPtr StartClassAnimDisplay(ProcPtr parent, intptr_t ent)
 {
     struct OpInfoClassDisplayProc * proc = Proc_Start(ProcScr_ClassInfoDisplay, parent);
 
@@ -1049,7 +1054,7 @@ void SetClassStatsDisplayX(struct OpInfoGaugeDrawProc * proc, int x)
     proc->x = x;
 }
 
-int GetClassReelEntry(int set, int index)
+intptr_t GetClassReelEntry(int set, int index)
 {
     struct ClassReelEnt * const * const * list = gClassReelSetLut[set];
     struct ClassReelEnt * const * it;
@@ -1057,7 +1062,7 @@ int GetClassReelEntry(int set, int index)
     for (it = *list; *list != NULL;)
     {
         if (index == 0)
-            return (int) *it;
+            return (intptr_t) *it;
 
         index--;
         it++;

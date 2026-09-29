@@ -15,7 +15,9 @@ Every fake match, register pin and piece of inline ARM assembly also has a
 plain C version under `#if NONMATCHING`: `make NONMATCHING=1` builds
 `fe7u_nonmatching.gba` from those (not byte-identical, same behaviour;
 checked with `make emutest`), the starting point for ports to other
-platforms.  See CONTRIBUTING, "Portable (NONMATCHING) build".
+platforms.  See CONTRIBUTING, "Portable (NONMATCHING) build".  Every C
+file also compiles for 64-bit Linux and macOS with the host's clang
+(`make hostcheck`); `docs/port-notes.md` lists what a PC port still needs.
 
 The sound engine's hand-written part, libagb, libc and libgcc are linked as
 assembly/libraries, and data after the code is still incbin'd from the ROM.

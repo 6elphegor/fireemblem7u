@@ -1503,6 +1503,12 @@ int sub_080100D0(struct EventProc * proc)
 {
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
+
+#if NONMATCHING
+    // Original bug: no return statement; the ROM returns the flags it
+    // tested (read by the event engine as an EVENT_CMDRET value).
+    return proc->flags;
+#endif
 }
 
 int EvtCmd_PaletteFadeFromBlack(struct EventProc * proc)

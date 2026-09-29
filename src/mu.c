@@ -186,7 +186,7 @@ void PlaySeSpacial(int song, int x);
 void SyncUiSMS(int slot, u8 * vram);
 void sub_08026308(int layer, int x, int y, u16 oam2, int jid, int slot);
 void TryRemoveUnitFromBallista(struct Unit * unit);
-void CallDelayedArg(void (* func)(int arg), int arg, int delay);
+void CallDelayedArg(void (* func)(intptr_t arg), intptr_t arg, int delay);
 void SetManimActorFacing(int actor, int target, int facing);
 u8 GetSpellAssocFacing(u16 item);
 
@@ -1272,18 +1272,18 @@ void StartMuActionAnim(struct MuProc * proc)
 {
     SetSpriteAnimId(proc->sprite_anim, MU_FACING_SELECTED);
     ResetSpriteAnimClock(proc->sprite_anim);
-    CallDelayedArg(MuActionAnimFinishFunc, (int) proc->sprite_anim, 30);
+    CallDelayedArg(MuActionAnimFinishFunc, (intptr_t) proc->sprite_anim, 30);
 }
-void MuActionAnimFinishFunc(int arg)
+void MuActionAnimFinishFunc(intptr_t arg)
 {
     FreezeSpriteAnim((struct SpriteAnim *) arg);
 }
 void StartMuDelayedFaceDefender(struct MuProc * proc)
 {
     ResetSpriteAnimClock(proc->sprite_anim);
-    CallDelayedArg(MuDelayedFaceDefenderFunc, (int) proc->sprite_anim, 30);
+    CallDelayedArg(MuDelayedFaceDefenderFunc, (intptr_t) proc->sprite_anim, 30);
 }
-void MuDelayedFaceDefenderFunc(int arg)
+void MuDelayedFaceDefenderFunc(intptr_t arg)
 {
     SetManimActorFacing(
         gManimSt.attacker_actor,
@@ -1295,9 +1295,9 @@ void StartMuSpeedUpAnim(struct MuProc * proc)
 {
     proc->sprite_anim->clock = 0;
     proc->sprite_anim->clock_interval_q8 = 0x40;
-    CallDelayedArg(MuSlowDownAnimFreezeFunc, (int) proc->sprite_anim, 20);
+    CallDelayedArg(MuSlowDownAnimFreezeFunc, (intptr_t) proc->sprite_anim, 20);
 }
-void MuSlowDownAnimFreezeFunc(int arg)
+void MuSlowDownAnimFreezeFunc(intptr_t arg)
 {
     FreezeSpriteAnim((struct SpriteAnim *) arg);
 }

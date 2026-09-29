@@ -34,7 +34,7 @@ struct ProcLordSelect {
 
     STRUCT_PAD(0x40, 0x4C);
 
-    /* 4C */ int unk_4C;
+    /* 4C */ intptr_t unk_4C; // struct ClassReelEnt * (GetClassReelEntry)
 };
 
 void sub_080AED04(struct ProcLordSelect * proc);

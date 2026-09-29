@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <stddef.h>
+#include <string.h>
 
 #include "../gba/gba.h"
 
@@ -21,7 +22,19 @@
 // undefined, hence 0, in the matching build.  See CONTRIBUTING, "Portable
 // (NONMATCHING) build".
 
+// PLATFORM_GBA (the Makefile passes -DPLATFORM_GBA=1 to both GBA builds,
+// matching and NONMATCHING): compiling for the GBA itself.  Link sections
+// (SECTION, CONST_DATA, EWRAM_DATA, IWRAM_DATA, EWRAM_OVERLAY) exist for
+// fe7u.lds and data/layout.txt, which place code and data at the ROM's and
+// RAM's addresses; on any other platform they mean nothing (Mach-O can't
+// even name them), so they compile away.  A compiler macro such as __arm__
+// can't tell instead: the GBA builds are preprocessed with -undef, and a
+// 32-bit ARM host (e.g. Linux on a Raspberry Pi) defines __arm__ too.
+#if PLATFORM_GBA
 #define SECTION(name) __attribute__((section(name)))
+#else
+#define SECTION(name)
+#endif
 
 #define NAKEDFUNC __attribute__((naked))
 #define CONST_DATA        SECTION(".data")

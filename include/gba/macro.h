@@ -25,7 +25,7 @@
                CPU_FAST_SET_SRC_FIXED | ((size)/(32/8) & 0x1FFFFF)); \
 }
 
-#define CpuFastFill16(value, dest, size) CpuFastFill(((value) << 16) | (value), (dest), (size))
+#define CpuFastFill16(value, dest, size) CpuFastFill(((u32)(value) << 16) | (u32)(value), (dest), (size))
 
 #define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size)/(32/8) & 0x1FFFFF))
 

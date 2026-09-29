@@ -1776,7 +1776,7 @@ void CallDelayedArg_OnLoop(struct CallDelayedProc * proc)
 
     if (proc->clock == -1)
     {
-        void (* func)(int) = (void (*)(int)) proc->func;
+        void (* func)(intptr_t) = (void (*)(intptr_t)) proc->func;
 
         func(proc->arg);
         Proc_Break(proc);
@@ -1791,7 +1791,7 @@ void CallDelayed(void (* func)(void), int delay)
     proc->clock = delay;
 }
 
-void CallDelayedArg(void (* func)(int), int arg, int delay)
+void CallDelayedArg(void (* func)(intptr_t), intptr_t arg, int delay)
 {
     struct CallDelayedProc * proc = Proc_Start(ProcScr_CallDelayedArg, PROC_TREE_3);
 
@@ -1934,7 +1934,7 @@ void PlaySeDelayed(int song, int delay)
     CallDelayedArg(PlaySeFunc, song, delay);
 }
 
-void PlaySeFunc(int song)
+void PlaySeFunc(intptr_t song)
 {
     PlaySoundEffect(song);
 }

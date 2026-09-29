@@ -987,8 +987,15 @@ int GetBgFromPtr(u16 *ptr)
     return BG_INVALID;
 }
 
+// SIN_Q12/COS_Q12 (hardware.h) read gSinLut[0 .. 0x13F]: the sine table
+// runs on into gCosLut, which is adjacent in the ROM.  A compiler needn't
+// place two arrays together, so the plain build makes them one.
 SECTION(".rodata")
+#if NONMATCHING
+s16 gSinLut[0x40 + 0x100] = {
+#else
 s16 gSinLut[0x40] = {
+#endif
     0x0000, 0x0064, 0x00C8, 0x012D,
     0x0191, 0x01F5, 0x0259, 0x02BC,
     0x031F, 0x0381, 0x03E3, 0x0444,
@@ -1005,10 +1012,12 @@ s16 gSinLut[0x40] = {
     0x0F4F, 0x0F6B, 0x0F85, 0x0F9C,
     0x0FB1, 0x0FC3, 0x0FD3, 0x0FE1,
     0x0FEC, 0x0FF4, 0x0FFB, 0x0FFE,
+#if !NONMATCHING
 };
 
 SECTION(".rodata")
 s16 gCosLut[0x100] = {
+#endif
     0x1000, 0x0FFE, 0x0FFB, 0x0FF4,
     0x0FEC, 0x0FE1, 0x0FD3, 0x0FC3,
     0x0FB1, 0x0F9C, 0x0F85, 0x0F6B,

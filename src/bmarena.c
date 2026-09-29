@@ -335,6 +335,12 @@ u16 ArenaGetUpgradedWeapon(u16 item)
 
         return item;
     }
+
+#if NONMATCHING
+    // Original bug: no return for an item not in the list; r0 holds the
+    // list's end marker.
+    return 0xFF;
+#endif
 }
 
 s8 ArenaAdjustOpponentDamage(void)

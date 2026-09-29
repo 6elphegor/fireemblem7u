@@ -319,6 +319,11 @@ int sub_08044BF0(u8 target)
         }
     }
 
+#if NONMATCHING
+    // Original bug: no return statement; r0 holds the last byte compared.
+    return gUnknown_03001818[19];
+#endif
+
     // BUG -- no return if > 20
 }
 

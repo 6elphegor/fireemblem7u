@@ -1336,7 +1336,7 @@ void sub_080BD1A4(struct OpAnimSubProc * proc)
     if (proc->unk_30 == 0)
         Proc_Break(proc);
 }
-void sub_080BD1DC(int a, u16 const * pal, int pal_bank, int amount, int mask, int speed, ProcPtr parent)
+void sub_080BD1DC(intptr_t a, u16 const * pal, int pal_bank, int amount, int mask, int speed, ProcPtr parent)
 {
     int i;
     u16 bits = mask;

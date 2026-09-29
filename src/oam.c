@@ -28,7 +28,7 @@ void SyncHiOam(void)
 
     gOamHiPutIt = sOamHi.buf;
 
-    (struct OamView *) gOamAffinePutIt = (struct OamView *) gOam;
+    gOamAffinePutIt = (struct OamView *) gOam;
     gOamAffinePutId = 0;
 }
 
@@ -71,6 +71,12 @@ void PutUnkSprite(struct UnkSprite * sprites, int xBase, int yBase)
         *gOamHiPutIt++ = (sprites->oam01 >> 16) | x;
         *gOamHiPutIt++ = sprites->oam2;
         *gOamHiPutIt++ = 0;
+#elif NONMATCHING
+        // oam0/oam1 as one word, then oam2; the affine halfword is kept
+        *(u32 *) gOamHiPutIt = sprites->oam01 | (x << 16) | (y);
+        gOamHiPutIt += 2;
+        *gOamHiPutIt = sprites->oam2;
+        gOamHiPutIt += 2;
 #else
         *(u32 *) ((u32 *) gOamHiPutIt)++ = sprites->oam01 | (x << 16) | (y);
         *(u16 *) ((u32 *) gOamHiPutIt)++ = sprites->oam2;

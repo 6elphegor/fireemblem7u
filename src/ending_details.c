@@ -1106,7 +1106,7 @@ int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId)
     ClearText(gpTurnRecordTexts + 0 + textIndex);
     ClearText(gpTurnRecordTexts + 9 + textIndex);
 
-    if ((u32) chapterStats == -1)
+    if ((uintptr_t) chapterStats == (uintptr_t) -1)
     {
         int gameTotalTurns = GetGameTotalTurnCount();
 

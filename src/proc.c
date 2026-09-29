@@ -65,9 +65,9 @@ ProcPtr Proc_Start(const struct ProcCmd * script, ProcPtr parent)
     proc->proc_lockCnt = 0;
     proc->proc_flags = 8;
 
-    if ((s32)parent < 8)
+    if ((intptr_t)parent < 8)
     {
-        InsertRootProcess(proc, (s32)parent);
+        InsertRootProcess(proc, (intptr_t)parent);
     }
     else
     {
@@ -161,7 +161,7 @@ void InsertRootProcess(struct Proc * proc, s32 parent)
         proc->proc_prev = ptr;
     }
 
-    proc->proc_parent = (ProcPtr)parent;
+    proc->proc_parent = (ProcPtr)(intptr_t)parent;
     gProcTreeRootArray[parent] = proc;
 }
 
@@ -189,7 +189,7 @@ void UnlinkProcess(struct Proc * proc)
         ((struct Proc *)proc->proc_prev)->proc_next = proc->proc_next;
     }
 
-    if ((s32)proc->proc_parent > 8)
+    if ((intptr_t)proc->proc_parent > 8)
     {
         if (((struct Proc *)proc->proc_parent)->proc_child == proc)
         {
@@ -198,7 +198,7 @@ void UnlinkProcess(struct Proc * proc)
     }
     else
     {
-        s32 idx = (s32)proc->proc_parent;
+        s32 idx = (intptr_t)proc->proc_parent;
         if (*(idx + gProcTreeRootArray) == proc)
         {
             gProcTreeRootArray[idx] = proc->proc_prev;
@@ -594,7 +594,7 @@ bool ProcCmd_NEW_MAIN_BUGGED(ProcPtr proc)
     struct Proc * p = ((struct Proc*)proc);
 
     const struct ProcCmd * cmd_ptr = p->proc_scrCur->dataPtr;
-    Proc_Start(cmd_ptr, (ProcPtr)(s32)p->proc_sleepTime);
+    Proc_Start(cmd_ptr, (ProcPtr)(intptr_t)p->proc_sleepTime);
     p->proc_scrCur++;
 
     return 1;
@@ -605,7 +605,7 @@ bool ProcCmd_WHILE_EXISTS(ProcPtr proc)
     struct Proc * p = ((struct Proc*)proc);
 
     const struct ProcCmd * cmd_ptr = p->proc_scrCur->dataPtr;
-    s32 ret = (s32)Proc_Find(cmd_ptr);
+    intptr_t ret = (intptr_t)Proc_Find(cmd_ptr);
     if (((0 - ret) | ret) < 0) // ???
     {
         return 0;
@@ -941,7 +941,11 @@ int sub_08004CC4()
 {
     int i = PROC_COUNT;
     struct Proc * ptr = sProcArray;
-    s32 target = (s32)ptr + 0x00001A94;
+#if NONMATCHING
+    intptr_t target = (intptr_t)(ptr + PROC_COUNT - 1);
+#else
+    intptr_t target = (intptr_t)ptr + 0x00001A94; // (PROC_COUNT - 1) * 0x6C
+#endif
 
     do
     {
@@ -952,7 +956,7 @@ int sub_08004CC4()
 
         ptr++;
     }
-    while ((s32)ptr <= target);
+    while ((intptr_t)ptr <= target);
 
     return i;
 }

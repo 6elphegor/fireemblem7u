@@ -183,7 +183,7 @@ void Proc_08DB9398_Loop(struct OpAnimSubProc * proc);
 void sub_080BD0D4(void * a, const u16 * pal, int pal_bank, int size, ProcPtr parent);
 void sub_080BD168(struct OpAnimSubProc * proc);
 void sub_080BD1A4(struct OpAnimSubProc * proc);
-void sub_080BD1DC(int a, u16 const * pal, int c, int d, int e, int f, ProcPtr parent);
+void sub_080BD1DC(intptr_t a, u16 const * pal, int c, int d, int e, int f, ProcPtr parent);
 void sub_080BD310(struct OpAnimBirdProc * proc);
 void sub_080BD364(struct OpAnimBirdProc * proc);
 void sub_080BD424(int a, int b, int angle, int speed, ProcPtr parent);

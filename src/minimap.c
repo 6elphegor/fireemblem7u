@@ -404,6 +404,10 @@ int GetMinimapBridgeKindAt(int x, int y) {
 
     // return; // BUG?
 
+#if NONMATCHING
+    // Original bug: no return statement; r0 holds the last terrain read.
+    return gBmMapTerrain[y - 1][x];
+#endif
 }
 int GetMinimapTileAt(int x, int y) {
     switch (gBmMapTerrain[y][x]) {

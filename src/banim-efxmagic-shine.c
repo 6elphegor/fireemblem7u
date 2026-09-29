@@ -331,7 +331,7 @@ void efxShineOBJRND_Loop(struct ProcEfxOBJ * proc)
 
         proc->timer = 0;
 
-        (s16) proc->unk30 += 2;
+        proc->unk30 = (s16) proc->unk30 + 2;
 
         if ((s16)proc->unk30 > 7)
         {

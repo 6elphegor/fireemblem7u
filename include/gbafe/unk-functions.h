@@ -888,7 +888,7 @@ void PutCompressedTsa(u16 * tm, void const * tsa, u16 tileref); // Decompress ts
 // sub_80B00A0
 // sub_80B0100
 // ClassIntro_OnEnd
-ProcPtr StartClassNameIntro(ProcPtr parent, int);
+ProcPtr StartClassNameIntro(ProcPtr parent, intptr_t);
 // sub_80B018C
 // sub_80B01BC
 // sub_80B0300
@@ -911,12 +911,12 @@ ProcPtr StartClassNameIntro(ProcPtr parent, int);
 // ClassInfoDisplay_ExecScript
 // ClassInfoDisplay_LoopScript
 // ClassInfoDisplay_OnEnd
-ProcPtr StartClassAnimDisplay(ProcPtr parent, int);
+ProcPtr StartClassAnimDisplay(ProcPtr parent, intptr_t);
 // sub_80B0EDC
 // sub_80B0F5C
 // sub_80B10B8
 // SetClassStatsDisplayX
-int GetClassReelEntry(int, int);
+intptr_t GetClassReelEntry(int, int);
 // sub_80B1110
 // Shop_GetPortraitIndex
 // StartShopDialogue

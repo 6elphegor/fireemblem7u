@@ -16,7 +16,8 @@ AR      := $(PREFIX)ar
 AGBCC := tools/agbcc
 CC1   := $(AGBCC)/bin/old_agbcc
 
-CPPFLAGS := -I $(AGBCC)/include -iquote include -iquote . -nostdinc -undef
+# PLATFORM_GBA: code for the GBA itself (link sections; include/gbafe/global.h).
+CPPFLAGS := -I $(AGBCC)/include -iquote include -iquote . -nostdinc -undef -DPLATFORM_GBA=1
 CFLAGS   := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
 ASFLAGS  := -mcpu=arm7tdmi -I asm -I include
 
@@ -53,7 +54,7 @@ LAYOUT := build/data.s build/layout.ld build/ram.ld
 # The NONMATCHING build's own objects (see the end of this file).
 NM_DIR := build/nonmatching
 
-.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching
+.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching hostcheck
 .DELETE_ON_ERROR:
 
 # `make MODERN=1` (or `make modern`): the free data layout, see below.
@@ -390,6 +391,15 @@ $(NM_ELF): $(NM_C_OBJS) $(NM_DIR)/asm.a $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(S
 	@python3 tools/check_symbols.py
 	python3 tools/banim.py link $(NM_DIR)/banim -- $(LD) -T $(NM_DIR)/fe7u.ld -Map fe7u_nonmatching.map --no-warn-rwx-segments -o $@ $(NM_C_OBJS) --whole-archive $(NM_DIR)/asm.a --no-whole-archive $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(NM_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 	python3 tools/nonmatching_check.py $@
+
+# Compile every C file with the host's clang (-DNONMATCHING=1, for
+# x86_64-linux-gnu and the host's own target) into build/host/ and report
+# errors and warnings by category (tools/hostcheck.py; CONTRIBUTING,
+# "Host check").  Incremental: a rerun only compiles what changed.
+#   make hostcheck HOSTCHECK_FLAGS=-Wall      extra flags
+#   python3 tools/hostcheck.py --list int-to-pointer-cast
+hostcheck:
+	python3 tools/hostcheck.py -j $(or $(HOSTCHECK_JOBS),8) --flags='$(HOSTCHECK_FLAGS)'
 
 clean:
 	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map fe7u_nonmatching.gba fe7u_nonmatching.elf fe7u_nonmatching.map

@@ -39,7 +39,7 @@ void RegisterDataFill(u32 value, void *dst, int size)
 {
     struct MoveEntry *entry = gMoveList + gMoveStats.count;
 
-    entry->src = (void const *) value;
+    entry->src = (void const *) (uintptr_t) value;
     entry->dest = dst;
     entry->size = size;
     entry->mode = MOVE_MODE_FILL_FAST;
@@ -64,7 +64,7 @@ void ApplyDataMoves(void)
             break;
 
         case MOVE_MODE_FILL_FAST:
-            CpuFastFill((u32) it->src, it->dest, it->size);
+            CpuFastFill((uintptr_t) it->src, it->dest, it->size);
             break;
         }
         it++;
