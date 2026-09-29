@@ -782,7 +782,6 @@ def fn_proto(sig, name):
     return f"{sig[0]} {name}({sig[1]});"
 
 
-GROUPED_DECLS = {"struct AnimSpriteData"}   # data declared several to a line
 TERMINATED = {"MenuItemDef", "StatScreenTextInfo"}   # arrays that end with an all-zero element
 
 
@@ -954,17 +953,10 @@ def report_refs(em, decls, path, hdr=None, skip=()):
         else:
             pointee = "u8" if f.pointee.strip() in ("void", "const void") else f.pointee
             line = f"extern const {pointee} {sym}[];".replace("const const", "const")
-            srcs = [(p, t) for p, t in decls.decl.get(sym, []) if p.suffix == ".c" and p.resolve() != Path(path).resolve() and "(" not in t]
-            if srcs and pointee not in GROUPED_DECLS:   # declared privately in another module: move that declaration
-                line = srcs[0][1]
-                for p, t in srcs:
-                    txt = p.read_text()
-                    p.write_text(txt.replace(t + "\n", "", 1) if t + "\n" in txt else txt.replace(t, "", 1))
-            elif pointee in GROUPED_DECLS:   # many per line: `extern const T a[], b[];`; each module has its own
-                grouped.setdefault((target, pointee), []).append(sym)
-                names["data"].append(sym)
-                continue
             names["data"].append(sym)
+            if pointee.split()[0] in ("struct", "u8", "u16", "u32"):   # many per line: `extern const T a[], b[];`
+                grouped.setdefault((target, pointee), []).append(sym)   # (other modules keep their own declarations)
+                continue
         if target:
             todo.setdefault(target, []).append(line)
         else:
