@@ -184,7 +184,7 @@ INTS = {
     "uintptr_t": (4, False), "intptr_t": (4, True), "size_t": (4, False),
     "vu8": (1, False), "vu16": (2, False), "vu32": (4, False), "fu16": (2, False),
 }
-QUALS = ("const", "volatile", "CONST_DATA", "static", "extern", "register")
+QUALS = ("const", "volatile", "CONST_DATA", "EWRAM_DATA", "IWRAM_DATA", "static", "extern", "register")
 
 
 class Unsupported(Exception):
@@ -290,7 +290,7 @@ class Types:
             return Field(name, off, 4, "ptr", pointee=base + " *" * (nstars - 1))
         if base in INTS:
             s, sg = INTS[base]
-            return Field(name, off, s, "int", signed=sg)
+            return Field(name, off, s, "int", signed=sg, tname=base)
         m = re.match(r"(?:struct|union)\s+(\w+)$", base)
         if base.startswith("union"):
             raise Unsupported(f"union {base}")
@@ -389,6 +389,12 @@ class Types:
     # -- a top-level element type given on the command line
     def element(self, spec):
         spec = spec.strip()
+        m = re.match(r"^(.*?)\s*((?:\[\d+\])+)$", spec)
+        if m:   # an array of arrays: the element is the inner array
+            f = self.element(m[1])
+            for d in reversed(re.findall(r"\[(\d+)\]", m[2])):
+                f = Field("", 0, f.size * int(d), "array", elem=f, count=int(d))
+            return f
         spec = re.sub(r"^const\s+", "", spec)
         if spec.endswith("*") or spec in self.typedefs or spec in INTS:
             f = self.parse_decl_type(spec, "", 0)
@@ -479,7 +485,11 @@ class Emitter:
         if fld.kind == "array" and fld.elem.size == 2 and re.search(r"Tm|Tilemap", sym) and re.fullmatch(r"\[\d+\]", suffix):
             idx = int(suffix[1:-1])
             return f"{sym} + TM_OFFSET({idx % 32}, {idx // 32})"
-        return f"&{sym}{suffix}"
+        expr = f"&{sym}{suffix}"
+        pt = " ".join(w for w in getattr(f, "pointee", "").split() if w not in QUALS)
+        if fld.kind == "array" and fld.elem.kind == "int" and pt and pt != "void" and pt != fld.elem.tname:
+            expr = f"({pt} *) {expr}"
+        return expr
 
     def descend(self, f, off, want=None):
         """The member path ([i], .name) of the byte at offset off of an object of type f;
@@ -696,6 +706,9 @@ def resolve_obj(rom, arg):
 
 
 def emit_objects(rom, types, decls, spec, args):
+    m = re.match(r"^(.*?)\s*((?:\[\d+\])+)$", spec.strip())
+    dims = m[2] if m else ""
+    base_spec = m[1] if m else spec.strip()
     elem = types.element(spec)
     objs, scalars = [], set()
     for arg in args:
@@ -714,33 +727,31 @@ def emit_objects(rom, types, decls, spec, args):
                 count = k
         old = decls.decl.get(name, [])
         # declared without [] (or undeclared and one element): a single object
-        single = count == 1 and (not old or all("[" not in t for _, t in old))
+        single = count == 1 and not dims and (not old or all("[" not in t for _, t in old))
         if single:
             scalars.add(name)
         objs.append((name, addr, count, single))
-    for n, ds in list(decls.decl.items()):
-        pass
     em = Emitter(rom, types, scalars | decls.scalars_outside(scalars), decls)
     out = []
     for name, addr, count, single in objs:
         lines = em.array(elem, addr, count, single)
         body = ",\n".join(("" if single else "    ") + l for l in lines)
-        out.append((name, addr, count * elem.size, decl_type(spec, elem), body, single))
+        out.append((name, addr, count * elem.size, decl_type(base_spec, elem), body, single, dims))
     return out, em
 
 
 def render(out):
     text = []
-    for name, addr, size, tname, body, single in out:
+    for name, addr, size, tname, body, single, dims in out:
         if single:
             text.append(f'SECTION(".rodata.{addr:08X}")\n{tname} {name} = {body};\n')
         else:
-            text.append(f'SECTION(".rodata.{addr:08X}")\n{tname} {name}[] = {{\n{body},\n}};\n')
+            text.append(f'SECTION(".rodata.{addr:08X}")\n{tname} {name}[]{dims} = {{\n{body},\n}};\n')
     return "\n".join(text)
 
 
-def extern_line(name, tname, single):
-    return f"extern {tname} {name}{'' if single else '[]'};"
+def extern_line(name, tname, single, dims=""):
+    return f"extern {tname} {name}{'' if single else '[]'}{dims};"
 
 
 def add(rom, types, decls, path, spec, args):
@@ -752,8 +763,8 @@ def add(rom, types, decls, path, spec, args):
     if not text.endswith("\n"):
         text += "\n"
     newdecls = []
-    for name, addr, size, tname, body, single in out:
-        line = extern_line(name, tname, single)
+    for name, addr, size, tname, body, single, dims in out:
+        line = extern_line(name, tname, single, dims)
         old = [(f, t) for f, t in decls.decl.get(name, []) if "(" not in t]
         for f, t in old:
             ft = f.read_text()
@@ -772,7 +783,7 @@ def add(rom, types, decls, path, spec, args):
     path.write_text(text)
     mod = path.stem
     with open(ROOT / "data/layout.txt", "a") as f:
-        for name, addr, size, _, _, _ in out:
+        for name, addr, size, _, _, _, _ in out:
             f.write(f"rom {addr:#010X} {size:#X} build/src/{mod}.o(.rodata.{addr:08X})\n".replace("0X", "0x"))
     return out, em
 

@@ -72,6 +72,9 @@ struct CharacterEndingEnt {
     /* 04 */ int msg;
 };
 
+extern const struct CharacterEndingEnt gUnk_08CEE160[];
+extern const struct CharacterEndingEnt gUnk_08CEE3C8[];
+
 struct EndingTitleEnt {
     /* 00 */ u8 pid;
     /* 04 */ int titleTextId;
@@ -241,7 +244,7 @@ extern u8 Tsa_FinScreen[];
 extern char * CONST_DATA gpDefeatedEndingLocString;
 extern struct EndingTitleEnt CONST_DATA gCharacterEndingTitleLut[];
 extern struct EndingDefeatEnt CONST_DATA gCharacterEndingDefeatLut[];
-extern struct CharacterEndingEnt const * CONST_DATA gCharacterEndingsByRoute[];
+extern struct CharacterEndingEnt const * const gCharacterEndingsByRoute[];
 extern u16 * CONST_DATA gSoloEndingBattleDispConf[];
 extern struct Text * CONST_DATA gpCharacterEndingTexts;
 extern const struct ProcCmd gProcScr_CharacterEndings[];
@@ -1941,4 +1944,10 @@ const struct EndingCgScrollEnt gEndingCgScroll2Lut[] = {
         .tsa = { gUnk_085E8FA0, gUnk_085E91A4, gUnk_085E93A8, gUnk_085E95AC },
     },
     { .tsa = { gUnk_085E97B0, NULL, NULL, NULL } },
+};
+
+SECTION(".rodata.08CEE630")
+struct CharacterEndingEnt const * const gCharacterEndingsByRoute[] = {
+    gUnk_08CEE160,
+    gUnk_08CEE3C8,
 };

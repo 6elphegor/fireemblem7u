@@ -1,6 +1,9 @@
 #include "gbafe.h"
 #include "gbafe/cp_common.h"
 
+extern const struct Vec2 gUnk_081D3B20[];
+extern const struct Vec2 gUnk_081D3B34[];
+
 #define gMapRangeSigned ((s8 **) gBmMapRange)
 #define gMapMovementSigned ((s8 **) gBmMapMovement)
 
@@ -27,7 +30,7 @@ extern u8 gAiUnk_0203A988;
 extern const struct AiEscapePt * CONST_DATA gRedAiEscapePoints[];
 extern const struct AiEscapePt * CONST_DATA gGreenAiEscapePoints[];
 extern struct AiHealThreshold CONST_DATA gAI3HealingThresholdTable[];
-extern const struct Vec2 ** CONST_DATA gAiSpecificPositionLists;
+extern const struct Vec2 * const * const gAiSpecificPositionLists;
 extern u8 CONST_DATA sTerrainList_Fort[];
 
 const struct AiEscapePt * GetEscapePointStructThingMaybe(void);
@@ -1254,3 +1257,14 @@ s8 sub_0803AA60(const void * input)
 
     return 1;
 }
+
+extern const struct Vec2 * const gUnk_08B972E0[];
+
+SECTION(".rodata.08B972E0")
+const struct Vec2 * const gUnk_08B972E0[] = {
+    gUnk_081D3B20,
+    gUnk_081D3B34,
+};
+
+SECTION(".rodata.08B972E8")
+const struct Vec2 * const * const gAiSpecificPositionLists = gUnk_08B972E0;

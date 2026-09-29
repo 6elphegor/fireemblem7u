@@ -1,6 +1,10 @@
 #include "gbafe.h"
 #include "gbafe/cp_common.h"
 
+extern const u8 gClassList_Empty1[];
+extern const u8 gClassList_Empty5[];
+extern const u8 gClassList_Empty9[];
+
 #define gMapRangeSigned ((s8 **) gBmMapRange)
 #define gMapMovementSigned ((s8 **) gBmMapMovement)
 #define ITEM_INDEX(item) ((item) & 0xFF)
@@ -8,7 +12,7 @@
 extern struct Vec2 CONST_DATA sRange3OffsetLut[];
 extern u8 CONST_DATA gTerrainList_LootableVillages[];
 extern u8 CONST_DATA gTerrainList_LootableVillagesAndChests[];
-extern const u8 * CONST_DATA gAiClassRankLists[];
+extern const u8 * const gAiClassRankLists[];
 extern u16 CONST_DATA gAiStealPriorityItemList[];
 
 s8 AiCompare(const u8 * left, u8 op, u32 right)
@@ -1433,3 +1437,17 @@ void sub_0803758C(struct Unit * unit)
     else
         GenerateUnitMovementMap(unit);
 }
+
+SECTION(".rodata.08B970C8")
+const u8 * const gAiClassRankLists[] = {
+    gClassList_Empty1,
+    &gClassList_Empty1[1],
+    &gClassList_Empty1[2],
+    &gClassList_Empty1[3],
+    gClassList_Empty5,
+    &gClassList_Empty5[1],
+    &gClassList_Empty5[2],
+    &gClassList_Empty5[3],
+    gClassList_Empty9,
+    NULL,
+};

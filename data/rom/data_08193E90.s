@@ -1527,11 +1527,19 @@ sFactionUnitCountLut:
 
 	.global gClassList_Empty1
 gClassList_Empty1:
-	.incbin "baserom.gba", 0x1d36e8, 0x4
+	.incbin "baserom.gba", 0x1d36e8, 0x2
+
+	.global gUnk_081D36EA
+gUnk_081D36EA:
+	.incbin "baserom.gba", 0x1d36ea, 0x2
 
 	.global gClassList_Empty5
 gClassList_Empty5:
-	.incbin "baserom.gba", 0x1d36ec, 0x4
+	.incbin "baserom.gba", 0x1d36ec, 0x2
+
+	.global gUnk_081D36EE
+gUnk_081D36EE:
+	.incbin "baserom.gba", 0x1d36ee, 0x2
 
 	.global gClassList_Empty9
 gClassList_Empty9:

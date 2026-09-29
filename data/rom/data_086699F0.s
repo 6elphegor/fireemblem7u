@@ -3185,26 +3185,6 @@ sBkselHelpBoxMsgLut:
 sUnitPriorityArray:
 	.incbin "baserom.gba", 0xb96ed0, 0x4
 
-	.section .rodata.08B96F0C, "a"
-
-	.global sCpOrderFuncList
-sCpOrderFuncList:
-	.4byte CpOrderFunc_BeginDecide
-	.4byte CpOrderFunc_End
-
-	.global sDecideFuncList
-sDecideFuncList:
-	.4byte DecideHealOrEscape
-	.4byte DecideScriptA
-	.4byte DecideScriptB
-	.4byte DecideSpecialItems
-	.incbin "baserom.gba", 0xb96f24, 0x8
-	.4byte DecideSpecialItems
-	.4byte DecideScriptA
-	.4byte DecideHealOrEscape
-	.4byte DecideScriptB
-	.incbin "baserom.gba", 0xb96f3c, 0x8
-
 	.section .rodata.08B9701C, "a"
 
 	.global PopupScr_AiPillage
@@ -3235,18 +3215,7 @@ gAiScript_FallbackAi2:
 gAiTerrainList_SnagWall:
 	.incbin "baserom.gba", 0xb970c4, 0x4
 
-	.global gAiClassRankLists
-gAiClassRankLists:
-	.4byte gClassList_Empty1
-	.4byte gClassList_Empty1 + 0x1
-	.4byte gClassList_Empty1 + 0x2
-	.4byte gClassList_Empty1 + 0x3
-	.4byte gClassList_Empty5
-	.4byte gClassList_Empty5 + 0x1
-	.4byte gClassList_Empty5 + 0x2
-	.4byte gClassList_Empty5 + 0x3
-	.4byte gClassList_Empty9
-	.incbin "baserom.gba", 0xb970ec, 0x4
+	.section .rodata.08B970F0, "a"
 
 	.global gUnk_08B970F0
 gUnk_08B970F0:
@@ -3369,14 +3338,7 @@ gAI3HealingThresholdTable:
 gAiStealPriorityItemList:
 	.incbin "baserom.gba", 0xb97290, 0x50
 
-	.global gUnk_08B972E0
-gUnk_08B972E0:
-	.4byte gUnk_081D3B20
-	.4byte gUnk_081D3B34
-
-	.global gAiSpecificPositionLists
-gAiSpecificPositionLists:
-	.4byte gUnk_08B972E0
+	.section .rodata.08B972EC, "a"
 	.incbin "baserom.gba", 0xb972ec, 0xc
 
 	.global AiScr_AiB_MoveToEnemy

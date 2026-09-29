@@ -5734,38 +5734,6 @@ Sprite_WmTextBoxA:
 Sprite_WmTextBoxB:
 	.incbin "baserom.gba", 0xce760e, 0x22
 
-	.section .rodata.08CE7818, "a"
-
-	.global gWmMapImgTable
-gWmMapImgTable:
-	.4byte gUnk_08574A10
-	.4byte gUnk_0857CA10
-	.4byte gUnk_08584A10
-	.4byte gUnk_0858CA10
-	.4byte gUnk_08594A10
-	.4byte gUnk_0859CA10
-	.4byte gUnk_085A4A10
-	.4byte gUnk_085ACA10
-	.4byte gUnk_085B4A10
-	.4byte gUnk_085BA210
-	.4byte gUnk_085BFA10
-	.4byte gUnk_085C5210
-
-	.global gWmMapTsaTable
-gWmMapTsaTable:
-	.4byte gUnk_085CAA10
-	.4byte gUnk_085CB214
-	.4byte gUnk_085CBA18
-	.4byte gUnk_085CC21C
-	.4byte gUnk_085CCA20
-	.4byte gUnk_085CD224
-	.4byte gUnk_085CDA28
-	.4byte gUnk_085CE22C
-	.4byte gUnk_085CEA30
-	.4byte gUnk_085CF234
-	.4byte gUnk_085CFA38
-	.4byte gUnk_085D023C
-
 	.section .rodata.08CE78C8, "a"
 	.incbin "baserom.gba", 0xce78c8, 0x8
 	.4byte WorldMap_EndEvent
@@ -6307,10 +6275,7 @@ gUnk_08CEE160:
 gUnk_08CEE3C8:
 	.incbin "baserom.gba", 0xcee3c8, 0x268
 
-	.global gCharacterEndingsByRoute
-gCharacterEndingsByRoute:
-	.4byte gUnk_08CEE160
-	.4byte gUnk_08CEE3C8
+	.section .rodata.08CEE638, "a"
 
 	.global gCharacterEndingTitleLut
 gCharacterEndingTitleLut:

@@ -1,6 +1,32 @@
 #include "gbafe.h"
 #include "gbafe/scanline.h"
 
+extern const u16 gUnk_085CAA10[];
+extern const u16 gUnk_085CB214[];
+extern const u16 gUnk_085CBA18[];
+extern const u16 gUnk_085CC21C[];
+extern const u16 gUnk_085CCA20[];
+extern const u16 gUnk_085CD224[];
+extern const u16 gUnk_085CDA28[];
+extern const u16 gUnk_085CE22C[];
+extern const u16 gUnk_085CEA30[];
+extern const u16 gUnk_085CF234[];
+extern const u16 gUnk_085CFA38[];
+extern const u16 gUnk_085D023C[];
+
+extern const u8 gUnk_08574A10[];
+extern const u8 gUnk_0857CA10[];
+extern const u8 gUnk_08584A10[];
+extern const u8 gUnk_0858CA10[];
+extern const u8 gUnk_08594A10[];
+extern const u8 gUnk_0859CA10[];
+extern const u8 gUnk_085A4A10[];
+extern const u8 gUnk_085ACA10[];
+extern const u8 gUnk_085B4A10[];
+extern const u8 gUnk_085BA210[];
+extern const u8 gUnk_085BFA10[];
+extern const u8 gUnk_085C5210[];
+
 extern const u8 Img_WmSpriteAnim_00[];
 extern const u8 Img_WmSpriteAnim_01[];
 extern const u8 Img_WmSpriteAnim_02[];
@@ -203,8 +229,8 @@ struct CGDataEnt const * GetCG(int idx);
 
 extern const struct ProcCmd ProcScr_WmSpotlight[];
 extern const struct ProcCmd ProcScr_WorldFlush[];
-extern u16 const * CONST_DATA gWmMapTsaTable[][4];
-extern u8 const * CONST_DATA gWmMapImgTable[][4];
+extern u16 const * const gWmMapTsaTable[][4];
+extern u8 const * const gWmMapImgTable[][4];
 extern u16 const Pal_Wm_084221D4[];
 extern u16 const Pal_Wm_08424CD8[];
 extern u16 const Pal_Wm_084225A8[];
@@ -2640,4 +2666,18 @@ const struct WmSpriteAnimEnt gWmSpriteAnimTable[] = {
     { .img = Img_WmSpriteAnim_06, .ap = gUnk_084249C0, .size = 0x660, .x = 0x49, .y = 0x78 },
     { .img = Img_WmSpriteAnim_07, .ap = gUnk_08424BB0, .size = 0x220, .x = 0x88, .y = 0x78 },
     { .img = Img_WmSpriteAnim_08, .ap = gUnk_08424C9C, .size = 0x180, .x = 0xAF, .y = 0x65 },
+};
+
+SECTION(".rodata.08CE7818")
+u8 const * const gWmMapImgTable[][4] = {
+    { gUnk_08574A10, gUnk_0857CA10, gUnk_08584A10, gUnk_0858CA10 },
+    { gUnk_08594A10, gUnk_0859CA10, gUnk_085A4A10, gUnk_085ACA10 },
+    { gUnk_085B4A10, gUnk_085BA210, gUnk_085BFA10, gUnk_085C5210 },
+};
+
+SECTION(".rodata.08CE7848")
+u16 const * const gWmMapTsaTable[][4] = {
+    { gUnk_085CAA10, gUnk_085CB214, gUnk_085CBA18, gUnk_085CC21C },
+    { gUnk_085CCA20, gUnk_085CD224, gUnk_085CDA28, gUnk_085CE22C },
+    { gUnk_085CEA30, gUnk_085CF234, gUnk_085CFA38, gUnk_085D023C },
 };

@@ -16,7 +16,7 @@ void DecideScriptB(void);
 typedef void (* DecideFunc)(void);
 
 extern void (* AiDecideMainFunc)(void);
-extern DecideFunc CONST_DATA sDecideFuncList[];
+extern const DecideFunc sDecideFuncList[];
 extern const struct ProcCmd gProcScr_CpPerform[];
 
 void CpDecide_Suspend(ProcPtr proc)
@@ -253,4 +253,20 @@ const struct ProcCmd gProcScr_CpPerform[] = {
     PROC_CALL(CpPerform_EquipBest),
     PROC_LABEL(1),
     PROC_END,
+};
+
+SECTION(".rodata.08B96F14")
+const DecideFunc sDecideFuncList[] = {
+    DecideHealOrEscape,
+    DecideScriptA,
+    DecideScriptB,
+    DecideSpecialItems,
+    NULL,
+    NULL,
+    DecideSpecialItems,
+    DecideScriptA,
+    DecideHealOrEscape,
+    DecideScriptB,
+    NULL,
+    NULL,
 };
