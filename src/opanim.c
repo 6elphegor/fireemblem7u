@@ -1,5 +1,95 @@
 #include "gbafe.h"
 
+extern const u8 gUnk_08600644[];
+extern const u8 gUnk_08600950[];
+extern const u8 gUnk_08600C64[];
+extern const u8 gUnk_08600FAC[];
+extern const u8 gUnk_08601330[];
+extern const u8 gUnk_08601708[];
+extern const u8 gUnk_08601B10[];
+extern const u8 gUnk_08601F1C[];
+extern const u8 gUnk_08602324[];
+extern const u8 gUnk_08602758[];
+extern const u8 gUnk_08602B8C[];
+extern const u8 gUnk_08602FC8[];
+extern const u8 gUnk_08603404[];
+extern const u8 gUnk_0860382C[];
+extern const u8 gUnk_08603C50[];
+extern const u8 gUnk_08604088[];
+extern const u8 gUnk_086044C8[];
+extern const u8 gUnk_08604900[];
+extern const u8 gUnk_08604D2C[];
+extern const u8 gUnk_08605154[];
+extern const u8 gUnk_0860556C[];
+extern const u8 gUnk_0860599C[];
+extern const u8 gUnk_08605DCC[];
+extern const u8 gUnk_086061FC[];
+extern const u8 gUnk_08606628[];
+extern const u8 gUnk_08606A58[];
+extern const u8 gUnk_08606E90[];
+extern const u8 gUnk_086072D4[];
+extern const u8 gUnk_08607718[];
+extern const u8 gUnk_08607B5C[];
+extern const u8 gUnk_08607F8C[];
+extern const u8 gUnk_0860839C[];
+extern const u8 gUnk_086087A4[];
+extern const u8 gUnk_08608B74[];
+extern const u8 gUnk_08608EA0[];
+extern const u8 gUnk_086091B4[];
+extern const u8 gUnk_08609534[];
+extern const u8 gUnk_08609858[];
+extern const u8 gUnk_08609C0C[];
+extern const u8 gUnk_08609FF4[];
+extern const u8 gUnk_0860A404[];
+extern const u8 gUnk_0860A834[];
+extern const u8 gUnk_0860AC60[];
+extern const u8 gUnk_0860B098[];
+extern const u8 gUnk_0860B4C4[];
+extern const u8 gUnk_0860B8FC[];
+extern const u8 gUnk_0860BD30[];
+extern const u8 gUnk_0860C168[];
+extern const u8 gUnk_0860C59C[];
+extern const u8 gUnk_0860C9D0[];
+extern const u8 gUnk_0860CDE0[];
+extern const u8 gUnk_0860D1FC[];
+extern const u8 gUnk_0860D638[];
+extern const u8 gUnk_0860DA70[];
+extern const u8 gUnk_0860DEB0[];
+extern const u8 gUnk_0860E2F8[];
+extern const u8 gUnk_0860E73C[];
+extern const u8 gUnk_0860EB80[];
+extern const u8 gUnk_0860EFC4[];
+extern const u8 gUnk_0860F404[];
+extern const u8 gUnk_0860F834[];
+extern const u8 gUnk_0860FC24[];
+extern const u8 gUnk_0860FFF8[];
+extern const u8 gUnk_086103B8[];
+extern const u8 gUnk_086107B0[];
+extern const u8 gUnk_08610BB8[];
+extern const u8 gUnk_08610FA8[];
+extern const u8 gUnk_08611370[];
+extern const u8 gUnk_086116F4[];
+extern const u8 gUnk_08611A80[];
+extern const u8 gUnk_08611DF0[];
+extern const u8 gUnk_08612154[];
+extern const u8 gUnk_086124D4[];
+extern const u8 gUnk_0861289C[];
+extern const u8 gUnk_08612CB8[];
+extern const u8 gUnk_086130FC[];
+extern const u8 gUnk_08613540[];
+extern const u8 gUnk_08613984[];
+extern const u8 gUnk_08613DB8[];
+extern const u8 gUnk_086141E0[];
+extern const u8 gUnk_0861460C[];
+extern const u8 gUnk_08614A34[];
+extern const u8 gUnk_08614E5C[];
+extern const u8 gUnk_08615244[];
+extern const u8 gUnk_08615594[];
+extern const u16 gUnk_086157E4[];
+extern const u16 gUnk_08615D68[];
+extern const u16 gUnk_086162EC[];
+extern const u16 gUnk_08616870[];
+
 extern const struct OpAnimBgHeader gUnk_08CEF770[];
 extern const struct OpAnimBgFrame gUnk_08CEF788[];
 
@@ -1870,3 +1960,93 @@ const struct OpAnimTextEntry gUnk_08CEF4BC[] = {
 
 SECTION(".rodata.08CEFA38")
 const struct OpAnimBgConf gUnk_08CEFA38 = { .header = gUnk_08CEF770, .frames = gUnk_08CEF788 };
+
+SECTION(".rodata.08CEF788")
+const struct OpAnimBgFrame gUnk_08CEF788[] = {
+    { .img = gUnk_08600644, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08600950, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08600C64, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08600FAC, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08601330, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08601708, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08601B10, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08601F1C, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08602324, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08602758, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08602B8C, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08602FC8, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08603404, .tsa = gUnk_086157E4 },
+    { .img = gUnk_0860382C, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08603C50, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08604088, .tsa = gUnk_086157E4 },
+    { .img = gUnk_086044C8, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08604900, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08604D2C, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08605154, .tsa = gUnk_086157E4 },
+    { .img = gUnk_0860556C, .tsa = gUnk_086157E4 },
+    { .img = gUnk_0860599C, .tsa = gUnk_086157E4 },
+    { .img = gUnk_08605DCC, .tsa = gUnk_08615D68 },
+    { .img = gUnk_086061FC, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08606628, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08606A58, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08606E90, .tsa = gUnk_08615D68 },
+    { .img = gUnk_086072D4, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08607718, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08607B5C, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08607F8C, .tsa = gUnk_08615D68 },
+    { .img = gUnk_0860839C, .tsa = gUnk_08615D68 },
+    { .img = gUnk_086087A4, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08608B74, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08608EA0, .tsa = gUnk_08615D68 },
+    { .img = gUnk_086091B4, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08609534, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08609858, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08609C0C, .tsa = gUnk_08615D68 },
+    { .img = gUnk_08609FF4, .tsa = gUnk_08615D68 },
+    { .img = gUnk_0860A404, .tsa = gUnk_08615D68 },
+    { .img = gUnk_0860A834, .tsa = gUnk_08615D68 },
+    { .img = gUnk_0860AC60, .tsa = gUnk_08615D68 },
+    { .img = gUnk_0860B098, .tsa = gUnk_08615D68 },
+    { .img = gUnk_0860B4C4, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860B8FC, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860BD30, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860C168, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860C59C, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860C9D0, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860CDE0, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860D1FC, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860D638, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860DA70, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860DEB0, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860E2F8, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860E73C, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860EB80, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860EFC4, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860F404, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860F834, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860FC24, .tsa = gUnk_086162EC },
+    { .img = gUnk_0860FFF8, .tsa = gUnk_086162EC },
+    { .img = gUnk_086103B8, .tsa = gUnk_086162EC },
+    { .img = gUnk_086107B0, .tsa = gUnk_086162EC },
+    { .img = gUnk_08610BB8, .tsa = gUnk_086162EC },
+    { .img = gUnk_08610FA8, .tsa = gUnk_08616870 },
+    { .img = gUnk_08611370, .tsa = gUnk_08616870 },
+    { .img = gUnk_086116F4, .tsa = gUnk_08616870 },
+    { .img = gUnk_08611A80, .tsa = gUnk_08616870 },
+    { .img = gUnk_08611DF0, .tsa = gUnk_08616870 },
+    { .img = gUnk_08612154, .tsa = gUnk_08616870 },
+    { .img = gUnk_086124D4, .tsa = gUnk_08616870 },
+    { .img = gUnk_0861289C, .tsa = gUnk_08616870 },
+    { .img = gUnk_08612CB8, .tsa = gUnk_08616870 },
+    { .img = gUnk_086130FC, .tsa = gUnk_08616870 },
+    { .img = gUnk_08613540, .tsa = gUnk_08616870 },
+    { .img = gUnk_08613984, .tsa = gUnk_08616870 },
+    { .img = gUnk_08613DB8, .tsa = gUnk_08616870 },
+    { .img = gUnk_086141E0, .tsa = gUnk_08616870 },
+    { .img = gUnk_0861460C, .tsa = gUnk_08616870 },
+    { .img = gUnk_08614A34, .tsa = gUnk_08616870 },
+    { .img = gUnk_08614E5C, .tsa = gUnk_08616870 },
+    { .img = gUnk_08615244, .tsa = gUnk_08616870 },
+    { .img = gUnk_08615594, .tsa = gUnk_08616870 },
+    { .img = (void *) -1 },
+};

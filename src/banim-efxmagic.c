@@ -1,9 +1,27 @@
 #include "gbafe.h"
 
+void StartSpellAnimSpell11(struct Anim *anim);
+void StartSpellAnimSpell21(struct Anim * anim);
+void StartSpellAnimThorsIre(struct Anim * anim);
+void StartSpellAnimThunder(struct Anim *anim);
+void sub_08056938(struct Anim * anim);
+void sub_08056994(struct Anim * anim);
+void sub_080569F0(struct Anim * anim);
+void sub_08056A4C(struct Anim * anim);
+void sub_08056AA8(struct Anim * anim);
+void sub_08056B04(struct Anim * anim);
+void sub_08056B60(struct Anim * anim);
+void sub_08056BBC(struct Anim * anim);
+void sub_08056C18(struct Anim * anim);
+void sub_08056C74(struct Anim * anim);
+void sub_08056CD0(struct Anim * anim);
+void sub_08059408(struct Anim * anim);
+void sub_0805BBEC(struct Anim * anim);
+
 typedef void (*SpellAnimFunc)(struct Anim * anim);
 
 /* auto-decls */
-extern SpellAnimFunc gEkrSpellAnimLut[];
+extern const SpellAnimFunc gEkrSpellAnimLut[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_EfxRestWINH[];
 extern const struct ProcCmd ProcScr_efxCircleWIN[];
@@ -711,4 +729,72 @@ const struct ProcCmd ProcScr_EfxRestWINH[] = {
     PROC_REPEAT(EfxRestWINH_Loop_A),
     PROC_REPEAT(EfxRestWINH_Loop_B),
     PROC_END,
+};
+
+SECTION(".rodata.08BA13D0")
+const SpellAnimFunc gEkrSpellAnimLut[] = {
+    StartSpellAnimDummy,
+    StartSpellAnimHandAxe,
+    StartSpellAnimArrow,
+    sub_08056938,
+    sub_08056994,
+    sub_080569F0,
+    sub_08056A4C,
+    sub_08056AA8,
+    sub_08056B04,
+    sub_08056B60,
+    sub_08056BBC,
+    sub_08056C18,
+    sub_08056C74,
+    sub_08056CD0,
+    StartSpellAnimSong,
+    StartSpellAnimDance,
+    StartSpellAnimBallista,
+    StartSpellAnimSpell11,
+    StartSpellAnimHurtmut,
+    StartSpellAnimFireBreath,
+    StartSpellAnimIceBreath,
+    StartSpellAnimDarkBreath,
+    StartSpellAnimFire,
+    StartSpellAnimElfire,
+    StartSpellAnimBolganone,
+    StartSpellAnimThunder,
+    StartSpellAnimBolting,
+    StartSpellAnimFimbulvetr,
+    sub_08059408,
+    StartSpellAnimFlux,
+    StartSpellAnimNosferatu,
+    StartSpellAnimLightning,
+    StartSpellAnimPurge,
+    StartSpellAnimSpell21,
+    StartSpellAnimDivine,
+    sub_0805BBEC,
+    StartSpellAnimEclipse,
+    StartSpellAnimFenrir,
+    StartSpellAnimHeal,
+    StartSpellAnimMend,
+    StartSpellAnimRecover,
+    StartSpellAnimPhysic,
+    StartSpellAnimFortify,
+    StartSpellAnimLatona,
+    StartSpellAnimRestore,
+    StartSpellAnimSilence,
+    StartSpellAnimSleep,
+    StartSpellAnimHammerne,
+    StartSpellAnimBerserk,
+    StartSpellAnimBarrier,
+    NULL,
+    StartSpellAnimShine,
+    StartSpellAnimLuna,
+    StartSpellAnimExcalibur,
+    StartSpellAnimGespenst,
+    StartSpellAnimAura,
+    StartSpellAnimLuce,
+    StartSpellAnimEreshkigal,
+    StartSpellAnimFillasMight,
+    StartSpellAnimThorsIre,
+    StartSpellAnimNinisGrace,
+    StartSpellAnimSetsLitany,
+    NULL,
+    NULL,
 };

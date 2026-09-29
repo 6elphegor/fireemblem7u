@@ -9,7 +9,7 @@ typedef void (* SpellAnimFunc)(struct Anim * anim);
 EWRAM_DATA ProcPtr gpActiveClassReelSpellProc = NULL;
 EWRAM_DATA ProcPtr gpActiveCRSpellBgColorProc = NULL;
 
-extern SpellAnimFunc gClassReelSpellAnimFuncLut[];
+extern const SpellAnimFunc gClassReelSpellAnimFuncLut[];
 
 extern const struct ProcCmd ProcScr_efxopFire[];
 extern const struct ProcCmd ProcScr_efxopFireBG[];
@@ -781,4 +781,16 @@ const struct ProcCmd ProcScr_efxopLightningBG[] = {
     PROC_19,
     PROC_REPEAT(efxopLightningBG_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BA47D8")
+const SpellAnimFunc gClassReelSpellAnimFuncLut[] = {
+    StartClassReelSpellAnimDummy,
+    StartClassReelSpellAnimFire,
+    StartClassReelSpellAnimThunder,
+    StartClassReelSpellAnimHeal,
+    StartClassReelSpellAnimLight,
+    NULL,
+    NULL,
+    NULL,
 };

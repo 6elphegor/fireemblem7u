@@ -434,6 +434,8 @@ class Emitter:
             sym, add = self.rom.ptrs[addr]
         elif val == 0:
             return "0"
+        elif val == 0xFFFFFFFF:
+            return "(void *) -1"
         else:
             loc = self.locate(val)
             if loc is None:

@@ -5677,71 +5677,7 @@ gUnk_08BA13AC:
 	.4byte gUnk_08BA0C38 + 0x2
 	.incbin "baserom.gba", 0xba13cc, 0x4
 
-	.global gEkrSpellAnimLut
-gEkrSpellAnimLut:
-	.4byte StartSpellAnimDummy
-	.4byte StartSpellAnimHandAxe
-	.4byte StartSpellAnimArrow
-	.4byte sub_08056938
-	.4byte sub_08056994
-	.4byte sub_080569F0
-	.4byte sub_08056A4C
-	.4byte sub_08056AA8
-	.4byte sub_08056B04
-	.4byte sub_08056B60
-	.4byte sub_08056BBC
-	.4byte sub_08056C18
-	.4byte sub_08056C74
-	.4byte sub_08056CD0
-	.4byte StartSpellAnimSong
-	.4byte StartSpellAnimDance
-	.4byte StartSpellAnimBallista
-	.4byte StartSpellAnimSpell11
-	.4byte StartSpellAnimHurtmut
-	.4byte StartSpellAnimFireBreath
-	.4byte StartSpellAnimIceBreath
-	.4byte StartSpellAnimDarkBreath
-	.4byte StartSpellAnimFire
-	.4byte StartSpellAnimElfire
-	.4byte StartSpellAnimBolganone
-	.4byte StartSpellAnimThunder
-	.4byte StartSpellAnimBolting
-	.4byte StartSpellAnimFimbulvetr
-	.4byte sub_08059408
-	.4byte StartSpellAnimFlux
-	.4byte StartSpellAnimNosferatu
-	.4byte StartSpellAnimLightning
-	.4byte StartSpellAnimPurge
-	.4byte StartSpellAnimSpell21
-	.4byte StartSpellAnimDivine
-	.4byte sub_0805BBEC
-	.4byte StartSpellAnimEclipse
-	.4byte StartSpellAnimFenrir
-	.4byte StartSpellAnimHeal
-	.4byte StartSpellAnimMend
-	.4byte StartSpellAnimRecover
-	.4byte StartSpellAnimPhysic
-	.4byte StartSpellAnimFortify
-	.4byte StartSpellAnimLatona
-	.4byte StartSpellAnimRestore
-	.4byte StartSpellAnimSilence
-	.4byte StartSpellAnimSleep
-	.4byte StartSpellAnimHammerne
-	.4byte StartSpellAnimBerserk
-	.4byte StartSpellAnimBarrier
-	.incbin "baserom.gba", 0xba1498, 0x4
-	.4byte StartSpellAnimShine
-	.4byte StartSpellAnimLuna
-	.4byte StartSpellAnimExcalibur
-	.4byte StartSpellAnimGespenst
-	.4byte StartSpellAnimAura
-	.4byte StartSpellAnimLuce
-	.4byte StartSpellAnimEreshkigal
-	.4byte StartSpellAnimFillasMight
-	.4byte StartSpellAnimThorsIre
-	.4byte StartSpellAnimNinisGrace
-	.4byte StartSpellAnimSetsLitany
-	.incbin "baserom.gba", 0xba14c8, 0x8
+	.section .rodata.08BA14D0, "a"
 
 	.global gUnk_08BA14D0
 gUnk_08BA14D0:
@@ -7154,17 +7090,6 @@ TsaLut_EfxChillEffectBG:
 	.4byte Tsa1_EfxChillEffectBG
 	.4byte Tsa2_EfxChillEffectBG
 	.4byte Tsa3_EfxChillEffectBG
-
-	.section .rodata.08BA47D8, "a"
-
-	.global gClassReelSpellAnimFuncLut
-gClassReelSpellAnimFuncLut:
-	.4byte StartClassReelSpellAnimDummy
-	.4byte StartClassReelSpellAnimFire
-	.4byte StartClassReelSpellAnimThunder
-	.4byte StartClassReelSpellAnimHeal
-	.4byte StartClassReelSpellAnimLight
-	.incbin "baserom.gba", 0xba47ec, 0xc
 
 	.section .rodata.08BA4838, "a"
 
