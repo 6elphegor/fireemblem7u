@@ -24,3 +24,8 @@ void SetIrqFunc(int num, IrqFunc func)
 {
     gIrqFuncs[num] = func;
 }
+
+extern const IrqFunc gUnk_080C57DC;
+
+SECTION(".rodata.080C57DC")
+const IrqFunc gUnk_080C57DC = DummyIrqRoutine;
