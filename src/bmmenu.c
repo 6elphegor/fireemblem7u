@@ -7,7 +7,7 @@
 extern const struct ProcCmd ProcScr_Config_Field[];
 extern const struct ProcCmd gProcScr_BKSEL[];
 extern const struct ProcCmd gProcScr_0859B630[];
-extern u16 CONST_DATA EventScr_CompleteTraining[];
+extern const EventScr EventScr_CompleteTraining[];
 extern u8 CONST_DATA Tsa_StealMenuFrame[];
 
 extern const struct MenuDef gBallistaRangeMenuDef;
@@ -2765,4 +2765,10 @@ const struct SelectInfo gSelectInfo_Rescue = {
     .onSelect = RescueSelection_OnSelect,
     .onCancel = GenericSelection_BackToUM,
     .onHelp = RescueSelection_OnHelp,
+};
+
+SECTION(".rodata.08B93DA4")
+const EventScr EventScr_CompleteTraining[] = {
+    0x87, 0xD, 0x57, 0x3E, (uintptr_t) sub_08021614, 0x11, 0x58, 0x81, 0x10002, 1, 0x44, 0x63,
+    0xA, 0,
 };

@@ -31,7 +31,7 @@ extern const struct ProcCmd ProcScr_PlayerPhase[];
 extern const struct ProcCmd ProcScr_SALLYCURSOR[];
 extern struct ProcCmd gProcScr_EventEngine[];
 extern const struct ProcCmd sProcScr_MoveLimitView[];
-extern u8 * gOpenLimitViewImgLut[];
+extern const u8 * const gOpenLimitViewImgLut[];
 extern u8 const Img_LimitViewSquare[];     // FE8U: gUnknown_08A02EB4
 extern u16 const Pal_LimitViewBlue[];      // FE8U: gUnknown_08A02F34
 extern u16 const Pal_LimitViewRed[];       // FE8U: gUnknown_08A02F94
@@ -100,3 +100,6 @@ s8 sub_080790C0(void);                                          // sub_80832CC
 void StartMinimapPlayerPhase(void);                                        // StartMinimapPlayerPhase
 bool IsMapFadeActive(void);                                     // DoesBMXFADEExist
 void StartMapFade(bool locksGame);                              // NewBMXFADE
+
+extern const u8 Img_LimitViewSquares[], gUnk_083FDA9C[], gUnk_083FDB1C[], gUnk_083FDB9C[],
+    gUnk_083FDC1C[];

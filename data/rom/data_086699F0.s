@@ -2067,11 +2067,7 @@ gSprite_TalkTextFront:
 
 	.global gSprite_TalkTextBack
 gSprite_TalkTextBack:
-	.incbin "baserom.gba", 0xb90c06, 0x4e
-	.4byte TalkPutSpriteText_OnEnd
-	.incbin "baserom.gba", 0xb90c58, 0x4
-	.4byte TalkPutSpriteText_OnIdle
-	.incbin "baserom.gba", 0xb90c60, 0x8
+	.incbin "baserom.gba", 0xb90c06, 0x4a
 
 	.section .rodata.08B91A18, "a"
 
@@ -2087,26 +2083,6 @@ gUnitDef_08B91A18:
 	.global ProcScr_DebugMonitor
 ProcScr_DebugMonitor:
 	.incbin "baserom.gba", 0xb9333c, 0x8
-
-	.section .rodata.08B9356C, "a"
-
-	.global gOpenLimitViewImgLut
-gOpenLimitViewImgLut:
-	.incbin "baserom.gba", 0xb9356c, 0x8
-	.4byte Img_LimitViewSquares
-	.4byte gUnk_083FDA9C
-	.4byte gUnk_083FDB1C
-	.4byte gUnk_083FDB9C
-	.4byte gUnk_083FDC1C
-	.4byte Img_LimitViewSquare
-
-	.section .rodata.08B93DA4, "a"
-
-	.global EventScr_CompleteTraining
-EventScr_CompleteTraining:
-	.incbin "baserom.gba", 0xb93da4, 0x10
-	.4byte sub_08021614
-	.incbin "baserom.gba", 0xb93db8, 0x24
 
 	.section .rodata.08B93E48, "a"
 
@@ -2291,346 +2267,6 @@ sSprite_32x32_Window:
 	.global gTradeItemDisplayTileLocation
 gTradeItemDisplayTileLocation:
 	.incbin "baserom.gba", 0xb942b8, 0x28
-
-	.section .rodata.08B94418, "a"
-
-	.global EventScr_TradeTutStart
-EventScr_TradeTutStart:
-	.incbin "baserom.gba", 0xb94418, 0x8
-	.4byte StartTradeMenuTutorialHandCursor
-	.incbin "baserom.gba", 0xb94424, 0xc
-	.4byte FreezeMenu
-	.incbin "baserom.gba", 0xb94434, 0x14
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb9444c, 0x4
-	.4byte ResumeMenu
-	.incbin "baserom.gba", 0xb94454, 0x4
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb9445c, 0x4
-	.4byte SetTradeMenuTutStatus2
-	.incbin "baserom.gba", 0xb94464, 0x8
-
-	.global EventScr_TradeTut_SelectItem
-EventScr_TradeTut_SelectItem:
-	.incbin "baserom.gba", 0xb9446c, 0x8
-	.4byte StartTradeMenuTutorialHandCursor
-	.incbin "baserom.gba", 0xb94478, 0x4
-	.4byte TradeMenuHandSTAL
-	.incbin "baserom.gba", 0xb94480, 0xc
-	.4byte FreezeMenu
-	.incbin "baserom.gba", 0xb94490, 0x14
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb944a8, 0x4
-	.4byte ResumeMenu
-	.incbin "baserom.gba", 0xb944b0, 0x4
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb944b8, 0x4
-	.4byte SetTradeMenuTutStatus3
-	.incbin "baserom.gba", 0xb944c0, 0x8
-
-	.global EventScr_TradeTut_PressAtoGetItem
-EventScr_TradeTut_PressAtoGetItem:
-	.incbin "baserom.gba", 0xb944c8, 0x8
-	.4byte StartDoubleTradeMenuTutorialHandCursor
-	.incbin "baserom.gba", 0xb944d4, 0x4
-	.4byte TradeMenuHandSTAL
-	.incbin "baserom.gba", 0xb944dc, 0x4
-	.4byte FreezeMenu
-	.incbin "baserom.gba", 0xb944e4, 0x14
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb944fc, 0x4
-	.4byte ResumeMenu
-	.incbin "baserom.gba", 0xb94504, 0x4
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb9450c, 0x4
-	.4byte SetTradeMenuTutStatus5
-	.incbin "baserom.gba", 0xb94514, 0x8
-
-	.global EventScr_TradeTutDone
-EventScr_TradeTutDone:
-	.incbin "baserom.gba", 0xb9451c, 0x8
-	.4byte SetTradeMenuTutStatus7
-	.incbin "baserom.gba", 0xb94528, 0x4
-	.4byte StartTradeMenuTutorialHandCursor
-	.incbin "baserom.gba", 0xb94530, 0x4
-	.4byte TradeMenuHandSTAL
-	.incbin "baserom.gba", 0xb94538, 0x4
-	.4byte FreezeMenu
-	.incbin "baserom.gba", 0xb94540, 0x14
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb94558, 0x4
-	.4byte ResumeMenu
-	.incbin "baserom.gba", 0xb94560, 0x4
-	.4byte BoxTalkActive
-	.incbin "baserom.gba", 0xb94568, 0x4
-	.4byte SetTradeMenuTutStatus8
-	.incbin "baserom.gba", 0xb94570, 0x8
-
-	.section .rodata.08B95D38, "a"
-
-	.global gUnk_08B95D38
-gUnk_08B95D38:
-	.incbin "baserom.gba", 0xb95d38, 0x14
-	.4byte gUnk_0837BB4C
-	.incbin "baserom.gba", 0xb95d50, 0x4
-	.4byte gUnk_0837CB4C
-	.incbin "baserom.gba", 0xb95d58, 0x4
-	.4byte gUnk_0837DB4C
-	.incbin "baserom.gba", 0xb95d60, 0x4
-	.4byte gUnk_0837EB4C
-	.incbin "baserom.gba", 0xb95d68, 0x4
-	.4byte gUnk_0837FB4C
-	.incbin "baserom.gba", 0xb95d70, 0x4
-	.4byte gUnk_08380B4C
-	.incbin "baserom.gba", 0xb95d78, 0x4
-	.4byte gUnk_08381B4C
-	.incbin "baserom.gba", 0xb95d80, 0x4
-	.4byte gUnk_08382B4C
-	.incbin "baserom.gba", 0xb95d88, 0x4
-	.4byte gUnk_08383B4C
-	.incbin "baserom.gba", 0xb95d90, 0x4
-	.4byte gUnk_08384B4C
-	.incbin "baserom.gba", 0xb95d98, 0x4
-	.4byte gUnk_08385B4C
-	.incbin "baserom.gba", 0xb95da0, 0x4
-	.4byte gUnk_08386B4C
-	.incbin "baserom.gba", 0xb95da8, 0x4
-	.4byte gUnk_08387B4C
-	.incbin "baserom.gba", 0xb95db0, 0x4
-	.4byte gUnk_08388B4C
-	.incbin "baserom.gba", 0xb95db8, 0x8
-
-	.global gUnk_08B95DC0
-gUnk_08B95DC0:
-	.incbin "baserom.gba", 0xb95dc0, 0x4
-	.4byte gUnk_08389B4C
-	.incbin "baserom.gba", 0xb95dc8, 0x4
-	.4byte gUnk_0838AB4C
-	.incbin "baserom.gba", 0xb95dd0, 0x4
-	.4byte gUnk_0838BB4C
-	.incbin "baserom.gba", 0xb95dd8, 0x4
-	.4byte gUnk_0838CB4C
-	.incbin "baserom.gba", 0xb95de0, 0x4
-	.4byte gUnk_0838DB4C
-	.incbin "baserom.gba", 0xb95de8, 0x4
-	.4byte gUnk_0838EB4C
-	.incbin "baserom.gba", 0xb95df0, 0x4
-	.4byte gUnk_0838FB4C
-	.incbin "baserom.gba", 0xb95df8, 0x4
-	.4byte gUnk_08390B4C
-	.incbin "baserom.gba", 0xb95e00, 0x8
-
-	.global gUnk_08B95E08
-gUnk_08B95E08:
-	.incbin "baserom.gba", 0xb95e08, 0x4
-	.4byte gUnk_08391B4C
-	.incbin "baserom.gba", 0xb95e10, 0x4
-	.4byte gUnk_08392B4C
-	.incbin "baserom.gba", 0xb95e18, 0x4
-	.4byte gUnk_08393B4C
-	.incbin "baserom.gba", 0xb95e20, 0x4
-	.4byte gUnk_08394B4C
-	.incbin "baserom.gba", 0xb95e28, 0x4
-	.4byte gUnk_08395B4C
-	.incbin "baserom.gba", 0xb95e30, 0x4
-	.4byte gUnk_08396B4C
-	.incbin "baserom.gba", 0xb95e38, 0x4
-	.4byte gUnk_08397B4C
-	.incbin "baserom.gba", 0xb95e40, 0x4
-	.4byte gUnk_08398B4C
-	.incbin "baserom.gba", 0xb95e48, 0x4
-	.4byte gUnk_08399B4C
-	.incbin "baserom.gba", 0xb95e50, 0x4
-	.4byte gUnk_0839AB4C
-	.incbin "baserom.gba", 0xb95e58, 0x4
-	.4byte gUnk_0839BB4C
-	.incbin "baserom.gba", 0xb95e60, 0x4
-	.4byte gUnk_0839CB4C
-	.incbin "baserom.gba", 0xb95e68, 0x4
-	.4byte gUnk_0839DB4C
-	.incbin "baserom.gba", 0xb95e70, 0x4
-	.4byte gUnk_0839EB4C
-	.incbin "baserom.gba", 0xb95e78, 0x4
-	.4byte gUnk_0839FB4C
-	.incbin "baserom.gba", 0xb95e80, 0x4
-	.4byte gUnk_083A0B4C
-	.incbin "baserom.gba", 0xb95e88, 0xc
-	.4byte gUnk_083A1B4C
-	.incbin "baserom.gba", 0xb95e98, 0x4
-	.4byte gUnk_083A2B4C
-	.incbin "baserom.gba", 0xb95ea0, 0x4
-	.4byte gUnk_083A3B4C
-	.incbin "baserom.gba", 0xb95ea8, 0x4
-	.4byte gUnk_083A4B4C
-	.incbin "baserom.gba", 0xb95eb0, 0x4
-	.4byte gUnk_083A5B4C
-	.incbin "baserom.gba", 0xb95eb8, 0x4
-	.4byte gUnk_083A6B4C
-	.incbin "baserom.gba", 0xb95ec0, 0x4
-	.4byte gUnk_083A7B4C
-	.incbin "baserom.gba", 0xb95ec8, 0x4
-	.4byte gUnk_083A8B4C
-	.incbin "baserom.gba", 0xb95ed0, 0x4
-	.4byte gUnk_083A9B4C
-	.incbin "baserom.gba", 0xb95ed8, 0x4
-	.4byte gUnk_083AAB4C
-	.incbin "baserom.gba", 0xb95ee0, 0x4
-	.4byte gUnk_083ABB4C
-	.incbin "baserom.gba", 0xb95ee8, 0x4
-	.4byte gUnk_083ACB4C
-	.incbin "baserom.gba", 0xb95ef0, 0x4
-	.4byte gUnk_083ADB4C
-	.incbin "baserom.gba", 0xb95ef8, 0x4
-	.4byte gUnk_083AEB4C
-	.incbin "baserom.gba", 0xb95f00, 0x4
-	.4byte gUnk_083AFB4C
-	.incbin "baserom.gba", 0xb95f08, 0x4
-	.4byte gUnk_083B0B4C
-	.incbin "baserom.gba", 0xb95f10, 0xc
-	.4byte gUnk_083B1B4C
-	.incbin "baserom.gba", 0xb95f20, 0x4
-	.4byte gUnk_083B1F4C
-	.incbin "baserom.gba", 0xb95f28, 0x4
-	.4byte gUnk_083B234C
-	.incbin "baserom.gba", 0xb95f30, 0x4
-	.4byte gUnk_083B274C
-	.incbin "baserom.gba", 0xb95f38, 0x4
-	.4byte gUnk_083B2B4C
-	.incbin "baserom.gba", 0xb95f40, 0x4
-	.4byte gUnk_083B2F4C
-	.incbin "baserom.gba", 0xb95f48, 0x8
-
-	.global gUnk_08B95F50
-gUnk_08B95F50:
-	.incbin "baserom.gba", 0xb95f50, 0x4
-	.4byte gUnk_083B334C
-	.incbin "baserom.gba", 0xb95f58, 0x4
-	.4byte gUnk_083B384C
-	.incbin "baserom.gba", 0xb95f60, 0x4
-	.4byte gUnk_083B3D4C
-	.incbin "baserom.gba", 0xb95f68, 0x4
-	.4byte gUnk_083B424C
-	.incbin "baserom.gba", 0xb95f70, 0x4
-	.4byte gUnk_083B474C
-	.incbin "baserom.gba", 0xb95f78, 0x4
-	.4byte gUnk_083B4C4C
-	.incbin "baserom.gba", 0xb95f80, 0x4
-	.4byte gUnk_083B514C
-	.incbin "baserom.gba", 0xb95f88, 0x4
-	.4byte gUnk_083B564C
-	.incbin "baserom.gba", 0xb95f90, 0x8
-
-	.global gUnk_08B95F98
-gUnk_08B95F98:
-	.incbin "baserom.gba", 0xb95f98, 0x4
-	.4byte gUnk_083B5B4C
-	.incbin "baserom.gba", 0xb95fa0, 0x4
-	.4byte gUnk_083B5F4C
-	.incbin "baserom.gba", 0xb95fa8, 0x4
-	.4byte gUnk_083B634C
-	.incbin "baserom.gba", 0xb95fb0, 0x4
-	.4byte gUnk_083B674C
-	.incbin "baserom.gba", 0xb95fb8, 0x4
-	.4byte gUnk_083B6B4C
-	.incbin "baserom.gba", 0xb95fc0, 0x4
-	.4byte gUnk_083B6F4C
-	.incbin "baserom.gba", 0xb95fc8, 0x4
-	.4byte gUnk_083B734C
-	.incbin "baserom.gba", 0xb95fd0, 0x4
-	.4byte gUnk_083B774C
-	.incbin "baserom.gba", 0xb95fd8, 0x8
-
-	.global gUnk_08B95FE0
-gUnk_08B95FE0:
-	.4byte gUnk_083B7B4C
-	.incbin "baserom.gba", 0xb95fe4, 0x4
-	.4byte gUnk_083B7B4C
-	.incbin "baserom.gba", 0xb95fec, 0x4
-	.4byte gUnk_083B7B54
-	.incbin "baserom.gba", 0xb95ff4, 0x4
-	.4byte gUnk_083B7B5C
-	.incbin "baserom.gba", 0xb95ffc, 0x4
-	.4byte gUnk_083B7B64
-	.incbin "baserom.gba", 0xb96004, 0x4
-	.4byte gUnk_083B7B6C
-	.incbin "baserom.gba", 0xb9600c, 0x4
-	.4byte gUnk_083B7B74
-	.incbin "baserom.gba", 0xb96014, 0x4
-	.4byte gUnk_083B7B7C
-	.incbin "baserom.gba", 0xb9601c, 0xc
-	.4byte gUnk_083B7B84 + 0x2
-	.incbin "baserom.gba", 0xb9602c, 0x4
-	.4byte gUnk_083B7B8C
-	.incbin "baserom.gba", 0xb96034, 0x4
-	.4byte gUnk_083B7B90 + 0x2
-	.incbin "baserom.gba", 0xb9603c, 0x4
-	.4byte gUnk_083B7B98
-	.incbin "baserom.gba", 0xb96044, 0x4
-	.4byte gUnk_083B7B9C + 0x2
-	.incbin "baserom.gba", 0xb9604c, 0x4
-	.4byte gUnk_083B7BA4 + 0x2
-	.incbin "baserom.gba", 0xb96054, 0x4
-	.4byte gUnk_083B7BAC
-	.incbin "baserom.gba", 0xb9605c, 0x4
-	.4byte gUnk_083B7BB0 + 0x2
-	.incbin "baserom.gba", 0xb96064, 0x4
-	.4byte gUnk_083B7BB8
-	.incbin "baserom.gba", 0xb9606c, 0x4
-	.4byte gUnk_083B7BBC + 0x2
-	.incbin "baserom.gba", 0xb96074, 0x4
-	.4byte gUnk_083B7BC4 + 0x2
-	.incbin "baserom.gba", 0xb9607c, 0x4
-	.4byte gUnk_083B7BCC
-	.incbin "baserom.gba", 0xb96084, 0x4
-	.4byte gUnk_083B7B84 + 0x2
-	.incbin "baserom.gba", 0xb9608c, 0x4
-	.4byte gUnk_083B7B8C
-	.incbin "baserom.gba", 0xb96094, 0xc
-
-	.global gUnk_08B960A0
-gUnk_08B960A0:
-	.4byte gUnk_083B7C04
-	.incbin "baserom.gba", 0xb960a4, 0x4
-	.4byte gUnk_083B7C0C
-	.incbin "baserom.gba", 0xb960ac, 0x4
-	.4byte gUnk_083B7C14
-	.incbin "baserom.gba", 0xb960b4, 0x4
-	.4byte gUnk_083B7C1C
-	.incbin "baserom.gba", 0xb960bc, 0x4
-	.4byte gUnk_083B7C24
-	.incbin "baserom.gba", 0xb960c4, 0x4
-	.4byte gUnk_083B7C2C
-	.incbin "baserom.gba", 0xb960cc, 0x4
-	.4byte gUnk_083B7C34
-	.incbin "baserom.gba", 0xb960d4, 0x4
-	.4byte gUnk_083B7C3C
-	.incbin "baserom.gba", 0xb960dc, 0x4
-	.4byte gUnk_083B7C44
-	.incbin "baserom.gba", 0xb960e4, 0x4
-	.4byte gUnk_083B7C4C
-	.incbin "baserom.gba", 0xb960ec, 0x4
-	.4byte gUnk_083B7C54
-	.incbin "baserom.gba", 0xb960f4, 0x4
-	.4byte gUnk_083B7C5C
-	.incbin "baserom.gba", 0xb960fc, 0x4
-	.4byte gUnk_083B7C64
-	.incbin "baserom.gba", 0xb96104, 0x4
-	.4byte gUnk_083B7C6C
-	.incbin "baserom.gba", 0xb9610c, 0x4
-	.4byte gUnk_083B7C74
-	.incbin "baserom.gba", 0xb96114, 0xc
-	.4byte gUnk_083B7BD4
-	.incbin "baserom.gba", 0xb96124, 0x4
-	.4byte gUnk_083B7BDC
-	.incbin "baserom.gba", 0xb9612c, 0x4
-	.4byte gUnk_083B7BE4
-	.incbin "baserom.gba", 0xb96134, 0x4
-	.4byte gUnk_083B7BEC
-	.incbin "baserom.gba", 0xb9613c, 0x4
-	.4byte gUnk_083B7BF4
-	.incbin "baserom.gba", 0xb96144, 0x4
-	.4byte gUnk_083B7BFC
-	.incbin "baserom.gba", 0xb9614c, 0xc
 
 	.section .rodata.08B96D34, "a"
 
@@ -2824,70 +2460,6 @@ FaceConfig_085A9E48:
 FaceConfig_085A9E68:
 	.incbin "baserom.gba", 0xb99620, 0x20
 
-	.global ProcScr_SIOMENU
-ProcScr_SIOMENU:
-	.incbin "baserom.gba", 0xb99640, 0x14
-	.4byte SioMenu_Init
-	.incbin "baserom.gba", 0xb99658, 0x4
-	.4byte SioMenu_LoadGraphics
-	.incbin "baserom.gba", 0xb99660, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xb99668, 0xc
-	.4byte FE6Link_Init
-	.incbin "baserom.gba", 0xb99678, 0x4
-	.4byte SioMenu_8047C60
-	.incbin "baserom.gba", 0xb99680, 0x14
-	.4byte SioMenu_RestartGraphicsMaybe
-	.incbin "baserom.gba", 0xb99698, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xb996a0, 0xc
-	.4byte FE6Link_Init
-	.incbin "baserom.gba", 0xb996b0, 0xc
-	.4byte sub_08042690
-	.incbin "baserom.gba", 0xb996c0, 0x4
-	.4byte SioMenu_Loop_HandleKeyInput
-	.incbin "baserom.gba", 0xb996c8, 0x4
-	.4byte SioMenu_80480B4
-	.incbin "baserom.gba", 0xb996d0, 0x4
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb996d8, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb996e0, 0xc
-	.4byte SioMenu_End
-	.incbin "baserom.gba", 0xb996f0, 0x20
-	.4byte XMapTransfer_80482E0
-	.incbin "baserom.gba", 0xb99714, 0x4
-	.4byte XMapTransfer_80483F8
-	.incbin "baserom.gba", 0xb9971c, 0xc
-	.4byte XMapTransfer_8048418
-	.incbin "baserom.gba", 0xb9972c, 0x34
-	.4byte XMapTransfer_80483F8
-	.incbin "baserom.gba", 0xb99764, 0x4
-	.4byte XMapTransfer_8048460
-	.incbin "baserom.gba", 0xb9976c, 0xc
-	.4byte sub_080412C8
-	.incbin "baserom.gba", 0xb9977c, 0x4
-	.4byte sub_08043068
-	.incbin "baserom.gba", 0xb99784, 0x4
-	.4byte sub_0804307C
-	.incbin "baserom.gba", 0xb9978c, 0xc
-	.4byte sub_0803D5FC
-	.incbin "baserom.gba", 0xb9979c, 0x8
-	.4byte XMapTransfer_8048730
-	.incbin "baserom.gba", 0xb997a8, 0x4
-	.4byte sub_08043130
-	.incbin "baserom.gba", 0xb997b0, 0x4
-	.4byte StartXMapTransfer
-	.incbin "baserom.gba", 0xb997b8, 0x8
-	.4byte XMapTransfer_AwaitCompletion
-	.incbin "baserom.gba", 0xb997c4, 0x4
-	.4byte sub_080412D4
-	.incbin "baserom.gba", 0xb997cc, 0x34
-	.4byte sub_08043068
-	.incbin "baserom.gba", 0xb99804, 0x4
-	.4byte sub_0804307C
-	.incbin "baserom.gba", 0xb9980c, 0x10
-
 	.section .rodata.08B99880, "a"
 
 	.global gUnknown_08B99880
@@ -2944,25 +2516,6 @@ gUnknown_085AA21C:
 gLut_LinkArenaFogPlaceholder_YOffset:
 	.incbin "baserom.gba", 0xb99c98, 0x20
 
-	.global ProcScr_DrawLinkArenaFogPlaceholders
-ProcScr_DrawLinkArenaFogPlaceholders:
-	.incbin "baserom.gba", 0xb99cb8, 0x1c
-	.4byte LinkArenaFogSprite_Loop
-
-	.section .rodata.08B99D20, "a"
-
-	.global EventScr_LinkArenaSurrenderPrompt
-EventScr_LinkArenaSurrenderPrompt:
-	.incbin "baserom.gba", 0xb99d20, 0x10
-	.4byte LinkArena_StoreTalkChoice
-	.incbin "baserom.gba", 0xb99d34, 0x8
-
-	.global EventScr_LinkArenaNoDamagePrompt
-EventScr_LinkArenaNoDamagePrompt:
-	.incbin "baserom.gba", 0xb99d3c, 0x10
-	.4byte LinkArena_StoreTalkChoice
-	.incbin "baserom.gba", 0xb99d50, 0x8
-
 	.section .rodata.08B9A280, "a"
 
 	.global gUnknown_085AA854
@@ -2993,20 +2546,23 @@ Sprite_08B9A436:
 
 	.global gUnk_08B9A43C
 gUnk_08B9A43C:
-	.incbin "baserom.gba", 0xb9a43c, 0x14
+	.incbin "baserom.gba", 0xb9a43c, 0x2
+
+	.global gUnk_08B9A43E
+gUnk_08B9A43E:
+	.incbin "baserom.gba", 0xb9a43e, 0x12
 
 	.global gUnk_08B9A450
 gUnk_08B9A450:
-	.incbin "baserom.gba", 0xb9a450, 0x16
+	.incbin "baserom.gba", 0xb9a450, 0x2
+
+	.global gUnk_08B9A452
+gUnk_08B9A452:
+	.incbin "baserom.gba", 0xb9a452, 0x14
 
 	.global gUnknown_085AAA0E
 gUnknown_085AAA0E:
 	.incbin "baserom.gba", 0xb9a466, 0x3a
-
-	.global gUnknown_085AAA48
-gUnknown_085AAA48:
-	.incbin "baserom.gba", 0xb9a4a0, 0x4
-	.4byte gUnk_08B9A450 + 0x2
 
 	.section .rodata.08B9A548, "a"
 

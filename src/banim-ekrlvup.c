@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern int const gMid_Hp;
+extern int const gMid_Mag;
+extern int const gMid_Str;
+
 /**
  * Level-up window in battle animations (fireemblem8u: banim-ekrlvup.c)
  */
@@ -59,8 +63,8 @@ extern u16 gEkrLvupScrollPos2;
 
 extern const u16 sEfxLvupPartsPos[];
 extern const struct FaceVramEnt gEkrLvupFaceConfig[];
-extern CONST_DATA unsigned * EkrLvupMsgsStr[];
-extern CONST_DATA unsigned * EkrLvupMsgsMag[];
+extern const int * const EkrLvupMsgsStr[];
+extern const int * const EkrLvupMsgsMag[];
 extern const struct ProcCmd ProcScr_EkrLevelup[];
 extern unsigned gMid_Lv;
 
@@ -786,4 +790,28 @@ const struct ProcCmd ProcScr_EkrLevelup[] = {
     PROC_REPEAT(EkrLvup_ResetScreen),
     PROC_REPEAT(EkrLvup_OnEnd),
     PROC_END,
+};
+
+SECTION(".rodata.08BDB5BC")
+const int * const EkrLvupMsgsStr[] = {
+    &gMid_Hp,
+    &gMid_Str,
+    &gMid_Skl,
+    &gMid_Spd,
+    &gMid_Lck,
+    &gMid_Def,
+    &gMid_Res,
+    &gMid_Con,
+};
+
+SECTION(".rodata.08BDB5DC")
+const int * const EkrLvupMsgsMag[] = {
+    &gMid_Hp,
+    &gMid_Mag,
+    &gMid_Skl,
+    &gMid_Spd,
+    &gMid_Lck,
+    &gMid_Def,
+    &gMid_Res,
+    &gMid_Con,
 };

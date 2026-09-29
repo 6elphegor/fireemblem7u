@@ -575,6 +575,12 @@ class Emitter:
         n = self.rom.addr_names.get(val)
         if n:
             return n, 0
+        if BASE <= val < 0x09000000:   # inside a labeled object of the assembly
+            i = bisect.bisect_right(self.rom.label_addrs, val) - 1
+            if i >= 0:
+                a = self.rom.label_addrs[i]
+                if 0 < val - a < self.rom.object_extent(a):
+                    return self.rom.addr_names[a], val - a
         if 0x02000000 <= val < 0x04000000:
             syms = self.rom.ram_syms()
             k = bisect.bisect_right(syms, (val, "\uffff")) - 1
@@ -600,6 +606,8 @@ class Emitter:
         suffix = self.descend(fld, add, want_struct(f)) if fld else None
         if not fld:   # undeclared: an array of what the field points to
             base = getattr(f, "pointee", "")
+            if " ".join(w for w in base.split() if w not in QUALS) == "void":   # report_refs declares these as u8 arrays
+                base = "u8"
             if base in INTS and add % INTS[base][0] == 0:
                 return f"&{sym}[{add // INTS[base][0]}]"
         if suffix is None:
@@ -882,6 +890,15 @@ def emit_objects(rom, types, decls, spec, args):
     for name, addr, count, single in objs:
         lines = em.array(elem, addr, count, single)
         body = ",\n".join(("" if single else "    ") + l for l in lines)
+        if elem.kind == "int" and not single and count > 1:   # several scalars per line
+            cur, rows = "   ", []
+            for l in lines:
+                if len(cur) + len(l) + 2 > Emitter.WIDTH and cur.strip():
+                    rows.append(cur)
+                    cur = "   "
+                cur += " " + l + ","
+            rows.append(cur)
+            body = "\n".join(rows).rstrip(",")
         out.append((name, addr, count * elem.size, decl_type(base_spec, elem), body, single, dims))
     return out, em
 
@@ -989,6 +1006,10 @@ def report_refs(em, decls, path, hdr=None, skip=()):
             line = decls.defn_text.get(sym) or fn_proto(f.sig, sym)
             target = (header_for(defs[0]) if defs else None) or hdr
             names["fn"].append(sym)
+        elif sym in em.scalars and any("[" not in x and "(" not in x for _, x in decls.decl.get(sym, [])):
+            # a single object declared in another module (`&sym` in the table): declare it the same way
+            line = next(x for _, x in decls.decl[sym] if "[" not in x and "(" not in x)
+            names["data"].append(sym)
         else:
             pointee = "u8" if f.pointee.strip() in ("void", "const void") else f.pointee
             cq = "" if (em.plain_targets or not getattr(f, "pconst", True)) and pointee in INTS else "const "

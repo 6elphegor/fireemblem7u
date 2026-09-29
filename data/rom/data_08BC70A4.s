@@ -3813,28 +3813,6 @@ EkrBg3HfScrollingConf:
 gEkrLvupFaceConfig:
 	.incbin "baserom.gba", 0xbdb59c, 0x20
 
-	.global EkrLvupMsgsStr
-EkrLvupMsgsStr:
-	.4byte gMid_Hp
-	.4byte gMid_Str
-	.4byte gMid_Skl
-	.4byte gMid_Spd
-	.4byte gMid_Lck
-	.4byte gMid_Def
-	.4byte gMid_Res
-	.4byte gMid_Con
-
-	.global EkrLvupMsgsMag
-EkrLvupMsgsMag:
-	.4byte gMid_Hp
-	.4byte gMid_Mag
-	.4byte gMid_Skl
-	.4byte gMid_Spd
-	.4byte gMid_Lck
-	.4byte gMid_Def
-	.4byte gMid_Res
-	.4byte gMid_Con
-
 	.section .rodata.08BDB6EC, "a"
 
 	.global gEfxPartsofScroll2Lut

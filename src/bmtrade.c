@@ -1,6 +1,10 @@
 #include "gbafe.h"
 #include "gbafe/bmtrade.h"
 
+extern const EventScr BoxTalkActive[];
+extern const EventScr FreezeMenu[];
+extern const EventScr ResumeMenu[];
+
 void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc)
 {
     char * str;
@@ -726,4 +730,37 @@ const struct ProcCmd ProcScr_TradeMenu_HighlightUpdater[] = {
     PROC_CALL(TradeMenu_HighlightUpdater_OnInit),
     PROC_REPEAT(TradeMenu_HighlightUpdater_OnLoop),
     PROC_END,
+};
+
+SECTION(".rodata.08B94418")
+const EventScr EventScr_TradeTutStart[] = {
+    0x98, 0x3E, (uintptr_t) StartTradeMenuTutorialHandCursor, 0xA1, 0xC8, 0x3E,
+    (uintptr_t) FreezeMenu, 0x80002, 0xD00A7, 0, 0x87D, 0x42, (uintptr_t) BoxTalkActive, 0x3E,
+    (uintptr_t) ResumeMenu, 0x42, (uintptr_t) BoxTalkActive, 0x3E,
+    (uintptr_t) SetTradeMenuTutStatus2, 0xA, 0,
+};
+
+SECTION(".rodata.08B9446C")
+const EventScr EventScr_TradeTut_SelectItem[] = {
+    0x98, 0x3E, (uintptr_t) StartTradeMenuTutorialHandCursor, 0x3E,
+    (uintptr_t) TradeMenuHandSTAL, 0xA1, 8, 0x3E, (uintptr_t) FreezeMenu, 0x80002, 0xD00A7, 0,
+    0x87E, 0x42, (uintptr_t) BoxTalkActive, 0x3E, (uintptr_t) ResumeMenu, 0x42,
+    (uintptr_t) BoxTalkActive, 0x3E, (uintptr_t) SetTradeMenuTutStatus3, 0xA, 0,
+};
+
+SECTION(".rodata.08B944C8")
+const EventScr EventScr_TradeTut_PressAtoGetItem[] = {
+    0x98, 0x3E, (uintptr_t) StartDoubleTradeMenuTutorialHandCursor, 0x3E,
+    (uintptr_t) TradeMenuHandSTAL, 0x3E, (uintptr_t) FreezeMenu, 0x80002, 0xD00A7, 0, 0x87F,
+    0x42, (uintptr_t) BoxTalkActive, 0x3E, (uintptr_t) ResumeMenu, 0x42,
+    (uintptr_t) BoxTalkActive, 0x3E, (uintptr_t) SetTradeMenuTutStatus5, 0xA, 0,
+};
+
+SECTION(".rodata.08B9451C")
+const EventScr EventScr_TradeTutDone[] = {
+    0x98, 0x3E, (uintptr_t) SetTradeMenuTutStatus7, 0x3E,
+    (uintptr_t) StartTradeMenuTutorialHandCursor, 0x3E, (uintptr_t) TradeMenuHandSTAL, 0x3E,
+    (uintptr_t) FreezeMenu, 0x80002, 0xD00A7, 0, 0x880, 0x42, (uintptr_t) BoxTalkActive, 0x3E,
+    (uintptr_t) ResumeMenu, 0x42, (uintptr_t) BoxTalkActive, 0x3E,
+    (uintptr_t) SetTradeMenuTutStatus8, 0xA, 0,
 };

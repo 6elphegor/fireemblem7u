@@ -132,12 +132,12 @@ extern const struct ProcCmd gUnknown_085AA2FC[];
 extern const struct ProcCmd gUnknown_085AA4CC[];
 extern const struct ProcCmd gUnknown_085AA5BC[];
 extern u8 CONST_DATA gLut_LinkArenaFogPlaceholder_YOffset[];
-extern struct ProcCmd CONST_DATA ProcScr_DrawLinkArenaFogPlaceholders[];
+extern const struct ProcCmd ProcScr_DrawLinkArenaFogPlaceholders[];
 extern const struct ProcCmd gUnknown_085AA75C[];
 extern const struct MenuDef gUnknown_085AADA0;
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
-extern u16 CONST_DATA EventScr_LinkArenaSurrenderPrompt[];
-extern u16 CONST_DATA EventScr_LinkArenaNoDamagePrompt[];
+extern const EventScr EventScr_LinkArenaSurrenderPrompt[];
+extern const EventScr EventScr_LinkArenaNoDamagePrompt[];
 
 void sub_08044AC0(ProcPtr proc);
 void sub_08044AEC(struct Unit * unit);
@@ -2964,3 +2964,22 @@ const struct MenuDef gUnk_08B9A800 = {
     .menuItems = &gUnk_08B9A770,
     .onBPress = MenuCancelSelect,
 };
+
+SECTION(".rodata.08B99D20")
+const EventScr EventScr_LinkArenaSurrenderPrompt[] = {
+    0x87, 0xD, 0x4C, 0x3E, (uintptr_t) LinkArena_StoreTalkChoice, 0xA, 0,
+};
+
+SECTION(".rodata.08B99D3C")
+const EventScr EventScr_LinkArenaNoDamagePrompt[] = {
+    0x87, 0xD, 0x4D, 0x3E, (uintptr_t) LinkArena_StoreTalkChoice, 0xA, 0,
+};
+
+SECTION(".rodata.08B99CB8")
+const struct ProcCmd ProcScr_DrawLinkArenaFogPlaceholders[] = {
+    PROC_19,
+    PROC_MARK(1),
+    PROC_SLEEP(0),
+    PROC_REPEAT(LinkArenaFogSprite_Loop),
+};
+
