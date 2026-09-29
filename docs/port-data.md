@@ -2,8 +2,8 @@
 
 How the data region becomes usable by a native (LP64) build.  This answers
 the open question in `docs/port-notes.md`, section 1.  Status as of
-2026-09-29: batch 1 (proc scripts, 438 objects) merged; 11,894 pointer
-words left.
+2026-09-29: batch 1 (proc scripts, 438 objects) merged; batch 2 (menus and
+UI tables, `tools/datac.py`) leaves 9,136 pointer words.
 
 ## Decision
 

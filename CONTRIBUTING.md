@@ -108,6 +108,26 @@ decodes proc scripts (see its docstring; `emit 0xADDR` works on any
 address).  Two labels on one script are merged into one name
 (`tools/renames/2026-09-29-procs.txt`).
 
+`tools/datac.py` does the same for any object with a struct type (menus,
+select infos, help boxes, option tables, talk tables, pointer lists...):
+`tools/datac.py add [--hdr HEADER] src/MODULE.c TYPE OBJ...` decodes the
+objects with the layout of `struct TYPE` (parsed from include/ and src/;
+agbcc aligns every struct to 4), appends the `const` definitions to the
+module, adds the `data/layout.txt` lines, rewrites the old `extern` in place
+and declares what the tables point at (an include, else HEADER, else the
+module).  `emit` only prints.  A pointer word the assembly left raw is
+resolved through the ELF symbols; one into a RAM object becomes
+`&sym.field[i]` or `sym + TM_OFFSET(x, y)` from the declared type.  Function
+pointers whose declared prototype differs from the field's type get a
+`(void *)` cast (`cast:` lines in the output; the prototype is left alone).
+Afterwards run `tools/datasplit.py` (it needs `fe7u.elf`, so keep a good one:
+a failed link deletes it), `make`, and check the ROM.  Traps: a `const`
+declaration in a module that reads a pointer *variable* can change its code
+(the compiler reuses the value), so such variables are defined in
+`src/data/ramptrs.c` and keep their non-const declaration in the reader; a
+table's label extent can hide an unlabeled object after the terminator
+(`note:` lines).
+
 ### Graphics and compressed data
 
 Every LZ77 blob `tools/datasplit.py` finds (the ones marked `@ LZ77`), and

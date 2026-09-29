@@ -4,20 +4,25 @@
 Shared module for the data conversions (batch 1's tools/procdis.py imports the
 ROM index from here).  Usage:
 
-  tools/datac.py emit [--module NAME] TYPE OBJ...
+  tools/datac.py emit TYPE OBJ...
         C definitions of the objects, each under SECTION(".rodata.<ADDR>"),
         `const`, decoded as arrays of TYPE.  OBJ is a label of data/rom, or
         0xADDR, optionally NAME=0xADDR (define under a new name) and
         `:N` after it (N elements instead of "up to the next label").
-        TYPE is a struct name, a typedef (ProcFunc), or a pointer spec such as
-        `u8 *` / `struct Text *`.  Problems go to stderr and are marked
-        `/* FIXME */` in the output.
+        TYPE is a struct name, a typedef (ProcFunc), a pointer spec such as
+        `u8 *` / `const struct Text *` (the elements are then `* const`), or
+        any of these followed by dimensions (`"u8 const * [4]"` for a
+        `[][4]` table).  Arrays of MenuItemDef and StatScreenTextInfo stop
+        at their all-zero terminator (TERMINATED).  Problems go to stderr and
+        are marked `/* FIXME */` in the output.
   tools/datac.py add [--hdr HEADER] FILE TYPE OBJ...
         `emit`, appended to the C file FILE, plus the data/layout.txt lines
         for it; then the symbols the code refers to that FILE cannot see
         declared (with the prototype the field type implies); --hdr appends
         those declarations to HEADER (functions to the header of the module
-        that defines them, if it has one)
+        that defines them, if it has one); without it they go into FILE.
+        An object that has an `extern` already gets that line rewritten to
+        the new type
   tools/datac.py struct TYPE
         the parsed layout of a struct (offset, size, field, kind)
   tools/datac.py decl NAME...
