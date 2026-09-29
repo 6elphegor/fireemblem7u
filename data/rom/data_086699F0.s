@@ -2023,12 +2023,6 @@ Glyph_Special_FE:
 Glyph_Special_FF:
 	.incbin "baserom.gba", 0xb90168, 0x48
 
-	.section .rodata.08B909B8, "a"
-
-	.global sTalkSt
-sTalkSt:
-	.incbin "baserom.gba", 0xb909b8, 0x4
-
 	.section .rodata.08B90A74, "a"
 
 	.global gUnk_08B90A74

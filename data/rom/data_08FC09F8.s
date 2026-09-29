@@ -1586,13 +1586,7 @@ gUnk_08FF0700:
 	.global gUnk_08FF0A10
 gUnk_08FF0A10:
 gUnk_08FF0A10:
-	.incbin "baserom.gba", 0xff0a10, 0xecec
-	.4byte gCgbChans
-	.incbin "baserom.gba", 0xfff700, 0x4
-	.4byte gMPlayInfo_SE7
-	.incbin "baserom.gba", 0xfff708, 0xc
-	.4byte gMPlayJumpTable
-	.incbin "baserom.gba", 0xfff718, 0x1e0
+	.incbin "baserom.gba", 0xff0a10, 0xeee8
 
 	.global gUnk_08FFF8F8
 	.global gUnk_08FFF8F8

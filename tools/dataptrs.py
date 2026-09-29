@@ -102,6 +102,12 @@ NOT_POINTERS = [
     # start + 1 (m4aMPlayAllStop at 0x08CF74E0, SetSramFastFunc at 0x08CF7F04,
     # the real libgcc _call_via_r1 at 0x08CF7F94 and libc _read_r at 0x08CF8978),
     # which is a coincidence, not a call.  They lie in the block below.
+    # A snapshot of RAM at the end of the ROM (nothing reads it): a struct
+    # SoundInfo ('Tmsh', reverb, maxChans 8, the cgbChans / MPlayJumpTable
+    # RAM pointers 0x03005BE0 / 0x03005B50, which are gCgbChans and
+    # gMPlayJumpTable only because the same RAM layout is linked here) followed
+    # by music player and track structs (RAM pointers 0x03001628, 0x03004C30).
+    (0x08FFF6E0, 0x08FFF800, "RAM snapshot (m4a SoundInfo, music player and track structs), unreferenced"),
     # The whole dead block 0x08CF6A94-0x08CFFF78 (the stale proc scripts above,
     # then tables of graphics pointers, a table of 8-byte nodes each pointing
     # at the one before, ...).  Nothing reads it: no aligned word of the code

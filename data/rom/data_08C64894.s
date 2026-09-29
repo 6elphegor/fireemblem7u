@@ -2442,11 +2442,7 @@ gUnk_08CC51C4:
 gUnk_08CC52D8:
 	.incbin "baserom.gba", 0xcc52d8, 0x2d0
 
-	.section .rodata.08CC5798, "a"
-
-	.global sSupportScreenUnits
-sSupportScreenUnits:
-	.incbin "baserom.gba", 0xcc5798, 0x4
+	.section .rodata.08CC579C, "a"
 
 	.global gUnk_08CC579C
 gUnk_08CC579C:
@@ -4214,12 +4210,6 @@ gUnk_08CE3B40:
 	.4byte gUnk_08CE3A78
 	.incbin "baserom.gba", 0xce3b4c, 0xc
 
-	.section .rodata.08CE40F4, "a"
-
-	.global gpSaveDrawBonusClaimData
-gpSaveDrawBonusClaimData:
-	.incbin "baserom.gba", 0xce40f4, 0x4
-
 	.section .rodata.08CE4158, "a"
 
 	.global gUnk_08CE4158
@@ -4562,12 +4552,6 @@ gUnknown_08CE5388:
 gSoundRoomBgTable:
 	.incbin "baserom.gba", 0xce538c, 0xf4
 
-	.section .rodata.08CE54B0, "a"
-
-	.global gpSoundInfo
-gpSoundInfo:
-	.incbin "baserom.gba", 0xce54b0, 0x4
-
 	.section .rodata.08CE55F4, "a"
 
 	.global gSprite_SoundRoom_AButtonPlay
@@ -4681,32 +4665,6 @@ gUnk_08CE56B0:
 	.global gUnk_08CE56B2
 gUnk_08CE56B2:
 	.incbin "baserom.gba", 0xce56b2, 0xa
-
-	.section .rodata.08CE5774, "a"
-
-	.global gpBonusClaimData
-gpBonusClaimData:
-	.incbin "baserom.gba", 0xce5774, 0x4
-
-	.global gpBonusClaimDataUpdated
-gpBonusClaimDataUpdated:
-	.incbin "baserom.gba", 0xce5778, 0x4
-
-	.global gpBonusClaimItemList
-gpBonusClaimItemList:
-	.incbin "baserom.gba", 0xce577c, 0x4
-
-	.global gpBonusClaimItemCount
-gpBonusClaimItemCount:
-	.incbin "baserom.gba", 0xce5780, 0x4
-
-	.global gpBonusClaimText
-gpBonusClaimText:
-	.incbin "baserom.gba", 0xce5784, 0x4
-
-	.global gpBonusClaimConfig
-gpBonusClaimConfig:
-	.incbin "baserom.gba", 0xce5788, 0x4
 
 	.section .rodata.08CE5840, "a"
 
@@ -6268,19 +6226,7 @@ gEpilogueEndMsgs:
 gEpilogueUnitInfo:
 	.incbin "baserom.gba", 0xcedd48, 0xb4
 
-	.global gpEpilogueStrBuf
-gpEpilogueStrBuf:
-	.incbin "baserom.gba", 0xceddfc, 0x4
-
-	.global gpEpilogueEnts
-gpEpilogueEnts:
-	.incbin "baserom.gba", 0xcede00, 0x4
-
-	.section .rodata.08CEE15C, "a"
-
-	.global gpDefeatedEndingLocString
-gpDefeatedEndingLocString:
-	.incbin "baserom.gba", 0xcee15c, 0x4
+	.section .rodata.08CEE160, "a"
 
 	.global gUnk_08CEE160
 gUnk_08CEE160:
@@ -6302,11 +6248,10 @@ gCharacterEndingDefeatLut:
 
 	.global gSoloEndingBattleDispConf
 gSoloEndingBattleDispConf:
-	.incbin "baserom.gba", 0xcee858, 0x10
-
-	.global gpCharacterEndingTexts
-gpCharacterEndingTexts:
-	.incbin "baserom.gba", 0xcee868, 0x4
+	.4byte gEpilogueStrBuf
+	.incbin "baserom.gba", 0xcee85c, 0x4
+	.4byte gEpilogueEnts
+	.incbin "baserom.gba", 0xcee864, 0x4
 
 	.section .rodata.08CEE91C, "a"
 
@@ -6444,35 +6389,7 @@ gUnk_08CEEB48:
 gUnk_08CEEB4A:
 	.incbin "baserom.gba", 0xceeb4a, 0xa
 
-	.section .rodata.08CEEBA4, "a"
-
-	.global gpTurnRecordTexts
-gpTurnRecordTexts:
-	.incbin "baserom.gba", 0xceeba4, 0x4
-
-	.section .rodata.08CEEF68, "a"
-
-	.global gpEndingCgScrollBlendTable
-gpEndingCgScrollBlendTable:
-	.incbin "baserom.gba", 0xceef68, 0x4
-
-	.section .rodata.08CEF074, "a"
-
-	.global gUnk_08CEF074
-gUnk_08CEF074:
-	.incbin "baserom.gba", 0xcef074, 0x4
-
-	.global gUnk_08CEF078
-gUnk_08CEF078:
-	.incbin "baserom.gba", 0xcef078, 0x4
-
-	.global gUnk_08CEF07C
-gUnk_08CEF07C:
-	.incbin "baserom.gba", 0xcef07c, 0x4
-
-	.global gUnk_08CEF080
-gUnk_08CEF080:
-	.incbin "baserom.gba", 0xcef080, 0x4
+	.section .rodata.08CEF084, "a"
 
 	.global gUnk_08CEF084
 gUnk_08CEF084:

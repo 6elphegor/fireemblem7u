@@ -206,6 +206,7 @@ void TalkAdvance_Loop(struct ProcTalkAdvance * proc);
 
 extern struct ProcCmd gUnk_08B90980[];
 extern struct TalkSt * CONST_DATA sTalkSt;
+extern struct TalkSt sTalkStData;   // IWRAM 0x03000040, what the ROM pointer sTalkSt points at
 extern const struct ProcCmd gProcScr_TalkSkipListener[];
 extern const struct ProcCmd ProcScr_Talk[];
 extern const struct ProcCmd gProcScr_TalkLock[];

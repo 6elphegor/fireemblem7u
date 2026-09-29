@@ -2326,4 +2326,4 @@ const struct ProcCmd ProcScr_TalkPutSpriteText[] = {
     PROC_END,
 };
 
-
+IWRAM_DATA struct TalkSt sTalkStData = {};
