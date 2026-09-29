@@ -84,7 +84,7 @@ port design question.
 | `data/events/*.s` | chapter event lists and event scripts (`include/event_macros.inc`) | `.4byte` words, some of them pointers (ASMC, CALL, unit lists, ...) |
 | `sound/` | m4a songs, voice groups, samples (`tools/m4adis.py`) | 5,111, including 2,537 unaligned ones in track data |
 | `banim/` | battle animation scripts (`tools/banim.py`) | 25,329 sheet pointers inside LZ77-compressed scripts |
-| `build/msg_data.s` | Huffman text, `gMsgTable` | one pointer per message |
+| `build/msg_bits.s` (bytes), `build/msg_table.c` | Huffman text, `gMsgTable` | done: the table is C (docs/port-data.md, "Music and text") |
 
 Every pointer word is 4 bytes and every structure is laid out for 4-byte
 pointers.  The sources already say which words are pointers (symbols) and
