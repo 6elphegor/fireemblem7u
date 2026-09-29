@@ -24,7 +24,7 @@ void EventQuakefxHorizon_SlightLoop(struct Proc * procfx)
     {
         if (GetGameTime() % 2)
         {
-            ((u16)gBmSt.camera.x) &= ~2;
+            gBmSt.camera.x = (u16)gBmSt.camera.x & ~2;
             gBmSt.camera.x ^= 1;
         }
     } else
@@ -49,7 +49,7 @@ void EventQuakefxVeritical_Loop(struct Proc * procfx)
     {
         if (GetGameTime() % 2)
         {
-            (u16)gBmSt.camera.y &= 0xFFFD;
+            gBmSt.camera.y = (u16)gBmSt.camera.y & 0xFFFD;
             gBmSt.camera.y ^= 1;
         }
     }
@@ -126,14 +126,14 @@ void StartEventHorizontalQuakefxSlightlyNoSound(ProcPtr parent)
 
 void EndEventHorizontalQuakefx(ProcPtr parent)
 {
-    (u16)gBmSt.camera.x &= 0xFFFC;
+    gBmSt.camera.x = (u16)gBmSt.camera.x & 0xFFFC;
     Proc_EndEach(ProcScr_EventHorizontalQuakefx);
     Sound_FadeOutSE(4);
 }
 
 void EndEventVerticalQuakefx(ProcPtr parent)
 {
-    (u16)gBmSt.camera.y &= 0xFFFC;
+    gBmSt.camera.y = (u16)gBmSt.camera.y & 0xFFFC;
     Proc_EndEach(ProcScr_EventVerticalQuakefx);
     Sound_FadeOutSE(4);
 }
@@ -151,7 +151,7 @@ void EventQuakefx_Loop(struct ProcEventQuakefx * procfx)
     {
         if (GetGameTime() % 2)
         {
-            (u16)gBmSt.camera.x &= 0xFFFD;
+            gBmSt.camera.x = (u16)gBmSt.camera.x & 0xFFFD;
             gBmSt.camera.x ^= 1;
         }
     }
@@ -185,7 +185,7 @@ void StartEventQuakefx(ProcPtr proc)
 
 void EndEventQuakefx(ProcPtr proc)
 {
-    (u16)gBmSt.camera.y &= 0xFFFC;
+    gBmSt.camera.y = (u16)gBmSt.camera.y & 0xFFFC;
     Sound_FadeOutSE(4);
     Proc_EndEach(ProcScr_EventQuakefx);
 }

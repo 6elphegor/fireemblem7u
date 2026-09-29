@@ -408,7 +408,15 @@ void AnimDisplayPrivate(struct Anim * anim)
 
         i = i + anim->oamBase;
 
+#if NONMATCHING
+        // oam0/oam1 as one word, then oam2; the affine halfword is kept
+        *(u32 *) gOamHiPutIt = (it->header + i) | (x << 16) | (y);
+        gOamHiPutIt += 2;
+        *gOamHiPutIt = (it->as.object.oam2 & 0xF3FF) + anim->oam2Base;
+        gOamHiPutIt += 2;
+#else
         *(u32 *) ((u32 *) gOamHiPutIt)++ = (it->header + i) | (x << 16) | (y);
         *(u16 *) ((u32 *) gOamHiPutIt)++ = (it->as.object.oam2 & 0xF3FF) + anim->oam2Base;
+#endif
     }
 }

@@ -174,7 +174,7 @@ enum bg_index {
 };
 
 extern struct KeySt CONST_DATA * gpKeySt;
-extern struct KeySt EWRAM_DATA gKeyStObj;
+// gKeyStObj (the KeySt gpKeySt points at) is static in hardware.c
 
 struct MoveStats {
     /* 00 */ int count;
@@ -225,7 +225,7 @@ extern u16 EWRAM_DATA gBg1Tm[0x400];
 extern u16 EWRAM_DATA gBg2Tm[0x400];
 extern u16 EWRAM_DATA gBg3Tm[0x400];
 extern void *EWRAM_DATA gBgMapVramTable[4];
-extern Func EWRAM_DATA MainFunc;
+// MainFunc is static in hardware.c: SetMainFunc, RunMainFunc
 extern struct DispIo gDispIo;
 extern s16 gSinLut[0x40];
 

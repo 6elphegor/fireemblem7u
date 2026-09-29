@@ -6,8 +6,15 @@
 #define TRUE  1
 #define FALSE 0
 
+// Only the GBA has these memories and link sections (PLATFORM_GBA:
+// include/gbafe/global.h).
+#if PLATFORM_GBA
 #define IWRAM_DATA __attribute__((section("iwram_data")))
 #define EWRAM_DATA __attribute__((section("ewram_data")))
+#else
+#define IWRAM_DATA
+#define EWRAM_DATA
+#endif
 
 #define ALIGNED(n) __attribute__((aligned(n)))
 
