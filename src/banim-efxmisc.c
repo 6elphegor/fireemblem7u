@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData gUnk_08BA14D0[];
+
 extern const struct AnimSpriteData AnimSprite_EfxChill1_L_08BD5698[],
     AnimSprite_EfxChill1_L_08BD56C8[], AnimSprite_EfxChill1_L_08BD56F8[],
     AnimSprite_EfxChill1_L_08BD5728[], AnimSprite_EfxChill1_L_08BD5758[],
@@ -2941,5 +2943,11 @@ const AnimScr AnimScr_EfxLokmsunaObjRight[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLokmsunaObjRight_08BD92A8, 3),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLokmsunaObjRight_08BD92CC, 3),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLokmsunaObjRight_08BD92E4, 3),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA14DC")
+const AnimScr FramScr_Unk5D4F90[] = {
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA14D0, 1),
     ANIMSCR_BLOCKED,
 };

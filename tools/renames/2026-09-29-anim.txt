@@ -1,3 +1,35 @@
 # Animation scripts moved to C (tools/datac.py AnimScr): one object, two labels; keep the one the sprites are named after.
 # OLD NEW per line; apply with tools/apply_renames.py
 AnimScr_EfxThunderstormOBJ AnimScr_EfxClasschgOBJ
+
+# Unnamed scripts identified as AnimScr (tools/datac.py AnimScr): named by address like AnimScr_08BD7078.
+gUnk_08B9E798 AnimScr_08B9E798
+gUnk_08B9E7BC AnimScr_08B9E7BC
+gUnk_08B9F428 AnimScr_08B9F428
+gUnk_08B9F448 AnimScr_08B9F448
+gUnk_08B9F46C AnimScr_08B9F46C
+gUnk_08B9F490 AnimScr_08B9F490
+gUnk_08B9F4B0 AnimScr_08B9F4B0
+gUnk_08B9F4D4 AnimScr_08B9F4D4
+gUnk_08B9FCD8 AnimScr_08B9FCD8
+gUnk_08B9FCFC AnimScr_08B9FCFC
+gUnk_08B9FD20 AnimScr_08B9FD20
+gUnk_08B9FD44 AnimScr_08B9FD44
+gUnk_08BA0B18 AnimScr_08BA0B18
+gUnk_08BA0B3C AnimScr_08BA0B3C
+gUnk_08BA0B60 AnimScr_08BA0B60
+gUnk_08BA0B84 AnimScr_08BA0B84
+gUnk_08BA0BA8 AnimScr_08BA0BA8
+gUnk_08BA0BCC AnimScr_08BA0BCC
+gUnk_08BA0BF0 AnimScr_08BA0BF0
+gUnk_08BA0C14 AnimScr_08BA0C14
+gUnk_08BA1340 AnimScr_08BA1340
+gUnk_08BA1364 AnimScr_08BA1364
+gUnk_08BA1388 AnimScr_08BA1388
+gUnk_08BA13AC AnimScr_08BA13AC
+gUnk_08BD6AFC AnimScr_EreshkigalOBJChild_0
+gUnk_08BD6BD4 AnimScr_EreshkigalOBJChild_1
+gUnk_08BD6C6C AnimScr_EreshkigalOBJChild_2
+gUnk_08BD6D24 AnimScr_EreshkigalOBJChild_3
+gUnk_08BD6D94 AnimScr_EreshkigalOBJChild_4
+gUnk_08BD6DE4 AnimScr_EreshkigalOBJChild_5

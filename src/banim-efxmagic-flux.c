@@ -34,7 +34,7 @@ extern u16 * gUnknown_08BA1F08[];
 extern u16 Pal_08227108[];
 extern u16 Pal_08227128[];
 extern const struct ProcCmd ProcScr_efxMistyrainOBJ[];
-extern AnimScr FramScr_Unk5D4F90[];
+extern const AnimScr FramScr_Unk5D4F90[];
 extern const struct ProcCmd gProcScr_efxMistyrainOBJ2[];
 extern const AnimScr AnimScr_EfxMistyRainObj1[];
 extern u16 Pal_FluxAnimSprites[];

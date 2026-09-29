@@ -29,7 +29,7 @@ extern u16 Pal_NosferatuBg[];
 extern u16 Pal_EclipseBg_B[];
 extern u16 Pal_EclipseBg_C[];
 extern const struct ProcCmd ProcScr_efxHazymoonOBJ2[];
-extern AnimScr FramScr_Unk5D4F90[];
+extern const AnimScr FramScr_Unk5D4F90[];
 extern const AnimScr AnimScr_EfxHazymoonOBJ2_1[];
 extern u16 Pal_EclipseSprites[];
 extern u16 Img_EclipseSprites_Swirl[];

@@ -197,7 +197,7 @@ extern u16 Img_082739E4[];
 extern u16 Tsa_08273AE4[];
 extern const struct ProcCmd ProcScr_efxBerserkCLONE[];
 extern const struct ProcCmd ProcScr_efxBerserkOBJ[];
-extern AnimScr FramScr_Unk5D4F90[];
+extern const AnimScr FramScr_Unk5D4F90[];
 extern const AnimScr AnimScr_EfxBerserk1[];
 extern u16 Pal_BerserkSprites[];
 extern u16 Img_BerserkSprites_A[];

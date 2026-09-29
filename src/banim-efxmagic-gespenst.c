@@ -23,7 +23,7 @@ void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
 extern int gEfxBgSemaphore;
-extern AnimScr FramScr_Unk5D4F90[];
+extern const AnimScr FramScr_Unk5D4F90[];
 extern const struct ProcCmd ProcScr_efxGespenst[];
 extern const struct ProcCmd ProcScr_efxGespenstBG[];
 extern const struct ProcCmd ProcScr_efxGespenstBG2[];
@@ -378,7 +378,7 @@ void StartSubSpell_efxGespenstOBJ2(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * front;
-    AnimScr * script;
+    const AnimScr * script;
 
     gEfxBgSemaphore++;
 
