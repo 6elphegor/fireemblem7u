@@ -31,12 +31,17 @@ bulk edits, `rm -rf build/asm build/src` before building.
   a few code labels), and aliases.  ROM data labels are in `data/rom/`
   (see Data below).
 * `data/layout.txt` — FE7U addresses of C modules' data sections.
-* `data/events/chXX.s` — chapter event data (`include/event_macros.inc`
-  documents each macro and the event command it assembles to).  They are
-  run through cpp, so `MSG_*`, `CHARACTER_*`, `CLASS_*`, `ITEM_*`, `SONG_*`
-  and `CHAPTER_*` work as in C.  Each `.section .rodata.ev_<ADDR>` has a
-  line in `data/layout.txt`; `tools/evdis.py --layout` regenerates the
-  files and prints those lines.
+* `src/events/chXX.c` (and `common.c`, `shops.c`, `traps.c`) — chapter event
+  data: event lists (`EventListScr` word arrays), event scripts (`EventScr`
+  word arrays), unit definition lists, trap lists, shop lists, move scripts
+  and the rest, written with the macros of `include/event_macros.h` (one per
+  event command, named as in the Event Assembler where a command
+  corresponds; the header documents each one and the handler it runs).
+  Each `SECTION(".rodata.ev_<ADDR>")` has a line in `data/layout.txt`.
+  `tools/evdis.py` regenerates the files from the ROM (it needs a built
+  `fe7u.elf`), the header and the layout lines; `--only=ch00,ch01` limits it
+  to some files.  The objects are `const`; the readers' declarations
+  (`extern u32 const *` and the like) are unchanged.
 
 ## Data
 
@@ -447,8 +452,8 @@ build (`fe7u.gba`, `build/layout.ld`) is not touched.
   after a size change everything behind it moves and keeps the alignment
   it had (up to 4).  Inside the other objects alignment comes from the
   source: the music (`.align 2, 0` before headers, voice groups, samples),
-  the text (`.align` before the Huffman table), event files (`.align 2, 0`
-  before every 4-aligned object: `tools/evdis.py`), battle animation
+  the text (`.align` before the Huffman table), event files (`EV_ALIGN4` on
+  every 4-aligned object whose type is not 4-aligned already: `tools/evdis.py`), battle animation
   scripts (`.balign 4`), C.
 * The three LZ77 palettes stored cut short (their last token overlaps the
   next blob's first bytes) stay cut short while the built files still

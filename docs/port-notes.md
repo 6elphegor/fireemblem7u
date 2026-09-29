@@ -81,7 +81,7 @@ port design question.
 | Source | What | Pointer words |
 |---|---|---|
 | `data/rom/*.s` | tables, graphics, maps, scripts not yet in C (`tools/datasplit.py`, `tools/dataptrs.py`) | 13,747 `.4byte SYMBOL` + raw `.incbin` chunks (14,432) |
-| `data/events/*.s` | chapter event lists and event scripts (`include/event_macros.inc`) | `.4byte` words, some of them pointers (ASMC, CALL, unit lists, ...) |
+| `src/events/*.c` | chapter event lists and event scripts (`include/event_macros.h`) | C: `EventScr`/`EventListScr` word arrays (`uintptr_t`), pointers as symbols |
 | `sound/` | m4a songs, voice groups, samples (`tools/m4adis.py`) | 5,111, including 2,537 unaligned ones in track data |
 | `banim/` | battle animation scripts (`tools/banim.py`) | 25,329 sheet pointers inside LZ77-compressed scripts |
 | `build/msg_data.s` | Huffman text, `gMsgTable` | one pointer per message |
@@ -127,17 +127,30 @@ and `void-pointer-to-int-cast` categories for the current list):
 * **Event lists** (`struct EventInfo.script`, `EvCheck*.script`,
   `BattleTalkExtEnt.event`, `DefeatTalkExtEnt.event`, all `u32`; the
   chapter's `struct ChapterEventGroup` read as a `u32` array): these are
-  views of the word streams in `data/events/`, walked with
-  `listScript += length` in words.  They change together with the event
-  data format (section 1).  eventinfo.c:191,977,981,985,1262,1267,1275,
-  1280,1296,1298,1302,1304,1545,1570; prep_sallycursor.c:633,637.
-* **Event scripts**: `EventScr` is `uintptr_t`, so C-defined scripts
-  (eventscr4.c, sio_event.c) get 8-byte words on a 64-bit host while
-  `data/events` scripts are 4-byte.  Command lengths in
-  `gEventCmdTable` are in words, so the engine itself is size-agnostic;
-  command arguments must not be read through narrower pointers across
-  words (the one place that did, `EVT_CMD_ARGV(...)[4]` in
+  views of the event lists in `src/events/`, which are `EventListScr`
+  (`uintptr_t`) word arrays, so on a 64-bit host every word is 8 bytes and
+  a reader that walks them as `u32` (`listScript += length`, the
+  `EvCheck*` structs, `group[0x24 / 4]`, `EVT_CMD_B*` on the `unk8`
+  words) sees half of each.  They change together: `EventListScr const *`
+  in `EventInfo`, `TutorialEventEnt`, `BattleTalkExtEnt` and
+  `DefeatTalkExtEnt`, the `EvCheck*` structs as `EventListScr` fields, and
+  the chapter's `struct ChapterEventGroup` (whose pointers are 8 bytes:
+  `sub_08079214`, `sub_08079280` index it as `u32`).  eventinfo.c:191,
+  977,981,985,1262,1267,1275,1280,1296,1298,1302,1304,1339-1390,1545,
+  1570; prep_sallycursor.c:633,637.  Other data in `src/events/` read
+  byte- or halfword-wise is fine (unit, trap, shop, move, area lists).
+* **Event scripts**: `EventScr` is `uintptr_t`, so the scripts in
+  `src/events/` and the C-defined ones (eventscr4.c, sio_event.c) have
+  8-byte words on a 64-bit host.  Command lengths in `gEventCmdTable` are
+  in words, so the engine itself is size-agnostic; command arguments must
+  not be read through narrower pointers across words: `EVT_ARG_U16(proc,
+  n)` in eventscr4.c (742,764,779,907,1074,1260,1267,1295,1297) indexes
+  16-bit halves of the following 32-bit words, and `EVT_CMD_ARGV(scr)[n]`
+  (event.h) is the same trap (the one use that ran across words,
   `EventE8_StartSpriteAnim`, eventscr_spriteanim.c, has a plain version).
+  A cell packs the halves of a command's non-pointer fields in its low 32
+  bits (`SCR_HI16`, `SCR_LO16` work on it), so those readers have to take
+  `(u16)(script[k] >> (16 * j))` instead.
 * **AnimScr** (`typedef u32 AnimScr`, anime.h): tagged pointers, the top
   nibble is the instruction (`ANINS_PTRINS_GET_ADDRESS` masks
   `0xF0000000`, `ANIMSCR_FORCE_SPRITE` adds a duration in the low bits).

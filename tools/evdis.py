@@ -1,26 +1,30 @@
 #!/usr/bin/env python3
-"""Disassemble FE7U chapter event data into data/events/*.s.
+"""Disassemble FE7U chapter event data into C: src/events/*.c.
 
-Usage: tools/evdis.py [--report] [OUT_DIR]      (default: data/events)
+Usage: tools/evdis.py [--report] [--only=ch00,ch01,...] [OUT_DIR]   (default: src/events)
 
 Walks every chapter's ChapterEventGroup (gChapterDataAssetTable
 [chapter.mapEventDataId]), the tutorial event lists (gTutorialEventTable)
 and the battle/defeat talk tables, and decodes everything reachable:
 
-  * event lists (turn/character/location/misc/tutorial)  -> EvList macros
-  * event scripts (gEventCmdTable, one macro per command) -> Evt macros
+  * event lists (turn/character/location/misc/tutorial)  -> EventListScr arrays
+  * event scripts (gEventCmdTable, one macro per command) -> EventScr arrays
   * unit definition lists (struct UnitDefinition)        -> UNIT
   * trap lists (struct TrapData), move scripts, scripted battles,
     message arrays, shop lists, tutorial area lists
 
-Each chapter's data goes to OUT_DIR/chXX.s, data reached from more than one
-chapter to OUT_DIR/common.s.  Contiguous runs become sections named
-.data.ev_<ADDR>; the matching data/layout.txt lines are printed with
---layout (they are what places each run at its original address).
+Each chapter's data goes to OUT_DIR/chXX.c, data reached from more than one
+chapter to OUT_DIR/common.c, trap lists to traps.c and shop lists to
+shops.c.  Contiguous runs of objects share one section,
+SECTION(".rodata.ev_<ADDR>"); the data/layout.txt lines of the files written
+are rewritten to match (they are what places each run at its original
+address).  --only limits the files written.
 
-The output is committed; this script only exists to regenerate it.  It
-needs a built fe7u.elf for code symbol names (function pointers).
-Macros are defined in include/event_macros.inc.
+The macros are in include/event_macros.h, which this script writes too (the
+command table CMDS and EVLIST below are the source; a field named `_x` is
+unused and not an argument).  The output is committed; this script only exists
+to regenerate it.  It needs a built fe7u.elf for code symbol names (function
+pointers) and arm-none-eabi-cpp to see which names the headers declare.
 """
 import re
 import struct
@@ -83,6 +87,7 @@ def cname(table, v, width=2):
 # --- code symbols ------------------------------------------------------------
 
 SYMS = {}       # addr -> name (functions: odd address)
+FUNCS = set()   # names of function symbols
 OBJECTS = []    # (addr, size, name) of sized data symbols
 
 
@@ -99,6 +104,8 @@ def load_symbols():
         name = f[7]
         a = int(f[1], 16)
         SYMS.setdefault(a, name)
+        if f[3] == "FUNC":
+            FUNCS.add(name)
         if f[3] == "OBJECT" and int(f[2]) > 0:
             OBJECTS.append((a, int(f[2]), name))
     for line in open("symbols.ld"):
@@ -307,8 +314,8 @@ CMDS = {
     0xA4: ("MENU_OVERRIDE_HIDE", "_hi:h=0 cmd:w:hex"),
     0xA5: ("MENU_OVERRIDE_DISABLE", "_hi:h=0 cmd:w:hex"),
     0xA6: ("MENU_OVERRIDE_ENABLE", "_hi:h=0 cmd:w:hex"),
-    0xA7: ("TUTORIAL_TEXT", "_hi:h=0 x:sh y:sh msg:w:msg"),
-    0xA8: ("TUTORIAL_TEXT_BY_GENDER", "_hi:h=0 x:sh y:sh msg_m:w:msg msg_f:w:msg"),
+    0xA7: ("TUTORIAL_TEXT", "pos:h x:sh y:sh msg:w:msg"),
+    0xA8: ("TUTORIAL_TEXT_BY_GENDER", "pos:h x:sh y:sh msg_m:w:msg msg_f:w:msg"),
     0xA9: ("TUTORIAL_A9", "_hi:h=0"),
     0xAA: ("TUTORIAL_CURSORS_TARGET", "_hi:h=0"),
     0xAB: ("TUTORIAL_CURSORS", "_hi:h=0 area:w:area_pos"),
@@ -431,7 +438,7 @@ REGION = (0x08CA0540, 0x08CE2000)
 OTHER_DATA = []
 for _line in open("data/layout.txt"):
     _f = _line.split()
-    if len(_f) == 4 and _f[0] == "rom" and "build/data/events/" not in _f[3]:
+    if len(_f) == 4 and _f[0] == "rom" and "build/src/events/" not in _f[3] and "build/data/events/" not in _f[3]:
         OTHER_DATA.append((int(_f[1], 16), int(_f[1], 16) + int(_f[2], 16)))
 
 
@@ -797,8 +804,12 @@ def main():
         report()
         return
     load_symbols()
-    emit(Path([a for a in sys.argv[1:] if not a.startswith("--")][0]
-              if [a for a in sys.argv[1:] if not a.startswith("--")] else "data/events"))
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    only = None
+    for a in sys.argv[1:]:
+        if a.startswith("--only="):
+            only = set(a[7:].split(","))
+    emit(Path(args[0] if args else "src/events"), only)
 
 
 def owner_file(it):
@@ -843,6 +854,40 @@ MV_NAMES = ["MV_LEFT", "MV_RIGHT", "MV_DOWN", "MV_UP", "MV_HALT", "MV_FACE_LEFT"
             "MV_FACE_DOWN", "MV_FACE_UP", "MV_SLEEP", "MV_BUMP", "MV_UNK11", "MV_SPEED",
             "MV_CAM_ON", "MV_CAM_OFF"]
 
+# C type of each kind of object: the declaration of an object of that kind
+# (`{}` is the name).  The definition of a trap list is a packed struct of
+# the list and its one-byte terminator (see emit_item).
+DECL = {"script": "const EventScr {}[]", "evlist": "const EventListScr {}[]",
+        "units": "const struct UnitDefinition {}[]", "traps": "const struct TrapData {}[]",
+        "move": "const u8 {}[]", "battle": "const struct BattleHit {}[]",
+        "msgs": "const u32 {}[]", "rankmsgs": "const u32 {}[]", "shop": "const u16 {}[]",
+        "area_pos": "const u8 {}[][4]", "area_rect": "const u8 {}[][4]",
+        "sprconf": "const struct EventSpriteAnimConf {}[]", "pidlist": "const u16 {}[]",
+        "pidmsg": "const struct EventCallLookupEnt {}[]", "group": "const struct ChapterEventGroup {}"}
+
+# alignment of the C type of each kind (a smaller alignment needs EV_ALIGN4 where the
+# object is at a multiple of 4, as the assembly's `.align 2, 0` did)
+NATURAL_ALIGN = {"script": 4, "evlist": 4, "units": 4, "traps": 1, "move": 1, "battle": 4,
+                 "msgs": 4, "rankmsgs": 4, "shop": 2, "area_pos": 1, "area_rect": 1,
+                 "sprconf": 4, "pidlist": 2, "pidmsg": 4, "group": 4}
+
+# names some header already declares (with its own type): not declared again
+HEADER_TEXT = ""
+
+
+def load_headers():
+    """Everything the C files see through gbafe.h and event_macros.h, preprocessed."""
+    global HEADER_TEXT
+    src = '#include "gbafe.h"\n#include "gbafe/bmtrap.h"\n'
+    HEADER_TEXT = subprocess.run(
+        ["arm-none-eabi-cpp", "-I", "tools/agbcc/include", "-iquote", "include", "-iquote", ".",
+         "-nostdinc", "-undef", "-DPLATFORM_GBA=1", "-"],
+        input=src, capture_output=True, text=True, check=True).stdout
+
+
+def in_headers(name):
+    return re.search(r"\b" + re.escape(name) + r"\b", HEADER_TEXT) is not None
+
 
 def assign_names():
     for it in ITEMS_AT.values():
@@ -860,35 +905,70 @@ def assign_names():
 EMITTED = []    # top-level items, sorted by address
 
 
-def find_item(v):
+class Ctx:
+    """What a C file needs declared, and what it has defined so far."""
+
+    def __init__(self):
+        self.defined = set()
+        self.ev = {}        # event item name -> kind (declared before use)
+        self.funcs = set()
+        self.data = {}      # other data symbol -> kind of the field that references it
+        self.cur = None
+
+
+def item_at(v):
+    """(item, byte offset) of the event item that contains address v, or None."""
     it = ITEMS_AT.get(v)
     if it is not None:
-        return it.name
+        return it, 0
     for it in EMITTED:
         if it.addr < v < it.addr + it.size:
-            return f"{it.name}+0x{v - it.addr:X}"
+            return it, v - it.addr
     return None
 
 
-def fmt_ptr(v):
+def ev_ref(ctx, it):
+    if it.name != ctx.cur and it.name not in ctx.defined:
+        ctx.ev[it.name] = it.kind
+    return it.name
+
+
+def cptr(ctx, v, kind=None):
+    """C expression for the ROM address (or number) v stored in a pointer field."""
     if v == 0:
         return "0"
     if not isrom(v):
         return f"0x{v:X}"
-    n = find_item(v)
-    if n:
-        return n
+    hit = item_at(v)
+    if hit:
+        it, off = hit
+        if it.container:
+            outer = it.container
+            return f"&{ev_ref(ctx, outer)}[{(it.addr - outer.addr) // 4}]"
+        if off == 0:
+            return ev_ref(ctx, it)
+        if it.kind == "script":
+            return f"&{ev_ref(ctx, it)}[{off // 4}]"
+        return f"(EventScr) {ev_ref(ctx, it)} + 0x{off:X}"
     if v in SYMS:
-        return SYMS[v]
-    if v & 1 and v - 1 in SYMS:
-        return SYMS[v - 1] + "+1"
+        name = SYMS[v]
+        if name in FUNCS or v & 1:
+            ctx.funcs.add(name)
+        else:
+            ctx.data[name] = kind
+        return name
+    if v & 1 and v - 1 in SYMS:      # a code label without the Thumb bit
+        name = SYMS[v - 1]
+        ctx.funcs.add(name)
+        return f"(EventScr) {name} + 1"
     for a, size, name in OBJECTS:
         if a < v < a + size:
-            return f"{name}+0x{v - a:X}"
+            ctx.data[name] = kind
+            return f"(EventScr) {name} + 0x{v - a:X}"
     return f"0x{v:08X}"
 
 
-def fmt_val(v, kind, typ, notes):
+def cval(ctx, v, kind, typ, notes):
     if kind == "msg":
         if v in MSGS and v != 0:
             name, text = MSGS[v]
@@ -909,7 +989,7 @@ def fmt_val(v, kind, typ, notes):
     if kind == "script" and v == 1:
         return "EVENT_NOSCRIPT"
     if kind in PTR_KIND or kind in ("func", "ptr"):
-        return fmt_ptr(v)
+        return cptr(ctx, v, kind)
     if kind == "faction" and v in (0, 0x40, 0x80):
         return {0: "FACTION_BLUE", 0x40: "FACTION_GREEN", 0x80: "FACTION_RED"}[v]
     if kind == "hex":
@@ -921,22 +1001,29 @@ def fmt_val(v, kind, typ, notes):
     return str(v) if v < 10 else f"0x{v:X}"
 
 
-def fmt_macro(name, fields, vals, notes):
-    byname = {f[0]: (f, v) for f, v in zip(fields, vals)}
+def visible(fields):
+    """The fields that are macro arguments: all but the unused `_` ones."""
+    return [f for f in fields if not f[0].startswith("_")]
+
+
+def cmacro(ctx, name, fields, vals, notes):
     args = []
-    for f in macro_args(fields):
-        (fname, typ, kind, default), v = byname[f[0]]
-        args.append((fmt_val(v, kind, typ, notes), default is not None and v == int(default, 0)))
-    while args and args[-1][1]:
-        args.pop()
-    return name + ("" if not args else " " + ", ".join(a for a, _ in args))
+    for (fname, typ, kind, default), v in zip(fields, vals):
+        if fname.startswith("_"):
+            assert v == 0, (name, fname, v)
+            continue
+        args.append(cval(ctx, v, kind, typ, notes))
+    return name + ("(" + ", ".join(args) + ")" if args else "")
 
 
-def comment(line, notes):
+def note_comment(line, notes):
     if notes:
-        line = line.ljust(40) + " @ " + " / ".join(notes)
-    return "\t" + line
+        text = " / ".join(notes).replace("*/", "* /").rstrip("\\")
+        line = line.ljust(44) + " // " + text
+    return "    " + line
 
+
+FACTION_NAMES = ["FACTION_ID_BLUE", "FACTION_ID_GREEN", "FACTION_ID_RED", "FACTION_ID_PURPLE"]
 
 GROUP_SLOT_DESC = ["turn", "character", "location", "misc", "traps", "traps (Hector mode)",
                    "units loaded at start", "(hard)", "(Hector mode)", "(Hector mode, hard)",
@@ -944,37 +1031,47 @@ GROUP_SLOT_DESC = ["turn", "character", "location", "misc", "traps", "traps (Hec
                    "beginning scene", "ending scene"]
 
 
-def emit_item(it, labels):
+def emit_item(ctx, it):
+    """Lines of the C definition of item `it`: (declaration head, body lines)."""
     a, k = it.addr, it.kind
-    out = []
+    body = []
     if k == "group":
-        for i, sl in enumerate(GROUP_SLOT_DESC):
-            out.append(f"\t.4byte {fmt_ptr(rd32(a + 4 * i))}".ljust(41) + f" @ {sl}")
+        ps = [cptr(ctx, rd32(a + 4 * i)) for i in range(16)]
+        for i in range(6):
+            body.append(f"    {ps[i]},".ljust(41) + f" // {GROUP_SLOT_DESC[i]}")
+        body.append("    {")
+        for i in range(6, 10):
+            body.append(f"        {ps[i]},".ljust(41) + f" // {GROUP_SLOT_DESC[i]}")
+        body.append("    },")
+        body.append("    {")
+        for i in range(10, 14):
+            body.append(f"        {ps[i]},".ljust(41) + f" // {GROUP_SLOT_DESC[i]}")
+        body.append("    },")
+        for i in range(14, 16):
+            body.append(f"    {ps[i]},".ljust(41) + f" // {GROUP_SLOT_DESC[i]}")
     elif k == "evlist":
         p = a
         while True:
             w = rd32(p)
             t = w & 0xFFFF
             if w == 0:
-                out.append("\tEVLIST_END")
+                body.append("    EVLIST_END")
                 break
             name, spec = EVLIST[t]
             fields = parse_fields(spec)
             vals = decode_fields(p + 2, fields)
             notes = []
-            out.append(comment(fmt_macro(name, fields, vals, notes), notes))
+            body.append(note_comment(cmacro(ctx, name, fields, vals, notes) + ",", notes))
             p += EVLIST_LEN[t] * 4
     elif k == "script":
         p = a
         while p < a + it.size:
-            if p != a and p in labels:
-                out.append(f"{labels[p]}:")
             w = rd32(p)
             c = w & 0xFFFF
             name, fields = cmd_spec(c)
             vals = decode_fields(p + 2, fields)
             notes = []
-            out.append(comment(fmt_macro(name, fields, vals, notes), notes))
+            body.append(note_comment(cmacro(ctx, name, fields, vals, notes) + ",", notes))
             p += 4 * CMD_LEN[c]
     elif k == "units":
         p = a
@@ -984,19 +1081,15 @@ def emit_item(it, labels):
                     str(b3 >> 3), FACTION_NAMES[(b3 >> 1) & 3], str(b3 & 1),
                     str(rd8(p + 4)), str(rd8(p + 5)), str(rd8(p + 6)), str(rd8(p + 7))]
             items = [cname(ITEMS, rd8(p + 8 + i)) for i in range(4)]
-            ai = [f"0x{rd8(p + 12 + i):X}" for i in range(4)]
-            tail = items + ai
-            while tail and tail[-1] in ("ITEM_NONE", "0x0"):
-                tail.pop()
-            out.append("\tUNIT " + ", ".join(vals + tail))
+            ai = [f"0x{rd8(p + 12 + i):X}" if rd8(p + 12 + i) > 9 else str(rd8(p + 12 + i)) for i in range(4)]
+            body.append("    UNIT(" + ", ".join(vals + items + ai) + "),")
             p += 16
-        out.append("\tUNIT_END")
+        body.append("    UNIT_END,")
     elif k == "traps":
         p = a
         while rd8(p):
-            out.append("\tTRAP " + ", ".join(str(rd8(p + i)) for i in range(6)))
+            body.append("        TRAP(" + ", ".join(str(rd8(p + i)) for i in range(6)) + "),")
             p += 6
-        out.append("\tTRAP_END")
     elif k == "move":
         bs, p = [], a
         while p < a + it.size:
@@ -1009,38 +1102,37 @@ def emit_item(it, labels):
                 if c in (9, 12):
                     bs.append(f"0x{rd8(p):X}")
                     p += 1
-        out.append("\t.byte " + ", ".join(bs))
+        body.append("    " + ", ".join(bs) + ",")
     elif k == "battle":
         for p in range(a, a + it.size, 4):
-            out.append(f"\tBATTLE_HIT 0x{rd16(p):X}, 0x{rd8(p + 2):X}, {rd8(p + 3)}")
+            body.append(f"    BATTLE_HIT(0x{rd16(p):X}, 0x{rd8(p + 2):X}, {rd8(p + 3)}),")
     elif k in ("msgs", "rankmsgs"):
         for p in range(a, a + it.size, 4):
             notes = []
-            out.append(comment(".4byte " + fmt_val(rd32(p), "msg", "w", notes), notes))
+            body.append(note_comment(cval(ctx, rd32(p), "msg", "w", notes) + ",", notes))
     elif k == "shop":
         vals = [cname(ITEMS, rd16(p)) for p in range(a, a + it.size, 2)]
-        out.append("\t.2byte " + ", ".join(vals))
+        body.append("    " + ", ".join(vals) + ",")
     elif k == "pidlist":
         vals = [cname(CHARS, rd16(p)) for p in range(a, a + it.size, 2)]
-        out.append("\t.2byte " + ", ".join(vals))
+        body.append("    " + ", ".join(vals) + ",")
     elif k == "pidmsg":
         for p in range(a, a + it.size, 8):
             notes = []
             v = rd32(p + 4)
-            out.append(comment(f".4byte {cname(CHARS, rd32(p))}, " + (fmt_val(v, "msg", "w", notes) if v else "0"), notes))
+            body.append(note_comment("{ " + cname(CHARS, rd32(p)) + ", "
+                                     + (cval(ctx, v, "msg", "w", notes) if v else "0") + " },", notes))
     elif k in ("area_pos", "area_rect"):
         for p in range(a, a + it.size, 4):
-            out.append("\t.byte " + ", ".join(str(rd8(p + i)) for i in range(4)))
+            body.append("    { " + ", ".join(str(rd8(p + i)) for i in range(4)) + " },")
     elif k == "sprconf":
-        out.append(f"\t.4byte {fmt_ptr(rd32(a))}, {fmt_ptr(rd32(a + 4))}, {fmt_ptr(rd32(a + 8))}")
-        out.append(f"\t.2byte 0x{rd16(a + 12):X}, 0x{rd16(a + 14):X}")
-        out.append(f"\t.byte {rd8(a + 16)}, {rd8(a + 17)}, {rd8(a + 18)}, {rd8(a + 19)}")
+        pal, img, ap = (cptr(ctx, rd32(a + 4 * i), kd) for i, kd in enumerate(("sprpal", "sprconf", "sprconf")))
+        body.append(f"    {{ {pal}, {img}, {ap},")
+        body.append(f"      0x{rd16(a + 12):X}, 0x{rd16(a + 14):X}, {rd8(a + 16)}, {rd8(a + 17)} }},")
+        assert rd8(a + 18) == 0 and rd8(a + 19) == 0
     else:
         raise SystemExit(k)
-    return out
-
-
-FACTION_NAMES = ["FACTION_ID_BLUE", "FACTION_ID_GREEN", "FACTION_ID_RED", "FACTION_ID_PURPLE"]
+    return body
 
 
 def chapter_title(ch):
@@ -1073,21 +1165,58 @@ def make_runs():
     return runs
 
 
-def emit(out):
+def split_unaligned(runs):
+    """A section that starts at an address that is not a multiple of 4 can only hold
+    objects with no alignment (the linker aligns a section to its largest alignment):
+    the first object that needs more starts a section of its own."""
+    out = []
+    for r in runs:
+        cur = r
+        while cur["start"] % 4:
+            parts = cur["parts"]
+            k = next((i for i, (kind, x) in enumerate(parts)
+                      if kind == "item" and NATURAL_ALIGN[x.kind] > 1), None)
+            if k is None:
+                break
+            new = {"file": cur["file"], "start": parts[k][1].addr, "end": cur["end"], "parts": parts[k:]}
+            cur["parts"], cur["end"] = parts[:k], parts[k][1].addr
+            if cur["parts"] and cur["parts"][-1][0] == "pad":
+                pass    # the padding stays before the boundary
+            out.append(cur)
+            cur = new
+        out.append(cur)
+    return out
+
+
+def def_head(ctx, it, section, aligned):
+    """The definition's first line(s) up to and including `= {`."""
+    k = it.kind
+    attr = " EV_ALIGN4" if aligned and NATURAL_ALIGN[k] < 4 else ""
+    if k == "traps":
+        n = it.size // 6
+        decl = f"const TRAP_LIST({n}) {it.name}{attr}"
+    elif k in ("group",):
+        decl = DECL[k].format(it.name) + attr
+    else:
+        decl = DECL[k].format(it.name) + attr
+    if k == "sprconf":
+        pass
+    return [f"SECTION(\"{section}\")", f"{decl} = {{"]
+
+
+def emit(out, only=None):
     global EMITTED
     assign_names()
+    load_headers()
     EMITTED = sorted((i for i in ITEMS_AT.values() if not i.container), key=lambda i: i.addr)
-    inner = defaultdict(dict)
-    for it in ITEMS_AT.values():
-        if it.container:
-            inner[it.container.addr][it.addr] = it.name
-    runs = make_runs()
+    runs = split_unaligned(make_runs())
     files = defaultdict(list)
     for r in runs:
         files[r["file"]].append(r)
     out.mkdir(parents=True, exist_ok=True)
-    layout = []
     for f, rs in sorted(files.items()):
+        if only and f not in only:
+            continue
         if f == "common":
             head = "Event data shared by several chapters"
         elif f == "traps":
@@ -1097,52 +1226,117 @@ def emit(out):
         else:
             ch = int(f[2:], 16)
             head = f"Chapter 0x{ch:02X}" + (f": {chapter_title(ch)}" if chapter_title(ch) else "")
-        lines = [f"@ {head}", "@ Generated by tools/evdis.py", "",
-                 '#include "event_macros.inc"', ""]
+        ctx = Ctx()
+        body = []
         for r in rs:
-            lines.append(f'\t.section .rodata.ev_{r["start"]:08X}, "a"')
-            lines.append("")
+            section = f'.rodata.ev_{r["start"]:08X}'
             # In a section that starts 4-aligned, an object at a 4-aligned
-            # address gets `.align 2, 0` (which also makes the padding before
-            # it), so it stays aligned when something before it changes size
-            # (the modern build); at the original addresses it adds nothing.
+            # address is aligned to 4 (the assembly's `.align 2, 0`, which also
+            # makes the padding before it), so it stays aligned when something
+            # before it changes size (the modern build); at the original
+            # addresses it adds nothing.
             aligned = r["start"] % 4 == 0
             parts = r["parts"]
             for i, (kind, x) in enumerate(parts):
                 if kind == "pad":
                     nxt = parts[i + 1][1] if i + 1 < len(parts) and parts[i + 1][0] != "pad" else None
                     if not (aligned and nxt is not None and nxt.addr % 4 == 0 and x < 4):
-                        lines.append(f"\t.fill {x}, 1, 0")
-                        lines.append("")
+                        body.append(f'SECTION("{section}")')
+                        body.append(f"const u8 EvPad_{r['start'] + 0:08X}_{i}[{x}] = {{ 0 }};")
+                        body.append("")
                     continue
-                if aligned and x.addr % 4 == 0:
-                    lines.append("\t.align 2, 0")
-                labels = inner.get(x.addr, {})
-                for la in [x.name] + sorted(labels.values()):
-                    lines.append(f"\t.global {la}")
-                lines.append(f"{x.name}:" + ("\t@ unreferenced" if x.guessed else ""))
-                lines += emit_item(x, labels)
-                lines.append("")
-            layout.append(f'rom 0x{r["start"]:08X} 0x{r["end"] - r["start"]:X} '
-                          f'build/data/events/{f}.o(.rodata.ev_{r["start"]:08X})')
-        (out / f"{f}.s").write_text("\n".join(lines))
-    if "--layout" in sys.argv:
-        print("\n".join(layout))
+                if not aligned:
+                    assert NATURAL_ALIGN[x.kind] == 1, (hex(x.addr), x.kind)
+                else:
+                    assert x.addr % NATURAL_ALIGN[x.kind] == 0, (hex(x.addr), x.kind)
+                ctx.cur = x.name
+                lines = emit_item(ctx, x)
+                if x.guessed:
+                    body.append("// unreferenced")
+                head_lines = def_head(ctx, x, section, aligned and x.addr % 4 == 0)
+                body += head_lines
+                if x.kind == "traps":
+                    body.append("    {")
+                    body += lines
+                    body.append("    },")
+                    body.append("    0,")
+                else:
+                    body += lines
+                body.append("};" if x.kind != "group" else "};")
+                body.append("")
+                ctx.defined.add(x.name)
+        lines = [f"// {head}", "// Generated by tools/evdis.py", "",
+                 '#include "gbafe.h"', '#include "event_macros.h"', ""]
+        decls = []
+        for name, kind in sorted(ctx.ev.items()):
+            decls.append("extern " + DECL[kind].format(name) + ";")
+        if decls:
+            lines += ["// event data defined further down or in other files"] + decls + [""]
+        fdecls = ["extern void %s();" % n for n in sorted(ctx.funcs) if not in_headers(n)]
+        if fdecls:
+            lines += ["// code"] + fdecls + [""]
+        ddecls = []
+        for n, kind in sorted(ctx.data.items()):
+            if in_headers(n):
+                continue
+            ty = {"script": "const EventScr", "sprpal": "const u16"}.get(kind, "const u8")
+            ddecls.append(f"extern {ty} {n}[];")
+        if ddecls:
+            lines += ["// data in data/rom"] + ddecls + [""]
+        lines += body
+        (out / f"{f}.c").write_text("\n".join(lines).rstrip("\n") + "\n")
     total = sum(r["end"] - r["start"] for r in runs)
     print(f"{len(files)} files, {len(runs)} sections, {total:#x} bytes", file=sys.stderr)
-    write_macros(Path("include/event_macros.inc"))
+    write_macros(Path("include/event_macros.h"))
+    update_layout([r for r in runs if not only or r["file"] in only])
+
+
+def update_layout(runs):
+    """Point data/layout.txt at the sections of the C files just written."""
+    done = {r["file"] for r in runs}
+    new = [f'rom 0x{r["start"]:08X} 0x{r["end"] - r["start"]:X} '
+           f'build/src/events/{r["file"]}.o(.rodata.ev_{r["start"]:08X})' for r in runs]
+    out, placed = [], False
+    for line in Path("data/layout.txt").read_text().split("\n"):
+        m = re.match(r"rom \S+ \S+ build/(?:src|data)/events/(\w+)\.o\(", line)
+        if m and m.group(1) in done:
+            if not placed:
+                out += new
+                placed = True
+            continue
+        out.append(line)
+    Path("data/layout.txt").write_text("\n".join(out))
+
+
+def c_words(cmd_id, fields):
+    """(parameter names, word expressions) of one command / list entry."""
+    words = defaultdict(list)
+    words[0].append(f"0x{cmd_id:02X}")
+    off = 2
+    params = []
+    for name, typ, kind, default in fields:
+        size = TYPE_SIZE[typ]
+        w, sh = off // 4, (off % 4) * 8
+        if not name.startswith("_"):
+            params.append(name)
+            if typ == "w":
+                assert sh == 0, (cmd_id, name)
+                words[w].append(f"EVW({name})")
+            else:
+                mask = 0xFFFF if size == 2 else 0xFF
+                words[w].append(f"EVP({name}, 0x{mask:X}, {sh})")
+        off += size
+    n = off // 4
+    return params, [" | ".join(words[i]) if words[i] else "0" for i in range(n)]
 
 
 def macro_def(name, cmd_id, fields, lines, doc=None):
-    args = macro_args(fields)
-    params = ", ".join(f[0] + ("" if f[3] is None else f"={f[3]}") for f in args)
+    params, words = c_words(cmd_id, fields)
     if doc:
-        lines.append(f"@ {doc}")
-    lines.append(f".macro {name}" + (f" {params}" if params else ""))
-    lines.append(f"\t.2byte 0x{cmd_id:02X}")
-    for fname, typ, kind, default in fields:
-        lines.append(f"\t{TYPE_DIR[typ]} \\{fname}")
-    lines.append(".endm")
+        lines.append(f"// {doc}")
+    head = f"#define {name}" + (f"({', '.join(params)})" if params else "")
+    lines.append(head + " \\")
+    lines.append(", \\\n".join(f"    {w}" for w in words))
     lines.append("")
 
 
@@ -1161,47 +1355,54 @@ def write_macros(path):
     except (OSError, subprocess.CalledProcessError):
         pass
     lines = [MACROS_HEADER]
-    lines.append("@ --- event scripts (gEventCmdTable; command id, then fields) ---\n")
+    lines.append("// --- event scripts (gEventCmdTable; command id, then fields) ---\n")
     for c in range(0xE8):
         name, fields = cmd_spec(c)
         macro_def(name, c, fields, lines, f"0x{c:02X} {handlers.get(c, '')} ({CMD_LEN[c]} words)")
-    lines.append("@ --- event lists (gEventListCmdInfoTable; terminated by EVLIST_END) ---\n")
-    lines.append(".macro EVLIST_END\n\t.4byte 0\n.endm\n")
+    lines.append("// --- event lists (gEventListCmdInfoTable; terminated by EVLIST_END) ---\n")
+    lines.append("#define EVLIST_END 0\n")
     for t in range(1, 0x11):
         name, spec = EVLIST[t]
         macro_def(name, t, parse_fields(spec), lines, f"event list entry 0x{t:02X} ({EVLIST_LEN[t]} words)")
     lines.append(MACROS_FOOTER)
-    path.write_text("\n".join(lines))
+    text = "\n".join(lines)
+    # a macro's last line ends without a continuation
+    text = re.sub(r" \\\n\n", "\n\n", text)
+    path.write_text(text)
 
 
-MACROS_HEADER = """@ FE7U event script macros.  Generated by tools/evdis.py (edit the specs there).
-@
-@ Event scripts are arrays of words: the low 16 bits of a command's first
-@ word are its id (index into gEventCmdTable, which also gives its length in
-@ words), the high 16 bits its first argument.  Names follow the FE7 Event
-@ Assembler / fireemblem8u (EAstdlib) where a command corresponds; the rest
-@ are named after their handler (listed with each macro).  Arguments with a
-@ default (like _hi, the unused high half of the first word) go last.
+MACROS_HEADER = """// FE7U event script macros.  Generated by tools/evdis.py (edit the specs there).
+//
+// Event scripts (EventScr) and event lists (EventListScr) are arrays of words: the
+// low 16 bits of a command's first word are its id (index into gEventCmdTable, which
+// also gives its length in words), the high 16 bits its first argument.  Each macro
+// expands to the words of one command, so a script is
+//
+//     const EventScr EventScr_X[] = { TEX1(MSG_1), STAL(30), ENDA, };
+//
+// Names follow the FE7 Event Assembler / fireemblem8u (EAstdlib) where a command
+// corresponds; the rest are named after their handler (listed with each macro).  The
+// unused high half of a command's first word (`_hi`) is not an argument.
+//
+// A word is a full pointer-sized cell (EventScr is uintptr_t): a field that holds an
+// address is one word, the others are packed into halves and bytes of a word.
 
-#include "constants/msg.h"
-#include "constants/characters.inc"
-#include "constants/classes.inc"
-#include "constants/items.inc"
-#include "constants/songs.inc"
-#include "constants/chapters.inc"
+#ifndef GUARD_EVENT_MACROS_H
+#define GUARD_EVENT_MACROS_H
+
+#include "gbafe.h"
+#include "gbafe/bmtrap.h"
 
 #define EVENT_NOSCRIPT 1
 
-#define FACTION_BLUE  0x00
-#define FACTION_GREEN 0x40
-#define FACTION_RED   0x80
+// a full word, and a field of `mask` shifted left by `shift` bits inside a word
+#define EVW(x) ((EventScr)(x))
+#define EVP(x, mask, shift) (((EventScr)(x) & (mask)) << (shift))
 
-#define FACTION_ID_BLUE   0
-#define FACTION_ID_GREEN  1
-#define FACTION_ID_RED    2
-#define FACTION_ID_PURPLE 3
+// objects the assembly aligned with `.align 2, 0`
+#define EV_ALIGN4 __attribute__((aligned(4)))
 
-@ move script commands (struct MuProc move scripts; MOVE_CMD_* in mu.h)
+// move script commands (struct MuProc move scripts; MOVE_CMD_* in mu.h)
 #define MV_END        0xFF
 #define MV_LEFT       0
 #define MV_RIGHT      1
@@ -1220,34 +1421,24 @@ MACROS_HEADER = """@ FE7U event script macros.  Generated by tools/evdis.py (edi
 #define MV_CAM_OFF    14
 """
 
-MACROS_FOOTER = """@ --- other event data ---
+MACROS_FOOTER = """// --- other event data ---
 
-@ struct UnitDefinition; terminated by UNIT_END
-.macro UNIT pid, jid, lead, level, faction, autolevel, x, y, x_move, y_move, item1=0, item2=0, item3=0, item4=0, ai1=0, ai2=0, ai3=0, ai4=0
-	.byte \\pid, \\jid, \\lead, (\\autolevel) | ((\\faction) << 1) | ((\\level) << 3)
-	.byte \\x, \\y, \\x_move, \\y_move
-	.byte \\item1, \\item2, \\item3, \\item4
-	.byte \\ai1, \\ai2, \\ai3, \\ai4
-.endm
+// struct UnitDefinition; a list ends with UNIT_END (an all-zero entry)
+#define UNIT(pid, jid, lead, level, faction, autolevel, x, y, x_move, y_move, item1, item2, item3, item4, ai1, ai2, ai3, ai4) \\
+    { pid, jid, lead, autolevel, faction, level, x, y, x_move, y_move, { item1, item2, item3, item4 }, { ai1, ai2, ai3, ai4 } }
 
-.macro UNIT_END
-	.fill 16, 1, 0
-.endm
+#define UNIT_END { 0 }
 
-@ struct TrapData (6 bytes); a list ends with a single 0 byte
-.macro TRAP type, x, y, subtype, turn_counter, turn
-	.byte \\type, \\x, \\y, \\subtype, \\turn_counter, \\turn
-.endm
+// struct TrapData (6 bytes); a list ends with a single 0 byte, so it is defined as
+// this packed struct (one instance per length)
+#define TRAP_LIST(n) struct { struct TrapData traps[n]; u8 end; } __attribute__((packed))
 
-.macro TRAP_END
-	.byte 0
-.endm
+#define TRAP(type, x, y, subtype, turn_counter, turn) { type, x, y, subtype, turn_counter, turn }
 
-@ struct BattleHit for scripted battles (FIGHT); the last hit has info bit 7 set
-.macro BATTLE_HIT attributes, info, hp_change
-	.2byte \\attributes
-	.byte \\info, \\hp_change
-.endm
+// struct BattleHit for scripted battles (FIGHT); the last hit has info bit 7 set
+#define BATTLE_HIT(attributes, info, hp_change) { attributes, info, hp_change }
+
+#endif // GUARD_EVENT_MACROS_H
 """
 
 
