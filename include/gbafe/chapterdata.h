@@ -121,26 +121,21 @@ struct ChapterInfo {
 
 struct ChapterEventGroup
 {
+    // lists of events (EventListScr)
     /* 00 */ const void * turnBasedEvents;
     /* 04 */ const void * characterBasedEvents; // must be 32-Aligned?
     /* 08 */ const void * locationBasedEvents;
     /* 0C */ const void * miscBasedEvents;
 
-    // select unit -> select destination -> move unit to destination
-    /* 10 */ const void * specialEventsWhenUnitSelected;
-    /* 14 */ const void * specialEventsWhenDestSelected;
-    /* 18 */ const void * specialEventsAfterUnitMoved;
+    // struct TrapData lists
+    /* 10 */ const void * traps;
+    /* 14 */ const void * trapsHector; // Hector mode
 
-    /* 1C */ const void * tutorialEvents;
+    // struct UnitDefinition lists: normal, hard, Hector mode, Hector mode hard
+    /* 18 */ const void * initialUnits[4]; // loaded at the start of the chapter
+    /* 28 */ const void * playerUnits[4];
 
-    /* 20 */ const void * traps;
-    /* 24 */ const void * extraTrapsInHard;
-
-    /* 28 */ const void * playerUnitsInNormal;
-    /* 2C */ const void * playerUnitsInHard;
-
-    /* 30 */ STRUCT_PAD(0x30, 0x38);
-
+    // scenes (EventScr)
     /* 38 */ const void * beginningSceneEvents;
     /* 3C */ const void * endingSceneEvents;
 };

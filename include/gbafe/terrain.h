@@ -104,5 +104,5 @@ void EnableAllLightRunes(void);
 
 int GetTrueTerrainAt(int x, int y); /* GetTrueTerrainAt */
 bool8 CheckPermanentFlag(int flag);
-extern u8 CONST_DATA gEvent_GameOver[];
+extern const uintptr_t gEvent_GameOver[]; // EventScr
 void RefreshTerrainMap(void);
