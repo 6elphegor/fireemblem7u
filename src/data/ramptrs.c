@@ -118,3 +118,13 @@ void * const sTalkSt = sTalkStData;
 // No reader (a second copy of a pointer to gBuf).
 SECTION(".rodata.08B98BA8")
 void * const gUnk_08B98BA8 = gBuf;
+
+// The solo ending's battle record screen: four 0x800-byte tile map buffers in
+// EWRAM (the second and the fourth have no name of their own).
+SECTION(".rodata.08CEE858")
+void * const gSoloEndingBattleDispConf[] = {
+    gEpilogueStrBuf,
+    gEpilogueStrBuf + 0x800,
+    gEpilogueEnts,
+    gEpilogueEnts + 0x800,
+};

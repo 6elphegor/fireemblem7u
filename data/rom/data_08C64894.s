@@ -3575,13 +3575,6 @@ gCharacterEndingTitleLut:
 gCharacterEndingDefeatLut:
 	.incbin "baserom.gba", 0xcee7a0, 0xb8
 
-	.global gSoloEndingBattleDispConf
-gSoloEndingBattleDispConf:
-	.4byte gEpilogueStrBuf
-	.incbin "baserom.gba", 0xcee85c, 0x4
-	.4byte gEpilogueEnts
-	.incbin "baserom.gba", 0xcee864, 0x4
-
 	.section .rodata.08CEE91C, "a"
 
 	.global gCharEndingSlideOffsetLut
@@ -3734,9 +3727,7 @@ gUnk_08CEF0C4:
 gUnk_08CEF314:
 	.incbin "baserom.gba", 0xcef314, 0x80
 
-	.section .rodata.08CEF484, "a"
-	.4byte gUnk_08600564
-	.incbin "baserom.gba", 0xcef488, 0x8
+	.section .rodata.08CEF490, "a"
 
 	.global gUnk_08CEF490
 gUnk_08CEF490:

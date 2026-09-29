@@ -1883,6 +1883,10 @@ const struct ProcCmd ProcScr_08CEF750[] = {
     PROC_END,
 };
 
+// No reader: an opening palette (as passed to sub_080BD0D4), -1 and 0.
+SECTION(".rodata.08CEF484")
+const struct { u16 const * pal; int unk_4; int unk_8; } gUnk_08CEF484 = { gUnk_08600564, -1, 0 };
+
 SECTION(".rodata.08CEF464")
 const struct ProcCmd ProcScr_08CEF464[] = {
     PROC_SLEEP(0),
