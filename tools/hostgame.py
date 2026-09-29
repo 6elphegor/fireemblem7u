@@ -187,7 +187,7 @@ def build_asm(args):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    ap.add_argument('-j', type=int, default=os.cpu_count() or 4)
+    ap.add_argument('-j', type=int, default=4)
     ap.add_argument('--keep-going', action='store_true')
     args = ap.parse_args()
     os.chdir(ROOT)
