@@ -114,3 +114,7 @@ void * const sSupportScreenUnits = gSupportScreenUnits;
 
 SECTION(".rodata.08B909B8")
 void * const sTalkSt = sTalkStData;
+
+// No reader (a second copy of a pointer to gBuf).
+SECTION(".rodata.08B98BA8")
+void * const gUnk_08B98BA8 = gBuf;

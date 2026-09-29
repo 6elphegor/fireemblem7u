@@ -126,7 +126,7 @@ extern const u8 Img_LinkArena_FogUnitPlaceholder[];
 extern u8 CONST_DATA gUnknown_085AA158[];
 extern u8 CONST_DATA gUnknown_085AA15C[];
 extern const struct ProcCmd gUnknown_085AA1AC[];
-extern struct PopupInstruction CONST_DATA gUnknown_085AA1FC[];
+extern const struct PopupInstruction gUnknown_085AA1FC[];
 extern struct PopupInstruction CONST_DATA gUnknown_085AA21C[];
 extern const struct ProcCmd gUnknown_085AA2FC[];
 extern const struct ProcCmd gUnknown_085AA4CC[];
@@ -2983,3 +2983,11 @@ const struct ProcCmd ProcScr_DrawLinkArenaFogPlaceholders[] = {
     PROC_REPEAT(LinkArenaFogSprite_Loop),
 };
 
+
+SECTION(".rodata.08B99C68")
+const struct PopupInstruction gUnknown_085AA1FC[] = {
+    { .opcode = 7, .data = (uintptr_t) gUnknown_03001850 },
+    { .opcode = 1, .data = 3 },
+    { .opcode = 6, .data = 0x3D6 },
+    { 0 },
+};

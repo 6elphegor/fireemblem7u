@@ -2425,9 +2425,6 @@ gUnk_08B98890:
 sTerrainList_Fort:
 	.incbin "baserom.gba", 0xb98ac4, 0x4
 
-	.section .rodata.08B98BA8, "a"
-	.incbin "baserom.gba", 0xb98ba8, 0x4
-
 	.section .rodata.08B98BDC, "a"
 
 	.global gSioList_085A93E0
@@ -2496,11 +2493,7 @@ gUnknown_085AA158:
 gUnknown_085AA15C:
 	.incbin "baserom.gba", 0xb99bc8, 0x50
 
-	.section .rodata.08B99C68, "a"
-
-	.global gUnknown_085AA1FC
-gUnknown_085AA1FC:
-	.incbin "baserom.gba", 0xb99c68, 0x20
+	.section .rodata.08B99C88, "a"
 
 	.global gUnknown_085AA21C
 gUnknown_085AA21C:

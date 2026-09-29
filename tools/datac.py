@@ -645,6 +645,14 @@ class Emitter:
     def value(self, f, addr, ind=0):
         """(text, is_zero) of the value of type f at addr; ind is the column the text starts at."""
         if f.kind == "int":
+            if f.size == 4 and addr not in self.rom.ptrs and getattr(f, "tname", "") in ("uintptr_t", "intptr_t"):
+                # the assembly left it raw: a RAM or ROM address that has a name is a pointer
+                val = self.rom.word(addr)
+                if 0x02000000 <= val < 0x04000000 or BASE <= val < 0x09000000:
+                    loc = self.locate(val)
+                    if loc is not None:
+                        e = self.sym_expr(loc[0], loc[1], Field("", 0, 4, "ptr", pointee="u8"), addr)
+                        return f"(uintptr_t) {e}", False
             if f.size == 4 and addr in self.rom.ptrs:   # a pointer stored in an integer field
                 sym, add = self.rom.ptrs[addr]
                 e = self.sym_expr(sym, add, Field("", 0, 4, "ptr", pointee="EventScr"), addr)
