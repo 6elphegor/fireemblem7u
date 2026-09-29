@@ -1,7 +1,12 @@
 #ifndef GUARD_GBA_IO_REG_H
 #define GUARD_GBA_IO_REG_H
 
+#if PLATFORM_GBA
 #define REG_BASE 0x4000000 // I/O register base address
+#else
+#include "gba/host.h"
+#define REG_BASE ((uintptr_t) gHostIo) // the platform layer's register block
+#endif
 
 // I/O register offsets
 

@@ -438,12 +438,17 @@ clean:
 
 # Host platform layer (platform/; docs/port-platform.md): the BIOS and PPU
 # unit tests, and the comparisons with mGBA (libmgba, as for emutest).
-#   make platform-test          unit tests; the LZ77 test needs the build's graphics
+#   make platform-test          unit tests and the runtime demo, headless;
+#                               the LZ77 test needs the build's graphics
+#   make platform-demo          the runtime demo in a window (SDL2)
 #   make platform-biosref       BIOS calls against mGBA's HLE BIOS
 #   make platform-ppucompare    PPU against mGBA on every frame of tests/inputs
-.PHONY: platform-test platform-biosref platform-ppucompare
+.PHONY: platform-test platform-demo platform-biosref platform-ppucompare
 platform-test: $(ROM)
 	$(MAKE) -f platform/platform.mk test
+
+platform-demo:
+	$(MAKE) -f platform/platform.mk demo
 
 platform-biosref: $(ROM)
 	$(MAKE) -f platform/platform.mk biosref

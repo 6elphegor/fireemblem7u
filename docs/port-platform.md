@@ -1,17 +1,31 @@
 # Host platform layer
 
-The first pieces of the native port's platform layer, in `platform/`: the
-GBA BIOS calls in C and a scanline renderer for the GBA picture, each tested
-on its own and against mGBA.  They are host-only C99, built with the host's
-compiler, and not part of the GBA build.  Nothing here links with the game
-yet (it can't until the data region is C; see `docs/port-data.md`); what is
-left for that is under "What's next".  Status as of 2026-09-29.
+The native port's platform layer, in `platform/`: the GBA BIOS calls in C,
+a scanline renderer for the GBA picture, and the runtime around them (the
+GBA's memories as host arrays, DMA, interrupt dispatch, the frame loop,
+save memory, audio output, an SDL2 front end and a headless mode).  It is
+host-only C, built with the host's compiler, and not part of the GBA
+builds.  The game doesn't link on the host yet (the host-link work,
+docs/port-data.md); `platform/demo.c` stands in for it and exercises the
+runtime the way the game does.  Status as of 2026-09-29.
 
 | File | What |
 |---|---|
 | `platform/bios.c`, `bios.h` | every BIOS call `include/gba/syscall.h` declares and the game makes, plus `ArcTan`, `DivArm`, `Halt`, `IntrWait` |
 | `platform/ppu.c`, `ppu.h` | the renderer: registers, palette, VRAM and OAM in, a 240x160 RGB frame out |
-| `platform/tests/` | unit tests (`test_bios`, `test_ppu`) and `test_lz77` (every LZ77 blob of the ROM) |
+| `include/gba/host.h` | what the game sees of the runtime: the memories, `HostDmaSet`, audio |
+| `platform/platform.h` | the runtime's internal interface |
+| `platform/memory.c` | `gHostIo`, `gHostPltt`, `gHostVram`, `gHostOam`, `gHostEwram`, `gHostIwram`, `gHostSram`; DMA |
+| `platform/irq.c` | interrupt dispatch (crt0.s's `IntrMain` in C) |
+| `platform/host.c` | power-on, the frame loop (the `VBlankIntrWait` hook), the command line, `HostMain` |
+| `platform/input.c` | emutest input scripts and plans for headless runs |
+| `platform/sram.c` | save memory backed by a file; the host version of `src/agb-sram.c` |
+| `platform/frontend_sdl.c`, `frontend_null.c` | the SDL2 window, keyboard and audio device; the stub without SDL2 (headless only) |
+| `platform/png.c` | PNG dumps of frames |
+| `platform/armfunc.c` | the ARM routines of `asm/crt0.s` and the veneers of `asm/veneers.s` in C (compiled like the game's C) |
+| `platform/main.c` | `main()` for the game: `HostMain` |
+| `platform/demo.c` | the runtime without the game: a scene, HBlank/VCount/VBlank handlers, DMA, audio |
+| `platform/tests/` | unit tests (`test_bios`, `test_ppu`, `test_input`) and `test_lz77` (every LZ77 blob of the ROM) |
 | `platform/tools/biosref.c` | BIOS calls against mGBA's HLE BIOS |
 | `platform/tools/ppucapture.c`, `ppucompare.py`, `ppurender.c` | the renderer against mGBA on the runtime test scripts; dumps |
 | `platform/platform.mk` | build rules (called from the main Makefile) |
@@ -20,7 +34,8 @@ left for that is under "What's next".  Status as of 2026-09-29.
 
 ```sh
 make                       # the matching build first (test_lz77 reads build/graphics/)
-make platform-test         # test_bios, test_ppu, test_lz77: no mGBA needed
+make platform-test         # test_bios, test_ppu, test_lz77, test_input, the demo headless: no mGBA needed
+make platform-demo         # the demo in a window (SDL2; Esc quits)
 make platform-biosref      # BIOS calls vs mGBA's HLE BIOS (libmgba)
 make platform-ppucompare   # renderer vs mGBA, every frame of tests/inputs/*.txt (~15 min)
 python3 platform/tools/ppucompare.py tests/inputs/opening.txt --every 10   # one script, sampled
@@ -183,49 +198,155 @@ stay identical, since the game blends in most scenes (menus, windows, fades).
 Which of the two is right on a real GBA isn't settled here; checking it would
 need captures from hardware.
 
+## Runtime
+
+### The interface (what the game is built against)
+
+When `PLATFORM_GBA` is not defined, `include/gba/defines.h` and `io_reg.h`
+include `include/gba/host.h` and point the hardware addresses into the
+platform's arrays (`platform/memory.c`, each aligned to 16):
+
+| macro | GBA | host |
+|---|---|---|
+| `REG_BASE` (so every `REG_*`, `REG_ADDR_*`) | `0x4000000` | `(uintptr_t) gHostIo` (0x400 bytes) |
+| `PLTT` (`BG_PLTT`, `OBJ_PLTT`) | `0x5000000` | `(uintptr_t) gHostPltt` (0x400) |
+| `VRAM` (`BG_VRAM`, `BG_CHAR_ADDR`, `OBJ_VRAM0`...) | `0x6000000` | `(uintptr_t) gHostVram` (0x18000) |
+| `OAM` | `0x7000000` | `(uintptr_t) gHostOam` (0x400) |
+| `EWRAM_START`, `IWRAM_START` | `0x02000000`, `0x03000000` | `gHostEwram` (0x40000), `gHostIwram` (0x8000) |
+| `INTR_VECTOR`, `INTR_CHECK`, `SOUND_INFO_PTR` | words at 0x03007FFx | `gHostIntrVector`, `gHostIntrCheck`, `gHostSoundInfoPtr` |
+
+`gHostSram` (0x10000 bytes; FE7 uses the first 0x8000) is the cartridge
+SRAM.  On the GBA nothing changes: the matching ROM, shifttest and
+modern-check are unaffected.
+
+DMA: when `PLATFORM_GBA` is not defined, `DmaSet` (include/gba/macro.h,
+and through it every `DmaCopy*`/`DmaFill*`/`DmaClear*` macro) calls
+`HostDmaSet(ch, src, dst, control)`, `control` being the 32-bit DMAxCNT
+value.  Immediate transfers are done at once (16/32-bit units, the
+increment/decrement/fixed/reload modes, count 0 = the maximum); VBlank and
+HBlank transfers are kept and run by the frame loop at those times, with
+repeat, until `DmaStop` clears the enable bit in `REG_DMAxCNT_H`; the
+sound FIFO transfers (special timing) do nothing.  The registers are also
+written, so reads of DMAxCNT see the flags.  The game uses no VBlank or
+HBlank DMA and writes no DMA register directly outside the macros (m4a
+aside); the demo checks the HBlank path.
+
+Audio: `HostAudioSubmit(stereo, frames)` takes interleaved signed 16-bit
+stereo at the rate `HostAudioSetRate` gave (default 13379 Hz, FE7's m4a
+rate) and queues it to the SDL audio device (latency kept under 0.2 s by
+dropping) and to `--wav FILE`.  Nothing calls it until the sound engine's
+port does, so the game is silent.
+
+### Hooking the game in
+
+* **Entry.**  `platform/main.c`'s `main()` calls `HostMain` (host.c), which
+  parses the options, loads SRAM, opens the window and calls the game's
+  `AgbMain()`.  `SoftReset` longjmps back there and calls `AgbMain` again
+  (after `HostPowerOn`: registers cleared, DMA stopped; RAM is kept, as on
+  the GBA, so the soft-reset flags in EWRAM survive).
+* **Frame.**  `VBlankIntrWait` (and `IntrWait`, `Halt`, `Stop`) call
+  `HostRunFrame`: lines 160-227 of the previous VBlank (VCOUNT, VCount
+  match, HBlank interrupts), then lines 0-159, each drawn by the PPU then
+  followed by its HBlank (HBlank DMA and the HBlank interrupt, which set up
+  the next line), then VBlank at line 160 (VBlank DMA, the VBlank interrupt:
+  the game's `OnVBlank`), then the frame is presented, logged and dumped,
+  SRAM saved if it changed, the next frame's keys read into
+  `REG_KEYINPUT`, and the pace kept at 59.7275 Hz (280896 cycles).
+  `DISPSTAT`'s status bits and `VCOUNT` are maintained; an interrupt is
+  raised only if its enable bit in `DISPSTAT` is set.  Writes of BG2X..BG3Y
+  by HBlank handlers are detected (compared around each HBlank) and passed
+  to `ppu_io_written`.
+* **Interrupts.**  `platform/irq.c` dispatches like crt0.s's `IntrMain`:
+  if `IME`, take `IE & IF`, the lowest bit, acknowledge it in `IF`, call
+  `gIrqFuncs[bit]` (the game's table, src/irq.c), restore `IE`; again while
+  more are pending (nesting allowed; the game pak interrupt aborts).  The
+  game's `IrqInit` copies 0x800 bytes from `IrqMain` to `IntrMainRam`:
+  irq.c defines `IrqMain` as 0x800 zero bytes for that, and nothing runs it.
+* **Input.**  Keyboard (arrows; Z/X = A/B; A/S = L/R; Enter = Start;
+  Backspace = Select; Tab held = fast forward; Esc = quit), or an input
+  script.  Frame numbers are tools/emutest.c's: frame N's keys are in
+  `KEYINPUT` from the return of wait N-1 until the return of wait N, and
+  picture N is the one drawn in wait N, so `--log` and shots line up with
+  emutest's for the same script.
+* **Save.**  `gHostSram` is loaded from `--save FILE` (default `fe7u.sav`
+  in a window, none headless; 0xFF if absent) and written back a second
+  after the game stops changing it, and at exit.  `platform/sram.c`
+  replaces `src/agb-sram.c` on the host (`ReadSramFast`, `WriteSramFast`,
+  `VerifySramFast`, `WriteAndVerifySramFast`, `SetSramFastFunc`, as plain
+  copies).  A script's `sram DESC` line boots with the image
+  `tools/mksave.py` makes (written to `$TMPDIR`, not written back).
+* **The asm.**  `platform/armfunc.c` has C versions of the ARM routines of
+  asm/crt0.s (`ColorFadeTick`, `ClearOam`, `Checksum32`, `TmFillRect`,
+  `TmCopyRect`, `TmApplyTsa`, `PutOamHi/Lo`, `DrawGlyph`, `DecodeString`,
+  `MapFloodCoreStep`, `MapFloodCore`, the EWRAM clear `sub_080009FC`), each
+  derived from the instructions (loop counts, byte truncations, the
+  rotated halfword loads), and the `*_thm` veneers of asm/veneers.s.  It
+  includes gbafe.h, so it is compiled like the game's C (it passes
+  hostcheck with 0 warnings).  asm/libagb.s is all BIOS call wrappers
+  (bios.c).  Not ported: the unnamed second glyph drawer at 0x080005FC
+  (unreferenced), and m4a (asm/m4a_1.s; the sound engine's port).
+* **Headless.**  `--headless --frames N --input SCRIPT --dump-frames DIR`
+  runs without SDL (no window, audio or pacing); `--input` takes an emutest
+  script (tests/inputs/*.txt) or a plan, and runs its length unless
+  `--frames` says otherwise; shots become `DIR/NAME.png` (RGB, like
+  emutest's); `--dump-every N` adds `DIR/frameNNNNNN.png`; `--log FILE`
+  writes `frame keys hash` per frame.  Color math is mGBA's by default (and
+  the affine BIOS calls mGBA's, `gBiosAffineMgba`) so pictures can be
+  compared with mGBA's; `--hardware-color` for the GBA's.
+
+For a host build of the game, `platform/platform.mk` defines
+`PLATFORM_RUNTIME_SRC`, `PLATFORM_FRONTEND_SRC` (SDL2 if `sdl2-config` is
+found, else the headless stub), `PLATFORM_RUNTIME_CFLAGS` and
+`PLATFORM_LIBS`: link those, `platform/main.c`, and `platform/armfunc.c`
+compiled with the game's flags.
+
+What the game's side still has to do for the host (src/, include/gbafe/):
+
+* 195 casts of raw VRAM addresses (`(void *)0x06008000` etc.), 14 of EWRAM
+  and 6 of I/O addresses in 59 files of src/ are not covered by the macros.
+* `CART_SRAM` (include/gbafe/gbasram.h) must become `gHostSram`; the host
+  links platform/sram.c instead of src/agb-sram.c.
+* The game's RAM variables are wherever the host linker puts them, not in
+  `gHostEwram`/`gHostIwram`: `AgbMain`'s clear of IWRAM and the start-up
+  EWRAM clear (`sub_080009FC`) only clear those arrays.  Harmless if the
+  variables start zeroed (C statics), but `gHostEwramClearHook` is there
+  for anything that must be cleared with EWRAM.
+* `InitRamFuncs` copies ARM code to IWRAM and calls it through `gRamFunc_*`
+  pointers: on the host those must point at the C functions of armfunc.c.
+
+### The demo
+
+`platform/demo.c` defines `AgbMain` and `gIrqFuncs` and does through the
+gba headers what the game does: a checkered text background (tiles by
+`CpuCopy32` and `DmaFill32`), a 16x16 sprite moved every frame (its OAM
+entry uploaded by `DmaCopy32` in the VBlank handler), an HBlank handler
+that sets `BG0HOFS` per line (a wave), an HBlank DMA writing the backdrop
+color per line (a gradient), a VCount handler at line 80, and a quiet tone
+to `HostAudioSubmit`.  `--check` then verifies: one VBlank, 228 HBlank and
+one VCount interrupt per frame (the VCount one at line 80); the sprite at
+its position; on every line, the backdrop's color is the gradient's and
+where it shows through the tile matches that line's wave offset; with an
+input script, the keys the VBlank handler saw in each frame are the
+script's for that frame; and the frame hash after 120 frames
+(`58230ecc16be7043`).  `make platform-test` runs it for 120 frames and on
+`platform/tests/demo_input.txt` (both pass, 0.1 s each); `make
+platform-demo` shows it in a window (paced at 59.73 Hz).  `test_input`
+checks the script compiler against what tools/emutest.py makes of the same
+script.
+
 ## What's next
 
-To run the game on the host, around the two pieces above:
-
-* **Memory and registers.**  Host arrays for EWRAM, IWRAM, the I/O block,
-  palette, VRAM and OAM, and `REG_*`, `VRAM`, `PLTT`, `OAM` etc. pointing
-  into them (docs/port-notes.md, section 3).  The I/O block is what the PPU
-  reads; writes with side effects (DMA control, IE/IF/IME, sound, timers,
-  KEYINPUT reads) need a hook, so the `REG_*` macros become accessors on the
-  host, or the platform layer inspects the block at fixed points (after the
-  VBlank handler, per line).
-* **DMA.**  `DmaSet` (include/gba/macro.h) stores pointers into 32-bit
-  registers: on the host it becomes a function taking pointers.  The game
-  only starts DMA immediately (copies and fills, which become a copy with
-  the DMA's increment modes) and for the sound FIFOs (`m4a.c`, DMA 1 and 2
-  with `DMA_REPEAT`), which go away with the mixer; it uses no HBlank or
-  VBlank DMA.  (A general model would run HBlank DMA one unit per line from
-  the PPU hook.)
-* **Interrupts.**  `irq.c` keeps its handler table (`gIrqFuncs`); the host
-  calls the VBlank handler once per frame after drawing, the HBlank handler
-  from the line hook before each line while `REG_IE` has HBlank on, and the
-  VCount handler (`SetOnVMatch`, `SetNextVCount`) at the matching line.  The
-  per-line effects are all HBlank handlers (`SetOnHBlankA/B`, `hardware.c`,
-  used from 46 files: scanline waves, gradients, split scrolling) that
-  write the registers for the next line, so the PPU's line hook is where
-  they belong.  `IrqMain` (copied to IWRAM) is not used.
-* **Main loop and VBlank.**  `AgbMain` loops `RunMainFunc`, which waits in
-  `VBlankIntrWait`.  On the host that hook ends the frame: draw the 160
-  lines (with the HBlank work), run the VBlank handler (`OnVBlank`: the
-  `gDispIo` copy to the registers, OAM and palette uploads, `m4aSoundVSync`),
-  present, and pace to 59.73 Hz.  Game code that writes VRAM "during" a
-  frame on the GBA then shows a frame later or earlier than on hardware for
-  those lines; harmless in practice (the dump comparison above shows how
-  rare and local it is).  `SoftReset` longjmps back to `AgbMain`.
-* **Input.**  `REG_KEYINPUT` (active low) from the keyboard or a game pad,
-  sampled once per frame before the VBlank handler.
-* **Audio.**  m4a's mixer (`SoundMain`, `asm/m4a_1.s`, ARM code copied to
-  IWRAM) needs a C port writing to a host audio buffer, and the four CGB
-  (PSG) channels need emulating; the song data keep their 4-byte addresses
-  (docs/port-data.md).  `SoundBiasReset/Set` stay no-ops.
-* **Save.**  `agb-sram.c` copies Thumb code to RAM to read and write SRAM;
-  replace it with a 32 KiB file (`ReadSramFast`/`WriteSramFast`/`VerifySram`
-  on a host array flushed to disk).
-* **Presenting the frame.**  The renderer's buffer is ready for an SDL2
-  texture (`SDL_PIXELFORMAT_ABGR8888` on little-endian); a viewer for the
-  dumps would be the first user.
+* **Link the game** (the host-link work; see "Hooking the game in" above
+  for what src/ needs).
+* **Audio.**  m4a's mixer (`SoundMain`, asm/m4a_1.s) ported to C, writing
+  to `HostAudioSubmit` once per frame from `m4aSoundVSync`/`SoundMain`;
+  the four CGB (PSG) channels emulated.  `SoundBiasReset/Set` stay no-ops.
+* **Timing detail.**  The game's logic runs between frames, so what the GBA
+  does while it draws (VRAM written mid-frame, text glyphs, animations
+  uploaded outside VBlank) lands wholly before or after the picture;
+  harmless in practice (the dump comparison above shows how rare and local
+  it is).  Timers, serial and keypad interrupts are not raised.
+* **Compare with mGBA.**  With the game linked, `--headless --input
+  tests/inputs/NAME.txt --dump-frames DIR --log FILE` gives shots and a
+  per-frame log in emutest's numbering, to compare with
+  `tools/emutest.py`'s output.
