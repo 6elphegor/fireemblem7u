@@ -223,13 +223,13 @@ void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
     scrA = AnimScr_DefaultAnim;
     if (modeA != 0xff)
     {
-        scrA = (void *)scr + modes[modeA];
+        scrA = BANIM_SCR_AT((void *)scr, modes[modeA]);
     }
 
     scrB = AnimScr_DefaultAnim;
     if (modeB != 0xff)
     {
-        scrB = (void *)scr + modes[modeB];
+        scrB = BANIM_SCR_AT((void *)scr, modes[modeB]);
     }
 
     if (pAnimBuf->state2 == 0)
@@ -327,13 +327,13 @@ void sub_08054C8C(struct AnimBuffer * pAnimBuf)
     scrA = AnimScr_DefaultAnim;
     if (modeA != 0xff)
     {
-        scrA = (void *)scr + modes[modeA];
+        scrA = BANIM_SCR_AT((void *)scr, modes[modeA]);
     }
 
     scrB = AnimScr_DefaultAnim;
     if (modeB != 0xff)
     {
-        scrB = (void *)scr + modes[modeB];
+        scrB = BANIM_SCR_AT((void *)scr, modes[modeB]);
     }
 
     if (pAnimBuf->state2 == 0)

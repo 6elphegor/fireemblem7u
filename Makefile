@@ -52,7 +52,17 @@ OBJS := $(C_OBJS) $(ASM_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJ) build/da
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
 # The NONMATCHING build's own objects (see the end of this file).
+# `make NONMATCHING=1 ANIMSCR_WIDE=1`: the same, with the host's animation
+# script format (include/gbafe/anime.h); its own objects and ROM.
+ifeq ($(ANIMSCR_WIDE),1)
+NM_DIR := build/nonmatching-wide
+NM_SUFFIX := _wide
+NM_DEFS := -DANIMSCR_WIDE=1
+else
 NM_DIR := build/nonmatching
+NM_SUFFIX :=
+NM_DEFS :=
+endif
 
 .PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching hostcheck
 .DELETE_ON_ERROR:
@@ -366,8 +376,8 @@ msgheader:
 # code ends).  Its objects are in build/nonmatching/; it writes
 # fe7u_nonmatching.gba (.elf, .map).  Not byte-identical to the original:
 # check it with `make emutest EMUTEST_B=fe7u_nonmatching.gba`.
-NM_ROM := fe7u_nonmatching.gba
-NM_ELF := fe7u_nonmatching.elf
+NM_ROM := fe7u_nonmatching$(NM_SUFFIX).gba
+NM_ELF := fe7u_nonmatching$(NM_SUFFIX).elf
 NM_C_OBJS := $(patsubst %.c,$(NM_DIR)/%.o,$(C_SRCS))
 NM_ASM_OBJS := $(patsubst %.s,$(NM_DIR)/%.o,$(ASM_SRCS))
 
@@ -381,7 +391,7 @@ $(NM_C_OBJS): $(wildcard asm/nonmatching/*.s)
 
 $(NM_DIR)/src/%.o: src/%.c
 	@mkdir -p $(@D)
-	$(CPP) $(CPPFLAGS) -DNONMATCHING=1 $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(NM_DIR)/src/$*.s
+	$(CPP) $(CPPFLAGS) -DNONMATCHING=1 $(NM_DEFS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(NM_DIR)/src/$*.s
 	@printf '\t.text\n\t.align 2, 0\n' >> $(NM_DIR)/src/$*.s
 	$(AS) $(ASFLAGS) -o $@ $(NM_DIR)/src/$*.s
 
@@ -405,7 +415,7 @@ $(NM_DIR)/layout.ld $(NM_DIR)/ram.ld: $(NM_DIR)/%.ld: $(MODERN_DIR)/%.ld
 
 $(NM_ELF): $(NM_C_OBJS) $(NM_DIR)/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(NM_DIR)/fe7u.ld $(NM_DIR)/layout.ld $(NM_DIR)/ram.ld symbols.ld tools/nonmatching_check.py
 	@python3 tools/check_symbols.py
-	python3 tools/banim.py link $(NM_DIR)/banim -- $(LD) -T $(NM_DIR)/fe7u.ld -Map fe7u_nonmatching.map --no-warn-rwx-segments -o $@ $(NM_C_OBJS) --whole-archive $(NM_DIR)/asm.a --no-whole-archive $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(NM_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+	python3 tools/banim.py link $(NM_DIR)/banim -- $(LD) -T $(NM_DIR)/fe7u.ld -Map fe7u_nonmatching$(NM_SUFFIX).map --no-warn-rwx-segments -o $@ $(NM_C_OBJS) --whole-archive $(NM_DIR)/asm.a --no-whole-archive $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(NM_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 	python3 tools/nonmatching_check.py $@
 
 # Compile every C file with the host's clang (-DNONMATCHING=1, for
@@ -418,4 +428,4 @@ hostcheck:
 	python3 tools/hostcheck.py -j $(or $(HOSTCHECK_JOBS),8) --flags='$(HOSTCHECK_FLAGS)'
 
 clean:
-	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map fe7u_nonmatching.gba fe7u_nonmatching.elf fe7u_nonmatching.map
+	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map fe7u_nonmatching*.gba fe7u_nonmatching*.elf fe7u_nonmatching*.map

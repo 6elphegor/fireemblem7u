@@ -635,6 +635,10 @@ make emutest EMUTEST_B=fe7u_nonmatching.gba
   and the scroll speed WmStartScrollCamera got from a leftover register
   were found.  RAM differs throughout (return addresses and code pointers
   in procs are code addresses, which moved); the test only lists it.
+* `make NONMATCHING=1 ANIMSCR_WIDE=1` builds `fe7u_nonmatching_wide.gba`
+  with the host's animation script format (two cells for an instruction
+  with an address; `docs/port-data.md`, "Animation scripts").  It must give
+  the same emutest result as the plain NONMATCHING build.
 * One known difference that is not the plain C's: the spinning background
   of the save and extras menus (`SpinRotation_Init`, `src/savedrawfx.c`)
   never sets its angle, which keeps whatever the previous proc in that

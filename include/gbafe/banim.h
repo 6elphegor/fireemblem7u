@@ -247,7 +247,11 @@ struct ProcEkrSubAnimeEmulator {
     /* 2C */ s16 timer;
     /* 2E */ s16 scr_cur;
 
+#if ANIMSCR_WIDE
+    /* 30 */ s16 scr_prev; // start of the instruction before scr_cur
+#else
     STRUCT_PAD(0x30, 0x32);
+#endif
 
     /* 32 */ s16 x1;
     /* 34 */ s16 x2;
@@ -274,6 +278,23 @@ extern int * gpBanimModesLeft;
 extern int * gpBanimModesRight;
 extern u8 gBanimScrLeft[];
 extern u8 gBanimScrRight[];
+
+/* The battle animation scripts are decompressed to RAM (gBanimScrLeft /
+ * Right) and interpreted by the same AnimInterpret as the ones in the ROM.
+ * Every instruction in them is one u32 (a command, a wait) except FRAME:
+ * the instruction, the sheet and the sprite offset, three cells, which is
+ * also the cell format's FRAME.  They hold none of the address-carrying
+ * one-word instructions (sprite, call, jump), so they are the same in both
+ * formats, apart from the width of a cell.  The mode table (gpBanimModes*)
+ * holds byte offsets into the ROM's u32 script: BANIM_SCR_AT turns one into
+ * a pointer to that instruction, counting cells (a cell is 4 bytes here, so
+ * this is the same address; where a cell is wider the decompressor widens
+ * every word and this is what keeps the offsets right). */
+#if ANIMSCR_WIDE
+#define BANIM_SCR_AT(base, off) ((void *)((AnimScr *)(base) + (unsigned)(off) / 4))
+#else
+#define BANIM_SCR_AT(base, off) ((void *)((base) + (off)))
+#endif
 extern u16 gBanimPaletteLeft[0x50];
 extern u16 gBanimPaletteRight[0x50];
 extern u32 gBanimOaml[0x1600];

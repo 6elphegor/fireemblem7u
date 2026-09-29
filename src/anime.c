@@ -180,7 +180,20 @@ int AnimInterpret(struct Anim* anim)
 {
     int boolNeedsResort = FALSE;
 
-    u32 instruction = *anim->pScrCurrent++;
+    AnimScr instruction = *anim->pScrCurrent++;
+
+#if ANIMSCR_WIDE
+    // (the address of a sprite, call or jump is the cell after the flags)
+    void * address = NULL;
+
+    if (ANINS_HAS_ADDRESS(instruction))
+        address = ANINS_CELL_ADDRESS(*anim->pScrCurrent++);
+#define ANINS_ADDR_FORCESPRITE(instruction) address
+#define ANINS_ADDR_PTRINS(instruction) address
+#else
+#define ANINS_ADDR_FORCESPRITE(instruction) ANINS_FORCESPRITE_GET_ADDRESS(instruction)
+#define ANINS_ADDR_PTRINS(instruction) ANINS_PTRINS_GET_ADDRESS(instruction)
+#endif
 
     if (ANINS_IS_NOT_FORCESPRITE(instruction))
     {
@@ -190,12 +203,12 @@ int AnimInterpret(struct Anim* anim)
             {
 
             case 0: // function call
-                ((AnimCallback_t) (ANINS_PTRINS_GET_ADDRESS(instruction)))(anim);
+                ((AnimCallback_t) (ANINS_ADDR_PTRINS(instruction)))(anim);
                 break;
 
             case 1: // set new frame data
-                anim->pScrStart   = ANINS_PTRINS_GET_ADDRESS(instruction);
-                anim->pScrCurrent = ANINS_PTRINS_GET_ADDRESS(instruction);
+                anim->pScrStart   = ANINS_ADDR_PTRINS(instruction);
+                anim->pScrCurrent = ANINS_ADDR_PTRINS(instruction);
 
                 anim->timer = 1;
 
@@ -289,7 +302,7 @@ int AnimInterpret(struct Anim* anim)
     }
     else
     {
-        anim->pSpriteData = ANINS_FORCESPRITE_GET_ADDRESS(instruction);
+        anim->pSpriteData = ANINS_ADDR_FORCESPRITE(instruction);
         anim->timer       = ANINS_FORCESPRITE_GET_DELAY(instruction);
     }
 
