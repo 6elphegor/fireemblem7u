@@ -8,6 +8,7 @@ struct BonusClaimEnt {
     /* 02 */ u8 itemId;
     /* 03 */ char str[0x11]; // Only used in FE8
 };
+GBA_SIZE_CHECK(struct BonusClaimEnt, 0x14);
 
 extern struct BonusClaimEnt gBonusClaimData[];
 extern CONST_DATA struct BonusClaimEnt * gpBonusClaimData;

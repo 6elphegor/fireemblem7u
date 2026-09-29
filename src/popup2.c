@@ -6,6 +6,7 @@ struct Popup2Proc {
     /* 29 */ u8 _pad_29[0x4C - 0x29];
     /* 4C */ u16 timer;
 };
+PROC_SIZE_CHECK(struct Popup2Proc);
 
 void ProcPopup2_Init(struct Popup2Proc * proc);
 void ProcPopup2_Loop(struct Popup2Proc * proc);

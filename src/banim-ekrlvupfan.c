@@ -9,6 +9,7 @@ struct ProcEkrLvupFan {
     STRUCT_PAD(0x29, 0x2C);
     /* 2C */ s16 timer;
 };
+PROC_SIZE_CHECK(struct ProcEkrLvupFan);
 
 void SetBgmVolume(int volume);
 void M4aPlayWithPostionCtrl(int songid, int x, int flag);

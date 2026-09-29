@@ -106,6 +106,7 @@ struct ProcEfx {
     STRUCT_PAD(0x60, 0x64);
     ProcPtr unk_64;
 };
+PROC_SIZE_CHECK(struct ProcEfx);
 
 struct ProcEfxBG {
     PROC_HEADER;
@@ -134,6 +135,7 @@ struct ProcEfxBG {
     /* 58 */ u16 * const * pal;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxBG);
 
 struct ProcEfxBGCOL {
     PROC_HEADER;
@@ -155,6 +157,7 @@ struct ProcEfxBGCOL {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxBGCOL);
 
 struct ProcEfxRST {
     PROC_HEADER;
@@ -171,6 +174,7 @@ struct ProcEfxRST {
 
     /* 64 */ struct ProcEfx * efxproc;
 };
+PROC_SIZE_CHECK(struct ProcEfxRST);
 
 struct ProcEfxOBJ {
     PROC_HEADER;
@@ -203,6 +207,7 @@ struct ProcEfxOBJ {
     /* 64 */ struct Anim * anim3;
     /* 68 */ struct Anim * anim4;
 };
+PROC_SIZE_CHECK(struct ProcEfxOBJ);
 
 struct ProcEfxALPHA {
     PROC_HEADER;
@@ -225,6 +230,7 @@ struct ProcEfxALPHA {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxALPHA);
 
 struct ProcEfxSCR {
     /* 00 */ PROC_HEADER;
@@ -268,6 +274,7 @@ struct ProcEkrSubAnimeEmulator {
     /* 4C */ int oam2Base;
     /* 50 */ int oamBase;
 };
+PROC_SIZE_CHECK(struct ProcEkrSubAnimeEmulator);
 
 extern u16 gEfxPal[];
 extern const void * gpImgSheet[2];
@@ -471,6 +478,7 @@ struct ProcEfxStatusUnit {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxStatusUnit);
 
 extern struct ProcEfxStatusUnit * gpProcEfxStatusUnits[2];
 
@@ -605,6 +613,7 @@ struct ProcEkrChienCHR {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrChienCHR);
 
 void NewEkrChienCHR(struct Anim * anim);
 void EkrChienCHRMain(struct ProcEkrChienCHR * proc);
@@ -1316,6 +1325,7 @@ struct ProcEfxDrsmmoyaBG {
     /* 58 */ u16 * img_bak;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxDrsmmoyaBG);
 
 struct ProcEfxDrsmmoyaScroll {
     PROC_HEADER;
@@ -1334,6 +1344,7 @@ struct ProcEfxDrsmmoyaScroll {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxDrsmmoyaScroll);
 
 struct ProcEfxDrsmmoyaScrollCOL {
     PROC_HEADER;
@@ -1356,6 +1367,7 @@ struct ProcEfxDrsmmoyaScrollCOL {
 
     /* 64 */ struct ProcEfxDrsmmoyaScroll * procefx;
 };
+PROC_SIZE_CHECK(struct ProcEfxDrsmmoyaScrollCOL);
 
 void NewEfxDrsmmoya(struct Anim * anim);
 void EfxDrsmmoya_Loop(struct ProcEfx * proc);
@@ -1457,6 +1469,7 @@ struct ProcEfxSoundSE {
     /* 44 */ int volume;
     /* 48 */ int index;
 };
+PROC_SIZE_CHECK(struct ProcEfxSoundSE);
 
 enum {
     EFX_HPT_CHANGED,

@@ -77,7 +77,7 @@ struct GiveItemProc {
     /* 58 */ int item;
 };
 
-#define EVT_ARG_U16(proc, n) (((u16 const *)(proc)->script)[n])
+#define EVT_ARG_U16(proc, n) EVT_HALF((proc)->script, n)
 
 struct GiveItemProc;
 struct EventFaceDeamonProc;
@@ -1112,7 +1112,7 @@ int sub_0800F9B0(struct EventProc * proc)
     x = SCR_LO16_SIGN(xr);
 
     script = proc->script;
-    y_raw = ((u16 const *) script)[5];
+    y_raw = EVT_HALF(script, 5);
     y = y_raw & 0x8000 ? -1 : y_raw;
     pal = script[3];
     b = script[4];
@@ -1161,7 +1161,7 @@ int sub_0800FA50(struct EventProc * proc)
     x = SCR_LO16_SIGN(xr);
 
     script = proc->script;
-    y_raw = ((u16 const *) script)[5];
+    y_raw = EVT_HALF(script, 5);
     y = y_raw & 0x8000 ? -1 : y_raw;
     pal = script[3];
     b = script[4];
@@ -1202,7 +1202,7 @@ int sub_0800FAF0(struct EventProc * proc)
     int c;
 
     script = proc->script;
-    y_raw = ((u16 const *) script)[3];
+    y_raw = EVT_HALF(script, 3);
     y = y_raw & 0x8000 ? -1 : y_raw;
     c = script[2];
     b = script[3];

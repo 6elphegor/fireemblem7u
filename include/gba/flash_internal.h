@@ -16,6 +16,7 @@ struct FlashSector
     u16 count;
     u16 top;
 };
+GBA_SIZE_CHECK(struct FlashSector, 0xC);
 
 struct FlashType {
     u32 romSize;
@@ -31,6 +32,7 @@ struct FlashType {
         u16 joined;
     } ids;
 };
+GBA_SIZE_CHECK(struct FlashType, 0x18);
 
 struct FlashSetupInfo
 {
@@ -42,6 +44,7 @@ struct FlashSetupInfo
     const u16 *maxTime;
     struct FlashType type;
 };
+GBA_SIZE_CHECK(struct FlashSetupInfo, 0x30);
 
 extern u16 gFlashNumRemainingBytes;
 

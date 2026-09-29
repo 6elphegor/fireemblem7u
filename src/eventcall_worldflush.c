@@ -11,6 +11,7 @@ struct ProcWorldFlush
 
     /* 2C */ int timer;
 };
+PROC_SIZE_CHECK(struct ProcWorldFlush);
 
 #if NONMATCHING
 

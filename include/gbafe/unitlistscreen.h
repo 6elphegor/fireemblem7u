@@ -59,6 +59,7 @@ struct UnitListScreenField
     /* 08 */ u8 xColumn;
     /* 0C */ u32 helpTextId;
 };
+GBA_SIZE_CHECK(struct UnitListScreenField, 0x10);
 
 extern struct UnitListScreenField gUnitListScreenFields[][9];
 
@@ -70,6 +71,7 @@ struct SortedUnitEnt
     /* 08 */ s16 battleAvoidRate;
     /* 0A */ u8 supportCount;
 };
+GBA_SIZE_CHECK(struct SortedUnitEnt, 0xC);
 
 extern struct SortedUnitEnt gSortedUnitsBuf[0x40];
 extern struct SortedUnitEnt * gSortedUnits[0x40];

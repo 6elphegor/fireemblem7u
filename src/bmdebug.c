@@ -3,6 +3,7 @@
 extern int TacticianBirthAffins[12];
 
 struct DebugChargeMsgs { int msg[3]; };
+GBA_SIZE_CHECK(struct DebugChargeMsgs, 0xC);
 
 extern const struct DebugChargeMsgs sDebugChargeMsgs;
 extern char const sDebugStr3rd[];
@@ -42,9 +43,12 @@ struct DebugMonitorProc {
     /* 5C */ u8 _pad_5C[0x66 - 0x5C];
     /* 66 */ s16 displayInfo;
 };
+PROC_SIZE_CHECK(struct DebugMonitorProc);
 
 struct DebugOnOffMsgs { int msg[2]; };
+GBA_SIZE_CHECK(struct DebugOnOffMsgs, 0x8);
 struct DebugWeatherMsgs { int msg[7]; };
+GBA_SIZE_CHECK(struct DebugWeatherMsgs, 0x1C);
 
 extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
 extern const struct DebugOnOffMsgs sDebugOnOffMsgs;
@@ -67,6 +71,7 @@ struct SoundRoomEnt
     /* 08 */ s8 (* displayCondFunc)(ProcPtr proc);
     /* 0C */ int nameTextId;
 };
+GBA_SIZE_CHECK(struct SoundRoomEnt, 0x10);
 
 extern const struct SoundRoomEnt gSoundRoomTable[];
 extern struct SoundRoomEnt CONST_DATA gUnk_08CE5378[];
@@ -82,6 +87,7 @@ struct DebugPrintProc {
     /* 52 */ u16 width;
     /* 54 */ const char * text;
 };
+PROC_SIZE_CHECK(struct DebugPrintProc);
 
 extern const struct ProcCmd gProc_DebugPrintWithProc[];
 extern const struct MenuDef gDebugMenuDef;

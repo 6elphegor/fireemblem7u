@@ -28,6 +28,7 @@ struct LATeamListConfig
     /* 08 */ int menuTextId;
     /* 0C */ bool (*isValidFunc)(void);
 };
+GBA_SIZE_CHECK(struct LATeamListConfig, 0x10);
 
 // Forward declarations
 

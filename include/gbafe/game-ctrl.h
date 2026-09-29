@@ -31,6 +31,7 @@ struct GameCtrlProc
     /* 2E */ s16 unk_2E;
     /* 30 */ u8 chapter_id;
 };
+PROC_SIZE_CHECK(struct GameCtrlProc);
 
 // GetTitleClassReelSet
 // GC_StartClassReel

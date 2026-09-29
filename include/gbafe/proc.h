@@ -12,6 +12,7 @@ struct ProcCmd {
     short dataImm;
     const void * dataPtr;
 };
+GBA_SIZE_CHECK(struct ProcCmd, 0x8);
 
 #define PROC_END                                     { 0x00, 0x0000, 0 }
 #define PROC_NAME(aName)                             { 0x01, 0x0000, aName }
@@ -93,7 +94,22 @@ struct Proc {
     /* 66 */ short unk66;
     /* 68 */ short unk68;
     /* 6A */ short unk6A;
+
+#if !PLATFORM_GBA
+    // Host only: with 8-byte pointers the header is 0x4D bytes, not 0x29,
+    // and the biggest proc struct is 0xB8 bytes (ProcEkrDragon,
+    // ProcPrepMenu), so make the slot 0xC0 (PROC_SIZE_CHECK below fails if
+    // a proc grows past it).
+    u8 hostPad[0x28];
+#endif
 };
+GBA_SIZE_CHECK(struct Proc, 0x6C);
+
+// Every proc lives in a slot of sProcArray, so its struct must fit in
+// struct Proc.  Put PROC_SIZE_CHECK(struct Foo); after each struct that
+// starts with PROC_HEADER.  On the host the header has 8-byte pointers and
+// struct Proc carries hostPad to be as big as the biggest proc.
+#define PROC_SIZE_CHECK(type) extern char proc_size_check_[(sizeof(type) <= sizeof(struct Proc)) ? 1 : -1]
 
 struct ProcFindIterator {
     /* 00 */ struct Proc * proc;

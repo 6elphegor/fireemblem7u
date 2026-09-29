@@ -424,7 +424,7 @@ int Event14_TalkContinue(struct EventProc * proc)
 
 int EvtCmd_TalkGeneric(struct EventProc * proc)
 {
-    EventScr const * msgs = (EventScr const *)proc->script[1];
+    u32 const * msgs = (u32 const *)proc->script[1];
 
     proc->flags &= ~EVENT_FLAG_TEXTSKIPPED;
 
@@ -437,7 +437,7 @@ int EvtCmd_TalkGeneric(struct EventProc * proc)
 
 int EvtCmd_TalkMoreGeneric(struct EventProc * proc)
 {
-    EventScr const * msgs = (EventScr const *)proc->script[1];
+    u32 const * msgs = (u32 const *)proc->script[1];
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
         return EVENT_CMDRET_CONTINUE;
@@ -451,7 +451,7 @@ int EvtCmd_TalkMoreGeneric(struct EventProc * proc)
 
 int EvtCmd_TalkByTactRank(struct EventProc * proc)
 {
-    EventScr const * msgs = (EventScr const *)proc->script[1];
+    u32 const * msgs = (u32 const *)proc->script[1];
     int rank;
     int idx;
 

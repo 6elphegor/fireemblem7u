@@ -11,6 +11,7 @@ struct KoidoProc {
     /* 3B */ u8 unk_3B;
     /* 3C */ s8 config;
 };
+PROC_SIZE_CHECK(struct KoidoProc);
 
 void EndMu(struct MuProc * mu);
 void SetMuMoveScript(struct MuProc * mu, u8 const * script);

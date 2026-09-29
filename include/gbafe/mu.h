@@ -65,6 +65,7 @@ struct MuInfo
     u8 const * img;
     u16 const * anim;
 };
+GBA_SIZE_CHECK(struct MuInfo, 0x8);
 
 enum
 {

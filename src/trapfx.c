@@ -8,6 +8,7 @@ struct TrapfxProc {
     /* 34 */ u8 _pad_34[0x4A - 0x34];
     /* 4A */ s16 direction;
 };
+PROC_SIZE_CHECK(struct TrapfxProc);
 
 struct UnkTrapfxProc {
     PROC_HEADER;
@@ -17,6 +18,7 @@ struct UnkTrapfxProc {
     /* 58 */ int direction;
     /* 5C */ int timer;
 };
+PROC_SIZE_CHECK(struct UnkTrapfxProc);
 
 struct ShowMapChangeProc {
     PROC_HEADER;
@@ -25,6 +27,7 @@ struct ShowMapChangeProc {
     /* 30 */ int altSong;
     /* 34 */ int sndx;
 };
+PROC_SIZE_CHECK(struct ShowMapChangeProc);
 
 void StartMapFade(bool locksGame);
 

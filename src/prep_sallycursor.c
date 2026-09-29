@@ -3,20 +3,6 @@
 
 // Preparations map screen (FE8U: prep_sallycursor.c)
 
-struct EventInfo
-{
-    /* 00 */ const void * listScript;
-    /* 04 */ u32 script;
-    /* 08 */ u32 flag;
-    /* 0C */ u32 commandId;
-    /* 10 */ u32 givenMoney;
-    /* 14 */ u32 givenItem;
-    /* 18 */ s8 xPos;
-    /* 19 */ s8 yPos;
-    /* 1A */ u8 pidA;
-    /* 1B */ u8 pidB;
-};
-
 // Functions of other modules no header declares yet (FE8U names in comments)
 const struct UnitDefinition * sub_08079280(void);  // GetChapterAllyUnitDataPointer
 void TrySwitchViewedUnit(int x, int y);

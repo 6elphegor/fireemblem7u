@@ -45,6 +45,7 @@ struct WaveData
     u32 size; // number of samples
     s8 data[1]; // samples
 };
+GBA_SIZE_CHECK(struct WaveData, 0x14);
 
 #define TONEDATA_TYPE_CGB    0x07
 #define TONEDATA_TYPE_FIX    0x08
@@ -72,6 +73,7 @@ struct ToneData
         const u8 *keySplitTable; // TYPE_SPL: key -> index into the group (may point before the table)
     } u;
 };
+GBA_SIZE_CHECK(struct ToneData, 0xC);
 
 struct CgbChannel
 {
@@ -113,6 +115,7 @@ struct CgbChannel
     u32 np;
     u8 d4[8];
 };
+GBA_SIZE_CHECK(struct CgbChannel, 0x40);
 
 struct MusicPlayerTrack;
 
@@ -152,6 +155,7 @@ struct SoundChannel
     u16 xpi;
     u16 xpc;
 };
+GBA_SIZE_CHECK(struct SoundChannel, 0x40);
 
 #define MAX_DIRECTSOUND_CHANNELS 12
 
@@ -194,6 +198,7 @@ struct SoundInfo
     struct SoundChannel chans[MAX_DIRECTSOUND_CHANNELS];
     s8 pcmBuffer[PCM_DMA_BUF_SIZE * 2];
 };
+GBA_SIZE_CHECK(struct SoundInfo, 0xFB0);
 
 struct SongHeader
 {
@@ -204,6 +209,7 @@ struct SongHeader
     struct ToneData *tone;
     u8 *part[1];
 };
+GBA_SIZE_CHECK(struct SongHeader, 0xC);
 
 struct PokemonCrySong
 {
@@ -236,6 +242,7 @@ struct PokemonCrySong
     u16 unkCmd0CParam; // 0x2E
     u8 end[2]; // 0x30
 };
+GBA_SIZE_CHECK(struct PokemonCrySong, 0x34);
 
 #define MPT_FLG_VOLSET 0x01
 #define MPT_FLG_VOLCHG 0x03
@@ -286,6 +293,7 @@ struct MusicPlayerTrack
     u8 *cmdPtr;
     u8 *patternStack[3];
 };
+GBA_SIZE_CHECK(struct MusicPlayerTrack, 0x50);
 
 #define MUSICPLAYER_STATUS_TRACK 0x0000ffff
 #define MUSICPLAYER_STATUS_PAUSE 0x80000000
@@ -321,6 +329,7 @@ struct MusicPlayerInfo
     u32 func;
     u32 intp;
 };
+GBA_SIZE_CHECK(struct MusicPlayerInfo, 0x40);
 
 struct MusicPlayer
 {
@@ -329,6 +338,7 @@ struct MusicPlayer
     u8 unk_8;
     u16 unk_A;
 };
+GBA_SIZE_CHECK(struct MusicPlayer, 0xC);
 
 struct Song
 {
@@ -336,6 +346,7 @@ struct Song
     u16 ms;
     u16 me;
 };
+GBA_SIZE_CHECK(struct Song, 0x8);
 
 extern const struct MusicPlayer gMPlayTable[];
 extern const struct Song gSongTable[];

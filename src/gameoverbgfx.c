@@ -17,6 +17,7 @@ struct ProcGameOverScroll {
     /* 68 */ s16 bg3_xpos;
     /* 6A */ s16 bg3_ypos;
 };
+PROC_SIZE_CHECK(struct ProcGameOverScroll);
 
 struct ProcGameOverScreen {
     PROC_HEADER;
@@ -25,6 +26,7 @@ struct ProcGameOverScreen {
     /* 4C */ s16 counter1;
     /* 4E */ s16 counter2;
 };
+PROC_SIZE_CHECK(struct ProcGameOverScreen);
 
 extern u8 CONST_DATA Img_GameOverText[];
 extern u16 CONST_DATA Pal_GameOverText1[];

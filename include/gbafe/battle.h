@@ -59,6 +59,7 @@ struct BattleUnit {
     /* 7E */ s8 hasItemEffectTarget;
     /* 7F */ /* pad */
 };
+GBA_SIZE_CHECK(struct BattleUnit, 0x80);
 
 extern struct BattleUnit gBattleActor, gBattleTarget;
 
@@ -92,6 +93,7 @@ struct BattleStats {
     /* 10 */ struct Unit *taUnitA;
     /* 14 */ struct Unit *taUnitB;
 };
+GBA_SIZE_CHECK(struct BattleStats, 0x18);
 
 extern struct BattleStats gBattleStats;
 
@@ -130,6 +132,7 @@ struct BattleHit {
     u8 info;
     u8 hpChange;
 };
+GBA_SIZE_CHECK(struct BattleHit, 0x4);
 
 #define BATTLE_HIT_MAX 7
 extern struct BattleHit gBattleHitArray[BATTLE_HIT_MAX];
@@ -151,6 +154,7 @@ struct WeaponTriangleRule {
     s8 hitBonus;
     s8 atkBonus;
 };
+GBA_SIZE_CHECK(struct WeaponTriangleRule, 0x4);
 
 extern struct WeaponTriangleRule WeaponTriangleRules[];
 

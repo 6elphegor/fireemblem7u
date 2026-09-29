@@ -89,6 +89,7 @@ struct ItemStatBonuses {
     /* 07 */ s8 movBonus;
     /* 08 */ s8 conBonus;
 };
+GBA_SIZE_CHECK(struct ItemStatBonuses, 0xC);
 
 struct ItemData {
     /* 00 */ u16 nameTextId;
@@ -114,6 +115,7 @@ struct ItemData {
     /* 21 */ u8  unk21;
     /* 22 */ u8  _pad22[2];
 };
+GBA_SIZE_CHECK(struct ItemData, 0x24);
 
 extern struct ItemData CONST_DATA gItemData[];
 

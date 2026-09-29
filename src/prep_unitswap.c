@@ -18,6 +18,7 @@ struct PrepUnitSwapProc {
 
     /* 44 */ int divisor;
 };
+PROC_SIZE_CHECK(struct PrepUnitSwapProc);
 
 void PutUnitSprite(int layer, int x, int y, struct Unit * unit);
 

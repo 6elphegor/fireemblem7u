@@ -125,6 +125,7 @@ struct ProcEfxMagicOBJ {
     /* 60 */ struct Anim * anim2;
     /* 64 */ ProcPtr seproc;
 };
+PROC_SIZE_CHECK(struct ProcEfxMagicOBJ);
 
 void StartSpellAnimDummy(struct Anim * anim);
 void EfxDummymagicMain(struct ProcEfx * proc);

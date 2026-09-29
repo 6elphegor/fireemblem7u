@@ -58,6 +58,7 @@ struct Anim {
     /* 40 */ const void * pUnk40;
     /* 44 */ void * pUnk44;
 };
+GBA_SIZE_CHECK(struct Anim, 0x48);
 
 enum Anim_state {
     ANIM_BIT_ENABLED = (1 << 0),
@@ -259,6 +260,7 @@ struct AnimSpriteData {
         } object;
     } as;
 };
+GBA_SIZE_CHECK(struct AnimSpriteData, 0xC);
 
 #define ANIM_SPRITE_END {.header = 1}
 

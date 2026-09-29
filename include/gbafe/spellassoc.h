@@ -30,6 +30,7 @@ struct SpellAssoc {
     /* 0D */ u8 facing;
     /* 0E */ u8 flash_color;
 };
+GBA_SIZE_CHECK(struct SpellAssoc, 0x10);
 
 #define SPELL_ASSOC_DATA(_item, _count, _efx, _pcmd, _stat, _facing, _color) \
     { .item = (_item), .count = (_count), .efx = (_efx), .pcmd_manim = (_pcmd), \

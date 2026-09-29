@@ -11,6 +11,7 @@ struct ProcEvent_08CA7994
 
     /* 4C */ s16 timer;
 };
+PROC_SIZE_CHECK(struct ProcEvent_08CA7994);
 
 void IsTalkActive(ProcPtr proc);
 void sub_0807C8B4(ProcPtr proc);

@@ -3,6 +3,24 @@
 
 #include <stdint.h>
 
+// GBA_SIZE_CHECK(struct Foo, 0x24): compile-time check of a structure's
+// size on the GBA.  Put it right after the definition of every structure
+// that lives in ROM data or in save data (or has a fixed layout for another
+// reason), so an edit that changes the layout fails to build.  Active only
+// with PLATFORM_GBA; the host's layout differs (8-byte pointers).  A
+// negative array size is the C89 spelling of _Static_assert; the extern
+// declaration emits nothing and may repeat.
+#if PLATFORM_GBA
+#define GBA_SIZE_CHECK(type, size) extern char gba_size_check_[(sizeof(type) == (size)) ? 1 : -1]
+#else
+#define GBA_SIZE_CHECK(type, size) extern char gba_size_check_[1]
+#endif
+
+// SAVE_SIZE_CHECK: the same for a structure that is written to SRAM as it is
+// (no pointers in it), so it must have this size on every platform.  Active
+// everywhere.
+#define SAVE_SIZE_CHECK(type, size) extern char save_size_check_[(sizeof(type) == (size)) ? 1 : -1]
+
 typedef uint8_t   u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
@@ -35,6 +53,7 @@ struct PlttData
     u16 b:5; // blue
     u16 unused_15:1;
 } /*__attribute__((packed))*/;
+GBA_SIZE_CHECK(struct PlttData, 0x4);
 
 struct OamData
 {
@@ -54,6 +73,7 @@ struct OamData
              u16 paletteNum:4;
     /*0x06*/ u16 affineParam;
 };
+GBA_SIZE_CHECK(struct OamData, 0x8);
 
 #define ST_OAM_OBJ_NORMAL 0
 #define ST_OAM_OBJ_BLEND  1
@@ -84,6 +104,7 @@ struct BgAffineSrcData
     s16 sy;
     u16 alpha;
 };
+GBA_SIZE_CHECK(struct BgAffineSrcData, 0x14);
 
 struct BgAffineDstData
 {
@@ -94,6 +115,7 @@ struct BgAffineDstData
     s32 dx;
     s32 dy;
 };
+GBA_SIZE_CHECK(struct BgAffineDstData, 0x10);
 
 struct ObjAffineSrcData
 {
@@ -101,6 +123,7 @@ struct ObjAffineSrcData
     s16 yScale;
     u16 rotation;
 };
+GBA_SIZE_CHECK(struct ObjAffineSrcData, 0x8);
 
 // Multi-player SIO Control Structure
 struct SioMultiCnt
@@ -117,6 +140,7 @@ struct SioMultiCnt
     u16 unused_15:1;
     u16 data;          // data
 };
+GBA_SIZE_CHECK(struct SioMultiCnt, 0x4);
 
 #define ST_SIO_MULTI_MODE 2 // Multi-player communication mode
 
@@ -140,5 +164,6 @@ struct WaitCnt
     u16 prefetchBufEnable:1;
     u16 gamePakType:1;
 };
+GBA_SIZE_CHECK(struct WaitCnt, 0x4);
 
 #endif // GUARD_GBA_TYPES_H

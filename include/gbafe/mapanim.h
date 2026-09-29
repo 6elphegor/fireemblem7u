@@ -84,6 +84,7 @@ struct ManimDebugFieldInfo {
     /* 05 */ u8 min, max;
     /* 07 */ STRUCT_PAD(0x07, 0x08);
 };
+GBA_SIZE_CHECK(struct ManimDebugFieldInfo, 0x8);
 
 struct ManimShineProc {
     /* 00 */ PROC_HEADER;
@@ -127,6 +128,7 @@ struct ManimLevelUpLabelInfo {
     /* 02 */ STRUCT_PAD(0x02, 0x04);
     /* 04 */ int const * msg[2];
 };
+GBA_SIZE_CHECK(struct ManimLevelUpLabelInfo, 0xC);
 
 extern struct ManimLevelUpLabelInfo CONST_DATA gManimLevelUpLabelInfoList[];
 extern u16 const Pal_ManimLevelUpStatGain[];

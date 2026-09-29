@@ -64,7 +64,7 @@ NM_SUFFIX :=
 NM_DEFS :=
 endif
 
-.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching hostcheck
+.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching hostcheck hostevents
 .DELETE_ON_ERROR:
 
 # `make MODERN=1` (or `make modern`): the free data layout, see below.
@@ -427,5 +427,26 @@ $(NM_ELF): $(NM_C_OBJS) $(NM_DIR)/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BA
 hostcheck:
 	python3 tools/hostcheck.py -j $(or $(HOSTCHECK_JOBS),8) --flags='$(HOSTCHECK_FLAGS)'
 
+# The event list readers on the host (8-byte event cells) against a 32-bit walk of
+# the ROM's lists: tools/hostevents.py (CONTRIBUTING, "Host check").  Needs the
+# built fe7u.gba and fe7u.elf.
+hostevents: compare
+	python3 tools/hostevents.py
+
 clean:
 	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map fe7u_nonmatching*.gba fe7u_nonmatching*.elf fe7u_nonmatching*.map
+
+# Host platform layer (platform/; docs/port-platform.md): the BIOS and PPU
+# unit tests, and the comparisons with mGBA (libmgba, as for emutest).
+#   make platform-test          unit tests; the LZ77 test needs the build's graphics
+#   make platform-biosref       BIOS calls against mGBA's HLE BIOS
+#   make platform-ppucompare    PPU against mGBA on every frame of tests/inputs
+.PHONY: platform-test platform-biosref platform-ppucompare
+platform-test: $(ROM)
+	$(MAKE) -f platform/platform.mk test
+
+platform-biosref: $(ROM)
+	$(MAKE) -f platform/platform.mk biosref
+
+platform-ppucompare: $(ROM)
+	$(MAKE) -f platform/platform.mk ppucompare

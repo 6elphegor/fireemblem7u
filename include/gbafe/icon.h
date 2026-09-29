@@ -9,6 +9,7 @@ struct IconSt {
     /* 00 */ u8 ref_count;
     /* 01 */ u8 disp_id;
 };
+GBA_SIZE_CHECK(struct IconSt, 0x4);
 
 extern u8 const Img_Icons[];
 extern u16 const Pal_Icons[];

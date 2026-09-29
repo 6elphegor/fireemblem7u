@@ -44,6 +44,7 @@ struct PlayerInterfaceConfigEntry
     /* 04 */ s8 xGoal, yGoal;
     STRUCT_PAD(0x06, 0x08);
 };
+GBA_SIZE_CHECK(struct PlayerInterfaceConfigEntry, 0x8);
 
 int GetWindowQuadrant(int x, int y);
 int GetCursorQuadrant(void);
