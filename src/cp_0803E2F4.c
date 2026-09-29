@@ -27,8 +27,12 @@ struct AiCountEnemiesInRangeArg
 };
 
 extern u8 gAiUnk_0203A988;
-extern const struct AiEscapePt * CONST_DATA gRedAiEscapePoints[];
-extern const struct AiEscapePt * CONST_DATA gGreenAiEscapePoints[];
+extern const struct AiEscapePt gUnk_081D3974[], gUnk_081D3980[], gUnk_081D3990[], gUnk_081D39A0[],
+    gUnk_081D39B0[], gUnk_081D39BC[], gUnk_081D39CC[], gUnk_081D39D8[], gUnk_081D39E8[],
+    gUnk_081D3A00[], gUnk_081D3A08[], gUnk_081D3A10[], gUnk_081D3A18[], gUnk_081D3A38[],
+    gUnk_081D3A44[], gUnk_081D3A5C[];
+extern const struct AiEscapePt * const gRedAiEscapePoints[];
+extern const struct AiEscapePt * const gGreenAiEscapePoints[];
 extern struct AiHealThreshold CONST_DATA gAI3HealingThresholdTable[];
 extern const struct Vec2 * const * const gAiSpecificPositionLists;
 extern u8 CONST_DATA sTerrainList_Fort[];
@@ -1268,3 +1272,106 @@ const struct Vec2 * const gUnk_08B972E0[] = {
 
 SECTION(".rodata.08B972E8")
 const struct Vec2 * const * const gAiSpecificPositionLists = gUnk_08B972E0;
+
+SECTION(".rodata.08B97100")
+const struct AiEscapePt * const gRedAiEscapePoints[] = {
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3974,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3980,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D39A0,
+    gUnk_081D39B0,
+    gUnk_081D39BC,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D39CC,
+    gUnk_081D3A5C,
+    gUnk_081D3A10,
+    gUnk_081D39D8,
+    gUnk_081D3A5C,
+    gUnk_081D39E8,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A00,
+    gUnk_081D3A5C,
+    gUnk_081D3A08,
+    gUnk_081D3A18,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A38,
+    gUnk_081D3A44,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+};
+
+SECTION(".rodata.08B971C0")
+const struct AiEscapePt * const gGreenAiEscapePoints[] = {
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3990,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+    gUnk_081D3A5C,
+};

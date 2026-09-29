@@ -341,3 +341,11 @@ void AiMapFloodRangeFrom(int x, int y, struct Unit * unit)
     SetWorkingBmMap(gBmMapRange);
     BeginMapFlood(x, y, MAP_MOVEMENT_EXTENDED, unit->index);
 }
+
+SECTION(".rodata.081D3BDC")
+const struct AiSpecialItemLutEntry sAiSpecialItemFuncLut[] = {
+    { .itemId = 0x69, .func = AiSpecialItemDoorKey },
+    { .itemId = 0x6A, .func = AiSpecialItemLockpick },
+    { .itemId = 0x6E, .func = AiSpecialItemAntitoxin },
+    { 0 },
+};

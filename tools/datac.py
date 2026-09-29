@@ -745,7 +745,21 @@ class Decls:
         self.sigs = {}   # function name -> [normalized (return, params)] of its declarations and definitions
         for p, t in types.files.items():
             for m in re.finditer(r"^[ \t]*extern\s+([^;(){}]*?)\b(\w+)\s*((?:\[[^\]]*\]\s*)*)\s*;", t, re.M):
-                self.decl.setdefault(m[2], []).append((p, m[0].strip()))
+                stmt = m[0].strip()
+                parts = split_top(stmt[len("extern"):].rstrip(";"))
+                if len(parts) == 1:
+                    self.decl.setdefault(m[2], []).append((p, stmt))
+                    continue
+                # `extern const u8 a[], b[];`: each declarator is a declaration of its own
+                head = re.match(r"^\s*(.*?)\b(\w+)\s*((?:\[[^\]]*\]\s*)*)$", parts[0])
+                if not head:
+                    continue
+                base = re.sub(r"[\s\*]+$", "", head[1])
+                self.decl.setdefault(head[2], []).append((p, f"extern {head[1]}{head[2]}{head[3]};"))
+                for q in parts[1:]:
+                    mm = re.match(r"^\s*([\s\*]*)(\w+)\s*((?:\[[^\]]*\]\s*)*)$", q)
+                    if mm:
+                        self.decl.setdefault(mm[2], []).append((p, f"extern {base} {mm[1].strip()}{' ' if mm[1].strip() else ''}{mm[2]}{mm[3]};"))
             for m in re.finditer(r"^([A-Za-z_][\w \t\*]*?)\b(\w+)\s*\(([^;{}()]*(?:\([^()]*\)[^;{}()]*)*)\)\s*([;{])", t, re.M):
                 if m[1].strip().split()[0] in ("if", "while", "for", "switch", "return", "else", "define"):
                     continue

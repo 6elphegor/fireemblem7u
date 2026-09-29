@@ -711,3 +711,20 @@ s8 sub_0803B83C(struct Vec2 * out)
 
     return 0;
 }
+
+SECTION(".rodata.081D3B74")
+const struct AiStaffLutEntry sAiStaffFuncLut[] = {
+    { .itemId = 0x4A, .func = AiStaffHealMendRecover },
+    { .itemId = 0x4B, .func = AiStaffHealMendRecover },
+    { .itemId = 0x4C, .func = AiStaffHealMendRecover },
+    { .itemId = 0x4D, .func = AiStaffPhysicRescue },
+    { .itemId = 0x4E, .func = AiStaffFortify },
+    { .itemId = 0x53, .func = AiStaffWarp },
+    { .itemId = 0x54, .func = AiStaffPhysicRescue },
+    { .itemId = 0x4F, .func = AiStaffRestore },
+    { .itemId = 0x50, .func = AiStaffSilence },
+    { .itemId = 0x51, .func = AiStaffSleepBerserk },
+    { .itemId = 0x52, .func = AiStaffSleepBerserk },
+    { .itemId = 0x58, .func = AiStaffBarrier },
+    { 0 },
+};
