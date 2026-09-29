@@ -3,6 +3,7 @@
 
   tools/emutest.py compare [SCRIPT...] [-a ROM_A] [-b ROM_B]   (make emutest)
   tools/emutest.py record SCRIPT [-a ROM] [--every N]          (one ROM, PNGs)
+  tools/emutest.py audio [SCRIPT...] [-a ROM_A] [-b ROM_B]     (sound, sample by sample)
   tools/emutest.py sheet OUT.png COLS PNG...                   (contact sheet)
 
 `compare` runs ROM A (default fe7u.gba) and ROM B (default
@@ -22,6 +23,14 @@ as the address of the same symbol (plus offset) in A (or as is: RAM also
 holds code copied from ROM).  A pointer that was left as raw bytes in the
 data still holds A's address in B, so it compares equal itself; what shows
 is the data B loaded through it (VRAM, palettes, RAM buffers).
+
+`audio` plays the scripts the same way and records what mGBA plays of
+each ROM (16-bit stereo, 32768 Hz) three times: all channels, only the
+DirectSound channels (the m4a mixer's output, which the timers and DMA play
+whenever the CPU runs) and only the CGB (PSG) channels (which the engine
+drives by register writes, so their output depends on the cycle each write
+happens at).  It compares A's and B's samples and reports how many differ
+and where (`--keep` keeps the WAV files in build/emutest/<script>/).
 
 Input scripts (tests/inputs/*.txt), one command per line, `#` comments:
 
@@ -355,6 +364,138 @@ def record(script, rom, args):
             print("  " + l)
 
 
+# ---- sound ----
+
+# emutest -c: bits 0-3 the CGB channels, 4-5 DirectSound A and B
+CHANNELS = {"all": "3F", "ds": "30", "psg": "0F"}
+RATE = 32768
+FRAME_SAMPLES = RATE * 280896 / 16777216  # samples per frame (548.6)
+
+
+def read_wav(path):
+    d = Path(path).read_bytes()
+    assert d[:4] == b"RIFF" and d[8:12] == b"WAVE" and d[36:40] == b"data", path
+    return memoryview(d)[44:]
+
+
+def diff_samples(a, b):
+    """Indices (stereo sample frames) where A and B differ, and the largest
+    difference of a channel."""
+    idx, worst = [], 0
+    n = min(len(a), len(b))
+    block = 4 * 1024
+    for off in range(0, n, block):
+        x, y = a[off:off + block], b[off:off + block]
+        if x == y:
+            continue
+        xs, ys = x.cast("h"), y.cast("h")
+        for i in range(0, len(xs), 2):
+            d = max(abs(xs[i] - ys[i]), abs(xs[i + 1] - ys[i + 1]))
+            if d:
+                idx.append(off // 4 + i // 2)
+                worst = max(worst, d)
+    return idx, worst
+
+
+def bursts(idx, gap=64):
+    """Differing samples grouped when less than `gap` samples apart."""
+    out = []
+    for i in idx:
+        if out and i - out[-1][1] < gap:
+            out[-1][1] = i
+        else:
+            out.append([i, i])
+    return out
+
+
+def peak(a):
+    xs = a.cast("h")
+    return max(max(xs), -min(xs)) if len(xs) else 0
+
+
+def sound_info(rom):
+    """gSoundInfo's address in the ROM's ELF (the default if there is none)."""
+    elf = elf_for(rom)
+    if elf and elf.exists():
+        out = subprocess.run(["arm-none-eabi-nm", str(elf)], capture_output=True, text=True).stdout
+        for l in out.splitlines():
+            f = l.split()
+            if len(f) == 3 and f[2] == "gSoundInfo":
+                return f[0]
+    return "03004AE0"
+
+
+def mix_frames(d):
+    """Mixer output (.mix: 8-bit stereo) cut at the frames' parts: the
+    first differing byte's sample index."""
+    n = min(len(d[0]), len(d[1]))
+    for off in range(0, n, 4096):
+        if d[0][off:off + 4096] != d[1][off:off + 4096]:
+            for i in range(off, min(off + 4096, n)):
+                if d[0][i] != d[1][i]:
+                    return i // 2
+    return None
+
+
+def audio(script, rom_a, rom_b, args):
+    name = Path(script).stem
+    out = OUT / name
+    out.mkdir(parents=True, exist_ok=True)
+    frames = write_plan(script, out)
+    print(f"== {name}: {rom_a} vs {rom_b}, {frames} frames" + ("; no wait states (--fast)" if args.fast else ""))
+    same = True
+    for k, ch in enumerate(args.channels.split(",")):
+        prefix = out / f"sound_{ch}"
+        cmd = ["-p", str(out / "plan.txt"), "-o", str(out), "-d", "0", "-w", str(prefix), "-c", CHANNELS[ch]]
+        if k == 0:
+            # the mixer's own output, once (it doesn't depend on -c)
+            cmd += ["-P", f"{sound_info(rom_a)},{sound_info(rom_b)}"]
+        if args.fast:
+            cmd += ["-f", "1"]
+        text = run_bin(cmd + [str(rom_a), str(rom_b)])
+        if k == 0:
+            ma, mb = Path(f"{prefix}_A.mix"), Path(f"{prefix}_B.mix")
+            d = ma.read_bytes(), mb.read_bytes()
+            n = len(d[0]) // 2
+            if d[0] == d[1]:
+                print(f"  mixer output: {n} samples, identical")
+            else:
+                same = False
+                first = mix_frames(d)
+                where = f"first difference at sample {first}" if first is not None else "one is longer"
+                print(f"  mixer output: A {n}, B {len(d[1]) // 2} samples, {where}")
+            for l in text.splitlines():
+                if l.startswith("timer0_diff"):
+                    f = l.split()
+                    print(f"  sample clock (timer 0) phase differs from frame {f[1]}: "
+                          f"A {f[2]}, B {f[3]}")
+            if not args.keep:
+                ma.unlink()
+                mb.unlink()
+        wa, wb = Path(f"{prefix}_A.wav"), Path(f"{prefix}_B.wav")
+        a, b = read_wav(wa), read_wav(wb)
+        n = len(a) // 4
+        length = f"{n} samples ({n / RATE:.0f} s), A's peak {peak(a)}"
+        if a == b:
+            print(f"  {ch:4} {length}: identical")
+        else:
+            same = False
+            idx, worst = diff_samples(a, b)
+            if len(a) != len(b):
+                print(f"  {ch:4} lengths differ: A {len(a) // 4}, B {len(b) // 4} samples")
+            bs = bursts(idx)
+            print(f"  {ch:4} {length}: {len(idx)} samples differ ({100 * len(idx) / n:.3f}%), "
+                  f"largest difference {worst}, in {len(bs)} bursts; first at frame "
+                  f"{idx[0] / FRAME_SAMPLES:.0f}" if idx else "")
+            for lo, hi in bs[:args.bursts]:
+                print(f"         frames {lo / FRAME_SAMPLES:.1f}-{hi / FRAME_SAMPLES:.1f}: "
+                      f"{sum(1 for i in idx if lo <= i <= hi)} of {hi - lo + 1} samples")
+        if not args.keep:
+            wa.unlink()
+            wb.unlink()
+    return same
+
+
 # ---- PNG contact sheets (no PIL needed) ----
 
 def read_png(path):
@@ -416,6 +557,15 @@ def main():
     r.add_argument("--dump", action="store_true",
                    help="also save the memory at every checkpoint (NAME_A.ewram.bin...)")
     r.add_argument("--log", action="store_true")
+    au = sub.add_parser("audio")
+    au.add_argument("scripts", nargs="*")
+    au.add_argument("-a", default="fe7u.gba")
+    au.add_argument("-b", default="build/shift/s.gba")
+    au.add_argument("--fast", action="store_true", help="no memory wait states (see compare)")
+    au.add_argument("--channels", default="all,ds,psg",
+                    help="which recordings: all, ds (DirectSound), psg (CGB), comma-separated")
+    au.add_argument("--bursts", type=int, default=5, help="list the first N bursts of differences")
+    au.add_argument("--keep", action="store_true", help="keep the WAV files")
     s = sub.add_parser("sheet")
     s.add_argument("out")
     s.add_argument("cols", type=int)
@@ -433,7 +583,8 @@ def main():
     for rom in (args.a, args.b):
         if not Path(rom).exists():
             raise SystemExit(f"{rom} is missing")
-    ok = all([compare(s, args.a, args.b, args) for s in scripts])
+    run = audio if args.cmd == "audio" else compare
+    ok = all([run(s, args.a, args.b, args) for s in scripts])
     sys.exit(0 if ok else 1)
 
 

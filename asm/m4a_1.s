@@ -6,6 +6,9 @@
 
 	.text
 
+@ The NONMATCHING build uses the C version, src/m4a_1.c.
+.ifndef NONMATCHING
+
 	thumb_func_start umul3232H32
 umul3232H32:
 	adr r2, __umul3232H32
@@ -1722,3 +1725,5 @@ _081DDD90:
 	thumb_func_end ply_mod
 
 	.align 2, 0 @ Don't pad with nop.
+
+.endif @ NONMATCHING

@@ -379,6 +379,11 @@ $(NM_ROM): $(NM_ELF)
 
 $(NM_C_OBJS): $(wildcard asm/nonmatching/*.s)
 
+# The C mixer's loops are ARM code, run from IWRAM like the original mixer
+# (src/m4a_mixer.c).
+$(NM_DIR)/src/m4a_mixer.o: CC1 = $(AGBCC)/bin/agbcc_arm
+$(NM_DIR)/src/m4a_mixer.o: CFLAGS = -quiet -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -fomit-frame-pointer
+
 $(NM_DIR)/src/%.o: src/%.c
 	@mkdir -p $(@D)
 	$(CPP) $(CPPFLAGS) -DNONMATCHING=1 $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(NM_DIR)/src/$*.s

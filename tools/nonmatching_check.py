@@ -10,11 +10,15 @@ section its matching version didn't have (e.g. a new `.rodata` table in a
 module that had none) would be dropped silently and leave dangling
 references; this reads the map's "Discarded input sections" and lists
 every such section with a size.
+
+It also checks that the C mixer's loops (src/m4a_mixer.c, M4aMixFixed to
+M4aMixEnd), which m4aSoundInit copies to SoundMainRAM_Buffer, fit in it.
 """
 import re
 import sys
 from pathlib import Path
 
+MIXER_BUFFER = 0x400  # sizeof(SoundMainRAM_Buffer)
 IGNORED = {".ARM.attributes", ".comment", ".note.GNU-stack"}
 
 
@@ -29,6 +33,13 @@ def main():
     for sec, obj, size in bad:
         print(f"{elf}: {obj}({sec}), {size:#x} bytes, is not placed by the linker script "
               f"(add it to data/layout.txt)", file=sys.stderr)
+    syms = {name: int(addr, 16) for addr, name in
+            re.findall(r"^\s+0x([0-9a-f]+)\s+(M4aMixFixed|M4aMixEnd)$", text, re.M)}
+    mixer = MIXER_BUFFER
+    if len(syms) == 2 and not 0 <= syms["M4aMixEnd"] - syms["M4aMixFixed"] <= mixer:
+        print(f"{elf}: src/m4a_mixer.c's code is {syms['M4aMixEnd'] - syms['M4aMixFixed']:#x} "
+              f"bytes, more than SoundMainRAM_Buffer holds ({mixer:#x})", file=sys.stderr)
+        bad.append(None)
     sys.exit(1 if bad else 0)
 
 
