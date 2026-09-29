@@ -214,7 +214,8 @@ and `void-pointer-to-int-cast` categories for the current list):
 * **BIOS calls** (`include/gba/syscall.h`, `asm/libagb.s`): `CpuSet`,
   `CpuFastSet`, LZ77/RL decompression, `Div`, `Sqrt`, `ArcTan2`,
   `BgAffineSet`/`ObjAffineSet`, `SoftReset`, `VBlankIntrWait`... need C
-  versions.  DMA (`DmaCopy*`, `DmaFill*`, HBlank DMA for scanline effects)
+  versions (done: `platform/bios.c`, see `docs/port-platform.md`, which
+  also has the renderer for the picture).  DMA (`DmaCopy*`, `DmaFill*`)
   likewise.
 * **Interrupts and timing**: `irq.c` (VBlank/HBlank/serial handlers),
   code copied to IWRAM (`ramfunc.c`, `sub_...` routines run from RAM), the
