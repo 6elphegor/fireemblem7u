@@ -12,8 +12,8 @@ along), sound/**/*.s, and graphics/ (when a data/graphics.txt NAME equal to a
 label is renamed, its extracted files are renamed too).  tools/fe7u.cfg gets
 the new name for a renamed sub_XXXXXXXX.
 
-A rename is skipped (and reported) when NEW is already defined (a label in
-the assembly, a symbol of fe7u.elf, a symbols.ld or sound manifest name) or
+A rename is skipped (and reported) when NEW is already defined by the
+sources (an assembly label, a C definition, a symbols.ld or sound manifest name) or
 claimed by another line; lines whose OLD no longer occurs anywhere are
 already applied (or renamed on another branch) and are skipped silently.
 Afterwards: rm -rf build (make 3.81 misses same-second edits) and make.
@@ -63,21 +63,28 @@ def read_lists(paths):
     return pairs
 
 
+C_COMMENT = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
+C_FUNC = re.compile(r"^[A-Za-z_][\w \t\*]*?\b([A-Za-z_]\w*)\s*\([^;{]*?\)\s*\{", re.M | re.S)
+C_DATA = re.compile(r"^(?!typedef\b|extern\b|return\b)[A-Za-z_][\w \t\*]*?\b([A-Za-z_]\w*)\s*(?:\[[^\]\n]*\]\s*)*[=;]", re.M)
+
+
 def defined_names(texts):
+    """Names defined by the sources (not by a possibly stale build): assembly
+    labels and .set, symbols.ld, the sound manifest, and C file-scope
+    function and variable definitions."""
     names = set()
     for p, t in texts.items():
         if p.suffix == ".s":
             names.update(re.findall(r"^\s*(\w+):", t, re.M))
             names.update(re.findall(r"^\s*\.set\s+(\w+)\s*,", t, re.M))
+        elif p.suffix == ".c":
+            t = C_COMMENT.sub("", t)
+            names.update(C_FUNC.findall(t))
+            names.update(C_DATA.findall(t))
         elif p.name == "symbols.ld":
             names.update(re.findall(r"^\s*(\w+)\s*=", t, re.M))
         elif p.name == "manifest.txt":
             names.update(re.findall(r"^\s*(?:label|mplaytable|songtable)\s+\S+\s+(?:\S+\s+)?(\w+)\s*$", t, re.M))
-    if Path("fe7u.elf").exists():
-        out = subprocess.run(["arm-none-eabi-nm", "--defined-only", "fe7u.elf"], capture_output=True, text=True).stdout
-        names.update(l.split()[-1] for l in out.splitlines() if l.strip())
-    else:
-        print("note: no fe7u.elf; only assembly labels are checked for clashes", file=sys.stderr)
     return names
 
 
