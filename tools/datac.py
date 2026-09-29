@@ -118,6 +118,17 @@ class RomData:
                     self._elf.setdefault(a & ~1, (p[2], a & 1))
         return self._elf
 
+    def ram_syms(self):
+        if not hasattr(self, "_ram"):
+            out = subprocess.run(["nm", "-n", str(ROOT / "fe7u.elf")], capture_output=True, text=True).stdout
+            self._ram = []
+            for line in out.splitlines():
+                p = line.split()
+                if len(p) == 3 and p[1] in "AaBbDdCc" and 0x02000000 <= int(p[0], 16) < 0x04000000 and not p[2].startswith("$"):
+                    self._ram.append((int(p[0], 16), p[2]))
+            self._ram.sort()
+        return self._ram
+
     def word(self, addr):
         return _struct.unpack_from("<I", self.rom, addr - BASE)[0]
 
@@ -388,6 +399,11 @@ class Types:
 
 # ------------------------------------------------------------------ emitter
 
+def want_struct(f):
+    m = re.search(r"struct\s+(\w+)\s*$", " ".join(w for w in getattr(f, "pointee", "").split() if w not in QUALS))
+    return m[1] if m else None
+
+
 class Emitter:
     def __init__(self, rom, types, scalars=(), decls=None):
         self.rom, self.types, self.decls = rom, types, decls
@@ -408,20 +424,75 @@ class Emitter:
 
     def ptr(self, f, addr):
         val = self.rom.word(addr)
-        expr = self.rom.ptr_expr(addr, val, self.problems)
-        if val == 0 and addr not in self.rom.ptrs:
+        if addr in self.rom.ptrs:
+            sym, add = self.rom.ptrs[addr]
+        elif val == 0:
             return "0"
-        m = re.match(r"^\w+$", expr)
-        if m:
-            self.refs.setdefault(expr, f)
-            if expr in self.scalars and f.kind == "ptr":
-                return "&" + expr
-            if f.kind == "fn" and self.decls and expr in self.decls.sigs:
+        else:
+            loc = self.locate(val)
+            if loc is None:
+                self.problems.append(f"raw pointer {val:#010x} at {addr:#010x}")
+                return f"(void *) {val:#010x}  /* FIXME */"
+            sym, add = loc
+        if f.kind == "fn" and add == 1:
+            add = 0
+        return self.sym_expr(sym, add, f, addr)
+
+    def locate(self, val):
+        """(symbol, offset) for an address the assembly left raw."""
+        e = self.rom.elf().get(val & ~1)
+        if e:
+            return e[0], 0
+        n = self.rom.addr_names.get(val)
+        if n:
+            return n, 0
+        if 0x02000000 <= val < 0x04000000:
+            syms = self.rom.ram_syms()
+            k = bisect.bisect_right(syms, (val, "\uffff")) - 1
+            while k >= 0 and val - syms[k][0] < 0x10000:
+                a, n = syms[k]
+                if self.decls and self.decls.decl_field(n, self.types):
+                    return n, val - a
+                k -= 1
+        return None
+
+    def sym_expr(self, sym, add, f, addr):
+        self.refs.setdefault(sym, f)
+        if add == 0:
+            if sym in self.scalars and f.kind == "ptr":
+                return "&" + sym
+            if f.kind == "fn" and self.decls and sym in self.decls.sigs:
                 want = norm_sig(*f.sig)
-                if not any(sig_compatible(want, g) for g in self.decls.sigs[expr]):
-                    self.casts.append(expr)
-                    return "(void *) " + expr
-        return expr
+                if not any(sig_compatible(want, g) for g in self.decls.sigs[sym]):
+                    self.casts.append(sym)
+                    return "(void *) " + sym
+            return sym
+        fld = self.decls.decl_field(sym, self.types) if self.decls else None
+        suffix = self.descend(fld, add, want_struct(f)) if fld else None
+        if suffix is None:
+            self.problems.append(f"{sym} + {add:#x} at {addr:#010x}: no member there")
+            return f"(void *) &{sym}  /* FIXME: + {add:#x} */"
+        if fld.kind == "array" and fld.elem.size == 2 and re.search(r"Tm|Tilemap", sym) and re.fullmatch(r"\[\d+\]", suffix):
+            idx = int(suffix[1:-1])
+            return f"{sym} + TM_OFFSET({idx % 32}, {idx // 32})"
+        return f"&{sym}{suffix}"
+
+    def descend(self, f, off, want=None):
+        """The member path ([i], .name) of the byte at offset off of an object of type f;
+        stops at a struct named `want`."""
+        if f.kind == "array":
+            idx, rem = divmod(off, f.elem.size)
+            sub = self.descend(f.elem, rem, want)
+            return None if sub is None else f"[{idx}]{sub}"
+        if f.kind == "struct":
+            if off == 0 and f.struct == want:
+                return ""
+            for m in self.types.layout(f.struct)["fields"]:
+                if m.off <= off < m.off + m.size:
+                    sub = self.descend(m, off - m.off, want)
+                    return None if sub is None else f".{m.name}{sub}"
+            return None
+        return "" if off == 0 else None
 
     def value(self, f, addr):
         """(text, is_zero) of the value of type f at addr."""
@@ -548,6 +619,21 @@ class Decls:
                         break
         return seen
 
+    def decl_field(self, sym, types):
+        """The Field type a non-function extern declaration gives sym (None if none)."""
+        for p, t in self.decl.get(sym, []):
+            if "(" in t:
+                continue
+            m = re.match(r"extern\s+(?P<type>.*?)(?P<stars>[\s\*]*)\b" + re.escape(sym) + r"\s*(?P<dims>(?:\[[^\]]*\]\s*)*);$", " ".join(t.split()))
+            if not m:
+                continue
+            try:
+                dims = re.findall(r"\[([^\]]*)\]", m["dims"])
+                return types.field_from(m["type"], m["stars"], sym, [d or "0x10000" for d in dims], 0)
+            except Unsupported:
+                continue
+        return None
+
     def scalars_outside(self, skip):
         """Symbols declared as a single object (not array, not function)."""
         return {n for n, ds in self.decl.items() if n not in skip and ds and all("[" not in t and "(" not in t for _, t in ds)}
@@ -561,7 +647,7 @@ def fn_proto(sig, name):
     return f"{sig[0]} {name}({sig[1]});"
 
 
-TERMINATED = {"MenuItemDef"}   # arrays that end with an all-zero element
+TERMINATED = {"MenuItemDef", "StatScreenTextInfo"}   # arrays that end with an all-zero element
 
 
 def decl_type(spec, elem):
@@ -689,14 +775,14 @@ def append_to_header(h, lines):
     h.write_text(t)
 
 
-def report_refs(em, decls, path, hdr=None):
+def report_refs(em, decls, path, hdr=None, skip=()):
     """Symbols the emitted code refers to that `path` can't see declared;
     with `hdr`, declare them there (functions in the header of the module
     that defines them when it has one)."""
     cl = decls.closure(path)
     todo, includes = {}, set()
     for sym, f in sorted(em.refs.items()):
-        if decls.visible(sym, cl) or sym in em.scalars_here:
+        if decls.visible(sym, cl) or sym in skip:
             continue
         where = [str(p.relative_to(ROOT)) for p, _ in decls.decl.get(sym, [])] or ["-"]
         defs = decls.defn.get(sym, [])
@@ -755,7 +841,7 @@ def main():
         for c in sorted(set(em.casts)):
             print(f"cast: {c} does not match its declaration: {decls.sigs[c]}", file=sys.stderr)
         if cmd == "add":
-            report_refs(em, decls, path, hdr)
+            report_refs(em, decls, path, hdr, {o[0] for o in out})
     elif cmd == "decl":
         types = Types()
         d = Decls(types)
