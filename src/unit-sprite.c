@@ -510,6 +510,11 @@ void RefreshUnitSprites(void)
         if (unit->state & (US_HIDDEN | US_CONCEALED))
             continue;
 
+#if !PLATFORM_GBA
+        // (before the chapter's maps exist the GBA reads through NULL)
+        if (gBmMapUnit == NULL)
+            continue;
+#endif
         if (gBmMapUnit[unit->yPos][unit->xPos] == 0)
             continue;
 

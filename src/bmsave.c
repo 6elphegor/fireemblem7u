@@ -169,7 +169,14 @@ void WriteGameSave(int slot)
     ReadGlobalSaveInfo(&info);
 
     for (i = 0; i < UNIT_SAVE_AMOUNT_BLUE; i++)
+    {
+#if !PLATFORM_GBA
+        // (empty slots: the GBA takes a pid from the BIOS region)
+        if (gUnitArrayBlue[i].pCharacterData == NULL)
+            continue;
+#endif
         MetaSave_SetMetCharacter(UNIT_CHAR_ID(&gUnitArrayBlue[i]), &info);
+    }
 
     WriteGlobalSaveInfo(&info);
     WriteSupplyItems(dest->supplyItems);
@@ -267,8 +274,15 @@ void WriteGameSavePackedUnit(struct Unit * unit, void * sram_dest)
     int i;
     struct GameSavePackedUnit unitp;
 
+#if !PLATFORM_GBA
+    // (an empty slot: the GBA reads these through NULL, from the BIOS
+    // region, and then overwrites them below)
+    if (unit->pCharacterData != NULL)
+#endif
+    {
     unitp.pid = unit->pCharacterData->number;
     unitp.jid = unit->pClassData->number;
+    }
 
     if (unit->pCharacterData == NULL)
     {

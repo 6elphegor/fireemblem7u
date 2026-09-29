@@ -521,6 +521,12 @@ void EquipUnitItemSlot(struct Unit * unit, int itemSlot)
 
 bool IsItemEffectiveAgainst(u16 item, struct Unit * unit)
 {
+#if !PLATFORM_GBA
+    // (a forecast against no unit: the GBA reads a class from the BIOS
+    // region, which no effectiveness list names)
+    if (unit->pClassData == NULL)
+        return FALSE;
+#endif
     int classId = unit->pClassData->number;
     const u8 * effList = GetItemEffectiveness(item);
 

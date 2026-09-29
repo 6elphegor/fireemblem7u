@@ -30,6 +30,10 @@ struct ProcTutorialCursor
 };
 PROC_SIZE_CHECK(struct ProcTutorialCursor);
 
+// The event proc (struct EventProc) as its ASMCs see it: `locked` is its
+// `background` byte, unk_4D its unk_4D.  On a host the header is bigger, so
+// the two bytes are placed at EventProc's offsets.
+#if PLATFORM_GBA
 struct ProcEventMapLock
 {
     PROC_HEADER;
@@ -38,6 +42,16 @@ struct ProcEventMapLock
     /* 4C */ s8 locked;
     /* 4D */ u8 unk_4D;
 };
+#else
+struct ProcEventMapLock
+{
+    u8 hostPad[__builtin_offsetof(struct EventProc, background)];
+    s8 locked;
+    u8 unk_4D;
+};
+extern char event_map_lock_check_[
+    __builtin_offsetof(struct ProcEventMapLock, unk_4D) == __builtin_offsetof(struct EventProc, unk_4D) ? 1 : -1];
+#endif
 PROC_SIZE_CHECK(struct ProcEventMapLock);
 
 void UnsetKeyIgnoreMask(void);

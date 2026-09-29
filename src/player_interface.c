@@ -617,6 +617,13 @@ void PutUnitMapUiStatus(u16 * buffer, struct Unit * unit)
 
 void UnitMapUiUpdate(struct PlayerInterfaceProc * proc, struct Unit * unit)
 {
+#if !PLATFORM_GBA
+    // The box keeps updating for a frame or so after the cursor left the
+    // unit: the GBA then reads the NULL unit's fields from the BIOS region
+    if (unit == NULL)
+        return;
+#endif
+
     if ((proc->unitClock & 63) == 0)
     {
         if ((proc->unitClock & 64) != 0)
