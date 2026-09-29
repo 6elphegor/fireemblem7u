@@ -52,7 +52,7 @@ void ProcLightRuneAnim3_Loop(struct ProcBmFx * proc)
     struct VectorBmfx buf[13];
     int x, y;
 
-    memcpy(buf, Vectors_LightRune3, 0x34);
+    memcpy(buf, Vectors_LightRune3, sizeof(buf));
     proc->timer++;
 
     x = buf[proc->timer / 3].x;

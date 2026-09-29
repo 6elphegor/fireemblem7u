@@ -63,7 +63,7 @@ struct GlobalSaveInfo {
     /* 62 */ u8 last_game_save_id;
     /* 63 */ u8 last_suspend_slot;
 };
-GBA_SIZE_CHECK(struct GlobalSaveInfo, 0x64);
+SAVE_SIZE_CHECK(struct GlobalSaveInfo, 0x64);
 
 struct SaveBlockInfo {
     /* 00 */ u32 magic32;
@@ -73,7 +73,7 @@ struct SaveBlockInfo {
     /* 0A */ u16 size;
     /* 0C */ u32 checksum32;
 };
-GBA_SIZE_CHECK(struct SaveBlockInfo, 0x10);
+SAVE_SIZE_CHECK(struct SaveBlockInfo, 0x10);
 
 struct SramMain {
     struct GlobalSaveInfo head;
@@ -81,7 +81,7 @@ struct SramMain {
 
     /* Todo */
 };
-GBA_SIZE_CHECK(struct SramMain, 0xD4);
+SAVE_SIZE_CHECK(struct SramMain, 0xD4);
 
 extern struct SramMain * gSramMain;
 
@@ -121,35 +121,35 @@ struct GameRankSaveData {
 
     /* 17 */ u8 luckydog;
 };
-GBA_SIZE_CHECK(struct GameRankSaveData, 0x18);
+SAVE_SIZE_CHECK(struct GameRankSaveData, 0x18);
 
 struct GameRankSaveDataPacks {
     /* 00 */ struct GameRankSaveData pack[6];
     /* 90 */ u16 checksum;
     /* 92 */ u16 unk92;
 };
-GBA_SIZE_CHECK(struct GameRankSaveDataPacks, 0x94);
+SAVE_SIZE_CHECK(struct GameRankSaveDataPacks, 0x94);
 
 struct Fe6LinkSaveInfo {
     /* 00 */ u32 flags[8];
     /* 20 */ u16 value;
     /* 22 */ u16 checksum;
 };
-GBA_SIZE_CHECK(struct Fe6LinkSaveInfo, 0x24);
+SAVE_SIZE_CHECK(struct Fe6LinkSaveInfo, 0x24);
 
 struct SoundRoomSaveData {
     /* 00 */ u32 flags[8];
     /* 20 */ u16 checksum;
     /* 22 */ u16 unk22;
 };
-GBA_SIZE_CHECK(struct SoundRoomSaveData, 0x24);
+SAVE_SIZE_CHECK(struct SoundRoomSaveData, 0x24);
 
 struct LinkArenaSaveData2 {
     /* 00 */ u32 flags[4];
     /* 10 */ u16 checksum;
     /* 12 */ u16 unk12;
 };
-GBA_SIZE_CHECK(struct LinkArenaSaveData2, 0x14);
+SAVE_SIZE_CHECK(struct LinkArenaSaveData2, 0x14);
 
 #define SRAM_XMAP_SIZE 0xC00u
 #define SRAM_XMAP_ADDR (CART_SRAM + CART_SRAM_SIZE - SRAM_XMAP_SIZE)
@@ -248,7 +248,7 @@ struct PidStats
     u32 killer_pid      : 9;
     u32 : 0; // unused/padding (15 bits)
 };
-GBA_SIZE_CHECK(struct PidStats, 0x10);
+SAVE_SIZE_CHECK(struct PidStats, 0x10);
 
 #define BWL_ARRAY_NUM 0x46
 
@@ -257,7 +257,7 @@ struct ChapterStats {
              u16 chapter_turn  : 9;
              u16 chapter_time  : 16;
 };
-GBA_SIZE_CHECK(struct ChapterStats, 0x4);
+SAVE_SIZE_CHECK(struct ChapterStats, 0x4);
 
 #define WIN_ARRAY_NUM 0x30
 
@@ -350,7 +350,7 @@ struct GameSavePackedUnit {
     /* 15 */ u8 ranks[8];
     /* 1D */ u8 supports[7];
 } __attribute__((packed));
-GBA_SIZE_CHECK(struct GameSavePackedUnit, 0x24);
+SAVE_SIZE_CHECK(struct GameSavePackedUnit, 0x24);
 
 struct GameSaveBlock {
     /* 000 */ struct PlaySt playSt;
@@ -361,7 +361,7 @@ struct GameSaveBlock {
     /* D80 */ u8 permanentFlags[0xD88 - 0xD80];
     /* D88 */ u32 bonusClaimFlags;
 };
-GBA_SIZE_CHECK(struct GameSaveBlock, 0xD8C);
+SAVE_SIZE_CHECK(struct GameSaveBlock, 0xD8C);
 
 #define UNIT_SAVE_AMOUNT_RED 50
 #define UNIT_SAVE_AMOUNT_GREEN 10
@@ -405,7 +405,7 @@ struct SuspendSavePackedUnit {
     /* 31 */ u8 unk31;
     /* 32 */ u16 ai3And4;
 };
-GBA_SIZE_CHECK(struct SuspendSavePackedUnit, 0x34);
+SAVE_SIZE_CHECK(struct SuspendSavePackedUnit, 0x34);
 
 struct SuspendSaveBlock {
     /* 0000 */ struct PlaySt playSt;
@@ -421,7 +421,7 @@ struct SuspendSaveBlock {
     /* 1F1C */ u8 permanentFlags[8];
     /* 1F24 */ u8 chapterFlags[8];
 };
-GBA_SIZE_CHECK(struct SuspendSaveBlock, 0x1F2C);
+GBA_SIZE_CHECK(struct SuspendSaveBlock, 0x1F2C); // contains a struct Action (a pointer)
 
 extern u32 gBonusContentClaimFlags;
 extern u8 gSuspendSaveIdOffset;
@@ -477,21 +477,21 @@ struct MultiArenaRankingEnt {
     /*    */ u32 points : 27;
     /* 04 */ char name[0xC];
 };
-GBA_SIZE_CHECK(struct MultiArenaRankingEnt, 0x10);
+SAVE_SIZE_CHECK(struct MultiArenaRankingEnt, 0x10);
 
 struct MultiArenaSaveTeam {
     /* 00 */ char name[MULTIARENA_TEAMNAME_SIZE];
     /* 0A */ u8 unk_0A[0x14 - 0x0A];
     /* 14 */ u8 units[MULTIARENA_UNITS_PER_TEAM][MULTIARENA_PACKEDUNIT_SIZE];
 };
-GBA_SIZE_CHECK(struct MultiArenaSaveTeam, 0xC8);
+SAVE_SIZE_CHECK(struct MultiArenaSaveTeam, 0xC8);
 
 struct MultiArenaSaveBlock {
     /* 000 */ struct MultiArenaSaveTeam teams[MULTIARENA_MAX_TEAMS];
     /* 7D0 */ u16 config;
     /* 7D4 */ struct MultiArenaRankingEnt rankings[MULTIARENA_MAX_RANKINGS];
 };
-GBA_SIZE_CHECK(struct MultiArenaSaveBlock, 0x874);
+SAVE_SIZE_CHECK(struct MultiArenaSaveBlock, 0x874);
 
 extern struct MultiArenaRankingEnt const gInitialMultiArenaRankings[MULTIARENA_MAX_RANKINGS];
 extern struct MultiArenaSaveTeam gMultiArenaSaveTeamBufA;

@@ -694,6 +694,14 @@ Both targets must stay at 0 errors.  For new and changed code:
   the original falls off the end, the plain version returns what r0 held
   in the ROM (read it in `build/src/MODULE.s`) with a comment.
 * `char` is unsigned on the GBA; a port compiles with `-funsigned-char`.
+* Layout checks: put `GBA_SIZE_CHECK(struct X, 0x24);` after every struct that
+  is laid out in ROM data or save data (its GBA size, checked only with
+  `PLATFORM_GBA`), `SAVE_SIZE_CHECK` for one written to SRAM as it is (no
+  pointers; checked on the host too) and `PROC_SIZE_CHECK(struct X);` after
+  every struct that starts with `PROC_HEADER` (must fit `struct Proc`, whose
+  host slot is 0xC0 bytes).  `make` does not track header dependencies:
+  `rm -rf build/src` after adding a check to a header.  A copy of a struct
+  that holds a pointer uses `sizeof`, not the GBA byte count.
 * The warnings in `docs/port-notes.md` are known; a change shouldn't add
   new ones in the pointer/integer cast categories.
 

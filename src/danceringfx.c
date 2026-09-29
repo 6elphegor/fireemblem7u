@@ -56,7 +56,7 @@ void ProcDanceAnim_Loop(struct ProcBmFx * proc)
     struct VectorBmfx buf[14];
     int x, y;
 
-    memcpy(buf, Vectors_DanceringFx, 0x38);
+    memcpy(buf, Vectors_DanceringFx, sizeof(buf));
     proc->timer++;
 
     x = buf[proc->timer / 2].x;

@@ -30,7 +30,7 @@ struct Trap {
     /* 03 */ u8 extra; // extra data (meaning varies based on trap type)
     /* 04 */ s8 data[4]; // more extra data (see above enum for per trap type entry allocations)
 };
-GBA_SIZE_CHECK(struct Trap, 0x8);
+SAVE_SIZE_CHECK(struct Trap, 0x8);
 
 #define TRAP_INDEX(aTrap) ((aTrap) - GetTrap(0))
 

@@ -128,7 +128,7 @@ struct PlaySt {
     u32 unk43_4:5; // unk
     u8  unk44[0x48 - 0x44];
 };
-GBA_SIZE_CHECK(struct PlaySt, 0x48);
+SAVE_SIZE_CHECK(struct PlaySt, 0x48);
 
 extern struct PlaySt gPlaySt;
 

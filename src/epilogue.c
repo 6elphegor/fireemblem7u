@@ -139,7 +139,7 @@ void InitEpilogueEntries(void)
     struct EpilogueUnitInfo const * info = gEpilogueUnitInfo;
     struct EpilogueEnt * ent = gpEpilogueEnts;
 
-    CpuFill16(0, ent, 0xB4);
+    CpuFill16(0, ent, 15 * sizeof(struct EpilogueEnt)); // 0xB4 on the GBA (EpilogueEnt has a pointer)
 
     gEpilogueEntCount = 0;
 

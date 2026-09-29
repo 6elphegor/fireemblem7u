@@ -52,7 +52,7 @@ void sub_08020B84(struct ProcBmFx * proc)
     struct VectorBmfx buf[14];
     int x, y;
 
-    memcpy(buf, Vectors_Unk_081C3C30, 0x38);
+    memcpy(buf, Vectors_Unk_081C3C30, sizeof(buf));
     proc->timer++;
 
     x = buf[proc->timer / 3].x;

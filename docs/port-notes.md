@@ -225,17 +225,125 @@ and `void-pointer-to-int-cast` categories for the current list):
   memory on the GBA; on a host they are separate variables.  Code that
   relies on the sharing (one screen reading what another left) would break;
   none is known.
-* The proc pool (`struct Proc`, 0x6C bytes on the GBA, `PROC_COUNT` 64):
+* **The proc pool** (`struct Proc`, 0x6C bytes on the GBA, `PROC_COUNT` 64):
   every proc struct is allocated in a `struct Proc` slot, so each must fit
-  in `sizeof(struct Proc)`; with 8-byte pointers the header grows from 0x29
+  in `sizeof(struct Proc)`.  With 8-byte pointers the header grows from 0x29
   to 0x4D bytes and the fixed-size fields after it (`STRUCT_PAD(from, to)`
-  gives the GBA gap, not an offset) push some procs past the slot.  A
-  static check per proc struct (or a bigger slot) is needed.
-* Offsets and sizes written as numbers: `/* 2C */` comments and
-  `STRUCT_PAD` describe the GBA layout only; byte copies with literal sizes
-  (`CpuFastCopy(src, dst, 0x400)`, 447 copy/fill calls, 84 with `sizeof`)
-  are mostly palettes and tile data, but any of them on a structure with a
-  pointer is wrong on a host.  To audit.
+  gives the GBA gap, not an offset) push procs past the slot.  Done: all 133
+  distinct proc structs (136 definitions, everything that uses `PROC_HEADER`)
+  have a `PROC_SIZE_CHECK(struct X);` after them (proc.h), a compile-time
+  error if the struct is bigger than `struct Proc`, on the GBA and on the
+  host.  Measured with clang on LP64 (x86_64-linux-gnu and arm64-apple-macosx
+  agree): `struct Proc` is 0x98 bytes without padding, the largest procs are
+  `ProcEkrDragon` and `ProcPrepMenu` (0xB8), then `ProcEkrDragonFx` and
+  `ProcNinianAppear` (0xA8), the `ProcEfx*` family (0xA0).  On the host
+  `struct Proc` ends with `u8 hostPad[0x28]`, so a slot is 0xC0 bytes
+  (`sProcArray` is `PROC_COUNT` of them; a host defines it, `symbols.ld`
+  only does on the GBA).  On the GBA nothing changes (`PLATFORM_GBA`).  A new
+  proc that doesn't fit stops the host build (or, if the GBA slot is the
+  problem, the GBA build): raise `hostPad`.
+* **Size checks.**  `GBA_SIZE_CHECK(struct X, 0x24);` (include/gba/types.h)
+  follows the definition of every structure that is laid out in ROM data or
+  save data, the m4a and hardware structures, and a few RAM ones assumed by
+  offset (`Unit`, `BattleUnit`, `BmSt`, `PlaySt`, `Proc`): 152 checks, sizes
+  taken from the GBA build (ROM table strides).  Active only with
+  `PLATFORM_GBA`: an edit that changes a GBA layout stops the GBA build.
+  `SAVE_SIZE_CHECK(struct X, N);` is the same but active everywhere, for
+  structures written to SRAM as they are; all 18 pass on both host targets,
+  so bit-fields and `__attribute__((packed))` lay out the same in clang
+  (see "Save data").  The macro is an `extern char [cond ? 1 : -1]`
+  declaration: C89, agbcc and clang, no code, may repeat.  Note that
+  `make` does not track header dependencies: after adding a check to a
+  header, `rm -rf build/src` to see it fail.
+* **Offsets and sizes written as numbers**: `/* 2C */` comments and
+  `STRUCT_PAD` describe the GBA layout only.  The GBA layouts of ROM tables
+  are what the size checks pin; whether the *host* layout of a table struct
+  matches is the data conversion's business (port-data.md), not the code's.
+
+### Copies with literal sizes
+
+Audit of every `CpuCopy16/32`, `CpuFastCopy`, `CpuFill16/32`,
+`CpuFastFill(16)`, `CpuSet`, `CpuFastSet`, `CPU_FILL`, `DmaFill32`,
+`memcpy`, `memset` call in `src/` (tools: a call scanner over `src/*.c`
+and `src/data/*.c`; 401 hits, 12 of them macro definitions and prototypes,
+so 389 calls).  93 of the 389 have a `sizeof` size, 203 a plain number, 93
+a variable, a count times a size or a named constant (`PLTT_SIZE`,
+`CHR_SIZE`).  A copy is wrong on a host only if the memory holds a pointer
+or a struct that contains one: the classification is by what the
+source and destination hold.
+
+| Class | Calls | Verdict |
+|---|---|---|
+| palettes, tile maps, character data, OAM, VRAM/PLTT/OAM addresses, BG buffers (`gPal`, `gBg0Tm`, `PAL_OBJ(..)`, `(void *)0x06008000`, `gEfxPal`, `sOamHi.buf` x 8, ...) | 270 | fine as is |
+| other data with no pointers: `sizeof` of the object's own type (`Unit`, `PlaySt`, `BmSt`, `Trap` lists, save-block chunks), byte and halfword tables (`gArenaBaseWeapons`, rank thresholds, `sFactionUnitCountLut`, sio title strings), bit flag arrays (`soundroom` flags, `unitFlags`), the bonus claim blob (`0x284` bytes: 32 `BonusClaimEnt` of 0x14 and 4 more), `SupportScreenUnit` (0xC00, bytes only), `PrepScreenItemListEnt` (`0x190` words, u8/u8/u16), VectorBmfx tables | 114 | fine as is (a `sizeof` follows the host type; the literal ones have no pointers) |
+| struct with a pointer, literal size | 1 | fixed |
+| literal size of a pointer-free struct or array where `sizeof` is clearer | 4 | changed to `sizeof` (same bytes) |
+
+Fixed:
+
+| Where | Was | Now | Why |
+|---|---|---|---|
+| epilogue.c `InitEpilogueEntries` | `CpuFill16(0, ent, 0xB4)` | `15 * sizeof(struct EpilogueEnt)` | `EpilogueEnt` has an `info` pointer: 0xC bytes on the GBA, 0x10 on the host |
+| bmsave-lib.c `LoadRankData` | `CpuFill16(0, buf, 0x18)` | `sizeof(struct GameRankSaveData)` | tidy, same on both |
+| danceringfx.c, lightrunefx.c, bmfx_08020AD0.c | `memcpy(buf, Vectors_.., 0x38/0x34)` | `sizeof(buf)` | 14 / 13 `VectorBmfx` (2 x s16) |
+
+The build is byte-identical (the compiler folds the products).  Left, and
+worth knowing: `main.c:16` clears IWRAM (`0x7F80` from `IWRAM_START`) and
+`irq.c:15`/`ramfunc.c:23` copy code to RAM: platform layer.  `oam.c`
+multiplies a count by 8 (an `OamData`, no pointers).  The pointer-bearing
+tables that are copied whole are copied by `sizeof` of their own arrays
+(`opinfo.c:714` `hack.hack_2d`, `sio_bat.c` `hack`).  Copies of the RAM
+buffers whose *address* is a literal (`gpEpilogueEnts`, `gpBonusClaimData`,
+`sSupportScreenUnits`, section 4 above) need those buffers allocated on the
+host with the sizes above (15 x `EpilogueEnt`, 0x284, 0xC00).
+
+### Save data
+
+`bmsave*.c`/`save_core.c` write RAM structures to SRAM byte for byte with
+`WriteAndVerifySramFast(&obj, dest, sizeof(obj))`, `WriteSramFast(...)` and
+`ReadSramFast(...)`, where `dest` is `gSramMain` (`CART_SRAM`, 0x0E000000,
+`CART_SRAM_SIZE` 0x8000) plus a struct member or a hard-coded offset
+(`GetSaveWriteAddr`: 0x3F2C, 0x4CB8, 0x5A44, 0x00D4, 0x2000, 0x67D0; the
+extra-map block at the end; the misc data at `SRAM_OFFSET_*`).  Findings:
+
+* **Layout.**  `GlobalSaveInfo`, `SaveBlockInfo`, `PlaySt`, `Trap`,
+  `GameSavePackedUnit` (packed), `SuspendSavePackedUnit`, `GameSaveBlock`,
+  `GameRank*`, `Fe6LinkSaveInfo`, `SoundRoomSaveData`, `LinkArenaSaveData2`,
+  `PidStats`, `ChapterStats`, `MultiArena*` contain no pointers and
+  `SAVE_SIZE_CHECK` proves clang gives them the GBA size on both host
+  targets (bit-fields included).  The chunk positions stored in
+  `SaveBlockInfo.offset` are offsets from the start of SRAM, so they are
+  portable.  Units are not written as `struct Unit` (which has pointers)
+  but encoded field by field into the packed formats
+  (`WriteGameSavePackedUnit`, `EncodeSuspendSavePackedUnit`), so no pointer
+  reaches the save.
+* **One exception: `struct Action`** (0x1C bytes, `action.h`) is written raw
+  into the suspend save (`dest->action`, bmsave.c `WriteSuspendSave` /
+  `ReadSuspendSave`), and its last member is a pointer, `battle_scr`
+  (a `BattleHit *` into the battle hit array, set for the duration of a
+  battle or scripted fight).  On a host `sizeof(struct Action)` is 0x20, so
+  a raw write would shift everything after it in `SuspendSaveBlock`
+  (`blueUnits` at 0x64 and on), and the saved pointer is meaningless in
+  the next run.  A host must serialize `Action` explicitly (fields before
+  `battle_scr` as they are, `battle_scr` as an index into the hit array or
+  a zero), or keep the SRAM copy as `u8 action[0x1C]` and convert.
+  `GBA_SIZE_CHECK` (not `SAVE_SIZE_CHECK`) guards `Action` and
+  `SuspendSaveBlock` for that reason.
+* **The SRAM itself.**  `gSramMain` is initialized with the integer address
+  0x0E000000 (`save_core.c`); the host needs a 32 KiB buffer, loaded from and
+  written to a file, at that variable, and `SRAM_XMAP_ADDR` (end of SRAM)
+  computed from it.  `agb-sram.c` copies its own Thumb code to RAM
+  (`SetSramFastFunc`) and reads/writes byte by byte with `REG_WAITCNT`
+  tweaks: replace the whole file by `memcpy` on the buffer (plus a flush to
+  the file after each `Write*`); `VerifySramFast` returns the address of the
+  first mismatch, 0 if equal.  `SramInit` probes the SRAM with a test
+  pattern at `gSramMain + 0x73B8`.
+* **Checksums** (`Checksum16`, `SramChecksum32`) read halfwords and words
+  in place, so they are little-endian and unchanged; they cover the same
+  bytes as long as the chunks have the GBA sizes above.
+* **Nothing else needs a redesign**: no save structure holds a code pointer
+  or a RAM address except `Action.battle_scr`.  A save file from the GBA
+  (`.sav`) then loads unchanged, provided `Action` is converted.
 
 ## 5. Original bugs the warnings revealed
 

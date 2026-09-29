@@ -16,6 +16,11 @@
 #define GBA_SIZE_CHECK(type, size) extern char gba_size_check_[1]
 #endif
 
+// SAVE_SIZE_CHECK: the same for a structure that is written to SRAM as it is
+// (no pointers in it), so it must have this size on every platform.  Active
+// everywhere.
+#define SAVE_SIZE_CHECK(type, size) extern char save_size_check_[(sizeof(type) == (size)) ? 1 : -1]
+
 typedef uint8_t   u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
