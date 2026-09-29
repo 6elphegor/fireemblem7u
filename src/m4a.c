@@ -58,7 +58,15 @@ void m4aSoundInit(void)
 {
     s32 i;
 
+    // The mixer runs from IWRAM.
+#if NONMATCHING
+#if PLATFORM_GBA
+    // The C mixer's loops (src/m4a_mixer.c, ARM code; see there).
+    CpuCopy32((void *)M4aMixFixed, SoundMainRAM_Buffer, sizeof(SoundMainRAM_Buffer));
+#endif
+#else
     CpuCopy32((void *)((s32)SoundMainRAM & ~1), SoundMainRAM_Buffer, sizeof(SoundMainRAM_Buffer));
+#endif
 
     SoundInit(&gSoundInfo);
     MPlayExtender(gCgbChans);
@@ -329,25 +337,25 @@ void SoundInit(struct SoundInfo *soundInfo)
                    | SOUND_ALL_MIX_FULL;
     REG_SOUNDBIAS_H = (REG_SOUNDBIAS_H & 0x3F) | 0x40;
 
-    REG_DMA1SAD = (s32)soundInfo->pcmBuffer;
-    REG_DMA1DAD = (s32)&REG_FIFO_A;
-    REG_DMA2SAD = (s32)soundInfo->pcmBuffer + PCM_DMA_BUF_SIZE;
-    REG_DMA2DAD = (s32)&REG_FIFO_B;
+    REG_DMA1SAD = (intptr_t)soundInfo->pcmBuffer;
+    REG_DMA1DAD = (intptr_t)&REG_FIFO_A;
+    REG_DMA2SAD = (intptr_t)soundInfo->pcmBuffer + PCM_DMA_BUF_SIZE;
+    REG_DMA2DAD = (intptr_t)&REG_FIFO_B;
 
     SOUND_INFO_PTR = soundInfo;
     CpuFill32(0, soundInfo, sizeof(struct SoundInfo));
 
     soundInfo->maxChans = 8;
     soundInfo->masterVolume = 15;
-    soundInfo->plynote = (u32)ply_note;
+    soundInfo->plynote = ply_note;
     soundInfo->CgbSound = DummyFunc;
     soundInfo->CgbOscOff = (void (*)(u8))DummyFunc;
     soundInfo->MidiKeyToCgbFreq = (u32 (*)(u8, u8, u8))DummyFunc;
-    soundInfo->ExtVolPit = (u32)DummyFunc;
+    soundInfo->ExtVolPit = DummyFunc;
 
     MPlayJumpTableCopy(gMPlayJumpTable);
 
-    soundInfo->MPlayJumpTable = (u32)gMPlayJumpTable;
+    soundInfo->MPlayJumpTable = gMPlayJumpTable;
 
     SampleFreqSet(SOUND_MODE_FREQ_13379);
 
@@ -462,7 +470,7 @@ void SoundClear(void)
     {
         ((struct SoundChannel *)chan)->status = 0;
         i--;
-        chan = (void *)((s32)chan + sizeof(struct SoundChannel));
+        chan = (void *)((intptr_t)chan + sizeof(struct SoundChannel));
     }
 
     chan = soundInfo->cgbChans;
@@ -476,7 +484,7 @@ void SoundClear(void)
             soundInfo->CgbOscOff(i);
             ((struct CgbChannel *)chan)->sf = 0;
             i++;
-            chan = (void *)((s32)chan + sizeof(struct CgbChannel));
+            chan = (void *)((intptr_t)chan + sizeof(struct CgbChannel));
         }
     }
 
@@ -536,7 +544,19 @@ void MPlayOpen(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
 
     soundInfo->ident++;
 
+#if NONMATCHING
+    {
+        // Clear64byte (SoundMainBTM) clears the part of a track before
+        // cmdPtr, which is all of a MusicPlayerInfo only on the GBA.
+        u8 *p = (u8 *)mplayInfo;
+        u32 n;
+
+        for (n = 0; n < sizeof(*mplayInfo); n++)
+            p[n] = 0;
+    }
+#else
     Clear64byte(mplayInfo);
+#endif
 
     mplayInfo->tracks = tracks;
     mplayInfo->trackCount = trackCount;
@@ -556,8 +576,8 @@ void MPlayOpen(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
         soundInfo->func = 0;
     }
 
-    soundInfo->intp = (u32)mplayInfo;
-    soundInfo->func = (u32)MPlayMain;
+    soundInfo->intp = mplayInfo;
+    soundInfo->func = MPlayMain;
     soundInfo->ident = ID_NUMBER;
     mplayInfo->ident = ID_NUMBER;
 }
@@ -921,17 +941,17 @@ void CgbSound(void)
                     *nrx0ptr = channels->sw;
                     // fallthrough
                 case 2:
-                    *nrx1ptr = ((u32)channels->wp << 6) + channels->le;
+                    *nrx1ptr = ((uintptr_t)channels->wp << 6) + channels->le;
                     goto loc_82E0E30;
                 case 3:
-                    if ((u32)channels->wp != channels->cp)
+                    if (channels->wp != channels->cp)
                     {
                         *nrx0ptr = 0x40;
                         REG_WAVE_RAM0 = channels->wp[0];
                         REG_WAVE_RAM1 = channels->wp[1];
                         REG_WAVE_RAM2 = channels->wp[2];
                         REG_WAVE_RAM3 = channels->wp[3];
-                        channels->cp = (u32)channels->wp;
+                        channels->cp = channels->wp;
                     }
                     *nrx0ptr = 0;
                     *nrx1ptr = channels->le;
@@ -942,7 +962,7 @@ void CgbSound(void)
                     break;
                 default:
                     *nrx1ptr = channels->le;
-                    *nrx3ptr = (u32)channels->wp << 3;
+                    *nrx3ptr = (uintptr_t)channels->wp << 3;
                 loc_82E0E30:
                     evAdd = channels->at + 8;
                     if (channels->le)
@@ -1481,6 +1501,9 @@ void ply_xxx(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 
 void ply_xwave(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 {
+#if NONMATCHING
+    track->tone.wav = (struct WaveData *)M4aReadAddr(track->cmdPtr);
+#else
     u32 wav;
 
     READ_XCMD_BYTE(wav, 0) // UB: uninitialized variable
@@ -1489,6 +1512,7 @@ void ply_xwave(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
     READ_XCMD_BYTE(wav, 3)
 
     track->tone.wav = (struct WaveData *)wav;
+#endif
     track->cmdPtr += 4;
 }
 

@@ -172,12 +172,23 @@ and `void-pointer-to-int-cast` categories for the current list):
   anime.c:193,197,198,277,280,292; banim-efxutils.c:648;
   banim-mainutils.c:4.  The battle animation scripts' `0x86NNDDDD SHEET OAM`
   frames (`banim/`) have the same problem inside compressed data.
-* **m4a sound driver** (m4a.c:61,70,156,169,271,332-335,342,346,350,465,
-  479,559,560,924,927,934,945,1491; `struct SoundInfo.func/intp/
-  MPlayJumpTable/plynote/ExtVolPit`, `CgbChannel.cp` are `u32`): the
-  structures are shared with `asm/m4a_1.s` and the GBA's sound hardware.
-  A port replaces the mixer (or ports m4a_1.s to C) and can then fix the
-  types.
+* **m4a sound driver**: done.  The NONMATCHING build uses the engine in
+  C (`src/m4a_1.c`: `SoundMain`, the channel envelopes, `MPlayMain`, every
+  `ply_*` command, notes, CGB channels; `src/m4a_mixer.c`: the mixer's
+  loops, including reverb), with typed fields (`SoundInfo.func/intp/
+  MPlayJumpTable/plynote/ExtVolPit`, `CgbChannel.wp/cp/tp/pp/np`,
+  `SoundChannel.cp/pp/np` are pointers now) and no byte offsets; the
+  matching build still assembles `asm/m4a_1.s`.  Stored addresses in track
+  data go through `M4aReadAddr` (port-data.md, "Music and text").  What
+  a host still needs, from the platform layer: the DirectSound FIFO/DMA
+  (the mixer writes 8-bit samples into `gSoundInfo.pcmBuffer`, right half
+  then left half, `pcmSamplesPerVBlank` per frame at `pcmFreq`; a host can
+  read the part SoundMain just mixed, as `tools/emutest.c` does, instead of
+  emulating timer 0 and DMA 1/2), the CGB sound registers (`CgbSound` in
+  `src/m4a.c` writes `REG_NRxx` and wave RAM), `m4aSoundVSync`'s DMA
+  restart, and `M4aHostRomAddr`.  On the GBA the loops run from IWRAM
+  (`SoundMainRAM_Buffer`, 0x400 bytes, which they almost fill); a host
+  calls them in place (`MIXER()` in `src/m4a_1.c`).
 * **SRAM access** (agb-sram.c:32,45,47,53,57,59,65): copies its own Thumb
   code to RAM and calls it (`+ 1` for the Thumb bit).  Replaced by a save
   file layer.

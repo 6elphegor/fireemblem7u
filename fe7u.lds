@@ -299,6 +299,8 @@ SECTIONS
         build/src/opanim_scanline.o(.text);
         build/src/opanim.o(.text);
         build/asm/m4a_1.o(.text);
+        build/src/m4a_1.o(.text);
+        build/src/m4a_mixer.o(.text);
         build/src/m4a.o(.text);
         build/asm/libagb.o(.text);
         build/src/agb-sram.o(.text);
