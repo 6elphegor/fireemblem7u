@@ -1246,3 +1246,9 @@ const struct ProcCmd ProcScr_ShopSellInit[] = {
     PROC_REPEAT(InitShopSellStatus),
     PROC_END,
 };
+
+// No PROC_END: the script ends at gShopState and never runs off.
+SECTION(".rodata.08CE7290")
+const struct ProcCmd ProcScr_ShopDrawHand[] = {
+    PROC_REPEAT(_DisplayShopUiArrows),
+};

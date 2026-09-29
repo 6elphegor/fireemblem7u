@@ -26,7 +26,7 @@ struct SioProc85AA954 {
 };
 
 extern u16 * CONST_DATA PalArray_SolidColors[];
-extern struct ProcCmd CONST_DATA ProcScr_085AA83C[];
+extern const struct ProcCmd ProcScr_085AA83C[];
 extern struct ProcCmd ProcScr_MuDeathFade[];
 extern struct ProcCmd ProcScr_MuRestorePalInfo[];
 
@@ -303,5 +303,12 @@ SECTION(".rodata.08B9A380")
 const struct ProcCmd ProcScr_LAButtonSpriteDraw[] = {
     PROC_SLEEP(0),
     PROC_REPEAT(LAButtonSprites_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A268")
+const struct ProcCmd ProcScr_085AA83C[] = {
+    PROC_SLEEP(17),
+    PROC_CALL(sub_080476C8),
     PROC_END,
 };

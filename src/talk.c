@@ -2279,3 +2279,13 @@ const struct ProcCmd gProcScr_TalkBubbleOpen[] = {
     PROC_REPEAT(TalkBubbleOpen_OnIdle),
     PROC_END,
 };
+
+// gProcScr_TalkFaceMove (talk.h) is this script without its first command.
+SECTION(".rodata.08B90A04")
+const struct ProcCmd gProcScr_TalkLock[] = {
+    PROC_BLOCK,
+    PROC_SLEEP(1),
+    PROC_CALL(TalkFaceMove_OnInit),
+    PROC_REPEAT(TalkFaceMove_OnIdle),
+    PROC_END,
+};

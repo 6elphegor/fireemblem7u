@@ -208,8 +208,8 @@ extern struct ProcCmd gUnk_08B90980[];
 extern struct TalkSt * CONST_DATA sTalkSt;
 extern const struct ProcCmd gProcScr_TalkSkipListener[];
 extern const struct ProcCmd ProcScr_Talk[];
-extern struct ProcCmd gProcScr_TalkLock[];
-extern struct ProcCmd gProcScr_TalkFaceMove[];
+extern const struct ProcCmd gProcScr_TalkLock[];
+#define gProcScr_TalkFaceMove (gProcScr_TalkLock + 1)
 extern const struct ProcCmd gUnk_08BFFBDC[];
 extern const struct ProcCmd gProcScr_TalkWaitForInput[];
 extern u16 const * CONST_DATA gUnk_08B90A8C[];

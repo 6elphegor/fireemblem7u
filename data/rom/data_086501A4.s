@@ -2740,20 +2740,6 @@ TextGlyphs_Special:
 sTalkSt:
 	.incbin "baserom.gba", 0xb909b8, 0x4
 
-	.section .rodata.08B90A04, "a"
-
-	.global gProcScr_TalkLock
-gProcScr_TalkLock:
-	.incbin "baserom.gba", 0xb90a04, 0x8
-
-	.global gProcScr_TalkFaceMove
-gProcScr_TalkFaceMove:
-	.incbin "baserom.gba", 0xb90a0c, 0xc
-	.4byte TalkFaceMove_OnInit
-	.incbin "baserom.gba", 0xb90a1c, 0x4
-	.4byte TalkFaceMove_OnIdle
-	.incbin "baserom.gba", 0xb90a24, 0x8
-
 	.section .rodata.08B90A74, "a"
 
 	.global gUnk_08B90A74
@@ -6049,11 +6035,7 @@ PalArray_SolidColors:
 	.4byte Pal_AllBlue
 	.4byte Pal_AllYellow
 
-	.global ProcScr_085AA83C
-ProcScr_085AA83C:
-	.incbin "baserom.gba", 0xb9a268, 0xc
-	.4byte sub_080476C8
-	.incbin "baserom.gba", 0xb9a278, 0x8
+	.section .rodata.08B9A280, "a"
 
 	.global gUnknown_085AA854
 gUnknown_085AA854:

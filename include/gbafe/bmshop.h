@@ -83,7 +83,7 @@ extern const struct ProcCmd ProcScr_ShopBuyInit[];
 extern const struct ProcCmd ProcScr_ShopSellInit[];
 extern u16 CONST_DATA Sprite_ShopGoldBox[];
 extern const struct ProcCmd gProcScr_GoldBox[];
-extern struct ProcCmd CONST_DATA ProcScr_ShopDrawHand[];
+extern const struct ProcCmd ProcScr_ShopDrawHand[];
 extern struct ShopState * CONST_DATA gShopState;
 
 extern u8 Tsa_ShopWindows[];

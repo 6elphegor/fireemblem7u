@@ -143,7 +143,8 @@ def build_rom_index():
         for line in path.read_text().splitlines():
             s = line.strip()
             if s.startswith(".section"):
-                pos, pending = None, []
+                m = re.match(r"\.section \.rodata\.([0-9A-F]{8})", s)
+                pos, pending = (int(m[1], 16) if m else None), []
             elif s.startswith(".incbin"):
                 m = re.match(r'\.incbin "baserom.gba", (0x[0-9a-f]+|\d+), (0x[0-9a-f]+|\d+)', s)
                 if m:

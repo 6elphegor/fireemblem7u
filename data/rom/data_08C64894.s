@@ -6552,16 +6552,11 @@ gShopPortraitLut:
 Sprite_ShopGoldBox:
 	.incbin "baserom.gba", 0xce7248, 0x38
 
-	.section .rodata.08CE7290, "a"
-
-	.global ProcScr_ShopDrawHand
-ProcScr_ShopDrawHand:
-	.incbin "baserom.gba", 0xce7290, 0x4
-	.4byte _DisplayShopUiArrows
+	.section .rodata.08CE7298, "a"
 
 	.global gShopState
 gShopState:
-	.4byte sShopState
+	.incbin "baserom.gba", 0xce7298, 0x4
 
 	.section .rodata.08CE750C, "a"
 
