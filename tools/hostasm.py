@@ -104,10 +104,13 @@ def convert(lines, macho, stream_words):
 
     section = '__DATA,__const' if macho else '.rodata'
     out = []
+    here = set()   # labels defined at the current position
     for line in lines:
         s = line.strip()
         if not s:
             continue
+        if not re.match(r'^([A-Za-z_.$][\w.$]*):\s*$', s) and not s.startswith(('.global', '.globl')):
+            here = set()
         m = re.match(r'^\.section\s+([^\s,]+)', s)
         if m:
             out.append('\t.section %s' % section)
@@ -119,7 +122,11 @@ def convert(lines, macho, stream_words):
             continue
         m = re.match(r'^([A-Za-z_.$][\w.$]*):(.*)$', s)
         if m:
-            out.append('%s:' % sym(m.group(1)))
+            # GNU as accepts a label defined twice at the same place (some
+            # generated files repeat them); the host assemblers do not
+            if m.group(1) not in here or m.group(2).strip():
+                out.append('%s:' % sym(m.group(1)))
+            here.add(m.group(1))
             if m.group(2).strip():
                 out.append('\t' + m.group(2).strip())
             continue
@@ -152,7 +159,14 @@ def convert(lines, macho, stream_words):
             for r in res:
                 out.append('\t.long ' + r)
             continue
-        if re.match(r'^\.(byte|2byte|hword|short|incbin|space|skip|fill|zero|ascii|asciz|string)\b', s):
+        m = re.match(r'^\.incbin\s+"([^"]+)"\s*(?:,\s*([^,]+?)\s*(?:,\s*(.+?)\s*)?)?$', s)
+        if m:
+            # inlined: LLVM's assembler maps the whole file again for every
+            # `.incbin`, so the thousands of baserom.gba chunks in data/rom
+            # took gigabytes per file and froze the machine
+            out.extend(incbin_bytes(m.group(1), m.group(2), m.group(3)))
+            continue
+        if re.match(r'^\.(byte|2byte|hword|short|space|skip|fill|zero|ascii|asciz|string)\b', s):
             out.append('\t' + (sym(s) if s.startswith(('.byte', '.2byte', '.hword', '.short'))
                                else s))
             continue
@@ -162,6 +176,24 @@ def convert(lines, macho, stream_words):
             sys.exit('hostasm: macros are not handled: %s' % s)
         out.append('\t' + s)
     return out
+
+
+_files = {}
+
+
+def incbin_bytes(path, offset, length):
+    """`.incbin PATH[, OFFSET[, LENGTH]]` as `.byte` lines (paths are relative
+    to the repository root, as for arm-none-eabi-as run by make)."""
+    if path not in _files:
+        with open(os.path.join(ROOT, path), 'rb') as f:
+            _files[path] = f.read()
+    data = _files[path]
+    start = int(offset, 0) if offset else 0
+    end = start + int(length, 0) if length else len(data)
+    if end > len(data):
+        sys.exit('hostasm: .incbin "%s" past the end of the file' % path)
+    return ['\t.byte ' + ','.join(str(b) for b in data[i:min(i + 32, end)])
+            for i in range(start, end, 32)]
 
 
 def main():
