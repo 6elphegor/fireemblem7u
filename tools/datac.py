@@ -434,12 +434,20 @@ def decode_animscr(rom, em, addr, extent):
     ptr_f = Field("", 0, 4, "ptr", pointee="struct AnimSpriteData")
     nprob = len(em.problems)
 
-    def target(a, val):
-        if a in rom.ptrs:
+    def target(a, val, use_ptrs=True):
+        if use_ptrs and a in rom.ptrs:
             return rom.ptrs[a]
         if val == 0:
             return "NULL", 0
         loc = em.locate(val)
+        if loc is None and 0x080C57DC <= val < 0x09000000:   # inside an object (a sprite in a list of sprites)
+            i = bisect.bisect_right(rom.label_addrs, val) - 1
+            while i > 0 and rom.label_addrs[i] % 4:   # an aligned label: the unaligned ones are duration-bit aliases
+                i -= 1
+            base = rom.addr_names[rom.label_addrs[i]]
+            if val - rom.label_addrs[i] < 0x1000 and rom.next_label(val) and rom.next_label(val) > val:
+                em.refs.setdefault(base, ptr_f)
+                return f"(const struct AnimSpriteData *) ((const u8 *) {base} + {val - rom.label_addrs[i]:#x})", 0
         if loc is None:
             bad.append(f"raw pointer {val:#010x} at {a:#010x}")
             return f"(void *) {val:#010x}", 0
@@ -448,17 +456,19 @@ def decode_animscr(rom, em, addr, extent):
     while pos < end and not bad:
         w = rom.word(pos)
         if not w & 0x80000000:   # force sprite: address, duration in bits 0-1 and 28-30
-            sym, add = target(pos, w & 0x0FFFFFFC)
-            if pos not in rom.ptrs:
-                add += w & 0xF0000003
-            dur = ((add >> 26) & 0x1C) + (add & 3)
+            addr_t = w & 0x0FFFFFFC
+            dur = ((w >> 26) & 0x1C) + (w & 3)
+            sym, add = (rom.ptrs[pos] if pos in rom.ptrs else (None, 0))
+            if sym is None or rom.labels.get(sym) != addr_t:   # the asm names a label at the duration bits' address
+                sym, add = target(pos, addr_t, False)
             rest = add & 0x0FFFFFFC
             if sym == "NULL":
                 bad.append(f"empty sprite word at {pos:#010x}")
             elif rest:
                 bad.append(f"{sym} + {rest:#x} at {pos:#010x}: sprite inside an object")
             else:
-                em.sym_expr(sym, 0, ptr_f, pos)
+                if not sym.startswith("("):
+                    em.sym_expr(sym, 0, ptr_f, pos)
                 lines.append(f"ANIMSCR_FORCE_SPRITE({sym}, {dur})")
             pos += 4
             continue
@@ -502,6 +512,8 @@ def decode_animscr(rom, em, addr, extent):
             bad.append(f"unknown instruction {w:#010x} at {pos:#010x}")
             break
         pos += 4
+    if bad and good[1] != addr:
+        print("cut:", bad[0], file=sys.stderr)
     if good[1] == addr:
         em.problems.append(f"script at {addr:#010x} has no terminator" + (f" ({bad[0]})" if bad else ""))
         return lines, pos - addr

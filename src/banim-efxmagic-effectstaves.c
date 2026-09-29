@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxSilenceOBJ_08BC42B0[];
+
 extern u16 Img_RestoreBg_00[], Img_RestoreBg_06[], Img_RestoreBg_09[], Img_RestoreBg_0B[],
     Tsa_BarrierBg_00[], Tsa_BarrierBg_01[], Tsa_BarrierBg_02[], Tsa_BarrierBg_03[],
     Tsa_BarrierBg_04[], Tsa_HammerneBg_00[], Tsa_HammerneBg_01[], Tsa_HammerneBg_02[],
@@ -2028,4 +2030,12 @@ u16 * const TsaArray_BarrierBg[] = {
     Tsa_BarrierBg_02,
     Tsa_BarrierBg_03,
     Tsa_BarrierBg_04,
+};
+
+extern const AnimScr AnimScr_08BC43C4[];
+
+SECTION(".rodata.08BC43C4")
+const AnimScr AnimScr_08BC43C4[] = {
+    ANIMSCR_FORCE_SPRITE((const struct AnimSpriteData *) ((const u8 *) AnimSprite_EfxSilenceOBJ_08BC42B0 + 0x18), 4),
+    ANIMSCR_BLOCKED,
 };
