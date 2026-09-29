@@ -176,6 +176,49 @@ int GetBanimPalette(int banim_id, int pos)
         return banim_id;
     }
 }
+#if ANIMSCR_WIDE || BANIM_SHEET_INDEX || BANIM_SCR_UNPACK
+// Decompress a battle animation script to dst: widen its 4-byte words to
+// cells (in place, from the end), then make each FRAME's sheet word a
+// pointer with BANIM_SHEET.  dst must hold the decompressed size in cells.
+// Each pass is compiled only where it does something (a cell wider than 4
+// bytes; sheet indices), so the GBA builds of one switch spend no time on
+// the other.
+void BanimScrUnpack(const void * src, void * dst)
+{
+    unsigned n = (*(const u32 *) src >> 8) / 4; // words (LZ77 header: size << 8)
+    AnimScr * cell = dst;
+    unsigned i;
+
+    LZ77UnCompWram(src, dst);
+
+    if (sizeof(AnimScr) > 4)
+    {
+        for (i = n; i-- != 0; )
+        {
+            u32 word;
+
+            memcpy(&word, (const u8 *) dst + 4 * i, 4);
+            cell[i] = word;
+        }
+    }
+
+#if BANIM_SHEET_INDEX || BANIM_SCR_UNPACK
+    for (i = 0; i < n; )
+    {
+        if ((cell[i] >> 24) == 0x86 && i + 3 <= n) // FRAME: instruction, sheet, OAM offset
+        {
+            cell[i + 1] = (AnimScr) BANIM_SHEET(cell[i + 1]);
+            i += 3;
+        }
+        else
+        {
+            i++;
+        }
+    }
+#endif
+}
+#endif
+
 // FAKEMATCH (found by an Opus 5.5 agent): banim2 is a copy of banim hidden
 // behind an asm barrier, so banim itself is only used in the left block and
 // gets reloaded there; cbapt is pinned to r10.
@@ -204,7 +247,7 @@ void UpdateBanimFrame(void)
         chara_pal = gBanimUniquePal[EKR_POS_L];
 
         _banim = &banim[bid];
-        LZ77UnCompWram(_banim->script, gBanimScrLeft);
+        BanimScrUnpack(_banim->script, gBanimScrLeft);
         gpBanimModesLeft = _banim->modes;
         LZ77UnCompWram(banim[GetBanimPalette(bid, 0)].pal, gBanimPaletteLeft);
 
@@ -235,7 +278,7 @@ void UpdateBanimFrame(void)
 #else
         _banim = (struct BattleAnim *)(bid * sizeof(struct BattleAnim) + (u32)banim2);
 #endif
-        LZ77UnCompWram(_banim->script, gBanimScrRight);
+        BanimScrUnpack(_banim->script, gBanimScrRight);
         gpBanimModesRight = _banim->modes;
         LZ77UnCompWram(banim2[GetBanimPalette(bid, 1)].pal, gBanimPaletteRight);
 

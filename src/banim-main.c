@@ -1,10 +1,5 @@
 #include "gbafe.h"
 
-struct UnkStruct {
-    const u32 *unk0;
-    const u32 *unk1;
-    u32 unk2;
-};
 
 void BattleAIS_ExecCommands(void)
 {
@@ -207,19 +202,19 @@ void BattleAIS_ExecCommands(void)
                             // _08054126
 #if NONMATCHING
                             {
-                                struct UnkStruct *unk = (void *)(mode + gBanimScrLeft + GetAnimPosition(anim) * 0x2A00);
+                                struct BanimModeData *unk = BANIM_SCR_AT(GetAnimPosition(anim) == 0 ? gBanimScrLeft : gBanimScrRight, mode);
 
-                                anim1->pImgSheet = unk->unk1;
+                                anim1->pImgSheet = (const void *)unk->img;
                                 anim1->pSpriteData = (const void *)anim1->pSpriteDataPool + unk->unk2;
                             }
 
                             anim2->pSpriteData = (const void *)anim2->pSpriteDataPool + 0x57F0;
 #else
                             {
-                                struct UnkStruct *unk = (void *)(mode + gBanimScrLeft + GetAnimPosition(anim) * 0x2A00);
+                                struct BanimModeData *unk = (void *)(mode + gBanimScrLeft + GetAnimPosition(anim) * 0x2A00);
                                 register const void *_ptr asm("r4");
                                 register u32 unk1 asm("r1");
-                                anim1->pImgSheet = unk->unk1;
+                                anim1->pImgSheet = (const void *)unk->img;
 
                                 _ptr = anim1->pSpriteDataPool;
                                 unk1 = unk->unk2;

@@ -409,7 +409,11 @@ SAVE_SIZE_CHECK(struct SuspendSavePackedUnit, 0x34);
 
 struct SuspendSaveBlock {
     /* 0000 */ struct PlaySt playSt;
+#if NONMATCHING
+    /* 0048 */ u8 action[0x1C]; // struct Action in the GBA layout (bmsave.c, EncodeSuspendAction)
+#else
     /* 0048 */ struct Action action;
+#endif
     /* 0064 */ struct SuspendSavePackedUnit blueUnits[UNIT_SAVE_AMOUNT_BLUE];
     /* 0AF4 */ struct SuspendSavePackedUnit redUnits[UNIT_SAVE_AMOUNT_RED];
     /* 151C */ struct SuspendSavePackedUnit greenUnits[UNIT_SAVE_AMOUNT_GREEN];
@@ -421,7 +425,11 @@ struct SuspendSaveBlock {
     /* 1F1C */ u8 permanentFlags[8];
     /* 1F24 */ u8 chapterFlags[8];
 };
+#if NONMATCHING
+SAVE_SIZE_CHECK(struct SuspendSaveBlock, 0x1F2C);
+#else
 GBA_SIZE_CHECK(struct SuspendSaveBlock, 0x1F2C); // contains a struct Action (a pointer)
+#endif
 
 extern u32 gBonusContentClaimFlags;
 extern u8 gSuspendSaveIdOffset;

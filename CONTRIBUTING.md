@@ -280,6 +280,9 @@ table), and
   names come from `data/rom/*.s` (the sheets' labels, and the script and
   mode table names used by `banim_data`); rename a sheet there and in
   `banim/` alike.
+* A host (and `make NONMATCHING=1 BANIM_SHEET_INDEX=1`) stores a sheet
+  index instead of the address: `tools/banim.py link --sheet-index`, or
+  `tools/banim.py host DIR` for a C file (`docs/port-data.md`).
 * It is assembled to `build/banim/NAME.script.o`, uncompressed, with a
   relocation per sheet pointer (not linked into the ROM).
 * The link is run by `tools/banim.py link`, because the compressed bytes
@@ -697,6 +700,11 @@ make emutest EMUTEST_B=fe7u_nonmatching.gba
   with the host's animation script format (two cells for an instruction
   with an address; `docs/port-data.md`, "Animation scripts").  It must give
   the same emutest result as the plain NONMATCHING build.
+* `make NONMATCHING=1 BANIM_SHEET_INDEX=1` (alone or with `ANIMSCR_WIDE=1`)
+  builds `fe7u_nonmatching_idx.gba` / `fe7u_nonmatching_wide_idx.gba` with
+  the host's battle script sheet indices (`docs/port-data.md`, "Animation
+  scripts"); its emutest reference is the `BANIM_SCR_UNPACK` build
+  described there, which spends the same time decompressing.
 * One known difference that is not the plain C's: the spinning background
   of the save and extras menus (`SpinRotation_Init`, `src/savedrawfx.c`)
   never sets its angle, which keeps whatever the previous proc in that

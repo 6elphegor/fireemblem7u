@@ -60,6 +60,6 @@ struct Action {
     /* 16 */ u8 suspend_point;
     /* 18 */ struct BattleHit *battle_scr;
 };
-GBA_SIZE_CHECK(struct Action, 0x1C); // written to the suspend save as it is, but battle_scr is a pointer: a host must serialize it
+GBA_SIZE_CHECK(struct Action, 0x1C); // the matching build writes it to the suspend save as it is; NONMATCHING serializes it (bmsave.c)
 
 extern struct Action gActionSt;
