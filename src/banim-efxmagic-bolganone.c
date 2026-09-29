@@ -1,6 +1,12 @@
 #include "gbafe.h"
 #include <string.h>
 
+extern const struct AnimSpriteData AnimSprite_BolganoneOBJ2Child_0_08BD24B8[],
+    AnimSprite_BolganoneOBJ2Child_1_08BD2488[], AnimSprite_BolganoneOBJ2Child_1_08BD24A0[],
+    AnimSprite_BolganoneOBJChild_0_08BD241C[], AnimSprite_BolganoneOBJChild_1_08BD2404[],
+    AnimSprite_BolganoneOBJChild_2_08BD23E0[], AnimSprite_BolganoneOBJChild_3_08BD23BC[],
+    AnimSprite_BolganoneOBJChild_4_08BD2434[], AnimSprite_BolganoneOBJChild_5_08BD2374[];
+
 struct ProcEfxBolganoneOBJ {
     PROC_HEADER;
 
@@ -31,15 +37,15 @@ extern const s16 gBolganoneOBJ2Durations[];
 extern const s16 gBolganoneOBJ2XOffsets[];
 extern const s16 gBolganoneOBJ2XBase[];
 extern const struct ProcCmd ProcScr_efxBolganoneOBJ2Child[];
-extern AnimScr AnimScr_BolganoneOBJ2Child_0[];
-extern AnimScr AnimScr_BolganoneOBJ2Child_1[];
+extern const AnimScr AnimScr_BolganoneOBJ2Child_0[];
+extern const AnimScr AnimScr_BolganoneOBJ2Child_1[];
 extern const struct ProcCmd ProcScr_efxBolganoneOBJChild[];
-extern AnimScr AnimScr_BolganoneOBJChild_0[];
-extern AnimScr AnimScr_BolganoneOBJChild_1[];
-extern AnimScr AnimScr_BolganoneOBJChild_2[];
-extern AnimScr AnimScr_BolganoneOBJChild_3[];
-extern AnimScr AnimScr_BolganoneOBJChild_4[];
-extern AnimScr AnimScr_BolganoneOBJChild_5[];
+extern const AnimScr AnimScr_BolganoneOBJChild_0[];
+extern const AnimScr AnimScr_BolganoneOBJChild_1[];
+extern const AnimScr AnimScr_BolganoneOBJChild_2[];
+extern const AnimScr AnimScr_BolganoneOBJChild_3[];
+extern const AnimScr AnimScr_BolganoneOBJChild_4[];
+extern const AnimScr AnimScr_BolganoneOBJChild_5[];
 
 /* auto-decls */
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -695,4 +701,54 @@ const struct ProcCmd ProcScr_efxBolganoneWOUT[] = {
     PROC_19,
     PROC_REPEAT(efxBolganoneWOUT_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BD2458")
+const AnimScr AnimScr_BolganoneOBJChild_5[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJChild_5_08BD2374, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD2460")
+const AnimScr AnimScr_BolganoneOBJChild_3[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJChild_3_08BD23BC, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD2468")
+const AnimScr AnimScr_BolganoneOBJChild_2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJChild_2_08BD23E0, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD2470")
+const AnimScr AnimScr_BolganoneOBJChild_1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJChild_1_08BD2404, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD2478")
+const AnimScr AnimScr_BolganoneOBJChild_0[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJChild_0_08BD241C, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD2480")
+const AnimScr AnimScr_BolganoneOBJChild_4[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJChild_4_08BD2434, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD24D0")
+const AnimScr AnimScr_BolganoneOBJ2Child_1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJ2Child_1_08BD2488, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJ2Child_1_08BD24A0, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BD24DC")
+const AnimScr AnimScr_BolganoneOBJ2Child_0[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJ2Child_0_08BD24B8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJ2Child_1_08BD24A0, 1),
+    ANIMSCR_LOOP,
 };

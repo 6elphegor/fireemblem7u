@@ -1,5 +1,25 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxSong_08BD709C[], AnimSprite_EfxSong_08BD70B4[],
+    AnimSprite_EfxSong_08BD70D8[], AnimSprite_EfxSong_08BD70FC[], AnimSprite_EfxSong_08BD712C[],
+    AnimSprite_EfxSong_08BD7168[], AnimSprite_EfxSong_08BD71A4[], AnimSprite_EfxSong_08BD71EC[],
+    AnimSprite_EfxSong_08BD7234[], AnimSprite_EfxSong_08BD7288[], AnimSprite_EfxSong_08BD72E8[],
+    AnimSprite_EfxSong_08BD7354[], AnimSprite_EfxSong_08BD73C0[], AnimSprite_EfxSong_08BD7438[],
+    AnimSprite_EfxSong_08BD74B0[], AnimSprite_EfxSong_08BD7528[], AnimSprite_EfxSong_08BD75AC[],
+    AnimSprite_EfxSong_08BD7630[], AnimSprite_EfxSong_08BD76CC[], AnimSprite_EfxSong_08BD7768[],
+    AnimSprite_EfxSong_08BD7804[], AnimSprite_EfxSong_08BD78A0[], AnimSprite_EfxSong_08BD7948[],
+    AnimSprite_EfxSong_08BD79F0[], AnimSprite_EfxSong_08BD7A98[], AnimSprite_EfxSong_08BD7B4C[],
+    AnimSprite_EfxSong_08BD7C00[], AnimSprite_EfxSong_08BD7CC0[], AnimSprite_EfxSong_08BD7D80[],
+    AnimSprite_EfxSong_08BD7E40[], AnimSprite_EfxSong_08BD7F0C[], AnimSprite_EfxSong_08BD7FD8[],
+    AnimSprite_EfxSong_08BD80A4[], AnimSprite_EfxSong_08BD8170[], AnimSprite_EfxSong_08BD823C[],
+    AnimSprite_EfxSong_08BD8308[], AnimSprite_EfxSong_08BD83E0[], AnimSprite_EfxSong_08BD84B8[],
+    AnimSprite_EfxSong_08BD8590[], AnimSprite_EfxSong_08BD8668[], AnimSprite_EfxSong_08BD874C[],
+    AnimSprite_EfxSong_08BD8830[], AnimSprite_EfxSong_08BD8914[], AnimSprite_EfxSong_08BD89F8[],
+    AnimSprite_EfxSong_08BD8AD0[], AnimSprite_EfxSong_08BD8B90[], AnimSprite_EfxSong_08BD8C44[],
+    AnimSprite_EfxSong_08BD8CEC[], AnimSprite_EfxSong_08BD8D7C[], AnimSprite_EfxSong_08BD8E00[],
+    AnimSprite_EfxSong_08BD8E78[], AnimSprite_EfxSong_08BD8EE4[], AnimSprite_EfxSong_08BD8F38[],
+    AnimSprite_EfxSong_08BD8F80[], AnimSprite_EfxSong_08BD8FB0[], AnimSprite_EfxSong_08BD8FD4[];
+
 /* auto-decls */
 void NewEfxTwobaiRST(struct Anim *anim, int unk44);
 extern const struct ProcCmd ProcScr_efxSong[];
@@ -9,7 +29,7 @@ extern u16 * TsaArray_SongBg[];
 extern u16 * ImgArray_SongBg[];
 extern u16 Pal_SongSprites[];
 extern const struct ProcCmd ProcScr_efxSongOBJ[];
-extern u32 AnimScr_EfxSong[];
+extern const AnimScr AnimScr_EfxSong[];
 extern u16 Img_SongSprites[];
 extern const struct ProcCmd ProcScr_efxDance[];
 
@@ -177,7 +197,7 @@ void efxSongBG_Loop(struct ProcEfxEclipseBG * proc)
 void StartSubSpell_efxSongOBJ(struct Anim * anim, int kind)
 {
     struct ProcEfxOBJ * proc;
-    u32 * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -300,4 +320,65 @@ const struct ProcCmd ProcScr_efxDance[] = {
     PROC_19,
     PROC_REPEAT(efxDance_Loop_Main),
     PROC_END,
+};
+
+SECTION(".rodata.08BD8FEC")
+const AnimScr AnimScr_EfxSong[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD709C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD70B4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD70D8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD70FC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD712C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7168, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD71A4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD71EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7234, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD72E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7354, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD73C0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7438, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD74B0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7528, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD75AC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7630, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD76CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7768, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7804, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD78A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7948, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD79F0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7A98, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7B4C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7C00, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7CC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7D80, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7E40, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7F0C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD7FD8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD80A4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8170, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD823C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8308, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD83E0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD84B8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8590, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8668, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD874C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8830, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8914, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD89F8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8AD0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8B90, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8C44, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8CEC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8D7C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8E00, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8E78, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8EE4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8F38, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8F80, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8FB0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8FD4, 1),
+    ANIMSCR_BLOCKED,
 };

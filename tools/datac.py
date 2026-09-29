@@ -23,6 +23,10 @@ ROM index from here).  Usage:
         that defines them, if it has one); without it they go into FILE.
         An object that has an `extern` already gets that line rewritten to
         the new type
+  tools/datac.py add|emit [--hdr H] FILE AnimScr OBJ...
+        animation scripts (include/gbafe/anime.h): decoded into ANIMSCR_*
+        macros, the sprites they name declared as `extern const struct
+        AnimSpriteData` (docs/port-data.md, "Animation scripts")
   tools/datac.py struct TYPE
         the parsed layout of a struct (offset, size, field, kind)
   tools/datac.py decl NAME...
@@ -408,6 +412,100 @@ class Types:
         return f
 
 
+# ---------------------------------------------------------- AnimScr streams
+
+ANIM_CTL = {0: "ANIMSCR_BLOCKED", 1: "ANIMSCR_END", 2: "ANIMSCR_LOOP"}
+
+
+def decode_animscr(rom, em, addr, extent):
+    """Instructions (one macro call each, include/gbafe/anime.h) of the script at
+    addr.  STOP / END / LOOP do not end the object (STOP waits to be released and
+    goes on), so the whole extent is decoded; if something in it does not decode,
+    or it does not end on one of these, the object is cut after the last one (the
+    rest is data the assembly keeps).  Returns (lines, bytes used)."""
+    lines, pos, end = [], addr, addr + extent
+    good = (0, addr, dict(em.refs))      # (lines, position, refs) after the last terminator
+    bad = []
+    ptr_f = Field("", 0, 4, "ptr", pointee="struct AnimSpriteData")
+    nprob = len(em.problems)
+
+    def target(a, val):
+        if a in rom.ptrs:
+            return rom.ptrs[a]
+        if val == 0:
+            return "NULL", 0
+        loc = em.locate(val)
+        if loc is None:
+            bad.append(f"raw pointer {val:#010x} at {a:#010x}")
+            return f"(void *) {val:#010x}", 0
+        return loc
+
+    while pos < end and not bad:
+        w = rom.word(pos)
+        if not w & 0x80000000:   # force sprite: address, duration in bits 0-1 and 28-30
+            sym, add = target(pos, w & 0x0FFFFFFC)
+            if pos not in rom.ptrs:
+                add += w & 0xF0000003
+            dur = ((add >> 26) & 0x1C) + (add & 3)
+            rest = add & 0x0FFFFFFC
+            if sym == "NULL":
+                bad.append(f"empty sprite word at {pos:#010x}")
+            elif rest:
+                bad.append(f"{sym} + {rest:#x} at {pos:#010x}: sprite inside an object")
+            else:
+                em.sym_expr(sym, 0, ptr_f, pos)
+                lines.append(f"ANIMSCR_FORCE_SPRITE({sym}, {dur})")
+            pos += 4
+            continue
+        typ = (w >> 24) & 0x3F
+        if w & 0x40000000:   # 0xC.. call a function, 0xD.. run another script
+            if (w >> 28) not in (0xC, 0xD) or pos not in rom.ptrs or rom.ptrs[pos][1] & ~0xC0000001 & 0xFFFFFFFF:
+                bad.append(f"unknown pointer instruction {w:#010x} at {pos:#010x}")
+                break
+            sym, add = rom.ptrs[pos]
+            kind = "ANIMSCR_CALL" if w >> 28 == 0xC else "ANIMSCR_JUMP"
+            f = Field("", 0, 4, "fn", sig=("void", "struct Anim *")) if kind == "ANIMSCR_CALL" else Field("", 0, 4, "ptr", pointee="AnimScr")
+            lines.append(f"{kind}({em.sym_expr(sym, 0, f, pos)})")
+            pos += 4
+            continue
+        arg = w & 0xFFFFFF
+        if typ in ANIM_CTL and arg == 0:
+            lines.append(ANIM_CTL[typ])
+            pos += 4
+            good = (len(lines), pos, dict(em.refs))
+            continue
+        if typ == 4 and arg <= 0xFFFF:
+            lines.append(f"ANIMSCR_WAIT({em.fmt_int(arg)})")
+        elif typ == 3:
+            x, y, d = arg & 0xFF, (arg >> 8) & 0xFF, arg >> 16
+            sx, sy = x - 256 if x > 127 else x, y - 256 if y > 127 else y
+            lines.append(f"ANIMSCR_MOVE({sx}, {sy}, {d})")
+        elif typ == 5 and arg <= 0xFF:
+            lines.append(f"ANIMSCR_COMMAND({em.fmt_int(arg)})")
+        elif typ == 6 and arg <= 0xFFFF and pos + 12 <= end:
+            e = []
+            for k in (4, 8):
+                sym, add = target(pos + k, rom.word(pos + k))
+                if sym != "NULL" and not bad:
+                    em.sym_expr(sym, 0, Field("", 0, 4, "ptr", pointee="u8"), pos + k)
+                    e.append(sym if add == 0 else f"&{sym}[{add}]")
+                else:
+                    e.append("0")
+            lines.append(f"ANIMSCR_FRAME({em.fmt_int(arg)}, {e[0]}, {e[1]})")
+            pos += 8
+        else:
+            bad.append(f"unknown instruction {w:#010x} at {pos:#010x}")
+            break
+        pos += 4
+    if good[1] == addr:
+        em.problems.append(f"script at {addr:#010x} has no terminator" + (f" ({bad[0]})" if bad else ""))
+        return lines, pos - addr
+    if good[1] < end:
+        em.refs.clear()
+        em.refs.update(good[2])
+    return lines[:good[0]], good[1] - addr
+
+
 # ------------------------------------------------------------------ emitter
 
 def want_struct(f):
@@ -684,6 +782,7 @@ def fn_proto(sig, name):
     return f"{sig[0]} {name}({sig[1]});"
 
 
+GROUPED_DECLS = {"struct AnimSpriteData"}   # data declared several to a line
 TERMINATED = {"MenuItemDef", "StatScreenTextInfo"}   # arrays that end with an all-zero element
 
 
@@ -713,6 +812,8 @@ def resolve_obj(rom, arg):
 
 
 def emit_objects(rom, types, decls, spec, args):
+    if spec.strip() == "AnimScr":
+        return emit_animscr(rom, types, decls, args)
     m = re.match(r"^(.*?)\s*((?:\[\d+\])+)$", spec.strip())
     dims = m[2] if m else ""
     base_spec = m[1] if m else spec.strip()
@@ -744,6 +845,23 @@ def emit_objects(rom, types, decls, spec, args):
         lines = em.array(elem, addr, count, single)
         body = ",\n".join(("" if single else "    ") + l for l in lines)
         out.append((name, addr, count * elem.size, decl_type(base_spec, elem), body, single, dims))
+    return out, em
+
+
+def emit_animscr(rom, types, decls, args):
+    """Objects that are animation scripts.  An object ends at its first STOP /
+    END / LOOP; bytes after that up to the next label are left in the assembly
+    (noted).  The size of an object is what it decodes to."""
+    em = Emitter(rom, types, decls.scalars_outside(set()), decls)
+    out = []
+    for arg in args:
+        name, addr, count = resolve_obj(rom, arg)
+        extent = rom.object_extent(addr) if count is None else count * 4
+        lines, used = decode_animscr(rom, em, addr, extent)
+        if used < extent:
+            print(f"note: {name}: {extent - used:#x} bytes after the script ({addr + used:#010x}) stay in the assembly", file=sys.stderr)
+        body = ",\n".join("    " + l for l in lines)
+        out.append((name, addr, used, "const AnimScr", body, False, ""))
     return out, em
 
 
@@ -817,7 +935,7 @@ def report_refs(em, decls, path, hdr=None, skip=()):
     an include if a header declares it; else in `hdr` (functions: in the header
     of the module that defines them when it has one); else in `path` itself."""
     cl = decls.closure(path)
-    todo, includes, local = {}, set(), []
+    todo, includes, local, grouped = {}, set(), [], {}
     names = {"fn": [], "data": [], "include": []}
     for sym, f in sorted(em.refs.items()):
         if decls.visible(sym, cl) or sym in skip:
@@ -837,16 +955,35 @@ def report_refs(em, decls, path, hdr=None, skip=()):
             pointee = "u8" if f.pointee.strip() in ("void", "const void") else f.pointee
             line = f"extern const {pointee} {sym}[];".replace("const const", "const")
             srcs = [(p, t) for p, t in decls.decl.get(sym, []) if p.suffix == ".c" and p.resolve() != Path(path).resolve() and "(" not in t]
-            if srcs:   # declared privately in another module: move that declaration
+            if srcs and pointee not in GROUPED_DECLS:   # declared privately in another module: move that declaration
                 line = srcs[0][1]
                 for p, t in srcs:
                     txt = p.read_text()
                     p.write_text(txt.replace(t + "\n", "", 1) if t + "\n" in txt else txt.replace(t, "", 1))
+            elif pointee in GROUPED_DECLS:   # many per line: `extern const T a[], b[];`; each module has its own
+                grouped.setdefault((target, pointee), []).append(sym)
+                names["data"].append(sym)
+                continue
             names["data"].append(sym)
         if target:
             todo.setdefault(target, []).append(line)
         else:
             local.append(line)
+    for (target, pointee), syms in grouped.items():
+        head = f"extern const {pointee} "
+        lines, cur, first = [], head, True
+        for i, sy in enumerate(syms):
+            item = f"{sy}[]" + ("," if i < len(syms) - 1 else ";")
+            if len(cur) + len(item) > 100 and not first:
+                lines.append(cur.rstrip())
+                cur, first = "    ", True
+            cur += item + " "
+            first = False
+        lines.append(cur.rstrip())
+        if target:
+            todo.setdefault(target, []).extend(lines)
+        else:
+            local.extend(lines)
     for k, v in names.items():
         if v:
             print(f"{k}: {len(v)} declared ({', '.join(v[:4])}{', ...' if len(v) > 4 else ''})")

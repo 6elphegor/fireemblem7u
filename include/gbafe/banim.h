@@ -281,7 +281,7 @@ struct ProcEkrSubAnimeEmulator {
 
     STRUCT_PAD(0x3E, 0x44);
 
-    /* 44 */ u32 * anim_scr;
+    /* 44 */ const AnimScr * anim_scr;
     /* 48 */ void * sprite;
     /* 4C */ int oam2Base;
     /* 50 */ int oamBase;
@@ -1439,7 +1439,7 @@ void sub_080671AC(s8 * src1, s8 * src2, u16 * pal, u32 length, int ref);
 void EfxDecodeSplitedPalette(u16 * dst, s8 * src1, s8 * src2, s16 * src3, u32 length, int ref, int unk);
 void EfxChapterMapFadeOUT(int speed);
 int sub_080672E8(int a);
-struct ProcEkrSubAnimeEmulator * NewEkrsubAnimeEmulator(int x, int y, u32 * anim_scr, int type, int oam2Base, int oamBase, ProcPtr parent);
+struct ProcEkrSubAnimeEmulator * NewEkrsubAnimeEmulator(int x, int y, const AnimScr * anim_scr, int type, int oam2Base, int oamBase, ProcPtr parent);
 void EkrsubAnimeEmulatorMain(struct ProcEkrSubAnimeEmulator * proc);
 int GetAnimSpriteRotScaleX(u32 header);
 int GetAnimSpriteRotScaleY(u32 header);

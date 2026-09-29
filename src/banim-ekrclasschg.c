@@ -1,5 +1,23 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxClasschgOBJ_08BB6368[],
+    AnimSprite_EfxClasschgOBJ_08BB6380[], AnimSprite_EfxClasschgOBJ_08BB6398[],
+    AnimSprite_EfxClasschgOBJ_08BB63EC[], AnimSprite_EfxClasschgOBJ_08BB6440[],
+    AnimSprite_EfxClasschgOBJ_08BB64AC[], AnimSprite_EfxClasschgOBJ_08BB6518[],
+    AnimSprite_EfxClasschgOBJ_08BB6590[], AnimSprite_EfxClasschgOBJ_08BB6608[],
+    AnimSprite_EfxClasschgOBJ_08BB6680[], AnimSprite_EfxClasschgOBJ_08BB66F8[],
+    AnimSprite_EfxClasschgOBJ_08BB6770[], AnimSprite_EfxClasschgOBJ_08BB67E8[],
+    AnimSprite_EfxClasschgOBJ_08BB6860[], AnimSprite_EfxClasschgOBJ_08BB68D8[],
+    AnimSprite_EfxClasschgOBJ_08BB6950[], AnimSprite_EfxClasschgOBJ_08BB69C8[],
+    AnimSprite_EfxClasschgOBJ_08BB6A40[], AnimSprite_EfxClasschgOBJ_08BB6AB8[],
+    AnimSprite_EfxClasschgOBJ_08BB6AD0[], AnimSprite_EfxClasschgOBJ_08BB6B48[],
+    AnimSprite_EfxClasschgOBJ_08BB6BC0[], AnimSprite_EfxClasschgOBJ_08BB6C38[],
+    AnimSprite_EfxClasschgOBJ_08BB6CB0[], AnimSprite_EfxClasschgOBJ_08BB6D28[],
+    AnimSprite_EfxClasschgOBJ_08BB6DB8[], AnimSprite_EfxClasschgOBJ_08BB6E48[],
+    AnimSprite_EfxClasschgOBJ_08BB6EFC[], AnimSprite_EfxClasschgOBJ_08BB6FB0[],
+    AnimSprite_EfxClasschgOBJ_08BB7064[], AnimSprite_EfxClasschgOBJ_08BB7118[],
+    AnimSprite_EfxClasschgOBJ_08BB71CC[];
+
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
 extern const u8 Img_EkrClasschgBG_00[];
 extern const u8 Img_EkrClasschgBG_11[];
@@ -98,7 +116,7 @@ extern int gEfxBgSemaphore;
 
 extern const u16 FrameLut_EkrClasschgBG1[];
 extern const u16 FrameLut_EkrClasschgBG2[];
-extern AnimScr AnimScr_EfxClasschgOBJ[];
+extern const AnimScr AnimScr_EfxClasschgOBJ[];
 extern const u16 Pal_BoltingSprites[];
 extern const u8 Img_BoltingSprites[];
 extern const u16 Pal_EfxClasschgFIN[];
@@ -517,7 +535,7 @@ void EfxClasschgBGSE01Main(struct ProcEfxBG * proc)
 void NewEfxClasschgOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
-    AnimScr * scr;
+    const AnimScr * scr;
 
     proc = Proc_Start(ProcScr_efxClasschgOBJ, PROC_TREE_3);
     proc->anim = anim;
@@ -676,3 +694,107 @@ void EfxClasschgRSTMain(struct ProcEkrClasschgRST * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BB7280")
+const AnimScr AnimScr_EfxClasschgOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6368, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6380, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6398, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB63EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6440, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB64AC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6398, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6518, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB63EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6590, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6440, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6608, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB64AC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6680, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6518, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB66F8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6518, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6770, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6590, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB67E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6608, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6860, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6680, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB68D8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB66F8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6950, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6770, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB69C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB67E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6A40, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6860, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AD0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB68D8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6B48, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6950, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6BC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB69C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6C38, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6A40, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6CB0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6D28, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AD0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6DB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6B48, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6E48, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6BC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6EFC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6C38, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6FB0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6CB0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB7064, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6D28, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB7118, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6DB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB71CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6E48, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6EFC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6FB0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB7064, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB7118, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB71CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxClasschgOBJ_08BB6AB8, 2),
+    ANIMSCR_BLOCKED,
+};

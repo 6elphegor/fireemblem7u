@@ -1,5 +1,13 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxShine_08BD24E8[], AnimSprite_EfxShine_08BD250C[],
+    AnimSprite_EfxShine_08BD2530[], AnimSprite_EfxShine_08BD2554[], AnimSprite_EfxShine_08BD2578[],
+    AnimSprite_EfxShine_08BD259C[], AnimSprite_EfxShine_08BD25C0[], AnimSprite_EfxShine_08BD25E4[],
+    AnimSprite_EfxShine_08BD2608[], AnimSprite_EfxShine_08BD262C[], AnimSprite_EfxShine_08BD2650[],
+    AnimSprite_EfxShine_08BD2674[], AnimSprite_EfxShine_08BD2698[], AnimSprite_EfxShine_08BD26BC[],
+    AnimSprite_EfxShine_08BD26E0[], AnimSprite_EfxShine_08BD2704[], AnimSprite_EfxShine_08BD2728[],
+    AnimSprite_EfxShine_08BD274C[], AnimSprite_EfxShine_08BD2770[], AnimSprite_EfxShine_08BD2794[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -22,7 +30,7 @@ extern u16 Pal_ShineSprites[];
 extern u16 Img_ShineSprites[];
 extern s16 gShineSpriteCoords[];
 extern const struct ProcCmd ProcScr_efxShineOBJ[];
-extern u32 AnimScr_EfxShine[];
+extern const AnimScr AnimScr_EfxShine[];
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
 #define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
 
@@ -419,4 +427,30 @@ const struct ProcCmd ProcScr_efxShineOBJ[] = {
     PROC_19,
     PROC_REPEAT(efxShineOBJ_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BD27AC")
+const AnimScr AnimScr_EfxShine[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD24E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD250C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2530, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2554, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2578, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD259C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD25C0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD25E4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2608, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD262C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2650, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2674, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2698, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD26BC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD26E0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2704, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2728, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD274C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2770, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2794, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_END,
 };

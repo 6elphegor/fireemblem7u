@@ -1,5 +1,21 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxDragonDeadFallBody2_08BDA87C[],
+    AnimSprite_EfxDragonDeadFallBody2_08BDA918[], AnimSprite_EfxDragonDeadFallBody2_08BDAA2C[],
+    AnimSprite_EfxDragonDeadFallBody2_08BDAA98[], AnimSprite_EfxDragonDeadFallBody_08BD95E0[],
+    AnimSprite_EfxDragonDeadFallBody_08BD9658[], AnimSprite_EfxDragonDeadFallBody_08BD96DC[],
+    AnimSprite_EfxDragonDeadFallBody_08BD9760[], AnimSprite_EfxDragonDeadFallBody_08BD97E4[],
+    AnimSprite_EfxDragonDeadFallBody_08BD9868[], AnimSprite_EfxDragonDeadFallBody_08BD98EC[],
+    AnimSprite_EfxDragonDeadFallBody_08BD997C[], AnimSprite_EfxDragonDeadFallBody_08BD9A30[],
+    AnimSprite_EfxDragonDeadFallBody_08BD9B08[], AnimSprite_EfxDragonDeadFallBody_08BD9C04[],
+    AnimSprite_EfxDragonDeadFallBody_08BD9D18[], AnimSprite_EfxDragonDeadFallBody_08BD9E50[],
+    AnimSprite_EfxDragonDeadFallBody_08BD9FA0[], AnimSprite_EfxDragonDeadFallBody_08BDA0E4[],
+    AnimSprite_EfxDragonDeadFallBody_08BDA24C[], AnimSprite_EfxDragonDeadFallBody_08BDA3B4[],
+    AnimSprite_EfxDragonDeadFallBody_08BDA4F8[], AnimSprite_EfxDragonDeadFallBody_08BDA618[],
+    AnimSprite_EfxDragonDeadFallBody_08BDA708[], AnimSprite_EfxDragonDeadFallBody_08BDA7D4[],
+    AnimSprite_EfxDragonDeadFallHeadFx_08BDAB10[], AnimSprite_EfxDragonDeadFallHeadFx_08BDAB58[],
+    AnimSprite_EkrDragonHead_08BDA984[];
+
 struct ProcCmd CONST_DATA ProcScr_EkrDragonBaseHide[] = {
     PROC_NAME_DEBUG("ekrDragonBaseHide"),
     PROC_REPEAT(EkrDragonBaseHide_Loop),
@@ -1250,3 +1266,90 @@ void EkrDragonScreenFlashing_RefrainPalette(struct ProcEkrDragonScreenFlashing *
     EnablePalSync();
     Proc_Break(proc);
 }
+
+SECTION(".rodata.08BDABA0")
+const AnimScr AnimScr_EfxDragonDeadFallBody[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9658, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD96DC, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9658, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 31),
+    ANIMSCR_WAIT(0x1D),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9658, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD96DC, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9658, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 10),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9658, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD96DC, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9658, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9760, 10),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD97E4, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9868, 20),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD97E4, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9760, 10),
+    ANIMSCR_BLOCKED,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD98EC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD997C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9A30, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9B08, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9C04, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9D18, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9E50, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9FA0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA0E4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9D18, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9E50, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD9FA0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA0E4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA24C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA3B4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA4F8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA618, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA708, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BDA7D4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDAC58")
+const AnimScr AnimScr_EkrDragonHead[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EkrDragonHead_08BDA984, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDAC60")
+const AnimScr AnimScr_EfxDragonDeadFallBody2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA87C, 5),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDA918, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDAA2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody2_08BDAA98, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallBody_08BD95E0, 30),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDACB0")
+const AnimScr AnimScr_EfxDragonDeadFallHeadFx[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallHeadFx_08BDAB10, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDragonDeadFallHeadFx_08BDAB58, 2),
+    ANIMSCR_BLOCKED,
+};

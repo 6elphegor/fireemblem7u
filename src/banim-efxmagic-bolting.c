@@ -23,7 +23,7 @@ void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
 extern int gEfxBgSemaphore;
 extern u16 Pal_BoltingBg[];
-extern u32 AnimScr_EfxThunderstormOBJ[];
+extern const AnimScr AnimScr_EfxClasschgOBJ[];
 extern u16 Pal_BoltingSprites[];
 extern u16 Img_BoltingSprites[];
 
@@ -238,7 +238,7 @@ void StartSubSpell_efxThunderstormOBJ(struct Anim * anim)
 // 9.99 efxmagic-bolting:efxThunderstormOBJ_Loop
 void efxThunderstormOBJ_Loop(struct ProcEfxOBJ * proc)
 {
-    proc->anim2 = EfxCreateFrontAnim(proc->anim, AnimScr_EfxThunderstormOBJ, AnimScr_EfxThunderstormOBJ, AnimScr_EfxThunderstormOBJ, AnimScr_EfxThunderstormOBJ);
+    proc->anim2 = EfxCreateFrontAnim(proc->anim, AnimScr_EfxClasschgOBJ, AnimScr_EfxClasschgOBJ, AnimScr_EfxClasschgOBJ, AnimScr_EfxClasschgOBJ);
 
     SpellFx_RegisterObjPal(Pal_BoltingSprites, PLTT_SIZE_4BPP);
     SpellFx_RegisterObjGfx(Img_BoltingSprites, 32 * 4 * CHR_SIZE);

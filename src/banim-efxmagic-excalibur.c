@@ -1,5 +1,24 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxExcalibur_08BD2C3C[],
+    AnimSprite_EfxExcalibur_08BD2C90[], AnimSprite_EfxExcalibur_08BD2CE4[],
+    AnimSprite_EfxExcalibur_08BD2D38[], AnimSprite_EfxExcalibur_08BD2D8C[],
+    AnimSprite_EfxExcalibur_08BD2DE0[], AnimSprite_EfxExcalibur_08BD2E34[],
+    AnimSprite_EfxExcalibur_08BD2E88[], AnimSprite_EfxExcalibur_08BD2EDC[],
+    AnimSprite_EfxExcalibur_08BD2F30[], AnimSprite_EfxExcalibur_08BD2F84[],
+    AnimSprite_EfxExcalibur_08BD2FD8[], AnimSprite_EfxExcalibur_08BD302C[],
+    AnimSprite_EfxExcalibur_08BD3080[], AnimSprite_EfxExcalibur_08BD30D4[],
+    AnimSprite_EfxExcalibur_08BD3128[], AnimSprite_EfxExcalibur_08BD317C[],
+    AnimSprite_EfxExcalibur_08BD31D0[], AnimSprite_EfxExcalibur_08BD3224[],
+    AnimSprite_EfxExcalibur_08BD3278[], AnimSprite_EfxExcalibur_08BD32CC[],
+    AnimSprite_EfxExcalibur_08BD3320[], AnimSprite_EfxExcalibur_08BD3374[],
+    AnimSprite_EfxExcalibur_08BD33C8[], AnimSprite_EfxExcalibur_08BD341C[],
+    AnimSprite_EfxExcalibur_08BD3470[], AnimSprite_EfxExcalibur_08BD34B8[],
+    AnimSprite_EfxExcalibur_08BD350C[], AnimSprite_EfxExcalibur_08BD3560[],
+    AnimSprite_EfxExcalibur_08BD35B4[], AnimSprite_EfxExcalibur_08BD3608[],
+    AnimSprite_EfxExcalibur_08BD365C[], AnimSprite_EfxExcalibur_08BD36B0[],
+    AnimSprite_EfxExcalibur_08BD3704[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -29,7 +48,7 @@ extern u16 Tsa_ShineBg1_Right[];
 extern const struct ProcCmd ProcScr_efxExcaliburBGCOL3[];
 extern u16 Pal_ExcaliburBg3[];
 extern const struct ProcCmd ProcScr_efxExcaliburOBJ[];
-extern u32 AnimScr_EfxExcalibur[];
+extern const AnimScr AnimScr_EfxExcalibur[];
 extern u16 Pal_ExcaliburSprites[];
 extern u16 Img_ExcaliburSprites[];
 
@@ -619,7 +638,7 @@ void StartSubSpell_efxExcaliburOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;
-    u32 * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -732,4 +751,43 @@ const struct ProcCmd ProcScr_efxExcaliburOBJ[] = {
     PROC_19,
     PROC_REPEAT(efxExcaliburOBJ_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BD3758")
+const AnimScr AnimScr_EfxExcalibur[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3470, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2C3C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2C90, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2CE4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2D38, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2D8C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2DE0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2E34, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2E88, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2EDC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2F30, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2F84, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD2FD8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD302C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3080, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD30D4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3128, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD317C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD31D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3224, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3278, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD32CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3320, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3374, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD33C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD341C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD34B8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD350C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3560, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD35B4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3608, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD365C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD36B0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxExcalibur_08BD3704, 1),
+    ANIMSCR_END,
 };

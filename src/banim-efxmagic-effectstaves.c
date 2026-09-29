@@ -1,5 +1,159 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxBerserk10_08BCC9D8[],
+    AnimSprite_EfxBerserk10_08BCCA2C[], AnimSprite_EfxBerserk10_08BCCA50[],
+    AnimSprite_EfxBerserk10_08BCCA8C[], AnimSprite_EfxBerserk10_08BCCAB0[],
+    AnimSprite_EfxBerserk10_08BCCAD4[], AnimSprite_EfxBerserk10_08BCCAEC[],
+    AnimSprite_EfxBerserk10_08BCCB04[], AnimSprite_EfxBerserk10_08BCCB1C[],
+    AnimSprite_EfxBerserk1_08BCC230[], AnimSprite_EfxBerserk1_08BCC260[],
+    AnimSprite_EfxBerserk1_08BCC290[], AnimSprite_EfxBerserk1_08BCC2E4[],
+    AnimSprite_EfxBerserk2_08BCC344[], AnimSprite_EfxBerserk2_08BCC374[],
+    AnimSprite_EfxBerserk2_08BCC3A4[], AnimSprite_EfxBerserk2_08BCC3F8[],
+    AnimSprite_EfxBerserk3_08BCC458[], AnimSprite_EfxBerserk3_08BCC488[],
+    AnimSprite_EfxBerserk3_08BCC4B8[], AnimSprite_EfxBerserk3_08BCC50C[],
+    AnimSprite_EfxBerserk4_08BCC56C[], AnimSprite_EfxBerserk4_08BCC59C[],
+    AnimSprite_EfxBerserk4_08BCC5CC[], AnimSprite_EfxBerserk4_08BCC620[],
+    AnimSprite_EfxBerserk5_08BCC680[], AnimSprite_EfxBerserk5_08BCC6B0[],
+    AnimSprite_EfxBerserk5_08BCC6E0[], AnimSprite_EfxBerserk5_08BCC734[],
+    AnimSprite_EfxBerserk6_08BCC7F8[], AnimSprite_EfxBerserk6_08BCC84C[],
+    AnimSprite_EfxBerserk7_08BCC870[], AnimSprite_EfxBerserk7_08BCC8C4[],
+    AnimSprite_EfxBerserk8_08BCC8E8[], AnimSprite_EfxBerserk8_08BCC93C[],
+    AnimSprite_EfxBerserk9_08BCC960[], AnimSprite_EfxBerserk9_08BCC9B4[],
+    AnimSprite_EfxHammarneOBJ_08BC43CC[], AnimSprite_EfxHammarneOBJ_08BC43E4[],
+    AnimSprite_EfxHammarneOBJ_08BC4408[], AnimSprite_EfxHammarneOBJ_08BC4444[],
+    AnimSprite_EfxHammarneOBJ_08BC4498[], AnimSprite_EfxHammarneOBJ_08BC4504[],
+    AnimSprite_EfxHammarneOBJ_08BC4588[], AnimSprite_EfxHammarneOBJ_08BC4624[],
+    AnimSprite_EfxHammarneOBJ_08BC46E4[], AnimSprite_EfxHammarneOBJ_08BC47C8[],
+    AnimSprite_EfxHammarneOBJ_08BC48D0[], AnimSprite_EfxHammarneOBJ_08BC49FC[],
+    AnimSprite_EfxHammarneOBJ_08BC4B4C[], AnimSprite_EfxHammarneOBJ_08BC4CB4[],
+    AnimSprite_EfxHammarneOBJ_08BC4E34[], AnimSprite_EfxHammarneOBJ_08BC4FD8[],
+    AnimSprite_EfxHammarneOBJ_08BC5194[], AnimSprite_EfxHammarneOBJ_08BC5368[],
+    AnimSprite_EfxHammarneOBJ_08BC5548[], AnimSprite_EfxHammarneOBJ_08BC5734[],
+    AnimSprite_EfxHammarneOBJ_08BC5920[], AnimSprite_EfxHammarneOBJ_08BC5B00[],
+    AnimSprite_EfxHammarneOBJ_08BC5CD4[], AnimSprite_EfxHammarneOBJ_08BC5E9C[],
+    AnimSprite_EfxHammarneOBJ_08BC6040[], AnimSprite_EfxHammarneOBJ_08BC61C0[],
+    AnimSprite_EfxHammarneOBJ_08BC6328[], AnimSprite_EfxHammarneOBJ_08BC6478[],
+    AnimSprite_EfxHammarneOBJ_08BC65A4[], AnimSprite_EfxHammarneOBJ_08BC66AC[],
+    AnimSprite_EfxHammarneOBJ_08BC679C[], AnimSprite_EfxHammarneOBJ_08BC6874[],
+    AnimSprite_EfxHammarneOBJ_08BC6934[], AnimSprite_EfxHammarneOBJ_08BC69D0[],
+    AnimSprite_EfxHammarneOBJ_08BC6A60[], AnimSprite_EfxHammarneOBJ_08BC6AD8[],
+    AnimSprite_EfxHammarneOBJ_08BC6B38[], AnimSprite_EfxHammarneOBJ_08BC6B80[],
+    AnimSprite_EfxHammarneOBJ_08BC6BBC[], AnimSprite_EfxHammarneOBJ_08BC6BEC[],
+    AnimSprite_EfxHammarneOBJ_08BC6C10[], AnimSprite_EfxHammarneOBJ_08BC6C28[],
+    AnimSprite_EfxMshield1_08BCCBB0[], AnimSprite_EfxMshield1_08BCCBC8[],
+    AnimSprite_EfxMshield1_08BCCBEC[], AnimSprite_EfxMshield1_08BCCC1C[],
+    AnimSprite_EfxMshield1_08BCCC58[], AnimSprite_EfxMshield1_08BCCCA0[],
+    AnimSprite_EfxMshield1_08BCCCF4[], AnimSprite_EfxMshield1_08BCCD54[],
+    AnimSprite_EfxMshield1_08BCCDC0[], AnimSprite_EfxMshield1_08BCCE38[],
+    AnimSprite_EfxMshield1_08BCCEBC[], AnimSprite_EfxMshield1_08BCCF4C[],
+    AnimSprite_EfxMshield1_08BCCFE8[], AnimSprite_EfxMshield1_08BCD090[],
+    AnimSprite_EfxMshield1_08BCD144[], AnimSprite_EfxMshield1_08BCD1F8[],
+    AnimSprite_EfxMshield1_08BCD2AC[], AnimSprite_EfxMshield1_08BCD360[],
+    AnimSprite_EfxMshield1_08BCD414[], AnimSprite_EfxMshield1_08BCD4C8[],
+    AnimSprite_EfxMshield1_08BCD57C[], AnimSprite_EfxMshield1_08BCD630[],
+    AnimSprite_EfxMshield1_08BCD6E4[], AnimSprite_EfxMshield1_08BCD798[],
+    AnimSprite_EfxMshield1_08BCD84C[], AnimSprite_EfxMshield1_08BCD900[],
+    AnimSprite_EfxMshield1_08BCD9B4[], AnimSprite_EfxMshield1_08BCDA68[],
+    AnimSprite_EfxMshield1_08BCDB1C[], AnimSprite_EfxMshield1_08BCDBD0[],
+    AnimSprite_EfxMshield1_08BCDC84[], AnimSprite_EfxMshield1_08BCDD38[],
+    AnimSprite_EfxMshield1_08BCDDE0[], AnimSprite_EfxMshield1_08BCDE7C[],
+    AnimSprite_EfxMshield1_08BCDF0C[], AnimSprite_EfxMshield1_08BCDF90[],
+    AnimSprite_EfxMshield1_08BCE008[], AnimSprite_EfxMshield1_08BCE074[],
+    AnimSprite_EfxMshield1_08BCE0E0[], AnimSprite_EfxMshield1_08BCE158[],
+    AnimSprite_EfxMshield1_08BCE1DC[], AnimSprite_EfxMshield1_08BCE26C[],
+    AnimSprite_EfxMshield1_08BCE308[], AnimSprite_EfxMshield1_08BCE3B0[],
+    AnimSprite_EfxMshield1_08BCE5D8[], AnimSprite_EfxMshield1_08BCE68C[],
+    AnimSprite_EfxMshield1_08BCE758[], AnimSprite_EfxMshield1_08BCE824[],
+    AnimSprite_EfxMshield1_08BCE83C[], AnimSprite_EfxMshield1_08BCE914[],
+    AnimSprite_EfxMshield1_08BCE9F8[], AnimSprite_EfxMshield1_08BCEAE8[],
+    AnimSprite_EfxMshield1_08BCEBE4[], AnimSprite_EfxMshield1_08BCECEC[],
+    AnimSprite_EfxMshield1_08BCEE00[], AnimSprite_EfxMshield1_08BCEF20[],
+    AnimSprite_EfxMshield1_08BCF04C[], AnimSprite_EfxMshield1_08BCF184[],
+    AnimSprite_EfxMshield1_08BCF2BC[], AnimSprite_EfxMshield1_08BCF400[],
+    AnimSprite_EfxMshield1_08BCF544[], AnimSprite_EfxMshield1_08BCF694[],
+    AnimSprite_EfxMshield1_08BCF7E4[], AnimSprite_EfxMshield1_08BCF928[],
+    AnimSprite_EfxMshield1_08BCFA54[], AnimSprite_EfxMshield1_08BCFB74[],
+    AnimSprite_EfxMshield1_08BCFC88[], AnimSprite_EfxMshield1_08BCFD84[],
+    AnimSprite_EfxMshield1_08BCFE68[], AnimSprite_EfxMshield1_08BCFF34[],
+    AnimSprite_EfxMshield1_08BCFFE8[], AnimSprite_EfxMshield1_08BD0090[],
+    AnimSprite_EfxMshield1_08BD0120[], AnimSprite_EfxMshield1_08BD01A4[],
+    AnimSprite_EfxMshield1_08BD021C[], AnimSprite_EfxMshield1_08BD0288[],
+    AnimSprite_EfxMshield1_08BD02E8[], AnimSprite_EfxMshield1_08BD033C[],
+    AnimSprite_EfxMshield1_08BD0384[], AnimSprite_EfxMshield1_08BD03C0[],
+    AnimSprite_EfxMshield1_08BD03F0[], AnimSprite_EfxMshield1_08BD0414[],
+    AnimSprite_EfxMshield2_08BD042C[], AnimSprite_EfxMshield2_08BD0480[],
+    AnimSprite_EfxMshield2_08BD04D4[], AnimSprite_EfxMshield2_08BD0528[],
+    AnimSprite_EfxMshield2_08BD057C[], AnimSprite_EfxMshield2_08BD05D0[],
+    AnimSprite_EfxMshield2_08BD0624[], AnimSprite_EfxMshield2_08BD0678[],
+    AnimSprite_EfxMshield2_08BD06E4[], AnimSprite_EfxMshield2_08BD0750[],
+    AnimSprite_EfxMshield2_08BD07BC[], AnimSprite_EfxMshield2_08BD0828[],
+    AnimSprite_EfxMshield2_08BD0894[], AnimSprite_EfxMshield2_08BD0900[],
+    AnimSprite_EfxMshield2_08BD096C[], AnimSprite_EfxMshield2_08BD09D8[],
+    AnimSprite_EfxMshield2_08BD0A44[], AnimSprite_EfxMshield2_08BD0AA4[],
+    AnimSprite_EfxMshield2_08BD0AF8[], AnimSprite_EfxMshield2_08BD0B4C[],
+    AnimSprite_EfxMshield2_08BD0B94[], AnimSprite_EfxMshield2_08BD0BD0[],
+    AnimSprite_EfxMshield2_08BD0C0C[], AnimSprite_EfxMshield2_08BD0C30[],
+    AnimSprite_EfxSilenceOBJ_08BC40F4[], AnimSprite_EfxSilenceOBJ_08BC410C[],
+    AnimSprite_EfxSilenceOBJ_08BC4124[], AnimSprite_EfxSilenceOBJ_08BC413C[],
+    AnimSprite_EfxSilenceOBJ_08BC4154[], AnimSprite_EfxSilenceOBJ_08BC416C[],
+    AnimSprite_EfxSilenceOBJ_08BC4184[], AnimSprite_EfxSilenceOBJ_08BC419C[],
+    AnimSprite_EfxSilenceOBJ_08BC41B4[], AnimSprite_EfxSilenceOBJ_08BC41F0[],
+    AnimSprite_EfxSilenceOBJ_08BC4208[], AnimSprite_EfxSilenceOBJ_08BC4250[],
+    AnimSprite_EfxSilenceOBJ_08BC4268[], AnimSprite_EfxSilenceOBJ_08BC4280[],
+    AnimSprite_EfxSilenceOBJ_08BC4298[], AnimSprite_EfxSilenceOBJ_08BC42B0[],
+    AnimSprite_EfxSleepOBJ1_08BCB130[], AnimSprite_EfxSleepOBJ1_08BCBAE4[],
+    AnimSprite_EfxSleepOBJ1_08BCBB14[], AnimSprite_EfxSleepOBJ1_08BCBB50[],
+    AnimSprite_EfxSleepOBJ1_08BCBB98[], AnimSprite_EfxSleepOBJ1_08BCBBEC[],
+    AnimSprite_EfxSleepOBJ1_08BCBC4C[], AnimSprite_EfxSleepOBJ1_08BCBCB8[],
+    AnimSprite_EfxSleepOBJ1_08BCBD30[], AnimSprite_EfxSleepOBJ1_08BCBDB4[],
+    AnimSprite_EfxSleepOBJ1_08BCBE38[], AnimSprite_EfxSleepOBJ1_08BCBEA4[],
+    AnimSprite_EfxSleepOBJ1_08BCBF04[], AnimSprite_EfxSleepOBJ1_08BCBF70[],
+    AnimSprite_EfxSleepOBJ1_08BCBFB8[], AnimSprite_EfxSleepOBJ1_08BCBFF4[],
+    AnimSprite_EfxSleepOBJ1_08BCC024[], AnimSprite_EfxSleepOBJ1_08BCC048[],
+    AnimSprite_EfxSleepOBJ2_08BC70A4[], AnimSprite_EfxSleepOBJ2_08BC70C8[],
+    AnimSprite_EfxSleepOBJ2_08BC7104[], AnimSprite_EfxSleepOBJ2_08BC7170[],
+    AnimSprite_EfxSleepOBJ2_08BC7200[], AnimSprite_EfxSleepOBJ2_08BC72B4[],
+    AnimSprite_EfxSleepOBJ2_08BC7374[], AnimSprite_EfxSleepOBJ2_08BC744C[],
+    AnimSprite_EfxSleepOBJ2_08BC753C[], AnimSprite_EfxSleepOBJ2_08BC7644[],
+    AnimSprite_EfxSleepOBJ2_08BC7758[], AnimSprite_EfxSleepOBJ2_08BC7878[],
+    AnimSprite_EfxSleepOBJ2_08BC79A4[], AnimSprite_EfxSleepOBJ2_08BC7AC4[],
+    AnimSprite_EfxSleepOBJ2_08BC7BE4[], AnimSprite_EfxSleepOBJ2_08BC7CBC[],
+    AnimSprite_EfxSleepOBJ2_08BC7D70[], AnimSprite_EfxSleepOBJ2_08BC7E24[],
+    AnimSprite_EfxSleepOBJ2_08BC7EC0[], AnimSprite_EfxSleepOBJ2_08BC7F5C[],
+    AnimSprite_EfxSleepOBJ2_08BC7FF8[], AnimSprite_EfxSleepOBJ2_08BC8088[],
+    AnimSprite_EfxSleepOBJ2_08BC8118[], AnimSprite_EfxSleepOBJ2_08BC813C[],
+    AnimSprite_EfxSleepOBJ2_08BC8178[], AnimSprite_EfxSleepOBJ2_08BC81E4[],
+    AnimSprite_EfxSleepOBJ2_08BC8274[], AnimSprite_EfxSleepOBJ2_08BC8328[],
+    AnimSprite_EfxSleepOBJ2_08BC83E8[], AnimSprite_EfxSleepOBJ2_08BC84C0[],
+    AnimSprite_EfxSleepOBJ2_08BC85A4[], AnimSprite_EfxSleepOBJ2_08BC86A0[],
+    AnimSprite_EfxSleepOBJ2_08BC87A8[], AnimSprite_EfxSleepOBJ2_08BC88BC[],
+    AnimSprite_EfxSleepOBJ2_08BC89D0[], AnimSprite_EfxSleepOBJ2_08BC8AE4[],
+    AnimSprite_EfxSleepOBJ2_08BC8BF8[], AnimSprite_EfxSleepOBJ2_08BC8CD0[],
+    AnimSprite_EfxSleepOBJ2_08BC8D90[], AnimSprite_EfxSleepOBJ2_08BC8E2C[],
+    AnimSprite_EfxSleepOBJ2_08BC8EC8[], AnimSprite_EfxSleepOBJ2_08BC8F64[],
+    AnimSprite_EfxSleepOBJ2_08BC8FF4[], AnimSprite_EfxSleepOBJ2_08BC9084[],
+    AnimSprite_EfxSleepOBJ2_08BC90B4[], AnimSprite_EfxSleepOBJ2_08BC90FC[],
+    AnimSprite_EfxSleepOBJ2_08BC915C[], AnimSprite_EfxSleepOBJ2_08BC91D4[],
+    AnimSprite_EfxSleepOBJ2_08BC9264[], AnimSprite_EfxSleepOBJ2_08BC9300[],
+    AnimSprite_EfxSleepOBJ2_08BC93B4[], AnimSprite_EfxSleepOBJ2_08BC9474[],
+    AnimSprite_EfxSleepOBJ2_08BC9540[], AnimSprite_EfxSleepOBJ2_08BC9618[],
+    AnimSprite_EfxSleepOBJ2_08BC96FC[], AnimSprite_EfxSleepOBJ2_08BC97EC[],
+    AnimSprite_EfxSleepOBJ2_08BC98E8[], AnimSprite_EfxSleepOBJ2_08BC99F0[],
+    AnimSprite_EfxSleepOBJ2_08BC9B04[], AnimSprite_EfxSleepOBJ2_08BC9C24[],
+    AnimSprite_EfxSleepOBJ2_08BC9D50[], AnimSprite_EfxSleepOBJ2_08BC9E88[],
+    AnimSprite_EfxSleepOBJ2_08BC9FC0[], AnimSprite_EfxSleepOBJ2_08BCA104[],
+    AnimSprite_EfxSleepOBJ2_08BCA248[], AnimSprite_EfxSleepOBJ2_08BCA398[],
+    AnimSprite_EfxSleepOBJ2_08BCA4E8[], AnimSprite_EfxSleepOBJ2_08BCA62C[],
+    AnimSprite_EfxSleepOBJ2_08BCA758[], AnimSprite_EfxSleepOBJ2_08BCA878[],
+    AnimSprite_EfxSleepOBJ2_08BCA98C[], AnimSprite_EfxSleepOBJ2_08BCAA88[],
+    AnimSprite_EfxSleepOBJ2_08BCAB6C[], AnimSprite_EfxSleepOBJ2_08BCAC38[],
+    AnimSprite_EfxSleepOBJ2_08BCACEC[], AnimSprite_EfxSleepOBJ2_08BCAD94[],
+    AnimSprite_EfxSleepOBJ2_08BCAE24[], AnimSprite_EfxSleepOBJ2_08BCAEA8[],
+    AnimSprite_EfxSleepOBJ2_08BCAF20[], AnimSprite_EfxSleepOBJ2_08BCAF8C[],
+    AnimSprite_EfxSleepOBJ2_08BCAFEC[], AnimSprite_EfxSleepOBJ2_08BCB040[],
+    AnimSprite_EfxSleepOBJ2_08BCB088[], AnimSprite_EfxSleepOBJ2_08BCB0C4[],
+    AnimSprite_EfxSleepOBJ2_08BCB0F4[], AnimSprite_EfxSleepOBJ2_08BCB118[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -14,7 +168,7 @@ extern u16 * TsaArray_SilenceBg[];
 extern u16 Pal_Silence[];
 extern u16 Img_SilenceBg[];
 extern const struct ProcCmd ProcScr_efxSilenceOBJ[];
-extern u32 AnimScr_EfxSilenceOBJ[];
+extern const AnimScr AnimScr_EfxSilenceOBJ[];
 extern u16 Img_SilenceSprites[];
 extern const struct ProcCmd ProcScr_efxSleep[];
 extern const struct ProcCmd ProcScr_efxSleepBG[];
@@ -22,11 +176,11 @@ extern u16 * TsaArray_SleepBg[];
 extern u16 Pal_SleepBg[];
 extern u16 Img_SleepBg[];
 extern const struct ProcCmd ProcScr_efxSleepOBJ[];
-extern u32 AnimScr_EfxSleepOBJ1[];
+extern const AnimScr AnimScr_EfxSleepOBJ1[];
 extern u16 Pal_SleepSprites[];
 extern u16 Img_SleepSprites[];
 extern const struct ProcCmd ProcScr_efxSleepOBJ2[];
-extern u32 AnimScr_EfxSleepOBJ2[];
+extern const AnimScr AnimScr_EfxSleepOBJ2[];
 extern const struct ProcCmd ProcScr_efxSleepSE[];
 extern const struct ProcCmd ProcScr_efxHammarne[];
 extern const struct ProcCmd ProcScr_efxHammarneBG[];
@@ -34,7 +188,7 @@ extern u16 * TsaArray_HammerneBg[];
 extern u16 * ImgArray_HammerneBg[];
 extern u16 Pal_HammerneBg[];
 extern const struct ProcCmd ProcScr_efxHammarneOBJ[];
-extern u32 AnimScr_EfxHammarneOBJ[];
+extern const AnimScr AnimScr_EfxHammarneOBJ[];
 extern u16 Pal_HammerneSprites[];
 extern const struct ProcCmd ProcScr_efxBerserk[];
 extern const struct ProcCmd ProcScr_efxBerserkBG[];
@@ -44,29 +198,29 @@ extern u16 Tsa_08273AE4[];
 extern const struct ProcCmd ProcScr_efxBerserkCLONE[];
 extern const struct ProcCmd ProcScr_efxBerserkOBJ[];
 extern AnimScr FramScr_Unk5D4F90[];
-extern u32 AnimScr_EfxBerserk1[];
+extern const AnimScr AnimScr_EfxBerserk1[];
 extern u16 Pal_BerserkSprites[];
 extern u16 Img_BerserkSprites_A[];
-extern u32 AnimScr_EfxBerserk2[];
-extern u32 AnimScr_EfxBerserk3[];
-extern u32 AnimScr_EfxBerserk4[];
-extern u32 AnimScr_EfxBerserk5[];
-extern u32 AnimScr_EfxBerserk6[];
+extern const AnimScr AnimScr_EfxBerserk2[];
+extern const AnimScr AnimScr_EfxBerserk3[];
+extern const AnimScr AnimScr_EfxBerserk4[];
+extern const AnimScr AnimScr_EfxBerserk5[];
+extern const AnimScr AnimScr_EfxBerserk6[];
 extern u16 Img_BerserkSprites_B[];
-extern u32 AnimScr_EfxBerserk7[];
-extern u32 AnimScr_EfxBerserk8[];
-extern u32 AnimScr_EfxBerserk9[];
-extern u32 AnimScr_EfxBerserk10[];
+extern const AnimScr AnimScr_EfxBerserk7[];
+extern const AnimScr AnimScr_EfxBerserk8[];
+extern const AnimScr AnimScr_EfxBerserk9[];
+extern const AnimScr AnimScr_EfxBerserk10[];
 extern const struct ProcCmd ProcScr_efxMshield[];
 extern const struct ProcCmd ProcScr_efxMshieldBG[];
 extern u16 * TsaArray_BarrierBg[];
 extern u16 Pal_BarrierBg[];
 extern u16 Img_BarrierBg[];
 extern const struct ProcCmd ProcScr_efxMshieldBGOBJ[];
-extern u32 AnimScr_EfxMshield1[];
+extern const AnimScr AnimScr_EfxMshield1[];
 extern u16 Img_EfxMshield[];
 extern const struct ProcCmd ProcScr_efxMshieldBGOBJ2[];
-extern u32 AnimScr_EfxMshield2[];
+extern const AnimScr AnimScr_EfxMshield2[];
 
 void StartSpellAnimSilence(struct Anim * anim);
 void efxSilence_Loop_Main(struct ProcEfx * proc);
@@ -825,7 +979,7 @@ void StartSubSpell_efxBerserkOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;
-    u32 * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -1347,4 +1501,431 @@ const struct ProcCmd ProcScr_efxMshieldBGOBJ2[] = {
     PROC_SET_END_CB(efxMshieldBGOBJ_OnEnd),
     PROC_SLEEP(110),
     PROC_END,
+};
+
+SECTION(".rodata.08BC4310")
+const AnimScr AnimScr_EfxSilenceOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC40F4, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC410C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC40F4, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC410C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4124, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC40F4, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC413C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4154, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC416C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4184, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC419C, 1),
+    ANIMSCR_BLOCKED,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41B4, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41F0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4208, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4250, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4268, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4280, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4298, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41F0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4268, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4280, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4298, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41F0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4268, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4208, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC42B0, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4250, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC42B0, 5),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4250, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41F0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC42B0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4250, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC42B0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC40F4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC42B0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41F0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC42B0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4250, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41F0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4250, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC41F0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC4250, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSilenceOBJ_08BC40F4, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BC6FF4")
+const AnimScr AnimScr_EfxHammarneOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC43CC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC43E4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4408, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4444, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4498, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4504, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4588, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4624, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC46E4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC47C8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC48D0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC49FC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4B4C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4CB4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4E34, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC4FD8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5194, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5368, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5548, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5734, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5920, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5B00, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5CD4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC5E9C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6040, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC61C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6328, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6478, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC65A4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC66AC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC679C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6874, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6934, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC69D0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6A60, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6AD8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6B38, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6B80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6BBC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6BEC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6C10, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHammarneOBJ_08BC6C28, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_END,
+};
+
+SECTION(".rodata.08BCC060")
+const AnimScr AnimScr_EfxSleepOBJ2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC70A4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC70C8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7104, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7170, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7200, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC72B4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7374, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC744C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC753C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7644, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7758, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7878, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC79A4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7AC4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7BE4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7CBC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7E24, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7EC0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7F5C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7FF8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8088, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8118, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC813C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8178, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC81E4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8274, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8328, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC83E8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC84C0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC85A4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC86A0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC87A8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC88BC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC89D0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8AE4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8BF8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8CD0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8D90, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8E2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8EC8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8F64, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC7D70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC8FF4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9084, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC90B4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC90FC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC915C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC91D4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9264, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9300, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC93B4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9474, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9540, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9618, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC96FC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC97EC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC98E8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC99F0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9B04, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9C24, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9D50, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9E88, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BC9FC0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA104, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA248, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA398, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA4E8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA62C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA758, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA878, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCA98C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAA88, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAB6C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAC38, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCACEC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAD94, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAE24, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAEA8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAF20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAF8C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCAFEC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCB040, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCB088, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCB0C4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCB0F4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ2_08BCB118, 2),
+    ANIMSCR_END,
+};
+
+SECTION(".rodata.08BCC1E0")
+const AnimScr AnimScr_EfxSleepOBJ1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCB130, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBAE4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBB14, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBB50, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBB98, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBBEC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBC4C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBCB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBD30, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBDB4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBE38, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBEA4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBF04, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBF70, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBFB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCBFF4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCC024, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSleepOBJ1_08BCC048, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_END,
+};
+
+SECTION(".rodata.08BCC794")
+const AnimScr AnimScr_EfxBerserk1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk1_08BCC230, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk1_08BCC260, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk1_08BCC290, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk1_08BCC2E4, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCC7A8")
+const AnimScr AnimScr_EfxBerserk2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk2_08BCC344, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk2_08BCC374, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk2_08BCC3A4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk2_08BCC3F8, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCC7BC")
+const AnimScr AnimScr_EfxBerserk3[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk3_08BCC458, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk3_08BCC488, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk3_08BCC4B8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk3_08BCC50C, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCC7D0")
+const AnimScr AnimScr_EfxBerserk4[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk4_08BCC56C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk4_08BCC59C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk4_08BCC5CC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk4_08BCC620, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCC7E4")
+const AnimScr AnimScr_EfxBerserk5[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk5_08BCC680, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk5_08BCC6B0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk5_08BCC6E0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk5_08BCC734, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCCB58")
+const AnimScr AnimScr_EfxBerserk6[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk6_08BCC7F8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk6_08BCC84C, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCCB64")
+const AnimScr AnimScr_EfxBerserk7[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk7_08BCC870, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk7_08BCC8C4, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCCB70")
+const AnimScr AnimScr_EfxBerserk8[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk8_08BCC8E8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk8_08BCC93C, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCCB7C")
+const AnimScr AnimScr_EfxBerserk9[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk9_08BCC960, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk9_08BCC9B4, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BCCB88")
+const AnimScr AnimScr_EfxBerserk10[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCC9D8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCA2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCA50, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCA8C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCAB0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCAD4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCAEC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCB04, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxBerserk10_08BCCB1C, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD0C48")
+const AnimScr AnimScr_EfxMshield1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCBB0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCBC8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCBEC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCC1C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCC58, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCCA0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCCF4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCD54, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCDC0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCE38, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCEBC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCF4C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCCFE8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD090, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD144, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD1F8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD2AC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD360, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD414, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD4C8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD57C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD630, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD6E4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD798, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD84C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD900, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCD9B4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDA68, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDB1C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDBD0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDC84, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDD38, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDDE0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDE7C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDF0C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCDF90, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE008, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE074, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE0E0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE158, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE1DC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE26C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE308, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE3B0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE5D8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE68C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE758, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE83C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE914, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE9F8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCEAE8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCEBE4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCECEC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCEE00, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCEF20, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF04C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF184, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF2BC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF400, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF544, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF694, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF7E4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCF928, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCFA54, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCFB74, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCFC88, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCFD84, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCFE68, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCFF34, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCFFE8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD0090, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD0120, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD01A4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD021C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD0288, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD02E8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD033C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD0384, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD03C0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD03F0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BD0414, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE824, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD0D98")
+const AnimScr AnimScr_EfxMshield2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD042C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0480, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD04D4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0528, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD057C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD05D0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0624, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0678, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD06E4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0750, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD07BC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0828, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0894, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0900, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD096C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD09D8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0A44, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0AA4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0AF8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0B4C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0B94, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0BD0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0C0C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield2_08BD0C30, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE824, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
 };

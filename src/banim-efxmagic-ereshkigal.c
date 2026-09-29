@@ -1,5 +1,14 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EreshkigalOBJ2_A_08BD68C8[],
+    AnimSprite_EreshkigalOBJ2_A_08BD68EC[], AnimSprite_EreshkigalOBJ2_A_08BD6910[],
+    AnimSprite_EreshkigalOBJ2_A_08BD6934[], AnimSprite_EreshkigalOBJ2_A_08BD6958[],
+    AnimSprite_EreshkigalOBJ2_A_08BD6970[], AnimSprite_EreshkigalOBJ2_A_08BD69DC[],
+    AnimSprite_EreshkigalOBJ2_B_08BD6A48[], AnimSprite_EreshkigalOBJ2_B_08BD6A84[],
+    AnimSprite_EreshkigalOBJ2_B_08BD6AC0[], AnimSprite_EreshkigalOBJ3_08BD6FD0[],
+    AnimSprite_EreshkigalOBJ3_08BD700C[], gUnk_08BD6E2C[], gUnk_08BD6E74[], gUnk_08BD6F70[],
+    gUnk_08BD6FB8[];
+
 struct ProcEfxEclipseBG
 {
     PROC_HEADER;
@@ -26,7 +35,7 @@ extern u16 * TsaArray_EreshkigalBg3[];
 extern u16 * ImgArray_EreshkigalBg3[];
 extern u16 Pal_EreshkigalBg3[];
 extern const struct ProcCmd ProcScr_efxSuperdruidOBJ2[];
-extern u32 AnimScr_08BD7078[];
+extern const AnimScr AnimScr_08BD7078[];
 extern u16 Img_082D9C94[];
 extern u16 Pal_082DA240[];
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
@@ -46,9 +55,9 @@ extern const struct ProcCmd ProcScr_efxEreshkigalBG[];
 extern const struct ProcCmd ProcScr_efxEreshkigalWhiteOut[];
 extern const int gEreshkigalOBJConfig[];
 extern AnimScr * AnimScrArray_EreshkigalOBJChild[];
-extern AnimScr AnimScr_EreshkigalOBJ2_A[];
-extern AnimScr AnimScr_EreshkigalOBJ2_B[];
-extern AnimScr AnimScr_EreshkigalOBJ3[];
+extern const AnimScr AnimScr_EreshkigalOBJ2_A[];
+extern const AnimScr AnimScr_EreshkigalOBJ2_B[];
+extern const AnimScr AnimScr_EreshkigalOBJ3[];
 extern u16 Img_EreshkigalOBJ[];
 extern u16 Pal_EreshkigalOBJ[];
 extern const s16 FrameConfig_EreshkigalBG[];
@@ -441,7 +450,7 @@ void StartSubSpell_efxSuperdruidOBJ2(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;
-    u32 * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -473,7 +482,7 @@ void StartSubSpell_efxEreshkigalOBJ3(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;
-    u32 * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -568,4 +577,41 @@ const struct ProcCmd ProcScr_efxEreshkigalOBJ3[] = {
     PROC_SET_END_CB(efxEreshkigalOBJ3_OnEnd),
     PROC_SLEEP(13),
     PROC_END,
+};
+
+SECTION(".rodata.08BD6CF4")
+const AnimScr AnimScr_EreshkigalOBJ2_A[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_A_08BD68C8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_A_08BD68EC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_A_08BD6910, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_A_08BD6934, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_A_08BD6958, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_A_08BD6970, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_A_08BD69DC, 2),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BD6D14")
+const AnimScr AnimScr_EreshkigalOBJ2_B[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_B_08BD6A48, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_B_08BD6A84, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ2_B_08BD6AC0, 3),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BD7078")
+const AnimScr AnimScr_08BD7078[] = {
+    ANIMSCR_FORCE_SPRITE(gUnk_08BD6E2C, 3),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BD6E74, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BD6FB8, 5),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BD6F70, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BD6FB8, 2),
+    ANIMSCR_END,
+};
+
+SECTION(".rodata.08BD7090")
+const AnimScr AnimScr_EreshkigalOBJ3[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ3_08BD6FD0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EreshkigalOBJ3_08BD700C, 2),
+    ANIMSCR_END,
 };

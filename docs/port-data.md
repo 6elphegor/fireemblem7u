@@ -91,6 +91,44 @@ Progress metric: pointer words left in assembly,
 `grep -c '^\s*\.4byte' data/rom/*.s | awk -F: '{s+=$2} END {print s}'`
 (13,657 at the start), plus the three stream sources above.
 
+## Animation scripts (`AnimScr`)
+
+A script is a list of instructions (`include/gbafe/anime.h`).  Four kinds
+hold an address, and the ROM stores it as one word next to flag bits the
+address has no room for on a 64-bit host: a sprite (`address + duration`:
+bits 0-1 and 28-30), `0xC0000000 + function`, `0xD0000000 + script`, and the
+two pointers after a FRAME instruction.  So a script is written with macros,
+one per instruction, never with numbers or `|`:
+
+    ANIMSCR_FORCE_SPRITE(AnimSprite_X, 2),  ANIMSCR_WAIT(0x13),
+    ANIMSCR_MOVE(x, y, delay),  ANIMSCR_COMMAND(id),  ANIMSCR_FRAME(delay, img, spr),
+    ANIMSCR_CALL(func),  ANIMSCR_JUMP(script),
+    ANIMSCR_BLOCKED (STOP),  ANIMSCR_END,  ANIMSCR_LOOP
+
+* **GBA** (`PLATFORM_GBA`): `AnimScr` is `u32`.  `ANIMSCR_FORCE_SPRITE(s, d)`
+  is `(AnimScr) s + ANIMFMT_OAM_DURATION(d)`, the same relocation the
+  assembly's `.4byte AnimSprite_X + 0x70000003` was; `CALL` and `JUMP` add
+  the flag the same way.  The bytes do not change.
+* **Host**: `AnimScr` is `uintptr_t`, and an instruction with an address is
+  two cells, the flags then the address: `FORCE_SPRITE(s, d)` expands to
+  `ANIMFMT_OAM_DURATION(d), (AnimScr) s`, `CALL(f)` to `0xC0000000u,
+  (AnimScr) f`.  A cell holds a whole pointer, so nothing is masked out of
+  an address.  The interpreter (`AnimInterpret`) tests
+  `ANINS_HAS_ADDRESS(first cell)` and takes the address from the next cell
+  instead of from the flag word.  FRAME is unchanged: the instruction
+  word, then the sheet and sprite pointers as cells.
+* Scripts that are not C (the battle animation scripts decompressed to RAM,
+  whose words are 32-bit) have to be expanded into this cell format when
+  they are decompressed on the host; that is the banim stream translation
+  above, not something the macros can do.
+* The sprites (`AnimSprite_*`) stay in assembly as blobs and are declared
+  `extern const struct AnimSpriteData X[]`, several to a line; a script that
+  jumps or calls names its target symbol like any other pointer.
+* `tools/datac.py add FILE AnimScr OBJ...` decodes a script into these
+  macros.  An object ends at its last STOP / END / LOOP before something that
+  does not decode as an instruction (`note:` lines: bytes after it stay in the
+  assembly).  STOP waits to be released and does not end the object.
+
 ## Batches
 
 Ordered so that each batch is mechanical within itself and has a decoder

@@ -1,5 +1,16 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_GespenstOBJ2_A_08BD3E80[],
+    AnimSprite_GespenstOBJ2_A_08BD3EEC[], AnimSprite_GespenstOBJ2_A_08BD3F58[],
+    AnimSprite_GespenstOBJ2_A_08BD3FC4[], AnimSprite_GespenstOBJ2_A_08BD4030[],
+    AnimSprite_GespenstOBJ2_A_08BD409C[], AnimSprite_GespenstOBJ2_A_08BD4108[],
+    AnimSprite_GespenstOBJ2_A_08BD4174[], AnimSprite_GespenstOBJ2_A_08BD41E0[],
+    AnimSprite_GespenstOBJ2_A_08BD424C[], AnimSprite_GespenstOBJ2_A_08BD4288[],
+    AnimSprite_GespenstOBJ_08BD37E4[], AnimSprite_GespenstOBJ_08BD397C[],
+    AnimSprite_GespenstOBJ_08BD3A84[], AnimSprite_GespenstOBJ_08BD3A9C[],
+    AnimSprite_GespenstOBJ_08BD3AFC[], AnimSprite_GespenstOBJ_08BD3C40[],
+    AnimSprite_GespenstOBJ_08BD3D6C[], AnimSprite_GespenstOBJ_08BD3DE4[];
+
 /* auto-decls */
 extern const struct ProcCmd ProcScr_efxGespenstBG4[];
 extern u16 Img_GespenstBg4[];
@@ -25,14 +36,14 @@ extern u16 Pal_GespenstBG[];
 extern u16 Img_GespenstBG2[];
 extern u16 Pal_GespenstBG2[];
 extern u16 Tsa_GespenstBG2[];
-extern AnimScr AnimScr_GespenstOBJ[];
+extern const AnimScr AnimScr_GespenstOBJ[];
 extern u16 Pal_GespenstOBJ[];
 extern u16 Img_GespenstOBJ[];
 extern u16 Pal_GespenstOBJ2[];
 extern u16 Img_GespenstOBJ2[];
-extern AnimScr AnimScr_GespenstOBJ2_A[];
-extern AnimScr AnimScr_GespenstOBJ2_B[];
-extern AnimScr AnimScr_GespenstOBJ2_C[];
+extern const AnimScr AnimScr_GespenstOBJ2_A[];
+extern const AnimScr AnimScr_GespenstOBJ2_B[];
+extern const AnimScr AnimScr_GespenstOBJ2_C[];
 
 void StartSubSpell_efxGespenstBG(struct Anim * anim);
 void StartSubSpell_efxGespenstBG2(struct Anim * anim, int terminator);
@@ -472,4 +483,80 @@ const struct ProcCmd ProcScr_efxGespenstOBJ2[] = {
     PROC_REPEAT(efxGespenstOBJ2_Loop_C),
     PROC_SLEEP(19),
     PROC_END,
+};
+
+SECTION(".rodata.08BD3E44")
+const AnimScr AnimScr_GespenstOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3AFC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3C40, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3A84, 10),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3D6C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3DE4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3A84, 10),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD37E4, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD397C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3A9C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3A84, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3D6C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3DE4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ_08BD3A84, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BD42A0")
+const AnimScr AnimScr_GespenstOBJ2_A[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3E80, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3EEC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3F58, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3FC4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4030, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD409C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4108, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4174, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD41E0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD424C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BD42F4")
+const AnimScr AnimScr_GespenstOBJ2_B[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD424C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BD4300")
+const AnimScr AnimScr_GespenstOBJ2_C[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD424C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD41E0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4174, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4108, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD409C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4030, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3FC4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3F58, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3EEC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3E80, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
+    ANIMSCR_LOOP,
 };

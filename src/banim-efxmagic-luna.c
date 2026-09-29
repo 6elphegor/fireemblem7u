@@ -1,5 +1,12 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxLuna1_08BD2804[], AnimSprite_EfxLuna1_08BD2828[],
+    AnimSprite_EfxLuna1_08BD284C[], AnimSprite_EfxLuna1_08BD2870[], AnimSprite_EfxLuna1_08BD2894[],
+    AnimSprite_EfxLuna1_08BD28B8[], AnimSprite_EfxLuna1_08BD28DC[], AnimSprite_EfxLuna1_08BD2900[],
+    AnimSprite_EfxLuna1_08BD2924[], AnimSprite_EfxLuna1_08BD2948[], AnimSprite_EfxLuna1_08BD296C[],
+    AnimSprite_EfxLuna1_08BD2990[], AnimSprite_EfxLuna4_08BD2A3C[], AnimSprite_EfxLuna4_08BD2A60[],
+    AnimSprite_EfxLuna4_08BD2A84[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -28,9 +35,9 @@ extern u16 Pal_LunaBg3[];
 extern const struct ProcCmd ProcScr_efxLunaOBJ[];
 extern u16 Pal_LunaSprites[];
 extern u16 Img_LunaSprites[];
-extern u32 AnimScr_EfxLuna1[];
-extern u32 AnimScr_EfxLuna4[];
-extern u32 AnimScr_EfxLuna2[];
+extern const AnimScr AnimScr_EfxLuna1[];
+extern const AnimScr AnimScr_EfxLuna4[];
+extern const AnimScr AnimScr_EfxLuna2[];
 extern const struct ProcCmd ProcScr_efxLunaRST[];
 
 void StartSpellAnimLuna(struct Anim * anim);
@@ -514,7 +521,7 @@ void StartSubSpell_efxLunaOBJ(struct Anim * anim)
 void efxLunaOBJ_Loop_A(struct ProcEfxOBJ * proc)
 {
     struct Anim * anim;
-    u32 * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -788,4 +795,48 @@ const struct ProcCmd ProcScr_efxLunaRST[] = {
     PROC_19,
     PROC_REPEAT(efxLunaRST_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BD29CC")
+const AnimScr AnimScr_EfxLuna1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2870, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2894, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD28B8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD28DC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2900, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2924, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2948, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD296C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2990, 1),
+    ANIMSCR_BLOCKED,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2804, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2828, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD284C, 3),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD2A04")
+const AnimScr AnimScr_EfxLuna2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2990, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD296C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2948, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2924, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2900, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD28DC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD28B8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2894, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2870, 1),
+    ANIMSCR_BLOCKED,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD284C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2828, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna1_08BD2804, 3),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD2C2C")
+const AnimScr AnimScr_EfxLuna4[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna4_08BD2A3C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna4_08BD2A60, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna4_08BD2A84, 3),
+    ANIMSCR_LOOP,
 };

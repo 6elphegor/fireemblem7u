@@ -1,5 +1,26 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxMistyRainObj1_08BB9298[],
+    AnimSprite_EfxMistyRainObj1_08BB92BC[], AnimSprite_EfxMistyRainObj1_08BB92E0[],
+    AnimSprite_EfxMistyRainObj1_08BB9304[], AnimSprite_EfxMistyRainObj1_08BB9328[],
+    AnimSprite_EfxMistyRainObj1_08BB9364[], AnimSprite_EfxMistyRainObj1_08BB93A0[],
+    AnimSprite_EfxMistyRainObj1_08BB940C[], AnimSprite_EfxMistyRainObj1_08BB9430[],
+    AnimSprite_EfxMistyRainObj1_08BB9454[], AnimSprite_EfxMistyRainObj1_08BB9478[],
+    AnimSprite_EfxMistyRainObj1_08BB949C[], AnimSprite_EfxMistyRainObj1_08BB94C0[],
+    AnimSprite_EfxMistyRainObj2_08BB9584[], AnimSprite_EfxMistyRainObj2_08BB95B4[],
+    AnimSprite_EfxMistyRainObj2_08BB95FC[], AnimSprite_EfxMistyRainObj2_08BB9644[],
+    AnimSprite_EfxMistyRainObj3_08BB9928[], AnimSprite_EfxMistyRainObj3_08BB9940[],
+    AnimSprite_EfxMistyRainObj3_08BB9964[], AnimSprite_EfxMistyRainObj3_08BB997C[],
+    AnimSprite_EfxMistyRainObj3_08BB99A0[], AnimSprite_EfxMistyRainObj3_08BB99C4[],
+    AnimSprite_EfxMistyRainObj3_08BB99E8[], AnimSprite_EfxMistyRainObj3_08BB9A0C[],
+    AnimSprite_EfxMistyRainObj3_08BB9A30[], AnimSprite_EfxMistyRainObj3_08BB9A54[],
+    AnimSprite_EfxMistyRainObj4_08BB9694[], AnimSprite_EfxMistyRainObj4_08BB96D0[],
+    AnimSprite_EfxMistyRainObj4_08BB970C[], AnimSprite_EfxMistyRainObj4_08BB9748[],
+    AnimSprite_EfxMistyRainObj4_08BB9784[], AnimSprite_EfxMistyRainObj4_08BB97C0[],
+    AnimSprite_EfxMistyRainObj4_08BB97FC[], AnimSprite_EfxMistyRainObj4_08BB9838[],
+    AnimSprite_EfxMistyRainObj4_08BB9874[], AnimSprite_EfxMistyRainObj4_08BB98B0[],
+    AnimSprite_EfxMistyRainObj4_08BB98EC[], AnimSprite_EfxMistyRainObj5_08BB9910[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -15,15 +36,15 @@ extern u16 Pal_08227128[];
 extern const struct ProcCmd ProcScr_efxMistyrainOBJ[];
 extern AnimScr FramScr_Unk5D4F90[];
 extern const struct ProcCmd gProcScr_efxMistyrainOBJ2[];
-extern u32 AnimScr_EfxMistyRainObj1[];
+extern const AnimScr AnimScr_EfxMistyRainObj1[];
 extern u16 Pal_FluxAnimSprites[];
 extern u16 Img_FluxAnimSprites_Orb[];
-extern u32 AnimScr_EfxMistyRainObj2[];
+extern const AnimScr AnimScr_EfxMistyRainObj2[];
 extern u16 Img_FluxAnimSprites_Tendrils[];
-extern u32 AnimScr_EfxMistyRainObj3[];
+extern const AnimScr AnimScr_EfxMistyRainObj3[];
 extern u16 Img_FluxAnimSprites_SigilVoid[];
-extern u32 AnimScr_EfxMistyRainObj4[];
-extern u32 AnimScr_EfxMistyRainObj5[];
+extern const AnimScr AnimScr_EfxMistyRainObj4[];
+extern const AnimScr AnimScr_EfxMistyRainObj5[];
 
 void StartSpellAnimFlux(struct Anim * anim);
 void efxMistyRain_Loop_Main(struct ProcEfx * proc);
@@ -228,7 +249,7 @@ void efxMistyRainBg_Loop(struct ProcEfxBG * proc)
 void StartSubSpell_efxMistyRainOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
-    u32 * script;
+    const AnimScr * script;
 
     gEfxBgSemaphore++;
 
@@ -246,7 +267,7 @@ void StartSubSpell_efxMistyRainOBJ(struct Anim * anim)
 struct ProcEfxOBJ * StartSubSpell_efxMistyrainOBJ2(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
-    u32 * script;
+    const AnimScr * script;
 
     gEfxBgSemaphore++;
 
@@ -391,4 +412,101 @@ const struct ProcCmd gProcScr_efxMistyrainOBJ2[] = {
     PROC_SLEEP(14),
     PROC_REPEAT(efxMistyRainObj2_08059884),
     PROC_END,
+};
+
+SECTION(".rodata.08BB94FC")
+const AnimScr AnimScr_EfxMistyRainObj1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB940C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9430, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9454, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9478, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB949C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB94C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9298, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB92BC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB92E0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9304, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9328, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9364, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB93A0, 3),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BB9680")
+const AnimScr AnimScr_EfxMistyRainObj2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj2_08BB9584, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj2_08BB95B4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj2_08BB95FC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj2_08BB9644, 3),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BB9A78")
+const AnimScr AnimScr_EfxMistyRainObj4[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB9694, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB96D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB970C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB9748, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB9784, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB97C0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB97FC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB9838, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB9874, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98B0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 31),
+    ANIMSCR_WAIT(0x45),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BB9AAC")
+const AnimScr AnimScr_EfxMistyRainObj5[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj5_08BB9910, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj4_08BB98EC, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BB9B34")
+const AnimScr AnimScr_EfxMistyRainObj3[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9928, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9940, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9964, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB997C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB99A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB99C4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB99E8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9A0C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9A30, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9A54, 2),
+    ANIMSCR_BLOCKED,
 };

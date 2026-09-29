@@ -1,5 +1,23 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_TriAtkLeft_08BDB954[],
+    AnimSprite_TriAtkLeft_08BDBA2C[], AnimSprite_TriAtkLeft_08BDBAEC[],
+    AnimSprite_TriAtkLeft_08BDBBAC[], AnimSprite_TriAtkLeft_08BDBC6C[],
+    AnimSprite_TriAtkLeft_08BDBD2C[], AnimSprite_TriAtkRight_08BDBE20[],
+    AnimSprite_TriAtkRight_08BDBEE0[], AnimSprite_TriAtkRight_08BDBFA0[],
+    AnimSprite_TriAtkRight_08BDC060[], AnimSprite_TriGenerialAxeAtkOBJ_08BDC648[],
+    AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C[], AnimSprite_TriGenerialAxeAtkOBJ_08BDC720[],
+    AnimSprite_TriGenerialAxeOBJ_08BDC26C[], AnimSprite_TriGenerialAxeOBJ_08BDC2D8[],
+    AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C[], AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC7D8[],
+    AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868[], AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC880[],
+    AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC910[], AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994[],
+    AnimSprite_TriGenerialHandAxeOBJ_08BDC304[], AnimSprite_TriGenerialHandAxeOBJ_08BDC364[],
+    AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0[], AnimSprite_TriGenerialLanceAtkOBJ_08BDC548[],
+    AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC[], AnimSprite_TriGenerialLanceOBJ_08BDC1DC[],
+    AnimSprite_TriGenerialLanceOBJ_08BDC248[], AnimSprite_TriKnightAtkOBJ_08BDC388[],
+    AnimSprite_TriKnightAtkOBJ_08BDC3E8[], AnimSprite_TriKnightAtkOBJ_08BDC454[],
+    AnimSprite_TriKnightOBJ_08BDC14C[], AnimSprite_TriKnightOBJ_08BDC1B8[];
+
 /**
  * Triangle attack battle animations (fireemblem8u: banim-ekrtriangle.c)
  */
@@ -116,26 +134,26 @@ extern CONST_DATA const u16 * TsaLut_EkrTriPegagusBG[];
 extern const u8 Img_TriPegasusKnightBG[];
 extern const u8 Img_TriFalconKnightSwordBG[];
 extern const u8 Img_TriFalconKnightLanceBG[];
-extern AnimScr AnimScr_TriAtkLeft[];
-extern AnimScr AnimScr_TriAtkRight[];
+extern const AnimScr AnimScr_TriAtkLeft[];
+extern const AnimScr AnimScr_TriAtkRight[];
 extern const u8 Img_TriPegasusKnightOBJ[];
 extern const u8 Img_TriFalconKnightSwordOBJ[];
 extern const u8 Img_TriFalconKnightLanceOBJ[];
-extern AnimScr AnimScr_TriKnightOBJ[];
+extern const AnimScr AnimScr_TriKnightOBJ[];
 extern const u8 Img_TriKnightOBJ[];
-extern AnimScr AnimScr_TriGenerialLanceOBJ[];
+extern const AnimScr AnimScr_TriGenerialLanceOBJ[];
 extern const u8 Img_TriGenerialLanceOBJ[];
-extern AnimScr AnimScr_TriGenerialAxeOBJ[];
+extern const AnimScr AnimScr_TriGenerialAxeOBJ[];
 extern const u8 Img_TriGenerialAxeOBJ[];
-extern AnimScr AnimScr_TriGenerialHandAxeOBJ[];
+extern const AnimScr AnimScr_TriGenerialHandAxeOBJ[];
 extern const u8 Img_TriGenerialHandAxeOBJ[];
-extern AnimScr AnimScr_TriKnightAtkOBJ[];
+extern const AnimScr AnimScr_TriKnightAtkOBJ[];
 extern const u8 Img_TriKnightAtkOBJ[];
-extern AnimScr AnimScr_TriGenerialLanceAtkOBJ[];
+extern const AnimScr AnimScr_TriGenerialLanceAtkOBJ[];
 extern const u8 Img_TriGenerialLanceAtkOBJ[];
-extern AnimScr AnimScr_TriGenerialAxeAtkOBJ[];
+extern const AnimScr AnimScr_TriGenerialAxeAtkOBJ[];
 extern const u8 Img_TriGenerialAxeAtkOBJ[];
-extern AnimScr AnimScr_TriGenerialHandAxeAtkOBJ[];
+extern const AnimScr AnimScr_TriGenerialHandAxeAtkOBJ[];
 extern const u8 Img_TriGenerialHandAxeAtkOBJ[];
 
 void PlaySFX(int songid, int volume, int locate, int type);
@@ -441,7 +459,7 @@ void NewEkrTriPegasusKnightOBJ(struct Anim * anim, u32 pos, u32 etype, u32 ewtyp
 {
     struct ProcEfxOBJ * proc;
     u16 * pal;
-    AnimScr * scr;
+    const AnimScr * scr;
     const u8 * img;
 
     proc = Proc_Start(ProcScr_EkrTriPegasusKnightOBJ, PROC_TREE_3);
@@ -544,7 +562,7 @@ void NewEkrTriArmorKnightOBJ(struct Anim * anim, u32 etype1, u32 etype2, u32 ewt
     struct ProcEfxOBJ * proc;
     struct Anim * anim2;
     u16 * pal;
-    AnimScr * scr;
+    const AnimScr * scr;
     const u8 * img;
 
     proc = Proc_Start(ProcScr_EkrTriArmorKnightOBJ, PROC_TREE_3);
@@ -653,7 +671,7 @@ void NewEkrTriArmorKnightOBJ2(struct Anim * anim, u32 pos, u32 etype, u32 ewtype
     struct ProcEkrTriArmorKnightOBJ2 * proc;
     struct Anim * anim2, * _anim;
     u16 * pal;
-    AnimScr * scr;
+    const AnimScr * scr;
     const u8 * buf;
 
     proc = Proc_Start(ProcScr_EkrTriArmorKnightOBJ2, PROC_TREE_3);
@@ -859,4 +877,170 @@ const struct ProcCmd ProcScr_EfxTriangleQUAKE[] = {
     PROC_19,
     PROC_REPEAT(EfxTriangleQUAKEMain),
     PROC_END,
+};
+
+SECTION(".rodata.08BDBE04")
+const AnimScr AnimScr_TriAtkLeft[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkLeft_08BDB954, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkLeft_08BDBA2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkLeft_08BDBAEC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkLeft_08BDBBAC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkLeft_08BDBC6C, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkLeft_08BDBD2C, 10),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDC138")
+const AnimScr AnimScr_TriAtkRight[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkRight_08BDBE20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkRight_08BDBEE0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkRight_08BDBFA0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriAtkRight_08BDC060, 12),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDC1D0")
+const AnimScr AnimScr_TriKnightOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightOBJ_08BDC14C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightOBJ_08BDC1B8, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BDC260")
+const AnimScr AnimScr_TriGenerialLanceOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceOBJ_08BDC1DC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceOBJ_08BDC248, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BDC2F0")
+const AnimScr AnimScr_TriGenerialAxeOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeOBJ_08BDC26C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeOBJ_08BDC2D8, 1),
+    ANIMSCR_LOOP,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeOBJ_08BDC26C, 4),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BDC37C")
+const AnimScr AnimScr_TriGenerialHandAxeOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeOBJ_08BDC304, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeOBJ_08BDC364, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BDC46C")
+const AnimScr AnimScr_TriKnightAtkOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC388, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC388, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC388, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC388, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC388, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC388, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC3E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC3E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC3E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC3E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC3E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC3E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriKnightAtkOBJ_08BDC454, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDC5E4")
+const AnimScr AnimScr_TriGenerialLanceAtkOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC548, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC548, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC548, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC548, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC548, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC548, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDC738")
+const AnimScr AnimScr_TriGenerialAxeAtkOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC648, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC648, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC648, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC648, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC648, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC648, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialAxeAtkOBJ_08BDC720, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDCA00")
+const AnimScr AnimScr_TriGenerialHandAxeAtkOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC7D8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC880, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC910, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
+    ANIMSCR_BLOCKED,
 };

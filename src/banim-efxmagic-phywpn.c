@@ -1,5 +1,63 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_ArrowCloseLeft_08BA5324[],
+    AnimSprite_ArrowCloseLeft_08BA5348[], AnimSprite_ArrowCloseLeft_08BA536C[],
+    AnimSprite_ArrowCloseRight_08BA5298[], AnimSprite_ArrowCloseRight_08BA52BC[],
+    AnimSprite_ArrowCloseRight_08BA52E0[], AnimSprite_EfxTeyariObjType0Left_08BA5604[],
+    AnimSprite_EfxTeyariObjType0Left_08BA5628[], AnimSprite_EfxTeyariObjType0Left_08BA564C[],
+    AnimSprite_EfxTeyariObjType0Left_08BA5664[], AnimSprite_EfxTeyariObjType0Left_08BA5688[],
+    AnimSprite_EfxTeyariObjType0Left_08BA56AC[], AnimSprite_EfxTeyariObjType0Left_08BA56D0[],
+    AnimSprite_EfxTeyariObjType0Left_08BA56F4[], AnimSprite_EfxTeyariObjType0Left_08BA5718[],
+    AnimSprite_EfxTeyariObjType0Left_08BA573C[], AnimSprite_EfxTeyariObjType0Left_08BA5760[],
+    AnimSprite_EfxTeyariObjType0Left_08BA5784[], AnimSprite_EfxTeyariObjType0Left_08BA57A8[],
+    AnimSprite_EfxTeyariObjType0Left_08BA57C0[], AnimSprite_EfxTeyariObjType0Right_08BA53B0[],
+    AnimSprite_EfxTeyariObjType0Right_08BA53D4[], AnimSprite_EfxTeyariObjType0Right_08BA53F8[],
+    AnimSprite_EfxTeyariObjType0Right_08BA5410[], AnimSprite_EfxTeyariObjType0Right_08BA5434[],
+    AnimSprite_EfxTeyariObjType0Right_08BA5458[], AnimSprite_EfxTeyariObjType0Right_08BA547C[],
+    AnimSprite_EfxTeyariObjType0Right_08BA54A0[], AnimSprite_EfxTeyariObjType0Right_08BA54C4[],
+    AnimSprite_EfxTeyariObjType0Right_08BA54E8[], AnimSprite_EfxTeyariObjType0Right_08BA550C[],
+    AnimSprite_EfxTeyariObjType0Right_08BA5530[], AnimSprite_EfxTeyariObjType0Right_08BA5554[],
+    AnimSprite_EfxTeyariObjType0Right_08BA556C[], AnimSprite_EfxTeyariObjType1Left_08BA5AB8[],
+    AnimSprite_EfxTeyariObjType1Left_08BA5AD0[], AnimSprite_EfxTeyariObjType1Left_08BA5B00[],
+    AnimSprite_EfxTeyariObjType1Left_08BA5B24[], AnimSprite_EfxTeyariObjType1Left_08BA5B48[],
+    AnimSprite_EfxTeyariObjType1Left_08BA5B6C[], AnimSprite_EfxTeyariObjType1Left_08BA5B90[],
+    AnimSprite_EfxTeyariObjType1Left_08BA5BB4[], AnimSprite_EfxTeyariObjType1Left_08BA5BD8[],
+    AnimSprite_EfxTeyariObjType1Left_08BA5BFC[], AnimSprite_EfxTeyariObjType1Left_08BA5C20[],
+    AnimSprite_EfxTeyariObjType1Left_08BA5C44[], AnimSprite_EfxTeyariObjType1Left_08BA5C68[],
+    AnimSprite_EfxTeyariObjType1Left_08BA5C80[], AnimSprite_EfxTeyariObjType1Right_08BA5858[],
+    AnimSprite_EfxTeyariObjType1Right_08BA5870[], AnimSprite_EfxTeyariObjType1Right_08BA58A0[],
+    AnimSprite_EfxTeyariObjType1Right_08BA58C4[], AnimSprite_EfxTeyariObjType1Right_08BA58E8[],
+    AnimSprite_EfxTeyariObjType1Right_08BA590C[], AnimSprite_EfxTeyariObjType1Right_08BA5930[],
+    AnimSprite_EfxTeyariObjType1Right_08BA5954[], AnimSprite_EfxTeyariObjType1Right_08BA5978[],
+    AnimSprite_EfxTeyariObjType1Right_08BA599C[], AnimSprite_EfxTeyariObjType1Right_08BA59C0[],
+    AnimSprite_EfxTeyariObjType1Right_08BA59E4[], AnimSprite_EfxTeyariObjType1Right_08BA5A08[],
+    AnimSprite_EfxTeyariObjType1Right_08BA5A20[], AnimSprite_TeonoObj2Left_08BA51C4[],
+    AnimSprite_TeonoObj2Right_08BA4E2C[], AnimSprite_TeonoObjCloseLeft_08BA4F00[],
+    AnimSprite_TeonoObjCloseLeft_08BA4F18[], AnimSprite_TeonoObjCloseLeft_08BA4F30[],
+    AnimSprite_TeonoObjCloseLeft_08BA4F48[], AnimSprite_TeonoObjCloseLeft_08BA4F60[],
+    AnimSprite_TeonoObjCloseLeft_08BA4F78[], AnimSprite_TeonoObjCloseLeft_08BA4F90[],
+    AnimSprite_TeonoObjCloseLeft_08BA4FA8[], AnimSprite_TeonoObjCloseLeft_08BA4FC0[],
+    AnimSprite_TeonoObjCloseLeft_08BA4FD8[], AnimSprite_TeonoObjCloseLeft_08BA4FF0[],
+    AnimSprite_TeonoObjCloseLeft_08BA5014[], AnimSprite_TeonoObjCloseLeft_08BA5038[],
+    AnimSprite_TeonoObjCloseLeft_08BA505C[], AnimSprite_TeonoObjCloseLeft_08BA5080[],
+    AnimSprite_TeonoObjCloseLeft_08BA50A4[], AnimSprite_TeonoObjCloseLeft_08BA50C8[],
+    AnimSprite_TeonoObjCloseLeft_08BA50EC[], AnimSprite_TeonoObjCloseLeft_08BA5110[],
+    AnimSprite_TeonoObjCloseLeft_08BA5134[], AnimSprite_TeonoObjCloseLeft_08BA5158[],
+    AnimSprite_TeonoObjCloseLeft_08BA517C[], AnimSprite_TeonoObjCloseRight_08BA4B68[],
+    AnimSprite_TeonoObjCloseRight_08BA4B80[], AnimSprite_TeonoObjCloseRight_08BA4B98[],
+    AnimSprite_TeonoObjCloseRight_08BA4BB0[], AnimSprite_TeonoObjCloseRight_08BA4BC8[],
+    AnimSprite_TeonoObjCloseRight_08BA4BE0[], AnimSprite_TeonoObjCloseRight_08BA4BF8[],
+    AnimSprite_TeonoObjCloseRight_08BA4C10[], AnimSprite_TeonoObjCloseRight_08BA4C28[],
+    AnimSprite_TeonoObjCloseRight_08BA4C40[], AnimSprite_TeonoObjCloseRight_08BA4C58[],
+    AnimSprite_TeonoObjCloseRight_08BA4C7C[], AnimSprite_TeonoObjCloseRight_08BA4CA0[],
+    AnimSprite_TeonoObjCloseRight_08BA4CC4[], AnimSprite_TeonoObjCloseRight_08BA4CE8[],
+    AnimSprite_TeonoObjCloseRight_08BA4D0C[], AnimSprite_TeonoObjCloseRight_08BA4D30[],
+    AnimSprite_TeonoObjCloseRight_08BA4D54[], AnimSprite_TeonoObjCloseRight_08BA4D78[],
+    AnimSprite_TeonoObjCloseRight_08BA4D9C[], AnimSprite_TeonoObjCloseRight_08BA4DC0[],
+    AnimSprite_TeonoObjCloseRight_08BA4DE4[], AnimSprite_TeonoObjFarLeft_08BA5194[],
+    AnimSprite_TeonoObjFarLeft_08BA51AC[], AnimSprite_TeonoObjFarRight_08BA4DFC[],
+    AnimSprite_TeonoObjFarRight_08BA4E14[];
+
 /* auto-decls */
 extern u16 Img_SpellJavelin_08056938[];
 extern u16 Pal_SpellJavelin_08056938[];
@@ -31,30 +89,30 @@ extern const struct ProcCmd ProcScr_efxTeono[];
 // MISSING var (2)
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxTeonoOBJ[];
-extern u32 AnimScr_TeonoObjCloseLeft[];
-extern u32 AnimScr_TeonoObjCloseRight[];
-extern u32 AnimScr_TeonoObjFarLeft[];
-extern u32 AnimScr_TeonoObjFarRight[];
+extern const AnimScr AnimScr_TeonoObjCloseLeft[];
+extern const AnimScr AnimScr_TeonoObjCloseRight[];
+extern const AnimScr AnimScr_TeonoObjFarLeft[];
+extern const AnimScr AnimScr_TeonoObjFarRight[];
 extern u16 Pal_TeonoOBJ[];
 extern u16 Img_TeonoOBJ[];
 extern u32 gUnknown_02017754;
 extern const struct ProcCmd ProcScr_efxTeonoOBJ2[];
-extern u32 AnimScr_TeonoObj2Left[];
-extern u32 AnimScr_TeonoObj2Right[];
+extern const AnimScr AnimScr_TeonoObj2Left[];
+extern const AnimScr AnimScr_TeonoObj2Right[];
 extern const struct ProcCmd ProcScr_efxTeonoSE[];
 extern const struct ProcCmd ProcScr_efxArrow[];
 extern const struct ProcCmd ProcScr_efxArrowOBJ[];
-extern u32 AnimScr_ArrowCloseLeft[];
-extern u32 AnimScr_ArrowCloseRight[];
-extern u32 AnimScr_ArrowFarLeft[];
-extern u32 AnimScr_ArrowFarRight[];
+extern const AnimScr AnimScr_ArrowCloseLeft[];
+extern const AnimScr AnimScr_ArrowCloseRight[];
+extern const AnimScr AnimScr_ArrowFarLeft[];
+extern const AnimScr AnimScr_ArrowFarRight[];
 extern u16 Img_EfxArrowOBJ[];
 extern const struct ProcCmd ProcScr_efxTeyari[];
 extern const struct ProcCmd ProcScr_efxTeyariOBJ[];
-extern u32 AnimScr_EfxTeyariObjType0Right[];
-extern u32 AnimScr_EfxTeyariObjType0Left[];
-extern u32 AnimScr_EfxTeyariObjType1Right[];
-extern u32 AnimScr_EfxTeyariObjType1Left[];
+extern const AnimScr AnimScr_EfxTeyariObjType0Right[];
+extern const AnimScr AnimScr_EfxTeyariObjType0Left[];
+extern const AnimScr AnimScr_EfxTeyariObjType1Right[];
+extern const AnimScr AnimScr_EfxTeyariObjType1Left[];
 
 struct ProcEfxMagicOBJ {
     PROC_HEADER;
@@ -659,7 +717,7 @@ void NewEfxTeyariOBJ(struct Anim * anim, int type)
 {
     struct Anim * anim2;
     struct ProcEfxMagicOBJ * proc;
-    u32 * scr1, * scr2;
+    const AnimScr * scr1, * scr2;
 
     gEfxBgSemaphore++;
     proc = Proc_Start(ProcScr_efxTeyariOBJ, PROC_TREE_3);
@@ -760,4 +818,292 @@ const struct ProcCmd ProcScr_efxTeyariOBJ[] = {
     PROC_19,
     PROC_REPEAT(EfxTeyariObjMain),
     PROC_END,
+};
+
+SECTION(".rodata.08BA4E50")
+const AnimScr AnimScr_TeonoObjCloseRight[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4B68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4B80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4B98, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4BB0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4BC8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4BE0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4BF8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4C10, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4C28, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4C40, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4C58, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4C7C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4CA0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4CC4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4CE8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D0C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D30, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D54, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D78, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D9C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4DC0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4DE4, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA4EAC")
+const AnimScr AnimScr_TeonoObjFarRight[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4B68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4B80, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4B98, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4BB0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4BC8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjFarRight_08BA4DFC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjFarRight_08BA4E14, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA4ECC")
+const AnimScr AnimScr_TeonoObj2Right[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObj2Right_08BA4E2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4C7C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4CA0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4CC4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4CE8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D0C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D30, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D54, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D78, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4D9C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4DC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseRight_08BA4DE4, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA51E8")
+const AnimScr AnimScr_TeonoObjCloseLeft[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F00, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F18, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F30, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F48, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F60, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F78, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F90, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4FA8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4FC0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4FD8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4FF0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5014, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5038, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA505C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5080, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA50A4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA50C8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA50EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5110, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5134, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5158, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA517C, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5244")
+const AnimScr AnimScr_TeonoObjFarLeft[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F00, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F18, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F30, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F48, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA4F60, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjFarLeft_08BA5194, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjFarLeft_08BA51AC, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5264")
+const AnimScr AnimScr_TeonoObj2Left[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObj2Left_08BA51C4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5014, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5038, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA505C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5080, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA50A4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA50C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA50EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5110, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5134, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA5158, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_TeonoObjCloseLeft_08BA517C, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5304")
+const AnimScr AnimScr_ArrowCloseRight[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseRight_08BA5298, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseRight_08BA52BC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseRight_08BA52E0, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5314")
+const AnimScr AnimScr_ArrowFarRight[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseRight_08BA5298, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseRight_08BA52BC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseRight_08BA52E0, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5390")
+const AnimScr AnimScr_ArrowCloseLeft[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseLeft_08BA5324, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseLeft_08BA5348, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseLeft_08BA536C, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA53A0")
+const AnimScr AnimScr_ArrowFarLeft[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseLeft_08BA5324, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseLeft_08BA5348, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_ArrowCloseLeft_08BA536C, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5584")
+const AnimScr AnimScr_EfxTeyariObjType0Right[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA53B0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA53D4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA53F8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5410, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5434, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5458, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA547C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA54A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA54C4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA54E8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA550C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5530, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA5554, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Right_08BA556C, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA57D8")
+const AnimScr AnimScr_EfxTeyariObjType0Left[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA5604, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA5628, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA564C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA5664, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA5688, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA56AC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA56D0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA56F4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA5718, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA573C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA5760, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA5784, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57A8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType0Left_08BA57C0, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5A38")
+const AnimScr AnimScr_EfxTeyariObjType1Right[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5858, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5870, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA58A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA58C4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA58E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA590C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5930, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5954, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5978, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA599C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA59C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA59E4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A08, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Right_08BA5A20, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5C98")
+const AnimScr AnimScr_EfxTeyariObjType1Left[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5AB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5AD0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5B00, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5B24, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5B48, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5B6C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5B90, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5BB4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5BD8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5BFC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C20, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C44, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxTeyariObjType1Left_08BA5C80, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
 };

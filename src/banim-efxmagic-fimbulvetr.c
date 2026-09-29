@@ -1,5 +1,23 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_FimbulvetrOBJ1_08BB7410[],
+    AnimSprite_FimbulvetrOBJ1_08BB7488[], AnimSprite_FimbulvetrOBJ1_08BB7584[],
+    AnimSprite_FimbulvetrOBJ1_08BB7698[], AnimSprite_FimbulvetrOBJ1_08BB77C4[],
+    AnimSprite_FimbulvetrOBJ1_08BB7908[], AnimSprite_FimbulvetrOBJ1_08BB7A34[],
+    AnimSprite_FimbulvetrOBJ1_08BB7B60[], AnimSprite_FimbulvetrOBJ1_08BB7C8C[],
+    AnimSprite_FimbulvetrOBJ1_08BB7DB8[], AnimSprite_FimbulvetrOBJ1_08BB7ED8[],
+    AnimSprite_FimbulvetrOBJ1_08BB8004[], AnimSprite_FimbulvetrOBJ1_08BB8130[],
+    AnimSprite_FimbulvetrOBJ1_08BB8250[], AnimSprite_FimbulvetrOBJ1_08BB837C[],
+    AnimSprite_FimbulvetrOBJ1_08BB84A8[], AnimSprite_FimbulvetrOBJ1_08BB85D4[],
+    AnimSprite_FimbulvetrOBJ1_08BB8700[], AnimSprite_FimbulvetrOBJ1_08BB882C[],
+    AnimSprite_FimbulvetrOBJ1_08BB8958[], AnimSprite_FimbulvetrOBJ1_08BB8A78[],
+    AnimSprite_FimbulvetrOBJ1_08BB8B98[], AnimSprite_FimbulvetrOBJ1_08BB8CD0[],
+    AnimSprite_FimbulvetrOBJ1_08BB8DF0[], AnimSprite_FimbulvetrOBJ1_08BB8F10[],
+    AnimSprite_FimbulvetrOBJ1_08BB9030[], AnimSprite_FimbulvetrOBJ2Fall_TypeA_08BB9258[],
+    AnimSprite_FimbulvetrOBJ2Fall_TypeB_08BB9270[], AnimSprite_FimbulvetrOBJ2_08BB8CB8[],
+    AnimSprite_FimbulvetrOBJ2_08BB915C[], AnimSprite_FimbulvetrOBJ2_08BB9174[],
+    AnimSprite_FimbulvetrOBJ2_08BB918C[], AnimSprite_FimbulvetrOBJ2_08BB91A4[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -16,14 +34,14 @@ extern u16 * TsaArray_FimbulvetrBg[];
 extern u16 * ImgArray_FimbulvetrBg[];
 extern u16 Pal_FimbulvetrBg[];
 extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ[];
-extern u32 AnimScr_FimbulvetrOBJ1[];
+extern const AnimScr AnimScr_FimbulvetrOBJ1[];
 extern u16 Pal_HealSprites_Sparkles[];
 extern u16 Img_FimbulvetrSprites_Snow[];
 extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ2[];
 extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ2Fall[];
-extern u8 AnimScr_FimbulvetrOBJ2[];
-extern u32 AnimScr_FimbulvetrOBJ2Fall_TypeA[];
-extern u32 AnimScr_FimbulvetrOBJ2Fall_TypeB[];
+extern const AnimScr AnimScr_FimbulvetrOBJ2[];
+extern const AnimScr AnimScr_FimbulvetrOBJ2Fall_TypeA[];
+extern const AnimScr AnimScr_FimbulvetrOBJ2Fall_TypeB[];
 
 void StartSpellAnimFimbulvetr(struct Anim * anim);
 void efxFimbulvetr_Loop_Main(struct ProcEfx * proc);
@@ -463,4 +481,63 @@ const struct ProcCmd ProcScr_efxFimbulvetrOBJ2Fall[] = {
     PROC_19,
     PROC_REPEAT(efxFimbulvetrOBJ2Fall_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BB91BC")
+const AnimScr AnimScr_FimbulvetrOBJ1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7410, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7488, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7584, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7698, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB77C4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7908, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7A34, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7B60, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7C8C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7DB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB7ED8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8004, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8130, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8250, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB837C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB84A8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB85D4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8700, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB882C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8958, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8A78, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8B98, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8CD0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8DF0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB8F10, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ1_08BB9030, 2),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BB9228")
+const AnimScr AnimScr_FimbulvetrOBJ2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB915C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB8CB8, 1),
+    ANIMSCR_LOOP,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB9174, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB8CB8, 1),
+    ANIMSCR_LOOP,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB8CB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB918C, 1),
+    ANIMSCR_LOOP,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB8CB8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2_08BB91A4, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BB9288")
+const AnimScr AnimScr_FimbulvetrOBJ2Fall_TypeA[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2Fall_TypeA_08BB9258, 1),
+    ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BB9290")
+const AnimScr AnimScr_FimbulvetrOBJ2Fall_TypeB[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2Fall_TypeB_08BB9270, 4),
+    ANIMSCR_LOOP,
 };

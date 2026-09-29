@@ -1,0 +1,3 @@
+# Animation scripts moved to C (tools/datac.py AnimScr): one object, two labels; keep the one the sprites are named after.
+# OLD NEW per line; apply with tools/apply_renames.py
+AnimScr_EfxThunderstormOBJ AnimScr_EfxClasschgOBJ

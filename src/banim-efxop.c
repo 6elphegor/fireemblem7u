@@ -44,17 +44,17 @@ extern u16 Pal_FireSpellBg[];
 extern u16 Img_FireSpellBg[];
 extern u16 Pal_FireSpellSprites[];
 extern u16 Img_FireSpellSprites[];
-extern AnimScr AnimScr_EfxFireOBJ_R_Front[];
-extern AnimScr AnimScr_EfxFireOBJ_L_Front[];
+extern const AnimScr AnimScr_EfxFireOBJ_R_Front[];
+extern const AnimScr AnimScr_EfxFireOBJ_L_Front[];
 extern u16 Pal_ThunderSpellBg[];
 extern u16 Img_ThunderSpellBg[];
-extern AnimScr AnimScr_EfxThunderOBJ_L[];
-extern AnimScr AnimScr_EfxThunderOBJ_R[];
+extern const AnimScr AnimScr_EfxThunderOBJ_L[];
+extern const AnimScr AnimScr_EfxThunderOBJ_R[];
 extern u16 Pal_BoltingSprites[];
 extern u16 Img_BoltingSprites[];
 extern u16 Img_HealSpellBg[];
 extern u16 Pal_HealSpellBg[];
-extern AnimScr AnimScr_EfxLiveOBJ1[];
+extern const AnimScr AnimScr_EfxLiveOBJ1[];
 extern u16 Pal_HealSprites_Sparkles[];
 extern u16 Img_HealSprites_Sparkles[];
 
@@ -149,7 +149,7 @@ void ClearCRSpellBgTmBuf(struct Anim * anim)
     EnableBgSync(1 << magicFx->bg);
 }
 
-struct Anim * CRSpellCreateFrontAnim(struct Anim * anim, u16 scrIdx, void * scrA, void * scrB)
+struct Anim * CRSpellCreateFrontAnim(struct Anim * anim, u16 scrIdx, const AnimScr * scrA, const AnimScr * scrB)
 {
     struct Anim * newAnim;
 
@@ -582,7 +582,7 @@ void efxopLiveALPHA_Loop_B(struct ProcEfxALPHA * proc)
 void StartCRSubSpell_efxopLiveOBJ(struct Anim * anim, struct ProcEfx * unused)
 {
     struct Anim * frontAnim;
-    AnimScr * scr;
+    const AnimScr * scr;
 
     struct AnimMagicFxBuffer * magicFx = GetMagicEffectBufferFor(anim);
     struct ProcEfxOBJ * proc = Proc_Start(ProcScr_efxopLiveOBJ, PROC_TREE_3);

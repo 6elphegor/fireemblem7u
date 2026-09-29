@@ -2,7 +2,16 @@
 
 #include "global.h"
 
+// One cell of an animation script.  On the GBA a cell is a 32-bit word and
+// an instruction that holds an address has its flag bits added to it.  On any
+// other platform it is a uintptr_t and the flags of such an instruction are a
+// cell of their own, followed by the address (see ANIMSCR_* below and
+// docs/port-data.md).
+#if PLATFORM_GBA
 typedef u32 AnimScr;
+#else
+typedef uintptr_t AnimScr;
+#endif
 
 struct Anim {
     /* 00 */ u16 state;
@@ -150,7 +159,15 @@ enum anim_inst_type {
 #define ANINS_FRAME_GET_DELAY(instruction) ((instruction) & 0xFFFF)
 #define ANINS_FRAME_GET_UNK(instruction) ((instruction) >> 16) & 0xFF
 
-/* Anim Script commands */
+/* Anim Script commands.  Each macro expands to whole instructions, so a
+ * script is a list of them separated by commas.
+ *
+ * GBA:   an instruction that holds an address is one word: the address plus
+ *        the flag bits (a sprite's duration, or 0xC0000000 / 0xD0000000).
+ * other: it is two cells: the flag bits, then the address (a cell is a
+ *        uintptr_t, and flag bits above bit 27 do not fit next to a 64-bit
+ *        address).  The interpreter reads the address from the cell after
+ *        any instruction for which ANINS_HAS_ADDRESS() holds. */
 #define ANIMSCR_FRAME(delay, img, oam2) \
     (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_FRAME) + ((delay) & 0xFFFF)), \
     (AnimScr)(img), \
@@ -159,8 +176,44 @@ enum anim_inst_type {
 #define ANIMSCR_BLOCKED \
     (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_STOP))
 
+#define ANIMSCR_END \
+    (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_END))
+
+#define ANIMSCR_LOOP \
+    (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_LOOP))
+
+#define ANIMSCR_WAIT(delay) \
+    (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_WAIT) + ((delay) & 0xFFFF))
+
+#define ANIMSCR_MOVE(xoff, yoff, delay) \
+    (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_MOVE) + \
+     (((delay) & 0xFF) << 16) + (((yoff) & 0xFF) << 8) + ((xoff) & 0xFF))
+
+#define ANIMSCR_COMMAND(id) \
+    (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_COMMAND) + ((id) & 0xFF))
+
+#if PLATFORM_GBA
+
 #define ANIMSCR_FORCE_SPRITE(anim_sprite, duration) \
     (ANFMT_FORCESPRITE + (AnimScr)(anim_sprite) + ANIMFMT_OAM_DURATION(duration))
+
+// call a function with the anim / continue with another script
+#define ANIMSCR_CALL(func) (0xC0000000 + (AnimScr)(func))
+#define ANIMSCR_JUMP(scr)  (0xD0000000 + (AnimScr)(scr))
+
+#else
+
+#define ANIMSCR_FORCE_SPRITE(anim_sprite, duration) \
+    (ANFMT_FORCESPRITE + ANIMFMT_OAM_DURATION(duration)), (AnimScr)(anim_sprite)
+
+#define ANIMSCR_CALL(func) 0xC0000000u, (AnimScr)(func)
+#define ANIMSCR_JUMP(scr)  0xD0000000u, (AnimScr)(scr)
+
+// (instruction is the first cell of an instruction)
+#define ANINS_HAS_ADDRESS(instruction) \
+    (!ANINS_IS_NOT_FORCESPRITE(instruction) || ANINS_IS_PTRINS(instruction))
+
+#endif
 
 struct AnimSpriteData {
     /* 00 */ u32 header;

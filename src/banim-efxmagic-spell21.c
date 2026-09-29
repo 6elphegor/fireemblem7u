@@ -1,5 +1,30 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_Spell21OBJ2_A_08BD0E4C[],
+    AnimSprite_Spell21OBJ2_A_08BD0E70[], AnimSprite_Spell21OBJ2_A_08BD0EAC[],
+    AnimSprite_Spell21OBJ2_A_08BD0EE8[], AnimSprite_Spell21OBJ2_A_08BD0F24[],
+    AnimSprite_Spell21OBJ2_A_08BD0F60[], AnimSprite_Spell21OBJ2_A_08BD0F9C[],
+    AnimSprite_Spell21OBJ2_A_08BD0FD8[], AnimSprite_Spell21OBJ2_B_08BD1014[],
+    AnimSprite_Spell21OBJ2_B_08BD1044[], AnimSprite_Spell21OBJ2_B_08BD108C[],
+    AnimSprite_Spell21OBJ2_B_08BD10D4[], AnimSprite_Spell21OBJ2_B_08BD111C[],
+    AnimSprite_Spell21OBJ2_B_08BD1164[], AnimSprite_Spell21OBJ2_B_08BD11AC[],
+    AnimSprite_Spell21OBJ2_B_08BD11F4[], AnimSprite_Spell21OBJ2_B_08BD123C[],
+    AnimSprite_Spell21OBJ2_B_08BD1284[], AnimSprite_Spell21OBJ2_B_08BD12CC[],
+    AnimSprite_Spell21OBJ2_B_08BD1314[], AnimSprite_Spell21OBJ2_B_08BD135C[],
+    AnimSprite_Spell21OBJ2_B_08BD13A4[], AnimSprite_Spell21OBJ2_B_08BD13EC[],
+    AnimSprite_Spell21OBJ2_B_08BD1434[], AnimSprite_Spell21OBJ2_B_08BD147C[],
+    AnimSprite_Spell21OBJ2_B_08BD14C4[], AnimSprite_Spell21OBJ3_A_08BD150C[],
+    AnimSprite_Spell21OBJ3_A_08BD1524[], AnimSprite_Spell21OBJ3_A_08BD153C[],
+    AnimSprite_Spell21OBJ3_A_08BD1554[], AnimSprite_Spell21OBJ3_A_08BD1578[],
+    AnimSprite_Spell21OBJ3_A_08BD17A0[], AnimSprite_Spell21OBJ3_B_08BD1590[],
+    AnimSprite_Spell21OBJ3_B_08BD15A8[], AnimSprite_Spell21OBJ3_B_08BD15CC[],
+    AnimSprite_Spell21OBJ3_B_08BD15E4[], AnimSprite_Spell21OBJ3_B_08BD15FC[],
+    AnimSprite_Spell21OBJ3_B_08BD1614[], AnimSprite_Spell21OBJ3_B_08BD1638[],
+    AnimSprite_Spell21OBJ3_B_08BD1668[], AnimSprite_Spell21OBJ3_B_08BD16A4[],
+    AnimSprite_Spell21OBJ3_B_08BD16EC[], AnimSprite_Spell21OBJ3_B_08BD1740[],
+    AnimSprite_Spell21OBJChild_A_08BD0E04[], AnimSprite_Spell21OBJChild_B_08BD0E1C[],
+    AnimSprite_Spell21OBJChild_C_08BD0E34[];
+
 /**
  * Spell animation 0x21 (FE7-only)
  */
@@ -62,13 +87,13 @@ extern u16 Pal_Spell21BG2[];
 extern u16 Tsa_Spell21BG2[];
 extern u16 Pal_Spell21OBJ[];
 extern u16 Img_Spell21OBJ[];
-extern AnimScr AnimScr_Spell21OBJChild_A[];
-extern AnimScr AnimScr_Spell21OBJChild_B[];
-extern AnimScr AnimScr_Spell21OBJChild_C[];
-extern AnimScr AnimScr_Spell21OBJ2_A[];
-extern AnimScr AnimScr_Spell21OBJ2_B[];
-extern AnimScr AnimScr_Spell21OBJ3_A[];
-extern AnimScr AnimScr_Spell21OBJ3_B[];
+extern const AnimScr AnimScr_Spell21OBJChild_A[];
+extern const AnimScr AnimScr_Spell21OBJChild_B[];
+extern const AnimScr AnimScr_Spell21OBJChild_C[];
+extern const AnimScr AnimScr_Spell21OBJ2_A[];
+extern const AnimScr AnimScr_Spell21OBJ2_B[];
+extern const AnimScr AnimScr_Spell21OBJ3_A[];
+extern const AnimScr AnimScr_Spell21OBJ3_B[];
 
 void StartSubSpell_efxSpell21BG(struct Anim * anim);
 void StartSubSpell_efxSpell21BG2(struct Anim * anim, int terminator);
@@ -322,7 +347,7 @@ void StartSubSpell_efxSpell21OBJChild(struct Anim * anim, int idx)
     struct ProcEfxSpell21OBJ * proc;
     struct Anim * child;
     int r1, r2;
-    AnimScr * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -628,4 +653,97 @@ const struct ProcCmd ProcScr_efxSpell21OBJ3Child[] = {
     PROC_19,
     PROC_REPEAT(efxSpell21OBJ3Child_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BD17B8")
+const AnimScr AnimScr_Spell21OBJChild_A[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJChild_A_08BD0E04, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD17C0")
+const AnimScr AnimScr_Spell21OBJChild_B[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJChild_B_08BD0E1C, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD17C8")
+const AnimScr AnimScr_Spell21OBJChild_C[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJChild_C_08BD0E34, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD17D0")
+const AnimScr AnimScr_Spell21OBJ2_A[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0E70, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0EAC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0EE8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0F24, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0F60, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0F9C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0FD8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_A_08BD0E4C, 3),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD17F4")
+const AnimScr AnimScr_Spell21OBJ2_B[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD1014, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD1284, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD1044, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD12CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD108C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD1314, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD10D4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD135C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD111C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD13A4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD1164, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD13EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD11AC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD1434, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD11F4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD147C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD123C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ2_B_08BD14C4, 1),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD1840")
+const AnimScr AnimScr_Spell21OBJ3_A[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD150C, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD1524, 5),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD153C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD1554, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD1578, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 3),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD185C")
+const AnimScr AnimScr_Spell21OBJ3_B[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD1590, 6),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD15A8, 5),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD15CC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD15E4, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 3),
+    ANIMSCR_BLOCKED,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD15FC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD1614, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD1638, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD1668, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD16A4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD16EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD1740, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_BLOCKED,
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD1740, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
+    ANIMSCR_BLOCKED,
 };

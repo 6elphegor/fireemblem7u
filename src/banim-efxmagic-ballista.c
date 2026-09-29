@@ -1,13 +1,17 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData gUnk_08BA5D18[], gUnk_08BA5D30[], gUnk_08BA5D48[],
+    gUnk_08BA5D60[], gUnk_08BA5D78[], gUnk_08BA5DB4[], gUnk_08BA5DCC[], gUnk_08BA5DE4[],
+    gUnk_08BA5DFC[], gUnk_08BA5E14[];
+
 /* auto-decls */
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 extern const struct ProcCmd ProcScr_efxShooter[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxShooterOBJ[];
-extern u32 AnimScr_08BA5D9C[];
-extern u32 AnimScr_08BA5E38[];
+extern const AnimScr AnimScr_08BA5D9C[];
+extern const AnimScr AnimScr_08BA5E38[];
 
 void StartSpellAnimBallista(struct Anim * anim);
 void efxShooter_Loop_Main(struct ProcEfx * proc);
@@ -158,4 +162,24 @@ const struct ProcCmd ProcScr_efxShooterOBJ[] = {
     PROC_19,
     PROC_REPEAT(efxShooterOBJ_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BA5D9C")
+const AnimScr AnimScr_08BA5D9C[] = {
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5D78, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5D60, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5D48, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5D30, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5D18, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA5E38")
+const AnimScr AnimScr_08BA5E38[] = {
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5E14, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5DFC, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5DE4, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5DCC, 2),
+    ANIMSCR_FORCE_SPRITE(gUnk_08BA5DB4, 2),
+    ANIMSCR_BLOCKED,
 };

@@ -1,5 +1,20 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_LuceOBJ_A_08BD4B7C[], AnimSprite_LuceOBJ_A_08BD4BE8[],
+    AnimSprite_LuceOBJ_A_08BD4C54[], AnimSprite_LuceOBJ_A_08BD4CC0[],
+    AnimSprite_LuceOBJ_A_08BD4D2C[], AnimSprite_LuceOBJ_A_08BD4D98[],
+    AnimSprite_LuceOBJ_A_08BD4E04[], AnimSprite_LuceOBJ_A_08BD4E70[],
+    AnimSprite_LuceOBJ_A_08BD4EDC[], AnimSprite_LuceOBJ_A_08BD4F48[],
+    AnimSprite_LuceOBJ_A_08BD4F84[], AnimSprite_LuceOBJ_A_08BD4FF0[],
+    AnimSprite_LuceOBJ_A_08BD505C[], AnimSprite_LuceOBJ_A_08BD50C8[],
+    AnimSprite_LuceOBJ_A_08BD5134[], AnimSprite_LuceOBJ_A_08BD51A0[],
+    AnimSprite_LuceOBJ_A_08BD51B8[], AnimSprite_LuceOBJ_A_08BD5224[],
+    AnimSprite_LuceOBJ_A_08BD5290[], AnimSprite_LuceOBJ_A_08BD52FC[],
+    AnimSprite_LuceOBJ_A_08BD5368[], AnimSprite_LuceOBJ_B_08BD4354[],
+    AnimSprite_LuceOBJ_B_08BD439C[], AnimSprite_LuceOBJ_B_08BD4414[],
+    AnimSprite_LuceOBJ_B_08BD44C8[], AnimSprite_LuceOBJ_B_08BD45F4[],
+    AnimSprite_LuceOBJ_B_08BD4774[], AnimSprite_LuceOBJ_B_08BD4948[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -25,8 +40,8 @@ extern u16 Tsa_LuceBG2[];
 extern u16 Img_LuceBGCOL[];
 extern u16 Pal_LuceBGCOL[];
 extern u16 Tsa_LuceBGCOL[];
-extern AnimScr AnimScr_LuceOBJ_A[];
-extern AnimScr AnimScr_LuceOBJ_B[];
+extern const AnimScr AnimScr_LuceOBJ_A[];
+extern const AnimScr AnimScr_LuceOBJ_B[];
 extern u16 Pal_LuceOBJ[];
 extern u16 Img_LuceOBJ[];
 
@@ -413,4 +428,60 @@ const struct ProcCmd ProcScr_efxLuceBGCOL[] = {
     PROC_19,
     PROC_REPEAT(efxLuceBGCOL_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BD53D4")
+const AnimScr AnimScr_LuceOBJ_A[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4B7C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4BE8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4C54, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4CC0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4D2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4D98, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4E04, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4E70, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4EDC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4F48, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4F84, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD4FF0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD505C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD50C8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD5134, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51B8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD5224, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD5290, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD52FC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD5368, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD5368, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD5368, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD5368, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BD546C")
+const AnimScr AnimScr_LuceOBJ_B[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_A_08BD51A0, 4),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD4354, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD439C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD4414, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD44C8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD45F4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD4774, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD4948, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
 };

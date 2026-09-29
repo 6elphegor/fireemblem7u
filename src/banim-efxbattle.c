@@ -58,8 +58,8 @@ extern const s16 gEfxQuakeVecs5[];
 extern const s16 gEfxHitQuakeVecs4[];
 extern const s16 gEfxHitQuakeVecs5[];
 
-extern const u32 AnimScr_EkrMainMini_R_Far[];
-extern const u32 AnimScr_EkrMainMini_L_Far[];
+extern const AnimScr AnimScr_EkrMainMini_R_Far[];
+extern const AnimScr AnimScr_EkrMainMini_L_Far[];
 
 extern s16 gEkrDistanceType;
 extern u32 gEkrInitPosReal;

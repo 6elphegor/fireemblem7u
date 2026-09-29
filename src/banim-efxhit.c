@@ -1,5 +1,22 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_Miss_08B9D5B8[], AnimSprite_Miss_08B9D5D0[],
+    AnimSprite_Miss_08B9D5E8[], AnimSprite_Miss_08B9D600[], AnimSprite_Miss_08B9D624[],
+    AnimSprite_Miss_08B9D648[], AnimSprite_Miss_08B9D66C[], AnimSprite_Miss_08B9D69C[],
+    AnimSprite_Miss_08B9D6CC[], AnimSprite_Miss_08B9D6FC[], AnimSprite_Miss_08B9D738[],
+    AnimSprite_Miss_08B9D774[], AnimSprite_Miss_08B9D7B0[], AnimSprite_Miss_08B9D7F8[],
+    AnimSprite_Miss_08B9D840[], AnimSprite_Miss_08B9D888[], AnimSprite_Miss_08B9D8D0[],
+    AnimSprite_Miss_08B9D918[], AnimSprite_Miss_08B9D960[], AnimSprite_Miss_08B9D9A8[],
+    AnimSprite_NoDamage_08B9CD00[], AnimSprite_NoDamage_08B9CD24[], AnimSprite_NoDamage_08B9CD48[],
+    AnimSprite_NoDamage_08B9CD6C[], AnimSprite_NoDamage_08B9CDA8[], AnimSprite_NoDamage_08B9CDE4[],
+    AnimSprite_NoDamage_08B9CE20[], AnimSprite_NoDamage_08B9CE68[], AnimSprite_NoDamage_08B9CEB0[],
+    AnimSprite_NoDamage_08B9CEF8[], AnimSprite_NoDamage_08B9CF4C[], AnimSprite_NoDamage_08B9CFA0[],
+    AnimSprite_NoDamage_08B9CFF4[], AnimSprite_NoDamage_08B9D054[], AnimSprite_NoDamage_08B9D0B4[],
+    AnimSprite_NoDamage_08B9D114[], AnimSprite_NoDamage_08B9D180[], AnimSprite_NoDamage_08B9D1EC[],
+    AnimSprite_NoDamage_08B9D258[], AnimSprite_NoDamage_08B9D2D0[], AnimSprite_NoDamage_08B9D348[],
+    AnimSprite_NoDamage_08B9D3C0[], AnimSprite_NoDamage_08B9D438[], AnimSprite_NoDamage_08B9D4B0[],
+    AnimSprite_NoDamage_08B9D528[], AnimSprite_NoDamage_08B9D5A0[];
+
 /* auto-decls */
 // MISSING func GetRoundFlagByAnim
 void NewEfxPierceCriticalEffect(struct Anim * anim);
@@ -7,8 +24,8 @@ void NewEfxPierceNormalEffect(struct Anim * anim);
 extern const struct ProcCmd ProcScr_efxDamageMojiEffect[];
 extern u16 Img_NODAMGEMIS[];
 extern const struct ProcCmd ProcScr_efxDamageMojiEffectOBJ[];
-extern u32 AnimScr_NoDamage[];
-extern u32 AnimScr_Miss[];
+extern const AnimScr AnimScr_NoDamage[];
+extern const AnimScr AnimScr_Miss[];
 extern const struct ProcCmd ProcScr_efxCriricalEffect[];
 extern const struct ProcCmd ProcScr_efxCriricalEffectBG[];
 extern u16 Img_EfxCriricalEffectBG[];
@@ -81,7 +98,7 @@ void efxDamageMojiEffectMain(struct ProcEfx * proc)
 void NewEfxDamageMojiEffectOBJ(struct Anim * anim, int hitted)
 {
     u16 val1;
-    u32 * anim_scr;
+    const AnimScr * anim_scr;
     struct ProcEfxDamageMojiEffectOBJ * proc;
     proc = Proc_Start(ProcScr_efxDamageMojiEffectOBJ, PROC_TREE_3);
     proc->anim = anim;
@@ -323,4 +340,65 @@ const struct ProcCmd ProcScr_efxNormalEffectBG[] = {
     PROC_19,
     PROC_REPEAT(efxNormalEffectBGMain),
     PROC_END,
+};
+
+SECTION(".rodata.08B9D9F0")
+const AnimScr AnimScr_NoDamage[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CD00, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CD24, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CD48, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CD6C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CDA8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CDE4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CE20, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CE68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CEB0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CEF8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CF4C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CFA0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9CFF4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D054, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D0B4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D114, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D180, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D1EC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D258, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D2D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D348, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D3C0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D438, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D4B0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D528, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D5A0, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08B9DA64")
+const AnimScr AnimScr_Miss[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D5B8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D5D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D5E8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D600, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D624, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D648, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D66C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D69C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D6CC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D6FC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D738, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D774, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D7B0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D7F8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D840, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D888, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D8D0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D918, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D960, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_Miss_08B9D9A8, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D5A0, 31),
+    ANIMSCR_WAIT(0x13),
+    ANIMSCR_BLOCKED,
 };

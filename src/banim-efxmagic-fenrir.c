@@ -1,5 +1,22 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxFenrir1_08BBA8E4[],
+    AnimSprite_EfxFenrir1_08BBA908[], AnimSprite_EfxFenrir1_08BBA938[],
+    AnimSprite_EfxFenrir1_08BBAFC8[], AnimSprite_EfxFenrir1_08BBAFF8[],
+    AnimSprite_EfxFenrir1_08BBB550[], AnimSprite_EfxFenrir2_08BBA968[],
+    AnimSprite_EfxFenrir2_08BBA980[], AnimSprite_EfxFenrir2_08BBA9A4[],
+    AnimSprite_EfxFenrir2_08BBB028[], AnimSprite_EfxFenrir2_08BBB04C[],
+    AnimSprite_EfxFenrir3_08BBA9C8[], AnimSprite_EfxFenrir3_08BBA9E0[],
+    AnimSprite_EfxFenrir3_08BBAA7C[], AnimSprite_EfxFenrir3_08BBAB18[],
+    AnimSprite_EfxFenrir3_08BBABB4[], AnimSprite_EfxFenrir3_08BBAC50[],
+    AnimSprite_EfxFenrir3_08BBACEC[], AnimSprite_EfxFenrir3_08BBAD88[],
+    AnimSprite_EfxFenrir3_08BBAE24[], AnimSprite_EfxFenrir3_08BBAEC0[],
+    AnimSprite_EfxFenrir3_08BBAF2C[], AnimSprite_EfxFenrir3_08BBB070[],
+    AnimSprite_EfxFenrir3_08BBB10C[], AnimSprite_EfxFenrir3_08BBB1A8[],
+    AnimSprite_EfxFenrir3_08BBB244[], AnimSprite_EfxFenrir3_08BBB2E0[],
+    AnimSprite_EfxFenrir3_08BBB37C[], AnimSprite_EfxFenrir3_08BBB418[],
+    AnimSprite_EfxFenrir3_08BBB4B4[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -14,7 +31,7 @@ extern u16 Tsa_FenrirBg_Sigils[];
 extern const struct ProcCmd ProcScr_efxFenrirBGCOL[];
 extern u16 Pal_EfxFenrirBGCOL[];
 extern const struct ProcCmd ProcScr_efxFenrirOBJ[];
-extern u32 AnimScr_EfxFenrir3[];
+extern const AnimScr AnimScr_EfxFenrir3[];
 extern u16 Pal_FenrirSprites_A[];
 extern u16 Img_FenrirSprites[];
 extern const struct ProcCmd ProcScr_efxFenrirBG2[];
@@ -29,8 +46,8 @@ extern const struct ProcCmd ProcScr_efxFenrirOBJ2[];
 extern u16 Pal_FenrirSprites_B[];
 extern const struct ProcCmd ProcScr_efxFenrirOBJ2Chiri[];
 extern int gFenrirSpriteAngles[];
-extern u32 AnimScr_EfxFenrir1[];
-extern u32 AnimScr_EfxFenrir2[];
+extern const AnimScr AnimScr_EfxFenrir1[];
+extern const AnimScr AnimScr_EfxFenrir2[];
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
 #define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
 
@@ -621,4 +638,97 @@ const struct ProcCmd ProcScr_efxFenrirOBJ2Chiri[] = {
     PROC_19,
     PROC_REPEAT(efxFenrirOBJ2Chiri_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BBB568")
+const AnimScr AnimScr_EfxFenrir1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBAFF8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBAFC8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBA938, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBA908, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBA8E4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBA908, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBA938, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBAFC8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBAFF8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBB550, 10),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BBB594")
+const AnimScr AnimScr_EfxFenrir2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBB04C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBB028, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBA9A4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBA980, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBA968, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBA980, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBA9A4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBB028, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir2_08BBB04C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir1_08BBB550, 10),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BBB5C0")
+const AnimScr AnimScr_EfxFenrir3[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAF2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9E0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAA7C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAB18, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBABB4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAC50, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBACEC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAD88, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAE24, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBA9C8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBAEC0, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB070, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB10C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB1A8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB244, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB2E0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB37C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB418, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB4B4, 2),
+    ANIMSCR_BLOCKED,
 };

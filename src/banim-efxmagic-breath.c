@@ -1,5 +1,72 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_DarkBreath_08BABB74[],
+    AnimSprite_DarkBreath_08BABB8C[], AnimSprite_DarkBreath_08BABBB0[],
+    AnimSprite_DarkBreath_08BABBF8[], AnimSprite_DarkBreath_08BABC4C[],
+    AnimSprite_DarkBreath_08BABCAC[], AnimSprite_DarkBreath_08BABCF4[],
+    AnimSprite_DarkBreath_08BABD6C[], AnimSprite_DarkBreath_08BABE14[],
+    AnimSprite_DarkBreath_08BABEC8[], AnimSprite_DarkBreath_08BABF7C[],
+    AnimSprite_DarkBreath_08BAC06C[], AnimSprite_DarkBreath_08BAC108[],
+    AnimSprite_DarkBreath_08BAC180[], AnimSprite_DarkBreath_08BAC228[],
+    AnimSprite_DarkBreath_08BAC30C[], AnimSprite_DarkBreath_08BAC3E4[],
+    AnimSprite_DarkBreath_08BAC450[], AnimSprite_DarkBreath_08BAC4C8[],
+    AnimSprite_DarkBreath_08BAC57C[], AnimSprite_DarkBreath_08BAC5D0[],
+    AnimSprite_DarkBreath_08BAC624[], AnimSprite_DarkBreath_08BAC660[],
+    AnimSprite_DarkBreath_08BAC6C0[], AnimSprite_DarkBreath_08BAC6F0[],
+    AnimSprite_DarkBreath_08BAC708[], AnimSprite_FirebreathOBJ_Left_08BA8B14[],
+    AnimSprite_FirebreathOBJ_Left_08BA8B2C[], AnimSprite_FirebreathOBJ_Left_08BA8B50[],
+    AnimSprite_FirebreathOBJ_Left_08BA8B98[], AnimSprite_FirebreathOBJ_Left_08BA8BEC[],
+    AnimSprite_FirebreathOBJ_Left_08BA8C4C[], AnimSprite_FirebreathOBJ_Left_08BA8C94[],
+    AnimSprite_FirebreathOBJ_Left_08BA8D0C[], AnimSprite_FirebreathOBJ_Left_08BA8DB4[],
+    AnimSprite_FirebreathOBJ_Left_08BA8E38[], AnimSprite_FirebreathOBJ_Left_08BA8EF8[],
+    AnimSprite_FirebreathOBJ_Left_08BA8FE8[], AnimSprite_FirebreathOBJ_Left_08BA9084[],
+    AnimSprite_FirebreathOBJ_Left_08BA90FC[], AnimSprite_FirebreathOBJ_Left_08BA91A4[],
+    AnimSprite_FirebreathOBJ_Left_08BA9288[], AnimSprite_FirebreathOBJ_Left_08BA9360[],
+    AnimSprite_FirebreathOBJ_Left_08BA93CC[], AnimSprite_FirebreathOBJ_Left_08BA9444[],
+    AnimSprite_FirebreathOBJ_Left_08BA94F8[], AnimSprite_FirebreathOBJ_Left_08BA954C[],
+    AnimSprite_FirebreathOBJ_Left_08BA95A0[], AnimSprite_FirebreathOBJ_Left_08BA95DC[],
+    AnimSprite_FirebreathOBJ_Left_08BA963C[], AnimSprite_FirebreathOBJ_Left_08BA9654[],
+    AnimSprite_FirebreathOBJ_Left_08BA966C[], AnimSprite_FirebreathOBJ_Right_08BA9714[],
+    AnimSprite_FirebreathOBJ_Right_08BA972C[], AnimSprite_FirebreathOBJ_Right_08BA9750[],
+    AnimSprite_FirebreathOBJ_Right_08BA9798[], AnimSprite_FirebreathOBJ_Right_08BA97EC[],
+    AnimSprite_FirebreathOBJ_Right_08BA984C[], AnimSprite_FirebreathOBJ_Right_08BA9894[],
+    AnimSprite_FirebreathOBJ_Right_08BA990C[], AnimSprite_FirebreathOBJ_Right_08BA99B4[],
+    AnimSprite_FirebreathOBJ_Right_08BA9A38[], AnimSprite_FirebreathOBJ_Right_08BA9AF8[],
+    AnimSprite_FirebreathOBJ_Right_08BA9BE8[], AnimSprite_FirebreathOBJ_Right_08BA9C84[],
+    AnimSprite_FirebreathOBJ_Right_08BA9CFC[], AnimSprite_FirebreathOBJ_Right_08BA9DA4[],
+    AnimSprite_FirebreathOBJ_Right_08BA9E88[], AnimSprite_FirebreathOBJ_Right_08BA9F60[],
+    AnimSprite_FirebreathOBJ_Right_08BA9FCC[], AnimSprite_FirebreathOBJ_Right_08BAA044[],
+    AnimSprite_FirebreathOBJ_Right_08BAA0F8[], AnimSprite_FirebreathOBJ_Right_08BAA14C[],
+    AnimSprite_FirebreathOBJ_Right_08BAA1A0[], AnimSprite_FirebreathOBJ_Right_08BAA1DC[],
+    AnimSprite_FirebreathOBJ_Right_08BAA23C[], AnimSprite_FirebreathOBJ_Right_08BAA254[],
+    AnimSprite_FirebreathOBJ_Right_08BAA26C[], AnimSprite_IcebreathOBJ_Left_08BAAF44[],
+    AnimSprite_IcebreathOBJ_Left_08BAAF5C[], AnimSprite_IcebreathOBJ_Left_08BAAF80[],
+    AnimSprite_IcebreathOBJ_Left_08BAAFC8[], AnimSprite_IcebreathOBJ_Left_08BAB01C[],
+    AnimSprite_IcebreathOBJ_Left_08BAB07C[], AnimSprite_IcebreathOBJ_Left_08BAB0C4[],
+    AnimSprite_IcebreathOBJ_Left_08BAB13C[], AnimSprite_IcebreathOBJ_Left_08BAB1E4[],
+    AnimSprite_IcebreathOBJ_Left_08BAB28C[], AnimSprite_IcebreathOBJ_Left_08BAB340[],
+    AnimSprite_IcebreathOBJ_Left_08BAB430[], AnimSprite_IcebreathOBJ_Left_08BAB4CC[],
+    AnimSprite_IcebreathOBJ_Left_08BAB544[], AnimSprite_IcebreathOBJ_Left_08BAB5EC[],
+    AnimSprite_IcebreathOBJ_Left_08BAB6D0[], AnimSprite_IcebreathOBJ_Left_08BAB7A8[],
+    AnimSprite_IcebreathOBJ_Left_08BAB814[], AnimSprite_IcebreathOBJ_Left_08BAB88C[],
+    AnimSprite_IcebreathOBJ_Left_08BAB940[], AnimSprite_IcebreathOBJ_Left_08BAB994[],
+    AnimSprite_IcebreathOBJ_Left_08BAB9E8[], AnimSprite_IcebreathOBJ_Left_08BABA24[],
+    AnimSprite_IcebreathOBJ_Left_08BABA84[], AnimSprite_IcebreathOBJ_Left_08BABAB4[],
+    AnimSprite_IcebreathOBJ_Left_08BABACC[], AnimSprite_IcebreathOBJ_Right_08BAA314[],
+    AnimSprite_IcebreathOBJ_Right_08BAA32C[], AnimSprite_IcebreathOBJ_Right_08BAA350[],
+    AnimSprite_IcebreathOBJ_Right_08BAA398[], AnimSprite_IcebreathOBJ_Right_08BAA3EC[],
+    AnimSprite_IcebreathOBJ_Right_08BAA44C[], AnimSprite_IcebreathOBJ_Right_08BAA494[],
+    AnimSprite_IcebreathOBJ_Right_08BAA50C[], AnimSprite_IcebreathOBJ_Right_08BAA5B4[],
+    AnimSprite_IcebreathOBJ_Right_08BAA65C[], AnimSprite_IcebreathOBJ_Right_08BAA710[],
+    AnimSprite_IcebreathOBJ_Right_08BAA800[], AnimSprite_IcebreathOBJ_Right_08BAA89C[],
+    AnimSprite_IcebreathOBJ_Right_08BAA914[], AnimSprite_IcebreathOBJ_Right_08BAA9BC[],
+    AnimSprite_IcebreathOBJ_Right_08BAAAA0[], AnimSprite_IcebreathOBJ_Right_08BAAB78[],
+    AnimSprite_IcebreathOBJ_Right_08BAABE4[], AnimSprite_IcebreathOBJ_Right_08BAAC5C[],
+    AnimSprite_IcebreathOBJ_Right_08BAAD10[], AnimSprite_IcebreathOBJ_Right_08BAAD64[],
+    AnimSprite_IcebreathOBJ_Right_08BAADB8[], AnimSprite_IcebreathOBJ_Right_08BAADF4[],
+    AnimSprite_IcebreathOBJ_Right_08BAAE54[], AnimSprite_IcebreathOBJ_Right_08BAAE84[],
+    AnimSprite_IcebreathOBJ_Right_08BAAE9C[];
+
 /* auto-decls */
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
@@ -8,8 +75,8 @@ void RegisterEfxSpellCastEnd(void);
 extern const struct ProcCmd ProcScr_efxFirebreath[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxFirebreathOBJ[];
-extern u32 AnimScr_FirebreathOBJ_Left[];
-extern u32 AnimScr_FirebreathOBJ_Right[];
+extern const AnimScr AnimScr_FirebreathOBJ_Left[];
+extern const AnimScr AnimScr_FirebreathOBJ_Right[];
 extern u16 Pal_FireBreathSprites[];
 extern u16 Img_BreathSprites[];
 extern const struct ProcCmd ProcScr_efxFirebreathBG[];
@@ -19,8 +86,8 @@ extern const struct ProcCmd ProcScr_efxFirebreathBGCOL[];
 extern u16 Pal_FireBreathBg[];
 extern const struct ProcCmd ProcScr_efxIcebreath[];
 extern const struct ProcCmd ProcScr_efxIcebreathOBJ[];
-extern u32 AnimScr_IcebreathOBJ_Right[];
-extern u32 AnimScr_IcebreathOBJ_Left[];
+extern const AnimScr AnimScr_IcebreathOBJ_Right[];
+extern const AnimScr AnimScr_IcebreathOBJ_Left[];
 extern u16 Pal_IceBreathSprites[];
 extern const struct ProcCmd ProcScr_efxDarkbreath[];
 extern const struct ProcCmd ProcScr_efxDarkbreathBG[];
@@ -29,7 +96,7 @@ extern u16 Img_DarkBreathBg[];
 extern const struct ProcCmd ProcScr_efxDarkbreathBGCOL[];
 extern u16 Pal_BoltingBg[];
 extern const struct ProcCmd ProcScr_efxDarkbreathOBJ[];
-extern u32 AnimScr_DarkBreath[];
+extern const AnimScr AnimScr_DarkBreath[];
 extern u16 Pal_DarkBreathSprites[];
 
 void StartSpellAnimFireBreath(struct Anim * anim);
@@ -125,7 +192,7 @@ void StartSubSpell_efxFirebreathOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;
-    u32 * scr;
+    const AnimScr * scr;
 
     gEfxBgSemaphore++;
 
@@ -353,8 +420,8 @@ void StartSubSpell_efxIcebreathOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;
-    u32 * scrA;
-    u32 * scrB;
+    const AnimScr * scrA;
+    const AnimScr * scrB;
 
     gEfxBgSemaphore++;
 
@@ -652,4 +719,159 @@ const struct ProcCmd ProcScr_efxDarkbreathOBJ[] = {
     PROC_19,
     PROC_REPEAT(efxDarkbreathOBJ_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BA96A8")
+const AnimScr AnimScr_FirebreathOBJ_Left[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8B14, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8B2C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8B50, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8B98, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8BEC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8C4C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8C94, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8D0C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8DB4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8E38, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8EF8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA8FE8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA9084, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA90FC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA91A4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA9288, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA9360, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA93CC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA9444, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA94F8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA954C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA95A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA95DC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA963C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA9654, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Left_08BA966C, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BAA2A8")
+const AnimScr AnimScr_FirebreathOBJ_Right[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9714, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA972C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9750, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9798, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA97EC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA984C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9894, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA990C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA99B4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9A38, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9AF8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9BE8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9C84, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9CFC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9DA4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9E88, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9F60, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BA9FCC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA044, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA0F8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA14C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA1A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA1DC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA23C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA254, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_FirebreathOBJ_Right_08BAA26C, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BAAED8")
+const AnimScr AnimScr_IcebreathOBJ_Right[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA314, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA32C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA350, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA398, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA3EC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA44C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA494, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA50C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA5B4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA65C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA710, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA800, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA89C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA914, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAA9BC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAAA0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAB78, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAABE4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAC5C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAD10, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAD64, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAADB8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAADF4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAE54, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAE84, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Right_08BAAE9C, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BABB08")
+const AnimScr AnimScr_IcebreathOBJ_Left[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAAF44, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAAF5C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAAF80, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAAFC8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB01C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB07C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB0C4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB13C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB1E4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB28C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB340, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB430, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB4CC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB544, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB5EC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB6D0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB7A8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB814, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB88C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB940, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB994, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BAB9E8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BABA24, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BABA84, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BABAB4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_IcebreathOBJ_Left_08BABACC, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BAC744")
+const AnimScr AnimScr_DarkBreath[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABB74, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABB8C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABBB0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABBF8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABC4C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABCAC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABCF4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABD6C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABE14, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABEC8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BABF7C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC06C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC108, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC180, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC228, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC30C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC3E4, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC450, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC4C8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC57C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC5D0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC624, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC660, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC6C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC6F0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC708, 2),
+    ANIMSCR_BLOCKED,
 };

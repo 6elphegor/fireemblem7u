@@ -590,7 +590,7 @@ int sub_080672E8(int a)
 }
 
 
-struct ProcEkrSubAnimeEmulator * NewEkrsubAnimeEmulator(int x, int y, u32 * anim_scr, int type, int oam2Base, int oamBase, ProcPtr parent)
+struct ProcEkrSubAnimeEmulator * NewEkrsubAnimeEmulator(int x, int y, const AnimScr * anim_scr, int type, int oam2Base, int oamBase, ProcPtr parent)
 {
     struct ProcEkrSubAnimeEmulator * proc =
         Proc_Start(ProcScr_ekrsubAnimeEmulator, parent);
@@ -613,7 +613,7 @@ struct ProcEkrSubAnimeEmulator * NewEkrsubAnimeEmulator(int x, int y, u32 * anim
 void EkrsubAnimeEmulatorMain(struct ProcEkrSubAnimeEmulator * proc)
 {
     struct Anim _anim;
-    u32 * anim_scr = proc->anim_scr;
+    const AnimScr * anim_scr = proc->anim_scr;
     if (proc->timer == 0)
     {
         u32 inst = anim_scr[proc->scr_cur];

@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EkrMainMini_L_Close_08B9CB8C[],
+    AnimSprite_EkrMainMini_L_Far_08B9CA74[], AnimSprite_EkrMainMini_R_Close_08B9CC0C[],
+    AnimSprite_EkrMainMini_R_Far_08B9CB00[];
+
 /* auto-decls */
 extern u16 gTmA_Banim[0xB58 / sizeof(u16)];
 void StartClassReelSpellAnim(struct Anim * anim);
@@ -27,10 +31,10 @@ struct ProcEkrUnitMainMini
 extern ProcPtr gpProcEfxAnimeDrv;
 extern const struct ProcCmd gProc_efxAnimeDrvProc[];
 extern const struct ProcCmd ProcScr_ekrUnitMainMini[];
-extern u32 AnimScr_EkrMainMini_L_Close[];
-extern u32 AnimScr_EkrMainMini_L_Far[];
-extern u32 AnimScr_EkrMainMini_R_Close[];
-extern u32 AnimScr_EkrMainMini_R_Far[];
+extern const AnimScr AnimScr_EkrMainMini_L_Close[];
+extern const AnimScr AnimScr_EkrMainMini_L_Far[];
+extern const AnimScr AnimScr_EkrMainMini_R_Close[];
+extern const AnimScr AnimScr_EkrMainMini_R_Far[];
 extern void *TsaConfs_BanimTmA[];
 extern u32 gEkrInitPosReal;
 // MISSING var gTmA_Banim
@@ -195,8 +199,8 @@ void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
 
     struct Anim * anim;
     u32 * puVar8;
-    u32 * scrA;
-    u32 * scrB;
+    const AnimScr * scrA;
+    const AnimScr * scrB;
     struct BattleAnim * ba;
     struct BattleAnim * ba2;
     u32 * scr;
@@ -301,8 +305,8 @@ void sub_08054C8C(struct AnimBuffer * pAnimBuf)
 
     struct Anim * anim;
     u32 * puVar8;
-    u32 * scrA;
-    u32 * scrB;
+    const AnimScr * scrA;
+    const AnimScr * scrB;
     struct BattleAnim * ba;
     struct BattleAnim * ba2;
     u32 * scr;
@@ -915,4 +919,28 @@ const struct ProcCmd ProcScr_ekrUnitMainMini[] = {
     PROC_19,
     PROC_REPEAT(EkrUnitMainMiniMain),
     PROC_END,
+};
+
+SECTION(".rodata.08B9CAF8")
+const AnimScr AnimScr_EkrMainMini_L_Far[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EkrMainMini_L_Far_08B9CA74, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08B9CB84")
+const AnimScr AnimScr_EkrMainMini_R_Far[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EkrMainMini_R_Far_08B9CB00, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08B9CC04")
+const AnimScr AnimScr_EkrMainMini_L_Close[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EkrMainMini_L_Close_08B9CB8C, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08B9CC84")
+const AnimScr AnimScr_EkrMainMini_R_Close[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EkrMainMini_R_Close_08B9CC0C, 4),
+    ANIMSCR_BLOCKED,
 };

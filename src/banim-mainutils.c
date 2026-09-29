@@ -467,8 +467,8 @@ void SwitchAISFrameDataFromBARoundType(struct Anim * anim, int type)
         } else
             scr = (void *)gBanimScrRight + gpBanimModesRight[frame];
 
-        anim->pScrStart = scr;
-        anim->pScrCurrent = scr;
+        anim->pScrStart = (const void *)scr;
+        anim->pScrCurrent = (const void *)scr;
     } else {
         anim->pScrStart = AnimScr_DefaultAnim;
         anim->pScrCurrent = AnimScr_DefaultAnim;

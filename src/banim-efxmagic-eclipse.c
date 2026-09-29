@@ -1,5 +1,18 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxHazymoonOBJ2_1_08BBA14C[],
+    AnimSprite_EfxHazymoonOBJ2_1_08BBA1AC[], AnimSprite_EfxHazymoonOBJ2_1_08BBA20C[],
+    AnimSprite_EfxHazymoonOBJ2_1_08BBA26C[], AnimSprite_EfxHazymoonOBJ2_2_08BBA2E0[],
+    AnimSprite_EfxHazymoonOBJ2_2_08BBA3A0[], AnimSprite_EfxHazymoonOBJ2_2_08BBA460[],
+    AnimSprite_EfxHazymoonOBJ2_2_08BBA520[], AnimSprite_EfxHazymoonOBJ2_3_08BBA5E8[],
+    AnimSprite_EfxHazymoonOBJ2_3_08BBA6A8[], AnimSprite_EfxHazymoonOBJ2_3_08BBA75C[],
+    AnimSprite_EfxHazymoonOBJ2_3_08BBA81C[], AnimSprite_EfxHazymoonOBJ3RND_08BB94E4[],
+    AnimSprite_EfxMistyRainObj1_08BB9298[], AnimSprite_EfxMistyRainObj1_08BB92BC[],
+    AnimSprite_EfxMistyRainObj1_08BB92E0[], AnimSprite_EfxMistyRainObj1_08BB940C[],
+    AnimSprite_EfxMistyRainObj1_08BB9430[], AnimSprite_EfxMistyRainObj1_08BB9454[],
+    AnimSprite_EfxMistyRainObj1_08BB9478[], AnimSprite_EfxMistyRainObj1_08BB949C[],
+    AnimSprite_EfxMistyRainObj1_08BB94C0[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -17,19 +30,19 @@ extern u16 Pal_EclipseBg_B[];
 extern u16 Pal_EclipseBg_C[];
 extern const struct ProcCmd ProcScr_efxHazymoonOBJ2[];
 extern AnimScr FramScr_Unk5D4F90[];
-extern u32 AnimScr_EfxHazymoonOBJ2_1[];
+extern const AnimScr AnimScr_EfxHazymoonOBJ2_1[];
 extern u16 Pal_EclipseSprites[];
 extern u16 Img_EclipseSprites_Swirl[];
-extern u32 AnimScr_EfxHazymoonOBJ2_2[];
+extern const AnimScr AnimScr_EfxHazymoonOBJ2_2[];
 extern u16 Img_EclipseSprites_0824CD2C[];
-extern u32 AnimScr_EfxHazymoonOBJ2_3[];
+extern const AnimScr AnimScr_EfxHazymoonOBJ2_3[];
 extern u16 Img_EclipseSprites_0824D1C4[];
 extern const struct ProcCmd ProcScr_efxHazymoonOBJ3[];
 extern u16 Pal_FluxAnimSprites[];
 extern u16 Img_FluxAnimSprites_Orb[];
 extern s16 gEclipseAnimSpriteCoordinates[];
 extern const struct ProcCmd ProcScr_efxHazymoonOBJ3RND[];
-extern u32 AnimScr_EfxHazymoonOBJ3RND[];
+extern const AnimScr AnimScr_EfxHazymoonOBJ3RND[];
 
 struct ProcEfxEclipseBG
 {
@@ -519,4 +532,55 @@ const struct ProcCmd ProcScr_efxHazymoonOBJ3RND[] = {
     PROC_SET_END_CB(efxHazymoonOBJ3RND_OnEnd),
     PROC_SLEEP(44),
     PROC_END,
+};
+
+SECTION(".rodata.08BB9534")
+const AnimScr AnimScr_EfxHazymoonOBJ3RND[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB940C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9430, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9454, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9478, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB949C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB94C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9298, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB92BC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB92E0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9298, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB92BC, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB92E0, 3),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB94C0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB949C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9478, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9454, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB9430, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj1_08BB940C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ3RND_08BB94E4, 2),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BBA2CC")
+const AnimScr AnimScr_EfxHazymoonOBJ2_1[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_1_08BBA14C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_1_08BBA1AC, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_1_08BBA20C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_1_08BBA26C, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BBA5D4")
+const AnimScr AnimScr_EfxHazymoonOBJ2_2[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_2_08BBA2E0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_2_08BBA3A0, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_2_08BBA460, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_2_08BBA520, 4),
+    ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BBA8D0")
+const AnimScr AnimScr_EfxHazymoonOBJ2_3[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_3_08BBA5E8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_3_08BBA6A8, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_3_08BBA75C, 2),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_3_08BBA81C, 4),
+    ANIMSCR_BLOCKED,
 };

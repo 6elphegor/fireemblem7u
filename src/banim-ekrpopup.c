@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EkrPopup[];
+
 /**
  * Battle popups: weapon rank up, weapon broke (fireemblem8u: banim-ekrpopup.c)
  */
@@ -32,7 +34,7 @@ extern const u8 Img_EkrPopup[];
 extern const u8 Tsa_EkrPopup[];
 extern const u16 Pal_EkrPopup[];
 extern const u8 Img_EkrPopupText[];
-extern CONST_DATA AnimScr AnimScr_EkrPopup[];
+extern const AnimScr AnimScr_EkrPopup[];
 extern const struct ProcCmd ProcScr_ekrPopup[];
 extern const struct ProcCmd ProcScr_ekrPopup2[];
 
@@ -561,4 +563,10 @@ const struct ProcCmd ProcScr_ekrPopup2[] = {
     PROC_REPEAT(ekrPopup_MarkEnd),
     PROC_REPEAT(ekrPopup_Nop),
     PROC_END,
+};
+
+SECTION(".rodata.08BDCD4C")
+const AnimScr AnimScr_EkrPopup[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EkrPopup, 1),
+    ANIMSCR_BLOCKED,
 };

@@ -1,5 +1,14 @@
 #include "gbafe.h"
 
+extern const struct AnimSpriteData AnimSprite_EfxDevineOBJ_08BB9B60[],
+    AnimSprite_EfxDevineOBJ_08BB9BE4[], AnimSprite_EfxDevineOBJ_08BB9C68[],
+    AnimSprite_EfxDevineOBJ_08BB9CD4[], AnimSprite_EfxDevineOBJ_08BB9D40[],
+    AnimSprite_EfxDevineOBJ_08BB9DAC[], AnimSprite_EfxDevineOBJ_08BB9E00[],
+    AnimSprite_EfxDevineOBJ_08BB9E6C[], AnimSprite_EfxDevineOBJ_08BB9ED8[],
+    AnimSprite_EfxDevineOBJ_08BB9F14[], AnimSprite_EfxDevineOBJ_08BB9F98[],
+    AnimSprite_EfxDevineOBJ_08BBA028[], AnimSprite_EfxDevineOBJ_08BBA094[],
+    AnimSprite_EfxDevineOBJ_08BBA0D0[], AnimSprite_EfxDevineOBJ_08BBA0F4[];
+
 /* auto-decls */
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -17,7 +26,7 @@ extern u16 * TsaArray_DivineBg3[];
 extern u16 * ImgArray_DivineBg3[];
 extern u16 Pal_DivineBg3[];
 extern const struct ProcCmd ProcScr_efxDivineOBJ[];
-extern u32 AnimScr_EfxDevineOBJ[];
+extern const AnimScr AnimScr_EfxDevineOBJ[];
 extern u16 Pal_DivineSprites[];
 extern u16 Img_DivineSprites[];
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
@@ -340,4 +349,24 @@ const struct ProcCmd ProcScr_efxDivineOBJ[] = {
     PROC_19,
     PROC_REPEAT(efxDivineOBJ_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08BBA10C")
+const AnimScr AnimScr_EfxDevineOBJ[] = {
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BBA0F4, 29),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9B60, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9BE4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9C68, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9CD4, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9D40, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9DAC, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9E00, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9E6C, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9ED8, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9F14, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BB9F98, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BBA028, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BBA094, 1),
+    ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BBA0D0, 1),
+    ANIMSCR_BLOCKED,
 };
