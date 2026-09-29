@@ -120,37 +120,51 @@ kept in the `src` pointer, the snowstorm/thunder event commands reading
 their arguments as `u32`, and `proc.c`'s `sub_08004CC4` (proc pool size
 0x1A94 hard-coded: plain version uses `PROC_COUNT`).
 
+**Event readers, fixed** (an event cell, `EventScr`/`EventListScr`, is 8
+bytes on a 64-bit host; a cell packs a command's non-pointer fields in its
+low 32 bits, see `EVP` in `include/event_macros.h`, and an address is a
+whole cell).  The matching build is byte-identical:
+
+* `struct EventInfo` (now in `gbafe/event.h`, shared with
+  prep_sallycursor.c, which had its own copy) has `EventListScr const *
+  listScript` and an `EventScr script`, so `listScript += length` steps in
+  cells; `struct TutorialEventEnt` and the `EvList_*` externs are
+  `EventListScr`; the `EvCheck*` structs are made of `EventListScr`,
+  `EventScr` and function pointer fields (so `EVT_CMD_B*` on their words
+  read the low 32 bits of the right cell), and `EvCheck07`'s item / money
+  halves and `EvCheck0E_Area`'s command / flag halves are taken from a cell
+  with `EVT_CMD_LO/HI`.  `BattleTalkExtEnt.event` and
+  `DefeatTalkExtEnt.event` are `uintptr_t`.
+* the chapter event group is read as `struct ChapterEventGroup`
+  (`group->initialUnits[i]`, `group->playerUnits[i]` in `sub_08079214` and
+  `sub_08079280`, instead of `group[0x18 / 4]`); prep_sallycursor.c
+  (`info.script` as a shop list pointer) follows from the shared struct.
+* halfword arguments: `EVT_HALF(script, k)` (event.h) is halfword `k` of
+  the command at `script` (0 = the command id), i.e. half `k & 1` of cell
+  `k / 2`; `EVT_ARG_U16` (eventscr4.c, eventscr_browntextbox.c) and the
+  `((u16 const *) script)[n]` reads in eventscr4.c use it.  The matching
+  build keeps the `u16 *` view (`#else` of `#if NONMATCHING`) because it
+  compiles to `ldrh`.  `EVT_CMD_ARGV` is only used by the matching form of
+  `EventE8_StartSpriteAnim`.
+* `EvtCmd_TalkGeneric` / `TalkMoreGeneric` / `TalkByTactRank`
+  (eventscr.c) indexed a message list, a `const u32 []` in `src/events/`,
+  as `EventScr []`; it is `u32 const *` now.
+* `make hostevents` (`tools/hostevents.py`, `tests/host/events.c`) links
+  the host build of eventinfo.c with the converted chapter data and event
+  lists and compares, for all 66 chapters, the entries of the four event
+  lists (`gEventListCmdInfoTable` lengths, the data cells) and the answers
+  of `SearchAvailableEvent` (location and misc lists) with a walk of the
+  same lists as 4-byte words in the built ROM.  It also checks
+  `EVT_HALF`.  Passing with 0 differences; it fails, for example, if an
+  `EvCheck*` struct goes back to `u32` fields.
+
+Left in the event code: `*(u16 const *) proc->script` (event-engine.c,
+the command id in the low half of cell 0, right on a little-endian host).
+
 Left, with the reason (file:line of each cast; `--list` the
 `int-to-pointer-cast`, `int-to-void-pointer-cast`, `pointer-to-int-cast`
 and `void-pointer-to-int-cast` categories for the current list):
 
-* **Event lists** (`struct EventInfo.script`, `EvCheck*.script`,
-  `BattleTalkExtEnt.event`, `DefeatTalkExtEnt.event`, all `u32`; the
-  chapter's `struct ChapterEventGroup` read as a `u32` array): these are
-  views of the event lists in `src/events/`, which are `EventListScr`
-  (`uintptr_t`) word arrays, so on a 64-bit host every word is 8 bytes and
-  a reader that walks them as `u32` (`listScript += length`, the
-  `EvCheck*` structs, `group[0x24 / 4]`, `EVT_CMD_B*` on the `unk8`
-  words) sees half of each.  They change together: `EventListScr const *`
-  in `EventInfo`, `TutorialEventEnt`, `BattleTalkExtEnt` and
-  `DefeatTalkExtEnt`, the `EvCheck*` structs as `EventListScr` fields, and
-  the chapter's `struct ChapterEventGroup` (whose pointers are 8 bytes:
-  `sub_08079214`, `sub_08079280` index it as `u32`).  eventinfo.c:191,
-  977,981,985,1262,1267,1275,1280,1296,1298,1302,1304,1339-1390,1545,
-  1570; prep_sallycursor.c:633,637.  Other data in `src/events/` read
-  byte- or halfword-wise is fine (unit, trap, shop, move, area lists).
-* **Event scripts**: `EventScr` is `uintptr_t`, so the scripts in
-  `src/events/` and the C-defined ones (eventscr4.c, sio_event.c) have
-  8-byte words on a 64-bit host.  Command lengths in `gEventCmdTable` are
-  in words, so the engine itself is size-agnostic; command arguments must
-  not be read through narrower pointers across words: `EVT_ARG_U16(proc,
-  n)` in eventscr4.c (742,764,779,907,1074,1260,1267,1295,1297) indexes
-  16-bit halves of the following 32-bit words, and `EVT_CMD_ARGV(scr)[n]`
-  (event.h) is the same trap (the one use that ran across words,
-  `EventE8_StartSpriteAnim`, eventscr_spriteanim.c, has a plain version).
-  A cell packs the halves of a command's non-pointer fields in its low 32
-  bits (`SCR_HI16`, `SCR_LO16` work on it), so those readers have to take
-  `(u16)(script[k] >> (16 * j))` instead.
 * **AnimScr** (`typedef u32 AnimScr`, anime.h): tagged pointers, the top
   nibble is the instruction (`ANINS_PTRINS_GET_ADDRESS` masks
   `0xF0000000`, `ANIMSCR_FORCE_SPRITE` adds a duration in the low bits).

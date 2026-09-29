@@ -21,7 +21,7 @@ extern u16 CONST_DATA Sprite_32x16[];
 extern u16 CONST_DATA Pal_BrownTextBox[];
 extern u8 CONST_DATA Img_BrownTextBox[];
 
-#define EVT_ARG_U16(proc, n) (((u16 const *)(proc)->script)[n])
+#define EVT_ARG_U16(proc, n) EVT_HALF((proc)->script, n)
 
 void BrownTextBoxFadeIn_Init(struct BrownTextBoxProc * proc);
 void BrownTextBoxFadeIn_Loop(struct BrownTextBoxProc * proc);

@@ -1,53 +1,53 @@
 #include "gbafe.h"
 
-extern const u32 EvList_Ch00_TutorialA[];
-extern const u32 EvList_Ch00_TutorialB[];
-extern const u32 EvList_Ch00_TutorialC[];
-extern const u32 EvList_Ch00_TutorialD[];
-extern const u32 EvList_Ch01_TutorialA[];
-extern const u32 EvList_Ch01_TutorialB[];
-extern const u32 EvList_Ch01_TutorialC[];
-extern const u32 EvList_Ch01_TutorialD[];
-extern const u32 EvList_Ch02_TutorialA[];
-extern const u32 EvList_Ch02_TutorialB[];
-extern const u32 EvList_Ch02_TutorialC[];
-extern const u32 EvList_Ch02_TutorialD[];
-extern const u32 EvList_Ch03_TutorialA[];
-extern const u32 EvList_Ch03_TutorialB[];
-extern const u32 EvList_Ch03_TutorialC[];
-extern const u32 EvList_Ch03_TutorialD[];
-extern const u32 EvList_Ch04_TutorialA[];
-extern const u32 EvList_Ch04_TutorialB[];
-extern const u32 EvList_Ch04_TutorialC[];
-extern const u32 EvList_Ch04_TutorialD[];
-extern const u32 EvList_Ch05_TutorialA[];
-extern const u32 EvList_Ch05_TutorialB[];
-extern const u32 EvList_Ch05_TutorialC[];
-extern const u32 EvList_Ch05_TutorialD[];
-extern const u32 EvList_Ch06_TutorialA[];
-extern const u32 EvList_Ch06_TutorialB[];
-extern const u32 EvList_Ch06_TutorialC[];
-extern const u32 EvList_Ch06_TutorialD[];
-extern const u32 EvList_Ch07_TutorialA[];
-extern const u32 EvList_Ch07_TutorialB[];
-extern const u32 EvList_Ch07_TutorialC[];
-extern const u32 EvList_Ch07_TutorialD[];
-extern const u32 EvList_Ch08_TutorialA[];
-extern const u32 EvList_Ch08_TutorialB[];
-extern const u32 EvList_Ch08_TutorialC[];
-extern const u32 EvList_Ch08_TutorialD[];
-extern const u32 EvList_Ch09_TutorialA[];
-extern const u32 EvList_Ch09_TutorialB[];
-extern const u32 EvList_Ch09_TutorialC[];
-extern const u32 EvList_Ch09_TutorialD[];
-extern const u32 EvList_Ch0A_TutorialA[];
-extern const u32 EvList_Ch0A_TutorialB[];
-extern const u32 EvList_Ch0A_TutorialC[];
-extern const u32 EvList_Ch0A_TutorialD[];
-extern const u32 EvList_Ch0B_TutorialA[];
-extern const u32 EvList_Ch0B_TutorialB[];
-extern const u32 EvList_Ch0B_TutorialC[];
-extern const u32 EvList_Ch0B_TutorialD[];
+extern const EventListScr EvList_Ch00_TutorialA[];
+extern const EventListScr EvList_Ch00_TutorialB[];
+extern const EventListScr EvList_Ch00_TutorialC[];
+extern const EventListScr EvList_Ch00_TutorialD[];
+extern const EventListScr EvList_Ch01_TutorialA[];
+extern const EventListScr EvList_Ch01_TutorialB[];
+extern const EventListScr EvList_Ch01_TutorialC[];
+extern const EventListScr EvList_Ch01_TutorialD[];
+extern const EventListScr EvList_Ch02_TutorialA[];
+extern const EventListScr EvList_Ch02_TutorialB[];
+extern const EventListScr EvList_Ch02_TutorialC[];
+extern const EventListScr EvList_Ch02_TutorialD[];
+extern const EventListScr EvList_Ch03_TutorialA[];
+extern const EventListScr EvList_Ch03_TutorialB[];
+extern const EventListScr EvList_Ch03_TutorialC[];
+extern const EventListScr EvList_Ch03_TutorialD[];
+extern const EventListScr EvList_Ch04_TutorialA[];
+extern const EventListScr EvList_Ch04_TutorialB[];
+extern const EventListScr EvList_Ch04_TutorialC[];
+extern const EventListScr EvList_Ch04_TutorialD[];
+extern const EventListScr EvList_Ch05_TutorialA[];
+extern const EventListScr EvList_Ch05_TutorialB[];
+extern const EventListScr EvList_Ch05_TutorialC[];
+extern const EventListScr EvList_Ch05_TutorialD[];
+extern const EventListScr EvList_Ch06_TutorialA[];
+extern const EventListScr EvList_Ch06_TutorialB[];
+extern const EventListScr EvList_Ch06_TutorialC[];
+extern const EventListScr EvList_Ch06_TutorialD[];
+extern const EventListScr EvList_Ch07_TutorialA[];
+extern const EventListScr EvList_Ch07_TutorialB[];
+extern const EventListScr EvList_Ch07_TutorialC[];
+extern const EventListScr EvList_Ch07_TutorialD[];
+extern const EventListScr EvList_Ch08_TutorialA[];
+extern const EventListScr EvList_Ch08_TutorialB[];
+extern const EventListScr EvList_Ch08_TutorialC[];
+extern const EventListScr EvList_Ch08_TutorialD[];
+extern const EventListScr EvList_Ch09_TutorialA[];
+extern const EventListScr EvList_Ch09_TutorialB[];
+extern const EventListScr EvList_Ch09_TutorialC[];
+extern const EventListScr EvList_Ch09_TutorialD[];
+extern const EventListScr EvList_Ch0A_TutorialA[];
+extern const EventListScr EvList_Ch0A_TutorialB[];
+extern const EventListScr EvList_Ch0A_TutorialC[];
+extern const EventListScr EvList_Ch0A_TutorialD[];
+extern const EventListScr EvList_Ch0B_TutorialA[];
+extern const EventListScr EvList_Ch0B_TutorialB[];
+extern const EventListScr EvList_Ch0B_TutorialC[];
+extern const EventListScr EvList_Ch0B_TutorialD[];
 
 extern const EventScr EventScr_08CBFBFC[];
 extern const EventScr EventScr_08CC0E50[];
@@ -98,76 +98,64 @@ extern const EventScr EventScr_08CC0914[];
 
 #define EVENT_NOSCRIPT 1
 
-struct EventInfo
-{
-    /* 00 */ u32 const * listScript;
-    /* 04 */ u32 script;
-    /* 08 */ u32 flag;
-    /* 0C */ u32 commandId;
-    /* 10 */ u32 givenMoney;
-    /* 14 */ u32 givenItem;
-    /* 18 */ s8 xPos;
-    /* 19 */ s8 yPos;
-    /* 1A */ u8 pidA;
-    /* 1B */ u8 pidB;
-};
-
 struct EventListCmdInfo
 {
     /* 00 */ int (* func)(struct EventInfo * info);
     /* 04 */ int length;
 };
 
+// An event list entry is a run of cells (EventListScr, pointer sized); these views
+// name the cells of each kind.  Cell 0 holds the command id in its low half and the
+// flag in its high half.  Only the low 32 bits of a cell that does not hold an address
+// carry data (see EVP in event_macros.h).
 struct EvCheck01
 {
-    /* 00 */ u32 unk0;
-    /* 04 */ u32 script;
-    /* 08 */ u16 flag;
+    /* 00 */ EventListScr unk0;
+    /* 04 */ EventScr script;
+    /* 08 */ EventListScr flag;
 };
 
 struct EvCheck0F
 {
-    /* 00 */ u32 unk0;
-    /* 04 */ u32 unk4;
-    /* 08 */ u32 script;
-    /* 0C */ u32 unkC;
+    /* 00 */ EventListScr unk0;
+    /* 04 */ EventListScr unk4;
+    /* 08 */ EventScr script;
+    /* 0C */ EventListScr unkC;
 };
 
 struct EvCheck02
 {
-    /* 00 */ u32 unk0;
-    /* 04 */ u32 script;
-    /* 08 */ u32 unk8;
-    /* 0C */ u32 unkC;
+    /* 00 */ EventListScr unk0;
+    /* 04 */ EventScr script;
+    /* 08 */ EventListScr unk8;
+    /* 0C */ EventListScr unkC;
 };
 
 struct EvCheck04
 {
-    /* 00 */ u32 unk0;
-    /* 04 */ u32 script;
-    /* 08 */ u32 unk8;
+    /* 00 */ EventListScr unk0;
+    /* 04 */ EventScr script;
+    /* 08 */ EventListScr unk8;
     /* 0C */ s8 (* func)(struct EventInfo * info);
 };
 
 struct EvCheck07
 {
-    /* 00 */ u32 unk0;
-    /* 04 */ u16 item;
-    /* 06 */ u16 money;
-    /* 08 */ u32 unk8;
+    /* 00 */ EventListScr unk0;
+    /* 04 */ EventListScr itemMoney; // item in the low half, money in the high half
+    /* 08 */ EventListScr unk8;
 };
 
 struct EvCheck0E
 {
-    /* 00 */ u32 unk0;
-    /* 04 */ u32 script;
+    /* 00 */ EventListScr unk0;
+    /* 04 */ EventScr script;
     /* 08 */ s8 (* func)(struct EventInfo * info);
 };
 
 struct EvCheck0E_Area
 {
-    /* 00 */ u16 cmd;
-    /* 02 */ u16 flag;
+    /* 00 */ EventListScr cmdFlag; // command id in the low half, flag in the high half
     /* 04 */ u8 const * list;
 };
 
@@ -175,10 +163,10 @@ extern const struct EventListCmdInfo gEventListCmdInfoTable[];
 
 struct TutorialEventEnt
 {
-    /* 00 */ u32 const * a;
-    /* 04 */ u32 const * b;
-    /* 08 */ u32 const * c;
-    /* 0C */ u32 const * d;
+    /* 00 */ EventListScr const * a;
+    /* 04 */ EventListScr const * b;
+    /* 08 */ EventListScr const * c;
+    /* 0C */ EventListScr const * d;
 };
 
 extern const struct TutorialEventEnt gTutorialEventTable[];
@@ -324,7 +312,7 @@ int EvCheck00_Always(struct EventInfo * info)
 
 int EvCheck01_AFEV(struct EventInfo * info)
 {
-    if (CheckFlag(((struct EvCheck01 const *) info->listScript)->flag) != 0)
+    if (CheckFlag(EVT_CMD_LO(((struct EvCheck01 const *) info->listScript)->flag)) != 0)
     {
         info->script = ((struct EvCheck01 const *) info->listScript)->script;
         info->flag = EVT_CMD_HI(((struct EvCheck01 const *) info->listScript)->unk0);
@@ -359,7 +347,7 @@ bool sub_0807821C(struct EventInfo * info)
 
     if (list != NULL)
     {
-        switch (ls->cmd)
+        switch (EVT_CMD_LO(ls->cmdFlag))
         {
         case 0xF:
             for (; list[i * 4] != 0xFF; i++)
@@ -584,8 +572,8 @@ int EvCheck07_CHES(struct EventInfo * info)
         info->flag = EVT_CMD_HI(ls->unk0);
         info->commandId = cmdId;
         info->givenMoney = money;
-        info->givenItem = ls->item;
-        info->givenMoney = ls->money;
+        info->givenItem = EVT_CMD_LO(ls->itemMoney);
+        info->givenMoney = EVT_CMD_HI(ls->itemMoney);
 
         return 1;
     }
@@ -1336,7 +1324,7 @@ void const * sub_080791F0(void)
 void sub_08079214(void)
 {
     struct EventInfo info;
-    u32 const * group = (void const *) GetChapterEventInfo(gPlaySt.chapterIndex);
+    struct ChapterEventGroup const * group = GetChapterEventInfo(gPlaySt.chapterIndex);
 
     info.flag = 0;
 
@@ -1347,12 +1335,12 @@ void sub_08079214(void)
     {
         if (gPlaySt.chapterStateBits & 0x40)
         {
-            info.script = group[0x24 / 4];
+            info.script = (EventScr) group->initialUnits[3];
             LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
-            info.script = group[0x20 / 4];
+            info.script = (EventScr) group->initialUnits[2];
             LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
@@ -1360,12 +1348,12 @@ void sub_08079214(void)
     {
         if (gPlaySt.chapterStateBits & 0x40)
         {
-            info.script = group[0x1C / 4];
+            info.script = (EventScr) group->initialUnits[1];
             LoadUnits((struct UnitDefinition const *) info.script);
         }
         else
         {
-            info.script = group[0x18 / 4];
+            info.script = (EventScr) group->initialUnits[0];
             LoadUnits((struct UnitDefinition const *) info.script);
         }
     }
@@ -1377,20 +1365,20 @@ void sub_08079214(void)
 
 struct UnitDefinition const * sub_08079280(void)
 {
-    u32 const * group = (void const *) GetChapterEventInfo(gPlaySt.chapterIndex);
+    struct ChapterEventGroup const * group = GetChapterEventInfo(gPlaySt.chapterIndex);
 
     if (gPlaySt.chapterModeIndex == 3)
     {
         if (gPlaySt.chapterStateBits & 0x40)
-            return (void const *) group[0x34 / 4];
+            return (struct UnitDefinition const *) group->playerUnits[3];
 
-        return (void const *) group[0x30 / 4];
+        return (struct UnitDefinition const *) group->playerUnits[2];
     }
 
     if (gPlaySt.chapterStateBits & 0x40)
-        return (void const *) group[0x2C / 4];
+        return (struct UnitDefinition const *) group->playerUnits[1];
 
-    return (void const *) group[0x28 / 4];
+    return (struct UnitDefinition const *) group->playerUnits[0];
 }
 
 struct BattleTalkExtEnt const * sub_080792C4(u8 pidA, u8 pidB)
