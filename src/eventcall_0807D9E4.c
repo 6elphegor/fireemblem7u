@@ -17,12 +17,6 @@ struct EventLoadPos
     /* 02 */ s8 x_move, y_move;
 };
 
-struct EventCallLookupEnt
-{
-    /* 00 */ int key;
-    /* 04 */ int value;
-};
-
 extern struct EventCallLookupEnt CONST_DATA gUnk_08CBF3AC[];
 
 extern struct UnitDefinition CONST_DATA gUnk_08CE0898[];

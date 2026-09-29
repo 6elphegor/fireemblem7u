@@ -5,6 +5,16 @@
 
 typedef uintptr_t EventScr;
 
+// A word of an event list (turn, character, location... events); an entry is one
+// to four of them (include/event_macros.h).
+typedef uintptr_t EventListScr;
+
+// pid -> message (gUnk_08CBF3AC); the list ends with a 0 pid
+struct EventCallLookupEnt {
+    /* 00 */ int key;
+    /* 04 */ int value;
+};
+
 #define NUM_BACKGROUNDS 0x5B
 
 enum event_evbit_idx {
@@ -580,7 +590,7 @@ int EventE7_EndFade(struct EventProc * proc);
 struct EventSpriteAnimConf {
     /* 00 */ const u16 * pal;
     /* 04 */ const u8  * img;
-    /* 08 */ const u8  * ap_conf;
+    /* 08 */ const void * ap_conf;   // sprite animation script
     /* 0C */ u16 oam0, oam2;
     /* 10 */ u8 pal_bank, pal_size;
 

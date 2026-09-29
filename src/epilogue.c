@@ -51,7 +51,7 @@ extern const struct ProcCmd ProcScr_EpilogueCg[];
 extern const struct ProcCmd ProcScr_EpilogueScroll[];
 extern const struct ProcCmd ProcScr_EpilogueText[];
 extern u16 Pal_EpilogueText[];
-extern const void * const gEpilogueEndScroll[];
+extern void const * const gEpilogueEndScroll[];
 extern int const gEpilogueEndMsgs[];
 
 struct EpilogueUnitInfo {
@@ -1080,7 +1080,7 @@ const struct ProcCmd ProcScr_EpilogueText[] = {
 };
 
 SECTION(".rodata.08CEDC98")
-const void * const gEpilogueEndScroll[] = {
+void const * const gEpilogueEndScroll[] = {
     Pal_Cg_0A,
     Img_EpilogueScroll_00,
     gUnk_0842F1A0,

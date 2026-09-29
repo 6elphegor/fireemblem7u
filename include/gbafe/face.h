@@ -17,7 +17,8 @@ struct FaceInfo {
     /* 18 */ u8 blink_type;
 };
 
-extern struct FaceInfo FaceInfoTable[];
+// Faces 1 and up; face 0 has no entry (the ROM's slot 0 is the tail of a compressed image).
+extern const struct FaceInfo gFaceInfoTable[];
 
 struct FaceVramEnt {
     /* 00 */ u32 chr_off;

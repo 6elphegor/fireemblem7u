@@ -1500,25 +1500,25 @@ void ply_xtype(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
 
 void ply_xatta(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 {
-    track->tone.attack = *track->cmdPtr;
+    track->tone.u.adsr.attack = *track->cmdPtr;
     track->cmdPtr++;
 }
 
 void ply_xdeca(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 {
-    track->tone.decay = *track->cmdPtr;
+    track->tone.u.adsr.decay = *track->cmdPtr;
     track->cmdPtr++;
 }
 
 void ply_xsust(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 {
-    track->tone.sustain = *track->cmdPtr;
+    track->tone.u.adsr.sustain = *track->cmdPtr;
     track->cmdPtr++;
 }
 
 void ply_xrele(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 {
-    track->tone.release = *track->cmdPtr;
+    track->tone.u.adsr.release = *track->cmdPtr;
     track->cmdPtr++;
 }
 

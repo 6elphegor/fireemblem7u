@@ -3,7 +3,7 @@
 
     tools/hostcheck.py [-j N] [--target TRIPLE ...] [--list CATEGORY] [FILE.c ...]
 
-Each file in src/ and src/data/ (or the ones given) is compiled with
+Each file in src/, src/data/ and src/events/ (or the ones given) is compiled with
 -DNONMATCHING=1 for every target (default: x86_64-linux-gnu, an ELF/LP64
 target, and the host's own, e.g. arm64-apple-macosx: Mach-O/LP64) into
 build/host/TRIPLE/src/NAME.o; the compiler's messages go to NAME.log next to
@@ -67,7 +67,10 @@ def include_flags():
 def sources(args):
     if args:
         return [os.path.relpath(os.path.abspath(a), ROOT) for a in args]
-    return sorted(glob.glob('src/*.c')) + sorted(glob.glob('src/data/*.c'))
+    # The generated C data (extracted / built by the first make) too.
+    return (sorted(glob.glob('src/*.c')) + sorted(glob.glob('src/data/*.c')) +
+            sorted(glob.glob('src/events/*.c')) +
+            sorted(glob.glob('sound/*.c')) + sorted(glob.glob('build/msg_table.c')))
 
 
 def paths(triple, src):

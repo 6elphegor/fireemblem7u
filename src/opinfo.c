@@ -1,14 +1,49 @@
 #include "gbafe.h"
 
-extern const char gUnk_084218D8[], gUnk_084218E0[], gUnk_084218EC[], gUnk_084218FC[],
-    gUnk_08421904[], gUnk_0842190C[], gUnk_08421914[], gUnk_0842191C[], gUnk_08421924[],
-    gUnk_0842192C[], gUnk_08421934[], gUnk_0842193C[], gUnk_08421944[], gUnk_0842194C[],
-    gUnk_08421958[], gUnk_08421960[], gUnk_08421968[], gUnk_08421970[], gUnk_08421978[],
-    gUnk_08421984[], gUnk_08421990[], gUnk_08421998[], gUnk_084219A0[], gUnk_084219B0[],
-    gUnk_084219BC[], gUnk_084219C4[], gUnk_084219CC[], gUnk_084219D4[], gUnk_084219E0[],
-    gUnk_084219EC[], gUnk_084219F4[], gUnk_084219FC[], gUnk_08421A08[], gUnk_08421A14[],
-    gUnk_08421A20[], gUnk_08421A28[], gUnk_08421A30[], gUnk_08421A3C[], gUnk_08421A4C[],
-    gUnk_08421A58[], gUnk_08421A64[], gUnk_08421A70[], gUnk_08421A7C[], gUnk_08421A88[];
+extern const char gUnk_084218D8[];
+extern const char gUnk_084218E0[];
+extern const char gUnk_084218EC[];
+extern const char gUnk_084218FC[];
+extern const char gUnk_08421904[];
+extern const char gUnk_0842190C[];
+extern const char gUnk_08421914[];
+extern const char gUnk_0842191C[];
+extern const char gUnk_08421924[];
+extern const char gUnk_0842192C[];
+extern const char gUnk_08421934[];
+extern const char gUnk_0842193C[];
+extern const char gUnk_08421944[];
+extern const char gUnk_0842194C[];
+extern const char gUnk_08421958[];
+extern const char gUnk_08421960[];
+extern const char gUnk_08421968[];
+extern const char gUnk_08421970[];
+extern const char gUnk_08421978[];
+extern const char gUnk_08421984[];
+extern const char gUnk_08421990[];
+extern const char gUnk_08421998[];
+extern const char gUnk_084219A0[];
+extern const char gUnk_084219B0[];
+extern const char gUnk_084219BC[];
+extern const char gUnk_084219C4[];
+extern const char gUnk_084219CC[];
+extern const char gUnk_084219D4[];
+extern const char gUnk_084219E0[];
+extern const char gUnk_084219EC[];
+extern const char gUnk_084219F4[];
+extern const char gUnk_084219FC[];
+extern const char gUnk_08421A08[];
+extern const char gUnk_08421A14[];
+extern const char gUnk_08421A20[];
+extern const char gUnk_08421A28[];
+extern const char gUnk_08421A30[];
+extern const char gUnk_08421A3C[];
+extern const char gUnk_08421A4C[];
+extern const char gUnk_08421A58[];
+extern const char gUnk_08421A64[];
+extern const char gUnk_08421A70[];
+extern const char gUnk_08421A7C[];
+extern const char gUnk_08421A88[];
 extern const u8 gUnk_08CE6114[], gUnk_08CE6128[], gUnk_08CE6140[], gUnk_08CE614C[], gUnk_08CE6158[],
     gUnk_08CE6164[], gUnk_08CE6178[], gUnk_08CE6184[], gUnk_08CE6190[], gUnk_08CE619C[],
     gUnk_08CE61A8[];
@@ -99,7 +134,7 @@ struct ClassDisplayFont const * GetClassDisplayFontInfo(u8 chr);
 
 extern struct AnimBuffer gOpInfoData;
 extern struct BanimUnkStructComm gOpInfoTerrainConf;
-extern const struct ClassReelEnt * const * const * const gClassReelSetLut[];
+extern struct ClassReelEnt const * const * const * const gClassReelSetLut[];
 extern const struct ProcCmd ProcScr_ClassInfoDisplay[];
 extern const struct ProcCmd ProcScr_ClassStatsDisplay[];
 extern u8 Img_ClassDisplayFont[];
@@ -1069,8 +1104,8 @@ void SetClassStatsDisplayX(struct OpInfoGaugeDrawProc * proc, int x)
 
 intptr_t GetClassReelEntry(int set, int index)
 {
-    const struct ClassReelEnt * const * const * list = gClassReelSetLut[set];
-    const struct ClassReelEnt * const * it;
+    struct ClassReelEnt const * const * const * list = gClassReelSetLut[set];
+    struct ClassReelEnt const * const * it;
 
     for (it = *list; *list != NULL;)
     {
@@ -2092,21 +2127,21 @@ const struct ClassReelEnt gUnk_08CE68C8 = {
     .script = gUnk_08CE6114,
 };
 
-extern const struct ClassReelEnt * const gUnk_08CE68E4[];
-extern const struct ClassReelEnt * const gUnk_08CE6900[];
-extern const struct ClassReelEnt * const gUnk_08CE691C[];
-extern const struct ClassReelEnt * const gUnk_08CE6938[];
-extern const struct ClassReelEnt * const gUnk_08CE6954[];
-extern const struct ClassReelEnt * const gUnk_08CE6970[];
-extern const struct ClassReelEnt * const gUnk_08CE698C[];
-extern const struct ClassReelEnt * const gUnk_08CE69A8[];
-extern const struct ClassReelEnt * const gUnk_08CE69C4[];
-extern const struct ClassReelEnt * const gUnk_08CE69E0[];
-extern const struct ClassReelEnt * const gUnk_08CE69FC[];
-extern const struct ClassReelEnt * const gUnk_08CE6A18[];
+extern struct ClassReelEnt const * const gUnk_08CE68E4[];
+extern struct ClassReelEnt const * const gUnk_08CE6900[];
+extern struct ClassReelEnt const * const gUnk_08CE691C[];
+extern struct ClassReelEnt const * const gUnk_08CE6938[];
+extern struct ClassReelEnt const * const gUnk_08CE6954[];
+extern struct ClassReelEnt const * const gUnk_08CE6970[];
+extern struct ClassReelEnt const * const gUnk_08CE698C[];
+extern struct ClassReelEnt const * const gUnk_08CE69A8[];
+extern struct ClassReelEnt const * const gUnk_08CE69C4[];
+extern struct ClassReelEnt const * const gUnk_08CE69E0[];
+extern struct ClassReelEnt const * const gUnk_08CE69FC[];
+extern struct ClassReelEnt const * const gUnk_08CE6A18[];
 
 SECTION(".rodata.08CE68E4")
-const struct ClassReelEnt * const gUnk_08CE68E4[] = {
+struct ClassReelEnt const * const gUnk_08CE68E4[] = {
     &gUnk_08CE61AC,
     &gUnk_08CE61C8,
     &gUnk_08CE61E4,
@@ -2117,7 +2152,7 @@ const struct ClassReelEnt * const gUnk_08CE68E4[] = {
 };
 
 SECTION(".rodata.08CE6900")
-const struct ClassReelEnt * const gUnk_08CE6900[] = {
+struct ClassReelEnt const * const gUnk_08CE6900[] = {
     &gUnk_08CE6254,
     &gUnk_08CE6270,
     &gUnk_08CE628C,
@@ -2128,7 +2163,7 @@ const struct ClassReelEnt * const gUnk_08CE6900[] = {
 };
 
 SECTION(".rodata.08CE691C")
-const struct ClassReelEnt * const gUnk_08CE691C[] = {
+struct ClassReelEnt const * const gUnk_08CE691C[] = {
     &gUnk_08CE62FC,
     &gUnk_08CE6318,
     &gUnk_08CE6334,
@@ -2139,7 +2174,7 @@ const struct ClassReelEnt * const gUnk_08CE691C[] = {
 };
 
 SECTION(".rodata.08CE6938")
-const struct ClassReelEnt * const gUnk_08CE6938[] = {
+struct ClassReelEnt const * const gUnk_08CE6938[] = {
     &gUnk_08CE63A4,
     &gUnk_08CE63C0,
     &gUnk_08CE63DC,
@@ -2150,7 +2185,7 @@ const struct ClassReelEnt * const gUnk_08CE6938[] = {
 };
 
 SECTION(".rodata.08CE6954")
-const struct ClassReelEnt * const gUnk_08CE6954[] = {
+struct ClassReelEnt const * const gUnk_08CE6954[] = {
     &gUnk_08CE644C,
     &gUnk_08CE6468,
     &gUnk_08CE6484,
@@ -2161,7 +2196,7 @@ const struct ClassReelEnt * const gUnk_08CE6954[] = {
 };
 
 SECTION(".rodata.08CE6970")
-const struct ClassReelEnt * const gUnk_08CE6970[] = {
+struct ClassReelEnt const * const gUnk_08CE6970[] = {
     &gUnk_08CE64F4,
     &gUnk_08CE6510,
     &gUnk_08CE652C,
@@ -2172,7 +2207,7 @@ const struct ClassReelEnt * const gUnk_08CE6970[] = {
 };
 
 SECTION(".rodata.08CE698C")
-const struct ClassReelEnt * const gUnk_08CE698C[] = {
+struct ClassReelEnt const * const gUnk_08CE698C[] = {
     &gUnk_08CE659C,
     &gUnk_08CE65B8,
     &gUnk_08CE65D4,
@@ -2183,7 +2218,7 @@ const struct ClassReelEnt * const gUnk_08CE698C[] = {
 };
 
 SECTION(".rodata.08CE69A8")
-const struct ClassReelEnt * const gUnk_08CE69A8[] = {
+struct ClassReelEnt const * const gUnk_08CE69A8[] = {
     &gUnk_08CE6644,
     &gUnk_08CE6660,
     &gUnk_08CE667C,
@@ -2194,7 +2229,7 @@ const struct ClassReelEnt * const gUnk_08CE69A8[] = {
 };
 
 SECTION(".rodata.08CE69C4")
-const struct ClassReelEnt * const gUnk_08CE69C4[] = {
+struct ClassReelEnt const * const gUnk_08CE69C4[] = {
     &gUnk_08CE66EC,
     &gUnk_08CE6708,
     &gUnk_08CE6740,
@@ -2205,7 +2240,7 @@ const struct ClassReelEnt * const gUnk_08CE69C4[] = {
 };
 
 SECTION(".rodata.08CE69E0")
-const struct ClassReelEnt * const gUnk_08CE69E0[] = {
+struct ClassReelEnt const * const gUnk_08CE69E0[] = {
     &gUnk_08CE6794,
     &gUnk_08CE6724,
     &gUnk_08CE67B0,
@@ -2216,7 +2251,7 @@ const struct ClassReelEnt * const gUnk_08CE69E0[] = {
 };
 
 SECTION(".rodata.08CE69FC")
-const struct ClassReelEnt * const gUnk_08CE69FC[] = {
+struct ClassReelEnt const * const gUnk_08CE69FC[] = {
     &gUnk_08CE6820,
     &gUnk_08CE683C,
     &gUnk_08CE6858,
@@ -2227,7 +2262,7 @@ const struct ClassReelEnt * const gUnk_08CE69FC[] = {
 };
 
 SECTION(".rodata.08CE6A18")
-const struct ClassReelEnt * const gUnk_08CE6A18[] = {
+struct ClassReelEnt const * const gUnk_08CE6A18[] = {
     &gUnk_08CE61AC,
     &gUnk_08CE61C8,
     &gUnk_08CE6200,
@@ -2252,35 +2287,35 @@ const struct ClassReelEnt * const gUnk_08CE6A18[] = {
     NULL,
 };
 
-extern const struct ClassReelEnt * const * const gUnk_08CE6A70[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6A78[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6A84[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6A94[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6AA8[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6AC0[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6ADC[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6AFC[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6B20[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6B48[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6B74[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6BA4[];
-extern const struct ClassReelEnt * const * const gUnk_08CE6BD4[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6A70[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6A78[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6A84[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6A94[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6AA8[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6AC0[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6ADC[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6AFC[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6B20[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6B48[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6B74[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6BA4[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6BD4[];
 
 SECTION(".rodata.08CE6A70")
-const struct ClassReelEnt * const * const gUnk_08CE6A70[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6A70[] = {
     gUnk_08CE68E4,
     NULL,
 };
 
 SECTION(".rodata.08CE6A78")
-const struct ClassReelEnt * const * const gUnk_08CE6A78[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6A78[] = {
     gUnk_08CE6900,
     gUnk_08CE68E4,
     NULL,
 };
 
 SECTION(".rodata.08CE6A84")
-const struct ClassReelEnt * const * const gUnk_08CE6A84[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6A84[] = {
     gUnk_08CE691C,
     gUnk_08CE6900,
     gUnk_08CE68E4,
@@ -2288,7 +2323,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6A84[] = {
 };
 
 SECTION(".rodata.08CE6A94")
-const struct ClassReelEnt * const * const gUnk_08CE6A94[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6A94[] = {
     gUnk_08CE6938,
     gUnk_08CE691C,
     gUnk_08CE6900,
@@ -2297,7 +2332,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6A94[] = {
 };
 
 SECTION(".rodata.08CE6AA8")
-const struct ClassReelEnt * const * const gUnk_08CE6AA8[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6AA8[] = {
     gUnk_08CE6954,
     gUnk_08CE6938,
     gUnk_08CE691C,
@@ -2307,7 +2342,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6AA8[] = {
 };
 
 SECTION(".rodata.08CE6AC0")
-const struct ClassReelEnt * const * const gUnk_08CE6AC0[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6AC0[] = {
     gUnk_08CE6970,
     gUnk_08CE6954,
     gUnk_08CE6938,
@@ -2318,7 +2353,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6AC0[] = {
 };
 
 SECTION(".rodata.08CE6ADC")
-const struct ClassReelEnt * const * const gUnk_08CE6ADC[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6ADC[] = {
     gUnk_08CE698C,
     gUnk_08CE6970,
     gUnk_08CE6954,
@@ -2330,7 +2365,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6ADC[] = {
 };
 
 SECTION(".rodata.08CE6AFC")
-const struct ClassReelEnt * const * const gUnk_08CE6AFC[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6AFC[] = {
     gUnk_08CE69A8,
     gUnk_08CE698C,
     gUnk_08CE6970,
@@ -2343,7 +2378,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6AFC[] = {
 };
 
 SECTION(".rodata.08CE6B20")
-const struct ClassReelEnt * const * const gUnk_08CE6B20[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6B20[] = {
     gUnk_08CE69C4,
     gUnk_08CE69A8,
     gUnk_08CE698C,
@@ -2357,7 +2392,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6B20[] = {
 };
 
 SECTION(".rodata.08CE6B48")
-const struct ClassReelEnt * const * const gUnk_08CE6B48[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6B48[] = {
     gUnk_08CE69E0,
     gUnk_08CE69C4,
     gUnk_08CE69A8,
@@ -2372,7 +2407,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6B48[] = {
 };
 
 SECTION(".rodata.08CE6B74")
-const struct ClassReelEnt * const * const gUnk_08CE6B74[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6B74[] = {
     gUnk_08CE69FC,
     gUnk_08CE69E0,
     gUnk_08CE69C4,
@@ -2388,7 +2423,7 @@ const struct ClassReelEnt * const * const gUnk_08CE6B74[] = {
 };
 
 SECTION(".rodata.08CE6BA4")
-const struct ClassReelEnt * const * const gUnk_08CE6BA4[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6BA4[] = {
     gUnk_08CE68E4,
     gUnk_08CE6900,
     gUnk_08CE691C,
@@ -2404,13 +2439,13 @@ const struct ClassReelEnt * const * const gUnk_08CE6BA4[] = {
 };
 
 SECTION(".rodata.08CE6BD4")
-const struct ClassReelEnt * const * const gUnk_08CE6BD4[] = {
+struct ClassReelEnt const * const * const gUnk_08CE6BD4[] = {
     gUnk_08CE6A18,
     NULL,
 };
 
 SECTION(".rodata.08CE6BDC")
-const struct ClassReelEnt * const * const * const gClassReelSetLut[] = {
+struct ClassReelEnt const * const * const * const gClassReelSetLut[] = {
     gUnk_08CE6A70,
     gUnk_08CE6A78,
     gUnk_08CE6A84,

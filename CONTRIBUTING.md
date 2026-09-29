@@ -31,12 +31,17 @@ bulk edits, `rm -rf build/asm build/src` before building.
   a few code labels), and aliases.  ROM data labels are in `data/rom/`
   (see Data below).
 * `data/layout.txt` — FE7U addresses of C modules' data sections.
-* `data/events/chXX.s` — chapter event data (`include/event_macros.inc`
-  documents each macro and the event command it assembles to).  They are
-  run through cpp, so `MSG_*`, `CHARACTER_*`, `CLASS_*`, `ITEM_*`, `SONG_*`
-  and `CHAPTER_*` work as in C.  Each `.section .rodata.ev_<ADDR>` has a
-  line in `data/layout.txt`; `tools/evdis.py --layout` regenerates the
-  files and prints those lines.
+* `src/events/chXX.c` (and `common.c`, `shops.c`, `traps.c`) — chapter event
+  data: event lists (`EventListScr` word arrays), event scripts (`EventScr`
+  word arrays), unit definition lists, trap lists, shop lists, move scripts
+  and the rest, written with the macros of `include/event_macros.h` (one per
+  event command, named as in the Event Assembler where a command
+  corresponds; the header documents each one and the handler it runs).
+  Each `SECTION(".rodata.ev_<ADDR>")` has a line in `data/layout.txt`.
+  `tools/evdis.py` regenerates the files from the ROM (it needs a built
+  `fe7u.elf`), the header and the layout lines; `--only=ch00,ch01` limits it
+  to some files.  The objects are `const`; the readers' declarations
+  (`extern u32 const *` and the like) are unchanged.
 
 ## Data
 
@@ -298,7 +303,9 @@ size fails the matching link's "wrong size" ASSERT; the modern build
 ### Music
 
 The m4a (MusicPlayer2000) data, 0x08677648-0x08AEAE8C, is one placed
-section, `build/sound/sound.o(.rodata)`, assembled from `sound/sound.s`.
+section, `build/sound/sound.o(.rodata)`: `ld -r` links the assembly
+(`sound/sound.s`) with three C files (below) in the order of their section
+names, `.rodata.ord.<ROM address>`, which every object in either has.
 `sound/` is extracted by `tools/m4adis.py` on the first `make` and is not
 in git, except `sound/manifest.txt`: the region, `gMPlayTable` and
 `gSongTable`, the programmable wave table, and older names kept at their
@@ -307,15 +314,19 @@ stream (GOTO / PATT / REPT / conditional MEMACC, with the engine's running
 status), the voice groups (drum sets, key splits) and the samples, and
 writes
 
-* `sound/songs/songNNN.s` -- tracks with `include/MPlayDef.s` names, then
-  the header; NNN is the first song id using it.  Labels: `songNNN`,
-  `songNNN_T` (track T), `songNNN_T_ADDR` (jump targets, local);
-* `sound/voicegroups/voicegroupNNN.s` -- `include/m4a_data.inc` voice
-  macros (pret's `music_voice.inc` names), NNN in ROM order;
+* `sound/songs/songNNN.s` -- tracks with `include/MPlayDef.s` names; NNN is
+  the first song id using it.  Labels: `songNNN_T` (track T),
+  `songNNN_T_ADDR` (jump targets, local);
+* `sound/song_headers.c` -- every song header, `const struct SongHeaderN
+  songNNN` (a `struct SongHeader` with N track pointers), pointing at the
+  track labels and the voice group;
+* `sound/voicegroups.c` -- `const struct ToneData voicegroupNNN[]`, NNN in
+  ROM order; entries point at samples, drum sets and key split groups;
+* `sound/song_table.c` -- `gMPlayTable` and `gSongTable`;
 * `sound/direct_sound_samples/ADDR.bin` (WaveData: 16-byte header + PCM),
   `sound/programmable_wave_samples/NNN.pcm`;
-* `sound/song_table.s`, `sound/music_player_table.s`, and `sound/sound.s`,
-  which includes all of them in ROM order (plus a few unreferenced bytes).
+* `sound/sound.s` -- the assembly half: includes the tracks, `.incbin`s
+  the samples and keeps the few unreferenced bytes.
 
 Every pointer in the region is a label (+ offset), including the 2,537
 unaligned ones in track data, so the music moves with the layout;
@@ -331,11 +342,13 @@ Manifest names that fall inside an object (old datasplit guesses in
 samples and tracks) are local labels, so tools/dataptrs.py doesn't take
 look-alike words elsewhere for pointers to them.  Sizes are fixed by the
 layout in the matching build, like everything else in the data region;
-the modern build lets them change.  Song headers, voice groups, samples,
-wave data and the tables are preceded by `.align 2, 0` (which adds nothing
-at their original addresses), so they stay aligned when the data before
-them changes size; files extracted before that was added lack it (delete
-`sound/` but the manifest and `make` to extract them again).
+the modern build lets them change.  Song headers, voice groups and the
+tables are C (4-aligned by their types), samples and wave data are
+preceded by `.align 2, 0` in their own sections, so all stay aligned when
+the data before them changes size.  A `sound/` extracted before the C
+conversion is refused ("delete sound/ but manifest.txt"); a manifest name
+at the start of a header or voice group is a second name for a C object
+and is reported (rename it in `tools/renames`).
 
 In source, refer to ROM data by symbol, never by a `0x08xxxxxx`
 constant, and don't put ROM data addresses in `symbols.ld` (an absolute
@@ -466,8 +479,8 @@ build (`fe7u.gba`, `build/layout.ld`) is not touched.
   after a size change everything behind it moves and keeps the alignment
   it had (up to 4).  Inside the other objects alignment comes from the
   source: the music (`.align 2, 0` before headers, voice groups, samples),
-  the text (`.align` before the Huffman table), event files (`.align 2, 0`
-  before every 4-aligned object: `tools/evdis.py`), battle animation
+  the text (`.align` before the Huffman table), event files (`EV_ALIGN4` on
+  every 4-aligned object whose type is not 4-aligned already: `tools/evdis.py`), battle animation
   scripts (`.balign 4`), C.
 * The three LZ77 palettes stored cut short (their last token overlaps the
   next blob's first bytes) stay cut short while the built files still
