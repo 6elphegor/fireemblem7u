@@ -67,7 +67,10 @@ def include_flags():
 def sources(args):
     if args:
         return [os.path.relpath(os.path.abspath(a), ROOT) for a in args]
-    return sorted(glob.glob('src/*.c')) + sorted(glob.glob('src/data/*.c')) + sorted(glob.glob('src/events/*.c'))
+    # The generated C data (extracted / built by the first make) too.
+    return (sorted(glob.glob('src/*.c')) + sorted(glob.glob('src/data/*.c')) +
+            sorted(glob.glob('src/events/*.c')) +
+            sorted(glob.glob('sound/*.c')) + sorted(glob.glob('build/msg_table.c')))
 
 
 def paths(triple, src):

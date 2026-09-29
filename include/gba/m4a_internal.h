@@ -60,11 +60,17 @@ struct ToneData
     u8 key;
     u8 length; // sound length (compatible sound)
     u8 pan_sweep; // pan or sweep (compatible sound ch. 1)
-    struct WaveData *wav;
-    u8 attack;
-    u8 decay;
-    u8 sustain;
-    u8 release;
+    struct WaveData *wav; // sample; a drum set or key split group (struct ToneData *) for TYPE_RHY / TYPE_SPL
+    union {
+        struct
+        {
+            u8 attack;
+            u8 decay;
+            u8 sustain;
+            u8 release;
+        } adsr;
+        const u8 *keySplitTable; // TYPE_SPL: key -> index into the group (may point before the table)
+    } u;
 };
 
 struct CgbChannel

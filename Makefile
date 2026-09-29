@@ -40,6 +40,8 @@ GBAGFX := build/tools/gbagfx
 # build/sound.mk lists the files it extracts (SOUND_SRCS).
 -include build/sound.mk
 SOUND_OBJ := build/sound/sound.o
+SOUND_ASM_OBJ := build/sound/sound_asm.o
+SOUND_C_OBJS := $(patsubst sound/%.c,build/sound/%.o,$(filter %.c,$(SOUND_SRCS)))
 # Battle animation scripts, extracted into banim/ by tools/banim.py, which
 # also compresses them at link time into build/banim/banim.o.
 BANIM_NAMES := $(shell sed -n 's/^rom .* build\/banim\/banim\.o(\.rodata\.\(.*\))$$/\1/p' data/layout.txt)
@@ -194,12 +196,31 @@ TEXTS := texts/texts.txt texts/textdefs.txt
 texts/texts.txt: | build/baserom.ok
 	python3 tools/textdecode.py baserom.gba
 
-build/msg_data.s: $(TEXTS) tools/textencode.py
+# The bitstream and tree are assembly (build/msg_bits.s), gMsgTable and its
+# root pointer C (build/msg_table.c); both come from one run of the tool.
+build/msg_bits.s: $(TEXTS) tools/textencode.py
 	@mkdir -p $(@D)
-	python3 tools/textencode.py $(TEXTS) $@
+	python3 tools/textencode.py $(TEXTS) $@ --table build/msg_table.c
 
-build/msg_data.o: build/msg_data.s
+build/msg_table.c: build/msg_bits.s
+	@test -f $@ && touch $@
+
+build/msg_bits.o: build/msg_bits.s
 	$(AS) $(ASFLAGS) -o $@ $<
+
+# Compile a generated C file (the same steps as src/*.c).
+define COMPILE_GEN
+	@mkdir -p $(@D)
+	$(CPP) $(CPPFLAGS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(@:.o=.s)
+	$(AS) $(ASFLAGS) -o $@ $(@:.o=.s)
+endef
+
+build/msg_table.o: build/msg_table.c
+	$(COMPILE_GEN)
+
+# One object with both, in the order of their .rodata.ord.N sections.
+build/msg_data.o: build/msg_bits.o build/msg_table.o tools/ordered.ld
+	$(LD) -r -T tools/ordered.ld -o $@ build/msg_bits.o build/msg_table.o
 
 # Music: songs, voice groups and samples aren't in git either.  The first
 # build extracts them to sound/ (see tools/m4adis.py; sound/manifest.txt is
@@ -218,12 +239,21 @@ sound/sound.s $(filter-out sound/sound.s,$(SOUND_SRCS)): | sound/.extracted
 
 # as --MD lists every .include/.incbin; the empty rules (like gcc -MP) keep
 # make going if one of them disappears.
-$(SOUND_OBJ): sound/sound.s $(SOUND_SRCS) include/MPlayDef.s include/m4a_data.inc
+$(SOUND_ASM_OBJ): sound/sound.s $(SOUND_SRCS) include/MPlayDef.s
 	@mkdir -p $(@D)
 	$(AS) $(ASFLAGS) --MD $(@:.o=.d) -o $@ $<
 	@sed -e 's/^[^:]*://' -e 's/\\$$//' $(@:.o=.d) | tr ' ' '\n' | grep . | sed 's/$$/:/' >> $(@:.o=.d)
 
--include $(SOUND_OBJ:.o=.d)
+-include $(SOUND_ASM_OBJ:.o=.d)
+
+# The pointer-bearing structures (song headers, voice groups, the tables) are
+# C files in sound/; build/sound/sound.o links them with the assembly into the
+# one section the layout places, in the order of the .rodata.ord.ADDR names.
+$(SOUND_C_OBJS): build/sound/%.o: sound/%.c include/gba/m4a_internal.h
+	$(COMPILE_GEN)
+
+$(SOUND_OBJ): $(SOUND_ASM_OBJ) $(SOUND_C_OBJS) tools/ordered.ld
+	$(LD) -r -T tools/ordered.ld -o $@ $(SOUND_ASM_OBJ) $(SOUND_C_OBJS)
 
 # Battle animation scripts (tools/banim.py): banim/NAME.s is extracted from
 # the ROM the first time (banim/ is not in git) and is the source after that.
@@ -326,7 +356,7 @@ modern-resizetest:
 
 # Regenerate include/constants/msg.h after adding/removing messages.
 msgheader:
-	python3 tools/textencode.py $(TEXTS) build/msg_data.s --header include/constants/msg.h
+	python3 tools/textencode.py $(TEXTS) build/msg_bits.s --header include/constants/msg.h
 
 # Portable build (CONTRIBUTING, "Portable (NONMATCHING) build"): every C
 # file is compiled with -DNONMATCHING=1, which selects the plain C versions

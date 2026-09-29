@@ -38,9 +38,9 @@ script as include/banim_script.inc macros, with the sheets by label:
 
 `extract` writes it from baserom.gba for every script placed in
 data/layout.txt (lines `rom ADDR SIZE build/banim/banim.o(.rodata.NAME)`;
-SIZE covers the compressed script and the mode table), taking label names
-from data/rom/*.s (the banim_data table names the script and mode table,
-sheets have labels).  The build assembles it to build/banim/NAME.script.o:
+SIZE covers the compressed script and the mode table), taking the script
+and mode table names from banim_data in src/data/banimtables.c and the sheet
+names from the labels in data/rom/*.s.  The build assembles it to build/banim/NAME.script.o:
 section .banim.script holds the uncompressed script with an R_ARM_ABS32
 relocation per sheet word, .banim.modes the mode table.
 
@@ -80,6 +80,7 @@ import elf32  # noqa: E402
 
 ROM_BASE = 0x08000000
 SRC_DIR = Path("banim")
+BANIM_TABLES = Path("src/data/banimtables.c")
 OBJ_DIR = Path("build/banim")
 LAYOUT = Path("data/layout.txt")
 LZ77 = Path("build/tools/lz77")
@@ -126,21 +127,20 @@ def extract():
     rom = Path("baserom.gba").read_bytes()
     todo = [s for s in scripts() if not (SRC_DIR / f"{s[2]}.s").exists()]
     if todo:
-        items = datasplit.walk_rom_files()
-        labels, ptrs = {}, {}
-        for kind, addr, arg, _ in items:
+        # sheet names: labels in data/rom/*.s
+        labels = {}
+        for kind, addr, arg, _ in datasplit.walk_rom_files():
             if kind == "label":
                 labels.setdefault(addr, arg)
-            elif kind == "ptr":
-                ptrs[addr] = arg
-        # banim_data: which entry uses which script, and its mode table's name
+        # banim_data (C, src/data/banimtables.c): which entry uses which
+        # script, and its mode table's name
         users = {}
-        table = next(a for a, n in labels.items() if n == "banim_data")
-        a, i = table, 0
-        while 0x20 < rom[a - ROM_BASE] < 0x7F:
-            abbr = rom[a - ROM_BASE:a - ROM_BASE + 12].rstrip(b"\0").decode("ascii")
-            users.setdefault(ptrs[a + 0x10], []).append((i, abbr, ptrs[a + 0xC]))
-            a, i = a + 0x20, i + 1
+        body = BANIM_TABLES.read_text().split("banim_data[] = {", 1)[1].split("\n};", 1)[0]
+        entries = re.findall(r'\.abbr = "([^"]*)",\s*\.modes = (\w+),\s*\.script = (\w+),', body)
+        if not entries:
+            sys.exit(f"{BANIM_TABLES}: no banim_data entries found")
+        for i, (abbr, modes, script) in enumerate(entries):
+            users.setdefault(script, []).append((i, abbr, modes))
     for addr, size, name in todo:
         data, length = gfx.lz77_decompress(rom, addr - ROM_BASE)
         modes_at = addr + ((length + 3) & ~3)
