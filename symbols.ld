@@ -539,3 +539,21 @@ gPlayStChapterBits = 0x02000064;
 gPlayStChapterMode = 0x02000068;
 gBanimIdx_bak = 0x0203E018;
 gBanimUniquePal = 0x0203E01C;
+
+/* EWRAM overlay buffers that ROM pointer variables (src/data/ramptrs.c) point at */
+gBonusClaimData = 0x020000F4;
+gBonusClaimDataUpdated = 0x020004F4;
+gBonusClaimItemList = 0x020008F4;
+gBonusClaimConfig = 0x02000AF4;
+gBonusClaimItemCount = 0x02000CF4;
+gBonusClaimText = 0x02000DF4;
+gEpilogueStrBuf = 0x0200088C;
+gEpilogueEnts = 0x0200188C;
+gCharacterEndingTexts = 0x0200288C;
+gTurnRecordTexts = 0x0200288C;
+gEndingCgScrollBlendTable = 0x0200388C;
+gUnkOpAnim_02000018 = 0x02000018;
+gUnkOpAnim_02002018 = 0x02002018;
+gUnkOpAnim_02003018 = 0x02003018;
+gUnkOpAnim_02005018 = 0x02005018;
+gSupportScreenUnits = 0x0200E68C;

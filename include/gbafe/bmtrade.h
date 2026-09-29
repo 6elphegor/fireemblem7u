@@ -67,10 +67,10 @@ extern const struct ProcCmd ProcScr_TradeMenu_TutorialHandCursor[];
 extern const struct ProcCmd ProcScr_TradeMenu_DoubleTutorialHandCursor[];
 extern const struct ProcCmd ProcScr_TradeMenu_TutorialWait[];
 
-extern EventScr CONST_DATA EventScr_TradeTutStart[];
-extern EventScr CONST_DATA EventScr_TradeTut_SelectItem[];
-extern EventScr CONST_DATA EventScr_TradeTut_PressAtoGetItem[];
-extern EventScr CONST_DATA EventScr_TradeTutDone[];
+extern const EventScr EventScr_TradeTutStart[];
+extern const EventScr EventScr_TradeTut_SelectItem[];
+extern const EventScr EventScr_TradeTut_PressAtoGetItem[];
+extern const EventScr EventScr_TradeTutDone[];
 
 void TradeMenu_InitUnitNameDisplay(struct TradeMenuProc * proc);
 void TradeMenu_HighlightUpdater_OnInit(struct TradeMenuProc * proc);

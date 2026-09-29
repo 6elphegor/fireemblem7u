@@ -34,21 +34,33 @@ overwritten, so the files are the source once extracted, and deleting one
 extracts it again (with the same bytes from the ROM).  sound/.extracted is
 touched after each run; --makefile prints the file list as SOUND_SRCS for
 the Makefile (build/sound.mk) and writes nothing.
-  sound/sound.s                       the whole region in ROM order: .include /
-                                      .incbin of the files below, labels, raw
-                                      bytes; built as build/sound/sound.o
-  sound/voicegroups/voicegroupNNN.s   voice macros (include/m4a_data.inc)
-  sound/songs/songNNN.s               tracks (include/MPlayDef.s names) + header
+  sound/sound.s                       assembly: the tracks, samples and bytes
+                                      nothing refers to, each object in a
+                                      section .rodata.ord.ADDR; built as
+                                      build/sound/sound_asm.o
+  sound/song_headers.c                struct SongHeaderN (N track pointers) of
+                                      every song header, one section each
+  sound/voicegroups.c                 struct ToneData arrays, one per voice group
+  sound/song_table.c                  gMPlayTable and gSongTable
+  sound/songs/songNNN.s               tracks (include/MPlayDef.s names)
   sound/direct_sound_samples/ADDR.bin WaveData (header + samples)
   sound/programmable_wave_samples/NNN.pcm
-  sound/song_table.s, sound/music_player_table.s
 
-Every pointer inside the region is written as a label (+ offset), so the
+The C files are compiled and linked with the assembly (ld -r, tools/ordered.ld)
+into build/sound/sound.o: the objects sit in sections named .rodata.ord.ADDR
+with their ROM address, sorted by name, so the region comes out byte for byte
+as it was.  The pointer-bearing structures that are aligned in the ROM are C;
+the track streams stay assembly because their GOTO / PATT addresses are
+unaligned 4-byte fields inside the byte stream.
+
+Every pointer inside the region is a label (+ offset) or a C address, so the
 region can move.  Tool names (songNNN, songNNN_T, voicegroupNNN,
 DirectSoundData_ADDR, ProgrammableWaveData_NNN) and manifest names at the
-same addresses are global; manifest names inside an object are local, so
-tools/dataptrs.py does not take look-alike words elsewhere for pointers to
-them.  --stats prints counts and writes nothing.
+same addresses are global (a manifest name at a C object's start is a second
+name for it and is reported: rename it in tools/renames); manifest names
+inside an object are local, so tools/dataptrs.py does not take look-alike
+words elsewhere for pointers to them.  --stats prints counts and writes
+nothing.
 """
 import argparse
 import bisect
@@ -469,25 +481,46 @@ class Emitter:
         self.raw_ptrs = []
         self.local = {}   # addr -> local label name (track jump targets)
 
-    def ref(self, v):
-        """Assembler expression for the pointer value v."""
+    def parts(self, v):
+        """(kind, name, offset) of the pointer value v: kind is "sym" (an
+        object of the region, name + offset), "local" (a track jump target),
+        "ram", "null" or "raw"."""
         self.ptr_count += 1
         if v in self.s.labels:
-            return self.s.labels[v][0]
+            return "sym", self.s.labels[v][0], 0
         if v in self.local:
-            return self.local[v]
+            return "local", self.local[v], 0
         if self.s.in_region(v):
             i = bisect.bisect_right(self.label_addrs, v) - 1
             base = self.label_addrs[i]
-            return f"{self.s.labels[base][0]} + {v - base:#x}"
+            return "sym", self.s.labels[base][0], v - base
         if v in self.ram:
-            return self.ram[v]
+            return "ram", self.ram[v], 0
         self.ptr_count -= 1
         if v == 0:
-            return "0"
-
+            return "null", "0", 0
         self.raw_ptrs.append(v)
-        return f"{v:#010x}"
+        return "raw", f"{v:#010x}", 0
+
+    def ref(self, v):
+        """Assembler expression for the pointer value v."""
+        kind, name, off = self.parts(v)
+        return f"{name} + {off:#x}" if off else name
+
+    def cptr(self, v, ctype, used):
+        """C constant expression of type ctype for the pointer value v; the
+        region symbols it needs are added to used."""
+        kind, name, off = self.parts(v)
+        if kind == "null":
+            return "0"
+        if kind == "raw":
+            return f"({ctype}){name}"
+        if kind == "local":
+            self.s.problems.append(f"C data refers to the local label {name}")
+        used.add(name)
+        if off:
+            return f"({ctype})((const u8 *){name} + {off:#x})"
+        return f"({ctype}){name}"
 
     def label_lines(self, a, local_ok=True):
         out = []
@@ -535,49 +568,66 @@ class Emitter:
             out.append(it.fmt.format(*refs))
         return out
 
-    # voice groups -----------------------------------------------------------
-    def voice(self, a):
+    # C data -----------------------------------------------------------------
+    def decl(self, name):
+        """extern declaration of a region symbol the C files refer to."""
+        if name.startswith(("voicegroup", "voices_")):
+            return f"const struct ToneData {name}[]"
+        if name.startswith("DirectSoundData_"):
+            return f"const struct WaveData {name}[]"
+        return f"const u8 {name}[]"
+
+    def c_file(self, title, used, defined, body, extra=()):
+        out = [f"// {title}\n", "// Extracted by tools/m4adis.py from baserom.gba; like the rest of sound/ it is\n",
+               "// the source once extracted (an existing file is never overwritten).\n",
+               '#include "gbafe/global.h"\n#include "gba/m4a_internal.h"\n\n']
+        out += extra
+        for name in sorted(used - set(defined)):
+            out.append(f"extern {self.decl(name)};\n")
+        return out + ["\n"] + body
+
+    def section(self, a):
+        return f'SECTION(".rodata.ord.{a:08X}")\n'
+
+    def voice_c(self, a, used):
         r = self.rom
         e = r.bytes(a, 12)
-        t, key, length, ps = e[0], e[1], e[2], e[3]
-        adsr = list(e[8:12])
-        kind = self.s.voice_ptr_kind(t)
-
-        def pan_ok(p):
-            return p == 0 or p & 0x80 and p != 0x80
-        ok_adsr = adsr[0] < 8 and adsr[1] < 8 and adsr[2] < 16 and adsr[3] < 8
-        tail = ", ".join(map(str, adsr))
-        if kind == "wave" and t in (0, 8, 0x10) and length == 0 and pan_ok(ps):
-            name = {0: "voice_directsound", 8: "voice_directsound_no_resample",
-                    0x10: "voice_directsound_alt"}[t]
-            return Item(a, 12, f"\t{name} {key}, {ps & 0x7F}, {{0}}, {tail}\n", {4: 1})
-        if t in (1, 9) and key == 60 and length == 0 and e[4] < 4 and e[5:8] == b"\0\0\0" and ok_adsr:
-            name = "voice_square_1" if t == 1 else "voice_square_1_alt"
-            return Item(a, 12, f"\t{name} {ps}, {e[4]}, {tail}\n")
-        if t in (2, 10) and key == 60 and length == 0 and ps == 0 and e[4] < 4 \
-                and e[5:8] == b"\0\0\0" and ok_adsr:
-            name = "voice_square_2" if t == 2 else "voice_square_2_alt"
-            return Item(a, 12, f"\t{name} {e[4]}, {tail}\n")
-        if t in (3, 11) and key == 60 and length == 0 and ps == 0 and ok_adsr:
-            name = "voice_programmable_wave" if t == 3 else "voice_programmable_wave_alt"
-            return Item(a, 12, f"\t{name} {{0}}, {tail}\n", {4: 1})
-        if t in (4, 12) and pan_ok(length) and e[4] < 2 and e[5:8] == b"\0\0\0" and ok_adsr:
-            # (pret's voice_noise puts "pan" in the length byte, "unk" in pan_sweep)
-            name = "voice_noise" if t == 4 else "voice_noise_alt"
-            return Item(a, 12, f"\t{name} {key}, {length & 0x7F}, {ps}, {e[4]}, {tail}\n")
-        if t == 0x80 and e[1:4] == b"\0\0\0" and e[8:12] == b"\0\0\0\0":
-            return Item(a, 12, "\tvoice_keysplit_all {0}\n", {4: 1})
-        if t == 0x40 and e[1:4] == b"\0\0\0":
-            return Item(a, 12, "\tvoice_keysplit {0}, {1}\n", {4: 1, 8: 1})
-        # anything else: bytes, with the pointer field symbolic if it is one
-        head = ", ".join(map(str, e[:4]))
+        kind = self.s.voice_ptr_kind(e[0])
+        p = r.w(a + 4)
         if kind in ("wave", "pwave", "drum", "keysplit"):
-            return Item(a, 12, f"\t.byte {head}\n\t.4byte {{0}}\n\t.byte {tail}\n", {4: 1})
-        return Item(a, 12, f"\t.byte {head}\n\t.4byte {r.w(a + 4):#x}\n\t.byte {tail}\n")
+            wav = self.cptr(p, "struct WaveData *", used)
+        else:   # sweep / duty cycle / noise period bytes, not a pointer
+            wav = f"(struct WaveData *){p:#x}" if p else "0"
+        if kind == "keysplit":
+            tail = "{ .keySplitTable = " + self.cptr(r.w(a + 8), "const u8 *", used) + " }"
+        else:
+            tail = "{ { %d, %d, %d, %d } }" % tuple(e[8:12])
+        return f"    {{ {e[0]:#04x}, {e[1]}, {e[2]}, {e[3]:#04x}, {wav}, {tail} }},\n"
 
-    def voicegroup_file(self, lo, hi):
-        items = [self.voice(a) for a in range(lo, hi, 12)]
-        return ["\t@ ToneData entries, see include/m4a_data.inc\n\n"] + self.items(items)
+    def voicegroups_c(self):
+        """sound/voicegroups.c: one const struct ToneData array, in its own
+        section, for every voice group (or run of entries before the first)."""
+        s = self.s
+        used, defined, body = set(), [], []
+        for lo, hi, kind, payload in s.chunks:
+            if kind != "voices":
+                continue
+            cuts = [g for g in s.groups if lo <= g < hi]
+            bounds = ([lo] if not cuts or cuts[0] != lo else []) + cuts + [hi]
+            for x, y in zip(bounds, bounds[1:]):
+                name = s.labels[x][0] if x in s.groups else f"voices_{x:08X}"
+                if x % 4:
+                    s.problems.append(f"voice group {name} at {x:#x} is not 4-aligned")
+                for a in range(x + 1, y):
+                    if a in self.all_labels and not all(n in s.local_names for n in s.labels.get(a, [""])):
+                        s.problems.append(f"label inside voice group {name} at {a:#x}")
+                defined.append(name)
+                body.append(self.section(x))
+                body.append(f"const struct ToneData {name}[] = {{\n")
+                body += [self.voice_c(a, used) for a in range(x, y, 12)]
+                body.append("};\n\n")
+        return self.c_file("Voice groups (struct ToneData arrays), in ROM order.", used, defined, body,
+                           [f"extern const struct ToneData {n}[];\n" for n in defined] + ["\n"])
 
     # songs ------------------------------------------------------------------
     def insn_item(self, a, size, cmd, status, ptrs):
@@ -641,20 +691,49 @@ class Emitter:
             # unreached bytes up to the next reached command or the header
             nxt = self.next_code(a, h)
             end = nxt
-            if nxt == h and h % 4 == 0:   # zero padding that aligns the header
+            if nxt == h and h % 4 == 0:
+                # zero padding that aligns the header: the header's own
+                # section (4-aligned) provides it, wherever the tracks end
                 while end > a and h - end < 3 and self.rom.b(end - 1) == 0:
                     end -= 1
             items += self.dead(a, end, hole_status)
-            if end < nxt:
-                items.append(Item(end, nxt - end, ALIGN))
             a = nxt
-        if h % 4 == 0 and not (items and items[-1].fmt == ALIGN):
-            items.append(Item(h, 0, ALIGN))  # the header stays aligned if the tracks change size
-        fields = [f"\t.byte\t{n}\t@ NumTrks\n", f"\t.byte\t{blocks}\t@ NumBlks\n",
-                  f"\t.byte\t{prio}\t@ Priority\n", f"\t.byte\t{reverb}\t@ Reverb\n"]
-        hdr = "".join(fields) + "\n\t.word\t{0}\n\n" + "".join("\t.word\t{%d}\n" % (i + 1) for i in range(n))
-        items.append(Item(h, 8 + 4 * n, hdr, {o: 1 for o in range(4, 8 + 4 * n, 4)}))
         return self.items(items)
+
+    def header_c(self, h, used):
+        """The song header at h as a C definition (section and all)."""
+        s = self.s
+        n, blocks, prio, reverb, tone, tracks = s.headers[h]
+        name = s.song_name[h]
+        pre = f"{blocks}, {prio}, {reverb}"
+        if tone is None:
+            text = (f"const struct SongHeaderBare {name} = {{ {n}, {pre} }};\n")
+        else:
+            t = self.cptr(tone, "struct ToneData *", used)
+            parts = ", ".join(self.cptr(x, "u8 *", used) for x in tracks)
+            if n == 0:
+                text = f"const struct SongHeader0 {name} = {{ 0, {pre}, {t} }};\n"
+            else:
+                text = f"const struct SongHeader{n} {name} = {{ {n}, {pre}, {t}, {{ {parts} }} }};\n"
+        return self.section(h) + text + "\n"
+
+    def song_headers_c(self):
+        s = self.s
+        used, body, sizes = set(), [], set()
+        for lo, hi, kind, payload in s.chunks:
+            if kind in ("song", "header"):
+                body.append(self.header_c(payload, used))
+                sizes.add(s.headers[payload][0])
+        structs = ["#define SONG_HEADER_STRUCT(n) \\\n    struct SongHeader##n { u8 trackCount; u8 blockCount; u8 priority; u8 reverb; \\\n"
+                   "                           struct ToneData *tone; u8 *part[n]; }\n\n",
+                   "// A header with no track pointers and no voice group: four bytes.\n"
+                   "struct SongHeaderBare { u8 trackCount; u8 blockCount; u8 priority; u8 reverb; } "
+                   "__attribute__((aligned(4)));\n"
+                   "struct SongHeader0 { u8 trackCount; u8 blockCount; u8 priority; u8 reverb; struct ToneData *tone; };\n"]
+        for n in sorted(sizes - {0}):
+            structs.append(f"SONG_HEADER_STRUCT({n});\n")
+        return self.c_file("Song headers (struct SongHeader with n track pointers), in ROM order.",
+                           used, [], body, ["// struct SongHeader has room for one track; these have as many as the song.\n"] + structs + ["\n"])
 
     def next_code(self, a, h):
         i = bisect.bisect_right(self.code_addrs, a)
@@ -688,29 +767,37 @@ class Emitter:
                 base = tracks[bisect.bisect_right(tracks, t) - 1]
                 self.local[t] = f"{s.track_label[base]}_{t:08X}"
         self.all_labels = sorted(set(self.label_addrs) | set(self.local))
+        # A C object has one name; another label at its address (a manifest
+        # name from before) has to be renamed to it (tools/renames).
+        c_starts = [c[3] if c[2] == "song" else c[0] for c in s.chunks if c[2] in ("song", "header", "mplay", "songtable")]
+        c_starts += s.groups
+        for a in c_starts:
+            for n in s.labels.get(a, [])[1:]:
+                if n not in s.local_names:
+                    s.problems.append(f"{n} is a second name of the C object {s.labels[a][0]}: rename it")
         files = {}
         top = ["@ Extracted by tools/m4adis.py from baserom.gba.  The tool never overwrites\n"
-               "@ a file in sound/; delete one to extract it again.\n",
-               '\t.include "MPlayDef.s"\n\t.include "m4a_data.inc"\n\n\t.section .rodata\n']
-        vg_starts = s.groups
+               "@ a file in sound/; delete one to extract it again.\n"
+               "@ The assembly half of the music data: tracks, samples, bytes nothing refers to.\n"
+               "@ Every object is in a section .rodata.ord.ADDR (its ROM address); the song headers,\n"
+               "@ voice groups and tables are in song_headers.c, voicegroups.c and song_table.c\n"
+               "@ (sections of the same names), and the build links all of it, in the order of\n"
+               "@ the names, into build/sound/sound.o.\n"
+               '\t.include "MPlayDef.s"\n']
         for lo, hi, kind, payload in s.chunks:
-            top.append("\n")
+            if kind == "song":
+                hi = payload   # the header is C; the tracks end where it starts
+                if hi == lo:
+                    continue
+            elif kind in ("voices", "header", "mplay", "songtable"):
+                continue
+            top.append(f'\n\t.section .rodata.ord.{lo:08X}, "a"\n')
             # Objects the engine reads as words start 4-aligned whatever
             # comes before them changes size to (the modern build moves
             # data); at their original addresses the .align adds nothing.
-            if lo % 4 == 0 and kind in ("wave", "pwave", "header", "mplay", "songtable"):
+            if lo % 4 == 0 and kind in ("wave", "pwave"):
                 top.append(ALIGN)
-            if kind == "voices":
-                cuts = [g for g in vg_starts if lo <= g < hi]
-                bounds = ([lo] if not cuts or cuts[0] != lo else []) + cuts + [hi]
-                for x, y in zip(bounds, bounds[1:]):
-                    name = s.labels[x][0] if x in vg_starts else f"voices_{x:08X}"
-                    path = f"sound/voicegroups/{name}.s"
-                    files[path] = self.voicegroup_file(x, y)
-                    if x % 4 == 0:
-                        top.append(ALIGN)
-                    top.append(f'\t.include "{path}"\n')
-            elif kind == "wave":
+            if kind == "wave":
                 path = f"sound/direct_sound_samples/{payload:08X}.bin"
                 files[path] = s.rom.bytes(lo, hi - lo)
                 top += self.incbin(lo, hi, path)
@@ -720,30 +807,16 @@ class Emitter:
                 top += self.incbin(lo, hi, path)
             elif kind == "song":
                 path = f"sound/songs/{s.song_name[payload]}.s"
-                files[path] = ['\t@ Tracks, then the song header (MPlayDef.s names)\n\n'] + \
+                files[path] = ['\t@ Tracks (MPlayDef.s names); the header is in song_headers.c\n\n'] + \
                     self.song_file(lo, hi, payload)
                 top.append(f'\t.include "{path}"\n')
-            elif kind == "header":
-                n, blocks, prio, reverb, tone, _ = s.headers[payload]
-                text = f"\t.byte\t{n}, {blocks}, {prio}, {reverb}\t@ song header without tracks\n"
-                if tone is None:
-                    top += self.items([Item(lo, hi - lo, text)])
-                else:
-                    top += self.items([Item(lo, hi - lo, text + "\t.word\t{0}\n", {4: 1})])
-            elif kind == "mplay":
-                files["sound/music_player_table.s"] = self.mplay_file(lo, hi)
-                top.append('\t.include "sound/music_player_table.s"\n')
-            elif kind == "songtable":
-                files["sound/song_table.s"] = self.songtable_file(lo, hi)
-                top.append('\t.include "sound/song_table.s"\n')
             elif kind == "raw":
-                if hi - lo < 4 and hi % 4 == 0 and not any(s.rom.bytes(lo, hi - lo)) \
-                        and not any(x in s.labels for x in range(lo, hi)):
-                    top.append("\t.align 2, 0\n")
-                else:
-                    top.append(f"\t@ {hi - lo:#x} bytes nothing refers to\n")
-                    top += self.items([Item(lo, hi - lo, "".join(self.raw(lo, hi - lo)))])
+                top.append(f"\t@ {hi - lo:#x} bytes nothing refers to\n")
+                top += self.items([Item(lo, hi - lo, "".join(self.raw(lo, hi - lo)))])
         files["sound/sound.s"] = top
+        files["sound/voicegroups.c"] = self.voicegroups_c()
+        files["sound/song_headers.c"] = self.song_headers_c()
+        files["sound/song_table.c"] = self.tables_c()
         self.written = []
         if write:
             # Like tools/gfx.py extract: only missing files are written, so
@@ -774,21 +847,38 @@ class Emitter:
             pos = x
         return out
 
-    def mplay_file(self, lo, hi):
-        items = []
-        for i, (info, track, n, pad, unk) in enumerate(self.s.mplay):
-            a = lo + 12 * i
-            if pad == 0:
-                items.append(Item(a, 12, f"\tmusic_player {{0}}, {{1}}, {n}, {unk}\n", {0: 1, 4: 1}))
-            else:
-                items.append(Item(a, 12, "".join(self.raw(a, 12))))
-        return self.items(items)
-
-    def songtable_file(self, lo, hi):
-        items = []
-        for i, (h, ms, me) in enumerate(self.s.songs):
-            items.append(Item(lo + 8 * i, 8, f"\tsong {{0}}, {ms}, {me}\t@ {i}\n", {0: 1}))
-        return self.items(items)
+    def tables_c(self):
+        """sound/song_table.c: gMPlayTable (struct MusicPlayer) and gSongTable
+        (struct Song)."""
+        s = self.s
+        used, body, ram = set(), [], []
+        lo, hi = next((c[0], c[1]) for c in s.chunks if c[2] == "mplay")
+        mp_name = s.labels[lo][0]
+        body += [self.section(lo), f"const struct MusicPlayer {mp_name}[] = {{\n"]
+        for info, track, n, pad, unk in s.mplay:
+            if pad:
+                s.problems.append(f"music player entry with a nonzero padding byte {pad}: not representable")
+            cols = []
+            for v, ctype, decl in ((info, "&", "struct MusicPlayerInfo"), (track, "", "struct MusicPlayerTrack")):
+                kind, name, off = self.parts(v)
+                if kind == "null":
+                    cols.append("0")
+                elif kind == "ram" and not off:
+                    ram.append(f"extern {decl} {name}{'[]' if not ctype else ''};\n")
+                    cols.append(ctype + name)
+                else:
+                    s.problems.append(f"music player pointer {v:#x} is not a RAM symbol")
+                    cols.append(f"(void *){v:#x}")
+            body.append(f"    {{ {cols[0]}, {cols[1]}, {n}, {unk} }},\n")
+        body.append("};\n\n")
+        lo, hi = next((c[0], c[1]) for c in s.chunks if c[2] == "songtable")
+        st_name = s.labels[lo][0]
+        body += [self.section(lo), f"const struct Song {st_name}[] = {{\n"]
+        for i, (h, ms, me) in enumerate(s.songs):
+            body.append(f"    {{ {self.cptr(h, 'struct SongHeader *', used)}, {ms}, {me} }},  // {i}\n")
+        body.append("};\n")
+        return self.c_file("The music player table and the song table.", used, [], body,
+                           sorted(set(ram)) + ["\n"])
 
 
 def main():
@@ -797,6 +887,10 @@ def main():
     ap.add_argument("--stats", action="store_true")
     ap.add_argument("--makefile", action="store_true")
     args = ap.parse_args()
+    old = Path("sound/sound.s")
+    if old.exists() and ".rodata.ord." not in old.read_text():
+        sys.exit("sound/ was extracted by an older tools/m4adis.py (song headers and voice groups "
+                 "in assembly): delete sound/ but manifest.txt and run make again")
     snd = Sound(Rom(args.rom), read_manifest())
     em = Emitter(snd, ram_names())
     files = em.run(write=not (args.stats or args.makefile))

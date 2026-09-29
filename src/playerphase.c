@@ -1026,3 +1026,15 @@ const struct MenuDef gMapMenuDef = {
     .onRPress = MenuAutoHelpBoxSelect,
     .onHelpBox = MenuStdHelpBox,
 };
+
+SECTION(".rodata.08B9356C")
+const u8 * const gOpenLimitViewImgLut[] = {
+    NULL,
+    NULL,
+    Img_LimitViewSquares,
+    gUnk_083FDA9C,
+    gUnk_083FDB1C,
+    gUnk_083FDB9C,
+    gUnk_083FDC1C,
+    Img_LimitViewSquare,
+};

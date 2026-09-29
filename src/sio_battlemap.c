@@ -126,18 +126,18 @@ extern const u8 Img_LinkArena_FogUnitPlaceholder[];
 extern u8 CONST_DATA gUnknown_085AA158[];
 extern u8 CONST_DATA gUnknown_085AA15C[];
 extern const struct ProcCmd gUnknown_085AA1AC[];
-extern struct PopupInstruction CONST_DATA gUnknown_085AA1FC[];
+extern const struct PopupInstruction gUnknown_085AA1FC[];
 extern struct PopupInstruction CONST_DATA gUnknown_085AA21C[];
 extern const struct ProcCmd gUnknown_085AA2FC[];
 extern const struct ProcCmd gUnknown_085AA4CC[];
 extern const struct ProcCmd gUnknown_085AA5BC[];
 extern u8 CONST_DATA gLut_LinkArenaFogPlaceholder_YOffset[];
-extern struct ProcCmd CONST_DATA ProcScr_DrawLinkArenaFogPlaceholders[];
+extern const struct ProcCmd ProcScr_DrawLinkArenaFogPlaceholders[];
 extern const struct ProcCmd gUnknown_085AA75C[];
 extern const struct MenuDef gUnknown_085AADA0;
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
-extern u16 CONST_DATA EventScr_LinkArenaSurrenderPrompt[];
-extern u16 CONST_DATA EventScr_LinkArenaNoDamagePrompt[];
+extern const EventScr EventScr_LinkArenaSurrenderPrompt[];
+extern const EventScr EventScr_LinkArenaNoDamagePrompt[];
 
 void sub_08044AC0(ProcPtr proc);
 void sub_08044AEC(struct Unit * unit);
@@ -2963,4 +2963,31 @@ const struct MenuDef gUnk_08B9A800 = {
     .rect = { .x = 1, .y = 2, .w = 0xD },
     .menuItems = &gUnk_08B9A770,
     .onBPress = MenuCancelSelect,
+};
+
+SECTION(".rodata.08B99D20")
+const EventScr EventScr_LinkArenaSurrenderPrompt[] = {
+    0x87, 0xD, 0x4C, 0x3E, (uintptr_t) LinkArena_StoreTalkChoice, 0xA, 0,
+};
+
+SECTION(".rodata.08B99D3C")
+const EventScr EventScr_LinkArenaNoDamagePrompt[] = {
+    0x87, 0xD, 0x4D, 0x3E, (uintptr_t) LinkArena_StoreTalkChoice, 0xA, 0,
+};
+
+SECTION(".rodata.08B99CB8")
+const struct ProcCmd ProcScr_DrawLinkArenaFogPlaceholders[] = {
+    PROC_19,
+    PROC_MARK(1),
+    PROC_SLEEP(0),
+    PROC_REPEAT(LinkArenaFogSprite_Loop),
+};
+
+
+SECTION(".rodata.08B99C68")
+const struct PopupInstruction gUnknown_085AA1FC[] = {
+    { .opcode = 7, .data = (uintptr_t) gUnknown_03001850 },
+    { .opcode = 1, .data = 3 },
+    { .opcode = 6, .data = 0x3D6 },
+    { 0 },
 };

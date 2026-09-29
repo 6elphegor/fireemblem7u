@@ -479,7 +479,7 @@ void SioMenu_End(struct SioMenuProc * proc)
     return;
 }
 
-extern struct ProcCmd CONST_DATA ProcScr_SIOMENU[];
+extern const struct ProcCmd ProcScr_SIOMENU[];
 
 //! FE8U = 0x080481E0
 void StartLinkArenaMainMenu(ProcPtr parent)
@@ -700,3 +700,33 @@ const struct ProcCmd ProcScr_SIOTERM[] = {
     PROC_LABEL(1),
     PROC_END,
 };
+
+
+SECTION(".rodata.08B99640")
+const struct ProcCmd ProcScr_SIOMENU[] = {
+    PROC_19,
+    PROC_LABEL(0),
+    PROC_CALL(SioMenu_Init),
+    PROC_CALL(SioMenu_LoadGraphics),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_REPEAT(SioMenu_8047C60),
+    PROC_GOTO(2),
+    PROC_LABEL(1),
+    PROC_CALL(SioMenu_RestartGraphicsMaybe),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_LABEL(2),
+    PROC_REPEAT(sub_08042690),
+    PROC_REPEAT(SioMenu_Loop_HandleKeyInput),
+    PROC_REPEAT(SioMenu_80480B4),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(SioMenu_End),
+    PROC_SLEEP(1),
+    PROC_GOTO(1),
+};
+

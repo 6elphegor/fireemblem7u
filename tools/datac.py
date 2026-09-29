@@ -409,7 +409,8 @@ class Types:
             for d in reversed(re.findall(r"\[(\d+)\]", m[2])):
                 f = Field("", 0, f.size * int(d), "array", elem=f, count=int(d))
             return f
-        spec = re.sub(r"^const\s+", "", spec)
+        if not spec.endswith("*"):
+            spec = re.sub(r"^const\s+", "", spec)
         if spec.endswith("*") or spec in self.typedefs or spec in INTS:
             f = self.parse_decl_type(spec, "", 0)
         else:
@@ -575,6 +576,12 @@ class Emitter:
         n = self.rom.addr_names.get(val)
         if n:
             return n, 0
+        if BASE <= val < 0x09000000:   # inside a labeled object of the assembly
+            i = bisect.bisect_right(self.rom.label_addrs, val) - 1
+            if i >= 0:
+                a = self.rom.label_addrs[i]
+                if 0 < val - a < self.rom.object_extent(a):
+                    return self.rom.addr_names[a], val - a
         if 0x02000000 <= val < 0x04000000:
             syms = self.rom.ram_syms()
             k = bisect.bisect_right(syms, (val, "\uffff")) - 1
@@ -600,6 +607,8 @@ class Emitter:
         suffix = self.descend(fld, add, want_struct(f)) if fld else None
         if not fld:   # undeclared: an array of what the field points to
             base = getattr(f, "pointee", "")
+            if " ".join(w for w in base.split() if w not in QUALS) == "void":   # report_refs declares these as u8 arrays
+                base = "u8"
             if base in INTS and add % INTS[base][0] == 0:
                 return f"&{sym}[{add // INTS[base][0]}]"
         if suffix is None:
@@ -636,6 +645,14 @@ class Emitter:
     def value(self, f, addr, ind=0):
         """(text, is_zero) of the value of type f at addr; ind is the column the text starts at."""
         if f.kind == "int":
+            if f.size == 4 and addr not in self.rom.ptrs and getattr(f, "tname", "") in ("uintptr_t", "intptr_t"):
+                # the assembly left it raw: a RAM or ROM address that has a name is a pointer
+                val = self.rom.word(addr)
+                if 0x02000000 <= val < 0x04000000 or BASE <= val < 0x09000000:
+                    loc = self.locate(val)
+                    if loc is not None:
+                        e = self.sym_expr(loc[0], loc[1], Field("", 0, 4, "ptr", pointee="u8"), addr)
+                        return f"(uintptr_t) {e}", False
             if f.size == 4 and addr in self.rom.ptrs:   # a pointer stored in an integer field
                 sym, add = self.rom.ptrs[addr]
                 e = self.sym_expr(sym, add, Field("", 0, 4, "ptr", pointee="EventScr"), addr)
@@ -745,7 +762,21 @@ class Decls:
         self.sigs = {}   # function name -> [normalized (return, params)] of its declarations and definitions
         for p, t in types.files.items():
             for m in re.finditer(r"^[ \t]*extern\s+([^;(){}]*?)\b(\w+)\s*((?:\[[^\]]*\]\s*)*)\s*;", t, re.M):
-                self.decl.setdefault(m[2], []).append((p, m[0].strip()))
+                stmt = m[0].strip()
+                parts = split_top(stmt[len("extern"):].rstrip(";"))
+                if len(parts) == 1:
+                    self.decl.setdefault(m[2], []).append((p, stmt))
+                    continue
+                # `extern const u8 a[], b[];`: each declarator is a declaration of its own
+                head = re.match(r"^\s*(.*?)\b(\w+)\s*((?:\[[^\]]*\]\s*)*)$", parts[0])
+                if not head:
+                    continue
+                base = re.sub(r"[\s\*]+$", "", head[1])
+                self.decl.setdefault(head[2], []).append((p, f"extern {head[1]}{head[2]}{head[3]};"))
+                for q in parts[1:]:
+                    mm = re.match(r"^\s*([\s\*]*)(\w+)\s*((?:\[[^\]]*\]\s*)*)$", q)
+                    if mm:
+                        self.decl.setdefault(mm[2], []).append((p, f"extern {base} {mm[1].strip()}{' ' if mm[1].strip() else ''}{mm[2]}{mm[3]};"))
             for m in re.finditer(r"^([A-Za-z_][\w \t\*]*?)\b(\w+)\s*\(([^;{}()]*(?:\([^()]*\)[^;{}()]*)*)\)\s*([;{])", t, re.M):
                 if m[1].strip().split()[0] in ("if", "while", "for", "switch", "return", "else", "define"):
                     continue
@@ -868,6 +899,15 @@ def emit_objects(rom, types, decls, spec, args):
     for name, addr, count, single in objs:
         lines = em.array(elem, addr, count, single)
         body = ",\n".join(("" if single else "    ") + l for l in lines)
+        if elem.kind == "int" and not single and count > 1:   # several scalars per line
+            cur, rows = "   ", []
+            for l in lines:
+                if len(cur) + len(l) + 2 > Emitter.WIDTH and cur.strip():
+                    rows.append(cur)
+                    cur = "   "
+                cur += " " + l + ","
+            rows.append(cur)
+            body = "\n".join(rows).rstrip(",")
         out.append((name, addr, count * elem.size, decl_type(base_spec, elem), body, single, dims))
     return out, em
 
@@ -975,12 +1015,16 @@ def report_refs(em, decls, path, hdr=None, skip=()):
             line = decls.defn_text.get(sym) or fn_proto(f.sig, sym)
             target = (header_for(defs[0]) if defs else None) or hdr
             names["fn"].append(sym)
+        elif sym in em.scalars and any("[" not in x and "(" not in x for _, x in decls.decl.get(sym, [])):
+            # a single object declared in another module (`&sym` in the table): declare it the same way
+            line = next(x for _, x in decls.decl[sym] if "[" not in x and "(" not in x)
+            names["data"].append(sym)
         else:
             pointee = "u8" if f.pointee.strip() in ("void", "const void") else f.pointee
             cq = "" if (em.plain_targets or not getattr(f, "pconst", True)) and pointee in INTS else "const "
             line = f"extern {cq}{pointee} {sym}[];".replace("const const", "const")
             names["data"].append(sym)
-            if pointee.split()[0] in ("struct", "u8", "u16", "u32"):   # many per line: `extern const T a[], b[];`
+            if pointee.split()[0] in ("struct", "u8", "u16", "u32", "char"):   # many per line: `extern const T a[], b[];`
                 grouped.setdefault((target, pointee, cq), []).append(sym)   # (other modules keep their own declarations)
                 continue
         if target:

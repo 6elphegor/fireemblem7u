@@ -341,3 +341,9 @@ struct Trap * GetRiddenBallistaAt(int x, int y);
 void RideBallista(struct Unit * unit);
 void TryRemoveUnitFromBallista(struct Unit * unit);
 int GetItemEffect(int item);                                    // GetItemUseEffect
+
+extern const u8 gUnk_081D3B44[], gUnk_081D3B48[], gUnk_081D3B4C[], gUnk_081D3B50[], gUnk_081D3B54[],
+    gUnk_081D3B58[], gUnk_081D3B5C[], gUnk_081D3B60[], gUnk_08B979E8[], gUnk_08B97A0C[],
+    gUnk_08B97A34[], gUnk_08B97A58[], gUnk_08B9869C[], gUnk_08B986A0[], gUnk_08B98718[],
+    gUnk_08B9871C[], gUnk_08B98794[], gUnk_08B98798[], gUnk_08B98810[], gUnk_08B98814[],
+    gUnk_08B9888C[], gUnk_08B98890[];

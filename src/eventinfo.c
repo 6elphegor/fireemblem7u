@@ -1329,9 +1329,9 @@ void const * sub_080791F0(void)
     struct ChapterEventGroup const * group = GetChapterEventInfo(gPlaySt.chapterIndex);
 
     if (gPlaySt.chapterModeIndex == 3)
-        return group->specialEventsWhenDestSelected;
+        return group->trapsHector;
 
-    return group->specialEventsWhenUnitSelected;
+    return group->traps;
 }
 void sub_08079214(void)
 {

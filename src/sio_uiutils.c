@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+extern u16 gUnk_08B9A43C[], gUnk_08B9A450[];
+
 extern const u16 Sprite_LAVersus_P1[], Sprite_LAVersus_P2[], Sprite_LAVersus_P3[],
     Sprite_LAVersus_P4[], Sprite_NameEntry_CursorLarge[], Sprite_NameEntry_CursorSmall[],
     Sprite_NameEntry_DeleteIcon[], Sprite_NameEntry_HiraganaIcon[], Sprite_NameEntry_KatakanaIcon[],
@@ -175,7 +177,7 @@ extern const struct ProcCmd ProcScr_SioMenuItem[];
 extern const u16 Sprite_LinkArena_PressStart[];
 extern u16 CONST_DATA Sprite_LinkArena_TeamName[];
 extern u16 CONST_DATA gUnknown_085AAA0E[];
-extern u16 * CONST_DATA gUnknown_085AAA48[];
+extern const u16 * const gUnknown_085AAA48[];
 extern u16 CONST_DATA Sprite_LinkArena_NameBanner[];
 extern u16 CONST_DATA gUnknown_085AAA5E[];
 extern const struct ProcCmd ProcScr_085AAA78[];
@@ -1520,4 +1522,10 @@ const u16 * const SpriteArray_LAVersusPlayerNumbers[] = {
     Sprite_LAVersus_P2,
     Sprite_LAVersus_P3,
     Sprite_LAVersus_P4,
+};
+
+SECTION(".rodata.08B9A4A0")
+const u16 * const gUnknown_085AAA48[] = {
+    &gUnk_08B9A43C[1],
+    &gUnk_08B9A450[1],
 };

@@ -2318,3 +2318,12 @@ const u16 * const gUnk_08B90A8C[] = {
     gUnk_08B90A84,
     gUnk_08B90A7C,
 };
+
+SECTION(".rodata.08B90C50")
+const struct ProcCmd ProcScr_TalkPutSpriteText[] = {
+    PROC_SET_END_CB(TalkPutSpriteText_OnEnd),
+    PROC_REPEAT(TalkPutSpriteText_OnIdle),
+    PROC_END,
+};
+
+IWRAM_DATA struct TalkSt sTalkStData = {};

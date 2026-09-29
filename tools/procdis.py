@@ -6,7 +6,8 @@ Usage:
         objects labeled in data/rom/*.s that are proc scripts (declared
         `struct ProcCmd` in include/, or decoding cleanly with every pointer
         resolved to a symbol), with problems noted
-  tools/procdis.py emit NAME...
+  tools/procdis.py emit NAME[:N]...
+        (:N = the script is N commands long and loops forever instead of ending in PROC_END)
         C definitions with the PROC_* macros of include/gbafe/proc.h, each
         under SECTION(".rodata.<ADDR>"); problems go to stderr
   tools/procdis.py layout MODULE NAME...
@@ -76,8 +77,10 @@ class Ctx(RomData):
             for m in re.finditer(r"extern\s+(?:const\s+)?struct\s+ProcCmd\s+(?:const\s+|CONST_DATA\s+)?(\w+)\s*\[", path.read_text(errors="replace")):
                 self.decl[m[1]] = path
 
-    def decode(self, addr):
-        """Return (cmds, problems); cmds = [(opcode, imm, ptrexpr|None, value)]."""
+    def decode(self, addr, limit=None):
+        """Return (cmds, problems); cmds = [(opcode, imm, ptrexpr|None, value)].
+        limit: the number of commands, for a script that loops forever (ends in
+        PROC_GOTO) instead of at a PROC_END."""
         cmds, problems = [], []
         a = addr
         while True:
@@ -86,6 +89,8 @@ class Ctx(RomData):
             cmds.append((op, imm, val, a))
             a += 8
             if op == 0 and val == 0 and imm == 0:
+                break
+            if limit is not None and len(cmds) == limit:
                 break
             if len(cmds) > 4096 or a - BASE >= len(self.rom):
                 problems.append("no END")
@@ -132,11 +137,13 @@ class Ctx(RomData):
         return self.ptr_expr(a, val, problems)
 
     def object(self, name):
+        name, _, limit = name.partition(":")   # NAME:N = N commands, no PROC_END
+        limit = int(limit) if limit else None
         if name.startswith("0x"):  # an address: works on unlabeled or converted data too
             self.labels[name] = int(name, 16)
             self.addr_names.setdefault(int(name, 16), name)
         addr = self.labels[name]
-        cmds, problems = self.decode(addr)
+        cmds, problems = self.decode(addr, limit)
         end = addr + 8 * len(cmds)
         nxt = self.next_label(addr)
         inner = [self.addr_names[x] for x in self.label_addrs if addr < x < end]
@@ -206,7 +213,7 @@ def main():
             addr, size, lines, problems, _ = ctx.object(name)
             for p in problems:
                 print(f"{name}: {p}", file=sys.stderr)
-            print(c_def(f"ProcScr_{addr - BASE + BASE:08X}" if name.startswith("0x") else name, addr, lines))
+            print(c_def(f"ProcScr_{addr - BASE + BASE:08X}" if name.startswith("0x") else name.partition(":")[0], addr, lines))
     elif cmd == "layout":
         module = args[0]
         for name in args[1:]:

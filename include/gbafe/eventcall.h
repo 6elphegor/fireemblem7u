@@ -745,7 +745,7 @@ extern struct ProcCmd ProcScr_EventDragonsSpritefx[];
 extern EventScr EventScr_DeathQuoteOnEnd[];
 // ??? ProcScr_NilsEpilogueIntro
 // ??? ProcScr_NilsEpilogueOutro
-extern EventScr gUnk_08CC1B1C[];
-extern EventScr gUnk_08CC1B50[];
-extern EventScr gUnk_08CC1B84[];
-extern EventScr gUnk_08CC1BF0[];
+extern const EventScr gUnk_08CC1B1C[];
+extern const EventScr gUnk_08CC1B50[];
+extern const EventScr gUnk_08CC1B84[];
+extern const EventScr gUnk_08CC1BF0[];

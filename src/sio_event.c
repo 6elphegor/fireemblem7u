@@ -377,3 +377,19 @@ void sub_080431C0(void)
     PutSprite(4, 56, 4, Sprite_085A9F98, 0);
     return;
 }
+
+extern const EventScr EventScr_08B99700[];
+
+SECTION(".rodata.08B99700")
+const EventScr EventScr_08B99700[] = {
+    0x87, 0xD, 0x4F, 0x42, (uintptr_t) XMapTransfer_80482E0, 0x3E,
+    (uintptr_t) XMapTransfer_80483F8, 0x11, 0x4E, 0x3E, (uintptr_t) XMapTransfer_8048418,
+    0xA0002, 0x45, 2, 0x44, 0, 0x11, 0x52, 0xB40002, 0x45, 4, 0x44, 1, 0x3E,
+    (uintptr_t) XMapTransfer_80483F8, 0x42, (uintptr_t) XMapTransfer_8048460, 0x44, 2, 0x3E,
+    (uintptr_t) sub_080412C8, 0x3E, (uintptr_t) sub_08043068, 0x42, (uintptr_t) sub_0804307C,
+    0x11, 0x50, 0x3E, (uintptr_t) sub_0803D5FC, 0xA0002, 0x3E, (uintptr_t) XMapTransfer_8048730,
+    0x3E, (uintptr_t) sub_08043130, 0x3E, (uintptr_t) StartXMapTransfer, 0x10002, 0x42,
+    (uintptr_t) XMapTransfer_AwaitCompletion, 0x3E, (uintptr_t) sub_080412D4, 0x11, 0x51,
+    0xB40002, 0x45, 5, 0x44, 3, 0x11, 0x53, 0xB40002, 0x44, 5, 0x3E, (uintptr_t) sub_08043068,
+    0x42, (uintptr_t) sub_0804307C, 0x44, 4, 0xA, 0,
+};

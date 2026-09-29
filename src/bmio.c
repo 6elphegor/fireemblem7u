@@ -1,5 +1,31 @@
 #include "gbafe.h"
 
+extern const u8 gUnk_083B7B4C[], gUnk_083B7B54[], gUnk_083B7B5C[], gUnk_083B7B64[], gUnk_083B7B6C[],
+    gUnk_083B7B74[], gUnk_083B7B7C[], gUnk_083B7B84[], gUnk_083B7B8C[], gUnk_083B7B90[],
+    gUnk_083B7B98[], gUnk_083B7B9C[], gUnk_083B7BA4[], gUnk_083B7BAC[], gUnk_083B7BB0[],
+    gUnk_083B7BB8[], gUnk_083B7BBC[], gUnk_083B7BC4[], gUnk_083B7BCC[], gUnk_083B7BD4[],
+    gUnk_083B7BDC[], gUnk_083B7BE4[], gUnk_083B7BEC[], gUnk_083B7BF4[], gUnk_083B7BFC[],
+    gUnk_083B7C04[], gUnk_083B7C0C[], gUnk_083B7C14[], gUnk_083B7C1C[], gUnk_083B7C24[],
+    gUnk_083B7C2C[], gUnk_083B7C34[], gUnk_083B7C3C[], gUnk_083B7C44[], gUnk_083B7C4C[],
+    gUnk_083B7C54[], gUnk_083B7C5C[], gUnk_083B7C64[], gUnk_083B7C6C[], gUnk_083B7C74[];
+
+extern const u8 gUnk_08379B4C[], gUnk_0837AB4C[], gUnk_0837BB4C[], gUnk_0837CB4C[], gUnk_0837DB4C[],
+    gUnk_0837EB4C[], gUnk_0837FB4C[], gUnk_08380B4C[], gUnk_08381B4C[], gUnk_08382B4C[],
+    gUnk_08383B4C[], gUnk_08384B4C[], gUnk_08385B4C[], gUnk_08386B4C[], gUnk_08387B4C[],
+    gUnk_08388B4C[], gUnk_08389B4C[], gUnk_0838AB4C[], gUnk_0838BB4C[], gUnk_0838CB4C[],
+    gUnk_0838DB4C[], gUnk_0838EB4C[], gUnk_0838FB4C[], gUnk_08390B4C[], gUnk_08391B4C[],
+    gUnk_08392B4C[], gUnk_08393B4C[], gUnk_08394B4C[], gUnk_08395B4C[], gUnk_08396B4C[],
+    gUnk_08397B4C[], gUnk_08398B4C[], gUnk_08399B4C[], gUnk_0839AB4C[], gUnk_0839BB4C[],
+    gUnk_0839CB4C[], gUnk_0839DB4C[], gUnk_0839EB4C[], gUnk_0839FB4C[], gUnk_083A0B4C[],
+    gUnk_083A1B4C[], gUnk_083A2B4C[], gUnk_083A3B4C[], gUnk_083A4B4C[], gUnk_083A5B4C[],
+    gUnk_083A6B4C[], gUnk_083A7B4C[], gUnk_083A8B4C[], gUnk_083A9B4C[], gUnk_083AAB4C[],
+    gUnk_083ABB4C[], gUnk_083ACB4C[], gUnk_083ADB4C[], gUnk_083AEB4C[], gUnk_083AFB4C[],
+    gUnk_083B0B4C[], gUnk_083B1B4C[], gUnk_083B1F4C[], gUnk_083B234C[], gUnk_083B274C[],
+    gUnk_083B2B4C[], gUnk_083B2F4C[], gUnk_083B334C[], gUnk_083B384C[], gUnk_083B3D4C[],
+    gUnk_083B424C[], gUnk_083B474C[], gUnk_083B4C4C[], gUnk_083B514C[], gUnk_083B564C[],
+    gUnk_083B5B4C[], gUnk_083B5F4C[], gUnk_083B634C[], gUnk_083B674C[], gUnk_083B6B4C[],
+    gUnk_083B6F4C[], gUnk_083B734C[], gUnk_083B774C[];
+
 // General battle map system stuff (FE8U: bmio.c)
 
 struct WeatherParticle {
@@ -21,19 +47,6 @@ union WeatherEffectData {
 union GradientEffectData {
     u16 lines[320];
     u16 fireGradient[8][0x40];
-};
-
-struct TileGfxAnim {
-    /* 00 */ u16 time;
-    /* 02 */ u16 size;
-    /* 04 */ const void * data;
-};
-
-struct TilePalAnim {
-    /* 00 */ const void * data;
-    /* 04 */ u8 time;
-    /* 05 */ u8 colorCount;
-    /* 06 */ u8 colorStart;
 };
 
 struct BmVSyncProc {
@@ -1346,3 +1359,163 @@ void SetTacticianName(const char * newName)
 {
     strcpy(gPlaySt.playerName, newName);
 }
+
+SECTION(".rodata.08B95D38")
+const struct TileGfxAnim TileGfxAnim_08B95D38[] = {
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08379B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0837AB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0837BB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0837CB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0837DB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0837EB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0837FB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08380B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08381B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08382B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08383B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08384B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08385B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08386B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08387B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08388B4C },
+    { 0 },
+};
+
+SECTION(".rodata.08B95DC0")
+const struct TileGfxAnim TileGfxAnim_08B95DC0[] = {
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08389B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0838AB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0838BB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0838CB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0838DB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0838EB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0838FB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08390B4C },
+    { 0 },
+};
+
+SECTION(".rodata.08B95E08")
+const struct TileGfxAnim TileGfxAnim_08B95E08[] = {
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08391B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08392B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08393B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08394B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08395B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08396B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08397B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08398B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_08399B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0839AB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0839BB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0839CB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0839DB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0839EB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_0839FB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A0B4C },
+    { 0 },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A1B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A2B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A3B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A4B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A5B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A6B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A7B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A8B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083A9B4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083AAB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083ABB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083ACB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083ADB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083AEB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083AFB4C },
+    { .time = 0x1C, .size = 0x1000, .data = gUnk_083B0B4C },
+    { 0 },
+    { .time = 0xA, .size = 0x800, .data = gUnk_083B1B4C },
+    { .time = 8, .size = 0x800, .data = gUnk_083B1F4C },
+    { .time = 0xA, .size = 0x800, .data = gUnk_083B234C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B274C },
+    { .time = 8, .size = 0x800, .data = gUnk_083B2B4C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B2F4C },
+    { 0 },
+};
+
+SECTION(".rodata.08B95F50")
+const struct TileGfxAnim TileGfxAnim_08B95F50[] = {
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B334C },
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B384C },
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B3D4C },
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B424C },
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B474C },
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B4C4C },
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B514C },
+    { .time = 0xB, .size = 0x500, .data = gUnk_083B564C },
+    { 0 },
+};
+
+SECTION(".rodata.08B95F98")
+const struct TileGfxAnim TileGfxAnim_08B95F98[] = {
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B5B4C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B5F4C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B634C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B674C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B6B4C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B6F4C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B734C },
+    { .time = 0xB, .size = 0x800, .data = gUnk_083B774C },
+    { 0 },
+};
+
+SECTION(".rodata.08B95FE0")
+const struct TilePalAnim TilePalAnim_08B95FE0[] = {
+    { .data = gUnk_083B7B4C, .time = 0x3D, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7B4C, .time = 0x3D, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7B54, .time = 3, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7B5C, .time = 4, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7B64, .time = 5, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7B6C, .time = 4, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7B74, .time = 3, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7B7C, .time = 2, .colorCount = 4, .colorStart = 0x3C },
+    { 0 },
+    { .data = &gUnk_083B7B84[2], .time = 5, .colorCount = 3, .colorStart = 0x31 },
+    { .data = gUnk_083B7B8C, .time = 6, .colorCount = 3, .colorStart = 0x31 },
+    { .data = &gUnk_083B7B90[2], .time = 6, .colorCount = 3, .colorStart = 0x31 },
+    { .data = gUnk_083B7B98, .time = 8, .colorCount = 3, .colorStart = 0x31 },
+    { .data = &gUnk_083B7B9C[2], .time = 6, .colorCount = 3, .colorStart = 0x31 },
+    { .data = &gUnk_083B7BA4[2], .time = 6, .colorCount = 3, .colorStart = 0x31 },
+    { .data = gUnk_083B7BAC, .time = 7, .colorCount = 3, .colorStart = 0x31 },
+    { .data = &gUnk_083B7BB0[2], .time = 9, .colorCount = 3, .colorStart = 0x31 },
+    { .data = gUnk_083B7BB8, .time = 7, .colorCount = 3, .colorStart = 0x31 },
+    { .data = &gUnk_083B7BBC[2], .time = 8, .colorCount = 3, .colorStart = 0x31 },
+    { .data = &gUnk_083B7BC4[2], .time = 8, .colorCount = 3, .colorStart = 0x31 },
+    { .data = gUnk_083B7BCC, .time = 8, .colorCount = 3, .colorStart = 0x31 },
+    { .data = &gUnk_083B7B84[2], .time = 4, .colorCount = 3, .colorStart = 0x31 },
+    { .data = gUnk_083B7B8C, .time = 7, .colorCount = 3, .colorStart = 0x31 },
+    { 0 },
+};
+
+SECTION(".rodata.08B960A0")
+const struct TilePalAnim TilePalAnim_08B960A0[] = {
+    { .data = gUnk_083B7C04, .time = 0x13, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C0C, .time = 0x12, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C14, .time = 0x11, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C1C, .time = 0x10, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C24, .time = 0x10, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C2C, .time = 0x10, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C34, .time = 0x11, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C3C, .time = 0x12, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C44, .time = 0x13, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C4C, .time = 0x12, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C54, .time = 0x11, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C5C, .time = 0x10, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C64, .time = 0x10, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C6C, .time = 0x11, .colorCount = 4, .colorStart = 0x3C },
+    { .data = gUnk_083B7C74, .time = 0x12, .colorCount = 4, .colorStart = 0x3C },
+    { 0 },
+    { .data = gUnk_083B7BD4, .time = 0x14, .colorCount = 4, .colorStart = 0x41 },
+    { .data = gUnk_083B7BDC, .time = 0xA, .colorCount = 4, .colorStart = 0x41 },
+    { .data = gUnk_083B7BE4, .time = 0xC, .colorCount = 4, .colorStart = 0x41 },
+    { .data = gUnk_083B7BEC, .time = 0x14, .colorCount = 4, .colorStart = 0x41 },
+    { .data = gUnk_083B7BF4, .time = 0xA, .colorCount = 4, .colorStart = 0x41 },
+    { .data = gUnk_083B7BFC, .time = 0xC, .colorCount = 4, .colorStart = 0x41 },
+    { 0 },
+};

@@ -98,13 +98,26 @@ NOT_POINTERS = [
     # Dead proc scripts (0x08CF6D90-0x08CF89A8) left over from another build:
     # nothing outside points at them, and 214 of their 220 code pointers land
     # in the middle of FE7U functions (m4a, libagb, libc: 0x080BFAC9 in
-    # WriteSramFast, 0x080C3FF5 in abort...).  These four happen to equal a
-    # function start + 1 (m4aMPlayAllStop, SetSramFastFunc, the real libgcc
-    # _call_via_r1 and libc _read_r), which is a coincidence, not a call.
-    (0x08CF74E0, 0x08CF74E4, "stale proc code pointer (dead data, another build)"),
-    (0x08CF7F04, 0x08CF7F08, "stale proc code pointer (dead data, another build)"),
-    (0x08CF7F94, 0x08CF7F98, "stale proc code pointer (dead data, another build)"),
-    (0x08CF8978, 0x08CF897C, "stale proc code pointer (dead data, another build)"),
+    # WriteSramFast, 0x080C3FF5 in abort...).  Four happen to equal a function
+    # start + 1 (m4aMPlayAllStop at 0x08CF74E0, SetSramFastFunc at 0x08CF7F04,
+    # the real libgcc _call_via_r1 at 0x08CF7F94 and libc _read_r at 0x08CF8978),
+    # which is a coincidence, not a call.  They lie in the block below.
+    # A snapshot of RAM at the end of the ROM (nothing reads it): a struct
+    # SoundInfo ('Tmsh', reverb, maxChans 8, the cgbChans / MPlayJumpTable
+    # RAM pointers 0x03005BE0 / 0x03005B50, which are gCgbChans and
+    # gMPlayJumpTable only because the same RAM layout is linked here) followed
+    # by music player and track structs (RAM pointers 0x03001628, 0x03004C30).
+    (0x08FFF6E0, 0x08FFF800, "RAM snapshot (m4a SoundInfo, music player and track structs), unreferenced"),
+    # The whole dead block 0x08CF6A94-0x08CFFF78 (the stale proc scripts above,
+    # then tables of graphics pointers, a table of 8-byte nodes each pointing
+    # at the one before, ...).  Nothing reads it: no aligned word of the code
+    # or of any structured data refers into it (the only aligned hits are
+    # halfword pairs inside compressed graphics and its own words), and what
+    # it points at is not what a reader would need (the "pointers" into FE7U
+    # functions are function-middle addresses of another build, the
+    # 0x0860xxxx tables have no label or code that indexes them).  The
+    # bytes are left as they are; the words are not symbolized.
+    (0x08CF6A94, 0x08CFFF78, "dead data left over from another build (block 0x08CF6A94-0x08CFFF78, unreferenced)"),
 ]
 
 # Placed objects that nothing points into (only at their start, or at a
