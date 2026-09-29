@@ -63,7 +63,7 @@ struct ProcCmd CONST_DATA ProcScr_EventThunderfx[] = {
 int EventE2_Thunderfx(struct EventProc * proc)
 {
     struct ProcEventThunderfx * procfx;
-    const u32 * args = proc->script;
+    const EventScr * args = proc->script;
 
     int x = args[1];
     int y = args[2];

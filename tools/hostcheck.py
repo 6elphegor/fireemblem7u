@@ -38,9 +38,12 @@ CLANG = os.environ.get('HOSTCHECK_CC', 'clang')
 DEFAULT_TARGETS = ['x86_64-linux-gnu', 'native']
 
 # gnu89: the dialect the game is written in (implicit int, old-style
-# definitions); PLATFORM_GBA is not defined, so the GBA-only attributes
-# (link sections) compile away (include/gbafe/global.h).
-FLAGS = ['-std=gnu89', '-O0', '-ffreestanding', '-fno-common', '-nostdinc',
+# definitions).  -funsigned-char: char is unsigned on the GBA (ARM ABI) and
+# the text code depends on it (x86-64 and Apple arm64 make char signed).
+# PLATFORM_GBA is not defined, so the GBA-only attributes (link sections)
+# compile away (include/gbafe/global.h).
+FLAGS = ['-std=gnu89', '-funsigned-char', '-O0', '-ffreestanding', '-fno-common',
+         '-nostdinc',
          '-DNONMATCHING=1', '-fdiagnostics-show-option',
          '-fno-caret-diagnostics', '-fno-color-diagnostics',
          '-ferror-limit=0', '-Wno-unknown-pragmas']

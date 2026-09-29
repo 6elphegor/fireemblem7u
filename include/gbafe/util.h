@@ -197,14 +197,14 @@ void sub_08014A68(u16 * tm, int x, int y, u32 const * arg_3, u16 tileref);
 struct CallDelayedProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ void (* func)();
-    /* 30 */ int arg;
+    /* 30 */ intptr_t arg; // an int or a pointer
     /* 34 */ int clock;
 };
 
 void CallDelayed_OnLoop(struct CallDelayedProc * proc);
 void CallDelayedArg_OnLoop(struct CallDelayedProc * proc);
 void CallDelayed(void (* func)(void), int delay);
-void CallDelayedArg(void (* func)(int), int arg, int delay);
+void CallDelayedArg(void (* func)(intptr_t), intptr_t arg, int delay);
 void sub_08014B70(u8 * out, int size);
 void sub_08014B84(u8 * out, int size, int value);
 void sub_08014B94(u16 * out, int size, int value);
@@ -218,7 +218,7 @@ void sub_08014CD0(void);
 int Screen2Pan(int x);
 void PlaySeSpacial(int song, int x);
 void PlaySeDelayed(int song, int delay);
-void PlaySeFunc(int song);
+void PlaySeFunc(intptr_t song);
 void _StartBgm(short song);
 void _FadeBgmOut(short speed);
 void sub_08014E38(int palid);

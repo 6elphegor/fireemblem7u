@@ -486,6 +486,7 @@ ProcPtr NewEkrDragonBg2ScrollHandler(void)
 
     proc = Proc_Start(ProcScr_EkrDragonBg2ScrollHandler, PROC_TREE_3);
     proc->timer = 0;
+    return proc;
 }
 
 void EkrDragonBg2ScrollHandler_Loop(struct ProcEkrDragonFx * proc)
@@ -705,6 +706,7 @@ ProcPtr NewEkrDragonFxMain(struct Anim * anim)
     proc->conf = NULL;
     proc->fx = Tsas_EkrDragon_08BD9528;
     proc->round_cur = 0x1000;
+    return proc;
 }
 
 void EkrDragonFxMainHandler(struct ProcEkrDragonFx * proc)

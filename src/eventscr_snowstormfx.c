@@ -104,7 +104,7 @@ void EventSnowStormfx_End(struct ProcEventSnowStormfx * proc)
 int EventDF_SnowStormfx(struct EventProc * proc)
 {
     struct ProcEventSnowStormfx * procfx;
-    const u32 * args = proc->script;
+    const EventScr * args = proc->script;
 
     int paluse = args[1];
 

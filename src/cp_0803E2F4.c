@@ -406,6 +406,21 @@ s8 AiEquipGetFlags(u16 * out)
 
         out[i] |= (GetItemMight(item) << 8);
     }
+
+#if NONMATCHING
+    // Original bug: no return statement.  The caller tests what r0 last
+    // held: 2 when all five slots were looked at, else the address of the
+    // first empty slot (the unit itself for slot 0, which the item count
+    // excludes), cut to s8.  That is 0 (FALSE: no re-equip) for a one-item
+    // unit at a few RAM addresses, e.g. gUnitArrayRed[4].
+    if (i >= UNIT_ITEM_COUNT)
+        return 2;
+
+    if (i == 0)
+        return (s8)(uintptr_t)gActiveUnit;
+
+    return (s8)(uintptr_t)&gActiveUnit->items[i];
+#endif
 }
 
 void AiEquipGetDanger(int x, int y, u16 * range_danger_out, u16 * melee_danger_out, u16 * combined_danger_out)

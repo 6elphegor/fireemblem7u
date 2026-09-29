@@ -1101,6 +1101,12 @@ int GetFaceBlinkInterval(struct FaceEyeProc * proc)
     case 5:
         return INT32_MAX;
     }
+
+#if NONMATCHING
+    // Original bug: no return for other blink kinds (0: a face info with
+    // blink_type 0); r0 holds the switch value, blink - 1.
+    return (s16)(proc->blink - 1);
+#endif
 }
 
 void SetFaceEyeState(struct FaceProc * proc, int state)

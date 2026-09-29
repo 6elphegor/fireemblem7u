@@ -68,7 +68,11 @@ int EventE8_StartSpriteAnim(struct EventProc * proc)
     else
         x = -1;
 
+#if NONMATCHING
+    _y = (u16)(packed_vec >> 16); // the high half of args[2], whatever a script word's size
+#else
     _y = (u16)EVT_CMD_ARGV(proc->script)[4];
+#endif
     y = !(_y & 0x8000) ? _y : -1;
 
     if (proc->flags & EVENT_FLAG_SKIPPED)
@@ -81,6 +85,10 @@ int EventE8_StartSpriteAnim(struct EventProc * proc)
 
 #if BUGFIX
         ret = EVENT_CMDRET_YIELD;
+#elif NONMATCHING
+        // The original returns the proc pointer, which is none of the
+        // EVENT_CMDRET values, so the engine goes on as for CONTINUE.
+        ret = EVENT_CMDRET_CONTINUE;
 #else
         ret = (int)procfx; /* Holly shit */
 #endif
@@ -169,6 +177,13 @@ int EventEA_StartMixPalette(struct EventProc * proc)
         return EVENT_CMDRET_CONTINUE;
 
     StartMixPalette(palA, palB, conf & 0xFF, (conf >> 0x10) & 0xFF, (conf >> 0x18) & 0xFF, proc);
+
+#if NONMATCHING
+    // Original bug: no return statement.  r0 holds StartMixPalette's
+    // return address (it returns with pop {r0}; bx r0), which is none of
+    // the EVENT_CMDRET values, so the engine goes on as for CONTINUE.
+    return EVENT_CMDRET_CONTINUE;
+#endif
 }
 
 int EventEB_EndMixPalette(struct EventProc * proc)
@@ -223,7 +238,7 @@ void EventLoadUnitFromDef(struct UnitDefinition const * def, int flag)
     sEventLoadUnitBuf.x_move = def->x_move;
     sEventLoadUnitBuf.y_move = def->y_move;
 
-    LoadUnitCore(&sEventLoadUnitBuf, (void *) flag);
+    LoadUnitCore(&sEventLoadUnitBuf, (void *) (intptr_t) flag);
 }
 
 void sub_08011E28(ProcPtr p)

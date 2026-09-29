@@ -187,6 +187,7 @@ ProcPtr NewTargetSelection_Specialized(const struct SelectInfo * info, u8 (* onS
     struct SelectTargetProc * proc = StartMapSelect(info);
 
     proc->onAPress = onSelect;
+    return proc;
 }
 
 ProcPtr EndTargetSelection(ProcPtr proc)

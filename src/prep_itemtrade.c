@@ -184,7 +184,9 @@ void PrepItemTrade_Init(struct PrepMenuTradeProc * proc)
         { 0x0000, 0 },
     };
 
-    InitBgs((void *) (u32) *gBgConfig_PrepScreen);
+    // Original bug: passes the config's first halfword (0, so NULL: the
+    // default layout) instead of gBgConfig_PrepScreen.
+    InitBgs((void *) (uintptr_t) *gBgConfig_PrepScreen);
 
     SetFaceConfig(faceConfig);
 

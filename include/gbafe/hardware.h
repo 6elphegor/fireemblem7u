@@ -227,7 +227,7 @@ extern u16 EWRAM_DATA gBg3Tm[0x400];
 extern void *EWRAM_DATA gBgMapVramTable[4];
 // MainFunc is static in hardware.c: SetMainFunc, RunMainFunc
 extern struct DispIo gDispIo;
-extern s16 gSinLut[0x40];
+extern s16 gSinLut[]; // 0x40 + 0x100 entries: SIN_Q12, COS_Q12 (see hardware.c)
 
 extern Func gOnHBlankA;
 extern Func gOnHBlankB;

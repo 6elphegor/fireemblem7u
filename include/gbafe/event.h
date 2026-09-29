@@ -709,7 +709,7 @@ enum popup_opcode_index {
 
 struct PopupInstruction {
     u8 opcode;
-    u32 data;
+    uintptr_t data; // a number, a message id or a string (POPUP_OP_STR)
 };
 
 struct PopupProc {

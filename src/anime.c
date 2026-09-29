@@ -278,7 +278,7 @@ int AnimInterpret(struct Anim* anim)
 
                 // ???????
                 anim->pSpriteData = (const void*) (*anim->pScrCurrent++);
-                anim->pSpriteData += (unsigned) anim->pSpriteDataPool;
+                anim->pSpriteData += (uintptr_t) anim->pSpriteDataPool;
 
                 anim->state2 = (anim->state2 & 0xFFF) | ANIM_BIT2_FRAME;
 
