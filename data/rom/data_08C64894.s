@@ -810,16 +810,6 @@ Img_Portrait_001_Face:  @ LZ77
 gFlagBitMaskLut:
 	.incbin "baserom.gba", 0xc9eaec, 0x8
 
-	.global gBattleTalkList
-gBattleTalkList:
-	.incbin "baserom.gba", 0xc9eaf4, 0x2ac
-
-	.section .rodata.08C9F130, "a"
-
-	.global gTriangleAttackTalkList
-gTriangleAttackTalkList:
-	.incbin "baserom.gba", 0xc9f130, 0x3c
-
 	.section .rodata.08C9F9EC, "a"
 
 	.global gHardBonusLevelList
@@ -1006,10 +996,6 @@ Sprite_ChapterStatus_08CC2E5E:
 	.global Sprite_ChapterStatus_FactionSelector
 Sprite_ChapterStatus_FactionSelector:
 	.incbin "baserom.gba", 0xcc2e6c, 0x1c
-
-	.global gTextInitInfo_ChapterStatus
-gTextInitInfo_ChapterStatus:
-	.incbin "baserom.gba", 0xcc2e88, 0x18
 
 	.section .rodata.08CC2FD8, "a"
 
@@ -3015,11 +3001,7 @@ gUnk_08CE4544:
 gUnk_08CE4546:
 	.incbin "baserom.gba", 0xce4546, 0x26
 
-	.section .rodata.08CE5378, "a"
-
-	.global gUnk_08CE5378
-gUnk_08CE5378:
-	.incbin "baserom.gba", 0xce5378, 0x10
+	.section .rodata.08CE5388, "a"
 
 	.global gUnknown_08CE5388
 gUnknown_08CE5388:
@@ -3732,12 +3714,6 @@ gUnk_08CEF314:
 	.global gUnk_08CEF490
 gUnk_08CEF490:
 	.incbin "baserom.gba", 0xcef490, 0x2c
-
-	.section .rodata.08CEF770, "a"
-
-	.global gUnk_08CEF770
-gUnk_08CEF770:
-	.incbin "baserom.gba", 0xcef770, 0x18
 
 	.section .rodata.08CF0CD0, "a"
 

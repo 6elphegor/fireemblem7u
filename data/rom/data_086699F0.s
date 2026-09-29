@@ -2037,12 +2037,6 @@ gUnk_08B90A7C:
 gUnk_08B90A84:
 	.incbin "baserom.gba", 0xb90a84, 0x8
 
-	.section .rodata.08B90AEC, "a"
-
-	.global gUnk_08BFFC9C
-gUnk_08BFFC9C:
-	.incbin "baserom.gba", 0xb90aec, 0x10
-
 	.section .rodata.08B90B7C, "a"
 
 	.global gTalkPauseDurations
@@ -2071,12 +2065,6 @@ gUnitDef_08B91A18:
 
 	.section .rodata.08B932B8, "a"
 	.incbin "baserom.gba", 0xb932b8, 0x14
-
-	.section .rodata.08B9333C, "a"
-
-	.global ProcScr_DebugMonitor
-ProcScr_DebugMonitor:
-	.incbin "baserom.gba", 0xb9333c, 0x8
 
 	.section .rodata.08B93E48, "a"
 
@@ -2282,11 +2270,7 @@ sBattleForecastSlideOutOffsetLut:
 sBkselHelpBoxMsgLut:
 	.incbin "baserom.gba", 0xb96dd4, 0xc
 
-	.section .rodata.08B9701C, "a"
-
-	.global PopupScr_AiPillage
-PopupScr_AiPillage:
-	.incbin "baserom.gba", 0xb9701c, 0x18
+	.section .rodata.08B97034, "a"
 
 	.global sRange3OffsetLut
 sRange3OffsetLut:
@@ -2493,11 +2477,7 @@ gUnknown_085AA158:
 gUnknown_085AA15C:
 	.incbin "baserom.gba", 0xb99bc8, 0x50
 
-	.section .rodata.08B99C88, "a"
-
-	.global gUnknown_085AA21C
-gUnknown_085AA21C:
-	.incbin "baserom.gba", 0xb99c88, 0x10
+	.section .rodata.08B99C98, "a"
 
 	.global gLut_LinkArenaFogPlaceholder_YOffset
 gLut_LinkArenaFogPlaceholder_YOffset:

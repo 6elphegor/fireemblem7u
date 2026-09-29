@@ -50,7 +50,7 @@ GBA_SIZE_CHECK(struct DebugOnOffMsgs, 0x8);
 struct DebugWeatherMsgs { int msg[7]; };
 GBA_SIZE_CHECK(struct DebugWeatherMsgs, 0x1C);
 
-extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
+extern const struct ProcCmd ProcScr_DebugMonitor[];
 extern const struct DebugOnOffMsgs sDebugOnOffMsgs;
 extern const struct DebugWeatherMsgs sDebugWeatherMsgs;
 
@@ -74,7 +74,7 @@ struct SoundRoomEnt
 GBA_SIZE_CHECK(struct SoundRoomEnt, 0x10);
 
 extern const struct SoundRoomEnt gSoundRoomTable[];
-extern struct SoundRoomEnt CONST_DATA gUnk_08CE5378[];
+extern const struct SoundRoomEnt gUnk_08CE5378[];
 extern char const sDebugBlankStr[];
 
 
@@ -1130,4 +1130,14 @@ const struct MenuDef gUnk_08B95824 = {
     .rect = { .x = 8, .y = 9, .w = 0xE },
     .menuItems = gUnk_08B94600,
     .onBPress = MenuCancelSelect,
+};
+
+SECTION(".rodata.08CE5378")
+const struct SoundRoomEnt gUnk_08CE5378[] = {
+    { .bgmId = -1 },
+};
+
+SECTION(".rodata.08B9333C")
+const struct ProcCmd ProcScr_DebugMonitor[] = {
+    { 0 },
 };

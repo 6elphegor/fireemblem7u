@@ -2327,3 +2327,9 @@ const struct ProcCmd ProcScr_TalkPutSpriteText[] = {
 };
 
 IWRAM_DATA struct TalkSt sTalkStData = {};
+
+SECTION(".rodata.08B90AEC")
+const struct TalkChoiceEnt gUnk_08BFFC9C[] = {
+    { .msg = 1 },
+    { .msg = 2 },
+};

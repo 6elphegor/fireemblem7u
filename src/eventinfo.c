@@ -210,8 +210,8 @@ struct DefeatTalkExtEnt
 GBA_SIZE_CHECK(struct DefeatTalkExtEnt, 0x10);
 
 extern const struct BattleTalkExtEnt gBattleTalkExtList[];
-extern struct BattleTalkEnt const gBattleTalkList[];
-extern struct BattleTalkEnt const gTriangleAttackTalkList[];
+extern const struct BattleTalkEnt gBattleTalkList[];
+extern const struct BattleTalkEnt gTriangleAttackTalkList[];
 extern const struct DefeatTalkExtEnt gDefeatTalkExtList[];
 extern const struct BattleTalkEnt gDefeatTalkList[];
 extern const struct BattleTalkEnt gDefeatTalkList_Tutorial[];
@@ -2295,4 +2295,74 @@ const struct EventListCmdInfo gEventListCmdInfoTable[] = {
     { .func = EvCheck0E_, .length = 3 },
     { .func = EvCheck0F_, .length = 4 },
     { .func = EvCheck10_, .length = 4 },
+};
+
+SECTION(".rodata.08C9EAF4")
+const struct BattleTalkEnt gBattleTalkList[] = {
+    { .pid = 0x87, .msg = 0x831, .flag = 1 },
+    { .pid = 0x89, .chapter = 1, .msg = 0x872, .flag = 1 },
+    { .pid = 0x8D, .chapter = 2, .msg = 0x8A1, .flag = 1 },
+    { .pid = 0x8E, .chapter = 3, .msg = 0x8D2, .flag = 1 },
+    { .pid = 0x94, .chapter = 4, .msg = 0x8F5, .flag = 1 },
+    { .pid = 0x99, .chapter = 5, .msg = 0x920, .flag = 1 },
+    { .pid = 0x9F, .chapter = 6, .msg = 0x974, .flag = 1 },
+    { .pid = 0xA6, .chapter = 7, .msg = 0x999, .flag = 1 },
+    { .pid = 0xAD, .chapter = 8, .msg = 0x9AC, .flag = 1 },
+    { .pid = 0xB6, .chapter = 9, .msg = 0x9BB, .flag = 1 },
+    { .pid = 0xBE, .chapter = 0xA, .msg = 0x9D6, .flag = 1 },
+    { .pid = 0xC5, .chapter = 0xB, .msg = 0x9E5, .flag = 1 },
+    { .pid = 0x3C, .chapter = 0xC, .msg = 0xA05, .flag = 1 },
+    { .pid = 0x3F, .chapter = 0xE, .msg = 0xA32, .flag = 1 },
+    { .pid = 0x40, .chapter = 0xF, .msg = 0xA57, .flag = 1 },
+    { .pid = 0x41, .chapter = 0x10, .msg = 0xA66, .flag = 1 },
+    { .pid = 0x45, .chapter = 0x11, .msg = 0xA8C, .flag = 1 },
+    { .pid = 0x46, .chapter = 0x12, .msg = 0xA9D, .flag = 1 },
+    { .pid = 0x47, .chapter = 0x13, .msg = 0xACA, .flag = 1 },
+    { .pid = 0x48, .chapter = 0x14, .msg = 0xAF8, .flag = 1 },
+    { .pid = 0xC, .chapter = 0x15, .msg = 0xB1E, .flag = 0xE },
+    { .pid = 0x49, .chapter = 0x15, .msg = 0xB1C, .flag = 1 },
+    { .pid = 0x4A, .chapter = 0x16, .msg = 0xB42, .flag = 1 },
+    { .pid = 0x4B, .chapter = 0x17, .msg = 0xB65, .flag = 1 },
+    { .pid = 0x3B, .chapter = 0x18, .msg = 0xB89, .flag = 0xB },
+    { .pid = 0x4C, .chapter = 0x18, .msg = 0xB8A, .flag = 1 },
+    { .pid = 0x5C, .chapter = 0x19, .msg = 0xBA0, .flag = 1 },
+    { .pid = 0x4D, .chapter = 0x1A, .msg = 0xBBD, .flag = 1 },
+    { .pid = 0x4F, .chapter = 0x1B, .msg = 0xBFA, .flag = 1 },
+    { .pid = 0x50, .chapter = 0x1C, .msg = 0xC19, .flag = 1 },
+    { .pid = 0x3B, .chapter = 0x1E, .msg = 0xC57, .flag = 8 },
+    { .pid = 0x63, .chapter = 0x1F, .msg = 0xC84, .flag = 1 },
+    { .pid = 0x64, .chapter = 0x20, .msg = 0xCB0, .flag = 1 },
+    { .pid = 0x57, .chapter = 0x21, .msg = 0xCFD, .flag = 1 },
+    { .pid = 0x2B, .chapter = 0x22, .msg = 0xD1C, .flag = 1 },
+    { .pid = 0x58, .chapter = 0x23, .msg = 0xD42, .flag = 1 },
+    { .pid = 0x59, .chapter = 0x24, .msg = 0xD5F, .flag = 1 },
+    { .pid = 0x51, .chapter = 0x25, .msg = 0xD82, .flag = 1 },
+    { .pid = 0x5B, .chapter = 0x26, .msg = 0xDB2, .flag = 1 },
+    { .pid = 0x66, .chapter = 0x27, .msg = 0xDDF, .flag = 1 },
+    { .pid = 0x65, .chapter = 0x27, .msg = 0xDE0, .flag = 1 },
+    { .pid = 0x5D, .chapter = 0x28, .msg = 0xDFF, .flag = 1 },
+    { .pid = 0x5E, .chapter = 0x29, .msg = 0xE23, .flag = 1 },
+    { .pid = 0x60, .chapter = 0x2A, .msg = 0xE4A, .flag = 1 },
+    { .pid = 0x85, .chapter = 0x2C, .msg = 0xE97, .flag = 1 },
+    { .pid = 0x3B, .chapter = 0x2D, .msg = 0xEAC, .flag = 1 },
+    { .pid = 0x44, .chapter = 0x2E, .msg = 0xF0B, .flag = 1 },
+    { .pid = 0xF4, .chapter = 0x2E, .msg = 0xEF4, .flag = 0xB },
+    { .pid = 0xF5, .chapter = 0x2E, .msg = 0xEF7, .flag = 0xC },
+    { .pid = 0xFA, .chapter = 0x2E, .msg = 0xEFA, .flag = 0xD },
+    { .pid = 0xF7, .chapter = 0x2E, .msg = 0xEFB, .flag = 0xE },
+    { .pid = 0xF6, .chapter = 0x2E, .msg = 0xEFD, .flag = 0xF },
+    { .pid = 0x56, .chapter = 0x2E, .msg = 0xF00, .flag = 0x10 },
+    { .pid = 0xF8, .chapter = 0x2E, .msg = 0xF01, .flag = 0x11 },
+    { .pid = 0xF9, .chapter = 0x2E, .msg = 0xF02, .flag = 0x12 },
+    { 0 },
+    { 0 },
+};
+
+SECTION(".rodata.08C9F130")
+const struct BattleTalkEnt gTriangleAttackTalkList[] = {
+    { .pid = 0x1E, .chapter = 0x43, .msg = 0xCFA, .flag = 0x8C },
+    { .pid = 0x1F, .chapter = 0x43, .msg = 0xCFB, .flag = 0x8D },
+    { .pid = 0x31, .chapter = 0x43, .msg = 0xCFC, .flag = 0x8E },
+    { 0 },
+    { 0 },
 };

@@ -88,6 +88,9 @@ struct EndingTitleEnt {
 struct EndingDefeatEnt {
     /* 00 */ u8 pid;
     /* 01 */ u8 defeatType;
+#if !PLATFORM_GBA
+    u8 hostPad[2]; // agbcc rounds a struct up to 4 bytes: the ROM tables' stride
+#endif
 };
 
 struct CharacterEndingProc {

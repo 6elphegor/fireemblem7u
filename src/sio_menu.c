@@ -3,7 +3,7 @@
 
 // FE8U: sio_menu.c
 
-extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
+extern const struct ProcCmd ProcScr_DebugMonitor[];
 void sub_08044ED8(void);
 void sub_08044FFC(void);
 extern const struct ProcCmd ProcScr_SIOTERM[];

@@ -11,12 +11,18 @@ struct AiEscapePt
 {
     /* 00 */ u8 x, y;
     /* 02 */ u8 facing;
+#if !PLATFORM_GBA
+    u8 hostPad[1]; // agbcc rounds a struct up to 4 bytes: the ROM tables' stride
+#endif
 };
 
 struct AiHealThreshold
 {
     /* 00 */ u8 exitThreshold;
     /* 01 */ u8 enterThreshold;
+#if !PLATFORM_GBA
+    u8 hostPad[2]; // agbcc rounds a struct up to 4 bytes: the ROM tables' stride
+#endif
 };
 
 struct AiCountEnemiesInRangeArg

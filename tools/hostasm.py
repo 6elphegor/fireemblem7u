@@ -107,6 +107,7 @@ def convert(lines, macho, stream_words):
 
     section = '__DATA,__const' if macho else '.rodata'
     out = []
+    last_label = None
     here = set()   # labels defined at the current position
     for line in lines:
         s = line.strip()
@@ -125,9 +126,12 @@ def convert(lines, macho, stream_words):
             continue
         m = re.match(r'^([A-Za-z_.$][\w.$]*):(.*)$', s)
         if m:
+            last_label = m.group(1)
             # GNU as accepts a label defined twice at the same place (some
             # generated files repeat them); the host assemblers do not
             if m.group(1) not in here or m.group(2).strip():
+                if relayout_rule(m.group(1)):
+                    out.append('\t.p2align 3')
                 out.append('%s:' % sym(m.group(1)))
             here.add(m.group(1))
             if m.group(2).strip():
@@ -163,6 +167,9 @@ def convert(lines, macho, stream_words):
                 out.append('\t.long ' + r)
             continue
         m = re.match(r'^\.incbin\s+"([^"]+)"\s*(?:,\s*([^,]+?)\s*(?:,\s*(.+?)\s*)?)?$', s)
+        if m and last_label and relayout_rule(last_label):
+            out.extend(relayout(last_label, incbin_data(m.group(1), m.group(2), m.group(3))))
+            continue
         if m:
             # inlined: LLVM's assembler maps the whole file again for every
             # `.incbin`, so the thousands of baserom.gba chunks in data/rom
@@ -182,6 +189,62 @@ def convert(lines, macho, stream_words):
 
 
 _files = {}
+
+
+# Objects left as bytes whose C type holds a pointer the ROM stores as 0
+# (docs/port-notes.md, "Host link"): each record is re-laid out for the host,
+# the 4-byte words at the given offsets becoming 8-byte pointers (8-aligned),
+# the record padded to 8.  label regex: (GBA record size, pointer offsets).
+RELAYOUT = [
+    (r'^Glyph_', 0x48, [0]),   # struct Glyph (include/gbafe/text.h): next, all NULL
+]
+
+
+def relayout_rule(label):
+    for rx, size, ptrs in RELAYOUT:
+        if re.match(rx, label):
+            return size, ptrs
+    return None
+
+
+def relayout(label, data):
+    size, ptrs = relayout_rule(label)
+    if len(data) % size:
+        sys.exit('hostasm: %s is not a whole number of 0x%X-byte records' % (label, size))
+    out = []
+    for r in range(0, len(data), size):
+        rec = data[r:r + size]
+        pos, hpos = 0, 0
+        for p in sorted(ptrs) + [size]:
+            chunk = rec[pos:p]
+            for i in range(0, len(chunk), 32):
+                out.append('\t.byte ' + ','.join(str(b) for b in chunk[i:i + 32]))
+            hpos += len(chunk)
+            if p == size:
+                break
+            if int.from_bytes(rec[p:p + 4], 'little') != 0:
+                sys.exit('hostasm: %s+0x%X: a pointer the host cannot relocate' % (label, r + p))
+            if hpos % 8:
+                out.append('\t.space %d' % (8 - hpos % 8))
+                hpos += 8 - hpos % 8
+            out.append('\t.quad 0')
+            hpos += 8
+            pos = p + 4
+        if hpos % 8:
+            out.append('\t.space %d' % (8 - hpos % 8))
+    return out
+
+
+def incbin_data(path, offset, length):
+    if path not in _files:
+        with open(os.path.join(ROOT, path), 'rb') as f:
+            _files[path] = f.read()
+    data = _files[path]
+    start = int(offset, 0) if offset else 0
+    end = start + int(length, 0) if length else len(data)
+    if end > len(data):
+        sys.exit('hostasm: .incbin "%s" past the end of the file' % path)
+    return data[start:end]
 
 
 def incbin_bytes(path, offset, length):

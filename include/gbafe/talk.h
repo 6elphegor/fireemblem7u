@@ -219,7 +219,7 @@ extern const struct ProcCmd gUnk_08BFFBDC[];
 extern const struct ProcCmd gProcScr_TalkWaitForInput[];
 extern const u16 * const gUnk_08B90A8C[];
 extern const struct ProcCmd gProcScr_TalkShiftClearAll[];
-extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFC9C[];
+extern const struct TalkChoiceEnt gUnk_08BFFC9C[];
 extern const struct TalkChoiceEnt gUnk_08BFFCAC[];
 extern const struct ProcCmd gUnk_08B90B0C[];
 extern const struct ProcCmd gUnk_08B90B24[];

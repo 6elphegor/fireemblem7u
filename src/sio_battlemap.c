@@ -127,7 +127,7 @@ extern u8 CONST_DATA gUnknown_085AA158[];
 extern u8 CONST_DATA gUnknown_085AA15C[];
 extern const struct ProcCmd gUnknown_085AA1AC[];
 extern const struct PopupInstruction gUnknown_085AA1FC[];
-extern struct PopupInstruction CONST_DATA gUnknown_085AA21C[];
+extern const struct PopupInstruction gUnknown_085AA21C[];
 extern const struct ProcCmd gUnknown_085AA2FC[];
 extern const struct ProcCmd gUnknown_085AA4CC[];
 extern const struct ProcCmd gUnknown_085AA5BC[];
@@ -2989,5 +2989,11 @@ const struct PopupInstruction gUnknown_085AA1FC[] = {
     { .opcode = 7, .data = (uintptr_t) gUnknown_03001850 },
     { .opcode = 1, .data = 3 },
     { .opcode = 6, .data = 0x3D6 },
+    { 0 },
+};
+
+SECTION(".rodata.08B99C88")
+const struct PopupInstruction gUnknown_085AA21C[] = {
+    { .opcode = 6, .data = 0x3D7 },
     { 0 },
 };

@@ -2054,3 +2054,8 @@ const struct OpAnimBgFrame gUnk_08CEF788[] = {
     { .img = gUnk_08615594, .tsa = gUnk_08616870 },
     { .img = (void *) -1 },
 };
+
+SECTION(".rodata.08CEF770")
+const struct OpAnimBgHeader gUnk_08CEF770[] = {
+    { .chr_offset = 0x800, .rows = 0x16 },
+};

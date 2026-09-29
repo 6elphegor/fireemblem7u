@@ -717,7 +717,13 @@ void efxLiveBG_Loop(struct ProcEfxBG * proc)
         u16 * const * tsaR = proc->tsar;
 
         // TODO: Is this the correct data type?
+#if PLATFORM_GBA
         EfxCreateBackAnim(proc->anim, (u16 *)(tsaL + ret * 0x12c), (u16 *)(tsaR + ret * 0x12c));
+#else
+        // tsal is one TSA per frame (0x4B0 bytes), not a pointer table: the
+        // stride is 0x12C 4-byte pointers on the GBA
+        EfxCreateBackAnim(proc->anim, (u16 *)tsaL + ret * 0x258, (u16 *)tsaR + ret * 0x258);
+#endif
     }
     else
     {

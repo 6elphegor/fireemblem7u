@@ -39,7 +39,7 @@ extern u16 const Pal_ChapterStatusMural[];
 extern u16 const Pal_StatusScreenLabelSprites[];
 extern u16 const Pal_ChapterStatusSelectorSprite[];
 extern u8 const Img_StatusScreenLabelSprites[];
-extern struct TextInitInfo const gTextInitInfo_ChapterStatus[];
+extern const struct TextInitInfo gTextInitInfo_ChapterStatus[];
 extern const struct ProcCmd gProcScr_ChapterStatusScreen[];
 extern const struct ProcCmd ProcScr_ChapterStatusScreen_FromPrep[];
 extern const struct ProcCmd ProcScr_StatusScreenSpriteDraw[];
@@ -794,4 +794,11 @@ const struct HelpBoxInfo gUnk_08CE5DC8 = {
     .x = 0x88,
     .y = 0x84,
     .msg = 0x397,
+};
+
+SECTION(".rodata.08CC2E88")
+const struct TextInitInfo gTextInitInfo_ChapterStatus[] = {
+    { .text = gChapterStatusText, .width = 0xE },
+    { .text = &gChapterStatusText[1], .width = 0xE },
+    { 0 },
 };

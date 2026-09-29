@@ -32,7 +32,7 @@ s8 MuExistsActive(void);
 
 extern const struct ProcCmd ProcScr_AiTargetCursor[];
 extern struct ProcCmd CONST_DATA gMusicProc3Script[];
-extern struct PopupInstruction CONST_DATA PopupScr_AiPillage[];
+extern const struct PopupInstruction PopupScr_AiPillage[];
 
 void CpPerform_MoveCameraOntoUnit(struct CpPerformProc * proc);
 void CpPerform_BeginUnitMovement(struct CpPerformProc * proc);
@@ -527,4 +527,11 @@ const struct ProcCmd ProcScr_AiTargetCursor[] = {
     PROC_WHILE_EXISTS(ProcScr_CamMove),
     PROC_REPEAT(AiTargetCursor_Main),
     PROC_END,
+};
+
+SECTION(".rodata.08B9701C")
+const struct PopupInstruction PopupScr_AiPillage[] = {
+    { .opcode = 0xC, .data = 0x37C },
+    { .opcode = 6, .data = 0x3D5 },
+    { 0 },
 };
