@@ -11,6 +11,7 @@ struct MenuItemPanelProc {
     /* 34 */ struct Text text[6];
     /* 64 */ u8 draw_arrow;
 };
+PROC_SIZE_CHECK(struct MenuItemPanelProc);
 
 void MenuItemPanelProcIdle(struct MenuItemPanelProc * proc);
 

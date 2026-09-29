@@ -10,6 +10,7 @@ struct ProcEmitSingleStarFx {
     /* 3C */ int xdiff_const;
     /* 40 */ int ydiff_const;
 };
+PROC_SIZE_CHECK(struct ProcEmitSingleStarFx);
 
 struct ProcEmitStars {
     PROC_HEADER;
@@ -30,6 +31,7 @@ struct ProcEmitStars {
     /* 64 */ s16 stars;
     /* 66 */ s16 star_cannot_move;
 };
+PROC_SIZE_CHECK(struct ProcEmitStars);
 
 #define OBJCHR_EMITSTARS 0x200
 

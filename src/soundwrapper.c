@@ -31,6 +31,7 @@ struct MusicProc {
     /* 68 */ s16 vc_clock;
     /* 6A */ s16 vc_time_end;
 };
+PROC_SIZE_CHECK(struct MusicProc);
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM1;
 extern struct MusicPlayerInfo gMPlayInfo_BGM2;

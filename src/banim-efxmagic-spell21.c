@@ -62,6 +62,7 @@ struct ProcEfxSpell21OBJ {
     /* 60 */ struct Anim * anim2;
     /* 64 */ struct Anim * anim3;
 };
+PROC_SIZE_CHECK(struct ProcEfxSpell21OBJ);
 
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);

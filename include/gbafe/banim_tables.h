@@ -15,11 +15,13 @@ struct BattleAnim {
     char * oam_l;
     u16 * pal;
 };
+GBA_SIZE_CHECK(struct BattleAnim, 0x20);
 
 struct BattleAnimCharaPal {
     char abbr[12];
     u16 * pal;
 };
+GBA_SIZE_CHECK(struct BattleAnimCharaPal, 0x10);
 
 struct BattleAnimTerrain {
     char abbr[12];
@@ -27,3 +29,4 @@ struct BattleAnimTerrain {
     u16 * palette;
     int null_1; // useless, always 00
 };
+GBA_SIZE_CHECK(struct BattleAnimTerrain, 0x18);

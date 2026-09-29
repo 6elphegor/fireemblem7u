@@ -213,6 +213,7 @@ struct Proc085AAAC4 {
     /* 29 */ STRUCT_PAD(0x29, 0x40);
     /* 40 */ int unk40;
 };
+PROC_SIZE_CHECK(struct Proc085AAAC4);
 
 struct ProcTactician {
     PROC_HEADER;
@@ -232,6 +233,7 @@ struct ProcTactician {
     /* 3D */ char str[0x48 - 0x3D];
     /* 48 */ u16 unk4C[0x10];
 };
+PROC_SIZE_CHECK(struct ProcTactician);
 
 struct TacticianTextConf {
     /* 00 */ u8 const * str[0xC];
@@ -241,6 +243,7 @@ struct TacticianTextConf {
     /* 36 */ s16 adj_idx[4];
     /* 3E */ u8 action;
 };
+GBA_SIZE_CHECK(struct TacticianTextConf, 0x40);
 
 extern const struct TacticianTextConf gTacticianTextConf[];
 const struct TacticianTextConf * GetTacticianTextConf(s16);
@@ -316,6 +319,7 @@ struct ProcSioHold {
     int x;
     int y, y_min, y_max;
 };
+PROC_SIZE_CHECK(struct ProcSioHold);
 
 void SioHold_Loop(struct ProcSioHold * proc);
 ProcPtr StartSioHold(ProcPtr parent, int x, int y, int y_max, int y_min);
@@ -588,6 +592,7 @@ struct LinkArenaRuleInfo
     /* 04 */ int xPos[2];
     /* 0C */ int optionTextId[2];
 };
+GBA_SIZE_CHECK(struct LinkArenaRuleInfo, 0x14);
 
 extern const struct LinkArenaRuleInfo gLinkArenaRuleData[];
 

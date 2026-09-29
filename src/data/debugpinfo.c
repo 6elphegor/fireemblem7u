@@ -10,6 +10,7 @@ struct DebugPInfo {
     char const * pname;
     char const * jname;
 };
+GBA_SIZE_CHECK(struct DebugPInfo, 0xC);
 
 CONST_DATA struct DebugPInfo gDebugPInfo[] = {
     [CHARACTER_ELIWOOD - 1] = { CLASS_LORD_ELIWOOD, "ELIWOD", "LORD" },

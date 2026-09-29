@@ -19,6 +19,7 @@ struct Text {
     /* 06 */ u8 db_id;
     /* 07 */ bool8 is_printing;
 };
+GBA_SIZE_CHECK(struct Text, 0x8);
 
 struct Font {
     /* 00 */ u8 * draw_dest;
@@ -35,6 +36,7 @@ struct TextInitInfo {
     /* 00 */ struct Text * text;
     /* 04 */ u8 width;
 };
+GBA_SIZE_CHECK(struct TextInitInfo, 0x8);
 
 enum langauge_type {
     LANG_JAPANESE,

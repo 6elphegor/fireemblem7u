@@ -16,6 +16,7 @@ struct PathArrowProc
     /* 41 */ s8 pathY[20];
     /* 55 */ s8 pathCosts[20];
 };
+PROC_SIZE_CHECK(struct PathArrowProc);
 
 extern struct PathArrowProc * CONST_DATA gpPathArrowProc;
 extern u16 CONST_DATA gPathArrowOAMTable[5][5];

@@ -21,6 +21,7 @@ struct BanimUnkStructCommPriv
     /* 3C */ STRUCT_PAD(0x3C, 0x4C);
     /* 4C */ int unk4C;
 };
+PROC_SIZE_CHECK(struct BanimUnkStructCommPriv);
 
 struct ProcEkrUnitMainMini
 {

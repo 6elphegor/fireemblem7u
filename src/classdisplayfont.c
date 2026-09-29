@@ -50,6 +50,7 @@ struct ClassDisplayFont {
     s8 width;
     s8 yBase;
 };
+GBA_SIZE_CHECK(struct ClassDisplayFont, 0x8);
 
 CONST_DATA struct ClassDisplayFont gClassDisplayFontData[] = {
     { (u16 *) gUnk_08CE6C10, 0, 8, 0 },

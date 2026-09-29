@@ -11,6 +11,7 @@ struct MovMapFillStateExt
     /* 02 */ u8 connexion;
     /* 03 */ u8 leastMoveCost;
 };
+GBA_SIZE_CHECK(struct MovMapFillStateExt, 0x4);
 
 struct MovMapFillState
 {

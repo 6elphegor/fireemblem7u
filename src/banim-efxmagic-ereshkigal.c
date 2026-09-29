@@ -53,6 +53,7 @@ struct ProcEfxEclipseBG
     /* 58 */ u16 * pal;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxEclipseBG);
 
 /* auto-decls */
 void NewEfxTwobaiRST(struct Anim *anim, int unk44);

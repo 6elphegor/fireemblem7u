@@ -52,10 +52,12 @@ struct ProcAtMenu {
 
     /* 40 */ u32 xDiff;
 };
+PROC_SIZE_CHECK(struct ProcAtMenu);
 
 struct SioPidPool {
     u8 pids[8];
 };
+GBA_SIZE_CHECK(struct SioPidPool, 0x8);
 
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 
@@ -151,6 +153,7 @@ struct ProcPrepMenuDesc {
 
     /* 58 */ int msg;
 };
+PROC_SIZE_CHECK(struct ProcPrepMenuDesc);
 
 // ResetPrepMenuDescTexts
 // ParsePrepMenuDescTexts
@@ -221,6 +224,7 @@ struct ProcPrepSpecialChar {
     /* 34 */ u16 timer;
     /* 38 */ ProcPtr approc;
 };
+PROC_SIZE_CHECK(struct ProcPrepSpecialChar);
 
 void ProcPrepSpChar_OnInit(struct ProcPrepSpecialChar *proc);
 void ProcPrepSpChar_Idle(struct ProcPrepSpecialChar *proc);
@@ -274,6 +278,7 @@ struct ProcPrepMuralBackground {
     /* 2C */ u8 unk_2C;
     /* 2D */ u8 pal_bank;
 };
+PROC_SIZE_CHECK(struct ProcPrepMuralBackground);
 
 void PrepMuralBackground_Init(struct ProcPrepMuralBackground *proc);
 void PrepMuralBackground_Loop(struct ProcPrepMuralBackground *proc);
@@ -288,6 +293,7 @@ struct SallyCirProc {
     /* 2A */ s8 unk_2a;
     /* 2C */ int unk_2c;
 };
+PROC_SIZE_CHECK(struct SallyCirProc);
 
 void SallyCir_Init(struct SallyCirProc *proc);
 void SallyCir_Loop(struct SallyCirProc *proc);

@@ -14,6 +14,7 @@ struct ProcEfxSpdQuake {
     /* 48 */ STRUCT_PAD(0x48, 0x5C);
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxSpdQuake);
 
 enum {
     EKR_HITTED = 0,

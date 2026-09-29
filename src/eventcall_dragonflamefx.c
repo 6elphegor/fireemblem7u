@@ -15,6 +15,7 @@ struct ProcDragonFlamefx {
 
     /* 64 */ s16 sound_en;
 };
+PROC_SIZE_CHECK(struct ProcDragonFlamefx);
 
 void PutDragonGateFlame(int ix, int iy)
 {

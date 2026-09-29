@@ -61,6 +61,7 @@ struct BmVSyncProc {
     /* 38 */ const struct TilePalAnim * tilePalAnimStart;
     /* 3C */ const struct TilePalAnim * tilePalAnimCurrent;
 };
+PROC_SIZE_CHECK(struct BmVSyncProc);
 
 struct MapMainProc {
     PROC_HEADER;
@@ -68,6 +69,7 @@ struct MapMainProc {
     /* 29 */ u8 pad_29[0x54 - 0x29];
     /* 54 */ struct Proc * gameCtrl;
 };
+PROC_SIZE_CHECK(struct MapMainProc);
 
 void BmVSync_TsImgAnim(struct BmVSyncProc * proc);
 void BmVSync_TsPalAnim(struct BmVSyncProc * proc);

@@ -8,6 +8,7 @@ struct AiStaffLutEntry {
     u16 itemId;
     void (* func)(int itemIdx, s8 (* isEnemy)(struct Unit * unit));
 };
+GBA_SIZE_CHECK(struct AiStaffLutEntry, 0x8);
 
 extern const struct AiStaffLutEntry sAiStaffFuncLut[];
 
@@ -15,6 +16,7 @@ struct AdjPosLutEnt {
     int x;
     int y;
 };
+GBA_SIZE_CHECK(struct AdjPosLutEnt, 0x8);
 
 CONST_DATA struct AdjPosLutEnt sAiAdjacentPositionLut[] = {
     { 1, 0 },

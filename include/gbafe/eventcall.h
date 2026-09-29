@@ -288,6 +288,7 @@ struct ProcEventQuakeHandler {
 
     /* 4C */ s8 quake_type;
 };
+PROC_SIZE_CHECK(struct ProcEventQuakeHandler);
 
 struct ProcEventQuakefx {
     PROC_HEADER;
@@ -296,6 +297,7 @@ struct ProcEventQuakefx {
 
     /* 4C */ s16 timer;
 };
+PROC_SIZE_CHECK(struct ProcEventQuakefx);
 
 void EventQuakefxHorizon_ViolentLoop(struct Proc * procfx);
 void EventQuakefxHorizon_SlightLoop(struct Proc * procfx);
@@ -373,6 +375,7 @@ struct ProcEventAnimfx
 
     /* 58 */ int bg2_offset;
 };
+PROC_SIZE_CHECK(struct ProcEventAnimfx);
 
 void QuintessenceFx_ParallelWorker(struct ProcEventAnimfx * proc);
 void QuintFxBg2_Init(struct ProcEventAnimfx * proc);
@@ -398,6 +401,7 @@ struct ProcUnitTornOut {
 
     /* 54 */ struct Unit * unit;
 };
+PROC_SIZE_CHECK(struct ProcUnitTornOut);
 
 void UnitTornOut_Init(struct ProcUnitTornOut * proc);
 void UnitTornOut_Loop(struct ProcUnitTornOut * proc);
@@ -420,6 +424,7 @@ struct ProcFlameBreathfx {
 
     /* 64 */ s16 bg_offset;
 };
+PROC_SIZE_CHECK(struct ProcFlameBreathfx);
 
 // sub_0807C378
 // sub_0807C38C
@@ -444,6 +449,7 @@ struct ProcIceCrystal {
 
     /* 58 */ int bg2_offset;
 };
+PROC_SIZE_CHECK(struct ProcIceCrystal);
 
 void IceCrystalfx_Start(struct ProcIceCrystal * proc);
 void IceCrystalfx_ResetPalette(struct ProcIceCrystal * proc);
@@ -609,6 +615,7 @@ struct ProcEventDragonsSpritefx {
     /* 6A */ u8 kind;
     /* 6B */ u8 timer;
 };
+PROC_SIZE_CHECK(struct ProcEventDragonsSpritefx);
 
 enum fire_dragon_sprite_action_idx {
     FIREDRAGONSPRIT_ACTION_NORMAL = 0,
@@ -627,6 +634,7 @@ struct ProcDragonFlameImpact {
 
     /* 4C */ s16 timer;
 };
+PROC_SIZE_CHECK(struct ProcDragonFlameImpact);
 
 void EventDragonsSpritefx_Init(struct ProcEventDragonsSpritefx * proc);
 void EventDragonsSpritefx_End(struct ProcEventDragonsSpritefx * proc);
@@ -665,6 +673,7 @@ struct ProcEventCutscene
     STRUCT_PAD(0x29, 0x4C);
     s16 unk_4C;
 };
+PROC_SIZE_CHECK(struct ProcEventCutscene);
 
 void sub_0807EC30(struct ProcEventCutscene * proc);
 void sub_0807ECA8(struct ProcEventCutscene * proc);

@@ -12,6 +12,7 @@ struct ProcEkrHensei {
     /* 2C */ s16 timer;
     /* 2E */ s16 terminator;
 };
+PROC_SIZE_CHECK(struct ProcEkrHensei);
 
 extern u32 gEkrInitPosReal;
 extern s16 gBanimBackgroundIndex;

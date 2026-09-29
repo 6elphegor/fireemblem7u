@@ -55,6 +55,7 @@ struct ProcEfxDamageMojiEffectOBJ {
     /* 5C */ struct Anim * anim;
     /* 60 */ struct ProcEkrSubAnimeEmulator *sub_proc;
 };
+PROC_SIZE_CHECK(struct ProcEfxDamageMojiEffectOBJ);
 
 void NewEfxDamageMojiEffect(struct Anim * anim, int hitted);
 void efxDamageMojiEffectMain(struct ProcEfx * proc);

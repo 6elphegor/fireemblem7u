@@ -30,6 +30,7 @@ struct EventCallLookupEnt {
     /* 00 */ int key;
     /* 04 */ int value;
 };
+GBA_SIZE_CHECK(struct EventCallLookupEnt, 0x8);
 
 #define NUM_BACKGROUNDS 0x5B
 
@@ -518,6 +519,7 @@ struct ProcEventSnowStormfx {
 
     /* 3C */ int x, y;
 };
+PROC_SIZE_CHECK(struct ProcEventSnowStormfx);
 
 void EventSnowStormfx_Init(struct ProcEventSnowStormfx * proc);
 void EventSnowStormfx_Loop1(struct ProcEventSnowStormfx * proc);
@@ -544,6 +546,7 @@ struct ProcEventThunderfx {
 
     /* 3C */ int x, y;
 };
+PROC_SIZE_CHECK(struct ProcEventThunderfx);
 
 void EventThunderfx_Init(struct ProcEventThunderfx * proc);
 void EventThunderfx_End(struct ProcEventThunderfx * proc);
@@ -568,6 +571,7 @@ struct ProcNinianAppear {
     /* 3C */ int x, y;
     /* 44 */ ProcPtr approc[8];
 };
+PROC_SIZE_CHECK(struct ProcNinianAppear);
 
 void NinianAppear_Init(struct ProcNinianAppear * proc);
 void NinianDisp_FadeIn_Unused(struct ProcNinianAppear * proc);
@@ -590,6 +594,7 @@ struct ProcScreenFlashing {
     int timer;
     int r, b, g;
 };
+PROC_SIZE_CHECK(struct ProcScreenFlashing);
 
 void ScreenFlash_Init(struct ProcScreenFlashing * proc);
 void ScreenFlash_FadeIn(struct ProcScreenFlashing * proc);
@@ -606,6 +611,7 @@ struct ProcEventFade {
     /* 3C */ int r0, g0, b0;
     /* 48 */ int r1, g1, b1;
 };
+PROC_SIZE_CHECK(struct ProcEventFade);
 
 void EventFadefx_Init(struct ProcEventFade * proc);
 void EventFadefx_Loop(struct ProcEventFade * proc);
@@ -623,6 +629,7 @@ struct EventSpriteAnimConf {
 
     /* 12 */ u8 _pad_[2];
 };
+GBA_SIZE_CHECK(struct EventSpriteAnimConf, 0x14);
 
 struct ProcEventSpriteAnim {
     PROC_HEADER;
@@ -631,6 +638,7 @@ struct ProcEventSpriteAnim {
     /* 34 */ ProcPtr approc;
     /* 38 */ const struct EventSpriteAnimConf * priv;
 };
+PROC_SIZE_CHECK(struct ProcEventSpriteAnim);
 
 void EventSpriteAnim_Init(struct ProcEventSpriteAnim * proc);
 void EventSpriteAnim_Loop(struct ProcEventSpriteAnim * proc);
@@ -666,6 +674,7 @@ struct BackgroundInfo
     u8 const * tsa;
     u16 const * pal;
 };
+GBA_SIZE_CHECK(struct BackgroundInfo, 0xC);
 
 extern const struct BackgroundInfo gBackgroundTable[];
 
@@ -723,6 +732,7 @@ struct EventCmdInfo {
     int (* func)(struct EventProc * proc);
     int length; // in words
 };
+GBA_SIZE_CHECK(struct EventCmdInfo, 0x8);
 
 extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
 
@@ -748,6 +758,7 @@ struct PopupInstruction {
     u8 opcode;
     uintptr_t data; // a number, a message id or a string (POPUP_OP_STR)
 };
+GBA_SIZE_CHECK(struct PopupInstruction, 0x8);
 
 struct PopupProc {
     /* 00 */ PROC_HEADER;

@@ -16,6 +16,7 @@ struct BmusAilmentProc {
 
     /* 4C */ s16 unk_4C;
 };
+PROC_SIZE_CHECK(struct BmusAilmentProc);
 
 void ApplyHazardHealing(ProcPtr proc, struct Unit * unit, int hp, int status);
 void RenderMapForFogFadeIfUnitDied(struct Unit * unit);

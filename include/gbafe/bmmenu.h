@@ -31,6 +31,7 @@ struct MenuItemDef {
     /* 1C */ int (* onSwitchIn)(struct MenuProc *, struct MenuItemProc *);
     /* 20 */ int (* onSwitchOut)(struct MenuProc *, struct MenuItemProc *);
 };
+GBA_SIZE_CHECK(struct MenuItemDef, 0x24);
 
 struct MenuDef {
     /* 00 */ struct MenuRect rect;
@@ -43,6 +44,7 @@ struct MenuDef {
     /* 1C */ u8 (* onRPress)(struct MenuProc *);
     /* 20 */ u8 (* onHelpBox)(struct MenuProc *, struct MenuItemProc *);
 };
+GBA_SIZE_CHECK(struct MenuDef, 0x24);
 
 struct MenuProc {
     /* 00 */ PROC_HEADER;
@@ -105,6 +107,7 @@ struct SelectInfo {
     /* 18 */ u8 (* onCancel)(ProcPtr proc, struct SelectTarget * target);
     /* 1C */ u8 (* onHelp)(ProcPtr proc, struct SelectTarget * target);
 };
+GBA_SIZE_CHECK(struct SelectInfo, 0x20);
 
 ProcPtr StartMapSelect(const struct SelectInfo * info);   /* NewTargetSelection */
 ProcPtr NewTargetSelection_Specialized(const struct SelectInfo * info, u8 (* onSelect)(ProcPtr, struct SelectTarget *));

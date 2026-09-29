@@ -39,6 +39,7 @@ struct ProcEfxBolganoneOBJ {
     /* 5C */ struct Anim * anim;
     /* 60 */ struct Anim * anim2;
 };
+PROC_SIZE_CHECK(struct ProcEfxBolganoneOBJ);
 
 extern const s16 gBolganoneOBJDurations[];
 extern const s16 gBolganoneOBJTypes[];

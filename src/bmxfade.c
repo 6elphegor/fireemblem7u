@@ -7,6 +7,7 @@ struct BmxfadeProc {
     /* 4C */ s16 counter;
     /* 4E */ s16 game_lock;
 };
+PROC_SIZE_CHECK(struct BmxfadeProc);
 
 void Destruct6CBMXFADE(struct BmxfadeProc * proc);
 void bmxfade_init(struct BmxfadeProc * proc);

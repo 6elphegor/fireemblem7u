@@ -25,6 +25,7 @@ struct ProcEfxFarAttack {
     /* 36 */ s16 unk_36;
     /* 38 */ s16 unk_38;
 };
+PROC_SIZE_CHECK(struct ProcEfxFarAttack);
 
 struct ProcEfxQuake {
     PROC_HEADER;
@@ -47,6 +48,7 @@ struct ProcEfxQuake {
     /* 60 */ struct Anim * anim_r;
     /* 64 */ struct Anim * unk_64;
 };
+PROC_SIZE_CHECK(struct ProcEfxQuake);
 
 extern const s16 gEfxQuakeVecs0[];
 extern const s16 gEfxQuakeVecs[];

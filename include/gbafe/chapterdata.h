@@ -118,6 +118,7 @@ struct ChapterInfo {
     /* 96 */ u8 unk96; // ?
     /* 97 */ u8 unk97; // ?
 };
+GBA_SIZE_CHECK(struct ChapterInfo, 0x98);
 
 struct ChapterEventGroup
 {
@@ -139,6 +140,7 @@ struct ChapterEventGroup
     /* 38 */ const void * beginningSceneEvents;
     /* 3C */ const void * endingSceneEvents;
 };
+GBA_SIZE_CHECK(struct ChapterEventGroup, 0x40);
 
 const struct ChapterInfo * GetChapterInfo(u32 chIndex);
 const void * GetChapterMapPointer(u32 chIndex);

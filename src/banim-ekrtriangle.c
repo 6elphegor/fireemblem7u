@@ -43,6 +43,7 @@ struct ProcEkrTriangle {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrTriangle);
 
 struct ProcEkrTriClass {
     PROC_HEADER;
@@ -62,6 +63,7 @@ struct ProcEkrTriClass {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrTriClass);
 
 struct ProcEkrTriPegasusKnightBG {
     PROC_HEADER;
@@ -81,6 +83,7 @@ struct ProcEkrTriPegasusKnightBG {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrTriPegasusKnightBG);
 
 struct ProcEkrTriArmorKnightOBJ2 {
     PROC_HEADER;
@@ -102,6 +105,7 @@ struct ProcEkrTriArmorKnightOBJ2 {
     /* 60 */ struct Anim * anim2;
     /* 64 */ struct Anim * anim3;
 };
+PROC_SIZE_CHECK(struct ProcEkrTriArmorKnightOBJ2);
 
 struct ProcEfxTriagnleQUAKE {
     PROC_HEADER;
@@ -116,6 +120,7 @@ struct ProcEfxTriagnleQUAKE {
     /* 5C */ struct Anim * anim;
     /* 60 */ ProcPtr qproc;
 };
+PROC_SIZE_CHECK(struct ProcEfxTriagnleQUAKE);
 
 extern int gEkrTriangleInvalid;
 extern int gEfxBgSemaphore;

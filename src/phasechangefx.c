@@ -6,6 +6,7 @@ struct PhaseIntroSubProc {
     /* 29 */ u8 _pad_29[0x4C - 0x29];
     /* 4C */ s16 timer;
 };
+PROC_SIZE_CHECK(struct PhaseIntroSubProc);
 
 extern u8 const Img_PhaseChangeSquares[];
 extern u8 const Img_PhaseChangePlayer[];

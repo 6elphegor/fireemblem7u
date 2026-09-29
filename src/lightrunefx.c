@@ -4,6 +4,7 @@ struct VectorBmfx {
     u8 x, y;
     u16 unk;
 };
+GBA_SIZE_CHECK(struct VectorBmfx, 0x4);
 
 extern u8 CONST_DATA Img_LightRune[];
 extern u16 CONST_DATA Pal_LightRune[];
@@ -51,7 +52,7 @@ void ProcLightRuneAnim3_Loop(struct ProcBmFx * proc)
     struct VectorBmfx buf[13];
     int x, y;
 
-    memcpy(buf, Vectors_LightRune3, 0x34);
+    memcpy(buf, Vectors_LightRune3, sizeof(buf));
     proc->timer++;
 
     x = buf[proc->timer / 3].x;
