@@ -1,4 +1,6 @@
 #include "gbafe.h"
+#include "gbafe/prep_sallycursor.h"
+#include "gbafe/bksel.h"
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
 
@@ -2006,4 +2008,761 @@ const struct ProcCmd ProcScr_Config_Field[] = {
     PROC_REPEAT(WaitForFade),
     PROC_CALL(UnlockGame),
     PROC_END,
+};
+
+extern const struct MenuItemDef gStealItemMenuItems[];
+extern const struct MenuItemDef gYesNoSelectionMenuItems[];
+extern const struct MenuItemDef gUnk_08B94E94[];
+extern const struct MenuItemDef gItemMenuItems[];
+extern const struct MenuItemDef gStaffItemSelectMenuItems[];
+extern const struct MenuItemDef gItemSelectMenuItems[];
+extern const struct MenuItemDef gBallistaRangeMenuItems[];
+extern const struct MenuItemDef gWeaponSelectMenuItems[];
+extern const struct MenuItemDef gUnk_08B95314[];
+extern const struct MenuItemDef gUnk_08B95704[];
+
+SECTION(".rodata.08B94AEC")
+const struct MenuItemDef gStealItemMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x1E,
+        .isAvailable = StealItemMenuCommand_Usability,
+        .onDraw = StealItemMenuCommand_Draw,
+        .onSelected = StealItemMenuCommand_Effect,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x1F,
+        .isAvailable = StealItemMenuCommand_Usability,
+        .onDraw = StealItemMenuCommand_Draw,
+        .onSelected = StealItemMenuCommand_Effect,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x20,
+        .isAvailable = StealItemMenuCommand_Usability,
+        .onDraw = StealItemMenuCommand_Draw,
+        .onSelected = StealItemMenuCommand_Effect,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x21,
+        .isAvailable = StealItemMenuCommand_Usability,
+        .onDraw = StealItemMenuCommand_Draw,
+        .onSelected = StealItemMenuCommand_Effect,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x22,
+        .isAvailable = StealItemMenuCommand_Usability,
+        .onDraw = StealItemMenuCommand_Draw,
+        .onSelected = StealItemMenuCommand_Effect,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B94E28")
+const struct MenuItemDef gYesNoSelectionMenuItems[] = {
+    {
+        .name = gUnk_081C3E78,
+        .nameMsgId = 0x10EE,
+        .overrideId = 0x31,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = MenuCommand_SelectYes,
+    },
+    {
+        .name = gUnk_081C3E70,
+        .nameMsgId = 0x10EF,
+        .overrideId = 0x32,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = (void *) MenuCommand_SelectNo,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B94E94")
+const struct MenuItemDef gUnk_08B94E94[] = {
+    {
+        .name = gUnk_081C3E98,
+        .nameMsgId = 0x10EA,
+        .helpMsgId = 0x36D,
+        .overrideId = 0x33,
+        .isAvailable = ItemSubMenu_IsUseAvailable,
+        .onSelected = ItemSubMenu_UseItem,
+    },
+    {
+        .name = gUnk_081C3E90,
+        .nameMsgId = 0x10EB,
+        .helpMsgId = 0x36C,
+        .color = 4,
+        .overrideId = 0x34,
+        .isAvailable = ItemSubMenu_IsEquipAvailable,
+        .onSelected = ItemSubMenu_EquipItem,
+    },
+    {
+        .name = gUnk_081C3E88,
+        .nameMsgId = 0x10EC,
+        .helpMsgId = 0x366,
+        .color = 4,
+        .overrideId = 0x35,
+        .isAvailable = ItemSubMenu_IsTradeAvailable,
+        .onSelected = ItemSubMenu_TradeItem,
+    },
+    {
+        .name = gUnk_081C3E80,
+        .nameMsgId = 0x10ED,
+        .helpMsgId = 0x36E,
+        .color = 4,
+        .overrideId = 0x36,
+        .isAvailable = ItemSubMenu_IsDiscardAvailable,
+        .onSelected = ItemSubMenu_DiscardItem,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B94F48")
+const struct MenuItemDef gItemMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x37,
+        .isAvailable = ItemMenu_Is1stCommandAvailable,
+        .onDraw = ItemMenu_Draw1stCommand,
+        .onSelected = ItemMenu_Select1stCommand,
+        .onSwitchIn = ItemMenu_SwitchIn,
+        .onSwitchOut = ItemMenu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x38,
+        .isAvailable = ItemMenu_AreOtherCommandsAvailable,
+        .onDraw = ItemMenu_DrawOtherCommands,
+        .onSelected = ItemMenu_SelectOtherCommands,
+        .onSwitchIn = ItemMenu_SwitchIn,
+        .onSwitchOut = ItemMenu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x39,
+        .isAvailable = ItemMenu_AreOtherCommandsAvailable,
+        .onDraw = ItemMenu_DrawOtherCommands,
+        .onSelected = ItemMenu_SelectOtherCommands,
+        .onSwitchIn = ItemMenu_SwitchIn,
+        .onSwitchOut = ItemMenu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x3A,
+        .isAvailable = ItemMenu_AreOtherCommandsAvailable,
+        .onDraw = ItemMenu_DrawOtherCommands,
+        .onSelected = ItemMenu_SelectOtherCommands,
+        .onSwitchIn = ItemMenu_SwitchIn,
+        .onSwitchOut = ItemMenu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x3B,
+        .isAvailable = ItemMenu_AreOtherCommandsAvailable,
+        .onDraw = ItemMenu_DrawOtherCommands,
+        .onSelected = ItemMenu_SelectOtherCommands,
+        .onSwitchIn = ItemMenu_SwitchIn,
+        .onSwitchOut = ItemMenu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x3C,
+        .isAvailable = ItemMenu_AreOtherCommandsAvailable,
+        .onDraw = ItemMenu_DrawOtherCommands,
+        .onSelected = ItemMenu_SelectOtherCommands,
+        .onSwitchIn = ItemMenu_SwitchIn,
+        .onSwitchOut = ItemMenu_SwitchOut_DoNothing,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B95044")
+const struct MenuItemDef gStaffItemSelectMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x3D,
+        .isAvailable = StaffItemSelect_Usability,
+        .onDraw = StaffItemSelect_TextDraw,
+        .onSelected = StaffItemSelect_Effect,
+        .onSwitchIn = StaffItemSelect_OnHover,
+        .onSwitchOut = StaffItemSelect_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x3E,
+        .isAvailable = StaffItemSelect_Usability,
+        .onDraw = StaffItemSelect_TextDraw,
+        .onSelected = StaffItemSelect_Effect,
+        .onSwitchIn = StaffItemSelect_OnHover,
+        .onSwitchOut = StaffItemSelect_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x3F,
+        .isAvailable = StaffItemSelect_Usability,
+        .onDraw = StaffItemSelect_TextDraw,
+        .onSelected = StaffItemSelect_Effect,
+        .onSwitchIn = StaffItemSelect_OnHover,
+        .onSwitchOut = StaffItemSelect_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x40,
+        .isAvailable = StaffItemSelect_Usability,
+        .onDraw = StaffItemSelect_TextDraw,
+        .onSelected = StaffItemSelect_Effect,
+        .onSwitchIn = StaffItemSelect_OnHover,
+        .onSwitchOut = StaffItemSelect_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x41,
+        .isAvailable = StaffItemSelect_Usability,
+        .onDraw = StaffItemSelect_TextDraw,
+        .onSelected = StaffItemSelect_Effect,
+        .onSwitchIn = StaffItemSelect_OnHover,
+        .onSwitchOut = StaffItemSelect_SwitchOut,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B9511C")
+const struct MenuItemDef gItemSelectMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x42,
+        .isAvailable = ItemSelectMenu_Usability,
+        .onDraw = ItemSelectMenu_TextDraw,
+        .onSelected = ItemSelectMenu_Effect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x43,
+        .isAvailable = ItemSelectMenu_Usability,
+        .onDraw = ItemSelectMenu_TextDraw,
+        .onSelected = ItemSelectMenu_Effect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x44,
+        .isAvailable = ItemSelectMenu_Usability,
+        .onDraw = ItemSelectMenu_TextDraw,
+        .onSelected = ItemSelectMenu_Effect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x45,
+        .isAvailable = ItemSelectMenu_Usability,
+        .onDraw = ItemSelectMenu_TextDraw,
+        .onSelected = ItemSelectMenu_Effect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x46,
+        .isAvailable = ItemSelectMenu_Usability,
+        .onDraw = ItemSelectMenu_TextDraw,
+        .onSelected = ItemSelectMenu_Effect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B951F4")
+const struct MenuItemDef gBallistaRangeMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x47,
+        .isAvailable = BallistaRangeMenu_BallistaUsability,
+        .onDraw = BallistaRangeMenu_Draw,
+        .onSelected = BallistaRangeMenu_Select,
+        .onSwitchIn = FillBallistaRange,
+        .onSwitchOut = BallistaRangeMenu_SwitchOut,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B9523C")
+const struct MenuItemDef gWeaponSelectMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x48,
+        .isAvailable = WeaponSelectMenu_IsAvailable,
+        .onDraw = WeaponSelectMenu_Draw,
+        .onSelected = WeaponSelectMenu_Selected,
+        .onSwitchIn = WeaponSelectMenu_SwitchIn,
+        .onSwitchOut = BallistaRangeMenu_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x49,
+        .isAvailable = WeaponSelectMenu_IsAvailable,
+        .onDraw = WeaponSelectMenu_Draw,
+        .onSelected = WeaponSelectMenu_Selected,
+        .onSwitchIn = WeaponSelectMenu_SwitchIn,
+        .onSwitchOut = BallistaRangeMenu_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x4A,
+        .isAvailable = WeaponSelectMenu_IsAvailable,
+        .onDraw = WeaponSelectMenu_Draw,
+        .onSelected = WeaponSelectMenu_Selected,
+        .onSwitchIn = WeaponSelectMenu_SwitchIn,
+        .onSwitchOut = BallistaRangeMenu_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x4B,
+        .isAvailable = WeaponSelectMenu_IsAvailable,
+        .onDraw = WeaponSelectMenu_Draw,
+        .onSelected = WeaponSelectMenu_Selected,
+        .onSwitchIn = WeaponSelectMenu_SwitchIn,
+        .onSwitchOut = BallistaRangeMenu_SwitchOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x4C,
+        .isAvailable = WeaponSelectMenu_IsAvailable,
+        .onDraw = WeaponSelectMenu_Draw,
+        .onSelected = WeaponSelectMenu_Selected,
+        .onSwitchIn = WeaponSelectMenu_SwitchIn,
+        .onSwitchOut = BallistaRangeMenu_SwitchOut,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B95314")
+const struct MenuItemDef gUnk_08B95314[] = {
+    {
+        .name = gUnk_081C3F94,
+        .nameMsgId = 0x10CA,
+        .helpMsgId = 0x35E,
+        .overrideId = 0x4D,
+        .isAvailable = UnitActionMenu_Seize_Available,
+        .onSelected = UnitActionMenu_Seize,
+    },
+    {
+        .name = gUnk_081C3F8C,
+        .nameMsgId = 0x10CB,
+        .helpMsgId = 0x353,
+        .overrideId = 0x4E,
+        .isAvailable = GetUnitAttackCommandAvailability,
+        .onSelected = UnitAttackCommandEffect,
+        .onSwitchIn = DisplayUnitStandingAttackRange,
+        .onSwitchOut = HideMoveRangeGraphicsWrapper,
+    },
+    {
+        .name = gUnk_081C3F8C,
+        .nameMsgId = 0x10CB,
+        .helpMsgId = 0x353,
+        .overrideId = 0x4F,
+        .isAvailable = GetUnitAttackBallistaCommandAvailability,
+        .onSelected = UnitAttackCommandEffect,
+        .onSwitchIn = DisplayUnitStandingAttackRange,
+        .onSwitchOut = HideMoveRangeGraphicsWrapper,
+    },
+    {
+        .name = gUnk_081C3F84,
+        .nameMsgId = 0x10CC,
+        .helpMsgId = 0x354,
+        .overrideId = 0x50,
+        .isAvailable = StaffCommandUsability,
+        .onSelected = StaffCommandEffect,
+        .onSwitchIn = StaffCommandRange,
+        .onSwitchOut = HideMoveRangeGraphicsWrapper2,
+    },
+    {
+        .name = gUnk_081C3F7C,
+        .nameMsgId = 0x10C8,
+        .helpMsgId = 0x368,
+        .color = 4,
+        .overrideId = 0x51,
+        .isAvailable = RideCommandUsability,
+        .onSelected = RideCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F70,
+        .nameMsgId = 0x10C9,
+        .helpMsgId = 0x369,
+        .color = 4,
+        .overrideId = 0x52,
+        .isAvailable = ExitCommandUsability,
+        .onSelected = ExitCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F64,
+        .nameMsgId = 0x10CD,
+        .helpMsgId = 0x356,
+        .overrideId = 0x53,
+        .isAvailable = PlayCommandUsability,
+        .onSelected = PlayCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F5C,
+        .nameMsgId = 0x10CE,
+        .helpMsgId = 0x355,
+        .overrideId = 0x54,
+        .isAvailable = DanceCommandUsability,
+        .onSelected = PlayCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F54,
+        .nameMsgId = 0x10CF,
+        .helpMsgId = 0x357,
+        .overrideId = 0x55,
+        .isAvailable = StealCommandUsability,
+        .onSelected = StealCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F4C,
+        .nameMsgId = 0x10D0,
+        .helpMsgId = 0x35C,
+        .overrideId = 0x56,
+        .isAvailable = TalkCommandUsability,
+        .onSelected = TalkCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F44,
+        .nameMsgId = 0x10D1,
+        .helpMsgId = 0x3DB,
+        .overrideId = 0x57,
+        .isAvailable = SupportCommandUsability,
+        .onSelected = SupportCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F3C,
+        .nameMsgId = 0x10D2,
+        .helpMsgId = 0x35D,
+        .overrideId = 0x58,
+        .isAvailable = VisitCommandUsability,
+        .onSelected = VisitCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F34,
+        .nameMsgId = 0x10D3,
+        .helpMsgId = 0x360,
+        .overrideId = 0x59,
+        .isAvailable = ChestCommandUsability,
+        .onSelected = ChestCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F2C,
+        .nameMsgId = 0x10D4,
+        .helpMsgId = 0x35F,
+        .overrideId = 0x5A,
+        .isAvailable = DoorCommandUsability,
+        .onSelected = DoorCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F20,
+        .nameMsgId = 0x10D5,
+        .helpMsgId = 0x361,
+        .overrideId = 0x5B,
+        .isAvailable = ArmoryCommandUsability,
+        .onSelected = ArmoryCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F14,
+        .nameMsgId = 0x10D6,
+        .helpMsgId = 0x362,
+        .overrideId = 0x5C,
+        .isAvailable = VendorCommandUsability,
+        .onSelected = VendorCommandEffect,
+    },
+    {
+        .name = gUnk_081C3F08,
+        .nameMsgId = 0x10D7,
+        .helpMsgId = 0x363,
+        .overrideId = 0x5D,
+        .isAvailable = SecretShopCommandUsability,
+        .onSelected = SecretShopCommandEffect,
+    },
+    {
+        .name = gUnk_081C3EFC,
+        .nameMsgId = 0x10D8,
+        .helpMsgId = 0x364,
+        .overrideId = 0x5E,
+        .isAvailable = ArenaCommandUsability,
+        .onSelected = ArenaCommandEffect,
+    },
+    {
+        .name = gUnk_081C3EF4,
+        .nameMsgId = 0x10D9,
+        .helpMsgId = 0x358,
+        .overrideId = 0x5F,
+        .isAvailable = RescueUsability,
+        .onSelected = RescueEffect,
+    },
+    {
+        .name = gUnk_081C3EE8,
+        .nameMsgId = 0x10DA,
+        .helpMsgId = 0x359,
+        .overrideId = 0x60,
+        .isAvailable = DropUsability,
+        .onSelected = DropEffect,
+    },
+    {
+        .name = gUnk_081C3EDC,
+        .nameMsgId = 0x10DB,
+        .helpMsgId = 0x35B,
+        .color = 4,
+        .overrideId = 0x61,
+        .isAvailable = TakeUsability,
+        .onSelected = TakeEffect,
+    },
+    {
+        .name = gUnk_081C3ED0,
+        .nameMsgId = 0x10DC,
+        .helpMsgId = 0x35A,
+        .color = 4,
+        .overrideId = 0x62,
+        .isAvailable = GiveUsability,
+        .onSelected = GiveEffect,
+    },
+    {
+        .name = gUnk_081C3EC4,
+        .nameMsgId = 0x10DD,
+        .helpMsgId = 0x365,
+        .overrideId = 0x63,
+        .isAvailable = ItemCommandUsability,
+        .onSelected = ItemCommandEffect,
+    },
+    {
+        .name = gUnk_081C3EBC,
+        .nameMsgId = 0x10DE,
+        .helpMsgId = 0x366,
+        .color = 4,
+        .overrideId = 0x64,
+        .isAvailable = ItemSubMenu_IsTradeAvailable,
+        .onSelected = TradeCommandEffect,
+    },
+    {
+        .name = gUnk_081C3EB0,
+        .nameMsgId = 0x10DF,
+        .helpMsgId = 0x367,
+        .color = 4,
+        .overrideId = 0x65,
+        .isAvailable = SupplyUsability,
+        .onSelected = SupplyCommandEffect,
+    },
+    {
+        .name = gUnk_081C3EA8,
+        .nameMsgId = 0x10E3,
+        .helpMsgId = 0x371,
+        .overrideId = 0x66,
+        .isAvailable = (void *) sub_08022F68,
+        .onSelected = (void *) sub_08022F6C,
+    },
+    {
+        .name = gUnk_081C3EA0,
+        .nameMsgId = 0x10E0,
+        .helpMsgId = 0x352,
+        .overrideId = 0x67,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = EffectWait,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B95704")
+const struct MenuItemDef gUnk_08B95704[] = {
+    {
+        .name = gUnk_081C3F9C,
+        .nameMsgId = 0x10E1,
+        .overrideId = 0x68,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = (void *) sub_08030C10,
+    },
+    { 0 },
+};
+
+extern const struct MenuDef gUnk_08B95AD0;
+
+SECTION(".rodata.08B95920")
+const struct MenuDef gStealItemMenuDef = {
+    .rect = { .x = 0xE, .y = 4, .w = 0xE },
+    .menuItems = gStealItemMenuItems,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ItemMenu_HelpBox,
+};
+
+SECTION(".rodata.08B959B0")
+const struct MenuDef gYesNoSelectionMenuDef = {
+    .rect = { .w = 5 },
+    .style = 1,
+    .menuItems = gYesNoSelectionMenuItems,
+    .onBPress = (void *) MenuCommand_SelectNo,
+};
+
+SECTION(".rodata.08B959D4")
+const struct MenuDef gItemSubMenuDef = {
+    .rect = { .w = 6 },
+    .style = 1,
+    .menuItems = gUnk_08B94E94,
+    .onEnd = ItemSubMenuEnd,
+    .onBPress = (void *) MenuCommand_SelectNo,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = MenuStdHelpBox,
+};
+
+SECTION(".rodata.08B959F8")
+const struct MenuDef gItemMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gItemMenuItems,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ItemMenuHelpBox,
+};
+
+SECTION(".rodata.08B95A1C")
+const struct MenuDef gStaffItemSelectMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gStaffItemSelectMenuItems,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ConvoyMenu_HelpBox,
+};
+
+SECTION(".rodata.08B95A40")
+const struct MenuDef gItemSelectMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gItemSelectMenuItems,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ConvoyMenu_HelpBox,
+};
+
+SECTION(".rodata.08B95A64")
+const struct MenuDef gBallistaRangeMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gBallistaRangeMenuItems,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = BallistaRangeMenuHelpBox,
+};
+
+SECTION(".rodata.08B95A88")
+const struct MenuDef gWeaponSelectMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gWeaponSelectMenuItems,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ConvoyMenu_HelpBox,
+};
+
+SECTION(".rodata.08B95AAC")
+const struct MenuDef gUnitActionMenuDef = {
+    .rect = { .x = 1, .y = 3, .w = 7 },
+    .menuItems = gUnk_08B95314,
+    .onBPress = MenuCancelSelect,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = MenuStdHelpBox,
+};
+
+SECTION(".rodata.08B95AD0")
+const struct MenuDef gUnk_08B95AD0 = {
+    .rect = { .x = 1, .y = 2, .w = 9 },
+    .menuItems = gUnk_08B95704,
+    .onBPress = MenuCancelSelect,
+};
+
+SECTION(".rodata.08B95B98")
+const struct SelectInfo gSelectInfo_Dance = {
+    .onInit = RefreshMapSelect_Init,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = RefreshMapSelect_SwitchIn,
+    .onSelect = RefreshMapSelect_Select,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95BF8")
+const struct SelectInfo gSelectInfo_Steal = {
+    .onInit = StealMapSelect_Init,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = StealMapSelect_SwitchIn,
+    .onSelect = StealMapSelect_Select,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95C18")
+const struct SelectInfo gSelectInfo_Support = {
+    .onInit = TalkSupportSelection_OnInit,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = TalkSupportSelection_OnChange,
+    .onSelect = SupportSelection_OnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95C38")
+const struct SelectInfo gSelectInfo_Talk = {
+    .onInit = TalkSupportSelection_OnInit,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = TalkSupportSelection_OnChange,
+    .onSelect = TalkSelection_OnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95C78")
+const struct SelectInfo gSelectInfo_Trade = {
+    .onInit = TradeTargetSelection_OnInit,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = TradeSelection_OnChange,
+    .onSelect = TradeSelection_OnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95C98")
+const struct SelectInfo gSelectInfo_Attack = {
+    .onInit = NewBattleForecast,
+    .onEnd = (void *) AttackMapSelect_End,
+    .onSwitchIn = AttackMapSelect_SwitchIn,
+    .onSelect = AttackMapSelect_Select,
+    .onCancel = AttackMapSelect_Cancel,
+    .onHelp = (void *) StartBattleForecastHelpBox,
+};
+
+SECTION(".rodata.08B95CB8")
+const struct SelectInfo gSelectInfo_Give = {
+    .onInit = GiveSelection_OnInit,
+    .onSwitchIn = GiveSelection_OnChange,
+    .onSelect = GiveSelection_OnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95CD8")
+const struct SelectInfo gSelectInfo_Take = {
+    .onInit = TakeSelection_OnInit,
+    .onSwitchIn = TakeSelection_OnChange,
+    .onSelect = TakeSelection_OnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95CF8")
+const struct SelectInfo gSelectInfo_Drop = {
+    .onInit = DropSelection_OnConstruction,
+    .onEnd = (void *) ClearUi,
+    .onSelect = DropSelection_OnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95D18")
+const struct SelectInfo gSelectInfo_Rescue = {
+    .onInit = RescueSelection_OnConstruction,
+    .onSwitchIn = RescueSelection_OnChange,
+    .onSelect = RescueSelection_OnSelect,
+    .onCancel = GenericSelection_BackToUM,
+    .onHelp = RescueSelection_OnHelp,
 };

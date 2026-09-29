@@ -1095,3 +1095,33 @@ const struct MenuDef gDebugMenuDef = {
     .onInit = (void *) DebugMenuInit,
     .onBPress = EndMenuAndClear,
 };
+
+extern const struct MenuItemDef gUnk_08B94600[];
+
+SECTION(".rodata.08B94600")
+const struct MenuItemDef gUnk_08B94600[] = {
+    {
+        .name = gUnk_081C3D0C,
+        .nameMsgId = 0x10B4,
+        .overrideId = 1,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = (void *) sub_08021610,
+    },
+    {
+        .name = gUnk_081C3CF0,
+        .nameMsgId = 0x10B5,
+        .overrideId = 2,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = CallEvent_CompleteTraining,
+    },
+    { 0 },
+};
+
+extern const struct MenuDef gUnk_08B95824;
+
+SECTION(".rodata.08B95824")
+const struct MenuDef gUnk_08B95824 = {
+    .rect = { .x = 8, .y = 9, .w = 0xE },
+    .menuItems = gUnk_08B94600,
+    .onBPress = MenuCancelSelect,
+};

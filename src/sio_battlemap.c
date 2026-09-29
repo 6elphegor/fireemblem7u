@@ -2864,3 +2864,103 @@ const struct ProcCmd gUnknown_085AA5BC[] = {
     PROC_LABEL(5),
     PROC_END,
 };
+
+extern const struct MenuItemDef gUnk_08B9A608[];
+extern const struct MenuItemDef gUnk_08B9A674[];
+extern const struct MenuItemDef gUnk_08B9A74C;
+extern const struct MenuItemDef gUnk_08B9A770;
+
+SECTION(".rodata.08B9A608")
+const struct MenuItemDef gUnk_08B9A608[] = {
+    {
+        .name = gUnk_081D57AC,
+        .overrideId = 1,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = sub_080492EC,
+    },
+    {
+        .name = gUnk_081D57A0,
+        .overrideId = 2,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = sub_080492EC,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B9A674")
+const struct MenuItemDef gUnk_08B9A674[] = {
+    {
+        .name = gUnk_081D57B8,
+        .overrideId = 3,
+        .isAvailable = sub_08049280,
+        .onDraw = sub_08049300,
+        .onSelected = sub_080492CC,
+    },
+    {
+        .name = gUnk_081D57B8,
+        .overrideId = 4,
+        .isAvailable = sub_08049280,
+        .onDraw = sub_08049300,
+        .onSelected = sub_080492CC,
+    },
+    {
+        .name = gUnk_081D57B8,
+        .overrideId = 5,
+        .isAvailable = sub_08049280,
+        .onDraw = sub_08049300,
+        .onSelected = sub_080492CC,
+    },
+    {
+        .name = gUnk_081D57B8,
+        .overrideId = 6,
+        .isAvailable = sub_08049280,
+        .onDraw = sub_08049300,
+        .onSelected = sub_080492CC,
+    },
+    {
+        .name = gUnk_081D57B8,
+        .overrideId = 7,
+        .isAvailable = sub_08049280,
+        .onDraw = sub_08049300,
+        .onSelected = sub_080492CC,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B9A74C")
+const struct MenuItemDef gUnk_08B9A74C = { 0 };
+
+SECTION(".rodata.08B9A770")
+const struct MenuItemDef gUnk_08B9A770 = { 0 };
+
+extern const struct MenuDef gUnk_08B9A794;
+extern const struct MenuDef gUnk_08B9A7DC;
+extern const struct MenuDef gUnk_08B9A800;
+
+SECTION(".rodata.08B9A794")
+const struct MenuDef gUnk_08B9A794 = {
+    .rect = { .x = 0x10, .y = 2, .w = 8 },
+    .menuItems = gUnk_08B9A608,
+    .onBPress = sub_08049364,
+};
+
+SECTION(".rodata.08B9A7B8")
+const struct MenuDef gUnknown_085AADA0 = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gUnk_08B9A674,
+    .onBPress = sub_08049364,
+};
+
+SECTION(".rodata.08B9A7DC")
+const struct MenuDef gUnk_08B9A7DC = {
+    .rect = { .x = 1, .y = 2, .w = 0xD },
+    .menuItems = &gUnk_08B9A74C,
+    .onBPress = MenuCancelSelect,
+};
+
+SECTION(".rodata.08B9A800")
+const struct MenuDef gUnk_08B9A800 = {
+    .rect = { .x = 1, .y = 2, .w = 0xD },
+    .menuItems = &gUnk_08B9A770,
+    .onBPress = MenuCancelSelect,
+};

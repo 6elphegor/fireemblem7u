@@ -198,3 +198,85 @@ extern const char gUnk_081C3E2C[];
 extern const char gUnk_081C3E34[];
 extern const char gUnk_081C3E3C[];
 extern const char gUnk_081C3E48[];
+
+u8 CallEvent_CompleteTraining(struct MenuProc * menu, struct MenuItemProc * menuItem);
+extern const char gUnk_081C3CF0[];
+extern const char gUnk_081C3D0C[];
+u8 sub_08021610(void);
+
+u8 MenuCancelSelect(struct MenuProc * menu, struct MenuItemProc * item);
+
+int Menu_SwitchIn(struct MenuProc * menu, struct MenuItemProc * menuItem);
+int Menu_SwitchOut_DoNothing(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 StartFightBallistaReview(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 StartFightItemReview(struct MenuProc * menu, struct MenuItemProc * menuItem);
+extern const char gUnk_081C3E54[];
+extern const char gUnk_081C3E60[];
+
+u8 ConvoyMenu_HelpBox(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 ItemMenu_ButtonBPressed(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 MenuAutoHelpBoxSelect(struct MenuProc * menu);
+u8 MenuStdHelpBox(struct MenuProc * menu, struct MenuItemProc * item);
+
+extern const char gUnk_081C3E70[];
+extern const char gUnk_081C3E78[];
+extern const char gUnk_081C3E80[];
+extern const char gUnk_081C3E88[];
+extern const char gUnk_081C3E90[];
+extern const char gUnk_081C3E98[];
+extern const char gUnk_081C3EA0[];
+extern const char gUnk_081C3EA8[];
+extern const char gUnk_081C3EB0[];
+extern const char gUnk_081C3EBC[];
+extern const char gUnk_081C3EC4[];
+extern const char gUnk_081C3ED0[];
+extern const char gUnk_081C3EDC[];
+extern const char gUnk_081C3EE8[];
+extern const char gUnk_081C3EF4[];
+extern const char gUnk_081C3EFC[];
+extern const char gUnk_081C3F08[];
+extern const char gUnk_081C3F14[];
+extern const char gUnk_081C3F20[];
+extern const char gUnk_081C3F2C[];
+extern const char gUnk_081C3F34[];
+extern const char gUnk_081C3F3C[];
+extern const char gUnk_081C3F44[];
+extern const char gUnk_081C3F4C[];
+extern const char gUnk_081C3F54[];
+extern const char gUnk_081C3F5C[];
+extern const char gUnk_081C3F64[];
+extern const char gUnk_081C3F70[];
+extern const char gUnk_081C3F7C[];
+extern const char gUnk_081C3F84[];
+extern const char gUnk_081C3F8C[];
+extern const char gUnk_081C3F94[];
+extern const char gUnk_081C3F9C[];
+
+u8 ItemMenu_HelpBox(struct MenuProc * menu, struct MenuItemProc * menuItem);
+
+u8 GenericSelection_BackToUM(ProcPtr proc, struct SelectTarget * target);
+u8 GenericSelection_BackToUM_CamWait(ProcPtr proc, struct SelectTarget * target);
+void HealMapSelect_Init(ProcPtr proc);
+u8 HealMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target);
+void WarpUnitMapSelect_Init(ProcPtr menu);
+u8 WarpUnitMapSelect_SwitchIn(ProcPtr proc, struct SelectTarget * target);
+
+u8 CommandEffectEndPlayerPhase(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 MapMenu_OptionsCommand(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 MapMenu_StatusCommand(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 MapMenu_SuspendCommand(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 MapMenu_Suspend_Available(const struct MenuItemDef * def, int number);
+extern const char gUnk_081C3FAC[];
+extern const char gUnk_081C3FB4[];
+extern const char gUnk_081C3FBC[];
+extern const char gUnk_081C3FC4[];
+
+extern const char gUnk_081D57A0[];
+extern const char gUnk_081D57AC[];
+extern const char gUnk_081D57B8[];
+u8 sub_08049280(const struct MenuItemDef * def, int number);
+u8 sub_080492CC(struct MenuProc * menu, struct MenuItemProc * menuItem);
+u8 sub_080492EC(struct MenuProc * menu, struct MenuItemProc * menuItem);
+int sub_08049300(struct MenuProc * menu, struct MenuItemProc * menuItem);
+
+u8 sub_08049364(struct MenuProc * menu, struct MenuItemProc * menuItem);

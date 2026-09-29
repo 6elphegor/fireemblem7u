@@ -1019,3 +1019,119 @@ const struct ProcCmd gProcScr_SquareSelectTorch[] = {
     PROC_CALL(UnlockGame),
     PROC_END,
 };
+
+extern const struct MenuItemDef gItemUseMenuItems[];
+
+SECTION(".rodata.08B94A14")
+const struct MenuItemDef gItemUseMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x19,
+        .isAvailable = (void *) RepairMenuItemIsAvailable,
+        .onDraw = (void *) RepairMenuItemDraw,
+        .onSelected = (void *) RepairMenuItemSelect,
+        .onSwitchIn = (void *) RepairMenuItemOnChange,
+        .onSwitchOut = (void *) RepairMenuItemOnChangeOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x1A,
+        .isAvailable = (void *) RepairMenuItemIsAvailable,
+        .onDraw = (void *) RepairMenuItemDraw,
+        .onSelected = (void *) RepairMenuItemSelect,
+        .onSwitchIn = (void *) RepairMenuItemOnChange,
+        .onSwitchOut = (void *) RepairMenuItemOnChangeOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x1B,
+        .isAvailable = (void *) RepairMenuItemIsAvailable,
+        .onDraw = (void *) RepairMenuItemDraw,
+        .onSelected = (void *) RepairMenuItemSelect,
+        .onSwitchIn = (void *) RepairMenuItemOnChange,
+        .onSwitchOut = (void *) RepairMenuItemOnChangeOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x1C,
+        .isAvailable = (void *) RepairMenuItemIsAvailable,
+        .onDraw = (void *) RepairMenuItemDraw,
+        .onSelected = (void *) RepairMenuItemSelect,
+        .onSwitchIn = (void *) RepairMenuItemOnChange,
+        .onSwitchOut = (void *) RepairMenuItemOnChangeOut,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x1D,
+        .isAvailable = (void *) RepairMenuItemIsAvailable,
+        .onDraw = (void *) RepairMenuItemDraw,
+        .onSelected = (void *) RepairMenuItemSelect,
+        .onSwitchIn = (void *) RepairMenuItemOnChange,
+        .onSwitchOut = (void *) RepairMenuItemOnChangeOut,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B958FC")
+const struct MenuDef gMenuInfo_RepairItems = {
+    .rect = { .y = 1, .w = 0x10 },
+    .menuItems = gItemUseMenuItems,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ItemMenu_HelpBox,
+};
+
+SECTION(".rodata.08B95B18")
+const struct SelectInfo gSelectInfo_OffensiveStaff = {
+    .onInit = (void *) AttackStaffMapSelect_Init,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = AttackStaffMapSelect_SwitchIn,
+    .onSelect = StaffSelectOnSelect,
+    .onCancel = GenericSelection_BackToUM_CamWait,
+};
+
+SECTION(".rodata.08B95B38")
+const struct SelectInfo gSelectInfo_Barrier = {
+    .onInit = (void *) BarrierMapSelect_Init,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = BarrierMapSelect_SwitchIn,
+    .onSelect = StaffSelectOnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95B58")
+const struct SelectInfo gSelectInfo_Restore = {
+    .onInit = (void *) RestoreMapSelect_Init,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = RestoreMapSelect_SwitchIn,
+    .onSelect = StaffSelectOnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};
+
+SECTION(".rodata.08B95B78")
+const struct SelectInfo gSelectInfo_Heal = {
+    .onInit = HealMapSelect_Init,
+    .onEnd = (void *) ClearUi,
+    .onSwitchIn = HealMapSelect_SwitchIn,
+    .onSelect = StaffSelectOnSelect,
+    .onCancel = GenericSelection_BackToUM_CamWait,
+};
+
+SECTION(".rodata.08B95BB8")
+const struct SelectInfo gSelectInfo_PutTrap = { .onEnd = SubtitleMapSelect_End, .onCancel = GenericSelection_BackToUM };
+
+SECTION(".rodata.08B95BD8")
+const struct SelectInfo gSelectInfo_WarpUnit = {
+    .onInit = WarpUnitMapSelect_Init,
+    .onEnd = SubtitleMapSelect_End,
+    .onSwitchIn = WarpUnitMapSelect_SwitchIn,
+    .onCancel = GenericSelection_BackToUM_CamWait,
+};
+
+SECTION(".rodata.08B95C58")
+const struct SelectInfo gSelectInfo_Repair = {
+    .onInit = RepairSelectOnInit,
+    .onSwitchIn = RepairSelectOnChange,
+    .onSelect = RepairSelectOnSelect,
+    .onCancel = GenericSelection_BackToUM,
+};

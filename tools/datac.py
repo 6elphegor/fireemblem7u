@@ -512,6 +512,7 @@ class Decls:
         self.types = types
         self.decl = {}   # name -> [(file, text)]
         self.defn = {}   # function name -> [file]
+        self.defn_text = {}   # function name -> its definition's prototype
         self.sigs = {}   # function name -> [normalized (return, params)] of its declarations and definitions
         for p, t in types.files.items():
             for m in re.finditer(r"^[ \t]*extern\s+([^;(){}]*?)\b(\w+)\s*((?:\[[^\]]*\]\s*)*)\s*;", t, re.M):
@@ -523,6 +524,7 @@ class Decls:
                     self.decl.setdefault(m[2], []).append((p, m[0].strip()))
                 else:
                     self.defn.setdefault(m[2], []).append(p)
+                    self.defn_text.setdefault(m[2], " ".join(f"{m[1].strip()} {m[2]}({m[3].strip()});".split()))
                 self.sigs.setdefault(m[2], []).append(norm_sig(m[1], m[3]))
         self._inc = {}
 
@@ -705,7 +707,7 @@ def report_refs(em, decls, path, hdr=None):
             includes.add(inc)
             continue
         if f.kind == "fn":
-            line = fn_proto(f.sig, sym)
+            line = decls.defn_text.get(sym) or fn_proto(f.sig, sym)
             target = (header_for(defs[0]) if defs else None) or hdr
         else:
             line = f"extern const {f.pointee} {sym}[];".replace("const const", "const")

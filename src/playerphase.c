@@ -970,3 +970,59 @@ const struct ProcCmd gUnk_08B9358C[] = {
     PROC_REPEAT(MoveLimitViewChange_OnLoop),
     PROC_END,
 };
+
+extern const struct MenuItemDef gMapMenuItems[];
+
+SECTION(".rodata.08B9574C")
+const struct MenuItemDef gMapMenuItems[] = {
+    {
+        .name = gUnk_081C3FC4,
+        .nameMsgId = 0x10E2,
+        .helpMsgId = 0x370,
+        .overrideId = 0x6A,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = MapMenu_UnitCommand,
+    },
+    {
+        .name = gUnk_081C3EA8,
+        .nameMsgId = 0x10E3,
+        .helpMsgId = 0x371,
+        .overrideId = 0x6B,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = MapMenu_StatusCommand,
+    },
+    {
+        .name = gUnk_081C3FBC,
+        .nameMsgId = 0x10E4,
+        .helpMsgId = 0x372,
+        .overrideId = 0x6C,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = MapMenu_OptionsCommand,
+    },
+    {
+        .name = gUnk_081C3FB4,
+        .nameMsgId = 0x10E5,
+        .helpMsgId = 0x373,
+        .overrideId = 0x6D,
+        .isAvailable = MapMenu_Suspend_Available,
+        .onSelected = MapMenu_SuspendCommand,
+    },
+    {
+        .name = gUnk_081C3FAC,
+        .nameMsgId = 0x10E9,
+        .helpMsgId = 0x374,
+        .overrideId = 0x71,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = CommandEffectEndPlayerPhase,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B95AF4")
+const struct MenuDef gMapMenuDef = {
+    .rect = { .x = 1, .y = 2, .w = 7 },
+    .menuItems = gMapMenuItems,
+    .onBPress = MenuCancelSelect,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = MenuStdHelpBox,
+};

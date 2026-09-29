@@ -190,3 +190,179 @@ const struct ProcCmd gProcCmd_ConvoyMenu[] = {
     PROC_SLEEP(0),
     PROC_END,
 };
+
+extern const struct MenuItemDef gConvoyMenuItems[];
+extern const struct MenuItemDef gUnk_08B94CC0[];
+extern const struct MenuItemDef gUnk_08B94DBC[];
+
+SECTION(".rodata.08B94BC4")
+const struct MenuItemDef gConvoyMenuItems[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x23,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_Selected,
+        .onIdle = SendToConvoyMenu_Idle,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x24,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_Selected,
+        .onIdle = SendToConvoyMenu_Idle,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x25,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_Selected,
+        .onIdle = SendToConvoyMenu_Idle,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x26,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_Selected,
+        .onIdle = SendToConvoyMenu_Idle,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x27,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_Selected,
+        .onIdle = SendToConvoyMenu_Idle,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x28,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = MenuCommand_DrawExtraItem,
+        .onSelected = SendToConvoyMenu_Selected2,
+        .onIdle = SendToConvoyMenu_Idle,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B94CC0")
+const struct MenuItemDef gUnk_08B94CC0[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x29,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_NormalEffect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x2A,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_NormalEffect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x2B,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_NormalEffect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x2C,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_NormalEffect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x2D,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = SendToConvoyMenu_Draw,
+        .onSelected = SendToConvoyMenu_NormalEffect,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 0x2E,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = MenuCommand_DrawExtraItem,
+        .onSelected = MenuCommand_SendItemToConvoy,
+        .onSwitchIn = Menu_SwitchIn,
+        .onSwitchOut = Menu_SwitchOut_DoNothing,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B94DBC")
+const struct MenuItemDef gUnk_08B94DBC[] = {
+    {
+        .name = gUnk_081C3E60,
+        .nameMsgId = 0x10F0,
+        .helpMsgId = 0x36B,
+        .overrideId = 0x2F,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = StartFightBallistaReview,
+    },
+    {
+        .name = gUnk_081C3E54,
+        .nameMsgId = 0x10F1,
+        .helpMsgId = 0x36A,
+        .overrideId = 0x30,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = StartFightItemReview,
+    },
+    { 0 },
+};
+
+extern const struct MenuDef gUnk_08B9598C;
+
+SECTION(".rodata.08B95944")
+const struct MenuDef gConvoyMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gConvoyMenuItems,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ConvoyMenu_HelpBox,
+};
+
+SECTION(".rodata.08B95968")
+const struct MenuDef gSendToConvoyMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xE },
+    .menuItems = gUnk_08B94CC0,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = ConvoyMenu_HelpBox,
+};
+
+SECTION(".rodata.08B9598C")
+const struct MenuDef gUnk_08B9598C = {
+    .rect = { .x = 0x14, .y = 3, .w = 9 },
+    .menuItems = gUnk_08B94DBC,
+    .onBPress = ItemMenu_ButtonBPressed,
+    .onRPress = MenuAutoHelpBoxSelect,
+    .onHelpBox = MenuStdHelpBox,
+};

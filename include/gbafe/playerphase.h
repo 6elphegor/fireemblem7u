@@ -36,7 +36,7 @@ extern u8 const Img_LimitViewSquare[];     // FE8U: gUnknown_08A02EB4
 extern u16 const Pal_LimitViewBlue[];      // FE8U: gUnknown_08A02F34
 extern u16 const Pal_LimitViewRed[];       // FE8U: gUnknown_08A02F94
 extern u16 const Pal_LimitViewGreen[];     // FE8U: gUnknown_08A02FF4
-extern struct MenuDef const gMapMenuDef;
+extern const struct MenuDef gMapMenuDef;
 
 void PlayerPhase_Suspend(void);
 void HandlePlayerMapCursor(void);                               // HandlePlayerCursorMovement
