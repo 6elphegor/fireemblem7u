@@ -207,8 +207,10 @@ void WriteSaveBlockInfo(struct SaveBlockInfo * block_info, int save_id)
 {
     block_info->magic16 = SAVE_MAGIC16;
 
-#if BUGFIX
-    chuck->offset = SramAddrToOffset(GetSaveWriteAddr(save_id));
+#if BUGFIX || !PLATFORM_GBA
+    // (the GBA stores the address's low 16 bits, the offset in the SRAM at
+    // 0x0E000000; a host's SRAM image is not 64K-aligned)
+    block_info->offset = SramAddrToOffset(GetSaveWriteAddr(save_id));
 #else
     block_info->offset = (uintptr_t)GetSaveWriteAddr(save_id);
 #endif

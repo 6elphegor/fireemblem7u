@@ -142,6 +142,15 @@ struct Proc * AllocateProcess()
     ProcPtr proc = *sProcAllocListHead;
     sProcAllocListHead++;
 
+#if !PLATFORM_GBA
+    // A new proc keeps what the slot's last user left in the fields its
+    // init doesn't set, and some screens read such fields (the save menu's
+    // play times of empty files).  With the host's layouts the leftovers
+    // differ from the GBA's (mostly zero there), so start from zero.
+    if (proc != NULL)
+        CpuFill32(0, proc, sizeof(struct Proc));
+#endif
+
     return proc;
 }
 

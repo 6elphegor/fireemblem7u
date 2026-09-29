@@ -203,7 +203,11 @@ void Prep_DrawChapterGoal(int vram_offset, int pal_bank)
     SpriteText_DrawBackgroundExt(&th, 0);
 
     /* FE7U: goal window text id is at +0x8E of ChapterInfo (JP: +0x8A) */
+#if NONMATCHING
+    msg = GetChapterInfo(gPlaySt.chapterIndex)->goalWindowTextId; // (a host's layout differs)
+#else
     msg = *(u16 *)((u8 *)GetChapterInfo(gPlaySt.chapterIndex) + 0x8E);
+#endif
     str = DecodeMsg(msg);
 
     Text_InsertDrawString(
