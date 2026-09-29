@@ -4,7 +4,7 @@ extern u16 Pal_08405EA4[];
 extern u8 Img_08405B4C[];
 extern u8 Img_08405CE4[];
 extern u16 gUnk_08407400[];
-extern u16 const * CONST_DATA gUnk_08CC4FA0[];
+extern const u16 * const gUnk_08CC4FA0[];
 extern u16 CONST_DATA gUnk_08CC4F90[];
 
 void UpdateMenuScrollBarConfig(u8 a, u16 b, u16 c, u8 d);

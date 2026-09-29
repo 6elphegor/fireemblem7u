@@ -771,7 +771,7 @@ void StartSioErrorScreen(void);
 
 extern const u8 gUnknown_080D9D5E[];
 extern const int gUnknown_081D5254[];
-extern u8 * CONST_DATA gUnknown_08B98CA8[];
+extern u8 * const gUnknown_08B98CA8[];
 void StartPrepAtMenu(void);
 void StartLinkArenaMenuScrollBar(int xBase, int yBase, u8 c, u8 d, u8 e, ProcPtr parent);
 void sub_08047C38(ProcPtr parent);

@@ -1,7 +1,7 @@
 #include "gbafe.h"
 
-extern u16 const * const SpriteArray_08CE45A8[];
-extern u16 const * const SpriteArray_08CE45B4[];
+extern const u16 * const SpriteArray_08CE45A8[];
+extern const u16 * const SpriteArray_08CE45B4[];
 
 extern const struct ProcCmd gProcScr_BonusClaim[];
 

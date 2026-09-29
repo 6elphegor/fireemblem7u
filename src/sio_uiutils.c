@@ -1,5 +1,13 @@
 #include "gbafe.h"
 
+extern const u16 Sprite_LAVersus_P1[], Sprite_LAVersus_P2[], Sprite_LAVersus_P3[],
+    Sprite_LAVersus_P4[], Sprite_NameEntry_CursorLarge[], Sprite_NameEntry_CursorSmall[],
+    Sprite_NameEntry_DeleteIcon[], Sprite_NameEntry_HiraganaIcon[], Sprite_NameEntry_KatakanaIcon[],
+    Sprite_NameEntry_OKIcon[], Sprite_RuleSettings_AutoWeaponIcon[],
+    Sprite_RuleSettings_HideUnitsIcon[], Sprite_RuleSettings_VictoryCondIcon[],
+    Sprite_SioMenu_BattleData[], Sprite_SioMenu_Practice[], gUnk_081D5554[], gUnk_081D5570[],
+    gUnk_081D558C[], gUnk_081D55A0[], gUnk_081D55B4[], gUnk_081D55C8[], gUnk_081D568C[];
+
 // Link arena menu sprite/palette utilities (FE8U: sio_uiutils.c)
 
 struct LinkArenaStMaybe {
@@ -160,9 +168,9 @@ extern const u16 Pal_LAPhaseIntro_P4[];
 
 extern u16 CONST_DATA Sprite_LinkArena_MenuTitle[];
 extern const struct ProcCmd ProcScr_LinkArenaTitleBanner[];
-extern const u16 * CONST_DATA SpriteArray_SioMenuItems[];
+extern const u16 * const SpriteArray_SioMenuItems[];
 extern const u16 gUnknown_080DA09C[];
-extern const u16 * CONST_DATA SpriteArray_SioMenuTeamCount[];
+extern const u16 * const SpriteArray_SioMenuTeamCount[];
 extern const struct ProcCmd ProcScr_SioMenuItem[];
 extern const u16 Sprite_LinkArena_PressStart[];
 extern u16 CONST_DATA Sprite_LinkArena_TeamName[];
@@ -172,11 +180,11 @@ extern u16 CONST_DATA Sprite_LinkArena_NameBanner[];
 extern u16 CONST_DATA gUnknown_085AAA5E[];
 extern const struct ProcCmd ProcScr_085AAA78[];
 extern const struct ProcCmd ProcScr_LinkArenaTeamSpriteDraw[];
-extern const u16 * CONST_DATA SpriteArray_NameEntryCursor[];
+extern const u16 * const SpriteArray_NameEntryCursor[];
 extern const u16 Sprite_NameEntry_PositionIndicator[];
-extern const u16 * CONST_DATA SpriteArray_NameEntryIcons[];
+extern const u16 * const SpriteArray_NameEntryIcons[];
 extern const struct ProcCmd ProcScr_NameEntrySpriteDraw[];
-extern const u16 * CONST_DATA SpriteArray_RuleSettingIcons[];
+extern const u16 * const SpriteArray_RuleSettingIcons[];
 extern const struct ProcCmd ProcScr_RuleSettingSpriteDraw_Interactive[];
 extern const u16 Sprite_SioMenuBurst_TopLeft[];
 extern const u16 Sprite_SioMenuBurst_TopRight[];
@@ -188,7 +196,7 @@ extern u16 CONST_DATA Sprite_LAMenuScrollBar_UpArrow[];
 extern u16 CONST_DATA Sprite_LAMenuScrollBar_DownArrow[];
 extern u16 CONST_DATA Sprite_LinkArenaMenuScrollBar[];
 extern const struct ProcCmd ProcScr_LinkArenaMenuScrollBar[];
-extern const u16 * CONST_DATA SpriteArray_LAVersusPlayerNumbers[];
+extern const u16 * const SpriteArray_LAVersusPlayerNumbers[];
 extern const u16 Sprite_080DA25C[];
 extern const u16 Sprite_080DA26A[];
 extern const struct ProcCmd ProcScr_LAVersusSpriteDraw[];
@@ -1466,4 +1474,50 @@ const struct ProcCmd ProcScr_085AABD8[] = {
     PROC_SLEEP(0),
     PROC_REPEAT(sub_080491C4),
     PROC_END,
+};
+
+SECTION(".rodata.08B9A3F0")
+const u16 * const SpriteArray_SioMenuItems[] = {
+    &gUnk_081D5554[1],
+    Sprite_SioMenu_Practice,
+    &gUnk_081D5570[1],
+    Sprite_SioMenu_BattleData,
+    &gUnk_081D558C[1],
+};
+
+SECTION(".rodata.08B9A404")
+const u16 * const SpriteArray_SioMenuTeamCount[] = {
+    &gUnk_081D55A0[1],
+    &gUnk_081D55B4[1],
+    &gUnk_081D55C8[1],
+};
+
+SECTION(".rodata.08B9A4D8")
+const u16 * const SpriteArray_NameEntryCursor[] = {
+    Sprite_NameEntry_CursorSmall,
+    Sprite_NameEntry_CursorLarge,
+};
+
+SECTION(".rodata.08B9A4E0")
+const u16 * const SpriteArray_NameEntryIcons[] = {
+    Sprite_NameEntry_HiraganaIcon,
+    Sprite_NameEntry_KatakanaIcon,
+    gUnk_081D568C,
+    Sprite_NameEntry_DeleteIcon,
+    Sprite_NameEntry_OKIcon,
+};
+
+SECTION(".rodata.08B9A50C")
+const u16 * const SpriteArray_RuleSettingIcons[] = {
+    Sprite_RuleSettings_HideUnitsIcon,
+    Sprite_RuleSettings_VictoryCondIcon,
+    Sprite_RuleSettings_AutoWeaponIcon,
+};
+
+SECTION(".rodata.08B9A5D0")
+const u16 * const SpriteArray_LAVersusPlayerNumbers[] = {
+    Sprite_LAVersus_P1,
+    Sprite_LAVersus_P2,
+    Sprite_LAVersus_P3,
+    Sprite_LAVersus_P4,
 };

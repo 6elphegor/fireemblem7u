@@ -125,9 +125,9 @@ void EfxDrsmmoyaBG_Loop(struct ProcEfxDrsmmoyaBG * proc)
     int ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
 
         if (proc->img_bak != *(img + ret))
             SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);

@@ -1,5 +1,8 @@
 #include "gbafe.h"
 
+extern u16 Img_Spell21BG_01[], Tsa_Spell21BG_00[], Tsa_Spell21BG_01[], Tsa_Spell21BG_02[],
+    Tsa_Spell21BG_03[], Tsa_Spell21BG_04[];
+
 extern const struct AnimSpriteData AnimSprite_Spell21OBJ2_A_08BD0E4C[],
     AnimSprite_Spell21OBJ2_A_08BD0E70[], AnimSprite_Spell21OBJ2_A_08BD0EAC[],
     AnimSprite_Spell21OBJ2_A_08BD0EE8[], AnimSprite_Spell21OBJ2_A_08BD0F24[],
@@ -79,8 +82,8 @@ extern const struct ProcCmd ProcScr_efxSpell21OBJ3[];
 extern const struct ProcCmd ProcScr_efxSpell21OBJ3Child[];
 extern const s16 FrameConfig_Spell21BG[];
 extern const s16 FrameConfig_Spell21BGCOL[];
-extern u16 * TsaArray_Spell21BG[];
-extern u16 * ImgArray_Spell21BG[];
+extern u16 * const TsaArray_Spell21BG[];
+extern u16 * const ImgArray_Spell21BG[];
 extern u16 Pal_Spell21BG[];
 extern u16 Img_Spell21BG2[];
 extern u16 Pal_Spell21BG2[];
@@ -206,7 +209,7 @@ void efxSpell21BG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsa = proc->tsal;
+        u16 * const * tsa = proc->tsal;
         SpellFx_RegisterBgGfx(*(proc->img + ret), 0x2000);
         SpellFx_WriteBgMapExt(proc->anim, *(tsa + ret), 32, 20);
     }
@@ -746,4 +749,22 @@ const AnimScr AnimScr_Spell21OBJ3_B[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_B_08BD1740, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_Spell21OBJ3_A_08BD17A0, 1),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA2B80")
+u16 * const ImgArray_Spell21BG[] = {
+    Img_Spell21BG2,
+    Img_Spell21BG_01,
+    Img_Spell21BG_01,
+    Img_Spell21BG_01,
+    Img_Spell21BG_01,
+};
+
+SECTION(".rodata.08BA2B94")
+u16 * const TsaArray_Spell21BG[] = {
+    Tsa_Spell21BG_00,
+    Tsa_Spell21BG_01,
+    Tsa_Spell21BG_02,
+    Tsa_Spell21BG_03,
+    Tsa_Spell21BG_04,
 };

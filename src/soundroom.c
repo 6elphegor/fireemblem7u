@@ -1,5 +1,8 @@
 #include "gbafe.h"
 
+extern u16 gUnk_08CE5668[], gUnk_08CE5670[], gUnk_08CE5678[], gUnk_08CE5680[], gUnk_08CE5688[],
+    gUnk_08CE5690[], gUnk_08CE5698[], gUnk_08CE56A0[], gUnk_08CE56A8[], gUnk_08CE56B0[];
+
 struct SoundRoomProc
 {
     /* 00 */ PROC_HEADER;
@@ -100,7 +103,7 @@ extern u16 CONST_DATA gSprite_MusicPlayer_SeekBar[];
 extern u16 CONST_DATA gSprite_MusicPlayer_SeekBarIndicator[];
 extern u16 CONST_DATA gSprite_MusicPlayer_Time[];
 extern u16 CONST_DATA gSprite_MusicPlayer_Colon[];
-extern u16 * CONST_DATA gSpriteArray_MusicPlayer_TimeNumbers[];
+extern u16 * const gSpriteArray_MusicPlayer_TimeNumbers[];
 
 int CountTotalSoundRoomSongs(void);
 int CountSecretSoundRoomSongs(void);
@@ -1559,4 +1562,18 @@ const struct SoundRoomEnt gSoundRoomTable[] = {
         .nameTextId = 0x1336,
     },
     { .bgmId = -1 },
+};
+
+SECTION(".rodata.08CE56BC")
+u16 * const gSpriteArray_MusicPlayer_TimeNumbers[] = {
+    &gUnk_08CE5668[1],
+    &gUnk_08CE5670[1],
+    &gUnk_08CE5678[1],
+    &gUnk_08CE5680[1],
+    &gUnk_08CE5688[1],
+    &gUnk_08CE5690[1],
+    &gUnk_08CE5698[1],
+    &gUnk_08CE56A0[1],
+    &gUnk_08CE56A8[1],
+    &gUnk_08CE56B0[1],
 };

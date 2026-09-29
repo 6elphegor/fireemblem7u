@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern const u16 gUnk_08CEEAF0[], gUnk_08CEEAF8[], gUnk_08CEEB00[], gUnk_08CEEB08[],
+    gUnk_08CEEB10[], gUnk_08CEEB18[], gUnk_08CEEB20[], gUnk_08CEEB28[], gUnk_08CEEB30[],
+    gUnk_08CEEB38[], gUnk_08CEEB40[], gUnk_08CEEB48[];
+
 extern const u8 Img_EndingCgScroll2_00[];
 extern const u8 Img_EndingCgScroll2_00_2[];
 extern const u8 Img_EndingCgScroll2_00_3[];
@@ -183,8 +187,8 @@ extern u16 CONST_DATA Sprite_PlayerRank_08CEEABA[];
 extern u16 CONST_DATA Sprite_PlayerRank_08CEEAC8[];
 extern u16 CONST_DATA Sprite_PlayerRank_08CEEAD6[];
 extern u16 CONST_DATA Sprite_PlayerRank_08CEEAE4[];
-extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB54[];
-extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB6C[];
+extern const u16 * const SpriteLut_PlayerRank_08CEEB54[];
+extern const u16 * const SpriteLut_PlayerRank_08CEEB6C[];
 
 extern const struct ProcCmd ProcScr_PlayerRankUnk_08CEEB84[];
 extern const struct ProcCmd ProcScr_PlayerRankFlash[];
@@ -1950,4 +1954,24 @@ SECTION(".rodata.08CEE630")
 struct CharacterEndingEnt const * const gCharacterEndingsByRoute[] = {
     gUnk_08CEE160,
     gUnk_08CEE3C8,
+};
+
+SECTION(".rodata.08CEEB54")
+const u16 * const SpriteLut_PlayerRank_08CEEB54[] = {
+    &gUnk_08CEEB18[1],
+    &gUnk_08CEEB10[1],
+    &gUnk_08CEEB08[1],
+    &gUnk_08CEEB00[1],
+    &gUnk_08CEEAF8[1],
+    &gUnk_08CEEAF0[1],
+};
+
+SECTION(".rodata.08CEEB6C")
+const u16 * const SpriteLut_PlayerRank_08CEEB6C[] = {
+    &gUnk_08CEEB48[1],
+    &gUnk_08CEEB40[1],
+    &gUnk_08CEEB38[1],
+    &gUnk_08CEEB30[1],
+    &gUnk_08CEEB28[1],
+    &gUnk_08CEEB20[1],
 };

@@ -1,5 +1,13 @@
 #include "gbafe.h"
 
+extern u16 gUnk_08B94060[], gUnk_08B94068[], gUnk_08B940C8[], gUnk_08B940E4[],
+    sSprite_BerserkIconA[], sSprite_BerserkIconB[], sSprite_BerserkIconC[], sSprite_BerserkIconD[],
+    sSprite_BerserkIconE[], sSprite_BerserkIconF[], sSprite_BerserkIconG[], sSprite_BerserkIconH[],
+    sSprite_BerserkIconI[], sSprite_None[], sSprite_PoisonIconA[], sSprite_PoisonIconC[],
+    sSprite_PoisonIconE[], sSprite_PoisonIconF[], sSprite_PoisonIconG[], sSprite_PoisonIconH[],
+    sSprite_SleepIconA[], sSprite_SleepIconB[], sSprite_SleepIconC[], sSprite_SleepIconD[],
+    sSprite_SleepIconE[], sSprite_SleepIconF[], sSprite_SleepIconG[];
+
 /**
  * Display standing map sprites and various tile/unit markers
  * (FE8U: bmudisp.c)
@@ -48,10 +56,10 @@ struct SMSHandle * AddUnitSprite(int y);
 void PutChapterMarkedTileIconOam(void);
 
 extern u16 const sRescuePalLut[3];
-extern u16 * CONST_DATA sSleepIconSprites[];
-extern u16 * CONST_DATA sBerserkIconSprites[];
-extern u16 * CONST_DATA sSilenceIconSprites[];
-extern u16 * CONST_DATA sPoisonIconSprites[];
+extern u16 * const sSleepIconSprites[];
+extern u16 * const sBerserkIconSprites[];
+extern u16 * const sSilenceIconSprites[];
+extern u16 * const sPoisonIconSprites[];
 extern u16 CONST_DATA sSprite_StatusUpIcon[];
 
 void * memcpy(void * dst, const void * src, unsigned long n);
@@ -1128,3 +1136,65 @@ void sub_080265C0(u32 (*r8)[1][1], int r5, int r9, int d)
 
     return;
 }
+
+SECTION(".rodata.08B93FD0")
+u16 * const sSleepIconSprites[] = {
+    sSprite_SleepIconA,
+    sSprite_SleepIconB,
+    sSprite_SleepIconC,
+    sSprite_SleepIconD,
+    sSprite_SleepIconE,
+    sSprite_SleepIconF,
+    sSprite_SleepIconG,
+};
+
+SECTION(".rodata.08B94034")
+u16 * const sBerserkIconSprites[] = {
+    sSprite_BerserkIconA,
+    sSprite_BerserkIconB,
+    sSprite_BerserkIconC,
+    sSprite_BerserkIconD,
+    sSprite_BerserkIconE,
+    sSprite_BerserkIconF,
+    sSprite_BerserkIconG,
+    sSprite_BerserkIconH,
+    sSprite_BerserkIconI,
+};
+
+SECTION(".rodata.08B94074")
+u16 * const sSilenceIconSprites[] = {
+    &sSprite_None[1],
+    &gUnk_08B94060[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94068[1],
+    &gUnk_08B94060[1],
+    &sSprite_None[1],
+    sSprite_None,
+    sSprite_None,
+    sSprite_None,
+    sSprite_None,
+    sSprite_None,
+};
+
+SECTION(".rodata.08B94114")
+u16 * const sPoisonIconSprites[] = {
+    sSprite_PoisonIconA,
+    &gUnk_08B940C8[1],
+    sSprite_PoisonIconC,
+    &gUnk_08B940E4[1],
+    sSprite_PoisonIconE,
+    sSprite_PoisonIconF,
+    sSprite_PoisonIconG,
+    sSprite_PoisonIconH,
+    sSprite_PoisonIconH,
+    sSprite_None,
+    sSprite_None,
+    sSprite_None,
+};

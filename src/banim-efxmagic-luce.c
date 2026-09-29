@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern u16 Tsa_LuceBG_00[], Tsa_LuceBG_01[], Tsa_LuceBG_02[], Tsa_LuceBG_03[], Tsa_LuceBG_04[],
+    Tsa_LuceBG_05[], Tsa_LuceBG_06[], Tsa_LuceBG_07[], Tsa_LuceBG_08[], Tsa_LuceBG_09[],
+    Tsa_LuceBG_0A[], Tsa_LuceBG_0B[];
+
 extern const struct AnimSpriteData AnimSprite_LuceOBJ_A_08BD4B7C[], AnimSprite_LuceOBJ_A_08BD4BE8[],
     AnimSprite_LuceOBJ_A_08BD4C54[], AnimSprite_LuceOBJ_A_08BD4CC0[],
     AnimSprite_LuceOBJ_A_08BD4D2C[], AnimSprite_LuceOBJ_A_08BD4D98[],
@@ -31,7 +35,7 @@ extern const struct ProcCmd ProcScr_efxLuceOBJ[];
 extern const struct ProcCmd ProcScr_efxLuceWOUT[];
 extern const s16 FrameConfig_LuceBG[];
 extern const s16 FrameConfig_LuceBGCOL[];
-extern u16 * TsaArray_LuceBG[];
+extern u16 * const TsaArray_LuceBG[];
 extern u16 Img_AuraBg1[];
 extern u16 Pal_AuraBg1[];
 extern u16 Img_LuceBG2[];
@@ -155,8 +159,8 @@ void efxLuceBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
     }
     else if (ret == -1)
@@ -484,4 +488,20 @@ const AnimScr AnimScr_LuceOBJ_B[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_LuceOBJ_B_08BD4948, 31),
     ANIMSCR_WAIT(0x13),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA3E8C")
+u16 * const TsaArray_LuceBG[] = {
+    Tsa_LuceBG_00,
+    Tsa_LuceBG_01,
+    Tsa_LuceBG_02,
+    Tsa_LuceBG_03,
+    Tsa_LuceBG_04,
+    Tsa_LuceBG_05,
+    Tsa_LuceBG_06,
+    Tsa_LuceBG_07,
+    Tsa_LuceBG_08,
+    Tsa_LuceBG_09,
+    Tsa_LuceBG_0A,
+    Tsa_LuceBG_0B,
 };

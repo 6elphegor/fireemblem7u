@@ -1,5 +1,15 @@
 #include "gbafe.h"
 
+extern u16 Img_EclipseBg_A[], Img_EclipseBg_B[], Img_EclipseBg_C[], Img_EclipseBg_D[],
+    Img_EclipseBg_E[], Img_EclipseBg_F[], Img_EclipseBg_G[], Img_EclipseBg_H[], Img_EclipseBg_I[],
+    Img_EclipseBg_J[], Img_EclipseBg_K[], Img_EclipseBg_L[], Img_EclipseBg_M[], Tsa_EclipseBg_A[],
+    Tsa_EclipseBg_AA[], Tsa_EclipseBg_B[], Tsa_EclipseBg_C[], Tsa_EclipseBg_D[], Tsa_EclipseBg_E[],
+    Tsa_EclipseBg_F[], Tsa_EclipseBg_G[], Tsa_EclipseBg_H[], Tsa_EclipseBg_I[], Tsa_EclipseBg_J[],
+    Tsa_EclipseBg_K[], Tsa_EclipseBg_L[], Tsa_EclipseBg_M[], Tsa_EclipseBg_N[], Tsa_EclipseBg_O[],
+    Tsa_EclipseBg_P[], Tsa_EclipseBg_Q[], Tsa_EclipseBg_R[], Tsa_EclipseBg_S[], Tsa_EclipseBg_T[],
+    Tsa_EclipseBg_U[], Tsa_EclipseBg_V[], Tsa_EclipseBg_W[], Tsa_EclipseBg_X[], Tsa_EclipseBg_Y[],
+    Tsa_EclipseBg_Z[];
+
 extern const struct AnimSpriteData AnimSprite_EfxHazymoonOBJ2_1_08BBA14C[],
     AnimSprite_EfxHazymoonOBJ2_1_08BBA1AC[], AnimSprite_EfxHazymoonOBJ2_1_08BBA20C[],
     AnimSprite_EfxHazymoonOBJ2_1_08BBA26C[], AnimSprite_EfxHazymoonOBJ2_2_08BBA2E0[],
@@ -23,8 +33,8 @@ void RegisterEfxSpellCastEnd(void);
 extern const struct ProcCmd ProcScr_efxHazymoon[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxHazymoonBG[];
-extern u16 * TsaArray_EclipseBg[];
-extern u16 * ImgArray_EclipseBg[];
+extern u16 * const TsaArray_EclipseBg[];
+extern u16 * const ImgArray_EclipseBg[];
 extern u16 Pal_NosferatuBg[];
 extern u16 Pal_EclipseBg_B[];
 extern u16 Pal_EclipseBg_C[];
@@ -56,9 +66,9 @@ struct ProcEfxEclipseBG
     STRUCT_PAD(0x32, 0x44);
     /* 44 */ u32 frame;
     /* 48 */ const u16 * frame_config;
-    /* 4C */ u16 ** tsal;
-    /* 50 */ u16 ** tsar;
-    /* 54 */ u16 ** img;
+    /* 4C */ u16 * const * tsal;
+    /* 50 */ u16 * const * tsar;
+    /* 54 */ u16 * const * img;
     /* 58 */ u16 * pal;
     /* 5C */ struct Anim * anim;
 };
@@ -263,10 +273,10 @@ void efxHazymoonBG_Loop(struct ProcEfxEclipseBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
-        u16 ** img = proc->img;
+        u16 * const * img = proc->img;
 
         if (proc->pal != *(img + ret))
         {
@@ -583,4 +593,66 @@ const AnimScr AnimScr_EfxHazymoonOBJ2_3[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_3_08BBA75C, 2),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxHazymoonOBJ2_3_08BBA81C, 4),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA2C88")
+u16 * const TsaArray_EclipseBg[] = {
+    Tsa_EclipseBg_A,
+    Tsa_EclipseBg_B,
+    Tsa_EclipseBg_C,
+    Tsa_EclipseBg_D,
+    Tsa_EclipseBg_E,
+    Tsa_EclipseBg_F,
+    Tsa_EclipseBg_G,
+    Tsa_EclipseBg_H,
+    Tsa_EclipseBg_I,
+    Tsa_EclipseBg_J,
+    Tsa_EclipseBg_K,
+    Tsa_EclipseBg_L,
+    Tsa_EclipseBg_M,
+    Tsa_EclipseBg_N,
+    Tsa_EclipseBg_O,
+    Tsa_EclipseBg_P,
+    Tsa_EclipseBg_Q,
+    Tsa_EclipseBg_R,
+    Tsa_EclipseBg_S,
+    Tsa_EclipseBg_T,
+    Tsa_EclipseBg_U,
+    Tsa_EclipseBg_V,
+    Tsa_EclipseBg_W,
+    Tsa_EclipseBg_X,
+    Tsa_EclipseBg_Y,
+    Tsa_EclipseBg_Z,
+    Tsa_EclipseBg_AA,
+};
+
+SECTION(".rodata.08BA2CF4")
+u16 * const ImgArray_EclipseBg[] = {
+    Img_EclipseBg_A,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_B,
+    Img_EclipseBg_C,
+    Img_EclipseBg_C,
+    Img_EclipseBg_C,
+    Img_EclipseBg_D,
+    Img_EclipseBg_E,
+    Img_EclipseBg_F,
+    Img_EclipseBg_G,
+    Img_EclipseBg_H,
+    Img_EclipseBg_I,
+    Img_EclipseBg_J,
+    Img_EclipseBg_K,
+    Img_EclipseBg_L,
+    Img_EclipseBg_M,
 };

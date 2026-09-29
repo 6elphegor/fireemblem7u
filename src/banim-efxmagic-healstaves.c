@@ -1,5 +1,12 @@
 #include "gbafe.h"
 
+extern u16 Img_RestoreBg_00[], Img_RestoreBg_06[], Img_RestoreBg_09[], Img_RestoreBg_0B[],
+    Tsa_FortifyBg2_00[], Tsa_Fortify_00[], Tsa_Fortify_01[], Tsa_Fortify_02[], Tsa_Fortify_03[],
+    Tsa_RestoreBg_00[], Tsa_RestoreBg_01[], Tsa_RestoreBg_02[], Tsa_RestoreBg_03[],
+    Tsa_RestoreBg_04[], Tsa_RestoreBg_05[], Tsa_RestoreBg_06[], Tsa_RestoreBg_07[],
+    Tsa_RestoreBg_08[], Tsa_RestoreBg_09[], Tsa_RestoreBg_0A[], Tsa_RestoreBg_0B[],
+    Tsa_RestoreBg_0C[];
+
 extern const struct AnimSpriteData AnimSprite_EfxLiveOBJ1_08BBB9BC[],
     AnimSprite_EfxLiveOBJ1_08BBB9E0[], AnimSprite_EfxLiveOBJ1_08BBBA10[],
     AnimSprite_EfxLiveOBJ1_08BBBA40[], AnimSprite_EfxLiveOBJ1_08BBBA70[],
@@ -158,19 +165,19 @@ extern const AnimScr AnimScr_EfxReblowOBJ_Right2[];
 extern const AnimScr AnimScr_EfxReblowOBJ_Left2[];
 extern const struct ProcCmd ProcScr_efxReserve[];
 extern const struct ProcCmd ProcScr_efxReserveBG[];
-extern u16 * TsaArray_Fortify[];
+extern u16 * const TsaArray_Fortify[];
 extern const struct ProcCmd ProcScr_efxReserveBGCOL[];
 extern u16 Pal_0826D3D4[];
 extern u16 Pal_0826D5D4[];
 extern const struct ProcCmd ProcScr_efxReserveBG2[];
-extern u16 * TsaArray_FortifyBg2[];
+extern u16 * const TsaArray_FortifyBg2[];
 extern struct Anim * gUnknown_02000010[2];
 extern const struct ProcCmd ProcScr_efxReserveBGCOL2[];
 extern u16 Pal_0826D7D4[];
 extern const struct ProcCmd ProcScr_efxRest[];
 extern const struct ProcCmd ProcScr_efxRestBG[];
-extern u16 * TsaArray_RestoreBg[];
-extern u16 * ImgArray_RestoreBg[];
+extern u16 * const TsaArray_RestoreBg[];
+extern u16 * const ImgArray_RestoreBg[];
 extern u16 Pal_MapAnimRestore[];
 extern const struct ProcCmd ProcScr_efxRestOBJ[];
 extern const AnimScr AnimScr_EfxRestOBJ[];
@@ -663,8 +670,8 @@ void efxLiveBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
         // TODO: Is this the correct data type?
         EfxCreateBackAnim(proc->anim, (u16 *)(tsaL + ret * 0x12c), (u16 *)(tsaR + ret * 0x12c));
@@ -1155,8 +1162,8 @@ void efxReserveBG_Loop(struct ProcEfxBG * proc)
         int songId;
         int location;
 
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
         SpellFx_WriteBgMap(anim, *(tsaL + ret), *(tsaR + ret));
 
@@ -1294,8 +1301,8 @@ void efxReserveBG2_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
         SpellFx_WriteBgMap(otherAnim, *(tsaL + ret), *(tsaR + ret));
     }
     else
@@ -1482,9 +1489,9 @@ void efxRestBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
 
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);
@@ -1934,4 +1941,51 @@ const AnimScr AnimScr_EfxRestOBJ[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxRestOBJ_08BC3C78, 31),
     ANIMSCR_WAIT(0x13),
     ANIMSCR_END,
+};
+
+SECTION(".rodata.08BA31B0")
+u16 * const TsaArray_Fortify[] = {
+    Tsa_Fortify_00,
+    Tsa_Fortify_01,
+    Tsa_Fortify_02,
+    Tsa_Fortify_03,
+};
+
+SECTION(".rodata.08BA31F8")
+u16 * const TsaArray_FortifyBg2[] = {
+    Tsa_FortifyBg2_00,
+};
+
+SECTION(".rodata.08BA324C")
+u16 * const TsaArray_RestoreBg[] = {
+    Tsa_RestoreBg_00,
+    Tsa_RestoreBg_01,
+    Tsa_RestoreBg_02,
+    Tsa_RestoreBg_03,
+    Tsa_RestoreBg_04,
+    Tsa_RestoreBg_05,
+    Tsa_RestoreBg_06,
+    Tsa_RestoreBg_07,
+    Tsa_RestoreBg_08,
+    Tsa_RestoreBg_09,
+    Tsa_RestoreBg_0A,
+    Tsa_RestoreBg_0B,
+    Tsa_RestoreBg_0C,
+};
+
+SECTION(".rodata.08BA3280")
+u16 * const ImgArray_RestoreBg[] = {
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_06,
+    Img_RestoreBg_06,
+    Img_RestoreBg_06,
+    Img_RestoreBg_09,
+    Img_RestoreBg_09,
+    Img_RestoreBg_0B,
+    Img_RestoreBg_0B,
 };

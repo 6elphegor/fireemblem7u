@@ -1,5 +1,8 @@
 #include "gbafe.h"
 
+extern const u16 Tsa_EkrTriPegagusLeftBG1[], Tsa_EkrTriPegagusLeftBG2[], Tsa_EkrTriPegagusLeftBG3[],
+    Tsa_EkrTriPegagusRightBG1[], Tsa_EkrTriPegagusRightBG2[], Tsa_EkrTriPegagusRightBG3[];
+
 extern const struct AnimSpriteData AnimSprite_TriAtkLeft_08BDB954[],
     AnimSprite_TriAtkLeft_08BDBA2C[], AnimSprite_TriAtkLeft_08BDBAEC[],
     AnimSprite_TriAtkLeft_08BDBBAC[], AnimSprite_TriAtkLeft_08BDBC6C[],
@@ -71,8 +74,8 @@ struct ProcEkrTriPegasusKnightBG {
 
     /* 44 */ u32 frame;
     /* 48 */ const s16 * frame_config;
-    /* 4C */ const u16 ** tsalut_left;
-    /* 50 */ const u16 ** tsalut_right;
+    /* 4C */ const u16 * const * tsalut_left;
+    /* 50 */ const u16 * const * tsalut_right;
 
     STRUCT_PAD(0x54, 0x5C);
 
@@ -130,7 +133,7 @@ extern const struct ProcCmd ProcScr_EfxTriangleQUAKE[];
 
 extern const s16 FrameLut_EkrTriPegagusBGLeft[];
 extern const s16 FrameLut_EkrTriPegagusBGRight[];
-extern CONST_DATA const u16 * TsaLut_EkrTriPegagusBG[];
+extern const u16 * const TsaLut_EkrTriPegagusBG[];
 extern const u8 Img_TriPegasusKnightBG[];
 extern const u8 Img_TriFalconKnightSwordBG[];
 extern const u8 Img_TriFalconKnightLanceBG[];
@@ -441,8 +444,8 @@ void EkrTriPegasusKnightBgMain(struct ProcEkrTriPegasusKnightBG * proc)
 
     if (ret >= 0)
     {
-        const u16 ** buf1 = proc->tsalut_left;
-        const u16 ** buf2 = proc->tsalut_right;
+        const u16 * const * buf1 = proc->tsalut_left;
+        const u16 * const * buf2 = proc->tsalut_right;
 
         SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
         return;
@@ -1043,4 +1046,14 @@ const AnimScr AnimScr_TriGenerialHandAxeAtkOBJ[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868, 1),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDB8BC")
+const u16 * const TsaLut_EkrTriPegagusBG[] = {
+    Tsa_EkrTriPegagusRightBG1,
+    Tsa_EkrTriPegagusRightBG2,
+    Tsa_EkrTriPegagusRightBG3,
+    Tsa_EkrTriPegagusLeftBG1,
+    Tsa_EkrTriPegagusLeftBG2,
+    Tsa_EkrTriPegagusLeftBG3,
 };

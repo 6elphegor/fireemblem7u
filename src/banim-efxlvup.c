@@ -1,5 +1,11 @@
 #include "gbafe.h"
 
+extern u16 Img1_EfxLvupBG[], Img2_EfxLvupBG[], Img3_EfxLvupBG[], Img4_EfxLvupBG[], Img5_EfxLvupBG[],
+    Img6_EfxLvupBG[], Img7_EfxLvupBG[], Tsa10_EfxLvupBG[], Tsa11_EfxLvupBG[], Tsa1_EfxLvupBG[],
+    Tsa1_EfxLvupBG2[], Tsa2_EfxLvupBG[], Tsa2_EfxLvupBG2[], Tsa3_EfxLvupBG[], Tsa3_EfxLvupBG2[],
+    Tsa4_EfxLvupBG[], Tsa4_EfxLvupBG2[], Tsa5_EfxLvupBG[], Tsa5_EfxLvupBG2[], Tsa6_EfxLvupBG[],
+    Tsa6_EfxLvupBG2[], Tsa7_EfxLvupBG[], Tsa8_EfxLvupBG[], Tsa9_EfxLvupBG[];
+
 extern const struct AnimSpriteData AnimSprite_EfxLvupOBJ2_08B9C214[],
     AnimSprite_EfxLvupOBJ2_08B9C250[], AnimSprite_EfxLvupOBJ2_08B9C2A4[],
     AnimSprite_EfxLvupOBJ2_08B9C310[], AnimSprite_EfxLvupOBJ2_08B9C394[],
@@ -89,11 +95,11 @@ extern const struct ProcCmd ProcScr_eobjLvup[];
 
 extern const s16 gEfxPartsofScroll2Lut[];
 extern const u16 FrameConfig_EfxLvupBG[];
-extern u16 * TsaLut_EfxLvupBG[];
-extern u16 * ImgLut_EfxLvupBG[];
+extern u16 * const TsaLut_EfxLvupBG[];
+extern u16 * const ImgLut_EfxLvupBG[];
 extern const u16 Pal_EfxLvupBG[];
 extern const u16 FrameConfig_EfxLvupBG2[];
-extern u16 * TsaLut_EfxLvupBG2[];
+extern u16 * const TsaLut_EfxLvupBG2[];
 extern const u8 Img_EfxLvupBG2[];
 extern const u16 Pal_EfxLvupBG2[];
 extern const AnimScr AnimScr_EfxLvupOBJ2[];
@@ -346,9 +352,9 @@ void EfxlvupbgMain(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsa1 = proc->tsal;
-        u16 ** tsa2 = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsa1 = proc->tsal;
+        u16 * const * tsa2 = proc->tsar;
+        u16 * const * img = proc->img;
 
         SpellFx_WriteBgMap(proc->anim, tsa1[ret], tsa2[ret]);
         SpellFx_RegisterBgGfx(img[ret], 0x2000);
@@ -383,8 +389,8 @@ void EfxLvupBg2Main(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsa1 = proc->tsal;
-        u16 ** tsa2 = proc->tsar;
+        u16 * const * tsa1 = proc->tsal;
+        u16 * const * tsa2 = proc->tsar;
 
         SpellFx_WriteBgMap(proc->anim, tsa1[ret], tsa2[ret]);
         return;
@@ -890,4 +896,44 @@ const AnimScr AnimScr_LvupStatupObj[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_LvupStatupfx3_08B9E154, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_LvupStatupfx3_08B9E04C, 4),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BDB76C")
+u16 * const TsaLut_EfxLvupBG[] = {
+    Tsa1_EfxLvupBG,
+    Tsa2_EfxLvupBG,
+    Tsa3_EfxLvupBG,
+    Tsa4_EfxLvupBG,
+    Tsa5_EfxLvupBG,
+    Tsa6_EfxLvupBG,
+    Tsa7_EfxLvupBG,
+    Tsa8_EfxLvupBG,
+    Tsa9_EfxLvupBG,
+    Tsa10_EfxLvupBG,
+    Tsa11_EfxLvupBG,
+};
+
+SECTION(".rodata.08BDB798")
+u16 * const ImgLut_EfxLvupBG[] = {
+    Img1_EfxLvupBG,
+    Img1_EfxLvupBG,
+    Img2_EfxLvupBG,
+    Img2_EfxLvupBG,
+    Img3_EfxLvupBG,
+    Img4_EfxLvupBG,
+    Img5_EfxLvupBG,
+    Img6_EfxLvupBG,
+    Img7_EfxLvupBG,
+    Img7_EfxLvupBG,
+    Img7_EfxLvupBG,
+};
+
+SECTION(".rodata.08BDB7DC")
+u16 * const TsaLut_EfxLvupBG2[] = {
+    Tsa1_EfxLvupBG2,
+    Tsa2_EfxLvupBG2,
+    Tsa3_EfxLvupBG2,
+    Tsa4_EfxLvupBG2,
+    Tsa5_EfxLvupBG2,
+    Tsa6_EfxLvupBG2,
 };

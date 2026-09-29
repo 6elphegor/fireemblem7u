@@ -2,6 +2,8 @@
 #include "constants/msg.h"
 #include "gbafe/bmshop.h"
 
+extern const u16 gUnk_08B90A74[], gUnk_08B90A7C[], gUnk_08B90A84[];
+
 void SetupDebugFontForOBJ(int vramOffset, int palId);
 void sub_8005234(int, int, int, int);
 
@@ -2295,4 +2297,24 @@ SECTION(".rodata.08B90AFC")
 const struct TalkChoiceEnt gUnk_08BFFCAC[] = {
     { .msg = 3, .onSwitch = TalkChoice_OnBuy },
     { .msg = 4, .onSwitch = TalkChoice_OnSell },
+};
+
+SECTION(".rodata.08B90A8C")
+const u16 * const gUnk_08B90A8C[] = {
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A74,
+    gUnk_08B90A7C,
+    gUnk_08B90A84,
+    gUnk_08B90A84,
+    gUnk_08B90A84,
+    gUnk_08B90A84,
+    gUnk_08B90A7C,
 };

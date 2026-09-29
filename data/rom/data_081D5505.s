@@ -20,7 +20,11 @@ gSioBgPalTable:
 
 	.global gUnk_081D5554
 gUnk_081D5554:
-	.incbin "baserom.gba", 0x1d5554, 0x10
+	.incbin "baserom.gba", 0x1d5554, 0x2
+
+	.global gUnk_081D5556
+gUnk_081D5556:
+	.incbin "baserom.gba", 0x1d5556, 0xe
 
 	.global Sprite_SioMenu_Practice
 Sprite_SioMenu_Practice:
@@ -28,7 +32,11 @@ Sprite_SioMenu_Practice:
 
 	.global gUnk_081D5570
 gUnk_081D5570:
-	.incbin "baserom.gba", 0x1d5570, 0x10
+	.incbin "baserom.gba", 0x1d5570, 0x2
+
+	.global gUnk_081D5572
+gUnk_081D5572:
+	.incbin "baserom.gba", 0x1d5572, 0xe
 
 	.global Sprite_SioMenu_BattleData
 Sprite_SioMenu_BattleData:
@@ -36,7 +44,11 @@ Sprite_SioMenu_BattleData:
 
 	.global gUnk_081D558C
 gUnk_081D558C:
-	.incbin "baserom.gba", 0x1d558c, 0x10
+	.incbin "baserom.gba", 0x1d558c, 0x2
+
+	.global gUnk_081D558E
+gUnk_081D558E:
+	.incbin "baserom.gba", 0x1d558e, 0xe
 
 	.global gUnknown_080DA09C
 gUnknown_080DA09C:
@@ -44,15 +56,27 @@ gUnknown_080DA09C:
 
 	.global gUnk_081D55A0
 gUnk_081D55A0:
-	.incbin "baserom.gba", 0x1d55a0, 0x14
+	.incbin "baserom.gba", 0x1d55a0, 0x2
+
+	.global gUnk_081D55A2
+gUnk_081D55A2:
+	.incbin "baserom.gba", 0x1d55a2, 0x12
 
 	.global gUnk_081D55B4
 gUnk_081D55B4:
-	.incbin "baserom.gba", 0x1d55b4, 0x14
+	.incbin "baserom.gba", 0x1d55b4, 0x2
+
+	.global gUnk_081D55B6
+gUnk_081D55B6:
+	.incbin "baserom.gba", 0x1d55b6, 0x12
 
 	.global gUnk_081D55C8
 gUnk_081D55C8:
-	.incbin "baserom.gba", 0x1d55c8, 0x16
+	.incbin "baserom.gba", 0x1d55c8, 0x2
+
+	.global gUnk_081D55CA
+gUnk_081D55CA:
+	.incbin "baserom.gba", 0x1d55ca, 0x14
 
 	.section .rodata.081D55FE, "a"
 

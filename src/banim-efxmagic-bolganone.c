@@ -1,6 +1,15 @@
 #include "gbafe.h"
 #include <string.h>
 
+extern u16 Img_BolganoneBG2_00[], Img_BolganoneBG2_01[], Img_BolganoneBG2_02[],
+    Img_BolganoneBG2_03[], Img_BolganoneBG2_04[], Img_BolganoneBG3_00[], Img_BolganoneBG3_01[],
+    Img_BolganoneBG3_02[], Tsa_BolganoneBG2_00[], Tsa_BolganoneBG2_01[], Tsa_BolganoneBG2_02[],
+    Tsa_BolganoneBG2_03[], Tsa_BolganoneBG2_04[], Tsa_BolganoneBG3_00[], Tsa_BolganoneBG3_01[],
+    Tsa_BolganoneBG3_02[], Tsa_BolganoneBG_00[], Tsa_BolganoneBG_01[], Tsa_BolganoneBG_02[],
+    Tsa_BolganoneBG_03[], Tsa_BolganoneBG_04[], Tsa_BolganoneBG_05[], Tsa_BolganoneBG_06[],
+    Tsa_BolganoneBG_07[], Tsa_BolganoneBG_08[], Tsa_BolganoneBG_09[], Tsa_BolganoneBG_0A[],
+    Tsa_BolganoneBG_0B[];
+
 extern const struct AnimSpriteData AnimSprite_BolganoneOBJ2Child_0_08BD24B8[],
     AnimSprite_BolganoneOBJ2Child_1_08BD2488[], AnimSprite_BolganoneOBJ2Child_1_08BD24A0[],
     AnimSprite_BolganoneOBJChild_0_08BD241C[], AnimSprite_BolganoneOBJChild_1_08BD2404[],
@@ -75,11 +84,11 @@ extern const s16 FrameConfig_BolganoneBG[];
 extern const s16 FrameConfig_BolganoneBGCOL[];
 extern const s16 FrameConfig_BolganoneBG2[];
 extern const s16 FrameConfig_BolganoneBG3[];
-extern u16 * TsaArray_BolganoneBG[];
-extern u16 * TsaArray_BolganoneBG2[];
-extern u16 * TsaArray_BolganoneBG3[];
-extern u16 * ImgArray_BolganoneBG2[];
-extern u16 * ImgArray_BolganoneBG3[];
+extern u16 * const TsaArray_BolganoneBG[];
+extern u16 * const TsaArray_BolganoneBG2[];
+extern u16 * const TsaArray_BolganoneBG3[];
+extern u16 * const ImgArray_BolganoneBG2[];
+extern u16 * const ImgArray_BolganoneBG3[];
 extern u16 Img_BolganoneBG[];
 extern u16 Pal_BolganoneBGCOL[];
 extern u16 Pal_BolganoneBG2[];
@@ -209,8 +218,8 @@ void efxBolganoneBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         FillBGRect(gBg1Tm + 30, 2, 20, 1, 0x11F);
     }
@@ -284,9 +293,9 @@ void efxBolganoneBG2_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
         SpellFx_RegisterBgGfx(*(img + ret), 0x2000);
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         FillBGRect(gBg1Tm + 30, 2, 20, 1, 0x11F);
@@ -449,9 +458,9 @@ void efxBolganoneBG3_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         SpellFx_RegisterBgGfx(*(img + ret), 0x2000);
     }
@@ -751,4 +760,52 @@ const AnimScr AnimScr_BolganoneOBJ2Child_0[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJ2Child_0_08BD24B8, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_BolganoneOBJ2Child_1_08BD24A0, 1),
     ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BA2870")
+u16 * const TsaArray_BolganoneBG[] = {
+    Tsa_BolganoneBG_00,
+    Tsa_BolganoneBG_01,
+    Tsa_BolganoneBG_02,
+    Tsa_BolganoneBG_03,
+    Tsa_BolganoneBG_04,
+    Tsa_BolganoneBG_05,
+    Tsa_BolganoneBG_06,
+    Tsa_BolganoneBG_07,
+    Tsa_BolganoneBG_08,
+    Tsa_BolganoneBG_09,
+    Tsa_BolganoneBG_0A,
+    Tsa_BolganoneBG_0B,
+};
+
+SECTION(".rodata.08BA28D8")
+u16 * const TsaArray_BolganoneBG2[] = {
+    Tsa_BolganoneBG2_00,
+    Tsa_BolganoneBG2_01,
+    Tsa_BolganoneBG2_02,
+    Tsa_BolganoneBG2_03,
+    Tsa_BolganoneBG2_04,
+};
+
+SECTION(".rodata.08BA28EC")
+u16 * const ImgArray_BolganoneBG2[] = {
+    Img_BolganoneBG2_00,
+    Img_BolganoneBG2_01,
+    Img_BolganoneBG2_02,
+    Img_BolganoneBG2_03,
+    Img_BolganoneBG2_04,
+};
+
+SECTION(".rodata.08BA2948")
+u16 * const TsaArray_BolganoneBG3[] = {
+    Tsa_BolganoneBG3_00,
+    Tsa_BolganoneBG3_01,
+    Tsa_BolganoneBG3_02,
+};
+
+SECTION(".rodata.08BA2954")
+u16 * const ImgArray_BolganoneBG3[] = {
+    Img_BolganoneBG3_00,
+    Img_BolganoneBG3_01,
+    Img_BolganoneBG3_02,
 };

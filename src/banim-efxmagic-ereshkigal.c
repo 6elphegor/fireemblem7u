@@ -1,5 +1,16 @@
 #include "gbafe.h"
 
+extern u16 Img_EreshkigalBG_00[], Img_EreshkigalBG_02[], Img_EreshkigalBG_03[],
+    Img_EreshkigalBG_04[], Img_EreshkigalBG_05[], Img_EreshkigalBG_06[], Img_EreshkigalBG_07[],
+    Img_EreshkigalBG_08[], Img_EreshkigalBG_09[], Img_EreshkigalBg3_00[], Img_EreshkigalBg3_01[],
+    Img_EreshkigalBg3_02[], Img_EreshkigalBg3_03[], Img_EreshkigalBg3_04[], Img_EreshkigalBg3_05[],
+    Img_EreshkigalBg3_06[], Img_EreshkigalBg3_07[], Img_EreshkigalBg3_08[], Img_EreshkigalBg3_09[],
+    Tsa_EreshkigalBG_00[], Tsa_EreshkigalBG_01[], Tsa_EreshkigalBG_02[], Tsa_EreshkigalBG_03[],
+    Tsa_EreshkigalBG_04[], Tsa_EreshkigalBG_05[], Tsa_EreshkigalBG_06[], Tsa_EreshkigalBG_07[],
+    Tsa_EreshkigalBG_08[], Tsa_EreshkigalBG_09[], Tsa_EreshkigalBg3_00[], Tsa_EreshkigalBg3_01[],
+    Tsa_EreshkigalBg3_02[], Tsa_EreshkigalBg3_03[], Tsa_EreshkigalBg3_04[], Tsa_EreshkigalBg3_05[],
+    Tsa_EreshkigalBg3_06[], Tsa_EreshkigalBg3_07[], Tsa_EreshkigalBg3_08[], Tsa_EreshkigalBg3_09[];
+
 extern const struct AnimSpriteData gUnk_08BD6004[], gUnk_08BD6028[], gUnk_08BD604C[],
     gUnk_08BD6070[], gUnk_08BD6094[], gUnk_08BD60AC[], gUnk_08BD60D0[], gUnk_08BD60F4[],
     gUnk_08BD6118[], gUnk_08BD613C[], gUnk_08BD6160[], gUnk_08BD6184[], gUnk_08BD61A8[],
@@ -36,9 +47,9 @@ struct ProcEfxEclipseBG
     STRUCT_PAD(0x32, 0x44);
     /* 44 */ u32 frame;
     /* 48 */ const u16 * frame_config;
-    /* 4C */ u16 ** tsal;
-    /* 50 */ u16 ** tsar;
-    /* 54 */ u16 ** img;
+    /* 4C */ u16 * const * tsal;
+    /* 50 */ u16 * const * tsar;
+    /* 54 */ u16 * const * img;
     /* 58 */ u16 * pal;
     /* 5C */ struct Anim * anim;
 };
@@ -46,8 +57,8 @@ struct ProcEfxEclipseBG
 /* auto-decls */
 void NewEfxTwobaiRST(struct Anim *anim, int unk44);
 extern const struct ProcCmd ProcScr_efxSuperdruidBG3[];
-extern u16 * TsaArray_EreshkigalBg3[];
-extern u16 * ImgArray_EreshkigalBg3[];
+extern u16 * const TsaArray_EreshkigalBg3[];
+extern u16 * const ImgArray_EreshkigalBg3[];
 extern u16 Pal_EreshkigalBg3[];
 extern const struct ProcCmd ProcScr_efxSuperdruidOBJ2[];
 extern const AnimScr AnimScr_08BD7078[];
@@ -76,8 +87,8 @@ extern const AnimScr AnimScr_EreshkigalOBJ3[];
 extern u16 Img_EreshkigalOBJ[];
 extern u16 Pal_EreshkigalOBJ[];
 extern const s16 FrameConfig_EreshkigalBG[];
-extern u16 * TsaArray_EreshkigalBG[];
-extern u16 * ImgArray_EreshkigalBG[];
+extern u16 * const TsaArray_EreshkigalBG[];
+extern u16 * const ImgArray_EreshkigalBG[];
 extern u16 Pal_EreshkigalBG[];
 
 void StartSubSpell_efxEreshkigalOBJ(struct Anim * anim);
@@ -314,10 +325,10 @@ void efxEreshkigalBG_Loop(struct ProcEfxEclipseBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
-        u16 ** img = proc->img;
+        u16 * const * img = proc->img;
 
         if (proc->pal != *(img + ret))
         {
@@ -379,10 +390,10 @@ void efxSuperdruidBG3_Loop(struct ProcEfxEclipseBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
-        u16 ** img = proc->img;
+        u16 * const * img = proc->img;
 
         if (proc->pal != *(img + ret))
         {
@@ -862,4 +873,60 @@ const AnimScr * const AnimScrArray_EreshkigalOBJChild[] = {
     AnimScr_EreshkigalOBJChild_3,
     AnimScr_EreshkigalOBJChild_4,
     AnimScr_EreshkigalOBJChild_5,
+};
+
+SECTION(".rodata.08BA40AC")
+u16 * const ImgArray_EreshkigalBG[] = {
+    Img_EreshkigalBG_00,
+    Img_EreshkigalBG_00,
+    Img_EreshkigalBG_02,
+    Img_EreshkigalBG_03,
+    Img_EreshkigalBG_04,
+    Img_EreshkigalBG_05,
+    Img_EreshkigalBG_06,
+    Img_EreshkigalBG_07,
+    Img_EreshkigalBG_08,
+    Img_EreshkigalBG_09,
+};
+
+SECTION(".rodata.08BA40D4")
+u16 * const TsaArray_EreshkigalBG[] = {
+    Tsa_EreshkigalBG_00,
+    Tsa_EreshkigalBG_01,
+    Tsa_EreshkigalBG_02,
+    Tsa_EreshkigalBG_03,
+    Tsa_EreshkigalBG_04,
+    Tsa_EreshkigalBG_05,
+    Tsa_EreshkigalBG_06,
+    Tsa_EreshkigalBG_07,
+    Tsa_EreshkigalBG_08,
+    Tsa_EreshkigalBG_09,
+};
+
+SECTION(".rodata.08BA4114")
+u16 * const ImgArray_EreshkigalBg3[] = {
+    Img_EreshkigalBg3_00,
+    Img_EreshkigalBg3_01,
+    Img_EreshkigalBg3_02,
+    Img_EreshkigalBg3_03,
+    Img_EreshkigalBg3_04,
+    Img_EreshkigalBg3_05,
+    Img_EreshkigalBg3_06,
+    Img_EreshkigalBg3_07,
+    Img_EreshkigalBg3_08,
+    Img_EreshkigalBg3_09,
+};
+
+SECTION(".rodata.08BA413C")
+u16 * const TsaArray_EreshkigalBg3[] = {
+    Tsa_EreshkigalBg3_00,
+    Tsa_EreshkigalBg3_01,
+    Tsa_EreshkigalBg3_02,
+    Tsa_EreshkigalBg3_03,
+    Tsa_EreshkigalBg3_04,
+    Tsa_EreshkigalBg3_05,
+    Tsa_EreshkigalBg3_06,
+    Tsa_EreshkigalBg3_07,
+    Tsa_EreshkigalBg3_08,
+    Tsa_EreshkigalBg3_09,
 };

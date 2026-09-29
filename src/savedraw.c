@@ -4,6 +4,18 @@
 
 #include "gbafe/savemenu.h"
 
+extern const u16 gUnk_08CE44AC[], gUnk_08CE44C4[], gUnk_08CE44E0[], gUnk_08CE44F8[],
+    gUnk_08CE4520[], gUnk_08CE4544[];
+
+extern u16 gUnk_08CE41D4[], gUnk_08CE41DC[], gUnk_08CE41E4[], gUnk_08CE41EC[], gUnk_08CE41F4[],
+    gUnk_08CE41FC[], gUnk_08CE4204[], gUnk_08CE420C[], gUnk_08CE4214[], gUnk_08CE421C[],
+    gUnk_08CE4224[], gUnk_08CE422C[], gUnk_08CE4234[], gUnk_08CE423C[], gUnk_08CE4244[],
+    gUnk_08CE424C[], gUnk_08CE4254[], gUnk_08CE425C[], gUnk_08CE4264[], gUnk_08CE426C[],
+    gUnk_08CE4274[], gUnk_08CE427C[], gUnk_08CE43B8[], gUnk_08CE43CC[], gUnk_08CE43E0[],
+    gUnk_08CE43EC[], gUnk_08CE43FC[], gUnk_08CE4408[], gUnk_08CE4418[], gUnk_08CE4420[],
+    gUnk_08CE4434[], gUnk_08CE4448[], gUnk_08CE4454[], gUnk_08CE4468[], gUnk_08CE447C[],
+    gUnk_08CE4490[];
+
 struct SaveDrawProc
 {
     /* 00 */ PROC_HEADER;
@@ -30,22 +42,22 @@ extern const struct ProcCmd ProcScr_SaveDraw[];
 ProcPtr StartSaveDrawCursor(ProcPtr parent);
 
 extern u16 CONST_DATA Sprite_08A2051C[];
-extern u16 * CONST_DATA SpriteArray_08A209B8[];
-extern u16 * CONST_DATA SpriteArray_08A2099C[];
+extern u16 * const SpriteArray_08A209B8[];
+extern u16 * const SpriteArray_08A2099C[];
 extern u16 gUnk_Savemenu_02000004[];
 void SaveMenuInitSlotPalette(u8 slot);
 void sub_080A652C(int a, int b);
 void sub_080A5148(int time);
 void sub_080A5E8C(int a, int b, int c, ProcPtr proc);
 void sub_080A5EAC(int a, int b, ProcPtr proc);
-extern u16 * CONST_DATA SpriteArray_08CE45B4[];
-extern u16 * CONST_DATA SpriteArray_08CE45A8[];
+extern const u16 * const SpriteArray_08CE45B4[];
+extern const u16 * const SpriteArray_08CE45A8[];
 extern u16 CONST_DATA Sprite_08CE41B4[];
 extern u16 CONST_DATA Sprite_08CE4172[];
 extern u16 CONST_DATA Sprite_08CE41BC[];
 extern u16 CONST_DATA Sprite_08CE4286[];
-extern u16 * CONST_DATA SpriteArray_08CE4294[];
-extern u16 * CONST_DATA SpriteArray_08CE42C0[];
+extern u16 * const SpriteArray_08CE4294[];
+extern u16 * const SpriteArray_08CE42C0[];
 
 struct SaveBonusHelpProc
 {
@@ -567,4 +579,71 @@ const struct ProcCmd ProcScr_SaveDraw[] = {
     PROC_CALL(SaveDraw_Init),
     PROC_REPEAT(SaveDraw_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08CE4294")
+u16 * const SpriteArray_08CE4294[] = {
+    &gUnk_08CE41D4[1],
+    &gUnk_08CE41DC[1],
+    &gUnk_08CE41E4[1],
+    &gUnk_08CE41EC[1],
+    &gUnk_08CE41F4[1],
+    &gUnk_08CE41FC[1],
+    &gUnk_08CE4204[1],
+    &gUnk_08CE420C[1],
+    &gUnk_08CE4214[1],
+    &gUnk_08CE421C[1],
+    &gUnk_08CE4224[1],
+};
+
+SECTION(".rodata.08CE42C0")
+u16 * const SpriteArray_08CE42C0[] = {
+    &gUnk_08CE422C[1],
+    &gUnk_08CE4234[1],
+    &gUnk_08CE423C[1],
+    &gUnk_08CE4244[1],
+    &gUnk_08CE424C[1],
+    &gUnk_08CE4254[1],
+    &gUnk_08CE425C[1],
+    &gUnk_08CE4264[1],
+    &gUnk_08CE426C[1],
+    &gUnk_08CE4274[1],
+    &gUnk_08CE427C[1],
+};
+
+SECTION(".rodata.08CE456C")
+u16 * const SpriteArray_08A2099C[] = {
+    gUnk_08CE4448,
+    &gUnk_08CE4454[1],
+    &gUnk_08CE4490[1],
+    &gUnk_08CE4468[1],
+    &gUnk_08CE447C[1],
+    gUnk_08CE4434,
+};
+
+SECTION(".rodata.08CE4584")
+u16 * const SpriteArray_08A209B8[] = {
+    gUnk_08CE43B8,
+    gUnk_08CE43CC,
+    gUnk_08CE43E0,
+    &gUnk_08CE43EC[1],
+    gUnk_08CE43FC,
+    &gUnk_08CE4408[1],
+    gUnk_08CE4418,
+    gUnk_08CE43CC,
+    gUnk_08CE4420,
+};
+
+SECTION(".rodata.08CE45A8")
+const u16 * const SpriteArray_08CE45A8[] = {
+    &gUnk_08CE44F8[1],
+    gUnk_08CE4520,
+    &gUnk_08CE4544[1],
+};
+
+SECTION(".rodata.08CE45B4")
+const u16 * const SpriteArray_08CE45B4[] = {
+    gUnk_08CE44AC,
+    &gUnk_08CE44C4[1],
+    gUnk_08CE44E0,
 };

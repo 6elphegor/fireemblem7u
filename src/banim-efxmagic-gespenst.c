@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern u16 Tsa_GespenstBG_00[], Tsa_GespenstBG_01[], Tsa_GespenstBG_02[], Tsa_GespenstBG_03[],
+    Tsa_GespenstBG_04[], Tsa_GespenstBG_05[], Tsa_GespenstBG_06[], Tsa_GespenstBG_07[],
+    Tsa_GespenstBG_08[], Tsa_GespenstBG_09[], Tsa_GespenstBG_0A[], Tsa_GespenstBG_0B[];
+
 extern const struct AnimSpriteData AnimSprite_GespenstOBJ2_A_08BD3E80[],
     AnimSprite_GespenstOBJ2_A_08BD3EEC[], AnimSprite_GespenstOBJ2_A_08BD3F58[],
     AnimSprite_GespenstOBJ2_A_08BD3FC4[], AnimSprite_GespenstOBJ2_A_08BD4030[],
@@ -30,7 +34,7 @@ extern const struct ProcCmd ProcScr_efxGespenstBG2[];
 extern const struct ProcCmd ProcScr_efxGespenstOBJ[];
 extern const struct ProcCmd ProcScr_efxGespenstOBJ2[];
 extern const s16 FrameConfig_GespenstBG[];
-extern u16 * TsaArray_GespenstBG[];
+extern u16 * const TsaArray_GespenstBG[];
 extern u16 Img_GespenstBG[];
 extern u16 Pal_GespenstBG[];
 extern u16 Img_GespenstBG2[];
@@ -183,8 +187,8 @@ void efxGespenstBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
 
         if (gEkrDistanceType != EKR_DISTANCE_CLOSE)
@@ -559,4 +563,20 @@ const AnimScr AnimScr_GespenstOBJ2_C[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD3E80, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_GespenstOBJ2_A_08BD4288, 1),
     ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BA3C14")
+u16 * const TsaArray_GespenstBG[] = {
+    Tsa_GespenstBG_00,
+    Tsa_GespenstBG_01,
+    Tsa_GespenstBG_02,
+    Tsa_GespenstBG_03,
+    Tsa_GespenstBG_04,
+    Tsa_GespenstBG_05,
+    Tsa_GespenstBG_06,
+    Tsa_GespenstBG_07,
+    Tsa_GespenstBG_08,
+    Tsa_GespenstBG_09,
+    Tsa_GespenstBG_0A,
+    Tsa_GespenstBG_0B,
 };

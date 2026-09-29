@@ -1,5 +1,14 @@
 #include "gbafe.h"
 
+extern u16 Tsa10_EfxMagfcastBG[], Tsa11_EfxMagfcastBG[], Tsa12_EfxMagfcastBG[],
+    Tsa13_EfxMagfcastBG[], Tsa14_EfxMagfcastBG[], Tsa15_EfxMagfcastBG[], Tsa16_EfxMagfcastBG[],
+    Tsa17_EfxMagfcastBG[], Tsa18_EfxMagfcastBG[], Tsa19_EfxMagfcastBG[], Tsa1_EfxChillEffectBG[],
+    Tsa1_EfxMagdhisEffectBG[], Tsa1_EfxMagfcastBG[], Tsa20_EfxMagfcastBG[], Tsa21_EfxMagfcastBG[],
+    Tsa22_EfxMagfcastBG[], Tsa2_EfxChillEffectBG[], Tsa2_EfxMagdhisEffectBG[], Tsa2_EfxMagfcastBG[],
+    Tsa3_EfxChillEffectBG[], Tsa3_EfxMagdhisEffectBG[], Tsa3_EfxMagfcastBG[],
+    Tsa4_EfxMagdhisEffectBG[], Tsa4_EfxMagfcastBG[], Tsa5_EfxMagfcastBG[], Tsa6_EfxMagfcastBG[],
+    Tsa7_EfxMagfcastBG[], Tsa8_EfxMagfcastBG[], Tsa9_EfxMagfcastBG[];
+
 extern const struct AnimSpriteData gUnk_08BA14D0[];
 
 extern const struct AnimSpriteData AnimSprite_EfxChill1_L_08BD5698[],
@@ -840,8 +849,8 @@ extern const u16 FrameConfig_EfxMagFcastBg1[];
 extern const u16 FrameConfig_EfxMagFcastBg2[];
 extern const u16 FrameConfig_EfxMagFcastBg3[];
 extern const u16 FrameConfig_EfxMagFcastBg4[];
-extern u16 * TsaLut1_EfxMagfcastBG[];
-extern u16 * TsaLut2_EfxMagfcastBG[];
+extern u16 * const TsaLut1_EfxMagfcastBG[];
+extern u16 * const TsaLut2_EfxMagfcastBG[];
 extern const u8 Img_EfxMagfcastBG[];
 extern const u16 Pal_EfxMagfcastBG[];
 
@@ -940,8 +949,8 @@ void EfxMagfcastBGMain(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsa1 = proc->tsal;
-        u16 ** tsa2 = proc->tsar;
+        u16 * const * tsa1 = proc->tsal;
+        u16 * const * tsa2 = proc->tsar;
 
         SpellFx_WriteBgMap(proc->anim, tsa1[ret], tsa2[ret]);
         return;
@@ -1496,7 +1505,7 @@ void EfxSRankWeaponEffectSCR2Main(struct ProcEfxSRankSCR2 * proc)
 
 extern const struct ProcCmd ProcScr_efxMagdhisEffect[];
 extern const struct ProcCmd ProcScr_efxMagdhisEffectBG[];
-extern u16 * TsaLut_EfxMagdhisEffectBG[];
+extern u16 * const TsaLut_EfxMagdhisEffectBG[];
 extern const u16 FrameConf_EfxMagdhisEffectBG[];
 extern const u16 Pal_EfxMagdhisEffectBG[];
 extern const u8 Img_EfxMagdhisEffectBG[];
@@ -1559,8 +1568,8 @@ void EfxMagdhisEffectBGMain(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** buf1 = proc->tsal;
-        u16 ** buf2 = proc->tsar;
+        u16 * const * buf1 = proc->tsal;
+        u16 * const * buf2 = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
     }
 
@@ -1694,7 +1703,7 @@ extern const struct ProcCmd ProcScr_efxChillEffectBG[];
 extern const struct ProcCmd ProcScr_efxChillEffectBGCOL[];
 extern const struct ProcCmd ProcScr_efxChillAnime[];
 extern const u16 FrameConf_EfxChillEffectBG[];
-extern u16 * TsaLut_EfxChillEffectBG[];
+extern u16 * const TsaLut_EfxChillEffectBG[];
 extern const u8 Img_ExcaliburBg2[];
 extern const u16 FrameConf_EfxChillEffectBGCOL[];
 extern u16 Pal_EfxChillEffectBG[];
@@ -1766,8 +1775,8 @@ void EfxChillEffectBGMain(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** buf1 = proc->tsal;
-        u16 ** buf2 = proc->tsar;
+        u16 * const * buf1 = proc->tsal;
+        u16 * const * buf2 = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
         return;
     }
@@ -2950,4 +2959,49 @@ SECTION(".rodata.08BA14DC")
 const AnimScr FramScr_Unk5D4F90[] = {
     ANIMSCR_FORCE_SPRITE(gUnk_08BA14D0, 1),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA43AC")
+u16 * const TsaLut1_EfxMagfcastBG[] = {
+    Tsa1_EfxMagfcastBG,
+    Tsa2_EfxMagfcastBG,
+    Tsa3_EfxMagfcastBG,
+    Tsa4_EfxMagfcastBG,
+    Tsa5_EfxMagfcastBG,
+    Tsa6_EfxMagfcastBG,
+};
+
+SECTION(".rodata.08BA43C4")
+u16 * const TsaLut2_EfxMagfcastBG[] = {
+    Tsa7_EfxMagfcastBG,
+    Tsa8_EfxMagfcastBG,
+    Tsa9_EfxMagfcastBG,
+    Tsa10_EfxMagfcastBG,
+    Tsa11_EfxMagfcastBG,
+    Tsa12_EfxMagfcastBG,
+    Tsa13_EfxMagfcastBG,
+    Tsa14_EfxMagfcastBG,
+    Tsa15_EfxMagfcastBG,
+    Tsa16_EfxMagfcastBG,
+    Tsa17_EfxMagfcastBG,
+    Tsa18_EfxMagfcastBG,
+    Tsa19_EfxMagfcastBG,
+    Tsa20_EfxMagfcastBG,
+    Tsa21_EfxMagfcastBG,
+    Tsa22_EfxMagfcastBG,
+};
+
+SECTION(".rodata.08BA465C")
+u16 * const TsaLut_EfxMagdhisEffectBG[] = {
+    Tsa1_EfxMagdhisEffectBG,
+    Tsa2_EfxMagdhisEffectBG,
+    Tsa3_EfxMagdhisEffectBG,
+    Tsa4_EfxMagdhisEffectBG,
+};
+
+SECTION(".rodata.08BA46BC")
+u16 * const TsaLut_EfxChillEffectBG[] = {
+    Tsa1_EfxChillEffectBG,
+    Tsa2_EfxChillEffectBG,
+    Tsa3_EfxChillEffectBG,
 };

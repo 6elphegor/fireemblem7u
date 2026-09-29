@@ -1,5 +1,18 @@
 #include "gbafe.h"
 
+extern u16 Img_FenrirBg_00[], Img_FenrirBg_30[], Img_FenrirBg_31[], Img_FenrirBg_32[],
+    Tsa_FenrirBg_00[], Tsa_FenrirBg_01[], Tsa_FenrirBg_02[], Tsa_FenrirBg_03[], Tsa_FenrirBg_04[],
+    Tsa_FenrirBg_05[], Tsa_FenrirBg_06[], Tsa_FenrirBg_07[], Tsa_FenrirBg_08[], Tsa_FenrirBg_09[],
+    Tsa_FenrirBg_0A[], Tsa_FenrirBg_0B[], Tsa_FenrirBg_0C[], Tsa_FenrirBg_0D[], Tsa_FenrirBg_0E[],
+    Tsa_FenrirBg_0F[], Tsa_FenrirBg_10[], Tsa_FenrirBg_11[], Tsa_FenrirBg_12[], Tsa_FenrirBg_13[],
+    Tsa_FenrirBg_14[], Tsa_FenrirBg_15[], Tsa_FenrirBg_16[], Tsa_FenrirBg_17[], Tsa_FenrirBg_18[],
+    Tsa_FenrirBg_19[], Tsa_FenrirBg_1A[], Tsa_FenrirBg_1B[], Tsa_FenrirBg_1C[], Tsa_FenrirBg_1D[],
+    Tsa_FenrirBg_1E[], Tsa_FenrirBg_1F[], Tsa_FenrirBg_20[], Tsa_FenrirBg_21[], Tsa_FenrirBg_22[],
+    Tsa_FenrirBg_23[], Tsa_FenrirBg_24[], Tsa_FenrirBg_25[], Tsa_FenrirBg_26[], Tsa_FenrirBg_27[],
+    Tsa_FenrirBg_28[], Tsa_FenrirBg_29[], Tsa_FenrirBg_2A[], Tsa_FenrirBg_2B[], Tsa_FenrirBg_2C[],
+    Tsa_FenrirBg_2D[], Tsa_FenrirBg_2E[], Tsa_FenrirBg_2F[], Tsa_FenrirBg_30[], Tsa_FenrirBg_31[],
+    Tsa_FenrirBg_32[];
+
 extern const struct AnimSpriteData AnimSprite_EfxFenrir1_08BBA8E4[],
     AnimSprite_EfxFenrir1_08BBA908[], AnimSprite_EfxFenrir1_08BBA938[],
     AnimSprite_EfxFenrir1_08BBAFC8[], AnimSprite_EfxFenrir1_08BBAFF8[],
@@ -35,12 +48,12 @@ extern const AnimScr AnimScr_EfxFenrir3[];
 extern u16 Pal_FenrirSprites_A[];
 extern u16 Img_FenrirSprites[];
 extern const struct ProcCmd ProcScr_efxFenrirBG2[];
-extern u16 * TsaArray_FenrirBg[];
-extern u16 * ImgArray_FenrirBg[];
+extern u16 * const TsaArray_FenrirBg[];
+extern u16 * const ImgArray_FenrirBg[];
 extern u16 Pal_FenrirBg[];
 extern const u16 FrameConfig_AnimaHitBG[];
-extern u16 * TsaLut_AnimaHitBG[];
-extern u16 * ImgLut_AnimaHitBG[];
+extern u16 * const TsaLut_AnimaHitBG[];
+extern u16 * const ImgLut_AnimaHitBG[];
 extern u16 Pal_EfxFenrirBG2_B[];
 extern const struct ProcCmd ProcScr_efxFenrirOBJ2[];
 extern u16 Pal_FenrirSprites_B[];
@@ -63,9 +76,9 @@ struct ProcEfxEclipseBG
     STRUCT_PAD(0x32, 0x44);
     /* 44 */ u32 frame;
     /* 48 */ const u16 * frame_config;
-    /* 4C */ u16 ** tsal;
-    /* 50 */ u16 ** tsar;
-    /* 54 */ u16 ** img;
+    /* 4C */ u16 * const * tsal;
+    /* 50 */ u16 * const * tsar;
+    /* 54 */ u16 * const * img;
     /* 58 */ u16 * pal;
     /* 5C */ struct Anim * anim;
 };
@@ -436,10 +449,10 @@ void efxFenrirBG2_Loop(struct ProcEfxEclipseBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
-        u16 ** img = proc->img;
+        u16 * const * img = proc->img;
 
         if (proc->pal != *(img + ret))
         {
@@ -731,4 +744,114 @@ const AnimScr AnimScr_EfxFenrir3[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB418, 2),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxFenrir3_08BBB4B4, 2),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA2E88")
+u16 * const ImgArray_FenrirBg[] = {
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_00,
+    Img_FenrirBg_30,
+    Img_FenrirBg_31,
+    Img_FenrirBg_32,
+};
+
+SECTION(".rodata.08BA2F54")
+u16 * const TsaArray_FenrirBg[] = {
+    Tsa_FenrirBg_00,
+    Tsa_FenrirBg_01,
+    Tsa_FenrirBg_02,
+    Tsa_FenrirBg_03,
+    Tsa_FenrirBg_04,
+    Tsa_FenrirBg_05,
+    Tsa_FenrirBg_06,
+    Tsa_FenrirBg_07,
+    Tsa_FenrirBg_08,
+    Tsa_FenrirBg_09,
+    Tsa_FenrirBg_0A,
+    Tsa_FenrirBg_0B,
+    Tsa_FenrirBg_0C,
+    Tsa_FenrirBg_0D,
+    Tsa_FenrirBg_0E,
+    Tsa_FenrirBg_0F,
+    Tsa_FenrirBg_10,
+    Tsa_FenrirBg_11,
+    Tsa_FenrirBg_12,
+    Tsa_FenrirBg_13,
+    Tsa_FenrirBg_14,
+    Tsa_FenrirBg_15,
+    Tsa_FenrirBg_16,
+    Tsa_FenrirBg_17,
+    Tsa_FenrirBg_18,
+    Tsa_FenrirBg_19,
+    Tsa_FenrirBg_1A,
+    Tsa_FenrirBg_1B,
+    Tsa_FenrirBg_1C,
+    Tsa_FenrirBg_1D,
+    Tsa_FenrirBg_1E,
+    Tsa_FenrirBg_1F,
+    Tsa_FenrirBg_20,
+    Tsa_FenrirBg_21,
+    Tsa_FenrirBg_22,
+    Tsa_FenrirBg_23,
+    Tsa_FenrirBg_24,
+    Tsa_FenrirBg_25,
+    Tsa_FenrirBg_26,
+    Tsa_FenrirBg_27,
+    Tsa_FenrirBg_28,
+    Tsa_FenrirBg_29,
+    Tsa_FenrirBg_2A,
+    Tsa_FenrirBg_2B,
+    Tsa_FenrirBg_2C,
+    Tsa_FenrirBg_2D,
+    Tsa_FenrirBg_2E,
+    Tsa_FenrirBg_2F,
+    Tsa_FenrirBg_30,
+    Tsa_FenrirBg_31,
+    Tsa_FenrirBg_32,
 };

@@ -1,5 +1,16 @@
 #include "gbafe.h"
 
+extern u16 gUnk_0822377C[], gUnk_0822434C[], gUnk_0822505C[], gUnk_082262B8[], gUnk_0822693C[],
+    gUnk_08226E98[], gUnk_08227148[], gUnk_08227244[], gUnk_08227344[], gUnk_08227448[],
+    gUnk_08227540[], gUnk_0822764C[], gUnk_08227758[], gUnk_08227878[], gUnk_0822799C[],
+    gUnk_08227A84[], gUnk_08227B60[], gUnk_08227C20[], gUnk_08227CD8[], gUnk_08227D80[],
+    gUnk_08227E3C[], gUnk_08227F14[], gUnk_08227FF4[], gUnk_082280E4[], gUnk_082281E0[],
+    gUnk_082282D4[], gUnk_082283CC[], gUnk_082284B8[], gUnk_0822859C[], gUnk_08228674[],
+    gUnk_08228744[], gUnk_08228810[], gUnk_082288D8[], gUnk_0822898C[], gUnk_08228A40[],
+    gUnk_08228AE0[], gUnk_08228B94[], gUnk_08228C50[], gUnk_08228D2C[], gUnk_08228E14[],
+    gUnk_08228F38[], gUnk_08229058[], gUnk_08229164[], gUnk_08229270[], gUnk_0822936C[],
+    gUnk_0822946C[], gUnk_08229568[];
+
 extern const struct AnimSpriteData AnimSprite_EfxMistyRainObj1_08BB9298[],
     AnimSprite_EfxMistyRainObj1_08BB92BC[], AnimSprite_EfxMistyRainObj1_08BB92E0[],
     AnimSprite_EfxMistyRainObj1_08BB9304[], AnimSprite_EfxMistyRainObj1_08BB9328[],
@@ -29,8 +40,8 @@ void RegisterEfxSpellCastEnd(void);
 extern const struct ProcCmd gProcScr_efxMistyrain[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd gProcScr_efxMistyrainBG[];
-extern u16 * gUnknown_08BA1E64[];
-extern u16 * gUnknown_08BA1F08[];
+extern u16 * const gUnknown_08BA1E64[];
+extern u16 * const gUnknown_08BA1F08[];
 extern u16 Pal_08227108[];
 extern u16 Pal_08227128[];
 extern const struct ProcCmd ProcScr_efxMistyrainOBJ[];
@@ -227,8 +238,8 @@ void efxMistyRainBg_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaLeft = proc->tsal;
-        u16 ** tsaRight = proc->tsar;
+        u16 * const * tsaLeft = proc->tsal;
+        u16 * const * tsaRight = proc->tsar;
         SpellFx_RegisterBgGfx(proc->img[ret], 0x2000);
         SpellFx_WriteBgMap(proc->anim, tsaLeft[ret], tsaRight[ret]);
         return;
@@ -509,4 +520,94 @@ const AnimScr AnimScr_EfxMistyRainObj3[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9A30, 2),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMistyRainObj3_08BB9A54, 2),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA1E64")
+u16 * const gUnknown_08BA1E64[] = {
+    gUnk_08227148,
+    gUnk_08227244,
+    gUnk_08227344,
+    gUnk_08227448,
+    gUnk_08227540,
+    gUnk_0822764C,
+    gUnk_08227758,
+    gUnk_08227878,
+    gUnk_0822799C,
+    gUnk_08227A84,
+    gUnk_08227B60,
+    gUnk_08227C20,
+    gUnk_08227CD8,
+    gUnk_08227D80,
+    gUnk_08227E3C,
+    gUnk_08227F14,
+    gUnk_08227FF4,
+    gUnk_082280E4,
+    gUnk_082281E0,
+    gUnk_082282D4,
+    gUnk_082283CC,
+    gUnk_082284B8,
+    gUnk_0822859C,
+    gUnk_08228674,
+    gUnk_08228744,
+    gUnk_08228810,
+    gUnk_082288D8,
+    gUnk_0822898C,
+    gUnk_08228A40,
+    gUnk_08228AE0,
+    gUnk_08228B94,
+    gUnk_08228C50,
+    gUnk_08228D2C,
+    gUnk_08228E14,
+    gUnk_08228F38,
+    gUnk_08229058,
+    gUnk_08229164,
+    gUnk_08229270,
+    gUnk_0822936C,
+    gUnk_0822946C,
+    gUnk_08229568,
+};
+
+SECTION(".rodata.08BA1F08")
+u16 * const gUnknown_08BA1F08[] = {
+    gUnk_0822377C,
+    gUnk_0822377C,
+    gUnk_0822377C,
+    gUnk_0822434C,
+    gUnk_0822434C,
+    gUnk_0822434C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_082262B8,
+    gUnk_082262B8,
+    gUnk_082262B8,
+    gUnk_082262B8,
+    gUnk_082262B8,
+    gUnk_082262B8,
+    gUnk_0822693C,
+    gUnk_0822693C,
+    gUnk_0822693C,
+    gUnk_0822693C,
+    gUnk_08226E98,
+    gUnk_08226E98,
+    gUnk_08226E98,
+    gUnk_08226E98,
+    gUnk_08226E98,
+    gUnk_08226E98,
+    gUnk_08226E98,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822505C,
+    gUnk_0822434C,
+    gUnk_0822434C,
+    gUnk_0822434C,
+    gUnk_0822377C,
+    gUnk_0822377C,
+    gUnk_0822377C,
 };

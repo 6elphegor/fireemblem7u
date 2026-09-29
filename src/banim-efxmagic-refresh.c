@@ -1,5 +1,13 @@
 #include "gbafe.h"
 
+extern u16 Img_SongBg_00[], Img_SongBg_0A[], Img_SongBg_0F[], Img_SongBg_16[], Tsa_SongBg_00[],
+    Tsa_SongBg_01[], Tsa_SongBg_02[], Tsa_SongBg_03[], Tsa_SongBg_04[], Tsa_SongBg_05[],
+    Tsa_SongBg_06[], Tsa_SongBg_07[], Tsa_SongBg_08[], Tsa_SongBg_09[], Tsa_SongBg_0A[],
+    Tsa_SongBg_0B[], Tsa_SongBg_0C[], Tsa_SongBg_0D[], Tsa_SongBg_0E[], Tsa_SongBg_0F[],
+    Tsa_SongBg_10[], Tsa_SongBg_11[], Tsa_SongBg_12[], Tsa_SongBg_13[], Tsa_SongBg_14[],
+    Tsa_SongBg_15[], Tsa_SongBg_16[], Tsa_SongBg_17[], Tsa_SongBg_18[], Tsa_SongBg_19[],
+    Tsa_SongBg_1A[];
+
 extern const struct AnimSpriteData AnimSprite_EfxSong_08BD709C[], AnimSprite_EfxSong_08BD70B4[],
     AnimSprite_EfxSong_08BD70D8[], AnimSprite_EfxSong_08BD70FC[], AnimSprite_EfxSong_08BD712C[],
     AnimSprite_EfxSong_08BD7168[], AnimSprite_EfxSong_08BD71A4[], AnimSprite_EfxSong_08BD71EC[],
@@ -25,8 +33,8 @@ void NewEfxTwobaiRST(struct Anim *anim, int unk44);
 extern const struct ProcCmd ProcScr_efxSong[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxSongBG[];
-extern u16 * TsaArray_SongBg[];
-extern u16 * ImgArray_SongBg[];
+extern u16 * const TsaArray_SongBg[];
+extern u16 * const ImgArray_SongBg[];
 extern u16 Pal_SongSprites[];
 extern const struct ProcCmd ProcScr_efxSongOBJ[];
 extern const AnimScr AnimScr_EfxSong[];
@@ -45,9 +53,9 @@ struct ProcEfxEclipseBG
     STRUCT_PAD(0x32, 0x44);
     /* 44 */ u32 frame;
     /* 48 */ const u16 * frame_config;
-    /* 4C */ u16 ** tsal;
-    /* 50 */ u16 ** tsar;
-    /* 54 */ u16 ** img;
+    /* 4C */ u16 * const * tsal;
+    /* 50 */ u16 * const * tsar;
+    /* 54 */ u16 * const * img;
     /* 58 */ u16 * pal;
     /* 5C */ struct Anim * anim;
 };
@@ -163,10 +171,10 @@ void efxSongBG_Loop(struct ProcEfxEclipseBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
-        u16 ** img = proc->img;
+        u16 * const * img = proc->img;
 
         if (proc->pal != *(img + ret))
         {
@@ -381,4 +389,66 @@ const AnimScr AnimScr_EfxSong[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8FB0, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxSong_08BD8FD4, 1),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA16D4")
+u16 * const TsaArray_SongBg[] = {
+    Tsa_SongBg_00,
+    Tsa_SongBg_01,
+    Tsa_SongBg_02,
+    Tsa_SongBg_03,
+    Tsa_SongBg_04,
+    Tsa_SongBg_05,
+    Tsa_SongBg_06,
+    Tsa_SongBg_07,
+    Tsa_SongBg_08,
+    Tsa_SongBg_09,
+    Tsa_SongBg_0A,
+    Tsa_SongBg_0B,
+    Tsa_SongBg_0C,
+    Tsa_SongBg_0D,
+    Tsa_SongBg_0E,
+    Tsa_SongBg_0F,
+    Tsa_SongBg_10,
+    Tsa_SongBg_11,
+    Tsa_SongBg_12,
+    Tsa_SongBg_13,
+    Tsa_SongBg_14,
+    Tsa_SongBg_15,
+    Tsa_SongBg_16,
+    Tsa_SongBg_17,
+    Tsa_SongBg_18,
+    Tsa_SongBg_19,
+    Tsa_SongBg_1A,
+};
+
+SECTION(".rodata.08BA1740")
+u16 * const ImgArray_SongBg[] = {
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_00,
+    Img_SongBg_0A,
+    Img_SongBg_0A,
+    Img_SongBg_0A,
+    Img_SongBg_0A,
+    Img_SongBg_0A,
+    Img_SongBg_0F,
+    Img_SongBg_0F,
+    Img_SongBg_0F,
+    Img_SongBg_0F,
+    Img_SongBg_0F,
+    Img_SongBg_0F,
+    Img_SongBg_0F,
+    Img_SongBg_16,
+    Img_SongBg_16,
+    Img_SongBg_16,
+    Img_SongBg_16,
+    Img_SongBg_16,
 };

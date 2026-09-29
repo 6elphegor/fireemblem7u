@@ -1,5 +1,10 @@
 #include "gbafe.h"
 
+extern u16 Tsa1_EfxNormalEffectBG[], Tsa2_EfxNormalEffectBG[], Tsa3_EfxNormalEffectBG[],
+    Tsa4_EfxNormalEffectBG[], Tsa5_EfxNormalEffectBG[], Tsa6_EfxNormalEffectBG[],
+    Tsa7_EfxNormalEffectBG[], Tsa8_EfxNormalEffectBG[], Tsa9_EfxNormalEffectBG[],
+    TsaA_EfxNormalEffectBG[];
+
 extern const struct AnimSpriteData AnimSprite_Miss_08B9D5B8[], AnimSprite_Miss_08B9D5D0[],
     AnimSprite_Miss_08B9D5E8[], AnimSprite_Miss_08B9D600[], AnimSprite_Miss_08B9D624[],
     AnimSprite_Miss_08B9D648[], AnimSprite_Miss_08B9D66C[], AnimSprite_Miss_08B9D69C[],
@@ -36,7 +41,7 @@ extern const struct ProcCmd ProcScr_efxCriricalEffectBGCOL[];
 extern const struct ProcCmd ProcScr_efxNormalEffect[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxNormalEffectBG[];
-extern u16 * TSAs_EfxNormalEffectBG[];
+extern u16 * const TSAs_EfxNormalEffectBG[];
 extern u16 Pal_EfxNormalEffectBG[];
 extern u16 Img_EfxNormalEffectBG[];
 
@@ -278,8 +283,8 @@ void efxNormalEffectBGMain(struct ProcEfxBG * proc)
     int ret;
     ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
     if (ret >= 0) {
-        u16 **buf1 = proc->tsal;
-        u16 **buf2 = proc->tsar;
+        u16 * const * buf1 = proc->tsal;
+        u16 * const * buf2 = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
         return;
     }
@@ -401,4 +406,18 @@ const AnimScr AnimScr_Miss[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_NoDamage_08B9D5A0, 31),
     ANIMSCR_WAIT(0x13),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA4284")
+u16 * const TSAs_EfxNormalEffectBG[] = {
+    Tsa1_EfxNormalEffectBG,
+    Tsa2_EfxNormalEffectBG,
+    Tsa3_EfxNormalEffectBG,
+    Tsa4_EfxNormalEffectBG,
+    Tsa5_EfxNormalEffectBG,
+    Tsa6_EfxNormalEffectBG,
+    Tsa7_EfxNormalEffectBG,
+    Tsa8_EfxNormalEffectBG,
+    Tsa9_EfxNormalEffectBG,
+    TsaA_EfxNormalEffectBG,
 };

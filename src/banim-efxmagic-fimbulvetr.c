@@ -1,5 +1,14 @@
 #include "gbafe.h"
 
+extern u16 Img_FimbulvetrBg_A[], Img_FimbulvetrBg_B[], Img_FimbulvetrBg_C[], Img_FimbulvetrBg_D[],
+    Img_FimbulvetrBg_Tornado_A[], Img_FimbulvetrBg_Tornado_B[], Img_FimbulvetrBg_Tornado_C[],
+    Img_FimbulvetrBg_Tornado_D[], Img_FimbulvetrBg_Tornado_E[], Img_FimbulvetrBg_Tornado_F[],
+    Tsa_FimbulvetrBg_A[], Tsa_FimbulvetrBg_B[], Tsa_FimbulvetrBg_C[], Tsa_FimbulvetrBg_D[],
+    Tsa_FimbulvetrBg_E[], Tsa_FimbulvetrBg_F[], Tsa_FimbulvetrBg_G[], Tsa_FimbulvetrBg_H[],
+    Tsa_FimbulvetrBg_I[], Tsa_FimbulvetrBg_J[], Tsa_FimbulvetrBg_K[], Tsa_FimbulvetrBg_Tornado_A[],
+    Tsa_FimbulvetrBg_Tornado_B[], Tsa_FimbulvetrBg_Tornado_C[], Tsa_FimbulvetrBg_Tornado_D[],
+    Tsa_FimbulvetrBg_Tornado_E[], Tsa_FimbulvetrBg_Tornado_F[];
+
 extern const struct AnimSpriteData AnimSprite_FimbulvetrOBJ1_08BB7410[],
     AnimSprite_FimbulvetrOBJ1_08BB7488[], AnimSprite_FimbulvetrOBJ1_08BB7584[],
     AnimSprite_FimbulvetrOBJ1_08BB7698[], AnimSprite_FimbulvetrOBJ1_08BB77C4[],
@@ -26,12 +35,12 @@ void RegisterEfxSpellCastEnd(void);
 extern const struct ProcCmd ProcScr_efxFimbulvetr[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxFimbulvetrBGTR[];
-extern u16 * TsaArray_FimbulvetrBg_Tornado[];
-extern u16 * ImgArray_FimbulvetrBg_Tornado[];
+extern u16 * const TsaArray_FimbulvetrBg_Tornado[];
+extern u16 * const ImgArray_FimbulvetrBg_Tornado[];
 extern u16 Pal_FimbulvetrBg_Tornado[];
 extern const struct ProcCmd ProcScr_efxFimbulvetrBG[];
-extern u16 * TsaArray_FimbulvetrBg[];
-extern u16 * ImgArray_FimbulvetrBg[];
+extern u16 * const TsaArray_FimbulvetrBg[];
+extern u16 * const ImgArray_FimbulvetrBg[];
 extern u16 Pal_FimbulvetrBg[];
 extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ[];
 extern const AnimScr AnimScr_FimbulvetrOBJ1[];
@@ -175,9 +184,9 @@ void efxFimbulvetrBGTR_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);
     }
@@ -239,9 +248,9 @@ void efxFimbulvetrBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);
     }
@@ -540,4 +549,54 @@ SECTION(".rodata.08BB9290")
 const AnimScr AnimScr_FimbulvetrOBJ2Fall_TypeB[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_FimbulvetrOBJ2Fall_TypeB_08BB9270, 4),
     ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BA1C3C")
+u16 * const TsaArray_FimbulvetrBg_Tornado[] = {
+    Tsa_FimbulvetrBg_Tornado_A,
+    Tsa_FimbulvetrBg_Tornado_B,
+    Tsa_FimbulvetrBg_Tornado_C,
+    Tsa_FimbulvetrBg_Tornado_D,
+    Tsa_FimbulvetrBg_Tornado_E,
+    Tsa_FimbulvetrBg_Tornado_F,
+};
+
+SECTION(".rodata.08BA1C54")
+u16 * const ImgArray_FimbulvetrBg_Tornado[] = {
+    Img_FimbulvetrBg_Tornado_A,
+    Img_FimbulvetrBg_Tornado_B,
+    Img_FimbulvetrBg_Tornado_C,
+    Img_FimbulvetrBg_Tornado_D,
+    Img_FimbulvetrBg_Tornado_E,
+    Img_FimbulvetrBg_Tornado_F,
+};
+
+SECTION(".rodata.08BA1C84")
+u16 * const TsaArray_FimbulvetrBg[] = {
+    Tsa_FimbulvetrBg_A,
+    Tsa_FimbulvetrBg_B,
+    Tsa_FimbulvetrBg_C,
+    Tsa_FimbulvetrBg_D,
+    Tsa_FimbulvetrBg_E,
+    Tsa_FimbulvetrBg_F,
+    Tsa_FimbulvetrBg_G,
+    Tsa_FimbulvetrBg_H,
+    Tsa_FimbulvetrBg_I,
+    Tsa_FimbulvetrBg_J,
+    Tsa_FimbulvetrBg_K,
+};
+
+SECTION(".rodata.08BA1CB0")
+u16 * const ImgArray_FimbulvetrBg[] = {
+    Img_FimbulvetrBg_A,
+    Img_FimbulvetrBg_A,
+    Img_FimbulvetrBg_A,
+    Img_FimbulvetrBg_A,
+    Img_FimbulvetrBg_A,
+    Img_FimbulvetrBg_A,
+    Img_FimbulvetrBg_B,
+    Img_FimbulvetrBg_B,
+    Img_FimbulvetrBg_C,
+    Img_FimbulvetrBg_D,
+    Img_FimbulvetrBg_D,
 };

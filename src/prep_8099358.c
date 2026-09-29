@@ -2,6 +2,8 @@
 #include "gbafe/cgtext.h"
 #include "gbafe/unk-data.h"
 
+extern const u16 gUnk_08CC50F8[];
+
 struct PrepRankProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ int timer;
@@ -60,7 +62,7 @@ extern u16 Pal_081D69E4[];
 extern u16 Pal_081D72A4[];
 extern u16 Pal_081D7B20[];
 extern u8 Tsa_0840EA38[];
-extern u16 const * CONST_DATA gUnk_08CC5100[];
+extern const u16 * const gUnk_08CC5100[];
 extern const struct ProcCmd ProcScr_08CC5114[];
 extern int CONST_DATA gUnk_08CC50C0[];
 extern int CONST_DATA gUnk_08CC51C4[];
@@ -1191,4 +1193,13 @@ const struct ProcCmd ProcScr_08CC5760[] = {
     PROC_REPEAT(sub_0809AF94),
     PROC_SLEEP(30),
     PROC_END,
+};
+
+SECTION(".rodata.08CC5100")
+const u16 * const gUnk_08CC5100[] = {
+    gUnk_08CC50F8,
+    gUnk_08CC50F8,
+    gUnk_08CC50F8,
+    gUnk_08CC50F8,
+    gUnk_08CC50F8,
 };

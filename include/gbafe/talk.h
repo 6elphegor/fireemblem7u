@@ -212,7 +212,7 @@ extern const struct ProcCmd gProcScr_TalkLock[];
 #define gProcScr_TalkFaceMove (gProcScr_TalkLock + 1)
 extern const struct ProcCmd gUnk_08BFFBDC[];
 extern const struct ProcCmd gProcScr_TalkWaitForInput[];
-extern u16 const * CONST_DATA gUnk_08B90A8C[];
+extern const u16 * const gUnk_08B90A8C[];
 extern const struct ProcCmd gProcScr_TalkShiftClearAll[];
 extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFC9C[];
 extern const struct TalkChoiceEnt gUnk_08BFFCAC[];

@@ -1,5 +1,20 @@
 #include "gbafe.h"
 
+extern u16 Img_AnimaHitBG_00[], Img_AnimaHitBG_06[], Img_AnimaHitBG_09[], Img_AnimaHitBG_0B[],
+    Img_AnimaHitBG_0D[], Img_AnimaHitBG_0F[], Img_AnimaHitBG_10[], Img_AnimaHitBG_11[],
+    Img_AnimaHitBG_12[], Img_AnimaHitBG_13[], Img_AnimaHitBG_14[], Tsa_AnimaHitBG_00[],
+    Tsa_AnimaHitBG_01[], Tsa_AnimaHitBG_02[], Tsa_AnimaHitBG_03[], Tsa_AnimaHitBG_04[],
+    Tsa_AnimaHitBG_05[], Tsa_AnimaHitBG_06[], Tsa_AnimaHitBG_07[], Tsa_AnimaHitBG_08[],
+    Tsa_AnimaHitBG_09[], Tsa_AnimaHitBG_0A[], Tsa_AnimaHitBG_0B[], Tsa_AnimaHitBG_0C[],
+    Tsa_AnimaHitBG_0D[], Tsa_AnimaHitBG_0E[], Tsa_AnimaHitBG_0F[], Tsa_AnimaHitBG_10[],
+    Tsa_AnimaHitBG_11[], Tsa_AnimaHitBG_12[], Tsa_AnimaHitBG_13[], Tsa_AnimaHitBG_14[],
+    Tsa_EfxFireBG_L_00[], Tsa_EfxFireBG_L_01[], Tsa_EfxFireBG_L_02[], Tsa_EfxFireBG_L_03[],
+    Tsa_EfxFireBG_L_04[], Tsa_EfxFireBG_L_05[], Tsa_EfxFireBG_L_06[], Tsa_EfxFireBG_L_07[],
+    Tsa_EfxFireBG_L_08[], Tsa_EfxFireBG_L_09[], Tsa_EfxFireBG_L_0A[], Tsa_EfxFireBG_L_0B[],
+    Tsa_EfxFireBG_R_00[], Tsa_EfxFireBG_R_01[], Tsa_EfxFireBG_R_02[], Tsa_EfxFireBG_R_03[],
+    Tsa_EfxFireBG_R_04[], Tsa_EfxFireBG_R_05[], Tsa_EfxFireBG_R_06[], Tsa_EfxFireBG_R_07[],
+    Tsa_EfxFireBG_R_08[], Tsa_EfxFireBG_R_09[], Tsa_EfxFireBG_R_0A[], Tsa_EfxFireBG_R_0B[];
+
 extern const struct AnimSpriteData AnimSprite_EfxElfireObjLeft_08BB5548[],
     AnimSprite_EfxElfireObjLeft_08BB556C[], AnimSprite_EfxElfireObjLeft_08BB55A8[],
     AnimSprite_EfxElfireObjLeft_08BB55FC[], AnimSprite_EfxElfireObjLeft_08BB5668[],
@@ -64,8 +79,8 @@ extern u16 Pal_FireSpellSprites[];
 extern u16 Img_FireSpellSprites[];
 extern const struct ProcCmd ProcScr_efxFireHITBG[];
 extern const u16 FrameConfig_AnimaHitBG[];
-extern u16 * TsaLut_AnimaHitBG[];
-extern u16 * ImgLut_AnimaHitBG[];
+extern u16 * const TsaLut_AnimaHitBG[];
+extern u16 * const ImgLut_AnimaHitBG[];
 extern u16 Pal_EfxFireHitBG[];
 extern const struct ProcCmd ProcScr_efxElfireBG[];
 extern u16 Img_EkrElfireBG[];
@@ -97,8 +112,8 @@ void StartSubSpell_efxElfireOBJ(struct Anim * anim);
 void EfxElfireObj_Loop(struct ProcEfxOBJ * proc);
 
 extern const u16 NewEfxFireBG_frame_config[];
-extern u16 * NewEfxFireBG_tsal[];
-extern u16 * NewEfxFireBG_tsar[];
+extern u16 * const NewEfxFireBG_tsal[];
+extern u16 * const NewEfxFireBG_tsar[];
 extern const u16 StartSubSpell_efxElfireBGCOL_frame_config[];
 
 // 9.99 efxmagic-fire:StartSpellAnimFire
@@ -219,8 +234,8 @@ void Loop6C_efxFireBG(struct ProcEfxBG * proc)
     int ret;
     ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
     if (ret >= 0) {
-        u16 **buf1 = proc->tsal;
-        u16 **buf2 = proc->tsar;
+        u16 * const * buf1 = proc->tsal;
+        u16 * const * buf2 = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
         return;
     }
@@ -304,8 +319,8 @@ void efxFireHITBG_Loop(struct ProcEfxBG * proc)
     int ret;
     ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
     if (ret >= 0) {
-        u16 **buf1 = proc->tsal;
-        u16 **buf2 = proc->tsar;
+        u16 * const * buf1 = proc->tsal;
+        u16 * const * buf2 = proc->tsar;
         SpellFx_RegisterBgGfx(proc->img[ret], 0x2000);
         SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
         return;
@@ -598,4 +613,86 @@ const AnimScr AnimScr_EfxElfireObjLeft[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxElfireObjLeft_08BB607C, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxElfireObjLeft_08BB6100, 1),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA1A84")
+u16 * const NewEfxFireBG_tsal[] = {
+    Tsa_EfxFireBG_L_00,
+    Tsa_EfxFireBG_L_01,
+    Tsa_EfxFireBG_L_02,
+    Tsa_EfxFireBG_L_03,
+    Tsa_EfxFireBG_L_04,
+    Tsa_EfxFireBG_L_05,
+    Tsa_EfxFireBG_L_06,
+    Tsa_EfxFireBG_L_07,
+    Tsa_EfxFireBG_L_08,
+    Tsa_EfxFireBG_L_09,
+    Tsa_EfxFireBG_L_0A,
+    Tsa_EfxFireBG_L_0B,
+};
+
+SECTION(".rodata.08BA1AB4")
+u16 * const NewEfxFireBG_tsar[] = {
+    Tsa_EfxFireBG_R_00,
+    Tsa_EfxFireBG_R_01,
+    Tsa_EfxFireBG_R_02,
+    Tsa_EfxFireBG_R_03,
+    Tsa_EfxFireBG_R_04,
+    Tsa_EfxFireBG_R_05,
+    Tsa_EfxFireBG_R_06,
+    Tsa_EfxFireBG_R_07,
+    Tsa_EfxFireBG_R_08,
+    Tsa_EfxFireBG_R_09,
+    Tsa_EfxFireBG_R_0A,
+    Tsa_EfxFireBG_R_0B,
+};
+
+SECTION(".rodata.08BA1B14")
+u16 * const ImgLut_AnimaHitBG[] = {
+    Img_AnimaHitBG_00,
+    Img_AnimaHitBG_00,
+    Img_AnimaHitBG_00,
+    Img_AnimaHitBG_00,
+    Img_AnimaHitBG_00,
+    Img_AnimaHitBG_00,
+    Img_AnimaHitBG_06,
+    Img_AnimaHitBG_06,
+    Img_AnimaHitBG_06,
+    Img_AnimaHitBG_09,
+    Img_AnimaHitBG_09,
+    Img_AnimaHitBG_0B,
+    Img_AnimaHitBG_0B,
+    Img_AnimaHitBG_0D,
+    Img_AnimaHitBG_0D,
+    Img_AnimaHitBG_0F,
+    Img_AnimaHitBG_10,
+    Img_AnimaHitBG_11,
+    Img_AnimaHitBG_12,
+    Img_AnimaHitBG_13,
+    Img_AnimaHitBG_14,
+};
+
+SECTION(".rodata.08BA1B68")
+u16 * const TsaLut_AnimaHitBG[] = {
+    Tsa_AnimaHitBG_00,
+    Tsa_AnimaHitBG_01,
+    Tsa_AnimaHitBG_02,
+    Tsa_AnimaHitBG_03,
+    Tsa_AnimaHitBG_04,
+    Tsa_AnimaHitBG_05,
+    Tsa_AnimaHitBG_06,
+    Tsa_AnimaHitBG_07,
+    Tsa_AnimaHitBG_08,
+    Tsa_AnimaHitBG_09,
+    Tsa_AnimaHitBG_0A,
+    Tsa_AnimaHitBG_0B,
+    Tsa_AnimaHitBG_0C,
+    Tsa_AnimaHitBG_0D,
+    Tsa_AnimaHitBG_0E,
+    Tsa_AnimaHitBG_0F,
+    Tsa_AnimaHitBG_10,
+    Tsa_AnimaHitBG_11,
+    Tsa_AnimaHitBG_12,
+    Tsa_AnimaHitBG_13,
+    Tsa_AnimaHitBG_14,
 };

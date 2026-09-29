@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern u16 Img_ShineBg1[], Tsa_ShineBg1_Left[], Tsa_ShineBg1_Right[], Tsa_ShineBg2_A[],
+    Tsa_ShineBg2_B[], Tsa_ShineBg2_C[], Tsa_ShineBg2_D[], Tsa_ShineBg2_E[], Tsa_ShineBg2_F[],
+    Tsa_ShineBg2_G[], Tsa_ShineBg2_H[], Tsa_ShineBg2_I[];
+
 extern const struct AnimSpriteData AnimSprite_EfxShine_08BD24E8[], AnimSprite_EfxShine_08BD250C[],
     AnimSprite_EfxShine_08BD2530[], AnimSprite_EfxShine_08BD2554[], AnimSprite_EfxShine_08BD2578[],
     AnimSprite_EfxShine_08BD259C[], AnimSprite_EfxShine_08BD25C0[], AnimSprite_EfxShine_08BD25E4[],
@@ -16,11 +20,11 @@ void RegisterEfxSpellCastEnd(void);
 extern const struct ProcCmd ProcScr_efxShine[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxShineBG[];
-extern u16 * TsaArray_ShineBg_Left[];
-extern u16 * TsaArray_ShineBg_Right[];
-extern u16 * ImgArray_ShineBg[];
+extern u16 * const TsaArray_ShineBg_Left[];
+extern u16 * const TsaArray_ShineBg_Right[];
+extern u16 * const ImgArray_ShineBg[];
 extern const struct ProcCmd ProcScr_efxShineBG2[];
-extern u16 * TsaArray_ShineBg2[];
+extern u16 * const TsaArray_ShineBg2[];
 extern u16 Pal_ShineBg2[];
 extern u16 Img_ShineBg2[];
 extern const struct ProcCmd ProcScr_efxShineBGCOL[];
@@ -155,9 +159,9 @@ void efxShineBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
         SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
     }
@@ -221,9 +225,9 @@ void efxShineBG2_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
 
         if (gEkrDistanceType != 0)
@@ -453,4 +457,32 @@ const AnimScr AnimScr_EfxShine[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxShine_08BD2794, 31),
     ANIMSCR_WAIT(0x13),
     ANIMSCR_END,
+};
+
+SECTION(".rodata.08BA36D8")
+u16 * const TsaArray_ShineBg_Left[] = {
+    Tsa_ShineBg1_Left,
+};
+
+SECTION(".rodata.08BA36DC")
+u16 * const TsaArray_ShineBg_Right[] = {
+    Tsa_ShineBg1_Right,
+};
+
+SECTION(".rodata.08BA36E0")
+u16 * const ImgArray_ShineBg[] = {
+    Img_ShineBg1,
+};
+
+SECTION(".rodata.08BA36FC")
+u16 * const TsaArray_ShineBg2[] = {
+    Tsa_ShineBg2_A,
+    Tsa_ShineBg2_B,
+    Tsa_ShineBg2_C,
+    Tsa_ShineBg2_D,
+    Tsa_ShineBg2_E,
+    Tsa_ShineBg2_F,
+    Tsa_ShineBg2_G,
+    Tsa_ShineBg2_H,
+    Tsa_ShineBg2_I,
 };

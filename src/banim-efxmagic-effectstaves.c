@@ -1,5 +1,20 @@
 #include "gbafe.h"
 
+extern u16 Img_RestoreBg_00[], Img_RestoreBg_06[], Img_RestoreBg_09[], Img_RestoreBg_0B[],
+    Tsa_BarrierBg_00[], Tsa_BarrierBg_01[], Tsa_BarrierBg_02[], Tsa_BarrierBg_03[],
+    Tsa_BarrierBg_04[], Tsa_HammerneBg_00[], Tsa_HammerneBg_01[], Tsa_HammerneBg_02[],
+    Tsa_HammerneBg_03[], Tsa_HammerneBg_04[], Tsa_HammerneBg_05[], Tsa_HammerneBg_06[],
+    Tsa_HammerneBg_07[], Tsa_HammerneBg_08[], Tsa_HammerneBg_09[], Tsa_HammerneBg_0A[],
+    Tsa_HammerneBg_0B[], Tsa_HammerneBg_0C[], Tsa_SilenceBg_00[], Tsa_SilenceBg_01[],
+    Tsa_SilenceBg_02[], Tsa_SilenceBg_03[], Tsa_SilenceBg_04[], Tsa_SilenceBg_05[],
+    Tsa_SilenceBg_06[], Tsa_SilenceBg_07[], Tsa_SilenceBg_08[], Tsa_SilenceBg_09[],
+    Tsa_SilenceBg_0A[], Tsa_SilenceBg_0B[], Tsa_SilenceBg_0C[], Tsa_SilenceBg_0D[],
+    Tsa_SilenceBg_0E[], Tsa_SilenceBg_0F[], Tsa_SilenceBg_10[], Tsa_SilenceBg_11[],
+    Tsa_SleepBg_00[], Tsa_SleepBg_01[], Tsa_SleepBg_02[], Tsa_SleepBg_03[], Tsa_SleepBg_04[],
+    Tsa_SleepBg_05[], Tsa_SleepBg_06[], Tsa_SleepBg_07[], Tsa_SleepBg_08[], Tsa_SleepBg_09[],
+    Tsa_SleepBg_0A[], Tsa_SleepBg_0B[], Tsa_SleepBg_0C[], Tsa_SleepBg_0D[], Tsa_SleepBg_0E[],
+    Tsa_SleepBg_0F[];
+
 extern const struct AnimSpriteData AnimSprite_EfxBerserk10_08BCC9D8[],
     AnimSprite_EfxBerserk10_08BCCA2C[], AnimSprite_EfxBerserk10_08BCCA50[],
     AnimSprite_EfxBerserk10_08BCCA8C[], AnimSprite_EfxBerserk10_08BCCAB0[],
@@ -164,7 +179,7 @@ ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int sp
 extern const struct ProcCmd ProcScr_efxSilence[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxSilenceBG[];
-extern u16 * TsaArray_SilenceBg[];
+extern u16 * const TsaArray_SilenceBg[];
 extern u16 Pal_Silence[];
 extern u16 Img_SilenceBg[];
 extern const struct ProcCmd ProcScr_efxSilenceOBJ[];
@@ -172,7 +187,7 @@ extern const AnimScr AnimScr_EfxSilenceOBJ[];
 extern u16 Img_SilenceSprites[];
 extern const struct ProcCmd ProcScr_efxSleep[];
 extern const struct ProcCmd ProcScr_efxSleepBG[];
-extern u16 * TsaArray_SleepBg[];
+extern u16 * const TsaArray_SleepBg[];
 extern u16 Pal_SleepBg[];
 extern u16 Img_SleepBg[];
 extern const struct ProcCmd ProcScr_efxSleepOBJ[];
@@ -184,8 +199,8 @@ extern const AnimScr AnimScr_EfxSleepOBJ2[];
 extern const struct ProcCmd ProcScr_efxSleepSE[];
 extern const struct ProcCmd ProcScr_efxHammarne[];
 extern const struct ProcCmd ProcScr_efxHammarneBG[];
-extern u16 * TsaArray_HammerneBg[];
-extern u16 * ImgArray_HammerneBg[];
+extern u16 * const TsaArray_HammerneBg[];
+extern u16 * const ImgArray_HammerneBg[];
 extern u16 Pal_HammerneBg[];
 extern const struct ProcCmd ProcScr_efxHammarneOBJ[];
 extern const AnimScr AnimScr_EfxHammarneOBJ[];
@@ -213,7 +228,7 @@ extern const AnimScr AnimScr_EfxBerserk9[];
 extern const AnimScr AnimScr_EfxBerserk10[];
 extern const struct ProcCmd ProcScr_efxMshield[];
 extern const struct ProcCmd ProcScr_efxMshieldBG[];
-extern u16 * TsaArray_BarrierBg[];
+extern u16 * const TsaArray_BarrierBg[];
 extern u16 Pal_BarrierBg[];
 extern u16 Img_BarrierBg[];
 extern const struct ProcCmd ProcScr_efxMshieldBGOBJ[];
@@ -391,8 +406,8 @@ void efxSilenceBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
     }
@@ -553,8 +568,8 @@ void efxSleepBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
     }
@@ -745,9 +760,9 @@ void efxHammarneBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
 
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);
@@ -1277,8 +1292,8 @@ void efxMshieldBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
 
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
     }
@@ -1928,4 +1943,89 @@ const AnimScr AnimScr_EfxMshield2[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxMshield1_08BCE824, 31),
     ANIMSCR_WAIT(0x13),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA3304")
+u16 * const TsaArray_SilenceBg[] = {
+    Tsa_SilenceBg_00,
+    Tsa_SilenceBg_01,
+    Tsa_SilenceBg_02,
+    Tsa_SilenceBg_03,
+    Tsa_SilenceBg_04,
+    Tsa_SilenceBg_05,
+    Tsa_SilenceBg_06,
+    Tsa_SilenceBg_07,
+    Tsa_SilenceBg_08,
+    Tsa_SilenceBg_09,
+    Tsa_SilenceBg_0A,
+    Tsa_SilenceBg_0B,
+    Tsa_SilenceBg_0C,
+    Tsa_SilenceBg_0D,
+    Tsa_SilenceBg_0E,
+    Tsa_SilenceBg_0F,
+    Tsa_SilenceBg_10,
+    Tsa_SilenceBg_11,
+};
+
+SECTION(".rodata.08BA339C")
+u16 * const TsaArray_SleepBg[] = {
+    Tsa_SleepBg_00,
+    Tsa_SleepBg_01,
+    Tsa_SleepBg_02,
+    Tsa_SleepBg_03,
+    Tsa_SleepBg_04,
+    Tsa_SleepBg_05,
+    Tsa_SleepBg_06,
+    Tsa_SleepBg_07,
+    Tsa_SleepBg_08,
+    Tsa_SleepBg_09,
+    Tsa_SleepBg_0A,
+    Tsa_SleepBg_0B,
+    Tsa_SleepBg_0C,
+    Tsa_SleepBg_0D,
+    Tsa_SleepBg_0E,
+    Tsa_SleepBg_0F,
+};
+
+SECTION(".rodata.08BA3494")
+u16 * const TsaArray_HammerneBg[] = {
+    Tsa_HammerneBg_00,
+    Tsa_HammerneBg_01,
+    Tsa_HammerneBg_02,
+    Tsa_HammerneBg_03,
+    Tsa_HammerneBg_04,
+    Tsa_HammerneBg_05,
+    Tsa_HammerneBg_06,
+    Tsa_HammerneBg_07,
+    Tsa_HammerneBg_08,
+    Tsa_HammerneBg_09,
+    Tsa_HammerneBg_0A,
+    Tsa_HammerneBg_0B,
+    Tsa_HammerneBg_0C,
+};
+
+SECTION(".rodata.08BA34C8")
+u16 * const ImgArray_HammerneBg[] = {
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_00,
+    Img_RestoreBg_06,
+    Img_RestoreBg_06,
+    Img_RestoreBg_06,
+    Img_RestoreBg_09,
+    Img_RestoreBg_09,
+    Img_RestoreBg_0B,
+    Img_RestoreBg_0B,
+};
+
+SECTION(".rodata.08BA3654")
+u16 * const TsaArray_BarrierBg[] = {
+    Tsa_BarrierBg_00,
+    Tsa_BarrierBg_01,
+    Tsa_BarrierBg_02,
+    Tsa_BarrierBg_03,
+    Tsa_BarrierBg_04,
 };

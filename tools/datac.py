@@ -521,6 +521,7 @@ class Emitter:
         self.scalars = set(scalars)   # symbols that are single objects, not arrays
         self.scalars_here = set()
         self.casts = []
+        self.plain_targets = False
 
     def intval(self, addr, size, signed):
         fmt = {1: "b", 2: "h", 4: "i"}[size] if signed else {1: "B", 2: "H", 4: "I"}[size]
@@ -839,6 +840,8 @@ def emit_objects(rom, types, decls, spec, args):
             scalars.add(name)
         objs.append((name, addr, count, single))
     em = Emitter(rom, types, scalars | decls.scalars_outside(scalars), decls)
+    # `u16 *` elements: the objects they point at are declared without const
+    em.plain_targets = base_spec.rstrip().endswith("*") and "const" not in base_spec.rsplit("*", 1)[0]
     out = []
     for name, addr, count, single in objs:
         lines = em.array(elem, addr, count, single)
@@ -952,17 +955,18 @@ def report_refs(em, decls, path, hdr=None, skip=()):
             names["fn"].append(sym)
         else:
             pointee = "u8" if f.pointee.strip() in ("void", "const void") else f.pointee
-            line = f"extern const {pointee} {sym}[];".replace("const const", "const")
+            cq = "" if em.plain_targets and pointee in INTS else "const "
+            line = f"extern {cq}{pointee} {sym}[];".replace("const const", "const")
             names["data"].append(sym)
             if pointee.split()[0] in ("struct", "u8", "u16", "u32"):   # many per line: `extern const T a[], b[];`
-                grouped.setdefault((target, pointee), []).append(sym)   # (other modules keep their own declarations)
+                grouped.setdefault((target, pointee, cq), []).append(sym)   # (other modules keep their own declarations)
                 continue
         if target:
             todo.setdefault(target, []).append(line)
         else:
             local.append(line)
-    for (target, pointee), syms in grouped.items():
-        head = f"extern const {pointee} "
+    for (target, pointee, cq), syms in grouped.items():
+        head = f"extern {cq}{pointee} "
         lines, cur, first = [], head, True
         for i, sy in enumerate(syms):
             item = f"{sy}[]" + ("," if i < len(syms) - 1 else ";")

@@ -43,10 +43,10 @@ void UnpackUiWindowFrameGraphics(void);
 
 // ??? gUnk_08C09944
 // ??? gUnk_08C09B0C
-extern u16 const * CONST_DATA gUiWindowFrameModelLut[];
-extern u16 const * CONST_DATA gUiWindowFramePalLut[];
-extern u8 const * CONST_DATA gUiWindowFrameImgLut[];
-extern u16 const * CONST_DATA gUiStatBarPalLut[];
+extern u16 const * const gUiWindowFrameModelLut[];
+extern u16 const * const gUiWindowFramePalLut[];
+extern u8 const * const gUiWindowFrameImgLut[];
+extern u16 const * const gUiStatBarPalLut[];
 // ??? gUnk_08C09BB4
 // ??? gUnk_08C09BBC
 // ??? gUnk_08C09BDC

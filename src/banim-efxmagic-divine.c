@@ -1,5 +1,21 @@
 #include "gbafe.h"
 
+extern u16 Img_DivineBg3_00[], Img_DivineBg3_02[], Img_DivineBg3_03[], Img_DivineBg3_04[],
+    Img_DivineBg3_05[], Img_DivineBg3_06[], Img_DivineBg3_07[], Img_DivineBg3_08[],
+    Img_DivineBg3_09[], Img_DivineBg3_0A[], Img_DivineBg3_0B[], Img_DivineBg3_0C[],
+    Img_DivineBg3_0D[], Img_DivineBg3_0E[], Img_DivineBg3_0F[], Img_DivineBg3_10[],
+    Img_DivineBg3_11[], Img_DivineBg3_13[], Img_DivineBg_00[], Tsa_DivineBg2_00[],
+    Tsa_DivineBg2_01[], Tsa_DivineBg2_02[], Tsa_DivineBg3_00[], Tsa_DivineBg3_01[],
+    Tsa_DivineBg3_02[], Tsa_DivineBg3_03[], Tsa_DivineBg3_04[], Tsa_DivineBg3_05[],
+    Tsa_DivineBg3_06[], Tsa_DivineBg3_07[], Tsa_DivineBg3_08[], Tsa_DivineBg3_09[],
+    Tsa_DivineBg3_0A[], Tsa_DivineBg3_0B[], Tsa_DivineBg3_0C[], Tsa_DivineBg3_0D[],
+    Tsa_DivineBg3_0E[], Tsa_DivineBg3_0F[], Tsa_DivineBg3_10[], Tsa_DivineBg3_11[],
+    Tsa_DivineBg3_12[], Tsa_DivineBg3_13[], Tsa_DivineBg3_14[], Tsa_DivineBg_00[],
+    Tsa_DivineBg_01[], Tsa_DivineBg_02[], Tsa_DivineBg_03[], Tsa_DivineBg_04[], Tsa_DivineBg_05[],
+    Tsa_DivineBg_06[], Tsa_DivineBg_07[], Tsa_DivineBg_08[], Tsa_DivineBg_09[], Tsa_DivineBg_0A[],
+    Tsa_DivineBg_0B[], Tsa_DivineBg_0C[], Tsa_DivineBg_0D[], Tsa_DivineBg_0E[], Tsa_DivineBg_0F[],
+    Tsa_DivineBg_10[], Tsa_DivineBg_11[], Tsa_DivineBg_12[], Tsa_DivineBg_13[];
+
 extern const struct AnimSpriteData AnimSprite_EfxDevineOBJ_08BB9B60[],
     AnimSprite_EfxDevineOBJ_08BB9BE4[], AnimSprite_EfxDevineOBJ_08BB9C68[],
     AnimSprite_EfxDevineOBJ_08BB9CD4[], AnimSprite_EfxDevineOBJ_08BB9D40[],
@@ -17,13 +33,13 @@ void RegisterEfxSpellCastEnd(void);
 extern const struct ProcCmd ProcScr_efxDivine[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxDivineBG[];
-extern u16 * TsaArray_DivineBg[];
-extern u16 * ImgArray_DivineBg[];
+extern u16 * const TsaArray_DivineBg[];
+extern u16 * const ImgArray_DivineBg[];
 extern u16 Pal_DivineBg[];
-extern u16 * TsaArray_DivineBg2[];
-extern u16 * ImgArray_DivineBg2[];
-extern u16 * TsaArray_DivineBg3[];
-extern u16 * ImgArray_DivineBg3[];
+extern u16 * const TsaArray_DivineBg2[];
+extern u16 * const ImgArray_DivineBg2[];
+extern u16 * const TsaArray_DivineBg3[];
+extern u16 * const ImgArray_DivineBg3[];
 extern u16 Pal_DivineBg3[];
 extern const struct ProcCmd ProcScr_efxDivineOBJ[];
 extern const AnimScr AnimScr_EfxDevineOBJ[];
@@ -251,9 +267,9 @@ void efxDivineBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
 
         SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
@@ -369,4 +385,116 @@ const AnimScr AnimScr_EfxDevineOBJ[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BBA094, 1),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxDevineOBJ_08BBA0D0, 1),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA29D8")
+u16 * const ImgArray_DivineBg[] = {
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+};
+
+SECTION(".rodata.08BA2A28")
+u16 * const TsaArray_DivineBg[] = {
+    Tsa_DivineBg_00,
+    Tsa_DivineBg_01,
+    Tsa_DivineBg_02,
+    Tsa_DivineBg_03,
+    Tsa_DivineBg_04,
+    Tsa_DivineBg_05,
+    Tsa_DivineBg_06,
+    Tsa_DivineBg_07,
+    Tsa_DivineBg_08,
+    Tsa_DivineBg_09,
+    Tsa_DivineBg_0A,
+    Tsa_DivineBg_0B,
+    Tsa_DivineBg_0C,
+    Tsa_DivineBg_0D,
+    Tsa_DivineBg_0E,
+    Tsa_DivineBg_0F,
+    Tsa_DivineBg_10,
+    Tsa_DivineBg_11,
+    Tsa_DivineBg_12,
+    Tsa_DivineBg_13,
+};
+
+SECTION(".rodata.08BA2A78")
+u16 * const ImgArray_DivineBg2[] = {
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+    Img_DivineBg_00,
+};
+
+SECTION(".rodata.08BA2A84")
+u16 * const TsaArray_DivineBg2[] = {
+    Tsa_DivineBg2_00,
+    Tsa_DivineBg2_01,
+    Tsa_DivineBg2_02,
+};
+
+SECTION(".rodata.08BA2A90")
+u16 * const ImgArray_DivineBg3[] = {
+    Img_DivineBg3_00,
+    Img_DivineBg3_00,
+    Img_DivineBg3_02,
+    Img_DivineBg3_03,
+    Img_DivineBg3_04,
+    Img_DivineBg3_05,
+    Img_DivineBg3_06,
+    Img_DivineBg3_07,
+    Img_DivineBg3_08,
+    Img_DivineBg3_09,
+    Img_DivineBg3_0A,
+    Img_DivineBg3_0B,
+    Img_DivineBg3_0C,
+    Img_DivineBg3_0D,
+    Img_DivineBg3_0E,
+    Img_DivineBg3_0F,
+    Img_DivineBg3_10,
+    Img_DivineBg3_11,
+    Img_DivineBg3_11,
+    Img_DivineBg3_13,
+    Img_DivineBg3_13,
+};
+
+SECTION(".rodata.08BA2AE4")
+u16 * const TsaArray_DivineBg3[] = {
+    Tsa_DivineBg3_00,
+    Tsa_DivineBg3_01,
+    Tsa_DivineBg3_02,
+    Tsa_DivineBg3_03,
+    Tsa_DivineBg3_04,
+    Tsa_DivineBg3_05,
+    Tsa_DivineBg3_06,
+    Tsa_DivineBg3_07,
+    Tsa_DivineBg3_08,
+    Tsa_DivineBg3_09,
+    Tsa_DivineBg3_0A,
+    Tsa_DivineBg3_0B,
+    Tsa_DivineBg3_0C,
+    Tsa_DivineBg3_0D,
+    Tsa_DivineBg3_0E,
+    Tsa_DivineBg3_0F,
+    Tsa_DivineBg3_10,
+    Tsa_DivineBg3_11,
+    Tsa_DivineBg3_12,
+    Tsa_DivineBg3_13,
+    Tsa_DivineBg3_14,
 };

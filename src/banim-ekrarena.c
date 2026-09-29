@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+extern u16 Pal_ArenaBattleBg_B[], Pal_ArenaBattleBg_C[];
+
 struct ProcEkrTogi
 {
     /* 00 */ PROC_HEADER;
@@ -27,7 +29,7 @@ extern u8 Tsa_ArenaBattleBg[];
 extern const struct ProcCmd gProc_ekrTogiEnd[];
 extern struct ProcEfxBGCOL * gpProcEkrTogiColor;
 extern const struct ProcCmd gProc_ekrTogiColor[];
-extern u16 * PalArray_ArenaBattleBg[];
+extern u16 * const PalArray_ArenaBattleBg[];
 
 int GetBattleAnimArenaFlag(void);
 void sub_080554FC(int x);
@@ -266,7 +268,7 @@ void NewEkrTogiColor(void)
 
     gpProcEkrTogiColor->frame = 0;
     gpProcEkrTogiColor->frame_config = NewEkrTogiColor_frames;
-    gpProcEkrTogiColor->pal = PalArray_ArenaBattleBg;
+    gpProcEkrTogiColor->pal = (void *) PalArray_ArenaBattleBg;
 
     return;
 }
@@ -283,7 +285,7 @@ void ekrTogiColor_Loop(struct ProcEfxBGCOL * proc)
 
     if (ret > -1)
     {
-        u16 ** pal = proc->pal;
+        u16 * const * pal = proc->pal;
         CpuFastCopy(*(pal + ret), gPal + 0x60, 0x80);
         EnablePalSync();
     }
@@ -315,4 +317,11 @@ const struct ProcCmd gProc_ekrTogiColor[] = {
     PROC_19,
     PROC_REPEAT(ekrTogiColor_Loop),
     PROC_END,
+};
+
+SECTION(".rodata.08B9B37C")
+u16 * const PalArray_ArenaBattleBg[] = {
+    Pal_ArenaBattleBg_A,
+    Pal_ArenaBattleBg_B,
+    Pal_ArenaBattleBg_C,
 };

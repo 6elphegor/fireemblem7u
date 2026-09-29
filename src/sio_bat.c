@@ -1,6 +1,8 @@
 #include "gbafe.h"
 #include "gbafe/sio_core.h"
 
+extern u8 gUnk_081D523C[], gUnk_081D5240[], gUnk_081D524C[];
+
 // FE8U: sio_bat.c
 
 extern struct Text gUnk_Sio_0203DA78;
@@ -999,4 +1001,11 @@ const struct ProcCmd gUnk_08B9A580[] = {
     PROC_CALL(LAPhaseIntro_StartBgm),
     PROC_CALL(LAPhaseIntro_End),
     PROC_END,
+};
+
+SECTION(".rodata.08B98CA8")
+u8 * const gUnknown_08B98CA8[] = {
+    &gUnk_081D523C[1],
+    &gUnk_081D5240[3],
+    gUnk_081D524C,
 };

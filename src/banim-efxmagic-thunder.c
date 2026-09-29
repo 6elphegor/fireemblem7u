@@ -184,8 +184,8 @@ void EfxThunderBGMain(struct ProcEfxBG * proc)
     val = 0;
     ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
     if (ret >= 0) {
-        u16 **buf1 = proc->tsal;
-        u16 **buf2 = proc->tsar;
+        u16 * const * buf1 = proc->tsal;
+        u16 * const * buf2 = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, buf1[ret], buf2[ret]);
 
         if (ret == 0)

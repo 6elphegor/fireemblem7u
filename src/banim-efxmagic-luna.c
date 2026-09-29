@@ -1,5 +1,10 @@
 #include "gbafe.h"
 
+extern u16 Img_LunaBg3_A[], Img_LunaBg3_B[], Img_LunaBg3_C[], Tsa_LunaBg1_A[], Tsa_LunaBg3_A[],
+    Tsa_LunaBg3_B[], Tsa_LunaBg3_C[], Tsa_LunaBg3_D[], Tsa_LunaBg3_E[], Tsa_LunaBg3_F[],
+    Tsa_LunaBg3_G[], Tsa_LunaBg3_H[], Tsa_LunaBg3_I[], Tsa_LunaBg3_J[], Tsa_LunaBg3_K[],
+    Tsa_LunaBg3_L[];
+
 extern const struct AnimSpriteData AnimSprite_EfxLuna1_08BD2804[], AnimSprite_EfxLuna1_08BD2828[],
     AnimSprite_EfxLuna1_08BD284C[], AnimSprite_EfxLuna1_08BD2870[], AnimSprite_EfxLuna1_08BD2894[],
     AnimSprite_EfxLuna1_08BD28B8[], AnimSprite_EfxLuna1_08BD28DC[], AnimSprite_EfxLuna1_08BD2900[],
@@ -17,7 +22,7 @@ void RegisterEfxSpellCastEnd(void);
 extern const struct ProcCmd ProcScr_efxLuna[];
 extern int gEfxBgSemaphore;
 extern const struct ProcCmd ProcScr_efxLunaBG[];
-extern u16 * TsaArray_LunaBg1[];
+extern u16 * const TsaArray_LunaBg1[];
 extern u16 Pal_LunaBg1[];
 extern u16 Img_LunaBg1[];
 extern const struct ProcCmd ProcScr_efxLunaSCR[];
@@ -29,8 +34,8 @@ extern u16 Pal_LunaBg2[];
 extern u16 Tsa_LunaBg2[];
 extern const struct ProcCmd ProcScr_efxLunaBGCOL[];
 extern const struct ProcCmd ProcScr_efxLunaBG3[];
-extern u16 * TsaArray_LunaBg3[];
-extern u16 * ImgArray_LunaBg3[];
+extern u16 * const TsaArray_LunaBg3[];
+extern u16 * const ImgArray_LunaBg3[];
 extern u16 Pal_LunaBg3[];
 extern const struct ProcCmd ProcScr_efxLunaOBJ[];
 extern u16 Pal_LunaSprites[];
@@ -195,8 +200,8 @@ void efxLunaBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
     }
     else
@@ -479,9 +484,9 @@ void efxLunaBG3_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
-        u16 ** img = proc->img;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
+        u16 * const * img = proc->img;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
         SpellFx_RegisterBgGfx(*(img + ret), 32 * 8 * CHR_SIZE);
     }
@@ -839,4 +844,41 @@ const AnimScr AnimScr_EfxLuna4[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna4_08BD2A60, 3),
     ANIMSCR_FORCE_SPRITE(AnimSprite_EfxLuna4_08BD2A84, 3),
     ANIMSCR_LOOP,
+};
+
+SECTION(".rodata.08BA37B0")
+u16 * const TsaArray_LunaBg1[] = {
+    Tsa_LunaBg1_A,
+};
+
+SECTION(".rodata.08BA3904")
+u16 * const TsaArray_LunaBg3[] = {
+    Tsa_LunaBg3_A,
+    Tsa_LunaBg3_B,
+    Tsa_LunaBg3_C,
+    Tsa_LunaBg3_D,
+    Tsa_LunaBg3_E,
+    Tsa_LunaBg3_F,
+    Tsa_LunaBg3_G,
+    Tsa_LunaBg3_H,
+    Tsa_LunaBg3_I,
+    Tsa_LunaBg3_J,
+    Tsa_LunaBg3_K,
+    Tsa_LunaBg3_L,
+};
+
+SECTION(".rodata.08BA3934")
+u16 * const ImgArray_LunaBg3[] = {
+    Img_LunaBg3_A,
+    Img_LunaBg3_A,
+    Img_LunaBg3_A,
+    Img_LunaBg3_A,
+    Img_LunaBg3_A,
+    Img_LunaBg3_A,
+    Img_LunaBg3_B,
+    Img_LunaBg3_B,
+    Img_LunaBg3_B,
+    Img_LunaBg3_C,
+    Img_LunaBg3_C,
+    Img_LunaBg3_C,
 };

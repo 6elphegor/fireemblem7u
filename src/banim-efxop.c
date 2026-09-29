@@ -1,5 +1,21 @@
 #include "gbafe.h"
 
+extern u16 Img_LightningBg_00[], Img_LightningBg_03[], Img_LightningBg_06[], Img_LightningBg_0A[],
+    Img_LightningBg_0D[], Img_LightningBg_10[], Img_LightningBg_19[], Img_LightningBg_1C[],
+    Tsa_EfxFireBG_L_00[], Tsa_EfxFireBG_L_01[], Tsa_EfxFireBG_L_02[], Tsa_EfxFireBG_L_03[],
+    Tsa_EfxFireBG_L_04[], Tsa_EfxFireBG_L_05[], Tsa_EfxFireBG_L_06[], Tsa_EfxFireBG_L_07[],
+    Tsa_EfxFireBG_L_08[], Tsa_EfxFireBG_L_09[], Tsa_EfxFireBG_L_0A[], Tsa_EfxFireBG_L_0B[],
+    Tsa_EfxThuderBg1[], Tsa_EfxThuderBg2[], Tsa_HealSpellBg[], Tsa_LightningBg_00[],
+    Tsa_LightningBg_01[], Tsa_LightningBg_02[], Tsa_LightningBg_03[], Tsa_LightningBg_04[],
+    Tsa_LightningBg_05[], Tsa_LightningBg_06[], Tsa_LightningBg_07[], Tsa_LightningBg_08[],
+    Tsa_LightningBg_09[], Tsa_LightningBg_0A[], Tsa_LightningBg_0B[], Tsa_LightningBg_0C[],
+    Tsa_LightningBg_0D[], Tsa_LightningBg_0E[], Tsa_LightningBg_0F[], Tsa_LightningBg_10[],
+    Tsa_LightningBg_11[], Tsa_LightningBg_12[], Tsa_LightningBg_13[], Tsa_LightningBg_14[],
+    Tsa_LightningBg_15[], Tsa_LightningBg_16[], Tsa_LightningBg_17[], Tsa_LightningBg_18[],
+    Tsa_LightningBg_19[], Tsa_LightningBg_1A[], Tsa_LightningBg_1B[], Tsa_LightningBg_1C[],
+    Tsa_LightningBg_1D[], Tsa_LightningBg_1E[], Tsa_LightningBg_1F[], Tsa_LightningBg_20[],
+    gUnk_082215D0[], gUnk_082215F0[];
+
 /**
  * Class reel (opening) spell animations (fireemblem8u: banim-efxop.c)
  */
@@ -26,12 +42,12 @@ extern const struct ProcCmd ProcScr_efxopLiveOBJ[];
 extern const struct ProcCmd ProcScr_efxopLightning[];
 extern const struct ProcCmd ProcScr_efxopLightningBG[];
 
-extern u16 * TsaArray_Fire_ClassReel[];
-extern u16 * TsaArray_Thunder_ClassReel[];
-extern u16 * TsaArray_Live_ClassReel[];
-extern u16 * ImgArray_Light_ClassReel[];
-extern u16 * PalArray_Light_ClassReel[];
-extern u16 * TsaArray_Light_ClassReel[];
+extern u16 * const TsaArray_Fire_ClassReel[];
+extern u16 * const TsaArray_Thunder_ClassReel[];
+extern u16 * const TsaArray_Live_ClassReel[];
+extern u16 * const ImgArray_Light_ClassReel[];
+extern u16 * const PalArray_Light_ClassReel[];
+extern u16 * const TsaArray_Light_ClassReel[];
 
 extern const u16 FrameConf_efxopFireBG[];
 extern const u16 FrameConf_efxopThunderBG[];
@@ -277,7 +293,7 @@ void efxopFireBG_Loop(struct ProcEfxBG * proc)
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
     if (ret >= 0) {
-        u16 ** tsaL = proc->tsal;
+        u16 * const * tsaL = proc->tsal;
         CRSpell_WriteBgMap(proc->anim, 1, *(tsaL + ret), 1);
     } else {
         if (ret == -1) {
@@ -371,7 +387,7 @@ void efxopThunderBG_Loop(struct ProcEfxBG * proc)
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
     if (ret >= 0) {
-        u16 ** tsaL = proc->tsal;
+        u16 * const * tsaL = proc->tsal;
         CRSpell_WriteBgMap(proc->anim, 0, *(tsaL + ret), 1);
 
         if (ret == 0)
@@ -503,7 +519,7 @@ void efxopLiveBG_Loop(struct ProcEfxBG * proc)
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
     if (ret >= 0) {
-        u16 ** tsaL = proc->tsal;
+        u16 * const * tsaL = proc->tsal;
         CRSpell_WriteBgMap(proc->anim, 1, *(tsaL + ret), 0);
     } else {
         if (ret == -1) {
@@ -653,9 +669,9 @@ void efxopLightningBG_Loop(struct ProcEfxBG * proc)
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
     if (ret >= 0) {
-        u16 ** tsaL = proc->tsal;
-        u16 ** img = proc->img;
-        u16 ** pal = proc->pal;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * img = proc->img;
+        u16 * const * pal = proc->pal;
 
         CRSpell_RegisterBgGfx(proc->anim, *(img + ret));
         CRSpell_RegisterBgPal(proc->anim, *(pal + ret));
@@ -793,4 +809,142 @@ const SpellAnimFunc gClassReelSpellAnimFuncLut[] = {
     NULL,
     NULL,
     NULL,
+};
+
+SECTION(".rodata.08BA4838")
+u16 * const TsaArray_Fire_ClassReel[] = {
+    Tsa_EfxFireBG_L_00,
+    Tsa_EfxFireBG_L_01,
+    Tsa_EfxFireBG_L_02,
+    Tsa_EfxFireBG_L_03,
+    Tsa_EfxFireBG_L_04,
+    Tsa_EfxFireBG_L_05,
+    Tsa_EfxFireBG_L_06,
+    Tsa_EfxFireBG_L_07,
+    Tsa_EfxFireBG_L_08,
+    Tsa_EfxFireBG_L_09,
+    Tsa_EfxFireBG_L_0A,
+    Tsa_EfxFireBG_L_0B,
+};
+
+SECTION(".rodata.08BA48C0")
+u16 * const TsaArray_Thunder_ClassReel[] = {
+    Tsa_EfxThuderBg1,
+    Tsa_EfxThuderBg2,
+};
+
+SECTION(".rodata.08BA4940")
+u16 * const TsaArray_Live_ClassReel[] = {
+    Tsa_HealSpellBg,
+};
+
+SECTION(".rodata.08BA49DC")
+u16 * const ImgArray_Light_ClassReel[] = {
+    Img_LightningBg_00,
+    Img_LightningBg_00,
+    Img_LightningBg_00,
+    Img_LightningBg_03,
+    Img_LightningBg_03,
+    Img_LightningBg_03,
+    Img_LightningBg_06,
+    Img_LightningBg_06,
+    Img_LightningBg_06,
+    Img_LightningBg_06,
+    Img_LightningBg_0A,
+    Img_LightningBg_0A,
+    Img_LightningBg_0A,
+    Img_LightningBg_0D,
+    Img_LightningBg_0D,
+    Img_LightningBg_0D,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_10,
+    Img_LightningBg_19,
+    Img_LightningBg_19,
+    Img_LightningBg_19,
+    Img_LightningBg_1C,
+    Img_LightningBg_1C,
+    Img_LightningBg_1C,
+    Img_LightningBg_1C,
+    Img_LightningBg_1C,
+};
+
+SECTION(".rodata.08BA4A60")
+u16 * const PalArray_Light_ClassReel[] = {
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215D0,
+    gUnk_082215F0,
+    gUnk_082215F0,
+    gUnk_082215F0,
+    gUnk_082215F0,
+    gUnk_082215F0,
+    gUnk_082215F0,
+    gUnk_082215F0,
+    gUnk_082215F0,
+};
+
+SECTION(".rodata.08BA4AE4")
+u16 * const TsaArray_Light_ClassReel[] = {
+    Tsa_LightningBg_00,
+    Tsa_LightningBg_01,
+    Tsa_LightningBg_02,
+    Tsa_LightningBg_03,
+    Tsa_LightningBg_04,
+    Tsa_LightningBg_05,
+    Tsa_LightningBg_06,
+    Tsa_LightningBg_07,
+    Tsa_LightningBg_08,
+    Tsa_LightningBg_09,
+    Tsa_LightningBg_0A,
+    Tsa_LightningBg_0B,
+    Tsa_LightningBg_0C,
+    Tsa_LightningBg_0D,
+    Tsa_LightningBg_0E,
+    Tsa_LightningBg_0F,
+    Tsa_LightningBg_10,
+    Tsa_LightningBg_11,
+    Tsa_LightningBg_12,
+    Tsa_LightningBg_13,
+    Tsa_LightningBg_14,
+    Tsa_LightningBg_15,
+    Tsa_LightningBg_16,
+    Tsa_LightningBg_17,
+    Tsa_LightningBg_18,
+    Tsa_LightningBg_19,
+    Tsa_LightningBg_1A,
+    Tsa_LightningBg_1B,
+    Tsa_LightningBg_1C,
+    Tsa_LightningBg_1D,
+    Tsa_LightningBg_1E,
+    Tsa_LightningBg_1F,
+    Tsa_LightningBg_20,
 };

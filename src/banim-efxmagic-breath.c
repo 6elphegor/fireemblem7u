@@ -1,5 +1,10 @@
 #include "gbafe.h"
 
+extern u16 Tsa_DarkBreathBg_00[], Tsa_DarkBreathBg_01[], Tsa_DarkBreathBg_02[],
+    Tsa_DarkBreathBg_03[], Tsa_DarkBreathBg_04[], Tsa_DarkBreathBg_05[], Tsa_DarkBreathBg_06[],
+    Tsa_DarkBreathBg_07[], Tsa_DarkBreathBg_08[], Tsa_DarkBreathBg_09[], Tsa_DarkBreathBg_0A[],
+    Tsa_DarkBreathBg_0B[];
+
 extern const struct AnimSpriteData AnimSprite_DarkBreath_08BABB74[],
     AnimSprite_DarkBreath_08BABB8C[], AnimSprite_DarkBreath_08BABBB0[],
     AnimSprite_DarkBreath_08BABBF8[], AnimSprite_DarkBreath_08BABC4C[],
@@ -91,7 +96,7 @@ extern const AnimScr AnimScr_IcebreathOBJ_Left[];
 extern u16 Pal_IceBreathSprites[];
 extern const struct ProcCmd ProcScr_efxDarkbreath[];
 extern const struct ProcCmd ProcScr_efxDarkbreathBG[];
-extern u16 * TsaArray_DarkBreathBg[];
+extern u16 * const TsaArray_DarkBreathBg[];
 extern u16 Img_DarkBreathBg[];
 extern const struct ProcCmd ProcScr_efxDarkbreathBGCOL[];
 extern u16 Pal_BoltingBg[];
@@ -548,8 +553,8 @@ void efxDarkbreathBG_Loop(struct ProcEfxBG * proc)
 
     if (ret >= 0)
     {
-        u16 ** tsaL = proc->tsal;
-        u16 ** tsaR = proc->tsar;
+        u16 * const * tsaL = proc->tsal;
+        u16 * const * tsaR = proc->tsar;
         SpellFx_WriteBgMap(proc->anim, *(tsaL + ret), *(tsaR + ret));
     }
     else
@@ -874,4 +879,20 @@ const AnimScr AnimScr_DarkBreath[] = {
     ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC6F0, 2),
     ANIMSCR_FORCE_SPRITE(AnimSprite_DarkBreath_08BAC708, 2),
     ANIMSCR_BLOCKED,
+};
+
+SECTION(".rodata.08BA1974")
+u16 * const TsaArray_DarkBreathBg[] = {
+    Tsa_DarkBreathBg_00,
+    Tsa_DarkBreathBg_01,
+    Tsa_DarkBreathBg_02,
+    Tsa_DarkBreathBg_03,
+    Tsa_DarkBreathBg_04,
+    Tsa_DarkBreathBg_05,
+    Tsa_DarkBreathBg_06,
+    Tsa_DarkBreathBg_07,
+    Tsa_DarkBreathBg_08,
+    Tsa_DarkBreathBg_09,
+    Tsa_DarkBreathBg_0A,
+    Tsa_DarkBreathBg_0B,
 };

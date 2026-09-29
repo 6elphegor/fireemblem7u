@@ -1,5 +1,8 @@
 #include "gbafe.h"
 
+extern u16 Pal_AllBlack[], Pal_AllBlue[], Pal_AllGreen[], Pal_AllRed[], Pal_AllWhite[],
+    Pal_AllYellow[];
+
 struct SioProc85AA83C {
     /* 00 */ PROC_HEADER;
     /* 29 */ STRUCT_PAD(0x29, 0x2C);
@@ -25,7 +28,7 @@ struct SioProc85AA954 {
     /* 30 */ int y;
 };
 
-extern u16 * CONST_DATA PalArray_SolidColors[];
+extern u16 * const PalArray_SolidColors[];
 extern const struct ProcCmd ProcScr_085AA83C[];
 extern struct ProcCmd ProcScr_MuDeathFade[];
 extern struct ProcCmd ProcScr_MuRestorePalInfo[];
@@ -311,4 +314,14 @@ const struct ProcCmd ProcScr_085AA83C[] = {
     PROC_SLEEP(17),
     PROC_CALL(sub_080476C8),
     PROC_END,
+};
+
+SECTION(".rodata.08B9A250")
+u16 * const PalArray_SolidColors[] = {
+    Pal_AllWhite,
+    Pal_AllBlack,
+    Pal_AllRed,
+    Pal_AllGreen,
+    Pal_AllBlue,
+    Pal_AllYellow,
 };

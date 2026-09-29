@@ -33,3 +33,6 @@ gUnk_08BD6C6C AnimScr_EreshkigalOBJChild_2
 gUnk_08BD6D24 AnimScr_EreshkigalOBJChild_3
 gUnk_08BD6D94 AnimScr_EreshkigalOBJChild_4
 gUnk_08BD6DE4 AnimScr_EreshkigalOBJChild_5
+
+# Graphics pointer tables moved to C: an object with two labels keeps one name.
+gUnk_08CE456C SpriteArray_08A2099C

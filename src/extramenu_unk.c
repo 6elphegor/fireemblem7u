@@ -8,7 +8,7 @@ struct ExtraMenuUnkProc {
 };
 
 extern u16 const gUnk_08CE4158[];
-extern u16 const * const gUnk_08CE456C[];
+extern u16 const * const SpriteArray_08A2099C[];
 extern u8 const gGfx_SupportMenu[];
 extern u8 const Img_GameMainMenuObjs[];
 
@@ -96,7 +96,7 @@ void sub_080ACA48(struct ExtraMenuUnkProc * proc)
     if (proc->unk_58 >= 0)
     {
         PutSpriteExt(4, 56, 8, gUnk_08CE4158, 0x2000);
-        PutSpriteExt(4, 64, 16, gUnk_08CE456C[proc->unk_58], 0x3000);
+        PutSpriteExt(4, 64, 16, SpriteArray_08A2099C[proc->unk_58], 0x3000);
     }
 }
 void sub_080ACA90(ProcPtr parent)

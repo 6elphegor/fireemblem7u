@@ -66,7 +66,7 @@ extern const char gSioStr_NotSelected[]; // "NOT SELECTED"
 extern const char gSioStr_EraseBack[]; // "Erase    Back"
 extern const u8 gUnknown_080D9D5E[];
 extern const int gUnknown_081D5254[];
-extern u8 * CONST_DATA gUnknown_08B98CA8[];
+extern u8 * const gUnknown_08B98CA8[];
 extern const u8 Img_TacticianSelObj[];
 extern const u8 gUnknown_085ADF40[];
 extern const u16 Pal_TacticianSelObj[];

@@ -150,10 +150,10 @@ struct ProcEfxBG {
 
     /* 44 */ u32 frame;
     /* 48 */ const u16 * frame_config;
-    /* 4C */ u16 ** tsal;
-    /* 50 */ u16 ** tsar;
-    /* 54 */ u16 ** img;
-    /* 58 */ u16 ** pal;
+    /* 4C */ u16 * const * tsal;
+    /* 50 */ u16 * const * tsar;
+    /* 54 */ u16 * const * img;
+    /* 58 */ u16 * const * pal;
     /* 5C */ struct Anim * anim;
 };
 
@@ -1311,9 +1311,9 @@ struct ProcEfxDrsmmoyaBG {
 
     /* 44 */ u32 frame;
     /* 48 */ const u16 * frame_config;
-    /* 4C */ u16 ** tsal;
-    /* 50 */ u16 ** tsar;
-    /* 54 */ u16 ** img;
+    /* 4C */ u16 * const * tsal;
+    /* 50 */ u16 * const * tsar;
+    /* 54 */ u16 * const * img;
     /* 58 */ u16 * img_bak;
     /* 5C */ struct Anim * anim;
 };

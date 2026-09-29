@@ -1,5 +1,7 @@
 #include "gbafe.h"
 
+extern const u16 gProcScr_PrepWMShopSell[];
+
 void UpdateMenuScrollBarConfig(u8 a, u16 b, u16 c, u8 d);
 ProcPtr StartMenuScrollBar(ProcPtr parent);
 void InitMenuScrollBarImg(int chr, int pal);
@@ -9,7 +11,7 @@ void SomethingPrepListRelated(struct Unit * unit, int page, int flags);
 void sub_0809120C(void);
 
 extern u16 gUnk_08407400[];
-extern u16 const * CONST_DATA gUnk_08CC4FA0[];
+extern const u16 * const gUnk_08CC4FA0[];
 extern u16 CONST_DATA gUnk_08CC4F90[];
 extern u8 Tsa_0840E780[];
 extern u8 Img_08405754[];
@@ -705,3 +707,16 @@ void StartPrepItemListScreenProc(struct Unit * unit, ProcPtr parent)
     struct PrepItemListProc * proc = Proc_StartBlocking(ProcScr_PrepItemListScreen, parent);
     proc->unit = unit;
 }
+
+SECTION(".rodata.08CC4FA0")
+const u16 * const gUnk_08CC4FA0[] = {
+    &gProcScr_PrepWMShopSell[68],
+    &gProcScr_PrepWMShopSell[72],
+    &gProcScr_PrepWMShopSell[76],
+    &gProcScr_PrepWMShopSell[80],
+    &gProcScr_PrepWMShopSell[84],
+    &gProcScr_PrepWMShopSell[88],
+    &gProcScr_PrepWMShopSell[92],
+    &gProcScr_PrepWMShopSell[96],
+    &gProcScr_PrepWMShopSell[100],
+};

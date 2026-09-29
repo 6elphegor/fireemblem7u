@@ -434,10 +434,10 @@ void EfxClasschgBgMain(struct ProcEfxBG * proc)
     int ret = EfxAdvanceFrameLut(&proc->timer, (s16 *)&proc->frame, proc->frame_config);
     if (ret >= 0)
     {
-        u16 ** tsal = proc->tsal;
-        u16 ** tsar = proc->tsar;
-        u16 ** img  = proc->img;
-        u16 ** pal  = proc->pal;
+        u16 * const * tsal = proc->tsal;
+        u16 * const * tsar = proc->tsar;
+        u16 * const * img  = proc->img;
+        u16 * const * pal  = proc->pal;
 
         SpellFx_RegisterBgGfx(img[ret], 0x2000);
         SpellFx_RegisterBgPal(pal[ret], 0x20);
