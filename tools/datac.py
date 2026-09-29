@@ -356,7 +356,7 @@ class Types:
             for b, p in cands:
                 if str(p) == prefer:
                     body = b
-        fields, off, align = [], 0, 1
+        fields, off, align = [], 0, 4   # agbcc aligns every struct to 4 and pads its size to 4
         for ent in self.parse_fields(body):
             if ent[0] == "pad":
                 off += ent[1]
@@ -469,6 +469,10 @@ class Emitter:
             return sym
         fld = self.decls.decl_field(sym, self.types) if self.decls else None
         suffix = self.descend(fld, add, want_struct(f)) if fld else None
+        if not fld:   # undeclared: an array of what the field points to
+            base = getattr(f, "pointee", "")
+            if base in INTS and add % INTS[base][0] == 0:
+                return f"&{sym}[{add // INTS[base][0]}]"
         if suffix is None:
             self.problems.append(f"{sym} + {add:#x} at {addr:#010x}: no member there")
             return f"(void *) &{sym}  /* FIXME: + {add:#x} */"
@@ -494,37 +498,56 @@ class Emitter:
             return None
         return "" if off == 0 else None
 
-    def value(self, f, addr):
-        """(text, is_zero) of the value of type f at addr."""
+    WIDTH = 96
+
+    def value(self, f, addr, ind=0):
+        """(text, is_zero) of the value of type f at addr; ind is the column the text starts at."""
         if f.kind == "int":
+            if f.size == 4 and addr in self.rom.ptrs:   # a pointer stored in an integer field
+                sym, add = self.rom.ptrs[addr]
+                e = self.sym_expr(sym, add, Field("", 0, 4, "ptr", pointee="EventScr"), addr)
+                return f"(uintptr_t) {e}", False
             v = self.intval(addr, f.size, f.signed)
             return self.fmt_int(v), v == 0
         if f.kind in ("ptr", "fn"):
             e = self.ptr(f, addr)
             return e, e == "0"
         if f.kind == "struct":
-            lay = self.types.layout(f.struct)
-            return self.struct_value(lay, addr)
+            return self.struct_value(self.types.layout(f.struct), addr, ind)
         if f.kind == "array":
             items, allzero = [], True
             for i in range(f.count):
-                t, z = self.value(f.elem, addr + i * f.elem.size)
+                t, z = self.value(f.elem, addr + i * f.elem.size, ind + 4)
+                if f.elem.kind in ("ptr", "fn") and t == "0":
+                    t = "NULL"
                 items.append(t)
                 allzero &= z
-            return "{ " + ", ".join(items) + " }", allzero
+            return self.wrap(items, ind, f.elem.kind in ("int", "ptr", "fn")), allzero
         raise Unsupported(f.kind)
 
-    depth = 0
+    def wrap(self, items, ind, fill):
+        one = "{ " + ", ".join(items) + " }"
+        if "\n" not in one and ind + len(one) <= self.WIDTH:
+            return one
+        pad = " " * (ind + 4)
+        if fill:   # several scalars per line
+            lines, cur = [], pad
+            for it in items:
+                if len(cur) + len(it) + 2 > self.WIDTH and cur.strip():
+                    lines.append(cur.rstrip())
+                    cur = pad
+                cur += it + ", "
+            lines.append(cur.rstrip())
+            return "{\n" + "\n".join(lines) + "\n" + " " * ind + "}"
+        return "{\n" + "".join(pad + it + ",\n" for it in items) + " " * ind + "}"
 
-    def struct_value(self, lay, addr):
+    def struct_value(self, lay, addr, ind=0):
         parts, allzero = [], True
         covered = [False] * lay["size"]
         for f in lay["fields"]:
             for i in range(f.size):
                 covered[f.off + i] = True
-            self.depth += 1
-            t, z = self.value(f, addr + f.off)
-            self.depth -= 1
+            t, z = self.value(f, addr + f.off, ind + 4)
             if not z:
                 allzero = False
                 parts.append(f".{f.name} = {t}")
@@ -533,15 +556,12 @@ class Emitter:
                 self.problems.append(f"nonzero padding byte at {addr + i:#010x}")
         if not parts:
             return "{ 0 }", True
-        one = "{ " + ", ".join(parts) + " }"
-        if self.depth == 0 and len(one) > 92:
-            return "{\n" + "".join(f"        {p},\n" for p in parts) + "    }", allzero
-        return one, allzero
+        return self.wrap(parts, ind, False), allzero
 
-    def array(self, f, addr, count):
+    def array(self, f, addr, count, single=False):
         lines = []
         for i in range(count):
-            t, _ = self.value(f, addr + i * f.size)
+            t, _ = self.value(f, addr + i * f.size, 0 if single else 4)
             if f.kind in ("ptr", "fn") and t == "0":
                 t = "NULL"
             lines.append(t)
@@ -703,8 +723,8 @@ def emit_objects(rom, types, decls, spec, args):
     em = Emitter(rom, types, scalars | decls.scalars_outside(scalars), decls)
     out = []
     for name, addr, count, single in objs:
-        lines = em.array(elem, addr, count)
-        body = ",\n".join("    " + l for l in lines)
+        lines = em.array(elem, addr, count, single)
+        body = ",\n".join(("" if single else "    ") + l for l in lines)
         out.append((name, addr, count * elem.size, decl_type(spec, elem), body, single))
     return out, em
 
@@ -713,7 +733,6 @@ def render(out):
     text = []
     for name, addr, size, tname, body, single in out:
         if single:
-            body = body.strip().replace("\n    ", "\n")
             text.append(f'SECTION(".rodata.{addr:08X}")\n{tname} {name} = {body};\n')
         else:
             text.append(f'SECTION(".rodata.{addr:08X}")\n{tname} {name}[] = {{\n{body},\n}};\n')
@@ -798,6 +817,12 @@ def report_refs(em, decls, path, hdr=None, skip=()):
         else:
             line = f"extern const {f.pointee} {sym}[];".replace("const const", "const")
             target = hdr
+            srcs = [(p, t) for p, t in decls.decl.get(sym, []) if p.suffix == ".c" and p.resolve() != Path(path).resolve() and "(" not in t]
+            if srcs and hdr:   # declared privately in another module: move that declaration to the header
+                line = srcs[0][1]
+                for p, t in srcs:
+                    txt = p.read_text()
+                    p.write_text(txt.replace(t + "\n", "", 1) if t + "\n" in txt else txt.replace(t, "", 1))
         print(f"undeclared {f.kind} {sym}: {line}  decl in {where} defined in {[str(d.relative_to(ROOT)) for d in defs]}"
               + (f" -> {target.relative_to(ROOT)}" if hdr and target else ""))
         if hdr and target:
