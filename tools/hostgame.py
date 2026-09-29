@@ -71,10 +71,8 @@ def include_flags():
                   '-iquote', '.']
 
 
-# Not linked on the host: platform/sram.c replaces agb-sram.c; src/m4a.c and
-# its tables need asm/m4a_1.s (src/host/m4a_stub.c stands in for the engine
-# until its C port links).
-HOST_EXCLUDE = {'src/agb-sram.c', 'src/m4a.c', 'src/m4a_tables.c'}
+# Not linked on the host: platform/sram.c replaces agb-sram.c.
+HOST_EXCLUDE = {'src/agb-sram.c'}
 
 
 def c_sources():

@@ -25,11 +25,14 @@ them portable (docs/port-notes.md, "Host link"):
   passes the ones of C symbols to the linker as `-alias`).
 * `.4byte` / `.word` / `.long` with a plain number stay 4-byte numbers.  A
   4-byte word that names a symbol would be a GBA pointer: in the music track
-  streams (sound/) it is a GOTO / PATT / REPT / MEMACC address and is written
-  **self-relative**: `.long TARGET - .`, a signed 32-bit offset from the
-  word's own first byte (the host engine reads `p + (s32) LE32(p)`, see
-  docs/port-data.md, "Music and text").  Anywhere else it is an error: the
-  object must be converted to C (docs/port-data.md).
+  streams (sound/) it is a GOTO / PATT / REPT / MEMACC / xWAVE address and is
+  written as its **offset from gHostSoundBase**, a label at the start of the
+  file's data: `.long TARGET - _gHostSoundBase` (both in the one data section
+  of the file, so the assembler computes it).  The engine's M4aReadAddr
+  passes the 32-bit value to M4aHostRomAddr (src/host/hostglue.c), which
+  returns gHostSoundBase + value (docs/port-data.md, "Music and text").
+  Anywhere else it is an error: the object must be converted to C
+  (docs/port-data.md).
 """
 
 import os
@@ -103,6 +106,10 @@ def convert(lines, macho, stream_words):
 
     section = '__DATA,__const' if macho else '.rodata'
     out = []
+    if stream_words:
+        # the base of the stored stream addresses (M4aHostRomAddr)
+        out += ['\t.section %s' % section, '\t.p2align 2',
+                '\t.globl %sgHostSoundBase' % prefix, '%sgHostSoundBase:' % prefix]
     last_label = None
     here = set()   # labels defined at the current position
     for line in lines:
@@ -161,7 +168,7 @@ def convert(lines, macho, stream_words):
                     if not stream_words:
                         sys.exit('hostasm: a 4-byte pointer word (%s) cannot hold a host '
                                  'address; convert its object to C' % s)
-                    res.append('(%s) - .' % sym(w))
+                    res.append('(%s) - %sgHostSoundBase' % (sym(w), prefix))
                 else:
                     res.append(w)
             # one word per line: `.` is the address of the word itself

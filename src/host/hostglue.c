@@ -2,6 +2,7 @@
 // directory): what the host link needs besides the game's C and data.
 
 #include "gbafe.h"
+#include "gba/m4a_internal.h"
 
 // The RAM objects that only symbols.ld names live in two images laid out by
 // tools/hostram.py (build/host-game/ramsyms.s), not in gHostEwram and
@@ -32,4 +33,15 @@ void HostClearRamIwram(void)
 __attribute__((constructor)) static void HostGameInit(void)
 {
     gHostEwramClearHook = ClearHostRamEwram;
+}
+
+// The music track streams store their GOTO / PATT / REPT / MEMACC / xWAVE
+// addresses as offsets from gHostSoundBase, the start of the host's sound
+// data (tools/hostasm.py); M4aReadAddr (src/m4a_1.c) hands the stored value
+// here.
+extern u8 gHostSoundBase[];
+
+void * M4aHostRomAddr(u32 stored)
+{
+    return gHostSoundBase + stored;
 }

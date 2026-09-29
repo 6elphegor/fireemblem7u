@@ -385,11 +385,17 @@ void SampleFreqSet(u32 freq)
 
     SoundVSyncOn_rev01();
 
+#if PLATFORM_GBA
     while (*(vu8 *)REG_ADDR_VCOUNT == 159)
         ;
 
     while (*(vu8 *)REG_ADDR_VCOUNT != 159)
         ;
+#else
+    // The host's VCOUNT only moves between frames (platform/host.c): the
+    // wait for line 159, which lines the timer up with the display, would
+    // never end.
+#endif
 
     REG_TM0CNT_H = TIMER_ENABLE | TIMER_1CLK;
 }

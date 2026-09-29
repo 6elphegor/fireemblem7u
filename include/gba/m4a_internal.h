@@ -431,11 +431,18 @@ extern const struct PokemonCrySong gPokemonCrySongTemplate;
 
 extern const struct ToneData voicegroup_pokemon_cry;
 
+#if PLATFORM_GBA
 extern char gNumMusicPlayers[];
 extern char gMaxLines[];
 
 #define NUM_MUSIC_PLAYERS ((u16)gNumMusicPlayers)
 #define MAX_LINES ((u32)gMaxLines)
+#else
+// symbols.ld defines these two as absolute symbols (addresses 9 and 0),
+// which a host (position-independent code) can't take the address of
+#define NUM_MUSIC_PLAYERS 9
+#define MAX_LINES 0
+#endif
 
 u32 umul3232H32(u32 multiplier, u32 multiplicand);
 void SoundMain(void);
