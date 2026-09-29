@@ -1,5 +1,53 @@
 #include "gbafe.h"
 
+extern const char gUnk_084218D8[];
+extern const char gUnk_084218E0[];
+extern const char gUnk_084218EC[];
+extern const char gUnk_084218FC[];
+extern const char gUnk_08421904[];
+extern const char gUnk_0842190C[];
+extern const char gUnk_08421914[];
+extern const char gUnk_0842191C[];
+extern const char gUnk_08421924[];
+extern const char gUnk_0842192C[];
+extern const char gUnk_08421934[];
+extern const char gUnk_0842193C[];
+extern const char gUnk_08421944[];
+extern const char gUnk_0842194C[];
+extern const char gUnk_08421958[];
+extern const char gUnk_08421960[];
+extern const char gUnk_08421968[];
+extern const char gUnk_08421970[];
+extern const char gUnk_08421978[];
+extern const char gUnk_08421984[];
+extern const char gUnk_08421990[];
+extern const char gUnk_08421998[];
+extern const char gUnk_084219A0[];
+extern const char gUnk_084219B0[];
+extern const char gUnk_084219BC[];
+extern const char gUnk_084219C4[];
+extern const char gUnk_084219CC[];
+extern const char gUnk_084219D4[];
+extern const char gUnk_084219E0[];
+extern const char gUnk_084219EC[];
+extern const char gUnk_084219F4[];
+extern const char gUnk_084219FC[];
+extern const char gUnk_08421A08[];
+extern const char gUnk_08421A14[];
+extern const char gUnk_08421A20[];
+extern const char gUnk_08421A28[];
+extern const char gUnk_08421A30[];
+extern const char gUnk_08421A3C[];
+extern const char gUnk_08421A4C[];
+extern const char gUnk_08421A58[];
+extern const char gUnk_08421A64[];
+extern const char gUnk_08421A70[];
+extern const char gUnk_08421A7C[];
+extern const char gUnk_08421A88[];
+extern const u8 gUnk_08CE6114[], gUnk_08CE6128[], gUnk_08CE6140[], gUnk_08CE614C[], gUnk_08CE6158[],
+    gUnk_08CE6164[], gUnk_08CE6178[], gUnk_08CE6184[], gUnk_08CE6190[], gUnk_08CE619C[],
+    gUnk_08CE61A8[];
+
 // FE8U: opinfo.c (class reel; ClassReel_* is in lord-select.c)
 
 struct ClassReelEnt {
@@ -86,7 +134,7 @@ struct ClassDisplayFont const * GetClassDisplayFontInfo(u8 chr);
 
 extern struct AnimBuffer gOpInfoData;
 extern struct BanimUnkStructComm gOpInfoTerrainConf;
-extern struct ClassReelEnt * const * const * CONST_DATA gClassReelSetLut[];
+extern struct ClassReelEnt const * const * const * const gClassReelSetLut[];
 extern const struct ProcCmd ProcScr_ClassInfoDisplay[];
 extern const struct ProcCmd ProcScr_ClassStatsDisplay[];
 extern u8 Img_ClassDisplayFont[];
@@ -1056,8 +1104,8 @@ void SetClassStatsDisplayX(struct OpInfoGaugeDrawProc * proc, int x)
 
 intptr_t GetClassReelEntry(int set, int index)
 {
-    struct ClassReelEnt * const * const * list = gClassReelSetLut[set];
-    struct ClassReelEnt * const * it;
+    struct ClassReelEnt const * const * const * list = gClassReelSetLut[set];
+    struct ClassReelEnt const * const * it;
 
     for (it = *list; *list != NULL;)
     {
@@ -1147,4 +1195,1268 @@ const struct ProcCmd ProcScr_ClassStatsDisplay[] = {
     PROC_CALL(ClassStatsDisplay_Init),
     PROC_REPEAT(ClassStatsDisplay_Loop),
     PROC_END,
+};
+
+extern const struct ClassReelEnt gUnk_08CE61AC;
+extern const struct ClassReelEnt gUnk_08CE61C8;
+extern const struct ClassReelEnt gUnk_08CE61E4;
+extern const struct ClassReelEnt gUnk_08CE6200;
+extern const struct ClassReelEnt gUnk_08CE621C;
+extern const struct ClassReelEnt gUnk_08CE6238;
+extern const struct ClassReelEnt gUnk_08CE6254;
+extern const struct ClassReelEnt gUnk_08CE6270;
+extern const struct ClassReelEnt gUnk_08CE628C;
+extern const struct ClassReelEnt gUnk_08CE62A8;
+extern const struct ClassReelEnt gUnk_08CE62C4;
+extern const struct ClassReelEnt gUnk_08CE62E0;
+extern const struct ClassReelEnt gUnk_08CE62FC;
+extern const struct ClassReelEnt gUnk_08CE6318;
+extern const struct ClassReelEnt gUnk_08CE6334;
+extern const struct ClassReelEnt gUnk_08CE6350;
+extern const struct ClassReelEnt gUnk_08CE636C;
+extern const struct ClassReelEnt gUnk_08CE6388;
+extern const struct ClassReelEnt gUnk_08CE63A4;
+extern const struct ClassReelEnt gUnk_08CE63C0;
+extern const struct ClassReelEnt gUnk_08CE63DC;
+extern const struct ClassReelEnt gUnk_08CE63F8;
+extern const struct ClassReelEnt gUnk_08CE6414;
+extern const struct ClassReelEnt gUnk_08CE6430;
+extern const struct ClassReelEnt gUnk_08CE644C;
+extern const struct ClassReelEnt gUnk_08CE6468;
+extern const struct ClassReelEnt gUnk_08CE6484;
+extern const struct ClassReelEnt gUnk_08CE64A0;
+extern const struct ClassReelEnt gUnk_08CE64BC;
+extern const struct ClassReelEnt gUnk_08CE64D8;
+extern const struct ClassReelEnt gUnk_08CE64F4;
+extern const struct ClassReelEnt gUnk_08CE6510;
+extern const struct ClassReelEnt gUnk_08CE652C;
+extern const struct ClassReelEnt gUnk_08CE6548;
+extern const struct ClassReelEnt gUnk_08CE6564;
+extern const struct ClassReelEnt gUnk_08CE6580;
+extern const struct ClassReelEnt gUnk_08CE659C;
+extern const struct ClassReelEnt gUnk_08CE65B8;
+extern const struct ClassReelEnt gUnk_08CE65D4;
+extern const struct ClassReelEnt gUnk_08CE65F0;
+extern const struct ClassReelEnt gUnk_08CE660C;
+extern const struct ClassReelEnt gUnk_08CE6628;
+extern const struct ClassReelEnt gUnk_08CE6644;
+extern const struct ClassReelEnt gUnk_08CE6660;
+extern const struct ClassReelEnt gUnk_08CE667C;
+extern const struct ClassReelEnt gUnk_08CE6698;
+extern const struct ClassReelEnt gUnk_08CE66B4;
+extern const struct ClassReelEnt gUnk_08CE66D0;
+extern const struct ClassReelEnt gUnk_08CE66EC;
+extern const struct ClassReelEnt gUnk_08CE6708;
+extern const struct ClassReelEnt gUnk_08CE6724;
+extern const struct ClassReelEnt gUnk_08CE6740;
+extern const struct ClassReelEnt gUnk_08CE675C;
+extern const struct ClassReelEnt gUnk_08CE6778;
+extern const struct ClassReelEnt gUnk_08CE6794;
+extern const struct ClassReelEnt gUnk_08CE67B0;
+extern const struct ClassReelEnt gUnk_08CE67CC;
+extern const struct ClassReelEnt gUnk_08CE67E8;
+extern const struct ClassReelEnt gUnk_08CE6804;
+extern const struct ClassReelEnt gUnk_08CE6820;
+extern const struct ClassReelEnt gUnk_08CE683C;
+extern const struct ClassReelEnt gUnk_08CE6858;
+extern const struct ClassReelEnt gUnk_08CE6874;
+extern const struct ClassReelEnt gUnk_08CE6890;
+extern const struct ClassReelEnt gUnk_08CE68AC;
+extern const struct ClassReelEnt gUnk_08CE68C8;
+
+SECTION(".rodata.08CE61AC")
+const struct ClassReelEnt gUnk_08CE61AC = {
+    .name = gUnk_084218D8,
+    .descMsg = 0xFEF,
+    ._pad_08 = { 0, 3 },
+    .charPalId = -1,
+    .jid = 2,
+    .animId = 0xE,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE61C8")
+const struct ClassReelEnt gUnk_08CE61C8 = {
+    .name = gUnk_084218E0,
+    .descMsg = 0xFF1,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x61,
+    .jid = 0x28,
+    .animId = 0x3A,
+    .terrainL = 0x11,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE61E4")
+const struct ClassReelEnt gUnk_08CE61E4 = {
+    .name = gUnk_084218EC,
+    .descMsg = 0x1003,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x2D,
+    .jid = 0x32,
+    .animId = 0x80,
+    .terrainL = 0x19,
+    .terrainR = 0x19,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6200")
+const struct ClassReelEnt gUnk_08CE6200 = {
+    .name = gUnk_084218FC,
+    .descMsg = 0xFF3,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 2,
+    .jid = 0x18,
+    .animId = 0x24,
+    .terrainL = 0x13,
+    .terrainR = 0x13,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE621C")
+const struct ClassReelEnt gUnk_08CE621C = {
+    .name = gUnk_08421904,
+    .descMsg = 0xFF9,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x2F,
+    .jid = 0x12,
+    .animId = 0x1D,
+    .terrainL = 1,
+    .terrainR = 1,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6238")
+const struct ClassReelEnt gUnk_08CE6238 = {
+    .name = gUnk_0842190C,
+    .descMsg = 0xFF6,
+    ._pad_08 = { 0, 4 },
+    .charPalId = 0x52,
+    .jid = 0x1D,
+    .animId = 0x61,
+    .magicFx = 3,
+    .terrainL = 0xE,
+    .terrainR = 0xF,
+    .script = &gUnk_08CE6184[2],
+};
+
+SECTION(".rodata.08CE6254")
+const struct ClassReelEnt gUnk_08CE6254 = {
+    .name = gUnk_08421914,
+    .descMsg = 0xFFC,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x39,
+    .jid = 0x20,
+    .animId = 0x57,
+    .magicFx = 1,
+    .terrainL = 9,
+    .terrainR = 9,
+    .script = gUnk_08CE6164,
+};
+
+SECTION(".rodata.08CE6270")
+const struct ClassReelEnt gUnk_08CE6270 = {
+    .name = gUnk_0842191C,
+    .descMsg = 0xFF7,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x6B,
+    .jid = 0x3C,
+    .animId = 0x78,
+    .terrainL = 6,
+    .terrainR = 6,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE628C")
+const struct ClassReelEnt gUnk_08CE628C = {
+    .name = gUnk_08421924,
+    .descMsg = 0xFFD,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x40,
+    .jid = 0x2E,
+    .animId = 0x73,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE62A8")
+const struct ClassReelEnt gUnk_08CE62A8 = {
+    .name = gUnk_0842192C,
+    .descMsg = 0x1001,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x1F,
+    .jid = 0x41,
+    .animId = 0x8D,
+    .terrainL = 0x13,
+    .terrainR = 0x13,
+    .script = &gUnk_08CE6190[2],
+};
+
+SECTION(".rodata.08CE62C4")
+const struct ClassReelEnt gUnk_08CE62C4 = {
+    .name = gUnk_08421934,
+    .descMsg = 0xFF5,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x3E,
+    .jid = 0x1C,
+    .animId = 0x8E,
+    .magicFx = 4,
+    .terrainL = 0xE,
+    .terrainR = 0xF,
+    .script = &gUnk_08CE6178[2],
+};
+
+SECTION(".rodata.08CE62E0")
+const struct ClassReelEnt gUnk_08CE62E0 = {
+    .name = gUnk_0842193C,
+    .descMsg = 0xFF4,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 8,
+    .jid = 0x14,
+    .animId = 0x51,
+    .terrainL = 0x1B,
+    .terrainR = 0x21,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE62FC")
+const struct ClassReelEnt gUnk_08CE62FC = {
+    .name = gUnk_08421944,
+    .descMsg = 0xFFE,
+    ._pad_08 = { 0, 2 },
+    .charPalId = -1,
+    .jid = 0x39,
+    .genericPalId = 1,
+    .animId = 0x14,
+    .terrainL = 0x16,
+    .terrainR = 0x16,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6318")
+const struct ClassReelEnt gUnk_08CE6318 = {
+    .name = gUnk_0842194C,
+    .descMsg = 0xFF8,
+    ._pad_08 = { 6, 2 },
+    .charPalId = -1,
+    .jid = 0xA,
+    .genericPalId = 1,
+    .animId = 0x2C,
+    .terrainL = 0xB,
+    .terrainR = 0x18,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6334")
+const struct ClassReelEnt gUnk_08CE6334 = {
+    .name = gUnk_08421958,
+    .descMsg = 0x1016,
+    ._pad_08 = { 0, 5 },
+    .charPalId = -1,
+    .jid = 0x38,
+    .genericPalId = 1,
+    .animId = 0x4F,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = &gUnk_08CE6128[2],
+};
+
+SECTION(".rodata.08CE6350")
+const struct ClassReelEnt gUnk_08CE6350 = {
+    .name = gUnk_08421960,
+    .descMsg = 0x1000,
+    ._pad_08 = { 0, 5 },
+    .charPalId = -1,
+    .jid = 0x24,
+    .genericPalId = 1,
+    .animId = 0x68,
+    .terrainL = 9,
+    .terrainR = 9,
+    .script = &gUnk_08CE619C[2],
+};
+
+SECTION(".rodata.08CE636C")
+const struct ClassReelEnt gUnk_08CE636C = {
+    .name = gUnk_08421968,
+    .descMsg = 0xFF2,
+    ._pad_08 = { 0, 5 },
+    .charPalId = -1,
+    .jid = 0x2A,
+    .genericPalId = 1,
+    .animId = 0x40,
+    .terrainL = 0xB,
+    .terrainR = 0x12,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6388")
+const struct ClassReelEnt gUnk_08CE6388 = {
+    .name = gUnk_08421970,
+    .descMsg = 0x1010,
+    ._pad_08 = { 0, 5 },
+    .charPalId = -1,
+    .jid = 0x16,
+    .genericPalId = 1,
+    .animId = 0x53,
+    .terrainL = 2,
+    .terrainR = 2,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE63A4")
+const struct ClassReelEnt gUnk_08CE63A4 = {
+    .name = gUnk_084218D8,
+    .descMsg = 0xFEE,
+    ._pad_08 = { 0, 3 },
+    .charPalId = -1,
+    .jid = 1,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE63C0")
+const struct ClassReelEnt gUnk_08CE63C0 = {
+    .name = gUnk_08421978,
+    .descMsg = 0xFFB,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x3F,
+    .jid = 0xE,
+    .animId = 0x98,
+    .terrainL = 0x11,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE63DC")
+const struct ClassReelEnt gUnk_08CE63DC = {
+    .name = gUnk_08421984,
+    .descMsg = 0xFFA,
+    ._pad_08 = { 0, 6 },
+    .charPalId = 0x6C,
+    .jid = 0x2C,
+    .animId = 0x6D,
+    .magicFx = 3,
+    .terrainR = 0x11,
+    .script = &gUnk_08CE6184[2],
+};
+
+SECTION(".rodata.08CE63F8")
+const struct ClassReelEnt gUnk_08CE63F8 = {
+    .name = gUnk_08421990,
+    .descMsg = 0xFFF,
+    ._pad_08 = { 2, 2 },
+    .charPalId = -1,
+    .jid = 0x3A,
+    .animId = 0x17,
+    .terrainL = 0xC,
+    .terrainR = 0xC,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6414")
+const struct ClassReelEnt gUnk_08CE6414 = {
+    .name = gUnk_08421998,
+    .descMsg = 0x1002,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x23,
+    .jid = 0x40,
+    .animId = 0x8C,
+    .terrainL = 0xE,
+    .terrainR = 0xE,
+    .script = &gUnk_08CE6190[2],
+};
+
+SECTION(".rodata.08CE6430")
+const struct ClassReelEnt gUnk_08CE6430 = {
+    .name = gUnk_084219A0,
+    .descMsg = 0x1004,
+    ._pad_08 = { 0, 7 },
+    .charPalId = -1,
+    .jid = 0x34,
+    .animId = 0x85,
+    .terrainL = 4,
+    .terrainR = 4,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE644C")
+const struct ClassReelEnt gUnk_08CE644C = {
+    .name = gUnk_084219B0,
+    .descMsg = 0x100B,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x15,
+    .jid = 0x3B,
+    .animId = 0x1A,
+    .terrainL = 0x10,
+    .terrainR = 0x10,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6468")
+const struct ClassReelEnt gUnk_08CE6468 = {
+    .name = gUnk_084219BC,
+    .descMsg = 0x100C,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x58,
+    .jid = 0x22,
+    .animId = 0x59,
+    .magicFx = 1,
+    .terrainL = 9,
+    .terrainR = 9,
+    .script = gUnk_08CE6164,
+};
+
+SECTION(".rodata.08CE6484")
+const struct ClassReelEnt gUnk_08CE6484 = {
+    .name = gUnk_084219C4,
+    .descMsg = 0x100F,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 0x5C,
+    .jid = 0x1B,
+    .animId = 0x2A,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = &gUnk_08CE6128[2],
+};
+
+SECTION(".rodata.08CE64A0")
+const struct ClassReelEnt gUnk_08CE64A0 = {
+    .name = gUnk_084219CC,
+    .descMsg = 0x1005,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x1B,
+    .jid = 0xC,
+    .animId = 0x2E,
+    .terrainL = 0x17,
+    .terrainR = 0x17,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE64BC")
+const struct ClassReelEnt gUnk_08CE64BC = {
+    .name = gUnk_084219D4,
+    .descMsg = 0x100A,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x67,
+    .jid = 0x10,
+    .animId = 0x34,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE64D8")
+const struct ClassReelEnt gUnk_08CE64D8 = {
+    .name = gUnk_084219E0,
+    .descMsg = 0x1013,
+    ._pad_08 = { 4, 4 },
+    .charPalId = 0xB,
+    .jid = 0x3E,
+    .animId = 0x7E,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = gUnk_08CE6158,
+};
+
+SECTION(".rodata.08CE64F4")
+const struct ClassReelEnt gUnk_08CE64F4 = {
+    .name = gUnk_084218D8,
+    .descMsg = 0xFF0,
+    ._pad_08 = { 0, 3 },
+    .charPalId = -1,
+    .jid = 3,
+    .animId = 6,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6510")
+const struct ClassReelEnt gUnk_08CE6510 = {
+    .name = gUnk_084219EC,
+    .descMsg = 0x1006,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 0x72,
+    .jid = 0x13,
+    .animId = 0x20,
+    .terrainL = 0x13,
+    .terrainR = 0x13,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE652C")
+const struct ClassReelEnt gUnk_08CE652C = {
+    .name = gUnk_084219F4,
+    .descMsg = 0x100D,
+    ._pad_08 = { 5, 2 },
+    .charPalId = 0x18,
+    .jid = 0x1E,
+    .animId = 0x65,
+    .magicFx = 3,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = &gUnk_08CE6184[2],
+};
+
+SECTION(".rodata.08CE6548")
+const struct ClassReelEnt gUnk_08CE6548 = {
+    .name = gUnk_084219FC,
+    .descMsg = 0x1011,
+    ._pad_08 = { 0, 8 },
+    .charPalId = 0x26,
+    .jid = 0x37,
+    .animId = 0x87,
+    .terrainL = 0x16,
+    .terrainR = 0x16,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6564")
+const struct ClassReelEnt gUnk_08CE6564 = {
+    .name = gUnk_08421A08,
+    .descMsg = 0x1017,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x64,
+    .jid = 0x42,
+    .animId = 0x71,
+    .magicFx = 2,
+    .terrainL = 9,
+    .terrainR = 9,
+    .script = &gUnk_08CE6178[2],
+};
+
+SECTION(".rodata.08CE6580")
+const struct ClassReelEnt gUnk_08CE6580 = {
+    .name = gUnk_08421A14,
+    .descMsg = 0x1009,
+    ._pad_08 = { 0, 8 },
+    .charPalId = -1,
+    .jid = 0x33,
+    .genericPalId = 1,
+    .animId = 0x82,
+    .terrainL = 0xD,
+    .terrainR = 0xD,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE659C")
+const struct ClassReelEnt gUnk_08CE659C = {
+    .name = gUnk_08421A20,
+    .descMsg = 0x1015,
+    ._pad_08 = { 4, 2 },
+    .charPalId = -1,
+    .jid = 0x50,
+    .genericPalId = 1,
+    .animId = 0x17,
+    .terrainL = 0xD,
+    .terrainR = 0xD,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE65B8")
+const struct ClassReelEnt gUnk_08CE65B8 = {
+    .name = gUnk_08421A28,
+    .descMsg = 0x1007,
+    ._pad_08 = { 4, 4 },
+    .charPalId = -1,
+    .jid = 0x26,
+    .genericPalId = 1,
+    .animId = 0x6A,
+    .magicFx = 3,
+    .terrainL = 9,
+    .terrainR = 9,
+    .script = &gUnk_08CE6184[2],
+};
+
+SECTION(".rodata.08CE65D4")
+const struct ClassReelEnt gUnk_08CE65D4 = {
+    .name = gUnk_08421A30,
+    .descMsg = 0x1008,
+    ._pad_08 = { 0, 7 },
+    .charPalId = -1,
+    .jid = 0x2D,
+    .genericPalId = 1,
+    .animId = 0x6F,
+    .magicFx = 2,
+    .terrainL = 0x11,
+    .script = &gUnk_08CE6178[2],
+};
+
+SECTION(".rodata.08CE65F0")
+const struct ClassReelEnt gUnk_08CE65F0 = {
+    .name = gUnk_08421A3C,
+    .descMsg = 0x100E,
+    ._pad_08 = { 0, 4 },
+    .charPalId = -1,
+    .jid = 0x30,
+    .genericPalId = 1,
+    .animId = 0x76,
+    .script = gUnk_08CE614C,
+};
+
+SECTION(".rodata.08CE660C")
+const struct ClassReelEnt gUnk_08CE660C = {
+    .name = gUnk_08421A4C,
+    .descMsg = 0x1014,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 0x76,
+    .jid = 0x43,
+    .genericPalId = 1,
+    .animId = 0x9F,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = &gUnk_08CE61A8[2],
+};
+
+SECTION(".rodata.08CE6628")
+const struct ClassReelEnt gUnk_08CE6628 = {
+    .name = gUnk_08421A58,
+    .descMsg = 0x1012,
+    ._pad_08 = { 0, 6 },
+    .charPalId = 0x27,
+    .jid = 0x45,
+    .genericPalId = 1,
+    .animId = 0x6B,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = &gUnk_08CE6178[2],
+};
+
+SECTION(".rodata.08CE6644")
+const struct ClassReelEnt gUnk_08CE6644 = {
+    .name = gUnk_08421A64,
+    .descMsg = 0xFEF,
+    ._pad_08 = { 0, 7 },
+    .charPalId = -1,
+    .jid = 8,
+    .animId = 0x10,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6660")
+const struct ClassReelEnt gUnk_08CE6660 = {
+    .name = gUnk_084218E0,
+    .descMsg = 0xFF1,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x4D,
+    .jid = 0x28,
+    .animId = 0x3B,
+    .terrainL = 0x11,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE667C")
+const struct ClassReelEnt gUnk_08CE667C = {
+    .name = gUnk_084218EC,
+    .descMsg = 0x1003,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x2C,
+    .jid = 0x32,
+    .animId = 0x80,
+    .terrainL = 0x19,
+    .terrainR = 0x19,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6698")
+const struct ClassReelEnt gUnk_08CE6698 = {
+    .name = gUnk_084218FC,
+    .descMsg = 0xFF3,
+    ._pad_08 = { 0, 5 },
+    .charPalId = -1,
+    .jid = 0x19,
+    .animId = 0x26,
+    .terrainL = 0x13,
+    .terrainR = 0x13,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE66B4")
+const struct ClassReelEnt gUnk_08CE66B4 = {
+    .name = gUnk_08421904,
+    .descMsg = 0xFF9,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x2E,
+    .jid = 0x12,
+    .animId = 0x1E,
+    .terrainL = 1,
+    .terrainR = 1,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE66D0")
+const struct ClassReelEnt gUnk_08CE66D0 = {
+    .name = gUnk_08421914,
+    .descMsg = 0xFFC,
+    ._pad_08 = { 5, 3 },
+    .charPalId = 0x38,
+    .jid = 0x21,
+    .animId = 0x58,
+    .magicFx = 1,
+    .terrainL = 9,
+    .terrainR = 9,
+    .script = gUnk_08CE6164,
+};
+
+SECTION(".rodata.08CE66EC")
+const struct ClassReelEnt gUnk_08CE66EC = {
+    .name = gUnk_08421A70,
+    .descMsg = 0xFEE,
+    ._pad_08 = { 0, 6 },
+    .charPalId = -1,
+    .jid = 7,
+    .animId = 2,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6708")
+const struct ClassReelEnt gUnk_08CE6708 = {
+    .name = gUnk_0842191C,
+    .descMsg = 0xFF7,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x6A,
+    .jid = 0x3C,
+    .animId = 0x7A,
+    .terrainL = 6,
+    .terrainR = 6,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6724")
+const struct ClassReelEnt gUnk_08CE6724 = {
+    .name = gUnk_0842193C,
+    .descMsg = 0xFF4,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 7,
+    .jid = 0x14,
+    .animId = 0x51,
+    .terrainL = 0x1B,
+    .terrainR = 0x21,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6740")
+const struct ClassReelEnt gUnk_08CE6740 = {
+    .name = gUnk_0842194C,
+    .descMsg = 0xFF8,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x3C,
+    .jid = 0xA,
+    .animId = 0x2C,
+    .terrainL = 0xB,
+    .terrainR = 0x18,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE675C")
+const struct ClassReelEnt gUnk_08CE675C = {
+    .name = gUnk_08421960,
+    .descMsg = 0x1000,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 0x59,
+    .jid = 0x24,
+    .animId = 0x68,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = &gUnk_08CE619C[2],
+};
+
+SECTION(".rodata.08CE6778")
+const struct ClassReelEnt gUnk_08CE6778 = {
+    .name = gUnk_08421968,
+    .descMsg = 0xFF2,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 0x44,
+    .jid = 0x2B,
+    .animId = 0x4C,
+    .terrainL = 0xB,
+    .terrainR = 0x12,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6794")
+const struct ClassReelEnt gUnk_08CE6794 = {
+    .name = gUnk_08421A7C,
+    .descMsg = 0xFF0,
+    ._pad_08 = { 0, 7 },
+    .charPalId = -1,
+    .jid = 9,
+    .animId = 9,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE67B0")
+const struct ClassReelEnt gUnk_08CE67B0 = {
+    .name = gUnk_08421970,
+    .descMsg = 0x1010,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 0x33,
+    .jid = 0x16,
+    .animId = 0x54,
+    .terrainL = 2,
+    .terrainR = 2,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE67CC")
+const struct ClassReelEnt gUnk_08CE67CC = {
+    .name = gUnk_084219D4,
+    .descMsg = 0x100A,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x65,
+    .jid = 0x11,
+    .animId = 0x38,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE67E8")
+const struct ClassReelEnt gUnk_08CE67E8 = {
+    .name = gUnk_084218E0,
+    .descMsg = 0xFF1,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x62,
+    .jid = 0x28,
+    .animId = 0x3A,
+    .terrainL = 0x11,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6804")
+const struct ClassReelEnt gUnk_08CE6804 = {
+    .name = gUnk_084218EC,
+    .descMsg = 0x1003,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x2B,
+    .jid = 0x32,
+    .animId = 0x80,
+    .terrainL = 0x19,
+    .terrainR = 0x19,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6820")
+const struct ClassReelEnt gUnk_08CE6820 = {
+    .name = gUnk_08421A3C,
+    .descMsg = 0x100E,
+    ._pad_08 = { 0, 4 },
+    .charPalId = 0x43,
+    .jid = 0x30,
+    .animId = 0x75,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE683C")
+const struct ClassReelEnt gUnk_08CE683C = {
+    .name = gUnk_084219D4,
+    .descMsg = 0x100A,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x68,
+    .jid = 0x10,
+    .animId = 0x36,
+    .script = gUnk_08CE6140,
+};
+
+SECTION(".rodata.08CE6858")
+const struct ClassReelEnt gUnk_08CE6858 = {
+    .name = gUnk_084219CC,
+    .descMsg = 0x1005,
+    ._pad_08 = { 6, 2 },
+    .charPalId = 0x1E,
+    .jid = 0xC,
+    .animId = 0x8F,
+    .terrainL = 0x17,
+    .terrainR = 0x17,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE6874")
+const struct ClassReelEnt gUnk_08CE6874 = {
+    .name = gUnk_08421A30,
+    .descMsg = 0x1008,
+    ._pad_08 = { 0, 7 },
+    .charPalId = 0x6E,
+    .jid = 0x2D,
+    .genericPalId = 1,
+    .animId = 0x70,
+    .magicFx = 3,
+    .terrainL = 0x11,
+    .script = &gUnk_08CE6184[2],
+};
+
+SECTION(".rodata.08CE6890")
+const struct ClassReelEnt gUnk_08CE6890 = {
+    .name = gUnk_084219F4,
+    .descMsg = 0x100D,
+    ._pad_08 = { 5, 2 },
+    .charPalId = 0x17,
+    .jid = 0x1E,
+    .animId = 0x64,
+    .magicFx = 4,
+    .terrainL = 0x14,
+    .terrainR = 0x14,
+    .script = &gUnk_08CE6178[2],
+};
+
+SECTION(".rodata.08CE68AC")
+const struct ClassReelEnt gUnk_08CE68AC = {
+    .name = gUnk_084219EC,
+    .descMsg = 0x1006,
+    ._pad_08 = { 0, 5 },
+    .charPalId = 0x70,
+    .jid = 0x13,
+    .animId = 0x22,
+    .terrainL = 0x13,
+    .terrainR = 0x13,
+    .script = gUnk_08CE6114,
+};
+
+SECTION(".rodata.08CE68C8")
+const struct ClassReelEnt gUnk_08CE68C8 = {
+    .name = gUnk_08421A88,
+    .descMsg = 0x1018,
+    ._pad_08 = { 0, 3 },
+    .charPalId = -1,
+    .jid = 0x59,
+    .animId = 0xA1,
+    .terrainL = 0x11,
+    .script = gUnk_08CE6114,
+};
+
+extern struct ClassReelEnt const * const gUnk_08CE68E4[];
+extern struct ClassReelEnt const * const gUnk_08CE6900[];
+extern struct ClassReelEnt const * const gUnk_08CE691C[];
+extern struct ClassReelEnt const * const gUnk_08CE6938[];
+extern struct ClassReelEnt const * const gUnk_08CE6954[];
+extern struct ClassReelEnt const * const gUnk_08CE6970[];
+extern struct ClassReelEnt const * const gUnk_08CE698C[];
+extern struct ClassReelEnt const * const gUnk_08CE69A8[];
+extern struct ClassReelEnt const * const gUnk_08CE69C4[];
+extern struct ClassReelEnt const * const gUnk_08CE69E0[];
+extern struct ClassReelEnt const * const gUnk_08CE69FC[];
+extern struct ClassReelEnt const * const gUnk_08CE6A18[];
+
+SECTION(".rodata.08CE68E4")
+struct ClassReelEnt const * const gUnk_08CE68E4[] = {
+    &gUnk_08CE61AC,
+    &gUnk_08CE61C8,
+    &gUnk_08CE61E4,
+    &gUnk_08CE6200,
+    &gUnk_08CE621C,
+    &gUnk_08CE6238,
+    NULL,
+};
+
+SECTION(".rodata.08CE6900")
+struct ClassReelEnt const * const gUnk_08CE6900[] = {
+    &gUnk_08CE6254,
+    &gUnk_08CE6270,
+    &gUnk_08CE628C,
+    &gUnk_08CE62A8,
+    &gUnk_08CE62C4,
+    &gUnk_08CE62E0,
+    NULL,
+};
+
+SECTION(".rodata.08CE691C")
+struct ClassReelEnt const * const gUnk_08CE691C[] = {
+    &gUnk_08CE62FC,
+    &gUnk_08CE6318,
+    &gUnk_08CE6334,
+    &gUnk_08CE6350,
+    &gUnk_08CE636C,
+    &gUnk_08CE6388,
+    NULL,
+};
+
+SECTION(".rodata.08CE6938")
+struct ClassReelEnt const * const gUnk_08CE6938[] = {
+    &gUnk_08CE63A4,
+    &gUnk_08CE63C0,
+    &gUnk_08CE63DC,
+    &gUnk_08CE63F8,
+    &gUnk_08CE6414,
+    &gUnk_08CE6430,
+    NULL,
+};
+
+SECTION(".rodata.08CE6954")
+struct ClassReelEnt const * const gUnk_08CE6954[] = {
+    &gUnk_08CE644C,
+    &gUnk_08CE6468,
+    &gUnk_08CE6484,
+    &gUnk_08CE64A0,
+    &gUnk_08CE64BC,
+    &gUnk_08CE64D8,
+    NULL,
+};
+
+SECTION(".rodata.08CE6970")
+struct ClassReelEnt const * const gUnk_08CE6970[] = {
+    &gUnk_08CE64F4,
+    &gUnk_08CE6510,
+    &gUnk_08CE652C,
+    &gUnk_08CE6548,
+    &gUnk_08CE6564,
+    &gUnk_08CE6580,
+    NULL,
+};
+
+SECTION(".rodata.08CE698C")
+struct ClassReelEnt const * const gUnk_08CE698C[] = {
+    &gUnk_08CE659C,
+    &gUnk_08CE65B8,
+    &gUnk_08CE65D4,
+    &gUnk_08CE65F0,
+    &gUnk_08CE660C,
+    &gUnk_08CE6628,
+    NULL,
+};
+
+SECTION(".rodata.08CE69A8")
+struct ClassReelEnt const * const gUnk_08CE69A8[] = {
+    &gUnk_08CE6644,
+    &gUnk_08CE6660,
+    &gUnk_08CE667C,
+    &gUnk_08CE6698,
+    &gUnk_08CE66B4,
+    &gUnk_08CE66D0,
+    NULL,
+};
+
+SECTION(".rodata.08CE69C4")
+struct ClassReelEnt const * const gUnk_08CE69C4[] = {
+    &gUnk_08CE66EC,
+    &gUnk_08CE6708,
+    &gUnk_08CE6740,
+    &gUnk_08CE675C,
+    &gUnk_08CE6804,
+    &gUnk_08CE68C8,
+    NULL,
+};
+
+SECTION(".rodata.08CE69E0")
+struct ClassReelEnt const * const gUnk_08CE69E0[] = {
+    &gUnk_08CE6794,
+    &gUnk_08CE6724,
+    &gUnk_08CE67B0,
+    &gUnk_08CE67CC,
+    &gUnk_08CE6778,
+    &gUnk_08CE67E8,
+    NULL,
+};
+
+SECTION(".rodata.08CE69FC")
+struct ClassReelEnt const * const gUnk_08CE69FC[] = {
+    &gUnk_08CE6820,
+    &gUnk_08CE683C,
+    &gUnk_08CE6858,
+    &gUnk_08CE6874,
+    &gUnk_08CE6890,
+    &gUnk_08CE68AC,
+    NULL,
+};
+
+SECTION(".rodata.08CE6A18")
+struct ClassReelEnt const * const gUnk_08CE6A18[] = {
+    &gUnk_08CE61AC,
+    &gUnk_08CE61C8,
+    &gUnk_08CE6200,
+    &gUnk_08CE62E0,
+    &gUnk_08CE62C4,
+    &gUnk_08CE6238,
+    &gUnk_08CE6270,
+    &gUnk_08CE6318,
+    &gUnk_08CE621C,
+    &gUnk_08CE63DC,
+    &gUnk_08CE63C0,
+    &gUnk_08CE6254,
+    &gUnk_08CE628C,
+    &gUnk_08CE62FC,
+    &gUnk_08CE63F8,
+    &gUnk_08CE6350,
+    &gUnk_08CE62A8,
+    &gUnk_08CE6414,
+    &gUnk_08CE61E4,
+    &gUnk_08CE6430,
+    &gUnk_08CE64A0,
+    NULL,
+};
+
+extern struct ClassReelEnt const * const * const gUnk_08CE6A70[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6A78[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6A84[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6A94[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6AA8[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6AC0[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6ADC[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6AFC[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6B20[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6B48[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6B74[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6BA4[];
+extern struct ClassReelEnt const * const * const gUnk_08CE6BD4[];
+
+SECTION(".rodata.08CE6A70")
+struct ClassReelEnt const * const * const gUnk_08CE6A70[] = {
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6A78")
+struct ClassReelEnt const * const * const gUnk_08CE6A78[] = {
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6A84")
+struct ClassReelEnt const * const * const gUnk_08CE6A84[] = {
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6A94")
+struct ClassReelEnt const * const * const gUnk_08CE6A94[] = {
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6AA8")
+struct ClassReelEnt const * const * const gUnk_08CE6AA8[] = {
+    gUnk_08CE6954,
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6AC0")
+struct ClassReelEnt const * const * const gUnk_08CE6AC0[] = {
+    gUnk_08CE6970,
+    gUnk_08CE6954,
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6ADC")
+struct ClassReelEnt const * const * const gUnk_08CE6ADC[] = {
+    gUnk_08CE698C,
+    gUnk_08CE6970,
+    gUnk_08CE6954,
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6AFC")
+struct ClassReelEnt const * const * const gUnk_08CE6AFC[] = {
+    gUnk_08CE69A8,
+    gUnk_08CE698C,
+    gUnk_08CE6970,
+    gUnk_08CE6954,
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6B20")
+struct ClassReelEnt const * const * const gUnk_08CE6B20[] = {
+    gUnk_08CE69C4,
+    gUnk_08CE69A8,
+    gUnk_08CE698C,
+    gUnk_08CE6970,
+    gUnk_08CE6954,
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6B48")
+struct ClassReelEnt const * const * const gUnk_08CE6B48[] = {
+    gUnk_08CE69E0,
+    gUnk_08CE69C4,
+    gUnk_08CE69A8,
+    gUnk_08CE698C,
+    gUnk_08CE6970,
+    gUnk_08CE6954,
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6B74")
+struct ClassReelEnt const * const * const gUnk_08CE6B74[] = {
+    gUnk_08CE69FC,
+    gUnk_08CE69E0,
+    gUnk_08CE69C4,
+    gUnk_08CE69A8,
+    gUnk_08CE698C,
+    gUnk_08CE6970,
+    gUnk_08CE6954,
+    gUnk_08CE6938,
+    gUnk_08CE691C,
+    gUnk_08CE6900,
+    gUnk_08CE68E4,
+    NULL,
+};
+
+SECTION(".rodata.08CE6BA4")
+struct ClassReelEnt const * const * const gUnk_08CE6BA4[] = {
+    gUnk_08CE68E4,
+    gUnk_08CE6900,
+    gUnk_08CE691C,
+    gUnk_08CE6938,
+    gUnk_08CE6954,
+    gUnk_08CE6970,
+    gUnk_08CE698C,
+    gUnk_08CE69A8,
+    gUnk_08CE69C4,
+    gUnk_08CE69E0,
+    gUnk_08CE69FC,
+    NULL,
+};
+
+SECTION(".rodata.08CE6BD4")
+struct ClassReelEnt const * const * const gUnk_08CE6BD4[] = {
+    gUnk_08CE6A18,
+    NULL,
+};
+
+SECTION(".rodata.08CE6BDC")
+struct ClassReelEnt const * const * const * const gClassReelSetLut[] = {
+    gUnk_08CE6A70,
+    gUnk_08CE6A78,
+    gUnk_08CE6A84,
+    gUnk_08CE6A94,
+    gUnk_08CE6AA8,
+    gUnk_08CE6AC0,
+    gUnk_08CE6ADC,
+    gUnk_08CE6AFC,
+    gUnk_08CE6B20,
+    gUnk_08CE6B48,
+    gUnk_08CE6B74,
+    gUnk_08CE6BA4,
+    gUnk_08CE6BD4,
 };
