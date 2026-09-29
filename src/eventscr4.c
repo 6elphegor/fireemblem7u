@@ -53,9 +53,6 @@ void sub_080B4F9C(int a, int b);
 
 void SetScriptedBattle(struct BattleHit * hits);
 void SetMenuOverride(int a, int b, void * func);
-int MenuAlwaysNotShown();
-int MenuAlwaysDisabled();
-int MenuAlwaysEnabled();
 int Get8(void);
 void StartBoxDialogueSimple(int x, int y, int msg, ProcPtr parent);
 bool IsTactFemale(void);

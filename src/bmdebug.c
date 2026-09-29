@@ -872,3 +872,226 @@ const struct ProcCmd gProcScr_Debug_08B9335C[] = {
     PROC_SLEEP(0),
     PROC_END,
 };
+
+extern const struct MenuItemDef gDebugClearMenuItems[];
+extern const struct MenuItemDef gUnk_08B94744[];
+extern const struct MenuItemDef gUnk_08B947B0[];
+extern const struct MenuItemDef gUnk_08B94864[];
+extern const struct MenuItemDef gDebugMenuItems[];
+
+SECTION(".rodata.08B9466C")
+const struct MenuItemDef gDebugClearMenuItems[] = {
+    {
+        .name = gUnk_081C3D7C,
+        .nameMsgId = 0x10B6,
+        .overrideId = 3,
+        .isAvailable = MenuAlwaysEnabled,
+    },
+    {
+        .name = gUnk_081C3D70,
+        .nameMsgId = 0x10B7,
+        .overrideId = 4,
+        .isAvailable = MenuAlwaysEnabled,
+    },
+    {
+        .name = gUnk_081C3D58,
+        .nameMsgId = 0x10B8,
+        .overrideId = 5,
+        .isAvailable = MenuAlwaysEnabled,
+    },
+    {
+        .name = gUnk_081C3D40,
+        .nameMsgId = 0x10B9,
+        .overrideId = 6,
+        .isAvailable = MenuAlwaysEnabled,
+    },
+    {
+        .name = gUnk_081C3D28,
+        .nameMsgId = 0x10BA,
+        .color = 4,
+        .overrideId = 7,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = sub_0801B8D4,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B94744")
+const struct MenuItemDef gUnk_08B94744[] = {
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 8,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = DebugChargeMenu_Draw,
+        .onIdle = DebugChargeMenu_Idle,
+    },
+    {
+        .name = gUnk_081C3D94,
+        .overrideId = 9,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = DebugChargeMenu_Draw,
+        .onIdle = DebugChargeMenu_Idle,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B947B0")
+const struct MenuItemDef gUnk_08B947B0[] = {
+    {
+        .name = gUnk_081C3DC8,
+        .nameMsgId = 0x10BB,
+        .overrideId = 0xA,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = DebugContinueMenu_ReleaseEntry,
+    },
+    {
+        .name = gUnk_081C3DB8,
+        .nameMsgId = 0x10BC,
+        .overrideId = 0xB,
+        .isAvailable = (void *) DebugContinueMenu_IsContinueChapterAvailable,
+        .onSelected = DebugContinueMenu_ContinueChapter,
+    },
+    {
+        .name = gUnk_081C3DAC,
+        .nameMsgId = 0x10BF,
+        .overrideId = 0xC,
+        .isAvailable = (void *) DebugContinueMenu_IsManualContinueAvailable,
+        .onSelected = DebugContinueMenu_ManualContinue,
+    },
+    {
+        .name = gUnk_081C3D98,
+        .nameMsgId = 0x10BD,
+        .overrideId = 0xD,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = DebugContinueMenu_InitializeFile,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B94864")
+const struct MenuItemDef gUnk_08B94864[] = {
+    {
+        .name = gUnk_081C3DDC,
+        .nameMsgId = 0x10BE,
+        .overrideId = 0xF,
+        .isAvailable = (void *) sub_0801BC18,
+        .onSelected = sub_0801BC1C,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B948AC")
+const struct MenuItemDef gDebugMenuItems[] = {
+    {
+        .name = gUnk_081C3E48,
+        .nameMsgId = 0x10C0,
+        .overrideId = 0x10,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = sub_0801B3C4,
+        .onIdle = sub_0801B338,
+    },
+    {
+        .name = gUnk_081C3E3C,
+        .nameMsgId = 0x10C1,
+        .overrideId = 0x11,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = DebugMapMenu_DisplayInfoDraw,
+        .onSelected = DebugMapMenu_DisplayInfoEffect,
+        .onIdle = DebugMapMenu_DisplayInfoIdle,
+    },
+    {
+        .name = gUnk_081C3E34,
+        .nameMsgId = 0x10C2,
+        .overrideId = 0x12,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = DebugMenu_WeatherDraw,
+        .onSelected = DebugMenu_WeatherEffect,
+        .onIdle = DebugMenu_WeatherIdle,
+    },
+    {
+        .name = gUnk_081C3E2C,
+        .nameMsgId = 0x10C3,
+        .overrideId = 0x13,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = DebugMenu_FogDraw,
+        .onSelected = DebugMenu_FogEffect,
+        .onIdle = DebugMenu_FogIdle,
+    },
+    {
+        .name = gUnk_081C3E20,
+        .nameMsgId = 0x10C4,
+        .overrideId = 0x14,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = DebugMenu_ClearDraw,
+        .onSelected = DebugMenu_ClearEffect,
+        .onIdle = DebugMenu_ClearIdle,
+    },
+    {
+        .name = gUnk_081C3E10,
+        .nameMsgId = 0x10C5,
+        .overrideId = 0x15,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = DebugMenu_ErasedEffect,
+    },
+    {
+        .name = gUnk_081C3E00,
+        .overrideId = 0x16,
+        .isAvailable = MenuAlwaysEnabled,
+        .onDraw = Debug_GetChapterId,
+        .onSelected = sub_0801C164,
+        .onIdle = DebugMenuMapIdleCore,
+    },
+    {
+        .name = gUnk_081C3DEC,
+        .nameMsgId = 0x10C6,
+        .overrideId = 0x17,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = DebugMenu_GNightEffect,
+    },
+    {
+        .name = gUnk_081C3DE8,
+        .nameMsgId = 0x10C7,
+        .overrideId = 0x18,
+        .isAvailable = MenuAlwaysEnabled,
+        .onSelected = sub_0801B528,
+        .onIdle = (void *) sub_0801B470,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08B95848")
+const struct MenuDef gDebugClearMenuDef = {
+    .rect = { .x = 1, .y = 6, .w = 0xD },
+    .menuItems = gDebugClearMenuItems,
+    .onBPress = EndMenuAndClear,
+};
+
+SECTION(".rodata.08B9586C")
+const struct MenuDef gDebugMenuDef_08B9586C = {
+    .rect = { .x = 1, .y = 1, .w = 0xA },
+    .menuItems = gUnk_08B94744,
+    .onBPress = EndMenuAndClear,
+};
+
+SECTION(".rodata.08B95890")
+const struct MenuDef gDebugStartupMenuDef = {
+    .rect = { .x = 9, .y = 4, .w = 0xC },
+    .menuItems = gUnk_08B947B0,
+    .onInit = (void *) sub_0801B990,
+    .onEnd = (void *) sub_0801BA10,
+};
+
+SECTION(".rodata.08B958B4")
+const struct MenuDef gDebugMenuDef_08B958B4 = {
+    .rect = { .x = 1, .y = 1, .w = 8 },
+    .menuItems = gUnk_08B94864,
+    .onBPress = EndMenuAndClear,
+};
+
+SECTION(".rodata.08B958D8")
+const struct MenuDef gDebugMenuDef = {
+    .rect = { .x = 1, .y = 1, .w = 0xF },
+    .menuItems = gDebugMenuItems,
+    .onInit = (void *) DebugMenuInit,
+    .onBPress = EndMenuAndClear,
+};

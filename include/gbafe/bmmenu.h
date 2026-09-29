@@ -174,3 +174,27 @@ extern const struct ProcCmd gProcScr_BackToUnitMenu[];
 
 u8 MapMenu_UnitCommand(struct MenuProc * menu, struct MenuItemProc * menuItem);
 void MakeUnitRescueTransferGraphics(struct Unit * from, struct Unit * to);
+
+u8 MenuAlwaysEnabled(const struct MenuItemDef *, int number);
+u8 MenuAlwaysDisabled(const struct MenuItemDef *, int number);
+u8 MenuAlwaysNotShown(const struct MenuItemDef *, int number);
+extern const char gUnk_081C3D28[];
+extern const char gUnk_081C3D40[];
+extern const char gUnk_081C3D58[];
+extern const char gUnk_081C3D70[];
+extern const char gUnk_081C3D7C[];
+extern const char gUnk_081C3D94[];
+extern const char gUnk_081C3D98[];
+extern const char gUnk_081C3DAC[];
+extern const char gUnk_081C3DB8[];
+extern const char gUnk_081C3DC8[];
+extern const char gUnk_081C3DDC[];
+extern const char gUnk_081C3DE8[];
+extern const char gUnk_081C3DEC[];
+extern const char gUnk_081C3E00[];
+extern const char gUnk_081C3E10[];
+extern const char gUnk_081C3E20[];
+extern const char gUnk_081C3E2C[];
+extern const char gUnk_081C3E34[];
+extern const char gUnk_081C3E3C[];
+extern const char gUnk_081C3E48[];
