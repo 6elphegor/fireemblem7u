@@ -85,6 +85,26 @@ void sub_080669F4(u16 * tm, u16 width, u16 height, int pal, int chr)
 }
 
 
+#if NONMATCHING
+
+void EfxTmModifyPal(u16 * tm, u16 width, u16 height)
+{
+    int i, j;
+
+    for (i = height; i != 0; i--)
+    {
+        for (j = width; j != 0; j--)
+        {
+            u16 tileref = *tm;
+            *tm++ = (tileref & 0xFFF) + gEfxTileRefPals[(u16)(((tileref >> 0xC) & 0xF) - 6)];
+        }
+
+        tm += (u16)(0x20 - width);
+    }
+}
+
+#else
+
 void EfxTmModifyPal(u16 * tm, u16 width, u16 height)
 {
     int i, j;
@@ -109,6 +129,8 @@ void EfxTmModifyPal(u16 * tm, u16 width, u16 height)
         _tm += len;
     }
 }
+
+#endif
 
 void EfxTmCpyBG(const void * ptr1, void * ptr2, u16 width, u16 height, int pal, int chr)
 {
@@ -649,7 +671,9 @@ int GetAnimSpriteRotScaleX(u32 header)
     u32 a = header >> 30;
     u32 b = header & 0xC000;
 
-#if !NONMATCHING
+#if NONMATCHING
+    return gAnimSpriteRotScalePosX[a + (b >> 12)];
+#else
     const s16 * src = gAnimSpriteRotScalePosX;
 
     a = a << 1;
@@ -657,8 +681,6 @@ int GetAnimSpriteRotScaleX(u32 header)
     a = a + b;
 
     return *(s16 *)((void *)src + a);
-#else
-    return gAnimSpriteRotScalePosX[a + (b >> 12)];
 #endif
 }
 
@@ -668,7 +690,9 @@ int GetAnimSpriteRotScaleY(u32 header)
     u32 a = header >> 30;
     u32 b = header & 0xC000;
 
-#if !NONMATCHING
+#if NONMATCHING
+    return gAnimSpriteRotScalePosY[a + (b >> 12)];
+#else
     const s16 * src = gAnimSpriteRotScalePosY;
 
     a = a << 1;
@@ -676,8 +700,6 @@ int GetAnimSpriteRotScaleY(u32 header)
     a = a + b;
 
     return *(s16 *)((void *)src + a);
-#else
-    return gAnimSpriteRotScalePosY[a + (b >> 12)];
 #endif
 }
 

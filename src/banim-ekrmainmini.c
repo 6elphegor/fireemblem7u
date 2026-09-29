@@ -155,6 +155,14 @@ void sub_08054A8C(struct Anim * anim)
         struct Anim * anim1 = pAnimBuffer->anim1;
         struct Anim * anim2 = pAnimBuffer->anim2;
 
+#if NONMATCHING
+        const struct BanimModeData * frameData =
+            (const void *)pAnimBuffer->unk_28 + modes[mode];
+
+        anim1->pImgSheet = frameData->img;
+        anim1->pSpriteData = (const void *)anim1->pSpriteDataPool + frameData->unk2;
+        anim2->pSpriteData = (const void *)anim2->pSpriteDataPool + 0x000057F0;
+#else
         const void * unk28 = pAnimBuffer->unk_28;
         register struct BanimModeData * frameData asm("r1");
         register int off asm("r0") = modes[mode];
@@ -166,6 +174,7 @@ void sub_08054A8C(struct Anim * anim)
 
         unk28 = anim2->pSpriteDataPool;
         anim2->pSpriteData = unk28 += 0x000057F0;
+#endif
 
         if (pAnimBuffer->unk_2C != anim->pImgSheet)
         {
@@ -386,6 +395,10 @@ void sub_08054C8C(struct AnimBuffer * pAnimBuf)
 
     LZ77UnCompWram(ba[pAnimBuf->animId].pal, pAnimBuf->unk_20);
 
+#if NONMATCHING
+    if (pAnimBuf->charPalId != -1)
+        LZ77UnCompWram(character_battle_animation_palette_table[pAnimBuf->charPalId].pal, pAnimBuf->unk_20);
+#else
     if (pAnimBuf->charPalId != -1)
     {
         register int offset asm("r0") = pAnimBuf->charPalId * sizeof(struct BattleAnimCharaPal);
@@ -395,6 +408,7 @@ void sub_08054C8C(struct AnimBuffer * pAnimBuf)
     }
 
     asm("" : : : "r7");
+#endif
     CpuFastCopy(pAnimBuf->unk_20 + pAnimBuf->genericPalId * 0x20, pAnimBuf->oam2Pal * 0x10 + gPal + 0x100, 0x20);
 
     EnablePalSync();

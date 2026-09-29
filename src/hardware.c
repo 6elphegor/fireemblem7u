@@ -768,7 +768,9 @@ void InitBgs(u16 const * config)
 
     int i;
 
+#if !NONMATCHING
     asm(""); // FE7U: needed for config to be loaded into r0 (FE7J uses r1)
+#endif
     if (config == NULL)
         config = default_config;
 
@@ -897,7 +899,11 @@ void sub_08002D48(int unk)
     REG_DISPCNT |= 1 << 7; // DISPCNT_FORCE_BLANK;
 
     SoundBiasReset();
+#if NONMATCHING
+    Stop(); // BIOS call 3: enter sleep mode
+#else
     asm("swi 3"); // enter sleep mode
+#endif
     SoundBiasSet();
 
     REG_IE = ie;

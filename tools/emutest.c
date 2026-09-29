@@ -15,6 +15,7 @@
  *     -s N        stop N frames after the first divergence (default: run on)
  *     -e N        also save a PNG of A every N frames (script development)
  *     -D 1        also save A's memory at every checkpoint (NAME_A.ewram.bin...)
+ *     -f 1        no memory wait states (a faster CPU; see noWaitstates)
  *
  * Output on stdout is line-oriented ("key value ..."), read by emutest.py.
  * Each run starts from power-on with mGBA's HLE BIOS (no BIOS file), empty
@@ -29,6 +30,8 @@
 #include <mgba/core/log.h>
 #include <mgba/core/blip_buf.h>
 #include <mgba/gba/core.h>
+#include <mgba/internal/arm/arm.h>
+#include <mgba/internal/gba/gba.h>
 #include <mgba-util/vfs.h>
 
 #include <stdarg.h>
@@ -131,8 +134,28 @@ static void rgb(const struct emu *e, uint8_t *out)
 	}
 }
 
+/* -f: every memory access takes one cycle (no wait states), so the CPU does
+ * several times more per frame.  Loading screens then (almost) never run over
+ * a frame, and two ROMs whose code differs only in speed (the NONMATCHING
+ * build) stay in step.  Reapplied every frame (the game's WAITCNT write
+ * recomputes the tables). */
+static int fastCpu;
+
+static void noWaitstates(struct emu *e)
+{
+	struct GBA *gba = e->core->board;
+	struct ARMCore *cpu = e->core->cpu;
+	memset(gba->memory.waitstatesSeq32, 0, sizeof(gba->memory.waitstatesSeq32));
+	memset(gba->memory.waitstatesSeq16, 0, sizeof(gba->memory.waitstatesSeq16));
+	memset(gba->memory.waitstatesNonseq32, 0, sizeof(gba->memory.waitstatesNonseq32));
+	memset(gba->memory.waitstatesNonseq16, 0, sizeof(gba->memory.waitstatesNonseq16));
+	cpu->memory.setActiveRegion(cpu, cpu->gprs[ARM_PC]);
+}
+
 static void runFrame(struct emu *e, uint32_t keys)
 {
+	if (fastCpu)
+		noWaitstates(e);
 	e->core->setKeys(e->core, keys);
 	e->core->runFrame(e->core);
 	/* Drain the audio so the buffer never fills, and keep it for hashing. */
@@ -394,7 +417,7 @@ static int videoEqual(struct emu *a, struct emu *b)
 
 static void usage(void)
 {
-	fprintf(stderr, "usage: emutest -p PLAN -o DIR [-m MAP] [-l LOG] [-d N] [-s N] [-e N] [-D 1] ROM_A [ROM_B]\n");
+	fprintf(stderr, "usage: emutest -p PLAN -o DIR [-m MAP] [-l LOG] [-d N] [-s N] [-e N] [-D 1] [-f 1] ROM_A [ROM_B]\n");
 	exit(2);
 }
 
@@ -415,6 +438,7 @@ int main(int argc, char **argv)
 		case 's': stopAfter = atol(argv[++i]); break;
 		case 'e': every = atol(argv[++i]); break;
 		case 'D': dumpShots = atol(argv[++i]); break;
+		case 'f': fastCpu = atoi(argv[++i]); break;
 		default: usage();
 		}
 	}

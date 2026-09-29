@@ -285,6 +285,9 @@ def compare(script, rom_a, rom_b, args):
         cmd += ["-l", str(out / "frames.log")]
     if args.stop is not None:
         cmd += ["-s", str(args.stop)]
+    if args.fast:
+        cmd += ["-f", "1"]
+        note += "; no wait states (--fast)"
     print(f"== {name}: {rom_a} vs {rom_b}, {frames} frames; {note}")
     text = run_bin(cmd + [str(rom_a), str(rom_b)])
     (out / "result.txt").write_text(text)
@@ -403,6 +406,9 @@ def main():
     c.add_argument("--dump", type=int, default=4, help="side-by-side PNGs of the first N differing frames")
     c.add_argument("--stop", type=int, help="stop N frames after the first divergence")
     c.add_argument("--log", action="store_true", help="write per-frame hashes to frames.log")
+    c.add_argument("--fast", action="store_true",
+                   help="run both ROMs without memory wait states, so that code that is only "
+                        "faster or slower (the NONMATCHING build) doesn't shift frames")
     r = sub.add_parser("record")
     r.add_argument("script")
     r.add_argument("-a", default="fe7u.gba")

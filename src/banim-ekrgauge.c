@@ -377,8 +377,10 @@ void ekrGaugeMain(struct ProcEkrGauge * proc)
     s16 sp_d4;
     s32 hp_changed;
     s32 spDC;
+#if !NONMATCHING
     s32 unused_pad0, unused_pad1, unused_pad2, unused_pad3, unused_pad4, unused_pad5, unused_pad6;
     s32 unused_pad7, unused_pad8, unused_pad9, unused_pad10, unused_pad11, unused_pad12;
+#endif
     s32 x;
     s32 y;
     s32 clk;

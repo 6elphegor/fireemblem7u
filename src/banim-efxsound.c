@@ -475,6 +475,10 @@ void EfxPlaySEwithCmdCtrl(struct Anim * anim, int cmd)
     _songid = songid;
     if (_songid != -1)
     {
+#if NONMATCHING
+        EfxPlaySE(_songid, volume);
+        M4aPlayWithPostionCtrl(_songid, (s16)sound_pos, 1);
+#else
         register int r1 asm("r1");
         register int r2 asm("r2");
 
@@ -483,6 +487,7 @@ void EfxPlaySEwithCmdCtrl(struct Anim * anim, int cmd)
         r1 = (s16)sound_pos;
         r2 = 1;
         M4aPlayWithPostionCtrl(_songid, r1, r2);
+#endif
     }
 }
 
@@ -900,11 +905,15 @@ int GetProperAnimSoundLocation(struct Anim * anim)
     else
         ret = Div(val1, val2);
 
+#if NONMATCHING
+    return ret;
+#else
     val1 = ret;
 
     asm("":::"memory");
     ret = val1;
     return val1;
+#endif
 }
 
 void PlaySFX(int songid, int volume, int locate, int type)

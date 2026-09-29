@@ -109,3 +109,14 @@ VBlankIntrWait: @ 0x080BFA6C
 	svc #5
 	bx lr
 	.align 2, 0
+
+	.ifdef NONMATCHING
+@ BIOS calls that the matching C makes with inline asm; the plain C
+@ (NONMATCHING) calls these instead.
+
+	thumb_func_start Stop
+Stop:
+	svc #3
+	bx lr
+	.align 2, 0
+	.endif

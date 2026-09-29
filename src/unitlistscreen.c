@@ -678,7 +678,9 @@ void sub_8090D80(struct UnitListScreenProc * proc)
         proc->pMuralProc = StartMuralBackgroundAlt(NULL, NULL, 10);
 
     LoadHelpBoxGfx(NULL, -1);
+#if !NONMATCHING
     asm("");
+#endif
 }
 
 
@@ -1483,10 +1485,10 @@ void sub_0808AD00(struct UnitListScreenProc * proc, u8 unitNum, u16 * tm, u8 pag
 
     case 1:
     {
-#ifndef NONMATCHING
-        register u16 * p asm("r4");
-#else
+#if NONMATCHING
         u16 * p;
+#else
+        register u16 * p asm("r4");
 #endif
 
         PutDrawText(

@@ -445,6 +445,23 @@ int MultiBootHandShake(struct MultiBootParam * mp)
 #undef must_data
 }
 
+#if NONMATCHING
+
+// Busy-waits for at least the given number of CPU cycles.  The original
+// (below) counts down by the cycles one iteration of its loop takes where it
+// runs (12 in EWRAM, 13 in ROM, 4 in IWRAM, read from the pc); this runs from
+// ROM and counts down by 13.  The volatile counter keeps the loop from being
+// optimized away; each iteration takes at least as long as the original's.
+void MultiBootWaitCycles(u32 cycles)
+{
+    vs32 remaining = cycles;
+
+    while ((remaining -= 13) > 0)
+        ;
+}
+
+#else
+
 NAKEDFUNC
 void MultiBootWaitCycles(u32 cycles)
 {
@@ -466,6 +483,8 @@ void MultiBootWaitCycles(u32 cycles)
         .syntax divided\n\
     ");
 }
+
+#endif
 
 void MultiBootWaitSendDone(void)
 {

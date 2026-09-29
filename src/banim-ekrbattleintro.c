@@ -292,7 +292,7 @@ CONST_DATA struct ProcCmd ProcScr_ekrBaseAppear[] = {
 
 void NewEkrBaseKaiten(int identifier)
 {
-#ifdef NONMATCHING
+#if NONMATCHING
     #define AccessArray(array, index, offset) ((array)[index])
 #else
     #define AccessArray(array, index, offset) (*(typeof(&*(array)))((void *)(array) + (offset)))

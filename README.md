@@ -11,6 +11,12 @@ of the last ones are "fake matches" (register pins, empty `asm` barriers);
 each is marked `FAKEMATCH` with a comment explaining the trick, and cleaner
 C for any of them is welcome.
 
+Every fake match, register pin and piece of inline ARM assembly also has a
+plain C version under `#if NONMATCHING`: `make NONMATCHING=1` builds
+`fe7u_nonmatching.gba` from those (not byte-identical, same behaviour;
+checked with `make emutest`), the starting point for ports to other
+platforms.  See CONTRIBUTING, "Portable (NONMATCHING) build".
+
 The sound engine's hand-written part, libagb, libc and libgcc are linked as
 assembly/libraries, and data after the code is still incbin'd from the ROM.
 
@@ -140,7 +146,8 @@ tools/split_disasm.py full.s
 ```
 
 The final veneer at `0x080C57D4` is truncated by gbadisasm and must be
-completed by hand (`bx pc; nop; .byte 0xE0, 0xEA, 0xFC, 0xEA`).
+completed by hand (`bx pc; nop; .arm; b Checksum32`; `asm/veneers.s`
+writes all six veneers' branches symbolically).
 
 ## Credits
 

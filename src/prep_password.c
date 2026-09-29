@@ -481,8 +481,12 @@ ProcPtr sub_0809E3D8(int a, int b, ProcPtr parent)
 }
 void sub_0809E3F4(void)
 {
+#if NONMATCHING
+    gUnk_0203E790 = 0;
+#else
     register u8 * p asm("r0") = &gUnk_0203E790;
     *p = 0;
+#endif
 }
 void sub_0809E400(void)
 {

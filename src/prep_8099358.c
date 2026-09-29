@@ -159,6 +159,49 @@ void sub_0809945C(int pal, ProcPtr parent)
     struct PrepRankPalAnimProc * proc = Proc_Start(ProcScr_08CC5114, parent);
     proc->pal = pal;
 }
+#if NONMATCHING
+
+void sub_08099474(struct PrepRankProc * proc)
+{
+    int i, j, scale;
+    u16 const * const * sprites;
+
+    if ((proc->timer >> 3) <= 5)
+    {
+        proc->timer += 2;
+
+        if ((proc->timer >> 3) == 6)
+            sub_0809945C(0xF, proc);
+    }
+
+    for (i = 0; i < 5; i++)
+    {
+        if (proc->ranks[i] == 0xFF)
+            continue;
+
+        // sprite j uses affine parameter set j (OAM1 bits 9-13)
+        sprites = gUnk_08CC5100;
+
+        for (j = 0; j <= proc->ranks[i] && j < (proc->timer >> 3); j++)
+            PutSpriteExt(4, (0x50 + j * 15) + (j << 9), (i * 16 + 9) + OAM0_AFFINE_ENABLE, *sprites++, 0xF380);
+    }
+
+    for (i = 0; i < 5; i++)
+    {
+        scale = (proc->timer - (i + 1) * 8) * 32;
+
+        if (scale > 0x100)
+            scale = 0x100;
+
+        if (scale < 0x20)
+            scale = 0x20;
+
+        SetObjAffineAuto(i, 0, scale, 0x100);
+    }
+}
+
+#else
+
 // FAKEMATCH: j is pinned to r5; x doubles as the affine scale, as in the
 // original, which puts it in r4.
 void sub_08099474(struct PrepRankProc * proc)
@@ -211,6 +254,8 @@ void sub_08099474(struct PrepRankProc * proc)
             SetObjAffineAuto(i, 0, 0x20, 0x100);
     }
 }
+
+#endif
 void sub_08099628(void)
 {
     int i;

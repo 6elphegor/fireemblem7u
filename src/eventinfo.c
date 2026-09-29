@@ -986,11 +986,15 @@ void StartAvailableTileEvent(s8 x, s8 y)
         break;
 
     case 0x16:
+#if !NONMATCHING
         asm("nop");
+#endif
         break;
 
     case 0x00:
+#if !NONMATCHING
         asm("nop");
+#endif
         break;
     }
 }

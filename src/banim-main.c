@@ -205,6 +205,16 @@ void BattleAIS_ExecCommands(void)
                                 mode = gpBanimModesRight[id2];
 
                             // _08054126
+#if NONMATCHING
+                            {
+                                struct UnkStruct *unk = (void *)(mode + gBanimScrLeft + GetAnimPosition(anim) * 0x2A00);
+
+                                anim1->pImgSheet = unk->unk1;
+                                anim1->pSpriteData = (const void *)anim1->pSpriteDataPool + unk->unk2;
+                            }
+
+                            anim2->pSpriteData = (const void *)anim2->pSpriteDataPool + 0x57F0;
+#else
                             {
                                 struct UnkStruct *unk = (void *)(mode + gBanimScrLeft + GetAnimPosition(anim) * 0x2A00);
                                 register const void *_ptr asm("r4");
@@ -220,6 +230,7 @@ void BattleAIS_ExecCommands(void)
                             mode = (int)(anim2->pSpriteDataPool);
                             mode += 0x57F0;
                             anim2->pSpriteData = (const void *)(mode);
+#endif
 
                             if (Unk_0203E0B0[GetAnimPosition(anim)] == 0) {
                                 if (gpImgSheet[GetAnimPosition(anim1)] != anim1->pImgSheet) {

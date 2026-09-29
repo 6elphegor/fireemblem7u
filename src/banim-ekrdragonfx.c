@@ -331,7 +331,11 @@ void EkrDragonFlashingWingBg_Loop(struct ProcEkrDragonStatusFlashing * proc)
 
     if (proc->anim->currentRoundType != proc->round_cur)
     {
+#if NONMATCHING
+        int rtype;
+#else
         register int rtype asm("r0");
+#endif
 
         rtype = proc->anim->currentRoundType;
         /* Config round switch */
@@ -414,7 +418,11 @@ void EkrDragonFlashingWingObj_Loop(struct ProcEkrDragonStatusFlashing * proc)
 
     if (proc->anim->currentRoundType != proc->round_cur)
     {
+#if NONMATCHING
+        int rtype;
+#else
         register int rtype asm("r0");
+#endif
 
         rtype = proc->anim->currentRoundType;
         /* Config round switch */

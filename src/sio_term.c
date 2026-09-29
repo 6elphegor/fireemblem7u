@@ -15,6 +15,126 @@ extern struct Font Font_0203DB64;
 extern struct Text gSioTexts[];
 extern const u8 gUnknown_081D5394[];
 
+#if NONMATCHING
+
+void sub_080412E0(struct SioTermProc * proc)
+{
+    int i;
+    struct PlaySt playSt;
+    u8 title[6];
+    u8 flags[4];
+    bool found = FALSE;
+
+    memcpy(title, gUnknown_081D5394, 6);
+
+    ClearSioBG();
+    InitSioBG();
+
+    Decompress(Img_TacticianSelObj, (u8 *) OBJ_VRAM0 + 0x4800);
+
+    sub_08047BD4(0, 4);
+
+    SetTextFont(&Font_0203DB64);
+    InitSystemTextFont();
+    ResetTextFont();
+
+    StartLinkArenaButtonSpriteDraw(192, 16, proc);
+
+    InitText(&gSioTexts[0], 24);
+    InitText(&gSioTexts[1], 24);
+
+    PutSioText(0x3CA, 0);
+    PutSioText(0x3CB, 1);
+
+    proc->unk_4c = -1;
+
+    for (i = 2; i >= 0; i--)
+    {
+        flags[i] = 0;
+
+        if (IsSaveValid(i))
+        {
+            ReadGameSavePlaySt(i, &playSt);
+            proc->unk_2c[i] = GetChapterTitle(&playSt);
+
+            if (playSt.chapterStateBits & 0x40)
+                flags[i] |= 4;
+
+            switch (playSt.chapterModeIndex)
+            {
+            case 1:
+                flags[i] |= 0x10;
+                break;
+
+            case 2:
+                flags[i] |= 0x20;
+                break;
+
+            case 3:
+                flags[i] |= 0x40;
+                break;
+            }
+
+            if (IsGameNotFirstChapter(&playSt))
+                proc->unk_38[i] = proc->unk_2c[i];
+            else
+                proc->unk_38[i] = -1;
+
+            if (proc->unk_38[i] != -1)
+            {
+                if (!found)
+                {
+                    proc->unk_50 = i;
+                    found = TRUE;
+                }
+                else
+                {
+                    proc->unk_4c = i;
+                }
+            }
+        }
+        else
+        {
+            proc->unk_2c[i] = proc->unk_38[i] = -1;
+        }
+    }
+
+    if (proc->unk_4c == -1)
+    {
+        proc->unk_4c = proc->unk_50;
+        proc->unk_48 = proc->unk_50;
+    }
+    else
+    {
+        proc->unk_48 = proc->unk_4c;
+    }
+
+    SetBgOffset(1, 4, 0);
+
+    PutChapterTitleBG(0x1A0);
+
+    for (i = 0; i < 3; i++)
+    {
+        if (proc->unk_38[i] == -1)
+            flags[i] |= 2;
+
+        PutChapterTitlePalette(flags[i] | 1, i + 4);
+        PutChapterTitlePalette(flags[i], i + 7);
+        PutChapterTitleBgTsa(gBg1Tm + TM_OFFSET(2, 4 + i * 4), i + 4);
+        PutChapterTitleGfx(((0x800 * (u32) i + 0x4400) & 0x1FFFF) / 0x20, proc->unk_2c[i]);
+        PutChapterTitleNameTsa(gBg0Tm + TM_OFFSET(3, 5 + i * 4), i + 7);
+    }
+
+    SetWinEnable(0, 0, 0);
+
+    StartLinkArenaTitleBanner(proc, 1);
+    sub_08047E84(title, 6, 0, 8, gLinkArenaSt.unk_00, proc);
+
+    EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+}
+
+#else
+
 /* https://decomp.me/scratch/lXFC6 */
 // FAKEMATCH (found by decomp-permuter): the notFirst local swaps r8/r9.
 void sub_080412E0(struct SioTermProc * proc)
@@ -145,6 +265,8 @@ void sub_080412E0(struct SioTermProc * proc)
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
 }
+
+#endif
 
 //! FE8U = 0x08046C64
 void sub_08041584(int * cur, u8 bottom, u8 top, int * buf, u8 total)

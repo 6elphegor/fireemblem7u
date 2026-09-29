@@ -978,6 +978,60 @@ void sub_080BCB1C(u8 const * src, int offset)
 {
     Decompress(src, gUnk_08CEF074 + offset);
 }
+#if NONMATCHING
+
+// Copies (sub_080BCB34) or clears (sub_080BCBFC) count pixels per tile of a
+// w x h block of 4bpp tiles at offset into OBJ VRAM + 0x4000, taking the
+// pixel indices from gUnk_08CEF314 from index count * start on.
+
+void sub_080BCB34(int w, int h, int count, int offset, int start)
+{
+    int y, x, i;
+
+    start *= count;
+
+    for (y = 0; y < h; y++)
+    {
+        for (x = 0; x < w; x++)
+        {
+            for (i = 0; i < count; i++)
+            {
+                int pixel = gUnk_08CEF314[start++ & 0x3F];
+                int tile_offset = offset + x * 0x20 + y * 0x400;
+                u32 const * src = (u32 const *) (gUnk_08CEF074 + tile_offset) + (pixel >> 3);
+                u32 * dst = (u32 *) ((u8 *) OBJ_VRAM0 + 0x4000 + tile_offset) + (pixel >> 3);
+
+                *dst |= *src & (0xF << ((pixel & 7) * 4));
+            }
+        }
+    }
+}
+
+void sub_080BCBFC(int w, int h, int count, int offset, int start)
+{
+    int y, x, i;
+
+    start *= count;
+
+    for (y = 0; y < h; y++)
+    {
+        for (x = 0; x < w; x++)
+        {
+            for (i = 0; i < count; i++)
+            {
+                int pixel = gUnk_08CEF314[start++ & 0x3F];
+                int tile_offset = offset + x * 0x20 + y * 0x400;
+                u32 const * src = (u32 const *) (gUnk_08CEF074 + tile_offset) + (pixel >> 3);
+                u32 * dst = (u32 *) ((u8 *) OBJ_VRAM0 + 0x4000 + tile_offset) + (pixel >> 3);
+
+                *dst &= *src & ~(0xF << ((pixel & 7) * 4));
+            }
+        }
+    }
+}
+
+#else
+
 // FAKEMATCH (found by an Opus 5.5 agent): *&tmp stops loop.c from hoisting
 // the dst partial sum; reusing start as the index, reading the table three
 // times and declaring y, x, i in that order set the register/stack layout.
@@ -1051,6 +1105,8 @@ void sub_080BCBFC(int w, int h, int count, int offset, int start)
         }
     }
 }
+
+#endif
 
 void sub_080BCCC4(struct OpAnimTextProc * proc)
 {
@@ -1455,9 +1511,13 @@ void sub_080BD588(int bg, struct OpAnimBgConf const * conf, int row)
 
         tsa++;
 
+#if NONMATCHING
+        tm = GetBgTilemap(bg) + (row & 0x1F) * 0x20;
+#else
         do {
             tm = GetBgTilemap(bg) + (row & 0x1F) * 0x20;
         } while (0);
+#endif
 
         tsa += (height - row % conf->header->rows) * (width + 1);
 

@@ -12,6 +12,36 @@ struct ProcWorldFlush
     /* 2C */ int timer;
 };
 
+#if NONMATCHING
+
+void sub_0807CC5C(struct ProcWorldFlush * proc)
+{
+    proc->timer = 0;
+
+    InitScanlineEffect();
+
+    SetBlendTargetA(1, 1, 1, 1, 1);
+    SetWin0Box(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    SetWinEnable(1, 0, 0);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetWin0Layers(1, 1, 1, 1, 1);
+    SetWOutLayers(1, 1, 1, 1, 1);
+
+    gDispIo.win_ct.win0_enable_blend = 1;
+    gDispIo.win_ct.wout_enable_blend = 0;
+
+    SetBlendBrighten(0);
+
+    SetOnHBlankA(sub_080777E4);
+
+    PlaySoundEffect(0x269);
+}
+
+#else
+
 // FAKEMATCH: writing the win0 fields through a local pointer keeps each
 // win_ct byte in a register so it is stored once, as in the original.
 void sub_0807CC5C(struct ProcWorldFlush * proc)
@@ -47,6 +77,8 @@ void sub_0807CC5C(struct ProcWorldFlush * proc)
     PlaySoundEffect(0x269);
 }
 
+#endif
+
 void sub_0807CD4C(struct ProcWorldFlush * proc)
 {
     int duration = 0x40;
@@ -81,10 +113,10 @@ void WorldFlushReload(struct ProcWorldFlush * proc)
 void sub_0807CDEC(struct ProcWorldFlush * proc)
 {
     int duration = 0x80;
-#ifndef NONMATCHING
-    register int r asm("r5") = DISPLAY_WIDTH;
-#else
+#if NONMATCHING
     int r = DISPLAY_WIDTH;
+#else
+    register int r asm("r5") = DISPLAY_WIDTH;
 #endif
     int t, y;
 

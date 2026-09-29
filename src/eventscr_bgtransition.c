@@ -398,6 +398,30 @@ int EvtCmd_BgFadeToMap(struct EventProc * proc)
     int flags = proc->script[1];
     u16 skipped = proc->flags & EVENT_FLAG_SKIPPED;
 
+#if NONMATCHING
+    if (skipped)
+    {
+        if (proc->background != -1)
+        {
+            proc->background = -1;
+
+            RefreshBMapGraphics();
+            UnlockBmDisplay();
+            ReleaseMus();
+        }
+
+        return EVENT_CMDRET_CONTINUE;
+    }
+    else
+    {
+        StartEvtBgFadeToMap(flags, proc);
+
+        proc->background = -1;
+        proc->unk_4D = FALSE;
+
+        return EVENT_CMDRET_YIELD;
+    }
+#else
     if (skipped)
     {
         u8 * bg = (u8 *) &proc->background;
@@ -425,4 +449,5 @@ int EvtCmd_BgFadeToMap(struct EventProc * proc)
 
         return EVENT_CMDRET_YIELD;
     }
+#endif
 }

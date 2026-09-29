@@ -125,9 +125,14 @@ void FortuneSubMenu_HandleOptionSwitch(struct PrepProcA1962C * proc)
 // reproduces the original's dead "adds r1, r0, #0".
 void StartFortuneSubMenu(int option, ProcPtr parent)
 {
+#if NONMATCHING
+    struct PrepProcA1962C * proc = Proc_StartBlocking(gProcScr_FortuneSubMenu, parent);
+    proc->unk_29 = option;
+#else
     register struct PrepProcA1962C * proc asm("r1") = Proc_StartBlocking(gProcScr_FortuneSubMenu, parent);
     proc->unk_29 = option;
     asm("" : : "r"(proc));
+#endif
 }
 
 s8 sub_080991F8(int var)

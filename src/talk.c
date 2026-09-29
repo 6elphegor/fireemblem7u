@@ -224,15 +224,10 @@ void Talk_OnInit()
 
 #if NONMATCHING
 
-// lsr r0, r0, #0x18
-// add r3, r0, #0
-// instead of
-// asrs r3, r0, #0x18
-
-// ldrb r0, [r1, #0x12]
-// instead of
-// movs r0, #0x12
-// ldrsb r0, [r1, r0]
+// The C for the asm below.  It compiles with "lsrs r0, r0, #0x18; adds r3,
+// r0, #0" instead of "asrs r3, r0, #0x18" and "ldrb r0, [r1, #0x12]" instead
+// of "ldrsb", so the matching build keeps the asm.  (FE7J's version returned
+// when print_clock reached print_delay, the opposite of the asm: fixed.)
 
 void sub_08008218(ProcPtr proc)
 {
@@ -246,7 +241,7 @@ void sub_08008218(ProcPtr proc)
     {
         sTalkSt->print_clock++;
 
-        if (sTalkSt->print_clock >= sTalkSt->print_delay)
+        if (sTalkSt->print_clock < sTalkSt->print_delay)
         {
             return;
         }

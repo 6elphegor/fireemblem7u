@@ -24,7 +24,7 @@ void WmMergeMonsters(void);
 void sub_080B4F70(void);
 void sub_080B4F74(int a, int b);
 void WmStartFadeCamera(int a, int b, int c, int d);
-void WmStartScrollCamera(int x, int y);
+void WmStartScrollCamera(int x, int y, int speed);
 void StartWmSpotlight(int a, int b);
 void EndWmSpotlightProc(void);
 void sub_080B4D4C(int a, int b, u16 c);
@@ -1094,18 +1094,18 @@ int sub_0800F998(struct EventProc * proc)
 
 int sub_0800F9B0(struct EventProc * proc)
 {
-#ifndef NONMATCHING
-    register EventScr const * script asm("r1");
-    register int pal asm("r3");
-    register int b asm("r2");
-    register EventScr xr asm("r2");
-    register int y_raw asm("r3");
-#else
+#if NONMATCHING
     int y_raw;
     EventScr const * script;
     int pal;
     int b;
     EventScr xr;
+#else
+    register EventScr const * script asm("r1");
+    register int pal asm("r3");
+    register int b asm("r2");
+    register EventScr xr asm("r2");
+    register int y_raw asm("r3");
 #endif
     int a = proc->script[1];
     int x;
@@ -1143,18 +1143,18 @@ int sub_0800FA30(struct EventProc * proc)
 
 int sub_0800FA50(struct EventProc * proc)
 {
-#ifndef NONMATCHING
-    register EventScr const * script asm("r1");
-    register int pal asm("r3");
-    register int b asm("r2");
-    register EventScr xr asm("r2");
-    register int y_raw asm("r3");
-#else
+#if NONMATCHING
     int y_raw;
     EventScr const * script;
     int pal;
     int b;
     EventScr xr;
+#else
+    register EventScr const * script asm("r1");
+    register int pal asm("r3");
+    register int b asm("r2");
+    register EventScr xr asm("r2");
+    register int y_raw asm("r3");
 #endif
     int a = proc->script[1];
     int x;
@@ -1192,12 +1192,12 @@ int sub_0800FAD0(struct EventProc * proc)
 
 int sub_0800FAF0(struct EventProc * proc)
 {
-#ifndef NONMATCHING
-    register EventScr const * script asm("r3");
-    register int b asm("r3");
-#else
+#if NONMATCHING
     EventScr const * script;
     int b;
+#else
+    register EventScr const * script asm("r3");
+    register int b asm("r3");
 #endif
     int x = SCR_LO16_SIGN(proc->script[1]);
     u16 y_raw;
@@ -1216,7 +1216,7 @@ int sub_0800FAF0(struct EventProc * proc)
     if (b != 0)
         WmMergeFace(b, 8, 0, 0, x, y, c);
     else
-        WmStartScrollCamera(x, y);
+        WmStartScrollCamera(x, y, c);
 
     return EVENT_CMDRET_YIELD;
 }

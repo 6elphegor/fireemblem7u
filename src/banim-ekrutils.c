@@ -393,10 +393,10 @@ s16 EfxAdvanceFrameLut(s16 * ptime, s16 * pcount, const s16 lut[])
     s16 iframe;
     u16 tmp, time2, count2;
     u16 uframe;
-#ifndef NONMATCHING
-    register u32 r6 asm("r6");
-#else
+#if NONMATCHING
     u32 r6;
+#else
+    register u32 r6 asm("r6");
 #endif
 
     time = *ptime;

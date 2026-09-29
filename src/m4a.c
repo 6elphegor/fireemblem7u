@@ -286,7 +286,13 @@ void MPlayExtender(struct CgbChannel *cgbChans)
 
 void MusicPlayerJumpTableCopy(void)
 {
+#if NONMATCHING
+    // Never called.  The original is a bare BIOS SoundGetJumpList call
+    // (swi 0x2A) with whatever the caller left in r0 as the destination;
+    // MPlayJumpTableCopy (asm/m4a_1.s) does the actual copy.
+#else
     asm("swi 0x2A");
+#endif
 }
 
 void ClearChain(void *x)

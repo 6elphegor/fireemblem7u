@@ -175,6 +175,33 @@ int CountEpilogueLines(char const * str)
     }
 }
 
+#if NONMATCHING
+
+void CountEpilogueEntryLines(void)
+{
+    struct EpilogueEnt * ent;
+
+    gEpilogueTotalLines = 0;
+
+    for (ent = gpEpilogueEnts; ent->info != NULL; ent++)
+    {
+        if (ent->info->pid == 0xCD)
+        {
+            ent->lines = 9;
+            gEpilogueTotalLines += 9;
+        }
+        else if (ent->info->pid != 3)
+        {
+            ent->lines = CountEpilogueLines(DecodeMsg((s8) ent->defeatChapter >= 0 ? ent->info->msgDead : ent->info->msgAlive));
+            gEpilogueTotalLines += ent->lines;
+        }
+    }
+
+    gEpilogueTotalLines += 5;
+}
+
+#else
+
 // FAKEMATCH (found by an Opus 5.5 agent): a pointer pinned to r1 and
 // re-taken through an alias symbol reproduces the original's reload.
 void CountEpilogueEntryLines(void)
@@ -205,6 +232,8 @@ void CountEpilogueEntryLines(void)
 
     *t += 5;
 }
+
+#endif
 
 void InitEpilogueData(void)
 {
@@ -863,6 +892,19 @@ void Epilogue_LoopBlendOut(struct EpilogueProc * proc)
     }
 }
 
+#if NONMATCHING
+
+void Epilogue_StartEndScroll(struct EpilogueProc * proc)
+{
+    Proc_Goto(StartEpilogueScroll(gEpilogueEndScroll, 2, proc), 0);
+    ClearEpilogueTexts();
+    SetBlendConfig(0, 0x10, 0, 0);
+    proc->timer = 0;
+    SetOnHBlankA(NULL);
+}
+
+#else
+
 void Epilogue_StartEndScroll(struct EpilogueProc * proc)
 {
     register u16 * timer asm("r4");
@@ -877,6 +919,8 @@ void Epilogue_StartEndScroll(struct EpilogueProc * proc)
     *timer = b;
     SetOnHBlankA(NULL);
 }
+
+#endif
 
 void Epilogue_StartEndText(struct EpilogueProc * proc)
 {

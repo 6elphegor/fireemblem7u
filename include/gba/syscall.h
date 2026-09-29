@@ -12,6 +12,7 @@
 #define RESET_ALL        0xFF
 
 void SoftReset(u32 resetFlags);
+void Stop(void); // only in the NONMATCHING build (asm/libagb.s)
 void SoundBiasReset(void);
 void SoundBiasSet(void);
 void RegisterRamReset(u32 resetFlags);

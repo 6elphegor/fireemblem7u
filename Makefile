@@ -50,12 +50,15 @@ BANIM_OBJ := build/banim/banim.o
 OBJS := $(C_OBJS) $(ASM_OBJS) $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJ) build/data.o build/msg_data.o
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
+# The NONMATCHING build's own objects (see the end of this file).
+NM_DIR := build/nonmatching
 
-.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest
+.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching
 .DELETE_ON_ERROR:
 
-# `make MODERN=1` (or `make modern`): the non-matching build, see below.
-all: $(if $(filter 1,$(MODERN)),modern,compare)
+# `make MODERN=1` (or `make modern`): the free data layout, see below.
+# `make NONMATCHING=1` (or `make nonmatching`): the portable C, see below.
+all: $(if $(filter 1,$(NONMATCHING)),nonmatching,$(if $(filter 1,$(MODERN)),modern,compare))
 
 compare: $(ROM)
 	@$(SHASUM) -c fe7u.sha1
@@ -101,14 +104,14 @@ $(ELF): $(C_OBJS) build/asm.a $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM
 	@python3 tools/check_symbols.py
 	python3 tools/banim.py link build/banim -- $(LD) -T build/fe7u.ld -Map $(MAP) --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(EVENT_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJ) build/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 
-# Library/low-level modules were built with different optimization.
-build/src/irq.o build/src/random.o build/src/hardware.o build/src/move-data.o build/src/oam.o: CFLAGS += -O0
-build/src/soundwrapper.o: CFLAGS += -O0
-build/src/ramfunc.o: CFLAGS += -O0
-build/src/mu.o build/src/bmshop.o build/src/uiarena.o: CFLAGS += -O0
-build/src/mapanim.o build/src/mapanim_api.o build/src/mapanim_infobox.o build/src/mapanim_expbar.o build/src/mapanim_debug.o build/src/mapanim_specialeffect.o build/src/mapanim_staffeffect.o build/src/mapanim_lvupfx.o build/src/mapanim_lvup.o build/src/mapanim_spellassocfx.o build/src/mapanim_spellassoc.o build/src/scanline.o: CFLAGS += -O0
-build/src/agb-sram.o: CFLAGS += -O1
-build/src/main.o: CFLAGS += -mtpcs-frame
+# Library/low-level modules were built with different optimization (the
+# same flags in the matching and the NONMATCHING build).
+O0_MODULES := irq random hardware move-data oam soundwrapper ramfunc mu bmshop uiarena \
+  mapanim mapanim_api mapanim_infobox mapanim_expbar mapanim_debug mapanim_specialeffect \
+  mapanim_staffeffect mapanim_lvupfx mapanim_lvup mapanim_spellassocfx mapanim_spellassoc scanline
+$(foreach d,build $(NM_DIR),$(O0_MODULES:%=$(d)/src/%.o)): CFLAGS += -O0
+build/src/agb-sram.o $(NM_DIR)/src/agb-sram.o: CFLAGS += -O1
+build/src/main.o $(NM_DIR)/src/main.o: CFLAGS += -mtpcs-frame
 
 # ASM_FUNC pulls asm/nonmatching/*.s into C objects via .include.
 $(C_OBJS): $(wildcard asm/nonmatching/*.s)
@@ -264,9 +267,11 @@ build/shift/s.gba: $(ROM) tools/shifttest.py
 #   make emutest                                 fe7u.gba vs the shifted build
 #   make emutest EMUTEST_B=fe7u_modern.gba       any other ROM
 #   make emutest EMUTEST_SCRIPTS=tests/inputs/opening.txt
+#   make emutest EMUTEST_FLAGS=--fast            no wait states (see --fast)
 EMUTEST_A ?= $(ROM)
 EMUTEST_B ?= build/shift/s.gba
 EMUTEST_SCRIPTS ?=
+EMUTEST_FLAGS ?=
 MGBA_PREFIX = $(shell brew --prefix mgba 2>/dev/null)
 MGBA_CFLAGS = $(shell pkg-config --cflags libmgba 2>/dev/null || echo -I$(MGBA_PREFIX)/include)
 MGBA_LIBS = $(shell pkg-config --libs libmgba 2>/dev/null || echo -L$(MGBA_PREFIX)/lib -Wl,-rpath,$(MGBA_PREFIX)/lib -lmgba)
@@ -276,7 +281,7 @@ build/tools/emutest: tools/emutest.c
 	$(HOSTCC) -O2 -Wall $(MGBA_CFLAGS) -o $@ $< $(MGBA_LIBS) -lz
 
 emutest: build/tools/emutest $(EMUTEST_A) $(EMUTEST_B)
-	python3 tools/emutest.py compare -a $(EMUTEST_A) -b $(EMUTEST_B) $(EMUTEST_SCRIPTS)
+	python3 tools/emutest.py compare $(EMUTEST_FLAGS) -a $(EMUTEST_A) -b $(EMUTEST_B) $(EMUTEST_SCRIPTS)
 
 # Modern build: the same objects, but the data region is linked without
 # fixed addresses (tools/modern.py, tools/gen_layout.py --modern), so assets
@@ -336,5 +341,55 @@ modern-resizetest:
 msgheader:
 	python3 tools/textencode.py $(TEXTS) build/msg_data.s --header include/constants/msg.h
 
+# Portable build (CONTRIBUTING, "Portable (NONMATCHING) build"): every C
+# file is compiled with -DNONMATCHING=1, which selects the plain C versions
+# of the fake matches, register pins and inline asm instead of the ones that
+# reproduce the original bytes.  The code changes size, so it is linked with
+# the modern build's free data layout (the data region starts wherever the
+# code ends).  Its objects are in build/nonmatching/; it writes
+# fe7u_nonmatching.gba (.elf, .map).  Not byte-identical to the original:
+# check it with `make emutest EMUTEST_B=fe7u_nonmatching.gba`.
+NM_ROM := fe7u_nonmatching.gba
+NM_ELF := fe7u_nonmatching.elf
+NM_C_OBJS := $(patsubst %.c,$(NM_DIR)/%.o,$(C_SRCS))
+NM_ASM_OBJS := $(patsubst %.s,$(NM_DIR)/%.o,$(ASM_SRCS))
+
+nonmatching: $(NM_ROM)
+
+$(NM_ROM): $(NM_ELF)
+	$(OBJCOPY) -O binary --pad-to 0x09000000 $< $@
+	@echo "$@: built (NONMATCHING: portable C, modern layout, not checked against the original)"
+
+$(NM_C_OBJS): $(wildcard asm/nonmatching/*.s)
+
+$(NM_DIR)/src/%.o: src/%.c
+	@mkdir -p $(@D)
+	$(CPP) $(CPPFLAGS) -DNONMATCHING=1 $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(NM_DIR)/src/$*.s
+	@printf '\t.text\n\t.align 2, 0\n' >> $(NM_DIR)/src/$*.s
+	$(AS) $(ASFLAGS) -o $@ $(NM_DIR)/src/$*.s
+
+$(NM_DIR)/%.o: %.s
+	@mkdir -p $(@D)
+	$(AS) $(ASFLAGS) --defsym NONMATCHING=1 -o $@ $<
+
+$(NM_DIR)/asm.a: $(NM_ASM_OBJS)
+	@rm -f $@
+	@printf '%s\n' $(NM_ASM_OBJS) > $(NM_DIR)/asm.list
+	$(AR) rcs $@ @$(NM_DIR)/asm.list
+
+# The modern linker script and layout, with the C objects taken from here.
+$(NM_DIR)/fe7u.ld: $(MODERN_DIR)/fe7u.ld
+	@mkdir -p $(@D)
+	sed -e 's#build/src/#$(NM_DIR)/src/#' -e 's#INCLUDE $(MODERN_DIR)/#INCLUDE $(NM_DIR)/#' $< > $@
+
+$(NM_DIR)/layout.ld $(NM_DIR)/ram.ld: $(NM_DIR)/%.ld: $(MODERN_DIR)/%.ld
+	@mkdir -p $(@D)
+	sed -e 's#build/src/#$(NM_DIR)/src/#g' -e 's#$(MODERN_DIR)/banim/#$(NM_DIR)/banim/#g' $< > $@
+
+$(NM_ELF): $(NM_C_OBJS) $(NM_DIR)/asm.a $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(NM_DIR)/fe7u.ld $(NM_DIR)/layout.ld $(NM_DIR)/ram.ld symbols.ld tools/nonmatching_check.py
+	@python3 tools/check_symbols.py
+	python3 tools/banim.py link $(NM_DIR)/banim -- $(LD) -T $(NM_DIR)/fe7u.ld -Map fe7u_nonmatching.map --no-warn-rwx-segments -o $@ $(NM_C_OBJS) --whole-archive $(NM_DIR)/asm.a --no-whole-archive $(EVENT_OBJS) $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(NM_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+	python3 tools/nonmatching_check.py $@
+
 clean:
-	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map
+	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map fe7u_nonmatching.gba fe7u_nonmatching.elf fe7u_nonmatching.map

@@ -60,6 +60,46 @@ end:
     ForceSyncUnitSpriteSheet();
 }
 
+#if NONMATCHING
+
+void EventUnitLoadAliveWait(struct EventProc * proc)
+{
+    struct UnitDefinition const * def = proc->unit_info;
+
+    while (def->pid != 0)
+    {
+        if ((proc->flags & EVENT_FLAG_SKIPPED) || proc->unk_4D)
+        {
+            for (; def->pid != 0; def++)
+            {
+                if (!(GetUnitFromCharId(def->pid)->state & US_DEAD))
+                    LoadUnitCore(def, NULL);
+            }
+
+            proc->idle_func = NULL;
+            return;
+        }
+
+        if (!(GetUnitFromCharId(def->pid)->state & US_DEAD) && !UnitInfoRequiresNoMovement(def))
+        {
+            if (!CanDisplayUnitMovement(proc, def->x_load, def->y_load))
+                goto end;
+
+            LoadUnitCore(def, proc);
+        }
+
+        def++;
+        proc->unit_info = def;
+    }
+
+    proc->idle_func = EventMovementWait;
+
+end:
+    ForceSyncUnitSpriteSheet();
+}
+
+#else
+
 // FAKEMATCH (found by decomp-permuter): routing NULL through new_var, assigned
 // inside the inner loop, keeps the original's "movs r0, #0" before the store.
 // If the inner loop runs zero times new_var is read uninitialized in C; the
@@ -108,6 +148,8 @@ test:
 end:
     ForceSyncUnitSpriteSheet();
 }
+
+#endif
 
 void EventLoadUnitsAsParty(struct EventProc * proc)
 {

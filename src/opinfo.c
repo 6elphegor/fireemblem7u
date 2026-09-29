@@ -381,6 +381,12 @@ void ClassIntroLetter_LoopFadeIn(struct OpInfoViewProc * proc)
     }
     else
     {
+#if NONMATCHING
+        int t4 = proc->timer >> 4;
+
+        y = 0x10 - t4;
+        PutClassIntroLetter(proc->tile, proc->index, proc->x - y, 0x18 - y, proc->timer, 0x100, 0x10 - t4);
+#else
         {
             register int timer asm("r1") = proc->timer;
             register int b asm("r0") = timer;
@@ -400,6 +406,7 @@ void ClassIntroLetter_LoopFadeIn(struct OpInfoViewProc * proc)
 
             if (c) { ++c; --c; }
         }
+#endif
 
         proc->timer += 0x10;
 
@@ -526,7 +533,11 @@ void PutClassIntroIcons(u8 a, u8 b, u8 c)
 
     EnablePalSync();
 
+#if NONMATCHING
+    for (i = 0, object = SpriteLut_ClassIntroIcons, tmp2 = 0x88 - (b << 5); i < 8; object++, i++)
+#else
     for (i = 0, tmp = ({ register int bb asm("r1") = b; (bb << 5) - 0x88; }), object = SpriteLut_ClassIntroIcons, tmp2 = -tmp; i < 8; object++, i++)
+#endif
     {
         if (((c >> i) & 1) != 0)
         {

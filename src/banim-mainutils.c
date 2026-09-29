@@ -185,9 +185,13 @@ void UpdateBanimFrame(void)
     int val, bid, bid_pal, chara_pal;
     struct BattleAnim * _banim, * banim = banim_data;
     struct BattleAnim * banim2 = banim;
+#if NONMATCHING
+    struct BattleAnimCharaPal * cbapt = character_battle_animation_palette_table;
+#else
     register struct BattleAnimCharaPal * cbapt asm("r10") = character_battle_animation_palette_table;
 
     asm("" : "+r"(banim2));
+#endif
 
     gpImgSheet[1] = NULL;
     gpImgSheet[0] = NULL;
@@ -226,7 +230,11 @@ void UpdateBanimFrame(void)
         bid_pal = gBanimFactionPal[EKR_POS_R];
         chara_pal = gBanimUniquePal[EKR_POS_R];
 
+#if NONMATCHING
+        _banim = &banim2[bid];
+#else
         _banim = (struct BattleAnim *)(bid * sizeof(struct BattleAnim) + (u32)banim2);
+#endif
         LZ77UnCompWram(_banim->script, gBanimScrRight);
         gpBanimModesRight = _banim->modes;
         LZ77UnCompWram(banim2[GetBanimPalette(bid, 1)].pal, gBanimPaletteRight);

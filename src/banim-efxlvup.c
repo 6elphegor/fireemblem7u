@@ -472,6 +472,21 @@ void EkrLvupApfxEndEach(void)
     gEkrLvupApfxUnexist = true;
 }
 
+#if NONMATCHING
+
+void PutEkrLvupStatGainLabelGfx1(int stat_num, int stat_gain)
+{
+    int chr = ABS((stat_num - 1) * 2);
+
+    VramCopy(Img_EkrLvupNumBig + OAM2_CHR(chr) * CHR_SIZE,
+        (u8 *)OBJ_VRAM0 + (OAM2_CHR(stat_gain + 0x2C) << 5), 2 * CHR_SIZE);
+
+    VramCopy(Img_EkrLvupNumBig + OAM2_CHR(chr + 0x20) * CHR_SIZE,
+        (u8 *)OBJ_VRAM0 + (OAM2_CHR(stat_gain + 0x4C) << 5), 2 * CHR_SIZE);
+}
+
+#else
+
 void PutEkrLvupStatGainLabelGfx1(int stat_num, int stat_gain)
 {
     const u8 * img = Img_EkrLvupNumBig;
@@ -492,6 +507,8 @@ void PutEkrLvupStatGainLabelGfx1(int stat_num, int stat_gain)
     VramCopy(img + OAM2_CHR((chr_this_stat) + 0x20) * CHR_SIZE,
         (u8 *)OBJ_VRAM0 + (OAM2_CHR(stat_gain + 0x4C) << 5), 2 * CHR_SIZE);
 }
+
+#endif
 
 void PutEkrLvupStatGainLabelGfx2(int chr, int stat_gain)
 {
@@ -527,17 +544,52 @@ void PutEkrLvupStatGainLabelGfx2(int chr, int stat_gain)
         (u8 *)OBJ_VRAM0 + (OAM2_CHR(stat_gain + 0x4D) << 5), CHR_SIZE);
 }
 
+#if NONMATCHING
+
+void BanimDrawStatupAp(int chr, int pal, int x, int y, int index, int gain)
+{
+    int chr2 = chr + 2 * (index - 1);
+    int oam2 = (pal << 12) | 0x400 | chr;
+    struct ProcEobjLvup * proc;
+
+    NewEkrsubAnimeEmulator(x - 0x12, y - 0x04, AnimScr_LvupStatupfx1, 0, oam2, 0, PROC_TREE_5);
+
+    if (index == 0)
+        return;
+
+    proc = Proc_Start(ProcScr_eobjLvup, PROC_TREE_3);
+
+    if (gain >= 0)
+    {
+        proc->child2 = NewEkrsubAnimeEmulator(x, y, AnimScr_LvupStatupfx2, 2, oam2, 0, PROC_TREE_5);
+    }
+    else
+    {
+        proc->child1 = NewEkrsubAnimeEmulator(x - 3, y, AnimScr_LvupStatupfx5, 2,
+            (pal << 12) | 0x400 | chr2, 0, PROC_TREE_5);
+        proc->child2 = NewEkrsubAnimeEmulator(x, y, AnimScr_LvupStatupfx3, 2, oam2, 0, PROC_TREE_5);
+        PutEkrLvupStatGainLabelGfx2(gain, chr2);
+    }
+
+    proc->x = x;
+    proc->y = y;
+    proc->timer = 0;
+    proc->chr1 = chr;
+    proc->chr2 = chr2;
+    proc->chr = chr;
+    proc->pal = pal;
+    proc->index = index;
+    proc->diff = gain;
+}
+
+#else
+
 void BanimDrawStatupAp(int chr, int pal, int x, int y, int index, int gain)
 {
     s32 sp14 = chr;
     int chr2 = chr + 2 * (index - 1);
-#ifndef NONMATCHING
     register int _pal asm("r6") = pal << 12;
     register struct ProcEobjLvup * proc asm("r4");
-#else
-    int _pal = pal << 12;
-    struct ProcEobjLvup * proc;
-#endif
     int _chr = chr | 0x400;
     int __oam = _pal;
 
@@ -574,6 +626,8 @@ void BanimDrawStatupAp(int chr, int pal, int x, int y, int index, int gain)
     proc->index = index;
     proc->diff = gain;
 }
+
+#endif
 
 void EobjLvup_DrawGain1(struct ProcEobjLvup * proc)
 {

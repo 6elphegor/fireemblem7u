@@ -531,6 +531,67 @@ void ReadSuspendSavePlaySt(int slot, struct PlaySt * buf)
     ReadGameSavePlaySt(slot + gSuspendSaveIdOffset, buf);
 }
 
+#if NONMATCHING
+
+void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf)
+{
+    int i;
+    struct SuspendSavePackedUnit * unit_su = buf;
+
+    if (unit->pCharacterData == NULL)
+    {
+        unit_su->pid = 0;
+        return;
+    }
+
+    unit_su->pid = unit->pCharacterData->number;
+    unit_su->jid = unit->pClassData->number;
+    unit_su->level = unit->level;
+    unit_su->exp = unit->exp;
+    unit_su->state = unit->state;
+    unit_su->xPos = unit->xPos;
+    unit_su->yPos = unit->yPos;
+    unit_su->maxHP = unit->maxHP;
+    unit_su->curHP = unit->curHP;
+    unit_su->pow = unit->pow;
+    unit_su->skl = unit->skl;
+    unit_su->spd = unit->spd;
+    unit_su->def = unit->def;
+    unit_su->res = unit->res;
+    unit_su->lck = unit->lck;
+    unit_su->conBonus = unit->conBonus;
+    unit_su->statusIndex = unit->statusIndex;
+    unit_su->statusDuration = unit->statusDuration;
+    unit_su->torchDuration = unit->torchDuration;
+    unit_su->barrierDuration = unit->barrierDuration;
+    unit_su->rescue = unit->rescue;
+    unit_su->movBonus = unit->movBonus;
+
+    // the support bits are stored in the spare bits of ballistaIndex and the first items
+    unit_su->ballistaIndex = (unit->ballistaIndex & 0x7F) | ((unit->supportBits & 0x01) << 7);
+    unit_su->item1 = (unit->items[0] & 0x3FFF) | ((unit->supportBits & 0x06) << 13);
+    unit_su->item2 = (unit->items[1] & 0x3FFF) | ((unit->supportBits & 0x18) << 11);
+    unit_su->item3 = (unit->items[2] & 0x3FFF) | ((unit->supportBits & 0x60) << 9);
+    unit_su->item4 = unit->items[3];
+    unit_su->item5 = unit->items[4];
+
+    for (i = 0; i < 8; i++)
+        unit_su->ranks[i] = unit->ranks[i];
+
+    for (i = 0; i < UNIT_SUPPORT_MAX_COUNT; i++)
+        unit_su->supports[i] = unit->supports[i];
+
+    unit_su->ai1 = unit->ai1;
+    unit_su->ai1data = unit->ai1data;
+    unit_su->ai2 = unit->ai2;
+    unit_su->ai2data = unit->ai2data;
+    unit_su->ai3And4 = unit->ai3And4;
+    unit_su->unk31 = unit->_u46;
+    unit_su->aiFlags = unit->aiFlags;
+}
+
+#else
+
 // FAKEMATCH (found by decomp-permuter): the dummy item3 store used as the shift
 // amount and the redundant if/else around the ranks copy only steer register
 // allocation; behaviour is the same as the plain copy.
@@ -597,6 +658,8 @@ void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf)
     unit_su->unk31 = unit->_u46;
     unit_su->aiFlags = unit->aiFlags;
 }
+
+#endif
 
 void ReadSuspendSavePackedUnit(void const * sram_src, struct Unit * unit)
 {

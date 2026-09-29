@@ -102,6 +102,33 @@ void EfxPlaySound5CVol100(void)
     EfxPlaySE(0x37C, 0x100);
 }
 
+#if NONMATCHING
+
+void MakeBattlePopupTileMapFromTSA(u16 * tm, u16 width)
+{
+    u32 i;
+
+    tm[0x00] = gEkrTsaBuffer[0x00] + 0x1100;
+    tm[0x20] = gEkrTsaBuffer[0x18] + 0x1100;
+    tm[0x40] = gEkrTsaBuffer[0x30] + 0x1100;
+    tm[0x60] = gEkrTsaBuffer[0x48] + 0x1100;
+
+    for (i = 0; i < width; i++)
+    {
+        tm[0x01 + i] = gEkrTsaBuffer[0x01 + i] + 0x1100;
+        tm[0x21 + i] = gEkrTsaBuffer[0x19 + i] + 0x1100;
+        tm[0x41 + i] = gEkrTsaBuffer[0x31 + i] + 0x1100;
+        tm[0x61 + i] = gEkrTsaBuffer[0x49 + i] + 0x1100;
+    }
+
+    tm[0x01 + i] = gEkrTsaBuffer[0x17] + 0x1100;
+    tm[0x21 + i] = gEkrTsaBuffer[0x2F] + 0x1100;
+    tm[0x41 + i] = gEkrTsaBuffer[0x47] + 0x1100;
+    tm[0x61 + i] = gEkrTsaBuffer[0x5F] + 0x1100;
+}
+
+#else
+
 // FAKEMATCH (found by an Opus 5.5 agent): the original never keeps 0x1100 in a
 // register and rebuilds it at every use. The r10 clobber in the loop keeps sl
 // free (the original pushes it but never uses it). The 160 empty asm
@@ -152,14 +179,16 @@ void MakeBattlePopupTileMapFromTSA(u16 * tm, u16 width)
 }
 #undef ASM_BARRIER_10
 
+#endif
+
 void DrawBattlePopup(struct ProcEkrPopup * proc, int type, u32 priv)
 {
     const char * str;
     int width1, width_popupbox, width5, xcursor;
-#ifndef NONMATCHING
-    register int width3 asm("r4");
-#else
+#if NONMATCHING
     int width3;
+#else
+    register int width3 asm("r4");
 #endif
     struct Text * text;
     struct Anim * anim;

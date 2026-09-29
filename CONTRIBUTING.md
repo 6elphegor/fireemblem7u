@@ -482,6 +482,77 @@ What is and isn't guaranteed:
 * Only the data region moves; code edits were always free (the code is C
   and assembly), as long as `fe7u.gba: OK` is not the goal.
 
+## Portable (NONMATCHING) build
+
+Matching the original bytes takes C that no one would write otherwise:
+register pins (`register int x asm("r4")`), empty `asm` barriers, clobber
+lists naming ARM registers, dummy locals and statements (the `FAKEMATCH`
+functions), and a few functions kept as inline ARM assembly.  None of that
+compiles for another CPU.  Every such place also has a plain C version,
+selected by one macro, `NONMATCHING`:
+
+```c
+#if NONMATCHING
+    // what the code does, written plainly: no asm, no register pins
+#else
+    // FAKEMATCH ...: the version that reproduces the original bytes
+#endif
+```
+
+* Always `#if NONMATCHING` / `#if !NONMATCHING`, never `#ifdef`: the
+  matching build doesn't define it (so it is 0), `make NONMATCHING=1`
+  passes `-DNONMATCHING=1`.  The plain version comes first.  When the plain
+  version is simply nothing (a barrier, an unused local), use
+  `#if !NONMATCHING ... #endif` around the trick.
+* Switch the smallest unit that reads well: a declaration (a pin becomes an
+  ordinary local), a few statements, or the whole function when the trick
+  shapes all of it (most FAKEMATCHes).
+* The plain version must do exactly what the matching one does, including
+  its odd corners (a store of 0 that the asm does, an unsigned wrap, the
+  order of calls), not what the code "should" do.  Derive it from the
+  matching C or, for inline asm, from the instructions.
+* BIOS calls: the matching C sometimes inlines `swi N`; the plain C calls a
+  function declared in `include/gba/syscall.h` instead (added to
+  `asm/libagb.s` under `.ifdef NONMATCHING`, so the matching ROM doesn't
+  change).
+* A new fake match is not done until it has its plain version: write it,
+  `make NONMATCHING=1`, and if the function runs in one of the runtime test
+  scripts, run `make emutest EMUTEST_B=fe7u_nonmatching.gba`.
+
+Building and testing:
+
+```sh
+make                         # the matching build (the reference for emutest)
+make NONMATCHING=1           # or `make nonmatching`: fe7u_nonmatching.gba
+make emutest EMUTEST_B=fe7u_nonmatching.gba
+```
+
+* The C files are compiled with the same compiler and flags plus
+  `-DNONMATCHING=1` into `build/nonmatching/`; the assembly with
+  `--defsym NONMATCHING=1`.  The code changes size, so the link uses the
+  modern build's free layout (`build/modern/`, see "Modern build"): the
+  data region starts wherever the code ends and every data pointer follows.
+  It writes `fe7u_nonmatching.gba`, `.elf` and `.map`; nothing of the
+  matching build changes.
+* Nothing may depend on where code is: pointers to code are symbols
+  everywhere (the Thumb-to-ARM veneers in `asm/veneers.s` used to be raw
+  branch words).  `tools/nonmatching_check.py` fails the link if the linker
+  script dropped a non-empty section (a plain version that needs a
+  `.rodata` its module didn't have: add it to `data/layout.txt`).
+* `make emutest EMUTEST_B=fe7u_nonmatching.gba` must show the same
+  pictures, sound, palette, VRAM and OAM as `fe7u.gba` in every frame of
+  every script.  RAM differs (return addresses and code pointers in procs
+  are code addresses, which moved), which the test only lists.
+* On a PC compiler the plain paths compile; what remains non-portable is
+  GBA-specific (section attributes, hardware registers, 32-bit pointer
+  casts, GCC 2 cast-as-lvalue).  To see it:
+  `clang -fsyntax-only -target x86_64-linux-gnu -std=gnu89 -w -nostdinc -undef
+  -I tools/agbcc/include -iquote include -iquote . -DNONMATCHING=1 src/FILE.c`.
+* FireEmblem7J's `#if MODERN` C switch (struct padding and I/O register
+  layout for a modern compiler, a few blocks in `src/hardware.c` and
+  `src/oam.c`) is separate, never enabled and partly stale; it is not part
+  of this build.
+
 ## Decompiling a function
 
 1. Find it: `asm/nonmatching/code_<ADDR>.s` (inside a C module) or

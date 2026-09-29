@@ -1077,6 +1077,9 @@ void DrawSpecialCharGlyph(int chr, int color, struct Glyph const * glyph)
     for (i = 0; i < 16; i++)
     {
         u32 bits = *src++;
+#if NONMATCHING
+        *dst++ = ((u32) lut[(bits >> 8) & 0xFF] << 16) + lut[bits & 0xFF];
+#else
         register u32 lo asm("r4") = lut[bits & 0xFF];
         register u32 hi asm("r5") = lut[(bits >> 8) & 0xFF];
         register u32 value asm("r0");
@@ -1085,6 +1088,7 @@ void DrawSpecialCharGlyph(int chr, int color, struct Glyph const * glyph)
         asm("" : "+r"(hi));
         value = (hi << 16) + lo;
         *dst++ = value;
+#endif
     }
 }
 

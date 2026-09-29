@@ -286,7 +286,10 @@ void DisplayExtendedSysHand(struct SysHandCursorProc * proc)
 {
     int i;
 
-#if !NONMATCHING
+#if NONMATCHING
+    gPal[proc->pal_bank * 0x10 + 0x10E] =
+        PAL_BUF_COLOR(Pal_0840DD24, gPlaySt.config_window_theme, (GetGameTime() / 4) % 0x10);
+#else
     u32 clk;
     u16 * src, * dst, * _dst;
 
@@ -295,9 +298,6 @@ void DisplayExtendedSysHand(struct SysHandCursorProc * proc)
     _dst = dst + (proc->pal_bank * 0x10  + 0x10E);
     src = &PAL_BUF_COLOR(Pal_0840DD24, gPlaySt.config_window_theme, (clk / 4) % 0x10);
     *_dst = *src;
-#else
-    gPal[proc->pal_bank * 0x10  + 0x10E] =
-        Pal_08A1D448[gPlaySt.config_window_theme * 0x10 + ((GetGameTime() / 5) % 0x10)];
 #endif
 
     EnablePalSync();
@@ -1037,7 +1037,9 @@ void sub_080AA030(int a, u16 * buf, int c, int d, int e, int f, int g, int h)
 
     if (g == -1)
     {
+#if !NONMATCHING
         asm("" ::: "memory");
+#endif
         g = buf[0];
         h = buf[1];
     }

@@ -208,7 +208,9 @@ void sub_080A5148(int time)
     int i;
     int b, g, r;
     int c1, c2;
+#if !NONMATCHING
     register int m2 asm("r4");
+#endif
 
     time &= 0x3F;
 
@@ -226,10 +228,14 @@ void sub_080A5148(int time)
         b = ((((c1 & 0x7C00) * (0x20 - time) + (c2 & 0x7C00) * time) >> 5) & 0x7C00);
         g = ((((c1 & 0x3E0) * (0x20 - time) + (c2 & 0x3E0) * time) >> 5) & 0x3E0);
         r = (((c1 & 0x1F) * (0x20 - time) + (c2 & 0x1F) * time) >> 5);
+#if NONMATCHING
+        gPal[0x110 + i] = (r & 0x1F) | b | g;
+#else
         m2 = 0x1F;
         r &= m2;
 
         gPal[0x110 + i] = r | ({ register int x asm("r3") = b | g; x; });
+#endif
     }
 
     EnablePalSync();

@@ -14,6 +14,13 @@
 #include "unk-functions.h"
 #include "unk-data.h"
 
+// NONMATCHING (`make NONMATCHING=1` passes -DNONMATCHING=1): build the plain,
+// portable C instead of the code that reproduces the original bytes (fake
+// matches, register pins, asm barriers, inline ARM asm).  Always test it with
+// `#if NONMATCHING` (plain C) ... `#else` (matching) ... `#endif`; it is
+// undefined, hence 0, in the matching build.  See CONTRIBUTING, "Portable
+// (NONMATCHING) build".
+
 #define SECTION(name) __attribute__((section(name)))
 
 #define NAKEDFUNC __attribute__((naked))

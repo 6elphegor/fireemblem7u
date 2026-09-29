@@ -14,7 +14,8 @@ struct ProcCmd ProcScr_NinianTransformToHunman[] = {
 
 #if NONMATCHING
 
-// different order of instructions for the outer loop
+// The same as the asm below, but the outer loop's instructions come out in a
+// different order.
 
 void sub_08021374(u16 * tilemap, int x, int y)
 {
@@ -94,13 +95,15 @@ void sub_080213A8(struct Proc * proc)
 
 #if NONMATCHING
 
-// r4 and r5 are swapped
+// The C below is the same as the original but compiles with r4 and r5
+// swapped, so the matching build uses its asm.  The original stores
+// GetGameTime() & 1, which is 0 there, as blend_y (FE7J's C had 1).
 
 void sub_08021480(struct Proc * proc)
 {
     if ((GetGameTime() & 1) == 0)
     {
-        SetBlendConfig(1, 16 - proc->unk4C, proc->unk4C, 1);
+        SetBlendConfig(1, 16 - proc->unk4C, proc->unk4C, 0);
 
         if (++proc->unk4C > 16)
         {

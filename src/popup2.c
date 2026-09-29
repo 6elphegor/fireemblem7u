@@ -68,9 +68,15 @@ void NewPopup2_PlanD(ProcPtr parent, int item, int msg0, int msg1)
     int len2, x_tile, y_tile, y;
     char * str;
 
+#if NONMATCHING
+    int len1 = 0;
+    int x0 = 0;
+    int x1 = 0;
+#else
     register int len1 asm("r1") = 0;
     register int x0 asm("r4") = 0;
     register int x1 asm("r6") = 0;
+#endif
 
     struct Text th;
 

@@ -56,6 +56,37 @@ void sub_080A6398(u8 slot, struct SaveMenuProc * proc)
         }
     }
 }
+#if NONMATCHING
+
+void SaveMenuInitSlotPalette(u8 slot)
+{
+    int i;
+
+    for (i = 0; i < 3; i++)
+    {
+        u8 flags = gPlayStChapterBits[i] & 0x40 ? 4 : 0;
+
+        if (gPlayStChapterMode[i] == 1)
+            flags |= 0x10;
+
+        if (gPlayStChapterMode[i] == 2)
+            flags |= 0x20;
+
+        if (gPlayStChapterMode[i] == 3)
+            flags |= 0x40;
+
+        if (i != slot)
+            flags |= 2;
+
+        PutChapterTitlePalette(flags | 1, i * 2 + 0x1a);
+        PutChapterTitlePalette(flags, i * 2 + 0x1b);
+    }
+
+    EnablePalSync();
+}
+
+#else
+
 // FAKEMATCH (found by Astra): an empty read/write asm constraint on the
 // 0x40 mask stops it from being hoisted into r9.
 void SaveMenuInitSlotPalette(u8 slot)
@@ -97,6 +128,8 @@ void SaveMenuInitSlotPalette(u8 slot)
 
     EnablePalSync();
 }
+
+#endif
 
 void sub_080A652C(int param_1, int param_2)
 {

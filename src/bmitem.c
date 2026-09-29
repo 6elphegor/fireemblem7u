@@ -5,8 +5,14 @@ int GetGold(void);
 
 extern u8 CONST_DATA ItemEffectiveness_08C97ED2[];
 
-// GetItemNameWithArticle is defined before GetItemAttributes and calls it out of line
+// GetItemNameWithArticle is defined before GetItemAttributes and calls it out
+// of line (the plain C reads the attributes itself: calling an inline function
+// before its definition is an error with -Werror)
+#if NONMATCHING
+#define GetItemAttributes_NoInline(item) (GetItemData(ITEM_INDEX(item))->attributes)
+#else
 int GetItemAttributes_NoInline(int item) asm("GetItemAttributes");
+#endif
 
 inline const struct ItemData * GetItemData(int itemIndex)
 {

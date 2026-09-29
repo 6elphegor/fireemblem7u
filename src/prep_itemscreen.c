@@ -176,7 +176,7 @@ void PrepItemScreen_Init(struct PrepItemScreenProc * proc)
     proc->scrollOffset = 0;
     proc->pUnits[1] = NULL;
     proc->pUnits[0] = NULL;
-    proc->hasConvoyAccess = HasConvoyAccess_();
+    proc->hasConvoyAccess = HasConvoyAccess_(0);
 }
 void PrepItemScreen_DrawFunds(void)
 {

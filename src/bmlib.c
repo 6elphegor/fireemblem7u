@@ -151,7 +151,9 @@ CONST_DATA struct ProcCmd ProcScr_PartialGameLock[] = {
 int Interpolate(int method, int lo, int hi, int x, int x_max)
 {
     int deno, dx, base, ret;
+#if !NONMATCHING
     register int _deno asm("r0");
+#endif
 
     if (0 == x_max)
         return hi;
@@ -163,8 +165,12 @@ int Interpolate(int method, int lo, int hi, int x, int x_max)
         break;
 
     case INTERPOLATE_SQUARE:
+#if NONMATCHING
+        deno = x * x * (hi - lo);
+#else
         _deno = x * x;
         deno = _deno * (hi - lo);
+#endif
         ret = lo + Div(deno, x_max * x_max);
         break;
 
@@ -466,7 +472,11 @@ void sub_080133C8(s16 * buf, int x1, int y1, int x2, int y2)
     }
 
     for (; y1 < y2; y1++) {
+#if NONMATCHING
+        int val = val2 >> 0x10;
+#else
         register int val asm("r3") = val2 >> 0x10;
+#endif
         LIMIT_AREA(val, 0, 240);
 
         if (buf[2 * y1 + 0] > val)
@@ -474,7 +484,9 @@ void sub_080133C8(s16 * buf, int x1, int y1, int x2, int y2)
 
         if (buf[2 * y1 + 1] < val)
             buf[2 * y1 + 1] = val;
+#if !NONMATCHING
         asm(""::"r"(buf + 2 * y1));
+#endif
 
         val2 += val1;
     }
@@ -682,6 +694,10 @@ void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
         for (i = 0; i < 0x20; i++) {
             if ((1 << i) & mask) {
                 for (j = 0; j < 0x10; j++) {
+#if NONMATCHING
+                    int t = st[i].from_colors[j] & 0x1F;
+                    buffer[0x10 * i + j] = (t + (((0x1F - t) * a1) >> 8)) & 0x1F;
+#else
                     u8 r __attribute__((unused)) = st[i].from_colors[j] & 0x1F;
                     int t = st[i].from_colors[j] & 0x1F;
                     register int p asm("r0") = ((0x1F - t) * a1) >> 8;
@@ -689,6 +705,7 @@ void WriteFadedPaletteFromArchive(int a1, int a2, int a3, u32 mask)
 
                     asm("" : "+r"(sum));
                     buffer[0x10 * i + j] = sum & 0x1F;
+#endif
                 }
             }
         }
