@@ -349,6 +349,8 @@ def record(script, rom, args):
         cmd += ["-D", "1"]
     if args.log:
         cmd += ["-l", str(out / "frames.log")]
+    if args.fast:
+        cmd += ["-f", "1"]
     text = run_bin(cmd + [str(rom)])
     (out / "result.txt").write_text(text)
     pngs = sorted(str(p) for p in out.glob("*.png"))
@@ -463,15 +465,28 @@ def audio(script, rom_a, rom_b, args):
                 same = False
                 first = mix_frames(d)
                 where = f"first difference at sample {first}" if first is not None else "one is longer"
+                for l in text.splitlines():
+                    if l.startswith("mix_diff"):
+                        where += f", in frame {l.split()[1]}"
                 print(f"  mixer output: A {n}, B {len(d[1]) // 2} samples, {where}")
+            pa, pb = Path(f"{prefix}_A.psg"), Path(f"{prefix}_B.psg")
+            p = pa.read_bytes(), pb.read_bytes()
+            if p[0] == p[1]:
+                print(f"  CGB registers at the end of each frame: identical")
+            else:
+                same = False
+                first = next((i for i in range(min(len(p[0]), len(p[1]))) if p[0][i] != p[1][i]), None)
+                where = (f"first difference at frame {first // 0x40}, register {0x04000060 + first % 0x40:08X}"
+                         if first is not None else "one is longer")
+                print(f"  CGB registers at the end of each frame: {where}")
             for l in text.splitlines():
                 if l.startswith("timer0_diff"):
                     f = l.split()
                     print(f"  sample clock (timer 0) phase differs from frame {f[1]}: "
                           f"A {f[2]}, B {f[3]}")
             if not args.keep:
-                ma.unlink()
-                mb.unlink()
+                for f in (ma, mb, pa, pb):
+                    f.unlink()
         wa, wb = Path(f"{prefix}_A.wav"), Path(f"{prefix}_B.wav")
         a, b = read_wav(wa), read_wav(wb)
         n = len(a) // 4
@@ -557,6 +572,7 @@ def main():
     r.add_argument("--dump", action="store_true",
                    help="also save the memory at every checkpoint (NAME_A.ewram.bin...)")
     r.add_argument("--log", action="store_true")
+    r.add_argument("--fast", action="store_true", help="no memory wait states (see compare)")
     au = sub.add_parser("audio")
     au.add_argument("scripts", nargs="*")
     au.add_argument("-a", default="fe7u.gba")

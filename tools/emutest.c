@@ -24,7 +24,9 @@
  *                 m4a mixer's output: the part of the DirectSound buffer
  *                 SoundMain mixed in each frame (struct SoundInfo at ADDR,
  *                 hex; the ROM's gSoundInfo), 8-bit signed stereo (right,
- *                 left) at the mixing rate; and print the timer 0 count at
+ *                 left) at the mixing rate; PREFIX_A.psg (PREFIX_B.psg), the
+ *                 CGB (PSG) sound registers 0x04000060-0x0400009F as read
+ *                 back at the end of each frame; and print the timer 0 count at
  *                 the end of each frame the first time A's and B's differ
  *
  * Output on stdout is line-oriented ("key value ..."), read by emutest.py.
@@ -76,6 +78,9 @@ struct emu {
 	FILE *wav;
 	uint32_t wavSamples;
 	FILE *mix;
+	FILE *psg;
+	uint8_t mixFrame[2 * 1024]; /* this frame's part of .mix */
+	uint32_t mixLen;
 	uint32_t soundInfo;
 };
 
@@ -226,6 +231,7 @@ static void writeMix(struct emu *e)
 {
 	struct mCore *c = e->core;
 	uint32_t si = e->soundInfo;
+	e->mixLen = 0;
 	if (c->busRead32(c, si + SI_IDENT) != 0x68736D53) /* ID_NUMBER: not mixing now */
 		return;
 	uint32_t counter = c->busRead8(c, si + SI_DMA_COUNTER);
@@ -236,9 +242,21 @@ static void writeMix(struct emu *e)
 		return;
 	uint32_t buf = si + SI_PCM_BUFFER + part * n;
 	for (uint32_t i = 0; i < n; i++) {
-		uint8_t lr[2] = { c->busRead8(c, buf + i), c->busRead8(c, buf + PCM_DMA_BUF_SIZE + i) };
-		fwrite(lr, 1, 2, e->mix);
+		e->mixFrame[e->mixLen++] = c->busRead8(c, buf + i);
+		e->mixFrame[e->mixLen++] = c->busRead8(c, buf + PCM_DMA_BUF_SIZE + i);
 	}
+	fwrite(e->mixFrame, 1, e->mixLen, e->mix);
+}
+
+/* The CGB channels' registers (what CgbSound wrote, as they read back). */
+static void writePsg(struct emu *e)
+{
+	/* The registers (1 bits); the rest reads as open bus. */
+	static const uint64_t used = 0xFFFF033F333F333FULL;
+	uint8_t regs[0x40];
+	for (int i = 0; i < 0x40; i++)
+		regs[i] = used >> i & 1 ? e->core->busRead8(e->core, 0x04000060 + i) : 0;
+	fwrite(regs, 1, sizeof regs, e->psg);
 }
 
 static void *block(struct emu *e, int id, size_t *size)
@@ -545,10 +563,13 @@ int main(int argc, char **argv)
 				snprintf(path, sizeof path, "%s_%c.mix", wavPrefix, 'A' + k);
 				if (!(es[k]->mix = fopen(path, "wb")))
 					die("can't write %s", path);
+				snprintf(path, sizeof path, "%s_%c.psg", wavPrefix, 'A' + k);
+				if (!(es[k]->psg = fopen(path, "wb")))
+					die("can't write %s", path);
 			}
 		}
 	}
-	int timerReported = 0;
+	int timerReported = 0, mixReported = 0;
 
 	FILE *log = logPath ? fopen(logPath, "w") : NULL;
 	size_t ki = 0, si = 0;
@@ -567,8 +588,16 @@ int main(int argc, char **argv)
 
 		if (a.mix) {
 			writeMix(&a);
-			if (two)
+			writePsg(&a);
+			if (two) {
 				writeMix(&b);
+				writePsg(&b);
+			}
+		}
+		if (a.mix && two && !mixReported
+		    && (a.mixLen != b.mixLen || memcmp(a.mixFrame, b.mixFrame, a.mixLen))) {
+			printf("mix_diff %u\n", frame);
+			mixReported = 1;
 		}
 		if (a.mix && two && !timerReported) {
 			/* The phase of the sample clock (timer 0, which m4a starts). */
@@ -709,6 +738,8 @@ int main(int argc, char **argv)
 			fclose(es[k]->wav);
 			if (es[k]->mix)
 				fclose(es[k]->mix);
+			if (es[k]->psg)
+				fclose(es[k]->psg);
 		}
 	}
 	a.core->deinit(a.core);
