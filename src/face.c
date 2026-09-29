@@ -487,6 +487,12 @@ u32 SetFaceDispById(int slot, u32 disp)
 
 u32 GetFaceDisp(struct FaceProc * proc)
 {
+#if !PLATFORM_GBA
+    // (an empty face slot: the GBA reads the BIOS region; SetFaceDisp
+    // already does nothing for NULL)
+    if (proc == NULL)
+        return 0;
+#endif
     return proc->disp;
 }
 
@@ -1305,6 +1311,12 @@ void FaceEye_DisplayFrameFlip(struct FaceEyeProc * proc)
 void SetFaceBlinkControl(struct FaceProc * proc, int blink)
 {
     struct FaceEyeProc * eye_proc;
+
+#if !PLATFORM_GBA
+    // (no face in the slot: the GBA writes into the BIOS region)
+    if (proc == NULL)
+        return;
+#endif
 
     if (blink == 0)
         blink = proc->info->blink_type;
