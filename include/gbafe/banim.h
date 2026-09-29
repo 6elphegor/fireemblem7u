@@ -79,11 +79,23 @@ extern struct BattleAnim banim_data[];
 extern struct BattleAnimCharaPal character_battle_animation_palette_table[];
 extern struct BattleAnimTerrain battle_terrain_table[];
 
+// A FRAME instruction of a decompressed battle script, read at a mode table
+// offset: the instruction, the sheet (a pointer, see BanimScrUnpack) and the
+// offset into the OAM data.  Where a script cell is wider than the ROM's
+// 4-byte word it is three cells, like FRAME itself.
+#if ANIMSCR_WIDE
+struct BanimModeData {
+    AnimScr unk0;
+    AnimScr img;
+    AnimScr unk2;
+};
+#else
 struct BanimModeData {
     const u32 * unk0;
     const u32 * img;
     u32 unk2;
 };
+#endif
 
 struct ProcEfx {
     PROC_HEADER;
@@ -301,6 +313,35 @@ extern u8 gBanimScrRight[];
 #define BANIM_SCR_AT(base, off) ((void *)((AnimScr *)(base) + (unsigned)(off) / 4))
 #else
 #define BANIM_SCR_AT(base, off) ((void *)((base) + (off)))
+#endif
+
+/* Sheet pointers.  The ROM's compressed scripts hold the absolute address of
+ * each FRAME's sprite sheet.  BANIM_SHEET_INDEX (on by default when not
+ * compiling for the GBA; `make NONMATCHING=1 BANIM_SHEET_INDEX=1` turns it
+ * on for the GBA) stores an index into gBanimSheets[] there instead, which
+ * tools/banim.py generates from the same sources (index 0 is NULL, so an
+ * all-zero sheet word is still NULL).  BANIM_SHEET(word) is the sheet a
+ * script word stands for.  BanimScrUnpack (banim-mainutils.c) decompresses a
+ * script, widens its words into cells (ANIMSCR_WIDE) and replaces each
+ * sheet word by the pointer through BANIM_SHEET, so everything that reads a
+ * decompressed script (AnimInterpret, struct BanimModeData) sees pointers
+ * in both configurations.  In the matching build BanimScrUnpack is
+ * LZ77UnCompWram. */
+#ifndef BANIM_SHEET_INDEX
+#define BANIM_SHEET_INDEX (!PLATFORM_GBA)
+#endif
+
+#if BANIM_SHEET_INDEX
+extern const void * const gBanimSheets[];
+#define BANIM_SHEET(word) (gBanimSheets[(word)])
+#else
+#define BANIM_SHEET(word) ((const void *)(uintptr_t)(word))
+#endif
+
+#if ANIMSCR_WIDE || BANIM_SHEET_INDEX
+void BanimScrUnpack(const void * src, void * dst);
+#else
+#define BanimScrUnpack(src, dst) LZ77UnCompWram(src, dst)
 #endif
 extern u16 gBanimPaletteLeft[0x50];
 extern u16 gBanimPaletteRight[0x50];

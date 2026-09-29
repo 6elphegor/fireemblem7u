@@ -54,14 +54,22 @@ LAYOUT := build/data.s build/layout.ld build/ram.ld
 # The NONMATCHING build's own objects (see the end of this file).
 # `make NONMATCHING=1 ANIMSCR_WIDE=1`: the same, with the host's animation
 # script format (include/gbafe/anime.h); its own objects and ROM.
-ifeq ($(ANIMSCR_WIDE),1)
-NM_DIR := build/nonmatching-wide
-NM_SUFFIX := _wide
-NM_DEFS := -DANIMSCR_WIDE=1
-else
+# `BANIM_SHEET_INDEX=1`: the host's sheet indices in the battle scripts
+# (include/gbafe/banim.h, tools/banim.py); likewise, and the two combine.
 NM_DIR := build/nonmatching
 NM_SUFFIX :=
 NM_DEFS :=
+BANIM_LINK_FLAGS :=
+ifeq ($(ANIMSCR_WIDE),1)
+NM_DIR := $(NM_DIR)-wide
+NM_SUFFIX := $(NM_SUFFIX)_wide
+NM_DEFS += -DANIMSCR_WIDE=1
+endif
+ifeq ($(BANIM_SHEET_INDEX),1)
+NM_DIR := $(NM_DIR)-idx
+NM_SUFFIX := $(NM_SUFFIX)_idx
+NM_DEFS += -DBANIM_SHEET_INDEX=1
+BANIM_LINK_FLAGS := --sheet-index
 endif
 
 .PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching hostcheck hostevents
@@ -412,10 +420,13 @@ $(NM_DIR)/fe7u.ld: $(MODERN_DIR)/fe7u.ld
 $(NM_DIR)/layout.ld $(NM_DIR)/ram.ld: $(NM_DIR)/%.ld: $(MODERN_DIR)/%.ld
 	@mkdir -p $(@D)
 	sed -e 's#build/src/#$(NM_DIR)/src/#g' -e 's#$(MODERN_DIR)/banim/#$(NM_DIR)/banim/#g' $< > $@
+ifeq ($(BANIM_SHEET_INDEX),1)
+	@if [ $(notdir $@) = layout.ld ]; then printf '\t$(NM_DIR)/banim/banim.o(.rodata.BanimSheets);\n' >> $@; fi
+endif
 
 $(NM_ELF): $(NM_C_OBJS) $(NM_DIR)/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(NM_DIR)/fe7u.ld $(NM_DIR)/layout.ld $(NM_DIR)/ram.ld symbols.ld tools/nonmatching_check.py
 	@python3 tools/check_symbols.py
-	python3 tools/banim.py link $(NM_DIR)/banim -- $(LD) -T $(NM_DIR)/fe7u.ld -Map fe7u_nonmatching$(NM_SUFFIX).map --no-warn-rwx-segments -o $@ $(NM_C_OBJS) --whole-archive $(NM_DIR)/asm.a --no-whole-archive $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(NM_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
+	python3 tools/banim.py link $(BANIM_LINK_FLAGS) $(NM_DIR)/banim -- $(LD) -T $(NM_DIR)/fe7u.ld -Map fe7u_nonmatching$(NM_SUFFIX).map --no-warn-rwx-segments -o $@ $(NM_C_OBJS) --whole-archive $(NM_DIR)/asm.a --no-whole-archive $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(NM_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 	python3 tools/nonmatching_check.py $@
 
 # Compile every C file with the host's clang (-DNONMATCHING=1, for

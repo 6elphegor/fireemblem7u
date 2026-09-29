@@ -621,16 +621,16 @@ void UnitKakudai1(struct ProcUnitKakudai * proc)
 
     if (gBanimValid[0] == TRUE)
     {
-        struct BanimModeData * unk = (void *) (gBanimScrLeft + gpBanimModesLeft[front_mode]);
-        const void * src = unk->img;
+        struct BanimModeData * unk = BANIM_SCR_AT(gBanimScrLeft, gpBanimModesLeft[front_mode]);
+        const void * src = (const void *)unk->img;
         proc->pOaml = (void *) gBanimOaml + unk->unk2;
         LZ77UnCompWram(src, gBanimLeftImgSheetBuf);
     }
 
     if (gBanimValid[1] == TRUE)
     {
-        struct BanimModeData * unk = (void *) (gBanimScrRight + gpBanimModesRight[front_mode]);
-        const void * src = unk->img;
+        struct BanimModeData * unk = BANIM_SCR_AT(gBanimScrRight, gpBanimModesRight[front_mode]);
+        const void * src = (const void *)unk->img;
         proc->pOamr = (void *) gBanimOamr2 + unk->unk2;
         LZ77UnCompWram(src, gBanimRightImgSheetBuf);
     }

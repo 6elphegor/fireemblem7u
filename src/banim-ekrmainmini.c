@@ -162,9 +162,9 @@ void sub_08054A8C(struct Anim * anim)
 
 #if NONMATCHING
         const struct BanimModeData * frameData =
-            (const void *)pAnimBuffer->unk_28 + modes[mode];
+            BANIM_SCR_AT(pAnimBuffer->unk_28, modes[mode]);
 
-        anim1->pImgSheet = frameData->img;
+        anim1->pImgSheet = (const void *)frameData->img;
         anim1->pSpriteData = (const void *)anim1->pSpriteDataPool + frameData->unk2;
         anim2->pSpriteData = (const void *)anim2->pSpriteDataPool + 0x000057F0;
 #else
@@ -173,7 +173,7 @@ void sub_08054A8C(struct Anim * anim)
         register int off asm("r0") = modes[mode];
         frameData = (void *)unk28 + off;
 
-        anim1->pImgSheet = frameData->img;
+        anim1->pImgSheet = (const void *)frameData->img;
         unk28 = anim1->pSpriteDataPool;
         anim1->pSpriteData = unk28 += frameData->unk2;
 
@@ -215,7 +215,7 @@ void InitMainMiniAnim(struct AnimBuffer * pAnimBuf)
     modeB = BanimDefaultModeConfig[pAnimBuf->roundType * 4 + 2];
     configB = BanimDefaultModeConfig[pAnimBuf->roundType * 4 + 3];
 
-    LZ77UnCompWram(ba[pAnimBuf->animId].script, (void *)pAnimBuf->unk_28);
+    BanimScrUnpack(ba[pAnimBuf->animId].script, (void *)pAnimBuf->unk_28);
 
     ba2 = ba + pAnimBuf->animId;
     modes = ba2->modes;
@@ -319,7 +319,7 @@ void sub_08054C8C(struct AnimBuffer * pAnimBuf)
     modeA = BanimDefaultModeConfig[pAnimBuf->roundType * 4];
     modeB = BanimDefaultModeConfig[pAnimBuf->roundType * 4 + 2];
 
-    LZ77UnCompWram(ba[pAnimBuf->animId].script, (void *)pAnimBuf->unk_28);
+    BanimScrUnpack(ba[pAnimBuf->animId].script, (void *)pAnimBuf->unk_28);
 
     ba2 = ba + pAnimBuf->animId;
     modes = ba2->modes;
