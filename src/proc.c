@@ -941,7 +941,11 @@ int sub_08004CC4()
 {
     int i = PROC_COUNT;
     struct Proc * ptr = Unk_02024E28;
-    intptr_t target = (intptr_t)ptr + 0x00001A94;
+#if NONMATCHING
+    intptr_t target = (intptr_t)(ptr + PROC_COUNT - 1);
+#else
+    intptr_t target = (intptr_t)ptr + 0x00001A94; // (PROC_COUNT - 1) * 0x6C
+#endif
 
     do
     {

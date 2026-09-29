@@ -559,19 +559,61 @@ make emutest EMUTEST_B=fe7u_nonmatching.gba
   slot left there, a code pointer.  Code addresses differ, so the circle is
   rotated differently (extras.txt `extras_back`, shops.txt `save_menu`).
 * On a PC compiler nothing ARM-specific is left with `-DNONMATCHING=1`
-  (no register names, no asm).  What remains non-portable (2026-09: 296 of
-  307 files compile for x86_64-linux-gnu) is GCC 2's cast as lvalue
-  (`((u32 *) p)++`, 12), `CONST_DATA` putting const and non-const data in
-  one section (15), function pointers stored in 32-bit `EventScr` tables
-  (3), two `static` definitions of extern declarations (2), and for Mach-O
-  every `SECTION()` name; warnings flag the 32-bit pointer/integer casts.
-  To see it:
-  `clang -fsyntax-only -target x86_64-linux-gnu -std=gnu89 -w -nostdinc -undef
-  -I tools/agbcc/include -iquote include -iquote . -DNONMATCHING=1 src/FILE.c`.
+  (no register names, no asm), and every C file compiles for 64-bit Linux
+  and macOS: see "Host check" below.
 * FireEmblem7J's `#if MODERN` C switch (struct padding and I/O register
   layout for a modern compiler, a few blocks in `src/hardware.c` and
   `src/oam.c`) is separate, never enabled and partly stale; it is not part
   of this build.
+
+## Host check
+
+The groundwork for a PC port: the C must also compile with an ordinary
+64-bit compiler.
+
+```sh
+make hostcheck                     # tools/hostcheck.py, ~15 s the first time, then incremental
+make hostcheck HOSTCHECK_FLAGS=-Wall
+python3 tools/hostcheck.py --list int-to-pointer-cast    # file:line of one category
+python3 tools/hostcheck.py --target x86_64-linux-gnu src/proc.c
+```
+
+It compiles every `src/*.c` and `src/data/*.c` with the host's clang,
+`-DNONMATCHING=1 -std=gnu89 -funsigned-char`, for x86_64-linux-gnu (ELF)
+and the host's own target (e.g. arm64-apple-macosx, Mach-O), into
+`build/host/TRIPLE/` (objects, and each file's messages in `NAME.log`), and
+prints the errors and the warnings by category, each warning counted once.
+A file is compiled again only when it, a header it includes or the flags
+changed.  It exits with 1 if any file has an error.  The headers are
+clang's freestanding `stddef.h`/`stdint.h`/`limits.h` (64-bit sizes) and
+agbcc's for `stdlib.h`/`string.h`; no libc for the targets is needed.
+Nothing is linked: there is no platform layer yet.  `docs/port-notes.md`
+lists what is left (the data region in GBA format, pointers in 32-bit
+words, hardware registers and VRAM addresses, fixed RAM addresses) and
+the original bugs the warnings showed.
+
+Both targets must stay at 0 errors.  For new and changed code:
+
+* `PLATFORM_GBA`: the Makefile defines it (=1) for both GBA builds; the
+  link section macros (`SECTION`, `CONST_DATA`, `EWRAM_DATA`, `IWRAM_DATA`,
+  `EWRAM_OVERLAY`) expand to nothing without it.  Use them, not
+  `__attribute__((section))`.  `NONMATCHING` is about which C is compiled,
+  `PLATFORM_GBA` about the target; don't use one for the other.
+* A pointer kept in an integer is `uintptr_t` (or `intptr_t` when it is
+  compared as signed, e.g. a proc parent that may be a tree index 0-7), not
+  `u32`/`int`; on the GBA these are the same types, so the ROM doesn't
+  change.  The same for struct fields and parameters that hold either an
+  int or a pointer.
+* No casts as lvalues (`((u32 *)p)++`, `(u16)x &= ...`), no reads of the
+  next script word through a narrower pointer (`((s16 *)scr)[4]`), no
+  indexing past an array into the next object; if only that matches, put
+  it under `#else` of `#if NONMATCHING` like any fake match.
+* A function whose result is used returns something on every path.  When
+  the original falls off the end, the plain version returns what r0 held
+  in the ROM (read it in `build/src/MODULE.s`) with a comment.
+* `char` is unsigned on the GBA; a port compiles with `-funsigned-char`.
+* The warnings in `docs/port-notes.md` are known; a change shouldn't add
+  new ones in the pointer/integer cast categories.
 
 ## Decompiling a function
 
