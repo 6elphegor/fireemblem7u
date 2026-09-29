@@ -141,4 +141,17 @@ struct WaitCnt
     u16 gamePakType:1;
 };
 
+// GBA_SIZE_CHECK(struct Foo, 0x24): compile-time check of a structure's
+// size on the GBA.  Put it right after the definition of every structure
+// that lives in ROM data or in save data (or has a fixed layout for another
+// reason), so an edit that changes the layout fails to build.  Active only
+// with PLATFORM_GBA; the host's layout differs (8-byte pointers).  A
+// negative array size is the C89 spelling of _Static_assert; the extern
+// declaration emits nothing and may repeat.
+#if PLATFORM_GBA
+#define GBA_SIZE_CHECK(type, size) extern char gba_size_check_[(sizeof(type) == (size)) ? 1 : -1]
+#else
+#define GBA_SIZE_CHECK(type, size) extern char gba_size_check_[1]
+#endif
+
 #endif // GUARD_GBA_TYPES_H

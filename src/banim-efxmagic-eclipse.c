@@ -72,6 +72,7 @@ struct ProcEfxEclipseBG
     /* 58 */ u16 * pal;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxEclipseBG);
 
 void StartSpellAnimEclipse(struct Anim * anim);
 void efxHazymoon_Loop_Main(struct ProcEfx * proc);

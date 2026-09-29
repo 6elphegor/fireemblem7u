@@ -16,6 +16,7 @@ struct ProcTitle {
     /* 51 */ s8 mode;
     /* 54 */ int timer_idle;
 };
+PROC_SIZE_CHECK(struct ProcTitle);
 
 struct TitleSt {
     /* 00 */ int unk_00;
@@ -58,6 +59,7 @@ struct ProcTitleSpriteCtrl {
     /* 48 */ void (* callback)(ProcPtr proc);
     /* 4C */ u8 mode;
 };
+PROC_SIZE_CHECK(struct ProcTitleSpriteCtrl);
 
 void TitleSprite_Init(struct ProcTitleSpriteCtrl * proc);
 void TitleSprite_Loop(struct ProcTitleSpriteCtrl * proc);

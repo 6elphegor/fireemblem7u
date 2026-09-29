@@ -12,6 +12,7 @@ struct ProcCursorHand {
 	/* 3C */ u8 flag[4];
 	/* 40 */ s16 x[4], y[4];
 };
+PROC_SIZE_CHECK(struct ProcCursorHand);
 
 void UiCursorHand_Init(struct ProcCursorHand *proc);
 void UiCursorHand_Loop(struct ProcCursorHand *proc);

@@ -42,6 +42,7 @@ struct DebugMonitorProc {
     /* 5C */ u8 _pad_5C[0x66 - 0x5C];
     /* 66 */ s16 displayInfo;
 };
+PROC_SIZE_CHECK(struct DebugMonitorProc);
 
 struct DebugOnOffMsgs { int msg[2]; };
 struct DebugWeatherMsgs { int msg[7]; };
@@ -82,6 +83,7 @@ struct DebugPrintProc {
     /* 52 */ u16 width;
     /* 54 */ const char * text;
 };
+PROC_SIZE_CHECK(struct DebugPrintProc);
 
 extern const struct ProcCmd gProc_DebugPrintWithProc[];
 extern const struct MenuDef gDebugMenuDef;

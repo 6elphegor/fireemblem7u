@@ -10,6 +10,7 @@ struct ProcWhiteCircleFx {
 
     /* 4C */ s16 counter;
 };
+PROC_SIZE_CHECK(struct ProcWhiteCircleFx);
 
 void ProcWhiteCircleFx_End(struct ProcWhiteCircleFx * proc);
 void ProcWhiteCircleFx_Loop(struct ProcWhiteCircleFx * proc);

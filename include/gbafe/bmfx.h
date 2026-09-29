@@ -15,6 +15,7 @@ struct ProcBmFx {
     /* 64 */ s16 xPos;
     /* 66 */ s16 yPos;
 };
+PROC_SIZE_CHECK(struct ProcBmFx);
 
 // GetSomeFacingDirection
 // Make6CMOVEUNITForUnitBeingRescued
@@ -122,6 +123,7 @@ struct ProcChapterIntrofx {
     /* 50 */ s16 skipped;
     /* 52 */ u16 fasten;
 };
+PROC_SIZE_CHECK(struct ProcChapterIntrofx);
 
 struct ProcChapterIntroDeamon {
     PROC_HEADER_EXT(struct ProcChapterIntrofx);
@@ -130,6 +132,7 @@ struct ProcChapterIntroDeamon {
 
     /* 50 */ s16 skipped;
 };
+PROC_SIZE_CHECK(struct ProcChapterIntroDeamon);
 
 void ChapterIntro_Bg3Scroll_Loop(ProcPtr proc);
 void ChapterIntroDeamon_Init(struct ProcChapterIntroDeamon * proc);

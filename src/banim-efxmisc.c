@@ -1319,6 +1319,7 @@ struct ProcEfxSRankSCR2 {
 
     /* 5C */ struct ProcEfx * seff_scr1;
 };
+PROC_SIZE_CHECK(struct ProcEfxSRankSCR2);
 
 void EfxSRankWeaponEffectSCR2Main(struct ProcEfxSRankSCR2 * proc);
 

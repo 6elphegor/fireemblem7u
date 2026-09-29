@@ -64,6 +64,7 @@ struct SysHandCursorProc {
     /* 3A */ u16 pal_bank;
     /* 3C */ u16 chr2;
 };
+PROC_SIZE_CHECK(struct SysHandCursorProc);
 
 extern struct ProcCmd ProcScr_SysHandCtrl[];
 
@@ -96,6 +97,7 @@ struct ProcSysGrayBox {
     /* 2C */ struct SysGrayBoxConf priv[4];
     /* 5C */ int chr, pal;
 };
+PROC_SIZE_CHECK(struct ProcSysGrayBox);
 
 extern struct ProcCmd ProcScr_SysGrayBox[];
 
@@ -121,6 +123,7 @@ struct ProcSysBrownBox {
     /* 4E */ s16 y;
     /* 50 */ u8 layer;
 };
+PROC_SIZE_CHECK(struct ProcSysBrownBox);
 
 extern struct ProcCmd ProcScr_SysBrownBox[];
 
@@ -141,6 +144,7 @@ struct ProcSysboxText {
     /* 5A */ u16 timer;
     /* 5C */
 };
+PROC_SIZE_CHECK(struct ProcSysboxText);
 
 extern struct ProcCmd ProcScr_SysboxText[];
 
@@ -172,6 +176,7 @@ struct ProcFadeInOut {
     /* 30 */ int speed;
     /* 34 */ int mask;
 };
+PROC_SIZE_CHECK(struct ProcFadeInOut);
 
 extern struct ProcCmd CONST_DATA ProcScr_BmFadeIN[];
 extern struct ProcCmd CONST_DATA ProcScr_BmFadeOUT[];

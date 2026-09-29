@@ -46,6 +46,7 @@ struct ProcEkrLevelup {
     /* 5C */ struct Anim * ais_main;
     /* 60 */ struct Anim * ais_core;
 };
+PROC_SIZE_CHECK(struct ProcEkrLevelup);
 
 extern struct ProcEkrLevelup * gpProcEkrLevelup;
 extern u32 gUnknown_020200B0[8];

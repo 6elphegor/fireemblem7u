@@ -64,6 +64,7 @@ struct ProcEkrClasschg {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrClasschg);
 
 struct ProcEfxClasschgInOutUnit {
     PROC_HEADER;
@@ -80,6 +81,7 @@ struct ProcEfxClasschgInOutUnit {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxClasschgInOutUnit);
 
 struct ProcSubEkrClasschgRST {
     PROC_HEADER;
@@ -88,6 +90,7 @@ struct ProcSubEkrClasschgRST {
 
     /* 4C */ int unk4C;
 };
+PROC_SIZE_CHECK(struct ProcSubEkrClasschgRST);
 
 struct ProcEkrClasschgRST {
     PROC_HEADER;
@@ -110,6 +113,7 @@ struct ProcEkrClasschgRST {
 
     /* 64 */ struct ProcSubEkrClasschgRST * subproc;
 };
+PROC_SIZE_CHECK(struct ProcEkrClasschgRST);
 
 extern struct ProcEkrClasschg * gpProcEkrClasschg;
 extern int gEfxBgSemaphore;

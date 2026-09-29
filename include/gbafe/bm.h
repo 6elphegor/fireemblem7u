@@ -172,6 +172,7 @@ struct ProcBmMain {
 
     /* 46 */ u8 unk_46;
 };
+PROC_SIZE_CHECK(struct ProcBmMain);
 
 struct CamMoveProc
 {

@@ -27,12 +27,14 @@ struct SaveMenuUnkProc1 {
 
     /* 29 */
 };
+PROC_SIZE_CHECK(struct SaveMenuUnkProc1);
 
 struct SaveMenuUnkProc2 {
     PROC_HEADER;
 
     /* 29 */
 };
+PROC_SIZE_CHECK(struct SaveMenuUnkProc2);
 
 struct SaveMenuProc {
     PROC_HEADER;
@@ -67,6 +69,7 @@ struct SaveMenuProc {
     /* 5C */ ProcPtr proc3; // sprite anim proc
     /* 60 */ ProcPtr approc;
 };
+PROC_SIZE_CHECK(struct SaveMenuProc);
 
 extern u8 gUnk_Savemenu_02000000;
 extern u8 gUnk_Savemenu_02000001;
@@ -165,6 +168,7 @@ struct ProcSpinRotation {
     /* 34 */ u8 unk_3C_unused;
     /* 34 */ u8 unk_3D;
 };
+PROC_SIZE_CHECK(struct ProcSpinRotation);
 
 void SpinRotation_Init(struct ProcSpinRotation * proc);
 void SpinRotation_Loop(struct ProcSpinRotation * proc);

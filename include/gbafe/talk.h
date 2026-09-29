@@ -88,6 +88,7 @@ struct TalkChoiceProc
     int unused30;
     struct TalkChoiceEnt const * choices;
 };
+PROC_SIZE_CHECK(struct TalkChoiceProc);
 
 struct ProcTalkAdvance {
     PROC_HEADER;
@@ -102,6 +103,7 @@ struct ProcTalkAdvance {
 
     s16 timer;
 };
+PROC_SIZE_CHECK(struct ProcTalkAdvance);
 
 // ??? sub_08007D80
 // ??? sub_08007DB8

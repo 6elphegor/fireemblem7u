@@ -59,6 +59,7 @@ struct ProcEfxEclipseBG
     /* 58 */ u16 * pal;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxEclipseBG);
 
 void StartSpellAnimSong(struct Anim * anim);
 void efxSong_Loop_Main(struct ProcEfx * proc);

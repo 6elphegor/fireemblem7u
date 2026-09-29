@@ -15,6 +15,7 @@ struct ProcEfxFlashing {
     STRUCT_PAD(0x32, 0x5C);
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxFlashing);
 
 void EfxFlashBgMain(struct ProcEfxFlashing * proc);
 void EfxFlashRestorePalSync(struct ProcEfxFlashing * proc);

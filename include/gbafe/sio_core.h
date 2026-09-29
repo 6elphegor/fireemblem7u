@@ -213,6 +213,7 @@ struct Proc085AAAC4 {
     /* 29 */ STRUCT_PAD(0x29, 0x40);
     /* 40 */ int unk40;
 };
+PROC_SIZE_CHECK(struct Proc085AAAC4);
 
 struct ProcTactician {
     PROC_HEADER;
@@ -232,6 +233,7 @@ struct ProcTactician {
     /* 3D */ char str[0x48 - 0x3D];
     /* 48 */ u16 unk4C[0x10];
 };
+PROC_SIZE_CHECK(struct ProcTactician);
 
 struct TacticianTextConf {
     /* 00 */ u8 const * str[0xC];
@@ -316,6 +318,7 @@ struct ProcSioHold {
     int x;
     int y, y_min, y_max;
 };
+PROC_SIZE_CHECK(struct ProcSioHold);
 
 void SioHold_Loop(struct ProcSioHold * proc);
 ProcPtr StartSioHold(ProcPtr parent, int x, int y, int y_max, int y_min);

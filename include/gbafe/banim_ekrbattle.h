@@ -19,6 +19,7 @@ struct ProcEkrBattle {
     /* 58 */ int unk58;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrBattle);
 
 extern struct ProcEkrBattle * gpProcEkrBattle;
 

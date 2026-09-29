@@ -318,6 +318,7 @@ struct HelpPromptSprProc
 
     /* 2C */ int x, y;
 };
+PROC_SIZE_CHECK(struct HelpPromptSprProc);
 
 void HelpPrompt_OnIdle(struct HelpPromptSprProc * proc);
 ProcPtr StartHelpPromptSprite(int x, int y, ProcPtr parent);
