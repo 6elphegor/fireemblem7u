@@ -12,9 +12,8 @@ CATEGORY` give the current ones.
 all 307 C files (`src/*.c`, `src/data/*.c`) with the host's clang and
 `-DNONMATCHING=1` for x86_64-linux-gnu (ELF) and the host target
 (arm64-apple-macosx: Mach-O), both LP64.  Every file compiles on both; the
-objects are in `build/host/TRIPLE/`.  Nothing links yet: there is no
-platform layer, the data region is GBA assembly, and the sound engine is
-partly ARM assembly.
+objects are in `build/host/TRIPLE/`.  `make host` links the whole game
+with the platform layer and runs it (see "Host link" below).
 
 | | x86_64-linux-gnu | arm64-apple-macosx |
 |---|---|---|
@@ -48,6 +47,152 @@ Errors fixed:
   header no longer declares them (only hardware.c uses them).
 * **Implicit `memcpy`/`strcpy`/`strlen`** (an error for Apple clang):
   `global.h` includes `<string.h>` (same bytes).
+
+## Host link
+
+`make host` (tools/hostgame.py, `-j 4` by default) builds the whole game as
+a native program, `build/host-game/fe7u` (arm64 macOS; the tools also know
+ELF).  It needs the matching build first.  The program is the runtime's
+(docs/port-platform.md): `build/host-game/fe7u --headless --input
+tests/inputs/NAME.txt --dump-frames DIR --log FILE`, or a window.
+
+**How far it runs** (headless, as of 2026-09-29, no save file unless the
+script has an `sram` line):
+
+| script | frames run / script length | stops at |
+|---|---|---|
+| opening | 19,600 / 19,600 | (whole attract loop, class reels included) |
+| extras | 10,368 / 10,368 | |
+| lyn | 8,418 / 8,418 | (world map, a chapter, a battle, enemy phase) |
+| prologue | 7,447 / 12,850 | a crash later in the tutorial |
+| hector, ch13, actions, shops, final | 6,000-12,700 | crashes in battle animations (spell scripts calling into data, `gOamAffinePutIt`) and other host-only faults not looked at yet |
+
+The pictures are not right yet: most BG layers come out black or garbled
+(world map, chapter maps, window frames) while sprites, text and portraits
+are drawn.  Part of it is gHostVram's alignment (see "Requests to the
+platform layer" below); with gHostVram 0x20000-aligned the sprites are
+right, the BGs still not.  No sound reaches the platform: the m4a engine
+runs (the C port) but nothing hands `gSoundInfo.pcmBuffer` to
+`HostAudioSubmit`.
+
+**What is linked.**  Every `src/*.c` but `agb-sram.c` (platform/sram.c
+replaces it), `src/data`, `src/events`, the generated `sound/*.c` and
+`build/msg_table.c`, `platform/armfunc.c` (compiled like the game),
+`src/host/hostglue.c` (below), the battle animations as C
+(`tools/banim.py host`, `build/host-game/banim/banim_host.c`, ROM bytes, so
+never committed), the data assembly, the RAM images and the runtime
+(`PLATFORM_RUNTIME_SRC` + front end + `platform/main.c`).  symbols.ld's
+aliases of C symbols (`MoveTable_Flying = TerrainTable_...`) are passed to
+the linker as `-alias`; the ones of data labels become `.set` in the
+converted assembly (`gFe6LinkMultiBootImageEnd = gFe6LinkMultiBootImage +
+0x567C`).  No stubs are left: m4a is the C engine (`src/m4a.c`,
+`src/m4a_1.c`, `src/m4a_mixer.c`), the crt0/libagb routines are the
+runtime's.
+
+**Data assembly (tools/hostasm.py).**  Each GBA assembly file is rewritten
+line by line into one host file: `.include` inlined, `@` comments dropped,
+every `.section .rodata.ADDR` becomes the host's read-only data section,
+4-aligned and then `ADDR & 3` bytes in (so everything aligned on the GBA is
+aligned on the host: sections of one file are contiguous on the host, while
+C objects of data/layout.txt sit between them on the GBA), symbols get the
+`_` prefix, `.align` is `.p2align`, and `.incbin` becomes `.byte` lines
+(read once per file: LLVM's assembler maps the whole ROM again for every
+`.incbin`, which took gigabytes per file).  A 4-byte word naming a symbol is
+an error outside the music tracks (convert the object to C).  Objects whose
+C type differs in size on a host but that hold no real pointer can be
+re-laid out record by record (`RELAYOUT`: the 449 glyphs, `struct Glyph`,
+whose `next` words are all NULL, become 0x50-byte host records).
+
+**Track addresses (the m4a hook).**  In the music streams (sound/) the
+GOTO / PATT / REPT / MEMACC / xWAVE words are written as `.long TARGET -
+_gHostSoundBase`, the offset from a label at the start of the sound file's
+data (one section, so the assembler computes it).  `M4aReadAddr`
+(src/m4a_1.c) assembles the four bytes and calls `M4aHostRomAddr(u32)`,
+which `src/host/hostglue.c` defines as `gHostSoundBase + value`.
+
+**RAM symbols (tools/hostram.py).**  The ~510 EWRAM/IWRAM objects that only
+symbols.ld names and the host objects use are laid out in two images,
+`gHostRamEwram` and `gHostRamIwram` (build/host-game/ramsyms.s, zero-filled
+`__bss`), one label per name.  Sizes: for each C file that refers to such
+names, its preprocessed text gets `sizeof`/`__alignof__` probes appended and
+is compiled for the host (clang) and for the GBA (agbcc, so agbcc's struct
+rounding counts); an incomplete array gets its GBA size from the gap to the
+next RAM symbol of fe7u.elf and its host size scaled by the element sizes.
+Placement: host offset = f(GBA offset), f monotonic with f(x + d) >= f(x) +
+d, an object that ends (on the GBA) before another starts ends before it on
+the host too, and each name at the host's alignment.  So objects that
+overlap on the GBA (the screens' overlays at 0x02000000, names inside a
+bigger buffer) keep their distances unless something between them grew,
+and objects that grew on the host (pointers) push the later ones up.
+build/host-game/ramsyms.txt lists the layout and every name that moved
+inside another (almost all are different screens sharing an overlay).
+`RAM_ADDR(0x0203A98C)` (include/gbafe/global.h, with
+`DECLARE_RAM_ADDR(0x0203A98C);` at file scope) names an unnamed RAM address
+the code or a ROM table points at: the address on the GBA, `HostRam_0x...`
+on a host, which hostram.py places at that address's place in the image.
+The battle animation script buffers (`gBanimScrLeft` / `Right`,
+`gOpInfoFrameBuf`) get twice their GBA size (`WIDENED`).  The start-up
+clears reach the images: `sub_080009FC` clears EWRAM and then calls
+`gHostEwramClearHook` (set by hostglue.c), and `AgbMain` calls
+`HostClearRamIwram` after its IWRAM clear.  The game's own C variables are
+ordinary host variables (zero at start, not cleared by a soft reset).
+Raw EWRAM addresses cast in the code (`EWRAM_START + x`) still point into
+the runtime's gHostEwram, not the image; none is left in src/ outside
+`RAM_ADDR`.
+
+**Host-only code in src/** (all `#if !PLATFORM_GBA` or `#if NONMATCHING`;
+the GBA builds are unchanged):
+
+* Hardware addresses: 246 VRAM / PLTT / OAM literals are the macros
+  (`(VRAM + 0x17000)`; same constants on the GBA), `REG_BASE + 0x54` in
+  scanline.c, `CART_SRAM` is `gHostSram`, the save block offsets are
+  `SramAddrToOffset` (the GBA keeps the address's low 16 bits), two VRAM
+  addresses held in `int`/`u32` are `uintptr_t`.
+* `InitRamFuncs` points the `gRamFunc_*` at armfunc.c's C routines.
+* Layouts: `struct Proc`'s host padding makes a slot 0xC8 bytes (MenuProc
+  and WmSlotsProc are 0xC8 on a host and overran their slots; about 200
+  proc structs still have no `PROC_SIZE_CHECK`); new proc slots are zeroed
+  (the GBA's leftovers are mostly zero, the host's are not); three structs
+  that agbcc rounds to 4 bytes (`AiEscapePt`, `AiHealThreshold`,
+  `EndingDefeatEnt`) get the padding on a host; `ProcEventMapLock` puts its
+  two bytes at `EventProc`'s offsets (an ASMC's view of the event proc);
+  the chapter goal is read by field, not at `+ 0x8E`; the heal-staff
+  background TSA is strided in bytes, not in 4-byte pointers;
+  `ANIMSCR_WIDE` is now defined on a host (it was only defined for the GBA,
+  so a host compiled one-cell scripts with 8-byte cells);
+  `NUM_MUSIC_PLAYERS`/`MAX_LINES` are constants (absolute symbols can't be
+  addressed from position-independent code).
+* Timing: `SampleFreqSet` does not wait for VCOUNT 159 (the host's VCOUNT
+  moves only between frames).
+* Reads and writes through NULL that the GBA sends to the BIOS region
+  (reads give open-bus values, writes are ignored), skipped on a host:
+  `SyncHiOam` before the first `InitOam`, `ResetTextFont` with no font,
+  `EndFace`, `GetFaceDisp`, `SetFaceBlinkControl` (no face / no eyes),
+  `SetTalkFaceDisp`, `BmMapFill` and `RefreshUnitSprites` before the maps
+  exist, `AnimDelete` of the last anim, the triangle attack palettes,
+  `UnitMapUiUpdate` without a unit, `IsItemEffectiveAgainst` without a
+  class, the packed unit / met-character writes of empty unit slots, and
+  the save menu's read of a "PlaySt" at the slot number (always true).
+  More will turn up: each crash so far was a first use of such a path.
+* Data converted to C because the C type is wider on a host
+  (tools/datac.py, data/layout.txt): `gUnk_08CE5378`, `ProcScr_DebugMonitor`
+  (bmdebug.c), `PopupScr_AiPillage`, `gUnknown_085AA21C`, `gUnk_08BFFC9C`,
+  `gUnk_08CEF770`, `gBattleTalkList`, `gTriangleAttackTalkList`,
+  `gTextInitInfo_ChapterStatus`: pointer-width fields holding numbers, or
+  RAM pointers, left as `.incbin` because no `.4byte SYMBOL` marked them.
+
+**Requests to the platform layer** (not changed here):
+
+* Align `gHostVram` to 0x20000 and `gHostPltt`/`gHostOam` to 0x400 (and
+  `gHostSram` to 0x10000).  The game turns VRAM pointers into tile numbers
+  with the low bits of the address (`((u32) vram << 0x11) >> 0x16`,
+  `& 0x1FFFF`, `VRAM | offset`, `(VRAM + x) & 0xFFFF`): with the arrays
+  only 16-aligned every such tile number is wrong.  Tried locally (as
+  `= { 0 }` definitions with `aligned(0x20000)`: clang rejects that
+  alignment for a common symbol): sprites come out right.
+* Audio: something must take the part of `gSoundInfo.pcmBuffer` that
+  `SoundMain` mixed each frame to `HostAudioSubmit` (see "m4a sound driver"
+  above).
 
 ## Compiler and ABI requirements
 

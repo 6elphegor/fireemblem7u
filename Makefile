@@ -72,7 +72,7 @@ NM_DEFS += -DBANIM_SHEET_INDEX=1
 BANIM_LINK_FLAGS := --sheet-index
 endif
 
-.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck hostevents
+.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck hostevents host
 .DELETE_ON_ERROR:
 
 # `make MODERN=1` (or `make modern`): the free data layout, see below.
@@ -453,6 +453,15 @@ hostcheck:
 # built fe7u.gba and fe7u.elf.
 hostevents: compare
 	python3 tools/hostevents.py
+
+# The whole game as a native program, build/host-game/fe7u (tools/hostgame.py;
+# docs/port-notes.md, "Host link"): every C file with the host's clang, the
+# data assembly rewritten for the host (tools/hostasm.py), the RAM objects
+# symbols.ld names (tools/hostram.py), the battle animations as C
+# (tools/banim.py host) and platform/.  Run it with
+#   build/host-game/fe7u --headless --input tests/inputs/opening.txt --dump-frames DIR
+host: compare
+	python3 tools/hostgame.py -j $(or $(HOSTGAME_JOBS),4)
 
 clean:
 	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map fe7u_nonmatching*.gba fe7u_nonmatching*.elf fe7u_nonmatching*.map

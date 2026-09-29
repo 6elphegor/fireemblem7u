@@ -322,10 +322,11 @@ u8 *M4aReadAddr(const u8 *p);
   through the portable `chk_adr_r2` (`AddrReadable`: a read from below
   0x02000000, the BIOS, gives 0, as `ply_goto` did).
 * On a host (`!PLATFORM_GBA`) it assembles the same 32-bit value and passes
-  it to `void *M4aHostRomAddr(u32 stored)`, which the host link provides
-  (declared in `m4a_internal.h`, not defined anywhere yet): whatever the
-  host's track assembly stores in those 4 bytes (a GBA ROM address, or an
-  offset from a base symbol), it maps it to the host's copy of the data.
+  it to `void *M4aHostRomAddr(u32 stored)`, which the host link provides:
+  tools/hostasm.py stores each address as its offset from `gHostSoundBase`
+  (a label at the start of the host's sound data) and
+  `src/host/hostglue.c` returns `gHostSoundBase + stored`
+  (port-notes.md, "Host link").
   Nothing else in the engine reads a stored address.
 
 | Read | Where (portable engine) | Where (matching `asm/m4a_1.s`) | What it reads |
