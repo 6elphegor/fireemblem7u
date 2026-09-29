@@ -4534,22 +4534,6 @@ gUnknown_08CE5388:
 gSoundRoomBgTable:
 	.incbin "baserom.gba", 0xce538c, 0xf4
 
-	.global gUnknown_08A212D4
-gUnknown_08A212D4:
-	.incbin "baserom.gba", 0xce5480, 0x4
-
-	.global gUnknown_08A212D8
-gUnknown_08A212D8:
-	.4byte gBuf + 0x800
-
-	.global gUnknown_08A212DC
-gUnknown_08A212DC:
-	.4byte gBuf + 0x1000
-
-	.global gSoundRoomShuffleBuffer
-gSoundRoomShuffleBuffer:
-	.4byte gBuf + 0x1200
-
 	.section .rodata.08CE54B0, "a"
 
 	.global gpSoundInfo
@@ -4669,11 +4653,7 @@ gpBonusClaimText:
 gpBonusClaimConfig:
 	.incbin "baserom.gba", 0xce5788, 0x4
 
-	.section .rodata.08CE583C, "a"
-
-	.global gConfigUiState
-gConfigUiState:
-	.incbin "baserom.gba", 0xce583c, 0x4
+	.section .rodata.08CE5840, "a"
 
 	.global gUnk_08CE5840
 gUnk_08CE5840:
@@ -5701,12 +5681,6 @@ gShopPortraitLut:
 	.global Sprite_ShopGoldBox
 Sprite_ShopGoldBox:
 	.incbin "baserom.gba", 0xce7248, 0x38
-
-	.section .rodata.08CE7298, "a"
-
-	.global gShopState
-gShopState:
-	.incbin "baserom.gba", 0xce7298, 0x4
 
 	.section .rodata.08CE750C, "a"
 

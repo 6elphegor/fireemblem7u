@@ -2601,11 +2601,7 @@ EventScr_CompleteTraining:
 	.4byte sub_08021614
 	.incbin "baserom.gba", 0xb93db8, 0x24
 
-	.section .rodata.08B93E44, "a"
-
-	.global UnitSpriteUnpackBuf
-UnitSpriteUnpackBuf:
-	.incbin "baserom.gba", 0xb93e44, 0x4
+	.section .rodata.08B93E48, "a"
 
 	.global gSomeSMSLookupTable
 gSomeSMSLookupTable:
@@ -3178,12 +3174,6 @@ sBattleForecastSlideOutOffsetLut:
 	.global sBkselHelpBoxMsgLut
 sBkselHelpBoxMsgLut:
 	.incbin "baserom.gba", 0xb96dd4, 0xc
-
-	.section .rodata.08B96ED0, "a"
-
-	.global sUnitPriorityArray
-sUnitPriorityArray:
-	.incbin "baserom.gba", 0xb96ed0, 0x4
 
 	.section .rodata.08B9701C, "a"
 
@@ -3836,10 +3826,6 @@ gUnknown_08B98CA8:
 	.global gUnknown_085A9864
 gUnknown_085A9864:
 	.incbin "baserom.gba", 0xb99064, 0x20
-
-	.global gUnknown_085A9884
-gUnknown_085A9884:
-	.incbin "baserom.gba", 0xb99084, 0x4
 
 	.section .rodata.08B99600, "a"
 
