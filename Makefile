@@ -54,7 +54,7 @@ LAYOUT := build/data.s build/layout.ld build/ram.ld
 # The NONMATCHING build's own objects (see the end of this file).
 NM_DIR := build/nonmatching
 
-.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching hostcheck
+.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck
 .DELETE_ON_ERROR:
 
 # `make MODERN=1` (or `make modern`): the free data layout, see below.
@@ -285,6 +285,8 @@ build/shift/s.gba: $(ROM) tools/shifttest.py
 #   make emutest EMUTEST_B=fe7u_modern.gba       any other ROM
 #   make emutest EMUTEST_SCRIPTS=tests/inputs/opening.txt
 #   make emutest EMUTEST_FLAGS=--fast            no wait states (see --fast)
+#   make emuaudio EMUTEST_B=fe7u_nonmatching.gba EMUTEST_FLAGS=--fast
+#                                                sound only, sample by sample
 EMUTEST_A ?= $(ROM)
 EMUTEST_B ?= build/shift/s.gba
 EMUTEST_SCRIPTS ?=
@@ -299,6 +301,9 @@ build/tools/emutest: tools/emutest.c
 
 emutest: build/tools/emutest $(EMUTEST_A) $(EMUTEST_B)
 	python3 tools/emutest.py compare $(EMUTEST_FLAGS) -a $(EMUTEST_A) -b $(EMUTEST_B) $(EMUTEST_SCRIPTS)
+
+emuaudio: build/tools/emutest $(EMUTEST_A) $(EMUTEST_B)
+	python3 tools/emutest.py audio $(EMUTEST_FLAGS) -a $(EMUTEST_A) -b $(EMUTEST_B) $(EMUTEST_SCRIPTS)
 
 # Modern build: the same objects, but the data region is linked without
 # fixed addresses (tools/modern.py, tools/gen_layout.py --modern), so assets

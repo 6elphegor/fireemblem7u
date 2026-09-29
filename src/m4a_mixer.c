@@ -11,10 +11,13 @@
 // drops none).  The copy works because the code only branches within itself
 // (relative) and fits in the buffer: M4aMixFixed must come first and
 // M4aMixEnd last, 0x400 bytes at most apart (tools/nonmatching_check.py
-// checks it).  The loops are written for agbcc_arm's register allocator
-// (few variables live at once) and its multiplications (the small factor
-// first).  The matching build assembles asm/m4a_1.s instead, so this file is
-// empty there.
+// checks it; they use 0x3FC).  They are also as fast as the original's
+// (measured in mGBA), which takes writing them for agbcc_arm: few enough
+// variables for its 13 registers, the small factor of a multiplication in
+// the operand ARM's multiplier terminates early on (a sample or a sample
+// difference, not a volume or a position), and rare cases out of the way.
+// The matching build assembles asm/m4a_1.s instead, so this file is empty
+// there.
 //
 // Like the original, the loops work on four output samples at a time, in
 // one 32-bit word per side: the word is rotated right by 8 bits per sample,

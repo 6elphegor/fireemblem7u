@@ -57,7 +57,7 @@ What does have to change, by source:
 | `data/rom/*.s` | 1,326 objects, 13,657 pointer words | Convert to C (batches below) |
 | `src/events/*.c` (69 files, `tools/evdis.py`) | event lists and scripts | Done: C with the macros of `include/event_macros.h` (batch 6) |
 | `build/msg_bits.s`, `build/msg_table.c` (`tools/textencode.py`) | `gMsgTable`, one pointer per message; `gMsgHuffmanTableRoot` | **Done.** Both are C now, generated at build time (not committed) and linked with the bitstream and tree (bytes, assembly) into `build/msg_data.o`; see "Music and text" |
-| `sound/` (`tools/m4adis.py`) | song headers, voice groups, both tables (aligned); track `GOTO`/`PATT` addresses (2,537 unaligned) | **Headers, voice groups and tables are C** (`sound/song_headers.c`, `voicegroups.c`, `song_table.c`); the track byte streams keep 4-byte addresses and the ported m4a engine translates them (read sites below) |
+| `sound/` (`tools/m4adis.py`) | song headers, voice groups, both tables (aligned); track `GOTO`/`PATT` addresses (2,537 unaligned) | **Headers, voice groups and tables are C** (`sound/song_headers.c`, `voicegroups.c`, `song_table.c`); the track byte streams keep 4-byte addresses, which the portable m4a engine reads through one hook, `M4aReadAddr` (see "Music and text") |
 | `banim/` (`tools/banim.py`) | sheet pointers inside LZ77-compressed scripts | Same: the scripts stay bytes; the banim code maps a stored address to a sheet through a table the tool generates |
 
 ## Rules for converted objects
@@ -202,17 +202,36 @@ structures as C and the rest as assembly.  Neither is committed.
   header or voice group comes from the section alignment, not from
   `.align` in the tracks.
 
-Reads of an address stored in the byte streams (the host engine must
-translate each; a stored address is a 4-byte little-endian ROM address in
-the stream, unaligned):
+Reads of an address stored in the byte streams.  In the portable engine
+(`src/m4a_1.c`, the NONMATCHING build) every one of them goes through one
+function, the hook a host fills in:
 
-| Read | Where | What it reads |
-|---|---|---|
-| GOTO | `asm/m4a_1.s:596` (`ply_goto`, byte loads at 598-609) | jump target |
-| PATT | `asm/m4a_1.s:618` (`ply_patt`, saves `cmdPtr + 4` at 623-626, then jumps through `ply_goto`) | call target; the return address is a real pointer kept in `patternStack` (RAM, fine) |
-| REPT | `asm/m4a_1.s:655` (`ply_rept`, `ply_rept_1` 664-685) | jumps through `ply_goto` |
-| MEMACC conditional | `src/m4a.c:1374-1458` (`ply_memacc`; taken: `gMPlayJumpTable[1]` = `ply_goto`; not taken: `cmdPtr += 4` at 1457) | jump target |
-| XCMD xWAVE | `src/m4a.c:1482-1493` (`ply_xwave`: four `READ_XCMD_BYTE`) | sample (`WaveData`) address stored into `track->tone.wav` |
+```c
+// include/gba/m4a_internal.h, src/m4a_1.c
+u8 *M4aReadAddr(const u8 *p);
+```
+
+* `p` points at the 4 stored bytes in a track stream (unaligned,
+  little-endian); the return value is the pointer they stand for.  The
+  caller advances `cmdPtr` itself (GOTO jumps to the result; PATT keeps
+  `p + 4` as its return address, so the stored field must stay 4 bytes).
+* On the GBA (`PLATFORM_GBA`) the 4 bytes are the address.  Byte 0 is read
+  through the portable `chk_adr_r2` (`AddrReadable`: a read from below
+  0x02000000, the BIOS, gives 0, as `ply_goto` did).
+* On a host (`!PLATFORM_GBA`) it assembles the same 32-bit value and passes
+  it to `void *M4aHostRomAddr(u32 stored)`, which the host link provides
+  (declared in `m4a_internal.h`, not defined anywhere yet): whatever the
+  host's track assembly stores in those 4 bytes (a GBA ROM address, or an
+  offset from a base symbol), it maps it to the host's copy of the data.
+  Nothing else in the engine reads a stored address.
+
+| Read | Where (portable engine) | Where (matching `asm/m4a_1.s`) | What it reads |
+|---|---|---|---|
+| GOTO | `ply_goto`: `M4aReadAddr(cmdPtr)` | `ply_goto`, byte loads | jump target |
+| PATT | `ply_patt`: saves `cmdPtr + 4` in `patternStack`, then `ply_goto` | `ply_patt` | call target; the return address is a real pointer in RAM |
+| REPT | `ply_rept`: `ply_goto` | `ply_rept`, `ply_rept_1` | jump target |
+| MEMACC conditional | `src/m4a.c` `ply_memacc`: taken, `gMPlayJumpTable[1]` = `ply_goto`; not taken, `cmdPtr += 4` | same (C in both builds) | jump target |
+| XCMD xWAVE | `src/m4a.c` `ply_xwave`: `M4aReadAddr(cmdPtr)` under `#if NONMATCHING` | `ply_xwave`, four `READ_XCMD_BYTE` | sample (`WaveData`) address stored into `track->tone.wav` |
 
 Stored addresses that are not in the streams and need no translation on the
 host because C now holds them: `songHeader->tone` and `part[i]`
@@ -226,8 +245,10 @@ track byte, the start of a stream), the song and player tables
 `wav`: a drum set / key split entry is `group[index]`, index 12 bytes apart,
 so `ToneData` stays 12 bytes on the GBA and the host indexes its own layout).
 The engine's `struct ToneData` and `struct SongHeader` are used as declared
-in C; the raw byte offsets in `asm/m4a_1.s` (`o_MusicPlayerTrack_*`,
-`[r5, 0x..]`) are the part that has to be rewritten for a 64-bit layout.
+in C.  The raw byte offsets of `asm/m4a_1.s` (`o_MusicPlayerTrack_*`,
+`[r5, 0x..]`) are gone from the portable engine: `src/m4a_1.c` and
+`src/m4a_mixer.c` use the struct fields only, and the GBA sizes and offsets
+the assembly relies on are static assertions there (under `PLATFORM_GBA`).
 
 ## Tables the code indexes from before their start (`FaceInfoTable`)
 

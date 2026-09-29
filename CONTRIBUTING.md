@@ -365,6 +365,64 @@ region.  It also decompresses every battle animation script from both ROMs
 and checks that each sheet pointer moved with its sheet and nothing else
 changed.  `WRONG` (the total on the last line) must be 0.
 
+#### The engine in C, and the audio comparison
+
+The NONMATCHING build (see "Portable (NONMATCHING) build") plays the music
+with the m4a engine in C: `src/m4a_1.c` (`SoundMain`, the channel
+envelopes, `MPlayMain`, the `ply_*` commands, notes and the CGB channels;
+`src/m4a.c` already was C) and `src/m4a_mixer.c` (the loops that mix a
+channel into the buffer, and the reverb).  The matching build assembles
+`asm/m4a_1.s` as before; the C is under `#if NONMATCHING`, the assembly
+under `.ifndef NONMATCHING`.  An address stored in track data is only ever
+read by `M4aReadAddr` (docs/port-data.md, "Music and text").
+
+`src/m4a_mixer.c` is compiled as ARM code (`agbcc_arm -O1`) and copied to
+IWRAM like the original mixer, because the game notices the time sound
+takes: `m4aSoundMain` runs at the end of the VBlank handler, and the main
+loop's frame starts after it.  Keep the loops at the original's speed (the
+resampling loop takes about 42 cycles a sample in both, measured in mGBA)
+and under 0x400 bytes (`tools/nonmatching_check.py` fails the link
+otherwise; they use 0x3FC).  The comment at the top of the file says how
+they are written for the compiler.
+
+To compare the sound of two ROMs:
+
+```sh
+make nonmatching
+make emuaudio EMUTEST_B=fe7u_nonmatching.gba EMUTEST_FLAGS=--fast
+make emuaudio EMUTEST_B=fe7u_nonmatching.gba EMUTEST_FLAGS=--fast \
+    EMUTEST_SCRIPTS=tests/inputs/opening.txt
+```
+
+(`tools/emutest.py audio`, `--channels all,ds,psg`, `--keep` keeps the WAV
+files in `build/emutest/<script>/`; they are the ROM's music, don't commit
+them.)  For each script it reports:
+
+* **mixer output**: what SoundMain mixed into the DirectSound buffer each
+  frame (`emutest -P`, read from `gSoundInfo`), and the first frame where
+  A's and B's differ.  This is the engine's output and is the check: it
+  must be identical.
+* **CGB registers**: the PSG registers and wave RAM at the end of each
+  frame, what `CgbSound` left there.  Also must be identical.
+* the frame where the **sample clock (timer 0) phase** first differs, and
+  how many **samples of what mGBA plays** (all, DirectSound only, PSG only;
+  16-bit stereo at 32768 Hz) differ.
+
+What mGBA plays is not bit-identical between two different builds even
+with the same engine and the same mixer output, because it depends on
+cycle timing: timer 0 is started by `SampleFreqSet` right after a VCOUNT
+poll, so its phase depends on the code that ran before (the C build's is 4
+cycles off from boot); `m4aSoundVSync` restarts the sound DMA from the VBlank
+handler, whose start moves with whatever the CPU was doing; and CGB register
+writes land at different cycles.  The NONMATCHING build with the assembly
+engine already differs from `fe7u.gba` in 19% of the DirectSound samples
+played over `opening`.  With the C engine, the mixer output and the CGB registers
+are identical to `fe7u.gba`'s over all nine scripts, frame for frame, until
+the game's own timing differs: in `hector`, `extras` and `actions` a frame
+of the main loop ends at a different point relative to VBlank (the pictures
+differ first, or, in `actions`, `MPlayMain` finds a player locked by an m4a
+call of the main loop at the frame's end in one ROM and not the other), a sound starts a frame apart, and from then on the outputs differ.
+
 ### Runtime test
 
 `make shifttest` can only check the words we made symbolic.  A pointer
