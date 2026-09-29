@@ -1119,7 +1119,11 @@ void sub_080AC2C0(void)
 {
     int i;
 
+#if PLATFORM_GBA
     u32 vram = (VRAM + 0x14000);
+#else
+    uintptr_t vram = (VRAM + 0x14000); // a host address
+#endif
 
     InitSpriteTextFont(&gSoundRoomText.font, (void *)vram, 5);
 

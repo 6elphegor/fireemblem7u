@@ -49,6 +49,13 @@ REGIONS = {0x02: ('Ewram', 0x02000000, 0x40000), 0x03: ('Iwram', 0x03000000, 0x8
 NM = os.environ.get('HOSTRAM_NM', 'arm-none-eabi-nm')
 
 
+# Buffers the battle animation scripts are decompressed into: BanimScrUnpack
+# widens each 4-byte word into an AnimScr cell, 8 bytes on a 64-bit host, so
+# they need twice their GBA size (docs/port-data.md, "Animation scripts").
+# name: GBA size (None: up to the next RAM symbol).
+WIDENED = {'gBanimScrLeft': 0x2A00, 'gBanimScrRight': 0x2A00, 'gOpInfoFrameBuf': None}
+
+
 def ld_ram_symbols():
     syms = {}
     for line in open(os.path.join(ROOT, 'symbols.ld')):
@@ -198,6 +205,9 @@ def main():
         if not gs:
             gs = gap(a)
             hs = gs * he // ge if ge else gs
+        if n in WIDENED:
+            gs = WIDENED[n] or gs
+            hs = 2 * gs
         layout[n] = (region, a - region[1], gs, hs, ha)
     # RAM_ADDR(0x0203A98C) (include/gbafe/global.h): an unnamed address, a
     # zero-size label at the same place in the image

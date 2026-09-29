@@ -637,7 +637,11 @@ void sub_08054F30(struct BanimUnkStructComm * buf)
         {
             if (buf->unk0E < 4)
             {
+#if PLATFORM_GBA
                 int vram = ((buf->unk04 + 0x40) * 0x20 + VRAM);
+#else
+                uintptr_t vram = ((buf->unk04 + 0x40) * 0x20 + VRAM); // a host address
+#endif
                 RegisterDataMove(vramA, (void *)(buf->unk1C + vram), 0x800);
                 vram = (buf->unk0A * 0x20 + VRAM);
                 RegisterDataMove(vramB, (void *)(buf->unk1C + vram), 0x800);

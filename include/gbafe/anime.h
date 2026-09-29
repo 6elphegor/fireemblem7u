@@ -24,6 +24,10 @@ typedef uintptr_t AnimScr;
 typedef u32 AnimScr;
 #endif
 #else
+// (always wide off the GBA: a cell must hold a pointer)
+#ifndef ANIMSCR_WIDE
+#define ANIMSCR_WIDE 1
+#endif
 typedef uintptr_t AnimScr;
 #endif
 

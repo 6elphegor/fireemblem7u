@@ -155,6 +155,18 @@ void AnimSort(void)
 
 void AnimDelete(struct Anim * anim)
 {
+#if !PLATFORM_GBA
+    // Deleting the last anim of the list: the GBA writes pNext->pPrev
+    // through NULL, into the BIOS region (ignored)
+    if (anim->pNext == NULL)
+    {
+        if (anim->pPrev == NULL)
+            sFirstAnim = NULL;
+        else
+            anim->pPrev->pNext = NULL;
+    }
+    else
+#endif
     if (anim->pPrev == NULL)
     {
         sFirstAnim = anim->pNext;

@@ -259,6 +259,11 @@ void UpdateBanimFrame(void)
 
         gpEfxUnitPaletteBackup[POS_L] = &gBanimPaletteLeft[bid_pal * 0x10];
         CpuFastSet(&gBanimPaletteLeft[bid_pal * 0x10], &gPal[0x17 * 0x10], 8);
+#if !PLATFORM_GBA
+        // without a triangle attack the pointer is NULL: the GBA copies
+        // open-bus words from the BIOS region into the palette
+        if (gBanimTriAtkPalettes[0] != NULL)
+#endif
         CpuFastSet(gBanimTriAtkPalettes[0], &gPal[0x18 * 0x10], 8);
 
         EnablePalSync();
@@ -290,6 +295,11 @@ void UpdateBanimFrame(void)
 
         gpEfxUnitPaletteBackup[POS_R] = &gBanimPaletteRight[bid_pal * 0x10];
         CpuFastSet(&gBanimPaletteRight[bid_pal * 0x10], &gPal[0x19 * 0x10], 8);
+#if !PLATFORM_GBA
+        // without a triangle attack the pointer is NULL: the GBA copies
+        // open-bus words from the BIOS region into the palette
+        if (gBanimTriAtkPalettes[1] != NULL)
+#endif
         CpuFastSet(gBanimTriAtkPalettes[1], &gPal[0x1A * 0x10], 8);
 
         EnablePalSync();
