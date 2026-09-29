@@ -176,10 +176,13 @@ int GetBanimPalette(int banim_id, int pos)
         return banim_id;
     }
 }
-#if ANIMSCR_WIDE || BANIM_SHEET_INDEX
+#if ANIMSCR_WIDE || BANIM_SHEET_INDEX || BANIM_SCR_UNPACK
 // Decompress a battle animation script to dst: widen its 4-byte words to
 // cells (in place, from the end), then make each FRAME's sheet word a
 // pointer with BANIM_SHEET.  dst must hold the decompressed size in cells.
+// Each pass is compiled only where it does something (a cell wider than 4
+// bytes; sheet indices), so the GBA builds of one switch spend no time on
+// the other.
 void BanimScrUnpack(const void * src, void * dst)
 {
     unsigned n = (*(const u32 *) src >> 8) / 4; // words (LZ77 header: size << 8)
@@ -188,16 +191,18 @@ void BanimScrUnpack(const void * src, void * dst)
 
     LZ77UnCompWram(src, dst);
 
-#if ANIMSCR_WIDE
-    for (i = n; i-- != 0; )
+    if (sizeof(AnimScr) > 4)
     {
-        u32 word;
+        for (i = n; i-- != 0; )
+        {
+            u32 word;
 
-        memcpy(&word, (const u8 *) dst + 4 * i, 4);
-        cell[i] = word;
+            memcpy(&word, (const u8 *) dst + 4 * i, 4);
+            cell[i] = word;
+        }
     }
-#endif
 
+#if BANIM_SHEET_INDEX || BANIM_SCR_UNPACK
     for (i = 0; i < n; )
     {
         if ((cell[i] >> 24) == 0x86 && i + 3 <= n) // FRAME: instruction, sheet, OAM offset
@@ -210,6 +215,7 @@ void BanimScrUnpack(const void * src, void * dst)
             i++;
         }
     }
+#endif
 }
 #endif
 

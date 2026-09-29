@@ -338,7 +338,7 @@ extern const void * const gBanimSheets[];
 #define BANIM_SHEET(word) ((const void *)(uintptr_t)(word))
 #endif
 
-#if ANIMSCR_WIDE || BANIM_SHEET_INDEX
+#if ANIMSCR_WIDE || BANIM_SHEET_INDEX || BANIM_SCR_UNPACK
 void BanimScrUnpack(const void * src, void * dst);
 #else
 #define BanimScrUnpack(src, dst) LZ77UnCompWram(src, dst)
