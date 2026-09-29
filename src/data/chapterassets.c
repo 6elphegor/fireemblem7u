@@ -1,5 +1,54 @@
 #include "gbafe.h"
 
+extern const u16 gUnk_08CE1D0C[], gUnk_08CE1D10[], gUnk_08CE1D14[], gUnk_08CE1D50[],
+    gUnk_08CE1D5C[], gUnk_08CE1D68[], gUnk_08CE1DA8[], gUnk_08CE1DD0[], gUnk_08CE1E20[],
+    gUnk_08CE1E40[], gUnk_08CE1E44[], gUnk_08CE1E60[], gUnk_08CE1E80[], gUnk_08CE1E84[],
+    gUnk_08CE1EAC[], gUnk_08CE1EB0[], gUnk_08CE1EB4[], gUnk_08CE1F68[], gUnk_08CE1F78[],
+    gUnk_08CE1F84[], gUnk_08CE1FB8[], gUnk_08CE1FBC[], gUnk_08CE1FC0[], gUnk_08CE1FCC[],
+    gUnk_08CE1FD4[], gUnk_08CE1FDC[], gUnk_08CE2044[], gUnk_08CE2054[], gUnk_08CE207C[],
+    gUnk_08CE208C[], gUnk_08CE20B4[], gUnk_08CE20C4[], gUnk_08CE20CC[], gUnk_08CE20D0[],
+    gUnk_08CE2110[], gUnk_08CE212C[], gUnk_08CE2130[], gUnk_08CE2138[], gUnk_08CE213C[],
+    gUnk_08CE2140[], gUnk_08CE2148[], gUnk_08CE214C[], gUnk_08CE2150[], gUnk_08CE21D0[],
+    gUnk_08CE21E0[], gUnk_08CE2208[], gUnk_08CE2218[], gUnk_08CE222C[], gUnk_08CE2238[],
+    gUnk_08CE2240[], gUnk_08CE2298[], gUnk_08CE229C[], gUnk_08CE22A4[], gUnk_08CE22B0[],
+    gUnk_08CE22BC[], gUnk_08CE22C4[], gUnk_08CE22C8[], gUnk_08CE22D4[], gUnk_08CE22E8[],
+    gUnk_08CE2364[], gUnk_08CE2374[], gUnk_08CE2388[], gUnk_08CE23C8[], gUnk_08CE23D0[],
+    gUnk_08CE23D4[], gUnk_08CE23D8[], gUnk_08CE23DC[], gUnk_08CE2434[], gUnk_08CE2444[],
+    gUnk_08CE2458[], gUnk_08CE2498[], gUnk_08CE249C[], gUnk_08CE24A0[], gUnk_08CE24A8[],
+    gUnk_08CE24AC[], gUnk_08CE24B0[], gUnk_08CE24B4[], gUnk_08CE2540[], gUnk_08CE2544[],
+    gUnk_08CE2548[], gUnk_08CE2594[], gUnk_08CE2684[], gUnk_08CE2780[], gUnk_08CE2820[],
+    gUnk_08CE2824[], gUnk_08CE282C[], gUnk_08CE2864[], gUnk_08CE2870[], gUnk_08CE2898[],
+    gUnk_08CE289C[], gUnk_08CE28A0[], gUnk_08CE28A4[], gUnk_08CE28A8[], gUnk_08CE290C[],
+    gUnk_08CE2910[], gUnk_08CE291C[], gUnk_08CE2920[], gUnk_08CE292C[], gUnk_08CE2938[],
+    gUnk_08CE293C[], gUnk_08CE2948[], gUnk_08CE2954[], gUnk_08CE2958[], gUnk_08CE295C[],
+    gUnk_08CE2960[], gUnk_08CE2964[], gUnk_08CE2A34[], gUnk_08CE2A40[], gUnk_08CE2A4C[],
+    gUnk_08CE2A58[], gUnk_08CE2A64[], gUnk_08CE2A68[], gUnk_08CE2A6C[], gUnk_08CE2AE8[],
+    gUnk_08CE2AEC[], gUnk_08CE2AF0[], gUnk_08CE2AF4[], gUnk_08CE2AF8[], gUnk_08CE2AFC[],
+    gUnk_08CE2B64[], gUnk_08CE2B68[], gUnk_08CE2B80[], gUnk_08CE2B84[], gUnk_08CE2B88[],
+    gUnk_08CE2B8C[], gUnk_08CE2B90[], gUnk_08CE2B94[], gUnk_08CE2B9C[], gUnk_08CE2BA4[],
+    gUnk_08CE2BAC[], gUnk_08CE2BB4[], gUnk_08CE2BBC[], gUnk_08CE2BC4[], gUnk_08CE2BCC[],
+    gUnk_08CE2BD4[], gUnk_08CE2BDC[], gUnk_08CE2BE4[], gUnk_08CE2BF0[], gUnk_08CE2CFC[],
+    gUnk_08CE2D0C[], gUnk_08CE2D20[], gUnk_08CE2D24[], gUnk_08CE2D78[], gUnk_08CE2D84[],
+    gUnk_08CE2D90[], gUnk_08CE2D9C[], gUnk_08CE2DA0[], gUnk_08CE2DF8[], gUnk_08CE2E08[],
+    gUnk_08CE2E30[], gUnk_08CE2E40[], gUnk_08CE2E68[], gUnk_08CE2E6C[], gUnk_08CE2E70[],
+    gUnk_08CE2E74[], gUnk_08CE2ECC[], gUnk_08CE2F9C[], gUnk_08CE2FF0[], gUnk_08CE302C[],
+    gUnk_08CE3074[], gUnk_08CE30B0[], gUnk_08CE3170[], gUnk_08CE3174[], gUnk_08CE31FC[],
+    gUnk_08CE3200[], gUnk_08CE3204[], gUnk_08CE3208[], gUnk_08CE320C[], gUnk_08CE328C[],
+    gUnk_08CE3290[], gUnk_08CE3294[], gUnk_08CE3298[], gUnk_08CE32A0[], gUnk_08CE32A4[],
+    gUnk_08CE32AC[], gUnk_08CE32B4[], gUnk_08CE32C0[], gUnk_08CE32D0[], gUnk_08CE32E4[],
+    gUnk_08CE32E8[], gUnk_08CE32F0[], gUnk_08CE32F4[], gUnk_08CE32FC[], gUnk_08CE3304[],
+    gUnk_08CE3308[], gUnk_08CE330C[], gUnk_08CE3318[], gUnk_08CE3324[], gUnk_08CE3328[],
+    gUnk_08CE3330[], gUnk_08CE3334[], gUnk_08CE3338[], gUnk_08CE333C[], gUnk_08CE3340[],
+    gUnk_08CE3344[], gUnk_08CE3360[], gUnk_08CE3380[], gUnk_08CE3398[], gUnk_08CE33B0[],
+    gUnk_08CE33BC[], gUnk_08CE33C8[], gUnk_08CE33D0[], gUnk_08CE33D8[], gUnk_08CE33F4[],
+    gUnk_08CE3414[], gUnk_08CE3418[], gUnk_08CE3620[], gUnk_08CE3630[], gUnk_08CE3658[],
+    gUnk_08CE365C[], gUnk_08CE3660[], gUnk_08CE36AC[], gUnk_08CE36B0[], gUnk_08CE36E4[],
+    gUnk_08CE36E8[], gUnk_08CE36F0[], gUnk_08CE36F4[], gUnk_08CE36F8[], gUnk_08CE3760[],
+    gUnk_08CE376C[], gUnk_08CE3778[], gUnk_08CE3784[], gUnk_08CE3788[], gUnk_08CE378C[],
+    gUnk_08CE3808[], gUnk_08CE380C[], gUnk_08CE3840[], gUnk_08CE3900[], gUnk_08CE391C[],
+    gUnk_08CE393C[], gUnk_08CE3958[], gUnk_08CE3978[], gUnk_08CE3994[], gUnk_08CE3A14[],
+    gUnk_08CE3A24[], gUnk_08CE3A5C[], gUnk_08CE3A78[];
+
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
 extern const u8 ChapterEvents_Ch00[];
 extern const u8 ChapterEvents_Ch01[];
@@ -202,51 +251,51 @@ extern const u8 gUnk_08B95F50[];
 extern const u8 gUnk_08B95F98[];
 extern const u8 gUnk_08B95FE0[];
 extern const u8 gUnk_08B960A0[];
-extern const u8 gUnk_08CE1D20[];
-extern const u8 gUnk_08CE1D6C[];
-extern const u8 gUnk_08CE1DB8[];
-extern const u8 gUnk_08CE1EC0[];
-extern const u8 gUnk_08CE1F88[];
-extern const u8 gUnk_08CE1FE4[];
-extern const u8 gUnk_08CE2058[];
-extern const u8 gUnk_08CE2090[];
-extern const u8 gUnk_08CE20D4[];
-extern const u8 gUnk_08CE2114[];
-extern const u8 gUnk_08CE2158[];
-extern const u8 gUnk_08CE21E4[];
-extern const u8 gUnk_08CE2244[];
-extern const u8 gUnk_08CE22EC[];
-extern const u8 gUnk_08CE238C[];
-extern const u8 gUnk_08CE23E0[];
-extern const u8 gUnk_08CE245C[];
-extern const u8 gUnk_08CE24BC[];
-extern const u8 gUnk_08CE254C[];
-extern const u8 gUnk_08CE27F0[];
-extern const u8 gUnk_08CE2834[];
-extern const u8 gUnk_08CE2874[];
-extern const u8 gUnk_08CE28AC[];
-extern const u8 gUnk_08CE2968[];
-extern const u8 gUnk_08CE2A70[];
-extern const u8 gUnk_08CE2B04[];
-extern const u8 gUnk_08CE2BF4[];
-extern const u8 gUnk_08CE2D30[];
-extern const u8 gUnk_08CE2DA4[];
-extern const u8 gUnk_08CE2E0C[];
-extern const u8 gUnk_08CE2E44[];
-extern const u8 gUnk_08CE2E78[];
-extern const u8 gUnk_08CE3178[];
-extern const u8 gUnk_08CE3214[];
-extern const u8 gUnk_08CE341C[];
-extern const u8 gUnk_08CE3634[];
-extern const u8 gUnk_08CE3664[];
-extern const u8 gUnk_08CE36B4[];
-extern const u8 gUnk_08CE3700[];
-extern const u8 gUnk_08CE3790[];
-extern const u8 gUnk_08CE3810[];
-extern const u8 gUnk_08CE39B4[];
-extern const u8 gUnk_08CE3A38[];
-extern const u8 gUnk_08CE3A60[];
-extern const u8 gUnk_08CE3B40[];
+extern const struct MapChange gUnk_08CE1D20[];
+extern const struct MapChange gUnk_08CE1D6C[];
+extern const struct MapChange gUnk_08CE1DB8[];
+extern const struct MapChange gUnk_08CE1EC0[];
+extern const struct MapChange gUnk_08CE1F88[];
+extern const struct MapChange gUnk_08CE1FE4[];
+extern const struct MapChange gUnk_08CE2058[];
+extern const struct MapChange gUnk_08CE2090[];
+extern const struct MapChange gUnk_08CE20D4[];
+extern const struct MapChange gUnk_08CE2114[];
+extern const struct MapChange gUnk_08CE2158[];
+extern const struct MapChange gUnk_08CE21E4[];
+extern const struct MapChange gUnk_08CE2244[];
+extern const struct MapChange gUnk_08CE22EC[];
+extern const struct MapChange gUnk_08CE238C[];
+extern const struct MapChange gUnk_08CE23E0[];
+extern const struct MapChange gUnk_08CE245C[];
+extern const struct MapChange gUnk_08CE24BC[];
+extern const struct MapChange gUnk_08CE254C[];
+extern const struct MapChange gUnk_08CE27F0[];
+extern const struct MapChange gUnk_08CE2834[];
+extern const struct MapChange gUnk_08CE2874[];
+extern const struct MapChange gUnk_08CE28AC[];
+extern const struct MapChange gUnk_08CE2968[];
+extern const struct MapChange gUnk_08CE2A70[];
+extern const struct MapChange gUnk_08CE2B04[];
+extern const struct MapChange gUnk_08CE2BF4[];
+extern const struct MapChange gUnk_08CE2D30[];
+extern const struct MapChange gUnk_08CE2DA4[];
+extern const struct MapChange gUnk_08CE2E0C[];
+extern const struct MapChange gUnk_08CE2E44[];
+extern const struct MapChange gUnk_08CE2E78[];
+extern const struct MapChange gUnk_08CE3178[];
+extern const struct MapChange gUnk_08CE3214[];
+extern const struct MapChange gUnk_08CE341C[];
+extern const struct MapChange gUnk_08CE3634[];
+extern const struct MapChange gUnk_08CE3664[];
+extern const struct MapChange gUnk_08CE36B4[];
+extern const struct MapChange gUnk_08CE3700[];
+extern const struct MapChange gUnk_08CE3790[];
+extern const struct MapChange gUnk_08CE3810[];
+extern const struct MapChange gUnk_08CE39B4[];
+extern const struct MapChange gUnk_08CE3A38[];
+extern const struct MapChange gUnk_08CE3A60[];
+extern const struct MapChange gUnk_08CE3B40[];
 extern const u8 gUnk_08CE791C[];
 extern const u8 gUnk_08CE7920[];
 extern const u8 gUnk_08CE7AC0[];
@@ -594,4 +643,948 @@ CONST_DATA EventScr const * gWmEventScripts[] = {
     [0x2A] = (EventScr const *) gUnk_08CECA24, // CHAPTER_2A
     [0x2B] = (EventScr const *) gUnk_08CECBB0, // CHAPTER_2C
     [0x2C] = (EventScr const *) gUnk_08CED554, // CHAPTER_2D
+};
+
+SECTION(".rodata.08CE1D20")
+const struct MapChange gUnk_08CE1D20[] = {
+    { .xOrigin = 0xD, .xSize = 1, .ySize = 2, .data = gUnk_08CE1D0C },
+    { .id = 1, .xOrigin = 0xD, .xSize = 1, .ySize = 2, .data = gUnk_08CE1D10 },
+    { .id = 2, .xOrigin = 8, .yOrigin = 1, .xSize = 2, .ySize = 3, .data = gUnk_08CE1D14 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE1D6C")
+const struct MapChange gUnk_08CE1D6C[] = {
+    { .xOrigin = 2, .yOrigin = 5, .xSize = 3, .ySize = 2, .data = gUnk_08CE1D50 },
+    { .id = 1, .xOrigin = 1, .yOrigin = 1, .xSize = 3, .ySize = 2, .data = gUnk_08CE1D5C },
+    { .id = 2, .xOrigin = 3, .yOrigin = 6, .xSize = 1, .ySize = 1, .data = gUnk_08CE1D68 },
+    { .id = 3, .xOrigin = 2, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = &gUnk_08CE1D68[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE1DB8")
+const struct MapChange gUnk_08CE1DB8[] = {
+    { .xOrigin = 3, .yOrigin = 2, .xSize = 2, .ySize = 4, .data = gUnk_08CE1DA8 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE1EC0")
+const struct MapChange gUnk_08CE1EC0[] = {
+    { .xOrigin = 0xA, .yOrigin = 3, .xSize = 8, .ySize = 5, .data = gUnk_08CE1DD0 },
+    { .id = 1, .xOrigin = 6, .xSize = 4, .ySize = 4, .data = gUnk_08CE1E20 },
+    { .id = 2, .xOrigin = 4, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE1E40 },
+    { .id = 3, .xOrigin = 7, .yOrigin = 8, .xSize = 1, .ySize = 1, .data = &gUnk_08CE1E40[1] },
+    { .id = 4, .xOrigin = 0xF, .xSize = 3, .ySize = 5, .data = gUnk_08CE1E44 },
+    { .id = 5, .xOrigin = 0xE, .yOrigin = 6, .xSize = 4, .ySize = 4, .data = &gUnk_08CE1E60[1] },
+    { .id = 6, .xOrigin = 0xC, .yOrigin = 6, .xSize = 1, .ySize = 1, .data = &gUnk_08CE1E80[1] },
+    { .id = 7, .xOrigin = 0x10, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE1E84 },
+    { .id = 8, .xOrigin = 0xA, .xSize = 4, .ySize = 5, .data = &gUnk_08CE1E84[1] },
+    { .id = 9, .xOrigin = 2, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = &gUnk_08CE1EAC[1] },
+    { .id = 0xA, .xOrigin = 1, .yOrigin = 7, .xSize = 1, .ySize = 1, .data = gUnk_08CE1EB0 },
+    {
+        .id = 0xB,
+        .xOrigin = 4,
+        .yOrigin = 0xC,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE1EB0[1],
+    },
+    { .id = 0xC, .xOrigin = 0xA, .xSize = 5, .ySize = 1, .data = gUnk_08CE1EB4 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE1F88")
+const struct MapChange gUnk_08CE1F88[] = {
+    { .xOrigin = 0x10, .xSize = 3, .ySize = 3, .data = gUnk_08CE1F68 },
+    { .id = 1, .xOrigin = 2, .yOrigin = 9, .xSize = 3, .ySize = 2, .data = &gUnk_08CE1F78[1] },
+    {
+        .id = 2,
+        .xOrigin = 0x11,
+        .yOrigin = 2,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE1F84[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE1FE4")
+const struct MapChange gUnk_08CE1FE4[] = {
+    { .xOrigin = 2, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE1FB8 },
+    { .id = 1, .xOrigin = 2, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE1FBC },
+    { .id = 2, .xOrigin = 3, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE1FC0 },
+    { .id = 3, .xOrigin = 2, .yOrigin = 0xB, .xSize = 3, .ySize = 2, .data = &gUnk_08CE1FC0[1] },
+    { .id = 4, .xOrigin = 0xD, .yOrigin = 7, .xSize = 2, .ySize = 2, .data = &gUnk_08CE1FCC[1] },
+    { .id = 5, .xOrigin = 8, .yOrigin = 7, .xSize = 2, .ySize = 2, .data = &gUnk_08CE1FD4[1] },
+    { .id = 6, .xOrigin = 3, .yOrigin = 5, .xSize = 1, .ySize = 2, .data = &gUnk_08CE1FDC[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2058")
+const struct MapChange gUnk_08CE2058[] = {
+    { .xOrigin = 0xC, .yOrigin = 1, .xSize = 3, .ySize = 3, .data = gUnk_08CE2044 },
+    { .id = 1, .xOrigin = 0xD, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2054[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2090")
+const struct MapChange gUnk_08CE2090[] = {
+    { .yOrigin = 3, .xSize = 3, .ySize = 3, .data = gUnk_08CE207C },
+    { .id = 1, .xOrigin = 1, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = &gUnk_08CE208C[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE20D4")
+const struct MapChange gUnk_08CE20D4[] = {
+    { .xOrigin = 0xE, .yOrigin = 0xA, .xSize = 3, .ySize = 3, .data = gUnk_08CE20B4 },
+    {
+        .id = 1,
+        .xOrigin = 0x10,
+        .yOrigin = 0xE,
+        .xSize = 1,
+        .ySize = 4,
+        .data = &gUnk_08CE20C4[1],
+    },
+    {
+        .id = 2,
+        .xOrigin = 6,
+        .yOrigin = 0x10,
+        .xSize = 2,
+        .ySize = 1,
+        .data = &gUnk_08CE20CC[1],
+    },
+    {
+        .id = 3,
+        .xOrigin = 0xF,
+        .yOrigin = 0xC,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE20D0[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2114")
+const struct MapChange gUnk_08CE2114[] = {
+    { .xOrigin = 0x10, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2110 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2158")
+const struct MapChange gUnk_08CE2158[] = {
+    { .xOrigin = 1, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE212C },
+    { .id = 1, .xOrigin = 3, .xSize = 2, .ySize = 2, .data = gUnk_08CE2130 },
+    { .id = 2, .xOrigin = 6, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE2138 },
+    { .id = 3, .xOrigin = 0xB, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE213C },
+    { .id = 4, .xOrigin = 0xD, .xSize = 2, .ySize = 2, .data = gUnk_08CE2140 },
+    { .id = 5, .xOrigin = 0xF, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE2148 },
+    { .id = 6, .xOrigin = 0xB, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = gUnk_08CE214C },
+    { .id = 7, .xOrigin = 0xB, .yOrigin = 7, .xSize = 1, .ySize = 1, .data = &gUnk_08CE214C[1] },
+    { .id = 8, .xOrigin = 0xD, .yOrigin = 4, .xSize = 2, .ySize = 2, .data = gUnk_08CE2150 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE21E4")
+const struct MapChange gUnk_08CE21E4[] = {
+    { .yOrigin = 6, .xSize = 3, .ySize = 3, .data = gUnk_08CE21D0 },
+    { .id = 1, .xOrigin = 1, .yOrigin = 8, .xSize = 1, .ySize = 1, .data = &gUnk_08CE21E0[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2244")
+const struct MapChange gUnk_08CE2244[] = {
+    { .xSize = 3, .ySize = 3, .data = gUnk_08CE2208 },
+    { .id = 1, .xOrigin = 0xB, .yOrigin = 7, .xSize = 3, .ySize = 3, .data = &gUnk_08CE2218[1] },
+    { .id = 2, .xOrigin = 6, .yOrigin = 1, .xSize = 3, .ySize = 2, .data = gUnk_08CE222C },
+    { .id = 3, .xOrigin = 2, .yOrigin = 3, .xSize = 1, .ySize = 4, .data = gUnk_08CE2238 },
+    { .id = 4, .xOrigin = 1, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2240 },
+    { .id = 5, .xOrigin = 0xC, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2240[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE22EC")
+const struct MapChange gUnk_08CE22EC[] = {
+    { .xOrigin = 4, .yOrigin = 1, .xSize = 3, .ySize = 1, .data = gUnk_08CE2298 },
+    { .id = 1, .xOrigin = 4, .yOrigin = 2, .xSize = 3, .ySize = 1, .data = &gUnk_08CE229C[1] },
+    { .id = 2, .xOrigin = 3, .yOrigin = 9, .xSize = 3, .ySize = 2, .data = gUnk_08CE22A4 },
+    { .id = 3, .xOrigin = 0xA, .yOrigin = 3, .xSize = 3, .ySize = 2, .data = gUnk_08CE22B0 },
+    { .id = 4, .xOrigin = 1, .yOrigin = 4, .xSize = 1, .ySize = 4, .data = gUnk_08CE22BC },
+    { .id = 5, .xOrigin = 0xF, .yOrigin = 9, .xSize = 1, .ySize = 3, .data = gUnk_08CE22C4 },
+    {
+        .id = 6,
+        .xOrigin = 0xD,
+        .yOrigin = 0xC,
+        .xSize = 3,
+        .ySize = 2,
+        .data = &gUnk_08CE22C8[1],
+    },
+    { .id = 7, .xOrigin = 0xD, .yOrigin = 1, .xSize = 3, .ySize = 3, .data = &gUnk_08CE22D4[1] },
+    { .id = 8, .xOrigin = 0xE, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE22E8 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE238C")
+const struct MapChange gUnk_08CE238C[] = {
+    { .xOrigin = 8, .xSize = 3, .ySize = 3, .data = gUnk_08CE2364 },
+    { .id = 1, .xOrigin = 5, .yOrigin = 0xC, .xSize = 3, .ySize = 3, .data = &gUnk_08CE2374[1] },
+    { .id = 2, .xOrigin = 9, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2388 },
+    { .id = 3, .xOrigin = 6, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2388[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE23E0")
+const struct MapChange gUnk_08CE23E0[] = {
+    { .xOrigin = 2, .yOrigin = 2, .xSize = 2, .ySize = 2, .data = gUnk_08CE23C8 },
+    { .id = 1, .xOrigin = 9, .yOrigin = 1, .xSize = 1, .ySize = 2, .data = gUnk_08CE23D0 },
+    { .id = 2, .xOrigin = 9, .yOrigin = 4, .xSize = 1, .ySize = 2, .data = gUnk_08CE23D4 },
+    { .id = 3, .xOrigin = 1, .yOrigin = 0xB, .xSize = 1, .ySize = 1, .data = gUnk_08CE23D8 },
+    { .id = 4, .xOrigin = 2, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = &gUnk_08CE23D8[1] },
+    { .id = 5, .xOrigin = 4, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE23DC },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE245C")
+const struct MapChange gUnk_08CE245C[] = {
+    { .xOrigin = 0xB, .yOrigin = 0xC, .xSize = 3, .ySize = 3, .data = gUnk_08CE2434 },
+    { .id = 1, .yOrigin = 9, .xSize = 3, .ySize = 3, .data = &gUnk_08CE2444[1] },
+    { .id = 2, .xOrigin = 0xC, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE2458 },
+    { .id = 3, .xOrigin = 1, .yOrigin = 0xB, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2458[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE24BC")
+const struct MapChange gUnk_08CE24BC[] = {
+    { .xOrigin = 0xE, .yOrigin = 0xA, .xSize = 1, .ySize = 2, .data = gUnk_08CE2498 },
+    { .id = 1, .xOrigin = 0xE, .yOrigin = 0xA, .xSize = 1, .ySize = 2, .data = gUnk_08CE249C },
+    { .id = 2, .xOrigin = 6, .xSize = 2, .ySize = 2, .data = gUnk_08CE24A0 },
+    { .id = 3, .xOrigin = 1, .yOrigin = 0x15, .xSize = 1, .ySize = 1, .data = gUnk_08CE24A8 },
+    { .id = 4, .xOrigin = 2, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = &gUnk_08CE24A8[1] },
+    { .id = 5, .xOrigin = 4, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE24AC },
+    {
+        .id = 6,
+        .xOrigin = 1,
+        .yOrigin = 0x13,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE24AC[1],
+    },
+    { .id = 7, .xOrigin = 2, .yOrigin = 0x13, .xSize = 1, .ySize = 1, .data = gUnk_08CE24B0 },
+    { .id = 8, .xOrigin = 3, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = &gUnk_08CE24B0[1] },
+    { .id = 9, .xOrigin = 5, .yOrigin = 6, .xSize = 1, .ySize = 2, .data = &gUnk_08CE24B4[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE254C")
+const struct MapChange gUnk_08CE254C[] = {
+    { .xOrigin = 3, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE2540 },
+    { .id = 1, .xOrigin = 8, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2540[1] },
+    { .id = 2, .xOrigin = 0xC, .yOrigin = 4, .xSize = 1, .ySize = 1, .data = gUnk_08CE2544 },
+    {
+        .id = 3,
+        .xOrigin = 0x11,
+        .yOrigin = 6,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2544[1],
+    },
+    { .id = 4, .xOrigin = 0xF, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE2548 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE27F0")
+const struct MapChange gUnk_08CE27F0[] = {
+    { .xOrigin = 0xD, .yOrigin = 1, .xSize = 6, .ySize = 0x14, .data = gUnk_08CE2594 },
+    { .id = 1, .yOrigin = 3, .xSize = 7, .ySize = 0x12, .data = gUnk_08CE2684 },
+    { .id = 2, .xOrigin = 6, .yOrigin = 0xE, .xSize = 8, .ySize = 7, .data = gUnk_08CE2780 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2834")
+const struct MapChange gUnk_08CE2834[] = {
+    { .xOrigin = 7, .yOrigin = 0xA, .xSize = 3, .ySize = 1, .data = gUnk_08CE2820 },
+    { .id = 1, .xOrigin = 7, .yOrigin = 0xB, .xSize = 3, .ySize = 1, .data = &gUnk_08CE2824[1] },
+    { .id = 2, .xOrigin = 9, .yOrigin = 0xD, .xSize = 1, .ySize = 3, .data = gUnk_08CE282C },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2874")
+const struct MapChange gUnk_08CE2874[] = {
+    { .xOrigin = 0x11, .yOrigin = 0xD, .xSize = 3, .ySize = 2, .data = gUnk_08CE2864 },
+    { .id = 1, .xOrigin = 0x12, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE2870 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE28AC")
+const struct MapChange gUnk_08CE28AC[] = {
+    { .xOrigin = 3, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2898 },
+    { .id = 1, .xOrigin = 0xA, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2898[1] },
+    { .id = 2, .xOrigin = 3, .yOrigin = 9, .xSize = 2, .ySize = 1, .data = gUnk_08CE289C },
+    { .id = 3, .xOrigin = 0x13, .yOrigin = 0xC, .xSize = 1, .ySize = 2, .data = gUnk_08CE28A0 },
+    { .id = 4, .xOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE28A4 },
+    {
+        .id = 5,
+        .xOrigin = 0x13,
+        .yOrigin = 0xF,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE28A4[1],
+    },
+    { .id = 6, .xOrigin = 0x14, .yOrigin = 0xF, .xSize = 1, .ySize = 1, .data = gUnk_08CE28A8 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2968")
+const struct MapChange gUnk_08CE2968[] = {
+    { .xOrigin = 3, .yOrigin = 4, .xSize = 3, .ySize = 1, .data = gUnk_08CE290C },
+    { .id = 1, .xOrigin = 1, .yOrigin = 6, .xSize = 3, .ySize = 2, .data = &gUnk_08CE2910[1] },
+    { .id = 2, .xOrigin = 1, .yOrigin = 8, .xSize = 1, .ySize = 1, .data = &gUnk_08CE291C[1] },
+    { .id = 3, .xOrigin = 3, .yOrigin = 0xB, .xSize = 3, .ySize = 2, .data = gUnk_08CE2920 },
+    { .id = 4, .xOrigin = 2, .yOrigin = 0x11, .xSize = 1, .ySize = 1, .data = gUnk_08CE292C },
+    {
+        .id = 5,
+        .xOrigin = 0x10,
+        .yOrigin = 0xA,
+        .xSize = 2,
+        .ySize = 3,
+        .data = &gUnk_08CE292C[1],
+    },
+    {
+        .id = 6,
+        .xOrigin = 9,
+        .yOrigin = 0x10,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2938[1],
+    },
+    { .id = 7, .xOrigin = 0x13, .yOrigin = 0xD, .xSize = 2, .ySize = 3, .data = gUnk_08CE293C },
+    { .id = 8, .xOrigin = 0xF, .yOrigin = 0x11, .xSize = 3, .ySize = 2, .data = gUnk_08CE2948 },
+    { .id = 9, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE2954 },
+    {
+        .id = 0xA,
+        .xOrigin = 0x14,
+        .yOrigin = 0x11,
+        .xSize = 2,
+        .ySize = 1,
+        .data = &gUnk_08CE2954[1],
+    },
+    {
+        .id = 0xB,
+        .xOrigin = 0x15,
+        .yOrigin = 7,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2958[1],
+    },
+    { .id = 0xC, .xOrigin = 0xC, .yOrigin = 5, .xSize = 1, .ySize = 2, .data = gUnk_08CE295C },
+    { .id = 0xD, .xOrigin = 0x15, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE2960 },
+    { .id = 0xF, .xOrigin = 6, .yOrigin = 8, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2960[1] },
+    { .id = 0x10, .xOrigin = 2, .yOrigin = 0x13, .xSize = 1, .ySize = 1, .data = gUnk_08CE2964 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2A70")
+const struct MapChange gUnk_08CE2A70[] = {
+    { .xOrigin = 3, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE2A34 },
+    { .id = 1, .xOrigin = 2, .yOrigin = 5, .xSize = 3, .ySize = 2, .data = &gUnk_08CE2A34[1] },
+    { .id = 2, .yOrigin = 8, .xSize = 3, .ySize = 2, .data = &gUnk_08CE2A40[1] },
+    { .id = 3, .xOrigin = 0x12, .xSize = 3, .ySize = 2, .data = &gUnk_08CE2A4C[1] },
+    {
+        .id = 4,
+        .xOrigin = 0x10,
+        .yOrigin = 0xA,
+        .xSize = 3,
+        .ySize = 2,
+        .data = &gUnk_08CE2A58[1],
+    },
+    { .id = 5, .xOrigin = 3, .yOrigin = 6, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2A64[1] },
+    { .id = 6, .xOrigin = 1, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE2A68 },
+    {
+        .id = 7,
+        .xOrigin = 0x13,
+        .yOrigin = 1,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2A68[1],
+    },
+    { .id = 8, .xOrigin = 0x11, .yOrigin = 0xB, .xSize = 1, .ySize = 1, .data = gUnk_08CE2A6C },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2B04")
+const struct MapChange gUnk_08CE2B04[] = {
+    { .xOrigin = 0xA, .yOrigin = 4, .xSize = 2, .ySize = 1, .data = gUnk_08CE2AE8 },
+    { .id = 1, .xOrigin = 4, .yOrigin = 9, .xSize = 1, .ySize = 2, .data = gUnk_08CE2AEC },
+    { .id = 2, .xOrigin = 0x11, .yOrigin = 9, .xSize = 1, .ySize = 2, .data = gUnk_08CE2AF0 },
+    { .id = 3, .xOrigin = 4, .yOrigin = 0xF, .xSize = 1, .ySize = 2, .data = gUnk_08CE2AF4 },
+    { .id = 4, .xOrigin = 4, .yOrigin = 0x11, .xSize = 1, .ySize = 1, .data = gUnk_08CE2AF8 },
+    {
+        .id = 5,
+        .xOrigin = 5,
+        .yOrigin = 0x12,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2AF8[1],
+    },
+    { .id = 6, .xOrigin = 0xF, .yOrigin = 0xA, .xSize = 2, .ySize = 2, .data = gUnk_08CE2AFC },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2BF4")
+const struct MapChange gUnk_08CE2BF4[] = {
+    { .xOrigin = 0xA, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE2B64 },
+    {
+        .id = 1,
+        .xOrigin = 2,
+        .yOrigin = 0x12,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2B64[1],
+    },
+    { .id = 2, .xOrigin = 0x12, .yOrigin = 0x12, .xSize = 1, .ySize = 1, .data = gUnk_08CE2B68 },
+    { .id = 3, .xOrigin = 0xF, .xSize = 3, .ySize = 4, .data = &gUnk_08CE2B68[1] },
+    {
+        .id = 4,
+        .xOrigin = 0x12,
+        .yOrigin = 8,
+        .xSize = 1,
+        .ySize = 2,
+        .data = &gUnk_08CE2B80[1],
+    },
+    {
+        .id = 5,
+        .xOrigin = 0x12,
+        .yOrigin = 0xC,
+        .xSize = 1,
+        .ySize = 2,
+        .data = &gUnk_08CE2B84[1],
+    },
+    { .id = 6, .xOrigin = 2, .yOrigin = 0xC, .xSize = 1, .ySize = 2, .data = &gUnk_08CE2B88[1] },
+    {
+        .id = 7,
+        .xOrigin = 2,
+        .yOrigin = 0x10,
+        .xSize = 1,
+        .ySize = 2,
+        .data = &gUnk_08CE2B8C[1],
+    },
+    { .id = 8, .xOrigin = 6, .yOrigin = 4, .xSize = 1, .ySize = 2, .data = &gUnk_08CE2B90[1] },
+    { .id = 9, .xOrigin = 8, .yOrigin = 0xD, .xSize = 2, .ySize = 2, .data = &gUnk_08CE2B94[1] },
+    {
+        .id = 0xA,
+        .xOrigin = 0x10,
+        .yOrigin = 0xD,
+        .xSize = 2,
+        .ySize = 2,
+        .data = &gUnk_08CE2B9C[1],
+    },
+    {
+        .id = 0xB,
+        .xOrigin = 0x10,
+        .yOrigin = 5,
+        .xSize = 2,
+        .ySize = 2,
+        .data = &gUnk_08CE2BA4[1],
+    },
+    {
+        .id = 0xC,
+        .xOrigin = 0xC,
+        .yOrigin = 5,
+        .xSize = 2,
+        .ySize = 2,
+        .data = &gUnk_08CE2BAC[1],
+    },
+    { .id = 0xD, .xOrigin = 8, .yOrigin = 5, .xSize = 2, .ySize = 2, .data = &gUnk_08CE2BB4[1] },
+    { .id = 0xE, .xOrigin = 4, .yOrigin = 5, .xSize = 2, .ySize = 2, .data = &gUnk_08CE2BBC[1] },
+    {
+        .id = 0xF,
+        .xOrigin = 8,
+        .yOrigin = 0x11,
+        .xSize = 2,
+        .ySize = 2,
+        .data = &gUnk_08CE2BC4[1],
+    },
+    {
+        .id = 0x10,
+        .xOrigin = 0xC,
+        .yOrigin = 0x11,
+        .xSize = 2,
+        .ySize = 2,
+        .data = &gUnk_08CE2BCC[1],
+    },
+    {
+        .id = 0x11,
+        .xOrigin = 0x10,
+        .yOrigin = 0x11,
+        .xSize = 2,
+        .ySize = 2,
+        .data = &gUnk_08CE2BD4[1],
+    },
+    {
+        .id = 0x12,
+        .xOrigin = 8,
+        .yOrigin = 1,
+        .xSize = 2,
+        .ySize = 2,
+        .data = &gUnk_08CE2BDC[1],
+    },
+    {
+        .id = 0x13,
+        .xOrigin = 4,
+        .yOrigin = 1,
+        .xSize = 2,
+        .ySize = 3,
+        .data = &gUnk_08CE2BE4[1],
+    },
+    {
+        .id = 0x14,
+        .xOrigin = 0xA,
+        .yOrigin = 0xC,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2BF0[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2D30")
+const struct MapChange gUnk_08CE2D30[] = {
+    { .xOrigin = 0x10, .xSize = 3, .ySize = 3, .data = gUnk_08CE2CFC },
+    {
+        .id = 1,
+        .xOrigin = 0xC,
+        .yOrigin = 0xD,
+        .xSize = 3,
+        .ySize = 3,
+        .data = &gUnk_08CE2D0C[1],
+    },
+    { .id = 2, .xOrigin = 0x11, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2D20 },
+    {
+        .id = 3,
+        .xOrigin = 0xD,
+        .yOrigin = 0xF,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2D20[1],
+    },
+    { .id = 4, .xOrigin = 9, .yOrigin = 0x16, .xSize = 3, .ySize = 2, .data = gUnk_08CE2D24 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2DA4")
+const struct MapChange gUnk_08CE2DA4[] = {
+    { .xSize = 3, .ySize = 2, .data = gUnk_08CE2D78 },
+    { .id = 1, .xOrigin = 2, .yOrigin = 3, .xSize = 3, .ySize = 2, .data = gUnk_08CE2D84 },
+    { .id = 2, .xOrigin = 0x17, .yOrigin = 0xE, .xSize = 3, .ySize = 2, .data = gUnk_08CE2D90 },
+    { .id = 3, .xOrigin = 1, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE2D9C },
+    { .id = 4, .xOrigin = 3, .yOrigin = 4, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2D9C[1] },
+    { .id = 5, .xOrigin = 0x18, .yOrigin = 0xF, .xSize = 1, .ySize = 1, .data = gUnk_08CE2DA0 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2E0C")
+const struct MapChange gUnk_08CE2E0C[] = {
+    { .xOrigin = 0x15, .yOrigin = 7, .xSize = 3, .ySize = 3, .data = gUnk_08CE2DF8 },
+    {
+        .id = 1,
+        .xOrigin = 0x16,
+        .yOrigin = 9,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2E08[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2E44")
+const struct MapChange gUnk_08CE2E44[] = {
+    { .yOrigin = 0x15, .xSize = 3, .ySize = 3, .data = gUnk_08CE2E30 },
+    {
+        .id = 1,
+        .xOrigin = 1,
+        .yOrigin = 0x17,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE2E40[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE2E78")
+const struct MapChange gUnk_08CE2E78[] = {
+    { .xOrigin = 0xE, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE2E68 },
+    { .id = 1, .xOrigin = 0xF, .yOrigin = 4, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2E68[1] },
+    { .id = 2, .xOrigin = 0x10, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = gUnk_08CE2E6C },
+    { .id = 3, .xOrigin = 0xF, .yOrigin = 6, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2E6C[1] },
+    { .id = 4, .xOrigin = 0xD, .yOrigin = 0xB, .xSize = 1, .ySize = 2, .data = gUnk_08CE2E70 },
+    { .id = 5, .xOrigin = 0xF, .yOrigin = 0x15, .xSize = 2, .ySize = 1, .data = gUnk_08CE2E74 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3178")
+const struct MapChange gUnk_08CE3178[] = {
+    { .xOrigin = 2, .xSize = 0xF, .ySize = 7, .data = gUnk_08CE2ECC },
+    { .id = 1, .xOrigin = 0x12, .xSize = 7, .ySize = 6, .data = &gUnk_08CE2F9C[1] },
+    { .id = 2, .xOrigin = 0xD, .yOrigin = 8, .xSize = 6, .ySize = 5, .data = &gUnk_08CE2FF0[1] },
+    { .id = 3, .xOrigin = 2, .yOrigin = 0xA, .xSize = 7, .ySize = 5, .data = &gUnk_08CE302C[1] },
+    { .id = 4, .xOrigin = 0x14, .yOrigin = 0xC, .xSize = 5, .ySize = 6, .data = gUnk_08CE3074 },
+    { .id = 5, .xOrigin = 7, .yOrigin = 0x11, .xSize = 0xC, .ySize = 8, .data = gUnk_08CE30B0 },
+    { .id = 6, .xOrigin = 0xE, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE3170 },
+    {
+        .id = 7,
+        .xOrigin = 0xF,
+        .yOrigin = 0xA,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3170[1],
+    },
+    { .id = 8, .xOrigin = 0x10, .yOrigin = 0xA, .xSize = 1, .ySize = 1, .data = gUnk_08CE3174 },
+    {
+        .id = 9,
+        .xOrigin = 9,
+        .yOrigin = 0x17,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3174[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3214")
+const struct MapChange gUnk_08CE3214[] = {
+    { .xOrigin = 6, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE31FC },
+    {
+        .id = 1,
+        .xOrigin = 0x1A,
+        .yOrigin = 6,
+        .xSize = 1,
+        .ySize = 2,
+        .data = &gUnk_08CE31FC[1],
+    },
+    { .id = 2, .xOrigin = 5, .yOrigin = 0xD, .xSize = 1, .ySize = 1, .data = &gUnk_08CE3200[1] },
+    { .id = 3, .xOrigin = 6, .yOrigin = 0xD, .xSize = 1, .ySize = 1, .data = gUnk_08CE3204 },
+    {
+        .id = 4,
+        .xOrigin = 0x15,
+        .yOrigin = 0xD,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3204[1],
+    },
+    { .id = 5, .xOrigin = 0x16, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE3208 },
+    { .id = 6, .xOrigin = 5, .yOrigin = 0xF, .xSize = 1, .ySize = 1, .data = &gUnk_08CE3208[1] },
+    { .id = 7, .xOrigin = 0x15, .yOrigin = 0x10, .xSize = 1, .ySize = 1, .data = gUnk_08CE320C },
+    {
+        .id = 8,
+        .xOrigin = 0xD,
+        .yOrigin = 0x12,
+        .xSize = 2,
+        .ySize = 1,
+        .data = &gUnk_08CE320C[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE341C")
+const struct MapChange gUnk_08CE341C[] = {
+    { .xOrigin = 4, .yOrigin = 8, .xSize = 2, .ySize = 1, .data = gUnk_08CE328C },
+    { .id = 1, .xOrigin = 4, .yOrigin = 8, .xSize = 2, .ySize = 1, .data = gUnk_08CE3290 },
+    { .id = 2, .xOrigin = 1, .yOrigin = 3, .xSize = 1, .ySize = 3, .data = gUnk_08CE3294 },
+    { .id = 3, .xOrigin = 1, .yOrigin = 3, .xSize = 1, .ySize = 3, .data = &gUnk_08CE3298[1] },
+    { .id = 4, .xOrigin = 3, .yOrigin = 1, .xSize = 3, .ySize = 1, .data = gUnk_08CE32A0 },
+    { .id = 5, .xOrigin = 3, .yOrigin = 1, .xSize = 3, .ySize = 1, .data = &gUnk_08CE32A4[1] },
+    { .id = 6, .xOrigin = 7, .yOrigin = 3, .xSize = 1, .ySize = 5, .data = gUnk_08CE32AC },
+    { .id = 7, .xOrigin = 7, .yOrigin = 3, .xSize = 1, .ySize = 5, .data = &gUnk_08CE32B4[1] },
+    { .id = 8, .xOrigin = 7, .yOrigin = 0xB, .xSize = 3, .ySize = 3, .data = gUnk_08CE32C0 },
+    { .id = 9, .xOrigin = 7, .yOrigin = 0xB, .xSize = 3, .ySize = 3, .data = &gUnk_08CE32D0[1] },
+    { .id = 0xA, .xOrigin = 7, .yOrigin = 0xE, .xSize = 1, .ySize = 3, .data = gUnk_08CE32E4 },
+    {
+        .id = 0xB,
+        .xOrigin = 7,
+        .yOrigin = 0xE,
+        .xSize = 1,
+        .ySize = 3,
+        .data = &gUnk_08CE32E8[1],
+    },
+    { .id = 0xC, .xOrigin = 4, .yOrigin = 0x12, .xSize = 1, .ySize = 1, .data = gUnk_08CE32F0 },
+    {
+        .id = 0xD,
+        .xOrigin = 4,
+        .yOrigin = 0x12,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE32F0[1],
+    },
+    { .id = 0xE, .xOrigin = 0xB, .yOrigin = 1, .xSize = 4, .ySize = 1, .data = gUnk_08CE32F4 },
+    { .id = 0xF, .xOrigin = 0xB, .yOrigin = 1, .xSize = 4, .ySize = 1, .data = gUnk_08CE32FC },
+    { .id = 0x10, .xOrigin = 0xA, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE3304 },
+    { .id = 0x11, .xOrigin = 0xA, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE3308 },
+    { .id = 0x12, .xOrigin = 0xB, .yOrigin = 8, .xSize = 2, .ySize = 3, .data = gUnk_08CE330C },
+    { .id = 0x13, .xOrigin = 0xB, .yOrigin = 8, .xSize = 2, .ySize = 3, .data = gUnk_08CE3318 },
+    { .id = 0x14, .xOrigin = 8, .yOrigin = 0x12, .xSize = 3, .ySize = 1, .data = gUnk_08CE3324 },
+    {
+        .id = 0x15,
+        .xOrigin = 8,
+        .yOrigin = 0x12,
+        .xSize = 3,
+        .ySize = 1,
+        .data = &gUnk_08CE3328[1],
+    },
+    {
+        .id = 0x16,
+        .xOrigin = 0xC,
+        .yOrigin = 0xF,
+        .xSize = 1,
+        .ySize = 2,
+        .data = gUnk_08CE3330,
+    },
+    {
+        .id = 0x17,
+        .xOrigin = 0xC,
+        .yOrigin = 0xF,
+        .xSize = 1,
+        .ySize = 2,
+        .data = gUnk_08CE3334,
+    },
+    { .id = 0x18, .xOrigin = 0x11, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE3338 },
+    {
+        .id = 0x19,
+        .xOrigin = 0x11,
+        .yOrigin = 3,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3338[1],
+    },
+    { .id = 0x1A, .xOrigin = 0xE, .yOrigin = 6, .xSize = 2, .ySize = 1, .data = gUnk_08CE333C },
+    { .id = 0x1B, .xOrigin = 0xE, .yOrigin = 6, .xSize = 2, .ySize = 1, .data = gUnk_08CE3340 },
+    { .id = 0x1C, .xOrigin = 0x10, .yOrigin = 8, .xSize = 3, .ySize = 5, .data = gUnk_08CE3344 },
+    {
+        .id = 0x1D,
+        .xOrigin = 0x10,
+        .yOrigin = 8,
+        .xSize = 3,
+        .ySize = 5,
+        .data = &gUnk_08CE3360[1],
+    },
+    {
+        .id = 0x1E,
+        .xOrigin = 0xF,
+        .yOrigin = 0x10,
+        .xSize = 4,
+        .ySize = 3,
+        .data = gUnk_08CE3380,
+    },
+    {
+        .id = 0x1F,
+        .xOrigin = 0xF,
+        .yOrigin = 0x10,
+        .xSize = 4,
+        .ySize = 3,
+        .data = gUnk_08CE3398,
+    },
+    {
+        .id = 0x20,
+        .xOrigin = 0x12,
+        .yOrigin = 0xE,
+        .xSize = 3,
+        .ySize = 2,
+        .data = gUnk_08CE33B0,
+    },
+    {
+        .id = 0x21,
+        .xOrigin = 0x12,
+        .yOrigin = 0xE,
+        .xSize = 3,
+        .ySize = 2,
+        .data = gUnk_08CE33BC,
+    },
+    { .id = 0x22, .xOrigin = 0x13, .yOrigin = 1, .xSize = 4, .ySize = 1, .data = gUnk_08CE33C8 },
+    { .id = 0x23, .xOrigin = 0x13, .yOrigin = 1, .xSize = 4, .ySize = 1, .data = gUnk_08CE33D0 },
+    {
+        .id = 0x24,
+        .xOrigin = 0x17,
+        .yOrigin = 0xE,
+        .xSize = 3,
+        .ySize = 5,
+        .data = gUnk_08CE33D8,
+    },
+    {
+        .id = 0x25,
+        .xOrigin = 0x17,
+        .yOrigin = 0xE,
+        .xSize = 3,
+        .ySize = 5,
+        .data = &gUnk_08CE33F4[1],
+    },
+    { .id = 0x26, .xOrigin = 0x17, .xSize = 1, .ySize = 1, .data = gUnk_08CE3414 },
+    {
+        .id = 0x27,
+        .xOrigin = 0x18,
+        .yOrigin = 1,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3414[1],
+    },
+    { .id = 0x28, .xOrigin = 0x19, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE3418 },
+    {
+        .id = 0x29,
+        .xOrigin = 0x10,
+        .yOrigin = 0xE,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3418[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3634")
+const struct MapChange gUnk_08CE3634[] = {
+    { .xOrigin = 2, .yOrigin = 0x15, .xSize = 3, .ySize = 3, .data = gUnk_08CE3620 },
+    {
+        .id = 1,
+        .xOrigin = 3,
+        .yOrigin = 0x17,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3630[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3664")
+const struct MapChange gUnk_08CE3664[] = {
+    { .xOrigin = 3, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = gUnk_08CE3658 },
+    { .id = 1, .xOrigin = 0xD, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = &gUnk_08CE3658[1] },
+    { .id = 3, .xOrigin = 1, .yOrigin = 0x15, .xSize = 1, .ySize = 1, .data = gUnk_08CE365C },
+    {
+        .id = 4,
+        .xOrigin = 8,
+        .yOrigin = 0x15,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE365C[1],
+    },
+    { .id = 5, .xOrigin = 0xF, .yOrigin = 0x15, .xSize = 1, .ySize = 1, .data = gUnk_08CE3660 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE36B4")
+const struct MapChange gUnk_08CE36B4[] = {
+    { .xOrigin = 0x1C, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE36AC },
+    {
+        .id = 1,
+        .xOrigin = 0x10,
+        .yOrigin = 0xF,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE36AC[1],
+    },
+    { .id = 2, .xOrigin = 4, .yOrigin = 0xC, .xSize = 1, .ySize = 1, .data = gUnk_08CE36B0 },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3700")
+const struct MapChange gUnk_08CE3700[] = {
+    { .xOrigin = 1, .xSize = 1, .ySize = 2, .data = gUnk_08CE36E4 },
+    { .id = 1, .xOrigin = 1, .yOrigin = 0xB, .xSize = 2, .ySize = 2, .data = gUnk_08CE36E8 },
+    { .id = 2, .xOrigin = 3, .yOrigin = 0xC, .xSize = 1, .ySize = 1, .data = gUnk_08CE36F0 },
+    { .id = 3, .xOrigin = 4, .yOrigin = 0xC, .xSize = 1, .ySize = 1, .data = &gUnk_08CE36F0[1] },
+    { .id = 4, .xOrigin = 4, .yOrigin = 0xE, .xSize = 1, .ySize = 2, .data = gUnk_08CE36F4 },
+    { .id = 5, .xOrigin = 3, .yOrigin = 0x17, .xSize = 1, .ySize = 1, .data = gUnk_08CE36F8 },
+    {
+        .id = 6,
+        .xOrigin = 0x13,
+        .yOrigin = 0x15,
+        .xSize = 2,
+        .ySize = 1,
+        .data = &gUnk_08CE36F8[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3790")
+const struct MapChange gUnk_08CE3790[] = {
+    { .xOrigin = 4, .yOrigin = 1, .xSize = 3, .ySize = 2, .data = gUnk_08CE3760 },
+    { .id = 1, .xOrigin = 0xA, .yOrigin = 8, .xSize = 3, .ySize = 2, .data = gUnk_08CE376C },
+    { .id = 2, .xOrigin = 0x16, .yOrigin = 0x19, .xSize = 3, .ySize = 2, .data = gUnk_08CE3778 },
+    { .id = 3, .xOrigin = 5, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE3784 },
+    { .id = 4, .xOrigin = 0xB, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = &gUnk_08CE3784[1] },
+    { .id = 5, .xOrigin = 0x17, .yOrigin = 0x1A, .xSize = 1, .ySize = 1, .data = gUnk_08CE3788 },
+    {
+        .id = 6,
+        .xOrigin = 0x12,
+        .yOrigin = 5,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE3788[1],
+    },
+    { .id = 7, .xOrigin = 0x14, .yOrigin = 0xB, .xSize = 1, .ySize = 1, .data = gUnk_08CE378C },
+    {
+        .id = 8,
+        .xOrigin = 0x16,
+        .yOrigin = 0xB,
+        .xSize = 1,
+        .ySize = 1,
+        .data = &gUnk_08CE378C[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3810")
+const struct MapChange gUnk_08CE3810[] = {
+    { .xOrigin = 0xA, .yOrigin = 0xD, .xSize = 1, .ySize = 2, .data = gUnk_08CE3808 },
+    { .id = 1, .xOrigin = 6, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE380C },
+    { .id = 2, .xOrigin = 0xF, .yOrigin = 4, .xSize = 1, .ySize = 1, .data = &gUnk_08CE380C[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE39B4")
+const struct MapChange gUnk_08CE39B4[] = {
+    { .xOrigin = 3, .xSize = 0xC, .ySize = 8, .data = gUnk_08CE3840 },
+    { .id = 1, .xOrigin = 2, .yOrigin = 0xA, .xSize = 3, .ySize = 5, .data = gUnk_08CE3900 },
+    {
+        .id = 2,
+        .xOrigin = 0xC,
+        .yOrigin = 0xA,
+        .xSize = 3,
+        .ySize = 5,
+        .data = &gUnk_08CE391C[1],
+    },
+    { .id = 3, .xOrigin = 1, .yOrigin = 0xF, .xSize = 3, .ySize = 5, .data = gUnk_08CE393C },
+    {
+        .id = 4,
+        .xOrigin = 0xD,
+        .yOrigin = 0xF,
+        .xSize = 3,
+        .ySize = 5,
+        .data = &gUnk_08CE3958[1],
+    },
+    { .id = 5, .xOrigin = 2, .yOrigin = 0x14, .xSize = 3, .ySize = 5, .data = gUnk_08CE3978 },
+    {
+        .id = 6,
+        .xOrigin = 0xC,
+        .yOrigin = 0x14,
+        .xSize = 3,
+        .ySize = 5,
+        .data = &gUnk_08CE3994[1],
+    },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3A38")
+const struct MapChange gUnk_08CE3A38[] = {
+    { .xOrigin = 0xB, .yOrigin = 2, .xSize = 3, .ySize = 3, .data = gUnk_08CE3A14 },
+    { .id = 1, .xOrigin = 0xB, .yOrigin = 2, .xSize = 3, .ySize = 3, .data = &gUnk_08CE3A24[1] },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3A60")
+const struct MapChange gUnk_08CE3A60[] = {
+    { .xOrigin = 0xA, .yOrigin = 5, .xSize = 2, .ySize = 1, .data = gUnk_08CE3A5C },
+    { .id = -1 },
+};
+
+SECTION(".rodata.08CE3B40")
+const struct MapChange gUnk_08CE3B40[] = {
+    { .xOrigin = 2, .xSize = 0xB, .ySize = 9, .data = gUnk_08CE3A78 },
+    { .id = -1 },
 };
