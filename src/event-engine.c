@@ -920,7 +920,7 @@ int EvtCmd_NoSkipTalkSlowUnlessNewGamePlus(struct EventProc * proc);
 int EvtCmd_NoSkipSlowUnlessNewGamePlus(struct EventProc * proc);
 
 bool FaceExists(void);
-bool sub_0800A4E8();
+bool GetZero();
 bool IsMapFadeActive(void);
 void EndMapMain(void);
 void sub_080143E0(void);
@@ -1270,7 +1270,7 @@ void Event_BeginSkip(struct EventProc * proc)
 
     proc->flags |= EVENT_FLAG_SKIPPED;
 
-    if (!sub_0800A4E8())
+    if (!GetZero())
     {
         if (IsWorldMapActive())
         {

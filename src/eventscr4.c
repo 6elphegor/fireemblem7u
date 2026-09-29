@@ -144,7 +144,7 @@ CONST_DATA struct PopupInstruction gPopup_08B91BC4[] = {
     { 0, 0 },
 };
 
-CONST_DATA struct PopupInstruction gPopup_08B91BE4[] = {
+CONST_DATA struct PopupInstruction PopupScr_GotGold[] = {
     { 0xC, 0x37A },
     { 8, 0 },
     { 6, 0x754 },
@@ -156,7 +156,7 @@ CONST_DATA struct PopupInstruction gPopup_08B91BE4[] = {
     { 0, 0 },
 };
 
-CONST_DATA struct PopupInstruction gPopup_08B91C2C[] = {
+CONST_DATA struct PopupInstruction PopupScr_GoldWasStole[] = {
     { 0xC, 0x37C },
     { 8, 2 },
     { 0xB, 0 },
@@ -166,7 +166,7 @@ CONST_DATA struct PopupInstruction gPopup_08B91C2C[] = {
     { 0, 0 },
 };
 
-CONST_DATA struct PopupInstruction gPopup_08B91C64[] = {
+CONST_DATA struct PopupInstruction PopupScr_GotItem[] = {
     { 0xC, 0x37A },
     { 8, 0 },
     { 6, 0x754 },
@@ -180,7 +180,7 @@ CONST_DATA struct PopupInstruction gPopup_08B91C64[] = {
     { 0, 0 },
 };
 
-CONST_DATA struct PopupInstruction gPopup_08B91CBC[] = {
+CONST_DATA struct PopupInstruction PopupScr_ItemWasPilfered[] = {
     { 0xC, 0x37C },
     { 8, 2 },
     { 3, 0 },
@@ -407,15 +407,15 @@ void StartPopup_800EE4C(int num, ProcPtr parent)
     SetPopupNumber(num);
 
     if (UNIT_FACTION(gActiveUnit) == FACTION_BLUE)
-        NewPopup_Simple(gPopup_08B91BE4, 0x60, 0, parent);
+        NewPopup_Simple(PopupScr_GotGold, 0x60, 0, parent);
     else
-        NewPopup_Simple(gPopup_08B91C2C, 0x60, 0, parent);
+        NewPopup_Simple(PopupScr_GoldWasStole, 0x60, 0, parent);
 }
 
 void StartPopup_800EE90(int num, ProcPtr parent)
 {
     SetPopupNumber(num);
-    NewPopup_Simple(gPopup_08B91BE4, 0x60, 0, parent);
+    NewPopup_Simple(PopupScr_GotGold, 0x60, 0, parent);
 }
 
 void StartPopup_800EEB0(struct Unit * unit, u16 item, ProcPtr parent)
@@ -423,9 +423,9 @@ void StartPopup_800EEB0(struct Unit * unit, u16 item, ProcPtr parent)
     SetPopupItem(item);
 
     if (UNIT_FACTION(unit) == FACTION_BLUE)
-        NewPopup_Simple(gPopup_08B91C64, 0x60, 0, parent);
+        NewPopup_Simple(PopupScr_GotItem, 0x60, 0, parent);
     else
-        NewPopup_Simple(gPopup_08B91CBC, 0x60, 0, parent);
+        NewPopup_Simple(PopupScr_ItemWasPilfered, 0x60, 0, parent);
 }
 
 void StartStoleItemPopup(u16 item, ProcPtr parent)

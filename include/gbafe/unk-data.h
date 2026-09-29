@@ -55,8 +55,8 @@ extern u16 Pal_Text[];
 // ??? gUnk_08190248
 extern u16 Pal_08194714[];
 // ??? gUnk_08190288
-extern u16 gUnk_08194754[];
-extern u16 gUnk_08194774[];
+extern u16 Pal_Text_Inverted[];
+extern u16 Pal_TalkBubble_Inverted[];
 // ??? gUnk_081902E8
 // ??? gUnk_08190764
 // ??? gUnk_08190784
@@ -164,38 +164,38 @@ extern u8 Img_NinianDispfx[];
 extern u16 Pal_NinianDispfx[];
 extern u16 SpritAnim_NinianDispfx[];
 extern u16 SpritAnim_NinianPray[];
-extern u8 gUnk_081AB504[];
-extern u8 gUnk_081AB524[];
-extern u8 gUnk_081ABCD8[];
-extern u8 gUnk_081AC3A0[];
-extern u8 gUnk_081AC3D8[];
-extern u8 gUnk_081AC420[];
-extern u8 gUnk_081AC494[];
-extern u8 gUnk_081AC52C[];
-extern u8 gUnk_081AC5BC[];
-extern u8 gUnk_081AC63C[];
-extern u8 gUnk_081AC6B0[];
-extern u8 gUnk_081AD0A4[];
-extern u8 gUnk_081AD9D0[];
-extern u8 gUnk_081ADA48[];
-extern u8 gUnk_081ADAC8[];
-extern u8 gUnk_081ADB54[];
-extern u8 gUnk_081ADBF0[];
-extern u8 gUnk_081ADCA0[];
-extern u8 gUnk_081AE774[];
-extern u8 gUnk_081AED08[];
-extern u8 gUnk_081AEDC8[];
-extern u8 gUnk_081AEE9C[];
-extern u8 gUnk_081AEF38[];
-extern u8 gUnk_081AF934[];
-extern u8 gUnk_081B0044[];
-extern u8 gUnk_081B00FC[];
-extern u8 gUnk_081B01C4[];
-extern u8 gUnk_081B02A4[];
-extern u8 gUnk_081B0B38[];
-extern u8 gUnk_081B0EE8[];
-extern u8 gUnk_081B0F78[];
-extern u8 gUnk_081B1038[];
+extern u8 Pal_NinianDisp_00[];
+extern u8 Img_NinianDisp_00[];
+extern u8 Img_NinianDisp_00_2[];
+extern u8 Tsa_NinianDisp_00_3[];
+extern u8 Tsa_NinianDisp_00_4[];
+extern u8 Tsa_NinianDisp_00_5[];
+extern u8 Tsa_NinianDisp_00_6[];
+extern u8 Tsa_NinianDisp_00_7[];
+extern u8 Tsa_NinianDisp_00_8[];
+extern u8 Tsa_NinianDisp_00_9[];
+extern u8 Img_NinianDisp_00_10[];
+extern u8 Img_NinianDisp_00_11[];
+extern u8 Tsa_NinianDisp_00_12[];
+extern u8 Tsa_NinianDisp_00_13[];
+extern u8 Tsa_NinianDisp_00_14[];
+extern u8 Tsa_NinianDisp_00_15[];
+extern u8 Tsa_NinianDisp_00_16[];
+extern u8 Img_NinianDisp_00_17[];
+extern u8 Img_NinianDisp_00_18[];
+extern u8 Tsa_NinianDisp_00_19[];
+extern u8 Tsa_NinianDisp_00_20[];
+extern u8 Tsa_NinianDisp_00_21[];
+extern u8 Img_NinianDisp_00_22[];
+extern u8 Img_NinianDisp_00_23[];
+extern u8 Tsa_NinianDisp_00_24[];
+extern u8 Tsa_NinianDisp_00_25[];
+extern u8 Tsa_NinianDisp_00_26[];
+extern u8 Img_NinianDisp_00_27[];
+extern u8 Img_NinianDisp_00_28[];
+extern u8 Tsa_NinianDisp_00_29[];
+extern u8 Tsa_NinianDisp_00_30[];
+extern u8 Tsa_NinianDisp_00_31[];
 extern u8 FireRingBgfx_081B10F4[];
 extern u8 FireRingBgfx_081B1114[];
 extern u8 FireRingBgfx_081B16E4[];
@@ -1079,7 +1079,7 @@ extern const u16 FrameLut_EfxDrsmmoya[];
 // ??? gUnk_0822F6D8
 // ??? gUnk_0822FB18
 // ??? gUnk_0822FED0
-// ??? gUnk_08238824
+// ??? Img_DivineBg3_08
 // ??? gUnk_08243F48
 // ??? gUnk_08243F68
 // ??? gUnk_08247FBC
@@ -1101,7 +1101,7 @@ extern const u16 FrameLut_EfxDrsmmoya[];
 // ??? gUnk_0826F688
 // ??? gUnk_0826F94C
 // ??? gUnk_0826F96C
-// ??? gUnk_0826FAFC
+// ??? Img_RestoreBg_0B
 // ??? gUnk_0827045C
 // ??? gUnk_0827065C
 // ??? gUnk_082708B0
@@ -1356,13 +1356,13 @@ extern const u8 Tsa_EkrDragonFireBG2[];
 // ??? gUnk_0840085C
 // ??? gUnk_084009F0
 // ??? Pal_ManimWindowHpBar
-extern u8 const gUnk_083FBD34[];
+extern u8 const Img_TalkBubble[];
 extern u8 const gUnk_083FBDDC[];
 extern u8 const gUnk_083FBE80[];
 extern u8 const gUnk_083FBEDC[];
 extern u8 const gUnk_083FBF30[];
 extern u8 const gUnk_083FBF80[];
-extern u16 gUnk_083FBFD0[];
+extern u16 Pal_TalkBubble[];
 // ??? gUnk_08402BF0
 // ??? gUnk_08402F68
 // ??? gUnk_08402F84
@@ -1693,7 +1693,7 @@ extern u8 Img_SysBrownBox[];
 // ??? gUnk_08BBFCC0
 // ??? gUnk_08BBFCD8
 // ??? gUnk_08BBFCE8
-// ??? gUnk_08B858A4
+// ??? sProcessCmdTable
 // ??? gUnk_08BBFD90
 // ??? gUnk_08BC0590
 // ??? gUnk_08BC05C4
@@ -1753,7 +1753,7 @@ extern struct ProcCmd ProcScr_08B93664[];
 // ??? gUnk_08C02A48
 extern struct ProcCmd ProcScr_BmMain_08B937AC[];
 // ??? gUnk_08C02AB0
-// ??? gUnk_08C02AD0
+// ??? Img_Portrait_0AD_Chibi
 // ??? gUnk_08C02AF0
 // ??? gUnk_08C02B30
 // ??? gUnk_08C02B58
@@ -1783,7 +1783,7 @@ extern struct ProcCmd ProcScr_NinianTransformToHunman[];
 // ??? gUnk_08C03100
 // ??? gUnk_08C03104
 // ??? gUnk_08C03114
-// ??? gUnk_08C031D4
+// ??? Pal_Portrait_0AC
 
 // ??? gUnk_08C0340E
 // ??? gUnk_08C03416

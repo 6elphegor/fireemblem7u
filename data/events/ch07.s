@@ -335,7 +335,7 @@ EventScr_08CACE04:
 	TEX1 MSG_988                             @ , isn't it? I am Lucius. I await your orders.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 7
 	GOTO 9
 	LABEL 1
@@ -365,7 +365,7 @@ EventScr_08CACEC0:
 	TEX1 MSG_98D                             @ ? I'm Nils! I'd like to perform for you, so give
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 8
 	GOTO 9
 	LABEL 1

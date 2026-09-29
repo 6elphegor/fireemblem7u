@@ -436,7 +436,7 @@ void ShowPrepScreenMenuActiveHand(void)
     if (proc != NULL)
         Proc_Goto(proc, 0);
 }
-void sub_0809019C(void)
+void EnablePrepScreenMenu(void)
 {
     struct ProcPrepMenu * proc = Proc_Find(ProcScr_PrepMenu);
 

@@ -52,7 +52,7 @@ void TryUnlockParentProc(ProcPtr);
 /* util.h */
 /* bm.h */
 
-void nullsub_38(void);
+void DummyFunction(void);
 void ClearMenuOverrides(void);
 void GetForceDisabledMenuItems(u8 * list);
 void SetForceDisabledMenuItems(u8 const * list);

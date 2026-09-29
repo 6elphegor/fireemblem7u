@@ -202,7 +202,7 @@ s8 IsPidBlue(u8 pid);
 // AreAnyEnemyUnitsAlive
 // GetAliveEnemyAmount
 void sub_807AA5C(void);
-// sub_0807A000
+// IsCharDeadAsNonPlayerUnit
 // sub_0807A03C
 // sub_0807A078
 // sub_0807A0AC

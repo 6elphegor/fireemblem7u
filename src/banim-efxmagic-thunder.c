@@ -1,8 +1,8 @@
 #include "gbafe.h"
 
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
-extern const u8 gUnk_081FBF70[];
-extern const u8 gUnk_081FC03C[];
+extern const u8 Tsa_EfxThuderBg1[];
+extern const u8 Tsa_EfxThuderBg2[];
 
 /* auto-decls */
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
@@ -44,13 +44,13 @@ CONST_DATA struct ProcCmd ProcScr_efxThunderBG[] = {
 };
 
 CONST_DATA u16 * NewEfxThunderBG_tsa_l[] = {
-    (u16 *) gUnk_081FBF70,
-    (u16 *) gUnk_081FC03C,
+    (u16 *) Tsa_EfxThuderBg1,
+    (u16 *) Tsa_EfxThuderBg2,
 };
 
 CONST_DATA u16 * NewEfxThunderBG_tsa_r[] = {
-    (u16 *) gUnk_081FBF70,
-    (u16 *) gUnk_081FC03C,
+    (u16 *) Tsa_EfxThuderBg1,
+    (u16 *) Tsa_EfxThuderBg2,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxThunderBGCOL[] = {

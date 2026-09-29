@@ -21,7 +21,7 @@ void AllocWeatherParticles(int weather);
 // WfxSnowStorm_VSync
 // WfxBlueHSync
 // WeatherInit_Blue
-// nullsub_9
+// WfxBlue_VSync
 // FlamesWeatherHBlank
 void ApplyFlamesWeatherGradient(void);
 // FlamesWeatherInitGradient

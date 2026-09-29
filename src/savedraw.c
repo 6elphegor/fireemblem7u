@@ -57,7 +57,7 @@ struct SaveBonusHelpProc
     /* 5C */ int unk_5c;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_08CE40F8[];
+extern struct ProcCmd CONST_DATA ProcScr_BonusClaimMenu[];
 
 void sub_080A4E58(void)
 {
@@ -186,9 +186,9 @@ void sub_080A5108(void)
 {
     SaveBonusContentData(gpSaveDrawBonusClaimData);
 }
-void sub_080A511C(ProcPtr parent)
+void StartBonusClaimMenu(ProcPtr parent)
 {
-    Proc_StartBlocking(ProcScr_08CE40F8, parent);
+    Proc_StartBlocking(ProcScr_BonusClaimMenu, parent);
 }
 void SaveMenuCopyPalette(u16 * src, u16 * dst, int count)
 {
@@ -395,7 +395,7 @@ void sub_080A5748(struct SaveDrawProc * proc)
         PutSpriteExt(4, 64, (y + 9) & 0x1FF, SpriteArray_08A209B8[spriteIdx], OAM2_PAL(3));
     }
 }
-void sub_080A5818(struct SaveDrawProc * proc)
+void SaveDraw_Loop(struct SaveDrawProc * proc)
 {
     int i;
     int xOffset;

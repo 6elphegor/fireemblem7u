@@ -329,7 +329,7 @@ EventScr_08CA9418:
 	TEX1 MSG_888                             @ I'm going to visit that home, right? Just point
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 7
 	GOTO 9
 	LABEL 1
@@ -356,7 +356,7 @@ EventScr_08CA94BC:
 	TEX1_BY_GENDER MSG_88D, MSG_88E          @ It's my turn to speak with the locals, is it? Th / Please, I would like to help out however I can.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 9
 	GOTO 9
 	LABEL 1
@@ -391,7 +391,7 @@ EventScr_08CA9578:
 	CLEAN
 	LABEL 6
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xB
 	GOTO 9
 	LABEL 0xA

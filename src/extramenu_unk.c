@@ -10,7 +10,7 @@ struct ExtraMenuUnkProc {
 extern u16 const gUnk_08CE4158[];
 extern u16 const * const gUnk_08CE456C[];
 extern u8 const gGfx_SupportMenu[];
-extern u8 const gUnk_084130A4[];
+extern u8 const Img_GameMainMenuObjs[];
 
 void sub_080AC904(struct ExtraMenuUnkProc * proc);
 void sub_080AC940(struct ExtraMenuUnkProc * proc);
@@ -70,7 +70,7 @@ void sub_080AC940(struct ExtraMenuUnkProc * proc)
 
     ApplyPalettes(Pal_SaveMenuWindow, 0x11, 8);
     Decompress(gGfx_SupportMenu, (void *) 0x06010800);
-    Decompress(gUnk_084130A4, (void *) 0x06013800);
+    Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
 
     SetOnHBlankA(sub_080AC8A0);
 

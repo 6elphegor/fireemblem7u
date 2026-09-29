@@ -383,7 +383,7 @@ EventScr_08CAB594:
 	TEX1 MSG_90C                             @ I must move closer to talk.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 8
 	GOTO 9
 	LABEL 1
@@ -411,7 +411,7 @@ EventScr_08CAB644:
 	TEX1 MSG_911                             @ Please direct me.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 9
 	GOTO 9
 	LABEL 1
@@ -441,7 +441,7 @@ EventScr_08CAB704:
 	TEX1 MSG_917                             @ I will show you the true power of magic!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xA
 	GOTO 9
 	LABEL 1

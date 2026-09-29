@@ -1,33 +1,33 @@
 #include "gbafe.h"
 
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
-extern const u8 gUnk_081F4254[];
-extern const u8 gUnk_081F57E4[];
+extern const u8 Img_EkrClasschgBG_00[];
+extern const u8 Img_EkrClasschgBG_11[];
 extern const u8 gUnk_081F6560[];
 extern const u8 gUnk_081F6580[];
-extern const u8 gUnk_081F65C0[];
-extern const u8 gUnk_081F6778[];
-extern const u8 gUnk_081F690C[];
-extern const u8 gUnk_081F6AC4[];
-extern const u8 gUnk_081F6C88[];
-extern const u8 gUnk_081F6DC4[];
-extern const u8 gUnk_081F6E5C[];
-extern const u8 gUnk_081F6F50[];
-extern const u8 gUnk_081F7040[];
-extern const u8 gUnk_081F7130[];
-extern const u8 gUnk_081F7298[];
-extern const u8 gUnk_081F73AC[];
-extern const u8 gUnk_081F7528[];
-extern const u8 gUnk_081F7650[];
-extern const u8 gUnk_081F7834[];
-extern const u8 gUnk_081F7984[];
-extern const u8 gUnk_081F7B10[];
-extern const u8 gUnk_081F7BFC[];
-extern const u8 gUnk_081F7CDC[];
-extern const u8 gUnk_081F7DD4[];
-extern const u8 gUnk_081F7EF8[];
-extern const u8 gUnk_081F8044[];
-extern const u8 gUnk_081F81B4[];
+extern const u8 Tsa_EkrClasschgBG_00[];
+extern const u8 Tsa_EkrClasschgBG_01[];
+extern const u8 Tsa_EkrClasschgBG_02[];
+extern const u8 Tsa_EkrClasschgBG_03[];
+extern const u8 Tsa_EkrClasschgBG_04[];
+extern const u8 Tsa_EkrClasschgBG_05[];
+extern const u8 Tsa_EkrClasschgBG_06[];
+extern const u8 Tsa_EkrClasschgBG_07[];
+extern const u8 Tsa_EkrClasschgBG_08[];
+extern const u8 Tsa_EkrClasschgBG_09[];
+extern const u8 Tsa_EkrClasschgBG_0A[];
+extern const u8 Tsa_EkrClasschgBG_0B[];
+extern const u8 Tsa_EkrClasschgBG_0C[];
+extern const u8 Tsa_EkrClasschgBG_0D[];
+extern const u8 Tsa_EkrClasschgBG_0E[];
+extern const u8 Tsa_EkrClasschgBG_0F[];
+extern const u8 Tsa_EkrClasschgBG_10[];
+extern const u8 Tsa_EkrClasschgBG_11[];
+extern const u8 Tsa_EkrClasschgBG_12[];
+extern const u8 Tsa_EkrClasschgBG_13[];
+extern const u8 Tsa_EkrClasschgBG_14[];
+extern const u8 Tsa_EkrClasschgBG_15[];
+extern const u8 Tsa_EkrClasschgBG_16[];
 
 /**
  * Class change (promotion) battle animation (fireemblem8u: banim-ekrclasschg.c)
@@ -146,55 +146,55 @@ CONST_DATA struct ProcCmd ProcScr_efxClasschgBG[] = {
 };
 
 CONST_DATA u16 * TsaLut_EkrClasschgBG[] = {
-    (u16 *) gUnk_081F65C0,
-    (u16 *) gUnk_081F6778,
-    (u16 *) gUnk_081F690C,
-    (u16 *) gUnk_081F6AC4,
-    (u16 *) gUnk_081F6C88,
-    (u16 *) gUnk_081F6DC4,
-    (u16 *) gUnk_081F6E5C,
-    (u16 *) gUnk_081F6F50,
-    (u16 *) gUnk_081F7040,
-    (u16 *) gUnk_081F7130,
-    (u16 *) gUnk_081F7298,
-    (u16 *) gUnk_081F73AC,
-    (u16 *) gUnk_081F7528,
-    (u16 *) gUnk_081F7650,
-    (u16 *) gUnk_081F7834,
-    (u16 *) gUnk_081F7984,
-    (u16 *) gUnk_081F7B10,
-    (u16 *) gUnk_081F7BFC,
-    (u16 *) gUnk_081F7CDC,
-    (u16 *) gUnk_081F7DD4,
-    (u16 *) gUnk_081F7EF8,
-    (u16 *) gUnk_081F8044,
-    (u16 *) gUnk_081F81B4,
+    (u16 *) Tsa_EkrClasschgBG_00,
+    (u16 *) Tsa_EkrClasschgBG_01,
+    (u16 *) Tsa_EkrClasschgBG_02,
+    (u16 *) Tsa_EkrClasschgBG_03,
+    (u16 *) Tsa_EkrClasschgBG_04,
+    (u16 *) Tsa_EkrClasschgBG_05,
+    (u16 *) Tsa_EkrClasschgBG_06,
+    (u16 *) Tsa_EkrClasschgBG_07,
+    (u16 *) Tsa_EkrClasschgBG_08,
+    (u16 *) Tsa_EkrClasschgBG_09,
+    (u16 *) Tsa_EkrClasschgBG_0A,
+    (u16 *) Tsa_EkrClasschgBG_0B,
+    (u16 *) Tsa_EkrClasschgBG_0C,
+    (u16 *) Tsa_EkrClasschgBG_0D,
+    (u16 *) Tsa_EkrClasschgBG_0E,
+    (u16 *) Tsa_EkrClasschgBG_0F,
+    (u16 *) Tsa_EkrClasschgBG_10,
+    (u16 *) Tsa_EkrClasschgBG_11,
+    (u16 *) Tsa_EkrClasschgBG_12,
+    (u16 *) Tsa_EkrClasschgBG_13,
+    (u16 *) Tsa_EkrClasschgBG_14,
+    (u16 *) Tsa_EkrClasschgBG_15,
+    (u16 *) Tsa_EkrClasschgBG_16,
 };
 
 CONST_DATA u16 * ImgLut_EkrClasschgBG[] = {
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F4254,
-    (u16 *) gUnk_081F57E4,
-    (u16 *) gUnk_081F57E4,
-    (u16 *) gUnk_081F57E4,
-    (u16 *) gUnk_081F57E4,
-    (u16 *) gUnk_081F57E4,
-    (u16 *) gUnk_081F57E4,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_00,
+    (u16 *) Img_EkrClasschgBG_11,
+    (u16 *) Img_EkrClasschgBG_11,
+    (u16 *) Img_EkrClasschgBG_11,
+    (u16 *) Img_EkrClasschgBG_11,
+    (u16 *) Img_EkrClasschgBG_11,
+    (u16 *) Img_EkrClasschgBG_11,
 };
 
 CONST_DATA u16 * PalLut_EkrClasschgBG[] = {

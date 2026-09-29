@@ -322,17 +322,17 @@ Img_TitleSprites:  @ LZ77
 SpirteAnim_TitleText:
 	.incbin "baserom.gba", 0x672570, 0x270
 
-	.global gUnk_086727E0
-gUnk_086727E0:
+	.global Pal_OpAnimCloud
+Pal_OpAnimCloud:
 	.incbin "baserom.gba", 0x6727e0, 0x20
 
-	.global gUnk_08672800
-gUnk_08672800:  @ LZ77
-	.incbin "build/graphics/gUnk_08672800.lz"
+	.global Img_OpAnimCloud
+Img_OpAnimCloud:  @ LZ77
+	.incbin "build/graphics/Img_OpAnimCloud.lz"
 
-	.global gUnk_08673AD8
-gUnk_08673AD8:  @ LZ77
-	.incbin "build/graphics/gUnk_08673AD8.lz"
+	.global Tsa_OpAnimCloud
+Tsa_OpAnimCloud:  @ LZ77
+	.incbin "build/graphics/Tsa_OpAnimCloud.lz"
 
 	.global gUnk_08673D38
 gUnk_08673D38:
@@ -2750,8 +2750,8 @@ TextGlyphs_Special:
 sTalkSt:
 	.incbin "baserom.gba", 0xb909b8, 0x4
 
-	.global gUnk_08B909BC
-gUnk_08B909BC:
+	.global gProcScr_TalkSkipListener
+gProcScr_TalkSkipListener:
 	.incbin "baserom.gba", 0xb909bc, 0xc
 	.4byte TalkSkipListener_OnIdle
 	.incbin "baserom.gba", 0xb909cc, 0x8
@@ -2759,19 +2759,19 @@ gUnk_08B909BC:
 	.global ProcScr_Talk
 ProcScr_Talk:
 	.incbin "baserom.gba", 0xb909d4, 0xc
-	.4byte sub_080091F0
+	.4byte Talk_OnEnd
 	.incbin "baserom.gba", 0xb909e4, 0xc
 	.4byte Talk_OnInit
 	.incbin "baserom.gba", 0xb909f4, 0x4
 	.4byte sub_08008218
 	.incbin "baserom.gba", 0xb909fc, 0x8
 
-	.global gUnk_08B90A04
-gUnk_08B90A04:
+	.global gProcScr_TalkLock
+gProcScr_TalkLock:
 	.incbin "baserom.gba", 0xb90a04, 0x8
 
-	.global gUnk_08B90A0C
-gUnk_08B90A0C:
+	.global gProcScr_TalkFaceMove
+gProcScr_TalkFaceMove:
 	.incbin "baserom.gba", 0xb90a0c, 0xc
 	.4byte TalkFaceMove_OnInit
 	.incbin "baserom.gba", 0xb90a1c, 0x4
@@ -2784,8 +2784,8 @@ gUnk_08BFFBDC:
 	.4byte TalkPause_OnIdle
 	.incbin "baserom.gba", 0xb90a44, 0x8
 
-	.global gUnk_08B90A4C
-gUnk_08B90A4C:
+	.global gProcScr_TalkWaitForInput
+gProcScr_TalkWaitForInput:
 	.incbin "baserom.gba", 0xb90a4c, 0x14
 	.4byte TalkWaitForInput_OnIdle
 	.incbin "baserom.gba", 0xb90a64, 0x10
@@ -2854,30 +2854,30 @@ gUnk_08B90B24:
 	.4byte sub_080095C8
 	.incbin "baserom.gba", 0xb90b3c, 0x10
 
-	.global gUnk_08B90B4C
-gUnk_08B90B4C:
+	.global ProcScr_TalkSpriteShiftClear
+ProcScr_TalkSpriteShiftClear:
 	.incbin "baserom.gba", 0xb90b4c, 0xc
 	.4byte sub_080096BC
 	.incbin "baserom.gba", 0xb90b5c, 0xc
 	.4byte sub_080096D4
 	.incbin "baserom.gba", 0xb90b6c, 0x10
 
-	.global gUnk_08B90B7C
-gUnk_08B90B7C:
+	.global gTalkPauseDurations
+gTalkPauseDurations:
 	.incbin "baserom.gba", 0xb90b7c, 0x10
 
-	.global gUnk_08B90B8C
-gUnk_08B90B8C:
+	.global gProcScr_TalkBubbleOpen
+gProcScr_TalkBubbleOpen:
 	.incbin "baserom.gba", 0xb90b8c, 0x4
 	.4byte sub_080099A4
 	.incbin "baserom.gba", 0xb90b94, 0x8
 
-	.global gUnk_08B90B9C
+	.global gProcScr_TalkOpen
 	.global ProcScr_08B90B9C
-gUnk_08B90B9C:
+gProcScr_TalkOpen:
 ProcScr_08B90B9C:
 	.incbin "baserom.gba", 0xb90b9c, 0xc
-	.4byte nullsub_25
+	.4byte TalkOpen_OnEnd
 	.incbin "baserom.gba", 0xb90bac, 0x4
 	.4byte sub_08009D58
 	.incbin "baserom.gba", 0xb90bb4, 0x4
@@ -2886,18 +2886,18 @@ ProcScr_08B90B9C:
 	.4byte sub_08009DFC
 	.incbin "baserom.gba", 0xb90bc4, 0x8
 
-	.global gUnk_08B90BCC
-gUnk_08B90BCC:
+	.global gTalkFaceHPosLut
+gTalkFaceHPosLut:
 	.incbin "baserom.gba", 0xb90bcc, 0x20
 
-	.global gUnk_08B90BEC
-gUnk_08B90BEC:
+	.global gSprite_TalkTextFront
+gSprite_TalkTextFront:
 	.incbin "baserom.gba", 0xb90bec, 0x1a
 
-	.global gUnk_08B90C06
-gUnk_08B90C06:
+	.global gSprite_TalkTextBack
+gSprite_TalkTextBack:
 	.incbin "baserom.gba", 0xb90c06, 0x4e
-	.4byte sub_0800A108
+	.4byte TalkPutSpriteText_OnEnd
 	.incbin "baserom.gba", 0xb90c58, 0x4
 	.4byte TalkPutSpriteText_OnIdle
 	.incbin "baserom.gba", 0xb90c60, 0x8
@@ -2906,294 +2906,294 @@ gUnk_08B90C06:
 
 	.global gBackgroundTable
 gBackgroundTable:
-	.4byte gUnk_080CCD24
+	.4byte Img_Bg_00
 	.4byte gUnk_080D07F8
-	.4byte gUnk_080D0CAC
-	.4byte gUnk_080D0DAC
+	.4byte Pal_Bg_00
+	.4byte Img_Bg_01
 	.4byte gUnk_080D4820
-	.4byte gUnk_080D4CD4
-	.4byte gUnk_080D4DD4
+	.4byte Pal_Bg_01
+	.4byte Img_Bg_02
 	.4byte gUnk_080D82AC
-	.4byte gUnk_080D8760
-	.4byte gUnk_080D4DD4
+	.4byte Pal_Bg_02
+	.4byte Img_Bg_02
 	.4byte gUnk_080D82AC
-	.4byte gUnk_080D8860
-	.4byte gUnk_080D8960
+	.4byte Pal_Bg_03
+	.4byte Img_Bg_04
 	.4byte gUnk_080DBC38
-	.4byte gUnk_080DC0EC
-	.4byte gUnk_080D8960
+	.4byte Pal_Bg_04
+	.4byte Img_Bg_04
 	.4byte gUnk_080DBC38
-	.4byte gUnk_080DC1EC
-	.4byte gUnk_080D8960
+	.4byte Pal_Bg_05
+	.4byte Img_Bg_04
 	.4byte gUnk_080DBC38
-	.4byte gUnk_080DC2EC
-	.4byte gUnk_080D8960
+	.4byte Pal_Bg_06
+	.4byte Img_Bg_04
 	.4byte gUnk_080DBC38
-	.4byte gUnk_080DC3EC
-	.4byte gUnk_080D8960
+	.4byte Pal_Bg_07
+	.4byte Img_Bg_04
 	.4byte gUnk_080DBC38
-	.4byte gUnk_080DC4EC
-	.4byte gUnk_080DC5EC
+	.4byte Pal_Bg_08
+	.4byte Img_Bg_09
 	.4byte gUnk_080DFB64
-	.4byte gUnk_080E0018
-	.4byte gUnk_080E0118
+	.4byte Pal_Bg_09
+	.4byte Img_Bg_0A
 	.4byte gUnk_080E2B58
-	.4byte gUnk_080E300C
-	.4byte gUnk_080E310C
+	.4byte Pal_Bg_0A
+	.4byte Img_Bg_0B
 	.4byte gUnk_080E6374
-	.4byte gUnk_080E6828
-	.4byte gUnk_080E6928
+	.4byte Pal_Bg_0B
+	.4byte Img_Bg_0C
 	.4byte gUnk_080E969C
-	.4byte gUnk_080E9B50
-	.4byte gUnk_080E9C50
+	.4byte Pal_Bg_0C
+	.4byte Img_Bg_0D
 	.4byte gUnk_080ECD28
-	.4byte gUnk_080ED1DC
-	.4byte gUnk_080ED2DC
+	.4byte Pal_Bg_0D
+	.4byte Img_Bg_0E
 	.4byte gUnk_080F0548
-	.4byte gUnk_080F09FC
-	.4byte gUnk_080F0AFC
+	.4byte Pal_Bg_0E
+	.4byte Img_Bg_0F
 	.4byte gUnk_080F2A60
-	.4byte gUnk_080F2F14
-	.4byte gUnk_080F3014
+	.4byte Pal_Bg_0F
+	.4byte Img_Bg_10
 	.4byte gUnk_080F5F34
-	.4byte gUnk_080F63E8
-	.4byte gUnk_080F3014
+	.4byte Pal_Bg_10
+	.4byte Img_Bg_10
 	.4byte gUnk_080F5F34
-	.4byte gUnk_080F64E8
-	.4byte gUnk_080F65E8
+	.4byte Pal_Bg_11
+	.4byte Img_Bg_12
 	.4byte gUnk_080F97CC
-	.4byte gUnk_080F9C80
-	.4byte gUnk_080F65E8
+	.4byte Pal_Bg_12
+	.4byte Img_Bg_12
 	.4byte gUnk_080F97CC
-	.4byte gUnk_080F9D80
-	.4byte gUnk_080F9E80
+	.4byte Pal_Bg_13
+	.4byte Img_Bg_14
 	.4byte gUnk_080FD980
-	.4byte gUnk_080FDE34
-	.4byte gUnk_080FDF34
+	.4byte Pal_Bg_14
+	.4byte Img_Bg_15
 	.4byte gUnk_08100C60
-	.4byte gUnk_08101114
-	.4byte gUnk_080FDF34
+	.4byte Pal_Bg_15
+	.4byte Img_Bg_15
 	.4byte gUnk_08100C60
-	.4byte gUnk_08101214
-	.4byte gUnk_08101314
+	.4byte Pal_Bg_16
+	.4byte Img_Bg_17
 	.4byte gUnk_08105008
-	.4byte gUnk_081054BC
-	.4byte gUnk_081055BC
+	.4byte Pal_Bg_17
+	.4byte Img_Bg_18
 	.4byte gUnk_08107850
-	.4byte gUnk_08107D04
-	.4byte gUnk_08107E04
+	.4byte Pal_Bg_18
+	.4byte Img_Bg_19
 	.4byte gUnk_0810AC3C
-	.4byte gUnk_0810B0F0
-	.4byte gUnk_08107E04
+	.4byte Pal_Bg_19
+	.4byte Img_Bg_19
 	.4byte gUnk_0810AC3C
-	.4byte gUnk_0810B1F0
-	.4byte gUnk_0810B2F0
+	.4byte Pal_Bg_1A
+	.4byte Img_Bg_1B
 	.4byte gUnk_0810DC34
-	.4byte gUnk_0810E0E8
-	.4byte gUnk_0810E1E8
+	.4byte Pal_Bg_1B
+	.4byte Img_Bg_1C
 	.4byte gUnk_081103F0
-	.4byte gUnk_081108A4
-	.4byte gUnk_081109A4
+	.4byte Pal_Bg_1C
+	.4byte Img_Bg_1D
 	.4byte gUnk_08113080
-	.4byte gUnk_08113534
-	.4byte gUnk_0810E1E8
+	.4byte Pal_Bg_1D
+	.4byte Img_Bg_1C
 	.4byte gUnk_081103F0
-	.4byte gUnk_08113634
-	.4byte gUnk_0810E1E8
+	.4byte Pal_Bg_1E
+	.4byte Img_Bg_1C
 	.4byte gUnk_081103F0
-	.4byte gUnk_08113734
-	.4byte gUnk_0810E1E8
+	.4byte Pal_Bg_1F
+	.4byte Img_Bg_1C
 	.4byte gUnk_081103F0
-	.4byte gUnk_08113834
-	.4byte gUnk_0810E1E8
+	.4byte Pal_Bg_20
+	.4byte Img_Bg_1C
 	.4byte gUnk_081103F0
-	.4byte gUnk_08113934
-	.4byte gUnk_08113A34
+	.4byte Pal_Bg_21
+	.4byte Img_Bg_22
 	.4byte gUnk_0811576C
-	.4byte gUnk_08115C20
-	.4byte gUnk_08115D20
+	.4byte Pal_Bg_22
+	.4byte Img_Bg_23
 	.4byte gUnk_081192C4
-	.4byte gUnk_08119778
-	.4byte gUnk_08115D20
+	.4byte Pal_Bg_23
+	.4byte Img_Bg_23
 	.4byte gUnk_081192C4
-	.4byte gUnk_08119878
-	.4byte gUnk_08115D20
+	.4byte Pal_Bg_24
+	.4byte Img_Bg_23
 	.4byte gUnk_081192C4
-	.4byte gUnk_08119978
-	.4byte gUnk_08115D20
+	.4byte Pal_Bg_25
+	.4byte Img_Bg_23
 	.4byte gUnk_081192C4
-	.4byte gUnk_08119A78
-	.4byte gUnk_08115D20
+	.4byte Pal_Bg_26
+	.4byte Img_Bg_23
 	.4byte gUnk_081192C4
-	.4byte gUnk_08119B78
-	.4byte gUnk_08119C78
+	.4byte Pal_Bg_27
+	.4byte Img_Bg_28
 	.4byte gUnk_0811CD40
-	.4byte gUnk_0811D1F4
-	.4byte gUnk_08119C78
+	.4byte Pal_Bg_28
+	.4byte Img_Bg_28
 	.4byte gUnk_0811CD40
-	.4byte gUnk_0811D2F4
-	.4byte gUnk_0811D3F4
+	.4byte Pal_Bg_29
+	.4byte Img_Bg_2A
 	.4byte gUnk_0812186C
-	.4byte gUnk_08121D20
-	.4byte gUnk_08121E20
+	.4byte Pal_Bg_2A
+	.4byte Img_Bg_2B
 	.4byte gUnk_08126D40
-	.4byte gUnk_081271F4
-	.4byte gUnk_081272F4
+	.4byte Pal_Bg_2B
+	.4byte Img_Bg_2C
 	.4byte gUnk_0812B720
-	.4byte gUnk_0812BBD4
-	.4byte gUnk_0812BCD4
+	.4byte Pal_Bg_2C
+	.4byte Img_Bg_2D
 	.4byte gUnk_08130140
-	.4byte gUnk_081305F4
-	.4byte gUnk_081272F4
+	.4byte Pal_Bg_2D
+	.4byte Img_Bg_2C
 	.4byte gUnk_0812B720
-	.4byte gUnk_081306F4
-	.4byte gUnk_081307F4
+	.4byte Pal_Bg_2E
+	.4byte Img_Bg_2F
 	.4byte gUnk_08133F90
-	.4byte gUnk_08134444
-	.4byte gUnk_081307F4
+	.4byte Pal_Bg_2F
+	.4byte Img_Bg_2F
 	.4byte gUnk_08133F90
-	.4byte gUnk_08134544
-	.4byte gUnk_08134644
+	.4byte Pal_Bg_30
+	.4byte Img_Bg_31
 	.4byte gUnk_081383A8
-	.4byte gUnk_0813885C
-	.4byte gUnk_08134644
+	.4byte Pal_Bg_31
+	.4byte Img_Bg_31
 	.4byte gUnk_081383A8
-	.4byte gUnk_0813895C
-	.4byte gUnk_08134644
+	.4byte Pal_Bg_32
+	.4byte Img_Bg_31
 	.4byte gUnk_081383A8
-	.4byte gUnk_08138A5C
-	.4byte gUnk_08134644
+	.4byte Pal_Bg_33
+	.4byte Img_Bg_31
 	.4byte gUnk_081383A8
-	.4byte gUnk_08138B5C
-	.4byte gUnk_08138C5C
+	.4byte Pal_Bg_34
+	.4byte Img_Bg_35
 	.4byte gUnk_0813B560
-	.4byte gUnk_0813BA14
-	.4byte gUnk_0813BB14
+	.4byte Pal_Bg_35
+	.4byte Img_Bg_36
 	.4byte gUnk_0813F1E4
-	.4byte gUnk_0813F698
-	.4byte gUnk_0813F798
+	.4byte Pal_Bg_36
+	.4byte Img_Bg_37
 	.4byte gUnk_08142E6C
-	.4byte gUnk_08143320
-	.4byte gUnk_0813F798
+	.4byte Pal_Bg_37
+	.4byte Img_Bg_37
 	.4byte gUnk_08142E6C
-	.4byte gUnk_08143420
-	.4byte gUnk_08143520
+	.4byte Pal_Bg_38
+	.4byte Img_Bg_39
 	.4byte gUnk_081463E8
-	.4byte gUnk_0814689C
-	.4byte gUnk_08143520
+	.4byte Pal_Bg_39
+	.4byte Img_Bg_39
 	.4byte gUnk_081463E8
-	.4byte gUnk_0814699C
-	.4byte gUnk_08143520
+	.4byte Pal_Bg_3A
+	.4byte Img_Bg_39
 	.4byte gUnk_081463E8
-	.4byte gUnk_08146A9C
-	.4byte gUnk_08146B9C
+	.4byte Pal_Bg_3B
+	.4byte Img_Bg_3C
 	.4byte gUnk_08149C08
-	.4byte gUnk_0814A0BC
-	.4byte gUnk_08146B9C
+	.4byte Pal_Bg_3C
+	.4byte Img_Bg_3C
 	.4byte gUnk_08149C08
-	.4byte gUnk_0814A1BC
-	.4byte gUnk_08146B9C
+	.4byte Pal_Bg_3D
+	.4byte Img_Bg_3C
 	.4byte gUnk_08149C08
-	.4byte gUnk_0814A2BC
-	.4byte gUnk_0814A3BC
+	.4byte Pal_Bg_3E
+	.4byte Img_Bg_3F
 	.4byte gUnk_0814DBB8
-	.4byte gUnk_0814E06C
-	.4byte gUnk_0814A3BC
+	.4byte Pal_Bg_3F
+	.4byte Img_Bg_3F
 	.4byte gUnk_0814DBB8
-	.4byte gUnk_0814E16C
-	.4byte gUnk_0814A3BC
+	.4byte Pal_Bg_40
+	.4byte Img_Bg_3F
 	.4byte gUnk_0814DBB8
-	.4byte gUnk_0814E26C
-	.4byte gUnk_0814E36C
+	.4byte Pal_Bg_41
+	.4byte Img_Bg_42
 	.4byte gUnk_08152168
-	.4byte gUnk_0815261C
-	.4byte gUnk_0814E36C
+	.4byte Pal_Bg_42
+	.4byte Img_Bg_42
 	.4byte gUnk_08152168
-	.4byte gUnk_0815271C
-	.4byte gUnk_0815281C
+	.4byte Pal_Bg_43
+	.4byte Img_Bg_44
 	.4byte gUnk_08154CE0
-	.4byte gUnk_08155194
-	.4byte gUnk_0815281C
+	.4byte Pal_Bg_44
+	.4byte Img_Bg_44
 	.4byte gUnk_08154CE0
-	.4byte gUnk_08155294
-	.4byte gUnk_08155394
+	.4byte Pal_Bg_45
+	.4byte Img_Bg_46
 	.4byte gUnk_08159D60
-	.4byte gUnk_0815A214
-	.4byte gUnk_08155394
+	.4byte Pal_Bg_46
+	.4byte Img_Bg_46
 	.4byte gUnk_08159D60
-	.4byte gUnk_0815A314
-	.4byte gUnk_08155394
+	.4byte Pal_Bg_47
+	.4byte Img_Bg_46
 	.4byte gUnk_08159D60
-	.4byte gUnk_0815A414
-	.4byte gUnk_0815A514
+	.4byte Pal_Bg_48
+	.4byte Img_Bg_49
 	.4byte gUnk_0815F480
-	.4byte gUnk_0815F934
-	.4byte gUnk_0815FA34
+	.4byte Pal_Bg_49
+	.4byte Img_Bg_4A
 	.4byte gUnk_08163DFC
-	.4byte gUnk_081642B0
-	.4byte gUnk_0815FA34
+	.4byte Pal_Bg_4A
+	.4byte Img_Bg_4A
 	.4byte gUnk_08163DFC
-	.4byte gUnk_081643B0
-	.4byte gUnk_081644B0
+	.4byte Pal_Bg_4B
+	.4byte Img_Bg_4C
 	.4byte gUnk_081688D4
-	.4byte gUnk_08168D88
-	.4byte gUnk_081644B0
+	.4byte Pal_Bg_4C
+	.4byte Img_Bg_4C
 	.4byte gUnk_081688D4
-	.4byte gUnk_08168E88
-	.4byte gUnk_081644B0
+	.4byte Pal_Bg_4D
+	.4byte Img_Bg_4C
 	.4byte gUnk_081688D4
-	.4byte gUnk_08168F88
-	.4byte gUnk_08169088
+	.4byte Pal_Bg_4E
+	.4byte Img_Bg_4F
 	.4byte gUnk_0816D658
-	.4byte gUnk_0816DB0C
-	.4byte gUnk_08169088
+	.4byte Pal_Bg_4F
+	.4byte Img_Bg_4F
 	.4byte gUnk_0816D658
-	.4byte gUnk_0816DC0C
-	.4byte gUnk_0816DD0C
+	.4byte Pal_Bg_50
+	.4byte Img_Bg_51
 	.4byte gUnk_08170498
-	.4byte gUnk_0817094C
-	.4byte gUnk_0816DD0C
+	.4byte Pal_Bg_51
+	.4byte Img_Bg_51
 	.4byte gUnk_08170498
-	.4byte gUnk_08170A4C
-	.4byte gUnk_08170B4C
+	.4byte Pal_Bg_52
+	.4byte Img_Bg_53
 	.4byte gUnk_08174310
-	.4byte gUnk_081747EC
-	.4byte gUnk_08170B4C
+	.4byte Pal_Bg_53
+	.4byte Img_Bg_53
 	.4byte gUnk_08174310
-	.4byte gUnk_081748EC
-	.4byte gUnk_081749EC
+	.4byte Pal_Bg_54
+	.4byte Img_Bg_55
 	.4byte gUnk_08179538
-	.4byte gUnk_081799EC
-	.4byte gUnk_08179AEC
+	.4byte Pal_Bg_55
+	.4byte Img_Bg_56
 	.4byte gUnk_0817BE48
-	.4byte gUnk_0817C2FC
-	.4byte gUnk_0817C3FC
+	.4byte Pal_Bg_56
+	.4byte Img_Bg_57
 	.4byte gUnk_0818026C
-	.4byte gUnk_08180720
-	.4byte gUnk_08180820
+	.4byte Pal_Bg_57
+	.4byte Img_Bg_58
 	.4byte gUnk_0818252C
-	.4byte gUnk_081829E0
-	.4byte gUnk_08182AE0
+	.4byte Pal_Bg_58
+	.4byte Img_Bg_59
 	.4byte gUnk_08186500
-	.4byte gUnk_081869B4
-	.4byte gUnk_08186AB4
+	.4byte Pal_Bg_59
+	.4byte Img_Bg_5A
 	.4byte gUnk_0818AB1C
-	.4byte gUnk_0818AFD0
-	.4byte gUnk_0818B0D0
+	.4byte Pal_Bg_5A
+	.4byte Img_Bg_5B
 	.4byte gUnk_0818BA50
-	.4byte gUnk_0818BF04
+	.4byte Pal_Bg_5B
 	.4byte Img_DragonsGate
 	.4byte Tsa_DragonsGate
 	.4byte Pal_DragonsGate
-	.4byte gUnk_08190104
+	.4byte Img_Bg_5D
 	.4byte gUnk_081937D8
-	.4byte gUnk_08193C8C
-	.4byte gUnk_083FA298
+	.4byte Pal_Bg_5D
+	.4byte Img_Bg_5E
 	.4byte gUnk_083FAF7C
-	.4byte gUnk_083FB430
-	.4byte gUnk_083FB4B0
+	.4byte Pal_Bg_5E
+	.4byte Img_Bg_5F
 	.4byte gUnk_083FB860
-	.4byte gUnk_083FBD14
+	.4byte Pal_Bg_5F
 
 	.section .rodata.08B91A18, "a"
 
@@ -3341,7 +3341,7 @@ ProcScr_PlayerPhase:
 	.global gOpenLimitViewImgLut
 gOpenLimitViewImgLut:
 	.incbin "baserom.gba", 0xb9356c, 0x8
-	.4byte gUnk_083FDA1C
+	.4byte Img_LimitViewSquares
 	.4byte gUnk_083FDA9C
 	.4byte gUnk_083FDB1C
 	.4byte gUnk_083FDB9C
@@ -3422,8 +3422,8 @@ ProcScr_BmMain_08B937AC:
 
 	.section .rodata.08B93DA4, "a"
 
-	.global EventScr_08B93DA4
-EventScr_08B93DA4:
+	.global EventScr_CompleteTraining
+EventScr_CompleteTraining:
 	.incbin "baserom.gba", 0xb93da4, 0x10
 	.4byte sub_08021614
 	.incbin "baserom.gba", 0xb93db8, 0x24
@@ -3474,94 +3474,94 @@ sSlotToChrLut:
 sTornOutPixelLut:
 	.incbin "baserom.gba", 0xb93f18, 0x80
 
-	.global gUnk_08B93F98
-gUnk_08B93F98:
+	.global sSprite_SleepIconA
+sSprite_SleepIconA:
 	.incbin "baserom.gba", 0xb93f98, 0x8
 
-	.global gUnk_08B93FA0
-gUnk_08B93FA0:
+	.global sSprite_SleepIconB
+sSprite_SleepIconB:
 	.incbin "baserom.gba", 0xb93fa0, 0x8
 
-	.global gUnk_08B93FA8
-gUnk_08B93FA8:
+	.global sSprite_SleepIconC
+sSprite_SleepIconC:
 	.incbin "baserom.gba", 0xb93fa8, 0x8
 
-	.global gUnk_08B93FB0
-gUnk_08B93FB0:
+	.global sSprite_SleepIconD
+sSprite_SleepIconD:
 	.incbin "baserom.gba", 0xb93fb0, 0x8
 
-	.global gUnk_08B93FB8
-gUnk_08B93FB8:
+	.global sSprite_SleepIconE
+sSprite_SleepIconE:
 	.incbin "baserom.gba", 0xb93fb8, 0x8
 
-	.global gUnk_08B93FC0
-gUnk_08B93FC0:
+	.global sSprite_SleepIconF
+sSprite_SleepIconF:
 	.incbin "baserom.gba", 0xb93fc0, 0x8
 
-	.global gUnk_08B93FC8
-gUnk_08B93FC8:
+	.global sSprite_SleepIconG
+sSprite_SleepIconG:
 	.incbin "baserom.gba", 0xb93fc8, 0x8
 
 	.global sSleepIconSprites
 sSleepIconSprites:
-	.4byte gUnk_08B93F98
-	.4byte gUnk_08B93FA0
-	.4byte gUnk_08B93FA8
-	.4byte gUnk_08B93FB0
-	.4byte gUnk_08B93FB8
-	.4byte gUnk_08B93FC0
-	.4byte gUnk_08B93FC8
+	.4byte sSprite_SleepIconA
+	.4byte sSprite_SleepIconB
+	.4byte sSprite_SleepIconC
+	.4byte sSprite_SleepIconD
+	.4byte sSprite_SleepIconE
+	.4byte sSprite_SleepIconF
+	.4byte sSprite_SleepIconG
 
-	.global gUnk_08B93FEC
-gUnk_08B93FEC:
+	.global sSprite_BerserkIconA
+sSprite_BerserkIconA:
 	.incbin "baserom.gba", 0xb93fec, 0x8
 
-	.global gUnk_08B93FF4
-gUnk_08B93FF4:
+	.global sSprite_BerserkIconB
+sSprite_BerserkIconB:
 	.incbin "baserom.gba", 0xb93ff4, 0x8
 
-	.global gUnk_08B93FFC
-gUnk_08B93FFC:
+	.global sSprite_BerserkIconC
+sSprite_BerserkIconC:
 	.incbin "baserom.gba", 0xb93ffc, 0x8
 
-	.global gUnk_08B94004
-gUnk_08B94004:
+	.global sSprite_BerserkIconD
+sSprite_BerserkIconD:
 	.incbin "baserom.gba", 0xb94004, 0x8
 
-	.global gUnk_08B9400C
-gUnk_08B9400C:
+	.global sSprite_BerserkIconE
+sSprite_BerserkIconE:
 	.incbin "baserom.gba", 0xb9400c, 0x8
 
-	.global gUnk_08B94014
-gUnk_08B94014:
+	.global sSprite_BerserkIconF
+sSprite_BerserkIconF:
 	.incbin "baserom.gba", 0xb94014, 0x8
 
-	.global gUnk_08B9401C
-gUnk_08B9401C:
+	.global sSprite_BerserkIconG
+sSprite_BerserkIconG:
 	.incbin "baserom.gba", 0xb9401c, 0x8
 
-	.global gUnk_08B94024
-gUnk_08B94024:
+	.global sSprite_BerserkIconH
+sSprite_BerserkIconH:
 	.incbin "baserom.gba", 0xb94024, 0x8
 
-	.global gUnk_08B9402C
-gUnk_08B9402C:
+	.global sSprite_BerserkIconI
+sSprite_BerserkIconI:
 	.incbin "baserom.gba", 0xb9402c, 0x8
 
 	.global sBerserkIconSprites
 sBerserkIconSprites:
-	.4byte gUnk_08B93FEC
-	.4byte gUnk_08B93FF4
-	.4byte gUnk_08B93FFC
-	.4byte gUnk_08B94004
-	.4byte gUnk_08B9400C
-	.4byte gUnk_08B94014
-	.4byte gUnk_08B9401C
-	.4byte gUnk_08B94024
-	.4byte gUnk_08B9402C
+	.4byte sSprite_BerserkIconA
+	.4byte sSprite_BerserkIconB
+	.4byte sSprite_BerserkIconC
+	.4byte sSprite_BerserkIconD
+	.4byte sSprite_BerserkIconE
+	.4byte sSprite_BerserkIconF
+	.4byte sSprite_BerserkIconG
+	.4byte sSprite_BerserkIconH
+	.4byte sSprite_BerserkIconI
 
-	.global gUnk_08B94058
-gUnk_08B94058:
+	.global sSprite_None
+sSprite_None:
 	.incbin "baserom.gba", 0xb94058, 0x8
 
 	.global gUnk_08B94060
@@ -3574,7 +3574,7 @@ gUnk_08B94068:
 
 	.global sSilenceIconSprites
 sSilenceIconSprites:
-	.4byte gUnk_08B94058 + 0x2
+	.4byte sSprite_None + 0x2
 	.4byte gUnk_08B94060 + 0x2
 	.4byte gUnk_08B94068 + 0x2
 	.4byte gUnk_08B94068 + 0x2
@@ -3586,59 +3586,59 @@ sSilenceIconSprites:
 	.4byte gUnk_08B94068 + 0x2
 	.4byte gUnk_08B94068 + 0x2
 	.4byte gUnk_08B94060 + 0x2
-	.4byte gUnk_08B94058 + 0x2
-	.4byte gUnk_08B94058
-	.4byte gUnk_08B94058
-	.4byte gUnk_08B94058
-	.4byte gUnk_08B94058
-	.4byte gUnk_08B94058
+	.4byte sSprite_None + 0x2
+	.4byte sSprite_None
+	.4byte sSprite_None
+	.4byte sSprite_None
+	.4byte sSprite_None
+	.4byte sSprite_None
 
-	.global gUnk_08B940BC
-gUnk_08B940BC:
+	.global sSprite_PoisonIconA
+sSprite_PoisonIconA:
 	.incbin "baserom.gba", 0xb940bc, 0xc
 
 	.global gUnk_08B940C8
 gUnk_08B940C8:
 	.incbin "baserom.gba", 0xb940c8, 0x10
 
-	.global gUnk_08B940D8
-gUnk_08B940D8:
+	.global sSprite_PoisonIconC
+sSprite_PoisonIconC:
 	.incbin "baserom.gba", 0xb940d8, 0xc
 
 	.global gUnk_08B940E4
 gUnk_08B940E4:
 	.incbin "baserom.gba", 0xb940e4, 0x10
 
-	.global gUnk_08B940F4
-gUnk_08B940F4:
+	.global sSprite_PoisonIconE
+sSprite_PoisonIconE:
 	.incbin "baserom.gba", 0xb940f4, 0x8
 
-	.global gUnk_08B940FC
-gUnk_08B940FC:
+	.global sSprite_PoisonIconF
+sSprite_PoisonIconF:
 	.incbin "baserom.gba", 0xb940fc, 0x8
 
-	.global gUnk_08B94104
-gUnk_08B94104:
+	.global sSprite_PoisonIconG
+sSprite_PoisonIconG:
 	.incbin "baserom.gba", 0xb94104, 0x8
 
-	.global gUnk_08B9410C
-gUnk_08B9410C:
+	.global sSprite_PoisonIconH
+sSprite_PoisonIconH:
 	.incbin "baserom.gba", 0xb9410c, 0x8
 
 	.global sPoisonIconSprites
 sPoisonIconSprites:
-	.4byte gUnk_08B940BC
+	.4byte sSprite_PoisonIconA
 	.4byte gUnk_08B940C8 + 0x2
-	.4byte gUnk_08B940D8
+	.4byte sSprite_PoisonIconC
 	.4byte gUnk_08B940E4 + 0x2
-	.4byte gUnk_08B940F4
-	.4byte gUnk_08B940FC
-	.4byte gUnk_08B94104
-	.4byte gUnk_08B9410C
-	.4byte gUnk_08B9410C
-	.4byte gUnk_08B94058
-	.4byte gUnk_08B94058
-	.4byte gUnk_08B94058
+	.4byte sSprite_PoisonIconE
+	.4byte sSprite_PoisonIconF
+	.4byte sSprite_PoisonIconG
+	.4byte sSprite_PoisonIconH
+	.4byte sSprite_PoisonIconH
+	.4byte sSprite_None
+	.4byte sSprite_None
+	.4byte sSprite_None
 
 	.global sSprite_StatusUpIcon
 sSprite_StatusUpIcon:
@@ -3718,8 +3718,8 @@ gProcScr_SquareSelectTorch:
 gTradeItemDisplayTileLocation:
 	.incbin "baserom.gba", 0xb942b8, 0x28
 
-	.global gUnk_08B942E0
-gUnk_08B942E0:
+	.global ProcScr_TradeMenu_HighlightUpdater
+ProcScr_TradeMenu_HighlightUpdater:
 	.incbin "baserom.gba", 0xb942e0, 0x4
 	.4byte TradeMenu_HighlightUpdater_OnInit
 	.incbin "baserom.gba", 0xb942e8, 0x4
@@ -3737,7 +3737,7 @@ ProcScr_TradeMenu:
 	.incbin "baserom.gba", 0xb94318, 0x4
 	.4byte TradeMenu_InitUnitNameDisplay
 	.incbin "baserom.gba", 0xb94320, 0x4
-	.4byte gUnk_08B942E0
+	.4byte ProcScr_TradeMenu_HighlightUpdater
 	.incbin "baserom.gba", 0xb94328, 0xc
 	.4byte CallTradeTutEventStart
 	.incbin "baserom.gba", 0xb94338, 0x4
@@ -3914,11 +3914,11 @@ gUnk_08B94600:
 	.incbin "baserom.gba", 0xb94628, 0x8
 	.4byte MenuAlwaysEnabled
 	.incbin "baserom.gba", 0xb94634, 0x4
-	.4byte sub_08021630
+	.4byte CallEvent_CompleteTraining
 	.incbin "baserom.gba", 0xb9463c, 0x30
 
-	.global gUnk_08B9466C
-gUnk_08B9466C:
+	.global gDebugClearMenuItems
+gDebugClearMenuItems:
 	.4byte gUnk_081C3D7C
 	.incbin "baserom.gba", 0xb94670, 0x8
 	.4byte MenuAlwaysEnabled
@@ -3995,8 +3995,8 @@ gUnk_08B94864:
 	.4byte sub_0801BC1C
 	.incbin "baserom.gba", 0xb9487c, 0x30
 
-	.global gUnk_08B948AC
-gUnk_08B948AC:
+	.global gDebugMenuItems
+gDebugMenuItems:
 	.4byte gUnk_081C3E48
 	.incbin "baserom.gba", 0xb948b0, 0x8
 	.4byte MenuAlwaysEnabled
@@ -4059,8 +4059,8 @@ gUnk_08B948AC:
 	.4byte sub_0801B470
 	.incbin "baserom.gba", 0xb949e8, 0x2c
 
-	.global gUnk_08B94A14
-gUnk_08B94A14:
+	.global gItemUseMenuItems
+gItemUseMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb94a18, 0x8
 	.4byte RepairMenuItemIsAvailable
@@ -4103,8 +4103,8 @@ gUnk_08B94A14:
 	.4byte RepairMenuItemOnChangeOut
 	.incbin "baserom.gba", 0xb94ac8, 0x24
 
-	.global gUnk_08B94AEC
-gUnk_08B94AEC:
+	.global gStealItemMenuItems
+gStealItemMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb94af0, 0x8
 	.4byte StealItemMenuCommand_Usability
@@ -4136,8 +4136,8 @@ gUnk_08B94AEC:
 	.4byte StealItemMenuCommand_Effect
 	.incbin "baserom.gba", 0xb94b94, 0x30
 
-	.global gUnk_08B94BC4
-gUnk_08B94BC4:
+	.global gConvoyMenuItems
+gConvoyMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb94bc8, 0x8
 	.4byte MenuAlwaysEnabled
@@ -4255,8 +4255,8 @@ gUnk_08B94DBC:
 	.4byte StartFightItemReview
 	.incbin "baserom.gba", 0xb94df8, 0x30
 
-	.global gUnk_08B94E28
-gUnk_08B94E28:
+	.global gYesNoSelectionMenuItems
+gYesNoSelectionMenuItems:
 	.4byte gUnk_081C3E78
 	.incbin "baserom.gba", 0xb94e2c, 0x8
 	.4byte MenuAlwaysEnabled
@@ -4297,8 +4297,8 @@ gUnk_08B94E94:
 	.4byte ItemSubMenu_DiscardItem
 	.incbin "baserom.gba", 0xb94f18, 0x30
 
-	.global gUnk_08B94F48
-gUnk_08B94F48:
+	.global gItemMenuItems
+gItemMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb94f4c, 0x8
 	.4byte ItemMenu_Is1stCommandAvailable
@@ -4349,8 +4349,8 @@ gUnk_08B94F48:
 	.4byte ItemMenu_SwitchOut_DoNothing
 	.incbin "baserom.gba", 0xb95020, 0x24
 
-	.global gUnk_08B95044
-gUnk_08B95044:
+	.global gStaffItemSelectMenuItems
+gStaffItemSelectMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb95048, 0x8
 	.4byte StaffItemSelect_Usability
@@ -4393,8 +4393,8 @@ gUnk_08B95044:
 	.4byte StaffItemSelect_SwitchOut
 	.incbin "baserom.gba", 0xb950f8, 0x24
 
-	.global gUnk_08B9511C
-gUnk_08B9511C:
+	.global gItemSelectMenuItems
+gItemSelectMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb95120, 0x8
 	.4byte ItemSelectMenu_Usability
@@ -4437,8 +4437,8 @@ gUnk_08B9511C:
 	.4byte Menu_SwitchOut_DoNothing
 	.incbin "baserom.gba", 0xb951d0, 0x24
 
-	.global gUnk_08B951F4
-gUnk_08B951F4:
+	.global gBallistaRangeMenuItems
+gBallistaRangeMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb951f8, 0x8
 	.4byte BallistaRangeMenu_BallistaUsability
@@ -4449,8 +4449,8 @@ gUnk_08B951F4:
 	.4byte BallistaRangeMenu_SwitchOut
 	.incbin "baserom.gba", 0xb95218, 0x24
 
-	.global gUnk_08B9523C
-gUnk_08B9523C:
+	.global gWeaponSelectMenuItems
+gWeaponSelectMenuItems:
 	.4byte gUnk_081C3D94
 	.incbin "baserom.gba", 0xb95240, 0x8
 	.4byte WeaponSelectMenu_IsAvailable
@@ -4673,8 +4673,8 @@ gUnk_08B95704:
 	.4byte sub_08030C10
 	.incbin "baserom.gba", 0xb9571c, 0x30
 
-	.global gUnk_08B9574C
-gUnk_08B9574C:
+	.global gMapMenuItems
+gMapMenuItems:
 	.4byte gUnk_081C3FC4
 	.incbin "baserom.gba", 0xb95750, 0x8
 	.4byte MenuAlwaysEnabled
@@ -4713,7 +4713,7 @@ gUnk_08B9574C:
 	.global gDebugClearMenuDef
 gDebugClearMenuDef:
 	.incbin "baserom.gba", 0xb95848, 0x8
-	.4byte gUnk_08B9466C
+	.4byte gDebugClearMenuItems
 	.incbin "baserom.gba", 0xb95854, 0xc
 	.4byte EndMenuAndClear
 	.incbin "baserom.gba", 0xb95864, 0x8
@@ -4745,8 +4745,8 @@ gDebugMenuDef_08B958B4:
 	.global gDebugMenuDef
 gDebugMenuDef:
 	.incbin "baserom.gba", 0xb958d8, 0x8
-	.4byte gUnk_08B948AC
-	.4byte sub_0801B900
+	.4byte gDebugMenuItems
+	.4byte DebugMenuInit
 	.incbin "baserom.gba", 0xb958e8, 0x8
 	.4byte EndMenuAndClear
 	.incbin "baserom.gba", 0xb958f4, 0x8
@@ -4754,7 +4754,7 @@ gDebugMenuDef:
 	.global gMenuInfo_RepairItems
 gMenuInfo_RepairItems:
 	.incbin "baserom.gba", 0xb958fc, 0x8
-	.4byte gUnk_08B94A14
+	.4byte gItemUseMenuItems
 	.incbin "baserom.gba", 0xb95908, 0xc
 	.4byte ItemMenu_ButtonBPressed
 	.4byte MenuAutoHelpBoxSelect
@@ -4763,7 +4763,7 @@ gMenuInfo_RepairItems:
 	.global gStealItemMenuDef
 gStealItemMenuDef:
 	.incbin "baserom.gba", 0xb95920, 0x8
-	.4byte gUnk_08B94AEC
+	.4byte gStealItemMenuItems
 	.incbin "baserom.gba", 0xb9592c, 0xc
 	.4byte ItemMenu_ButtonBPressed
 	.4byte MenuAutoHelpBoxSelect
@@ -4772,7 +4772,7 @@ gStealItemMenuDef:
 	.global gConvoyMenuDef
 gConvoyMenuDef:
 	.incbin "baserom.gba", 0xb95944, 0x8
-	.4byte gUnk_08B94BC4
+	.4byte gConvoyMenuItems
 	.incbin "baserom.gba", 0xb95950, 0x10
 	.4byte MenuAutoHelpBoxSelect
 	.4byte ConvoyMenu_HelpBox
@@ -4794,7 +4794,7 @@ gSendToConvoyMenuDef:
 	.global gYesNoSelectionMenuDef
 gYesNoSelectionMenuDef:
 	.incbin "baserom.gba", 0xb959b0, 0x8
-	.4byte gUnk_08B94E28
+	.4byte gYesNoSelectionMenuItems
 	.incbin "baserom.gba", 0xb959bc, 0xc
 	.4byte MenuCommand_SelectNo
 	.incbin "baserom.gba", 0xb959cc, 0x8
@@ -4813,7 +4813,7 @@ gItemSubMenuDef:
 	.global gItemMenuDef
 gItemMenuDef:
 	.incbin "baserom.gba", 0xb959f8, 0x8
-	.4byte gUnk_08B94F48
+	.4byte gItemMenuItems
 	.incbin "baserom.gba", 0xb95a04, 0xc
 	.4byte ItemMenu_ButtonBPressed
 	.4byte MenuAutoHelpBoxSelect
@@ -4822,7 +4822,7 @@ gItemMenuDef:
 	.global gStaffItemSelectMenuDef
 gStaffItemSelectMenuDef:
 	.incbin "baserom.gba", 0xb95a1c, 0x8
-	.4byte gUnk_08B95044
+	.4byte gStaffItemSelectMenuItems
 	.incbin "baserom.gba", 0xb95a28, 0xc
 	.4byte ItemMenu_ButtonBPressed
 	.4byte MenuAutoHelpBoxSelect
@@ -4831,7 +4831,7 @@ gStaffItemSelectMenuDef:
 	.global gItemSelectMenuDef
 gItemSelectMenuDef:
 	.incbin "baserom.gba", 0xb95a40, 0x8
-	.4byte gUnk_08B9511C
+	.4byte gItemSelectMenuItems
 	.incbin "baserom.gba", 0xb95a4c, 0xc
 	.4byte ItemMenu_ButtonBPressed
 	.4byte MenuAutoHelpBoxSelect
@@ -4840,7 +4840,7 @@ gItemSelectMenuDef:
 	.global gBallistaRangeMenuDef
 gBallistaRangeMenuDef:
 	.incbin "baserom.gba", 0xb95a64, 0x8
-	.4byte gUnk_08B951F4
+	.4byte gBallistaRangeMenuItems
 	.incbin "baserom.gba", 0xb95a70, 0xc
 	.4byte ItemMenu_ButtonBPressed
 	.4byte MenuAutoHelpBoxSelect
@@ -4849,7 +4849,7 @@ gBallistaRangeMenuDef:
 	.global gWeaponSelectMenuDef
 gWeaponSelectMenuDef:
 	.incbin "baserom.gba", 0xb95a88, 0x8
-	.4byte gUnk_08B9523C
+	.4byte gWeaponSelectMenuItems
 	.incbin "baserom.gba", 0xb95a94, 0xc
 	.4byte ItemMenu_ButtonBPressed
 	.4byte MenuAutoHelpBoxSelect
@@ -4872,7 +4872,7 @@ gUnitActionMenuDef:
 	.global gMapMenuDef
 gMapMenuDef:
 	.incbin "baserom.gba", 0xb95af4, 0x8
-	.4byte gUnk_08B9574C
+	.4byte gMapMenuItems
 	.incbin "baserom.gba", 0xb95b00, 0xc
 	.4byte MenuCancelSelect
 	.4byte MenuAutoHelpBoxSelect
@@ -5380,7 +5380,7 @@ ProcScr_SALLYCURSOR:
 	.incbin "baserom.gba", 0xb96568, 0x4
 	.4byte PrepScreenProc_StartMapMenu
 	.incbin "baserom.gba", 0xb96570, 0xc
-	.4byte sub_0809019C
+	.4byte EnablePrepScreenMenu
 	.incbin "baserom.gba", 0xb96580, 0x4
 	.4byte PrepScreenMenuExists
 	.incbin "baserom.gba", 0xb96588, 0x4
@@ -5773,15 +5773,15 @@ gAiTerrainList_SnagWall:
 
 	.global gAiClassRankLists
 gAiClassRankLists:
-	.4byte gUnk_081D36E8
-	.4byte gUnk_081D36E8 + 0x1
-	.4byte gUnk_081D36E8 + 0x2
-	.4byte gUnk_081D36E8 + 0x3
-	.4byte gUnk_081D36EC
-	.4byte gUnk_081D36EC + 0x1
-	.4byte gUnk_081D36EC + 0x2
-	.4byte gUnk_081D36EC + 0x3
-	.4byte gUnk_081D36F0
+	.4byte gClassList_Empty1
+	.4byte gClassList_Empty1 + 0x1
+	.4byte gClassList_Empty1 + 0x2
+	.4byte gClassList_Empty1 + 0x3
+	.4byte gClassList_Empty5
+	.4byte gClassList_Empty5 + 0x1
+	.4byte gClassList_Empty5 + 0x2
+	.4byte gClassList_Empty5 + 0x3
+	.4byte gClassList_Empty9
 	.incbin "baserom.gba", 0xb970ec, 0x4
 
 	.global gUnk_08B970F0
@@ -6305,8 +6305,8 @@ gUnk_08B98898:
 	.4byte gUnk_08B9888C
 	.incbin "baserom.gba", 0xb988c8, 0x40
 
-	.global gUnk_08B98908
-gUnk_08B98908:
+	.global gAi2ScriptTable
+gAi2ScriptTable:
 	.4byte gUnk_08B972F8
 	.4byte gUnk_08B97398
 	.4byte gUnk_08B973B8
@@ -6343,8 +6343,8 @@ gUnk_08B98908:
 	.4byte gUnk_08B981CC
 	.4byte gUnk_08B9832C
 
-	.global gUnk_08B98994
-gUnk_08B98994:
+	.global gAi1ScriptTable
+gAi1ScriptTable:
 	.4byte gUnk_08B97858
 	.4byte gUnk_08B97878
 	.4byte gUnk_08B97898
@@ -6368,15 +6368,15 @@ gUnk_08B98994:
 
 	.global gpAi2Table
 gpAi2Table:
-	.4byte gUnk_08B98908
-	.4byte gUnk_08B98908
-	.4byte gUnk_08B98908
+	.4byte gAi2ScriptTable
+	.4byte gAi2ScriptTable
+	.4byte gAi2ScriptTable
 
 	.global gpAi1Table
 gpAi1Table:
-	.4byte gUnk_08B98994
-	.4byte gUnk_08B98994
-	.4byte gUnk_08B98994
+	.4byte gAi1ScriptTable
+	.4byte gAi1ScriptTable
+	.4byte gAi1ScriptTable
 
 	.section .rodata.08B98AC4, "a"
 
@@ -6429,8 +6429,8 @@ gSioList_085A93E0:
 gSioList_085A93F0:
 	.incbin "baserom.gba", 0xb98bec, 0x10
 
-	.global gUnk_08B98BFC
-gUnk_08B98BFC:
+	.global gSioTeamListConfig_1
+gSioTeamListConfig_1:
 	.incbin "baserom.gba", 0xb98bfc, 0xc
 	.4byte CanBuildNewLinkArenaTeam
 	.incbin "baserom.gba", 0xb98c0c, 0xc
@@ -6439,15 +6439,15 @@ gUnk_08B98BFC:
 	.4byte sub_0803DF1C
 	.incbin "baserom.gba", 0xb98c3c, 0x20
 
-	.global gUnk_08B98C5C
-gUnk_08B98C5C:
+	.global gSioTeamListConfig_2
+gSioTeamListConfig_2:
 	.incbin "baserom.gba", 0xb98c5c, 0x40
 
 	.global gSioTeamListConfigLut
 gSioTeamListConfigLut:
-	.4byte gUnk_08B98BFC
-	.4byte gUnk_08B98C5C
-	.4byte gUnk_08B98C5C
+	.4byte gSioTeamListConfig_1
+	.4byte gSioTeamListConfig_2
+	.4byte gSioTeamListConfig_2
 
 	.global gUnknown_08B98CA8
 gUnknown_08B98CA8:
@@ -6869,8 +6869,8 @@ ProcScr_08B9998C:
 gUnknown_08B999BC:
 	.incbin "baserom.gba", 0xb999bc, 0x1c
 
-	.global ProcScr_08B999D8
-ProcScr_08B999D8:
+	.global ProcScr_FE6Link
+ProcScr_FE6Link:
 	.incbin "baserom.gba", 0xb999d8, 0x4
 	.4byte Sio_DrawFe6CommImage
 	.incbin "baserom.gba", 0xb999e0, 0x4
@@ -7270,9 +7270,9 @@ ProcScr_08B9A3D0:
 	.global SpriteArray_SioMenuItems
 SpriteArray_SioMenuItems:
 	.4byte gUnk_081D5554 + 0x2
-	.4byte gUnk_081D5564
+	.4byte Sprite_SioMenu_Practice
 	.4byte gUnk_081D5570 + 0x2
-	.4byte gUnk_081D5580
+	.4byte Sprite_SioMenu_BattleData
 	.4byte gUnk_081D558C + 0x2
 
 	.global SpriteArray_SioMenuTeamCount
@@ -7326,16 +7326,16 @@ ProcScr_LinkArenaTeamSpriteDraw:
 
 	.global SpriteArray_NameEntryCursor
 SpriteArray_NameEntryCursor:
-	.4byte gUnk_081D5654
-	.4byte gUnk_081D565C
+	.4byte Sprite_NameEntry_CursorSmall
+	.4byte Sprite_NameEntry_CursorLarge
 
 	.global SpriteArray_NameEntryIcons
 SpriteArray_NameEntryIcons:
-	.4byte gUnk_081D5684
-	.4byte gUnk_081D567C
+	.4byte Sprite_NameEntry_HiraganaIcon
+	.4byte Sprite_NameEntry_KatakanaIcon
 	.4byte gUnk_081D568C
-	.4byte gUnk_081D5674
-	.4byte gUnk_081D566C
+	.4byte Sprite_NameEntry_DeleteIcon
+	.4byte Sprite_NameEntry_OKIcon
 
 	.global ProcScr_NameEntrySpriteDraw
 ProcScr_NameEntrySpriteDraw:
@@ -7345,9 +7345,9 @@ ProcScr_NameEntrySpriteDraw:
 
 	.global SpriteArray_RuleSettingIcons
 SpriteArray_RuleSettingIcons:
-	.4byte gUnk_081D5694
-	.4byte gUnk_081D569C
-	.4byte gUnk_081D56A4
+	.4byte Sprite_RuleSettings_HideUnitsIcon
+	.4byte Sprite_RuleSettings_VictoryCondIcon
+	.4byte Sprite_RuleSettings_AutoWeaponIcon
 
 	.global ProcScr_RuleSettingSpriteDraw_Interactive
 ProcScr_RuleSettingSpriteDraw_Interactive:
@@ -7403,10 +7403,10 @@ gUnk_08B9A580:
 
 	.global SpriteArray_LAVersusPlayerNumbers
 SpriteArray_LAVersusPlayerNumbers:
-	.4byte gUnk_081D5724
-	.4byte gUnk_081D572C
-	.4byte gUnk_081D5734
-	.4byte gUnk_081D573C
+	.4byte Sprite_LAVersus_P1
+	.4byte Sprite_LAVersus_P2
+	.4byte Sprite_LAVersus_P3
+	.4byte Sprite_LAVersus_P4
 
 	.global ProcScr_LAVersusSpriteDraw
 ProcScr_LAVersusSpriteDraw:
@@ -7498,9 +7498,9 @@ gUnknown_085AADA0:
 
 	.global gUiWindowFrameModelLut
 gUiWindowFrameModelLut:
-	.4byte gUnk_081D57BC
-	.4byte gUnk_081D57DC
-	.4byte gUnk_081D57FC
+	.4byte UiWindowFrameTile1
+	.4byte UiWindowFrameTile2
+	.4byte UiWindowFrameTile3
 
 	.global gUiWindowFramePalLut
 gUiWindowFramePalLut:
@@ -7511,10 +7511,10 @@ gUiWindowFramePalLut:
 
 	.global gUiWindowFrameImgLut
 gUiWindowFrameImgLut:
-	.4byte gUnk_081D5844
-	.4byte gUnk_081D6130
-	.4byte gUnk_081D6A24
-	.4byte gUnk_081D72E4
+	.4byte Img_UiWindowFrame1
+	.4byte Img_UiWindowFrame2
+	.4byte Img_UiWindowFrame3
+	.4byte Img_UiWindowFrame4
 
 	.global gUiStatBarPalLut
 gUiStatBarPalLut:
@@ -7590,8 +7590,8 @@ gProc_ekrTogiColor:
 	.global PalArray_ArenaBattleBg
 PalArray_ArenaBattleBg:
 	.4byte Pal_ArenaBattleBg_A
-	.4byte gUnk_081DE61C
-	.4byte gUnk_081DE69C
+	.4byte Pal_ArenaBattleBg_B
+	.4byte Pal_ArenaBattleBg_C
 
 	.global gUnk_08B9B388
 gUnk_08B9B388:
@@ -9312,63 +9312,63 @@ ProcScr_efxSongBG:
 
 	.global TsaArray_SongBg
 TsaArray_SongBg:
-	.4byte gUnk_082DCB2C
-	.4byte gUnk_082DCBD4
-	.4byte gUnk_082DCC80
-	.4byte gUnk_082DCD30
-	.4byte gUnk_082DCDF4
-	.4byte gUnk_082DCEC0
-	.4byte gUnk_082DCF98
-	.4byte gUnk_082DD078
-	.4byte gUnk_082DD158
-	.4byte gUnk_082DD244
-	.4byte gUnk_082DD338
-	.4byte gUnk_082DD434
-	.4byte gUnk_082DD52C
-	.4byte gUnk_082DD62C
-	.4byte gUnk_082DD72C
-	.4byte gUnk_082DD82C
-	.4byte gUnk_082DD930
-	.4byte gUnk_082DDA20
-	.4byte gUnk_082DDB08
-	.4byte gUnk_082DDBEC
-	.4byte gUnk_082DDCD4
-	.4byte gUnk_082DDDB0
-	.4byte gUnk_082DDE80
-	.4byte gUnk_082DDF3C
-	.4byte gUnk_082DDFFC
-	.4byte gUnk_082DE0B0
-	.4byte gUnk_082DE158
+	.4byte Tsa_SongBg_00
+	.4byte Tsa_SongBg_01
+	.4byte Tsa_SongBg_02
+	.4byte Tsa_SongBg_03
+	.4byte Tsa_SongBg_04
+	.4byte Tsa_SongBg_05
+	.4byte Tsa_SongBg_06
+	.4byte Tsa_SongBg_07
+	.4byte Tsa_SongBg_08
+	.4byte Tsa_SongBg_09
+	.4byte Tsa_SongBg_0A
+	.4byte Tsa_SongBg_0B
+	.4byte Tsa_SongBg_0C
+	.4byte Tsa_SongBg_0D
+	.4byte Tsa_SongBg_0E
+	.4byte Tsa_SongBg_0F
+	.4byte Tsa_SongBg_10
+	.4byte Tsa_SongBg_11
+	.4byte Tsa_SongBg_12
+	.4byte Tsa_SongBg_13
+	.4byte Tsa_SongBg_14
+	.4byte Tsa_SongBg_15
+	.4byte Tsa_SongBg_16
+	.4byte Tsa_SongBg_17
+	.4byte Tsa_SongBg_18
+	.4byte Tsa_SongBg_19
+	.4byte Tsa_SongBg_1A
 
 	.global ImgArray_SongBg
 ImgArray_SongBg:
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DA260
-	.4byte gUnk_082DAE2C
-	.4byte gUnk_082DAE2C
-	.4byte gUnk_082DAE2C
-	.4byte gUnk_082DAE2C
-	.4byte gUnk_082DAE2C
-	.4byte gUnk_082DBA68
-	.4byte gUnk_082DBA68
-	.4byte gUnk_082DBA68
-	.4byte gUnk_082DBA68
-	.4byte gUnk_082DBA68
-	.4byte gUnk_082DBA68
-	.4byte gUnk_082DBA68
-	.4byte gUnk_082DC538
-	.4byte gUnk_082DC538
-	.4byte gUnk_082DC538
-	.4byte gUnk_082DC538
-	.4byte gUnk_082DC538
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_00
+	.4byte Img_SongBg_0A
+	.4byte Img_SongBg_0A
+	.4byte Img_SongBg_0A
+	.4byte Img_SongBg_0A
+	.4byte Img_SongBg_0A
+	.4byte Img_SongBg_0F
+	.4byte Img_SongBg_0F
+	.4byte Img_SongBg_0F
+	.4byte Img_SongBg_0F
+	.4byte Img_SongBg_0F
+	.4byte Img_SongBg_0F
+	.4byte Img_SongBg_0F
+	.4byte Img_SongBg_16
+	.4byte Img_SongBg_16
+	.4byte Img_SongBg_16
+	.4byte Img_SongBg_16
+	.4byte Img_SongBg_16
 
 	.global ProcScr_efxSongOBJ
 ProcScr_efxSongOBJ:
@@ -9458,18 +9458,18 @@ ProcScr_efxDarkbreathBG:
 
 	.global TsaArray_DarkBreathBg
 TsaArray_DarkBreathBg:
-	.4byte gUnk_081F0D14
-	.4byte gUnk_081F0DFC
-	.4byte gUnk_081F0EB8
-	.4byte gUnk_081F0FB4
-	.4byte gUnk_081F109C
-	.4byte gUnk_081F1184
-	.4byte gUnk_081F1280
-	.4byte gUnk_081F13AC
-	.4byte gUnk_081F14E0
-	.4byte gUnk_081F15A4
-	.4byte gUnk_081F16D0
-	.4byte gUnk_081F17CC
+	.4byte Tsa_DarkBreathBg_00
+	.4byte Tsa_DarkBreathBg_01
+	.4byte Tsa_DarkBreathBg_02
+	.4byte Tsa_DarkBreathBg_03
+	.4byte Tsa_DarkBreathBg_04
+	.4byte Tsa_DarkBreathBg_05
+	.4byte Tsa_DarkBreathBg_06
+	.4byte Tsa_DarkBreathBg_07
+	.4byte Tsa_DarkBreathBg_08
+	.4byte Tsa_DarkBreathBg_09
+	.4byte Tsa_DarkBreathBg_0A
+	.4byte Tsa_DarkBreathBg_0B
 
 	.global ProcScr_efxDarkbreathBGCOL
 ProcScr_efxDarkbreathBGCOL:
@@ -9499,33 +9499,33 @@ ProcScr_efxFireBG:
 
 	.global NewEfxFireBG_tsal
 NewEfxFireBG_tsal:
-	.4byte gUnk_081FD2EC
-	.4byte gUnk_081FD394
-	.4byte gUnk_081FD43C
-	.4byte gUnk_081FD4F4
-	.4byte gUnk_081FD5BC
-	.4byte gUnk_081FD68C
-	.4byte gUnk_081FD78C
-	.4byte gUnk_081FD894
-	.4byte gUnk_081FD9A8
-	.4byte gUnk_081FDAE0
-	.4byte gUnk_081FDBE4
-	.4byte gUnk_081FDCB8
+	.4byte Tsa_EfxFireBG_L_00
+	.4byte Tsa_EfxFireBG_L_01
+	.4byte Tsa_EfxFireBG_L_02
+	.4byte Tsa_EfxFireBG_L_03
+	.4byte Tsa_EfxFireBG_L_04
+	.4byte Tsa_EfxFireBG_L_05
+	.4byte Tsa_EfxFireBG_L_06
+	.4byte Tsa_EfxFireBG_L_07
+	.4byte Tsa_EfxFireBG_L_08
+	.4byte Tsa_EfxFireBG_L_09
+	.4byte Tsa_EfxFireBG_L_0A
+	.4byte Tsa_EfxFireBG_L_0B
 
 	.global NewEfxFireBG_tsar
 NewEfxFireBG_tsar:
-	.4byte gUnk_081FDD78
-	.4byte gUnk_081FDE20
-	.4byte gUnk_081FDEC8
-	.4byte gUnk_081FDF80
-	.4byte gUnk_081FE048
-	.4byte gUnk_081FE118
-	.4byte gUnk_081FE218
-	.4byte gUnk_081FE320
-	.4byte gUnk_081FE434
-	.4byte gUnk_081FE56C
-	.4byte gUnk_081FE670
-	.4byte gUnk_081FE744
+	.4byte Tsa_EfxFireBG_R_00
+	.4byte Tsa_EfxFireBG_R_01
+	.4byte Tsa_EfxFireBG_R_02
+	.4byte Tsa_EfxFireBG_R_03
+	.4byte Tsa_EfxFireBG_R_04
+	.4byte Tsa_EfxFireBG_R_05
+	.4byte Tsa_EfxFireBG_R_06
+	.4byte Tsa_EfxFireBG_R_07
+	.4byte Tsa_EfxFireBG_R_08
+	.4byte Tsa_EfxFireBG_R_09
+	.4byte Tsa_EfxFireBG_R_0A
+	.4byte Tsa_EfxFireBG_R_0B
 
 	.global ProcScr_efxFireOBJ
 ProcScr_efxFireOBJ:
@@ -9541,51 +9541,51 @@ ProcScr_efxFireHITBG:
 
 	.global ImgLut_AnimaHitBG
 ImgLut_AnimaHitBG:
-	.4byte gUnk_081FEE20
-	.4byte gUnk_081FEE20
-	.4byte gUnk_081FEE20
-	.4byte gUnk_081FEE20
-	.4byte gUnk_081FEE20
-	.4byte gUnk_081FEE20
-	.4byte gUnk_081FFB5C
-	.4byte gUnk_081FFB5C
-	.4byte gUnk_081FFB5C
-	.4byte gUnk_08200838
-	.4byte gUnk_08200838
-	.4byte gUnk_08201660
-	.4byte gUnk_08201660
-	.4byte gUnk_08202654
-	.4byte gUnk_08202654
-	.4byte gUnk_082038F0
-	.4byte gUnk_082044BC
-	.4byte gUnk_082050B4
-	.4byte gUnk_08205C0C
-	.4byte gUnk_08206708
-	.4byte gUnk_08207110
+	.4byte Img_AnimaHitBG_00
+	.4byte Img_AnimaHitBG_00
+	.4byte Img_AnimaHitBG_00
+	.4byte Img_AnimaHitBG_00
+	.4byte Img_AnimaHitBG_00
+	.4byte Img_AnimaHitBG_00
+	.4byte Img_AnimaHitBG_06
+	.4byte Img_AnimaHitBG_06
+	.4byte Img_AnimaHitBG_06
+	.4byte Img_AnimaHitBG_09
+	.4byte Img_AnimaHitBG_09
+	.4byte Img_AnimaHitBG_0B
+	.4byte Img_AnimaHitBG_0B
+	.4byte Img_AnimaHitBG_0D
+	.4byte Img_AnimaHitBG_0D
+	.4byte Img_AnimaHitBG_0F
+	.4byte Img_AnimaHitBG_10
+	.4byte Img_AnimaHitBG_11
+	.4byte Img_AnimaHitBG_12
+	.4byte Img_AnimaHitBG_13
+	.4byte Img_AnimaHitBG_14
 
 	.global TsaLut_AnimaHitBG
 TsaLut_AnimaHitBG:
-	.4byte gUnk_08207A38
-	.4byte gUnk_08207AE4
-	.4byte gUnk_08207B9C
-	.4byte gUnk_08207C68
-	.4byte gUnk_08207D48
-	.4byte gUnk_08207E3C
-	.4byte gUnk_08207F54
-	.4byte gUnk_08208080
-	.4byte gUnk_082081B8
-	.4byte gUnk_082082FC
-	.4byte gUnk_08208450
-	.4byte gUnk_082085A8
-	.4byte gUnk_08208710
-	.4byte gUnk_0820887C
-	.4byte gUnk_082089F8
-	.4byte gUnk_08208B8C
-	.4byte gUnk_08208D2C
-	.4byte gUnk_08208ECC
-	.4byte gUnk_0820906C
-	.4byte gUnk_0820920C
-	.4byte gUnk_0820939C
+	.4byte Tsa_AnimaHitBG_00
+	.4byte Tsa_AnimaHitBG_01
+	.4byte Tsa_AnimaHitBG_02
+	.4byte Tsa_AnimaHitBG_03
+	.4byte Tsa_AnimaHitBG_04
+	.4byte Tsa_AnimaHitBG_05
+	.4byte Tsa_AnimaHitBG_06
+	.4byte Tsa_AnimaHitBG_07
+	.4byte Tsa_AnimaHitBG_08
+	.4byte Tsa_AnimaHitBG_09
+	.4byte Tsa_AnimaHitBG_0A
+	.4byte Tsa_AnimaHitBG_0B
+	.4byte Tsa_AnimaHitBG_0C
+	.4byte Tsa_AnimaHitBG_0D
+	.4byte Tsa_AnimaHitBG_0E
+	.4byte Tsa_AnimaHitBG_0F
+	.4byte Tsa_AnimaHitBG_10
+	.4byte Tsa_AnimaHitBG_11
+	.4byte Tsa_AnimaHitBG_12
+	.4byte Tsa_AnimaHitBG_13
+	.4byte Tsa_AnimaHitBG_14
 
 	.global ProcScr_efxElfireBG
 ProcScr_efxElfireBG:
@@ -9619,21 +9619,21 @@ ProcScr_efxFimbulvetrBGTR:
 
 	.global TsaArray_FimbulvetrBg_Tornado
 TsaArray_FimbulvetrBg_Tornado:
-	.4byte gUnk_0821BBC8
-	.4byte gUnk_0821BDB4
-	.4byte gUnk_0821BF8C
-	.4byte gUnk_0821C154
-	.4byte gUnk_0821C388
-	.4byte gUnk_0821C5D0
+	.4byte Tsa_FimbulvetrBg_Tornado_A
+	.4byte Tsa_FimbulvetrBg_Tornado_B
+	.4byte Tsa_FimbulvetrBg_Tornado_C
+	.4byte Tsa_FimbulvetrBg_Tornado_D
+	.4byte Tsa_FimbulvetrBg_Tornado_E
+	.4byte Tsa_FimbulvetrBg_Tornado_F
 
 	.global ImgArray_FimbulvetrBg_Tornado
 ImgArray_FimbulvetrBg_Tornado:
-	.4byte gUnk_08214D84
-	.4byte gUnk_08215F8C
-	.4byte gUnk_082170E8
-	.4byte gUnk_0821816C
-	.4byte gUnk_082195AC
-	.4byte gUnk_0821A964
+	.4byte Img_FimbulvetrBg_Tornado_A
+	.4byte Img_FimbulvetrBg_Tornado_B
+	.4byte Img_FimbulvetrBg_Tornado_C
+	.4byte Img_FimbulvetrBg_Tornado_D
+	.4byte Img_FimbulvetrBg_Tornado_E
+	.4byte Img_FimbulvetrBg_Tornado_F
 
 	.global ProcScr_efxFimbulvetrBG
 ProcScr_efxFimbulvetrBG:
@@ -9643,31 +9643,31 @@ ProcScr_efxFimbulvetrBG:
 
 	.global TsaArray_FimbulvetrBg
 TsaArray_FimbulvetrBg:
-	.4byte gUnk_08213EA0
-	.4byte gUnk_08213F44
-	.4byte gUnk_08213FEC
-	.4byte gUnk_082140A8
-	.4byte gUnk_0821417C
-	.4byte gUnk_08214278
-	.4byte gUnk_082143B8
-	.4byte gUnk_08214550
-	.4byte gUnk_08214724
-	.4byte gUnk_08214934
-	.4byte gUnk_08214B54
+	.4byte Tsa_FimbulvetrBg_A
+	.4byte Tsa_FimbulvetrBg_B
+	.4byte Tsa_FimbulvetrBg_C
+	.4byte Tsa_FimbulvetrBg_D
+	.4byte Tsa_FimbulvetrBg_E
+	.4byte Tsa_FimbulvetrBg_F
+	.4byte Tsa_FimbulvetrBg_G
+	.4byte Tsa_FimbulvetrBg_H
+	.4byte Tsa_FimbulvetrBg_I
+	.4byte Tsa_FimbulvetrBg_J
+	.4byte Tsa_FimbulvetrBg_K
 
 	.global ImgArray_FimbulvetrBg
 ImgArray_FimbulvetrBg:
-	.4byte gUnk_0820E408
-	.4byte gUnk_0820E408
-	.4byte gUnk_0820E408
-	.4byte gUnk_0820E408
-	.4byte gUnk_0820E408
-	.4byte gUnk_0820E408
-	.4byte gUnk_0820F6D8
-	.4byte gUnk_0820F6D8
-	.4byte gUnk_08210F88
-	.4byte gUnk_082123CC
-	.4byte gUnk_082123CC
+	.4byte Img_FimbulvetrBg_A
+	.4byte Img_FimbulvetrBg_A
+	.4byte Img_FimbulvetrBg_A
+	.4byte Img_FimbulvetrBg_A
+	.4byte Img_FimbulvetrBg_A
+	.4byte Img_FimbulvetrBg_A
+	.4byte Img_FimbulvetrBg_B
+	.4byte Img_FimbulvetrBg_B
+	.4byte Img_FimbulvetrBg_C
+	.4byte Img_FimbulvetrBg_D
+	.4byte Img_FimbulvetrBg_D
 
 	.global ProcScr_efxFimbulvetrOBJ
 ProcScr_efxFimbulvetrOBJ:

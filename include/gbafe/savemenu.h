@@ -121,7 +121,7 @@ void SaveMenuPutChapterTitle(struct SaveMenuProc * proc);
 // ??? SaveMenuStartBonusClaim
 // ??? sub_80A5A94
 void StartMainMenu(/* TODO */);
-// ??? sub_080A4DEC
+// ??? SaveMenuDirectlySelectSlotOnPrepScreen
 void sub_080A4E0C(ProcPtr);
 // ??? sub_80A5B0C
 void SaveMenu_SetDifficultyChoice(s32, s32);
@@ -133,7 +133,7 @@ void sub_080A4E58(void);
 // ??? sub_080A5084
 // ??? sub_080A50CC
 // ??? sub_80A5DF0
-// ??? sub_080A511C
+// ??? StartBonusClaimMenu
 // ??? SaveMenuCopyPalette
 // ??? sub_080A5148
 // ??? sub_080A5214

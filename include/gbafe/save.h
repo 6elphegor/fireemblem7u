@@ -171,7 +171,7 @@ void WriteSupplyItems(void * sram_dest);
 void ReadSupplyItems(void const * sram_src);
 s32 sub_0809E9FC(void);
 int sub_0809EA58(void);
-bool sub_0809EA7C(void);
+bool null_true(void);
 bool IsExtraLinkArenaEnabled(void);
 bool IsExtraSoundRoomEnabled(void);
 bool IsExtraSupportViewerEnabled(void);

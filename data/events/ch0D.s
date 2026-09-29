@@ -72,7 +72,7 @@ MoveScr_08CAE5F3:
 	.align 2, 0
 	.global SpriteAnimConf_08CAE5F8
 SpriteAnimConf_08CAE5F8:
-	.4byte 0, gUnk_081C2CA0, gUnk_081C3260
+	.4byte 0, Img_EventSpriteAnim_SpawnThief, ApConf_EventSpriteAnim_SpawnAssassin
 	.2byte 0x0, 0x200
 	.byte 10, 1, 0, 0
 

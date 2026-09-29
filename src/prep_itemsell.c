@@ -51,7 +51,7 @@ void sub_080985D4(int index, ProcPtr parent)
 {
     StartParallelWorker(WmSell_DrawSupplyDialogueSpriteText, parent);
 
-    sub_080A9D1C(0x7000, 13, DecodeMsgInBuffer(gShopSellTextIndexLookup[index], gpShopSellStringBuffer), 1, parent);
+    NewSysboxText(0x7000, 13, DecodeMsgInBuffer(gShopSellTextIndexLookup[index], gpShopSellStringBuffer), 1, parent);
 }
 void sub_08098618(void)
 {

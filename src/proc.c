@@ -11,9 +11,9 @@ void RunProcessScript(ProcPtr proc);
 
 typedef bool (*BoolProcFunc)(ProcPtr);
 
-extern EWRAM_DATA struct Proc Unk_02024E28[PROC_COUNT]; // sProcArray
-extern EWRAM_DATA struct Proc * Unk_02026928[PROC_COUNT + 1]; // sProcAllocList
-extern EWRAM_DATA struct Proc ** Unk_02026A2C; // sProcAllocListHead
+extern EWRAM_DATA struct Proc sProcArray[PROC_COUNT]; // sProcArray
+extern EWRAM_DATA struct Proc * sProcAllocList[PROC_COUNT + 1]; // sProcAllocList
+extern EWRAM_DATA struct Proc ** sProcAllocListHead; // sProcAllocListHead
 extern EWRAM_DATA struct Proc * gProcTreeRootArray[8]; // gProcTreeRootArray
 
 void Proc_Init()
@@ -22,7 +22,7 @@ void Proc_Init()
 
     for (i = 0; i < PROC_COUNT; i++)
     {
-        struct Proc * ptr = &Unk_02024E28[i];
+        struct Proc * ptr = &sProcArray[i];
         ptr->proc_script = 0;
         ptr->proc_scrCur = 0;
         ptr->proc_endCb = 0;
@@ -37,11 +37,11 @@ void Proc_Init()
         ptr->proc_flags = 0;
         ptr->proc_lockCnt = 0;
 
-        Unk_02026928[i] = ptr;
+        sProcAllocList[i] = ptr;
     }
 
-    Unk_02026928[PROC_COUNT] = 0;
-    Unk_02026A2C = Unk_02026928;
+    sProcAllocList[PROC_COUNT] = 0;
+    sProcAllocListHead = sProcAllocList;
 
     for (i = 0; i < 8; i++)
     {
@@ -139,16 +139,16 @@ void Proc_End(ProcPtr proc)
 
 struct Proc * AllocateProcess()
 {
-    ProcPtr proc = *Unk_02026A2C;
-    Unk_02026A2C++;
+    ProcPtr proc = *sProcAllocListHead;
+    sProcAllocListHead++;
 
     return proc;
 }
 
 void FreeProcess(struct Proc * proc)
 {
-    Unk_02026A2C--;
-    *Unk_02026A2C = proc;
+    sProcAllocListHead--;
+    *sProcAllocListHead = proc;
 }
 
 void InsertRootProcess(struct Proc * proc, s32 parent)
@@ -259,7 +259,7 @@ void Proc_Break(ProcPtr proc)
 ProcPtr Proc_Find(const struct ProcCmd * script)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -275,7 +275,7 @@ ProcPtr Proc_Find(const struct ProcCmd * script)
 ProcPtr Proc_FindNonBlocked(const struct ProcCmd * script)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -291,7 +291,7 @@ ProcPtr Proc_FindNonBlocked(const struct ProcCmd * script)
 ProcPtr sub_080046F4(int mark)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -347,7 +347,7 @@ void Proc_SetEndCb(ProcPtr proc, ProcFunc func)
 void Proc_ForAll(ProcFunc func)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -361,7 +361,7 @@ void Proc_ForAll(ProcFunc func)
 void Proc_ForEach(const struct ProcCmd * script, ProcFunc func)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -375,7 +375,7 @@ void Proc_ForEach(const struct ProcCmd * script, ProcFunc func)
 void Proc_ForEachMarked(int mark, ProcFunc func)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -389,7 +389,7 @@ void Proc_ForEachMarked(int mark, ProcFunc func)
 void Proc_BlockEachMarked(int mark)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -403,7 +403,7 @@ void Proc_BlockEachMarked(int mark)
 void Proc_UnblockEachMarked(int mark)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -420,7 +420,7 @@ void Proc_UnblockEachMarked(int mark)
 void Proc_EndEachMarked(int mark)
 {
     int i;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
     {
@@ -480,7 +480,7 @@ void sub_080048C0(ProcPtr proc, ProcFunc func)
     }
 }
 
-bool sub_080048DC(ProcPtr proc)
+bool ProcCmd_DELETE(ProcPtr proc)
 {
     Proc_End(proc);
     return 0;
@@ -615,7 +615,7 @@ bool ProcCmd_WHILE_EXISTS(ProcPtr proc)
     return 1;
 }
 
-bool sub_08004A1C(ProcPtr proc)
+bool ProcCmd_END_ALL(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
 
@@ -626,7 +626,7 @@ bool sub_08004A1C(ProcPtr proc)
     return 1;
 }
 
-bool sub_08004A38(ProcPtr proc)
+bool ProcCmd_BREAK_ALL_LOOP(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
 
@@ -637,7 +637,7 @@ bool sub_08004A38(ProcPtr proc)
     return 1;
 }
 
-bool sub_08004A54(ProcPtr proc)
+bool ProcCmd_NOP(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
 
@@ -674,7 +674,7 @@ void UpdateSleep(ProcPtr proc)
     }
 }
 
-bool sub_08004AA0(ProcPtr proc)
+bool ProcCmd_SLEEP(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
 
@@ -699,7 +699,7 @@ bool ProcCmd_SET_MARK(ProcPtr proc)
     return 1;
 }
 
-bool sub_08004AD8(ProcPtr proc)
+bool ProcCmd_NOP2(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
 
@@ -708,7 +708,7 @@ bool sub_08004AD8(ProcPtr proc)
     return 1;
 }
 
-bool sub_08004AE4(ProcPtr proc)
+bool ProcCmd_BLOCK(ProcPtr proc)
 {
     return 0;
 }
@@ -716,7 +716,7 @@ bool sub_08004AE4(ProcPtr proc)
 bool ProcCmd_END_IF_DUPLICATE(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
     int i, j;
 
     for (i = 0, j = 0; i < PROC_COUNT; i++, ptr++)
@@ -742,7 +742,7 @@ bool ProcCmd_END_IF_DUPLICATE(ProcPtr proc)
 bool ProcCmd_END_DUPLICATES(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
     int i;
 
     for (i = 0; i < PROC_COUNT; i++, ptr++)
@@ -758,7 +758,7 @@ bool ProcCmd_END_DUPLICATES(ProcPtr proc)
     return 1;
 }
 
-bool sub_08004B60(ProcPtr proc)
+bool ProcCmd_NOP3(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
 
@@ -767,7 +767,7 @@ bool sub_08004B60(ProcPtr proc)
     return 1;
 }
 
-bool sub_08004B6C(ProcPtr proc)
+bool ProcCmd_SET_BIT4(ProcPtr proc)
 {
     struct Proc * p = ((struct Proc*)proc);
 
@@ -777,9 +777,9 @@ bool sub_08004B6C(ProcPtr proc)
     return 1;
 }
 
-BoolProcFunc gUnk_08B858A4[] =
+BoolProcFunc sProcessCmdTable[] =
 {
-    sub_080048DC,
+    ProcCmd_DELETE,
     ProcCmd_SET_NAME,
     ProcCmd_CALL_ROUTINE,
     ProcCmd_LOOP_ROUTINE,
@@ -788,23 +788,23 @@ BoolProcFunc gUnk_08B858A4[] =
     ProcCmd_NEW_CHILD_BLOCKING,
     ProcCmd_NEW_MAIN_BUGGED,
     ProcCmd_WHILE_EXISTS,
-    sub_08004A1C,
-    sub_08004A38,
-    sub_08004A54,
+    ProcCmd_END_ALL,
+    ProcCmd_BREAK_ALL_LOOP,
+    ProcCmd_NOP,
     ProcCmd_GOTO,
     ProcCmd_JUMP,
-    sub_08004AA0,
+    ProcCmd_SLEEP,
     ProcCmd_SET_MARK,
-    sub_08004AE4,
+    ProcCmd_BLOCK,
     ProcCmd_END_IF_DUPLICATE,
-    sub_08004B6C,
-    sub_08004AD8,
+    ProcCmd_SET_BIT4,
+    ProcCmd_NOP2,
     ProcCmd_WHILE_ROUTINE,
-    sub_08004B60,
+    ProcCmd_NOP3,
     ProcCmd_CALL_ROUTINE_2,
     ProcCmd_END_DUPLICATES,
     ProcCmd_CALL_ROUTINE_ARG,
-    sub_08004A54,
+    ProcCmd_NOP,
 };
 
 void RunProcessScript(ProcPtr proc)
@@ -815,7 +815,7 @@ void RunProcessScript(ProcPtr proc)
         && !p->proc_lockCnt
         && !p->proc_idleCb)
     {
-        while (gUnk_08B858A4[p->proc_scrCur->opcode](p))
+        while (sProcessCmdTable[p->proc_scrCur->opcode](p))
         {
             if (p->proc_script == 0)
             {
@@ -825,7 +825,7 @@ void RunProcessScript(ProcPtr proc)
     }
 }
 
-void nullsub_2(ProcPtr proc)
+void PrintProcessName(ProcPtr proc)
 {
 }
 
@@ -838,7 +838,7 @@ void PrintProcessNameRecursive(ProcPtr proc, int * a1)
         PrintProcessNameRecursive(p->proc_prev, a1);
     }
 
-    nullsub_2(proc);
+    PrintProcessName(proc);
 
     if (p->proc_child)
     {
@@ -853,7 +853,7 @@ void PrintProcessTree(ProcPtr proc)
     struct Proc * p = ((struct Proc*)proc);
     int i = 4;
 
-    nullsub_2(p);
+    PrintProcessName(p);
 
     if (p->proc_child)
     {
@@ -891,14 +891,14 @@ ProcPtr Proc_FindAfter(struct ProcCmd * script, struct Proc * proc)
 
     if (!proc_ptr)
     {
-        proc_ptr = Unk_02024E28;
+        proc_ptr = sProcArray;
     }
     else
     {
         proc_ptr++;
     }
 
-    while (proc_ptr < (struct Proc *)Unk_02026928)
+    while (proc_ptr < (struct Proc *)sProcAllocList)
     {
         if (proc_ptr->proc_script == script)
         {
@@ -917,14 +917,14 @@ struct Proc * Proc_FindAfterWithParent(struct Proc * proc, struct Proc * parent)
 
     if (!proc_ptr)
     {
-        proc_ptr = Unk_02024E28;
+        proc_ptr = sProcArray;
     }
     else
     {
         proc_ptr++;
     }
 
-    while (proc_ptr < (struct Proc *)Unk_02026928)
+    while (proc_ptr < (struct Proc *)sProcAllocList)
     {
         if (proc_ptr->proc_parent == parent)
         {
@@ -940,7 +940,7 @@ struct Proc * Proc_FindAfterWithParent(struct Proc * proc, struct Proc * parent)
 int sub_08004CC4()
 {
     int i = PROC_COUNT;
-    struct Proc * ptr = Unk_02024E28;
+    struct Proc * ptr = sProcArray;
     s32 target = (s32)ptr + 0x00001A94;
 
     do

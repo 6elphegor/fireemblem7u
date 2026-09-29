@@ -254,7 +254,7 @@ EventScr_08CA84F8:
 	TEX1_BY_GENDER MSG_845, MSG_846          @ Direct my arm! / Sain is your faithful servant! Command me!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 8
 	GOTO 9
 	LABEL 1
@@ -334,7 +334,7 @@ EventScr_08CA8688:
 	TEX1 MSG_84E                             @ Command me to attack!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 9
 	GOTO 9
 	LABEL 1
@@ -399,7 +399,7 @@ EventScr_08CA87BC:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xA
 	GOTO 9
 	LABEL 1
@@ -461,7 +461,7 @@ EventScr_08CA88A4:
 	TEX1_BY_GENDER MSG_856, MSG_857          @ I failed you once before, but give me another ch / I'll show you my worth this time. Let me take up
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xC
 	GOTO 9
 	LABEL 1
@@ -538,7 +538,7 @@ EventScr_08CA8A20:
 	TEX1 MSG_85E                             @ Direct me to attack! I'm ready, and I'm able!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xD
 	GOTO 9
 	LABEL 1
@@ -602,7 +602,7 @@ EventScr_08CA8B54:
 	EVBIT_SILENTSKIP
 	IFUA 1, 1, CHARACTER_LYN_TUTORIAL
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xE
 	GOTO 9
 	LABEL 1
@@ -652,7 +652,7 @@ EventScr_08CA8C30:
 	TEX1_BY_GENDER MSG_868, MSG_869          @ I must use the vulnerary and put my lady's mind / I mustn't worry my lady any longer. Come, ! Dire
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0x10
 	GOTO 9
 	LABEL 1

@@ -502,7 +502,7 @@ EventScr_Ch1A_Ending:
 	MUEN 2
 	CAM1_POS 0xD, 0xF
 	STAL 0x10
-	SPRITE_ANIM SpriteAnimConf_08CB401C, 192, 240
+	SPRITE_ANIM EventSpriteAnimConf_SpawnAssassin, 192, 240
 	SOUN 0x2F6
 	STAL 0x1C
 	LOU1 Units_08CCF92C

@@ -6,264 +6,264 @@
 	.section .rodata.083B8CAB, "a"
 	.incbin "baserom.gba", 0x3b8cab, 0x1
 
-	.global gUnk_083B8CAC
-gUnk_083B8CAC:  @ LZ77
+	.global Img_Mu_LordEliwood
+Img_Mu_LordEliwood:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/lord_eliwood.lz"
 
 	.global gUnk_083B9670
 gUnk_083B9670:
 	.incbin "baserom.gba", 0x3b9670, 0x158
 
-	.global gUnk_083B97C8
-gUnk_083B97C8:  @ LZ77
+	.global Img_Mu_LordLyn
+Img_Mu_LordLyn:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/lord_lyn.lz"
 
 	.global gUnk_083B9F88
 gUnk_083B9F88:
 	.incbin "baserom.gba", 0x3b9f88, 0x158
 
-	.global gUnk_083BA0E0
-gUnk_083BA0E0:  @ LZ77
+	.global Img_Mu_LordHector
+Img_Mu_LordHector:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/lord_hector.lz"
 
 	.global gUnk_083BA990
 gUnk_083BA990:
 	.incbin "baserom.gba", 0x3ba990, 0x158
 
-	.global gUnk_083BAAE8
-gUnk_083BAAE8:  @ LZ77
+	.global Img_Mu_KnightLord
+Img_Mu_KnightLord:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/knight_lord.lz"
 
 	.global gUnk_083BB458
 gUnk_083BB458:
 	.incbin "baserom.gba", 0x3bb458, 0x160
 
-	.global gUnk_083BB5B8
-gUnk_083BB5B8:  @ LZ77
+	.global Img_Mu_BladeLord
+Img_Mu_BladeLord:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/blade_lord.lz"
 
 	.global gUnk_083BBE44
 gUnk_083BBE44:
 	.incbin "baserom.gba", 0x3bbe44, 0x160
 
-	.global gUnk_083BBFA4
-gUnk_083BBFA4:  @ LZ77
+	.global Img_Mu_GreatLord
+Img_Mu_GreatLord:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/great_lord.lz"
 
 	.global gUnk_083BCA90
 gUnk_083BCA90:
 	.incbin "baserom.gba", 0x3bca90, 0x158
 
-	.global gUnk_083BCBE8
-gUnk_083BCBE8:  @ LZ77
+	.global Img_Mu_Mercenary
+Img_Mu_Mercenary:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/mercenary.lz"
 
 	.global gUnk_083BD38C
 gUnk_083BD38C:
 	.incbin "baserom.gba", 0x3bd38c, 0x158
 
-	.global gUnk_083BD4E4
-gUnk_083BD4E4:  @ LZ77
+	.global Img_Mu_MercenaryF
+Img_Mu_MercenaryF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/mercenary_f.lz"
 
 	.global gUnk_083BDC4C
 gUnk_083BDC4C:
 	.incbin "baserom.gba", 0x3bdc4c, 0x158
 
-	.global gUnk_083BDDA4
-gUnk_083BDDA4:  @ LZ77
+	.global Img_Mu_Hero
+Img_Mu_Hero:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/hero.lz"
 
 	.global gUnk_083BE700
 gUnk_083BE700:
 	.incbin "baserom.gba", 0x3be700, 0x160
 
-	.global gUnk_083BE860
-gUnk_083BE860:  @ LZ77
+	.global Img_Mu_HeroF
+Img_Mu_HeroF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/hero_f.lz"
 
 	.global gUnk_083BF1E0
 gUnk_083BF1E0:
 	.incbin "baserom.gba", 0x3bf1e0, 0x160
 
-	.global gUnk_083BF340
-gUnk_083BF340:  @ LZ77
+	.global Img_Mu_Myrmidon
+Img_Mu_Myrmidon:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/myrmidon.lz"
 
 	.global gUnk_083BFB28
 gUnk_083BFB28:
 	.incbin "baserom.gba", 0x3bfb28, 0x158
 
-	.global gUnk_083BFC80
-gUnk_083BFC80:  @ LZ77
+	.global Img_Mu_MyrmidonF
+Img_Mu_MyrmidonF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/myrmidon_f.lz"
 
 	.global gUnk_083C04C4
 gUnk_083C04C4:
 	.incbin "baserom.gba", 0x3c04c4, 0x158
 
-	.global gUnk_083C061C
-gUnk_083C061C:  @ LZ77
+	.global Img_Mu_Swordmaster
+Img_Mu_Swordmaster:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/swordmaster.lz"
 
 	.global gUnk_083C0E68
 gUnk_083C0E68:
 	.incbin "baserom.gba", 0x3c0e68, 0x160
 
-	.global gUnk_083C0FC8
-gUnk_083C0FC8:  @ LZ77
+	.global Img_Mu_SwordmasterF
+Img_Mu_SwordmasterF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/swordmaster_f.lz"
 
 	.global gUnk_083C184C
 gUnk_083C184C:
 	.incbin "baserom.gba", 0x3c184c, 0x160
 
-	.global gUnk_083C19AC
-gUnk_083C19AC:  @ LZ77
+	.global Img_Mu_Fighter
+Img_Mu_Fighter:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/fighter.lz"
 
 	.global gUnk_083C21A8
 gUnk_083C21A8:
 	.incbin "baserom.gba", 0x3c21a8, 0x158
 
-	.global gUnk_083C2300
-gUnk_083C2300:  @ LZ77
+	.global Img_Mu_Warrior
+Img_Mu_Warrior:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/warrior.lz"
 
 	.global gUnk_083C2D0C
 gUnk_083C2D0C:
 	.incbin "baserom.gba", 0x3c2d0c, 0x158
 
-	.global gUnk_083C2E64
-gUnk_083C2E64:  @ LZ77
+	.global Img_Mu_Knight
+Img_Mu_Knight:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/knight.lz"
 
 	.global gUnk_083C3758
 gUnk_083C3758:
 	.incbin "baserom.gba", 0x3c3758, 0x158
 
-	.global gUnk_083C38B0
-gUnk_083C38B0:  @ LZ77
+	.global Img_Mu_General
+Img_Mu_General:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/general.lz"
 
 	.global gUnk_083C4364
 gUnk_083C4364:
 	.incbin "baserom.gba", 0x3c4364, 0x160
 
-	.global gUnk_083C44C4
-gUnk_083C44C4:  @ LZ77
+	.global Img_Mu_Archer
+Img_Mu_Archer:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/archer.lz"
 
 	.global gUnk_083C4C88
 gUnk_083C4C88:
 	.incbin "baserom.gba", 0x3c4c88, 0x158
 
-	.global gUnk_083C4DE0
-gUnk_083C4DE0:  @ LZ77
+	.global Img_Mu_ArcherF
+Img_Mu_ArcherF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/archer_f.lz"
 
 	.global gUnk_083C55D4
 gUnk_083C55D4:
 	.incbin "baserom.gba", 0x3c55d4, 0x158
 
-	.global gUnk_083C572C
-gUnk_083C572C:  @ LZ77
+	.global Img_Mu_Sniper
+Img_Mu_Sniper:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/sniper.lz"
 
 	.global gUnk_083C5F54
 gUnk_083C5F54:
 	.incbin "baserom.gba", 0x3c5f54, 0x158
 
-	.global gUnk_083C60AC
-gUnk_083C60AC:  @ LZ77
+	.global Img_Mu_SniperF
+Img_Mu_SniperF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/sniper_f.lz"
 
 	.global gUnk_083C6920
 gUnk_083C6920:
 	.incbin "baserom.gba", 0x3c6920, 0x158
 
-	.global gUnk_083C6A78
-gUnk_083C6A78:  @ LZ77
+	.global Img_Mu_Monk
+Img_Mu_Monk:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/monk.lz"
 
 	.global gUnk_083C7164
 gUnk_083C7164:
 	.incbin "baserom.gba", 0x3c7164, 0x158
 
-	.global gUnk_083C72BC
-gUnk_083C72BC:  @ LZ77
+	.global Img_Mu_Cleric
+Img_Mu_Cleric:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/cleric.lz"
 
 	.global gUnk_083C79D4
 gUnk_083C79D4:
 	.incbin "baserom.gba", 0x3c79d4, 0x158
 
-	.global gUnk_083C7B2C
-gUnk_083C7B2C:  @ LZ77
+	.global Img_Mu_Bishop
+Img_Mu_Bishop:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/bishop.lz"
 
 	.global gUnk_083C8398
 gUnk_083C8398:
 	.incbin "baserom.gba", 0x3c8398, 0x160
 
-	.global gUnk_083C84F8
-gUnk_083C84F8:  @ LZ77
+	.global Img_Mu_BishopF
+Img_Mu_BishopF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/bishop_f.lz"
 
 	.global gUnk_083C8D4C
 gUnk_083C8D4C:
 	.incbin "baserom.gba", 0x3c8d4c, 0x160
 
-	.global gUnk_083C8EAC
-gUnk_083C8EAC:  @ LZ77
+	.global Img_Mu_Mage
+Img_Mu_Mage:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/mage.lz"
 
 	.global gUnk_083C96EC
 gUnk_083C96EC:
 	.incbin "baserom.gba", 0x3c96ec, 0x158
 
-	.global gUnk_083C9844
-gUnk_083C9844:  @ LZ77
+	.global Img_Mu_MageF
+Img_Mu_MageF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/mage_f.lz"
 
 	.global gUnk_083CA110
 gUnk_083CA110:
 	.incbin "baserom.gba", 0x3ca110, 0x158
 
-	.global gUnk_083CA268
-gUnk_083CA268:  @ LZ77
+	.global Img_Mu_Sage
+Img_Mu_Sage:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/sage.lz"
 
 	.global gUnk_083CABDC
 gUnk_083CABDC:
 	.incbin "baserom.gba", 0x3cabdc, 0x158
 
-	.global gUnk_083CAD34
-gUnk_083CAD34:  @ LZ77
+	.global Img_Mu_SageF
+Img_Mu_SageF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/sage_f.lz"
 
 	.global gUnk_083CB718
 gUnk_083CB718:
 	.incbin "baserom.gba", 0x3cb718, 0x158
 
-	.global gUnk_083CB870
-gUnk_083CB870:  @ LZ77
+	.global Img_Mu_Shaman
+Img_Mu_Shaman:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/shaman.lz"
 
 	.global gUnk_083CC054
 gUnk_083CC054:
 	.incbin "baserom.gba", 0x3cc054, 0x158
 
-	.global gUnk_083CC1AC
-gUnk_083CC1AC:  @ LZ77
+	.global Img_Mu_ShamanF
+Img_Mu_ShamanF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/shaman_f.lz"
 
 	.global gUnk_083CC9E0
 gUnk_083CC9E0:
 	.incbin "baserom.gba", 0x3cc9e0, 0x158
 
-	.global gUnk_083CCB38
-gUnk_083CCB38:  @ LZ77
+	.global Img_Mu_Druid
+Img_Mu_Druid:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/druid.lz"
 
 	.global gUnk_083CD41C
@@ -274,440 +274,440 @@ gUnk_083CD41C:
 gUnk_083CD51C:
 	.incbin "baserom.gba", 0x3cd51c, 0x58
 
-	.global gUnk_083CD574
-gUnk_083CD574:  @ LZ77
+	.global Img_Mu_DruidF
+Img_Mu_DruidF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/druid_f.lz"
 
 	.global gUnk_083CDE30
 gUnk_083CDE30:
 	.incbin "baserom.gba", 0x3cde30, 0x158
 
-	.global gUnk_083CDF88
-gUnk_083CDF88:  @ LZ77
+	.global Img_Mu_Cavalier
+Img_Mu_Cavalier:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/cavalier.lz"
 
 	.global gUnk_083CE8D0
 gUnk_083CE8D0:
 	.incbin "baserom.gba", 0x3ce8d0, 0x158
 
-	.global gUnk_083CEA28
-gUnk_083CEA28:  @ LZ77
+	.global Img_Mu_Paladin
+Img_Mu_Paladin:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/paladin.lz"
 
 	.global gUnk_083CF3CC
 gUnk_083CF3CC:
 	.incbin "baserom.gba", 0x3cf3cc, 0x158
 
-	.global gUnk_083CF524
-gUnk_083CF524:  @ LZ77
+	.global Img_Mu_Troubadour
+Img_Mu_Troubadour:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/troubadour.lz"
 
 	.global gUnk_083CFEC8
 gUnk_083CFEC8:
 	.incbin "baserom.gba", 0x3cfec8, 0x158
 
-	.global gUnk_083D0020
-gUnk_083D0020:  @ LZ77
+	.global Img_Mu_Valkyrie
+Img_Mu_Valkyrie:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/valkyrie.lz"
 
 	.global gUnk_083D0A28
 gUnk_083D0A28:
 	.incbin "baserom.gba", 0x3d0a28, 0x158
 
-	.global gUnk_083D0B80
-gUnk_083D0B80:  @ LZ77
+	.global Img_Mu_Nomad
+Img_Mu_Nomad:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/nomad.lz"
 
 	.global gUnk_083D1494
 gUnk_083D1494:
 	.incbin "baserom.gba", 0x3d1494, 0x158
 
-	.global gUnk_083D15EC
-gUnk_083D15EC:  @ LZ77
+	.global Img_Mu_NomadF
+Img_Mu_NomadF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/nomad_f.lz"
 
 	.global gUnk_083D1F88
 gUnk_083D1F88:
 	.incbin "baserom.gba", 0x3d1f88, 0x158
 
-	.global gUnk_083D20E0
-gUnk_083D20E0:  @ LZ77
+	.global Img_Mu_NomadTrooper
+Img_Mu_NomadTrooper:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/nomad_trooper.lz"
 
 	.global gUnk_083D2A68
 gUnk_083D2A68:
 	.incbin "baserom.gba", 0x3d2a68, 0x158
 
-	.global gUnk_083D2BC0
-gUnk_083D2BC0:  @ LZ77
+	.global Img_Mu_NomadTrooperF
+Img_Mu_NomadTrooperF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/nomad_trooper_f.lz"
 
 	.global gUnk_083D35DC
 gUnk_083D35DC:
 	.incbin "baserom.gba", 0x3d35dc, 0x158
 
-	.global gUnk_083D3734
-gUnk_083D3734:  @ LZ77
+	.global Img_Mu_PegasusKnight
+Img_Mu_PegasusKnight:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/pegasus_knight.lz"
 
 	.global gUnk_083D4454
 gUnk_083D4454:
 	.incbin "baserom.gba", 0x3d4454, 0x158
 
-	.global gUnk_083D45AC
-gUnk_083D45AC:  @ LZ77
+	.global Img_Mu_Falcoknight
+Img_Mu_Falcoknight:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/falcoknight.lz"
 
 	.global gUnk_083D5340
 gUnk_083D5340:
 	.incbin "baserom.gba", 0x3d5340, 0x158
 
-	.global gUnk_083D5498
-gUnk_083D5498:  @ LZ77
+	.global Img_Mu_WyvernRider
+Img_Mu_WyvernRider:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/wyvern_rider.lz"
 
 	.global gUnk_083D61E8
 gUnk_083D61E8:
 	.incbin "baserom.gba", 0x3d61e8, 0x160
 
-	.global gUnk_083D6348
-gUnk_083D6348:  @ LZ77
+	.global Img_Mu_WyvernLord
+Img_Mu_WyvernLord:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/wyvern_lord.lz"
 
 	.global gUnk_083D7154
 gUnk_083D7154:
 	.incbin "baserom.gba", 0x3d7154, 0x168
 
-	.global gUnk_083D72BC
-gUnk_083D72BC:  @ LZ77
+	.global Img_Mu_Soldier
+Img_Mu_Soldier:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/soldier.lz"
 
 	.global gUnk_083D7A68
 gUnk_083D7A68:
 	.incbin "baserom.gba", 0x3d7a68, 0x158
 
-	.global gUnk_083D7BC0
-gUnk_083D7BC0:  @ LZ77
+	.global Img_Mu_Brigand
+Img_Mu_Brigand:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/brigand.lz"
 
 	.global gUnk_083D83F0
 gUnk_083D83F0:
 	.incbin "baserom.gba", 0x3d83f0, 0x158
 
-	.global gUnk_083D8548
-gUnk_083D8548:  @ LZ77
+	.global Img_Mu_Pirate
+Img_Mu_Pirate:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/pirate.lz"
 
 	.global gUnk_083D8E78
 gUnk_083D8E78:
 	.incbin "baserom.gba", 0x3d8e78, 0x158
 
-	.global gUnk_083D8FD0
-gUnk_083D8FD0:  @ LZ77
+	.global Img_Mu_Berserker
+Img_Mu_Berserker:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/berserker.lz"
 
 	.global gUnk_083D98D0
 gUnk_083D98D0:
 	.incbin "baserom.gba", 0x3d98d0, 0x158
 
-	.global gUnk_083D9A28
-gUnk_083D9A28:  @ LZ77
+	.global Img_Mu_Thief
+Img_Mu_Thief:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/thief.lz"
 
 	.global gUnk_083DA2A4
 gUnk_083DA2A4:
 	.incbin "baserom.gba", 0x3da2a4, 0x158
 
-	.global gUnk_083DA3FC
-gUnk_083DA3FC:  @ LZ77
+	.global Img_Mu_ThiefF
+Img_Mu_ThiefF:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/thief_f.lz"
 
 	.global gUnk_083DABFC
 gUnk_083DABFC:
 	.incbin "baserom.gba", 0x3dabfc, 0x158
 
-	.global gUnk_083DAD54
-gUnk_083DAD54:  @ LZ77
+	.global Img_Mu_Assassin
+Img_Mu_Assassin:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/assassin.lz"
 
 	.global gUnk_083DB4FC
 gUnk_083DB4FC:
 	.incbin "baserom.gba", 0x3db4fc, 0x158
 
-	.global gUnk_083DB654
-gUnk_083DB654:  @ LZ77
+	.global Img_Mu_Civilian
+Img_Mu_Civilian:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/civilian.lz"
 
 	.global gUnk_083DBA34
 gUnk_083DBA34:
 	.incbin "baserom.gba", 0x3dba34, 0x158
 
-	.global gUnk_083DBB8C
-gUnk_083DBB8C:  @ LZ77
+	.global Img_Mu_Dancer
+Img_Mu_Dancer:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/dancer.lz"
 
 	.global gUnk_083DC578
 gUnk_083DC578:
 	.incbin "baserom.gba", 0x3dc578, 0x1f8
 
-	.global gUnk_083DC770
-gUnk_083DC770:  @ LZ77
+	.global Img_Mu_Bard
+Img_Mu_Bard:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/bard.lz"
 
 	.global gUnk_083DCF00
 gUnk_083DCF00:
 	.incbin "baserom.gba", 0x3dcf00, 0x190
 
-	.global gUnk_083DD090
-gUnk_083DD090:  @ LZ77
+	.global Img_Mu_Archsage
+Img_Mu_Archsage:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/archsage.lz"
 
 	.global gUnk_083DD7F8
 gUnk_083DD7F8:
 	.incbin "baserom.gba", 0x3dd7f8, 0x158
 
-	.global gUnk_083DD950
-gUnk_083DD950:  @ LZ77
+	.global Img_Mu_MagicSeal
+Img_Mu_MagicSeal:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/magic_seal.lz"
 
 	.global gUnk_083DDFA0
 gUnk_083DDFA0:
 	.incbin "baserom.gba", 0x3ddfa0, 0x158
 
-	.global gUnk_083DE0F8
-gUnk_083DE0F8:  @ LZ77
+	.global Img_Mu_TransporterTent
+Img_Mu_TransporterTent:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/transporter_tent.lz"
 
 	.global gUnk_083DE518
 gUnk_083DE518:
 	.incbin "baserom.gba", 0x3de518, 0x158
 
-	.global gUnk_083DE670
-gUnk_083DE670:  @ LZ77
+	.global Img_Mu_DarkDruid
+Img_Mu_DarkDruid:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/dark_druid.lz"
 
 	.global gUnk_083DEF18
 gUnk_083DEF18:
 	.incbin "baserom.gba", 0x3def18, 0x158
 
-	.global gUnk_083DF070
-gUnk_083DF070:  @ LZ77
+	.global Img_Mu_FireDragon
+Img_Mu_FireDragon:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/fire_dragon.lz"
 
 	.global gUnk_083DFC14
 gUnk_083DFC14:
 	.incbin "baserom.gba", 0x3dfc14, 0x158
 
-	.global gUnk_083DFD6C
-gUnk_083DFD6C:  @ LZ77
+	.global Img_Mu_Civilian47
+Img_Mu_Civilian47:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/civilian_47.lz"
 
 	.global gUnk_083E0450
 gUnk_083E0450:
 	.incbin "baserom.gba", 0x3e0450, 0x158
 
-	.global gUnk_083E05A8
-gUnk_083E05A8:  @ LZ77
+	.global Img_Mu_Civilian48
+Img_Mu_Civilian48:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/civilian_48.lz"
 
 	.global gUnk_083E0C9C
 gUnk_083E0C9C:
 	.incbin "baserom.gba", 0x3e0c9c, 0x158
 
-	.global gUnk_083E0DF4
-gUnk_083E0DF4:  @ LZ77
+	.global Img_Mu_Child49
+Img_Mu_Child49:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/child_49.lz"
 
 	.global gUnk_083E11D8
 gUnk_083E11D8:
 	.incbin "baserom.gba", 0x3e11d8, 0x158
 
-	.global gUnk_083E1330
-gUnk_083E1330:  @ LZ77
+	.global Img_Mu_Bramimond
+Img_Mu_Bramimond:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/bramimond.lz"
 
 	.global gUnk_083E1A64
 gUnk_083E1A64:
 	.incbin "baserom.gba", 0x3e1a64, 0x158
 
-	.global gUnk_083E1BBC
-gUnk_083E1BBC:  @ LZ77
+	.global Img_Mu_Peer4b
+Img_Mu_Peer4b:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/peer_4b.lz"
 
 	.global gUnk_083E2438
 gUnk_083E2438:
 	.incbin "baserom.gba", 0x3e2438, 0x158
 
-	.global gUnk_083E2590
-gUnk_083E2590:  @ LZ77
+	.global Img_Mu_Peer4c
+Img_Mu_Peer4c:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/peer_4c.lz"
 
 	.global gUnk_083E2AE4
 gUnk_083E2AE4:
 	.incbin "baserom.gba", 0x3e2ae4, 0x158
 
-	.global gUnk_083E2C3C
-gUnk_083E2C3C:  @ LZ77
+	.global Img_Mu_Prince4d
+Img_Mu_Prince4d:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/prince_4d.lz"
 
 	.global gUnk_083E3248
 gUnk_083E3248:
 	.incbin "baserom.gba", 0x3e3248, 0x158
 
-	.global gUnk_083E33A0
-gUnk_083E33A0:  @ LZ77
+	.global Img_Mu_Queen
+Img_Mu_Queen:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/queen.lz"
 
 	.global gUnk_083E3880
 gUnk_083E3880:
 	.incbin "baserom.gba", 0x3e3880, 0x158
 
-	.global gUnk_083E39D8
-gUnk_083E39D8:  @ LZ77
+	.global Img_Mu_Civilian4f
+Img_Mu_Civilian4f:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/civilian_4f.lz"
 
 	.global gUnk_083E3DC8
 gUnk_083E3DC8:
 	.incbin "baserom.gba", 0x3e3dc8, 0x158
 
-	.global gUnk_083E3F20
-gUnk_083E3F20:  @ LZ77
+	.global Img_Mu_Prince51
+Img_Mu_Prince51:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/prince_51.lz"
 
 	.global gUnk_083E4410
 gUnk_083E4410:
 	.incbin "baserom.gba", 0x3e4410, 0x158
 
-	.global gUnk_083E4568
-gUnk_083E4568:  @ LZ77
+	.global Img_Mu_Prince52
+Img_Mu_Prince52:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/prince_52.lz"
 
 	.global gUnk_083E4954
 gUnk_083E4954:
 	.incbin "baserom.gba", 0x3e4954, 0x158
 
-	.global gUnk_083E4AAC
-gUnk_083E4AAC:  @ LZ77
+	.global Img_Mu_Prince53
+Img_Mu_Prince53:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/prince_53.lz"
 
 	.global gUnk_083E4EBC
 gUnk_083E4EBC:
 	.incbin "baserom.gba", 0x3e4ebc, 0x158
 
-	.global gUnk_083E5014
-gUnk_083E5014:  @ LZ77
+	.global Img_Mu_Child54
+Img_Mu_Child54:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/child_54.lz"
 
 	.global gUnk_083E54BC
 gUnk_083E54BC:
 	.incbin "baserom.gba", 0x3e54bc, 0x158
 
-	.global gUnk_083E5614
-gUnk_083E5614:  @ LZ77
+	.global Img_Mu_FireDragon55
+Img_Mu_FireDragon55:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/fire_dragon_55.lz"
 
 	.global gUnk_083E5CD4
 gUnk_083E5CD4:
 	.incbin "baserom.gba", 0x3e5cd4, 0x158
 
-	.global gUnk_083E5E2C
-gUnk_083E5E2C:  @ LZ77
+	.global Img_Mu_Warrior56
+Img_Mu_Warrior56:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/warrior_56.lz"
 
 	.global gUnk_083E623C
 gUnk_083E623C:
 	.incbin "baserom.gba", 0x3e623c, 0x158
 
-	.global gUnk_083E6394
-gUnk_083E6394:  @ LZ77
+	.global Img_Mu_Child57
+Img_Mu_Child57:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/child_57.lz"
 
 	.global gUnk_083E69B8
 gUnk_083E69B8:
 	.incbin "baserom.gba", 0x3e69b8, 0x158
 
-	.global gUnk_083E6B10
-gUnk_083E6B10:  @ LZ77
+	.global Img_Mu_Child58
+Img_Mu_Child58:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/child_58.lz"
 
 	.global gUnk_083E716C
 gUnk_083E716C:
 	.incbin "baserom.gba", 0x3e716c, 0x158
 
-	.global gUnk_083E72C4
-gUnk_083E72C4:  @ LZ77
+	.global Img_Mu_TransporterWagon
+Img_Mu_TransporterWagon:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/transporter_wagon.lz"
 
 	.global gUnk_083E7CEC
 gUnk_083E7CEC:
 	.incbin "baserom.gba", 0x3e7cec, 0x158
 
-	.global gUnk_083E7E44
-gUnk_083E7E44:  @ LZ77
+	.global Img_Mu_5B
+Img_Mu_5B:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/5b.lz"
 
 	.global gUnk_083E84CC
 gUnk_083E84CC:
 	.incbin "baserom.gba", 0x3e84cc, 0x158
 
-	.global gUnk_083E8624
-gUnk_083E8624:  @ LZ77
+	.global Img_Mu_5C
+Img_Mu_5C:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/5c.lz"
 
 	.global gUnk_083E8CAC
 gUnk_083E8CAC:
 	.incbin "baserom.gba", 0x3e8cac, 0x158
 
-	.global gUnk_083E8E04
-gUnk_083E8E04:  @ LZ77
+	.global Img_Mu_5D
+Img_Mu_5D:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/5d.lz"
 
 	.global gUnk_083E948C
 gUnk_083E948C:
 	.incbin "baserom.gba", 0x3e948c, 0x158
 
-	.global gUnk_083E95E4
-gUnk_083E95E4:  @ LZ77
+	.global Img_Mu_5E
+Img_Mu_5E:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/5e.lz"
 
 	.global gUnk_083E9B38
 gUnk_083E9B38:
 	.incbin "baserom.gba", 0x3e9b38, 0x168
 
-	.global gUnk_083E9CA0
-gUnk_083E9CA0:  @ LZ77
+	.global Img_Mu_5F
+Img_Mu_5F:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/5f.lz"
 
 	.global gUnk_083EA18C
 gUnk_083EA18C:
 	.incbin "baserom.gba", 0x3ea18c, 0x158
 
-	.global gUnk_083EA2E4
-gUnk_083EA2E4:  @ LZ77
+	.global Img_Mu_60
+Img_Mu_60:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/60.lz"
 
 	.global gUnk_083EA880
 gUnk_083EA880:
 	.incbin "baserom.gba", 0x3ea880, 0x168
 
-	.global gUnk_083EA9E8
-gUnk_083EA9E8:  @ LZ77
+	.global Img_Mu_61
+Img_Mu_61:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/61.lz"
 
 	.global gUnk_083EB02C
 gUnk_083EB02C:
 	.incbin "baserom.gba", 0x3eb02c, 0x168
 
-	.global gUnk_083EB194
-gUnk_083EB194:  @ LZ77
+	.global Img_Mu_62
+Img_Mu_62:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/62.lz"
 
 	.global gUnk_083EB800
 gUnk_083EB800:
 	.incbin "baserom.gba", 0x3eb800, 0x168
 
-	.global gUnk_083EB968
-gUnk_083EB968:  @ LZ77
+	.global Img_Mu_63
+Img_Mu_63:  @ LZ77
 	.incbin "build/graphics/unit_icon/move/63.lz"
 
 	.global gUnk_083EBCFC
@@ -820,16 +820,16 @@ Pal_ManimInfoWindowGreen:
 Pal_ManimInfoWindowPurple:
 	.incbin "baserom.gba", 0x3f422c, 0x20
 
-	.global gUnk_083F424C
-gUnk_083F424C:  @ LZ77
+	.global Tsa_ManimInfoWindow_00
+Tsa_ManimInfoWindow_00:  @ LZ77
 	.incbin "build/graphics/mapanim/Tsa_ManimInfoWindowLut_00.lz"
 
-	.global gUnk_083F4278
-gUnk_083F4278:  @ LZ77
+	.global Tsa_ManimInfoWindow_00_2
+Tsa_ManimInfoWindow_00_2:  @ LZ77
 	.incbin "build/graphics/mapanim/Tsa_ManimInfoWindowLut_00_2.lz"
 
-	.global gUnk_083F42A4
-gUnk_083F42A4:  @ LZ77
+	.global Tsa_ManimInfoWindow_01
+Tsa_ManimInfoWindow_01:  @ LZ77
 	.incbin "build/graphics/mapanim/Tsa_ManimInfoWindowLut_01.lz"
 
 	.global Tsa_ShopWindows

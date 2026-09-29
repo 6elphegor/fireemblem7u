@@ -117,136 +117,136 @@ Tsa_PlayerRankBg:
 Pal_EndingCgScroll:
 	.incbin "graphics/Pal_EndingCgScroll.gbapal"
 
-	.global gUnk_085E02A0
-gUnk_085E02A0:  @ LZ77
+	.global Img_EndingCgScroll_00
+Img_EndingCgScroll_00:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_00.lz"
 
-	.global gUnk_085E0688
-gUnk_085E0688:  @ LZ77
+	.global Img_EndingCgScroll_00_2
+Img_EndingCgScroll_00_2:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_00_2.lz"
 
-	.global gUnk_085E0A24
-gUnk_085E0A24:  @ LZ77
+	.global Img_EndingCgScroll_00_3
+Img_EndingCgScroll_00_3:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_00_3.lz"
 
-	.global gUnk_085E0D58
-gUnk_085E0D58:  @ LZ77
+	.global Img_EndingCgScroll_00_4
+Img_EndingCgScroll_00_4:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_00_4.lz"
 
-	.global gUnk_085E0E68
-gUnk_085E0E68:  @ LZ77
+	.global Img_EndingCgScroll_01
+Img_EndingCgScroll_01:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_01.lz"
 
-	.global gUnk_085E123C
-gUnk_085E123C:  @ LZ77
+	.global Img_EndingCgScroll_01_2
+Img_EndingCgScroll_01_2:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_01_2.lz"
 
-	.global gUnk_085E1554
-gUnk_085E1554:  @ LZ77
+	.global Img_EndingCgScroll_01_3
+Img_EndingCgScroll_01_3:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_01_3.lz"
 
-	.global gUnk_085E18B8
-gUnk_085E18B8:  @ LZ77
+	.global Img_EndingCgScroll_01_4
+Img_EndingCgScroll_01_4:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_01_4.lz"
 
-	.global gUnk_085E1BB0
-gUnk_085E1BB0:  @ LZ77
+	.global Img_EndingCgScroll_02
+Img_EndingCgScroll_02:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_02.lz"
 
-	.global gUnk_085E1F88
-gUnk_085E1F88:  @ LZ77
+	.global Img_EndingCgScroll_02_2
+Img_EndingCgScroll_02_2:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_02_2.lz"
 
-	.global gUnk_085E2334
-gUnk_085E2334:  @ LZ77
+	.global Img_EndingCgScroll_02_3
+Img_EndingCgScroll_02_3:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_02_3.lz"
 
-	.global gUnk_085E26F0
-gUnk_085E26F0:  @ LZ77
+	.global Img_EndingCgScroll_02_4
+Img_EndingCgScroll_02_4:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_02_4.lz"
 
-	.global gUnk_085E295C
-gUnk_085E295C:  @ LZ77
+	.global Img_EndingCgScroll_03
+Img_EndingCgScroll_03:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_03.lz"
 
-	.global gUnk_085E2C80
-gUnk_085E2C80:  @ LZ77
+	.global Img_EndingCgScroll_03_2
+Img_EndingCgScroll_03_2:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_03_2.lz"
 
-	.global gUnk_085E2FD0
-gUnk_085E2FD0:  @ LZ77
+	.global Img_EndingCgScroll_03_3
+Img_EndingCgScroll_03_3:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_03_3.lz"
 
-	.global gUnk_085E3320
-gUnk_085E3320:  @ LZ77
+	.global Img_EndingCgScroll_03_4
+Img_EndingCgScroll_03_4:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_03_4.lz"
 
-	.global gUnk_085E3634
-gUnk_085E3634:  @ LZ77
+	.global Img_EndingCgScroll_04
+Img_EndingCgScroll_04:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_04.lz"
 
-	.global gUnk_085E38F8
-gUnk_085E38F8:  @ LZ77
+	.global Img_EndingCgScroll_04_2
+Img_EndingCgScroll_04_2:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_04_2.lz"
 
-	.global gUnk_085E3BB0
-gUnk_085E3BB0:  @ LZ77
+	.global Img_EndingCgScroll_04_3
+Img_EndingCgScroll_04_3:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_04_3.lz"
 
-	.global gUnk_085E3E98
-gUnk_085E3E98:  @ LZ77
+	.global Img_EndingCgScroll_04_4
+Img_EndingCgScroll_04_4:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_04_4.lz"
 
-	.global gUnk_085E415C
-gUnk_085E415C:  @ LZ77
+	.global Img_EndingCgScroll_04_5
+Img_EndingCgScroll_04_5:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_04_5.lz"
 
-	.global gUnk_085E4438
-gUnk_085E4438:  @ LZ77
+	.global Img_EndingCgScroll_04_6
+Img_EndingCgScroll_04_6:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_04_6.lz"
 
-	.global gUnk_085E4514
-gUnk_085E4514:  @ LZ77
+	.global Img_EndingCgScroll_05
+Img_EndingCgScroll_05:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_05.lz"
 
-	.global gUnk_085E47B8
-gUnk_085E47B8:  @ LZ77
+	.global Img_EndingCgScroll_05_2
+Img_EndingCgScroll_05_2:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_05_2.lz"
 
-	.global gUnk_085E4B68
-gUnk_085E4B68:  @ LZ77
+	.global Img_EndingCgScroll_05_3
+Img_EndingCgScroll_05_3:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_05_3.lz"
 
-	.global gUnk_085E4E24
-gUnk_085E4E24:  @ LZ77
+	.global Img_EndingCgScroll_05_4
+Img_EndingCgScroll_05_4:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_05_4.lz"
 
-	.global gUnk_085E511C
-gUnk_085E511C:  @ LZ77
+	.global Img_EndingCgScroll_05_5
+Img_EndingCgScroll_05_5:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_05_5.lz"
 
-	.global gUnk_085E5248
-gUnk_085E5248:  @ LZ77
+	.global Img_EndingCgScroll_05_6
+Img_EndingCgScroll_05_6:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScrollLut_05_6.lz"
 
-	.global gUnk_085E52C8
-gUnk_085E52C8:  @ LZ77
+	.global Img_EndingCgScroll2_00
+Img_EndingCgScroll2_00:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScroll2Lut_00.lz"
 
-	.global gUnk_085E559C
-gUnk_085E559C:  @ LZ77
+	.global Img_EndingCgScroll2_00_2
+Img_EndingCgScroll2_00_2:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScroll2Lut_00_2.lz"
 
-	.global gUnk_085E58E4
-gUnk_085E58E4:  @ LZ77
+	.global Img_EndingCgScroll2_00_3
+Img_EndingCgScroll2_00_3:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScroll2Lut_00_3.lz"
 
-	.global gUnk_085E5B80
-gUnk_085E5B80:  @ LZ77
+	.global Img_EndingCgScroll2_00_4
+Img_EndingCgScroll2_00_4:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScroll2Lut_00_4.lz"
 
-	.global gUnk_085E5E24
-gUnk_085E5E24:  @ LZ77
+	.global Img_EndingCgScroll2_00_5
+Img_EndingCgScroll2_00_5:  @ LZ77
 	.incbin "build/graphics/ending/EndingCgScroll2Lut_00_5.lz"
 
 	.global gUnk_085E5F40
@@ -387,31 +387,31 @@ gUnk_085E9948:
 
 	.global gWmSpriteAnimTable
 gWmSpriteAnimTable:
-	.4byte gUnk_084225C8
+	.4byte Img_WmSpriteAnim_00
 	.4byte gUnk_08422AC4
 	.incbin "baserom.gba", 0x5e99bc, 0xc
-	.4byte gUnk_08422B7C
+	.4byte Img_WmSpriteAnim_01
 	.4byte gUnk_08423080
 	.incbin "baserom.gba", 0x5e99d0, 0xc
-	.4byte gUnk_08423168
+	.4byte Img_WmSpriteAnim_02
 	.4byte gUnk_084236A4
 	.incbin "baserom.gba", 0x5e99e4, 0xc
-	.4byte gUnk_08423BFC
+	.4byte Img_WmSpriteAnim_03
 	.4byte gUnk_0842418C
 	.incbin "baserom.gba", 0x5e99f8, 0xc
-	.4byte gUnk_084237DC
+	.4byte Img_WmSpriteAnim_04
 	.4byte gUnk_08423B48
 	.incbin "baserom.gba", 0x5e9a0c, 0xc
-	.4byte gUnk_08424240
+	.4byte Img_WmSpriteAnim_05
 	.4byte gUnk_0842458C
 	.incbin "baserom.gba", 0x5e9a20, 0xc
-	.4byte gUnk_08424640
+	.4byte Img_WmSpriteAnim_06
 	.4byte gUnk_084249C0
 	.incbin "baserom.gba", 0x5e9a34, 0xc
-	.4byte gUnk_08424A48
+	.4byte Img_WmSpriteAnim_07
 	.4byte gUnk_08424BB0
 	.incbin "baserom.gba", 0x5e9a48, 0xc
-	.4byte gUnk_08424BEC
+	.4byte Img_WmSpriteAnim_08
 	.4byte gUnk_08424C9C
 	.incbin "baserom.gba", 0x5e9a5c, 0xc
 
@@ -816,16 +816,16 @@ gUnk_085FEE38:  @ LZ77
 gUnk_085FEFC4:  @ LZ77
 	.incbin "build/graphics/op_anim/08CEF630_16_3.lz"
 
-	.global gUnk_085FF1D4
-gUnk_085FF1D4:  @ LZ77
-	.incbin "build/graphics/gUnk_085FF1D4.lz"
+	.global Img_OpAnimWater
+Img_OpAnimWater:  @ LZ77
+	.incbin "build/graphics/Img_OpAnimWater.lz"
 
-	.global gUnk_0860029C
-gUnk_0860029C:  @ LZ77
-	.incbin "build/graphics/gUnk_0860029C.lz"
+	.global Tsa_OpAnimWater
+Tsa_OpAnimWater:  @ LZ77
+	.incbin "build/graphics/Tsa_OpAnimWater.lz"
 
-	.global gUnk_08600544
-gUnk_08600544:
+	.global Pal_OpAnimWater
+Pal_OpAnimWater:
 	.incbin "baserom.gba", 0x600544, 0x20
 
 	.global gUnk_08600564

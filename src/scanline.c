@@ -114,7 +114,7 @@ void sub_08076B80(void)
     REG_BLDALPHA = gManimActiveScanlineBuf[vcount];
 }
 
-void sub_08076BE8(void)
+void StartManimFrameGradientScanlineEffect1(void)
 {
     u16 vcount = REG_VCOUNT;
 

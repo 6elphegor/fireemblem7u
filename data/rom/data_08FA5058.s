@@ -47,743 +47,743 @@ gUnk_08FB9108:
 battle_terrain_table:
 battle_terrain_table:
 	.incbin "baserom.gba", 0xfc0008, 0xc
-	.4byte gUnk_08FC0C00
-	.4byte gUnk_08FC1444
+	.4byte Img_BattleTerrain_00_Heichi1
+	.4byte Pal_BattleTerrain_00_Heichi1
 	.incbin "baserom.gba", 0xfc001c, 0x10
-	.4byte gUnk_08FC1464
-	.4byte gUnk_08FC1C28
+	.4byte Img_BattleTerrain_01_Arechi1
+	.4byte Pal_BattleTerrain_01_Arechi1
 	.incbin "baserom.gba", 0xfc0034, 0x10
-	.4byte gUnk_08FC1C48
-	.4byte gUnk_08FC2570
+	.4byte Img_BattleTerrain_02_Jyoumon1
+	.4byte Pal_BattleTerrain_02_Jyoumon1
 	.incbin "baserom.gba", 0xfc004c, 0x10
-	.4byte gUnk_08FC2590
-	.4byte gUnk_08FC2D38
+	.4byte Img_BattleTerrain_03_Bukiya1
+	.4byte Pal_BattleTerrain_03_Bukiya1
 	.incbin "baserom.gba", 0xfc0064, 0x10
-	.4byte gUnk_08FC2D58
-	.4byte gUnk_08FC34C4
+	.4byte Img_BattleTerrain_04_Gake1
+	.4byte Pal_BattleTerrain_04_Gake1
 	.incbin "baserom.gba", 0xfc007c, 0x10
-	.4byte gUnk_08FC34E4
-	.4byte gUnk_08FC3BAC
+	.4byte Img_BattleTerrain_05_Gyokuza1
+	.4byte Pal_BattleTerrain_05_Gyokuza1
 	.incbin "baserom.gba", 0xfc0094, 0x10
-	.4byte gUnk_08FC3BCC
-	.4byte gUnk_08FC4394
+	.4byte Img_BattleTerrain_06_Haikyo1
+	.4byte Pal_BattleTerrain_06_Haikyo1
 	.incbin "baserom.gba", 0xfc00ac, 0x10
-	.4byte gUnk_08FC43B4
-	.4byte gUnk_08FC4C24
+	.4byte Img_BattleTerrain_07_Hanebashi1
+	.4byte Pal_BattleTerrain_07_Hanebashi1
 	.incbin "baserom.gba", 0xfc00c4, 0x10
-	.4byte gUnk_08FC4C44
-	.4byte gUnk_08FC54DC
+	.4byte Img_BattleTerrain_08_Hasi1
+	.4byte Pal_BattleTerrain_08_Hasi1
 	.incbin "baserom.gba", 0xfc00dc, 0x10
-	.4byte gUnk_08FC54FC
-	.4byte gUnk_08FC5B30
+	.4byte Img_BattleTerrain_09_Sabaku1
+	.4byte Pal_BattleTerrain_09_Sabaku1
 	.incbin "baserom.gba", 0xfc00f4, 0x10
-	.4byte gUnk_08FC5B50
-	.4byte gUnk_08FC6224
+	.4byte Img_BattleTerrain_0A_Kawa1
+	.4byte Pal_BattleTerrain_0A_Kawa1
 	.incbin "baserom.gba", 0xfc010c, 0x10
-	.4byte gUnk_08FC6244
-	.4byte gUnk_08FC6A18
+	.4byte Img_BattleTerrain_0B_Mura1
+	.4byte Pal_BattleTerrain_0B_Mura1
 	.incbin "baserom.gba", 0xfc0124, 0x10
-	.4byte gUnk_08FC6A38
-	.4byte gUnk_08FC7118
+	.4byte Img_BattleTerrain_0C_Umi1
+	.4byte Pal_BattleTerrain_0C_Umi1
 	.incbin "baserom.gba", 0xfc013c, 0x10
-	.4byte gUnk_08FC7138
-	.4byte gUnk_08FC7760
+	.4byte Img_BattleTerrain_0D_Mizuiumi1
+	.4byte Pal_BattleTerrain_0D_Mizuiumi1
 	.incbin "baserom.gba", 0xfc0154, 0x10
-	.4byte gUnk_08FC7780
-	.4byte gUnk_08FC7F50
+	.4byte Img_BattleTerrain_0E_Azukarijo1
+	.4byte Pal_BattleTerrain_0E_Azukarijo1
 	.incbin "baserom.gba", 0xfc016c, 0x10
-	.4byte gUnk_08FC7F70
-	.4byte gUnk_08FC8760
+	.4byte Img_BattleTerrain_0F_Douguya1
+	.4byte Pal_BattleTerrain_0F_Douguya1
 	.incbin "baserom.gba", 0xfc0184, 0x10
-	.4byte gUnk_08FC8780
-	.4byte gUnk_08FC9030
+	.4byte Img_BattleTerrain_10_Fukaimori1
+	.4byte Pal_BattleTerrain_10_Fukaimori1
 	.incbin "baserom.gba", 0xfc019c, 0x10
-	.4byte gUnk_08FC9050
-	.4byte gUnk_08FC9824
+	.4byte Img_BattleTerrain_11_Michi1
+	.4byte Pal_BattleTerrain_11_Michi1
 	.incbin "baserom.gba", 0xfc01b4, 0x10
-	.4byte gUnk_08FC9844
-	.4byte gUnk_08FCA078
+	.4byte Img_BattleTerrain_12_Minka1
+	.4byte Pal_BattleTerrain_12_Minka1
 	.incbin "baserom.gba", 0xfc01cc, 0x10
-	.4byte gUnk_08FCA098
-	.4byte gUnk_08FCA910
+	.4byte Img_BattleTerrain_13_Mori1
+	.4byte Pal_BattleTerrain_13_Mori1
 	.incbin "baserom.gba", 0xfc01e4, 0x10
-	.4byte gUnk_08FCA930
-	.4byte gUnk_08FCAFF4
+	.4byte Img_BattleTerrain_14_Siroyuka1
+	.4byte Pal_BattleTerrain_14_Siroyuka1
 	.incbin "baserom.gba", 0xfc01fc, 0x10
-	.4byte gUnk_08FCB014
-	.4byte gUnk_08FCB69C
+	.4byte Img_BattleTerrain_15_Sunachi1
+	.4byte Pal_BattleTerrain_15_Sunachi1
 	.incbin "baserom.gba", 0xfc0214, 0x10
-	.4byte gUnk_08FCB6BC
-	.4byte gUnk_08FCBDEC
+	.4byte Img_BattleTerrain_16_Takaiyama1
+	.4byte Pal_BattleTerrain_16_Takaiyama1
 	.incbin "baserom.gba", 0xfc022c, 0x10
-	.4byte gUnk_08FCBE0C
-	.4byte gUnk_08FCC4D0
+	.4byte Img_BattleTerrain_17_Toride1
+	.4byte Pal_BattleTerrain_17_Toride1
 	.incbin "baserom.gba", 0xfc0244, 0x10
-	.4byte gUnk_08FCC4F0
-	.4byte gUnk_08FCCC6C
+	.4byte Img_BattleTerrain_18_Tougijou1
+	.4byte Pal_BattleTerrain_18_Tougijou1
 	.incbin "baserom.gba", 0xfc025c, 0x10
-	.4byte gUnk_08FCCC8C
-	.4byte gUnk_08FCD410
+	.4byte Img_BattleTerrain_19_Yama1
+	.4byte Pal_BattleTerrain_19_Yama1
 	.incbin "baserom.gba", 0xfc0274, 0x10
-	.4byte gUnk_08FCD430
-	.4byte gUnk_08FCDD38
+	.4byte Img_BattleTerrain_1A_Mahouyuka1
+	.4byte Pal_BattleTerrain_1A_Mahouyuka1
 	.incbin "baserom.gba", 0xfc028c, 0x10
-	.4byte gUnk_08FCDD58
-	.4byte gUnk_08FCE420
+	.4byte Img_BattleTerrain_1B_Kabe1
+	.4byte Pal_BattleTerrain_1B_Kabe1
 	.incbin "baserom.gba", 0xfc02a4, 0x10
-	.4byte gUnk_08FCE440
-	.4byte gUnk_08FCEAB8
+	.4byte Img_BattleTerrain_1C_Kowaretakabe
+	.4byte Pal_BattleTerrain_1C_Kowaretakabe
 	.incbin "baserom.gba", 0xfc02bc, 0x10
-	.4byte gUnk_08FCEAD8
-	.4byte gUnk_08FCF194
+	.4byte Img_BattleTerrain_1D_Kowaretakabe
+	.4byte Pal_BattleTerrain_1D_Kowaretakabe
 	.incbin "baserom.gba", 0xfc02d4, 0x10
-	.4byte gUnk_08FCF1B4
-	.4byte gUnk_08FCF890
+	.4byte Img_BattleTerrain_1E_Hasira1
+	.4byte Pal_BattleTerrain_1E_Hasira1
 	.incbin "baserom.gba", 0xfc02ec, 0x10
-	.4byte gUnk_08FCF8B0
-	.4byte gUnk_08FD0014
+	.4byte Img_BattleTerrain_1F_Takarabako1
+	.4byte Pal_BattleTerrain_1F_Takarabako1
 	.incbin "baserom.gba", 0xfc0304, 0x10
-	.4byte gUnk_08FD0034
-	.4byte gUnk_08FD08B8
+	.4byte Img_BattleTerrain_20_Killerarechi
+	.4byte Pal_BattleTerrain_20_Killerarechi
 	.incbin "baserom.gba", 0xfc031c, 0x10
-	.4byte gUnk_08FD08D8
-	.4byte gUnk_08FD0F84
+	.4byte Img_BattleTerrain_21_Mon1
+	.4byte Pal_BattleTerrain_21_Mon1
 	.incbin "baserom.gba", 0xfc0334, 0x10
-	.4byte gUnk_08FD0FA4
-	.4byte gUnk_08FD15F8
+	.4byte Img_BattleTerrain_22_Tuusintougi1
+	.4byte Pal_BattleTerrain_22_Tuusintougi1
 	.incbin "baserom.gba", 0xfc034c, 0x10
-	.4byte gUnk_08FC6244
+	.4byte Img_BattleTerrain_0B_Mura1
 	.4byte gUnk_08FD1618
 	.incbin "baserom.gba", 0xfc0364, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1638
 	.incbin "baserom.gba", 0xfc037c, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD1658
 	.incbin "baserom.gba", 0xfc0394, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1638
 	.incbin "baserom.gba", 0xfc03ac, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1638
 	.incbin "baserom.gba", 0xfc03c4, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD1658
 	.incbin "baserom.gba", 0xfc03dc, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1638
 	.incbin "baserom.gba", 0xfc03f4, 0x10
-	.4byte gUnk_08FCF8B0
+	.4byte Img_BattleTerrain_1F_Takarabako1
 	.4byte gUnk_08FD1678
 	.incbin "baserom.gba", 0xfc040c, 0x10
-	.4byte gUnk_08FCEAD8
+	.4byte Img_BattleTerrain_1D_Kowaretakabe
 	.4byte gUnk_08FD1698
 	.incbin "baserom.gba", 0xfc0424, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD1658
 	.incbin "baserom.gba", 0xfc043c, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1638
 	.incbin "baserom.gba", 0xfc0454, 0x10
-	.4byte gUnk_08FC0C00
+	.4byte Img_BattleTerrain_00_Heichi1
 	.4byte gUnk_08FD16B8
 	.incbin "baserom.gba", 0xfc046c, 0x10
-	.4byte gUnk_08FC1C48
+	.4byte Img_BattleTerrain_02_Jyoumon1
 	.4byte gUnk_08FD16D8
 	.incbin "baserom.gba", 0xfc0484, 0x10
-	.4byte gUnk_08FC2590
+	.4byte Img_BattleTerrain_03_Bukiya1
 	.4byte gUnk_08FD16F8
 	.incbin "baserom.gba", 0xfc049c, 0x10
-	.4byte gUnk_08FC2D58
+	.4byte Img_BattleTerrain_04_Gake1
 	.4byte gUnk_08FD1718
 	.incbin "baserom.gba", 0xfc04b4, 0x10
-	.4byte gUnk_08FC3BCC
+	.4byte Img_BattleTerrain_06_Haikyo1
 	.4byte gUnk_08FD1738
 	.incbin "baserom.gba", 0xfc04cc, 0x10
-	.4byte gUnk_08FC4C44
+	.4byte Img_BattleTerrain_08_Hasi1
 	.4byte gUnk_08FD1758
 	.incbin "baserom.gba", 0xfc04e4, 0x10
-	.4byte gUnk_08FC5B50
+	.4byte Img_BattleTerrain_0A_Kawa1
 	.4byte gUnk_08FD1778
 	.incbin "baserom.gba", 0xfc04fc, 0x10
-	.4byte gUnk_08FC6244
+	.4byte Img_BattleTerrain_0B_Mura1
 	.4byte gUnk_08FD1798
 	.incbin "baserom.gba", 0xfc0514, 0x10
-	.4byte gUnk_08FC7138
+	.4byte Img_BattleTerrain_0D_Mizuiumi1
 	.4byte gUnk_08FD17B8
 	.incbin "baserom.gba", 0xfc052c, 0x10
-	.4byte gUnk_08FC7F70
+	.4byte Img_BattleTerrain_0F_Douguya1
 	.4byte gUnk_08FD17D8
 	.incbin "baserom.gba", 0xfc0544, 0x10
-	.4byte gUnk_08FC8780
+	.4byte Img_BattleTerrain_10_Fukaimori1
 	.4byte gUnk_08FD17F8
 	.incbin "baserom.gba", 0xfc055c, 0x10
-	.4byte gUnk_08FC9050
+	.4byte Img_BattleTerrain_11_Michi1
 	.4byte gUnk_08FD1818
 	.incbin "baserom.gba", 0xfc0574, 0x10
-	.4byte gUnk_08FC9844
+	.4byte Img_BattleTerrain_12_Minka1
 	.4byte gUnk_08FD1838
 	.incbin "baserom.gba", 0xfc058c, 0x10
-	.4byte gUnk_08FCA098
+	.4byte Img_BattleTerrain_13_Mori1
 	.4byte gUnk_08FD1858
 	.incbin "baserom.gba", 0xfc05a4, 0x10
-	.4byte gUnk_08FCB6BC
+	.4byte Img_BattleTerrain_16_Takaiyama1
 	.4byte gUnk_08FD1878
 	.incbin "baserom.gba", 0xfc05bc, 0x10
-	.4byte gUnk_08FCC4F0
+	.4byte Img_BattleTerrain_18_Tougijou1
 	.4byte gUnk_08FD1898
 	.incbin "baserom.gba", 0xfc05d4, 0x10
-	.4byte gUnk_08FCCC8C
+	.4byte Img_BattleTerrain_19_Yama1
 	.4byte gUnk_08FD18B8
 	.incbin "baserom.gba", 0xfc05ec, 0x10
-	.4byte gUnk_08FD0034
+	.4byte Img_BattleTerrain_20_Killerarechi
 	.4byte gUnk_08FD18D8
 	.incbin "baserom.gba", 0xfc0604, 0x10
-	.4byte gUnk_08FCBE0C
+	.4byte Img_BattleTerrain_17_Toride1
 	.4byte gUnk_08FD18F8
 	.incbin "baserom.gba", 0xfc061c, 0x10
-	.4byte gUnk_08FC5B50
+	.4byte Img_BattleTerrain_0A_Kawa1
 	.4byte gUnk_08FD1918
 	.incbin "baserom.gba", 0xfc0634, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1938
 	.incbin "baserom.gba", 0xfc064c, 0x10
-	.4byte gUnk_08FCF8B0
+	.4byte Img_BattleTerrain_1F_Takarabako1
 	.4byte gUnk_08FD1958
 	.incbin "baserom.gba", 0xfc0664, 0x10
-	.4byte gUnk_08FCEAD8
+	.4byte Img_BattleTerrain_1D_Kowaretakabe
 	.4byte gUnk_08FD1978
 	.incbin "baserom.gba", 0xfc067c, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD1998
 	.incbin "baserom.gba", 0xfc0694, 0x10
-	.4byte gUnk_08FCF1B4
+	.4byte Img_BattleTerrain_1E_Hasira1
 	.4byte gUnk_08FD19B8
 	.incbin "baserom.gba", 0xfc06ac, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1638
 	.incbin "baserom.gba", 0xfc06c4, 0x10
-	.4byte gUnk_08FCF8B0
+	.4byte Img_BattleTerrain_1F_Takarabako1
 	.4byte gUnk_08FD1678
 	.incbin "baserom.gba", 0xfc06dc, 0x10
-	.4byte gUnk_08FCEAD8
+	.4byte Img_BattleTerrain_1D_Kowaretakabe
 	.4byte gUnk_08FD1698
 	.incbin "baserom.gba", 0xfc06f4, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD1658
 	.incbin "baserom.gba", 0xfc070c, 0x10
-	.4byte gUnk_08FCF1B4
+	.4byte Img_BattleTerrain_1E_Hasira1
 	.4byte gUnk_08FD19D8
 	.incbin "baserom.gba", 0xfc0724, 0x10
-	.4byte gUnk_08FC0C00
+	.4byte Img_BattleTerrain_00_Heichi1
 	.4byte gUnk_08FD19F8
 	.incbin "baserom.gba", 0xfc073c, 0x10
-	.4byte gUnk_08FC5B50
+	.4byte Img_BattleTerrain_0A_Kawa1
 	.4byte gUnk_08FD1A18
 	.incbin "baserom.gba", 0xfc0754, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD1A38
 	.incbin "baserom.gba", 0xfc076c, 0x10
-	.4byte gUnk_08FCF8B0
+	.4byte Img_BattleTerrain_1F_Takarabako1
 	.4byte gUnk_08FD1A58
 	.incbin "baserom.gba", 0xfc0784, 0x10
-	.4byte gUnk_08FCEAD8
+	.4byte Img_BattleTerrain_1D_Kowaretakabe
 	.4byte gUnk_08FD1A78
 	.incbin "baserom.gba", 0xfc079c, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD1A98
 	.incbin "baserom.gba", 0xfc07b4, 0x10
-	.4byte gUnk_08FCF1B4
+	.4byte Img_BattleTerrain_1E_Hasira1
 	.4byte gUnk_08FD1AB8
 	.incbin "baserom.gba", 0xfc07cc, 0x10
-	.4byte gUnk_08FC0C00
+	.4byte Img_BattleTerrain_00_Heichi1
 	.4byte gUnk_08FD1AD8
 	.incbin "baserom.gba", 0xfc07e4, 0x10
-	.4byte gUnk_08FC5B50
+	.4byte Img_BattleTerrain_0A_Kawa1
 	.4byte gUnk_08FD1AF8
 	.incbin "baserom.gba", 0xfc07fc, 0x10
-	.4byte gUnk_08FD1B18
-	.4byte gUnk_08FD2260
+	.4byte Img_BattleTerrain_55_Maruta1
+	.4byte Pal_BattleTerrain_55_Maruta1
 	.incbin "baserom.gba", 0xfc0814, 0x10
-	.4byte gUnk_08FC4C44
+	.4byte Img_BattleTerrain_08_Hasi1
 	.4byte gUnk_08FD2280
 	.incbin "baserom.gba", 0xfc082c, 0x10
-	.4byte gUnk_08FC6244
+	.4byte Img_BattleTerrain_0B_Mura1
 	.4byte gUnk_08FD22A0
 	.incbin "baserom.gba", 0xfc0844, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD22C0
 	.incbin "baserom.gba", 0xfc085c, 0x10
-	.4byte gUnk_08FCF8B0
+	.4byte Img_BattleTerrain_1F_Takarabako1
 	.4byte gUnk_08FD22E0
 	.incbin "baserom.gba", 0xfc0874, 0x10
-	.4byte gUnk_08FCEAD8
+	.4byte Img_BattleTerrain_1D_Kowaretakabe
 	.4byte gUnk_08FD2300
 	.incbin "baserom.gba", 0xfc088c, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD2320
 	.incbin "baserom.gba", 0xfc08a4, 0x10
-	.4byte gUnk_08FCF1B4
+	.4byte Img_BattleTerrain_1E_Hasira1
 	.4byte gUnk_08FD2340
 	.incbin "baserom.gba", 0xfc08bc, 0x10
-	.4byte gUnk_08FC0C00
+	.4byte Img_BattleTerrain_00_Heichi1
 	.4byte gUnk_08FD2360
 	.incbin "baserom.gba", 0xfc08d4, 0x10
-	.4byte gUnk_08FC5B50
+	.4byte Img_BattleTerrain_0A_Kawa1
 	.4byte gUnk_08FD2380
 	.incbin "baserom.gba", 0xfc08ec, 0x10
-	.4byte gUnk_08FC2D58
+	.4byte Img_BattleTerrain_04_Gake1
 	.4byte gUnk_08FD23A0
 	.incbin "baserom.gba", 0xfc0904, 0x10
-	.4byte gUnk_08FCA930
+	.4byte Img_BattleTerrain_14_Siroyuka1
 	.4byte gUnk_08FD23C0
 	.incbin "baserom.gba", 0xfc091c, 0x10
-	.4byte gUnk_08FCF8B0
+	.4byte Img_BattleTerrain_1F_Takarabako1
 	.4byte gUnk_08FD23E0
 	.incbin "baserom.gba", 0xfc0934, 0x10
-	.4byte gUnk_08FCEAD8
+	.4byte Img_BattleTerrain_1D_Kowaretakabe
 	.4byte gUnk_08FD2400
 	.incbin "baserom.gba", 0xfc094c, 0x10
-	.4byte gUnk_08FC34E4
+	.4byte Img_BattleTerrain_05_Gyokuza1
 	.4byte gUnk_08FD2420
 	.incbin "baserom.gba", 0xfc0964, 0x10
-	.4byte gUnk_08FCF1B4
+	.4byte Img_BattleTerrain_1E_Hasira1
 	.4byte gUnk_08FD2440
 	.incbin "baserom.gba", 0xfc097c, 0x10
-	.4byte gUnk_08FC0C00
+	.4byte Img_BattleTerrain_00_Heichi1
 	.4byte gUnk_08FD2460
 	.incbin "baserom.gba", 0xfc0994, 0x10
-	.4byte gUnk_08FCA098
+	.4byte Img_BattleTerrain_13_Mori1
 	.4byte gUnk_08FD2480
 	.incbin "baserom.gba", 0xfc09ac, 0x10
-	.4byte gUnk_08FD1B18
+	.4byte Img_BattleTerrain_55_Maruta1
 	.4byte gUnk_08FD24A0
 	.incbin "baserom.gba", 0xfc09c4, 0x10
-	.4byte gUnk_08FD24C0
-	.4byte gUnk_08FD2DB8
+	.4byte Img_BattleTerrain_68_Fune1
+	.4byte Pal_BattleTerrain_68_Fune1
 	.incbin "baserom.gba", 0xfc09dc, 0x10
-	.4byte gUnk_08FCA098
+	.4byte Img_BattleTerrain_13_Mori1
 	.4byte gUnk_08FD2DD8
 	.incbin "baserom.gba", 0xfc09f4, 0x20c
 
-	.global gUnk_08FC0C00
-	.global gUnk_08FC0C00
-gUnk_08FC0C00:  @ LZ77
-gUnk_08FC0C00:  @ LZ77
+	.global Img_BattleTerrain_00_Heichi1
+	.global Img_BattleTerrain_00_Heichi1
+Img_BattleTerrain_00_Heichi1:  @ LZ77
+Img_BattleTerrain_00_Heichi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/00_heichi1.lz"
 
-	.global gUnk_08FC1444
-	.global gUnk_08FC1444
-gUnk_08FC1444:
-gUnk_08FC1444:
+	.global Pal_BattleTerrain_00_Heichi1
+	.global Pal_BattleTerrain_00_Heichi1
+Pal_BattleTerrain_00_Heichi1:
+Pal_BattleTerrain_00_Heichi1:
 	.incbin "graphics/btl_terrain/00_heichi1_pal.gbapal"
 
-	.global gUnk_08FC1464
-	.global gUnk_08FC1464
-gUnk_08FC1464:  @ LZ77
-gUnk_08FC1464:  @ LZ77
+	.global Img_BattleTerrain_01_Arechi1
+	.global Img_BattleTerrain_01_Arechi1
+Img_BattleTerrain_01_Arechi1:  @ LZ77
+Img_BattleTerrain_01_Arechi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/01_arechi1.lz"
 
-	.global gUnk_08FC1C28
-	.global gUnk_08FC1C28
-gUnk_08FC1C28:
-gUnk_08FC1C28:
+	.global Pal_BattleTerrain_01_Arechi1
+	.global Pal_BattleTerrain_01_Arechi1
+Pal_BattleTerrain_01_Arechi1:
+Pal_BattleTerrain_01_Arechi1:
 	.incbin "graphics/btl_terrain/01_arechi1_pal.gbapal"
 
-	.global gUnk_08FC1C48
-	.global gUnk_08FC1C48
-gUnk_08FC1C48:  @ LZ77
-gUnk_08FC1C48:  @ LZ77
+	.global Img_BattleTerrain_02_Jyoumon1
+	.global Img_BattleTerrain_02_Jyoumon1
+Img_BattleTerrain_02_Jyoumon1:  @ LZ77
+Img_BattleTerrain_02_Jyoumon1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/02_jyoumon1.lz"
 
-	.global gUnk_08FC2570
-	.global gUnk_08FC2570
-gUnk_08FC2570:
-gUnk_08FC2570:
+	.global Pal_BattleTerrain_02_Jyoumon1
+	.global Pal_BattleTerrain_02_Jyoumon1
+Pal_BattleTerrain_02_Jyoumon1:
+Pal_BattleTerrain_02_Jyoumon1:
 	.incbin "graphics/btl_terrain/02_jyoumon1_pal.gbapal"
 
-	.global gUnk_08FC2590
-	.global gUnk_08FC2590
-gUnk_08FC2590:  @ LZ77
-gUnk_08FC2590:  @ LZ77
+	.global Img_BattleTerrain_03_Bukiya1
+	.global Img_BattleTerrain_03_Bukiya1
+Img_BattleTerrain_03_Bukiya1:  @ LZ77
+Img_BattleTerrain_03_Bukiya1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/03_bukiya1.lz"
 
-	.global gUnk_08FC2D38
-	.global gUnk_08FC2D38
-gUnk_08FC2D38:
-gUnk_08FC2D38:
+	.global Pal_BattleTerrain_03_Bukiya1
+	.global Pal_BattleTerrain_03_Bukiya1
+Pal_BattleTerrain_03_Bukiya1:
+Pal_BattleTerrain_03_Bukiya1:
 	.incbin "graphics/btl_terrain/03_bukiya1_pal.gbapal"
 
-	.global gUnk_08FC2D58
-	.global gUnk_08FC2D58
-gUnk_08FC2D58:  @ LZ77
-gUnk_08FC2D58:  @ LZ77
+	.global Img_BattleTerrain_04_Gake1
+	.global Img_BattleTerrain_04_Gake1
+Img_BattleTerrain_04_Gake1:  @ LZ77
+Img_BattleTerrain_04_Gake1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/04_gake1.lz"
 
-	.global gUnk_08FC34C4
-	.global gUnk_08FC34C4
-gUnk_08FC34C4:
-gUnk_08FC34C4:
+	.global Pal_BattleTerrain_04_Gake1
+	.global Pal_BattleTerrain_04_Gake1
+Pal_BattleTerrain_04_Gake1:
+Pal_BattleTerrain_04_Gake1:
 	.incbin "graphics/btl_terrain/04_gake1_pal.gbapal"
 
-	.global gUnk_08FC34E4
-	.global gUnk_08FC34E4
-gUnk_08FC34E4:  @ LZ77
-gUnk_08FC34E4:  @ LZ77
+	.global Img_BattleTerrain_05_Gyokuza1
+	.global Img_BattleTerrain_05_Gyokuza1
+Img_BattleTerrain_05_Gyokuza1:  @ LZ77
+Img_BattleTerrain_05_Gyokuza1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/05_gyokuza1.lz"
 
-	.global gUnk_08FC3BAC
-	.global gUnk_08FC3BAC
-gUnk_08FC3BAC:
-gUnk_08FC3BAC:
+	.global Pal_BattleTerrain_05_Gyokuza1
+	.global Pal_BattleTerrain_05_Gyokuza1
+Pal_BattleTerrain_05_Gyokuza1:
+Pal_BattleTerrain_05_Gyokuza1:
 	.incbin "graphics/btl_terrain/05_gyokuza1_pal.gbapal"
 
-	.global gUnk_08FC3BCC
-	.global gUnk_08FC3BCC
-gUnk_08FC3BCC:  @ LZ77
-gUnk_08FC3BCC:  @ LZ77
+	.global Img_BattleTerrain_06_Haikyo1
+	.global Img_BattleTerrain_06_Haikyo1
+Img_BattleTerrain_06_Haikyo1:  @ LZ77
+Img_BattleTerrain_06_Haikyo1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/06_haikyo1.lz"
 
-	.global gUnk_08FC4394
-	.global gUnk_08FC4394
-gUnk_08FC4394:
-gUnk_08FC4394:
+	.global Pal_BattleTerrain_06_Haikyo1
+	.global Pal_BattleTerrain_06_Haikyo1
+Pal_BattleTerrain_06_Haikyo1:
+Pal_BattleTerrain_06_Haikyo1:
 	.incbin "graphics/btl_terrain/06_haikyo1_pal.gbapal"
 
-	.global gUnk_08FC43B4
-	.global gUnk_08FC43B4
-gUnk_08FC43B4:  @ LZ77
-gUnk_08FC43B4:  @ LZ77
+	.global Img_BattleTerrain_07_Hanebashi1
+	.global Img_BattleTerrain_07_Hanebashi1
+Img_BattleTerrain_07_Hanebashi1:  @ LZ77
+Img_BattleTerrain_07_Hanebashi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/07_hanebashi1.lz"
 
-	.global gUnk_08FC4C24
-	.global gUnk_08FC4C24
-gUnk_08FC4C24:
-gUnk_08FC4C24:
+	.global Pal_BattleTerrain_07_Hanebashi1
+	.global Pal_BattleTerrain_07_Hanebashi1
+Pal_BattleTerrain_07_Hanebashi1:
+Pal_BattleTerrain_07_Hanebashi1:
 	.incbin "graphics/btl_terrain/07_hanebashi1_pal.gbapal"
 
-	.global gUnk_08FC4C44
-	.global gUnk_08FC4C44
-gUnk_08FC4C44:  @ LZ77
-gUnk_08FC4C44:  @ LZ77
+	.global Img_BattleTerrain_08_Hasi1
+	.global Img_BattleTerrain_08_Hasi1
+Img_BattleTerrain_08_Hasi1:  @ LZ77
+Img_BattleTerrain_08_Hasi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/08_hasi1.lz"
 
-	.global gUnk_08FC54DC
-	.global gUnk_08FC54DC
-gUnk_08FC54DC:
-gUnk_08FC54DC:
+	.global Pal_BattleTerrain_08_Hasi1
+	.global Pal_BattleTerrain_08_Hasi1
+Pal_BattleTerrain_08_Hasi1:
+Pal_BattleTerrain_08_Hasi1:
 	.incbin "graphics/btl_terrain/08_hasi1_pal.gbapal"
 
-	.global gUnk_08FC54FC
-	.global gUnk_08FC54FC
-gUnk_08FC54FC:  @ LZ77
-gUnk_08FC54FC:  @ LZ77
+	.global Img_BattleTerrain_09_Sabaku1
+	.global Img_BattleTerrain_09_Sabaku1
+Img_BattleTerrain_09_Sabaku1:  @ LZ77
+Img_BattleTerrain_09_Sabaku1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/09_sabaku1.lz"
 
-	.global gUnk_08FC5B30
-	.global gUnk_08FC5B30
-gUnk_08FC5B30:
-gUnk_08FC5B30:
+	.global Pal_BattleTerrain_09_Sabaku1
+	.global Pal_BattleTerrain_09_Sabaku1
+Pal_BattleTerrain_09_Sabaku1:
+Pal_BattleTerrain_09_Sabaku1:
 	.incbin "graphics/btl_terrain/09_sabaku1_pal.gbapal"
 
-	.global gUnk_08FC5B50
-	.global gUnk_08FC5B50
-gUnk_08FC5B50:  @ LZ77
-gUnk_08FC5B50:  @ LZ77
+	.global Img_BattleTerrain_0A_Kawa1
+	.global Img_BattleTerrain_0A_Kawa1
+Img_BattleTerrain_0A_Kawa1:  @ LZ77
+Img_BattleTerrain_0A_Kawa1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/0A_kawa1.lz"
 
-	.global gUnk_08FC6224
-	.global gUnk_08FC6224
-gUnk_08FC6224:
-gUnk_08FC6224:
+	.global Pal_BattleTerrain_0A_Kawa1
+	.global Pal_BattleTerrain_0A_Kawa1
+Pal_BattleTerrain_0A_Kawa1:
+Pal_BattleTerrain_0A_Kawa1:
 	.incbin "graphics/btl_terrain/0A_kawa1_pal.gbapal"
 
-	.global gUnk_08FC6244
-	.global gUnk_08FC6244
-gUnk_08FC6244:  @ LZ77
-gUnk_08FC6244:  @ LZ77
+	.global Img_BattleTerrain_0B_Mura1
+	.global Img_BattleTerrain_0B_Mura1
+Img_BattleTerrain_0B_Mura1:  @ LZ77
+Img_BattleTerrain_0B_Mura1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/0B_mura1.lz"
 
-	.global gUnk_08FC6A18
-	.global gUnk_08FC6A18
-gUnk_08FC6A18:
-gUnk_08FC6A18:
+	.global Pal_BattleTerrain_0B_Mura1
+	.global Pal_BattleTerrain_0B_Mura1
+Pal_BattleTerrain_0B_Mura1:
+Pal_BattleTerrain_0B_Mura1:
 	.incbin "graphics/btl_terrain/0B_mura1_pal.gbapal"
 
-	.global gUnk_08FC6A38
-	.global gUnk_08FC6A38
-gUnk_08FC6A38:  @ LZ77
-gUnk_08FC6A38:  @ LZ77
+	.global Img_BattleTerrain_0C_Umi1
+	.global Img_BattleTerrain_0C_Umi1
+Img_BattleTerrain_0C_Umi1:  @ LZ77
+Img_BattleTerrain_0C_Umi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/0C_umi1.lz"
 
-	.global gUnk_08FC7118
-	.global gUnk_08FC7118
-gUnk_08FC7118:
-gUnk_08FC7118:
+	.global Pal_BattleTerrain_0C_Umi1
+	.global Pal_BattleTerrain_0C_Umi1
+Pal_BattleTerrain_0C_Umi1:
+Pal_BattleTerrain_0C_Umi1:
 	.incbin "graphics/btl_terrain/0C_umi1_pal.gbapal"
 
-	.global gUnk_08FC7138
-	.global gUnk_08FC7138
-gUnk_08FC7138:  @ LZ77
-gUnk_08FC7138:  @ LZ77
+	.global Img_BattleTerrain_0D_Mizuiumi1
+	.global Img_BattleTerrain_0D_Mizuiumi1
+Img_BattleTerrain_0D_Mizuiumi1:  @ LZ77
+Img_BattleTerrain_0D_Mizuiumi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/0D_mizuiumi1.lz"
 
-	.global gUnk_08FC7760
-	.global gUnk_08FC7760
-gUnk_08FC7760:
-gUnk_08FC7760:
+	.global Pal_BattleTerrain_0D_Mizuiumi1
+	.global Pal_BattleTerrain_0D_Mizuiumi1
+Pal_BattleTerrain_0D_Mizuiumi1:
+Pal_BattleTerrain_0D_Mizuiumi1:
 	.incbin "graphics/btl_terrain/0D_mizuiumi1_pal.gbapal"
 
-	.global gUnk_08FC7780
-	.global gUnk_08FC7780
-gUnk_08FC7780:  @ LZ77
-gUnk_08FC7780:  @ LZ77
+	.global Img_BattleTerrain_0E_Azukarijo1
+	.global Img_BattleTerrain_0E_Azukarijo1
+Img_BattleTerrain_0E_Azukarijo1:  @ LZ77
+Img_BattleTerrain_0E_Azukarijo1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/0E_azukarijo1.lz"
 
-	.global gUnk_08FC7F50
-	.global gUnk_08FC7F50
-gUnk_08FC7F50:
-gUnk_08FC7F50:
+	.global Pal_BattleTerrain_0E_Azukarijo1
+	.global Pal_BattleTerrain_0E_Azukarijo1
+Pal_BattleTerrain_0E_Azukarijo1:
+Pal_BattleTerrain_0E_Azukarijo1:
 	.incbin "graphics/btl_terrain/0E_azukarijo1_pal.gbapal"
 
-	.global gUnk_08FC7F70
-	.global gUnk_08FC7F70
-gUnk_08FC7F70:  @ LZ77
-gUnk_08FC7F70:  @ LZ77
+	.global Img_BattleTerrain_0F_Douguya1
+	.global Img_BattleTerrain_0F_Douguya1
+Img_BattleTerrain_0F_Douguya1:  @ LZ77
+Img_BattleTerrain_0F_Douguya1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/0F_douguya1.lz"
 
-	.global gUnk_08FC8760
-	.global gUnk_08FC8760
-gUnk_08FC8760:
-gUnk_08FC8760:
+	.global Pal_BattleTerrain_0F_Douguya1
+	.global Pal_BattleTerrain_0F_Douguya1
+Pal_BattleTerrain_0F_Douguya1:
+Pal_BattleTerrain_0F_Douguya1:
 	.incbin "graphics/btl_terrain/0F_douguya1_pal.gbapal"
 
-	.global gUnk_08FC8780
-	.global gUnk_08FC8780
-gUnk_08FC8780:  @ LZ77
-gUnk_08FC8780:  @ LZ77
+	.global Img_BattleTerrain_10_Fukaimori1
+	.global Img_BattleTerrain_10_Fukaimori1
+Img_BattleTerrain_10_Fukaimori1:  @ LZ77
+Img_BattleTerrain_10_Fukaimori1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/10_fukaimori1.lz"
 
-	.global gUnk_08FC9030
-	.global gUnk_08FC9030
-gUnk_08FC9030:
-gUnk_08FC9030:
+	.global Pal_BattleTerrain_10_Fukaimori1
+	.global Pal_BattleTerrain_10_Fukaimori1
+Pal_BattleTerrain_10_Fukaimori1:
+Pal_BattleTerrain_10_Fukaimori1:
 	.incbin "graphics/btl_terrain/10_fukaimori1_pal.gbapal"
 
-	.global gUnk_08FC9050
-	.global gUnk_08FC9050
-gUnk_08FC9050:  @ LZ77
-gUnk_08FC9050:  @ LZ77
+	.global Img_BattleTerrain_11_Michi1
+	.global Img_BattleTerrain_11_Michi1
+Img_BattleTerrain_11_Michi1:  @ LZ77
+Img_BattleTerrain_11_Michi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/11_michi1.lz"
 
-	.global gUnk_08FC9824
-	.global gUnk_08FC9824
-gUnk_08FC9824:
-gUnk_08FC9824:
+	.global Pal_BattleTerrain_11_Michi1
+	.global Pal_BattleTerrain_11_Michi1
+Pal_BattleTerrain_11_Michi1:
+Pal_BattleTerrain_11_Michi1:
 	.incbin "graphics/btl_terrain/11_michi1_pal.gbapal"
 
-	.global gUnk_08FC9844
-	.global gUnk_08FC9844
-gUnk_08FC9844:  @ LZ77
-gUnk_08FC9844:  @ LZ77
+	.global Img_BattleTerrain_12_Minka1
+	.global Img_BattleTerrain_12_Minka1
+Img_BattleTerrain_12_Minka1:  @ LZ77
+Img_BattleTerrain_12_Minka1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/12_minka1.lz"
 
-	.global gUnk_08FCA078
-	.global gUnk_08FCA078
-gUnk_08FCA078:
-gUnk_08FCA078:
+	.global Pal_BattleTerrain_12_Minka1
+	.global Pal_BattleTerrain_12_Minka1
+Pal_BattleTerrain_12_Minka1:
+Pal_BattleTerrain_12_Minka1:
 	.incbin "graphics/btl_terrain/12_minka1_pal.gbapal"
 
-	.global gUnk_08FCA098
-	.global gUnk_08FCA098
-gUnk_08FCA098:  @ LZ77
-gUnk_08FCA098:  @ LZ77
+	.global Img_BattleTerrain_13_Mori1
+	.global Img_BattleTerrain_13_Mori1
+Img_BattleTerrain_13_Mori1:  @ LZ77
+Img_BattleTerrain_13_Mori1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/13_mori1.lz"
 
-	.global gUnk_08FCA910
-	.global gUnk_08FCA910
-gUnk_08FCA910:
-gUnk_08FCA910:
+	.global Pal_BattleTerrain_13_Mori1
+	.global Pal_BattleTerrain_13_Mori1
+Pal_BattleTerrain_13_Mori1:
+Pal_BattleTerrain_13_Mori1:
 	.incbin "graphics/btl_terrain/13_mori1_pal.gbapal"
 
-	.global gUnk_08FCA930
-	.global gUnk_08FCA930
-gUnk_08FCA930:  @ LZ77
-gUnk_08FCA930:  @ LZ77
+	.global Img_BattleTerrain_14_Siroyuka1
+	.global Img_BattleTerrain_14_Siroyuka1
+Img_BattleTerrain_14_Siroyuka1:  @ LZ77
+Img_BattleTerrain_14_Siroyuka1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/14_siroyuka1.lz"
 
-	.global gUnk_08FCAFF4
-	.global gUnk_08FCAFF4
-gUnk_08FCAFF4:
-gUnk_08FCAFF4:
+	.global Pal_BattleTerrain_14_Siroyuka1
+	.global Pal_BattleTerrain_14_Siroyuka1
+Pal_BattleTerrain_14_Siroyuka1:
+Pal_BattleTerrain_14_Siroyuka1:
 	.incbin "graphics/btl_terrain/14_siroyuka1_pal.gbapal"
 
-	.global gUnk_08FCB014
-	.global gUnk_08FCB014
-gUnk_08FCB014:  @ LZ77
-gUnk_08FCB014:  @ LZ77
+	.global Img_BattleTerrain_15_Sunachi1
+	.global Img_BattleTerrain_15_Sunachi1
+Img_BattleTerrain_15_Sunachi1:  @ LZ77
+Img_BattleTerrain_15_Sunachi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/15_sunachi1.lz"
 
-	.global gUnk_08FCB69C
-	.global gUnk_08FCB69C
-gUnk_08FCB69C:
-gUnk_08FCB69C:
+	.global Pal_BattleTerrain_15_Sunachi1
+	.global Pal_BattleTerrain_15_Sunachi1
+Pal_BattleTerrain_15_Sunachi1:
+Pal_BattleTerrain_15_Sunachi1:
 	.incbin "graphics/btl_terrain/15_sunachi1_pal.gbapal"
 
-	.global gUnk_08FCB6BC
-	.global gUnk_08FCB6BC
-gUnk_08FCB6BC:  @ LZ77
-gUnk_08FCB6BC:  @ LZ77
+	.global Img_BattleTerrain_16_Takaiyama1
+	.global Img_BattleTerrain_16_Takaiyama1
+Img_BattleTerrain_16_Takaiyama1:  @ LZ77
+Img_BattleTerrain_16_Takaiyama1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/16_takaiyama1.lz"
 
-	.global gUnk_08FCBDEC
-	.global gUnk_08FCBDEC
-gUnk_08FCBDEC:
-gUnk_08FCBDEC:
+	.global Pal_BattleTerrain_16_Takaiyama1
+	.global Pal_BattleTerrain_16_Takaiyama1
+Pal_BattleTerrain_16_Takaiyama1:
+Pal_BattleTerrain_16_Takaiyama1:
 	.incbin "graphics/btl_terrain/16_takaiyama1_pal.gbapal"
 
-	.global gUnk_08FCBE0C
-	.global gUnk_08FCBE0C
-gUnk_08FCBE0C:  @ LZ77
-gUnk_08FCBE0C:  @ LZ77
+	.global Img_BattleTerrain_17_Toride1
+	.global Img_BattleTerrain_17_Toride1
+Img_BattleTerrain_17_Toride1:  @ LZ77
+Img_BattleTerrain_17_Toride1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/17_toride1.lz"
 
-	.global gUnk_08FCC4D0
-	.global gUnk_08FCC4D0
-gUnk_08FCC4D0:
-gUnk_08FCC4D0:
+	.global Pal_BattleTerrain_17_Toride1
+	.global Pal_BattleTerrain_17_Toride1
+Pal_BattleTerrain_17_Toride1:
+Pal_BattleTerrain_17_Toride1:
 	.incbin "graphics/btl_terrain/17_toride1_pal.gbapal"
 
-	.global gUnk_08FCC4F0
-	.global gUnk_08FCC4F0
-gUnk_08FCC4F0:  @ LZ77
-gUnk_08FCC4F0:  @ LZ77
+	.global Img_BattleTerrain_18_Tougijou1
+	.global Img_BattleTerrain_18_Tougijou1
+Img_BattleTerrain_18_Tougijou1:  @ LZ77
+Img_BattleTerrain_18_Tougijou1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/18_tougijou1.lz"
 
-	.global gUnk_08FCCC6C
-	.global gUnk_08FCCC6C
-gUnk_08FCCC6C:
-gUnk_08FCCC6C:
+	.global Pal_BattleTerrain_18_Tougijou1
+	.global Pal_BattleTerrain_18_Tougijou1
+Pal_BattleTerrain_18_Tougijou1:
+Pal_BattleTerrain_18_Tougijou1:
 	.incbin "graphics/btl_terrain/18_tougijou1_pal.gbapal"
 
-	.global gUnk_08FCCC8C
-	.global gUnk_08FCCC8C
-gUnk_08FCCC8C:  @ LZ77
-gUnk_08FCCC8C:  @ LZ77
+	.global Img_BattleTerrain_19_Yama1
+	.global Img_BattleTerrain_19_Yama1
+Img_BattleTerrain_19_Yama1:  @ LZ77
+Img_BattleTerrain_19_Yama1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/19_yama1.lz"
 
-	.global gUnk_08FCD410
-	.global gUnk_08FCD410
-gUnk_08FCD410:
-gUnk_08FCD410:
+	.global Pal_BattleTerrain_19_Yama1
+	.global Pal_BattleTerrain_19_Yama1
+Pal_BattleTerrain_19_Yama1:
+Pal_BattleTerrain_19_Yama1:
 	.incbin "graphics/btl_terrain/19_yama1_pal.gbapal"
 
-	.global gUnk_08FCD430
-	.global gUnk_08FCD430
-gUnk_08FCD430:  @ LZ77
-gUnk_08FCD430:  @ LZ77
+	.global Img_BattleTerrain_1A_Mahouyuka1
+	.global Img_BattleTerrain_1A_Mahouyuka1
+Img_BattleTerrain_1A_Mahouyuka1:  @ LZ77
+Img_BattleTerrain_1A_Mahouyuka1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/1A_mahouyuka1.lz"
 
-	.global gUnk_08FCDD38
-	.global gUnk_08FCDD38
-gUnk_08FCDD38:
-gUnk_08FCDD38:
+	.global Pal_BattleTerrain_1A_Mahouyuka1
+	.global Pal_BattleTerrain_1A_Mahouyuka1
+Pal_BattleTerrain_1A_Mahouyuka1:
+Pal_BattleTerrain_1A_Mahouyuka1:
 	.incbin "graphics/btl_terrain/1A_mahouyuka1_pal.gbapal"
 
-	.global gUnk_08FCDD58
-	.global gUnk_08FCDD58
-gUnk_08FCDD58:  @ LZ77
-gUnk_08FCDD58:  @ LZ77
+	.global Img_BattleTerrain_1B_Kabe1
+	.global Img_BattleTerrain_1B_Kabe1
+Img_BattleTerrain_1B_Kabe1:  @ LZ77
+Img_BattleTerrain_1B_Kabe1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/1B_kabe1.lz"
 
-	.global gUnk_08FCE420
-	.global gUnk_08FCE420
-gUnk_08FCE420:
-gUnk_08FCE420:
+	.global Pal_BattleTerrain_1B_Kabe1
+	.global Pal_BattleTerrain_1B_Kabe1
+Pal_BattleTerrain_1B_Kabe1:
+Pal_BattleTerrain_1B_Kabe1:
 	.incbin "graphics/btl_terrain/1B_kabe1_pal.gbapal"
 
-	.global gUnk_08FCE440
-	.global gUnk_08FCE440
-gUnk_08FCE440:  @ LZ77
-gUnk_08FCE440:  @ LZ77
+	.global Img_BattleTerrain_1C_Kowaretakabe
+	.global Img_BattleTerrain_1C_Kowaretakabe
+Img_BattleTerrain_1C_Kowaretakabe:  @ LZ77
+Img_BattleTerrain_1C_Kowaretakabe:  @ LZ77
 	.incbin "build/graphics/btl_terrain/1C_kowaretakabe.lz"
 
-	.global gUnk_08FCEAB8
-	.global gUnk_08FCEAB8
-gUnk_08FCEAB8:
-gUnk_08FCEAB8:
+	.global Pal_BattleTerrain_1C_Kowaretakabe
+	.global Pal_BattleTerrain_1C_Kowaretakabe
+Pal_BattleTerrain_1C_Kowaretakabe:
+Pal_BattleTerrain_1C_Kowaretakabe:
 	.incbin "graphics/btl_terrain/1C_kowaretakabe_pal.gbapal"
 
-	.global gUnk_08FCEAD8
-	.global gUnk_08FCEAD8
-gUnk_08FCEAD8:  @ LZ77
-gUnk_08FCEAD8:  @ LZ77
+	.global Img_BattleTerrain_1D_Kowaretakabe
+	.global Img_BattleTerrain_1D_Kowaretakabe
+Img_BattleTerrain_1D_Kowaretakabe:  @ LZ77
+Img_BattleTerrain_1D_Kowaretakabe:  @ LZ77
 	.incbin "build/graphics/btl_terrain/1D_kowaretakabe.lz"
 
-	.global gUnk_08FCF194
-	.global gUnk_08FCF194
-gUnk_08FCF194:
-gUnk_08FCF194:
+	.global Pal_BattleTerrain_1D_Kowaretakabe
+	.global Pal_BattleTerrain_1D_Kowaretakabe
+Pal_BattleTerrain_1D_Kowaretakabe:
+Pal_BattleTerrain_1D_Kowaretakabe:
 	.incbin "graphics/btl_terrain/1D_kowaretakabe_pal.gbapal"
 
-	.global gUnk_08FCF1B4
-	.global gUnk_08FCF1B4
-gUnk_08FCF1B4:  @ LZ77
-gUnk_08FCF1B4:  @ LZ77
+	.global Img_BattleTerrain_1E_Hasira1
+	.global Img_BattleTerrain_1E_Hasira1
+Img_BattleTerrain_1E_Hasira1:  @ LZ77
+Img_BattleTerrain_1E_Hasira1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/1E_hasira1.lz"
 
-	.global gUnk_08FCF890
-	.global gUnk_08FCF890
-gUnk_08FCF890:
-gUnk_08FCF890:
+	.global Pal_BattleTerrain_1E_Hasira1
+	.global Pal_BattleTerrain_1E_Hasira1
+Pal_BattleTerrain_1E_Hasira1:
+Pal_BattleTerrain_1E_Hasira1:
 	.incbin "graphics/btl_terrain/1E_hasira1_pal.gbapal"
 
-	.global gUnk_08FCF8B0
-	.global gUnk_08FCF8B0
-gUnk_08FCF8B0:  @ LZ77
-gUnk_08FCF8B0:  @ LZ77
+	.global Img_BattleTerrain_1F_Takarabako1
+	.global Img_BattleTerrain_1F_Takarabako1
+Img_BattleTerrain_1F_Takarabako1:  @ LZ77
+Img_BattleTerrain_1F_Takarabako1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/1F_takarabako1.lz"
 
-	.global gUnk_08FD0014
-	.global gUnk_08FD0014
-gUnk_08FD0014:
-gUnk_08FD0014:
+	.global Pal_BattleTerrain_1F_Takarabako1
+	.global Pal_BattleTerrain_1F_Takarabako1
+Pal_BattleTerrain_1F_Takarabako1:
+Pal_BattleTerrain_1F_Takarabako1:
 	.incbin "graphics/btl_terrain/1F_takarabako1_pal.gbapal"
 
-	.global gUnk_08FD0034
-	.global gUnk_08FD0034
-gUnk_08FD0034:  @ LZ77
-gUnk_08FD0034:  @ LZ77
+	.global Img_BattleTerrain_20_Killerarechi
+	.global Img_BattleTerrain_20_Killerarechi
+Img_BattleTerrain_20_Killerarechi:  @ LZ77
+Img_BattleTerrain_20_Killerarechi:  @ LZ77
 	.incbin "build/graphics/btl_terrain/20_killerarechi.lz"
 
-	.global gUnk_08FD08B8
-	.global gUnk_08FD08B8
-gUnk_08FD08B8:
-gUnk_08FD08B8:
+	.global Pal_BattleTerrain_20_Killerarechi
+	.global Pal_BattleTerrain_20_Killerarechi
+Pal_BattleTerrain_20_Killerarechi:
+Pal_BattleTerrain_20_Killerarechi:
 	.incbin "graphics/btl_terrain/20_killerarechi_pal.gbapal"
 
-	.global gUnk_08FD08D8
-	.global gUnk_08FD08D8
-gUnk_08FD08D8:  @ LZ77
-gUnk_08FD08D8:  @ LZ77
+	.global Img_BattleTerrain_21_Mon1
+	.global Img_BattleTerrain_21_Mon1
+Img_BattleTerrain_21_Mon1:  @ LZ77
+Img_BattleTerrain_21_Mon1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/21_mon1.lz"
 
-	.global gUnk_08FD0F84
-	.global gUnk_08FD0F84
-gUnk_08FD0F84:
-gUnk_08FD0F84:
+	.global Pal_BattleTerrain_21_Mon1
+	.global Pal_BattleTerrain_21_Mon1
+Pal_BattleTerrain_21_Mon1:
+Pal_BattleTerrain_21_Mon1:
 	.incbin "graphics/btl_terrain/21_mon1_pal.gbapal"
 
-	.global gUnk_08FD0FA4
-	.global gUnk_08FD0FA4
-gUnk_08FD0FA4:  @ LZ77
-gUnk_08FD0FA4:  @ LZ77
+	.global Img_BattleTerrain_22_Tuusintougi1
+	.global Img_BattleTerrain_22_Tuusintougi1
+Img_BattleTerrain_22_Tuusintougi1:  @ LZ77
+Img_BattleTerrain_22_Tuusintougi1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/22_tuusintougi1.lz"
 
-	.global gUnk_08FD15F8
-	.global gUnk_08FD15F8
-gUnk_08FD15F8:
-gUnk_08FD15F8:
+	.global Pal_BattleTerrain_22_Tuusintougi1
+	.global Pal_BattleTerrain_22_Tuusintougi1
+Pal_BattleTerrain_22_Tuusintougi1:
+Pal_BattleTerrain_22_Tuusintougi1:
 	.incbin "graphics/btl_terrain/22_tuusintougi1_pal.gbapal"
 
 	.global gUnk_08FD1618
@@ -1026,16 +1026,16 @@ gUnk_08FD1AF8:
 gUnk_08FD1AF8:
 	.incbin "baserom.gba", 0xfd1af8, 0x20
 
-	.global gUnk_08FD1B18
-	.global gUnk_08FD1B18
-gUnk_08FD1B18:  @ LZ77
-gUnk_08FD1B18:  @ LZ77
+	.global Img_BattleTerrain_55_Maruta1
+	.global Img_BattleTerrain_55_Maruta1
+Img_BattleTerrain_55_Maruta1:  @ LZ77
+Img_BattleTerrain_55_Maruta1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/55_maruta1.lz"
 
-	.global gUnk_08FD2260
-	.global gUnk_08FD2260
-gUnk_08FD2260:
-gUnk_08FD2260:
+	.global Pal_BattleTerrain_55_Maruta1
+	.global Pal_BattleTerrain_55_Maruta1
+Pal_BattleTerrain_55_Maruta1:
+Pal_BattleTerrain_55_Maruta1:
 	.incbin "graphics/btl_terrain/55_maruta1_pal.gbapal"
 
 	.global gUnk_08FD2280
@@ -1146,16 +1146,16 @@ gUnk_08FD24A0:
 gUnk_08FD24A0:
 	.incbin "baserom.gba", 0xfd24a0, 0x20
 
-	.global gUnk_08FD24C0
-	.global gUnk_08FD24C0
-gUnk_08FD24C0:  @ LZ77
-gUnk_08FD24C0:  @ LZ77
+	.global Img_BattleTerrain_68_Fune1
+	.global Img_BattleTerrain_68_Fune1
+Img_BattleTerrain_68_Fune1:  @ LZ77
+Img_BattleTerrain_68_Fune1:  @ LZ77
 	.incbin "build/graphics/btl_terrain/68_fune1.lz"
 
-	.global gUnk_08FD2DB8
-	.global gUnk_08FD2DB8
-gUnk_08FD2DB8:
-gUnk_08FD2DB8:
+	.global Pal_BattleTerrain_68_Fune1
+	.global Pal_BattleTerrain_68_Fune1
+Pal_BattleTerrain_68_Fune1:
+Pal_BattleTerrain_68_Fune1:
 	.incbin "graphics/btl_terrain/68_fune1_pal.gbapal"
 
 	.global gUnk_08FD2DD8
@@ -1169,965 +1169,965 @@ gUnk_08FD2DD8:
 character_battle_animation_palette_table:
 character_battle_animation_palette_table:
 	.incbin "baserom.gba", 0xfd8008, 0xc
-	.4byte gUnk_08FD9000
+	.4byte Pal_BanimChara_01_Lin
 	.incbin "baserom.gba", 0xfd8018, 0xc
-	.4byte gUnk_08FD9050
+	.4byte Pal_BanimChara_02_Rebacca
 	.incbin "baserom.gba", 0xfd8028, 0xc
-	.4byte gUnk_08FD90B4
+	.4byte Pal_BanimChara_03_Will
 	.incbin "baserom.gba", 0xfd8038, 0xc
-	.4byte gUnk_08FD9114
+	.4byte Pal_BanimChara_Boies
 	.incbin "baserom.gba", 0xfd8048, 0xc
-	.4byte gUnk_08FD9180
+	.4byte Pal_BanimChara_Bool
 	.incbin "baserom.gba", 0xfd8058, 0xc
-	.4byte gUnk_08FD91EC
+	.4byte Pal_BanimChara_Bowker
 	.incbin "baserom.gba", 0xfd8068, 0xc
-	.4byte gUnk_08FD9258
+	.4byte Pal_BanimChara_Eagler
 	.incbin "baserom.gba", 0xfd8078, 0xc
-	.4byte gUnk_08FD92D8
+	.4byte Pal_BanimChara_08_Osin
 	.incbin "baserom.gba", 0xfd8088, 0xc
-	.4byte gUnk_08FD935C
+	.4byte Pal_BanimChara_09_Wallace
 	.incbin "baserom.gba", 0xfd8098, 0xc
-	.4byte gUnk_08FD93DC
+	.4byte Pal_BanimChara_Wire
 	.incbin "baserom.gba", 0xfd80a8, 0xc
-	.4byte gUnk_08FD9448
+	.4byte Pal_BanimChara_Yog
 	.incbin "baserom.gba", 0xfd80b8, 0xc
-	.4byte gUnk_08FD94B4
+	.4byte Pal_BanimChara_Jaffar
 	.incbin "baserom.gba", 0xfd80c8, 0xc
-	.4byte gUnk_08FD9508
+	.4byte Pal_BanimChara_Jerme
 	.incbin "baserom.gba", 0xfd80d8, 0xc
-	.4byte gUnk_08FD955C
+	.4byte Pal_BanimChara_0E_Lagarto
 	.incbin "baserom.gba", 0xfd80e8, 0xc
-	.4byte gUnk_08FD95B8
+	.4byte Pal_BanimChara_0F_Matthew
 	.incbin "baserom.gba", 0xfd80f8, 0xc
-	.4byte gUnk_08FD9610
+	.4byte Pal_BanimChara_Batta
 	.incbin "baserom.gba", 0xfd8108, 0xc
-	.4byte gUnk_08FD9664
+	.4byte Pal_BanimChara_Bug
 	.incbin "baserom.gba", 0xfd8118, 0xc
-	.4byte gUnk_08FD96B4
+	.4byte Pal_BanimChara_Carjiga
 	.incbin "baserom.gba", 0xfd8128, 0xc
-	.4byte gUnk_08FD9704
+	.4byte Pal_BanimChara_Migal
 	.incbin "baserom.gba", 0xfd8138, 0xc
-	.4byte gUnk_08FD9754
+	.4byte Pal_BanimChara_Zagan
 	.incbin "baserom.gba", 0xfd8148, 0xc
-	.4byte gUnk_08FD97A8
+	.4byte Pal_BanimChara_Zugu
 	.incbin "baserom.gba", 0xfd8158, 0xc
-	.4byte gUnk_08FD97F8
+	.4byte Pal_BanimChara_Hawkeye
 	.incbin "baserom.gba", 0xfd8168, 0xc
-	.4byte gUnk_08FD9848
+	.4byte Pal_BanimChara_17_Serra
 	.incbin "baserom.gba", 0xfd8178, 0xc
-	.4byte gUnk_08FD98A8
+	.4byte Pal_BanimChara_Kenneth
 	.incbin "baserom.gba", 0xfd8188, 0xc
-	.4byte gUnk_08FD9908
+	.4byte Pal_BanimChara_Renato
 	.incbin "baserom.gba", 0xfd8198, 0xc
-	.4byte gUnk_08FD9970
+	.4byte Pal_BanimChara_1A_Ruthea
 	.incbin "baserom.gba", 0xfd81a8, 0xc
-	.4byte gUnk_08FD99DC
+	.4byte Pal_BanimChara_1B_Lin
 	.incbin "baserom.gba", 0xfd81b8, 0xc
-	.4byte gUnk_08FD9A2C
+	.4byte Pal_BanimChara_Haken
 	.incbin "baserom.gba", 0xfd81c8, 0xc
-	.4byte gUnk_08FD9A84
+	.4byte Pal_BanimChara_Kaim
 	.incbin "baserom.gba", 0xfd81d8, 0xc
-	.4byte gUnk_08FD9AD4
+	.4byte Pal_BanimChara_1E_Leyvan
 	.incbin "baserom.gba", 0xfd81e8, 0xc
-	.4byte gUnk_08FD9B2C
+	.4byte Pal_BanimChara_Linus
 	.incbin "baserom.gba", 0xfd81f8, 0xc
-	.4byte gUnk_08FD9B7C
+	.4byte Pal_BanimChara_Nils
 	.incbin "baserom.gba", 0xfd8208, 0xc
-	.4byte gUnk_08FD9BDC
+	.4byte Pal_BanimChara_21_Darts
 	.incbin "baserom.gba", 0xfd8218, 0xc
-	.4byte gUnk_08FD9C34
+	.4byte Pal_BanimChara_Fergus
 	.incbin "baserom.gba", 0xfd8228, 0xc
-	.4byte gUnk_08FD9C84
+	.4byte Pal_BanimChara_Georg
 	.incbin "baserom.gba", 0xfd8238, 0xc
-	.4byte gUnk_08FD9CD4
+	.4byte Pal_BanimChara_Ninian
 	.incbin "baserom.gba", 0xfd8248, 0xc
-	.4byte gUnk_08FD9D44
+	.4byte Pal_BanimChara_25_Heath
 	.incbin "baserom.gba", 0xfd8258, 0xc
-	.4byte gUnk_08FD9DB4
+	.4byte Pal_BanimChara_26_Heath
 	.incbin "baserom.gba", 0xfd8268, 0xc
-	.4byte gUnk_08FD9E34
+	.4byte Pal_BanimChara_Vaida
 	.incbin "baserom.gba", 0xfd8278, 0xc
-	.4byte gUnk_08FD9EAC
+	.4byte Pal_BanimChara_Nergal
 	.incbin "baserom.gba", 0xfd8288, 0xc
-	.4byte gUnk_08FD9F08
+	.4byte Pal_BanimChara_29_Canas
 	.incbin "baserom.gba", 0xfd8298, 0xc
-	.4byte gUnk_08FD9F5C
+	.4byte Pal_BanimChara_Teodor
 	.incbin "baserom.gba", 0xfd82a8, 0xc
-	.4byte gUnk_08FD9FAC
+	.4byte Pal_BanimChara_2B_Eliwod
 	.incbin "baserom.gba", 0xfd82b8, 0xc
-	.4byte gUnk_08FDA00C
+	.4byte Pal_BanimChara_2C_Farina
 	.incbin "baserom.gba", 0xfd82c8, 0xc
-	.4byte gUnk_08FDA07C
+	.4byte Pal_BanimChara_2D_Fiora
 	.incbin "baserom.gba", 0xfd82d8, 0xc
-	.4byte gUnk_08FDA0EC
+	.4byte Pal_BanimChara_2E_Flolina
 	.incbin "baserom.gba", 0xfd82e8, 0xc
-	.4byte gUnk_08FDA15C
+	.4byte Pal_BanimChara_Bartr
 	.incbin "baserom.gba", 0xfd82f8, 0xc
-	.4byte gUnk_08FDA1B4
+	.4byte Pal_BanimChara_30_Dorcas
 	.incbin "baserom.gba", 0xfd8308, 0xc
-	.4byte gUnk_08FDA20C
+	.4byte Pal_BanimChara_Belnald
 	.incbin "baserom.gba", 0xfd8318, 0xc
-	.4byte gUnk_08FDA27C
+	.4byte Pal_BanimChara_Darren
 	.incbin "baserom.gba", 0xfd8328, 0xc
-	.4byte gUnk_08FDA2EC
+	.4byte Pal_BanimChara_33_Osin
 	.incbin "baserom.gba", 0xfd8338, 0xc
-	.4byte gUnk_08FDA374
+	.4byte Pal_BanimChara_34_Wallace
 	.incbin "baserom.gba", 0xfd8348, 0xc
-	.4byte gUnk_08FDA3FC
+	.4byte Pal_BanimChara_Wranglen
 	.incbin "baserom.gba", 0xfd8358, 0xc
-	.4byte gUnk_08FDA46C
+	.4byte Pal_BanimChara_36_Hector
 	.incbin "baserom.gba", 0xfd8368, 0xc
-	.4byte gUnk_08FDA4C8
+	.4byte Pal_BanimChara_37_Hector
 	.incbin "baserom.gba", 0xfd8378, 0xc
-	.4byte gUnk_08FDA524
+	.4byte Pal_BanimChara_38_Eliwod
 	.incbin "baserom.gba", 0xfd8388, 0xc
-	.4byte gUnk_08FDA57C
+	.4byte Pal_BanimChara_39_Nino
 	.incbin "baserom.gba", 0xfd8398, 0xc
-	.4byte gUnk_08FDA5E8
+	.4byte Pal_BanimChara_3A_Erk
 	.incbin "baserom.gba", 0xfd83a8, 0xc
-	.4byte gUnk_08FDA65C
+	.4byte Pal_BanimChara_Beard
 	.incbin "baserom.gba", 0xfd83b8, 0xc
-	.4byte gUnk_08FDA6B8
+	.4byte Pal_BanimChara_Glass
 	.incbin "baserom.gba", 0xfd83c8, 0xc
-	.4byte gUnk_08FDA714
+	.4byte Pal_BanimChara_3D_Leyvan
 	.incbin "baserom.gba", 0xfd83d8, 0xc
-	.4byte gUnk_08FDA780
+	.4byte Pal_BanimChara_Pson
 	.incbin "baserom.gba", 0xfd83e8, 0xc
-	.4byte gUnk_08FDA7DC
+	.4byte Pal_BanimChara_3F_Ruthea
 	.incbin "baserom.gba", 0xfd83f8, 0xc
-	.4byte gUnk_08FDA83C
+	.4byte Pal_BanimChara_40_Guy
 	.incbin "baserom.gba", 0xfd8408, 0xc
-	.4byte gUnk_08FDA89C
+	.4byte Pal_BanimChara_41_Ruth
 	.incbin "baserom.gba", 0xfd8418, 0xc
-	.4byte gUnk_08FDA910
+	.4byte Pal_BanimChara_Siren
 	.incbin "baserom.gba", 0xfd8428, 0xc
-	.4byte gUnk_08FDA984
+	.4byte Pal_BanimChara_43_Ruth
 	.incbin "baserom.gba", 0xfd8438, 0xc
-	.4byte gUnk_08FDAA14
+	.4byte Pal_BanimChara_Uhai
 	.incbin "baserom.gba", 0xfd8448, 0xc
-	.4byte gUnk_08FDAA8C
+	.4byte Pal_BanimChara_Isadora
 	.incbin "baserom.gba", 0xfd8458, 0xc
-	.4byte gUnk_08FDAB04
+	.4byte Pal_BanimChara_Camlann
 	.incbin "baserom.gba", 0xfd8468, 0xc
-	.4byte gUnk_08FDAB7C
+	.4byte Pal_BanimChara_Damian
 	.incbin "baserom.gba", 0xfd8478, 0xc
-	.4byte gUnk_08FDABF4
+	.4byte Pal_BanimChara_Ubands
 	.incbin "baserom.gba", 0xfd8488, 0xc
-	.4byte gUnk_08FDAC6C
+	.4byte Pal_BanimChara_49_Kent
 	.incbin "baserom.gba", 0xfd8498, 0xc
-	.4byte gUnk_08FDACF8
+	.4byte Pal_BanimChara_4A_Lowen
 	.incbin "baserom.gba", 0xfd84a8, 0xc
-	.4byte gUnk_08FDAD84
+	.4byte Pal_BanimChara_Marcus
 	.incbin "baserom.gba", 0xfd84b8, 0xc
-	.4byte gUnk_08FDAE10
+	.4byte Pal_BanimChara_Maxime
 	.incbin "baserom.gba", 0xfd84c8, 0xc
-	.4byte gUnk_08FDAE88
+	.4byte Pal_BanimChara_Pascal
 	.incbin "baserom.gba", 0xfd84d8, 0xc
-	.4byte gUnk_08FDAF00
+	.4byte Pal_BanimChara_4E_Sain
 	.incbin "baserom.gba", 0xfd84e8, 0xc
-	.4byte gUnk_08FDAF8C
+	.4byte Pal_BanimChara_4F_Farina
 	.incbin "baserom.gba", 0xfd84f8, 0xc
-	.4byte gUnk_08FDAFF8
+	.4byte Pal_BanimChara_50_Fiora
 	.incbin "baserom.gba", 0xfd8508, 0xc
-	.4byte gUnk_08FDB064
+	.4byte Pal_BanimChara_51_Flolina
 	.incbin "baserom.gba", 0xfd8518, 0xc
-	.4byte gUnk_08FDB0D4
+	.4byte Pal_BanimChara_52_Darts
 	.incbin "baserom.gba", 0xfd8528, 0xc
-	.4byte gUnk_08FDB134
+	.4byte Pal_BanimChara_53_Serra
 	.incbin "baserom.gba", 0xfd8538, 0xc
-	.4byte gUnk_08FDB194
+	.4byte Pal_BanimChara_Limstella
 	.incbin "baserom.gba", 0xfd8548, 0xc
-	.4byte gUnk_08FDB1FC
+	.4byte Pal_BanimChara_55_Nino
 	.incbin "baserom.gba", 0xfd8558, 0xc
-	.4byte gUnk_08FDB26C
+	.4byte Pal_BanimChara_Sonia
 	.incbin "baserom.gba", 0xfd8568, 0xc
-	.4byte gUnk_08FDB2D4
+	.4byte Pal_BanimChara_Aion
 	.incbin "baserom.gba", 0xfd8578, 0xc
-	.4byte gUnk_08FDB340
+	.4byte Pal_BanimChara_58_Erk
 	.incbin "baserom.gba", 0xfd8588, 0xc
-	.4byte gUnk_08FDB3B8
+	.4byte Pal_BanimChara_Pant
 	.incbin "baserom.gba", 0xfd8598, 0xc
-	.4byte gUnk_08FDB430
+	.4byte Pal_BanimChara_5A_Canas
 	.incbin "baserom.gba", 0xfd85a8, 0xc
-	.4byte gUnk_08FDB484
+	.4byte Pal_BanimChara_Hintz
 	.incbin "baserom.gba", 0xfd85b8, 0xc
-	.4byte gUnk_08FDB4D4
+	.4byte Pal_BanimChara_Zoldam
 	.incbin "baserom.gba", 0xfd85c8, 0xc
-	.4byte gUnk_08FDB524
+	.4byte Pal_BanimChara_Luise
 	.incbin "baserom.gba", 0xfd85d8, 0xc
-	.4byte gUnk_08FDB588
+	.4byte Pal_BanimChara_5E_Rebacca
 	.incbin "baserom.gba", 0xfd85e8, 0xc
-	.4byte gUnk_08FDB5EC
+	.4byte Pal_BanimChara_Denning
 	.incbin "baserom.gba", 0xfd85f8, 0xc
-	.4byte gUnk_08FDB644
+	.4byte Pal_BanimChara_60_Will
 	.incbin "baserom.gba", 0xfd8608, 0xc
-	.4byte gUnk_08FDB6A4
+	.4byte Pal_BanimChara_Elic
 	.incbin "baserom.gba", 0xfd8618, 0xc
-	.4byte gUnk_08FDB720
+	.4byte Pal_BanimChara_62_Kent
 	.incbin "baserom.gba", 0xfd8628, 0xc
-	.4byte gUnk_08FDB798
+	.4byte Pal_BanimChara_63_Lowen
 	.incbin "baserom.gba", 0xfd8638, 0xc
-	.4byte gUnk_08FDB810
+	.4byte Pal_BanimChara_64_Sain
 	.incbin "baserom.gba", 0xfd8648, 0xc
-	.4byte gUnk_08FDB888
+	.4byte Pal_BanimChara_Athos
 	.incbin "baserom.gba", 0xfd8658, 0xc
-	.4byte gUnk_08FDB8E4
+	.4byte Pal_BanimChara_Karla
 	.incbin "baserom.gba", 0xfd8668, 0xc
-	.4byte gUnk_08FDB944
+	.4byte Pal_BanimChara_67_Guy
 	.incbin "baserom.gba", 0xfd8678, 0xc
-	.4byte gUnk_08FDB9A8
+	.4byte Pal_BanimChara_Karel
 	.incbin "baserom.gba", 0xfd8688, 0xc
-	.4byte gUnk_08FDBA08
+	.4byte Pal_BanimChara_Lloyd
 	.incbin "baserom.gba", 0xfd8698, 0xc
-	.4byte gUnk_08FDBA58
+	.4byte Pal_BanimChara_Laila
 	.incbin "baserom.gba", 0xfd86a8, 0xc
-	.4byte gUnk_08FDBAA8
+	.4byte Pal_BanimChara_6B_Lagarto
 	.incbin "baserom.gba", 0xfd86b8, 0xc
-	.4byte gUnk_08FDBB0C
+	.4byte Pal_BanimChara_6C_Matthew
 	.incbin "baserom.gba", 0xfd86c8, 0xc
-	.4byte gUnk_08FDBB74
+	.4byte Pal_BanimChara_6D_Priscilla
 	.incbin "baserom.gba", 0xfd86d8, 0xc
-	.4byte gUnk_08FDBBD0
+	.4byte Pal_BanimChara_6E_Priscilla
 	.incbin "baserom.gba", 0xfd86e8, 0xc
-	.4byte gUnk_08FDBC3C
+	.4byte Pal_BanimChara_Ursula
 	.incbin "baserom.gba", 0xfd86f8, 0xc
-	.4byte gUnk_08FDBCA0
+	.4byte Pal_BanimChara_Baltr
 	.incbin "baserom.gba", 0xfd8708, 0xc
-	.4byte gUnk_08FDBCFC
+	.4byte Pal_BanimChara_Brendan
 	.incbin "baserom.gba", 0xfd8718, 0xc
-	.4byte gUnk_08FDBD58
+	.4byte Pal_BanimChara_72_Dorcas
 	.incbin "baserom.gba", 0xfd8728, 0xc
-	.4byte gUnk_08FDBDB4
+	.4byte Pal_BanimChara_Gaitz
 	.incbin "baserom.gba", 0xfd8738, 0xc
-	.4byte gUnk_08FDBE14
+	.4byte Pal_BanimChara_Jasmine
 	.incbin "baserom.gba", 0xfd8748, 0xc
-	.4byte gUnk_08FDBE70
+	.4byte Pal_BanimChara_Olg
 	.incbin "baserom.gba", 0xfd8758, 0xc
-	.4byte gUnk_08FDBECC
+	.4byte Pal_BanimChara_Paul
 	.incbin "baserom.gba", 0xfd8768, 0xc
-	.4byte gUnk_08FDBF28
+	.4byte Pal_BanimChara_Kishuna
 	.incbin "baserom.gba", 0xfd8778, 0xc
-	.4byte gUnk_08FDBF64
+	.4byte Pal_BanimChara_Groznyi
 	.incbin "baserom.gba", 0xfd8788, 0x878
 
-	.global gUnk_08FD9000
-	.global gUnk_08FD9000
-gUnk_08FD9000:  @ LZ77
-gUnk_08FD9000:  @ LZ77
+	.global Pal_BanimChara_01_Lin
+	.global Pal_BanimChara_01_Lin
+Pal_BanimChara_01_Lin:  @ LZ77
+Pal_BanimChara_01_Lin:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/01_lin.lz"
 
-	.global gUnk_08FD9050
-	.global gUnk_08FD9050
-gUnk_08FD9050:  @ LZ77
-gUnk_08FD9050:  @ LZ77
+	.global Pal_BanimChara_02_Rebacca
+	.global Pal_BanimChara_02_Rebacca
+Pal_BanimChara_02_Rebacca:  @ LZ77
+Pal_BanimChara_02_Rebacca:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/02_rebacca.lz"
 
-	.global gUnk_08FD90B4
-	.global gUnk_08FD90B4
-gUnk_08FD90B4:  @ LZ77
-gUnk_08FD90B4:  @ LZ77
+	.global Pal_BanimChara_03_Will
+	.global Pal_BanimChara_03_Will
+Pal_BanimChara_03_Will:  @ LZ77
+Pal_BanimChara_03_Will:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/03_will.lz"
 
-	.global gUnk_08FD9114
-	.global gUnk_08FD9114
-gUnk_08FD9114:  @ LZ77
-gUnk_08FD9114:  @ LZ77
+	.global Pal_BanimChara_Boies
+	.global Pal_BanimChara_Boies
+Pal_BanimChara_Boies:  @ LZ77
+Pal_BanimChara_Boies:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/04_boies.lz"
 
-	.global gUnk_08FD9180
-	.global gUnk_08FD9180
-gUnk_08FD9180:  @ LZ77
-gUnk_08FD9180:  @ LZ77
+	.global Pal_BanimChara_Bool
+	.global Pal_BanimChara_Bool
+Pal_BanimChara_Bool:  @ LZ77
+Pal_BanimChara_Bool:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/05_bool.lz"
 
-	.global gUnk_08FD91EC
-	.global gUnk_08FD91EC
-gUnk_08FD91EC:  @ LZ77
-gUnk_08FD91EC:  @ LZ77
+	.global Pal_BanimChara_Bowker
+	.global Pal_BanimChara_Bowker
+Pal_BanimChara_Bowker:  @ LZ77
+Pal_BanimChara_Bowker:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/06_bowker.lz"
 
-	.global gUnk_08FD9258
-	.global gUnk_08FD9258
-gUnk_08FD9258:  @ LZ77
-gUnk_08FD9258:  @ LZ77
+	.global Pal_BanimChara_Eagler
+	.global Pal_BanimChara_Eagler
+Pal_BanimChara_Eagler:  @ LZ77
+Pal_BanimChara_Eagler:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/07_eagler.lz"
 
-	.global gUnk_08FD92D8
-	.global gUnk_08FD92D8
-gUnk_08FD92D8:  @ LZ77
-gUnk_08FD92D8:  @ LZ77
+	.global Pal_BanimChara_08_Osin
+	.global Pal_BanimChara_08_Osin
+Pal_BanimChara_08_Osin:  @ LZ77
+Pal_BanimChara_08_Osin:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/08_osin.lz"
 
-	.global gUnk_08FD935C
-	.global gUnk_08FD935C
-gUnk_08FD935C:  @ LZ77
-gUnk_08FD935C:  @ LZ77
+	.global Pal_BanimChara_09_Wallace
+	.global Pal_BanimChara_09_Wallace
+Pal_BanimChara_09_Wallace:  @ LZ77
+Pal_BanimChara_09_Wallace:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/09_wallace.lz"
 
-	.global gUnk_08FD93DC
-	.global gUnk_08FD93DC
-gUnk_08FD93DC:  @ LZ77
-gUnk_08FD93DC:  @ LZ77
+	.global Pal_BanimChara_Wire
+	.global Pal_BanimChara_Wire
+Pal_BanimChara_Wire:  @ LZ77
+Pal_BanimChara_Wire:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/0A_wire.lz"
 
-	.global gUnk_08FD9448
-	.global gUnk_08FD9448
-gUnk_08FD9448:  @ LZ77
-gUnk_08FD9448:  @ LZ77
+	.global Pal_BanimChara_Yog
+	.global Pal_BanimChara_Yog
+Pal_BanimChara_Yog:  @ LZ77
+Pal_BanimChara_Yog:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/0B_yog.lz"
 
-	.global gUnk_08FD94B4
-	.global gUnk_08FD94B4
-gUnk_08FD94B4:  @ LZ77
-gUnk_08FD94B4:  @ LZ77
+	.global Pal_BanimChara_Jaffar
+	.global Pal_BanimChara_Jaffar
+Pal_BanimChara_Jaffar:  @ LZ77
+Pal_BanimChara_Jaffar:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/0C_jaffar.lz"
 
-	.global gUnk_08FD9508
-	.global gUnk_08FD9508
-gUnk_08FD9508:  @ LZ77
-gUnk_08FD9508:  @ LZ77
+	.global Pal_BanimChara_Jerme
+	.global Pal_BanimChara_Jerme
+Pal_BanimChara_Jerme:  @ LZ77
+Pal_BanimChara_Jerme:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/0D_jerme.lz"
 
-	.global gUnk_08FD955C
-	.global gUnk_08FD955C
-gUnk_08FD955C:  @ LZ77
-gUnk_08FD955C:  @ LZ77
+	.global Pal_BanimChara_0E_Lagarto
+	.global Pal_BanimChara_0E_Lagarto
+Pal_BanimChara_0E_Lagarto:  @ LZ77
+Pal_BanimChara_0E_Lagarto:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/0E_lagarto.lz"
 
-	.global gUnk_08FD95B8
-	.global gUnk_08FD95B8
-gUnk_08FD95B8:  @ LZ77
-gUnk_08FD95B8:  @ LZ77
+	.global Pal_BanimChara_0F_Matthew
+	.global Pal_BanimChara_0F_Matthew
+Pal_BanimChara_0F_Matthew:  @ LZ77
+Pal_BanimChara_0F_Matthew:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/0F_matthew.lz"
 
-	.global gUnk_08FD9610
-	.global gUnk_08FD9610
-gUnk_08FD9610:  @ LZ77
-gUnk_08FD9610:  @ LZ77
+	.global Pal_BanimChara_Batta
+	.global Pal_BanimChara_Batta
+Pal_BanimChara_Batta:  @ LZ77
+Pal_BanimChara_Batta:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/10_batta.lz"
 
-	.global gUnk_08FD9664
-	.global gUnk_08FD9664
-gUnk_08FD9664:  @ LZ77
-gUnk_08FD9664:  @ LZ77
+	.global Pal_BanimChara_Bug
+	.global Pal_BanimChara_Bug
+Pal_BanimChara_Bug:  @ LZ77
+Pal_BanimChara_Bug:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/11_bug.lz"
 
-	.global gUnk_08FD96B4
-	.global gUnk_08FD96B4
-gUnk_08FD96B4:  @ LZ77
-gUnk_08FD96B4:  @ LZ77
+	.global Pal_BanimChara_Carjiga
+	.global Pal_BanimChara_Carjiga
+Pal_BanimChara_Carjiga:  @ LZ77
+Pal_BanimChara_Carjiga:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/12_carjiga.lz"
 
-	.global gUnk_08FD9704
-	.global gUnk_08FD9704
-gUnk_08FD9704:  @ LZ77
-gUnk_08FD9704:  @ LZ77
+	.global Pal_BanimChara_Migal
+	.global Pal_BanimChara_Migal
+Pal_BanimChara_Migal:  @ LZ77
+Pal_BanimChara_Migal:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/13_migal.lz"
 
-	.global gUnk_08FD9754
-	.global gUnk_08FD9754
-gUnk_08FD9754:  @ LZ77
-gUnk_08FD9754:  @ LZ77
+	.global Pal_BanimChara_Zagan
+	.global Pal_BanimChara_Zagan
+Pal_BanimChara_Zagan:  @ LZ77
+Pal_BanimChara_Zagan:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/14_zagan.lz"
 
-	.global gUnk_08FD97A8
-	.global gUnk_08FD97A8
-gUnk_08FD97A8:  @ LZ77
-gUnk_08FD97A8:  @ LZ77
+	.global Pal_BanimChara_Zugu
+	.global Pal_BanimChara_Zugu
+Pal_BanimChara_Zugu:  @ LZ77
+Pal_BanimChara_Zugu:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/15_zugu.lz"
 
-	.global gUnk_08FD97F8
-	.global gUnk_08FD97F8
-gUnk_08FD97F8:  @ LZ77
-gUnk_08FD97F8:  @ LZ77
+	.global Pal_BanimChara_Hawkeye
+	.global Pal_BanimChara_Hawkeye
+Pal_BanimChara_Hawkeye:  @ LZ77
+Pal_BanimChara_Hawkeye:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/16_hawkeye.lz"
 
-	.global gUnk_08FD9848
-	.global gUnk_08FD9848
-gUnk_08FD9848:  @ LZ77
-gUnk_08FD9848:  @ LZ77
+	.global Pal_BanimChara_17_Serra
+	.global Pal_BanimChara_17_Serra
+Pal_BanimChara_17_Serra:  @ LZ77
+Pal_BanimChara_17_Serra:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/17_serra.lz"
 
-	.global gUnk_08FD98A8
-	.global gUnk_08FD98A8
-gUnk_08FD98A8:  @ LZ77
-gUnk_08FD98A8:  @ LZ77
+	.global Pal_BanimChara_Kenneth
+	.global Pal_BanimChara_Kenneth
+Pal_BanimChara_Kenneth:  @ LZ77
+Pal_BanimChara_Kenneth:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/18_kenneth.lz"
 
-	.global gUnk_08FD9908
-	.global gUnk_08FD9908
-gUnk_08FD9908:  @ LZ77
-gUnk_08FD9908:  @ LZ77
+	.global Pal_BanimChara_Renato
+	.global Pal_BanimChara_Renato
+Pal_BanimChara_Renato:  @ LZ77
+Pal_BanimChara_Renato:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/19_renato.lz"
 
-	.global gUnk_08FD9970
-	.global gUnk_08FD9970
-gUnk_08FD9970:  @ LZ77
-gUnk_08FD9970:  @ LZ77
+	.global Pal_BanimChara_1A_Ruthea
+	.global Pal_BanimChara_1A_Ruthea
+Pal_BanimChara_1A_Ruthea:  @ LZ77
+Pal_BanimChara_1A_Ruthea:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/1A_ruthea.lz"
 
-	.global gUnk_08FD99DC
-	.global gUnk_08FD99DC
-gUnk_08FD99DC:  @ LZ77
-gUnk_08FD99DC:  @ LZ77
+	.global Pal_BanimChara_1B_Lin
+	.global Pal_BanimChara_1B_Lin
+Pal_BanimChara_1B_Lin:  @ LZ77
+Pal_BanimChara_1B_Lin:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/1B_lin.lz"
 
-	.global gUnk_08FD9A2C
-	.global gUnk_08FD9A2C
-gUnk_08FD9A2C:  @ LZ77
-gUnk_08FD9A2C:  @ LZ77
+	.global Pal_BanimChara_Haken
+	.global Pal_BanimChara_Haken
+Pal_BanimChara_Haken:  @ LZ77
+Pal_BanimChara_Haken:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/1C_haken.lz"
 
-	.global gUnk_08FD9A84
-	.global gUnk_08FD9A84
-gUnk_08FD9A84:  @ LZ77
-gUnk_08FD9A84:  @ LZ77
+	.global Pal_BanimChara_Kaim
+	.global Pal_BanimChara_Kaim
+Pal_BanimChara_Kaim:  @ LZ77
+Pal_BanimChara_Kaim:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/1D_kaim.lz"
 
-	.global gUnk_08FD9AD4
-	.global gUnk_08FD9AD4
-gUnk_08FD9AD4:  @ LZ77
-gUnk_08FD9AD4:  @ LZ77
+	.global Pal_BanimChara_1E_Leyvan
+	.global Pal_BanimChara_1E_Leyvan
+Pal_BanimChara_1E_Leyvan:  @ LZ77
+Pal_BanimChara_1E_Leyvan:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/1E_leyvan.lz"
 
-	.global gUnk_08FD9B2C
-	.global gUnk_08FD9B2C
-gUnk_08FD9B2C:  @ LZ77
-gUnk_08FD9B2C:  @ LZ77
+	.global Pal_BanimChara_Linus
+	.global Pal_BanimChara_Linus
+Pal_BanimChara_Linus:  @ LZ77
+Pal_BanimChara_Linus:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/1F_linus.lz"
 
-	.global gUnk_08FD9B7C
-	.global gUnk_08FD9B7C
-gUnk_08FD9B7C:  @ LZ77
-gUnk_08FD9B7C:  @ LZ77
+	.global Pal_BanimChara_Nils
+	.global Pal_BanimChara_Nils
+Pal_BanimChara_Nils:  @ LZ77
+Pal_BanimChara_Nils:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/20_nils.lz"
 
-	.global gUnk_08FD9BDC
-	.global gUnk_08FD9BDC
-gUnk_08FD9BDC:  @ LZ77
-gUnk_08FD9BDC:  @ LZ77
+	.global Pal_BanimChara_21_Darts
+	.global Pal_BanimChara_21_Darts
+Pal_BanimChara_21_Darts:  @ LZ77
+Pal_BanimChara_21_Darts:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/21_darts.lz"
 
-	.global gUnk_08FD9C34
-	.global gUnk_08FD9C34
-gUnk_08FD9C34:  @ LZ77
-gUnk_08FD9C34:  @ LZ77
+	.global Pal_BanimChara_Fergus
+	.global Pal_BanimChara_Fergus
+Pal_BanimChara_Fergus:  @ LZ77
+Pal_BanimChara_Fergus:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/22_fergus.lz"
 
-	.global gUnk_08FD9C84
-	.global gUnk_08FD9C84
-gUnk_08FD9C84:  @ LZ77
-gUnk_08FD9C84:  @ LZ77
+	.global Pal_BanimChara_Georg
+	.global Pal_BanimChara_Georg
+Pal_BanimChara_Georg:  @ LZ77
+Pal_BanimChara_Georg:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/23_georg.lz"
 
-	.global gUnk_08FD9CD4
-	.global gUnk_08FD9CD4
-gUnk_08FD9CD4:  @ LZ77
-gUnk_08FD9CD4:  @ LZ77
+	.global Pal_BanimChara_Ninian
+	.global Pal_BanimChara_Ninian
+Pal_BanimChara_Ninian:  @ LZ77
+Pal_BanimChara_Ninian:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/24_ninian.lz"
 
-	.global gUnk_08FD9D44
-	.global gUnk_08FD9D44
-gUnk_08FD9D44:  @ LZ77
-gUnk_08FD9D44:  @ LZ77
+	.global Pal_BanimChara_25_Heath
+	.global Pal_BanimChara_25_Heath
+Pal_BanimChara_25_Heath:  @ LZ77
+Pal_BanimChara_25_Heath:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/25_heath.lz"
 
-	.global gUnk_08FD9DB4
-	.global gUnk_08FD9DB4
-gUnk_08FD9DB4:  @ LZ77
-gUnk_08FD9DB4:  @ LZ77
+	.global Pal_BanimChara_26_Heath
+	.global Pal_BanimChara_26_Heath
+Pal_BanimChara_26_Heath:  @ LZ77
+Pal_BanimChara_26_Heath:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/26_heath.lz"
 
-	.global gUnk_08FD9E34
-	.global gUnk_08FD9E34
-gUnk_08FD9E34:  @ LZ77
-gUnk_08FD9E34:  @ LZ77
+	.global Pal_BanimChara_Vaida
+	.global Pal_BanimChara_Vaida
+Pal_BanimChara_Vaida:  @ LZ77
+Pal_BanimChara_Vaida:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/27_vaida.lz"
 
-	.global gUnk_08FD9EAC
-	.global gUnk_08FD9EAC
-gUnk_08FD9EAC:  @ LZ77
-gUnk_08FD9EAC:  @ LZ77
+	.global Pal_BanimChara_Nergal
+	.global Pal_BanimChara_Nergal
+Pal_BanimChara_Nergal:  @ LZ77
+Pal_BanimChara_Nergal:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/28_nergal.lz"
 
-	.global gUnk_08FD9F08
-	.global gUnk_08FD9F08
-gUnk_08FD9F08:  @ LZ77
-gUnk_08FD9F08:  @ LZ77
+	.global Pal_BanimChara_29_Canas
+	.global Pal_BanimChara_29_Canas
+Pal_BanimChara_29_Canas:  @ LZ77
+Pal_BanimChara_29_Canas:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/29_canas.lz"
 
-	.global gUnk_08FD9F5C
-	.global gUnk_08FD9F5C
-gUnk_08FD9F5C:  @ LZ77
-gUnk_08FD9F5C:  @ LZ77
+	.global Pal_BanimChara_Teodor
+	.global Pal_BanimChara_Teodor
+Pal_BanimChara_Teodor:  @ LZ77
+Pal_BanimChara_Teodor:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/2A_teodor.lz"
 
-	.global gUnk_08FD9FAC
-	.global gUnk_08FD9FAC
-gUnk_08FD9FAC:  @ LZ77
-gUnk_08FD9FAC:  @ LZ77
+	.global Pal_BanimChara_2B_Eliwod
+	.global Pal_BanimChara_2B_Eliwod
+Pal_BanimChara_2B_Eliwod:  @ LZ77
+Pal_BanimChara_2B_Eliwod:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/2B_eliwod.lz"
 
-	.global gUnk_08FDA00C
-	.global gUnk_08FDA00C
-gUnk_08FDA00C:  @ LZ77
-gUnk_08FDA00C:  @ LZ77
+	.global Pal_BanimChara_2C_Farina
+	.global Pal_BanimChara_2C_Farina
+Pal_BanimChara_2C_Farina:  @ LZ77
+Pal_BanimChara_2C_Farina:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/2C_farina.lz"
 
-	.global gUnk_08FDA07C
-	.global gUnk_08FDA07C
-gUnk_08FDA07C:  @ LZ77
-gUnk_08FDA07C:  @ LZ77
+	.global Pal_BanimChara_2D_Fiora
+	.global Pal_BanimChara_2D_Fiora
+Pal_BanimChara_2D_Fiora:  @ LZ77
+Pal_BanimChara_2D_Fiora:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/2D_fiora.lz"
 
-	.global gUnk_08FDA0EC
-	.global gUnk_08FDA0EC
-gUnk_08FDA0EC:  @ LZ77
-gUnk_08FDA0EC:  @ LZ77
+	.global Pal_BanimChara_2E_Flolina
+	.global Pal_BanimChara_2E_Flolina
+Pal_BanimChara_2E_Flolina:  @ LZ77
+Pal_BanimChara_2E_Flolina:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/2E_flolina.lz"
 
-	.global gUnk_08FDA15C
-	.global gUnk_08FDA15C
-gUnk_08FDA15C:  @ LZ77
-gUnk_08FDA15C:  @ LZ77
+	.global Pal_BanimChara_Bartr
+	.global Pal_BanimChara_Bartr
+Pal_BanimChara_Bartr:  @ LZ77
+Pal_BanimChara_Bartr:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/2F_bartr.lz"
 
-	.global gUnk_08FDA1B4
-	.global gUnk_08FDA1B4
-gUnk_08FDA1B4:  @ LZ77
-gUnk_08FDA1B4:  @ LZ77
+	.global Pal_BanimChara_30_Dorcas
+	.global Pal_BanimChara_30_Dorcas
+Pal_BanimChara_30_Dorcas:  @ LZ77
+Pal_BanimChara_30_Dorcas:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/30_dorcas.lz"
 
-	.global gUnk_08FDA20C
-	.global gUnk_08FDA20C
-gUnk_08FDA20C:  @ LZ77
-gUnk_08FDA20C:  @ LZ77
+	.global Pal_BanimChara_Belnald
+	.global Pal_BanimChara_Belnald
+Pal_BanimChara_Belnald:  @ LZ77
+Pal_BanimChara_Belnald:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/31_belnald.lz"
 
-	.global gUnk_08FDA27C
-	.global gUnk_08FDA27C
-gUnk_08FDA27C:  @ LZ77
-gUnk_08FDA27C:  @ LZ77
+	.global Pal_BanimChara_Darren
+	.global Pal_BanimChara_Darren
+Pal_BanimChara_Darren:  @ LZ77
+Pal_BanimChara_Darren:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/32_darren.lz"
 
-	.global gUnk_08FDA2EC
-	.global gUnk_08FDA2EC
-gUnk_08FDA2EC:  @ LZ77
-gUnk_08FDA2EC:  @ LZ77
+	.global Pal_BanimChara_33_Osin
+	.global Pal_BanimChara_33_Osin
+Pal_BanimChara_33_Osin:  @ LZ77
+Pal_BanimChara_33_Osin:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/33_osin.lz"
 
-	.global gUnk_08FDA374
-	.global gUnk_08FDA374
-gUnk_08FDA374:  @ LZ77
-gUnk_08FDA374:  @ LZ77
+	.global Pal_BanimChara_34_Wallace
+	.global Pal_BanimChara_34_Wallace
+Pal_BanimChara_34_Wallace:  @ LZ77
+Pal_BanimChara_34_Wallace:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/34_wallace.lz"
 
-	.global gUnk_08FDA3FC
-	.global gUnk_08FDA3FC
-gUnk_08FDA3FC:  @ LZ77
-gUnk_08FDA3FC:  @ LZ77
+	.global Pal_BanimChara_Wranglen
+	.global Pal_BanimChara_Wranglen
+Pal_BanimChara_Wranglen:  @ LZ77
+Pal_BanimChara_Wranglen:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/35_wranglen.lz"
 
-	.global gUnk_08FDA46C
-	.global gUnk_08FDA46C
-gUnk_08FDA46C:  @ LZ77
-gUnk_08FDA46C:  @ LZ77
+	.global Pal_BanimChara_36_Hector
+	.global Pal_BanimChara_36_Hector
+Pal_BanimChara_36_Hector:  @ LZ77
+Pal_BanimChara_36_Hector:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/36_hector.lz"
 
-	.global gUnk_08FDA4C8
-	.global gUnk_08FDA4C8
-gUnk_08FDA4C8:  @ LZ77
-gUnk_08FDA4C8:  @ LZ77
+	.global Pal_BanimChara_37_Hector
+	.global Pal_BanimChara_37_Hector
+Pal_BanimChara_37_Hector:  @ LZ77
+Pal_BanimChara_37_Hector:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/37_hector.lz"
 
-	.global gUnk_08FDA524
-	.global gUnk_08FDA524
-gUnk_08FDA524:  @ LZ77
-gUnk_08FDA524:  @ LZ77
+	.global Pal_BanimChara_38_Eliwod
+	.global Pal_BanimChara_38_Eliwod
+Pal_BanimChara_38_Eliwod:  @ LZ77
+Pal_BanimChara_38_Eliwod:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/38_eliwod.lz"
 
-	.global gUnk_08FDA57C
-	.global gUnk_08FDA57C
-gUnk_08FDA57C:  @ LZ77
-gUnk_08FDA57C:  @ LZ77
+	.global Pal_BanimChara_39_Nino
+	.global Pal_BanimChara_39_Nino
+Pal_BanimChara_39_Nino:  @ LZ77
+Pal_BanimChara_39_Nino:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/39_nino.lz"
 
-	.global gUnk_08FDA5E8
-	.global gUnk_08FDA5E8
-gUnk_08FDA5E8:  @ LZ77
-gUnk_08FDA5E8:  @ LZ77
+	.global Pal_BanimChara_3A_Erk
+	.global Pal_BanimChara_3A_Erk
+Pal_BanimChara_3A_Erk:  @ LZ77
+Pal_BanimChara_3A_Erk:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/3A_erk.lz"
 
-	.global gUnk_08FDA65C
-	.global gUnk_08FDA65C
-gUnk_08FDA65C:  @ LZ77
-gUnk_08FDA65C:  @ LZ77
+	.global Pal_BanimChara_Beard
+	.global Pal_BanimChara_Beard
+Pal_BanimChara_Beard:  @ LZ77
+Pal_BanimChara_Beard:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/3B_beard.lz"
 
-	.global gUnk_08FDA6B8
-	.global gUnk_08FDA6B8
-gUnk_08FDA6B8:  @ LZ77
-gUnk_08FDA6B8:  @ LZ77
+	.global Pal_BanimChara_Glass
+	.global Pal_BanimChara_Glass
+Pal_BanimChara_Glass:  @ LZ77
+Pal_BanimChara_Glass:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/3C_glass.lz"
 
-	.global gUnk_08FDA714
-	.global gUnk_08FDA714
-gUnk_08FDA714:  @ LZ77
-gUnk_08FDA714:  @ LZ77
+	.global Pal_BanimChara_3D_Leyvan
+	.global Pal_BanimChara_3D_Leyvan
+Pal_BanimChara_3D_Leyvan:  @ LZ77
+Pal_BanimChara_3D_Leyvan:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/3D_leyvan.lz"
 
-	.global gUnk_08FDA780
-	.global gUnk_08FDA780
-gUnk_08FDA780:  @ LZ77
-gUnk_08FDA780:  @ LZ77
+	.global Pal_BanimChara_Pson
+	.global Pal_BanimChara_Pson
+Pal_BanimChara_Pson:  @ LZ77
+Pal_BanimChara_Pson:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/3E_pson.lz"
 
-	.global gUnk_08FDA7DC
-	.global gUnk_08FDA7DC
-gUnk_08FDA7DC:  @ LZ77
-gUnk_08FDA7DC:  @ LZ77
+	.global Pal_BanimChara_3F_Ruthea
+	.global Pal_BanimChara_3F_Ruthea
+Pal_BanimChara_3F_Ruthea:  @ LZ77
+Pal_BanimChara_3F_Ruthea:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/3F_ruthea.lz"
 
-	.global gUnk_08FDA83C
-	.global gUnk_08FDA83C
-gUnk_08FDA83C:  @ LZ77
-gUnk_08FDA83C:  @ LZ77
+	.global Pal_BanimChara_40_Guy
+	.global Pal_BanimChara_40_Guy
+Pal_BanimChara_40_Guy:  @ LZ77
+Pal_BanimChara_40_Guy:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/40_guy.lz"
 
-	.global gUnk_08FDA89C
-	.global gUnk_08FDA89C
-gUnk_08FDA89C:  @ LZ77
-gUnk_08FDA89C:  @ LZ77
+	.global Pal_BanimChara_41_Ruth
+	.global Pal_BanimChara_41_Ruth
+Pal_BanimChara_41_Ruth:  @ LZ77
+Pal_BanimChara_41_Ruth:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/41_ruth.lz"
 
-	.global gUnk_08FDA910
-	.global gUnk_08FDA910
-gUnk_08FDA910:  @ LZ77
-gUnk_08FDA910:  @ LZ77
+	.global Pal_BanimChara_Siren
+	.global Pal_BanimChara_Siren
+Pal_BanimChara_Siren:  @ LZ77
+Pal_BanimChara_Siren:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/42_siren.lz"
 
-	.global gUnk_08FDA984
-	.global gUnk_08FDA984
-gUnk_08FDA984:  @ LZ77
-gUnk_08FDA984:  @ LZ77
+	.global Pal_BanimChara_43_Ruth
+	.global Pal_BanimChara_43_Ruth
+Pal_BanimChara_43_Ruth:  @ LZ77
+Pal_BanimChara_43_Ruth:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/43_ruth.lz"
 
-	.global gUnk_08FDAA14
-	.global gUnk_08FDAA14
-gUnk_08FDAA14:  @ LZ77
-gUnk_08FDAA14:  @ LZ77
+	.global Pal_BanimChara_Uhai
+	.global Pal_BanimChara_Uhai
+Pal_BanimChara_Uhai:  @ LZ77
+Pal_BanimChara_Uhai:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/44_uhai.lz"
 
-	.global gUnk_08FDAA8C
-	.global gUnk_08FDAA8C
-gUnk_08FDAA8C:  @ LZ77
-gUnk_08FDAA8C:  @ LZ77
+	.global Pal_BanimChara_Isadora
+	.global Pal_BanimChara_Isadora
+Pal_BanimChara_Isadora:  @ LZ77
+Pal_BanimChara_Isadora:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/45_isadora.lz"
 
-	.global gUnk_08FDAB04
-	.global gUnk_08FDAB04
-gUnk_08FDAB04:  @ LZ77
-gUnk_08FDAB04:  @ LZ77
+	.global Pal_BanimChara_Camlann
+	.global Pal_BanimChara_Camlann
+Pal_BanimChara_Camlann:  @ LZ77
+Pal_BanimChara_Camlann:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/46_camlann.lz"
 
-	.global gUnk_08FDAB7C
-	.global gUnk_08FDAB7C
-gUnk_08FDAB7C:  @ LZ77
-gUnk_08FDAB7C:  @ LZ77
+	.global Pal_BanimChara_Damian
+	.global Pal_BanimChara_Damian
+Pal_BanimChara_Damian:  @ LZ77
+Pal_BanimChara_Damian:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/47_damian.lz"
 
-	.global gUnk_08FDABF4
-	.global gUnk_08FDABF4
-gUnk_08FDABF4:  @ LZ77
-gUnk_08FDABF4:  @ LZ77
+	.global Pal_BanimChara_Ubands
+	.global Pal_BanimChara_Ubands
+Pal_BanimChara_Ubands:  @ LZ77
+Pal_BanimChara_Ubands:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/48_ubands.lz"
 
-	.global gUnk_08FDAC6C
-	.global gUnk_08FDAC6C
-gUnk_08FDAC6C:  @ LZ77
-gUnk_08FDAC6C:  @ LZ77
+	.global Pal_BanimChara_49_Kent
+	.global Pal_BanimChara_49_Kent
+Pal_BanimChara_49_Kent:  @ LZ77
+Pal_BanimChara_49_Kent:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/49_kent.lz"
 
-	.global gUnk_08FDACF8
-	.global gUnk_08FDACF8
-gUnk_08FDACF8:  @ LZ77
-gUnk_08FDACF8:  @ LZ77
+	.global Pal_BanimChara_4A_Lowen
+	.global Pal_BanimChara_4A_Lowen
+Pal_BanimChara_4A_Lowen:  @ LZ77
+Pal_BanimChara_4A_Lowen:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/4A_lowen.lz"
 
-	.global gUnk_08FDAD84
-	.global gUnk_08FDAD84
-gUnk_08FDAD84:  @ LZ77
-gUnk_08FDAD84:  @ LZ77
+	.global Pal_BanimChara_Marcus
+	.global Pal_BanimChara_Marcus
+Pal_BanimChara_Marcus:  @ LZ77
+Pal_BanimChara_Marcus:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/4B_marcus.lz"
 
-	.global gUnk_08FDAE10
-	.global gUnk_08FDAE10
-gUnk_08FDAE10:  @ LZ77
-gUnk_08FDAE10:  @ LZ77
+	.global Pal_BanimChara_Maxime
+	.global Pal_BanimChara_Maxime
+Pal_BanimChara_Maxime:  @ LZ77
+Pal_BanimChara_Maxime:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/4C_maxime.lz"
 
-	.global gUnk_08FDAE88
-	.global gUnk_08FDAE88
-gUnk_08FDAE88:  @ LZ77
-gUnk_08FDAE88:  @ LZ77
+	.global Pal_BanimChara_Pascal
+	.global Pal_BanimChara_Pascal
+Pal_BanimChara_Pascal:  @ LZ77
+Pal_BanimChara_Pascal:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/4D_pascal.lz"
 
-	.global gUnk_08FDAF00
-	.global gUnk_08FDAF00
-gUnk_08FDAF00:  @ LZ77
-gUnk_08FDAF00:  @ LZ77
+	.global Pal_BanimChara_4E_Sain
+	.global Pal_BanimChara_4E_Sain
+Pal_BanimChara_4E_Sain:  @ LZ77
+Pal_BanimChara_4E_Sain:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/4E_sain.lz"
 
-	.global gUnk_08FDAF8C
-	.global gUnk_08FDAF8C
-gUnk_08FDAF8C:  @ LZ77
-gUnk_08FDAF8C:  @ LZ77
+	.global Pal_BanimChara_4F_Farina
+	.global Pal_BanimChara_4F_Farina
+Pal_BanimChara_4F_Farina:  @ LZ77
+Pal_BanimChara_4F_Farina:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/4F_farina.lz"
 
-	.global gUnk_08FDAFF8
-	.global gUnk_08FDAFF8
-gUnk_08FDAFF8:  @ LZ77
-gUnk_08FDAFF8:  @ LZ77
+	.global Pal_BanimChara_50_Fiora
+	.global Pal_BanimChara_50_Fiora
+Pal_BanimChara_50_Fiora:  @ LZ77
+Pal_BanimChara_50_Fiora:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/50_fiora.lz"
 
-	.global gUnk_08FDB064
-	.global gUnk_08FDB064
-gUnk_08FDB064:  @ LZ77
-gUnk_08FDB064:  @ LZ77
+	.global Pal_BanimChara_51_Flolina
+	.global Pal_BanimChara_51_Flolina
+Pal_BanimChara_51_Flolina:  @ LZ77
+Pal_BanimChara_51_Flolina:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/51_flolina.lz"
 
-	.global gUnk_08FDB0D4
-	.global gUnk_08FDB0D4
-gUnk_08FDB0D4:  @ LZ77
-gUnk_08FDB0D4:  @ LZ77
+	.global Pal_BanimChara_52_Darts
+	.global Pal_BanimChara_52_Darts
+Pal_BanimChara_52_Darts:  @ LZ77
+Pal_BanimChara_52_Darts:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/52_darts.lz"
 
-	.global gUnk_08FDB134
-	.global gUnk_08FDB134
-gUnk_08FDB134:  @ LZ77
-gUnk_08FDB134:  @ LZ77
+	.global Pal_BanimChara_53_Serra
+	.global Pal_BanimChara_53_Serra
+Pal_BanimChara_53_Serra:  @ LZ77
+Pal_BanimChara_53_Serra:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/53_serra.lz"
 
-	.global gUnk_08FDB194
-	.global gUnk_08FDB194
-gUnk_08FDB194:  @ LZ77
-gUnk_08FDB194:  @ LZ77
+	.global Pal_BanimChara_Limstella
+	.global Pal_BanimChara_Limstella
+Pal_BanimChara_Limstella:  @ LZ77
+Pal_BanimChara_Limstella:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/54_limstella.lz"
 
-	.global gUnk_08FDB1FC
-	.global gUnk_08FDB1FC
-gUnk_08FDB1FC:  @ LZ77
-gUnk_08FDB1FC:  @ LZ77
+	.global Pal_BanimChara_55_Nino
+	.global Pal_BanimChara_55_Nino
+Pal_BanimChara_55_Nino:  @ LZ77
+Pal_BanimChara_55_Nino:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/55_nino.lz"
 
-	.global gUnk_08FDB26C
-	.global gUnk_08FDB26C
-gUnk_08FDB26C:  @ LZ77
-gUnk_08FDB26C:  @ LZ77
+	.global Pal_BanimChara_Sonia
+	.global Pal_BanimChara_Sonia
+Pal_BanimChara_Sonia:  @ LZ77
+Pal_BanimChara_Sonia:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/56_sonia.lz"
 
-	.global gUnk_08FDB2D4
-	.global gUnk_08FDB2D4
-gUnk_08FDB2D4:  @ LZ77
-gUnk_08FDB2D4:  @ LZ77
+	.global Pal_BanimChara_Aion
+	.global Pal_BanimChara_Aion
+Pal_BanimChara_Aion:  @ LZ77
+Pal_BanimChara_Aion:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/57_aion.lz"
 
-	.global gUnk_08FDB340
-	.global gUnk_08FDB340
-gUnk_08FDB340:  @ LZ77
-gUnk_08FDB340:  @ LZ77
+	.global Pal_BanimChara_58_Erk
+	.global Pal_BanimChara_58_Erk
+Pal_BanimChara_58_Erk:  @ LZ77
+Pal_BanimChara_58_Erk:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/58_erk.lz"
 
-	.global gUnk_08FDB3B8
-	.global gUnk_08FDB3B8
-gUnk_08FDB3B8:  @ LZ77
-gUnk_08FDB3B8:  @ LZ77
+	.global Pal_BanimChara_Pant
+	.global Pal_BanimChara_Pant
+Pal_BanimChara_Pant:  @ LZ77
+Pal_BanimChara_Pant:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/59_pant.lz"
 
-	.global gUnk_08FDB430
-	.global gUnk_08FDB430
-gUnk_08FDB430:  @ LZ77
-gUnk_08FDB430:  @ LZ77
+	.global Pal_BanimChara_5A_Canas
+	.global Pal_BanimChara_5A_Canas
+Pal_BanimChara_5A_Canas:  @ LZ77
+Pal_BanimChara_5A_Canas:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/5A_canas.lz"
 
-	.global gUnk_08FDB484
-	.global gUnk_08FDB484
-gUnk_08FDB484:  @ LZ77
-gUnk_08FDB484:  @ LZ77
+	.global Pal_BanimChara_Hintz
+	.global Pal_BanimChara_Hintz
+Pal_BanimChara_Hintz:  @ LZ77
+Pal_BanimChara_Hintz:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/5B_hintz.lz"
 
-	.global gUnk_08FDB4D4
-	.global gUnk_08FDB4D4
-gUnk_08FDB4D4:  @ LZ77
-gUnk_08FDB4D4:  @ LZ77
+	.global Pal_BanimChara_Zoldam
+	.global Pal_BanimChara_Zoldam
+Pal_BanimChara_Zoldam:  @ LZ77
+Pal_BanimChara_Zoldam:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/5C_zoldam.lz"
 
-	.global gUnk_08FDB524
-	.global gUnk_08FDB524
-gUnk_08FDB524:  @ LZ77
-gUnk_08FDB524:  @ LZ77
+	.global Pal_BanimChara_Luise
+	.global Pal_BanimChara_Luise
+Pal_BanimChara_Luise:  @ LZ77
+Pal_BanimChara_Luise:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/5D_luise.lz"
 
-	.global gUnk_08FDB588
-	.global gUnk_08FDB588
-gUnk_08FDB588:  @ LZ77
-gUnk_08FDB588:  @ LZ77
+	.global Pal_BanimChara_5E_Rebacca
+	.global Pal_BanimChara_5E_Rebacca
+Pal_BanimChara_5E_Rebacca:  @ LZ77
+Pal_BanimChara_5E_Rebacca:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/5E_rebacca.lz"
 
-	.global gUnk_08FDB5EC
-	.global gUnk_08FDB5EC
-gUnk_08FDB5EC:  @ LZ77
-gUnk_08FDB5EC:  @ LZ77
+	.global Pal_BanimChara_Denning
+	.global Pal_BanimChara_Denning
+Pal_BanimChara_Denning:  @ LZ77
+Pal_BanimChara_Denning:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/5F_denning.lz"
 
-	.global gUnk_08FDB644
-	.global gUnk_08FDB644
-gUnk_08FDB644:  @ LZ77
-gUnk_08FDB644:  @ LZ77
+	.global Pal_BanimChara_60_Will
+	.global Pal_BanimChara_60_Will
+Pal_BanimChara_60_Will:  @ LZ77
+Pal_BanimChara_60_Will:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/60_will.lz"
 
-	.global gUnk_08FDB6A4
-	.global gUnk_08FDB6A4
-gUnk_08FDB6A4:  @ LZ77
-gUnk_08FDB6A4:  @ LZ77
+	.global Pal_BanimChara_Elic
+	.global Pal_BanimChara_Elic
+Pal_BanimChara_Elic:  @ LZ77
+Pal_BanimChara_Elic:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/61_elic.lz"
 
-	.global gUnk_08FDB720
-	.global gUnk_08FDB720
-gUnk_08FDB720:  @ LZ77
-gUnk_08FDB720:  @ LZ77
+	.global Pal_BanimChara_62_Kent
+	.global Pal_BanimChara_62_Kent
+Pal_BanimChara_62_Kent:  @ LZ77
+Pal_BanimChara_62_Kent:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/62_kent.lz"
 
-	.global gUnk_08FDB798
-	.global gUnk_08FDB798
-gUnk_08FDB798:  @ LZ77
-gUnk_08FDB798:  @ LZ77
+	.global Pal_BanimChara_63_Lowen
+	.global Pal_BanimChara_63_Lowen
+Pal_BanimChara_63_Lowen:  @ LZ77
+Pal_BanimChara_63_Lowen:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/63_lowen.lz"
 
-	.global gUnk_08FDB810
-	.global gUnk_08FDB810
-gUnk_08FDB810:  @ LZ77
-gUnk_08FDB810:  @ LZ77
+	.global Pal_BanimChara_64_Sain
+	.global Pal_BanimChara_64_Sain
+Pal_BanimChara_64_Sain:  @ LZ77
+Pal_BanimChara_64_Sain:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/64_sain.lz"
 
-	.global gUnk_08FDB888
-	.global gUnk_08FDB888
-gUnk_08FDB888:  @ LZ77
-gUnk_08FDB888:  @ LZ77
+	.global Pal_BanimChara_Athos
+	.global Pal_BanimChara_Athos
+Pal_BanimChara_Athos:  @ LZ77
+Pal_BanimChara_Athos:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/65_athos.lz"
 
-	.global gUnk_08FDB8E4
-	.global gUnk_08FDB8E4
-gUnk_08FDB8E4:  @ LZ77
-gUnk_08FDB8E4:  @ LZ77
+	.global Pal_BanimChara_Karla
+	.global Pal_BanimChara_Karla
+Pal_BanimChara_Karla:  @ LZ77
+Pal_BanimChara_Karla:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/66_karla.lz"
 
-	.global gUnk_08FDB944
-	.global gUnk_08FDB944
-gUnk_08FDB944:  @ LZ77
-gUnk_08FDB944:  @ LZ77
+	.global Pal_BanimChara_67_Guy
+	.global Pal_BanimChara_67_Guy
+Pal_BanimChara_67_Guy:  @ LZ77
+Pal_BanimChara_67_Guy:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/67_guy.lz"
 
-	.global gUnk_08FDB9A8
-	.global gUnk_08FDB9A8
-gUnk_08FDB9A8:  @ LZ77
-gUnk_08FDB9A8:  @ LZ77
+	.global Pal_BanimChara_Karel
+	.global Pal_BanimChara_Karel
+Pal_BanimChara_Karel:  @ LZ77
+Pal_BanimChara_Karel:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/68_karel.lz"
 
-	.global gUnk_08FDBA08
-	.global gUnk_08FDBA08
-gUnk_08FDBA08:  @ LZ77
-gUnk_08FDBA08:  @ LZ77
+	.global Pal_BanimChara_Lloyd
+	.global Pal_BanimChara_Lloyd
+Pal_BanimChara_Lloyd:  @ LZ77
+Pal_BanimChara_Lloyd:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/69_lloyd.lz"
 
-	.global gUnk_08FDBA58
-	.global gUnk_08FDBA58
-gUnk_08FDBA58:  @ LZ77
-gUnk_08FDBA58:  @ LZ77
+	.global Pal_BanimChara_Laila
+	.global Pal_BanimChara_Laila
+Pal_BanimChara_Laila:  @ LZ77
+Pal_BanimChara_Laila:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/6A_laila.lz"
 
-	.global gUnk_08FDBAA8
-	.global gUnk_08FDBAA8
-gUnk_08FDBAA8:  @ LZ77
-gUnk_08FDBAA8:  @ LZ77
+	.global Pal_BanimChara_6B_Lagarto
+	.global Pal_BanimChara_6B_Lagarto
+Pal_BanimChara_6B_Lagarto:  @ LZ77
+Pal_BanimChara_6B_Lagarto:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/6B_lagarto.lz"
 
-	.global gUnk_08FDBB0C
-	.global gUnk_08FDBB0C
-gUnk_08FDBB0C:  @ LZ77
-gUnk_08FDBB0C:  @ LZ77
+	.global Pal_BanimChara_6C_Matthew
+	.global Pal_BanimChara_6C_Matthew
+Pal_BanimChara_6C_Matthew:  @ LZ77
+Pal_BanimChara_6C_Matthew:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/6C_matthew.lz"
 
-	.global gUnk_08FDBB74
-	.global gUnk_08FDBB74
-gUnk_08FDBB74:  @ LZ77
-gUnk_08FDBB74:  @ LZ77
+	.global Pal_BanimChara_6D_Priscilla
+	.global Pal_BanimChara_6D_Priscilla
+Pal_BanimChara_6D_Priscilla:  @ LZ77
+Pal_BanimChara_6D_Priscilla:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/6D_priscilla.lz"
 
-	.global gUnk_08FDBBD0
-	.global gUnk_08FDBBD0
-gUnk_08FDBBD0:  @ LZ77
-gUnk_08FDBBD0:  @ LZ77
+	.global Pal_BanimChara_6E_Priscilla
+	.global Pal_BanimChara_6E_Priscilla
+Pal_BanimChara_6E_Priscilla:  @ LZ77
+Pal_BanimChara_6E_Priscilla:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/6E_priscilla.lz"
 
-	.global gUnk_08FDBC3C
-	.global gUnk_08FDBC3C
-gUnk_08FDBC3C:  @ LZ77
-gUnk_08FDBC3C:  @ LZ77
+	.global Pal_BanimChara_Ursula
+	.global Pal_BanimChara_Ursula
+Pal_BanimChara_Ursula:  @ LZ77
+Pal_BanimChara_Ursula:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/6F_ursula.lz"
 
-	.global gUnk_08FDBCA0
-	.global gUnk_08FDBCA0
-gUnk_08FDBCA0:  @ LZ77
-gUnk_08FDBCA0:  @ LZ77
+	.global Pal_BanimChara_Baltr
+	.global Pal_BanimChara_Baltr
+Pal_BanimChara_Baltr:  @ LZ77
+Pal_BanimChara_Baltr:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/70_baltr.lz"
 
-	.global gUnk_08FDBCFC
-	.global gUnk_08FDBCFC
-gUnk_08FDBCFC:  @ LZ77
-gUnk_08FDBCFC:  @ LZ77
+	.global Pal_BanimChara_Brendan
+	.global Pal_BanimChara_Brendan
+Pal_BanimChara_Brendan:  @ LZ77
+Pal_BanimChara_Brendan:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/71_brendan.lz"
 
-	.global gUnk_08FDBD58
-	.global gUnk_08FDBD58
-gUnk_08FDBD58:  @ LZ77
-gUnk_08FDBD58:  @ LZ77
+	.global Pal_BanimChara_72_Dorcas
+	.global Pal_BanimChara_72_Dorcas
+Pal_BanimChara_72_Dorcas:  @ LZ77
+Pal_BanimChara_72_Dorcas:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/72_dorcas.lz"
 
-	.global gUnk_08FDBDB4
-	.global gUnk_08FDBDB4
-gUnk_08FDBDB4:  @ LZ77
-gUnk_08FDBDB4:  @ LZ77
+	.global Pal_BanimChara_Gaitz
+	.global Pal_BanimChara_Gaitz
+Pal_BanimChara_Gaitz:  @ LZ77
+Pal_BanimChara_Gaitz:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/73_gaitz.lz"
 
-	.global gUnk_08FDBE14
-	.global gUnk_08FDBE14
-gUnk_08FDBE14:  @ LZ77
-gUnk_08FDBE14:  @ LZ77
+	.global Pal_BanimChara_Jasmine
+	.global Pal_BanimChara_Jasmine
+Pal_BanimChara_Jasmine:  @ LZ77
+Pal_BanimChara_Jasmine:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/74_jasmine.lz"
 
-	.global gUnk_08FDBE70
-	.global gUnk_08FDBE70
-gUnk_08FDBE70:  @ LZ77
-gUnk_08FDBE70:  @ LZ77
+	.global Pal_BanimChara_Olg
+	.global Pal_BanimChara_Olg
+Pal_BanimChara_Olg:  @ LZ77
+Pal_BanimChara_Olg:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/75_olg.lz"
 
-	.global gUnk_08FDBECC
-	.global gUnk_08FDBECC
-gUnk_08FDBECC:  @ LZ77
-gUnk_08FDBECC:  @ LZ77
+	.global Pal_BanimChara_Paul
+	.global Pal_BanimChara_Paul
+Pal_BanimChara_Paul:  @ LZ77
+Pal_BanimChara_Paul:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/76_paul.lz"
 
-	.global gUnk_08FDBF28
-	.global gUnk_08FDBF28
-gUnk_08FDBF28:  @ LZ77
-gUnk_08FDBF28:  @ LZ77
+	.global Pal_BanimChara_Kishuna
+	.global Pal_BanimChara_Kishuna
+Pal_BanimChara_Kishuna:  @ LZ77
+Pal_BanimChara_Kishuna:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/77_kishuna.lz"
 
-	.global gUnk_08FDBF64
-	.global gUnk_08FDBF64
-gUnk_08FDBF64:  @ LZ77
-gUnk_08FDBF64:  @ LZ77
+	.global Pal_BanimChara_Groznyi
+	.global Pal_BanimChara_Groznyi
+Pal_BanimChara_Groznyi:  @ LZ77
+Pal_BanimChara_Groznyi:  @ LZ77
 	.incbin "build/graphics/banim/chara_pal/78_groznyi.lz"
 	.incbin "baserom.gba", 0xfdbfb8, 0x2d34
 

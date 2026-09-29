@@ -300,7 +300,7 @@ extern u16 gBanimPaletteLeft[0x50];
 extern u16 gBanimPaletteRight[0x50];
 extern u32 gBanimOaml[0x1600];
 extern u32 gBanimOamr2[0x1600];
-extern int Unk_02017758;
+extern int gEfxTeonoState;
 extern int Unk_03004830;
 extern int Unk_0203E0B0[2];
 extern s16 Unk_0203DFEC;
@@ -345,13 +345,13 @@ void NewEkrLvlupFan(void);
 // ??? sub_0804C168
 void NewEkrGauge(void);
 void EndEkrGauge(void);
-void EkrGauge_0804CC28(void);
-void EkrGauge_0804CC38(void);
-void EkrGauge_0804CC48(void);
-void EkrGauge_0804CC58(void);
+void EkrGauge_Clr4C50(void);
+void EkrGauge_Set4C50(void);
+void EkrGauge_Set4C(void);
+void EkrGauge_Set50(void);
 void EkrGauge_0804CC68(u16 val);
-void EkrGauge_0804CC78(s16 x, s16 y);
-void EkrGauge_0804CC8C(s16 x, s16 y);
+void EkrGauge_Clr323A(s16 x, s16 y);
+void EkrGauge_Setxy323A(s16 x, s16 y);
 void EkrGauge_SetInitFlag(void);
 void EkrGauge_ClrInitFlag(void);
 // ??? EnableEkrGauge
@@ -361,10 +361,10 @@ void EkrGauge_ClrInitFlag(void);
 // ??? sub_804D13C
 void NewEkrDispUP(void);
 void EndEkrDispUP(void);
-// ??? EkrDispUP_0804D584
+// ??? EkrDispUpClear4C50
 // ??? EkrDispUP_0804D594
-// ??? EkrDispUP_0804D5A4
-// ??? EkrDispUP_0804D5B4
+// ??? EkrDispUpSet4C
+// ??? EkrDispUpSet50
 void EkrDispUP_SetPositionUnsync(u16 x, u16 y);
 void EkrDispUP_SetPositionSync(u16 x, u16 y);
 void SyncEkrDispUP(void);
@@ -1214,7 +1214,7 @@ void StartSpellThing_MagicQuake(struct Anim *, int, int);
 // ??? sub_8062824
 // ??? sub_08062108
 // ??? sub_08062158
-// ??? sub_080621E4
+// ??? StartSubSpell_efxSuperdruidOBJ2
 // ??? sub_8062A2C
 // ??? sub_08062254
 // ??? sub_8062A9C
@@ -1649,7 +1649,7 @@ extern struct ProcCmd ProcScr_efxHPBar[];
 // ??? gUnk_08C0A0A0
 // ??? gUnk_08C0A0B8
 extern struct ProcCmd ProcScr_EfxQuakePure[];
-// ??? gUnk_08C0A0F8
+// ??? Pal_Portrait_09F
 // ??? gUnk_08C0A150
 // ??? gUnk_08C0A168
 extern struct ProcCmd ProcScr_EfxHitQuake[];

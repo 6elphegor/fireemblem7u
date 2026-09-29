@@ -1,181 +1,181 @@
 #include "gbafe.h"
 
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
-extern const u8 gUnk_083B8CAC[];
+extern const u8 Img_Mu_LordEliwood[];
 extern const u8 gUnk_083B9670[];
-extern const u8 gUnk_083B97C8[];
+extern const u8 Img_Mu_LordLyn[];
 extern const u8 gUnk_083B9F88[];
-extern const u8 gUnk_083BA0E0[];
+extern const u8 Img_Mu_LordHector[];
 extern const u8 gUnk_083BA990[];
-extern const u8 gUnk_083BAAE8[];
+extern const u8 Img_Mu_KnightLord[];
 extern const u8 gUnk_083BB458[];
-extern const u8 gUnk_083BB5B8[];
+extern const u8 Img_Mu_BladeLord[];
 extern const u8 gUnk_083BBE44[];
-extern const u8 gUnk_083BBFA4[];
+extern const u8 Img_Mu_GreatLord[];
 extern const u8 gUnk_083BCA90[];
-extern const u8 gUnk_083BCBE8[];
+extern const u8 Img_Mu_Mercenary[];
 extern const u8 gUnk_083BD38C[];
-extern const u8 gUnk_083BD4E4[];
+extern const u8 Img_Mu_MercenaryF[];
 extern const u8 gUnk_083BDC4C[];
-extern const u8 gUnk_083BDDA4[];
+extern const u8 Img_Mu_Hero[];
 extern const u8 gUnk_083BE700[];
-extern const u8 gUnk_083BE860[];
+extern const u8 Img_Mu_HeroF[];
 extern const u8 gUnk_083BF1E0[];
-extern const u8 gUnk_083BF340[];
+extern const u8 Img_Mu_Myrmidon[];
 extern const u8 gUnk_083BFB28[];
-extern const u8 gUnk_083BFC80[];
+extern const u8 Img_Mu_MyrmidonF[];
 extern const u8 gUnk_083C04C4[];
-extern const u8 gUnk_083C061C[];
+extern const u8 Img_Mu_Swordmaster[];
 extern const u8 gUnk_083C0E68[];
-extern const u8 gUnk_083C0FC8[];
+extern const u8 Img_Mu_SwordmasterF[];
 extern const u8 gUnk_083C184C[];
-extern const u8 gUnk_083C19AC[];
+extern const u8 Img_Mu_Fighter[];
 extern const u8 gUnk_083C21A8[];
-extern const u8 gUnk_083C2300[];
+extern const u8 Img_Mu_Warrior[];
 extern const u8 gUnk_083C2D0C[];
-extern const u8 gUnk_083C2E64[];
+extern const u8 Img_Mu_Knight[];
 extern const u8 gUnk_083C3758[];
-extern const u8 gUnk_083C38B0[];
+extern const u8 Img_Mu_General[];
 extern const u8 gUnk_083C4364[];
-extern const u8 gUnk_083C44C4[];
+extern const u8 Img_Mu_Archer[];
 extern const u8 gUnk_083C4C88[];
-extern const u8 gUnk_083C4DE0[];
+extern const u8 Img_Mu_ArcherF[];
 extern const u8 gUnk_083C55D4[];
-extern const u8 gUnk_083C572C[];
+extern const u8 Img_Mu_Sniper[];
 extern const u8 gUnk_083C5F54[];
-extern const u8 gUnk_083C60AC[];
+extern const u8 Img_Mu_SniperF[];
 extern const u8 gUnk_083C6920[];
-extern const u8 gUnk_083C6A78[];
+extern const u8 Img_Mu_Monk[];
 extern const u8 gUnk_083C7164[];
-extern const u8 gUnk_083C72BC[];
+extern const u8 Img_Mu_Cleric[];
 extern const u8 gUnk_083C79D4[];
-extern const u8 gUnk_083C7B2C[];
+extern const u8 Img_Mu_Bishop[];
 extern const u8 gUnk_083C8398[];
-extern const u8 gUnk_083C84F8[];
+extern const u8 Img_Mu_BishopF[];
 extern const u8 gUnk_083C8D4C[];
-extern const u8 gUnk_083C8EAC[];
+extern const u8 Img_Mu_Mage[];
 extern const u8 gUnk_083C96EC[];
-extern const u8 gUnk_083C9844[];
+extern const u8 Img_Mu_MageF[];
 extern const u8 gUnk_083CA110[];
-extern const u8 gUnk_083CA268[];
+extern const u8 Img_Mu_Sage[];
 extern const u8 gUnk_083CABDC[];
-extern const u8 gUnk_083CAD34[];
+extern const u8 Img_Mu_SageF[];
 extern const u8 gUnk_083CB718[];
-extern const u8 gUnk_083CB870[];
+extern const u8 Img_Mu_Shaman[];
 extern const u8 gUnk_083CC054[];
-extern const u8 gUnk_083CC1AC[];
+extern const u8 Img_Mu_ShamanF[];
 extern const u8 gUnk_083CC9E0[];
-extern const u8 gUnk_083CCB38[];
+extern const u8 Img_Mu_Druid[];
 extern const u8 gUnk_083CD41C[];
-extern const u8 gUnk_083CD574[];
+extern const u8 Img_Mu_DruidF[];
 extern const u8 gUnk_083CDE30[];
-extern const u8 gUnk_083CDF88[];
+extern const u8 Img_Mu_Cavalier[];
 extern const u8 gUnk_083CE8D0[];
-extern const u8 gUnk_083CEA28[];
+extern const u8 Img_Mu_Paladin[];
 extern const u8 gUnk_083CF3CC[];
-extern const u8 gUnk_083CF524[];
+extern const u8 Img_Mu_Troubadour[];
 extern const u8 gUnk_083CFEC8[];
-extern const u8 gUnk_083D0020[];
+extern const u8 Img_Mu_Valkyrie[];
 extern const u8 gUnk_083D0A28[];
-extern const u8 gUnk_083D0B80[];
+extern const u8 Img_Mu_Nomad[];
 extern const u8 gUnk_083D1494[];
-extern const u8 gUnk_083D15EC[];
+extern const u8 Img_Mu_NomadF[];
 extern const u8 gUnk_083D1F88[];
-extern const u8 gUnk_083D20E0[];
+extern const u8 Img_Mu_NomadTrooper[];
 extern const u8 gUnk_083D2A68[];
-extern const u8 gUnk_083D2BC0[];
+extern const u8 Img_Mu_NomadTrooperF[];
 extern const u8 gUnk_083D35DC[];
-extern const u8 gUnk_083D3734[];
+extern const u8 Img_Mu_PegasusKnight[];
 extern const u8 gUnk_083D4454[];
-extern const u8 gUnk_083D45AC[];
+extern const u8 Img_Mu_Falcoknight[];
 extern const u8 gUnk_083D5340[];
-extern const u8 gUnk_083D5498[];
+extern const u8 Img_Mu_WyvernRider[];
 extern const u8 gUnk_083D61E8[];
-extern const u8 gUnk_083D6348[];
+extern const u8 Img_Mu_WyvernLord[];
 extern const u8 gUnk_083D7154[];
-extern const u8 gUnk_083D72BC[];
+extern const u8 Img_Mu_Soldier[];
 extern const u8 gUnk_083D7A68[];
-extern const u8 gUnk_083D7BC0[];
+extern const u8 Img_Mu_Brigand[];
 extern const u8 gUnk_083D83F0[];
-extern const u8 gUnk_083D8548[];
+extern const u8 Img_Mu_Pirate[];
 extern const u8 gUnk_083D8E78[];
-extern const u8 gUnk_083D8FD0[];
+extern const u8 Img_Mu_Berserker[];
 extern const u8 gUnk_083D98D0[];
-extern const u8 gUnk_083D9A28[];
+extern const u8 Img_Mu_Thief[];
 extern const u8 gUnk_083DA2A4[];
-extern const u8 gUnk_083DA3FC[];
+extern const u8 Img_Mu_ThiefF[];
 extern const u8 gUnk_083DABFC[];
-extern const u8 gUnk_083DAD54[];
+extern const u8 Img_Mu_Assassin[];
 extern const u8 gUnk_083DB4FC[];
-extern const u8 gUnk_083DB654[];
+extern const u8 Img_Mu_Civilian[];
 extern const u8 gUnk_083DBA34[];
-extern const u8 gUnk_083DBB8C[];
+extern const u8 Img_Mu_Dancer[];
 extern const u8 gUnk_083DC578[];
-extern const u8 gUnk_083DC770[];
+extern const u8 Img_Mu_Bard[];
 extern const u8 gUnk_083DCF00[];
-extern const u8 gUnk_083DD090[];
+extern const u8 Img_Mu_Archsage[];
 extern const u8 gUnk_083DD7F8[];
-extern const u8 gUnk_083DD950[];
+extern const u8 Img_Mu_MagicSeal[];
 extern const u8 gUnk_083DDFA0[];
-extern const u8 gUnk_083DE0F8[];
+extern const u8 Img_Mu_TransporterTent[];
 extern const u8 gUnk_083DE518[];
-extern const u8 gUnk_083DE670[];
+extern const u8 Img_Mu_DarkDruid[];
 extern const u8 gUnk_083DEF18[];
-extern const u8 gUnk_083DF070[];
+extern const u8 Img_Mu_FireDragon[];
 extern const u8 gUnk_083DFC14[];
-extern const u8 gUnk_083DFD6C[];
+extern const u8 Img_Mu_Civilian47[];
 extern const u8 gUnk_083E0450[];
-extern const u8 gUnk_083E05A8[];
+extern const u8 Img_Mu_Civilian48[];
 extern const u8 gUnk_083E0C9C[];
-extern const u8 gUnk_083E0DF4[];
+extern const u8 Img_Mu_Child49[];
 extern const u8 gUnk_083E11D8[];
-extern const u8 gUnk_083E1330[];
+extern const u8 Img_Mu_Bramimond[];
 extern const u8 gUnk_083E1A64[];
-extern const u8 gUnk_083E1BBC[];
+extern const u8 Img_Mu_Peer4b[];
 extern const u8 gUnk_083E2438[];
-extern const u8 gUnk_083E2590[];
+extern const u8 Img_Mu_Peer4c[];
 extern const u8 gUnk_083E2AE4[];
-extern const u8 gUnk_083E2C3C[];
+extern const u8 Img_Mu_Prince4d[];
 extern const u8 gUnk_083E3248[];
-extern const u8 gUnk_083E33A0[];
+extern const u8 Img_Mu_Queen[];
 extern const u8 gUnk_083E3880[];
-extern const u8 gUnk_083E39D8[];
+extern const u8 Img_Mu_Civilian4f[];
 extern const u8 gUnk_083E3DC8[];
-extern const u8 gUnk_083E3F20[];
+extern const u8 Img_Mu_Prince51[];
 extern const u8 gUnk_083E4410[];
-extern const u8 gUnk_083E4568[];
+extern const u8 Img_Mu_Prince52[];
 extern const u8 gUnk_083E4954[];
-extern const u8 gUnk_083E4AAC[];
+extern const u8 Img_Mu_Prince53[];
 extern const u8 gUnk_083E4EBC[];
-extern const u8 gUnk_083E5014[];
+extern const u8 Img_Mu_Child54[];
 extern const u8 gUnk_083E54BC[];
-extern const u8 gUnk_083E5614[];
+extern const u8 Img_Mu_FireDragon55[];
 extern const u8 gUnk_083E5CD4[];
-extern const u8 gUnk_083E5E2C[];
+extern const u8 Img_Mu_Warrior56[];
 extern const u8 gUnk_083E623C[];
-extern const u8 gUnk_083E6394[];
+extern const u8 Img_Mu_Child57[];
 extern const u8 gUnk_083E69B8[];
-extern const u8 gUnk_083E6B10[];
+extern const u8 Img_Mu_Child58[];
 extern const u8 gUnk_083E716C[];
-extern const u8 gUnk_083E72C4[];
+extern const u8 Img_Mu_TransporterWagon[];
 extern const u8 gUnk_083E7CEC[];
-extern const u8 gUnk_083E7E44[];
+extern const u8 Img_Mu_5B[];
 extern const u8 gUnk_083E84CC[];
-extern const u8 gUnk_083E8624[];
+extern const u8 Img_Mu_5C[];
 extern const u8 gUnk_083E8CAC[];
-extern const u8 gUnk_083E8E04[];
+extern const u8 Img_Mu_5D[];
 extern const u8 gUnk_083E948C[];
-extern const u8 gUnk_083E95E4[];
+extern const u8 Img_Mu_5E[];
 extern const u8 gUnk_083E9B38[];
-extern const u8 gUnk_083E9CA0[];
+extern const u8 Img_Mu_5F[];
 extern const u8 gUnk_083EA18C[];
-extern const u8 gUnk_083EA2E4[];
+extern const u8 Img_Mu_60[];
 extern const u8 gUnk_083EA880[];
-extern const u8 gUnk_083EA9E8[];
+extern const u8 Img_Mu_61[];
 extern const u8 gUnk_083EB02C[];
-extern const u8 gUnk_083EB194[];
+extern const u8 Img_Mu_62[];
 extern const u8 gUnk_083EB800[];
-extern const u8 gUnk_083EB968[];
+extern const u8 Img_Mu_63[];
 extern const u8 gUnk_083EBCFC[];
 
 // not yet declared in headers
@@ -361,105 +361,105 @@ struct ProcCmd CONST_DATA ProcScr_MuHitFlash[] = {
 
 // Map sprite graphics and animation of each class
 CONST_DATA struct MuInfo gMuInfoTable[] = {
-    [CLASS_LORD_ELIWOOD - 1] = { (u8 const *) gUnk_083B8CAC, (u16 const *) gUnk_083B9670 },
-    [CLASS_LORD_LYN - 1] = { (u8 const *) gUnk_083B97C8, (u16 const *) gUnk_083B9F88 },
-    [CLASS_LORD_HECTOR - 1] = { (u8 const *) gUnk_083BA0E0, (u16 const *) gUnk_083BA990 },
-    [CLASS_KNIGHT_LORD_04 - 1] = { (u8 const *) gUnk_083B8CAC, (u16 const *) gUnk_083B9670 },
-    [CLASS_BLADE_LORD_05 - 1] = { (u8 const *) gUnk_083B97C8, (u16 const *) gUnk_083B9F88 },
-    [CLASS_GREAT_LORD_06 - 1] = { (u8 const *) gUnk_083BA0E0, (u16 const *) gUnk_083BA990 },
-    [CLASS_KNIGHT_LORD - 1] = { (u8 const *) gUnk_083BAAE8, (u16 const *) gUnk_083BB458 },
-    [CLASS_BLADE_LORD - 1] = { (u8 const *) gUnk_083BB5B8, (u16 const *) gUnk_083BBE44 },
-    [CLASS_GREAT_LORD - 1] = { (u8 const *) gUnk_083BBFA4, (u16 const *) gUnk_083BCA90 },
-    [CLASS_MERCENARY - 1] = { (u8 const *) gUnk_083BCBE8, (u16 const *) gUnk_083BD38C },
-    [CLASS_MERCENARY_F - 1] = { (u8 const *) gUnk_083BD4E4, (u16 const *) gUnk_083BDC4C },
-    [CLASS_HERO - 1] = { (u8 const *) gUnk_083BDDA4, (u16 const *) gUnk_083BE700 },
-    [CLASS_HERO_F - 1] = { (u8 const *) gUnk_083BE860, (u16 const *) gUnk_083BF1E0 },
-    [CLASS_MYRMIDON - 1] = { (u8 const *) gUnk_083BF340, (u16 const *) gUnk_083BFB28 },
-    [CLASS_MYRMIDON_F - 1] = { (u8 const *) gUnk_083BFC80, (u16 const *) gUnk_083C04C4 },
-    [CLASS_SWORDMASTER - 1] = { (u8 const *) gUnk_083C061C, (u16 const *) gUnk_083C0E68 },
-    [CLASS_SWORDMASTER_F - 1] = { (u8 const *) gUnk_083C0FC8, (u16 const *) gUnk_083C184C },
-    [CLASS_FIGHTER - 1] = { (u8 const *) gUnk_083C19AC, (u16 const *) gUnk_083C21A8 },
-    [CLASS_WARRIOR - 1] = { (u8 const *) gUnk_083C2300, (u16 const *) gUnk_083C2D0C },
-    [CLASS_KNIGHT - 1] = { (u8 const *) gUnk_083C2E64, (u16 const *) gUnk_083C3758 },
-    [CLASS_KNIGHT_F - 1] = { (u8 const *) gUnk_083C2E64, (u16 const *) gUnk_083C3758 },
-    [CLASS_GENERAL - 1] = { (u8 const *) gUnk_083C38B0, (u16 const *) gUnk_083C4364 },
-    [CLASS_GENERAL_F - 1] = { (u8 const *) gUnk_083C38B0, (u16 const *) gUnk_083C4364 },
-    [CLASS_ARCHER - 1] = { (u8 const *) gUnk_083C44C4, (u16 const *) gUnk_083C4C88 },
-    [CLASS_ARCHER_F - 1] = { (u8 const *) gUnk_083C4DE0, (u16 const *) gUnk_083C55D4 },
-    [CLASS_SNIPER - 1] = { (u8 const *) gUnk_083C572C, (u16 const *) gUnk_083C5F54 },
-    [CLASS_SNIPER_F - 1] = { (u8 const *) gUnk_083C60AC, (u16 const *) gUnk_083C6920 },
-    [CLASS_MONK - 1] = { (u8 const *) gUnk_083C6A78, (u16 const *) gUnk_083C7164 },
-    [CLASS_CLERIC - 1] = { (u8 const *) gUnk_083C72BC, (u16 const *) gUnk_083C79D4 },
-    [CLASS_BISHOP - 1] = { (u8 const *) gUnk_083C7B2C, (u16 const *) gUnk_083C8398 },
-    [CLASS_BISHOP_F - 1] = { (u8 const *) gUnk_083C84F8, (u16 const *) gUnk_083C8D4C },
-    [CLASS_MAGE - 1] = { (u8 const *) gUnk_083C8EAC, (u16 const *) gUnk_083C96EC },
-    [CLASS_MAGE_F - 1] = { (u8 const *) gUnk_083C9844, (u16 const *) gUnk_083CA110 },
-    [CLASS_SAGE - 1] = { (u8 const *) gUnk_083CA268, (u16 const *) gUnk_083CABDC },
-    [CLASS_SAGE_F - 1] = { (u8 const *) gUnk_083CAD34, (u16 const *) gUnk_083CB718 },
-    [CLASS_SHAMAN - 1] = { (u8 const *) gUnk_083CB870, (u16 const *) gUnk_083CC054 },
-    [CLASS_SHAMAN_F - 1] = { (u8 const *) gUnk_083CC1AC, (u16 const *) gUnk_083CC9E0 },
-    [CLASS_DRUID - 1] = { (u8 const *) gUnk_083CCB38, (u16 const *) gUnk_083CD41C },
-    [CLASS_DRUID_F - 1] = { (u8 const *) gUnk_083CD574, (u16 const *) gUnk_083CDE30 },
-    [CLASS_CAVALIER - 1] = { (u8 const *) gUnk_083CDF88, (u16 const *) gUnk_083CE8D0 },
-    [CLASS_CAVALIER_F - 1] = { (u8 const *) gUnk_083CDF88, (u16 const *) gUnk_083CE8D0 },
-    [CLASS_PALADIN - 1] = { (u8 const *) gUnk_083CEA28, (u16 const *) gUnk_083CF3CC },
-    [CLASS_PALADIN_F - 1] = { (u8 const *) gUnk_083CEA28, (u16 const *) gUnk_083CF3CC },
-    [CLASS_TROUBADOUR - 1] = { (u8 const *) gUnk_083CF524, (u16 const *) gUnk_083CFEC8 },
-    [CLASS_VALKYRIE - 1] = { (u8 const *) gUnk_083D0020, (u16 const *) gUnk_083D0A28 },
-    [CLASS_NOMAD - 1] = { (u8 const *) gUnk_083D0B80, (u16 const *) gUnk_083D1494 },
-    [CLASS_NOMAD_F - 1] = { (u8 const *) gUnk_083D15EC, (u16 const *) gUnk_083D1F88 },
-    [CLASS_NOMAD_TROOPER - 1] = { (u8 const *) gUnk_083D20E0, (u16 const *) gUnk_083D2A68 },
-    [CLASS_NOMAD_TROOPER_F - 1] = { (u8 const *) gUnk_083D2BC0, (u16 const *) gUnk_083D35DC },
-    [CLASS_PEGASUS_KNIGHT - 1] = { (u8 const *) gUnk_083D3734, (u16 const *) gUnk_083D4454 },
-    [CLASS_FALCOKNIGHT - 1] = { (u8 const *) gUnk_083D45AC, (u16 const *) gUnk_083D5340 },
-    [CLASS_WYVERN_RIDER - 1] = { (u8 const *) gUnk_083D5498, (u16 const *) gUnk_083D61E8 },
-    [CLASS_WYVERN_RIDER_F - 1] = { (u8 const *) gUnk_083D5498, (u16 const *) gUnk_083D61E8 },
-    [CLASS_WYVERN_LORD - 1] = { (u8 const *) gUnk_083D6348, (u16 const *) gUnk_083D7154 },
-    [CLASS_WYVERN_LORD_F - 1] = { (u8 const *) gUnk_083D6348, (u16 const *) gUnk_083D7154 },
-    [CLASS_SOLDIER - 1] = { (u8 const *) gUnk_083D72BC, (u16 const *) gUnk_083D7A68 },
-    [CLASS_BRIGAND - 1] = { (u8 const *) gUnk_083D7BC0, (u16 const *) gUnk_083D83F0 },
-    [CLASS_PIRATE - 1] = { (u8 const *) gUnk_083D8548, (u16 const *) gUnk_083D8E78 },
-    [CLASS_BERSERKER - 1] = { (u8 const *) gUnk_083D8FD0, (u16 const *) gUnk_083D98D0 },
-    [CLASS_THIEF - 1] = { (u8 const *) gUnk_083D9A28, (u16 const *) gUnk_083DA2A4 },
-    [CLASS_THIEF_F - 1] = { (u8 const *) gUnk_083DA3FC, (u16 const *) gUnk_083DABFC },
-    [CLASS_ASSASSIN - 1] = { (u8 const *) gUnk_083DAD54, (u16 const *) gUnk_083DB4FC },
-    [CLASS_CIVILIAN - 1] = { (u8 const *) gUnk_083DB654, (u16 const *) gUnk_083DBA34 },
-    [CLASS_DANCER - 1] = { (u8 const *) gUnk_083DBB8C, (u16 const *) gUnk_083DC578 },
-    [CLASS_BARD - 1] = { (u8 const *) gUnk_083DC770, (u16 const *) gUnk_083DCF00 },
-    [CLASS_ARCHSAGE - 1] = { (u8 const *) gUnk_083DD090, (u16 const *) gUnk_083DD7F8 },
-    [CLASS_MAGIC_SEAL - 1] = { (u8 const *) gUnk_083DD950, (u16 const *) gUnk_083DDFA0 },
-    [CLASS_TRANSPORTER_TENT - 1] = { (u8 const *) gUnk_083DE0F8, (u16 const *) gUnk_083DE518 },
-    [CLASS_DARK_DRUID - 1] = { (u8 const *) gUnk_083DE670, (u16 const *) gUnk_083DEF18 },
-    [CLASS_FIRE_DRAGON - 1] = { (u8 const *) gUnk_083DF070, (u16 const *) gUnk_083DFC14 },
-    [CLASS_CIVILIAN_47 - 1] = { (u8 const *) gUnk_083DFD6C, (u16 const *) gUnk_083E0450 },
-    [CLASS_CIVILIAN_48 - 1] = { (u8 const *) gUnk_083E05A8, (u16 const *) gUnk_083E0C9C },
-    [CLASS_CHILD_49 - 1] = { (u8 const *) gUnk_083E0DF4, (u16 const *) gUnk_083E11D8 },
-    [CLASS_BRAMIMOND - 1] = { (u8 const *) gUnk_083E1330, (u16 const *) gUnk_083E1A64 },
-    [CLASS_PEER_4B - 1] = { (u8 const *) gUnk_083E1BBC, (u16 const *) gUnk_083E2438 },
-    [CLASS_PEER_4C - 1] = { (u8 const *) gUnk_083E2590, (u16 const *) gUnk_083E2AE4 },
-    [CLASS_PRINCE_4D - 1] = { (u8 const *) gUnk_083E2C3C, (u16 const *) gUnk_083E3248 },
-    [CLASS_QUEEN - 1] = { (u8 const *) gUnk_083E33A0, (u16 const *) gUnk_083E3880 },
-    [CLASS_CIVILIAN_4F - 1] = { (u8 const *) gUnk_083E39D8, (u16 const *) gUnk_083E3DC8 },
-    [CLASS_CORSAIR - 1] = { (u8 const *) gUnk_083D8548, (u16 const *) gUnk_083D8E78 },
-    [CLASS_PRINCE_51 - 1] = { (u8 const *) gUnk_083E3F20, (u16 const *) gUnk_083E4410 },
-    [CLASS_PRINCE_52 - 1] = { (u8 const *) gUnk_083E4568, (u16 const *) gUnk_083E4954 },
-    [CLASS_PRINCE_53 - 1] = { (u8 const *) gUnk_083E4AAC, (u16 const *) gUnk_083E4EBC },
-    [CLASS_CHILD_54 - 1] = { (u8 const *) gUnk_083E5014, (u16 const *) gUnk_083E54BC },
-    [CLASS_FIRE_DRAGON_55 - 1] = { (u8 const *) gUnk_083E5614, (u16 const *) gUnk_083E5CD4 },
-    [CLASS_WARRIOR_56 - 1] = { (u8 const *) gUnk_083E5E2C, (u16 const *) gUnk_083E623C },
-    [CLASS_CHILD_57 - 1] = { (u8 const *) gUnk_083E6394, (u16 const *) gUnk_083E69B8 },
-    [CLASS_CHILD_58 - 1] = { (u8 const *) gUnk_083E6B10, (u16 const *) gUnk_083E716C },
-    [CLASS_TRANSPORTER_WAGON - 1] = { (u8 const *) gUnk_083E72C4, (u16 const *) gUnk_083E7CEC },
-    [CLASS_SAGE_5A - 1] = { (u8 const *) gUnk_083CAD34, (u16 const *) gUnk_083CB718 },
-    [CLASS_5B - 1] = { (u8 const *) gUnk_083E7E44, (u16 const *) gUnk_083E84CC },
-    [CLASS_5C - 1] = { (u8 const *) gUnk_083E8624, (u16 const *) gUnk_083E8CAC },
-    [CLASS_5D - 1] = { (u8 const *) gUnk_083E8E04, (u16 const *) gUnk_083E948C },
-    [CLASS_5E - 1] = { (u8 const *) gUnk_083E95E4, (u16 const *) gUnk_083E9B38 },
-    [CLASS_5F - 1] = { (u8 const *) gUnk_083E9CA0, (u16 const *) gUnk_083EA18C },
-    [CLASS_60 - 1] = { (u8 const *) gUnk_083EA2E4, (u16 const *) gUnk_083EA880 },
-    [CLASS_61 - 1] = { (u8 const *) gUnk_083EA9E8, (u16 const *) gUnk_083EB02C },
-    [CLASS_62 - 1] = { (u8 const *) gUnk_083EB194, (u16 const *) gUnk_083EB800 },
-    [CLASS_63 - 1] = { (u8 const *) gUnk_083EB968, (u16 const *) gUnk_083EBCFC },
+    [CLASS_LORD_ELIWOOD - 1] = { (u8 const *) Img_Mu_LordEliwood, (u16 const *) gUnk_083B9670 },
+    [CLASS_LORD_LYN - 1] = { (u8 const *) Img_Mu_LordLyn, (u16 const *) gUnk_083B9F88 },
+    [CLASS_LORD_HECTOR - 1] = { (u8 const *) Img_Mu_LordHector, (u16 const *) gUnk_083BA990 },
+    [CLASS_KNIGHT_LORD_04 - 1] = { (u8 const *) Img_Mu_LordEliwood, (u16 const *) gUnk_083B9670 },
+    [CLASS_BLADE_LORD_05 - 1] = { (u8 const *) Img_Mu_LordLyn, (u16 const *) gUnk_083B9F88 },
+    [CLASS_GREAT_LORD_06 - 1] = { (u8 const *) Img_Mu_LordHector, (u16 const *) gUnk_083BA990 },
+    [CLASS_KNIGHT_LORD - 1] = { (u8 const *) Img_Mu_KnightLord, (u16 const *) gUnk_083BB458 },
+    [CLASS_BLADE_LORD - 1] = { (u8 const *) Img_Mu_BladeLord, (u16 const *) gUnk_083BBE44 },
+    [CLASS_GREAT_LORD - 1] = { (u8 const *) Img_Mu_GreatLord, (u16 const *) gUnk_083BCA90 },
+    [CLASS_MERCENARY - 1] = { (u8 const *) Img_Mu_Mercenary, (u16 const *) gUnk_083BD38C },
+    [CLASS_MERCENARY_F - 1] = { (u8 const *) Img_Mu_MercenaryF, (u16 const *) gUnk_083BDC4C },
+    [CLASS_HERO - 1] = { (u8 const *) Img_Mu_Hero, (u16 const *) gUnk_083BE700 },
+    [CLASS_HERO_F - 1] = { (u8 const *) Img_Mu_HeroF, (u16 const *) gUnk_083BF1E0 },
+    [CLASS_MYRMIDON - 1] = { (u8 const *) Img_Mu_Myrmidon, (u16 const *) gUnk_083BFB28 },
+    [CLASS_MYRMIDON_F - 1] = { (u8 const *) Img_Mu_MyrmidonF, (u16 const *) gUnk_083C04C4 },
+    [CLASS_SWORDMASTER - 1] = { (u8 const *) Img_Mu_Swordmaster, (u16 const *) gUnk_083C0E68 },
+    [CLASS_SWORDMASTER_F - 1] = { (u8 const *) Img_Mu_SwordmasterF, (u16 const *) gUnk_083C184C },
+    [CLASS_FIGHTER - 1] = { (u8 const *) Img_Mu_Fighter, (u16 const *) gUnk_083C21A8 },
+    [CLASS_WARRIOR - 1] = { (u8 const *) Img_Mu_Warrior, (u16 const *) gUnk_083C2D0C },
+    [CLASS_KNIGHT - 1] = { (u8 const *) Img_Mu_Knight, (u16 const *) gUnk_083C3758 },
+    [CLASS_KNIGHT_F - 1] = { (u8 const *) Img_Mu_Knight, (u16 const *) gUnk_083C3758 },
+    [CLASS_GENERAL - 1] = { (u8 const *) Img_Mu_General, (u16 const *) gUnk_083C4364 },
+    [CLASS_GENERAL_F - 1] = { (u8 const *) Img_Mu_General, (u16 const *) gUnk_083C4364 },
+    [CLASS_ARCHER - 1] = { (u8 const *) Img_Mu_Archer, (u16 const *) gUnk_083C4C88 },
+    [CLASS_ARCHER_F - 1] = { (u8 const *) Img_Mu_ArcherF, (u16 const *) gUnk_083C55D4 },
+    [CLASS_SNIPER - 1] = { (u8 const *) Img_Mu_Sniper, (u16 const *) gUnk_083C5F54 },
+    [CLASS_SNIPER_F - 1] = { (u8 const *) Img_Mu_SniperF, (u16 const *) gUnk_083C6920 },
+    [CLASS_MONK - 1] = { (u8 const *) Img_Mu_Monk, (u16 const *) gUnk_083C7164 },
+    [CLASS_CLERIC - 1] = { (u8 const *) Img_Mu_Cleric, (u16 const *) gUnk_083C79D4 },
+    [CLASS_BISHOP - 1] = { (u8 const *) Img_Mu_Bishop, (u16 const *) gUnk_083C8398 },
+    [CLASS_BISHOP_F - 1] = { (u8 const *) Img_Mu_BishopF, (u16 const *) gUnk_083C8D4C },
+    [CLASS_MAGE - 1] = { (u8 const *) Img_Mu_Mage, (u16 const *) gUnk_083C96EC },
+    [CLASS_MAGE_F - 1] = { (u8 const *) Img_Mu_MageF, (u16 const *) gUnk_083CA110 },
+    [CLASS_SAGE - 1] = { (u8 const *) Img_Mu_Sage, (u16 const *) gUnk_083CABDC },
+    [CLASS_SAGE_F - 1] = { (u8 const *) Img_Mu_SageF, (u16 const *) gUnk_083CB718 },
+    [CLASS_SHAMAN - 1] = { (u8 const *) Img_Mu_Shaman, (u16 const *) gUnk_083CC054 },
+    [CLASS_SHAMAN_F - 1] = { (u8 const *) Img_Mu_ShamanF, (u16 const *) gUnk_083CC9E0 },
+    [CLASS_DRUID - 1] = { (u8 const *) Img_Mu_Druid, (u16 const *) gUnk_083CD41C },
+    [CLASS_DRUID_F - 1] = { (u8 const *) Img_Mu_DruidF, (u16 const *) gUnk_083CDE30 },
+    [CLASS_CAVALIER - 1] = { (u8 const *) Img_Mu_Cavalier, (u16 const *) gUnk_083CE8D0 },
+    [CLASS_CAVALIER_F - 1] = { (u8 const *) Img_Mu_Cavalier, (u16 const *) gUnk_083CE8D0 },
+    [CLASS_PALADIN - 1] = { (u8 const *) Img_Mu_Paladin, (u16 const *) gUnk_083CF3CC },
+    [CLASS_PALADIN_F - 1] = { (u8 const *) Img_Mu_Paladin, (u16 const *) gUnk_083CF3CC },
+    [CLASS_TROUBADOUR - 1] = { (u8 const *) Img_Mu_Troubadour, (u16 const *) gUnk_083CFEC8 },
+    [CLASS_VALKYRIE - 1] = { (u8 const *) Img_Mu_Valkyrie, (u16 const *) gUnk_083D0A28 },
+    [CLASS_NOMAD - 1] = { (u8 const *) Img_Mu_Nomad, (u16 const *) gUnk_083D1494 },
+    [CLASS_NOMAD_F - 1] = { (u8 const *) Img_Mu_NomadF, (u16 const *) gUnk_083D1F88 },
+    [CLASS_NOMAD_TROOPER - 1] = { (u8 const *) Img_Mu_NomadTrooper, (u16 const *) gUnk_083D2A68 },
+    [CLASS_NOMAD_TROOPER_F - 1] = { (u8 const *) Img_Mu_NomadTrooperF, (u16 const *) gUnk_083D35DC },
+    [CLASS_PEGASUS_KNIGHT - 1] = { (u8 const *) Img_Mu_PegasusKnight, (u16 const *) gUnk_083D4454 },
+    [CLASS_FALCOKNIGHT - 1] = { (u8 const *) Img_Mu_Falcoknight, (u16 const *) gUnk_083D5340 },
+    [CLASS_WYVERN_RIDER - 1] = { (u8 const *) Img_Mu_WyvernRider, (u16 const *) gUnk_083D61E8 },
+    [CLASS_WYVERN_RIDER_F - 1] = { (u8 const *) Img_Mu_WyvernRider, (u16 const *) gUnk_083D61E8 },
+    [CLASS_WYVERN_LORD - 1] = { (u8 const *) Img_Mu_WyvernLord, (u16 const *) gUnk_083D7154 },
+    [CLASS_WYVERN_LORD_F - 1] = { (u8 const *) Img_Mu_WyvernLord, (u16 const *) gUnk_083D7154 },
+    [CLASS_SOLDIER - 1] = { (u8 const *) Img_Mu_Soldier, (u16 const *) gUnk_083D7A68 },
+    [CLASS_BRIGAND - 1] = { (u8 const *) Img_Mu_Brigand, (u16 const *) gUnk_083D83F0 },
+    [CLASS_PIRATE - 1] = { (u8 const *) Img_Mu_Pirate, (u16 const *) gUnk_083D8E78 },
+    [CLASS_BERSERKER - 1] = { (u8 const *) Img_Mu_Berserker, (u16 const *) gUnk_083D98D0 },
+    [CLASS_THIEF - 1] = { (u8 const *) Img_Mu_Thief, (u16 const *) gUnk_083DA2A4 },
+    [CLASS_THIEF_F - 1] = { (u8 const *) Img_Mu_ThiefF, (u16 const *) gUnk_083DABFC },
+    [CLASS_ASSASSIN - 1] = { (u8 const *) Img_Mu_Assassin, (u16 const *) gUnk_083DB4FC },
+    [CLASS_CIVILIAN - 1] = { (u8 const *) Img_Mu_Civilian, (u16 const *) gUnk_083DBA34 },
+    [CLASS_DANCER - 1] = { (u8 const *) Img_Mu_Dancer, (u16 const *) gUnk_083DC578 },
+    [CLASS_BARD - 1] = { (u8 const *) Img_Mu_Bard, (u16 const *) gUnk_083DCF00 },
+    [CLASS_ARCHSAGE - 1] = { (u8 const *) Img_Mu_Archsage, (u16 const *) gUnk_083DD7F8 },
+    [CLASS_MAGIC_SEAL - 1] = { (u8 const *) Img_Mu_MagicSeal, (u16 const *) gUnk_083DDFA0 },
+    [CLASS_TRANSPORTER_TENT - 1] = { (u8 const *) Img_Mu_TransporterTent, (u16 const *) gUnk_083DE518 },
+    [CLASS_DARK_DRUID - 1] = { (u8 const *) Img_Mu_DarkDruid, (u16 const *) gUnk_083DEF18 },
+    [CLASS_FIRE_DRAGON - 1] = { (u8 const *) Img_Mu_FireDragon, (u16 const *) gUnk_083DFC14 },
+    [CLASS_CIVILIAN_47 - 1] = { (u8 const *) Img_Mu_Civilian47, (u16 const *) gUnk_083E0450 },
+    [CLASS_CIVILIAN_48 - 1] = { (u8 const *) Img_Mu_Civilian48, (u16 const *) gUnk_083E0C9C },
+    [CLASS_CHILD_49 - 1] = { (u8 const *) Img_Mu_Child49, (u16 const *) gUnk_083E11D8 },
+    [CLASS_BRAMIMOND - 1] = { (u8 const *) Img_Mu_Bramimond, (u16 const *) gUnk_083E1A64 },
+    [CLASS_PEER_4B - 1] = { (u8 const *) Img_Mu_Peer4b, (u16 const *) gUnk_083E2438 },
+    [CLASS_PEER_4C - 1] = { (u8 const *) Img_Mu_Peer4c, (u16 const *) gUnk_083E2AE4 },
+    [CLASS_PRINCE_4D - 1] = { (u8 const *) Img_Mu_Prince4d, (u16 const *) gUnk_083E3248 },
+    [CLASS_QUEEN - 1] = { (u8 const *) Img_Mu_Queen, (u16 const *) gUnk_083E3880 },
+    [CLASS_CIVILIAN_4F - 1] = { (u8 const *) Img_Mu_Civilian4f, (u16 const *) gUnk_083E3DC8 },
+    [CLASS_CORSAIR - 1] = { (u8 const *) Img_Mu_Pirate, (u16 const *) gUnk_083D8E78 },
+    [CLASS_PRINCE_51 - 1] = { (u8 const *) Img_Mu_Prince51, (u16 const *) gUnk_083E4410 },
+    [CLASS_PRINCE_52 - 1] = { (u8 const *) Img_Mu_Prince52, (u16 const *) gUnk_083E4954 },
+    [CLASS_PRINCE_53 - 1] = { (u8 const *) Img_Mu_Prince53, (u16 const *) gUnk_083E4EBC },
+    [CLASS_CHILD_54 - 1] = { (u8 const *) Img_Mu_Child54, (u16 const *) gUnk_083E54BC },
+    [CLASS_FIRE_DRAGON_55 - 1] = { (u8 const *) Img_Mu_FireDragon55, (u16 const *) gUnk_083E5CD4 },
+    [CLASS_WARRIOR_56 - 1] = { (u8 const *) Img_Mu_Warrior56, (u16 const *) gUnk_083E623C },
+    [CLASS_CHILD_57 - 1] = { (u8 const *) Img_Mu_Child57, (u16 const *) gUnk_083E69B8 },
+    [CLASS_CHILD_58 - 1] = { (u8 const *) Img_Mu_Child58, (u16 const *) gUnk_083E716C },
+    [CLASS_TRANSPORTER_WAGON - 1] = { (u8 const *) Img_Mu_TransporterWagon, (u16 const *) gUnk_083E7CEC },
+    [CLASS_SAGE_5A - 1] = { (u8 const *) Img_Mu_SageF, (u16 const *) gUnk_083CB718 },
+    [CLASS_5B - 1] = { (u8 const *) Img_Mu_5B, (u16 const *) gUnk_083E84CC },
+    [CLASS_5C - 1] = { (u8 const *) Img_Mu_5C, (u16 const *) gUnk_083E8CAC },
+    [CLASS_5D - 1] = { (u8 const *) Img_Mu_5D, (u16 const *) gUnk_083E948C },
+    [CLASS_5E - 1] = { (u8 const *) Img_Mu_5E, (u16 const *) gUnk_083E9B38 },
+    [CLASS_5F - 1] = { (u8 const *) Img_Mu_5F, (u16 const *) gUnk_083EA18C },
+    [CLASS_60 - 1] = { (u8 const *) Img_Mu_60, (u16 const *) gUnk_083EA880 },
+    [CLASS_61 - 1] = { (u8 const *) Img_Mu_61, (u16 const *) gUnk_083EB02C },
+    [CLASS_62 - 1] = { (u8 const *) Img_Mu_62, (u16 const *) gUnk_083EB800 },
+    [CLASS_63 - 1] = { (u8 const *) Img_Mu_63, (u16 const *) gUnk_083EBCFC },
 };
 
 #define MU_PAL_OBJ(pal) (gPal + ((((pal) + 0x10) * 0x20) >> 1))

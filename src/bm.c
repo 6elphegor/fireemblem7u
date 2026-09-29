@@ -25,7 +25,7 @@ PROC_LABEL(0),
     PROC_START_CHILD_BLOCKING(ProcScr_SALLYCURSOR),
     PROC_START_CHILD_BLOCKING(ProcScr_BmMain_08B93ADC),
 
-    PROC_CALL(nullsub_38),
+    PROC_CALL(DummyFunction),
 
     // fallthrough
 

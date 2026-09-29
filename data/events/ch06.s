@@ -518,7 +518,7 @@ EventScr_08CAC200:
 	TEX1 MSG_93A                             @ What do you want me to do? Tell me, please!
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 7
 	GOTO 9
 	LABEL 1
@@ -544,7 +544,7 @@ EventScr_08CAC294:
 	TEX1 MSG_940                             @ This is no good. Even I'm not so good I can open
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 8
 	GOTO 9
 	LABEL 1
@@ -570,7 +570,7 @@ EventScr_08CAC328:
 	TEX1 MSG_943                             @ You! You're ? Have you found the trigger? If so,
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 9
 	GOTO 9
 	LABEL 1
@@ -594,7 +594,7 @@ EventScr_08CAC3B0:
 	TEX1 MSG_948                             @ Battles aren't won by virtue and glory alone. No
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xB
 	GOTO 9
 	LABEL 1

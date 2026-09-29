@@ -77,7 +77,7 @@ int sub_0809EA58(void)
     return ret;
 }
 
-bool sub_0809EA7C(void)
+bool null_true(void)
 {
     return TRUE;
 }

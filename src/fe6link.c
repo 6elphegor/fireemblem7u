@@ -9,9 +9,9 @@ extern const u8 gUnknown_081D2700[];
 extern const u16 gUnknown_081D2B1C[];
 extern const u8 gUnknown_081D258C[];
 extern const u8 gUnknown_081D2628[];
-extern const u8 gUnknown_081CE25C[];
-extern const u8 gUnknown_081D1DF8[];
-extern const u16 gUnknown_081D235C[];
+extern const u8 Img_Fe6Comm[];
+extern const u8 Tsa_Fe6Comm[];
+extern const u16 Pal_Fe6Comm[];
 extern const u8 gFe6LinkMultiBootImage[];
 extern const u8 gFe6LinkMultiBootImageEnd[];
 
@@ -49,7 +49,7 @@ void sub_08043828(struct Text * th, int num, u8 center, int color);
 
 extern struct ProcCmd CONST_DATA ProcScr_08B9998C[];
 extern struct ProcCmd CONST_DATA ProcScr_08B99870[];
-extern struct ProcCmd CONST_DATA ProcScr_08B999D8[];
+extern struct ProcCmd CONST_DATA ProcScr_FE6Link[];
 
 void sub_080ACA90(ProcPtr proc);
 
@@ -133,10 +133,10 @@ void Sio_DrawFe6CommImage(struct Fe6LinkProc * proc)
     TmApplyTsa_thm(gBg1Tm, gUnknown_081D258C, 0x4060);
     TmApplyTsa_thm(gBg1Tm + TM_OFFSET(0, 17), gUnknown_081D2628, 0x4060);
 
-    Decompress(gUnknown_081CE25C, (void *)(GetBgChrOffset(BG_3) + 0x06000000));
+    Decompress(Img_Fe6Comm, (void *)(GetBgChrOffset(BG_3) + 0x06000000));
 
-    Decompress(gUnknown_081D1DF8, gBg3Tm);
-    ApplyPalettes(gUnknown_081D235C, 7, 8);
+    Decompress(Tsa_Fe6Comm, gBg3Tm);
+    ApplyPalettes(Pal_Fe6Comm, 7, 8);
 
     tm = gBg3Tm;
 
@@ -744,5 +744,5 @@ void GC_ConnectToFE6(ProcPtr parent)
 {
     UnpackUiWindowFrameGraphics();
     InitTextFont(&Font_0203DB64, (void *)0x06001800, 0xc0, 0);
-    Proc_StartBlocking(ProcScr_08B999D8, parent);
+    Proc_StartBlocking(ProcScr_FE6Link, parent);
 }

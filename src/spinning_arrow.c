@@ -14,8 +14,8 @@ struct SpinningArrowProc
 };
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
-extern u16 const Pal_0840DCE4[];
-extern u8 const gUnknown_0840D224[];
+extern u16 const Pal_MapBattleInfoNum[];
+extern u8 const gImg_UiSpinningArrow_Horizontal[];
 extern u8 const Img_SpinningArrow[];
 
 void UiSpinningArrows_Init(struct SpinningArrowProc * proc);
@@ -160,10 +160,10 @@ ProcPtr LoadUiSpinningArrowGfx(s32 kind, s32 chr, s32 palId)
 
     if (proc != NULL)
     {
-        ApplyPalette(Pal_0840DCE4, palId + 0x10);
+        ApplyPalette(Pal_MapBattleInfoNum, palId + 0x10);
 
         if (kind == 0)
-            Decompress(gUnknown_0840D224, (void *) (chr + 0x06010000));
+            Decompress(gImg_UiSpinningArrow_Horizontal, (void *) (chr + 0x06010000));
 
         if (kind == 1)
             Decompress(Img_SpinningArrow, (void *) (chr + 0x06010000));

@@ -91,7 +91,7 @@ PROC_LABEL(8),
     PROC_CALL_ARG(NewFadeOut, 16),
     PROC_WHILE(FadeOutExists),
     PROC_CALL(PrepItemScreen_OnEnd),
-    PROC_CALL(sub_080928D4),
+    PROC_CALL(StartPrepItemListScreen),
     PROC_YIELD,
     PROC_CALL(PrepItemScreen_SetupGfx),
     PROC_YIELD,
@@ -106,7 +106,7 @@ PROC_LABEL(9),
     PROC_CALL_ARG(NewFadeOut, 16),
     PROC_WHILE(FadeOutExists),
     PROC_CALL(PrepItemScreen_OnEnd),
-    PROC_CALL(sub_0809288C),
+    PROC_CALL(StartPrepItemUse),
     PROC_YIELD,
     PROC_CALL(PrepItemScreen_SetupGfx),
     PROC_YIELD,
@@ -121,7 +121,7 @@ PROC_LABEL(10),
     PROC_CALL_ARG(NewFadeOut, 16),
     PROC_WHILE(FadeOutExists),
     PROC_CALL(PrepItemScreen_OnEnd),
-    PROC_CALL(sub_080928A4),
+    PROC_CALL(StartPrepItemSupply),
     PROC_YIELD,
     PROC_CALL(PrepItemScreen_SetupGfx),
     PROC_YIELD,
@@ -929,11 +929,11 @@ void StartPrepItemTradeScreen(struct PrepItemScreenProc * proc)
     StartPrepItemTradeScreenProc(
         GetUnitFromPrepList(proc->selectedUnitIdx), GetUnitFromPrepList(proc->hoverUnitIdx), proc);
 }
-void sub_0809288C(struct PrepItemScreenProc * proc)
+void StartPrepItemUse(struct PrepItemScreenProc * proc)
 {
     StartPrepItemUseScreen(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
 }
-void sub_080928A4(struct PrepItemScreenProc * proc)
+void StartPrepItemSupply(struct PrepItemScreenProc * proc)
 {
     StartPrepItemSupplyProc(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
 }
@@ -941,7 +941,7 @@ void StartPrepArmory(struct PrepItemScreenProc * proc)
 {
     StartWorldMapSellScreen(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
 }
-void sub_080928D4(struct PrepItemScreenProc * proc)
+void StartPrepItemListScreen(struct PrepItemScreenProc * proc)
 {
     StartPrepItemListScreenProc(GetUnitFromPrepList(proc->selectedUnitIdx), proc);
 }

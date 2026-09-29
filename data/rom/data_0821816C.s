@@ -5,80 +5,80 @@
 
 	.section .rodata.0821816C, "a"
 
-	.global gUnk_0821816C
-gUnk_0821816C:  @ LZ77
+	.global Img_FimbulvetrBg_Tornado_D
+Img_FimbulvetrBg_Tornado_D:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_FimbulvetrBg_Tornado_03.lz"
 
-	.global gUnk_082195AC
-gUnk_082195AC:  @ LZ77
+	.global Img_FimbulvetrBg_Tornado_E
+Img_FimbulvetrBg_Tornado_E:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_FimbulvetrBg_Tornado_04.lz"
 
-	.global gUnk_0821A964
-gUnk_0821A964:  @ LZ77
+	.global Img_FimbulvetrBg_Tornado_F
+Img_FimbulvetrBg_Tornado_F:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_FimbulvetrBg_Tornado_05.lz"
 
 	.global Pal_FimbulvetrBg_Tornado
 Pal_FimbulvetrBg_Tornado:
 	.incbin "graphics/Pal_FimbulvetrBg_Tornado.gbapal"
 
-	.global gUnk_0821BBC8
-gUnk_0821BBC8:  @ LZ77
+	.global Tsa_FimbulvetrBg_Tornado_A
+Tsa_FimbulvetrBg_Tornado_A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FimbulvetrBg_Tornado_00.lz"
 
-	.global gUnk_0821BDB4
-gUnk_0821BDB4:  @ LZ77
+	.global Tsa_FimbulvetrBg_Tornado_B
+Tsa_FimbulvetrBg_Tornado_B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FimbulvetrBg_Tornado_01.lz"
 
-	.global gUnk_0821BF8C
-gUnk_0821BF8C:  @ LZ77
+	.global Tsa_FimbulvetrBg_Tornado_C
+Tsa_FimbulvetrBg_Tornado_C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FimbulvetrBg_Tornado_02.lz"
 
-	.global gUnk_0821C154
-gUnk_0821C154:  @ LZ77
+	.global Tsa_FimbulvetrBg_Tornado_D
+Tsa_FimbulvetrBg_Tornado_D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FimbulvetrBg_Tornado_03.lz"
 
-	.global gUnk_0821C388
-gUnk_0821C388:  @ LZ77
+	.global Tsa_FimbulvetrBg_Tornado_E
+Tsa_FimbulvetrBg_Tornado_E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FimbulvetrBg_Tornado_04.lz"
 
-	.global gUnk_0821C5D0
-gUnk_0821C5D0:  @ LZ77
+	.global Tsa_FimbulvetrBg_Tornado_F
+Tsa_FimbulvetrBg_Tornado_F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FimbulvetrBg_Tornado_05.lz"
 
 	.global Img_FimbulvetrSprites_Snow
 Img_FimbulvetrSprites_Snow:  @ LZ77
 	.incbin "build/graphics/Img_FimbulvetrSprites_Snow.lz"
 
-	.global gUnk_0821CBB0
-gUnk_0821CBB0:  @ LZ77
+	.global Img_LightningBg_00
+Img_LightningBg_00:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_00.lz"
 
-	.global gUnk_0821D478
-gUnk_0821D478:  @ LZ77
+	.global Img_LightningBg_03
+Img_LightningBg_03:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_03.lz"
 
-	.global gUnk_0821DBC8
-gUnk_0821DBC8:  @ LZ77
+	.global Img_LightningBg_06
+Img_LightningBg_06:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_06.lz"
 
-	.global gUnk_0821E58C
-gUnk_0821E58C:  @ LZ77
+	.global Img_LightningBg_0A
+Img_LightningBg_0A:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_0A.lz"
 
-	.global gUnk_0821F0E0
-gUnk_0821F0E0:  @ LZ77
+	.global Img_LightningBg_0D
+Img_LightningBg_0D:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_0D.lz"
 
-	.global gUnk_0821FBE8
-gUnk_0821FBE8:  @ LZ77
+	.global Img_LightningBg_10
+Img_LightningBg_10:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_10.lz"
 
-	.global gUnk_0821FF00
-gUnk_0821FF00:  @ LZ77
+	.global Img_LightningBg_19
+Img_LightningBg_19:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_19.lz"
 
-	.global gUnk_08220BB0
-gUnk_08220BB0:  @ LZ77
+	.global Img_LightningBg_1C
+Img_LightningBg_1C:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_LightningBg_1C.lz"
 
 	.global gUnk_082215D0
@@ -89,136 +89,136 @@ gUnk_082215D0:
 gUnk_082215F0:
 	.incbin "baserom.gba", 0x2215f0, 0x20
 
-	.global gUnk_08221610
-gUnk_08221610:  @ LZ77
+	.global Tsa_LightningBg_00
+Tsa_LightningBg_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_00.lz"
 
-	.global gUnk_08221734
-gUnk_08221734:  @ LZ77
+	.global Tsa_LightningBg_01
+Tsa_LightningBg_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_01.lz"
 
-	.global gUnk_08221854
-gUnk_08221854:  @ LZ77
+	.global Tsa_LightningBg_02
+Tsa_LightningBg_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_02.lz"
 
-	.global gUnk_08221960
-gUnk_08221960:  @ LZ77
+	.global Tsa_LightningBg_03
+Tsa_LightningBg_03:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_03.lz"
 
-	.global gUnk_08221A5C
-gUnk_08221A5C:  @ LZ77
+	.global Tsa_LightningBg_04
+Tsa_LightningBg_04:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_04.lz"
 
-	.global gUnk_08221B44
-gUnk_08221B44:  @ LZ77
+	.global Tsa_LightningBg_05
+Tsa_LightningBg_05:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_05.lz"
 
-	.global gUnk_08221C28
-gUnk_08221C28:  @ LZ77
+	.global Tsa_LightningBg_06
+Tsa_LightningBg_06:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_06.lz"
 
-	.global gUnk_08221D0C
-gUnk_08221D0C:  @ LZ77
+	.global Tsa_LightningBg_07
+Tsa_LightningBg_07:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_07.lz"
 
-	.global gUnk_08221DE8
-gUnk_08221DE8:  @ LZ77
+	.global Tsa_LightningBg_08
+Tsa_LightningBg_08:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_08.lz"
 
-	.global gUnk_08221EC8
-gUnk_08221EC8:  @ LZ77
+	.global Tsa_LightningBg_09
+Tsa_LightningBg_09:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_09.lz"
 
-	.global gUnk_08221FBC
-gUnk_08221FBC:  @ LZ77
+	.global Tsa_LightningBg_0A
+Tsa_LightningBg_0A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_0A.lz"
 
-	.global gUnk_082220B0
-gUnk_082220B0:  @ LZ77
+	.global Tsa_LightningBg_0B
+Tsa_LightningBg_0B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_0B.lz"
 
-	.global gUnk_082221B4
-gUnk_082221B4:  @ LZ77
+	.global Tsa_LightningBg_0C
+Tsa_LightningBg_0C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_0C.lz"
 
-	.global gUnk_082222BC
-gUnk_082222BC:  @ LZ77
+	.global Tsa_LightningBg_0D
+Tsa_LightningBg_0D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_0D.lz"
 
-	.global gUnk_082223D4
-gUnk_082223D4:  @ LZ77
+	.global Tsa_LightningBg_0E
+Tsa_LightningBg_0E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_0E.lz"
 
-	.global gUnk_082224F8
-gUnk_082224F8:  @ LZ77
+	.global Tsa_LightningBg_0F
+Tsa_LightningBg_0F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_0F.lz"
 
-	.global gUnk_0822260C
-gUnk_0822260C:  @ LZ77
+	.global Tsa_LightningBg_10
+Tsa_LightningBg_10:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_10.lz"
 
-	.global gUnk_082226BC
-gUnk_082226BC:  @ LZ77
+	.global Tsa_LightningBg_11
+Tsa_LightningBg_11:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_11.lz"
 
-	.global gUnk_082227C4
-gUnk_082227C4:  @ LZ77
+	.global Tsa_LightningBg_12
+Tsa_LightningBg_12:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_12.lz"
 
-	.global gUnk_08222900
-gUnk_08222900:  @ LZ77
+	.global Tsa_LightningBg_13
+Tsa_LightningBg_13:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_13.lz"
 
-	.global gUnk_08222A74
-gUnk_08222A74:  @ LZ77
+	.global Tsa_LightningBg_14
+Tsa_LightningBg_14:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_14.lz"
 
-	.global gUnk_08222C0C
-gUnk_08222C0C:  @ LZ77
+	.global Tsa_LightningBg_15
+Tsa_LightningBg_15:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_15.lz"
 
-	.global gUnk_08222D80
-gUnk_08222D80:  @ LZ77
+	.global Tsa_LightningBg_16
+Tsa_LightningBg_16:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_16.lz"
 
-	.global gUnk_08222E8C
-gUnk_08222E8C:  @ LZ77
+	.global Tsa_LightningBg_17
+Tsa_LightningBg_17:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_17.lz"
 
-	.global gUnk_08222F60
-gUnk_08222F60:  @ LZ77
+	.global Tsa_LightningBg_18
+Tsa_LightningBg_18:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_18.lz"
 
-	.global gUnk_08223000
-gUnk_08223000:  @ LZ77
+	.global Tsa_LightningBg_19
+Tsa_LightningBg_19:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_19.lz"
 
-	.global gUnk_08223120
-gUnk_08223120:  @ LZ77
+	.global Tsa_LightningBg_1A
+Tsa_LightningBg_1A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_1A.lz"
 
-	.global gUnk_0822323C
-gUnk_0822323C:  @ LZ77
+	.global Tsa_LightningBg_1B
+Tsa_LightningBg_1B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_1B.lz"
 
-	.global gUnk_08223350
-gUnk_08223350:  @ LZ77
+	.global Tsa_LightningBg_1C
+Tsa_LightningBg_1C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_1C.lz"
 
-	.global gUnk_08223448
-gUnk_08223448:  @ LZ77
+	.global Tsa_LightningBg_1D
+Tsa_LightningBg_1D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_1D.lz"
 
-	.global gUnk_08223530
-gUnk_08223530:  @ LZ77
+	.global Tsa_LightningBg_1E
+Tsa_LightningBg_1E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_1E.lz"
 
-	.global gUnk_08223600
-gUnk_08223600:  @ LZ77
+	.global Tsa_LightningBg_1F
+Tsa_LightningBg_1F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_1F.lz"
 
-	.global gUnk_082236C4
-gUnk_082236C4:  @ LZ77
+	.global Tsa_LightningBg_20
+Tsa_LightningBg_20:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_LightningBg_20.lz"
 
 	.global gUnk_0822377C
@@ -433,340 +433,340 @@ Img_FluxAnimSprites_SigilVoid:  @ LZ77
 Pal_FluxAnimSprites:
 	.incbin "graphics/Pal_FluxAnimSprites.gbapal"
 
-	.global gUnk_0822A27C
-gUnk_0822A27C:  @ LZ77
+	.global Img_NosferatuBg_A
+Img_NosferatuBg_A:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_00.lz"
 
-	.global gUnk_0822AD4C
-gUnk_0822AD4C:  @ LZ77
+	.global Img_NosferatuBg_B
+Img_NosferatuBg_B:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_08.lz"
 
-	.global gUnk_0822B8F4
-gUnk_0822B8F4:  @ LZ77
+	.global Img_NosferatuBg_C
+Img_NosferatuBg_C:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_0B.lz"
 
-	.global gUnk_0822C44C
-gUnk_0822C44C:  @ LZ77
+	.global Img_NosferatuBg_D
+Img_NosferatuBg_D:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_0D.lz"
 
-	.global gUnk_0822CF00
-gUnk_0822CF00:  @ LZ77
+	.global Img_NosferatuBg_E
+Img_NosferatuBg_E:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_0F.lz"
 
-	.global gUnk_0822D9D0
-gUnk_0822D9D0:  @ LZ77
+	.global Img_NosferatuBg_F
+Img_NosferatuBg_F:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_11.lz"
 
-	.global gUnk_0822E694
-gUnk_0822E694:  @ LZ77
+	.global Img_NosferatuBg_G
+Img_NosferatuBg_G:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_14.lz"
 
-	.global gUnk_0822EF98
-gUnk_0822EF98:  @ LZ77
+	.global Img_NosferatuBg_H
+Img_NosferatuBg_H:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_17.lz"
 
-	.global gUnk_0822F4EC
-gUnk_0822F4EC:  @ LZ77
+	.global Img_NosferatuBg_I
+Img_NosferatuBg_I:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_1C.lz"
 
-	.global gUnk_0822FE04
-gUnk_0822FE04:  @ LZ77
+	.global Img_NosferatuBg_J
+Img_NosferatuBg_J:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_24.lz"
 
-	.global gUnk_08230A38
-gUnk_08230A38:  @ LZ77
+	.global Img_NosferatuBg_K
+Img_NosferatuBg_K:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_28.lz"
 
-	.global gUnk_082316DC
-gUnk_082316DC:  @ LZ77
+	.global Img_NosferatuBg_L
+Img_NosferatuBg_L:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_2B.lz"
 
-	.global gUnk_082322D0
-gUnk_082322D0:  @ LZ77
+	.global Img_NosferatuBg_M
+Img_NosferatuBg_M:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_NosferatuBg_2E.lz"
 
 	.global Pal_NosferatuBg
 Pal_NosferatuBg:
 	.incbin "graphics/Pal_NosferatuBg.gbapal"
 
-	.global gUnk_08232BD0
-gUnk_08232BD0:  @ LZ77
+	.global Tsa_NosferatuBg_00
+Tsa_NosferatuBg_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_00.lz"
 
-	.global gUnk_08232D00
-gUnk_08232D00:  @ LZ77
+	.global Tsa_NosferatuBg_01
+Tsa_NosferatuBg_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_01.lz"
 
-	.global gUnk_08232DAC
-gUnk_08232DAC:  @ LZ77
+	.global Tsa_NosferatuBg_02
+Tsa_NosferatuBg_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_02.lz"
 
-	.global gUnk_08232E5C
-gUnk_08232E5C:  @ LZ77
+	.global Tsa_NosferatuBg_03
+Tsa_NosferatuBg_03:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_03.lz"
 
-	.global gUnk_08232F14
-gUnk_08232F14:  @ LZ77
+	.global Tsa_NosferatuBg_04
+Tsa_NosferatuBg_04:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_04.lz"
 
-	.global gUnk_08232FD4
-gUnk_08232FD4:  @ LZ77
+	.global Tsa_NosferatuBg_05
+Tsa_NosferatuBg_05:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_05.lz"
 
-	.global gUnk_082330A0
-gUnk_082330A0:  @ LZ77
+	.global Tsa_NosferatuBg_06
+Tsa_NosferatuBg_06:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_06.lz"
 
-	.global gUnk_08233180
-gUnk_08233180:  @ LZ77
+	.global Tsa_NosferatuBg_07
+Tsa_NosferatuBg_07:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_07.lz"
 
-	.global gUnk_08233268
-gUnk_08233268:  @ LZ77
+	.global Tsa_NosferatuBg_08
+Tsa_NosferatuBg_08:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_08.lz"
 
-	.global gUnk_08233370
-gUnk_08233370:  @ LZ77
+	.global Tsa_NosferatuBg_09
+Tsa_NosferatuBg_09:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_09.lz"
 
-	.global gUnk_0823348C
-gUnk_0823348C:  @ LZ77
+	.global Tsa_NosferatuBg_0A
+Tsa_NosferatuBg_0A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_0A.lz"
 
-	.global gUnk_082335C8
-gUnk_082335C8:  @ LZ77
+	.global Tsa_NosferatuBg_0B
+Tsa_NosferatuBg_0B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_0B.lz"
 
-	.global gUnk_08233718
-gUnk_08233718:  @ LZ77
+	.global Tsa_NosferatuBg_0C
+Tsa_NosferatuBg_0C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_0C.lz"
 
-	.global gUnk_08233870
-gUnk_08233870:  @ LZ77
+	.global Tsa_NosferatuBg_0D
+Tsa_NosferatuBg_0D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_0D.lz"
 
-	.global gUnk_082339C8
-gUnk_082339C8:  @ LZ77
+	.global Tsa_NosferatuBg_0E
+Tsa_NosferatuBg_0E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_0E.lz"
 
-	.global gUnk_08233B1C
-gUnk_08233B1C:  @ LZ77
+	.global Tsa_NosferatuBg_0F
+Tsa_NosferatuBg_0F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_0F.lz"
 
-	.global gUnk_08233C6C
-gUnk_08233C6C:  @ LZ77
+	.global Tsa_NosferatuBg_10
+Tsa_NosferatuBg_10:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_10.lz"
 
-	.global gUnk_08233DBC
-gUnk_08233DBC:  @ LZ77
+	.global Tsa_NosferatuBg_11
+Tsa_NosferatuBg_11:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_11.lz"
 
-	.global gUnk_08233EF4
-gUnk_08233EF4:  @ LZ77
+	.global Tsa_NosferatuBg_12
+Tsa_NosferatuBg_12:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_12.lz"
 
-	.global gUnk_08234020
-gUnk_08234020:  @ LZ77
+	.global Tsa_NosferatuBg_13
+Tsa_NosferatuBg_13:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_13.lz"
 
-	.global gUnk_0823413C
-gUnk_0823413C:  @ LZ77
+	.global Tsa_NosferatuBg_14
+Tsa_NosferatuBg_14:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_14.lz"
 
-	.global gUnk_08234248
-gUnk_08234248:  @ LZ77
+	.global Tsa_NosferatuBg_15
+Tsa_NosferatuBg_15:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_15.lz"
 
-	.global gUnk_08234340
-gUnk_08234340:  @ LZ77
+	.global Tsa_NosferatuBg_16
+Tsa_NosferatuBg_16:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_16.lz"
 
-	.global gUnk_0823442C
-gUnk_0823442C:  @ LZ77
+	.global Tsa_NosferatuBg_17
+Tsa_NosferatuBg_17:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_17.lz"
 
-	.global gUnk_082344FC
-gUnk_082344FC:  @ LZ77
+	.global Tsa_NosferatuBg_18
+Tsa_NosferatuBg_18:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_18.lz"
 
-	.global gUnk_082345B8
-gUnk_082345B8:  @ LZ77
+	.global Tsa_NosferatuBg_19
+Tsa_NosferatuBg_19:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_19.lz"
 
-	.global gUnk_0823466C
-gUnk_0823466C:  @ LZ77
+	.global Tsa_NosferatuBg_1A
+Tsa_NosferatuBg_1A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_1A.lz"
 
-	.global gUnk_0823471C
-gUnk_0823471C:  @ LZ77
+	.global Tsa_NosferatuBg_1B
+Tsa_NosferatuBg_1B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_1B.lz"
 
-	.global gUnk_082347C8
-gUnk_082347C8:  @ LZ77
+	.global Tsa_NosferatuBg_1C
+Tsa_NosferatuBg_1C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_1C.lz"
 
-	.global gUnk_08234870
-gUnk_08234870:  @ LZ77
+	.global Tsa_NosferatuBg_1D
+Tsa_NosferatuBg_1D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_1D.lz"
 
-	.global gUnk_08234924
-gUnk_08234924:  @ LZ77
+	.global Tsa_NosferatuBg_1E
+Tsa_NosferatuBg_1E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_1E.lz"
 
-	.global gUnk_082349E4
-gUnk_082349E4:  @ LZ77
+	.global Tsa_NosferatuBg_1F
+Tsa_NosferatuBg_1F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_1F.lz"
 
-	.global gUnk_08234AB0
-gUnk_08234AB0:  @ LZ77
+	.global Tsa_NosferatuBg_20
+Tsa_NosferatuBg_20:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_20.lz"
 
-	.global gUnk_08234B78
-gUnk_08234B78:  @ LZ77
+	.global Tsa_NosferatuBg_21
+Tsa_NosferatuBg_21:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_21.lz"
 
-	.global gUnk_08234C40
-gUnk_08234C40:  @ LZ77
+	.global Tsa_NosferatuBg_22
+Tsa_NosferatuBg_22:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_22.lz"
 
-	.global gUnk_08234D14
-gUnk_08234D14:  @ LZ77
+	.global Tsa_NosferatuBg_23
+Tsa_NosferatuBg_23:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_23.lz"
 
-	.global gUnk_08234DF0
-gUnk_08234DF0:  @ LZ77
+	.global Tsa_NosferatuBg_24
+Tsa_NosferatuBg_24:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_24.lz"
 
-	.global gUnk_08234ED8
-gUnk_08234ED8:  @ LZ77
+	.global Tsa_NosferatuBg_25
+Tsa_NosferatuBg_25:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_25.lz"
 
-	.global gUnk_08234FCC
-gUnk_08234FCC:  @ LZ77
+	.global Tsa_NosferatuBg_26
+Tsa_NosferatuBg_26:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_26.lz"
 
-	.global gUnk_082350D4
-gUnk_082350D4:  @ LZ77
+	.global Tsa_NosferatuBg_27
+Tsa_NosferatuBg_27:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_27.lz"
 
-	.global gUnk_082351DC
-gUnk_082351DC:  @ LZ77
+	.global Tsa_NosferatuBg_28
+Tsa_NosferatuBg_28:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_28.lz"
 
-	.global gUnk_08235300
-gUnk_08235300:  @ LZ77
+	.global Tsa_NosferatuBg_29
+Tsa_NosferatuBg_29:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_29.lz"
 
-	.global gUnk_08235420
-gUnk_08235420:  @ LZ77
+	.global Tsa_NosferatuBg_2A
+Tsa_NosferatuBg_2A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_2A.lz"
 
-	.global gUnk_0823553C
-gUnk_0823553C:  @ LZ77
+	.global Tsa_NosferatuBg_2B
+Tsa_NosferatuBg_2B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_2B.lz"
 
-	.global gUnk_0823564C
-gUnk_0823564C:  @ LZ77
+	.global Tsa_NosferatuBg_2C
+Tsa_NosferatuBg_2C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_2C.lz"
 
-	.global gUnk_08235758
-gUnk_08235758:  @ LZ77
+	.global Tsa_NosferatuBg_2D
+Tsa_NosferatuBg_2D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_2D.lz"
 
-	.global gUnk_08235858
-gUnk_08235858:  @ LZ77
+	.global Tsa_NosferatuBg_2E
+Tsa_NosferatuBg_2E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_2E.lz"
 
-	.global gUnk_08235948
-gUnk_08235948:  @ LZ77
+	.global Tsa_NosferatuBg_2F
+Tsa_NosferatuBg_2F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_2F.lz"
 
-	.global gUnk_08235A24
-gUnk_08235A24:  @ LZ77
+	.global Tsa_NosferatuBg_30
+Tsa_NosferatuBg_30:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_30.lz"
 
-	.global gUnk_08235AF0
-gUnk_08235AF0:  @ LZ77
+	.global Tsa_NosferatuBg_31
+Tsa_NosferatuBg_31:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_31.lz"
 
-	.global gUnk_08235BA8
-gUnk_08235BA8:  @ LZ77
+	.global Tsa_NosferatuBg_32
+Tsa_NosferatuBg_32:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_NosferatuBg_32.lz"
 
-	.global gUnk_08235C54
-gUnk_08235C54:  @ LZ77
+	.global Img_DivineBg3_00
+Img_DivineBg3_00:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_00.lz"
 
-	.global gUnk_08236208
-gUnk_08236208:  @ LZ77
+	.global Img_DivineBg3_02
+Img_DivineBg3_02:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_02.lz"
 
-	.global gUnk_082368D0
-gUnk_082368D0:  @ LZ77
+	.global Img_DivineBg3_03
+Img_DivineBg3_03:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_03.lz"
 
-	.global gUnk_08236F10
-gUnk_08236F10:  @ LZ77
+	.global Img_DivineBg3_04
+Img_DivineBg3_04:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_04.lz"
 
-	.global gUnk_08237518
-gUnk_08237518:  @ LZ77
+	.global Img_DivineBg3_05
+Img_DivineBg3_05:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_05.lz"
 
-	.global gUnk_08237B78
-gUnk_08237B78:  @ LZ77
+	.global Img_DivineBg3_06
+Img_DivineBg3_06:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_06.lz"
 
-	.global gUnk_082381E8
-gUnk_082381E8:  @ LZ77
+	.global Img_DivineBg3_07
+Img_DivineBg3_07:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_07.lz"
 
-	.global gUnk_08238824
-gUnk_08238824:  @ LZ77
+	.global Img_DivineBg3_08
+Img_DivineBg3_08:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_08.lz"
 
-	.global gUnk_08238E6C
-gUnk_08238E6C:  @ LZ77
+	.global Img_DivineBg3_09
+Img_DivineBg3_09:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_09.lz"
 
-	.global gUnk_08239570
-gUnk_08239570:  @ LZ77
+	.global Img_DivineBg3_0A
+Img_DivineBg3_0A:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_0A.lz"
 
-	.global gUnk_08239D28
-gUnk_08239D28:  @ LZ77
+	.global Img_DivineBg3_0B
+Img_DivineBg3_0B:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_0B.lz"
 
-	.global gUnk_0823A51C
-gUnk_0823A51C:  @ LZ77
+	.global Img_DivineBg3_0C
+Img_DivineBg3_0C:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_0C.lz"
 
-	.global gUnk_0823ACF4
-gUnk_0823ACF4:  @ LZ77
+	.global Img_DivineBg3_0D
+Img_DivineBg3_0D:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_0D.lz"
 
-	.global gUnk_0823B510
-gUnk_0823B510:  @ LZ77
+	.global Img_DivineBg3_0E
+Img_DivineBg3_0E:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_0E.lz"
 
-	.global gUnk_0823BC90
-gUnk_0823BC90:  @ LZ77
+	.global Img_DivineBg3_0F
+Img_DivineBg3_0F:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_0F.lz"
 
-	.global gUnk_0823C424
-gUnk_0823C424:  @ LZ77
+	.global Img_DivineBg3_10
+Img_DivineBg3_10:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_10.lz"
 
-	.global gUnk_0823CB58
-gUnk_0823CB58:  @ LZ77
+	.global Img_DivineBg3_11
+Img_DivineBg3_11:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_11.lz"
 
-	.global gUnk_0823D604
-gUnk_0823D604:  @ LZ77
+	.global Img_DivineBg3_13
+Img_DivineBg3_13:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg3_13.lz"
 
-	.global gUnk_0823DB64
-gUnk_0823DB64:  @ LZ77
+	.global Img_DivineBg_00
+Img_DivineBg_00:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_DivineBg_00.lz"
 
 	.global Pal_DivineBg3
@@ -777,180 +777,180 @@ Pal_DivineBg3:
 Pal_DivineBg:
 	.incbin "graphics/Pal_DivineBg.gbapal"
 
-	.global gUnk_0823E314
-gUnk_0823E314:  @ LZ77
+	.global Tsa_DivineBg3_00
+Tsa_DivineBg3_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_00.lz"
 
-	.global gUnk_0823E4A8
-gUnk_0823E4A8:  @ LZ77
+	.global Tsa_DivineBg3_01
+Tsa_DivineBg3_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_01.lz"
 
-	.global gUnk_0823E6AC
-gUnk_0823E6AC:  @ LZ77
+	.global Tsa_DivineBg3_02
+Tsa_DivineBg3_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_02.lz"
 
-	.global gUnk_0823E97C
-gUnk_0823E97C:  @ LZ77
+	.global Tsa_DivineBg3_03
+Tsa_DivineBg3_03:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_03.lz"
 
-	.global gUnk_0823EC4C
-gUnk_0823EC4C:  @ LZ77
+	.global Tsa_DivineBg3_04
+Tsa_DivineBg3_04:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_04.lz"
 
-	.global gUnk_0823EEFC
-gUnk_0823EEFC:  @ LZ77
+	.global Tsa_DivineBg3_05
+Tsa_DivineBg3_05:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_05.lz"
 
-	.global gUnk_0823F1B0
-gUnk_0823F1B0:  @ LZ77
+	.global Tsa_DivineBg3_06
+Tsa_DivineBg3_06:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_06.lz"
 
-	.global gUnk_0823F43C
-gUnk_0823F43C:  @ LZ77
+	.global Tsa_DivineBg3_07
+Tsa_DivineBg3_07:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_07.lz"
 
-	.global gUnk_0823F6C0
-gUnk_0823F6C0:  @ LZ77
+	.global Tsa_DivineBg3_08
+Tsa_DivineBg3_08:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_08.lz"
 
-	.global gUnk_0823F934
-gUnk_0823F934:  @ LZ77
+	.global Tsa_DivineBg3_09
+Tsa_DivineBg3_09:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_09.lz"
 
-	.global gUnk_0823FBC8
-gUnk_0823FBC8:  @ LZ77
+	.global Tsa_DivineBg3_0A
+Tsa_DivineBg3_0A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_0A.lz"
 
-	.global gUnk_0823FE50
-gUnk_0823FE50:  @ LZ77
+	.global Tsa_DivineBg3_0B
+Tsa_DivineBg3_0B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_0B.lz"
 
-	.global gUnk_082400EC
-gUnk_082400EC:  @ LZ77
+	.global Tsa_DivineBg3_0C
+Tsa_DivineBg3_0C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_0C.lz"
 
-	.global gUnk_08240374
-gUnk_08240374:  @ LZ77
+	.global Tsa_DivineBg3_0D
+Tsa_DivineBg3_0D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_0D.lz"
 
-	.global gUnk_082405F0
-gUnk_082405F0:  @ LZ77
+	.global Tsa_DivineBg3_0E
+Tsa_DivineBg3_0E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_0E.lz"
 
-	.global gUnk_08240820
-gUnk_08240820:  @ LZ77
+	.global Tsa_DivineBg3_0F
+Tsa_DivineBg3_0F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_0F.lz"
 
-	.global gUnk_08240A70
-gUnk_08240A70:  @ LZ77
+	.global Tsa_DivineBg3_10
+Tsa_DivineBg3_10:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_10.lz"
 
-	.global gUnk_08240CA0
-gUnk_08240CA0:  @ LZ77
+	.global Tsa_DivineBg3_11
+Tsa_DivineBg3_11:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_11.lz"
 
-	.global gUnk_08240E98
-gUnk_08240E98:  @ LZ77
+	.global Tsa_DivineBg3_12
+Tsa_DivineBg3_12:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_12.lz"
 
-	.global gUnk_0824107C
-gUnk_0824107C:  @ LZ77
+	.global Tsa_DivineBg3_13
+Tsa_DivineBg3_13:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_13.lz"
 
-	.global gUnk_08241218
-gUnk_08241218:  @ LZ77
+	.global Tsa_DivineBg3_14
+Tsa_DivineBg3_14:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg3_14.lz"
 
-	.global gUnk_08241340
-gUnk_08241340:  @ LZ77
+	.global Tsa_DivineBg_00
+Tsa_DivineBg_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_00.lz"
 
-	.global gUnk_082413E0
-gUnk_082413E0:  @ LZ77
+	.global Tsa_DivineBg_01
+Tsa_DivineBg_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_01.lz"
 
-	.global gUnk_08241488
-gUnk_08241488:  @ LZ77
+	.global Tsa_DivineBg_02
+Tsa_DivineBg_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_02.lz"
 
-	.global gUnk_08241530
-gUnk_08241530:  @ LZ77
+	.global Tsa_DivineBg_03
+Tsa_DivineBg_03:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_03.lz"
 
-	.global gUnk_082415E0
-gUnk_082415E0:  @ LZ77
+	.global Tsa_DivineBg_04
+Tsa_DivineBg_04:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_04.lz"
 
-	.global gUnk_08241698
-gUnk_08241698:  @ LZ77
+	.global Tsa_DivineBg_05
+Tsa_DivineBg_05:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_05.lz"
 
-	.global gUnk_08241764
-gUnk_08241764:  @ LZ77
+	.global Tsa_DivineBg_06
+Tsa_DivineBg_06:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_06.lz"
 
-	.global gUnk_08241830
-gUnk_08241830:  @ LZ77
+	.global Tsa_DivineBg_07
+Tsa_DivineBg_07:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_07.lz"
 
-	.global gUnk_08241904
-gUnk_08241904:  @ LZ77
+	.global Tsa_DivineBg_08
+Tsa_DivineBg_08:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_08.lz"
 
-	.global gUnk_082419DC
-gUnk_082419DC:  @ LZ77
+	.global Tsa_DivineBg_09
+Tsa_DivineBg_09:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_09.lz"
 
-	.global gUnk_08241AB8
-gUnk_08241AB8:  @ LZ77
+	.global Tsa_DivineBg_0A
+Tsa_DivineBg_0A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_0A.lz"
 
-	.global gUnk_08241B94
-gUnk_08241B94:  @ LZ77
+	.global Tsa_DivineBg_0B
+Tsa_DivineBg_0B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_0B.lz"
 
-	.global gUnk_08241C78
-gUnk_08241C78:  @ LZ77
+	.global Tsa_DivineBg_0C
+Tsa_DivineBg_0C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_0C.lz"
 
-	.global gUnk_08241D2C
-gUnk_08241D2C:  @ LZ77
+	.global Tsa_DivineBg_0D
+Tsa_DivineBg_0D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_0D.lz"
 
-	.global gUnk_08241DC8
-gUnk_08241DC8:  @ LZ77
+	.global Tsa_DivineBg_0E
+Tsa_DivineBg_0E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_0E.lz"
 
-	.global gUnk_08241E64
-gUnk_08241E64:  @ LZ77
+	.global Tsa_DivineBg_0F
+Tsa_DivineBg_0F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_0F.lz"
 
-	.global gUnk_08241F00
-gUnk_08241F00:  @ LZ77
+	.global Tsa_DivineBg_10
+Tsa_DivineBg_10:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_10.lz"
 
-	.global gUnk_08241F9C
-gUnk_08241F9C:  @ LZ77
+	.global Tsa_DivineBg_11
+Tsa_DivineBg_11:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_11.lz"
 
-	.global gUnk_08242038
-gUnk_08242038:  @ LZ77
+	.global Tsa_DivineBg_12
+Tsa_DivineBg_12:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_12.lz"
 
-	.global gUnk_082420D4
-gUnk_082420D4:  @ LZ77
+	.global Tsa_DivineBg_13
+Tsa_DivineBg_13:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg_13.lz"
 
-	.global gUnk_08242170
-gUnk_08242170:  @ LZ77
+	.global Tsa_DivineBg2_00
+Tsa_DivineBg2_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg2_00.lz"
 
-	.global gUnk_0824220C
-gUnk_0824220C:  @ LZ77
+	.global Tsa_DivineBg2_01
+Tsa_DivineBg2_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg2_01.lz"
 
-	.global gUnk_082422A8
-gUnk_082422A8:  @ LZ77
+	.global Tsa_DivineBg2_02
+Tsa_DivineBg2_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_DivineBg2_02.lz"
 
 	.global Img_DivineSprites
@@ -961,56 +961,56 @@ Img_DivineSprites:  @ LZ77
 Pal_DivineSprites:
 	.incbin "graphics/Pal_DivineSprites.gbapal"
 
-	.global gUnk_082424D4
-gUnk_082424D4:  @ LZ77
+	.global Img_EclipseBg_A
+Img_EclipseBg_A:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_00.lz"
 
-	.global gUnk_0824281C
-gUnk_0824281C:  @ LZ77
+	.global Img_EclipseBg_B
+Img_EclipseBg_B:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_01.lz"
 
-	.global gUnk_082430F0
-gUnk_082430F0:  @ LZ77
+	.global Img_EclipseBg_C
+Img_EclipseBg_C:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_0E.lz"
 
-	.global gUnk_0824412C
-gUnk_0824412C:  @ LZ77
+	.global Img_EclipseBg_D
+Img_EclipseBg_D:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_11.lz"
 
-	.global gUnk_08244D98
-gUnk_08244D98:  @ LZ77
+	.global Img_EclipseBg_E
+Img_EclipseBg_E:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_12.lz"
 
-	.global gUnk_082459B4
-gUnk_082459B4:  @ LZ77
+	.global Img_EclipseBg_F
+Img_EclipseBg_F:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_13.lz"
 
-	.global gUnk_0824650C
-gUnk_0824650C:  @ LZ77
+	.global Img_EclipseBg_G
+Img_EclipseBg_G:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_14.lz"
 
-	.global gUnk_08247060
-gUnk_08247060:  @ LZ77
+	.global Img_EclipseBg_H
+Img_EclipseBg_H:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_15.lz"
 
-	.global gUnk_08247B10
-gUnk_08247B10:  @ LZ77
+	.global Img_EclipseBg_I
+Img_EclipseBg_I:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_16.lz"
 
-	.global gUnk_08248538
-gUnk_08248538:  @ LZ77
+	.global Img_EclipseBg_J
+Img_EclipseBg_J:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_17.lz"
 
-	.global gUnk_08248E34
-gUnk_08248E34:  @ LZ77
+	.global Img_EclipseBg_K
+Img_EclipseBg_K:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_18.lz"
 
-	.global gUnk_08249700
-gUnk_08249700:  @ LZ77
+	.global Img_EclipseBg_L
+Img_EclipseBg_L:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_19.lz"
 
-	.global gUnk_08249F80
-gUnk_08249F80:  @ LZ77
+	.global Img_EclipseBg_M
+Img_EclipseBg_M:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EclipseBg_1A.lz"
 
 	.global Pal_EclipseBg_B
@@ -1021,112 +1021,112 @@ Pal_EclipseBg_B:
 Pal_EclipseBg_C:
 	.incbin "graphics/Pal_EclipseBg_C.gbapal"
 
-	.global gUnk_0824A754
-gUnk_0824A754:  @ LZ77
+	.global Tsa_EclipseBg_A
+Tsa_EclipseBg_A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_00.lz"
 
-	.global gUnk_0824A8F8
-gUnk_0824A8F8:  @ LZ77
+	.global Tsa_EclipseBg_B
+Tsa_EclipseBg_B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_01.lz"
 
-	.global gUnk_0824A998
-gUnk_0824A998:  @ LZ77
+	.global Tsa_EclipseBg_C
+Tsa_EclipseBg_C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_02.lz"
 
-	.global gUnk_0824AA38
-gUnk_0824AA38:  @ LZ77
+	.global Tsa_EclipseBg_D
+Tsa_EclipseBg_D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_03.lz"
 
-	.global gUnk_0824AAEC
-gUnk_0824AAEC:  @ LZ77
+	.global Tsa_EclipseBg_E
+Tsa_EclipseBg_E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_04.lz"
 
-	.global gUnk_0824ABA0
-gUnk_0824ABA0:  @ LZ77
+	.global Tsa_EclipseBg_F
+Tsa_EclipseBg_F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_05.lz"
 
-	.global gUnk_0824AC54
-gUnk_0824AC54:  @ LZ77
+	.global Tsa_EclipseBg_G
+Tsa_EclipseBg_G:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_06.lz"
 
-	.global gUnk_0824AD30
-gUnk_0824AD30:  @ LZ77
+	.global Tsa_EclipseBg_H
+Tsa_EclipseBg_H:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_07.lz"
 
-	.global gUnk_0824AE0C
-gUnk_0824AE0C:  @ LZ77
+	.global Tsa_EclipseBg_I
+Tsa_EclipseBg_I:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_08.lz"
 
-	.global gUnk_0824AF20
-gUnk_0824AF20:  @ LZ77
+	.global Tsa_EclipseBg_J
+Tsa_EclipseBg_J:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_09.lz"
 
-	.global gUnk_0824B034
-gUnk_0824B034:  @ LZ77
+	.global Tsa_EclipseBg_K
+Tsa_EclipseBg_K:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_0A.lz"
 
-	.global gUnk_0824B148
-gUnk_0824B148:  @ LZ77
+	.global Tsa_EclipseBg_L
+Tsa_EclipseBg_L:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_0B.lz"
 
-	.global gUnk_0824B25C
-gUnk_0824B25C:  @ LZ77
+	.global Tsa_EclipseBg_M
+Tsa_EclipseBg_M:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_0C.lz"
 
-	.global gUnk_0824B370
-gUnk_0824B370:  @ LZ77
+	.global Tsa_EclipseBg_N
+Tsa_EclipseBg_N:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_0D.lz"
 
-	.global gUnk_0824B47C
-gUnk_0824B47C:  @ LZ77
+	.global Tsa_EclipseBg_O
+Tsa_EclipseBg_O:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_0E.lz"
 
-	.global gUnk_0824B554
-gUnk_0824B554:  @ LZ77
+	.global Tsa_EclipseBg_P
+Tsa_EclipseBg_P:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_0F.lz"
 
-	.global gUnk_0824B664
-gUnk_0824B664:  @ LZ77
+	.global Tsa_EclipseBg_Q
+Tsa_EclipseBg_Q:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_10.lz"
 
-	.global gUnk_0824B7CC
-gUnk_0824B7CC:  @ LZ77
+	.global Tsa_EclipseBg_R
+Tsa_EclipseBg_R:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_11.lz"
 
-	.global gUnk_0824B990
-gUnk_0824B990:  @ LZ77
+	.global Tsa_EclipseBg_S
+Tsa_EclipseBg_S:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_12.lz"
 
-	.global gUnk_0824BB54
-gUnk_0824BB54:  @ LZ77
+	.global Tsa_EclipseBg_T
+Tsa_EclipseBg_T:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_13.lz"
 
-	.global gUnk_0824BD10
-gUnk_0824BD10:  @ LZ77
+	.global Tsa_EclipseBg_U
+Tsa_EclipseBg_U:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_14.lz"
 
-	.global gUnk_0824BEC0
-gUnk_0824BEC0:  @ LZ77
+	.global Tsa_EclipseBg_V
+Tsa_EclipseBg_V:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_15.lz"
 
-	.global gUnk_0824C070
-gUnk_0824C070:  @ LZ77
+	.global Tsa_EclipseBg_W
+Tsa_EclipseBg_W:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_16.lz"
 
-	.global gUnk_0824C220
-gUnk_0824C220:  @ LZ77
+	.global Tsa_EclipseBg_X
+Tsa_EclipseBg_X:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_17.lz"
 
-	.global gUnk_0824C3C4
-gUnk_0824C3C4:  @ LZ77
+	.global Tsa_EclipseBg_Y
+Tsa_EclipseBg_Y:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_18.lz"
 
-	.global gUnk_0824C55C
-gUnk_0824C55C:  @ LZ77
+	.global Tsa_EclipseBg_Z
+Tsa_EclipseBg_Z:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_19.lz"
 
-	.global gUnk_0824C6EC
-gUnk_0824C6EC:  @ LZ77
+	.global Tsa_EclipseBg_AA
+Tsa_EclipseBg_AA:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EclipseBg_1A.lz"
 
 	.global Img_EclipseSprites_Swirl
@@ -1157,20 +1157,20 @@ Pal_EfxFenrirBGCOL:
 Tsa_FenrirBg_Sigils:  @ LZ77
 	.incbin "build/graphics/Tsa_FenrirBg_Sigils.lz"
 
-	.global gUnk_0824E134
-gUnk_0824E134:  @ LZ77
+	.global Img_FenrirBg_00
+Img_FenrirBg_00:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_FenrirBg_00.lz"
 
-	.global gUnk_0824F34C
-gUnk_0824F34C:  @ LZ77
+	.global Img_FenrirBg_30
+Img_FenrirBg_30:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_FenrirBg_30.lz"
 
-	.global gUnk_0825069C
-gUnk_0825069C:  @ LZ77
+	.global Img_FenrirBg_31
+Img_FenrirBg_31:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_FenrirBg_31.lz"
 
-	.global gUnk_08251518
-gUnk_08251518:  @ LZ77
+	.global Img_FenrirBg_32
+Img_FenrirBg_32:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_FenrirBg_32.lz"
 
 	.global Pal_FenrirBg
@@ -1181,208 +1181,208 @@ Pal_FenrirBg:
 Pal_EfxFenrirBG2_B:
 	.incbin "graphics/Pal_EfxFenrirBG2_B.gbapal"
 
-	.global gUnk_08252120
-gUnk_08252120:  @ LZ77
+	.global Tsa_FenrirBg_00
+Tsa_FenrirBg_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_00.lz"
 
-	.global gUnk_082521DC
-gUnk_082521DC:  @ LZ77
+	.global Tsa_FenrirBg_01
+Tsa_FenrirBg_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_01.lz"
 
-	.global gUnk_08252298
-gUnk_08252298:  @ LZ77
+	.global Tsa_FenrirBg_02
+Tsa_FenrirBg_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_02.lz"
 
-	.global gUnk_08252354
-gUnk_08252354:  @ LZ77
+	.global Tsa_FenrirBg_03
+Tsa_FenrirBg_03:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_03.lz"
 
-	.global gUnk_08252410
-gUnk_08252410:  @ LZ77
+	.global Tsa_FenrirBg_04
+Tsa_FenrirBg_04:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_04.lz"
 
-	.global gUnk_082524CC
-gUnk_082524CC:  @ LZ77
+	.global Tsa_FenrirBg_05
+Tsa_FenrirBg_05:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_05.lz"
 
-	.global gUnk_08252588
-gUnk_08252588:  @ LZ77
+	.global Tsa_FenrirBg_06
+Tsa_FenrirBg_06:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_06.lz"
 
-	.global gUnk_0825268C
-gUnk_0825268C:  @ LZ77
+	.global Tsa_FenrirBg_07
+Tsa_FenrirBg_07:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_07.lz"
 
-	.global gUnk_08252790
-gUnk_08252790:  @ LZ77
+	.global Tsa_FenrirBg_08
+Tsa_FenrirBg_08:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_08.lz"
 
-	.global gUnk_08252894
-gUnk_08252894:  @ LZ77
+	.global Tsa_FenrirBg_09
+Tsa_FenrirBg_09:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_09.lz"
 
-	.global gUnk_08252998
-gUnk_08252998:  @ LZ77
+	.global Tsa_FenrirBg_0A
+Tsa_FenrirBg_0A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_0A.lz"
 
-	.global gUnk_08252A9C
-gUnk_08252A9C:  @ LZ77
+	.global Tsa_FenrirBg_0B
+Tsa_FenrirBg_0B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_0B.lz"
 
-	.global gUnk_08252BA0
-gUnk_08252BA0:  @ LZ77
+	.global Tsa_FenrirBg_0C
+Tsa_FenrirBg_0C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_0C.lz"
 
-	.global gUnk_08252CE0
-gUnk_08252CE0:  @ LZ77
+	.global Tsa_FenrirBg_0D
+Tsa_FenrirBg_0D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_0D.lz"
 
-	.global gUnk_08252E24
-gUnk_08252E24:  @ LZ77
+	.global Tsa_FenrirBg_0E
+Tsa_FenrirBg_0E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_0E.lz"
 
-	.global gUnk_08252F68
-gUnk_08252F68:  @ LZ77
+	.global Tsa_FenrirBg_0F
+Tsa_FenrirBg_0F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_0F.lz"
 
-	.global gUnk_082530AC
-gUnk_082530AC:  @ LZ77
+	.global Tsa_FenrirBg_10
+Tsa_FenrirBg_10:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_10.lz"
 
-	.global gUnk_082531F0
-gUnk_082531F0:  @ LZ77
+	.global Tsa_FenrirBg_11
+Tsa_FenrirBg_11:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_11.lz"
 
-	.global gUnk_08253334
-gUnk_08253334:  @ LZ77
+	.global Tsa_FenrirBg_12
+Tsa_FenrirBg_12:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_12.lz"
 
-	.global gUnk_082534B4
-gUnk_082534B4:  @ LZ77
+	.global Tsa_FenrirBg_13
+Tsa_FenrirBg_13:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_13.lz"
 
-	.global gUnk_08253638
-gUnk_08253638:  @ LZ77
+	.global Tsa_FenrirBg_14
+Tsa_FenrirBg_14:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_14.lz"
 
-	.global gUnk_082537BC
-gUnk_082537BC:  @ LZ77
+	.global Tsa_FenrirBg_15
+Tsa_FenrirBg_15:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_15.lz"
 
-	.global gUnk_0825391C
-gUnk_0825391C:  @ LZ77
+	.global Tsa_FenrirBg_16
+Tsa_FenrirBg_16:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_16.lz"
 
-	.global gUnk_08253A7C
-gUnk_08253A7C:  @ LZ77
+	.global Tsa_FenrirBg_17
+Tsa_FenrirBg_17:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_17.lz"
 
-	.global gUnk_08253BDC
-gUnk_08253BDC:  @ LZ77
+	.global Tsa_FenrirBg_18
+Tsa_FenrirBg_18:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_18.lz"
 
-	.global gUnk_08253D80
-gUnk_08253D80:  @ LZ77
+	.global Tsa_FenrirBg_19
+Tsa_FenrirBg_19:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_19.lz"
 
-	.global gUnk_08253F24
-gUnk_08253F24:  @ LZ77
+	.global Tsa_FenrirBg_1A
+Tsa_FenrirBg_1A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_1A.lz"
 
-	.global gUnk_082540C8
-gUnk_082540C8:  @ LZ77
+	.global Tsa_FenrirBg_1B
+Tsa_FenrirBg_1B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_1B.lz"
 
-	.global gUnk_08254238
-gUnk_08254238:  @ LZ77
+	.global Tsa_FenrirBg_1C
+Tsa_FenrirBg_1C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_1C.lz"
 
-	.global gUnk_082543A8
-gUnk_082543A8:  @ LZ77
+	.global Tsa_FenrirBg_1D
+Tsa_FenrirBg_1D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_1D.lz"
 
-	.global gUnk_08254518
-gUnk_08254518:  @ LZ77
+	.global Tsa_FenrirBg_1E
+Tsa_FenrirBg_1E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_1E.lz"
 
-	.global gUnk_082546BC
-gUnk_082546BC:  @ LZ77
+	.global Tsa_FenrirBg_1F
+Tsa_FenrirBg_1F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_1F.lz"
 
-	.global gUnk_08254860
-gUnk_08254860:  @ LZ77
+	.global Tsa_FenrirBg_20
+Tsa_FenrirBg_20:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_20.lz"
 
-	.global gUnk_08254A04
-gUnk_08254A04:  @ LZ77
+	.global Tsa_FenrirBg_21
+Tsa_FenrirBg_21:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_21.lz"
 
-	.global gUnk_08254B78
-gUnk_08254B78:  @ LZ77
+	.global Tsa_FenrirBg_22
+Tsa_FenrirBg_22:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_22.lz"
 
-	.global gUnk_08254CEC
-gUnk_08254CEC:  @ LZ77
+	.global Tsa_FenrirBg_23
+Tsa_FenrirBg_23:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_23.lz"
 
-	.global gUnk_08254E60
-gUnk_08254E60:  @ LZ77
+	.global Tsa_FenrirBg_24
+Tsa_FenrirBg_24:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_24.lz"
 
-	.global gUnk_08255010
-gUnk_08255010:  @ LZ77
+	.global Tsa_FenrirBg_25
+Tsa_FenrirBg_25:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_25.lz"
 
-	.global gUnk_082551C0
-gUnk_082551C0:  @ LZ77
+	.global Tsa_FenrirBg_26
+Tsa_FenrirBg_26:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_26.lz"
 
-	.global gUnk_08255370
-gUnk_08255370:  @ LZ77
+	.global Tsa_FenrirBg_27
+Tsa_FenrirBg_27:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_27.lz"
 
-	.global gUnk_082554E4
-gUnk_082554E4:  @ LZ77
+	.global Tsa_FenrirBg_28
+Tsa_FenrirBg_28:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_28.lz"
 
-	.global gUnk_08255658
-gUnk_08255658:  @ LZ77
+	.global Tsa_FenrirBg_29
+Tsa_FenrirBg_29:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_29.lz"
 
-	.global gUnk_082557CC
-gUnk_082557CC:  @ LZ77
+	.global Tsa_FenrirBg_2A
+Tsa_FenrirBg_2A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_2A.lz"
 
-	.global gUnk_08255980
-gUnk_08255980:  @ LZ77
+	.global Tsa_FenrirBg_2B
+Tsa_FenrirBg_2B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_2B.lz"
 
-	.global gUnk_08255B34
-gUnk_08255B34:  @ LZ77
+	.global Tsa_FenrirBg_2C
+Tsa_FenrirBg_2C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_2C.lz"
 
-	.global gUnk_08255CE8
-gUnk_08255CE8:  @ LZ77
+	.global Tsa_FenrirBg_2D
+Tsa_FenrirBg_2D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_2D.lz"
 
-	.global gUnk_08255E60
-gUnk_08255E60:  @ LZ77
+	.global Tsa_FenrirBg_2E
+Tsa_FenrirBg_2E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_2E.lz"
 
-	.global gUnk_08255FD8
-gUnk_08255FD8:  @ LZ77
+	.global Tsa_FenrirBg_2F
+Tsa_FenrirBg_2F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_2F.lz"
 
-	.global gUnk_08256150
-gUnk_08256150:  @ LZ77
+	.global Tsa_FenrirBg_30
+Tsa_FenrirBg_30:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_30.lz"
 
-	.global gUnk_082563A8
-gUnk_082563A8:  @ LZ77
+	.global Tsa_FenrirBg_31
+Tsa_FenrirBg_31:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_31.lz"
 
-	.global gUnk_082565B0
-gUnk_082565B0:  @ LZ77
+	.global Tsa_FenrirBg_32
+Tsa_FenrirBg_32:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_FenrirBg_32.lz"
 
 	.global Img_FenrirSprites
@@ -1397,10 +1397,10 @@ Pal_FenrirSprites_A:
 Pal_FenrirSprites_B:
 	.incbin "graphics/Pal_FenrirSprites_B.gbapal"
 
-	.global gUnk_082572E4
-gUnk_082572E4:  @ LZ77
+	.global Img_PurgeBg_30
+Img_PurgeBg_30:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_PurgeBg_30.lz"
 
-	.global gUnk_08257840
-gUnk_08257840:  @ LZ77
+	.global Img_PurgeBg_32
+Img_PurgeBg_32:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_PurgeBg_32.lz"

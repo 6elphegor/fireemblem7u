@@ -1,58 +1,58 @@
 #include "gbafe.h"
 
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
-extern const u8 gUnk_0829E770[];
-extern const u8 gUnk_0829E810[];
-extern const u8 gUnk_0829E8B8[];
-extern const u8 gUnk_0829E960[];
-extern const u8 gUnk_0829EA0C[];
-extern const u8 gUnk_0829EAC4[];
-extern const u8 gUnk_0829EB7C[];
-extern const u8 gUnk_0829EC2C[];
-extern const u8 gUnk_0829ECD8[];
-extern const u8 gUnk_0829ED80[];
-extern const u8 gUnk_0829EE20[];
-extern const u8 gUnk_0829EEBC[];
-extern const u8 gUnk_0829EF54[];
-extern const u8 gUnk_0829F06C[];
-extern const u8 gUnk_0829F1A8[];
-extern const u8 gUnk_0829F2F8[];
-extern const u8 gUnk_0829F434[];
-extern const u8 gUnk_0829F538[];
-extern const u8 gUnk_0829F5DC[];
-extern const u8 gUnk_0829F678[];
-extern const u8 gUnk_0829F714[];
-extern const u8 gUnk_0829F7B0[];
-extern const u8 gUnk_0829F84C[];
-extern const u8 gUnk_0829F8E8[];
-extern const u8 gUnk_0829F9A4[];
-extern const u8 gUnk_0829FA94[];
-extern const u8 gUnk_0829FB98[];
-extern const u8 gUnk_0829FC9C[];
-extern const u8 gUnk_0829FDA0[];
-extern const u8 gUnk_082A11B4[];
-extern const u8 gUnk_082A26E0[];
-extern const u8 gUnk_082A3C5C[];
-extern const u8 gUnk_082A51E4[];
-extern const u8 gUnk_082A65D4[];
-extern const u8 gUnk_082A78E0[];
-extern const u8 gUnk_082A8C54[];
-extern const u8 gUnk_082AA140[];
-extern const u8 gUnk_082AB4EC[];
-extern const u8 gUnk_082AC89C[];
-extern const u8 gUnk_082ADBB8[];
-extern const u8 gUnk_082AEF80[];
-extern const u8 gUnk_082AF1F8[];
-extern const u8 gUnk_082AF470[];
-extern const u8 gUnk_082AF6E8[];
-extern const u8 gUnk_082AF960[];
-extern const u8 gUnk_082AFBD0[];
-extern const u8 gUnk_082AFE2C[];
-extern const u8 gUnk_082B00A4[];
-extern const u8 gUnk_082B031C[];
-extern const u8 gUnk_082B0594[];
-extern const u8 gUnk_082B080C[];
-extern const u8 gUnk_082B0A84[];
+extern const u8 Tsa_AuraBg1_00[];
+extern const u8 Tsa_AuraBg1_01[];
+extern const u8 Tsa_AuraBg1_02[];
+extern const u8 Tsa_AuraBg1_03[];
+extern const u8 Tsa_AuraBg1_04[];
+extern const u8 Tsa_AuraBg1_05[];
+extern const u8 Tsa_AuraBg1_06[];
+extern const u8 Tsa_AuraBg1_07[];
+extern const u8 Tsa_AuraBg1_08[];
+extern const u8 Tsa_AuraBg1_09[];
+extern const u8 Tsa_AuraBg1_0A[];
+extern const u8 Tsa_AuraBg1_0B[];
+extern const u8 Tsa_AuraBg1_0C[];
+extern const u8 Tsa_AuraBg1_0D[];
+extern const u8 Tsa_AuraBg1_0E[];
+extern const u8 Tsa_AuraBg1_0F[];
+extern const u8 Tsa_AuraBg1_10[];
+extern const u8 Tsa_AuraBg1_11[];
+extern const u8 Tsa_AuraBg1_12[];
+extern const u8 Tsa_AuraBg1_13[];
+extern const u8 Tsa_AuraBg1_14[];
+extern const u8 Tsa_AuraBg1_15[];
+extern const u8 Tsa_AuraBg1_16[];
+extern const u8 Tsa_AuraBg1_17[];
+extern const u8 Tsa_AuraBg1_18[];
+extern const u8 Tsa_AuraBg1_19[];
+extern const u8 Tsa_AuraBg1_1A[];
+extern const u8 Tsa_AuraBg1_1B[];
+extern const u8 Img_AuraBg3_00[];
+extern const u8 Img_AuraBg3_01[];
+extern const u8 Img_AuraBg3_02[];
+extern const u8 Img_AuraBg3_03[];
+extern const u8 Img_AuraBg3_04[];
+extern const u8 Img_AuraBg3_05[];
+extern const u8 Img_AuraBg3_06[];
+extern const u8 Img_AuraBg3_07[];
+extern const u8 Img_AuraBg3_08[];
+extern const u8 Img_AuraBg3_09[];
+extern const u8 Img_AuraBg3_0A[];
+extern const u8 Img_AuraBg3_0B[];
+extern const u8 Tsa_AuraBg3_00[];
+extern const u8 Tsa_AuraBg3_01[];
+extern const u8 Tsa_AuraBg3_02[];
+extern const u8 Tsa_AuraBg3_03[];
+extern const u8 Tsa_AuraBg3_04[];
+extern const u8 Tsa_AuraBg3_05[];
+extern const u8 Tsa_AuraBg3_06[];
+extern const u8 Tsa_AuraBg3_07[];
+extern const u8 Tsa_AuraBg3_08[];
+extern const u8 Tsa_AuraBg3_09[];
+extern const u8 Tsa_AuraBg3_0A[];
+extern const u8 Tsa_AuraBg3_0B[];
 
 /* auto-decls */
 void NewEfxSpellCast(void);
@@ -102,34 +102,34 @@ CONST_DATA struct ProcCmd ProcScr_efxOuraBG[] = {
 };
 
 CONST_DATA u16 * TsaArray_AuraBg1[] = {
-    (u16 *) gUnk_0829E770,
-    (u16 *) gUnk_0829E810,
-    (u16 *) gUnk_0829E8B8,
-    (u16 *) gUnk_0829E960,
-    (u16 *) gUnk_0829EA0C,
-    (u16 *) gUnk_0829EAC4,
-    (u16 *) gUnk_0829EB7C,
-    (u16 *) gUnk_0829EC2C,
-    (u16 *) gUnk_0829ECD8,
-    (u16 *) gUnk_0829ED80,
-    (u16 *) gUnk_0829EE20,
-    (u16 *) gUnk_0829EEBC,
-    (u16 *) gUnk_0829EF54,
-    (u16 *) gUnk_0829F06C,
-    (u16 *) gUnk_0829F1A8,
-    (u16 *) gUnk_0829F2F8,
-    (u16 *) gUnk_0829F434,
-    (u16 *) gUnk_0829F538,
-    (u16 *) gUnk_0829F5DC,
-    (u16 *) gUnk_0829F678,
-    (u16 *) gUnk_0829F714,
-    (u16 *) gUnk_0829F7B0,
-    (u16 *) gUnk_0829F84C,
-    (u16 *) gUnk_0829F8E8,
-    (u16 *) gUnk_0829F9A4,
-    (u16 *) gUnk_0829FA94,
-    (u16 *) gUnk_0829FB98,
-    (u16 *) gUnk_0829FC9C,
+    (u16 *) Tsa_AuraBg1_00,
+    (u16 *) Tsa_AuraBg1_01,
+    (u16 *) Tsa_AuraBg1_02,
+    (u16 *) Tsa_AuraBg1_03,
+    (u16 *) Tsa_AuraBg1_04,
+    (u16 *) Tsa_AuraBg1_05,
+    (u16 *) Tsa_AuraBg1_06,
+    (u16 *) Tsa_AuraBg1_07,
+    (u16 *) Tsa_AuraBg1_08,
+    (u16 *) Tsa_AuraBg1_09,
+    (u16 *) Tsa_AuraBg1_0A,
+    (u16 *) Tsa_AuraBg1_0B,
+    (u16 *) Tsa_AuraBg1_0C,
+    (u16 *) Tsa_AuraBg1_0D,
+    (u16 *) Tsa_AuraBg1_0E,
+    (u16 *) Tsa_AuraBg1_0F,
+    (u16 *) Tsa_AuraBg1_10,
+    (u16 *) Tsa_AuraBg1_11,
+    (u16 *) Tsa_AuraBg1_12,
+    (u16 *) Tsa_AuraBg1_13,
+    (u16 *) Tsa_AuraBg1_14,
+    (u16 *) Tsa_AuraBg1_15,
+    (u16 *) Tsa_AuraBg1_16,
+    (u16 *) Tsa_AuraBg1_17,
+    (u16 *) Tsa_AuraBg1_18,
+    (u16 *) Tsa_AuraBg1_19,
+    (u16 *) Tsa_AuraBg1_1A,
+    (u16 *) Tsa_AuraBg1_1B,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxOuraBG2[] = {
@@ -153,33 +153,33 @@ CONST_DATA struct ProcCmd ProcScr_efxOuraBG3[] = {
 };
 
 CONST_DATA u16 * TsaArray_AuraBg3[] = {
-    (u16 *) gUnk_082AEF80,
-    (u16 *) gUnk_082AF1F8,
-    (u16 *) gUnk_082AF470,
-    (u16 *) gUnk_082AF6E8,
-    (u16 *) gUnk_082AF960,
-    (u16 *) gUnk_082AFBD0,
-    (u16 *) gUnk_082AFE2C,
-    (u16 *) gUnk_082B00A4,
-    (u16 *) gUnk_082B031C,
-    (u16 *) gUnk_082B0594,
-    (u16 *) gUnk_082B080C,
-    (u16 *) gUnk_082B0A84,
+    (u16 *) Tsa_AuraBg3_00,
+    (u16 *) Tsa_AuraBg3_01,
+    (u16 *) Tsa_AuraBg3_02,
+    (u16 *) Tsa_AuraBg3_03,
+    (u16 *) Tsa_AuraBg3_04,
+    (u16 *) Tsa_AuraBg3_05,
+    (u16 *) Tsa_AuraBg3_06,
+    (u16 *) Tsa_AuraBg3_07,
+    (u16 *) Tsa_AuraBg3_08,
+    (u16 *) Tsa_AuraBg3_09,
+    (u16 *) Tsa_AuraBg3_0A,
+    (u16 *) Tsa_AuraBg3_0B,
 };
 
 CONST_DATA u16 * ImgArray_AuraBg3[] = {
-    (u16 *) gUnk_0829FDA0,
-    (u16 *) gUnk_082A11B4,
-    (u16 *) gUnk_082A26E0,
-    (u16 *) gUnk_082A3C5C,
-    (u16 *) gUnk_082A51E4,
-    (u16 *) gUnk_082A65D4,
-    (u16 *) gUnk_082A78E0,
-    (u16 *) gUnk_082A8C54,
-    (u16 *) gUnk_082AA140,
-    (u16 *) gUnk_082AB4EC,
-    (u16 *) gUnk_082AC89C,
-    (u16 *) gUnk_082ADBB8,
+    (u16 *) Img_AuraBg3_00,
+    (u16 *) Img_AuraBg3_01,
+    (u16 *) Img_AuraBg3_02,
+    (u16 *) Img_AuraBg3_03,
+    (u16 *) Img_AuraBg3_04,
+    (u16 *) Img_AuraBg3_05,
+    (u16 *) Img_AuraBg3_06,
+    (u16 *) Img_AuraBg3_07,
+    (u16 *) Img_AuraBg3_08,
+    (u16 *) Img_AuraBg3_09,
+    (u16 *) Img_AuraBg3_0A,
+    (u16 *) Img_AuraBg3_0B,
 };
 
 // 9.99 efxmagic-aura:StartSpellAnimAura

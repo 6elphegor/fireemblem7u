@@ -5,464 +5,464 @@
 
 	.section .rodata.08354854, "a"
 
-	.global gUnk_08354854
-gUnk_08354854:  @ LZ77
+	.global TileConfig_A9
+TileConfig_A9:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_A9.lz"
 
-	.global gUnk_0835580C
-gUnk_0835580C:  @ LZ77
+	.global TileConfig_93
+TileConfig_93:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_93.lz"
 
-	.global gUnk_08356FD0
-gUnk_08356FD0:  @ LZ77
+	.global TileConfig_7D
+TileConfig_7D:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_7D.lz"
 
-	.global gUnk_0835801C
-gUnk_0835801C:  @ LZ77
+	.global TileConfig_6C
+TileConfig_6C:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_6C.lz"
 
-	.global gUnk_08359304
-gUnk_08359304:  @ LZ77
+	.global TileConfig_5D
+TileConfig_5D:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_5D.lz"
 
-	.global gUnk_08359F3C
-gUnk_08359F3C:  @ LZ77
+	.global TileConfig_1F
+TileConfig_1F:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_1F.lz"
 
-	.global gUnk_0835B72C
-gUnk_0835B72C:  @ LZ77
+	.global TileConfig_18
+TileConfig_18:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_18.lz"
 
-	.global gUnk_0835C63C
-gUnk_0835C63C:  @ LZ77
+	.global TileConfig_12
+TileConfig_12:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_12.lz"
 
-	.global gUnk_0835DB50
-gUnk_0835DB50:  @ LZ77
+	.global TileConfig_0C
+TileConfig_0C:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_0C.lz"
 
-	.global gUnk_0835EE10
-gUnk_0835EE10:  @ LZ77
+	.global TileConfig_03
+TileConfig_03:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_03.lz"
 
-	.global gUnk_083602B8
-gUnk_083602B8:
+	.global Pal_Map_Ch3D
+Pal_Map_Ch3D:
 	.incbin "graphics/map/palette_ch3D.gbapal"
 
-	.global gUnk_083603F8
-gUnk_083603F8:
+	.global Pal_Map_Ch3A
+Pal_Map_Ch3A:
 	.incbin "graphics/map/palette_ch3A.gbapal"
 
-	.global gUnk_08360538
-gUnk_08360538:
+	.global Pal_Map_Ch37
+Pal_Map_Ch37:
 	.incbin "graphics/map/palette_ch37.gbapal"
 
-	.global gUnk_08360678
-gUnk_08360678:
+	.global Pal_Map_Ch35
+Pal_Map_Ch35:
 	.incbin "graphics/map/palette_ch35.gbapal"
 
-	.global gUnk_083607B8
-gUnk_083607B8:
+	.global Pal_Map_Ch30
+Pal_Map_Ch30:
 	.incbin "graphics/map/palette_ch30.gbapal"
 
-	.global gUnk_083608F8
-gUnk_083608F8:
+	.global Pal_Map_Ch2E
+Pal_Map_Ch2E:
 	.incbin "graphics/map/palette_ch2E.gbapal"
 
-	.global gUnk_08360A38
-gUnk_08360A38:
+	.global Pal_Map_Ch2D
+Pal_Map_Ch2D:
 	.incbin "graphics/map/palette_ch2D.gbapal"
 
-	.global gUnk_08360B78
-gUnk_08360B78:
+	.global Pal_Map_Ch2B
+Pal_Map_Ch2B:
 	.incbin "graphics/map/palette_ch2B.gbapal"
 
-	.global gUnk_08360CB8
-gUnk_08360CB8:
+	.global Pal_Map_Ch29
+Pal_Map_Ch29:
 	.incbin "graphics/map/palette_ch29.gbapal"
 
-	.global gUnk_08360DF8
-gUnk_08360DF8:
+	.global Pal_Map_Ch28
+Pal_Map_Ch28:
 	.incbin "graphics/map/palette_ch28.gbapal"
 
-	.global gUnk_08360F38
-gUnk_08360F38:
+	.global Pal_Map_Ch26
+Pal_Map_Ch26:
 	.incbin "graphics/map/palette_ch26.gbapal"
 
-	.global gUnk_08361078
-gUnk_08361078:
+	.global Pal_Map_Ch25
+Pal_Map_Ch25:
 	.incbin "graphics/map/palette_ch25.gbapal"
 
-	.global gUnk_083611B8
-gUnk_083611B8:
+	.global Pal_Map_Ch23
+Pal_Map_Ch23:
 	.incbin "graphics/map/palette_ch23.gbapal"
 
-	.global gUnk_083612F8
-gUnk_083612F8:
+	.global Pal_Map_Ch21
+Pal_Map_Ch21:
 	.incbin "graphics/map/palette_ch21.gbapal"
 
-	.global gUnk_08361438
-gUnk_08361438:
+	.global Pal_Map_Ch1E
+Pal_Map_Ch1E:
 	.incbin "graphics/map/palette_ch1E.gbapal"
 
-	.global gUnk_08361578
-gUnk_08361578:
+	.global Pal_Map_Ch1D
+Pal_Map_Ch1D:
 	.incbin "graphics/map/palette_ch1D.gbapal"
 
-	.global gUnk_083616B8
-gUnk_083616B8:
+	.global Pal_Map_Ch1C
+Pal_Map_Ch1C:
 	.incbin "graphics/map/palette_ch1C.gbapal"
 
-	.global gUnk_083617F8
-gUnk_083617F8:
+	.global Pal_Map_Ch1B
+Pal_Map_Ch1B:
 	.incbin "graphics/map/palette_ch1B.gbapal"
 
-	.global gUnk_08361938
-gUnk_08361938:
+	.global Pal_Map_Ch19
+Pal_Map_Ch19:
 	.incbin "graphics/map/palette_ch19.gbapal"
 
-	.global gUnk_08361A78
-gUnk_08361A78:
+	.global Pal_Map_Ch18
+Pal_Map_Ch18:
 	.incbin "graphics/map/palette_ch18.gbapal"
 
-	.global gUnk_08361BB8
-gUnk_08361BB8:
+	.global Pal_Map_Ch17
+Pal_Map_Ch17:
 	.incbin "graphics/map/palette_ch17.gbapal"
 
-	.global gUnk_08361CF8
-gUnk_08361CF8:
+	.global Pal_Map_Ch16
+Pal_Map_Ch16:
 	.incbin "graphics/map/palette_ch16.gbapal"
 
-	.global gUnk_08361E38
-gUnk_08361E38:
+	.global Pal_Map_Ch15
+Pal_Map_Ch15:
 	.incbin "graphics/map/palette_ch15.gbapal"
 
-	.global gUnk_08361F78
-gUnk_08361F78:
+	.global Pal_Map_Ch14
+Pal_Map_Ch14:
 	.incbin "graphics/map/palette_ch14.gbapal"
 
-	.global gUnk_083620B8
-gUnk_083620B8:
+	.global Pal_Map_Ch11
+Pal_Map_Ch11:
 	.incbin "graphics/map/palette_ch11.gbapal"
 
-	.global gUnk_083621F8
-gUnk_083621F8:
+	.global Pal_Map_Ch10
+Pal_Map_Ch10:
 	.incbin "graphics/map/palette_ch10.gbapal"
 
-	.global gUnk_08362338
-gUnk_08362338:
+	.global Pal_Map_Ch0D
+Pal_Map_Ch0D:
 	.incbin "graphics/map/palette_ch0D.gbapal"
 
-	.global gUnk_08362478
-gUnk_08362478:
+	.global Pal_Map_Ch0B
+Pal_Map_Ch0B:
 	.incbin "graphics/map/palette_ch0B.gbapal"
 
-	.global gUnk_083625B8
-gUnk_083625B8:
+	.global Pal_Map_Ch08
+Pal_Map_Ch08:
 	.incbin "graphics/map/palette_ch08.gbapal"
 
-	.global gUnk_083626F8
-gUnk_083626F8:
+	.global Pal_Map_Ch06
+Pal_Map_Ch06:
 	.incbin "graphics/map/palette_ch06.gbapal"
 
-	.global gUnk_08362838
-gUnk_08362838:
+	.global Pal_Map_Ch05
+Pal_Map_Ch05:
 	.incbin "graphics/map/palette_ch05.gbapal"
 
-	.global gUnk_08362978
-gUnk_08362978:
+	.global Pal_Map_Ch04
+Pal_Map_Ch04:
 	.incbin "graphics/map/palette_ch04.gbapal"
 
-	.global gUnk_08362AB8
-gUnk_08362AB8:
+	.global Pal_Map_Ch03
+Pal_Map_Ch03:
 	.incbin "graphics/map/palette_ch03.gbapal"
 
-	.global gUnk_08362BF8
-gUnk_08362BF8:
+	.global Pal_Map_Ch02
+Pal_Map_Ch02:
 	.incbin "graphics/map/palette_ch02.gbapal"
 
-	.global gUnk_08362D38
-gUnk_08362D38:
+	.global Pal_Map_Ch01
+Pal_Map_Ch01:
 	.incbin "graphics/map/palette_ch01.gbapal"
 
-	.global gUnk_08362E78
-gUnk_08362E78:
+	.global Pal_Map_Ch00
+Pal_Map_Ch00:
 	.incbin "graphics/map/palette_ch00.gbapal"
 
-	.global gUnk_08362FB8
-gUnk_08362FB8:  @ LZ77
+	.global MapLayout_Ch42
+MapLayout_Ch42:  @ LZ77
 	.incbin "build/graphics/map/layout_ch42.lz"
 
-	.global gUnk_083630C0
-gUnk_083630C0:  @ LZ77
+	.global MapLayout_Ch41
+MapLayout_Ch41:  @ LZ77
 	.incbin "build/graphics/map/layout_ch41.lz"
 
-	.global gUnk_083631C8
-gUnk_083631C8:  @ LZ77
+	.global MapLayout_Ch40
+MapLayout_Ch40:  @ LZ77
 	.incbin "build/graphics/map/layout_ch40.lz"
 
-	.global gUnk_08363328
-gUnk_08363328:  @ LZ77
+	.global MapLayout_Ch3F
+MapLayout_Ch3F:  @ LZ77
 	.incbin "build/graphics/map/layout_ch3F.lz"
 
-	.global gUnk_08363474
-gUnk_08363474:  @ LZ77
+	.global MapLayout_Ch3E
+MapLayout_Ch3E:  @ LZ77
 	.incbin "build/graphics/map/layout_ch3E.lz"
 
-	.global gUnk_083635B0
-gUnk_083635B0:  @ LZ77
+	.global MapLayout_Ch3D
+MapLayout_Ch3D:  @ LZ77
 	.incbin "build/graphics/map/layout_ch3D.lz"
 
-	.global gUnk_083636F4
-gUnk_083636F4:  @ LZ77
+	.global MapLayout_Ch3C
+MapLayout_Ch3C:  @ LZ77
 	.incbin "build/graphics/map/layout_ch3C.lz"
 
-	.global gUnk_08363800
-gUnk_08363800:  @ LZ77
+	.global MapLayout_Ch3B
+MapLayout_Ch3B:  @ LZ77
 	.incbin "build/graphics/map/layout_ch3B.lz"
 
-	.global gUnk_08363900
-gUnk_08363900:  @ LZ77
+	.global MapLayout_Ch3A
+MapLayout_Ch3A:  @ LZ77
 	.incbin "build/graphics/map/layout_ch3A.lz"
 
-	.global gUnk_08363A38
-gUnk_08363A38:  @ LZ77
+	.global MapLayout_Ch39
+MapLayout_Ch39:  @ LZ77
 	.incbin "build/graphics/map/layout_ch39.lz"
 
-	.global gUnk_08363B7C
-gUnk_08363B7C:  @ LZ77
+	.global MapLayout_Ch38
+MapLayout_Ch38:  @ LZ77
 	.incbin "build/graphics/map/layout_ch38.lz"
 
-	.global gUnk_08363C58
-gUnk_08363C58:  @ LZ77
+	.global MapLayout_Ch37
+MapLayout_Ch37:  @ LZ77
 	.incbin "build/graphics/map/layout_ch37.lz"
 
-	.global gUnk_08363D2C
-gUnk_08363D2C:  @ LZ77
+	.global MapLayout_Ch36
+MapLayout_Ch36:  @ LZ77
 	.incbin "build/graphics/map/layout_ch36.lz"
 
-	.global gUnk_08363E80
-gUnk_08363E80:  @ LZ77
+	.global MapLayout_Ch35
+MapLayout_Ch35:  @ LZ77
 	.incbin "build/graphics/map/layout_ch35.lz"
 
-	.global gUnk_08363FE4
-gUnk_08363FE4:  @ LZ77
+	.global MapLayout_Ch34
+MapLayout_Ch34:  @ LZ77
 	.incbin "build/graphics/map/layout_ch34.lz"
 
-	.global gUnk_08364108
-gUnk_08364108:  @ LZ77
+	.global MapLayout_Ch33
+MapLayout_Ch33:  @ LZ77
 	.incbin "build/graphics/map/layout_ch33.lz"
 
-	.global gUnk_0836423C
-gUnk_0836423C:  @ LZ77
+	.global MapLayout_Ch32
+MapLayout_Ch32:  @ LZ77
 	.incbin "build/graphics/map/layout_ch32.lz"
 
-	.global gUnk_083642E8
-gUnk_083642E8:  @ LZ77
+	.global MapLayout_Ch31
+MapLayout_Ch31:  @ LZ77
 	.incbin "build/graphics/map/layout_ch31.lz"
 
-	.global gUnk_083643CC
-gUnk_083643CC:  @ LZ77
+	.global MapLayout_Ch30
+MapLayout_Ch30:  @ LZ77
 	.incbin "build/graphics/map/layout_ch30.lz"
 
-	.global gUnk_083644C0
-gUnk_083644C0:  @ LZ77
+	.global MapLayout_Ch2F
+MapLayout_Ch2F:  @ LZ77
 	.incbin "build/graphics/map/layout_ch2F.lz"
 
-	.global gUnk_08364754
-gUnk_08364754:  @ LZ77
+	.global MapLayout_Ch2E
+MapLayout_Ch2E:  @ LZ77
 	.incbin "build/graphics/map/layout_ch2E.lz"
 
-	.global gUnk_08364958
-gUnk_08364958:  @ LZ77
+	.global MapLayout_Ch2D
+MapLayout_Ch2D:  @ LZ77
 	.incbin "build/graphics/map/layout_ch2D.lz"
 
-	.global gUnk_08364B34
-gUnk_08364B34:  @ LZ77
+	.global MapLayout_Ch2C
+MapLayout_Ch2C:  @ LZ77
 	.incbin "build/graphics/map/layout_ch2C.lz"
 
-	.global gUnk_0836503C
-gUnk_0836503C:  @ LZ77
+	.global MapLayout_Ch2B
+MapLayout_Ch2B:  @ LZ77
 	.incbin "build/graphics/map/layout_ch2B.lz"
 
-	.global gUnk_08365154
-gUnk_08365154:  @ LZ77
+	.global MapLayout_Ch2A
+MapLayout_Ch2A:  @ LZ77
 	.incbin "build/graphics/map/layout_ch2A.lz"
 
-	.global gUnk_083653D0
-gUnk_083653D0:  @ LZ77
+	.global MapLayout_Ch29
+MapLayout_Ch29:  @ LZ77
 	.incbin "build/graphics/map/layout_ch29.lz"
 
-	.global gUnk_083656A8
-gUnk_083656A8:  @ LZ77
+	.global MapLayout_Ch28
+MapLayout_Ch28:  @ LZ77
 	.incbin "build/graphics/map/layout_ch28.lz"
 
-	.global gUnk_08365980
-gUnk_08365980:  @ LZ77
+	.global MapLayout_Ch27
+MapLayout_Ch27:  @ LZ77
 	.incbin "build/graphics/map/layout_ch27.lz"
 
-	.global gUnk_08365E98
-gUnk_08365E98:  @ LZ77
+	.global MapLayout_Ch26
+MapLayout_Ch26:  @ LZ77
 	.incbin "build/graphics/map/layout_ch26.lz"
 
-	.global gUnk_08366090
-gUnk_08366090:  @ LZ77
+	.global MapLayout_Ch25
+MapLayout_Ch25:  @ LZ77
 	.incbin "build/graphics/map/layout_ch25.lz"
 
-	.global gUnk_08366378
-gUnk_08366378:  @ LZ77
+	.global MapLayout_Ch24
+MapLayout_Ch24:  @ LZ77
 	.incbin "build/graphics/map/layout_ch24.lz"
 
-	.global gUnk_08366608
-gUnk_08366608:  @ LZ77
+	.global MapLayout_Ch23
+MapLayout_Ch23:  @ LZ77
 	.incbin "build/graphics/map/layout_ch23.lz"
 
-	.global gUnk_08366950
-gUnk_08366950:  @ LZ77
+	.global MapLayout_Ch22
+MapLayout_Ch22:  @ LZ77
 	.incbin "build/graphics/map/layout_ch22.lz"
 
-	.global gUnk_08366D04
-gUnk_08366D04:  @ LZ77
+	.global MapLayout_Ch21
+MapLayout_Ch21:  @ LZ77
 	.incbin "build/graphics/map/layout_ch21.lz"
 
-	.global gUnk_08367064
-gUnk_08367064:  @ LZ77
+	.global MapLayout_Ch20
+MapLayout_Ch20:  @ LZ77
 	.incbin "build/graphics/map/layout_ch20.lz"
 
-	.global gUnk_08367324
-gUnk_08367324:  @ LZ77
+	.global MapLayout_Ch1F
+MapLayout_Ch1F:  @ LZ77
 	.incbin "build/graphics/map/layout_ch1F.lz"
 
-	.global gUnk_0836768C
-gUnk_0836768C:  @ LZ77
+	.global MapLayout_Ch1E
+MapLayout_Ch1E:  @ LZ77
 	.incbin "build/graphics/map/layout_ch1E.lz"
 
-	.global gUnk_0836785C
-gUnk_0836785C:  @ LZ77
+	.global MapLayout_Ch1D
+MapLayout_Ch1D:  @ LZ77
 	.incbin "build/graphics/map/layout_ch1D.lz"
 
-	.global gUnk_08367A80
-gUnk_08367A80:  @ LZ77
+	.global MapLayout_Ch1C
+MapLayout_Ch1C:  @ LZ77
 	.incbin "build/graphics/map/layout_ch1C.lz"
 
-	.global gUnk_08367D3C
-gUnk_08367D3C:  @ LZ77
+	.global MapLayout_Ch1B
+MapLayout_Ch1B:  @ LZ77
 	.incbin "build/graphics/map/layout_ch1B.lz"
 
-	.global gUnk_08367FAC
-gUnk_08367FAC:  @ LZ77
+	.global MapLayout_Ch1A
+MapLayout_Ch1A:  @ LZ77
 	.incbin "build/graphics/map/layout_ch1A.lz"
 
-	.global gUnk_0836821C
-gUnk_0836821C:  @ LZ77
+	.global MapLayout_Ch19
+MapLayout_Ch19:  @ LZ77
 	.incbin "build/graphics/map/layout_ch19.lz"
 
-	.global gUnk_08368438
-gUnk_08368438:  @ LZ77
+	.global MapLayout_Ch18
+MapLayout_Ch18:  @ LZ77
 	.incbin "build/graphics/map/layout_ch18.lz"
 
-	.global gUnk_08368650
-gUnk_08368650:  @ LZ77
+	.global MapLayout_Ch17
+MapLayout_Ch17:  @ LZ77
 	.incbin "build/graphics/map/layout_ch17.lz"
 
-	.global gUnk_0836889C
-gUnk_0836889C:  @ LZ77
+	.global MapLayout_Ch16
+MapLayout_Ch16:  @ LZ77
 	.incbin "build/graphics/map/layout_ch16.lz"
 
-	.global gUnk_08368A6C
-gUnk_08368A6C:  @ LZ77
+	.global MapLayout_Ch15
+MapLayout_Ch15:  @ LZ77
 	.incbin "build/graphics/map/layout_ch15.lz"
 
-	.global gUnk_08368C98
-gUnk_08368C98:  @ LZ77
+	.global MapLayout_Ch14
+MapLayout_Ch14:  @ LZ77
 	.incbin "build/graphics/map/layout_ch14.lz"
 
-	.global gUnk_08368E68
-gUnk_08368E68:  @ LZ77
+	.global MapLayout_Ch13
+MapLayout_Ch13:  @ LZ77
 	.incbin "build/graphics/map/layout_ch13.lz"
 
-	.global gUnk_0836913C
-gUnk_0836913C:  @ LZ77
+	.global MapLayout_Ch12
+MapLayout_Ch12:  @ LZ77
 	.incbin "build/graphics/map/layout_ch12.lz"
 
-	.global gUnk_0836927C
-gUnk_0836927C:  @ LZ77
+	.global MapLayout_Ch11
+MapLayout_Ch11:  @ LZ77
 	.incbin "build/graphics/map/layout_ch11.lz"
 
-	.global gUnk_0836959C
-gUnk_0836959C:  @ LZ77
+	.global MapLayout_Ch10
+MapLayout_Ch10:  @ LZ77
 	.incbin "build/graphics/map/layout_ch10.lz"
 
-	.global gUnk_08369750
-gUnk_08369750:  @ LZ77
+	.global MapLayout_Ch0F
+MapLayout_Ch0F:  @ LZ77
 	.incbin "build/graphics/map/layout_ch0F.lz"
 
-	.global gUnk_083699AC
-gUnk_083699AC:  @ LZ77
+	.global MapLayout_Ch0E
+MapLayout_Ch0E:  @ LZ77
 	.incbin "build/graphics/map/layout_ch0E.lz"
 
-	.global gUnk_08369BB0
-gUnk_08369BB0:  @ LZ77
+	.global MapLayout_Ch0D
+MapLayout_Ch0D:  @ LZ77
 	.incbin "build/graphics/map/layout_ch0D.lz"
 
-	.global gUnk_08369C90
-gUnk_08369C90:  @ LZ77
+	.global MapLayout_Ch0C
+MapLayout_Ch0C:  @ LZ77
 	.incbin "build/graphics/map/layout_ch0C.lz"
 
-	.global gUnk_08369E54
-gUnk_08369E54:  @ LZ77
+	.global MapLayout_Ch0B
+MapLayout_Ch0B:  @ LZ77
 	.incbin "build/graphics/map/layout_ch0B.lz"
 
-	.global gUnk_0836A0A8
-gUnk_0836A0A8:  @ LZ77
+	.global MapLayout_Ch0A
+MapLayout_Ch0A:  @ LZ77
 	.incbin "build/graphics/map/layout_ch0A.lz"
 
-	.global gUnk_0836A2AC
-gUnk_0836A2AC:  @ LZ77
+	.global MapLayout_Ch09
+MapLayout_Ch09:  @ LZ77
 	.incbin "build/graphics/map/layout_ch09.lz"
 
-	.global gUnk_0836A48C
-gUnk_0836A48C:  @ LZ77
+	.global MapLayout_Ch08
+MapLayout_Ch08:  @ LZ77
 	.incbin "build/graphics/map/layout_ch08.lz"
 
-	.global gUnk_0836A5B0
-gUnk_0836A5B0:  @ LZ77
+	.global MapLayout_Ch07
+MapLayout_Ch07:  @ LZ77
 	.incbin "build/graphics/map/layout_ch07.lz"
 
-	.global gUnk_0836A7B4
-gUnk_0836A7B4:  @ LZ77
+	.global MapLayout_Ch06
+MapLayout_Ch06:  @ LZ77
 	.incbin "build/graphics/map/layout_ch06.lz"
 
-	.global gUnk_0836A940
-gUnk_0836A940:  @ LZ77
+	.global MapLayout_Ch05
+MapLayout_Ch05:  @ LZ77
 	.incbin "build/graphics/map/layout_ch05.lz"
 
-	.global gUnk_0836AA64
-gUnk_0836AA64:  @ LZ77
+	.global MapLayout_Ch04
+MapLayout_Ch04:  @ LZ77
 	.incbin "build/graphics/map/layout_ch04.lz"
 
-	.global gUnk_0836ABAC
-gUnk_0836ABAC:  @ LZ77
+	.global MapLayout_Ch03
+MapLayout_Ch03:  @ LZ77
 	.incbin "build/graphics/map/layout_ch03.lz"
 
-	.global gUnk_0836ACE4
-gUnk_0836ACE4:  @ LZ77
+	.global MapLayout_Ch02
+MapLayout_Ch02:  @ LZ77
 	.incbin "build/graphics/map/layout_ch02.lz"
 
-	.global gUnk_0836AE00
-gUnk_0836AE00:  @ LZ77
+	.global MapLayout_Ch01
+MapLayout_Ch01:  @ LZ77
 	.incbin "build/graphics/map/layout_ch01.lz"
 
-	.global gUnk_0836AF00
-gUnk_0836AF00:  @ LZ77
+	.global MapLayout_Ch00
+MapLayout_Ch00:  @ LZ77
 	.incbin "build/graphics/map/layout_ch00.lz"
 
-	.global gUnk_0836B01C
-gUnk_0836B01C:  @ LZ77
+	.global Img_MapObj_1C
+Img_MapObj_1C:  @ LZ77
 	.incbin "build/graphics/map/obj_1C.lz"
 
-	.global gUnk_0836EC28
-gUnk_0836EC28:  @ LZ77
+	.global Img_MapObj_1D_B
+Img_MapObj_1D_B:  @ LZ77
 	.incbin "build/graphics/map/obj_1D_b.lz"
 
 	.global unit_icon_wait_LordEliwood_sheet

@@ -90,9 +90,9 @@ MoveScr_08CBFC5B:
 	.byte MV_UP, MV_UP, MV_UP, MV_HALT
 
 	.align 2, 0
-	.global SpriteAnimConf_08CBFC60
-SpriteAnimConf_08CBFC60:
-	.4byte Pal_NinianDispfx, Img_NinianDispfx, gUnk_081AB284
+	.global EventSpriteAnimConf_NinianPray
+EventSpriteAnimConf_NinianPray:
+	.4byte Pal_NinianDispfx, Img_NinianDispfx, SpritAnim_NinianPray
 	.2byte 0x0, 0x280
 	.byte 5, 1, 0, 0
 
@@ -295,7 +295,7 @@ EventScr_Ch2F_Beginning:
 	ENUN
 	STAL 0x1E
 	CAM1_POS 0xD, 5
-	SPRITE_ANIM SpriteAnimConf_08CBFC60, 192, 176
+	SPRITE_ANIM EventSpriteAnimConf_NinianPray, 192, 176
 	STAL 0x3C
 	SOUN 0x3B0
 	ASMC2 EventCall_FireDragonScreamingInPain

@@ -5,7 +5,7 @@
 extern struct ProcCmd CONST_DATA ProcScr_Config_Field[];
 extern struct ProcCmd CONST_DATA gProcScr_BKSEL[];
 extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
-extern u16 CONST_DATA EventScr_08B93DA4[];
+extern u16 CONST_DATA EventScr_CompleteTraining[];
 extern u8 CONST_DATA Tsa_StealMenuFrame[];
 
 extern const struct MenuDef gBallistaRangeMenuDef;
@@ -120,9 +120,9 @@ void sub_08021614(ProcPtr proc)
         EventGotoLabel(proc, 0x63);
 }
 
-u8 sub_08021630(struct MenuProc * menu, struct MenuItemProc * menuItem)
+u8 CallEvent_CompleteTraining(struct MenuProc * menu, struct MenuItemProc * menuItem)
 {
-    StartEvent(EventScr_08B93DA4);
+    StartEvent(EventScr_CompleteTraining);
 
     return MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR;
 }

@@ -265,8 +265,8 @@ void BattleAIS_ExecCommands(void)
                     // _080541F0
                     if ((anim->state3 & 0x20) == 0) {
                         anim->state3 |= 0x20;
-                    } else if (Unk_02017758 == 1) {
-                        Unk_02017758 = 0;
+                    } else if (gEfxTeonoState == 1) {
+                        gEfxTeonoState = 0;
                         anim->state3 &= ~0x20;
                         anim->pScrCurrent = anim->pScrCurrent + 1;
                     }

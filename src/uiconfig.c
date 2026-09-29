@@ -57,9 +57,9 @@ extern struct GameOptionLayout CONST_DATA gGameOptionLayouts[];
 extern struct GameOption CONST_DATA gGameOptions[];
 extern u16 CONST_DATA gUnk_08CE58BE[];
 extern u16 CONST_DATA gSprite_ConfigurationUiHeader[];
-extern struct ProcCmd CONST_DATA ProcScr_08CE5B98[];
+extern struct ProcCmd CONST_DATA gProcScr_RedrawConfigHelpText[];
 
-extern struct ProcCmd CONST_DATA ProcScr_08CE5BB8[];
+extern struct ProcCmd CONST_DATA gProcScr_DrawConfigUiSprites[];
 extern u16 const gUnk_0841E338[];
 extern u8 const gUnk_0841DA40[];
 extern u8 const gUnk_0841DCA4[];
@@ -297,7 +297,7 @@ void Config_Init(struct ConfigProc * proc)
 
     StartMuralBackground(proc, NULL, -1);
 
-    Proc_Start(ProcScr_08CE5BB8, proc);
+    Proc_Start(gProcScr_DrawConfigUiSprites, proc);
 
     EnableBgSync(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
 }
@@ -363,7 +363,7 @@ bool GenericOptionChangeHandler(ProcPtr proc)
 
         if (valueChanged)
         {
-            Proc_Start(ProcScr_08CE5B98, proc);
+            Proc_Start(gProcScr_RedrawConfigHelpText, proc);
             DrawOptionValueTexts(selectedIdx, selectedIdx % 7, selectedIdx * 2 + 4);
             EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
             PlaySoundEffect(0x387);
@@ -635,7 +635,7 @@ void Config_Loop_KeyHandler(struct ConfigProc * proc)
 
             if (valueChanged)
             {
-                Proc_Start(ProcScr_08CE5B98, proc);
+                Proc_Start(gProcScr_RedrawConfigHelpText, proc);
                 EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
                 PlaySoundEffect(0x386);
 
@@ -682,8 +682,8 @@ bool Config_HandleExit(struct ConfigProc * proc)
 {
     EndMuralBackground();
 
-    Proc_EndEach(ProcScr_08CE5BB8);
-    Proc_EndEach(ProcScr_08CE5B98);
+    Proc_EndEach(gProcScr_DrawConfigUiSprites);
+    Proc_EndEach(gProcScr_RedrawConfigHelpText);
 
     if (proc->loadSoloAnimScreen)
     {

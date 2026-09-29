@@ -67,7 +67,7 @@ void StartSubSpell_efxGespenstBGCOL2(struct Anim * anim);
 void sub_08061F60(struct ProcEfxEclipseBG * proc);
 void StartSubSpell_efxSuperdruidBG3(struct Anim * anim);
 void efxSuperdruidBG3_Loop(struct ProcEfxEclipseBG * proc);
-void sub_080621E4(struct Anim * anim);
+void StartSubSpell_efxSuperdruidOBJ2(struct Anim * anim);
 void sub_08062244(void);
 void sub_08062254(struct Anim * anim);
 void sub_080622B4(void);
@@ -151,7 +151,7 @@ void sub_08061BA4(struct ProcEfx * proc)
     }
     else if (proc->timer == duration + 225)
     {
-        sub_080621E4(anim);
+        StartSubSpell_efxSuperdruidOBJ2(anim);
     }
     else if (proc->timer == duration + 240)
     {
@@ -437,7 +437,7 @@ void sub_08062158(struct ProcEfxBG * proc)
 }
 
 // 9.99 efxmagic-ereshkigal:StartSubSpell_efxSuperdruidOBJ2
-void sub_080621E4(struct Anim * anim)
+void StartSubSpell_efxSuperdruidOBJ2(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;

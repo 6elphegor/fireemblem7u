@@ -37,34 +37,34 @@ Img_ManimInfoWindowHpBar:  @ LZ77
 Pal_ManimInfoWindowDigits:
 	.incbin "baserom.gba", 0x3fa12c, 0x16c
 
-	.global gUnk_083FA298
-gUnk_083FA298:  @ LZ77
+	.global Img_Bg_5E
+Img_Bg_5E:  @ LZ77
 	.incbin "build/graphics/bg/bg_5E.lz"
 
 	.global gUnk_083FAF7C
 gUnk_083FAF7C:
 	.incbin "baserom.gba", 0x3faf7c, 0x4b4
 
-	.global gUnk_083FB430
-gUnk_083FB430:
+	.global Pal_Bg_5E
+Pal_Bg_5E:
 	.incbin "graphics/bg/bg_5E_pal.gbapal"
 	.incbin "baserom.gba", 0x3fb450, 0x60
 
-	.global gUnk_083FB4B0
-gUnk_083FB4B0:  @ LZ77
+	.global Img_Bg_5F
+Img_Bg_5F:  @ LZ77
 	.incbin "build/graphics/bg/bg_5F.lz"
 
 	.global gUnk_083FB860
 gUnk_083FB860:
 	.incbin "baserom.gba", 0x3fb860, 0x4b4
 
-	.global gUnk_083FBD14
-gUnk_083FBD14:
+	.global Pal_Bg_5F
+Pal_Bg_5F:
 	.incbin "graphics/bg/bg_5F_pal.gbapal"
 
-	.global gUnk_083FBD34
-gUnk_083FBD34:  @ LZ77
-	.incbin "build/graphics/gUnk_083FBD34.lz"
+	.global Img_TalkBubble
+Img_TalkBubble:  @ LZ77
+	.incbin "build/graphics/Img_TalkBubble.lz"
 
 	.global gUnk_083FBDDC
 gUnk_083FBDDC:  @ LZ77
@@ -86,9 +86,9 @@ gUnk_083FBF30:  @ LZ77
 gUnk_083FBF80:  @ LZ77
 	.incbin "build/graphics/gUnk_083FBF80.lz"
 
-	.global gUnk_083FBFD0
-gUnk_083FBFD0:
-	.incbin "graphics/gUnk_083FBFD0.gbapal"
+	.global Pal_TalkBubble
+Pal_TalkBubble:
+	.incbin "graphics/Pal_TalkBubble.gbapal"
 
 	.section .rodata.083FC9FB, "a"
 	.incbin "baserom.gba", 0x3fc9fb, 0x1
@@ -161,8 +161,8 @@ gGfx_HelpTextBox:  @ LZ77
 gGfx_YellowTextBox:  @ LZ77
 	.incbin "build/graphics/gGfx_YellowTextBox.lz"
 
-	.global gUnk_083FDA1C
-gUnk_083FDA1C:
+	.global Img_LimitViewSquares
+Img_LimitViewSquares:
 	.incbin "baserom.gba", 0x3fda1c, 0x80
 
 	.global gUnk_083FDA9C
@@ -635,9 +635,9 @@ Img_UiVArrow:  @ LZ77
 Img_SpinningArrow:  @ LZ77
 	.incbin "build/graphics/Img_UiVArrow.lz"
 
-	.global gUnknown_0840D224
-gUnknown_0840D224:  @ LZ77
-	.incbin "build/graphics/gUnknown_0840D224.lz"
+	.global gImg_UiSpinningArrow_Horizontal
+gImg_UiSpinningArrow_Horizontal:  @ LZ77
+	.incbin "build/graphics/gImg_UiSpinningArrow_Horizontal.lz"
 
 	.global gUnknown_08A1C8B4
 gUnknown_08A1C8B4:  @ LZ77
@@ -647,9 +647,9 @@ gUnknown_08A1C8B4:  @ LZ77
 Img_08A1CD68:  @ LZ77
 	.incbin "build/graphics/Img_08A1CD68.lz"
 
-	.global Pal_0840DCE4
-Pal_0840DCE4:
-	.incbin "graphics/Pal_0840DCE4.gbapal"
+	.global Pal_MapBattleInfoNum
+Pal_MapBattleInfoNum:
+	.incbin "graphics/Pal_MapBattleInfoNum.gbapal"
 	.incbin "baserom.gba", 0x40dd04, 0x20
 
 	.global Pal_0840DD24
@@ -785,9 +785,9 @@ Tsa_SpinRotation:
 gGfx_SupportMenu:  @ LZ77
 	.incbin "build/graphics/gGfx_SupportMenu.lz"
 
-	.global gUnk_084130A4
-gUnk_084130A4:  @ LZ77
-	.incbin "build/graphics/gUnk_084130A4.lz"
+	.global Img_GameMainMenuObjs
+Img_GameMainMenuObjs:  @ LZ77
+	.incbin "build/graphics/Img_GameMainMenuObjs.lz"
 
 	.global Pal_SaveMenuWindow
 	.global gPal_SupportMenu

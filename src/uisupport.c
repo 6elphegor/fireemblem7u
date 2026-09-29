@@ -109,12 +109,12 @@ extern u16 Pal_0840E978[];
 extern u8 Img_08418C54[];
 extern u16 Pal_08418D40[];
 extern u16 SpriteAnim_08418D60[];
-extern u16 CONST_DATA Sprite_08CC593C[];
+extern u16 CONST_DATA sSprite_NameAffinLv[];
 extern u16 CONST_DATA Sprite_08CC5944[];
 extern u16 CONST_DATA Sprite_08CC5952[];
-extern u16 CONST_DATA Sprite_08CC5960[];
+extern u16 CONST_DATA gSprite_SupportScreenSuccessBox[];
 extern u16 CONST_DATA Sprite_08CC596E[];
-extern u16 CONST_DATA Sprite_08CC4FC4[];
+extern u16 CONST_DATA sSprite_BackButton[];
 
 
 int GetSupportScreenUnitCount(void)
@@ -959,10 +959,10 @@ void DrawSupportSubScreenSprites(struct SubScreenProc * proc)
     int x;
     int y;
 
-    PutSpriteExt(4, (proc->x + 128) & 0x1FF, 10, Sprite_08CC593C, 0x380);
+    PutSpriteExt(4, (proc->x + 128) & 0x1FF, 10, sSprite_NameAffinLv, 0x380);
     PutSpriteExt(4, (proc->x + 168) & 0x1FF, 10, Sprite_08CC5944, 0x380);
     PutSpriteExt(4, (proc->x + 200) & 0x1FF, 10, Sprite_08CC5952, 0x380);
-    PutSpriteExt(4, (proc->x + 32) & 0x1FF, 80, Sprite_08CC5960, 0xE280);
+    PutSpriteExt(4, (proc->x + 32) & 0x1FF, 80, gSprite_SupportScreenSuccessBox, 0xE280);
     PutSpriteExt(4, (proc->x + 160) & 0x1FF, 144, Sprite_08CC596E, 0xE280);
 
     x = (proc->x + 112) & 0x1FF;
@@ -982,7 +982,7 @@ void DrawSupportSubScreenSprites(struct SubScreenProc * proc)
         PutUnitSpriteForClassId(0, x, y + i * 16, oam2, proc->partnerClassId[i]);
     }
 
-    PutSpriteExt(4, (proc->x + 8) & 0x1FF, 144, Sprite_08CC4FC4, 0x2bc0);
+    PutSpriteExt(4, (proc->x + 8) & 0x1FF, 144, sSprite_BackButton, 0x2bc0);
 
     SyncUnitSpriteSheet();
 }

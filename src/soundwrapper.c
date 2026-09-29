@@ -80,7 +80,7 @@ CONST_DATA struct ProcCmd ProcScr_MusicVolumeChange[] = {
     PROC_END,
 };
 
-CONST_DATA struct ProcCmd ProcScr_08B85854[] = {
+CONST_DATA struct ProcCmd gMusicProc3Script[] = {
     PROC_REPEAT(DelaySong_OnLoop),
     PROC_END,
 };
@@ -373,7 +373,7 @@ void PlaySongDelayed(int songId, int delay, struct MusicPlayerInfo * player)
     if (gPlaySt.cfgDisableBgm)
         return;
 
-    proc = Proc_Start(ProcScr_08B85854, PROC_TREE_3);
+    proc = Proc_Start(gMusicProc3Script, PROC_TREE_3);
     proc->delayCounter = delay;
     proc->songId = songId;
     proc->player = player;
@@ -502,7 +502,7 @@ void sub_080041E4(int songId)
 
 void DeleteAll6CWaitMusicRelated(void)
 {
-    Proc_EndEach(ProcScr_08B85854);
+    Proc_EndEach(gMusicProc3Script);
 }
 
 void sub_08004234(void)

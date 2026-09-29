@@ -136,7 +136,7 @@ extern u8 CONST_DATA gUnknown_08A17B36[];
 
 extern struct ProcCmd ProcScr_bmview[];
 extern u8 const Img_08A1CD68[];
-extern u16 const Pal_0840DCE4[];
+extern u16 const Pal_MapBattleInfoNum[];
 extern u8 const gUnknown_08A1C8B4[];
-extern u8 const gUnknown_0840D224[];
+extern u8 const gImg_UiSpinningArrow_Horizontal[];
 extern u16 const gUnknown_08405B0C[];

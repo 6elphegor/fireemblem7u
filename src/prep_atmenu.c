@@ -60,7 +60,7 @@ PROC_CALL_ARG(NewFadeIn, 8),
     PROC_WHILE(FadeInExists),
     PROC_WHILE(MusicProc4Exists),
 PROC_LABEL(1),
-    PROC_CALL(sub_0809019C),
+    PROC_CALL(EnablePrepScreenMenu),
     PROC_REPEAT(AtMenu_UpdateDesc),
     PROC_GOTO(4),
 PROC_LABEL(12),
@@ -120,7 +120,7 @@ PROC_LABEL(6),
 struct ProcCmd CONST_DATA ProcScr_PrepPromoteDebug[] = {
     PROC_WHILE(MusicProc4Exists),
     PROC_CALL(ConvoyPromotion_Init),
-    PROC_REPEAT(sub_0808F690),
+    PROC_REPEAT(IsGameLockLevelReserved),
     PROC_SLEEP(8),
     PROC_CALL(NullExpForChar100AndResetScreen),
     PROC_SLEEP(30),
@@ -1057,7 +1057,7 @@ void ConvoyPromotion_Init(ProcPtr _proc)
     BeginBattleAnimations();
 }
 
-void sub_0808F690(ProcPtr _proc)
+void IsGameLockLevelReserved(ProcPtr _proc)
 {
     struct ProcPrepPromote * proc = _proc;
 

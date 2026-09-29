@@ -19,7 +19,7 @@ extern s16 gBanimBackgroundIndex;
 int GetBanimInitPosReal(void);
 void MainUpdate_8055C68(void);
 void EfxClearScreenFx(void);
-void EkrDispUP_0804D5A4(void);
+void EkrDispUpSet4C(void);
 void PutBanimBG(int index);
 
 void NewEkrHenseiInitPROC(void);
@@ -99,8 +99,8 @@ void EkrHenseiInit_InitScreen(struct ProcEkrHensei * proc)
 
 void EkrHenseiInit_InitTimer(struct ProcEkrHensei * proc)
 {
-    EkrGauge_0804CC48();
-    EkrDispUP_0804D5A4();
+    EkrGauge_Set4C();
+    EkrDispUpSet4C();
     proc->timer = 0;
     proc->terminator = 0x10;
     Proc_Break(proc);

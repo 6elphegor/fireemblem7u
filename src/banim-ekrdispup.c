@@ -64,7 +64,7 @@ extern s16 gEkrHitNow[2];
 extern ProcPtr gpProcEfxSpellCast;
 extern ProcPtr gpProcEfxHpBarColorChange;
 
-void EkrDispUP_0804D584(void);
+void EkrDispUpClear4C50(void);
 void ekrDispUPMain(struct ProcEkrDispUP * proc);
 void sub_0804D0B8(void);
 void EfxPrepareScreenFx(void);
@@ -75,7 +75,7 @@ void NewEkrDispUP(void)
 {
     gpProcEkrDispUP = Proc_Start(ProcScr_ekrDispUP, PROC_TREE_5);
     EkrDispUP_SetPositionUnsync(0, 0);
-    EkrDispUP_0804D584();
+    EkrDispUpClear4C50();
     UnAsyncEkrDispUP();
     UnsyncEkrDispUP();
 }
@@ -85,24 +85,24 @@ void EndEkrDispUP(void)
     Proc_End(gpProcEkrDispUP);
 }
 
-void EkrDispUP_0804D584(void)
+void EkrDispUpClear4C50(void)
 {
     gpProcEkrDispUP->unk4C = 0;
     gpProcEkrDispUP->unk50 = 0;
 }
 
-void sub_0804CDB8(void)
+void EkrDispUpSet4C50(void)
 {
     gpProcEkrDispUP->unk4C = 1;
     gpProcEkrDispUP->unk50 = 1;
 }
 
-void EkrDispUP_0804D5A4(void)
+void EkrDispUpSet4C(void)
 {
     gpProcEkrDispUP->unk4C = 1;
 }
 
-void EkrDispUP_0804D5B4(void)
+void EkrDispUpSet50(void)
 {
     gpProcEkrDispUP->unk50 = 1;
 }
@@ -406,7 +406,7 @@ void EkrEfxStatusClear(void)
     gEfxBgSemaphore = 0;
     gEfxHpBarResireFlag = 0;
     gUnknown_02017754 = 0;
-    Unk_02017758 = 0;
+    gEfxTeonoState = 0;
     gUnknown_0201775C = 0;
     SetEkrBg2QuakeVec(0, 0);
     gUnknown_02017764[0] = 0;

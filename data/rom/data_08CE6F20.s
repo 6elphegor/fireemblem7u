@@ -60,7 +60,7 @@ gProcScr_Shop:
 	.incbin "baserom.gba", 0xce6fe0, 0x4
 	.4byte Shop_InitBuyState
 	.incbin "baserom.gba", 0xce6fe8, 0x4
-	.4byte gUnk_08CE7290
+	.4byte ProcScr_ShopDrawHand
 	.incbin "baserom.gba", 0xce6ff0, 0x4
 	.4byte FadeInBlackSpeed20
 	.incbin "baserom.gba", 0xce6ff8, 0xc
@@ -118,7 +118,7 @@ gProcScr_Shop:
 	.incbin "baserom.gba", 0xce71f0, 0xc
 	.4byte Shop_OnExit
 	.incbin "baserom.gba", 0xce7200, 0x4
-	.4byte gUnk_08CE7290
+	.4byte ProcScr_ShopDrawHand
 	.incbin "baserom.gba", 0xce7208, 0x4
 	.4byte StartShopFadeOut
 	.incbin "baserom.gba", 0xce7210, 0xc
@@ -147,8 +147,8 @@ gProcScr_GoldBox:
 	.4byte GoldBox_OnLoop
 	.incbin "baserom.gba", 0xce7288, 0x8
 
-	.global gUnk_08CE7290
-gUnk_08CE7290:
+	.global ProcScr_ShopDrawHand
+ProcScr_ShopDrawHand:
 	.incbin "baserom.gba", 0xce7290, 0x4
 	.4byte _DisplayShopUiArrows
 
@@ -227,7 +227,7 @@ gProcScr_ArenaUiResults:
 	.incbin "baserom.gba", 0xce7414, 0x4
 	.4byte LockBmDisplay
 	.incbin "baserom.gba", 0xce741c, 0xc
-	.4byte gUnk_08CE74EC
+	.4byte gProcScr_ArenaUiResultBgm
 	.incbin "baserom.gba", 0xce742c, 0x4
 	.4byte ArenaUi_Init
 	.incbin "baserom.gba", 0xce7434, 0x4
@@ -237,7 +237,7 @@ gProcScr_ArenaUiResults:
 	.incbin "baserom.gba", 0xce744c, 0xc
 	.4byte ArenaUi_ShowGoldBoxOnVictoryOrDraw
 	.incbin "baserom.gba", 0xce745c, 0x1c
-	.4byte gUnk_08CE74EC
+	.4byte gProcScr_ArenaUiResultBgm
 	.incbin "baserom.gba", 0xce747c, 0xc
 	.4byte _FadeBgmOut
 	.incbin "baserom.gba", 0xce748c, 0x4
@@ -262,8 +262,8 @@ gProcScr_ArenaUiResults:
 	.4byte UnlockGame
 	.incbin "baserom.gba", 0xce74e4, 0x8
 
-	.global gUnk_08CE74EC
-gUnk_08CE74EC:
+	.global gProcScr_ArenaUiResultBgm
+gProcScr_ArenaUiResultBgm:
 	.incbin "baserom.gba", 0xce74ec, 0x4
 	.4byte Arena_PlayResultSong
 	.incbin "baserom.gba", 0xce74f4, 0xc
@@ -772,191 +772,191 @@ gUnknown_08CED6C4:
 
 	.global gUnk_08CED6D0
 gUnk_08CED6D0:
-	.4byte gUnk_084300C4
-	.4byte gUnk_08430924
-	.4byte gUnk_0843118C
-	.4byte gUnk_084319F4
-	.4byte gUnk_0843225C
-	.4byte gUnk_08432AA0
-	.4byte gUnk_08433310
-	.4byte gUnk_08433B88
-	.4byte gUnk_084343B4
-	.4byte gUnk_08434BF4
+	.4byte Img_Cg_00_0
+	.4byte Img_Cg_00_1
+	.4byte Img_Cg_00_2
+	.4byte Img_Cg_00_3
+	.4byte Img_Cg_00_4
+	.4byte Img_Cg_00_5
+	.4byte Img_Cg_00_6
+	.4byte Img_Cg_00_7
+	.4byte Img_Cg_00_8
+	.4byte Img_Cg_00_9
 
 	.global gUnk_08CED6F8
 gUnk_08CED6F8:
-	.4byte gUnk_084359AC
-	.4byte gUnk_084360C8
-	.4byte gUnk_08436884
-	.4byte gUnk_084370C8
-	.4byte gUnk_0843790C
-	.4byte gUnk_08438170
-	.4byte gUnk_084389A4
-	.4byte gUnk_08439200
-	.4byte gUnk_08439A64
-	.4byte gUnk_0843A2C0
+	.4byte Img_Cg_01_0
+	.4byte Img_Cg_01_1
+	.4byte Img_Cg_01_2
+	.4byte Img_Cg_01_3
+	.4byte Img_Cg_01_4
+	.4byte Img_Cg_01_5
+	.4byte Img_Cg_01_6
+	.4byte Img_Cg_01_7
+	.4byte Img_Cg_01_8
+	.4byte Img_Cg_01_9
 
 	.global gUnk_08CED720
 gUnk_08CED720:
-	.4byte gUnk_0843B08C
-	.4byte gUnk_0843B8E0
-	.4byte gUnk_0843C148
-	.4byte gUnk_0843C99C
-	.4byte gUnk_0843D204
-	.4byte gUnk_0843DA68
-	.4byte gUnk_0843E294
-	.4byte gUnk_0843EA94
-	.4byte gUnk_0843F2D8
-	.4byte gUnk_0843FAFC
+	.4byte Img_Cg_02_0
+	.4byte Img_Cg_02_1
+	.4byte Img_Cg_02_2
+	.4byte Img_Cg_02_3
+	.4byte Img_Cg_02_4
+	.4byte Img_Cg_02_5
+	.4byte Img_Cg_02_6
+	.4byte Img_Cg_02_7
+	.4byte Img_Cg_02_8
+	.4byte Img_Cg_02_9
 
 	.global gUnk_08CED748
 gUnk_08CED748:
-	.4byte gUnk_084408F8
-	.4byte gUnk_08440EE4
-	.4byte gUnk_08441650
-	.4byte gUnk_08441D80
-	.4byte gUnk_08442554
-	.4byte gUnk_08442D98
-	.4byte gUnk_084435CC
-	.4byte gUnk_08443E30
-	.4byte gUnk_0844467C
-	.4byte gUnk_08444EA4
+	.4byte Img_Cg_03_0
+	.4byte Img_Cg_03_1
+	.4byte Img_Cg_03_2
+	.4byte Img_Cg_03_3
+	.4byte Img_Cg_03_4
+	.4byte Img_Cg_03_5
+	.4byte Img_Cg_03_6
+	.4byte Img_Cg_03_7
+	.4byte Img_Cg_03_8
+	.4byte Img_Cg_03_9
 
 	.global gUnk_08CED770
 gUnk_08CED770:
-	.4byte gUnk_08445C64
-	.4byte gUnk_084463DC
-	.4byte gUnk_08446B3C
-	.4byte gUnk_084472B4
-	.4byte gUnk_08447A74
-	.4byte gUnk_084482AC
-	.4byte gUnk_08448B10
-	.4byte gUnk_08449314
-	.4byte gUnk_08449B2C
-	.4byte gUnk_0844A354
+	.4byte Img_Cg_04_0
+	.4byte Img_Cg_04_1
+	.4byte Img_Cg_04_2
+	.4byte Img_Cg_04_3
+	.4byte Img_Cg_04_4
+	.4byte Img_Cg_04_5
+	.4byte Img_Cg_04_6
+	.4byte Img_Cg_04_7
+	.4byte Img_Cg_04_8
+	.4byte Img_Cg_04_9
 
 	.global gUnk_08CED798
 gUnk_08CED798:
-	.4byte gUnk_0844B0D8
-	.4byte gUnk_0844B814
-	.4byte gUnk_0844C028
-	.4byte gUnk_0844C86C
-	.4byte gUnk_0844D0B8
-	.4byte gUnk_0844D90C
-	.4byte gUnk_0844E168
-	.4byte gUnk_0844E9AC
-	.4byte gUnk_0844F20C
-	.4byte gUnk_0844FA20
+	.4byte Img_Cg_05_0
+	.4byte Img_Cg_05_1
+	.4byte Img_Cg_05_2
+	.4byte Img_Cg_05_3
+	.4byte Img_Cg_05_4
+	.4byte Img_Cg_05_5
+	.4byte Img_Cg_05_6
+	.4byte Img_Cg_05_7
+	.4byte Img_Cg_05_8
+	.4byte Img_Cg_05_9
 
 	.global gUnk_08CED7C0
 gUnk_08CED7C0:
-	.4byte gUnk_084507D8
-	.4byte gUnk_08450ECC
-	.4byte gUnk_0845169C
-	.4byte gUnk_08451EC8
-	.4byte gUnk_084526D0
-	.4byte gUnk_08452ECC
-	.4byte gUnk_084536D4
-	.4byte gUnk_08453F30
-	.4byte gUnk_08454768
-	.4byte gUnk_08454F8C
+	.4byte Img_Cg_06_0
+	.4byte Img_Cg_06_1
+	.4byte Img_Cg_06_2
+	.4byte Img_Cg_06_3
+	.4byte Img_Cg_06_4
+	.4byte Img_Cg_06_5
+	.4byte Img_Cg_06_6
+	.4byte Img_Cg_06_7
+	.4byte Img_Cg_06_8
+	.4byte Img_Cg_06_9
 
 	.global gUnk_08CED7E8
 gUnk_08CED7E8:
-	.4byte gUnk_08455D50
-	.4byte gUnk_08456534
-	.4byte gUnk_08456D64
-	.4byte gUnk_0845759C
-	.4byte gUnk_08457E04
-	.4byte gUnk_0845865C
-	.4byte gUnk_08458EBC
-	.4byte gUnk_08459720
-	.4byte gUnk_08459F6C
-	.4byte gUnk_0845A7B0
+	.4byte Img_Cg_07_0
+	.4byte Img_Cg_07_1
+	.4byte Img_Cg_07_2
+	.4byte Img_Cg_07_3
+	.4byte Img_Cg_07_4
+	.4byte Img_Cg_07_5
+	.4byte Img_Cg_07_6
+	.4byte Img_Cg_07_7
+	.4byte Img_Cg_07_8
+	.4byte Img_Cg_07_9
 
 	.global gUnk_08CED810
 gUnk_08CED810:
-	.4byte gUnk_0845B568
-	.4byte gUnk_0845BD9C
-	.4byte gUnk_0845C5F8
-	.4byte gUnk_0845CE4C
-	.4byte gUnk_0845D6BC
-	.4byte gUnk_0845DF0C
-	.4byte gUnk_0845E76C
-	.4byte gUnk_0845EF5C
-	.4byte gUnk_0845F718
-	.4byte gUnk_0845FF30
+	.4byte Img_Cg_08_0
+	.4byte Img_Cg_08_1
+	.4byte Img_Cg_08_2
+	.4byte Img_Cg_08_3
+	.4byte Img_Cg_08_4
+	.4byte Img_Cg_08_5
+	.4byte Img_Cg_08_6
+	.4byte Img_Cg_08_7
+	.4byte Img_Cg_08_8
+	.4byte Img_Cg_08_9
 
 	.global gUnk_08CED838
 gUnk_08CED838:
-	.4byte gUnk_08460D1C
-	.4byte gUnk_08461544
-	.4byte gUnk_08461D90
-	.4byte gUnk_084625DC
-	.4byte gUnk_08462E1C
-	.4byte gUnk_08463658
-	.4byte gUnk_08463E68
-	.4byte gUnk_08464688
-	.4byte gUnk_08464EAC
-	.4byte gUnk_084656E0
+	.4byte Img_Cg_09_0
+	.4byte Img_Cg_09_1
+	.4byte Img_Cg_09_2
+	.4byte Img_Cg_09_3
+	.4byte Img_Cg_09_4
+	.4byte Img_Cg_09_5
+	.4byte Img_Cg_09_6
+	.4byte Img_Cg_09_7
+	.4byte Img_Cg_09_8
+	.4byte Img_Cg_09_9
 
 	.global gUnk_08CED860
 gUnk_08CED860:
-	.4byte gUnk_0842A4A0
-	.4byte gUnk_0842ABEC
-	.4byte gUnk_0842B32C
-	.4byte gUnk_0842B9C4
-	.4byte gUnk_0842C1C8
-	.4byte gUnk_0842CA18
-	.4byte gUnk_0842D26C
-	.4byte gUnk_0842DA6C
-	.4byte gUnk_0842E23C
-	.4byte gUnk_0842EA28
+	.4byte Img_Cg_0A_0
+	.4byte Img_Cg_0A_1
+	.4byte Img_Cg_0A_2
+	.4byte Img_Cg_0A_3
+	.4byte Img_Cg_0A_4
+	.4byte Img_Cg_0A_5
+	.4byte Img_Cg_0A_6
+	.4byte Img_Cg_0A_7
+	.4byte Img_Cg_0A_8
+	.4byte Img_Cg_0A_9
 
 	.section .rodata.08CEDC98, "a"
 
 	.global gEpilogueEndScroll
 gEpilogueEndScroll:
-	.4byte gUnk_08430004
-	.4byte gUnk_08425D20
+	.4byte Pal_Cg_0A
+	.4byte Img_EpilogueScroll_00
 	.4byte gUnk_0842F1A0
-	.4byte gUnk_084262F0
+	.4byte Img_EpilogueScroll_01
 	.4byte gUnk_0842F21C
-	.4byte gUnk_084269B0
+	.4byte Img_EpilogueScroll_02
 	.4byte gUnk_0842F298
-	.4byte gUnk_0842715C
+	.4byte Img_EpilogueScroll_03
 	.4byte gUnk_0842F314
-	.4byte gUnk_084278E0
+	.4byte Img_EpilogueScroll_04
 	.4byte gUnk_0842F390
-	.4byte gUnk_0842801C
+	.4byte Img_EpilogueScroll_05
 	.4byte gUnk_0842F40C
-	.4byte gUnk_08428754
+	.4byte Img_EpilogueScroll_06
 	.4byte gUnk_0842F488
-	.4byte gUnk_08428EB4
+	.4byte Img_EpilogueScroll_07
 	.4byte gUnk_0842F504
-	.4byte gUnk_084295FC
+	.4byte Img_EpilogueScroll_08
 	.4byte gUnk_0842F580
-	.4byte gUnk_08429D64
+	.4byte Img_EpilogueScroll_09
 	.4byte gUnk_0842F5FC
-	.4byte gUnk_0842A4A0
+	.4byte Img_Cg_0A_0
 	.4byte gUnk_0842F678
-	.4byte gUnk_0842ABEC
+	.4byte Img_Cg_0A_1
 	.4byte gUnk_0842F6F4
-	.4byte gUnk_0842B32C
+	.4byte Img_Cg_0A_2
 	.4byte gUnk_0842F770
-	.4byte gUnk_0842B9C4
+	.4byte Img_Cg_0A_3
 	.4byte gUnk_0842F7EC
-	.4byte gUnk_0842C1C8
+	.4byte Img_Cg_0A_4
 	.4byte gUnk_0842F868
-	.4byte gUnk_0842CA18
+	.4byte Img_Cg_0A_5
 	.4byte gUnk_0842F8E4
-	.4byte gUnk_0842D26C
+	.4byte Img_Cg_0A_6
 	.4byte gUnk_0842F960
-	.4byte gUnk_0842DA6C
+	.4byte Img_Cg_0A_7
 	.4byte gUnk_0842F9DC
-	.4byte gUnk_0842E23C
+	.4byte Img_Cg_0A_8
 	.4byte gUnk_0842FA58
-	.4byte gUnk_0842EA28
+	.4byte Img_Cg_0A_9
 	.4byte gUnk_0842FAD4
 	.incbin "baserom.gba", 0xcedd3c, 0x4
 
@@ -1453,59 +1453,59 @@ ProcScr_EndingCgScroll:
 
 	.global gEndingCgScrollLut
 gEndingCgScrollLut:
-	.4byte gUnk_085E02A0
-	.4byte gUnk_085E0688
-	.4byte gUnk_085E0A24
-	.4byte gUnk_085E0D58
+	.4byte Img_EndingCgScroll_00
+	.4byte Img_EndingCgScroll_00_2
+	.4byte Img_EndingCgScroll_00_3
+	.4byte Img_EndingCgScroll_00_4
 	.incbin "baserom.gba", 0xceed70, 0xc
 	.4byte gUnk_085E5F40
 	.4byte gUnk_085E6144
 	.4byte gUnk_085E6348
 	.4byte gUnk_085E654C
-	.4byte gUnk_085E0E68
-	.4byte gUnk_085E123C
-	.4byte gUnk_085E1554
-	.4byte gUnk_085E18B8
+	.4byte Img_EndingCgScroll_01
+	.4byte Img_EndingCgScroll_01_2
+	.4byte Img_EndingCgScroll_01_3
+	.4byte Img_EndingCgScroll_01_4
 	.incbin "baserom.gba", 0xceed9c, 0xc
 	.4byte gUnk_085E6750
 	.4byte gUnk_085E6954
 	.4byte gUnk_085E6B58
 	.4byte gUnk_085E6D5C
-	.4byte gUnk_085E1BB0
-	.4byte gUnk_085E1F88
-	.4byte gUnk_085E2334
-	.4byte gUnk_085E26F0
+	.4byte Img_EndingCgScroll_02
+	.4byte Img_EndingCgScroll_02_2
+	.4byte Img_EndingCgScroll_02_3
+	.4byte Img_EndingCgScroll_02_4
 	.incbin "baserom.gba", 0xceedc8, 0xc
 	.4byte gUnk_085E6F60
 	.4byte gUnk_085E7164
 	.4byte gUnk_085E7368
 	.4byte gUnk_085E756C
-	.4byte gUnk_085E295C
-	.4byte gUnk_085E2C80
-	.4byte gUnk_085E2FD0
-	.4byte gUnk_085E3320
+	.4byte Img_EndingCgScroll_03
+	.4byte Img_EndingCgScroll_03_2
+	.4byte Img_EndingCgScroll_03_3
+	.4byte Img_EndingCgScroll_03_4
 	.incbin "baserom.gba", 0xceedf4, 0xc
 	.4byte gUnk_085E7770
 	.4byte gUnk_085E7974
 	.4byte gUnk_085E7B78
 	.4byte gUnk_085E7D7C
-	.4byte gUnk_085E3634
-	.4byte gUnk_085E38F8
-	.4byte gUnk_085E3BB0
-	.4byte gUnk_085E3E98
-	.4byte gUnk_085E415C
-	.4byte gUnk_085E4438
+	.4byte Img_EndingCgScroll_04
+	.4byte Img_EndingCgScroll_04_2
+	.4byte Img_EndingCgScroll_04_3
+	.4byte Img_EndingCgScroll_04_4
+	.4byte Img_EndingCgScroll_04_5
+	.4byte Img_EndingCgScroll_04_6
 	.incbin "baserom.gba", 0xceee28, 0x4
 	.4byte gUnk_085E7F80
 	.4byte gUnk_085E8184
 	.4byte gUnk_085E8388
 	.4byte gUnk_085E858C
-	.4byte gUnk_085E4514
-	.4byte gUnk_085E47B8
-	.4byte gUnk_085E4B68
-	.4byte gUnk_085E4E24
-	.4byte gUnk_085E511C
-	.4byte gUnk_085E5248
+	.4byte Img_EndingCgScroll_05
+	.4byte Img_EndingCgScroll_05_2
+	.4byte Img_EndingCgScroll_05_3
+	.4byte Img_EndingCgScroll_05_4
+	.4byte Img_EndingCgScroll_05_5
+	.4byte Img_EndingCgScroll_05_6
 	.incbin "baserom.gba", 0xceee54, 0x4
 	.4byte gUnk_085E8790
 	.4byte gUnk_085E8994
@@ -1514,11 +1514,11 @@ gEndingCgScrollLut:
 
 	.global gEndingCgScroll2Lut
 gEndingCgScroll2Lut:
-	.4byte gUnk_085E52C8
-	.4byte gUnk_085E559C
-	.4byte gUnk_085E58E4
-	.4byte gUnk_085E5B80
-	.4byte gUnk_085E5E24
+	.4byte Img_EndingCgScroll2_00
+	.4byte Img_EndingCgScroll2_00_2
+	.4byte Img_EndingCgScroll2_00_3
+	.4byte Img_EndingCgScroll2_00_4
+	.4byte Img_EndingCgScroll2_00_5
 	.incbin "baserom.gba", 0xceee7c, 0x8
 	.4byte gUnk_085E8FA0
 	.4byte gUnk_085E91A4

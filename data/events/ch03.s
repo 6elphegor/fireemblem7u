@@ -366,7 +366,7 @@ EventScr_08CAA08C:
 	TEX1 MSG_8B9                             @ You want me to visit a village? Just give the or
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 9
 	GOTO 9
 	LABEL 1
@@ -394,7 +394,7 @@ EventScr_08CAA134:
 	TEX1 MSG_8BD                             @ So, you are the tactician ? I am Wil, master mar
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xA
 	GOTO 9
 	LABEL 1
@@ -422,7 +422,7 @@ EventScr_08CAA1DC:
 	TEX1_BY_GENDER MSG_8C1, MSG_8C2          @ So...it's my turn now? I expect you'll want me t / To the north... On the other side of the wall. I
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xB
 	GOTO 9
 	LABEL 1

@@ -6,7 +6,7 @@ EWRAM_OVERLAY(savemenu) u8 gUnk_Savemenu_02000001 = 0;
 extern u16 gUnk_Savemenu_02000004[];
 extern u16 const gUnk_084139F0[];
 extern u16 const gUnk_08413A10[];
-extern u8 const gUnk_084130A4[];
+extern u8 const Img_GameMainMenuObjs[];
 extern u8 const gGfx_SupportMenu[];
 
 void SaveMenuCopyPalette(u16 const * src, u16 * dst, int count);
@@ -37,14 +37,14 @@ struct SaveMenuHelpProc {
 };
 
 extern struct ProcCmd CONST_DATA ProcScr_08CE3C24[];
-extern struct ProcCmd CONST_DATA ProcScr_08CE3C54[];
+extern struct ProcCmd CONST_DATA ProcScr_SaveMenu[];
 extern struct ProcCmd CONST_DATA ProcScr_08CE3F24[];
 extern struct ProcCmd CONST_DATA ProcScr_08CE4034[];
 extern struct ProcCmd CONST_DATA ProcScr_08CC51D0[];
 
 ProcPtr StartSoundRoomScreen(ProcPtr parent);
 void StartSupportScreen(ProcPtr parent);
-void sub_080A511C(ProcPtr parent);
+void StartBonusClaimMenu(ProcPtr parent);
 
 CONST_DATA u16 BgConfig_SaveMenu[] = {
     0x0000, 0x6000, 0x0000, 
@@ -340,7 +340,7 @@ void ProcSaveMenu_InitScreen(struct SaveMenuProc * proc)
 }
 void SaveMenu_LoadExtraMenuGraphics(struct SaveMenuProc * proc)
 {
-    Decompress(gUnk_084130A4, (void *) 0x06013800);
+    Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
     InitSaveMenuChoice(proc);
 
     if (proc->action_flag == 0x20)
@@ -857,7 +857,7 @@ void SaveMenuScrollBackToMain(struct SaveMenuProc * proc)
 
     if (proc->anim_clock == 0xe)
     {
-        Decompress(gUnk_084130A4, (void *) 0x06013800);
+        Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
         Proc_Break(proc);
     }
 }
@@ -1124,7 +1124,7 @@ void sub_080A4850(struct SaveMenuProc * proc)
             return;
         }
 
-        Decompress(gUnk_084130A4, (void *) 0x06013800);
+        Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
         proc->anim_clock = 0;
         Proc_Goto(proc, 0xD);
         return;
@@ -1281,7 +1281,7 @@ void SaveMenu_ReloadScreenFormDifficulty(struct SaveMenuProc * proc)
     ResetTextFont();
     ApplySystemObjectsGraphics();
 
-    Decompress(gUnk_084130A4, (void *) 0x06013800);
+    Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
     ApplyPalettes(Pal_SaveMenuWindow, 0x11, 8);
     Decompress(gGfx_SupportMenu, (void *) 0x06010800);
     TmApplyTsa(gBg0Tm, Tsa_SaveMenuBackground, 0);
@@ -1319,7 +1319,7 @@ void SaveMenuSlotSelDrawSprite(struct SaveMenuProc * proc)
 void SaveMenuStartBonusClaim(struct SaveMenuProc * proc)
 {
     if (proc->unk_35 == 0x20)
-        sub_080A511C(proc);
+        StartBonusClaimMenu(proc);
 }
 void SaveMenu_EndHelpPromptSprite(void)
 {
@@ -1327,14 +1327,14 @@ void SaveMenu_EndHelpPromptSprite(void)
 }
 void StartMainMenu(ProcPtr parent)
 {
-    struct SaveMenuProc * proc = Proc_StartBlocking(ProcScr_08CE3C54, parent);
+    struct SaveMenuProc * proc = Proc_StartBlocking(ProcScr_SaveMenu, parent);
 
     proc->action_flag = 0x100;
     proc->unk_35 = 0;
 
     gPlaySt.cfgTextSpeed = 2;
 }
-void sub_080A4DEC(struct SaveMenuProc * proc)
+void SaveMenuDirectlySelectSlotOnPrepScreen(struct SaveMenuProc * proc)
 {
     if (!(gBmSt.flags & 0x10))
         Proc_Goto(proc, 0x14);
@@ -1349,7 +1349,7 @@ void sub_080A4E20(ProcPtr parent)
 }
 void SaveMenu_SetDifficultyChoice(s32 a, s32 b)
 {
-    struct SaveMenuProc * proc = Proc_Find(ProcScr_08CE3C54);
+    struct SaveMenuProc * proc = Proc_Find(ProcScr_SaveMenu);
 
     if (proc != NULL)
     {

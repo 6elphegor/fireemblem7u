@@ -19,39 +19,39 @@ ProcScr_efxLightningBG:
 
 	.global ImgArray_LightningBg
 ImgArray_LightningBg:
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FF00
-	.4byte gUnk_0821FF00
-	.4byte gUnk_0821FF00
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_19
+	.4byte Img_LightningBg_19
+	.4byte Img_LightningBg_19
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
 
 	.global PalArray_LightningBg
 PalArray_LightningBg:
@@ -91,39 +91,39 @@ PalArray_LightningBg:
 
 	.global TsaArray_LightningBg
 TsaArray_LightningBg:
-	.4byte gUnk_08221610
-	.4byte gUnk_08221734
-	.4byte gUnk_08221854
-	.4byte gUnk_08221960
-	.4byte gUnk_08221A5C
-	.4byte gUnk_08221B44
-	.4byte gUnk_08221C28
-	.4byte gUnk_08221D0C
-	.4byte gUnk_08221DE8
-	.4byte gUnk_08221EC8
-	.4byte gUnk_08221FBC
-	.4byte gUnk_082220B0
-	.4byte gUnk_082221B4
-	.4byte gUnk_082222BC
-	.4byte gUnk_082223D4
-	.4byte gUnk_082224F8
-	.4byte gUnk_0822260C
-	.4byte gUnk_082226BC
-	.4byte gUnk_082227C4
-	.4byte gUnk_08222900
-	.4byte gUnk_08222A74
-	.4byte gUnk_08222C0C
-	.4byte gUnk_08222D80
-	.4byte gUnk_08222E8C
-	.4byte gUnk_08222F60
-	.4byte gUnk_08223000
-	.4byte gUnk_08223120
-	.4byte gUnk_0822323C
-	.4byte gUnk_08223350
-	.4byte gUnk_08223448
-	.4byte gUnk_08223530
-	.4byte gUnk_08223600
-	.4byte gUnk_082236C4
+	.4byte Tsa_LightningBg_00
+	.4byte Tsa_LightningBg_01
+	.4byte Tsa_LightningBg_02
+	.4byte Tsa_LightningBg_03
+	.4byte Tsa_LightningBg_04
+	.4byte Tsa_LightningBg_05
+	.4byte Tsa_LightningBg_06
+	.4byte Tsa_LightningBg_07
+	.4byte Tsa_LightningBg_08
+	.4byte Tsa_LightningBg_09
+	.4byte Tsa_LightningBg_0A
+	.4byte Tsa_LightningBg_0B
+	.4byte Tsa_LightningBg_0C
+	.4byte Tsa_LightningBg_0D
+	.4byte Tsa_LightningBg_0E
+	.4byte Tsa_LightningBg_0F
+	.4byte Tsa_LightningBg_10
+	.4byte Tsa_LightningBg_11
+	.4byte Tsa_LightningBg_12
+	.4byte Tsa_LightningBg_13
+	.4byte Tsa_LightningBg_14
+	.4byte Tsa_LightningBg_15
+	.4byte Tsa_LightningBg_16
+	.4byte Tsa_LightningBg_17
+	.4byte Tsa_LightningBg_18
+	.4byte Tsa_LightningBg_19
+	.4byte Tsa_LightningBg_1A
+	.4byte Tsa_LightningBg_1B
+	.4byte Tsa_LightningBg_1C
+	.4byte Tsa_LightningBg_1D
+	.4byte Tsa_LightningBg_1E
+	.4byte Tsa_LightningBg_1F
+	.4byte Tsa_LightningBg_20
 
 	.global ProcScr_efxPurge
 ProcScr_efxPurge:
@@ -139,80 +139,80 @@ ProcScr_efxPurgeBG:
 
 	.global ImgArray_PurgeBg
 ImgArray_PurgeBg:
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_082572E4
-	.4byte gUnk_082572E4
-	.4byte gUnk_08257840
-	.4byte gUnk_08257840
-	.4byte gUnk_08257EBC
-	.4byte gUnk_08257EBC
-	.4byte gUnk_08258508
-	.4byte gUnk_08258508
-	.4byte gUnk_08258CBC
-	.4byte gUnk_08258CBC
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_PurgeBg_30
+	.4byte Img_PurgeBg_30
+	.4byte Img_PurgeBg_32
+	.4byte Img_PurgeBg_32
+	.4byte Img_PurgeBg_34
+	.4byte Img_PurgeBg_34
+	.4byte Img_PurgeBg_36
+	.4byte Img_PurgeBg_36
+	.4byte Img_PurgeBg_38
+	.4byte Img_PurgeBg_38
 	.incbin "baserom.gba", 0xba2508, 0x14
-	.4byte gUnk_082593C4
-	.4byte gUnk_082598E0
-	.4byte gUnk_0825A1E0
-	.4byte gUnk_0825AB94
-	.4byte gUnk_0825B508
-	.4byte gUnk_0825BEDC
-	.4byte gUnk_0825BEDC
-	.4byte gUnk_0825CEE0
-	.4byte gUnk_0825CEE0
-	.4byte gUnk_0825DD30
-	.4byte gUnk_0825E814
-	.4byte gUnk_0825F3BC
-	.4byte gUnk_0825FF58
-	.4byte gUnk_08260A18
-	.4byte gUnk_08261490
+	.4byte Img_PurgeBg_3F
+	.4byte Img_PurgeBg_40
+	.4byte Img_PurgeBg_41
+	.4byte Img_PurgeBg_42
+	.4byte Img_PurgeBg_43
+	.4byte Img_PurgeBg_44
+	.4byte Img_PurgeBg_44
+	.4byte Img_PurgeBg_46
+	.4byte Img_PurgeBg_46
+	.4byte Img_PurgeBg_48
+	.4byte Img_PurgeBg_49
+	.4byte Img_PurgeBg_4A
+	.4byte Img_PurgeBg_4B
+	.4byte Img_PurgeBg_4C
+	.4byte Img_PurgeBg_4D
 
 	.global PalArray_PurgeBg
 PalArray_PurgeBg:
@@ -293,80 +293,80 @@ PalArray_PurgeBg:
 
 	.global TsaArray_PurgeBg
 TsaArray_PurgeBg:
-	.4byte gUnk_082627D4
-	.4byte gUnk_082628F8
-	.4byte gUnk_08262A18
-	.4byte gUnk_08262B24
-	.4byte gUnk_08262C20
-	.4byte gUnk_08262D08
-	.4byte gUnk_08262DF0
-	.4byte gUnk_08262ED0
-	.4byte gUnk_08262FAC
-	.4byte gUnk_0826308C
-	.4byte gUnk_08263180
-	.4byte gUnk_08263274
-	.4byte gUnk_08263378
-	.4byte gUnk_08263480
-	.4byte gUnk_08263598
-	.4byte gUnk_082636BC
-	.4byte gUnk_082637D0
-	.4byte gUnk_082638F4
-	.4byte gUnk_08263A18
-	.4byte gUnk_08263B28
-	.4byte gUnk_08263C28
-	.4byte gUnk_08263D10
-	.4byte gUnk_08263DF0
-	.4byte gUnk_08263ECC
-	.4byte gUnk_08263FA8
-	.4byte gUnk_0826408C
-	.4byte gUnk_08264180
-	.4byte gUnk_08264270
-	.4byte gUnk_08264374
-	.4byte gUnk_0826447C
-	.4byte gUnk_08264590
-	.4byte gUnk_082646B4
-	.4byte gUnk_082647C8
-	.4byte gUnk_082648EC
-	.4byte gUnk_08264A0C
-	.4byte gUnk_08264B18
-	.4byte gUnk_08264C14
-	.4byte gUnk_08264CFC
-	.4byte gUnk_08264DE4
-	.4byte gUnk_08264EC4
-	.4byte gUnk_08264FA0
-	.4byte gUnk_08265080
-	.4byte gUnk_08265174
-	.4byte gUnk_08265268
-	.4byte gUnk_0826536C
-	.4byte gUnk_08265474
-	.4byte gUnk_0826558C
-	.4byte gUnk_082656B0
-	.4byte gUnk_082657C0
-	.4byte gUnk_082659D4
-	.4byte gUnk_08265B90
-	.4byte gUnk_08265D6C
-	.4byte gUnk_08265F70
-	.4byte gUnk_08266178
-	.4byte gUnk_0826638C
-	.4byte gUnk_082665EC
-	.4byte gUnk_08266820
-	.4byte gUnk_08266A94
+	.4byte Tsa_PurgeBg_00
+	.4byte Tsa_PurgeBg_01
+	.4byte Tsa_PurgeBg_02
+	.4byte Tsa_PurgeBg_03
+	.4byte Tsa_PurgeBg_04
+	.4byte Tsa_PurgeBg_05
+	.4byte Tsa_PurgeBg_06
+	.4byte Tsa_PurgeBg_07
+	.4byte Tsa_PurgeBg_08
+	.4byte Tsa_PurgeBg_09
+	.4byte Tsa_PurgeBg_0A
+	.4byte Tsa_PurgeBg_0B
+	.4byte Tsa_PurgeBg_0C
+	.4byte Tsa_PurgeBg_0D
+	.4byte Tsa_PurgeBg_0E
+	.4byte Tsa_PurgeBg_0F
+	.4byte Tsa_PurgeBg_10
+	.4byte Tsa_PurgeBg_11
+	.4byte Tsa_PurgeBg_12
+	.4byte Tsa_PurgeBg_13
+	.4byte Tsa_PurgeBg_14
+	.4byte Tsa_PurgeBg_15
+	.4byte Tsa_PurgeBg_16
+	.4byte Tsa_PurgeBg_17
+	.4byte Tsa_PurgeBg_18
+	.4byte Tsa_PurgeBg_19
+	.4byte Tsa_PurgeBg_1A
+	.4byte Tsa_PurgeBg_1B
+	.4byte Tsa_PurgeBg_1C
+	.4byte Tsa_PurgeBg_1D
+	.4byte Tsa_PurgeBg_1E
+	.4byte Tsa_PurgeBg_1F
+	.4byte Tsa_PurgeBg_20
+	.4byte Tsa_PurgeBg_21
+	.4byte Tsa_PurgeBg_22
+	.4byte Tsa_PurgeBg_23
+	.4byte Tsa_PurgeBg_24
+	.4byte Tsa_PurgeBg_25
+	.4byte Tsa_PurgeBg_26
+	.4byte Tsa_PurgeBg_27
+	.4byte Tsa_PurgeBg_28
+	.4byte Tsa_PurgeBg_29
+	.4byte Tsa_PurgeBg_2A
+	.4byte Tsa_PurgeBg_2B
+	.4byte Tsa_PurgeBg_2C
+	.4byte Tsa_PurgeBg_2D
+	.4byte Tsa_PurgeBg_2E
+	.4byte Tsa_PurgeBg_2F
+	.4byte Tsa_PurgeBg_30
+	.4byte Tsa_PurgeBg_31
+	.4byte Tsa_PurgeBg_32
+	.4byte Tsa_PurgeBg_33
+	.4byte Tsa_PurgeBg_34
+	.4byte Tsa_PurgeBg_35
+	.4byte Tsa_PurgeBg_36
+	.4byte Tsa_PurgeBg_37
+	.4byte Tsa_PurgeBg_38
+	.4byte Tsa_PurgeBg_39
 	.incbin "baserom.gba", 0xba2778, 0x14
-	.4byte gUnk_08266CDC
-	.4byte gUnk_0826703C
-	.4byte gUnk_08267390
-	.4byte gUnk_082676A0
-	.4byte gUnk_08267984
-	.4byte gUnk_08267C54
-	.4byte gUnk_08267EEC
-	.4byte gUnk_08268184
-	.4byte gUnk_082683B0
-	.4byte gUnk_08268664
-	.4byte gUnk_08268924
-	.4byte gUnk_08268C54
-	.4byte gUnk_08268FA4
-	.4byte gUnk_0826931C
-	.4byte gUnk_082696A4
+	.4byte Tsa_PurgeBg_3F
+	.4byte Tsa_PurgeBg_40
+	.4byte Tsa_PurgeBg_41
+	.4byte Tsa_PurgeBg_42
+	.4byte Tsa_PurgeBg_43
+	.4byte Tsa_PurgeBg_44
+	.4byte Tsa_PurgeBg_45
+	.4byte Tsa_PurgeBg_46
+	.4byte Tsa_PurgeBg_47
+	.4byte Tsa_PurgeBg_48
+	.4byte Tsa_PurgeBg_49
+	.4byte Tsa_PurgeBg_4A
+	.4byte Tsa_PurgeBg_4B
+	.4byte Tsa_PurgeBg_4C
+	.4byte Tsa_PurgeBg_4D
 
 	.global ProcScr_efxPurgeOBJRND
 ProcScr_efxPurgeOBJRND:
@@ -398,18 +398,18 @@ ProcScr_efxBolganoneBG:
 
 	.global TsaArray_BolganoneBG
 TsaArray_BolganoneBG:
-	.4byte gUnk_0827DC94
-	.4byte gUnk_0827DE8C
-	.4byte gUnk_0827E0F4
-	.4byte gUnk_0827E344
-	.4byte gUnk_0827E584
-	.4byte gUnk_0827E7D8
-	.4byte gUnk_0827E9DC
-	.4byte gUnk_0827EC24
-	.4byte gUnk_0827EEB8
-	.4byte gUnk_0827F0F8
-	.4byte gUnk_0827F380
-	.4byte gUnk_0827F518
+	.4byte Tsa_BolganoneBG_00
+	.4byte Tsa_BolganoneBG_01
+	.4byte Tsa_BolganoneBG_02
+	.4byte Tsa_BolganoneBG_03
+	.4byte Tsa_BolganoneBG_04
+	.4byte Tsa_BolganoneBG_05
+	.4byte Tsa_BolganoneBG_06
+	.4byte Tsa_BolganoneBG_07
+	.4byte Tsa_BolganoneBG_08
+	.4byte Tsa_BolganoneBG_09
+	.4byte Tsa_BolganoneBG_0A
+	.4byte Tsa_BolganoneBG_0B
 
 	.global ProcScr_efxBolganoneBGCOL
 ProcScr_efxBolganoneBGCOL:
@@ -425,19 +425,19 @@ ProcScr_efxBolganoneBG2:
 
 	.global TsaArray_BolganoneBG2
 TsaArray_BolganoneBG2:
-	.4byte gUnk_08287238
-	.4byte gUnk_082874AC
-	.4byte gUnk_08287720
-	.4byte gUnk_08287994
-	.4byte gUnk_08287C08
+	.4byte Tsa_BolganoneBG2_00
+	.4byte Tsa_BolganoneBG2_01
+	.4byte Tsa_BolganoneBG2_02
+	.4byte Tsa_BolganoneBG2_03
+	.4byte Tsa_BolganoneBG2_04
 
 	.global ImgArray_BolganoneBG2
 ImgArray_BolganoneBG2:
-	.4byte gUnk_0827F65C
-	.4byte gUnk_08281028
-	.4byte gUnk_082827A8
-	.4byte gUnk_08284074
-	.4byte gUnk_08285940
+	.4byte Img_BolganoneBG2_00
+	.4byte Img_BolganoneBG2_01
+	.4byte Img_BolganoneBG2_02
+	.4byte Img_BolganoneBG2_03
+	.4byte Img_BolganoneBG2_04
 
 	.global ProcScr_efxBolganoneOBJ
 ProcScr_efxBolganoneOBJ:
@@ -459,15 +459,15 @@ ProcScr_efxBolganoneBG3:
 
 	.global TsaArray_BolganoneBG3
 TsaArray_BolganoneBG3:
-	.4byte gUnk_0828D4C8
-	.4byte gUnk_0828D924
-	.4byte gUnk_0828DD80
+	.4byte Tsa_BolganoneBG3_00
+	.4byte Tsa_BolganoneBG3_01
+	.4byte Tsa_BolganoneBG3_02
 
 	.global ImgArray_BolganoneBG3
 ImgArray_BolganoneBG3:
-	.4byte gUnk_08287E7C
-	.4byte gUnk_08289C00
-	.4byte gUnk_0828B788
+	.4byte Img_BolganoneBG3_00
+	.4byte Img_BolganoneBG3_01
+	.4byte Img_BolganoneBG3_02
 
 	.global ProcScr_efxBolganoneOBJ2
 ProcScr_efxBolganoneOBJ2:
@@ -501,109 +501,109 @@ ProcScr_efxDivineBG:
 
 	.global ImgArray_DivineBg
 ImgArray_DivineBg:
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
 
 	.global TsaArray_DivineBg
 TsaArray_DivineBg:
-	.4byte gUnk_08241340
-	.4byte gUnk_082413E0
-	.4byte gUnk_08241488
-	.4byte gUnk_08241530
-	.4byte gUnk_082415E0
-	.4byte gUnk_08241698
-	.4byte gUnk_08241764
-	.4byte gUnk_08241830
-	.4byte gUnk_08241904
-	.4byte gUnk_082419DC
-	.4byte gUnk_08241AB8
-	.4byte gUnk_08241B94
-	.4byte gUnk_08241C78
-	.4byte gUnk_08241D2C
-	.4byte gUnk_08241DC8
-	.4byte gUnk_08241E64
-	.4byte gUnk_08241F00
-	.4byte gUnk_08241F9C
-	.4byte gUnk_08242038
-	.4byte gUnk_082420D4
+	.4byte Tsa_DivineBg_00
+	.4byte Tsa_DivineBg_01
+	.4byte Tsa_DivineBg_02
+	.4byte Tsa_DivineBg_03
+	.4byte Tsa_DivineBg_04
+	.4byte Tsa_DivineBg_05
+	.4byte Tsa_DivineBg_06
+	.4byte Tsa_DivineBg_07
+	.4byte Tsa_DivineBg_08
+	.4byte Tsa_DivineBg_09
+	.4byte Tsa_DivineBg_0A
+	.4byte Tsa_DivineBg_0B
+	.4byte Tsa_DivineBg_0C
+	.4byte Tsa_DivineBg_0D
+	.4byte Tsa_DivineBg_0E
+	.4byte Tsa_DivineBg_0F
+	.4byte Tsa_DivineBg_10
+	.4byte Tsa_DivineBg_11
+	.4byte Tsa_DivineBg_12
+	.4byte Tsa_DivineBg_13
 
 	.global ImgArray_DivineBg2
 ImgArray_DivineBg2:
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
-	.4byte gUnk_0823DB64
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
+	.4byte Img_DivineBg_00
 
 	.global TsaArray_DivineBg2
 TsaArray_DivineBg2:
-	.4byte gUnk_08242170
-	.4byte gUnk_0824220C
-	.4byte gUnk_082422A8
+	.4byte Tsa_DivineBg2_00
+	.4byte Tsa_DivineBg2_01
+	.4byte Tsa_DivineBg2_02
 
 	.global ImgArray_DivineBg3
 ImgArray_DivineBg3:
-	.4byte gUnk_08235C54
-	.4byte gUnk_08235C54
-	.4byte gUnk_08236208
-	.4byte gUnk_082368D0
-	.4byte gUnk_08236F10
-	.4byte gUnk_08237518
-	.4byte gUnk_08237B78
-	.4byte gUnk_082381E8
-	.4byte gUnk_08238824
-	.4byte gUnk_08238E6C
-	.4byte gUnk_08239570
-	.4byte gUnk_08239D28
-	.4byte gUnk_0823A51C
-	.4byte gUnk_0823ACF4
-	.4byte gUnk_0823B510
-	.4byte gUnk_0823BC90
-	.4byte gUnk_0823C424
-	.4byte gUnk_0823CB58
-	.4byte gUnk_0823CB58
-	.4byte gUnk_0823D604
-	.4byte gUnk_0823D604
+	.4byte Img_DivineBg3_00
+	.4byte Img_DivineBg3_00
+	.4byte Img_DivineBg3_02
+	.4byte Img_DivineBg3_03
+	.4byte Img_DivineBg3_04
+	.4byte Img_DivineBg3_05
+	.4byte Img_DivineBg3_06
+	.4byte Img_DivineBg3_07
+	.4byte Img_DivineBg3_08
+	.4byte Img_DivineBg3_09
+	.4byte Img_DivineBg3_0A
+	.4byte Img_DivineBg3_0B
+	.4byte Img_DivineBg3_0C
+	.4byte Img_DivineBg3_0D
+	.4byte Img_DivineBg3_0E
+	.4byte Img_DivineBg3_0F
+	.4byte Img_DivineBg3_10
+	.4byte Img_DivineBg3_11
+	.4byte Img_DivineBg3_11
+	.4byte Img_DivineBg3_13
+	.4byte Img_DivineBg3_13
 
 	.global TsaArray_DivineBg3
 TsaArray_DivineBg3:
-	.4byte gUnk_0823E314
-	.4byte gUnk_0823E4A8
-	.4byte gUnk_0823E6AC
-	.4byte gUnk_0823E97C
-	.4byte gUnk_0823EC4C
-	.4byte gUnk_0823EEFC
-	.4byte gUnk_0823F1B0
-	.4byte gUnk_0823F43C
-	.4byte gUnk_0823F6C0
-	.4byte gUnk_0823F934
-	.4byte gUnk_0823FBC8
-	.4byte gUnk_0823FE50
-	.4byte gUnk_082400EC
-	.4byte gUnk_08240374
-	.4byte gUnk_082405F0
-	.4byte gUnk_08240820
-	.4byte gUnk_08240A70
-	.4byte gUnk_08240CA0
-	.4byte gUnk_08240E98
-	.4byte gUnk_0824107C
-	.4byte gUnk_08241218
+	.4byte Tsa_DivineBg3_00
+	.4byte Tsa_DivineBg3_01
+	.4byte Tsa_DivineBg3_02
+	.4byte Tsa_DivineBg3_03
+	.4byte Tsa_DivineBg3_04
+	.4byte Tsa_DivineBg3_05
+	.4byte Tsa_DivineBg3_06
+	.4byte Tsa_DivineBg3_07
+	.4byte Tsa_DivineBg3_08
+	.4byte Tsa_DivineBg3_09
+	.4byte Tsa_DivineBg3_0A
+	.4byte Tsa_DivineBg3_0B
+	.4byte Tsa_DivineBg3_0C
+	.4byte Tsa_DivineBg3_0D
+	.4byte Tsa_DivineBg3_0E
+	.4byte Tsa_DivineBg3_0F
+	.4byte Tsa_DivineBg3_10
+	.4byte Tsa_DivineBg3_11
+	.4byte Tsa_DivineBg3_12
+	.4byte Tsa_DivineBg3_13
+	.4byte Tsa_DivineBg3_14
 
 	.global ProcScr_efxDivineOBJ
 ProcScr_efxDivineOBJ:
@@ -626,18 +626,18 @@ ProcScr_efxSpell21BG:
 	.global ImgArray_Spell21BG
 ImgArray_Spell21BG:
 	.4byte Img_Spell21BG2
-	.4byte gUnk_08278EBC
-	.4byte gUnk_08278EBC
-	.4byte gUnk_08278EBC
-	.4byte gUnk_08278EBC
+	.4byte Img_Spell21BG_01
+	.4byte Img_Spell21BG_01
+	.4byte Img_Spell21BG_01
+	.4byte Img_Spell21BG_01
 
 	.global TsaArray_Spell21BG
 TsaArray_Spell21BG:
-	.4byte gUnk_08279F24
-	.4byte gUnk_0827A2A4
-	.4byte gUnk_0827A428
-	.4byte gUnk_0827A54C
-	.4byte gUnk_0827A648
+	.4byte Tsa_Spell21BG_00
+	.4byte Tsa_Spell21BG_01
+	.4byte Tsa_Spell21BG_02
+	.4byte Tsa_Spell21BG_03
+	.4byte Tsa_Spell21BG_04
 
 	.global ProcScr_efxSpell21BG2
 ProcScr_efxSpell21BG2:
@@ -695,63 +695,63 @@ ProcScr_efxHazymoonBG:
 
 	.global TsaArray_EclipseBg
 TsaArray_EclipseBg:
-	.4byte gUnk_0824A754
-	.4byte gUnk_0824A8F8
-	.4byte gUnk_0824A998
-	.4byte gUnk_0824AA38
-	.4byte gUnk_0824AAEC
-	.4byte gUnk_0824ABA0
-	.4byte gUnk_0824AC54
-	.4byte gUnk_0824AD30
-	.4byte gUnk_0824AE0C
-	.4byte gUnk_0824AF20
-	.4byte gUnk_0824B034
-	.4byte gUnk_0824B148
-	.4byte gUnk_0824B25C
-	.4byte gUnk_0824B370
-	.4byte gUnk_0824B47C
-	.4byte gUnk_0824B554
-	.4byte gUnk_0824B664
-	.4byte gUnk_0824B7CC
-	.4byte gUnk_0824B990
-	.4byte gUnk_0824BB54
-	.4byte gUnk_0824BD10
-	.4byte gUnk_0824BEC0
-	.4byte gUnk_0824C070
-	.4byte gUnk_0824C220
-	.4byte gUnk_0824C3C4
-	.4byte gUnk_0824C55C
-	.4byte gUnk_0824C6EC
+	.4byte Tsa_EclipseBg_A
+	.4byte Tsa_EclipseBg_B
+	.4byte Tsa_EclipseBg_C
+	.4byte Tsa_EclipseBg_D
+	.4byte Tsa_EclipseBg_E
+	.4byte Tsa_EclipseBg_F
+	.4byte Tsa_EclipseBg_G
+	.4byte Tsa_EclipseBg_H
+	.4byte Tsa_EclipseBg_I
+	.4byte Tsa_EclipseBg_J
+	.4byte Tsa_EclipseBg_K
+	.4byte Tsa_EclipseBg_L
+	.4byte Tsa_EclipseBg_M
+	.4byte Tsa_EclipseBg_N
+	.4byte Tsa_EclipseBg_O
+	.4byte Tsa_EclipseBg_P
+	.4byte Tsa_EclipseBg_Q
+	.4byte Tsa_EclipseBg_R
+	.4byte Tsa_EclipseBg_S
+	.4byte Tsa_EclipseBg_T
+	.4byte Tsa_EclipseBg_U
+	.4byte Tsa_EclipseBg_V
+	.4byte Tsa_EclipseBg_W
+	.4byte Tsa_EclipseBg_X
+	.4byte Tsa_EclipseBg_Y
+	.4byte Tsa_EclipseBg_Z
+	.4byte Tsa_EclipseBg_AA
 
 	.global ImgArray_EclipseBg
 ImgArray_EclipseBg:
-	.4byte gUnk_082424D4
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_0824281C
-	.4byte gUnk_082430F0
-	.4byte gUnk_082430F0
-	.4byte gUnk_082430F0
-	.4byte gUnk_0824412C
-	.4byte gUnk_08244D98
-	.4byte gUnk_082459B4
-	.4byte gUnk_0824650C
-	.4byte gUnk_08247060
-	.4byte gUnk_08247B10
-	.4byte gUnk_08248538
-	.4byte gUnk_08248E34
-	.4byte gUnk_08249700
-	.4byte gUnk_08249F80
+	.4byte Img_EclipseBg_A
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_B
+	.4byte Img_EclipseBg_C
+	.4byte Img_EclipseBg_C
+	.4byte Img_EclipseBg_C
+	.4byte Img_EclipseBg_D
+	.4byte Img_EclipseBg_E
+	.4byte Img_EclipseBg_F
+	.4byte Img_EclipseBg_G
+	.4byte Img_EclipseBg_H
+	.4byte Img_EclipseBg_I
+	.4byte Img_EclipseBg_J
+	.4byte Img_EclipseBg_K
+	.4byte Img_EclipseBg_L
+	.4byte Img_EclipseBg_M
 
 	.global ProcScr_efxHazymoonOBJ2
 ProcScr_efxHazymoonOBJ2:
@@ -823,111 +823,111 @@ ProcScr_efxFenrirBG2:
 
 	.global ImgArray_FenrirBg
 ImgArray_FenrirBg:
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824E134
-	.4byte gUnk_0824F34C
-	.4byte gUnk_0825069C
-	.4byte gUnk_08251518
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_00
+	.4byte Img_FenrirBg_30
+	.4byte Img_FenrirBg_31
+	.4byte Img_FenrirBg_32
 
 	.global TsaArray_FenrirBg
 TsaArray_FenrirBg:
-	.4byte gUnk_08252120
-	.4byte gUnk_082521DC
-	.4byte gUnk_08252298
-	.4byte gUnk_08252354
-	.4byte gUnk_08252410
-	.4byte gUnk_082524CC
-	.4byte gUnk_08252588
-	.4byte gUnk_0825268C
-	.4byte gUnk_08252790
-	.4byte gUnk_08252894
-	.4byte gUnk_08252998
-	.4byte gUnk_08252A9C
-	.4byte gUnk_08252BA0
-	.4byte gUnk_08252CE0
-	.4byte gUnk_08252E24
-	.4byte gUnk_08252F68
-	.4byte gUnk_082530AC
-	.4byte gUnk_082531F0
-	.4byte gUnk_08253334
-	.4byte gUnk_082534B4
-	.4byte gUnk_08253638
-	.4byte gUnk_082537BC
-	.4byte gUnk_0825391C
-	.4byte gUnk_08253A7C
-	.4byte gUnk_08253BDC
-	.4byte gUnk_08253D80
-	.4byte gUnk_08253F24
-	.4byte gUnk_082540C8
-	.4byte gUnk_08254238
-	.4byte gUnk_082543A8
-	.4byte gUnk_08254518
-	.4byte gUnk_082546BC
-	.4byte gUnk_08254860
-	.4byte gUnk_08254A04
-	.4byte gUnk_08254B78
-	.4byte gUnk_08254CEC
-	.4byte gUnk_08254E60
-	.4byte gUnk_08255010
-	.4byte gUnk_082551C0
-	.4byte gUnk_08255370
-	.4byte gUnk_082554E4
-	.4byte gUnk_08255658
-	.4byte gUnk_082557CC
-	.4byte gUnk_08255980
-	.4byte gUnk_08255B34
-	.4byte gUnk_08255CE8
-	.4byte gUnk_08255E60
-	.4byte gUnk_08255FD8
-	.4byte gUnk_08256150
-	.4byte gUnk_082563A8
-	.4byte gUnk_082565B0
+	.4byte Tsa_FenrirBg_00
+	.4byte Tsa_FenrirBg_01
+	.4byte Tsa_FenrirBg_02
+	.4byte Tsa_FenrirBg_03
+	.4byte Tsa_FenrirBg_04
+	.4byte Tsa_FenrirBg_05
+	.4byte Tsa_FenrirBg_06
+	.4byte Tsa_FenrirBg_07
+	.4byte Tsa_FenrirBg_08
+	.4byte Tsa_FenrirBg_09
+	.4byte Tsa_FenrirBg_0A
+	.4byte Tsa_FenrirBg_0B
+	.4byte Tsa_FenrirBg_0C
+	.4byte Tsa_FenrirBg_0D
+	.4byte Tsa_FenrirBg_0E
+	.4byte Tsa_FenrirBg_0F
+	.4byte Tsa_FenrirBg_10
+	.4byte Tsa_FenrirBg_11
+	.4byte Tsa_FenrirBg_12
+	.4byte Tsa_FenrirBg_13
+	.4byte Tsa_FenrirBg_14
+	.4byte Tsa_FenrirBg_15
+	.4byte Tsa_FenrirBg_16
+	.4byte Tsa_FenrirBg_17
+	.4byte Tsa_FenrirBg_18
+	.4byte Tsa_FenrirBg_19
+	.4byte Tsa_FenrirBg_1A
+	.4byte Tsa_FenrirBg_1B
+	.4byte Tsa_FenrirBg_1C
+	.4byte Tsa_FenrirBg_1D
+	.4byte Tsa_FenrirBg_1E
+	.4byte Tsa_FenrirBg_1F
+	.4byte Tsa_FenrirBg_20
+	.4byte Tsa_FenrirBg_21
+	.4byte Tsa_FenrirBg_22
+	.4byte Tsa_FenrirBg_23
+	.4byte Tsa_FenrirBg_24
+	.4byte Tsa_FenrirBg_25
+	.4byte Tsa_FenrirBg_26
+	.4byte Tsa_FenrirBg_27
+	.4byte Tsa_FenrirBg_28
+	.4byte Tsa_FenrirBg_29
+	.4byte Tsa_FenrirBg_2A
+	.4byte Tsa_FenrirBg_2B
+	.4byte Tsa_FenrirBg_2C
+	.4byte Tsa_FenrirBg_2D
+	.4byte Tsa_FenrirBg_2E
+	.4byte Tsa_FenrirBg_2F
+	.4byte Tsa_FenrirBg_30
+	.4byte Tsa_FenrirBg_31
+	.4byte Tsa_FenrirBg_32
 
 	.global ProcScr_efxFenrirOBJ2
 ProcScr_efxFenrirOBJ2:
@@ -1025,10 +1025,10 @@ ProcScr_efxReserveBG:
 
 	.global TsaArray_Fortify
 TsaArray_Fortify:
-	.4byte gUnk_0826CB34
-	.4byte gUnk_0826CC40
-	.4byte gUnk_0826CD40
-	.4byte gUnk_0826CE4C
+	.4byte Tsa_Fortify_00
+	.4byte Tsa_Fortify_01
+	.4byte Tsa_Fortify_02
+	.4byte Tsa_Fortify_03
 
 	.global ProcScr_efxReserveBGCOL
 ProcScr_efxReserveBGCOL:
@@ -1044,7 +1044,7 @@ ProcScr_efxReserveBG2:
 
 	.global TsaArray_FortifyBg2
 TsaArray_FortifyBg2:
-	.4byte gUnk_0826CF58
+	.4byte Tsa_FortifyBg2_00
 
 	.global ProcScr_efxReserveBGCOL2
 ProcScr_efxReserveBGCOL2:
@@ -1066,35 +1066,35 @@ ProcScr_efxRestBG:
 
 	.global TsaArray_RestoreBg
 TsaArray_RestoreBg:
-	.4byte gUnk_08270278
-	.4byte gUnk_08270324
-	.4byte gUnk_082703D8
-	.4byte gUnk_08270498
-	.4byte gUnk_08270560
-	.4byte gUnk_0827063C
-	.4byte gUnk_0827071C
-	.4byte gUnk_08270804
-	.4byte gUnk_082708F4
-	.4byte gUnk_082709F4
-	.4byte gUnk_08270B00
-	.4byte gUnk_08270C20
-	.4byte gUnk_08270D50
+	.4byte Tsa_RestoreBg_00
+	.4byte Tsa_RestoreBg_01
+	.4byte Tsa_RestoreBg_02
+	.4byte Tsa_RestoreBg_03
+	.4byte Tsa_RestoreBg_04
+	.4byte Tsa_RestoreBg_05
+	.4byte Tsa_RestoreBg_06
+	.4byte Tsa_RestoreBg_07
+	.4byte Tsa_RestoreBg_08
+	.4byte Tsa_RestoreBg_09
+	.4byte Tsa_RestoreBg_0A
+	.4byte Tsa_RestoreBg_0B
+	.4byte Tsa_RestoreBg_0C
 
 	.global ImgArray_RestoreBg
 ImgArray_RestoreBg:
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826EDE4
-	.4byte gUnk_0826EDE4
-	.4byte gUnk_0826EDE4
-	.4byte gUnk_0826F4DC
-	.4byte gUnk_0826F4DC
-	.4byte gUnk_0826FAFC
-	.4byte gUnk_0826FAFC
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_06
+	.4byte Img_RestoreBg_06
+	.4byte Img_RestoreBg_06
+	.4byte Img_RestoreBg_09
+	.4byte Img_RestoreBg_09
+	.4byte Img_RestoreBg_0B
+	.4byte Img_RestoreBg_0B
 
 	.global ProcScr_efxRestOBJ
 ProcScr_efxRestOBJ:
@@ -1116,24 +1116,24 @@ ProcScr_efxSilenceBG:
 
 	.global TsaArray_SilenceBg
 TsaArray_SilenceBg:
-	.4byte gUnk_08271958
-	.4byte gUnk_08271A54
-	.4byte gUnk_08271B3C
-	.4byte gUnk_08271C24
-	.4byte gUnk_08271D0C
-	.4byte gUnk_08271E08
-	.4byte gUnk_08271EF0
-	.4byte gUnk_08271F88
-	.4byte gUnk_08272070
-	.4byte gUnk_08272108
-	.4byte gUnk_082721F0
-	.4byte gUnk_082722EC
-	.4byte gUnk_08272384
-	.4byte gUnk_0827246C
-	.4byte gUnk_08272504
-	.4byte gUnk_08272600
-	.4byte gUnk_08272698
-	.4byte gUnk_082727A8
+	.4byte Tsa_SilenceBg_00
+	.4byte Tsa_SilenceBg_01
+	.4byte Tsa_SilenceBg_02
+	.4byte Tsa_SilenceBg_03
+	.4byte Tsa_SilenceBg_04
+	.4byte Tsa_SilenceBg_05
+	.4byte Tsa_SilenceBg_06
+	.4byte Tsa_SilenceBg_07
+	.4byte Tsa_SilenceBg_08
+	.4byte Tsa_SilenceBg_09
+	.4byte Tsa_SilenceBg_0A
+	.4byte Tsa_SilenceBg_0B
+	.4byte Tsa_SilenceBg_0C
+	.4byte Tsa_SilenceBg_0D
+	.4byte Tsa_SilenceBg_0E
+	.4byte Tsa_SilenceBg_0F
+	.4byte Tsa_SilenceBg_10
+	.4byte Tsa_SilenceBg_11
 
 	.global ProcScr_efxSilenceOBJ
 ProcScr_efxSilenceOBJ:
@@ -1155,22 +1155,22 @@ ProcScr_efxSleepBG:
 
 	.global TsaArray_SleepBg
 TsaArray_SleepBg:
-	.4byte gUnk_082751F0
-	.4byte gUnk_082752CC
-	.4byte gUnk_082753A8
-	.4byte gUnk_08275484
-	.4byte gUnk_08275560
-	.4byte gUnk_0827563C
-	.4byte gUnk_08275718
-	.4byte gUnk_082757F4
-	.4byte gUnk_082758D0
-	.4byte gUnk_082759AC
-	.4byte gUnk_08275A88
-	.4byte gUnk_08275B64
-	.4byte gUnk_08275C40
-	.4byte gUnk_08275D1C
-	.4byte gUnk_08275DF8
-	.4byte gUnk_08275ED4
+	.4byte Tsa_SleepBg_00
+	.4byte Tsa_SleepBg_01
+	.4byte Tsa_SleepBg_02
+	.4byte Tsa_SleepBg_03
+	.4byte Tsa_SleepBg_04
+	.4byte Tsa_SleepBg_05
+	.4byte Tsa_SleepBg_06
+	.4byte Tsa_SleepBg_07
+	.4byte Tsa_SleepBg_08
+	.4byte Tsa_SleepBg_09
+	.4byte Tsa_SleepBg_0A
+	.4byte Tsa_SleepBg_0B
+	.4byte Tsa_SleepBg_0C
+	.4byte Tsa_SleepBg_0D
+	.4byte Tsa_SleepBg_0E
+	.4byte Tsa_SleepBg_0F
 
 	.global ProcScr_efxSleepOBJ
 ProcScr_efxSleepOBJ:
@@ -1210,35 +1210,35 @@ ProcScr_efxHammarneBG:
 
 	.global TsaArray_HammerneBg
 TsaArray_HammerneBg:
-	.4byte gUnk_08272DDC
-	.4byte gUnk_08272E88
-	.4byte gUnk_08272F38
-	.4byte gUnk_08272FF8
-	.4byte gUnk_082730C0
-	.4byte gUnk_08273198
-	.4byte gUnk_08273274
-	.4byte gUnk_0827335C
-	.4byte gUnk_0827344C
-	.4byte gUnk_0827354C
-	.4byte gUnk_08273658
-	.4byte gUnk_08273778
-	.4byte gUnk_082738A8
+	.4byte Tsa_HammerneBg_00
+	.4byte Tsa_HammerneBg_01
+	.4byte Tsa_HammerneBg_02
+	.4byte Tsa_HammerneBg_03
+	.4byte Tsa_HammerneBg_04
+	.4byte Tsa_HammerneBg_05
+	.4byte Tsa_HammerneBg_06
+	.4byte Tsa_HammerneBg_07
+	.4byte Tsa_HammerneBg_08
+	.4byte Tsa_HammerneBg_09
+	.4byte Tsa_HammerneBg_0A
+	.4byte Tsa_HammerneBg_0B
+	.4byte Tsa_HammerneBg_0C
 
 	.global ImgArray_HammerneBg
 ImgArray_HammerneBg:
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826E7B8
-	.4byte gUnk_0826EDE4
-	.4byte gUnk_0826EDE4
-	.4byte gUnk_0826EDE4
-	.4byte gUnk_0826F4DC
-	.4byte gUnk_0826F4DC
-	.4byte gUnk_0826FAFC
-	.4byte gUnk_0826FAFC
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_00
+	.4byte Img_RestoreBg_06
+	.4byte Img_RestoreBg_06
+	.4byte Img_RestoreBg_06
+	.4byte Img_RestoreBg_09
+	.4byte Img_RestoreBg_09
+	.4byte Img_RestoreBg_0B
+	.4byte Img_RestoreBg_0B
 
 	.global ProcScr_efxHammarneOBJ
 ProcScr_efxHammarneOBJ:
@@ -1306,11 +1306,11 @@ ProcScr_efxMshieldBG:
 
 	.global TsaArray_BarrierBg
 TsaArray_BarrierBg:
-	.4byte gUnk_082774BC
-	.4byte gUnk_08277574
-	.4byte gUnk_08277638
-	.4byte gUnk_08277728
-	.4byte gUnk_08277858
+	.4byte Tsa_BarrierBg_00
+	.4byte Tsa_BarrierBg_01
+	.4byte Tsa_BarrierBg_02
+	.4byte Tsa_BarrierBg_03
+	.4byte Tsa_BarrierBg_04
 
 	.global ProcScr_efxMshieldBGOBJ
 ProcScr_efxMshieldBGOBJ:
@@ -1356,15 +1356,15 @@ ProcScr_efxShineBG2:
 
 	.global TsaArray_ShineBg2
 TsaArray_ShineBg2:
-	.4byte gUnk_08290974
-	.4byte gUnk_08290A24
-	.4byte gUnk_08290B2C
-	.4byte gUnk_08290C68
-	.4byte gUnk_08290DDC
-	.4byte gUnk_08290F74
-	.4byte gUnk_082910E8
-	.4byte gUnk_082911F4
-	.4byte gUnk_082912C8
+	.4byte Tsa_ShineBg2_A
+	.4byte Tsa_ShineBg2_B
+	.4byte Tsa_ShineBg2_C
+	.4byte Tsa_ShineBg2_D
+	.4byte Tsa_ShineBg2_E
+	.4byte Tsa_ShineBg2_F
+	.4byte Tsa_ShineBg2_G
+	.4byte Tsa_ShineBg2_H
+	.4byte Tsa_ShineBg2_I
 
 	.global ProcScr_efxShineBGCOL
 ProcScr_efxShineBGCOL:
@@ -1402,7 +1402,7 @@ ProcScr_efxLunaBG:
 
 	.global TsaArray_LunaBg1
 TsaArray_LunaBg1:
-	.4byte gUnk_0829213C
+	.4byte Tsa_LunaBg1_A
 
 	.global ProcScr_efxLunaSCR
 ProcScr_efxLunaSCR:
@@ -1444,33 +1444,33 @@ ProcScr_efxLunaBG3:
 
 	.global TsaArray_LunaBg3
 TsaArray_LunaBg3:
-	.4byte gUnk_08295870
-	.4byte gUnk_08295924
-	.4byte gUnk_082959E0
-	.4byte gUnk_08295ABC
-	.4byte gUnk_08295BA4
-	.4byte gUnk_08295CC8
-	.4byte gUnk_08295DE8
-	.4byte gUnk_08295EF4
-	.4byte gUnk_08296000
-	.4byte gUnk_082960FC
-	.4byte gUnk_082961FC
-	.4byte gUnk_082962F8
+	.4byte Tsa_LunaBg3_A
+	.4byte Tsa_LunaBg3_B
+	.4byte Tsa_LunaBg3_C
+	.4byte Tsa_LunaBg3_D
+	.4byte Tsa_LunaBg3_E
+	.4byte Tsa_LunaBg3_F
+	.4byte Tsa_LunaBg3_G
+	.4byte Tsa_LunaBg3_H
+	.4byte Tsa_LunaBg3_I
+	.4byte Tsa_LunaBg3_J
+	.4byte Tsa_LunaBg3_K
+	.4byte Tsa_LunaBg3_L
 
 	.global ImgArray_LunaBg3
 ImgArray_LunaBg3:
-	.4byte gUnk_08292D50
-	.4byte gUnk_08292D50
-	.4byte gUnk_08292D50
-	.4byte gUnk_08292D50
-	.4byte gUnk_08292D50
-	.4byte gUnk_08292D50
-	.4byte gUnk_08293FAC
-	.4byte gUnk_08293FAC
-	.4byte gUnk_08293FAC
-	.4byte gUnk_08294C80
-	.4byte gUnk_08294C80
-	.4byte gUnk_08294C80
+	.4byte Img_LunaBg3_A
+	.4byte Img_LunaBg3_A
+	.4byte Img_LunaBg3_A
+	.4byte Img_LunaBg3_A
+	.4byte Img_LunaBg3_A
+	.4byte Img_LunaBg3_A
+	.4byte Img_LunaBg3_B
+	.4byte Img_LunaBg3_B
+	.4byte Img_LunaBg3_B
+	.4byte Img_LunaBg3_C
+	.4byte Img_LunaBg3_C
+	.4byte Img_LunaBg3_C
 
 	.global ProcScr_efxLunaOBJ
 ProcScr_efxLunaOBJ:
@@ -1580,18 +1580,18 @@ ProcScr_efxGespenstBG:
 
 	.global TsaArray_GespenstBG
 TsaArray_GespenstBG:
-	.4byte gUnk_08299F90
-	.4byte gUnk_0829A084
-	.4byte gUnk_0829A178
-	.4byte gUnk_0829A26C
-	.4byte gUnk_0829A3E4
-	.4byte gUnk_0829A55C
-	.4byte gUnk_0829A6D4
-	.4byte gUnk_0829A8B0
-	.4byte gUnk_0829AA8C
-	.4byte gUnk_0829AC68
-	.4byte gUnk_0829AE04
-	.4byte gUnk_0829AFA0
+	.4byte Tsa_GespenstBG_00
+	.4byte Tsa_GespenstBG_01
+	.4byte Tsa_GespenstBG_02
+	.4byte Tsa_GespenstBG_03
+	.4byte Tsa_GespenstBG_04
+	.4byte Tsa_GespenstBG_05
+	.4byte Tsa_GespenstBG_06
+	.4byte Tsa_GespenstBG_07
+	.4byte Tsa_GespenstBG_08
+	.4byte Tsa_GespenstBG_09
+	.4byte Tsa_GespenstBG_0A
+	.4byte Tsa_GespenstBG_0B
 
 	.global ProcScr_efxGespenstBG2
 ProcScr_efxGespenstBG2:
@@ -1649,18 +1649,18 @@ ProcScr_efxLuceBG:
 
 	.global TsaArray_LuceBG
 TsaArray_LuceBG:
-	.4byte gUnk_082B13E0
-	.4byte gUnk_082B1480
-	.4byte gUnk_082B152C
-	.4byte gUnk_082B15D0
-	.4byte gUnk_082B167C
-	.4byte gUnk_082B1730
-	.4byte gUnk_082B17E8
-	.4byte gUnk_082B1894
-	.4byte gUnk_082B193C
-	.4byte gUnk_082B19E4
-	.4byte gUnk_082B1A84
-	.4byte gUnk_082B1B20
+	.4byte Tsa_LuceBG_00
+	.4byte Tsa_LuceBG_01
+	.4byte Tsa_LuceBG_02
+	.4byte Tsa_LuceBG_03
+	.4byte Tsa_LuceBG_04
+	.4byte Tsa_LuceBG_05
+	.4byte Tsa_LuceBG_06
+	.4byte Tsa_LuceBG_07
+	.4byte Tsa_LuceBG_08
+	.4byte Tsa_LuceBG_09
+	.4byte Tsa_LuceBG_0A
+	.4byte Tsa_LuceBG_0B
 
 	.global ProcScr_efxLuceBG2
 ProcScr_efxLuceBG2:
@@ -1735,29 +1735,29 @@ ProcScr_efxEreshkigalBG:
 
 	.global ImgArray_EreshkigalBG
 ImgArray_EreshkigalBG:
-	.4byte gUnk_082BAA3C
-	.4byte gUnk_082BAA3C
-	.4byte gUnk_082BC034
-	.4byte gUnk_082BD270
-	.4byte gUnk_082BE988
-	.4byte gUnk_082C0320
-	.4byte gUnk_082C1A44
-	.4byte gUnk_082C2E50
-	.4byte gUnk_082C3CF4
-	.4byte gUnk_082C4B9C
+	.4byte Img_EreshkigalBG_00
+	.4byte Img_EreshkigalBG_00
+	.4byte Img_EreshkigalBG_02
+	.4byte Img_EreshkigalBG_03
+	.4byte Img_EreshkigalBG_04
+	.4byte Img_EreshkigalBG_05
+	.4byte Img_EreshkigalBG_06
+	.4byte Img_EreshkigalBG_07
+	.4byte Img_EreshkigalBG_08
+	.4byte Img_EreshkigalBG_09
 
 	.global TsaArray_EreshkigalBG
 TsaArray_EreshkigalBG:
-	.4byte gUnk_082C5C28
-	.4byte gUnk_082C5D84
-	.4byte gUnk_082C60D4
-	.4byte gUnk_082C6424
-	.4byte gUnk_082C6834
-	.4byte gUnk_082C6C88
-	.4byte gUnk_082C70BC
-	.4byte gUnk_082C74D0
-	.4byte gUnk_082C7860
-	.4byte gUnk_082C7B80
+	.4byte Tsa_EreshkigalBG_00
+	.4byte Tsa_EreshkigalBG_01
+	.4byte Tsa_EreshkigalBG_02
+	.4byte Tsa_EreshkigalBG_03
+	.4byte Tsa_EreshkigalBG_04
+	.4byte Tsa_EreshkigalBG_05
+	.4byte Tsa_EreshkigalBG_06
+	.4byte Tsa_EreshkigalBG_07
+	.4byte Tsa_EreshkigalBG_08
+	.4byte Tsa_EreshkigalBG_09
 
 	.global ProcScr_efxSuperdruidBG3
 ProcScr_efxSuperdruidBG3:
@@ -1767,29 +1767,29 @@ ProcScr_efxSuperdruidBG3:
 
 	.global ImgArray_EreshkigalBg3
 ImgArray_EreshkigalBg3:
-	.4byte gUnk_082CE758
-	.4byte gUnk_082CEF68
-	.4byte gUnk_082CFC74
-	.4byte gUnk_082D0E94
-	.4byte gUnk_082D1DA0
-	.4byte gUnk_082D2E88
-	.4byte gUnk_082D3FA0
-	.4byte gUnk_082D4E90
-	.4byte gUnk_082D6108
-	.4byte gUnk_082D746C
+	.4byte Img_EreshkigalBg3_00
+	.4byte Img_EreshkigalBg3_01
+	.4byte Img_EreshkigalBg3_02
+	.4byte Img_EreshkigalBg3_03
+	.4byte Img_EreshkigalBg3_04
+	.4byte Img_EreshkigalBg3_05
+	.4byte Img_EreshkigalBg3_06
+	.4byte Img_EreshkigalBg3_07
+	.4byte Img_EreshkigalBg3_08
+	.4byte Img_EreshkigalBg3_09
 
 	.global TsaArray_EreshkigalBg3
 TsaArray_EreshkigalBg3:
-	.4byte gUnk_082D8280
-	.4byte gUnk_082D83DC
-	.4byte gUnk_082D85BC
-	.4byte gUnk_082D8808
-	.4byte gUnk_082D8A30
-	.4byte gUnk_082D8C80
-	.4byte gUnk_082D8EF4
-	.4byte gUnk_082D9120
-	.4byte gUnk_082D9364
-	.4byte gUnk_082D95BC
+	.4byte Tsa_EreshkigalBg3_00
+	.4byte Tsa_EreshkigalBg3_01
+	.4byte Tsa_EreshkigalBg3_02
+	.4byte Tsa_EreshkigalBg3_03
+	.4byte Tsa_EreshkigalBg3_04
+	.4byte Tsa_EreshkigalBg3_05
+	.4byte Tsa_EreshkigalBg3_06
+	.4byte Tsa_EreshkigalBg3_07
+	.4byte Tsa_EreshkigalBg3_08
+	.4byte Tsa_EreshkigalBg3_09
 
 	.global ProcScr_efxEreshkigalWhiteOut
 ProcScr_efxEreshkigalWhiteOut:
@@ -1855,16 +1855,16 @@ ProcScr_efxNormalEffectBG:
 
 	.global TSAs_EfxNormalEffectBG
 TSAs_EfxNormalEffectBG:
-	.4byte gUnk_081F39AC
-	.4byte gUnk_081F3A78
-	.4byte gUnk_081F3B78
-	.4byte gUnk_081F3C88
-	.4byte gUnk_081F3D94
-	.4byte gUnk_081F3E98
-	.4byte gUnk_081F3F84
-	.4byte gUnk_081F4058
-	.4byte gUnk_081F4114
-	.4byte gUnk_081F41BC
+	.4byte Tsa1_EfxNormalEffectBG
+	.4byte Tsa2_EfxNormalEffectBG
+	.4byte Tsa3_EfxNormalEffectBG
+	.4byte Tsa4_EfxNormalEffectBG
+	.4byte Tsa5_EfxNormalEffectBG
+	.4byte Tsa6_EfxNormalEffectBG
+	.4byte Tsa7_EfxNormalEffectBG
+	.4byte Tsa8_EfxNormalEffectBG
+	.4byte Tsa9_EfxNormalEffectBG
+	.4byte TsaA_EfxNormalEffectBG
 
 	.global ProcScr_efxYushaSpinShield
 ProcScr_efxYushaSpinShield:
@@ -1924,31 +1924,31 @@ ProcScr_efxMagfcastBG:
 
 	.global TsaLut1_EfxMagfcastBG
 TsaLut1_EfxMagfcastBG:
-	.4byte gUnk_081F90A0
-	.4byte gUnk_081F913C
-	.4byte gUnk_081F91D8
-	.4byte gUnk_081F9278
-	.4byte gUnk_081F931C
-	.4byte gUnk_081F93D0
+	.4byte Tsa1_EfxMagfcastBG
+	.4byte Tsa2_EfxMagfcastBG
+	.4byte Tsa3_EfxMagfcastBG
+	.4byte Tsa4_EfxMagfcastBG
+	.4byte Tsa5_EfxMagfcastBG
+	.4byte Tsa6_EfxMagfcastBG
 
 	.global TsaLut2_EfxMagfcastBG
 TsaLut2_EfxMagfcastBG:
-	.4byte gUnk_081F9478
-	.4byte gUnk_081F9528
-	.4byte gUnk_081F95D8
-	.4byte gUnk_081F9690
-	.4byte gUnk_081F9748
-	.4byte gUnk_081F97FC
-	.4byte gUnk_081F989C
-	.4byte gUnk_081F9950
-	.4byte gUnk_081F9A04
-	.4byte gUnk_081F9AB8
-	.4byte gUnk_081F9B58
-	.4byte gUnk_081F9C14
-	.4byte gUnk_081F9CC4
-	.4byte gUnk_081F9D94
-	.4byte gUnk_081F9E4C
-	.4byte gUnk_081F9F1C
+	.4byte Tsa7_EfxMagfcastBG
+	.4byte Tsa8_EfxMagfcastBG
+	.4byte Tsa9_EfxMagfcastBG
+	.4byte Tsa10_EfxMagfcastBG
+	.4byte Tsa11_EfxMagfcastBG
+	.4byte Tsa12_EfxMagfcastBG
+	.4byte Tsa13_EfxMagfcastBG
+	.4byte Tsa14_EfxMagfcastBG
+	.4byte Tsa15_EfxMagfcastBG
+	.4byte Tsa16_EfxMagfcastBG
+	.4byte Tsa17_EfxMagfcastBG
+	.4byte Tsa18_EfxMagfcastBG
+	.4byte Tsa19_EfxMagfcastBG
+	.4byte Tsa20_EfxMagfcastBG
+	.4byte Tsa21_EfxMagfcastBG
+	.4byte Tsa22_EfxMagfcastBG
 
 	.global ProcScr_efxSunakemuri
 ProcScr_efxSunakemuri:
@@ -2046,10 +2046,10 @@ ProcScr_efxMagdhisEffectBG:
 
 	.global TsaLut_EfxMagdhisEffectBG
 TsaLut_EfxMagdhisEffectBG:
-	.4byte gUnk_081FAC58
-	.4byte gUnk_081FAD58
-	.4byte gUnk_081FAE4C
-	.4byte gUnk_081FAF20
+	.4byte Tsa1_EfxMagdhisEffectBG
+	.4byte Tsa2_EfxMagdhisEffectBG
+	.4byte Tsa3_EfxMagdhisEffectBG
+	.4byte Tsa4_EfxMagdhisEffectBG
 
 	.global ProcScr_efxMantBatabata
 ProcScr_efxMantBatabata:
@@ -2073,9 +2073,9 @@ ProcScr_efxChillEffectBG:
 
 	.global TsaLut_EfxChillEffectBG
 TsaLut_EfxChillEffectBG:
-	.4byte gUnk_082B3E3C
-	.4byte gUnk_082B4208
-	.4byte gUnk_082B4664
+	.4byte Tsa1_EfxChillEffectBG
+	.4byte Tsa2_EfxChillEffectBG
+	.4byte Tsa3_EfxChillEffectBG
 
 	.global ProcScr_efxChillEffectBGCOL
 ProcScr_efxChillEffectBGCOL:
@@ -2116,18 +2116,18 @@ ProcScr_efxopFireBG:
 
 	.global TsaArray_Fire_ClassReel
 TsaArray_Fire_ClassReel:
-	.4byte gUnk_081FD2EC
-	.4byte gUnk_081FD394
-	.4byte gUnk_081FD43C
-	.4byte gUnk_081FD4F4
-	.4byte gUnk_081FD5BC
-	.4byte gUnk_081FD68C
-	.4byte gUnk_081FD78C
-	.4byte gUnk_081FD894
-	.4byte gUnk_081FD9A8
-	.4byte gUnk_081FDAE0
-	.4byte gUnk_081FDBE4
-	.4byte gUnk_081FDCB8
+	.4byte Tsa_EfxFireBG_L_00
+	.4byte Tsa_EfxFireBG_L_01
+	.4byte Tsa_EfxFireBG_L_02
+	.4byte Tsa_EfxFireBG_L_03
+	.4byte Tsa_EfxFireBG_L_04
+	.4byte Tsa_EfxFireBG_L_05
+	.4byte Tsa_EfxFireBG_L_06
+	.4byte Tsa_EfxFireBG_L_07
+	.4byte Tsa_EfxFireBG_L_08
+	.4byte Tsa_EfxFireBG_L_09
+	.4byte Tsa_EfxFireBG_L_0A
+	.4byte Tsa_EfxFireBG_L_0B
 
 	.global ProcScr_efxopFireOBJ
 ProcScr_efxopFireOBJ:
@@ -2151,8 +2151,8 @@ ProcScr_efxopThunderBG:
 
 	.global TsaArray_Thunder_ClassReel
 TsaArray_Thunder_ClassReel:
-	.4byte gUnk_081FBF70
-	.4byte gUnk_081FC03C
+	.4byte Tsa_EfxThuderBg1
+	.4byte Tsa_EfxThuderBg2
 
 	.global ProcScr_efxopThunderBGCOL
 ProcScr_efxopThunderBGCOL:
@@ -2220,39 +2220,39 @@ ProcScr_efxopLightningBG:
 
 	.global ImgArray_Light_ClassReel
 ImgArray_Light_ClassReel:
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821CBB0
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821D478
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821DBC8
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821E58C
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821F0E0
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FBE8
-	.4byte gUnk_0821FF00
-	.4byte gUnk_0821FF00
-	.4byte gUnk_0821FF00
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
-	.4byte gUnk_08220BB0
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_00
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_03
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_06
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0A
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_0D
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_10
+	.4byte Img_LightningBg_19
+	.4byte Img_LightningBg_19
+	.4byte Img_LightningBg_19
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
+	.4byte Img_LightningBg_1C
 
 	.global PalArray_Light_ClassReel
 PalArray_Light_ClassReel:
@@ -2292,39 +2292,39 @@ PalArray_Light_ClassReel:
 
 	.global TsaArray_Light_ClassReel
 TsaArray_Light_ClassReel:
-	.4byte gUnk_08221610
-	.4byte gUnk_08221734
-	.4byte gUnk_08221854
-	.4byte gUnk_08221960
-	.4byte gUnk_08221A5C
-	.4byte gUnk_08221B44
-	.4byte gUnk_08221C28
-	.4byte gUnk_08221D0C
-	.4byte gUnk_08221DE8
-	.4byte gUnk_08221EC8
-	.4byte gUnk_08221FBC
-	.4byte gUnk_082220B0
-	.4byte gUnk_082221B4
-	.4byte gUnk_082222BC
-	.4byte gUnk_082223D4
-	.4byte gUnk_082224F8
-	.4byte gUnk_0822260C
-	.4byte gUnk_082226BC
-	.4byte gUnk_082227C4
-	.4byte gUnk_08222900
-	.4byte gUnk_08222A74
-	.4byte gUnk_08222C0C
-	.4byte gUnk_08222D80
-	.4byte gUnk_08222E8C
-	.4byte gUnk_08222F60
-	.4byte gUnk_08223000
-	.4byte gUnk_08223120
-	.4byte gUnk_0822323C
-	.4byte gUnk_08223350
-	.4byte gUnk_08223448
-	.4byte gUnk_08223530
-	.4byte gUnk_08223600
-	.4byte gUnk_082236C4
+	.4byte Tsa_LightningBg_00
+	.4byte Tsa_LightningBg_01
+	.4byte Tsa_LightningBg_02
+	.4byte Tsa_LightningBg_03
+	.4byte Tsa_LightningBg_04
+	.4byte Tsa_LightningBg_05
+	.4byte Tsa_LightningBg_06
+	.4byte Tsa_LightningBg_07
+	.4byte Tsa_LightningBg_08
+	.4byte Tsa_LightningBg_09
+	.4byte Tsa_LightningBg_0A
+	.4byte Tsa_LightningBg_0B
+	.4byte Tsa_LightningBg_0C
+	.4byte Tsa_LightningBg_0D
+	.4byte Tsa_LightningBg_0E
+	.4byte Tsa_LightningBg_0F
+	.4byte Tsa_LightningBg_10
+	.4byte Tsa_LightningBg_11
+	.4byte Tsa_LightningBg_12
+	.4byte Tsa_LightningBg_13
+	.4byte Tsa_LightningBg_14
+	.4byte Tsa_LightningBg_15
+	.4byte Tsa_LightningBg_16
+	.4byte Tsa_LightningBg_17
+	.4byte Tsa_LightningBg_18
+	.4byte Tsa_LightningBg_19
+	.4byte Tsa_LightningBg_1A
+	.4byte Tsa_LightningBg_1B
+	.4byte Tsa_LightningBg_1C
+	.4byte Tsa_LightningBg_1D
+	.4byte Tsa_LightningBg_1E
+	.4byte Tsa_LightningBg_1F
+	.4byte Tsa_LightningBg_20
 
 	.global gUnk_08BA4B68
 gUnk_08BA4B68:
@@ -14431,31 +14431,31 @@ ProcScr_Efxlvupbg:
 
 	.global TsaLut_EfxLvupBG
 TsaLut_EfxLvupBG:
-	.4byte gUnk_081E3ED4
-	.4byte gUnk_081E4034
-	.4byte gUnk_081E41A8
-	.4byte gUnk_081E433C
-	.4byte gUnk_081E44F0
-	.4byte gUnk_081E46C8
-	.4byte gUnk_081E48C0
-	.4byte gUnk_081E4ADC
-	.4byte gUnk_081E4CF0
-	.4byte gUnk_081E4E20
-	.4byte gUnk_081E4EE8
+	.4byte Tsa1_EfxLvupBG
+	.4byte Tsa2_EfxLvupBG
+	.4byte Tsa3_EfxLvupBG
+	.4byte Tsa4_EfxLvupBG
+	.4byte Tsa5_EfxLvupBG
+	.4byte Tsa6_EfxLvupBG
+	.4byte Tsa7_EfxLvupBG
+	.4byte Tsa8_EfxLvupBG
+	.4byte Tsa9_EfxLvupBG
+	.4byte Tsa10_EfxLvupBG
+	.4byte Tsa11_EfxLvupBG
 
 	.global ImgLut_EfxLvupBG
 ImgLut_EfxLvupBG:
-	.4byte gUnk_081DED10
-	.4byte gUnk_081DED10
-	.4byte gUnk_081DF8E8
-	.4byte gUnk_081DF8E8
-	.4byte gUnk_081E0718
-	.4byte gUnk_081E12DC
-	.4byte gUnk_081E1F1C
-	.4byte gUnk_081E2CA0
-	.4byte gUnk_081E39A4
-	.4byte gUnk_081E39A4
-	.4byte gUnk_081E39A4
+	.4byte Img1_EfxLvupBG
+	.4byte Img1_EfxLvupBG
+	.4byte Img2_EfxLvupBG
+	.4byte Img2_EfxLvupBG
+	.4byte Img3_EfxLvupBG
+	.4byte Img4_EfxLvupBG
+	.4byte Img5_EfxLvupBG
+	.4byte Img6_EfxLvupBG
+	.4byte Img7_EfxLvupBG
+	.4byte Img7_EfxLvupBG
+	.4byte Img7_EfxLvupBG
 
 	.global ProcScr_efxLvupBG2
 ProcScr_efxLvupBG2:
@@ -14465,12 +14465,12 @@ ProcScr_efxLvupBG2:
 
 	.global TsaLut_EfxLvupBG2
 TsaLut_EfxLvupBG2:
-	.4byte gUnk_081E56FC
-	.4byte gUnk_081E57E0
-	.4byte gUnk_081E58C4
-	.4byte gUnk_081E59E4
-	.4byte gUnk_081E5B04
-	.4byte gUnk_081E5C20
+	.4byte Tsa1_EfxLvupBG2
+	.4byte Tsa2_EfxLvupBG2
+	.4byte Tsa3_EfxLvupBG2
+	.4byte Tsa4_EfxLvupBG2
+	.4byte Tsa5_EfxLvupBG2
+	.4byte Tsa6_EfxLvupBG2
 
 	.global ProcScr_efxLvupOBJ2
 ProcScr_efxLvupOBJ2:
@@ -14524,12 +14524,12 @@ ProcScr_ekrTriPegasusKnightBG:
 
 	.global TsaLut_EkrTriPegagusBG
 TsaLut_EkrTriPegagusBG:
-	.4byte gUnk_082E7A4C
-	.4byte gUnk_082E7B60
-	.4byte gUnk_082E7C84
-	.4byte gUnk_082E7D5C
-	.4byte gUnk_082E7E78
-	.4byte gUnk_082E7F9C
+	.4byte Tsa_EkrTriPegagusRightBG1
+	.4byte Tsa_EkrTriPegagusRightBG2
+	.4byte Tsa_EkrTriPegagusRightBG3
+	.4byte Tsa_EkrTriPegagusLeftBG1
+	.4byte Tsa_EkrTriPegagusLeftBG2
+	.4byte Tsa_EkrTriPegagusLeftBG3
 
 	.global ProcScr_EkrTriPegasusKnightOBJ
 ProcScr_EkrTriPegasusKnightOBJ:
@@ -14851,194 +14851,194 @@ AnimScr_TriGenerialHandAxeAtkOBJ:
 
 	.global gBattleBGDataTable
 gBattleBGDataTable:
-	.4byte gUnk_082EC794
-	.4byte gUnk_082EED48
-	.4byte gUnk_082EEC78
-	.4byte gUnk_082EF08C
-	.4byte gUnk_082F0298
-	.4byte gUnk_082F01F4
-	.4byte gUnk_082F05C4
-	.4byte gUnk_082F14A8
-	.4byte gUnk_082F13BC
-	.4byte gUnk_082F1660
-	.4byte gUnk_082F2E7C
-	.4byte gUnk_082F2D48
-	.4byte gUnk_082F312C
-	.4byte gUnk_082F42FC
-	.4byte gUnk_082F4214
-	.4byte gUnk_082F4538
-	.4byte gUnk_082F5670
-	.4byte gUnk_082F556C
-	.4byte gUnk_082F5838
-	.4byte gUnk_082F7318
-	.4byte gUnk_082F7210
-	.4byte gUnk_082F758C
-	.4byte gUnk_082F8454
-	.4byte gUnk_082F83A8
-	.4byte gUnk_082F85E0
-	.4byte gUnk_082F9950
-	.4byte gUnk_082F9890
-	.4byte gUnk_082F9B48
-	.4byte gUnk_082FB46C
-	.4byte gUnk_082FB3E0
-	.4byte gUnk_082FB728
-	.4byte gUnk_082FC8B0
-	.4byte gUnk_082FC7AC
-	.4byte gUnk_082FCB7C
-	.4byte gUnk_082FE970
-	.4byte gUnk_082FE904
-	.4byte gUnk_082FEC50
-	.4byte gUnk_082FFCF8
-	.4byte gUnk_082FFC6C
-	.4byte gUnk_082FFED0
-	.4byte gUnk_08300D90
-	.4byte gUnk_08300C94
-	.4byte gUnk_08301028
-	.4byte gUnk_08301BF4
-	.4byte gUnk_08301B44
-	.4byte gUnk_08301DD0
-	.4byte gUnk_08302CC0
-	.4byte gUnk_08302BD8
-	.4byte gUnk_082EC794
-	.4byte gUnk_082EED48
-	.4byte gUnk_08302EA4
-	.4byte gUnk_082F05C4
-	.4byte gUnk_082F14A8
-	.4byte gUnk_08302F6C
-	.4byte gUnk_082F1660
-	.4byte gUnk_082F2E7C
-	.4byte gUnk_08303050
-	.4byte gUnk_082F312C
-	.4byte gUnk_082F42FC
-	.4byte gUnk_08303168
-	.4byte gUnk_082F4538
-	.4byte gUnk_082F5670
-	.4byte gUnk_08303230
-	.4byte gUnk_082F85E0
-	.4byte gUnk_082F9950
-	.4byte gUnk_0830332C
-	.4byte gUnk_082FB728
-	.4byte gUnk_082FC8B0
-	.4byte gUnk_083033EC
-	.4byte gUnk_082FCB7C
-	.4byte gUnk_082FE970
-	.4byte gUnk_08303504
-	.4byte gUnk_082EF08C
-	.4byte gUnk_082F0298
-	.4byte gUnk_08303570
-	.4byte gUnk_082FFED0
-	.4byte gUnk_08300D90
-	.4byte gUnk_08303630
-	.4byte gUnk_082FCB7C
-	.4byte gUnk_082FE970
-	.4byte gUnk_08303720
-	.4byte gUnk_083039B4
-	.4byte gUnk_083061F4
-	.4byte gUnk_08303790
-	.4byte gUnk_082FCB7C
-	.4byte gUnk_082FE970
-	.4byte gUnk_08303838
-	.4byte gUnk_083039B4
-	.4byte gUnk_083061F4
-	.4byte gUnk_083038A0
-	.4byte gUnk_082FCB7C
-	.4byte gUnk_082FE970
-	.4byte gUnk_08303948
-	.4byte gUnk_083039B4
-	.4byte gUnk_083061F4
-	.4byte gUnk_08306148
-	.4byte gUnk_08306560
-	.4byte gUnk_08307AE4
-	.4byte gUnk_08307A94
-	.4byte gUnk_08307E2C
-	.4byte gUnk_0830A4BC
-	.4byte gUnk_0830A3F0
-	.4byte gUnk_08307E2C
-	.4byte gUnk_0830A4BC
-	.4byte gUnk_0830A7F4
-	.4byte gUnk_082F05C4
-	.4byte gUnk_082F14A8
-	.4byte gUnk_0830A8B8
-	.4byte gUnk_082F05C4
-	.4byte gUnk_082F14A8
-	.4byte gUnk_0830A9A0
-	.4byte gUnk_082F05C4
-	.4byte gUnk_082F14A8
-	.4byte gUnk_0830AAA4
-	.4byte gUnk_082F05C4
-	.4byte gUnk_082F14A8
-	.4byte gUnk_0830AB8C
-	.4byte gUnk_082EC794
-	.4byte gUnk_082EED48
-	.4byte gUnk_0830AC78
-	.4byte gUnk_082EF08C
-	.4byte gUnk_082F0298
-	.4byte gUnk_0830AD3C
-	.4byte gUnk_082EF08C
-	.4byte gUnk_082F0298
-	.4byte gUnk_0830ADE4
-	.4byte gUnk_082FFED0
-	.4byte gUnk_08300D90
-	.4byte gUnk_0830AE88
-	.4byte gUnk_082FFED0
-	.4byte gUnk_08300D90
-	.4byte gUnk_0830AF90
-	.4byte gUnk_082FEC50
-	.4byte gUnk_082FFCF8
-	.4byte gUnk_0830B070
-	.4byte gUnk_0830B0FC
-	.4byte gUnk_0830BEBC
-	.4byte gUnk_0830BD7C
-	.4byte gUnk_0830C074
-	.4byte gUnk_0830D0DC
-	.4byte gUnk_0830CFF4
-	.4byte gUnk_0830D2C0
-	.4byte gUnk_0830E59C
-	.4byte gUnk_0830E494
-	.4byte gUnk_082F1660
-	.4byte gUnk_082F2E7C
-	.4byte gUnk_0830E85C
-	.4byte gUnk_082F1660
-	.4byte gUnk_082F2E7C
-	.4byte gUnk_0830E99C
-	.4byte gUnk_082F1660
-	.4byte gUnk_082F2E7C
-	.4byte gUnk_0830EACC
-	.4byte gUnk_0830EC04
-	.4byte gUnk_08310D68
-	.4byte gUnk_08310C78
-	.4byte gUnk_08311048
-	.4byte gUnk_083123BC
-	.4byte gUnk_08312314
-	.4byte gUnk_082F4538
-	.4byte gUnk_082F5670
-	.4byte gUnk_08312678
-	.4byte gUnk_082FB728
-	.4byte gUnk_082FC8B0
-	.4byte gUnk_08312778
-	.4byte gUnk_082EC794
-	.4byte gUnk_082EED48
-	.4byte gUnk_082EEC78
-	.4byte gUnk_082EC794
-	.4byte gUnk_082EED48
-	.4byte gUnk_082EEC78
-	.4byte gUnk_082EC794
-	.4byte gUnk_082EED48
-	.4byte gUnk_082EEC78
-	.4byte gUnk_082EC794
-	.4byte gUnk_082EED48
-	.4byte gUnk_082EEC78
-	.4byte gUnk_08312874
-	.4byte gUnk_08315114
-	.4byte gUnk_083150C4
+	.4byte Img_BattleBg_00
+	.4byte Tsa_BattleBg_00
+	.4byte Pal_BattleBg_00
+	.4byte Img_BattleBg_01
+	.4byte Tsa_BattleBg_01
+	.4byte Pal_BattleBg_01
+	.4byte Img_BattleBg_02
+	.4byte Tsa_BattleBg_02
+	.4byte Pal_BattleBg_02
+	.4byte Img_BattleBg_03
+	.4byte Tsa_BattleBg_03
+	.4byte Pal_BattleBg_03
+	.4byte Img_BattleBg_04
+	.4byte Tsa_BattleBg_04
+	.4byte Pal_BattleBg_04
+	.4byte Img_BattleBg_05
+	.4byte Tsa_BattleBg_05
+	.4byte Pal_BattleBg_05
+	.4byte Img_BattleBg_06
+	.4byte Tsa_BattleBg_06
+	.4byte Pal_BattleBg_06
+	.4byte Img_BattleBg_07
+	.4byte Tsa_BattleBg_07
+	.4byte Pal_BattleBg_07
+	.4byte Img_BattleBg_08
+	.4byte Tsa_BattleBg_08
+	.4byte Pal_BattleBg_08
+	.4byte Img_BattleBg_09
+	.4byte Tsa_BattleBg_09
+	.4byte Pal_BattleBg_09
+	.4byte Img_BattleBg_0A
+	.4byte Tsa_BattleBg_0A
+	.4byte Pal_BattleBg_0A
+	.4byte Img_BattleBg_0B
+	.4byte Tsa_BattleBg_0B
+	.4byte Pal_BattleBg_0B
+	.4byte Img_BattleBg_0C
+	.4byte Tsa_BattleBg_0C
+	.4byte Pal_BattleBg_0C
+	.4byte Img_BattleBg_0D
+	.4byte Tsa_BattleBg_0D
+	.4byte Pal_BattleBg_0D
+	.4byte Img_BattleBg_0E
+	.4byte Tsa_BattleBg_0E
+	.4byte Pal_BattleBg_0E
+	.4byte Img_BattleBg_0F
+	.4byte Tsa_BattleBg_0F
+	.4byte Pal_BattleBg_0F
+	.4byte Img_BattleBg_00
+	.4byte Tsa_BattleBg_00
+	.4byte Pal_BattleBg_10
+	.4byte Img_BattleBg_02
+	.4byte Tsa_BattleBg_02
+	.4byte Pal_BattleBg_11
+	.4byte Img_BattleBg_03
+	.4byte Tsa_BattleBg_03
+	.4byte Pal_BattleBg_12
+	.4byte Img_BattleBg_04
+	.4byte Tsa_BattleBg_04
+	.4byte Pal_BattleBg_13
+	.4byte Img_BattleBg_05
+	.4byte Tsa_BattleBg_05
+	.4byte Pal_BattleBg_14
+	.4byte Img_BattleBg_08
+	.4byte Tsa_BattleBg_08
+	.4byte Pal_BattleBg_15
+	.4byte Img_BattleBg_0A
+	.4byte Tsa_BattleBg_0A
+	.4byte Pal_BattleBg_16
+	.4byte Img_BattleBg_0B
+	.4byte Tsa_BattleBg_0B
+	.4byte Pal_BattleBg_17
+	.4byte Img_BattleBg_01
+	.4byte Tsa_BattleBg_01
+	.4byte Pal_BattleBg_18
+	.4byte Img_BattleBg_0D
+	.4byte Tsa_BattleBg_0D
+	.4byte Pal_BattleBg_19
+	.4byte Img_BattleBg_0B
+	.4byte Tsa_BattleBg_0B
+	.4byte Pal_BattleBg_1A
+	.4byte Img_BattleBg_1B
+	.4byte Tsa_BattleBg_1B
+	.4byte Pal_BattleBg_1B
+	.4byte Img_BattleBg_0B
+	.4byte Tsa_BattleBg_0B
+	.4byte Pal_BattleBg_1C
+	.4byte Img_BattleBg_1B
+	.4byte Tsa_BattleBg_1B
+	.4byte Pal_BattleBg_1D
+	.4byte Img_BattleBg_0B
+	.4byte Tsa_BattleBg_0B
+	.4byte Pal_BattleBg_1E
+	.4byte Img_BattleBg_1B
+	.4byte Tsa_BattleBg_1B
+	.4byte Pal_BattleBg_1F
+	.4byte Img_BattleBg_20
+	.4byte Tsa_BattleBg_20
+	.4byte Pal_BattleBg_20
+	.4byte Img_BattleBg_21
+	.4byte Tsa_BattleBg_21
+	.4byte Pal_BattleBg_21
+	.4byte Img_BattleBg_21
+	.4byte Tsa_BattleBg_21
+	.4byte Pal_BattleBg_22
+	.4byte Img_BattleBg_02
+	.4byte Tsa_BattleBg_02
+	.4byte Pal_BattleBg_23
+	.4byte Img_BattleBg_02
+	.4byte Tsa_BattleBg_02
+	.4byte Pal_BattleBg_24
+	.4byte Img_BattleBg_02
+	.4byte Tsa_BattleBg_02
+	.4byte Pal_BattleBg_25
+	.4byte Img_BattleBg_02
+	.4byte Tsa_BattleBg_02
+	.4byte Pal_BattleBg_26
+	.4byte Img_BattleBg_00
+	.4byte Tsa_BattleBg_00
+	.4byte Pal_BattleBg_27
+	.4byte Img_BattleBg_01
+	.4byte Tsa_BattleBg_01
+	.4byte Pal_BattleBg_28
+	.4byte Img_BattleBg_01
+	.4byte Tsa_BattleBg_01
+	.4byte Pal_BattleBg_29
+	.4byte Img_BattleBg_0D
+	.4byte Tsa_BattleBg_0D
+	.4byte Pal_BattleBg_2A
+	.4byte Img_BattleBg_0D
+	.4byte Tsa_BattleBg_0D
+	.4byte Pal_BattleBg_2B
+	.4byte Img_BattleBg_0C
+	.4byte Tsa_BattleBg_0C
+	.4byte Pal_BattleBg_2C
+	.4byte Img_BattleBg_2D
+	.4byte Tsa_BattleBg_2D
+	.4byte Pal_BattleBg_2D
+	.4byte Img_BattleBg_2E
+	.4byte Tsa_BattleBg_2E
+	.4byte Pal_BattleBg_2E
+	.4byte Img_BattleBg_2F
+	.4byte Tsa_BattleBg_2F
+	.4byte Pal_BattleBg_2F
+	.4byte Img_BattleBg_03
+	.4byte Tsa_BattleBg_03
+	.4byte Pal_BattleBg_30
+	.4byte Img_BattleBg_03
+	.4byte Tsa_BattleBg_03
+	.4byte Pal_BattleBg_31
+	.4byte Img_BattleBg_03
+	.4byte Tsa_BattleBg_03
+	.4byte Pal_BattleBg_32
+	.4byte Img_BattleBg_33
+	.4byte Tsa_BattleBg_33
+	.4byte Pal_BattleBg_33
+	.4byte Img_BattleBg_34
+	.4byte Tsa_BattleBg_34
+	.4byte Pal_BattleBg_34
+	.4byte Img_BattleBg_05
+	.4byte Tsa_BattleBg_05
+	.4byte Pal_BattleBg_35
+	.4byte Img_BattleBg_0A
+	.4byte Tsa_BattleBg_0A
+	.4byte Pal_BattleBg_36
+	.4byte Img_BattleBg_00
+	.4byte Tsa_BattleBg_00
+	.4byte Pal_BattleBg_00
+	.4byte Img_BattleBg_00
+	.4byte Tsa_BattleBg_00
+	.4byte Pal_BattleBg_00
+	.4byte Img_BattleBg_00
+	.4byte Tsa_BattleBg_00
+	.4byte Pal_BattleBg_00
+	.4byte Img_BattleBg_00
+	.4byte Tsa_BattleBg_00
+	.4byte Pal_BattleBg_00
+	.4byte Img_BattleBg_3B
+	.4byte Tsa_BattleBg_3B
+	.4byte Pal_BattleBg_3B
 
-	.global gUnk_08BDCD34
-gUnk_08BDCD34:
+	.global AnimSprite_EkrPopup
+AnimSprite_EkrPopup:
 	.incbin "baserom.gba", 0xbdcd34, 0x18
 
 	.global AnimScr_EkrPopup
 AnimScr_EkrPopup:
-	.4byte gUnk_08BDCD34 + 0x1
+	.4byte AnimSprite_EkrPopup + 0x1
 	.incbin "baserom.gba", 0xbdcd50, 0x4
 
 	.global ProcScr_ekrPopup

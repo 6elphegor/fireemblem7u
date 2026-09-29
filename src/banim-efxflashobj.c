@@ -2,10 +2,10 @@
 #include "gbafe/banim_ekrdragon.h"
 
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
-extern const u8 gUnk_082CD6E4[];
-extern const u8 gUnk_082CDAF8[];
-extern const u8 gUnk_082CDF18[];
-extern const u8 gUnk_082CE338[];
+extern const u8 Tsa_EfxSpellCastBg_00[];
+extern const u8 Tsa_EfxSpellCastBg_01[];
+extern const u8 Tsa_EfxSpellCastBg_02[];
+extern const u8 Tsa_EfxSpellCastBg_03[];
 
 /**
  * Weapon icon flashing and spell-cast background dimming (fireemblem8u: banim-efxflashobj.c)
@@ -92,10 +92,10 @@ CONST_DATA struct ProcCmd ProcScr_efxSpellCastBg[] = {
 };
 
 CONST_DATA const void * const TsaList_EfxSpellCastBg[] = {
-    (const void * const) gUnk_082CD6E4,
-    (const void * const) gUnk_082CDAF8,
-    (const void * const) gUnk_082CDF18,
-    (const void * const) gUnk_082CE338,
+    (const void * const) Tsa_EfxSpellCastBg_00,
+    (const void * const) Tsa_EfxSpellCastBg_01,
+    (const void * const) Tsa_EfxSpellCastBg_02,
+    (const void * const) Tsa_EfxSpellCastBg_03,
 };
 
 void NewEfxWeaponIcon(s16 effective1, s16 effective2)

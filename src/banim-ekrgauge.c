@@ -201,10 +201,10 @@ void NewEkrGauge(void)
     gpProcEkrGauge = Proc_Start(ProcScr_ekrGauge, PROC_TREE_1);
 
     EkrGauge_0804CC68(0);
-    EkrGauge_0804CC28();
+    EkrGauge_Clr4C50();
     DisableEkrGauge();
     EkrGauge_ClrInitFlag();
-    EkrGauge_0804CC78(gEkrBg0QuakeVec.x, gEkrBg0QuakeVec.y);
+    EkrGauge_Clr323A(gEkrBg0QuakeVec.x, gEkrBg0QuakeVec.y);
 
     if (gEkrGaugeHp[0] > 0x50)
         CpuCopy16(Pal_EfxHpBarPurple, PAL_OBJ(0xB), 0x10 * sizeof(u16));
@@ -264,24 +264,24 @@ void EndEkrGauge(void)
     Proc_End(gpProcEkrGauge);
 }
 
-void EkrGauge_0804CC28(void)
+void EkrGauge_Clr4C50(void)
 {
     gpProcEkrGauge->unk4C = 0;
     gpProcEkrGauge->unk50 = 0;
 }
 
-void EkrGauge_0804CC38(void)
+void EkrGauge_Set4C50(void)
 {
     gpProcEkrGauge->unk4C = 1;
     gpProcEkrGauge->unk50 = 1;
 }
 
-void EkrGauge_0804CC48(void)
+void EkrGauge_Set4C(void)
 {
     gpProcEkrGauge->unk4C = 1;
 }
 
-void EkrGauge_0804CC58(void)
+void EkrGauge_Set50(void)
 {
     gpProcEkrGauge->unk50 = 1;
 }
@@ -291,14 +291,14 @@ void EkrGauge_0804CC68(u16 val)
     gpProcEkrGauge->unk44 = val * 0x400;
 }
 
-void EkrGauge_0804CC78(s16 x, s16 y)
+void EkrGauge_Clr323A(s16 x, s16 y)
 {
     gpProcEkrGauge->unk32 = x;
     gpProcEkrGauge->unk3A = y;
     gpProcEkrGauge->battle_init = false;
 }
 
-void EkrGauge_0804CC8C(s16 x, s16 y)
+void EkrGauge_Setxy323A(s16 x, s16 y)
 {
     gpProcEkrGauge->unk32 = x;
     gpProcEkrGauge->unk3A = y;

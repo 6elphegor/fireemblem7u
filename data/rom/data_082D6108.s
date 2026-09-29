@@ -5,56 +5,56 @@
 
 	.section .rodata.082D6108, "a"
 
-	.global gUnk_082D6108
-gUnk_082D6108:  @ LZ77
+	.global Img_EreshkigalBg3_08
+Img_EreshkigalBg3_08:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_08.lz"
 
-	.global gUnk_082D746C
-gUnk_082D746C:  @ LZ77
+	.global Img_EreshkigalBg3_09
+Img_EreshkigalBg3_09:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_EreshkigalBg3_09.lz"
 
 	.global Pal_EreshkigalBg3
 Pal_EreshkigalBg3:
 	.incbin "graphics/Pal_EreshkigalBg3.gbapal"
 
-	.global gUnk_082D8280
-gUnk_082D8280:  @ LZ77
+	.global Tsa_EreshkigalBg3_00
+Tsa_EreshkigalBg3_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_00.lz"
 
-	.global gUnk_082D83DC
-gUnk_082D83DC:  @ LZ77
+	.global Tsa_EreshkigalBg3_01
+Tsa_EreshkigalBg3_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_01.lz"
 
-	.global gUnk_082D85BC
-gUnk_082D85BC:  @ LZ77
+	.global Tsa_EreshkigalBg3_02
+Tsa_EreshkigalBg3_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_02.lz"
 
-	.global gUnk_082D8808
-gUnk_082D8808:  @ LZ77
+	.global Tsa_EreshkigalBg3_03
+Tsa_EreshkigalBg3_03:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_03.lz"
 
-	.global gUnk_082D8A30
-gUnk_082D8A30:  @ LZ77
+	.global Tsa_EreshkigalBg3_04
+Tsa_EreshkigalBg3_04:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_04.lz"
 
-	.global gUnk_082D8C80
-gUnk_082D8C80:  @ LZ77
+	.global Tsa_EreshkigalBg3_05
+Tsa_EreshkigalBg3_05:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_05.lz"
 
-	.global gUnk_082D8EF4
-gUnk_082D8EF4:  @ LZ77
+	.global Tsa_EreshkigalBg3_06
+Tsa_EreshkigalBg3_06:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_06.lz"
 
-	.global gUnk_082D9120
-gUnk_082D9120:  @ LZ77
+	.global Tsa_EreshkigalBg3_07
+Tsa_EreshkigalBg3_07:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_07.lz"
 
-	.global gUnk_082D9364
-gUnk_082D9364:  @ LZ77
+	.global Tsa_EreshkigalBg3_08
+Tsa_EreshkigalBg3_08:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_08.lz"
 
-	.global gUnk_082D95BC
-gUnk_082D95BC:  @ LZ77
+	.global Tsa_EreshkigalBg3_09
+Tsa_EreshkigalBg3_09:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_EreshkigalBg3_09.lz"
 
 	.global Img_EreshkigalOBJ
@@ -73,20 +73,20 @@ Img_082D9C94:  @ LZ77
 Pal_082DA240:
 	.incbin "graphics/Pal_082DA240.gbapal"
 
-	.global gUnk_082DA260
-gUnk_082DA260:  @ LZ77
+	.global Img_SongBg_00
+Img_SongBg_00:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_SongBg_00.lz"
 
-	.global gUnk_082DAE2C
-gUnk_082DAE2C:  @ LZ77
+	.global Img_SongBg_0A
+Img_SongBg_0A:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_SongBg_0A.lz"
 
-	.global gUnk_082DBA68
-gUnk_082DBA68:  @ LZ77
+	.global Img_SongBg_0F
+Img_SongBg_0F:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_SongBg_0F.lz"
 
-	.global gUnk_082DC538
-gUnk_082DC538:  @ LZ77
+	.global Img_SongBg_16
+Img_SongBg_16:  @ LZ77
 	.incbin "build/graphics/efx/ImgArray_SongBg_16.lz"
 
 	.global Pal_SongSprites
@@ -94,112 +94,112 @@ Pal_SongSprites:
 	.incbin "graphics/Pal_SongSprites.gbapal"
 	.incbin "baserom.gba", 0x2dcaac, 0x80
 
-	.global gUnk_082DCB2C
-gUnk_082DCB2C:  @ LZ77
+	.global Tsa_SongBg_00
+Tsa_SongBg_00:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_00.lz"
 
-	.global gUnk_082DCBD4
-gUnk_082DCBD4:  @ LZ77
+	.global Tsa_SongBg_01
+Tsa_SongBg_01:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_01.lz"
 
-	.global gUnk_082DCC80
-gUnk_082DCC80:  @ LZ77
+	.global Tsa_SongBg_02
+Tsa_SongBg_02:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_02.lz"
 
-	.global gUnk_082DCD30
-gUnk_082DCD30:  @ LZ77
+	.global Tsa_SongBg_03
+Tsa_SongBg_03:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_03.lz"
 
-	.global gUnk_082DCDF4
-gUnk_082DCDF4:  @ LZ77
+	.global Tsa_SongBg_04
+Tsa_SongBg_04:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_04.lz"
 
-	.global gUnk_082DCEC0
-gUnk_082DCEC0:  @ LZ77
+	.global Tsa_SongBg_05
+Tsa_SongBg_05:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_05.lz"
 
-	.global gUnk_082DCF98
-gUnk_082DCF98:  @ LZ77
+	.global Tsa_SongBg_06
+Tsa_SongBg_06:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_06.lz"
 
-	.global gUnk_082DD078
-gUnk_082DD078:  @ LZ77
+	.global Tsa_SongBg_07
+Tsa_SongBg_07:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_07.lz"
 
-	.global gUnk_082DD158
-gUnk_082DD158:  @ LZ77
+	.global Tsa_SongBg_08
+Tsa_SongBg_08:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_08.lz"
 
-	.global gUnk_082DD244
-gUnk_082DD244:  @ LZ77
+	.global Tsa_SongBg_09
+Tsa_SongBg_09:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_09.lz"
 
-	.global gUnk_082DD338
-gUnk_082DD338:  @ LZ77
+	.global Tsa_SongBg_0A
+Tsa_SongBg_0A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_0A.lz"
 
-	.global gUnk_082DD434
-gUnk_082DD434:  @ LZ77
+	.global Tsa_SongBg_0B
+Tsa_SongBg_0B:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_0B.lz"
 
-	.global gUnk_082DD52C
-gUnk_082DD52C:  @ LZ77
+	.global Tsa_SongBg_0C
+Tsa_SongBg_0C:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_0C.lz"
 
-	.global gUnk_082DD62C
-gUnk_082DD62C:  @ LZ77
+	.global Tsa_SongBg_0D
+Tsa_SongBg_0D:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_0D.lz"
 
-	.global gUnk_082DD72C
-gUnk_082DD72C:  @ LZ77
+	.global Tsa_SongBg_0E
+Tsa_SongBg_0E:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_0E.lz"
 
-	.global gUnk_082DD82C
-gUnk_082DD82C:  @ LZ77
+	.global Tsa_SongBg_0F
+Tsa_SongBg_0F:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_0F.lz"
 
-	.global gUnk_082DD930
-gUnk_082DD930:  @ LZ77
+	.global Tsa_SongBg_10
+Tsa_SongBg_10:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_10.lz"
 
-	.global gUnk_082DDA20
-gUnk_082DDA20:  @ LZ77
+	.global Tsa_SongBg_11
+Tsa_SongBg_11:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_11.lz"
 
-	.global gUnk_082DDB08
-gUnk_082DDB08:  @ LZ77
+	.global Tsa_SongBg_12
+Tsa_SongBg_12:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_12.lz"
 
-	.global gUnk_082DDBEC
-gUnk_082DDBEC:  @ LZ77
+	.global Tsa_SongBg_13
+Tsa_SongBg_13:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_13.lz"
 
-	.global gUnk_082DDCD4
-gUnk_082DDCD4:  @ LZ77
+	.global Tsa_SongBg_14
+Tsa_SongBg_14:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_14.lz"
 
-	.global gUnk_082DDDB0
-gUnk_082DDDB0:  @ LZ77
+	.global Tsa_SongBg_15
+Tsa_SongBg_15:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_15.lz"
 
-	.global gUnk_082DDE80
-gUnk_082DDE80:  @ LZ77
+	.global Tsa_SongBg_16
+Tsa_SongBg_16:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_16.lz"
 
-	.global gUnk_082DDF3C
-gUnk_082DDF3C:  @ LZ77
+	.global Tsa_SongBg_17
+Tsa_SongBg_17:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_17.lz"
 
-	.global gUnk_082DDFFC
-gUnk_082DDFFC:  @ LZ77
+	.global Tsa_SongBg_18
+Tsa_SongBg_18:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_18.lz"
 
-	.global gUnk_082DE0B0
-gUnk_082DE0B0:  @ LZ77
+	.global Tsa_SongBg_19
+Tsa_SongBg_19:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_19.lz"
 
-	.global gUnk_082DE158
-gUnk_082DE158:  @ LZ77
+	.global Tsa_SongBg_1A
+Tsa_SongBg_1A:  @ LZ77
 	.incbin "build/graphics/efx/TsaArray_SongBg_1A.lz"
 
 	.global Img_SongSprites
@@ -378,28 +378,28 @@ Img_TriFalconKnightLanceBG:  @ LZ77
 Img_TriFalconKnightSwordBG:  @ LZ77
 	.incbin "build/graphics/Img_TriFalconKnightSwordBG.lz"
 
-	.global gUnk_082E7A4C
-gUnk_082E7A4C:  @ LZ77
+	.global Tsa_EkrTriPegagusRightBG1
+Tsa_EkrTriPegagusRightBG1:  @ LZ77
 	.incbin "build/graphics/efx/TsaLut_EkrTriPegagusBG_00.lz"
 
-	.global gUnk_082E7B60
-gUnk_082E7B60:  @ LZ77
+	.global Tsa_EkrTriPegagusRightBG2
+Tsa_EkrTriPegagusRightBG2:  @ LZ77
 	.incbin "build/graphics/efx/TsaLut_EkrTriPegagusBG_01.lz"
 
-	.global gUnk_082E7C84
-gUnk_082E7C84:  @ LZ77
+	.global Tsa_EkrTriPegagusRightBG3
+Tsa_EkrTriPegagusRightBG3:  @ LZ77
 	.incbin "build/graphics/efx/TsaLut_EkrTriPegagusBG_02.lz"
 
-	.global gUnk_082E7D5C
-gUnk_082E7D5C:  @ LZ77
+	.global Tsa_EkrTriPegagusLeftBG1
+Tsa_EkrTriPegagusLeftBG1:  @ LZ77
 	.incbin "build/graphics/efx/TsaLut_EkrTriPegagusBG_03.lz"
 
-	.global gUnk_082E7E78
-gUnk_082E7E78:  @ LZ77
+	.global Tsa_EkrTriPegagusLeftBG2
+Tsa_EkrTriPegagusLeftBG2:  @ LZ77
 	.incbin "build/graphics/efx/TsaLut_EkrTriPegagusBG_04.lz"
 
-	.global gUnk_082E7F9C
-gUnk_082E7F9C:  @ LZ77
+	.global Tsa_EkrTriPegagusLeftBG3
+Tsa_EkrTriPegagusLeftBG3:  @ LZ77
 	.incbin "build/graphics/efx/TsaLut_EkrTriPegagusBG_05.lz"
 
 	.global Img_TriPegasusKnightOBJ
@@ -446,426 +446,426 @@ Img_TriGenerialAxeAtkOBJ:  @ LZ77
 Img_TriGenerialHandAxeAtkOBJ:  @ LZ77
 	.incbin "build/graphics/Img_TriGenerialHandAxeAtkOBJ.lz"
 
-	.global gUnk_082EC794
-gUnk_082EC794:  @ LZ77
+	.global Img_BattleBg_00
+Img_BattleBg_00:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_00.lz"
 
-	.global gUnk_082EEC78
-gUnk_082EEC78:  @ LZ77
+	.global Pal_BattleBg_00
+Pal_BattleBg_00:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_00_pal.lz"
 
-	.global gUnk_082EED48
-gUnk_082EED48:  @ LZ77
+	.global Tsa_BattleBg_00
+Tsa_BattleBg_00:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_00_tilemap.lz"
 
-	.global gUnk_082EF08C
-gUnk_082EF08C:  @ LZ77
+	.global Img_BattleBg_01
+Img_BattleBg_01:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_01.lz"
 
-	.global gUnk_082F01F4
-gUnk_082F01F4:  @ LZ77
+	.global Pal_BattleBg_01
+Pal_BattleBg_01:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_01_pal.lz"
 
-	.global gUnk_082F0298
-gUnk_082F0298:  @ LZ77
+	.global Tsa_BattleBg_01
+Tsa_BattleBg_01:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_01_tilemap.lz"
 
-	.global gUnk_082F05C4
-gUnk_082F05C4:  @ LZ77
+	.global Img_BattleBg_02
+Img_BattleBg_02:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_02.lz"
 
-	.global gUnk_082F13BC
-gUnk_082F13BC:  @ LZ77
+	.global Pal_BattleBg_02
+Pal_BattleBg_02:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_02_pal.lz"
 
-	.global gUnk_082F14A8
-gUnk_082F14A8:  @ LZ77
+	.global Tsa_BattleBg_02
+Tsa_BattleBg_02:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_02_tilemap.lz"
 
-	.global gUnk_082F1660
-gUnk_082F1660:  @ LZ77
+	.global Img_BattleBg_03
+Img_BattleBg_03:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_03.lz"
 
-	.global gUnk_082F2D48
-gUnk_082F2D48:  @ LZ77
+	.global Pal_BattleBg_03
+Pal_BattleBg_03:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_03_pal.lz"
 
-	.global gUnk_082F2E7C
-gUnk_082F2E7C:  @ LZ77
+	.global Tsa_BattleBg_03
+Tsa_BattleBg_03:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_03_tilemap.lz"
 
-	.global gUnk_082F312C
-gUnk_082F312C:  @ LZ77
+	.global Img_BattleBg_04
+Img_BattleBg_04:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_04.lz"
 
-	.global gUnk_082F4214
-gUnk_082F4214:  @ LZ77
+	.global Pal_BattleBg_04
+Pal_BattleBg_04:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_04_pal.lz"
 
-	.global gUnk_082F42FC
-gUnk_082F42FC:  @ LZ77
+	.global Tsa_BattleBg_04
+Tsa_BattleBg_04:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_04_tilemap.lz"
 
-	.global gUnk_082F4538
-gUnk_082F4538:  @ LZ77
+	.global Img_BattleBg_05
+Img_BattleBg_05:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_05.lz"
 
-	.global gUnk_082F556C
-gUnk_082F556C:  @ LZ77
+	.global Pal_BattleBg_05
+Pal_BattleBg_05:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_05_pal.lz"
 
-	.global gUnk_082F5670
-gUnk_082F5670:  @ LZ77
+	.global Tsa_BattleBg_05
+Tsa_BattleBg_05:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_05_tilemap.lz"
 
-	.global gUnk_082F5838
-gUnk_082F5838:  @ LZ77
+	.global Img_BattleBg_06
+Img_BattleBg_06:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_06.lz"
 
-	.global gUnk_082F7210
-gUnk_082F7210:  @ LZ77
+	.global Pal_BattleBg_06
+Pal_BattleBg_06:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_06_pal.lz"
 
-	.global gUnk_082F7318
-gUnk_082F7318:  @ LZ77
+	.global Tsa_BattleBg_06
+Tsa_BattleBg_06:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_06_tilemap.lz"
 
-	.global gUnk_082F758C
-gUnk_082F758C:  @ LZ77
+	.global Img_BattleBg_07
+Img_BattleBg_07:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_07.lz"
 
-	.global gUnk_082F83A8
-gUnk_082F83A8:  @ LZ77
+	.global Pal_BattleBg_07
+Pal_BattleBg_07:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_07_pal.lz"
 
-	.global gUnk_082F8454
-gUnk_082F8454:  @ LZ77
+	.global Tsa_BattleBg_07
+Tsa_BattleBg_07:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_07_tilemap.lz"
 
-	.global gUnk_082F85E0
-gUnk_082F85E0:  @ LZ77
+	.global Img_BattleBg_08
+Img_BattleBg_08:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_08.lz"
 
-	.global gUnk_082F9890
-gUnk_082F9890:  @ LZ77
+	.global Pal_BattleBg_08
+Pal_BattleBg_08:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_08_pal.lz"
 
-	.global gUnk_082F9950
-gUnk_082F9950:  @ LZ77
+	.global Tsa_BattleBg_08
+Tsa_BattleBg_08:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_08_tilemap.lz"
 
-	.global gUnk_082F9B48
-gUnk_082F9B48:  @ LZ77
+	.global Img_BattleBg_09
+Img_BattleBg_09:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_09.lz"
 
-	.global gUnk_082FB3E0
-gUnk_082FB3E0:  @ LZ77
+	.global Pal_BattleBg_09
+Pal_BattleBg_09:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_09_pal.lz"
 
-	.global gUnk_082FB46C
-gUnk_082FB46C:  @ LZ77
+	.global Tsa_BattleBg_09
+Tsa_BattleBg_09:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_09_tilemap.lz"
 
-	.global gUnk_082FB728
-gUnk_082FB728:  @ LZ77
+	.global Img_BattleBg_0A
+Img_BattleBg_0A:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0A.lz"
 
-	.global gUnk_082FC7AC
-gUnk_082FC7AC:  @ LZ77
+	.global Pal_BattleBg_0A
+Pal_BattleBg_0A:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0A_pal.lz"
 
-	.global gUnk_082FC8B0
-gUnk_082FC8B0:  @ LZ77
+	.global Tsa_BattleBg_0A
+Tsa_BattleBg_0A:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0A_tilemap.lz"
 
-	.global gUnk_082FCB7C
-gUnk_082FCB7C:  @ LZ77
+	.global Img_BattleBg_0B
+Img_BattleBg_0B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0B.lz"
 
-	.global gUnk_082FE904
-gUnk_082FE904:  @ LZ77
+	.global Pal_BattleBg_0B
+Pal_BattleBg_0B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0B_pal.lz"
 
-	.global gUnk_082FE970
-gUnk_082FE970:  @ LZ77
+	.global Tsa_BattleBg_0B
+Tsa_BattleBg_0B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0B_tilemap.lz"
 
-	.global gUnk_082FEC50
-gUnk_082FEC50:  @ LZ77
+	.global Img_BattleBg_0C
+Img_BattleBg_0C:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0C.lz"
 
-	.global gUnk_082FFC6C
-gUnk_082FFC6C:  @ LZ77
+	.global Pal_BattleBg_0C
+Pal_BattleBg_0C:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0C_pal.lz"
 
-	.global gUnk_082FFCF8
-gUnk_082FFCF8:  @ LZ77
+	.global Tsa_BattleBg_0C
+Tsa_BattleBg_0C:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0C_tilemap.lz"
 
-	.global gUnk_082FFED0
-gUnk_082FFED0:  @ LZ77
+	.global Img_BattleBg_0D
+Img_BattleBg_0D:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0D.lz"
 
-	.global gUnk_08300C94
-gUnk_08300C94:  @ LZ77
+	.global Pal_BattleBg_0D
+Pal_BattleBg_0D:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0D_pal.lz"
 
-	.global gUnk_08300D90
-gUnk_08300D90:  @ LZ77
+	.global Tsa_BattleBg_0D
+Tsa_BattleBg_0D:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0D_tilemap.lz"
 
-	.global gUnk_08301028
-gUnk_08301028:  @ LZ77
+	.global Img_BattleBg_0E
+Img_BattleBg_0E:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0E.lz"
 
-	.global gUnk_08301B44
-gUnk_08301B44:  @ LZ77
+	.global Pal_BattleBg_0E
+Pal_BattleBg_0E:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0E_pal.lz"
 
-	.global gUnk_08301BF4
-gUnk_08301BF4:  @ LZ77
+	.global Tsa_BattleBg_0E
+Tsa_BattleBg_0E:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0E_tilemap.lz"
 
-	.global gUnk_08301DD0
-gUnk_08301DD0:  @ LZ77
+	.global Img_BattleBg_0F
+Img_BattleBg_0F:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0F.lz"
 
-	.global gUnk_08302BD8
-gUnk_08302BD8:  @ LZ77
+	.global Pal_BattleBg_0F
+Pal_BattleBg_0F:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0F_pal.lz"
 
-	.global gUnk_08302CC0
-gUnk_08302CC0:  @ LZ77
+	.global Tsa_BattleBg_0F
+Tsa_BattleBg_0F:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_0F_tilemap.lz"
 
-	.global gUnk_08302EA4
-gUnk_08302EA4:  @ LZ77
+	.global Pal_BattleBg_10
+Pal_BattleBg_10:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_10_pal.lz"
 
-	.global gUnk_08302F6C
-gUnk_08302F6C:  @ LZ77
+	.global Pal_BattleBg_11
+Pal_BattleBg_11:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_11_pal.lz"
 
-	.global gUnk_08303050
-gUnk_08303050:  @ LZ77
+	.global Pal_BattleBg_12
+Pal_BattleBg_12:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_12_pal.lz"
 
-	.global gUnk_08303168
-gUnk_08303168:  @ LZ77
+	.global Pal_BattleBg_13
+Pal_BattleBg_13:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_13_pal.lz"
 
-	.global gUnk_08303230
-gUnk_08303230:  @ LZ77
+	.global Pal_BattleBg_14
+Pal_BattleBg_14:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_14_pal.lz"
 
-	.global gUnk_0830332C
-gUnk_0830332C:  @ LZ77
+	.global Pal_BattleBg_15
+Pal_BattleBg_15:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_15_pal.lz"
 
-	.global gUnk_083033EC
-gUnk_083033EC:  @ LZ77
+	.global Pal_BattleBg_16
+Pal_BattleBg_16:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_16_pal.lz"
 
-	.global gUnk_08303504
-gUnk_08303504:  @ LZ77
+	.global Pal_BattleBg_17
+Pal_BattleBg_17:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_17_pal.lz"
 
-	.global gUnk_08303570
-gUnk_08303570:  @ LZ77
+	.global Pal_BattleBg_18
+Pal_BattleBg_18:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_18_pal.lz"
 
-	.global gUnk_08303630
-gUnk_08303630:  @ LZ77
+	.global Pal_BattleBg_19
+Pal_BattleBg_19:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_19_pal.lz"
 
-	.global gUnk_08303720
-gUnk_08303720:  @ LZ77
+	.global Pal_BattleBg_1A
+Pal_BattleBg_1A:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1A_pal.lz"
 
-	.global gUnk_08303790
-gUnk_08303790:  @ LZ77
+	.global Pal_BattleBg_1B
+Pal_BattleBg_1B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1B_pal.lz"
 
-	.global gUnk_08303838
-gUnk_08303838:  @ LZ77
+	.global Pal_BattleBg_1C
+Pal_BattleBg_1C:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1C_pal.lz"
 
-	.global gUnk_083038A0
-gUnk_083038A0:  @ LZ77
+	.global Pal_BattleBg_1D
+Pal_BattleBg_1D:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1D_pal.lz"
 
-	.global gUnk_08303948
-gUnk_08303948:  @ LZ77
+	.global Pal_BattleBg_1E
+Pal_BattleBg_1E:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1E_pal.lz"
 
-	.global gUnk_083039B4
-gUnk_083039B4:  @ LZ77
+	.global Img_BattleBg_1B
+Img_BattleBg_1B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1B.lz"
 
-	.global gUnk_08306148
-gUnk_08306148:  @ LZ77
+	.global Pal_BattleBg_1F
+Pal_BattleBg_1F:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1F_pal.lz"
 
-	.global gUnk_083061F4
-gUnk_083061F4:  @ LZ77
+	.global Tsa_BattleBg_1B
+Tsa_BattleBg_1B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_1B_tilemap.lz"
 
-	.global gUnk_08306560
-gUnk_08306560:  @ LZ77
+	.global Img_BattleBg_20
+Img_BattleBg_20:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_20.lz"
 
-	.global gUnk_08307A94
-gUnk_08307A94:  @ LZ77
+	.global Pal_BattleBg_20
+Pal_BattleBg_20:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_20_pal.lz"
 
-	.global gUnk_08307AE4
-gUnk_08307AE4:  @ LZ77
+	.global Tsa_BattleBg_20
+Tsa_BattleBg_20:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_20_tilemap.lz"
 
-	.global gUnk_08307E2C
-gUnk_08307E2C:  @ LZ77
+	.global Img_BattleBg_21
+Img_BattleBg_21:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_21.lz"
 
-	.global gUnk_0830A3F0
-gUnk_0830A3F0:  @ LZ77
+	.global Pal_BattleBg_21
+Pal_BattleBg_21:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_21_pal.lz"
 
-	.global gUnk_0830A4BC
-gUnk_0830A4BC:  @ LZ77
+	.global Tsa_BattleBg_21
+Tsa_BattleBg_21:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_21_tilemap.lz"
 
-	.global gUnk_0830A7F4
-gUnk_0830A7F4:  @ LZ77
+	.global Pal_BattleBg_22
+Pal_BattleBg_22:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_22_pal.lz"
 
-	.global gUnk_0830A8B8
-gUnk_0830A8B8:  @ LZ77
+	.global Pal_BattleBg_23
+Pal_BattleBg_23:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_23_pal.lz"
 
-	.global gUnk_0830A9A0
-gUnk_0830A9A0:  @ LZ77
+	.global Pal_BattleBg_24
+Pal_BattleBg_24:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_24_pal.lz"
 
-	.global gUnk_0830AAA4
-gUnk_0830AAA4:  @ LZ77
+	.global Pal_BattleBg_25
+Pal_BattleBg_25:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_25_pal.lz"
 
-	.global gUnk_0830AB8C
-gUnk_0830AB8C:  @ LZ77
+	.global Pal_BattleBg_26
+Pal_BattleBg_26:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_26_pal.lz"
 
-	.global gUnk_0830AC78
-gUnk_0830AC78:  @ LZ77
+	.global Pal_BattleBg_27
+Pal_BattleBg_27:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_27_pal.lz"
 
-	.global gUnk_0830AD3C
-gUnk_0830AD3C:  @ LZ77
+	.global Pal_BattleBg_28
+Pal_BattleBg_28:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_28_pal.lz"
 
-	.global gUnk_0830ADE4
-gUnk_0830ADE4:  @ LZ77
+	.global Pal_BattleBg_29
+Pal_BattleBg_29:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_29_pal.lz"
 
-	.global gUnk_0830AE88
-gUnk_0830AE88:  @ LZ77
+	.global Pal_BattleBg_2A
+Pal_BattleBg_2A:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2A_pal.lz"
 
-	.global gUnk_0830AF90
-gUnk_0830AF90:  @ LZ77
+	.global Pal_BattleBg_2B
+Pal_BattleBg_2B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2B_pal.lz"
 
-	.global gUnk_0830B070
-gUnk_0830B070:  @ LZ77
+	.global Pal_BattleBg_2C
+Pal_BattleBg_2C:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2C_pal.lz"
 
-	.global gUnk_0830B0FC
-gUnk_0830B0FC:  @ LZ77
+	.global Img_BattleBg_2D
+Img_BattleBg_2D:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2D.lz"
 
-	.global gUnk_0830BD7C
-gUnk_0830BD7C:  @ LZ77
+	.global Pal_BattleBg_2D
+Pal_BattleBg_2D:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2D_pal.lz"
 
-	.global gUnk_0830BEBC
-gUnk_0830BEBC:  @ LZ77
+	.global Tsa_BattleBg_2D
+Tsa_BattleBg_2D:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2D_tilemap.lz"
 
-	.global gUnk_0830C074
-gUnk_0830C074:  @ LZ77
+	.global Img_BattleBg_2E
+Img_BattleBg_2E:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2E.lz"
 
-	.global gUnk_0830CFF4
-gUnk_0830CFF4:  @ LZ77
+	.global Pal_BattleBg_2E
+Pal_BattleBg_2E:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2E_pal.lz"
 
-	.global gUnk_0830D0DC
-gUnk_0830D0DC:  @ LZ77
+	.global Tsa_BattleBg_2E
+Tsa_BattleBg_2E:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2E_tilemap.lz"
 
-	.global gUnk_0830D2C0
-gUnk_0830D2C0:  @ LZ77
+	.global Img_BattleBg_2F
+Img_BattleBg_2F:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2F.lz"
 
-	.global gUnk_0830E494
-gUnk_0830E494:  @ LZ77
+	.global Pal_BattleBg_2F
+Pal_BattleBg_2F:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2F_pal.lz"
 
-	.global gUnk_0830E59C
-gUnk_0830E59C:  @ LZ77
+	.global Tsa_BattleBg_2F
+Tsa_BattleBg_2F:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_2F_tilemap.lz"
 
-	.global gUnk_0830E85C
-gUnk_0830E85C:  @ LZ77
+	.global Pal_BattleBg_30
+Pal_BattleBg_30:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_30_pal.lz"
 
-	.global gUnk_0830E99C
-gUnk_0830E99C:  @ LZ77
+	.global Pal_BattleBg_31
+Pal_BattleBg_31:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_31_pal.lz"
 
-	.global gUnk_0830EACC
-gUnk_0830EACC:  @ LZ77
+	.global Pal_BattleBg_32
+Pal_BattleBg_32:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_32_pal.lz"
 
-	.global gUnk_0830EC04
-gUnk_0830EC04:  @ LZ77
+	.global Img_BattleBg_33
+Img_BattleBg_33:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_33.lz"
 
-	.global gUnk_08310C78
-gUnk_08310C78:  @ LZ77
+	.global Pal_BattleBg_33
+Pal_BattleBg_33:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_33_pal.lz"
 
-	.global gUnk_08310D68
-gUnk_08310D68:  @ LZ77
+	.global Tsa_BattleBg_33
+Tsa_BattleBg_33:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_33_tilemap.lz"
 
-	.global gUnk_08311048
-gUnk_08311048:  @ LZ77
+	.global Img_BattleBg_34
+Img_BattleBg_34:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_34.lz"
 
-	.global gUnk_08312314
-gUnk_08312314:  @ LZ77
+	.global Pal_BattleBg_34
+Pal_BattleBg_34:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_34_pal.lz"
 
-	.global gUnk_083123BC
-gUnk_083123BC:  @ LZ77
+	.global Tsa_BattleBg_34
+Tsa_BattleBg_34:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_34_tilemap.lz"
 
-	.global gUnk_08312678
-gUnk_08312678:  @ LZ77
+	.global Pal_BattleBg_35
+Pal_BattleBg_35:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_35_pal.lz"
 
-	.global gUnk_08312778
-gUnk_08312778:  @ LZ77
+	.global Pal_BattleBg_36
+Pal_BattleBg_36:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_36_pal.lz"
 
-	.global gUnk_08312874
-gUnk_08312874:  @ LZ77
+	.global Img_BattleBg_3B
+Img_BattleBg_3B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_3B.lz"
 
-	.global gUnk_083150C4
-gUnk_083150C4:  @ LZ77
+	.global Pal_BattleBg_3B
+Pal_BattleBg_3B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_3B_pal.lz"
 
-	.global gUnk_08315114
-gUnk_08315114:  @ LZ77
+	.global Tsa_BattleBg_3B
+Tsa_BattleBg_3B:  @ LZ77
 	.incbin "build/graphics/btl_bg/btl_bg_3B_tilemap.lz"

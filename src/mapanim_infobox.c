@@ -1,9 +1,9 @@
 #include "gbafe.h"
 
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
-extern const u8 gUnk_083F424C[];
-extern const u8 gUnk_083F4278[];
-extern const u8 gUnk_083F42A4[];
+extern const u8 Tsa_ManimInfoWindow_00[];
+extern const u8 Tsa_ManimInfoWindow_00_2[];
+extern const u8 Tsa_ManimInfoWindow_01[];
 
 // not yet declared in headers
 void StartManimFrameGradientScanlineEffect2(u16 y_start, u16 y_end, u16 color_a, u16 color_b);
@@ -32,9 +32,9 @@ CONST_DATA int gManimInfoWindowBarPalLut[] = {
 };
 
 CONST_DATA u8 const * Tsa_ManimInfoWindowLut[][2] = {
-    { (u8 const *) gUnk_083F424C, (u8 const *) gUnk_083F424C },
-    { (u8 const *) gUnk_083F424C, (u8 const *) gUnk_083F424C },
-    { (u8 const *) gUnk_083F4278, (u8 const *) gUnk_083F42A4 },
+    { (u8 const *) Tsa_ManimInfoWindow_00, (u8 const *) Tsa_ManimInfoWindow_00 },
+    { (u8 const *) Tsa_ManimInfoWindow_00, (u8 const *) Tsa_ManimInfoWindow_00 },
+    { (u8 const *) Tsa_ManimInfoWindow_00_2, (u8 const *) Tsa_ManimInfoWindow_01 },
 };
 
 CONST_DATA struct ProcCmd ProcScr_ManimInfoWindow[] = {

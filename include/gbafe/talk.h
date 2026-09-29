@@ -140,11 +140,11 @@ struct FaceProc * StartTalkFace(int fid, int x, int y, int disp, int talk_face);
 // ??? GetFaceIdByXPos
 void sub_08008F6C(int talk_face, int toBack);
 void MoveTalkFace(int talkFaceFrom, int talkFaceTo);
-bool sub_08009020();
+bool IsTalkFaceMoving();
 void StartTalkFaceMove(int talkFaceFrom, int talkFaceTo, bool isSwap);
 // ??? TalkFaceMove_OnInit
 // ??? TalkFaceMove_OnIdle
-// ??? sub_080091F0
+// ??? Talk_OnEnd
 // ??? TalkPause_OnIdle
 // ??? TalkWaitForInput_OnIdle
 // ??? nullsub_24
@@ -169,7 +169,7 @@ void StartOpenTalkBubble();
 void sub_08009A10(int x, int y, int width, int height);
 void PutTalkBubbleTail(int bg, int x, int y, int kind);
 void PutTalkBubbleTm(int id, int x, int y, int width, int height);
-// ??? nullsub_25
+// ??? TalkOpen_OnEnd
 // ??? sub_08009D58
 // ??? TalkOpen_PutTalkBubble
 // ??? sub_08009DFC
@@ -187,10 +187,10 @@ void SetTalkNumber(int number);
 // ??? SetTalkUnkStr
 // ??? PrintStringToTexts
 // ??? TalkPutSpriteText_OnIdle
-// ??? sub_0800A0FC
-// ??? sub_0800A108
+// ??? ClearPrimaryHBlank
+// ??? TalkPutSpriteText_OnEnd
 int GetStrTalkLen(char const * str, bool isBubbleOpen);
-// ??? sub_0800A4E8
+// ??? GetZero
 // ??? sub_800A390
 // ??? sub_800A3A4
 // ??? StartTalkDebug
@@ -206,25 +206,25 @@ void TalkAdvance_Loop(struct ProcTalkAdvance * proc);
 
 extern struct ProcCmd gUnk_08B90980[];
 extern struct TalkSt * CONST_DATA sTalkSt;
-extern struct ProcCmd gUnk_08B909BC[];
+extern struct ProcCmd gProcScr_TalkSkipListener[];
 extern struct ProcCmd ProcScr_Talk[];
-extern struct ProcCmd gUnk_08B90A04[];
-extern struct ProcCmd gUnk_08B90A0C[];
+extern struct ProcCmd gProcScr_TalkLock[];
+extern struct ProcCmd gProcScr_TalkFaceMove[];
 extern struct ProcCmd gUnk_08BFFBDC[];
-extern struct ProcCmd gUnk_08B90A4C[];
+extern struct ProcCmd gProcScr_TalkWaitForInput[];
 extern u16 const * CONST_DATA gUnk_08B90A8C[];
 extern struct ProcCmd gUnk_08B90ACC[];
 extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFC9C[];
 extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFCAC[];
 extern struct ProcCmd gUnk_08B90B0C[];
 extern struct ProcCmd gUnk_08B90B24[];
-extern struct ProcCmd gUnk_08B90B4C[];
-extern int CONST_DATA gUnk_08B90B7C[];
-extern struct ProcCmd gUnk_08B90B8C[];
-extern struct ProcCmd gUnk_08B90B9C[];
-extern int CONST_DATA gUnk_08B90BCC[];
-extern u16 gUnk_08B90BEC[];
-extern u16 gUnk_08B90C06[];
+extern struct ProcCmd ProcScr_TalkSpriteShiftClear[];
+extern int CONST_DATA gTalkPauseDurations[];
+extern struct ProcCmd gProcScr_TalkBubbleOpen[];
+extern struct ProcCmd gProcScr_TalkOpen[];
+extern int CONST_DATA gTalkFaceHPosLut[];
+extern u16 gSprite_TalkTextFront[];
+extern u16 gSprite_TalkTextBack[];
 extern struct ProcCmd gUnk_08BFFE18[];
 extern struct ProcCmd ProcScr_TalkAdvanceDeamon[];
 extern struct ProcCmd ProcScr_TalkAdvance[];

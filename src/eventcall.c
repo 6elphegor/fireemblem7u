@@ -45,7 +45,7 @@ void sub_0807A558(struct ProcTutorialCursor * proc);
 void sub_0807A764(struct ProcTutorialCursor * proc);
 void sub_0807A76C(struct ProcTutorialCursor * proc);
 
-CONST_DATA struct ProcCmd ProcScr_08CA74F0[] = {
+CONST_DATA struct ProcCmd ProcScr_ForceAsyncButtonB[] = {
     PROC_SLEEP(28),
     PROC_CALL(sub_0807A4BC),
     PROC_SLEEP(8),
@@ -399,7 +399,7 @@ int sub_08079FE8(void)
     return AreAnyEnemyUnitsAlive() == FALSE;
 }
 
-s8 sub_0807A000(u8 pid)
+s8 IsCharDeadAsNonPlayerUnit(u8 pid)
 {
     int i;
 
@@ -464,23 +464,23 @@ int sub_0807A078(void)
     return TRUE;
 }
 
-s8 sub_0807A0AC(void) { return sub_0807A000(0x45); }
-s8 sub_0807A0BC(void) { return sub_0807A000(0x3B); }
-s8 sub_0807A0CC(void) { return sub_0807A000(0x7F); }
-s8 sub_0807A0DC(void) { return sub_0807A000(0x80); }
-s8 sub_0807A0EC(void) { return sub_0807A000(0x81); }
-s8 sub_0807A0FC(void) { return sub_0807A000(0x82); }
-s8 sub_0807A10C(void) { return sub_0807A000(0x24); }
-s8 sub_0807A11C(void) { return sub_0807A000(0x20); }
-s8 sub_0807A12C(void) { return sub_0807A000(0x2B); }
-s8 sub_0807A13C(void) { return sub_0807A000(0x37); }
-s8 sub_0807A14C(void) { return sub_0807A000(0x11); }
-s8 sub_0807A15C(void) { return sub_0807A000(0x13); }
-s8 sub_0807A16C(void) { return sub_0807A000(0x08); }
-s8 sub_0807A17C(void) { return sub_0807A000(0x4C); }
-s8 sub_0807A18C(void) { return sub_0807A000(0x65); }
-s8 sub_0807A19C(void) { return sub_0807A000(0x66); }
-s8 sub_0807A1AC(void) { return sub_0807A000(0xA3); }
+s8 sub_0807A0AC(void) { return IsCharDeadAsNonPlayerUnit(0x45); }
+s8 sub_0807A0BC(void) { return IsCharDeadAsNonPlayerUnit(0x3B); }
+s8 sub_0807A0CC(void) { return IsCharDeadAsNonPlayerUnit(0x7F); }
+s8 sub_0807A0DC(void) { return IsCharDeadAsNonPlayerUnit(0x80); }
+s8 sub_0807A0EC(void) { return IsCharDeadAsNonPlayerUnit(0x81); }
+s8 sub_0807A0FC(void) { return IsCharDeadAsNonPlayerUnit(0x82); }
+s8 sub_0807A10C(void) { return IsCharDeadAsNonPlayerUnit(0x24); }
+s8 sub_0807A11C(void) { return IsCharDeadAsNonPlayerUnit(0x20); }
+s8 sub_0807A12C(void) { return IsCharDeadAsNonPlayerUnit(0x2B); }
+s8 sub_0807A13C(void) { return IsCharDeadAsNonPlayerUnit(0x37); }
+s8 sub_0807A14C(void) { return IsCharDeadAsNonPlayerUnit(0x11); }
+s8 sub_0807A15C(void) { return IsCharDeadAsNonPlayerUnit(0x13); }
+s8 sub_0807A16C(void) { return IsCharDeadAsNonPlayerUnit(0x08); }
+s8 sub_0807A17C(void) { return IsCharDeadAsNonPlayerUnit(0x4C); }
+s8 sub_0807A18C(void) { return IsCharDeadAsNonPlayerUnit(0x65); }
+s8 sub_0807A19C(void) { return IsCharDeadAsNonPlayerUnit(0x66); }
+s8 sub_0807A1AC(void) { return IsCharDeadAsNonPlayerUnit(0xA3); }
 
 s8 sub_0807A1BC(void) { return ArePidsAtMaxSupport(0x01, 0x2D); }
 s8 sub_0807A1D0(void) { return ArePidsAtMaxSupport(0x01, 0x25); }
@@ -707,9 +707,9 @@ void sub_0807A4BC(void)
     NewKeyStSetter(2);
 }
 
-void sub_0807A4C8(void)
+void NewForceAsyncButtonB(void)
 {
-    Proc_Start(ProcScr_08CA74F0, PROC_TREE_4);
+    Proc_Start(ProcScr_ForceAsyncButtonB, PROC_TREE_4);
 }
 
 void ShinningEventCursor(int lo, int hi, int cur)

@@ -117,7 +117,7 @@ void sub_08095C28(int idx, ProcPtr proc)
 {
     StartParallelWorker(sub_08095BF4, proc);
 
-    sub_080A9D1C(0x7800, 0xd, DecodeMsgInBuffer(gSupplyTextIndexLookup[idx], gpPrepItemSupplyStringBuffer), 1, proc);
+    NewSysboxText(0x7800, 0xd, DecodeMsgInBuffer(gSupplyTextIndexLookup[idx], gpPrepItemSupplyStringBuffer), 1, proc);
 }
 void StoreConvoyWeaponIconGraphics(int vramOffset, int pal)
 {

@@ -1534,16 +1534,16 @@ gSioBgPalTable:
 gUnk_081D5554:
 	.incbin "baserom.gba", 0x1d5554, 0x10
 
-	.global gUnk_081D5564
-gUnk_081D5564:
+	.global Sprite_SioMenu_Practice
+Sprite_SioMenu_Practice:
 	.incbin "baserom.gba", 0x1d5564, 0xc
 
 	.global gUnk_081D5570
 gUnk_081D5570:
 	.incbin "baserom.gba", 0x1d5570, 0x10
 
-	.global gUnk_081D5580
-gUnk_081D5580:
+	.global Sprite_SioMenu_BattleData
+Sprite_SioMenu_BattleData:
 	.incbin "baserom.gba", 0x1d5580, 0xc
 
 	.global gUnk_081D558C
@@ -1584,48 +1584,48 @@ gUnknown_085AAA5E:
 Sprite_LinkArena_PressStart:
 	.incbin "baserom.gba", 0x1d5646, 0xe
 
-	.global gUnk_081D5654
-gUnk_081D5654:
+	.global Sprite_NameEntry_CursorSmall
+Sprite_NameEntry_CursorSmall:
 	.incbin "baserom.gba", 0x1d5654, 0x8
 
-	.global gUnk_081D565C
-gUnk_081D565C:
+	.global Sprite_NameEntry_CursorLarge
+Sprite_NameEntry_CursorLarge:
 	.incbin "baserom.gba", 0x1d565c, 0x8
 
 	.global Sprite_NameEntry_PositionIndicator
 Sprite_NameEntry_PositionIndicator:
 	.incbin "baserom.gba", 0x1d5664, 0x8
 
-	.global gUnk_081D566C
-gUnk_081D566C:
+	.global Sprite_NameEntry_OKIcon
+Sprite_NameEntry_OKIcon:
 	.incbin "baserom.gba", 0x1d566c, 0x8
 
-	.global gUnk_081D5674
-gUnk_081D5674:
+	.global Sprite_NameEntry_DeleteIcon
+Sprite_NameEntry_DeleteIcon:
 	.incbin "baserom.gba", 0x1d5674, 0x8
 
-	.global gUnk_081D567C
-gUnk_081D567C:
+	.global Sprite_NameEntry_KatakanaIcon
+Sprite_NameEntry_KatakanaIcon:
 	.incbin "baserom.gba", 0x1d567c, 0x8
 
-	.global gUnk_081D5684
-gUnk_081D5684:
+	.global Sprite_NameEntry_HiraganaIcon
+Sprite_NameEntry_HiraganaIcon:
 	.incbin "baserom.gba", 0x1d5684, 0x8
 
 	.global gUnk_081D568C
 gUnk_081D568C:
 	.incbin "baserom.gba", 0x1d568c, 0x8
 
-	.global gUnk_081D5694
-gUnk_081D5694:
+	.global Sprite_RuleSettings_HideUnitsIcon
+Sprite_RuleSettings_HideUnitsIcon:
 	.incbin "baserom.gba", 0x1d5694, 0x8
 
-	.global gUnk_081D569C
-gUnk_081D569C:
+	.global Sprite_RuleSettings_VictoryCondIcon
+Sprite_RuleSettings_VictoryCondIcon:
 	.incbin "baserom.gba", 0x1d569c, 0x8
 
-	.global gUnk_081D56A4
-gUnk_081D56A4:
+	.global Sprite_RuleSettings_AutoWeaponIcon
+Sprite_RuleSettings_AutoWeaponIcon:
 	.incbin "baserom.gba", 0x1d56a4, 0x8
 
 	.global Sprite_SioMenuBurst_TopLeft
@@ -1648,20 +1648,20 @@ Sprite_SioMenuBurst_BottomRight:
 gUnknown_080DA1CA:
 	.incbin "baserom.gba", 0x1d56e4, 0x40
 
-	.global gUnk_081D5724
-gUnk_081D5724:
+	.global Sprite_LAVersus_P1
+Sprite_LAVersus_P1:
 	.incbin "baserom.gba", 0x1d5724, 0x8
 
-	.global gUnk_081D572C
-gUnk_081D572C:
+	.global Sprite_LAVersus_P2
+Sprite_LAVersus_P2:
 	.incbin "baserom.gba", 0x1d572c, 0x8
 
-	.global gUnk_081D5734
-gUnk_081D5734:
+	.global Sprite_LAVersus_P3
+Sprite_LAVersus_P3:
 	.incbin "baserom.gba", 0x1d5734, 0x8
 
-	.global gUnk_081D573C
-gUnk_081D573C:
+	.global Sprite_LAVersus_P4
+Sprite_LAVersus_P4:
 	.incbin "baserom.gba", 0x1d573c, 0x8
 
 	.global Sprite_080DA25C
@@ -1692,24 +1692,24 @@ gUnk_081D57AC:
 gUnk_081D57B8:
 	.incbin "baserom.gba", 0x1d57b8, 0x4
 
-	.global gUnk_081D57BC
-gUnk_081D57BC:
+	.global UiWindowFrameTile1
+UiWindowFrameTile1:
 	.incbin "baserom.gba", 0x1d57bc, 0x20
 
-	.global gUnk_081D57DC
-gUnk_081D57DC:
+	.global UiWindowFrameTile2
+UiWindowFrameTile2:
 	.incbin "baserom.gba", 0x1d57dc, 0x20
 
-	.global gUnk_081D57FC
-gUnk_081D57FC:
+	.global UiWindowFrameTile3
+UiWindowFrameTile3:
 	.incbin "baserom.gba", 0x1d57fc, 0x20
 
 	.global gUiItemHoverModel
 gUiItemHoverModel:
 	.incbin "baserom.gba", 0x1d581c, 0x28
 
-	.global gUnk_081D5844
-gUnk_081D5844:  @ LZ77
+	.global Img_UiWindowFrame1
+Img_UiWindowFrame1:  @ LZ77
 	.incbin "build/graphics/ui/UiWindowFrameImgLut_00.lz"
 
 	.global Pal_UiWindowFrame1
@@ -1720,8 +1720,8 @@ Pal_UiWindowFrame1:
 gUnk_081D6110:
 	.incbin "baserom.gba", 0x1d6110, 0x20
 
-	.global gUnk_081D6130
-gUnk_081D6130:  @ LZ77
+	.global Img_UiWindowFrame2
+Img_UiWindowFrame2:  @ LZ77
 	.incbin "build/graphics/ui/UiWindowFrameImgLut_01.lz"
 
 	.global Pal_081D69E4
@@ -1732,8 +1732,8 @@ Pal_081D69E4:
 gUnk_081D6A04:
 	.incbin "baserom.gba", 0x1d6a04, 0x20
 
-	.global gUnk_081D6A24
-gUnk_081D6A24:  @ LZ77
+	.global Img_UiWindowFrame3
+Img_UiWindowFrame3:  @ LZ77
 	.incbin "build/graphics/ui/UiWindowFrameImgLut_02.lz"
 
 	.global Pal_081D72A4
@@ -1744,8 +1744,8 @@ Pal_081D72A4:
 gUnk_081D72C4:
 	.incbin "baserom.gba", 0x1d72c4, 0x20
 
-	.global gUnk_081D72E4
-gUnk_081D72E4:  @ LZ77
+	.global Img_UiWindowFrame4
+Img_UiWindowFrame4:  @ LZ77
 	.incbin "build/graphics/ui/UiWindowFrameImgLut_03.lz"
 
 	.global Pal_081D7B20

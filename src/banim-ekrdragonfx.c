@@ -975,7 +975,7 @@ void EkrDragonTunk_Loop2(struct ProcEkrDragon * proc)
         gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x,
         gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y);
 
-    EkrGauge_0804CC8C(
+    EkrGauge_Setxy323A(
         -(gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x),
         -(gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y));
 
@@ -1023,7 +1023,7 @@ void EkrDragonTunk_Loop2(struct ProcEkrDragon * proc)
         sub_08066164(0, proc->y_hi);
         SetBgOffset(BG_2, 0, 0);
         SetBgOffset(BG_0, gEkrBg0QuakeVec.x, gEkrBg0QuakeVec.y);
-        EkrGauge_0804CC8C(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
+        EkrGauge_Setxy323A(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
         EkrDispUP_SetPositionSync(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
         EkrDragonUpdatePal_08065510(0x10);
     }
@@ -1125,7 +1125,7 @@ void EkrDragonBarkQuake_Loop(struct ProcEkrDragonBarkQuake * proc)
         gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x,
         gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y);
 
-    EkrGauge_0804CC8C(
+    EkrGauge_Setxy323A(
         -(gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x),
         -(gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y));
 
@@ -1151,7 +1151,7 @@ void EkrDragonBarkQuake_Loop(struct ProcEkrDragonBarkQuake * proc)
     {
         SetBgOffset(BG_2, 0, 0);
         SetBgOffset(BG_0, gEkrBg0QuakeVec.x, gEkrBg0QuakeVec.y);
-        EkrGauge_0804CC8C(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
+        EkrGauge_Setxy323A(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
         EkrDispUP_SetPositionSync(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
         SetBgOffset(BG_3, 0, 0);
 

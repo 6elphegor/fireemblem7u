@@ -234,7 +234,7 @@ void EfxTeonoObjMain(struct ProcEfxMagicOBJ * proc)
 
         if (gEkrDistanceType == EKR_DISTANCE_CLOSE)
         {
-            Unk_02017758 = 1;
+            gEfxTeonoState = 1;
             Proc_End(proc->seproc);
             Proc_End(proc);
         }
@@ -283,7 +283,7 @@ void EfxTeonoObj2Main(struct ProcEfxMagicOBJ * proc)
     if (++proc->timer == 17)
     {
         gEfxBgSemaphore--;
-        Unk_02017758 = 1;
+        gEfxTeonoState = 1;
         Proc_End(proc->seproc);
         AnimDelete(proc->anim2);
         Proc_Break(proc);

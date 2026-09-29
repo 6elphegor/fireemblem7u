@@ -263,7 +263,7 @@ void EkrBattleStartBattleQuote(struct ProcEkrBattle * proc)
     SetBgOffset(BG_0, gEkrBg0QuakeVec.x, gEkrBg0QuakeVec.y);
     SetBgOffset(BG_1, 0, 0);
     EnableBgSync(BG0_SYNC_BIT);
-    EkrGauge_0804CC38();
+    EkrGauge_Set4C50();
 
     if (proc->quote == true) {
         if (gEkrInitialHitSide == EKR_POS_L)
@@ -288,7 +288,7 @@ void EkrBattleWaitBattleQuote(struct ProcEkrBattle * proc)
     NewEkrNamewinAppear(0, 7, 0);
     DisableEkrGauge();
     UnAsyncEkrDispUP();
-    EkrGauge_0804CC28();
+    EkrGauge_Clr4C50();
     proc->proc_idleCb = (ProcFunc)EkrBattleWaitWindowAppear;
 }
 

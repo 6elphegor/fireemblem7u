@@ -5,42 +5,42 @@
 
 	.section .rodata.08182AE0, "a"
 
-	.global gUnk_08182AE0
-gUnk_08182AE0:  @ LZ77
+	.global Img_Bg_59
+Img_Bg_59:  @ LZ77
 	.incbin "build/graphics/bg/bg_59.lz"
 
 	.global gUnk_08186500
 gUnk_08186500:
 	.incbin "baserom.gba", 0x186500, 0x4b4
 
-	.global gUnk_081869B4
-gUnk_081869B4:
+	.global Pal_Bg_59
+Pal_Bg_59:
 	.incbin "graphics/bg/bg_59_pal.gbapal"
 	.incbin "baserom.gba", 0x1869f4, 0xc0
 
-	.global gUnk_08186AB4
-gUnk_08186AB4:  @ LZ77
+	.global Img_Bg_5A
+Img_Bg_5A:  @ LZ77
 	.incbin "build/graphics/bg/bg_5A.lz"
 
 	.global gUnk_0818AB1C
 gUnk_0818AB1C:
 	.incbin "baserom.gba", 0x18ab1c, 0x4b4
 
-	.global gUnk_0818AFD0
-gUnk_0818AFD0:
+	.global Pal_Bg_5A
+Pal_Bg_5A:
 	.incbin "graphics/bg/bg_5A_pal.gbapal"
 	.incbin "baserom.gba", 0x18b090, 0x40
 
-	.global gUnk_0818B0D0
-gUnk_0818B0D0:  @ LZ77
+	.global Img_Bg_5B
+Img_Bg_5B:  @ LZ77
 	.incbin "build/graphics/bg/bg_5B.lz"
 
 	.global gUnk_0818BA50
 gUnk_0818BA50:
 	.incbin "baserom.gba", 0x18ba50, 0x4b4
 
-	.global gUnk_0818BF04
-gUnk_0818BF04:
+	.global Pal_Bg_5B
+Pal_Bg_5B:
 	.incbin "graphics/bg/bg_5B_pal.gbapal"
 	.incbin "baserom.gba", 0x18bf24, 0xe0
 
@@ -69,16 +69,16 @@ Tsa_NilsInDragonsGate:
 Pal_NilsInDragonsGate:
 	.incbin "baserom.gba", 0x1900e4, 0x20
 
-	.global gUnk_08190104
-gUnk_08190104:  @ LZ77
+	.global Img_Bg_5D
+Img_Bg_5D:  @ LZ77
 	.incbin "build/graphics/bg/bg_5D.lz"
 
 	.global gUnk_081937D8
 gUnk_081937D8:
 	.incbin "baserom.gba", 0x1937d8, 0x4b4
 
-	.global gUnk_08193C8C
-gUnk_08193C8C:
+	.global Pal_Bg_5D
+Pal_Bg_5D:
 	.incbin "graphics/bg/bg_5D_pal.gbapal"
 	.incbin "baserom.gba", 0x193d2c, 0x60
 

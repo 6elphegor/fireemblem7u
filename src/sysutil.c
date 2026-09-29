@@ -363,7 +363,7 @@ void SetSysHandCursorXPos(int x)
         proc->x = x;
 }
 
-void sub_080A9500(int y)
+void SetSysHandCursorYPos(int y)
 {
     struct SysHandCursorProc * proc = Proc_Find(ProcScr_SysHandCtrl);
     if (proc)
@@ -848,7 +848,7 @@ void sub_080A9D08(void)
     Proc_End(Proc_Find(ProcScr_SysboxText));
 }
 
-void sub_080A9D1C(int vobj_offset, int pal, const char * str, int line, ProcPtr parent)
+void NewSysboxText(int vobj_offset, int pal, const char * str, int line, ProcPtr parent)
 {
     int i;
     struct ProcSysboxText * proc;

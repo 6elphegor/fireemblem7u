@@ -6,8 +6,8 @@ extern struct ProcCmd CONST_DATA ProcScr_TactGenderSelect[];
 extern u16 CONST_DATA gUnk_08B90600[];
 
 void StartTacticianNameSelect(ProcPtr parent); // StartTacticianNameSelect
-void sub_080A7194(struct ProcTactInfo *proc); // StartTactBirthSelect
-void sub_080A73E4(struct ProcTactInfo *proc); // StartTactGenderSelect
+void StartTactBirthSelect(struct ProcTactInfo *proc); // StartTactBirthSelect
+void StartTactGenderSelect(struct ProcTactInfo *proc); // StartTactGenderSelect
 
 struct TactInfoTextSt {
 	struct Font font;
@@ -308,11 +308,11 @@ void sub_080A6B4C(struct ProcTactInfo *proc)
 				return;
 
 			case 1:
-				sub_080A7194(proc);
+				StartTactBirthSelect(proc);
 				break;
 
 			case 2:
-				sub_080A73E4(proc);
+				StartTactGenderSelect(proc);
 				break;
 
 			default:
@@ -593,7 +593,7 @@ void sub_080A715C(void)
     SetTextFont(NULL);
     EnableBgSync(BG1_SYNC_BIT);
 }
-void sub_080A7194(struct ProcTactInfo * proc)
+void StartTactBirthSelect(struct ProcTactInfo * proc)
 {
     Proc_StartBlocking(ProcScr_TactBirthSelect, proc);
 }
@@ -677,7 +677,7 @@ void sub_080A73AC(void)
     SetTextFont(NULL);
     EnableBgSync(BG1_SYNC_BIT);
 }
-void sub_080A73E4(struct ProcTactInfo * proc)
+void StartTactGenderSelect(struct ProcTactInfo * proc)
 {
     Proc_StartBlocking(ProcScr_TactGenderSelect, proc);
 }

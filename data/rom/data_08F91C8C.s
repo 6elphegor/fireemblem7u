@@ -5,378 +5,378 @@
 
 	.section .rodata.08F91C8C, "a"
 
-	.global gUnk_08F91C8C
-	.global gUnk_08F91C8C
-gUnk_08F91C8C:  @ LZ77
-gUnk_08F91C8C:  @ LZ77
+	.global Pal_Banim_094_bism_mg1
+	.global Pal_Banim_094_bism_mg1
+Pal_Banim_094_bism_mg1:  @ LZ77
+Pal_Banim_094_bism_mg1:  @ LZ77
 	.incbin "build/graphics/banim/094_bism_mg1/pal.lz"
 
-	.global gUnk_08F91CFC
-	.global gUnk_08F91CFC
-gUnk_08F91CFC:  @ LZ77
-gUnk_08F91CFC:  @ LZ77
+	.global BanimOam_094_bism_mg1_L
+	.global BanimOam_094_bism_mg1_L
+BanimOam_094_bism_mg1_L:  @ LZ77
+BanimOam_094_bism_mg1_L:  @ LZ77
 	.incbin "build/graphics/banim/094_bism_mg1/oam_l.lz"
 
-	.global gUnk_08F92190
-	.global gUnk_08F92190
-gUnk_08F92190:  @ LZ77
-gUnk_08F92190:  @ LZ77
+	.global BanimOam_094_bism_mg1_R
+	.global BanimOam_094_bism_mg1_R
+BanimOam_094_bism_mg1_R:  @ LZ77
+BanimOam_094_bism_mg1_R:  @ LZ77
 	.incbin "build/graphics/banim/094_bism_mg1/oam_r.lz"
 
 	.section .rodata.08F928FC, "a"
 
-	.global gUnk_08F928FC
-	.global gUnk_08F928FC
-gUnk_08F928FC:  @ LZ77
-gUnk_08F928FC:  @ LZ77
+	.global Pal_Banim_095_bism_mg1
+	.global Pal_Banim_095_bism_mg1
+Pal_Banim_095_bism_mg1:  @ LZ77
+Pal_Banim_095_bism_mg1:  @ LZ77
 	.incbin "build/graphics/banim/095_bism_mg1/pal.lz"
 
-	.global gUnk_08F9296C
-	.global gUnk_08F9296C
-gUnk_08F9296C:  @ LZ77
-gUnk_08F9296C:  @ LZ77
+	.global BanimOam_095_bism_mg1_L
+	.global BanimOam_095_bism_mg1_L
+BanimOam_095_bism_mg1_L:  @ LZ77
+BanimOam_095_bism_mg1_L:  @ LZ77
 	.incbin "build/graphics/banim/095_bism_mg1/oam_l.lz"
 
-	.global gUnk_08F92B28
-	.global gUnk_08F92B28
-gUnk_08F92B28:  @ LZ77
-gUnk_08F92B28:  @ LZ77
+	.global BanimOam_095_bism_mg1_R
+	.global BanimOam_095_bism_mg1_R
+BanimOam_095_bism_mg1_R:  @ LZ77
+BanimOam_095_bism_mg1_R:  @ LZ77
 	.incbin "build/graphics/banim/095_bism_mg1/oam_r.lz"
 
 	.section .rodata.08F92E30, "a"
 
-	.global gUnk_08F92E30
-	.global gUnk_08F92E30
-gUnk_08F92E30:  @ LZ77
-gUnk_08F92E30:  @ LZ77
+	.global Pal_Banim_096_bism_mg1
+	.global Pal_Banim_096_bism_mg1
+Pal_Banim_096_bism_mg1:  @ LZ77
+Pal_Banim_096_bism_mg1:  @ LZ77
 	.incbin "build/graphics/banim/096_bism_mg1/pal.lz"
 
-	.global gUnk_08F92EA0
-	.global gUnk_08F92EA0
-gUnk_08F92EA0:  @ LZ77
-gUnk_08F92EA0:  @ LZ77
+	.global BanimOam_096_bism_mg1_L
+	.global BanimOam_096_bism_mg1_L
+BanimOam_096_bism_mg1_L:  @ LZ77
+BanimOam_096_bism_mg1_L:  @ LZ77
 	.incbin "build/graphics/banim/096_bism_mg1/oam_l.lz"
 
-	.global gUnk_08F92F74
-	.global gUnk_08F92F74
-gUnk_08F92F74:  @ LZ77
-gUnk_08F92F74:  @ LZ77
+	.global BanimOam_096_bism_mg1_R
+	.global BanimOam_096_bism_mg1_R
+BanimOam_096_bism_mg1_R:  @ LZ77
+BanimOam_096_bism_mg1_R:  @ LZ77
 	.incbin "build/graphics/banim/096_bism_mg1/oam_r.lz"
 
 	.section .rodata.08F93128, "a"
 
-	.global gUnk_08F93128
-	.global gUnk_08F93128
-gUnk_08F93128:  @ LZ77
-gUnk_08F93128:  @ LZ77
+	.global Pal_Banim_097_bism_mg1
+	.global Pal_Banim_097_bism_mg1
+Pal_Banim_097_bism_mg1:  @ LZ77
+Pal_Banim_097_bism_mg1:  @ LZ77
 	.incbin "build/graphics/banim/097_bism_mg1/pal.lz"
 
-	.global gUnk_08F93198
-	.global gUnk_08F93198
-gUnk_08F93198:  @ LZ77
-gUnk_08F93198:  @ LZ77
+	.global BanimOam_097_bism_mg1_L
+	.global BanimOam_097_bism_mg1_L
+BanimOam_097_bism_mg1_L:  @ LZ77
+BanimOam_097_bism_mg1_L:  @ LZ77
 	.incbin "build/graphics/banim/097_bism_mg1/oam_l.lz"
 
-	.global gUnk_08F93254
-	.global gUnk_08F93254
-gUnk_08F93254:  @ LZ77
-gUnk_08F93254:  @ LZ77
+	.global BanimOam_097_bism_mg1_R
+	.global BanimOam_097_bism_mg1_R
+BanimOam_097_bism_mg1_R:  @ LZ77
+BanimOam_097_bism_mg1_R:  @ LZ77
 	.incbin "build/graphics/banim/097_bism_mg1/oam_r.lz"
 
 	.section .rodata.08F933F8, "a"
 
-	.global gUnk_08F933F8
-	.global gUnk_08F933F8
-gUnk_08F933F8:  @ LZ77
-gUnk_08F933F8:  @ LZ77
+	.global Pal_Banim_098_bisf_mg1
+	.global Pal_Banim_098_bisf_mg1
+Pal_Banim_098_bisf_mg1:  @ LZ77
+Pal_Banim_098_bisf_mg1:  @ LZ77
 	.incbin "build/graphics/banim/098_bisf_mg1/pal.lz"
 
-	.global gUnk_08F93454
-	.global gUnk_08F93454
-gUnk_08F93454:  @ LZ77
-gUnk_08F93454:  @ LZ77
+	.global BanimOam_098_bisf_mg1_L
+	.global BanimOam_098_bisf_mg1_L
+BanimOam_098_bisf_mg1_L:  @ LZ77
+BanimOam_098_bisf_mg1_L:  @ LZ77
 	.incbin "build/graphics/banim/098_bisf_mg1/oam_l.lz"
 
-	.global gUnk_08F93510
-	.global gUnk_08F93510
-gUnk_08F93510:  @ LZ77
-gUnk_08F93510:  @ LZ77
+	.global BanimOam_098_bisf_mg1_R
+	.global BanimOam_098_bisf_mg1_R
+BanimOam_098_bisf_mg1_R:  @ LZ77
+BanimOam_098_bisf_mg1_R:  @ LZ77
 	.incbin "build/graphics/banim/098_bisf_mg1/oam_r.lz"
 
 	.section .rodata.08F936B4, "a"
 
-	.global gUnk_08F936B4
-	.global gUnk_08F936B4
-gUnk_08F936B4:  @ LZ77
-gUnk_08F936B4:  @ LZ77
+	.global Img_Banim_099_mygm_sw1_Sheet0
+	.global Img_Banim_099_mygm_sw1_Sheet0
+Img_Banim_099_mygm_sw1_Sheet0:  @ LZ77
+Img_Banim_099_mygm_sw1_Sheet0:  @ LZ77
 	.incbin "build/graphics/banim/099_mygm_sw1/sheet_0.lz"
 
-	.global gUnk_08F9473C
-	.global gUnk_08F9473C
-gUnk_08F9473C:  @ LZ77
-gUnk_08F9473C:  @ LZ77
+	.global Img_Banim_099_mygm_sw1_Sheet1
+	.global Img_Banim_099_mygm_sw1_Sheet1
+Img_Banim_099_mygm_sw1_Sheet1:  @ LZ77
+Img_Banim_099_mygm_sw1_Sheet1:  @ LZ77
 	.incbin "build/graphics/banim/099_mygm_sw1/sheet_1.lz"
 
-	.global gUnk_08F95854
-	.global gUnk_08F95854
-gUnk_08F95854:  @ LZ77
-gUnk_08F95854:  @ LZ77
+	.global Img_Banim_099_mygm_sw1_Sheet2
+	.global Img_Banim_099_mygm_sw1_Sheet2
+Img_Banim_099_mygm_sw1_Sheet2:  @ LZ77
+Img_Banim_099_mygm_sw1_Sheet2:  @ LZ77
 	.incbin "build/graphics/banim/099_mygm_sw1/sheet_2.lz"
 
-	.global gUnk_08F967C4
-	.global gUnk_08F967C4
-gUnk_08F967C4:  @ LZ77
-gUnk_08F967C4:  @ LZ77
+	.global Img_Banim_099_mygm_sw1_Sheet3
+	.global Img_Banim_099_mygm_sw1_Sheet3
+Img_Banim_099_mygm_sw1_Sheet3:  @ LZ77
+Img_Banim_099_mygm_sw1_Sheet3:  @ LZ77
 	.incbin "build/graphics/banim/099_mygm_sw1/sheet_3.lz"
 
-	.global gUnk_08F97430
-	.global gUnk_08F97430
-gUnk_08F97430:  @ LZ77
-gUnk_08F97430:  @ LZ77
+	.global Pal_Banim_099_mygm_sw1
+	.global Pal_Banim_099_mygm_sw1
+Pal_Banim_099_mygm_sw1:  @ LZ77
+Pal_Banim_099_mygm_sw1:  @ LZ77
 	.incbin "build/graphics/banim/099_mygm_sw1/pal.lz"
 
-	.global gUnk_08F97498
-	.global gUnk_08F97498
-gUnk_08F97498:  @ LZ77
-gUnk_08F97498:  @ LZ77
+	.global BanimOam_099_mygm_sw1_L
+	.global BanimOam_099_mygm_sw1_L
+BanimOam_099_mygm_sw1_L:  @ LZ77
+BanimOam_099_mygm_sw1_L:  @ LZ77
 	.incbin "build/graphics/banim/099_mygm_sw1/oam_l.lz"
 
-	.global gUnk_08F9807C
-	.global gUnk_08F9807C
-gUnk_08F9807C:  @ LZ77
-gUnk_08F9807C:  @ LZ77
+	.global BanimOam_099_mygm_sw1_R
+	.global BanimOam_099_mygm_sw1_R
+BanimOam_099_mygm_sw1_R:  @ LZ77
+BanimOam_099_mygm_sw1_R:  @ LZ77
 	.incbin "build/graphics/banim/099_mygm_sw1/oam_r.lz"
 
 	.section .rodata.08F9907C, "a"
 
-	.global gUnk_08F9907C
-	.global gUnk_08F9907C
-gUnk_08F9907C:  @ LZ77
-gUnk_08F9907C:  @ LZ77
+	.global Pal_Banim_09A_mygm_sw1
+	.global Pal_Banim_09A_mygm_sw1
+Pal_Banim_09A_mygm_sw1:  @ LZ77
+Pal_Banim_09A_mygm_sw1:  @ LZ77
 	.incbin "build/graphics/banim/09A_mygm_sw1/pal.lz"
 
-	.global gUnk_08F990E4
-	.global gUnk_08F990E4
-gUnk_08F990E4:  @ LZ77
-gUnk_08F990E4:  @ LZ77
+	.global BanimOam_09A_mygm_sw1_L
+	.global BanimOam_09A_mygm_sw1_L
+BanimOam_09A_mygm_sw1_L:  @ LZ77
+BanimOam_09A_mygm_sw1_L:  @ LZ77
 	.incbin "build/graphics/banim/09A_mygm_sw1/oam_l.lz"
 
-	.global gUnk_08F99198
-	.global gUnk_08F99198
-gUnk_08F99198:  @ LZ77
-gUnk_08F99198:  @ LZ77
+	.global BanimOam_09A_mygm_sw1_R
+	.global BanimOam_09A_mygm_sw1_R
+BanimOam_09A_mygm_sw1_R:  @ LZ77
+BanimOam_09A_mygm_sw1_R:  @ LZ77
 	.incbin "build/graphics/banim/09A_mygm_sw1/oam_r.lz"
 
 	.section .rodata.08F99334, "a"
 
-	.global gUnk_08F99334
-	.global gUnk_08F99334
-gUnk_08F99334:  @ LZ77
-gUnk_08F99334:  @ LZ77
+	.global Img_Banim_09B_swgm_sw1_Sheet0
+	.global Img_Banim_09B_swgm_sw1_Sheet0
+Img_Banim_09B_swgm_sw1_Sheet0:  @ LZ77
+Img_Banim_09B_swgm_sw1_Sheet0:  @ LZ77
 	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_0.lz"
 
-	.global gUnk_08F9A410
-	.global gUnk_08F9A410
-gUnk_08F9A410:  @ LZ77
-gUnk_08F9A410:  @ LZ77
+	.global Img_Banim_09B_swgm_sw1_Sheet1
+	.global Img_Banim_09B_swgm_sw1_Sheet1
+Img_Banim_09B_swgm_sw1_Sheet1:  @ LZ77
+Img_Banim_09B_swgm_sw1_Sheet1:  @ LZ77
 	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_1.lz"
 
-	.global gUnk_08F9B2C8
-	.global gUnk_08F9B2C8
-gUnk_08F9B2C8:  @ LZ77
-gUnk_08F9B2C8:  @ LZ77
+	.global Img_Banim_09B_swgm_sw1_Sheet2
+	.global Img_Banim_09B_swgm_sw1_Sheet2
+Img_Banim_09B_swgm_sw1_Sheet2:  @ LZ77
+Img_Banim_09B_swgm_sw1_Sheet2:  @ LZ77
 	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_2.lz"
 
-	.global gUnk_08F9C54C
-	.global gUnk_08F9C54C
-gUnk_08F9C54C:  @ LZ77
-gUnk_08F9C54C:  @ LZ77
+	.global Img_Banim_09B_swgm_sw1_Sheet3
+	.global Img_Banim_09B_swgm_sw1_Sheet3
+Img_Banim_09B_swgm_sw1_Sheet3:  @ LZ77
+Img_Banim_09B_swgm_sw1_Sheet3:  @ LZ77
 	.incbin "build/graphics/banim/09B_swgm_sw1/sheet_3.lz"
 
-	.global gUnk_08F9CDD4
-	.global gUnk_08F9CDD4
-gUnk_08F9CDD4:  @ LZ77
-gUnk_08F9CDD4:  @ LZ77
+	.global Pal_Banim_09B_swgm_sw1
+	.global Pal_Banim_09B_swgm_sw1
+Pal_Banim_09B_swgm_sw1:  @ LZ77
+Pal_Banim_09B_swgm_sw1:  @ LZ77
 	.incbin "build/graphics/banim/09B_swgm_sw1/pal.lz"
 
-	.global gUnk_08F9CE38
-	.global gUnk_08F9CE38
-gUnk_08F9CE38:  @ LZ77
-gUnk_08F9CE38:  @ LZ77
+	.global BanimOam_09B_swgm_sw1_L
+	.global BanimOam_09B_swgm_sw1_L
+BanimOam_09B_swgm_sw1_L:  @ LZ77
+BanimOam_09B_swgm_sw1_L:  @ LZ77
 	.incbin "build/graphics/banim/09B_swgm_sw1/oam_l.lz"
 
-	.global gUnk_08F9DA44
-	.global gUnk_08F9DA44
-gUnk_08F9DA44:  @ LZ77
-gUnk_08F9DA44:  @ LZ77
+	.global BanimOam_09B_swgm_sw1_R
+	.global BanimOam_09B_swgm_sw1_R
+BanimOam_09B_swgm_sw1_R:  @ LZ77
+BanimOam_09B_swgm_sw1_R:  @ LZ77
 	.incbin "build/graphics/banim/09B_swgm_sw1/oam_r.lz"
 
 	.section .rodata.08F9EB3C, "a"
 
-	.global gUnk_08F9EB3C
-	.global gUnk_08F9EB3C
-gUnk_08F9EB3C:  @ LZ77
-gUnk_08F9EB3C:  @ LZ77
+	.global Pal_Banim_09C_swgm_sw1
+	.global Pal_Banim_09C_swgm_sw1
+Pal_Banim_09C_swgm_sw1:  @ LZ77
+Pal_Banim_09C_swgm_sw1:  @ LZ77
 	.incbin "build/graphics/banim/09C_swgm_sw1/pal.lz"
 
-	.global gUnk_08F9EBA0
-	.global gUnk_08F9EBA0
-gUnk_08F9EBA0:  @ LZ77
-gUnk_08F9EBA0:  @ LZ77
+	.global BanimOam_09C_swgm_sw1_L
+	.global BanimOam_09C_swgm_sw1_L
+BanimOam_09C_swgm_sw1_L:  @ LZ77
+BanimOam_09C_swgm_sw1_L:  @ LZ77
 	.incbin "build/graphics/banim/09C_swgm_sw1/oam_l.lz"
 
-	.global gUnk_08F9EBF4
-	.global gUnk_08F9EBF4
-gUnk_08F9EBF4:  @ LZ77
-gUnk_08F9EBF4:  @ LZ77
+	.global BanimOam_09C_swgm_sw1_R
+	.global BanimOam_09C_swgm_sw1_R
+BanimOam_09C_swgm_sw1_R:  @ LZ77
+BanimOam_09C_swgm_sw1_R:  @ LZ77
 	.incbin "build/graphics/banim/09C_swgm_sw1/oam_r.lz"
 
 	.section .rodata.08F9ED08, "a"
 
-	.global gUnk_08F9ED08
-	.global gUnk_08F9ED08
-gUnk_08F9ED08:  @ LZ77
-gUnk_08F9ED08:  @ LZ77
+	.global Img_Banim_09D_brsm_ax1_Sheet0
+	.global Img_Banim_09D_brsm_ax1_Sheet0
+Img_Banim_09D_brsm_ax1_Sheet0:  @ LZ77
+Img_Banim_09D_brsm_ax1_Sheet0:  @ LZ77
 	.incbin "build/graphics/banim/09D_brsm_ax1/sheet_0.lz"
 
-	.global gUnk_08F9FF00
-	.global gUnk_08F9FF00
-gUnk_08F9FF00:  @ LZ77
-gUnk_08F9FF00:  @ LZ77
+	.global Img_Banim_09D_brsm_ax1_Sheet1
+	.global Img_Banim_09D_brsm_ax1_Sheet1
+Img_Banim_09D_brsm_ax1_Sheet1:  @ LZ77
+Img_Banim_09D_brsm_ax1_Sheet1:  @ LZ77
 	.incbin "build/graphics/banim/09D_brsm_ax1/sheet_1.lz"
 
-	.global gUnk_08FA106C
-	.global gUnk_08FA106C
-gUnk_08FA106C:  @ LZ77
-gUnk_08FA106C:  @ LZ77
+	.global Pal_Banim_09D_brsm_ax1
+	.global Pal_Banim_09D_brsm_ax1
+Pal_Banim_09D_brsm_ax1:  @ LZ77
+Pal_Banim_09D_brsm_ax1:  @ LZ77
 	.incbin "build/graphics/banim/09D_brsm_ax1/pal.lz"
 
-	.global gUnk_08FA10B8
-	.global gUnk_08FA10B8
-gUnk_08FA10B8:  @ LZ77
-gUnk_08FA10B8:  @ LZ77
+	.global BanimOam_09D_brsm_ax1_L
+	.global BanimOam_09D_brsm_ax1_L
+BanimOam_09D_brsm_ax1_L:  @ LZ77
+BanimOam_09D_brsm_ax1_L:  @ LZ77
 	.incbin "build/graphics/banim/09D_brsm_ax1/oam_l.lz"
 
-	.global gUnk_08FA1978
-	.global gUnk_08FA1978
-gUnk_08FA1978:  @ LZ77
-gUnk_08FA1978:  @ LZ77
+	.global BanimOam_09D_brsm_ax1_R
+	.global BanimOam_09D_brsm_ax1_R
+BanimOam_09D_brsm_ax1_R:  @ LZ77
+BanimOam_09D_brsm_ax1_R:  @ LZ77
 	.incbin "build/graphics/banim/09D_brsm_ax1/oam_r.lz"
 
 	.section .rodata.08FA24D0, "a"
 
-	.global gUnk_08FA24D0
-	.global gUnk_08FA24D0
-gUnk_08FA24D0:  @ LZ77
-gUnk_08FA24D0:  @ LZ77
+	.global Img_Banim_09E_brsm_ax1_Sheet1
+	.global Img_Banim_09E_brsm_ax1_Sheet1
+Img_Banim_09E_brsm_ax1_Sheet1:  @ LZ77
+Img_Banim_09E_brsm_ax1_Sheet1:  @ LZ77
 	.incbin "build/graphics/banim/09E_brsm_ax1/sheet_1.lz"
 
-	.global gUnk_08FA3164
-	.global gUnk_08FA3164
-gUnk_08FA3164:  @ LZ77
-gUnk_08FA3164:  @ LZ77
+	.global Pal_Banim_09E_brsm_ax1
+	.global Pal_Banim_09E_brsm_ax1
+Pal_Banim_09E_brsm_ax1:  @ LZ77
+Pal_Banim_09E_brsm_ax1:  @ LZ77
 	.incbin "build/graphics/banim/09E_brsm_ax1/pal.lz"
 
-	.global gUnk_08FA31B0
-	.global gUnk_08FA31B0
-gUnk_08FA31B0:  @ LZ77
-gUnk_08FA31B0:  @ LZ77
+	.global BanimOam_09E_brsm_ax1_L
+	.global BanimOam_09E_brsm_ax1_L
+BanimOam_09E_brsm_ax1_L:  @ LZ77
+BanimOam_09E_brsm_ax1_L:  @ LZ77
 	.incbin "build/graphics/banim/09E_brsm_ax1/oam_l.lz"
 
-	.global gUnk_08FA33DC
-	.global gUnk_08FA33DC
-gUnk_08FA33DC:  @ LZ77
-gUnk_08FA33DC:  @ LZ77
+	.global BanimOam_09E_brsm_ax1_R
+	.global BanimOam_09E_brsm_ax1_R
+BanimOam_09E_brsm_ax1_R:  @ LZ77
+BanimOam_09E_brsm_ax1_R:  @ LZ77
 	.incbin "build/graphics/banim/09E_brsm_ax1/oam_r.lz"
 
 	.section .rodata.08FA3778, "a"
 
-	.global gUnk_08FA3778
-	.global gUnk_08FA3778
-gUnk_08FA3778:  @ LZ77
-gUnk_08FA3778:  @ LZ77
+	.global Pal_Banim_09F_brsm_ax1
+	.global Pal_Banim_09F_brsm_ax1
+Pal_Banim_09F_brsm_ax1:  @ LZ77
+Pal_Banim_09F_brsm_ax1:  @ LZ77
 	.incbin "build/graphics/banim/09F_brsm_ax1/pal.lz"
 
-	.global gUnk_08FA37C4
-	.global gUnk_08FA37C4
-gUnk_08FA37C4:  @ LZ77
-gUnk_08FA37C4:  @ LZ77
+	.global BanimOam_09F_brsm_ax1_L
+	.global BanimOam_09F_brsm_ax1_L
+BanimOam_09F_brsm_ax1_L:  @ LZ77
+BanimOam_09F_brsm_ax1_L:  @ LZ77
 	.incbin "build/graphics/banim/09F_brsm_ax1/oam_l.lz"
 
-	.global gUnk_08FA3868
-	.global gUnk_08FA3868
-gUnk_08FA3868:  @ LZ77
-gUnk_08FA3868:  @ LZ77
+	.global BanimOam_09F_brsm_ax1_R
+	.global BanimOam_09F_brsm_ax1_R
+BanimOam_09F_brsm_ax1_R:  @ LZ77
+BanimOam_09F_brsm_ax1_R:  @ LZ77
 	.incbin "build/graphics/banim/09F_brsm_ax1/oam_r.lz"
 
 	.section .rodata.08FA39EC, "a"
 
-	.global gUnk_08FA39EC
-	.global gUnk_08FA39EC
-gUnk_08FA39EC:  @ LZ77
-gUnk_08FA39EC:  @ LZ77
+	.global Img_Banim_0A0_silm_no1_Sheet0
+	.global Img_Banim_0A0_silm_no1_Sheet0
+Img_Banim_0A0_silm_no1_Sheet0:  @ LZ77
+Img_Banim_0A0_silm_no1_Sheet0:  @ LZ77
 	.incbin "build/graphics/banim/0A0_silm_no1/sheet_0.lz"
 
-	.global gUnk_08FA4038
-	.global gUnk_08FA4038
-gUnk_08FA4038:  @ LZ77
-gUnk_08FA4038:  @ LZ77
+	.global Pal_Banim_0A0_silm_no1
+	.global Pal_Banim_0A0_silm_no1
+Pal_Banim_0A0_silm_no1:  @ LZ77
+Pal_Banim_0A0_silm_no1:  @ LZ77
 	.incbin "build/graphics/banim/0A0_silm_no1/pal.lz"
 
-	.global gUnk_08FA4090
-	.global gUnk_08FA4090
-gUnk_08FA4090:  @ LZ77
-gUnk_08FA4090:  @ LZ77
+	.global BanimOam_0A0_silm_no1_L
+	.global BanimOam_0A0_silm_no1_L
+BanimOam_0A0_silm_no1_L:  @ LZ77
+BanimOam_0A0_silm_no1_L:  @ LZ77
 	.incbin "build/graphics/banim/0A0_silm_no1/oam_l.lz"
 
-	.global gUnk_08FA4114
-	.global gUnk_08FA4114
-gUnk_08FA4114:  @ LZ77
-gUnk_08FA4114:  @ LZ77
+	.global BanimOam_0A0_silm_no1_R
+	.global BanimOam_0A0_silm_no1_R
+BanimOam_0A0_silm_no1_R:  @ LZ77
+BanimOam_0A0_silm_no1_R:  @ LZ77
 	.incbin "build/graphics/banim/0A0_silm_no1/oam_r.lz"
 
 	.section .rodata.08FA428C, "a"
 
-	.global gUnk_08FA428C
-	.global gUnk_08FA428C
-gUnk_08FA428C:  @ LZ77
-gUnk_08FA428C:  @ LZ77
+	.global Img_Banim_0A1_yuso_no1_Sheet0
+	.global Img_Banim_0A1_yuso_no1_Sheet0
+Img_Banim_0A1_yuso_no1_Sheet0:  @ LZ77
+Img_Banim_0A1_yuso_no1_Sheet0:  @ LZ77
 	.incbin "build/graphics/banim/0A1_yuso_no1/sheet_0.lz"
 
-	.global gUnk_08FA4DAC
-	.global gUnk_08FA4DAC
-gUnk_08FA4DAC:  @ LZ77
-gUnk_08FA4DAC:  @ LZ77
+	.global Pal_Banim_0A1_yuso_no1
+	.global Pal_Banim_0A1_yuso_no1
+Pal_Banim_0A1_yuso_no1:  @ LZ77
+Pal_Banim_0A1_yuso_no1:  @ LZ77
 	.incbin "build/graphics/banim/0A1_yuso_no1/pal.lz"
 
-	.global gUnk_08FA4DE4
-	.global gUnk_08FA4DE4
-gUnk_08FA4DE4:  @ LZ77
-gUnk_08FA4DE4:  @ LZ77
+	.global BanimOam_0A1_yuso_no1_L
+	.global BanimOam_0A1_yuso_no1_L
+BanimOam_0A1_yuso_no1_L:  @ LZ77
+BanimOam_0A1_yuso_no1_L:  @ LZ77
 	.incbin "build/graphics/banim/0A1_yuso_no1/oam_l.lz"
 
-	.global gUnk_08FA4E2C
-	.global gUnk_08FA4E2C
-gUnk_08FA4E2C:  @ LZ77
-gUnk_08FA4E2C:  @ LZ77
+	.global BanimOam_0A1_yuso_no1_R
+	.global BanimOam_0A1_yuso_no1_R
+BanimOam_0A1_yuso_no1_R:  @ LZ77
+BanimOam_0A1_yuso_no1_R:  @ LZ77
 	.incbin "build/graphics/banim/0A1_yuso_no1/oam_r.lz"
 
 	.section .rodata.08FA4EF8, "a"
 
-	.global gUnk_08FA4EF8
-	.global gUnk_08FA4EF8
-gUnk_08FA4EF8:  @ LZ77
-gUnk_08FA4EF8:  @ LZ77
+	.global Pal_Banim_0A2_yuso_no1
+	.global Pal_Banim_0A2_yuso_no1
+Pal_Banim_0A2_yuso_no1:  @ LZ77
+Pal_Banim_0A2_yuso_no1:  @ LZ77
 	.incbin "build/graphics/banim/0A2_yuso_no1/pal.lz"
 
-	.global gUnk_08FA4F30
-	.global gUnk_08FA4F30
-gUnk_08FA4F30:  @ LZ77
-gUnk_08FA4F30:  @ LZ77
+	.global BanimOam_0A2_yuso_no1_L
+	.global BanimOam_0A2_yuso_no1_L
+BanimOam_0A2_yuso_no1_L:  @ LZ77
+BanimOam_0A2_yuso_no1_L:  @ LZ77
 	.incbin "build/graphics/banim/0A2_yuso_no1/oam_l.lz"
 
-	.global gUnk_08FA4F80
-	.global gUnk_08FA4F80
-gUnk_08FA4F80:  @ LZ77
-gUnk_08FA4F80:  @ LZ77
+	.global BanimOam_0A2_yuso_no1_R
+	.global BanimOam_0A2_yuso_no1_R
+BanimOam_0A2_yuso_no1_R:  @ LZ77
+BanimOam_0A2_yuso_no1_R:  @ LZ77
 	.incbin "build/graphics/banim/0A2_yuso_no1/oam_r.lz"

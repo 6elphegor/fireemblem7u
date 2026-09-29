@@ -57,7 +57,7 @@ void DragonGatefx_DragonHBlank(void);
 void sub_08077EB8(u16 * buf, int x, int y, int rx, int ry);
 void sub_080780C4(int x, int y, int rx, int ry);
 void sub_08076B80(void);
-void sub_08076BE8(void);
+void StartManimFrameGradientScanlineEffect1(void);
 void ManimShiftingSineWave_Init(struct ManimSineWaveProc * proc);
 void sub_08077B74(void);
 void sub_08077CA4(void);

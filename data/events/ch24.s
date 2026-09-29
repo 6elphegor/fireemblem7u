@@ -174,7 +174,7 @@ EventScr_Ch24_Beginning:
 	DISA CHARACTER_BRENDAN_84
 	TEX1 MSG_D48                             @ Really? You're giving me a mission? Really and t
 	CLEAN
-	SPRITE_ANIM SpriteAnimConf_08CB401C, 80, 32
+	SPRITE_ANIM EventSpriteAnimConf_SpawnAssassin, 80, 32
 	SOUN 0x2F6
 	STAL 0x14
 	LOU1 Units_08CD8144

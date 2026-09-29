@@ -133,7 +133,7 @@ int Get23(void)
     return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
 }
 
-void nullsub_38(void)
+void DummyFunction(void)
 {
 }
 
@@ -457,7 +457,7 @@ u8 sub_0801B8D4(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
     SoftReset(0xFF);
 }
 
-int sub_0801B900(void)
+int DebugMenuInit(void)
 {
     DebugPutStr(gBg0Tm + TM_OFFSET(7, 3), GetChapterInfo(0)->debug_name);
     EnableBgSync(BG0_SYNC_BIT);

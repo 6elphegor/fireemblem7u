@@ -3,7 +3,7 @@
 extern u16 const * const SpriteArray_08CE45A8[];
 extern u16 const * const SpriteArray_08CE45B4[];
 
-extern struct ProcCmd CONST_DATA ProcScr_08CE578C[];
+extern struct ProcCmd CONST_DATA gProcScr_BonusClaim[];
 
 u32 GetGold(void);
 
@@ -761,5 +761,5 @@ void BonusClaim_OnEnd(struct BonusClaimProc * proc)
 }
 void StartBonusClaimScreen(ProcPtr parent)
 {
-    Proc_StartBlocking(ProcScr_08CE578C, parent);
+    Proc_StartBlocking(gProcScr_BonusClaim, parent);
 }

@@ -572,7 +572,7 @@ void WeatherInit_Blue(void)
     SetOnHBlankB(handler);
 }
 
-void nullsub_9(void)
+void WfxBlue_VSync(void)
 {
 }
 
@@ -879,7 +879,7 @@ void WfxVSync(void)
         break;
 
     case WEATHER_NIGHT:
-        nullsub_9();
+        WfxBlue_VSync();
         break;
 
     case WEATHER_FLAMES:

@@ -70,12 +70,12 @@ Pal_EpilogueText:
 Pal_GreenTextColors:
 	.incbin "baserom.gba", 0x194734, 0x20
 
-	.global gUnk_08194754
-gUnk_08194754:
+	.global Pal_Text_Inverted
+Pal_Text_Inverted:
 	.incbin "baserom.gba", 0x194754, 0x20
 
-	.global gUnk_08194774
-gUnk_08194774:
+	.global Pal_TalkBubble_Inverted
+Pal_TalkBubble_Inverted:
 	.incbin "baserom.gba", 0x194774, 0x20
 
 	.global Img_PhaseChangePlayer
@@ -517,136 +517,136 @@ gUnk_081AADA8:
 gUnk_081AAF70:
 	.incbin "baserom.gba", 0x1aaf70, 0x314
 
-	.global gUnk_081AB284
-gUnk_081AB284:
+	.global SpritAnim_NinianPray
+SpritAnim_NinianPray:
 	.incbin "baserom.gba", 0x1ab284, 0x280
 
-	.global gUnk_081AB504
-gUnk_081AB504:
+	.global Pal_NinianDisp_00
+Pal_NinianDisp_00:
 	.incbin "graphics/bmfx/BmBgfxConf_NinianDisp_00_pal.gbapal"
 
-	.global gUnk_081AB524
-gUnk_081AB524:  @ LZ77
+	.global Img_NinianDisp_00
+Img_NinianDisp_00:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00.lz"
 
-	.global gUnk_081ABCD8
-gUnk_081ABCD8:  @ LZ77
+	.global Img_NinianDisp_00_2
+Img_NinianDisp_00_2:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_2.lz"
 
-	.global gUnk_081AC3A0
-gUnk_081AC3A0:  @ LZ77
+	.global Tsa_NinianDisp_00_3
+Tsa_NinianDisp_00_3:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_3.lz"
 
-	.global gUnk_081AC3D8
-gUnk_081AC3D8:  @ LZ77
+	.global Tsa_NinianDisp_00_4
+Tsa_NinianDisp_00_4:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_4.lz"
 
-	.global gUnk_081AC420
-gUnk_081AC420:  @ LZ77
+	.global Tsa_NinianDisp_00_5
+Tsa_NinianDisp_00_5:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_5.lz"
 
-	.global gUnk_081AC494
-gUnk_081AC494:  @ LZ77
+	.global Tsa_NinianDisp_00_6
+Tsa_NinianDisp_00_6:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_6.lz"
 
-	.global gUnk_081AC52C
-gUnk_081AC52C:  @ LZ77
+	.global Tsa_NinianDisp_00_7
+Tsa_NinianDisp_00_7:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_7.lz"
 
-	.global gUnk_081AC5BC
-gUnk_081AC5BC:  @ LZ77
+	.global Tsa_NinianDisp_00_8
+Tsa_NinianDisp_00_8:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_8.lz"
 
-	.global gUnk_081AC63C
-gUnk_081AC63C:  @ LZ77
+	.global Tsa_NinianDisp_00_9
+Tsa_NinianDisp_00_9:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_9.lz"
 
-	.global gUnk_081AC6B0
-gUnk_081AC6B0:  @ LZ77
+	.global Img_NinianDisp_00_10
+Img_NinianDisp_00_10:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_10.lz"
 
-	.global gUnk_081AD0A4
-gUnk_081AD0A4:  @ LZ77
+	.global Img_NinianDisp_00_11
+Img_NinianDisp_00_11:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_11.lz"
 
-	.global gUnk_081AD9D0
-gUnk_081AD9D0:  @ LZ77
+	.global Tsa_NinianDisp_00_12
+Tsa_NinianDisp_00_12:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_12.lz"
 
-	.global gUnk_081ADA48
-gUnk_081ADA48:  @ LZ77
+	.global Tsa_NinianDisp_00_13
+Tsa_NinianDisp_00_13:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_13.lz"
 
-	.global gUnk_081ADAC8
-gUnk_081ADAC8:  @ LZ77
+	.global Tsa_NinianDisp_00_14
+Tsa_NinianDisp_00_14:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_14.lz"
 
-	.global gUnk_081ADB54
-gUnk_081ADB54:  @ LZ77
+	.global Tsa_NinianDisp_00_15
+Tsa_NinianDisp_00_15:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_15.lz"
 
-	.global gUnk_081ADBF0
-gUnk_081ADBF0:  @ LZ77
+	.global Tsa_NinianDisp_00_16
+Tsa_NinianDisp_00_16:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_16.lz"
 
-	.global gUnk_081ADCA0
-gUnk_081ADCA0:  @ LZ77
+	.global Img_NinianDisp_00_17
+Img_NinianDisp_00_17:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_17.lz"
 
-	.global gUnk_081AE774
-gUnk_081AE774:  @ LZ77
+	.global Img_NinianDisp_00_18
+Img_NinianDisp_00_18:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_18.lz"
 
-	.global gUnk_081AED08
-gUnk_081AED08:  @ LZ77
+	.global Tsa_NinianDisp_00_19
+Tsa_NinianDisp_00_19:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_19.lz"
 
-	.global gUnk_081AEDC8
-gUnk_081AEDC8:  @ LZ77
+	.global Tsa_NinianDisp_00_20
+Tsa_NinianDisp_00_20:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_20.lz"
 
-	.global gUnk_081AEE9C
-gUnk_081AEE9C:  @ LZ77
+	.global Tsa_NinianDisp_00_21
+Tsa_NinianDisp_00_21:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_21.lz"
 
-	.global gUnk_081AEF38
-gUnk_081AEF38:  @ LZ77
+	.global Img_NinianDisp_00_22
+Img_NinianDisp_00_22:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_22.lz"
 
-	.global gUnk_081AF934
-gUnk_081AF934:  @ LZ77
+	.global Img_NinianDisp_00_23
+Img_NinianDisp_00_23:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_23.lz"
 
-	.global gUnk_081B0044
-gUnk_081B0044:  @ LZ77
+	.global Tsa_NinianDisp_00_24
+Tsa_NinianDisp_00_24:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_24.lz"
 
-	.global gUnk_081B00FC
-gUnk_081B00FC:  @ LZ77
+	.global Tsa_NinianDisp_00_25
+Tsa_NinianDisp_00_25:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_25.lz"
 
-	.global gUnk_081B01C4
-gUnk_081B01C4:  @ LZ77
+	.global Tsa_NinianDisp_00_26
+Tsa_NinianDisp_00_26:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_26.lz"
 
-	.global gUnk_081B02A4
-gUnk_081B02A4:  @ LZ77
+	.global Img_NinianDisp_00_27
+Img_NinianDisp_00_27:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_27.lz"
 
-	.global gUnk_081B0B38
-gUnk_081B0B38:  @ LZ77
+	.global Img_NinianDisp_00_28
+Img_NinianDisp_00_28:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_28.lz"
 
-	.global gUnk_081B0EE8
-gUnk_081B0EE8:  @ LZ77
+	.global Tsa_NinianDisp_00_29
+Tsa_NinianDisp_00_29:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_29.lz"
 
-	.global gUnk_081B0F78
-gUnk_081B0F78:  @ LZ77
+	.global Tsa_NinianDisp_00_30
+Tsa_NinianDisp_00_30:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_30.lz"
 
-	.global gUnk_081B1038
-gUnk_081B1038:  @ LZ77
+	.global Tsa_NinianDisp_00_31
+Tsa_NinianDisp_00_31:  @ LZ77
 	.incbin "build/graphics/bmfx/BmBgfxConf_NinianDisp_00_31.lz"
 
 	.global FireRingBgfx_081B10F4
@@ -888,9 +888,9 @@ Img_NinianDragonSprite:  @ LZ77
 SpriteAnim_NinianDragon:
 	.incbin "baserom.gba", 0x1be4d8, 0x40
 
-	.global gUnk_081BE518
-gUnk_081BE518:  @ LZ77
-	.incbin "build/graphics/gUnk_081BE518.lz"
+	.global Img_EventSpriteAnim_NinianDragonDead
+Img_EventSpriteAnim_NinianDragonDead:  @ LZ77
+	.incbin "build/graphics/Img_EventSpriteAnim_NinianDragonDead.lz"
 
 	.global gUnk_081BEE14
 gUnk_081BEE14:
@@ -937,16 +937,16 @@ Pal_DragonFlameImpact:
 Tsa_DragonFlameImpact:  @ LZ77
 	.incbin "build/graphics/Tsa_DragonFlameImpact.lz"
 
-	.global gUnk_081C270C
-gUnk_081C270C:  @ LZ77
-	.incbin "build/graphics/gUnk_081C270C.lz"
+	.global Img_EventSpriteAnim_SpawnAssassin
+Img_EventSpriteAnim_SpawnAssassin:  @ LZ77
+	.incbin "build/graphics/Img_EventSpriteAnim_SpawnAssassin.lz"
 
-	.global gUnk_081C2CA0
-gUnk_081C2CA0:  @ LZ77
-	.incbin "build/graphics/gUnk_081C2CA0.lz"
+	.global Img_EventSpriteAnim_SpawnThief
+Img_EventSpriteAnim_SpawnThief:  @ LZ77
+	.incbin "build/graphics/Img_EventSpriteAnim_SpawnThief.lz"
 
-	.global gUnk_081C3260
-gUnk_081C3260:
+	.global ApConf_EventSpriteAnim_SpawnAssassin
+ApConf_EventSpriteAnim_SpawnAssassin:
 	.incbin "baserom.gba", 0x1c3260, 0x108
 
 	.global Img_MineFx
@@ -1475,16 +1475,16 @@ Tsa_SioBg:  @ LZ77
 Pal_SioBg:
 	.incbin "graphics/Pal_SioBg.gbapal"
 
-	.global gUnknown_081CE25C
-gUnknown_081CE25C:  @ LZ77
-	.incbin "build/graphics/gUnknown_081CE25C.lz"
+	.global Img_Fe6Comm
+Img_Fe6Comm:  @ LZ77
+	.incbin "build/graphics/Img_Fe6Comm.lz"
 
-	.global gUnknown_081D1DF8
-gUnknown_081D1DF8:  @ LZ77
-	.incbin "build/graphics/gUnknown_081D1DF8.lz"
+	.global Tsa_Fe6Comm
+Tsa_Fe6Comm:  @ LZ77
+	.incbin "build/graphics/Tsa_Fe6Comm.lz"
 
-	.global gUnknown_081D235C
-gUnknown_081D235C:
+	.global Pal_Fe6Comm
+Pal_Fe6Comm:
 	.incbin "baserom.gba", 0x1d235c, 0x100
 
 	.global gUnknown_081D245C
@@ -1525,16 +1525,16 @@ sFactionUnitCountLut:
 
 	.section .rodata.081D36E8, "a"
 
-	.global gUnk_081D36E8
-gUnk_081D36E8:
+	.global gClassList_Empty1
+gClassList_Empty1:
 	.incbin "baserom.gba", 0x1d36e8, 0x4
 
-	.global gUnk_081D36EC
-gUnk_081D36EC:
+	.global gClassList_Empty5
+gClassList_Empty5:
 	.incbin "baserom.gba", 0x1d36ec, 0x4
 
-	.global gUnk_081D36F0
-gUnk_081D36F0:
+	.global gClassList_Empty9
+gClassList_Empty9:
 	.incbin "baserom.gba", 0x1d36f0, 0x4
 
 	.global gAiCombatScoreCoefficientTable

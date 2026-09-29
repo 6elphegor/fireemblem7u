@@ -1,20 +1,20 @@
 #include "gbafe.h"
 
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
-extern const u8 gUnk_0820ABBC[];
-extern const u8 gUnk_0820B78C[];
-extern const u8 gUnk_0820C7F8[];
-extern const u8 gUnk_0820D5E4[];
-extern const u8 gUnk_0820D778[];
-extern const u8 gUnk_0820D980[];
-extern const u8 gUnk_0820DAE4[];
-extern const u8 gUnk_0820DBC4[];
-extern const u8 gUnk_0820DCDC[];
-extern const u8 gUnk_0820DE88[];
-extern const u8 gUnk_0820DFA8[];
-extern const u8 gUnk_0820E094[];
-extern const u8 gUnk_0820E17C[];
-extern const u8 gUnk_0820E214[];
+extern const u8 Img_BoltingBg_A[];
+extern const u8 Img_BoltingBg_B[];
+extern const u8 Img_BoltingBg_C[];
+extern const u8 Tsa_BoltingBg_A[];
+extern const u8 Tsa_BoltingBg_B[];
+extern const u8 Tsa_BoltingBg_C[];
+extern const u8 Tsa_BoltingBg_D[];
+extern const u8 Tsa_BoltingBg_E[];
+extern const u8 Tsa_BoltingBg_F[];
+extern const u8 Tsa_BoltingBg_G[];
+extern const u8 Tsa_BoltingBg_H[];
+extern const u8 Tsa_BoltingBg_I[];
+extern const u8 Tsa_BoltingBg_J[];
+extern const u8 Tsa_BoltingBg_K[];
 
 /* auto-decls */
 void NewEfxSpellCast(void);
@@ -57,31 +57,31 @@ CONST_DATA struct ProcCmd gProcScr_efxThunderstormBG[] = {
 };
 
 CONST_DATA u16 * ImgArray_BoltingBg[] = {
-    (u16 *) gUnk_0820ABBC,
-    (u16 *) gUnk_0820ABBC,
-    (u16 *) gUnk_0820ABBC,
-    (u16 *) gUnk_0820ABBC,
-    (u16 *) gUnk_0820B78C,
-    (u16 *) gUnk_0820B78C,
-    (u16 *) gUnk_0820B78C,
-    (u16 *) gUnk_0820B78C,
-    (u16 *) gUnk_0820B78C,
-    (u16 *) gUnk_0820B78C,
-    (u16 *) gUnk_0820C7F8,
+    (u16 *) Img_BoltingBg_A,
+    (u16 *) Img_BoltingBg_A,
+    (u16 *) Img_BoltingBg_A,
+    (u16 *) Img_BoltingBg_A,
+    (u16 *) Img_BoltingBg_B,
+    (u16 *) Img_BoltingBg_B,
+    (u16 *) Img_BoltingBg_B,
+    (u16 *) Img_BoltingBg_B,
+    (u16 *) Img_BoltingBg_B,
+    (u16 *) Img_BoltingBg_B,
+    (u16 *) Img_BoltingBg_C,
 };
 
 CONST_DATA u16 * TsaArray_BoltingBg[] = {
-    (u16 *) gUnk_0820D5E4,
-    (u16 *) gUnk_0820D778,
-    (u16 *) gUnk_0820D980,
-    (u16 *) gUnk_0820DAE4,
-    (u16 *) gUnk_0820DBC4,
-    (u16 *) gUnk_0820DCDC,
-    (u16 *) gUnk_0820DE88,
-    (u16 *) gUnk_0820DFA8,
-    (u16 *) gUnk_0820E094,
-    (u16 *) gUnk_0820E17C,
-    (u16 *) gUnk_0820E214,
+    (u16 *) Tsa_BoltingBg_A,
+    (u16 *) Tsa_BoltingBg_B,
+    (u16 *) Tsa_BoltingBg_C,
+    (u16 *) Tsa_BoltingBg_D,
+    (u16 *) Tsa_BoltingBg_E,
+    (u16 *) Tsa_BoltingBg_F,
+    (u16 *) Tsa_BoltingBg_G,
+    (u16 *) Tsa_BoltingBg_H,
+    (u16 *) Tsa_BoltingBg_I,
+    (u16 *) Tsa_BoltingBg_J,
+    (u16 *) Tsa_BoltingBg_K,
 };
 
 CONST_DATA struct ProcCmd gProcScr_efxThunderstormOBJ[] = {

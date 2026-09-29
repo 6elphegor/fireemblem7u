@@ -595,7 +595,7 @@ void Loop6C_efxMagicQUAKE(struct ProcEfxMagicQuake * proc)
     SetBgOffset(2, gEkrBg2QuakeVec.x, gEkrBg2QuakeVec.y);
     SetBgOffset(0, gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x, gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y);
 
-    EkrGauge_0804CC8C(-(gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x), -(gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y));
+    EkrGauge_Setxy323A(-(gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x), -(gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y));
     EkrDispUP_SetPositionSync(-(gEkrBg2QuakeVec.x + gEkrBg0QuakeVec.x), -(gEkrBg2QuakeVec.y + gEkrBg0QuakeVec.y));
 
     if (CheckInEkrDragon() != 0)
@@ -629,7 +629,7 @@ void Loop6C_efxMagicQUAKE(struct ProcEfxMagicQuake * proc)
         SetBgOffset(BG_2, 0, 0);
         SetBgOffset(BG_0, gEkrBg0QuakeVec.x, gEkrBg0QuakeVec.y);
 
-        EkrGauge_0804CC8C(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
+        EkrGauge_Setxy323A(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
         EkrDispUP_SetPositionSync(-gEkrBg0QuakeVec.x, -gEkrBg0QuakeVec.y);
 
         if (CheckInEkrDragon() != 0)

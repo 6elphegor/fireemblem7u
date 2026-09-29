@@ -11,7 +11,7 @@ extern u32 AnimScr_08BA5E38[];
 
 void StartSpellAnimBallista(struct Anim * anim);
 void efxShooter_Loop_Main(struct ProcEfx * proc);
-void sub_08057394(struct Anim * anim);
+void StartSubSpell_efxShooterOBJ(struct Anim * anim);
 void efxShooterOBJ_Loop(struct ProcEfxOBJ * proc);
 
 
@@ -56,7 +56,7 @@ void efxShooter_Loop_Main(struct ProcEfx * proc)
         }
         else if (timer == 42)
         {
-            sub_08057394(anim);
+            StartSubSpell_efxShooterOBJ(anim);
         }
         else if (timer == 45)
         {
@@ -100,8 +100,8 @@ void efxShooter_Loop_Main(struct ProcEfx * proc)
     return;
 }
 
-// 0.77 efxmagic-ballista:sub_08057394
-void sub_08057394(struct Anim * anim)
+// 0.77 efxmagic-ballista:StartSubSpell_efxShooterOBJ
+void StartSubSpell_efxShooterOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;

@@ -603,7 +603,7 @@ void sub_8090D80(struct UnitListScreenProc * proc)
     UnpackUiWindowFrameGraphics();
 
     Decompress(Img_08A1CD68, (void *)0x06014800);
-    ApplyPalettes(Pal_0840DCE4, 0x19, 1);
+    ApplyPalettes(Pal_MapBattleInfoNum, 0x19, 1);
 
     sub_08090F30();
 
@@ -667,7 +667,7 @@ void sub_8090D80(struct UnitListScreenProc * proc)
     gDispIo.bg2_ct.priority = 1;
     gDispIo.bg3_ct.priority = 3;
 
-    Decompress(gUnknown_0840D224, gBg1Tm + 0x280);
+    Decompress(gImg_UiSpinningArrow_Horizontal, gBg1Tm + 0x280);
     ApplyPalette(gUnknown_08405B0C, 0xf);
 
     proc->pSpriteProc = Proc_Start(ProcScr_bmview, proc);

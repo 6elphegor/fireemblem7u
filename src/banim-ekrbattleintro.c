@@ -103,7 +103,7 @@ extern int gProcEkrBaseAppearExist;
 
 extern const u16 Pal_080DC85C[];
 
-void EkrGauge_0804CC78(s16 x, s16 y);
+void EkrGauge_Clr323A(s16 x, s16 y);
 void EkrGauge_ClrInitFlag(void);
 void EkrGauge_SetInitFlag(void);
 void EkrDispUP_SetPositionUnsync(u16 x, u16 y);
@@ -731,7 +731,7 @@ void NewEkrWindowAppear(int identifier, int duration)
     else
         iy = 0x00;
 
-    EkrGauge_0804CC78(gEkrBg0QuakeVec.x, (u16) gEkrBg0QuakeVec.y + iy);
+    EkrGauge_Clr323A(gEkrBg0QuakeVec.x, (u16) gEkrBg0QuakeVec.y + iy);
     gEkrWindowAppearExist = TRUE;
     EkrGauge_ClrInitFlag();
 }
@@ -763,7 +763,7 @@ void EkrWindowAppearMain(struct ProcEkrIntroWindow * proc)
     else
         iy = Interpolate(4, 0, proc->ymax, proc->timer, proc->terminator);
 
-    EkrGauge_0804CC78(gEkrBg0QuakeVec.x, (u16) gEkrBg0QuakeVec.y + iy);
+    EkrGauge_Clr323A(gEkrBg0QuakeVec.x, (u16) gEkrBg0QuakeVec.y + iy);
 }
 
 void NewEkrNamewinAppear(int identifier, int duration, int delay)

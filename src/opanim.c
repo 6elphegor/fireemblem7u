@@ -19,9 +19,9 @@ extern u8 const gUnk_085ED0DC[];
 extern struct OpAnimBgConf const gUnk_08CEFA38;
 extern u16 const gUnk_08673D38[];
 extern u8 const gUnk_08673D58[];
-extern u16 const gUnk_08600544[];
-extern u8 const gUnk_085FF1D4[];
-extern u8 const gUnk_0860029C[];
+extern u16 const Pal_OpAnimWater[];
+extern u8 const Img_OpAnimWater[];
+extern u8 const Tsa_OpAnimWater[];
 extern u16 const gUnk_086005A4[];
 extern u16 const gUnk_085E9D2C[];
 extern u16 const gUnk_0867451C[];
@@ -36,9 +36,9 @@ extern u16 const gUnk_08600584[];
 extern u16 const gUnk_08600564[];
 extern u8 const gUnk_085EC9A4[];
 extern u8 const gUnk_085ECBC0[];
-extern u16 const gUnk_086727E0[];
-extern u8 const gUnk_08672800[];
-extern u8 const gUnk_08673AD8[];
+extern u16 const Pal_OpAnimCloud[];
+extern u8 const Img_OpAnimCloud[];
+extern u8 const Tsa_OpAnimCloud[];
 extern u16 const gUnk_085ED1C4[];
 extern u8 const gUnk_085ED1E4[];
 extern struct ProcCmd CONST_DATA ProcScr_08CEF264[];
@@ -331,9 +331,9 @@ void sub_080BBA3C(struct OpAnimProc * proc)
 }
 void OpAnim_DrawWater(struct OpAnimProc * proc)
 {
-    ApplyPaletteExt(gUnk_08600544, 0x1C0, 0x20);
-    Decompress(gUnk_085FF1D4, (void *) 0x06008000);
-    PutCompressedTsa(gBg0Tm, gUnk_0860029C, 0xE000);
+    ApplyPaletteExt(Pal_OpAnimWater, 0x1C0, 0x20);
+    Decompress(Img_OpAnimWater, (void *) 0x06008000);
+    PutCompressedTsa(gBg0Tm, Tsa_OpAnimWater, 0xE000);
 
     gDispIo.bg0_ct.size = 0;
     gDispIo.bg0_ct.wrap = 1;
@@ -668,9 +668,9 @@ void OpAnim_DrawCloud(struct OpAnimProc * proc)
 
     gUnkOpAnim_03001620 |= 0x10;
 
-    ApplyPaletteExt(gUnk_086727E0, 0x1C0, 0x20);
-    Decompress(gUnk_08672800, (void *) 0x06000000);
-    PutCompressedTsa(gBg1Tm, gUnk_08673AD8, 0xE000);
+    ApplyPaletteExt(Pal_OpAnimCloud, 0x1C0, 0x20);
+    Decompress(Img_OpAnimCloud, (void *) 0x06000000);
+    PutCompressedTsa(gBg1Tm, Tsa_OpAnimCloud, 0xE000);
 
     ApplyPaletteExt(gUnk_085ED1C4, 0x300, 0x20);
     Decompress(gUnk_085ED1E4, (void *) 0x06010000);

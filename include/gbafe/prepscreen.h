@@ -193,7 +193,7 @@ void sub_0808F52C(struct ProcAtMenu *proc);
 void sub_0808F598(struct ProcAtMenu *proc);
 void sub_0808F5A0(struct ProcAtMenu *proc);
 void ConvoyPromotion_Init(ProcPtr proc);
-void sub_0808F690(ProcPtr proc);
+void IsGameLockLevelReserved(ProcPtr proc);
 void NullExpForChar100AndResetScreen(ProcPtr proc);
 void PrepPromoteDebugMaybe(struct ProcAtMenu *proc);
 void sub_0808F7A8(struct ProcAtMenu *proc);
@@ -250,7 +250,7 @@ void EndPrepScreenMenu(void);
 // sub_8090A88
 // ShowPrepScreenMenuFrozenHand
 // sub_8090AC0
-void sub_0809019C(void);
+void EnablePrepScreenMenu(void);
 void MenuScroll_Init(ProcPtr proc);
 void MenuScroll_Loop(ProcPtr proc);
 // LockMenuScrollBar
@@ -379,10 +379,10 @@ void sub_080925D0(struct PrepItemScreenProc * proc);
 void sub_080926F8(struct PrepItemScreenProc * proc);
 void PrepItemScreen_Loop_MainKeyHandler(struct PrepItemScreenProc * proc);
 void StartPrepItemTradeScreen(struct PrepItemScreenProc * proc);
-void sub_0809288C(struct PrepItemScreenProc * proc);
-void sub_080928A4(struct PrepItemScreenProc * proc);
+void StartPrepItemUse(struct PrepItemScreenProc * proc);
+void StartPrepItemSupply(struct PrepItemScreenProc * proc);
 void StartPrepArmory(struct PrepItemScreenProc * proc);
-void sub_080928D4(struct PrepItemScreenProc * proc);
+void StartPrepItemListScreen(struct PrepItemScreenProc * proc);
 void UpdatePrepItemScreenFace(int slot, struct Unit * unit, u16 x, u16 y, u16 disp);
 void EndPrepItemScreenFace(int slot);
 ProcPtr StartPrepItemScreen(ProcPtr parent);
@@ -748,7 +748,7 @@ void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc);
 
 void PrepItemSupply_OnEnd(struct PrepItemSupplyProc * proc);
 
-void sub_08098FBC(void);
+void FortuneSubMenu_Init_Null(void);
 
 void sub_08098FC0(void);
 

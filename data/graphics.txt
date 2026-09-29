@@ -326,14 +326,14 @@
 0x081BD958 0x194 tsa Tsa_DragonGateDragon
 0x081BDAEC 0x61C 4bpp Img_NinianReturnToHuman w=32
 0x081BE108 0x3D0 4bpp Img_NinianDragonSprite w=32
-0x081BE518 0x8FC 4bpp gUnk_081BE518 w=32
+0x081BE518 0x8FC 4bpp Img_EventSpriteAnim_NinianDragonDead w=32
 0x081BEFE4 0x17D0 4bpp Img_EventDragonsSpritefx1 w=32
 0x081C0DE0 0x10F0 4bpp Img_EventDragonsSpritefx2 w=32
 0x081C2340 0x88 4bpp Img_DragonFlameImpact w=8 pal=Pal_DragonFlameImpact
 0x081C23C8 0x20 palette Pal_DragonFlameImpact raw
 0x081C25C8 0x144 tsa Tsa_DragonFlameImpact
-0x081C270C 0x594 4bpp gUnk_081C270C w=32
-0x081C2CA0 0x5C0 4bpp gUnk_081C2CA0 w=32
+0x081C270C 0x594 4bpp Img_EventSpriteAnim_SpawnAssassin w=32
+0x081C2CA0 0x5C0 4bpp Img_EventSpriteAnim_SpawnThief w=32
 0x081C3368 0x174 4bpp Img_MineFx w=32
 0x081C3590 0x414 4bpp Img_OneYearLater w=32 pal=Pal_OneYearLater
 0x081C39A4 0x20 palette Pal_OneYearLater raw
@@ -366,8 +366,8 @@
 0x081CBD4C 0x21B0 4bpp Img_SioBg w=32 pal=Pal_SioBg
 0x081CDEFC 0x320 tilemap Tsa_SioBg
 0x081CE21C 0x40 palette Pal_SioBg raw
-0x081CE25C 0x3B9C 4bpp gUnknown_081CE25C w=32
-0x081D1DF8 0x564 tilemap gUnknown_081D1DF8
+0x081CE25C 0x3B9C 4bpp Img_Fe6Comm w=32
+0x081D1DF8 0x564 tilemap Tsa_Fe6Comm
 0x081D245C 0x130 4bpp gUnknown_081D245C w=32
 0x081D2700 0x41C 4bpp gUnknown_081D2700 w=32 pal=gUnknown_081D2B1C
 0x081D2B1C 0x20 palette gUnknown_081D2B1C raw
@@ -1985,13 +1985,13 @@
 0x083FB430 0x20 palette bg/bg_5E_pal raw
 0x083FB4B0 0x3B0 4bpp bg/bg_5F w=32 pal=bg/bg_5F_pal
 0x083FBD14 0x20 palette bg/bg_5F_pal raw
-0x083FBD34 0xA8 4bpp gUnk_083FBD34 w=10 pal=gUnk_083FBFD0
+0x083FBD34 0xA8 4bpp Img_TalkBubble w=10 pal=Pal_TalkBubble
 0x083FBDDC 0xA4 4bpp gUnk_083FBDDC w=10
 0x083FBE80 0x5C 4bpp gUnk_083FBE80 w=10
 0x083FBEDC 0x54 4bpp gUnk_083FBEDC w=10
 0x083FBF30 0x50 4bpp gUnk_083FBF30 w=10
 0x083FBF80 0x50 4bpp gUnk_083FBF80 w=10
-0x083FBFD0 0x20 palette gUnk_083FBFD0 raw
+0x083FBFD0 0x20 palette Pal_TalkBubble raw
 0x083FC9FC 0x50 tsa Tsa_StatScreen_083FC9FC
 0x083FCA4C 0x74 tsa Tsa_StatScreenPage0
 0x083FCAC0 0x70 tsa Tsa_Statscreen_Pag1_083FCAC0
@@ -2044,11 +2044,11 @@
 0x08407270 0xE4 tsa Tsa_08407270
 0x08407440 0x538C 4bpp Img_PrepMuralBackground w=32 pal=Pal_PrepMuralBackground
 0x0840D130 0x20 palette Pal_PrepMuralBackground raw
-0x0840D150 0xD4 4bpp Img_UiVArrow w=12 pal=Pal_0840DCE4
-0x0840D224 0xE0 4bpp gUnknown_0840D224 w=12 pal=Pal_0840DCE4
+0x0840D150 0xD4 4bpp Img_UiVArrow w=12 pal=Pal_MapBattleInfoNum
+0x0840D224 0xE0 4bpp gImg_UiSpinningArrow_Horizontal w=12 pal=Pal_MapBattleInfoNum
 0x0840D304 0xF4 tsa gUnknown_08A1C8B4
-0x0840D3F8 0x8EC 4bpp Img_08A1CD68 w=32 pal=Pal_0840DCE4
-0x0840DCE4 0x20 palette Pal_0840DCE4 raw
+0x0840D3F8 0x8EC 4bpp Img_08A1CD68 w=32 pal=Pal_MapBattleInfoNum
+0x0840DCE4 0x20 palette Pal_MapBattleInfoNum raw
 0x0840DDA4 0x2B4 4bpp Img_PrepAtMenuUpfx w=32 pal=Pal_PrepAtMenuUpfx
 0x0840E058 0x20 palette Pal_PrepAtMenuUpfx raw
 0x0840E098 0x28 4bpp Img_PrepTextShadow w=4
@@ -2073,7 +2073,7 @@
 0x0840F9A0 0x60 palette Pal_SaveMenuBackground raw
 0x0840FEB4 0x2080 4bpp Img_SpinRotation w=32 pal=Pal_SaveMenuBackground
 0x084120A0 0x1004 4bpp gGfx_SupportMenu w=32 pal=Pal_SaveMenuWindow
-0x084130A4 0x84C 4bpp gUnk_084130A4 w=32 pal=Pal_SaveMenuWindow
+0x084130A4 0x84C 4bpp Img_GameMainMenuObjs w=32 pal=Pal_SaveMenuWindow
 0x084138F0 0x100 palette Pal_SaveMenuWindow raw
 0x08413C9C 0x70 4bpp Img_SoundRoomVolumeGraph w=10 pal=Pal_SoundRoomVolumeGraph
 0x08413D0C 0x60 palette Pal_SoundRoomVolumeGraph raw
@@ -2485,8 +2485,8 @@
 0x085FECC0 0x178 tsa op_anim/08CEF630_14
 0x085FEE38 0x18C tsa op_anim/08CEF630_15
 0x085FEFC4 0x210 tsa op_anim/08CEF630_16_3
-0x085FF1D4 0x10C8 4bpp gUnk_085FF1D4 w=32
-0x0860029C 0x2A8 tsa gUnk_0860029C
+0x085FF1D4 0x10C8 4bpp Img_OpAnimWater w=32
+0x0860029C 0x2A8 tsa Tsa_OpAnimWater
 0x08600644 0x30C 4bpp op_anim/08CEF788_00 w=32
 0x08600950 0x314 4bpp op_anim/08CEF788_02 w=32
 0x08600C64 0x348 4bpp op_anim/08CEF788_04 w=32
@@ -2736,8 +2736,8 @@
 0x0866FB1C 0x1C4 tsa Tsa_TitleAxe
 0x0866FCE0 0xA0 palette Pal_TitleSprites raw
 0x0866FD80 0x27F0 4bpp Img_TitleSprites w=32 pal=Pal_TitleSprites
-0x08672800 0x12D8 4bpp gUnk_08672800 w=32 tiles=263
-0x08673AD8 0x260 tsa gUnk_08673AD8
+0x08672800 0x12D8 4bpp Img_OpAnimCloud w=32 tiles=263
+0x08673AD8 0x260 tsa Tsa_OpAnimCloud
 0x08673D58 0x35C 4bpp gUnk_08673D58 w=32
 0x0867453C 0x1164 4bpp gUnk_0867453C w=32 tiles=203
 0x086756A0 0x220 tsa gUnk_086756A0

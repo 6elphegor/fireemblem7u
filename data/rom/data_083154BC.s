@@ -5,54 +5,54 @@
 
 	.section .rodata.083154BC, "a"
 
-	.global gUnk_083154BC
-gUnk_083154BC:  @ LZ77
+	.global Img_MapObj_C1
+Img_MapObj_C1:  @ LZ77
 	.incbin "build/graphics/map/obj_C1.lz"
 
-	.global gUnk_0831ACB0
-gUnk_0831ACB0:  @ LZ77
+	.global Img_MapObj_AE
+Img_MapObj_AE:  @ LZ77
 	.incbin "build/graphics/map/obj_AE.lz"
 
-	.global gUnk_0831DE34
-gUnk_0831DE34:  @ LZ77
+	.global Img_MapObj_A7
+Img_MapObj_A7:  @ LZ77
 	.incbin "build/graphics/map/obj_A7.lz"
 
-	.global gUnk_083230BC
-gUnk_083230BC:  @ LZ77
+	.global Img_MapObj_91
+Img_MapObj_91:  @ LZ77
 	.incbin "build/graphics/map/obj_91.lz"
 
-	.global gUnk_08329534
-gUnk_08329534:  @ LZ77
+	.global Img_MapObj_7B
+Img_MapObj_7B:  @ LZ77
 	.incbin "build/graphics/map/obj_7B.lz"
 
-	.global gUnk_08330140
-gUnk_08330140:  @ LZ77
+	.global Img_MapObj_6A
+Img_MapObj_6A:  @ LZ77
 	.incbin "build/graphics/map/obj_6A.lz"
 
-	.global gUnk_08336F24
-gUnk_08336F24:  @ LZ77
+	.global Img_MapObj_5B
+Img_MapObj_5B:  @ LZ77
 	.incbin "build/graphics/map/obj_5B.lz"
 
-	.global gUnk_0833BC70
-gUnk_0833BC70:  @ LZ77
+	.global Img_MapObj_16
+Img_MapObj_16:  @ LZ77
 	.incbin "build/graphics/map/obj_16.lz"
 
-	.global gUnk_0833F2C8
-gUnk_0833F2C8:  @ LZ77
+	.global Img_MapObj_10
+Img_MapObj_10:  @ LZ77
 	.incbin "build/graphics/map/obj_10.lz"
 
-	.global gUnk_083464F0
-gUnk_083464F0:  @ LZ77
+	.global Img_MapObj_0A
+Img_MapObj_0A:  @ LZ77
 	.incbin "build/graphics/map/obj_0A.lz"
 
-	.global gUnk_0834C74C
-gUnk_0834C74C:  @ LZ77
+	.global Img_MapObj_01
+Img_MapObj_01:  @ LZ77
 	.incbin "build/graphics/map/obj_01.lz"
 
-	.global gUnk_0835334C
-gUnk_0835334C:  @ LZ77
+	.global TileConfig_C3
+TileConfig_C3:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_C3.lz"
 
-	.global gUnk_08353EFC
-gUnk_08353EFC:  @ LZ77
+	.global TileConfig_B0
+TileConfig_B0:  @ LZ77
 	.incbin "build/graphics/map/tileconfig_B0.lz"

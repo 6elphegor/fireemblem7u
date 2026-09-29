@@ -30,8 +30,8 @@ void ExecEkrHenseiEnd(void);
 void NewEkrbattleending(void);
 void MainUpdate_8055C68(void);
 void NewEkrBattleStarting(void);
-void EkrDispUP_0804D5A4(void);
-void EkrDispUP_0804D5B4(void);
+void EkrDispUpSet4C(void);
+void EkrDispUpSet50(void);
 void EfxClearScreenFx(void);
 void NewEkrBaseKaiten(int identifier);
 void NewEkrBaseAppear(int identifier, int duration);
@@ -223,20 +223,20 @@ void ekrBaStart_InitBattleScreen(struct ProcEkrBattleStarting * proc)
         case EKR_DISTANCE_MONOCOMBAT:
             if (gBanimValid[0] == FALSE)
             {
-                EkrGauge_0804CC48();
-                EkrDispUP_0804D5A4();
+                EkrGauge_Set4C();
+                EkrDispUpSet4C();
             }
 
             if (gBanimValid[1] == FALSE)
             {
-                EkrGauge_0804CC58();
-                EkrDispUP_0804D5B4();
+                EkrGauge_Set50();
+                EkrDispUpSet50();
             }
             break;
 
         case EKR_DISTANCE_PROMOTION:
-            EkrGauge_0804CC48();
-            EkrDispUP_0804D5A4();
+            EkrGauge_Set4C();
+            EkrDispUpSet4C();
             break;
 
         default:

@@ -858,7 +858,7 @@ void sub_08083128(ProcPtr proc)
         Proc_Break(proc);
 }
 
-s8 sub_08083148(int msg, ProcPtr parent)
+s8 StartHelpoxDirect(int msg, ProcPtr parent)
 {
     LoadHelpBoxGfx(NULL, -1);
 

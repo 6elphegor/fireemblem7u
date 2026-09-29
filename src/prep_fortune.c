@@ -12,7 +12,7 @@ void sub_08098F88(struct PrepProcA1962C * proc)
     StartCgText(10, 7, 17, 4, proc->unk_2c, (void *) 0x06011000, -1, 0);
     SetCgTextFlags(0x7C);
 }
-void sub_08098FBC(void)
+void FortuneSubMenu_Init_Null(void)
 {
     return;
 }

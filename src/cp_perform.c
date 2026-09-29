@@ -31,7 +31,7 @@ void SetAutoMuMoveScript(const u8 * commands);
 s8 MuExistsActive(void);
 
 extern struct ProcCmd CONST_DATA ProcScr_AiTargetCursor[];
-extern struct ProcCmd CONST_DATA ProcScr_08B85854[];
+extern struct ProcCmd CONST_DATA gMusicProc3Script[];
 extern struct PopupInstruction CONST_DATA PopupScr_AiPillage[];
 
 void CpPerform_MoveCameraOntoUnit(struct CpPerformProc * proc);
@@ -81,7 +81,7 @@ void StartAiTargetCursor(int x, int y, int kind, ProcPtr parent)
 
 void CpPerform_UpdateMapMusic(void)
 {
-    if (!Proc_Find(ProcScr_08B85854))
+    if (!Proc_Find(gMusicProc3Script))
         StartMapSongBgm();
 }
 

@@ -434,7 +434,7 @@ EventScr_08CAAAF4:
 	CLEAN
 	ASMC_WAIT2 sub_0807A7B4
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xA
 	GOTO 9
 	LABEL 1
@@ -474,7 +474,7 @@ EventScr_08CAABC8:
 	TEX1 MSG_8EB                             @ I need to talk to that man. Bring me to him.
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xD
 	GOTO 9
 	LABEL 1
@@ -499,7 +499,7 @@ EventScr_08CAAC58:
 	TEX1 MSG_8EF                             @ So you're their tactician... I'll use my axes an
 	CLEAN
 	IGNORE_KEYS 0x3F3
-	ASMC sub_0807A4C8
+	ASMC NewForceAsyncButtonB
 	ENUF 0xE
 	GOTO 9
 	LABEL 1

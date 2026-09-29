@@ -128,7 +128,7 @@ void sub_0804E0F0(struct ProcEfxDead * proc)
         SetBgOffset(1, 0, 0);
         EnableBgSync(BG0_SYNC_BIT);
 
-        EkrGauge_0804CC38();
+        EkrGauge_Set4C50();
 
         DisplayDefeatTalkForPid(gEkrPids[GetAnimPosition(proc->anim1)]);
         Proc_Break(proc);
@@ -148,7 +148,7 @@ void sub_0804E168(struct ProcEfxDead * proc)
 
         DisableEkrGauge();
         UnAsyncEkrDispUP();
-        EkrGauge_0804CC28();
+        EkrGauge_Clr4C50();
         Proc_Break(proc);
     }
 }
