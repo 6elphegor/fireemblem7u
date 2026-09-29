@@ -409,7 +409,8 @@ class Types:
             for d in reversed(re.findall(r"\[(\d+)\]", m[2])):
                 f = Field("", 0, f.size * int(d), "array", elem=f, count=int(d))
             return f
-        spec = re.sub(r"^const\s+", "", spec)
+        if not spec.endswith("*"):
+            spec = re.sub(r"^const\s+", "", spec)
         if spec.endswith("*") or spec in self.typedefs or spec in INTS:
             f = self.parse_decl_type(spec, "", 0)
         else:
@@ -1015,7 +1016,7 @@ def report_refs(em, decls, path, hdr=None, skip=()):
             cq = "" if (em.plain_targets or not getattr(f, "pconst", True)) and pointee in INTS else "const "
             line = f"extern {cq}{pointee} {sym}[];".replace("const const", "const")
             names["data"].append(sym)
-            if pointee.split()[0] in ("struct", "u8", "u16", "u32"):   # many per line: `extern const T a[], b[];`
+            if pointee.split()[0] in ("struct", "u8", "u16", "u32", "char"):   # many per line: `extern const T a[], b[];`
                 grouped.setdefault((target, pointee, cq), []).append(sym)   # (other modules keep their own declarations)
                 continue
         if target:

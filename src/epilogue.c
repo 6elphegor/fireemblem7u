@@ -1,5 +1,16 @@
 #include "gbafe.h"
 
+extern const u8 Img_Cg_0A_0[], Img_Cg_0A_1[], Img_Cg_0A_2[], Img_Cg_0A_3[], Img_Cg_0A_4[],
+    Img_Cg_0A_5[], Img_Cg_0A_6[], Img_Cg_0A_7[], Img_Cg_0A_8[], Img_Cg_0A_9[],
+    Img_EpilogueScroll_00[], Img_EpilogueScroll_01[], Img_EpilogueScroll_02[],
+    Img_EpilogueScroll_03[], Img_EpilogueScroll_04[], Img_EpilogueScroll_05[],
+    Img_EpilogueScroll_06[], Img_EpilogueScroll_07[], Img_EpilogueScroll_08[],
+    Img_EpilogueScroll_09[], Pal_Cg_0A[], gUnk_0842F1A0[], gUnk_0842F21C[], gUnk_0842F298[],
+    gUnk_0842F314[], gUnk_0842F390[], gUnk_0842F40C[], gUnk_0842F488[], gUnk_0842F504[],
+    gUnk_0842F580[], gUnk_0842F5FC[], gUnk_0842F678[], gUnk_0842F6F4[], gUnk_0842F770[],
+    gUnk_0842F7EC[], gUnk_0842F868[], gUnk_0842F8E4[], gUnk_0842F960[], gUnk_0842F9DC[],
+    gUnk_0842FA58[], gUnk_0842FAD4[];
+
 // FE7 epilogue (character epithets over CG backgrounds; no FE8 counterpart)
 
 struct EpilogueFontSt {
@@ -40,7 +51,7 @@ extern const struct ProcCmd ProcScr_EpilogueCg[];
 extern const struct ProcCmd ProcScr_EpilogueScroll[];
 extern const struct ProcCmd ProcScr_EpilogueText[];
 extern u16 Pal_EpilogueText[];
-extern void const * const gEpilogueEndScroll[];
+extern const void * const gEpilogueEndScroll[];
 extern int const gEpilogueEndMsgs[];
 
 struct EpilogueUnitInfo {
@@ -1066,4 +1077,50 @@ const struct ProcCmd ProcScr_EpilogueText[] = {
     PROC_REPEAT(EpilogueText_LoopFadeOut),
     PROC_CALL(EpilogueText_Next),
     PROC_END,
+};
+
+SECTION(".rodata.08CEDC98")
+const void * const gEpilogueEndScroll[] = {
+    Pal_Cg_0A,
+    Img_EpilogueScroll_00,
+    gUnk_0842F1A0,
+    Img_EpilogueScroll_01,
+    gUnk_0842F21C,
+    Img_EpilogueScroll_02,
+    gUnk_0842F298,
+    Img_EpilogueScroll_03,
+    gUnk_0842F314,
+    Img_EpilogueScroll_04,
+    gUnk_0842F390,
+    Img_EpilogueScroll_05,
+    gUnk_0842F40C,
+    Img_EpilogueScroll_06,
+    gUnk_0842F488,
+    Img_EpilogueScroll_07,
+    gUnk_0842F504,
+    Img_EpilogueScroll_08,
+    gUnk_0842F580,
+    Img_EpilogueScroll_09,
+    gUnk_0842F5FC,
+    Img_Cg_0A_0,
+    gUnk_0842F678,
+    Img_Cg_0A_1,
+    gUnk_0842F6F4,
+    Img_Cg_0A_2,
+    gUnk_0842F770,
+    Img_Cg_0A_3,
+    gUnk_0842F7EC,
+    Img_Cg_0A_4,
+    gUnk_0842F868,
+    Img_Cg_0A_5,
+    gUnk_0842F8E4,
+    Img_Cg_0A_6,
+    gUnk_0842F960,
+    Img_Cg_0A_7,
+    gUnk_0842F9DC,
+    Img_Cg_0A_8,
+    gUnk_0842FA58,
+    Img_Cg_0A_9,
+    gUnk_0842FAD4,
+    NULL,
 };
