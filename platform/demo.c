@@ -155,7 +155,7 @@ void AgbMain(void)
 
 #define CHECK_FRAMES 120
 /* the last frame's hash at CHECK_FRAMES frames (mGBA color math) */
-#define CHECK_HASH 0x58230ecc16be7043ULL
+#define CHECK_HASH 0xe331db1a3a4e63adULL
 
 static u32 widen(u16 c)
 {

@@ -328,7 +328,7 @@ its position; on every line, the backdrop's color is the gradient's and
 where it shows through the tile matches that line's wave offset; with an
 input script, the keys the VBlank handler saw in each frame are the
 script's for that frame; and the frame hash after 120 frames
-(`58230ecc16be7043`).  `make platform-test` runs it for 120 frames and on
+(`e331db1a3a4e63ad`).  `make platform-test` runs it for 120 frames and on
 `platform/tests/demo_input.txt` (both pass, 0.1 s each); `make
 platform-demo` shows it in a window (paced at 59.73 Hz).  `test_input`
 checks the script compiler against what tools/emutest.py makes of the same

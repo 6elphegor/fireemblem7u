@@ -52,6 +52,7 @@ struct HostOptions {
     const char *wav;      /* audio written to a WAV file */
     int scale;            /* window scale */
     int hardwareColor;    /* PPU color math of the GBA instead of mGBA's */
+    int dumpMem;          /* with the shots, the video memories and I/O (NAME.pal.bin...) */
 };
 extern struct HostOptions gHostOptions;
 

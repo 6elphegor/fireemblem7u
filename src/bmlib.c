@@ -654,7 +654,11 @@ void ArchiveCurrentPalettes(void)
         for (j = 0; j < 16; j++)
             dst[j] = *src++;
 
+#if PLATFORM_GBA
         dst += 24;
+#else
+        dst += sizeof(struct PalFadeSt) / sizeof(u16); // 0x30 bytes on the GBA, 0x38 on a host
+#endif
     }
 
     SetPalFadeStClkEnd1(0x100);

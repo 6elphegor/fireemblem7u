@@ -12,13 +12,25 @@
 #include <stdint.h>
 #include "gba/types.h"
 
-extern u8 gHostIo[0x400];       // I/O registers (0x04000000)
-extern u8 gHostPltt[0x400];     // palette RAM (0x05000000)
-extern u8 gHostVram[0x18000];   // VRAM (0x06000000)
-extern u8 gHostOam[0x400];      // OAM (0x07000000)
-extern u8 gHostEwram[0x40000];  // EWRAM (0x02000000): what EWRAM_START points to
-extern u8 gHostIwram[0x8000];   // IWRAM (0x03000000): what IWRAM_START points to
-extern u8 gHostSram[0x10000];   // cartridge SRAM (0x0E000000), backed by a file
+// Pointers set before main(), each aligned as the game expects: VRAM on
+// 0x20000, palette and OAM on 0x400 (the game computes tile and palette
+// numbers from the low bits of these addresses).  gHostSram is an array
+// (src/save_core.c initializes a pointer with its address).
+extern u8 * gHostIo;     // I/O registers (0x04000000), HOST_IO_SIZE bytes
+extern u8 * gHostPltt;   // palette RAM (0x05000000)
+extern u8 * gHostVram;   // VRAM (0x06000000)
+extern u8 * gHostOam;    // OAM (0x07000000)
+extern u8 * gHostEwram;  // EWRAM (0x02000000): what EWRAM_START points to
+extern u8 * gHostIwram;  // IWRAM (0x03000000): what IWRAM_START points to
+extern u8 gHostSram[];    // cartridge SRAM (0x0E000000), HOST_SRAM_BANK bytes, backed by a file
+
+#define HOST_IO_SIZE    0x400
+#define HOST_PLTT_SIZE  0x400
+#define HOST_VRAM_SIZE  0x18000
+#define HOST_OAM_SIZE   0x400
+#define HOST_EWRAM_SIZE 0x40000
+#define HOST_IWRAM_SIZE 0x8000
+#define HOST_SRAM_BANK  0x10000 // the whole bank; FE7 uses 0x8000 (HOST_SRAM_SIZE)
 
 // The BIOS's words at the top of IWRAM (0x03007FF0-0x03007FFF): plain
 // variables on the host.  The platform dispatches interrupts itself

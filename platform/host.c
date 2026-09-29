@@ -110,15 +110,17 @@ static void set_io16(u32 off, u16 v)
     gHostIo[off + 1] = (u8)(v >> 8);
 }
 
+/* tools/emutest.c's hashVideo: FNV-1a over each pixel's 0x00BBGGRR as 4
+ * little-endian bytes, so a --log line compares with emutest's frames.log
+ * and its shot lines. */
 uint64_t HostFrameHash(const uint32_t *fb)
 {
     uint64_t h = 0xcbf29ce484222325ULL;
-    int i;
+    int i, k;
     for (i = 0; i < PPU_WIDTH * PPU_HEIGHT; i++) {
         uint32_t p = fb[i] & 0xFFFFFF;
-        h = (h ^ (p & 0xFF)) * 0x100000001b3ULL;
-        h = (h ^ ((p >> 8) & 0xFF)) * 0x100000001b3ULL;
-        h = (h ^ (p >> 16)) * 0x100000001b3ULL;
+        for (k = 0; k < 4; k++)
+            h = (h ^ ((p >> (8 * k)) & 0xFF)) * 0x100000001b3ULL;
     }
     return h;
 }
@@ -184,6 +186,18 @@ static void finish(int status)
     longjmp(sExitJmp, 1);
 }
 
+static void write_bin(const char *name, const char *what, const void *p, size_t size)
+{
+    char path[1024];
+    FILE *f;
+    snprintf(path, sizeof path, "%s/%s.%s.bin", gHostOptions.dumpDir, name, what);
+    f = fopen(path, "wb");
+    if (!f || fwrite(p, 1, size, f) != size)
+        fprintf(stderr, "platform: can't write %s\n", path);
+    if (f)
+        fclose(f);
+}
+
 static void write_shot(const char *name)
 {
     char path[1024];
@@ -192,6 +206,13 @@ static void write_shot(const char *name)
     snprintf(path, sizeof path, "%s/%s.png", gHostOptions.dumpDir, name);
     if (HostWritePng(path, gHostFrame, PPU_WIDTH, PPU_HEIGHT) != 0)
         fprintf(stderr, "platform: can't write %s\n", path);
+    if (gHostOptions.dumpMem) {
+        /* as tools/emutest.c's dumps (record --dump), plus the registers */
+        write_bin(name, "pal", gHostPltt, HOST_PLTT_SIZE);
+        write_bin(name, "vram", gHostVram, HOST_VRAM_SIZE);
+        write_bin(name, "oam", gHostOam, HOST_OAM_SIZE);
+        write_bin(name, "io", gHostIo, HOST_IO_SIZE);
+    }
 }
 
 static u16 sKeys; /* the keys of the frame running (1 = pressed) */
@@ -306,7 +327,7 @@ static void hook_soft_reset(void)
 
 void HostPowerOn(void)
 {
-    memset(gHostIo, 0, sizeof gHostIo);
+    memset(gHostIo, 0, HOST_IO_SIZE);
     HostDmaReset();
     set_io16(REG_OFFSET_KEYINPUT, 0x3FF);
     set_io16(REG_OFFSET_DISPCNT, DISPCNT_FORCED_BLANK);
@@ -340,6 +361,7 @@ static void usage(const char *prog)
             "  --input FILE        emutest input script (tests/inputs/*.txt) or plan\n"
             "  --dump-frames DIR   PNGs of the script's shots\n"
             "  --dump-every N      also a PNG every N frames (into the dump dir)\n"
+            "  --dump-mem          with each shot, NAME.{pal,vram,oam,io}.bin\n"
             "  --log FILE          per frame: number, keys, picture hash\n"
             "  --save FILE         SRAM file (default fe7u.sav; none headless)\n"
             "  --no-save           no SRAM file\n"
@@ -365,6 +387,8 @@ static int parse_args(int argc, char **argv)
             o->headless = 1;
         else if (strcmp(a, "--hardware-color") == 0)
             o->hardwareColor = 1;
+        else if (strcmp(a, "--dump-mem") == 0)
+            o->dumpMem = 1;
         else if (strcmp(a, "--no-save") == 0)
             noSave = 1;
         else if (ARG("--frames"))
