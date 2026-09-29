@@ -13,8 +13,10 @@ label is renamed, its extracted files are renamed too).  tools/fe7u.cfg gets
 the new name for a renamed sub_XXXXXXXX.
 
 A rename is skipped (and reported) when NEW is already defined by the
-sources (an assembly label, a C definition, a symbols.ld or sound manifest name) or
-claimed by another line; lines whose OLD no longer occurs anywhere are
+sources (an assembly label, a C definition, a symbols.ld or sound manifest
+name) while OLD is defined too, or NEW is claimed by another line; with OLD
+no longer defined (a merge kept the renamed definition), the remaining uses
+are renamed; lines whose OLD no longer occurs anywhere are
 already applied (or renamed on another branch) and are skipped silently.
 Afterwards: rm -rf build (make 3.81 misses same-second edits) and make.
 """
@@ -121,7 +123,9 @@ def main():
             print(f"{where}: {new} is also renamed; chains are not supported", file=sys.stderr)
             skipped += 1
             continue
-        if new in defined or new in claimed:
+        # NEW defined while OLD is not: the rename was applied to the definition
+        # already (e.g. a merge took one side's file); finish it in the rest.
+        if new in claimed or new in defined and old in defined:
             print(f"{where}: skip {old} -> {new}: {new} already in use", file=sys.stderr)
             skipped += 1
             continue
