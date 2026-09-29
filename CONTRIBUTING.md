@@ -539,13 +539,33 @@ make emutest EMUTEST_B=fe7u_nonmatching.gba
   branch words).  `tools/nonmatching_check.py` fails the link if the linker
   script dropped a non-empty section (a plain version that needs a
   `.rodata` its module didn't have: add it to `data/layout.txt`).
-* `make emutest EMUTEST_B=fe7u_nonmatching.gba` must show the same
-  pictures, sound, palette, VRAM and OAM as `fe7u.gba` in every frame of
-  every script.  RAM differs (return addresses and code pointers in procs
-  are code addresses, which moved), which the test only lists.
-* On a PC compiler the plain paths compile; what remains non-portable is
-  GBA-specific (section attributes, hardware registers, 32-bit pointer
-  casts, GCC 2 cast-as-lvalue).  To see it:
+* `make emutest EMUTEST_B=fe7u_nonmatching.gba EMUTEST_FLAGS=--fast`
+  compares it with `fe7u.gba`.  The plain C does the same work at a
+  different speed, and the frame-by-frame comparison sees speed: a loading
+  step that runs over a frame in one ROM and not in the other puts it a
+  frame behind until the next wait for input, and a VRAM write that lands
+  before or after the picture is drawn shows for one frame.  `--fast`
+  (`tools/emutest.py`, `emutest -f 1`) runs both ROMs without memory wait
+  states, so loading rarely runs over a frame; what can remain are single
+  frames (a glyph drawn a scanline earlier, a sound buffer boundary).  A
+  difference that lasts, or that `--fast` doesn't remove, is a plain
+  version that isn't equivalent: that is how talk.c's inverted print delay
+  and the scroll speed WmStartScrollCamera got from a leftover register
+  were found.  RAM differs throughout (return addresses and code pointers
+  in procs are code addresses, which moved); the test only lists it.
+* One known difference that is not the plain C's: the spinning background
+  of the save and extras menus (`SpinRotation_Init`, `src/savedrawfx.c`)
+  never sets its angle, which keeps whatever the previous proc in that
+  slot left there, a code pointer.  Code addresses differ, so the circle is
+  rotated differently (extras.txt `extras_back`, shops.txt `save_menu`).
+* On a PC compiler nothing ARM-specific is left with `-DNONMATCHING=1`
+  (no register names, no asm).  What remains non-portable (2026-09: 296 of
+  307 files compile for x86_64-linux-gnu) is GCC 2's cast as lvalue
+  (`((u32 *) p)++`, 12), `CONST_DATA` putting const and non-const data in
+  one section (15), function pointers stored in 32-bit `EventScr` tables
+  (3), two `static` definitions of extern declarations (2), and for Mach-O
+  every `SECTION()` name; warnings flag the 32-bit pointer/integer casts.
+  To see it:
   `clang -fsyntax-only -target x86_64-linux-gnu -std=gnu89 -w -nostdinc -undef
   -I tools/agbcc/include -iquote include -iquote . -DNONMATCHING=1 src/FILE.c`.
 * FireEmblem7J's `#if MODERN` C switch (struct padding and I/O register
