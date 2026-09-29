@@ -418,6 +418,65 @@ void InvalidateSuspendSave(int slot)
         WriteSaveBlockInfo(&chunk, SAVE_SUSPEND_ALT);
 }
 
+#if NONMATCHING
+/* struct Action in the suspend save.  The matching build writes gActionSt as
+ * it is, and its last member, battle_scr, is a pointer: NULL, or one of the
+ * scripted battles of the events (FIGHT, FIGHT_OVERRIDE).  Here the save
+ * gets the GBA layout (0x1C bytes: the fields before battle_scr as they are,
+ * then a little-endian word) with battle_scr as the retail ROM address of
+ * that array, which the arrays' names carry, so a suspend save has the same
+ * bytes as the ROM's and a .sav moves between the GBA and a host.  An
+ * address that is not in the table reads back as NULL. */
+#define BATTLE_SCRS(X) \
+    X(08CA7A00) X(08CA7A10) X(08CA7A20) X(08CA7A30) X(08CA85DC) X(08CA8740) \
+    X(08CA8830) X(08CA8960) X(08CA8AD8) X(08CA9F84) X(08CA9F94) X(08CAA530) \
+    X(08CAA538) X(08CAB100) X(08CABB90) X(08CAC9E8) X(08CAD500) X(08CB29A0) \
+    X(08CB4A50) X(08CBCA74) X(08CBE158)
+
+#define BATTLE_SCR_EXTERN(addr) extern const struct BattleHit BattleScr_##addr[];
+BATTLE_SCRS(BATTLE_SCR_EXTERN)
+
+// Written as comparisons, not as a table: the layout keeps no .rodata of
+// this file.
+static u32 BattleScrToSave(const struct BattleHit * hits)
+{
+#define BATTLE_SCR_TO_SAVE(addr) if (hits == BattleScr_##addr) return 0x##addr;
+    BATTLE_SCRS(BATTLE_SCR_TO_SAVE)
+    return 0;
+}
+
+static struct BattleHit * BattleScrFromSave(u32 value)
+{
+#define BATTLE_SCR_FROM_SAVE(addr) if (value == 0x##addr) return (struct BattleHit *) BattleScr_##addr;
+    BATTLE_SCRS(BATTLE_SCR_FROM_SAVE)
+    return NULL;
+}
+
+#define ACTION_SAVE_SIZE 0x1C
+#define ACTION_SAVE_SCR 0x18 // offset of battle_scr
+
+static void EncodeSuspendAction(const struct Action * action, u8 * out)
+{
+    u32 addr = BattleScrToSave(action->battle_scr);
+
+    memcpy(out, action, ACTION_SAVE_SCR);
+
+    out[ACTION_SAVE_SCR + 0] = addr;
+    out[ACTION_SAVE_SCR + 1] = addr >> 8;
+    out[ACTION_SAVE_SCR + 2] = addr >> 16;
+    out[ACTION_SAVE_SCR + 3] = addr >> 24;
+}
+
+static void DecodeSuspendAction(const u8 * in, struct Action * action)
+{
+    u32 addr = in[ACTION_SAVE_SCR] | (in[ACTION_SAVE_SCR + 1] << 8)
+        | (in[ACTION_SAVE_SCR + 2] << 16) | ((u32) in[ACTION_SAVE_SCR + 3] << 24);
+
+    memcpy(action, in, ACTION_SAVE_SCR);
+    action->battle_scr = BattleScrFromSave(addr);
+}
+#endif
+
 void WriteSuspendSave(int slot)
 {
     struct SuspendSaveBlock * dest;
@@ -437,7 +496,16 @@ void WriteSuspendSave(int slot)
     gPlaySt.time_saved = GetGameTime();
     WriteAndVerifySramFast(&gPlaySt, &dest->playSt, sizeof(gPlaySt));
     StoreRNStateToActionStruct();
+#if NONMATCHING
+    {
+        u8 action[ACTION_SAVE_SIZE];
+
+        EncodeSuspendAction(&gActionSt, action);
+        WriteAndVerifySramFast(action, dest->action, sizeof(action));
+    }
+#else
     WriteAndVerifySramFast(&gActionSt, &dest->action, sizeof(struct Action));
+#endif
 
     buf = (struct SuspendSavePackedUnit *) gBuf;
 
@@ -480,7 +548,16 @@ void ReadSuspendSave(int slot)
     ReadSramFast(&src->playSt, &gPlaySt, sizeof(gPlaySt));
     SetGameTime(gPlaySt.time_saved);
 
+#if NONMATCHING
+    {
+        u8 action[ACTION_SAVE_SIZE];
+
+        ReadSramFast(src->action, action, sizeof(action));
+        DecodeSuspendAction(action, &gActionSt);
+    }
+#else
     ReadSramFast(&src->action, &gActionSt, sizeof(struct Action));
+#endif
     LoadRNStateFromActionStruct();
     InitUnits();
 
