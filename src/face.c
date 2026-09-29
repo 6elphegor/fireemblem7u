@@ -456,6 +456,11 @@ struct FaceProc * StartFace(int slot, int fid, int x, int y, int disp)
 
 void EndFace(struct FaceProc * proc)
 {
+#if !PLATFORM_GBA
+    // InitFaces ends the empty slots too: with proc NULL the GBA reads a
+    // "slot" from the BIOS (open bus) and clears that gFaces entry
+    if (proc != NULL)
+#endif
     gFaces[proc->slot] = NULL;
     Proc_End(proc);
 }
@@ -1305,6 +1310,12 @@ void SetFaceBlinkControl(struct FaceProc * proc, int blink)
         blink = proc->info->blink_type;
 
     eye_proc = proc->eye_proc;
+#if !PLATFORM_GBA
+    // A face started with FACE_DISP_BIT_12 has no eye proc: the GBA
+    // writes these into the BIOS region, which ignores them
+    if (eye_proc == NULL)
+        return;
+#endif
     eye_proc->blink = blink;
     eye_proc->dealy = GetFaceBlinkInterval(eye_proc);
 }

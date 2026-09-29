@@ -486,6 +486,11 @@ void SetTextFontGlyphs(int glyphset)
 
 void ResetTextFont(void)
 {
+#if !PLATFORM_GBA
+    // The class reels call this before any font was set: the GBA writes to
+    // address 0x22 (the BIOS, ignored)
+    if (gActiveFont != NULL)
+#endif
     gActiveFont->chr_counter = 0;
     sSpecialCharStList[0].color = -1;
 }

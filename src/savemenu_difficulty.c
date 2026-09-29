@@ -23,7 +23,15 @@ void sub_080A6398(u8 slot, struct SaveMenuProc * proc)
             proc->unk_3A[slot] = 0;
 
             // BUG?
+#if PLATFORM_GBA
             if (IsGameNotFirstChapter((struct PlaySt *) (uintptr_t) slot) != 0)
+#else
+            // The GBA reads "chapterIndex" at address slot + 0xE, in the BIOS:
+            // the protected BIOS returns the word it last fetched (0xE129F000,
+            // 0xE55EC002 or 0xE3A02004), whose byte there is always > 0xD, so
+            // the test is always true.
+            if (TRUE)
+#endif
                 proc->unk_3A[slot] |= 1;
 
             if (sub_080A09FC(&playSt) != 0)

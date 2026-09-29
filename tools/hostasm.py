@@ -12,9 +12,10 @@ them portable (docs/port-notes.md, "Host link"):
   the repository root), so one output file stands for the whole input.
 * `@` comments are dropped (on AArch64 `@` is not a comment).
 * `.section NAME, ...` becomes the host's read-only data section
-  (`__DATA,__const` on Mach-O, `.rodata` on ELF), preceded by the alignment the
-  GBA address in NAME has (up to 4: `.rodata.08C0FFEE` -> 2 bytes); the
-  sections keep their order in the file.
+  (`__DATA,__const` on Mach-O, `.rodata` on ELF), started at the GBA address
+  in NAME modulo 4 (`.rodata.083FC9FB`: 4-aligned, then 3 bytes), so what
+  is aligned on the GBA is aligned on the host; the sections keep their order
+  in the file.
 * Symbols get the C prefix of the target (`_` on Mach-O): label definitions,
   `.global`, `.set` names and every symbol in an expression, but not the
   `.equ` constants (MPlayDef.s' command names).
@@ -74,15 +75,10 @@ def read_lines(path, seen=None):
     return out
 
 
-def section_align(name):
-    """Alignment (log2, at most 2) of the GBA address a section name carries."""
+def section_offset(name):
+    """The GBA address a section name carries, modulo 4 (0 without one)."""
     m = re.search(r'([0-9A-Fa-f]{7,8})$', name)
-    if not m:
-        return 2
-    addr = int(m.group(1), 16)
-    if addr & 3 == 0:
-        return 2
-    return 1 if addr & 1 == 0 else 0
+    return int(m.group(1), 16) & 3 if m else 0
 
 
 def convert(lines, macho, stream_words):
@@ -118,7 +114,13 @@ def convert(lines, macho, stream_words):
         m = re.match(r'^\.section\s+([^\s,]+)', s)
         if m:
             out.append('\t.section %s' % section)
-            out.append('\t.p2align %d' % section_align(m.group(1)))
+            # every section starts at its GBA address modulo 4, so the
+            # objects in it are as aligned as on the GBA (sections are
+            # contiguous in one host section, and C objects of data/layout.txt
+            # sit between them on the GBA)
+            out.append('\t.p2align 2')
+            if section_offset(m.group(1)):
+                out.append('\t.space %d' % section_offset(m.group(1)))
             continue
         m = re.match(r'^\.(?:global|globl)\s+(\S+)$', s)
         if m:

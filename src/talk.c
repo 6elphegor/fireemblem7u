@@ -1844,6 +1844,13 @@ void SetTalkFaceDisp(int talk_face, int faceDisp)
     if (talk_face == TALK_FACE_NONE)
         return;
 
+#if !PLATFORM_GBA
+    // Talk_Loop runs this before the talk's first face is loaded: the GBA
+    // reads and writes the NULL face's fields in the BIOS region (ignored)
+    if (sTalkSt->faces[talk_face] == NULL)
+        return;
+#endif
+
     disp = GetFaceDisp(sTalkSt->faces[talk_face]);
     disp &= ~(FACE_DISP_SMILE | FACE_DISP_TALK_1 | FACE_DISP_TALK_2);
 

@@ -97,10 +97,10 @@ struct Proc {
 
 #if !PLATFORM_GBA
     // Host only: with 8-byte pointers the header is 0x4D bytes, not 0x29,
-    // and the biggest proc struct is 0xB8 bytes (ProcEkrDragon,
-    // ProcPrepMenu), so make the slot 0xC0 (PROC_SIZE_CHECK below fails if
-    // a proc grows past it).
-    u8 hostPad[0x28];
+    // and the biggest proc structs are 0xC8 bytes (MenuProc, WmSlotsProc),
+    // so make the slot 0xC8 (PROC_SIZE_CHECK below fails if a proc grows
+    // past it).
+    u8 hostPad[0x30];
 #endif
 };
 GBA_SIZE_CHECK(struct Proc, 0x6C);

@@ -60,6 +60,7 @@ struct MenuProc {
     /* 66 */ u16 tileref;
     /* 68 */ u16 unk68;
 };
+PROC_SIZE_CHECK(struct MenuProc);
 
 struct MenuItemProc {
     /* 00 */ PROC_HEADER;

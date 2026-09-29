@@ -152,6 +152,7 @@ struct WmSlotsProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ struct WmSlotEnt ent[5];
 };
+PROC_SIZE_CHECK(struct WmSlotsProc);
 
 struct WmUnitManagerProc {
     /* 00 */ PROC_HEADER;

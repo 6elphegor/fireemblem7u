@@ -179,6 +179,12 @@ void BmMapFill(u8 ** map, int value)
     value = (0xFF & value);
     value += value << 8;
 
+#if !PLATFORM_GBA
+    // Events that start before the first chapter's maps exist (a save's
+    // world map scene) fill gBmMapOther while it is still NULL: the GBA
+    // reads map[-2] from 0xFFFFFFF8 (open bus) and fills a few bytes there
+    if (map != NULL)
+#endif
     CpuFill16(value, map[-2], size);
 
     SetWorkingBmMap(map);
