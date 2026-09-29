@@ -74,10 +74,13 @@ directly (`structures()`: every `struct MapChange` list, whose `data`
 fields are pointers and whose tile data is not), and nothing points into
 the middle of the music data or a battle animation script.  Words that
 only look like pointers go in `NOT_POINTERS` with the evidence (the code
-that reads them, or why they are dead: the proc scripts at
-0x08CF6D90-0x08CF89A8 are left over from another build, and four of
-their stale code pointers happen to equal `m4aMPlayAllStop`,
-`SetSramFastFunc`, libgcc's `_call_via_r1` and libc's `_read_r` + 1);
+that reads them, or why they are dead: the block 0x08CF6A94-0x08CFFF78
+(stale proc scripts at 0x08CF6D90-0x08CF89A8, then tables and nodes that
+point at each other) is left over from another build and nothing reads it,
+and four of the scripts' stale code pointers happen to equal
+`m4aMPlayAllStop`, `SetSramFastFunc`, libgcc's `_call_via_r1` and libc's
+`_read_r` + 1; 0x08FFF6E0-0x08FFF800 is a snapshot of the m4a `SoundInfo`
+and music player structs in RAM);
 `make shifttest` checks that those ranges and the map
 change tiles keep their bytes and that the structure fields are
 symbolized.  Targets without a label get `gUnk_<ADDR>`.  The tool reads function,
@@ -139,6 +142,22 @@ reader's module changes its code (the ROM differs after a *clean* build:
 `rm -rf build/src build/asm`, make 3.81 misses same-second header edits),
 `tools/movedef.py SRC.c src/data/x.c OBJ...` moves the definitions to a file
 that includes no header, and the reader keeps its old declaration.
+
+Other things `datac.py add` and `procdis.py` handle: AI scripts
+(`struct AiScr`, the `gpAi1Table` tree) like any struct; `"const T *"` (or
+`"const T * const *"`) as the type of a pointer table declares the targets
+const; a pointer into the middle of a labeled object becomes `&sym[i]` (a
+`void *` target is a `u8` array); a raw word in a `uintptr_t` field that
+names a RAM or ROM object is written `(uintptr_t) sym` (popup strings);
+`procdis.py emit NAME:N` decodes N commands of a script that loops forever
+(ends in `PROC_GOTO` or `PROC_REPEAT`) instead of stopping at `PROC_END`,
+`NAME=0xADDR:N` on `datac.py` does the same for a count of elements.  A ROM
+pointer variable whose value is a bare RAM address is defined in
+`src/data/ramptrs.c` as `void * const NAME = buffer;` (the reader keeps its
+non-const declaration); the buffer gets a name in `symbols.ld` when it is
+an EWRAM overlay area shared by several screens, or a C object with a
+`ram` line in `data/layout.txt` when one module owns it (`sTalkStData`,
+IWRAM).
 
 ### Graphics and compressed data
 
