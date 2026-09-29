@@ -1,5 +1,5 @@
 /*
- * The host platform layer's internal interface (platform/*.c).
+ * The host platform layer's internal interface (the files in platform/).
  *
  * The game sees only include/gba/host.h (memories, HostDmaSet, audio) and
  * the BIOS calls (platform/bios.c).  This header ties the pieces together:
@@ -91,6 +91,9 @@ u16 HostScriptKeys(struct HostScript *s, long frame);
 const char *HostScriptShot(struct HostScript *s, long frame, int *index);
 long HostScriptFrames(const struct HostScript *s);
 const char *HostScriptSram(const struct HostScript *s); /* `sram DESC` or plan's `sram FILE` */
+/* Nonzero if HostScriptSram is a script's description (tests/saves/, made
+ * into an image by tools/mksave.py), zero if it is a plan's image file. */
+int HostScriptSramIsDesc(const struct HostScript *s);
 
 /* ---- save memory (sram.c) ---- */
 
