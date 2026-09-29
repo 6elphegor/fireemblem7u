@@ -30,13 +30,11 @@ SECTION(".rodata.<ADDR>") into a section assembled with the read-only flag,
 whereas a non-const one gets "aw", which `as` warns about for a .rodata.* name.
 """
 import re
-import struct
-import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-BASE = 0x08000000
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from datac import ROOT, BASE, RomData   # the ROM index and pointer words are shared (tools/datac.py)
 
 # opcode -> (macro, kind)  kind: "none" | "ptr" | "imm" | "imm_ptr"
 # "fixed" macros write a constant into dataImm; anything else is emitted raw.
@@ -70,82 +68,13 @@ OPS = {
 }
 
 
-def build_rom_index():
-    """Parse data/rom/*.s into (labels, ptrs) with addresses."""
-    labels, ptrs, order = {}, {}, []
-    for path in sorted((ROOT / "data/rom").glob("*.s")):
-        pos = None
-        pending = []
-        for line in path.read_text().splitlines():
-            s = line.strip()
-            if s.startswith(".section"):
-                m = re.match(r"\.section \.rodata\.([0-9A-F]{8})", s)
-                pos, pending = (int(m[1], 16) if m else None), []
-            elif s.startswith(".incbin"):
-                m = re.match(r'\.incbin "baserom.gba", (0x[0-9a-f]+|\d+), (0x[0-9a-f]+|\d+)', s)
-                if m:
-                    start = BASE + int(m[1], 0)
-                    for n in pending:
-                        labels[n] = start
-                        order.append((start, n))
-                    pending = []
-                    pos = start + int(m[2], 0)
-                else:
-                    for n in pending:
-                        pass  # label before an extracted blob: address unknown here
-                    pending = []
-                    pos = None
-            elif s.startswith(".4byte"):
-                m = re.match(r"\.4byte (\w+)(?: \+ (0x[0-9a-f]+|\d+))?$", s)
-                if pos is not None:
-                    for n in pending:
-                        labels[n] = pos
-                        order.append((pos, n))
-                    pending = []
-                    if m:
-                        ptrs[pos] = (m[1], int(m[2], 0) if m[2] else 0)
-                    pos += 4
-            elif re.match(r"^\w+:$", s):
-                pending.append(s[:-1])
-    return labels, ptrs, sorted(order)
-
-
-class Ctx:
+class Ctx(RomData):
     def __init__(self):
-        self.rom = (ROOT / "baserom.gba").read_bytes()
-        self.labels, self.ptrs, self.order = build_rom_index()
-        self.addr_names = {}
-        for a, n in self.order:
-            self.addr_names.setdefault(a, n)
-        self.label_addrs = sorted(self.addr_names)
+        super().__init__()
         self.decl = {}
         for path in (ROOT / "include").rglob("*.h"):
             for m in re.finditer(r"extern\s+(?:const\s+)?struct\s+ProcCmd\s+(?:const\s+|CONST_DATA\s+)?(\w+)\s*\[", path.read_text(errors="replace")):
                 self.decl[m[1]] = path
-        self._elf = None
-
-    def elf(self):
-        if self._elf is None:
-            self._elf = {}
-            out = subprocess.run(["nm", str(ROOT / "fe7u.elf")], capture_output=True, text=True).stdout
-            for line in out.splitlines():
-                p = line.split()
-                if len(p) == 3 and p[1] in "tTdDrRbB" and not p[2].startswith("$"):
-                    a = int(p[0], 16)
-                    self._elf.setdefault(a & ~1, (p[2], a & 1))
-        return self._elf
-
-    def word(self, addr):
-        o = addr - BASE
-        return struct.unpack_from("<I", self.rom, o)[0]
-
-    def s16(self, addr):
-        return struct.unpack_from("<h", self.rom, addr - BASE)[0]
-
-    def next_label(self, addr):
-        import bisect
-        i = bisect.bisect_right(self.label_addrs, addr)
-        return self.label_addrs[i] if i < len(self.label_addrs) else None
 
     def decode(self, addr):
         """Return (cmds, problems); cmds = [(opcode, imm, ptrexpr|None, value)]."""
@@ -162,26 +91,6 @@ class Ctx:
                 problems.append("no END")
                 break
         return cmds, problems
-
-    def ptr_expr(self, a, val, problems, script=False):
-        if a in self.ptrs:
-            sym, add = self.ptrs[a]
-            if add == 0:
-                return sym
-            if script and add % 8 == 0:
-                return f"&{sym}[{add // 8}]"
-            problems.append(f"addend {sym} + {add:#x} at {a:#010x}")
-            return f"(void *) &{sym}  /* FIXME: + {add:#x} */"
-        if val == 0:
-            return "0"
-        e = self.elf().get(val & ~1)
-        if e:
-            return e[0]
-        n = self.addr_names.get(val)
-        if n:
-            return n
-        problems.append(f"raw pointer {val:#010x} at {a:#010x}")
-        return f"(void *) {val:#010x}  /* FIXME */"
 
     def emit_cmd(self, c, problems):
         op, imm, val, a = c
