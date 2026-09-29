@@ -28,6 +28,7 @@
  * nothing refers to).
  */
 #include "gbafe.h"
+#include "gbafe/bmidoten.h"
 
 #undef ColorFadeTick
 #undef ClearOam
