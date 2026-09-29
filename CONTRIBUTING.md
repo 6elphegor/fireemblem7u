@@ -128,6 +128,18 @@ declaration in a module that reads a pointer *variable* can change its code
 table's label extent can hide an unlabeled object after the terminator
 (`note:` lines).
 
+Animation scripts: `tools/datac.py add FILE AnimScr OBJ...` writes the
+`ANIMSCR_*` macros of `include/gbafe/anime.h` (docs/port-data.md, "Animation
+scripts"); an object ends at the last STOP/END/LOOP that is followed by
+something that is not a script (`note:`), and `NAME=0xADDR` names a script
+that has no label.  A pointer table with `u16 *` elements is declared with
+non-const targets (`extern u16 a[], b[];`); the const-ness of the target
+follows the element type.  When a `const` definition or declaration in the
+reader's module changes its code (the ROM differs after a *clean* build:
+`rm -rf build/src build/asm`, make 3.81 misses same-second header edits),
+`tools/movedef.py SRC.c src/data/x.c OBJ...` moves the definitions to a file
+that includes no header, and the reader keeps its old declaration.
+
 ### Graphics and compressed data
 
 Every LZ77 blob `tools/datasplit.py` finds (the ones marked `@ LZ77`), and

@@ -3,7 +3,9 @@
 How the data region becomes usable by a native (LP64) build.  This answers
 the open question in `docs/port-notes.md`, section 1.  Status as of
 2026-09-29: batch 1 (proc scripts, 438 objects) merged; batch 2 (menus and
-UI tables, `tools/datac.py`) leaves 9,136 pointer words.
+UI tables, `tools/datac.py`) left 9,136 pointer words; batch 3 (animation
+scripts, sprite / image / TSA / glyph pointer tables, the battle animation
+tables) leaves 2,502.
 
 ## Decision
 
@@ -142,8 +144,9 @@ that can be reused:
    `struct MenuItemDef []` (`gItemMenuItems`, `gMapMenuItems`, ...),
    `struct SelectInfo`, `struct HelpBoxInfo`, `StatScreenTextInfo`, game
    options, the sound room, battle talk, the ending tables.
-3. **Animation data:** `AnimScr []` (93), sprite and image pointer arrays
-   (`u16 * []`, `ImgArray_*`, `TsaArray_*`, `SpriteArray_*`).
+3. **Animation data** (done): `AnimScr []` (about 210 objects, see above), sprite
+   and image pointer arrays (`u16 * []`, `ImgArray_*`, `TsaArray_*`,
+   `SpriteArray_*`, glyph tables), `banim_data` and its two sibling tables.
 4. **Mistyped declarations:** objects declared `u8 []`/`u32 []`/`void * []`
    that hold pointers (~220): find the real structure from the code.
 5. **Undeclared objects** (365, mostly `gUnk_`): find the reader, name and
