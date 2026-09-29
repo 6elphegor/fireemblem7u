@@ -610,7 +610,7 @@ int LoadRankData(void * buf, int chapter_mode, int difficulty)
     struct GameRankSaveData * src;
     struct GameRankSaveData * dest = buf;
 
-    CpuFill16(0, buf, 0x18);
+    CpuFill16(0, buf, sizeof(struct GameRankSaveData));
     CpuFill16(0, &_buf, sizeof(_buf));
 
     if (LoadAndVerfyRankData(&_buf) != 0)

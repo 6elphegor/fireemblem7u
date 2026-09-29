@@ -480,6 +480,7 @@ struct KeyProc {
     /*0x2A*/ STRUCT_PAD(0x29, 0x64);
     /*0x64*/ s16 keys;
 };
+PROC_SIZE_CHECK(struct KeyProc);
 
 void KeyProcMain(struct KeyProc *kproc)
 {

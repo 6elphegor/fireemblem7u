@@ -693,6 +693,10 @@ make emutest EMUTEST_B=fe7u_nonmatching.gba
   and the scroll speed WmStartScrollCamera got from a leftover register
   were found.  RAM differs throughout (return addresses and code pointers
   in procs are code addresses, which moved); the test only lists it.
+* `make NONMATCHING=1 ANIMSCR_WIDE=1` builds `fe7u_nonmatching_wide.gba`
+  with the host's animation script format (two cells for an instruction
+  with an address; `docs/port-data.md`, "Animation scripts").  It must give
+  the same emutest result as the plain NONMATCHING build.
 * One known difference that is not the plain C's: the spinning background
   of the save and extras menus (`SpinRotation_Init`, `src/savedrawfx.c`)
   never sets its angle, which keeps whatever the previous proc in that
@@ -727,10 +731,16 @@ A file is compiled again only when it, a header it includes or the flags
 changed.  It exits with 1 if any file has an error.  The headers are
 clang's freestanding `stddef.h`/`stdint.h`/`limits.h` (64-bit sizes) and
 agbcc's for `stdlib.h`/`string.h`; no libc for the targets is needed.
-Nothing is linked: there is no platform layer yet.  `docs/port-notes.md`
+Nothing is linked yet: the platform layer is only started.  One test is:
+`make hostevents` (`tools/hostevents.py`, `tests/host/events.c`) links the
+host build of the event list readers with the chapter data and compares
+their result with a 32-bit walk of the ROM's lists (run it after touching
+`eventinfo.c`, `event_macros.h` or the event structs).  `docs/port-notes.md`
 lists what is left (the data region in GBA format, pointers in 32-bit
 words, hardware registers and VRAM addresses, fixed RAM addresses) and
-the original bugs the warnings showed.
+the original bugs the warnings showed.  The platform layer's first pieces,
+the BIOS calls in C and a renderer for the picture, are in `platform/`
+(`make platform-test`; `docs/port-platform.md`).
 
 Both targets must stay at 0 errors.  For new and changed code:
 
@@ -752,6 +762,14 @@ Both targets must stay at 0 errors.  For new and changed code:
   the original falls off the end, the plain version returns what r0 held
   in the ROM (read it in `build/src/MODULE.s`) with a comment.
 * `char` is unsigned on the GBA; a port compiles with `-funsigned-char`.
+* Layout checks: put `GBA_SIZE_CHECK(struct X, 0x24);` after every struct that
+  is laid out in ROM data or save data (its GBA size, checked only with
+  `PLATFORM_GBA`), `SAVE_SIZE_CHECK` for one written to SRAM as it is (no
+  pointers; checked on the host too) and `PROC_SIZE_CHECK(struct X);` after
+  every struct that starts with `PROC_HEADER` (must fit `struct Proc`, whose
+  host slot is 0xC0 bytes).  `make` does not track header dependencies:
+  `rm -rf build/src` after adding a check to a header.  A copy of a struct
+  that holds a pointer uses `sizeof`, not the GBA byte count.
 * The warnings in `docs/port-notes.md` are known; a change shouldn't add
   new ones in the pointer/integer cast categories.
 

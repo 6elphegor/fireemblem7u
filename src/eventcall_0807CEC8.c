@@ -31,6 +31,7 @@ struct ProcEventCameraShake
 
     /* 4C */ s16 timer;
 };
+PROC_SIZE_CHECK(struct ProcEventCameraShake);
 
 void sub_0807CEC8(void)
 {

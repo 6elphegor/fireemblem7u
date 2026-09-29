@@ -221,6 +221,7 @@ struct CGDataEnt {
     /* 08 */ u8 const * tsa;
     /* 0C */ u16 const * pal;
 };
+GBA_SIZE_CHECK(struct CGDataEnt, 0x10);
 
 CONST_DATA struct CGDataEnt gCGDataTable[] = {
     { 1, (void *) Cg_Parts_00, (u8 *) gUnk_084354F8, (u16 *) Pal_Cg_00 },

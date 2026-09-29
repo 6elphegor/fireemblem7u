@@ -68,6 +68,7 @@ struct ProcEkrDragonIntroFx {
     /* 4C */ int speed;
     /* 50 */ int unk50;
 };
+PROC_SIZE_CHECK(struct ProcEkrDragonIntroFx);
 
 struct ProcEkrDragonFx {
     PROC_HEADER;
@@ -96,6 +97,7 @@ struct ProcEkrDragonFx {
     /* 60 */ struct Anim * anim2;
     /* 64 */ ProcPtr sprocfx;
 };
+PROC_SIZE_CHECK(struct ProcEkrDragonFx);
 
 struct ProcEkrDragon {
     PROC_HEADER;
@@ -127,6 +129,7 @@ struct ProcEkrDragon {
     /* 64 */ struct ProcEkrDragonIntroFx * procfx;
     /* 68 */ ProcPtr sproc_flashingbg;
 };
+PROC_SIZE_CHECK(struct ProcEkrDragon);
 
 extern struct ProcCmd CONST_DATA ProcScr_EkrDragon[];
 
@@ -212,6 +215,7 @@ struct ProcEkrDragonStatusFlashing {
 
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrDragonStatusFlashing);
 
 extern CONST_DATA struct ProcCmd ProcScr_EkrDragonFlashingWingBg[];
 ProcPtr NewEkrDragonFlashingWingBg(struct Anim * anim);
@@ -283,6 +287,7 @@ struct ProcEkrDragonBarkQuake {
     /* 5C */ ProcPtr procfx;
     /* 60 */ ProcPtr procquake;
 };
+PROC_SIZE_CHECK(struct ProcEkrDragonBarkQuake);
 
 void NewEkrDragonBarkQuake(ProcPtr parent, int duration, int strenuous);
 void EkrDragonBarkQuake_Loop(struct ProcEkrDragonBarkQuake * proc);
@@ -298,6 +303,7 @@ struct ProcEkrDragonScreenFlashing {
 
     /* 44 */ int dura1, dura2, dura3;
 };
+PROC_SIZE_CHECK(struct ProcEkrDragonScreenFlashing);
 
 void NewEkrDragonScreenFlashing(int dura1, int dura2, int dura3);
 void EkrDragonScreenFlashing_Loop1(struct ProcEkrDragonScreenFlashing * proc);

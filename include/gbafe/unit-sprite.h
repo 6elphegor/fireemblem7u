@@ -7,6 +7,7 @@ struct UnitIconWait {
     /* 02 */ u16 size;
     /* 04 */ u8 const * sheet;
 };
+GBA_SIZE_CHECK(struct UnitIconWait, 0x8);
 
 enum {
     UNIT_ICON_SIZE_16x16,

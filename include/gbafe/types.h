@@ -16,6 +16,7 @@ typedef void * ProcPtr;
 typedef void(* ProcFunc)(ProcPtr proc);
 
 struct Vec2  { s16 x, y; };
+GBA_SIZE_CHECK(struct Vec2, 0x4);
 struct Vec2u { u16 x, y; };
 struct Vec4  { int x, y; };
 
@@ -36,6 +37,7 @@ struct BattleAnimDef {
     u16 wtype;
     u16 index;
 };
+GBA_SIZE_CHECK(struct BattleAnimDef, 0x4);
 
 struct ProcCmd;
 struct SMSHandle;

@@ -15,6 +15,7 @@ struct ProcEfxDead {
     /* 5C */ struct Anim * anim1;
     /* 60 */ struct Anim * anim2;
 };
+PROC_SIZE_CHECK(struct ProcEfxDead);
 
 extern u32 gEkrHpBarCount;
 extern u32 gEkrDeadEventExist;

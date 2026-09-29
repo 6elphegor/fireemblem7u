@@ -597,6 +597,9 @@ struct ProcEkrSubAnimeEmulator * NewEkrsubAnimeEmulator(int x, int y, const Anim
 
     proc->timer = 0;
     proc->scr_cur = 0;
+#if ANIMSCR_WIDE
+    proc->scr_prev = 0;
+#endif
     proc->type = type;
     proc->valid = 0;
     proc->x1 = x;
@@ -616,8 +619,8 @@ void EkrsubAnimeEmulatorMain(struct ProcEkrSubAnimeEmulator * proc)
     const AnimScr * anim_scr = proc->anim_scr;
     if (proc->timer == 0)
     {
-        u32 inst = anim_scr[proc->scr_cur];
-        if (ANIM_INS_TYPE_STOP == ANINS_GET_TYPE(inst))
+        AnimScr inst = anim_scr[proc->scr_cur];
+        if (ANINS_IS_TYPE(inst, ANIM_INS_TYPE_STOP))
         {
             switch (proc->type) {
             case 0:
@@ -631,21 +634,37 @@ void EkrsubAnimeEmulatorMain(struct ProcEkrSubAnimeEmulator * proc)
 
             case 2:
                 proc->timer = 1;
+#if ANIMSCR_WIDE
+                // (back to the start of the previous instruction, which may
+                // be two cells)
+                proc->scr_cur = proc->scr_prev;
+#else
                 proc->scr_cur--;
+#endif
                 break;
 
             default:
                 break;
             }
         }
-        else if (ANIM_INS_TYPE_WAIT == ANINS_GET_TYPE(inst))
+        else if (ANINS_IS_TYPE(inst, ANIM_INS_TYPE_WAIT))
         {
             proc->timer = inst;
+#if ANIMSCR_WIDE
+            proc->scr_prev = proc->scr_cur;
+#endif
             proc->scr_cur++;
         }
         else
         {
+#if ANIMSCR_WIDE
+            // (two cells: the duration, then the sprite)
+            proc->sprite = ANINS_CELL_ADDRESS(anim_scr[proc->scr_cur + 1]);
+            proc->scr_prev = proc->scr_cur;
+            proc->scr_cur++;
+#else
             proc->sprite = ANINS_FORCESPRITE_GET_ADDRESS(inst);
+#endif
             proc->timer = ANINS_FORCESPRITE_GET_DELAY(inst);
             proc->scr_cur++;
         }

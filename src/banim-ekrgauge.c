@@ -19,6 +19,7 @@ struct ProcEkrGauge {
     /* 4C */ int unk4C;
     /* 50 */ int unk50;
 };
+PROC_SIZE_CHECK(struct ProcEkrGauge);
 
 struct EkrGaugeStruct1 {
     STRUCT_PAD(0x00, 0x3C);

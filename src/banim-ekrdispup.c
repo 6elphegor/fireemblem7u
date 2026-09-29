@@ -17,6 +17,7 @@ struct ProcEkrDispUP {
     /* 4C */ int unk4C;
     /* 50 */ int unk50;
 };
+PROC_SIZE_CHECK(struct ProcEkrDispUP);
 
 extern struct ProcEkrDispUP * gpProcEkrDispUP;
 extern const struct ProcCmd ProcScr_ekrDispUP[];

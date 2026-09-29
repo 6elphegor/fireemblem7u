@@ -33,6 +33,7 @@ struct ProcTactInfo {
     /* 2C */ int cur_index;
     /* 30 */ bool do_helpbox;
 };
+PROC_SIZE_CHECK(struct ProcTactInfo);
 
 void TactInfo_StartHelpbox(struct ProcTactInfo *proc);
 void TactInfo_CloseHelpbox(struct ProcTactInfo *proc);
@@ -68,6 +69,7 @@ struct ProcTactBlood {
     /* 2C */ int cur_index;
     /* 30 */ bool do_helpbox;
 };
+PROC_SIZE_CHECK(struct ProcTactBlood);
 
 void Tact_ClearNrVrams(void *vram, u32 chr, u32 nr_chrs);
 void TactBlood_Init(struct ProcTactBlood *proc);

@@ -30,6 +30,7 @@ struct NearTargetLinkOffset
 {
     s8 x, y;
 };
+GBA_SIZE_CHECK(struct NearTargetLinkOffset, 0x4);
 
 extern struct Vec2 sSelectTargetRoot;
 extern struct SelectTarget sSelectTargetList[];

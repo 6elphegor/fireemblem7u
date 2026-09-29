@@ -24,6 +24,7 @@ struct ProcEfxWeaponIcon {
     /* 54 */ int eff1;
     /* 58 */ int eff2;
 };
+PROC_SIZE_CHECK(struct ProcEfxWeaponIcon);
 
 struct ProcEfxSpellCast {
     PROC_HEADER;
@@ -37,6 +38,7 @@ struct ProcEfxSpellCast {
     /* 48 */ const u16 * frame_lut;
     /* 4C */ const void * const * tsa_list;
 };
+PROC_SIZE_CHECK(struct ProcEfxSpellCast);
 
 extern const u16 gFrameLut_EfxWeaponIcon[];
 extern const u16 gFrameLut_EfxSpellCastBg[];

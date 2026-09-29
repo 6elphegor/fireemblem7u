@@ -68,6 +68,7 @@ struct ClassReelEnt {
     /* 15 */ u8 _pad_15[0x18 - 0x15];
     /* 18 */ u8 const * script;
 };
+GBA_SIZE_CHECK(struct ClassReelEnt, 0x1C);
 
 struct OpInfoEnterProc {
     /* 00 */ PROC_HEADER;
@@ -129,6 +130,7 @@ struct ClassDisplayFont {
     u8 width;
     u8 yBase;
 };
+GBA_SIZE_CHECK(struct ClassDisplayFont, 0x8);
 
 struct ClassDisplayFont const * GetClassDisplayFontInfo(u8 chr);
 

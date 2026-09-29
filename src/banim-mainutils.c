@@ -358,7 +358,7 @@ void InitLeftAnim(int round_type)
 label1:
     {
         u32 idx = gpBanimModesLeft[frame_front];
-        void *scr = gBanimScrLeft + idx;
+        void *scr = BANIM_SCR_AT(gBanimScrLeft, idx);
         if (frame_front == 0xFF)
             scr = AnimScr_DefaultAnim;
         do anim = AnimCreate(scr, priority_front); while (0);
@@ -376,7 +376,7 @@ label1:
 label2:
     {
         u32 idx = gpBanimModesLeft[frame_back];
-        void *scr = gBanimScrLeft + idx;
+        void *scr = BANIM_SCR_AT(gBanimScrLeft, idx);
         if (frame_back == 0xFF)
             scr = AnimScr_DefaultAnim;
         anim = AnimCreate(scr, priority_back);
@@ -413,7 +413,7 @@ void InitRightAnim(int round_type)
 label1:
     {
         u32 idx = gpBanimModesRight[frame_front];
-        void *scr = gBanimScrRight + idx;
+        void *scr = BANIM_SCR_AT(gBanimScrRight, idx);
         if (frame_front == 0xFF)
             scr = AnimScr_DefaultAnim;
         do anim = AnimCreate(scr, priority_front); while (0);
@@ -431,7 +431,7 @@ label1:
 label2:
     {
         u32 idx = gpBanimModesRight[frame_back];
-        void *scr = gBanimScrRight + idx;
+        void *scr = BANIM_SCR_AT(gBanimScrRight, idx);
         if (frame_back == 0xFF)
             scr = AnimScr_DefaultAnim;
         anim = AnimCreate(scr, priority_back);
@@ -463,9 +463,9 @@ void SwitchAISFrameDataFromBARoundType(struct Anim * anim, int type)
     if (frame != 0xFF) {
         if (GetAnimPosition(anim) == EKR_POS_L) {
             scr = gpBanimModesLeft;
-            scr = (void *)gBanimScrLeft + scr[frame];
+            scr = BANIM_SCR_AT(gBanimScrLeft, scr[frame]);
         } else
-            scr = (void *)gBanimScrRight + gpBanimModesRight[frame];
+            scr = BANIM_SCR_AT(gBanimScrRight, gpBanimModesRight[frame]);
 
         anim->pScrStart = (const void *)scr;
         anim->pScrCurrent = (const void *)scr;

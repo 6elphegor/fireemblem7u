@@ -48,6 +48,7 @@ struct ProcEkrPopup {
 
     /* 60 */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEkrPopup);
 
 extern struct ProcEkrPopup * gpProcEkrPopup;
 extern int gEkrPopupEnded;

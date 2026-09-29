@@ -18,6 +18,7 @@ struct AiCombatScoreCoefficients
     /* 07 */ u8 coeffLowHpSelf;
     /* 08 */ u8 classRankBonuses[12];
 };
+GBA_SIZE_CHECK(struct AiCombatScoreCoefficients, 0x14);
 
 struct RangeScore
 {
@@ -25,6 +26,7 @@ struct RangeScore
     /* 01 */ s8 y;
     /* 02 */ s8 score;
 };
+GBA_SIZE_CHECK(struct RangeScore, 0x4);
 
 extern const struct AiCombatScoreCoefficients gAiCombatScoreCoefficientTable[];
 extern const struct AiCombatScoreCoefficients * sCombatScoreCoefficients;

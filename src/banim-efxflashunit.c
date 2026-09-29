@@ -16,6 +16,7 @@ struct ProcEfxFlashing {
     STRUCT_PAD(0x32, 0x5C);
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxFlashing);
 
 struct ProcEfxHpBarColorChange {
     PROC_HEADER;
@@ -34,6 +35,7 @@ struct ProcEfxHpBarColorChange {
     /* 58 */ u32 unk58;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxHpBarColorChange);
 
 extern struct ProcEfxHpBarColorChange * gpProcEfxHpBarColorChange;
 extern s16 gEkrGaugeHp[2];

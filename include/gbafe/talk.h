@@ -71,12 +71,14 @@ struct TalkSt
     /* 82 */ u8 unk_82;
     /* 83 */ u8 unk_83;
 };
+GBA_SIZE_CHECK(struct TalkSt, 0x84);
 
 struct TalkChoiceEnt
 {
     u16 msg;
     Func onSwitch;
 };
+GBA_SIZE_CHECK(struct TalkChoiceEnt, 0x8);
 
 struct TalkChoiceProc
 {
@@ -88,6 +90,7 @@ struct TalkChoiceProc
     int unused30;
     struct TalkChoiceEnt const * choices;
 };
+PROC_SIZE_CHECK(struct TalkChoiceProc);
 
 struct ProcTalkAdvance {
     PROC_HEADER;
@@ -102,6 +105,7 @@ struct ProcTalkAdvance {
 
     s16 timer;
 };
+PROC_SIZE_CHECK(struct ProcTalkAdvance);
 
 // ??? sub_08007D80
 // ??? sub_08007DB8

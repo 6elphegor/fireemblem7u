@@ -126,6 +126,7 @@ struct AiScr
     /* 08 */ const void * unk_08;
     /* 0C */ const void * unk_0C;
 };
+GBA_SIZE_CHECK(struct AiScr, 0x10);
 
 typedef s8 (* AiScrFunc)(const void * arg);
 

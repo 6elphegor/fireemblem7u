@@ -28,6 +28,7 @@ struct ProcTutorialCursor
     /* 64 */ s16 timer;
     /* 66 */ s16 fadeDir;
 };
+PROC_SIZE_CHECK(struct ProcTutorialCursor);
 
 struct ProcEventMapLock
 {
@@ -37,6 +38,7 @@ struct ProcEventMapLock
     /* 4C */ s8 locked;
     /* 4D */ u8 unk_4D;
 };
+PROC_SIZE_CHECK(struct ProcEventMapLock);
 
 void UnsetKeyIgnoreMask(void);
 void AsnycKeyStatus_ButtonB(void);

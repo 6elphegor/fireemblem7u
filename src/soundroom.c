@@ -39,6 +39,7 @@ struct SoundRoomEnt
     /* 08 */ s8 (* displayCondFunc)(ProcPtr proc);
     /* 0C */ int nameTextId;
 };
+GBA_SIZE_CHECK(struct SoundRoomEnt, 0x10);
 
 struct VolumeGraphBufferProc
 {

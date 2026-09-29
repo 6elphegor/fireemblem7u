@@ -36,6 +36,7 @@ struct ProcLordSelect {
 
     /* 4C */ intptr_t unk_4C; // struct ClassReelEnt * (GetClassReelEntry)
 };
+PROC_SIZE_CHECK(struct ProcLordSelect);
 
 void sub_080AED04(struct ProcLordSelect * proc);
 // sub_080AED8C

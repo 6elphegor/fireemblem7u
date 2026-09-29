@@ -13,6 +13,7 @@ struct AiSpecialItemLutEntry {
     u16 itemId;
     void (* func)(int itemIdx);
 };
+GBA_SIZE_CHECK(struct AiSpecialItemLutEntry, 0x8);
 
 extern const struct AiSpecialItemLutEntry sAiSpecialItemFuncLut[];
 

@@ -38,6 +38,7 @@ struct Fe6LinkMsgEnt
     /* 00 */ u16 msg;
     /* 02 */ u16 unk_02;
 };
+GBA_SIZE_CHECK(struct Fe6LinkMsgEnt, 0x4);
 
 extern const struct Fe6LinkMsgEnt gUnknown_08B99894[];
 extern struct Text gUnk_Sio_02000C40[];

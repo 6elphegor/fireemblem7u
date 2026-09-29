@@ -8,7 +8,21 @@
 // cell of their own, followed by the address (see ANIMSCR_* below and
 // docs/port-data.md).
 #if PLATFORM_GBA
+// ANIMSCR_WIDE: an instruction that carries an address is two cells (the
+// flag word, then the address), and a cell is a uintptr_t.  On by default
+// when not compiling for the GBA (where a script is the ROM's one-word
+// format); `make NONMATCHING=1 ANIMSCR_WIDE=1` turns it on for the GBA too
+// (cells are 4 bytes there, but the two-cell code paths run).  Always
+// `#if ANIMSCR_WIDE`, never `#ifdef`.
+#ifndef ANIMSCR_WIDE
+#define ANIMSCR_WIDE (!PLATFORM_GBA)
+#endif
+
+#if ANIMSCR_WIDE
+typedef uintptr_t AnimScr;
+#else
 typedef u32 AnimScr;
+#endif
 #else
 typedef uintptr_t AnimScr;
 #endif
@@ -44,6 +58,7 @@ struct Anim {
     /* 40 */ const void * pUnk40;
     /* 44 */ void * pUnk44;
 };
+GBA_SIZE_CHECK(struct Anim, 0x48);
 
 enum Anim_state {
     ANIM_BIT_ENABLED = (1 << 0),
@@ -192,7 +207,7 @@ enum anim_inst_type {
 #define ANIMSCR_COMMAND(id) \
     (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(ANIM_INS_TYPE_COMMAND) + ((id) & 0xFF))
 
-#if PLATFORM_GBA
+#if !ANIMSCR_WIDE
 
 #define ANIMSCR_FORCE_SPRITE(anim_sprite, duration) \
     (ANFMT_FORCESPRITE + (AnimScr)(anim_sprite) + ANIMFMT_OAM_DURATION(duration))
@@ -201,17 +216,29 @@ enum anim_inst_type {
 #define ANIMSCR_CALL(func) (0xC0000000 + (AnimScr)(func))
 #define ANIMSCR_JUMP(scr)  (0xD0000000 + (AnimScr)(scr))
 
+#define ANINS_IS_TYPE(instruction, type) ((type) == ANINS_GET_TYPE(instruction))
+
 #else
 
 #define ANIMSCR_FORCE_SPRITE(anim_sprite, duration) \
-    (ANFMT_FORCESPRITE + ANIMFMT_OAM_DURATION(duration)), (AnimScr)(anim_sprite)
+    (AnimScr)(ANFMT_FORCESPRITE + ANIMFMT_OAM_DURATION(duration)), (AnimScr)(anim_sprite)
 
-#define ANIMSCR_CALL(func) 0xC0000000u, (AnimScr)(func)
-#define ANIMSCR_JUMP(scr)  0xD0000000u, (AnimScr)(scr)
+#define ANIMSCR_CALL(func) (AnimScr)0xC0000000u, (AnimScr)(func)
+#define ANIMSCR_JUMP(scr)  (AnimScr)0xD0000000u, (AnimScr)(scr)
 
-// (instruction is the first cell of an instruction)
+// (instruction is the first cell of an instruction; the address, if there
+// is one, is the cell after it)
 #define ANINS_HAS_ADDRESS(instruction) \
     (!ANINS_IS_NOT_FORCESPRITE(instruction) || ANINS_IS_PTRINS(instruction))
+#define ANINS_CELL_ADDRESS(cell) ((void *)(uintptr_t)(cell))
+
+// Is this (first cell of an) instruction of that type?  A sprite's flag cell
+// has no address in it, so its type bits (24-29) are 0 and read as STOP:
+// only a NOT_FORCESPRITE, non-pointer instruction has a type.  (In the
+// one-word format the address bits made ANINS_GET_TYPE() alone good enough.)
+#define ANINS_IS_TYPE(instruction, type) \
+    (ANINS_IS_NOT_FORCESPRITE(instruction) && !ANINS_IS_PTRINS(instruction) && \
+     (type) == ANINS_GET_TYPE(instruction))
 
 #endif
 
@@ -233,6 +260,7 @@ struct AnimSpriteData {
         } object;
     } as;
 };
+GBA_SIZE_CHECK(struct AnimSpriteData, 0xC);
 
 #define ANIM_SPRITE_END {.header = 1}
 

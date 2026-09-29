@@ -21,6 +21,7 @@ struct ProcEfxHpBar {
     /* 60 */ struct Anim * anim_main_this;
     /* 64 */ struct Anim * anim_this;
 };
+PROC_SIZE_CHECK(struct ProcEfxHpBar);
 
 extern const s16 gEfxNoDmgBgShakeOff[];
 

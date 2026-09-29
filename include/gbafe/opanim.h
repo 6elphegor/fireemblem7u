@@ -23,6 +23,7 @@ struct OpAnimImgEntry {
     /* 04 */ void const * img1;
     /* 08 */ void const * tsa;
 };
+GBA_SIZE_CHECK(struct OpAnimImgEntry, 0xC);
 
 struct OpAnimSubProc {
     /* 00 */ PROC_HEADER;
@@ -38,6 +39,7 @@ struct OpAnimTextEntry {
     /* 00 */ void const * img[2];
     /* 08 */ int duration;
 };
+GBA_SIZE_CHECK(struct OpAnimTextEntry, 0xC);
 
 struct OpAnimTextProc {
     /* 00 */ PROC_HEADER;
@@ -78,16 +80,19 @@ struct OpAnimBgHeader {
     /* 10 */ int chr_offset;
     /* 14 */ int rows;
 };
+GBA_SIZE_CHECK(struct OpAnimBgHeader, 0x18);
 
 struct OpAnimBgFrame {
     /* 00 */ void const * img;
     /* 04 */ u16 const * tsa;
 };
+GBA_SIZE_CHECK(struct OpAnimBgFrame, 0x8);
 
 struct OpAnimBgConf {
     /* 00 */ struct OpAnimBgHeader const * header;
     /* 04 */ struct OpAnimBgFrame const * frames;
 };
+GBA_SIZE_CHECK(struct OpAnimBgConf, 0x8);
 
 struct OpAnimBgProc {
     /* 00 */ PROC_HEADER;

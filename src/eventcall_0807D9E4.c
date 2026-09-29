@@ -47,6 +47,7 @@ struct ProcEvent_0807DC14
     /* 5E */ u16 flags;
     /* 60 */ struct Event_0807DC14Sub unk_60;
 };
+PROC_SIZE_CHECK(struct ProcEvent_0807DC14);
 
 int sub_0807D9E4(void)
 {

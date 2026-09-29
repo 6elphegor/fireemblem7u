@@ -111,22 +111,66 @@ one per instruction, never with numbers or `|`:
     ANIMSCR_CALL(func),  ANIMSCR_JUMP(script),
     ANIMSCR_BLOCKED (STOP),  ANIMSCR_END,  ANIMSCR_LOOP
 
-* **GBA** (`PLATFORM_GBA`): `AnimScr` is `u32`.  `ANIMSCR_FORCE_SPRITE(s, d)`
-  is `(AnimScr) s + ANIMFMT_OAM_DURATION(d)`, the same relocation the
-  assembly's `.4byte AnimSprite_X + 0x70000003` was; `CALL` and `JUMP` add
-  the flag the same way.  The bytes do not change.
-* **Host**: `AnimScr` is `uintptr_t`, and an instruction with an address is
-  two cells, the flags then the address: `FORCE_SPRITE(s, d)` expands to
+* **One-word format** (`ANIMSCR_WIDE` is 0, the GBA default): `AnimScr` is
+  `u32`.  `ANIMSCR_FORCE_SPRITE(s, d)` is `(AnimScr) s +
+  ANIMFMT_OAM_DURATION(d)`, the same relocation the assembly's `.4byte
+  AnimSprite_X + 0x70000003` was; `CALL` and `JUMP` add the flag the same
+  way.  The bytes do not change.
+* **Cell format** (`ANIMSCR_WIDE` is 1; the default when `!PLATFORM_GBA`):
+  `AnimScr` is `uintptr_t`, and an instruction with an address is two
+  cells, the flags then the address: `FORCE_SPRITE(s, d)` expands to
   `ANIMFMT_OAM_DURATION(d), (AnimScr) s`, `CALL(f)` to `0xC0000000u,
   (AnimScr) f`.  A cell holds a whole pointer, so nothing is masked out of
-  an address.  The interpreter (`AnimInterpret`) tests
-  `ANINS_HAS_ADDRESS(first cell)` and takes the address from the next cell
-  instead of from the flag word.  FRAME is unchanged: the instruction
-  word, then the sheet and sprite pointers as cells.
-* Scripts that are not C (the battle animation scripts decompressed to RAM,
-  whose words are 32-bit) have to be expanded into this cell format when
-  they are decompressed on the host; that is the banim stream translation
-  above, not something the macros can do.
+  an address.  `AnimInterpret` tests `ANINS_HAS_ADDRESS(first cell)` and
+  takes the address from the next cell (`ANINS_CELL_ADDRESS`) instead of
+  from the flag word.  FRAME is unchanged: the instruction word, then the
+  sheet and sprite pointers as cells.
+* **The other reader of ROM scripts**, `EkrsubAnimeEmulatorMain`
+  (`banim-efxutils.c`), needed two changes that only running it showed.  A
+  sprite's flag cell has no address bits, so its type field (bits 24-29)
+  reads 0 = STOP: it tests `ANINS_IS_TYPE(inst, type)`, which checks
+  NOT_FORCESPRITE first (in the one-word format `ANINS_GET_TYPE` alone
+  worked because the address bits were in the word).  And its STOP mode 2
+  ("hold the last instruction") stepped back one word; the previous
+  instruction is now one or two cells, so the proc keeps `scr_prev` (a new
+  field in the padding of `struct ProcEkrSubAnimeEmulator`, wide format
+  only).  Any new code that walks a script must do the same: never
+  decrement a cell index to reach the previous instruction, never read the
+  type of a first cell without checking NOT_FORCESPRITE.
+* **Testing the cell format on the GBA.**  `make NONMATCHING=1
+  ANIMSCR_WIDE=1` builds `fe7u_nonmatching_wide.gba` (objects in
+  `build/nonmatching-wide/`) with `-DANIMSCR_WIDE=1`.  A cell is 4 bytes
+  there, so the scripts have the ROM's size, but every script has the
+  two-cell layout and the reader logic is the one the host runs.
+  `make emutest EMUTEST_B=fe7u_nonmatching_wide.gba EMUTEST_FLAGS=--fast`
+  must give the same frames as the plain NONMATCHING build.  It does: all
+  nine scripts have the same video and audio differences as
+  `fe7u_nonmatching.gba` (the frames of `extras.txt` around 3404-3623, the
+  known spinning-background difference of CONTRIBUTING, differ in pattern
+  because the code addresses differ; `shops.txt` the same 488 frames).  The
+  scripts do reach scripts of both kinds: the class reels of `opening.txt`
+  and every battle animation in `prologue.txt`, `hector.txt`, `lyn.txt`
+  (RAM scripts, `AnimInterpret`) and the class reel's
+  `EkrsubAnimeEmulator` (ROM scripts, `AnimScr_EkrMainMini_*`); before the
+  fixes above the wide build diverged in the first class reel (frame 5991).  The host
+  compile (`make hostcheck`) has the switch on by default.
+* **Battle animation scripts** (decompressed to RAM: `gBanimScrLeft` /
+  `Right`, `include/gbafe/banim.h`).  They are interpreted by the same
+  `AnimInterpret`, but contain only one-word instructions without an
+  address (command, wait, stop, end) and FRAME (instruction, sheet pointer,
+  sprite offset = three cells, as above).  The sprite / call / jump
+  instructions never occur in them.  So there is no format conversion: the
+  words are already cells.  Two things differ on a host where a cell is
+  wider than the ROM's 4 bytes, and both belong to the banim stream
+  translation, not to the macros: the decompressor has to widen every word
+  into a cell (the sheet words become pointers there), and the mode table
+  holds byte offsets into the 4-byte-word script.  The latter goes through
+  one accessor, `BANIM_SCR_AT(base, byte_offset)`, which counts cells
+  (`byte_offset / 4`); the interpreters step in cells (`pScrCurrent++`,
+  `+= 3` for a FRAME) and are untouched.  In the matching build the macro
+  is the original pointer sum.  `struct BanimModeData` (also read at a mode
+  table offset, `banim-ekrbattleintro.c`) holds pointers in RAM and is not
+  converted yet.
 * The sprites (`AnimSprite_*`) stay in assembly as blobs and are declared
   `extern const struct AnimSpriteData X[]`, several to a line; a script that
   jumps or calls names its target symbol like any other pointer.

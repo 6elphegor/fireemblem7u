@@ -13,6 +13,7 @@ struct TrapData {
     /* 04 */ u8 turn_counter;
     /* 05 */ u8 turn;
 } __attribute__((packed));
+GBA_SIZE_CHECK(struct TrapData, 0x6);
 
 struct ProcBmTrap {
     /* 00 */ PROC_HEADER;

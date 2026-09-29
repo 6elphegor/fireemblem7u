@@ -9,11 +9,28 @@ typedef uintptr_t EventScr;
 // to four of them (include/event_macros.h).
 typedef uintptr_t EventListScr;
 
+// The result of an event list search (SearchAvailableEvent): the entry the search is
+// at (a run of cells, walked in cells, never in 32-bit words), and what it found.
+struct EventInfo
+{
+    /* 00 */ EventListScr const * listScript;
+    /* 04 */ EventScr script;  // also holds the address of a unit or shop list
+    /* 08 */ u32 flag;
+    /* 0C */ u32 commandId;
+    /* 10 */ u32 givenMoney;
+    /* 14 */ u32 givenItem;
+    /* 18 */ s8 xPos;
+    /* 19 */ s8 yPos;
+    /* 1A */ u8 pidA;
+    /* 1B */ u8 pidB;
+};
+
 // pid -> message (gUnk_08CBF3AC); the list ends with a 0 pid
 struct EventCallLookupEnt {
     /* 00 */ int key;
     /* 04 */ int value;
 };
+GBA_SIZE_CHECK(struct EventCallLookupEnt, 0x8);
 
 #define NUM_BACKGROUNDS 0x5B
 
@@ -68,6 +85,17 @@ enum event_func_ret_idx {
     EVENT_CMDRET_REPEAT,
 };
 
+// Halfword k of the command at `scr`, k = 0 being the command id.  A script is an array
+// of EventScr cells (pointer sized); a cell packs the non-pointer fields of a command in
+// its low 32 bits (EVP in event_macros.h), so halfword k is half (k & 1) of cell k / 2.
+// Only the matching build may index the cells as an array of u16 (4-byte cells).
+#if NONMATCHING
+#define EVT_HALF(scr, k) ((u16)((scr)[(k) >> 1] >> (16 * ((k) & 1))))
+#else
+#define EVT_HALF(scr, k) (((u16 const *)(scr))[k])
+#endif
+
+// Argument halfwords of a command in 4-byte cells only (matching build); host code uses EVT_HALF.
 #define EVT_CMD_ARGV(scr) ((const s16 *)(scr) + 1)
 
 #define SCR_LO16(script_word) (((script_word) & 0x0000FFFF) >> 0)
@@ -491,6 +519,7 @@ struct ProcEventSnowStormfx {
 
     /* 3C */ int x, y;
 };
+PROC_SIZE_CHECK(struct ProcEventSnowStormfx);
 
 void EventSnowStormfx_Init(struct ProcEventSnowStormfx * proc);
 void EventSnowStormfx_Loop1(struct ProcEventSnowStormfx * proc);
@@ -517,6 +546,7 @@ struct ProcEventThunderfx {
 
     /* 3C */ int x, y;
 };
+PROC_SIZE_CHECK(struct ProcEventThunderfx);
 
 void EventThunderfx_Init(struct ProcEventThunderfx * proc);
 void EventThunderfx_End(struct ProcEventThunderfx * proc);
@@ -541,6 +571,7 @@ struct ProcNinianAppear {
     /* 3C */ int x, y;
     /* 44 */ ProcPtr approc[8];
 };
+PROC_SIZE_CHECK(struct ProcNinianAppear);
 
 void NinianAppear_Init(struct ProcNinianAppear * proc);
 void NinianDisp_FadeIn_Unused(struct ProcNinianAppear * proc);
@@ -563,6 +594,7 @@ struct ProcScreenFlashing {
     int timer;
     int r, b, g;
 };
+PROC_SIZE_CHECK(struct ProcScreenFlashing);
 
 void ScreenFlash_Init(struct ProcScreenFlashing * proc);
 void ScreenFlash_FadeIn(struct ProcScreenFlashing * proc);
@@ -579,6 +611,7 @@ struct ProcEventFade {
     /* 3C */ int r0, g0, b0;
     /* 48 */ int r1, g1, b1;
 };
+PROC_SIZE_CHECK(struct ProcEventFade);
 
 void EventFadefx_Init(struct ProcEventFade * proc);
 void EventFadefx_Loop(struct ProcEventFade * proc);
@@ -596,6 +629,7 @@ struct EventSpriteAnimConf {
 
     /* 12 */ u8 _pad_[2];
 };
+GBA_SIZE_CHECK(struct EventSpriteAnimConf, 0x14);
 
 struct ProcEventSpriteAnim {
     PROC_HEADER;
@@ -604,6 +638,7 @@ struct ProcEventSpriteAnim {
     /* 34 */ ProcPtr approc;
     /* 38 */ const struct EventSpriteAnimConf * priv;
 };
+PROC_SIZE_CHECK(struct ProcEventSpriteAnim);
 
 void EventSpriteAnim_Init(struct ProcEventSpriteAnim * proc);
 void EventSpriteAnim_Loop(struct ProcEventSpriteAnim * proc);
@@ -639,6 +674,7 @@ struct BackgroundInfo
     u8 const * tsa;
     u16 const * pal;
 };
+GBA_SIZE_CHECK(struct BackgroundInfo, 0xC);
 
 extern const struct BackgroundInfo gBackgroundTable[];
 
@@ -696,6 +732,7 @@ struct EventCmdInfo {
     int (* func)(struct EventProc * proc);
     int length; // in words
 };
+GBA_SIZE_CHECK(struct EventCmdInfo, 0x8);
 
 extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
 
@@ -721,6 +758,7 @@ struct PopupInstruction {
     u8 opcode;
     uintptr_t data; // a number, a message id or a string (POPUP_OP_STR)
 };
+GBA_SIZE_CHECK(struct PopupInstruction, 0x8);
 
 struct PopupProc {
     /* 00 */ PROC_HEADER;

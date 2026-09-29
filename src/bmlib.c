@@ -772,6 +772,7 @@ struct Proc08B928DC {
 
     int unk2C, unk30, unk34, unk38, unk3C, unk40, unk44, unk48, unk4C;
 };
+PROC_SIZE_CHECK(struct Proc08B928DC);
 
 void sub_08013964(struct Proc08B928DC * proc)
 {
@@ -824,6 +825,7 @@ struct ProcSpacialSeTest {
     /* 64 */ short unk64;
     /* 66 */ short unk66;
 };
+PROC_SIZE_CHECK(struct ProcSpacialSeTest);
 
 void SpacialSeTest_OnInit(struct ProcSpacialSeTest * proc)
 {
@@ -1306,6 +1308,7 @@ struct FadeKindEnt {
     void (* setup_color_fade)(s8 component_step);
     int unit;
 };
+GBA_SIZE_CHECK(struct FadeKindEnt, 0xC);
 
 struct FadeKindEnt const gFadeKindTable[] =
 {

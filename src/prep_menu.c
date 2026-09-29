@@ -10,6 +10,7 @@ struct ProcPrepMenuItem
     /* 39 */ u8 index;
     /* 3C */ struct Text text;
 };
+PROC_SIZE_CHECK(struct ProcPrepMenuItem);
 
 struct ProcPrepMenu
 {
@@ -26,6 +27,7 @@ struct ProcPrepMenu
     /* 5C */ u8 (* on_PressStart)(ProcPtr);
     /* 60 */ u8 (* on_End)(ProcPtr);
 };
+PROC_SIZE_CHECK(struct ProcPrepMenu);
 
 extern struct ProcCmd CONST_DATA ProcScr_PrepScreenMenuDummyItem[];
 extern struct ProcCmd CONST_DATA ProcScr_PrepMenu[];

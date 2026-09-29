@@ -51,6 +51,7 @@ struct ProcEkrLvupApfx {
     /* 2C */ s16 pal;
     /* 2E */ s16 clock;
 };
+PROC_SIZE_CHECK(struct ProcEkrLvupApfx);
 
 struct ProcEobjLvup {
     PROC_HEADER;
@@ -78,6 +79,7 @@ struct ProcEobjLvup {
     /* 5C */ struct Anim * anim;
     /* 60 */ struct ProcEkrSubAnimeEmulator * child1, * child2;
 };
+PROC_SIZE_CHECK(struct ProcEobjLvup);
 
 extern int gEfxBgSemaphore;
 extern u16 gEkrLvupScrollPos1;
