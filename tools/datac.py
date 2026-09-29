@@ -559,6 +559,9 @@ def fn_proto(sig, name):
     return f"{sig[0]} {name}({sig[1]});"
 
 
+TERMINATED = {"MenuItemDef"}   # arrays that end with an all-zero element
+
+
 def decl_type(spec, elem):
     """(prefix, suffix-free type text) for `const <type> NAME[]`."""
     if spec.endswith("*"):
@@ -594,6 +597,13 @@ def emit_objects(rom, types, decls, spec, args):
             count = max(size // elem.size, 1)
             if size % elem.size:
                 print(f"problem: {name}: extent {size:#x} is not a multiple of {elem.size:#x}", file=sys.stderr)
+            if spec in TERMINATED:   # up to and including the first all-zero element
+                k = 1
+                while any(rom.rom[addr - BASE + (k - 1) * elem.size: addr - BASE + k * elem.size]) and k < count:
+                    k += 1
+                if k < count:
+                    print(f"note: {name}: {(count - k) * elem.size:#x} bytes after the terminator at {addr + k * elem.size:#x} are not part of it", file=sys.stderr)
+                count = k
         old = decls.decl.get(name, [])
         # declared without [] (or undeclared and one element): a single object
         single = count == 1 and (not old or all("[" not in t for _, t in old))
@@ -682,12 +692,18 @@ def report_refs(em, decls, path, hdr=None):
     with `hdr`, declare them there (functions in the header of the module
     that defines them when it has one)."""
     cl = decls.closure(path)
-    todo = {}
+    todo, includes = {}, set()
     for sym, f in sorted(em.refs.items()):
         if decls.visible(sym, cl) or sym in em.scalars_here:
             continue
         where = [str(p.relative_to(ROOT)) for p, _ in decls.decl.get(sym, [])] or ["-"]
         defs = decls.defn.get(sym, [])
+        hs = [p for p, _ in decls.decl.get(sym, []) if p.suffix == ".h" and p.resolve() not in cl]
+        if hs and Path(path).suffix == ".c":
+            inc = str(hs[0].relative_to(ROOT / "include"))
+            print(f"declared in {inc}, not included by {path}: adding the include")
+            includes.add(inc)
+            continue
         if f.kind == "fn":
             line = fn_proto(f.sig, sym)
             target = (header_for(defs[0]) if defs else None) or hdr
@@ -700,6 +716,12 @@ def report_refs(em, decls, path, hdr=None):
             todo.setdefault(target, []).append(line)
     for h, lines in todo.items():
         append_to_header(h, lines)
+    if includes:
+        t = Path(path).read_text()
+        last = list(re.finditer(r'^#include .*\n', t, re.M))
+        pos = last[-1].end() if last else 0
+        new = "".join(f'#include "{i}"\n' for i in sorted(includes) if f'#include "{i}"' not in t)
+        Path(path).write_text(t[:pos] + new + t[pos:])
 
 
 def main():
