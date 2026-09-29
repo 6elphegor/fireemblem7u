@@ -1,6 +1,79 @@
 #include "gbafe.h"
 #include "gbafe/sio_core.h"
 
+extern const u8 gUnk_081D504C[];
+extern const u8 gUnk_081D5050[];
+extern const u8 gUnk_081D5054[];
+extern const u8 gUnk_081D5058[];
+extern const u8 gUnk_081D505C[];
+extern const u8 gUnk_081D5060[];
+extern const u8 gUnk_081D5064[];
+extern const u8 gUnk_081D5068[];
+extern const u8 gUnk_081D506C[];
+extern const u8 gUnk_081D5070[];
+extern const u8 gUnk_081D5074[];
+extern const u8 gUnk_081D5078[];
+extern const u8 gUnk_081D507C[];
+extern const u8 gUnk_081D5080[];
+extern const u8 gUnk_081D5084[];
+extern const u8 gUnk_081D5088[];
+extern const u8 gUnk_081D508C[];
+extern const u8 gUnk_081D5090[];
+extern const u8 gUnk_081D5094[];
+extern const u8 gUnk_081D5098[];
+extern const u8 gUnk_081D509C[];
+extern const u8 gUnk_081D50A0[];
+extern const u8 gUnk_081D50A4[];
+extern const u8 gUnk_081D50A8[];
+extern const u8 gUnk_081D50AC[];
+extern const u8 gUnk_081D50B0[];
+extern const u8 gUnk_081D50B4[];
+extern const u8 gUnk_081D50B8[];
+extern const u8 gUnk_081D50BC[];
+extern const u8 gUnk_081D50C0[];
+extern const u8 gUnk_081D50C4[];
+extern const u8 gUnk_081D50C8[];
+extern const u8 gUnk_081D50CC[];
+extern const u8 gUnk_081D50D0[];
+extern const u8 gUnk_081D50D4[];
+extern const u8 gUnk_081D50D8[];
+extern const u8 gUnk_081D50DC[];
+extern const u8 gUnk_081D50E0[];
+extern const u8 gUnk_081D50E4[];
+extern const u8 gUnk_081D50E8[];
+extern const u8 gUnk_081D50EC[];
+extern const u8 gUnk_081D50F0[];
+extern const u8 gUnk_081D50F4[];
+extern const u8 gUnk_081D50F8[];
+extern const u8 gUnk_081D50FC[];
+extern const u8 gUnk_081D5100[];
+extern const u8 gUnk_081D5104[];
+extern const u8 gUnk_081D5108[];
+extern const u8 gUnk_081D510C[];
+extern const u8 gUnk_081D5110[];
+extern const u8 gUnk_081D5114[];
+extern const u8 gUnk_081D5118[];
+extern const u8 gUnk_081D511C[];
+extern const u8 gUnk_081D5120[];
+extern const u8 gUnk_081D5124[];
+extern const u8 gUnk_081D5128[];
+extern const u8 gUnk_081D512C[];
+extern const u8 gUnk_081D5130[];
+extern const u8 gUnk_081D5134[];
+extern const u8 gUnk_081D5138[];
+extern const u8 gUnk_081D513C[];
+extern const u8 gUnk_081D5140[];
+extern const u8 gUnk_081D5144[];
+extern const u8 gUnk_081D5148[];
+extern const u8 gUnk_081D514C[];
+extern const u8 gUnk_081D5150[];
+extern const u8 gUnk_081D5154[];
+extern const u8 gUnk_081D5158[];
+extern const u8 gUnk_081D515C[];
+extern const u8 gUnk_081D5160[];
+extern const u8 gUnk_081D5164[];
+extern const u8 gUnk_081D5168[];
+
 // FE8U: sio_tactician.c
 
 extern const struct TacticianTextConf gTacticianTextConf[];
@@ -85,7 +158,7 @@ void sub_0803F0F4(struct ProcTactician * proc, u8 * str_buf)
             {
                 for (k = 0; k < 3; k++)
                 {
-                    u8 * str = (conf->str + j * 3)[k];
+                    const u8 * str = (conf->str + j * 3)[k];
 
                     if (*str == *str_buf)
                     {
@@ -121,7 +194,7 @@ void sub_0803F1A8(struct ProcTactician * proc)
         {
             int idx = SioTacticianIndexMap[i * 15 + j];
             const struct TacticianTextConf * conf = gTacticianTextConf + idx;
-            u8 * str = conf->str[proc->line_idx * 3];
+            const u8 * str = conf->str[proc->line_idx * 3];
 
             if (*str != '\0')
             {
@@ -609,3 +682,824 @@ void sub_0803FB24(void)
 
     return;
 }
+
+SECTION(".rodata.081D3C0C")
+const struct TacticianTextConf gTacticianTextConf[] = {
+    {
+        .str = {
+            gUnk_081D5168, gUnk_081D5168, gUnk_081D5168, gUnk_081D5168, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5168, gUnk_081D5168, gUnk_081D5168, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xCA,
+        .y = 0x48,
+        .kind = 1,
+        .adj_idx = { 5, 2, 0x3C, 6 },
+        .action = 1,
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xCA,
+        .y = 0x58,
+        .kind = 1,
+        .adj_idx = { 1, 3, 0x41, 0xB },
+        .action = 2,
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xCA,
+        .y = 0x68,
+        .kind = 1,
+        .adj_idx = { 2, 4, 0x46, 0x10 },
+        .action = 3,
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xCA,
+        .y = 0x78,
+        .kind = 1,
+        .adj_idx = { 5, 5, 0x4B, 0x15 },
+        .action = 4,
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xCA,
+        .y = 0x88,
+        .kind = 1,
+        .adj_idx = { 4, 4, 0x50, 0x1A },
+        .action = 5,
+    },
+    {
+        .str = {
+            gUnk_081D5160, gUnk_081D5168, gUnk_081D5168, gUnk_081D5160, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5160, gUnk_081D5168, gUnk_081D5168, gUnk_081D5160,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x10,
+        .y = 0x48,
+        .adj_idx = { 0x1A, 0xB, 4, 7 },
+    },
+    {
+        .str = {
+            gUnk_081D515C, gUnk_081D5168, gUnk_081D5168, gUnk_081D515C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D515C, gUnk_081D5168, gUnk_081D5168, gUnk_081D515C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x1A,
+        .y = 0x48,
+        .adj_idx = { 0x1B, 0xC, 6, 8 },
+    },
+    {
+        .str = {
+            gUnk_081D5158, gUnk_081D5168, gUnk_081D5168, gUnk_081D5158, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5158, gUnk_081D5168, gUnk_081D5168, gUnk_081D5158,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x24,
+        .y = 0x48,
+        .adj_idx = { 0x1C, 0xD, 7, 9 },
+    },
+    {
+        .str = {
+            gUnk_081D5154, gUnk_081D5168, gUnk_081D5168, gUnk_081D5154, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5154, gUnk_081D5168, gUnk_081D5168, gUnk_081D5154,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x2E,
+        .y = 0x48,
+        .adj_idx = { 0x1D, 0xE, 8, 0xA },
+    },
+    {
+        .str = {
+            gUnk_081D5150, gUnk_081D5168, gUnk_081D5168, gUnk_081D5150, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5150, gUnk_081D5168, gUnk_081D5168, gUnk_081D5150,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x38,
+        .y = 0x48,
+        .adj_idx = { 0x1E, 0xF, 9, 0x1F },
+    },
+    {
+        .str = {
+            gUnk_081D514C, gUnk_081D5168, gUnk_081D5168, gUnk_081D514C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D514C, gUnk_081D5168, gUnk_081D5168, gUnk_081D514C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x10,
+        .y = 0x58,
+        .adj_idx = { 6, 0x10, 4, 0xC },
+    },
+    {
+        .str = {
+            gUnk_081D5148, gUnk_081D5168, gUnk_081D5168, gUnk_081D5148, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5148, gUnk_081D5168, gUnk_081D5168, gUnk_081D5148,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x1A,
+        .y = 0x58,
+        .adj_idx = { 7, 0x11, 0xB, 0xD },
+    },
+    {
+        .str = {
+            gUnk_081D5144, gUnk_081D5168, gUnk_081D5168, gUnk_081D5144, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5144, gUnk_081D5168, gUnk_081D5168, gUnk_081D5144,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x24,
+        .y = 0x58,
+        .adj_idx = { 8, 0x12, 0xC, 0xE },
+    },
+    {
+        .str = {
+            gUnk_081D5140, gUnk_081D5168, gUnk_081D5168, gUnk_081D5140, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5140, gUnk_081D5168, gUnk_081D5168, gUnk_081D5140,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x2E,
+        .y = 0x58,
+        .adj_idx = { 9, 0x13, 0xD, 0xF },
+    },
+    {
+        .str = {
+            gUnk_081D513C, gUnk_081D5168, gUnk_081D5168, gUnk_081D513C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D513C, gUnk_081D5168, gUnk_081D5168, gUnk_081D513C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x38,
+        .y = 0x58,
+        .adj_idx = { 0xA, 0x14, 0xE, 0x24 },
+    },
+    {
+        .str = {
+            gUnk_081D5138, gUnk_081D5168, gUnk_081D5168, gUnk_081D5138, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5138, gUnk_081D5168, gUnk_081D5168, gUnk_081D5138,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x10,
+        .y = 0x68,
+        .adj_idx = { 0xB, 0x15, 4, 0x11 },
+    },
+    {
+        .str = {
+            gUnk_081D5134, gUnk_081D5168, gUnk_081D5168, gUnk_081D5134, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5134, gUnk_081D5168, gUnk_081D5168, gUnk_081D5134,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x1A,
+        .y = 0x68,
+        .adj_idx = { 0xC, 0x16, 0x10, 0x12 },
+    },
+    {
+        .str = {
+            gUnk_081D5130, gUnk_081D5168, gUnk_081D5168, gUnk_081D5130, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5130, gUnk_081D5168, gUnk_081D5168, gUnk_081D5130,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x24,
+        .y = 0x68,
+        .adj_idx = { 0xD, 0x17, 0x11, 0x13 },
+    },
+    {
+        .str = {
+            gUnk_081D512C, gUnk_081D5168, gUnk_081D5168, gUnk_081D512C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D512C, gUnk_081D5168, gUnk_081D5168, gUnk_081D512C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x2E,
+        .y = 0x68,
+        .adj_idx = { 0xE, 0x18, 0x12, 0x14 },
+    },
+    {
+        .str = {
+            gUnk_081D5128, gUnk_081D5168, gUnk_081D5168, gUnk_081D5128, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5128, gUnk_081D5168, gUnk_081D5168, gUnk_081D5128,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x38,
+        .y = 0x68,
+        .adj_idx = { 0xF, 0x19, 0x13, 0x29 },
+    },
+    {
+        .str = {
+            gUnk_081D5124, gUnk_081D5168, gUnk_081D5168, gUnk_081D5124, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5124, gUnk_081D5168, gUnk_081D5168, gUnk_081D5124,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x10,
+        .y = 0x78,
+        .adj_idx = { 0x10, 0x1A, 4, 0x16 },
+    },
+    {
+        .str = {
+            gUnk_081D5120, gUnk_081D5168, gUnk_081D5168, gUnk_081D5120, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5120, gUnk_081D5168, gUnk_081D5168, gUnk_081D5120,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x1A,
+        .y = 0x78,
+        .adj_idx = { 0x11, 0x1B, 0x15, 0x17 },
+    },
+    {
+        .str = {
+            gUnk_081D511C, gUnk_081D5168, gUnk_081D5168, gUnk_081D511C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D511C, gUnk_081D5168, gUnk_081D5168, gUnk_081D511C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x24,
+        .y = 0x78,
+        .adj_idx = { 0x12, 0x1C, 0x16, 0x18 },
+    },
+    {
+        .str = {
+            gUnk_081D5118, gUnk_081D5168, gUnk_081D5168, gUnk_081D5118, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5118, gUnk_081D5168, gUnk_081D5168, gUnk_081D5118,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x2E,
+        .y = 0x78,
+        .adj_idx = { 0x13, 0x1D, 0x17, 0x19 },
+    },
+    {
+        .str = {
+            gUnk_081D5114, gUnk_081D5168, gUnk_081D5168, gUnk_081D5114, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5114, gUnk_081D5168, gUnk_081D5168, gUnk_081D5114,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x38,
+        .y = 0x78,
+        .adj_idx = { 0x14, 0x1E, 0x18, 0x2E },
+    },
+    {
+        .str = {
+            gUnk_081D5110, gUnk_081D5168, gUnk_081D5168, gUnk_081D5110, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5110, gUnk_081D5168, gUnk_081D5168, gUnk_081D5110,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x10,
+        .y = 0x88,
+        .adj_idx = { 0x15, 6, 5, 0x1B },
+    },
+    {
+        .str = {
+            gUnk_081D510C, gUnk_081D5168, gUnk_081D5168, gUnk_081D510C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D510C, gUnk_081D5168, gUnk_081D5168, gUnk_081D510C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x1A,
+        .y = 0x88,
+        .adj_idx = { 0x16, 7, 0x1A, 0x1C },
+    },
+    {
+        .str = {
+            gUnk_081D5108, gUnk_081D5168, gUnk_081D5168, gUnk_081D5108, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5108, gUnk_081D5168, gUnk_081D5168, gUnk_081D5108,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x24,
+        .y = 0x88,
+        .adj_idx = { 0x17, 8, 0x1B, 0x1D },
+    },
+    {
+        .str = {
+            gUnk_081D5104, gUnk_081D5168, gUnk_081D5168, gUnk_081D5104, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5104, gUnk_081D5168, gUnk_081D5168, gUnk_081D5104,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x2E,
+        .y = 0x88,
+        .adj_idx = { 0x18, 9, 0x1C, 0x1E },
+    },
+    {
+        .str = {
+            gUnk_081D5100, gUnk_081D5168, gUnk_081D5168, gUnk_081D5100, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5100, gUnk_081D5168, gUnk_081D5168, gUnk_081D5100,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x38,
+        .y = 0x88,
+        .adj_idx = { 0x19, 0xA, 0x1D, 0x33 },
+    },
+    {
+        .str = {
+            gUnk_081D50FC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50FC, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50FC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50FC,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x50,
+        .y = 0x48,
+        .adj_idx = { 0x33, 0x24, 0xA, 0x20 },
+    },
+    {
+        .str = {
+            gUnk_081D50F8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50F8, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50F8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50F8,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x5A,
+        .y = 0x48,
+        .adj_idx = { 0x34, 0x25, 0x1F, 0x21 },
+    },
+    {
+        .str = {
+            gUnk_081D50F4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50F4, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50F4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50F4,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x64,
+        .y = 0x48,
+        .adj_idx = { 0x35, 0x26, 0x20, 0x22 },
+    },
+    {
+        .str = {
+            gUnk_081D50F0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50F0, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50F0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50F0,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x6E,
+        .y = 0x48,
+        .adj_idx = { 0x36, 0x27, 0x21, 0x23 },
+    },
+    {
+        .str = {
+            gUnk_081D50EC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50EC, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50EC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50EC,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x78,
+        .y = 0x48,
+        .adj_idx = { 0x37, 0x28, 0x22, 0x38 },
+    },
+    {
+        .str = {
+            gUnk_081D50E8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50E8, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50E8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50E8,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x50,
+        .y = 0x58,
+        .adj_idx = { 0x1F, 0x29, 0xF, 0x25 },
+    },
+    {
+        .str = {
+            gUnk_081D50E4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50E4, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50E4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50E4,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x5A,
+        .y = 0x58,
+        .adj_idx = { 0x20, 0x2A, 0x24, 0x26 },
+    },
+    {
+        .str = {
+            gUnk_081D50E0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50E0, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50E0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50E0,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x64,
+        .y = 0x58,
+        .adj_idx = { 0x21, 0x2B, 0x25, 0x27 },
+    },
+    {
+        .str = {
+            gUnk_081D50DC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50DC, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50DC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50DC,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x6E,
+        .y = 0x58,
+        .adj_idx = { 0x22, 0x2C, 0x26, 0x28 },
+    },
+    {
+        .str = {
+            gUnk_081D50D8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50D8, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50D8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50D8,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x78,
+        .y = 0x58,
+        .adj_idx = { 0x23, 0x2D, 0x27, 0x3D },
+    },
+    {
+        .str = {
+            gUnk_081D50D4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50D4, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50D4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50D4,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x50,
+        .y = 0x68,
+        .adj_idx = { 0x24, 0x2E, 0x14, 0x2A },
+    },
+    {
+        .str = {
+            gUnk_081D50D0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50D0, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50D0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50D0,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x5A,
+        .y = 0x68,
+        .adj_idx = { 0x25, 0x2F, 0x29, 0x2B },
+    },
+    {
+        .str = {
+            gUnk_081D50CC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50CC, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50CC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50CC,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x64,
+        .y = 0x68,
+        .adj_idx = { 0x26, 0x30, 0x2A, 0x2C },
+    },
+    {
+        .str = {
+            gUnk_081D50C8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50C8, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50C8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50C8,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x6E,
+        .y = 0x68,
+        .adj_idx = { 0x27, 0x31, 0x2B, 0x2D },
+    },
+    {
+        .str = {
+            gUnk_081D50C4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50C4, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50C4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50C4,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x78,
+        .y = 0x68,
+        .adj_idx = { 0x28, 0x32, 0x2C, 0x42 },
+    },
+    {
+        .str = {
+            gUnk_081D50C0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50C0, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50C0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50C0,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x50,
+        .y = 0x78,
+        .adj_idx = { 0x29, 0x33, 0x19, 0x2F },
+    },
+    {
+        .str = {
+            gUnk_081D50BC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50BC, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50BC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50BC,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x5A,
+        .y = 0x78,
+        .adj_idx = { 0x2A, 0x34, 0x2E, 0x30 },
+    },
+    {
+        .str = {
+            gUnk_081D50B8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50B8, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50B8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50B8,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x64,
+        .y = 0x78,
+        .adj_idx = { 0x2B, 0x35, 0x2F, 0x31 },
+    },
+    {
+        .str = {
+            gUnk_081D50B4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50B4, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50B4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50B4,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x6E,
+        .y = 0x78,
+        .adj_idx = { 0x2C, 0x36, 0x30, 0x32 },
+    },
+    {
+        .str = {
+            gUnk_081D50B0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50B0, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50B0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50B0,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x78,
+        .y = 0x78,
+        .adj_idx = { 0x2D, 0x37, 0x31, 0x47 },
+    },
+    {
+        .str = {
+            gUnk_081D50AC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50AC, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50AC, gUnk_081D5168, gUnk_081D5168, gUnk_081D50AC,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x50,
+        .y = 0x88,
+        .adj_idx = { 0x2E, 0x1F, 0x1E, 0x34 },
+    },
+    {
+        .str = {
+            gUnk_081D50A8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50A8, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50A8, gUnk_081D5168, gUnk_081D5168, gUnk_081D50A8,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x5A,
+        .y = 0x88,
+        .adj_idx = { 0x2F, 0x20, 0x33, 0x35 },
+    },
+    {
+        .str = {
+            gUnk_081D50A4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50A4, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50A4, gUnk_081D5168, gUnk_081D5168, gUnk_081D50A4,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x64,
+        .y = 0x88,
+        .adj_idx = { 0x30, 0x21, 0x34, 0x36 },
+    },
+    {
+        .str = {
+            gUnk_081D50A0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50A0, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D50A0, gUnk_081D5168, gUnk_081D5168, gUnk_081D50A0,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x6E,
+        .y = 0x88,
+        .adj_idx = { 0x31, 0x22, 0x35, 0x37 },
+    },
+    {
+        .str = {
+            gUnk_081D509C, gUnk_081D5168, gUnk_081D5168, gUnk_081D509C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D509C, gUnk_081D5168, gUnk_081D5168, gUnk_081D509C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x78,
+        .y = 0x88,
+        .adj_idx = { 0x32, 0x23, 0x36, 0x4C },
+    },
+    {
+        .str = {
+            gUnk_081D5098, gUnk_081D5168, gUnk_081D5168, gUnk_081D5098, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5098, gUnk_081D5168, gUnk_081D5168, gUnk_081D5098,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x90,
+        .y = 0x48,
+        .adj_idx = { 0x4C, 0x3D, 0x23, 0x39 },
+    },
+    {
+        .str = {
+            gUnk_081D5094, gUnk_081D5168, gUnk_081D5168, gUnk_081D5094, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5094, gUnk_081D5168, gUnk_081D5168, gUnk_081D5094,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x9A,
+        .y = 0x48,
+        .adj_idx = { 0x4D, 0x3E, 0x38, 0x3A },
+    },
+    {
+        .str = {
+            gUnk_081D5090, gUnk_081D5168, gUnk_081D5168, gUnk_081D5090, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5090, gUnk_081D5168, gUnk_081D5168, gUnk_081D5090,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xA4,
+        .y = 0x48,
+        .adj_idx = { 0x4E, 0x3F, 0x39, 0x3B },
+    },
+    {
+        .str = {
+            gUnk_081D508C, gUnk_081D5168, gUnk_081D5168, gUnk_081D508C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D508C, gUnk_081D5168, gUnk_081D5168, gUnk_081D508C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xAE,
+        .y = 0x48,
+        .adj_idx = { 0x4F, 0x40, 0x3A, 0x3C },
+    },
+    {
+        .str = {
+            gUnk_081D5088, gUnk_081D5168, gUnk_081D5168, gUnk_081D5088, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5088, gUnk_081D5168, gUnk_081D5168, gUnk_081D5088,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xB8,
+        .y = 0x48,
+        .adj_idx = { 0x50, 0x41, 0x3B, 4 },
+    },
+    {
+        .str = {
+            gUnk_081D5084, gUnk_081D5168, gUnk_081D5168, gUnk_081D5084, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5084, gUnk_081D5168, gUnk_081D5168, gUnk_081D5084,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x90,
+        .y = 0x58,
+        .adj_idx = { 0x38, 0x42, 0x28, 0x3E },
+    },
+    {
+        .str = {
+            gUnk_081D5080, gUnk_081D5168, gUnk_081D5168, gUnk_081D5080, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5080, gUnk_081D5168, gUnk_081D5168, gUnk_081D5080,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x9A,
+        .y = 0x58,
+        .adj_idx = { 0x39, 0x43, 0x3D, 0x3F },
+    },
+    {
+        .str = {
+            gUnk_081D507C, gUnk_081D5168, gUnk_081D5168, gUnk_081D507C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D507C, gUnk_081D5168, gUnk_081D5168, gUnk_081D507C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xA4,
+        .y = 0x58,
+        .adj_idx = { 0x3A, 0x44, 0x3E, 0x40 },
+    },
+    {
+        .str = {
+            gUnk_081D5078, gUnk_081D5168, gUnk_081D5168, gUnk_081D5078, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5078, gUnk_081D5168, gUnk_081D5168, gUnk_081D5078,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xAE,
+        .y = 0x58,
+        .adj_idx = { 0x3B, 0x45, 0x3F, 0x41 },
+    },
+    {
+        .str = {
+            gUnk_081D5074, gUnk_081D5168, gUnk_081D5168, gUnk_081D5074, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5074, gUnk_081D5168, gUnk_081D5168, gUnk_081D5074,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xB8,
+        .y = 0x58,
+        .adj_idx = { 0x3C, 0x46, 0x40, 4 },
+    },
+    {
+        .str = {
+            gUnk_081D5070, gUnk_081D5168, gUnk_081D5168, gUnk_081D5070, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5070, gUnk_081D5168, gUnk_081D5168, gUnk_081D5070,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x90,
+        .y = 0x68,
+        .adj_idx = { 0x3D, 0x47, 0x2D, 0x43 },
+    },
+    {
+        .str = {
+            gUnk_081D506C, gUnk_081D5168, gUnk_081D5168, gUnk_081D506C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D506C, gUnk_081D5168, gUnk_081D5168, gUnk_081D506C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x9A,
+        .y = 0x68,
+        .adj_idx = { 0x3E, 0x48, 0x42, 0x44 },
+    },
+    {
+        .str = {
+            gUnk_081D5068, gUnk_081D5168, gUnk_081D5168, gUnk_081D5068, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5068, gUnk_081D5168, gUnk_081D5168, gUnk_081D5068,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xA4,
+        .y = 0x68,
+        .adj_idx = { 0x3F, 0x49, 0x43, 0x45 },
+    },
+    {
+        .str = {
+            gUnk_081D5064, gUnk_081D5168, gUnk_081D5168, gUnk_081D5064, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5064, gUnk_081D5168, gUnk_081D5168, gUnk_081D5064,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xAE,
+        .y = 0x68,
+        .adj_idx = { 0x40, 0x4A, 0x44, 0x46 },
+    },
+    {
+        .str = {
+            gUnk_081D5060, gUnk_081D5168, gUnk_081D5168, gUnk_081D5060, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5060, gUnk_081D5168, gUnk_081D5168, gUnk_081D5060,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xB8,
+        .y = 0x68,
+        .adj_idx = { 0x41, 0x4B, 0x45, 4 },
+    },
+    {
+        .str = {
+            gUnk_081D505C, gUnk_081D5168, gUnk_081D5168, gUnk_081D505C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D505C, gUnk_081D5168, gUnk_081D5168, gUnk_081D505C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x90,
+        .y = 0x78,
+        .adj_idx = { 0x42, 0x4C, 0x32, 0x48 },
+    },
+    {
+        .str = {
+            gUnk_081D5058, gUnk_081D5168, gUnk_081D5168, gUnk_081D5058, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5058, gUnk_081D5168, gUnk_081D5168, gUnk_081D5058,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x9A,
+        .y = 0x78,
+        .adj_idx = { 0x43, 0x4D, 0x47, 0x49 },
+    },
+    {
+        .str = {
+            gUnk_081D5054, gUnk_081D5168, gUnk_081D5168, gUnk_081D5054, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5054, gUnk_081D5168, gUnk_081D5168, gUnk_081D5054,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xA4,
+        .y = 0x78,
+        .adj_idx = { 0x44, 0x4E, 0x48, 0x4A },
+    },
+    {
+        .str = {
+            gUnk_081D5050, gUnk_081D5168, gUnk_081D5168, gUnk_081D5050, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5050, gUnk_081D5168, gUnk_081D5168, gUnk_081D5050,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xAE,
+        .y = 0x78,
+        .adj_idx = { 0x45, 0x4F, 0x49, 0x4B },
+    },
+    {
+        .str = {
+            gUnk_081D504C, gUnk_081D5168, gUnk_081D5168, gUnk_081D504C, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D504C, gUnk_081D5168, gUnk_081D5168, gUnk_081D504C,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xB8,
+        .y = 0x78,
+        .adj_idx = { 0x46, 0x50, 0x4A, 4 },
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x90,
+        .y = 0x88,
+        .adj_idx = { 0x47, 0x38, 0x37, 0x4D },
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0x9A,
+        .y = 0x88,
+        .adj_idx = { 0x48, 0x39, 0x4C, 0x4E },
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xA4,
+        .y = 0x88,
+        .adj_idx = { 0x49, 0x3A, 0x4D, 0x4F },
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xAE,
+        .y = 0x88,
+        .adj_idx = { 0x4A, 0x3B, 0x4E, 0x50 },
+    },
+    {
+        .str = {
+            gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164, gUnk_081D5168,
+            gUnk_081D5168, gUnk_081D5164, gUnk_081D5168, gUnk_081D5168, gUnk_081D5164,
+            gUnk_081D5168, gUnk_081D5168,
+        },
+        .x = 0xB8,
+        .y = 0x88,
+        .adj_idx = { 0x4B, 0x3C, 0x4F, 5 },
+    },
+};

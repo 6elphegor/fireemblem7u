@@ -20,8 +20,8 @@ extern u8 gBattleForecast_x2x4Gfx[];
 extern u16 gBattleForecast_x2x4Pal[];
 extern u16 gObject_16x16[];
 extern struct ProcCmd CONST_DATA gProcScr_EventEngine[];
-extern struct HelpBoxInfo CONST_DATA gHelpInfo_MbpHp;
-extern struct HelpBoxInfo CONST_DATA gHelpInfo_CbpHp;
+extern const struct HelpBoxInfo gHelpInfo_MbpHp;
+extern const struct HelpBoxInfo gHelpInfo_CbpHp;
 
 int GetBattleForecastPanelSide(void)
 {
@@ -666,3 +666,118 @@ void HbPopulate_BkselWTriEffB(struct HelpBoxProc * proc)
     struct BattleForecastProc * proc2 = Proc_Find(gProcScr_BKSEL);
     proc->msg = GetBkselHelpBoxMsg(gBattleTarget.wTriangleHitBonus, proc2->isEffectiveB);
 }
+
+extern const struct HelpBoxInfo gUnk_08CC254C;
+extern const struct HelpBoxInfo gUnk_08CC2584;
+extern const struct HelpBoxInfo gUnk_08CC25A0;
+extern const struct HelpBoxInfo gUnk_08CC25BC;
+extern const struct HelpBoxInfo gUnk_08CC25D8;
+extern const struct HelpBoxInfo gUnk_08CC25F4;
+extern const struct HelpBoxInfo gUnk_08CC262C;
+extern const struct HelpBoxInfo gUnk_08CC2648;
+extern const struct HelpBoxInfo gUnk_08CC2664;
+extern const struct HelpBoxInfo gUnk_08CC2680;
+extern const struct HelpBoxInfo gUnk_08CC269C;
+extern const struct HelpBoxInfo gUnk_08CC26B8;
+
+SECTION(".rodata.08CC254C")
+const struct HelpBoxInfo gUnk_08CC254C = { .adjacent_down = &gHelpInfo_MbpHp, .x = 8, .y = 8, .populate = HbPopulate_BkselWTriEffA };
+
+SECTION(".rodata.08CC2568")
+const struct HelpBoxInfo gHelpInfo_MbpHp = {
+    .adjacent_up = &gUnk_08CC254C,
+    .adjacent_down = &gUnk_08CC2584,
+    .x = 0x1C,
+    .y = 0x18,
+    .msg = 0x25D,
+};
+
+SECTION(".rodata.08CC2584")
+const struct HelpBoxInfo gUnk_08CC2584 = {
+    .adjacent_up = &gHelpInfo_MbpHp,
+    .adjacent_down = &gUnk_08CC25A0,
+    .x = 0x1C,
+    .y = 0x28,
+    .msg = 0x3A4,
+};
+
+SECTION(".rodata.08CC25A0")
+const struct HelpBoxInfo gUnk_08CC25A0 = {
+    .adjacent_up = &gUnk_08CC2584,
+    .adjacent_down = &gUnk_08CC25BC,
+    .x = 0x1C,
+    .y = 0x38,
+    .msg = 0x260,
+};
+
+SECTION(".rodata.08CC25BC")
+const struct HelpBoxInfo gUnk_08CC25BC = {
+    .adjacent_up = &gUnk_08CC25A0,
+    .adjacent_down = &gUnk_08CC25D8,
+    .x = 0x1C,
+    .y = 0x48,
+    .msg = 0x262,
+};
+
+SECTION(".rodata.08CC25D8")
+const struct HelpBoxInfo gUnk_08CC25D8 = { .adjacent_up = &gUnk_08CC25BC, .x = 0x38, .y = 0x58, .populate = HbPopulate_BkselWTriEffB };
+
+SECTION(".rodata.08CC25F4")
+const struct HelpBoxInfo gUnk_08CC25F4 = { .adjacent_down = &gHelpInfo_CbpHp, .x = 8, .y = 8, .populate = HbPopulate_BkselWTriEffA };
+
+SECTION(".rodata.08CC2610")
+const struct HelpBoxInfo gHelpInfo_CbpHp = {
+    .adjacent_up = &gUnk_08CC25F4,
+    .adjacent_down = &gUnk_08CC262C,
+    .x = 0x1C,
+    .y = 0x18,
+    .msg = 0x25D,
+};
+
+SECTION(".rodata.08CC262C")
+const struct HelpBoxInfo gUnk_08CC262C = {
+    .adjacent_up = &gHelpInfo_CbpHp,
+    .adjacent_down = &gUnk_08CC2648,
+    .x = 0x1C,
+    .y = 0x28,
+    .msg = 0x25F,
+};
+
+SECTION(".rodata.08CC2648")
+const struct HelpBoxInfo gUnk_08CC2648 = {
+    .adjacent_up = &gUnk_08CC262C,
+    .adjacent_down = &gUnk_08CC2664,
+    .x = 0x1C,
+    .y = 0x38,
+    .msg = 0x3A6,
+};
+
+SECTION(".rodata.08CC2664")
+const struct HelpBoxInfo gUnk_08CC2664 = {
+    .adjacent_up = &gUnk_08CC2648,
+    .adjacent_down = &gUnk_08CC2680,
+    .x = 0x1C,
+    .y = 0x48,
+    .msg = 0x260,
+};
+
+SECTION(".rodata.08CC2680")
+const struct HelpBoxInfo gUnk_08CC2680 = {
+    .adjacent_up = &gUnk_08CC2664,
+    .adjacent_down = &gUnk_08CC269C,
+    .x = 0x1C,
+    .y = 0x58,
+    .msg = 0x262,
+};
+
+SECTION(".rodata.08CC269C")
+const struct HelpBoxInfo gUnk_08CC269C = {
+    .adjacent_up = &gUnk_08CC2680,
+    .adjacent_down = &gUnk_08CC26B8,
+    .x = 0x1C,
+    .y = 0x68,
+    .msg = 0x3A5,
+};
+
+SECTION(".rodata.08CC26B8")
+const struct HelpBoxInfo gUnk_08CC26B8 = { .adjacent_up = &gUnk_08CC269C, .x = 0x38, .y = 0x78, .populate = HbPopulate_BkselWTriEffB };

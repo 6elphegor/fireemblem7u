@@ -48,11 +48,11 @@ enum
     MULTIARENA_LIST_8 = 8,
 };
 
-extern struct LATeamListConfig CONST_DATA gSioTeamListConfig_1[];
+extern const struct LATeamListConfig gSioTeamListConfig_1[];
 
-extern struct LATeamListConfig CONST_DATA gSioTeamListConfig_2[];
+extern const struct LATeamListConfig gSioTeamListConfig_2[];
 
-extern struct LATeamListConfig * CONST_DATA gSioTeamListConfigLut[];
+extern const struct LATeamListConfig * const gSioTeamListConfigLut[];
 
 extern char gUnk_Sio_0203DD50[][LINKARENA_TEAMNAME_LEN];
 extern struct Text gUnk_Sio_0203DA88[];
@@ -150,7 +150,7 @@ int sub_0803DF48(int activeOption, u8 mode)
     int count = 0;
     char buf[20];
 
-    struct LATeamListConfig * ptr = gSioTeamListConfigLut[mode];
+    const struct LATeamListConfig * ptr = gSioTeamListConfigLut[mode];
 
     InitUnits();
 
@@ -231,7 +231,7 @@ void sub_0803E0D4(struct SioTeamListProc * proc, u8 mode)
 {
     int i;
 
-    struct LATeamListConfig * ptr = gSioTeamListConfigLut[mode];
+    const struct LATeamListConfig * ptr = gSioTeamListConfigLut[mode];
 
     for (i = 0; i < proc->unk_38; i++)
     {
@@ -259,7 +259,7 @@ void SioTeamList_EraseTeam(struct SioTeamListProc * proc)
 {
     int team = proc->unk_40;
 
-    struct LATeamListConfig * ptr = gSioTeamListConfigLut[gLinkArenaSt.unk_00];
+    const struct LATeamListConfig * ptr = gSioTeamListConfigLut[gLinkArenaSt.unk_00];
 
     struct Unit * unit = GetUnit(team * 5 + 1);
 
@@ -345,7 +345,7 @@ int sub_0803E358(u8 mode, struct SioTeamListProc * proc)
     int color;
 
     int i = 0;
-    struct LATeamListConfig * ptr = gSioTeamListConfigLut[mode];
+    const struct LATeamListConfig * ptr = gSioTeamListConfigLut[mode];
 
     if (mode == 1)
     {
@@ -386,7 +386,7 @@ int sub_0803E358(u8 mode, struct SioTeamListProc * proc)
 //! FE8U = 0x080438C0
 u16 GetLATeamListHelpTextId(struct SioTeamListProc * proc)
 {
-    struct LATeamListConfig * ptr = gSioTeamListConfigLut[gLinkArenaSt.unk_00];
+    const struct LATeamListConfig * ptr = gSioTeamListConfigLut[gLinkArenaSt.unk_00];
 
     if (gLinkArenaSt.unk_00 != 1)
     {
@@ -517,7 +517,7 @@ void SioTeamList_Loop_MainKeyHandler(struct SioTeamListProc * proc)
 {
     int previous = proc->optionIdx;
 
-    struct LATeamListConfig * ptr = gSioTeamListConfigLut[gLinkArenaSt.unk_00];
+    const struct LATeamListConfig * ptr = gSioTeamListConfigLut[gLinkArenaSt.unk_00];
 
     struct SioProc85AAA78 * unk_2C = proc->unk_2c;
     unk_2C->unk_44 = 1;
@@ -1127,4 +1127,47 @@ const struct ProcCmd ProcScr_SioTeamList[] = {
     PROC_CALL(sub_08014170),
     PROC_SLEEP(0),
     PROC_END,
+};
+
+SECTION(".rodata.08B98BFC")
+const struct LATeamListConfig gSioTeamListConfig_1[] = {
+    {
+        .kind = 1,
+        .helpTextId = 0x3BA,
+        .unk_04 = 1,
+        .menuTextId = 0x774,
+        .isValidFunc = CanBuildNewLinkArenaTeam,
+    },
+    {
+        .kind = 3,
+        .helpTextId = 0x3BB,
+        .unk_05 = 1,
+        .menuTextId = 0x776,
+        .isValidFunc = sub_0803DF1C,
+    },
+    { .kind = 4, .helpTextId = 0x3BC, .menuTextId = 0x777 },
+    {
+        .kind = 6,
+        .helpTextId = 0x3BD,
+        .unk_05 = 1,
+        .menuTextId = 0x778,
+        .isValidFunc = sub_0803DF1C,
+    },
+    { .kind = 7, .helpTextId = 0x3BE, .menuTextId = 0x779 },
+    { 0 },
+};
+
+SECTION(".rodata.08B98C5C")
+const struct LATeamListConfig gSioTeamListConfig_2[] = {
+    { .kind = 2, .helpTextId = 0x3BF, .unk_05 = 1, .menuTextId = 0x775 },
+    { .kind = 3, .helpTextId = 0x3BB, .unk_05 = 1, .menuTextId = 0x776 },
+    { .kind = 7, .helpTextId = 0x3BE, .unk_05 = 1, .menuTextId = 0x779 },
+    { .unk_05 = 1 },
+};
+
+SECTION(".rodata.08B98C9C")
+const struct LATeamListConfig * const gSioTeamListConfigLut[] = {
+    gSioTeamListConfig_1,
+    gSioTeamListConfig_2,
+    gSioTeamListConfig_2,
 };

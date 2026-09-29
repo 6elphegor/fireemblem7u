@@ -343,13 +343,37 @@ extern struct ProcCmd ProcScr_StatScreen[];
 // ??? ProcScr_HelpBoxLockHelper
 // ??? Sprite_MetaHelp
 extern struct ProcCmd CONST_DATA ProcScr_HelpPromptSpr[];
-extern struct HelpBoxInfo CONST_DATA HelpInfo_StatScreenPersonalInfo_Pow;
-extern struct HelpBoxInfo CONST_DATA HelpInfo_StatScreenItems_ItemA;
-extern struct HelpBoxInfo CONST_DATA HelpInfo_StatScreenWeaponExp_WExpA;
+extern const struct HelpBoxInfo HelpInfo_StatScreenPersonalInfo_Pow;
+extern const struct HelpBoxInfo HelpInfo_StatScreenItems_ItemA;
+extern const struct HelpBoxInfo HelpInfo_StatScreenWeaponExp_WExpA;
 
 // ??? gUnk_0841CB54
-extern struct StatScreenTextInfo const gStatScreenPersonalInfoLabelsInfo[];
-extern struct StatScreenTextInfo const gStatScreenEquipmentLabelsInfo[];
-extern struct StatScreenTextInfo const gStatScreenWeaponExpLabelsPhysicalInfo[];
-extern struct StatScreenTextInfo const gStatScreenWeaponExpLabelsMagicalInfo[];
+extern const struct StatScreenTextInfo gStatScreenPersonalInfoLabelsInfo[];
+extern const struct StatScreenTextInfo gStatScreenEquipmentLabelsInfo[];
+extern const struct StatScreenTextInfo gStatScreenWeaponExpLabelsPhysicalInfo[];
+extern const struct StatScreenTextInfo gStatScreenWeaponExpLabelsMagicalInfo[];
 
+extern int const gMid_Con;
+extern int const gMid_Def;
+extern int const gMid_Lck;
+extern int const gMid_Res;
+extern int const gMid_Skl;
+extern int const gMid_Spd;
+extern const int gUnk_08CC2700[];
+extern const int gUnk_08CC2704[];
+extern const int gUnk_08CC2708[];
+extern const int gUnk_08CC270C[];
+extern const int gUnk_08CC2710[];
+extern const int gUnk_08CC2714[];
+extern const int gUnk_08CC2718[];
+extern const int gUnk_08CC271C[];
+extern const int gUnk_08CC2720[];
+extern const int gUnk_08CC2724[];
+extern const int gUnk_08CC2764[];
+extern const int gUnk_08CC2768[];
+extern const int gUnk_08CC276C[];
+extern const int gUnk_08CC2770[];
+extern const int gUnk_08CC2774[];
+extern const int gUnk_08CC2778[];
+extern const int gUnk_08CC277C[];
+extern const int gUnk_08CC2780[];

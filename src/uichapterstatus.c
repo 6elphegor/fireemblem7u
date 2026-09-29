@@ -31,7 +31,7 @@ struct StatusScreenSt {
 extern struct Text gChapterStatusText[2];
 extern struct StatusScreenSt gStatusScreenSt;
 
-extern struct HelpBoxInfo const HelpInfo_ChapterStatus_AllyUnits;
+extern const struct HelpBoxInfo HelpInfo_ChapterStatus_AllyUnits;
 extern u16 const Pal_ChapterStatusUi[];
 extern u8 const Img_ChapterStatusUi[];
 extern u8 const Tsa_ChapterStatusUi[];
@@ -716,4 +716,82 @@ const struct ProcCmd ProcScr_StatusScreenSpriteDraw[] = {
     PROC_CALL(StatusScreenSpriteDraw_Init),
     PROC_REPEAT(StatusScreenSpriteDraw_Loop),
     PROC_END,
+};
+
+extern const struct HelpBoxInfo gUnk_08CE5D20;
+extern const struct HelpBoxInfo gUnk_08CE5D3C;
+extern const struct HelpBoxInfo gUnk_08CE5D58;
+extern const struct HelpBoxInfo gUnk_08CE5D90;
+extern const struct HelpBoxInfo gUnk_08CE5DAC;
+extern const struct HelpBoxInfo gUnk_08CE5DC8;
+
+SECTION(".rodata.08CE5D20")
+const struct HelpBoxInfo gUnk_08CE5D20 = {
+    .adjacent_up = &gUnk_08CE5D58,
+    .adjacent_down = &gUnk_08CE5D3C,
+    .adjacent_right = &HelpInfo_ChapterStatus_AllyUnits,
+    .x = 0x18,
+    .y = 0x4C,
+    .msg = 0x39C,
+};
+
+SECTION(".rodata.08CE5D3C")
+const struct HelpBoxInfo gUnk_08CE5D3C = {
+    .adjacent_up = &gUnk_08CE5D20,
+    .adjacent_down = &gUnk_08CE5D58,
+    .adjacent_right = &gUnk_08CE5DAC,
+    .x = 0x10,
+    .y = 0x6C,
+    .msg = 0x398,
+};
+
+SECTION(".rodata.08CE5D58")
+const struct HelpBoxInfo gUnk_08CE5D58 = {
+    .adjacent_up = &gUnk_08CE5D3C,
+    .adjacent_down = &gUnk_08CE5D20,
+    .adjacent_right = &gUnk_08CE5DC8,
+    .x = 0x10,
+    .y = 0x7C,
+    .msg = 0x39D,
+};
+
+SECTION(".rodata.08CE5D74")
+const struct HelpBoxInfo HelpInfo_ChapterStatus_AllyUnits = {
+    .adjacent_up = &gUnk_08CE5DC8,
+    .adjacent_down = &gUnk_08CE5DAC,
+    .adjacent_left = &gUnk_08CE5D20,
+    .adjacent_right = &gUnk_08CE5D90,
+    .x = 0x8E,
+    .y = 0x32,
+    .msg = 0x399,
+};
+
+SECTION(".rodata.08CE5D90")
+const struct HelpBoxInfo gUnk_08CE5D90 = {
+    .adjacent_up = &gUnk_08CE5DC8,
+    .adjacent_down = &gUnk_08CE5DAC,
+    .adjacent_left = &HelpInfo_ChapterStatus_AllyUnits,
+    .x = 0xC0,
+    .y = 0x32,
+    .msg = 0x39A,
+};
+
+SECTION(".rodata.08CE5DAC")
+const struct HelpBoxInfo gUnk_08CE5DAC = {
+    .adjacent_up = &HelpInfo_ChapterStatus_AllyUnits,
+    .adjacent_down = &gUnk_08CE5DC8,
+    .adjacent_left = &gUnk_08CE5D3C,
+    .x = 0x88,
+    .y = 0x54,
+    .msg = 0x39B,
+};
+
+SECTION(".rodata.08CE5DC8")
+const struct HelpBoxInfo gUnk_08CE5DC8 = {
+    .adjacent_up = &gUnk_08CE5DAC,
+    .adjacent_down = &gUnk_08CE5D90,
+    .adjacent_left = &gUnk_08CE5D58,
+    .x = 0x88,
+    .y = 0x84,
+    .msg = 0x397,
 };

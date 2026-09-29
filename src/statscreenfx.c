@@ -675,3 +675,159 @@ void PutStatScreenPage(int page_id)
 
     func_table[page_id]();
 }
+
+SECTION(".rodata.084049A0")
+const struct StatScreenTextInfo gStatScreenPersonalInfoLabelsInfo[] = {
+    {
+        .text = &gStatScreenSt.text[4],
+        .tm = gUiTmScratchA + TM_OFFSET(1, 3),
+        .color = 3,
+        .msg = &gMid_Skl,
+    },
+    {
+        .text = &gStatScreenSt.text[5],
+        .tm = gUiTmScratchA + TM_OFFSET(1, 5),
+        .color = 3,
+        .msg = &gMid_Spd,
+    },
+    {
+        .text = &gStatScreenSt.text[6],
+        .tm = gUiTmScratchA + TM_OFFSET(1, 7),
+        .color = 3,
+        .msg = &gMid_Lck,
+    },
+    {
+        .text = &gStatScreenSt.text[7],
+        .tm = gUiTmScratchA + TM_OFFSET(1, 9),
+        .color = 3,
+        .msg = &gMid_Def,
+    },
+    {
+        .text = &gStatScreenSt.text[8],
+        .tm = gUiTmScratchA + TM_OFFSET(1, 11),
+        .color = 3,
+        .msg = &gMid_Res,
+    },
+    {
+        .text = &gStatScreenSt.text[9],
+        .tm = gUiTmScratchA + TM_OFFSET(9, 1),
+        .color = 3,
+        .msg = gUnk_08CC2704,
+    },
+    {
+        .text = &gStatScreenSt.text[10],
+        .tm = gUiTmScratchA + TM_OFFSET(9, 3),
+        .color = 3,
+        .msg = &gMid_Con,
+    },
+    {
+        .text = &gStatScreenSt.text[11],
+        .tm = gUiTmScratchA + TM_OFFSET(9, 5),
+        .color = 3,
+        .msg = gUnk_08CC2700,
+    },
+    {
+        .text = &gStatScreenSt.text[12],
+        .tm = gUiTmScratchA + TM_OFFSET(9, 7),
+        .color = 3,
+        .msg = gUnk_08CC2708,
+    },
+    {
+        .text = &gStatScreenSt.text[13],
+        .tm = gUiTmScratchA + TM_OFFSET(9, 9),
+        .color = 3,
+        .msg = gUnk_08CC270C,
+    },
+    {
+        .text = &gStatScreenSt.text[14],
+        .tm = gUiTmScratchA + TM_OFFSET(9, 11),
+        .color = 3,
+        .msg = gUnk_08CC2724,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08404A60")
+const struct StatScreenTextInfo gStatScreenEquipmentLabelsInfo[] = {
+    {
+        .text = &gStatScreenSt.text[21],
+        .tm = gUiTmScratchA + TM_OFFSET(3, 13),
+        .color = 3,
+        .msg = gUnk_08CC2714,
+    },
+    {
+        .text = &gStatScreenSt.text[22],
+        .tm = gUiTmScratchA + TM_OFFSET(3, 15),
+        .color = 3,
+        .msg = gUnk_08CC2718,
+    },
+    {
+        .text = &gStatScreenSt.text[20],
+        .tm = gUiTmScratchA + TM_OFFSET(10, 11),
+        .color = 3,
+        .msg = gUnk_08CC2710,
+    },
+    {
+        .text = &gStatScreenSt.text[23],
+        .tm = gUiTmScratchA + TM_OFFSET(10, 13),
+        .color = 3,
+        .msg = gUnk_08CC271C,
+    },
+    {
+        .text = &gStatScreenSt.text[24],
+        .tm = gUiTmScratchA + TM_OFFSET(10, 15),
+        .color = 3,
+        .msg = gUnk_08CC2720,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08404AC0")
+const struct StatScreenTextInfo gStatScreenWeaponExpLabelsPhysicalInfo[] = {
+    {
+        .text = &gStatScreenSt.text[25],
+        .tm = gUiTmScratchA + TM_OFFSET(3, 1),
+        .msg = gUnk_08CC2764,
+    },
+    {
+        .text = &gStatScreenSt.text[26],
+        .tm = gUiTmScratchA + TM_OFFSET(3, 3),
+        .msg = gUnk_08CC2768,
+    },
+    {
+        .text = &gStatScreenSt.text[27],
+        .tm = gUiTmScratchA + TM_OFFSET(11, 1),
+        .msg = gUnk_08CC276C,
+    },
+    {
+        .text = &gStatScreenSt.text[28],
+        .tm = gUiTmScratchA + TM_OFFSET(11, 3),
+        .msg = gUnk_08CC2770,
+    },
+    { 0 },
+};
+
+SECTION(".rodata.08404B10")
+const struct StatScreenTextInfo gStatScreenWeaponExpLabelsMagicalInfo[] = {
+    {
+        .text = &gStatScreenSt.text[25],
+        .tm = gUiTmScratchA + TM_OFFSET(3, 1),
+        .msg = gUnk_08CC2778,
+    },
+    {
+        .text = &gStatScreenSt.text[26],
+        .tm = gUiTmScratchA + TM_OFFSET(3, 3),
+        .msg = gUnk_08CC277C,
+    },
+    {
+        .text = &gStatScreenSt.text[27],
+        .tm = gUiTmScratchA + TM_OFFSET(11, 1),
+        .msg = gUnk_08CC2780,
+    },
+    {
+        .text = &gStatScreenSt.text[28],
+        .tm = gUiTmScratchA + TM_OFFSET(11, 3),
+        .msg = gUnk_08CC2774,
+    },
+    { 0 },
+};

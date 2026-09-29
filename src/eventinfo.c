@@ -1,5 +1,94 @@
 #include "gbafe.h"
 
+extern const u32 EvList_Ch00_TutorialA[];
+extern const u32 EvList_Ch00_TutorialB[];
+extern const u32 EvList_Ch00_TutorialC[];
+extern const u32 EvList_Ch00_TutorialD[];
+extern const u32 EvList_Ch01_TutorialA[];
+extern const u32 EvList_Ch01_TutorialB[];
+extern const u32 EvList_Ch01_TutorialC[];
+extern const u32 EvList_Ch01_TutorialD[];
+extern const u32 EvList_Ch02_TutorialA[];
+extern const u32 EvList_Ch02_TutorialB[];
+extern const u32 EvList_Ch02_TutorialC[];
+extern const u32 EvList_Ch02_TutorialD[];
+extern const u32 EvList_Ch03_TutorialA[];
+extern const u32 EvList_Ch03_TutorialB[];
+extern const u32 EvList_Ch03_TutorialC[];
+extern const u32 EvList_Ch03_TutorialD[];
+extern const u32 EvList_Ch04_TutorialA[];
+extern const u32 EvList_Ch04_TutorialB[];
+extern const u32 EvList_Ch04_TutorialC[];
+extern const u32 EvList_Ch04_TutorialD[];
+extern const u32 EvList_Ch05_TutorialA[];
+extern const u32 EvList_Ch05_TutorialB[];
+extern const u32 EvList_Ch05_TutorialC[];
+extern const u32 EvList_Ch05_TutorialD[];
+extern const u32 EvList_Ch06_TutorialA[];
+extern const u32 EvList_Ch06_TutorialB[];
+extern const u32 EvList_Ch06_TutorialC[];
+extern const u32 EvList_Ch06_TutorialD[];
+extern const u32 EvList_Ch07_TutorialA[];
+extern const u32 EvList_Ch07_TutorialB[];
+extern const u32 EvList_Ch07_TutorialC[];
+extern const u32 EvList_Ch07_TutorialD[];
+extern const u32 EvList_Ch08_TutorialA[];
+extern const u32 EvList_Ch08_TutorialB[];
+extern const u32 EvList_Ch08_TutorialC[];
+extern const u32 EvList_Ch08_TutorialD[];
+extern const u32 EvList_Ch09_TutorialA[];
+extern const u32 EvList_Ch09_TutorialB[];
+extern const u32 EvList_Ch09_TutorialC[];
+extern const u32 EvList_Ch09_TutorialD[];
+extern const u32 EvList_Ch0A_TutorialA[];
+extern const u32 EvList_Ch0A_TutorialB[];
+extern const u32 EvList_Ch0A_TutorialC[];
+extern const u32 EvList_Ch0A_TutorialD[];
+extern const u32 EvList_Ch0B_TutorialA[];
+extern const u32 EvList_Ch0B_TutorialB[];
+extern const u32 EvList_Ch0B_TutorialC[];
+extern const u32 EvList_Ch0B_TutorialD[];
+
+extern const EventScr EventScr_08CBFBFC[];
+extern const EventScr EventScr_08CC0E50[];
+extern const EventScr EventScr_08CC0E6C[];
+extern const EventScr EventScr_08CC0E88[];
+extern const EventScr EventScr_08CC0EA4[];
+extern const EventScr EventScr_08CC0EC0[];
+extern const EventScr EventScr_08CC0EDC[];
+
+extern const EventScr EventScr_08CC0EF8[];
+extern const EventScr EventScr_08CC0F14[];
+
+extern const EventScr EventScr_08CC06D8[];
+extern const EventScr EventScr_08CC06F4[];
+extern const EventScr EventScr_08CC0708[];
+extern const EventScr EventScr_08CC071C[];
+extern const EventScr EventScr_08CC0738[];
+extern const EventScr EventScr_08CC0754[];
+extern const EventScr EventScr_08CC0768[];
+extern const EventScr EventScr_08CC077C[];
+extern const EventScr EventScr_08CC0790[];
+extern const EventScr EventScr_08CC07A4[];
+extern const EventScr EventScr_08CC07B8[];
+extern const EventScr EventScr_08CC07CC[];
+extern const EventScr EventScr_08CC07E0[];
+extern const EventScr EventScr_08CC07F4[];
+extern const EventScr EventScr_08CC0808[];
+extern const EventScr EventScr_08CC081C[];
+extern const EventScr EventScr_08CC0830[];
+extern const EventScr EventScr_08CC0844[];
+extern const EventScr EventScr_08CC0860[];
+extern const EventScr EventScr_08CC0874[];
+extern const EventScr EventScr_08CC0888[];
+extern const EventScr EventScr_08CC089C[];
+extern const EventScr EventScr_08CC08B0[];
+extern const EventScr EventScr_08CC08C4[];
+extern const EventScr EventScr_08CC08D8[];
+extern const EventScr EventScr_08CC08EC[];
+extern const EventScr EventScr_08CC0900[];
+extern const EventScr EventScr_08CC0914[];
+
 #define EVT_CMD_LO(cmd) (((cmd) & 0x0000FFFF))
 #define EVT_CMD_HI(cmd) (((cmd) & 0xFFFF0000) >> 16)
 #define EVT_CMD_B1(cmd) (((cmd) & 0x000000FF))
@@ -82,7 +171,7 @@ struct EvCheck0E_Area
     /* 04 */ u8 const * list;
 };
 
-extern struct EventListCmdInfo gEventListCmdInfoTable[];
+extern const struct EventListCmdInfo gEventListCmdInfoTable[];
 
 struct TutorialEventEnt
 {
@@ -92,7 +181,7 @@ struct TutorialEventEnt
     /* 0C */ u32 const * d;
 };
 
-extern struct TutorialEventEnt const gTutorialEventTable[];
+extern const struct TutorialEventEnt gTutorialEventTable[];
 
 bool sub_0807CEFC(void);
 bool sub_0807821C(struct EventInfo * info);
@@ -104,7 +193,7 @@ struct BattleTalkEnt
 {
     /* 00 */ u8 pid;
     /* 01 */ u8 chapter;
-    /* 04 */ u32 msg;
+    /* 04 */ uintptr_t msg;   // message id, or an event (defeat lists)
     /* 08 */ u32 flag;
 };
 
@@ -114,7 +203,7 @@ struct BattleTalkExtEnt
     /* 01 */ u8 pidB;
     /* 02 */ u8 chapter;
     /* 04 */ u32 msg;
-    /* 08 */ u32 event;
+    /* 08 */ uintptr_t event;
     /* 0C */ u32 flag;
 };
 
@@ -123,16 +212,16 @@ struct DefeatTalkExtEnt
     /* 00 */ u8 pid;
     /* 01 */ u8 chapter;
     /* 04 */ u32 msg;
-    /* 08 */ u32 event;
+    /* 08 */ uintptr_t event;
     /* 0C */ u32 flag;
 };
 
-extern struct BattleTalkExtEnt const gBattleTalkExtList[];
+extern const struct BattleTalkExtEnt gBattleTalkExtList[];
 extern struct BattleTalkEnt const gBattleTalkList[];
 extern struct BattleTalkEnt const gTriangleAttackTalkList[];
-extern struct DefeatTalkExtEnt const gDefeatTalkExtList[];
-extern struct BattleTalkEnt const gDefeatTalkList[];
-extern struct BattleTalkEnt const gDefeatTalkList_Tutorial[];
+extern const struct DefeatTalkExtEnt gDefeatTalkExtList[];
+extern const struct BattleTalkEnt gDefeatTalkList[];
+extern const struct BattleTalkEnt gDefeatTalkList_Tutorial[];
 
 void sub_0807D7E0(void);
 int LoadUnits(struct UnitDefinition const * units);
@@ -1886,3 +1975,329 @@ bool sub_08079A9C(void)
 
     return FALSE;
 }
+
+SECTION(".rodata.08C9F16C")
+const struct BattleTalkEnt gDefeatTalkList_Tutorial[] = {
+    { .pid = 3, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0808, .flag = 0x65 },
+    { .pid = 0x9E, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0844, .flag = 0x65 },
+    { .pid = 0x17, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0754 },
+    { .pid = 0x18, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0768 },
+    { .pid = 0x1D, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0790 },
+    { .pid = 0xD, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC06F4 },
+    { .pid = 0x23, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC07A4 },
+    { .pid = 0x26, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC07B8 },
+    { .pid = 8, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC06D8 },
+    { .pid = 0x11, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC071C },
+    { .pid = 0x13, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0738 },
+    { .pid = 0x1C, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC077C },
+    { .pid = 0x10, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0708 },
+    { .pid = 0x2C, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC07CC },
+    { 0 },
+    { 0 },
+};
+
+SECTION(".rodata.08C9F22C")
+const struct BattleTalkEnt gDefeatTalkList[] = {
+    { .pid = 1, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC07E0, .flag = 0x65 },
+    { .pid = 2, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC07F4, .flag = 0x65 },
+    { .pid = 0x2D, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC081C, .flag = 0x65 },
+    { .pid = 0x28, .chapter = 0x10, .msg = (uintptr_t) EventScr_08CC089C, .flag = 0x65 },
+    { .pid = 0x28, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0888 },
+    { .pid = 0x7A, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0830, .flag = 0x65 },
+    { .pid = 0xC, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0860, .flag = 0x65 },
+    { .pid = 0x29, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0874, .flag = 0x65 },
+    { .pid = 0x1A, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC08B0 },
+    { .pid = 0x27, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC08C4 },
+    { .pid = 0xB, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC08D8 },
+    { .pid = 0x25, .chapter = 0x1C, .msg = (uintptr_t) EventScr_08CC0900 },
+    { .pid = 0x25, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC08EC },
+    { .pid = 0x26, .chapter = 0x43, .msg = (uintptr_t) EventScr_08CC0914 },
+    { 0 },
+    { 0 },
+};
+
+SECTION(".rodata.08C9EDA0")
+const struct BattleTalkExtEnt gBattleTalkExtList[] = {
+    { .pidA = 0x8E, .pidB = 3, .chapter = 0x43, .msg = 0x8D3, .flag = 6 },
+    { .pidA = 0x8E, .pidB = 0x1D, .chapter = 0x43, .msg = 0x8D4, .flag = 7 },
+    { .pidA = 0xBE, .pidB = 3, .chapter = 0x43, .msg = 0x9D2, .flag = 0xA },
+    { .pidA = 0xBE, .pidB = 0x17, .chapter = 0x43, .msg = 0x9D3, .flag = 0xB },
+    { .pidA = 0xBE, .pidB = 0x18, .chapter = 0x43, .msg = 0x9D4, .flag = 0xC },
+    { .pidA = 0xBE, .pidB = 0x2C, .chapter = 0x43, .msg = 0x9D5, .flag = 0xD },
+    { .pidA = 0xC5, .pidB = 3, .chapter = 0x43, .msg = 0x9E2, .flag = 6 },
+    { .pidA = 0xC5, .pidB = 0x17, .chapter = 0x43, .msg = 0x9E3, .flag = 7 },
+    { .pidA = 0xC5, .pidB = 0x18, .chapter = 0x43, .msg = 0x9E4, .flag = 8 },
+    { .pidA = 0x3D, .pidB = 2, .chapter = 0x43, .msg = 0xA15, .flag = 9 },
+    { .pidA = 0x3D, .pidB = 0x23, .chapter = 0x43, .msg = 0xA16, .flag = 9 },
+    { .pidA = 0x40, .pidB = 1, .chapter = 0x43, .msg = 0xA58, .flag = 0xA },
+    { .pidA = 0x40, .pidB = 2, .chapter = 0x43, .msg = 0xA59, .flag = 0xB },
+    { .pidA = 0x45, .pidB = 1, .chapter = 0x43, .msg = 0xA8D, .flag = 0xB },
+    { .pidA = 0x45, .pidB = 2, .chapter = 0x43, .msg = 0xA8E, .flag = 0xC },
+    { .pidA = 0x4B, .pidB = 1, .chapter = 0x43, .msg = 0xB66, .flag = 9 },
+    { .pidA = 0x4B, .pidB = 2, .chapter = 0x43, .msg = 0xB67, .flag = 0xA },
+    { .pidA = 0x4B, .pidB = 0x2D, .chapter = 0x43, .msg = 0xB68, .flag = 0xB },
+    { .pidA = 0x4B, .pidB = 6, .chapter = 0x43, .msg = 0xB69, .flag = 0xC },
+    { .pidA = 0x4D, .pidB = 1, .chapter = 0x43, .msg = 0xBBE, .flag = 8 },
+    { .pidA = 0x4D, .pidB = 2, .chapter = 0x43, .msg = 0xBBF, .flag = 9 },
+    { .pidA = 0x4D, .pidB = 0x2D, .chapter = 0x43, .msg = 0xBC0, .flag = 0xA },
+    { .pidA = 0x4F, .pidB = 1, .chapter = 0x43, .msg = 0xBF9, .flag = 0xD },
+    { .pidA = 0x50, .pidB = 0x20, .chapter = 0x1C, .msg = 0xC1A, .flag = 9 },
+    { .pidA = 0x63, .pidB = 1, .chapter = 0x1F, .msg = 0xC85, .flag = 0xC },
+    { .pidA = 0x63, .pidB = 2, .chapter = 0x1F, .msg = 0xC86, .flag = 0xD },
+    { .pidA = 0x64, .pidB = 1, .chapter = 0x20, .msg = 0xCB1, .flag = 0xE },
+    { .pidA = 0x64, .pidB = 2, .chapter = 0x20, .msg = 0xCB2, .flag = 0xF },
+    { .pidA = 0x2B, .pidB = 0x20, .chapter = 0x22, .msg = 0xD1D, .flag = 9 },
+    { .pidA = 0x51, .pidB = 0x24, .chapter = 0x25, .msg = 0xD83, .flag = 0xB },
+    { .pidA = 0x51, .pidB = 0x14, .chapter = 0x25, .msg = 0xD84, .flag = 0xC },
+    { .pidA = 0x5B, .pidB = 0x14, .chapter = 0x26, .msg = 0xDB3, .flag = 8 },
+    { .pidA = 0x5B, .pidB = 0x24, .chapter = 0x26, .msg = 0xDB4, .flag = 9 },
+    { .pidA = 0x66, .pidB = 0x24, .chapter = 0x27, .msg = 0xDD5, .flag = 0x21 },
+    { .pidA = 0x65, .pidB = 0x24, .chapter = 0x27, .msg = 0xDD6, .flag = 0x21 },
+    { .pidA = 0x66, .pidB = 0x14, .chapter = 0x27, .msg = 0xDD7, .flag = 0x22 },
+    { .pidA = 0x66, .pidB = 0x36, .chapter = 0x27, .msg = 0xDD9, .flag = 0x23 },
+    { .pidA = 0x65, .pidB = 0x36, .chapter = 0x27, .msg = 0xDDA, .flag = 0x23 },
+    { .pidA = 0x66, .pidB = 1, .chapter = 0x27, .msg = 0xDDB, .flag = 0x24 },
+    { .pidA = 0x65, .pidB = 1, .chapter = 0x27, .msg = 0xDDC, .flag = 0x24 },
+    { .pidA = 0x66, .pidB = 2, .chapter = 0x27, .msg = 0xDDD, .flag = 0x25 },
+    { .pidA = 0x65, .pidB = 2, .chapter = 0x27, .msg = 0xDDE, .flag = 0x25 },
+    { .pidA = 0xF4, .pidB = 0x36, .chapter = 0x2E, .msg = 0xEF5, .flag = 0x1B },
+    { .pidA = 0xF4, .pidB = 0x14, .chapter = 0x2E, .msg = 0xEF6, .flag = 0x1C },
+    { .pidA = 0xF5, .pidB = 0x36, .chapter = 0x2E, .msg = 0xEF8, .flag = 0x1D },
+    { .pidA = 0xF5, .pidB = 0x14, .chapter = 0x2E, .msg = 0xEF9, .flag = 0x1E },
+    { .pidA = 0xF7, .pidB = 0x36, .chapter = 0x2E, .msg = 0xEFC, .flag = 0x1F },
+    { .pidA = 0xF6, .pidB = 0x36, .chapter = 0x2E, .msg = 0xEFE, .flag = 0x20 },
+    { .pidA = 0xF6, .pidB = 0x14, .chapter = 0x2E, .msg = 0xEFF, .flag = 0x21 },
+    {
+        .pidA = 0x44,
+        .pidB = 1,
+        .chapter = 0x2E,
+        .event = (uintptr_t) EventScr_08CC0EF8,
+        .flag = 0x22,
+    },
+    {
+        .pidA = 0x44,
+        .pidB = 2,
+        .chapter = 0x2E,
+        .event = (uintptr_t) EventScr_08CC0F14,
+        .flag = 0x23,
+    },
+    { .pidA = 0x44, .pidB = 0x2D, .chapter = 0x2E, .msg = 0xF10, .flag = 0x24 },
+    { .pidA = 0x44, .pidB = 0x27, .chapter = 0x2E, .msg = 0xF11, .flag = 0x25 },
+    { .pidA = 0x44, .pidB = 0x12, .chapter = 0x2E, .msg = 0xF12, .flag = 0x26 },
+    { .pidA = 0x44, .pidB = 0x24, .chapter = 0x2E, .msg = 0xF13, .flag = 0x27 },
+    { .pidA = 0x44, .pidB = 0x14, .chapter = 0x2E, .msg = 0xF14, .flag = 0x28 },
+    { 0 },
+};
+
+SECTION(".rodata.08C9F2EC")
+const struct DefeatTalkExtEnt gDefeatTalkExtList[] = {
+    { .pid = 4, .chapter = 0x43, .msg = 0x7DA },
+    { .pid = 5, .chapter = 0x43, .msg = 0x7EB },
+    { .pid = 6, .chapter = 0x43, .msg = 0x7D1 },
+    { .pid = 7, .chapter = 0x43, .msg = 0x7F2 },
+    { .pid = 8, .chapter = 0x43, .msg = 0x7C9 },
+    { .pid = 9, .chapter = 0x43, .msg = 0x7CA },
+    { .pid = 0xB, .chapter = 0x43, .msg = 0x7CD },
+    { .pid = 0x2E, .chapter = 0x43, .msg = 0x7D7 },
+    { .pid = 0xE, .chapter = 0x43, .msg = 0x7CC },
+    { .pid = 0xF, .chapter = 0x43, .msg = 0x7ED },
+    { .pid = 0x10, .chapter = 0x43, .msg = 0x7D9 },
+    { .pid = 0x11, .chapter = 0x43, .msg = 0x7CF },
+    { .pid = 0x12, .chapter = 0x43, .msg = 0x7FC },
+    { .pid = 0x13, .chapter = 0x43, .msg = 0x7D3 },
+    { .pid = 0x14, .chapter = 0x43, .event = (uintptr_t) EventScr_08CC0E50 },
+    { .pid = 0x15, .chapter = 0x1D, .msg = 0xC3A, .flag = 0x65 },
+    { .pid = 0x15, .chapter = 0x43, .msg = 0x7EF, .flag = 0x7D },
+    { .pid = 0x16, .chapter = 0x43, .event = (uintptr_t) EventScr_08CC0E6C },
+    { .pid = 0x2F, .chapter = 0x43, .msg = 0x7D5 },
+    { .pid = 0x30, .chapter = 0x43, .msg = 0x7D6 },
+    { .pid = 0x19, .chapter = 0x43, .msg = 0x7C6 },
+    { .pid = 0x1A, .chapter = 0x43, .msg = 0x7C7 },
+    { .pid = 0x1B, .chapter = 0x43, .msg = 0x7D4 },
+    { .pid = 0x32, .chapter = 0x43, .event = (uintptr_t) EventScr_08CC0E88 },
+    { .pid = 0x31, .chapter = 0x43, .msg = 0x7D8 },
+    { .pid = 0x1E, .chapter = 0x43, .msg = 0x7DE },
+    { .pid = 0x1F, .chapter = 0x43, .msg = 0x7EC },
+    { .pid = 0x20, .chapter = 0x43, .msg = 0x7E3 },
+    { .pid = 0x21, .chapter = 0x43, .msg = 0x7F7, .flag = 0x89 },
+    { .pid = 0x2B, .chapter = 0x43, .msg = 0x7F7, .flag = 0x89 },
+    { .pid = 0x22, .chapter = 0x1D, .msg = 0x7E7, .flag = 0x81 },
+    { .pid = 0x22, .chapter = 0x1E, .msg = 0x7E7, .flag = 0x81 },
+    { .pid = 0x22, .chapter = 0x43, .event = (uintptr_t) EventScr_08CC0EA4 },
+    { .pid = 0x23, .chapter = 0x43, .msg = 0x7D0 },
+    { .pid = 0x24, .chapter = 0x43, .msg = 0x7F4, .flag = 0x82 },
+    { .pid = 0x25, .chapter = 0x43, .msg = 0x7E1 },
+    { .pid = 0x26, .chapter = 0x43, .msg = 0x7FA },
+    { .pid = 0x27, .chapter = 0x43, .msg = 0x7FD },
+    { .pid = 0x28, .chapter = 0x43, .msg = 0x7D2 },
+    { .pid = 0x2C, .chapter = 0x43, .msg = 0x7EA },
+    { .pid = 0x33, .chapter = 0x15, .msg = 0xB20, .flag = 0x88 },
+    { .pid = 0x33, .chapter = 0x43, .msg = 0x7DD, .flag = 0x88 },
+    { .pid = 0x34, .chapter = 0x43, .msg = 0x7E6 },
+    { .pid = 0x36, .chapter = 0x43, .msg = 0x7DF },
+    { .pid = 0x37, .chapter = 0x43, .msg = 0x7F8 },
+    { .pid = 0x38, .chapter = 0x43, .msg = 0x7F1 },
+    { .pid = 0x87, .msg = 0x832, .flag = 2 },
+    { .pid = 0x89, .chapter = 1, .msg = 0x873, .flag = 2 },
+    { .pid = 0x8D, .chapter = 2, .msg = 0x8A2, .flag = 2 },
+    { .pid = 0x8E, .chapter = 3, .msg = 0x8D5, .flag = 2 },
+    { .pid = 0x94, .chapter = 4, .msg = 0x8F6, .flag = 2 },
+    { .pid = 0x99, .chapter = 5, .msg = 0x921, .flag = 2 },
+    { .pid = 0x9F, .chapter = 6, .msg = 0x975, .flag = 2 },
+    { .pid = 0xA6, .chapter = 7, .msg = 0x99A, .flag = 2 },
+    { .pid = 0xAD, .chapter = 8, .msg = 0x9AD, .flag = 2 },
+    { .pid = 0xB6, .chapter = 9, .msg = 0x9BC, .flag = 2 },
+    { .pid = 0xBE, .chapter = 0xA, .msg = 0x9D7, .flag = 2 },
+    { .pid = 0xC5, .chapter = 0xB, .msg = 0x9E6, .flag = 2 },
+    { .pid = 0x3C, .chapter = 0xC, .msg = 0xA06, .flag = 2 },
+    { .pid = 0x3D, .chapter = 0xD, .msg = 0xA17, .flag = 2 },
+    { .pid = 0x3F, .chapter = 0xE, .msg = 0xA33, .flag = 2 },
+    { .pid = 0x40, .chapter = 0xF, .msg = 0xA5A, .flag = 2 },
+    { .pid = 0x41, .chapter = 0x10, .msg = 0xA67, .flag = 2 },
+    { .pid = 0x45, .chapter = 0x11, .msg = 0xA8F, .flag = 2 },
+    { .pid = 0x46, .chapter = 0x12, .msg = 0xA9E, .flag = 2 },
+    { .pid = 0x47, .chapter = 0x13, .msg = 0xACB, .flag = 2 },
+    { .pid = 0x48, .chapter = 0x14, .msg = 0xAF9, .flag = 2 },
+    { .pid = 0x49, .chapter = 0x15, .msg = 0xB1D, .flag = 2 },
+    { .pid = 0x4A, .chapter = 0x16, .msg = 0xB43, .flag = 2 },
+    { .pid = 0x4B, .chapter = 0x17, .msg = 0xB6A, .flag = 2 },
+    { .pid = 0x3B, .chapter = 0x18, .msg = 0xB8B, .flag = 0xA },
+    { .pid = 0x4C, .chapter = 0x18, .msg = 0xB8C, .flag = 2 },
+    { .pid = 0x5C, .chapter = 0x19, .msg = 0xBA1, .flag = 2 },
+    { .pid = 0x4D, .chapter = 0x1A, .msg = 0xBC1, .flag = 2 },
+    { .pid = 0x4F, .chapter = 0x1B, .msg = 0xBFB, .flag = 2 },
+    { .pid = 0x50, .chapter = 0x1C, .msg = 0xC1B, .flag = 2 },
+    { .pid = 0x54, .chapter = 0x1D, .msg = 0xC3B, .flag = 0xF },
+    { .pid = 0x53, .chapter = 0x1D, .msg = 0xC3C, .flag = 0x10 },
+    { .pid = 0x3B, .chapter = 0x1E, .msg = 0xC58, .flag = 2 },
+    { .pid = 0x63, .chapter = 0x1F, .msg = 0xC87, .flag = 2 },
+    { .pid = 0x64, .chapter = 0x20, .msg = 0xCB3, .flag = 2 },
+    { .pid = 0x57, .chapter = 0x21, .msg = 0xCFE, .flag = 2 },
+    { .pid = 0x2B, .chapter = 0x22, .msg = 0xD1E, .flag = 2 },
+    { .pid = 0x58, .chapter = 0x23, .msg = 0xD43, .flag = 2 },
+    { .pid = 0x59, .chapter = 0x24, .msg = 0xD60, .flag = 2 },
+    { .pid = 0x51, .chapter = 0x25, .msg = 0xD85, .flag = 2 },
+    { .pid = 0x5B, .chapter = 0x26, .msg = 0xDB5, .flag = 2 },
+    { .pid = 0x66, .chapter = 0x27, .msg = 0xDE1, .flag = 2 },
+    { .pid = 0x65, .chapter = 0x27, .msg = 0xDE2, .flag = 2 },
+    { .pid = 0x5D, .chapter = 0x28, .event = (uintptr_t) EventScr_08CC0EC0, .flag = 2 },
+    { .pid = 0x5E, .chapter = 0x29, .event = (uintptr_t) EventScr_08CC0EDC, .flag = 2 },
+    { .pid = 0x60, .chapter = 0x2A, .msg = 0xE4B, .flag = 2 },
+    { .pid = 0x85, .chapter = 0x2C, .msg = 0xE98, .flag = 2 },
+    { .pid = 0x3B, .chapter = 0x2D, .msg = 0xEAD, .flag = 2 },
+    { .pid = 0x44, .chapter = 0x2E, .event = (uintptr_t) EventScr_08CBFBFC, .flag = 2 },
+    { .pid = 0xF4, .chapter = 0x2E, .msg = 0xF03, .flag = 0x13 },
+    { .pid = 0xF5, .chapter = 0x2E, .msg = 0xF04, .flag = 0x14 },
+    { .pid = 0xFA, .chapter = 0x2E, .msg = 0xF05, .flag = 0x15 },
+    { .pid = 0xF7, .chapter = 0x2E, .msg = 0xF06, .flag = 0x16 },
+    { .pid = 0xF6, .chapter = 0x2E, .msg = 0xF07, .flag = 0x17 },
+    { .pid = 0x56, .chapter = 0x2E, .msg = 0xF08, .flag = 0x18 },
+    { .pid = 0xF8, .chapter = 0x2E, .msg = 0xF09, .flag = 0x19 },
+    { .pid = 0xF9, .chapter = 0x2E, .msg = 0xF0A, .flag = 0x1A },
+    { .pid = 0x86, .chapter = 0x2F, .msg = 0xF61, .flag = 2 },
+    { .pid = 0x75, .chapter = 0x14, .flag = 0xE },
+    { .pid = 0x76, .chapter = 0x14, .flag = 0xF },
+    { .pid = 0x77, .chapter = 0x14, .flag = 0x10 },
+    { .pid = 0x7C, .chapter = 0x23, .flag = 9 },
+    { .pid = 0x7D, .chapter = 0x23, .flag = 0xA },
+    { .pid = 0x7E, .chapter = 0x23, .flag = 0xB },
+    { 0 },
+    { 0 },
+};
+
+SECTION(".rodata.08C9EA2C")
+const struct TutorialEventEnt gTutorialEventTable[] = {
+    {
+        .a = EvList_Ch00_TutorialA,
+        .b = EvList_Ch00_TutorialB,
+        .c = EvList_Ch00_TutorialC,
+        .d = EvList_Ch00_TutorialD,
+    },
+    {
+        .a = EvList_Ch01_TutorialA,
+        .b = EvList_Ch01_TutorialB,
+        .c = EvList_Ch01_TutorialC,
+        .d = EvList_Ch01_TutorialD,
+    },
+    {
+        .a = EvList_Ch02_TutorialA,
+        .b = EvList_Ch02_TutorialB,
+        .c = EvList_Ch02_TutorialC,
+        .d = EvList_Ch02_TutorialD,
+    },
+    {
+        .a = EvList_Ch03_TutorialA,
+        .b = EvList_Ch03_TutorialB,
+        .c = EvList_Ch03_TutorialC,
+        .d = EvList_Ch03_TutorialD,
+    },
+    {
+        .a = EvList_Ch04_TutorialA,
+        .b = EvList_Ch04_TutorialB,
+        .c = EvList_Ch04_TutorialC,
+        .d = EvList_Ch04_TutorialD,
+    },
+    {
+        .a = EvList_Ch05_TutorialA,
+        .b = EvList_Ch05_TutorialB,
+        .c = EvList_Ch05_TutorialC,
+        .d = EvList_Ch05_TutorialD,
+    },
+    {
+        .a = EvList_Ch06_TutorialA,
+        .b = EvList_Ch06_TutorialB,
+        .c = EvList_Ch06_TutorialC,
+        .d = EvList_Ch06_TutorialD,
+    },
+    {
+        .a = EvList_Ch07_TutorialA,
+        .b = EvList_Ch07_TutorialB,
+        .c = EvList_Ch07_TutorialC,
+        .d = EvList_Ch07_TutorialD,
+    },
+    {
+        .a = EvList_Ch08_TutorialA,
+        .b = EvList_Ch08_TutorialB,
+        .c = EvList_Ch08_TutorialC,
+        .d = EvList_Ch08_TutorialD,
+    },
+    {
+        .a = EvList_Ch09_TutorialA,
+        .b = EvList_Ch09_TutorialB,
+        .c = EvList_Ch09_TutorialC,
+        .d = EvList_Ch09_TutorialD,
+    },
+    {
+        .a = EvList_Ch0A_TutorialA,
+        .b = EvList_Ch0A_TutorialB,
+        .c = EvList_Ch0A_TutorialC,
+        .d = EvList_Ch0A_TutorialD,
+    },
+    {
+        .a = EvList_Ch0B_TutorialA,
+        .b = EvList_Ch0B_TutorialB,
+        .c = EvList_Ch0B_TutorialC,
+        .d = EvList_Ch0B_TutorialD,
+    },
+};
+
+SECTION(".rodata.08C9E9A4")
+const struct EventListCmdInfo gEventListCmdInfoTable[] = {
+    { .func = EvCheck00_Always, .length = 1 },
+    { .func = EvCheck01_AFEV, .length = 3 },
+    { .func = EvCheck02_TURN, .length = 4 },
+    { .func = EvCheck03_CHAR, .length = 4 },
+    { .func = EvCheck04_CHARASM, .length = 4 },
+    { .func = EvCheck05_LOCA, .length = 3 },
+    { .func = EvCheck06_VILL, .length = 3 },
+    { .func = EvCheck07_CHES, .length = 3 },
+    { .func = EvCheck08_DOOR, .length = 3 },
+    { .func = EvCheck09_, .length = 3 },
+    { .func = EvCheck0A_SHOP, .length = 3 },
+    { .func = EvCheck0B_AREA, .length = 3 },
+    { .func = EvCheck0C_, .length = 3 },
+    { .func = EvCheck0D_, .length = 3 },
+    { .func = EvCheck0E_, .length = 3 },
+    { .func = EvCheck0F_, .length = 4 },
+    { .func = EvCheck10_, .length = 4 },
+};

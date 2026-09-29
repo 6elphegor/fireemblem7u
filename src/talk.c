@@ -1,5 +1,6 @@
 #include "gbafe.h"
 #include "constants/msg.h"
+#include "gbafe/bmshop.h"
 
 void SetupDebugFontForOBJ(int vramOffset, int palId);
 void sub_8005234(int, int, int, int);
@@ -2288,4 +2289,10 @@ const struct ProcCmd gProcScr_TalkLock[] = {
     PROC_CALL(TalkFaceMove_OnInit),
     PROC_REPEAT(TalkFaceMove_OnIdle),
     PROC_END,
+};
+
+SECTION(".rodata.08B90AFC")
+const struct TalkChoiceEnt gUnk_08BFFCAC[] = {
+    { .msg = 3, .onSwitch = TalkChoice_OnBuy },
+    { .msg = 4, .onSwitch = TalkChoice_OnSell },
 };

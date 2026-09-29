@@ -1,5 +1,68 @@
 #include "gbafe.h"
 
+extern const u8 Img_EndingCgScroll2_00[];
+extern const u8 Img_EndingCgScroll2_00_2[];
+extern const u8 Img_EndingCgScroll2_00_3[];
+extern const u8 Img_EndingCgScroll2_00_4[];
+extern const u8 Img_EndingCgScroll2_00_5[];
+extern const u8 Img_EndingCgScroll_00[];
+extern const u8 Img_EndingCgScroll_00_2[];
+extern const u8 Img_EndingCgScroll_00_3[];
+extern const u8 Img_EndingCgScroll_00_4[];
+extern const u8 Img_EndingCgScroll_01[];
+extern const u8 Img_EndingCgScroll_01_2[];
+extern const u8 Img_EndingCgScroll_01_3[];
+extern const u8 Img_EndingCgScroll_01_4[];
+extern const u8 Img_EndingCgScroll_02[];
+extern const u8 Img_EndingCgScroll_02_2[];
+extern const u8 Img_EndingCgScroll_02_3[];
+extern const u8 Img_EndingCgScroll_02_4[];
+extern const u8 Img_EndingCgScroll_03[];
+extern const u8 Img_EndingCgScroll_03_2[];
+extern const u8 Img_EndingCgScroll_03_3[];
+extern const u8 Img_EndingCgScroll_03_4[];
+extern const u8 Img_EndingCgScroll_04[];
+extern const u8 Img_EndingCgScroll_04_2[];
+extern const u8 Img_EndingCgScroll_04_3[];
+extern const u8 Img_EndingCgScroll_04_4[];
+extern const u8 Img_EndingCgScroll_04_5[];
+extern const u8 Img_EndingCgScroll_04_6[];
+extern const u8 Img_EndingCgScroll_05[];
+extern const u8 Img_EndingCgScroll_05_2[];
+extern const u8 Img_EndingCgScroll_05_3[];
+extern const u8 Img_EndingCgScroll_05_4[];
+extern const u8 Img_EndingCgScroll_05_5[];
+extern const u8 Img_EndingCgScroll_05_6[];
+extern const u8 gUnk_085E5F40[];
+extern const u8 gUnk_085E6144[];
+extern const u8 gUnk_085E6348[];
+extern const u8 gUnk_085E654C[];
+extern const u8 gUnk_085E6750[];
+extern const u8 gUnk_085E6954[];
+extern const u8 gUnk_085E6B58[];
+extern const u8 gUnk_085E6D5C[];
+extern const u8 gUnk_085E6F60[];
+extern const u8 gUnk_085E7164[];
+extern const u8 gUnk_085E7368[];
+extern const u8 gUnk_085E756C[];
+extern const u8 gUnk_085E7770[];
+extern const u8 gUnk_085E7974[];
+extern const u8 gUnk_085E7B78[];
+extern const u8 gUnk_085E7D7C[];
+extern const u8 gUnk_085E7F80[];
+extern const u8 gUnk_085E8184[];
+extern const u8 gUnk_085E8388[];
+extern const u8 gUnk_085E858C[];
+extern const u8 gUnk_085E8790[];
+extern const u8 gUnk_085E8994[];
+extern const u8 gUnk_085E8B98[];
+extern const u8 gUnk_085E8D9C[];
+extern const u8 gUnk_085E8FA0[];
+extern const u8 gUnk_085E91A4[];
+extern const u8 gUnk_085E93A8[];
+extern const u8 gUnk_085E95AC[];
+extern const u8 gUnk_085E97B0[];
+
 // FE8U: ending_details.c
 
 struct CharacterEndingEnt {
@@ -143,8 +206,8 @@ struct EndingCgScrollProc {
     /* 3C */ int speed;
 };
 
-extern struct EndingCgScrollEnt CONST_DATA gEndingCgScrollLut[];
-extern struct EndingCgScrollEnt CONST_DATA gEndingCgScroll2Lut[];
+extern const struct EndingCgScrollEnt gEndingCgScrollLut[];
+extern const struct EndingCgScrollEnt gEndingCgScroll2Lut[];
 extern u16 Pal_EndingCgScroll[];
 
 void EndingCgScroll_InitBlendTable(void);
@@ -1820,4 +1883,62 @@ const struct ProcCmd ProcScr_EndingCgScroll2[] = {
     PROC_CALL(EndingCgScroll_End),
     PROC_SLEEP(60),
     PROC_END,
+};
+
+SECTION(".rodata.08CEED60")
+const struct EndingCgScrollEnt gEndingCgScrollLut[] = {
+    {
+        .img = {
+            Img_EndingCgScroll_00, Img_EndingCgScroll_00_2, Img_EndingCgScroll_00_3,
+            Img_EndingCgScroll_00_4, NULL, NULL, NULL,
+        },
+        .tsa = { gUnk_085E5F40, gUnk_085E6144, gUnk_085E6348, gUnk_085E654C },
+    },
+    {
+        .img = {
+            Img_EndingCgScroll_01, Img_EndingCgScroll_01_2, Img_EndingCgScroll_01_3,
+            Img_EndingCgScroll_01_4, NULL, NULL, NULL,
+        },
+        .tsa = { gUnk_085E6750, gUnk_085E6954, gUnk_085E6B58, gUnk_085E6D5C },
+    },
+    {
+        .img = {
+            Img_EndingCgScroll_02, Img_EndingCgScroll_02_2, Img_EndingCgScroll_02_3,
+            Img_EndingCgScroll_02_4, NULL, NULL, NULL,
+        },
+        .tsa = { gUnk_085E6F60, gUnk_085E7164, gUnk_085E7368, gUnk_085E756C },
+    },
+    {
+        .img = {
+            Img_EndingCgScroll_03, Img_EndingCgScroll_03_2, Img_EndingCgScroll_03_3,
+            Img_EndingCgScroll_03_4, NULL, NULL, NULL,
+        },
+        .tsa = { gUnk_085E7770, gUnk_085E7974, gUnk_085E7B78, gUnk_085E7D7C },
+    },
+    {
+        .img = {
+            Img_EndingCgScroll_04, Img_EndingCgScroll_04_2, Img_EndingCgScroll_04_3,
+            Img_EndingCgScroll_04_4, Img_EndingCgScroll_04_5, Img_EndingCgScroll_04_6, NULL,
+        },
+        .tsa = { gUnk_085E7F80, gUnk_085E8184, gUnk_085E8388, gUnk_085E858C },
+    },
+    {
+        .img = {
+            Img_EndingCgScroll_05, Img_EndingCgScroll_05_2, Img_EndingCgScroll_05_3,
+            Img_EndingCgScroll_05_4, Img_EndingCgScroll_05_5, Img_EndingCgScroll_05_6, NULL,
+        },
+        .tsa = { gUnk_085E8790, gUnk_085E8994, gUnk_085E8B98, gUnk_085E8D9C },
+    },
+};
+
+SECTION(".rodata.08CEEE68")
+const struct EndingCgScrollEnt gEndingCgScroll2Lut[] = {
+    {
+        .img = {
+            Img_EndingCgScroll2_00, Img_EndingCgScroll2_00_2, Img_EndingCgScroll2_00_3,
+            Img_EndingCgScroll2_00_4, Img_EndingCgScroll2_00_5, NULL, NULL,
+        },
+        .tsa = { gUnk_085E8FA0, gUnk_085E91A4, gUnk_085E93A8, gUnk_085E95AC },
+    },
+    { .tsa = { gUnk_085E97B0, NULL, NULL, NULL } },
 };

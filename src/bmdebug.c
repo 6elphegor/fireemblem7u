@@ -68,7 +68,7 @@ struct SoundRoomEnt
     /* 0C */ int nameTextId;
 };
 
-extern struct SoundRoomEnt CONST_DATA gSoundRoomTable[];
+extern const struct SoundRoomEnt gSoundRoomTable[];
 extern struct SoundRoomEnt CONST_DATA gUnk_08CE5378[];
 extern char const sDebugBlankStr[];
 

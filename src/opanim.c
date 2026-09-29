@@ -1,5 +1,88 @@
 #include "gbafe.h"
 
+extern const struct OpAnimBgHeader gUnk_08CEF770[];
+extern const struct OpAnimBgFrame gUnk_08CEF788[];
+
+extern const u8 gUnk_085E9D4C[];
+extern const u8 gUnk_085EA084[];
+extern const u8 gUnk_085EA40C[];
+extern const u8 gUnk_085EA784[];
+extern const u8 gUnk_085EAB1C[];
+extern const u8 gUnk_085EAE5C[];
+extern const u8 gUnk_085EB194[];
+extern const u8 gUnk_085EB534[];
+extern const u8 gUnk_085EB880[];
+extern const u8 gUnk_085EBB08[];
+extern const u8 gUnk_085EBE18[];
+extern const u8 gUnk_085EC128[];
+extern const u8 gUnk_085EC3FC[];
+
+extern const u8 gUnk_085EE04C[];
+extern const u8 gUnk_085EE9F4[];
+extern const u8 gUnk_085EF23C[];
+extern const u8 gUnk_085EFC00[];
+extern const u8 gUnk_085EFFB0[];
+extern const u8 gUnk_085F08E8[];
+extern const u8 gUnk_085F1144[];
+extern const u8 gUnk_085F1BA4[];
+extern const u8 gUnk_085F1C3C[];
+extern const u8 gUnk_085F26AC[];
+extern const u8 gUnk_085F2820[];
+extern const u8 gUnk_085F3194[];
+extern const u8 gUnk_085F33B4[];
+extern const u8 gUnk_085F3C8C[];
+extern const u8 gUnk_085F3E84[];
+extern const u8 gUnk_085F4808[];
+extern const u8 gUnk_085F4F6C[];
+extern const u8 gUnk_085F58B8[];
+extern const u8 gUnk_085F6324[];
+extern const u8 gUnk_085F6B3C[];
+extern const u8 gUnk_085F6FE8[];
+extern const u8 gUnk_085F79A4[];
+extern const u8 gUnk_085F7FCC[];
+extern const u8 gUnk_085F88BC[];
+extern const u8 gUnk_085F8C84[];
+extern const u8 gUnk_085F9468[];
+extern const u8 gUnk_085F9918[];
+extern const u8 gUnk_085FA24C[];
+extern const u8 gUnk_085FAA6C[];
+extern const u8 gUnk_085FB034[];
+extern const u8 gUnk_085FB0B4[];
+extern const u8 gUnk_085FB160[];
+extern const u8 gUnk_085FB214[];
+extern const u8 gUnk_085FB2E8[];
+extern const u8 gUnk_085FB3D8[];
+extern const u8 gUnk_085FB4E4[];
+extern const u8 gUnk_085FB620[];
+extern const u8 gUnk_085FB790[];
+extern const u8 gUnk_085FB924[];
+extern const u8 gUnk_085FBB00[];
+extern const u8 gUnk_085FBD1C[];
+extern const u8 gUnk_085FBF70[];
+extern const u8 gUnk_085FC200[];
+extern const u8 gUnk_085FC4C0[];
+extern const u8 gUnk_085FC7A0[];
+extern const u8 gUnk_085FCAC0[];
+extern const u8 gUnk_085FCDF8[];
+extern const u8 gUnk_085FD02C[];
+extern const u8 gUnk_085FD27C[];
+extern const u8 gUnk_085FD508[];
+extern const u8 gUnk_085FD7B8[];
+extern const u8 gUnk_085FDA80[];
+extern const u8 gUnk_085FDBF8[];
+extern const u8 gUnk_085FDD84[];
+extern const u8 gUnk_085FDF20[];
+extern const u8 gUnk_085FE0DC[];
+extern const u8 gUnk_085FE2B8[];
+extern const u8 gUnk_085FE4B8[];
+extern const u8 gUnk_085FE6DC[];
+extern const u8 gUnk_085FE914[];
+extern const u8 gUnk_085FEA24[];
+extern const u8 gUnk_085FEB60[];
+extern const u8 gUnk_085FECC0[];
+extern const u8 gUnk_085FEE38[];
+extern const u8 gUnk_085FEFC4[];
+
 extern int const gUnk_08CEF084[];
 extern int const gUnk_08CEF0C4[];
 extern u16 const gUnk_086740B4[];
@@ -16,7 +99,7 @@ extern void * const gUnk_08CEF080;
 extern u16 const gUnk_085ECDF4[];
 extern u8 const gUnk_085ECE14[];
 extern u8 const gUnk_085ED0DC[];
-extern struct OpAnimBgConf const gUnk_08CEFA38;
+extern const struct OpAnimBgConf gUnk_08CEFA38;
 extern u16 const gUnk_08673D38[];
 extern u8 const gUnk_08673D58[];
 extern u16 const Pal_OpAnimWater[];
@@ -44,15 +127,15 @@ extern u8 const gUnk_085ED1E4[];
 extern const struct ProcCmd ProcScr_08CEF264[];
 extern const struct ProcCmd ProcScr_08CEF284[];
 extern u16 const gUnk_085EE02C[];
-extern struct OpAnimImgEntry const gUnk_08CEF594[];
-extern struct OpAnimImgEntry const gUnk_08CEF630[];
+extern const struct OpAnimImgEntry gUnk_08CEF594[];
+extern const struct OpAnimImgEntry gUnk_08CEF630[];
 extern const struct ProcCmd ProcScr_08CEF2D4[];
 extern const struct ProcCmd ProcScr_08CEF2F4[];
 extern const struct ProcCmd ProcScr_08CEF394[];
 extern const struct ProcCmd ProcScr_08CEF3EC[];
 extern u8 * gUnk_08CEF074;
 extern u16 const gUnk_08CEF314[];
-extern struct OpAnimTextEntry const gUnk_08CEF4BC[];
+extern const struct OpAnimTextEntry gUnk_08CEF4BC[];
 extern const struct ProcCmd ProcScr_08CEF40C[];
 extern const struct ProcCmd ProcScr_08CEF424[];
 extern const struct ProcCmd ProcScr_08CEF444[];
@@ -1717,3 +1800,73 @@ const struct ProcCmd ProcScr_08CEF464[] = {
     PROC_REPEAT(sub_080BD4F4),
     PROC_END,
 };
+
+SECTION(".rodata.08CEF594")
+const struct OpAnimImgEntry gUnk_08CEF594[] = {
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB0B4 },
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB160 },
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB214 },
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB2E8 },
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB3D8 },
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB4E4 },
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB620 },
+    { .img0 = gUnk_085EE04C, .img1 = gUnk_085EE9F4, .tsa = gUnk_085FB790 },
+    { .img0 = gUnk_085EF23C, .img1 = gUnk_085EFC00, .tsa = gUnk_085FB924 },
+    { .img0 = gUnk_085EF23C, .img1 = gUnk_085EFC00, .tsa = gUnk_085FBB00 },
+    { .img0 = gUnk_085EFFB0, .img1 = gUnk_085F08E8, .tsa = gUnk_085FBD1C },
+    { .img0 = gUnk_085EFFB0, .img1 = gUnk_085F08E8, .tsa = gUnk_085FBF70 },
+    { 0 },
+};
+
+SECTION(".rodata.08CEF630")
+const struct OpAnimImgEntry gUnk_08CEF630[] = {
+    { .img0 = gUnk_085F1144, .img1 = gUnk_085F1BA4, .tsa = gUnk_085FC200 },
+    { .img0 = gUnk_085F1C3C, .img1 = gUnk_085F26AC, .tsa = gUnk_085FC4C0 },
+    { .img0 = gUnk_085F2820, .img1 = gUnk_085F3194, .tsa = gUnk_085FC7A0 },
+    { .img0 = gUnk_085F33B4, .img1 = gUnk_085F3C8C, .tsa = gUnk_085FCAC0 },
+    { .img0 = gUnk_085F3E84, .img1 = gUnk_085F4808, .tsa = gUnk_085FCDF8 },
+    { .img0 = gUnk_085F3E84, .img1 = gUnk_085F4808, .tsa = gUnk_085FD02C },
+    { .img0 = gUnk_085F4F6C, .img1 = gUnk_085F58B8, .tsa = gUnk_085FD27C },
+    { .img0 = gUnk_085F4F6C, .img1 = gUnk_085F58B8, .tsa = gUnk_085FD508 },
+    { .img0 = gUnk_085F6324, .img1 = gUnk_085F6B3C, .tsa = gUnk_085FD7B8 },
+    { .img0 = gUnk_085F6324, .img1 = gUnk_085F6B3C, .tsa = gUnk_085FDA80 },
+    { .img0 = gUnk_085F6FE8, .img1 = gUnk_085F79A4, .tsa = gUnk_085FDBF8 },
+    { .img0 = gUnk_085F6FE8, .img1 = gUnk_085F79A4, .tsa = gUnk_085FDD84 },
+    { .img0 = gUnk_085F6FE8, .img1 = gUnk_085F79A4, .tsa = gUnk_085FDF20 },
+    { .img0 = gUnk_085F7FCC, .img1 = gUnk_085F88BC, .tsa = gUnk_085FE0DC },
+    { .img0 = gUnk_085F7FCC, .img1 = gUnk_085F88BC, .tsa = gUnk_085FE2B8 },
+    { .img0 = gUnk_085F8C84, .img1 = gUnk_085F9468, .tsa = gUnk_085FE4B8 },
+    { .img0 = gUnk_085F8C84, .img1 = gUnk_085F9468, .tsa = gUnk_085FE6DC },
+    { .img0 = gUnk_085F9918, .img1 = gUnk_085FA24C, .tsa = gUnk_085FE914 },
+    { .img0 = gUnk_085F9918, .img1 = gUnk_085FA24C, .tsa = gUnk_085FEA24 },
+    { .img0 = gUnk_085F9918, .img1 = gUnk_085FA24C, .tsa = gUnk_085FEB60 },
+    { .img0 = gUnk_085F9918, .img1 = gUnk_085FA24C, .tsa = gUnk_085FECC0 },
+    { .img0 = gUnk_085F9918, .img1 = gUnk_085FA24C, .tsa = gUnk_085FEE38 },
+    { .img0 = gUnk_085FAA6C, .img1 = gUnk_085FB034, .tsa = gUnk_085FEFC4 },
+    { 0 },
+};
+
+SECTION(".rodata.08CEF4BC")
+const struct OpAnimTextEntry gUnk_08CEF4BC[] = {
+    { .img = { gUnk_085E9D4C, NULL }, .duration = 0x190 },
+    { .duration = 0x46 },
+    { .img = { gUnk_085EA084, NULL }, .duration = 0x140 },
+    { .img = { gUnk_085EA40C, NULL }, .duration = 0x12C },
+    { .duration = 0x46 },
+    { .img = { gUnk_085EA784, NULL }, .duration = 0x118 },
+    { .img = { gUnk_085EAB1C, NULL }, .duration = 0x118 },
+    { .duration = 0x46 },
+    { .img = { gUnk_085EAE5C, NULL }, .duration = 0x118 },
+    { .img = { gUnk_085EB194, NULL }, .duration = 0x104 },
+    { .img = { gUnk_085EB534, NULL }, .duration = 0x118 },
+    { .img = { gUnk_085EB880, NULL }, .duration = 0x118 },
+    { .duration = 0x3C },
+    { .img = { gUnk_085EBB08, NULL }, .duration = 0x10E },
+    { .img = { gUnk_085EBE18, NULL }, .duration = 0xFA },
+    { .img = { gUnk_085EC128, NULL }, .duration = 0x10E },
+    { .img = { gUnk_085EC3FC, NULL }, .duration = 0x10E },
+    { 0 },
+};
+
+SECTION(".rodata.08CEFA38")
+const struct OpAnimBgConf gUnk_08CEFA38 = { .header = gUnk_08CEF770, .frames = gUnk_08CEF788 };

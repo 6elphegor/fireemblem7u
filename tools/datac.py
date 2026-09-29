@@ -754,17 +754,14 @@ def add(rom, types, decls, path, spec, args):
     newdecls = []
     for name, addr, size, tname, body, single in out:
         line = extern_line(name, tname, single)
-        old = decls.decl.get(name, [])
+        old = [(f, t) for f, t in decls.decl.get(name, []) if "(" not in t]
         for f, t in old:
-            if "(" in t:
-                continue
             ft = f.read_text()
             if t in ft:
                 f.write_text(ft.replace(t, line, 1))
             else:
                 print(f"problem: cannot rewrite the declaration of {name} in {f}: {t}", file=sys.stderr)
-            break
-        else:
+        if not old:
             newdecls.append(line)
     text = path.read_text() if path.exists() else text   # the declarations may have been in path itself
     if not text.endswith("\n"):

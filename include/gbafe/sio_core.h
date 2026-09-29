@@ -234,7 +234,7 @@ struct ProcTactician {
 };
 
 struct TacticianTextConf {
-    /* 00 */ u8 * str[0xC];
+    /* 00 */ u8 const * str[0xC];
     /* 30 */ u16 x, y;
     /* 34 */ u8 kind;
     /* 35 */ u8 _pad_;

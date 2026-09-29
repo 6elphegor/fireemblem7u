@@ -574,3 +574,479 @@ void HelpBoxRedirectStatScreenSupports(struct HelpBoxProc * proc)
             HelpBoxTryRelocateUp(proc);
     }
 }
+
+extern const struct HelpBoxInfo gUnk_08CC20B4;
+extern const struct HelpBoxInfo gUnk_08CC20D0;
+extern const struct HelpBoxInfo gUnk_08CC20EC;
+extern const struct HelpBoxInfo gUnk_08CC2108;
+extern const struct HelpBoxInfo gUnk_08CC2124;
+extern const struct HelpBoxInfo gUnk_08CC215C;
+extern const struct HelpBoxInfo gUnk_08CC2178;
+extern const struct HelpBoxInfo gUnk_08CC2194;
+extern const struct HelpBoxInfo gUnk_08CC21B0;
+extern const struct HelpBoxInfo gUnk_08CC21CC;
+extern const struct HelpBoxInfo gUnk_08CC21E8;
+extern const struct HelpBoxInfo gUnk_08CC2204;
+extern const struct HelpBoxInfo gUnk_08CC2220;
+extern const struct HelpBoxInfo gUnk_08CC223C;
+extern const struct HelpBoxInfo gUnk_08CC2258;
+extern const struct HelpBoxInfo gUnk_08CC2274;
+extern const struct HelpBoxInfo gUnk_08CC2290;
+extern const struct HelpBoxInfo gUnk_08CC22AC;
+extern const struct HelpBoxInfo gUnk_08CC22C8;
+extern const struct HelpBoxInfo gUnk_08CC22E4;
+extern const struct HelpBoxInfo gUnk_08CC2300;
+extern const struct HelpBoxInfo gUnk_08CC2338;
+extern const struct HelpBoxInfo gUnk_08CC2354;
+extern const struct HelpBoxInfo gUnk_08CC2370;
+extern const struct HelpBoxInfo gUnk_08CC238C;
+extern const struct HelpBoxInfo gUnk_08CC23A8;
+extern const struct HelpBoxInfo gUnk_08CC23C4;
+extern const struct HelpBoxInfo gUnk_08CC23E0;
+extern const struct HelpBoxInfo gUnk_08CC23FC;
+extern const struct HelpBoxInfo gUnk_08CC2418;
+extern const struct HelpBoxInfo gUnk_08CC2434;
+extern const struct HelpBoxInfo gUnk_08CC2450;
+extern const struct HelpBoxInfo gUnk_08CC246C;
+extern const struct HelpBoxInfo gUnk_08CC2488;
+extern const struct HelpBoxInfo gUnk_08CC24A4;
+extern const struct HelpBoxInfo gUnk_08CC24DC;
+extern const struct HelpBoxInfo gUnk_08CC24F8;
+extern const struct HelpBoxInfo gUnk_08CC2514;
+extern const struct HelpBoxInfo gUnk_08CC2530;
+
+SECTION(".rodata.08CC20B4")
+const struct HelpBoxInfo gUnk_08CC20B4 = {
+    .adjacent_down = &gUnk_08CC20D0,
+    .adjacent_right = &gUnk_08CC2194,
+    .x = 0x28,
+    .y = 0x50,
+    .populate = HelpBoxPopulateStatScreenPInfo,
+};
+
+SECTION(".rodata.08CC20D0")
+const struct HelpBoxInfo gUnk_08CC20D0 = {
+    .adjacent_up = &gUnk_08CC20B4,
+    .adjacent_down = &gUnk_08CC20EC,
+    .adjacent_right = &gUnk_08CC21CC,
+    .x = 6,
+    .y = 0x68,
+    .msg = 0x22B,
+    .populate = HelpBoxPopulateStatScreenJInfo,
+};
+
+SECTION(".rodata.08CC20EC")
+const struct HelpBoxInfo gUnk_08CC20EC = {
+    .adjacent_up = &gUnk_08CC20D0,
+    .adjacent_down = &gUnk_08CC2124,
+    .adjacent_right = &gUnk_08CC2108,
+    .x = 6,
+    .y = 0x78,
+    .msg = 0x25B,
+};
+
+SECTION(".rodata.08CC2108")
+const struct HelpBoxInfo gUnk_08CC2108 = {
+    .adjacent_up = &gUnk_08CC20D0,
+    .adjacent_down = &gUnk_08CC2124,
+    .adjacent_left = &gUnk_08CC20EC,
+    .adjacent_right = &gUnk_08CC21CC,
+    .x = 0x26,
+    .y = 0x78,
+    .msg = 0x25C,
+};
+
+SECTION(".rodata.08CC2124")
+const struct HelpBoxInfo gUnk_08CC2124 = {
+    .adjacent_up = &gUnk_08CC20EC,
+    .adjacent_right = &gUnk_08CC21CC,
+    .x = 6,
+    .y = 0x88,
+    .msg = 0x25D,
+};
+
+SECTION(".rodata.08CC2140")
+const struct HelpBoxInfo HelpInfo_StatScreenPersonalInfo_Pow = {
+    .adjacent_down = &gUnk_08CC215C,
+    .adjacent_left = &gUnk_08CC20B4,
+    .adjacent_right = &gUnk_08CC21E8,
+    .x = 0x66,
+    .y = 0x18,
+    .msg = 0x264,
+    .populate = HelpBoxPopulateStatScreenPower,
+};
+
+SECTION(".rodata.08CC215C")
+const struct HelpBoxInfo gUnk_08CC215C = {
+    .adjacent_up = &HelpInfo_StatScreenPersonalInfo_Pow,
+    .adjacent_down = &gUnk_08CC2178,
+    .adjacent_left = &gUnk_08CC20B4,
+    .adjacent_right = &gUnk_08CC2204,
+    .x = 0x69,
+    .y = 0x28,
+    .msg = 0x266,
+};
+
+SECTION(".rodata.08CC2178")
+const struct HelpBoxInfo gUnk_08CC2178 = {
+    .adjacent_up = &gUnk_08CC215C,
+    .adjacent_down = &gUnk_08CC2194,
+    .adjacent_left = &gUnk_08CC20B4,
+    .adjacent_right = &gUnk_08CC2220,
+    .x = 0x66,
+    .y = 0x38,
+    .msg = 0x267,
+};
+
+SECTION(".rodata.08CC2194")
+const struct HelpBoxInfo gUnk_08CC2194 = {
+    .adjacent_up = &gUnk_08CC2178,
+    .adjacent_down = &gUnk_08CC21B0,
+    .adjacent_left = &gUnk_08CC20B4,
+    .adjacent_right = &gUnk_08CC223C,
+    .x = 0x66,
+    .y = 0x48,
+    .msg = 0x26E,
+};
+
+SECTION(".rodata.08CC21B0")
+const struct HelpBoxInfo gUnk_08CC21B0 = {
+    .adjacent_up = &gUnk_08CC2194,
+    .adjacent_down = &gUnk_08CC21CC,
+    .adjacent_left = &gUnk_08CC20B4,
+    .adjacent_right = &gUnk_08CC2258,
+    .x = 0x66,
+    .y = 0x58,
+    .msg = 0x268,
+};
+
+SECTION(".rodata.08CC21CC")
+const struct HelpBoxInfo gUnk_08CC21CC = {
+    .adjacent_up = &gUnk_08CC21B0,
+    .adjacent_left = &gUnk_08CC20D0,
+    .adjacent_right = &gUnk_08CC2274,
+    .x = 0x66,
+    .y = 0x68,
+    .msg = 0x269,
+};
+
+SECTION(".rodata.08CC21E8")
+const struct HelpBoxInfo gUnk_08CC21E8 = {
+    .adjacent_down = &gUnk_08CC2204,
+    .adjacent_left = &HelpInfo_StatScreenPersonalInfo_Pow,
+    .x = 0xA6,
+    .y = 0x18,
+    .msg = 0x26C,
+};
+
+SECTION(".rodata.08CC2204")
+const struct HelpBoxInfo gUnk_08CC2204 = {
+    .adjacent_up = &gUnk_08CC21E8,
+    .adjacent_down = &gUnk_08CC2220,
+    .adjacent_left = &gUnk_08CC215C,
+    .x = 0xA6,
+    .y = 0x28,
+    .msg = 0x26A,
+};
+
+SECTION(".rodata.08CC2220")
+const struct HelpBoxInfo gUnk_08CC2220 = {
+    .adjacent_up = &gUnk_08CC2204,
+    .adjacent_down = &gUnk_08CC223C,
+    .adjacent_left = &gUnk_08CC2178,
+    .x = 0xA6,
+    .y = 0x38,
+    .msg = 0x26B,
+};
+
+SECTION(".rodata.08CC223C")
+const struct HelpBoxInfo gUnk_08CC223C = {
+    .adjacent_up = &gUnk_08CC2220,
+    .adjacent_down = &gUnk_08CC2258,
+    .adjacent_left = &gUnk_08CC2194,
+    .x = 0xA6,
+    .y = 0x48,
+    .msg = 0x26D,
+};
+
+SECTION(".rodata.08CC2258")
+const struct HelpBoxInfo gUnk_08CC2258 = {
+    .adjacent_up = &gUnk_08CC223C,
+    .adjacent_down = &gUnk_08CC2274,
+    .adjacent_left = &gUnk_08CC21B0,
+    .x = 0xA6,
+    .y = 0x58,
+    .msg = 0x26F,
+};
+
+SECTION(".rodata.08CC2274")
+const struct HelpBoxInfo gUnk_08CC2274 = {
+    .adjacent_up = &gUnk_08CC2258,
+    .adjacent_left = &gUnk_08CC21CC,
+    .x = 0xA6,
+    .y = 0x68,
+    .populate = HelpBoxPopulateStatScreenStatus,
+};
+
+SECTION(".rodata.08CC2290")
+const struct HelpBoxInfo gUnk_08CC2290 = {
+    .adjacent_down = &gUnk_08CC22AC,
+    .adjacent_right = &gUnk_08CC2370,
+    .x = 0x28,
+    .y = 0x50,
+    .populate = HelpBoxPopulateStatScreenPInfo,
+};
+
+SECTION(".rodata.08CC22AC")
+const struct HelpBoxInfo gUnk_08CC22AC = {
+    .adjacent_up = &gUnk_08CC2290,
+    .adjacent_down = &gUnk_08CC22C8,
+    .adjacent_right = &gUnk_08CC23A8,
+    .x = 6,
+    .y = 0x68,
+    .msg = 0x22B,
+    .populate = HelpBoxPopulateStatScreenJInfo,
+};
+
+SECTION(".rodata.08CC22C8")
+const struct HelpBoxInfo gUnk_08CC22C8 = {
+    .adjacent_up = &gUnk_08CC22AC,
+    .adjacent_down = &gUnk_08CC2300,
+    .adjacent_right = &gUnk_08CC22E4,
+    .x = 6,
+    .y = 0x78,
+    .msg = 0x25B,
+};
+
+SECTION(".rodata.08CC22E4")
+const struct HelpBoxInfo gUnk_08CC22E4 = {
+    .adjacent_up = &gUnk_08CC22AC,
+    .adjacent_down = &gUnk_08CC2300,
+    .adjacent_left = &gUnk_08CC22C8,
+    .adjacent_right = &gUnk_08CC23A8,
+    .x = 0x26,
+    .y = 0x78,
+    .msg = 0x25C,
+};
+
+SECTION(".rodata.08CC2300")
+const struct HelpBoxInfo gUnk_08CC2300 = {
+    .adjacent_up = &gUnk_08CC22C8,
+    .adjacent_right = &gUnk_08CC23C4,
+    .x = 6,
+    .y = 0x88,
+    .msg = 0x25D,
+};
+
+SECTION(".rodata.08CC231C")
+const struct HelpBoxInfo HelpInfo_StatScreenItems_ItemA = {
+    .adjacent_down = &gUnk_08CC2338,
+    .adjacent_left = &gUnk_08CC2290,
+    .x = 0x68,
+    .y = 0x18,
+    .redirect = HelpBoxRedirectStatScreenItem,
+    .populate = HelpBoxPopulateStatScreenItem,
+};
+
+SECTION(".rodata.08CC2338")
+const struct HelpBoxInfo gUnk_08CC2338 = {
+    .adjacent_up = &HelpInfo_StatScreenItems_ItemA,
+    .adjacent_down = &gUnk_08CC2354,
+    .adjacent_left = &gUnk_08CC2290,
+    .x = 0x68,
+    .y = 0x28,
+    .msg = 1,
+    .redirect = HelpBoxRedirectStatScreenItem,
+    .populate = HelpBoxPopulateStatScreenItem,
+};
+
+SECTION(".rodata.08CC2354")
+const struct HelpBoxInfo gUnk_08CC2354 = {
+    .adjacent_up = &gUnk_08CC2338,
+    .adjacent_down = &gUnk_08CC2370,
+    .adjacent_left = &gUnk_08CC2290,
+    .x = 0x68,
+    .y = 0x38,
+    .msg = 2,
+    .redirect = HelpBoxRedirectStatScreenItem,
+    .populate = HelpBoxPopulateStatScreenItem,
+};
+
+SECTION(".rodata.08CC2370")
+const struct HelpBoxInfo gUnk_08CC2370 = {
+    .adjacent_up = &gUnk_08CC2354,
+    .adjacent_down = &gUnk_08CC238C,
+    .adjacent_left = &gUnk_08CC2290,
+    .x = 0x68,
+    .y = 0x48,
+    .msg = 3,
+    .redirect = HelpBoxRedirectStatScreenItem,
+    .populate = HelpBoxPopulateStatScreenItem,
+};
+
+SECTION(".rodata.08CC238C")
+const struct HelpBoxInfo gUnk_08CC238C = {
+    .adjacent_up = &gUnk_08CC2370,
+    .adjacent_down = &gUnk_08CC23A8,
+    .adjacent_left = &gUnk_08CC2290,
+    .adjacent_right = &gUnk_08CC23E0,
+    .x = 0x68,
+    .y = 0x58,
+    .msg = 4,
+    .redirect = HelpBoxRedirectStatScreenItem,
+    .populate = HelpBoxPopulateStatScreenItem,
+};
+
+SECTION(".rodata.08CC23A8")
+const struct HelpBoxInfo gUnk_08CC23A8 = {
+    .adjacent_up = &gUnk_08CC238C,
+    .adjacent_down = &gUnk_08CC23C4,
+    .adjacent_left = &gUnk_08CC22E4,
+    .adjacent_right = &gUnk_08CC23FC,
+    .x = 0x76,
+    .y = 0x78,
+    .msg = 0x25F,
+};
+
+SECTION(".rodata.08CC23C4")
+const struct HelpBoxInfo gUnk_08CC23C4 = {
+    .adjacent_up = &gUnk_08CC23A8,
+    .adjacent_left = &gUnk_08CC2300,
+    .adjacent_right = &gUnk_08CC2418,
+    .x = 0x76,
+    .y = 0x88,
+    .msg = 0x260,
+};
+
+SECTION(".rodata.08CC23E0")
+const struct HelpBoxInfo gUnk_08CC23E0 = {
+    .adjacent_up = &gUnk_08CC238C,
+    .adjacent_down = &gUnk_08CC23FC,
+    .adjacent_left = &gUnk_08CC23A8,
+    .x = 0xAE,
+    .y = 0x68,
+    .msg = 0x261,
+};
+
+SECTION(".rodata.08CC23FC")
+const struct HelpBoxInfo gUnk_08CC23FC = {
+    .adjacent_up = &gUnk_08CC23E0,
+    .adjacent_down = &gUnk_08CC2418,
+    .adjacent_left = &gUnk_08CC23A8,
+    .x = 0xAE,
+    .y = 0x78,
+    .msg = 0x262,
+};
+
+SECTION(".rodata.08CC2418")
+const struct HelpBoxInfo gUnk_08CC2418 = {
+    .adjacent_up = &gUnk_08CC23FC,
+    .adjacent_left = &gUnk_08CC23C4,
+    .x = 0xAE,
+    .y = 0x88,
+    .msg = 0x263,
+};
+
+SECTION(".rodata.08CC2434")
+const struct HelpBoxInfo gUnk_08CC2434 = {
+    .adjacent_down = &gUnk_08CC2450,
+    .adjacent_right = &gUnk_08CC2530,
+    .x = 0x28,
+    .y = 0x50,
+    .populate = HelpBoxPopulateStatScreenPInfo,
+};
+
+SECTION(".rodata.08CC2450")
+const struct HelpBoxInfo gUnk_08CC2450 = {
+    .adjacent_up = &gUnk_08CC2434,
+    .adjacent_down = &gUnk_08CC246C,
+    .adjacent_right = &gUnk_08CC2530,
+    .x = 6,
+    .y = 0x68,
+    .msg = 0x22B,
+    .populate = HelpBoxPopulateStatScreenJInfo,
+};
+
+SECTION(".rodata.08CC246C")
+const struct HelpBoxInfo gUnk_08CC246C = {
+    .adjacent_up = &gUnk_08CC2450,
+    .adjacent_down = &gUnk_08CC24A4,
+    .adjacent_right = &gUnk_08CC2488,
+    .x = 6,
+    .y = 0x78,
+    .msg = 0x25B,
+};
+
+SECTION(".rodata.08CC2488")
+const struct HelpBoxInfo gUnk_08CC2488 = {
+    .adjacent_up = &gUnk_08CC2450,
+    .adjacent_down = &gUnk_08CC24A4,
+    .adjacent_left = &gUnk_08CC246C,
+    .adjacent_right = &gUnk_08CC2530,
+    .x = 0x26,
+    .y = 0x78,
+    .msg = 0x25C,
+};
+
+SECTION(".rodata.08CC24A4")
+const struct HelpBoxInfo gUnk_08CC24A4 = {
+    .adjacent_up = &gUnk_08CC246C,
+    .adjacent_right = &gUnk_08CC2530,
+    .x = 6,
+    .y = 0x88,
+    .msg = 0x25D,
+};
+
+SECTION(".rodata.08CC24C0")
+const struct HelpBoxInfo HelpInfo_StatScreenWeaponExp_WExpA = {
+    .adjacent_down = &gUnk_08CC24DC,
+    .adjacent_left = &gUnk_08CC2434,
+    .adjacent_right = &gUnk_08CC24F8,
+    .x = 0x68,
+    .y = 0x18,
+    .populate = HelpBoxPopulateStatScreenWeaponExp,
+};
+
+SECTION(".rodata.08CC24DC")
+const struct HelpBoxInfo gUnk_08CC24DC = {
+    .adjacent_up = &HelpInfo_StatScreenWeaponExp_WExpA,
+    .adjacent_down = &gUnk_08CC2530,
+    .adjacent_left = &gUnk_08CC2434,
+    .adjacent_right = &gUnk_08CC2514,
+    .x = 0x68,
+    .y = 0x28,
+    .msg = 1,
+    .populate = HelpBoxPopulateStatScreenWeaponExp,
+};
+
+SECTION(".rodata.08CC24F8")
+const struct HelpBoxInfo gUnk_08CC24F8 = {
+    .adjacent_down = &gUnk_08CC2514,
+    .adjacent_left = &HelpInfo_StatScreenWeaponExp_WExpA,
+    .x = 0xA8,
+    .y = 0x18,
+    .msg = 2,
+    .populate = HelpBoxPopulateStatScreenWeaponExp,
+};
+
+SECTION(".rodata.08CC2514")
+const struct HelpBoxInfo gUnk_08CC2514 = {
+    .adjacent_up = &gUnk_08CC24F8,
+    .adjacent_down = &gUnk_08CC2530,
+    .adjacent_left = &gUnk_08CC24DC,
+    .x = 0xA8,
+    .y = 0x28,
+    .msg = 3,
+    .populate = HelpBoxPopulateStatScreenWeaponExp,
+};
+
+SECTION(".rodata.08CC2530")
+const struct HelpBoxInfo gUnk_08CC2530 = {
+    .adjacent_up = &gUnk_08CC24DC,
+    .adjacent_down = &gUnk_08CC2434,
+    .adjacent_left = &gUnk_08CC2434,
+    .x = 0x80,
+    .y = 0x40,
+    .msg = 0x350,
+    .redirect = HelpBoxRedirectStatScreenSupports,
+};

@@ -1,6 +1,25 @@
 #include "gbafe.h"
 #include "gbafe/scanline.h"
 
+extern const u8 Img_WmSpriteAnim_00[];
+extern const u8 Img_WmSpriteAnim_01[];
+extern const u8 Img_WmSpriteAnim_02[];
+extern const u8 Img_WmSpriteAnim_03[];
+extern const u8 Img_WmSpriteAnim_04[];
+extern const u8 Img_WmSpriteAnim_05[];
+extern const u8 Img_WmSpriteAnim_06[];
+extern const u8 Img_WmSpriteAnim_07[];
+extern const u8 Img_WmSpriteAnim_08[];
+extern const u16 gUnk_08422AC4[];
+extern const u16 gUnk_08423080[];
+extern const u16 gUnk_084236A4[];
+extern const u16 gUnk_08423B48[];
+extern const u16 gUnk_0842418C[];
+extern const u16 gUnk_0842458C[];
+extern const u16 gUnk_084249C0[];
+extern const u16 gUnk_08424BB0[];
+extern const u16 gUnk_08424C9C[];
+
 // FE7 world map (no FE8 counterpart)
 
 struct WmSt {
@@ -57,7 +76,7 @@ struct WmSpriteAnimEnt {
 };
 
 extern const struct ProcCmd ProcScr_WmSpriteAnims[];
-extern struct WmSpriteAnimEnt const gWmSpriteAnimTable[];
+extern const struct WmSpriteAnimEnt gWmSpriteAnimTable[];
 
 void EndAllWmSpriteAnims(void);
 
@@ -2608,4 +2627,17 @@ const struct ProcCmd ProcScr_WorldFlush[] = {
     PROC_CALL(WorldFlush_End),
     PROC_SLEEP(30),
     PROC_END,
+};
+
+SECTION(".rodata.085E99B4")
+const struct WmSpriteAnimEnt gWmSpriteAnimTable[] = {
+    { .img = Img_WmSpriteAnim_00, .ap = gUnk_08422AC4, .size = 0x7A0, .x = 0x90, .y = 0x67 },
+    { .img = Img_WmSpriteAnim_01, .ap = gUnk_08423080, .size = 0x800, .x = 0xB0, .y = 0x19 },
+    { .img = Img_WmSpriteAnim_02, .ap = gUnk_084236A4, .size = 0x800, .x = 0x70, .y = 0x48 },
+    { .img = Img_WmSpriteAnim_03, .ap = gUnk_0842418C, .size = 0x800, .x = 0x30, .y = 0x40 },
+    { .img = Img_WmSpriteAnim_04, .ap = gUnk_08423B48, .size = 0x620, .x = 0xCC, .y = 0x5C },
+    { .img = Img_WmSpriteAnim_05, .ap = gUnk_0842458C, .size = 0x700, .x = 0xC0, .y = 0x40 },
+    { .img = Img_WmSpriteAnim_06, .ap = gUnk_084249C0, .size = 0x660, .x = 0x49, .y = 0x78 },
+    { .img = Img_WmSpriteAnim_07, .ap = gUnk_08424BB0, .size = 0x220, .x = 0x88, .y = 0x78 },
+    { .img = Img_WmSpriteAnim_08, .ap = gUnk_08424C9C, .size = 0x180, .x = 0xAF, .y = 0x65 },
 };

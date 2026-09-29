@@ -1,5 +1,9 @@
 #include "gbafe.h"
 
+extern const u8 gUnk_08CE5840[];
+extern const u8 gUnk_08CE584C[];
+extern const u8 gUnk_08CE5858[];
+
 struct Selector
 {
     /* 00 */ u16 helpTextId;
@@ -53,8 +57,8 @@ struct ConfigProc
 };
 
 extern struct ConfigScreen * CONST_DATA gConfigUiState;
-extern struct GameOptionLayout CONST_DATA gGameOptionLayouts[];
-extern struct GameOption CONST_DATA gGameOptions[];
+extern const struct GameOptionLayout gGameOptionLayouts[];
+extern const struct GameOption gGameOptions[];
 extern u16 CONST_DATA gUnk_08CE58BE[];
 extern u16 CONST_DATA gSprite_ConfigurationUiHeader[];
 extern const struct ProcCmd gProcScr_RedrawConfigHelpText[];
@@ -717,4 +721,193 @@ const struct ProcCmd gProcScr_DrawConfigUiSprites[] = {
     PROC_SLEEP(0),
     PROC_GOTO(0),
     PROC_END,
+};
+
+SECTION(".rodata.08CE5868")
+const struct GameOptionLayout gGameOptionLayouts[] = {
+    { .count = 0xD, .order = gUnk_08CE5840 },
+    { .count = 0xD, .order = &gUnk_08CE5858[2] },
+    { .count = 0xD, .order = &gUnk_08CE5858[2] },
+    { .count = 0xD, .order = &gUnk_08CE584C[1] },
+    { .count = 0xD, .order = &gUnk_08CE5858[2] },
+    { .count = 0xD, .order = &gUnk_08CE5858[2] },
+};
+
+SECTION(".rodata.08CE58D8")
+const struct GameOption gGameOptions[] = {
+    {
+        .msgId = 0x622,
+        .selectors = {
+            { .helpTextId = 0x632, .optionTextId = 0x64F, .xPos = 0x78, .unk_05 = 1 },
+            { .helpTextId = 0x633, .optionTextId = 0x650, .xPos = 0x87, .unk_05 = 1 },
+            { .helpTextId = 0x634, .optionTextId = 0x64E, .xPos = 0x96, .unk_05 = 2 },
+            { .helpTextId = 0x635, .optionTextId = 0x657, .xPos = 0xAD, .unk_05 = 2 },
+        },
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x623,
+        .selectors = {
+            { .helpTextId = 0x63C, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x63C, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 2,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x624,
+        .selectors = {
+            { .helpTextId = 0x63D, .optionTextId = 0x65A, .xPos = 0x78, .unk_05 = 3 },
+            { .helpTextId = 0x63E, .optionTextId = 0x65B, .xPos = 0x97, .unk_05 = 4 },
+            { .helpTextId = 0x63F, .optionTextId = 0x64E, .xPos = 0xBE, .unk_05 = 2 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 4,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x627,
+        .selectors = {
+            { .helpTextId = 0x644, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x644, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 6,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x628,
+        .selectors = {
+            { .helpTextId = 0x638, .optionTextId = 0x653, .xPos = 0x78, .unk_05 = 3 },
+            { .helpTextId = 0x639, .optionTextId = 0x654, .xPos = 0x97, .unk_05 = 3 },
+            { .helpTextId = 0x63A, .optionTextId = 0x655, .xPos = 0xB6, .unk_05 = 3 },
+            { .helpTextId = 0x63B, .optionTextId = 0x656, .xPos = 0xD5, .unk_05 = 2 },
+        },
+        .icon = 8,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x629,
+        .selectors = {
+            { .helpTextId = 0x636, .optionTextId = 0x654, .xPos = 0x78, .unk_05 = 3 },
+            { .helpTextId = 0x637, .optionTextId = 0x655, .xPos = 0x97, .unk_05 = 3 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0xA,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x62A,
+        .selectors = {
+            { .helpTextId = 0x646, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x646, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0xC,
+        .func = (void *) MusicOptionChangeHandler,
+    },
+    {
+        .msgId = 0x62B,
+        .selectors = {
+            { .helpTextId = 0x647, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x647, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0xE,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x62C,
+        .selectors = {
+            { .helpTextId = 0x648, .optionTextId = 0x64F, .xPos = 0x78, .unk_05 = 1 },
+            { .helpTextId = 0x648, .optionTextId = 0x650, .xPos = 0x87, .unk_05 = 1 },
+            { .helpTextId = 0x648, .optionTextId = 0x651, .xPos = 0x96, .unk_05 = 1 },
+            { .helpTextId = 0x648, .optionTextId = 0x652, .xPos = 0xA5, .unk_05 = 1 },
+        },
+        .icon = 0x10,
+        .func = WindowColorOptionChangeHandler,
+    },
+    {
+        .msgId = 0x62D,
+        .selectors = {
+            { .helpTextId = 0x649, .optionTextId = 0x64F, .xPos = 0x78, .unk_05 = 1 },
+            { .helpTextId = 0x649, .optionTextId = 0x650, .xPos = 0x87, .unk_05 = 1 },
+            { .helpTextId = 0x649, .optionTextId = 0x651, .xPos = 0x96, .unk_05 = 1 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0x12,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x625,
+        .selectors = {
+            { .helpTextId = 0x640, .optionTextId = 0x658, .xPos = 0x78, .unk_05 = 3 },
+            { .helpTextId = 0x641, .optionTextId = 0x659, .xPos = 0x97, .unk_05 = 3 },
+            { .helpTextId = 0x642, .optionTextId = 0x64E, .xPos = 0xBE, .unk_05 = 2 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0x14,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x626,
+        .selectors = {
+            { .helpTextId = 0x643, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x643, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0x16,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x62E,
+        .selectors = {
+            { .helpTextId = 0x645, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x645, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0x18,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x62F,
+        .selectors = {
+            { .helpTextId = 0x64A, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x64A, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0x1A,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x630,
+        .selectors = {
+            { .helpTextId = 0x64B, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x64B, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0x1C,
+        .func = GenericOptionChangeHandler,
+    },
+    {
+        .msgId = 0x631,
+        .selectors = {
+            { .helpTextId = 0x64C, .optionTextId = 0x64D, .xPos = 0x78, .unk_05 = 2 },
+            { .helpTextId = 0x64C, .optionTextId = 0x64E, .xPos = 0x8F, .unk_05 = 2 },
+            { .xPos = 0xC6 },
+            { .xPos = 0xC5 },
+        },
+        .icon = 0x1E,
+        .func = GenericOptionChangeHandler,
+    },
 };

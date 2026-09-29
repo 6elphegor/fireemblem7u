@@ -11,12 +11,6 @@ extern int const gMid_Lv;
 extern int const gMid_Hp;
 extern int const gMid_Str;
 extern int const gMid_Mag;
-extern int const gMid_Skl;
-extern int const gMid_Spd;
-extern int const gMid_Lck;
-extern int const gMid_Def;
-extern int const gMid_Res;
-extern int const gMid_Con;
 
 CONST_DATA struct ManimLevelUpLabelInfo gManimLevelUpLabelInfoList[] = {
     { 9, 0, { 0 }, { &gMid_Lv, &gMid_Lv } },
