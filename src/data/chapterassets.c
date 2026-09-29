@@ -251,51 +251,51 @@ extern const u8 gUnk_08B95F50[];
 extern const u8 gUnk_08B95F98[];
 extern const u8 gUnk_08B95FE0[];
 extern const u8 gUnk_08B960A0[];
-extern const struct MapChange gUnk_08CE1D20[];
-extern const struct MapChange gUnk_08CE1D6C[];
-extern const struct MapChange gUnk_08CE1DB8[];
-extern const struct MapChange gUnk_08CE1EC0[];
-extern const struct MapChange gUnk_08CE1F88[];
-extern const struct MapChange gUnk_08CE1FE4[];
-extern const struct MapChange gUnk_08CE2058[];
-extern const struct MapChange gUnk_08CE2090[];
-extern const struct MapChange gUnk_08CE20D4[];
-extern const struct MapChange gUnk_08CE2114[];
-extern const struct MapChange gUnk_08CE2158[];
-extern const struct MapChange gUnk_08CE21E4[];
-extern const struct MapChange gUnk_08CE2244[];
-extern const struct MapChange gUnk_08CE22EC[];
-extern const struct MapChange gUnk_08CE238C[];
-extern const struct MapChange gUnk_08CE23E0[];
-extern const struct MapChange gUnk_08CE245C[];
-extern const struct MapChange gUnk_08CE24BC[];
-extern const struct MapChange gUnk_08CE254C[];
-extern const struct MapChange gUnk_08CE27F0[];
-extern const struct MapChange gUnk_08CE2834[];
-extern const struct MapChange gUnk_08CE2874[];
-extern const struct MapChange gUnk_08CE28AC[];
-extern const struct MapChange gUnk_08CE2968[];
-extern const struct MapChange gUnk_08CE2A70[];
-extern const struct MapChange gUnk_08CE2B04[];
-extern const struct MapChange gUnk_08CE2BF4[];
-extern const struct MapChange gUnk_08CE2D30[];
-extern const struct MapChange gUnk_08CE2DA4[];
-extern const struct MapChange gUnk_08CE2E0C[];
-extern const struct MapChange gUnk_08CE2E44[];
-extern const struct MapChange gUnk_08CE2E78[];
-extern const struct MapChange gUnk_08CE3178[];
-extern const struct MapChange gUnk_08CE3214[];
-extern const struct MapChange gUnk_08CE341C[];
-extern const struct MapChange gUnk_08CE3634[];
-extern const struct MapChange gUnk_08CE3664[];
-extern const struct MapChange gUnk_08CE36B4[];
-extern const struct MapChange gUnk_08CE3700[];
-extern const struct MapChange gUnk_08CE3790[];
-extern const struct MapChange gUnk_08CE3810[];
-extern const struct MapChange gUnk_08CE39B4[];
-extern const struct MapChange gUnk_08CE3A38[];
-extern const struct MapChange gUnk_08CE3A60[];
-extern const struct MapChange gUnk_08CE3B40[];
+extern const struct MapChange MapChanges_Ch02[];
+extern const struct MapChange MapChanges_Ch03[];
+extern const struct MapChange MapChanges_Ch04[];
+extern const struct MapChange MapChanges_Ch06[];
+extern const struct MapChange MapChanges_Ch07[];
+extern const struct MapChange MapChanges_Ch08[];
+extern const struct MapChange MapChanges_Ch09[];
+extern const struct MapChange MapChanges_Ch0A[];
+extern const struct MapChange MapChanges_Ch0B[];
+extern const struct MapChange MapChanges_Ch0C[];
+extern const struct MapChange MapChanges_Ch0D[];
+extern const struct MapChange MapChanges_Ch0E[];
+extern const struct MapChange MapChanges_Ch0F[];
+extern const struct MapChange MapChanges_Ch10[];
+extern const struct MapChange MapChanges_Ch11[];
+extern const struct MapChange MapChanges_Ch12[];
+extern const struct MapChange MapChanges_Ch13[];
+extern const struct MapChange MapChanges_Ch14[];
+extern const struct MapChange MapChanges_Ch15[];
+extern const struct MapChange MapChanges_Ch16[];
+extern const struct MapChange MapChanges_Ch17[];
+extern const struct MapChange MapChanges_Ch18[];
+extern const struct MapChange MapChanges_Ch19[];
+extern const struct MapChange MapChanges_Ch1A[];
+extern const struct MapChange MapChanges_Ch1B[];
+extern const struct MapChange MapChanges_Ch1C[];
+extern const struct MapChange MapChanges_Ch1E[];
+extern const struct MapChange MapChanges_Ch1F[];
+extern const struct MapChange MapChanges_Ch20[];
+extern const struct MapChange MapChanges_Ch21[];
+extern const struct MapChange MapChanges_Ch22[];
+extern const struct MapChange MapChanges_Ch23[];
+extern const struct MapChange MapChanges_Ch24[];
+extern const struct MapChange MapChanges_Ch25[];
+extern const struct MapChange MapChanges_Ch26[];
+extern const struct MapChange MapChanges_Ch27[];
+extern const struct MapChange MapChanges_Ch28[];
+extern const struct MapChange MapChanges_Ch29[];
+extern const struct MapChange MapChanges_Ch2A[];
+extern const struct MapChange MapChanges_Ch2C[];
+extern const struct MapChange MapChanges_Ch2D[];
+extern const struct MapChange MapChanges_Ch2E[];
+extern const struct MapChange MapChanges_Ch2F[];
+extern const struct MapChange MapChanges_Ch31[];
+extern const struct MapChange MapChanges_Ch40[];
 extern const u8 gUnk_08CE791C[];
 extern const u8 gUnk_08CE7920[];
 extern const u8 gUnk_08CE7AC0[];
@@ -361,19 +361,19 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0x0B] = (void const *) Pal_Map_Ch02, // pal: CHAPTER_02
     [0x0C] = (void const *) TileConfig_0C, // tileset: CHAPTER_02, CHAPTER_08, CHAPTER_0D, CHAPTER_12, CHAPTER_14, CHAPTER_1E, CHAPTER_25, CHAPTER_26, CHAPTER_2A, 0x31, 0x32, 0x37, 0x38, 0x3F
     [0x0D] = (void const *) MapLayout_Ch02, // map: CHAPTER_02
-    [0x0E] = (void const *) gUnk_08CE1D20, // map_changes: CHAPTER_02
+    [0x0E] = (void const *) MapChanges_Ch02, // map_changes: CHAPTER_02
     [0x0F] = (void const *) ChapterEvents_Ch02, // events: CHAPTER_02
     [0x10] = (void const *) Img_MapObj_10, // img_a: CHAPTER_03, CHAPTER_06, CHAPTER_15, CHAPTER_1B, CHAPTER_20, CHAPTER_2B, 0x30, 0x39, 0x3D
     [0x11] = (void const *) Pal_Map_Ch03, // pal: CHAPTER_03
     [0x12] = (void const *) TileConfig_12, // tileset: CHAPTER_03, CHAPTER_06, CHAPTER_15, CHAPTER_1B, CHAPTER_20, CHAPTER_2B, 0x30, 0x39, 0x3D
     [0x13] = (void const *) MapLayout_Ch03, // map: CHAPTER_03
-    [0x14] = (void const *) gUnk_08CE1D6C, // map_changes: CHAPTER_03
+    [0x14] = (void const *) MapChanges_Ch03, // map_changes: CHAPTER_03
     [0x15] = (void const *) ChapterEvents_Ch03, // events: CHAPTER_03
     [0x16] = (void const *) Img_MapObj_16, // img_a: CHAPTER_04, CHAPTER_1C, 0x36, 0x41
     [0x17] = (void const *) Pal_Map_Ch04, // pal: CHAPTER_04
     [0x18] = (void const *) TileConfig_18, // tileset: CHAPTER_04, CHAPTER_1C, 0x36, 0x41
     [0x19] = (void const *) MapLayout_Ch04, // map: CHAPTER_04
-    [0x1A] = (void const *) gUnk_08CE1DB8, // map_changes: CHAPTER_04
+    [0x1A] = (void const *) MapChanges_Ch04, // map_changes: CHAPTER_04
     [0x1B] = (void const *) ChapterEvents_Ch04, // events: CHAPTER_04
     [0x1C] = (void const *) Img_MapObj_1C, // img_a: CHAPTER_05, CHAPTER_07, CHAPTER_09, CHAPTER_0A, CHAPTER_0B, CHAPTER_0C, CHAPTER_0E, CHAPTER_0F, CHAPTER_10, CHAPTER_11, CHAPTER_13, CHAPTER_17, CHAPTER_18, CHAPTER_1F, CHAPTER_21, CHAPTER_22, CHAPTER_2C, 0x33, 0x34, 0x3A, 0x3C, 0x3E, 0x42
     [0x1D] = (void const *) Img_MapObj_1D_B, // img_b: CHAPTER_05, CHAPTER_07, CHAPTER_09, CHAPTER_0A, CHAPTER_0B, CHAPTER_0C, CHAPTER_0E, CHAPTER_0F, CHAPTER_10, CHAPTER_11, CHAPTER_13, CHAPTER_17, CHAPTER_18, CHAPTER_1F, CHAPTER_21, CHAPTER_22, CHAPTER_2C, 0x33, 0x34, 0x3A, 0x3C, 0x3E, 0x42
@@ -383,92 +383,92 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0x21] = (void const *) ChapterEvents_Ch05, // events: CHAPTER_05
     [0x22] = (void const *) Pal_Map_Ch06, // pal: CHAPTER_06
     [0x23] = (void const *) MapLayout_Ch06, // map: CHAPTER_06
-    [0x24] = (void const *) gUnk_08CE1EC0, // map_changes: CHAPTER_06
+    [0x24] = (void const *) MapChanges_Ch06, // map_changes: CHAPTER_06
     [0x25] = (void const *) ChapterEvents_Ch06, // events: CHAPTER_06
     [0x26] = (void const *) MapLayout_Ch07, // map: CHAPTER_07
-    [0x27] = (void const *) gUnk_08CE1F88, // map_changes: CHAPTER_07
+    [0x27] = (void const *) MapChanges_Ch07, // map_changes: CHAPTER_07
     [0x28] = (void const *) ChapterEvents_Ch07, // events: CHAPTER_07
     [0x29] = (void const *) Pal_Map_Ch08, // pal: CHAPTER_08, 0x31
     [0x2A] = (void const *) MapLayout_Ch08, // map: CHAPTER_08
-    [0x2B] = (void const *) gUnk_08CE1FE4, // map_changes: CHAPTER_08
+    [0x2B] = (void const *) MapChanges_Ch08, // map_changes: CHAPTER_08
     [0x2C] = (void const *) ChapterEvents_Ch08, // events: CHAPTER_08
     [0x2D] = (void const *) MapLayout_Ch09, // map: CHAPTER_09
-    [0x2E] = (void const *) gUnk_08CE2058, // map_changes: CHAPTER_09
+    [0x2E] = (void const *) MapChanges_Ch09, // map_changes: CHAPTER_09
     [0x2F] = (void const *) ChapterEvents_Ch09, // events: CHAPTER_09
     [0x30] = (void const *) MapLayout_Ch0A, // map: CHAPTER_0A
-    [0x31] = (void const *) gUnk_08CE2090, // map_changes: CHAPTER_0A
+    [0x31] = (void const *) MapChanges_Ch0A, // map_changes: CHAPTER_0A
     [0x32] = (void const *) ChapterEvents_Ch0A, // events: CHAPTER_0A
     [0x33] = (void const *) Pal_Map_Ch0B, // pal: CHAPTER_0B
     [0x34] = (void const *) MapLayout_Ch0B, // map: CHAPTER_0B
-    [0x35] = (void const *) gUnk_08CE20D4, // map_changes: CHAPTER_0B
+    [0x35] = (void const *) MapChanges_Ch0B, // map_changes: CHAPTER_0B
     [0x36] = (void const *) ChapterEvents_Ch0B, // events: CHAPTER_0B
     [0x37] = (void const *) MapLayout_Ch0C, // map: CHAPTER_0C
-    [0x38] = (void const *) gUnk_08CE2114, // map_changes: CHAPTER_0C
+    [0x38] = (void const *) MapChanges_Ch0C, // map_changes: CHAPTER_0C
     [0x39] = (void const *) ChapterEvents_Ch0C, // events: CHAPTER_0C
     [0x3A] = (void const *) Pal_Map_Ch0D, // pal: CHAPTER_0D, CHAPTER_12, CHAPTER_2A, 0x32, 0x38, 0x3F
     [0x3B] = (void const *) MapLayout_Ch0D, // map: CHAPTER_0D
-    [0x3C] = (void const *) gUnk_08CE2158, // map_changes: CHAPTER_0D
+    [0x3C] = (void const *) MapChanges_Ch0D, // map_changes: CHAPTER_0D
     [0x3D] = (void const *) ChapterEvents_Ch0D, // events: CHAPTER_0D
     [0x3E] = (void const *) MapLayout_Ch0E, // map: CHAPTER_0E
-    [0x3F] = (void const *) gUnk_08CE21E4, // map_changes: CHAPTER_0E
+    [0x3F] = (void const *) MapChanges_Ch0E, // map_changes: CHAPTER_0E
     [0x40] = (void const *) ChapterEvents_Ch0E, // events: CHAPTER_0E
     [0x41] = (void const *) MapLayout_Ch0F, // map: CHAPTER_0F
-    [0x42] = (void const *) gUnk_08CE2244, // map_changes: CHAPTER_0F
+    [0x42] = (void const *) MapChanges_Ch0F, // map_changes: CHAPTER_0F
     [0x43] = (void const *) ChapterEvents_Ch0F, // events: CHAPTER_0F
     [0x44] = (void const *) Pal_Map_Ch10, // pal: CHAPTER_10
     [0x45] = (void const *) MapLayout_Ch10, // map: CHAPTER_10
-    [0x46] = (void const *) gUnk_08CE22EC, // map_changes: CHAPTER_10
+    [0x46] = (void const *) MapChanges_Ch10, // map_changes: CHAPTER_10
     [0x47] = (void const *) ChapterEvents_Ch10, // events: CHAPTER_10
     [0x48] = (void const *) Pal_Map_Ch11, // pal: CHAPTER_11
     [0x49] = (void const *) MapLayout_Ch11, // map: CHAPTER_11
-    [0x4A] = (void const *) gUnk_08CE238C, // map_changes: CHAPTER_11
+    [0x4A] = (void const *) MapChanges_Ch11, // map_changes: CHAPTER_11
     [0x4B] = (void const *) ChapterEvents_Ch11, // events: CHAPTER_11
     [0x4C] = (void const *) MapLayout_Ch12, // map: CHAPTER_12
-    [0x4D] = (void const *) gUnk_08CE23E0, // map_changes: CHAPTER_12
+    [0x4D] = (void const *) MapChanges_Ch12, // map_changes: CHAPTER_12
     [0x4E] = (void const *) ChapterEvents_Ch12, // events: CHAPTER_12
     [0x4F] = (void const *) MapLayout_Ch13, // map: CHAPTER_13
-    [0x50] = (void const *) gUnk_08CE245C, // map_changes: CHAPTER_13
+    [0x50] = (void const *) MapChanges_Ch13, // map_changes: CHAPTER_13
     [0x51] = (void const *) ChapterEvents_Ch13, // events: CHAPTER_13
     [0x52] = (void const *) Pal_Map_Ch14, // pal: CHAPTER_14
     [0x53] = (void const *) MapLayout_Ch14, // map: CHAPTER_14
-    [0x54] = (void const *) gUnk_08CE24BC, // map_changes: CHAPTER_14
+    [0x54] = (void const *) MapChanges_Ch14, // map_changes: CHAPTER_14
     [0x55] = (void const *) ChapterEvents_Ch14, // events: CHAPTER_14
     [0x56] = (void const *) Pal_Map_Ch15, // pal: CHAPTER_15, CHAPTER_20
     [0x57] = (void const *) MapLayout_Ch15, // map: CHAPTER_15
     [0x58] = (void const *) gUnk_08B95E08, // img_anims: CHAPTER_15, CHAPTER_1B, CHAPTER_20, CHAPTER_2B, 0x39, 0x3D
-    [0x59] = (void const *) gUnk_08CE254C, // map_changes: CHAPTER_15
+    [0x59] = (void const *) MapChanges_Ch15, // map_changes: CHAPTER_15
     [0x5A] = (void const *) ChapterEvents_Ch15, // events: CHAPTER_15
     [0x5B] = (void const *) Img_MapObj_5B, // img_a: CHAPTER_16
     [0x5C] = (void const *) Pal_Map_Ch16, // pal: CHAPTER_16
     [0x5D] = (void const *) TileConfig_5D, // tileset: CHAPTER_16
     [0x5E] = (void const *) MapLayout_Ch16, // map: CHAPTER_16
     [0x5F] = (void const *) gUnk_08B95DC0, // img_anims: CHAPTER_16
-    [0x60] = (void const *) gUnk_08CE27F0, // map_changes: CHAPTER_16
+    [0x60] = (void const *) MapChanges_Ch16, // map_changes: CHAPTER_16
     [0x61] = (void const *) ChapterEvents_Ch16, // events: CHAPTER_16
     [0x62] = (void const *) Pal_Map_Ch17, // pal: CHAPTER_17
     [0x63] = (void const *) MapLayout_Ch17, // map: CHAPTER_17
-    [0x64] = (void const *) gUnk_08CE2834, // map_changes: CHAPTER_17
+    [0x64] = (void const *) MapChanges_Ch17, // map_changes: CHAPTER_17
     [0x65] = (void const *) ChapterEvents_Ch17, // events: CHAPTER_17
     [0x66] = (void const *) Pal_Map_Ch18, // pal: CHAPTER_18
     [0x67] = (void const *) MapLayout_Ch18, // map: CHAPTER_18
-    [0x68] = (void const *) gUnk_08CE2874, // map_changes: CHAPTER_18
+    [0x68] = (void const *) MapChanges_Ch18, // map_changes: CHAPTER_18
     [0x69] = (void const *) ChapterEvents_Ch18, // events: CHAPTER_18
     [0x6A] = (void const *) Img_MapObj_6A, // img_a: CHAPTER_19, CHAPTER_1A, CHAPTER_27, CHAPTER_2D, 0x35
     [0x6B] = (void const *) Pal_Map_Ch19, // pal: CHAPTER_19, CHAPTER_1A, CHAPTER_27
     [0x6C] = (void const *) TileConfig_6C, // tileset: CHAPTER_19, CHAPTER_1A, CHAPTER_27, CHAPTER_2D, 0x35
     [0x6D] = (void const *) MapLayout_Ch19, // map: CHAPTER_19
-    [0x6E] = (void const *) gUnk_08CE28AC, // map_changes: CHAPTER_19
+    [0x6E] = (void const *) MapChanges_Ch19, // map_changes: CHAPTER_19
     [0x6F] = (void const *) ChapterEvents_Ch19, // events: CHAPTER_19
     [0x70] = (void const *) MapLayout_Ch1A, // map: CHAPTER_1A
-    [0x71] = (void const *) gUnk_08CE2968, // map_changes: CHAPTER_1A
+    [0x71] = (void const *) MapChanges_Ch1A, // map_changes: CHAPTER_1A
     [0x72] = (void const *) ChapterEvents_Ch1A, // events: CHAPTER_1A
     [0x73] = (void const *) Pal_Map_Ch1B, // pal: CHAPTER_1B
     [0x74] = (void const *) MapLayout_Ch1B, // map: CHAPTER_1B
-    [0x75] = (void const *) gUnk_08CE2A70, // map_changes: CHAPTER_1B
+    [0x75] = (void const *) MapChanges_Ch1B, // map_changes: CHAPTER_1B
     [0x76] = (void const *) ChapterEvents_Ch1B, // events: CHAPTER_1B
     [0x77] = (void const *) Pal_Map_Ch1C, // pal: CHAPTER_1C, 0x36, 0x41
     [0x78] = (void const *) MapLayout_Ch1C, // map: CHAPTER_1C
-    [0x79] = (void const *) gUnk_08CE2B04, // map_changes: CHAPTER_1C
+    [0x79] = (void const *) MapChanges_Ch1C, // map_changes: CHAPTER_1C
     [0x7A] = (void const *) ChapterEvents_Ch1C, // events: CHAPTER_1C
     [0x7B] = (void const *) Img_MapObj_7B, // img_a: CHAPTER_1D
     [0x7C] = (void const *) Pal_Map_Ch1D, // pal: CHAPTER_1D
@@ -477,84 +477,84 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0x7F] = (void const *) ChapterEvents_Ch1D, // events: CHAPTER_1D
     [0x80] = (void const *) Pal_Map_Ch1E, // pal: CHAPTER_1E
     [0x81] = (void const *) MapLayout_Ch1E, // map: CHAPTER_1E
-    [0x82] = (void const *) gUnk_08CE2BF4, // map_changes: CHAPTER_1E
+    [0x82] = (void const *) MapChanges_Ch1E, // map_changes: CHAPTER_1E
     [0x83] = (void const *) ChapterEvents_Ch1E, // events: CHAPTER_1E
     [0x84] = (void const *) MapLayout_Ch1F, // map: CHAPTER_1F
-    [0x85] = (void const *) gUnk_08CE2D30, // map_changes: CHAPTER_1F
+    [0x85] = (void const *) MapChanges_Ch1F, // map_changes: CHAPTER_1F
     [0x86] = (void const *) ChapterEvents_Ch1F, // events: CHAPTER_1F
     [0x87] = (void const *) MapLayout_Ch20, // map: CHAPTER_20
-    [0x88] = (void const *) gUnk_08CE2DA4, // map_changes: CHAPTER_20
+    [0x88] = (void const *) MapChanges_Ch20, // map_changes: CHAPTER_20
     [0x89] = (void const *) ChapterEvents_Ch20, // events: CHAPTER_20
     [0x8A] = (void const *) Pal_Map_Ch21, // pal: CHAPTER_21
     [0x8B] = (void const *) MapLayout_Ch21, // map: CHAPTER_21
-    [0x8C] = (void const *) gUnk_08CE2E0C, // map_changes: CHAPTER_21
+    [0x8C] = (void const *) MapChanges_Ch21, // map_changes: CHAPTER_21
     [0x8D] = (void const *) ChapterEvents_Ch21, // events: CHAPTER_21
     [0x8E] = (void const *) MapLayout_Ch22, // map: CHAPTER_22
-    [0x8F] = (void const *) gUnk_08CE2E44, // map_changes: CHAPTER_22
+    [0x8F] = (void const *) MapChanges_Ch22, // map_changes: CHAPTER_22
     [0x90] = (void const *) ChapterEvents_Ch22, // events: CHAPTER_22
     [0x91] = (void const *) Img_MapObj_91, // img_a: CHAPTER_23, CHAPTER_24, 0x3B
     [0x92] = (void const *) Pal_Map_Ch23, // pal: CHAPTER_23, CHAPTER_24, 0x3B
     [0x93] = (void const *) TileConfig_93, // tileset: CHAPTER_23, CHAPTER_24, 0x3B
     [0x94] = (void const *) MapLayout_Ch23, // map: CHAPTER_23
-    [0x95] = (void const *) gUnk_08CE2E78, // map_changes: CHAPTER_23
+    [0x95] = (void const *) MapChanges_Ch23, // map_changes: CHAPTER_23
     [0x96] = (void const *) ChapterEvents_Ch23, // events: CHAPTER_23
     [0x97] = (void const *) MapLayout_Ch24, // map: CHAPTER_24
     [0x98] = (void const *) gUnk_08B95FE0, // pal_anims: CHAPTER_24
-    [0x99] = (void const *) gUnk_08CE3178, // map_changes: CHAPTER_24
+    [0x99] = (void const *) MapChanges_Ch24, // map_changes: CHAPTER_24
     [0x9A] = (void const *) ChapterEvents_Ch24, // events: CHAPTER_24
     [0x9B] = (void const *) Pal_Map_Ch25, // pal: CHAPTER_25
     [0x9C] = (void const *) MapLayout_Ch25, // map: CHAPTER_25
-    [0x9D] = (void const *) gUnk_08CE3214, // map_changes: CHAPTER_25
+    [0x9D] = (void const *) MapChanges_Ch25, // map_changes: CHAPTER_25
     [0x9E] = (void const *) ChapterEvents_Ch25, // events: CHAPTER_25
     [0x9F] = (void const *) Pal_Map_Ch26, // pal: CHAPTER_26
     [0xA0] = (void const *) MapLayout_Ch26, // map: CHAPTER_26
     [0xA1] = (void const *) gUnk_08B95F98, // img_anims: CHAPTER_26, 0x37
-    [0xA2] = (void const *) gUnk_08CE341C, // map_changes: CHAPTER_26
+    [0xA2] = (void const *) MapChanges_Ch26, // map_changes: CHAPTER_26
     [0xA3] = (void const *) ChapterEvents_Ch26, // events: CHAPTER_26
     [0xA4] = (void const *) MapLayout_Ch27, // map: CHAPTER_27
-    [0xA5] = (void const *) gUnk_08CE3634, // map_changes: CHAPTER_27
+    [0xA5] = (void const *) MapChanges_Ch27, // map_changes: CHAPTER_27
     [0xA6] = (void const *) ChapterEvents_Ch27, // events: CHAPTER_27
     [0xA7] = (void const *) Img_MapObj_A7, // img_a: CHAPTER_28
     [0xA8] = (void const *) Pal_Map_Ch28, // pal: CHAPTER_28
     [0xA9] = (void const *) TileConfig_A9, // tileset: CHAPTER_28
     [0xAA] = (void const *) MapLayout_Ch28, // map: CHAPTER_28
     [0xAB] = (void const *) gUnk_08B960A0, // pal_anims: CHAPTER_28
-    [0xAC] = (void const *) gUnk_08CE3664, // map_changes: CHAPTER_28
+    [0xAC] = (void const *) MapChanges_Ch28, // map_changes: CHAPTER_28
     [0xAD] = (void const *) ChapterEvents_Ch28, // events: CHAPTER_28
     [0xAE] = (void const *) Img_MapObj_AE, // img_a: CHAPTER_29
     [0xAF] = (void const *) Pal_Map_Ch29, // pal: CHAPTER_29
     [0xB0] = (void const *) TileConfig_B0, // tileset: CHAPTER_29
     [0xB1] = (void const *) MapLayout_Ch29, // map: CHAPTER_29
-    [0xB2] = (void const *) gUnk_08CE36B4, // map_changes: CHAPTER_29
+    [0xB2] = (void const *) MapChanges_Ch29, // map_changes: CHAPTER_29
     [0xB3] = (void const *) ChapterEvents_Ch29, // events: CHAPTER_29
     [0xB4] = (void const *) MapLayout_Ch2A, // map: CHAPTER_2A
-    [0xB5] = (void const *) gUnk_08CE3700, // map_changes: CHAPTER_2A
+    [0xB5] = (void const *) MapChanges_Ch2A, // map_changes: CHAPTER_2A
     [0xB6] = (void const *) ChapterEvents_Ch2A, // events: CHAPTER_2A
     [0xB7] = (void const *) Pal_Map_Ch2B, // pal: CHAPTER_2B, 0x39
     [0xB8] = (void const *) MapLayout_Ch2B, // map: CHAPTER_2B
     [0xB9] = (void const *) ChapterEvents_Ch2B, // events: CHAPTER_2B
     [0xBA] = (void const *) MapLayout_Ch2C, // map: CHAPTER_2C
-    [0xBB] = (void const *) gUnk_08CE3790, // map_changes: CHAPTER_2C
+    [0xBB] = (void const *) MapChanges_Ch2C, // map_changes: CHAPTER_2C
     [0xBC] = (void const *) ChapterEvents_Ch2C, // events: CHAPTER_2C
     [0xBD] = (void const *) Pal_Map_Ch2D, // pal: CHAPTER_2D
     [0xBE] = (void const *) MapLayout_Ch2D, // map: CHAPTER_2D
-    [0xBF] = (void const *) gUnk_08CE3810, // map_changes: CHAPTER_2D
+    [0xBF] = (void const *) MapChanges_Ch2D, // map_changes: CHAPTER_2D
     [0xC0] = (void const *) ChapterEvents_Ch2D, // events: CHAPTER_2D
     [0xC1] = (void const *) Img_MapObj_C1, // img_a: CHAPTER_2E, CHAPTER_2F, 0x40
     [0xC2] = (void const *) Pal_Map_Ch2E, // pal: CHAPTER_2E, CHAPTER_2F, 0x40
     [0xC3] = (void const *) TileConfig_C3, // tileset: CHAPTER_2E, CHAPTER_2F, 0x40
     [0xC4] = (void const *) MapLayout_Ch2E, // map: CHAPTER_2E
     [0xC5] = (void const *) gUnk_08B95F50, // img_anims: CHAPTER_2E, CHAPTER_2F
-    [0xC6] = (void const *) gUnk_08CE39B4, // map_changes: CHAPTER_2E
+    [0xC6] = (void const *) MapChanges_Ch2E, // map_changes: CHAPTER_2E
     [0xC7] = (void const *) ChapterEvents_Ch2E, // events: CHAPTER_2E
     [0xC8] = (void const *) MapLayout_Ch2F, // map: CHAPTER_2F
-    [0xC9] = (void const *) gUnk_08CE3A38, // map_changes: CHAPTER_2F
+    [0xC9] = (void const *) MapChanges_Ch2F, // map_changes: CHAPTER_2F
     [0xCA] = (void const *) ChapterEvents_Ch2F, // events: CHAPTER_2F
     [0xCB] = (void const *) Pal_Map_Ch30, // pal: 0x30
     [0xCC] = (void const *) MapLayout_Ch30, // map: 0x30
     [0xCD] = (void const *) ChapterEvents_Ch30, // events: 0x30
     [0xCE] = (void const *) MapLayout_Ch31, // map: 0x31
-    [0xCF] = (void const *) gUnk_08CE3A60, // map_changes: 0x31
+    [0xCF] = (void const *) MapChanges_Ch31, // map_changes: 0x31
     [0xD0] = (void const *) ChapterEvents_Ch31, // events: 0x31
     [0xD1] = (void const *) MapLayout_Ch32, // map: 0x32
     [0xD2] = (void const *) ChapterEvents_Ch32, // events: 0x32
@@ -589,7 +589,7 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0xEF] = (void const *) MapLayout_Ch3F, // map: 0x3F
     [0xF0] = (void const *) ChapterEvents_Ch3F, // events: 0x3F
     [0xF1] = (void const *) MapLayout_Ch40, // map: 0x40
-    [0xF2] = (void const *) gUnk_08CE3B40, // map_changes: 0x40
+    [0xF2] = (void const *) MapChanges_Ch40, // map_changes: 0x40
     [0xF3] = (void const *) ChapterEvents_Ch40, // events: 0x40
     [0xF4] = (void const *) MapLayout_Ch41, // map: 0x41
     [0xF5] = (void const *) MapLayout_Ch42, // map: 0x42
@@ -646,7 +646,7 @@ CONST_DATA EventScr const * gWmEventScripts[] = {
 };
 
 SECTION(".rodata.08CE1D20")
-const struct MapChange gUnk_08CE1D20[] = {
+const struct MapChange MapChanges_Ch02[] = {
     { .xOrigin = 0xD, .xSize = 1, .ySize = 2, .data = gUnk_08CE1D0C },
     { .id = 1, .xOrigin = 0xD, .xSize = 1, .ySize = 2, .data = gUnk_08CE1D10 },
     { .id = 2, .xOrigin = 8, .yOrigin = 1, .xSize = 2, .ySize = 3, .data = gUnk_08CE1D14 },
@@ -654,7 +654,7 @@ const struct MapChange gUnk_08CE1D20[] = {
 };
 
 SECTION(".rodata.08CE1D6C")
-const struct MapChange gUnk_08CE1D6C[] = {
+const struct MapChange MapChanges_Ch03[] = {
     { .xOrigin = 2, .yOrigin = 5, .xSize = 3, .ySize = 2, .data = gUnk_08CE1D50 },
     { .id = 1, .xOrigin = 1, .yOrigin = 1, .xSize = 3, .ySize = 2, .data = gUnk_08CE1D5C },
     { .id = 2, .xOrigin = 3, .yOrigin = 6, .xSize = 1, .ySize = 1, .data = gUnk_08CE1D68 },
@@ -663,13 +663,13 @@ const struct MapChange gUnk_08CE1D6C[] = {
 };
 
 SECTION(".rodata.08CE1DB8")
-const struct MapChange gUnk_08CE1DB8[] = {
+const struct MapChange MapChanges_Ch04[] = {
     { .xOrigin = 3, .yOrigin = 2, .xSize = 2, .ySize = 4, .data = gUnk_08CE1DA8 },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE1EC0")
-const struct MapChange gUnk_08CE1EC0[] = {
+const struct MapChange MapChanges_Ch06[] = {
     { .xOrigin = 0xA, .yOrigin = 3, .xSize = 8, .ySize = 5, .data = gUnk_08CE1DD0 },
     { .id = 1, .xOrigin = 6, .xSize = 4, .ySize = 4, .data = gUnk_08CE1E20 },
     { .id = 2, .xOrigin = 4, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE1E40 },
@@ -694,7 +694,7 @@ const struct MapChange gUnk_08CE1EC0[] = {
 };
 
 SECTION(".rodata.08CE1F88")
-const struct MapChange gUnk_08CE1F88[] = {
+const struct MapChange MapChanges_Ch07[] = {
     { .xOrigin = 0x10, .xSize = 3, .ySize = 3, .data = gUnk_08CE1F68 },
     { .id = 1, .xOrigin = 2, .yOrigin = 9, .xSize = 3, .ySize = 2, .data = &gUnk_08CE1F78[1] },
     {
@@ -709,7 +709,7 @@ const struct MapChange gUnk_08CE1F88[] = {
 };
 
 SECTION(".rodata.08CE1FE4")
-const struct MapChange gUnk_08CE1FE4[] = {
+const struct MapChange MapChanges_Ch08[] = {
     { .xOrigin = 2, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE1FB8 },
     { .id = 1, .xOrigin = 2, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE1FBC },
     { .id = 2, .xOrigin = 3, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE1FC0 },
@@ -721,21 +721,21 @@ const struct MapChange gUnk_08CE1FE4[] = {
 };
 
 SECTION(".rodata.08CE2058")
-const struct MapChange gUnk_08CE2058[] = {
+const struct MapChange MapChanges_Ch09[] = {
     { .xOrigin = 0xC, .yOrigin = 1, .xSize = 3, .ySize = 3, .data = gUnk_08CE2044 },
     { .id = 1, .xOrigin = 0xD, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2054[1] },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE2090")
-const struct MapChange gUnk_08CE2090[] = {
+const struct MapChange MapChanges_Ch0A[] = {
     { .yOrigin = 3, .xSize = 3, .ySize = 3, .data = gUnk_08CE207C },
     { .id = 1, .xOrigin = 1, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = &gUnk_08CE208C[1] },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE20D4")
-const struct MapChange gUnk_08CE20D4[] = {
+const struct MapChange MapChanges_Ch0B[] = {
     { .xOrigin = 0xE, .yOrigin = 0xA, .xSize = 3, .ySize = 3, .data = gUnk_08CE20B4 },
     {
         .id = 1,
@@ -765,13 +765,13 @@ const struct MapChange gUnk_08CE20D4[] = {
 };
 
 SECTION(".rodata.08CE2114")
-const struct MapChange gUnk_08CE2114[] = {
+const struct MapChange MapChanges_Ch0C[] = {
     { .xOrigin = 0x10, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2110 },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE2158")
-const struct MapChange gUnk_08CE2158[] = {
+const struct MapChange MapChanges_Ch0D[] = {
     { .xOrigin = 1, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE212C },
     { .id = 1, .xOrigin = 3, .xSize = 2, .ySize = 2, .data = gUnk_08CE2130 },
     { .id = 2, .xOrigin = 6, .yOrigin = 3, .xSize = 1, .ySize = 2, .data = gUnk_08CE2138 },
@@ -785,14 +785,14 @@ const struct MapChange gUnk_08CE2158[] = {
 };
 
 SECTION(".rodata.08CE21E4")
-const struct MapChange gUnk_08CE21E4[] = {
+const struct MapChange MapChanges_Ch0E[] = {
     { .yOrigin = 6, .xSize = 3, .ySize = 3, .data = gUnk_08CE21D0 },
     { .id = 1, .xOrigin = 1, .yOrigin = 8, .xSize = 1, .ySize = 1, .data = &gUnk_08CE21E0[1] },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE2244")
-const struct MapChange gUnk_08CE2244[] = {
+const struct MapChange MapChanges_Ch0F[] = {
     { .xSize = 3, .ySize = 3, .data = gUnk_08CE2208 },
     { .id = 1, .xOrigin = 0xB, .yOrigin = 7, .xSize = 3, .ySize = 3, .data = &gUnk_08CE2218[1] },
     { .id = 2, .xOrigin = 6, .yOrigin = 1, .xSize = 3, .ySize = 2, .data = gUnk_08CE222C },
@@ -803,7 +803,7 @@ const struct MapChange gUnk_08CE2244[] = {
 };
 
 SECTION(".rodata.08CE22EC")
-const struct MapChange gUnk_08CE22EC[] = {
+const struct MapChange MapChanges_Ch10[] = {
     { .xOrigin = 4, .yOrigin = 1, .xSize = 3, .ySize = 1, .data = gUnk_08CE2298 },
     { .id = 1, .xOrigin = 4, .yOrigin = 2, .xSize = 3, .ySize = 1, .data = &gUnk_08CE229C[1] },
     { .id = 2, .xOrigin = 3, .yOrigin = 9, .xSize = 3, .ySize = 2, .data = gUnk_08CE22A4 },
@@ -824,7 +824,7 @@ const struct MapChange gUnk_08CE22EC[] = {
 };
 
 SECTION(".rodata.08CE238C")
-const struct MapChange gUnk_08CE238C[] = {
+const struct MapChange MapChanges_Ch11[] = {
     { .xOrigin = 8, .xSize = 3, .ySize = 3, .data = gUnk_08CE2364 },
     { .id = 1, .xOrigin = 5, .yOrigin = 0xC, .xSize = 3, .ySize = 3, .data = &gUnk_08CE2374[1] },
     { .id = 2, .xOrigin = 9, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2388 },
@@ -833,7 +833,7 @@ const struct MapChange gUnk_08CE238C[] = {
 };
 
 SECTION(".rodata.08CE23E0")
-const struct MapChange gUnk_08CE23E0[] = {
+const struct MapChange MapChanges_Ch12[] = {
     { .xOrigin = 2, .yOrigin = 2, .xSize = 2, .ySize = 2, .data = gUnk_08CE23C8 },
     { .id = 1, .xOrigin = 9, .yOrigin = 1, .xSize = 1, .ySize = 2, .data = gUnk_08CE23D0 },
     { .id = 2, .xOrigin = 9, .yOrigin = 4, .xSize = 1, .ySize = 2, .data = gUnk_08CE23D4 },
@@ -844,7 +844,7 @@ const struct MapChange gUnk_08CE23E0[] = {
 };
 
 SECTION(".rodata.08CE245C")
-const struct MapChange gUnk_08CE245C[] = {
+const struct MapChange MapChanges_Ch13[] = {
     { .xOrigin = 0xB, .yOrigin = 0xC, .xSize = 3, .ySize = 3, .data = gUnk_08CE2434 },
     { .id = 1, .yOrigin = 9, .xSize = 3, .ySize = 3, .data = &gUnk_08CE2444[1] },
     { .id = 2, .xOrigin = 0xC, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE2458 },
@@ -853,7 +853,7 @@ const struct MapChange gUnk_08CE245C[] = {
 };
 
 SECTION(".rodata.08CE24BC")
-const struct MapChange gUnk_08CE24BC[] = {
+const struct MapChange MapChanges_Ch14[] = {
     { .xOrigin = 0xE, .yOrigin = 0xA, .xSize = 1, .ySize = 2, .data = gUnk_08CE2498 },
     { .id = 1, .xOrigin = 0xE, .yOrigin = 0xA, .xSize = 1, .ySize = 2, .data = gUnk_08CE249C },
     { .id = 2, .xOrigin = 6, .xSize = 2, .ySize = 2, .data = gUnk_08CE24A0 },
@@ -875,7 +875,7 @@ const struct MapChange gUnk_08CE24BC[] = {
 };
 
 SECTION(".rodata.08CE254C")
-const struct MapChange gUnk_08CE254C[] = {
+const struct MapChange MapChanges_Ch15[] = {
     { .xOrigin = 3, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE2540 },
     { .id = 1, .xOrigin = 8, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2540[1] },
     { .id = 2, .xOrigin = 0xC, .yOrigin = 4, .xSize = 1, .ySize = 1, .data = gUnk_08CE2544 },
@@ -892,7 +892,7 @@ const struct MapChange gUnk_08CE254C[] = {
 };
 
 SECTION(".rodata.08CE27F0")
-const struct MapChange gUnk_08CE27F0[] = {
+const struct MapChange MapChanges_Ch16[] = {
     { .xOrigin = 0xD, .yOrigin = 1, .xSize = 6, .ySize = 0x14, .data = gUnk_08CE2594 },
     { .id = 1, .yOrigin = 3, .xSize = 7, .ySize = 0x12, .data = gUnk_08CE2684 },
     { .id = 2, .xOrigin = 6, .yOrigin = 0xE, .xSize = 8, .ySize = 7, .data = gUnk_08CE2780 },
@@ -900,7 +900,7 @@ const struct MapChange gUnk_08CE27F0[] = {
 };
 
 SECTION(".rodata.08CE2834")
-const struct MapChange gUnk_08CE2834[] = {
+const struct MapChange MapChanges_Ch17[] = {
     { .xOrigin = 7, .yOrigin = 0xA, .xSize = 3, .ySize = 1, .data = gUnk_08CE2820 },
     { .id = 1, .xOrigin = 7, .yOrigin = 0xB, .xSize = 3, .ySize = 1, .data = &gUnk_08CE2824[1] },
     { .id = 2, .xOrigin = 9, .yOrigin = 0xD, .xSize = 1, .ySize = 3, .data = gUnk_08CE282C },
@@ -908,14 +908,14 @@ const struct MapChange gUnk_08CE2834[] = {
 };
 
 SECTION(".rodata.08CE2874")
-const struct MapChange gUnk_08CE2874[] = {
+const struct MapChange MapChanges_Ch18[] = {
     { .xOrigin = 0x11, .yOrigin = 0xD, .xSize = 3, .ySize = 2, .data = gUnk_08CE2864 },
     { .id = 1, .xOrigin = 0x12, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE2870 },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE28AC")
-const struct MapChange gUnk_08CE28AC[] = {
+const struct MapChange MapChanges_Ch19[] = {
     { .xOrigin = 3, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = gUnk_08CE2898 },
     { .id = 1, .xOrigin = 0xA, .yOrigin = 2, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2898[1] },
     { .id = 2, .xOrigin = 3, .yOrigin = 9, .xSize = 2, .ySize = 1, .data = gUnk_08CE289C },
@@ -934,7 +934,7 @@ const struct MapChange gUnk_08CE28AC[] = {
 };
 
 SECTION(".rodata.08CE2968")
-const struct MapChange gUnk_08CE2968[] = {
+const struct MapChange MapChanges_Ch1A[] = {
     { .xOrigin = 3, .yOrigin = 4, .xSize = 3, .ySize = 1, .data = gUnk_08CE290C },
     { .id = 1, .xOrigin = 1, .yOrigin = 6, .xSize = 3, .ySize = 2, .data = &gUnk_08CE2910[1] },
     { .id = 2, .xOrigin = 1, .yOrigin = 8, .xSize = 1, .ySize = 1, .data = &gUnk_08CE291C[1] },
@@ -983,7 +983,7 @@ const struct MapChange gUnk_08CE2968[] = {
 };
 
 SECTION(".rodata.08CE2A70")
-const struct MapChange gUnk_08CE2A70[] = {
+const struct MapChange MapChanges_Ch1B[] = {
     { .xOrigin = 3, .yOrigin = 9, .xSize = 1, .ySize = 1, .data = gUnk_08CE2A34 },
     { .id = 1, .xOrigin = 2, .yOrigin = 5, .xSize = 3, .ySize = 2, .data = &gUnk_08CE2A34[1] },
     { .id = 2, .yOrigin = 8, .xSize = 3, .ySize = 2, .data = &gUnk_08CE2A40[1] },
@@ -1011,7 +1011,7 @@ const struct MapChange gUnk_08CE2A70[] = {
 };
 
 SECTION(".rodata.08CE2B04")
-const struct MapChange gUnk_08CE2B04[] = {
+const struct MapChange MapChanges_Ch1C[] = {
     { .xOrigin = 0xA, .yOrigin = 4, .xSize = 2, .ySize = 1, .data = gUnk_08CE2AE8 },
     { .id = 1, .xOrigin = 4, .yOrigin = 9, .xSize = 1, .ySize = 2, .data = gUnk_08CE2AEC },
     { .id = 2, .xOrigin = 0x11, .yOrigin = 9, .xSize = 1, .ySize = 2, .data = gUnk_08CE2AF0 },
@@ -1030,7 +1030,7 @@ const struct MapChange gUnk_08CE2B04[] = {
 };
 
 SECTION(".rodata.08CE2BF4")
-const struct MapChange gUnk_08CE2BF4[] = {
+const struct MapChange MapChanges_Ch1E[] = {
     { .xOrigin = 0xA, .yOrigin = 0xE, .xSize = 1, .ySize = 1, .data = gUnk_08CE2B64 },
     {
         .id = 1,
@@ -1147,7 +1147,7 @@ const struct MapChange gUnk_08CE2BF4[] = {
 };
 
 SECTION(".rodata.08CE2D30")
-const struct MapChange gUnk_08CE2D30[] = {
+const struct MapChange MapChanges_Ch1F[] = {
     { .xOrigin = 0x10, .xSize = 3, .ySize = 3, .data = gUnk_08CE2CFC },
     {
         .id = 1,
@@ -1171,7 +1171,7 @@ const struct MapChange gUnk_08CE2D30[] = {
 };
 
 SECTION(".rodata.08CE2DA4")
-const struct MapChange gUnk_08CE2DA4[] = {
+const struct MapChange MapChanges_Ch20[] = {
     { .xSize = 3, .ySize = 2, .data = gUnk_08CE2D78 },
     { .id = 1, .xOrigin = 2, .yOrigin = 3, .xSize = 3, .ySize = 2, .data = gUnk_08CE2D84 },
     { .id = 2, .xOrigin = 0x17, .yOrigin = 0xE, .xSize = 3, .ySize = 2, .data = gUnk_08CE2D90 },
@@ -1182,7 +1182,7 @@ const struct MapChange gUnk_08CE2DA4[] = {
 };
 
 SECTION(".rodata.08CE2E0C")
-const struct MapChange gUnk_08CE2E0C[] = {
+const struct MapChange MapChanges_Ch21[] = {
     { .xOrigin = 0x15, .yOrigin = 7, .xSize = 3, .ySize = 3, .data = gUnk_08CE2DF8 },
     {
         .id = 1,
@@ -1196,7 +1196,7 @@ const struct MapChange gUnk_08CE2E0C[] = {
 };
 
 SECTION(".rodata.08CE2E44")
-const struct MapChange gUnk_08CE2E44[] = {
+const struct MapChange MapChanges_Ch22[] = {
     { .yOrigin = 0x15, .xSize = 3, .ySize = 3, .data = gUnk_08CE2E30 },
     {
         .id = 1,
@@ -1210,7 +1210,7 @@ const struct MapChange gUnk_08CE2E44[] = {
 };
 
 SECTION(".rodata.08CE2E78")
-const struct MapChange gUnk_08CE2E78[] = {
+const struct MapChange MapChanges_Ch23[] = {
     { .xOrigin = 0xE, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE2E68 },
     { .id = 1, .xOrigin = 0xF, .yOrigin = 4, .xSize = 1, .ySize = 1, .data = &gUnk_08CE2E68[1] },
     { .id = 2, .xOrigin = 0x10, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = gUnk_08CE2E6C },
@@ -1221,7 +1221,7 @@ const struct MapChange gUnk_08CE2E78[] = {
 };
 
 SECTION(".rodata.08CE3178")
-const struct MapChange gUnk_08CE3178[] = {
+const struct MapChange MapChanges_Ch24[] = {
     { .xOrigin = 2, .xSize = 0xF, .ySize = 7, .data = gUnk_08CE2ECC },
     { .id = 1, .xOrigin = 0x12, .xSize = 7, .ySize = 6, .data = &gUnk_08CE2F9C[1] },
     { .id = 2, .xOrigin = 0xD, .yOrigin = 8, .xSize = 6, .ySize = 5, .data = &gUnk_08CE2FF0[1] },
@@ -1250,7 +1250,7 @@ const struct MapChange gUnk_08CE3178[] = {
 };
 
 SECTION(".rodata.08CE3214")
-const struct MapChange gUnk_08CE3214[] = {
+const struct MapChange MapChanges_Ch25[] = {
     { .xOrigin = 6, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE31FC },
     {
         .id = 1,
@@ -1285,7 +1285,7 @@ const struct MapChange gUnk_08CE3214[] = {
 };
 
 SECTION(".rodata.08CE341C")
-const struct MapChange gUnk_08CE341C[] = {
+const struct MapChange MapChanges_Ch26[] = {
     { .xOrigin = 4, .yOrigin = 8, .xSize = 2, .ySize = 1, .data = gUnk_08CE328C },
     { .id = 1, .xOrigin = 4, .yOrigin = 8, .xSize = 2, .ySize = 1, .data = gUnk_08CE3290 },
     { .id = 2, .xOrigin = 1, .yOrigin = 3, .xSize = 1, .ySize = 3, .data = gUnk_08CE3294 },
@@ -1437,7 +1437,7 @@ const struct MapChange gUnk_08CE341C[] = {
 };
 
 SECTION(".rodata.08CE3634")
-const struct MapChange gUnk_08CE3634[] = {
+const struct MapChange MapChanges_Ch27[] = {
     { .xOrigin = 2, .yOrigin = 0x15, .xSize = 3, .ySize = 3, .data = gUnk_08CE3620 },
     {
         .id = 1,
@@ -1451,7 +1451,7 @@ const struct MapChange gUnk_08CE3634[] = {
 };
 
 SECTION(".rodata.08CE3664")
-const struct MapChange gUnk_08CE3664[] = {
+const struct MapChange MapChanges_Ch28[] = {
     { .xOrigin = 3, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = gUnk_08CE3658 },
     { .id = 1, .xOrigin = 0xD, .yOrigin = 5, .xSize = 1, .ySize = 1, .data = &gUnk_08CE3658[1] },
     { .id = 3, .xOrigin = 1, .yOrigin = 0x15, .xSize = 1, .ySize = 1, .data = gUnk_08CE365C },
@@ -1468,7 +1468,7 @@ const struct MapChange gUnk_08CE3664[] = {
 };
 
 SECTION(".rodata.08CE36B4")
-const struct MapChange gUnk_08CE36B4[] = {
+const struct MapChange MapChanges_Ch29[] = {
     { .xOrigin = 0x1C, .yOrigin = 1, .xSize = 1, .ySize = 1, .data = gUnk_08CE36AC },
     {
         .id = 1,
@@ -1483,7 +1483,7 @@ const struct MapChange gUnk_08CE36B4[] = {
 };
 
 SECTION(".rodata.08CE3700")
-const struct MapChange gUnk_08CE3700[] = {
+const struct MapChange MapChanges_Ch2A[] = {
     { .xOrigin = 1, .xSize = 1, .ySize = 2, .data = gUnk_08CE36E4 },
     { .id = 1, .xOrigin = 1, .yOrigin = 0xB, .xSize = 2, .ySize = 2, .data = gUnk_08CE36E8 },
     { .id = 2, .xOrigin = 3, .yOrigin = 0xC, .xSize = 1, .ySize = 1, .data = gUnk_08CE36F0 },
@@ -1502,7 +1502,7 @@ const struct MapChange gUnk_08CE3700[] = {
 };
 
 SECTION(".rodata.08CE3790")
-const struct MapChange gUnk_08CE3790[] = {
+const struct MapChange MapChanges_Ch2C[] = {
     { .xOrigin = 4, .yOrigin = 1, .xSize = 3, .ySize = 2, .data = gUnk_08CE3760 },
     { .id = 1, .xOrigin = 0xA, .yOrigin = 8, .xSize = 3, .ySize = 2, .data = gUnk_08CE376C },
     { .id = 2, .xOrigin = 0x16, .yOrigin = 0x19, .xSize = 3, .ySize = 2, .data = gUnk_08CE3778 },
@@ -1530,7 +1530,7 @@ const struct MapChange gUnk_08CE3790[] = {
 };
 
 SECTION(".rodata.08CE3810")
-const struct MapChange gUnk_08CE3810[] = {
+const struct MapChange MapChanges_Ch2D[] = {
     { .xOrigin = 0xA, .yOrigin = 0xD, .xSize = 1, .ySize = 2, .data = gUnk_08CE3808 },
     { .id = 1, .xOrigin = 6, .yOrigin = 3, .xSize = 1, .ySize = 1, .data = gUnk_08CE380C },
     { .id = 2, .xOrigin = 0xF, .yOrigin = 4, .xSize = 1, .ySize = 1, .data = &gUnk_08CE380C[1] },
@@ -1538,7 +1538,7 @@ const struct MapChange gUnk_08CE3810[] = {
 };
 
 SECTION(".rodata.08CE39B4")
-const struct MapChange gUnk_08CE39B4[] = {
+const struct MapChange MapChanges_Ch2E[] = {
     { .xOrigin = 3, .xSize = 0xC, .ySize = 8, .data = gUnk_08CE3840 },
     { .id = 1, .xOrigin = 2, .yOrigin = 0xA, .xSize = 3, .ySize = 5, .data = gUnk_08CE3900 },
     {
@@ -1571,20 +1571,20 @@ const struct MapChange gUnk_08CE39B4[] = {
 };
 
 SECTION(".rodata.08CE3A38")
-const struct MapChange gUnk_08CE3A38[] = {
+const struct MapChange MapChanges_Ch2F[] = {
     { .xOrigin = 0xB, .yOrigin = 2, .xSize = 3, .ySize = 3, .data = gUnk_08CE3A14 },
     { .id = 1, .xOrigin = 0xB, .yOrigin = 2, .xSize = 3, .ySize = 3, .data = &gUnk_08CE3A24[1] },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE3A60")
-const struct MapChange gUnk_08CE3A60[] = {
+const struct MapChange MapChanges_Ch31[] = {
     { .xOrigin = 0xA, .yOrigin = 5, .xSize = 2, .ySize = 1, .data = gUnk_08CE3A5C },
     { .id = -1 },
 };
 
 SECTION(".rodata.08CE3B40")
-const struct MapChange gUnk_08CE3B40[] = {
+const struct MapChange MapChanges_Ch40[] = {
     { .xOrigin = 2, .xSize = 0xB, .ySize = 9, .data = gUnk_08CE3A78 },
     { .id = -1 },
 };

@@ -1,6 +1,8 @@
 #include "gbafe.h"
 #include "gbafe/cgtext.h"
 
+extern const u16 gUnk_08CC579C[], gUnk_08CC57B4[], gUnk_08CC57C8[];
+
 struct SupportScreenUnit {
     /* 00 */ u8 charId;
     /* 01 */ u8 classId;
@@ -1739,4 +1741,14 @@ const struct ProcCmd gProcScr_SupportUnitSubScreen[] = {
     PROC_WHILE(FadeOutExists),
     PROC_CALL(SupportSubScreen_OnEnd),
     PROC_END,
+};
+
+extern u16 const * const gUnk_08CC57E4[];
+
+SECTION(".rodata.08CC57E4")
+u16 const * const gUnk_08CC57E4[] = {
+    gUnk_08CC579C,
+    &gUnk_08CC57B4[1],
+    &gUnk_08CC57B4[1],
+    &gUnk_08CC57C8[1],
 };

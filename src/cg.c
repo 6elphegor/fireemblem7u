@@ -1,5 +1,25 @@
 #include "gbafe.h"
 
+extern const u8 Img_Cg_00_0[], Img_Cg_00_1[], Img_Cg_00_2[], Img_Cg_00_3[], Img_Cg_00_4[],
+    Img_Cg_00_5[], Img_Cg_00_6[], Img_Cg_00_7[], Img_Cg_00_8[], Img_Cg_00_9[], Img_Cg_01_0[],
+    Img_Cg_01_1[], Img_Cg_01_2[], Img_Cg_01_3[], Img_Cg_01_4[], Img_Cg_01_5[], Img_Cg_01_6[],
+    Img_Cg_01_7[], Img_Cg_01_8[], Img_Cg_01_9[], Img_Cg_02_0[], Img_Cg_02_1[], Img_Cg_02_2[],
+    Img_Cg_02_3[], Img_Cg_02_4[], Img_Cg_02_5[], Img_Cg_02_6[], Img_Cg_02_7[], Img_Cg_02_8[],
+    Img_Cg_02_9[], Img_Cg_03_0[], Img_Cg_03_1[], Img_Cg_03_2[], Img_Cg_03_3[], Img_Cg_03_4[],
+    Img_Cg_03_5[], Img_Cg_03_6[], Img_Cg_03_7[], Img_Cg_03_8[], Img_Cg_03_9[], Img_Cg_04_0[],
+    Img_Cg_04_1[], Img_Cg_04_2[], Img_Cg_04_3[], Img_Cg_04_4[], Img_Cg_04_5[], Img_Cg_04_6[],
+    Img_Cg_04_7[], Img_Cg_04_8[], Img_Cg_04_9[], Img_Cg_05_0[], Img_Cg_05_1[], Img_Cg_05_2[],
+    Img_Cg_05_3[], Img_Cg_05_4[], Img_Cg_05_5[], Img_Cg_05_6[], Img_Cg_05_7[], Img_Cg_05_8[],
+    Img_Cg_05_9[], Img_Cg_06_0[], Img_Cg_06_1[], Img_Cg_06_2[], Img_Cg_06_3[], Img_Cg_06_4[],
+    Img_Cg_06_5[], Img_Cg_06_6[], Img_Cg_06_7[], Img_Cg_06_8[], Img_Cg_06_9[], Img_Cg_07_0[],
+    Img_Cg_07_1[], Img_Cg_07_2[], Img_Cg_07_3[], Img_Cg_07_4[], Img_Cg_07_5[], Img_Cg_07_6[],
+    Img_Cg_07_7[], Img_Cg_07_8[], Img_Cg_07_9[], Img_Cg_08_0[], Img_Cg_08_1[], Img_Cg_08_2[],
+    Img_Cg_08_3[], Img_Cg_08_4[], Img_Cg_08_5[], Img_Cg_08_6[], Img_Cg_08_7[], Img_Cg_08_8[],
+    Img_Cg_08_9[], Img_Cg_09_0[], Img_Cg_09_1[], Img_Cg_09_2[], Img_Cg_09_3[], Img_Cg_09_4[],
+    Img_Cg_09_5[], Img_Cg_09_6[], Img_Cg_09_7[], Img_Cg_09_8[], Img_Cg_09_9[], Img_Cg_0A_0[],
+    Img_Cg_0A_1[], Img_Cg_0A_2[], Img_Cg_0A_3[], Img_Cg_0A_4[], Img_Cg_0A_5[], Img_Cg_0A_6[],
+    Img_Cg_0A_7[], Img_Cg_0A_8[], Img_Cg_0A_9[];
+
 // ROM data referenced below, defined in data/ (see tools/datasplit.py)
 extern const u8 gUnk_0842566C[];
 extern const u8 gUnk_0842FB50[];
@@ -181,17 +201,17 @@ extern const u8 gUnk_0856FDE8[];
 extern const u8 Img_Cg_3D[];
 extern const u8 Pal_Cg_3D[];
 extern const u8 gUnk_085744DC[];
-extern const u8 gUnk_08CED6D0[];
-extern const u8 gUnk_08CED6F8[];
-extern const u8 gUnk_08CED720[];
-extern const u8 gUnk_08CED748[];
-extern const u8 gUnk_08CED770[];
-extern const u8 gUnk_08CED798[];
-extern const u8 gUnk_08CED7C0[];
-extern const u8 gUnk_08CED7E8[];
-extern const u8 gUnk_08CED810[];
-extern const u8 gUnk_08CED838[];
-extern const u8 gUnk_08CED860[];
+extern u8 const * const Cg_Parts_00[];
+extern u8 const * const Cg_Parts_01[];
+extern u8 const * const Cg_Parts_02[];
+extern u8 const * const Cg_Parts_03[];
+extern u8 const * const Cg_Parts_04[];
+extern u8 const * const Cg_Parts_05[];
+extern u8 const * const Cg_Parts_06[];
+extern u8 const * const Cg_Parts_07[];
+extern u8 const * const Cg_Parts_08[];
+extern u8 const * const Cg_Parts_09[];
+extern u8 const * const Cg_Parts_0A[];
 
 // FE8U: cg.c
 
@@ -203,17 +223,17 @@ struct CGDataEnt {
 };
 
 CONST_DATA struct CGDataEnt gCGDataTable[] = {
-    { 1, (void *) gUnk_08CED6D0, (u8 *) gUnk_084354F8, (u16 *) Pal_Cg_00 },
-    { 1, (void *) gUnk_08CED6F8, (u8 *) gUnk_0843ABD8, (u16 *) Pal_Cg_01 },
-    { 1, (void *) gUnk_08CED720, (u8 *) gUnk_08440444, (u16 *) Pal_Cg_02 },
-    { 1, (void *) gUnk_08CED748, (u8 *) gUnk_084457B0, (u16 *) Pal_Cg_03 },
-    { 1, (void *) gUnk_08CED770, (u8 *) gUnk_0844AC24, (u16 *) Pal_Cg_04 },
-    { 1, (void *) gUnk_08CED798, (u8 *) gUnk_08450324, (u16 *) Pal_Cg_05 },
-    { 1, (void *) gUnk_08CED7C0, (u8 *) gUnk_0845589C, (u16 *) Pal_Cg_06 },
-    { 1, (void *) gUnk_08CED7E8, (u8 *) gUnk_0845B0B4, (u16 *) Pal_Cg_07 },
-    { 1, (void *) gUnk_08CED810, (u8 *) gUnk_08460868, (u16 *) Pal_Cg_08 },
-    { 1, (void *) gUnk_08CED838, (u8 *) gUnk_08465FEC, (u16 *) Pal_Cg_09 },
-    { 1, (void *) gUnk_08CED860, (u8 *) gUnk_0842FB50, (u16 *) Pal_Cg_0A },
+    { 1, (void *) Cg_Parts_00, (u8 *) gUnk_084354F8, (u16 *) Pal_Cg_00 },
+    { 1, (void *) Cg_Parts_01, (u8 *) gUnk_0843ABD8, (u16 *) Pal_Cg_01 },
+    { 1, (void *) Cg_Parts_02, (u8 *) gUnk_08440444, (u16 *) Pal_Cg_02 },
+    { 1, (void *) Cg_Parts_03, (u8 *) gUnk_084457B0, (u16 *) Pal_Cg_03 },
+    { 1, (void *) Cg_Parts_04, (u8 *) gUnk_0844AC24, (u16 *) Pal_Cg_04 },
+    { 1, (void *) Cg_Parts_05, (u8 *) gUnk_08450324, (u16 *) Pal_Cg_05 },
+    { 1, (void *) Cg_Parts_06, (u8 *) gUnk_0845589C, (u16 *) Pal_Cg_06 },
+    { 1, (void *) Cg_Parts_07, (u8 *) gUnk_0845B0B4, (u16 *) Pal_Cg_07 },
+    { 1, (void *) Cg_Parts_08, (u8 *) gUnk_08460868, (u16 *) Pal_Cg_08 },
+    { 1, (void *) Cg_Parts_09, (u8 *) gUnk_08465FEC, (u16 *) Pal_Cg_09 },
+    { 1, (void *) Cg_Parts_0A, (u8 *) gUnk_0842FB50, (u16 *) Pal_Cg_0A },
     { 0, (void *) Img_Cg_0B, (u8 *) gUnk_0846B5A8, (u16 *) Pal_Cg_0B },
     { 0, (void *) Img_Cg_0C, (u8 *) gUnk_08470944, (u16 *) Pal_Cg_0C },
     { 0, (void *) Img_Cg_0D, (u8 *) gUnk_08475AFC, (u16 *) Pal_Cg_0D },
@@ -302,3 +322,157 @@ void PutCgBackground(u16 * tm, int offset, int palId, int palCount, int idx)
     if (idx < 0x80)
         ModifySaveLinkArenaStruct2B(NULL, idx);
 }
+
+SECTION(".rodata.08CED6D0")
+u8 const * const Cg_Parts_00[] = {
+    Img_Cg_00_0,
+    Img_Cg_00_1,
+    Img_Cg_00_2,
+    Img_Cg_00_3,
+    Img_Cg_00_4,
+    Img_Cg_00_5,
+    Img_Cg_00_6,
+    Img_Cg_00_7,
+    Img_Cg_00_8,
+    Img_Cg_00_9,
+};
+
+SECTION(".rodata.08CED6F8")
+u8 const * const Cg_Parts_01[] = {
+    Img_Cg_01_0,
+    Img_Cg_01_1,
+    Img_Cg_01_2,
+    Img_Cg_01_3,
+    Img_Cg_01_4,
+    Img_Cg_01_5,
+    Img_Cg_01_6,
+    Img_Cg_01_7,
+    Img_Cg_01_8,
+    Img_Cg_01_9,
+};
+
+SECTION(".rodata.08CED720")
+u8 const * const Cg_Parts_02[] = {
+    Img_Cg_02_0,
+    Img_Cg_02_1,
+    Img_Cg_02_2,
+    Img_Cg_02_3,
+    Img_Cg_02_4,
+    Img_Cg_02_5,
+    Img_Cg_02_6,
+    Img_Cg_02_7,
+    Img_Cg_02_8,
+    Img_Cg_02_9,
+};
+
+SECTION(".rodata.08CED748")
+u8 const * const Cg_Parts_03[] = {
+    Img_Cg_03_0,
+    Img_Cg_03_1,
+    Img_Cg_03_2,
+    Img_Cg_03_3,
+    Img_Cg_03_4,
+    Img_Cg_03_5,
+    Img_Cg_03_6,
+    Img_Cg_03_7,
+    Img_Cg_03_8,
+    Img_Cg_03_9,
+};
+
+SECTION(".rodata.08CED770")
+u8 const * const Cg_Parts_04[] = {
+    Img_Cg_04_0,
+    Img_Cg_04_1,
+    Img_Cg_04_2,
+    Img_Cg_04_3,
+    Img_Cg_04_4,
+    Img_Cg_04_5,
+    Img_Cg_04_6,
+    Img_Cg_04_7,
+    Img_Cg_04_8,
+    Img_Cg_04_9,
+};
+
+SECTION(".rodata.08CED798")
+u8 const * const Cg_Parts_05[] = {
+    Img_Cg_05_0,
+    Img_Cg_05_1,
+    Img_Cg_05_2,
+    Img_Cg_05_3,
+    Img_Cg_05_4,
+    Img_Cg_05_5,
+    Img_Cg_05_6,
+    Img_Cg_05_7,
+    Img_Cg_05_8,
+    Img_Cg_05_9,
+};
+
+SECTION(".rodata.08CED7C0")
+u8 const * const Cg_Parts_06[] = {
+    Img_Cg_06_0,
+    Img_Cg_06_1,
+    Img_Cg_06_2,
+    Img_Cg_06_3,
+    Img_Cg_06_4,
+    Img_Cg_06_5,
+    Img_Cg_06_6,
+    Img_Cg_06_7,
+    Img_Cg_06_8,
+    Img_Cg_06_9,
+};
+
+SECTION(".rodata.08CED7E8")
+u8 const * const Cg_Parts_07[] = {
+    Img_Cg_07_0,
+    Img_Cg_07_1,
+    Img_Cg_07_2,
+    Img_Cg_07_3,
+    Img_Cg_07_4,
+    Img_Cg_07_5,
+    Img_Cg_07_6,
+    Img_Cg_07_7,
+    Img_Cg_07_8,
+    Img_Cg_07_9,
+};
+
+SECTION(".rodata.08CED810")
+u8 const * const Cg_Parts_08[] = {
+    Img_Cg_08_0,
+    Img_Cg_08_1,
+    Img_Cg_08_2,
+    Img_Cg_08_3,
+    Img_Cg_08_4,
+    Img_Cg_08_5,
+    Img_Cg_08_6,
+    Img_Cg_08_7,
+    Img_Cg_08_8,
+    Img_Cg_08_9,
+};
+
+SECTION(".rodata.08CED838")
+u8 const * const Cg_Parts_09[] = {
+    Img_Cg_09_0,
+    Img_Cg_09_1,
+    Img_Cg_09_2,
+    Img_Cg_09_3,
+    Img_Cg_09_4,
+    Img_Cg_09_5,
+    Img_Cg_09_6,
+    Img_Cg_09_7,
+    Img_Cg_09_8,
+    Img_Cg_09_9,
+};
+
+SECTION(".rodata.08CED860")
+u8 const * const Cg_Parts_0A[] = {
+    Img_Cg_0A_0,
+    Img_Cg_0A_1,
+    Img_Cg_0A_2,
+    Img_Cg_0A_3,
+    Img_Cg_0A_4,
+    Img_Cg_0A_5,
+    Img_Cg_0A_6,
+    Img_Cg_0A_7,
+    Img_Cg_0A_8,
+    Img_Cg_0A_9,
+};

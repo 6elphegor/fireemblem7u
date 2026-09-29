@@ -131,6 +131,31 @@ one per instruction, never with numbers or `|`:
   does not decode as an instruction (`note:` lines: bytes after it stay in the
   assembly).  STOP waits to be released and does not end the object.
 
+## Tables the code indexes from before their start (`FaceInfoTable`)
+
+`GetFaceInfo(fid)` read `FaceInfoTable + fid`, and the label sat one entry
+(0x1C bytes) before the first real record: face 0 has no record, and the
+ROM's "entry 0" is the last 0x1C bytes of `Img_Portrait_001_Face`'s LZ77
+stream.  A C array starting there would put compressed bytes into a
+`struct FaceInfo`, and a symbol defined as `gFaceInfoTable - 1` would be
+pointer arithmetic before the array on the host.  So the C table
+(`gFaceInfoTable`, `src/face.c`, section `.rodata.08C965A0`) holds faces 1 to
+0xE4 only and `GetFaceInfo` indexes `fid - 1`; the compiler folds the
+constant into the same code.  The old label is gone from `data/rom`
+(`tools/gfxrefs.py` keeps the address as a constant).
+
+Rule for similar cases: never define an object over bytes that belong to
+another; index from the real start in the reader.
+
+## Event scripts in `data/rom`
+
+Event scripts outside `data/events` (the epilogue scripts at 0x08CC0F54 and
+0x08CC1280, `EventScr_SuspendPrompt`, the world map scripts at 0x08CE78C8
+and the ch42 tail at 0x08CE1C64) stay in assembly with their pointer words
+(~150 in `data_08C64894.s`).  `EventScr` is `uintptr_t`; their C form is the
+event-macro format `tools/evdis.py` is to emit, which has to be chosen
+together with the interpreter's host cell layout.
+
 ## Batches
 
 Ordered so that each batch is mechanical within itself and has a decoder
