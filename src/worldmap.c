@@ -100,6 +100,7 @@ struct WmSpriteAnimEnt {
     /* 0E */ s16 x;
     /* 10 */ s16 y;
 };
+GBA_SIZE_CHECK(struct WmSpriteAnimEnt, 0x14);
 
 extern const struct ProcCmd ProcScr_WmSpriteAnims[];
 extern const struct WmSpriteAnimEnt gWmSpriteAnimTable[];
@@ -189,6 +190,7 @@ struct WorldMapProc {
 struct WmFaceConfig {
     struct FaceVramEnt ent[4];
 };
+GBA_SIZE_CHECK(struct WmFaceConfig, 0x20);
 
 extern const struct ProcCmd ProcScr_WorldMap[];
 extern struct WmFaceConfig const gWmFaceConfig;
@@ -224,6 +226,7 @@ struct CGDataEnt {
     /* 08 */ u8 const * tsa;
     /* 0C */ u16 const * pal;
 };
+GBA_SIZE_CHECK(struct CGDataEnt, 0x10);
 
 struct CGDataEnt const * GetCG(int idx);
 

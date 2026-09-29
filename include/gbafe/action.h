@@ -60,5 +60,6 @@ struct Action {
     /* 16 */ u8 suspend_point;
     /* 18 */ struct BattleHit *battle_scr;
 };
+GBA_SIZE_CHECK(struct Action, 0x1C);
 
 extern struct Action gActionSt;

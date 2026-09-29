@@ -16,6 +16,7 @@ struct FaceInfo {
     /* 16 */ u8 x_eyes, y_eyes;
     /* 18 */ u8 blink_type;
 };
+GBA_SIZE_CHECK(struct FaceInfo, 0x1C);
 
 // Faces 1 and up; face 0 has no entry (the ROM's slot 0 is the tail of a compressed image).
 extern const struct FaceInfo gFaceInfoTable[];
@@ -24,6 +25,7 @@ struct FaceVramEnt {
     /* 00 */ u32 chr_off;
     /* 04 */ u16 palid;
 };
+GBA_SIZE_CHECK(struct FaceVramEnt, 0x8);
 
 extern struct FaceVramEnt EWRAM_DATA gFaceConfig[FACE_SLOT_COUNT];
 

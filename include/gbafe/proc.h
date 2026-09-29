@@ -12,6 +12,7 @@ struct ProcCmd {
     short dataImm;
     const void * dataPtr;
 };
+GBA_SIZE_CHECK(struct ProcCmd, 0x8);
 
 #define PROC_END                                     { 0x00, 0x0000, 0 }
 #define PROC_NAME(aName)                             { 0x01, 0x0000, aName }
@@ -102,6 +103,7 @@ struct Proc {
     u8 hostPad[0x28];
 #endif
 };
+GBA_SIZE_CHECK(struct Proc, 0x6C);
 
 // Every proc lives in a slot of sProcArray, so its struct must fit in
 // struct Proc.  Put PROC_SIZE_CHECK(struct Foo); after each struct that

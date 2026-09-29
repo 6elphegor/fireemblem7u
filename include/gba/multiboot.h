@@ -28,6 +28,7 @@ struct MultiBootParam
     u8 check_wait;
     u8 server_type;
 };
+GBA_SIZE_CHECK(struct MultiBootParam, 0x4C);
 
 #define MULTIBOOT_ERROR_04                0x04
 #define MULTIBOOT_ERROR_08                0x08

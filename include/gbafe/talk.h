@@ -71,12 +71,14 @@ struct TalkSt
     /* 82 */ u8 unk_82;
     /* 83 */ u8 unk_83;
 };
+GBA_SIZE_CHECK(struct TalkSt, 0x84);
 
 struct TalkChoiceEnt
 {
     u16 msg;
     Func onSwitch;
 };
+GBA_SIZE_CHECK(struct TalkChoiceEnt, 0x8);
 
 struct TalkChoiceProc
 {

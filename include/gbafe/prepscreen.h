@@ -57,6 +57,7 @@ PROC_SIZE_CHECK(struct ProcAtMenu);
 struct SioPidPool {
     u8 pids[8];
 };
+GBA_SIZE_CHECK(struct SioPidPool, 0x8);
 
 extern EWRAM_DATA struct SioPidPool gSioPidPool;
 

@@ -1308,6 +1308,7 @@ struct FadeKindEnt {
     void (* setup_color_fade)(s8 component_step);
     int unit;
 };
+GBA_SIZE_CHECK(struct FadeKindEnt, 0xC);
 
 struct FadeKindEnt const gFadeKindTable[] =
 {

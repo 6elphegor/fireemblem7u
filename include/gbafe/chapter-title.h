@@ -5,6 +5,7 @@
 struct ChapTitleConfig {
     const u8 * img;
 };
+GBA_SIZE_CHECK(struct ChapTitleConfig, 0x4);
 
 extern const struct ChapTitleConfig gChapTitleConfig[];
 
@@ -18,6 +19,7 @@ struct ChapTitleGlyph {
     /* 06 */ u8 y_start;
     /* 07 */ u8 y_end;
 };
+GBA_SIZE_CHECK(struct ChapTitleGlyph, 0x8);
 
 extern const struct ChapTitleGlyph gChapTitleGlyphs[];
 extern const u8 Img_ChapterTitleFont[];
@@ -28,6 +30,7 @@ struct ChapTitleSt {
     u16 chr_bg;
     u16 chr_str;
 };
+GBA_SIZE_CHECK(struct ChapTitleSt, 0x4);
 
 extern struct ChapTitleSt gChapTitleSt;
 

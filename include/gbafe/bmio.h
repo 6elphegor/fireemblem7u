@@ -49,6 +49,7 @@ struct TileGfxAnim {
     /* 02 */ u16 size;
     /* 04 */ const void * data;
 };
+GBA_SIZE_CHECK(struct TileGfxAnim, 0x8);
 
 struct TilePalAnim {
     /* 00 */ const void * data;
@@ -56,3 +57,4 @@ struct TilePalAnim {
     /* 05 */ u8 colorCount;
     /* 06 */ u8 colorStart;
 };
+GBA_SIZE_CHECK(struct TilePalAnim, 0x8);

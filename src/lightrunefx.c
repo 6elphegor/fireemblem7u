@@ -4,6 +4,7 @@ struct VectorBmfx {
     u8 x, y;
     u16 unk;
 };
+GBA_SIZE_CHECK(struct VectorBmfx, 0x4);
 
 extern u8 CONST_DATA Img_LightRune[];
 extern u16 CONST_DATA Pal_LightRune[];

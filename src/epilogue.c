@@ -59,6 +59,7 @@ struct EpilogueUnitInfo {
     /* 04 */ int msgAlive;
     /* 08 */ int msgDead;
 };
+GBA_SIZE_CHECK(struct EpilogueUnitInfo, 0xC);
 
 struct EpilogueEnt {
     /* 00 */ u8 defeatChapter; // 0xFF (-1 as s8) if alive
@@ -96,6 +97,7 @@ struct CGDataEnt {
     /* 08 */ u8 const * tsa;
     /* 0C */ u16 const * pal;
 };
+GBA_SIZE_CHECK(struct CGDataEnt, 0x10);
 
 struct CGDataEnt const * GetCG(int idx);
 int CountDigits(int number);

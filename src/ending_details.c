@@ -75,6 +75,7 @@ struct CharacterEndingEnt {
     /* 02 */ u8 pidB;
     /* 04 */ int msg;
 };
+GBA_SIZE_CHECK(struct CharacterEndingEnt, 0x8);
 
 extern const struct CharacterEndingEnt gUnk_08CEE160[];
 extern const struct CharacterEndingEnt gUnk_08CEE3C8[];
@@ -201,6 +202,7 @@ struct EndingCgScrollEnt {
     /* 00 */ void const * img[7];
     /* 1C */ void const * tsa[4];
 };
+GBA_SIZE_CHECK(struct EndingCgScrollEnt, 0x2C);
 
 struct EndingCgScrollProc {
     /* 00 */ PROC_HEADER;

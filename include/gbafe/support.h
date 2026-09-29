@@ -43,6 +43,7 @@ struct SupportData
     /* 0E */ u8 exp_growth[UNIT_SUPPORT_MAX_COUNT];
     /* 15 */ u8 count;
 };
+GBA_SIZE_CHECK(struct SupportData, 0x18);
 
 struct SupportBonuses {
     /* 00 */ u8 affinity;
@@ -54,6 +55,7 @@ struct SupportBonuses {
     /* 05 */ u8 bonus_crit;
     /* 06 */ u8 bonus_dodge;
 };
+GBA_SIZE_CHECK(struct SupportBonuses, 0x8);
 
 struct SupportTalkEnt
 {
@@ -62,6 +64,7 @@ struct SupportTalkEnt
     /* 04 */ u32 msg[3];
     /* 10 */ u32 songs;
 };
+GBA_SIZE_CHECK(struct SupportTalkEnt, 0x14);
 
 extern struct SupportTalkEnt const gSupportTalkList[];
 

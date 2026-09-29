@@ -102,6 +102,7 @@ struct StatScreenInfo {
     /* 01 */ u8 unit_id;
     /* 02 */ u16 excluded_unit_flags;
 };
+GBA_SIZE_CHECK(struct StatScreenInfo, 0x4);
 
 enum statscreen_flag_bitfile {
     // StatScreenInfo::excluded_unit_flags
@@ -126,6 +127,7 @@ struct StatScreenTextInfo {
     /* 09 */ u8 x_offset;
     /* 0C */ int const * msg; // FE7J: char const * const * str_list
 };
+GBA_SIZE_CHECK(struct StatScreenTextInfo, 0x10);
 
 void InitStatScreenText(void);
 void PutStatScreenText(struct StatScreenTextInfo const * list);
@@ -295,6 +297,7 @@ struct HelpBoxInfo
     /* 14 */ void (* redirect)(struct HelpBoxProc *proc);
     /* 18 */ void (* populate)(struct HelpBoxProc *proc);
 };
+GBA_SIZE_CHECK(struct HelpBoxInfo, 0x1C);
 
 void HelpBoxMoveControl_OnEnd(struct HelpBoxProc * proc);
 void StartMovingHelpBox(struct HelpBoxInfo const * info, ProcPtr parent);

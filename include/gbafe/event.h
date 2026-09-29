@@ -14,6 +14,7 @@ struct EventCallLookupEnt {
     /* 00 */ int key;
     /* 04 */ int value;
 };
+GBA_SIZE_CHECK(struct EventCallLookupEnt, 0x8);
 
 #define NUM_BACKGROUNDS 0x5B
 
@@ -601,6 +602,7 @@ struct EventSpriteAnimConf {
 
     /* 12 */ u8 _pad_[2];
 };
+GBA_SIZE_CHECK(struct EventSpriteAnimConf, 0x14);
 
 struct ProcEventSpriteAnim {
     PROC_HEADER;
@@ -645,6 +647,7 @@ struct BackgroundInfo
     u8 const * tsa;
     u16 const * pal;
 };
+GBA_SIZE_CHECK(struct BackgroundInfo, 0xC);
 
 extern const struct BackgroundInfo gBackgroundTable[];
 
@@ -702,6 +705,7 @@ struct EventCmdInfo {
     int (* func)(struct EventProc * proc);
     int length; // in words
 };
+GBA_SIZE_CHECK(struct EventCmdInfo, 0x8);
 
 extern struct EventCmdInfo CONST_DATA gEventCmdTable[];
 
@@ -727,6 +731,7 @@ struct PopupInstruction {
     u8 opcode;
     uintptr_t data; // a number, a message id or a string (POPUP_OP_STR)
 };
+GBA_SIZE_CHECK(struct PopupInstruction, 0x8);
 
 struct PopupProc {
     /* 00 */ PROC_HEADER;

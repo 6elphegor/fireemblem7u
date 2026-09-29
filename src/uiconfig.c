@@ -20,12 +20,14 @@ struct GameOption
     /* 24 */ u8 icon;
     /* 28 */ bool (* func)(ProcPtr);
 };
+GBA_SIZE_CHECK(struct GameOption, 0x2C);
 
 struct GameOptionLayout
 {
     /* 00 */ u8 count;
     /* 04 */ u8 const * order;
 };
+GBA_SIZE_CHECK(struct GameOptionLayout, 0x8);
 
 struct ConfigScreen
 {

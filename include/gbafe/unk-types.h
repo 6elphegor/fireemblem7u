@@ -7,3 +7,4 @@ struct unk_type_0203A50C {
     u8 unk01;
     u8 unk02;
 };
+GBA_SIZE_CHECK(struct unk_type_0203A50C, 0x4);

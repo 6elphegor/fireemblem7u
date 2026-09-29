@@ -76,6 +76,7 @@ struct CharacterData {
 
     /* 31 */ u8 _pad_[0x34 - 0x31];
 };
+GBA_SIZE_CHECK(struct CharacterData, 0x34);
 
 extern CONST_DATA struct CharacterData gCharacterData[];
 
@@ -136,6 +137,7 @@ struct ClassData {
 
     /* 50 */ const void* _pU50;
 };
+GBA_SIZE_CHECK(struct ClassData, 0x54);
 
 extern CONST_DATA struct ClassData gClassData[];
 
@@ -193,6 +195,7 @@ struct Unit {
     /* 46 */ u8 _u46;
     /* 47 */ u8 _u47;
 };
+GBA_SIZE_CHECK(struct Unit, 0x48);
 
 extern struct Unit *gUnitLut[0x100];
 extern struct Unit gUnitArrayBlue[];
@@ -215,6 +218,7 @@ struct UnitDefinition {
     /* 08 */ u8 items[4];
     /* 0C */ u8 ai[4];
 };
+GBA_SIZE_CHECK(struct UnitDefinition, 0x10);
 
 enum {
     // Unit state constant masks

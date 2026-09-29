@@ -22,6 +22,7 @@ struct TactInfoPosEnt {
 	s16 x, y;
 	u8 shadow_len;
 };
+GBA_SIZE_CHECK(struct TactInfoPosEnt, 0x8);
 
 CONST_DATA struct TactInfoPosEnt TactInfoPos[] = {
 	{ 0x6C, 0x28, 8 },

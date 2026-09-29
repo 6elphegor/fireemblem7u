@@ -30,6 +30,7 @@ struct Trap {
     /* 03 */ u8 extra; // extra data (meaning varies based on trap type)
     /* 04 */ s8 data[4]; // more extra data (see above enum for per trap type entry allocations)
 };
+GBA_SIZE_CHECK(struct Trap, 0x8);
 
 #define TRAP_INDEX(aTrap) ((aTrap) - GetTrap(0))
 
@@ -56,6 +57,7 @@ struct MapChange {
     /* 04 */ u8 ySize;
     /* 08 */ const u16 * data;
 };
+GBA_SIZE_CHECK(struct MapChange, 0xC);
 
 extern u16 ** gBmMapBaseTiles; // FE7U: ROM-resident pointer (0x08B932B4)
 

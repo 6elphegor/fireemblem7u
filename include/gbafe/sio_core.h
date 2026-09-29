@@ -243,6 +243,7 @@ struct TacticianTextConf {
     /* 36 */ s16 adj_idx[4];
     /* 3E */ u8 action;
 };
+GBA_SIZE_CHECK(struct TacticianTextConf, 0x40);
 
 extern const struct TacticianTextConf gTacticianTextConf[];
 const struct TacticianTextConf * GetTacticianTextConf(s16);
@@ -591,6 +592,7 @@ struct LinkArenaRuleInfo
     /* 04 */ int xPos[2];
     /* 0C */ int optionTextId[2];
 };
+GBA_SIZE_CHECK(struct LinkArenaRuleInfo, 0x14);
 
 extern const struct LinkArenaRuleInfo gLinkArenaRuleData[];
 

@@ -117,6 +117,7 @@ struct EventListCmdInfo
     /* 00 */ int (* func)(struct EventInfo * info);
     /* 04 */ int length;
 };
+GBA_SIZE_CHECK(struct EventListCmdInfo, 0x8);
 
 struct EvCheck01
 {
@@ -180,6 +181,7 @@ struct TutorialEventEnt
     /* 08 */ u32 const * c;
     /* 0C */ u32 const * d;
 };
+GBA_SIZE_CHECK(struct TutorialEventEnt, 0x10);
 
 extern const struct TutorialEventEnt gTutorialEventTable[];
 
@@ -196,6 +198,7 @@ struct BattleTalkEnt
     /* 04 */ uintptr_t msg;   // message id, or an event (defeat lists)
     /* 08 */ u32 flag;
 };
+GBA_SIZE_CHECK(struct BattleTalkEnt, 0xC);
 
 struct BattleTalkExtEnt
 {
@@ -206,6 +209,7 @@ struct BattleTalkExtEnt
     /* 08 */ uintptr_t event;
     /* 0C */ u32 flag;
 };
+GBA_SIZE_CHECK(struct BattleTalkExtEnt, 0x10);
 
 struct DefeatTalkExtEnt
 {
@@ -215,6 +219,7 @@ struct DefeatTalkExtEnt
     /* 08 */ uintptr_t event;
     /* 0C */ u32 flag;
 };
+GBA_SIZE_CHECK(struct DefeatTalkExtEnt, 0x10);
 
 extern const struct BattleTalkExtEnt gBattleTalkExtList[];
 extern struct BattleTalkEnt const gBattleTalkList[];
@@ -235,12 +240,14 @@ struct ForceDeployEnt
     /* 01 */ u8 pid;
     /* 02 */ u8 pad[6];
 };
+GBA_SIZE_CHECK(struct ForceDeployEnt, 0x8);
 
 struct HardBonusLevelEnt
 {
     /* 00 */ u8 pid;
     /* 04 */ int levels;
 };
+GBA_SIZE_CHECK(struct HardBonusLevelEnt, 0x8);
 
 extern u8 gPermanentFlagBits[];
 extern u8 gChapterFlagBits[];
