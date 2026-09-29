@@ -637,10 +637,11 @@ A file is compiled again only when it, a header it includes or the flags
 changed.  It exits with 1 if any file has an error.  The headers are
 clang's freestanding `stddef.h`/`stdint.h`/`limits.h` (64-bit sizes) and
 agbcc's for `stdlib.h`/`string.h`; no libc for the targets is needed.
-Nothing is linked: there is no platform layer yet.  `docs/port-notes.md`
-lists what is left (the data region in GBA format, pointers in 32-bit
-words, hardware registers and VRAM addresses, fixed RAM addresses) and
-the original bugs the warnings showed.
+Nothing is linked yet.  `docs/port-notes.md` lists what is left (the data
+region in GBA format, pointers in 32-bit words, hardware registers and VRAM
+addresses, fixed RAM addresses) and the original bugs the warnings showed.
+The platform layer's first pieces, the BIOS calls in C and a renderer for
+the picture, are in `platform/` (`make platform-test`; `docs/port-platform.md`).
 
 Both targets must stay at 0 errors.  For new and changed code:
 
