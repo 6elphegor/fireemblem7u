@@ -433,6 +433,19 @@ EVLIST = {
 
 REGION = (0x08CA0540, 0x08CE2000)
 
+# Event scripts the chapter tables don't reach (code starts them, or another
+# script calls them): (start, end, file).  Each range is a run of whole
+# scripts; the last one may end at `end` with ENDB instead of ENDA.
+EXTRA_RANGES = [
+    (0x08CC0F54, 0x08CC1198, "epilogue"),   # ending scenes
+    (0x08CC1280, 0x08CC1C5C, "epilogue"),   # ... and the scripts that start them
+    (0x08CE1C64, 0x08CE1D0C, 0x42),         # the end of chapter 0x42
+    (0x08CE750C, 0x08CE7568, "common"),     # EventScr_SuspendPrompt
+    (0x08CE78C8, 0x08CED678, "worldmap"),   # gWmEventScripts
+]
+LIMITS = {}     # script start -> address it must end at
+EXTRA_ITEMS = set()
+
 
 # data placed from other sources (C modules) in data/layout.txt
 OTHER_DATA = []
@@ -518,7 +531,7 @@ def decode(it):
             vals = decode_fields(p + 2, fields)
             it.children += ptr_children(fields, vals)
             p += 4 * CMD_LEN[c]
-            if w == 0:
+            if w == 0 or p == LIMITS.get(a):
                 break
         it.size = p - a
     elif k == "units":
@@ -769,6 +782,27 @@ def collect_roots():
             p = rd32(TUTORIAL_TABLE + 16 * ch + 4 * i)
             if isrom(p):
                 roots.append((p, "evlist", ch, f"EvList_Ch{ch:02X}_Tutorial{n}"))
+    for start, end, owner in EXTRA_RANGES:
+        p = start
+        while p < end:
+            # a script ends with ENDA (a zero word), at the end of the range, or
+            # where code names the next one (a symbol at a command)
+            q, starts = p, {p}
+            while True:
+                w = rd32(q)
+                q += 4 * CMD_LEN[w & 0xFFFF]
+                starts.add(q)
+                if w == 0 or q == end:
+                    break
+                assert q < end, hex(p)
+            cut = min((a for a in SYMS if p < a < q and not a & 1 and a in starts), default=None)
+            if cut is not None:
+                q = cut
+            roots.append((p, "script", owner, None))
+            EXTRA_ITEMS.add(p)
+            if cut is not None or q == end:
+                LIMITS[p] = q
+            p = q
     # used by code (eventcall_0807CEC8.c)
     roots.append((0x08CB8984, "pidlist", 0x22, "gUnk_08CB8984"))
     roots.append((0x08CB898E, "pidlist", 0x22, "gUnk_08CB898E"))
@@ -786,6 +820,8 @@ def collect_roots():
 
 
 def main():
+    if "--report" not in sys.argv:
+        load_symbols()
     roots = collect_roots()
     discover(roots)
     resolve_overlaps()
@@ -803,7 +839,6 @@ def main():
     if "--report" in sys.argv:
         report()
         return
-    load_symbols()
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     only = None
     for a in sys.argv[1:]:
@@ -817,8 +852,9 @@ def owner_file(it):
         return {"traps": "traps", "shop": "shops"}[it.kind]
     if len(it.owners) == 1:
         o = next(iter(it.owners))
-        if o != "common":
-            return f"ch{o:02X}"
+        if isinstance(o, str):
+            return o
+        return f"ch{o:02X}"
     return "common"
 
 
@@ -893,6 +929,8 @@ def assign_names():
     for it in ITEMS_AT.values():
         if it.addr in SYMBOLS_LD:
             it.name = SYMBOLS_LD[it.addr]
+        elif it.addr in EXTRA_ITEMS and it.addr in SYMS:
+            it.name = SYMS[it.addr]
         elif not it.name:
             it.name = f"{DEFAULT_PREFIX[it.kind]}_{it.addr:08X}"
     names = defaultdict(list)
@@ -1223,6 +1261,10 @@ def emit(out, only=None):
             head = "Trap lists (ChapterEventGroup traps; struct TrapData)"
         elif f == "shops":
             head = "Shop item lists (SHOP location events)"
+        elif f == "epilogue":
+            head = "Ending scenes and the scripts that start them"
+        elif f == "worldmap":
+            head = "World map event scripts (gWmEventScripts)"
         else:
             ch = int(f[2:], 16)
             head = f"Chapter 0x{ch:02X}" + (f": {chapter_title(ch)}" if chapter_title(ch) else "")

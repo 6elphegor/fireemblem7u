@@ -25,10 +25,12 @@ extern void IsChapterNightOfFarewells();
 extern void IsNinoRecruited();
 extern void IsRathRecruited();
 extern void StartGameOverScreen();
+extern void WriteSuspendPlayerIdle();
 extern void sub_0807A1D0();
 extern void sub_0807A3B8();
 extern void sub_0807A454();
 extern void sub_0807A47C();
+extern void sub_080B2F40();
 extern void sub_080B2F94();
 
 // data in data/rom
@@ -1356,4 +1358,22 @@ const struct UnitDefinition Units_08CDDDEC[] = {
     UNIT(CHARACTER_NERGAL, CLASS_DARK_DRUID, CHARACTER_NONE, 20, FACTION_ID_RED, 0, 12, 6, 12, 6, ITEM_DARK_ERESHKIGAL, ITEM_NONE, ITEM_NONE, ITEM_NONE, 3, 3, 0xA, 0),
     UNIT(CHARACTER_LIMSTELLA, CLASS_SAGE_F, CHARACTER_NONE, 20, FACTION_ID_RED, 0, 12, 8, 12, 8, ITEM_ANIMA_BOLTING, ITEM_ANIMA_FIMBULVETR, ITEM_STAFF_FORTIFY, ITEM_NONE, 3, 3, 0xA, 0),
     UNIT_END,
+};
+
+SECTION(".rodata.ev_08CE750C")
+const EventScr EventScr_SuspendPrompt[] = {
+    EVBIT_NOTEXTSKIP,
+    TEX1(MSG_04A),                               // Do you want to quit?
+    IFAT(0, sub_080B2F40),
+    GOTO(1),
+    LABEL(0),
+    ASMC(WriteSuspendPlayerIdle),
+    TEX2(MSG_04B),                               // Next time, choose Resume Chapter to finish this
+    MUEN(3),
+    FADI(4),
+    EXIT_MAP,
+    ASMC(sub_080B2F94),
+    LABEL(1),
+    REMA,
+    ENDA,
 };

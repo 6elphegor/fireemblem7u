@@ -497,7 +497,6 @@ const struct UnitDefinition Units_Ch42_Player[] = {
     UNIT_END,
 };
 
-// unreferenced
 SECTION(".rodata.ev_08CE1384")
 const struct UnitDefinition Units_08CE1444[] = {
     UNIT(CHARACTER_FARINA, CLASS_PEGASUS_KNIGHT, CHARACTER_ELIWOOD, 10, FACTION_ID_BLUE, 0, 0, 6, 0, 6, ITEM_LANCE_IRON, ITEM_LANCE_JAVELIN, ITEM_MINE, ITEM_LIGHTRUNE, 0, 0, 0, 0),
@@ -654,4 +653,70 @@ const struct UnitDefinition Units_08CE1A74[] = {
     UNIT(CHARACTER_DARIN_FA, CLASS_GENERAL, CHARACTER_NONE, 15, FACTION_ID_RED, 0, 15, 9, 15, 9, ITEM_LANCE_STEEL, ITEM_LANCE_SLIM, ITEM_NONE, ITEM_NONE, 3, 3, 9, 0),
     UNIT(CHARACTER_JERME_56, CLASS_ASSASSIN, CHARACTER_NONE, 12, FACTION_ID_RED, 0, 16, 9, 16, 9, ITEM_SWORD_IRON, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 3, 3, 9, 0),
     UNIT_END,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1C64[] = {
+    LOU1(Units_Ch42_Player),
+    ENUN,
+    REMA,
+    ENDA,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1C78[] = {
+    LOU1(Units_08CE1444),
+    ENUN,
+    REMA,
+    ENDA,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1C8C[] = {
+    UNIT_CAM_OFF,
+    EVBIT_NOSKIP,
+    LOU1(Units_Ch42_Initial),
+    ENUN,
+    REMA,
+    ENDA,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1CA8[] = {
+    LOU1(Units_08CE14A4),
+    ENUN,
+    REMA,
+    ENDA,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1CBC[] = {
+    LOU1(Units_08CE1504),
+    ENUN,
+    REMA,
+    ENDA,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1CD0[] = {
+    LOU1(Units_08CE16C4),
+    ENUN,
+    REMA,
+    ENDA,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1CE4[] = {
+    LOU1(Units_08CE18C4),
+    ENUN,
+    REMA,
+    ENDA,
+};
+
+SECTION(".rodata.ev_08CE1384")
+const EventScr EventScr_08CE1CF8[] = {
+    LOU1(Units_08CE1A74),
+    ENUN,
+    REMA,
+    ENDA,
 };

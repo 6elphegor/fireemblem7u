@@ -241,15 +241,16 @@ constant into the same code.  The old label is gone from `data/rom`
 Rule for similar cases: never define an object over bytes that belong to
 another; index from the real start in the reader.
 
-## Event scripts in `data/rom`
+## Event scripts outside the chapter tables
 
-Event scripts outside `data/events` (the epilogue scripts at 0x08CC0F54 and
-0x08CC1280, `EventScr_SuspendPrompt`, the world map scripts at 0x08CE78C8
-and the ch42 tail at 0x08CE1C64) stay in assembly with their pointer words
-(~150 in `data_08C64894.s`).  `EventScr` is `uintptr_t`; their C form is
-the format of `include/event_macros.h` (see "Events"), which `tools/evdis.py`
-writes for the chapter events; `tools/datac.py` does not decode it yet, so
-these scripts are still assembly.
+The scripts that code or another script starts (the epilogue scenes at
+0x08CC0F54 and 0x08CC1280, `EventScr_SuspendPrompt`, the world map scripts
+0x08CE78C8-0x08CED678 and the end of chapter 0x42 at 0x08CE1C64) are in
+`src/events/` too (`epilogue.c`, `common.c`, `worldmap.c`, `ch42.c`): the
+`EXTRA_RANGES` of `tools/evdis.py` name each range, which is cut into scripts
+at a zero word (ENDA), at the end of the range, or where a symbol names a
+command.  After `evdis.py` the gap in `data/rom` is closed by rerunning
+`tools/datasplit.py`.
 
 ## Batches
 
