@@ -129,7 +129,7 @@ void SaveMenu_SetDifficultyChoice(s32, s32);
 /* savedraw */
 void sub_080A4E58(void);
 // ??? sub_80A5C60
-// ??? sub_080A503C
+// ??? BonusClaimMenu_Init_B
 // ??? sub_080A5084
 // ??? sub_080A50CC
 // ??? sub_80A5DF0

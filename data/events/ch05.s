@@ -391,7 +391,7 @@ EventScr_08CAB594:
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_90D            @ You want me to talk to that person? Understood.
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x5F
 	MENU_OVERRIDE_HIDE 0x63
@@ -452,7 +452,7 @@ EventScr_08CAB704:
 	LABEL 0x32
 	TUTORIAL_CURSORS_TARGET
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x5B
 	MENU_OVERRIDE_HIDE 0x63
@@ -471,7 +471,7 @@ EventScr_08CAB7CC:
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_90E            @ I'm supposed to talk to that person, right? Give
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xB
 	EVBIT_YESSKIP
 	REMA
@@ -485,7 +485,7 @@ EventScr_08CAB808:
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_914            @ My staff! Let me use my staff!
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xC
 	EVBIT_YESSKIP
 	REMA
@@ -497,7 +497,7 @@ EventScr_08CAB844:
 	EVBIT_SILENTSKIP
 	TUTORIAL_CURSORS_TARGET
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xD
 	REMA
 	ENDA

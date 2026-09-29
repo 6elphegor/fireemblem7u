@@ -79,7 +79,7 @@ void sub_0807CC5C(struct ProcWorldFlush * proc)
 
 #endif
 
-void sub_0807CD4C(struct ProcWorldFlush * proc)
+void EventWorldFlush_Loop_A(struct ProcWorldFlush * proc)
 {
     int duration = 0x40;
     int max = DISPLAY_WIDTH;
@@ -110,7 +110,7 @@ void WorldFlushReload(struct ProcWorldFlush * proc)
     proc->timer = 0;
 }
 
-void sub_0807CDEC(struct ProcWorldFlush * proc)
+void EventWorldFlush_Loop_B(struct ProcWorldFlush * proc)
 {
     int duration = 0x80;
 #if NONMATCHING
@@ -133,7 +133,7 @@ void sub_0807CDEC(struct ProcWorldFlush * proc)
         Proc_Break(proc);
 }
 
-void sub_0807CE60(struct ProcWorldFlush * proc)
+void EventWorldFlush_OnEnd(struct ProcWorldFlush * proc)
 {
     SetOnHBlankA(NULL);
 
@@ -145,7 +145,7 @@ void sub_0807CE60(struct ProcWorldFlush * proc)
     gDispIo.win_ct.wout_enable_blend = 1;
 }
 
-void sub_0807CEB4(ProcPtr proc)
+void StartEventWorldFlush(ProcPtr proc)
 {
     Proc_StartBlocking(ProcScr_EventWorldFlush, proc);
 }

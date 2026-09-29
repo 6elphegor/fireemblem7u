@@ -91,7 +91,7 @@ void sub_08047768(struct MuProc * muProc, int palIdx)
     StartPalFade(PalArray_SolidColors[palIdx], 0x16, 8, muProc);
 }
 
-void sub_080477B4(struct MuProc * muProc)
+void StartMuRestorePalInfo(struct MuProc * muProc)
 {
     struct MuEffectProc * muEffectProc;
 
@@ -181,7 +181,7 @@ void SioWarpFx_ShowMoveUnit(struct SioWarpProc * proc)
 
 void SioWarpFx_804C1D8(struct SioWarpProc * proc)
 {
-    sub_080477B4(proc->muProc);
+    StartMuRestorePalInfo(proc->muProc);
 }
 
 void SioWarpFx_AwaitSioWarp(ProcPtr proc)

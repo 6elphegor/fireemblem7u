@@ -81,9 +81,9 @@ PROC_CALL_ARG(NewFadeIn, 4),
     PROC_SLEEP(90),
     PROC_CALL(sub_080BB800),
     PROC_CALL(OpAnim_DrawWater),
-    PROC_REPEAT(sub_080BBB30),
+    PROC_REPEAT(OpeningSeqence_Loop_A),
     PROC_SLEEP(60),
-    PROC_REPEAT(sub_080BBA3C),
+    PROC_REPEAT(OpeningSeqence_Loop_B),
     PROC_BLOCK,
 PROC_LABEL(2),
     PROC_CALL(sub_080BC960),
@@ -93,14 +93,14 @@ PROC_LABEL(0),
     PROC_BLOCK,
 PROC_LABEL(1),
     PROC_CALL(sub_080BBBB8),
-    PROC_REPEAT(sub_080BBEB0),
+    PROC_REPEAT(OpeningSeqence_Loop_C),
     PROC_CALL(sub_080BC0A4),
-    PROC_REPEAT(sub_080BC0C4),
+    PROC_REPEAT(OpeningSeqence_Loop_D),
     PROC_YIELD,
     PROC_CALL(sub_080BC164),
-    PROC_REPEAT(sub_080BC21C),
+    PROC_REPEAT(OpeningSeqence_Loop_E),
     PROC_SLEEP(60),
-    PROC_REPEAT(sub_080BC280),
+    PROC_REPEAT(OpeningSeqence_Loop_F),
 PROC_LABEL(98),
     PROC_SLEEP(30),
     PROC_CALL(OpAnim_DrawCloud),
@@ -109,7 +109,7 @@ PROC_LABEL(98),
 PROC_CALL_ARG(NewFadeInWhite, 2),
     PROC_WHILE(FadeInExists),
     PROC_YIELD,
-    PROC_REPEAT(sub_080BC494),
+    PROC_REPEAT(OpeningSeqence_Loop_G),
     PROC_WHILE(CheckBmBgfxDone),
 PROC_LABEL(99),
     PROC_CALL(sub_080BC104),
@@ -309,7 +309,7 @@ void sub_080BB98C(struct OpAnimProc * proc)
     ApplyPaletteExt(gUnk_08673D38, 0x260, 0x20);
     Decompress(gUnk_08673D58, (void *) 0x06013000);
 }
-void sub_080BBA3C(struct OpAnimProc * proc)
+void OpeningSeqence_Loop_B(struct OpAnimProc * proc)
 {
     int val = ++proc->unk_2C;
 
@@ -344,7 +344,7 @@ void OpAnim_DrawWater(struct OpAnimProc * proc)
     gUnkOpAnim_03001620 |= 1;
     proc->unk_2C = 0;
 }
-void sub_080BBB30(struct OpAnimProc * proc)
+void OpeningSeqence_Loop_A(struct OpAnimProc * proc)
 {
     int val = ++proc->unk_2C;
 
@@ -451,7 +451,7 @@ void sub_080BBE7C(struct OpAnimProc * proc)
     sub_080BBC5C();
     sub_080BD1DC(-1, gUnk_08600604, 0, 0x10, 0xFFFF, 8, proc);
 }
-void sub_080BBEB0(struct OpAnimProc * proc)
+void OpeningSeqence_Loop_C(struct OpAnimProc * proc)
 {
     if (proc->unk_38 > proc->unk_30)
     {
@@ -551,7 +551,7 @@ void sub_080BC0A4(struct OpAnimProc * proc)
     gUnkOpAnim_03001620 |= 0x100;
     ArchiveCurrentPalettes();
 }
-void sub_080BC0C4(struct OpAnimProc * proc)
+void OpeningSeqence_Loop_D(struct OpAnimProc * proc)
 {
     int val = proc->unk_2C * 8 + 0x100;
     proc->unk_2C++;
@@ -599,7 +599,7 @@ void sub_080BC164(struct OpAnimProc * proc)
 
     proc->unk_3C = 1;
 }
-void sub_080BC21C(struct OpAnimProc * proc)
+void OpeningSeqence_Loop_E(struct OpAnimProc * proc)
 {
     int len = 0x70;
     int div = 8;
@@ -622,7 +622,7 @@ void sub_080BC21C(struct OpAnimProc * proc)
     }
 }
 
-void sub_080BC280(struct OpAnimProc * proc)
+void OpeningSeqence_Loop_F(struct OpAnimProc * proc)
 {
     if (proc->unk_2C == 0)
         StartBgmExt(0x5F, 0, NULL);
@@ -687,7 +687,7 @@ void sub_080BC474(struct OpAnimProc * proc)
 {
     SetDispEnable(1, 1, 1, 1, 1);
 }
-void sub_080BC494(struct OpAnimProc * proc)
+void OpeningSeqence_Loop_G(struct OpAnimProc * proc)
 {
     int angles[8] = { 0x00, 0x80, 0x40, 0xA0, 0x20, 0xE0, 0x60, 0xC0 };
     int step = 0x10;

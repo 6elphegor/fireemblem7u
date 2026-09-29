@@ -38,18 +38,18 @@ struct ProcEventMapLock
     /* 4D */ u8 unk_4D;
 };
 
-void sub_0807A4B0(void);
-void sub_0807A4BC(void);
-void sub_0807A52C(struct ProcTutorialCursor * proc);
-void sub_0807A558(struct ProcTutorialCursor * proc);
-void sub_0807A764(struct ProcTutorialCursor * proc);
-void sub_0807A76C(struct ProcTutorialCursor * proc);
+void UnsetKeyIgnoreMask(void);
+void AsnycKeyStatus_ButtonB(void);
+void TutorialCursor_Init(struct ProcTutorialCursor * proc);
+void TutorialCursor_Loop(struct ProcTutorialCursor * proc);
+void TutorialCursorWatcher_Init(struct ProcTutorialCursor * proc);
+void TutorialCursorWatcher_Loop(struct ProcTutorialCursor * proc);
 
 CONST_DATA struct ProcCmd ProcScr_ForceAsyncButtonB[] = {
     PROC_SLEEP(28),
-    PROC_CALL(sub_0807A4BC),
+    PROC_CALL(AsnycKeyStatus_ButtonB),
     PROC_SLEEP(8),
-    PROC_CALL(sub_0807A4B0),
+    PROC_CALL(UnsetKeyIgnoreMask),
     PROC_END,
 };
 
@@ -59,15 +59,15 @@ CONST_DATA u16 Obj_EventShinningCursor[] = {
 };
 
 CONST_DATA struct ProcCmd ProcScr_TutorialCursor[] = {
-    PROC_CALL(sub_0807A52C),
+    PROC_CALL(TutorialCursor_Init),
     PROC_SLEEP(1),
-    PROC_REPEAT(sub_0807A558),
+    PROC_REPEAT(TutorialCursor_Loop),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd ProcScr_TutorialCursorWatcher[] = {
-    PROC_CALL(sub_0807A764),
-    PROC_REPEAT(sub_0807A76C),
+    PROC_CALL(TutorialCursorWatcher_Init),
+    PROC_REPEAT(TutorialCursorWatcher_Loop),
     PROC_END,
 };
 
@@ -697,12 +697,12 @@ int sub_0807A49C(void)
     return ret;
 }
 
-void sub_0807A4B0(void)
+void UnsetKeyIgnoreMask(void)
 {
     SetkeyStIgnoredMask(0);
 }
 
-void sub_0807A4BC(void)
+void AsnycKeyStatus_ButtonB(void)
 {
     NewKeyStSetter(2);
 }
@@ -720,7 +720,7 @@ void ShinningEventCursor(int lo, int hi, int cur)
     EnablePalSync();
 }
 
-void sub_0807A52C(struct ProcTutorialCursor * proc)
+void TutorialCursor_Init(struct ProcTutorialCursor * proc)
 {
     proc->timer = 0;
     proc->fadeDir = 0;
@@ -729,7 +729,7 @@ void sub_0807A52C(struct ProcTutorialCursor * proc)
     ApplyPaletteExt(Pal_EventCursorShinning, 0x240, 0x20);
 }
 
-void sub_0807A558(struct ProcTutorialCursor * proc)
+void TutorialCursor_Loop(struct ProcTutorialCursor * proc)
 {
     int i;
     int x, y;
@@ -820,12 +820,12 @@ void StartTutorialCursors(u8 const * list)
     }
 }
 
-void sub_0807A764(struct ProcTutorialCursor * proc)
+void TutorialCursorWatcher_Init(struct ProcTutorialCursor * proc)
 {
     proc->timer = 15;
 }
 
-void sub_0807A76C(struct ProcTutorialCursor * proc)
+void TutorialCursorWatcher_Loop(struct ProcTutorialCursor * proc)
 {
     if (--proc->timer == 0 || (!BoxTalkActive() && (gpKeySt->pressed & R_BUTTON)))
     {
@@ -834,7 +834,7 @@ void sub_0807A76C(struct ProcTutorialCursor * proc)
     }
 }
 
-bool sub_0807A7B4(void)
+bool StartTutorialCursorWatcher(void)
 {
     bool active = BoxTalkActive();
 

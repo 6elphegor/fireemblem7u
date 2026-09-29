@@ -43,19 +43,19 @@ extern AnimScr AnimScr_BolganoneOBJChild_5[];
 
 /* auto-decls */
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
-void sub_0805AB44(struct Anim * anim, int terminator);
-void sub_0805AA7C(struct Anim * anim, int terminator);
-void sub_0805A62C(struct Anim * anim, int terminator);
-void sub_0805A6F8(struct Anim * anim, int terminator);
+void StartSubSpell_efxBolganoneOBJ2(struct Anim * anim, int terminator);
+void StartSubSpell_efxBolganoneBG3(struct Anim * anim, int terminator);
+void StartSubSpell_efxBolganoneBG(struct Anim * anim, int terminator);
+void StartSubSpell_efxBolganoneBGCOL(struct Anim * anim, int terminator);
 void EfxPlayHittedSFX(struct Anim * anim);
-void sub_0805A864(struct Anim * anim, int terminator);
-void sub_0805A78C(struct Anim * anim);
+void StartSubSpell_efxBolganoneOBJ(struct Anim * anim, int terminator);
+void StartSubSpell_efxBolganoneBG2(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
 extern struct ProcCmd ProcScr_efxBolganoneWOUT[];
 int sub_08004CC4(void);
 void NewEfxSpellCast(void);
-void sub_0805A928(struct Anim * anim, int idx);
-void sub_0805AC1C(struct Anim * anim, int idx);
+void StartSubSpell_efxBolganoneOBJChild(struct Anim * anim, int idx);
+void StartSubSpell_efxBolganoneOBJ2Child(struct Anim * anim, int idx);
 extern int gEfxBgSemaphore;
 extern int gUnknown_0202003C;
 extern struct ProcCmd ProcScr_efxBolganone[];
@@ -83,12 +83,12 @@ extern u16 Pal_BolganoneOBJ[];
 extern u16 Img_BolganoneOBJ2[];
 extern u16 Pal_BolganoneOBJ2[];
 
-void sub_0805ADF0(struct Anim * anim, int duration, int terminator);
-void sub_0805AE28(struct ProcEfxOBJ * proc);
+void StartSubSpell_efxBolganoneWOUT(struct Anim * anim, int duration, int terminator);
+void efxBolganoneWOUT_Loop(struct ProcEfxOBJ * proc);
 
 
 
-void sub_0805A3F0(struct Anim * anim)
+void StartSpellAnimBolganone(struct Anim * anim)
 {
     struct ProcEfx * proc;
 
@@ -102,7 +102,7 @@ void sub_0805A3F0(struct Anim * anim)
     proc->hitted = CheckRoundMiss(GetAnimRoundTypeAnotherSide(anim));
 }
 
-void sub_0805A42C(struct ProcEfx * proc)
+void efxBolganone_Loop(struct ProcEfx * proc)
 {
     struct Anim * anim = GetAnimAnotherSide(proc->anim);
     int duration = EfxGetCamMovDuration();
@@ -112,7 +112,7 @@ void sub_0805A42C(struct ProcEfx * proc)
 
     if (proc->timer == duration + 1)
     {
-        sub_0805AB44(anim, 130);
+        StartSubSpell_efxBolganoneOBJ2(anim, 130);
         PlaySFX(0x2CA, 0x100, 0x78, 0);
     }
 
@@ -123,7 +123,7 @@ void sub_0805A42C(struct ProcEfx * proc)
         else
             StartSpellThing_MagicQuake(anim, 105, 10);
 
-        sub_0805AA7C(anim, 40);
+        StartSubSpell_efxBolganoneBG3(anim, 40);
         SetBlendAlpha(0, 16);
         NewEfxALPHA(anim, 0, 8, 0, 16, 0);
         NewEfxALPHA(anim, 32, 8, 16, 0, 0);
@@ -131,12 +131,12 @@ void sub_0805A42C(struct ProcEfx * proc)
 
     if (proc->timer == duration + 100)
     {
-        sub_0805A62C(anim, 52);
-        sub_0805A6F8(anim, 52);
+        StartSubSpell_efxBolganoneBG(anim, 52);
+        StartSubSpell_efxBolganoneBGCOL(anim, 52);
     }
 
     if (proc->timer == duration + 120)
-        sub_0805ADF0(anim, 35, 25);
+        StartSubSpell_efxBolganoneWOUT(anim, 35, 25);
 
     if (proc->hitted == 0)
     {
@@ -145,11 +145,11 @@ void sub_0805A42C(struct ProcEfx * proc)
             anim->state3 |= ANIM_BIT3_TAKE_BACK_ENABLE | ANIM_BIT3_HIT_EFFECT_APPLIED;
             StartBattleAnimHitEffectsDefault(anim, proc->hitted);
             EfxPlayHittedSFX(anim);
-            sub_0805A864(anim, 60);
+            StartSubSpell_efxBolganoneOBJ(anim, 60);
             SetBlendAlpha(0, 16);
             NewEfxALPHA(anim, 0, 5, 0, 12, 0);
             NewEfxALPHA(anim, 60, 30, 12, 0, 0);
-            sub_0805A78C(anim);
+            StartSubSpell_efxBolganoneBG2(anim);
             PlaySFX(0x2CB, 0x100, 0x78, 0);
         }
 
@@ -177,7 +177,7 @@ void sub_0805A42C(struct ProcEfx * proc)
     }
 }
 
-void sub_0805A62C(struct Anim * anim, int terminator)
+void StartSubSpell_efxBolganoneBG(struct Anim * anim, int terminator)
 {
     struct ProcEfxBG * proc;
 
@@ -197,7 +197,7 @@ void sub_0805A62C(struct Anim * anim, int terminator)
     SpellFx_SetSomeColorEffect();
 }
 
-void sub_0805A680(struct ProcEfxBG * proc)
+void efxBolganoneBG_Loop(struct ProcEfxBG * proc)
 {
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -218,7 +218,7 @@ void sub_0805A680(struct ProcEfxBG * proc)
     }
 }
 
-void sub_0805A6F8(struct Anim * anim, int terminator)
+void StartSubSpell_efxBolganoneBGCOL(struct Anim * anim, int terminator)
 {
     struct ProcEfxBGCOL * proc;
 
@@ -236,7 +236,7 @@ void sub_0805A6F8(struct Anim * anim, int terminator)
     SpellFx_RegisterBgPal(Pal_BolganoneBGCOL, 0x20);
 }
 
-void sub_0805A740(struct ProcEfxBGCOL * proc)
+void efxBolganoneBGCOL_Loop(struct ProcEfxBGCOL * proc)
 {
     int ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -253,7 +253,7 @@ void sub_0805A740(struct ProcEfxBGCOL * proc)
     }
 }
 
-void sub_0805A78C(struct Anim * anim)
+void StartSubSpell_efxBolganoneBG2(struct Anim * anim)
 {
     struct ProcEfxBG * proc;
 
@@ -272,7 +272,7 @@ void sub_0805A78C(struct Anim * anim)
     SpellFx_SetSomeColorEffect();
 }
 
-void sub_0805A7E0(struct ProcEfxBG * proc)
+void efxBolganoneBG2_Loop(struct ProcEfxBG * proc)
 {
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -294,7 +294,7 @@ void sub_0805A7E0(struct ProcEfxBG * proc)
     }
 }
 
-void sub_0805A864(struct Anim * anim, int terminator)
+void StartSubSpell_efxBolganoneOBJ(struct Anim * anim, int terminator)
 {
     struct ProcEfxOBJ * proc;
 
@@ -312,7 +312,7 @@ void sub_0805A864(struct Anim * anim, int terminator)
     SpellFx_RegisterObjPal(Pal_BolganoneOBJ, 0x20);
 }
 
-void sub_0805A8B4(struct ProcEfxOBJ * proc)
+void efxBolganoneOBJ_Loop(struct ProcEfxOBJ * proc)
 {
     if (++proc->timer == (s16)proc->unk30)
     {
@@ -327,14 +327,14 @@ void sub_0805A8B4(struct ProcEfxOBJ * proc)
         proc->unk44 = 2;
 
         if (sub_08004CC4() > 4)
-            sub_0805A928(proc->anim, proc->unk48++);
+            StartSubSpell_efxBolganoneOBJChild(proc->anim, proc->unk48++);
 
         if (sub_08004CC4() > 4)
-            sub_0805A928(proc->anim, proc->unk48++);
+            StartSubSpell_efxBolganoneOBJChild(proc->anim, proc->unk48++);
     }
 }
 
-void sub_0805A928(struct Anim * anim, int idx)
+void StartSubSpell_efxBolganoneOBJChild(struct Anim * anim, int idx)
 {
     s16 durations[8];
     s16 types[64];
@@ -400,7 +400,7 @@ void sub_0805A928(struct Anim * anim, int idx)
     child->yPosition = proc->unk3A;
 }
 
-void sub_0805AA28(struct ProcEfxOBJ * proc)
+void efxBolganoneOBJChild_Loop(struct ProcEfxOBJ * proc)
 {
     struct Anim * anim = proc->anim2;
 
@@ -416,7 +416,7 @@ void sub_0805AA28(struct ProcEfxOBJ * proc)
     proc->timer++;
 }
 
-void sub_0805AA7C(struct Anim * anim, int terminator)
+void StartSubSpell_efxBolganoneBG3(struct Anim * anim, int terminator)
 {
     struct ProcEfxBG * proc;
 
@@ -437,7 +437,7 @@ void sub_0805AA7C(struct Anim * anim, int terminator)
     SpellFx_SetSomeColorEffect();
 }
 
-void sub_0805AAD8(struct ProcEfxBG * proc)
+void efxBolganoneBG3_Loop(struct ProcEfxBG * proc)
 {
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -459,7 +459,7 @@ void sub_0805AAD8(struct ProcEfxBG * proc)
     }
 }
 
-void sub_0805AB44(struct Anim * anim, int terminator)
+void StartSubSpell_efxBolganoneOBJ2(struct Anim * anim, int terminator)
 {
     struct ProcEfxOBJ * proc;
 
@@ -478,7 +478,7 @@ void sub_0805AB44(struct Anim * anim, int terminator)
     gUnknown_0202003C = 0;
 }
 
-void sub_0805AB9C(struct ProcEfxOBJ * proc)
+void efxBolganoneOBJ2_Loop(struct ProcEfxOBJ * proc)
 {
     if (++proc->timer == (s16)proc->unk30)
     {
@@ -494,14 +494,14 @@ void sub_0805AB9C(struct ProcEfxOBJ * proc)
         proc->unk44 = 2;
 
         if (sub_08004CC4() > 4)
-            sub_0805AC1C(proc->anim, proc->unk48++);
+            StartSubSpell_efxBolganoneOBJ2Child(proc->anim, proc->unk48++);
 
         if (sub_08004CC4() > 4)
-            sub_0805AC1C(proc->anim, proc->unk48++);
+            StartSubSpell_efxBolganoneOBJ2Child(proc->anim, proc->unk48++);
     }
 }
 
-void sub_0805AC1C(struct Anim * anim, int idx)
+void StartSubSpell_efxBolganoneOBJ2Child(struct Anim * anim, int idx)
 {
     s16 durations[8];
     s16 types[8];
@@ -559,7 +559,7 @@ void sub_0805AC1C(struct Anim * anim, int idx)
     child->yPosition = proc->unk3A;
 }
 
-void sub_0805AD44(struct ProcEfxBolganoneOBJ * proc)
+void efxBolganoneOBJ2Child_Loop(struct ProcEfxBolganoneOBJ * proc)
 {
     struct Anim * anim = proc->anim2;
     int r, off, x, y, a, s, c;
@@ -591,7 +591,7 @@ void sub_0805AD44(struct ProcEfxBolganoneOBJ * proc)
 }
 
 // 9.99 efxmagic-ivaldi:StartSubSpell_efxIvaldiWOUT
-void sub_0805ADF0(struct Anim * anim, int duration, int terminator)
+void StartSubSpell_efxBolganoneWOUT(struct Anim * anim, int duration, int terminator)
 {
     struct ProcEfxOBJ * proc;
 
@@ -608,7 +608,7 @@ void sub_0805ADF0(struct Anim * anim, int duration, int terminator)
 }
 
 // 9.99 efxmagic-ivaldi:efxIvaldiWOUT_Loop
-void sub_0805AE28(struct ProcEfxOBJ * proc)
+void efxBolganoneWOUT_Loop(struct ProcEfxOBJ * proc)
 {
     int val = Interpolate(INTERPOLATE_LINEAR, 0, 16, proc->timer, proc->terminator);
 

@@ -53,7 +53,7 @@ CONST_DATA struct ProcCmd ProcScr_SubtitleHelpToggle[] = {
     PROC_19,
     PROC_YIELD,
     PROC_CALL(sub_080325A0),
-    PROC_REPEAT(sub_08032710),
+    PROC_REPEAT(SubtitleHelpToggle_Loop),
     PROC_CALL(SubtitleHelp_OnEnd),
     PROC_SLEEP(8),
     PROC_END,
@@ -278,7 +278,7 @@ void sub_0803261C(int y)
     }
 }
 
-void sub_08032710(struct SubtitleHelpProc * proc)
+void SubtitleHelpToggle_Loop(struct SubtitleHelpProc * proc)
 {
     sub_0803261C(gSubtitleHelpToggleYLut[proc->textShowCnt]);
 
@@ -292,7 +292,7 @@ void sub_08032710(struct SubtitleHelpProc * proc)
         Proc_Break(proc);
 }
 
-void sub_08032770(ProcPtr parent)
+void StartSubtitleHelpToggle(ProcPtr parent)
 {
     struct SubtitleHelpProc * proc = Proc_StartBlocking(ProcScr_SubtitleHelpToggle, parent);
 

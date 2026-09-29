@@ -34,10 +34,10 @@ extern AnimScr AnimScr_GespenstOBJ2_A[];
 extern AnimScr AnimScr_GespenstOBJ2_B[];
 extern AnimScr AnimScr_GespenstOBJ2_C[];
 
-void sub_080608AC(struct Anim * anim);
-void sub_080609E4(struct Anim * anim, int terminator);
-void sub_08060C60(struct Anim * anim, int terminator);
-void sub_08060CFC(struct Anim * anim);
+void StartSubSpell_efxGespenstBG(struct Anim * anim);
+void StartSubSpell_efxGespenstBG2(struct Anim * anim, int terminator);
+void StartSubSpell_efxGespenstOBJ(struct Anim * anim, int terminator);
+void StartSubSpell_efxGespenstOBJ2(struct Anim * anim);
 
 void StartSubSpell_efxGespenstBG4(struct Anim * anim, int terminator);
 void efxGespenstBG4_OnEnd(void);
@@ -47,7 +47,7 @@ void efxGespenstBGCOL2_Loop(struct ProcEfxBGCOL * proc);
 
 extern const u16 StartSubSpell_efxGespenstBGCOL2_frames[];
 
-void sub_08060688(struct Anim * anim)
+void StartSpellAnimGespenst(struct Anim * anim)
 {
     struct ProcEfx * proc;
 
@@ -61,7 +61,7 @@ void sub_08060688(struct Anim * anim)
     proc->hitted = CheckRoundMiss(GetAnimRoundTypeAnotherSide(anim));
 }
 
-void sub_080606C4(struct ProcEfx * proc)
+void efxGespenst_Loop(struct ProcEfx * proc)
 {
     struct Anim * anim = GetAnimAnotherSide(proc->anim);
     int duration = EfxGetCamMovDuration();
@@ -73,8 +73,8 @@ void sub_080606C4(struct ProcEfx * proc)
 
     if (proc->timer == duration + 1)
     {
-        sub_080608AC(anim);
-        sub_08060CFC(anim);
+        StartSubSpell_efxGespenstBG(anim);
+        StartSubSpell_efxGespenstOBJ2(anim);
         SetBlendAlpha(0, 16);
         NewEfxALPHA(anim, 0, 20, 0, 16, 0);
         NewEfxALPHA(anim, 50, 10, 16, 0, 0);
@@ -83,14 +83,14 @@ void sub_080606C4(struct ProcEfx * proc)
     else if (proc->timer == duration + 0x45)
     {
         StartSpellThing_MagicQuake(proc->anim, 90, 10);
-        sub_080609E4(anim, 84);
+        StartSubSpell_efxGespenstBG2(anim, 84);
         SetBlendAlpha(0, 16);
         NewEfxALPHA(anim, 0, 20, 0, 16, 0);
         PlaySFX(0x2C8, 0x100, 0x78, 1);
     }
     else if (proc->timer == duration + 0x58)
     {
-        sub_08060C60(anim, 50);
+        StartSubSpell_efxGespenstOBJ(anim, 50);
     }
     else if (proc->timer == duration + 0x5D)
     {
@@ -137,7 +137,7 @@ void sub_080606C4(struct ProcEfx * proc)
     }
 }
 
-void sub_080608AC(struct Anim * anim)
+void StartSubSpell_efxGespenstBG(struct Anim * anim)
 {
     struct ProcEfxBG * proc;
 
@@ -166,7 +166,7 @@ void sub_080608AC(struct Anim * anim)
     SpellFx_SetSomeColorEffect();
 }
 
-void sub_08060940(struct ProcEfxBG * proc)
+void efxGespenstBG_Loop(struct ProcEfxBG * proc)
 {
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -197,7 +197,7 @@ void sub_08060940(struct ProcEfxBG * proc)
     }
 }
 
-void sub_080609E4(struct Anim * anim, int terminator)
+void StartSubSpell_efxGespenstBG2(struct Anim * anim, int terminator)
 {
     struct ProcEfxBG * proc;
 
@@ -219,14 +219,14 @@ void sub_080609E4(struct Anim * anim, int terminator)
     SetWinEnable(0, 0, 0);
 }
 
-void sub_08060A8C(void)
+void efxGespenstBG2_OnEnd(void)
 {
     SpellFx_ClearBG1();
     gEfxBgSemaphore--;
     SpellFx_ClearColorEffects();
 }
 
-void sub_08060AA8(struct ProcEfxBG * proc)
+void efxGespenstBG2_Loop(struct ProcEfxBG * proc)
 {
     if (GetAnimPosition(proc->anim) == EKR_POS_L)
         gDispIo.bg_off[BG_1].x += 2;
@@ -333,7 +333,7 @@ void efxGespenstBGCOL2_Loop(struct ProcEfxBGCOL * proc)
     return;
 }
 
-void sub_08060C60(struct Anim * anim, int terminator)
+void StartSubSpell_efxGespenstOBJ(struct Anim * anim, int terminator)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * front;
@@ -353,7 +353,7 @@ void sub_08060C60(struct Anim * anim, int terminator)
     SpellFx_RegisterObjGfx(Img_GespenstOBJ, 0x1000);
 }
 
-void sub_08060CC8(struct ProcEfxOBJ * proc)
+void efxGespenstOBJ_Loop(struct ProcEfxOBJ * proc)
 {
     if (++proc->timer == proc->terminator)
     {
@@ -363,7 +363,7 @@ void sub_08060CC8(struct ProcEfxOBJ * proc)
     }
 }
 
-void sub_08060CFC(struct Anim * anim)
+void StartSubSpell_efxGespenstOBJ2(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * front;
@@ -383,13 +383,13 @@ void sub_08060CFC(struct Anim * anim)
     SpellFx_RegisterObjGfx(Img_GespenstOBJ2, 0x1000);
 }
 
-void sub_08060D70(struct ProcEfxOBJ * proc)
+void efxGespenstOBJ2_OnEnd(struct ProcEfxOBJ * proc)
 {
     gEfxBgSemaphore--;
     AnimDelete(proc->anim2);
 }
 
-void sub_08060D88(struct ProcEfxOBJ * proc)
+void efxGespenstOBJ2_Loop_A(struct ProcEfxOBJ * proc)
 {
     struct Anim * anim = proc->anim2;
 
@@ -398,7 +398,7 @@ void sub_08060D88(struct ProcEfxOBJ * proc)
     Proc_Break(proc);
 }
 
-void sub_08060DA4(struct ProcEfxOBJ * proc)
+void efxGespenstOBJ2_Loop_B(struct ProcEfxOBJ * proc)
 {
     struct Anim * anim = proc->anim2;
 
@@ -407,7 +407,7 @@ void sub_08060DA4(struct ProcEfxOBJ * proc)
     Proc_Break(proc);
 }
 
-void sub_08060DC0(struct ProcEfxOBJ * proc)
+void efxGespenstOBJ2_Loop_C(struct ProcEfxOBJ * proc)
 {
     struct Anim * anim = proc->anim2;
 

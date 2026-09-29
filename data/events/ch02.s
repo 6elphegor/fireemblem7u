@@ -337,7 +337,7 @@ EventScr_08CA9418:
 	STAL 8
 	TUTORIAL_TEXT 56, 56, MSG_889            @ You want me to visit that home, right? I underst
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -364,7 +364,7 @@ EventScr_08CA94BC:
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 52, 56, MSG_890, MSG_891 @ I'm next, am I? Well, I'm ready to go! / It's my turn next? I'm ready to go!
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x5F
@@ -409,7 +409,7 @@ EventScr_08CA9578:
 	ASMC_WAIT2 BoxTalkActive
 	ENUT 0xC
 	LABEL 0x10
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x5F
@@ -428,7 +428,7 @@ EventScr_08CA96A8:
 	STAL 8
 	TUTORIAL_TEXT 52, 56, MSG_88A            @ First, I'm going to visit that home, right? Well
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xE
 	EVBIT_YESSKIP
 	REMA
@@ -442,7 +442,7 @@ EventScr_08CA96E4:
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 48, 56, MSG_893, MSG_894 @ It's my turn to speak with the locals, isn't it? / Please, I would like to help out however I can.
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xF
 	EVBIT_YESSKIP
 	REMA
@@ -464,7 +464,7 @@ EventScr_08CA9724:
 	TUTORIAL_TEXT 52, 56, MSG_895            @ Yes, I await your orders. I understand I am to v
 	ASMC_WAIT2 BoxTalkActive
 	LABEL 6
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x10
 	EVBIT_YESSKIP
 	REMA

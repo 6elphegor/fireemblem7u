@@ -288,7 +288,7 @@ ProcPtr Proc_FindNonBlocked(const struct ProcCmd * script)
     return 0;
 }
 
-ProcPtr sub_080046F4(int mark)
+ProcPtr Proc_FindWithMark(int mark)
 {
     int i;
     struct Proc * ptr = sProcArray;

@@ -299,7 +299,7 @@ void sub_08041584(int * cur, u8 bottom, u8 top, int * buf, u8 total)
 }
 
 //! FE8U = 0x08046CF0
-void sub_08041610(struct SioTermProc * proc)
+void SIOTERM_Loop_A(struct SioTermProc * proc)
 {
     int current = proc->unk_48;
 
@@ -366,7 +366,7 @@ void sub_080416F0(ProcPtr proc)
 }
 
 //! FE8U = 0x08046DEC
-void sub_0804170C(ProcPtr proc)
+void SIOTERM_Loop_B(ProcPtr proc)
 {
     if (Proc_Find(ProcScr_AtMenu) == NULL)
     {

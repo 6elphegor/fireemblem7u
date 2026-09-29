@@ -2128,15 +2128,15 @@ gUnk_08CA0538:
 	.global ProcScr_EventWorldFlush
 ProcScr_EventWorldFlush:
 	.incbin "baserom.gba", 0xca79c4, 0xc
-	.4byte sub_0807CE60
+	.4byte EventWorldFlush_OnEnd
 	.incbin "baserom.gba", 0xca79d4, 0x4
 	.4byte sub_0807CC5C
 	.incbin "baserom.gba", 0xca79dc, 0x4
-	.4byte sub_0807CD4C
+	.4byte EventWorldFlush_Loop_A
 	.incbin "baserom.gba", 0xca79e4, 0x4
 	.4byte WorldFlushReload
 	.incbin "baserom.gba", 0xca79ec, 0x4
-	.4byte sub_0807CDEC
+	.4byte EventWorldFlush_Loop_B
 	.incbin "baserom.gba", 0xca79f4, 0x8
 
 	.section .rodata.08CBB47C, "a"
@@ -5596,9 +5596,9 @@ gpSaveDrawBonusClaimData:
 	.global ProcScr_BonusClaimMenu
 ProcScr_BonusClaimMenu:
 	.incbin "baserom.gba", 0xce40f8, 0x4
-	.4byte sub_080A4F74
+	.4byte BonusClaimMenu_Init_A
 	.incbin "baserom.gba", 0xce4100, 0x4
-	.4byte sub_080A503C
+	.4byte BonusClaimMenu_Init_B
 	.incbin "baserom.gba", 0xce4108, 0x4
 	.4byte sub_080A50CC
 	.incbin "baserom.gba", 0xce4110, 0x14
@@ -5907,7 +5907,7 @@ ProcScr_TactNameSelect:
 	.incbin "baserom.gba", 0xce477c, 0xc
 	.4byte TactBlood_Init
 	.incbin "baserom.gba", 0xce478c, 0xc
-	.4byte sub_080A6E28
+	.4byte TactNameSelect_Loop
 	.incbin "baserom.gba", 0xce479c, 0x4
 	.4byte sub_080A6E2C
 	.incbin "baserom.gba", 0xce47a4, 0x8
@@ -5917,7 +5917,7 @@ ProcScr_TactBirthSelect:
 	.incbin "baserom.gba", 0xce47ac, 0xc
 	.4byte sub_080A6E78
 	.incbin "baserom.gba", 0xce47bc, 0xc
-	.4byte sub_080A6F34
+	.4byte TactBirthSelect_Loop
 	.incbin "baserom.gba", 0xce47cc, 0x4
 	.4byte sub_080A715C
 	.incbin "baserom.gba", 0xce47d4, 0x8
@@ -5927,7 +5927,7 @@ ProcScr_TactGenderSelect:
 	.incbin "baserom.gba", 0xce47dc, 0xc
 	.4byte sub_080A71A8
 	.incbin "baserom.gba", 0xce47ec, 0xc
-	.4byte sub_080A722C
+	.4byte TactGenderSelect_Loop
 	.incbin "baserom.gba", 0xce47fc, 0x4
 	.4byte sub_080A73AC
 	.incbin "baserom.gba", 0xce4804, 0x8

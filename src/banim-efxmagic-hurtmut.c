@@ -13,7 +13,7 @@ extern u32 AnimScr_EfxBindingBlade_Right[];
 extern u16 Pal_FireBreathSprites[];
 extern u16 Img_BreathSprites[];
 
-void sub_0805779C(struct Anim * anim);
+void StartSpellAnimHurtmut(struct Anim * anim);
 void efxHurtmut_Loop_Main(struct ProcEfx * proc);
 void StartSubSpell_efxHurtmutOBJ(struct Anim * anim);
 void efxHurtmutOBJ_Loop(struct ProcEfxOBJ * proc);
@@ -21,7 +21,7 @@ void efxHurtmutOBJ_Loop(struct ProcEfxOBJ * proc);
 
 
 // 9.99 efxmagic-bindingblade:StartSpellAnimBindingBlade
-void sub_0805779C(struct Anim * anim)
+void StartSpellAnimHurtmut(struct Anim * anim)
 {
     struct ProcEfx * proc;
 

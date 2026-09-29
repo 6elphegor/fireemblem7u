@@ -2763,7 +2763,7 @@ ProcScr_Talk:
 	.incbin "baserom.gba", 0xb909e4, 0xc
 	.4byte Talk_OnInit
 	.incbin "baserom.gba", 0xb909f4, 0x4
-	.4byte sub_08008218
+	.4byte Talk_Loop
 	.incbin "baserom.gba", 0xb909fc, 0x8
 
 	.global gProcScr_TalkLock
@@ -2821,8 +2821,8 @@ gUnk_08B90A8C:
 	.4byte gUnk_08B90A84
 	.4byte gUnk_08B90A7C
 
-	.global gUnk_08B90ACC
-gUnk_08B90ACC:
+	.global gProcScr_TalkShiftClearAll
+gProcScr_TalkShiftClearAll:
 	.incbin "baserom.gba", 0xb90acc, 0xc
 	.4byte sub_0800931C
 	.incbin "baserom.gba", 0xb90adc, 0x4
@@ -2857,7 +2857,7 @@ gUnk_08B90B24:
 	.global ProcScr_TalkSpriteShiftClear
 ProcScr_TalkSpriteShiftClear:
 	.incbin "baserom.gba", 0xb90b4c, 0xc
-	.4byte sub_080096BC
+	.4byte TalkSpriteShiftClear_Init
 	.incbin "baserom.gba", 0xb90b5c, 0xc
 	.4byte sub_080096D4
 	.incbin "baserom.gba", 0xb90b6c, 0x10
@@ -2869,7 +2869,7 @@ gTalkPauseDurations:
 	.global gProcScr_TalkBubbleOpen
 gProcScr_TalkBubbleOpen:
 	.incbin "baserom.gba", 0xb90b8c, 0x4
-	.4byte sub_080099A4
+	.4byte TalkBubbleOpen_OnIdle
 	.incbin "baserom.gba", 0xb90b94, 0x8
 
 	.global gProcScr_TalkOpen
@@ -2879,11 +2879,11 @@ ProcScr_08B90B9C:
 	.incbin "baserom.gba", 0xb90b9c, 0xc
 	.4byte TalkOpen_OnEnd
 	.incbin "baserom.gba", 0xb90bac, 0x4
-	.4byte sub_08009D58
+	.4byte TalkOpen_InitBlend
 	.incbin "baserom.gba", 0xb90bb4, 0x4
 	.4byte TalkOpen_PutTalkBubble
 	.incbin "baserom.gba", 0xb90bbc, 0x4
-	.4byte sub_08009DFC
+	.4byte TalkOpen_OnIdle
 	.incbin "baserom.gba", 0xb90bc4, 0x8
 
 	.global gTalkFaceHPosLut
@@ -3224,9 +3224,9 @@ ProcScr_EventCursor:
 	.global ProcScr_CamMoveLinear
 ProcScr_CamMoveLinear:
 	.incbin "baserom.gba", 0xb92e70, 0x4
-	.4byte nullsub_37
+	.4byte CamMoveLinear_OnEnd
 	.incbin "baserom.gba", 0xb92e78, 0x4
-	.4byte sub_08015F94
+	.4byte CamMoveLinear_Loop
 	.incbin "baserom.gba", 0xb92e80, 0x8
 
 	.section .rodata.08B932B8, "a"
@@ -5915,8 +5915,8 @@ gAiSpecificPositionLists:
 	.4byte gUnk_08B972E0
 	.incbin "baserom.gba", 0xb972ec, 0xc
 
-	.global gUnk_08B972F8
-gUnk_08B972F8:
+	.global AiScr_AiB_MoveToEnemy
+AiScr_AiB_MoveToEnemy:
 	.incbin "baserom.gba", 0xb972f8, 0x20
 
 	.global gUnk_08B97318
@@ -5943,20 +5943,20 @@ gUnk_08B973B8:
 	.4byte gUnk_08B970F4
 	.incbin "baserom.gba", 0xb973c4, 0x14
 
-	.global gUnk_08B973D8
-gUnk_08B973D8:
+	.global AiScr_AiB_NeverMove
+AiScr_AiB_NeverMove:
 	.incbin "baserom.gba", 0xb973d8, 0x20
 
-	.global gUnk_08B973F8
-gUnk_08B973F8:
+	.global AiScr_AiB_PillageThenPursue
+AiScr_AiB_PillageThenPursue:
 	.incbin "baserom.gba", 0xb973f8, 0x30
 
-	.global gUnk_08B97428
-gUnk_08B97428:
+	.global AiScr_AiB_PillageThenEscape
+AiScr_AiB_PillageThenEscape:
 	.incbin "baserom.gba", 0xb97428, 0x30
 
-	.global gUnk_08B97458
-gUnk_08B97458:
+	.global gAiScript_Escape
+gAiScript_Escape:
 	.incbin "baserom.gba", 0xb97458, 0x60
 
 	.global gUnk_08B974B8
@@ -6012,32 +6012,32 @@ gUnk_08B977F8:
 	.4byte gUnk_08B970F8 + 0x2
 	.incbin "baserom.gba", 0xb97804, 0x54
 
-	.global gUnk_08B97858
-gUnk_08B97858:
+	.global gAiScript_ActionInRange
+gAiScript_ActionInRange:
 	.incbin "baserom.gba", 0xb97858, 0x20
 
-	.global gUnk_08B97878
-gUnk_08B97878:
+	.global gAiScript_ActionInRange_80Perc
+gAiScript_ActionInRange_80Perc:
 	.incbin "baserom.gba", 0xb97878, 0x20
 
-	.global gUnk_08B97898
-gUnk_08B97898:
+	.global gAiScript_ActionInRange_50Perc
+gAiScript_ActionInRange_50Perc:
 	.incbin "baserom.gba", 0xb97898, 0x20
 
-	.global gUnk_08B978B8
-gUnk_08B978B8:
+	.global gAiScript_ActionStanding
+gAiScript_ActionStanding:
 	.incbin "baserom.gba", 0xb978b8, 0x20
 
-	.global gUnk_08B978D8
-gUnk_08B978D8:
+	.global gAiScript_ActionStanding_80Perc
+gAiScript_ActionStanding_80Perc:
 	.incbin "baserom.gba", 0xb978d8, 0x20
 
-	.global gUnk_08B978F8
-gUnk_08B978F8:
+	.global gAiScript_ActionStanding_50Perc
+gAiScript_ActionStanding_50Perc:
 	.incbin "baserom.gba", 0xb978f8, 0x20
 
-	.global gUnk_08B97918
-gUnk_08B97918:
+	.global gAiScript_DoNothing
+gAiScript_DoNothing:
 	.incbin "baserom.gba", 0xb97918, 0x38
 	.4byte sub_0803A3D4
 	.incbin "baserom.gba", 0xb97954, 0x94
@@ -6076,8 +6076,8 @@ gUnk_08B97A38:
 gUnk_08B97A58:
 	.incbin "baserom.gba", 0xb97a58, 0x4
 
-	.global gUnk_08B97A5C
-gUnk_08B97A5C:
+	.global gAiScript_ActionInRange_ExceptCivilian
+gAiScript_ActionInRange_ExceptCivilian:
 	.incbin "baserom.gba", 0xb97a5c, 0x8
 	.4byte gUnk_08B97A58
 	.incbin "baserom.gba", 0xb97a68, 0x1c
@@ -6307,19 +6307,19 @@ gUnk_08B98898:
 
 	.global gAi2ScriptTable
 gAi2ScriptTable:
-	.4byte gUnk_08B972F8
+	.4byte AiScr_AiB_MoveToEnemy
 	.4byte gUnk_08B97398
 	.4byte gUnk_08B973B8
-	.4byte gUnk_08B973D8
-	.4byte gUnk_08B973F8
-	.4byte gUnk_08B97428
+	.4byte AiScr_AiB_NeverMove
+	.4byte AiScr_AiB_PillageThenPursue
+	.4byte AiScr_AiB_PillageThenEscape
 	.4byte gUnk_08B97608
 	.4byte gUnk_08B97678
 	.4byte gUnk_08B975B8
 	.4byte gUnk_08B97778
 	.4byte gUnk_08B97FCC
 	.4byte gUnk_08B97FDC
-	.4byte gUnk_08B97458
+	.4byte gAiScript_Escape
 	.4byte gUnk_08B9806C
 	.4byte gUnk_08B9811C
 	.4byte gUnk_08B9827C
@@ -6345,15 +6345,15 @@ gAi2ScriptTable:
 
 	.global gAi1ScriptTable
 gAi1ScriptTable:
-	.4byte gUnk_08B97858
-	.4byte gUnk_08B97878
-	.4byte gUnk_08B97898
-	.4byte gUnk_08B978B8
-	.4byte gUnk_08B978D8
-	.4byte gUnk_08B978F8
-	.4byte gUnk_08B97918
+	.4byte gAiScript_ActionInRange
+	.4byte gAiScript_ActionInRange_80Perc
+	.4byte gAiScript_ActionInRange_50Perc
+	.4byte gAiScript_ActionStanding
+	.4byte gAiScript_ActionStanding_80Perc
+	.4byte gAiScript_ActionStanding_50Perc
+	.4byte gAiScript_DoNothing
 	.4byte gUnk_08B979EC
-	.4byte gUnk_08B97A5C
+	.4byte gAiScript_ActionInRange_ExceptCivilian
 	.4byte gUnk_08B97A9C
 	.4byte gUnk_08B97ABC
 	.4byte gUnk_08B97AFC
@@ -6522,7 +6522,7 @@ ProcScr_SIOPRA:
 	.incbin "baserom.gba", 0xb98fe4, 0xc
 	.4byte New6C_SIOMAIN2
 	.incbin "baserom.gba", 0xb98ff4, 0xc
-	.4byte sub_0804057C
+	.4byte SIOPRA_Loop
 	.incbin "baserom.gba", 0xb99004, 0x4
 	.4byte Set_0203DDDC
 	.incbin "baserom.gba", 0xb9900c, 0x4
@@ -6640,7 +6640,7 @@ ProcScr_SIOBAT:
 	.incbin "baserom.gba", 0xb99258, 0xc
 	.4byte New6C_SIOMAIN2
 	.incbin "baserom.gba", 0xb99268, 0xc
-	.4byte sub_0804057C
+	.4byte SIOPRA_Loop
 	.incbin "baserom.gba", 0xb99278, 0x4
 	.4byte Set_0203DDDC
 	.incbin "baserom.gba", 0xb99280, 0x4
@@ -6698,7 +6698,7 @@ ProcScr_SIOTERM:
 	.incbin "baserom.gba", 0xb993c0, 0xc
 	.4byte FE6Link_Init
 	.incbin "baserom.gba", 0xb993d0, 0x4
-	.4byte sub_08041610
+	.4byte SIOTERM_Loop_A
 	.incbin "baserom.gba", 0xb993d8, 0x4
 	.4byte Set_0203DDDC
 	.incbin "baserom.gba", 0xb993e0, 0x4
@@ -6720,7 +6720,7 @@ ProcScr_SIOTERM:
 	.incbin "baserom.gba", 0xb99428, 0xc
 	.4byte StartPrepAtMenuWithConfig
 	.incbin "baserom.gba", 0xb99438, 0xc
-	.4byte sub_0804170C
+	.4byte SIOTERM_Loop_B
 	.incbin "baserom.gba", 0xb99448, 0x4
 	.4byte StartBmVSync
 	.incbin "baserom.gba", 0xb99450, 0x4
@@ -6884,11 +6884,11 @@ ProcScr_FE6Link:
 	.incbin "baserom.gba", 0xb99a08, 0x4
 	.4byte sub_080434EC
 	.incbin "baserom.gba", 0xb99a10, 0x4
-	.4byte sub_08043538
+	.4byte FE6Link_Loop_B
 	.incbin "baserom.gba", 0xb99a18, 0x4
-	.4byte sub_0804362C
+	.4byte FE6Link_Loop_C
 	.incbin "baserom.gba", 0xb99a20, 0x4
-	.4byte sub_080436A0
+	.4byte FE6Link_Loop_D
 	.incbin "baserom.gba", 0xb99a28, 0x4
 	.4byte Set_0203DDDC
 	.incbin "baserom.gba", 0xb99a30, 0x4
@@ -6900,19 +6900,19 @@ ProcScr_FE6Link:
 	.incbin "baserom.gba", 0xb99a58, 0xc
 	.4byte FE6Link_Init
 	.incbin "baserom.gba", 0xb99a68, 0xc
-	.4byte sub_08043700
+	.4byte FE6Link_Loop_E
 	.incbin "baserom.gba", 0xb99a78, 0x4
 	.4byte sub_08043F04
 	.incbin "baserom.gba", 0xb99a80, 0x4
 	.4byte sub_08043F1C
 	.incbin "baserom.gba", 0xb99a88, 0x4
-	.4byte sub_08043F50
+	.4byte FE6Link_Loop_G
 	.incbin "baserom.gba", 0xb99a90, 0x4
 	.4byte sub_08043F04
 	.incbin "baserom.gba", 0xb99a98, 0x14
-	.4byte sub_08043798
+	.4byte FE6Link_Loop_I
 	.incbin "baserom.gba", 0xb99ab0, 0xc
-	.4byte sub_0804408C
+	.4byte FE6Link_Loop_J
 	.incbin "baserom.gba", 0xb99ac0, 0x4
 	.4byte FE6Link_OnEnd
 	.incbin "baserom.gba", 0xb99ac8, 0x10
@@ -7147,11 +7147,11 @@ ProcScr_SIOMAIN2:
 	.incbin "baserom.gba", 0xb9a130, 0xc
 	.4byte gUnk_08B9A580
 	.incbin "baserom.gba", 0xb9a140, 0xc
-	.4byte sub_08045194
+	.4byte SIOMAIN2_Loop_A
 	.incbin "baserom.gba", 0xb9a150, 0x14
 	.4byte sub_08046EB8
 	.incbin "baserom.gba", 0xb9a168, 0x4
-	.4byte sub_08046F04
+	.4byte SIOMAIN2_Loop_B
 	.incbin "baserom.gba", 0xb9a170, 0xc
 	.4byte sub_08045334
 	.incbin "baserom.gba", 0xb9a180, 0x8
@@ -9130,14 +9130,14 @@ gEkrSpellAnimLut:
 	.4byte StartSpellAnimSong
 	.4byte StartSpellAnimDance
 	.4byte StartSpellAnimBallista
-	.4byte sub_0805743C
-	.4byte sub_0805779C
+	.4byte StartSpellAnimSpell11
+	.4byte StartSpellAnimHurtmut
 	.4byte StartSpellAnimFireBreath
 	.4byte StartSpellAnimIceBreath
 	.4byte StartSpellAnimDarkBreath
 	.4byte StartSpellAnimFire
 	.4byte StartSpellAnimElfire
-	.4byte sub_0805A3F0
+	.4byte StartSpellAnimBolganone
 	.4byte StartSpellAnimThunder
 	.4byte StartSpellAnimBolting
 	.4byte StartSpellAnimFimbulvetr
@@ -9146,7 +9146,7 @@ gEkrSpellAnimLut:
 	.4byte StartSpellAnimNosferatu
 	.4byte StartSpellAnimLightning
 	.4byte StartSpellAnimPurge
-	.4byte sub_0805B290
+	.4byte StartSpellAnimSpell21
 	.4byte StartSpellAnimDivine
 	.4byte sub_0805BBEC
 	.4byte StartSpellAnimEclipse
@@ -9167,10 +9167,10 @@ gEkrSpellAnimLut:
 	.4byte StartSpellAnimShine
 	.4byte StartSpellAnimLuna
 	.4byte StartSpellAnimExcalibur
-	.4byte sub_08060688
+	.4byte StartSpellAnimGespenst
 	.4byte StartSpellAnimAura
-	.4byte sub_080613F8
-	.4byte sub_08061B68
+	.4byte StartSpellAnimLuce
+	.4byte StartSpellAnimEreshkigal
 	.4byte StartSpellAnimFillasMight
 	.4byte StartSpellAnimThorsIre
 	.4byte StartSpellAnimNinisGrace
@@ -9189,7 +9189,7 @@ FramScr_Unk5D4F90:
 	.global ProcScr_efxRestRST
 ProcScr_efxRestRST:
 	.incbin "baserom.gba", 0xba14e4, 0xc
-	.4byte sub_08055900
+	.4byte efxRestRST_OnEnd
 	.incbin "baserom.gba", 0xba14f4, 0x4
 	.4byte efxRestRSTMain
 	.incbin "baserom.gba", 0xba14fc, 0x8
@@ -9203,7 +9203,7 @@ ProcScr_efxTwobaiRST:
 	.global ProcScr_DummvRST
 ProcScr_DummvRST:
 	.incbin "baserom.gba", 0xba151c, 0xc
-	.4byte sub_08055A40
+	.4byte DummvRST_OnEnd
 	.incbin "baserom.gba", 0xba152c, 0x4
 	.4byte DummvRSTMain
 	.incbin "baserom.gba", 0xba1534, 0x8
@@ -9217,9 +9217,9 @@ ProcScr_EfxRestWIN:
 	.global ProcScr_EfxRestWINH
 ProcScr_EfxRestWINH:
 	.incbin "baserom.gba", 0xba1554, 0xc
-	.4byte sub_08055E24
+	.4byte EfxRestWINH_Loop_A
 	.incbin "baserom.gba", 0xba1564, 0x4
-	.4byte sub_08055E30
+	.4byte EfxRestWINH_Loop_B
 	.incbin "baserom.gba", 0xba156c, 0x8
 
 	.global ProcScr_efxALPHA
@@ -9536,7 +9536,7 @@ ProcScr_efxFireOBJ:
 	.global ProcScr_efxFireHITBG
 ProcScr_efxFireHITBG:
 	.incbin "baserom.gba", 0xba1afc, 0xc
-	.4byte sub_080586E0
+	.4byte efxFireHITBG_Loop
 	.incbin "baserom.gba", 0xba1b0c, 0x8
 
 	.global ImgLut_AnimaHitBG

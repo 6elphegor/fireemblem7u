@@ -262,7 +262,7 @@ EventScr_08CA84F8:
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 16, MSG_847, MSG_848 @ Attack ! Move me to a space next to my foe ! / Attack ! Move me to a space next to my foe !
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -278,7 +278,7 @@ EventScr_08CA85A0:
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 16, MSG_849, MSG_84A @ Move me up next to the enemy ! / Move me up next to the enemy !
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x11
 	REMA
 	ENDA
@@ -340,7 +340,7 @@ EventScr_08CA8688:
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA0810
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -355,7 +355,7 @@ EventScr_08CA871C:
 	EVBIT_SILENTSKIP
 	TUTORIAL_CURSORS AreaList_08CA0810
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x12
 	REMA
 	ENDA
@@ -437,7 +437,7 @@ EventScr_08CA8854:
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_852            @ I want to fight! I must be closer to my foe!
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x13
 	REMA
 	ENDA
@@ -481,7 +481,7 @@ EventScr_08CA8928:
 	STAL 8
 	TUTORIAL_TEXT 112, 80, MSG_858           @ Move next to the enemy and attack!
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x14
 	REMA
 	ENDA
@@ -558,7 +558,7 @@ EventScr_08CA8AA0:
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_85F            @ Move me next to the enemy .
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x15
 	REMA
 	ENDA
@@ -611,7 +611,7 @@ EventScr_08CA8B54:
 	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0830
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	STAL 8
 	TUTORIAL_TEXT 32, 16, MSG_863            @ That looks good. Let's move there, !
 	ASMC_WAIT2 BoxTalkActive
@@ -628,7 +628,7 @@ EventScr_08CA8BF4:
 	EVBIT_SILENTSKIP
 	TUTORIAL_CURSORS AreaList_08CA0830
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x16
 	REMA
 	ENDA
@@ -663,7 +663,7 @@ EventScr_08CA8C30:
 	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0838
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x5F
 	MENU_OVERRIDE_HIDE 0x63
@@ -680,7 +680,7 @@ EventScr_08CA8CF0:
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 32, 16, MSG_86A, MSG_86B @ Move me next to her! I implore you! / Move me next to her! Heed my wishes!
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x17
 	IFAT 7, sub_0807CEFC
 	MENU_OVERRIDE_HIDE 0x63

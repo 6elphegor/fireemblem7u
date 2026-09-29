@@ -1263,7 +1263,7 @@ void sub_080B467C(struct WmUnitManagerProc * proc)
         proc->unk_47 = 0;
     }
 }
-void sub_080B4738(struct WmUnitManagerProc * proc)
+void WmUnitManager_Loop(struct WmUnitManagerProc * proc)
 {
     u8 seq[0x37];
     int i;

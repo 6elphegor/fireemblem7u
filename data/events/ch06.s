@@ -525,7 +525,7 @@ EventScr_08CAC200:
 	CAM1_POS 4, 1
 	TUTORIAL_CURSORS AreaList_08CA11A4
 	STAL 0x28
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -551,7 +551,7 @@ EventScr_08CAC294:
 	CAM1_POS 8, 1
 	TUTORIAL_CURSORS AreaList_08CA11AC
 	STAL 0x28
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -576,7 +576,7 @@ EventScr_08CAC328:
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA11B4
 	STAL 0x28
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	LABEL 9
@@ -602,7 +602,7 @@ EventScr_08CAC3B0:
 	STAL 8
 	TUTORIAL_TEXT 32, 96, MSG_949            @ Hey! Changed your mind? Hurrah! Treasure time! T
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -619,7 +619,7 @@ EventScr_08CAC450:
 	STAL 8
 	TUTORIAL_TEXT 48, 48, MSG_93B            @ Wasn't I supposed to visit somewhere? Directions
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xC
 	EVBIT_YESSKIP
 	REMA
@@ -634,7 +634,7 @@ EventScr_08CAC490:
 	STAL 8
 	TUTORIAL_TEXT 32, 80, MSG_941            @ I can't open a door I can't reach! Move me in fr
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xD
 	EVBIT_YESSKIP
 	REMA
@@ -649,7 +649,7 @@ EventScr_08CAC4D0:
 	STAL 8
 	TUTORIAL_TEXT 16, 32, MSG_944            @ I don't see any trigger there. Do you? I didn't
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xE
 	EVBIT_YESSKIP
 	REMA
@@ -664,7 +664,7 @@ EventScr_08CAC510:
 	STAL 8
 	TUTORIAL_TEXT 16, 96, MSG_94A            @ Oh, come on! There's a chest right there in fron
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xF
 	EVBIT_YESSKIP
 	REMA

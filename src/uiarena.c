@@ -180,7 +180,7 @@ void ArenaUi_StartArenaBattle(ProcPtr proc)
     BeginBattleAnimations();
 }
 
-void sub_080B2C60(ProcPtr proc)
+void ArenaUiResults_Init_A(ProcPtr proc)
 {
     StartPartialGameLock(proc);
 }

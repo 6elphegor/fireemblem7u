@@ -432,7 +432,7 @@ EventScr_08CAAAF4:
 	TUTORIAL_CURSORS AreaList_08CA0DD8
 	TEX1 MSG_8E6                             @ You must move me first. I need to get to the eas
 	CLEAN
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x3F3
 	ASMC NewForceAsyncButtonB
 	ENUF 0xA
@@ -440,7 +440,7 @@ EventScr_08CAAAF4:
 	LABEL 1
 	TUTORIAL_CURSORS AreaList_08CA0DD8
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_CLEAR
 	MENU_OVERRIDE_HIDE 0x63
@@ -511,7 +511,7 @@ EventScr_08CAAC58:
 	LABEL 0x32
 	TUTORIAL_CURSORS AreaList_08CA0DF0
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_CLEAR
 	MENU_OVERRIDE_HIDE 0x63
@@ -532,7 +532,7 @@ EventScr_08CAAD30:
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_8E7            @ The entrance to the east... I need to guard it a
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xF
 	EVBIT_YESSKIP
 	REMA
@@ -559,7 +559,7 @@ EventScr_08CAAD9C:
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_8EC            @ Please, . I need to speak to that man!
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x11
 	EVBIT_YESSKIP
 	REMA
@@ -572,7 +572,7 @@ EventScr_08CAADDC:
 	CAM1_POS 0xC, 3
 	TUTORIAL_CURSORS AreaList_08CA0DF0
 	STAL 0x32
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0x12
 	REMA
 	ENDA

@@ -52,42 +52,42 @@ extern s16 gBanimBackgroundIndex;
 void PutBanimBgPAL(int index);
 void PutBanimBG(int index);
 
-void sub_0804FAD4(struct ProcEfxWeaponIcon * proc);
-void sub_0804FB3C(struct ProcEfxWeaponIcon * proc);
-void sub_0804FBF8(struct ProcEfxSpellCast * proc);
-void sub_0804FC5C(struct ProcEfxSpellCast * proc);
-void sub_0804FC9C(struct ProcEfxSpellCast * proc);
-void sub_0804FDA0(struct ProcEfxSpellCast * proc);
-void sub_0804FE28(struct ProcEfxSpellCast * proc);
-void sub_0804FE78(struct ProcEfxSpellCast * proc);
-void sub_0804FF04(struct ProcEfxSpellCast * proc);
-void sub_0804FF60(struct ProcEfxSpellCast * proc);
+void EfxWeaponIcon_Loop(struct ProcEfxWeaponIcon * proc);
+void EfxWeaponIcon_OnEnd(struct ProcEfxWeaponIcon * proc);
+void efxSpellCast_Loop_A(struct ProcEfxSpellCast * proc);
+void efxSpellCast_Loop_B(struct ProcEfxSpellCast * proc);
+void efxSpellCast_Loop_C(struct ProcEfxSpellCast * proc);
+void efxSpellCastBg_Loop_A(struct ProcEfxSpellCast * proc);
+void efxSpellCastBg_Loop_B(struct ProcEfxSpellCast * proc);
+void efxSpellCastBg_Loop_C(struct ProcEfxSpellCast * proc);
+void efxSpellCastBg_Loop_D(struct ProcEfxSpellCast * proc);
+void efxSpellCastBg_Loop_E(struct ProcEfxSpellCast * proc);
 
 CONST_DATA struct ProcCmd ProcScr_EfxWeaponIcon[] = {
     PROC_19,
     PROC_MARK(10),
-    PROC_SET_END_CB(sub_0804FB3C),
-    PROC_REPEAT(sub_0804FAD4),
+    PROC_SET_END_CB(EfxWeaponIcon_OnEnd),
+    PROC_REPEAT(EfxWeaponIcon_Loop),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxSpellCast[] = {
     PROC_19,
     PROC_MARK(10),
-    PROC_REPEAT(sub_0804FBF8),
-    PROC_REPEAT(sub_0804FC5C),
-    PROC_REPEAT(sub_0804FC9C),
+    PROC_REPEAT(efxSpellCast_Loop_A),
+    PROC_REPEAT(efxSpellCast_Loop_B),
+    PROC_REPEAT(efxSpellCast_Loop_C),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxSpellCastBg[] = {
     PROC_19,
     PROC_MARK(10),
-    PROC_REPEAT(sub_0804FDA0),
-    PROC_REPEAT(sub_0804FE28),
-    PROC_REPEAT(sub_0804FE78),
-    PROC_REPEAT(sub_0804FF04),
-    PROC_REPEAT(sub_0804FF60),
+    PROC_REPEAT(efxSpellCastBg_Loop_A),
+    PROC_REPEAT(efxSpellCastBg_Loop_B),
+    PROC_REPEAT(efxSpellCastBg_Loop_C),
+    PROC_REPEAT(efxSpellCastBg_Loop_D),
+    PROC_REPEAT(efxSpellCastBg_Loop_E),
     PROC_END,
 };
 
@@ -132,7 +132,7 @@ void EnableEfxWeaponIcon(void)
     gpProcEfxWeaponIcon->invalid = false;
 }
 
-void sub_0804FAD4(struct ProcEfxWeaponIcon * proc)
+void EfxWeaponIcon_Loop(struct ProcEfxWeaponIcon * proc)
 {
     int ret;
 
@@ -157,7 +157,7 @@ void sub_0804FAD4(struct ProcEfxWeaponIcon * proc)
     EnablePalSync();
 }
 
-void sub_0804FB3C(struct ProcEfxWeaponIcon * proc)
+void EfxWeaponIcon_OnEnd(struct ProcEfxWeaponIcon * proc)
 {
     InitIcons();
 
@@ -211,7 +211,7 @@ void EndEfxSpellCast(void)
     Proc_End(NULL);
 }
 
-void sub_0804FBF8(struct ProcEfxSpellCast * proc)
+void efxSpellCast_Loop_A(struct ProcEfxSpellCast * proc)
 {
     int val = Interpolate(INTERPOLATE_LINEAR, 0, 0x8, proc->timer, proc->terminator);
 
@@ -223,7 +223,7 @@ void sub_0804FBF8(struct ProcEfxSpellCast * proc)
         Proc_Break(proc);
 }
 
-void sub_0804FC5C(struct ProcEfxSpellCast * proc)
+void efxSpellCast_Loop_B(struct ProcEfxSpellCast * proc)
 {
     CpuFastCopy(gPal_Banim, PAL_BG(0x6), 0x140);
     EfxPalBlackInOut(PAL_BG(0x0), 0x6, 0xA, 0x8);
@@ -234,7 +234,7 @@ void sub_0804FC5C(struct ProcEfxSpellCast * proc)
     }
 }
 
-void sub_0804FC9C(struct ProcEfxSpellCast * proc)
+void efxSpellCast_Loop_C(struct ProcEfxSpellCast * proc)
 {
     int val = Interpolate(INTERPOLATE_LINEAR, 0x8, 0, proc->timer, proc->terminator);
 
@@ -250,7 +250,7 @@ void sub_0804FC9C(struct ProcEfxSpellCast * proc)
     }
 }
 
-void sub_0804FD1C(void)
+void StartEfxSpellCastBg(void)
 {
     struct ProcEfxSpellCast * proc;
 
@@ -292,7 +292,7 @@ void sub_0804FD84(void)
     Proc_End(NULL);
 }
 
-void sub_0804FDA0(struct ProcEfxSpellCast * proc)
+void efxSpellCastBg_Loop_A(struct ProcEfxSpellCast * proc)
 {
     int val;
 
@@ -310,7 +310,7 @@ void sub_0804FDA0(struct ProcEfxSpellCast * proc)
         Proc_Break(proc);
 }
 
-void sub_0804FE28(struct ProcEfxSpellCast * proc)
+void efxSpellCastBg_Loop_B(struct ProcEfxSpellCast * proc)
 {
     if (proc->done == 1) {
         proc->timer = 0;
@@ -324,7 +324,7 @@ void sub_0804FE28(struct ProcEfxSpellCast * proc)
     }
 }
 
-void sub_0804FE78(struct ProcEfxSpellCast * proc)
+void efxSpellCastBg_Loop_C(struct ProcEfxSpellCast * proc)
 {
     u16 * buf = gEkrTmBuf_0201B784;
     int ret = EfxAdvanceFrameLut(&proc->timer, (s16 *)&proc->frame, (const s16 *)proc->frame_lut);
@@ -344,7 +344,7 @@ void sub_0804FE78(struct ProcEfxSpellCast * proc)
     }
 }
 
-void sub_0804FF04(struct ProcEfxSpellCast * proc)
+void efxSpellCastBg_Loop_D(struct ProcEfxSpellCast * proc)
 {
     if (gBanimBackgroundIndex == 0) {
         UnpackChapterMapGraphics(gPlaySt.chapterIndex);
@@ -361,7 +361,7 @@ void sub_0804FF04(struct ProcEfxSpellCast * proc)
     Proc_Break(proc);
 }
 
-void sub_0804FF60(struct ProcEfxSpellCast * proc)
+void efxSpellCastBg_Loop_E(struct ProcEfxSpellCast * proc)
 {
     int val;
 

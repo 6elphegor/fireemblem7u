@@ -188,7 +188,7 @@ void SetTalkPrintColor(u8 color)
 
 void TalkSkipListener_OnIdle(ProcPtr proc)
 {
-    if (!Proc_Find(gUnk_08B90ACC) && !Proc_Find(gUnk_08B90B24))
+    if (!Proc_Find(gProcScr_TalkShiftClearAll) && !Proc_Find(gUnk_08B90B24))
     {
         if (!CheckTalkFlag(4) && (gpKeySt->pressed & 0xA))
         {
@@ -229,7 +229,7 @@ void Talk_OnInit()
 // of "ldrsb", so the matching build keeps the asm.  (FE7J's version returned
 // when print_clock reached print_delay, the opposite of the asm: fixed.)
 
-void sub_08008218(ProcPtr proc)
+void Talk_Loop(ProcPtr proc)
 {
     int ti;
     bool b = IsTalkFaceMoving();
@@ -322,7 +322,7 @@ Loutside:
 #else
 
 NAKEDFUNC
-void sub_08008218(ProcPtr proc)
+void Talk_Loop(ProcPtr proc)
 {
     asm("   .syntax unified\n\
     push {r4, r5, r6, r7, lr}\n\
@@ -693,7 +693,7 @@ int TalkInterpret(ProcPtr proc)
                 sub_08009708();
                 sTalkSt->str++;
             } else if (!CheckTalkFlag(TALK_FLAG_INSTANTSHIFT)) {
-                Proc_StartBlocking(gUnk_08B90ACC, proc);
+                Proc_StartBlocking(gProcScr_TalkShiftClearAll, proc);
             } else {
                 ClearTalkText();
             }
@@ -1216,7 +1216,7 @@ void TalkFaceMove_OnIdle(struct Proc * proc)
 void Talk_OnEnd(struct Proc * proc)
 {
     Proc_EndEach(gProcScr_TalkSkipListener);
-    Proc_EndEach(gUnk_08B90ACC);
+    Proc_EndEach(gProcScr_TalkShiftClearAll);
 }
 
 void TalkPause_OnIdle(struct Proc * proc)
@@ -1422,7 +1422,7 @@ void sub_080095C8(struct Proc * proc)
     }
 }
 
-void sub_080096BC(struct Proc * proc)
+void TalkSpriteShiftClear_Init(struct Proc * proc)
 {
     CleanTalkObjects(0x200, 0x1A, 0x44444444, proc);
 }
@@ -1604,7 +1604,7 @@ void StartOpenTalkBubble()
     proc->unk64 = 0;
 }
 
-void sub_080099A4(struct Proc * proc)
+void TalkBubbleOpen_OnIdle(struct Proc * proc)
 {
     u8 const * gUnk_0818F93C[] =
     {
@@ -1740,7 +1740,7 @@ void TalkOpen_OnEnd()
 {
 }
 
-void sub_08009D58(struct Proc* proc)
+void TalkOpen_InitBlend(struct Proc* proc)
 {
     proc->unk58 = 0;
 
@@ -1764,7 +1764,7 @@ void TalkOpen_PutTalkBubble(struct Proc* proc)
     Proc_Break(proc);
 }
 
-void sub_08009DFC(struct Proc* proc)
+void TalkOpen_OnIdle(struct Proc* proc)
 {
     int var;
 

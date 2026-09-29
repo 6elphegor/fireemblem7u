@@ -421,8 +421,8 @@ LOOKED_AT = {
 }
 # gUnk_08CEF788: (image, TSA gUnk_086157E4) pairs: frames of an opening movie
 MOVIE_TABLE = "gUnk_08CEF788"
-# local arrays in functions: talk.c sub_080099A4 decompresses them to BG VRAM
-LOCAL_IMAGE_ARRAYS = {"sub_080099A4"}
+# local arrays in functions: talk.c TalkBubbleOpen_OnIdle decompresses them to BG VRAM
+LOCAL_IMAGE_ARRAYS = {"TalkBubbleOpen_OnIdle"}
 
 
 def classify():

@@ -41,15 +41,15 @@ void NewEfxAvoid(struct Anim * anim);
 void NewEfxStatusCHG(struct Anim * anim);
 void sub_0804E6DC(int pos);
 
-void sub_08050844(struct ProcEfxSpdQuake * proc);
-void sub_08050918(struct ProcEfxSpdQuake * proc);
+void efxSPDQuake_Loop_A(struct ProcEfxSpdQuake * proc);
+void efxSPDQuake_Loop_B(struct ProcEfxSpdQuake * proc);
 
 #define GetRoundFlagByAnim(aAnim) (GetBattleAnimRoundTypeFlags((aAnim->nextRoundId - 1) * 2 + GetAnimPosition(aAnim)))
 
 CONST_DATA struct ProcCmd ProcScr_efxSPDQuake[] = {
     PROC_19,
-    PROC_REPEAT(sub_08050844),
-    PROC_REPEAT(sub_08050918),
+    PROC_REPEAT(efxSPDQuake_Loop_A),
+    PROC_REPEAT(efxSPDQuake_Loop_B),
     PROC_END,
 };
 
@@ -509,7 +509,7 @@ void NewEfxspdquake(struct Anim * anim)
     proc->vecs = gEfxQuakeVecs;
 }
 
-void sub_08050844(struct ProcEfxSpdQuake * proc)
+void efxSPDQuake_Loop_A(struct ProcEfxSpdQuake * proc)
 {
     const s16 * vecs = proc->vecs;
     s16 dx = vecs[proc->timer * 2 + 0];
@@ -549,7 +549,7 @@ void sub_08050844(struct ProcEfxSpdQuake * proc)
         proc->timer = 0;
 }
 
-void sub_08050918(struct ProcEfxSpdQuake * proc)
+void efxSPDQuake_Loop_B(struct ProcEfxSpdQuake * proc)
 {
     int x1 = gEkrXPosReal[0] - gEkrBgPosition;
     int x2 = gEkrYPosReal[0];

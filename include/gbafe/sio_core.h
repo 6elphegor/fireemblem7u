@@ -197,10 +197,10 @@ void sub_0803D584(void);
 void sub_0803D5FC(void);
 void sub_0803D674(void);
 void sub_0803D688(struct SioBigSendProc * proc);
-void sub_0803D6E8(struct SioBigSendProc * proc);
+void SioBigSend_Loop(struct SioBigSendProc * proc);
 void sub_0803D758(struct SioBigReceiveProc * proc);
-void sub_0803D780(struct SioBigReceiveProc * proc);
-void sub_0803D7C4(struct SioBigReceiveProc * proc);
+void SioBigReceive_Loop_A(struct SioBigReceiveProc * proc);
+void SioBigReceive_Loop_B(struct SioBigReceiveProc * proc);
 int StartSioBigSend(void * data, u32 len, void (*func)(struct SioBigSendProc *), u8 arg_3, ProcPtr parent);
 void StartSioBigReceive(void * data, void (*func)(struct SioBigReceiveProc *), ProcPtr parent);
 bool IsSioBigTransferActive(void);
@@ -413,11 +413,11 @@ void Tactician_LoopCore(struct ProcTactician * proc, const struct TacticianTextC
 void Tactician_Loop(struct ProcTactician * proc);
 void sub_0803F8D8(void);
 void sub_0803F938(struct ProcTactician * proc);
-void sub_0803F950(struct ProcTactician * proc);
+void TacticianNameSelection_Loop_B(struct ProcTactician * proc);
 void sub_0803F990(struct ProcTactician * proc);
-void sub_0803F9BC(struct ProcTactician * proc);
+void TacticianNameSelection_Loop_C(struct ProcTactician * proc);
 void NameSelect_DrawName(struct ProcTactician * proc);
-void sub_0803FA3C(struct ProcTactician * proc);
+void TacticianNameSelection_Loop_D(struct ProcTactician * proc);
 void sub_0803FB24(void);
 
 struct SioPostBattleProc
@@ -496,7 +496,7 @@ int sub_08040280(u8 ranking, u32 playerCount, u32 mode, u32 points);
 void sub_080403B0(struct SioBatProc * proc);
 void sub_08040444(void);
 void New6C_SIOMAIN2(void);
-void sub_0804057C(ProcPtr proc);
+void SIOPRA_Loop(ProcPtr proc);
 void sub_080405BC(const char * str, int x, int y, ProcPtr parent);
 void sub_08040610(void);
 void sub_08040634(void);
@@ -531,11 +531,11 @@ struct SioTermProc
 
 void sub_080412E0(struct SioTermProc * proc);
 void sub_08041584(int * cur, u8 bottom, u8 top, int * buf, u8 total);
-void sub_08041610(struct SioTermProc * proc);
+void SIOTERM_Loop_A(struct SioTermProc * proc);
 void sub_0804168C(struct SioTermProc * proc);
 void sub_080416D4(ProcPtr proc);
 void sub_080416F0(ProcPtr proc);
-void sub_0804170C(ProcPtr proc);
+void SIOTERM_Loop_B(ProcPtr proc);
 void sub_0804172C(ProcPtr proc);
 void sub_0804176C(void);
 

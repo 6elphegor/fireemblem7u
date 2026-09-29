@@ -83,15 +83,15 @@ void efxHitQuakePure_Loop_Null(void);
 void efxHitQuake_Loop(struct ProcEfxQuake * proc);
 void efxQuakePure_Loop(struct ProcEfxQuake * proc);
 void efxQuake_Loop(struct ProcEfxQuake * proc);
-void sub_0804E5AC(struct ProcEfxFarAttack * proc);
-void sub_0804E5DC(struct ProcEfxFarAttack * proc);
-void sub_0804E648(struct ProcEfxFarAttack * proc);
+void efxFarAttack_Loop_A(struct ProcEfxFarAttack * proc);
+void efxFarAttack_Loop_B(struct ProcEfxFarAttack * proc);
+void efxFarAttack_Loop_C(struct ProcEfxFarAttack * proc);
 
 CONST_DATA struct ProcCmd ProcScr_efxFarAttack[] = {
     PROC_19,
-    PROC_REPEAT(sub_0804E5AC),
-    PROC_REPEAT(sub_0804E5DC),
-    PROC_REPEAT(sub_0804E648),
+    PROC_REPEAT(efxFarAttack_Loop_A),
+    PROC_REPEAT(efxFarAttack_Loop_B),
+    PROC_REPEAT(efxFarAttack_Loop_C),
     PROC_END,
 };
 
@@ -225,7 +225,7 @@ void sub_0804E574(struct ProcEfxFarAttack * unused, int x)
     anim->xPosition = x + gEkrXPosReal[1];
 }
 
-void sub_0804E5AC(struct ProcEfxFarAttack * proc)
+void efxFarAttack_Loop_A(struct ProcEfxFarAttack * proc)
 {
     sub_0804E574(proc, proc->unk_32);
     EkrDragonTmCpyExt(proc->unk_32, 0);
@@ -236,7 +236,7 @@ void sub_0804E5AC(struct ProcEfxFarAttack * proc)
     Proc_Break(proc);
 }
 
-void sub_0804E5DC(struct ProcEfxFarAttack * proc)
+void efxFarAttack_Loop_B(struct ProcEfxFarAttack * proc)
 {
     u32 ret = Interpolate(INTERPOLATE_SQUARE, proc->unk_32, proc->unk_34, proc->timer, proc->unk_2e);
     gEkrBgPosition = ret;
@@ -257,7 +257,7 @@ void sub_0804E5DC(struct ProcEfxFarAttack * proc)
     }
 }
 
-void sub_0804E648(struct ProcEfxFarAttack * proc)
+void efxFarAttack_Loop_C(struct ProcEfxFarAttack * proc)
 {
     u32 ret = Interpolate(INTERPOLATE_RSQUARE, proc->unk_36, proc->unk_38, proc->timer, proc->terminator);
     gEkrBgPosition = ret;

@@ -31,7 +31,7 @@ extern u16 Img_082D9C94[];
 extern u16 Pal_082DA240[];
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
 #define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
-void sub_0804FD1C(void);
+void StartEfxSpellCastBg(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void sub_0804FD54(void);
@@ -56,30 +56,30 @@ extern u16 * TsaArray_EreshkigalBG[];
 extern u16 * ImgArray_EreshkigalBG[];
 extern u16 Pal_EreshkigalBG[];
 
-void sub_08061D24(struct Anim * anim);
-void sub_08061DE8(struct Anim * anim, int x, int y, int type, int oam2);
-void sub_08061E70(struct Anim * anim);
-void sub_08061F08(struct Anim * anim);
-void sub_08062108(struct Anim * anim, int terminator, int duration);
+void StartSubSpell_efxEreshkigalOBJ(struct Anim * anim);
+void StartSubSpell_efxEreshkigalOBJChild(struct Anim * anim, int x, int y, int type, int oam2);
+void StartSubSpell_efxEreshkigalOBJ2(struct Anim * anim);
+void StartSubSpell_efxEreshkigalBG(struct Anim * anim);
+void StartSubSpell_efxEreshkigalWhiteOut(struct Anim * anim, int terminator, int duration);
 void StartSubSpell_efxGespenstBG4(struct Anim * anim, int terminator);
 void StartSubSpell_efxGespenstBGCOL2(struct Anim * anim);
 
-void sub_08061F60(struct ProcEfxEclipseBG * proc);
+void efxEreshkigalBG_Loop(struct ProcEfxEclipseBG * proc);
 void StartSubSpell_efxSuperdruidBG3(struct Anim * anim);
 void efxSuperdruidBG3_Loop(struct ProcEfxEclipseBG * proc);
 void StartSubSpell_efxSuperdruidOBJ2(struct Anim * anim);
-void sub_08062244(void);
-void sub_08062254(struct Anim * anim);
-void sub_080622B4(void);
+void efxSuperdruidOBJ2_OnEnd(void);
+void StartSubSpell_efxEreshkigalOBJ3(struct Anim * anim);
+void efxEreshkigalOBJ3_OnEnd(void);
 
 extern const u16 StartSubSpell_efxSuperdruidBG3_frames[];
 
-void sub_08061B68(struct Anim * anim)
+void StartSpellAnimEreshkigal(struct Anim * anim)
 {
     struct ProcEfx * proc;
 
     SpellFx_Begin();
-    sub_0804FD1C();
+    StartEfxSpellCastBg();
     SpellFx_SetBG1Position();
 
     proc = Proc_Start(ProcScr_efxEreshkigal, PROC_TREE_3);
@@ -88,7 +88,7 @@ void sub_08061B68(struct Anim * anim)
     proc->hitted = CheckRoundMiss(GetAnimRoundTypeAnotherSide(anim));
 }
 
-void sub_08061BA4(struct ProcEfx * proc)
+void efxEreshkigal_Loop(struct ProcEfx * proc)
 {
     struct Anim * anim = GetAnimAnotherSide(proc->anim);
     int duration = EfxGetCamMovDuration();
@@ -100,19 +100,19 @@ void sub_08061BA4(struct ProcEfx * proc)
 
     if (proc->timer == duration + 20)
     {
-        sub_08062254(anim);
+        StartSubSpell_efxEreshkigalOBJ3(anim);
         PlaySFX(0x2FD, 0x100, 0x78, 0);
     }
     else if (proc->timer == duration + 40)
     {
-        sub_08061F08(anim);
-        sub_08061D24(anim);
-        sub_08061E70(anim);
+        StartSubSpell_efxEreshkigalBG(anim);
+        StartSubSpell_efxEreshkigalOBJ(anim);
+        StartSubSpell_efxEreshkigalOBJ2(anim);
         sub_0804FD54();
     }
     else if (proc->timer == duration + 145)
     {
-        sub_08062108(anim, 30, 20);
+        StartSubSpell_efxEreshkigalWhiteOut(anim, 30, 20);
     }
     else if (proc->timer == duration + 175)
     {
@@ -164,7 +164,7 @@ void sub_08061BA4(struct ProcEfx * proc)
     }
 }
 
-void sub_08061D24(struct Anim * anim)
+void StartSubSpell_efxEreshkigalOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
 
@@ -181,7 +181,7 @@ void sub_08061D24(struct Anim * anim)
     SpellFx_RegisterObjPal(Pal_EreshkigalOBJ, 0x20);
 }
 
-void sub_08061D70(struct ProcEfxOBJ * proc)
+void efxEreshkigalOBJ_Loop(struct ProcEfxOBJ * proc)
 {
     if (++proc->timer > proc->unk44)
     {
@@ -193,7 +193,7 @@ void sub_08061D70(struct ProcEfxOBJ * proc)
         b = gEreshkigalOBJConfig[proc->terminator * 4 + 1];
         c = gEreshkigalOBJConfig[proc->terminator * 4 + 2];
         d = gEreshkigalOBJConfig[proc->terminator * 4 + 3];
-        sub_08061DE8(proc->anim2, a, b, c, d);
+        StartSubSpell_efxEreshkigalOBJChild(proc->anim2, a, b, c, d);
 
         if (++proc->terminator > proc->unk48)
         {
@@ -203,7 +203,7 @@ void sub_08061D70(struct ProcEfxOBJ * proc)
     }
 }
 
-void sub_08061DE8(struct Anim * anim, int x, int y, int type, int oam2)
+void StartSubSpell_efxEreshkigalOBJChild(struct Anim * anim, int x, int y, int type, int oam2)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * front;
@@ -221,13 +221,13 @@ void sub_08061DE8(struct Anim * anim, int x, int y, int type, int oam2)
     front->oam2Base = (front->oam2Base & 0xF3FF) | oam2;
 }
 
-void sub_08061E58(struct ProcEfxOBJ * proc)
+void efxEreshkigalOBJChild_OnEnd(struct ProcEfxOBJ * proc)
 {
     AnimDelete(proc->anim2);
     gEfxBgSemaphore--;
 }
 
-void sub_08061E70(struct Anim * anim)
+void StartSubSpell_efxEreshkigalOBJ2(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * front;
@@ -245,13 +245,13 @@ void sub_08061E70(struct Anim * anim)
     AnimSort();
 }
 
-void sub_08061ED4(struct ProcEfxOBJ * proc)
+void efxEreshkigalOBJ2_OnEnd(struct ProcEfxOBJ * proc)
 {
     AnimDelete(proc->anim2);
     gEfxBgSemaphore--;
 }
 
-void sub_08061EEC(struct ProcEfxOBJ * proc)
+void efxEreshkigalOBJ2_Loop(struct ProcEfxOBJ * proc)
 {
     struct Anim * anim = proc->anim2;
 
@@ -260,7 +260,7 @@ void sub_08061EEC(struct ProcEfxOBJ * proc)
     Proc_Break(proc);
 }
 
-void sub_08061F08(struct Anim * anim)
+void StartSubSpell_efxEreshkigalBG(struct Anim * anim)
 {
     struct ProcEfxEclipseBG * proc;
 
@@ -284,7 +284,7 @@ void sub_08061F08(struct Anim * anim)
 }
 
 // 9.99 efxmagic-eclipse:efxHazymoonBG_Loop
-void sub_08061F60(struct ProcEfxEclipseBG * proc)
+void efxEreshkigalBG_Loop(struct ProcEfxEclipseBG * proc)
 {
     int ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -397,7 +397,7 @@ void efxSuperdruidBG3_Loop(struct ProcEfxEclipseBG * proc)
     return;
 }
 
-void sub_08062108(struct Anim * anim, int terminator, int duration)
+void StartSubSpell_efxEreshkigalWhiteOut(struct Anim * anim, int terminator, int duration)
 {
     struct ProcEfxBG * proc;
 
@@ -413,7 +413,7 @@ void sub_08062108(struct Anim * anim, int terminator, int duration)
     proc->unk30 = terminator;
 }
 
-void sub_08062158(struct ProcEfxBG * proc)
+void efxEreshkigalWhiteOut_Loop(struct ProcEfxBG * proc)
 {
     int ret;
     u16 t;
@@ -462,14 +462,14 @@ void StartSubSpell_efxSuperdruidOBJ2(struct Anim * anim)
 }
 
 // 9.99 efxmagic-ereshkigal:efxSuperdruidOBJ2_OnEnd
-void sub_08062244(void)
+void efxSuperdruidOBJ2_OnEnd(void)
 {
     gEfxBgSemaphore--;
     return;
 }
 
 // 9.99 efxmagic-ereshkigal:StartSubSpell_efxSuperdruidOBJ2
-void sub_08062254(struct Anim * anim)
+void StartSubSpell_efxEreshkigalOBJ3(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
     struct Anim * frontAnim;
@@ -494,7 +494,7 @@ void sub_08062254(struct Anim * anim)
 }
 
 // 9.99 efxmagic-ereshkigal:efxSuperdruidOBJ2_OnEnd
-void sub_080622B4(void)
+void efxEreshkigalOBJ3_OnEnd(void)
 {
     gEfxBgSemaphore--;
     return;

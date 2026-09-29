@@ -345,7 +345,7 @@ EventScr_Ch2B_Ending:
 	FAWU 0x10
 	ENTER_MAP
 	STAL 0x1E
-	ASMC2 sub_0807CEB4
+	ASMC2 StartEventWorldFlush
 	STAL 0x3C
 	TEX1 MSG_E6F                             @ This is ... The dragon girl... Ninian's essence.
 	CLEAN

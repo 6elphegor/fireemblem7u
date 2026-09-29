@@ -125,7 +125,7 @@ void SetTalkFlag(int flag);
 void SetTalkPrintColor(u8 color);
 // ??? TalkSkipListener_OnIdle
 // ??? Talk_OnInit
-// ??? sub_08008218
+// ??? Talk_Loop
 bool sub_0800838C(ProcPtr proc);
 bool TalkSpritePrepNextChar(ProcPtr proc);
 // ??? LockTalk
@@ -156,7 +156,7 @@ void sub_080093CC(struct TalkChoiceEnt const * choices, struct Text * text, u16 
 // ??? sub_08009480
 // ??? sub_08009588
 // ??? sub_080095C8
-// ??? sub_080096BC
+// ??? TalkSpriteShiftClear_Init
 // ??? sub_080096D4
 void sub_08009708();
 int GetTalkPauseCmdDuration(int cmd);
@@ -165,14 +165,14 @@ void ClearPutTalkText();
 void ClearTalkText();
 // ??? PutTalkBubble
 void StartOpenTalkBubble();
-// ??? sub_080099A4
+// ??? TalkBubbleOpen_OnIdle
 void sub_08009A10(int x, int y, int width, int height);
 void PutTalkBubbleTail(int bg, int x, int y, int kind);
 void PutTalkBubbleTm(int id, int x, int y, int width, int height);
 // ??? TalkOpen_OnEnd
-// ??? sub_08009D58
+// ??? TalkOpen_InitBlend
 // ??? TalkOpen_PutTalkBubble
-// ??? sub_08009DFC
+// ??? TalkOpen_OnIdle
 void StartTalkOpen(int talk_face, struct Proc* parent);
 bool sub_08009EE0();
 int GetTalkFaceHPos(int talk_face);
@@ -213,7 +213,7 @@ extern struct ProcCmd gProcScr_TalkFaceMove[];
 extern struct ProcCmd gUnk_08BFFBDC[];
 extern struct ProcCmd gProcScr_TalkWaitForInput[];
 extern u16 const * CONST_DATA gUnk_08B90A8C[];
-extern struct ProcCmd gUnk_08B90ACC[];
+extern struct ProcCmd gProcScr_TalkShiftClearAll[];
 extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFC9C[];
 extern struct TalkChoiceEnt CONST_DATA gUnk_08BFFCAC[];
 extern struct ProcCmd gUnk_08B90B0C[];

@@ -4,8 +4,8 @@
 extern u16 Img_Spell11Bg[];
 extern u16 Tsa_Spell11Bg[];
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
-void sub_08057514(struct Anim * anim, int a);
-void sub_08057608(struct Anim * anim, int a);
+void StartSubSpell_efxSpell11BG(struct Anim * anim, int a);
+void StartSubSpell_efxSpell11BGScroll(struct Anim * anim, int a);
 void NewEfxSpellCast(void);
 void StartSubSpell_efxIcebreathOBJ(struct Anim * anim);
 void EfxPlayHittedSFX(struct Anim * anim);
@@ -13,43 +13,43 @@ void RegisterEfxSpellCastEnd(void);
 extern int gEfxBgSemaphore;
 extern u16 Pal_Spell11Bg[];
 
-void sub_0805743C(struct Anim *anim);
-void sub_08057478(struct ProcEfx * proc);
-void sub_08057714(struct Anim * anim);
-void sub_08057750(struct ProcEfxBGCOL * proc);
+void StartSpellAnimSpell11(struct Anim *anim);
+void efxSpell11_Loop(struct ProcEfx * proc);
+void StartSubSpell_efxSpell11BGCOL(struct Anim * anim);
+void efxSpell11BGCOL_Loop(struct ProcEfxBGCOL * proc);
 
 extern const u16 sub_08057714_frame_config[];
 
-void sub_080575D4(struct ProcEfxBG * proc);
-void sub_0805764C(struct ProcEfxOBJ * proc);
+void efxSpell11BG_Loop(struct ProcEfxBG * proc);
+void efxSpell11BGScroll_Loop(struct ProcEfxOBJ * proc);
 
 CONST_DATA struct ProcCmd ProcScr_efxSpell11[] = {
     PROC_19,
-    PROC_REPEAT(sub_08057478),
+    PROC_REPEAT(efxSpell11_Loop),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxSpell11BG[] = {
     PROC_19,
-    PROC_REPEAT(sub_080575D4),
+    PROC_REPEAT(efxSpell11BG_Loop),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxSpell11BGScroll[] = {
     PROC_19,
-    PROC_REPEAT(sub_0805764C),
+    PROC_REPEAT(efxSpell11BGScroll_Loop),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxSpell11BGCOL[] = {
     PROC_19,
     PROC_MARK(10),
-    PROC_REPEAT(sub_08057750),
+    PROC_REPEAT(efxSpell11BGCOL_Loop),
     PROC_END,
 };
 
 // 9.99 efxmagic-thunder:StartSpellAnimThunder
-void sub_0805743C(struct Anim *anim)
+void StartSpellAnimSpell11(struct Anim *anim)
 {
     struct ProcEfx *proc;
     SpellFx_Begin();
@@ -62,7 +62,7 @@ void sub_0805743C(struct Anim *anim)
     proc->hitted = CheckRoundMiss(GetAnimRoundTypeAnotherSide(anim));
 }
 
-void sub_08057478(struct ProcEfx * proc)
+void efxSpell11_Loop(struct ProcEfx * proc)
 {
     struct Anim * anim = GetAnimAnotherSide(proc->anim);
     int cur = ++proc->timer;
@@ -76,9 +76,9 @@ void sub_08057478(struct ProcEfx * proc)
     if (cur == 6)
     {
         NewEfxFarAttackWithDistance(proc->anim, -1);
-        sub_08057514(anim, 9);
-        sub_08057608(anim, 9);
-        sub_08057714(anim);
+        StartSubSpell_efxSpell11BG(anim, 9);
+        StartSubSpell_efxSpell11BGScroll(anim, 9);
+        StartSubSpell_efxSpell11BGCOL(anim);
         PlaySFX(0x10C, 0x100, anim->xPosition, 1);
         return;
     }
@@ -105,7 +105,7 @@ void sub_08057478(struct ProcEfx * proc)
     }
 }
 
-void sub_08057514(struct Anim * anim, int terminator)
+void StartSubSpell_efxSpell11BG(struct Anim * anim, int terminator)
 {
     struct ProcEfxBG * proc;
 
@@ -130,7 +130,7 @@ void sub_08057514(struct Anim * anim, int terminator)
     SetWinEnable(0, 0, 0);
 }
 
-void sub_080575D4(struct ProcEfxBG * proc)
+void efxSpell11BG_Loop(struct ProcEfxBG * proc)
 {
     proc->timer++;
     if (proc->timer == proc->terminator)
@@ -142,7 +142,7 @@ void sub_080575D4(struct ProcEfxBG * proc)
     }
 }
 
-void sub_08057608(struct Anim * anim, int terminator)
+void StartSubSpell_efxSpell11BGScroll(struct Anim * anim, int terminator)
 {
     struct ProcEfxOBJ * proc;
 
@@ -159,7 +159,7 @@ void sub_08057608(struct Anim * anim, int terminator)
         proc->unk44 = -0xD8;
 }
 
-void sub_0805764C(struct ProcEfxOBJ * proc)
+void efxSpell11BGScroll_Loop(struct ProcEfxOBJ * proc)
 {
     int x;
 
@@ -184,7 +184,7 @@ void sub_0805764C(struct ProcEfxOBJ * proc)
 }
 
 // 9.99 efxmagic-thunder:NewEfxThunderBGCOL
-void sub_08057714(struct Anim * anim)
+void StartSubSpell_efxSpell11BGCOL(struct Anim * anim)
 {
 
     struct ProcEfxBGCOL *proc;
@@ -198,7 +198,7 @@ void sub_08057714(struct Anim * anim)
 }
 
 // 9.99 efxmagic-thunder:EfxThunderBGCOL_Loop
-void sub_08057750(struct ProcEfxBGCOL * proc)
+void efxSpell11BGCOL_Loop(struct ProcEfxBGCOL * proc)
 {
     int ret;
     ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);

@@ -275,8 +275,8 @@ struct ChapterEventGroup * GetChapterEventInfo(u32);
 // StartSubtitleHelp
 // sub_080325A0
 // sub_0803261C
-// sub_08032710
-// sub_08032770
+// SubtitleHelpToggle_Loop
+// StartSubtitleHelpToggle
 void EndSubtitleHelp(void);
 bool IsSubtitleHelpActive(void);
 void sub_080327C4(ProcPtr proc, const char *str);
@@ -460,7 +460,7 @@ void SetDialogueBoxConfig(int a);
 // sub_080833AC
 // SetBoxDialogueSize
 // sub_08083444
-// sub_08083478
+// BoxDialogue_Loop
 // sub_080834A8
 // sub_080834E0
 // sub_8083F70
@@ -478,13 +478,13 @@ void StartBoxDialogueExt(int x, int y, int msgId, u16* unkA, int unkB, ProcPtr p
 // sub_08083C68
 // sub_08083C8C
 // BoxDialogueInterpreter_Main
-// sub_080842F0
+// BoxDialogueDrawTextExt_Loop_B
 // sub_08084320
 // sub_0808436C
 // sub_080843AC
-// sub_080843D8
+// BoxDialogueDrawTextExt_Loop_E
 // sub_0808446C
-// sub_08084490
+// StartBoxDialogueDrawTextExt
 // sub_080845C8
 // sub_0808460C
 // StartNoBoxTalk
@@ -1070,7 +1070,7 @@ int GetClassReelEntry(int, int);
 // sub_080B4510
 // WmDimPalette
 // sub_080B467C
-// sub_080B4738
+// WmUnitManager_Loop
 // WmUnitManager_EndAll
 // WmMu_StartFlash
 // WmMu_EndFlash

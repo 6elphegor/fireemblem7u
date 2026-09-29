@@ -257,12 +257,12 @@ bool IsTactFemale(void);
 // sub_807AF30
 // sub_807AF3C
 // ShinningEventCursor
-// sub_0807A52C
-// sub_0807A558
+// TutorialCursor_Init
+// TutorialCursor_Loop
 // StartTutorialCursors
-// sub_0807A764
-// sub_0807A76C
-// sub_0807A7B4
+// TutorialCursorWatcher_Init
+// TutorialCursorWatcher_Loop
+// StartTutorialCursorWatcher
 // HideAllAlliesExceptLeader
 void HideAllUnits(void);
 // sub_0807A868
@@ -345,11 +345,11 @@ void EndDragonGatefx(ProcPtr);
 // sub_0807B7B4
 // DeadDragonFlame_Init
 // DeadDragonFlame_Rotation
-// sub_0807B974
+// DeadDragonFlamefx_Loop_B
 // sub_0807B9F0
 // sub_0807BA1C
 // sub_0807BB18
-// sub_0807BB30
+// DeadDragonFlamefx_Loop_C
 // StartDeadDragonFlamefx
 void sub_0807BBF8(const char *);
 // CandleFlameFx_ScanlineEffect
@@ -427,9 +427,9 @@ struct ProcFlameBreathfx {
 void sub_0807C3A0(struct ProcFlameBreathfx * proc);
 
 void sub_0807C41C(struct ProcFlameBreathfx * proc);
-void sub_0807C520(struct ProcFlameBreathfx * proc);
-void sub_0807C578(struct ProcFlameBreathfx * proc);
-void sub_0807C614(struct ProcFlameBreathfx * proc);
+void FlameBreathfx_Loop_A(struct ProcFlameBreathfx * proc);
+void FlameBreathfx_Loop_B(struct ProcFlameBreathfx * proc);
+void FlameBreathfx_Loop_C(struct ProcFlameBreathfx * proc);
 void sub_0807C66C(struct ProcFlameBreathfx * proc);
 void StartFlameBreathfx(int type, int x, int y, ProcPtr parent);
 
@@ -463,10 +463,10 @@ void IceCrystalfx_Paluse(struct ProcIceCrystal * proc);
 // sub_807D698
 // sub_0807CC38
 // sub_0807CC5C
-// sub_0807CD4C
+// EventWorldFlush_Loop_A
 // WorldFlushReload
-// sub_0807CDEC
-// sub_0807CE60
+// EventWorldFlush_Loop_B
+// EventWorldFlush_OnEnd
 // sub_807D938
 // sub_0807CEC8
 // sub_0807CED8

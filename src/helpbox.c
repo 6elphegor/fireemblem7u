@@ -130,15 +130,15 @@ void sub_08082F80(struct HelpBoxProc * proc);
 void sub_08082FA4(struct HelpBoxProc * proc);
 void sub_08083128(ProcPtr proc);
 void sub_08083444(struct ProcBoxDialogue * proc);
-void sub_08083478(struct ProcBoxDialogue * proc);
+void BoxDialogue_Loop(struct ProcBoxDialogue * proc);
 void sub_080834A8(void);
 void sub_08083C0C(struct ProcBoxDialogueDrawTextExt * proc);
-void sub_080842F0(ProcPtr proc);
+void BoxDialogueDrawTextExt_Loop_B(ProcPtr proc);
 void sub_08084320(struct ProcBoxDialogueDrawTextExt * proc);
 void sub_0808436C(struct ProcBoxDialogueDrawTextExt * proc);
 void sub_080843AC(ProcPtr proc);
-void sub_080843D8(struct ProcBoxDialogueDrawTextExt * proc);
-void sub_08084490(struct HelpBox8A01800Proc * proc);
+void BoxDialogueDrawTextExt_Loop_E(struct ProcBoxDialogueDrawTextExt * proc);
+void StartBoxDialogueDrawTextExt(struct HelpBox8A01800Proc * proc);
 
 CONST_DATA struct ProcCmd gProcScr_HelpBoxTextScroll[] = {
     PROC_REPEAT(HelpBoxTextScroll_OnLoop),
@@ -185,7 +185,7 @@ CONST_DATA struct ProcCmd gProcScr_BoxDialogue[] = {
     PROC_YIELD,
     PROC_CALL(sub_08083444),
     PROC_LABEL(0),
-    PROC_REPEAT(sub_08083478),
+    PROC_REPEAT(BoxDialogue_Loop),
     PROC_LABEL(1),
     PROC_BLOCK,
     PROC_LABEL(3),
@@ -210,7 +210,7 @@ CONST_DATA struct ProcCmd ProcScr_BoxDialogueDrawTextExt[] = {
     PROC_REPEAT(BoxDialogueInterpreter_Main),
     PROC_GOTO(2),
     PROC_LABEL(1),
-    PROC_REPEAT(sub_080842F0),
+    PROC_REPEAT(BoxDialogueDrawTextExt_Loop_B),
     PROC_LABEL(4),
     PROC_REPEAT(sub_08084320),
     PROC_GOTO(0),
@@ -219,7 +219,7 @@ CONST_DATA struct ProcCmd ProcScr_BoxDialogueDrawTextExt[] = {
     PROC_CALL(sub_0808436C),
     PROC_GOTO(0),
     PROC_LABEL(6),
-    PROC_REPEAT(sub_080843D8),
+    PROC_REPEAT(BoxDialogueDrawTextExt_Loop_E),
     PROC_GOTO(0),
     PROC_LABEL(2),
     PROC_CALL(sub_080843AC),
@@ -228,7 +228,7 @@ CONST_DATA struct ProcCmd ProcScr_BoxDialogueDrawTextExt[] = {
 
 CONST_DATA struct ProcCmd gUnknown_08A01800[] = {
     PROC_SLEEP(6),
-    PROC_CALL(sub_08084490),
+    PROC_CALL(StartBoxDialogueDrawTextExt),
     PROC_END,
 };
 
@@ -1034,7 +1034,7 @@ void sub_08083444(struct ProcBoxDialogue * proc)
     DrawBoxDialogueText(proc->x, proc->y, proc->msg);
 }
 
-void sub_08083478(struct ProcBoxDialogue * proc)
+void BoxDialogue_Loop(struct ProcBoxDialogue * proc)
 {
     if (GetDialogueBoxConfig() & 0x82)
         return;
@@ -1773,7 +1773,7 @@ end:
     SetTextFont(NULL);
 }
 
-void sub_080842F0(ProcPtr proc)
+void BoxDialogueDrawTextExt_Loop_B(ProcPtr proc)
 {
     if (Proc_Find(ProcScr_TalkBoxIdle))
     {
@@ -1817,7 +1817,7 @@ void sub_080843AC(ProcPtr proc)
     SetTextFontGlyphs(TEXT_GLYPHS_SYSTEM);
 }
 
-void sub_080843D8(struct ProcBoxDialogueDrawTextExt * proc)
+void BoxDialogueDrawTextExt_Loop_E(struct ProcBoxDialogueDrawTextExt * proc)
 {
     struct HelpBoxProc * helpBoxProc = Proc_Find(ProcScr_MergeBoxDialogue);
 
@@ -1857,7 +1857,7 @@ s8 sub_0808446C(void)
     return 0;
 }
 
-void sub_08084490(struct HelpBox8A01800Proc * proc)
+void StartBoxDialogueDrawTextExt(struct HelpBox8A01800Proc * proc)
 {
     struct ProcBoxDialogueDrawTextExt * otherProc;
 

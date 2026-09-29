@@ -251,11 +251,11 @@ bool EnsureCameraOntoPosition(ProcPtr parent, int x, int y);
 bool IsCameraNotWatchingPosition(int x, int y);
 bool CameraMove_801622C(ProcPtr parent);
 void UnkMapCursor_OnLoop(struct UnkMapCursorProc * proc);
-void sub_08015E64(int x, int y, int duration);
+void StartUnkMapCursor(int x, int y, int duration);
 int GetActiveMapSong(void);
 void StartMapSongBgm(void);
-void sub_08015F94(struct CamMoveProc * proc);
-void nullsub_37(void);
+void CamMoveLinear_Loop(struct CamMoveProc * proc);
+void CamMoveLinear_OnEnd(void);
 void StartCameraMoveLinear(ProcPtr parent, int x, int y, int duration);
 
 extern s8 sDirKeysToOffsetLut[][2];

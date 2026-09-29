@@ -220,7 +220,7 @@ void New6C_SIOMAIN2(void)
 }
 
 //! FE8U = 0x08045C28
-void sub_0804057C(ProcPtr proc)
+void SIOPRA_Loop(ProcPtr proc)
 {
     if (Proc_Find(ProcScr_SIOMAIN2) != NULL)
     {

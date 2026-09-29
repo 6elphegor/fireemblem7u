@@ -52,7 +52,7 @@ void TactInfo_HandleIntroDialoguePrompt(struct ProcTactInfo *proc);
 void sub_080A6AC4(struct ProcTactInfo *proc);
 void sub_080A6B00(struct ProcTactInfo *proc);
 void TactInfo_EndMuralBG(struct ProcTactInfo *proc);
-void sub_080A6B4C(struct ProcTactInfo *proc);
+void TactInfo_Loop(struct ProcTactInfo *proc);
 void TactInfo_UpdateSaveData(struct ProcTactInfo *proc);
 void TactInfo_CheckParticipantDialogue(struct ProcTactInfo *proc);
 void TactInfo_HandleCheckParticipantPrompt(struct ProcTactInfo *proc);

@@ -357,7 +357,7 @@ void DeadDragonFlame_Rotation(struct ProcDeadDragonFlame * proc)
     }
 }
 
-void sub_0807B974(struct ProcDeadDragonFlame * proc)
+void DeadDragonFlamefx_Loop_B(struct ProcDeadDragonFlame * proc)
 {
     s32 blend_amt = ++proc->timer >> 3;
 
@@ -425,7 +425,7 @@ void sub_0807BB18(struct ProcDeadDragonFlame * proc)
     proc->timer = 0;
 }
 
-void sub_0807BB30(struct ProcDeadDragonFlame * proc)
+void DeadDragonFlamefx_Loop_C(struct ProcDeadDragonFlame * proc)
 {
     s32 blend_amt = proc->timer++ >> 3;
 
@@ -466,7 +466,7 @@ struct ProcCmd CONST_DATA ProcScr_DeadDragonFlamefx[] =
     PROC_BLOCK,
 
 PROC_LABEL(0),
-    PROC_REPEAT(sub_0807B974),
+    PROC_REPEAT(DeadDragonFlamefx_Loop_B),
     PROC_WHILE(CheckBmBgfxDone),
     PROC_WHILE(sub_08013A1C),
 
@@ -474,7 +474,7 @@ PROC_LABEL(0),
 
 PROC_LABEL(30),
     PROC_CALL(sub_0807BB18),
-    PROC_REPEAT(sub_0807BB30),
+    PROC_REPEAT(DeadDragonFlamefx_Loop_C),
     PROC_WHILE(sub_08013A1C),
 
     PROC_END,

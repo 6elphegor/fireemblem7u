@@ -52,9 +52,9 @@ void EfxMagicHBlank_08055C30(void);
 void EfxMagicHBlank_08055C6C(void);
 void EfxMagicHBlank_08055CA8(void);
 void NewEfxRestWINH(struct Anim *anim, int a, s16 b, u32 c);
-void sub_08055E30(struct ProcEfx *proc);
+void EfxRestWINH_Loop_B(struct ProcEfx *proc);
 void EfxALPHAMain(struct ProcEfxALPHA * proc);
-void sub_08056054(struct Anim * anim, int terminator, u16 * c, u16 d, u16 e);
+void StartSubSpell_efxCircleWIN(struct Anim * anim, int terminator, u16 * c, u16 d, u16 e);
 void EfxCircleWINMain(struct ProcEfxCircleWIN * proc);
 void Loop6C_efxMagicQUAKE(struct ProcEfxMagicQuake * proc);
 
@@ -96,7 +96,7 @@ ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int sp
     return proc;
 }
 
-void sub_08055900(void)
+void efxRestRST_OnEnd(void)
 {
     gEfxBgSemaphore--;
 }
@@ -168,7 +168,7 @@ void NewDummvRST(struct Anim *anim, int unk44)
     proc->unk44 = unk44;
 }
 
-void sub_08055A40(void)
+void DummvRST_OnEnd(void)
 {
     gEfxBgSemaphore--;
 }
@@ -368,13 +368,13 @@ void NewEfxRestWINH_(struct Anim *anim, int a, int b)
     NewEfxRestWINH(anim, a, 0, b);
 }
 
-void sub_08055E24(ProcPtr proc)
+void EfxRestWINH_Loop_A(ProcPtr proc)
 {
     Proc_Break(proc);
 }
 
 // 0.77 efxmagic:sub_805B958
-void sub_08055E30(struct ProcEfx *proc)
+void EfxRestWINH_Loop_B(struct ProcEfx *proc)
 {
     if (gBmSt.main_loop_ended != false) {
         if (proc->unk48 == 0x2) {
@@ -467,7 +467,7 @@ void EfxALPHAMain(struct ProcEfxALPHA * proc)
 }
 
 // 0.95 efxmagic:sub_805BB24
-void sub_08056054(struct Anim * anim, int terminator, u16 * c, u16 d, u16 e)
+void StartSubSpell_efxCircleWIN(struct Anim * anim, int terminator, u16 * c, u16 d, u16 e)
 {
     struct ProcEfxCircleWIN * proc;
 

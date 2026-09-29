@@ -682,7 +682,7 @@ void sub_08045170(ProcPtr proc)
     return;
 }
 
-void sub_08045194(ProcPtr parent)
+void SIOMAIN2_Loop_A(ProcPtr parent)
 {
     switch (gLinkArenaSt.unk_00)
     {
@@ -2591,7 +2591,7 @@ void sub_08046EB8(struct SioBattleMapProc * proc)
     return;
 }
 
-void sub_08046F04(struct SioBattleMapProc * proc)
+void SIOMAIN2_Loop_B(struct SioBattleMapProc * proc)
 {
     struct Unit * unit;
 

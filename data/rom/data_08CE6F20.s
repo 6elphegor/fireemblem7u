@@ -221,7 +221,7 @@ gProcScr_ArenaUiMain:
 	.global gProcScr_ArenaUiResults
 gProcScr_ArenaUiResults:
 	.incbin "baserom.gba", 0xce73fc, 0xc
-	.4byte sub_080B2C60
+	.4byte ArenaUiResults_Init_A
 	.incbin "baserom.gba", 0xce740c, 0x4
 	.4byte LockGame
 	.incbin "baserom.gba", 0xce7414, 0x4
@@ -349,7 +349,7 @@ ProcScr_WmUnitManager:
 	.incbin "baserom.gba", 0xce76d0, 0x4
 	.4byte WmUnitManager_Init
 	.incbin "baserom.gba", 0xce76d8, 0x4
-	.4byte sub_080B4738
+	.4byte WmUnitManager_Loop
 	.incbin "baserom.gba", 0xce76e0, 0x8
 
 	.global ProcScr_WorldMap

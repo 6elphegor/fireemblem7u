@@ -57,7 +57,7 @@ PROC_LABEL(PL_TACTINFO_1),
 	PROC_CALL(sub_080A6B00),
 PROC_LABEL(PL_TACTINFO_2),
 	PROC_CALL(sub_080A69E0),
-	PROC_REPEAT(sub_080A6B4C),
+	PROC_REPEAT(TactInfo_Loop),
 PROC_LABEL(PL_TACTINFO_4),
 	PROC_CALL_ARG(NewFadeOut, 8),
 	PROC_WHILE(FadeOutExists),
@@ -293,7 +293,7 @@ void TactInfo_EndMuralBG(struct ProcTactInfo *proc)
 	EndAllProcChildren(proc);
 }
 
-void sub_080A6B4C(struct ProcTactInfo *proc)
+void TactInfo_Loop(struct ProcTactInfo *proc)
 {
 	// FE7U has no blood type entry: 0 = name, 1 = birth month, 2 = gender
 	int index_pre = proc->cur_index;
@@ -468,7 +468,7 @@ void TactBlood_Init(struct ProcTactBlood *proc)
 	// FE7U: blood type selection was removed; only this empty stub remains
 }
 
-void sub_080A6E28(void)
+void TactNameSelect_Loop(void)
 {
 }
 void sub_080A6E2C(void)
@@ -479,7 +479,7 @@ void sub_080A6E2C(void)
     SetTextFont(NULL);
     EnableBgSync(BG1_SYNC_BIT);
 }
-void sub_080A6E64(ProcPtr parent)
+void StartTactNameSelect(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_TactNameSelect, parent);
 }
@@ -508,7 +508,7 @@ void sub_080A6E78(struct ProcTactInfo * proc)
     DecodeMsg(0);
     SetTextFont(NULL);
 }
-void sub_080A6F34(struct ProcTactInfo * proc)
+void TactBirthSelect_Loop(struct ProcTactInfo * proc)
 {
     int i;
     char * str;
@@ -613,7 +613,7 @@ void sub_080A71A8(struct ProcTactInfo * proc)
 
     SetTextFont(NULL);
 }
-void sub_080A722C(struct ProcTactInfo * proc)
+void TactGenderSelect_Loop(struct ProcTactInfo * proc)
 {
     int i;
     char * str;

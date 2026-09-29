@@ -4,7 +4,7 @@ struct ProcCmd CONST_DATA ProcScr_LordSelect[] = {
     PROC_19,
     PROC_YIELD,
     PROC_CALL(sub_080AED04),
-    PROC_REPEAT(sub_080AEDF0),
+    PROC_REPEAT(LordSelect_Loop),
 PROC_LABEL(PROCLABEL_LORD_SELECT_4),
     PROC_CALL(sub_080AEEC0),
     PROC_SLEEP(60),
@@ -52,7 +52,7 @@ void sub_080AED8C(struct ProcLordSelect * proc)
     Proc_Goto(proc, PROCLABEL_LORD_SELECT_5);
 }
 
-void sub_080AEDF0(struct ProcLordSelect * proc)
+void LordSelect_Loop(struct ProcLordSelect * proc)
 {
     switch (proc->stat) {
     case LORD_SELECT_STAT_2:

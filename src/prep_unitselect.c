@@ -48,9 +48,9 @@ PROC_LABEL(1),
     PROC_REPEAT(ProcPrepUnit_Idle),
 PROC_LABEL(2),
     PROC_CALL(sub_08093DE8),
-    PROC_REPEAT(sub_08093D54),
-    PROC_REPEAT(sub_08093E2C),
-    PROC_REPEAT(sub_08093D9C),
+    PROC_REPEAT(PrepUnitScreen_Loop_B),
+    PROC_REPEAT(PrepUnitScreen_Loop_C),
+    PROC_REPEAT(PrepUnitScreen_Loop_D),
     PROC_CALL(sub_08093E00),
     PROC_GOTO(1),
 PROC_LABEL(3),
@@ -642,7 +642,7 @@ void ProcPrepUnit_Idle(struct ProcPrepUnit * proc)
     SetBgOffset(2, 0, proc->yDiff_cur - 0x18);
     UpdateMenuScrollBarConfig(0xA, proc->yDiff_cur, (PrepGetUnitAmount() - 1) / 2 + 1, 6);
 }
-void sub_08093D54(struct ProcPrepUnit * proc)
+void PrepUnitScreen_Loop_B(struct ProcPrepUnit * proc)
 {
     proc->unk_34 += 4;
     proc->yDiff_cur += 4;
@@ -655,7 +655,7 @@ void sub_08093D54(struct ProcPrepUnit * proc)
     if (0 == proc->yDiff_cur % 0x10)
         PrepUpdateMenuTsaScroll(proc->yDiff_cur / 0x10 - 1);
 }
-void sub_08093D9C(struct ProcPrepUnit * proc)
+void PrepUnitScreen_Loop_D(struct ProcPrepUnit * proc)
 {
     if (0 == proc->yDiff_cur % 0x10)
         PrepUnit_DrawUnitListNames(proc, proc->yDiff_cur / 0x10 - 1);
@@ -684,7 +684,7 @@ void sub_08093E00(struct ProcPrepUnit * proc)
         (proc->list_num_cur / 2) * 16 + 0x18 - proc->yDiff_cur,
         0x7, 0x800);
 }
-void sub_08093E2C(struct ProcPrepUnit * proc)
+void PrepUnitScreen_Loop_C(struct ProcPrepUnit * proc)
 {
     if (A_BUTTON & gpKeySt->pressed)
         PlaySoundEffect(0x38C);

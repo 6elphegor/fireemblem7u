@@ -39,7 +39,7 @@ struct ProcLordSelect {
 
 void sub_080AED04(struct ProcLordSelect * proc);
 // sub_080AED8C
-void sub_080AEDF0(struct ProcLordSelect * proc);
+void LordSelect_Loop(struct ProcLordSelect * proc);
 // sub_080AEE74
 // SetLordSelectState
 void sub_080AEEC0(struct ProcLordSelect * proc);

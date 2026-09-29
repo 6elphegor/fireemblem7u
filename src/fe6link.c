@@ -223,7 +223,7 @@ void sub_080434EC(ProcPtr proc)
     SioSend16(&magic, -1);
     SoundVSyncOn_rev01();
 }
-void sub_08043538(ProcPtr proc)
+void FE6Link_Loop_B(ProcPtr proc)
 {
     int i;
     int numTimeouts = 0;
@@ -289,7 +289,7 @@ bool sub_08043618(void * data)
         return FALSE;
     }
 }
-void sub_0804362C(ProcPtr proc)
+void FE6Link_Loop_C(ProcPtr proc)
 {
     u8 senderId[4];
 
@@ -317,7 +317,7 @@ bool sub_08043690(void * data)
 
     return FALSE;
 }
-void sub_080436A0(struct Fe6LinkProc * proc)
+void FE6Link_Loop_D(struct Fe6LinkProc * proc)
 {
     u8 senderId[4];
 
@@ -336,7 +336,7 @@ void sub_080436A0(struct Fe6LinkProc * proc)
         }
     }
 }
-void sub_08043700(struct Fe6LinkProc * proc)
+void FE6Link_Loop_E(struct Fe6LinkProc * proc)
 {
     struct Fe6LinkMenuProc * child = proc->unk_54;
 
@@ -374,7 +374,7 @@ bool sub_08043788(void * data)
 
     return FALSE;
 }
-void sub_08043798(struct Fe6LinkProc * proc)
+void FE6Link_Loop_I(struct Fe6LinkProc * proc)
 {
     struct Fe6LinkSaveInfo info;
     u8 senderId[4];
@@ -671,7 +671,7 @@ void sub_08043F1C(struct Fe6LinkProc * proc)
     EnableBgSync(BG1_SYNC_BIT);
     proc->unk_68 = 0;
 }
-void sub_08043F50(struct Fe6LinkProc * proc)
+void FE6Link_Loop_G(struct Fe6LinkProc * proc)
 {
     struct Fe6LinkMenuProc * child = proc->unk_54;
 
@@ -731,7 +731,7 @@ void sub_08043F50(struct Fe6LinkProc * proc)
         }
     }
 }
-void sub_0804408C(ProcPtr proc)
+void FE6Link_Loop_J(ProcPtr proc)
 {
     if (gpKeySt->pressed & (A_BUTTON | START_BUTTON))
         Proc_Break(proc);

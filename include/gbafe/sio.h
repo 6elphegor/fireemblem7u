@@ -33,10 +33,10 @@
 // sub_0803D5FC
 // sub_0803D674
 // sub_0803D688
-// sub_0803D6E8
+// SioBigSend_Loop
 // sub_0803D758
-// sub_0803D780
-// sub_0803D7C4
+// SioBigReceive_Loop_A
+// SioBigReceive_Loop_B
 // StartSioBigSend
 // StartSioBigReceive
 // IsSioBigTransferActive
@@ -108,11 +108,11 @@ bool CheckInLinkArena(void);
 // Tactician_Loop
 // sub_0803F8D8
 // sub_0803F938
-// sub_0803F950
+// TacticianNameSelection_Loop_B
 // sub_0803F990
-// sub_0803F9BC
+// TacticianNameSelection_Loop_C
 // NameSelect_DrawName
-// sub_0803FA3C
+// TacticianNameSelection_Loop_D
 // sub_0803FB24
 // SioPostBattleSprites_Init
 // SioPostBattleSprites_Loop_DrawSlideIn
@@ -130,7 +130,7 @@ bool CheckInLinkArena(void);
 // sub_8040AC0
 // sub_8040B54
 // sub_8040C74
-// sub_0804057C
+// SIOPRA_Loop
 // sub_080405BC
 // sub_08040610
 // sub_08040634
@@ -153,7 +153,7 @@ bool CheckInLinkArena(void);
 // sub_80419C8
 // sub_80419D4
 // sub_08041584
-// sub_08041610
+// SIOTERM_Loop_A
 // sub_0804168C
 // sub_080416D4
 // sub_080416F0
@@ -219,12 +219,12 @@ void CallEraseSaveEvent(ProcPtr proc); // FE7J sub_8043948
 // FE6Link_OnEnd
 // sub_08043604
 // sub_08043618
-// sub_0804362C
+// FE6Link_Loop_C
 // sub_08043690
-// sub_080436A0
-// sub_08043700
+// FE6Link_Loop_D
+// FE6Link_Loop_E
 // sub_08043788
-// sub_08043798
+// FE6Link_Loop_I
 // sub_08043828
 // sub_0804397C
 // sub_080439D0
@@ -237,8 +237,8 @@ void CallEraseSaveEvent(ProcPtr proc); // FE7J sub_8043948
 // sub_08043EB4
 // sub_08043F04
 // sub_08043F1C
-// sub_08043F50
-// sub_0804408C
+// FE6Link_Loop_G
+// FE6Link_Loop_J
 // FE6Link_CallBack
 void GC_ConnectToFE6(/* TODO */);
 // sub_080440E8
@@ -281,7 +281,7 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_08045058
 // sub_08045124
 // sub_08045170
-// sub_08045194
+// SIOMAIN2_Loop_A
 // sub_080451FC
 // sub_8045A7C
 // sub_08045334
@@ -342,7 +342,7 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_8047664
 // LinkArena_StoreTalkChoice
 // sub_80476A0
-// sub_08046F04
+// SIOMAIN2_Loop_B
 // sub_08046F7C
 // sub_08046F98
 // sub_08046FE8
@@ -369,7 +369,7 @@ void GC_ConnectToFE6(/* TODO */);
 // sub_080476C8
 // StartLinkArenaMUDeathFade
 // sub_08047768
-// sub_080477B4
+// StartMuRestorePalInfo
 // SioWarp_Init
 // SioWarp_Loop
 // SioWarp_End

@@ -31,18 +31,18 @@ extern u16 Pal_LuceOBJ[];
 extern u16 Img_LuceOBJ[];
 
 void StartSpellBG_LuceBG(struct Anim * anim);
-void sub_08061658(struct Anim * anim, int terminator);
+void StartSubSpell_efxLuceBG2(struct Anim * anim, int terminator);
 void sub_08061760(struct Anim * anim, int terminator);
 void sub_080617DC(struct Anim * anim, int terminator);
-void sub_08061874(struct Anim * anim, int duration, int terminator);
-void sub_08061914(struct Anim * anim, int terminator);
+void StartSubSpell_efxLuceWOUT(struct Anim * anim, int duration, int terminator);
+void StartSubSpell_efxLuceBGCOL(struct Anim * anim, int terminator);
 
-void sub_08061874(struct Anim * anim, int duration, int terminator);
-void sub_080618AC(struct ProcEfxOBJ * proc);
+void StartSubSpell_efxLuceWOUT(struct Anim * anim, int duration, int terminator);
+void efxLuceWOUT_Loop(struct ProcEfxOBJ * proc);
 
 
 
-void sub_080613F8(struct Anim * anim)
+void StartSpellAnimLuce(struct Anim * anim)
 {
     struct ProcEfx * proc;
 
@@ -56,7 +56,7 @@ void sub_080613F8(struct Anim * anim)
     proc->hitted = CheckRoundMiss(GetAnimRoundTypeAnotherSide(anim));
 }
 
-void sub_08061434(struct ProcEfx * proc)
+void efxLuce_Loop(struct ProcEfx * proc)
 {
     struct Anim * anim = GetAnimAnotherSide(proc->anim);
     int duration = EfxGetCamMovDuration();
@@ -77,7 +77,7 @@ void sub_08061434(struct ProcEfx * proc)
     }
     else if (proc->timer == duration + 26)
     {
-        sub_08061914(anim, 114);
+        StartSubSpell_efxLuceBGCOL(anim, 114);
         SetBlendAlpha(0, 16);
         NewEfxALPHA(anim, 10, 10, 0, 16, 0);
         PlaySFX(0x2C5, 0x100, 0x78, 0);
@@ -89,7 +89,7 @@ void sub_08061434(struct ProcEfx * proc)
     }
     else if (proc->timer == duration + 86)
     {
-        sub_08061874(anim, 55, 45);
+        StartSubSpell_efxLuceWOUT(anim, 55, 45);
     }
     else if (proc->timer == duration + 141)
     {
@@ -102,7 +102,7 @@ void sub_08061434(struct ProcEfx * proc)
     else if (proc->timer == duration + 142)
     {
         StartSpellThing_MagicQuake(anim, 100, 10);
-        sub_08061658(anim, 100);
+        StartSubSpell_efxLuceBG2(anim, 100);
         NewEfxALPHA(anim, 80, 20, 16, 0, 0);
         PlaySFX(0x2C6, 0x100, 0x78, 0);
     }
@@ -134,7 +134,7 @@ void StartSpellBG_LuceBG(struct Anim * anim)
     SpellFx_SetSomeColorEffect();
 }
 
-void sub_08061600(struct ProcEfxBG * proc)
+void efxLuceBG_Loop(struct ProcEfxBG * proc)
 {
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -153,7 +153,7 @@ void sub_08061600(struct ProcEfxBG * proc)
     }
 }
 
-void sub_08061658(struct Anim * anim, int terminator)
+void StartSubSpell_efxLuceBG2(struct Anim * anim, int terminator)
 {
     struct ProcEfxBG * proc;
 
@@ -175,14 +175,14 @@ void sub_08061658(struct Anim * anim, int terminator)
     SetWinEnable(0, 0, 0);
 }
 
-void sub_08061700(void)
+void efxLuceBG2_OnEnd(void)
 {
     SpellFx_ClearBG1();
     gEfxBgSemaphore--;
     SpellFx_ClearColorEffects();
 }
 
-void sub_0806171C(struct ProcEfxBG * proc)
+void efxLuceBG2_Loop(struct ProcEfxBG * proc)
 {
     if (GetAnimPosition(proc->anim) == EKR_POS_L)
         gDispIo.bg_off[BG_1].x += 12;
@@ -232,7 +232,7 @@ void sub_080617DC(struct Anim * anim, int terminator)
     front->oam2Base = (front->oam2Base & ~0xC00) | 0x400;
 }
 
-void sub_08061840(struct ProcEfxOBJ * proc)
+void efxLuceOBJ_Loop(struct ProcEfxOBJ * proc)
 {
     if (++proc->timer == proc->terminator)
     {
@@ -243,7 +243,7 @@ void sub_08061840(struct ProcEfxOBJ * proc)
 }
 
 // 9.99 efxmagic-ivaldi:StartSubSpell_efxIvaldiWOUT
-void sub_08061874(struct Anim * anim, int duration, int terminator)
+void StartSubSpell_efxLuceWOUT(struct Anim * anim, int duration, int terminator)
 {
     struct ProcEfxOBJ * proc;
 
@@ -260,7 +260,7 @@ void sub_08061874(struct Anim * anim, int duration, int terminator)
 }
 
 // 9.99 efxmagic-ivaldi:efxIvaldiWOUT_Loop
-void sub_080618AC(struct ProcEfxOBJ * proc)
+void efxLuceWOUT_Loop(struct ProcEfxOBJ * proc)
 {
     int val = Interpolate(INTERPOLATE_LINEAR, 0, 16, proc->timer, proc->terminator);
 
@@ -278,7 +278,7 @@ void sub_080618AC(struct ProcEfxOBJ * proc)
     return;
 }
 
-void sub_08061914(struct Anim * anim, int terminator)
+void StartSubSpell_efxLuceBGCOL(struct Anim * anim, int terminator)
 {
     struct ProcEfxBGCOL * proc;
     struct Anim * other;
@@ -328,7 +328,7 @@ void sub_08061914(struct Anim * anim, int terminator)
     }
 }
 
-void sub_08061A34(struct ProcEfxBGCOL * proc)
+void efxLuceBGCOL_Loop(struct ProcEfxBGCOL * proc)
 {
     s16 ret;
     struct Anim * other = GetAnimAnotherSide(proc->anim);

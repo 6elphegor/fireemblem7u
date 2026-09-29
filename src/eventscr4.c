@@ -3,7 +3,7 @@
 
 /* functions from other modules */
 ProcPtr Proc_FindNonBlocked(const struct ProcCmd * script);
-ProcPtr sub_080046F4(int mark);
+ProcPtr Proc_FindWithMark(int mark);
 void SetTalkFlag(int talk_flags);
 void ClearTalkFaceRefs(void);
 void SetBgmVolume(int volume);
@@ -333,7 +333,7 @@ void sub_0800ED1C(void)
 
 bool IsEventRunning(void)
 {
-    return sub_080046F4(6) ? TRUE : FALSE;
+    return Proc_FindWithMark(6) ? TRUE : FALSE;
 }
 
 bool sub_0800ED34(void)

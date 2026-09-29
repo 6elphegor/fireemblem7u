@@ -264,7 +264,7 @@ EventScr_08CADA50:
 	TUTORIAL_CURSORS AreaList_08CA1618
 	TEX1 MSG_9CB                             @ ! Let Wallace show you his might! Give me an ord
 	CLEAN
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x3F3
 	ASMC NewForceAsyncButtonB
 	ENUF 7
@@ -296,7 +296,7 @@ EventScr_08CADB20:
 	STAL 8
 	TUTORIAL_TEXT 64, 48, MSG_9CD            @ Let them stare in awe at my might! Their knees s
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 8
 	EVBIT_YESSKIP
 	REMA

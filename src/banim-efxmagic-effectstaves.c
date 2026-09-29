@@ -78,7 +78,7 @@ void StartSpellAnimSleep(struct Anim * anim);
 void efxSleep_Loop_Main(struct ProcEfx * proc);
 void StartSubSpell_efxSleepBG(struct Anim * anim);
 void efxSleepBG_Loop(struct ProcEfxBG * proc);
-void sub_0805E320(struct Anim * anim);
+void StartSubSpell_efxSleepOBJ(struct Anim * anim);
 void StartSubSpell_efxSleepOBJ2(struct Anim * anim);
 void efxSleepOBJ_OnEnd(void);
 void StartSubSpell_efxSleepSE(struct Anim * anim);
@@ -311,7 +311,7 @@ void efxSleep_Loop_Main(struct ProcEfx * proc)
 
     if (proc->timer == 1)
     {
-        sub_0805E320(proc->anim);
+        StartSubSpell_efxSleepOBJ(proc->anim);
         PlaySFX(0x11B, 0x100, proc->anim->xPosition, 1);
     }
 
@@ -421,7 +421,7 @@ void efxSleepBG_Loop(struct ProcEfxBG * proc)
 }
 
 // 9.99 efxmagic-effectstaves:sub_8062898
-void sub_0805E320(struct Anim * anim)
+void StartSubSpell_efxSleepOBJ(struct Anim * anim)
 {
     struct ProcEfxOBJ * proc;
 

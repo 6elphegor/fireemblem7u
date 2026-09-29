@@ -1,4 +1,22 @@
-# Symbol renames of 2026-09-28: "OLD NEW" per line; apply with tools/apply_renames.py.
+# Symbol renames of 2026-09-28: "OLD NEW" per line; apply with tools/apply_renames.py
+# (re-runnable: lines already applied are skipped).  Sections, in priority order:
+# names ported from FireEmblem7J, then from fireemblem8u (functions matched by
+# code, calls, table slots or position between matched neighbours; data by the
+# literals of matched functions or the slots of same-named tables); then names
+# derived from what the data is:
+#   graphics   the entry's data/graphics.txt NAME: Img_/Pal_/Tsa_ (4bpp, palette,
+#              tsa/tilemap) + the path: portrait/NNN_Who_face -> Img_Portrait_Who_Face
+#              (the id is kept when a name has two portraits or none), bg_XX ->
+#              Img_Bg_XX, btl_bg -> BattleBg, cg -> Cg, map layout/palette/tile
+#              config/object set -> MapLayout_ChXX / Pal_Map_ChXX / TileConfig_XX /
+#              Img_MapObj_XX, unit_icon/move -> Img_Mu_<Class>, banim/NNN_abbr ->
+#              Img_Banim_NNN_abbr_SheetN / BanimOam_NNN_abbr_L|R / Pal_Banim_NNN_abbr,
+#              TsaArray_X_NN / ImgLut_X_NN elements -> Tsa_X_NN / Img_X_NN;
+#   structure  the table that holds it (FaceInfoTable, gBackgroundTable, TextGlyphs_*,
+#              banim_data) or the AnimScr_X that uses it (AnimSprite_X_ADDR);
+#   procs      the named proc script that runs a function (ProcScr_X: X_Loop, X_Init,
+#              X_OnEnd) or that it starts (StartX; StartSubSpell_X and
+#              StartSpellAnim<Spell> in the spell effects, fireemblem8u's convention).
 
 # --- Functions from FireEmblem7J (same position and code in both ROMs; named calls and literals agree): 8
 sub_0809019C EnablePrepScreenMenu
@@ -54,7 +72,7 @@ sub_0800A0FC ClearPrimaryHBlank
 sub_0801B900 DebugMenuInit
 sub_0808F690 IsGameLockLevelReserved
 
-# --- Data from FireEmblem7J (same bytes, or the same literal in aligned functions): 28
+# --- Data from FireEmblem7J (same bytes, or the same literal in aligned functions): 27
 EventScr_08B93DA4 EventScr_CompleteTraining
 gUnk_081AB284 SpritAnim_NinianPray
 gUnk_081BE518 Img_EventSpriteAnim_NinianDragonDead
@@ -64,7 +82,6 @@ gUnk_081C3260 ApConf_EventSpriteAnim_SpawnAssassin
 gUnk_081D57BC UiWindowFrameTile1
 gUnk_081D57DC UiWindowFrameTile2
 gUnk_081D57FC UiWindowFrameTile3
-gUnk_0840C7CE TsaConfig_PrepMuralBackground
 gUnk_085FF1D4 Img_OpAnimWater
 gUnk_0860029C Tsa_OpAnimWater
 gUnk_08600544 Pal_OpAnimWater
@@ -84,16 +101,14 @@ gUnk_081D6130 Img_UiWindowFrame2
 gUnk_081D6A24 Img_UiWindowFrame3
 gUnk_081D72E4 Img_UiWindowFrame4
 
-# --- Data from fireemblem8u (the same literal of a matched function, or the same slot of a same-named table): 293
+# --- Data from fireemblem8u (the same literal of a matched function, or the same slot of a same-named table): 290
 Pal_0840DCE4 Pal_MapBattleInfoNum
 ProcScr_08B85854 gMusicProc3Script
 ProcScr_08CA74F0 ProcScr_ForceAsyncButtonB
-ProcScr_08CE3C54 ProcScr_SaveMenu
 ProcScr_08CE40F8 ProcScr_BonusClaimMenu
 ProcScr_08CE578C gProcScr_BonusClaim
 ProcScr_08CE5B98 gProcScr_RedrawConfigHelpText
 ProcScr_08CE5BB8 gProcScr_DrawConfigUiSprites
-Sprite_081D52E6 Sprite_LinkArena_NameBanner
 Sprite_08CC4FC4 sSprite_BackButton
 Sprite_08CC593C sSprite_NameAffinLv
 Sprite_08CC5960 gSprite_SupportScreenSuccessBox
@@ -122,7 +137,6 @@ gUnk_08B90B9C gProcScr_TalkOpen
 gUnk_08B90BCC gTalkFaceHPosLut
 gUnk_08B90BEC gSprite_TalkTextFront
 gUnk_08B90C06 gSprite_TalkTextBack
-gUnknown_0200F158 gSortedUnits
 gUnknown_0840D224 gImg_UiSpinningArrow_Horizontal
 gUnk_081D36E8 gClassList_Empty1
 gUnk_081D36EC gClassList_Empty5
@@ -379,7 +393,7 @@ gUnk_08BDCD34 AnimSprite_EkrPopup
 gUnk_08CE7290 ProcScr_ShopDrawHand
 gUnk_08CE74EC gProcScr_ArenaUiResultBgm
 
-# --- Graphics labels named after their data/graphics.txt entry (see tools/renames/README): 2901
+# --- Graphics labels named after their data/graphics.txt entry: 2901
 gUnk_080CCD24 Img_Bg_00
 gUnk_080D0CAC Pal_Bg_00
 gUnk_080D0DAC Img_Bg_01
@@ -6396,3 +6410,215 @@ gUnk_08BDC868 AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868
 gUnk_08BDC880 AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC880
 gUnk_08BDC910 AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC910
 gUnk_08BDC994 AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994
+
+# --- Functions from fireemblem8u, second pass (callers/tables named by the first): 6
+sub_080046F4 Proc_FindWithMark
+sub_080099A4 TalkBubbleOpen_OnIdle
+sub_08009D58 TalkOpen_InitBlend
+sub_08009DFC TalkOpen_OnIdle
+sub_0807A4B0 UnsetKeyIgnoreMask
+sub_0807A4BC AsnycKeyStatus_ButtonB
+
+# --- Data from fireemblem8u, second pass (AI scripts: same slot of gAi1ScriptTable/gAi2ScriptTable and same script words): 14
+gUnk_08B90ACC gProcScr_TalkShiftClearAll
+gUnk_08B972F8 AiScr_AiB_MoveToEnemy
+gUnk_08B973D8 AiScr_AiB_NeverMove
+gUnk_08B973F8 AiScr_AiB_PillageThenPursue
+gUnk_08B97428 AiScr_AiB_PillageThenEscape
+gUnk_08B97458 gAiScript_Escape
+gUnk_08B97858 gAiScript_ActionInRange
+gUnk_08B97878 gAiScript_ActionInRange_80Perc
+gUnk_08B97898 gAiScript_ActionInRange_50Perc
+gUnk_08B978B8 gAiScript_ActionStanding
+gUnk_08B978D8 gAiScript_ActionStanding_80Perc
+gUnk_08B978F8 gAiScript_ActionStanding_50Perc
+gUnk_08B97918 gAiScript_DoNothing
+gUnk_08B97A5C gAiScript_ActionInRange_ExceptCivilian
+
+# --- Functions named after the proc script that runs them (ProcScr_X: X_Loop, X_Init, X_OnEnd; its starter: StartX, or StartSubSpell_X / StartSpellAnim<Spell> in the spell effects, as fireemblem8u names them): 185
+sub_08008218 Talk_Loop
+sub_080096BC TalkSpriteShiftClear_Init
+sub_08015E64 StartUnkMapCursor
+sub_08015F94 CamMoveLinear_Loop
+nullsub_37 CamMoveLinear_OnEnd
+sub_0801FA88 ChapterIntrofx_Loop_G
+sub_0801FAD4 ChapterIntrofx_Loop_H
+sub_08021480 NinianTransformToHunman_Loop
+sub_08032710 SubtitleHelpToggle_Loop
+sub_08032770 StartSubtitleHelpToggle
+sub_0803D6E8 SioBigSend_Loop
+sub_0803D780 SioBigReceive_Loop_A
+sub_0803D7C4 SioBigReceive_Loop_B
+sub_0803F950 TacticianNameSelection_Loop_B
+sub_0803F9BC TacticianNameSelection_Loop_C
+sub_0803FA3C TacticianNameSelection_Loop_D
+sub_0804057C SIOPRA_Loop
+sub_08041610 SIOTERM_Loop_A
+sub_0804170C SIOTERM_Loop_B
+sub_08043538 FE6Link_Loop_B
+sub_0804362C FE6Link_Loop_C
+sub_080436A0 FE6Link_Loop_D
+sub_08043700 FE6Link_Loop_E
+sub_08043798 FE6Link_Loop_I
+sub_08043F50 FE6Link_Loop_G
+sub_0804408C FE6Link_Loop_J
+sub_08045194 SIOMAIN2_Loop_A
+sub_08046F04 SIOMAIN2_Loop_B
+sub_080477B4 StartMuRestorePalInfo
+sub_0804E040 efxDeadEvent_Loop_A
+sub_0804E0C0 efxDeadEvent_Loop_B
+sub_0804E0F0 efxDeadEvent_Loop_C
+sub_0804E168 efxDeadEvent_Loop_D
+sub_0804E1CC efxDeadEvent_Loop_E
+sub_0804E234 efxDead_Loop_A
+sub_0804E278 efxDead_Loop_B
+sub_0804E5AC efxFarAttack_Loop_A
+sub_0804E5DC efxFarAttack_Loop_B
+sub_0804E648 efxFarAttack_Loop_C
+sub_0804FAD4 EfxWeaponIcon_Loop
+sub_0804FB3C EfxWeaponIcon_OnEnd
+sub_0804FBF8 efxSpellCast_Loop_A
+sub_0804FC5C efxSpellCast_Loop_B
+sub_0804FC9C efxSpellCast_Loop_C
+sub_0804FD1C StartEfxSpellCastBg
+sub_0804FDA0 efxSpellCastBg_Loop_A
+sub_0804FE28 efxSpellCastBg_Loop_B
+sub_0804FE78 efxSpellCastBg_Loop_C
+sub_0804FF04 efxSpellCastBg_Loop_D
+sub_0804FF60 efxSpellCastBg_Loop_E
+sub_08050844 efxSPDQuake_Loop_A
+sub_08050918 efxSPDQuake_Loop_B
+sub_08055900 efxRestRST_OnEnd
+sub_08055A40 DummvRST_OnEnd
+sub_08055E24 EfxRestWINH_Loop_A
+sub_08055E30 EfxRestWINH_Loop_B
+sub_08056054 StartSubSpell_efxCircleWIN
+sub_0805743C StartSpellAnimSpell11
+sub_08057478 efxSpell11_Loop
+sub_08057514 StartSubSpell_efxSpell11BG
+sub_080575D4 efxSpell11BG_Loop
+sub_08057608 StartSubSpell_efxSpell11BGScroll
+sub_0805764C efxSpell11BGScroll_Loop
+sub_08057714 StartSubSpell_efxSpell11BGCOL
+sub_08057750 efxSpell11BGCOL_Loop
+sub_0805779C StartSpellAnimHurtmut
+sub_080586E0 efxFireHITBG_Loop
+sub_0805A3F0 StartSpellAnimBolganone
+sub_0805A42C efxBolganone_Loop
+sub_0805A62C StartSubSpell_efxBolganoneBG
+sub_0805A680 efxBolganoneBG_Loop
+sub_0805A6F8 StartSubSpell_efxBolganoneBGCOL
+sub_0805A740 efxBolganoneBGCOL_Loop
+sub_0805A78C StartSubSpell_efxBolganoneBG2
+sub_0805A7E0 efxBolganoneBG2_Loop
+sub_0805A864 StartSubSpell_efxBolganoneOBJ
+sub_0805A8B4 efxBolganoneOBJ_Loop
+sub_0805A928 StartSubSpell_efxBolganoneOBJChild
+sub_0805AA28 efxBolganoneOBJChild_Loop
+sub_0805AA7C StartSubSpell_efxBolganoneBG3
+sub_0805AAD8 efxBolganoneBG3_Loop
+sub_0805AB44 StartSubSpell_efxBolganoneOBJ2
+sub_0805AB9C efxBolganoneOBJ2_Loop
+sub_0805AC1C StartSubSpell_efxBolganoneOBJ2Child
+sub_0805AD44 efxBolganoneOBJ2Child_Loop
+sub_0805ADF0 StartSubSpell_efxBolganoneWOUT
+sub_0805AE28 efxBolganoneWOUT_Loop
+sub_0805B290 StartSpellAnimSpell21
+sub_0805B2CC efxSpell21_Loop
+sub_0805B438 StartSubSpell_efxSpell21BG
+sub_0805B4D0 efxSpell21BG_Loop
+sub_0805B534 StartSubSpell_efxSpell21BG2
+sub_0805B58C efxSpell21BG2_Loop
+sub_0805B660 StartSubSpell_efxSpell21BGCOL
+sub_0805B6A8 efxSpell21BGCOL_Loop
+sub_0805B6F4 StartSubSpell_efxSpell21OBJ
+sub_0805B744 efxSpell21OBJ_Loop
+sub_0805B798 StartSubSpell_efxSpell21OBJChild
+sub_0805B87C efxSpell21OBJChild_Loop
+sub_0805B8F4 StartSubSpell_efxSpell21OBJ2
+sub_0805B9A4 efxSpell21OBJ2_Loop
+sub_0805BA48 StartSubSpell_efxSpell21OBJ3
+sub_0805BA78 efxSpell21OBJ3_Loop
+sub_0805BACC StartSubSpell_efxSpell21OBJ3Child
+sub_0805BB74 efxSpell21OBJ3Child_Loop
+sub_0805E320 StartSubSpell_efxSleepOBJ
+sub_08060688 StartSpellAnimGespenst
+sub_080606C4 efxGespenst_Loop
+sub_080608AC StartSubSpell_efxGespenstBG
+sub_08060940 efxGespenstBG_Loop
+sub_080609E4 StartSubSpell_efxGespenstBG2
+sub_08060A8C efxGespenstBG2_OnEnd
+sub_08060AA8 efxGespenstBG2_Loop
+sub_08060C60 StartSubSpell_efxGespenstOBJ
+sub_08060CC8 efxGespenstOBJ_Loop
+sub_08060CFC StartSubSpell_efxGespenstOBJ2
+sub_08060D70 efxGespenstOBJ2_OnEnd
+sub_08060D88 efxGespenstOBJ2_Loop_A
+sub_08060DA4 efxGespenstOBJ2_Loop_B
+sub_08060DC0 efxGespenstOBJ2_Loop_C
+sub_080613F8 StartSpellAnimLuce
+sub_08061434 efxLuce_Loop
+sub_08061600 efxLuceBG_Loop
+sub_08061658 StartSubSpell_efxLuceBG2
+sub_08061700 efxLuceBG2_OnEnd
+sub_0806171C efxLuceBG2_Loop
+sub_08061840 efxLuceOBJ_Loop
+sub_08061874 StartSubSpell_efxLuceWOUT
+sub_080618AC efxLuceWOUT_Loop
+sub_08061914 StartSubSpell_efxLuceBGCOL
+sub_08061A34 efxLuceBGCOL_Loop
+sub_08061B68 StartSpellAnimEreshkigal
+sub_08061BA4 efxEreshkigal_Loop
+sub_08061D24 StartSubSpell_efxEreshkigalOBJ
+sub_08061D70 efxEreshkigalOBJ_Loop
+sub_08061DE8 StartSubSpell_efxEreshkigalOBJChild
+sub_08061E58 efxEreshkigalOBJChild_OnEnd
+sub_08061E70 StartSubSpell_efxEreshkigalOBJ2
+sub_08061ED4 efxEreshkigalOBJ2_OnEnd
+sub_08061EEC efxEreshkigalOBJ2_Loop
+sub_08061F08 StartSubSpell_efxEreshkigalBG
+sub_08061F60 efxEreshkigalBG_Loop
+sub_08062108 StartSubSpell_efxEreshkigalWhiteOut
+sub_08062158 efxEreshkigalWhiteOut_Loop
+sub_08062244 efxSuperdruidOBJ2_OnEnd
+sub_08062254 StartSubSpell_efxEreshkigalOBJ3
+sub_080622B4 efxEreshkigalOBJ3_OnEnd
+sub_0807A52C TutorialCursor_Init
+sub_0807A558 TutorialCursor_Loop
+sub_0807A764 TutorialCursorWatcher_Init
+sub_0807A76C TutorialCursorWatcher_Loop
+sub_0807A7B4 StartTutorialCursorWatcher
+sub_0807B974 DeadDragonFlamefx_Loop_B
+sub_0807BB30 DeadDragonFlamefx_Loop_C
+sub_0807C520 FlameBreathfx_Loop_A
+sub_0807C578 FlameBreathfx_Loop_B
+sub_0807C614 FlameBreathfx_Loop_C
+sub_0807CD4C EventWorldFlush_Loop_A
+sub_0807CDEC EventWorldFlush_Loop_B
+sub_0807CE60 EventWorldFlush_OnEnd
+sub_0807CEB4 StartEventWorldFlush
+sub_08083478 BoxDialogue_Loop
+sub_080842F0 BoxDialogueDrawTextExt_Loop_B
+sub_080843D8 BoxDialogueDrawTextExt_Loop_E
+sub_08084490 StartBoxDialogueDrawTextExt
+sub_08093D54 PrepUnitScreen_Loop_B
+sub_08093D9C PrepUnitScreen_Loop_D
+sub_08093E2C PrepUnitScreen_Loop_C
+sub_080A4F74 BonusClaimMenu_Init_A
+sub_080A503C BonusClaimMenu_Init_B
+sub_080A6B4C TactInfo_Loop
+sub_080A6E28 TactNameSelect_Loop
+sub_080A6E64 StartTactNameSelect
+sub_080A6F34 TactBirthSelect_Loop
+sub_080A722C TactGenderSelect_Loop
+sub_080AEDF0 LordSelect_Loop
+sub_080B2C60 ArenaUiResults_Init_A
+sub_080B4738 WmUnitManager_Loop
+sub_080BBA3C OpeningSeqence_Loop_B
+sub_080BBB30 OpeningSeqence_Loop_A
+sub_080BBEB0 OpeningSeqence_Loop_C
+sub_080BC0C4 OpeningSeqence_Loop_D
+sub_080BC21C OpeningSeqence_Loop_E
+sub_080BC280 OpeningSeqence_Loop_F
+sub_080BC494 OpeningSeqence_Loop_G
+

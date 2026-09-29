@@ -387,13 +387,13 @@ ProcScr_efxPurgeOBJ:
 	.global ProcScr_efxBolganone
 ProcScr_efxBolganone:
 	.incbin "baserom.gba", 0xba2840, 0xc
-	.4byte sub_0805A42C
+	.4byte efxBolganone_Loop
 	.incbin "baserom.gba", 0xba2850, 0x8
 
 	.global ProcScr_efxBolganoneBG
 ProcScr_efxBolganoneBG:
 	.incbin "baserom.gba", 0xba2858, 0xc
-	.4byte sub_0805A680
+	.4byte efxBolganoneBG_Loop
 	.incbin "baserom.gba", 0xba2868, 0x8
 
 	.global TsaArray_BolganoneBG
@@ -414,13 +414,13 @@ TsaArray_BolganoneBG:
 	.global ProcScr_efxBolganoneBGCOL
 ProcScr_efxBolganoneBGCOL:
 	.incbin "baserom.gba", 0xba28a0, 0x14
-	.4byte sub_0805A740
+	.4byte efxBolganoneBGCOL_Loop
 	.incbin "baserom.gba", 0xba28b8, 0x8
 
 	.global ProcScr_efxBolganoneBG2
 ProcScr_efxBolganoneBG2:
 	.incbin "baserom.gba", 0xba28c0, 0xc
-	.4byte sub_0805A7E0
+	.4byte efxBolganoneBG2_Loop
 	.incbin "baserom.gba", 0xba28d0, 0x8
 
 	.global TsaArray_BolganoneBG2
@@ -442,19 +442,19 @@ ImgArray_BolganoneBG2:
 	.global ProcScr_efxBolganoneOBJ
 ProcScr_efxBolganoneOBJ:
 	.incbin "baserom.gba", 0xba2900, 0xc
-	.4byte sub_0805A8B4
+	.4byte efxBolganoneOBJ_Loop
 	.incbin "baserom.gba", 0xba2910, 0x8
 
 	.global ProcScr_efxBolganoneOBJChild
 ProcScr_efxBolganoneOBJChild:
 	.incbin "baserom.gba", 0xba2918, 0xc
-	.4byte sub_0805AA28
+	.4byte efxBolganoneOBJChild_Loop
 	.incbin "baserom.gba", 0xba2928, 0x8
 
 	.global ProcScr_efxBolganoneBG3
 ProcScr_efxBolganoneBG3:
 	.incbin "baserom.gba", 0xba2930, 0xc
-	.4byte sub_0805AAD8
+	.4byte efxBolganoneBG3_Loop
 	.incbin "baserom.gba", 0xba2940, 0x8
 
 	.global TsaArray_BolganoneBG3
@@ -472,19 +472,19 @@ ImgArray_BolganoneBG3:
 	.global ProcScr_efxBolganoneOBJ2
 ProcScr_efxBolganoneOBJ2:
 	.incbin "baserom.gba", 0xba2960, 0xc
-	.4byte sub_0805AB9C
+	.4byte efxBolganoneOBJ2_Loop
 	.incbin "baserom.gba", 0xba2970, 0x8
 
 	.global ProcScr_efxBolganoneOBJ2Child
 ProcScr_efxBolganoneOBJ2Child:
 	.incbin "baserom.gba", 0xba2978, 0xc
-	.4byte sub_0805AD44
+	.4byte efxBolganoneOBJ2Child_Loop
 	.incbin "baserom.gba", 0xba2988, 0x8
 
 	.global ProcScr_efxBolganoneWOUT
 ProcScr_efxBolganoneWOUT:
 	.incbin "baserom.gba", 0xba2990, 0xc
-	.4byte sub_0805AE28
+	.4byte efxBolganoneWOUT_Loop
 	.incbin "baserom.gba", 0xba29a0, 0x8
 
 	.global ProcScr_efxDivine
@@ -614,13 +614,13 @@ ProcScr_efxDivineOBJ:
 	.global ProcScr_efxSpell21
 ProcScr_efxSpell21:
 	.incbin "baserom.gba", 0xba2b50, 0xc
-	.4byte sub_0805B2CC
+	.4byte efxSpell21_Loop
 	.incbin "baserom.gba", 0xba2b60, 0x8
 
 	.global ProcScr_efxSpell21BG
 ProcScr_efxSpell21BG:
 	.incbin "baserom.gba", 0xba2b68, 0xc
-	.4byte sub_0805B4D0
+	.4byte efxSpell21BG_Loop
 	.incbin "baserom.gba", 0xba2b78, 0x8
 
 	.global ImgArray_Spell21BG
@@ -642,43 +642,43 @@ TsaArray_Spell21BG:
 	.global ProcScr_efxSpell21BG2
 ProcScr_efxSpell21BG2:
 	.incbin "baserom.gba", 0xba2ba8, 0xc
-	.4byte sub_0805B58C
+	.4byte efxSpell21BG2_Loop
 	.incbin "baserom.gba", 0xba2bb8, 0x8
 
 	.global ProcScr_efxSpell21BGCOL
 ProcScr_efxSpell21BGCOL:
 	.incbin "baserom.gba", 0xba2bc0, 0x14
-	.4byte sub_0805B6A8
+	.4byte efxSpell21BGCOL_Loop
 	.incbin "baserom.gba", 0xba2bd8, 0x8
 
 	.global ProcScr_efxSpell21OBJ
 ProcScr_efxSpell21OBJ:
 	.incbin "baserom.gba", 0xba2be0, 0xc
-	.4byte sub_0805B744
+	.4byte efxSpell21OBJ_Loop
 	.incbin "baserom.gba", 0xba2bf0, 0x8
 
 	.global ProcScr_efxSpell21OBJChild
 ProcScr_efxSpell21OBJChild:
 	.incbin "baserom.gba", 0xba2bf8, 0xc
-	.4byte sub_0805B87C
+	.4byte efxSpell21OBJChild_Loop
 	.incbin "baserom.gba", 0xba2c08, 0x8
 
 	.global ProcScr_efxSpell21OBJ2
 ProcScr_efxSpell21OBJ2:
 	.incbin "baserom.gba", 0xba2c10, 0xc
-	.4byte sub_0805B9A4
+	.4byte efxSpell21OBJ2_Loop
 	.incbin "baserom.gba", 0xba2c20, 0x8
 
 	.global ProcScr_efxSpell21OBJ3
 ProcScr_efxSpell21OBJ3:
 	.incbin "baserom.gba", 0xba2c28, 0xc
-	.4byte sub_0805BA78
+	.4byte efxSpell21OBJ3_Loop
 	.incbin "baserom.gba", 0xba2c38, 0x8
 
 	.global ProcScr_efxSpell21OBJ3Child
 ProcScr_efxSpell21OBJ3Child:
 	.incbin "baserom.gba", 0xba2c40, 0xc
-	.4byte sub_0805BB74
+	.4byte efxSpell21OBJ3Child_Loop
 	.incbin "baserom.gba", 0xba2c50, 0x8
 
 	.global ProcScr_efxHazymoon
@@ -1569,13 +1569,13 @@ ProcScr_efxExcaliburOBJ:
 	.global ProcScr_efxGespenst
 ProcScr_efxGespenst:
 	.incbin "baserom.gba", 0xba3be4, 0xc
-	.4byte sub_080606C4
+	.4byte efxGespenst_Loop
 	.incbin "baserom.gba", 0xba3bf4, 0x8
 
 	.global ProcScr_efxGespenstBG
 ProcScr_efxGespenstBG:
 	.incbin "baserom.gba", 0xba3bfc, 0xc
-	.4byte sub_08060940
+	.4byte efxGespenstBG_Loop
 	.incbin "baserom.gba", 0xba3c0c, 0x8
 
 	.global TsaArray_GespenstBG
@@ -1596,9 +1596,9 @@ TsaArray_GespenstBG:
 	.global ProcScr_efxGespenstBG2
 ProcScr_efxGespenstBG2:
 	.incbin "baserom.gba", 0xba3c44, 0xc
-	.4byte sub_08060A8C
+	.4byte efxGespenstBG2_OnEnd
 	.incbin "baserom.gba", 0xba3c54, 0x4
-	.4byte sub_08060AA8
+	.4byte efxGespenstBG2_Loop
 	.incbin "baserom.gba", 0xba3c5c, 0x8
 
 	.global ProcScr_efxGespenstBG4
@@ -1618,19 +1618,19 @@ ProcScr_efxGespenstBGCOL2:
 	.global ProcScr_efxGespenstOBJ
 ProcScr_efxGespenstOBJ:
 	.incbin "baserom.gba", 0xba3ca4, 0xc
-	.4byte sub_08060CC8
+	.4byte efxGespenstOBJ_Loop
 	.incbin "baserom.gba", 0xba3cb4, 0x8
 
 	.global ProcScr_efxGespenstOBJ2
 ProcScr_efxGespenstOBJ2:
 	.incbin "baserom.gba", 0xba3cbc, 0xc
-	.4byte sub_08060D70
+	.4byte efxGespenstOBJ2_OnEnd
 	.incbin "baserom.gba", 0xba3ccc, 0x4
-	.4byte sub_08060D88
+	.4byte efxGespenstOBJ2_Loop_A
 	.incbin "baserom.gba", 0xba3cd4, 0xc
-	.4byte sub_08060DA4
+	.4byte efxGespenstOBJ2_Loop_B
 	.incbin "baserom.gba", 0xba3ce4, 0xc
-	.4byte sub_08060DC0
+	.4byte efxGespenstOBJ2_Loop_C
 	.incbin "baserom.gba", 0xba3cf4, 0x10
 
 	.section .rodata.08BA3E5C, "a"
@@ -1638,13 +1638,13 @@ ProcScr_efxGespenstOBJ2:
 	.global ProcScr_efxLuce
 ProcScr_efxLuce:
 	.incbin "baserom.gba", 0xba3e5c, 0xc
-	.4byte sub_08061434
+	.4byte efxLuce_Loop
 	.incbin "baserom.gba", 0xba3e6c, 0x8
 
 	.global ProcScr_efxLuceBG
 ProcScr_efxLuceBG:
 	.incbin "baserom.gba", 0xba3e74, 0xc
-	.4byte sub_08061600
+	.4byte efxLuceBG_Loop
 	.incbin "baserom.gba", 0xba3e84, 0x8
 
 	.global TsaArray_LuceBG
@@ -1665,39 +1665,39 @@ TsaArray_LuceBG:
 	.global ProcScr_efxLuceBG2
 ProcScr_efxLuceBG2:
 	.incbin "baserom.gba", 0xba3ebc, 0xc
-	.4byte sub_08061700
+	.4byte efxLuceBG2_OnEnd
 	.incbin "baserom.gba", 0xba3ecc, 0x4
-	.4byte sub_0806171C
+	.4byte efxLuceBG2_Loop
 	.incbin "baserom.gba", 0xba3ed4, 0x8
 
 	.global ProcScr_efxLuceOBJ
 ProcScr_efxLuceOBJ:
 	.incbin "baserom.gba", 0xba3edc, 0xc
-	.4byte sub_08061840
+	.4byte efxLuceOBJ_Loop
 	.incbin "baserom.gba", 0xba3eec, 0x8
 
 	.global ProcScr_efxLuceWOUT
 ProcScr_efxLuceWOUT:
 	.incbin "baserom.gba", 0xba3ef4, 0xc
-	.4byte sub_080618AC
+	.4byte efxLuceWOUT_Loop
 	.incbin "baserom.gba", 0xba3f04, 0x8
 
 	.global ProcScr_efxLuceBGCOL
 ProcScr_efxLuceBGCOL:
 	.incbin "baserom.gba", 0xba3f0c, 0xc
-	.4byte sub_08061A34
+	.4byte efxLuceBGCOL_Loop
 	.incbin "baserom.gba", 0xba3f1c, 0x8
 
 	.global ProcScr_efxEreshkigal
 ProcScr_efxEreshkigal:
 	.incbin "baserom.gba", 0xba3f24, 0xc
-	.4byte sub_08061BA4
+	.4byte efxEreshkigal_Loop
 	.incbin "baserom.gba", 0xba3f34, 0x8
 
 	.global ProcScr_efxEreshkigalOBJ
 ProcScr_efxEreshkigalOBJ:
 	.incbin "baserom.gba", 0xba3f3c, 0xc
-	.4byte sub_08061D70
+	.4byte efxEreshkigalOBJ_Loop
 	.incbin "baserom.gba", 0xba3f4c, 0x10
 
 	.global gEreshkigalOBJConfig
@@ -1716,21 +1716,21 @@ AnimScrArray_EreshkigalOBJChild:
 	.global ProcScr_efxEreshkigalOBJChild
 ProcScr_efxEreshkigalOBJChild:
 	.incbin "baserom.gba", 0xba4044, 0xc
-	.4byte sub_08061E58
+	.4byte efxEreshkigalOBJChild_OnEnd
 	.incbin "baserom.gba", 0xba4054, 0x10
 
 	.global ProcScr_efxEreshkigalOBJ2
 ProcScr_efxEreshkigalOBJ2:
 	.incbin "baserom.gba", 0xba4064, 0xc
-	.4byte sub_08061ED4
+	.4byte efxEreshkigalOBJ2_OnEnd
 	.incbin "baserom.gba", 0xba4074, 0xc
-	.4byte sub_08061EEC
+	.4byte efxEreshkigalOBJ2_Loop
 	.incbin "baserom.gba", 0xba4084, 0x10
 
 	.global ProcScr_efxEreshkigalBG
 ProcScr_efxEreshkigalBG:
 	.incbin "baserom.gba", 0xba4094, 0xc
-	.4byte sub_08061F60
+	.4byte efxEreshkigalBG_Loop
 	.incbin "baserom.gba", 0xba40a4, 0x8
 
 	.global ImgArray_EreshkigalBG
@@ -1794,19 +1794,19 @@ TsaArray_EreshkigalBg3:
 	.global ProcScr_efxEreshkigalWhiteOut
 ProcScr_efxEreshkigalWhiteOut:
 	.incbin "baserom.gba", 0xba4164, 0xc
-	.4byte sub_08062158
+	.4byte efxEreshkigalWhiteOut_Loop
 	.incbin "baserom.gba", 0xba4174, 0x8
 
 	.global ProcScr_efxSuperdruidOBJ2
 ProcScr_efxSuperdruidOBJ2:
 	.incbin "baserom.gba", 0xba417c, 0xc
-	.4byte sub_08062244
+	.4byte efxSuperdruidOBJ2_OnEnd
 	.incbin "baserom.gba", 0xba418c, 0x10
 
 	.global ProcScr_efxEreshkigalOBJ3
 ProcScr_efxEreshkigalOBJ3:
 	.incbin "baserom.gba", 0xba419c, 0xc
-	.4byte sub_080622B4
+	.4byte efxEreshkigalOBJ3_OnEnd
 	.incbin "baserom.gba", 0xba41ac, 0x10
 
 	.section .rodata.08BA41D4, "a"

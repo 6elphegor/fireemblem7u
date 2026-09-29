@@ -45,13 +45,13 @@ CONST_DATA struct ProcCmd ProcScr_TacticianNameSelection[] = {
     PROC_GOTO(2),
     PROC_LABEL(1),
     PROC_CALL(sub_0803F938),
-    PROC_REPEAT(sub_0803F950),
+    PROC_REPEAT(TacticianNameSelection_Loop_B),
     PROC_CALL(sub_0803F990),
-    PROC_REPEAT(sub_0803F9BC),
+    PROC_REPEAT(TacticianNameSelection_Loop_C),
     PROC_GOTO(0),
     PROC_LABEL(3),
     PROC_CALL(NameSelect_DrawName),
-    PROC_REPEAT(sub_0803FA3C),
+    PROC_REPEAT(TacticianNameSelection_Loop_D),
     PROC_GOTO(0),
     PROC_LABEL(2),
     PROC_CALL(Set_0203DDDC),
@@ -487,7 +487,7 @@ void sub_0803F938(struct ProcTactician * proc)
 }
 
 //! FE8U = 0x08044FFC
-void sub_0803F950(struct ProcTactician * proc)
+void TacticianNameSelection_Loop_B(struct ProcTactician * proc)
 {
     gUnknown_03001810 = Interpolate(INTERPOLATE_LINEAR, 15, 0, proc->unk3A, 8);
     proc->unk3A++;
@@ -515,7 +515,7 @@ void sub_0803F990(struct ProcTactician * proc)
 }
 
 //! FE8U = 0x08045068
-void sub_0803F9BC(struct ProcTactician * proc)
+void TacticianNameSelection_Loop_C(struct ProcTactician * proc)
 {
     gUnknown_03001810 = Interpolate(INTERPOLATE_LINEAR, 0, 15, proc->unk3A, 8);
     proc->unk3A++;
@@ -547,7 +547,7 @@ void NameSelect_DrawName(struct ProcTactician * proc)
 }
 
 //! FE8U = 0x08045108
-void sub_0803FA3C(struct ProcTactician * proc)
+void TacticianNameSelection_Loop_D(struct ProcTactician * proc)
 {
     PutLinkArenaChoiceBannerSprite(0x40, 0x58);
 

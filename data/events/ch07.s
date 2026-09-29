@@ -343,7 +343,7 @@ EventScr_08CACE04:
 	STAL 8
 	TUTORIAL_TEXT 40, 16, MSG_989            @ You wish for me to attack the shaman? Very well.
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x5F
@@ -373,7 +373,7 @@ EventScr_08CACEC0:
 	STAL 8
 	TUTORIAL_TEXT 60, 48, MSG_98E            @ You'd like me to play for Lucius, right?
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x64
@@ -392,7 +392,7 @@ EventScr_08CACF6C:
 	STAL 8
 	TUTORIAL_TEXT 40, 16, MSG_98A            @ I beg your pardon, but I would prefer to attack
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 9
 	EVBIT_YESSKIP
 	REMA
@@ -407,7 +407,7 @@ EventScr_08CACFAC:
 	STAL 8
 	TUTORIAL_TEXT 60, 48, MSG_98F            @ I have to be next to him, so he can hear my tune
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xA
 	EVBIT_YESSKIP
 	REMA

@@ -38,28 +38,28 @@ void M4aPlayWithPostionCtrl(int songid, int x, int flag);
 
 void EfxDeadAlphaMain(struct ProcEfxDead * proc);
 void EfxDeadPikaMain(struct ProcEfxDead * proc);
-void sub_0804E040(struct ProcEfxDead * proc);
-void sub_0804E0C0(struct ProcEfxDead * proc);
-void sub_0804E0F0(struct ProcEfxDead * proc);
-void sub_0804E168(struct ProcEfxDead * proc);
-void sub_0804E1CC(struct ProcEfxDead * proc);
-void sub_0804E234(struct ProcEfxDead * proc);
-void sub_0804E278(struct ProcEfxDead * proc);
+void efxDeadEvent_Loop_A(struct ProcEfxDead * proc);
+void efxDeadEvent_Loop_B(struct ProcEfxDead * proc);
+void efxDeadEvent_Loop_C(struct ProcEfxDead * proc);
+void efxDeadEvent_Loop_D(struct ProcEfxDead * proc);
+void efxDeadEvent_Loop_E(struct ProcEfxDead * proc);
+void efxDead_Loop_A(struct ProcEfxDead * proc);
+void efxDead_Loop_B(struct ProcEfxDead * proc);
 
 CONST_DATA struct ProcCmd ProcScr_efxDeadEvent[] = {
     PROC_19,
-    PROC_REPEAT(sub_0804E040),
-    PROC_REPEAT(sub_0804E0C0),
-    PROC_REPEAT(sub_0804E0F0),
-    PROC_REPEAT(sub_0804E168),
-    PROC_REPEAT(sub_0804E1CC),
+    PROC_REPEAT(efxDeadEvent_Loop_A),
+    PROC_REPEAT(efxDeadEvent_Loop_B),
+    PROC_REPEAT(efxDeadEvent_Loop_C),
+    PROC_REPEAT(efxDeadEvent_Loop_D),
+    PROC_REPEAT(efxDeadEvent_Loop_E),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd ProcScr_efxDead[] = {
     PROC_19,
-    PROC_REPEAT(sub_0804E234),
-    PROC_REPEAT(sub_0804E278),
+    PROC_REPEAT(efxDead_Loop_A),
+    PROC_REPEAT(efxDead_Loop_B),
     PROC_END,
 };
 
@@ -85,7 +85,7 @@ void NewEfxDeadEvent(struct Anim * anim1, struct Anim * anim2)
     gEkrDeadEventExist = true;
 }
 
-void sub_0804E040(struct ProcEfxDead * proc)
+void efxDeadEvent_Loop_A(struct ProcEfxDead * proc)
 {
     struct Anim * ais_core1 = GetAnimAnotherSide(proc->anim1);
     int ret = false;
@@ -108,7 +108,7 @@ void sub_0804E040(struct ProcEfxDead * proc)
     Proc_Break(proc);
 }
 
-void sub_0804E0C0(struct ProcEfxDead * proc)
+void efxDeadEvent_Loop_B(struct ProcEfxDead * proc)
 {
     if (++proc->timer == 8) {
         NewEkrWindowAppear(1, 7);
@@ -117,7 +117,7 @@ void sub_0804E0C0(struct ProcEfxDead * proc)
     }
 }
 
-void sub_0804E0F0(struct ProcEfxDead * proc)
+void efxDeadEvent_Loop_C(struct ProcEfxDead * proc)
 {
     if (CheckEkrWindowAppearUnexist() == true) {
         EnableEkrGauge();
@@ -135,7 +135,7 @@ void sub_0804E0F0(struct ProcEfxDead * proc)
     }
 }
 
-void sub_0804E168(struct ProcEfxDead * proc)
+void efxDeadEvent_Loop_D(struct ProcEfxDead * proc)
 {
     if (IsEventRunning() == false) {
         PlayDeathSoundForArena();
@@ -153,7 +153,7 @@ void sub_0804E168(struct ProcEfxDead * proc)
     }
 }
 
-void sub_0804E1CC(struct ProcEfxDead * proc)
+void efxDeadEvent_Loop_E(struct ProcEfxDead * proc)
 {
     if (CheckEkrWindowAppearUnexist() == true) {
         gEkrDeadEventExist = false;
@@ -175,7 +175,7 @@ void NewEfxDead(struct Anim * anim1, struct Anim * anim2)
     DisableEfxStatusUnits(anim1);
 }
 
-void sub_0804E234(struct ProcEfxDead * proc)
+void efxDead_Loop_A(struct ProcEfxDead * proc)
 {
     if (gEfxBgSemaphore == false && gEfxSpellAnimExists == false) {
         if (CheckInEkrDragon() != false)
@@ -188,7 +188,7 @@ void sub_0804E234(struct ProcEfxDead * proc)
     }
 }
 
-void sub_0804E278(struct ProcEfxDead * proc)
+void efxDead_Loop_B(struct ProcEfxDead * proc)
 {
     struct Anim * anim = proc->anim1;
     s16 time = ++proc->timer;

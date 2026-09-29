@@ -70,16 +70,16 @@ extern AnimScr AnimScr_Spell21OBJ2_B[];
 extern AnimScr AnimScr_Spell21OBJ3_A[];
 extern AnimScr AnimScr_Spell21OBJ3_B[];
 
-void sub_0805B438(struct Anim * anim);
-void sub_0805B534(struct Anim * anim, int terminator);
-void sub_0805B660(struct Anim * anim, int terminator);
-void sub_0805B6F4(struct Anim * anim, int terminator);
-void sub_0805B798(struct Anim * anim, int idx);
-void sub_0805B8F4(struct Anim * anim, int terminator);
-void sub_0805BA48(struct Anim * anim);
-void sub_0805BACC(struct Anim * anim, int idx);
+void StartSubSpell_efxSpell21BG(struct Anim * anim);
+void StartSubSpell_efxSpell21BG2(struct Anim * anim, int terminator);
+void StartSubSpell_efxSpell21BGCOL(struct Anim * anim, int terminator);
+void StartSubSpell_efxSpell21OBJ(struct Anim * anim, int terminator);
+void StartSubSpell_efxSpell21OBJChild(struct Anim * anim, int idx);
+void StartSubSpell_efxSpell21OBJ2(struct Anim * anim, int terminator);
+void StartSubSpell_efxSpell21OBJ3(struct Anim * anim);
+void StartSubSpell_efxSpell21OBJ3Child(struct Anim * anim, int idx);
 
-void sub_0805B290(struct Anim * anim)
+void StartSpellAnimSpell21(struct Anim * anim)
 {
     struct ProcEfx * proc;
 
@@ -93,7 +93,7 @@ void sub_0805B290(struct Anim * anim)
     proc->hitted = CheckRoundMiss(GetAnimRoundTypeAnotherSide(anim));
 }
 
-void sub_0805B2CC(struct ProcEfx * proc)
+void efxSpell21_Loop(struct ProcEfx * proc)
 {
     struct Anim * anim = GetAnimAnotherSide(proc->anim);
     int duration = EfxGetCamMovDuration();
@@ -103,10 +103,10 @@ void sub_0805B2CC(struct ProcEfx * proc)
 
     if (proc->timer == duration + 1)
     {
-        sub_0805B438(anim);
+        StartSubSpell_efxSpell21BG(anim);
         SetBlendAlpha(0, 16);
         NewEfxALPHA(anim, 0, 32, 0, 16, 0);
-        sub_0805B6F4(anim, 170);
+        StartSubSpell_efxSpell21OBJ(anim, 170);
         PlaySFX(0x12A, 0x100, anim->xPosition, 1);
     }
     else if (proc->timer == duration + 0x11B)
@@ -115,7 +115,7 @@ void sub_0805B2CC(struct ProcEfx * proc)
     }
     else if (proc->timer == duration + 0x13B)
     {
-        sub_0805B8F4(anim, 25);
+        StartSubSpell_efxSpell21OBJ2(anim, 25);
     }
     else if (proc->timer == duration + 0x154)
     {
@@ -130,10 +130,10 @@ void sub_0805B2CC(struct ProcEfx * proc)
     {
         PlaySFX(0x12C, 0x100, 0x78, 0);
         StartSpellThing_MagicQuake(anim, 100, 10);
-        sub_0805B534(anim, 100);
-        sub_0805B660(anim, 100);
+        StartSubSpell_efxSpell21BG2(anim, 100);
+        StartSubSpell_efxSpell21BGCOL(anim, 100);
         NewEfxALPHA(anim, 70, 30, 16, 0, 0);
-        sub_0805BA48(anim);
+        StartSubSpell_efxSpell21OBJ3(anim);
     }
     else if (proc->timer == duration + 0x1EA)
     {
@@ -143,7 +143,7 @@ void sub_0805B2CC(struct ProcEfx * proc)
     }
 }
 
-void sub_0805B438(struct Anim * anim)
+void StartSubSpell_efxSpell21BG(struct Anim * anim)
 {
     struct ProcEfxBG * proc;
 
@@ -175,7 +175,7 @@ void sub_0805B438(struct Anim * anim)
     }
 }
 
-void sub_0805B4D0(struct ProcEfxBG * proc)
+void efxSpell21BG_Loop(struct ProcEfxBG * proc)
 {
     s16 ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -194,7 +194,7 @@ void sub_0805B4D0(struct ProcEfxBG * proc)
     }
 }
 
-void sub_0805B534(struct Anim * anim, int terminator)
+void StartSubSpell_efxSpell21BG2(struct Anim * anim, int terminator)
 {
     struct ProcEfxSpell21OBJ * proc;
 
@@ -215,7 +215,7 @@ void sub_0805B534(struct Anim * anim, int terminator)
     SpellFx_SetSomeColorEffect();
 }
 
-void sub_0805B58C(struct ProcEfxSpell21OBJ * proc)
+void efxSpell21BG2_Loop(struct ProcEfxSpell21OBJ * proc)
 {
     if (proc->timer & 1)
     {
@@ -247,7 +247,7 @@ void sub_0805B58C(struct ProcEfxSpell21OBJ * proc)
     }
 }
 
-void sub_0805B660(struct Anim * anim, int terminator)
+void StartSubSpell_efxSpell21BGCOL(struct Anim * anim, int terminator)
 {
     struct ProcEfxBGCOL * proc;
 
@@ -265,7 +265,7 @@ void sub_0805B660(struct Anim * anim, int terminator)
     SpellFx_RegisterBgPal(Pal_Spell21BG2, 0x20);
 }
 
-void sub_0805B6A8(struct ProcEfxBGCOL * proc)
+void efxSpell21BGCOL_Loop(struct ProcEfxBGCOL * proc)
 {
     int ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);
 
@@ -282,7 +282,7 @@ void sub_0805B6A8(struct ProcEfxBGCOL * proc)
     }
 }
 
-void sub_0805B6F4(struct Anim * anim, int terminator)
+void StartSubSpell_efxSpell21OBJ(struct Anim * anim, int terminator)
 {
     struct ProcEfxSpell21OBJ * proc;
 
@@ -300,7 +300,7 @@ void sub_0805B6F4(struct Anim * anim, int terminator)
     SpellFx_RegisterObjGfx(Img_Spell21OBJ, 0x1000);
 }
 
-void sub_0805B744(struct ProcEfxSpell21OBJ * proc)
+void efxSpell21OBJ_Loop(struct ProcEfxSpell21OBJ * proc)
 {
     if (++proc->timer == proc->terminator)
     {
@@ -313,11 +313,11 @@ void sub_0805B744(struct ProcEfxSpell21OBJ * proc)
     {
         proc->unk30 = 0;
         proc->unk44 = 10;
-        sub_0805B798(proc->anim, proc->unk48++);
+        StartSubSpell_efxSpell21OBJChild(proc->anim, proc->unk48++);
     }
 }
 
-void sub_0805B798(struct Anim * anim, int idx)
+void StartSubSpell_efxSpell21OBJChild(struct Anim * anim, int idx)
 {
     struct ProcEfxSpell21OBJ * proc;
     struct Anim * child;
@@ -381,7 +381,7 @@ void sub_0805B798(struct Anim * anim, int idx)
     child->yPosition = 0x100;
 }
 
-void sub_0805B87C(struct ProcEfxSpell21OBJ * proc)
+void efxSpell21OBJChild_Loop(struct ProcEfxSpell21OBJ * proc)
 {
     struct Anim * anim = proc->anim2;
     u16 x;
@@ -402,7 +402,7 @@ void sub_0805B87C(struct ProcEfxSpell21OBJ * proc)
     proc->timer++;
 }
 
-void sub_0805B8F4(struct Anim * anim, int terminator)
+void StartSubSpell_efxSpell21OBJ2(struct Anim * anim, int terminator)
 {
     struct ProcEfxSpell21OBJ * proc;
     struct Anim * front;
@@ -440,7 +440,7 @@ void sub_0805B8F4(struct Anim * anim, int terminator)
     front->yPosition = proc->unk3A;
 }
 
-void sub_0805B9A4(struct ProcEfxSpell21OBJ * proc)
+void efxSpell21OBJ2_Loop(struct ProcEfxSpell21OBJ * proc)
 {
     struct Anim * anim2 = proc->anim2;
     struct Anim * anim3 = proc->anim3;
@@ -464,7 +464,7 @@ void sub_0805B9A4(struct ProcEfxSpell21OBJ * proc)
     }
 }
 
-void sub_0805BA48(struct Anim * anim)
+void StartSubSpell_efxSpell21OBJ3(struct Anim * anim)
 {
     struct ProcEfxSpell21OBJ * proc;
 
@@ -478,7 +478,7 @@ void sub_0805BA48(struct Anim * anim)
     proc->unk48 = 0;
 }
 
-void sub_0805BA78(struct ProcEfxSpell21OBJ * proc)
+void efxSpell21OBJ3_Loop(struct ProcEfxSpell21OBJ * proc)
 {
     if (++proc->timer == 47)
     {
@@ -491,11 +491,11 @@ void sub_0805BA78(struct ProcEfxSpell21OBJ * proc)
     {
         proc->terminator = 0;
         proc->unk44 = 1;
-        sub_0805BACC(proc->anim, proc->unk48++);
+        StartSubSpell_efxSpell21OBJ3Child(proc->anim, proc->unk48++);
     }
 }
 
-void sub_0805BACC(struct Anim * anim, int idx)
+void StartSubSpell_efxSpell21OBJ3Child(struct Anim * anim, int idx)
 {
     struct ProcEfxSpell21OBJ * proc;
     struct Anim * child;
@@ -541,7 +541,7 @@ void sub_0805BACC(struct Anim * anim, int idx)
     child->yPosition = 0x100;
 }
 
-void sub_0805BB74(struct ProcEfxSpell21OBJ * proc)
+void efxSpell21OBJ3Child_Loop(struct ProcEfxSpell21OBJ * proc)
 {
     struct Anim * anim = proc->anim2;
     u16 x;

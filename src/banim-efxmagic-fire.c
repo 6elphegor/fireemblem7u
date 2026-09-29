@@ -43,7 +43,7 @@ void Loop6C_efxFireBG(struct ProcEfxBG * proc);
 void NewEfxFireOBJ(struct Anim * anim);
 void EfxFireOBJ_Loop(struct ProcEfxOBJ * proc);
 void StartSubSpell_efxFireHITBG(struct Anim * anim);
-void sub_080586E0(struct ProcEfxBG * proc);
+void efxFireHITBG_Loop(struct ProcEfxBG * proc);
 void StartSubSpell_efxElfireBG(struct Anim * anim);
 void EfxElfireBG_Loop(struct ProcEfxBG * proc);
 void StartSubSpell_efxElfireBGCOL(struct Anim * anim);
@@ -254,7 +254,7 @@ void StartSubSpell_efxFireHITBG(struct Anim * anim)
 }
 
 // 9.99 efxmagic-fire:sub_805DE74
-void sub_080586E0(struct ProcEfxBG * proc)
+void efxFireHITBG_Loop(struct ProcEfxBG * proc)
 {
     int ret;
     ret = EfxAdvanceFrameLut((s16 *)&proc->timer, (s16 *)&proc->frame, proc->frame_config);

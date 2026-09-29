@@ -92,7 +92,7 @@ void MU_SetDefaultFacing_Auto(void);                            // SetAutoMuDefa
 bool MuExistsActive(void);
 void SetAutoMuMoveScript(u8 const * script);
 bool IsUnitSpriteHoverEnabledAt(int x, int y);                               // IsUnitSpriteHoverEnabledAt
-void sub_08032770(ProcPtr proc);
+void StartSubtitleHelpToggle(ProcPtr proc);
 s8 sub_08078FC8(void);                                          // TryCallSelectEvents
 s8 sub_08079004(void);                                          // StartAfterUnitMovedEvent
 s8 sub_0807905C(void);                                          // StartDestSelectedEvent

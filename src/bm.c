@@ -980,7 +980,7 @@ void UnkMapCursor_OnLoop(struct UnkMapCursorProc * proc)
         Proc_Break(proc);
 }
 
-void sub_08015E64(int x, int y, int duration)
+void StartUnkMapCursor(int x, int y, int duration)
 {
     struct UnkMapCursorProc * proc = Proc_Start(ProcScr_UnkMapCursor, PROC_TREE_3);
 
@@ -1033,7 +1033,7 @@ void StartMapSongBgm(void)
     StartBgm(GetActiveMapSong(), NULL);
 }
 
-void sub_08015F94(struct CamMoveProc * proc)
+void CamMoveLinear_Loop(struct CamMoveProc * proc)
 {
     int x = Interpolate(INTERPOLATE_LINEAR, proc->from.x, proc->to.x, proc->frame, proc->distance);
     int y = Interpolate(INTERPOLATE_LINEAR, proc->from.y, proc->to.y, proc->frame, proc->distance);
@@ -1047,7 +1047,7 @@ void sub_08015F94(struct CamMoveProc * proc)
         Proc_End(proc);
 }
 
-void nullsub_37(void)
+void CamMoveLinear_OnEnd(void)
 {
 }
 

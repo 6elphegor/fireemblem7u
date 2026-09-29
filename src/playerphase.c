@@ -129,7 +129,7 @@ else_stmt:
                 }
 
                 EndPlayerPhaseSideWindows();
-                sub_08032770(proc);
+                StartSubtitleHelpToggle(proc);
 
                 Proc_Goto(proc, 9);
 

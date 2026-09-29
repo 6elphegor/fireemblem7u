@@ -93,7 +93,7 @@ void sub_080A4E58(void)
     EnableBgSync(BG3_SYNC_BIT);
 }
 
-void sub_080A4F74(struct SaveBonusHelpProc * proc)
+void BonusClaimMenu_Init_A(struct SaveBonusHelpProc * proc)
 {
     int i;
 
@@ -141,7 +141,7 @@ void sub_080A4F74(struct SaveBonusHelpProc * proc)
 
     LoadHelpBoxGfx((void *) 0x06013800, 9);
 }
-void sub_080A503C(struct SaveBonusHelpProc * proc)
+void BonusClaimMenu_Init_B(struct SaveBonusHelpProc * proc)
 {
     if (proc->unk_58 != 0)
     {

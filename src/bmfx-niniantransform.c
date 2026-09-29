@@ -4,7 +4,7 @@ struct ProcCmd ProcScr_NinianTransformToHunman[] = {
     PROC_YIELD,
     PROC_LABEL(0),
     PROC_CALL(sub_080213A8),
-    PROC_REPEAT(sub_08021480),
+    PROC_REPEAT(NinianTransformToHunman_Loop),
     PROC_GOTO(0),
     PROC_CALL(ClearUi),
     PROC_LABEL(0x63),
@@ -99,7 +99,7 @@ void sub_080213A8(struct Proc * proc)
 // swapped, so the matching build uses its asm.  The original stores
 // GetGameTime() & 1, which is 0 there, as blend_y (FE7J's C had 1).
 
-void sub_08021480(struct Proc * proc)
+void NinianTransformToHunman_Loop(struct Proc * proc)
 {
     if ((GetGameTime() & 1) == 0)
     {
@@ -115,7 +115,7 @@ void sub_08021480(struct Proc * proc)
 #else
 
 NAKEDFUNC
-void sub_08021480(struct Proc * proc)
+void NinianTransformToHunman_Loop(struct Proc * proc)
 {
     asm("\n\
     .syntax unified\n\

@@ -3,9 +3,9 @@
 struct ProcCmd CONST_DATA ProcScr_FlameBreathfx[] = {
     PROC_YIELD,
     PROC_CALL(sub_0807C41C),
-    PROC_REPEAT(sub_0807C520),
-    PROC_REPEAT(sub_0807C578),
-    PROC_REPEAT(sub_0807C614),
+    PROC_REPEAT(FlameBreathfx_Loop_A),
+    PROC_REPEAT(FlameBreathfx_Loop_B),
+    PROC_REPEAT(FlameBreathfx_Loop_C),
     PROC_CALL(sub_0807C66C),
     PROC_END,
 };
@@ -50,7 +50,7 @@ void sub_0807C41C(struct ProcFlameBreathfx * proc)
     StartParallelWorker(sub_0807C3A0, proc);
 }
 
-void sub_0807C520(struct ProcFlameBreathfx * proc)
+void FlameBreathfx_Loop_A(struct ProcFlameBreathfx * proc)
 {
     int time = proc->timer++ * 2;
     SetBlendAlpha(time, 0x10 - time / 2);
@@ -62,7 +62,7 @@ void sub_0807C520(struct ProcFlameBreathfx * proc)
     }
 }
 
-void sub_0807C578(struct ProcFlameBreathfx * proc)
+void FlameBreathfx_Loop_B(struct ProcFlameBreathfx * proc)
 {
     int blend;
 
@@ -82,7 +82,7 @@ void sub_0807C578(struct ProcFlameBreathfx * proc)
     }
 }
 
-void sub_0807C614(struct ProcFlameBreathfx * proc)
+void FlameBreathfx_Loop_C(struct ProcFlameBreathfx * proc)
 {
     int time = (s16)(proc->timer++ >> 1);
 

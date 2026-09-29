@@ -25,15 +25,15 @@ struct SioRegs
 CONST_DATA struct ProcCmd gProcScr_SioBigSend[] = {
     PROC_YIELD,
     PROC_CALL(sub_0803D688),
-    PROC_REPEAT(sub_0803D6E8),
+    PROC_REPEAT(SioBigSend_Loop),
     PROC_END,
 };
 
 CONST_DATA struct ProcCmd gProcScr_SioBigReceive[] = {
     PROC_YIELD,
     PROC_CALL(sub_0803D758),
-    PROC_REPEAT(sub_0803D780),
-    PROC_REPEAT(sub_0803D7C4),
+    PROC_REPEAT(SioBigReceive_Loop_A),
+    PROC_REPEAT(SioBigReceive_Loop_B),
     PROC_END,
 };
 
@@ -1207,7 +1207,7 @@ void sub_0803D688(struct SioBigSendProc * proc)
     gSioSt->unk_02E = 1;
 }
 
-void sub_0803D6E8(struct SioBigSendProc * proc)
+void SioBigSend_Loop(struct SioBigSendProc * proc)
 {
     if (proc->func != NULL)
         proc->func(proc);
@@ -1240,7 +1240,7 @@ void sub_0803D758(struct SioBigReceiveProc * proc)
     sub_0803C294();
 }
 
-void sub_0803D780(struct SioBigReceiveProc * proc)
+void SioBigReceive_Loop_A(struct SioBigReceiveProc * proc)
 {
     u8 data[4];
     u8 id;
@@ -1257,7 +1257,7 @@ void sub_0803D780(struct SioBigReceiveProc * proc)
     }
 }
 
-void sub_0803D7C4(struct SioBigReceiveProc * proc)
+void SioBigReceive_Loop_B(struct SioBigReceiveProc * proc)
 {
     int i;
     u8 id;

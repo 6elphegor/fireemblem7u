@@ -375,7 +375,7 @@ EventScr_08CAA08C:
 	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0BFC
 	STAL 0x28
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -403,7 +403,7 @@ EventScr_08CAA134:
 	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0C04
 	STAL 0x28
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -431,7 +431,7 @@ EventScr_08CAA1DC:
 	ASMC_WAIT2 BoxTalkActive
 	TUTORIAL_CURSORS AreaList_08CA0C0C
 	STAL 0x28
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	IGNORE_KEYS 0x102
 	MENU_OVERRIDE_HIDE 0x63
 	MENU_OVERRIDE_HIDE 0x67
@@ -448,7 +448,7 @@ EventScr_08CAA28C:
 	STAL 8
 	TUTORIAL_TEXT 16, 16, MSG_8BB            @ You'd like me to visit a village, right? Just gi
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xC
 	EVBIT_YESSKIP
 	REMA
@@ -464,7 +464,7 @@ EventScr_08CAA2C8:
 	TUTORIAL_TEXT 16, 16, MSG_8BF            @ Let's take out the bandit on the north side of t
 	ASMC_WAIT2 BoxTalkActive
 	ASMC ResumeMenu
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xD
 	REMA
 	ENDA
@@ -477,7 +477,7 @@ EventScr_08CAA310:
 	STAL 8
 	TUTORIAL_TEXT_BY_GENDER 16, 16, MSG_8C5, MSG_8C6 @ Excuse me... I hate to be a bother, but... If I' / Begging your pardon... I have to be next to an e
 	ASMC_WAIT2 BoxTalkActive
-	ASMC_WAIT2 sub_0807A7B4
+	ASMC_WAIT2 StartTutorialCursorWatcher
 	ENUF 0xE
 	EVBIT_YESSKIP
 	REMA

@@ -70,10 +70,10 @@ struct ProcCmd CONST_DATA ProcScr_ChapterIntrofx[] = {
     PROC_CALL(ChapterIntro_SetFasten),
     PROC_CALL_ARG(ChapterIntro_SetSkipTarget, 1),
     PROC_CALL(sub_0801FA30),
-    PROC_REPEAT(sub_0801FA88),
+    PROC_REPEAT(ChapterIntrofx_Loop_G),
     PROC_SLEEP(120),
     PROC_CALL(ChapterIntro_Begin_0801FF18),
-    PROC_REPEAT(sub_0801FAD4),
+    PROC_REPEAT(ChapterIntrofx_Loop_H),
     PROC_END_EACH(ProcScr_ChapterIntro_Bg3Scroll),
     PROC_CALL_ARG(ChapterIntro_SetSkipTarget, 0),
     PROC_CALL(ChapterIntro_0801FFD0),
@@ -353,7 +353,7 @@ void sub_0801FA30(struct ProcChapterIntrofx * proc)
     SetBlendTargetB(0, 0, 0, 1, 1);
 }
 
-void sub_0801FA88(struct ProcChapterIntrofx * proc)
+void ChapterIntrofx_Loop_G(struct ProcChapterIntrofx * proc)
 {
     ColorFadeTick();
     EnablePalSync();
@@ -372,7 +372,7 @@ void ChapterIntro_Begin_0801FF18(struct ProcChapterIntrofx * proc)
     MaybeSmoothChangeSomePal(gPal + 0x10*BGPAL_CHAPTERINTRO_FOG, BGPAL_CHAPTERINTRO_FOG, 2, -1);
 }
 
-void sub_0801FAD4(struct ProcChapterIntrofx * proc)
+void ChapterIntrofx_Loop_H(struct ProcChapterIntrofx * proc)
 {
     if ((GetGameTime() % 4) == 0)
     {
