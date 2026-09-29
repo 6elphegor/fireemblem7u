@@ -72,7 +72,7 @@ NM_DEFS += -DBANIM_SHEET_INDEX=1
 BANIM_LINK_FLAGS := --sheet-index
 endif
 
-.PHONY: all compare clean msgheader shifttest emutest modern modern-check modern-resizetest nonmatching hostcheck hostevents
+.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck hostevents
 .DELETE_ON_ERROR:
 
 # `make MODERN=1` (or `make modern`): the free data layout, see below.
@@ -303,6 +303,8 @@ build/shift/s.gba: $(ROM) tools/shifttest.py
 #   make emutest EMUTEST_B=fe7u_modern.gba       any other ROM
 #   make emutest EMUTEST_SCRIPTS=tests/inputs/opening.txt
 #   make emutest EMUTEST_FLAGS=--fast            no wait states (see --fast)
+#   make emuaudio EMUTEST_B=fe7u_nonmatching.gba EMUTEST_FLAGS=--fast
+#                                                sound only, sample by sample
 EMUTEST_A ?= $(ROM)
 EMUTEST_B ?= build/shift/s.gba
 EMUTEST_SCRIPTS ?=
@@ -317,6 +319,9 @@ build/tools/emutest: tools/emutest.c
 
 emutest: build/tools/emutest $(EMUTEST_A) $(EMUTEST_B)
 	python3 tools/emutest.py compare $(EMUTEST_FLAGS) -a $(EMUTEST_A) -b $(EMUTEST_B) $(EMUTEST_SCRIPTS)
+
+emuaudio: build/tools/emutest $(EMUTEST_A) $(EMUTEST_B)
+	python3 tools/emutest.py audio $(EMUTEST_FLAGS) -a $(EMUTEST_A) -b $(EMUTEST_B) $(EMUTEST_SCRIPTS)
 
 # Modern build: the same objects, but the data region is linked without
 # fixed addresses (tools/modern.py, tools/gen_layout.py --modern), so assets
@@ -397,6 +402,11 @@ $(NM_ROM): $(NM_ELF)
 
 $(NM_C_OBJS): $(wildcard asm/nonmatching/*.s)
 
+# The C mixer's loops are ARM code, run from IWRAM like the original mixer
+# (src/m4a_mixer.c).
+$(NM_DIR)/src/m4a_mixer.o: CC1 = $(AGBCC)/bin/agbcc_arm
+$(NM_DIR)/src/m4a_mixer.o: CFLAGS = -quiet -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -fomit-frame-pointer
+
 $(NM_DIR)/src/%.o: src/%.c
 	@mkdir -p $(@D)
 	$(CPP) $(CPPFLAGS) -DNONMATCHING=1 $(NM_DEFS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(NM_DIR)/src/$*.s
@@ -449,12 +459,17 @@ clean:
 
 # Host platform layer (platform/; docs/port-platform.md): the BIOS and PPU
 # unit tests, and the comparisons with mGBA (libmgba, as for emutest).
-#   make platform-test          unit tests; the LZ77 test needs the build's graphics
+#   make platform-test          unit tests and the runtime demo, headless;
+#                               the LZ77 test needs the build's graphics
+#   make platform-demo          the runtime demo in a window (SDL2)
 #   make platform-biosref       BIOS calls against mGBA's HLE BIOS
 #   make platform-ppucompare    PPU against mGBA on every frame of tests/inputs
-.PHONY: platform-test platform-biosref platform-ppucompare
+.PHONY: platform-test platform-demo platform-biosref platform-ppucompare
 platform-test: $(ROM)
 	$(MAKE) -f platform/platform.mk test
+
+platform-demo:
+	$(MAKE) -f platform/platform.mk demo
 
 platform-biosref: $(ROM)
 	$(MAKE) -f platform/platform.mk biosref

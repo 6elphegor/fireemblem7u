@@ -1,0 +1,10 @@
+# Input for the demo's check (platform/platform.mk) and test_input
+wait 10
+press A 2 5
+hold Up+B 3
+shot s
+repeat 2
+press Start
+shot t
+end
+wait 3

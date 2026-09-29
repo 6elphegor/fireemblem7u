@@ -3,6 +3,12 @@
 
 #include <stddef.h>
 
+// On a host (PLATFORM_GBA not defined) the memories are arrays of the
+// platform layer (include/gba/host.h) and the addresses below point there.
+#if !PLATFORM_GBA
+#include "gba/host.h"
+#endif
+
 #define TRUE  1
 #define FALSE 0
 
@@ -18,6 +24,7 @@
 
 #define ALIGNED(n) __attribute__((aligned(n)))
 
+#if PLATFORM_GBA
 #define SOUND_INFO_PTR (*(struct SoundInfo **)0x3007FF0)
 #define INTR_CHECK     (*(u16 *)0x3007FF8)
 #define INTR_VECTOR    (*(void **)0x3007FFC)
@@ -26,6 +33,16 @@
 #define IWRAM_START 0x03000000
 
 #define PLTT      0x5000000
+#else
+#define SOUND_INFO_PTR gHostSoundInfoPtr
+#define INTR_CHECK     gHostIntrCheck
+#define INTR_VECTOR    gHostIntrVector
+
+#define EWRAM_START ((uintptr_t) gHostEwram)
+#define IWRAM_START ((uintptr_t) gHostIwram)
+
+#define PLTT      ((uintptr_t) gHostPltt)
+#endif
 #define PLTT_SIZE 0x400
 
 #define BG_PLTT      PLTT
@@ -34,7 +51,11 @@
 #define OBJ_PLTT      (PLTT + 0x200)
 #define OBJ_PLTT_SIZE 0x200
 
+#if PLATFORM_GBA
 #define VRAM      0x6000000
+#else
+#define VRAM      ((uintptr_t) gHostVram)
+#endif
 #define VRAM_SIZE 0x18000
 
 #define BG_VRAM           VRAM
@@ -51,7 +72,11 @@
 #define OBJ_VRAM1      (void *)(VRAM + 0x14000)
 #define OBJ_VRAM1_SIZE 0x4000
 
+#if PLATFORM_GBA
 #define OAM      0x7000000
+#else
+#define OAM      ((uintptr_t) gHostOam)
+#endif
 #define OAM_SIZE 0x400
 
 #define DISPLAY_WIDTH  240

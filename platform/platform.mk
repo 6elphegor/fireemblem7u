@@ -19,12 +19,47 @@ BIOS_SRC := platform/bios.c
 PPU_SRC := platform/ppu.c
 HDRS := platform/bios.h platform/ppu.h platform/tests/test.h
 
-.PHONY: test biosref ppucompare
+# The runtime (docs/port-platform.md, "Runtime").  For a host build of the
+# game, link PLATFORM_RUNTIME_SRC + PLATFORM_FRONTEND_SRC + platform/main.c
+# (compiled with PLATFORM_RUNTIME_CFLAGS) and platform/armfunc.c (compiled
+# like the game's C: it includes gbafe.h) with PLATFORM_LIBS.
+PLATFORM_RUNTIME_SRC := platform/bios.c platform/ppu.c platform/memory.c platform/irq.c \
+                        platform/host.c platform/input.c platform/sram.c platform/png.c
+PLATFORM_RUNTIME_HDRS := platform/platform.h platform/bios.h platform/ppu.h include/gba/host.h
+SDL2_CONFIG ?= $(shell command -v sdl2-config 2>/dev/null)
+ifneq ($(SDL2_CONFIG),)
+PLATFORM_FRONTEND_SRC := platform/frontend_sdl.c
+PLATFORM_SDL_CFLAGS := $(shell $(SDL2_CONFIG) --cflags)
+PLATFORM_LIBS := $(shell $(SDL2_CONFIG) --libs) -lz -lm
+else
+PLATFORM_FRONTEND_SRC := platform/frontend_null.c
+PLATFORM_SDL_CFLAGS :=
+PLATFORM_LIBS := -lz -lm
+endif
+PLATFORM_RUNTIME_CFLAGS := -std=gnu99 -O2 -g -Wall -Wextra -Wno-unused-parameter $(PINC) $(PLATFORM_SDL_CFLAGS)
 
-test: $(PB)/test_bios $(PB)/test_ppu $(PB)/test_lz77
+.PHONY: test biosref ppucompare demo
+
+test: $(PB)/test_bios $(PB)/test_ppu $(PB)/test_lz77 $(PB)/test_input $(PB)/demo
 	$(PB)/test_bios
 	$(PB)/test_ppu
 	$(PB)/test_lz77
+	$(PB)/test_input
+	$(PB)/demo --check --headless --frames 120 --no-save
+	$(PB)/demo --check --headless --no-save --input platform/tests/demo_input.txt
+
+$(PB)/test_input: platform/tests/test_input.c platform/input.c $(PLATFORM_RUNTIME_HDRS)
+	@mkdir -p $(@D)
+	$(PLATFORM_CC) $(PLATFORM_RUNTIME_CFLAGS) -o $@ platform/tests/test_input.c platform/input.c
+
+# The runtime without the game (platform/demo.c): `make platform-demo` opens
+# a window.
+$(PB)/demo: platform/demo.c $(PLATFORM_RUNTIME_SRC) $(PLATFORM_FRONTEND_SRC) $(PLATFORM_RUNTIME_HDRS)
+	@mkdir -p $(@D)
+	$(PLATFORM_CC) $(PLATFORM_RUNTIME_CFLAGS) -o $@ platform/demo.c $(PLATFORM_RUNTIME_SRC) $(PLATFORM_FRONTEND_SRC) $(PLATFORM_LIBS)
+
+demo: $(PB)/demo
+	$(PB)/demo --no-save
 
 $(PB)/test_bios: platform/tests/test_bios.c $(BIOS_SRC) $(HDRS)
 	@mkdir -p $(@D)

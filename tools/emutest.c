@@ -16,6 +16,18 @@
  *     -e N        also save a PNG of A every N frames (script development)
  *     -D 1        also save A's memory at every checkpoint (NAME_A.ewram.bin...)
  *     -f 1        no memory wait states (a faster CPU; see noWaitstates)
+ *     -w PREFIX   write each ROM's sound to PREFIX_A.wav (PREFIX_B.wav):
+ *                 what mGBA plays, 16-bit stereo, 32768 Hz
+ *     -c MASK     sound channels to play (hex, default 3F): bits 0-3 the four
+ *                 CGB (PSG) channels, 4 and 5 DirectSound A and B
+ *     -P ADDR[,ADDR_B]  with -w: also write PREFIX_A.mix (PREFIX_B.mix), the
+ *                 m4a mixer's output: the part of the DirectSound buffer
+ *                 SoundMain mixed in each frame (struct SoundInfo at ADDR,
+ *                 hex; the ROM's gSoundInfo), 8-bit signed stereo (right,
+ *                 left) at the mixing rate; PREFIX_A.psg (PREFIX_B.psg), the
+ *                 CGB (PSG) sound registers 0x04000060-0x0400009F as read
+ *                 back at the end of each frame; and print the timer 0 count at
+ *                 the end of each frame the first time A's and B's differ
  *
  * Output on stdout is line-oriented ("key value ..."), read by emutest.py.
  * Each run starts from power-on with mGBA's HLE BIOS (no BIOS file), empty
@@ -25,6 +37,8 @@
  *
  * mGBA (libmgba) is MPL-2.0 and is linked, not vendored.
  */
+/* The library was built with these flags; struct mCore depends on them. */
+#include <mgba/flags.h>
 #include <mgba/core/core.h>
 #include <mgba/core/config.h>
 #include <mgba/core/log.h>
@@ -61,6 +75,13 @@ struct emu {
 	int16_t *audio;
 	size_t audioLen;
 	const char *path;
+	FILE *wav;
+	uint32_t wavSamples;
+	FILE *mix;
+	FILE *psg;
+	uint8_t mixFrame[2 * 1024]; /* this frame's part of .mix */
+	uint32_t mixLen;
+	uint32_t soundInfo;
 };
 
 static void quietLog(struct mLogger *l, int cat, enum mLogLevel lvl, const char *fmt, va_list ap)
@@ -82,6 +103,23 @@ static void die(const char *fmt, ...)
 
 static void *sramImage;
 static size_t sramSize;
+static unsigned audioChannels = 0x3F;
+
+static void wavHeader(FILE *f, uint32_t samples)
+{
+	uint32_t data = samples * 4, riff = 36 + data;
+	uint8_t h[44] = { 'R', 'I', 'F', 'F', 0, 0, 0, 0, 'W', 'A', 'V', 'E',
+	                  'f', 'm', 't', ' ', 16, 0, 0, 0, 1, 0, 2, 0,     /* PCM, stereo */
+	                  0x00, 0x80, 0, 0, 0x00, 0x00, 2, 0, 4, 0, 16, 0, /* 32768 Hz, 16 bits */
+	                  'd', 'a', 't', 'a', 0, 0, 0, 0 };
+	for (int i = 0; i < 4; i++) {
+		h[4 + i] = riff >> (8 * i);
+		h[40 + i] = data >> (8 * i);
+	}
+	fseek(f, 0, SEEK_SET);
+	fwrite(h, 1, sizeof h, f);
+	fseek(f, 0, SEEK_END);
+}
 
 static void emuOpen(struct emu *e, const char *path)
 {
@@ -95,6 +133,8 @@ static void emuOpen(struct emu *e, const char *path)
 	mCoreConfigSetDefaultIntValue(&e->core->config, "skipBios", 1);
 	mCoreConfigSetDefaultValue(&e->core->config, "idleOptimization", "ignore");
 	mCoreConfigSetDefaultIntValue(&e->core->config, "sampleRate", 32768);
+	/* Without it the options loaded below have volume 0: silence. */
+	mCoreConfigSetDefaultIntValue(&e->core->config, "volume", 0x100);
 	mCoreLoadForeignConfig(e->core, &e->core->config);
 	e->fb = calloc(W * H, sizeof(color_t));
 	e->core->setVideoBuffer(e->core, e->fb, W);
@@ -110,6 +150,11 @@ static void emuOpen(struct emu *e, const char *path)
 	if (sramImage && !e->core->loadSave(e->core, VFileMemChunk(sramImage, sramSize)))
 		die("can't load the save image");
 	e->core->reset(e->core);
+	/* The GBA's own rate: mGBA samples its sound every 512 cycles. */
+	for (int ch = 0; ch < 2; ch++)
+		blip_set_rates(e->core->getAudioChannel(e->core, ch), e->core->frequency(e->core), 32768);
+	for (size_t ch = 0; ch < 6; ch++)
+		e->core->enableAudioChannel(e->core, ch, (audioChannels >> ch) & 1);
 }
 
 static uint64_t fnv(uint64_t h, const void *p, size_t n)
@@ -167,6 +212,51 @@ static void runFrame(struct emu *e, uint32_t keys)
 	blip_read_samples(l, e->audio, n, 1);
 	blip_read_samples(r, e->audio + 1, n, 1);
 	e->audioLen = (size_t)n * 2;
+	if (e->wav) {
+		fwrite(e->audio, sizeof(int16_t), e->audioLen, e->wav);
+		e->wavSamples += n;
+	}
+}
+
+/*
+ * The part of the m4a DirectSound buffer that SoundMain mixed in the VBlank
+ * before this frame ended (m4a.inc: struct SoundInfo, the GBA layout).  The
+ * DMA plays part P - c while pcmDmaCounter is c, and SoundMain mixes the
+ * next one: part P - (c - 1), or part 0 when c is 1.
+ */
+enum { SI_IDENT = 0, SI_DMA_COUNTER = 4, SI_DMA_PERIOD = 0xB, SI_SAMPLES = 0x10,
+       SI_PCM_BUFFER = 0x350, PCM_DMA_BUF_SIZE = 1584 };
+
+static void writeMix(struct emu *e)
+{
+	struct mCore *c = e->core;
+	uint32_t si = e->soundInfo;
+	e->mixLen = 0;
+	if (c->busRead32(c, si + SI_IDENT) != 0x68736D53) /* ID_NUMBER: not mixing now */
+		return;
+	uint32_t counter = c->busRead8(c, si + SI_DMA_COUNTER);
+	uint32_t period = c->busRead8(c, si + SI_DMA_PERIOD);
+	uint32_t n = c->busRead32(c, si + SI_SAMPLES);
+	uint32_t part = counter > 1 ? period - (counter - 1) : 0;
+	if (n > 1024 || part >= period || (part + 1) * n > PCM_DMA_BUF_SIZE)
+		return;
+	uint32_t buf = si + SI_PCM_BUFFER + part * n;
+	for (uint32_t i = 0; i < n; i++) {
+		e->mixFrame[e->mixLen++] = c->busRead8(c, buf + i);
+		e->mixFrame[e->mixLen++] = c->busRead8(c, buf + PCM_DMA_BUF_SIZE + i);
+	}
+	fwrite(e->mixFrame, 1, e->mixLen, e->mix);
+}
+
+/* The CGB channels' registers (what CgbSound wrote, as they read back). */
+static void writePsg(struct emu *e)
+{
+	/* The registers (1 bits); the rest reads as open bus. */
+	static const uint64_t used = 0xFFFF033F333F333FULL;
+	uint8_t regs[0x40];
+	for (int i = 0; i < 0x40; i++)
+		regs[i] = used >> i & 1 ? e->core->busRead8(e->core, 0x04000060 + i) : 0;
+	fwrite(regs, 1, sizeof regs, e->psg);
 }
 
 static void *block(struct emu *e, int id, size_t *size)
@@ -417,13 +507,14 @@ static int videoEqual(struct emu *a, struct emu *b)
 
 static void usage(void)
 {
-	fprintf(stderr, "usage: emutest -p PLAN -o DIR [-m MAP] [-l LOG] [-d N] [-s N] [-e N] [-D 1] [-f 1] ROM_A [ROM_B]\n");
+	fprintf(stderr, "usage: emutest -p PLAN -o DIR [-m MAP] [-l LOG] [-d N] [-s N] [-e N] [-D 1] [-f 1] [-w PREFIX] [-c MASK] [-P ADDR[,ADDR_B]] ROM_A [ROM_B]\n");
 	exit(2);
 }
 
 int main(int argc, char **argv)
 {
-	const char *plan = NULL, *out = NULL, *map = NULL, *logPath = NULL;
+	const char *plan = NULL, *out = NULL, *map = NULL, *logPath = NULL, *wavPrefix = NULL;
+	const char *soundInfoArg = NULL;
 	long dumpDiffs = 4, stopAfter = -1, every = 0, dumpShots = 0;
 	int i;
 	for (i = 1; i < argc && argv[i][0] == '-'; i++) {
@@ -439,6 +530,9 @@ int main(int argc, char **argv)
 		case 'e': every = atol(argv[++i]); break;
 		case 'D': dumpShots = atol(argv[++i]); break;
 		case 'f': fastCpu = atoi(argv[++i]); break;
+		case 'w': wavPrefix = argv[++i]; break;
+		case 'c': audioChannels = strtoul(argv[++i], NULL, 16); break;
+		case 'P': soundInfoArg = argv[++i]; break;
 		default: usage();
 		}
 	}
@@ -455,6 +549,27 @@ int main(int argc, char **argv)
 	emuOpen(&a, argv[i]);
 	if (two)
 		emuOpen(&b, argv[i + 1]);
+	if (wavPrefix) {
+		struct emu *es[2] = { &a, &b };
+		for (int k = 0; k < 1 + two; k++) {
+			char path[4096];
+			snprintf(path, sizeof path, "%s_%c.wav", wavPrefix, 'A' + k);
+			if (!(es[k]->wav = fopen(path, "wb")))
+				die("can't write %s", path);
+			wavHeader(es[k]->wav, 0);
+			if (soundInfoArg) {
+				const char *comma = strchr(soundInfoArg, ',');
+				es[k]->soundInfo = strtoul(k && comma ? comma + 1 : soundInfoArg, NULL, 16);
+				snprintf(path, sizeof path, "%s_%c.mix", wavPrefix, 'A' + k);
+				if (!(es[k]->mix = fopen(path, "wb")))
+					die("can't write %s", path);
+				snprintf(path, sizeof path, "%s_%c.psg", wavPrefix, 'A' + k);
+				if (!(es[k]->psg = fopen(path, "wb")))
+					die("can't write %s", path);
+			}
+		}
+	}
+	int timerReported = 0, mixReported = 0;
 
 	FILE *log = logPath ? fopen(logPath, "w") : NULL;
 	size_t ki = 0, si = 0;
@@ -470,6 +585,29 @@ int main(int argc, char **argv)
 		runFrame(&a, keys);
 		if (two)
 			runFrame(&b, keys);
+
+		if (a.mix) {
+			writeMix(&a);
+			writePsg(&a);
+			if (two) {
+				writeMix(&b);
+				writePsg(&b);
+			}
+		}
+		if (a.mix && two && !mixReported
+		    && (a.mixLen != b.mixLen || memcmp(a.mixFrame, b.mixFrame, a.mixLen))) {
+			printf("mix_diff %u\n", frame);
+			mixReported = 1;
+		}
+		if (a.mix && two && !timerReported) {
+			/* The phase of the sample clock (timer 0, which m4a starts). */
+			uint16_t ta = a.core->busRead16(a.core, 0x04000100);
+			uint16_t tb = b.core->busRead16(b.core, 0x04000100);
+			if (ta != tb) {
+				printf("timer0_diff %u %04X %04X\n", frame, ta, tb);
+				timerReported = 1;
+			}
+		}
 
 		if (log) {
 			fprintf(log, "%u %03X %016llx %016llx", frame, keys,
@@ -593,6 +731,17 @@ int main(int argc, char **argv)
 		       videoFrames, audioFrames, memFrames[1], memFrames[0]);
 	if (log)
 		fclose(log);
+	if (wavPrefix) {
+		struct emu *es[2] = { &a, &b };
+		for (int k = 0; k < 1 + two; k++) {
+			wavHeader(es[k]->wav, es[k]->wavSamples);
+			fclose(es[k]->wav);
+			if (es[k]->mix)
+				fclose(es[k]->mix);
+			if (es[k]->psg)
+				fclose(es[k]->psg);
+		}
+	}
 	a.core->deinit(a.core);
 	if (two)
 		b.core->deinit(b.core);

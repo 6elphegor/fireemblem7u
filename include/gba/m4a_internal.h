@@ -108,16 +108,20 @@ struct CgbChannel
     u8 le; // 0x1E
     u8 sw; // 0x1F
     u32 fr; // 0x20
-    u32 *wp;
-    u32 cp;
-    u32 tp;
-    u32 pp;
-    u32 np;
+    u32 *wp; // wave RAM data (ch. 3), duty cycle (1, 2) or noise period (4)
+    u32 *cp; // the wave last loaded into wave RAM (ch. 3)
+    struct MusicPlayerTrack *tp;
+    void *pp; // channel chain of the track (struct SoundChannel or CgbChannel)
+    void *np;
     u8 d4[8];
 };
 GBA_SIZE_CHECK(struct CgbChannel, 0x40);
 
 struct MusicPlayerTrack;
+struct MusicPlayerInfo;
+
+// SoundInfo.func, MusicPlayerInfo.func: the next music player to run.
+typedef void (*MPlayMainFunc)(struct MusicPlayerInfo *);
 
 struct SoundChannel
 {
@@ -147,10 +151,12 @@ struct SoundChannel
     u32 fw;
     u32 freq;
     struct WaveData *wav;
-    u32 cp;
+    s8 *cp; // current sample
     struct MusicPlayerTrack *track;
-    u32 pp;
-    u32 np;
+    // A track's channels are one chain of DirectSound and CGB channels
+    // (struct CgbChannel has these fields at the same offsets).
+    void *pp;
+    void *np;
     u32 d4;
     u16 xpi;
     u16 xpc;
@@ -186,14 +192,14 @@ struct SoundInfo
     s32 pcmFreq;
     s32 divFreq;
     struct CgbChannel *cgbChans;
-    u32 func;
-    u32 intp;
+    MPlayMainFunc func;
+    struct MusicPlayerInfo *intp;
     void (*CgbSound)(void);
     void (*CgbOscOff)(u8);
     u32 (*MidiKeyToCgbFreq)(u8, u8, u8);
-    u32 MPlayJumpTable;
-    u32 plynote;
-    u32 ExtVolPit;
+    void **MPlayJumpTable;
+    void (*plynote)(u32, struct MusicPlayerInfo *, struct MusicPlayerTrack *);
+    void (*ExtVolPit)(void);
     u8 gap2[16];
     struct SoundChannel chans[MAX_DIRECTSOUND_CHANNELS];
     s8 pcmBuffer[PCM_DMA_BUF_SIZE * 2];
@@ -326,8 +332,8 @@ struct MusicPlayerInfo
     struct MusicPlayerTrack *tracks;
     struct ToneData *tone;
     u32 ident;
-    u32 func;
-    u32 intp;
+    MPlayMainFunc func;
+    struct MusicPlayerInfo *intp;
 };
 GBA_SIZE_CHECK(struct MusicPlayerInfo, 0x40);
 
@@ -366,7 +372,44 @@ extern struct PokemonCrySong gPokemonCrySongs[];
 extern struct MusicPlayerInfo gPokemonCryMusicPlayers[];
 extern struct MusicPlayerTrack gPokemonCryTracks[];
 
+#if NONMATCHING
+// The C mixer: src/m4a_1.c, and its inner loops in src/m4a_mixer.c.
+void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 pcmDmaCounter, u32 lineLimit);
+
+// SoundChannel.status: any of SOUND_CHANNEL_SF_ON, the channel is playing.
+#define SOUND_CHANNEL_SF_START 0x80
+#define SOUND_CHANNEL_SF_STOP 0x40
+#define SOUND_CHANNEL_SF_LOOP 0x10
+#define SOUND_CHANNEL_SF_ECHO 0x04 // the echo after the release
+#define SOUND_CHANNEL_SF_ENV 0x03 // 3 attack, 2 decay, 1 sustain
+#define SOUND_CHANNEL_SF_ON (SOUND_CHANNEL_SF_START | SOUND_CHANNEL_SF_STOP | SOUND_CHANNEL_SF_ECHO | SOUND_CHANNEL_SF_ENV)
+
+bool32 M4aMixFixed(struct SoundChannel *chan, s8 *buf, s32 n);
+bool32 M4aMixResample(struct SoundChannel *chan, s8 *buf, s32 n, u32 step);
+void M4aMixClear(s8 *buf, s32 words);
+void M4aMixReverb(s8 *dst, s8 *src, s32 n, u32 reverb);
+void M4aMixEnd(void);
+
+// The mixer adds a channel to 4 bytes of the buffer in one 32-bit word,
+// whose bytes are the buffer's in little-endian order (the GBA's order; a
+// host assembles them): per sample the word is rotated right by 8 bits,
+// which brings the next byte to the top, and bits 8-15 of the sample times
+// the volume are added to that byte (vol is the volume << 16).
+#if PLATFORM_GBA
+#define M4A_LOAD_WORD(p) (*(u32 *)(p))
+#define M4A_STORE_WORD(p, v) (*(u32 *)(p) = (v))
+#else
+#define M4A_LOAD_WORD(p) \
+    ((u8)(p)[0] | ((u8)(p)[1] << 8) | ((u8)(p)[2] << 16) | ((u32)(u8)(p)[3] << 24))
+#define M4A_STORE_WORD(p, v) \
+    ((p)[0] = (v), (p)[1] = (v) >> 8, (p)[2] = (v) >> 16, (p)[3] = (v) >> 24)
+#endif
+#define M4A_ROR(x, n) (((x) >> (n)) | ((x) << (32 - (n))))
+#define M4A_MIX(acc, sample, vol) \
+    ((acc) = M4A_ROR(acc, 8) + (((u32)(sample) * (vol)) & 0xFF000000))
+#else
 extern char SoundMainRAM[];
+#endif
 
 extern void *gMPlayJumpTable[];
 
@@ -375,6 +418,7 @@ extern const XcmdFunc gXcmdTable[];
 
 extern struct CgbChannel gCgbChans[];
 
+extern const u8 gClockTable[];
 extern const u8 gScaleTable[];
 extern const u32 gFreqTable[];
 extern const u16 gPcmSamplesPerVBlankTable[];
@@ -395,9 +439,9 @@ extern char gMaxLines[];
 
 u32 umul3232H32(u32 multiplier, u32 multiplicand);
 void SoundMain(void);
-void SoundMainBTM(void);
+void SoundMainBTM(void *x);
 void TrackStop(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track);
-void MPlayMain(void);
+void MPlayMain(struct MusicPlayerInfo *mplayInfo);
 void RealClearChain(void *x);
 
 void MPlayContinue(struct MusicPlayerInfo *mplayInfo);
@@ -415,6 +459,7 @@ void MPlayOpen(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track
 void CgbSound(void);
 void CgbOscOff(u8);
 u32 MidiKeyToCgbFreq(u8, u8, u8);
+u32 MidiKeyToFreq(struct WaveData *wav, u8 key, u8 fineAdjust);
 void DummyFunc(void);
 void MPlayJumpTableCopy(void **mplayJumpTable);
 void SampleFreqSet(u32 freq);
@@ -462,7 +507,7 @@ void ply_tune(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_port(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_xcmd(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_endtie(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
-void ply_note(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
+void ply_note(u32 note_cmd, struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 
 // extended sound command handler functions
 void ply_xxx(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
@@ -478,5 +523,16 @@ void ply_xleng(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_xswee(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_xcmd_0C(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 void ply_xcmd_0D(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
+
+// An address stored in a track's command stream: 4 bytes, little-endian,
+// unaligned (the operand of GOTO, PATT, REPT, a conditional MEMACC and XCMD
+// xWAVE).  Every such read goes through M4aReadAddr (src/m4a_1.c, the
+// portable engine).  On the GBA the bytes are the address; a host port maps
+// the GBA ROM address to its own copy of the data (M4aHostRomAddr, which the
+// platform layer provides).
+u8 *M4aReadAddr(const u8 *p);
+#if !PLATFORM_GBA
+void *M4aHostRomAddr(u32 gbaAddr);
+#endif
 
 #endif // GUARD_M4A_INTERNAL_H

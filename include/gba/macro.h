@@ -29,6 +29,7 @@
 
 #define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size)/(32/8) & 0x1FFFFF))
 
+#if PLATFORM_GBA
 #define DmaSet(dmaNum, src, dest, control)        \
 {                                                 \
     vu32 *dmaRegs = (vu32 *)REG_ADDR_DMA##dmaNum; \
@@ -37,6 +38,11 @@
     dmaRegs[2] = (vu32)(control);                 \
     dmaRegs[2];                                   \
 }
+#else
+// Host: the platform layer does the transfer (include/gba/host.h).
+#define DmaSet(dmaNum, src, dest, control) \
+    HostDmaSet(dmaNum, (const void *)(uintptr_t)(src), (void *)(uintptr_t)(dest), (u32)(control))
+#endif
 
 #define DMA_FILL(dmaNum, value, dest, size, bit)                                              \
 {                                                                                             \
