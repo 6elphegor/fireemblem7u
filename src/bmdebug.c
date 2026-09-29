@@ -481,7 +481,7 @@ void sub_0801B924(void)
     menu = StartMenu(&gDebugStartupMenuDef);
 
     gBmSt.flags |= BM_FLAG_LINKARENA;
-    StartMuralBackgroundAlt(menu, (void *) 0x0600B000, -1);
+    StartMuralBackgroundAlt(menu, (void *) (VRAM + 0xB000), -1);
     gBmSt.flags &= ~BM_FLAG_LINKARENA;
 
     PutBuildInfo(gBg2Tm + 0x20);

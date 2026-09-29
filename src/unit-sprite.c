@@ -291,8 +291,8 @@ void TornOutUnitSprite(struct Unit * unit, int timer)
             }
         }
 
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 0 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011000), 2 * CHR_SIZE);
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 1 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011400), 2 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 0 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11000)), 2 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 1 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11400)), 2 * CHR_SIZE);
         break;
 
     case 1:
@@ -308,10 +308,10 @@ void TornOutUnitSprite(struct Unit * unit, int timer)
             }
         }
 
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 0 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011000), 2 * CHR_SIZE);
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 1 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011400), 2 * CHR_SIZE);
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 2 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011800), 2 * CHR_SIZE);
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 3 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011C00), 2 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 0 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11000)), 2 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 1 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11400)), 2 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 2 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11800)), 2 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 3 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11C00)), 2 * CHR_SIZE);
         break;
 
     case 2:
@@ -327,10 +327,10 @@ void TornOutUnitSprite(struct Unit * unit, int timer)
             }
         }
 
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 0 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011000), 4 * CHR_SIZE);
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 1 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011400), 4 * CHR_SIZE);
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 2 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011800), 4 * CHR_SIZE);
-        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 3 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + 0x06011C00), 4 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 0 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11000)), 4 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 1 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11400)), 4 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 2 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11800)), 4 * CHR_SIZE);
+        CpuFastCopy(&gSMSGfxBuffer[r4][r7 + 3 * CHR_SIZE * CHR_LINE], (u8 *) (r7 + (VRAM + 0x11C00)), 4 * CHR_SIZE);
         break;
     }
 
@@ -343,16 +343,16 @@ void SyncUnitSpriteSheet(void)
     int frame = GetGameTime() % 72;
 
     if (frame == 0)
-        CpuFastCopy(gSMSGfxBuffer[0], (void *) 0x06011000, sizeof(gSMSGfxBuffer[0]));
+        CpuFastCopy(gSMSGfxBuffer[0], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[0]));
 
     if (frame == 32)
-        CpuFastCopy(gSMSGfxBuffer[1], (void *) 0x06011000, sizeof(gSMSGfxBuffer[1]));
+        CpuFastCopy(gSMSGfxBuffer[1], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[1]));
 
     if (frame == 36)
-        CpuFastCopy(gSMSGfxBuffer[2], (void *) 0x06011000, sizeof(gSMSGfxBuffer[2]));
+        CpuFastCopy(gSMSGfxBuffer[2], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[2]));
 
     if (frame == 68)
-        CpuFastCopy(gSMSGfxBuffer[1], (void *) 0x06011000, sizeof(gSMSGfxBuffer[1]));
+        CpuFastCopy(gSMSGfxBuffer[1], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[1]));
 }
 
 void ForceSyncUnitSpriteSheet(void)
@@ -364,25 +364,25 @@ void ForceSyncUnitSpriteSheet(void)
 
     if (frame >= 68)
     {
-        RegisterDataMove(gSMSGfxBuffer[1], (void *) 0x06011000, sizeof(gSMSGfxBuffer[1]));
+        RegisterDataMove(gSMSGfxBuffer[1], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[1]));
         return;
     }
 
     if (frame >= 36)
     {
-        RegisterDataMove(gSMSGfxBuffer[2], (void *) 0x06011000, sizeof(gSMSGfxBuffer[2]));
+        RegisterDataMove(gSMSGfxBuffer[2], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[2]));
         return;
     }
 
     if (frame >= 32)
     {
-        RegisterDataMove(gSMSGfxBuffer[1], (void *) 0x06011000, sizeof(gSMSGfxBuffer[1]));
+        RegisterDataMove(gSMSGfxBuffer[1], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[1]));
         return;
     }
 
     if (frame >= 0)
     {
-        RegisterDataMove(gSMSGfxBuffer[0], (void *) 0x06011000, sizeof(gSMSGfxBuffer[0]));
+        RegisterDataMove(gSMSGfxBuffer[0], (void *) (VRAM + 0x11000), sizeof(gSMSGfxBuffer[0]));
         return;
     }
 }

@@ -84,10 +84,10 @@ void SioRuleSettings_Init(struct ProcSioRuleSettings * proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
+    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + (VRAM + 0xC00)));
     ApplyPalette(Pal_LinkArenaRankIcons, 6);
 
-    Decompress(Img_TacticianSelObj, (void *)0x06014800);
+    Decompress(Img_TacticianSelObj, (void *)(VRAM + 0x14800));
     ApplyPalettes(Pal_TacticianSelObj, 0x13, 4);
 
     sub_08047C38(0);

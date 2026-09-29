@@ -294,9 +294,9 @@ void EfxPrepareScreenFx(void)
 
     ApplyPalette(Pal_Text, 2);
     ApplyPalette(Pal_Text, 3);
-    InitTextFont(&gBanimFont, (void *)0x6001400, 0xA0, 2);
+    InitTextFont(&gBanimFont, (void *)(VRAM + 0x1400), 0xA0, 2);
     SetTextDrawNoClear();
-    LZ77UnCompVram(Img_EkrDispUpBase, (void *)0x6001000);
+    LZ77UnCompVram(Img_EkrDispUpBase, (void *)(VRAM + 0x1000));
 
     /* left unit name */
     if (gBanimValid[EKR_POS_L] == false)
@@ -306,7 +306,7 @@ void EfxPrepareScreenFx(void)
 
     InitText(&gBanimText[0], 6);
     Text_SetCursor(&gBanimText[0], GetStringTextCenteredPos(0x30, str));
-    LZ77UnCompVram(Img_EfxLeftNameBox, (void *)0x6001400);
+    LZ77UnCompVram(Img_EfxLeftNameBox, (void *)(VRAM + 0x1400));
     Text_DrawString(&gBanimText[0], str);
 
     /* left unit item */
@@ -317,7 +317,7 @@ void EfxPrepareScreenFx(void)
 
     InitText(&gBanimText[2], 7);
     Text_SetCursor(&gBanimText[2], GetStringTextCenteredPos(0x38, str));
-    LZ77UnCompVram(Img_EfxLeftItemBox, (void *)0x6001580);
+    LZ77UnCompVram(Img_EfxLeftItemBox, (void *)(VRAM + 0x1580));
     Text_DrawString(&gBanimText[2], str);
 
     /* right unit name */
@@ -328,7 +328,7 @@ void EfxPrepareScreenFx(void)
 
     InitText(&gBanimText[3], 6);
     Text_SetCursor(&gBanimText[3], GetStringTextCenteredPos(0x30, str));
-    LZ77UnCompVram(Img_EfxRightNameBox, (void *)0x6001740);
+    LZ77UnCompVram(Img_EfxRightNameBox, (void *)(VRAM + 0x1740));
     Text_DrawString(&gBanimText[3], str);
 
     /* right unit item */
@@ -339,7 +339,7 @@ void EfxPrepareScreenFx(void)
 
     InitText(&gBanimText[1], 7);
     Text_SetCursor(&gBanimText[1], GetStringTextCenteredPos(0x38, str));
-    LZ77UnCompVram(Img_EfxRightItemBox, (void *)0x60018C0);
+    LZ77UnCompVram(Img_EfxRightItemBox, (void *)(VRAM + 0x18C0));
     Text_DrawString(&gBanimText[1], str);
 
     TmFill(gBg0Tm, 0x9F);

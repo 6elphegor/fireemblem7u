@@ -155,7 +155,7 @@ void sub_080412E0(struct SioTermProc * proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_TacticianSelObj, (void *) 0x06014800);
+    Decompress(Img_TacticianSelObj, (void *) (VRAM + 0x14800));
 
     sub_08047BD4(0, 4);
 

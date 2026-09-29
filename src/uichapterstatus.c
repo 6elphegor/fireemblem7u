@@ -75,7 +75,7 @@ void DrawChapterStatusStatValues(void);
 
 void StartChapterStatusHelpBox(ProcPtr proc)
 {
-    LoadHelpBoxGfx((void *) 0x06014800, 9);
+    LoadHelpBoxGfx((void *) (VRAM + 0x14800), 9);
     StartMovingHelpBox(&HelpInfo_ChapterStatus_AllyUnits, proc);
 }
 
@@ -257,7 +257,7 @@ void ChapterStatus_Init(struct ChapterStatusProc * proc)
     ClearUi();
 
     ApplyPalettes(Pal_ChapterStatusUi, 1, 3);
-    Decompress(Img_ChapterStatusUi, (void *) 0x06005800);
+    Decompress(Img_ChapterStatusUi, (void *) (VRAM + 0x5800));
     PutCompressedTsa(gBg2Tm, Tsa_ChapterStatusUi, TILEREF(0x2C0, 1));
 
     SetBlendNone();
@@ -424,7 +424,7 @@ void ChapterStatus_SetupFont(ProcPtr proc)
 {
     ApplyPalette(Pal_Text, 0x1A);
 
-    InitSpriteTextFont(&gStatusScreenSt.font, (void *) 0x06017800, 0x1A);
+    InitSpriteTextFont(&gStatusScreenSt.font, (void *) (VRAM + 0x17800), 0x1A);
 
     SetTextFont(&gStatusScreenSt.font);
     SetTextFontGlyphs(0);
@@ -591,7 +591,7 @@ void StatusScreenSpriteDraw_Init(struct ChapterStatusProc * proc)
     ApplyPalettes(Pal_StatusScreenLabelSprites, 0x14, 3);
     ApplyPalettes(Pal_ChapterStatusSelectorSprite, 0x17, 2);
 
-    Decompress(Img_StatusScreenLabelSprites, (void *) 0x06016000);
+    Decompress(Img_StatusScreenLabelSprites, (void *) (VRAM + 0x16000));
 
     proc->unk_64 = 0;
 

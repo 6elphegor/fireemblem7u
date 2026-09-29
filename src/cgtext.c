@@ -163,7 +163,7 @@ void sub_808EB0C(struct CgTextMainProc * proc)
 
         SetCgTextFlag(CG_TEXT_FLAG_16);
 
-        InitSpriteTextFont(&font, (void *)0x06017800, 0x12);
+        InitSpriteTextFont(&font, (void *)(VRAM + 0x17800), 0x12);
         SetTextFont(&font);
         InitSpriteText(&th);
 
@@ -183,7 +183,7 @@ void sub_808EB0C(struct CgTextMainProc * proc)
 
         ApplyPalette(Pal_Text, 0x12);
         ApplyPalette(gUnknown_0819D20C, 0x11);
-        Decompress(gUnknown_0819D174, (void *)0x06017A00);
+        Decompress(gUnknown_0819D174, (void *)(VRAM + 0x17A00));
     }
 }
 void CgText_Init(struct CgTextMainProc * proc)
@@ -469,7 +469,7 @@ void StartCgText(int x, int y, int width, int height, int stringId, void * vram,
     pal = palTmp + 0x10;
 
     if (vram == 0)
-        vram = (void *)0x06013000;
+        vram = (void *)(VRAM + 0x13000);
 
     InitSpriteTextFont(proc->pFont, vram, pal);
     SetTextFont(NULL);

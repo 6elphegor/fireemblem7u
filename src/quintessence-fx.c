@@ -42,7 +42,7 @@ void QuintessenceFx_Init_Main(struct ProcEventAnimfx * proc)
     SetBlendTargetB(0, 0, 0, 1, 0);
 
     ApplyPalette(Pal_QuintessenceFx, 5);
-    Decompress(Img_ChapterIntroFog, (void *)0x06004000);
+    Decompress(Img_ChapterIntroFog, (void *)(VRAM + 0x4000));
     PutCompressedTsa(gBg2Tm, Tsa_QuintessenceFx, 0x5200);
 
     EnableBgSync(BG2_SYNC_BIT | BG3_SYNC_BIT);

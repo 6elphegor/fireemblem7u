@@ -150,7 +150,7 @@ void PrepItemList_InitGfx(struct PrepItemListProc * proc)
     SetBgOffset(1, 0, 0);
     SetBgOffset(2, 0, proc->yOffsetPerPage[proc->currentPage] - 40);
 
-    LoadHelpBoxGfx((void *) 0x06012000, -1);
+    LoadHelpBoxGfx((void *) (VRAM + 0x12000), -1);
     ApplyIconPalettes(4);
 
     PrepRestartMuralBackground();
@@ -190,7 +190,7 @@ void PrepItemList_InitGfx(struct PrepItemListProc * proc)
 
     sub_08096260(gBg0Tm + 0x6F, 0x4000, 6);
 
-    Decompress(Img_08405754, (void *) 0x06015000);
+    Decompress(Img_08405754, (void *) (VRAM + 0x15000));
 
     StartMenuScrollBar(proc);
     InitMenuScrollBarImg(0x5800, 4);

@@ -197,7 +197,7 @@ void PrepUnit_InitGfx(void)
 
     PutCompressedTsa(gBg1Tm, Tsa_08406FD0, 0xF300);
 
-    Decompress(Img_PrepScreenTitleSprites, (void *) 0x06010800);
+    Decompress(Img_PrepScreenTitleSprites, (void *) (VRAM + 0x10800));
     EnablePalSync();
 }
 void sub_08093250(ProcPtr parent, u32 obj_offset)
@@ -502,7 +502,7 @@ void ProcPrepUnit_InitScreen(struct ProcPrepUnit * proc)
 
     PrepUnit_DrawPickLeftBar(proc, 0);
     StartGreenText(proc);
-    LoadHelpBoxGfx((void *) 0x06015000, 5);
+    LoadHelpBoxGfx((void *) (VRAM + 0x15000), 5);
     PrepRestartMuralBackground();
 }
 void sub_08093A7C(struct ProcPrepUnit * proc)

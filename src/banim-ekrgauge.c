@@ -220,8 +220,8 @@ void NewEkrGauge(void)
     gEkrGaugeHpBak[0] |= 0xFFFF;
     gEkrGaugeHpBak[1] |= 0xFFFF;
 
-    LZ77UnCompVram(Img_EfxSideHitDmgCrit, (void *)0x6013800);
-    LZ77UnCompVram(Img_EfxWTAArrow, (void *)0x6013C00);
+    LZ77UnCompVram(Img_EfxSideHitDmgCrit, (void *)(VRAM + 0x13800));
+    LZ77UnCompVram(Img_EfxWTAArrow, (void *)(VRAM + 0x13C00));
 
     CpuFastCopy(Pal_EfxSideHitDmgCrit + gBanimFactionPal[POS_L] * 0x10, PAL_OBJ(0x5), 0x10 * sizeof(u16));
     CpuFastCopy(Pal_EfxSideHitDmgCrit + gBanimFactionPal[POS_R] * 0x10, PAL_OBJ(0x6), 0x10 * sizeof(u16));
@@ -249,8 +249,8 @@ void NewEkrGauge(void)
         }
     }
 
-    RegisterDataMove(gObjBuf_EkrSideHitDmgCrit, (void *)0x6013A00, 0xC0 * sizeof(u16));
-    RegisterDataMove(gObjBuf_EkrSideHitDmgCrit + 0xC0, (void *)0x6013E00, 0xC0 * sizeof(u16));
+    RegisterDataMove(gObjBuf_EkrSideHitDmgCrit, (void *)(VRAM + 0x13A00), 0xC0 * sizeof(u16));
+    RegisterDataMove(gObjBuf_EkrSideHitDmgCrit + 0xC0, (void *)(VRAM + 0x13E00), 0xC0 * sizeof(u16));
 
     InitIcons();
     ApplyIconPalette(0, 0x1D);
@@ -519,8 +519,8 @@ void ekrGaugeMain(struct ProcEkrGauge * proc)
             }
         }
 
-        RegisterDataMove(gUnk_Banim_02016DC8 + 0x00, (void *)0x060139C0, 0x40);
-        RegisterDataMove((u16 *)gUnk_Banim_02016DC8 + 0x20, (void *)0x06013DC0, 0x40);
+        RegisterDataMove(gUnk_Banim_02016DC8 + 0x00, (void *)(VRAM + 0x139C0), 0x40);
+        RegisterDataMove((u16 *)gUnk_Banim_02016DC8 + 0x20, (void *)(VRAM + 0x13DC0), 0x40);
     }
 
     AStack_130.oam2Base = 0x51CE;
@@ -698,7 +698,7 @@ void ekrGaugeMain(struct ProcEkrGauge * proc)
     }
 
     if (hp_changed == 1) {
-        RegisterDataMove((void *)gUnk_Banim_02016E48, (void *)0x06013000, 0x800);
+        RegisterDataMove((void *)gUnk_Banim_02016E48, (void *)(VRAM + 0x13000), 0x800);
     }
 
     if (proc->unk4C == 0) {

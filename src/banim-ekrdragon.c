@@ -266,7 +266,7 @@ void EkrDragon_StartDragonTailIntro(struct ProcEkrDragon * proc)
     gDispIo.bg3_ct.priority = 2;
     gDispIo.bg2_ct.priority = 3;
 
-    LZ77UnCompVram(Img_EkrDragon_082DE7E8, (void *)0x06008000);
+    LZ77UnCompVram(Img_EkrDragon_082DE7E8, (void *)(VRAM + 0x8000));
     LZ77UnCompWram(Tsa_EkrDragon_DragonTail, gEkrTsaBuffer);
     CpuFastCopy(Pals_EkrDragonFlashingWingBg, PAL_BG(6), 0x20);
 

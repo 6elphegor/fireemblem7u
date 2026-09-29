@@ -1388,7 +1388,7 @@ ProcPtr sub_080491F0(int x, int y, ProcPtr parent)
 void sub_08049220(void)
 {
     Decompress(gGfx_SupportMenu, gUnknown_0200118C);
-    sub_08047CB8(gUnknown_0200118C, (void *)(0x06016800), 6, 4);
+    sub_08047CB8(gUnknown_0200118C, (void *)((VRAM + 0x16800)), 6, 4);
     ApplyPalette(gPal_SupportMenu, 0x12);
     return;
 }

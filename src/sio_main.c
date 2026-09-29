@@ -1,7 +1,8 @@
 #include "gbafe.h"
 #include "gbafe/sio_core.h"
 
-CONST_DATA struct SioSt * gSioSt = (struct SioSt *) 0x0203A98C;
+DECLARE_RAM_ADDR(0x0203A98C);
+CONST_DATA struct SioSt * gSioSt = RAM_ADDR(0x0203A98C);
 
 // Link arena misc (FE8U: sio_main.c)
 

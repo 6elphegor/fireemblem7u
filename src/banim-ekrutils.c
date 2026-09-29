@@ -326,7 +326,7 @@ void SpellFx_WriteBgMapExt(struct Anim * anim, const u16 * src, int width, int h
 
 void SpellFx_RegisterObjGfx(const void * img, u32 size)
 {
-    void * dst = (void *)0x06010800;
+    void * dst = (void *)(VRAM + 0x10800);
     LZ77UnCompWram(img, gBuf_Banim);
     RegisterDataMove(gBuf_Banim, dst, size);
 }
@@ -339,7 +339,7 @@ void SpellFx_RegisterObjPal(const u16 * pal, u32 size)
 
 void SpellFx_RegisterBgGfx(const void * img, u32 size)
 {
-    void * dst = (void *)0x06002000;
+    void * dst = (void *)(VRAM + 0x2000);
     LZ77UnCompWram(img, gSpellAnimBgfx);
     RegisterDataMove(gSpellAnimBgfx, dst, size);
 }

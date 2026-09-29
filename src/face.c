@@ -1488,7 +1488,7 @@ void sub_08007D28(struct UnkFaceProc * proc)
 
     proc->face_info = GetFaceInfo(proc->fid);
 
-    Decompress(proc->face_info->img, (void *)(gFaceConfig[proc->face_proc->slot].chr_off + 0x06010000));
+    Decompress(proc->face_info->img, (void *)(gFaceConfig[proc->face_proc->slot].chr_off + (VRAM + 0x10000)));
     ApplyPalette(proc->face_info->pal, gFaceConfig[proc->face_proc->slot].palid + 0x10);
 
     face_proc = proc->face_proc;

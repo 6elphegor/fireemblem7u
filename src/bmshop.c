@@ -663,7 +663,7 @@ void StartUiGoldBox(ProcPtr parent)
 {
     struct ProcShop * proc;
 
-    Decompress(Img_ShopGoldBox, (void *) 0x06014C00);
+    Decompress(Img_ShopGoldBox, (void *) (VRAM + 0x14C00));
 
     proc = Proc_Start(gProcScr_GoldBox, parent);
     proc->goldbox_x = 0xAC;
@@ -913,7 +913,7 @@ void DisplayShopUiArrows(void)
 
 void UnpackUiVArrowGfx(int chr, int pal)
 {
-    Decompress(Img_UiVArrow, (void *) (0x06010000 + ((chr & 0x3FF) << 5)));
+    Decompress(Img_UiVArrow, (void *) ((VRAM + 0x10000) + ((chr & 0x3FF) << 5)));
     ApplyPalette(gUnknown_08405B0C, 0x10 + pal);
 }
 

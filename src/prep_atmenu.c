@@ -952,7 +952,7 @@ void sub_0808F3D0(struct ProcAtMenu * _proc)
 
     ShowSysHandCursor(0x14, 0x28, 6, 0x800);
     StartTalkFace(0x20, 0xD4, 0x50, 0x82, 0);
-    StartCgText(0x16, 0x12, -1, -1, 0xFCE, (void *) 0x06011800, -1, NULL);
+    StartCgText(0x16, 0x12, -1, -1, 0xFCE, (void *) (VRAM + 0x11800), -1, NULL);
     SetCgTextFlags(0x2000A);
 }
 
@@ -968,7 +968,7 @@ void sub_0808F43C(struct ProcAtMenu * _proc)
 
     ShowSysHandCursor(0x14, 0x38, 6, 0x800);
     StartTalkFace(0x4A, 0xD4, 0x50, 0x82, 0);
-    StartCgText(0x16, 0x12, -1, -1, 0xFC6, (void *) 0x06011800, -1, NULL);
+    StartCgText(0x16, 0x12, -1, -1, 0xFC6, (void *) (VRAM + 0x11800), -1, NULL);
     SetCgTextFlags(0x2000A);
 }
 
@@ -991,7 +991,7 @@ void sub_0808F4A8(struct ProcAtMenu * _proc)
 
     ShowSysHandCursor(0x14, 0x48, 6, 0x800);
     StartTalkFace(0x4B, 0xD4, 0x50, 0x82, 0);
-    StartCgText(0x16, 0x12, -1, -1, msg, (void *) 0x06011800, -1, NULL);
+    StartCgText(0x16, 0x12, -1, -1, msg, (void *) (VRAM + 0x11800), -1, NULL);
     SetCgTextFlags(0x2000A);
 }
 
@@ -1007,7 +1007,7 @@ void sub_0808F52C(struct ProcAtMenu * _proc)
 
     ShowSysHandCursor(0x14, 0x28, 6, 0x800);
     StartTalkFace(0x4A, 0xD4, 0x50, 0x82, 0);
-    StartCgText(0x16, 0x12, -1, -1, 0xFCD, (void *) 0x06011800, -1, NULL);
+    StartCgText(0x16, 0x12, -1, -1, 0xFCD, (void *) (VRAM + 0x11800), -1, NULL);
     SetCgTextFlags(0x2000A);
 }
 

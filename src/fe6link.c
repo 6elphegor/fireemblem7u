@@ -125,16 +125,16 @@ void Sio_DrawFe6CommImage(struct Fe6LinkProc * proc)
 
     sub_08047CA8();
 
-    Decompress(gUnknown_081D245C, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
+    Decompress(gUnknown_081D245C, (void *)(GetBgChrOffset(BG_1) + (VRAM + 0xC00)));
     ApplyPalette(gUnknown_081D26E0, 4);
 
-    Decompress(gUnknown_081D2700, (void *)0x06014000);
+    Decompress(gUnknown_081D2700, (void *)(VRAM + 0x14000));
     ApplyPalette(gUnknown_081D2B1C, 0x13);
 
     TmApplyTsa_thm(gBg1Tm, gUnknown_081D258C, 0x4060);
     TmApplyTsa_thm(gBg1Tm + TM_OFFSET(0, 17), gUnknown_081D2628, 0x4060);
 
-    Decompress(Img_Fe6Comm, (void *)(GetBgChrOffset(BG_3) + 0x06000000));
+    Decompress(Img_Fe6Comm, (void *)(GetBgChrOffset(BG_3) + VRAM));
 
     Decompress(Tsa_Fe6Comm, gBg3Tm);
     ApplyPalettes(Pal_Fe6Comm, 7, 8);
@@ -304,7 +304,7 @@ void FE6Link_Loop_C(ProcPtr proc)
 
         case 1:
         case 2:
-            LoadHelpBoxGfx((void *)0x06015000, 6);
+            LoadHelpBoxGfx((void *)(VRAM + 0x15000), 6);
             StartHelpBoxExt_Unk(0x38, 0x38, 0x1193);
             Proc_Goto(proc, 10);
             break;
@@ -326,7 +326,7 @@ void FE6Link_Loop_D(struct Fe6LinkProc * proc)
     {
         if (gUnk_Sio_02000C04.unk_04 == 0)
         {
-            LoadHelpBoxGfx((void *)0x06015000, 6);
+            LoadHelpBoxGfx((void *)(VRAM + 0x15000), 6);
             StartHelpBoxExt_Unk(0x38, 0x38, 0x1194);
             Proc_Goto(proc, 10);
         }
@@ -385,7 +385,7 @@ void FE6Link_Loop_I(struct Fe6LinkProc * proc)
     {
         CloseHelpBox();
         sub_0803D500(0);
-        LoadHelpBoxGfx((void *)0x06016800, 13);
+        LoadHelpBoxGfx((void *)(VRAM + 0x16800), 13);
         StartHelpBoxExt_Unk(0x40, 0x48, 0x1195);
 
         ReadFe6LinkSaveInfo(&info);
@@ -497,9 +497,9 @@ void sub_08043A14(struct Fe6LinkMenuProc * proc)
     int color;
     int n;
 
-    Decompress(gUnknown_081D2B3C, (void *)0x06012800);
+    Decompress(gUnknown_081D2B3C, (void *)(VRAM + 0x12800));
     ApplyPaletteExt(gUnknown_081D3598, 0x280, 0xC0);
-    InitSpriteTextFont(&Font_Sio_02000C60, (void *)0x06015000, 0xE);
+    InitSpriteTextFont(&Font_Sio_02000C60, (void *)(VRAM + 0x15000), 0xE);
     ApplyPaletteExt(Pal_Text, 0x340, 0x20);
     SetTextFontGlyphs(0);
     ResetTextFont();
@@ -725,7 +725,7 @@ void FE6Link_Loop_G(struct Fe6LinkProc * proc)
             TmFillRect_thm(gBg1Tm + TM_OFFSET(2, 9), 16, 6, 0);
             EnableBgSync(BG1_SYNC_BIT);
 
-            LoadHelpBoxGfx((void *)0x06016800, 13);
+            LoadHelpBoxGfx((void *)(VRAM + 0x16800), 13);
             StartHelpBoxExt_Unk(0x40, 0x48, 0x1192);
 
             Proc_Goto(proc, 3);
@@ -744,7 +744,7 @@ void FE6Link_CallBack(void)
 void GC_ConnectToFE6(ProcPtr parent)
 {
     UnpackUiWindowFrameGraphics();
-    InitTextFont(&Font_0203DB64, (void *)0x06001800, 0xc0, 0);
+    InitTextFont(&Font_0203DB64, (void *)(VRAM + 0x1800), 0xc0, 0);
     Proc_StartBlocking(ProcScr_FE6Link, parent);
 }
 

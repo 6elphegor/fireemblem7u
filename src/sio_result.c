@@ -121,11 +121,11 @@ void SioResult_Init(struct SioResultProc * proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
+    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + (VRAM + 0xC00)));
     ApplyPalettes(gUnknown_081C7FC4, 4, 2);
     ApplyPalette(Pal_LinkArenaRankIcons, 6);
 
-    Decompress(Img_TacticianSelObj, (void *)0x06014800);
+    Decompress(Img_TacticianSelObj, (void *)(VRAM + 0x14800));
     ApplyPalettes(Pal_TacticianSelObj, 0x13, 4);
 
     sub_08047BD4(0, 2);
@@ -272,12 +272,12 @@ void SioResult_NewHS_Init(struct SioResultProc * proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
+    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + (VRAM + 0xC00)));
     ApplyPalettes(gUnknown_081C7FC4, 4, 2);
     ApplyPalette(Pal_LinkArenaRankIcons, 6);
 
-    Decompress(Img_TacticianSelObj, (void *)0x06014800);
-    Decompress(gUnknown_085ACEFC, (void *)0x06016000);
+    Decompress(Img_TacticianSelObj, (void *)(VRAM + 0x14800));
+    Decompress(gUnknown_085ACEFC, (void *)(VRAM + 0x16000));
     ApplyPalette(Pal_LinkArenaActiveBannerFx, 0x13);
 
     sub_08047BD4(0, 0);

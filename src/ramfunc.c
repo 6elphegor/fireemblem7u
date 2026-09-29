@@ -18,6 +18,16 @@ extern void (* gRamFunc_MapFloodCore)(void);
 
 void InitRamFuncs(void)
 {
+#if !PLATFORM_GBA
+    // The host runs the C versions of the ARM routines (platform/armfunc.c)
+    // where they are: nothing to copy.
+    gRamFunc_DrawGlyph = DrawGlyph;
+    gRamFunc_DecodeString = DecodeString;
+    gRamFunc_PutOamHi = PutOamHi;
+    gRamFunc_PutOamLo = PutOamLo;
+    gRamFunc_MapFloodCoreStep = MapFloodCoreStep;
+    gRamFunc_MapFloodCore = MapFloodCore;
+#else
     int size = ArmCodeEnd - ArmCodeStart;
 
     CpuCopy16(ArmCodeStart, gRamFuncBuffer, size);
@@ -28,6 +38,7 @@ void InitRamFuncs(void)
     gRamFunc_PutOamLo = (void *) gRamFuncBuffer + ((u8 const *) PutOamLo - ArmCodeStart);
     gRamFunc_MapFloodCoreStep = (void *) gRamFuncBuffer + ((u8 const *) MapFloodCoreStep - ArmCodeStart);
     gRamFunc_MapFloodCore = (void *) gRamFuncBuffer + ((u8 const *) MapFloodCore - ArmCodeStart);
+#endif
 }
 
 void DrawGlyphRam(u16 const * cvtLut, void * chr, u32 const * glyph, int offset)

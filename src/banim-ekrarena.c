@@ -162,7 +162,7 @@ void ekrTogiInit_Init(ProcPtr proc)
 // 0.89 ekrarena:ekrTogiInit_LoadGfx
 void ekrTogiInit_LoadGfx(struct ProcEkrTogi * proc)
 {
-    LZ77UnCompVram(Img_ArenaBattleBg, (void *)0x06008000);
+    LZ77UnCompVram(Img_ArenaBattleBg, (void *)(VRAM + 0x8000));
     LZ77UnCompWram(Tsa_ArenaBattleBg, gEkrTsaBuffer);
     EfxTmCpyExt(gEkrTsaBuffer, -1, gEfxFrameTmap, 66, 46, 20, 6, 0);
     sub_080554FC(0);

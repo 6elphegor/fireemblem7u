@@ -98,8 +98,8 @@ void OnMain_SioError(void) {
 
 	SyncDispIo();
 
-	CpuFastFill(0, (void *) 0x06000000, 0x20);
-	CpuFastFill(0, (void *) 0x06008000, 0x20);
+	CpuFastFill(0, (void *) VRAM, 0x20);
+	CpuFastFill(0, (void *) (VRAM + 0x8000), 0x20);
 
 	PutSioErrorMessage();
 

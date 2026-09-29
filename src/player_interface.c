@@ -1496,7 +1496,7 @@ bool IsAnyPlayerSideWindowRetracting(void)
 
 void MenuButtonDisp_Init(struct PlayerInterfaceProc * proc)
 {
-    Decompress(Img_PrepHelpButtonSprites, (void *) 0x06015000);
+    Decompress(Img_PrepHelpButtonSprites, (void *) (VRAM + 0x15000));
 
     proc->xHp = 160;
     proc->yHp = 140;

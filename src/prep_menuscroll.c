@@ -418,7 +418,7 @@ void InitMenuScrollBarImg(int chr, int pal)
     struct MenuScrollBarProc * proc;
 
     ApplyPalette(Pal_MenuScrollBar, pal + 0x10);
-    Decompress(Img_MenuScrollBar, (void *) (0x06010000 + chr));
+    Decompress(Img_MenuScrollBar, (void *) ((VRAM + 0x10000) + chr));
 
     proc = Proc_Find(ProcScr_menu_scroll);
 

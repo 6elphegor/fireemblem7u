@@ -408,7 +408,7 @@ void InitSoundRoomVolumeGraph(void)
         gSoundRoomVolumeGraphBuffer[1][i] = 0;
     }
 
-    Decompress(Img_SoundRoomVolumeGraph, (void *)0x06010800);
+    Decompress(Img_SoundRoomVolumeGraph, (void *)(VRAM + 0x10800));
     ApplyPalettes(Pal_SoundRoomVolumeGraph, 0x1D, 3);
 }
 
@@ -676,7 +676,7 @@ void SoundRoomUi_Init(struct SoundRoomProc * proc)
     sub_080AB5DC(proc);
     sub_080AB654(proc);
 
-    Decompress(gUnknown_08A2C908, (void *)0x06004000);
+    Decompress(gUnknown_08A2C908, (void *)(VRAM + 0x4000));
     ApplyPalette(Pal_StatScreenFaceDefault, 4);
     ApplyPalette(Pal_StatScreenFaceGeneric, 5);
 
@@ -700,7 +700,7 @@ void SoundRoomUi_Init(struct SoundRoomProc * proc)
 
     PutCgBackground(gBg3Tm, 0x8000, 8, 8, sub_080AB548(proc));
 
-    Decompress(Img_SoundRoomUiElements, (void *)0x06012000);
+    Decompress(Img_SoundRoomUiElements, (void *)(VRAM + 0x12000));
     ApplyPalettes(Pal_SoundRoomUiElements, 0x14, 2);
 
     DrawSoundRoomSprites(proc);
@@ -1119,7 +1119,7 @@ void sub_080AC2C0(void)
 {
     int i;
 
-    u32 vram = 0x06014000;
+    u32 vram = (VRAM + 0x14000);
 
     InitSpriteTextFont(&gSoundRoomText.font, (void *)vram, 5);
 

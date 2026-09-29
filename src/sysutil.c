@@ -1419,7 +1419,7 @@ void BmBgfx_Loop(struct ProcBmBgfx * proc)
                 case BMFX_CONFT_IMG:
                     CpuFastCopy(
                         conf->data,
-                        (void *)(0x6000000 + proc->vram_base + proc->vram_base_offset + proc->vram_free_space + proc->flip * proc->size_per_fx),
+                        (void *)(VRAM + proc->vram_base + proc->vram_base_offset + proc->vram_free_space + proc->flip * proc->size_per_fx),
                         conf->size);
 
                     proc->vram_free_space = proc->vram_free_space + conf->size;
@@ -1428,7 +1428,7 @@ void BmBgfx_Loop(struct ProcBmBgfx * proc)
                 case BMFX_CONFT_ZIMG:
                     Decompress(
                         conf->data,
-                        (void *)(0x6000000 + proc->vram_base + proc->vram_base_offset + proc->vram_free_space + proc->flip * proc->size_per_fx));
+                        (void *)(VRAM + proc->vram_base + proc->vram_base_offset + proc->vram_free_space + proc->flip * proc->size_per_fx));
 
                     proc->vram_free_space = proc->vram_free_space + conf->size;
 

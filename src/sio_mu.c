@@ -105,7 +105,7 @@ void StartMuRestorePalInfo(struct MuProc * muProc)
 
 void SioWarp_Init(struct SioWarpProc * proc)
 {
-    Decompress(Img_LinkArenaWarpFx, (void *) (0x06004400));
+    Decompress(Img_LinkArenaWarpFx, (void *) ((VRAM + 0x4400)));
     ApplyPalette(Pal_LinkArenaWarpFx, 3);
 
     proc->unk_40 = 0;

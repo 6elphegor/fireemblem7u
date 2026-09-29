@@ -1397,7 +1397,7 @@ void PlayerRank_Init(struct PlayerRankProc * proc)
 
     TmApplyTsa_thm(gBg1Tm, Tsa_PlayerRankBg, 0x1000);
     ApplyPaletteExt(Pal_PlayerRankBg, 0x300, 0x40);
-    Decompress(Img_PlayerRankLetters, (void *) 0x06011000);
+    Decompress(Img_PlayerRankLetters, (void *) (VRAM + 0x11000));
 
     for (i = 0; i < 5; i++)
         ApplyPaletteExt(Pal_PlayerRankLetters, (i + 0x1A) * 0x20, 0x20);

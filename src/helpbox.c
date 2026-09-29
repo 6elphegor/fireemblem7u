@@ -240,7 +240,7 @@ CONST_DATA struct ProcCmd ProcScr_TalkBoxIdle[] = {
 void LoadHelpBoxGfx(void * vram, int palId)
 {
     if (vram == NULL)
-        vram = (void *)0x06013000;
+        vram = (void *)(VRAM + 0x13000);
 
     if (palId < 0)
         palId = 5;
@@ -266,7 +266,7 @@ void LoadHelpBoxGfx(void * vram, int palId)
 void sub_080825B4(void * vram, int palId)
 {
     if (vram == NULL)
-        vram = (void *)0x06013000;
+        vram = (void *)(VRAM + 0x13000);
 
     if (palId < 0)
         palId = 5;
@@ -892,7 +892,7 @@ void sub_080831B4(int a, int b)
     int * ptr, * r4;
     int i, j, k;
 
-    ptr = (int *)((((0x3FF & gBoxDialogueConf.unk_40) + gBoxDialogueConf.texts[0].chr_position) * 0x20) + 0x06010000);
+    ptr = (int *)((((0x3FF & gBoxDialogueConf.unk_40) + gBoxDialogueConf.texts[0].chr_position) * 0x20) + (VRAM + 0x10000));
 
     for (i = 0; i < b * 2; i++)
     {
@@ -927,7 +927,7 @@ void InitBoxDialogue(void * vram_dst, int pal)
     int i;
 
     if (vram_dst == NULL)
-        vram_dst = (void *)0x06013000;
+        vram_dst = (void *)(VRAM + 0x13000);
 
     if (pal < 0)
         pal = 5;

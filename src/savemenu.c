@@ -152,7 +152,7 @@ void SaveMenu_StartHelpBox(struct SaveMenuProc * proc)
     case SAVEMENU_ACTION_BITFILE_5:
         if (proc->unk_36 != 0 && proc->in_rtext == false)
         {
-            LoadHelpBoxGfx((void *)0x06013800, 9);
+            LoadHelpBoxGfx((void *)(VRAM + 0x13800), 9);
             StartHelpBoxExt_Unk(0x30, 0x30, 0x3B2);
             proc->in_rtext = true;
         }
@@ -216,7 +216,7 @@ bool SaveMenuPostChapterHandleHelpBox(struct SaveMenuProc * proc)
 
         case 1:
         case 2:
-            LoadHelpBoxGfx((void *) 0x06013800, 9);
+            LoadHelpBoxGfx((void *) (VRAM + 0x13800), 9);
             StartItemHelpBox(0x48, proc->copy_from_id * 0x20 + 0x2c, (u16) -1);
             proc->unk_40 = _timer_default;
             break;
@@ -288,7 +288,7 @@ void ProcSaveMenu_InitScreen(struct SaveMenuProc * proc)
     gDispIo.win_ct.win0_enable_blend = 1;
     gDispIo.win_ct.win1_enable_blend = 1;
 
-    Decompress(gGfx_SupportMenu, (void *) 0x06010800);
+    Decompress(gGfx_SupportMenu, (void *) (VRAM + 0x10800));
 
     proc->unk_36 = 0;
     proc->unk_2D = -1;
@@ -340,7 +340,7 @@ void ProcSaveMenu_InitScreen(struct SaveMenuProc * proc)
 }
 void SaveMenu_LoadExtraMenuGraphics(struct SaveMenuProc * proc)
 {
-    Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
+    Decompress(Img_GameMainMenuObjs, (void *) (VRAM + 0x13800));
     InitSaveMenuChoice(proc);
 
     if (proc->action_flag == 0x20)
@@ -857,7 +857,7 @@ void SaveMenuScrollBackToMain(struct SaveMenuProc * proc)
 
     if (proc->anim_clock == 0xe)
     {
-        Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
+        Decompress(Img_GameMainMenuObjs, (void *) (VRAM + 0x13800));
         Proc_Break(proc);
     }
 }
@@ -1021,7 +1021,7 @@ s8 sub_080A474C(struct SaveMenuProc * proc, int direction)
 }
 void sub_080A47B4(struct SaveMenuHelpProc * proc)
 {
-    LoadHelpBoxGfx((void *) 0x06013800, 9);
+    LoadHelpBoxGfx((void *) (VRAM + 0x13800), 9);
     StartHelpBoxExt_Unk(proc->x, proc->y, proc->msgId);
     PlaySoundEffect(0x390);
 }
@@ -1124,7 +1124,7 @@ void sub_080A4850(struct SaveMenuProc * proc)
             return;
         }
 
-        Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
+        Decompress(Img_GameMainMenuObjs, (void *) (VRAM + 0x13800));
         proc->anim_clock = 0;
         Proc_Goto(proc, 0xD);
         return;
@@ -1281,9 +1281,9 @@ void SaveMenu_ReloadScreenFormDifficulty(struct SaveMenuProc * proc)
     ResetTextFont();
     ApplySystemObjectsGraphics();
 
-    Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
+    Decompress(Img_GameMainMenuObjs, (void *) (VRAM + 0x13800));
     ApplyPalettes(Pal_SaveMenuWindow, 0x11, 8);
-    Decompress(gGfx_SupportMenu, (void *) 0x06010800);
+    Decompress(gGfx_SupportMenu, (void *) (VRAM + 0x10800));
     TmApplyTsa(gBg0Tm, Tsa_SaveMenuBackground, 0);
 
     gUnk_Savemenu_02000000 = 100;

@@ -602,7 +602,7 @@ void sub_8090D80(struct UnitListScreenProc * proc)
     ApplyIconPalettes(4);
     UnpackUiWindowFrameGraphics();
 
-    Decompress(Img_08A1CD68, (void *)0x06014800);
+    Decompress(Img_08A1CD68, (void *)(VRAM + 0x14800));
     ApplyPalettes(Pal_MapBattleInfoNum, 0x19, 1);
 
     sub_08090F30();

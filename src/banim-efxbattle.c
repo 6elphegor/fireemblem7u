@@ -563,7 +563,7 @@ void NewEfxHitQuake(struct Anim * anim1, struct Anim * anim2, int kind)
 
     proc->unk_64 = anim;
 
-    RegisterDataMove(gUnknown_0200003C[GetAnimPosition(anim1)], (void *)0x06011800, 0x800);
+    RegisterDataMove(gUnknown_0200003C[GetAnimPosition(anim1)], (void *)(VRAM + 0x11800), 0x800);
 
     if (gEkrSpellAnimIndex[GetAnimPosition(anim2)] == 0x39)
         CpuFastCopy(gBanimTerrainPaletteMaybe[GetAnimPosition(anim2)], gEfxTerrainPalette, 0x20);

@@ -45,7 +45,7 @@ void StartTacticianNameSelect(ProcPtr parent)
     UnpackUiWindowFrameGraphics();
     UnsetBmStLinkArenaFlag();
 
-    InitTextFont(&Font_0203DB64, (void *)(0x06001800), 0xc0, 0);
+    InitTextFont(&Font_0203DB64, (void *)((VRAM + 0x1800)), 0xc0, 0);
 
     gLinkArenaSt.unk_05 = 0;
     gLinkArenaSt.unk_03 = 0;

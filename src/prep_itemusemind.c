@@ -112,5 +112,5 @@ void PrepItemUseBooster_OnEnd(struct ProcPrepItemUseBooster * proc)
     DisableUiCursorHand(0);
     EndManimLevelUpStatGainLabels();
     EnableBgSync(BG0_SYNC_BIT | BG2_SYNC_BIT);
-    LoadHelpBoxGfx((void *) 0x06014000, -1);
+    LoadHelpBoxGfx((void *) (VRAM + 0x14000), -1);
 }

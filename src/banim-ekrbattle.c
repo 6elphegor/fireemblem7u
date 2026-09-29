@@ -568,7 +568,7 @@ void ekrBattleExecExpGain(struct ProcEkrBattle * proc)
     gDispIo.win_ct.win0_enable_blend = 0;
     gDispIo.win_ct.wout_enable_blend = 0;
 
-    RegisterDataMove(Img_EkrExpBar, (void *)0x6002000, 0x300);
+    RegisterDataMove(Img_EkrExpBar, (void *)(VRAM + 0x2000), 0x300);
     EfxTmCpyBG(Tsa_EkrExpBar, gBg1Tm + TM_OFFSET(6, 17), 18, 3, 1, 0x100);
     CpuFastCopy(Pal_ExpBar, PAL_BG(1), 0x20);
     EnableBgSync(BG1_SYNC_BIT);
@@ -600,7 +600,7 @@ void ekrBattleExecExpGain(struct ProcEkrBattle * proc)
 
     CpuFastCopy(&Img_BarNumfx[val2 * 0x10], &buf0[0xD0], 0x20);
     CpuFastCopy(&Img_BarNumfx[val3 * 0x10], &buf0[0xE0], 0x20);
-    RegisterDataMove(buf0, (void *)0x60020E0, 0x1E0);
+    RegisterDataMove(buf0, (void *)(VRAM + 0x20E0), 0x1E0);
 
     proc->timer = 0;
     proc->proc_idleCb = (ProcFunc)ekrBattle_80508F0;
@@ -656,7 +656,7 @@ void ekrBattleWaitExpBarIdle(struct ProcEkrBattle * proc)
 
     CpuFastSet(&Img_BarNumfx[val2 * 0x10], &buf0[0xD0], 8);
     CpuFastSet(&Img_BarNumfx[val3 * 0x10], &buf0[0xE0], 8);
-    RegisterDataMove(buf0, (void *)0x60020E0, 0x1E0);
+    RegisterDataMove(buf0, (void *)(VRAM + 0x20E0), 0x1E0);
 
     if (++proc->timer > proc->end) {
         proc->timer = 0;

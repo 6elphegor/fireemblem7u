@@ -76,8 +76,8 @@ void SetUiCursorHandConfig(int index, int x, int y, u8 flags)
 		proc->flag[index] = flags | 1;
 
 		if (flags & 2) {
-			Decompress(Img_UiCursorHandTop, (void *)0x060100C0);
-			Decompress(Img_UiCursorHandBottom, (void *)0x060104C0);
+			Decompress(Img_UiCursorHandTop, (void *)(VRAM + 0x100C0));
+			Decompress(Img_UiCursorHandBottom, (void *)(VRAM + 0x104C0));
 		}
 	}
 }

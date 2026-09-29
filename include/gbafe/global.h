@@ -40,6 +40,21 @@
 #define CONST_DATA        SECTION(".data")
 #define EWRAM_OVERLAY(id) SECTION("ewram_overlay_" # id)
 
+// A fixed EWRAM / IWRAM address the code or a ROM table points at without a
+// name (inside another screen's buffer, say).  On the GBA it is the address;
+// on a host it is the same place in the host's image of the RAM objects
+// (tools/hostram.py defines HostRam_0x... wherever the name is used; see
+// docs/port-notes.md, "Host link").  DECLARE_RAM_ADDR at file scope first:
+//     DECLARE_RAM_ADDR(0x0203A98C);
+//     struct SioSt * CONST_DATA gSioSt = RAM_ADDR(0x0203A98C);
+#if PLATFORM_GBA
+#define DECLARE_RAM_ADDR(addr) extern char gRamAddrUnused_[]
+#define RAM_ADDR(addr) ((void *) (addr))
+#else
+#define DECLARE_RAM_ADDR(addr) extern char HostRam_##addr[]
+#define RAM_ADDR(addr) ((void *) HostRam_##addr)
+#endif
+
 #define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
 
 #define RED_VALUE(color) ((color) & 0x1F)

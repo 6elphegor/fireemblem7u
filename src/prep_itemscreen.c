@@ -212,7 +212,7 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
 
     SetDispEnable(0, 0, 0, 0, 0);
 
-    SetupDebugFontForOBJ(0x06017800, 0);
+    SetupDebugFontForOBJ((VRAM + 0x17800), 0);
 
     gDispIo.bg0_ct.priority = 0;
     gDispIo.bg1_ct.priority = 2;
@@ -256,7 +256,7 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
     InitText(&gPrepItemTexts[29], 7);
     InitText(&gPrepItemTexts[30], 5);
 
-    LoadHelpBoxGfx((void *) 0x06014000, -1);
+    LoadHelpBoxGfx((void *) (VRAM + 0x14000), -1);
 
     SetBlendBackdropA(0);
     SetBlendBackdropB(0);
@@ -281,7 +281,7 @@ void PrepItemScreen_SetupGfx(struct PrepItemScreenProc * proc)
 
     ForceSyncUnitSpriteSheet();
 
-    Decompress(Img_PrepTextShadow, (void *) 0x06013E00);
+    Decompress(Img_PrepTextShadow, (void *) (VRAM + 0x13E00));
     UiCursorHand_SetPosition(0, 0, 0, 208, 60);
     DisplaySysHandCursorTextShadow(0x600, 1);
 

@@ -11,7 +11,8 @@ CONST_DATA u16 gPathArrowOAMTable[5][5] = {
     { 0x3AF6, 0x3AFC, 0x3B0A, 0x3AFE, 0x3AF6 },
 };
 
-CONST_DATA struct PathArrowProc * gpPathArrowProc = (struct PathArrowProc *) 0x0203A878;
+DECLARE_RAM_ADDR(0x0203A878);
+CONST_DATA struct PathArrowProc * gpPathArrowProc = RAM_ADDR(0x0203A878);
 
 // Movement path arrow (FE8U: bmpatharrowdisp.c)
 

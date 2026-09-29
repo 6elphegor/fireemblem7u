@@ -26,7 +26,8 @@ CONST_DATA int gSupplyTextIndexLookup[] = {
     4714, 4715, 4716,
 };
 
-CONST_DATA char * gpPrepItemSupplyStringBuffer = (char *) 0x0200E68C;
+DECLARE_RAM_ADDR(0x0200E68C);
+CONST_DATA char * gpPrepItemSupplyStringBuffer = RAM_ADDR(0x0200E68C);
 
 CONST_DATA int gSupplyHelpTextIndexLookup[] = {
     909, 910,
@@ -123,7 +124,7 @@ void StoreConvoyWeaponIconGraphics(int vramOffset, int pal)
 {
     ApplyPalette(Pal_08405EA4, pal);
     Decompress(Img_08405B4C, (void *) (VRAM + vramOffset));
-    Decompress(Img_08405CE4, (void *) (0x6000200 + vramOffset));
+    Decompress(Img_08405CE4, (void *) ((VRAM + 0x200) + vramOffset));
 }
 void sub_08095CA8(struct Text * textBase, u16 * tm, int yLines, struct Unit * unit)
 {
@@ -238,7 +239,7 @@ void PrepItemSupply_Init(struct PrepItemSupplyProc * proc)
 }
 void sub_08095F90(void)
 {
-    InitSpriteTextFont(&PrepItemSuppyTexts.font, (void *) 0x06011000, 0xb);
+    InitSpriteTextFont(&PrepItemSuppyTexts.font, (void *) (VRAM + 0x11000), 0xb);
     ApplyPalette(Pal_Text, 0x1B);
     InitSpriteText(&PrepItemSuppyTexts.th[0xf]);
     SetTextFont(NULL);
@@ -355,7 +356,7 @@ void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc)
     SetBgOffset(1, 0, 0);
     SetBgOffset(2, 0, proc->yOffsetPerPage[proc->currentPage] - 0x28);
 
-    LoadHelpBoxGfx((void *) 0x06016000, -1);
+    LoadHelpBoxGfx((void *) (VRAM + 0x16000), -1);
     ApplyIconPalettes(4);
 
     sub_08091944(0x5000, 5);
@@ -400,7 +401,7 @@ void PrepItemSupply_InitGfx(struct PrepItemSupplyProc * proc)
     StoreConvoyWeaponIconGraphics(0x4000, 6);
     sub_08096260(gBg0Tm + 0x6F, 0x4000, 6);
 
-    Decompress(Img_08405754, (void *) 0x06015000);
+    Decompress(Img_08405754, (void *) (VRAM + 0x15000));
 
     StartMenuScrollBar(proc);
     InitMenuScrollBarImg(0x5800, 6);

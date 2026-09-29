@@ -163,10 +163,10 @@ ProcPtr LoadUiSpinningArrowGfx(s32 kind, s32 chr, s32 palId)
         ApplyPalette(Pal_MapBattleInfoNum, palId + 0x10);
 
         if (kind == 0)
-            Decompress(gImg_UiSpinningArrow_Horizontal, (void *) (chr + 0x06010000));
+            Decompress(gImg_UiSpinningArrow_Horizontal, (void *) (chr + (VRAM + 0x10000)));
 
         if (kind == 1)
-            Decompress(Img_SpinningArrow, (void *) (chr + 0x06010000));
+            Decompress(Img_SpinningArrow, (void *) (chr + (VRAM + 0x10000)));
 
         oam2Chr = chr >> 5;
         oam2Pal = OAM2_PAL(palId);

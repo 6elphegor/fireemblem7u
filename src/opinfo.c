@@ -303,11 +303,11 @@ void ClassIntro_Init(struct OpInfoEnterProc * proc)
 
     proc->iconProc = NULL;
 
-    Decompress(Img_ClassIntroFont, (void *) 0x06010000);
+    Decompress(Img_ClassIntroFont, (void *) (VRAM + 0x10000));
     ApplyPalette(Pal_ClassIntroFont, 0x10);
     ApplyPalette(Pal_ClassIntroIcons, 0x1E);
     ApplyPalette(Pal_ClassIntroIcons, 0x1F);
-    Decompress(Img_ClassIntroIcons, (void *) 0x06016000);
+    Decompress(Img_ClassIntroIcons, (void *) (VRAM + 0x16000));
 
     proc->str = proc->ent->name;
     proc->count = 0;
@@ -1037,7 +1037,7 @@ void ClassStatsDisplay_Init(struct OpInfoGaugeDrawProc * proc)
             proc->width += 4;
     }
 
-    Decompress(Img_ClassDisplayFont, (void *) 0x06010000);
+    Decompress(Img_ClassDisplayFont, (void *) (VRAM + 0x10000));
     ApplyPalettes(Pal_ClassDisplayFont, 0x14, 2);
 }
 

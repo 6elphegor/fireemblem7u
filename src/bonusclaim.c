@@ -250,7 +250,7 @@ void BonusClaim_Init(struct BonusClaimProc * proc)
     InitBgs(NULL);
 
     ApplyPalettes(Pal_SaveMenuBackground, 0xC, 3);
-    Decompress(Img_MuralBackground, (void *) 0x06008000);
+    Decompress(Img_MuralBackground, (void *) (VRAM + 0x8000));
     TmApplyTsa(gBg3Tm, Tsa_SaveMenuBackground, 0xC000);
     EnableBgSync(BG3_SYNC_BIT);
 
@@ -324,7 +324,7 @@ void BonusClaim_Init(struct BonusClaimProc * proc)
 
     SetupBonusClaimTargets(proc);
 
-    LoadHelpBoxGfx((void *) 0x06013800, 5);
+    LoadHelpBoxGfx((void *) (VRAM + 0x13800), 5);
 }
 void BonusClaim_Loop_MainKeyHandler(struct BonusClaimProc * proc)
 {

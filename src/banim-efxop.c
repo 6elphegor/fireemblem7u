@@ -208,7 +208,7 @@ void CRSpell_RegisterBgGfx(struct Anim * anim, void * src)
 {
     struct AnimMagicFxBuffer * magicFx = GetMagicEffectBufferFor(anim);
 
-    void * dst = (void *)(0x06000000 + magicFx->bg_chr * 0x20);
+    void * dst = (void *)(VRAM + magicFx->bg_chr * 0x20);
 
     LZ77UnCompWram(src, magicFx->bg_img_buf);
     RegisterDataMove(magicFx->bg_img_buf, dst, 0x2000);
@@ -226,7 +226,7 @@ void CRSpell_RegisterObjGfx(struct Anim * anim, void * src)
 {
     struct AnimMagicFxBuffer * magicFx = GetMagicEffectBufferFor(anim);
 
-    void * dst = (void *)(0x6010000 + magicFx->obj_chr * 0x20);
+    void * dst = (void *)((VRAM + 0x10000) + magicFx->obj_chr * 0x20);
 
     LZ77UnCompWram(src, magicFx->obj_img_buf);
     RegisterDataMove(magicFx->obj_img_buf, dst, 0x1000);

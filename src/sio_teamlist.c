@@ -415,12 +415,12 @@ void SioTeamList_SetupGfx(struct SioTeamListProc * proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_TacticianSelObj, (void *)0x06014800);
+    Decompress(Img_TacticianSelObj, (void *)(VRAM + 0x14800));
     sub_08047BD4(0, 2);
     TmApplyTsa_thm(gBg2Tm + TM_OFFSET(9, 4), gUnknown_085ADF40, TILEREF(0x0, 1));
     ApplyPalettes(Pal_TacticianSelObj, 0x13, 4);
 
-    Decompress(gUnknown_085AC604, (void *)0x06016000);
+    Decompress(gUnknown_085AC604, (void *)(VRAM + 0x16000));
     ApplyPalettes(Pal_SysBrownBox, 0x11, 2);
 
     gPal[0x20] = 0;

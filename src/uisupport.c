@@ -519,7 +519,7 @@ void SupportScreen_SetupGraphics(struct SupportScreenProc * proc)
     StartBmFace(0, 0x41, 56, -10, 0x901);
     InitTalk(0x28, 0, 1);
 
-    Decompress(Img_SysBlackBox, (void *) 0x06017800);
+    Decompress(Img_SysBlackBox, (void *) (VRAM + 0x17800));
 
     if (proc->fromPrepScreen)
         proc->unk_30 = 0xF6F;
@@ -541,7 +541,7 @@ void SupportScreen_SetupGraphics(struct SupportScreenProc * proc)
 
     proc->helpTextActive = 0;
 
-    LoadHelpBoxGfx((void *) 0x06014800, 10);
+    LoadHelpBoxGfx((void *) (VRAM + 0x14800), 10);
 
     SetDispEnable(1, 1, 1, 1, 1);
 
@@ -557,7 +557,7 @@ void SupportScreen_OnEnd(ProcPtr proc)
 }
 void sub_0809BA48(struct SupportScreenProc * proc)
 {
-    StartCgText(10, 7, 17, 4, proc->unk_30, (void *) 0x06013000, -1, 0);
+    StartCgText(10, 7, 17, 4, proc->unk_30, (void *) (VRAM + 0x13000), -1, 0);
     SetCgTextFlags(0x8FC);
 }
 void SupportScreen_Loop_KeyHandler(struct SupportScreenProc * proc)
@@ -854,7 +854,7 @@ void sub_0809C154(struct SupportTactProc * proc)
     ApplyIconPalettes(4);
     PrepRestartMuralBackground();
 
-    Decompress(Img_TactInfoBg, (void *) 0x06000400);
+    Decompress(Img_TactInfoBg, (void *) (VRAM + 0x400));
     ApplyPalette(Pal_TactInfoBg, 0xF);
 
     CpuFastFill(0, gBuf, 0x440);
@@ -874,7 +874,7 @@ void sub_0809C154(struct SupportTactProc * proc)
     SetBlendConfig(0, 8, 8, 8);
 
     font = &gPrepItemTextFont;
-    InitTextFont(font, (void *) 0x06004000, 0x200, 0);
+    InitTextFont(font, (void *) (VRAM + 0x4000), 0x200, 0);
     SetTextFont(font);
 
     for (i = 0; i < 12; i++)
@@ -892,13 +892,13 @@ void sub_0809C154(struct SupportTactProc * proc)
 
     InitTalk(0, 0, 1);
 
-    Decompress(Img_0840E830, (void *) 0x06017000);
+    Decompress(Img_0840E830, (void *) (VRAM + 0x17000));
     CpuFastFill(0, PAL_OBJ(0xE), 0x20);
     ApplyPalette(Pal_0840E978, 0x1F);
 
     StartParallelWorker(sub_0809BFCC, proc);
 
-    Decompress(Img_08418C54, (void *) 0x06017800);
+    Decompress(Img_08418C54, (void *) (VRAM + 0x17800));
     ApplyPalette(Pal_08418D40, 0x1D);
     StartSpriteAnimProc(SpriteAnim_08418D60, 0x86, 0x6C, 0xDBC0, 0, 0xD);
 
@@ -915,7 +915,7 @@ void sub_0809C3F4(ProcPtr proc)
 }
 void sub_0809C41C(struct SupportTactProc * proc)
 {
-    StartCgText(0x16, 0x13, 0x12, 4, proc->unk_30, (void *) 0x06011000, 10, 0);
+    StartCgText(0x16, 0x13, 0x12, 4, proc->unk_30, (void *) (VRAM + 0x11000), 10, 0);
     SetCgTextFlags(0x4E);
 }
 void sub_0809C44C(ProcPtr proc)
@@ -1067,7 +1067,7 @@ void DrawSupportSubScreenRemainingText(struct SubScreenProc * proc)
     struct Font font;
     struct Text th;
 
-    InitSpriteTextFont(&font, (void *) 0x06015000, 0xe);
+    InitSpriteTextFont(&font, (void *) (VRAM + 0x15000), 0xe);
     ApplyPalette(Pal_Text, 0x1E);
 
     InitSpriteText(&th);
@@ -1309,8 +1309,8 @@ void SupportSubScreen_SetupGraphics(struct SubScreenProc * proc)
         StartBmFace(0, fid, 0x38, 8, 0x104);
     }
 
-    Decompress(Img_0840EDB8, (void *) 0x06017000);
-    Decompress(Img_0840E40C, (void *) 0x06017800);
+    Decompress(Img_0840EDB8, (void *) (VRAM + 0x17000));
+    Decompress(Img_0840E40C, (void *) (VRAM + 0x17800));
     ApplyPalette(Pal_0840E4EC, 0x12);
 
     DrawSupportSubScreenUnitPartnerDetails(proc);

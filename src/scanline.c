@@ -128,7 +128,7 @@ void StartManimFrameGradientScanlineEffect1(void)
         vcount++;
     }
 
-    *(vu16 *)0x04000054 = gManimActiveScanlineBuf[vcount];
+    *(vu16 *)(REG_BASE + 0x54) = gManimActiveScanlineBuf[vcount];
 }
 
 void StartManimFrameGradientScanlineEffect2(u16 y_top, u16 y_bottom, u16 color_a, u16 color_b)

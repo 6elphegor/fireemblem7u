@@ -208,7 +208,7 @@ void StartBrownTextBoxCore(int x, int y, int textId, int chr, int pal, ProcPtr p
 
     ApplyPalette(Pal_BrownTextBox, proc->pal + 0x10);
     ApplyPalette(Pal_Text, proc->pal + 0x11);
-    Decompress(Img_BrownTextBox, (void *) (0x06010000 + proc->chr));
+    Decompress(Img_BrownTextBox, (void *) ((VRAM + 0x10000) + proc->chr));
 
     r6 = GetStringTextLen(str);
 
@@ -223,7 +223,7 @@ void StartBrownTextBoxCore(int x, int y, int textId, int chr, int pal, ProcPtr p
     if (proc->x + proc->width * 8 > 0xF0)
         proc->x = 0xE8 - proc->width * 8;
 
-    InitSpriteTextFont(&font, (void *) (proc->chr + 0x06010400), proc->pal + 0x12);
+    InitSpriteTextFont(&font, (void *) (proc->chr + (VRAM + 0x10400)), proc->pal + 0x12);
     SetTextFont(&font);
     InitSpriteText(&text);
     SpriteText_DrawBackgroundExt(&text, 0);

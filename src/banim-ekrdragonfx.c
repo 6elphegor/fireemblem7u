@@ -471,7 +471,7 @@ ProcPtr NewEkrDragonFireBG2(struct Anim * anim)
     proc->anim = anim;
     proc->timer = 0;
 
-    LZ77UnCompVram(Img_EkrDragonFireBG2, (void *)0x06005000);
+    LZ77UnCompVram(Img_EkrDragonFireBG2, (void *)(VRAM + 0x5000));
     LZ77UnCompWram(Tsa_EkrDragonFireBG2, gEkrTsaBuffer);
     CpuFastCopy(Pal_EkrDragonFireBG2, PAL_BG(4), 0x20);
     TmFill(gBg2Tm, 0x1F);

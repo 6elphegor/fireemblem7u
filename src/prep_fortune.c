@@ -9,7 +9,7 @@ extern int CONST_DATA gUnk_08CC50C0[];
 
 void sub_08098F88(struct PrepProcA1962C * proc)
 {
-    StartCgText(10, 7, 17, 4, proc->unk_2c, (void *) 0x06011000, -1, 0);
+    StartCgText(10, 7, 17, 4, proc->unk_2c, (void *) (VRAM + 0x11000), -1, 0);
     SetCgTextFlags(0x7C);
 }
 void FortuneSubMenu_Init_Null(void)

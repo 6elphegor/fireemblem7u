@@ -9,7 +9,8 @@ CONST_DATA int gShopSellTextIndexLookup[] = {
     4707, 4708,
 };
 
-CONST_DATA char * gpShopSellStringBuffer = (char *) 0x0200E68C;
+DECLARE_RAM_ADDR(0x0200E68C);
+CONST_DATA char * gpShopSellStringBuffer = RAM_ADDR(0x0200E68C);
 
 CONST_DATA struct ProcCmd gProcScr_PrepWMShopSell[] = {
     { 14, 0, NULL },
@@ -74,7 +75,7 @@ void WmSell_Init(struct WmSellProc * proc)
 }
 void sub_08098660(void)
 {
-    InitSpriteTextFont(&PrepItemSuppyTexts.font, (void *) 0x06011000, 11);
+    InitSpriteTextFont(&PrepItemSuppyTexts.font, (void *) (VRAM + 0x11000), 11);
     ApplyPalette(Pal_Text, 0x1B);
 
     InitSpriteText(&PrepItemSuppyTexts.th[15]);
@@ -179,7 +180,7 @@ void WmSell_Setup(struct WmSellProc * proc)
     SetBgOffset(1, 0, 0);
     SetBgOffset(2, 0, 0);
 
-    LoadHelpBoxGfx((void *) 0x06012800, -1);
+    LoadHelpBoxGfx((void *) (VRAM + 0x12800), -1);
     ApplyIconPalettes(4);
 
     PrepRestartMuralBackground();

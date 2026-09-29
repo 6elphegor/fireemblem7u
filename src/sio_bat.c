@@ -324,9 +324,9 @@ void sub_08040714(struct SioBatProc * proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_TacticianSelObj, (void *)0x06014800);
-    Decompress(Img_LinkArenaPlayerBanners, (void *)0x06016000);
-    Decompress(gUnknown_085AC604, (void *)0x06016800);
+    Decompress(Img_TacticianSelObj, (void *)(VRAM + 0x14800));
+    Decompress(Img_LinkArenaPlayerBanners, (void *)(VRAM + 0x16000));
+    Decompress(gUnknown_085AC604, (void *)(VRAM + 0x16800));
 
     for (i = 0; i < 4; i++)
     {
@@ -883,10 +883,10 @@ void sub_0804116C(ProcPtr proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + 0x06000C00));
+    Decompress(Img_LinkArenaRankIcons, (void *)(GetBgChrOffset(BG_1) + (VRAM + 0xC00)));
     ApplyPalette(Pal_LinkArenaRankIcons, 6);
 
-    Decompress(Img_TacticianSelObj, (void *)0x06014800);
+    Decompress(Img_TacticianSelObj, (void *)(VRAM + 0x14800));
     ApplyPalettes(Pal_TacticianSelObj, 0x13, 4);
 
     sub_08047C38(0);

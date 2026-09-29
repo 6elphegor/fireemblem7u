@@ -64,13 +64,13 @@ void sub_080AC904(struct ExtraMenuUnkProc * proc)
 void sub_080AC940(struct ExtraMenuUnkProc * proc)
 {
     ApplyPalettes(Pal_SaveMenuBackground, 0, 3);
-    Decompress(Img_MuralBackground, (void *) 0x06001000);
+    Decompress(Img_MuralBackground, (void *) (VRAM + 0x1000));
     TmApplyTsa(gBg0Tm, Tsa_SaveMenuBackground, 0x80);
     EnableBgSync(BG0_SYNC_BIT);
 
     ApplyPalettes(Pal_SaveMenuWindow, 0x11, 8);
-    Decompress(gGfx_SupportMenu, (void *) 0x06010800);
-    Decompress(Img_GameMainMenuObjs, (void *) 0x06013800);
+    Decompress(gGfx_SupportMenu, (void *) (VRAM + 0x10800));
+    Decompress(Img_GameMainMenuObjs, (void *) (VRAM + 0x13800));
 
     SetOnHBlankA(sub_080AC8A0);
 

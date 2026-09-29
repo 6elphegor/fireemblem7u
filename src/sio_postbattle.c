@@ -249,21 +249,21 @@ void SioPostBattle_Init(struct SioPostBattleProc * proc)
     ClearSioBG();
     InitSioBG();
 
-    Decompress(Img_TacticianSelObj, (void *)(0x06014800));
-    Decompress(Img_LinkArenaPlayerBanners, (void *)(0x06016000));
-    Decompress(Img_LinkArenaPlacementRanks, (void *)(0x06016800));
+    Decompress(Img_TacticianSelObj, (void *)((VRAM + 0x14800)));
+    Decompress(Img_LinkArenaPlayerBanners, (void *)((VRAM + 0x16000)));
+    Decompress(Img_LinkArenaPlacementRanks, (void *)((VRAM + 0x16800)));
 
     ApplyPalettes(Pal_TacticianSelObj, 0x13, 4);
     ApplyPalette(Pal_LinkArenaPlacementRanks, 0x17);
 
-    Decompress(Img_LinkArenaActiveBannerFx, (void *)(0x06000C00));
+    Decompress(Img_LinkArenaActiveBannerFx, (void *)((VRAM + 0xC00)));
     ApplyPalette(Pal_LinkArenaActiveBannerFx, 2);
 
     Decompress(Img_LinkArenaPostBattleBg, (void *)(VRAM + GetBgChrOffset(3)));
     ApplyPalettes(Pal_LinkArenaPostBattleBg, 10, 4);
     TmApplyTsa_thm(gBg3Tm, Tsa_LinkArenaPostBattleBg, 0);
 
-    InitSpriteTextFont(&Font_Sio_02000C60, (void *)(0x06012000), 0xe);
+    InitSpriteTextFont(&Font_Sio_02000C60, (void *)((VRAM + 0x12000)), 0xe);
     ApplyPalette(Pal_Text, 0x1E);
     SetTextFontGlyphs(TEXT_GLYPHS_SYSTEM);
     ResetTextFont();

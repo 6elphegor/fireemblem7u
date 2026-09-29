@@ -151,7 +151,7 @@ void BonusClaimMenu_Init_A(struct SaveBonusHelpProc * proc)
         return;
     }
 
-    LoadHelpBoxGfx((void *) 0x06013800, 9);
+    LoadHelpBoxGfx((void *) (VRAM + 0x13800), 9);
 }
 void BonusClaimMenu_Init_B(struct SaveBonusHelpProc * proc)
 {

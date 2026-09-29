@@ -115,7 +115,7 @@ void SioMenu_LoadGraphics(struct SioMenuProc * proc)
 
     InitSioBG();
 
-    Decompress(Img_LinkArenaMenu, (void *)0x06014800);
+    Decompress(Img_LinkArenaMenu, (void *)(VRAM + 0x14800));
     ApplyPalettes(Pal_LinkArenaMenu, 0x13, 3);
 
     sub_08047BD4(0, 4);
@@ -245,7 +245,7 @@ void SioMenu_RestartGraphicsMaybe(struct SioMenuProc * proc)
 
     InitSioBG();
 
-    Decompress(Img_LinkArenaMenu, (void *)0x06014800);
+    Decompress(Img_LinkArenaMenu, (void *)(VRAM + 0x14800));
     ApplyPalettes(Pal_LinkArenaMenu, 0x13, 3);
 
     sub_08047BD4(0, 4);
@@ -485,7 +485,7 @@ extern const struct ProcCmd ProcScr_SIOMENU[];
 void StartLinkArenaMainMenu(ProcPtr parent)
 {
     UnpackUiWindowFrameGraphics();
-    InitTextFont(&Font_0203DB64, (void *)0x06001800, 0xc0, 0);
+    InitTextFont(&Font_0203DB64, (void *)(VRAM + 0x1800), 0xc0, 0);
 
     if (!IsSaveValid(5))
     {

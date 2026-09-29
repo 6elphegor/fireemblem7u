@@ -451,10 +451,10 @@ void sub_080BB81C(struct OpAnimProc * proc)
 
     sub_080BC5B8(proc);
 
-    Decompress(gUnk_085EE004, (void *) 0x06017000);
-    Decompress(gUnk_085EE004, (void *) 0x06017400);
-    Decompress(gUnk_085EE004, (void *) 0x06017800);
-    Decompress(gUnk_085EE004, (void *) 0x06017C00);
+    Decompress(gUnk_085EE004, (void *) (VRAM + 0x17000));
+    Decompress(gUnk_085EE004, (void *) (VRAM + 0x17400));
+    Decompress(gUnk_085EE004, (void *) (VRAM + 0x17800));
+    Decompress(gUnk_085EE004, (void *) (VRAM + 0x17C00));
 
     Decompress(gUnk_08616FC4, gUnk_08CEF078);
     Decompress(gUnk_086758E0, gUnk_08CEF07C);
@@ -472,7 +472,7 @@ void sub_080BB98C(struct OpAnimProc * proc)
     gDispIo.bg3_ct.priority = 0;
 
     ApplyPaletteExt(gUnk_085ECDF4, 0x140, 0x20);
-    Decompress(gUnk_085ECE14, (void *) 0x0600C000);
+    Decompress(gUnk_085ECE14, (void *) (VRAM + 0xC000));
     PutCompressedTsa(gBg3Tm, gUnk_085ED0DC, 0xA200);
     EnableBgSync(BG3_SYNC_BIT);
 
@@ -480,7 +480,7 @@ void sub_080BB98C(struct OpAnimProc * proc)
     proc->unk_40 = sub_080BD764(&gUnk_08CEFA38, 2, -1, 0, proc);
 
     ApplyPaletteExt(gUnk_08673D38, 0x260, 0x20);
-    Decompress(gUnk_08673D58, (void *) 0x06013000);
+    Decompress(gUnk_08673D58, (void *) (VRAM + 0x13000));
 }
 void OpeningSeqence_Loop_B(struct OpAnimProc * proc)
 {
@@ -505,7 +505,7 @@ void OpeningSeqence_Loop_B(struct OpAnimProc * proc)
 void OpAnim_DrawWater(struct OpAnimProc * proc)
 {
     ApplyPaletteExt(Pal_OpAnimWater, 0x1C0, 0x20);
-    Decompress(Img_OpAnimWater, (void *) 0x06008000);
+    Decompress(Img_OpAnimWater, (void *) (VRAM + 0x8000));
     PutCompressedTsa(gBg0Tm, Tsa_OpAnimWater, 0xE000);
 
     gDispIo.bg0_ct.size = 0;
@@ -577,7 +577,7 @@ void sub_080BBC80(void)
     SetBgOffset(0, 0, 0);
     TmFill(gBg0Tm, 0);
     ApplyPaletteExt(gUnk_0867451C, 0x1A0, 0x20);
-    CpuFastCopy(gUnk_08CEF080, (void *) 0x06008000, 0x2000);
+    CpuFastCopy(gUnk_08CEF080, (void *) (VRAM + 0x8000), 0x2000);
     PutCompressedTsa(gBg0Tm, gUnk_086756A0, 0xD000);
     EnableBgSync(BG0_SYNC_BIT);
 
@@ -590,7 +590,7 @@ void sub_080BBD28(void)
     SetBgOffset(0, 0, 0);
     TmFill(gBg0Tm, 0);
     ApplyPaletteExt(gUnk_086758C0, 0x1A0, 0x20);
-    CpuFastCopy(gUnk_08CEF07C, (void *) 0x06008000, 0x2000);
+    CpuFastCopy(gUnk_08CEF07C, (void *) (VRAM + 0x8000), 0x2000);
     PutCompressedTsa(gBg0Tm, gUnk_08676BB8, 0xD000);
     EnableBgSync(BG0_SYNC_BIT);
 
@@ -604,7 +604,7 @@ void sub_080BBDD0(void)
     sub_080BB2AC();
     TmFill(gBg0Tm, 0);
     ApplyPaletteExt(gUnk_08616D74, 0x1A0, 0x20);
-    CpuFastCopy(gUnk_08CEF078, (void *) 0x06008000, 0x1000);
+    CpuFastCopy(gUnk_08CEF078, (void *) (VRAM + 0x8000), 0x1000);
     PutCompressedTsa(gBg0Tm + 0x40, gUnk_08616D94, 0xD000);
 
     gUnkOpAnim_03001620 |= 0x20;
@@ -758,7 +758,7 @@ void sub_080BC164(struct OpAnimProc * proc)
 
     gUnkOpAnim_03001620 &= ~0x1E1;
 
-    CpuFastFill(0, (void *) 0x06017000, 0x1000);
+    CpuFastFill(0, (void *) (VRAM + 0x17000), 0x1000);
 
     SetDispEnable(0, 0, 0, 0, 1);
 
@@ -768,7 +768,7 @@ void sub_080BC164(struct OpAnimProc * proc)
 
     proc->unk_2C = 0;
 
-    CpuFastFill(0, (void *) 0x06014000, 0x1000);
+    CpuFastFill(0, (void *) (VRAM + 0x14000), 0x1000);
 
     proc->unk_3C = 1;
 }
@@ -842,11 +842,11 @@ void OpAnim_DrawCloud(struct OpAnimProc * proc)
     gUnkOpAnim_03001620 |= 0x10;
 
     ApplyPaletteExt(Pal_OpAnimCloud, 0x1C0, 0x20);
-    Decompress(Img_OpAnimCloud, (void *) 0x06000000);
+    Decompress(Img_OpAnimCloud, (void *) VRAM);
     PutCompressedTsa(gBg1Tm, Tsa_OpAnimCloud, 0xE000);
 
     ApplyPaletteExt(gUnk_085ED1C4, 0x300, 0x20);
-    Decompress(gUnk_085ED1E4, (void *) 0x06010000);
+    Decompress(gUnk_085ED1E4, (void *) (VRAM + 0x10000));
 
     SetBlendAlpha(0x10, 0x10);
     SetBlendTargetA(1, 0, 0, 0, 0);
@@ -929,7 +929,7 @@ int sub_080BC5E0(struct OpAnimImgEntry const * list)
 void sub_080BC5F4(struct OpAnimSubProc * proc)
 {
     ApplyPaletteExt(gUnk_085EE02C, 0x1E0, 0x20);
-    CpuFastFill(0, (void *) 0x0600C000, 0x4000);
+    CpuFastFill(0, (void *) (VRAM + 0xC000), 0x4000);
 
     gDispIo.bg0_ct.priority = 0;
     gDispIo.bg1_ct.priority = 3;
@@ -952,11 +952,11 @@ bool sub_080BC6A8(struct OpAnimSubProc * proc)
     switch (proc->unk_2C % 3)
     {
     case 0:
-        Decompress(proc->unk_3C->img0, (void *) 0x0600C000 + (proc->unk_30 << 13));
+        Decompress(proc->unk_3C->img0, (void *) (VRAM + 0xC000) + (proc->unk_30 << 13));
         break;
 
     case 1:
-        Decompress(proc->unk_3C->img1, (void *) 0x0600D000 + (proc->unk_30 << 13));
+        Decompress(proc->unk_3C->img1, (void *) (VRAM + 0xD000) + (proc->unk_30 << 13));
         break;
 
     case 2:
@@ -1145,7 +1145,7 @@ void sub_080BCAE8(ProcPtr proc)
 }
 void sub_080BCAFC(void)
 {
-    CpuFastFill(0, (void *) 0x06014000, 0x800);
+    CpuFastFill(0, (void *) (VRAM + 0x14000), 0x800);
 }
 void sub_080BCB1C(u8 const * src, int offset)
 {
@@ -1229,7 +1229,7 @@ void sub_080BCB34(int w, int h, int count, int offset, int start)
                 src = (u32 *) (gUnk_08CEF074 + offset + x * 0x20 + y * 0x400);
                 tmp = x * 0x20;
                 tmp = offset + tmp;
-                dst = (u32 *) (*&tmp + y * 0x400 + 0x06014000);
+                dst = (u32 *) (*&tmp + y * 0x400 + (VRAM + 0x14000));
 
                 src += gUnk_08CEF314[start & 0x3F] >> 3;
                 dst += gUnk_08CEF314[start & 0x3F] >> 3;
@@ -1266,7 +1266,7 @@ void sub_080BCBFC(int w, int h, int count, int offset, int start)
                 src = (u32 *) (gUnk_08CEF074 + offset + x * 0x20 + y * 0x400);
                 tmp = x * 0x20;
                 tmp = offset + tmp;
-                dst = (u32 *) (*&tmp + y * 0x400 + 0x06014000);
+                dst = (u32 *) (*&tmp + y * 0x400 + (VRAM + 0x14000));
 
                 src += gUnk_08CEF314[start & 0x3F] >> 3;
                 dst += gUnk_08CEF314[start & 0x3F] >> 3;
@@ -1619,7 +1619,7 @@ void sub_080BD4C4(struct OpAnimSubProc * proc)
     proc->unk_38 = 0;
 
     ApplyPaletteExt(gUnk_085E9AD4, 0x280, 0x20);
-    Decompress(gUnk_085E9AF4, (void *) 0x06010000);
+    Decompress(gUnk_085E9AF4, (void *) (VRAM + 0x10000));
 }
 void sub_080BD4F4(struct OpAnimSubProc * proc)
 {
@@ -1675,7 +1675,7 @@ void sub_080BD588(int bg, struct OpAnimBgConf const * conf, int row)
         return;
 
     if (img != NULL)
-        Decompress(img, (void *) GetBgChrOffset(bg) + ((row % conf->header->rows) * 0x400 + 0x6000000) + conf->header->chr_offset);
+        Decompress(img, (void *) GetBgChrOffset(bg) + ((row % conf->header->rows) * 0x400 + VRAM) + conf->header->chr_offset);
 
     if (tsa != NULL)
     {

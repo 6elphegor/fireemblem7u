@@ -143,7 +143,7 @@ void LAPointsBox_LoadBoxes(struct LAPointsBoxProc * proc)
     int i;
     int oam2;
 
-    Decompress(gUnknown_085AD80C, (void *)(0x06002800));
+    Decompress(gUnknown_085AD80C, (void *)((VRAM + 0x2800)));
     ApplyPalettes(Pal_TacticianSelObj, 2, 4);
 
     SetTextFont(NULL);
@@ -470,7 +470,7 @@ s8 sub_08044940(int x, int y, const char * str, u8 flag, ProcPtr parent)
 
     ApplyPalette(Pal_Text, 0x19);
 
-    InitSpriteTextFont(&Font_Sio_02000C60, (void *)(0x06016800), 3);
+    InitSpriteTextFont(&Font_Sio_02000C60, (void *)((VRAM + 0x16800)), 3);
 
     SetTextFontGlyphs(TEXT_GLYPHS_SYSTEM);
     ResetTextFont();

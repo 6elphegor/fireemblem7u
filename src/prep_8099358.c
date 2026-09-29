@@ -285,7 +285,7 @@ void sub_08099684(struct PrepRankProc * proc)
 
     proc->timer = 0;
 
-    Decompress(Img_0840E830, (void *) 0x06017000);
+    Decompress(Img_0840E830, (void *) (VRAM + 0x17000));
     ApplyPalette(Pal_0840E978, 0x1F);
 
     StartParallelWorker(sub_08099474, proc);
@@ -368,7 +368,7 @@ void sub_080998D8(ProcPtr proc)
 void sub_08099928(struct PrepRankProc * proc)
 {
     InitTalk(0x28, 0, 1);
-    StartCgText(0x16, 0x13, 0x12, 4, proc->msg, (void *) 0x06011000, 10, 0);
+    StartCgText(0x16, 0x13, 0x12, 4, proc->msg, (void *) (VRAM + 0x11000), 10, 0);
     SetCgTextFlags(0x4E);
 }
 void sub_08099968(struct PrepRankProc * proc)
@@ -444,7 +444,7 @@ void sub_08099AC0(struct PrepRankProc * proc)
 
     proc->timer = 0;
 
-    Decompress(Img_0840E830, (void *) 0x06017000);
+    Decompress(Img_0840E830, (void *) (VRAM + 0x17000));
     ApplyPaletteExt(Pal_0840E978, 0x3E0, 0x20);
 
     gPlaySt.cfgTextSpeed = 1;
@@ -644,7 +644,7 @@ void sub_0809A024(struct PrepRankProc * proc)
         msg = sub_0809A83C(proc->unk_3f, proc->ranks[5]);
 
         InitTalk(0x28, 0, 1);
-        StartCgText(0x16, 0x13, 0x12, 4, msg, (void *) 0x06011000, 10, 0);
+        StartCgText(0x16, 0x13, 0x12, 4, msg, (void *) (VRAM + 0x11000), 10, 0);
         SetCgTextFlags(0x809FE);
     }
 }
@@ -704,7 +704,7 @@ void sub_0809A378(struct PrepRankProc * proc)
     StartTalkFace(gCharacterData[pid - 1].portraitId, 0xD8, 0x58, 0x102, 0);
 
     InitTalk(0x28, 0, 1);
-    StartCgText(0x16, 0x13, 0x12, 4, msg, (void *) 0x06011000, 10, 0);
+    StartCgText(0x16, 0x13, 0x12, 4, msg, (void *) (VRAM + 0x11000), 10, 0);
     SetCgTextFlags(0x2000A);
 }
 void sub_0809A404(struct PrepRankProc * proc)
@@ -902,7 +902,7 @@ void sub_0809A924(int vram_offset, int pal)
     struct Text text;
     char const * str = DecodeMsg(GetChapterInfo(gPlaySt.chapterIndex)->goalWindowTextId);
 
-    InitSpriteTextFont(&font, (u8 *) 0x06010000 + vram_offset, 1);
+    InitSpriteTextFont(&font, (u8 *) (VRAM + 0x10000) + vram_offset, 1);
     ApplyPaletteExt(Pal_Text, (pal + 0x10) * 0x20, 0x20);
     InitSpriteText(&text);
 
@@ -983,13 +983,13 @@ void sub_0809A9A8(struct PrepDivinationProc * proc)
 void sub_0809AB38(struct PrepDivinationProc * proc)
 {
     proc->unk_2c = GetChapterDivinationTextIdBeginning();
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, NULL);
     SetCgTextFlags(GetCgTextFlags() | 0x4004E);
 }
 void sub_0809AB7C(struct PrepDivinationProc * proc)
 {
     proc->unk_2c = GetChapterDivinationTextIdHectorStory();
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, proc);
     SetCgTextFlags(GetCgTextFlags() | 0x4000A);
 }
 void sub_0809ABC0(struct PrepDivinationProc * proc)
@@ -999,7 +999,7 @@ void sub_0809ABC0(struct PrepDivinationProc * proc)
     else
         proc->unk_2c = 0xFBE;
 
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, proc);
     SetCgTextFlags(GetCgTextFlags() | 0x4000A);
 }
 void sub_0809AC20(struct PrepDivinationProc * proc)
@@ -1009,7 +1009,7 @@ void sub_0809AC20(struct PrepDivinationProc * proc)
     else
         proc->unk_2c = 0xFC0;
 
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, proc);
     SetCgTextFlags(GetCgTextFlags() | 0x6000A);
 }
 void sub_0809AC7C(void)
@@ -1023,7 +1023,7 @@ void sub_0809AC9C(struct PrepDivinationProc * proc)
     else
         proc->unk_2c = 0xFC2;
 
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, proc);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, proc);
     SetCgTextFlags(GetCgTextFlags() | 0x4000A);
 }
 void sub_0809ACFC(ProcPtr proc)
@@ -1037,7 +1037,7 @@ void sub_0809ACFC(ProcPtr proc)
 void sub_0809AD20(struct PrepDivinationProc * proc)
 {
     proc->unk_2c = GetChapterDivinationTextIdEnding();
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, NULL);
     SetCgTextFlags(GetCgTextFlags() | 0x4004E);
 }
 void sub_0809AD64(ProcPtr proc)
@@ -1080,13 +1080,13 @@ void sub_0809ADE4(struct PrepDivinationProc * proc)
     else
         proc->unk_2c = 0xF83;
 
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, NULL);
     SetCgTextFlags(GetCgTextFlags() | 0x4004E);
 }
 void sub_0809AE40(struct PrepDivinationProc * proc)
 {
     proc->unk_2c = 0xF84;
-    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) 0x06011000, -1, NULL);
+    StartCgText(0x16, 0x10, -1, -1, proc->unk_2c, (void *) (VRAM + 0x11000), -1, NULL);
     SetCgTextFlags(GetCgTextFlags() | 0x4004E);
 }
 void sub_0809AE84(void)

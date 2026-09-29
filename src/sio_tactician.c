@@ -260,7 +260,7 @@ void Tactician_InitScreen(struct ProcTactician * proc)
 
     ClearSioBG();
     InitSioBG();
-    Decompress(Img_TacticianSelObj, (void *)0x06014800);
+    Decompress(Img_TacticianSelObj, (void *)(VRAM + 0x14800));
     ApplyPalette(Pal_TacticianSelObj, 0x13);
     ApplyPalette(Pal_085ADE68, 0x14);
     sub_08047BD4(0, 0);

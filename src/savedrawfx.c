@@ -193,7 +193,7 @@ ProcPtr StartSaveDrawCursor(ProcPtr parent)
 }
 void SaveMenuInitSubBoxText(void)
 {
-    InitTextFont(&gSaveMenuSubBoxFont, (void *) 0x0600C020, 1, 4);
+    InitTextFont(&gSaveMenuSubBoxFont, (void *) (VRAM + 0xC020), 1, 4);
     InitText(&gSaveMenuSubBoxText, 10);
 }
 void SaveMenuDrawSubSelBoxExt(int msgId, s8 draw_en)
@@ -232,8 +232,8 @@ void SaveMenuDrawSubSelBox(struct SaveMenuProc * proc, s8 flag)
 }
 void sub_080A5FD0(void)
 {
-    CpuFastFill(0, (void *) 0x06008000, 0x800);
-    CpuFastFill(0, (void *) 0x0600C000, 0x800);
+    CpuFastFill(0, (void *) (VRAM + 0x8000), 0x800);
+    CpuFastFill(0, (void *) (VRAM + 0xC000), 0x800);
 }
 void AddMainMenuOption(struct SaveMenuProc * proc, int option)
 {
@@ -420,7 +420,7 @@ void StartSqMask(ProcPtr parent, u8 b, u8 c)
 }
 void SaveBgUp_Loop(void)
 {
-    RegisterDataMove(gBg2Tm, (void *) 0x06007000, 0x800);
+    RegisterDataMove(gBg2Tm, (void *) (VRAM + 0x7000), 0x800);
 }
 ProcPtr StartSaveBgUp(ProcPtr parent)
 {

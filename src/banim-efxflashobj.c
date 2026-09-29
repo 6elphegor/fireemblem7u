@@ -320,7 +320,7 @@ void efxSpellCastBg_Loop_B(struct ProcEfxSpellCast * proc)
         proc->frame_lut = gFrameLut_EfxSpellCastBg;
         proc->tsa_list = TsaList_EfxSpellCastBg;
 
-        LZ77UnCompVram(Img_EfxSpellCastBg, (void *)0x06008000);
+        LZ77UnCompVram(Img_EfxSpellCastBg, (void *)(VRAM + 0x8000));
         CpuFastCopy(Pal_EfxSpellCastBg, PAL_BG(0x6), 0x20);
         Proc_Break(proc);
     }

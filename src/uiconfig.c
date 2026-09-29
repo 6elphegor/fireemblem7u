@@ -272,9 +272,9 @@ void Config_Init(struct ConfigProc * proc)
     ApplyPalette(gUnk_0841E338, 4);
     ApplyPalette(gUnk_0841E338, 18);
 
-    Decompress(gUnk_0841DA40, (void *) 0x06011800);
-    Decompress(gUnk_0841DCA4, (void *) 0x06004000);
-    Decompress(gUnk_0841DC90, (void *) 0x06005000 + GetBgChrOffset(2));
+    Decompress(gUnk_0841DA40, (void *) (VRAM + 0x11800));
+    Decompress(gUnk_0841DCA4, (void *) (VRAM + 0x4000));
+    Decompress(gUnk_0841DC90, (void *) (VRAM + 0x5000) + GetBgChrOffset(2));
 
     TmApplyTsa(gBg1Tm, gUnk_0841E180, 0x1000);
     TmApplyTsa(gBg1Tm + 0x202, gUnk_0841E204, 0x1000);

@@ -709,7 +709,7 @@ void StartWmSpriteAnim(u32 slot, int id)
     if (proc->slots[slot].anim != NULL)
         return;
 
-    Decompress(gWmSpriteAnimTable[id].img, (void *) (0x06010000 | proc->chr));
+    Decompress(gWmSpriteAnimTable[id].img, (void *) ((VRAM + 0x10000) | proc->chr));
 
     x = gWmSpriteAnimTable[id].x - gWmSt.x;
     y = gWmSpriteAnimTable[id].y - gWmSt.y + 0x400;

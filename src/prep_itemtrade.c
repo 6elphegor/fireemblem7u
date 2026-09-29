@@ -208,7 +208,7 @@ void PrepItemTrade_Init(struct PrepMenuTradeProc * proc)
     SetBgOffset(1, 0, 0);
     SetBgOffset(2, 0, 0);
 
-    LoadHelpBoxGfx((void *) 0x06014000, -1);
+    LoadHelpBoxGfx((void *) (VRAM + 0x14000), -1);
     ApplyIconPalettes(4);
 
     PrepRestartMuralBackground();

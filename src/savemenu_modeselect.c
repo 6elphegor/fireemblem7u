@@ -64,30 +64,43 @@ extern struct Unk_020000A4 gUnk_020000A4;
 
 extern u16 gUnk_0201E9F4[];
 
+DECLARE_RAM_ADDR(0x020000F4);
+DECLARE_RAM_ADDR(0x020020F4);
+DECLARE_RAM_ADDR(0x020040F4);
+DECLARE_RAM_ADDR(0x020060F4);
+DECLARE_RAM_ADDR(0x0200B8F4);
+DECLARE_RAM_ADDR(0x020110F4);
+DECLARE_RAM_ADDR(0x020168F4);
+DECLARE_RAM_ADDR(0x02016994);
+DECLARE_RAM_ADDR(0x02016A34);
+DECLARE_RAM_ADDR(0x02016AD4);
+DECLARE_RAM_ADDR(0x020194D4);
+DECLARE_RAM_ADDR(0x0201BED4);
+
 // clang-format off
 
 u8 * CONST_DATA gUnk_08CE480C[] = {
-    (u8 *)0x020000F4,
-    (u8 *)0x020020F4,
-    (u8 *)0x020040F4,
+    RAM_ADDR(0x020000F4),
+    RAM_ADDR(0x020020F4),
+    RAM_ADDR(0x020040F4),
 };
 
 u8 * CONST_DATA gUnk_08CE4818[] = {
-    (u8 *)0x020060F4,
-    (u8 *)0x0200B8F4,
-    (u8 *)0x020110F4,
+    RAM_ADDR(0x020060F4),
+    RAM_ADDR(0x0200B8F4),
+    RAM_ADDR(0x020110F4),
 };
 
 u8 * CONST_DATA gUnk_08CE4824[] = {
-    (u8 *)0x020168F4,
-    (u8 *)0x02016994,
-    (u8 *)0x02016A34,
+    RAM_ADDR(0x020168F4),
+    RAM_ADDR(0x02016994),
+    RAM_ADDR(0x02016A34),
 };
 
 u8 * CONST_DATA gUnk_08CE4830[] = {
-    (u8 *)0x02016AD4,
-    (u8 *)0x020194D4,
-    (u8 *)0x0201BED4,
+    RAM_ADDR(0x02016AD4),
+    RAM_ADDR(0x020194D4),
+    RAM_ADDR(0x0201BED4),
 };
 
 u16 CONST_DATA Sprite_ModeSelect_Mode[] = {
@@ -337,10 +350,10 @@ void LoadModeSelectChapterGfx(s32 index)
         },
     };
 
-    Decompress(gUnk_084393E4[index][0], (void *)0x60102C0);
-    Decompress(gUnk_084393E4[index][1], (void *)0x60106C0);
-    Decompress(gUnk_084393E4[index][2], (void *)0x6010AC0);
-    Decompress(gUnk_084393E4[index][3], (void *)0x6010EC0);
+    Decompress(gUnk_084393E4[index][0], (void *)(VRAM + 0x102C0));
+    Decompress(gUnk_084393E4[index][1], (void *)(VRAM + 0x106C0));
+    Decompress(gUnk_084393E4[index][2], (void *)(VRAM + 0x10AC0));
+    Decompress(gUnk_084393E4[index][3], (void *)(VRAM + 0x10EC0));
 
     return;
 }
@@ -682,12 +695,12 @@ void ModeSelect_Init(struct ModeSelectProc * proc)
 
     ApplyPalette(Pal_ModeSelect_Menu, 0xF);
 
-    Decompress(Img_ModeSelect_Menu, (void *)(0x6000000 + GetBgChrOffset(1)));
+    Decompress(Img_ModeSelect_Menu, (void *)(VRAM + GetBgChrOffset(1)));
     TmApplyTsa_thm(gBg0Tm, Tsa_ModeSelect_Menu, 0);
     PutCompressedTsa(gBg1Tm, Tsa_08415AC0, 0xf000); // this loads the "claw menu" and bg of the chapters
     ApplyPalette(Pal_084150C0, 0x1B);
 
-    Decompress(Img_ModeSelect_Sprites, (void *)0x6010000);
+    Decompress(Img_ModeSelect_Sprites, (void *)(VRAM + 0x10000));
     ApplyPalette(Pal_ModeSelect_Sprites, 0x1A);
 
     NewEfxAnimeDrvProc();
@@ -765,7 +778,7 @@ void ModeSelect_Init(struct ModeSelectProc * proc)
     SetUiSpinningArrowPositions(30, 61, 68, 61);
     SetUiSpinningArrowConfig(3);
 
-    InitTextFont(&gUnk_020000A4.font, (void *)0x600E000, 0x100, 0xe);
+    InitTextFont(&gUnk_020000A4.font, (void *)(VRAM + 0xE000), 0x100, 0xe);
 
     InitText(&gUnk_020000A4.text[0], 5);
     InitText(&gUnk_020000A4.text[1], 9);

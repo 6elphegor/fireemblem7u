@@ -332,9 +332,9 @@ void InitBattleForecastFramePalettes(void)
 
 void BattleForecast_Init(struct BattleForecastProc * proc)
 {
-    Decompress(gGfx_BattleForecastFrame, (void *) 0x06004000);
+    Decompress(gGfx_BattleForecastFrame, (void *) (VRAM + 0x4000));
     Decompress(gBattleForecast_x2x4Gfx, gBuf);
-    Copy2dChr(gBuf, (void *) 0x06015D00, 4, 2);
+    Copy2dChr(gBuf, (void *) (VRAM + 0x15D00), 4, 2);
     ApplyPalette(gBattleForecast_x2x4Pal, 0x12);
 
     ResetTextFont();

@@ -8,12 +8,18 @@ void sub_080009FC(void);
 void Sound_SetDefaultMaxNumChannels(void);
 void StartGame(void);
 void DebugPutStr(u16 * tm, const char * str);
+#if !PLATFORM_GBA
+void HostClearRamIwram(void);
+#endif
 
 // main.c is compiled with -mtpcs-frame (see Makefile): the original has
 // TPCS backtrace frames. old_agbcc needs tools/agbcc-tpcs-frame.patch for it.
 void AgbMain(void)
 {
     DmaFill32(3, 0, (void *) IWRAM_START, 0x7F80);
+#if !PLATFORM_GBA
+    HostClearRamIwram(); // the host's image of the IWRAM objects (src/host/hostglue.c)
+#endif
 
     sub_080009FC();
 

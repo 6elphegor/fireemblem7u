@@ -13,11 +13,11 @@ void sub_0807BBF8(const char * str)
     InitBgs(NULL);
 
     ResetText();
-    InitTextFont(&font, (void *)0x06009000, 0x80, 0);
+    InitTextFont(&font, (void *)(VRAM + 0x9000), 0x80, 0);
     SetTextFont(&font);
 
-    CpuFastFill(0, (void *)0x06000000, CHR_SIZE);
-    CpuFastFill(0, (void *)0x06008000, CHR_SIZE);
+    CpuFastFill(0, (void *)VRAM, CHR_SIZE);
+    CpuFastFill(0, (void *)(VRAM + 0x8000), CHR_SIZE);
 
     InitText(&text, 20);
     PutText(&text, gBg3Tm + TM_OFFSET(5, 9));
@@ -47,7 +47,7 @@ void StartCandleFlameFx(ProcPtr proc)
 {
     TmFill(gBg1Tm, TILEREF(0x0, 0));
 
-    Decompress(Img_CandleFlame, (void *)0x06000800);
+    Decompress(Img_CandleFlame, (void *)(VRAM + 0x800));
     TmApplyTsa_thm(gBg1Tm, Tsa_CandleFlame, TILEREF(0x40, 7));
     ApplyPalette(Pal_CandleFlame, 7);
     EnableBgSync(BG1_SYNC_BIT);
@@ -79,7 +79,7 @@ void ZephielEpilogue_Init(struct ProcZephielEpilogue * proc)
     // Copy the CG of Zephiel in his keep from BG3 to BG2
     // in preparation for revealing the CG of his visitor (Jahn)
 
-    CpuFastCopy((void *)0x06008000, (void *)0x06001000, 0x5000);
+    CpuFastCopy((void *)(VRAM + 0x8000), (void *)(VRAM + 0x1000), 0x5000);
     CpuFastCopy(PAL_BG(8), PAL_BG(0), PLTT_SIZE_4BPP * 7);
 
     for (i = 0; i < 0x400; i++)

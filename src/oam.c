@@ -23,8 +23,15 @@ inline int GetOamSplice(void)
 
 void SyncHiOam(void)
 {
-    CpuFastCopy(sOamHi.buf, sOamHi.oam, sOamHi.count * 8);
-    ClearOam(sOamHi.buf, sOamHi.count);
+#if !PLATFORM_GBA
+    // Before the first InitOam (the first frames), the GBA copies from and
+    // "clears" address 0, the read-only BIOS; the host has nothing there.
+    if (sOamHi.buf != NULL)
+#endif
+    {
+        CpuFastCopy(sOamHi.buf, sOamHi.oam, sOamHi.count * 8);
+        ClearOam(sOamHi.buf, sOamHi.count);
+    }
 
     gOamHiPutIt = sOamHi.buf;
 

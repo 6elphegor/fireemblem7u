@@ -63,8 +63,8 @@ CONST_DATA struct ProcCmd ProcScr_08CA7994[] = {
 
 void sub_0807C8B4(ProcPtr proc)
 {
-    InitBoxDialogue((void *) 0x06013000, 0xE);
-    StartBoxDialogueExt(0, -4, 0xFCC, (void *) 0x06013000, 0xE, proc);
+    InitBoxDialogue((void *) (VRAM + 0x13000), 0xE);
+    StartBoxDialogueExt(0, -4, 0xFCC, (void *) (VRAM + 0x13000), 0xE, proc);
     SetDialogueBoxConfig((u16) (GetDialogueBoxConfig() | 0x1B0));
 }
 
@@ -140,8 +140,8 @@ void sub_0807CA44(ProcPtr proc)
 
     ApplySystemObjectsGraphics();
 
-    InitBoxDialogue((void *) 0x06013000, 0xE);
-    StartBoxDialogueExt(0, 0, 0xFCB, (void *) 0x06013000, 0xE, proc);
+    InitBoxDialogue((void *) (VRAM + 0x13000), 0xE);
+    StartBoxDialogueExt(0, 0, 0xFCB, (void *) (VRAM + 0x13000), 0xE, proc);
     SetDialogueBoxConfig((u16) (GetDialogueBoxConfig() | 0x110));
 }
 

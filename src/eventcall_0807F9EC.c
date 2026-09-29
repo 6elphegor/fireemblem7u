@@ -255,7 +255,7 @@ void LoadOneYearLaterCg(void)
     SetBlendTargetA(1, 1, 1, 1, 1);
     SetDispEnable(1, 1, 1, 1, 1);
 
-    Decompress(Img_OneYearLater, (void *)0x06000800);
+    Decompress(Img_OneYearLater, (void *)(VRAM + 0x800));
     ApplyPalette(Pal_OneYearLater, 5);
     PutCompressedTsa(gBg0Tm, Tsa_OneYearLater, TILEREF(0x40, 5));
 
@@ -306,7 +306,7 @@ void NilsEpilogueIntro_CopyBg3ToBg1(void)
 {
     SetDispEnable(1, 0, 1, 1, 1);
 
-    CpuFastCopy((void *)0x06008000, (void *)0x06000000, 0x4000);
+    CpuFastCopy((void *)(VRAM + 0x8000), (void *)VRAM, 0x4000);
     CpuFastCopy(gBg3Tm, gBg1Tm, 0x800);
 
     EnableBgSync(BG1_SYNC_BIT);
@@ -391,10 +391,10 @@ void NilsEpilogueOutro_Init(void)
 void NilsEpilogueOutro_LoadNilsInDragonsGate(struct ProcEventCutscene * proc)
 {
     ApplyPalette(Pal_NilsInDragonsGate, 7);
-    Decompress(Img_NilsInDragonsGate, (void *)0x06005800);
+    Decompress(Img_NilsInDragonsGate, (void *)(VRAM + 0x5800));
     TmApplyTsa_thm(gBg2Tm, Tsa_NilsInDragonsGate, TILEREF(0x2C0, 7));
 
-    Decompress(Img_DragonsGate, (void *)(GetBgChrOffset(BG_3) + (void *)0x06000000));
+    Decompress(Img_DragonsGate, (void *)(GetBgChrOffset(BG_3) + (void *)VRAM));
     TmApplyTsa_thm(gBg3Tm, Tsa_DragonsGate, TILEREF(0x0, 8));
     ApplyPalettes(Pal_DragonsGate, 8, 8);
 

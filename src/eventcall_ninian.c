@@ -41,7 +41,7 @@ void EventCall_NinianDragonTrembling(struct EventProc * proc)
         int x = unit->xPos * 16 - gBmSt.camera.x + 8;
         int y = unit->yPos * 16 - gBmSt.camera.y;
 
-        Decompress(Img_NinianDragonSprite, (void *) 0x06013000);
+        Decompress(Img_NinianDragonSprite, (void *) (VRAM + 0x13000));
         StartSpriteAnimProc(SpriteAnim_NinianDragon, x, y, 0xC180, skipped, skipped);
 
         CallDelayed(EventCall_HideNinianDragonSMS, 1);
