@@ -1,0 +1,3 @@
+# Proc scripts moved to C (tools/procdis.py): a script with two labels keeps one name.
+# OLD NEW per line; apply with tools/apply_renames.py
+ProcScr_08B90B9C gProcScr_TalkOpen

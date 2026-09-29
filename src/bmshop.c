@@ -1130,3 +1130,119 @@ s8 ShouldDisplayDownArrow(void)
     return 0;
 }
 
+
+SECTION(".rodata.08CE6F48")
+const struct ProcCmd gProcScr_ShopFadeIn[] = {
+    PROC_CALL(LockGame),
+    PROC_SLEEP(1),
+    PROC_CALL_ARG(_FadeBgmOut, -1),
+    PROC_CALL(StartMidFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(LockBmDisplay),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE6F80")
+const struct ProcCmd gProcScr_ShopFadeOut[] = {
+    PROC_CALL(ClearTalk),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(StartMapSongBgm),
+    PROC_CALL(StartMidFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE6FC0")
+const struct ProcCmd gProcScr_Shop[] = {
+    PROC_CALL(StartShopFadeIn),
+    PROC_SLEEP(0),
+    PROC_CALL(LockGame),
+    PROC_CALL(Shop_Init),
+    PROC_CALL(Shop_InitBuyState),
+    PROC_START_CHILD(ProcScr_ShopDrawHand),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(1),
+    PROC_CALL(Shop_EntryDialogue),
+    PROC_LABEL(0),
+    PROC_SLEEP(1),
+    PROC_REPEAT(Shop_HandleEntryDialoguePrompt),
+    PROC_LABEL(1),
+    PROC_CALL(Shop_BuyDialogue),
+    PROC_LABEL(2),
+    PROC_CALL(Shop_InitBuyState),
+    PROC_SLEEP(1),
+    PROC_REPEAT(Shop_Loop_BuyKeyHandler),
+    PROC_CALL(Shop_HandleBuyConfirmPrompt),
+    PROC_GOTO(9),
+    PROC_LABEL(3),
+    PROC_CALL(Shop_AnythingElseDialogue),
+    PROC_GOTO(2),
+    PROC_LABEL(4),
+    PROC_CALL(Shop_SellDialogue),
+    PROC_LABEL(5),
+    PROC_CALL(Shop_InitSellState),
+    PROC_SLEEP(1),
+    PROC_REPEAT(Shop_Loop_SellKeyHandler),
+    PROC_CALL(Shop_HandleSellConfirmPrompt),
+    PROC_SLEEP(2),
+    PROC_CALL(Shop_SellAnythingElseDialogue),
+    PROC_GOTO(5),
+    PROC_LABEL(7),
+    PROC_SLEEP(2),
+    PROC_CALL(Shop_AnythingElseRestartDialogue),
+    PROC_GOTO(0),
+    PROC_LABEL(8),
+    PROC_SLEEP(1),
+    PROC_CALL(Shop_AnythingElseContinueDialogue),
+    PROC_GOTO(0),
+    PROC_LABEL(9),
+    PROC_CALL(Shop_TryAddItemToInventory),
+    PROC_SLEEP(0),
+    PROC_CALL(Shop_HandleSendToConvoyPrompt),
+    PROC_SLEEP(0),
+    PROC_CALL(Shop_CheckIfConvoyFull),
+    PROC_CALL(Shop_ConvoyFullDialogue),
+    PROC_SLEEP(0),
+    PROC_GOTO(7),
+    PROC_LABEL(10),
+    PROC_CALL(Shop_AddItemToConvoy),
+    PROC_SLEEP(0),
+    PROC_CALL(Shop_SendToConvoyDialogue),
+    PROC_SLEEP(0),
+    PROC_GOTO(3),
+    PROC_LABEL(11),
+    PROC_SLEEP(0),
+    PROC_CALL(Shop_NoSendToConvoyDialogue),
+    PROC_SLEEP(0),
+    PROC_GOTO(7),
+    PROC_LABEL(13),
+    PROC_CALL(Shop_PrepEntryDialogue),
+    PROC_SLEEP(0),
+    PROC_REPEAT(Shop_Loop_UnkKeyHandler),
+    PROC_LABEL(12),
+    PROC_CALL(Shop_ExitShopDialogue),
+    PROC_SLEEP(1),
+    PROC_CALL_ARG(_FadeBgmOut, 2),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(1),
+    PROC_CALL(Shop_OnExit),
+    PROC_END_EACH(ProcScr_ShopDrawHand),
+    PROC_CALL(StartShopFadeOut),
+    PROC_SLEEP(0),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE7228")
+const struct ProcCmd ProcScr_ShopBuyInit[] = {
+    PROC_REPEAT(InitShopBuyStatus),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE7238")
+const struct ProcCmd ProcScr_ShopSellInit[] = {
+    PROC_REPEAT(InitShopSellStatus),
+    PROC_END,
+};

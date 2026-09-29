@@ -265,4 +265,4 @@ extern u16 * gSysUpArrowSpriteLut[];
 extern u16 * gSysDownArrowSpriteLut[];
 extern struct ProcCmd ProcScr_CamMove[];
 extern struct ProcCmd ProcScr_UnkMapCursor[];
-extern struct ProcCmd ProcScr_CamMoveLinear[];
+extern const struct ProcCmd ProcScr_CamMoveLinear[];

@@ -29,8 +29,8 @@ extern u8 CONST_DATA gItemUseJidList_HeavenSealHector[];
 extern u8 CONST_DATA gItemUseJidList_OceanSeal[];
 extern u8 CONST_DATA gItemUseJidList_FellContract[];
 
-extern struct ProcCmd CONST_DATA gProcScr_SquareSelectWarp[];
-extern struct ProcCmd CONST_DATA gProcScr_SquareSelectTorch[];
+extern const struct ProcCmd gProcScr_SquareSelectWarp[];
+extern const struct ProcCmd gProcScr_SquareSelectTorch[];
 
 extern u16 CONST_DATA gSpriteAnim_WarpCursor[];
 

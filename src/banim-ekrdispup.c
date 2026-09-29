@@ -19,7 +19,7 @@ struct ProcEkrDispUP {
 };
 
 extern struct ProcEkrDispUP * gpProcEkrDispUP;
-extern struct ProcCmd ProcScr_ekrDispUP[];
+extern const struct ProcCmd ProcScr_ekrDispUP[];
 
 extern s16 gEkrDistanceType;
 extern s16 gEkrDebugModeMaybe;
@@ -422,3 +422,10 @@ void EkrEfxStatusClear(void)
     gpProcEfxSpellCast = NULL;
     gpProcEfxHpBarColorChange = NULL;
 }
+
+SECTION(".rodata.08B9ABAC")
+const struct ProcCmd ProcScr_ekrDispUP[] = {
+    PROC_19,
+    PROC_REPEAT(ekrDispUPMain),
+    PROC_END,
+};

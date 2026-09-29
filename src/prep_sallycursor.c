@@ -789,3 +789,36 @@ bool IsPrepMapActive(void)
 {
     return Proc_Find(ProcScr_SALLYCURSOR) ? TRUE : FALSE;
 }
+
+void Config_HandleExit();
+void Config_Init();
+void Config_Loop_KeyHandler();
+void Config_SetSourceFromPrep();
+void sub_080ADB7C();
+
+SECTION(".rodata.08B96448")
+const struct ProcCmd ProcScr_PrepHelpPrompt[] = {
+    PROC_CALL(PrepHelpPrompt_Init),
+    PROC_REPEAT(PrepHelpPrompt_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE5CA0")
+const struct ProcCmd ProcScr_Config_PrepMapMenu[] = {
+    PROC_19,
+    PROC_CALL(LockGame),
+    PROC_LABEL(0),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080ADB7C),
+    PROC_CALL(Config_Init),
+    PROC_CALL(Config_SetSourceFromPrep),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_REPEAT(Config_Loop_KeyHandler),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(KillHelpBox),
+    PROC_CALL_2(Config_HandleExit),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};

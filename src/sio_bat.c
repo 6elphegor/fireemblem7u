@@ -210,7 +210,7 @@ void sub_08040444(void)
 
 #endif
 
-extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN2[];
+extern const struct ProcCmd ProcScr_SIOMAIN2[];
 
 //! FE8U = 0x08045C14
 void New6C_SIOMAIN2(void)
@@ -937,3 +937,36 @@ void sub_080412D4(void)
 }
 
 extern struct ProcCmd CONST_DATA gUnknown_085AA75C[];
+
+void FE6Link_Init();
+void SIOMAIN2_Loop_A();
+void SIOMAIN2_Loop_B();
+extern const struct ProcCmd gUnk_08B9A580[];
+void sub_08045058();
+void sub_080451FC();
+void sub_08045334();
+void sub_08046EB8();
+
+SECTION(".rodata.08B9A0E8")
+const struct ProcCmd ProcScr_SIOMAIN2[] = {
+    PROC_19,
+    PROC_19,
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08045058),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_LABEL(0),
+    PROC_CALL(sub_080451FC),
+    PROC_SLEEP(1),
+    PROC_START_CHILD_BLOCKING(gUnk_08B9A580),
+    PROC_SLEEP(0),
+    PROC_REPEAT(SIOMAIN2_Loop_A),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(sub_08046EB8),
+    PROC_REPEAT(SIOMAIN2_Loop_B),
+    PROC_LABEL(3),
+    PROC_CALL(sub_08045334),
+    PROC_END,
+};

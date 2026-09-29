@@ -3,7 +3,7 @@
 // Data (not yet in C; FE7U addresses in symbols.ld)
 
 extern struct ProcCmd CONST_DATA ProcScr_Config_Field[];
-extern struct ProcCmd CONST_DATA gProcScr_BKSEL[];
+extern const struct ProcCmd gProcScr_BKSEL[];
 extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
 extern u16 CONST_DATA EventScr_CompleteTraining[];
 extern u8 CONST_DATA Tsa_StealMenuFrame[];

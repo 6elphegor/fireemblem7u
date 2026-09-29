@@ -1635,7 +1635,7 @@ void PlaySFX(int, int, int, int);
 // ??? gUnk_08C09EB0
 // ??? gUnk_08C09EC8
 // ??? gUnk_08C09EE0
-extern struct ProcCmd ProcScr_ekrDispUP[];
+extern const struct ProcCmd ProcScr_ekrDispUP[];
 extern struct ProcCmd ProcScr_efxHPBar[];
 // ??? gUnk_08C09F38
 // ??? gUnk_08C09F70
@@ -1705,12 +1705,12 @@ extern struct ProcCmd ProcScr_EkrChienCHR[];
 // ??? gUnk_08C0D6C0
 // ??? gEkrSpellAnimLut
 // ??? gUnk_08C10828
-extern struct ProcCmd ProcScr_efxRestRST[];
-extern struct ProcCmd ProcScr_efxTwobaiRST[];
-extern struct ProcCmd ProcScr_DummvRST[];
-extern struct ProcCmd ProcScr_EfxRestWIN[];
+extern const struct ProcCmd ProcScr_efxRestRST[];
+extern const struct ProcCmd ProcScr_efxTwobaiRST[];
+extern const struct ProcCmd ProcScr_DummvRST[];
+extern const struct ProcCmd ProcScr_EfxRestWIN[];
 // ??? gUnk_08C108A0
-extern struct ProcCmd ProcScr_efxALPHA[];
+extern const struct ProcCmd ProcScr_efxALPHA[];
 // ??? gUnk_08C108D8
 // ??? gUnk_08C108F0
 // ??? gUnk_08C10908
@@ -2218,7 +2218,7 @@ extern struct ProcCmd ProcScr_EfxDrsmmoyaScrollCOL[];
 // ??? gUnk_08C4A8D0
 // ??? gUnk_08C4A8E8
 // ??? gUnk_08C4A908
-extern struct ProcCmd ProcScr_EfxPartsofScroll[];
+extern const struct ProcCmd ProcScr_EfxPartsofScroll[];
 // ??? gUnk_08C4A9D8
 // ??? gUnk_08C4A9F8
 // ??? gUnk_08C4AA38

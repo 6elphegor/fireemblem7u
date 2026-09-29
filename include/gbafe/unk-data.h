@@ -1737,13 +1737,13 @@ extern u8 Img_SysBrownBox[];
 // ??? gUnk_08C025F8
 // ??? gUnk_08C02600
 // ??? gUnk_08C02618
-extern struct ProcCmd ProcScr_PlayerPhase[];
+extern const struct ProcCmd ProcScr_PlayerPhase[];
 // ??? gUnk_08C02828
 // ??? gUnk_08C02870
 // ??? gUnk_08C028A8
 // ??? gUnk_08C028C0
 // ??? gUnk_08C028E8
-extern struct ProcCmd ProcScr_08B93664[];
+extern const struct ProcCmd ProcScr_08B93664[];
 // ??? gUnk_08C02938
 // ??? gUnk_08C02958
 // ??? gUnk_08C029A8
@@ -1751,7 +1751,7 @@ extern struct ProcCmd ProcScr_08B93664[];
 // ??? gUnk_08C029E8
 // ??? gUnk_08C02A28
 // ??? gUnk_08C02A48
-extern struct ProcCmd ProcScr_BmMain_08B937AC[];
+extern const struct ProcCmd ProcScr_BmMain_08B937AC[];
 // ??? gUnk_08C02AB0
 // ??? Img_Portrait_0AD_Chibi
 // ??? gUnk_08C02AF0
@@ -1804,7 +1804,7 @@ extern struct ProcCmd ProcScr_NinianTransformToHunman[];
 // ??? gUnk_08C03728
 // ??? gUnk_08C03784
 // ??? gUnk_08C037D8
-extern struct ProcCmd ProcScr_UpdateTraps[];
+extern const struct ProcCmd ProcScr_UpdateTraps[];
 // ??? gUnk_08C03884
 // ??? gUnk_08C038A4
 // ??? gUnk_08C04B04
@@ -1857,7 +1857,7 @@ extern struct ProcCmd ProcScr_UpdateTraps[];
 // ??? gUnk_08C056CC
 // ??? gUnk_08C05700
 // ??? ProcScr_PrepHelpPrompt
-extern struct ProcCmd ProcScr_SALLYCURSOR[];
+extern const struct ProcCmd ProcScr_SALLYCURSOR[];
 // ??? gUnk_08C05C54
 // ??? gUnk_08C05C64
 // ??? gUnk_08C05C7E
@@ -1867,9 +1867,9 @@ extern struct ProcCmd ProcScr_SALLYCURSOR[];
 // ??? gUnk_08C05D08
 // ??? gUnk_08C05D10
 // ??? gUnk_08C05E30
-extern struct ProcCmd ProcScr_BmMain_08B96BAC[];
-extern struct ProcCmd ProcScr_BmMain_08B96C0C[];
-extern struct ProcCmd ProcScr_BmMain_08B96C74[];
+extern const struct ProcCmd ProcScr_BmMain_08B96BAC[];
+extern const struct ProcCmd ProcScr_BmMain_08B96C0C[];
+extern const struct ProcCmd ProcScr_BmMain_08B96C74[];
 // ??? gUnk_08C05FF0
 // ??? gUnk_08C06008
 // ??? gUnk_08C06028
@@ -1878,8 +1878,8 @@ extern struct ProcCmd ProcScr_BmMain_08B96C74[];
 // ??? gUnk_08C060A8
 // ??? gUnk_08C060B4
 // ??? gUnk_08C06104
-extern struct ProcCmd ProcScr_AiPhase[];
-extern struct ProcCmd ProcScr_08B96EA8[];
+extern const struct ProcCmd ProcScr_AiPhase[];
+extern const struct ProcCmd ProcScr_08B96EA8[];
 // ??? gUnk_08C061A4
 
 /* ai.h */
@@ -2272,7 +2272,7 @@ extern struct ProcCmd ProcScr_MixPalette[];
 // ??? gUnk_08DB0F0C
 // ??? gUnk_08DB0F24
 // ??? gUnk_08DB0F44
-extern struct ProcCmd ProcScr_StartWorldMapEvent[];
+extern const struct ProcCmd ProcScr_StartWorldMapEvent[];
 // ??? gUnk_08DB1004
 // ??? gUnk_08DB101C
 // ??? gUnk_08DB1034
@@ -2296,9 +2296,9 @@ extern struct ProcCmd ProcScr_StartWorldMapEvent[];
 // ??? gUnk_08DB7DD0
 // ??? gUnk_08DB7E28
 // ??? gUnk_08DB7E70
-extern struct ProcCmd ProcScr_Unk_08CEDEE4[];
-extern struct ProcCmd ProcScr_Unk_08CEE084[];
-extern struct ProcCmd ProcScr_Unk_08CEE0C4[];
+extern const struct ProcCmd ProcScr_Unk_08CEDEE4[];
+extern const struct ProcCmd ProcScr_Unk_08CEE084[];
+extern const struct ProcCmd ProcScr_Unk_08CEE0C4[];
 // ??? gUnk_08DB8118
 // ??? gUnk_08DB85EC
 // ??? gUnk_08DB85F4

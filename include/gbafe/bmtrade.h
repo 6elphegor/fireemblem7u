@@ -61,11 +61,11 @@ extern struct Text gTradeMenuText[2][UNIT_ITEM_COUNT];
 extern struct TradeMenuProc * gpTradeMenuProc;
 extern struct Vec2 CONST_DATA gTradeItemDisplayTileLocation[2][UNIT_ITEM_COUNT];
 
-extern struct ProcCmd CONST_DATA ProcScr_TradeMenu[];
-extern struct ProcCmd CONST_DATA ProcScr_TradeMenu_HelpBox[];
-extern struct ProcCmd CONST_DATA ProcScr_TradeMenu_TutorialHandCursor[];
-extern struct ProcCmd CONST_DATA ProcScr_TradeMenu_DoubleTutorialHandCursor[];
-extern struct ProcCmd CONST_DATA ProcScr_TradeMenu_TutorialWait[];
+extern const struct ProcCmd ProcScr_TradeMenu[];
+extern const struct ProcCmd ProcScr_TradeMenu_HelpBox[];
+extern const struct ProcCmd ProcScr_TradeMenu_TutorialHandCursor[];
+extern const struct ProcCmd ProcScr_TradeMenu_DoubleTutorialHandCursor[];
+extern const struct ProcCmd ProcScr_TradeMenu_TutorialWait[];
 
 extern EventScr CONST_DATA EventScr_TradeTutStart[];
 extern EventScr CONST_DATA EventScr_TradeTut_SelectItem[];

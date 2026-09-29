@@ -1,4 +1,5 @@
 #include "gbafe.h"
+#include "gbafe/bmusailment.h"
 
 // clang-format off
 
@@ -1069,3 +1070,123 @@ void StartCameraMoveLinear(ProcPtr parent, int x, int y, int duration)
     proc->distance = duration;
     proc->frame = 0;
 }
+
+void AiPhaseBerserkInit();
+void AiPhaseCleanup();
+void AiPhase_Begin();
+void PhaseIntro_EndIfNoUnits();
+void PhaseIntro_InitDisp();
+void PhaseIntro_InitGraphics();
+void PhaseIntro_WaitForEnd();
+void ProcFun_ResetCursorPosition();
+extern const struct ProcCmd gProcScr_PhaseIntroBlendBox[];
+extern const struct ProcCmd gProcScr_PhaseIntroSquares[];
+extern const struct ProcCmd gProcScr_PhaseIntroText[];
+extern const struct ProcCmd gUnk_08B96CCC[];
+
+SECTION(".rodata.08B92E70")
+const struct ProcCmd ProcScr_CamMoveLinear[] = {
+    PROC_SET_END_CB(CamMoveLinear_OnEnd),
+    PROC_REPEAT(CamMoveLinear_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B93664")
+const struct ProcCmd ProcScr_08B93664[] = {
+    PROC_CALL(ProcFun_ResetCursorPosition),
+    PROC_SLEEP(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08B937AC")
+const struct ProcCmd ProcScr_BmMain_08B937AC[] = {
+    PROC_CALL(PhaseIntro_EndIfNoUnits),
+    PROC_CALL(PhaseIntro_InitGraphics),
+    PROC_START_CHILD(gProcScr_PhaseIntroText),
+    PROC_START_CHILD(gProcScr_PhaseIntroSquares),
+    PROC_START_CHILD(gProcScr_PhaseIntroBlendBox),
+    PROC_CALL(PhaseIntro_InitDisp),
+    PROC_REPEAT(PhaseIntro_WaitForEnd),
+    PROC_CALL(StartMapSongBgm),
+    PROC_END,
+};
+
+SECTION(".rodata.08B94578")
+const struct ProcCmd ProcScr_UpdateTraps[] = {
+    PROC_CALL(CountDownTraps),
+    PROC_CALL(RefreshEntityMapsAsRedPhase),
+    PROC_CALL(GenerateTrapDamageTargets),
+    PROC_CALL(StartTrapDamageMapAnim),
+    PROC_CALL(GenerateDisplayedTrapDamageTargets),
+    PROC_START_CHILD_BLOCKING(gUnk_08B96CCC),
+    PROC_CALL(ResetCountedDownTraps),
+    PROC_CALL(RefreshEntityMaps),
+    PROC_CALL(PostTrapExecFlag),
+    PROC_END,
+};
+
+SECTION(".rodata.08B96BAC")
+const struct ProcCmd ProcScr_BmMain_08B96BAC[] = {
+    PROC_CALL(TerrainHealDisplay_Init),
+    PROC_LABEL(0),
+    PROC_CALL(MassEffectDisplay_Check),
+    PROC_CALL(MassEffectDisplay_Watch),
+    PROC_SLEEP(0),
+    PROC_CALL(TerrainHealDisplay_Display),
+    PROC_SLEEP(0),
+    PROC_CALL(FinishDamageDisplay),
+    PROC_LABEL(1),
+    PROC_CALL(TerrainHealDisplay_Next),
+    PROC_GOTO(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08B96C0C")
+const struct ProcCmd ProcScr_BmMain_08B96C0C[] = {
+    PROC_CALL(PoisonDamageDisplay_Init),
+    PROC_LABEL(0),
+    PROC_CALL(MassEffectDisplay_Check),
+    PROC_CALL(MassEffectDisplay_Watch),
+    PROC_SLEEP(0),
+    PROC_CALL(PoisonDamageDisplay_Display),
+    PROC_SLEEP(0),
+    PROC_CALL(FinishDamageDisplay),
+    PROC_LABEL(1),
+    PROC_CALL(PoisonDamageDisplay_Next),
+    PROC_SLEEP(0),
+    PROC_GOTO(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08B96C74")
+const struct ProcCmd ProcScr_BmMain_08B96C74[] = {
+    PROC_CALL(StatusDecayDisplay_Init),
+    PROC_LABEL(0),
+    PROC_CALL(MassEffectDisplay_Check),
+    PROC_CALL(MassEffectDisplay_Watch),
+    PROC_SLEEP(0),
+    PROC_CALL(StatusDecayDisplay_Display),
+    PROC_SLEEP(0),
+    PROC_LABEL(1),
+    PROC_CALL(StatusDecayDisplay_Next),
+    PROC_GOTO(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08B96E80")
+const struct ProcCmd ProcScr_AiPhase[] = {
+    PROC_19,
+    PROC_CALL(AiPhase_Begin),
+    PROC_SLEEP(0),
+    PROC_CALL(AiPhaseCleanup),
+    PROC_END,
+};
+
+SECTION(".rodata.08B96EA8")
+const struct ProcCmd ProcScr_08B96EA8[] = {
+    PROC_19,
+    PROC_CALL(AiPhaseBerserkInit),
+    PROC_SLEEP(0),
+    PROC_CALL(AiPhaseCleanup),
+    PROC_END,
+};

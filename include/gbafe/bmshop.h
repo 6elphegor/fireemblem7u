@@ -76,13 +76,13 @@ struct ShopState {
 extern u16 CONST_DATA gDefaultShopInventory[];
 extern int CONST_DATA gShopDialogueOffsetLut[];
 extern int CONST_DATA gShopPortraitLut[];
-extern struct ProcCmd CONST_DATA gProcScr_ShopFadeIn[];
-extern struct ProcCmd CONST_DATA gProcScr_ShopFadeOut[];
-extern struct ProcCmd CONST_DATA gProcScr_Shop[];
-extern struct ProcCmd CONST_DATA ProcScr_ShopBuyInit[];
-extern struct ProcCmd CONST_DATA ProcScr_ShopSellInit[];
+extern const struct ProcCmd gProcScr_ShopFadeIn[];
+extern const struct ProcCmd gProcScr_ShopFadeOut[];
+extern const struct ProcCmd gProcScr_Shop[];
+extern const struct ProcCmd ProcScr_ShopBuyInit[];
+extern const struct ProcCmd ProcScr_ShopSellInit[];
 extern u16 CONST_DATA Sprite_ShopGoldBox[];
-extern struct ProcCmd CONST_DATA gProcScr_GoldBox[];
+extern const struct ProcCmd gProcScr_GoldBox[];
 extern struct ProcCmd CONST_DATA ProcScr_ShopDrawHand[];
 extern struct ShopState * CONST_DATA gShopState;
 

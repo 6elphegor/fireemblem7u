@@ -1,0 +1,368 @@
+#!/usr/bin/env python3
+"""Decode proc scripts (struct ProcCmd []) from the ROM into C.
+
+Usage:
+  tools/procdis.py list [--declared|--undeclared]
+        objects in data/rom/*.s that are (or look like) proc scripts
+  tools/procdis.py emit NAME...
+        C definitions with PROC_* macros (include/gbafe/proc.h), each with
+        SECTION(".rodata.<ADDR>") and its data/layout.txt line as a comment
+        on stderr
+  tools/procdis.py layout NAME...
+        the data/layout.txt lines (needs --module for the object name)
+
+Each command is 8 bytes: s16 opcode, s16 dataImm, pointer.  Bytes come from
+baserom.gba; pointer words come from the `.4byte SYMBOL [+ ADDEND]` lines in
+data/rom/*.s (the tool that wrote them, dataptrs.py, decided they are
+pointers), and for words the assembly left raw, from an exact address match
+in fe7u.elf (`nm`) or in the labels of data/rom.  A pointer to a function
+loses its Thumb bit: C function pointers carry it.
+
+An object is a run of commands from a label up to the first PROC_END.  Scripts
+whose label is followed by other labels before the END, raw pointer words that
+match no symbol and unknown opcodes are reported on stderr and emitted with a
+`/* FIXME */` marker.
+"""
+import re
+import struct
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+BASE = 0x08000000
+
+# opcode -> (macro, kind)  kind: "none" | "ptr" | "imm" | "imm_ptr"
+# "fixed" macros write a constant into dataImm; anything else is emitted raw.
+OPS = {
+    0x00: ("PROC_END", "none"),
+    0x01: ("PROC_NAME", "ptr"),
+    0x02: ("PROC_CALL", "ptr"),
+    0x03: ("PROC_REPEAT", "ptr"),
+    0x04: ("PROC_SET_END_CB", "ptr"),
+    0x05: ("PROC_START_CHILD", "ptr"),
+    0x06: ("PROC_START_CHILD_BLOCKING", "ptr", 1),
+    0x07: ("PROC_START_MAIN_BUGGED", "ptr"),
+    0x08: ("PROC_WHILE_EXISTS", "ptr"),
+    0x09: ("PROC_END_EACH", "ptr"),
+    0x0A: ("PROC_BREAK_EACH", "ptr"),
+    0x0B: ("PROC_LABEL", "imm"),
+    0x0C: ("PROC_GOTO", "imm"),
+    0x0D: ("PROC_JUMP", "ptr"),
+    0x0E: ("PROC_SLEEP", "imm"),
+    0x0F: ("PROC_MARK", "imm"),
+    0x10: ("PROC_BLOCK", "none"),
+    0x11: ("PROC_END_IF_DUPLICATE", "none"),
+    0x12: ("PROC_SET_BIT4", "none"),
+    0x13: ("PROC_13", "none"),
+    0x14: ("PROC_WHILE", "ptr"),
+    0x15: ("PROC_15", "none"),
+    0x16: ("PROC_CALL_2", "ptr"),
+    0x17: ("PROC_END_DUPLICATES", "none"),
+    0x18: ("PROC_CALL_ARG", "imm_ptr"),
+    0x19: ("PROC_19", "none"),
+}
+
+
+class Rom:
+    def __init__(self):
+        self.data = (ROOT / "baserom.gba").read_bytes()
+        self.labels = {}      # name -> addr
+        self.by_addr = {}     # addr -> [names]
+        self.ptrs = {}        # addr -> (symbol, addend)
+        self.chunk_end = {}   # label addr -> end of its contiguous chunk
+        self.decl = {}        # name -> True for ProcCmd declarations
+        self._scan_rom_asm()
+        self._scan_headers()
+        self.elf = None
+
+    def _scan_rom_asm(self):
+        for path in sorted((ROOT / "data/rom").glob("*.s")):
+            pos = None
+            chunk_labels = []
+            for line in path.read_text().splitlines():
+                s = line.strip()
+                if s.startswith(".section"):
+                    self._close(chunk_labels, pos)
+                    chunk_labels, pos = [], None
+                elif s.startswith(".incbin"):
+                    m = re.match(r'\.incbin "baserom.gba", (0x[0-9a-f]+|\d+), (0x[0-9a-f]+|\d+)', s)
+                    if m:
+                        pos = BASE + int(m[1], 0) + int(m[2], 0)
+                    else:
+                        pos = None
+                elif s.startswith(".4byte"):
+                    m = re.match(r"\.4byte (\w+)(?: \+ (0x[0-9a-f]+|\d+))?$", s)
+                    if m and pos is not None:
+                        self.ptrs[pos] = (m[1], int(m[2], 0) if m[2] else 0)
+                    if pos is not None:
+                        pos += 4
+                elif re.match(r"^\w+:$", s):
+                    name = s[:-1]
+                    if pos is not None:
+                        self.labels[name] = pos
+                        self.by_addr.setdefault(pos, []).append(name)
+                        chunk_labels.append(pos)
+                    else:
+                        # label at the start of a chunk: its address is set by
+                        # the incbin that follows
+                        chunk_labels.append(name)
+                        self._pending = name
+            self._close(chunk_labels, pos)
+
+    def _close(self, labels, pos):
+        pass
+
+    def _scan_headers(self):
+        for path in (ROOT / "include").rglob("*.h"):
+            for m in re.finditer(r"extern\s+(?:const\s+)?struct\s+ProcCmd\s+(?:const\s+|CONST_DATA\s+)?(\w+)\s*\[", path.read_text(errors="replace")):
+                self.decl[m[1]] = path
+
+    def symbols(self):
+        if self.elf is None:
+            self.elf = {}
+            out = subprocess.run(["nm", str(ROOT / "fe7u.elf")], capture_output=True, text=True).stdout
+            for line in out.splitlines():
+                p = line.split()
+                if len(p) == 3 and p[1] in "tTdDrRbB":
+                    self.elf.setdefault(int(p[0], 16) & ~1, p[2])
+        return self.elf
+
+
+def rom_labels(rom):
+    """addr -> name for every label in data/rom (first label wins)."""
+    return {a: n[0] for a, n in rom.by_addr.items()}
+
+
+def build_rom_index():
+    """Parse data/rom/*.s into (labels, ptrs) with addresses."""
+    labels, ptrs, order = {}, {}, []
+    for path in sorted((ROOT / "data/rom").glob("*.s")):
+        pos = None
+        pending = []
+        for line in path.read_text().splitlines():
+            s = line.strip()
+            if s.startswith(".section"):
+                pos, pending = None, []
+            elif s.startswith(".incbin"):
+                m = re.match(r'\.incbin "baserom.gba", (0x[0-9a-f]+|\d+), (0x[0-9a-f]+|\d+)', s)
+                if m:
+                    start = BASE + int(m[1], 0)
+                    for n in pending:
+                        labels[n] = start
+                        order.append((start, n))
+                    pending = []
+                    pos = start + int(m[2], 0)
+                else:
+                    for n in pending:
+                        pass  # label before an extracted blob: address unknown here
+                    pending = []
+                    pos = None
+            elif s.startswith(".4byte"):
+                m = re.match(r"\.4byte (\w+)(?: \+ (0x[0-9a-f]+|\d+))?$", s)
+                if pos is not None:
+                    for n in pending:
+                        labels[n] = pos
+                        order.append((pos, n))
+                    pending = []
+                    if m:
+                        ptrs[pos] = (m[1], int(m[2], 0) if m[2] else 0)
+                    pos += 4
+            elif re.match(r"^\w+:$", s):
+                pending.append(s[:-1])
+    return labels, ptrs, sorted(order)
+
+
+class Ctx:
+    def __init__(self):
+        self.rom = (ROOT / "baserom.gba").read_bytes()
+        self.labels, self.ptrs, self.order = build_rom_index()
+        self.addr_names = {}
+        for a, n in self.order:
+            self.addr_names.setdefault(a, n)
+        self.label_addrs = sorted(self.addr_names)
+        self.decl = {}
+        for path in (ROOT / "include").rglob("*.h"):
+            for m in re.finditer(r"extern\s+(?:const\s+)?struct\s+ProcCmd\s+(?:const\s+|CONST_DATA\s+)?(\w+)\s*\[", path.read_text(errors="replace")):
+                self.decl[m[1]] = path
+        self._elf = None
+
+    def elf(self):
+        if self._elf is None:
+            self._elf = {}
+            out = subprocess.run(["nm", str(ROOT / "fe7u.elf")], capture_output=True, text=True).stdout
+            for line in out.splitlines():
+                p = line.split()
+                if len(p) == 3 and p[1] in "tTdDrRbB" and not p[2].startswith("$"):
+                    a = int(p[0], 16)
+                    self._elf.setdefault(a & ~1, (p[2], a & 1))
+        return self._elf
+
+    def word(self, addr):
+        o = addr - BASE
+        return struct.unpack_from("<I", self.rom, o)[0]
+
+    def s16(self, addr):
+        return struct.unpack_from("<h", self.rom, addr - BASE)[0]
+
+    def next_label(self, addr):
+        import bisect
+        i = bisect.bisect_right(self.label_addrs, addr)
+        return self.label_addrs[i] if i < len(self.label_addrs) else None
+
+    def decode(self, addr):
+        """Return (cmds, problems); cmds = [(opcode, imm, ptrexpr|None, value)]."""
+        cmds, problems = [], []
+        a = addr
+        while True:
+            op, imm = self.s16(a), self.s16(a + 2)
+            val = self.word(a + 4)
+            cmds.append((op, imm, val, a))
+            a += 8
+            if op == 0 and val == 0 and imm == 0:
+                break
+            if len(cmds) > 4096 or a - BASE >= len(self.rom):
+                problems.append("no END")
+                break
+        return cmds, problems
+
+    def ptr_expr(self, a, val, problems):
+        if a in self.ptrs:
+            sym, add = self.ptrs[a]
+            if add == 0:
+                return sym
+            return f"&{sym}[{add}]  /* FIXME: {sym} + {add:#x} */"
+        if val == 0:
+            return "0"
+        e = self.elf().get(val & ~1)
+        if e:
+            return e[0]
+        n = self.addr_names.get(val)
+        if n:
+            return n
+        problems.append(f"raw pointer {val:#010x} at {a:#010x}")
+        return f"(void *) {val:#010x}  /* FIXME */"
+
+    def emit_cmd(self, c, problems):
+        op, imm, val, a = c
+        info = OPS.get(op & 0xFFFF if op >= 0 else op & 0xFFFF)
+        raw = lambda: "{ " + f"{op:#04x}, {imm:#06x}, " + (self.ptr_expr(a + 4, val, problems)) + " }"
+        if info is None:
+            problems.append(f"unknown opcode {op:#x} at {a:#010x}")
+            return raw() + "  /* FIXME */"
+        name, kind = info[0], info[1]
+        fixed = info[2] if len(info) > 2 else 0
+        hasptr = val != 0
+        if kind == "none":
+            if imm == 0 and not hasptr:
+                return name
+            return raw()
+        if kind == "ptr":
+            if imm == fixed:
+                if op == 1 and hasptr:
+                    return f"{name}({self.string_expr(val, a + 4, problems)})"
+                if not hasptr:
+                    return raw()
+                return f"{name}({self.ptr_expr(a + 4, val, problems)})"
+            return raw()
+        if kind == "imm":
+            if hasptr:
+                return raw()
+            return f"{name}({imm})"
+        if kind == "imm_ptr":
+            return f"{name}({self.ptr_expr(a + 4, val, problems)}, {imm})"
+
+    def string_expr(self, val, a, problems):
+        if a in self.ptrs:
+            return self.ptr_expr(a, val, problems)
+        o = val - BASE
+        end = self.rom.index(b"\0", o)
+        s = self.rom[o:end]
+        if all(32 <= ch < 127 for ch in s) and s:
+            return '"' + s.decode().replace("\\", "\\\\").replace('"', '\\"') + '"'
+        return self.ptr_expr(a, val, problems)
+
+    def object(self, name):
+        addr = self.labels[name]
+        cmds, problems = self.decode(addr)
+        end = addr + 8 * len(cmds)
+        nxt = self.next_label(addr)
+        inner = [self.addr_names[x] for x in self.label_addrs if addr < x < end]
+        if inner:
+            problems.append(f"labels inside: {', '.join(inner)}")
+        lines = [self.emit_cmd(c, problems) for c in cmds]
+        return addr, end - addr, lines, problems, nxt
+
+
+def looks_like_proc(ctx, name):
+    """An undeclared object whose bytes decode as a well-formed proc script."""
+    addr = ctx.labels[name]
+    if addr % 4:
+        return False
+    cmds, problems = ctx.decode(addr)
+    if problems or len(cmds) < 2:
+        return False
+    nxt = ctx.next_label(addr)
+    if nxt is None or nxt != addr + 8 * len(cmds):
+        return False
+    hasfn = False
+    for op, imm, val, a in cmds:
+        info = OPS.get(op)
+        if info is None or op < 0:
+            return False
+        kind = info[1]
+        if kind == "none" and (imm or val):
+            return False
+        if kind == "imm" and val:
+            return False
+        if kind in ("ptr", "imm_ptr"):
+            if val == 0 and op != 0x01:
+                return False
+            if info[1] == "ptr" and imm != (info[2] if len(info) > 2 else 0):
+                return False
+            if (a + 4) not in ctx.ptrs and val and not (0x02000000 <= val < 0x04000000 or BASE <= val):
+                return False
+            if (a + 4) not in ctx.ptrs and val:
+                return False  # a pointer the assembly left raw: not a proc script we can trust
+            hasfn = True
+    return hasfn
+
+
+def c_def(name, addr, lines, decl_hdr=None):
+    body = ",\n".join("    " + l for l in lines)
+    return f'SECTION(".rodata.{addr - BASE + BASE:08X}")\nconst struct ProcCmd {name}[] = {{\n{body},\n}};\n'
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(__doc__)
+    cmd, args = sys.argv[1], sys.argv[2:]
+    ctx = Ctx()
+    if cmd == "list":
+        for name in sorted(ctx.labels, key=lambda n: ctx.labels[n]):
+            declared = name in ctx.decl
+            if "--declared" in args and not declared:
+                continue
+            if "--undeclared" in args and (declared or not looks_like_proc(ctx, name)):
+                continue
+            if not args and not declared and not looks_like_proc(ctx, name):
+                continue
+            addr, size, _, problems, _ = ctx.object(name)
+            print(f"{addr:#010x} {size:#x} {name}{'' if declared else ' (undeclared)'}{' ' + '; '.join(problems) if problems else ''}")
+    elif cmd == "emit":
+        for name in args:
+            addr, size, lines, problems, _ = ctx.object(name)
+            for p in problems:
+                print(f"{name}: {p}", file=sys.stderr)
+            print(c_def(name, addr, lines))
+    elif cmd == "layout":
+        module = args[0]
+        for name in args[1:]:
+            addr, size, _, _, _ = ctx.object(name)
+            print(f"rom {addr:#010X} {size:#X} build/src/{module}.o(.rodata.{addr:08X})".replace("0X", "0x"))
+    else:
+        sys.exit(__doc__)
+
+
+if __name__ == "__main__":
+    main()

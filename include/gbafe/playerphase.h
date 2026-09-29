@@ -27,10 +27,10 @@ struct MoveLimitViewProc {
     /* 4C */ s16 unk_4C;
 };
 
-extern struct ProcCmd ProcScr_PlayerPhase[];
-extern struct ProcCmd ProcScr_SALLYCURSOR[];
+extern const struct ProcCmd ProcScr_PlayerPhase[];
+extern const struct ProcCmd ProcScr_SALLYCURSOR[];
 extern struct ProcCmd gProcScr_EventEngine[];
-extern struct ProcCmd sProcScr_MoveLimitView[];
+extern const struct ProcCmd sProcScr_MoveLimitView[];
 extern u8 * gOpenLimitViewImgLut[];
 extern u8 const Img_LimitViewSquare[];     // FE8U: gUnknown_08A02EB4
 extern u16 const Pal_LimitViewBlue[];      // FE8U: gUnknown_08A02F34

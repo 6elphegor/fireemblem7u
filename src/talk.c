@@ -2205,3 +2205,77 @@ void TalkBgSync(int bits)
 		EnableBgSync(bits);
 	}
 }
+
+SECTION(".rodata.08B909BC")
+const struct ProcCmd gProcScr_TalkSkipListener[] = {
+    PROC_MARK(5),
+    PROC_REPEAT(TalkSkipListener_OnIdle),
+    PROC_END,
+};
+
+SECTION(".rodata.08B909D4")
+const struct ProcCmd ProcScr_Talk[] = {
+    PROC_MARK(5),
+    PROC_SET_END_CB(Talk_OnEnd),
+    PROC_SLEEP(1),
+    PROC_CALL(Talk_OnInit),
+    PROC_REPEAT(Talk_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B90A2C")
+const struct ProcCmd gUnk_08BFFBDC[] = {
+    PROC_MARK(5),
+    PROC_SLEEP(1),
+    PROC_REPEAT(TalkPause_OnIdle),
+    PROC_END,
+};
+
+SECTION(".rodata.08B90A4C")
+const struct ProcCmd gProcScr_TalkWaitForInput[] = {
+    PROC_MARK(5),
+    PROC_SLEEP(8),
+    PROC_REPEAT(TalkWaitForInput_OnIdle),
+    PROC_SLEEP(1),
+    PROC_END,
+};
+
+SECTION(".rodata.08B90ACC")
+const struct ProcCmd gProcScr_TalkShiftClearAll[] = {
+    PROC_MARK(5),
+    PROC_CALL(sub_0800931C),
+    PROC_REPEAT(TalkShiftClearAll_OnIdle),
+    PROC_END,
+};
+
+SECTION(".rodata.08B90B0C")
+const struct ProcCmd gUnk_08B90B0C[] = {
+    PROC_SLEEP(8),
+    PROC_REPEAT(sub_08009480),
+    PROC_END,
+};
+
+SECTION(".rodata.08B90B24")
+const struct ProcCmd gUnk_08B90B24[] = {
+    PROC_MARK(5),
+    PROC_CALL(sub_08009588),
+    PROC_REPEAT(sub_080095C8),
+    PROC_SLEEP(1),
+    PROC_END,
+};
+
+SECTION(".rodata.08B90B4C")
+const struct ProcCmd ProcScr_TalkSpriteShiftClear[] = {
+    PROC_MARK(5),
+    PROC_CALL(TalkSpriteShiftClear_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080096D4),
+    PROC_SLEEP(1),
+    PROC_END,
+};
+
+SECTION(".rodata.08B90B8C")
+const struct ProcCmd gProcScr_TalkBubbleOpen[] = {
+    PROC_REPEAT(TalkBubbleOpen_OnIdle),
+    PROC_END,
+};

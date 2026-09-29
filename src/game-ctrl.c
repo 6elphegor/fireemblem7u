@@ -689,3 +689,132 @@ void sub_08012C10(void)
     gPlaySt.config_window_theme = 0;
     gPlaySt.cfgUnitColor = 0;
 }
+
+void ClearEpilogueTexts();
+void ClearOnHBlankA();
+void Epilogue_DisableSkip();
+void Epilogue_EnableSkip();
+void Epilogue_End();
+void Epilogue_Init();
+void Epilogue_InitLastEntry();
+void Epilogue_InitMain();
+void Epilogue_LoopBlendOut();
+void Epilogue_LoopEndFade();
+void Epilogue_LoopLastEntry();
+void Epilogue_LoopMain();
+void Epilogue_StartEndScroll();
+void Epilogue_StartEndText();
+void FadeInBgm();
+void FadeOutBgm();
+void IsEpilogueTextActive();
+void OneYearLater_Init();
+void OneYearLater_Loop();
+void PostEpilogue_HandleTalk9F3();
+void PostEpilogue_HandleTalk9F5();
+void PostEpilogue_StartTalk9F3();
+void PostEpilogue_StartTalk9F4();
+void PostEpilogue_StartTalk9F5();
+void WorldMap_StartEvent();
+
+SECTION(".rodata.08CE7768")
+const struct ProcCmd ProcScr_StartWorldMapEvent[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(WorldMap_StartEvent),
+    PROC_SLEEP(0),
+    PROC_WHILE(IsEventRunning),
+    PROC_SLEEP(0),
+    PROC_END_EACH(ProcScr_BmFadeIN),
+    PROC_SLEEP(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEDEE4")
+const struct ProcCmd ProcScr_Unk_08CEDEE4[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(Epilogue_Init),
+    PROC_SLEEP(16),
+    PROC_CALL_ARG(FadeInBgm, 91),
+    PROC_CALL_ARG(NewFadeOut2, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_SLEEP(16),
+    PROC_CALL(Epilogue_InitMain),
+    PROC_SLEEP(16),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_CALL(Epilogue_EnableSkip),
+    PROC_REPEAT(Epilogue_LoopMain),
+    PROC_CALL(Epilogue_DisableSkip),
+    PROC_CALL_ARG(NewFadeOut2, 2),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(ClearEpilogueTexts),
+    PROC_SLEEP(0),
+    PROC_CALL(Epilogue_InitLastEntry),
+    PROC_CALL(Epilogue_EnableSkip),
+    PROC_REPEAT(Epilogue_LoopLastEntry),
+    PROC_SLEEP(120),
+    PROC_CALL(Epilogue_DisableSkip),
+    PROC_REPEAT(Epilogue_LoopBlendOut),
+    PROC_CALL_ARG(NewFadeOut2, 16),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(Epilogue_StartEndScroll),
+    PROC_CALL(Epilogue_EnableSkip),
+    PROC_SLEEP(30),
+    PROC_CALL(Epilogue_StartEndText),
+    PROC_WHILE(IsEpilogueTextActive),
+    PROC_REPEAT(Epilogue_LoopEndFade),
+    PROC_SLEEP(90),
+    PROC_CALL(Epilogue_DisableSkip),
+    PROC_CALL(ClearOnHBlankA),
+    PROC_SLEEP(1),
+    PROC_CALL_ARG(FadeOutBgm, 120),
+    PROC_CALL_ARG(NewFadeOut, 2),
+    PROC_WHILE(FadeOutExists),
+    PROC_SLEEP(120),
+    PROC_GOTO(99),
+    PROC_LABEL(50),
+    PROC_CALL(Epilogue_DisableSkip),
+    PROC_CALL(DisableAllGfx),
+    PROC_CALL(ClearOnHBlankA),
+    PROC_SLEEP(1),
+    PROC_CALL_ARG(FadeOutBgm, 30),
+    PROC_GOTO(99),
+    PROC_LABEL(99),
+    PROC_CALL(Epilogue_End),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_CALL(EndFadeInOut),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEE084")
+const struct ProcCmd ProcScr_Unk_08CEE084[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(OneYearLater_Init),
+    PROC_CALL_ARG(NewFadeIn, 2),
+    PROC_WHILE(FadeInExists),
+    PROC_REPEAT(OneYearLater_Loop),
+    PROC_CALL_ARG(NewFadeOut, 2),
+    PROC_WHILE(FadeOutExists),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEE0C4")
+const struct ProcCmd ProcScr_Unk_08CEE0C4[] = {
+    PROC_SLEEP(0),
+    PROC_WHILE(FadeInExists),
+    PROC_WHILE(FadeOutExists),
+    PROC_SLEEP(30),
+    PROC_CALL(PostEpilogue_StartTalk9F3),
+    PROC_SLEEP(0),
+    PROC_CALL(PostEpilogue_HandleTalk9F3),
+    PROC_LABEL(0),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(sub_080A4E0C),
+    PROC_SLEEP(30),
+    PROC_CALL(PostEpilogue_StartTalk9F5),
+    PROC_SLEEP(0),
+    PROC_CALL(PostEpilogue_HandleTalk9F5),
+    PROC_LABEL(1),
+    PROC_CALL(PostEpilogue_StartTalk9F4),
+    PROC_SLEEP(30),
+    PROC_END,
+};

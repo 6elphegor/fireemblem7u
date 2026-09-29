@@ -948,3 +948,16 @@ void PlayerPhase_HandleAutoEnd(ProcPtr proc)
     if (!(gPlaySt.cfgDisableAutoEndTurns) && (CountFactionMoveableUnits(gPlaySt.faction) == 0))
         Proc_Goto(proc, 3);
 }
+
+extern const struct ProcCmd gUnk_08B9358C[];
+
+SECTION(".rodata.08B935B4")
+const struct ProcCmd sProcScr_MoveLimitView[] = {
+    PROC_19,
+    PROC_MARK(1),
+    PROC_SET_END_CB(MoveLimitView_OnEnd),
+    PROC_START_CHILD(gUnk_08B9358C),
+    PROC_CALL(MoveLimitView_OnInit),
+    PROC_REPEAT(MoveLimitView_OnLoop),
+    PROC_END,
+};

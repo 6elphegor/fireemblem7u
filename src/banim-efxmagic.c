@@ -653,3 +653,40 @@ void Loop6C_efxMagicQUAKE(struct ProcEfxMagicQuake * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA14E4")
+const struct ProcCmd ProcScr_efxRestRST[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxRestRST_OnEnd),
+    PROC_REPEAT(efxRestRSTMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1504")
+const struct ProcCmd ProcScr_efxTwobaiRST[] = {
+    PROC_19,
+    PROC_REPEAT(EfxTwobaiRSTMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA151C")
+const struct ProcCmd ProcScr_DummvRST[] = {
+    PROC_19,
+    PROC_SET_END_CB(DummvRST_OnEnd),
+    PROC_REPEAT(DummvRSTMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA153C")
+const struct ProcCmd ProcScr_EfxRestWIN[] = {
+    PROC_19,
+    PROC_REPEAT(EfxRestWINMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1574")
+const struct ProcCmd ProcScr_efxALPHA[] = {
+    PROC_19,
+    PROC_REPEAT(EfxALPHAMain),
+    PROC_END,
+};

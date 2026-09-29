@@ -68,9 +68,9 @@ enum
     PL_SALLYCURSOR_REENTER_MAP = 0x3E,
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_PrepHelpPrompt[];
+extern const struct ProcCmd ProcScr_PrepHelpPrompt[];
 extern u8 CONST_DATA Img_PrepHelpButtonSprites[];
-extern struct ProcCmd CONST_DATA ProcScr_Config_PrepMapMenu[];
+extern const struct ProcCmd ProcScr_Config_PrepMapMenu[];
 
 int GetPlayerLeaderUnitId(void);
 void Prep_ShowDeployableTiles(void);

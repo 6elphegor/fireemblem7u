@@ -755,10 +755,10 @@ extern char gUnknown_03004E86[];
 extern u8 const gUnknown_080D9E44[];
 extern const u8 gUnknown_085AC604[];
 extern const u8 Img_LinkArenaPlayerBanners[];
-extern struct ProcCmd CONST_DATA ProcScr_SIOCON[];
-extern struct ProcCmd CONST_DATA ProcScr_SIOVSYNC[];
-extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN[];
-extern struct ProcCmd CONST_DATA ProcScr_SIOMAIN2[];
+extern const struct ProcCmd ProcScr_SIOCON[];
+extern const struct ProcCmd ProcScr_SIOVSYNC[];
+extern const struct ProcCmd ProcScr_SIOMAIN[];
+extern const struct ProcCmd ProcScr_SIOMAIN2[];
 
 int sub_0804528C(void); // FE8U sub_8049A60
 void sub_08048E0C(struct Unit * unit); // FE8U sub_804D40C

@@ -930,7 +930,6 @@ bool IsWorldMapActive(void);
 extern u8 gEventQueueCount;
 extern EventScr const * gEventQueue[];
 
-extern struct ProcCmd CONST_DATA ProcScr_08B90B9C[];
 extern struct ProcCmd CONST_DATA ProcScr_SubtitleHelpDarkener[];
 
 void sub_0800ADD0(ProcPtr proc);
@@ -1169,7 +1168,7 @@ void sub_0800B180(struct EventProc * proc)
 void sub_0800B198(struct EventProc * proc)
 {
     sub_080143E0();
-    Proc_EndEach(ProcScr_08B90B9C);
+    Proc_EndEach(gProcScr_TalkOpen);
 
     if (proc->background == -1)
         SetMuMaxWalkSpeed();

@@ -58,7 +58,7 @@ extern char gUnk_Sio_0203DD50[][LINKARENA_TEAMNAME_LEN];
 extern struct Text gUnk_Sio_0203DA88[];
 extern struct Text Texts_0203DAB0;
 extern struct Font Font_0203DB64;
-extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_PrepMenu[];
+extern const struct ProcCmd ProcScr_UnitListScreen_PrepMenu[];
 extern u16 gSioList_085A93E0[];
 
 extern const char gSioStr_NoData[]; // "NO DATA"

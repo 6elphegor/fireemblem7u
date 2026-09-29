@@ -170,7 +170,7 @@ void RefreshUnitInventoryInfoWindow(struct Unit * unit);
 /* ---- bmmenu.c ---- */
 
 extern const struct MenuDef gUnitActionMenuDef;
-extern struct ProcCmd CONST_DATA gProcScr_BackToUnitMenu[];
+extern const struct ProcCmd gProcScr_BackToUnitMenu[];
 
 u8 MapMenu_UnitCommand(struct MenuProc * menu, struct MenuItemProc * menuItem);
 void MakeUnitRescueTransferGraphics(struct Unit * from, struct Unit * to);

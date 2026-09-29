@@ -687,3 +687,11 @@ void EobjLvup_WaitApfxEnd(struct ProcEobjLvup * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BDB6AC")
+const struct ProcCmd ProcScr_EfxPartsofScroll[] = {
+    PROC_19,
+    PROC_SET_END_CB(EfxPartsofScrollCallBack),
+    PROC_REPEAT(EfxPartsofScrollMain),
+    PROC_END,
+};

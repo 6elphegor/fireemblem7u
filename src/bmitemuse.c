@@ -984,3 +984,38 @@ bool sub_08028194(struct Unit * unit)
 
     return FALSE;
 }
+
+SECTION(".rodata.08B94194")
+const struct ProcCmd gProcScr_SquareSelectWarp[] = {
+    PROC_SET_END_CB(WarpSelect_OnEnd),
+    PROC_CALL(LockGame),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_CALL(WarpSelect_OnInit),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_REPEAT(WarpSelect_OnIdle),
+    PROC_CALL(WarpSelect_OnConfirm),
+    PROC_SLEEP(0),
+    PROC_CALL(UnlockGame),
+    PROC_GOTO(100),
+    PROC_LABEL(99),
+    PROC_CALL(WarpSelect_OnCancel),
+    PROC_SLEEP(0),
+    PROC_CALL(UnlockGame),
+    PROC_LABEL(100),
+    PROC_END,
+};
+
+SECTION(".rodata.08B94214")
+const struct ProcCmd gProcScr_SquareSelectTorch[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(TorchSelect_OnInit),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_REPEAT(TorchSelect_OnIdle),
+    PROC_CALL(WarpSelect_OnConfirm),
+    PROC_GOTO(100),
+    PROC_LABEL(99),
+    PROC_CALL(WarpSelect_OnCancel),
+    PROC_LABEL(100),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};

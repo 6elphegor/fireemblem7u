@@ -662,3 +662,61 @@ s8 TradeMenu_UpdateTutorial(struct TradeMenuProc * proc)
 
     }
 }
+
+extern const struct ProcCmd ProcScr_TradeMenu_HighlightUpdater[];
+
+SECTION(".rodata.08B942F8")
+const struct ProcCmd ProcScr_TradeMenu[] = {
+    PROC_CALL(LockGame),
+    PROC_SLEEP(0),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_CALL(TradeMenu_InitItemDisplay),
+    PROC_CALL(TradeMenu_InitUnitNameDisplay),
+    PROC_START_CHILD(ProcScr_TradeMenu_HighlightUpdater),
+    PROC_LABEL(101),
+    PROC_CALL(CallTradeTutEventStart),
+    PROC_CALL_2(TradeMenu_LoadForcedInitialHover),
+    PROC_SLEEP(0),
+    PROC_LABEL(0),
+    PROC_CALL(TradeMenu_OnInitUnselected),
+    PROC_REPEAT(TradeMenu_OnLoopUnselected),
+    PROC_LABEL(1),
+    PROC_CALL(TradeMenu_OnInitSelected),
+    PROC_REPEAT(TradeMenu_OnLoopSelected),
+    PROC_CALL(TradeMenu_OnEndSelected),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(TradeMenu_ClearDisplay),
+    PROC_CALL(ClearUi),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
+
+SECTION(".rodata.08B943B0")
+const struct ProcCmd ProcScr_TradeMenu_HelpBox[] = {
+    PROC_CALL(TradeMenu_HelpBox_OnInit),
+    PROC_REPEAT(TradeMenu_HelpBox_OnLoop),
+    PROC_CALL(TradeMenu_HelpBox_OnEnd),
+    PROC_END,
+};
+
+SECTION(".rodata.08B943D0")
+const struct ProcCmd ProcScr_TradeMenu_TutorialHandCursor[] = {
+    PROC_SET_END_CB(TradeMenu_TutorialHandCursor_Update),
+    PROC_REPEAT(TradeMenu_TutorialHandCursor_Update),
+    PROC_END,
+};
+
+SECTION(".rodata.08B943E8")
+const struct ProcCmd ProcScr_TradeMenu_DoubleTutorialHandCursor[] = {
+    PROC_SET_END_CB(TradeMenu_DoubleTutorialHandCursor_Update),
+    PROC_REPEAT(TradeMenu_DoubleTutorialHandCursor_Update),
+    PROC_END,
+};
+
+SECTION(".rodata.08B94400")
+const struct ProcCmd ProcScr_TradeMenu_TutorialWait[] = {
+    PROC_CALL(TradeMenu_TutorialWait_OnInit),
+    PROC_REPEAT(TradeMenu_TutorialWait_OnLoop),
+    PROC_END,
+};

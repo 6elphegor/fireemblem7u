@@ -2044,3 +2044,73 @@ bool SortUnitList(u8 key, u8 order)
 
     return FALSE;
 }
+
+SECTION(".rodata.08CC3194")
+const struct ProcCmd ProcScr_UnitListScreen_Field[] = {
+    PROC_19,
+    PROC_CALL(LockGame),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(LockBmDisplay),
+    PROC_CALL(UnitList_Init),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_LABEL(1),
+    PROC_REPEAT(sub_0808A508),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(UnitList_OnEnd),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(EndAllMus),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(UnlockGame),
+    PROC_GOTO(4),
+    PROC_LABEL(2),
+    PROC_CALL(UnitList_StartPageChange),
+    PROC_REPEAT(sub_0808A770),
+    PROC_REPEAT(sub_0808A92C),
+    PROC_GOTO(1),
+    PROC_LABEL(3),
+    PROC_CALL(UnitList_StartStatScreen),
+    PROC_SLEEP(1),
+    PROC_CALL(UnitList_ResetFromStatScreen),
+    PROC_SLEEP(1),
+    PROC_CALL(UnitList_ResetDispFromStatScreen),
+    PROC_GOTO(1),
+    PROC_LABEL(4),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC336C")
+const struct ProcCmd ProcScr_UnitListScreen_SoloAnim[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(UnitList_Init),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_LABEL(1),
+    PROC_REPEAT(sub_0808A508),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(UnitList_OnEnd),
+    PROC_GOTO(4),
+    PROC_LABEL(3),
+    PROC_CALL(UnitList_StartStatScreen),
+    PROC_SLEEP(1),
+    PROC_CALL(UnitList_ResetFromStatScreen),
+    PROC_SLEEP(1),
+    PROC_CALL(UnitList_ResetDispFromStatScreen),
+    PROC_GOTO(1),
+    PROC_LABEL(4),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC3404")
+const struct ProcCmd ProcScr_bmview[] = {
+    PROC_19,
+    PROC_CALL(UnitListScreenSprites_Init),
+    PROC_REPEAT(UnitListScreenSprites_Main),
+    PROC_CALL(UnitListScreenSprites_Dummy),
+    PROC_END,
+};

@@ -61,7 +61,7 @@ u16 GetBkselHelpBoxMsg(int wt, s8 isEffective);
 void HbPopulate_BkselWTriEffA(struct HelpBoxProc * proc);
 void HbPopulate_BkselWTriEffB(struct HelpBoxProc * proc);
 
-extern struct ProcCmd CONST_DATA gProcScr_BKSEL[];
+extern const struct ProcCmd gProcScr_BKSEL[];
 
 extern struct Text gaBattleForecastTextStructs[6];
 extern u16 gBkselPals[8][16];

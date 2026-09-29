@@ -128,13 +128,13 @@ void sub_0808A770(struct UnitListScreenProc * proc);
 void UnitList_DrawColumnNames(u16 * tm, u8 page);
 int SortUnitList_GetUnitSoloAnimation(struct Unit * unit);
 
-extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_Field[];
-extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_PrepMenu[];
-extern struct ProcCmd CONST_DATA ProcScr_UnitListScreen_SoloAnim[];
+extern const struct ProcCmd ProcScr_UnitListScreen_Field[];
+extern const struct ProcCmd ProcScr_UnitListScreen_PrepMenu[];
+extern const struct ProcCmd ProcScr_UnitListScreen_SoloAnim[];
 extern u8 CONST_DATA gUnknown_08A17B30[];
 extern u8 CONST_DATA gUnknown_08A17B36[];
 
-extern struct ProcCmd ProcScr_bmview[];
+extern const struct ProcCmd ProcScr_bmview[];
 extern u8 const Img_08A1CD68[];
 extern u16 const Pal_MapBattleInfoNum[];
 extern u8 const gUnknown_08A1C8B4[];
