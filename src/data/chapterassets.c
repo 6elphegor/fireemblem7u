@@ -244,13 +244,13 @@ extern const u8 MapLayout_Ch01[];
 extern const u8 MapLayout_Ch00[];
 extern const u8 Img_MapObj_1C[];
 extern const u8 Img_MapObj_1D_B[];
-extern const struct TileGfxAnim gUnk_08B95D38[];
-extern const struct TileGfxAnim gUnk_08B95DC0[];
-extern const struct TileGfxAnim gUnk_08B95E08[];
-extern const struct TileGfxAnim gUnk_08B95F50[];
-extern const struct TileGfxAnim gUnk_08B95F98[];
-extern const struct TilePalAnim gUnk_08B95FE0[];
-extern const struct TilePalAnim gUnk_08B960A0[];
+extern const struct TileGfxAnim TileGfxAnim_08B95D38[];
+extern const struct TileGfxAnim TileGfxAnim_08B95DC0[];
+extern const struct TileGfxAnim TileGfxAnim_08B95E08[];
+extern const struct TileGfxAnim TileGfxAnim_08B95F50[];
+extern const struct TileGfxAnim TileGfxAnim_08B95F98[];
+extern const struct TilePalAnim TilePalAnim_08B95FE0[];
+extern const struct TilePalAnim TilePalAnim_08B960A0[];
 extern const struct MapChange MapChanges_Ch02[];
 extern const struct MapChange MapChanges_Ch03[];
 extern const struct MapChange MapChanges_Ch04[];
@@ -352,7 +352,7 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0x02] = (void const *) Pal_Map_Ch00, // pal: CHAPTER_00
     [0x03] = (void const *) TileConfig_03, // tileset: CHAPTER_00, CHAPTER_01
     [0x04] = (void const *) MapLayout_Ch00, // map: CHAPTER_00
-    [0x05] = (void const *) gUnk_08B95D38, // img_anims: CHAPTER_00, CHAPTER_01, CHAPTER_05, CHAPTER_07, CHAPTER_09, CHAPTER_0A, CHAPTER_0B, CHAPTER_0C, CHAPTER_0E, CHAPTER_0F, CHAPTER_10, CHAPTER_11, CHAPTER_13, CHAPTER_17, CHAPTER_18, CHAPTER_1F, CHAPTER_21, CHAPTER_22, CHAPTER_27, CHAPTER_2C, 0x33, 0x34, 0x3A, 0x3C, 0x3E, 0x42
+    [0x05] = (void const *) TileGfxAnim_08B95D38, // img_anims: CHAPTER_00, CHAPTER_01, CHAPTER_05, CHAPTER_07, CHAPTER_09, CHAPTER_0A, CHAPTER_0B, CHAPTER_0C, CHAPTER_0E, CHAPTER_0F, CHAPTER_10, CHAPTER_11, CHAPTER_13, CHAPTER_17, CHAPTER_18, CHAPTER_1F, CHAPTER_21, CHAPTER_22, CHAPTER_27, CHAPTER_2C, 0x33, 0x34, 0x3A, 0x3C, 0x3E, 0x42
     [0x06] = (void const *) ChapterEvents_Ch00, // events: CHAPTER_00
     [0x07] = (void const *) Pal_Map_Ch01, // pal: CHAPTER_01
     [0x08] = (void const *) MapLayout_Ch01, // map: CHAPTER_01
@@ -435,14 +435,14 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0x55] = (void const *) ChapterEvents_Ch14, // events: CHAPTER_14
     [0x56] = (void const *) Pal_Map_Ch15, // pal: CHAPTER_15, CHAPTER_20
     [0x57] = (void const *) MapLayout_Ch15, // map: CHAPTER_15
-    [0x58] = (void const *) gUnk_08B95E08, // img_anims: CHAPTER_15, CHAPTER_1B, CHAPTER_20, CHAPTER_2B, 0x39, 0x3D
+    [0x58] = (void const *) TileGfxAnim_08B95E08, // img_anims: CHAPTER_15, CHAPTER_1B, CHAPTER_20, CHAPTER_2B, 0x39, 0x3D
     [0x59] = (void const *) MapChanges_Ch15, // map_changes: CHAPTER_15
     [0x5A] = (void const *) ChapterEvents_Ch15, // events: CHAPTER_15
     [0x5B] = (void const *) Img_MapObj_5B, // img_a: CHAPTER_16
     [0x5C] = (void const *) Pal_Map_Ch16, // pal: CHAPTER_16
     [0x5D] = (void const *) TileConfig_5D, // tileset: CHAPTER_16
     [0x5E] = (void const *) MapLayout_Ch16, // map: CHAPTER_16
-    [0x5F] = (void const *) gUnk_08B95DC0, // img_anims: CHAPTER_16
+    [0x5F] = (void const *) TileGfxAnim_08B95DC0, // img_anims: CHAPTER_16
     [0x60] = (void const *) MapChanges_Ch16, // map_changes: CHAPTER_16
     [0x61] = (void const *) ChapterEvents_Ch16, // events: CHAPTER_16
     [0x62] = (void const *) Pal_Map_Ch17, // pal: CHAPTER_17
@@ -499,7 +499,7 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0x95] = (void const *) MapChanges_Ch23, // map_changes: CHAPTER_23
     [0x96] = (void const *) ChapterEvents_Ch23, // events: CHAPTER_23
     [0x97] = (void const *) MapLayout_Ch24, // map: CHAPTER_24
-    [0x98] = (void const *) gUnk_08B95FE0, // pal_anims: CHAPTER_24
+    [0x98] = (void const *) TilePalAnim_08B95FE0, // pal_anims: CHAPTER_24
     [0x99] = (void const *) MapChanges_Ch24, // map_changes: CHAPTER_24
     [0x9A] = (void const *) ChapterEvents_Ch24, // events: CHAPTER_24
     [0x9B] = (void const *) Pal_Map_Ch25, // pal: CHAPTER_25
@@ -508,7 +508,7 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0x9E] = (void const *) ChapterEvents_Ch25, // events: CHAPTER_25
     [0x9F] = (void const *) Pal_Map_Ch26, // pal: CHAPTER_26
     [0xA0] = (void const *) MapLayout_Ch26, // map: CHAPTER_26
-    [0xA1] = (void const *) gUnk_08B95F98, // img_anims: CHAPTER_26, 0x37
+    [0xA1] = (void const *) TileGfxAnim_08B95F98, // img_anims: CHAPTER_26, 0x37
     [0xA2] = (void const *) MapChanges_Ch26, // map_changes: CHAPTER_26
     [0xA3] = (void const *) ChapterEvents_Ch26, // events: CHAPTER_26
     [0xA4] = (void const *) MapLayout_Ch27, // map: CHAPTER_27
@@ -518,7 +518,7 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0xA8] = (void const *) Pal_Map_Ch28, // pal: CHAPTER_28
     [0xA9] = (void const *) TileConfig_A9, // tileset: CHAPTER_28
     [0xAA] = (void const *) MapLayout_Ch28, // map: CHAPTER_28
-    [0xAB] = (void const *) gUnk_08B960A0, // pal_anims: CHAPTER_28
+    [0xAB] = (void const *) TilePalAnim_08B960A0, // pal_anims: CHAPTER_28
     [0xAC] = (void const *) MapChanges_Ch28, // map_changes: CHAPTER_28
     [0xAD] = (void const *) ChapterEvents_Ch28, // events: CHAPTER_28
     [0xAE] = (void const *) Img_MapObj_AE, // img_a: CHAPTER_29
@@ -544,7 +544,7 @@ CONST_DATA void const * gChapterDataAssetTable[] = {
     [0xC2] = (void const *) Pal_Map_Ch2E, // pal: CHAPTER_2E, CHAPTER_2F, 0x40
     [0xC3] = (void const *) TileConfig_C3, // tileset: CHAPTER_2E, CHAPTER_2F, 0x40
     [0xC4] = (void const *) MapLayout_Ch2E, // map: CHAPTER_2E
-    [0xC5] = (void const *) gUnk_08B95F50, // img_anims: CHAPTER_2E, CHAPTER_2F
+    [0xC5] = (void const *) TileGfxAnim_08B95F50, // img_anims: CHAPTER_2E, CHAPTER_2F
     [0xC6] = (void const *) MapChanges_Ch2E, // map_changes: CHAPTER_2E
     [0xC7] = (void const *) ChapterEvents_Ch2E, // events: CHAPTER_2E
     [0xC8] = (void const *) MapLayout_Ch2F, // map: CHAPTER_2F

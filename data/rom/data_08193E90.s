@@ -1549,68 +1549,68 @@ gClassList_Empty9:
 gAiCombatScoreCoefficientTable:
 	.incbin "baserom.gba", 0x1d36f4, 0x280
 
-	.global gUnk_081D3974
-gUnk_081D3974:
+	.global AiEscapePts_081D3974
+AiEscapePts_081D3974:
 	.incbin "baserom.gba", 0x1d3974, 0xc
 
-	.global gUnk_081D3980
-gUnk_081D3980:
+	.global AiEscapePts_081D3980
+AiEscapePts_081D3980:
 	.incbin "baserom.gba", 0x1d3980, 0x10
 
-	.global gUnk_081D3990
-gUnk_081D3990:
+	.global AiEscapePts_081D3990
+AiEscapePts_081D3990:
 	.incbin "baserom.gba", 0x1d3990, 0x10
 
-	.global gUnk_081D39A0
-gUnk_081D39A0:
+	.global AiEscapePts_081D39A0
+AiEscapePts_081D39A0:
 	.incbin "baserom.gba", 0x1d39a0, 0x10
 
-	.global gUnk_081D39B0
-gUnk_081D39B0:
+	.global AiEscapePts_081D39B0
+AiEscapePts_081D39B0:
 	.incbin "baserom.gba", 0x1d39b0, 0xc
 
-	.global gUnk_081D39BC
-gUnk_081D39BC:
+	.global AiEscapePts_081D39BC
+AiEscapePts_081D39BC:
 	.incbin "baserom.gba", 0x1d39bc, 0x10
 
-	.global gUnk_081D39CC
-gUnk_081D39CC:
+	.global AiEscapePts_081D39CC
+AiEscapePts_081D39CC:
 	.incbin "baserom.gba", 0x1d39cc, 0xc
 
-	.global gUnk_081D39D8
-gUnk_081D39D8:
+	.global AiEscapePts_081D39D8
+AiEscapePts_081D39D8:
 	.incbin "baserom.gba", 0x1d39d8, 0x10
 
-	.global gUnk_081D39E8
-gUnk_081D39E8:
+	.global AiEscapePts_081D39E8
+AiEscapePts_081D39E8:
 	.incbin "baserom.gba", 0x1d39e8, 0x18
 
-	.global gUnk_081D3A00
-gUnk_081D3A00:
+	.global AiEscapePts_081D3A00
+AiEscapePts_081D3A00:
 	.incbin "baserom.gba", 0x1d3a00, 0x8
 
-	.global gUnk_081D3A08
-gUnk_081D3A08:
+	.global AiEscapePts_081D3A08
+AiEscapePts_081D3A08:
 	.incbin "baserom.gba", 0x1d3a08, 0x8
 
-	.global gUnk_081D3A10
-gUnk_081D3A10:
+	.global AiEscapePts_081D3A10
+AiEscapePts_081D3A10:
 	.incbin "baserom.gba", 0x1d3a10, 0x8
 
-	.global gUnk_081D3A18
-gUnk_081D3A18:
+	.global AiEscapePts_081D3A18
+AiEscapePts_081D3A18:
 	.incbin "baserom.gba", 0x1d3a18, 0x20
 
-	.global gUnk_081D3A38
-gUnk_081D3A38:
+	.global AiEscapePts_081D3A38
+AiEscapePts_081D3A38:
 	.incbin "baserom.gba", 0x1d3a38, 0xc
 
-	.global gUnk_081D3A44
-gUnk_081D3A44:
+	.global AiEscapePts_081D3A44
+AiEscapePts_081D3A44:
 	.incbin "baserom.gba", 0x1d3a44, 0x18
 
-	.global gUnk_081D3A5C
-gUnk_081D3A5C:
+	.global AiEscapePts_081D3A5C
+AiEscapePts_081D3A5C:
 	.incbin "baserom.gba", 0x1d3a5c, 0x4
 
 	.global gAiItemConfigTable

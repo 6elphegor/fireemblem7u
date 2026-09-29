@@ -2308,24 +2308,24 @@ gAiTerrainList_SnagWall:
 
 	.section .rodata.08B970F0, "a"
 
-	.global gUnk_08B970F0
-gUnk_08B970F0:
+	.global AiCharIdList_08B970F0
+AiCharIdList_08B970F0:
 	.incbin "baserom.gba", 0xb970f0, 0x2
 
 	.global gUnk_08B970F2
 gUnk_08B970F2:
 	.incbin "baserom.gba", 0xb970f2, 0x2
 
-	.global gUnk_08B970F4
-gUnk_08B970F4:
+	.global AiCharIdList_08B970F4
+AiCharIdList_08B970F4:
 	.incbin "baserom.gba", 0xb970f4, 0x2
 
 	.global gUnk_08B970F6
 gUnk_08B970F6:
 	.incbin "baserom.gba", 0xb970f6, 0x2
 
-	.global gUnk_08B970F8
-gUnk_08B970F8:
+	.global AiCharIdList_08B970F8
+AiCharIdList_08B970F8:
 	.incbin "baserom.gba", 0xb970f8, 0x2
 
 	.global gUnk_08B970FA

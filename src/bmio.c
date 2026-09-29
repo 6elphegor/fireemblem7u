@@ -1361,7 +1361,7 @@ void SetTacticianName(const char * newName)
 }
 
 SECTION(".rodata.08B95D38")
-const struct TileGfxAnim gUnk_08B95D38[] = {
+const struct TileGfxAnim TileGfxAnim_08B95D38[] = {
     { .time = 0x1C, .size = 0x1000, .data = gUnk_08379B4C },
     { .time = 0x1C, .size = 0x1000, .data = gUnk_0837AB4C },
     { .time = 0x1C, .size = 0x1000, .data = gUnk_0837BB4C },
@@ -1382,7 +1382,7 @@ const struct TileGfxAnim gUnk_08B95D38[] = {
 };
 
 SECTION(".rodata.08B95DC0")
-const struct TileGfxAnim gUnk_08B95DC0[] = {
+const struct TileGfxAnim TileGfxAnim_08B95DC0[] = {
     { .time = 0x1C, .size = 0x1000, .data = gUnk_08389B4C },
     { .time = 0x1C, .size = 0x1000, .data = gUnk_0838AB4C },
     { .time = 0x1C, .size = 0x1000, .data = gUnk_0838BB4C },
@@ -1395,7 +1395,7 @@ const struct TileGfxAnim gUnk_08B95DC0[] = {
 };
 
 SECTION(".rodata.08B95E08")
-const struct TileGfxAnim gUnk_08B95E08[] = {
+const struct TileGfxAnim TileGfxAnim_08B95E08[] = {
     { .time = 0x1C, .size = 0x1000, .data = gUnk_08391B4C },
     { .time = 0x1C, .size = 0x1000, .data = gUnk_08392B4C },
     { .time = 0x1C, .size = 0x1000, .data = gUnk_08393B4C },
@@ -1440,7 +1440,7 @@ const struct TileGfxAnim gUnk_08B95E08[] = {
 };
 
 SECTION(".rodata.08B95F50")
-const struct TileGfxAnim gUnk_08B95F50[] = {
+const struct TileGfxAnim TileGfxAnim_08B95F50[] = {
     { .time = 0xB, .size = 0x500, .data = gUnk_083B334C },
     { .time = 0xB, .size = 0x500, .data = gUnk_083B384C },
     { .time = 0xB, .size = 0x500, .data = gUnk_083B3D4C },
@@ -1453,7 +1453,7 @@ const struct TileGfxAnim gUnk_08B95F50[] = {
 };
 
 SECTION(".rodata.08B95F98")
-const struct TileGfxAnim gUnk_08B95F98[] = {
+const struct TileGfxAnim TileGfxAnim_08B95F98[] = {
     { .time = 0xB, .size = 0x800, .data = gUnk_083B5B4C },
     { .time = 0xB, .size = 0x800, .data = gUnk_083B5F4C },
     { .time = 0xB, .size = 0x800, .data = gUnk_083B634C },
@@ -1466,7 +1466,7 @@ const struct TileGfxAnim gUnk_08B95F98[] = {
 };
 
 SECTION(".rodata.08B95FE0")
-const struct TilePalAnim gUnk_08B95FE0[] = {
+const struct TilePalAnim TilePalAnim_08B95FE0[] = {
     { .data = gUnk_083B7B4C, .time = 0x3D, .colorCount = 4, .colorStart = 0x3C },
     { .data = gUnk_083B7B4C, .time = 0x3D, .colorCount = 4, .colorStart = 0x3C },
     { .data = gUnk_083B7B54, .time = 3, .colorCount = 4, .colorStart = 0x3C },
@@ -1494,7 +1494,7 @@ const struct TilePalAnim gUnk_08B95FE0[] = {
 };
 
 SECTION(".rodata.08B960A0")
-const struct TilePalAnim gUnk_08B960A0[] = {
+const struct TilePalAnim TilePalAnim_08B960A0[] = {
     { .data = gUnk_083B7C04, .time = 0x13, .colorCount = 4, .colorStart = 0x3C },
     { .data = gUnk_083B7C0C, .time = 0x12, .colorCount = 4, .colorStart = 0x3C },
     { .data = gUnk_083B7C14, .time = 0x11, .colorCount = 4, .colorStart = 0x3C },

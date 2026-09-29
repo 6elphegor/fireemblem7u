@@ -25,7 +25,7 @@ extern const struct AiScr gAiScript_FallbackAi1[];
 extern const struct AiScr gAiScript_FallbackAi2[];
 
 extern u8 const gAiTerrainList_SnagWall[];
-extern const u8 gUnk_08B970F0[], gUnk_08B970F4[], gUnk_08B970F8[];   // character id lists the AI scripts point into
+extern const u8 AiCharIdList_08B970F0[], AiCharIdList_08B970F4[], AiCharIdList_08B970F8[];   // character id lists the AI scripts point into
 
 void AiScriptCmd_00_ConditionalGoto(u8 * pc);
 void AiScriptCmd_01_FunctionCall(u8 * pc);
@@ -810,24 +810,24 @@ s8 sub_08038548(u8 * arg)
 }
 
 extern const struct AiScr AiScr_AiB_MoveToEnemy[];
-extern const struct AiScr gUnk_08B97318[];
-extern const struct AiScr gUnk_08B97338[];
-extern const struct AiScr gUnk_08B97368[];
-extern const struct AiScr gUnk_08B97398[];
-extern const struct AiScr gUnk_08B973B8[];
+extern const struct AiScr AiScr_08B97318[];
+extern const struct AiScr AiScr_08B97338[];
+extern const struct AiScr AiScr_08B97368[];
+extern const struct AiScr AiScr_08B97398[];
+extern const struct AiScr AiScr_08B973B8[];
 extern const struct AiScr AiScr_AiB_NeverMove[];
 extern const struct AiScr AiScr_AiB_PillageThenPursue[];
 extern const struct AiScr AiScr_AiB_PillageThenEscape[];
 extern const struct AiScr gAiScript_Escape[];
-extern const struct AiScr gUnk_08B974B8[];
-extern const struct AiScr gUnk_08B974F8[];
-extern const struct AiScr gUnk_08B97538[];
-extern const struct AiScr gUnk_08B97578[];
-extern const struct AiScr gUnk_08B975B8[];
-extern const struct AiScr gUnk_08B97608[];
-extern const struct AiScr gUnk_08B97678[];
-extern const struct AiScr gUnk_08B97778[];
-extern const struct AiScr gUnk_08B977F8[];
+extern const struct AiScr AiScr_08B974B8[];
+extern const struct AiScr AiScr_08B974F8[];
+extern const struct AiScr AiScr_08B97538[];
+extern const struct AiScr AiScr_08B97578[];
+extern const struct AiScr AiScr_08B975B8[];
+extern const struct AiScr AiScr_08B97608[];
+extern const struct AiScr AiScr_08B97678[];
+extern const struct AiScr AiScr_08B97778[];
+extern const struct AiScr AiScr_08B977F8[];
 extern const struct AiScr gAiScript_ActionInRange[];
 extern const struct AiScr gAiScript_ActionInRange_80Perc[];
 extern const struct AiScr gAiScript_ActionInRange_50Perc[];
@@ -835,35 +835,35 @@ extern const struct AiScr gAiScript_ActionStanding[];
 extern const struct AiScr gAiScript_ActionStanding_80Perc[];
 extern const struct AiScr gAiScript_ActionStanding_50Perc[];
 extern const struct AiScr gAiScript_DoNothing[];
-extern const struct AiScr gUnk_08B979EC[];
-extern const struct AiScr gUnk_08B97A14[];
-extern const struct AiScr gUnk_08B97A38[];
+extern const struct AiScr AiScr_08B979EC[];
+extern const struct AiScr AiScr_08B97A14[];
+extern const struct AiScr AiScr_08B97A38[];
 extern const struct AiScr gAiScript_ActionInRange_ExceptCivilian[];
-extern const struct AiScr gUnk_08B97A9C[];
-extern const struct AiScr gUnk_08B97ABC[];
-extern const struct AiScr gUnk_08B97AFC[];
-extern const struct AiScr gUnk_08B97B1C[];
-extern const struct AiScr gUnk_08B97B8C[];
-extern const struct AiScr gUnk_08B97D1C[];
-extern const struct AiScr gUnk_08B97FCC;
-extern const struct AiScr gUnk_08B97FDC[];
-extern const struct AiScr gUnk_08B9806C[];
-extern const struct AiScr gUnk_08B9811C[];
-extern const struct AiScr gUnk_08B981CC[];
-extern const struct AiScr gUnk_08B9827C[];
-extern const struct AiScr gUnk_08B9832C[];
-extern const struct AiScr gUnk_08B983DC[];
-extern const struct AiScr gUnk_08B9848C[];
-extern const struct AiScr gUnk_08B9856C[];
-extern const struct AiScr gUnk_08B9858C[];
-extern const struct AiScr gUnk_08B985BC[];
-extern const struct AiScr gUnk_08B9861C[];
-extern const struct AiScr gUnk_08B9863C[];
-extern const struct AiScr gUnk_08B986A8[];
-extern const struct AiScr gUnk_08B98724[];
-extern const struct AiScr gUnk_08B987A0[];
-extern const struct AiScr gUnk_08B9881C[];
-extern const struct AiScr gUnk_08B98898[];
+extern const struct AiScr AiScr_08B97A9C[];
+extern const struct AiScr AiScr_08B97ABC[];
+extern const struct AiScr AiScr_08B97AFC[];
+extern const struct AiScr AiScr_08B97B1C[];
+extern const struct AiScr AiScr_08B97B8C[];
+extern const struct AiScr AiScr_08B97D1C[];
+extern const struct AiScr AiScr_08B97FCC;
+extern const struct AiScr AiScr_08B97FDC[];
+extern const struct AiScr AiScr_08B9806C[];
+extern const struct AiScr AiScr_08B9811C[];
+extern const struct AiScr AiScr_08B981CC[];
+extern const struct AiScr AiScr_08B9827C[];
+extern const struct AiScr AiScr_08B9832C[];
+extern const struct AiScr AiScr_08B983DC[];
+extern const struct AiScr AiScr_08B9848C[];
+extern const struct AiScr AiScr_08B9856C[];
+extern const struct AiScr AiScr_08B9858C[];
+extern const struct AiScr AiScr_08B985BC[];
+extern const struct AiScr AiScr_08B9861C[];
+extern const struct AiScr AiScr_08B9863C[];
+extern const struct AiScr AiScr_08B986A8[];
+extern const struct AiScr AiScr_08B98724[];
+extern const struct AiScr AiScr_08B987A0[];
+extern const struct AiScr AiScr_08B9881C[];
+extern const struct AiScr AiScr_08B98898[];
 
 SECTION(".rodata.08B970A4")
 const struct AiScr gAiScript_FallbackAi1[] = {
@@ -882,34 +882,34 @@ const struct AiScr AiScr_AiB_MoveToEnemy[] = {
 };
 
 SECTION(".rodata.08B97318")
-const struct AiScr gUnk_08B97318[] = {
+const struct AiScr AiScr_08B97318[] = {
     { .cmd = 0x13, .unk_02 = 0xFF },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97338")
-const struct AiScr gUnk_08B97338[] = {
+const struct AiScr AiScr_08B97338[] = {
     { .cmd = 0xE, .unk_02 = 0xFF },
     { .cmd = 2, .unk_01 = 0xFF },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97368")
-const struct AiScr gUnk_08B97368[] = {
+const struct AiScr AiScr_08B97368[] = {
     { .cmd = 0xE, .unk_02 = 0xFF },
     { .cmd = 2, .unk_01 = 0xFF, .unk_02 = 4 },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97398")
-const struct AiScr gUnk_08B97398[] = {
-    { .cmd = 0x12, .unk_02 = 0xFF, .unk_08 = &gUnk_08B970F0[2] },
+const struct AiScr AiScr_08B97398[] = {
+    { .cmd = 0x12, .unk_02 = 0xFF, .unk_08 = &AiCharIdList_08B970F0[2] },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B973B8")
-const struct AiScr gUnk_08B973B8[] = {
-    { .cmd = 0x12, .unk_02 = 0xFF, .unk_08 = gUnk_08B970F4 },
+const struct AiScr AiScr_08B973B8[] = {
+    { .cmd = 0x12, .unk_02 = 0xFF, .unk_08 = AiCharIdList_08B970F4 },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
@@ -944,7 +944,7 @@ const struct AiScr gAiScript_Escape[] = {
 };
 
 SECTION(".rodata.08B974B8")
-const struct AiScr gUnk_08B974B8[] = {
+const struct AiScr AiScr_08B974B8[] = {
     { .cmd = 0xC, .unk_01 = 6, .unk_02 = 0xFF, .unk_03 = 9 },
     { .cmd = 0x1B, .unk_02 = 0xFF, .unk_03 = 1 },
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF },
@@ -952,7 +952,7 @@ const struct AiScr gUnk_08B974B8[] = {
 };
 
 SECTION(".rodata.08B974F8")
-const struct AiScr gUnk_08B974F8[] = {
+const struct AiScr AiScr_08B974F8[] = {
     { .cmd = 0xC, .unk_01 = 6, .unk_02 = 0xFF, .unk_03 = 5 },
     { .cmd = 0x1B, .unk_02 = 0xFF, .unk_03 = 1 },
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF },
@@ -960,7 +960,7 @@ const struct AiScr gUnk_08B974F8[] = {
 };
 
 SECTION(".rodata.08B97538")
-const struct AiScr gUnk_08B97538[] = {
+const struct AiScr AiScr_08B97538[] = {
     { .cmd = 0xC, .unk_01 = 5, .unk_02 = 0xFF, .unk_03 = 2 },
     { .cmd = 0x1B, .unk_02 = 0xFF, .unk_03 = 1 },
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF },
@@ -968,7 +968,7 @@ const struct AiScr gUnk_08B97538[] = {
 };
 
 SECTION(".rodata.08B97578")
-const struct AiScr gUnk_08B97578[] = {
+const struct AiScr AiScr_08B97578[] = {
     { .cmd = 0xC, .unk_01 = 6, .unk_02 = 0xFF, .unk_03 = 2 },
     { .cmd = 0x1B, .unk_02 = 0xFF, .unk_03 = 1 },
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF },
@@ -976,7 +976,7 @@ const struct AiScr gUnk_08B97578[] = {
 };
 
 SECTION(".rodata.08B975B8")
-const struct AiScr gUnk_08B975B8[] = {
+const struct AiScr AiScr_08B975B8[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = AiCountEnemyInRangeOrTryMoveToSpecificPosition },
     { .unk_02 = 0xFF, .unk_03 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 3, .unk_02 = 0xFF },
@@ -985,7 +985,7 @@ const struct AiScr gUnk_08B975B8[] = {
 };
 
 SECTION(".rodata.08B97608")
-const struct AiScr gUnk_08B97608[] = {
+const struct AiScr AiScr_08B97608[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = AiFunc_CountEnemiesInRange, .unk_0C = gUnk_081D3B48 },
     { .unk_02 = 0xFF, .unk_03 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 0xE, .unk_02 = 0xFF },
@@ -996,7 +996,7 @@ const struct AiScr gUnk_08B97608[] = {
 };
 
 SECTION(".rodata.08B97678")
-const struct AiScr gUnk_08B97678[] = {
+const struct AiScr AiScr_08B97678[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = AiFunc_CountEnemiesInRange, .unk_0C = gUnk_081D3B48 },
     { .unk_02 = 0xFF, .unk_03 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 0xE, .unk_02 = 0xFF },
@@ -1016,10 +1016,10 @@ const struct AiScr gUnk_08B97678[] = {
 };
 
 SECTION(".rodata.08B97778")
-const struct AiScr gUnk_08B97778[] = {
+const struct AiScr AiScr_08B97778[] = {
     { .cmd = 0x16, .unk_02 = 0xFF },
     { .cmd = 3, .unk_02 = 0xFF },
-    { .cmd = 0x1A, .unk_02 = 0xFF, .unk_08 = gUnk_08B970F8 },
+    { .cmd = 0x1A, .unk_02 = 0xFF, .unk_08 = AiCharIdList_08B970F8 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 3, .unk_02 = 0xFF },
     { .cmd = 0xB, .unk_01 = 1 },
@@ -1028,8 +1028,8 @@ const struct AiScr gUnk_08B97778[] = {
 };
 
 SECTION(".rodata.08B977F8")
-const struct AiScr gUnk_08B977F8[] = {
-    { .cmd = 0x1A, .unk_02 = 0xFF, .unk_08 = &gUnk_08B970F8[2] },
+const struct AiScr AiScr_08B977F8[] = {
+    { .cmd = 0x1A, .unk_02 = 0xFF, .unk_08 = &AiCharIdList_08B970F8[2] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 3, .unk_02 = 0xFF },
     { .cmd = 0xB, .unk_01 = 1 },
@@ -1091,19 +1091,19 @@ const struct AiScr gAiScript_DoNothing[] = {
 };
 
 SECTION(".rodata.08B979EC")
-const struct AiScr gUnk_08B979EC[] = {
+const struct AiScr AiScr_08B979EC[] = {
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = gUnk_08B979E8 },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97A14")
-const struct AiScr gUnk_08B97A14[] = {
+const struct AiScr AiScr_08B97A14[] = {
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = gUnk_08B97A0C },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97A38")
-const struct AiScr gUnk_08B97A38[] = {
+const struct AiScr AiScr_08B97A38[] = {
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = gUnk_08B97A34 },
     { .cmd = 3, .unk_02 = 0xFF },
 };
@@ -1112,18 +1112,18 @@ SECTION(".rodata.08B97A5C")
 const struct AiScr gAiScript_ActionInRange_ExceptCivilian[] = {
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = gUnk_08B97A58 },
     { .cmd = 3, .unk_02 = 0xFF },
-    { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = gUnk_08B970F4 },
+    { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = AiCharIdList_08B970F4 },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97A9C")
-const struct AiScr gUnk_08B97A9C[] = {
-    { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = &gUnk_08B970F4[2] },
+const struct AiScr AiScr_08B97A9C[] = {
+    { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_08 = &AiCharIdList_08B970F4[2] },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97ABC")
-const struct AiScr gUnk_08B97ABC[] = {
+const struct AiScr AiScr_08B97ABC[] = {
     { .cmd = 4, .unk_01 = 0x64, .unk_02 = 0xFF, .unk_04 = 3 },
     { .unk_01 = 5, .unk_02 = 0xFF, .unk_04 = 3, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF },
@@ -1131,13 +1131,13 @@ const struct AiScr gUnk_08B97ABC[] = {
 };
 
 SECTION(".rodata.08B97AFC")
-const struct AiScr gUnk_08B97AFC[] = {
+const struct AiScr AiScr_08B97AFC[] = {
     { .cmd = 5, .unk_01 = 0x64, .unk_02 = 0xFF },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B97B1C")
-const struct AiScr gUnk_08B97B1C[] = {
+const struct AiScr AiScr_08B97B1C[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = AiFunc_CountEnemiesInRange, .unk_0C = gUnk_081D3B4C },
     { .unk_02 = 0xFF, .unk_03 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 7, .unk_01 = 0x64, .unk_02 = 0xFF },
@@ -1148,7 +1148,7 @@ const struct AiScr gUnk_08B97B1C[] = {
 };
 
 SECTION(".rodata.08B97B8C")
-const struct AiScr gUnk_08B97B8C[] = {
+const struct AiScr AiScr_08B97B8C[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A5BC },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[1] },
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A7C8 },
@@ -1177,7 +1177,7 @@ const struct AiScr gUnk_08B97B8C[] = {
 };
 
 SECTION(".rodata.08B97D1C")
-const struct AiScr gUnk_08B97D1C[] = {
+const struct AiScr AiScr_08B97D1C[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803AA60 },
     { .cmd = 2, .unk_01 = 0x10, .unk_02 = 5 },
     { .cmd = 3, .unk_02 = 0xFF },
@@ -1224,10 +1224,10 @@ const struct AiScr gUnk_08B97D1C[] = {
 };
 
 SECTION(".rodata.08B97FCC")
-const struct AiScr gUnk_08B97FCC = { .cmd = 2 };
+const struct AiScr AiScr_08B97FCC = { .cmd = 2 };
 
 SECTION(".rodata.08B97FDC")
-const struct AiScr gUnk_08B97FDC[] = {
+const struct AiScr AiScr_08B97FDC[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 2 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_04 = 3, .unk_08 = &gAiState.cmd_result[0] },
@@ -1240,7 +1240,7 @@ const struct AiScr gUnk_08B97FDC[] = {
 };
 
 SECTION(".rodata.08B9806C")
-const struct AiScr gUnk_08B9806C[] = {
+const struct AiScr AiScr_08B9806C[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 0x28 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 2, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
@@ -1255,7 +1255,7 @@ const struct AiScr gUnk_08B9806C[] = {
 };
 
 SECTION(".rodata.08B9811C")
-const struct AiScr gUnk_08B9811C[] = {
+const struct AiScr AiScr_08B9811C[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 1 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 2, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
@@ -1270,7 +1270,7 @@ const struct AiScr gUnk_08B9811C[] = {
 };
 
 SECTION(".rodata.08B981CC")
-const struct AiScr gUnk_08B981CC[] = {
+const struct AiScr AiScr_08B981CC[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 1 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 2, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
@@ -1285,7 +1285,7 @@ const struct AiScr gUnk_08B981CC[] = {
 };
 
 SECTION(".rodata.08B9827C")
-const struct AiScr gUnk_08B9827C[] = {
+const struct AiScr AiScr_08B9827C[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 2 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 2, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
@@ -1300,7 +1300,7 @@ const struct AiScr gUnk_08B9827C[] = {
 };
 
 SECTION(".rodata.08B9832C")
-const struct AiScr gUnk_08B9832C[] = {
+const struct AiScr AiScr_08B9832C[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 2 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 2, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
@@ -1315,7 +1315,7 @@ const struct AiScr gUnk_08B9832C[] = {
 };
 
 SECTION(".rodata.08B983DC")
-const struct AiScr gUnk_08B983DC[] = {
+const struct AiScr AiScr_08B983DC[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 0x26 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 2, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
@@ -1330,7 +1330,7 @@ const struct AiScr gUnk_08B983DC[] = {
 };
 
 SECTION(".rodata.08B9848C")
-const struct AiScr gUnk_08B9848C[] = {
+const struct AiScr AiScr_08B9848C[] = {
     { .cmd = 0xD, .unk_02 = 0xFF, .unk_04 = 0x7A },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 2, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
@@ -1348,20 +1348,20 @@ const struct AiScr gUnk_08B9848C[] = {
 };
 
 SECTION(".rodata.08B9856C")
-const struct AiScr gUnk_08B9856C[] = {
+const struct AiScr AiScr_08B9856C[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A828, .unk_0C = gUnk_081D3B58 },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B9858C")
-const struct AiScr gUnk_08B9858C[] = {
+const struct AiScr AiScr_08B9858C[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A828, .unk_0C = gUnk_081D3B58 },
     { .cmd = 7, .unk_01 = 0x64, .unk_02 = 0xFF },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B985BC")
-const struct AiScr gUnk_08B985BC[] = {
+const struct AiScr AiScr_08B985BC[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A874, .unk_0C = gUnk_081D3B5C },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 5, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 3, .unk_02 = 0xFF },
@@ -1371,13 +1371,13 @@ const struct AiScr gUnk_08B985BC[] = {
 };
 
 SECTION(".rodata.08B9861C")
-const struct AiScr gUnk_08B9861C[] = {
+const struct AiScr AiScr_08B9861C[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A874, .unk_0C = gUnk_081D3B60 },
     { .cmd = 3, .unk_02 = 0xFF },
 };
 
 SECTION(".rodata.08B9863C")
-const struct AiScr gUnk_08B9863C[] = {
+const struct AiScr AiScr_08B9863C[] = {
     { .cmd = 0x18, .unk_02 = 0xFF },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 4, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 3, .unk_02 = 0xFF },
@@ -1387,7 +1387,7 @@ const struct AiScr gUnk_08B9863C[] = {
 };
 
 SECTION(".rodata.08B986A8")
-const struct AiScr gUnk_08B986A8[] = {
+const struct AiScr AiScr_08B986A8[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A548, .unk_0C = gUnk_08B986A0 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803AA40, .unk_0C = gUnk_08B9869C },
@@ -1398,7 +1398,7 @@ const struct AiScr gUnk_08B986A8[] = {
 };
 
 SECTION(".rodata.08B98724")
-const struct AiScr gUnk_08B98724[] = {
+const struct AiScr AiScr_08B98724[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A548, .unk_0C = gUnk_08B9871C },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803AA40, .unk_0C = gUnk_08B98718 },
@@ -1409,7 +1409,7 @@ const struct AiScr gUnk_08B98724[] = {
 };
 
 SECTION(".rodata.08B987A0")
-const struct AiScr gUnk_08B987A0[] = {
+const struct AiScr AiScr_08B987A0[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A548, .unk_0C = gUnk_08B98798 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803AA40, .unk_0C = gUnk_08B98794 },
@@ -1420,7 +1420,7 @@ const struct AiScr gUnk_08B987A0[] = {
 };
 
 SECTION(".rodata.08B9881C")
-const struct AiScr gUnk_08B9881C[] = {
+const struct AiScr AiScr_08B9881C[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A548, .unk_0C = gUnk_08B98814 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803AA40, .unk_0C = gUnk_08B98810 },
@@ -1431,7 +1431,7 @@ const struct AiScr gUnk_08B9881C[] = {
 };
 
 SECTION(".rodata.08B98898")
-const struct AiScr gUnk_08B98898[] = {
+const struct AiScr AiScr_08B98898[] = {
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803A548, .unk_0C = gUnk_08B98890 },
     { .unk_01 = 2, .unk_02 = 0xFF, .unk_03 = 1, .unk_04 = 1, .unk_08 = &gAiState.cmd_result[0] },
     { .cmd = 1, .unk_02 = 0xFF, .unk_08 = sub_0803AA40, .unk_0C = gUnk_08B9888C },
@@ -1447,40 +1447,40 @@ extern const struct AiScr * const gAi1ScriptTable[];
 SECTION(".rodata.08B98908")
 const struct AiScr * const gAi2ScriptTable[] = {
     AiScr_AiB_MoveToEnemy,
-    gUnk_08B97398,
-    gUnk_08B973B8,
+    AiScr_08B97398,
+    AiScr_08B973B8,
     AiScr_AiB_NeverMove,
     AiScr_AiB_PillageThenPursue,
     AiScr_AiB_PillageThenEscape,
-    gUnk_08B97608,
-    gUnk_08B97678,
-    gUnk_08B975B8,
-    gUnk_08B97778,
-    &gUnk_08B97FCC,
-    gUnk_08B97FDC,
+    AiScr_08B97608,
+    AiScr_08B97678,
+    AiScr_08B975B8,
+    AiScr_08B97778,
+    &AiScr_08B97FCC,
+    AiScr_08B97FDC,
     gAiScript_Escape,
-    gUnk_08B9806C,
-    gUnk_08B9811C,
-    gUnk_08B9827C,
-    gUnk_08B983DC,
-    gUnk_08B9848C,
-    gUnk_08B97D1C,
-    gUnk_08B98724,
-    gUnk_08B987A0,
-    gUnk_08B9881C,
-    gUnk_08B98898,
-    gUnk_08B97578,
-    gUnk_08B977F8,
-    gUnk_08B974B8,
-    gUnk_08B974F8,
-    gUnk_08B9863C,
-    gUnk_08B97318,
-    gUnk_08B986A8,
-    gUnk_08B97538,
-    gUnk_08B97368,
-    gUnk_08B97338,
-    gUnk_08B981CC,
-    gUnk_08B9832C,
+    AiScr_08B9806C,
+    AiScr_08B9811C,
+    AiScr_08B9827C,
+    AiScr_08B983DC,
+    AiScr_08B9848C,
+    AiScr_08B97D1C,
+    AiScr_08B98724,
+    AiScr_08B987A0,
+    AiScr_08B9881C,
+    AiScr_08B98898,
+    AiScr_08B97578,
+    AiScr_08B977F8,
+    AiScr_08B974B8,
+    AiScr_08B974F8,
+    AiScr_08B9863C,
+    AiScr_08B97318,
+    AiScr_08B986A8,
+    AiScr_08B97538,
+    AiScr_08B97368,
+    AiScr_08B97338,
+    AiScr_08B981CC,
+    AiScr_08B9832C,
 };
 
 SECTION(".rodata.08B98994")
@@ -1492,19 +1492,19 @@ const struct AiScr * const gAi1ScriptTable[] = {
     gAiScript_ActionStanding_80Perc,
     gAiScript_ActionStanding_50Perc,
     gAiScript_DoNothing,
-    gUnk_08B979EC,
+    AiScr_08B979EC,
     gAiScript_ActionInRange_ExceptCivilian,
-    gUnk_08B97A9C,
-    gUnk_08B97ABC,
-    gUnk_08B97AFC,
-    gUnk_08B97B1C,
-    gUnk_08B97B8C,
-    gUnk_08B9856C,
-    gUnk_08B9858C,
-    gUnk_08B985BC,
-    gUnk_08B9861C,
-    gUnk_08B97A14,
-    gUnk_08B97A38,
+    AiScr_08B97A9C,
+    AiScr_08B97ABC,
+    AiScr_08B97AFC,
+    AiScr_08B97B1C,
+    AiScr_08B97B8C,
+    AiScr_08B9856C,
+    AiScr_08B9858C,
+    AiScr_08B985BC,
+    AiScr_08B9861C,
+    AiScr_08B97A14,
+    AiScr_08B97A38,
 };
 
 SECTION(".rodata.08B989E4")
