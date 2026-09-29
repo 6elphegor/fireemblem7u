@@ -42,7 +42,9 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
-OUT = os.path.join('build', 'host-game')
+# HOSTGAME_OUT: another output directory, for a build with other flags
+# (HOSTGAME_FLAGS='-fsanitize=address' HOSTGAME_OUT=build/host-asan).
+OUT = os.environ.get('HOSTGAME_OUT', os.path.join('build', 'host-game'))
 CLANG = os.environ.get('HOSTCHECK_CC', 'clang')
 
 # As tools/hostcheck.py, plus code generation for running: debug info, no
@@ -54,6 +56,7 @@ CFLAGS = ['-std=gnu89', '-funsigned-char', '-ffreestanding', '-fno-common',
           '-fdiagnostics-show-option', '-fno-caret-diagnostics',
           '-fno-color-diagnostics', '-Wno-unknown-pragmas',
           '-Wno-invalid-source-encoding']
+# HOSTGAME_FLAGS: extra flags for the game's C and the link (sanitizers).
 EXTRA_FLAGS = os.environ.get('HOSTGAME_FLAGS', '').split()
 
 
@@ -273,7 +276,7 @@ def ld_aliases(defined, undefined):
 
 def link(objs, libs, flags):
     exe = os.path.join(OUT, 'fe7u')
-    cmd = [CLANG, '-o', exe] + objs + libs + flags
+    cmd = [CLANG, '-o', exe] + objs + libs + flags + EXTRA_FLAGS
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode == 0:
         return True

@@ -45,3 +45,64 @@ void * M4aHostRomAddr(u32 stored)
 {
     return gHostSoundBase + stored;
 }
+
+// A crash names the frame it happened in (tools/hostrun.py reads the line):
+// "fe7u: signal N in frame F" on stderr, then the default action (so lldb,
+// a core dump and the exit status still see the signal).  Not installed
+// under AddressSanitizer, which reports crashes itself.  Declared here, not
+// included: the game's C is compiled -nostdinc against agbcc's newlib.
+extern long gHostFrameCount;
+typedef void (*HostSigHandler)(int);
+HostSigHandler signal(int sig, HostSigHandler handler);
+long write(int fd, const void * buf, unsigned long n);
+
+#if defined(__APPLE__)
+enum { HOST_SIGBUS = 10 };
+#else
+enum { HOST_SIGBUS = 7 };
+#endif
+
+static void HostCrashHandler(int sig)
+{
+    char buf[64], num[24];
+    char * p = buf;
+    const char * s;
+    long v;
+    int i;
+
+    for (s = "fe7u: signal "; *s; )
+        *p++ = *s++;
+    *p++ = '0' + sig / 10;
+    *p++ = '0' + sig % 10;
+    for (s = " in frame "; *s; )
+        *p++ = *s++;
+    v = gHostFrameCount;
+    i = 0;
+    do {
+        num[i++] = '0' + v % 10;
+        v /= 10;
+    } while (v > 0);
+    while (i > 0)
+        *p++ = num[--i];
+    *p++ = '\n';
+    write(2, buf, p - buf);
+
+    signal(sig, (HostSigHandler) 0); // SIG_DFL: the fault happens again, unhandled
+}
+
+#if defined(__has_feature)
+#if __has_feature(address_sanitizer)
+#define HOST_ASAN 1
+#endif
+#endif
+
+__attribute__((constructor)) static void HostCrashInit(void)
+{
+#ifndef HOST_ASAN
+    signal(11, HostCrashHandler); // SIGSEGV
+    signal(HOST_SIGBUS, HostCrashHandler);
+    signal(4, HostCrashHandler); // SIGILL
+    signal(8, HostCrashHandler); // SIGFPE
+    signal(6, HostCrashHandler); // SIGABRT
+#endif
+}
