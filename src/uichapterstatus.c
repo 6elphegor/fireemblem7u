@@ -42,7 +42,7 @@ extern u8 const Img_StatusScreenLabelSprites[];
 extern struct TextInitInfo const gTextInitInfo_ChapterStatus[];
 extern const struct ProcCmd gProcScr_ChapterStatusScreen[];
 extern const struct ProcCmd ProcScr_ChapterStatusScreen_FromPrep[];
-extern struct ProcCmd const ProcScr_StatusScreenSpriteDraw[];
+extern const struct ProcCmd ProcScr_StatusScreenSpriteDraw[];
 extern const struct ProcCmd gProcScr_ADJUSTSFROMXI[];
 extern u16 const Sprite_ChapterStatus_08CC2DF8[];
 extern u16 const Sprite_ChapterStatus_PlayCountLabel[];
@@ -707,5 +707,13 @@ const struct ProcCmd ProcScr_ChapterStatusScreen_FromPrep[] = {
     PROC_CALL(EndSysBlackBoxs),
     PROC_CALL(EndMuralBackground),
     PROC_CALL(ChapterStatus_OnEnd),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC3000")
+const struct ProcCmd ProcScr_StatusScreenSpriteDraw[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(StatusScreenSpriteDraw_Init),
+    PROC_REPEAT(StatusScreenSpriteDraw_Loop),
     PROC_END,
 };

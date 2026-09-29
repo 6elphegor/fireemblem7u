@@ -61,7 +61,7 @@ extern const u16 sEfxLvupPartsPos[];
 extern const struct FaceVramEnt gEkrLvupFaceConfig[];
 extern CONST_DATA unsigned * EkrLvupMsgsStr[];
 extern CONST_DATA unsigned * EkrLvupMsgsMag[];
-extern CONST_DATA struct ProcCmd ProcScr_EkrLevelup[];
+extern const struct ProcCmd ProcScr_EkrLevelup[];
 extern unsigned gMid_Lv;
 
 extern const u8 Img_LevelUpBoxFrame[];
@@ -761,3 +761,29 @@ void EkrLvup_OnEnd(struct ProcEkrLevelup * proc)
     EnableEfxHpBarColorChange();
     proc->finished = true;
 }
+
+SECTION(".rodata.08BDB5FC")
+const struct ProcCmd ProcScr_EkrLevelup[] = {
+    PROC_19,
+    PROC_REPEAT(EkrLvup_OnPrepare),
+    PROC_REPEAT(EkrLvup_InitScreen),
+    PROC_SLEEP(1),
+    PROC_REPEAT(EkrLvup_InitLevelUpBox),
+    PROC_REPEAT(EkrLvup_SetBgs),
+    PROC_REPEAT(EkrLvup_InitPalette),
+    PROC_REPEAT(EkrLvup_PutWindowOnScreen),
+    PROC_REPEAT(EkrLvup_PrepareApGfx),
+    PROC_SLEEP(20),
+    PROC_REPEAT(EkrLvup_Promo_WindowScroll0),
+    PROC_REPEAT(EkrLvup_Promo_DrawPromoNewClassName),
+    PROC_REPEAT(EkrLvup_Promo_WindowScroll1),
+    PROC_REPEAT(EkrLvup_DrawNewLevel),
+    PROC_REPEAT(EkrLvup_InitCounterForMainAnim),
+    PROC_REPEAT(EkrLvup_MainAnime),
+    PROC_REPEAT(EkrLvup_SetHBlank),
+    PROC_REPEAT(EkrLvup_DoNothing),
+    PROC_REPEAT(EkrLvup_PutWindowOffScreen),
+    PROC_REPEAT(EkrLvup_ResetScreen),
+    PROC_REPEAT(EkrLvup_OnEnd),
+    PROC_END,
+};

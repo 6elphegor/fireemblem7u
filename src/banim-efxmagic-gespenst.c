@@ -17,7 +17,7 @@ extern const struct ProcCmd ProcScr_efxGespenst[];
 extern const struct ProcCmd ProcScr_efxGespenstBG[];
 extern const struct ProcCmd ProcScr_efxGespenstBG2[];
 extern const struct ProcCmd ProcScr_efxGespenstOBJ[];
-extern struct ProcCmd ProcScr_efxGespenstOBJ2[];
+extern const struct ProcCmd ProcScr_efxGespenstOBJ2[];
 extern const s16 FrameConfig_GespenstBG[];
 extern u16 * TsaArray_GespenstBG[];
 extern u16 Img_GespenstBG[];
@@ -458,5 +458,18 @@ SECTION(".rodata.08BA3CA4")
 const struct ProcCmd ProcScr_efxGespenstOBJ[] = {
     PROC_19,
     PROC_REPEAT(efxGespenstOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3CBC")
+const struct ProcCmd ProcScr_efxGespenstOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxGespenstOBJ2_OnEnd),
+    PROC_REPEAT(efxGespenstOBJ2_Loop_A),
+    PROC_SLEEP(19),
+    PROC_REPEAT(efxGespenstOBJ2_Loop_B),
+    PROC_SLEEP(24),
+    PROC_REPEAT(efxGespenstOBJ2_Loop_C),
+    PROC_SLEEP(19),
     PROC_END,
 };

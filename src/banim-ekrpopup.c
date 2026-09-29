@@ -34,7 +34,7 @@ extern const u16 Pal_EkrPopup[];
 extern const u8 Img_EkrPopupText[];
 extern CONST_DATA AnimScr AnimScr_EkrPopup[];
 extern const struct ProcCmd ProcScr_ekrPopup[];
-extern CONST_DATA struct ProcCmd ProcScr_ekrPopup2[];
+extern const struct ProcCmd ProcScr_ekrPopup2[];
 
 extern struct Font gBanimFont;
 extern struct Text gBanimText[];
@@ -547,6 +547,17 @@ const struct ProcCmd ProcScr_ekrPopup[] = {
     PROC_REPEAT(ekrPopup_WaitWpnBroke),
     PROC_REPEAT(ekrPopup_DrawWpnBroke2),
     PROC_REPEAT(ekrPopup_WaitWpnBroke2),
+    PROC_REPEAT(ekrPopup_MarkEnd),
+    PROC_REPEAT(ekrPopup_Nop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDCDBC")
+const struct ProcCmd ProcScr_ekrPopup2[] = {
+    PROC_19,
+    PROC_REPEAT(EkrPopup_Delay),
+    PROC_REPEAT(ekrPopup2_DrawWRankUp),
+    PROC_REPEAT(ekrPopup2_WaitWRankUp),
     PROC_REPEAT(ekrPopup_MarkEnd),
     PROC_REPEAT(ekrPopup_Nop),
     PROC_END,

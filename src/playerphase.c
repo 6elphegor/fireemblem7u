@@ -961,3 +961,12 @@ const struct ProcCmd sProcScr_MoveLimitView[] = {
     PROC_REPEAT(MoveLimitView_OnLoop),
     PROC_END,
 };
+
+SECTION(".rodata.08B9358C")
+const struct ProcCmd gUnk_08B9358C[] = {
+    PROC_19,
+    PROC_MARK(1),
+    PROC_CALL(MoveLimitViewChange_OnInit),
+    PROC_REPEAT(MoveLimitViewChange_OnLoop),
+    PROC_END,
+};

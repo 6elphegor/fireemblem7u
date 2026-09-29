@@ -8,7 +8,7 @@ extern const struct DebugChargeMsgs sDebugChargeMsgs;
 extern char const sDebugStr3rd[];
 extern char const sDebugStr2nd[];
 extern struct ProcCmd ProcScr_GameControl[];
-extern struct ProcCmd CONST_DATA gProcScr_Debug_08B9335C[];
+extern const struct ProcCmd gProcScr_Debug_08B9335C[];
 
 
 extern const struct MenuDef gDebugMenuDef_08B958B4;
@@ -863,5 +863,12 @@ SECTION(".rodata.08B93344")
 const struct ProcCmd gProc_DebugPrintWithProc[] = {
     PROC_SLEEP(1),
     PROC_CALL(DebugPrintWithProc),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9335C")
+const struct ProcCmd gProcScr_Debug_08B9335C[] = {
+    PROC_CALL(StartNameSelect),
+    PROC_SLEEP(0),
     PROC_END,
 };

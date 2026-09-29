@@ -5,7 +5,7 @@
 
 #define LINKARENA_TEAMNAME_LEN 19
 
-extern struct ProcCmd CONST_DATA ProcScr_SioTeamList[];
+extern const struct ProcCmd ProcScr_SioTeamList[];
 
 struct LinkArenaTeamEnt
 {
@@ -1075,5 +1075,56 @@ void SioTeamList_LoadTeam_Dummy(struct SioTeamListProc * proc)
     return;
 }
 
-extern struct ProcCmd CONST_DATA ProcScr_SioTeamList[];
+extern const struct ProcCmd ProcScr_SioTeamList[];
 
+
+void FE6Link_Init();
+void Set_0203DDDC();
+
+SECTION(".rodata.08B98CB4")
+const struct ProcCmd ProcScr_SioTeamList[] = {
+    PROC_SLEEP(0),
+    PROC_LABEL(0),
+    PROC_CALL(SioTeamList_Init),
+    PROC_LABEL(1),
+    PROC_CALL(SioTeamList_SetupGfx),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_LABEL(2),
+    PROC_REPEAT(SioTeamList_Loop_MainKeyHandler),
+    PROC_LABEL(3),
+    PROC_REPEAT(SioTeamList_8043D8C),
+    PROC_GOTO(9),
+    PROC_LABEL(4),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(SioTeamList_StartUnitList),
+    PROC_REPEAT(SioTeamList_WaitForUnitListScreen),
+    PROC_CALL(SioTeamList_SetupGfx),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_GOTO(2),
+    PROC_LABEL(5),
+    PROC_REPEAT(SioTeamList_804429C),
+    PROC_LABEL(6),
+    PROC_REPEAT(SioTeamList_8044324),
+    PROC_LABEL(7),
+    PROC_CALL(SioTeamList_StartEraseTeamSubMenu),
+    PROC_REPEAT(SioTeamList_EraseTeam_KeyHandler),
+    PROC_GOTO(3),
+    PROC_LABEL(8),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(SioTeamList_LoadTeam_Dummy),
+    PROC_SLEEP(0),
+    PROC_GOTO(1),
+    PROC_LABEL(9),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_END,
+};

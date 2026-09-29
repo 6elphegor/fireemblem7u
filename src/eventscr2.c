@@ -17,7 +17,7 @@ struct EventCursorProc {
 };
 
 extern const struct ProcCmd ProcScr_EventFlashCursor[];
-extern struct ProcCmd CONST_DATA ProcScr_EventCursor[];
+extern const struct ProcCmd ProcScr_EventCursor[];
 
 bool IsTutorialDisabled(void);
 void RemoveMapChangeTrap(int id);
@@ -1336,5 +1336,11 @@ SECTION(".rodata.08B91A38")
 const struct ProcCmd ProcScr_EventFlashCursor[] = {
     PROC_CALL(EventFlashCursor_OnInit),
     PROC_REPEAT(EventFlashCursor_OnLoop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B91A50")
+const struct ProcCmd ProcScr_EventCursor[] = {
+    PROC_REPEAT(EventCursor_Loop),
     PROC_END,
 };

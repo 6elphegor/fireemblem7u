@@ -20,7 +20,7 @@ extern u32 AnimScr_FimbulvetrOBJ1[];
 extern u16 Pal_HealSprites_Sparkles[];
 extern u16 Img_FimbulvetrSprites_Snow[];
 extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ2[];
-extern struct ProcCmd ProcScr_efxFimbulvetrOBJ2Fall[];
+extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ2Fall[];
 extern u8 AnimScr_FimbulvetrOBJ2[];
 extern u32 AnimScr_FimbulvetrOBJ2Fall_TypeA[];
 extern u32 AnimScr_FimbulvetrOBJ2Fall_TypeB[];
@@ -455,5 +455,12 @@ SECTION(".rodata.08BA1CF4")
 const struct ProcCmd ProcScr_efxFimbulvetrOBJ2[] = {
     PROC_19,
     PROC_REPEAT(efxFimbulvetrOBJ2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1D0C")
+const struct ProcCmd ProcScr_efxFimbulvetrOBJ2Fall[] = {
+    PROC_19,
+    PROC_REPEAT(efxFimbulvetrOBJ2Fall_Loop),
     PROC_END,
 };

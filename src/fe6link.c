@@ -49,7 +49,7 @@ void sub_08043828(struct Text * th, int num, u8 center, int color);
 
 extern const struct ProcCmd ProcScr_08B9998C[];
 extern const struct ProcCmd ProcScr_08B99870[];
-extern struct ProcCmd CONST_DATA ProcScr_FE6Link[];
+extern const struct ProcCmd ProcScr_FE6Link[];
 
 void sub_080ACA90(ProcPtr proc);
 
@@ -747,6 +747,9 @@ void GC_ConnectToFE6(ProcPtr parent)
     Proc_StartBlocking(ProcScr_FE6Link, parent);
 }
 
+void FE6Link_Init();
+void Set_0203DDDC();
+
 SECTION(".rodata.08B99870")
 const struct ProcCmd ProcScr_08B99870[] = {
     PROC_REPEAT(sub_080431C0),
@@ -760,5 +763,41 @@ const struct ProcCmd ProcScr_08B9998C[] = {
     PROC_REPEAT(sub_08043C0C),
     PROC_REPEAT(sub_08043CC8),
     PROC_REPEAT(sub_08043DB8),
+    PROC_END,
+};
+
+SECTION(".rodata.08B999D8")
+const struct ProcCmd ProcScr_FE6Link[] = {
+    PROC_CALL(Sio_DrawFe6CommImage),
+    PROC_SET_END_CB(FE6Link_CallBack),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_REPEAT(FE6Link_Loop),
+    PROC_CALL(sub_080434EC),
+    PROC_REPEAT(FE6Link_Loop_B),
+    PROC_REPEAT(FE6Link_Loop_C),
+    PROC_REPEAT(FE6Link_Loop_D),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_LABEL(1),
+    PROC_CALL(sub_08043EB4),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_LABEL(2),
+    PROC_REPEAT(FE6Link_Loop_E),
+    PROC_REPEAT(sub_08043F04),
+    PROC_CALL(sub_08043F1C),
+    PROC_REPEAT(FE6Link_Loop_G),
+    PROC_REPEAT(sub_08043F04),
+    PROC_GOTO(2),
+    PROC_LABEL(3),
+    PROC_REPEAT(FE6Link_Loop_I),
+    PROC_LABEL(10),
+    PROC_REPEAT(FE6Link_Loop_J),
+    PROC_CALL(FE6Link_OnEnd),
+    PROC_LABEL(11),
     PROC_END,
 };

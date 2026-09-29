@@ -3109,44 +3109,14 @@ gBackgroundTable:
 gUnitDef_08B91A18:
 	.incbin "baserom.gba", 0xb91a18, 0x20
 
-	.section .rodata.08B91A50, "a"
-
-	.global ProcScr_EventCursor
-ProcScr_EventCursor:
-	.incbin "baserom.gba", 0xb91a50, 0x4
-	.4byte EventCursor_Loop
-	.incbin "baserom.gba", 0xb91a58, 0xc
-	.4byte sub_0800AE18
-	.incbin "baserom.gba", 0xb91a68, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xb91a70, 0x8
-
 	.section .rodata.08B932B8, "a"
-	.incbin "baserom.gba", 0xb932b8, 0x18
-	.4byte Loop6C_WaitForSelectPress
-	.incbin "baserom.gba", 0xb932d4, 0xc
-	.4byte SetNewKeyStatusWith16
-	.incbin "baserom.gba", 0xb932e4, 0xc
-	.4byte SetNewKeyStatusWith16
-	.incbin "baserom.gba", 0xb932f4, 0xc
-	.4byte SetNewKeyStatusWith16
-	.incbin "baserom.gba", 0xb93304, 0xc
-	.4byte SetNewKeyStatusWith16
-	.incbin "baserom.gba", 0xb93314, 0xc
-	.4byte SetNewKeyStatusWith16
-	.incbin "baserom.gba", 0xb93324, 0x18
+	.incbin "baserom.gba", 0xb932b8, 0x14
+
+	.section .rodata.08B9333C, "a"
 
 	.global ProcScr_DebugMonitor
 ProcScr_DebugMonitor:
 	.incbin "baserom.gba", 0xb9333c, 0x8
-
-	.section .rodata.08B9335C, "a"
-
-	.global gProcScr_Debug_08B9335C
-gProcScr_Debug_08B9335C:
-	.incbin "baserom.gba", 0xb9335c, 0x4
-	.4byte StartNameSelect
-	.incbin "baserom.gba", 0xb93364, 0x10
 
 	.section .rodata.08B9356C, "a"
 
@@ -3159,32 +3129,6 @@ gOpenLimitViewImgLut:
 	.4byte gUnk_083FDB9C
 	.4byte gUnk_083FDC1C
 	.4byte Img_LimitViewSquare
-
-	.global gUnk_08B9358C
-gUnk_08B9358C:
-	.incbin "baserom.gba", 0xb9358c, 0x14
-	.4byte MoveLimitViewChange_OnInit
-	.incbin "baserom.gba", 0xb935a4, 0x4
-	.4byte MoveLimitViewChange_OnLoop
-	.incbin "baserom.gba", 0xb935ac, 0x8
-
-	.section .rodata.08B9369C, "a"
-
-	.global gProcCmd_ConvoyMenu
-gProcCmd_ConvoyMenu:
-	.incbin "baserom.gba", 0xb9369c, 0x4
-	.4byte ConvoyMenuProc_StarMenu
-	.incbin "baserom.gba", 0xb936a4, 0x4
-	.4byte ConvoyMenuProc_MenuEnd
-	.incbin "baserom.gba", 0xb936ac, 0xc
-	.4byte ConvoyMenuProc_MaybeStartSelectConvoyItem
-	.incbin "baserom.gba", 0xb936bc, 0x4
-	.4byte ConvoyMenuProc_SendToConvoyReal
-	.incbin "baserom.gba", 0xb936c4, 0xc
-	.4byte ConvoyMenuProc_SetupActiveUnit
-	.incbin "baserom.gba", 0xb936d4, 0x4
-	.4byte ConvoyMenuProc_ExecBootlegPopup
-	.incbin "baserom.gba", 0xb936dc, 0x10
 
 	.section .rodata.08B93DA4, "a"
 
@@ -3411,14 +3355,6 @@ sSprite_32x32_Window:
 	.global gTradeItemDisplayTileLocation
 gTradeItemDisplayTileLocation:
 	.incbin "baserom.gba", 0xb942b8, 0x28
-
-	.global ProcScr_TradeMenu_HighlightUpdater
-ProcScr_TradeMenu_HighlightUpdater:
-	.incbin "baserom.gba", 0xb942e0, 0x4
-	.4byte TradeMenu_HighlightUpdater_OnInit
-	.incbin "baserom.gba", 0xb942e8, 0x4
-	.4byte TradeMenu_HighlightUpdater_OnLoop
-	.incbin "baserom.gba", 0xb942f0, 0x8
 
 	.section .rodata.08B94418, "a"
 
@@ -5645,54 +5581,6 @@ gUnknown_08B98CA8:
 	.4byte gUnk_081D5240 + 0x3
 	.4byte gUnk_081D524C
 
-	.global ProcScr_SioTeamList
-ProcScr_SioTeamList:
-	.incbin "baserom.gba", 0xb98cb4, 0x14
-	.4byte SioTeamList_Init
-	.incbin "baserom.gba", 0xb98ccc, 0xc
-	.4byte SioTeamList_SetupGfx
-	.incbin "baserom.gba", 0xb98cdc, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xb98ce4, 0xc
-	.4byte FE6Link_Init
-	.incbin "baserom.gba", 0xb98cf4, 0xc
-	.4byte SioTeamList_Loop_MainKeyHandler
-	.incbin "baserom.gba", 0xb98d04, 0xc
-	.4byte SioTeamList_8043D8C
-	.incbin "baserom.gba", 0xb98d14, 0x14
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb98d2c, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb98d34, 0xc
-	.4byte SioTeamList_StartUnitList
-	.incbin "baserom.gba", 0xb98d44, 0x4
-	.4byte SioTeamList_WaitForUnitListScreen
-	.incbin "baserom.gba", 0xb98d4c, 0x4
-	.4byte SioTeamList_SetupGfx
-	.incbin "baserom.gba", 0xb98d54, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xb98d5c, 0xc
-	.4byte FE6Link_Init
-	.incbin "baserom.gba", 0xb98d6c, 0x14
-	.4byte SioTeamList_804429C
-	.incbin "baserom.gba", 0xb98d84, 0xc
-	.4byte SioTeamList_8044324
-	.incbin "baserom.gba", 0xb98d94, 0xc
-	.4byte SioTeamList_StartEraseTeamSubMenu
-	.incbin "baserom.gba", 0xb98da4, 0x4
-	.4byte SioTeamList_EraseTeam_KeyHandler
-	.incbin "baserom.gba", 0xb98dac, 0x14
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb98dc4, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb98dcc, 0xc
-	.4byte SioTeamList_LoadTeam_Dummy
-	.incbin "baserom.gba", 0xb98ddc, 0x1c
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb98dfc, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb98e04, 0x10
-
 	.section .rodata.08B99064, "a"
 
 	.global gUnknown_085A9864
@@ -5702,70 +5590,6 @@ gUnknown_085A9864:
 	.global gUnknown_085A9884
 gUnknown_085A9884:
 	.incbin "baserom.gba", 0xb99084, 0x4
-
-	.section .rodata.08B99380, "a"
-
-	.global ProcScr_SIOTERM
-ProcScr_SIOTERM:
-	.incbin "baserom.gba", 0xb99380, 0x14
-	.4byte StartLinkArenaTeamList
-	.incbin "baserom.gba", 0xb99398, 0xc
-	.4byte sub_080416D4
-	.incbin "baserom.gba", 0xb993a8, 0xc
-	.4byte sub_080412E0
-	.incbin "baserom.gba", 0xb993b8, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xb993c0, 0xc
-	.4byte FE6Link_Init
-	.incbin "baserom.gba", 0xb993d0, 0x4
-	.4byte SIOTERM_Loop_A
-	.incbin "baserom.gba", 0xb993d8, 0x4
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb993e0, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb993e8, 0xc
-	.4byte sub_0803DC28
-	.incbin "baserom.gba", 0xb993f8, 0x4
-	.4byte sub_0804168C
-	.incbin "baserom.gba", 0xb99400, 0x4
-	.4byte sub_08047CA8
-	.incbin "baserom.gba", 0xb99408, 0x4
-	.4byte sub_08047DA4
-	.incbin "baserom.gba", 0xb99410, 0x4
-	.4byte sub_08047F1C
-	.incbin "baserom.gba", 0xb99418, 0x4
-	.4byte EndLinkArenaButtonSpriteDraw
-	.incbin "baserom.gba", 0xb99420, 0x4
-	.4byte BMapVSync_End
-	.incbin "baserom.gba", 0xb99428, 0xc
-	.4byte StartPrepAtMenuWithConfig
-	.incbin "baserom.gba", 0xb99438, 0xc
-	.4byte SIOTERM_Loop_B
-	.incbin "baserom.gba", 0xb99448, 0x4
-	.4byte StartBmVSync
-	.incbin "baserom.gba", 0xb99450, 0x4
-	.4byte sub_080416F0
-	.incbin "baserom.gba", 0xb99458, 0x4
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb99460, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb99468, 0xc
-	.4byte StartNameSelect
-	.incbin "baserom.gba", 0xb99478, 0xc
-	.4byte sub_0804172C
-	.incbin "baserom.gba", 0xb99488, 0x1c
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb994a8, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb994b0, 0x1c
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb994d0, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb994d8, 0xc
-	.4byte sub_0804176C
-	.incbin "baserom.gba", 0xb994e8, 0x4
-	.4byte EndLinkArenaButtonSpriteDraw
-	.incbin "baserom.gba", 0xb994f0, 0x18
 
 	.section .rodata.08B99600, "a"
 
@@ -5873,54 +5697,6 @@ gUnknown_08B99984:
 gUnknown_08B999BC:
 	.incbin "baserom.gba", 0xb999bc, 0x1c
 
-	.global ProcScr_FE6Link
-ProcScr_FE6Link:
-	.incbin "baserom.gba", 0xb999d8, 0x4
-	.4byte Sio_DrawFe6CommImage
-	.incbin "baserom.gba", 0xb999e0, 0x4
-	.4byte FE6Link_CallBack
-	.incbin "baserom.gba", 0xb999e8, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xb999f0, 0xc
-	.4byte FE6Link_Init
-	.incbin "baserom.gba", 0xb99a00, 0x4
-	.4byte FE6Link_Loop
-	.incbin "baserom.gba", 0xb99a08, 0x4
-	.4byte sub_080434EC
-	.incbin "baserom.gba", 0xb99a10, 0x4
-	.4byte FE6Link_Loop_B
-	.incbin "baserom.gba", 0xb99a18, 0x4
-	.4byte FE6Link_Loop_C
-	.incbin "baserom.gba", 0xb99a20, 0x4
-	.4byte FE6Link_Loop_D
-	.incbin "baserom.gba", 0xb99a28, 0x4
-	.4byte Set_0203DDDC
-	.incbin "baserom.gba", 0xb99a30, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xb99a38, 0x14
-	.4byte sub_08043EB4
-	.incbin "baserom.gba", 0xb99a50, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xb99a58, 0xc
-	.4byte FE6Link_Init
-	.incbin "baserom.gba", 0xb99a68, 0xc
-	.4byte FE6Link_Loop_E
-	.incbin "baserom.gba", 0xb99a78, 0x4
-	.4byte sub_08043F04
-	.incbin "baserom.gba", 0xb99a80, 0x4
-	.4byte sub_08043F1C
-	.incbin "baserom.gba", 0xb99a88, 0x4
-	.4byte FE6Link_Loop_G
-	.incbin "baserom.gba", 0xb99a90, 0x4
-	.4byte sub_08043F04
-	.incbin "baserom.gba", 0xb99a98, 0x14
-	.4byte FE6Link_Loop_I
-	.incbin "baserom.gba", 0xb99ab0, 0xc
-	.4byte FE6Link_Loop_J
-	.incbin "baserom.gba", 0xb99ac0, 0x4
-	.4byte FE6Link_OnEnd
-	.incbin "baserom.gba", 0xb99ac8, 0x10
-
 	.section .rodata.08B99BC4, "a"
 
 	.global gUnknown_085AA158
@@ -5963,66 +5739,6 @@ EventScr_LinkArenaNoDamagePrompt:
 	.incbin "baserom.gba", 0xb99d3c, 0x10
 	.4byte LinkArena_StoreTalkChoice
 	.incbin "baserom.gba", 0xb99d50, 0x8
-
-	.section .rodata.08B99FF8, "a"
-
-	.global gUnknown_085AA5BC
-gUnknown_085AA5BC:
-	.incbin "baserom.gba", 0xb99ff8, 0x4
-	.4byte sub_08045784
-	.incbin "baserom.gba", 0xb9a000, 0x14
-	.4byte sub_080466C8
-	.incbin "baserom.gba", 0xb9a018, 0xc
-	.4byte sub_08046760
-	.incbin "baserom.gba", 0xb9a028, 0x4
-	.4byte sub_08046994
-	.incbin "baserom.gba", 0xb9a030, 0xc
-	.4byte sub_080469C4
-	.incbin "baserom.gba", 0xb9a040, 0xc
-	.4byte sub_08046A54
-	.incbin "baserom.gba", 0xb9a050, 0x4
-	.4byte EndLinkArenaPointsBox
-	.incbin "baserom.gba", 0xb9a058, 0x1c
-	.4byte sub_08046BF8
-	.incbin "baserom.gba", 0xb9a078, 0xc
-	.4byte sub_08045D24
-	.incbin "baserom.gba", 0xb9a088, 0xc
-	.4byte sub_08045DA8
-	.incbin "baserom.gba", 0xb9a098, 0x4
-	.4byte sub_08045E18
-	.incbin "baserom.gba", 0xb9a0a0, 0x4
-	.4byte sub_08045EA8
-	.incbin "baserom.gba", 0xb9a0a8, 0x4
-	.4byte sub_08044A8C
-	.incbin "baserom.gba", 0xb9a0b0, 0xc
-	.4byte EndLinkArenaPointsBox
-	.incbin "baserom.gba", 0xb9a0c0, 0x4
-	.4byte sub_08045FC4
-	.incbin "baserom.gba", 0xb9a0c8, 0x4
-	.4byte sub_080461A4
-	.incbin "baserom.gba", 0xb9a0d0, 0x4
-	.4byte sub_08046288
-	.incbin "baserom.gba", 0xb9a0d8, 0x10
-
-	.section .rodata.08B9A188, "a"
-
-	.global gUnknown_085AA75C
-gUnknown_085AA75C:
-	.incbin "baserom.gba", 0xb9a188, 0x4
-	.4byte sub_08046F98
-	.incbin "baserom.gba", 0xb9a190, 0xc
-	.4byte BattleApplyGameStateUpdates
-	.incbin "baserom.gba", 0xb9a1a0, 0x4
-	.4byte IsMapFadeActive
-	.incbin "baserom.gba", 0xb9a1a8, 0x4
-	.4byte BATTLE_GOTO1_IfNobodyIsDead
-	.incbin "baserom.gba", 0xb9a1b0, 0x4
-	.4byte sub_08046FE8
-	.incbin "baserom.gba", 0xb9a1b8, 0xc
-	.4byte BATTLE_DeleteLinkedMOVEUNIT
-	.incbin "baserom.gba", 0xb9a1c8, 0xc
-	.4byte sub_08047068
-	.incbin "baserom.gba", 0xb9a1d8, 0x8
 
 	.section .rodata.08B9A250, "a"
 
@@ -7862,16 +7578,6 @@ FramScr_Unk5D4F90:
 	.4byte gUnk_08BA14D0 + 0x1
 	.incbin "baserom.gba", 0xba14e0, 0x4
 
-	.section .rodata.08BA1554, "a"
-
-	.global ProcScr_EfxRestWINH
-ProcScr_EfxRestWINH:
-	.incbin "baserom.gba", 0xba1554, 0xc
-	.4byte EfxRestWINH_Loop_A
-	.incbin "baserom.gba", 0xba1564, 0x4
-	.4byte EfxRestWINH_Loop_B
-	.incbin "baserom.gba", 0xba156c, 0x8
-
 	.section .rodata.08BA16D4, "a"
 
 	.global TsaArray_SongBg
@@ -7934,14 +7640,6 @@ ImgArray_SongBg:
 	.4byte Img_SongBg_16
 	.4byte Img_SongBg_16
 
-	.section .rodata.08BA17F4, "a"
-
-	.global ProcScr_efxShooterOBJ
-ProcScr_efxShooterOBJ:
-	.incbin "baserom.gba", 0xba17f4, 0xc
-	.4byte efxShooterOBJ_Loop
-	.incbin "baserom.gba", 0xba1804, 0x8
-
 	.section .rodata.08BA1974, "a"
 
 	.global TsaArray_DarkBreathBg
@@ -7958,14 +7656,6 @@ TsaArray_DarkBreathBg:
 	.4byte Tsa_DarkBreathBg_09
 	.4byte Tsa_DarkBreathBg_0A
 	.4byte Tsa_DarkBreathBg_0B
-
-	.section .rodata.08BA19C4, "a"
-
-	.global ProcScr_efxDarkbreathOBJ
-ProcScr_efxDarkbreathOBJ:
-	.incbin "baserom.gba", 0xba19c4, 0xc
-	.4byte efxDarkbreathOBJ_Loop
-	.incbin "baserom.gba", 0xba19d4, 0x8
 
 	.section .rodata.08BA1A84, "a"
 
@@ -8099,14 +7789,6 @@ ImgArray_FimbulvetrBg:
 	.4byte Img_FimbulvetrBg_D
 	.4byte Img_FimbulvetrBg_D
 
-	.section .rodata.08BA1D0C, "a"
-
-	.global ProcScr_efxFimbulvetrOBJ2Fall
-ProcScr_efxFimbulvetrOBJ2Fall:
-	.incbin "baserom.gba", 0xba1d0c, 0xc
-	.4byte efxFimbulvetrOBJ2Fall_Loop
-	.incbin "baserom.gba", 0xba1d1c, 0x8
-
 	.section .rodata.08BA1E64, "a"
 
 	.global gUnknown_08BA1E64
@@ -8196,18 +7878,6 @@ gUnknown_08BA1F08:
 	.4byte gUnk_0822377C
 	.4byte gUnk_0822377C
 	.4byte gUnk_0822377C
-
-	.section .rodata.08BA1FF4, "a"
-
-	.global gProcScr_efxMistyrainOBJ2
-gProcScr_efxMistyrainOBJ2:
-	.incbin "baserom.gba", 0xba1ff4, 0xc
-	.4byte efxMistyRainObj_OnEnd
-	.incbin "baserom.gba", 0xba2004, 0x4
-	.4byte efxMistyRainObj2_08059858
-	.incbin "baserom.gba", 0xba200c, 0xc
-	.4byte efxMistyRainObj2_08059884
-	.incbin "baserom.gba", 0xba201c, 0x8
 
 	.section .rodata.08BA2264, "a"
 
@@ -9155,20 +8825,6 @@ TsaArray_GespenstBG:
 	.4byte Tsa_GespenstBG_0A
 	.4byte Tsa_GespenstBG_0B
 
-	.section .rodata.08BA3CBC, "a"
-
-	.global ProcScr_efxGespenstOBJ2
-ProcScr_efxGespenstOBJ2:
-	.incbin "baserom.gba", 0xba3cbc, 0xc
-	.4byte efxGespenstOBJ2_OnEnd
-	.incbin "baserom.gba", 0xba3ccc, 0x4
-	.4byte efxGespenstOBJ2_Loop_A
-	.incbin "baserom.gba", 0xba3cd4, 0xc
-	.4byte efxGespenstOBJ2_Loop_B
-	.incbin "baserom.gba", 0xba3ce4, 0xc
-	.4byte efxGespenstOBJ2_Loop_C
-	.incbin "baserom.gba", 0xba3cf4, 0x10
-
 	.section .rodata.08BA3E8C, "a"
 
 	.global TsaArray_LuceBG
@@ -9257,14 +8913,6 @@ TsaArray_EreshkigalBg3:
 	.4byte Tsa_EreshkigalBg3_08
 	.4byte Tsa_EreshkigalBg3_09
 
-	.section .rodata.08BA419C, "a"
-
-	.global ProcScr_efxEreshkigalOBJ3
-ProcScr_efxEreshkigalOBJ3:
-	.incbin "baserom.gba", 0xba419c, 0xc
-	.4byte efxEreshkigalOBJ3_OnEnd
-	.incbin "baserom.gba", 0xba41ac, 0x10
-
 	.section .rodata.08BA4284, "a"
 
 	.global TSAs_EfxNormalEffectBG
@@ -9332,14 +8980,6 @@ TsaLut_EfxChillEffectBG:
 	.4byte Tsa1_EfxChillEffectBG
 	.4byte Tsa2_EfxChillEffectBG
 	.4byte Tsa3_EfxChillEffectBG
-
-	.section .rodata.08BA46E8, "a"
-
-	.global ProcScr_efxChillAnime
-ProcScr_efxChillAnime:
-	.incbin "baserom.gba", 0xba46e8, 0xc
-	.4byte EfxChillAnime_Loop
-	.incbin "baserom.gba", 0xba46f8, 0x8
 
 	.section .rodata.08BA47D8, "a"
 

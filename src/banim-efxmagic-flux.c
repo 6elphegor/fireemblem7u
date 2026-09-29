@@ -14,7 +14,7 @@ extern u16 Pal_08227108[];
 extern u16 Pal_08227128[];
 extern const struct ProcCmd ProcScr_efxMistyrainOBJ[];
 extern AnimScr FramScr_Unk5D4F90[];
-extern struct ProcCmd gProcScr_efxMistyrainOBJ2[];
+extern const struct ProcCmd gProcScr_efxMistyrainOBJ2[];
 extern u32 AnimScr_EfxMistyRainObj1[];
 extern u16 Pal_FluxAnimSprites[];
 extern u16 Img_FluxAnimSprites_Orb[];
@@ -380,5 +380,15 @@ const struct ProcCmd ProcScr_efxMistyrainOBJ[] = {
     PROC_SLEEP(11),
     PROC_REPEAT(efxMistyRainObj_0805981C),
     PROC_SLEEP(22),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1FF4")
+const struct ProcCmd gProcScr_efxMistyrainOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxMistyRainObj_OnEnd),
+    PROC_REPEAT(efxMistyRainObj2_08059858),
+    PROC_SLEEP(14),
+    PROC_REPEAT(efxMistyRainObj2_08059884),
     PROC_END,
 };

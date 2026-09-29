@@ -3,7 +3,7 @@
 void sub_0807764C(int x, int y, int r);
 void sub_080777E4(void);
 
-extern struct ProcCmd CONST_DATA ProcScr_EventWorldFlush[];
+extern const struct ProcCmd ProcScr_EventWorldFlush[];
 
 struct ProcWorldFlush
 {
@@ -149,3 +149,14 @@ void StartEventWorldFlush(ProcPtr proc)
 {
     Proc_StartBlocking(ProcScr_EventWorldFlush, proc);
 }
+
+SECTION(".rodata.08CA79C4")
+const struct ProcCmd ProcScr_EventWorldFlush[] = {
+    PROC_SLEEP(0),
+    PROC_SET_END_CB(EventWorldFlush_OnEnd),
+    PROC_CALL(sub_0807CC5C),
+    PROC_REPEAT(EventWorldFlush_Loop_A),
+    PROC_CALL(WorldFlushReload),
+    PROC_REPEAT(EventWorldFlush_Loop_B),
+    PROC_END,
+};

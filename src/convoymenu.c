@@ -2,7 +2,7 @@
 
 extern u8 gConvoyItemCount; // ewram_overlay_0
 
-extern struct ProcCmd CONST_DATA gProcCmd_ConvoyMenu[];
+extern const struct ProcCmd gProcCmd_ConvoyMenu[];
 extern const struct MenuDef gSendToConvoyMenuDef;
 extern const struct MenuDef gConvoyMenuDef;
 
@@ -176,3 +176,17 @@ u8 SendToConvoyMenu_Idle(struct MenuProc * proc_menu, struct MenuItemProc * proc
 
     return MENU_ACT_ENDFACE | MENU_ACT_CLEAR | MENU_ACT_SND6A | MENU_ACT_END | MENU_ACT_SKIPCURSOR;
 }
+
+SECTION(".rodata.08B9369C")
+const struct ProcCmd gProcCmd_ConvoyMenu[] = {
+    PROC_CALL_2(ConvoyMenuProc_StarMenu),
+    PROC_CALL_2(ConvoyMenuProc_MenuEnd),
+    PROC_SLEEP(1),
+    PROC_CALL_2(ConvoyMenuProc_MaybeStartSelectConvoyItem),
+    PROC_CALL_2(ConvoyMenuProc_SendToConvoyReal),
+    PROC_LABEL(99),
+    PROC_CALL(ConvoyMenuProc_SetupActiveUnit),
+    PROC_CALL(ConvoyMenuProc_ExecBootlegPopup),
+    PROC_SLEEP(0),
+    PROC_END,
+};

@@ -60,6 +60,13 @@ void sub_0809C3F4();
 void sub_0809C41C();
 void sub_0809C44C();
 
+void BattleApplyGameStateUpdates();
+void Loop6C_WaitForSelectPress();
+void SetNewKeyStatusWith16();
+void sub_08046F98();
+void sub_08046FE8();
+void sub_08047068();
+
 SECTION(".rodata.08B90B9C")
 const struct ProcCmd gProcScr_TalkOpen[] = {
     PROC_MARK(5),
@@ -509,5 +516,45 @@ const struct ProcCmd gProcScr_ArenaUiResultBgm[] = {
     PROC_CALL(Arena_PlayResultSong),
     PROC_SLEEP(210),
     PROC_CALL(Arena_PlayArenaSong),
+    PROC_END,
+};
+
+SECTION(".rodata.08B91A60")
+const struct ProcCmd ProcScr_08B91A60[] = {
+    PROC_CALL(sub_0800AE18),
+    PROC_REPEAT(WaitForFade),
+    PROC_END,
+};
+
+SECTION(".rodata.08B932CC")
+const struct ProcCmd ProcScr_08B932CC[] = {
+    PROC_REPEAT(Loop6C_WaitForSelectPress),
+    PROC_LABEL(1),
+    PROC_CALL(SetNewKeyStatusWith16),
+    PROC_SLEEP(12),
+    PROC_CALL(SetNewKeyStatusWith16),
+    PROC_SLEEP(12),
+    PROC_CALL(SetNewKeyStatusWith16),
+    PROC_SLEEP(12),
+    PROC_CALL(SetNewKeyStatusWith16),
+    PROC_SLEEP(12),
+    PROC_CALL(SetNewKeyStatusWith16),
+    PROC_SLEEP(12),
+    PROC_GOTO(1),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A188")
+const struct ProcCmd gUnknown_085AA75C[] = {
+    PROC_CALL(sub_08046F98),
+    PROC_SLEEP(1),
+    PROC_CALL(BattleApplyGameStateUpdates),
+    PROC_WHILE(IsMapFadeActive),
+    PROC_CALL(BATTLE_GOTO1_IfNobodyIsDead),
+    PROC_CALL(sub_08046FE8),
+    PROC_SLEEP(32),
+    PROC_CALL(BATTLE_DeleteLinkedMOVEUNIT),
+    PROC_LABEL(1),
+    PROC_CALL(sub_08047068),
     PROC_END,
 };

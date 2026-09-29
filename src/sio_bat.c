@@ -936,7 +936,7 @@ void sub_080412D4(void)
     return;
 }
 
-extern struct ProcCmd CONST_DATA gUnknown_085AA75C[];
+extern const struct ProcCmd gUnknown_085AA75C[];
 
 void FE6Link_Init();
 void SIOMAIN2_Loop_A();

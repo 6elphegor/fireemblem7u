@@ -41,7 +41,7 @@ extern const struct ProcCmd ProcScr_efxEreshkigal[];
 extern const struct ProcCmd ProcScr_efxEreshkigalOBJ[];
 extern const struct ProcCmd ProcScr_efxEreshkigalOBJChild[];
 extern const struct ProcCmd ProcScr_efxEreshkigalOBJ2[];
-extern struct ProcCmd ProcScr_efxEreshkigalOBJ3[];
+extern const struct ProcCmd ProcScr_efxEreshkigalOBJ3[];
 extern const struct ProcCmd ProcScr_efxEreshkigalBG[];
 extern const struct ProcCmd ProcScr_efxEreshkigalWhiteOut[];
 extern const int gEreshkigalOBJConfig[];
@@ -558,6 +558,14 @@ SECTION(".rodata.08BA417C")
 const struct ProcCmd ProcScr_efxSuperdruidOBJ2[] = {
     PROC_19,
     PROC_SET_END_CB(efxSuperdruidOBJ2_OnEnd),
+    PROC_SLEEP(13),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA419C")
+const struct ProcCmd ProcScr_efxEreshkigalOBJ3[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxEreshkigalOBJ3_OnEnd),
     PROC_SLEEP(13),
     PROC_END,
 };

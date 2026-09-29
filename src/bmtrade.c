@@ -720,3 +720,10 @@ const struct ProcCmd ProcScr_TradeMenu_TutorialWait[] = {
     PROC_REPEAT(TradeMenu_TutorialWait_OnLoop),
     PROC_END,
 };
+
+SECTION(".rodata.08B942E0")
+const struct ProcCmd ProcScr_TradeMenu_HighlightUpdater[] = {
+    PROC_CALL(TradeMenu_HighlightUpdater_OnInit),
+    PROC_REPEAT(TradeMenu_HighlightUpdater_OnLoop),
+    PROC_END,
+};

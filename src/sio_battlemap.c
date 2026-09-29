@@ -130,10 +130,10 @@ extern struct PopupInstruction CONST_DATA gUnknown_085AA1FC[];
 extern struct PopupInstruction CONST_DATA gUnknown_085AA21C[];
 extern const struct ProcCmd gUnknown_085AA2FC[];
 extern const struct ProcCmd gUnknown_085AA4CC[];
-extern struct ProcCmd CONST_DATA gUnknown_085AA5BC[];
+extern const struct ProcCmd gUnknown_085AA5BC[];
 extern u8 CONST_DATA gLut_LinkArenaFogPlaceholder_YOffset[];
 extern struct ProcCmd CONST_DATA ProcScr_DrawLinkArenaFogPlaceholders[];
-extern struct ProcCmd CONST_DATA gUnknown_085AA75C[];
+extern const struct ProcCmd gUnknown_085AA75C[];
 extern const struct MenuDef gUnknown_085AADA0;
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
 extern u16 CONST_DATA EventScr_LinkArenaSurrenderPrompt[];
@@ -2816,6 +2816,40 @@ const struct ProcCmd gUnknown_085AA4CC[] = {
     PROC_LABEL(2),
     PROC_REPEAT(sub_080464BC),
     PROC_CALL(EndLinkArenaPointsBox),
+    PROC_CALL(sub_08045D24),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08045DA8),
+    PROC_REPEAT(sub_08045E18),
+    PROC_REPEAT(sub_08045EA8),
+    PROC_CALL(sub_08044A8C),
+    PROC_SLEEP(0),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_REPEAT(sub_08045FC4),
+    PROC_REPEAT(sub_080461A4),
+    PROC_CALL(sub_08046288),
+    PROC_LABEL(5),
+    PROC_END,
+};
+
+SECTION(".rodata.08B99FF8")
+const struct ProcCmd gUnknown_085AA5BC[] = {
+    PROC_CALL(sub_08045784),
+    PROC_SLEEP(0),
+    PROC_LABEL(0),
+    PROC_REPEAT(sub_080466C8),
+    PROC_LABEL(1),
+    PROC_REPEAT(sub_08046760),
+    PROC_CALL(sub_08046994),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080469C4),
+    PROC_LABEL(2),
+    PROC_REPEAT(sub_08046A54),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_GOTO(4),
+    PROC_LABEL(3),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08046BF8),
+    PROC_LABEL(4),
     PROC_CALL(sub_08045D24),
     PROC_SLEEP(0),
     PROC_CALL(sub_08045DA8),

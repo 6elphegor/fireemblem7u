@@ -28,7 +28,7 @@ extern u16 * TsaArray_DarkBreathBg[];
 extern u16 Img_DarkBreathBg[];
 extern const struct ProcCmd ProcScr_efxDarkbreathBGCOL[];
 extern u16 Pal_BoltingBg[];
-extern struct ProcCmd ProcScr_efxDarkbreathOBJ[];
+extern const struct ProcCmd ProcScr_efxDarkbreathOBJ[];
 extern u32 AnimScr_DarkBreath[];
 extern u16 Pal_DarkBreathSprites[];
 
@@ -644,5 +644,12 @@ const struct ProcCmd ProcScr_efxDarkbreathBGCOL[] = {
     PROC_19,
     PROC_MARK(10),
     PROC_REPEAT(efxDarkbreathBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA19C4")
+const struct ProcCmd ProcScr_efxDarkbreathOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxDarkbreathOBJ_Loop),
     PROC_END,
 };

@@ -1255,7 +1255,7 @@ void EfxMantBatabata_Loop2(struct ProcEfxOBJ * proc)
 extern const struct ProcCmd ProcScr_efxChillEffect[];
 extern const struct ProcCmd ProcScr_efxChillEffectBG[];
 extern const struct ProcCmd ProcScr_efxChillEffectBGCOL[];
-extern struct ProcCmd ProcScr_efxChillAnime[];
+extern const struct ProcCmd ProcScr_efxChillAnime[];
 extern const u16 FrameConf_EfxChillEffectBG[];
 extern u16 * TsaLut_EfxChillEffectBG[];
 extern const u8 Img_ExcaliburBg2[];
@@ -1626,5 +1626,12 @@ const struct ProcCmd ProcScr_efxChillEffectBGCOL[] = {
     PROC_19,
     PROC_MARK(10),
     PROC_REPEAT(EfxChillEffectBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA46E8")
+const struct ProcCmd ProcScr_efxChillAnime[] = {
+    PROC_19,
+    PROC_REPEAT(EfxChillAnime_Loop),
     PROC_END,
 };

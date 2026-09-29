@@ -25,7 +25,7 @@ struct SaveDrawProc
 #define SAVE_MENU_PARENT(proc) ((struct SaveMenuProc *) (proc)->proc_parent)
 
 extern u16 CONST_DATA ApConf_SaveMenuCursor[];
-extern struct ProcCmd CONST_DATA ProcScr_SaveDraw[];
+extern const struct ProcCmd ProcScr_SaveDraw[];
 
 ProcPtr StartSaveDrawCursor(ProcPtr parent);
 
@@ -557,5 +557,14 @@ const struct ProcCmd ProcScr_BonusClaimMenu[] = {
     PROC_LABEL(1),
     PROC_CALL(sub_080A5108),
     PROC_LABEL(10),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE42EC")
+const struct ProcCmd ProcScr_SaveDraw[] = {
+    PROC_19,
+    PROC_MARK(12),
+    PROC_CALL(SaveDraw_Init),
+    PROC_REPEAT(SaveDraw_Loop),
     PROC_END,
 };

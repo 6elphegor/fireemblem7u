@@ -53,7 +53,7 @@ struct PasswordProc {
     /* 34 */ int unk_34;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_08CC5AF0[];
+extern const struct ProcCmd ProcScr_08CC5AF0[];
 extern u8 gUnk_0203E790;
 extern u8 CONST_DATA gUnk_08CC5ACC[];
 
@@ -491,3 +491,19 @@ void sub_0809E3F4(void)
 void sub_0809E400(void)
 {
 }
+
+SECTION(".rodata.08CC5AF0")
+const struct ProcCmd ProcScr_08CC5AF0[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0809E25C),
+    PROC_CALL(StartMidFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_REPEAT(sub_0809E3A4),
+    PROC_LABEL(0),
+    PROC_CALL(StartMidFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(sub_0809E3A8),
+    PROC_LABEL(99),
+    PROC_BLOCK,
+    PROC_END,
+};

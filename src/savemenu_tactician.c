@@ -2,7 +2,7 @@
 
 extern const struct ProcCmd ProcScr_TactNameSelect[];
 extern const struct ProcCmd ProcScr_TactBirthSelect[];
-extern struct ProcCmd CONST_DATA ProcScr_TactGenderSelect[];
+extern const struct ProcCmd ProcScr_TactGenderSelect[];
 extern u16 CONST_DATA gUnk_08B90600[];
 
 void StartTacticianNameSelect(ProcPtr parent); // StartTacticianNameSelect
@@ -727,5 +727,15 @@ const struct ProcCmd ProcScr_TactBirthSelect[] = {
     PROC_SLEEP(0),
     PROC_REPEAT(TactBirthSelect_Loop),
     PROC_CALL(sub_080A715C),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE47DC")
+const struct ProcCmd ProcScr_TactGenderSelect[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080A71A8),
+    PROC_SLEEP(0),
+    PROC_REPEAT(TactGenderSelect_Loop),
+    PROC_CALL(sub_080A73AC),
     PROC_END,
 };

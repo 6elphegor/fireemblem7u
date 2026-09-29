@@ -6,7 +6,7 @@
 extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
 void sub_08044ED8(void);
 void sub_08044FFC(void);
-extern struct ProcCmd CONST_DATA ProcScr_SIOTERM[];
+extern const struct ProcCmd ProcScr_SIOTERM[];
 extern const struct ProcCmd ProcScr_SIOPRA[];
 extern const struct ProcCmd ProcScr_SIOBAT[];
 extern struct ProcCmd CONST_DATA ProcScr_SIORESULT[];
@@ -517,6 +517,9 @@ void Set_0203DDDC();
 void sub_08047DA4();
 void sub_08047F1C();
 
+void EndLinkArenaButtonSpriteDraw();
+void StartPrepAtMenuWithConfig();
+
 SECTION(".rodata.08B98F9C")
 const struct ProcCmd ProcScr_SIOPRA[] = {
     PROC_19,
@@ -642,5 +645,58 @@ const struct ProcCmd ProcScr_SIOBAT[] = {
     PROC_CALL(sub_08040634),
     PROC_LABEL(1),
     PROC_CALL(sub_0803C414),
+    PROC_END,
+};
+
+SECTION(".rodata.08B99380")
+const struct ProcCmd ProcScr_SIOTERM[] = {
+    PROC_19,
+    PROC_LABEL(0),
+    PROC_CALL(StartLinkArenaTeamList),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080416D4),
+    PROC_LABEL(3),
+    PROC_CALL(sub_080412E0),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_REPEAT(SIOTERM_Loop_A),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0803DC28),
+    PROC_CALL(sub_0804168C),
+    PROC_CALL(sub_08047CA8),
+    PROC_CALL(sub_08047DA4),
+    PROC_CALL(sub_08047F1C),
+    PROC_CALL(EndLinkArenaButtonSpriteDraw),
+    PROC_CALL(BMapVSync_End),
+    PROC_SLEEP(0),
+    PROC_CALL(StartPrepAtMenuWithConfig),
+    PROC_LABEL(5),
+    PROC_REPEAT(SIOTERM_Loop_B),
+    PROC_CALL(StartBmVSync),
+    PROC_CALL(sub_080416F0),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(StartNameSelect),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0804172C),
+    PROC_SLEEP(0),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_GOTO(3),
+    PROC_LABEL(4),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0804176C),
+    PROC_CALL(EndLinkArenaButtonSpriteDraw),
+    PROC_GOTO(0),
+    PROC_LABEL(1),
     PROC_END,
 };

@@ -145,7 +145,7 @@ struct WmFaceConfig {
     struct FaceVramEnt ent[4];
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_WorldMap[];
+extern const struct ProcCmd ProcScr_WorldMap[];
 extern struct WmFaceConfig const gWmFaceConfig;
 
 void InitSpriteTalk(int chr, int lines, int palid);
@@ -183,7 +183,7 @@ struct CGDataEnt {
 struct CGDataEnt const * GetCG(int idx);
 
 extern const struct ProcCmd ProcScr_WmSpotlight[];
-extern struct ProcCmd CONST_DATA ProcScr_WorldFlush[];
+extern const struct ProcCmd ProcScr_WorldFlush[];
 extern u16 const * CONST_DATA gWmMapTsaTable[][4];
 extern u8 const * CONST_DATA gWmMapImgTable[][4];
 extern u16 const Pal_Wm_084221D4[];
@@ -2573,5 +2573,39 @@ const struct ProcCmd ProcScr_WmSpotlight[] = {
     PROC_SET_END_CB(WmEndSpotlight),
     PROC_CALL(WmSpotlight_Init),
     PROC_REPEAT(WmSpotlight_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE76E8")
+const struct ProcCmd ProcScr_WorldMap[] = {
+    PROC_SLEEP(1),
+    PROC_SET_END_CB(WorldMap_OnEnd),
+    PROC_CALL(WorldMap_Init),
+    PROC_SLEEP(1),
+    PROC_CALL(WorldMap_InitDisplay),
+    PROC_LABEL(1),
+    PROC_CALL(WorldMap_InitOpenEffect),
+    PROC_REPEAT(WorldMap_LoopOpenEffect),
+    PROC_LABEL(0),
+    PROC_BLOCK,
+    PROC_LABEL(2),
+    PROC_CALL(WorldMap_InitScrollCamera),
+    PROC_REPEAT(WorldMap_LoopScrollCamera),
+    PROC_GOTO(0),
+    PROC_LABEL(3),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE7878")
+const struct ProcCmd ProcScr_WorldFlush[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(WorldFlush_Prepare),
+    PROC_CALL(StartSlowLockingFadeFromWhite),
+    PROC_SLEEP(0),
+    PROC_SLEEP(60),
+    PROC_CALL(WorldFlushInit),
+    PROC_REPEAT(WorldFlushOut),
+    PROC_CALL(WorldFlush_End),
+    PROC_SLEEP(30),
     PROC_END,
 };

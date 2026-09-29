@@ -38,7 +38,7 @@ struct EpilogueProc {
 
 extern const struct ProcCmd ProcScr_EpilogueCg[];
 extern const struct ProcCmd ProcScr_EpilogueScroll[];
-extern struct ProcCmd CONST_DATA ProcScr_EpilogueText[];
+extern const struct ProcCmd ProcScr_EpilogueText[];
 extern u16 Pal_EpilogueText[];
 extern void const * const gEpilogueEndScroll[];
 extern int const gEpilogueEndMsgs[];
@@ -1053,5 +1053,17 @@ const struct ProcCmd ProcScr_EpilogueScroll[] = {
     PROC_CALL_ARG(NewFadeIn2, 2),
     PROC_WHILE(FadeInExists),
     PROC_REPEAT(EpilogueScroll_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEDEA4")
+const struct ProcCmd ProcScr_EpilogueText[] = {
+    PROC_LABEL(0),
+    PROC_SLEEP(0),
+    PROC_CALL(EpilogueText_Init),
+    PROC_REPEAT(EpilogueText_Loop),
+    PROC_SLEEP(80),
+    PROC_REPEAT(EpilogueText_LoopFadeOut),
+    PROC_CALL(EpilogueText_Next),
     PROC_END,
 };

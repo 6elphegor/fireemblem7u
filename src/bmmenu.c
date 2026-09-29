@@ -2,7 +2,7 @@
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
 
-extern struct ProcCmd CONST_DATA ProcScr_Config_Field[];
+extern const struct ProcCmd ProcScr_Config_Field[];
 extern const struct ProcCmd gProcScr_BKSEL[];
 extern const struct ProcCmd gProcScr_0859B630[];
 extern u16 CONST_DATA EventScr_CompleteTraining[];
@@ -1966,6 +1966,11 @@ u8 ItemMenuHelpBox(struct MenuProc * menu, struct MenuItemProc * menuItem)
 }
 
 
+void Config_HandleExit();
+void Config_Init();
+void Config_Loop_KeyHandler();
+void sub_080ADB7C();
+
 SECTION(".rodata.08B93E0C")
 const struct ProcCmd gProcScr_0859B630[] = {
     PROC_CALL(LockGame),
@@ -1973,6 +1978,32 @@ const struct ProcCmd gProcScr_0859B630[] = {
     PROC_WHILE_EXISTS(gProcScr_BKSEL),
     PROC_WHILE_EXISTS(ProcScr_CamMove),
     PROC_CALL(GoToFightItemReview),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE5BF0")
+const struct ProcCmd ProcScr_Config_Field[] = {
+    PROC_19,
+    PROC_CALL(LockGame),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(LockBmDisplay),
+    PROC_LABEL(0),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080ADB7C),
+    PROC_CALL(Config_Init),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_REPEAT(Config_Loop_KeyHandler),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(KillHelpBox),
+    PROC_CALL_2(Config_HandleExit),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
     PROC_CALL(UnlockGame),
     PROC_END,
 };

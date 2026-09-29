@@ -56,7 +56,7 @@ extern struct OpAnimTextEntry const gUnk_08CEF4BC[];
 extern const struct ProcCmd ProcScr_08CEF40C[];
 extern const struct ProcCmd ProcScr_08CEF424[];
 extern const struct ProcCmd ProcScr_08CEF444[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF464[];
+extern const struct ProcCmd ProcScr_08CEF464[];
 extern const struct ProcCmd ProcScr_08CEF750[];
 extern u16 const gUnk_085E9AD4[];
 extern u8 const gUnk_085E9AF4[];
@@ -1707,5 +1707,13 @@ const struct ProcCmd ProcScr_08CEF750[] = {
     PROC_CALL(sub_080BD68C),
     PROC_SLEEP(0),
     PROC_REPEAT(sub_080BD698),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF464")
+const struct ProcCmd ProcScr_08CEF464[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BD4C4),
+    PROC_REPEAT(sub_080BD4F4),
     PROC_END,
 };

@@ -1301,7 +1301,7 @@ struct SoundRoomBgProc
     /* 58 */ int bg;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_08CE5704[];
+extern const struct ProcCmd ProcScr_08CE5704[];
 
 void sub_080AC7A0(struct SoundRoomBgProc * proc)
 {
@@ -1413,5 +1413,15 @@ const struct ProcCmd gProcScr_SoundRoomDrawSprites[] = {
     PROC_SLEEP(0),
     PROC_CALL(SoundRoom_DrawSprites_Init),
     PROC_REPEAT(SoundRoom_DrawSprites_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE5704")
+const struct ProcCmd ProcScr_08CE5704[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080AC7A0),
+    PROC_REPEAT(sub_080AC7B0),
+    PROC_CALL(sub_080AC7E8),
+    PROC_REPEAT(sub_080AC82C),
     PROC_END,
 };
