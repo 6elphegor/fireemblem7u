@@ -612,6 +612,12 @@ match this compiler.
   with different types breaks the build after merging.
 * `symbols.ld` and `data/layout.txt` merge by union — just add lines.
 * Commit only matching states (`make` prints `OK`).
+* Bulk renames go in a list, `tools/renames/<date>.txt` (`OLD NEW` lines,
+  sections say where each name comes from), applied by
+  `tools/apply_renames.py` (every tracked file, plus the generated
+  `banim/`, `sound/` and `graphics/` files named after labels).  It is
+  re-runnable: after merging a branch that still uses old names, run it
+  again (lines already applied are skipped), `rm -rf build`, `make`.
 * Before reporting done: `git merge main`, then `tools/fix_renames.sh`
   (updates `sub_XXXXXXXX` calls to functions renamed on main), fix any
   remaining conflicts or duplicate declarations, and make sure `make`
