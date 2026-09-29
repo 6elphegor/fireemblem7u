@@ -9,6 +9,7 @@
 #include "unit.h"
 #include "battle.h"
 #include "anime.h"
+#include "banim_tables.h"
 
 #define EFX_BG_WIDTH 66
 #define EFX_TILEMAP_LOC(aMap, aX, aY) (aMap + (aX) + EFX_BG_WIDTH * (aY))
@@ -74,31 +75,8 @@ enum banim_mode_index {
 
 extern s16 gEkrDistanceType;
 
-struct BattleAnim {
-    char abbr[12];
-    int * modes;
-    char * script;
-    char * oam_r;
-    char * oam_l;
-    u16 * pal;
-};
-
 extern struct BattleAnim banim_data[];
-
-struct BattleAnimCharaPal {
-    char abbr[12];
-    u16 * pal;
-};
-
 extern struct BattleAnimCharaPal character_battle_animation_palette_table[];
-
-struct BattleAnimTerrain {
-    char abbr[12];
-    char * tileset;
-    u16 * palette;
-    int null_1; // useless, always 00
-};
-
 extern struct BattleAnimTerrain battle_terrain_table[];
 
 struct BanimModeData {

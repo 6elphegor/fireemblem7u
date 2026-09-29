@@ -279,10 +279,12 @@ class Types:
 
     # -- a declaration "TYPE declarator" -> Field
     def field_from(self, base, stars, name, dims, off, bits=None):
+        pconst = "const" in base.split()
         base = " ".join(w for w in base.split() if w not in QUALS)
         if bits:
             raise Unsupported(f"bit-field {name}")
         f = self.make_type(base, stars.count("*"), name, off)
+        f.pconst = pconst
         for d in reversed(dims):
             n = self.eval_dim(d)
             f = Field(name, off, f.size * n, "array", elem=f, count=n)
@@ -318,10 +320,13 @@ class Types:
         raise Unsupported(f"type {base}")
 
     def parse_decl_type(self, text, name, off):
+        pconst = "const" in text.split("*")[0].split()
         text = " ".join(w for w in text.replace("*", " * ").split() if w not in QUALS)
         stars = text.count("*")
         base = text.replace("*", "").strip()
-        return self.make_type(base, stars, name, off)
+        f = self.make_type(base, stars, name, off)
+        f.pconst = pconst
+        return f
 
     def parse_fields(self, body):
         """Yield (base, stars, name, dims, bits|None, fnsig|None) per declarator."""
@@ -630,6 +635,11 @@ class Emitter:
             return e, e == "0"
         if f.kind == "struct":
             return self.struct_value(self.types.layout(f.struct), addr, ind)
+        if f.kind == "array" and f.elem.kind == "int" and f.elem.size == 1 and f.elem.tname == "char":
+            raw = self.rom.rom[addr - BASE: addr - BASE + f.count]
+            txt = raw.split(b"\0")[0]
+            if txt and not any(raw[len(txt):]) and all(0x20 <= c < 0x7F and c not in (0x22, 0x5C, 0x3F) for c in txt) and len(txt) < f.count:
+                return '"' + txt.decode() + '"', False
         if f.kind == "array":
             items, allzero = [], True
             for i in range(f.count):
@@ -908,7 +918,7 @@ def add(rom, types, decls, path, spec, args):
         text += "\n" + "\n".join(newdecls) + "\n"
     text += "\n" + render(out)
     path.write_text(text)
-    mod = path.stem
+    mod = path.resolve().relative_to(ROOT / "src").with_suffix("").as_posix()
     with open(ROOT / "data/layout.txt", "a") as f:
         for name, addr, size, _, _, _, _ in out:
             f.write(f"rom {addr:#010X} {size:#X} build/src/{mod}.o(.rodata.{addr:08X})\n".replace("0X", "0x"))
@@ -955,7 +965,7 @@ def report_refs(em, decls, path, hdr=None, skip=()):
             names["fn"].append(sym)
         else:
             pointee = "u8" if f.pointee.strip() in ("void", "const void") else f.pointee
-            cq = "" if em.plain_targets and pointee in INTS else "const "
+            cq = "" if (em.plain_targets or not getattr(f, "pconst", True)) and pointee in INTS else "const "
             line = f"extern {cq}{pointee} {sym}[];".replace("const const", "const")
             names["data"].append(sym)
             if pointee.split()[0] in ("struct", "u8", "u16", "u32"):   # many per line: `extern const T a[], b[];`

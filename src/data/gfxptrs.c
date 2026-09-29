@@ -1,4 +1,8 @@
-#include "gbafe.h"
+// Pointer tables to graphics, defined apart from their readers: the readers declare them
+// non-const, and a const declaration in a module that indexes them changes its code.
+// So this file includes no header (the readers' declarations would conflict).
+
+#include "gbafe/global.h"
 
 extern const u16 gUnk_08CE6058[], gUnk_08CE6060[], gUnk_08CE6068[], gUnk_08CE6070[],
     gUnk_08CE6088[], gUnk_08CE6090[], gUnk_08CE6098[], gUnk_08CE60A0[], gUnk_08CE60A8[],
