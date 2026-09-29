@@ -326,7 +326,9 @@ extern u8 gBanimScrRight[];
  * sheet word by the pointer through BANIM_SHEET, so everything that reads a
  * decompressed script (AnimInterpret, struct BanimModeData) sees pointers
  * in both configurations.  In the matching build BanimScrUnpack is
- * LZ77UnCompWram. */
+ * LZ77UnCompWram.  BANIM_SCR_UNPACK=1 runs its passes with the identity
+ * translation (an emutest reference that spends the same time, see
+ * docs/port-data.md). */
 #ifndef BANIM_SHEET_INDEX
 #define BANIM_SHEET_INDEX (!PLATFORM_GBA)
 #endif

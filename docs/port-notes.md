@@ -83,7 +83,7 @@ port design question.
 | `data/rom/*.s` | tables, graphics, maps, scripts not yet in C (`tools/datasplit.py`, `tools/dataptrs.py`) | 13,747 `.4byte SYMBOL` + raw `.incbin` chunks (14,432) |
 | `src/events/*.c` | chapter event lists and event scripts (`include/event_macros.h`) | C: `EventScr`/`EventListScr` word arrays (`uintptr_t`), pointers as symbols |
 | `sound/` | m4a songs, voice groups, samples (`tools/m4adis.py`) | 5,111, including 2,537 unaligned ones in track data |
-| `banim/` | battle animation scripts (`tools/banim.py`) | 25,329 sheet pointers inside LZ77-compressed scripts |
+| `banim/` | battle animation scripts (`tools/banim.py`) | 25,329 sheet pointers inside LZ77-compressed scripts; `BANIM_SHEET_INDEX` makes them indices into `gBanimSheets[]` (docs/port-data.md) |
 | `build/msg_bits.s` (bytes), `build/msg_table.c` | Huffman text, `gMsgTable` | done: the table is C (docs/port-data.md, "Music and text") |
 
 Every pointer word is 4 bytes and every structure is laid out for 4-byte
@@ -171,7 +171,8 @@ and `void-pointer-to-int-cast` categories for the current list):
   Needs a different encoding (e.g. two words per pointer instruction).
   anime.c:193,197,198,277,280,292; banim-efxutils.c:648;
   banim-mainutils.c:4.  The battle animation scripts' `0x86NNDDDD SHEET OAM`
-  frames (`banim/`) have the same problem inside compressed data.
+  frames (`banim/`) had the same problem inside compressed data; there the
+  word is a sheet index on a host (`BANIM_SHEET_INDEX`, docs/port-data.md).
 * **m4a sound driver**: done.  The NONMATCHING build uses the engine in
   C (`src/m4a_1.c`: `SoundMain`, the channel envelopes, `MPlayMain`, every
   `ply_*` command, notes, CGB channels; `src/m4a_mixer.c`: the mixer's
@@ -345,16 +346,28 @@ extra-map block at the end; the misc data at `SRAM_OFFSET_*`).  Findings:
   reaches the save.
 * **One exception: `struct Action`** (0x1C bytes, `action.h`) is written raw
   into the suspend save (`dest->action`, bmsave.c `WriteSuspendSave` /
-  `ReadSuspendSave`), and its last member is a pointer, `battle_scr`
-  (a `BattleHit *` into the battle hit array, set for the duration of a
-  battle or scripted fight).  On a host `sizeof(struct Action)` is 0x20, so
-  a raw write would shift everything after it in `SuspendSaveBlock`
-  (`blueUnits` at 0x64 and on), and the saved pointer is meaningless in
-  the next run.  A host must serialize `Action` explicitly (fields before
-  `battle_scr` as they are, `battle_scr` as an index into the hit array or
-  a zero), or keep the SRAM copy as `u8 action[0x1C]` and convert.
-  `GBA_SIZE_CHECK` (not `SAVE_SIZE_CHECK`) guards `Action` and
-  `SuspendSaveBlock` for that reason.
+  `ReadSuspendSave`) by the matching build, and its last member is a
+  pointer, `battle_scr` (a `BattleHit *`, set for the duration of a
+  scripted fight or by `FIGHT_OVERRIDE` for the next battle).  It only ever
+  points at one of the 21 `const struct BattleHit BattleScr_*[]` arrays of
+  `src/events/` (from `FIGHT` and `FIGHT_OVERRIDE`) or is NULL.  On a host
+  `sizeof(struct Action)` is 0x20, so a raw write would shift everything
+  after it, and the pointer is meaningless in the next run.  **Done:**
+  under `NONMATCHING` the save's field is `u8 action[0x1C]`
+  (`SuspendSaveBlock` then has `SAVE_SIZE_CHECK`), and
+  `EncodeSuspendAction` / `DecodeSuspendAction` (bmsave.c) write the GBA
+  layout: the fields before `battle_scr` as they are (u16s and u8s, the
+  same bytes on any little-endian host), then `battle_scr` as a
+  little-endian word holding the **retail ROM address** of its array
+  (which the arrays' names carry: `BattleScr_08CA85DC` is 0x08CA85DC), 0
+  for NULL.  An unknown value reads back as NULL.  So a suspend save has
+  the retail bytes on the GBA NONMATCHING build and on a host, and a real
+  cartridge's `.sav` loads.  The lookup is a chain of comparisons (an
+  X-macro list, `BATTLE_SCRS` in bmsave.c), not a table: the layout keeps
+  no `.rodata` of bmsave.o.  A new scripted battle array needs an entry
+  there.  Checked with `actions.txt` (suspend and Resume Chapter): the
+  NONMATCHING build against one with the raw write has the same picture
+  in every frame.  `GBA_SIZE_CHECK` still guards `Action` itself.
 * **The SRAM itself.**  `gSramMain` is initialized with the integer address
   0x0E000000 (`save_core.c`); the host needs a 32 KiB buffer, loaded from and
   written to a file, at that variable, and `SRAM_XMAP_ADDR` (end of SRAM)

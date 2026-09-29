@@ -58,7 +58,7 @@ What does have to change, by source:
 | `src/events/*.c` (69 files, `tools/evdis.py`) | event lists and scripts | Done: C with the macros of `include/event_macros.h` (batch 6) |
 | `build/msg_bits.s`, `build/msg_table.c` (`tools/textencode.py`) | `gMsgTable`, one pointer per message; `gMsgHuffmanTableRoot` | **Done.** Both are C now, generated at build time (not committed) and linked with the bitstream and tree (bytes, assembly) into `build/msg_data.o`; see "Music and text" |
 | `sound/` (`tools/m4adis.py`) | song headers, voice groups, both tables (aligned); track `GOTO`/`PATT` addresses (2,537 unaligned) | **Headers, voice groups and tables are C** (`sound/song_headers.c`, `voicegroups.c`, `song_table.c`); the track byte streams keep 4-byte addresses, which the portable m4a engine reads through one hook, `M4aReadAddr` (see "Music and text") |
-| `banim/` (`tools/banim.py`) | sheet pointers inside LZ77-compressed scripts | Same: the scripts stay bytes; the banim code maps a stored address to a sheet through a table the tool generates |
+| `banim/` (`tools/banim.py`) | sheet pointers inside LZ77-compressed scripts | **Done.** The scripts stay bytes; under `BANIM_SHEET_INDEX` (host default) a sheet word is an index into `gBanimSheets[]`, which the tool generates, and `BanimScrUnpack` turns it into the pointer (see "Animation scripts") |
 
 ## Rules for converted objects
 
@@ -168,9 +168,68 @@ one per instruction, never with numbers or `|`:
   one accessor, `BANIM_SCR_AT(base, byte_offset)`, which counts cells
   (`byte_offset / 4`); the interpreters step in cells (`pScrCurrent++`,
   `+= 3` for a FRAME) and are untouched.  In the matching build the macro
-  is the original pointer sum.  `struct BanimModeData` (also read at a mode
-  table offset, `banim-ekrbattleintro.c`) holds pointers in RAM and is not
-  converted yet.
+  is the original pointer sum.
+* **Decompressing a battle script: `BanimScrUnpack`** (`banim-mainutils.c`,
+  declared in `include/gbafe/banim.h`; in the matching build it is
+  `LZ77UnCompWram`).  All four places that decompress a script
+  (`UpdateBanimFrame` left / right, `InitMainMiniAnim`, `sub_08054C8C`) call
+  it.  It widens at decompression, not at read time: after
+  `LZ77UnCompWram` it spreads the 4-byte words into cells in place (from
+  the end; only compiled where `sizeof(AnimScr) > 4`), then walks the
+  script (FRAME is three cells, everything else one) and replaces each
+  FRAME's sheet word by `BANIM_SHEET(word)`.  So every reader of a RAM
+  script (`AnimInterpret`, `struct BanimModeData`) sees a plain pointer in
+  every configuration, and the only accessor besides `BANIM_SCR_AT` is
+  `BANIM_SHEET`, used in this one place.  The buffers
+  (`gBanimScrLeft` / `Right`, 0x2A00 bytes each; the class reels'
+  `gOpInfoFrameBuf` and the ekrmainmini `unk_28` buffers) must hold the
+  decompressed size in cells: twice the GBA size where a cell is 8 bytes.
+* **Sheet words: `BANIM_SHEET_INDEX`** (on by default when
+  `!PLATFORM_GBA`).  The ROM's compressed scripts hold each sheet's
+  absolute address, resolved by the link-time fixpoint of `tools/banim.py`.
+  With the switch the word is instead an index into `const void * const
+  gBanimSheets[]`: 0 is NULL, the sheets are numbered from 1 in order of
+  first use, script by script, each distinct `(label, addend)` once (276
+  sheets for the 25,329 words today; nothing depends on the number).  `BANIM_SHEET(word)` is
+  `gBanimSheets[word]`, and the plain pointer cast otherwise.  The
+  indices do not depend on the layout, so the link needs no fixpoint.
+  `tools/banim.py` generates both forms from the same `banim/*.s`:
+  `link --sheet-index` (the GBA NONMATCHING switch below) compresses the
+  indexed scripts into `banim.o` and adds the table there
+  (`.rodata.BanimSheets`, `.4byte label + addend`, appended to the
+  build's `layout.ld`); `host DIR` writes `DIR/banim_host.c` for a build
+  without an assembler-made `banim.o`: every compressed script and mode
+  table as a C array under its label, and `gBanimSheets` naming the sheets
+  as `extern const unsigned char` arrays (ROM-derived bytes: generated
+  under `build/`, never committed).
+* **`struct BanimModeData`** (a FRAME read at a mode table offset:
+  instruction, sheet, OAM offset; `banim-main.c`, `banim-ekrmainmini.c`,
+  `banim-ekrbattleintro.c`; banim-main.c had its own copy, `UnkStruct`) is
+  three `AnimScr` cells under `ANIMSCR_WIDE`, the original `{ const u32 *,
+  const u32 *, u32 }` otherwise, and is always reached through
+  `BANIM_SCR_AT`.  Its sheet (`img`) is already a pointer
+  (`BanimScrUnpack`).
+* **Testing on the GBA.**  `make NONMATCHING=1 BANIM_SHEET_INDEX=1` builds
+  `fe7u_nonmatching_idx.gba` (`build/nonmatching-idx/`), and it combines
+  with `ANIMSCR_WIDE=1` (`fe7u_nonmatching_wide_idx.gba`, the host's
+  configuration: cells and indices).  The unpack pass costs CPU time, and
+  a battle then starts a frame later than in the plain NONMATCHING build
+  (the prologue's first battle, frame 10668; from then on the pictures are
+  a frame apart).  So the reference for these ROMs is a build that does
+  the same work with the identity translation, `BANIM_SCR_UNPACK`:
+
+      make NONMATCHING=1 NM_DEFS=-DBANIM_SCR_UNPACK=1 \
+          NM_DIR=build/nonmatching-unpack NM_SUFFIX=_unpack
+      make emutest EMUTEST_A=fe7u_nonmatching_unpack.gba \
+          EMUTEST_B=fe7u_nonmatching_wide_idx.gba EMUTEST_FLAGS=--fast
+
+  Against it the wide + index ROM has the same picture, palette, VRAM and
+  OAM in every frame of `prologue`, `lyn`, `hector`, `opening`, `final`
+  and `actions` (battles on both sides, the class reels, magic); the RAM
+  differs only in moved ROM addresses (the indexed scripts compress to
+  other sizes) and sound samples by the cycle-timing effect of
+  CONTRIBUTING ("Sound"); `fe7u_nonmatching_wide.gba` has no unpack pass
+  and still matches the plain NONMATCHING build picture for picture.
 * The sprites (`AnimSprite_*`) stay in assembly as blobs and are declared
   `extern const struct AnimSpriteData X[]`, several to a line; a script that
   jumps or calls names its target symbol like any other pointer.
