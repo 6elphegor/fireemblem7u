@@ -766,6 +766,9 @@ def add(rom, types, decls, path, spec, args):
             break
         else:
             newdecls.append(line)
+    text = path.read_text() if path.exists() else text   # the declarations may have been in path itself
+    if not text.endswith("\n"):
+        text += "\n"
     if newdecls:
         text += "\n" + "\n".join(newdecls) + "\n"
     text += "\n" + render(out)
@@ -795,45 +798,52 @@ def append_to_header(h, lines):
 
 
 def report_refs(em, decls, path, hdr=None, skip=()):
-    """Symbols the emitted code refers to that `path` can't see declared;
-    with `hdr`, declare them there (functions in the header of the module
-    that defines them when it has one)."""
+    """Declare what the emitted code refers to and `path` can't see declared:
+    an include if a header declares it; else in `hdr` (functions: in the header
+    of the module that defines them when it has one); else in `path` itself."""
     cl = decls.closure(path)
-    todo, includes = {}, set()
+    todo, includes, local = {}, set(), []
+    names = {"fn": [], "data": [], "include": []}
     for sym, f in sorted(em.refs.items()):
         if decls.visible(sym, cl) or sym in skip:
             continue
-        where = [str(p.relative_to(ROOT)) for p, _ in decls.decl.get(sym, [])] or ["-"]
         defs = decls.defn.get(sym, [])
         hs = [p for p, _ in decls.decl.get(sym, []) if p.suffix == ".h" and p.resolve() not in cl]
         if hs and Path(path).suffix == ".c":
-            inc = str(hs[0].relative_to(ROOT / "include"))
-            print(f"declared in {inc}, not included by {path}: adding the include")
-            includes.add(inc)
+            includes.add(str(hs[0].relative_to(ROOT / "include")))
+            names["include"].append(sym)
             continue
+        target = hdr
         if f.kind == "fn":
             line = decls.defn_text.get(sym) or fn_proto(f.sig, sym)
             target = (header_for(defs[0]) if defs else None) or hdr
+            names["fn"].append(sym)
         else:
-            line = f"extern const {f.pointee} {sym}[];".replace("const const", "const")
-            target = hdr
+            pointee = "u8" if f.pointee.strip() in ("void", "const void") else f.pointee
+            line = f"extern const {pointee} {sym}[];".replace("const const", "const")
             srcs = [(p, t) for p, t in decls.decl.get(sym, []) if p.suffix == ".c" and p.resolve() != Path(path).resolve() and "(" not in t]
-            if srcs and hdr:   # declared privately in another module: move that declaration to the header
+            if srcs:   # declared privately in another module: move that declaration
                 line = srcs[0][1]
                 for p, t in srcs:
                     txt = p.read_text()
                     p.write_text(txt.replace(t + "\n", "", 1) if t + "\n" in txt else txt.replace(t, "", 1))
-        print(f"undeclared {f.kind} {sym}: {line}  decl in {where} defined in {[str(d.relative_to(ROOT)) for d in defs]}"
-              + (f" -> {target.relative_to(ROOT)}" if hdr and target else ""))
-        if hdr and target:
+            names["data"].append(sym)
+        if target:
             todo.setdefault(target, []).append(line)
+        else:
+            local.append(line)
+    for k, v in names.items():
+        if v:
+            print(f"{k}: {len(v)} declared ({', '.join(v[:4])}{', ...' if len(v) > 4 else ''})")
     for h, lines in todo.items():
         append_to_header(h, lines)
-    if includes:
-        t = Path(path).read_text()
-        last = list(re.finditer(r'^#include .*\n', t, re.M))
-        pos = last[-1].end() if last else 0
-        new = "".join(f'#include "{i}"\n' for i in sorted(includes) if f'#include "{i}"' not in t)
+    t = Path(path).read_text()
+    last = list(re.finditer(r'^#include .*\n', t, re.M))
+    pos = last[-1].end() if last else 0
+    new = "".join(f'#include "{i}"\n' for i in sorted(includes) if f'#include "{i}"' not in t)
+    if local:
+        new += "\n" + "\n".join(local) + "\n"
+    if new:
         Path(path).write_text(t[:pos] + new + t[pos:])
 
 
