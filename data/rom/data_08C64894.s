@@ -5,8 +5,8 @@
 
 	.section .rodata.08C64894, "a"
 
-	.global gUnk_08C64894
-gUnk_08C64894:
+	.global Img_Portrait_Heath_Mouth
+Img_Portrait_Heath_Mouth:
 	.incbin "baserom.gba", 0xc64894, 0x600
 
 	.global Img_Portrait_Heath_Chibi
@@ -21,8 +21,8 @@ Img_Portrait_Heath_Face:  @ LZ77
 Pal_Portrait_Fiora:
 	.incbin "graphics/portrait/035_Fiora_pal.gbapal"
 
-	.global gUnk_08C65A2C
-gUnk_08C65A2C:
+	.global Img_Portrait_Fiora_Mouth
+Img_Portrait_Fiora_Mouth:
 	.incbin "baserom.gba", 0xc65a2c, 0x600
 
 	.global Img_Portrait_Fiora_Chibi
@@ -37,8 +37,8 @@ Img_Portrait_Fiora_Face:  @ LZ77
 Pal_Portrait_Florina:
 	.incbin "graphics/portrait/033_Florina_pal.gbapal"
 
-	.global gUnk_08C66A44
-gUnk_08C66A44:
+	.global Img_Portrait_Florina_Mouth
+Img_Portrait_Florina_Mouth:
 	.incbin "baserom.gba", 0xc66a44, 0x600
 
 	.global Img_Portrait_Florina_Chibi
@@ -53,8 +53,8 @@ Img_Portrait_Florina_Face:  @ LZ77
 Pal_Portrait_Marcus:
 	.incbin "graphics/portrait/032_Marcus_pal.gbapal"
 
-	.global gUnk_08C67990
-gUnk_08C67990:
+	.global Img_Portrait_Marcus_Mouth
+Img_Portrait_Marcus_Mouth:
 	.incbin "baserom.gba", 0xc67990, 0x600
 
 	.global Img_Portrait_Marcus_Chibi
@@ -69,8 +69,8 @@ Img_Portrait_Marcus_Face:  @ LZ77
 Pal_Portrait_Lowen:
 	.incbin "graphics/portrait/031_Lowen_pal.gbapal"
 
-	.global gUnk_08C68928
-gUnk_08C68928:
+	.global Img_Portrait_Lowen_Mouth
+Img_Portrait_Lowen_Mouth:
 	.incbin "baserom.gba", 0xc68928, 0x600
 
 	.global Img_Portrait_Lowen_Chibi
@@ -85,8 +85,8 @@ Img_Portrait_Lowen_Face:  @ LZ77
 Pal_Portrait_Sain:
 	.incbin "graphics/portrait/030_Sain_pal.gbapal"
 
-	.global gUnk_08C6987C
-gUnk_08C6987C:
+	.global Img_Portrait_Sain_Mouth
+Img_Portrait_Sain_Mouth:
 	.incbin "baserom.gba", 0xc6987c, 0x600
 
 	.global Img_Portrait_Sain_Chibi
@@ -101,8 +101,8 @@ Img_Portrait_Sain_Face:  @ LZ77
 Pal_Portrait_Kent:
 	.incbin "graphics/portrait/02F_Kent_pal.gbapal"
 
-	.global gUnk_08C6A8C4
-gUnk_08C6A8C4:
+	.global Img_Portrait_Kent_Mouth
+Img_Portrait_Kent_Mouth:
 	.incbin "baserom.gba", 0xc6a8c4, 0x600
 
 	.global Img_Portrait_Kent_Chibi
@@ -117,8 +117,8 @@ Img_Portrait_Kent_Face:  @ LZ77
 Pal_Portrait_Rath:
 	.incbin "graphics/portrait/02E_Rath_pal.gbapal"
 
-	.global gUnk_08C6B868
-gUnk_08C6B868:
+	.global Img_Portrait_Rath_Mouth
+Img_Portrait_Rath_Mouth:
 	.incbin "baserom.gba", 0xc6b868, 0x600
 
 	.global Img_Portrait_Rath_Chibi
@@ -133,8 +133,8 @@ Img_Portrait_Rath_Face:  @ LZ77
 Pal_Portrait_Karla:
 	.incbin "graphics/portrait/02D_Karla_pal.gbapal"
 
-	.global gUnk_08C6C83C
-gUnk_08C6C83C:
+	.global Img_Portrait_Karla_Mouth
+Img_Portrait_Karla_Mouth:
 	.incbin "baserom.gba", 0xc6c83c, 0x600
 
 	.global Img_Portrait_Karla_Chibi
@@ -149,8 +149,8 @@ Img_Portrait_Karla_Face:  @ LZ77
 Pal_Portrait_Guy:
 	.incbin "graphics/portrait/02C_Guy_pal.gbapal"
 
-	.global gUnk_08C6D814
-gUnk_08C6D814:
+	.global Img_Portrait_Guy_Mouth
+Img_Portrait_Guy_Mouth:
 	.incbin "baserom.gba", 0xc6d814, 0x600
 
 	.global Img_Portrait_Guy_Chibi
@@ -165,8 +165,8 @@ Img_Portrait_Guy_Face:  @ LZ77
 Pal_Portrait_Wil:
 	.incbin "graphics/portrait/02B_Wil_pal.gbapal"
 
-	.global gUnk_08C6E738
-gUnk_08C6E738:
+	.global Img_Portrait_Wil_Mouth
+Img_Portrait_Wil_Mouth:
 	.incbin "baserom.gba", 0xc6e738, 0x600
 
 	.global Img_Portrait_Wil_Chibi
@@ -181,8 +181,8 @@ Img_Portrait_Wil_Face:  @ LZ77
 Pal_Portrait_Dart:
 	.incbin "graphics/portrait/02A_Dart_pal.gbapal"
 
-	.global gUnk_08C6F738
-gUnk_08C6F738:
+	.global Img_Portrait_Dart_Mouth
+Img_Portrait_Dart_Mouth:
 	.incbin "baserom.gba", 0xc6f738, 0x600
 
 	.global Img_Portrait_Dart_Chibi
@@ -197,8 +197,8 @@ Img_Portrait_Dart_Face:  @ LZ77
 Pal_Portrait_Oswin:
 	.incbin "graphics/portrait/029_Oswin_pal.gbapal"
 
-	.global gUnk_08C7068C
-gUnk_08C7068C:
+	.global Img_Portrait_Oswin_Mouth
+Img_Portrait_Oswin_Mouth:
 	.incbin "baserom.gba", 0xc7068c, 0x600
 
 	.global Img_Portrait_Oswin_Chibi
@@ -213,8 +213,8 @@ Img_Portrait_Oswin_Face:  @ LZ77
 Pal_Portrait_Bartre:
 	.incbin "graphics/portrait/028_Bartre_pal.gbapal"
 
-	.global gUnk_08C7174C
-gUnk_08C7174C:
+	.global Img_Portrait_Bartre_Mouth
+Img_Portrait_Bartre_Mouth:
 	.incbin "baserom.gba", 0xc7174c, 0x600
 
 	.global Img_Portrait_Bartre_Chibi
@@ -229,8 +229,8 @@ Img_Portrait_Bartre_Face:  @ LZ77
 Pal_Portrait_Dorcas:
 	.incbin "graphics/portrait/027_Dorcas_pal.gbapal"
 
-	.global gUnk_08C72824
-gUnk_08C72824:
+	.global Img_Portrait_Dorcas_Mouth
+Img_Portrait_Dorcas_Mouth:
 	.incbin "baserom.gba", 0xc72824, 0x600
 
 	.global Img_Portrait_Dorcas_Chibi
@@ -245,8 +245,8 @@ Img_Portrait_Dorcas_Face:  @ LZ77
 Pal_Portrait_Karel:
 	.incbin "graphics/portrait/026_Karel_pal.gbapal"
 
-	.global gUnk_08C73844
-gUnk_08C73844:
+	.global Img_Portrait_Karel_Mouth
+Img_Portrait_Karel_Mouth:
 	.incbin "baserom.gba", 0xc73844, 0x600
 
 	.global Img_Portrait_Karel_Chibi
@@ -261,8 +261,8 @@ Img_Portrait_Karel_Face:  @ LZ77
 Pal_Portrait_Legault:
 	.incbin "graphics/portrait/025_Legault_pal.gbapal"
 
-	.global gUnk_08C7481C
-gUnk_08C7481C:
+	.global Img_Portrait_Legault_Mouth
+Img_Portrait_Legault_Mouth:
 	.incbin "baserom.gba", 0xc7481c, 0x600
 
 	.global Img_Portrait_Legault_Chibi
@@ -277,8 +277,8 @@ Img_Portrait_Legault_Face:  @ LZ77
 Pal_Portrait_Geitz:
 	.incbin "graphics/portrait/024_Geitz_pal.gbapal"
 
-	.global gUnk_08C75704
-gUnk_08C75704:
+	.global Img_Portrait_Geitz_Mouth
+Img_Portrait_Geitz_Mouth:
 	.incbin "baserom.gba", 0xc75704, 0x600
 
 	.global Img_Portrait_Geitz_Chibi
@@ -293,8 +293,8 @@ Img_Portrait_Geitz_Face:  @ LZ77
 Pal_Portrait_Raven:
 	.incbin "graphics/portrait/023_Raven_pal.gbapal"
 
-	.global gUnk_08C767CC
-gUnk_08C767CC:
+	.global Img_Portrait_Raven_Mouth
+Img_Portrait_Raven_Mouth:
 	.incbin "baserom.gba", 0xc767cc, 0x600
 
 	.global Img_Portrait_Raven_Chibi
@@ -309,8 +309,8 @@ Img_Portrait_Raven_Face:  @ LZ77
 Pal_Portrait_Jaffar:
 	.incbin "graphics/portrait/021_Jaffar_pal.gbapal"
 
-	.global gUnk_08C777B0
-gUnk_08C777B0:
+	.global Img_Portrait_Jaffar_Mouth
+Img_Portrait_Jaffar_Mouth:
 	.incbin "baserom.gba", 0xc777b0, 0x600
 
 	.global Img_Portrait_Jaffar_Chibi
@@ -325,8 +325,8 @@ Img_Portrait_Jaffar_Face:  @ LZ77
 Pal_Portrait_Matthew:
 	.incbin "graphics/portrait/020_Matthew_pal.gbapal"
 
-	.global gUnk_08C78698
-gUnk_08C78698:
+	.global Img_Portrait_Matthew_Mouth
+Img_Portrait_Matthew_Mouth:
 	.incbin "baserom.gba", 0xc78698, 0x600
 
 	.global Img_Portrait_Matthew_Chibi
@@ -341,8 +341,8 @@ Img_Portrait_Matthew_Face:  @ LZ77
 Pal_Portrait_Hawkeye:
 	.incbin "graphics/portrait/01F_Hawkeye_pal.gbapal"
 
-	.global gUnk_08C79618
-gUnk_08C79618:
+	.global Img_Portrait_Hawkeye_Mouth
+Img_Portrait_Hawkeye_Mouth:
 	.incbin "baserom.gba", 0xc79618, 0x600
 
 	.global Img_Portrait_Hawkeye_Chibi
@@ -357,8 +357,8 @@ Img_Portrait_Hawkeye_Face:  @ LZ77
 Pal_Portrait_01D:
 	.incbin "graphics/portrait/01D_pal.gbapal"
 
-	.global gUnk_08C7A6C4
-gUnk_08C7A6C4:
+	.global Img_Portrait_01D_Mouth
+Img_Portrait_01D_Mouth:
 	.incbin "baserom.gba", 0xc7a6c4, 0x600
 
 	.global Img_Portrait_01D_Chibi
@@ -373,8 +373,8 @@ Img_Portrait_01D_Face:  @ LZ77
 Pal_Portrait_Ninian:
 	.incbin "graphics/portrait/01C_Ninian_pal.gbapal"
 
-	.global gUnk_08C7B61C
-gUnk_08C7B61C:
+	.global Img_Portrait_Ninian_Mouth
+Img_Portrait_Ninian_Mouth:
 	.incbin "baserom.gba", 0xc7b61c, 0x600
 
 	.global Img_Portrait_Ninian_Chibi
@@ -389,8 +389,8 @@ Img_Portrait_Ninian_Face:  @ LZ77
 Pal_Portrait_Athos:
 	.incbin "graphics/portrait/01B_Athos_pal.gbapal"
 
-	.global gUnk_08C7C5DC
-gUnk_08C7C5DC:
+	.global Img_Portrait_Athos_Mouth
+Img_Portrait_Athos_Mouth:
 	.incbin "baserom.gba", 0xc7c5dc, 0x600
 
 	.global Img_Portrait_Athos_Chibi
@@ -405,8 +405,8 @@ Img_Portrait_Athos_Face:  @ LZ77
 Pal_Portrait_01A:
 	.incbin "graphics/portrait/01A_pal.gbapal"
 
-	.global gUnk_08C7D6C4
-gUnk_08C7D6C4:
+	.global Img_Portrait_01A_Mouth
+Img_Portrait_01A_Mouth:
 	.incbin "baserom.gba", 0xc7d6c4, 0x600
 
 	.global Img_Portrait_01A_Chibi
@@ -421,8 +421,8 @@ Img_Portrait_01A_Face:  @ LZ77
 Pal_Portrait_019:
 	.incbin "graphics/portrait/019_pal.gbapal"
 
-	.global gUnk_08C7E67C
-gUnk_08C7E67C:
+	.global Img_Portrait_019_Mouth
+Img_Portrait_019_Mouth:
 	.incbin "baserom.gba", 0xc7e67c, 0x600
 
 	.global Img_Portrait_019_Chibi
@@ -437,8 +437,8 @@ Img_Portrait_019_Face:  @ LZ77
 Pal_Portrait_018:
 	.incbin "graphics/portrait/018_pal.gbapal"
 
-	.global gUnk_08C7F604
-gUnk_08C7F604:
+	.global Img_Portrait_018_Mouth
+Img_Portrait_018_Mouth:
 	.incbin "baserom.gba", 0xc7f604, 0x600
 
 	.global Img_Portrait_018_Chibi
@@ -453,8 +453,8 @@ Img_Portrait_018_Face:  @ LZ77
 Pal_Portrait_017:
 	.incbin "graphics/portrait/017_pal.gbapal"
 
-	.global gUnk_08C80598
-gUnk_08C80598:
+	.global Img_Portrait_017_Mouth
+Img_Portrait_017_Mouth:
 	.incbin "baserom.gba", 0xc80598, 0x600
 
 	.global Img_Portrait_017_Chibi
@@ -469,8 +469,8 @@ Img_Portrait_017_Face:  @ LZ77
 Pal_Portrait_Lyn:
 	.incbin "graphics/portrait/016_Lyn_pal.gbapal"
 
-	.global gUnk_08C81590
-gUnk_08C81590:
+	.global Img_Portrait_Lyn_Mouth
+Img_Portrait_Lyn_Mouth:
 	.incbin "baserom.gba", 0xc81590, 0x600
 
 	.global Img_Portrait_Lyn_Chibi
@@ -485,8 +485,8 @@ Img_Portrait_Lyn_Face:  @ LZ77
 Pal_Portrait_015:
 	.incbin "graphics/portrait/015_pal.gbapal"
 
-	.global gUnk_08C82530
-gUnk_08C82530:
+	.global Img_Portrait_015_Mouth
+Img_Portrait_015_Mouth:
 	.incbin "baserom.gba", 0xc82530, 0x600
 
 	.global Img_Portrait_015_Chibi
@@ -501,8 +501,8 @@ Img_Portrait_015_Face:  @ LZ77
 Pal_Portrait_014:
 	.incbin "graphics/portrait/014_pal.gbapal"
 
-	.global gUnk_08C835A8
-gUnk_08C835A8:
+	.global Img_Portrait_014_Mouth
+Img_Portrait_014_Mouth:
 	.incbin "baserom.gba", 0xc835a8, 0x600
 
 	.global Img_Portrait_014_Chibi
@@ -517,8 +517,8 @@ Img_Portrait_014_Face:  @ LZ77
 Pal_Portrait_013:
 	.incbin "graphics/portrait/013_pal.gbapal"
 
-	.global gUnk_08C846D4
-gUnk_08C846D4:
+	.global Img_Portrait_013_Mouth
+Img_Portrait_013_Mouth:
 	.incbin "baserom.gba", 0xc846d4, 0x600
 
 	.global Img_Portrait_013_Chibi
@@ -533,8 +533,8 @@ Img_Portrait_013_Face:  @ LZ77
 Pal_Portrait_012:
 	.incbin "graphics/portrait/012_pal.gbapal"
 
-	.global gUnk_08C85764
-gUnk_08C85764:
+	.global Img_Portrait_012_Mouth
+Img_Portrait_012_Mouth:
 	.incbin "baserom.gba", 0xc85764, 0x600
 
 	.global Img_Portrait_012_Chibi
@@ -549,8 +549,8 @@ Img_Portrait_012_Face:  @ LZ77
 Pal_Portrait_011:
 	.incbin "graphics/portrait/011_pal.gbapal"
 
-	.global gUnk_08C8680C
-gUnk_08C8680C:
+	.global Img_Portrait_011_Mouth
+Img_Portrait_011_Mouth:
 	.incbin "baserom.gba", 0xc8680c, 0x600
 
 	.global Img_Portrait_011_Chibi
@@ -565,8 +565,8 @@ Img_Portrait_011_Face:  @ LZ77
 Pal_Portrait_010:
 	.incbin "graphics/portrait/010_pal.gbapal"
 
-	.global gUnk_08C878E4
-gUnk_08C878E4:
+	.global Img_Portrait_010_Mouth
+Img_Portrait_010_Mouth:
 	.incbin "baserom.gba", 0xc878e4, 0x600
 
 	.global Img_Portrait_010_Chibi
@@ -581,8 +581,8 @@ Img_Portrait_010_Face:  @ LZ77
 Pal_Portrait_00F:
 	.incbin "graphics/portrait/00F_pal.gbapal"
 
-	.global gUnk_08C88988
-gUnk_08C88988:
+	.global Img_Portrait_00F_Mouth
+Img_Portrait_00F_Mouth:
 	.incbin "baserom.gba", 0xc88988, 0x600
 
 	.global Img_Portrait_00F_Chibi
@@ -597,8 +597,8 @@ Img_Portrait_00F_Face:  @ LZ77
 Pal_Portrait_00E:
 	.incbin "graphics/portrait/00E_pal.gbapal"
 
-	.global gUnk_08C89A04
-gUnk_08C89A04:
+	.global Img_Portrait_00E_Mouth
+Img_Portrait_00E_Mouth:
 	.incbin "baserom.gba", 0xc89a04, 0x600
 
 	.global Img_Portrait_00E_Chibi
@@ -613,8 +613,8 @@ Img_Portrait_00E_Face:  @ LZ77
 Pal_Portrait_00D:
 	.incbin "graphics/portrait/00D_pal.gbapal"
 
-	.global gUnk_08C8AAE8
-gUnk_08C8AAE8:
+	.global Img_Portrait_00D_Mouth
+Img_Portrait_00D_Mouth:
 	.incbin "baserom.gba", 0xc8aae8, 0x600
 
 	.global Img_Portrait_00D_Chibi
@@ -629,8 +629,8 @@ Img_Portrait_00D_Face:  @ LZ77
 Pal_Portrait_Hector:
 	.incbin "graphics/portrait/00C_Hector_pal.gbapal"
 
-	.global gUnk_08C8BC3C
-gUnk_08C8BC3C:
+	.global Img_Portrait_Hector_Mouth
+Img_Portrait_Hector_Mouth:
 	.incbin "baserom.gba", 0xc8bc3c, 0x600
 
 	.global Img_Portrait_Hector_Chibi
@@ -645,8 +645,8 @@ Img_Portrait_Hector_Face:  @ LZ77
 Pal_Portrait_00B:
 	.incbin "graphics/portrait/00B_pal.gbapal"
 
-	.global gUnk_08C8CD70
-gUnk_08C8CD70:
+	.global Img_Portrait_00B_Mouth
+Img_Portrait_00B_Mouth:
 	.incbin "baserom.gba", 0xc8cd70, 0x600
 
 	.global Img_Portrait_00B_Chibi
@@ -661,8 +661,8 @@ Img_Portrait_00B_Face:  @ LZ77
 Pal_Portrait_009:
 	.incbin "graphics/portrait/009_pal.gbapal"
 
-	.global gUnk_08C8DCEC
-gUnk_08C8DCEC:
+	.global Img_Portrait_009_Mouth
+Img_Portrait_009_Mouth:
 	.incbin "baserom.gba", 0xc8dcec, 0x600
 
 	.global Img_Portrait_009_Chibi
@@ -677,8 +677,8 @@ Img_Portrait_009_Face:  @ LZ77
 Pal_Portrait_008:
 	.incbin "graphics/portrait/008_pal.gbapal"
 
-	.global gUnk_08C8ED78
-gUnk_08C8ED78:
+	.global Img_Portrait_008_Mouth
+Img_Portrait_008_Mouth:
 	.incbin "baserom.gba", 0xc8ed78, 0x600
 
 	.global Img_Portrait_008_Chibi
@@ -693,8 +693,8 @@ Img_Portrait_008_Face:  @ LZ77
 Pal_Portrait_007:
 	.incbin "graphics/portrait/007_pal.gbapal"
 
-	.global gUnk_08C8FE18
-gUnk_08C8FE18:
+	.global Img_Portrait_007_Mouth
+Img_Portrait_007_Mouth:
 	.incbin "baserom.gba", 0xc8fe18, 0x600
 
 	.global Img_Portrait_007_Chibi
@@ -709,8 +709,8 @@ Img_Portrait_007_Face:  @ LZ77
 Pal_Portrait_006:
 	.incbin "graphics/portrait/006_pal.gbapal"
 
-	.global gUnk_08C90DB0
-gUnk_08C90DB0:
+	.global Img_Portrait_006_Mouth
+Img_Portrait_006_Mouth:
 	.incbin "baserom.gba", 0xc90db0, 0x600
 
 	.global Img_Portrait_006_Chibi
@@ -725,8 +725,8 @@ Img_Portrait_006_Face:  @ LZ77
 Pal_Portrait_005:
 	.incbin "graphics/portrait/005_pal.gbapal"
 
-	.global gUnk_08C91D94
-gUnk_08C91D94:
+	.global Img_Portrait_005_Mouth
+Img_Portrait_005_Mouth:
 	.incbin "baserom.gba", 0xc91d94, 0x600
 
 	.global Img_Portrait_005_Chibi
@@ -741,8 +741,8 @@ Img_Portrait_005_Face:  @ LZ77
 Pal_Portrait_004:
 	.incbin "graphics/portrait/004_pal.gbapal"
 
-	.global gUnk_08C92D2C
-gUnk_08C92D2C:
+	.global Img_Portrait_004_Mouth
+Img_Portrait_004_Mouth:
 	.incbin "baserom.gba", 0xc92d2c, 0x600
 
 	.global Img_Portrait_004_Chibi
@@ -757,8 +757,8 @@ Img_Portrait_004_Face:  @ LZ77
 Pal_Portrait_003:
 	.incbin "graphics/portrait/003_pal.gbapal"
 
-	.global gUnk_08C93CEC
-gUnk_08C93CEC:
+	.global Img_Portrait_003_Mouth
+Img_Portrait_003_Mouth:
 	.incbin "baserom.gba", 0xc93cec, 0x600
 
 	.global Img_Portrait_003_Chibi
@@ -773,8 +773,8 @@ Img_Portrait_003_Face:  @ LZ77
 Pal_Portrait_Eliwood:
 	.incbin "graphics/portrait/002_Eliwood_pal.gbapal"
 
-	.global gUnk_08C94CD0
-gUnk_08C94CD0:
+	.global Img_Portrait_Eliwood_Mouth
+Img_Portrait_Eliwood_Mouth:
 	.incbin "baserom.gba", 0xc94cd0, 0x600
 
 	.global Img_Portrait_Eliwood_Chibi
@@ -789,8 +789,8 @@ Img_Portrait_Eliwood_Face:  @ LZ77
 Pal_Portrait_001:
 	.incbin "graphics/portrait/001_pal.gbapal"
 
-	.global gUnk_08C95CBC
-gUnk_08C95CBC:
+	.global Img_Portrait_001_Mouth
+Img_Portrait_001_Mouth:
 	.incbin "baserom.gba", 0xc95cbc, 0x600
 
 	.global Img_Portrait_001_Chibi
@@ -805,947 +805,947 @@ Img_Portrait_001_Face:  @ LZ77
 	.4byte Img_Portrait_001_Face
 	.4byte Img_Portrait_001_Chibi
 	.4byte Pal_Portrait_001
-	.4byte gUnk_08C95CBC
+	.4byte Img_Portrait_001_Mouth
 	.incbin "baserom.gba", 0xc965b0, 0xc
 	.4byte Img_Portrait_Eliwood_Face
 	.4byte Img_Portrait_Eliwood_Chibi
 	.4byte Pal_Portrait_Eliwood
-	.4byte gUnk_08C94CD0
+	.4byte Img_Portrait_Eliwood_Mouth
 	.incbin "baserom.gba", 0xc965cc, 0xc
 	.4byte Img_Portrait_003_Face
 	.4byte Img_Portrait_003_Chibi
 	.4byte Pal_Portrait_003
-	.4byte gUnk_08C93CEC
+	.4byte Img_Portrait_003_Mouth
 	.incbin "baserom.gba", 0xc965e8, 0xc
 	.4byte Img_Portrait_004_Face
 	.4byte Img_Portrait_004_Chibi
 	.4byte Pal_Portrait_004
-	.4byte gUnk_08C92D2C
+	.4byte Img_Portrait_004_Mouth
 	.incbin "baserom.gba", 0xc96604, 0xc
 	.4byte Img_Portrait_005_Face
 	.4byte Img_Portrait_005_Chibi
 	.4byte Pal_Portrait_005
-	.4byte gUnk_08C91D94
+	.4byte Img_Portrait_005_Mouth
 	.incbin "baserom.gba", 0xc96620, 0xc
 	.4byte Img_Portrait_006_Face
 	.4byte Img_Portrait_006_Chibi
 	.4byte Pal_Portrait_006
-	.4byte gUnk_08C90DB0
+	.4byte Img_Portrait_006_Mouth
 	.incbin "baserom.gba", 0xc9663c, 0xc
 	.4byte Img_Portrait_007_Face
 	.4byte Img_Portrait_007_Chibi
 	.4byte Pal_Portrait_007
-	.4byte gUnk_08C8FE18
+	.4byte Img_Portrait_007_Mouth
 	.incbin "baserom.gba", 0xc96658, 0xc
 	.4byte Img_Portrait_008_Face
 	.4byte Img_Portrait_008_Chibi
 	.4byte Pal_Portrait_008
-	.4byte gUnk_08C8ED78
+	.4byte Img_Portrait_008_Mouth
 	.incbin "baserom.gba", 0xc96674, 0xc
 	.4byte Img_Portrait_009_Face
 	.4byte Img_Portrait_009_Chibi
 	.4byte Pal_Portrait_009
-	.4byte gUnk_08C8DCEC
+	.4byte Img_Portrait_009_Mouth
 	.incbin "baserom.gba", 0xc96690, 0xc
 	.4byte Img_Portrait_Eliwood_Face
 	.4byte Img_Portrait_Eliwood_Chibi
 	.4byte Pal_Portrait_Eliwood
-	.4byte gUnk_08C94CD0
+	.4byte Img_Portrait_Eliwood_Mouth
 	.incbin "baserom.gba", 0xc966ac, 0xc
 	.4byte Img_Portrait_00B_Face
 	.4byte Img_Portrait_00B_Chibi
 	.4byte Pal_Portrait_00B
-	.4byte gUnk_08C8CD70
+	.4byte Img_Portrait_00B_Mouth
 	.incbin "baserom.gba", 0xc966c8, 0xc
 	.4byte Img_Portrait_Hector_Face
 	.4byte Img_Portrait_Hector_Chibi
 	.4byte Pal_Portrait_Hector
-	.4byte gUnk_08C8BC3C
+	.4byte Img_Portrait_Hector_Mouth
 	.incbin "baserom.gba", 0xc966e4, 0xc
 	.4byte Img_Portrait_00D_Face
 	.4byte Img_Portrait_00D_Chibi
 	.4byte Pal_Portrait_00D
-	.4byte gUnk_08C8AAE8
+	.4byte Img_Portrait_00D_Mouth
 	.incbin "baserom.gba", 0xc96700, 0xc
 	.4byte Img_Portrait_00E_Face
 	.4byte Img_Portrait_00E_Chibi
 	.4byte Pal_Portrait_00E
-	.4byte gUnk_08C89A04
+	.4byte Img_Portrait_00E_Mouth
 	.incbin "baserom.gba", 0xc9671c, 0xc
 	.4byte Img_Portrait_00F_Face
 	.4byte Img_Portrait_00F_Chibi
 	.4byte Pal_Portrait_00F
-	.4byte gUnk_08C88988
+	.4byte Img_Portrait_00F_Mouth
 	.incbin "baserom.gba", 0xc96738, 0xc
 	.4byte Img_Portrait_010_Face
 	.4byte Img_Portrait_010_Chibi
 	.4byte Pal_Portrait_010
-	.4byte gUnk_08C878E4
+	.4byte Img_Portrait_010_Mouth
 	.incbin "baserom.gba", 0xc96754, 0xc
 	.4byte Img_Portrait_011_Face
 	.4byte Img_Portrait_011_Chibi
 	.4byte Pal_Portrait_011
-	.4byte gUnk_08C8680C
+	.4byte Img_Portrait_011_Mouth
 	.incbin "baserom.gba", 0xc96770, 0xc
 	.4byte Img_Portrait_012_Face
 	.4byte Img_Portrait_012_Chibi
 	.4byte Pal_Portrait_012
-	.4byte gUnk_08C85764
+	.4byte Img_Portrait_012_Mouth
 	.incbin "baserom.gba", 0xc9678c, 0xc
 	.4byte Img_Portrait_013_Face
 	.4byte Img_Portrait_013_Chibi
 	.4byte Pal_Portrait_013
-	.4byte gUnk_08C846D4
+	.4byte Img_Portrait_013_Mouth
 	.incbin "baserom.gba", 0xc967a8, 0xc
 	.4byte Img_Portrait_014_Face
 	.4byte Img_Portrait_014_Chibi
 	.4byte Pal_Portrait_014
-	.4byte gUnk_08C835A8
+	.4byte Img_Portrait_014_Mouth
 	.incbin "baserom.gba", 0xc967c4, 0xc
 	.4byte Img_Portrait_015_Face
 	.4byte Img_Portrait_015_Chibi
 	.4byte Pal_Portrait_015
-	.4byte gUnk_08C82530
+	.4byte Img_Portrait_015_Mouth
 	.incbin "baserom.gba", 0xc967e0, 0xc
 	.4byte Img_Portrait_Lyn_Face
 	.4byte Img_Portrait_Lyn_Chibi
 	.4byte Pal_Portrait_Lyn
-	.4byte gUnk_08C81590
+	.4byte Img_Portrait_Lyn_Mouth
 	.incbin "baserom.gba", 0xc967fc, 0xc
 	.4byte Img_Portrait_017_Face
 	.4byte Img_Portrait_017_Chibi
 	.4byte Pal_Portrait_017
-	.4byte gUnk_08C80598
+	.4byte Img_Portrait_017_Mouth
 	.incbin "baserom.gba", 0xc96818, 0xc
 	.4byte Img_Portrait_018_Face
 	.4byte Img_Portrait_018_Chibi
 	.4byte Pal_Portrait_018
-	.4byte gUnk_08C7F604
+	.4byte Img_Portrait_018_Mouth
 	.incbin "baserom.gba", 0xc96834, 0xc
 	.4byte Img_Portrait_019_Face
 	.4byte Img_Portrait_019_Chibi
 	.4byte Pal_Portrait_019
-	.4byte gUnk_08C7E67C
+	.4byte Img_Portrait_019_Mouth
 	.incbin "baserom.gba", 0xc96850, 0xc
 	.4byte Img_Portrait_01A_Face
 	.4byte Img_Portrait_01A_Chibi
 	.4byte Pal_Portrait_01A
-	.4byte gUnk_08C7D6C4
+	.4byte Img_Portrait_01A_Mouth
 	.incbin "baserom.gba", 0xc9686c, 0xc
 	.4byte Img_Portrait_Athos_Face
 	.4byte Img_Portrait_Athos_Chibi
 	.4byte Pal_Portrait_Athos
-	.4byte gUnk_08C7C5DC
+	.4byte Img_Portrait_Athos_Mouth
 	.incbin "baserom.gba", 0xc96888, 0xc
 	.4byte Img_Portrait_Ninian_Face
 	.4byte Img_Portrait_Ninian_Chibi
 	.4byte Pal_Portrait_Ninian
-	.4byte gUnk_08C7B61C
+	.4byte Img_Portrait_Ninian_Mouth
 	.incbin "baserom.gba", 0xc968a4, 0xc
 	.4byte Img_Portrait_01D_Face
 	.4byte Img_Portrait_01D_Chibi
 	.4byte Pal_Portrait_01D
-	.4byte gUnk_08C7A6C4
+	.4byte Img_Portrait_01D_Mouth
 	.incbin "baserom.gba", 0xc968c0, 0xc
 	.4byte Img_Portrait_Ninian_Face
 	.4byte Img_Portrait_Ninian_Chibi
 	.4byte Pal_Portrait_Ninian
-	.4byte gUnk_08C7B61C
+	.4byte Img_Portrait_Ninian_Mouth
 	.incbin "baserom.gba", 0xc968dc, 0xc
 	.4byte Img_Portrait_Hawkeye_Face
 	.4byte Img_Portrait_Hawkeye_Chibi
 	.4byte Pal_Portrait_Hawkeye
-	.4byte gUnk_08C79618
+	.4byte Img_Portrait_Hawkeye_Mouth
 	.incbin "baserom.gba", 0xc968f8, 0xc
 	.4byte Img_Portrait_Matthew_Face
 	.4byte Img_Portrait_Matthew_Chibi
 	.4byte Pal_Portrait_Matthew
-	.4byte gUnk_08C78698
+	.4byte Img_Portrait_Matthew_Mouth
 	.incbin "baserom.gba", 0xc96914, 0xc
 	.4byte Img_Portrait_Jaffar_Face
 	.4byte Img_Portrait_Jaffar_Chibi
 	.4byte Pal_Portrait_Jaffar
-	.4byte gUnk_08C777B0
+	.4byte Img_Portrait_Jaffar_Mouth
 	.incbin "baserom.gba", 0xc96930, 0xc
 	.4byte Img_Portrait_Jaffar_Face
 	.4byte Img_Portrait_Jaffar_Chibi
 	.4byte Pal_Portrait_Jaffar
-	.4byte gUnk_08C777B0
+	.4byte Img_Portrait_Jaffar_Mouth
 	.incbin "baserom.gba", 0xc9694c, 0xc
 	.4byte Img_Portrait_Raven_Face
 	.4byte Img_Portrait_Raven_Chibi
 	.4byte Pal_Portrait_Raven
-	.4byte gUnk_08C767CC
+	.4byte Img_Portrait_Raven_Mouth
 	.incbin "baserom.gba", 0xc96968, 0xc
 	.4byte Img_Portrait_Geitz_Face
 	.4byte Img_Portrait_Geitz_Chibi
 	.4byte Pal_Portrait_Geitz
-	.4byte gUnk_08C75704
+	.4byte Img_Portrait_Geitz_Mouth
 	.incbin "baserom.gba", 0xc96984, 0xc
 	.4byte Img_Portrait_Legault_Face
 	.4byte Img_Portrait_Legault_Chibi
 	.4byte Pal_Portrait_Legault
-	.4byte gUnk_08C7481C
+	.4byte Img_Portrait_Legault_Mouth
 	.incbin "baserom.gba", 0xc969a0, 0xc
 	.4byte Img_Portrait_Karel_Face
 	.4byte Img_Portrait_Karel_Chibi
 	.4byte Pal_Portrait_Karel
-	.4byte gUnk_08C73844
+	.4byte Img_Portrait_Karel_Mouth
 	.incbin "baserom.gba", 0xc969bc, 0xc
 	.4byte Img_Portrait_Dorcas_Face
 	.4byte Img_Portrait_Dorcas_Chibi
 	.4byte Pal_Portrait_Dorcas
-	.4byte gUnk_08C72824
+	.4byte Img_Portrait_Dorcas_Mouth
 	.incbin "baserom.gba", 0xc969d8, 0xc
 	.4byte Img_Portrait_Bartre_Face
 	.4byte Img_Portrait_Bartre_Chibi
 	.4byte Pal_Portrait_Bartre
-	.4byte gUnk_08C7174C
+	.4byte Img_Portrait_Bartre_Mouth
 	.incbin "baserom.gba", 0xc969f4, 0xc
 	.4byte Img_Portrait_Oswin_Face
 	.4byte Img_Portrait_Oswin_Chibi
 	.4byte Pal_Portrait_Oswin
-	.4byte gUnk_08C7068C
+	.4byte Img_Portrait_Oswin_Mouth
 	.incbin "baserom.gba", 0xc96a10, 0xc
 	.4byte Img_Portrait_Dart_Face
 	.4byte Img_Portrait_Dart_Chibi
 	.4byte Pal_Portrait_Dart
-	.4byte gUnk_08C6F738
+	.4byte Img_Portrait_Dart_Mouth
 	.incbin "baserom.gba", 0xc96a2c, 0xc
 	.4byte Img_Portrait_Wil_Face
 	.4byte Img_Portrait_Wil_Chibi
 	.4byte Pal_Portrait_Wil
-	.4byte gUnk_08C6E738
+	.4byte Img_Portrait_Wil_Mouth
 	.incbin "baserom.gba", 0xc96a48, 0xc
 	.4byte Img_Portrait_Guy_Face
 	.4byte Img_Portrait_Guy_Chibi
 	.4byte Pal_Portrait_Guy
-	.4byte gUnk_08C6D814
+	.4byte Img_Portrait_Guy_Mouth
 	.incbin "baserom.gba", 0xc96a64, 0xc
 	.4byte Img_Portrait_Karla_Face
 	.4byte Img_Portrait_Karla_Chibi
 	.4byte Pal_Portrait_Karla
-	.4byte gUnk_08C6C83C
+	.4byte Img_Portrait_Karla_Mouth
 	.incbin "baserom.gba", 0xc96a80, 0xc
 	.4byte Img_Portrait_Rath_Face
 	.4byte Img_Portrait_Rath_Chibi
 	.4byte Pal_Portrait_Rath
-	.4byte gUnk_08C6B868
+	.4byte Img_Portrait_Rath_Mouth
 	.incbin "baserom.gba", 0xc96a9c, 0xc
 	.4byte Img_Portrait_Kent_Face
 	.4byte Img_Portrait_Kent_Chibi
 	.4byte Pal_Portrait_Kent
-	.4byte gUnk_08C6A8C4
+	.4byte Img_Portrait_Kent_Mouth
 	.incbin "baserom.gba", 0xc96ab8, 0xc
 	.4byte Img_Portrait_Sain_Face
 	.4byte Img_Portrait_Sain_Chibi
 	.4byte Pal_Portrait_Sain
-	.4byte gUnk_08C6987C
+	.4byte Img_Portrait_Sain_Mouth
 	.incbin "baserom.gba", 0xc96ad4, 0xc
 	.4byte Img_Portrait_Lowen_Face
 	.4byte Img_Portrait_Lowen_Chibi
 	.4byte Pal_Portrait_Lowen
-	.4byte gUnk_08C68928
+	.4byte Img_Portrait_Lowen_Mouth
 	.incbin "baserom.gba", 0xc96af0, 0xc
 	.4byte Img_Portrait_Marcus_Face
 	.4byte Img_Portrait_Marcus_Chibi
 	.4byte Pal_Portrait_Marcus
-	.4byte gUnk_08C67990
+	.4byte Img_Portrait_Marcus_Mouth
 	.incbin "baserom.gba", 0xc96b0c, 0xc
 	.4byte Img_Portrait_Florina_Face
 	.4byte Img_Portrait_Florina_Chibi
 	.4byte Pal_Portrait_Florina
-	.4byte gUnk_08C66A44
+	.4byte Img_Portrait_Florina_Mouth
 	.incbin "baserom.gba", 0xc96b28, 0xc
 	.4byte Img_Portrait_Florina_Face
 	.4byte Img_Portrait_Florina_Chibi
 	.4byte Pal_Portrait_Florina
-	.4byte gUnk_08C66A44
+	.4byte Img_Portrait_Florina_Mouth
 	.incbin "baserom.gba", 0xc96b44, 0xc
 	.4byte Img_Portrait_Fiora_Face
 	.4byte Img_Portrait_Fiora_Chibi
 	.4byte Pal_Portrait_Fiora
-	.4byte gUnk_08C65A2C
+	.4byte Img_Portrait_Fiora_Mouth
 	.incbin "baserom.gba", 0xc96b60, 0xc
 	.4byte Img_Portrait_Heath_Face
 	.4byte Img_Portrait_Heath_Chibi
 	.4byte Pal_Portrait_Heath
-	.4byte gUnk_08C64894
+	.4byte Img_Portrait_Heath_Mouth
 	.incbin "baserom.gba", 0xc96b7c, 0xc
 	.4byte Img_Portrait_Vaida_Face
 	.4byte Img_Portrait_Vaida_Chibi
 	.4byte Pal_Portrait_Vaida
-	.4byte gUnk_08C63A08
+	.4byte Img_Portrait_Vaida_Mouth
 	.incbin "baserom.gba", 0xc96b98, 0xc
 	.4byte Img_Portrait_Erk_Face
 	.4byte Img_Portrait_Erk_Chibi
 	.4byte Pal_Portrait_Erk
-	.4byte gUnk_08C62A4C
+	.4byte Img_Portrait_Erk_Mouth
 	.incbin "baserom.gba", 0xc96bb4, 0xc
 	.4byte Img_Portrait_Nino_Face
 	.4byte Img_Portrait_Nino_Chibi
 	.4byte Pal_Portrait_Nino
-	.4byte gUnk_08C61AEC
+	.4byte Img_Portrait_Nino_Mouth
 	.incbin "baserom.gba", 0xc96bd0, 0xc
 	.4byte Img_Portrait_Pent_Face
 	.4byte Img_Portrait_Pent_Chibi
 	.4byte Pal_Portrait_Pent
-	.4byte gUnk_08C60A58
+	.4byte Img_Portrait_Pent_Mouth
 	.incbin "baserom.gba", 0xc96bec, 0xc
 	.4byte Img_Portrait_Louise_Face
 	.4byte Img_Portrait_Louise_Chibi
 	.4byte Pal_Portrait_Louise
-	.4byte gUnk_08C5FAD0
+	.4byte Img_Portrait_Louise_Mouth
 	.incbin "baserom.gba", 0xc96c08, 0xc
 	.4byte Img_Portrait_Canas_Face
 	.4byte Img_Portrait_Canas_Chibi
 	.4byte Pal_Portrait_Canas
-	.4byte gUnk_08C5EB84
+	.4byte Img_Portrait_Canas_Mouth
 	.incbin "baserom.gba", 0xc96c24, 0xc
 	.4byte Img_Portrait_Lucius_Face
 	.4byte Img_Portrait_Lucius_Chibi
 	.4byte Pal_Portrait_Lucius
-	.4byte gUnk_08C5DB74
+	.4byte Img_Portrait_Lucius_Mouth
 	.incbin "baserom.gba", 0xc96c40, 0xc
 	.4byte Img_Portrait_Serra_Face
 	.4byte Img_Portrait_Serra_Chibi
 	.4byte Pal_Portrait_Serra
-	.4byte gUnk_08C5CB38
+	.4byte Img_Portrait_Serra_Mouth
 	.incbin "baserom.gba", 0xc96c5c, 0xc
 	.4byte Img_Portrait_Priscilla_Face
 	.4byte Img_Portrait_Priscilla_Chibi
 	.4byte Pal_Portrait_Priscilla
-	.4byte gUnk_08C5BC08
+	.4byte Img_Portrait_Priscilla_Mouth
 	.incbin "baserom.gba", 0xc96c78, 0xc
 	.4byte Img_Portrait_Farina_Face
 	.4byte Img_Portrait_Farina_Chibi
 	.4byte Pal_Portrait_Farina
-	.4byte gUnk_08C5AC5C
+	.4byte Img_Portrait_Farina_Mouth
 	.incbin "baserom.gba", 0xc96c94, 0xc
 	.4byte Img_Portrait_Nils_Face
 	.4byte Img_Portrait_Nils_Chibi
 	.4byte Pal_Portrait_Nils
-	.4byte gUnk_08C59DB8
+	.4byte Img_Portrait_Nils_Mouth
 	.incbin "baserom.gba", 0xc96cb0, 0xc
 	.4byte Img_Portrait_042_Face
 	.4byte Img_Portrait_042_Chibi
 	.4byte Pal_Portrait_042
-	.4byte gUnk_08C58F08
+	.4byte Img_Portrait_042_Mouth
 	.incbin "baserom.gba", 0xc96ccc, 0xc
 	.4byte Img_Portrait_043_Face
 	.4byte Img_Portrait_043_Chibi
 	.4byte Pal_Portrait_043
-	.4byte gUnk_08C580C4
+	.4byte Img_Portrait_043_Mouth
 	.incbin "baserom.gba", 0xc96ce8, 0xc
 	.4byte Img_Portrait_Nils_Face
 	.4byte Img_Portrait_Nils_Chibi
 	.4byte Pal_Portrait_Nils
-	.4byte gUnk_08C59DB8
+	.4byte Img_Portrait_Nils_Mouth
 	.incbin "baserom.gba", 0xc96d04, 0xc
 	.4byte Img_Portrait_Renault_Face
 	.4byte Img_Portrait_Renault_Chibi
 	.4byte Pal_Portrait_Renault
-	.4byte gUnk_08C570E8
+	.4byte Img_Portrait_Renault_Mouth
 	.incbin "baserom.gba", 0xc96d20, 0xc
 	.4byte Img_Portrait_Isadora_Face
 	.4byte Img_Portrait_Isadora_Chibi
 	.4byte Pal_Portrait_Isadora
-	.4byte gUnk_08C56130
+	.4byte Img_Portrait_Isadora_Mouth
 	.incbin "baserom.gba", 0xc96d3c, 0xc
 	.4byte Img_Portrait_Harken_Face
 	.4byte Img_Portrait_Harken_Chibi
 	.4byte Pal_Portrait_Harken
-	.4byte gUnk_08C5504C
+	.4byte Img_Portrait_Harken_Mouth
 	.incbin "baserom.gba", 0xc96d58, 0xc
 	.4byte Img_Portrait_Rebecca_Face
 	.4byte Img_Portrait_Rebecca_Chibi
 	.4byte Pal_Portrait_Rebecca
-	.4byte gUnk_08C5409C
+	.4byte Img_Portrait_Rebecca_Mouth
 	.incbin "baserom.gba", 0xc96d74, 0xc
 	.4byte Img_Portrait_Wallace_Face
 	.4byte Img_Portrait_Wallace_Chibi
 	.4byte Pal_Portrait_Wallace
-	.4byte gUnk_08C53118
+	.4byte Img_Portrait_Wallace_Mouth
 	.incbin "baserom.gba", 0xc96d90, 0xc
 	.4byte Img_Portrait_Merlinus_Face
 	.4byte Img_Portrait_Merlinus_Chibi
 	.4byte Pal_Portrait_Merlinus
-	.4byte gUnk_08C52198
+	.4byte Img_Portrait_Merlinus_Mouth
 	.incbin "baserom.gba", 0xc96dac, 0xc
 	.4byte Img_Portrait_04B_Face
 	.4byte Img_Portrait_04B_Chibi
 	.4byte Pal_Portrait_04B
-	.4byte gUnk_08C514AC
+	.4byte Img_Portrait_04B_Mouth
 	.incbin "baserom.gba", 0xc96dc8, 0xc
 	.4byte Img_Portrait_Eleanora_Face
 	.4byte Img_Portrait_Eleanora_Chibi
 	.4byte Pal_Portrait_Eleanora
-	.4byte gUnk_08C50674
+	.4byte Img_Portrait_Eleanora_Mouth
 	.incbin "baserom.gba", 0xc96de4, 0xc
 	.4byte Img_Portrait_Eleanora_Face
 	.4byte Img_Portrait_Eleanora_Chibi
 	.4byte Pal_Portrait_Eleanora
-	.4byte gUnk_08C50674
+	.4byte Img_Portrait_Eleanora_Mouth
 	.incbin "baserom.gba", 0xc96e00, 0xc
 	.4byte Img_Portrait_Uther_Face
 	.4byte Img_Portrait_Uther_Chibi
 	.4byte Pal_Portrait_Uther
-	.4byte gUnk_08C4F5AC
+	.4byte Img_Portrait_Uther_Mouth
 	.incbin "baserom.gba", 0xc96e1c, 0xc
 	.4byte Img_Portrait_Elbert_Face
 	.4byte Img_Portrait_Elbert_Chibi
 	.4byte Pal_Portrait_Elbert
-	.4byte gUnk_08C4E744
+	.4byte Img_Portrait_Elbert_Mouth
 	.incbin "baserom.gba", 0xc96e38, 0xc
 	.4byte Img_Portrait_Fargus_Face
 	.4byte Img_Portrait_Fargus_Chibi
 	.4byte Pal_Portrait_Fargus
-	.4byte gUnk_08C4D630
+	.4byte Img_Portrait_Fargus_Mouth
 	.incbin "baserom.gba", 0xc96e54, 0xc
 	.4byte Img_Portrait_Zephiel_Face
 	.4byte Img_Portrait_Zephiel_Chibi
 	.4byte Pal_Portrait_Zephiel
-	.4byte gUnk_08C4C6C8
+	.4byte Img_Portrait_Zephiel_Mouth
 	.incbin "baserom.gba", 0xc96e70, 0xc
 	.4byte Img_Portrait_052_Face
 	.4byte Img_Portrait_052_Chibi
 	.4byte Pal_Portrait_052
-	.4byte gUnk_08C4B9D8
+	.4byte Img_Portrait_052_Mouth
 	.incbin "baserom.gba", 0xc96e8c, 0xc
 	.4byte Img_Portrait_053_Face
 	.4byte Img_Portrait_053_Chibi
 	.4byte Pal_Portrait_053
-	.4byte gUnk_08C4A98C
+	.4byte Img_Portrait_053_Mouth
 	.incbin "baserom.gba", 0xc96ea8, 0xc
 	.4byte Img_Portrait_054_Face
 	.4byte Img_Portrait_054_Chibi
 	.4byte Pal_Portrait_054
-	.4byte gUnk_08C49AA4
+	.4byte Img_Portrait_054_Mouth
 	.incbin "baserom.gba", 0xc96ec4, 0xc
 	.4byte Img_Portrait_055_Face
 	.4byte Img_Portrait_055_Chibi
 	.4byte Pal_Portrait_055
-	.4byte gUnk_08C48BAC
+	.4byte Img_Portrait_055_Mouth
 	.incbin "baserom.gba", 0xc96ee0, 0xc
 	.4byte Img_Portrait_056_Face
 	.4byte Img_Portrait_056_Chibi
 	.4byte Pal_Portrait_056
-	.4byte gUnk_08C47A8C
+	.4byte Img_Portrait_056_Mouth
 	.incbin "baserom.gba", 0xc96efc, 0xc
 	.4byte Img_Portrait_Leila_Face
 	.4byte Img_Portrait_Leila_Chibi
 	.4byte Pal_Portrait_Leila
-	.4byte gUnk_08C46CE4
+	.4byte Img_Portrait_Leila_Mouth
 	.incbin "baserom.gba", 0xc96f18, 0xc
 	.4byte Img_Portrait_058_Face
 	.4byte Img_Portrait_058_Chibi
 	.4byte Pal_Portrait_058
-	.4byte gUnk_08C45F7C
+	.4byte Img_Portrait_058_Mouth
 	.incbin "baserom.gba", 0xc96f34, 0xc
 	.4byte Img_Portrait_059_Face
 	.4byte Img_Portrait_059_Chibi
 	.4byte Pal_Portrait_059
-	.4byte gUnk_08C45184
+	.4byte Img_Portrait_059_Mouth
 	.incbin "baserom.gba", 0xc96f50, 0xc
 	.4byte Img_Portrait_05A_Face
 	.4byte Img_Portrait_05A_Chibi
 	.4byte Pal_Portrait_05A
-	.4byte gUnk_08C44354
+	.4byte Img_Portrait_05A_Mouth
 	.incbin "baserom.gba", 0xc96f6c, 0xc
 	.4byte Img_Portrait_Natalie_Face
 	.4byte Img_Portrait_Natalie_Chibi
 	.4byte Pal_Portrait_Natalie
-	.4byte gUnk_08C43518
+	.4byte Img_Portrait_Natalie_Mouth
 	.incbin "baserom.gba", 0xc96f88, 0xc
 	.4byte Img_Portrait_Bramimond_Face
 	.4byte Img_Portrait_Bramimond_Chibi
 	.4byte Pal_Portrait_Bramimond
-	.4byte gUnk_08C4272C
+	.4byte Img_Portrait_Bramimond_Mouth
 	.incbin "baserom.gba", 0xc96fa4, 0xc
 	.4byte Img_Portrait_05D_Face
 	.4byte Img_Portrait_05D_Chibi
 	.4byte Pal_Portrait_05D
-	.4byte gUnk_08C4190C
+	.4byte Img_Portrait_05D_Mouth
 	.incbin "baserom.gba", 0xc96fc0, 0xc
 	.4byte Img_Portrait_05E_Face
 	.4byte Img_Portrait_05E_Chibi
 	.4byte Pal_Portrait_05E
-	.4byte gUnk_08C40A90
+	.4byte Img_Portrait_05E_Mouth
 	.incbin "baserom.gba", 0xc96fdc, 0xc
 	.4byte Img_Portrait_05F_Face
 	.4byte Img_Portrait_05F_Chibi
 	.4byte Pal_Portrait_05F
-	.4byte gUnk_08C3FB28
+	.4byte Img_Portrait_05F_Mouth
 	.incbin "baserom.gba", 0xc96ff8, 0xc
 	.4byte Img_Portrait_060_Face
 	.4byte Img_Portrait_060_Chibi
 	.4byte Pal_Portrait_060
-	.4byte gUnk_08C3EBAC
+	.4byte Img_Portrait_060_Mouth
 	.incbin "baserom.gba", 0xc97014, 0xc
 	.4byte Img_Portrait_Nergal_Face
 	.4byte Img_Portrait_Nergal_Chibi
 	.4byte Pal_Portrait_Nergal
-	.4byte gUnk_08C3DAB4
+	.4byte Img_Portrait_Nergal_Mouth
 	.incbin "baserom.gba", 0xc97030, 0xc
 	.4byte Img_Portrait_062_Face
 	.4byte Img_Portrait_062_Chibi
 	.4byte Pal_Portrait_062
-	.4byte gUnk_08C3C9AC
+	.4byte Img_Portrait_062_Mouth
 	.incbin "baserom.gba", 0xc9704c, 0xc
 	.4byte Img_Portrait_Sonia_Face
 	.4byte Img_Portrait_Sonia_Chibi
 	.4byte Pal_Portrait_Sonia
-	.4byte gUnk_08C3B894
+	.4byte Img_Portrait_Sonia_Mouth
 	.incbin "baserom.gba", 0xc97068, 0xc
 	.4byte Img_Portrait_064_Brendan_Face
 	.4byte Img_Portrait_064_Brendan_Chibi
 	.4byte Pal_Portrait_064_Brendan
-	.4byte gUnk_08C3A748
+	.4byte Img_Portrait_064_Brendan_Mouth
 	.incbin "baserom.gba", 0xc97084, 0xc
 	.4byte Img_Portrait_065_Lloyd_Face
 	.4byte Img_Portrait_065_Lloyd_Chibi
 	.4byte Pal_Portrait_065_Lloyd
-	.4byte gUnk_08C39784
+	.4byte Img_Portrait_065_Lloyd_Mouth
 	.incbin "baserom.gba", 0xc970a0, 0xc
 	.4byte Img_Portrait_066_Linus_Face
 	.4byte Img_Portrait_066_Linus_Chibi
 	.4byte Pal_Portrait_066_Linus
-	.4byte gUnk_08C387CC
+	.4byte Img_Portrait_066_Linus_Mouth
 	.incbin "baserom.gba", 0xc970bc, 0xc
 	.4byte Img_Portrait_Limstella_Face
 	.4byte Img_Portrait_Limstella_Chibi
 	.4byte Pal_Portrait_Limstella
-	.4byte gUnk_08C376F8
+	.4byte Img_Portrait_Limstella_Mouth
 	.incbin "baserom.gba", 0xc970d8, 0xc
 	.4byte Img_Portrait_068_Face
 	.4byte Img_Portrait_068_Chibi
 	.4byte Pal_Portrait_068
-	.4byte gUnk_08C368B4
+	.4byte Img_Portrait_068_Mouth
 	.incbin "baserom.gba", 0xc970f4, 0xc
 	.4byte Img_Portrait_069_Face
 	.4byte Img_Portrait_069_Chibi
 	.4byte Pal_Portrait_069
-	.4byte gUnk_08C35C40
+	.4byte Img_Portrait_069_Mouth
 	.incbin "baserom.gba", 0xc97110, 0xc
 	.4byte Img_Portrait_06A_Darin_Face
 	.4byte Img_Portrait_06A_Darin_Chibi
 	.4byte Pal_Portrait_06A_Darin
-	.4byte gUnk_08C34B90
+	.4byte Img_Portrait_06A_Darin_Mouth
 	.incbin "baserom.gba", 0xc9712c, 0xc
 	.4byte Img_Portrait_Erik_Face
 	.4byte Img_Portrait_Erik_Chibi
 	.4byte Pal_Portrait_Erik
-	.4byte gUnk_08C33BB0
+	.4byte Img_Portrait_Erik_Mouth
 	.incbin "baserom.gba", 0xc97148, 0xc
 	.4byte Img_Portrait_Santals_Face
 	.4byte Img_Portrait_Santals_Chibi
 	.4byte Pal_Portrait_Santals
-	.4byte gUnk_08C32DB0
+	.4byte Img_Portrait_Santals_Mouth
 	.incbin "baserom.gba", 0xc97164, 0xc
 	.4byte Img_Portrait_06D_Face
 	.4byte Img_Portrait_06D_Chibi
 	.4byte Pal_Portrait_06D
-	.4byte gUnk_08C31E08
+	.4byte Img_Portrait_06D_Mouth
 	.incbin "baserom.gba", 0xc97180, 0xc
 	.4byte Img_Portrait_Groznyi_Face
 	.4byte Img_Portrait_Groznyi_Chibi
 	.4byte Pal_Portrait_Groznyi
-	.4byte gUnk_08C30E04
+	.4byte Img_Portrait_Groznyi_Mouth
 	.incbin "baserom.gba", 0xc9719c, 0xc
 	.4byte Img_Portrait_Wire_Face
 	.4byte Img_Portrait_Wire_Chibi
 	.4byte Pal_Portrait_Wire
-	.4byte gUnk_08C2FF24
+	.4byte Img_Portrait_Wire_Mouth
 	.incbin "baserom.gba", 0xc971b8, 0xc
 	.4byte Img_Portrait_Zagan_Face
 	.4byte Img_Portrait_Zagan_Chibi
 	.4byte Pal_Portrait_Zagan
-	.4byte gUnk_08C2EF08
+	.4byte Img_Portrait_Zagan_Mouth
 	.incbin "baserom.gba", 0xc971d4, 0xc
 	.4byte Img_Portrait_Boies_Face
 	.4byte Img_Portrait_Boies_Chibi
 	.4byte Pal_Portrait_Boies
-	.4byte gUnk_08C2DF80
+	.4byte Img_Portrait_Boies_Mouth
 	.incbin "baserom.gba", 0xc971f0, 0xc
 	.4byte Img_Portrait_Sealen_Face
 	.4byte Img_Portrait_Sealen_Chibi
 	.4byte Pal_Portrait_Sealen
-	.4byte gUnk_08C2CF58
+	.4byte Img_Portrait_Sealen_Mouth
 	.incbin "baserom.gba", 0xc9720c, 0xc
 	.4byte Img_Portrait_Bauker_Face
 	.4byte Img_Portrait_Bauker_Chibi
 	.4byte Pal_Portrait_Bauker
-	.4byte gUnk_08C2BFC4
+	.4byte Img_Portrait_Bauker_Mouth
 	.incbin "baserom.gba", 0xc97228, 0xc
 	.4byte Img_Portrait_Bernard_Face
 	.4byte Img_Portrait_Bernard_Chibi
 	.4byte Pal_Portrait_Bernard
-	.4byte gUnk_08C2AF4C
+	.4byte Img_Portrait_Bernard_Mouth
 	.incbin "baserom.gba", 0xc97244, 0xc
 	.4byte Img_Portrait_Wire_Face
 	.4byte Img_Portrait_Wire_Chibi
 	.4byte Pal_Portrait_Damian
-	.4byte gUnk_08C2FF24
+	.4byte Img_Portrait_Wire_Mouth
 	.incbin "baserom.gba", 0xc97260, 0xc
 	.4byte Img_Portrait_Zoldam_Face
 	.4byte Img_Portrait_Zoldam_Chibi
 	.4byte Pal_Portrait_Zoldam
-	.4byte gUnk_08C2A138
+	.4byte Img_Portrait_Zoldam_Mouth
 	.incbin "baserom.gba", 0xc9727c, 0xc
 	.4byte Img_Portrait_077_Uhai_Face
 	.4byte Img_Portrait_077_Uhai_Chibi
 	.4byte Pal_Portrait_077_Uhai
-	.4byte gUnk_08C291C0
+	.4byte Img_Portrait_077_Uhai_Mouth
 	.incbin "baserom.gba", 0xc97298, 0xc
 	.4byte Img_Portrait_06D_Face
 	.4byte Img_Portrait_06D_Chibi
 	.4byte Pal_Portrait_Aion
-	.4byte gUnk_08C31E08
+	.4byte Img_Portrait_06D_Mouth
 	.incbin "baserom.gba", 0xc972b4, 0xc
 	.4byte Img_Portrait_Georg_Face
 	.4byte Img_Portrait_Georg_Chibi
 	.4byte Pal_Portrait_Georg
-	.4byte gUnk_08C280B4
+	.4byte Img_Portrait_Georg_Mouth
 	.incbin "baserom.gba", 0xc972d0, 0xc
 	.4byte Img_Portrait_Cameron_Face
 	.4byte Img_Portrait_Cameron_Chibi
 	.4byte Pal_Portrait_Cameron
-	.4byte gUnk_08C271E8
+	.4byte Img_Portrait_Cameron_Mouth
 	.incbin "baserom.gba", 0xc972ec, 0xc
 	.4byte Img_Portrait_Sealen_Face
 	.4byte Img_Portrait_Sealen_Chibi
 	.4byte Pal_Portrait_Oleg
-	.4byte gUnk_08C2CF58
+	.4byte Img_Portrait_Sealen_Mouth
 	.incbin "baserom.gba", 0xc97308, 0xc
 	.4byte Img_Portrait_Eubans_Face
 	.4byte Img_Portrait_Eubans_Chibi
 	.4byte Pal_Portrait_Eubans
-	.4byte gUnk_08C26108
+	.4byte Img_Portrait_Eubans_Mouth
 	.incbin "baserom.gba", 0xc97324, 0xc
 	.4byte Img_Portrait_Kishuna_Face
 	.4byte Img_Portrait_Kishuna_Chibi
 	.4byte Pal_Portrait_Kishuna
-	.4byte gUnk_08C25310
+	.4byte Img_Portrait_Kishuna_Mouth
 	.incbin "baserom.gba", 0xc97340, 0xc
 	.4byte Img_Portrait_Paul_Face
 	.4byte Img_Portrait_Paul_Chibi
 	.4byte Pal_Portrait_Paul
-	.4byte gUnk_08C24340
+	.4byte Img_Portrait_Paul_Mouth
 	.incbin "baserom.gba", 0xc9735c, 0xc
 	.4byte Img_Portrait_Jasmine_Face
 	.4byte Img_Portrait_Jasmine_Chibi
 	.4byte Pal_Portrait_Jasmine
-	.4byte gUnk_08C2339C
+	.4byte Img_Portrait_Jasmine_Mouth
 	.incbin "baserom.gba", 0xc97378, 0xc
 	.4byte Img_Portrait_Bauker_Face
 	.4byte Img_Portrait_Bauker_Chibi
 	.4byte Pal_Portrait_Pascal
-	.4byte gUnk_08C2BFC4
+	.4byte Img_Portrait_Bauker_Mouth
 	.incbin "baserom.gba", 0xc97394, 0xc
 	.4byte Img_Portrait_081_Kenneth_Face
 	.4byte Img_Portrait_081_Kenneth_Chibi
 	.4byte Pal_Portrait_081_Kenneth
-	.4byte gUnk_08C22340
+	.4byte Img_Portrait_081_Kenneth_Mouth
 	.incbin "baserom.gba", 0xc973b0, 0xc
 	.4byte Img_Portrait_082_Jerme_Face
 	.4byte Img_Portrait_082_Jerme_Chibi
 	.4byte Pal_Portrait_082_Jerme
-	.4byte gUnk_08C21374
+	.4byte Img_Portrait_082_Jerme_Mouth
 	.incbin "baserom.gba", 0xc973cc, 0xc
 	.4byte Img_Portrait_Cameron_Face
 	.4byte Img_Portrait_Cameron_Chibi
 	.4byte Pal_Portrait_Maxime
-	.4byte gUnk_08C271E8
+	.4byte Img_Portrait_Cameron_Mouth
 	.incbin "baserom.gba", 0xc973e8, 0xc
 	.4byte Img_Portrait_084_Ursula_Face
 	.4byte Img_Portrait_084_Ursula_Chibi
 	.4byte Pal_Portrait_084_Ursula
-	.4byte gUnk_08C20458
+	.4byte Img_Portrait_084_Ursula_Mouth
 	.incbin "baserom.gba", 0xc97404, 0xc
 	.4byte Img_Portrait_Teodor_Face
 	.4byte Img_Portrait_Teodor_Chibi
 	.4byte Pal_Portrait_Teodor
-	.4byte gUnk_08C1F56C
+	.4byte Img_Portrait_Teodor_Mouth
 	.incbin "baserom.gba", 0xc97420, 0xc
 	.4byte Img_Portrait_Denning_Face
 	.4byte Img_Portrait_Denning_Chibi
 	.4byte Pal_Portrait_Denning
-	.4byte gUnk_08C1E790
+	.4byte Img_Portrait_Denning_Mouth
 	.incbin "baserom.gba", 0xc9743c, 0xc
 	.4byte Img_Portrait_Georg_Face
 	.4byte Img_Portrait_Georg_Chibi
 	.4byte Pal_Portrait_Kaim
-	.4byte gUnk_08C280B4
+	.4byte Img_Portrait_Georg_Mouth
 	.incbin "baserom.gba", 0xc97458, 0xc
 	.4byte Img_Portrait_Batta_Face
 	.4byte Img_Portrait_Batta_Chibi
 	.4byte Pal_Portrait_Batta
-	.4byte gUnk_08C1D7D8
+	.4byte Img_Portrait_Batta_Mouth
 	.incbin "baserom.gba", 0xc97474, 0xc
 	.4byte Img_Portrait_Zugu_Face
 	.4byte Img_Portrait_Zugu_Chibi
 	.4byte Pal_Portrait_Zugu
-	.4byte gUnk_08C1C74C
+	.4byte Img_Portrait_Zugu_Mouth
 	.incbin "baserom.gba", 0xc97490, 0xc
 	.4byte Img_Portrait_Glass_Face
 	.4byte Img_Portrait_Glass_Chibi
 	.4byte Pal_Portrait_Glass
-	.4byte gUnk_08C1B8B0
+	.4byte Img_Portrait_Glass_Mouth
 	.incbin "baserom.gba", 0xc974ac, 0xc
 	.4byte Img_Portrait_Migal_Face
 	.4byte Img_Portrait_Migal_Chibi
 	.4byte Pal_Portrait_Migal
-	.4byte gUnk_08C1A8E0
+	.4byte Img_Portrait_Migal_Mouth
 	.incbin "baserom.gba", 0xc974c8, 0xc
 	.4byte Img_Portrait_Carjiga_Face
 	.4byte Img_Portrait_Carjiga_Chibi
 	.4byte Pal_Portrait_Carjiga
-	.4byte gUnk_08C19858
+	.4byte Img_Portrait_Carjiga_Mouth
 	.incbin "baserom.gba", 0xc974e4, 0xc
 	.4byte Img_Portrait_Bug_Face
 	.4byte Img_Portrait_Bug_Chibi
 	.4byte Pal_Portrait_Bug
-	.4byte gUnk_08C18840
+	.4byte Img_Portrait_Bug_Mouth
 	.incbin "baserom.gba", 0xc97500, 0xc
 	.4byte Img_Portrait_Puzon_Face
 	.4byte Img_Portrait_Puzon_Chibi
 	.4byte Pal_Portrait_Puzon
-	.4byte gUnk_08C178AC
+	.4byte Img_Portrait_Puzon_Mouth
 	.incbin "baserom.gba", 0xc9751c, 0xc
 	.4byte Img_Portrait_Bool_Face
 	.4byte Img_Portrait_Bool_Chibi
 	.4byte Pal_Portrait_Bool
-	.4byte gUnk_08C168FC
+	.4byte Img_Portrait_Bool_Mouth
 	.incbin "baserom.gba", 0xc97538, 0xc
 	.4byte Img_Portrait_Zoldam_Face
 	.4byte Img_Portrait_Zoldam_Chibi
 	.4byte Pal_Portrait_Heintz
-	.4byte gUnk_08C2A138
+	.4byte Img_Portrait_Zoldam_Mouth
 	.incbin "baserom.gba", 0xc97554, 0xc
 	.4byte Img_Portrait_Eubans_Face
 	.4byte Img_Portrait_Eubans_Chibi
 	.4byte Pal_Portrait_Beyard
-	.4byte gUnk_08C26108
+	.4byte Img_Portrait_Eubans_Mouth
 	.incbin "baserom.gba", 0xc97570, 0xc
 	.4byte Img_Portrait_Yogi_Face
 	.4byte Img_Portrait_Yogi_Chibi
 	.4byte Pal_Portrait_Yogi
-	.4byte gUnk_08C158B8
+	.4byte Img_Portrait_Yogi_Mouth
 	.incbin "baserom.gba", 0xc9758c, 0xc
 	.4byte Img_Portrait_Eagler_Face
 	.4byte Img_Portrait_Eagler_Chibi
 	.4byte Pal_Portrait_Eagler
-	.4byte gUnk_08C148A8
+	.4byte Img_Portrait_Eagler_Mouth
 	.incbin "baserom.gba", 0xc975a8, 0xc
 	.4byte Img_Portrait_Lundgren_Face
 	.4byte Img_Portrait_Lundgren_Chibi
 	.4byte Pal_Portrait_Lundgren
-	.4byte gUnk_08C1383C
+	.4byte Img_Portrait_Lundgren_Mouth
 	.incbin "baserom.gba", 0xc975c4, 0xc
 	.4byte Img_Portrait_Glass_Face
 	.4byte Img_Portrait_Glass_Chibi
 	.4byte Pal_Portrait_095
-	.4byte gUnk_08C1B8B0
+	.4byte Img_Portrait_Glass_Mouth
 	.incbin "baserom.gba", 0xc975e0, 0xc
 	.4byte Img_Portrait_096_Lloyd_Face
 	.4byte Img_Portrait_096_Lloyd_Chibi
 	.4byte Pal_Portrait_096_Lloyd
-	.4byte gUnk_08C128A8
+	.4byte Img_Portrait_096_Lloyd_Mouth
 	.incbin "baserom.gba", 0xc975fc, 0xc
 	.4byte Img_Portrait_097_Linus_Face
 	.4byte Img_Portrait_097_Linus_Chibi
 	.4byte Pal_Portrait_097_Linus
-	.4byte gUnk_08C11934
+	.4byte Img_Portrait_097_Linus_Mouth
 	.incbin "baserom.gba", 0xc97618, 0xc
 	.4byte Img_Portrait_098_Brendan_Face
 	.4byte Img_Portrait_098_Brendan_Chibi
 	.4byte Pal_Portrait_098_Brendan
-	.4byte gUnk_08C10818
+	.4byte Img_Portrait_098_Brendan_Mouth
 	.incbin "baserom.gba", 0xc97634, 0xc
 	.4byte Img_Portrait_099_Uhai_Face
 	.4byte Img_Portrait_099_Uhai_Chibi
 	.4byte Pal_Portrait_099_Uhai
-	.4byte gUnk_08C0F8D4
+	.4byte Img_Portrait_099_Uhai_Mouth
 	.incbin "baserom.gba", 0xc97650, 0xc
 	.4byte Img_Portrait_09A_Ursula_Face
 	.4byte Img_Portrait_09A_Ursula_Chibi
 	.4byte Pal_Portrait_09A_Ursula
-	.4byte gUnk_08C0EA2C
+	.4byte Img_Portrait_09A_Ursula_Mouth
 	.incbin "baserom.gba", 0xc9766c, 0xc
 	.4byte Img_Portrait_09B_Kenneth_Face
 	.4byte Img_Portrait_09B_Kenneth_Chibi
 	.4byte Pal_Portrait_09B_Kenneth
-	.4byte gUnk_08C0DA10
+	.4byte Img_Portrait_09B_Kenneth_Mouth
 	.incbin "baserom.gba", 0xc97688, 0xc
 	.4byte Img_Portrait_09C_Darin_Face
 	.4byte Img_Portrait_09C_Darin_Chibi
 	.4byte Pal_Portrait_09C_Darin
-	.4byte gUnk_08C0C990
+	.4byte Img_Portrait_09C_Darin_Mouth
 	.incbin "baserom.gba", 0xc976a4, 0xc
 	.4byte Img_Portrait_09D_Jerme_Face
 	.4byte Img_Portrait_09D_Jerme_Chibi
 	.4byte Pal_Portrait_09D_Jerme
-	.4byte gUnk_08C0B9EC
+	.4byte Img_Portrait_09D_Jerme_Mouth
 	.incbin "baserom.gba", 0xc976c0, 0xc
 	.4byte Img_Portrait_09E_Face
 	.4byte Img_Portrait_09E_Chibi
 	.4byte Pal_Portrait_09E
-	.4byte gUnk_08C0ADAC
+	.4byte Img_Portrait_09E_Mouth
 	.incbin "baserom.gba", 0xc976dc, 0xc
 	.4byte Img_Portrait_09F_Face
 	.4byte Img_Portrait_09F_Chibi
 	.4byte Pal_Portrait_09F
-	.4byte gUnk_08C0A118
+	.4byte Img_Portrait_09F_Mouth
 	.incbin "baserom.gba", 0xc976f8, 0xc
 	.4byte Img_Portrait_0A0_Face
 	.4byte Img_Portrait_0A0_Chibi
 	.4byte Pal_Portrait_0A0
-	.4byte gUnk_08C0928C
+	.4byte Img_Portrait_0A0_Mouth
 	.incbin "baserom.gba", 0xc97714, 0xc
 	.4byte Img_Portrait_0A1_Face
 	.4byte Img_Portrait_0A1_Chibi
 	.4byte Pal_Portrait_0A1
-	.4byte gUnk_08C08354
+	.4byte Img_Portrait_0A1_Mouth
 	.incbin "baserom.gba", 0xc97730, 0xc
 	.4byte Img_Portrait_0A2_Face
 	.4byte Img_Portrait_0A2_Chibi
 	.4byte Pal_Portrait_0A2
-	.4byte gUnk_08C075BC
+	.4byte Img_Portrait_0A2_Mouth
 	.incbin "baserom.gba", 0xc9774c, 0xc
 	.4byte Img_Portrait_0A3_Face
 	.4byte Img_Portrait_0A3_Chibi
 	.4byte Pal_Portrait_0A3
-	.4byte gUnk_08C06830
+	.4byte Img_Portrait_0A3_Mouth
 	.incbin "baserom.gba", 0xc97768, 0xc
 	.4byte Img_Portrait_0A3_Face
 	.4byte Img_Portrait_0A3_Chibi
 	.4byte Pal_Portrait_0A4
-	.4byte gUnk_08C06830
+	.4byte Img_Portrait_0A3_Mouth
 	.incbin "baserom.gba", 0xc97784, 0xc
 	.4byte Img_Portrait_0A5_Face
 	.4byte Img_Portrait_0A5_Chibi
 	.4byte Pal_Portrait_0A5
-	.4byte gUnk_08C05AB0
+	.4byte Img_Portrait_0A5_Mouth
 	.incbin "baserom.gba", 0xc977a0, 0xc
 	.4byte Img_Portrait_0A5_Face
 	.4byte Img_Portrait_0A5_Chibi
 	.4byte Pal_Portrait_0A6
-	.4byte gUnk_08C05AB0
+	.4byte Img_Portrait_0A5_Mouth
 	.incbin "baserom.gba", 0xc977bc, 0xc
 	.4byte Img_Portrait_0A5_Face
 	.4byte Img_Portrait_0A5_Chibi
 	.4byte Pal_Portrait_0A7
-	.4byte gUnk_08C05AB0
+	.4byte Img_Portrait_0A5_Mouth
 	.incbin "baserom.gba", 0xc977d8, 0xc
 	.4byte Img_Portrait_0A5_Face
 	.4byte Img_Portrait_0A5_Chibi
 	.4byte Pal_Portrait_0A8
-	.4byte gUnk_08C05AB0
+	.4byte Img_Portrait_0A5_Mouth
 	.incbin "baserom.gba", 0xc977f4, 0xc
 	.4byte Img_Portrait_0A9_Face
 	.4byte Img_Portrait_0A9_Chibi
 	.4byte Pal_Portrait_0A9
-	.4byte gUnk_08C04CB8
+	.4byte Img_Portrait_0A9_Mouth
 	.incbin "baserom.gba", 0xc97810, 0xc
 	.4byte Img_Portrait_0AA_Face
 	.4byte Img_Portrait_0AA_Chibi
 	.4byte Pal_Portrait_0AA
-	.4byte gUnk_08C03F40
+	.4byte Img_Portrait_0AA_Mouth
 	.incbin "baserom.gba", 0xc9782c, 0xc
 	.4byte Img_Portrait_0AA_Face
 	.4byte Img_Portrait_0AA_Chibi
 	.4byte Pal_Portrait_0AB
-	.4byte gUnk_08C03F40
+	.4byte Img_Portrait_0AA_Mouth
 	.incbin "baserom.gba", 0xc97848, 0xc
 	.4byte Img_Portrait_0AC_Face
 	.4byte Img_Portrait_0AC_Chibi
 	.4byte Pal_Portrait_0AC
-	.4byte gUnk_08C031F4
+	.4byte Img_Portrait_0AC_Mouth
 	.incbin "baserom.gba", 0xc97864, 0xc
 	.4byte Img_Portrait_0AD_Face
 	.4byte Img_Portrait_0AD_Chibi
 	.4byte Pal_Portrait_0AD
-	.4byte gUnk_08C024D0
+	.4byte Img_Portrait_0AD_Mouth
 	.incbin "baserom.gba", 0xc97880, 0xc
 	.4byte Img_Portrait_0AE_Face
 	.4byte Img_Portrait_0AE_Chibi
 	.4byte Pal_Portrait_0AE
-	.4byte gUnk_08C0179C
+	.4byte Img_Portrait_0AE_Mouth
 	.incbin "baserom.gba", 0xc9789c, 0xc
 	.4byte Img_Portrait_0AF_Face
 	.4byte Img_Portrait_0AF_Chibi
 	.4byte Pal_Portrait_0AF
-	.4byte gUnk_08C00A14
+	.4byte Img_Portrait_0AF_Mouth
 	.incbin "baserom.gba", 0xc978b8, 0xc
 	.4byte Img_Portrait_0B0_Face
 	.4byte Img_Portrait_0B0_Chibi
 	.4byte Pal_Portrait_0B0
-	.4byte gUnk_08BFFCC8
+	.4byte Img_Portrait_0B0_Mouth
 	.incbin "baserom.gba", 0xc978d4, 0xc
 	.4byte Img_Portrait_0B1_Face
 	.4byte Img_Portrait_0B1_Chibi
 	.4byte Pal_Portrait_0B1
-	.4byte gUnk_08BFEF68
+	.4byte Img_Portrait_0B1_Mouth
 	.incbin "baserom.gba", 0xc978f0, 0xc
 	.4byte Img_Portrait_0B2_Face
 	.4byte Img_Portrait_0B2_Chibi
 	.4byte Pal_Portrait_0B2
-	.4byte gUnk_08BFE2FC
+	.4byte Img_Portrait_0B2_Mouth
 	.incbin "baserom.gba", 0xc9790c, 0xc
 	.4byte Img_Portrait_0B2_Face
 	.4byte Img_Portrait_0B2_Chibi
 	.4byte Pal_Portrait_0B3
-	.4byte gUnk_08BFE2FC
+	.4byte Img_Portrait_0B2_Mouth
 	.incbin "baserom.gba", 0xc97928, 0xc
 	.4byte Img_Portrait_0B4_Face
 	.4byte Img_Portrait_0B4_Chibi
 	.4byte Pal_Portrait_0B4
-	.4byte gUnk_08BFD630
+	.4byte Img_Portrait_0B4_Mouth
 	.incbin "baserom.gba", 0xc97944, 0xc
 	.4byte Img_Portrait_0AF_Face
 	.4byte Img_Portrait_0AF_Chibi
 	.4byte Pal_Portrait_0B5
-	.4byte gUnk_08C00A14
+	.4byte Img_Portrait_0AF_Mouth
 	.incbin "baserom.gba", 0xc97960, 0xc
 	.4byte Img_Portrait_0B6_Face
 	.4byte Img_Portrait_0B6_Chibi
 	.4byte Pal_Portrait_0B6
-	.4byte gUnk_08BFC88C
+	.4byte Img_Portrait_0B6_Mouth
 	.incbin "baserom.gba", 0xc9797c, 0xc
 	.4byte Img_Portrait_0B7_Face
 	.4byte Img_Portrait_0B7_Chibi
 	.4byte Pal_Portrait_0B7
-	.4byte gUnk_08BFBB28
+	.4byte Img_Portrait_0B7_Mouth
 	.incbin "baserom.gba", 0xc97998, 0xc
 	.4byte Img_Portrait_0B7_Face
 	.4byte Img_Portrait_0B7_Chibi
 	.4byte Pal_Portrait_0B8
-	.4byte gUnk_08BFBB28
+	.4byte Img_Portrait_0B7_Mouth
 	.incbin "baserom.gba", 0xc979b4, 0xc
 	.4byte Img_Portrait_0B0_Face
 	.4byte Img_Portrait_0B0_Chibi
 	.4byte Pal_Portrait_0B9
-	.4byte gUnk_08BFFCC8
+	.4byte Img_Portrait_0B0_Mouth
 	.incbin "baserom.gba", 0xc979d0, 0xc
 	.4byte Img_Portrait_0BA_Face
 	.4byte Img_Portrait_0BA_Chibi
 	.4byte Pal_Portrait_0BA
-	.4byte gUnk_08BFAD50
+	.4byte Img_Portrait_0BA_Mouth
 	.incbin "baserom.gba", 0xc979ec, 0xc
 	.4byte Img_Portrait_Batta_Face
 	.4byte Img_Portrait_Batta_Chibi
 	.4byte Pal_Portrait_0BB
-	.4byte gUnk_08C1D7D8
+	.4byte Img_Portrait_Batta_Mouth
 	.incbin "baserom.gba", 0xc97a08, 0xc
 	.4byte Img_Portrait_0BC_Face
 	.4byte Img_Portrait_0BC_Chibi
 	.4byte Pal_Portrait_0BC
-	.4byte gUnk_08BF9F94
+	.4byte Img_Portrait_0BC_Mouth
 	.incbin "baserom.gba", 0xc97a24, 0xc
 	.4byte Img_Portrait_0BD_Face
 	.4byte Img_Portrait_0BD_Chibi
 	.4byte Pal_Portrait_0BD
-	.4byte gUnk_08BF9234
+	.4byte Img_Portrait_0BD_Mouth
 	.incbin "baserom.gba", 0xc97a40, 0x14
 	.4byte gUnk_08BF8C2C
 	.incbin "baserom.gba", 0xc97a58, 0x4

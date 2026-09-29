@@ -2102,7 +2102,7 @@ extern struct ProcCmd ProcScr_EfxDrsmmoyaScrollCOL[];
 // ??? gUnk_08C20E74
 // ??? gUnk_08C21020
 // ??? gUnk_08C211CC
-// ??? gUnk_08C21374
+// ??? Img_Portrait_082_Jerme_Mouth
 // ??? gUnk_08C214B0
 // ??? gUnk_08C215E8
 // ??? gUnk_08C2184C

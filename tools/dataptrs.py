@@ -91,6 +91,10 @@ NOT_POINTERS = [
     # attr2 = 0x089B..0x089E (priority 2, tile 0x9B..) above attr1 = 0 reads
     # as 0x089B0000, which is inside a music sample.
     (0x08CE6058, 0x08CE6078, "SpriteLut_GaugePips sprites (u16 OAM lists)"),
+    # Img_EkrLvupNumBig: uncompressed 4bpp tiles (src/banim-efxlvup.c copies
+    # them to OBJ VRAM with VramCopy).  Pixels 0x08BBBBD8 at 0x081E65F0 equal
+    # a sprite frame's address.
+    (0x081E5FD0, 0x081E67D0, "Img_EkrLvupNumBig tiles (VramCopy'd 4bpp pixels)"),
     # Dead proc scripts (0x08CF6D90-0x08CF89A8) left over from another build:
     # nothing outside points at them, and 214 of their 220 code pointers land
     # in the middle of FE7U functions (m4a, libagb, libc: 0x080BFAC9 in

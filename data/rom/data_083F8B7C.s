@@ -41,8 +41,8 @@ Pal_ManimInfoWindowDigits:
 Img_Bg_5E:  @ LZ77
 	.incbin "build/graphics/bg/bg_5E.lz"
 
-	.global gUnk_083FAF7C
-gUnk_083FAF7C:
+	.global Tsa_Bg_5E
+Tsa_Bg_5E:
 	.incbin "baserom.gba", 0x3faf7c, 0x4b4
 
 	.global Pal_Bg_5E
@@ -54,8 +54,8 @@ Pal_Bg_5E:
 Img_Bg_5F:  @ LZ77
 	.incbin "build/graphics/bg/bg_5F.lz"
 
-	.global gUnk_083FB860
-gUnk_083FB860:
+	.global Tsa_Bg_5F
+Tsa_Bg_5F:
 	.incbin "baserom.gba", 0x3fb860, 0x4b4
 
 	.global Pal_Bg_5F

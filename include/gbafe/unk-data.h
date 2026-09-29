@@ -1695,7 +1695,7 @@ extern u8 Img_SysBrownBox[];
 // ??? gUnk_08BBFCE8
 // ??? sProcessCmdTable
 // ??? gUnk_08BBFD90
-// ??? gUnk_08BC0590
+// ??? AnimSprite_EfxReblowOBJ_Left1_08BC0590
 // ??? gUnk_08BC05C4
 // ??? gUnk_08BC05D4
 // ??? gUnk_08BC1FEC

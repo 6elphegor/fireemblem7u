@@ -12,974 +12,974 @@ gUnk_08DD5F08:
 	.global banim_data
 banim_data:
 	.incbin "baserom.gba", 0xe00008, 0xc
-	.4byte gUnk_08E09D10
-	.4byte gUnk_08E0981C
+	.4byte BanimModes_001_erlm_sw1
+	.4byte BanimScr_001_erlm_sw1
 	.4byte BanimOam_001_erlm_sw1_R
 	.4byte BanimOam_001_erlm_sw1_L
 	.4byte Pal_Banim_001_erlm_sw1
 	.incbin "baserom.gba", 0xe00028, 0xc
-	.4byte gUnk_08E09FC4
-	.4byte gUnk_08E09F40
+	.4byte BanimModes_002_erlm_sw1
+	.4byte BanimScr_002_erlm_sw1
 	.4byte BanimOam_002_erlm_sw1_R
 	.4byte BanimOam_002_erlm_sw1_L
 	.4byte Pal_Banim_002_erlm_sw1
 	.incbin "baserom.gba", 0xe00048, 0xc
-	.4byte gUnk_08E12554
-	.4byte gUnk_08E1219C
+	.4byte BanimModes_003_lokm_sw1
+	.4byte BanimScr_003_lokm_sw1
 	.4byte BanimOam_003_lokm_sw1_R
 	.4byte BanimOam_003_lokm_sw1_L
 	.4byte Pal_Banim_003_lokm_sw1
 	.incbin "baserom.gba", 0xe00068, 0xc
-	.4byte gUnk_08E205E8
-	.4byte gUnk_08E20050
+	.4byte BanimModes_004_lokd_sw1
+	.4byte BanimScr_004_lokd_sw1
 	.4byte BanimOam_004_lokd_sw1_R
 	.4byte BanimOam_004_lokd_sw1_L
 	.4byte Pal_Banim_004_lokd_sw1
 	.incbin "baserom.gba", 0xe00088, 0xc
-	.4byte gUnk_08E22D20
-	.4byte gUnk_08E2294C
+	.4byte BanimModes_005_lokm_sw1
+	.4byte BanimScr_005_lokm_sw1
 	.4byte BanimOam_005_lokm_sw1_R
 	.4byte BanimOam_005_lokm_sw1_L
 	.4byte Pal_Banim_005_lokm_sw1
 	.incbin "baserom.gba", 0xe000a8, 0xc
-	.4byte gUnk_08E23024
-	.4byte gUnk_08E22FA0
+	.4byte BanimModes_006_lokm_sw1
+	.4byte BanimScr_006_lokm_sw1
 	.4byte BanimOam_006_lokm_sw1_R
 	.4byte BanimOam_006_lokm_sw1_L
 	.4byte Pal_Banim_006_lokm_sw1
 	.incbin "baserom.gba", 0xe000c8, 0xc
-	.4byte gUnk_08E27AEC
-	.4byte gUnk_08E27800
+	.4byte BanimModes_007_helm_ax1
+	.4byte BanimScr_007_helm_ax1
 	.4byte BanimOam_007_helm_ax1_R
 	.4byte BanimOam_007_helm_ax1_L
 	.4byte Pal_Banim_007_helm_ax1
 	.incbin "baserom.gba", 0xe000e8, 0xc
-	.4byte gUnk_08E28454
-	.4byte gUnk_08E28280
+	.4byte BanimModes_008_helm_ax1
+	.4byte BanimScr_008_helm_ax1
 	.4byte BanimOam_008_helm_ax1_R
 	.4byte BanimOam_008_helm_ax1_L
 	.4byte Pal_Banim_008_helm_ax1
 	.incbin "baserom.gba", 0xe00108, 0xc
-	.4byte gUnk_08E286BC
-	.4byte gUnk_08E28660
+	.4byte BanimModes_009_helm_ax1
+	.4byte BanimScr_009_helm_ax1
 	.4byte BanimOam_009_helm_ax1_R
 	.4byte BanimOam_009_helm_ax1_L
 	.4byte Pal_Banim_009_helm_ax1
 	.incbin "baserom.gba", 0xe00128, 0xc
-	.4byte gUnk_08E2FB88
-	.4byte gUnk_08E2F890
+	.4byte BanimModes_00A_grlm_ax1
+	.4byte BanimScr_00A_grlm_ax1
 	.4byte BanimOam_00A_grlm_ax1_R
 	.4byte BanimOam_00A_grlm_ax1_L
 	.4byte Pal_Banim_00A_grlm_ax1
 	.incbin "baserom.gba", 0xe00148, 0xc
-	.4byte gUnk_08E30150
-	.4byte gUnk_08E3003C
+	.4byte BanimModes_00B_grlm_ax1
+	.4byte BanimScr_00B_grlm_ax1
 	.4byte BanimOam_00B_grlm_ax1_R
 	.4byte BanimOam_00B_grlm_ax1_L
 	.4byte Pal_Banim_00B_grlm_ax1
 	.incbin "baserom.gba", 0xe00168, 0xc
-	.4byte gUnk_08E39DCC
-	.4byte gUnk_08E399E8
+	.4byte BanimModes_00C_grlm_ax1
+	.4byte BanimScr_00C_grlm_ax1
 	.4byte BanimOam_00C_grlm_ax1_R
 	.4byte BanimOam_00C_grlm_ax1_L
 	.4byte Pal_Banim_00C_grlm_ax1
 	.incbin "baserom.gba", 0xe00188, 0xc
-	.4byte gUnk_08E3B3D0
-	.4byte gUnk_08E3B088
+	.4byte BanimModes_00D_grlm_ax1
+	.4byte BanimScr_00D_grlm_ax1
 	.4byte BanimOam_00D_grlm_ax1_R
 	.4byte BanimOam_00D_grlm_ax1_L
 	.4byte Pal_Banim_00D_grlm_ax1
 	.incbin "baserom.gba", 0xe001a8, 0xc
-	.4byte gUnk_08E3B5E0
-	.4byte gUnk_08E3B58C
+	.4byte BanimModes_00E_grlm_ax1
+	.4byte BanimScr_00E_grlm_ax1
 	.4byte BanimOam_00E_grlm_ax1_R
 	.4byte BanimOam_00E_grlm_ax1_L
 	.4byte Pal_Banim_00E_grlm_ax1
 	.incbin "baserom.gba", 0xe001c8, 0xc
-	.4byte gUnk_08E40F28
-	.4byte gUnk_08E40B18
+	.4byte BanimModes_00F_allf_sw1
+	.4byte BanimScr_00F_allf_sw1
 	.4byte BanimOam_00F_allf_sw1_R
 	.4byte BanimOam_00F_allf_sw1_L
 	.4byte Pal_Banim_00F_allf_sw1
 	.incbin "baserom.gba", 0xe001e8, 0xc
-	.4byte gUnk_08E41210
-	.4byte gUnk_08E41190
+	.4byte BanimModes_010_allf_sw1
+	.4byte BanimScr_010_allf_sw1
 	.4byte BanimOam_010_allf_sw1_R
 	.4byte BanimOam_010_allf_sw1_L
 	.4byte Pal_Banim_010_allf_sw1
 	.incbin "baserom.gba", 0xe00208, 0xc
-	.4byte gUnk_08E47FC8
-	.4byte gUnk_08E47AA4
+	.4byte BanimModes_011_bllf_sw1
+	.4byte BanimScr_011_bllf_sw1
 	.4byte BanimOam_011_bllf_sw1_R
 	.4byte BanimOam_011_bllf_sw1_L
 	.4byte Pal_Banim_011_bllf_sw1
 	.incbin "baserom.gba", 0xe00228, 0xc
-	.4byte gUnk_08E4D4FC
-	.4byte gUnk_08E4CF30
+	.4byte BanimModes_012_blld_sw1
+	.4byte BanimScr_012_blld_sw1
 	.4byte BanimOam_012_blld_sw1_R
 	.4byte BanimOam_012_blld_sw1_L
 	.4byte Pal_Banim_012_blld_sw1
 	.incbin "baserom.gba", 0xe00248, 0xc
-	.4byte gUnk_08E4EFE4
-	.4byte gUnk_08E4EDD8
+	.4byte BanimModes_013_bllf_sw1
+	.4byte BanimScr_013_bllf_sw1
 	.4byte BanimOam_013_bllf_sw1_R
 	.4byte BanimOam_013_bllf_sw1_L
 	.4byte Pal_Banim_013_bllf_sw1
 	.incbin "baserom.gba", 0xe00268, 0xc
-	.4byte gUnk_08E4F268
-	.4byte gUnk_08E4F1E0
+	.4byte BanimModes_014_bllf_sw1
+	.4byte BanimScr_014_bllf_sw1
 	.4byte BanimOam_014_bllf_sw1_R
 	.4byte BanimOam_014_bllf_sw1_L
 	.4byte Pal_Banim_014_bllf_sw1
 	.incbin "baserom.gba", 0xe00288, 0xc
-	.4byte gUnk_08E5307C
-	.4byte gUnk_08E52E04
+	.4byte BanimModes_015_banm_ax1
+	.4byte BanimScr_015_banm_ax1
 	.4byte BanimOam_015_banm_ax1_R
 	.4byte BanimOam_015_banm_ax1_L
 	.4byte Pal_Banim_015_banm_ax1
 	.incbin "baserom.gba", 0xe002a8, 0xc
-	.4byte gUnk_08E53670
-	.4byte gUnk_08E53554
+	.4byte BanimModes_016_banm_ax1
+	.4byte BanimScr_016_banm_ax1
 	.4byte BanimOam_016_banm_ax1_R
 	.4byte BanimOam_016_banm_ax1_L
 	.4byte Pal_Banim_016_banm_ax1
 	.incbin "baserom.gba", 0xe002c8, 0xc
-	.4byte gUnk_08E538AC
-	.4byte gUnk_08E53828
+	.4byte BanimModes_017_banm_ax1
+	.4byte BanimScr_017_banm_ax1
 	.4byte BanimOam_017_banm_ax1_R
 	.4byte BanimOam_017_banm_ax1_L
 	.4byte Pal_Banim_017_banm_ax1
 	.incbin "baserom.gba", 0xe002e8, 0xc
-	.4byte gUnk_08E56370
-	.4byte gUnk_08E56228
+	.4byte BanimModes_018_pirm_ax1
+	.4byte BanimScr_018_pirm_ax1
 	.4byte BanimOam_018_pirm_ax1_R
 	.4byte BanimOam_018_pirm_ax1_L
 	.4byte Pal_Banim_018_pirm_ax1
 	.incbin "baserom.gba", 0xe00308, 0xc
-	.4byte gUnk_08E56A34
-	.4byte gUnk_08E56934
+	.4byte BanimModes_019_pirm_ax1
+	.4byte BanimScr_019_pirm_ax1
 	.4byte BanimOam_019_pirm_ax1_R
 	.4byte BanimOam_019_pirm_ax1_L
 	.4byte Pal_Banim_019_pirm_ax1
 	.incbin "baserom.gba", 0xe00328, 0xc
-	.4byte gUnk_08E56CCC
-	.4byte gUnk_08E56C48
+	.4byte BanimModes_01A_pirm_ax1
+	.4byte BanimScr_01A_pirm_ax1
 	.4byte BanimOam_01A_pirm_ax1_R
 	.4byte BanimOam_01A_pirm_ax1_L
 	.4byte Pal_Banim_01A_pirm_ax1
 	.incbin "baserom.gba", 0xe00348, 0xc
-	.4byte gUnk_08E5C8CC
-	.4byte gUnk_08E5C63C
+	.4byte BanimModes_01B_berm_ax1
+	.4byte BanimScr_01B_berm_ax1
 	.4byte BanimOam_01B_berm_ax1_R
 	.4byte BanimOam_01B_berm_ax1_L
 	.4byte Pal_Banim_01B_berm_ax1
 	.incbin "baserom.gba", 0xe00368, 0xc
-	.4byte gUnk_08E5CF7C
-	.4byte gUnk_08E5CE60
+	.4byte BanimModes_01C_berm_ax1
+	.4byte BanimScr_01C_berm_ax1
 	.4byte BanimOam_01C_berm_ax1_R
 	.4byte BanimOam_01C_berm_ax1_L
 	.4byte Pal_Banim_01C_berm_ax1
 	.incbin "baserom.gba", 0xe00388, 0xc
-	.4byte gUnk_08E5D2BC
-	.4byte gUnk_08E5D234
+	.4byte BanimModes_01D_berm_ax1
+	.4byte BanimScr_01D_berm_ax1
 	.4byte BanimOam_01D_berm_ax1_R
 	.4byte BanimOam_01D_berm_ax1_L
 	.4byte Pal_Banim_01D_berm_ax1
 	.incbin "baserom.gba", 0xe003a8, 0xc
-	.4byte gUnk_08E62DCC
-	.4byte gUnk_08E62B30
+	.4byte BanimModes_01E_figm_ax1
+	.4byte BanimScr_01E_figm_ax1
 	.4byte BanimOam_01E_figm_ax1_R
 	.4byte BanimOam_01E_figm_ax1_L
 	.4byte Pal_Banim_01E_figm_ax1
 	.incbin "baserom.gba", 0xe003c8, 0xc
-	.4byte gUnk_08E6353C
-	.4byte gUnk_08E63414
+	.4byte BanimModes_01F_figm_ax1
+	.4byte BanimScr_01F_figm_ax1
 	.4byte BanimOam_01F_figm_ax1_R
 	.4byte BanimOam_01F_figm_ax1_L
 	.4byte Pal_Banim_01F_figm_ax1
 	.incbin "baserom.gba", 0xe003e8, 0xc
-	.4byte gUnk_08E637CC
-	.4byte gUnk_08E63778
+	.4byte BanimModes_020_figm_ax1
+	.4byte BanimScr_020_figm_ax1
 	.4byte BanimOam_020_figm_ax1_R
 	.4byte BanimOam_020_figm_ax1_L
 	.4byte Pal_Banim_020_figm_ax1
 	.incbin "baserom.gba", 0xe00408, 0xc
-	.4byte gUnk_08E6D4A0
-	.4byte gUnk_08E6D0A8
+	.4byte BanimModes_021_warm_ax1
+	.4byte BanimScr_021_warm_ax1
 	.4byte BanimOam_021_warm_ax1_R
 	.4byte BanimOam_021_warm_ax1_L
 	.4byte Pal_Banim_021_warm_ax1
 	.incbin "baserom.gba", 0xe00428, 0xc
-	.4byte gUnk_08E6ED2C
-	.4byte gUnk_08E6EB4C
+	.4byte BanimModes_022_warm_ax1
+	.4byte BanimScr_022_warm_ax1
 	.4byte BanimOam_022_warm_ax1_R
 	.4byte BanimOam_022_warm_ax1_L
 	.4byte Pal_Banim_022_warm_ax1
 	.incbin "baserom.gba", 0xe00448, 0xc
-	.4byte gUnk_08E72BC8
-	.4byte gUnk_08E729E8
+	.4byte BanimModes_023_warm_ar1
+	.4byte BanimScr_023_warm_ar1
 	.4byte BanimOam_023_warm_ar1_R
 	.4byte BanimOam_023_warm_ar1_L
 	.4byte Pal_Banim_023_warm_ar1
 	.incbin "baserom.gba", 0xe00468, 0xc
-	.4byte gUnk_08E72E18
-	.4byte gUnk_08E72DA0
+	.4byte BanimModes_024_warm_ax1
+	.4byte BanimScr_024_warm_ax1
 	.4byte BanimOam_024_warm_ax1_R
 	.4byte BanimOam_024_warm_ax1_L
 	.4byte Pal_Banim_024_warm_ax1
 	.incbin "baserom.gba", 0xe00488, 0xc
-	.4byte gUnk_08E75834
-	.4byte gUnk_08E75654
+	.4byte BanimModes_025_arcm_ar1
+	.4byte BanimScr_025_arcm_ar1
 	.4byte BanimOam_025_arcm_ar1_R
 	.4byte BanimOam_025_arcm_ar1_L
 	.4byte Pal_Banim_025_arcm_ar1
 	.incbin "baserom.gba", 0xe004a8, 0xc
-	.4byte gUnk_08E75AE8
-	.4byte gUnk_08E75A90
+	.4byte BanimModes_026_arcm_ar1
+	.4byte BanimScr_026_arcm_ar1
 	.4byte BanimOam_026_arcm_ar1_R
 	.4byte BanimOam_026_arcm_ar1_L
 	.4byte Pal_Banim_026_arcm_ar1
 	.incbin "baserom.gba", 0xe004c8, 0xc
-	.4byte gUnk_08E78424
-	.4byte gUnk_08E78244
+	.4byte BanimModes_027_arcf_ar1
+	.4byte BanimScr_027_arcf_ar1
 	.4byte BanimOam_027_arcf_ar1_R
 	.4byte BanimOam_027_arcf_ar1_L
 	.4byte Pal_Banim_027_arcf_ar1
 	.incbin "baserom.gba", 0xe004e8, 0xc
-	.4byte gUnk_08E786D8
-	.4byte gUnk_08E78680
+	.4byte BanimModes_028_arcf_ar1
+	.4byte BanimScr_028_arcf_ar1
 	.4byte BanimOam_028_arcf_ar1_R
 	.4byte BanimOam_028_arcf_ar1_L
 	.4byte Pal_Banim_028_arcf_ar1
 	.incbin "baserom.gba", 0xe00508, 0xc
-	.4byte gUnk_08E7B15C
-	.4byte gUnk_08E7AF78
+	.4byte BanimModes_029_snim_ar1
+	.4byte BanimScr_029_snim_ar1
 	.4byte BanimOam_029_snim_ar1_R
 	.4byte BanimOam_029_snim_ar1_L
 	.4byte Pal_Banim_029_snim_ar1
 	.incbin "baserom.gba", 0xe00528, 0xc
-	.4byte gUnk_08E7B3D0
-	.4byte gUnk_08E7B378
+	.4byte BanimModes_02A_snim_ar1
+	.4byte BanimScr_02A_snim_ar1
 	.4byte BanimOam_02A_snim_ar1_R
 	.4byte BanimOam_02A_snim_ar1_L
 	.4byte Pal_Banim_02A_snim_ar1
 	.incbin "baserom.gba", 0xe00548, 0xc
-	.4byte gUnk_08E7DC88
-	.4byte gUnk_08E7DAA4
+	.4byte BanimModes_02B_snif_ar1
+	.4byte BanimScr_02B_snif_ar1
 	.4byte BanimOam_02B_snif_ar1_R
 	.4byte BanimOam_02B_snif_ar1_L
 	.4byte Pal_Banim_02B_snif_ar1
 	.incbin "baserom.gba", 0xe00568, 0xc
-	.4byte gUnk_08E7DEFC
-	.4byte gUnk_08E7DEA4
+	.4byte BanimModes_02C_snif_ar1
+	.4byte BanimScr_02C_snif_ar1
 	.4byte BanimOam_02C_snif_ar1_R
 	.4byte BanimOam_02C_snif_ar1_L
 	.4byte Pal_Banim_02C_snif_ar1
 	.incbin "baserom.gba", 0xe00588, 0xc
-	.4byte gUnk_08E83B5C
-	.4byte gUnk_08E836C8
+	.4byte BanimModes_02D_merm_sw1
+	.4byte BanimScr_02D_merm_sw1
 	.4byte BanimOam_02D_merm_sw1_R
 	.4byte BanimOam_02D_merm_sw1_L
 	.4byte Pal_Banim_02D_merm_sw1
 	.incbin "baserom.gba", 0xe005a8, 0xc
-	.4byte gUnk_08E83DF8
-	.4byte gUnk_08E83D74
+	.4byte BanimModes_02E_merm_sw1
+	.4byte BanimScr_02E_merm_sw1
 	.4byte BanimOam_02E_merm_sw1_R
 	.4byte BanimOam_02E_merm_sw1_L
 	.4byte Pal_Banim_02E_merm_sw1
 	.incbin "baserom.gba", 0xe005c8, 0xc
-	.4byte gUnk_08E8B398
-	.4byte gUnk_08E8ACA0
+	.4byte BanimModes_02F_bram_sw1
+	.4byte BanimScr_02F_bram_sw1
 	.4byte BanimOam_02F_bram_sw1_R
 	.4byte BanimOam_02F_bram_sw1_L
 	.4byte Pal_Banim_02F_bram_sw1
 	.incbin "baserom.gba", 0xe005e8, 0xc
-	.4byte gUnk_08E8E8B8
-	.4byte gUnk_08E8E1D0
+	.4byte BanimModes_030_bram_sw1
+	.4byte BanimScr_030_bram_sw1
 	.4byte BanimOam_030_bram_sw1_R
 	.4byte BanimOam_030_bram_sw1_L
 	.4byte Pal_Banim_030_bram_sw1
 	.incbin "baserom.gba", 0xe00608, 0xc
-	.4byte gUnk_08E8F984
-	.4byte gUnk_08E8F83C
+	.4byte BanimModes_031_bram_sw1
+	.4byte BanimScr_031_bram_sw1
 	.4byte BanimOam_031_bram_sw1_R
 	.4byte BanimOam_031_bram_sw1_L
 	.4byte Pal_Banim_031_bram_sw1
 	.incbin "baserom.gba", 0xe00628, 0xc
-	.4byte gUnk_08E8FC74
-	.4byte gUnk_08E8FBEC
+	.4byte BanimModes_032_bram_sw1
+	.4byte BanimScr_032_bram_sw1
 	.4byte BanimOam_032_bram_sw1_R
 	.4byte BanimOam_032_bram_sw1_L
 	.4byte Pal_Banim_032_bram_sw1
 	.incbin "baserom.gba", 0xe00648, 0xc
-	.4byte gUnk_08E95698
-	.4byte gUnk_08E952CC
+	.4byte BanimModes_033_myrm_sw1
+	.4byte BanimScr_033_myrm_sw1
 	.4byte BanimOam_033_myrm_sw1_R
 	.4byte BanimOam_033_myrm_sw1_L
 	.4byte Pal_Banim_033_myrm_sw1
 	.incbin "baserom.gba", 0xe00668, 0xc
-	.4byte gUnk_08E95950
-	.4byte gUnk_08E958C8
+	.4byte BanimModes_034_myrm_sw1
+	.4byte BanimScr_034_myrm_sw1
 	.4byte BanimOam_034_myrm_sw1_R
 	.4byte BanimOam_034_myrm_sw1_L
 	.4byte Pal_Banim_034_myrm_sw1
 	.incbin "baserom.gba", 0xe00688, 0xc
-	.4byte gUnk_08E9B130
-	.4byte gUnk_08E9AC94
+	.4byte BanimModes_035_swmm_sw1
+	.4byte BanimScr_035_swmm_sw1
 	.4byte BanimOam_035_swmm_sw1_R
 	.4byte BanimOam_035_swmm_sw1_L
 	.4byte Pal_Banim_035_swmm_sw1
 	.incbin "baserom.gba", 0xe006a8, 0xc
-	.4byte gUnk_08E9B2FC
-	.4byte gUnk_08E9B298
+	.4byte BanimModes_036_swmm_sw1
+	.4byte BanimScr_036_swmm_sw1
 	.4byte BanimOam_036_swmm_sw1_R
 	.4byte BanimOam_036_swmm_sw1_L
 	.4byte Pal_Banim_036_swmm_sw1
 	.incbin "baserom.gba", 0xe006c8, 0xc
-	.4byte gUnk_08EA08BC
-	.4byte gUnk_08EA03EC
+	.4byte BanimModes_037_swlm_sw1
+	.4byte BanimScr_037_swlm_sw1
 	.4byte BanimOam_037_swlm_sw1_R
 	.4byte BanimOam_037_swlm_sw1_L
 	.4byte Pal_Banim_037_swlm_sw1
 	.incbin "baserom.gba", 0xe006e8, 0xc
-	.4byte gUnk_08EA0A7C
-	.4byte gUnk_08EA0A18
+	.4byte BanimModes_038_swlm_sw1
+	.4byte BanimScr_038_swlm_sw1
 	.4byte BanimOam_038_swlm_sw1_R
 	.4byte BanimOam_038_swlm_sw1_L
 	.4byte Pal_Banim_038_swlm_sw1
 	.incbin "baserom.gba", 0xe00708, 0xc
-	.4byte gUnk_08EA61E0
-	.4byte gUnk_08EA5D44
+	.4byte BanimModes_039_swmf_sw1
+	.4byte BanimScr_039_swmf_sw1
 	.4byte BanimOam_039_swmf_sw1_R
 	.4byte BanimOam_039_swmf_sw1_L
 	.4byte Pal_Banim_039_swmf_sw1
 	.incbin "baserom.gba", 0xe00728, 0xc
-	.4byte gUnk_08EA63AC
-	.4byte gUnk_08EA6348
+	.4byte BanimModes_03A_swmf_sw1
+	.4byte BanimScr_03A_swmf_sw1
 	.4byte BanimOam_03A_swmf_sw1_R
 	.4byte BanimOam_03A_swmf_sw1_L
 	.4byte Pal_Banim_03A_swmf_sw1
 	.incbin "baserom.gba", 0xe00748, 0xc
-	.4byte gUnk_08EAC06C
-	.4byte gUnk_08EABD64
+	.4byte BanimModes_03B_sokm_sp1
+	.4byte BanimScr_03B_sokm_sp1
 	.4byte BanimOam_03B_sokm_sp1_R
 	.4byte BanimOam_03B_sokm_sp1_L
 	.4byte Pal_Banim_03B_sokm_sp1
 	.incbin "baserom.gba", 0xe00768, 0xc
-	.4byte gUnk_08EAD518
-	.4byte gUnk_08EAD248
+	.4byte BanimModes_03C_sokm_sp1
+	.4byte BanimScr_03C_sokm_sp1
 	.4byte BanimOam_03C_sokm_sp1_R
 	.4byte BanimOam_03C_sokm_sp1_L
 	.4byte Pal_Banim_03C_sokm_sp1
 	.incbin "baserom.gba", 0xe00788, 0xc
-	.4byte gUnk_08EAD830
-	.4byte gUnk_08EAD7AC
+	.4byte BanimModes_03D_sokm_sp1
+	.4byte BanimScr_03D_sokm_sp1
 	.4byte BanimOam_03D_sokm_sp1_R
 	.4byte BanimOam_03D_sokm_sp1_L
 	.4byte Pal_Banim_03D_sokm_sp1
 	.incbin "baserom.gba", 0xe007a8, 0xc
-	.4byte gUnk_08EB34EC
-	.4byte gUnk_08EB31E4
+	.4byte BanimModes_03E_sokf_sp1
+	.4byte BanimScr_03E_sokf_sp1
 	.4byte BanimOam_03E_sokf_sp1_R
 	.4byte BanimOam_03E_sokf_sp1_L
 	.4byte Pal_Banim_03E_sokf_sp1
 	.incbin "baserom.gba", 0xe007c8, 0xc
-	.4byte gUnk_08EB922C
-	.4byte gUnk_08EB8D4C
+	.4byte BanimModes_03F_asnm_sw1
+	.4byte BanimScr_03F_asnm_sw1
 	.4byte BanimOam_03F_asnm_sw1_R
 	.4byte BanimOam_03F_asnm_sw1_L
 	.4byte Pal_Banim_03F_asnm_sw1
 	.incbin "baserom.gba", 0xe007e8, 0xc
-	.4byte gUnk_08EB94F0
-	.4byte gUnk_08EB9464
+	.4byte BanimModes_040_asnm_sw1
+	.4byte BanimScr_040_asnm_sw1
 	.4byte BanimOam_040_asnm_sw1_R
 	.4byte BanimOam_040_asnm_sw1_L
 	.4byte Pal_Banim_040_asnm_sw1
 	.incbin "baserom.gba", 0xe00808, 0xc
-	.4byte gUnk_08EC42FC
-	.4byte gUnk_08EC3E84
+	.4byte BanimModes_041_pakm_sw1
+	.4byte BanimScr_041_pakm_sw1
 	.4byte BanimOam_041_pakm_sw1_R
 	.4byte BanimOam_041_pakm_sw1_L
 	.4byte Pal_Banim_041_pakm_sw1
 	.incbin "baserom.gba", 0xe00828, 0xc
-	.4byte gUnk_08EC5E54
-	.4byte gUnk_08EC5C04
+	.4byte BanimModes_042_pakm_sw1
+	.4byte BanimScr_042_pakm_sw1
 	.4byte BanimOam_042_pakm_sw1_R
 	.4byte BanimOam_042_pakm_sw1_L
 	.4byte Pal_Banim_042_pakm_sw1
 	.incbin "baserom.gba", 0xe00848, 0xc
-	.4byte gUnk_08EC7DD0
-	.4byte gUnk_08EC7974
+	.4byte BanimModes_043_pakm_sw1
+	.4byte BanimScr_043_pakm_sw1
 	.4byte BanimOam_043_pakm_sw1_R
 	.4byte BanimOam_043_pakm_sw1_L
 	.4byte Pal_Banim_043_pakm_sw1
 	.incbin "baserom.gba", 0xe00868, 0xc
-	.4byte gUnk_08ECA530
-	.4byte gUnk_08ECA098
+	.4byte BanimModes_044_pakm_sw1
+	.4byte BanimScr_044_pakm_sw1
 	.4byte BanimOam_044_pakm_sw1_R
 	.4byte BanimOam_044_pakm_sw1_L
 	.4byte Pal_Banim_044_pakm_sw1
 	.incbin "baserom.gba", 0xe00888, 0xc
-	.4byte gUnk_08ECA834
-	.4byte gUnk_08ECA7B0
+	.4byte BanimModes_045_pakm_sw1
+	.4byte BanimScr_045_pakm_sw1
 	.4byte BanimOam_045_pakm_sw1_R
 	.4byte BanimOam_045_pakm_sw1_L
 	.4byte Pal_Banim_045_pakm_sw1
 	.incbin "baserom.gba", 0xe008a8, 0xc
-	.4byte gUnk_08ECC9D4
-	.4byte gUnk_08ECC55C
+	.4byte BanimModes_046_pakm_sw1
+	.4byte BanimScr_046_pakm_sw1
 	.4byte BanimOam_046_pakm_sw1_R
 	.4byte BanimOam_046_pakm_sw1_L
 	.4byte Pal_Banim_046_pakm_sw1
 	.incbin "baserom.gba", 0xe008c8, 0xc
-	.4byte gUnk_08ECE52C
-	.4byte gUnk_08ECE2DC
+	.4byte BanimModes_047_pakm_sw1
+	.4byte BanimScr_047_pakm_sw1
 	.4byte BanimOam_047_pakm_sw1_R
 	.4byte BanimOam_047_pakm_sw1_L
 	.4byte Pal_Banim_047_pakm_sw1
 	.incbin "baserom.gba", 0xe008e8, 0xc
-	.4byte gUnk_08ED04A8
-	.4byte gUnk_08ED004C
+	.4byte BanimModes_048_pakm_sw1
+	.4byte BanimScr_048_pakm_sw1
 	.4byte BanimOam_048_pakm_sw1_R
 	.4byte BanimOam_048_pakm_sw1_L
 	.4byte Pal_Banim_048_pakm_sw1
 	.incbin "baserom.gba", 0xe00908, 0xc
-	.4byte gUnk_08ED2C08
-	.4byte gUnk_08ED2770
+	.4byte BanimModes_049_pakm_sw1
+	.4byte BanimScr_049_pakm_sw1
 	.4byte BanimOam_049_pakm_sw1_R
 	.4byte BanimOam_049_pakm_sw1_L
 	.4byte Pal_Banim_049_pakm_sw1
 	.incbin "baserom.gba", 0xe00928, 0xc
-	.4byte gUnk_08ED2F0C
-	.4byte gUnk_08ED2E88
+	.4byte BanimModes_04A_pakm_sw1
+	.4byte BanimScr_04A_pakm_sw1
 	.4byte BanimOam_04A_pakm_sw1_R
 	.4byte BanimOam_04A_pakm_sw1_L
 	.4byte Pal_Banim_04A_pakm_sw1
 	.incbin "baserom.gba", 0xe00948, 0xc
-	.4byte gUnk_08EDD848
-	.4byte gUnk_08EDD3D0
+	.4byte BanimModes_04B_paif_sw1
+	.4byte BanimScr_04B_paif_sw1
 	.4byte BanimOam_04B_paif_sw1_R
 	.4byte BanimOam_04B_paif_sw1_L
 	.4byte Pal_Banim_04B_paif_sw1
 	.incbin "baserom.gba", 0xe00968, 0xc
-	.4byte gUnk_08EDF384
-	.4byte gUnk_08EDF134
+	.4byte BanimModes_04C_paif_sw1
+	.4byte BanimScr_04C_paif_sw1
 	.4byte BanimOam_04C_paif_sw1_R
 	.4byte BanimOam_04C_paif_sw1_L
 	.4byte Pal_Banim_04C_paif_sw1
 	.incbin "baserom.gba", 0xe00988, 0xc
-	.4byte gUnk_08EE1340
-	.4byte gUnk_08EE0EE8
+	.4byte BanimModes_04D_paif_sw1
+	.4byte BanimScr_04D_paif_sw1
 	.4byte BanimOam_04D_paif_sw1_R
 	.4byte BanimOam_04D_paif_sw1_L
 	.4byte Pal_Banim_04D_paif_sw1
 	.incbin "baserom.gba", 0xe009a8, 0xc
-	.4byte gUnk_08EE3AF4
-	.4byte gUnk_08EE3660
+	.4byte BanimModes_04E_paif_sw1
+	.4byte BanimScr_04E_paif_sw1
 	.4byte BanimOam_04E_paif_sw1_R
 	.4byte BanimOam_04E_paif_sw1_L
 	.4byte Pal_Banim_04E_paif_sw1
 	.incbin "baserom.gba", 0xe009c8, 0xc
-	.4byte gUnk_08EE3DC4
-	.4byte gUnk_08EE3D40
+	.4byte BanimModes_04F_paif_sw1
+	.4byte BanimScr_04F_paif_sw1
 	.4byte BanimOam_04F_paif_sw1_R
 	.4byte BanimOam_04F_paif_sw1_L
 	.4byte Pal_Banim_04F_paif_sw1
 	.incbin "baserom.gba", 0xe009e8, 0xc
-	.4byte gUnk_08EE75CC
-	.4byte gUnk_08EE73B0
+	.4byte BanimModes_050_solm_sp1
+	.4byte BanimScr_050_solm_sp1
 	.4byte BanimOam_050_solm_sp1_R
 	.4byte BanimOam_050_solm_sp1_L
 	.4byte Pal_Banim_050_solm_sp1
 	.incbin "baserom.gba", 0xe00a08, 0xc
-	.4byte gUnk_08EE7884
-	.4byte gUnk_08EE7804
+	.4byte BanimModes_051_solm_sp1
+	.4byte BanimScr_051_solm_sp1
 	.4byte BanimOam_051_solm_sp1_R
 	.4byte BanimOam_051_solm_sp1_L
 	.4byte Pal_Banim_051_solm_sp1
 	.incbin "baserom.gba", 0xe00a28, 0xc
-	.4byte gUnk_08EEBB98
-	.4byte gUnk_08EEB8A8
+	.4byte BanimModes_052_armm_sp1
+	.4byte BanimScr_052_armm_sp1
 	.4byte BanimOam_052_armm_sp1_R
 	.4byte BanimOam_052_armm_sp1_L
 	.4byte Pal_Banim_052_armm_sp1
 	.incbin "baserom.gba", 0xe00a48, 0xc
-	.4byte gUnk_08EEBE30
-	.4byte gUnk_08EEBDB4
+	.4byte BanimModes_053_armm_sp1
+	.4byte BanimScr_053_armm_sp1
 	.4byte BanimOam_053_armm_sp1_R
 	.4byte BanimOam_053_armm_sp1_L
 	.4byte Pal_Banim_053_armm_sp1
 	.incbin "baserom.gba", 0xe00a68, 0xc
-	.4byte gUnk_08EF5AE0
-	.4byte gUnk_08EF5604
+	.4byte BanimModes_054_genm_al1
+	.4byte BanimScr_054_genm_al1
 	.4byte BanimOam_054_genm_al1_R
 	.4byte BanimOam_054_genm_al1_L
 	.4byte Pal_Banim_054_genm_al1
 	.incbin "baserom.gba", 0xe00a88, 0xc
-	.4byte gUnk_08EF6F78
-	.4byte gUnk_08EF6ACC
+	.4byte BanimModes_055_genm_al1
+	.4byte BanimScr_055_genm_al1
 	.4byte BanimOam_055_genm_al1_R
 	.4byte BanimOam_055_genm_al1_L
 	.4byte Pal_Banim_055_genm_al1
 	.incbin "baserom.gba", 0xe00aa8, 0xc
-	.4byte gUnk_08EF7884
-	.4byte gUnk_08EF76B4
+	.4byte BanimModes_056_genm_al1
+	.4byte BanimScr_056_genm_al1
 	.4byte BanimOam_056_genm_al1_R
 	.4byte BanimOam_056_genm_al1_L
 	.4byte Pal_Banim_056_genm_al1
 	.incbin "baserom.gba", 0xe00ac8, 0xc
-	.4byte gUnk_08EF7B20
-	.4byte gUnk_08EF7A98
+	.4byte BanimModes_057_genm_al1
+	.4byte BanimScr_057_genm_al1
 	.4byte BanimOam_057_genm_al1_R
 	.4byte BanimOam_057_genm_al1_L
 	.4byte Pal_Banim_057_genm_al1
 	.incbin "baserom.gba", 0xe00ae8, 0xc
-	.4byte gUnk_08EFA964
-	.4byte gUnk_08EFA6A8
+	.4byte BanimModes_058_magm_mg1
+	.4byte BanimScr_058_magm_mg1
 	.4byte BanimOam_058_magm_mg1_R
 	.4byte BanimOam_058_magm_mg1_L
 	.4byte Pal_Banim_058_magm_mg1
 	.incbin "baserom.gba", 0xe00b08, 0xc
-	.4byte gUnk_08EFD608
-	.4byte gUnk_08EFD34C
+	.4byte BanimModes_059_magf_mg1
+	.4byte BanimScr_059_magf_mg1
 	.4byte BanimOam_059_magf_mg1_R
 	.4byte BanimOam_059_magf_mg1_L
 	.4byte Pal_Banim_059_magf_mg1
 	.incbin "baserom.gba", 0xe00b28, 0xc
-	.4byte gUnk_08F01A2C
-	.4byte gUnk_08F016F4
+	.4byte BanimModes_05A_sagm_mg1
+	.4byte BanimScr_05A_sagm_mg1
 	.4byte BanimOam_05A_sagm_mg1_R
 	.4byte BanimOam_05A_sagm_mg1_L
 	.4byte Pal_Banim_05A_sagm_mg1
 	.incbin "baserom.gba", 0xe00b48, 0xc
-	.4byte gUnk_08F01E84
-	.4byte gUnk_08F01DC4
+	.4byte BanimModes_05B_sagm_mg1
+	.4byte BanimScr_05B_sagm_mg1
 	.4byte BanimOam_05B_sagm_mg1_R
 	.4byte BanimOam_05B_sagm_mg1_L
 	.4byte Pal_Banim_05B_sagm_mg1
 	.incbin "baserom.gba", 0xe00b68, 0xc
-	.4byte gUnk_08F06CFC
-	.4byte gUnk_08F069C4
+	.4byte BanimModes_05C_sagf_mg1
+	.4byte BanimScr_05C_sagf_mg1
 	.4byte BanimOam_05C_sagf_mg1_R
 	.4byte BanimOam_05C_sagf_mg1_L
 	.4byte Pal_Banim_05C_sagf_mg1
 	.incbin "baserom.gba", 0xe00b88, 0xc
-	.4byte gUnk_08F07150
-	.4byte gUnk_08F07090
+	.4byte BanimModes_05D_sagf_mg1
+	.4byte BanimScr_05D_sagf_mg1
 	.4byte BanimOam_05D_sagf_mg1_R
 	.4byte BanimOam_05D_sagf_mg1_L
 	.4byte Pal_Banim_05D_sagf_mg1
 	.incbin "baserom.gba", 0xe00ba8, 0xc
-	.4byte gUnk_08F0826C
-	.4byte gUnk_08F07F34
+	.4byte BanimModes_05E_sagf_mg1
+	.4byte BanimScr_05E_sagf_mg1
 	.4byte BanimOam_05E_sagf_mg1_R
 	.4byte BanimOam_05E_sagf_mg1_L
 	.4byte Pal_Banim_05E_sagf_mg1
 	.incbin "baserom.gba", 0xe00bc8, 0xc
-	.4byte gUnk_08F086E8
-	.4byte gUnk_08F08628
+	.4byte BanimModes_05F_sagf_mg1
+	.4byte BanimScr_05F_sagf_mg1
 	.4byte BanimOam_05F_sagf_mg1_R
 	.4byte BanimOam_05F_sagf_mg1_L
 	.4byte Pal_Banim_05F_sagf_mg1
 	.incbin "baserom.gba", 0xe00be8, 0xc
-	.4byte gUnk_08F0961C
-	.4byte gUnk_08F09534
+	.4byte BanimModes_060_prim_mg1
+	.4byte BanimScr_060_prim_mg1
 	.4byte BanimOam_060_prim_mg1_R
 	.4byte BanimOam_060_prim_mg1_L
 	.4byte Pal_Banim_060_prim_mg1
 	.incbin "baserom.gba", 0xe00c08, 0xc
-	.4byte gUnk_08F09868
-	.4byte gUnk_08F097F0
+	.4byte BanimModes_061_prim_mg1
+	.4byte BanimScr_061_prim_mg1
 	.4byte BanimOam_061_prim_mg1_R
 	.4byte BanimOam_061_prim_mg1_L
 	.4byte Pal_Banim_061_prim_mg1
 	.incbin "baserom.gba", 0xe00c28, 0xc
-	.4byte gUnk_08F0A764
-	.4byte gUnk_08F0A680
+	.4byte BanimModes_062_prif_mg1
+	.4byte BanimScr_062_prif_mg1
 	.4byte BanimOam_062_prif_mg1_R
 	.4byte BanimOam_062_prif_mg1_L
 	.4byte Pal_Banim_062_prif_mg1
 	.incbin "baserom.gba", 0xe00c48, 0xc
-	.4byte gUnk_08F0A968
-	.4byte gUnk_08F0A8F0
+	.4byte BanimModes_063_prif_mg1
+	.4byte BanimScr_063_prif_mg1
 	.4byte BanimOam_063_prif_mg1_R
 	.4byte BanimOam_063_prif_mg1_L
 	.4byte Pal_Banim_063_prif_mg1
 	.incbin "baserom.gba", 0xe00c68, 0xc
-	.4byte gUnk_08F0DE40
-	.4byte gUnk_08F0DADC
+	.4byte BanimModes_064_monm_mg1
+	.4byte BanimScr_064_monm_mg1
 	.4byte BanimOam_064_monm_mg1_R
 	.4byte BanimOam_064_monm_mg1_L
 	.4byte Pal_Banim_064_monm_mg1
 	.incbin "baserom.gba", 0xe00c88, 0xc
-	.4byte gUnk_08F112A4
-	.4byte gUnk_08F1103C
+	.4byte BanimModes_065_bism_mg1
+	.4byte BanimScr_065_bism_mg1
 	.4byte BanimOam_065_bism_mg1_R
 	.4byte BanimOam_065_bism_mg1_L
 	.4byte Pal_Banim_065_bism_mg1
 	.incbin "baserom.gba", 0xe00ca8, 0xc
-	.4byte gUnk_08F11654
-	.4byte gUnk_08F11598
+	.4byte BanimModes_066_bism_mg1
+	.4byte BanimScr_066_bism_mg1
 	.4byte BanimOam_066_bism_mg1_R
 	.4byte BanimOam_066_bism_mg1_L
 	.4byte Pal_Banim_066_bism_mg1
 	.incbin "baserom.gba", 0xe00cc8, 0xc
-	.4byte gUnk_08F140D4
-	.4byte gUnk_08F13E6C
+	.4byte BanimModes_067_bisf_mg1
+	.4byte BanimScr_067_bisf_mg1
 	.4byte BanimOam_067_bisf_mg1_R
 	.4byte BanimOam_067_bisf_mg1_L
 	.4byte Pal_Banim_067_bisf_mg1
 	.incbin "baserom.gba", 0xe00ce8, 0xc
-	.4byte gUnk_08F14470
-	.4byte gUnk_08F143B4
+	.4byte BanimModes_068_bisf_mg1
+	.4byte BanimScr_068_bisf_mg1
 	.4byte BanimOam_068_bisf_mg1_R
 	.4byte BanimOam_068_bisf_mg1_L
 	.4byte Pal_Banim_068_bisf_mg1
 	.incbin "baserom.gba", 0xe00d08, 0xc
-	.4byte gUnk_08F18EC4
-	.4byte gUnk_08F18980
+	.4byte BanimModes_069_sham_mg1
+	.4byte BanimScr_069_sham_mg1
 	.4byte BanimOam_069_sham_mg1_R
 	.4byte BanimOam_069_sham_mg1_L
 	.4byte Pal_Banim_069_sham_mg1
 	.incbin "baserom.gba", 0xe00d28, 0xc
-	.4byte gUnk_08F1CBB8
-	.4byte gUnk_08F1C914
+	.4byte BanimModes_06A_drum_mg1
+	.4byte BanimScr_06A_drum_mg1
 	.4byte BanimOam_06A_drum_mg1_R
 	.4byte BanimOam_06A_drum_mg1_L
 	.4byte Pal_Banim_06A_drum_mg1
 	.incbin "baserom.gba", 0xe00d48, 0xc
-	.4byte gUnk_08F1D388
-	.4byte gUnk_08F1D1F4
+	.4byte BanimModes_06B_drum_mg1
+	.4byte BanimScr_06B_drum_mg1
 	.4byte BanimOam_06B_drum_mg1_R
 	.4byte BanimOam_06B_drum_mg1_L
 	.4byte Pal_Banim_06B_drum_mg1
 	.incbin "baserom.gba", 0xe00d68, 0xc
-	.4byte gUnk_08F217B0
-	.4byte gUnk_08F21364
+	.4byte BanimModes_06C_drsm_mg1
+	.4byte BanimScr_06C_drsm_mg1
 	.4byte BanimOam_06C_drsm_mg1_R
 	.4byte BanimOam_06C_drsm_mg1_L
 	.4byte Pal_Banim_06C_drsm_mg1
 	.incbin "baserom.gba", 0xe00d88, 0xc
-	.4byte gUnk_08F21F7C
-	.4byte gUnk_08F21DE8
+	.4byte BanimModes_06D_drsm_mg1
+	.4byte BanimScr_06D_drsm_mg1
 	.4byte BanimOam_06D_drsm_mg1_R
 	.4byte BanimOam_06D_drsm_mg1_L
 	.4byte Pal_Banim_06D_drsm_mg1
 	.incbin "baserom.gba", 0xe00da8, 0xc
-	.4byte gUnk_08F24B24
-	.4byte gUnk_08F249B8
+	.4byte BanimModes_06E_trof_ro1
+	.4byte BanimScr_06E_trof_ro1
 	.4byte BanimOam_06E_trof_ro1_R
 	.4byte BanimOam_06E_trof_ro1_L
 	.4byte Pal_Banim_06E_trof_ro1
 	.incbin "baserom.gba", 0xe00dc8, 0xc
-	.4byte gUnk_08F24DE0
-	.4byte gUnk_08F24D60
+	.4byte BanimModes_06F_trof_ro1
+	.4byte BanimScr_06F_trof_ro1
 	.4byte BanimOam_06F_trof_ro1_R
 	.4byte BanimOam_06F_trof_ro1_L
 	.4byte Pal_Banim_06F_trof_ro1
 	.incbin "baserom.gba", 0xe00de8, 0xc
-	.4byte gUnk_08F28E84
-	.4byte gUnk_08F28BE4
+	.4byte BanimModes_070_valf_mg1
+	.4byte BanimScr_070_valf_mg1
 	.4byte BanimOam_070_valf_mg1_R
 	.4byte BanimOam_070_valf_mg1_L
 	.4byte Pal_Banim_070_valf_mg1
 	.incbin "baserom.gba", 0xe00e08, 0xc
-	.4byte gUnk_08F295B8
-	.4byte gUnk_08F2944C
+	.4byte BanimModes_071_valf_mg1
+	.4byte BanimScr_071_valf_mg1
 	.4byte BanimOam_071_valf_mg1_R
 	.4byte BanimOam_071_valf_mg1_L
 	.4byte Pal_Banim_071_valf_mg1
 	.incbin "baserom.gba", 0xe00e28, 0xc
-	.4byte gUnk_08F2C4BC
-	.4byte gUnk_08F2C12C
+	.4byte BanimModes_072_ssam_mg1
+	.4byte BanimScr_072_ssam_mg1
 	.4byte BanimOam_072_ssam_mg1_R
 	.4byte BanimOam_072_ssam_mg1_L
 	.4byte Pal_Banim_072_ssam_mg1
 	.incbin "baserom.gba", 0xe00e48, 0xc
-	.4byte gUnk_08F2D790
-	.4byte gUnk_08F2D400
+	.4byte BanimModes_073_ssam_mg1
+	.4byte BanimScr_073_ssam_mg1
 	.4byte BanimOam_073_ssam_mg1_R
 	.4byte BanimOam_073_ssam_mg1_L
 	.4byte Pal_Banim_073_ssam_mg1
 	.incbin "baserom.gba", 0xe00e68, 0xc
-	.4byte gUnk_08F30B28
-	.4byte gUnk_08F308A4
+	.4byte BanimModes_074_nomm_ar1
+	.4byte BanimScr_074_nomm_ar1
 	.4byte BanimOam_074_nomm_ar1_R
 	.4byte BanimOam_074_nomm_ar1_L
 	.4byte Pal_Banim_074_nomm_ar1
 	.incbin "baserom.gba", 0xe00e88, 0xc
-	.4byte gUnk_08F30E40
-	.4byte gUnk_08F30DC0
+	.4byte BanimModes_075_nomm_ar1
+	.4byte BanimScr_075_nomm_ar1
 	.4byte BanimOam_075_nomm_ar1_R
 	.4byte BanimOam_075_nomm_ar1_L
 	.4byte Pal_Banim_075_nomm_ar1
 	.incbin "baserom.gba", 0xe00ea8, 0xc
-	.4byte gUnk_08F362A4
-	.4byte gUnk_08F35F40
+	.4byte BanimModes_076_notm_sw1
+	.4byte BanimScr_076_notm_sw1
 	.4byte BanimOam_076_notm_sw1_R
 	.4byte BanimOam_076_notm_sw1_L
 	.4byte Pal_Banim_076_notm_sw1
 	.incbin "baserom.gba", 0xe00ec8, 0xc
-	.4byte gUnk_08F3B068
-	.4byte gUnk_08F3ADCC
+	.4byte BanimModes_077_notm_ar1
+	.4byte BanimScr_077_notm_ar1
 	.4byte BanimOam_077_notm_ar1_R
 	.4byte BanimOam_077_notm_ar1_L
 	.4byte Pal_Banim_077_notm_ar1
 	.incbin "baserom.gba", 0xe00ee8, 0xc
-	.4byte gUnk_08F3B3B8
-	.4byte gUnk_08F3B35C
+	.4byte BanimModes_078_notm_ar1
+	.4byte BanimScr_078_notm_ar1
 	.4byte BanimOam_078_notm_ar1_R
 	.4byte BanimOam_078_notm_ar1_L
 	.4byte Pal_Banim_078_notm_ar1
 	.incbin "baserom.gba", 0xe00f08, 0xc
-	.4byte gUnk_08F3EC20
-	.4byte gUnk_08F3E95C
+	.4byte BanimModes_079_thim_sw1
+	.4byte BanimScr_079_thim_sw1
 	.4byte BanimOam_079_thim_sw1_R
 	.4byte BanimOam_079_thim_sw1_L
 	.4byte Pal_Banim_079_thim_sw1
 	.incbin "baserom.gba", 0xe00f28, 0xc
-	.4byte gUnk_08F3EEEC
-	.4byte gUnk_08F3EE58
+	.4byte BanimModes_07A_thim_sw1
+	.4byte BanimScr_07A_thim_sw1
 	.4byte BanimOam_07A_thim_sw1_R
 	.4byte BanimOam_07A_thim_sw1_L
 	.4byte Pal_Banim_07A_thim_sw1
 	.incbin "baserom.gba", 0xe00f48, 0xc
-	.4byte gUnk_08F3FC94
-	.4byte gUnk_08F3F9D4
+	.4byte BanimModes_07B_thim_sw1
+	.4byte BanimScr_07B_thim_sw1
 	.4byte BanimOam_07B_thim_sw1_R
 	.4byte BanimOam_07B_thim_sw1_L
 	.4byte Pal_Banim_07B_thim_sw1
 	.incbin "baserom.gba", 0xe00f68, 0xc
-	.4byte gUnk_08F3FF74
-	.4byte gUnk_08F3FEE0
+	.4byte BanimModes_07C_thim_sw1
+	.4byte BanimScr_07C_thim_sw1
 	.4byte BanimOam_07C_thim_sw1_R
 	.4byte BanimOam_07C_thim_sw1_L
 	.4byte Pal_Banim_07C_thim_sw1
 	.incbin "baserom.gba", 0xe00f88, 0xc
-	.4byte gUnk_08F43060
-	.4byte gUnk_08F42D98
+	.4byte BanimModes_07D_thif_sw1
+	.4byte BanimScr_07D_thif_sw1
 	.4byte BanimOam_07D_thif_sw1_R
 	.4byte BanimOam_07D_thif_sw1_L
 	.4byte Pal_Banim_07D_thif_sw1
 	.incbin "baserom.gba", 0xe00fa8, 0xc
-	.4byte gUnk_08F43330
-	.4byte gUnk_08F4329C
+	.4byte BanimModes_07E_thif_sw1
+	.4byte BanimScr_07E_thif_sw1
 	.4byte BanimOam_07E_thif_sw1_R
 	.4byte BanimOam_07E_thif_sw1_L
 	.4byte Pal_Banim_07E_thif_sw1
 	.incbin "baserom.gba", 0xe00fc8, 0xc
-	.4byte gUnk_08F44F54
-	.4byte gUnk_08F44A6C
+	.4byte BanimModes_07F_asnm_sw1
+	.4byte BanimScr_07F_asnm_sw1
 	.4byte BanimOam_07F_asnm_sw1_R
 	.4byte BanimOam_07F_asnm_sw1_L
 	.4byte Pal_Banim_07F_asnm_sw1
 	.incbin "baserom.gba", 0xe00fe8, 0xc
-	.4byte gUnk_08F451D0
-	.4byte gUnk_08F45144
+	.4byte BanimModes_080_asnm_sw1
+	.4byte BanimScr_080_asnm_sw1
 	.4byte BanimOam_080_asnm_sw1_R
 	.4byte BanimOam_080_asnm_sw1_L
 	.4byte Pal_Banim_080_asnm_sw1
 	.incbin "baserom.gba", 0xe01008, 0xc
-	.4byte gUnk_08F4E4A0
-	.4byte gUnk_08F4E118
+	.4byte BanimModes_081_pekf_sp1
+	.4byte BanimScr_081_pekf_sp1
 	.4byte BanimOam_081_pekf_sp1_R
 	.4byte BanimOam_081_pekf_sp1_L
 	.4byte Pal_Banim_081_pekf_sp1
 	.incbin "baserom.gba", 0xe01028, 0xc
-	.4byte gUnk_08F4E9A0
-	.4byte gUnk_08F4E91C
+	.4byte BanimModes_082_pekf_sp1
+	.4byte BanimScr_082_pekf_sp1
 	.4byte BanimOam_082_pekf_sp1_R
 	.4byte BanimOam_082_pekf_sp1_L
 	.4byte Pal_Banim_082_pekf_sp1
 	.incbin "baserom.gba", 0xe01048, 0xc
-	.4byte gUnk_08F5A780
-	.4byte gUnk_08F5A304
+	.4byte BanimModes_083_fakf_sp1
+	.4byte BanimScr_083_fakf_sp1
 	.4byte BanimOam_083_fakf_sp1_R
 	.4byte BanimOam_083_fakf_sp1_L
 	.4byte Pal_Banim_083_fakf_sp1
 	.incbin "baserom.gba", 0xe01068, 0xc
-	.4byte gUnk_08F5DFCC
-	.4byte gUnk_08F5DB20
+	.4byte BanimModes_084_fakf_sp1
+	.4byte BanimScr_084_fakf_sp1
 	.4byte BanimOam_084_fakf_sp1_R
 	.4byte BanimOam_084_fakf_sp1_L
 	.4byte Pal_Banim_084_fakf_sp1
 	.incbin "baserom.gba", 0xe01088, 0xc
-	.4byte gUnk_08F5E48C
-	.4byte gUnk_08F5E404
+	.4byte BanimModes_085_fakf_sp1
+	.4byte BanimScr_085_fakf_sp1
 	.4byte BanimOam_085_fakf_sp1_R
 	.4byte BanimOam_085_fakf_sp1_L
 	.4byte Pal_Banim_085_fakf_sp1
 	.incbin "baserom.gba", 0xe010a8, 0xc
-	.4byte gUnk_08F66FD8
-	.4byte gUnk_08F66CE0
+	.4byte BanimModes_086_drkm_sp1
+	.4byte BanimScr_086_drkm_sp1
 	.4byte BanimOam_086_drkm_sp1_R
 	.4byte BanimOam_086_drkm_sp1_L
 	.4byte Pal_Banim_086_drkm_sp1
 	.incbin "baserom.gba", 0xe010c8, 0xc
-	.4byte gUnk_08F6752C
-	.4byte gUnk_08F6748C
+	.4byte BanimModes_087_drkm_sp1
+	.4byte BanimScr_087_drkm_sp1
 	.4byte BanimOam_087_drkm_sp1_R
 	.4byte BanimOam_087_drkm_sp1_L
 	.4byte Pal_Banim_087_drkm_sp1
 	.incbin "baserom.gba", 0xe010e8, 0xc
-	.4byte gUnk_08F74EF4
-	.4byte gUnk_08F74B14
+	.4byte BanimModes_088_drmm_sp1
+	.4byte BanimScr_088_drmm_sp1
 	.4byte BanimOam_088_drmm_sp1_R
 	.4byte BanimOam_088_drmm_sp1_L
 	.4byte Pal_Banim_088_drmm_sp1
 	.incbin "baserom.gba", 0xe01108, 0xc
-	.4byte gUnk_08F79470
-	.4byte gUnk_08F7909C
+	.4byte BanimModes_089_drmm_sp1
+	.4byte BanimScr_089_drmm_sp1
 	.4byte BanimOam_089_drmm_sp1_R
 	.4byte BanimOam_089_drmm_sp1_L
 	.4byte Pal_Banim_089_drmm_sp1
 	.incbin "baserom.gba", 0xe01128, 0xc
-	.4byte gUnk_08F799A4
-	.4byte gUnk_08F7991C
+	.4byte BanimModes_08A_drmm_sp1
+	.4byte BanimScr_08A_drmm_sp1
 	.4byte BanimOam_08A_drmm_sp1_R
 	.4byte BanimOam_08A_drmm_sp1_L
 	.4byte Pal_Banim_08A_drmm_sp1
 	.incbin "baserom.gba", 0xe01148, 0xc
-	.4byte gUnk_08F7C798
-	.4byte gUnk_08F7C4C8
+	.4byte BanimModes_08B_fnld_mg1
+	.4byte BanimScr_08B_fnld_mg1
 	.4byte BanimOam_08B_fnld_mg1_R
 	.4byte BanimOam_08B_fnld_mg1_L
 	.4byte Pal_Banim_08B_fnld_mg1
 	.incbin "baserom.gba", 0xe01168, 0xc
-	.4byte gUnk_08F7D6A0
-	.4byte gUnk_08F7D5F0
+	.4byte BanimModes_08C_stam_ar1
+	.4byte BanimScr_08C_stam_ar1
 	.4byte BanimOam_08C_stam_ar1_R
 	.4byte BanimOam_08C_stam_ar1_L
 	.4byte Pal_Banim_08C_stam_ar1
 	.incbin "baserom.gba", 0xe01188, 0xc
-	.4byte gUnk_08F82784
-	.4byte gUnk_08F823B4
+	.4byte BanimModes_08D_danf_no1
+	.4byte BanimScr_08D_danf_no1
 	.4byte BanimOam_08D_danf_no1_R
 	.4byte BanimOam_08D_danf_no1_L
 	.4byte Pal_Banim_08D_danf_no1
 	.incbin "baserom.gba", 0xe011a8, 0xc
-	.4byte gUnk_08F84A10
-	.4byte gUnk_08F84730
+	.4byte BanimModes_08E_brdm_no1
+	.4byte BanimScr_08E_brdm_no1
 	.4byte BanimOam_08E_brdm_no1_R
 	.4byte BanimOam_08E_brdm_no1_L
 	.4byte Pal_Banim_08E_brdm_no1
 	.incbin "baserom.gba", 0xe011c8, 0xc
-	.4byte gUnk_08F85A50
-	.4byte gUnk_08F856F4
+	.4byte BanimModes_08F_monm_mg1
+	.4byte BanimScr_08F_monm_mg1
 	.4byte BanimOam_08F_monm_mg1_R
 	.4byte BanimOam_08F_monm_mg1_L
 	.4byte Pal_Banim_08F_monm_mg1
 	.incbin "baserom.gba", 0xe011e8, 0xc
-	.4byte gUnk_08F8D330
-	.4byte gUnk_08F8CC08
+	.4byte BanimModes_090_brlm_sw1
+	.4byte BanimScr_090_brlm_sw1
 	.4byte BanimOam_090_brlm_sw1_R
 	.4byte BanimOam_090_brlm_sw1_L
 	.4byte Pal_Banim_090_brlm_sw1
 	.incbin "baserom.gba", 0xe01208, 0xc
-	.4byte gUnk_08F90830
-	.4byte gUnk_08F90140
+	.4byte BanimModes_091_brlm_sw1
+	.4byte BanimScr_091_brlm_sw1
 	.4byte BanimOam_091_brlm_sw1_R
 	.4byte BanimOam_091_brlm_sw1_L
 	.4byte Pal_Banim_091_brlm_sw1
 	.incbin "baserom.gba", 0xe01228, 0xc
-	.4byte gUnk_08F9193C
-	.4byte gUnk_08F91818
+	.4byte BanimModes_092_brlm_sw1
+	.4byte BanimScr_092_brlm_sw1
 	.4byte BanimOam_092_brlm_sw1_R
 	.4byte BanimOam_092_brlm_sw1_L
 	.4byte Pal_Banim_092_brlm_sw1
 	.incbin "baserom.gba", 0xe01248, 0xc
-	.4byte gUnk_08F91C2C
-	.4byte gUnk_08F91BA4
+	.4byte BanimModes_093_brlm_sw1
+	.4byte BanimScr_093_brlm_sw1
 	.4byte BanimOam_093_brlm_sw1_R
 	.4byte BanimOam_093_brlm_sw1_L
 	.4byte Pal_Banim_093_brlm_sw1
 	.incbin "baserom.gba", 0xe01268, 0xc
-	.4byte gUnk_08F9289C
-	.4byte gUnk_08F92614
+	.4byte BanimModes_094_bism_mg1
+	.4byte BanimScr_094_bism_mg1
 	.4byte BanimOam_094_bism_mg1_R
 	.4byte BanimOam_094_bism_mg1_L
 	.4byte Pal_Banim_094_bism_mg1
 	.incbin "baserom.gba", 0xe01288, 0xc
-	.4byte gUnk_08F92DD0
-	.4byte gUnk_08F92CE4
+	.4byte BanimModes_095_bism_mg1
+	.4byte BanimScr_095_bism_mg1
 	.4byte BanimOam_095_bism_mg1_R
 	.4byte BanimOam_095_bism_mg1_L
 	.4byte Pal_Banim_095_bism_mg1
 	.incbin "baserom.gba", 0xe012a8, 0xc
-	.4byte gUnk_08F930C8
-	.4byte gUnk_08F93040
+	.4byte BanimModes_096_bism_mg1
+	.4byte BanimScr_096_bism_mg1
 	.4byte BanimOam_096_bism_mg1_R
 	.4byte BanimOam_096_bism_mg1_L
 	.4byte Pal_Banim_096_bism_mg1
 	.incbin "baserom.gba", 0xe012c8, 0xc
-	.4byte gUnk_08F93398
-	.4byte gUnk_08F93310
+	.4byte BanimModes_097_bism_mg1
+	.4byte BanimScr_097_bism_mg1
 	.4byte BanimOam_097_bism_mg1_R
 	.4byte BanimOam_097_bism_mg1_L
 	.4byte Pal_Banim_097_bism_mg1
 	.incbin "baserom.gba", 0xe012e8, 0xc
-	.4byte gUnk_08F93654
-	.4byte gUnk_08F935CC
+	.4byte BanimModes_098_bisf_mg1
+	.4byte BanimScr_098_bisf_mg1
 	.4byte BanimOam_098_bisf_mg1_R
 	.4byte BanimOam_098_bisf_mg1_L
 	.4byte Pal_Banim_098_bisf_mg1
 	.incbin "baserom.gba", 0xe01308, 0xc
-	.4byte gUnk_08F9901C
-	.4byte gUnk_08F98C50
+	.4byte BanimModes_099_mygm_sw1
+	.4byte BanimScr_099_mygm_sw1
 	.4byte BanimOam_099_mygm_sw1_R
 	.4byte BanimOam_099_mygm_sw1_L
 	.4byte Pal_Banim_099_mygm_sw1
 	.incbin "baserom.gba", 0xe01328, 0xc
-	.4byte gUnk_08F992D4
-	.4byte gUnk_08F9924C
+	.4byte BanimModes_09A_mygm_sw1
+	.4byte BanimScr_09A_mygm_sw1
 	.4byte BanimOam_09A_mygm_sw1_R
 	.4byte BanimOam_09A_mygm_sw1_L
 	.4byte Pal_Banim_09A_mygm_sw1
 	.incbin "baserom.gba", 0xe01348, 0xc
-	.4byte gUnk_08F9EADC
-	.4byte gUnk_08F9E640
+	.4byte BanimModes_09B_swgm_sw1
+	.4byte BanimScr_09B_swgm_sw1
 	.4byte BanimOam_09B_swgm_sw1_R
 	.4byte BanimOam_09B_swgm_sw1_L
 	.4byte Pal_Banim_09B_swgm_sw1
 	.incbin "baserom.gba", 0xe01368, 0xc
-	.4byte gUnk_08F9ECA8
-	.4byte gUnk_08F9EC44
+	.4byte BanimModes_09C_swgm_sw1
+	.4byte BanimScr_09C_swgm_sw1
 	.4byte BanimOam_09C_swgm_sw1_R
 	.4byte BanimOam_09C_swgm_sw1_L
 	.4byte Pal_Banim_09C_swgm_sw1
 	.incbin "baserom.gba", 0xe01388, 0xc
-	.4byte gUnk_08FA2470
-	.4byte gUnk_08FA222C
+	.4byte BanimModes_09D_brsm_ax1
+	.4byte BanimScr_09D_brsm_ax1
 	.4byte BanimOam_09D_brsm_ax1_R
 	.4byte BanimOam_09D_brsm_ax1_L
 	.4byte Pal_Banim_09D_brsm_ax1
 	.incbin "baserom.gba", 0xe013a8, 0xc
-	.4byte gUnk_08FA3718
-	.4byte gUnk_08FA360C
+	.4byte BanimModes_09E_brsm_ax1
+	.4byte BanimScr_09E_brsm_ax1
 	.4byte BanimOam_09E_brsm_ax1_R
 	.4byte BanimOam_09E_brsm_ax1_L
 	.4byte Pal_Banim_09E_brsm_ax1
 	.incbin "baserom.gba", 0xe013c8, 0xc
-	.4byte gUnk_08FA398C
-	.4byte gUnk_08FA390C
+	.4byte BanimModes_09F_brsm_ax1
+	.4byte BanimScr_09F_brsm_ax1
 	.4byte BanimOam_09F_brsm_ax1_R
 	.4byte BanimOam_09F_brsm_ax1_L
 	.4byte Pal_Banim_09F_brsm_ax1
 	.incbin "baserom.gba", 0xe013e8, 0xc
-	.4byte gUnk_08FA422C
-	.4byte gUnk_08FA4190
+	.4byte BanimModes_0A0_silm_no1
+	.4byte BanimScr_0A0_silm_no1
 	.4byte BanimOam_0A0_silm_no1_R
 	.4byte BanimOam_0A0_silm_no1_L
 	.4byte Pal_Banim_0A0_silm_no1
 	.incbin "baserom.gba", 0xe01408, 0xc
-	.4byte gUnk_08FA4E98
-	.4byte gUnk_08FA4E70
+	.4byte BanimModes_0A1_yuso_no1
+	.4byte BanimScr_0A1_yuso_no1
 	.4byte BanimOam_0A1_yuso_no1_R
 	.4byte BanimOam_0A1_yuso_no1_L
 	.4byte Pal_Banim_0A1_yuso_no1
 	.incbin "baserom.gba", 0xe01428, 0xc
-	.4byte gUnk_08FA4FF8
-	.4byte gUnk_08FA4FD0
+	.4byte BanimModes_0A2_yuso_no1
+	.4byte BanimScr_0A2_yuso_no1
 	.4byte BanimOam_0A2_yuso_no1_R
 	.4byte BanimOam_0A2_yuso_no1_L
 	.4byte Pal_Banim_0A2_yuso_no1

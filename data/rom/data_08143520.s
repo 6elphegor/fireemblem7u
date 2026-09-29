@@ -9,8 +9,8 @@
 Img_Bg_39:  @ LZ77
 	.incbin "build/graphics/bg/bg_39.lz"
 
-	.global gUnk_081463E8
-gUnk_081463E8:
+	.global Tsa_Bg_39
+Tsa_Bg_39:
 	.incbin "baserom.gba", 0x1463e8, 0x4b4
 
 	.global Pal_Bg_39
@@ -32,8 +32,8 @@ Pal_Bg_3B:
 Img_Bg_3C:  @ LZ77
 	.incbin "build/graphics/bg/bg_3C.lz"
 
-	.global gUnk_08149C08
-gUnk_08149C08:
+	.global Tsa_Bg_3C
+Tsa_Bg_3C:
 	.incbin "baserom.gba", 0x149c08, 0x4b4
 
 	.global Pal_Bg_3C
@@ -55,8 +55,8 @@ Pal_Bg_3E:
 Img_Bg_3F:  @ LZ77
 	.incbin "build/graphics/bg/bg_3F.lz"
 
-	.global gUnk_0814DBB8
-gUnk_0814DBB8:
+	.global Tsa_Bg_3F
+Tsa_Bg_3F:
 	.incbin "baserom.gba", 0x14dbb8, 0x4b4
 
 	.global Pal_Bg_3F
@@ -78,8 +78,8 @@ Pal_Bg_41:
 Img_Bg_42:  @ LZ77
 	.incbin "build/graphics/bg/bg_42.lz"
 
-	.global gUnk_08152168
-gUnk_08152168:
+	.global Tsa_Bg_42
+Tsa_Bg_42:
 	.incbin "baserom.gba", 0x152168, 0x4b4
 
 	.global Pal_Bg_42
@@ -96,8 +96,8 @@ Pal_Bg_43:
 Img_Bg_44:  @ LZ77
 	.incbin "build/graphics/bg/bg_44.lz"
 
-	.global gUnk_08154CE0
-gUnk_08154CE0:
+	.global Tsa_Bg_44
+Tsa_Bg_44:
 	.incbin "baserom.gba", 0x154ce0, 0x4b4
 
 	.global Pal_Bg_44
@@ -114,8 +114,8 @@ Pal_Bg_45:
 Img_Bg_46:  @ LZ77
 	.incbin "build/graphics/bg/bg_46.lz"
 
-	.global gUnk_08159D60
-gUnk_08159D60:
+	.global Tsa_Bg_46
+Tsa_Bg_46:
 	.incbin "baserom.gba", 0x159d60, 0x4b4
 
 	.global Pal_Bg_46
@@ -137,8 +137,8 @@ Pal_Bg_48:
 Img_Bg_49:  @ LZ77
 	.incbin "build/graphics/bg/bg_49.lz"
 
-	.global gUnk_0815F480
-gUnk_0815F480:
+	.global Tsa_Bg_49
+Tsa_Bg_49:
 	.incbin "baserom.gba", 0x15f480, 0x4b4
 
 	.global Pal_Bg_49
@@ -150,8 +150,8 @@ Pal_Bg_49:
 Img_Bg_4A:  @ LZ77
 	.incbin "build/graphics/bg/bg_4A.lz"
 
-	.global gUnk_08163DFC
-gUnk_08163DFC:
+	.global Tsa_Bg_4A
+Tsa_Bg_4A:
 	.incbin "baserom.gba", 0x163dfc, 0x4b4
 
 	.global Pal_Bg_4A
@@ -168,8 +168,8 @@ Pal_Bg_4B:
 Img_Bg_4C:  @ LZ77
 	.incbin "build/graphics/bg/bg_4C.lz"
 
-	.global gUnk_081688D4
-gUnk_081688D4:
+	.global Tsa_Bg_4C
+Tsa_Bg_4C:
 	.incbin "baserom.gba", 0x1688d4, 0x4b4
 
 	.global Pal_Bg_4C
@@ -191,8 +191,8 @@ Pal_Bg_4E:
 Img_Bg_4F:  @ LZ77
 	.incbin "build/graphics/bg/bg_4F.lz"
 
-	.global gUnk_0816D658
-gUnk_0816D658:
+	.global Tsa_Bg_4F
+Tsa_Bg_4F:
 	.incbin "baserom.gba", 0x16d658, 0x4b4
 
 	.global Pal_Bg_4F
@@ -209,8 +209,8 @@ Pal_Bg_50:
 Img_Bg_51:  @ LZ77
 	.incbin "build/graphics/bg/bg_51.lz"
 
-	.global gUnk_08170498
-gUnk_08170498:
+	.global Tsa_Bg_51
+Tsa_Bg_51:
 	.incbin "baserom.gba", 0x170498, 0x45c
 
 	.global gUnk_081708F4
@@ -231,8 +231,8 @@ Pal_Bg_52:
 Img_Bg_53:  @ LZ77
 	.incbin "build/graphics/bg/bg_53.lz"
 
-	.global gUnk_08174310
-gUnk_08174310:
+	.global Tsa_Bg_53
+Tsa_Bg_53:
 	.incbin "baserom.gba", 0x174310, 0x4dc
 
 	.global Pal_Bg_53
@@ -249,8 +249,8 @@ Pal_Bg_54:
 Img_Bg_55:  @ LZ77
 	.incbin "build/graphics/bg/bg_55.lz"
 
-	.global gUnk_08179538
-gUnk_08179538:
+	.global Tsa_Bg_55
+Tsa_Bg_55:
 	.incbin "baserom.gba", 0x179538, 0x4b4
 
 	.global Pal_Bg_55
@@ -261,8 +261,8 @@ Pal_Bg_55:
 Img_Bg_56:  @ LZ77
 	.incbin "build/graphics/bg/bg_56.lz"
 
-	.global gUnk_0817BE48
-gUnk_0817BE48:
+	.global Tsa_Bg_56
+Tsa_Bg_56:
 	.incbin "baserom.gba", 0x17be48, 0x4b4
 
 	.global Pal_Bg_56
@@ -274,8 +274,8 @@ Pal_Bg_56:
 Img_Bg_57:  @ LZ77
 	.incbin "build/graphics/bg/bg_57.lz"
 
-	.global gUnk_0818026C
-gUnk_0818026C:
+	.global Tsa_Bg_57
+Tsa_Bg_57:
 	.incbin "baserom.gba", 0x18026c, 0x4b4
 
 	.global Pal_Bg_57
@@ -291,8 +291,8 @@ gUnk_08180818:
 Img_Bg_58:  @ LZ77
 	.incbin "build/graphics/bg/bg_58.lz"
 
-	.global gUnk_0818252C
-gUnk_0818252C:
+	.global Tsa_Bg_58
+Tsa_Bg_58:
 	.incbin "baserom.gba", 0x18252c, 0x4b4
 
 	.global Pal_Bg_58

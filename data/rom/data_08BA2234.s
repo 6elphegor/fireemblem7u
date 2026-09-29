@@ -2326,722 +2326,722 @@ TsaArray_Light_ClassReel:
 	.4byte Tsa_LightningBg_1F
 	.4byte Tsa_LightningBg_20
 
-	.global gUnk_08BA4B68
-gUnk_08BA4B68:
+	.global AnimSprite_TeonoObjCloseRight_08BA4B68
+AnimSprite_TeonoObjCloseRight_08BA4B68:
 	.incbin "baserom.gba", 0xba4b68, 0x18
 
-	.global gUnk_08BA4B80
-gUnk_08BA4B80:
+	.global AnimSprite_TeonoObjCloseRight_08BA4B80
+AnimSprite_TeonoObjCloseRight_08BA4B80:
 	.incbin "baserom.gba", 0xba4b80, 0x18
 
-	.global gUnk_08BA4B98
-gUnk_08BA4B98:
+	.global AnimSprite_TeonoObjCloseRight_08BA4B98
+AnimSprite_TeonoObjCloseRight_08BA4B98:
 	.incbin "baserom.gba", 0xba4b98, 0x18
 
-	.global gUnk_08BA4BB0
-gUnk_08BA4BB0:
+	.global AnimSprite_TeonoObjCloseRight_08BA4BB0
+AnimSprite_TeonoObjCloseRight_08BA4BB0:
 	.incbin "baserom.gba", 0xba4bb0, 0x18
 
-	.global gUnk_08BA4BC8
-gUnk_08BA4BC8:
+	.global AnimSprite_TeonoObjCloseRight_08BA4BC8
+AnimSprite_TeonoObjCloseRight_08BA4BC8:
 	.incbin "baserom.gba", 0xba4bc8, 0x18
 
-	.global gUnk_08BA4BE0
-gUnk_08BA4BE0:
+	.global AnimSprite_TeonoObjCloseRight_08BA4BE0
+AnimSprite_TeonoObjCloseRight_08BA4BE0:
 	.incbin "baserom.gba", 0xba4be0, 0x18
 
-	.global gUnk_08BA4BF8
-gUnk_08BA4BF8:
+	.global AnimSprite_TeonoObjCloseRight_08BA4BF8
+AnimSprite_TeonoObjCloseRight_08BA4BF8:
 	.incbin "baserom.gba", 0xba4bf8, 0x18
 
-	.global gUnk_08BA4C10
-gUnk_08BA4C10:
+	.global AnimSprite_TeonoObjCloseRight_08BA4C10
+AnimSprite_TeonoObjCloseRight_08BA4C10:
 	.incbin "baserom.gba", 0xba4c10, 0x18
 
-	.global gUnk_08BA4C28
-gUnk_08BA4C28:
+	.global AnimSprite_TeonoObjCloseRight_08BA4C28
+AnimSprite_TeonoObjCloseRight_08BA4C28:
 	.incbin "baserom.gba", 0xba4c28, 0x18
 
-	.global gUnk_08BA4C40
-gUnk_08BA4C40:
+	.global AnimSprite_TeonoObjCloseRight_08BA4C40
+AnimSprite_TeonoObjCloseRight_08BA4C40:
 	.incbin "baserom.gba", 0xba4c40, 0x18
 
-	.global gUnk_08BA4C58
-gUnk_08BA4C58:
+	.global AnimSprite_TeonoObjCloseRight_08BA4C58
+AnimSprite_TeonoObjCloseRight_08BA4C58:
 	.incbin "baserom.gba", 0xba4c58, 0x24
 
-	.global gUnk_08BA4C7C
-gUnk_08BA4C7C:
+	.global AnimSprite_TeonoObjCloseRight_08BA4C7C
+AnimSprite_TeonoObjCloseRight_08BA4C7C:
 	.incbin "baserom.gba", 0xba4c7c, 0x24
 
-	.global gUnk_08BA4CA0
-gUnk_08BA4CA0:
+	.global AnimSprite_TeonoObjCloseRight_08BA4CA0
+AnimSprite_TeonoObjCloseRight_08BA4CA0:
 	.incbin "baserom.gba", 0xba4ca0, 0x24
 
-	.global gUnk_08BA4CC4
-gUnk_08BA4CC4:
+	.global AnimSprite_TeonoObjCloseRight_08BA4CC4
+AnimSprite_TeonoObjCloseRight_08BA4CC4:
 	.incbin "baserom.gba", 0xba4cc4, 0x24
 
-	.global gUnk_08BA4CE8
-gUnk_08BA4CE8:
+	.global AnimSprite_TeonoObjCloseRight_08BA4CE8
+AnimSprite_TeonoObjCloseRight_08BA4CE8:
 	.incbin "baserom.gba", 0xba4ce8, 0x24
 
-	.global gUnk_08BA4D0C
-gUnk_08BA4D0C:
+	.global AnimSprite_TeonoObjCloseRight_08BA4D0C
+AnimSprite_TeonoObjCloseRight_08BA4D0C:
 	.incbin "baserom.gba", 0xba4d0c, 0x24
 
-	.global gUnk_08BA4D30
-gUnk_08BA4D30:
+	.global AnimSprite_TeonoObjCloseRight_08BA4D30
+AnimSprite_TeonoObjCloseRight_08BA4D30:
 	.incbin "baserom.gba", 0xba4d30, 0x24
 
-	.global gUnk_08BA4D54
-gUnk_08BA4D54:
+	.global AnimSprite_TeonoObjCloseRight_08BA4D54
+AnimSprite_TeonoObjCloseRight_08BA4D54:
 	.incbin "baserom.gba", 0xba4d54, 0x24
 
-	.global gUnk_08BA4D78
-gUnk_08BA4D78:
+	.global AnimSprite_TeonoObjCloseRight_08BA4D78
+AnimSprite_TeonoObjCloseRight_08BA4D78:
 	.incbin "baserom.gba", 0xba4d78, 0x24
 
-	.global gUnk_08BA4D9C
-gUnk_08BA4D9C:
+	.global AnimSprite_TeonoObjCloseRight_08BA4D9C
+AnimSprite_TeonoObjCloseRight_08BA4D9C:
 	.incbin "baserom.gba", 0xba4d9c, 0x24
 
-	.global gUnk_08BA4DC0
-gUnk_08BA4DC0:
+	.global AnimSprite_TeonoObjCloseRight_08BA4DC0
+AnimSprite_TeonoObjCloseRight_08BA4DC0:
 	.incbin "baserom.gba", 0xba4dc0, 0x24
 
-	.global gUnk_08BA4DE4
-gUnk_08BA4DE4:
+	.global AnimSprite_TeonoObjCloseRight_08BA4DE4
+AnimSprite_TeonoObjCloseRight_08BA4DE4:
 	.incbin "baserom.gba", 0xba4de4, 0x18
 
-	.global gUnk_08BA4DFC
-gUnk_08BA4DFC:
+	.global AnimSprite_TeonoObjFarRight_08BA4DFC
+AnimSprite_TeonoObjFarRight_08BA4DFC:
 	.incbin "baserom.gba", 0xba4dfc, 0x18
 
-	.global gUnk_08BA4E14
-gUnk_08BA4E14:
+	.global AnimSprite_TeonoObjFarRight_08BA4E14
+AnimSprite_TeonoObjFarRight_08BA4E14:
 	.incbin "baserom.gba", 0xba4e14, 0x18
 
-	.global gUnk_08BA4E2C
-gUnk_08BA4E2C:
+	.global AnimSprite_TeonoObj2Right_08BA4E2C
+AnimSprite_TeonoObj2Right_08BA4E2C:
 	.incbin "baserom.gba", 0xba4e2c, 0x24
 
 	.global AnimScr_TeonoObjCloseRight
 AnimScr_TeonoObjCloseRight:
-	.4byte gUnk_08BA4B68 + 0x1
-	.4byte gUnk_08BA4B80 + 0x2
-	.4byte gUnk_08BA4B98 + 0x1
-	.4byte gUnk_08BA4BB0 + 0x2
-	.4byte gUnk_08BA4BC8 + 0x1
-	.4byte gUnk_08BA4BE0 + 0x2
-	.4byte gUnk_08BA4BF8 + 0x1
-	.4byte gUnk_08BA4C10 + 0x1
-	.4byte gUnk_08BA4C28 + 0x2
-	.4byte gUnk_08BA4C40 + 0x3
-	.4byte gUnk_08BA4C58 + 0x2
-	.4byte gUnk_08BA4C7C + 0x2
-	.4byte gUnk_08BA4CA0 + 0x2
-	.4byte gUnk_08BA4CC4 + 0x1
-	.4byte gUnk_08BA4CE8 + 0x2
-	.4byte gUnk_08BA4D0C + 0x1
-	.4byte gUnk_08BA4D30 + 0x2
-	.4byte gUnk_08BA4D54 + 0x1
-	.4byte gUnk_08BA4D78 + 0x2
-	.4byte gUnk_08BA4D9C + 0x1
-	.4byte gUnk_08BA4DC0 + 0x2
-	.4byte gUnk_08BA4DE4 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4B68 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4B80 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4B98 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4BB0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4BC8 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4BE0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4BF8 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4C10 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4C28 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4C40 + 0x3
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4C58 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4C7C + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4CA0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4CC4 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4CE8 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D0C + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D30 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D54 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D78 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D9C + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4DC0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4DE4 + 0x1
 	.incbin "baserom.gba", 0xba4ea8, 0x4
 
 	.global AnimScr_TeonoObjFarRight
 AnimScr_TeonoObjFarRight:
-	.4byte gUnk_08BA4B68 + 0x1
-	.4byte gUnk_08BA4B80 + 0x1
-	.4byte gUnk_08BA4B98 + 0x1
-	.4byte gUnk_08BA4BB0 + 0x2
-	.4byte gUnk_08BA4BC8 + 0x1
-	.4byte gUnk_08BA4DFC + 0x2
-	.4byte gUnk_08BA4E14 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4B68 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4B80 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4B98 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4BB0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4BC8 + 0x1
+	.4byte AnimSprite_TeonoObjFarRight_08BA4DFC + 0x2
+	.4byte AnimSprite_TeonoObjFarRight_08BA4E14 + 0x2
 	.incbin "baserom.gba", 0xba4ec8, 0x4
 
 	.global AnimScr_TeonoObj2Right
 AnimScr_TeonoObj2Right:
-	.4byte gUnk_08BA4E2C + 0x2
-	.4byte gUnk_08BA4C7C + 0x1
-	.4byte gUnk_08BA4CA0 + 0x2
-	.4byte gUnk_08BA4CC4 + 0x1
-	.4byte gUnk_08BA4CE8 + 0x2
-	.4byte gUnk_08BA4D0C + 0x2
-	.4byte gUnk_08BA4D30 + 0x1
-	.4byte gUnk_08BA4D54 + 0x1
-	.4byte gUnk_08BA4D78 + 0x2
-	.4byte gUnk_08BA4D9C + 0x1
-	.4byte gUnk_08BA4DC0 + 0x1
-	.4byte gUnk_08BA4DE4 + 0x1
+	.4byte AnimSprite_TeonoObj2Right_08BA4E2C + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4C7C + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4CA0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4CC4 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4CE8 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D0C + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D30 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D54 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D78 + 0x2
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4D9C + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4DC0 + 0x1
+	.4byte AnimSprite_TeonoObjCloseRight_08BA4DE4 + 0x1
 	.incbin "baserom.gba", 0xba4efc, 0x4
 
-	.global gUnk_08BA4F00
-gUnk_08BA4F00:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4F00
+AnimSprite_TeonoObjCloseLeft_08BA4F00:
 	.incbin "baserom.gba", 0xba4f00, 0x18
 
-	.global gUnk_08BA4F18
-gUnk_08BA4F18:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4F18
+AnimSprite_TeonoObjCloseLeft_08BA4F18:
 	.incbin "baserom.gba", 0xba4f18, 0x18
 
-	.global gUnk_08BA4F30
-gUnk_08BA4F30:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4F30
+AnimSprite_TeonoObjCloseLeft_08BA4F30:
 	.incbin "baserom.gba", 0xba4f30, 0x18
 
-	.global gUnk_08BA4F48
-gUnk_08BA4F48:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4F48
+AnimSprite_TeonoObjCloseLeft_08BA4F48:
 	.incbin "baserom.gba", 0xba4f48, 0x18
 
-	.global gUnk_08BA4F60
-gUnk_08BA4F60:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4F60
+AnimSprite_TeonoObjCloseLeft_08BA4F60:
 	.incbin "baserom.gba", 0xba4f60, 0x18
 
-	.global gUnk_08BA4F78
-gUnk_08BA4F78:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4F78
+AnimSprite_TeonoObjCloseLeft_08BA4F78:
 	.incbin "baserom.gba", 0xba4f78, 0x18
 
-	.global gUnk_08BA4F90
-gUnk_08BA4F90:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4F90
+AnimSprite_TeonoObjCloseLeft_08BA4F90:
 	.incbin "baserom.gba", 0xba4f90, 0x18
 
-	.global gUnk_08BA4FA8
-gUnk_08BA4FA8:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4FA8
+AnimSprite_TeonoObjCloseLeft_08BA4FA8:
 	.incbin "baserom.gba", 0xba4fa8, 0x18
 
-	.global gUnk_08BA4FC0
-gUnk_08BA4FC0:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4FC0
+AnimSprite_TeonoObjCloseLeft_08BA4FC0:
 	.incbin "baserom.gba", 0xba4fc0, 0x18
 
-	.global gUnk_08BA4FD8
-gUnk_08BA4FD8:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4FD8
+AnimSprite_TeonoObjCloseLeft_08BA4FD8:
 	.incbin "baserom.gba", 0xba4fd8, 0x18
 
-	.global gUnk_08BA4FF0
-gUnk_08BA4FF0:
+	.global AnimSprite_TeonoObjCloseLeft_08BA4FF0
+AnimSprite_TeonoObjCloseLeft_08BA4FF0:
 	.incbin "baserom.gba", 0xba4ff0, 0x24
 
-	.global gUnk_08BA5014
-gUnk_08BA5014:
+	.global AnimSprite_TeonoObjCloseLeft_08BA5014
+AnimSprite_TeonoObjCloseLeft_08BA5014:
 	.incbin "baserom.gba", 0xba5014, 0x24
 
-	.global gUnk_08BA5038
-gUnk_08BA5038:
+	.global AnimSprite_TeonoObjCloseLeft_08BA5038
+AnimSprite_TeonoObjCloseLeft_08BA5038:
 	.incbin "baserom.gba", 0xba5038, 0x24
 
-	.global gUnk_08BA505C
-gUnk_08BA505C:
+	.global AnimSprite_TeonoObjCloseLeft_08BA505C
+AnimSprite_TeonoObjCloseLeft_08BA505C:
 	.incbin "baserom.gba", 0xba505c, 0x24
 
-	.global gUnk_08BA5080
-gUnk_08BA5080:
+	.global AnimSprite_TeonoObjCloseLeft_08BA5080
+AnimSprite_TeonoObjCloseLeft_08BA5080:
 	.incbin "baserom.gba", 0xba5080, 0x24
 
-	.global gUnk_08BA50A4
-gUnk_08BA50A4:
+	.global AnimSprite_TeonoObjCloseLeft_08BA50A4
+AnimSprite_TeonoObjCloseLeft_08BA50A4:
 	.incbin "baserom.gba", 0xba50a4, 0x24
 
-	.global gUnk_08BA50C8
-gUnk_08BA50C8:
+	.global AnimSprite_TeonoObjCloseLeft_08BA50C8
+AnimSprite_TeonoObjCloseLeft_08BA50C8:
 	.incbin "baserom.gba", 0xba50c8, 0x24
 
-	.global gUnk_08BA50EC
-gUnk_08BA50EC:
+	.global AnimSprite_TeonoObjCloseLeft_08BA50EC
+AnimSprite_TeonoObjCloseLeft_08BA50EC:
 	.incbin "baserom.gba", 0xba50ec, 0x24
 
-	.global gUnk_08BA5110
-gUnk_08BA5110:
+	.global AnimSprite_TeonoObjCloseLeft_08BA5110
+AnimSprite_TeonoObjCloseLeft_08BA5110:
 	.incbin "baserom.gba", 0xba5110, 0x24
 
-	.global gUnk_08BA5134
-gUnk_08BA5134:
+	.global AnimSprite_TeonoObjCloseLeft_08BA5134
+AnimSprite_TeonoObjCloseLeft_08BA5134:
 	.incbin "baserom.gba", 0xba5134, 0x24
 
-	.global gUnk_08BA5158
-gUnk_08BA5158:
+	.global AnimSprite_TeonoObjCloseLeft_08BA5158
+AnimSprite_TeonoObjCloseLeft_08BA5158:
 	.incbin "baserom.gba", 0xba5158, 0x24
 
-	.global gUnk_08BA517C
-gUnk_08BA517C:
+	.global AnimSprite_TeonoObjCloseLeft_08BA517C
+AnimSprite_TeonoObjCloseLeft_08BA517C:
 	.incbin "baserom.gba", 0xba517c, 0x18
 
-	.global gUnk_08BA5194
-gUnk_08BA5194:
+	.global AnimSprite_TeonoObjFarLeft_08BA5194
+AnimSprite_TeonoObjFarLeft_08BA5194:
 	.incbin "baserom.gba", 0xba5194, 0x18
 
-	.global gUnk_08BA51AC
-gUnk_08BA51AC:
+	.global AnimSprite_TeonoObjFarLeft_08BA51AC
+AnimSprite_TeonoObjFarLeft_08BA51AC:
 	.incbin "baserom.gba", 0xba51ac, 0x18
 
-	.global gUnk_08BA51C4
-gUnk_08BA51C4:
+	.global AnimSprite_TeonoObj2Left_08BA51C4
+AnimSprite_TeonoObj2Left_08BA51C4:
 	.incbin "baserom.gba", 0xba51c4, 0x24
 
 	.global AnimScr_TeonoObjCloseLeft
 AnimScr_TeonoObjCloseLeft:
-	.4byte gUnk_08BA4F00 + 0x1
-	.4byte gUnk_08BA4F18 + 0x2
-	.4byte gUnk_08BA4F30 + 0x1
-	.4byte gUnk_08BA4F48 + 0x2
-	.4byte gUnk_08BA4F60 + 0x1
-	.4byte gUnk_08BA4F78 + 0x2
-	.4byte gUnk_08BA4F90 + 0x1
-	.4byte gUnk_08BA4FA8 + 0x1
-	.4byte gUnk_08BA4FC0 + 0x2
-	.4byte gUnk_08BA4FD8 + 0x3
-	.4byte gUnk_08BA4FF0 + 0x2
-	.4byte gUnk_08BA5014 + 0x2
-	.4byte gUnk_08BA5038 + 0x2
-	.4byte gUnk_08BA505C + 0x1
-	.4byte gUnk_08BA5080 + 0x2
-	.4byte gUnk_08BA50A4 + 0x1
-	.4byte gUnk_08BA50C8 + 0x2
-	.4byte gUnk_08BA50EC + 0x1
-	.4byte gUnk_08BA5110 + 0x2
-	.4byte gUnk_08BA5134 + 0x1
-	.4byte gUnk_08BA5158 + 0x2
-	.4byte gUnk_08BA517C + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F00 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F18 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F30 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F48 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F60 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F78 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F90 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4FA8 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4FC0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4FD8 + 0x3
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4FF0 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5014 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5038 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA505C + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5080 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA50A4 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA50C8 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA50EC + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5110 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5134 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5158 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA517C + 0x1
 	.incbin "baserom.gba", 0xba5240, 0x4
 
 	.global AnimScr_TeonoObjFarLeft
 AnimScr_TeonoObjFarLeft:
-	.4byte gUnk_08BA4F00 + 0x1
-	.4byte gUnk_08BA4F18 + 0x1
-	.4byte gUnk_08BA4F30 + 0x1
-	.4byte gUnk_08BA4F48 + 0x2
-	.4byte gUnk_08BA4F60 + 0x1
-	.4byte gUnk_08BA5194 + 0x2
-	.4byte gUnk_08BA51AC + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F00 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F18 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F30 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F48 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA4F60 + 0x1
+	.4byte AnimSprite_TeonoObjFarLeft_08BA5194 + 0x2
+	.4byte AnimSprite_TeonoObjFarLeft_08BA51AC + 0x2
 	.incbin "baserom.gba", 0xba5260, 0x4
 
 	.global AnimScr_TeonoObj2Left
 AnimScr_TeonoObj2Left:
-	.4byte gUnk_08BA51C4 + 0x2
-	.4byte gUnk_08BA5014 + 0x1
-	.4byte gUnk_08BA5038 + 0x2
-	.4byte gUnk_08BA505C + 0x1
-	.4byte gUnk_08BA5080 + 0x2
-	.4byte gUnk_08BA50A4 + 0x2
-	.4byte gUnk_08BA50C8 + 0x1
-	.4byte gUnk_08BA50EC + 0x1
-	.4byte gUnk_08BA5110 + 0x2
-	.4byte gUnk_08BA5134 + 0x1
-	.4byte gUnk_08BA5158 + 0x1
-	.4byte gUnk_08BA517C + 0x1
+	.4byte AnimSprite_TeonoObj2Left_08BA51C4 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5014 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5038 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA505C + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5080 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA50A4 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA50C8 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA50EC + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5110 + 0x2
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5134 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA5158 + 0x1
+	.4byte AnimSprite_TeonoObjCloseLeft_08BA517C + 0x1
 	.incbin "baserom.gba", 0xba5294, 0x4
 
-	.global gUnk_08BA5298
-gUnk_08BA5298:
+	.global AnimSprite_ArrowCloseRight_08BA5298
+AnimSprite_ArrowCloseRight_08BA5298:
 	.incbin "baserom.gba", 0xba5298, 0x24
 
-	.global gUnk_08BA52BC
-gUnk_08BA52BC:
+	.global AnimSprite_ArrowCloseRight_08BA52BC
+AnimSprite_ArrowCloseRight_08BA52BC:
 	.incbin "baserom.gba", 0xba52bc, 0x24
 
-	.global gUnk_08BA52E0
-gUnk_08BA52E0:
+	.global AnimSprite_ArrowCloseRight_08BA52E0
+AnimSprite_ArrowCloseRight_08BA52E0:
 	.incbin "baserom.gba", 0xba52e0, 0x24
 
 	.global AnimScr_ArrowCloseRight
 AnimScr_ArrowCloseRight:
-	.4byte gUnk_08BA5298 + 0x1
-	.4byte gUnk_08BA52BC + 0x1
-	.4byte gUnk_08BA52E0 + 0x1
+	.4byte AnimSprite_ArrowCloseRight_08BA5298 + 0x1
+	.4byte AnimSprite_ArrowCloseRight_08BA52BC + 0x1
+	.4byte AnimSprite_ArrowCloseRight_08BA52E0 + 0x1
 	.incbin "baserom.gba", 0xba5310, 0x4
 
 	.global AnimScr_ArrowFarRight
 AnimScr_ArrowFarRight:
-	.4byte gUnk_08BA5298 + 0x1
-	.4byte gUnk_08BA52BC + 0x1
-	.4byte gUnk_08BA52E0 + 0x1
+	.4byte AnimSprite_ArrowCloseRight_08BA5298 + 0x1
+	.4byte AnimSprite_ArrowCloseRight_08BA52BC + 0x1
+	.4byte AnimSprite_ArrowCloseRight_08BA52E0 + 0x1
 	.incbin "baserom.gba", 0xba5320, 0x4
 
-	.global gUnk_08BA5324
-gUnk_08BA5324:
+	.global AnimSprite_ArrowCloseLeft_08BA5324
+AnimSprite_ArrowCloseLeft_08BA5324:
 	.incbin "baserom.gba", 0xba5324, 0x24
 
-	.global gUnk_08BA5348
-gUnk_08BA5348:
+	.global AnimSprite_ArrowCloseLeft_08BA5348
+AnimSprite_ArrowCloseLeft_08BA5348:
 	.incbin "baserom.gba", 0xba5348, 0x24
 
-	.global gUnk_08BA536C
-gUnk_08BA536C:
+	.global AnimSprite_ArrowCloseLeft_08BA536C
+AnimSprite_ArrowCloseLeft_08BA536C:
 	.incbin "baserom.gba", 0xba536c, 0x24
 
 	.global AnimScr_ArrowCloseLeft
 AnimScr_ArrowCloseLeft:
-	.4byte gUnk_08BA5324 + 0x1
-	.4byte gUnk_08BA5348 + 0x1
-	.4byte gUnk_08BA536C + 0x1
+	.4byte AnimSprite_ArrowCloseLeft_08BA5324 + 0x1
+	.4byte AnimSprite_ArrowCloseLeft_08BA5348 + 0x1
+	.4byte AnimSprite_ArrowCloseLeft_08BA536C + 0x1
 	.incbin "baserom.gba", 0xba539c, 0x4
 
 	.global AnimScr_ArrowFarLeft
 AnimScr_ArrowFarLeft:
-	.4byte gUnk_08BA5324 + 0x1
-	.4byte gUnk_08BA5348 + 0x1
-	.4byte gUnk_08BA536C + 0x1
+	.4byte AnimSprite_ArrowCloseLeft_08BA5324 + 0x1
+	.4byte AnimSprite_ArrowCloseLeft_08BA5348 + 0x1
+	.4byte AnimSprite_ArrowCloseLeft_08BA536C + 0x1
 	.incbin "baserom.gba", 0xba53ac, 0x4
 
-	.global gUnk_08BA53B0
-gUnk_08BA53B0:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA53B0
+AnimSprite_EfxTeyariObjType0Right_08BA53B0:
 	.incbin "baserom.gba", 0xba53b0, 0x24
 
-	.global gUnk_08BA53D4
-gUnk_08BA53D4:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA53D4
+AnimSprite_EfxTeyariObjType0Right_08BA53D4:
 	.incbin "baserom.gba", 0xba53d4, 0x24
 
-	.global gUnk_08BA53F8
-gUnk_08BA53F8:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA53F8
+AnimSprite_EfxTeyariObjType0Right_08BA53F8:
 	.incbin "baserom.gba", 0xba53f8, 0x18
 
-	.global gUnk_08BA5410
-gUnk_08BA5410:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA5410
+AnimSprite_EfxTeyariObjType0Right_08BA5410:
 	.incbin "baserom.gba", 0xba5410, 0x24
 
-	.global gUnk_08BA5434
-gUnk_08BA5434:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA5434
+AnimSprite_EfxTeyariObjType0Right_08BA5434:
 	.incbin "baserom.gba", 0xba5434, 0x24
 
-	.global gUnk_08BA5458
-gUnk_08BA5458:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA5458
+AnimSprite_EfxTeyariObjType0Right_08BA5458:
 	.incbin "baserom.gba", 0xba5458, 0x24
 
-	.global gUnk_08BA547C
-gUnk_08BA547C:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA547C
+AnimSprite_EfxTeyariObjType0Right_08BA547C:
 	.incbin "baserom.gba", 0xba547c, 0x24
 
-	.global gUnk_08BA54A0
-gUnk_08BA54A0:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA54A0
+AnimSprite_EfxTeyariObjType0Right_08BA54A0:
 	.incbin "baserom.gba", 0xba54a0, 0x24
 
-	.global gUnk_08BA54C4
-gUnk_08BA54C4:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA54C4
+AnimSprite_EfxTeyariObjType0Right_08BA54C4:
 	.incbin "baserom.gba", 0xba54c4, 0x24
 
-	.global gUnk_08BA54E8
-gUnk_08BA54E8:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA54E8
+AnimSprite_EfxTeyariObjType0Right_08BA54E8:
 	.incbin "baserom.gba", 0xba54e8, 0x24
 
-	.global gUnk_08BA550C
-gUnk_08BA550C:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA550C
+AnimSprite_EfxTeyariObjType0Right_08BA550C:
 	.incbin "baserom.gba", 0xba550c, 0x24
 
-	.global gUnk_08BA5530
-gUnk_08BA5530:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA5530
+AnimSprite_EfxTeyariObjType0Right_08BA5530:
 	.incbin "baserom.gba", 0xba5530, 0x24
 
-	.global gUnk_08BA5554
-gUnk_08BA5554:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA5554
+AnimSprite_EfxTeyariObjType0Right_08BA5554:
 	.incbin "baserom.gba", 0xba5554, 0x18
 
-	.global gUnk_08BA556C
-gUnk_08BA556C:
+	.global AnimSprite_EfxTeyariObjType0Right_08BA556C
+AnimSprite_EfxTeyariObjType0Right_08BA556C:
 	.incbin "baserom.gba", 0xba556c, 0x18
 
 	.global AnimScr_EfxTeyariObjType0Right
 AnimScr_EfxTeyariObjType0Right:
-	.4byte gUnk_08BA53B0 + 0x1
-	.4byte gUnk_08BA53D4 + 0x1
-	.4byte gUnk_08BA53F8 + 0x1
-	.4byte gUnk_08BA5410 + 0x2
-	.4byte gUnk_08BA5434 + 0x1
-	.4byte gUnk_08BA5458 + 0x2
-	.4byte gUnk_08BA547C + 0x2
-	.4byte gUnk_08BA54A0 + 0x2
-	.4byte gUnk_08BA54C4 + 0x1
-	.4byte gUnk_08BA54E8 + 0x2
-	.4byte gUnk_08BA550C + 0x2
-	.4byte gUnk_08BA5530 + 0x2
-	.4byte gUnk_08BA5554 + 0x3
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x2
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x2
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x2
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x1
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x1
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x1
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x1
-	.4byte gUnk_08BA556C + 0x2
-	.4byte gUnk_08BA5554 + 0x1
-	.4byte gUnk_08BA556C + 0x70000003
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA53B0 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA53D4 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA53F8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5410 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5434 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5458 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA547C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA54A0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA54C4 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA54E8 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA550C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5530 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x3
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA5554 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Right_08BA556C + 0x70000003
 	.incbin "baserom.gba", 0xba55fc, 0x8
 
-	.global gUnk_08BA5604
-gUnk_08BA5604:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA5604
+AnimSprite_EfxTeyariObjType0Left_08BA5604:
 	.incbin "baserom.gba", 0xba5604, 0x24
 
-	.global gUnk_08BA5628
-gUnk_08BA5628:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA5628
+AnimSprite_EfxTeyariObjType0Left_08BA5628:
 	.incbin "baserom.gba", 0xba5628, 0x24
 
-	.global gUnk_08BA564C
-gUnk_08BA564C:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA564C
+AnimSprite_EfxTeyariObjType0Left_08BA564C:
 	.incbin "baserom.gba", 0xba564c, 0x18
 
-	.global gUnk_08BA5664
-gUnk_08BA5664:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA5664
+AnimSprite_EfxTeyariObjType0Left_08BA5664:
 	.incbin "baserom.gba", 0xba5664, 0x24
 
-	.global gUnk_08BA5688
-gUnk_08BA5688:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA5688
+AnimSprite_EfxTeyariObjType0Left_08BA5688:
 	.incbin "baserom.gba", 0xba5688, 0x24
 
-	.global gUnk_08BA56AC
-gUnk_08BA56AC:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA56AC
+AnimSprite_EfxTeyariObjType0Left_08BA56AC:
 	.incbin "baserom.gba", 0xba56ac, 0x24
 
-	.global gUnk_08BA56D0
-gUnk_08BA56D0:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA56D0
+AnimSprite_EfxTeyariObjType0Left_08BA56D0:
 	.incbin "baserom.gba", 0xba56d0, 0x24
 
-	.global gUnk_08BA56F4
-gUnk_08BA56F4:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA56F4
+AnimSprite_EfxTeyariObjType0Left_08BA56F4:
 	.incbin "baserom.gba", 0xba56f4, 0x24
 
-	.global gUnk_08BA5718
-gUnk_08BA5718:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA5718
+AnimSprite_EfxTeyariObjType0Left_08BA5718:
 	.incbin "baserom.gba", 0xba5718, 0x24
 
-	.global gUnk_08BA573C
-gUnk_08BA573C:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA573C
+AnimSprite_EfxTeyariObjType0Left_08BA573C:
 	.incbin "baserom.gba", 0xba573c, 0x24
 
-	.global gUnk_08BA5760
-gUnk_08BA5760:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA5760
+AnimSprite_EfxTeyariObjType0Left_08BA5760:
 	.incbin "baserom.gba", 0xba5760, 0x24
 
-	.global gUnk_08BA5784
-gUnk_08BA5784:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA5784
+AnimSprite_EfxTeyariObjType0Left_08BA5784:
 	.incbin "baserom.gba", 0xba5784, 0x24
 
-	.global gUnk_08BA57A8
-gUnk_08BA57A8:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA57A8
+AnimSprite_EfxTeyariObjType0Left_08BA57A8:
 	.incbin "baserom.gba", 0xba57a8, 0x18
 
-	.global gUnk_08BA57C0
-gUnk_08BA57C0:
+	.global AnimSprite_EfxTeyariObjType0Left_08BA57C0
+AnimSprite_EfxTeyariObjType0Left_08BA57C0:
 	.incbin "baserom.gba", 0xba57c0, 0x18
 
 	.global AnimScr_EfxTeyariObjType0Left
 AnimScr_EfxTeyariObjType0Left:
-	.4byte gUnk_08BA5604 + 0x1
-	.4byte gUnk_08BA5628 + 0x1
-	.4byte gUnk_08BA564C + 0x1
-	.4byte gUnk_08BA5664 + 0x2
-	.4byte gUnk_08BA5688 + 0x1
-	.4byte gUnk_08BA56AC + 0x2
-	.4byte gUnk_08BA56D0 + 0x2
-	.4byte gUnk_08BA56F4 + 0x2
-	.4byte gUnk_08BA5718 + 0x1
-	.4byte gUnk_08BA573C + 0x2
-	.4byte gUnk_08BA5760 + 0x2
-	.4byte gUnk_08BA5784 + 0x2
-	.4byte gUnk_08BA57A8 + 0x3
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x2
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x2
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x2
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x1
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x1
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x1
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x1
-	.4byte gUnk_08BA57C0 + 0x2
-	.4byte gUnk_08BA57A8 + 0x1
-	.4byte gUnk_08BA57C0 + 0x70000003
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA5604 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA5628 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA564C + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA5664 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA5688 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA56AC + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA56D0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA56F4 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA5718 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA573C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA5760 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA5784 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x3
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57A8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType0Left_08BA57C0 + 0x70000003
 	.incbin "baserom.gba", 0xba5850, 0x8
 
-	.global gUnk_08BA5858
-gUnk_08BA5858:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA5858
+AnimSprite_EfxTeyariObjType1Right_08BA5858:
 	.incbin "baserom.gba", 0xba5858, 0x18
 
-	.global gUnk_08BA5870
-gUnk_08BA5870:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA5870
+AnimSprite_EfxTeyariObjType1Right_08BA5870:
 	.incbin "baserom.gba", 0xba5870, 0x30
 
-	.global gUnk_08BA58A0
-gUnk_08BA58A0:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA58A0
+AnimSprite_EfxTeyariObjType1Right_08BA58A0:
 	.incbin "baserom.gba", 0xba58a0, 0x24
 
-	.global gUnk_08BA58C4
-gUnk_08BA58C4:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA58C4
+AnimSprite_EfxTeyariObjType1Right_08BA58C4:
 	.incbin "baserom.gba", 0xba58c4, 0x24
 
-	.global gUnk_08BA58E8
-gUnk_08BA58E8:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA58E8
+AnimSprite_EfxTeyariObjType1Right_08BA58E8:
 	.incbin "baserom.gba", 0xba58e8, 0x24
 
-	.global gUnk_08BA590C
-gUnk_08BA590C:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA590C
+AnimSprite_EfxTeyariObjType1Right_08BA590C:
 	.incbin "baserom.gba", 0xba590c, 0x24
 
-	.global gUnk_08BA5930
-gUnk_08BA5930:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA5930
+AnimSprite_EfxTeyariObjType1Right_08BA5930:
 	.incbin "baserom.gba", 0xba5930, 0x24
 
-	.global gUnk_08BA5954
-gUnk_08BA5954:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA5954
+AnimSprite_EfxTeyariObjType1Right_08BA5954:
 	.incbin "baserom.gba", 0xba5954, 0x24
 
-	.global gUnk_08BA5978
-gUnk_08BA5978:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA5978
+AnimSprite_EfxTeyariObjType1Right_08BA5978:
 	.incbin "baserom.gba", 0xba5978, 0x24
 
-	.global gUnk_08BA599C
-gUnk_08BA599C:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA599C
+AnimSprite_EfxTeyariObjType1Right_08BA599C:
 	.incbin "baserom.gba", 0xba599c, 0x24
 
-	.global gUnk_08BA59C0
-gUnk_08BA59C0:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA59C0
+AnimSprite_EfxTeyariObjType1Right_08BA59C0:
 	.incbin "baserom.gba", 0xba59c0, 0x24
 
-	.global gUnk_08BA59E4
-gUnk_08BA59E4:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA59E4
+AnimSprite_EfxTeyariObjType1Right_08BA59E4:
 	.incbin "baserom.gba", 0xba59e4, 0x24
 
-	.global gUnk_08BA5A08
-gUnk_08BA5A08:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA5A08
+AnimSprite_EfxTeyariObjType1Right_08BA5A08:
 	.incbin "baserom.gba", 0xba5a08, 0x18
 
-	.global gUnk_08BA5A20
-gUnk_08BA5A20:
+	.global AnimSprite_EfxTeyariObjType1Right_08BA5A20
+AnimSprite_EfxTeyariObjType1Right_08BA5A20:
 	.incbin "baserom.gba", 0xba5a20, 0x18
 
 	.global AnimScr_EfxTeyariObjType1Right
 AnimScr_EfxTeyariObjType1Right:
-	.4byte gUnk_08BA5858 + 0x1
-	.4byte gUnk_08BA5870 + 0x1
-	.4byte gUnk_08BA58A0 + 0x1
-	.4byte gUnk_08BA58C4 + 0x1
-	.4byte gUnk_08BA58E8 + 0x1
-	.4byte gUnk_08BA590C + 0x2
-	.4byte gUnk_08BA5930 + 0x1
-	.4byte gUnk_08BA5954 + 0x2
-	.4byte gUnk_08BA5978 + 0x1
-	.4byte gUnk_08BA599C + 0x2
-	.4byte gUnk_08BA59C0 + 0x2
-	.4byte gUnk_08BA59E4 + 0x2
-	.4byte gUnk_08BA5A08 + 0x3
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x2
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x2
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x2
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x1
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x1
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x1
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x1
-	.4byte gUnk_08BA5A20 + 0x2
-	.4byte gUnk_08BA5A08 + 0x1
-	.4byte gUnk_08BA5A20 + 0x70000003
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5858 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5870 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA58A0 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA58C4 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA58E8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA590C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5930 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5954 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5978 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA599C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA59C0 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA59E4 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x3
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A08 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Right_08BA5A20 + 0x70000003
 	.incbin "baserom.gba", 0xba5ab0, 0x8
 
-	.global gUnk_08BA5AB8
-gUnk_08BA5AB8:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5AB8
+AnimSprite_EfxTeyariObjType1Left_08BA5AB8:
 	.incbin "baserom.gba", 0xba5ab8, 0x18
 
-	.global gUnk_08BA5AD0
-gUnk_08BA5AD0:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5AD0
+AnimSprite_EfxTeyariObjType1Left_08BA5AD0:
 	.incbin "baserom.gba", 0xba5ad0, 0x30
 
-	.global gUnk_08BA5B00
-gUnk_08BA5B00:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5B00
+AnimSprite_EfxTeyariObjType1Left_08BA5B00:
 	.incbin "baserom.gba", 0xba5b00, 0x24
 
-	.global gUnk_08BA5B24
-gUnk_08BA5B24:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5B24
+AnimSprite_EfxTeyariObjType1Left_08BA5B24:
 	.incbin "baserom.gba", 0xba5b24, 0x24
 
-	.global gUnk_08BA5B48
-gUnk_08BA5B48:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5B48
+AnimSprite_EfxTeyariObjType1Left_08BA5B48:
 	.incbin "baserom.gba", 0xba5b48, 0x24
 
-	.global gUnk_08BA5B6C
-gUnk_08BA5B6C:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5B6C
+AnimSprite_EfxTeyariObjType1Left_08BA5B6C:
 	.incbin "baserom.gba", 0xba5b6c, 0x24
 
-	.global gUnk_08BA5B90
-gUnk_08BA5B90:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5B90
+AnimSprite_EfxTeyariObjType1Left_08BA5B90:
 	.incbin "baserom.gba", 0xba5b90, 0x24
 
-	.global gUnk_08BA5BB4
-gUnk_08BA5BB4:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5BB4
+AnimSprite_EfxTeyariObjType1Left_08BA5BB4:
 	.incbin "baserom.gba", 0xba5bb4, 0x24
 
-	.global gUnk_08BA5BD8
-gUnk_08BA5BD8:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5BD8
+AnimSprite_EfxTeyariObjType1Left_08BA5BD8:
 	.incbin "baserom.gba", 0xba5bd8, 0x24
 
-	.global gUnk_08BA5BFC
-gUnk_08BA5BFC:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5BFC
+AnimSprite_EfxTeyariObjType1Left_08BA5BFC:
 	.incbin "baserom.gba", 0xba5bfc, 0x24
 
-	.global gUnk_08BA5C20
-gUnk_08BA5C20:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5C20
+AnimSprite_EfxTeyariObjType1Left_08BA5C20:
 	.incbin "baserom.gba", 0xba5c20, 0x24
 
-	.global gUnk_08BA5C44
-gUnk_08BA5C44:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5C44
+AnimSprite_EfxTeyariObjType1Left_08BA5C44:
 	.incbin "baserom.gba", 0xba5c44, 0x24
 
-	.global gUnk_08BA5C68
-gUnk_08BA5C68:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5C68
+AnimSprite_EfxTeyariObjType1Left_08BA5C68:
 	.incbin "baserom.gba", 0xba5c68, 0x18
 
-	.global gUnk_08BA5C80
-gUnk_08BA5C80:
+	.global AnimSprite_EfxTeyariObjType1Left_08BA5C80
+AnimSprite_EfxTeyariObjType1Left_08BA5C80:
 	.incbin "baserom.gba", 0xba5c80, 0x18
 
 	.global AnimScr_EfxTeyariObjType1Left
 AnimScr_EfxTeyariObjType1Left:
-	.4byte gUnk_08BA5AB8 + 0x1
-	.4byte gUnk_08BA5AD0 + 0x1
-	.4byte gUnk_08BA5B00 + 0x1
-	.4byte gUnk_08BA5B24 + 0x1
-	.4byte gUnk_08BA5B48 + 0x1
-	.4byte gUnk_08BA5B6C + 0x2
-	.4byte gUnk_08BA5B90 + 0x1
-	.4byte gUnk_08BA5BB4 + 0x2
-	.4byte gUnk_08BA5BD8 + 0x1
-	.4byte gUnk_08BA5BFC + 0x2
-	.4byte gUnk_08BA5C20 + 0x2
-	.4byte gUnk_08BA5C44 + 0x2
-	.4byte gUnk_08BA5C68 + 0x3
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x2
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x2
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x2
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x1
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x1
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x1
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x1
-	.4byte gUnk_08BA5C80 + 0x2
-	.4byte gUnk_08BA5C68 + 0x1
-	.4byte gUnk_08BA5C80 + 0x70000003
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5AB8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5AD0 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5B00 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5B24 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5B48 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5B6C + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5B90 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5BB4 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5BD8 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5BFC + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C20 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C44 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x3
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x2
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C68 + 0x1
+	.4byte AnimSprite_EfxTeyariObjType1Left_08BA5C80 + 0x70000003
 	.incbin "baserom.gba", 0xba5d10, 0x8
 
 	.global gUnk_08BA5D18
@@ -3102,8808 +3102,8808 @@ AnimScr_08BA5E38:
 	.4byte gUnk_08BA5DB4 + 0x2
 	.incbin "baserom.gba", 0xba5e4c, 0x4
 
-	.global gUnk_08BA5E50
-gUnk_08BA5E50:
+	.global AnimSprite_EfxDanceObj_08BA5E50
+AnimSprite_EfxDanceObj_08BA5E50:
 	.incbin "baserom.gba", 0xba5e50, 0x24
 
-	.global gUnk_08BA5E74
-gUnk_08BA5E74:
+	.global AnimSprite_EfxDanceObj_08BA5E74
+AnimSprite_EfxDanceObj_08BA5E74:
 	.incbin "baserom.gba", 0xba5e74, 0x24
 
-	.global gUnk_08BA5E98
-gUnk_08BA5E98:
+	.global AnimSprite_EfxDanceObj_08BA5E98
+AnimSprite_EfxDanceObj_08BA5E98:
 	.incbin "baserom.gba", 0xba5e98, 0x24
 
-	.global gUnk_08BA5EBC
-gUnk_08BA5EBC:
+	.global AnimSprite_EfxDanceObj_08BA5EBC
+AnimSprite_EfxDanceObj_08BA5EBC:
 	.incbin "baserom.gba", 0xba5ebc, 0x24
 
-	.global gUnk_08BA5EE0
-gUnk_08BA5EE0:
+	.global AnimSprite_EfxDanceObj_08BA5EE0
+AnimSprite_EfxDanceObj_08BA5EE0:
 	.incbin "baserom.gba", 0xba5ee0, 0x24
 
-	.global gUnk_08BA5F04
-gUnk_08BA5F04:
+	.global AnimSprite_EfxDanceObj_08BA5F04
+AnimSprite_EfxDanceObj_08BA5F04:
 	.incbin "baserom.gba", 0xba5f04, 0x24
 
-	.global gUnk_08BA5F28
-gUnk_08BA5F28:
+	.global AnimSprite_EfxDanceObj_08BA5F28
+AnimSprite_EfxDanceObj_08BA5F28:
 	.incbin "baserom.gba", 0xba5f28, 0x18
 
-	.global gUnk_08BA5F40
-gUnk_08BA5F40:
+	.global AnimSprite_EfxDanceObj_08BA5F40
+AnimSprite_EfxDanceObj_08BA5F40:
 	.incbin "baserom.gba", 0xba5f40, 0x24
 
-	.global gUnk_08BA5F64
-gUnk_08BA5F64:
+	.global AnimSprite_EfxDanceObj_08BA5F64
+AnimSprite_EfxDanceObj_08BA5F64:
 	.incbin "baserom.gba", 0xba5f64, 0x24
 
-	.global gUnk_08BA5F88
-gUnk_08BA5F88:
+	.global AnimSprite_EfxDanceObj_08BA5F88
+AnimSprite_EfxDanceObj_08BA5F88:
 	.incbin "baserom.gba", 0xba5f88, 0x24
 
-	.global gUnk_08BA5FAC
-gUnk_08BA5FAC:
+	.global AnimSprite_EfxDanceObj_08BA5FAC
+AnimSprite_EfxDanceObj_08BA5FAC:
 	.incbin "baserom.gba", 0xba5fac, 0x39c
 
-	.global gUnk_08BA6348
-gUnk_08BA6348:
+	.global AnimSprite_EfxSongObj2_08BA6348
+AnimSprite_EfxSongObj2_08BA6348:
 	.incbin "baserom.gba", 0xba6348, 0x18
 
-	.global gUnk_08BA6360
-gUnk_08BA6360:
+	.global AnimSprite_EfxSongObj2_08BA6360
+AnimSprite_EfxSongObj2_08BA6360:
 	.incbin "baserom.gba", 0xba6360, 0x30
 
-	.global gUnk_08BA6390
-gUnk_08BA6390:
+	.global AnimSprite_EfxSongObj2_08BA6390
+AnimSprite_EfxSongObj2_08BA6390:
 	.incbin "baserom.gba", 0xba6390, 0x3c
 
-	.global gUnk_08BA63CC
-gUnk_08BA63CC:
+	.global AnimSprite_EfxSongObj2_08BA63CC
+AnimSprite_EfxSongObj2_08BA63CC:
 	.incbin "baserom.gba", 0xba63cc, 0x60
 
-	.global gUnk_08BA642C
-gUnk_08BA642C:
+	.global AnimSprite_EfxSongObj2_08BA642C
+AnimSprite_EfxSongObj2_08BA642C:
 	.incbin "baserom.gba", 0xba642c, 0x78
 
-	.global gUnk_08BA64A4
-gUnk_08BA64A4:
+	.global AnimSprite_EfxSongObj2_08BA64A4
+AnimSprite_EfxSongObj2_08BA64A4:
 	.incbin "baserom.gba", 0xba64a4, 0x6c
 
-	.global gUnk_08BA6510
-gUnk_08BA6510:
+	.global AnimSprite_EfxSongObj2_08BA6510
+AnimSprite_EfxSongObj2_08BA6510:
 	.incbin "baserom.gba", 0xba6510, 0x54
 
-	.global gUnk_08BA6564
-gUnk_08BA6564:
+	.global AnimSprite_EfxSongObj2_08BA6564
+AnimSprite_EfxSongObj2_08BA6564:
 	.incbin "baserom.gba", 0xba6564, 0x54
 
-	.global gUnk_08BA65B8
-gUnk_08BA65B8:
+	.global AnimSprite_EfxSongObj2_08BA65B8
+AnimSprite_EfxSongObj2_08BA65B8:
 	.incbin "baserom.gba", 0xba65b8, 0x30
 
-	.global gUnk_08BA65E8
-gUnk_08BA65E8:
+	.global AnimSprite_EfxSongObj2_08BA65E8
+AnimSprite_EfxSongObj2_08BA65E8:
 	.incbin "baserom.gba", 0xba65e8, 0x18
 
-	.global gUnk_08BA6600
-gUnk_08BA6600:
+	.global AnimSprite_EfxSongObj2_08BA6600
+AnimSprite_EfxSongObj2_08BA6600:
 	.incbin "baserom.gba", 0xba6600, 0x18
 
-	.global gUnk_08BA6618
-gUnk_08BA6618:
+	.global AnimSprite_EfxSongObj2_08BA6618
+AnimSprite_EfxSongObj2_08BA6618:
 	.incbin "baserom.gba", 0xba6618, 0x18
 
 	.global AnimScr_EfxDanceObj
 AnimScr_EfxDanceObj:
-	.4byte gUnk_08BA5E50 + 0x1
-	.4byte gUnk_08BA5E74 + 0x1
-	.4byte gUnk_08BA5E98 + 0x1
-	.4byte gUnk_08BA5EBC + 0x1
-	.4byte gUnk_08BA5EE0 + 0x2
-	.4byte gUnk_08BA5F04 + 0x3
-	.4byte gUnk_08BA5F28 + 0x70000002
-	.4byte gUnk_08BA5F40 + 0x3
-	.4byte gUnk_08BA5F64 + 0x2
-	.4byte gUnk_08BA5F88 + 0x1
-	.4byte gUnk_08BA5FAC + 0x1
+	.4byte AnimSprite_EfxDanceObj_08BA5E50 + 0x1
+	.4byte AnimSprite_EfxDanceObj_08BA5E74 + 0x1
+	.4byte AnimSprite_EfxDanceObj_08BA5E98 + 0x1
+	.4byte AnimSprite_EfxDanceObj_08BA5EBC + 0x1
+	.4byte AnimSprite_EfxDanceObj_08BA5EE0 + 0x2
+	.4byte AnimSprite_EfxDanceObj_08BA5F04 + 0x3
+	.4byte AnimSprite_EfxDanceObj_08BA5F28 + 0x70000002
+	.4byte AnimSprite_EfxDanceObj_08BA5F40 + 0x3
+	.4byte AnimSprite_EfxDanceObj_08BA5F64 + 0x2
+	.4byte AnimSprite_EfxDanceObj_08BA5F88 + 0x1
+	.4byte AnimSprite_EfxDanceObj_08BA5FAC + 0x1
 	.incbin "baserom.gba", 0xba665c, 0x4
 
 	.global AnimScr_EfxSongObj2
 AnimScr_EfxSongObj2:
-	.4byte gUnk_08BA6348 + 0x2
-	.4byte gUnk_08BA6360 + 0x2
-	.4byte gUnk_08BA6390 + 0x2
-	.4byte gUnk_08BA63CC + 0x2
-	.4byte gUnk_08BA642C + 0x2
-	.4byte gUnk_08BA64A4 + 0x2
-	.4byte gUnk_08BA6510 + 0x2
-	.4byte gUnk_08BA6564 + 0x2
-	.4byte gUnk_08BA65B8 + 0x2
-	.4byte gUnk_08BA65E8 + 0x2
-	.4byte gUnk_08BA6600 + 0x2
-	.4byte gUnk_08BA6618 + 0x2
-	.4byte gUnk_08BA6348 + 0x2
-	.4byte gUnk_08BA6360 + 0x2
-	.4byte gUnk_08BA6390 + 0x2
-	.4byte gUnk_08BA63CC + 0x2
-	.4byte gUnk_08BA642C + 0x2
-	.4byte gUnk_08BA64A4 + 0x2
-	.4byte gUnk_08BA6510 + 0x2
-	.4byte gUnk_08BA6564 + 0x2
-	.4byte gUnk_08BA65B8 + 0x2
-	.4byte gUnk_08BA65E8 + 0x2
-	.4byte gUnk_08BA6600 + 0x2
-	.4byte gUnk_08BA6618 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6348 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6360 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6390 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA63CC + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA642C + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA64A4 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6510 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6564 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA65B8 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA65E8 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6600 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6618 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6348 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6360 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6390 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA63CC + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA642C + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA64A4 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6510 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6564 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA65B8 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA65E8 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6600 + 0x2
+	.4byte AnimSprite_EfxSongObj2_08BA6618 + 0x2
 	.incbin "baserom.gba", 0xba66c0, 0x4
 
-	.global gUnk_08BA66C4
-gUnk_08BA66C4:
+	.global AnimSprite_EfxBindingBlade_Left_08BA66C4
+AnimSprite_EfxBindingBlade_Left_08BA66C4:
 	.incbin "baserom.gba", 0xba66c4, 0x18
 
-	.global gUnk_08BA66DC
-gUnk_08BA66DC:
+	.global AnimSprite_EfxBindingBlade_Left_08BA66DC
+AnimSprite_EfxBindingBlade_Left_08BA66DC:
 	.incbin "baserom.gba", 0xba66dc, 0x18
 
-	.global gUnk_08BA66F4
-gUnk_08BA66F4:
+	.global AnimSprite_EfxBindingBlade_Left_08BA66F4
+AnimSprite_EfxBindingBlade_Left_08BA66F4:
 	.incbin "baserom.gba", 0xba66f4, 0x48
 
-	.global gUnk_08BA673C
-gUnk_08BA673C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA673C
+AnimSprite_EfxBindingBlade_Left_08BA673C:
 	.incbin "baserom.gba", 0xba673c, 0x3c
 
-	.global gUnk_08BA6778
-gUnk_08BA6778:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6778
+AnimSprite_EfxBindingBlade_Left_08BA6778:
 	.incbin "baserom.gba", 0xba6778, 0x60
 
-	.global gUnk_08BA67D8
-gUnk_08BA67D8:
+	.global AnimSprite_EfxBindingBlade_Left_08BA67D8
+AnimSprite_EfxBindingBlade_Left_08BA67D8:
 	.incbin "baserom.gba", 0xba67d8, 0x84
 
-	.global gUnk_08BA685C
-gUnk_08BA685C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA685C
+AnimSprite_EfxBindingBlade_Left_08BA685C:
 	.incbin "baserom.gba", 0xba685c, 0x60
 
-	.global gUnk_08BA68BC
-gUnk_08BA68BC:
+	.global AnimSprite_EfxBindingBlade_Left_08BA68BC
+AnimSprite_EfxBindingBlade_Left_08BA68BC:
 	.incbin "baserom.gba", 0xba68bc, 0x60
 
-	.global gUnk_08BA691C
-gUnk_08BA691C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA691C
+AnimSprite_EfxBindingBlade_Left_08BA691C:
 	.incbin "baserom.gba", 0xba691c, 0xb4
 
-	.global gUnk_08BA69D0
-gUnk_08BA69D0:
+	.global AnimSprite_EfxBindingBlade_Left_08BA69D0
+AnimSprite_EfxBindingBlade_Left_08BA69D0:
 	.incbin "baserom.gba", 0xba69d0, 0x90
 
-	.global gUnk_08BA6A60
-gUnk_08BA6A60:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6A60
+AnimSprite_EfxBindingBlade_Left_08BA6A60:
 	.incbin "baserom.gba", 0xba6a60, 0xcc
 
-	.global gUnk_08BA6B2C
-gUnk_08BA6B2C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6B2C
+AnimSprite_EfxBindingBlade_Left_08BA6B2C:
 	.incbin "baserom.gba", 0xba6b2c, 0x138
 
-	.global gUnk_08BA6C64
-gUnk_08BA6C64:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6C64
+AnimSprite_EfxBindingBlade_Left_08BA6C64:
 	.incbin "baserom.gba", 0xba6c64, 0xcc
 
-	.global gUnk_08BA6D30
-gUnk_08BA6D30:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6D30
+AnimSprite_EfxBindingBlade_Left_08BA6D30:
 	.incbin "baserom.gba", 0xba6d30, 0xc0
 
-	.global gUnk_08BA6DF0
-gUnk_08BA6DF0:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6DF0
+AnimSprite_EfxBindingBlade_Left_08BA6DF0:
 	.incbin "baserom.gba", 0xba6df0, 0xb4
 
-	.global gUnk_08BA6EA4
-gUnk_08BA6EA4:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6EA4
+AnimSprite_EfxBindingBlade_Left_08BA6EA4:
 	.incbin "baserom.gba", 0xba6ea4, 0xc0
 
-	.global gUnk_08BA6F64
-gUnk_08BA6F64:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6F64
+AnimSprite_EfxBindingBlade_Left_08BA6F64:
 	.incbin "baserom.gba", 0xba6f64, 0x90
 
-	.global gUnk_08BA6FF4
-gUnk_08BA6FF4:
+	.global AnimSprite_EfxBindingBlade_Left_08BA6FF4
+AnimSprite_EfxBindingBlade_Left_08BA6FF4:
 	.incbin "baserom.gba", 0xba6ff4, 0xa8
 
-	.global gUnk_08BA709C
-gUnk_08BA709C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA709C
+AnimSprite_EfxBindingBlade_Left_08BA709C:
 	.incbin "baserom.gba", 0xba709c, 0x48
 
-	.global gUnk_08BA70E4
-gUnk_08BA70E4:
+	.global AnimSprite_EfxBindingBlade_Left_08BA70E4
+AnimSprite_EfxBindingBlade_Left_08BA70E4:
 	.incbin "baserom.gba", 0xba70e4, 0x48
 
-	.global gUnk_08BA712C
-gUnk_08BA712C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA712C
+AnimSprite_EfxBindingBlade_Left_08BA712C:
 	.incbin "baserom.gba", 0xba712c, 0x6c
 
-	.global gUnk_08BA7198
-gUnk_08BA7198:
+	.global AnimSprite_EfxBindingBlade_Left_08BA7198
+AnimSprite_EfxBindingBlade_Left_08BA7198:
 	.incbin "baserom.gba", 0xba7198, 0x60
 
-	.global gUnk_08BA71F8
-gUnk_08BA71F8:
+	.global AnimSprite_EfxBindingBlade_Left_08BA71F8
+AnimSprite_EfxBindingBlade_Left_08BA71F8:
 	.incbin "baserom.gba", 0xba71f8, 0x24
 
-	.global gUnk_08BA721C
-gUnk_08BA721C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA721C
+AnimSprite_EfxBindingBlade_Left_08BA721C:
 	.incbin "baserom.gba", 0xba721c, 0x48
 
-	.global gUnk_08BA7264
-gUnk_08BA7264:
+	.global AnimSprite_EfxBindingBlade_Left_08BA7264
+AnimSprite_EfxBindingBlade_Left_08BA7264:
 	.incbin "baserom.gba", 0xba7264, 0x18
 
-	.global gUnk_08BA727C
-gUnk_08BA727C:
+	.global AnimSprite_EfxBindingBlade_Left_08BA727C
+AnimSprite_EfxBindingBlade_Left_08BA727C:
 	.incbin "baserom.gba", 0xba727c, 0x3c
 
 	.global AnimScr_EfxBindingBlade_Left
 AnimScr_EfxBindingBlade_Left:
-	.4byte gUnk_08BA66C4 + 0x2
-	.4byte gUnk_08BA66DC + 0x2
-	.4byte gUnk_08BA66F4 + 0x2
-	.4byte gUnk_08BA673C + 0x2
-	.4byte gUnk_08BA6778 + 0x2
-	.4byte gUnk_08BA67D8 + 0x2
-	.4byte gUnk_08BA685C + 0x2
-	.4byte gUnk_08BA68BC + 0x2
-	.4byte gUnk_08BA691C + 0x2
-	.4byte gUnk_08BA69D0 + 0x2
-	.4byte gUnk_08BA6A60 + 0x2
-	.4byte gUnk_08BA6B2C + 0x2
-	.4byte gUnk_08BA6C64 + 0x2
-	.4byte gUnk_08BA6D30 + 0x2
-	.4byte gUnk_08BA6DF0 + 0x2
-	.4byte gUnk_08BA6EA4 + 0x2
-	.4byte gUnk_08BA6F64 + 0x2
-	.4byte gUnk_08BA6FF4 + 0x2
-	.4byte gUnk_08BA709C + 0x2
-	.4byte gUnk_08BA70E4 + 0x2
-	.4byte gUnk_08BA712C + 0x2
-	.4byte gUnk_08BA7198 + 0x2
-	.4byte gUnk_08BA71F8 + 0x2
-	.4byte gUnk_08BA721C + 0x2
-	.4byte gUnk_08BA7264 + 0x2
-	.4byte gUnk_08BA727C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA66C4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA66DC + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA66F4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA673C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6778 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA67D8 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA685C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA68BC + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA691C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA69D0 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6A60 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6B2C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6C64 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6D30 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6DF0 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6EA4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6F64 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA6FF4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA709C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA70E4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA712C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA7198 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA71F8 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA721C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA7264 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Left_08BA727C + 0x2
 	.incbin "baserom.gba", 0xba7320, 0x4
 
-	.global gUnk_08BA7324
-gUnk_08BA7324:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7324
+AnimSprite_EfxBindingBlade_Right_08BA7324:
 	.incbin "baserom.gba", 0xba7324, 0x18
 
-	.global gUnk_08BA733C
-gUnk_08BA733C:
+	.global AnimSprite_EfxBindingBlade_Right_08BA733C
+AnimSprite_EfxBindingBlade_Right_08BA733C:
 	.incbin "baserom.gba", 0xba733c, 0x18
 
-	.global gUnk_08BA7354
-gUnk_08BA7354:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7354
+AnimSprite_EfxBindingBlade_Right_08BA7354:
 	.incbin "baserom.gba", 0xba7354, 0x48
 
-	.global gUnk_08BA739C
-gUnk_08BA739C:
+	.global AnimSprite_EfxBindingBlade_Right_08BA739C
+AnimSprite_EfxBindingBlade_Right_08BA739C:
 	.incbin "baserom.gba", 0xba739c, 0x3c
 
-	.global gUnk_08BA73D8
-gUnk_08BA73D8:
+	.global AnimSprite_EfxBindingBlade_Right_08BA73D8
+AnimSprite_EfxBindingBlade_Right_08BA73D8:
 	.incbin "baserom.gba", 0xba73d8, 0x60
 
-	.global gUnk_08BA7438
-gUnk_08BA7438:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7438
+AnimSprite_EfxBindingBlade_Right_08BA7438:
 	.incbin "baserom.gba", 0xba7438, 0x84
 
-	.global gUnk_08BA74BC
-gUnk_08BA74BC:
+	.global AnimSprite_EfxBindingBlade_Right_08BA74BC
+AnimSprite_EfxBindingBlade_Right_08BA74BC:
 	.incbin "baserom.gba", 0xba74bc, 0x60
 
-	.global gUnk_08BA751C
-gUnk_08BA751C:
+	.global AnimSprite_EfxBindingBlade_Right_08BA751C
+AnimSprite_EfxBindingBlade_Right_08BA751C:
 	.incbin "baserom.gba", 0xba751c, 0x60
 
-	.global gUnk_08BA757C
-gUnk_08BA757C:
+	.global AnimSprite_EfxBindingBlade_Right_08BA757C
+AnimSprite_EfxBindingBlade_Right_08BA757C:
 	.incbin "baserom.gba", 0xba757c, 0xb4
 
-	.global gUnk_08BA7630
-gUnk_08BA7630:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7630
+AnimSprite_EfxBindingBlade_Right_08BA7630:
 	.incbin "baserom.gba", 0xba7630, 0x90
 
-	.global gUnk_08BA76C0
-gUnk_08BA76C0:
+	.global AnimSprite_EfxBindingBlade_Right_08BA76C0
+AnimSprite_EfxBindingBlade_Right_08BA76C0:
 	.incbin "baserom.gba", 0xba76c0, 0xcc
 
-	.global gUnk_08BA778C
-gUnk_08BA778C:
+	.global AnimSprite_EfxBindingBlade_Right_08BA778C
+AnimSprite_EfxBindingBlade_Right_08BA778C:
 	.incbin "baserom.gba", 0xba778c, 0x138
 
-	.global gUnk_08BA78C4
-gUnk_08BA78C4:
+	.global AnimSprite_EfxBindingBlade_Right_08BA78C4
+AnimSprite_EfxBindingBlade_Right_08BA78C4:
 	.incbin "baserom.gba", 0xba78c4, 0xcc
 
-	.global gUnk_08BA7990
-gUnk_08BA7990:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7990
+AnimSprite_EfxBindingBlade_Right_08BA7990:
 	.incbin "baserom.gba", 0xba7990, 0xc0
 
-	.global gUnk_08BA7A50
-gUnk_08BA7A50:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7A50
+AnimSprite_EfxBindingBlade_Right_08BA7A50:
 	.incbin "baserom.gba", 0xba7a50, 0xb4
 
-	.global gUnk_08BA7B04
-gUnk_08BA7B04:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7B04
+AnimSprite_EfxBindingBlade_Right_08BA7B04:
 	.incbin "baserom.gba", 0xba7b04, 0xc0
 
-	.global gUnk_08BA7BC4
-gUnk_08BA7BC4:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7BC4
+AnimSprite_EfxBindingBlade_Right_08BA7BC4:
 	.incbin "baserom.gba", 0xba7bc4, 0x90
 
-	.global gUnk_08BA7C54
-gUnk_08BA7C54:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7C54
+AnimSprite_EfxBindingBlade_Right_08BA7C54:
 	.incbin "baserom.gba", 0xba7c54, 0xa8
 
-	.global gUnk_08BA7CFC
-gUnk_08BA7CFC:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7CFC
+AnimSprite_EfxBindingBlade_Right_08BA7CFC:
 	.incbin "baserom.gba", 0xba7cfc, 0x48
 
-	.global gUnk_08BA7D44
-gUnk_08BA7D44:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7D44
+AnimSprite_EfxBindingBlade_Right_08BA7D44:
 	.incbin "baserom.gba", 0xba7d44, 0x48
 
-	.global gUnk_08BA7D8C
-gUnk_08BA7D8C:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7D8C
+AnimSprite_EfxBindingBlade_Right_08BA7D8C:
 	.incbin "baserom.gba", 0xba7d8c, 0x6c
 
-	.global gUnk_08BA7DF8
-gUnk_08BA7DF8:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7DF8
+AnimSprite_EfxBindingBlade_Right_08BA7DF8:
 	.incbin "baserom.gba", 0xba7df8, 0x60
 
-	.global gUnk_08BA7E58
-gUnk_08BA7E58:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7E58
+AnimSprite_EfxBindingBlade_Right_08BA7E58:
 	.incbin "baserom.gba", 0xba7e58, 0x24
 
-	.global gUnk_08BA7E7C
-gUnk_08BA7E7C:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7E7C
+AnimSprite_EfxBindingBlade_Right_08BA7E7C:
 	.incbin "baserom.gba", 0xba7e7c, 0x48
 
-	.global gUnk_08BA7EC4
-gUnk_08BA7EC4:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7EC4
+AnimSprite_EfxBindingBlade_Right_08BA7EC4:
 	.incbin "baserom.gba", 0xba7ec4, 0x18
 
-	.global gUnk_08BA7EDC
-gUnk_08BA7EDC:
+	.global AnimSprite_EfxBindingBlade_Right_08BA7EDC
+AnimSprite_EfxBindingBlade_Right_08BA7EDC:
 	.incbin "baserom.gba", 0xba7edc, 0x3c
 
 	.global AnimScr_EfxBindingBlade_Right
 AnimScr_EfxBindingBlade_Right:
-	.4byte gUnk_08BA7324 + 0x2
-	.4byte gUnk_08BA733C + 0x2
-	.4byte gUnk_08BA7354 + 0x2
-	.4byte gUnk_08BA739C + 0x2
-	.4byte gUnk_08BA73D8 + 0x2
-	.4byte gUnk_08BA7438 + 0x2
-	.4byte gUnk_08BA74BC + 0x2
-	.4byte gUnk_08BA751C + 0x2
-	.4byte gUnk_08BA757C + 0x2
-	.4byte gUnk_08BA7630 + 0x2
-	.4byte gUnk_08BA76C0 + 0x2
-	.4byte gUnk_08BA778C + 0x2
-	.4byte gUnk_08BA78C4 + 0x2
-	.4byte gUnk_08BA7990 + 0x2
-	.4byte gUnk_08BA7A50 + 0x2
-	.4byte gUnk_08BA7B04 + 0x2
-	.4byte gUnk_08BA7BC4 + 0x2
-	.4byte gUnk_08BA7C54 + 0x2
-	.4byte gUnk_08BA7CFC + 0x2
-	.4byte gUnk_08BA7D44 + 0x2
-	.4byte gUnk_08BA7D8C + 0x2
-	.4byte gUnk_08BA7DF8 + 0x2
-	.4byte gUnk_08BA7E58 + 0x2
-	.4byte gUnk_08BA7E7C + 0x2
-	.4byte gUnk_08BA7EC4 + 0x2
-	.4byte gUnk_08BA7EDC + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7324 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA733C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7354 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA739C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA73D8 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7438 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA74BC + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA751C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA757C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7630 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA76C0 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA778C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA78C4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7990 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7A50 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7B04 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7BC4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7C54 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7CFC + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7D44 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7D8C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7DF8 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7E58 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7E7C + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7EC4 + 0x2
+	.4byte AnimSprite_EfxBindingBlade_Right_08BA7EDC + 0x2
 	.incbin "baserom.gba", 0xba7f80, 0x4
 
-	.global gUnk_08BA7F84
-gUnk_08BA7F84:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA7F84
+AnimSprite_HurtmutEff00OBJ1_Right_08BA7F84:
 	.incbin "baserom.gba", 0xba7f84, 0x18
 
-	.global gUnk_08BA7F9C
-gUnk_08BA7F9C:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA7F9C
+AnimSprite_HurtmutEff00OBJ1_Right_08BA7F9C:
 	.incbin "baserom.gba", 0xba7f9c, 0x18
 
-	.global gUnk_08BA7FB4
-gUnk_08BA7FB4:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA7FB4
+AnimSprite_HurtmutEff00OBJ1_Right_08BA7FB4:
 	.incbin "baserom.gba", 0xba7fb4, 0x24
 
-	.global gUnk_08BA7FD8
-gUnk_08BA7FD8:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA7FD8
+AnimSprite_HurtmutEff00OBJ1_Right_08BA7FD8:
 	.incbin "baserom.gba", 0xba7fd8, 0x24
 
-	.global gUnk_08BA7FFC
-gUnk_08BA7FFC:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA7FFC
+AnimSprite_HurtmutEff00OBJ1_Right_08BA7FFC:
 	.incbin "baserom.gba", 0xba7ffc, 0x18
 
-	.global gUnk_08BA8014
-gUnk_08BA8014:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA8014
+AnimSprite_HurtmutEff00OBJ1_Right_08BA8014:
 	.incbin "baserom.gba", 0xba8014, 0x18
 
-	.global gUnk_08BA802C
-gUnk_08BA802C:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA802C
+AnimSprite_HurtmutEff00OBJ1_Right_08BA802C:
 	.incbin "baserom.gba", 0xba802c, 0x24
 
-	.global gUnk_08BA8050
-gUnk_08BA8050:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA8050
+AnimSprite_HurtmutEff00OBJ1_Right_08BA8050:
 	.incbin "baserom.gba", 0xba8050, 0x24
 
-	.global gUnk_08BA8074
-gUnk_08BA8074:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA8074
+AnimSprite_HurtmutEff00OBJ1_Right_08BA8074:
 	.incbin "baserom.gba", 0xba8074, 0x18
 
-	.global gUnk_08BA808C
-gUnk_08BA808C:
+	.global AnimSprite_HurtmutEff01OBJ1_Right_08BA808C
+AnimSprite_HurtmutEff01OBJ1_Right_08BA808C:
 	.incbin "baserom.gba", 0xba808c, 0x18
 
-	.global gUnk_08BA80A4
-gUnk_08BA80A4:
+	.global AnimSprite_HurtmutEff01OBJ1_Right_08BA80A4
+AnimSprite_HurtmutEff01OBJ1_Right_08BA80A4:
 	.incbin "baserom.gba", 0xba80a4, 0x18
 
-	.global gUnk_08BA80BC
-gUnk_08BA80BC:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA80BC
+AnimSprite_HurtmutEff00OBJ1_Right_08BA80BC:
 	.incbin "baserom.gba", 0xba80bc, 0x18
 
-	.global gUnk_08BA80D4
-gUnk_08BA80D4:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA80D4
+AnimSprite_HurtmutEff00OBJ1_Right_08BA80D4:
 	.incbin "baserom.gba", 0xba80d4, 0x24
 
-	.global gUnk_08BA80F8
-gUnk_08BA80F8:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA80F8
+AnimSprite_HurtmutEff00OBJ1_Right_08BA80F8:
 	.incbin "baserom.gba", 0xba80f8, 0x24
 
-	.global gUnk_08BA811C
-gUnk_08BA811C:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA811C
+AnimSprite_HurtmutEff00OBJ1_Right_08BA811C:
 	.incbin "baserom.gba", 0xba811c, 0x30
 
-	.global gUnk_08BA814C
-gUnk_08BA814C:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA814C
+AnimSprite_HurtmutEff00OBJ1_Right_08BA814C:
 	.incbin "baserom.gba", 0xba814c, 0x30
 
-	.global gUnk_08BA817C
-gUnk_08BA817C:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA817C
+AnimSprite_HurtmutEff00OBJ1_Right_08BA817C:
 	.incbin "baserom.gba", 0xba817c, 0x24
 
-	.global gUnk_08BA81A0
-gUnk_08BA81A0:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA81A0
+AnimSprite_HurtmutEff00OBJ1_Right_08BA81A0:
 	.incbin "baserom.gba", 0xba81a0, 0x48
 
-	.global gUnk_08BA81E8
-gUnk_08BA81E8:
+	.global AnimSprite_HurtmutEff00OBJ1_Right_08BA81E8
+AnimSprite_HurtmutEff00OBJ1_Right_08BA81E8:
 	.incbin "baserom.gba", 0xba81e8, 0x48
 
 	.global AnimScr_HurtmutEff00OBJ1_Right
 AnimScr_HurtmutEff00OBJ1_Right:
-	.4byte gUnk_08BA7F84 + 0x2
-	.4byte gUnk_08BA7F9C + 0x2
-	.4byte gUnk_08BA7FB4 + 0x1
-	.4byte gUnk_08BA7FD8 + 0x1
-	.4byte gUnk_08BA7FFC + 0x1
-	.4byte gUnk_08BA8014 + 0x1
-	.4byte gUnk_08BA802C + 0x3
-	.4byte gUnk_08BA8050 + 0x3
-	.4byte gUnk_08BA8074 + 0x3
-	.4byte gUnk_08BA80BC + 0x1
-	.4byte gUnk_08BA80D4 + 0x1
-	.4byte gUnk_08BA80F8 + 0x1
-	.4byte gUnk_08BA811C + 0x1
-	.4byte gUnk_08BA814C + 0x1
-	.4byte gUnk_08BA817C + 0x1
-	.4byte gUnk_08BA81A0 + 0x2
-	.4byte gUnk_08BA81E8 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7F84 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7F9C + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7FB4 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7FD8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7FFC + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8014 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA802C + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8050 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8074 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA80BC + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA80D4 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA80F8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA811C + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA814C + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA817C + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA81A0 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA81E8 + 0x2
 	.incbin "baserom.gba", 0xba8274, 0x4
 
 	.global AnimScr_HurtmutEff01OBJ1_Right
 AnimScr_HurtmutEff01OBJ1_Right:
-	.4byte gUnk_08BA7F84 + 0x1
-	.4byte gUnk_08BA7F9C + 0x1
-	.4byte gUnk_08BA7FB4 + 0x1
-	.4byte gUnk_08BA7FD8 + 0x1
-	.4byte gUnk_08BA7FFC + 0x1
-	.4byte gUnk_08BA8014 + 0x1
-	.4byte gUnk_08BA802C + 0x3
-	.4byte gUnk_08BA8050 + 0x3
-	.4byte gUnk_08BA8074 + 0x3
-	.4byte gUnk_08BA808C + 0x3
-	.4byte gUnk_08BA80A4 + 0x3
-	.4byte gUnk_08BA8014 + 0x2
-	.4byte gUnk_08BA802C + 0x3
-	.4byte gUnk_08BA8050 + 0x3
-	.4byte gUnk_08BA8074 + 0x3
-	.4byte gUnk_08BA808C + 0x3
-	.4byte gUnk_08BA80A4 + 0x3
-	.4byte gUnk_08BA8074 + 0x3
-	.4byte gUnk_08BA808C + 0x3
-	.4byte gUnk_08BA80A4 + 0x3
-	.4byte gUnk_08BA8014 + 0x2
-	.4byte gUnk_08BA80BC + 0x1
-	.4byte gUnk_08BA80D4 + 0x1
-	.4byte gUnk_08BA80F8 + 0x1
-	.4byte gUnk_08BA811C + 0x1
-	.4byte gUnk_08BA814C + 0x1
-	.4byte gUnk_08BA817C + 0x1
-	.4byte gUnk_08BA81A0 + 0x2
-	.4byte gUnk_08BA81E8 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7F84 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7F9C + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7FB4 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7FD8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA7FFC + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8014 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA802C + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8050 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8074 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Right_08BA808C + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Right_08BA80A4 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8014 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA802C + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8050 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8074 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Right_08BA808C + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Right_08BA80A4 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8074 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Right_08BA808C + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Right_08BA80A4 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA8014 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA80BC + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA80D4 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA80F8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA811C + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA814C + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA817C + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA81A0 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Right_08BA81E8 + 0x2
 	.incbin "baserom.gba", 0xba82ec, 0x4
 
-	.global gUnk_08BA82F0
-gUnk_08BA82F0:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA82F0
+AnimSprite_HurtmutEff00OBJ1_Left_08BA82F0:
 	.incbin "baserom.gba", 0xba82f0, 0x18
 
-	.global gUnk_08BA8308
-gUnk_08BA8308:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8308
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8308:
 	.incbin "baserom.gba", 0xba8308, 0x18
 
-	.global gUnk_08BA8320
-gUnk_08BA8320:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8320
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8320:
 	.incbin "baserom.gba", 0xba8320, 0x24
 
-	.global gUnk_08BA8344
-gUnk_08BA8344:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8344
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8344:
 	.incbin "baserom.gba", 0xba8344, 0x24
 
-	.global gUnk_08BA8368
-gUnk_08BA8368:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8368
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8368:
 	.incbin "baserom.gba", 0xba8368, 0x18
 
-	.global gUnk_08BA8380
-gUnk_08BA8380:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8380
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8380:
 	.incbin "baserom.gba", 0xba8380, 0x18
 
-	.global gUnk_08BA8398
-gUnk_08BA8398:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8398
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8398:
 	.incbin "baserom.gba", 0xba8398, 0x24
 
-	.global gUnk_08BA83BC
-gUnk_08BA83BC:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA83BC
+AnimSprite_HurtmutEff00OBJ1_Left_08BA83BC:
 	.incbin "baserom.gba", 0xba83bc, 0x24
 
-	.global gUnk_08BA83E0
-gUnk_08BA83E0:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA83E0
+AnimSprite_HurtmutEff00OBJ1_Left_08BA83E0:
 	.incbin "baserom.gba", 0xba83e0, 0x18
 
-	.global gUnk_08BA83F8
-gUnk_08BA83F8:
+	.global AnimSprite_HurtmutEff01OBJ1_Left_08BA83F8
+AnimSprite_HurtmutEff01OBJ1_Left_08BA83F8:
 	.incbin "baserom.gba", 0xba83f8, 0x18
 
-	.global gUnk_08BA8410
-gUnk_08BA8410:
+	.global AnimSprite_HurtmutEff01OBJ1_Left_08BA8410
+AnimSprite_HurtmutEff01OBJ1_Left_08BA8410:
 	.incbin "baserom.gba", 0xba8410, 0x18
 
-	.global gUnk_08BA8428
-gUnk_08BA8428:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8428
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8428:
 	.incbin "baserom.gba", 0xba8428, 0x18
 
-	.global gUnk_08BA8440
-gUnk_08BA8440:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8440
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8440:
 	.incbin "baserom.gba", 0xba8440, 0x24
 
-	.global gUnk_08BA8464
-gUnk_08BA8464:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8464
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8464:
 	.incbin "baserom.gba", 0xba8464, 0x24
 
-	.global gUnk_08BA8488
-gUnk_08BA8488:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8488
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8488:
 	.incbin "baserom.gba", 0xba8488, 0x30
 
-	.global gUnk_08BA84B8
-gUnk_08BA84B8:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA84B8
+AnimSprite_HurtmutEff00OBJ1_Left_08BA84B8:
 	.incbin "baserom.gba", 0xba84b8, 0x30
 
-	.global gUnk_08BA84E8
-gUnk_08BA84E8:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA84E8
+AnimSprite_HurtmutEff00OBJ1_Left_08BA84E8:
 	.incbin "baserom.gba", 0xba84e8, 0x24
 
-	.global gUnk_08BA850C
-gUnk_08BA850C:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA850C
+AnimSprite_HurtmutEff00OBJ1_Left_08BA850C:
 	.incbin "baserom.gba", 0xba850c, 0x48
 
-	.global gUnk_08BA8554
-gUnk_08BA8554:
+	.global AnimSprite_HurtmutEff00OBJ1_Left_08BA8554
+AnimSprite_HurtmutEff00OBJ1_Left_08BA8554:
 	.incbin "baserom.gba", 0xba8554, 0x48
 
 	.global AnimScr_HurtmutEff00OBJ1_Left
 AnimScr_HurtmutEff00OBJ1_Left:
-	.4byte gUnk_08BA82F0 + 0x2
-	.4byte gUnk_08BA8308 + 0x2
-	.4byte gUnk_08BA8320 + 0x1
-	.4byte gUnk_08BA8344 + 0x1
-	.4byte gUnk_08BA8368 + 0x1
-	.4byte gUnk_08BA8380 + 0x1
-	.4byte gUnk_08BA8398 + 0x3
-	.4byte gUnk_08BA83BC + 0x3
-	.4byte gUnk_08BA83E0 + 0x3
-	.4byte gUnk_08BA8428 + 0x1
-	.4byte gUnk_08BA8440 + 0x1
-	.4byte gUnk_08BA8464 + 0x1
-	.4byte gUnk_08BA8488 + 0x1
-	.4byte gUnk_08BA84B8 + 0x1
-	.4byte gUnk_08BA84E8 + 0x1
-	.4byte gUnk_08BA850C + 0x2
-	.4byte gUnk_08BA8554 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA82F0 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8308 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8320 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8344 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8368 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8380 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8398 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA83BC + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA83E0 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8428 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8440 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8464 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8488 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA84B8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA84E8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA850C + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8554 + 0x2
 	.incbin "baserom.gba", 0xba85e0, 0x4
 
 	.global AnimScr_HurtmutEff01OBJ1_Left
 AnimScr_HurtmutEff01OBJ1_Left:
-	.4byte gUnk_08BA82F0 + 0x1
-	.4byte gUnk_08BA8308 + 0x1
-	.4byte gUnk_08BA8320 + 0x1
-	.4byte gUnk_08BA8344 + 0x1
-	.4byte gUnk_08BA8368 + 0x1
-	.4byte gUnk_08BA8380 + 0x1
-	.4byte gUnk_08BA8398 + 0x3
-	.4byte gUnk_08BA83BC + 0x3
-	.4byte gUnk_08BA83E0 + 0x3
-	.4byte gUnk_08BA83F8 + 0x3
-	.4byte gUnk_08BA8410 + 0x3
-	.4byte gUnk_08BA8380 + 0x2
-	.4byte gUnk_08BA8398 + 0x3
-	.4byte gUnk_08BA83BC + 0x3
-	.4byte gUnk_08BA83E0 + 0x3
-	.4byte gUnk_08BA83F8 + 0x3
-	.4byte gUnk_08BA8410 + 0x3
-	.4byte gUnk_08BA83E0 + 0x3
-	.4byte gUnk_08BA83F8 + 0x3
-	.4byte gUnk_08BA8410 + 0x3
-	.4byte gUnk_08BA8380 + 0x2
-	.4byte gUnk_08BA8428 + 0x1
-	.4byte gUnk_08BA8440 + 0x1
-	.4byte gUnk_08BA8464 + 0x1
-	.4byte gUnk_08BA8488 + 0x1
-	.4byte gUnk_08BA84B8 + 0x1
-	.4byte gUnk_08BA84E8 + 0x1
-	.4byte gUnk_08BA850C + 0x2
-	.4byte gUnk_08BA8554 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA82F0 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8308 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8320 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8344 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8368 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8380 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8398 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA83BC + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA83E0 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Left_08BA83F8 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Left_08BA8410 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8380 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8398 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA83BC + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA83E0 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Left_08BA83F8 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Left_08BA8410 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA83E0 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Left_08BA83F8 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ1_Left_08BA8410 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8380 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8428 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8440 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8464 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8488 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA84B8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA84E8 + 0x1
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA850C + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ1_Left_08BA8554 + 0x2
 	.incbin "baserom.gba", 0xba8658, 0x4
 
-	.global gUnk_08BA865C
-gUnk_08BA865C:
+	.global AnimSprite_HurtmutEff00OBJ2_Right_08BA865C
+AnimSprite_HurtmutEff00OBJ2_Right_08BA865C:
 	.incbin "baserom.gba", 0xba865c, 0x48
 
-	.global gUnk_08BA86A4
-gUnk_08BA86A4:
+	.global AnimSprite_HurtmutEff00OBJ2_Right_08BA86A4
+AnimSprite_HurtmutEff00OBJ2_Right_08BA86A4:
 	.incbin "baserom.gba", 0xba86a4, 0x3c
 
-	.global gUnk_08BA86E0
-gUnk_08BA86E0:
+	.global AnimSprite_HurtmutEff00OBJ2_Right_08BA86E0
+AnimSprite_HurtmutEff00OBJ2_Right_08BA86E0:
 	.incbin "baserom.gba", 0xba86e0, 0x30
 
-	.global gUnk_08BA8710
-gUnk_08BA8710:
+	.global AnimSprite_HurtmutEff01OBJ2_Right_08BA8710
+AnimSprite_HurtmutEff01OBJ2_Right_08BA8710:
 	.incbin "baserom.gba", 0xba8710, 0x18
 
-	.global gUnk_08BA8728
-gUnk_08BA8728:
+	.global AnimSprite_HurtmutEff01OBJ2_Right_08BA8728
+AnimSprite_HurtmutEff01OBJ2_Right_08BA8728:
 	.incbin "baserom.gba", 0xba8728, 0x30
 
-	.global gUnk_08BA8758
-gUnk_08BA8758:
+	.global AnimSprite_HurtmutEff01OBJ2_Right_08BA8758
+AnimSprite_HurtmutEff01OBJ2_Right_08BA8758:
 	.incbin "baserom.gba", 0xba8758, 0x84
 
-	.global gUnk_08BA87DC
-gUnk_08BA87DC:
+	.global AnimSprite_HurtmutEff01OBJ2_Right_08BA87DC
+AnimSprite_HurtmutEff01OBJ2_Right_08BA87DC:
 	.incbin "baserom.gba", 0xba87dc, 0x6c
 
-	.global gUnk_08BA8848
-gUnk_08BA8848:
+	.global AnimSprite_HurtmutEff01OBJ2_Right_08BA8848
+AnimSprite_HurtmutEff01OBJ2_Right_08BA8848:
 	.incbin "baserom.gba", 0xba8848, 0x3c
 
 	.global AnimScr_HurtmutEff00OBJ2_Right
 AnimScr_HurtmutEff00OBJ2_Right:
-	.4byte gUnk_08BA865C + 0x3
-	.4byte gUnk_08BA86A4 + 0x3
-	.4byte gUnk_08BA86E0 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Right_08BA865C + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Right_08BA86A4 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Right_08BA86E0 + 0x3
 	.incbin "baserom.gba", 0xba8890, 0x4
 
 	.global AnimScr_HurtmutEff01OBJ2_Right
 AnimScr_HurtmutEff01OBJ2_Right:
-	.4byte gUnk_08BA865C + 0x3
-	.4byte gUnk_08BA86A4 + 0x3
-	.4byte gUnk_08BA86E0 + 0x3
-	.4byte gUnk_08BA8710 + 0x10000000
-	.4byte gUnk_08BA8728 + 0x3
-	.4byte gUnk_08BA8758 + 0x2
-	.4byte gUnk_08BA87DC + 0x2
-	.4byte gUnk_08BA8848 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ2_Right_08BA865C + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Right_08BA86A4 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Right_08BA86E0 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ2_Right_08BA8710 + 0x10000000
+	.4byte AnimSprite_HurtmutEff01OBJ2_Right_08BA8728 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ2_Right_08BA8758 + 0x2
+	.4byte AnimSprite_HurtmutEff01OBJ2_Right_08BA87DC + 0x2
+	.4byte AnimSprite_HurtmutEff01OBJ2_Right_08BA8848 + 0x2
 	.incbin "baserom.gba", 0xba88b4, 0x4
 
-	.global gUnk_08BA88B8
-gUnk_08BA88B8:
+	.global AnimSprite_HurtmutEff00OBJ2_Left_08BA88B8
+AnimSprite_HurtmutEff00OBJ2_Left_08BA88B8:
 	.incbin "baserom.gba", 0xba88b8, 0x48
 
-	.global gUnk_08BA8900
-gUnk_08BA8900:
+	.global AnimSprite_HurtmutEff00OBJ2_Left_08BA8900
+AnimSprite_HurtmutEff00OBJ2_Left_08BA8900:
 	.incbin "baserom.gba", 0xba8900, 0x3c
 
-	.global gUnk_08BA893C
-gUnk_08BA893C:
+	.global AnimSprite_HurtmutEff00OBJ2_Left_08BA893C
+AnimSprite_HurtmutEff00OBJ2_Left_08BA893C:
 	.incbin "baserom.gba", 0xba893c, 0x30
 
-	.global gUnk_08BA896C
-gUnk_08BA896C:
+	.global AnimSprite_HurtmutEff01OBJ2_Left_08BA896C
+AnimSprite_HurtmutEff01OBJ2_Left_08BA896C:
 	.incbin "baserom.gba", 0xba896c, 0x18
 
-	.global gUnk_08BA8984
-gUnk_08BA8984:
+	.global AnimSprite_HurtmutEff01OBJ2_Left_08BA8984
+AnimSprite_HurtmutEff01OBJ2_Left_08BA8984:
 	.incbin "baserom.gba", 0xba8984, 0x30
 
-	.global gUnk_08BA89B4
-gUnk_08BA89B4:
+	.global AnimSprite_HurtmutEff01OBJ2_Left_08BA89B4
+AnimSprite_HurtmutEff01OBJ2_Left_08BA89B4:
 	.incbin "baserom.gba", 0xba89b4, 0x84
 
-	.global gUnk_08BA8A38
-gUnk_08BA8A38:
+	.global AnimSprite_HurtmutEff01OBJ2_Left_08BA8A38
+AnimSprite_HurtmutEff01OBJ2_Left_08BA8A38:
 	.incbin "baserom.gba", 0xba8a38, 0x6c
 
-	.global gUnk_08BA8AA4
-gUnk_08BA8AA4:
+	.global AnimSprite_HurtmutEff01OBJ2_Left_08BA8AA4
+AnimSprite_HurtmutEff01OBJ2_Left_08BA8AA4:
 	.incbin "baserom.gba", 0xba8aa4, 0x3c
 
 	.global AnimScr_HurtmutEff00OBJ2_Left
 AnimScr_HurtmutEff00OBJ2_Left:
-	.4byte gUnk_08BA88B8 + 0x3
-	.4byte gUnk_08BA8900 + 0x3
-	.4byte gUnk_08BA893C + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Left_08BA88B8 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Left_08BA8900 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Left_08BA893C + 0x3
 	.incbin "baserom.gba", 0xba8aec, 0x4
 
 	.global AnimScr_HurtmutEff01OBJ2_Left
 AnimScr_HurtmutEff01OBJ2_Left:
-	.4byte gUnk_08BA88B8 + 0x3
-	.4byte gUnk_08BA8900 + 0x3
-	.4byte gUnk_08BA893C + 0x3
-	.4byte gUnk_08BA896C + 0x10000000
-	.4byte gUnk_08BA8984 + 0x3
-	.4byte gUnk_08BA89B4 + 0x2
-	.4byte gUnk_08BA8A38 + 0x2
-	.4byte gUnk_08BA8AA4 + 0x2
+	.4byte AnimSprite_HurtmutEff00OBJ2_Left_08BA88B8 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Left_08BA8900 + 0x3
+	.4byte AnimSprite_HurtmutEff00OBJ2_Left_08BA893C + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ2_Left_08BA896C + 0x10000000
+	.4byte AnimSprite_HurtmutEff01OBJ2_Left_08BA8984 + 0x3
+	.4byte AnimSprite_HurtmutEff01OBJ2_Left_08BA89B4 + 0x2
+	.4byte AnimSprite_HurtmutEff01OBJ2_Left_08BA8A38 + 0x2
+	.4byte AnimSprite_HurtmutEff01OBJ2_Left_08BA8AA4 + 0x2
 	.incbin "baserom.gba", 0xba8b10, 0x4
 
-	.global gUnk_08BA8B14
-gUnk_08BA8B14:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8B14
+AnimSprite_FirebreathOBJ_Left_08BA8B14:
 	.incbin "baserom.gba", 0xba8b14, 0x18
 
-	.global gUnk_08BA8B2C
-gUnk_08BA8B2C:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8B2C
+AnimSprite_FirebreathOBJ_Left_08BA8B2C:
 	.incbin "baserom.gba", 0xba8b2c, 0x24
 
-	.global gUnk_08BA8B50
-gUnk_08BA8B50:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8B50
+AnimSprite_FirebreathOBJ_Left_08BA8B50:
 	.incbin "baserom.gba", 0xba8b50, 0x48
 
-	.global gUnk_08BA8B98
-gUnk_08BA8B98:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8B98
+AnimSprite_FirebreathOBJ_Left_08BA8B98:
 	.incbin "baserom.gba", 0xba8b98, 0x54
 
-	.global gUnk_08BA8BEC
-gUnk_08BA8BEC:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8BEC
+AnimSprite_FirebreathOBJ_Left_08BA8BEC:
 	.incbin "baserom.gba", 0xba8bec, 0x60
 
-	.global gUnk_08BA8C4C
-gUnk_08BA8C4C:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8C4C
+AnimSprite_FirebreathOBJ_Left_08BA8C4C:
 	.incbin "baserom.gba", 0xba8c4c, 0x48
 
-	.global gUnk_08BA8C94
-gUnk_08BA8C94:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8C94
+AnimSprite_FirebreathOBJ_Left_08BA8C94:
 	.incbin "baserom.gba", 0xba8c94, 0x78
 
-	.global gUnk_08BA8D0C
-gUnk_08BA8D0C:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8D0C
+AnimSprite_FirebreathOBJ_Left_08BA8D0C:
 	.incbin "baserom.gba", 0xba8d0c, 0xa8
 
-	.global gUnk_08BA8DB4
-gUnk_08BA8DB4:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8DB4
+AnimSprite_FirebreathOBJ_Left_08BA8DB4:
 	.incbin "baserom.gba", 0xba8db4, 0x84
 
-	.global gUnk_08BA8E38
-gUnk_08BA8E38:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8E38
+AnimSprite_FirebreathOBJ_Left_08BA8E38:
 	.incbin "baserom.gba", 0xba8e38, 0xc0
 
-	.global gUnk_08BA8EF8
-gUnk_08BA8EF8:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8EF8
+AnimSprite_FirebreathOBJ_Left_08BA8EF8:
 	.incbin "baserom.gba", 0xba8ef8, 0xf0
 
-	.global gUnk_08BA8FE8
-gUnk_08BA8FE8:
+	.global AnimSprite_FirebreathOBJ_Left_08BA8FE8
+AnimSprite_FirebreathOBJ_Left_08BA8FE8:
 	.incbin "baserom.gba", 0xba8fe8, 0x9c
 
-	.global gUnk_08BA9084
-gUnk_08BA9084:
+	.global AnimSprite_FirebreathOBJ_Left_08BA9084
+AnimSprite_FirebreathOBJ_Left_08BA9084:
 	.incbin "baserom.gba", 0xba9084, 0x78
 
-	.global gUnk_08BA90FC
-gUnk_08BA90FC:
+	.global AnimSprite_FirebreathOBJ_Left_08BA90FC
+AnimSprite_FirebreathOBJ_Left_08BA90FC:
 	.incbin "baserom.gba", 0xba90fc, 0xa8
 
-	.global gUnk_08BA91A4
-gUnk_08BA91A4:
+	.global AnimSprite_FirebreathOBJ_Left_08BA91A4
+AnimSprite_FirebreathOBJ_Left_08BA91A4:
 	.incbin "baserom.gba", 0xba91a4, 0xe4
 
-	.global gUnk_08BA9288
-gUnk_08BA9288:
+	.global AnimSprite_FirebreathOBJ_Left_08BA9288
+AnimSprite_FirebreathOBJ_Left_08BA9288:
 	.incbin "baserom.gba", 0xba9288, 0xd8
 
-	.global gUnk_08BA9360
-gUnk_08BA9360:
+	.global AnimSprite_FirebreathOBJ_Left_08BA9360
+AnimSprite_FirebreathOBJ_Left_08BA9360:
 	.incbin "baserom.gba", 0xba9360, 0x6c
 
-	.global gUnk_08BA93CC
-gUnk_08BA93CC:
+	.global AnimSprite_FirebreathOBJ_Left_08BA93CC
+AnimSprite_FirebreathOBJ_Left_08BA93CC:
 	.incbin "baserom.gba", 0xba93cc, 0x78
 
-	.global gUnk_08BA9444
-gUnk_08BA9444:
+	.global AnimSprite_FirebreathOBJ_Left_08BA9444
+AnimSprite_FirebreathOBJ_Left_08BA9444:
 	.incbin "baserom.gba", 0xba9444, 0xb4
 
-	.global gUnk_08BA94F8
-gUnk_08BA94F8:
+	.global AnimSprite_FirebreathOBJ_Left_08BA94F8
+AnimSprite_FirebreathOBJ_Left_08BA94F8:
 	.incbin "baserom.gba", 0xba94f8, 0x54
 
-	.global gUnk_08BA954C
-gUnk_08BA954C:
+	.global AnimSprite_FirebreathOBJ_Left_08BA954C
+AnimSprite_FirebreathOBJ_Left_08BA954C:
 	.incbin "baserom.gba", 0xba954c, 0x54
 
-	.global gUnk_08BA95A0
-gUnk_08BA95A0:
+	.global AnimSprite_FirebreathOBJ_Left_08BA95A0
+AnimSprite_FirebreathOBJ_Left_08BA95A0:
 	.incbin "baserom.gba", 0xba95a0, 0x3c
 
-	.global gUnk_08BA95DC
-gUnk_08BA95DC:
+	.global AnimSprite_FirebreathOBJ_Left_08BA95DC
+AnimSprite_FirebreathOBJ_Left_08BA95DC:
 	.incbin "baserom.gba", 0xba95dc, 0x60
 
-	.global gUnk_08BA963C
-gUnk_08BA963C:
+	.global AnimSprite_FirebreathOBJ_Left_08BA963C
+AnimSprite_FirebreathOBJ_Left_08BA963C:
 	.incbin "baserom.gba", 0xba963c, 0x18
 
-	.global gUnk_08BA9654
-gUnk_08BA9654:
+	.global AnimSprite_FirebreathOBJ_Left_08BA9654
+AnimSprite_FirebreathOBJ_Left_08BA9654:
 	.incbin "baserom.gba", 0xba9654, 0x18
 
-	.global gUnk_08BA966C
-gUnk_08BA966C:
+	.global AnimSprite_FirebreathOBJ_Left_08BA966C
+AnimSprite_FirebreathOBJ_Left_08BA966C:
 	.incbin "baserom.gba", 0xba966c, 0x3c
 
 	.global AnimScr_FirebreathOBJ_Left
 AnimScr_FirebreathOBJ_Left:
-	.4byte gUnk_08BA8B14 + 0x2
-	.4byte gUnk_08BA8B2C + 0x2
-	.4byte gUnk_08BA8B50 + 0x2
-	.4byte gUnk_08BA8B98 + 0x2
-	.4byte gUnk_08BA8BEC + 0x2
-	.4byte gUnk_08BA8C4C + 0x2
-	.4byte gUnk_08BA8C94 + 0x2
-	.4byte gUnk_08BA8D0C + 0x2
-	.4byte gUnk_08BA8DB4 + 0x2
-	.4byte gUnk_08BA8E38 + 0x2
-	.4byte gUnk_08BA8EF8 + 0x2
-	.4byte gUnk_08BA8FE8 + 0x2
-	.4byte gUnk_08BA9084 + 0x2
-	.4byte gUnk_08BA90FC + 0x2
-	.4byte gUnk_08BA91A4 + 0x2
-	.4byte gUnk_08BA9288 + 0x2
-	.4byte gUnk_08BA9360 + 0x2
-	.4byte gUnk_08BA93CC + 0x2
-	.4byte gUnk_08BA9444 + 0x2
-	.4byte gUnk_08BA94F8 + 0x2
-	.4byte gUnk_08BA954C + 0x2
-	.4byte gUnk_08BA95A0 + 0x2
-	.4byte gUnk_08BA95DC + 0x2
-	.4byte gUnk_08BA963C + 0x2
-	.4byte gUnk_08BA9654 + 0x2
-	.4byte gUnk_08BA966C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8B14 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8B2C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8B50 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8B98 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8BEC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8C4C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8C94 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8D0C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8DB4 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8E38 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8EF8 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA8FE8 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA9084 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA90FC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA91A4 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA9288 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA9360 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA93CC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA9444 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA94F8 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA954C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA95A0 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA95DC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA963C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA9654 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Left_08BA966C + 0x2
 	.incbin "baserom.gba", 0xba9710, 0x4
 
-	.global gUnk_08BA9714
-gUnk_08BA9714:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9714
+AnimSprite_FirebreathOBJ_Right_08BA9714:
 	.incbin "baserom.gba", 0xba9714, 0x18
 
-	.global gUnk_08BA972C
-gUnk_08BA972C:
+	.global AnimSprite_FirebreathOBJ_Right_08BA972C
+AnimSprite_FirebreathOBJ_Right_08BA972C:
 	.incbin "baserom.gba", 0xba972c, 0x24
 
-	.global gUnk_08BA9750
-gUnk_08BA9750:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9750
+AnimSprite_FirebreathOBJ_Right_08BA9750:
 	.incbin "baserom.gba", 0xba9750, 0x48
 
-	.global gUnk_08BA9798
-gUnk_08BA9798:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9798
+AnimSprite_FirebreathOBJ_Right_08BA9798:
 	.incbin "baserom.gba", 0xba9798, 0x54
 
-	.global gUnk_08BA97EC
-gUnk_08BA97EC:
+	.global AnimSprite_FirebreathOBJ_Right_08BA97EC
+AnimSprite_FirebreathOBJ_Right_08BA97EC:
 	.incbin "baserom.gba", 0xba97ec, 0x60
 
-	.global gUnk_08BA984C
-gUnk_08BA984C:
+	.global AnimSprite_FirebreathOBJ_Right_08BA984C
+AnimSprite_FirebreathOBJ_Right_08BA984C:
 	.incbin "baserom.gba", 0xba984c, 0x48
 
-	.global gUnk_08BA9894
-gUnk_08BA9894:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9894
+AnimSprite_FirebreathOBJ_Right_08BA9894:
 	.incbin "baserom.gba", 0xba9894, 0x78
 
-	.global gUnk_08BA990C
-gUnk_08BA990C:
+	.global AnimSprite_FirebreathOBJ_Right_08BA990C
+AnimSprite_FirebreathOBJ_Right_08BA990C:
 	.incbin "baserom.gba", 0xba990c, 0xa8
 
-	.global gUnk_08BA99B4
-gUnk_08BA99B4:
+	.global AnimSprite_FirebreathOBJ_Right_08BA99B4
+AnimSprite_FirebreathOBJ_Right_08BA99B4:
 	.incbin "baserom.gba", 0xba99b4, 0x84
 
-	.global gUnk_08BA9A38
-gUnk_08BA9A38:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9A38
+AnimSprite_FirebreathOBJ_Right_08BA9A38:
 	.incbin "baserom.gba", 0xba9a38, 0xc0
 
-	.global gUnk_08BA9AF8
-gUnk_08BA9AF8:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9AF8
+AnimSprite_FirebreathOBJ_Right_08BA9AF8:
 	.incbin "baserom.gba", 0xba9af8, 0xf0
 
-	.global gUnk_08BA9BE8
-gUnk_08BA9BE8:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9BE8
+AnimSprite_FirebreathOBJ_Right_08BA9BE8:
 	.incbin "baserom.gba", 0xba9be8, 0x9c
 
-	.global gUnk_08BA9C84
-gUnk_08BA9C84:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9C84
+AnimSprite_FirebreathOBJ_Right_08BA9C84:
 	.incbin "baserom.gba", 0xba9c84, 0x78
 
-	.global gUnk_08BA9CFC
-gUnk_08BA9CFC:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9CFC
+AnimSprite_FirebreathOBJ_Right_08BA9CFC:
 	.incbin "baserom.gba", 0xba9cfc, 0xa8
 
-	.global gUnk_08BA9DA4
-gUnk_08BA9DA4:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9DA4
+AnimSprite_FirebreathOBJ_Right_08BA9DA4:
 	.incbin "baserom.gba", 0xba9da4, 0xe4
 
-	.global gUnk_08BA9E88
-gUnk_08BA9E88:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9E88
+AnimSprite_FirebreathOBJ_Right_08BA9E88:
 	.incbin "baserom.gba", 0xba9e88, 0xd8
 
-	.global gUnk_08BA9F60
-gUnk_08BA9F60:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9F60
+AnimSprite_FirebreathOBJ_Right_08BA9F60:
 	.incbin "baserom.gba", 0xba9f60, 0x6c
 
-	.global gUnk_08BA9FCC
-gUnk_08BA9FCC:
+	.global AnimSprite_FirebreathOBJ_Right_08BA9FCC
+AnimSprite_FirebreathOBJ_Right_08BA9FCC:
 	.incbin "baserom.gba", 0xba9fcc, 0x78
 
-	.global gUnk_08BAA044
-gUnk_08BAA044:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA044
+AnimSprite_FirebreathOBJ_Right_08BAA044:
 	.incbin "baserom.gba", 0xbaa044, 0xb4
 
-	.global gUnk_08BAA0F8
-gUnk_08BAA0F8:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA0F8
+AnimSprite_FirebreathOBJ_Right_08BAA0F8:
 	.incbin "baserom.gba", 0xbaa0f8, 0x54
 
-	.global gUnk_08BAA14C
-gUnk_08BAA14C:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA14C
+AnimSprite_FirebreathOBJ_Right_08BAA14C:
 	.incbin "baserom.gba", 0xbaa14c, 0x54
 
-	.global gUnk_08BAA1A0
-gUnk_08BAA1A0:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA1A0
+AnimSprite_FirebreathOBJ_Right_08BAA1A0:
 	.incbin "baserom.gba", 0xbaa1a0, 0x3c
 
-	.global gUnk_08BAA1DC
-gUnk_08BAA1DC:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA1DC
+AnimSprite_FirebreathOBJ_Right_08BAA1DC:
 	.incbin "baserom.gba", 0xbaa1dc, 0x60
 
-	.global gUnk_08BAA23C
-gUnk_08BAA23C:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA23C
+AnimSprite_FirebreathOBJ_Right_08BAA23C:
 	.incbin "baserom.gba", 0xbaa23c, 0x18
 
-	.global gUnk_08BAA254
-gUnk_08BAA254:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA254
+AnimSprite_FirebreathOBJ_Right_08BAA254:
 	.incbin "baserom.gba", 0xbaa254, 0x18
 
-	.global gUnk_08BAA26C
-gUnk_08BAA26C:
+	.global AnimSprite_FirebreathOBJ_Right_08BAA26C
+AnimSprite_FirebreathOBJ_Right_08BAA26C:
 	.incbin "baserom.gba", 0xbaa26c, 0x3c
 
 	.global AnimScr_FirebreathOBJ_Right
 AnimScr_FirebreathOBJ_Right:
-	.4byte gUnk_08BA9714 + 0x2
-	.4byte gUnk_08BA972C + 0x2
-	.4byte gUnk_08BA9750 + 0x2
-	.4byte gUnk_08BA9798 + 0x2
-	.4byte gUnk_08BA97EC + 0x2
-	.4byte gUnk_08BA984C + 0x2
-	.4byte gUnk_08BA9894 + 0x2
-	.4byte gUnk_08BA990C + 0x2
-	.4byte gUnk_08BA99B4 + 0x2
-	.4byte gUnk_08BA9A38 + 0x2
-	.4byte gUnk_08BA9AF8 + 0x2
-	.4byte gUnk_08BA9BE8 + 0x2
-	.4byte gUnk_08BA9C84 + 0x2
-	.4byte gUnk_08BA9CFC + 0x2
-	.4byte gUnk_08BA9DA4 + 0x2
-	.4byte gUnk_08BA9E88 + 0x2
-	.4byte gUnk_08BA9F60 + 0x2
-	.4byte gUnk_08BA9FCC + 0x2
-	.4byte gUnk_08BAA044 + 0x2
-	.4byte gUnk_08BAA0F8 + 0x2
-	.4byte gUnk_08BAA14C + 0x2
-	.4byte gUnk_08BAA1A0 + 0x2
-	.4byte gUnk_08BAA1DC + 0x2
-	.4byte gUnk_08BAA23C + 0x2
-	.4byte gUnk_08BAA254 + 0x2
-	.4byte gUnk_08BAA26C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9714 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA972C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9750 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9798 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA97EC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA984C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9894 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA990C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA99B4 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9A38 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9AF8 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9BE8 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9C84 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9CFC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9DA4 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9E88 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9F60 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BA9FCC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA044 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA0F8 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA14C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA1A0 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA1DC + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA23C + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA254 + 0x2
+	.4byte AnimSprite_FirebreathOBJ_Right_08BAA26C + 0x2
 	.incbin "baserom.gba", 0xbaa310, 0x4
 
-	.global gUnk_08BAA314
-gUnk_08BAA314:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA314
+AnimSprite_IcebreathOBJ_Right_08BAA314:
 	.incbin "baserom.gba", 0xbaa314, 0x18
 
-	.global gUnk_08BAA32C
-gUnk_08BAA32C:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA32C
+AnimSprite_IcebreathOBJ_Right_08BAA32C:
 	.incbin "baserom.gba", 0xbaa32c, 0x24
 
-	.global gUnk_08BAA350
-gUnk_08BAA350:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA350
+AnimSprite_IcebreathOBJ_Right_08BAA350:
 	.incbin "baserom.gba", 0xbaa350, 0x48
 
-	.global gUnk_08BAA398
-gUnk_08BAA398:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA398
+AnimSprite_IcebreathOBJ_Right_08BAA398:
 	.incbin "baserom.gba", 0xbaa398, 0x54
 
-	.global gUnk_08BAA3EC
-gUnk_08BAA3EC:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA3EC
+AnimSprite_IcebreathOBJ_Right_08BAA3EC:
 	.incbin "baserom.gba", 0xbaa3ec, 0x60
 
-	.global gUnk_08BAA44C
-gUnk_08BAA44C:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA44C
+AnimSprite_IcebreathOBJ_Right_08BAA44C:
 	.incbin "baserom.gba", 0xbaa44c, 0x48
 
-	.global gUnk_08BAA494
-gUnk_08BAA494:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA494
+AnimSprite_IcebreathOBJ_Right_08BAA494:
 	.incbin "baserom.gba", 0xbaa494, 0x78
 
-	.global gUnk_08BAA50C
-gUnk_08BAA50C:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA50C
+AnimSprite_IcebreathOBJ_Right_08BAA50C:
 	.incbin "baserom.gba", 0xbaa50c, 0xa8
 
-	.global gUnk_08BAA5B4
-gUnk_08BAA5B4:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA5B4
+AnimSprite_IcebreathOBJ_Right_08BAA5B4:
 	.incbin "baserom.gba", 0xbaa5b4, 0xa8
 
-	.global gUnk_08BAA65C
-gUnk_08BAA65C:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA65C
+AnimSprite_IcebreathOBJ_Right_08BAA65C:
 	.incbin "baserom.gba", 0xbaa65c, 0xb4
 
-	.global gUnk_08BAA710
-gUnk_08BAA710:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA710
+AnimSprite_IcebreathOBJ_Right_08BAA710:
 	.incbin "baserom.gba", 0xbaa710, 0xf0
 
-	.global gUnk_08BAA800
-gUnk_08BAA800:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA800
+AnimSprite_IcebreathOBJ_Right_08BAA800:
 	.incbin "baserom.gba", 0xbaa800, 0x9c
 
-	.global gUnk_08BAA89C
-gUnk_08BAA89C:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA89C
+AnimSprite_IcebreathOBJ_Right_08BAA89C:
 	.incbin "baserom.gba", 0xbaa89c, 0x78
 
-	.global gUnk_08BAA914
-gUnk_08BAA914:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA914
+AnimSprite_IcebreathOBJ_Right_08BAA914:
 	.incbin "baserom.gba", 0xbaa914, 0xa8
 
-	.global gUnk_08BAA9BC
-gUnk_08BAA9BC:
+	.global AnimSprite_IcebreathOBJ_Right_08BAA9BC
+AnimSprite_IcebreathOBJ_Right_08BAA9BC:
 	.incbin "baserom.gba", 0xbaa9bc, 0xe4
 
-	.global gUnk_08BAAAA0
-gUnk_08BAAAA0:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAAA0
+AnimSprite_IcebreathOBJ_Right_08BAAAA0:
 	.incbin "baserom.gba", 0xbaaaa0, 0xd8
 
-	.global gUnk_08BAAB78
-gUnk_08BAAB78:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAB78
+AnimSprite_IcebreathOBJ_Right_08BAAB78:
 	.incbin "baserom.gba", 0xbaab78, 0x6c
 
-	.global gUnk_08BAABE4
-gUnk_08BAABE4:
+	.global AnimSprite_IcebreathOBJ_Right_08BAABE4
+AnimSprite_IcebreathOBJ_Right_08BAABE4:
 	.incbin "baserom.gba", 0xbaabe4, 0x78
 
-	.global gUnk_08BAAC5C
-gUnk_08BAAC5C:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAC5C
+AnimSprite_IcebreathOBJ_Right_08BAAC5C:
 	.incbin "baserom.gba", 0xbaac5c, 0xb4
 
-	.global gUnk_08BAAD10
-gUnk_08BAAD10:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAD10
+AnimSprite_IcebreathOBJ_Right_08BAAD10:
 	.incbin "baserom.gba", 0xbaad10, 0x54
 
-	.global gUnk_08BAAD64
-gUnk_08BAAD64:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAD64
+AnimSprite_IcebreathOBJ_Right_08BAAD64:
 	.incbin "baserom.gba", 0xbaad64, 0x54
 
-	.global gUnk_08BAADB8
-gUnk_08BAADB8:
+	.global AnimSprite_IcebreathOBJ_Right_08BAADB8
+AnimSprite_IcebreathOBJ_Right_08BAADB8:
 	.incbin "baserom.gba", 0xbaadb8, 0x3c
 
-	.global gUnk_08BAADF4
-gUnk_08BAADF4:
+	.global AnimSprite_IcebreathOBJ_Right_08BAADF4
+AnimSprite_IcebreathOBJ_Right_08BAADF4:
 	.incbin "baserom.gba", 0xbaadf4, 0x60
 
-	.global gUnk_08BAAE54
-gUnk_08BAAE54:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAE54
+AnimSprite_IcebreathOBJ_Right_08BAAE54:
 	.incbin "baserom.gba", 0xbaae54, 0x30
 
-	.global gUnk_08BAAE84
-gUnk_08BAAE84:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAE84
+AnimSprite_IcebreathOBJ_Right_08BAAE84:
 	.incbin "baserom.gba", 0xbaae84, 0x18
 
-	.global gUnk_08BAAE9C
-gUnk_08BAAE9C:
+	.global AnimSprite_IcebreathOBJ_Right_08BAAE9C
+AnimSprite_IcebreathOBJ_Right_08BAAE9C:
 	.incbin "baserom.gba", 0xbaae9c, 0x3c
 
 	.global AnimScr_IcebreathOBJ_Right
 AnimScr_IcebreathOBJ_Right:
-	.4byte gUnk_08BAA314 + 0x2
-	.4byte gUnk_08BAA32C + 0x2
-	.4byte gUnk_08BAA350 + 0x2
-	.4byte gUnk_08BAA398 + 0x2
-	.4byte gUnk_08BAA3EC + 0x2
-	.4byte gUnk_08BAA44C + 0x2
-	.4byte gUnk_08BAA494 + 0x2
-	.4byte gUnk_08BAA50C + 0x2
-	.4byte gUnk_08BAA5B4 + 0x2
-	.4byte gUnk_08BAA65C + 0x2
-	.4byte gUnk_08BAA710 + 0x2
-	.4byte gUnk_08BAA800 + 0x2
-	.4byte gUnk_08BAA89C + 0x2
-	.4byte gUnk_08BAA914 + 0x2
-	.4byte gUnk_08BAA9BC + 0x2
-	.4byte gUnk_08BAAAA0 + 0x2
-	.4byte gUnk_08BAAB78 + 0x2
-	.4byte gUnk_08BAABE4 + 0x2
-	.4byte gUnk_08BAAC5C + 0x2
-	.4byte gUnk_08BAAD10 + 0x2
-	.4byte gUnk_08BAAD64 + 0x2
-	.4byte gUnk_08BAADB8 + 0x2
-	.4byte gUnk_08BAADF4 + 0x2
-	.4byte gUnk_08BAAE54 + 0x2
-	.4byte gUnk_08BAAE84 + 0x2
-	.4byte gUnk_08BAAE9C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA314 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA32C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA350 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA398 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA3EC + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA44C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA494 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA50C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA5B4 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA65C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA710 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA800 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA89C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA914 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAA9BC + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAAA0 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAB78 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAABE4 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAC5C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAD10 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAD64 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAADB8 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAADF4 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAE54 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAE84 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Right_08BAAE9C + 0x2
 	.incbin "baserom.gba", 0xbaaf40, 0x4
 
-	.global gUnk_08BAAF44
-gUnk_08BAAF44:
+	.global AnimSprite_IcebreathOBJ_Left_08BAAF44
+AnimSprite_IcebreathOBJ_Left_08BAAF44:
 	.incbin "baserom.gba", 0xbaaf44, 0x18
 
-	.global gUnk_08BAAF5C
-gUnk_08BAAF5C:
+	.global AnimSprite_IcebreathOBJ_Left_08BAAF5C
+AnimSprite_IcebreathOBJ_Left_08BAAF5C:
 	.incbin "baserom.gba", 0xbaaf5c, 0x24
 
-	.global gUnk_08BAAF80
-gUnk_08BAAF80:
+	.global AnimSprite_IcebreathOBJ_Left_08BAAF80
+AnimSprite_IcebreathOBJ_Left_08BAAF80:
 	.incbin "baserom.gba", 0xbaaf80, 0x48
 
-	.global gUnk_08BAAFC8
-gUnk_08BAAFC8:
+	.global AnimSprite_IcebreathOBJ_Left_08BAAFC8
+AnimSprite_IcebreathOBJ_Left_08BAAFC8:
 	.incbin "baserom.gba", 0xbaafc8, 0x54
 
-	.global gUnk_08BAB01C
-gUnk_08BAB01C:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB01C
+AnimSprite_IcebreathOBJ_Left_08BAB01C:
 	.incbin "baserom.gba", 0xbab01c, 0x60
 
-	.global gUnk_08BAB07C
-gUnk_08BAB07C:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB07C
+AnimSprite_IcebreathOBJ_Left_08BAB07C:
 	.incbin "baserom.gba", 0xbab07c, 0x48
 
-	.global gUnk_08BAB0C4
-gUnk_08BAB0C4:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB0C4
+AnimSprite_IcebreathOBJ_Left_08BAB0C4:
 	.incbin "baserom.gba", 0xbab0c4, 0x78
 
-	.global gUnk_08BAB13C
-gUnk_08BAB13C:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB13C
+AnimSprite_IcebreathOBJ_Left_08BAB13C:
 	.incbin "baserom.gba", 0xbab13c, 0xa8
 
-	.global gUnk_08BAB1E4
-gUnk_08BAB1E4:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB1E4
+AnimSprite_IcebreathOBJ_Left_08BAB1E4:
 	.incbin "baserom.gba", 0xbab1e4, 0xa8
 
-	.global gUnk_08BAB28C
-gUnk_08BAB28C:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB28C
+AnimSprite_IcebreathOBJ_Left_08BAB28C:
 	.incbin "baserom.gba", 0xbab28c, 0xb4
 
-	.global gUnk_08BAB340
-gUnk_08BAB340:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB340
+AnimSprite_IcebreathOBJ_Left_08BAB340:
 	.incbin "baserom.gba", 0xbab340, 0xf0
 
-	.global gUnk_08BAB430
-gUnk_08BAB430:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB430
+AnimSprite_IcebreathOBJ_Left_08BAB430:
 	.incbin "baserom.gba", 0xbab430, 0x9c
 
-	.global gUnk_08BAB4CC
-gUnk_08BAB4CC:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB4CC
+AnimSprite_IcebreathOBJ_Left_08BAB4CC:
 	.incbin "baserom.gba", 0xbab4cc, 0x78
 
-	.global gUnk_08BAB544
-gUnk_08BAB544:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB544
+AnimSprite_IcebreathOBJ_Left_08BAB544:
 	.incbin "baserom.gba", 0xbab544, 0xa8
 
-	.global gUnk_08BAB5EC
-gUnk_08BAB5EC:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB5EC
+AnimSprite_IcebreathOBJ_Left_08BAB5EC:
 	.incbin "baserom.gba", 0xbab5ec, 0xe4
 
-	.global gUnk_08BAB6D0
-gUnk_08BAB6D0:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB6D0
+AnimSprite_IcebreathOBJ_Left_08BAB6D0:
 	.incbin "baserom.gba", 0xbab6d0, 0xd8
 
-	.global gUnk_08BAB7A8
-gUnk_08BAB7A8:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB7A8
+AnimSprite_IcebreathOBJ_Left_08BAB7A8:
 	.incbin "baserom.gba", 0xbab7a8, 0x6c
 
-	.global gUnk_08BAB814
-gUnk_08BAB814:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB814
+AnimSprite_IcebreathOBJ_Left_08BAB814:
 	.incbin "baserom.gba", 0xbab814, 0x78
 
-	.global gUnk_08BAB88C
-gUnk_08BAB88C:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB88C
+AnimSprite_IcebreathOBJ_Left_08BAB88C:
 	.incbin "baserom.gba", 0xbab88c, 0xb4
 
-	.global gUnk_08BAB940
-gUnk_08BAB940:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB940
+AnimSprite_IcebreathOBJ_Left_08BAB940:
 	.incbin "baserom.gba", 0xbab940, 0x54
 
-	.global gUnk_08BAB994
-gUnk_08BAB994:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB994
+AnimSprite_IcebreathOBJ_Left_08BAB994:
 	.incbin "baserom.gba", 0xbab994, 0x54
 
-	.global gUnk_08BAB9E8
-gUnk_08BAB9E8:
+	.global AnimSprite_IcebreathOBJ_Left_08BAB9E8
+AnimSprite_IcebreathOBJ_Left_08BAB9E8:
 	.incbin "baserom.gba", 0xbab9e8, 0x3c
 
-	.global gUnk_08BABA24
-gUnk_08BABA24:
+	.global AnimSprite_IcebreathOBJ_Left_08BABA24
+AnimSprite_IcebreathOBJ_Left_08BABA24:
 	.incbin "baserom.gba", 0xbaba24, 0x60
 
-	.global gUnk_08BABA84
-gUnk_08BABA84:
+	.global AnimSprite_IcebreathOBJ_Left_08BABA84
+AnimSprite_IcebreathOBJ_Left_08BABA84:
 	.incbin "baserom.gba", 0xbaba84, 0x30
 
-	.global gUnk_08BABAB4
-gUnk_08BABAB4:
+	.global AnimSprite_IcebreathOBJ_Left_08BABAB4
+AnimSprite_IcebreathOBJ_Left_08BABAB4:
 	.incbin "baserom.gba", 0xbabab4, 0x18
 
-	.global gUnk_08BABACC
-gUnk_08BABACC:
+	.global AnimSprite_IcebreathOBJ_Left_08BABACC
+AnimSprite_IcebreathOBJ_Left_08BABACC:
 	.incbin "baserom.gba", 0xbabacc, 0x3c
 
 	.global AnimScr_IcebreathOBJ_Left
 AnimScr_IcebreathOBJ_Left:
-	.4byte gUnk_08BAAF44 + 0x2
-	.4byte gUnk_08BAAF5C + 0x2
-	.4byte gUnk_08BAAF80 + 0x2
-	.4byte gUnk_08BAAFC8 + 0x2
-	.4byte gUnk_08BAB01C + 0x2
-	.4byte gUnk_08BAB07C + 0x2
-	.4byte gUnk_08BAB0C4 + 0x2
-	.4byte gUnk_08BAB13C + 0x2
-	.4byte gUnk_08BAB1E4 + 0x2
-	.4byte gUnk_08BAB28C + 0x2
-	.4byte gUnk_08BAB340 + 0x2
-	.4byte gUnk_08BAB430 + 0x2
-	.4byte gUnk_08BAB4CC + 0x2
-	.4byte gUnk_08BAB544 + 0x2
-	.4byte gUnk_08BAB5EC + 0x2
-	.4byte gUnk_08BAB6D0 + 0x2
-	.4byte gUnk_08BAB7A8 + 0x2
-	.4byte gUnk_08BAB814 + 0x2
-	.4byte gUnk_08BAB88C + 0x2
-	.4byte gUnk_08BAB940 + 0x2
-	.4byte gUnk_08BAB994 + 0x2
-	.4byte gUnk_08BAB9E8 + 0x2
-	.4byte gUnk_08BABA24 + 0x2
-	.4byte gUnk_08BABA84 + 0x2
-	.4byte gUnk_08BABAB4 + 0x2
-	.4byte gUnk_08BABACC + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAAF44 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAAF5C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAAF80 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAAFC8 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB01C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB07C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB0C4 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB13C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB1E4 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB28C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB340 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB430 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB4CC + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB544 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB5EC + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB6D0 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB7A8 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB814 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB88C + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB940 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB994 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BAB9E8 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BABA24 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BABA84 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BABAB4 + 0x2
+	.4byte AnimSprite_IcebreathOBJ_Left_08BABACC + 0x2
 	.incbin "baserom.gba", 0xbabb70, 0x4
 
-	.global gUnk_08BABB74
-gUnk_08BABB74:
+	.global AnimSprite_DarkBreath_08BABB74
+AnimSprite_DarkBreath_08BABB74:
 	.incbin "baserom.gba", 0xbabb74, 0x18
 
-	.global gUnk_08BABB8C
-gUnk_08BABB8C:
+	.global AnimSprite_DarkBreath_08BABB8C
+AnimSprite_DarkBreath_08BABB8C:
 	.incbin "baserom.gba", 0xbabb8c, 0x24
 
-	.global gUnk_08BABBB0
-gUnk_08BABBB0:
+	.global AnimSprite_DarkBreath_08BABBB0
+AnimSprite_DarkBreath_08BABBB0:
 	.incbin "baserom.gba", 0xbabbb0, 0x48
 
-	.global gUnk_08BABBF8
-gUnk_08BABBF8:
+	.global AnimSprite_DarkBreath_08BABBF8
+AnimSprite_DarkBreath_08BABBF8:
 	.incbin "baserom.gba", 0xbabbf8, 0x54
 
-	.global gUnk_08BABC4C
-gUnk_08BABC4C:
+	.global AnimSprite_DarkBreath_08BABC4C
+AnimSprite_DarkBreath_08BABC4C:
 	.incbin "baserom.gba", 0xbabc4c, 0x60
 
-	.global gUnk_08BABCAC
-gUnk_08BABCAC:
+	.global AnimSprite_DarkBreath_08BABCAC
+AnimSprite_DarkBreath_08BABCAC:
 	.incbin "baserom.gba", 0xbabcac, 0x48
 
-	.global gUnk_08BABCF4
-gUnk_08BABCF4:
+	.global AnimSprite_DarkBreath_08BABCF4
+AnimSprite_DarkBreath_08BABCF4:
 	.incbin "baserom.gba", 0xbabcf4, 0x78
 
-	.global gUnk_08BABD6C
-gUnk_08BABD6C:
+	.global AnimSprite_DarkBreath_08BABD6C
+AnimSprite_DarkBreath_08BABD6C:
 	.incbin "baserom.gba", 0xbabd6c, 0xa8
 
-	.global gUnk_08BABE14
-gUnk_08BABE14:
+	.global AnimSprite_DarkBreath_08BABE14
+AnimSprite_DarkBreath_08BABE14:
 	.incbin "baserom.gba", 0xbabe14, 0xb4
 
-	.global gUnk_08BABEC8
-gUnk_08BABEC8:
+	.global AnimSprite_DarkBreath_08BABEC8
+AnimSprite_DarkBreath_08BABEC8:
 	.incbin "baserom.gba", 0xbabec8, 0xb4
 
-	.global gUnk_08BABF7C
-gUnk_08BABF7C:
+	.global AnimSprite_DarkBreath_08BABF7C
+AnimSprite_DarkBreath_08BABF7C:
 	.incbin "baserom.gba", 0xbabf7c, 0xf0
 
-	.global gUnk_08BAC06C
-gUnk_08BAC06C:
+	.global AnimSprite_DarkBreath_08BAC06C
+AnimSprite_DarkBreath_08BAC06C:
 	.incbin "baserom.gba", 0xbac06c, 0x9c
 
-	.global gUnk_08BAC108
-gUnk_08BAC108:
+	.global AnimSprite_DarkBreath_08BAC108
+AnimSprite_DarkBreath_08BAC108:
 	.incbin "baserom.gba", 0xbac108, 0x78
 
-	.global gUnk_08BAC180
-gUnk_08BAC180:
+	.global AnimSprite_DarkBreath_08BAC180
+AnimSprite_DarkBreath_08BAC180:
 	.incbin "baserom.gba", 0xbac180, 0xa8
 
-	.global gUnk_08BAC228
-gUnk_08BAC228:
+	.global AnimSprite_DarkBreath_08BAC228
+AnimSprite_DarkBreath_08BAC228:
 	.incbin "baserom.gba", 0xbac228, 0xe4
 
-	.global gUnk_08BAC30C
-gUnk_08BAC30C:
+	.global AnimSprite_DarkBreath_08BAC30C
+AnimSprite_DarkBreath_08BAC30C:
 	.incbin "baserom.gba", 0xbac30c, 0xd8
 
-	.global gUnk_08BAC3E4
-gUnk_08BAC3E4:
+	.global AnimSprite_DarkBreath_08BAC3E4
+AnimSprite_DarkBreath_08BAC3E4:
 	.incbin "baserom.gba", 0xbac3e4, 0x6c
 
-	.global gUnk_08BAC450
-gUnk_08BAC450:
+	.global AnimSprite_DarkBreath_08BAC450
+AnimSprite_DarkBreath_08BAC450:
 	.incbin "baserom.gba", 0xbac450, 0x78
 
-	.global gUnk_08BAC4C8
-gUnk_08BAC4C8:
+	.global AnimSprite_DarkBreath_08BAC4C8
+AnimSprite_DarkBreath_08BAC4C8:
 	.incbin "baserom.gba", 0xbac4c8, 0xb4
 
-	.global gUnk_08BAC57C
-gUnk_08BAC57C:
+	.global AnimSprite_DarkBreath_08BAC57C
+AnimSprite_DarkBreath_08BAC57C:
 	.incbin "baserom.gba", 0xbac57c, 0x54
 
-	.global gUnk_08BAC5D0
-gUnk_08BAC5D0:
+	.global AnimSprite_DarkBreath_08BAC5D0
+AnimSprite_DarkBreath_08BAC5D0:
 	.incbin "baserom.gba", 0xbac5d0, 0x54
 
-	.global gUnk_08BAC624
-gUnk_08BAC624:
+	.global AnimSprite_DarkBreath_08BAC624
+AnimSprite_DarkBreath_08BAC624:
 	.incbin "baserom.gba", 0xbac624, 0x3c
 
-	.global gUnk_08BAC660
-gUnk_08BAC660:
+	.global AnimSprite_DarkBreath_08BAC660
+AnimSprite_DarkBreath_08BAC660:
 	.incbin "baserom.gba", 0xbac660, 0x60
 
-	.global gUnk_08BAC6C0
-gUnk_08BAC6C0:
+	.global AnimSprite_DarkBreath_08BAC6C0
+AnimSprite_DarkBreath_08BAC6C0:
 	.incbin "baserom.gba", 0xbac6c0, 0x30
 
-	.global gUnk_08BAC6F0
-gUnk_08BAC6F0:
+	.global AnimSprite_DarkBreath_08BAC6F0
+AnimSprite_DarkBreath_08BAC6F0:
 	.incbin "baserom.gba", 0xbac6f0, 0x18
 
-	.global gUnk_08BAC708
-gUnk_08BAC708:
+	.global AnimSprite_DarkBreath_08BAC708
+AnimSprite_DarkBreath_08BAC708:
 	.incbin "baserom.gba", 0xbac708, 0x3c
 
 	.global AnimScr_DarkBreath
 AnimScr_DarkBreath:
-	.4byte gUnk_08BABB74 + 0x2
-	.4byte gUnk_08BABB8C + 0x2
-	.4byte gUnk_08BABBB0 + 0x2
-	.4byte gUnk_08BABBF8 + 0x2
-	.4byte gUnk_08BABC4C + 0x2
-	.4byte gUnk_08BABCAC + 0x2
-	.4byte gUnk_08BABCF4 + 0x2
-	.4byte gUnk_08BABD6C + 0x2
-	.4byte gUnk_08BABE14 + 0x2
-	.4byte gUnk_08BABEC8 + 0x2
-	.4byte gUnk_08BABF7C + 0x2
-	.4byte gUnk_08BAC06C + 0x2
-	.4byte gUnk_08BAC108 + 0x2
-	.4byte gUnk_08BAC180 + 0x2
-	.4byte gUnk_08BAC228 + 0x2
-	.4byte gUnk_08BAC30C + 0x2
-	.4byte gUnk_08BAC3E4 + 0x2
-	.4byte gUnk_08BAC450 + 0x2
-	.4byte gUnk_08BAC4C8 + 0x2
-	.4byte gUnk_08BAC57C + 0x2
-	.4byte gUnk_08BAC5D0 + 0x2
-	.4byte gUnk_08BAC624 + 0x2
-	.4byte gUnk_08BAC660 + 0x2
-	.4byte gUnk_08BAC6C0 + 0x2
-	.4byte gUnk_08BAC6F0 + 0x2
-	.4byte gUnk_08BAC708 + 0x2
+	.4byte AnimSprite_DarkBreath_08BABB74 + 0x2
+	.4byte AnimSprite_DarkBreath_08BABB8C + 0x2
+	.4byte AnimSprite_DarkBreath_08BABBB0 + 0x2
+	.4byte AnimSprite_DarkBreath_08BABBF8 + 0x2
+	.4byte AnimSprite_DarkBreath_08BABC4C + 0x2
+	.4byte AnimSprite_DarkBreath_08BABCAC + 0x2
+	.4byte AnimSprite_DarkBreath_08BABCF4 + 0x2
+	.4byte AnimSprite_DarkBreath_08BABD6C + 0x2
+	.4byte AnimSprite_DarkBreath_08BABE14 + 0x2
+	.4byte AnimSprite_DarkBreath_08BABEC8 + 0x2
+	.4byte AnimSprite_DarkBreath_08BABF7C + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC06C + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC108 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC180 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC228 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC30C + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC3E4 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC450 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC4C8 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC57C + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC5D0 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC624 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC660 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC6C0 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC6F0 + 0x2
+	.4byte AnimSprite_DarkBreath_08BAC708 + 0x2
 	.incbin "baserom.gba", 0xbac7ac, 0x4
 
-	.global gUnk_08BAC7B0
-gUnk_08BAC7B0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC7B0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC7B0:
 	.incbin "baserom.gba", 0xbac7b0, 0x24
 
-	.global gUnk_08BAC7D4
-gUnk_08BAC7D4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC7D4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC7D4:
 	.incbin "baserom.gba", 0xbac7d4, 0x3c
 
-	.global gUnk_08BAC810
-gUnk_08BAC810:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC810
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC810:
 	.incbin "baserom.gba", 0xbac810, 0x3c
 
-	.global gUnk_08BAC84C
-gUnk_08BAC84C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC84C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC84C:
 	.incbin "baserom.gba", 0xbac84c, 0x30
 
-	.global gUnk_08BAC87C
-gUnk_08BAC87C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC87C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC87C:
 	.incbin "baserom.gba", 0xbac87c, 0x3c
 
-	.global gUnk_08BAC8B8
-gUnk_08BAC8B8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC8B8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC8B8:
 	.incbin "baserom.gba", 0xbac8b8, 0x3c
 
-	.global gUnk_08BAC8F4
-gUnk_08BAC8F4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC8F4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC8F4:
 	.incbin "baserom.gba", 0xbac8f4, 0x3c
 
-	.global gUnk_08BAC930
-gUnk_08BAC930:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC930
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC930:
 	.incbin "baserom.gba", 0xbac930, 0x24
 
-	.global gUnk_08BAC954
-gUnk_08BAC954:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC954
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC954:
 	.incbin "baserom.gba", 0xbac954, 0x3c
 
-	.global gUnk_08BAC990
-gUnk_08BAC990:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC990
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC990:
 	.incbin "baserom.gba", 0xbac990, 0x3c
 
-	.global gUnk_08BAC9CC
-gUnk_08BAC9CC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC9CC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC9CC:
 	.incbin "baserom.gba", 0xbac9cc, 0x3c
 
-	.global gUnk_08BACA08
-gUnk_08BACA08:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA08
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA08:
 	.incbin "baserom.gba", 0xbaca08, 0x3c
 
-	.global gUnk_08BACA44
-gUnk_08BACA44:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA44
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA44:
 	.incbin "baserom.gba", 0xbaca44, 0x3c
 
-	.global gUnk_08BACA80
-gUnk_08BACA80:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA80
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA80:
 	.incbin "baserom.gba", 0xbaca80, 0x3c
 
-	.global gUnk_08BACABC
-gUnk_08BACABC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACABC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACABC:
 	.incbin "baserom.gba", 0xbacabc, 0x30
 
-	.global gUnk_08BACAEC
-gUnk_08BACAEC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACAEC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACAEC:
 	.incbin "baserom.gba", 0xbacaec, 0x3c
 
-	.global gUnk_08BACB28
-gUnk_08BACB28:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACB28
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACB28:
 	.incbin "baserom.gba", 0xbacb28, 0x3c
 
-	.global gUnk_08BACB64
-gUnk_08BACB64:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACB64
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACB64:
 	.incbin "baserom.gba", 0xbacb64, 0x3c
 
-	.global gUnk_08BACBA0
-gUnk_08BACBA0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACBA0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACBA0:
 	.incbin "baserom.gba", 0xbacba0, 0x30
 
-	.global gUnk_08BACBD0
-gUnk_08BACBD0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACBD0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACBD0:
 	.incbin "baserom.gba", 0xbacbd0, 0x3c
 
-	.global gUnk_08BACC0C
-gUnk_08BACC0C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC0C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC0C:
 	.incbin "baserom.gba", 0xbacc0c, 0x3c
 
-	.global gUnk_08BACC48
-gUnk_08BACC48:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC48
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC48:
 	.incbin "baserom.gba", 0xbacc48, 0x24
 
-	.global gUnk_08BACC6C
-gUnk_08BACC6C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC6C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC6C:
 	.incbin "baserom.gba", 0xbacc6c, 0x3c
 
-	.global gUnk_08BACCA8
-gUnk_08BACCA8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACCA8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACCA8:
 	.incbin "baserom.gba", 0xbacca8, 0x3c
 
-	.global gUnk_08BACCE4
-gUnk_08BACCE4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACCE4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACCE4:
 	.incbin "baserom.gba", 0xbacce4, 0x3c
 
-	.global gUnk_08BACD20
-gUnk_08BACD20:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD20
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD20:
 	.incbin "baserom.gba", 0xbacd20, 0x3c
 
-	.global gUnk_08BACD5C
-gUnk_08BACD5C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD5C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD5C:
 	.incbin "baserom.gba", 0xbacd5c, 0x3c
 
-	.global gUnk_08BACD98
-gUnk_08BACD98:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD98
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD98:
 	.incbin "baserom.gba", 0xbacd98, 0x3c
 
-	.global gUnk_08BACDD4
-gUnk_08BACDD4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACDD4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACDD4:
 	.incbin "baserom.gba", 0xbacdd4, 0x3c
 
-	.global gUnk_08BACE10
-gUnk_08BACE10:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE10
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE10:
 	.incbin "baserom.gba", 0xbace10, 0x3c
 
-	.global gUnk_08BACE4C
-gUnk_08BACE4C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE4C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE4C:
 	.incbin "baserom.gba", 0xbace4c, 0x3c
 
-	.global gUnk_08BACE88
-gUnk_08BACE88:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE88
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE88:
 	.incbin "baserom.gba", 0xbace88, 0x3c
 
-	.global gUnk_08BACEC4
-gUnk_08BACEC4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACEC4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACEC4:
 	.incbin "baserom.gba", 0xbacec4, 0x3c
 
-	.global gUnk_08BACF00
-gUnk_08BACF00:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF00
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF00:
 	.incbin "baserom.gba", 0xbacf00, 0x3c
 
-	.global gUnk_08BACF3C
-gUnk_08BACF3C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF3C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF3C:
 	.incbin "baserom.gba", 0xbacf3c, 0x3c
 
-	.global gUnk_08BACF78
-gUnk_08BACF78:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF78
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF78:
 	.incbin "baserom.gba", 0xbacf78, 0x30
 
-	.global gUnk_08BACFA8
-gUnk_08BACFA8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACFA8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACFA8:
 	.incbin "baserom.gba", 0xbacfa8, 0x3c
 
-	.global gUnk_08BACFE4
-gUnk_08BACFE4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACFE4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACFE4:
 	.incbin "baserom.gba", 0xbacfe4, 0x3c
 
-	.global gUnk_08BAD020
-gUnk_08BAD020:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD020
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD020:
 	.incbin "baserom.gba", 0xbad020, 0x3c
 
-	.global gUnk_08BAD05C
-gUnk_08BAD05C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD05C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD05C:
 	.incbin "baserom.gba", 0xbad05c, 0x3c
 
-	.global gUnk_08BAD098
-gUnk_08BAD098:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD098
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD098:
 	.incbin "baserom.gba", 0xbad098, 0x3c
 
-	.global gUnk_08BAD0D4
-gUnk_08BAD0D4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD0D4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD0D4:
 	.incbin "baserom.gba", 0xbad0d4, 0x3c
 
-	.global gUnk_08BAD110
-gUnk_08BAD110:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD110
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD110:
 	.incbin "baserom.gba", 0xbad110, 0x3c
 
-	.global gUnk_08BAD14C
-gUnk_08BAD14C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD14C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD14C:
 	.incbin "baserom.gba", 0xbad14c, 0x3c
 
-	.global gUnk_08BAD188
-gUnk_08BAD188:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD188
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD188:
 	.incbin "baserom.gba", 0xbad188, 0x3c
 
-	.global gUnk_08BAD1C4
-gUnk_08BAD1C4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD1C4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD1C4:
 	.incbin "baserom.gba", 0xbad1c4, 0x3c
 
-	.global gUnk_08BAD200
-gUnk_08BAD200:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD200
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD200:
 	.incbin "baserom.gba", 0xbad200, 0x3c
 
-	.global gUnk_08BAD23C
-gUnk_08BAD23C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD23C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD23C:
 	.incbin "baserom.gba", 0xbad23c, 0x3c
 
-	.global gUnk_08BAD278
-gUnk_08BAD278:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD278
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD278:
 	.incbin "baserom.gba", 0xbad278, 0x3c
 
-	.global gUnk_08BAD2B4
-gUnk_08BAD2B4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD2B4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD2B4:
 	.incbin "baserom.gba", 0xbad2b4, 0x3c
 
-	.global gUnk_08BAD2F0
-gUnk_08BAD2F0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD2F0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD2F0:
 	.incbin "baserom.gba", 0xbad2f0, 0x3c
 
-	.global gUnk_08BAD32C
-gUnk_08BAD32C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD32C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD32C:
 	.incbin "baserom.gba", 0xbad32c, 0x3c
 
-	.global gUnk_08BAD368
-gUnk_08BAD368:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD368
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD368:
 	.incbin "baserom.gba", 0xbad368, 0x3c
 
-	.global gUnk_08BAD3A4
-gUnk_08BAD3A4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD3A4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD3A4:
 	.incbin "baserom.gba", 0xbad3a4, 0x3c
 
-	.global gUnk_08BAD3E0
-gUnk_08BAD3E0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD3E0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD3E0:
 	.incbin "baserom.gba", 0xbad3e0, 0x3c
 
-	.global gUnk_08BAD41C
-gUnk_08BAD41C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD41C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD41C:
 	.incbin "baserom.gba", 0xbad41c, 0x3c
 
-	.global gUnk_08BAD458
-gUnk_08BAD458:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD458
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD458:
 	.incbin "baserom.gba", 0xbad458, 0x3c
 
-	.global gUnk_08BAD494
-gUnk_08BAD494:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD494
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD494:
 	.incbin "baserom.gba", 0xbad494, 0x30
 
-	.global gUnk_08BAD4C4
-gUnk_08BAD4C4:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD4C4
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD4C4:
 	.incbin "baserom.gba", 0xbad4c4, 0x3c
 
-	.global gUnk_08BAD500
-gUnk_08BAD500:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD500
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD500:
 	.incbin "baserom.gba", 0xbad500, 0x3c
 
-	.global gUnk_08BAD53C
-gUnk_08BAD53C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD53C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD53C:
 	.incbin "baserom.gba", 0xbad53c, 0x3c
 
-	.global gUnk_08BAD578
-gUnk_08BAD578:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD578
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD578:
 	.incbin "baserom.gba", 0xbad578, 0x30
 
-	.global gUnk_08BAD5A8
-gUnk_08BAD5A8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD5A8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD5A8:
 	.incbin "baserom.gba", 0xbad5a8, 0x3c
 
-	.global gUnk_08BAD5E4
-gUnk_08BAD5E4:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD5E4
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD5E4:
 	.incbin "baserom.gba", 0xbad5e4, 0x24
 
-	.global gUnk_08BAD608
-gUnk_08BAD608:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD608
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD608:
 	.incbin "baserom.gba", 0xbad608, 0x24
 
-	.global gUnk_08BAD62C
-gUnk_08BAD62C:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD62C
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD62C:
 	.incbin "baserom.gba", 0xbad62c, 0x24
 
-	.global gUnk_08BAD650
-gUnk_08BAD650:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD650
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD650:
 	.incbin "baserom.gba", 0xbad650, 0x24
 
-	.global gUnk_08BAD674
-gUnk_08BAD674:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD674
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD674:
 	.incbin "baserom.gba", 0xbad674, 0x24
 
-	.global gUnk_08BAD698
-gUnk_08BAD698:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD698
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD698:
 	.incbin "baserom.gba", 0xbad698, 0x24
 
-	.global gUnk_08BAD6BC
-gUnk_08BAD6BC:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD6BC
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD6BC:
 	.incbin "baserom.gba", 0xbad6bc, 0x24
 
-	.global gUnk_08BAD6E0
-gUnk_08BAD6E0:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD6E0
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD6E0:
 	.incbin "baserom.gba", 0xbad6e0, 0x24
 
-	.global gUnk_08BAD704
-gUnk_08BAD704:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD704
+AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD704:
 	.incbin "baserom.gba", 0xbad704, 0x24
 
-	.global gUnk_08BAD728
-gUnk_08BAD728:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD728
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD728:
 	.incbin "baserom.gba", 0xbad728, 0x24
 
-	.global gUnk_08BAD74C
-gUnk_08BAD74C:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD74C
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD74C:
 	.incbin "baserom.gba", 0xbad74c, 0x24
 
-	.global gUnk_08BAD770
-gUnk_08BAD770:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD770
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD770:
 	.incbin "baserom.gba", 0xbad770, 0x24
 
-	.global gUnk_08BAD794
-gUnk_08BAD794:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD794
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD794:
 	.incbin "baserom.gba", 0xbad794, 0x24
 
-	.global gUnk_08BAD7B8
-gUnk_08BAD7B8:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD7B8
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD7B8:
 	.incbin "baserom.gba", 0xbad7b8, 0x24
 
-	.global gUnk_08BAD7DC
-gUnk_08BAD7DC:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD7DC
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD7DC:
 	.incbin "baserom.gba", 0xbad7dc, 0x24
 
-	.global gUnk_08BAD800
-gUnk_08BAD800:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD800
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD800:
 	.incbin "baserom.gba", 0xbad800, 0x24
 
-	.global gUnk_08BAD824
-gUnk_08BAD824:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD824
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD824:
 	.incbin "baserom.gba", 0xbad824, 0x24
 
-	.global gUnk_08BAD848
-gUnk_08BAD848:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD848
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD848:
 	.incbin "baserom.gba", 0xbad848, 0x24
 
-	.global gUnk_08BAD86C
-gUnk_08BAD86C:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD86C
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD86C:
 	.incbin "baserom.gba", 0xbad86c, 0x24
 
-	.global gUnk_08BAD890
-gUnk_08BAD890:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD890
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD890:
 	.incbin "baserom.gba", 0xbad890, 0x24
 
-	.global gUnk_08BAD8B4
-gUnk_08BAD8B4:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD8B4
+AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD8B4:
 	.incbin "baserom.gba", 0xbad8b4, 0x24
 
-	.global gUnk_08BAD8D8
-gUnk_08BAD8D8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD8D8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD8D8:
 	.incbin "baserom.gba", 0xbad8d8, 0x18
 
 	.global AnimScr_YushaSpinShieldOBJ_LeftTypeA
 AnimScr_YushaSpinShieldOBJ_LeftTypeA:
-	.4byte gUnk_08BAC7B0 + 0x1
-	.4byte gUnk_08BAC7D4 + 0x1
-	.4byte gUnk_08BAC810 + 0x1
-	.4byte gUnk_08BAC84C + 0x1
-	.4byte gUnk_08BAC87C + 0x1
-	.4byte gUnk_08BAC8B8 + 0x1
-	.4byte gUnk_08BAC8F4 + 0x1
-	.4byte gUnk_08BAC930 + 0x1
-	.4byte gUnk_08BAC954 + 0x1
-	.4byte gUnk_08BAC990 + 0x1
-	.4byte gUnk_08BAC9CC + 0x1
-	.4byte gUnk_08BACA08 + 0x1
-	.4byte gUnk_08BACA44 + 0x1
-	.4byte gUnk_08BACA80 + 0x1
-	.4byte gUnk_08BACABC + 0x1
-	.4byte gUnk_08BACAEC + 0x1
-	.4byte gUnk_08BACB28 + 0x1
-	.4byte gUnk_08BACB64 + 0x1
-	.4byte gUnk_08BACBA0 + 0x1
-	.4byte gUnk_08BACBD0 + 0x1
-	.4byte gUnk_08BACC0C + 0x1
-	.4byte gUnk_08BACC48 + 0x1
-	.4byte gUnk_08BACC6C + 0x1
-	.4byte gUnk_08BACCA8 + 0x1
-	.4byte gUnk_08BACCE4 + 0x1
-	.4byte gUnk_08BACD20 + 0x1
-	.4byte gUnk_08BACD5C + 0x1
-	.4byte gUnk_08BACD98 + 0x1
-	.4byte gUnk_08BACDD4 + 0x1
-	.4byte gUnk_08BACE10 + 0x1
-	.4byte gUnk_08BACE4C + 0x1
-	.4byte gUnk_08BACE88 + 0x1
-	.4byte gUnk_08BACEC4 + 0x1
-	.4byte gUnk_08BACF00 + 0x1
-	.4byte gUnk_08BACF3C + 0x1
-	.4byte gUnk_08BACF78 + 0x1
-	.4byte gUnk_08BACFA8 + 0x1
-	.4byte gUnk_08BACFE4 + 0x1
-	.4byte gUnk_08BAD020 + 0x1
-	.4byte gUnk_08BAD05C + 0x1
-	.4byte gUnk_08BAD098 + 0x1
-	.4byte gUnk_08BAD0D4 + 0x1
-	.4byte gUnk_08BAD110 + 0x1
-	.4byte gUnk_08BAD14C + 0x1
-	.4byte gUnk_08BAD188 + 0x1
-	.4byte gUnk_08BAD1C4 + 0x1
-	.4byte gUnk_08BAD200 + 0x1
-	.4byte gUnk_08BAD23C + 0x1
-	.4byte gUnk_08BAD278 + 0x1
-	.4byte gUnk_08BAD2B4 + 0x1
-	.4byte gUnk_08BAD2F0 + 0x2
-	.4byte gUnk_08BAD32C + 0x1
-	.4byte gUnk_08BAD368 + 0x1
-	.4byte gUnk_08BAD3A4 + 0x1
-	.4byte gUnk_08BAD3E0 + 0x2
-	.4byte gUnk_08BAD41C + 0x1
-	.4byte gUnk_08BAD458 + 0x1
-	.4byte gUnk_08BAD494 + 0x1
-	.4byte gUnk_08BAD4C4 + 0x2
-	.4byte gUnk_08BAD500 + 0x1
-	.4byte gUnk_08BAD53C + 0x1
-	.4byte gUnk_08BAD578 + 0x1
-	.4byte gUnk_08BAD5A8 + 0x2
-	.4byte gUnk_08BAD8D8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC7B0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC7D4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC810 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC84C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC87C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC8B8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC8F4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC930 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC954 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC990 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAC9CC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA08 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA44 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACA80 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACABC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACAEC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACB28 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACB64 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACBA0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACBD0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC0C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC48 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACC6C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACCA8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACCE4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD20 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD5C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACD98 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACDD4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE10 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE4C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACE88 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACEC4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF00 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF3C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACF78 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACFA8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BACFE4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD020 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD05C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD098 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD0D4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD110 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD14C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD188 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD1C4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD200 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD23C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD278 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD2B4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD2F0 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD32C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD368 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD3A4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD3E0 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD41C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD458 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD494 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD4C4 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD500 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD53C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD578 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD5A8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeA_08BAD8D8 + 0x2
 	.incbin "baserom.gba", 0xbad9f0, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ2_RightTypeA
 AnimScr_YushaSpinShieldOBJ2_RightTypeA:
-	.4byte gUnk_08BAD5E4 + 0x1
-	.4byte gUnk_08BAD608 + 0x1
-	.4byte gUnk_08BAD62C + 0x1
-	.4byte gUnk_08BAD650 + 0x1
-	.4byte gUnk_08BAD674 + 0x1
-	.4byte gUnk_08BAD698 + 0x1
-	.4byte gUnk_08BAD6BC + 0x1
-	.4byte gUnk_08BAD6E0 + 0x1
-	.4byte gUnk_08BAD704 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD5E4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD608 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD62C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD650 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD674 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD698 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD6BC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD6E0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeA_08BAD704 + 0x1
 	.incbin "baserom.gba", 0xbada18, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ3_RightTypeA
 AnimScr_YushaSpinShieldOBJ3_RightTypeA:
-	.4byte gUnk_08BAD728 + 0x1
-	.4byte gUnk_08BAD74C + 0x1
-	.4byte gUnk_08BAD770 + 0x1
-	.4byte gUnk_08BAD794 + 0x2
-	.4byte gUnk_08BAD7B8 + 0x2
-	.4byte gUnk_08BAD7DC + 0x2
-	.4byte gUnk_08BAD800 + 0x2
-	.4byte gUnk_08BAD824 + 0x2
-	.4byte gUnk_08BAD848 + 0x2
-	.4byte gUnk_08BAD86C + 0x2
-	.4byte gUnk_08BAD890 + 0x2
-	.4byte gUnk_08BAD8B4 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD728 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD74C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD770 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD794 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD7B8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD7DC + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD800 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD824 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD848 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD86C + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD890 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeA_08BAD8B4 + 0x2
 	.incbin "baserom.gba", 0xbada4c, 0x4
 
-	.global gUnk_08BADA50
-gUnk_08BADA50:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADA50
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADA50:
 	.incbin "baserom.gba", 0xbada50, 0x24
 
-	.global gUnk_08BADA74
-gUnk_08BADA74:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADA74
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADA74:
 	.incbin "baserom.gba", 0xbada74, 0x3c
 
-	.global gUnk_08BADAB0
-gUnk_08BADAB0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADAB0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADAB0:
 	.incbin "baserom.gba", 0xbadab0, 0x3c
 
-	.global gUnk_08BADAEC
-gUnk_08BADAEC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADAEC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADAEC:
 	.incbin "baserom.gba", 0xbadaec, 0x30
 
-	.global gUnk_08BADB1C
-gUnk_08BADB1C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB1C
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB1C:
 	.incbin "baserom.gba", 0xbadb1c, 0x3c
 
-	.global gUnk_08BADB58
-gUnk_08BADB58:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB58
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB58:
 	.incbin "baserom.gba", 0xbadb58, 0x3c
 
-	.global gUnk_08BADB94
-gUnk_08BADB94:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB94
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB94:
 	.incbin "baserom.gba", 0xbadb94, 0x3c
 
-	.global gUnk_08BADBD0
-gUnk_08BADBD0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADBD0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADBD0:
 	.incbin "baserom.gba", 0xbadbd0, 0x24
 
-	.global gUnk_08BADBF4
-gUnk_08BADBF4:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADBF4
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADBF4:
 	.incbin "baserom.gba", 0xbadbf4, 0x3c
 
-	.global gUnk_08BADC30
-gUnk_08BADC30:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADC30
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADC30:
 	.incbin "baserom.gba", 0xbadc30, 0x3c
 
-	.global gUnk_08BADC6C
-gUnk_08BADC6C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADC6C
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADC6C:
 	.incbin "baserom.gba", 0xbadc6c, 0x3c
 
-	.global gUnk_08BADCA8
-gUnk_08BADCA8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADCA8
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADCA8:
 	.incbin "baserom.gba", 0xbadca8, 0x3c
 
-	.global gUnk_08BADCE4
-gUnk_08BADCE4:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADCE4
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADCE4:
 	.incbin "baserom.gba", 0xbadce4, 0x3c
 
-	.global gUnk_08BADD20
-gUnk_08BADD20:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD20
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD20:
 	.incbin "baserom.gba", 0xbadd20, 0x3c
 
-	.global gUnk_08BADD5C
-gUnk_08BADD5C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD5C
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD5C:
 	.incbin "baserom.gba", 0xbadd5c, 0x30
 
-	.global gUnk_08BADD8C
-gUnk_08BADD8C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD8C
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD8C:
 	.incbin "baserom.gba", 0xbadd8c, 0x3c
 
-	.global gUnk_08BADDC8
-gUnk_08BADDC8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADDC8
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADDC8:
 	.incbin "baserom.gba", 0xbaddc8, 0x3c
 
-	.global gUnk_08BADE04
-gUnk_08BADE04:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE04
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE04:
 	.incbin "baserom.gba", 0xbade04, 0x3c
 
-	.global gUnk_08BADE40
-gUnk_08BADE40:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE40
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE40:
 	.incbin "baserom.gba", 0xbade40, 0x30
 
-	.global gUnk_08BADE70
-gUnk_08BADE70:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE70
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE70:
 	.incbin "baserom.gba", 0xbade70, 0x3c
 
-	.global gUnk_08BADEAC
-gUnk_08BADEAC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADEAC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADEAC:
 	.incbin "baserom.gba", 0xbadeac, 0x3c
 
-	.global gUnk_08BADEE8
-gUnk_08BADEE8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADEE8
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADEE8:
 	.incbin "baserom.gba", 0xbadee8, 0x24
 
-	.global gUnk_08BADF0C
-gUnk_08BADF0C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF0C
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF0C:
 	.incbin "baserom.gba", 0xbadf0c, 0x3c
 
-	.global gUnk_08BADF48
-gUnk_08BADF48:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF48
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF48:
 	.incbin "baserom.gba", 0xbadf48, 0x3c
 
-	.global gUnk_08BADF84
-gUnk_08BADF84:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF84
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF84:
 	.incbin "baserom.gba", 0xbadf84, 0x3c
 
-	.global gUnk_08BADFC0
-gUnk_08BADFC0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADFC0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADFC0:
 	.incbin "baserom.gba", 0xbadfc0, 0x3c
 
-	.global gUnk_08BADFFC
-gUnk_08BADFFC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADFFC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADFFC:
 	.incbin "baserom.gba", 0xbadffc, 0x3c
 
-	.global gUnk_08BAE038
-gUnk_08BAE038:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE038
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE038:
 	.incbin "baserom.gba", 0xbae038, 0x3c
 
-	.global gUnk_08BAE074
-gUnk_08BAE074:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE074
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE074:
 	.incbin "baserom.gba", 0xbae074, 0x3c
 
-	.global gUnk_08BAE0B0
-gUnk_08BAE0B0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE0B0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE0B0:
 	.incbin "baserom.gba", 0xbae0b0, 0x3c
 
-	.global gUnk_08BAE0EC
-gUnk_08BAE0EC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE0EC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE0EC:
 	.incbin "baserom.gba", 0xbae0ec, 0x3c
 
-	.global gUnk_08BAE128
-gUnk_08BAE128:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE128
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE128:
 	.incbin "baserom.gba", 0xbae128, 0x3c
 
-	.global gUnk_08BAE164
-gUnk_08BAE164:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE164
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE164:
 	.incbin "baserom.gba", 0xbae164, 0x3c
 
-	.global gUnk_08BAE1A0
-gUnk_08BAE1A0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE1A0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE1A0:
 	.incbin "baserom.gba", 0xbae1a0, 0x3c
 
-	.global gUnk_08BAE1DC
-gUnk_08BAE1DC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE1DC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE1DC:
 	.incbin "baserom.gba", 0xbae1dc, 0x3c
 
-	.global gUnk_08BAE218
-gUnk_08BAE218:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE218
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE218:
 	.incbin "baserom.gba", 0xbae218, 0x30
 
-	.global gUnk_08BAE248
-gUnk_08BAE248:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE248
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE248:
 	.incbin "baserom.gba", 0xbae248, 0x3c
 
-	.global gUnk_08BAE284
-gUnk_08BAE284:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE284
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE284:
 	.incbin "baserom.gba", 0xbae284, 0x3c
 
-	.global gUnk_08BAE2C0
-gUnk_08BAE2C0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE2C0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE2C0:
 	.incbin "baserom.gba", 0xbae2c0, 0x3c
 
-	.global gUnk_08BAE2FC
-gUnk_08BAE2FC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE2FC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE2FC:
 	.incbin "baserom.gba", 0xbae2fc, 0x3c
 
-	.global gUnk_08BAE338
-gUnk_08BAE338:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE338
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE338:
 	.incbin "baserom.gba", 0xbae338, 0x3c
 
-	.global gUnk_08BAE374
-gUnk_08BAE374:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE374
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE374:
 	.incbin "baserom.gba", 0xbae374, 0x3c
 
-	.global gUnk_08BAE3B0
-gUnk_08BAE3B0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE3B0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE3B0:
 	.incbin "baserom.gba", 0xbae3b0, 0x3c
 
-	.global gUnk_08BAE3EC
-gUnk_08BAE3EC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE3EC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE3EC:
 	.incbin "baserom.gba", 0xbae3ec, 0x3c
 
-	.global gUnk_08BAE428
-gUnk_08BAE428:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE428
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE428:
 	.incbin "baserom.gba", 0xbae428, 0x3c
 
-	.global gUnk_08BAE464
-gUnk_08BAE464:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE464
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE464:
 	.incbin "baserom.gba", 0xbae464, 0x3c
 
-	.global gUnk_08BAE4A0
-gUnk_08BAE4A0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE4A0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE4A0:
 	.incbin "baserom.gba", 0xbae4a0, 0x3c
 
-	.global gUnk_08BAE4DC
-gUnk_08BAE4DC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE4DC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE4DC:
 	.incbin "baserom.gba", 0xbae4dc, 0x3c
 
-	.global gUnk_08BAE518
-gUnk_08BAE518:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE518
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE518:
 	.incbin "baserom.gba", 0xbae518, 0x3c
 
-	.global gUnk_08BAE554
-gUnk_08BAE554:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE554
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE554:
 	.incbin "baserom.gba", 0xbae554, 0x3c
 
-	.global gUnk_08BAE590
-gUnk_08BAE590:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE590
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE590:
 	.incbin "baserom.gba", 0xbae590, 0x3c
 
-	.global gUnk_08BAE5CC
-gUnk_08BAE5CC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE5CC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE5CC:
 	.incbin "baserom.gba", 0xbae5cc, 0x3c
 
-	.global gUnk_08BAE608
-gUnk_08BAE608:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE608
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE608:
 	.incbin "baserom.gba", 0xbae608, 0x3c
 
-	.global gUnk_08BAE644
-gUnk_08BAE644:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE644
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE644:
 	.incbin "baserom.gba", 0xbae644, 0x3c
 
-	.global gUnk_08BAE680
-gUnk_08BAE680:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE680
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE680:
 	.incbin "baserom.gba", 0xbae680, 0x3c
 
-	.global gUnk_08BAE6BC
-gUnk_08BAE6BC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE6BC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE6BC:
 	.incbin "baserom.gba", 0xbae6bc, 0x3c
 
-	.global gUnk_08BAE6F8
-gUnk_08BAE6F8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE6F8
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE6F8:
 	.incbin "baserom.gba", 0xbae6f8, 0x3c
 
-	.global gUnk_08BAE734
-gUnk_08BAE734:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE734
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE734:
 	.incbin "baserom.gba", 0xbae734, 0x30
 
-	.global gUnk_08BAE764
-gUnk_08BAE764:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE764
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE764:
 	.incbin "baserom.gba", 0xbae764, 0x3c
 
-	.global gUnk_08BAE7A0
-gUnk_08BAE7A0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE7A0
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE7A0:
 	.incbin "baserom.gba", 0xbae7a0, 0x3c
 
-	.global gUnk_08BAE7DC
-gUnk_08BAE7DC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE7DC
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE7DC:
 	.incbin "baserom.gba", 0xbae7dc, 0x3c
 
-	.global gUnk_08BAE818
-gUnk_08BAE818:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE818
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE818:
 	.incbin "baserom.gba", 0xbae818, 0x30
 
-	.global gUnk_08BAE848
-gUnk_08BAE848:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE848
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE848:
 	.incbin "baserom.gba", 0xbae848, 0x3c
 
-	.global gUnk_08BAE884
-gUnk_08BAE884:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE884
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE884:
 	.incbin "baserom.gba", 0xbae884, 0x24
 
-	.global gUnk_08BAE8A8
-gUnk_08BAE8A8:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8A8
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8A8:
 	.incbin "baserom.gba", 0xbae8a8, 0x24
 
-	.global gUnk_08BAE8CC
-gUnk_08BAE8CC:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8CC
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8CC:
 	.incbin "baserom.gba", 0xbae8cc, 0x24
 
-	.global gUnk_08BAE8F0
-gUnk_08BAE8F0:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8F0
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8F0:
 	.incbin "baserom.gba", 0xbae8f0, 0x24
 
-	.global gUnk_08BAE914
-gUnk_08BAE914:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE914
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE914:
 	.incbin "baserom.gba", 0xbae914, 0x24
 
-	.global gUnk_08BAE938
-gUnk_08BAE938:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE938
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE938:
 	.incbin "baserom.gba", 0xbae938, 0x24
 
-	.global gUnk_08BAE95C
-gUnk_08BAE95C:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE95C
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE95C:
 	.incbin "baserom.gba", 0xbae95c, 0x24
 
-	.global gUnk_08BAE980
-gUnk_08BAE980:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE980
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE980:
 	.incbin "baserom.gba", 0xbae980, 0x24
 
-	.global gUnk_08BAE9A4
-gUnk_08BAE9A4:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE9A4
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE9A4:
 	.incbin "baserom.gba", 0xbae9a4, 0x24
 
-	.global gUnk_08BAE9C8
-gUnk_08BAE9C8:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAE9C8
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAE9C8:
 	.incbin "baserom.gba", 0xbae9c8, 0x24
 
-	.global gUnk_08BAE9EC
-gUnk_08BAE9EC:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAE9EC
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAE9EC:
 	.incbin "baserom.gba", 0xbae9ec, 0x24
 
-	.global gUnk_08BAEA10
-gUnk_08BAEA10:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA10
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA10:
 	.incbin "baserom.gba", 0xbaea10, 0x24
 
-	.global gUnk_08BAEA34
-gUnk_08BAEA34:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA34
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA34:
 	.incbin "baserom.gba", 0xbaea34, 0x24
 
-	.global gUnk_08BAEA58
-gUnk_08BAEA58:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA58
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA58:
 	.incbin "baserom.gba", 0xbaea58, 0x24
 
-	.global gUnk_08BAEA7C
-gUnk_08BAEA7C:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA7C
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA7C:
 	.incbin "baserom.gba", 0xbaea7c, 0x24
 
-	.global gUnk_08BAEAA0
-gUnk_08BAEAA0:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAA0
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAA0:
 	.incbin "baserom.gba", 0xbaeaa0, 0x24
 
-	.global gUnk_08BAEAC4
-gUnk_08BAEAC4:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAC4
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAC4:
 	.incbin "baserom.gba", 0xbaeac4, 0x24
 
-	.global gUnk_08BAEAE8
-gUnk_08BAEAE8:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAE8
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAE8:
 	.incbin "baserom.gba", 0xbaeae8, 0x24
 
-	.global gUnk_08BAEB0C
-gUnk_08BAEB0C:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB0C
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB0C:
 	.incbin "baserom.gba", 0xbaeb0c, 0x24
 
-	.global gUnk_08BAEB30
-gUnk_08BAEB30:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB30
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB30:
 	.incbin "baserom.gba", 0xbaeb30, 0x24
 
-	.global gUnk_08BAEB54
-gUnk_08BAEB54:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB54
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB54:
 	.incbin "baserom.gba", 0xbaeb54, 0x24
 
-	.global gUnk_08BAEB78
-gUnk_08BAEB78:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAEB78
+AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAEB78:
 	.incbin "baserom.gba", 0xbaeb78, 0x18
 
 	.global AnimScr_YushaSpinShieldOBJ_RightTypeA
 AnimScr_YushaSpinShieldOBJ_RightTypeA:
-	.4byte gUnk_08BADA50 + 0x1
-	.4byte gUnk_08BADA74 + 0x1
-	.4byte gUnk_08BADAB0 + 0x1
-	.4byte gUnk_08BADAEC + 0x1
-	.4byte gUnk_08BADB1C + 0x1
-	.4byte gUnk_08BADB58 + 0x1
-	.4byte gUnk_08BADB94 + 0x1
-	.4byte gUnk_08BADBD0 + 0x1
-	.4byte gUnk_08BADBF4 + 0x1
-	.4byte gUnk_08BADC30 + 0x1
-	.4byte gUnk_08BADC6C + 0x1
-	.4byte gUnk_08BADCA8 + 0x1
-	.4byte gUnk_08BADCE4 + 0x1
-	.4byte gUnk_08BADD20 + 0x1
-	.4byte gUnk_08BADD5C + 0x1
-	.4byte gUnk_08BADD8C + 0x1
-	.4byte gUnk_08BADDC8 + 0x1
-	.4byte gUnk_08BADE04 + 0x1
-	.4byte gUnk_08BADE40 + 0x1
-	.4byte gUnk_08BADE70 + 0x1
-	.4byte gUnk_08BADEAC + 0x1
-	.4byte gUnk_08BADEE8 + 0x1
-	.4byte gUnk_08BADF0C + 0x1
-	.4byte gUnk_08BADF48 + 0x1
-	.4byte gUnk_08BADF84 + 0x1
-	.4byte gUnk_08BADFC0 + 0x1
-	.4byte gUnk_08BADFFC + 0x1
-	.4byte gUnk_08BAE038 + 0x1
-	.4byte gUnk_08BAE074 + 0x1
-	.4byte gUnk_08BAE0B0 + 0x1
-	.4byte gUnk_08BAE0EC + 0x1
-	.4byte gUnk_08BAE128 + 0x1
-	.4byte gUnk_08BAE164 + 0x1
-	.4byte gUnk_08BAE1A0 + 0x1
-	.4byte gUnk_08BAE1DC + 0x1
-	.4byte gUnk_08BAE218 + 0x1
-	.4byte gUnk_08BAE248 + 0x1
-	.4byte gUnk_08BAE284 + 0x1
-	.4byte gUnk_08BAE2C0 + 0x1
-	.4byte gUnk_08BAE2FC + 0x1
-	.4byte gUnk_08BAE338 + 0x1
-	.4byte gUnk_08BAE374 + 0x1
-	.4byte gUnk_08BAE3B0 + 0x1
-	.4byte gUnk_08BAE3EC + 0x1
-	.4byte gUnk_08BAE428 + 0x1
-	.4byte gUnk_08BAE464 + 0x1
-	.4byte gUnk_08BAE4A0 + 0x1
-	.4byte gUnk_08BAE4DC + 0x1
-	.4byte gUnk_08BAE518 + 0x1
-	.4byte gUnk_08BAE554 + 0x1
-	.4byte gUnk_08BAE590 + 0x2
-	.4byte gUnk_08BAE5CC + 0x1
-	.4byte gUnk_08BAE608 + 0x1
-	.4byte gUnk_08BAE644 + 0x1
-	.4byte gUnk_08BAE680 + 0x2
-	.4byte gUnk_08BAE6BC + 0x1
-	.4byte gUnk_08BAE6F8 + 0x1
-	.4byte gUnk_08BAE734 + 0x1
-	.4byte gUnk_08BAE764 + 0x2
-	.4byte gUnk_08BAE7A0 + 0x1
-	.4byte gUnk_08BAE7DC + 0x1
-	.4byte gUnk_08BAE818 + 0x1
-	.4byte gUnk_08BAE848 + 0x2
-	.4byte gUnk_08BAEB78 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADA50 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADA74 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADAB0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADAEC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB1C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB58 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADB94 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADBD0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADBF4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADC30 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADC6C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADCA8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADCE4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD20 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD5C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADD8C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADDC8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE04 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE40 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADE70 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADEAC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADEE8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF0C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF48 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADF84 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADFC0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BADFFC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE038 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE074 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE0B0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE0EC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE128 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE164 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE1A0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE1DC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE218 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE248 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE284 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE2C0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE2FC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE338 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE374 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE3B0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE3EC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE428 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE464 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE4A0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE4DC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE518 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE554 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE590 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE5CC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE608 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE644 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE680 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE6BC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE6F8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE734 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE764 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE7A0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE7DC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE818 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAE848 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeA_08BAEB78 + 0x2
 	.incbin "baserom.gba", 0xbaec90, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ2_LeftTypeA
 AnimScr_YushaSpinShieldOBJ2_LeftTypeA:
-	.4byte gUnk_08BAE884 + 0x1
-	.4byte gUnk_08BAE8A8 + 0x1
-	.4byte gUnk_08BAE8CC + 0x1
-	.4byte gUnk_08BAE8F0 + 0x1
-	.4byte gUnk_08BAE914 + 0x1
-	.4byte gUnk_08BAE938 + 0x1
-	.4byte gUnk_08BAE95C + 0x1
-	.4byte gUnk_08BAE980 + 0x1
-	.4byte gUnk_08BAE9A4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE884 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8A8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8CC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE8F0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE914 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE938 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE95C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE980 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeA_08BAE9A4 + 0x1
 	.incbin "baserom.gba", 0xbaecb8, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ3_LeftTypeA
 AnimScr_YushaSpinShieldOBJ3_LeftTypeA:
-	.4byte gUnk_08BAE9C8 + 0x1
-	.4byte gUnk_08BAE9EC + 0x1
-	.4byte gUnk_08BAEA10 + 0x1
-	.4byte gUnk_08BAEA34 + 0x2
-	.4byte gUnk_08BAEA58 + 0x2
-	.4byte gUnk_08BAEA7C + 0x2
-	.4byte gUnk_08BAEAA0 + 0x2
-	.4byte gUnk_08BAEAC4 + 0x2
-	.4byte gUnk_08BAEAE8 + 0x2
-	.4byte gUnk_08BAEB0C + 0x2
-	.4byte gUnk_08BAEB30 + 0x2
-	.4byte gUnk_08BAEB54 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAE9C8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAE9EC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA10 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA34 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA58 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEA7C + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAA0 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAC4 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEAE8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB0C + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB30 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeA_08BAEB54 + 0x2
 	.incbin "baserom.gba", 0xbaecec, 0x4
 
-	.global gUnk_08BAECF0
-gUnk_08BAECF0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAECF0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAECF0:
 	.incbin "baserom.gba", 0xbaecf0, 0x24
 
-	.global gUnk_08BAED14
-gUnk_08BAED14:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED14
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED14:
 	.incbin "baserom.gba", 0xbaed14, 0x3c
 
-	.global gUnk_08BAED50
-gUnk_08BAED50:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED50
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED50:
 	.incbin "baserom.gba", 0xbaed50, 0x3c
 
-	.global gUnk_08BAED8C
-gUnk_08BAED8C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED8C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED8C:
 	.incbin "baserom.gba", 0xbaed8c, 0x3c
 
-	.global gUnk_08BAEDC8
-gUnk_08BAEDC8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEDC8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEDC8:
 	.incbin "baserom.gba", 0xbaedc8, 0x3c
 
-	.global gUnk_08BAEE04
-gUnk_08BAEE04:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE04
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE04:
 	.incbin "baserom.gba", 0xbaee04, 0x3c
 
-	.global gUnk_08BAEE40
-gUnk_08BAEE40:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE40
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE40:
 	.incbin "baserom.gba", 0xbaee40, 0x3c
 
-	.global gUnk_08BAEE7C
-gUnk_08BAEE7C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE7C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE7C:
 	.incbin "baserom.gba", 0xbaee7c, 0x24
 
-	.global gUnk_08BAEEA0
-gUnk_08BAEEA0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEEA0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEEA0:
 	.incbin "baserom.gba", 0xbaeea0, 0x3c
 
-	.global gUnk_08BAEEDC
-gUnk_08BAEEDC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEEDC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEEDC:
 	.incbin "baserom.gba", 0xbaeedc, 0x3c
 
-	.global gUnk_08BAEF18
-gUnk_08BAEF18:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF18
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF18:
 	.incbin "baserom.gba", 0xbaef18, 0x3c
 
-	.global gUnk_08BAEF54
-gUnk_08BAEF54:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF54
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF54:
 	.incbin "baserom.gba", 0xbaef54, 0x3c
 
-	.global gUnk_08BAEF90
-gUnk_08BAEF90:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF90
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF90:
 	.incbin "baserom.gba", 0xbaef90, 0x3c
 
-	.global gUnk_08BAEFCC
-gUnk_08BAEFCC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEFCC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEFCC:
 	.incbin "baserom.gba", 0xbaefcc, 0x3c
 
-	.global gUnk_08BAF008
-gUnk_08BAF008:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF008
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF008:
 	.incbin "baserom.gba", 0xbaf008, 0x3c
 
-	.global gUnk_08BAF044
-gUnk_08BAF044:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF044
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF044:
 	.incbin "baserom.gba", 0xbaf044, 0x3c
 
-	.global gUnk_08BAF080
-gUnk_08BAF080:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF080
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF080:
 	.incbin "baserom.gba", 0xbaf080, 0x3c
 
-	.global gUnk_08BAF0BC
-gUnk_08BAF0BC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF0BC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF0BC:
 	.incbin "baserom.gba", 0xbaf0bc, 0x3c
 
-	.global gUnk_08BAF0F8
-gUnk_08BAF0F8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF0F8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF0F8:
 	.incbin "baserom.gba", 0xbaf0f8, 0x3c
 
-	.global gUnk_08BAF134
-gUnk_08BAF134:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF134
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF134:
 	.incbin "baserom.gba", 0xbaf134, 0x3c
 
-	.global gUnk_08BAF170
-gUnk_08BAF170:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF170
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF170:
 	.incbin "baserom.gba", 0xbaf170, 0x3c
 
-	.global gUnk_08BAF1AC
-gUnk_08BAF1AC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF1AC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF1AC:
 	.incbin "baserom.gba", 0xbaf1ac, 0x24
 
-	.global gUnk_08BAF1D0
-gUnk_08BAF1D0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF1D0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF1D0:
 	.incbin "baserom.gba", 0xbaf1d0, 0x3c
 
-	.global gUnk_08BAF20C
-gUnk_08BAF20C:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF20C
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF20C:
 	.incbin "baserom.gba", 0xbaf20c, 0x3c
 
-	.global gUnk_08BAF248
-gUnk_08BAF248:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF248
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF248:
 	.incbin "baserom.gba", 0xbaf248, 0x3c
 
-	.global gUnk_08BAF284
-gUnk_08BAF284:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF284
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF284:
 	.incbin "baserom.gba", 0xbaf284, 0x3c
 
-	.global gUnk_08BAF2C0
-gUnk_08BAF2C0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF2C0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF2C0:
 	.incbin "baserom.gba", 0xbaf2c0, 0x3c
 
-	.global gUnk_08BAF2FC
-gUnk_08BAF2FC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF2FC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF2FC:
 	.incbin "baserom.gba", 0xbaf2fc, 0x3c
 
-	.global gUnk_08BAF338
-gUnk_08BAF338:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF338
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF338:
 	.incbin "baserom.gba", 0xbaf338, 0x3c
 
-	.global gUnk_08BAF374
-gUnk_08BAF374:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF374
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF374:
 	.incbin "baserom.gba", 0xbaf374, 0x3c
 
-	.global gUnk_08BAF3B0
-gUnk_08BAF3B0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF3B0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF3B0:
 	.incbin "baserom.gba", 0xbaf3b0, 0x3c
 
-	.global gUnk_08BAF3EC
-gUnk_08BAF3EC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF3EC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF3EC:
 	.incbin "baserom.gba", 0xbaf3ec, 0x3c
 
-	.global gUnk_08BAF428
-gUnk_08BAF428:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF428
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF428:
 	.incbin "baserom.gba", 0xbaf428, 0x3c
 
-	.global gUnk_08BAF464
-gUnk_08BAF464:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF464
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF464:
 	.incbin "baserom.gba", 0xbaf464, 0x3c
 
-	.global gUnk_08BAF4A0
-gUnk_08BAF4A0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF4A0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF4A0:
 	.incbin "baserom.gba", 0xbaf4a0, 0x3c
 
-	.global gUnk_08BAF4DC
-gUnk_08BAF4DC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF4DC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF4DC:
 	.incbin "baserom.gba", 0xbaf4dc, 0x3c
 
-	.global gUnk_08BAF518
-gUnk_08BAF518:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF518
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF518:
 	.incbin "baserom.gba", 0xbaf518, 0x3c
 
-	.global gUnk_08BAF554
-gUnk_08BAF554:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF554
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF554:
 	.incbin "baserom.gba", 0xbaf554, 0x3c
 
-	.global gUnk_08BAF590
-gUnk_08BAF590:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF590
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF590:
 	.incbin "baserom.gba", 0xbaf590, 0x3c
 
-	.global gUnk_08BAF5CC
-gUnk_08BAF5CC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF5CC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF5CC:
 	.incbin "baserom.gba", 0xbaf5cc, 0x3c
 
-	.global gUnk_08BAF608
-gUnk_08BAF608:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF608
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF608:
 	.incbin "baserom.gba", 0xbaf608, 0x3c
 
-	.global gUnk_08BAF644
-gUnk_08BAF644:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF644
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF644:
 	.incbin "baserom.gba", 0xbaf644, 0x3c
 
-	.global gUnk_08BAF680
-gUnk_08BAF680:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF680
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF680:
 	.incbin "baserom.gba", 0xbaf680, 0x3c
 
-	.global gUnk_08BAF6BC
-gUnk_08BAF6BC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF6BC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF6BC:
 	.incbin "baserom.gba", 0xbaf6bc, 0x3c
 
-	.global gUnk_08BAF6F8
-gUnk_08BAF6F8:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF6F8
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF6F8:
 	.incbin "baserom.gba", 0xbaf6f8, 0x3c
 
-	.global gUnk_08BAF734
-gUnk_08BAF734:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF734
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF734:
 	.incbin "baserom.gba", 0xbaf734, 0x30
 
-	.global gUnk_08BAF764
-gUnk_08BAF764:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF764
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF764:
 	.incbin "baserom.gba", 0xbaf764, 0x3c
 
-	.global gUnk_08BAF7A0
-gUnk_08BAF7A0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF7A0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF7A0:
 	.incbin "baserom.gba", 0xbaf7a0, 0x3c
 
-	.global gUnk_08BAF7DC
-gUnk_08BAF7DC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF7DC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF7DC:
 	.incbin "baserom.gba", 0xbaf7dc, 0x3c
 
-	.global gUnk_08BAF818
-gUnk_08BAF818:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF818
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF818:
 	.incbin "baserom.gba", 0xbaf818, 0x3c
 
-	.global gUnk_08BAF854
-gUnk_08BAF854:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF854
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF854:
 	.incbin "baserom.gba", 0xbaf854, 0x30
 
-	.global gUnk_08BAF884
-gUnk_08BAF884:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF884
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF884:
 	.incbin "baserom.gba", 0xbaf884, 0x3c
 
-	.global gUnk_08BAF8C0
-gUnk_08BAF8C0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF8C0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF8C0:
 	.incbin "baserom.gba", 0xbaf8c0, 0x3c
 
-	.global gUnk_08BAF8FC
-gUnk_08BAF8FC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF8FC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF8FC:
 	.incbin "baserom.gba", 0xbaf8fc, 0x3c
 
-	.global gUnk_08BAF938
-gUnk_08BAF938:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF938
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF938:
 	.incbin "baserom.gba", 0xbaf938, 0x3c
 
-	.global gUnk_08BAF974
-gUnk_08BAF974:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF974
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF974:
 	.incbin "baserom.gba", 0xbaf974, 0x3c
 
-	.global gUnk_08BAF9B0
-gUnk_08BAF9B0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF9B0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF9B0:
 	.incbin "baserom.gba", 0xbaf9b0, 0x3c
 
-	.global gUnk_08BAF9EC
-gUnk_08BAF9EC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF9EC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF9EC:
 	.incbin "baserom.gba", 0xbaf9ec, 0x3c
 
-	.global gUnk_08BAFA28
-gUnk_08BAFA28:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFA28
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFA28:
 	.incbin "baserom.gba", 0xbafa28, 0x3c
 
-	.global gUnk_08BAFA64
-gUnk_08BAFA64:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFA64
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFA64:
 	.incbin "baserom.gba", 0xbafa64, 0x3c
 
-	.global gUnk_08BAFAA0
-gUnk_08BAFAA0:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFAA0
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFAA0:
 	.incbin "baserom.gba", 0xbafaa0, 0x3c
 
-	.global gUnk_08BAFADC
-gUnk_08BAFADC:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFADC
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFADC:
 	.incbin "baserom.gba", 0xbafadc, 0x3c
 
-	.global gUnk_08BAFB18
-gUnk_08BAFB18:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFB18
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFB18:
 	.incbin "baserom.gba", 0xbafb18, 0x3c
 
-	.global gUnk_08BAFB54
-gUnk_08BAFB54:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB54
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB54:
 	.incbin "baserom.gba", 0xbafb54, 0x24
 
-	.global gUnk_08BAFB78
-gUnk_08BAFB78:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB78
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB78:
 	.incbin "baserom.gba", 0xbafb78, 0x24
 
-	.global gUnk_08BAFB9C
-gUnk_08BAFB9C:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB9C
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB9C:
 	.incbin "baserom.gba", 0xbafb9c, 0x24
 
-	.global gUnk_08BAFBC0
-gUnk_08BAFBC0:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFBC0
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFBC0:
 	.incbin "baserom.gba", 0xbafbc0, 0x24
 
-	.global gUnk_08BAFBE4
-gUnk_08BAFBE4:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFBE4
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFBE4:
 	.incbin "baserom.gba", 0xbafbe4, 0x24
 
-	.global gUnk_08BAFC08
-gUnk_08BAFC08:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC08
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC08:
 	.incbin "baserom.gba", 0xbafc08, 0x24
 
-	.global gUnk_08BAFC2C
-gUnk_08BAFC2C:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC2C
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC2C:
 	.incbin "baserom.gba", 0xbafc2c, 0x24
 
-	.global gUnk_08BAFC50
-gUnk_08BAFC50:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC50
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC50:
 	.incbin "baserom.gba", 0xbafc50, 0x24
 
-	.global gUnk_08BAFC74
-gUnk_08BAFC74:
+	.global AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC74
+AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC74:
 	.incbin "baserom.gba", 0xbafc74, 0x24
 
-	.global gUnk_08BAFC98
-gUnk_08BAFC98:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFC98
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFC98:
 	.incbin "baserom.gba", 0xbafc98, 0x24
 
-	.global gUnk_08BAFCBC
-gUnk_08BAFCBC:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFCBC
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFCBC:
 	.incbin "baserom.gba", 0xbafcbc, 0x24
 
-	.global gUnk_08BAFCE0
-gUnk_08BAFCE0:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFCE0
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFCE0:
 	.incbin "baserom.gba", 0xbafce0, 0x24
 
-	.global gUnk_08BAFD04
-gUnk_08BAFD04:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD04
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD04:
 	.incbin "baserom.gba", 0xbafd04, 0x24
 
-	.global gUnk_08BAFD28
-gUnk_08BAFD28:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD28
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD28:
 	.incbin "baserom.gba", 0xbafd28, 0x24
 
-	.global gUnk_08BAFD4C
-gUnk_08BAFD4C:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD4C
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD4C:
 	.incbin "baserom.gba", 0xbafd4c, 0x24
 
-	.global gUnk_08BAFD70
-gUnk_08BAFD70:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD70
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD70:
 	.incbin "baserom.gba", 0xbafd70, 0x24
 
-	.global gUnk_08BAFD94
-gUnk_08BAFD94:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD94
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD94:
 	.incbin "baserom.gba", 0xbafd94, 0x24
 
-	.global gUnk_08BAFDB8
-gUnk_08BAFDB8:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFDB8
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFDB8:
 	.incbin "baserom.gba", 0xbafdb8, 0x24
 
-	.global gUnk_08BAFDDC
-gUnk_08BAFDDC:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFDDC
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFDDC:
 	.incbin "baserom.gba", 0xbafddc, 0x24
 
-	.global gUnk_08BAFE00
-gUnk_08BAFE00:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFE00
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFE00:
 	.incbin "baserom.gba", 0xbafe00, 0x24
 
-	.global gUnk_08BAFE24
-gUnk_08BAFE24:
+	.global AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFE24
+AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFE24:
 	.incbin "baserom.gba", 0xbafe24, 0x24
 
-	.global gUnk_08BAFE48
-gUnk_08BAFE48:
+	.global AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFE48
+AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFE48:
 	.incbin "baserom.gba", 0xbafe48, 0x18
 
 	.global AnimScr_YushaSpinShieldOBJ_LeftTypeB
 AnimScr_YushaSpinShieldOBJ_LeftTypeB:
-	.4byte gUnk_08BAECF0 + 0x1
-	.4byte gUnk_08BAED14 + 0x1
-	.4byte gUnk_08BAED50 + 0x1
-	.4byte gUnk_08BAED8C + 0x1
-	.4byte gUnk_08BAEDC8 + 0x1
-	.4byte gUnk_08BAEE04 + 0x1
-	.4byte gUnk_08BAEE40 + 0x1
-	.4byte gUnk_08BAEE7C + 0x1
-	.4byte gUnk_08BAEEA0 + 0x1
-	.4byte gUnk_08BAEEDC + 0x1
-	.4byte gUnk_08BAEF18 + 0x1
-	.4byte gUnk_08BAEF54 + 0x1
-	.4byte gUnk_08BAEF90 + 0x1
-	.4byte gUnk_08BAEFCC + 0x1
-	.4byte gUnk_08BAF008 + 0x1
-	.4byte gUnk_08BAF044 + 0x1
-	.4byte gUnk_08BAF080 + 0x1
-	.4byte gUnk_08BAF0BC + 0x1
-	.4byte gUnk_08BAF0F8 + 0x1
-	.4byte gUnk_08BAF134 + 0x1
-	.4byte gUnk_08BAF170 + 0x1
-	.4byte gUnk_08BAF1AC + 0x1
-	.4byte gUnk_08BAF1D0 + 0x1
-	.4byte gUnk_08BAF20C + 0x1
-	.4byte gUnk_08BAF248 + 0x1
-	.4byte gUnk_08BAF284 + 0x1
-	.4byte gUnk_08BAF2C0 + 0x1
-	.4byte gUnk_08BAF2FC + 0x1
-	.4byte gUnk_08BAF338 + 0x1
-	.4byte gUnk_08BAF374 + 0x1
-	.4byte gUnk_08BAF3B0 + 0x1
-	.4byte gUnk_08BAF3EC + 0x1
-	.4byte gUnk_08BAF428 + 0x1
-	.4byte gUnk_08BAF464 + 0x1
-	.4byte gUnk_08BAF4A0 + 0x1
-	.4byte gUnk_08BAF4DC + 0x1
-	.4byte gUnk_08BAF518 + 0x1
-	.4byte gUnk_08BAF554 + 0x1
-	.4byte gUnk_08BAF590 + 0x1
-	.4byte gUnk_08BAF5CC + 0x1
-	.4byte gUnk_08BAF608 + 0x1
-	.4byte gUnk_08BAF644 + 0x1
-	.4byte gUnk_08BAF680 + 0x1
-	.4byte gUnk_08BAF6BC + 0x1
-	.4byte gUnk_08BAF6F8 + 0x1
-	.4byte gUnk_08BAF734 + 0x1
-	.4byte gUnk_08BAF764 + 0x1
-	.4byte gUnk_08BAF7A0 + 0x1
-	.4byte gUnk_08BAF7DC + 0x1
-	.4byte gUnk_08BAF818 + 0x1
-	.4byte gUnk_08BAF854 + 0x2
-	.4byte gUnk_08BAF884 + 0x1
-	.4byte gUnk_08BAF8C0 + 0x1
-	.4byte gUnk_08BAF8FC + 0x1
-	.4byte gUnk_08BAF938 + 0x2
-	.4byte gUnk_08BAF974 + 0x1
-	.4byte gUnk_08BAF9B0 + 0x1
-	.4byte gUnk_08BAF9EC + 0x1
-	.4byte gUnk_08BAFA28 + 0x2
-	.4byte gUnk_08BAFA64 + 0x1
-	.4byte gUnk_08BAFAA0 + 0x1
-	.4byte gUnk_08BAFADC + 0x1
-	.4byte gUnk_08BAFB18 + 0x2
-	.4byte gUnk_08BAFE48 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAECF0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED14 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED50 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAED8C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEDC8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE04 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE40 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEE7C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEEA0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEEDC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF18 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF54 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEF90 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAEFCC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF008 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF044 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF080 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF0BC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF0F8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF134 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF170 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF1AC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF1D0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF20C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF248 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF284 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF2C0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF2FC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF338 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF374 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF3B0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF3EC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF428 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF464 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF4A0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF4DC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF518 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF554 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF590 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF5CC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF608 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF644 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF680 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF6BC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF6F8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF734 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF764 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF7A0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF7DC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF818 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF854 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF884 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF8C0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF8FC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF938 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF974 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF9B0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAF9EC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFA28 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFA64 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFAA0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFADC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFB18 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_LeftTypeB_08BAFE48 + 0x2
 	.incbin "baserom.gba", 0xbaff60, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ2_RightTypeB
 AnimScr_YushaSpinShieldOBJ2_RightTypeB:
-	.4byte gUnk_08BAFB54 + 0x1
-	.4byte gUnk_08BAFB78 + 0x1
-	.4byte gUnk_08BAFB9C + 0x1
-	.4byte gUnk_08BAFBC0 + 0x1
-	.4byte gUnk_08BAFBE4 + 0x1
-	.4byte gUnk_08BAFC08 + 0x1
-	.4byte gUnk_08BAFC2C + 0x1
-	.4byte gUnk_08BAFC50 + 0x1
-	.4byte gUnk_08BAFC74 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB54 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB78 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFB9C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFBC0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFBE4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC08 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC2C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC50 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_RightTypeB_08BAFC74 + 0x1
 	.incbin "baserom.gba", 0xbaff88, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ3_RightTypeB
 AnimScr_YushaSpinShieldOBJ3_RightTypeB:
-	.4byte gUnk_08BAFC98 + 0x1
-	.4byte gUnk_08BAFCBC + 0x1
-	.4byte gUnk_08BAFCE0 + 0x1
-	.4byte gUnk_08BAFD04 + 0x2
-	.4byte gUnk_08BAFD28 + 0x2
-	.4byte gUnk_08BAFD4C + 0x2
-	.4byte gUnk_08BAFD70 + 0x2
-	.4byte gUnk_08BAFD94 + 0x2
-	.4byte gUnk_08BAFDB8 + 0x2
-	.4byte gUnk_08BAFDDC + 0x2
-	.4byte gUnk_08BAFE00 + 0x2
-	.4byte gUnk_08BAFE24 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFC98 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFCBC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFCE0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD04 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD28 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD4C + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD70 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFD94 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFDB8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFDDC + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFE00 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_RightTypeB_08BAFE24 + 0x2
 	.incbin "baserom.gba", 0xbaffbc, 0x4
 
-	.global gUnk_08BAFFC0
-gUnk_08BAFFC0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BAFFC0
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BAFFC0:
 	.incbin "baserom.gba", 0xbaffc0, 0x24
 
-	.global gUnk_08BAFFE4
-gUnk_08BAFFE4:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BAFFE4
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BAFFE4:
 	.incbin "baserom.gba", 0xbaffe4, 0x3c
 
-	.global gUnk_08BB0020
-gUnk_08BB0020:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0020
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0020:
 	.incbin "baserom.gba", 0xbb0020, 0x3c
 
-	.global gUnk_08BB005C
-gUnk_08BB005C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB005C
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB005C:
 	.incbin "baserom.gba", 0xbb005c, 0x3c
 
-	.global gUnk_08BB0098
-gUnk_08BB0098:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0098
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0098:
 	.incbin "baserom.gba", 0xbb0098, 0x3c
 
-	.global gUnk_08BB00D4
-gUnk_08BB00D4:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB00D4
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB00D4:
 	.incbin "baserom.gba", 0xbb00d4, 0x3c
 
-	.global gUnk_08BB0110
-gUnk_08BB0110:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0110
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0110:
 	.incbin "baserom.gba", 0xbb0110, 0x3c
 
-	.global gUnk_08BB014C
-gUnk_08BB014C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB014C
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB014C:
 	.incbin "baserom.gba", 0xbb014c, 0x24
 
-	.global gUnk_08BB0170
-gUnk_08BB0170:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0170
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0170:
 	.incbin "baserom.gba", 0xbb0170, 0x3c
 
-	.global gUnk_08BB01AC
-gUnk_08BB01AC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB01AC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB01AC:
 	.incbin "baserom.gba", 0xbb01ac, 0x3c
 
-	.global gUnk_08BB01E8
-gUnk_08BB01E8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB01E8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB01E8:
 	.incbin "baserom.gba", 0xbb01e8, 0x3c
 
-	.global gUnk_08BB0224
-gUnk_08BB0224:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0224
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0224:
 	.incbin "baserom.gba", 0xbb0224, 0x3c
 
-	.global gUnk_08BB0260
-gUnk_08BB0260:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0260
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0260:
 	.incbin "baserom.gba", 0xbb0260, 0x3c
 
-	.global gUnk_08BB029C
-gUnk_08BB029C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB029C
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB029C:
 	.incbin "baserom.gba", 0xbb029c, 0x3c
 
-	.global gUnk_08BB02D8
-gUnk_08BB02D8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB02D8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB02D8:
 	.incbin "baserom.gba", 0xbb02d8, 0x3c
 
-	.global gUnk_08BB0314
-gUnk_08BB0314:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0314
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0314:
 	.incbin "baserom.gba", 0xbb0314, 0x3c
 
-	.global gUnk_08BB0350
-gUnk_08BB0350:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0350
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0350:
 	.incbin "baserom.gba", 0xbb0350, 0x3c
 
-	.global gUnk_08BB038C
-gUnk_08BB038C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB038C
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB038C:
 	.incbin "baserom.gba", 0xbb038c, 0x3c
 
-	.global gUnk_08BB03C8
-gUnk_08BB03C8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB03C8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB03C8:
 	.incbin "baserom.gba", 0xbb03c8, 0x3c
 
-	.global gUnk_08BB0404
-gUnk_08BB0404:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0404
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0404:
 	.incbin "baserom.gba", 0xbb0404, 0x3c
 
-	.global gUnk_08BB0440
-gUnk_08BB0440:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0440
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0440:
 	.incbin "baserom.gba", 0xbb0440, 0x3c
 
-	.global gUnk_08BB047C
-gUnk_08BB047C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB047C
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB047C:
 	.incbin "baserom.gba", 0xbb047c, 0x24
 
-	.global gUnk_08BB04A0
-gUnk_08BB04A0:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB04A0
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB04A0:
 	.incbin "baserom.gba", 0xbb04a0, 0x3c
 
-	.global gUnk_08BB04DC
-gUnk_08BB04DC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB04DC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB04DC:
 	.incbin "baserom.gba", 0xbb04dc, 0x3c
 
-	.global gUnk_08BB0518
-gUnk_08BB0518:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0518
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0518:
 	.incbin "baserom.gba", 0xbb0518, 0x3c
 
-	.global gUnk_08BB0554
-gUnk_08BB0554:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0554
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0554:
 	.incbin "baserom.gba", 0xbb0554, 0x3c
 
-	.global gUnk_08BB0590
-gUnk_08BB0590:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0590
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0590:
 	.incbin "baserom.gba", 0xbb0590, 0x3c
 
-	.global gUnk_08BB05CC
-gUnk_08BB05CC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB05CC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB05CC:
 	.incbin "baserom.gba", 0xbb05cc, 0x3c
 
-	.global gUnk_08BB0608
-gUnk_08BB0608:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0608
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0608:
 	.incbin "baserom.gba", 0xbb0608, 0x3c
 
-	.global gUnk_08BB0644
-gUnk_08BB0644:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0644
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0644:
 	.incbin "baserom.gba", 0xbb0644, 0x3c
 
-	.global gUnk_08BB0680
-gUnk_08BB0680:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0680
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0680:
 	.incbin "baserom.gba", 0xbb0680, 0x3c
 
-	.global gUnk_08BB06BC
-gUnk_08BB06BC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB06BC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB06BC:
 	.incbin "baserom.gba", 0xbb06bc, 0x3c
 
-	.global gUnk_08BB06F8
-gUnk_08BB06F8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB06F8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB06F8:
 	.incbin "baserom.gba", 0xbb06f8, 0x3c
 
-	.global gUnk_08BB0734
-gUnk_08BB0734:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0734
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0734:
 	.incbin "baserom.gba", 0xbb0734, 0x3c
 
-	.global gUnk_08BB0770
-gUnk_08BB0770:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0770
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0770:
 	.incbin "baserom.gba", 0xbb0770, 0x3c
 
-	.global gUnk_08BB07AC
-gUnk_08BB07AC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB07AC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB07AC:
 	.incbin "baserom.gba", 0xbb07ac, 0x3c
 
-	.global gUnk_08BB07E8
-gUnk_08BB07E8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB07E8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB07E8:
 	.incbin "baserom.gba", 0xbb07e8, 0x3c
 
-	.global gUnk_08BB0824
-gUnk_08BB0824:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0824
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0824:
 	.incbin "baserom.gba", 0xbb0824, 0x3c
 
-	.global gUnk_08BB0860
-gUnk_08BB0860:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0860
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0860:
 	.incbin "baserom.gba", 0xbb0860, 0x3c
 
-	.global gUnk_08BB089C
-gUnk_08BB089C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB089C
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB089C:
 	.incbin "baserom.gba", 0xbb089c, 0x3c
 
-	.global gUnk_08BB08D8
-gUnk_08BB08D8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB08D8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB08D8:
 	.incbin "baserom.gba", 0xbb08d8, 0x3c
 
-	.global gUnk_08BB0914
-gUnk_08BB0914:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0914
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0914:
 	.incbin "baserom.gba", 0xbb0914, 0x3c
 
-	.global gUnk_08BB0950
-gUnk_08BB0950:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0950
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0950:
 	.incbin "baserom.gba", 0xbb0950, 0x3c
 
-	.global gUnk_08BB098C
-gUnk_08BB098C:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB098C
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB098C:
 	.incbin "baserom.gba", 0xbb098c, 0x3c
 
-	.global gUnk_08BB09C8
-gUnk_08BB09C8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB09C8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB09C8:
 	.incbin "baserom.gba", 0xbb09c8, 0x3c
 
-	.global gUnk_08BB0A04
-gUnk_08BB0A04:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A04
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A04:
 	.incbin "baserom.gba", 0xbb0a04, 0x30
 
-	.global gUnk_08BB0A34
-gUnk_08BB0A34:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A34
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A34:
 	.incbin "baserom.gba", 0xbb0a34, 0x3c
 
-	.global gUnk_08BB0A70
-gUnk_08BB0A70:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A70
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A70:
 	.incbin "baserom.gba", 0xbb0a70, 0x3c
 
-	.global gUnk_08BB0AAC
-gUnk_08BB0AAC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0AAC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0AAC:
 	.incbin "baserom.gba", 0xbb0aac, 0x3c
 
-	.global gUnk_08BB0AE8
-gUnk_08BB0AE8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0AE8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0AE8:
 	.incbin "baserom.gba", 0xbb0ae8, 0x3c
 
-	.global gUnk_08BB0B24
-gUnk_08BB0B24:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B24
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B24:
 	.incbin "baserom.gba", 0xbb0b24, 0x30
 
-	.global gUnk_08BB0B54
-gUnk_08BB0B54:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B54
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B54:
 	.incbin "baserom.gba", 0xbb0b54, 0x3c
 
-	.global gUnk_08BB0B90
-gUnk_08BB0B90:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B90
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B90:
 	.incbin "baserom.gba", 0xbb0b90, 0x3c
 
-	.global gUnk_08BB0BCC
-gUnk_08BB0BCC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0BCC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0BCC:
 	.incbin "baserom.gba", 0xbb0bcc, 0x3c
 
-	.global gUnk_08BB0C08
-gUnk_08BB0C08:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C08
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C08:
 	.incbin "baserom.gba", 0xbb0c08, 0x3c
 
-	.global gUnk_08BB0C44
-gUnk_08BB0C44:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C44
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C44:
 	.incbin "baserom.gba", 0xbb0c44, 0x3c
 
-	.global gUnk_08BB0C80
-gUnk_08BB0C80:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C80
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C80:
 	.incbin "baserom.gba", 0xbb0c80, 0x3c
 
-	.global gUnk_08BB0CBC
-gUnk_08BB0CBC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0CBC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0CBC:
 	.incbin "baserom.gba", 0xbb0cbc, 0x3c
 
-	.global gUnk_08BB0CF8
-gUnk_08BB0CF8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0CF8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0CF8:
 	.incbin "baserom.gba", 0xbb0cf8, 0x3c
 
-	.global gUnk_08BB0D34
-gUnk_08BB0D34:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0D34
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0D34:
 	.incbin "baserom.gba", 0xbb0d34, 0x3c
 
-	.global gUnk_08BB0D70
-gUnk_08BB0D70:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0D70
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0D70:
 	.incbin "baserom.gba", 0xbb0d70, 0x3c
 
-	.global gUnk_08BB0DAC
-gUnk_08BB0DAC:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0DAC
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0DAC:
 	.incbin "baserom.gba", 0xbb0dac, 0x3c
 
-	.global gUnk_08BB0DE8
-gUnk_08BB0DE8:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0DE8
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0DE8:
 	.incbin "baserom.gba", 0xbb0de8, 0x3c
 
-	.global gUnk_08BB0E24
-gUnk_08BB0E24:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E24
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E24:
 	.incbin "baserom.gba", 0xbb0e24, 0x24
 
-	.global gUnk_08BB0E48
-gUnk_08BB0E48:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E48
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E48:
 	.incbin "baserom.gba", 0xbb0e48, 0x24
 
-	.global gUnk_08BB0E6C
-gUnk_08BB0E6C:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E6C
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E6C:
 	.incbin "baserom.gba", 0xbb0e6c, 0x24
 
-	.global gUnk_08BB0E90
-gUnk_08BB0E90:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E90
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E90:
 	.incbin "baserom.gba", 0xbb0e90, 0x24
 
-	.global gUnk_08BB0EB4
-gUnk_08BB0EB4:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0EB4
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0EB4:
 	.incbin "baserom.gba", 0xbb0eb4, 0x24
 
-	.global gUnk_08BB0ED8
-gUnk_08BB0ED8:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0ED8
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0ED8:
 	.incbin "baserom.gba", 0xbb0ed8, 0x24
 
-	.global gUnk_08BB0EFC
-gUnk_08BB0EFC:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0EFC
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0EFC:
 	.incbin "baserom.gba", 0xbb0efc, 0x24
 
-	.global gUnk_08BB0F20
-gUnk_08BB0F20:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0F20
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0F20:
 	.incbin "baserom.gba", 0xbb0f20, 0x24
 
-	.global gUnk_08BB0F44
-gUnk_08BB0F44:
+	.global AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0F44
+AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0F44:
 	.incbin "baserom.gba", 0xbb0f44, 0x24
 
-	.global gUnk_08BB0F68
-gUnk_08BB0F68:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0F68
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0F68:
 	.incbin "baserom.gba", 0xbb0f68, 0x24
 
-	.global gUnk_08BB0F8C
-gUnk_08BB0F8C:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0F8C
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0F8C:
 	.incbin "baserom.gba", 0xbb0f8c, 0x24
 
-	.global gUnk_08BB0FB0
-gUnk_08BB0FB0:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FB0
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FB0:
 	.incbin "baserom.gba", 0xbb0fb0, 0x24
 
-	.global gUnk_08BB0FD4
-gUnk_08BB0FD4:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FD4
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FD4:
 	.incbin "baserom.gba", 0xbb0fd4, 0x24
 
-	.global gUnk_08BB0FF8
-gUnk_08BB0FF8:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FF8
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FF8:
 	.incbin "baserom.gba", 0xbb0ff8, 0x24
 
-	.global gUnk_08BB101C
-gUnk_08BB101C:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB101C
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB101C:
 	.incbin "baserom.gba", 0xbb101c, 0x24
 
-	.global gUnk_08BB1040
-gUnk_08BB1040:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1040
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1040:
 	.incbin "baserom.gba", 0xbb1040, 0x24
 
-	.global gUnk_08BB1064
-gUnk_08BB1064:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1064
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1064:
 	.incbin "baserom.gba", 0xbb1064, 0x24
 
-	.global gUnk_08BB1088
-gUnk_08BB1088:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1088
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1088:
 	.incbin "baserom.gba", 0xbb1088, 0x24
 
-	.global gUnk_08BB10AC
-gUnk_08BB10AC:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10AC
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10AC:
 	.incbin "baserom.gba", 0xbb10ac, 0x24
 
-	.global gUnk_08BB10D0
-gUnk_08BB10D0:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10D0
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10D0:
 	.incbin "baserom.gba", 0xbb10d0, 0x24
 
-	.global gUnk_08BB10F4
-gUnk_08BB10F4:
+	.global AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10F4
+AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10F4:
 	.incbin "baserom.gba", 0xbb10f4, 0x24
 
-	.global gUnk_08BB1118
-gUnk_08BB1118:
+	.global AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB1118
+AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB1118:
 	.incbin "baserom.gba", 0xbb1118, 0x18
 
 	.global AnimScr_YushaSpinShieldOBJ_RightTypeB
 AnimScr_YushaSpinShieldOBJ_RightTypeB:
-	.4byte gUnk_08BAFFC0 + 0x1
-	.4byte gUnk_08BAFFE4 + 0x1
-	.4byte gUnk_08BB0020 + 0x1
-	.4byte gUnk_08BB005C + 0x1
-	.4byte gUnk_08BB0098 + 0x1
-	.4byte gUnk_08BB00D4 + 0x1
-	.4byte gUnk_08BB0110 + 0x1
-	.4byte gUnk_08BB014C + 0x1
-	.4byte gUnk_08BB0170 + 0x1
-	.4byte gUnk_08BB01AC + 0x1
-	.4byte gUnk_08BB01E8 + 0x1
-	.4byte gUnk_08BB0224 + 0x1
-	.4byte gUnk_08BB0260 + 0x1
-	.4byte gUnk_08BB029C + 0x1
-	.4byte gUnk_08BB02D8 + 0x1
-	.4byte gUnk_08BB0314 + 0x1
-	.4byte gUnk_08BB0350 + 0x1
-	.4byte gUnk_08BB038C + 0x1
-	.4byte gUnk_08BB03C8 + 0x1
-	.4byte gUnk_08BB0404 + 0x1
-	.4byte gUnk_08BB0440 + 0x1
-	.4byte gUnk_08BB047C + 0x1
-	.4byte gUnk_08BB04A0 + 0x1
-	.4byte gUnk_08BB04DC + 0x1
-	.4byte gUnk_08BB0518 + 0x1
-	.4byte gUnk_08BB0554 + 0x1
-	.4byte gUnk_08BB0590 + 0x1
-	.4byte gUnk_08BB05CC + 0x1
-	.4byte gUnk_08BB0608 + 0x1
-	.4byte gUnk_08BB0644 + 0x1
-	.4byte gUnk_08BB0680 + 0x1
-	.4byte gUnk_08BB06BC + 0x1
-	.4byte gUnk_08BB06F8 + 0x1
-	.4byte gUnk_08BB0734 + 0x1
-	.4byte gUnk_08BB0770 + 0x1
-	.4byte gUnk_08BB07AC + 0x1
-	.4byte gUnk_08BB07E8 + 0x1
-	.4byte gUnk_08BB0824 + 0x1
-	.4byte gUnk_08BB0860 + 0x1
-	.4byte gUnk_08BB089C + 0x1
-	.4byte gUnk_08BB08D8 + 0x1
-	.4byte gUnk_08BB0914 + 0x1
-	.4byte gUnk_08BB0950 + 0x1
-	.4byte gUnk_08BB098C + 0x1
-	.4byte gUnk_08BB09C8 + 0x1
-	.4byte gUnk_08BB0A04 + 0x1
-	.4byte gUnk_08BB0A34 + 0x1
-	.4byte gUnk_08BB0A70 + 0x1
-	.4byte gUnk_08BB0AAC + 0x1
-	.4byte gUnk_08BB0AE8 + 0x1
-	.4byte gUnk_08BB0B24 + 0x2
-	.4byte gUnk_08BB0B54 + 0x1
-	.4byte gUnk_08BB0B90 + 0x1
-	.4byte gUnk_08BB0BCC + 0x1
-	.4byte gUnk_08BB0C08 + 0x2
-	.4byte gUnk_08BB0C44 + 0x1
-	.4byte gUnk_08BB0C80 + 0x1
-	.4byte gUnk_08BB0CBC + 0x1
-	.4byte gUnk_08BB0CF8 + 0x2
-	.4byte gUnk_08BB0D34 + 0x1
-	.4byte gUnk_08BB0D70 + 0x1
-	.4byte gUnk_08BB0DAC + 0x1
-	.4byte gUnk_08BB0DE8 + 0x2
-	.4byte gUnk_08BB1118 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BAFFC0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BAFFE4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0020 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB005C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0098 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB00D4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0110 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB014C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0170 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB01AC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB01E8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0224 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0260 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB029C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB02D8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0314 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0350 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB038C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB03C8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0404 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0440 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB047C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB04A0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB04DC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0518 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0554 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0590 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB05CC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0608 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0644 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0680 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB06BC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB06F8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0734 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0770 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB07AC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB07E8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0824 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0860 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB089C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB08D8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0914 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0950 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB098C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB09C8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A04 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A34 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0A70 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0AAC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0AE8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B24 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B54 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0B90 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0BCC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C08 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C44 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0C80 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0CBC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0CF8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0D34 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0D70 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0DAC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB0DE8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ_RightTypeB_08BB1118 + 0x2
 	.incbin "baserom.gba", 0xbb1230, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ2_LeftTypeB
 AnimScr_YushaSpinShieldOBJ2_LeftTypeB:
-	.4byte gUnk_08BB0E24 + 0x1
-	.4byte gUnk_08BB0E48 + 0x1
-	.4byte gUnk_08BB0E6C + 0x1
-	.4byte gUnk_08BB0E90 + 0x1
-	.4byte gUnk_08BB0EB4 + 0x1
-	.4byte gUnk_08BB0ED8 + 0x1
-	.4byte gUnk_08BB0EFC + 0x1
-	.4byte gUnk_08BB0F20 + 0x1
-	.4byte gUnk_08BB0F44 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E24 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E48 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E6C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0E90 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0EB4 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0ED8 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0EFC + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0F20 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ2_LeftTypeB_08BB0F44 + 0x1
 	.incbin "baserom.gba", 0xbb1258, 0x4
 
 	.global AnimScr_YushaSpinShieldOBJ3_LeftTypeB
 AnimScr_YushaSpinShieldOBJ3_LeftTypeB:
-	.4byte gUnk_08BB0F68 + 0x1
-	.4byte gUnk_08BB0F8C + 0x1
-	.4byte gUnk_08BB0FB0 + 0x1
-	.4byte gUnk_08BB0FD4 + 0x2
-	.4byte gUnk_08BB0FF8 + 0x2
-	.4byte gUnk_08BB101C + 0x2
-	.4byte gUnk_08BB1040 + 0x2
-	.4byte gUnk_08BB1064 + 0x2
-	.4byte gUnk_08BB1088 + 0x2
-	.4byte gUnk_08BB10AC + 0x2
-	.4byte gUnk_08BB10D0 + 0x2
-	.4byte gUnk_08BB10F4 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0F68 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0F8C + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FB0 + 0x1
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FD4 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB0FF8 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB101C + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1040 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1064 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB1088 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10AC + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10D0 + 0x2
+	.4byte AnimSprite_YushaSpinShieldOBJ3_LeftTypeB_08BB10F4 + 0x2
 	.incbin "baserom.gba", 0xbb128c, 0x4
 
-	.global gUnk_08BB1290
-gUnk_08BB1290:
+	.global AnimSprite_EfxSunakemuriOBJ1_R_08BB1290
+AnimSprite_EfxSunakemuriOBJ1_R_08BB1290:
 	.incbin "baserom.gba", 0xbb1290, 0x24
 
-	.global gUnk_08BB12B4
-gUnk_08BB12B4:
+	.global AnimSprite_EfxSunakemuriOBJ1_R_08BB12B4
+AnimSprite_EfxSunakemuriOBJ1_R_08BB12B4:
 	.incbin "baserom.gba", 0xbb12b4, 0x24
 
-	.global gUnk_08BB12D8
-gUnk_08BB12D8:
+	.global AnimSprite_EfxSunakemuriOBJ1_R_08BB12D8
+AnimSprite_EfxSunakemuriOBJ1_R_08BB12D8:
 	.incbin "baserom.gba", 0xbb12d8, 0x24
 
-	.global gUnk_08BB12FC
-gUnk_08BB12FC:
+	.global AnimSprite_EfxSunakemuriOBJ1_R_08BB12FC
+AnimSprite_EfxSunakemuriOBJ1_R_08BB12FC:
 	.incbin "baserom.gba", 0xbb12fc, 0x24
 
 	.global AnimScr_EfxSunakemuriOBJ1_R
 AnimScr_EfxSunakemuriOBJ1_R:
-	.4byte gUnk_08BB1290 + 0x3
-	.4byte gUnk_08BB12B4 + 0x2
-	.4byte gUnk_08BB12D8 + 0x2
-	.4byte gUnk_08BB12FC + 0x1
+	.4byte AnimSprite_EfxSunakemuriOBJ1_R_08BB1290 + 0x3
+	.4byte AnimSprite_EfxSunakemuriOBJ1_R_08BB12B4 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ1_R_08BB12D8 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ1_R_08BB12FC + 0x1
 	.incbin "baserom.gba", 0xbb1330, 0x4
 
-	.global gUnk_08BB1334
-gUnk_08BB1334:
+	.global AnimSprite_EfxSunakemuriOBJ1_L_08BB1334
+AnimSprite_EfxSunakemuriOBJ1_L_08BB1334:
 	.incbin "baserom.gba", 0xbb1334, 0x24
 
-	.global gUnk_08BB1358
-gUnk_08BB1358:
+	.global AnimSprite_EfxSunakemuriOBJ1_L_08BB1358
+AnimSprite_EfxSunakemuriOBJ1_L_08BB1358:
 	.incbin "baserom.gba", 0xbb1358, 0x24
 
-	.global gUnk_08BB137C
-gUnk_08BB137C:
+	.global AnimSprite_EfxSunakemuriOBJ1_L_08BB137C
+AnimSprite_EfxSunakemuriOBJ1_L_08BB137C:
 	.incbin "baserom.gba", 0xbb137c, 0x24
 
-	.global gUnk_08BB13A0
-gUnk_08BB13A0:
+	.global AnimSprite_EfxSunakemuriOBJ1_L_08BB13A0
+AnimSprite_EfxSunakemuriOBJ1_L_08BB13A0:
 	.incbin "baserom.gba", 0xbb13a0, 0x24
 
 	.global AnimScr_EfxSunakemuriOBJ1_L
 AnimScr_EfxSunakemuriOBJ1_L:
-	.4byte gUnk_08BB1334 + 0x3
-	.4byte gUnk_08BB1358 + 0x2
-	.4byte gUnk_08BB137C + 0x2
-	.4byte gUnk_08BB13A0 + 0x1
+	.4byte AnimSprite_EfxSunakemuriOBJ1_L_08BB1334 + 0x3
+	.4byte AnimSprite_EfxSunakemuriOBJ1_L_08BB1358 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ1_L_08BB137C + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ1_L_08BB13A0 + 0x1
 	.incbin "baserom.gba", 0xbb13d4, 0x4
 
-	.global gUnk_08BB13D8
-gUnk_08BB13D8:
+	.global AnimSprite_EfxSunakemuriOBJ2_R_08BB13D8
+AnimSprite_EfxSunakemuriOBJ2_R_08BB13D8:
 	.incbin "baserom.gba", 0xbb13d8, 0x24
 
-	.global gUnk_08BB13FC
-gUnk_08BB13FC:
+	.global AnimSprite_EfxSunakemuriOBJ2_R_08BB13FC
+AnimSprite_EfxSunakemuriOBJ2_R_08BB13FC:
 	.incbin "baserom.gba", 0xbb13fc, 0x24
 
-	.global gUnk_08BB1420
-gUnk_08BB1420:
+	.global AnimSprite_EfxSunakemuriOBJ2_R_08BB1420
+AnimSprite_EfxSunakemuriOBJ2_R_08BB1420:
 	.incbin "baserom.gba", 0xbb1420, 0x24
 
-	.global gUnk_08BB1444
-gUnk_08BB1444:
+	.global AnimSprite_EfxSunakemuriOBJ2_R_08BB1444
+AnimSprite_EfxSunakemuriOBJ2_R_08BB1444:
 	.incbin "baserom.gba", 0xbb1444, 0x24
 
 	.global AnimScr_EfxSunakemuriOBJ2_R
 AnimScr_EfxSunakemuriOBJ2_R:
-	.4byte gUnk_08BB13D8 + 0x3
-	.4byte gUnk_08BB13FC + 0x2
-	.4byte gUnk_08BB1420 + 0x2
-	.4byte gUnk_08BB1444 + 0x1
+	.4byte AnimSprite_EfxSunakemuriOBJ2_R_08BB13D8 + 0x3
+	.4byte AnimSprite_EfxSunakemuriOBJ2_R_08BB13FC + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ2_R_08BB1420 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ2_R_08BB1444 + 0x1
 	.incbin "baserom.gba", 0xbb1478, 0x4
 
-	.global gUnk_08BB147C
-gUnk_08BB147C:
+	.global AnimSprite_EfxSunakemuriOBJ2_L_08BB147C
+AnimSprite_EfxSunakemuriOBJ2_L_08BB147C:
 	.incbin "baserom.gba", 0xbb147c, 0x24
 
-	.global gUnk_08BB14A0
-gUnk_08BB14A0:
+	.global AnimSprite_EfxSunakemuriOBJ2_L_08BB14A0
+AnimSprite_EfxSunakemuriOBJ2_L_08BB14A0:
 	.incbin "baserom.gba", 0xbb14a0, 0x24
 
-	.global gUnk_08BB14C4
-gUnk_08BB14C4:
+	.global AnimSprite_EfxSunakemuriOBJ2_L_08BB14C4
+AnimSprite_EfxSunakemuriOBJ2_L_08BB14C4:
 	.incbin "baserom.gba", 0xbb14c4, 0x24
 
-	.global gUnk_08BB14E8
-gUnk_08BB14E8:
+	.global AnimSprite_EfxSunakemuriOBJ2_L_08BB14E8
+AnimSprite_EfxSunakemuriOBJ2_L_08BB14E8:
 	.incbin "baserom.gba", 0xbb14e8, 0x24
 
 	.global AnimScr_EfxSunakemuriOBJ2_L
 AnimScr_EfxSunakemuriOBJ2_L:
-	.4byte gUnk_08BB147C + 0x3
-	.4byte gUnk_08BB14A0 + 0x2
-	.4byte gUnk_08BB14C4 + 0x2
-	.4byte gUnk_08BB14E8 + 0x1
+	.4byte AnimSprite_EfxSunakemuriOBJ2_L_08BB147C + 0x3
+	.4byte AnimSprite_EfxSunakemuriOBJ2_L_08BB14A0 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ2_L_08BB14C4 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ2_L_08BB14E8 + 0x1
 	.incbin "baserom.gba", 0xbb151c, 0x4
 
-	.global gUnk_08BB1520
-gUnk_08BB1520:
+	.global AnimSprite_EfxSunakemuriOBJ3_R_08BB1520
+AnimSprite_EfxSunakemuriOBJ3_R_08BB1520:
 	.incbin "baserom.gba", 0xbb1520, 0x24
 
-	.global gUnk_08BB1544
-gUnk_08BB1544:
+	.global AnimSprite_EfxSunakemuriOBJ3_R_08BB1544
+AnimSprite_EfxSunakemuriOBJ3_R_08BB1544:
 	.incbin "baserom.gba", 0xbb1544, 0x24
 
-	.global gUnk_08BB1568
-gUnk_08BB1568:
+	.global AnimSprite_EfxSunakemuriOBJ3_R_08BB1568
+AnimSprite_EfxSunakemuriOBJ3_R_08BB1568:
 	.incbin "baserom.gba", 0xbb1568, 0x24
 
-	.global gUnk_08BB158C
-gUnk_08BB158C:
+	.global AnimSprite_EfxSunakemuriOBJ3_R_08BB158C
+AnimSprite_EfxSunakemuriOBJ3_R_08BB158C:
 	.incbin "baserom.gba", 0xbb158c, 0x24
 
 	.global AnimScr_EfxSunakemuriOBJ3_R
 AnimScr_EfxSunakemuriOBJ3_R:
-	.4byte gUnk_08BB1520 + 0x3
-	.4byte gUnk_08BB1544 + 0x2
-	.4byte gUnk_08BB1568 + 0x2
-	.4byte gUnk_08BB158C + 0x1
+	.4byte AnimSprite_EfxSunakemuriOBJ3_R_08BB1520 + 0x3
+	.4byte AnimSprite_EfxSunakemuriOBJ3_R_08BB1544 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ3_R_08BB1568 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ3_R_08BB158C + 0x1
 	.incbin "baserom.gba", 0xbb15c0, 0x4
 
-	.global gUnk_08BB15C4
-gUnk_08BB15C4:
+	.global AnimSprite_EfxSunakemuriOBJ3_L_08BB15C4
+AnimSprite_EfxSunakemuriOBJ3_L_08BB15C4:
 	.incbin "baserom.gba", 0xbb15c4, 0x24
 
-	.global gUnk_08BB15E8
-gUnk_08BB15E8:
+	.global AnimSprite_EfxSunakemuriOBJ3_L_08BB15E8
+AnimSprite_EfxSunakemuriOBJ3_L_08BB15E8:
 	.incbin "baserom.gba", 0xbb15e8, 0x24
 
-	.global gUnk_08BB160C
-gUnk_08BB160C:
+	.global AnimSprite_EfxSunakemuriOBJ3_L_08BB160C
+AnimSprite_EfxSunakemuriOBJ3_L_08BB160C:
 	.incbin "baserom.gba", 0xbb160c, 0x24
 
-	.global gUnk_08BB1630
-gUnk_08BB1630:
+	.global AnimSprite_EfxSunakemuriOBJ3_L_08BB1630
+AnimSprite_EfxSunakemuriOBJ3_L_08BB1630:
 	.incbin "baserom.gba", 0xbb1630, 0x24
 
 	.global AnimScr_EfxSunakemuriOBJ3_L
 AnimScr_EfxSunakemuriOBJ3_L:
-	.4byte gUnk_08BB15C4 + 0x3
-	.4byte gUnk_08BB15E8 + 0x2
-	.4byte gUnk_08BB160C + 0x2
-	.4byte gUnk_08BB1630 + 0x1
+	.4byte AnimSprite_EfxSunakemuriOBJ3_L_08BB15C4 + 0x3
+	.4byte AnimSprite_EfxSunakemuriOBJ3_L_08BB15E8 + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ3_L_08BB160C + 0x2
+	.4byte AnimSprite_EfxSunakemuriOBJ3_L_08BB1630 + 0x1
 	.incbin "baserom.gba", 0xbb1664, 0x4
 
-	.global gUnk_08BB1668
-gUnk_08BB1668:
+	.global AnimSprite_EfxMantBatabata1_R_08BB1668
+AnimSprite_EfxMantBatabata1_R_08BB1668:
 	.incbin "baserom.gba", 0xbb1668, 0x48
 
-	.global gUnk_08BB16B0
-gUnk_08BB16B0:
+	.global AnimSprite_EfxMantBatabata1_R_08BB16B0
+AnimSprite_EfxMantBatabata1_R_08BB16B0:
 	.incbin "baserom.gba", 0xbb16b0, 0x60
 
-	.global gUnk_08BB1710
-gUnk_08BB1710:
+	.global AnimSprite_EfxMantBatabata1_R_08BB1710
+AnimSprite_EfxMantBatabata1_R_08BB1710:
 	.incbin "baserom.gba", 0xbb1710, 0x6c
 
-	.global gUnk_08BB177C
-gUnk_08BB177C:
+	.global AnimSprite_EfxMantBatabata1_R_08BB177C
+AnimSprite_EfxMantBatabata1_R_08BB177C:
 	.incbin "baserom.gba", 0xbb177c, 0x6c
 
 	.global AnimScr_EfxMantBatabata1_R
 AnimScr_EfxMantBatabata1_R:
-	.4byte gUnk_08BB1668 + 0x2
-	.4byte gUnk_08BB16B0 + 0x3
-	.4byte gUnk_08BB1710 + 0x2
-	.4byte gUnk_08BB177C + 0x2
+	.4byte AnimSprite_EfxMantBatabata1_R_08BB1668 + 0x2
+	.4byte AnimSprite_EfxMantBatabata1_R_08BB16B0 + 0x3
+	.4byte AnimSprite_EfxMantBatabata1_R_08BB1710 + 0x2
+	.4byte AnimSprite_EfxMantBatabata1_R_08BB177C + 0x2
 	.incbin "baserom.gba", 0xbb17f8, 0x4
 
-	.global gUnk_08BB17FC
-gUnk_08BB17FC:
+	.global AnimSprite_EfxMantBatabata1_L_08BB17FC
+AnimSprite_EfxMantBatabata1_L_08BB17FC:
 	.incbin "baserom.gba", 0xbb17fc, 0x48
 
-	.global gUnk_08BB1844
-gUnk_08BB1844:
+	.global AnimSprite_EfxMantBatabata1_L_08BB1844
+AnimSprite_EfxMantBatabata1_L_08BB1844:
 	.incbin "baserom.gba", 0xbb1844, 0x60
 
-	.global gUnk_08BB18A4
-gUnk_08BB18A4:
+	.global AnimSprite_EfxMantBatabata1_L_08BB18A4
+AnimSprite_EfxMantBatabata1_L_08BB18A4:
 	.incbin "baserom.gba", 0xbb18a4, 0x6c
 
-	.global gUnk_08BB1910
-gUnk_08BB1910:
+	.global AnimSprite_EfxMantBatabata1_L_08BB1910
+AnimSprite_EfxMantBatabata1_L_08BB1910:
 	.incbin "baserom.gba", 0xbb1910, 0x6c
 
 	.global AnimScr_EfxMantBatabata1_L
 AnimScr_EfxMantBatabata1_L:
-	.4byte gUnk_08BB17FC + 0x2
-	.4byte gUnk_08BB1844 + 0x3
-	.4byte gUnk_08BB18A4 + 0x2
-	.4byte gUnk_08BB1910 + 0x2
+	.4byte AnimSprite_EfxMantBatabata1_L_08BB17FC + 0x2
+	.4byte AnimSprite_EfxMantBatabata1_L_08BB1844 + 0x3
+	.4byte AnimSprite_EfxMantBatabata1_L_08BB18A4 + 0x2
+	.4byte AnimSprite_EfxMantBatabata1_L_08BB1910 + 0x2
 	.incbin "baserom.gba", 0xbb198c, 0x4
 
-	.global gUnk_08BB1990
-gUnk_08BB1990:
+	.global AnimSprite_EfxMantBatabata2_R_08BB1990
+AnimSprite_EfxMantBatabata2_R_08BB1990:
 	.incbin "baserom.gba", 0xbb1990, 0x60
 
-	.global gUnk_08BB19F0
-gUnk_08BB19F0:
+	.global AnimSprite_EfxMantBatabata2_R_08BB19F0
+AnimSprite_EfxMantBatabata2_R_08BB19F0:
 	.incbin "baserom.gba", 0xbb19f0, 0x60
 
-	.global gUnk_08BB1A50
-gUnk_08BB1A50:
+	.global AnimSprite_EfxMantBatabata2_R_08BB1A50
+AnimSprite_EfxMantBatabata2_R_08BB1A50:
 	.incbin "baserom.gba", 0xbb1a50, 0x6c
 
-	.global gUnk_08BB1ABC
-gUnk_08BB1ABC:
+	.global AnimSprite_EfxMantBatabata2_R_08BB1ABC
+AnimSprite_EfxMantBatabata2_R_08BB1ABC:
 	.incbin "baserom.gba", 0xbb1abc, 0x6c
 
 	.global AnimScr_EfxMantBatabata2_R
 AnimScr_EfxMantBatabata2_R:
-	.4byte gUnk_08BB1990 + 0x3
-	.4byte gUnk_08BB19F0 + 0x2
-	.4byte gUnk_08BB1A50 + 0x3
-	.4byte gUnk_08BB1ABC + 0x2
+	.4byte AnimSprite_EfxMantBatabata2_R_08BB1990 + 0x3
+	.4byte AnimSprite_EfxMantBatabata2_R_08BB19F0 + 0x2
+	.4byte AnimSprite_EfxMantBatabata2_R_08BB1A50 + 0x3
+	.4byte AnimSprite_EfxMantBatabata2_R_08BB1ABC + 0x2
 	.incbin "baserom.gba", 0xbb1b38, 0x4
 
-	.global gUnk_08BB1B3C
-gUnk_08BB1B3C:
+	.global AnimSprite_EfxMantBatabata2_L_08BB1B3C
+AnimSprite_EfxMantBatabata2_L_08BB1B3C:
 	.incbin "baserom.gba", 0xbb1b3c, 0x60
 
-	.global gUnk_08BB1B9C
-gUnk_08BB1B9C:
+	.global AnimSprite_EfxMantBatabata2_L_08BB1B9C
+AnimSprite_EfxMantBatabata2_L_08BB1B9C:
 	.incbin "baserom.gba", 0xbb1b9c, 0x60
 
-	.global gUnk_08BB1BFC
-gUnk_08BB1BFC:
+	.global AnimSprite_EfxMantBatabata2_L_08BB1BFC
+AnimSprite_EfxMantBatabata2_L_08BB1BFC:
 	.incbin "baserom.gba", 0xbb1bfc, 0x6c
 
-	.global gUnk_08BB1C68
-gUnk_08BB1C68:
+	.global AnimSprite_EfxMantBatabata2_L_08BB1C68
+AnimSprite_EfxMantBatabata2_L_08BB1C68:
 	.incbin "baserom.gba", 0xbb1c68, 0x6c
 
 	.global AnimScr_EfxMantBatabata2_L
 AnimScr_EfxMantBatabata2_L:
-	.4byte gUnk_08BB1B3C + 0x3
-	.4byte gUnk_08BB1B9C + 0x2
-	.4byte gUnk_08BB1BFC + 0x3
-	.4byte gUnk_08BB1C68 + 0x2
+	.4byte AnimSprite_EfxMantBatabata2_L_08BB1B3C + 0x3
+	.4byte AnimSprite_EfxMantBatabata2_L_08BB1B9C + 0x2
+	.4byte AnimSprite_EfxMantBatabata2_L_08BB1BFC + 0x3
+	.4byte AnimSprite_EfxMantBatabata2_L_08BB1C68 + 0x2
 	.incbin "baserom.gba", 0xbb1ce4, 0x4
 
-	.global gUnk_08BB1CE8
-gUnk_08BB1CE8:
+	.global AnimSprite_EfxMantBatabata3_R_08BB1CE8
+AnimSprite_EfxMantBatabata3_R_08BB1CE8:
 	.incbin "baserom.gba", 0xbb1ce8, 0x90
 
-	.global gUnk_08BB1D78
-gUnk_08BB1D78:
+	.global AnimSprite_EfxMantBatabata3_R_08BB1D78
+AnimSprite_EfxMantBatabata3_R_08BB1D78:
 	.incbin "baserom.gba", 0xbb1d78, 0x78
 
-	.global gUnk_08BB1DF0
-gUnk_08BB1DF0:
+	.global AnimSprite_EfxMantBatabata3_R_08BB1DF0
+AnimSprite_EfxMantBatabata3_R_08BB1DF0:
 	.incbin "baserom.gba", 0xbb1df0, 0x90
 
 	.global AnimScr_EfxMantBatabata3_R
 AnimScr_EfxMantBatabata3_R:
-	.4byte gUnk_08BB1CE8 + 0x10000001
-	.4byte gUnk_08BB1D78 + 0x10000001
-	.4byte gUnk_08BB1DF0 + 0x10000001
+	.4byte AnimSprite_EfxMantBatabata3_R_08BB1CE8 + 0x10000001
+	.4byte AnimSprite_EfxMantBatabata3_R_08BB1D78 + 0x10000001
+	.4byte AnimSprite_EfxMantBatabata3_R_08BB1DF0 + 0x10000001
 	.incbin "baserom.gba", 0xbb1e8c, 0x4
 
-	.global gUnk_08BB1E90
-gUnk_08BB1E90:
+	.global AnimSprite_EfxMantBatabata3_L_08BB1E90
+AnimSprite_EfxMantBatabata3_L_08BB1E90:
 	.incbin "baserom.gba", 0xbb1e90, 0x90
 
-	.global gUnk_08BB1F20
-gUnk_08BB1F20:
+	.global AnimSprite_EfxMantBatabata3_L_08BB1F20
+AnimSprite_EfxMantBatabata3_L_08BB1F20:
 	.incbin "baserom.gba", 0xbb1f20, 0x78
 
-	.global gUnk_08BB1F98
-gUnk_08BB1F98:
+	.global AnimSprite_EfxMantBatabata3_L_08BB1F98
+AnimSprite_EfxMantBatabata3_L_08BB1F98:
 	.incbin "baserom.gba", 0xbb1f98, 0x90
 
 	.global AnimScr_EfxMantBatabata3_L
 AnimScr_EfxMantBatabata3_L:
-	.4byte gUnk_08BB1E90 + 0x10000001
-	.4byte gUnk_08BB1F20 + 0x10000001
-	.4byte gUnk_08BB1F98 + 0x10000001
+	.4byte AnimSprite_EfxMantBatabata3_L_08BB1E90 + 0x10000001
+	.4byte AnimSprite_EfxMantBatabata3_L_08BB1F20 + 0x10000001
+	.4byte AnimSprite_EfxMantBatabata3_L_08BB1F98 + 0x10000001
 	.incbin "baserom.gba", 0xbb2034, 0x4
 
-	.global gUnk_08BB2038
-gUnk_08BB2038:
+	.global AnimSprite_EfxMantBatabata4_R_08BB2038
+AnimSprite_EfxMantBatabata4_R_08BB2038:
 	.incbin "baserom.gba", 0xbb2038, 0x9c
 
-	.global gUnk_08BB20D4
-gUnk_08BB20D4:
+	.global AnimSprite_EfxMantBatabata4_R_08BB20D4
+AnimSprite_EfxMantBatabata4_R_08BB20D4:
 	.incbin "baserom.gba", 0xbb20d4, 0x90
 
 	.global AnimScr_EfxMantBatabata4_R
 AnimScr_EfxMantBatabata4_R:
-	.4byte gUnk_08BB2038 + 0x3
-	.4byte gUnk_08BB20D4 + 0x3
+	.4byte AnimSprite_EfxMantBatabata4_R_08BB2038 + 0x3
+	.4byte AnimSprite_EfxMantBatabata4_R_08BB20D4 + 0x3
 	.incbin "baserom.gba", 0xbb216c, 0x4
 
-	.global gUnk_08BB2170
-gUnk_08BB2170:
+	.global AnimSprite_EfxMantBatabata4_L_08BB2170
+AnimSprite_EfxMantBatabata4_L_08BB2170:
 	.incbin "baserom.gba", 0xbb2170, 0x9c
 
-	.global gUnk_08BB220C
-gUnk_08BB220C:
+	.global AnimSprite_EfxMantBatabata4_L_08BB220C
+AnimSprite_EfxMantBatabata4_L_08BB220C:
 	.incbin "baserom.gba", 0xbb220c, 0x90
 
 	.global AnimScr_EfxMantBatabata4_L
 AnimScr_EfxMantBatabata4_L:
-	.4byte gUnk_08BB2170 + 0x3
-	.4byte gUnk_08BB220C + 0x3
+	.4byte AnimSprite_EfxMantBatabata4_L_08BB2170 + 0x3
+	.4byte AnimSprite_EfxMantBatabata4_L_08BB220C + 0x3
 	.incbin "baserom.gba", 0xbb22a4, 0x4
 
-	.global gUnk_08BB22A8
-gUnk_08BB22A8:
+	.global AnimSprite_EfxMantBatabata5_R_08BB22A8
+AnimSprite_EfxMantBatabata5_R_08BB22A8:
 	.incbin "baserom.gba", 0xbb22a8, 0xc0
 
-	.global gUnk_08BB2368
-gUnk_08BB2368:
+	.global AnimSprite_EfxMantBatabata5_R_08BB2368
+AnimSprite_EfxMantBatabata5_R_08BB2368:
 	.incbin "baserom.gba", 0xbb2368, 0xcc
 
-	.global gUnk_08BB2434
-gUnk_08BB2434:
+	.global AnimSprite_EfxMantBatabata5_R_08BB2434
+AnimSprite_EfxMantBatabata5_R_08BB2434:
 	.incbin "baserom.gba", 0xbb2434, 0xcc
 
 	.global AnimScr_EfxMantBatabata5_R
 AnimScr_EfxMantBatabata5_R:
-	.4byte gUnk_08BB22A8 + 0x3
-	.4byte gUnk_08BB2368 + 0x3
-	.4byte gUnk_08BB2434 + 0x3
+	.4byte AnimSprite_EfxMantBatabata5_R_08BB22A8 + 0x3
+	.4byte AnimSprite_EfxMantBatabata5_R_08BB2368 + 0x3
+	.4byte AnimSprite_EfxMantBatabata5_R_08BB2434 + 0x3
 	.incbin "baserom.gba", 0xbb250c, 0x4
 
-	.global gUnk_08BB2510
-gUnk_08BB2510:
+	.global AnimSprite_EfxMantBatabata5_L_08BB2510
+AnimSprite_EfxMantBatabata5_L_08BB2510:
 	.incbin "baserom.gba", 0xbb2510, 0xc0
 
-	.global gUnk_08BB25D0
-gUnk_08BB25D0:
+	.global AnimSprite_EfxMantBatabata5_L_08BB25D0
+AnimSprite_EfxMantBatabata5_L_08BB25D0:
 	.incbin "baserom.gba", 0xbb25d0, 0xcc
 
-	.global gUnk_08BB269C
-gUnk_08BB269C:
+	.global AnimSprite_EfxMantBatabata5_L_08BB269C
+AnimSprite_EfxMantBatabata5_L_08BB269C:
 	.incbin "baserom.gba", 0xbb269c, 0xcc
 
 	.global AnimScr_EfxMantBatabata5_L
 AnimScr_EfxMantBatabata5_L:
-	.4byte gUnk_08BB2510 + 0x3
-	.4byte gUnk_08BB25D0 + 0x3
-	.4byte gUnk_08BB269C + 0x3
+	.4byte AnimSprite_EfxMantBatabata5_L_08BB2510 + 0x3
+	.4byte AnimSprite_EfxMantBatabata5_L_08BB25D0 + 0x3
+	.4byte AnimSprite_EfxMantBatabata5_L_08BB269C + 0x3
 	.incbin "baserom.gba", 0xbb2774, 0x4
 
-	.global gUnk_08BB2778
-gUnk_08BB2778:
+	.global AnimSprite_EfxMantBatabata6_R_08BB2778
+AnimSprite_EfxMantBatabata6_R_08BB2778:
 	.incbin "baserom.gba", 0xbb2778, 0x60
 
-	.global gUnk_08BB27D8
-gUnk_08BB27D8:
+	.global AnimSprite_EfxMantBatabata6_R_08BB27D8
+AnimSprite_EfxMantBatabata6_R_08BB27D8:
 	.incbin "baserom.gba", 0xbb27d8, 0x60
 
-	.global gUnk_08BB2838
-gUnk_08BB2838:
+	.global AnimSprite_EfxMantBatabata6_R_08BB2838
+AnimSprite_EfxMantBatabata6_R_08BB2838:
 	.incbin "baserom.gba", 0xbb2838, 0x54
 
 	.global AnimScr_EfxMantBatabata6_R
 AnimScr_EfxMantBatabata6_R:
-	.4byte gUnk_08BB2778 + 0x10000000
-	.4byte gUnk_08BB27D8 + 0x10000000
-	.4byte gUnk_08BB2838 + 0x3
+	.4byte AnimSprite_EfxMantBatabata6_R_08BB2778 + 0x10000000
+	.4byte AnimSprite_EfxMantBatabata6_R_08BB27D8 + 0x10000000
+	.4byte AnimSprite_EfxMantBatabata6_R_08BB2838 + 0x3
 	.incbin "baserom.gba", 0xbb2898, 0x4
 
-	.global gUnk_08BB289C
-gUnk_08BB289C:
+	.global AnimSprite_EfxMantBatabata6_L_08BB289C
+AnimSprite_EfxMantBatabata6_L_08BB289C:
 	.incbin "baserom.gba", 0xbb289c, 0x60
 
-	.global gUnk_08BB28FC
-gUnk_08BB28FC:
+	.global AnimSprite_EfxMantBatabata6_L_08BB28FC
+AnimSprite_EfxMantBatabata6_L_08BB28FC:
 	.incbin "baserom.gba", 0xbb28fc, 0x60
 
-	.global gUnk_08BB295C
-gUnk_08BB295C:
+	.global AnimSprite_EfxMantBatabata6_L_08BB295C
+AnimSprite_EfxMantBatabata6_L_08BB295C:
 	.incbin "baserom.gba", 0xbb295c, 0x54
 
 	.global AnimScr_EfxMantBatabata6_L
 AnimScr_EfxMantBatabata6_L:
-	.4byte gUnk_08BB289C + 0x10000000
-	.4byte gUnk_08BB28FC + 0x10000000
-	.4byte gUnk_08BB295C + 0x3
+	.4byte AnimSprite_EfxMantBatabata6_L_08BB289C + 0x10000000
+	.4byte AnimSprite_EfxMantBatabata6_L_08BB28FC + 0x10000000
+	.4byte AnimSprite_EfxMantBatabata6_L_08BB295C + 0x3
 	.incbin "baserom.gba", 0xbb29bc, 0x4
 
-	.global gUnk_08BB29C0
-gUnk_08BB29C0:
+	.global AnimSprite_EfxThunderOBJ_R_08BB29C0
+AnimSprite_EfxThunderOBJ_R_08BB29C0:
 	.incbin "baserom.gba", 0xbb29c0, 0x30
 
-	.global gUnk_08BB29F0
-gUnk_08BB29F0:
+	.global AnimSprite_EfxThunderOBJ_R_08BB29F0
+AnimSprite_EfxThunderOBJ_R_08BB29F0:
 	.incbin "baserom.gba", 0xbb29f0, 0x6c
 
-	.global gUnk_08BB2A5C
-gUnk_08BB2A5C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2A5C
+AnimSprite_EfxThunderOBJ_R_08BB2A5C:
 	.incbin "baserom.gba", 0xbb2a5c, 0x60
 
-	.global gUnk_08BB2ABC
-gUnk_08BB2ABC:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2ABC
+AnimSprite_EfxThunderOBJ_R_08BB2ABC:
 	.incbin "baserom.gba", 0xbb2abc, 0x60
 
-	.global gUnk_08BB2B1C
-gUnk_08BB2B1C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2B1C
+AnimSprite_EfxThunderOBJ_R_08BB2B1C:
 	.incbin "baserom.gba", 0xbb2b1c, 0x60
 
-	.global gUnk_08BB2B7C
-gUnk_08BB2B7C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2B7C
+AnimSprite_EfxThunderOBJ_R_08BB2B7C:
 	.incbin "baserom.gba", 0xbb2b7c, 0x60
 
-	.global gUnk_08BB2BDC
-gUnk_08BB2BDC:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2BDC
+AnimSprite_EfxThunderOBJ_R_08BB2BDC:
 	.incbin "baserom.gba", 0xbb2bdc, 0x60
 
-	.global gUnk_08BB2C3C
-gUnk_08BB2C3C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2C3C
+AnimSprite_EfxThunderOBJ_R_08BB2C3C:
 	.incbin "baserom.gba", 0xbb2c3c, 0x60
 
-	.global gUnk_08BB2C9C
-gUnk_08BB2C9C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2C9C
+AnimSprite_EfxThunderOBJ_R_08BB2C9C:
 	.incbin "baserom.gba", 0xbb2c9c, 0x60
 
-	.global gUnk_08BB2CFC
-gUnk_08BB2CFC:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2CFC
+AnimSprite_EfxThunderOBJ_R_08BB2CFC:
 	.incbin "baserom.gba", 0xbb2cfc, 0x60
 
-	.global gUnk_08BB2D5C
-gUnk_08BB2D5C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2D5C
+AnimSprite_EfxThunderOBJ_R_08BB2D5C:
 	.incbin "baserom.gba", 0xbb2d5c, 0x60
 
-	.global gUnk_08BB2DBC
-gUnk_08BB2DBC:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2DBC
+AnimSprite_EfxThunderOBJ_R_08BB2DBC:
 	.incbin "baserom.gba", 0xbb2dbc, 0x60
 
-	.global gUnk_08BB2E1C
-gUnk_08BB2E1C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2E1C
+AnimSprite_EfxThunderOBJ_R_08BB2E1C:
 	.incbin "baserom.gba", 0xbb2e1c, 0x60
 
-	.global gUnk_08BB2E7C
-gUnk_08BB2E7C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2E7C
+AnimSprite_EfxThunderOBJ_R_08BB2E7C:
 	.incbin "baserom.gba", 0xbb2e7c, 0x60
 
-	.global gUnk_08BB2EDC
-gUnk_08BB2EDC:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2EDC
+AnimSprite_EfxThunderOBJ_R_08BB2EDC:
 	.incbin "baserom.gba", 0xbb2edc, 0x60
 
-	.global gUnk_08BB2F3C
-gUnk_08BB2F3C:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2F3C
+AnimSprite_EfxThunderOBJ_R_08BB2F3C:
 	.incbin "baserom.gba", 0xbb2f3c, 0x6c
 
-	.global gUnk_08BB2FA8
-gUnk_08BB2FA8:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2FA8
+AnimSprite_EfxThunderOBJ_R_08BB2FA8:
 	.incbin "baserom.gba", 0xbb2fa8, 0x18
 
-	.global gUnk_08BB2FC0
-gUnk_08BB2FC0:
+	.global AnimSprite_EfxThunderOBJ_R_08BB2FC0
+AnimSprite_EfxThunderOBJ_R_08BB2FC0:
 	.incbin "baserom.gba", 0xbb2fc0, 0x60
 
-	.global gUnk_08BB3020
-gUnk_08BB3020:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3020
+AnimSprite_EfxThunderOBJ_R_08BB3020:
 	.incbin "baserom.gba", 0xbb3020, 0x60
 
-	.global gUnk_08BB3080
-gUnk_08BB3080:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3080
+AnimSprite_EfxThunderOBJ_R_08BB3080:
 	.incbin "baserom.gba", 0xbb3080, 0x60
 
-	.global gUnk_08BB30E0
-gUnk_08BB30E0:
+	.global AnimSprite_EfxThunderOBJ_R_08BB30E0
+AnimSprite_EfxThunderOBJ_R_08BB30E0:
 	.incbin "baserom.gba", 0xbb30e0, 0x60
 
-	.global gUnk_08BB3140
-gUnk_08BB3140:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3140
+AnimSprite_EfxThunderOBJ_R_08BB3140:
 	.incbin "baserom.gba", 0xbb3140, 0x60
 
-	.global gUnk_08BB31A0
-gUnk_08BB31A0:
+	.global AnimSprite_EfxThunderOBJ_R_08BB31A0
+AnimSprite_EfxThunderOBJ_R_08BB31A0:
 	.incbin "baserom.gba", 0xbb31a0, 0x60
 
-	.global gUnk_08BB3200
-gUnk_08BB3200:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3200
+AnimSprite_EfxThunderOBJ_R_08BB3200:
 	.incbin "baserom.gba", 0xbb3200, 0x60
 
-	.global gUnk_08BB3260
-gUnk_08BB3260:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3260
+AnimSprite_EfxThunderOBJ_R_08BB3260:
 	.incbin "baserom.gba", 0xbb3260, 0x60
 
-	.global gUnk_08BB32C0
-gUnk_08BB32C0:
+	.global AnimSprite_EfxThunderOBJ_R_08BB32C0
+AnimSprite_EfxThunderOBJ_R_08BB32C0:
 	.incbin "baserom.gba", 0xbb32c0, 0x60
 
-	.global gUnk_08BB3320
-gUnk_08BB3320:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3320
+AnimSprite_EfxThunderOBJ_R_08BB3320:
 	.incbin "baserom.gba", 0xbb3320, 0x60
 
-	.global gUnk_08BB3380
-gUnk_08BB3380:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3380
+AnimSprite_EfxThunderOBJ_R_08BB3380:
 	.incbin "baserom.gba", 0xbb3380, 0x18
 
-	.global gUnk_08BB3398
-gUnk_08BB3398:
+	.global AnimSprite_EfxThunderOBJ_R_08BB3398
+AnimSprite_EfxThunderOBJ_R_08BB3398:
 	.incbin "baserom.gba", 0xbb3398, 0x6c
 
 	.global AnimScr_EfxThunderOBJ_R
 AnimScr_EfxThunderOBJ_R:
-	.4byte gUnk_08BB2FA8 + 0x30000002
-	.4byte gUnk_08BB29C0 + 0x2
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB29F0 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2A5C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2ABC + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2B1C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2B7C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2BDC + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2C3C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2C9C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2CFC + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2D5C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2DBC + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2E1C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2E7C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2EDC + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2F3C + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB2FC0 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB3020 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB3080 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB30E0 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB3140 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB31A0 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB3200 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB3260 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB32C0 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
-	.4byte gUnk_08BB3320 + 0x1
-	.4byte gUnk_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x30000002
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB29C0 + 0x2
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB29F0 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2A5C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2ABC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2B1C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2B7C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2BDC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2C3C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2C9C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2CFC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2D5C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2DBC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2E1C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2E7C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2EDC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2F3C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FC0 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3020 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3080 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB30E0 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3140 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB31A0 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3200 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3260 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB32C0 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3320 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB2FA8 + 0x1
 	.incbin "baserom.gba", 0xbb34d8, 0x4
-	.4byte gUnk_08BB3380 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3380 + 0x1
 	.incbin "baserom.gba", 0xbb34e0, 0x4
-	.4byte gUnk_08BB3398 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_R_08BB3398 + 0x1
 	.incbin "baserom.gba", 0xbb34e8, 0x4
 
-	.global gUnk_08BB34EC
-gUnk_08BB34EC:
+	.global AnimSprite_EfxThunderOBJ_L_08BB34EC
+AnimSprite_EfxThunderOBJ_L_08BB34EC:
 	.incbin "baserom.gba", 0xbb34ec, 0x30
 
-	.global gUnk_08BB351C
-gUnk_08BB351C:
+	.global AnimSprite_EfxThunderOBJ_L_08BB351C
+AnimSprite_EfxThunderOBJ_L_08BB351C:
 	.incbin "baserom.gba", 0xbb351c, 0x6c
 
-	.global gUnk_08BB3588
-gUnk_08BB3588:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3588
+AnimSprite_EfxThunderOBJ_L_08BB3588:
 	.incbin "baserom.gba", 0xbb3588, 0x60
 
-	.global gUnk_08BB35E8
-gUnk_08BB35E8:
+	.global AnimSprite_EfxThunderOBJ_L_08BB35E8
+AnimSprite_EfxThunderOBJ_L_08BB35E8:
 	.incbin "baserom.gba", 0xbb35e8, 0x60
 
-	.global gUnk_08BB3648
-gUnk_08BB3648:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3648
+AnimSprite_EfxThunderOBJ_L_08BB3648:
 	.incbin "baserom.gba", 0xbb3648, 0x60
 
-	.global gUnk_08BB36A8
-gUnk_08BB36A8:
+	.global AnimSprite_EfxThunderOBJ_L_08BB36A8
+AnimSprite_EfxThunderOBJ_L_08BB36A8:
 	.incbin "baserom.gba", 0xbb36a8, 0x60
 
-	.global gUnk_08BB3708
-gUnk_08BB3708:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3708
+AnimSprite_EfxThunderOBJ_L_08BB3708:
 	.incbin "baserom.gba", 0xbb3708, 0x60
 
-	.global gUnk_08BB3768
-gUnk_08BB3768:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3768
+AnimSprite_EfxThunderOBJ_L_08BB3768:
 	.incbin "baserom.gba", 0xbb3768, 0x60
 
-	.global gUnk_08BB37C8
-gUnk_08BB37C8:
+	.global AnimSprite_EfxThunderOBJ_L_08BB37C8
+AnimSprite_EfxThunderOBJ_L_08BB37C8:
 	.incbin "baserom.gba", 0xbb37c8, 0x60
 
-	.global gUnk_08BB3828
-gUnk_08BB3828:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3828
+AnimSprite_EfxThunderOBJ_L_08BB3828:
 	.incbin "baserom.gba", 0xbb3828, 0x60
 
-	.global gUnk_08BB3888
-gUnk_08BB3888:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3888
+AnimSprite_EfxThunderOBJ_L_08BB3888:
 	.incbin "baserom.gba", 0xbb3888, 0x60
 
-	.global gUnk_08BB38E8
-gUnk_08BB38E8:
+	.global AnimSprite_EfxThunderOBJ_L_08BB38E8
+AnimSprite_EfxThunderOBJ_L_08BB38E8:
 	.incbin "baserom.gba", 0xbb38e8, 0x60
 
-	.global gUnk_08BB3948
-gUnk_08BB3948:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3948
+AnimSprite_EfxThunderOBJ_L_08BB3948:
 	.incbin "baserom.gba", 0xbb3948, 0x60
 
-	.global gUnk_08BB39A8
-gUnk_08BB39A8:
+	.global AnimSprite_EfxThunderOBJ_L_08BB39A8
+AnimSprite_EfxThunderOBJ_L_08BB39A8:
 	.incbin "baserom.gba", 0xbb39a8, 0x60
 
-	.global gUnk_08BB3A08
-gUnk_08BB3A08:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3A08
+AnimSprite_EfxThunderOBJ_L_08BB3A08:
 	.incbin "baserom.gba", 0xbb3a08, 0x60
 
-	.global gUnk_08BB3A68
-gUnk_08BB3A68:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3A68
+AnimSprite_EfxThunderOBJ_L_08BB3A68:
 	.incbin "baserom.gba", 0xbb3a68, 0x6c
 
-	.global gUnk_08BB3AD4
-gUnk_08BB3AD4:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3AD4
+AnimSprite_EfxThunderOBJ_L_08BB3AD4:
 	.incbin "baserom.gba", 0xbb3ad4, 0x18
 
-	.global gUnk_08BB3AEC
-gUnk_08BB3AEC:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3AEC
+AnimSprite_EfxThunderOBJ_L_08BB3AEC:
 	.incbin "baserom.gba", 0xbb3aec, 0x60
 
-	.global gUnk_08BB3B4C
-gUnk_08BB3B4C:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3B4C
+AnimSprite_EfxThunderOBJ_L_08BB3B4C:
 	.incbin "baserom.gba", 0xbb3b4c, 0x60
 
-	.global gUnk_08BB3BAC
-gUnk_08BB3BAC:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3BAC
+AnimSprite_EfxThunderOBJ_L_08BB3BAC:
 	.incbin "baserom.gba", 0xbb3bac, 0x60
 
-	.global gUnk_08BB3C0C
-gUnk_08BB3C0C:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3C0C
+AnimSprite_EfxThunderOBJ_L_08BB3C0C:
 	.incbin "baserom.gba", 0xbb3c0c, 0x60
 
-	.global gUnk_08BB3C6C
-gUnk_08BB3C6C:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3C6C
+AnimSprite_EfxThunderOBJ_L_08BB3C6C:
 	.incbin "baserom.gba", 0xbb3c6c, 0x60
 
-	.global gUnk_08BB3CCC
-gUnk_08BB3CCC:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3CCC
+AnimSprite_EfxThunderOBJ_L_08BB3CCC:
 	.incbin "baserom.gba", 0xbb3ccc, 0x60
 
-	.global gUnk_08BB3D2C
-gUnk_08BB3D2C:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3D2C
+AnimSprite_EfxThunderOBJ_L_08BB3D2C:
 	.incbin "baserom.gba", 0xbb3d2c, 0x60
 
-	.global gUnk_08BB3D8C
-gUnk_08BB3D8C:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3D8C
+AnimSprite_EfxThunderOBJ_L_08BB3D8C:
 	.incbin "baserom.gba", 0xbb3d8c, 0x60
 
-	.global gUnk_08BB3DEC
-gUnk_08BB3DEC:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3DEC
+AnimSprite_EfxThunderOBJ_L_08BB3DEC:
 	.incbin "baserom.gba", 0xbb3dec, 0x60
 
-	.global gUnk_08BB3E4C
-gUnk_08BB3E4C:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3E4C
+AnimSprite_EfxThunderOBJ_L_08BB3E4C:
 	.incbin "baserom.gba", 0xbb3e4c, 0x60
 
-	.global gUnk_08BB3EAC
-gUnk_08BB3EAC:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3EAC
+AnimSprite_EfxThunderOBJ_L_08BB3EAC:
 	.incbin "baserom.gba", 0xbb3eac, 0x18
 
-	.global gUnk_08BB3EC4
-gUnk_08BB3EC4:
+	.global AnimSprite_EfxThunderOBJ_L_08BB3EC4
+AnimSprite_EfxThunderOBJ_L_08BB3EC4:
 	.incbin "baserom.gba", 0xbb3ec4, 0x6c
 
 	.global AnimScr_EfxThunderOBJ_L
 AnimScr_EfxThunderOBJ_L:
-	.4byte gUnk_08BB3AD4 + 0x30000002
-	.4byte gUnk_08BB34EC + 0x2
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB351C + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3588 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB35E8 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3648 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB36A8 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3708 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3768 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB37C8 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3828 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3888 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB38E8 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3948 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB39A8 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3A08 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3A68 + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3AEC + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3B4C + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3BAC + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3C0C + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3C6C + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3CCC + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3D2C + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3D8C + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3DEC + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
-	.4byte gUnk_08BB3E4C + 0x1
-	.4byte gUnk_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x30000002
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB34EC + 0x2
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB351C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3588 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB35E8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3648 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB36A8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3708 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3768 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB37C8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3828 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3888 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB38E8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3948 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB39A8 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3A08 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3A68 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AEC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3B4C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3BAC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3C0C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3C6C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3CCC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3D2C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3D8C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3DEC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3E4C + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3AD4 + 0x1
 	.incbin "baserom.gba", 0xbb4004, 0x4
-	.4byte gUnk_08BB3EAC + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3EAC + 0x1
 	.incbin "baserom.gba", 0xbb400c, 0x4
-	.4byte gUnk_08BB3EC4 + 0x1
+	.4byte AnimSprite_EfxThunderOBJ_L_08BB3EC4 + 0x1
 	.incbin "baserom.gba", 0xbb4014, 0x4
 
-	.global gUnk_08BB4018
-gUnk_08BB4018:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB4018
+AnimSprite_EfxFireOBJ_L_Front_08BB4018:
 	.incbin "baserom.gba", 0xbb4018, 0x18
 
-	.global gUnk_08BB4030
-gUnk_08BB4030:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB4030
+AnimSprite_EfxFireOBJ_L_Front_08BB4030:
 	.incbin "baserom.gba", 0xbb4030, 0x24
 
-	.global gUnk_08BB4054
-gUnk_08BB4054:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB4054
+AnimSprite_EfxFireOBJ_L_Front_08BB4054:
 	.incbin "baserom.gba", 0xbb4054, 0x24
 
-	.global gUnk_08BB4078
-gUnk_08BB4078:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB4078
+AnimSprite_EfxFireOBJ_L_Front_08BB4078:
 	.incbin "baserom.gba", 0xbb4078, 0x24
 
-	.global gUnk_08BB409C
-gUnk_08BB409C:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB409C
+AnimSprite_EfxFireOBJ_L_Front_08BB409C:
 	.incbin "baserom.gba", 0xbb409c, 0x24
 
-	.global gUnk_08BB40C0
-gUnk_08BB40C0:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB40C0
+AnimSprite_EfxFireOBJ_L_Front_08BB40C0:
 	.incbin "baserom.gba", 0xbb40c0, 0x54
 
-	.global gUnk_08BB4114
-gUnk_08BB4114:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB4114
+AnimSprite_EfxFireOBJ_L_Front_08BB4114:
 	.incbin "baserom.gba", 0xbb4114, 0x60
 
-	.global gUnk_08BB4174
-gUnk_08BB4174:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB4174
+AnimSprite_EfxFireOBJ_L_Front_08BB4174:
 	.incbin "baserom.gba", 0xbb4174, 0x54
 
-	.global gUnk_08BB41C8
-gUnk_08BB41C8:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB41C8
+AnimSprite_EfxFireOBJ_L_Front_08BB41C8:
 	.incbin "baserom.gba", 0xbb41c8, 0x18
 
-	.global gUnk_08BB41E0
-gUnk_08BB41E0:
+	.global AnimSprite_EfxFireOBJ_L_Front_08BB41E0
+AnimSprite_EfxFireOBJ_L_Front_08BB41E0:
 	.incbin "baserom.gba", 0xbb41e0, 0x18
 
-	.global gUnk_08BB41F8
-gUnk_08BB41F8:
+	.global AnimSprite_EfxFireOBJ_L_Back_08BB41F8
+AnimSprite_EfxFireOBJ_L_Back_08BB41F8:
 	.incbin "baserom.gba", 0xbb41f8, 0x54
 
-	.global gUnk_08BB424C
-gUnk_08BB424C:
+	.global AnimSprite_EfxFireOBJ_L_Back_08BB424C
+AnimSprite_EfxFireOBJ_L_Back_08BB424C:
 	.incbin "baserom.gba", 0xbb424c, 0x60
 
-	.global gUnk_08BB42AC
-gUnk_08BB42AC:
+	.global AnimSprite_EfxFireOBJ_L_Back_08BB42AC
+AnimSprite_EfxFireOBJ_L_Back_08BB42AC:
 	.incbin "baserom.gba", 0xbb42ac, 0x54
 
-	.global gUnk_08BB4300
-gUnk_08BB4300:
+	.global AnimSprite_EfxFireOBJ_L_Back_08BB4300
+AnimSprite_EfxFireOBJ_L_Back_08BB4300:
 	.incbin "baserom.gba", 0xbb4300, 0x48
 
 	.global AnimScr_EfxFireOBJ_L_Front
 AnimScr_EfxFireOBJ_L_Front:
-	.4byte gUnk_08BB41E0 + 0x60000001
-	.4byte gUnk_08BB4018 + 0x3
-	.4byte gUnk_08BB4030 + 0x2
-	.4byte gUnk_08BB4054 + 0x2
-	.4byte gUnk_08BB4078 + 0x20000002
-	.4byte gUnk_08BB409C + 0x3
-	.4byte gUnk_08BB40C0 + 0x2
-	.4byte gUnk_08BB4114 + 0x2
-	.4byte gUnk_08BB4174 + 0x2
-	.4byte gUnk_08BB41C8 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB41E0 + 0x60000001
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4018 + 0x3
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4030 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4054 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4078 + 0x20000002
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB409C + 0x3
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB40C0 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4114 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4174 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB41C8 + 0x2
 	.incbin "baserom.gba", 0xbb4370, 0x4
 
 	.global AnimScr_EfxFireOBJ_L_Back
 AnimScr_EfxFireOBJ_L_Back:
-	.4byte gUnk_08BB41E0 + 0x60000001
-	.4byte gUnk_08BB4018 + 0x3
-	.4byte gUnk_08BB4030 + 0x2
-	.4byte gUnk_08BB4054 + 0x2
-	.4byte gUnk_08BB4078 + 0x20000002
-	.4byte gUnk_08BB409C + 0x3
-	.4byte gUnk_08BB41F8 + 0x2
-	.4byte gUnk_08BB424C + 0x2
-	.4byte gUnk_08BB42AC + 0x2
-	.4byte gUnk_08BB4300 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB41E0 + 0x60000001
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4018 + 0x3
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4030 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4054 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB4078 + 0x20000002
+	.4byte AnimSprite_EfxFireOBJ_L_Front_08BB409C + 0x3
+	.4byte AnimSprite_EfxFireOBJ_L_Back_08BB41F8 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Back_08BB424C + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Back_08BB42AC + 0x2
+	.4byte AnimSprite_EfxFireOBJ_L_Back_08BB4300 + 0x2
 	.incbin "baserom.gba", 0xbb439c, 0x4
 
-	.global gUnk_08BB43A0
-gUnk_08BB43A0:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB43A0
+AnimSprite_EfxFireOBJ_R_Front_08BB43A0:
 	.incbin "baserom.gba", 0xbb43a0, 0x18
 
-	.global gUnk_08BB43B8
-gUnk_08BB43B8:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB43B8
+AnimSprite_EfxFireOBJ_R_Front_08BB43B8:
 	.incbin "baserom.gba", 0xbb43b8, 0x24
 
-	.global gUnk_08BB43DC
-gUnk_08BB43DC:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB43DC
+AnimSprite_EfxFireOBJ_R_Front_08BB43DC:
 	.incbin "baserom.gba", 0xbb43dc, 0x24
 
-	.global gUnk_08BB4400
-gUnk_08BB4400:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB4400
+AnimSprite_EfxFireOBJ_R_Front_08BB4400:
 	.incbin "baserom.gba", 0xbb4400, 0x24
 
-	.global gUnk_08BB4424
-gUnk_08BB4424:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB4424
+AnimSprite_EfxFireOBJ_R_Front_08BB4424:
 	.incbin "baserom.gba", 0xbb4424, 0x24
 
-	.global gUnk_08BB4448
-gUnk_08BB4448:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB4448
+AnimSprite_EfxFireOBJ_R_Front_08BB4448:
 	.incbin "baserom.gba", 0xbb4448, 0x54
 
-	.global gUnk_08BB449C
-gUnk_08BB449C:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB449C
+AnimSprite_EfxFireOBJ_R_Front_08BB449C:
 	.incbin "baserom.gba", 0xbb449c, 0x60
 
-	.global gUnk_08BB44FC
-gUnk_08BB44FC:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB44FC
+AnimSprite_EfxFireOBJ_R_Front_08BB44FC:
 	.incbin "baserom.gba", 0xbb44fc, 0x54
 
-	.global gUnk_08BB4550
-gUnk_08BB4550:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB4550
+AnimSprite_EfxFireOBJ_R_Front_08BB4550:
 	.incbin "baserom.gba", 0xbb4550, 0x18
 
-	.global gUnk_08BB4568
-gUnk_08BB4568:
+	.global AnimSprite_EfxFireOBJ_R_Front_08BB4568
+AnimSprite_EfxFireOBJ_R_Front_08BB4568:
 	.incbin "baserom.gba", 0xbb4568, 0x18
 
-	.global gUnk_08BB4580
-gUnk_08BB4580:
+	.global AnimSprite_EfxFireOBJ_R_Back_08BB4580
+AnimSprite_EfxFireOBJ_R_Back_08BB4580:
 	.incbin "baserom.gba", 0xbb4580, 0x54
 
-	.global gUnk_08BB45D4
-gUnk_08BB45D4:
+	.global AnimSprite_EfxFireOBJ_R_Back_08BB45D4
+AnimSprite_EfxFireOBJ_R_Back_08BB45D4:
 	.incbin "baserom.gba", 0xbb45d4, 0x60
 
-	.global gUnk_08BB4634
-gUnk_08BB4634:
+	.global AnimSprite_EfxFireOBJ_R_Back_08BB4634
+AnimSprite_EfxFireOBJ_R_Back_08BB4634:
 	.incbin "baserom.gba", 0xbb4634, 0x54
 
-	.global gUnk_08BB4688
-gUnk_08BB4688:
+	.global AnimSprite_EfxFireOBJ_R_Back_08BB4688
+AnimSprite_EfxFireOBJ_R_Back_08BB4688:
 	.incbin "baserom.gba", 0xbb4688, 0x48
 
 	.global AnimScr_EfxFireOBJ_R_Front
 AnimScr_EfxFireOBJ_R_Front:
-	.4byte gUnk_08BB4568 + 0x60000001
-	.4byte gUnk_08BB43A0 + 0x3
-	.4byte gUnk_08BB43B8 + 0x2
-	.4byte gUnk_08BB43DC + 0x2
-	.4byte gUnk_08BB4400 + 0x20000002
-	.4byte gUnk_08BB4424 + 0x3
-	.4byte gUnk_08BB4448 + 0x2
-	.4byte gUnk_08BB449C + 0x2
-	.4byte gUnk_08BB44FC + 0x2
-	.4byte gUnk_08BB4550 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4568 + 0x60000001
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB43A0 + 0x3
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB43B8 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB43DC + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4400 + 0x20000002
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4424 + 0x3
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4448 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB449C + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB44FC + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4550 + 0x2
 	.incbin "baserom.gba", 0xbb46f8, 0x4
 
 	.global AnimScr_EfxFireOBJ_R_Back
 AnimScr_EfxFireOBJ_R_Back:
-	.4byte gUnk_08BB4568 + 0x60000001
-	.4byte gUnk_08BB43A0 + 0x3
-	.4byte gUnk_08BB43B8 + 0x2
-	.4byte gUnk_08BB43DC + 0x2
-	.4byte gUnk_08BB4400 + 0x20000002
-	.4byte gUnk_08BB4424 + 0x3
-	.4byte gUnk_08BB4580 + 0x2
-	.4byte gUnk_08BB45D4 + 0x2
-	.4byte gUnk_08BB4634 + 0x2
-	.4byte gUnk_08BB4688 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4568 + 0x60000001
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB43A0 + 0x3
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB43B8 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB43DC + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4400 + 0x20000002
+	.4byte AnimSprite_EfxFireOBJ_R_Front_08BB4424 + 0x3
+	.4byte AnimSprite_EfxFireOBJ_R_Back_08BB4580 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Back_08BB45D4 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Back_08BB4634 + 0x2
+	.4byte AnimSprite_EfxFireOBJ_R_Back_08BB4688 + 0x2
 	.incbin "baserom.gba", 0xbb4724, 0x4
 
-	.global gUnk_08BB4728
-gUnk_08BB4728:
+	.global AnimSprite_EfxElfireObjRight_08BB4728
+AnimSprite_EfxElfireObjRight_08BB4728:
 	.incbin "baserom.gba", 0xbb4728, 0x24
 
-	.global gUnk_08BB474C
-gUnk_08BB474C:
+	.global AnimSprite_EfxElfireObjRight_08BB474C
+AnimSprite_EfxElfireObjRight_08BB474C:
 	.incbin "baserom.gba", 0xbb474c, 0x3c
 
-	.global gUnk_08BB4788
-gUnk_08BB4788:
+	.global AnimSprite_EfxElfireObjRight_08BB4788
+AnimSprite_EfxElfireObjRight_08BB4788:
 	.incbin "baserom.gba", 0xbb4788, 0x54
 
-	.global gUnk_08BB47DC
-gUnk_08BB47DC:
+	.global AnimSprite_EfxElfireObjRight_08BB47DC
+AnimSprite_EfxElfireObjRight_08BB47DC:
 	.incbin "baserom.gba", 0xbb47dc, 0x6c
 
-	.global gUnk_08BB4848
-gUnk_08BB4848:
+	.global AnimSprite_EfxElfireObjRight_08BB4848
+AnimSprite_EfxElfireObjRight_08BB4848:
 	.incbin "baserom.gba", 0xbb4848, 0x84
 
-	.global gUnk_08BB48CC
-gUnk_08BB48CC:
+	.global AnimSprite_EfxElfireObjRight_08BB48CC
+AnimSprite_EfxElfireObjRight_08BB48CC:
 	.incbin "baserom.gba", 0xbb48cc, 0x84
 
-	.global gUnk_08BB4950
-gUnk_08BB4950:
+	.global AnimSprite_EfxElfireObjRight_08BB4950
+AnimSprite_EfxElfireObjRight_08BB4950:
 	.incbin "baserom.gba", 0xbb4950, 0x84
 
-	.global gUnk_08BB49D4
-gUnk_08BB49D4:
+	.global AnimSprite_EfxElfireObjRight_08BB49D4
+AnimSprite_EfxElfireObjRight_08BB49D4:
 	.incbin "baserom.gba", 0xbb49d4, 0x84
 
-	.global gUnk_08BB4A58
-gUnk_08BB4A58:
+	.global AnimSprite_EfxElfireObjRight_08BB4A58
+AnimSprite_EfxElfireObjRight_08BB4A58:
 	.incbin "baserom.gba", 0xbb4a58, 0x84
 
-	.global gUnk_08BB4ADC
-gUnk_08BB4ADC:
+	.global AnimSprite_EfxElfireObjRight_08BB4ADC
+AnimSprite_EfxElfireObjRight_08BB4ADC:
 	.incbin "baserom.gba", 0xbb4adc, 0x84
 
-	.global gUnk_08BB4B60
-gUnk_08BB4B60:
+	.global AnimSprite_EfxElfireObjRight_08BB4B60
+AnimSprite_EfxElfireObjRight_08BB4B60:
 	.incbin "baserom.gba", 0xbb4b60, 0x84
 
-	.global gUnk_08BB4BE4
-gUnk_08BB4BE4:
+	.global AnimSprite_EfxElfireObjRight_08BB4BE4
+AnimSprite_EfxElfireObjRight_08BB4BE4:
 	.incbin "baserom.gba", 0xbb4be4, 0x84
 
-	.global gUnk_08BB4C68
-gUnk_08BB4C68:
+	.global AnimSprite_EfxElfireObjRight_08BB4C68
+AnimSprite_EfxElfireObjRight_08BB4C68:
 	.incbin "baserom.gba", 0xbb4c68, 0x84
 
-	.global gUnk_08BB4CEC
-gUnk_08BB4CEC:
+	.global AnimSprite_EfxElfireObjRight_08BB4CEC
+AnimSprite_EfxElfireObjRight_08BB4CEC:
 	.incbin "baserom.gba", 0xbb4cec, 0x6c
 
-	.global gUnk_08BB4D58
-gUnk_08BB4D58:
+	.global AnimSprite_EfxElfireObjRight_08BB4D58
+AnimSprite_EfxElfireObjRight_08BB4D58:
 	.incbin "baserom.gba", 0xbb4d58, 0x54
 
-	.global gUnk_08BB4DAC
-gUnk_08BB4DAC:
+	.global AnimSprite_EfxElfireObjRight_08BB4DAC
+AnimSprite_EfxElfireObjRight_08BB4DAC:
 	.incbin "baserom.gba", 0xbb4dac, 0x3c
 
-	.global gUnk_08BB4DE8
-gUnk_08BB4DE8:
+	.global AnimSprite_EfxElfireObjRight_08BB4DE8
+AnimSprite_EfxElfireObjRight_08BB4DE8:
 	.incbin "baserom.gba", 0xbb4de8, 0x24
 
-	.global gUnk_08BB4E0C
-gUnk_08BB4E0C:
+	.global AnimSprite_EfxElfireObjRight_08BB4E0C
+AnimSprite_EfxElfireObjRight_08BB4E0C:
 	.incbin "baserom.gba", 0xbb4e0c, 0x18
 
-	.global gUnk_08BB4E24
-gUnk_08BB4E24:
+	.global AnimSprite_EfxElfireObjRight_08BB4E24
+AnimSprite_EfxElfireObjRight_08BB4E24:
 	.incbin "baserom.gba", 0xbb4e24, 0x24
 
-	.global gUnk_08BB4E48
-gUnk_08BB4E48:
+	.global AnimSprite_EfxElfireObjRight_08BB4E48
+AnimSprite_EfxElfireObjRight_08BB4E48:
 	.incbin "baserom.gba", 0xbb4e48, 0x3c
 
-	.global gUnk_08BB4E84
-gUnk_08BB4E84:
+	.global AnimSprite_EfxElfireObjRight_08BB4E84
+AnimSprite_EfxElfireObjRight_08BB4E84:
 	.incbin "baserom.gba", 0xbb4e84, 0x54
 
-	.global gUnk_08BB4ED8
-gUnk_08BB4ED8:
+	.global AnimSprite_EfxElfireObjRight_08BB4ED8
+AnimSprite_EfxElfireObjRight_08BB4ED8:
 	.incbin "baserom.gba", 0xbb4ed8, 0x6c
 
-	.global gUnk_08BB4F44
-gUnk_08BB4F44:
+	.global AnimSprite_EfxElfireObjRight_08BB4F44
+AnimSprite_EfxElfireObjRight_08BB4F44:
 	.incbin "baserom.gba", 0xbb4f44, 0x84
 
-	.global gUnk_08BB4FC8
-gUnk_08BB4FC8:
+	.global AnimSprite_EfxElfireObjRight_08BB4FC8
+AnimSprite_EfxElfireObjRight_08BB4FC8:
 	.incbin "baserom.gba", 0xbb4fc8, 0x108
 
-	.global gUnk_08BB50D0
-gUnk_08BB50D0:
+	.global AnimSprite_EfxElfireObjRight_08BB50D0
+AnimSprite_EfxElfireObjRight_08BB50D0:
 	.incbin "baserom.gba", 0xbb50d0, 0x84
 
-	.global gUnk_08BB5154
-gUnk_08BB5154:
+	.global AnimSprite_EfxElfireObjRight_08BB5154
+AnimSprite_EfxElfireObjRight_08BB5154:
 	.incbin "baserom.gba", 0xbb5154, 0x84
 
-	.global gUnk_08BB51D8
-gUnk_08BB51D8:
+	.global AnimSprite_EfxElfireObjRight_08BB51D8
+AnimSprite_EfxElfireObjRight_08BB51D8:
 	.incbin "baserom.gba", 0xbb51d8, 0x84
 
-	.global gUnk_08BB525C
-gUnk_08BB525C:
+	.global AnimSprite_EfxElfireObjRight_08BB525C
+AnimSprite_EfxElfireObjRight_08BB525C:
 	.incbin "baserom.gba", 0xbb525c, 0x84
 
-	.global gUnk_08BB52E0
-gUnk_08BB52E0:
+	.global AnimSprite_EfxElfireObjRight_08BB52E0
+AnimSprite_EfxElfireObjRight_08BB52E0:
 	.incbin "baserom.gba", 0xbb52e0, 0x1ec
 
 	.global AnimScr_EfxElfireObjRight
 AnimScr_EfxElfireObjRight:
-	.4byte gUnk_08BB4728 + 0x1
-	.4byte gUnk_08BB474C + 0x1
-	.4byte gUnk_08BB474C + 0x1
-	.4byte gUnk_08BB4788 + 0x1
-	.4byte gUnk_08BB47DC + 0x1
-	.4byte gUnk_08BB4848 + 0x1
-	.4byte gUnk_08BB48CC + 0x1
-	.4byte gUnk_08BB4950 + 0x1
-	.4byte gUnk_08BB49D4 + 0x1
-	.4byte gUnk_08BB4A58 + 0x1
-	.4byte gUnk_08BB4ADC + 0x1
-	.4byte gUnk_08BB4B60 + 0x1
-	.4byte gUnk_08BB4BE4 + 0x1
-	.4byte gUnk_08BB4C68 + 0x1
-	.4byte gUnk_08BB4CEC + 0x1
-	.4byte gUnk_08BB4D58 + 0x1
-	.4byte gUnk_08BB4DAC + 0x1
-	.4byte gUnk_08BB4DE8 + 0x1
-	.4byte gUnk_08BB4E0C + 0x1
-	.4byte gUnk_08BB4E24 + 0x1
-	.4byte gUnk_08BB4E48 + 0x1
-	.4byte gUnk_08BB4E84 + 0x1
-	.4byte gUnk_08BB4ED8 + 0x1
-	.4byte gUnk_08BB4F44 + 0x1
-	.4byte gUnk_08BB4FC8 + 0x1
-	.4byte gUnk_08BB50D0 + 0x1
-	.4byte gUnk_08BB5154 + 0x1
-	.4byte gUnk_08BB51D8 + 0x1
-	.4byte gUnk_08BB525C + 0x1
-	.4byte gUnk_08BB52E0 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4728 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB474C + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB474C + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4788 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB47DC + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4848 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB48CC + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4950 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB49D4 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4A58 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4ADC + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4B60 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4BE4 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4C68 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4CEC + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4D58 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4DAC + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4DE8 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4E0C + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4E24 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4E48 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4E84 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4ED8 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4F44 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB4FC8 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB50D0 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB5154 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB51D8 + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB525C + 0x1
+	.4byte AnimSprite_EfxElfireObjRight_08BB52E0 + 0x1
 	.incbin "baserom.gba", 0xbb5544, 0x4
 
-	.global gUnk_08BB5548
-gUnk_08BB5548:
+	.global AnimSprite_EfxElfireObjLeft_08BB5548
+AnimSprite_EfxElfireObjLeft_08BB5548:
 	.incbin "baserom.gba", 0xbb5548, 0x24
 
-	.global gUnk_08BB556C
-gUnk_08BB556C:
+	.global AnimSprite_EfxElfireObjLeft_08BB556C
+AnimSprite_EfxElfireObjLeft_08BB556C:
 	.incbin "baserom.gba", 0xbb556c, 0x3c
 
-	.global gUnk_08BB55A8
-gUnk_08BB55A8:
+	.global AnimSprite_EfxElfireObjLeft_08BB55A8
+AnimSprite_EfxElfireObjLeft_08BB55A8:
 	.incbin "baserom.gba", 0xbb55a8, 0x54
 
-	.global gUnk_08BB55FC
-gUnk_08BB55FC:
+	.global AnimSprite_EfxElfireObjLeft_08BB55FC
+AnimSprite_EfxElfireObjLeft_08BB55FC:
 	.incbin "baserom.gba", 0xbb55fc, 0x6c
 
-	.global gUnk_08BB5668
-gUnk_08BB5668:
+	.global AnimSprite_EfxElfireObjLeft_08BB5668
+AnimSprite_EfxElfireObjLeft_08BB5668:
 	.incbin "baserom.gba", 0xbb5668, 0x84
 
-	.global gUnk_08BB56EC
-gUnk_08BB56EC:
+	.global AnimSprite_EfxElfireObjLeft_08BB56EC
+AnimSprite_EfxElfireObjLeft_08BB56EC:
 	.incbin "baserom.gba", 0xbb56ec, 0x84
 
-	.global gUnk_08BB5770
-gUnk_08BB5770:
+	.global AnimSprite_EfxElfireObjLeft_08BB5770
+AnimSprite_EfxElfireObjLeft_08BB5770:
 	.incbin "baserom.gba", 0xbb5770, 0x84
 
-	.global gUnk_08BB57F4
-gUnk_08BB57F4:
+	.global AnimSprite_EfxElfireObjLeft_08BB57F4
+AnimSprite_EfxElfireObjLeft_08BB57F4:
 	.incbin "baserom.gba", 0xbb57f4, 0x84
 
-	.global gUnk_08BB5878
-gUnk_08BB5878:
+	.global AnimSprite_EfxElfireObjLeft_08BB5878
+AnimSprite_EfxElfireObjLeft_08BB5878:
 	.incbin "baserom.gba", 0xbb5878, 0x84
 
-	.global gUnk_08BB58FC
-gUnk_08BB58FC:
+	.global AnimSprite_EfxElfireObjLeft_08BB58FC
+AnimSprite_EfxElfireObjLeft_08BB58FC:
 	.incbin "baserom.gba", 0xbb58fc, 0x84
 
-	.global gUnk_08BB5980
-gUnk_08BB5980:
+	.global AnimSprite_EfxElfireObjLeft_08BB5980
+AnimSprite_EfxElfireObjLeft_08BB5980:
 	.incbin "baserom.gba", 0xbb5980, 0x84
 
-	.global gUnk_08BB5A04
-gUnk_08BB5A04:
+	.global AnimSprite_EfxElfireObjLeft_08BB5A04
+AnimSprite_EfxElfireObjLeft_08BB5A04:
 	.incbin "baserom.gba", 0xbb5a04, 0x84
 
-	.global gUnk_08BB5A88
-gUnk_08BB5A88:
+	.global AnimSprite_EfxElfireObjLeft_08BB5A88
+AnimSprite_EfxElfireObjLeft_08BB5A88:
 	.incbin "baserom.gba", 0xbb5a88, 0x84
 
-	.global gUnk_08BB5B0C
-gUnk_08BB5B0C:
+	.global AnimSprite_EfxElfireObjLeft_08BB5B0C
+AnimSprite_EfxElfireObjLeft_08BB5B0C:
 	.incbin "baserom.gba", 0xbb5b0c, 0x6c
 
-	.global gUnk_08BB5B78
-gUnk_08BB5B78:
+	.global AnimSprite_EfxElfireObjLeft_08BB5B78
+AnimSprite_EfxElfireObjLeft_08BB5B78:
 	.incbin "baserom.gba", 0xbb5b78, 0x54
 
-	.global gUnk_08BB5BCC
-gUnk_08BB5BCC:
+	.global AnimSprite_EfxElfireObjLeft_08BB5BCC
+AnimSprite_EfxElfireObjLeft_08BB5BCC:
 	.incbin "baserom.gba", 0xbb5bcc, 0x3c
 
-	.global gUnk_08BB5C08
-gUnk_08BB5C08:
+	.global AnimSprite_EfxElfireObjLeft_08BB5C08
+AnimSprite_EfxElfireObjLeft_08BB5C08:
 	.incbin "baserom.gba", 0xbb5c08, 0x24
 
-	.global gUnk_08BB5C2C
-gUnk_08BB5C2C:
+	.global AnimSprite_EfxElfireObjLeft_08BB5C2C
+AnimSprite_EfxElfireObjLeft_08BB5C2C:
 	.incbin "baserom.gba", 0xbb5c2c, 0x18
 
-	.global gUnk_08BB5C44
-gUnk_08BB5C44:
+	.global AnimSprite_EfxElfireObjLeft_08BB5C44
+AnimSprite_EfxElfireObjLeft_08BB5C44:
 	.incbin "baserom.gba", 0xbb5c44, 0x24
 
-	.global gUnk_08BB5C68
-gUnk_08BB5C68:
+	.global AnimSprite_EfxElfireObjLeft_08BB5C68
+AnimSprite_EfxElfireObjLeft_08BB5C68:
 	.incbin "baserom.gba", 0xbb5c68, 0x3c
 
-	.global gUnk_08BB5CA4
-gUnk_08BB5CA4:
+	.global AnimSprite_EfxElfireObjLeft_08BB5CA4
+AnimSprite_EfxElfireObjLeft_08BB5CA4:
 	.incbin "baserom.gba", 0xbb5ca4, 0x54
 
-	.global gUnk_08BB5CF8
-gUnk_08BB5CF8:
+	.global AnimSprite_EfxElfireObjLeft_08BB5CF8
+AnimSprite_EfxElfireObjLeft_08BB5CF8:
 	.incbin "baserom.gba", 0xbb5cf8, 0x6c
 
-	.global gUnk_08BB5D64
-gUnk_08BB5D64:
+	.global AnimSprite_EfxElfireObjLeft_08BB5D64
+AnimSprite_EfxElfireObjLeft_08BB5D64:
 	.incbin "baserom.gba", 0xbb5d64, 0x84
 
-	.global gUnk_08BB5DE8
-gUnk_08BB5DE8:
+	.global AnimSprite_EfxElfireObjLeft_08BB5DE8
+AnimSprite_EfxElfireObjLeft_08BB5DE8:
 	.incbin "baserom.gba", 0xbb5de8, 0x108
 
-	.global gUnk_08BB5EF0
-gUnk_08BB5EF0:
+	.global AnimSprite_EfxElfireObjLeft_08BB5EF0
+AnimSprite_EfxElfireObjLeft_08BB5EF0:
 	.incbin "baserom.gba", 0xbb5ef0, 0x84
 
-	.global gUnk_08BB5F74
-gUnk_08BB5F74:
+	.global AnimSprite_EfxElfireObjLeft_08BB5F74
+AnimSprite_EfxElfireObjLeft_08BB5F74:
 	.incbin "baserom.gba", 0xbb5f74, 0x84
 
-	.global gUnk_08BB5FF8
-gUnk_08BB5FF8:
+	.global AnimSprite_EfxElfireObjLeft_08BB5FF8
+AnimSprite_EfxElfireObjLeft_08BB5FF8:
 	.incbin "baserom.gba", 0xbb5ff8, 0x84
 
-	.global gUnk_08BB607C
-gUnk_08BB607C:
+	.global AnimSprite_EfxElfireObjLeft_08BB607C
+AnimSprite_EfxElfireObjLeft_08BB607C:
 	.incbin "baserom.gba", 0xbb607c, 0x84
 
-	.global gUnk_08BB6100
-gUnk_08BB6100:
+	.global AnimSprite_EfxElfireObjLeft_08BB6100
+AnimSprite_EfxElfireObjLeft_08BB6100:
 	.incbin "baserom.gba", 0xbb6100, 0x1ec
 
 	.global AnimScr_EfxElfireObjLeft
 AnimScr_EfxElfireObjLeft:
-	.4byte gUnk_08BB5548 + 0x1
-	.4byte gUnk_08BB556C + 0x1
-	.4byte gUnk_08BB556C + 0x1
-	.4byte gUnk_08BB55A8 + 0x1
-	.4byte gUnk_08BB55FC + 0x1
-	.4byte gUnk_08BB5668 + 0x1
-	.4byte gUnk_08BB56EC + 0x1
-	.4byte gUnk_08BB5770 + 0x1
-	.4byte gUnk_08BB57F4 + 0x1
-	.4byte gUnk_08BB5878 + 0x1
-	.4byte gUnk_08BB58FC + 0x1
-	.4byte gUnk_08BB5980 + 0x1
-	.4byte gUnk_08BB5A04 + 0x1
-	.4byte gUnk_08BB5A88 + 0x1
-	.4byte gUnk_08BB5B0C + 0x1
-	.4byte gUnk_08BB5B78 + 0x1
-	.4byte gUnk_08BB5BCC + 0x1
-	.4byte gUnk_08BB5C08 + 0x1
-	.4byte gUnk_08BB5C2C + 0x1
-	.4byte gUnk_08BB5C44 + 0x1
-	.4byte gUnk_08BB5C68 + 0x1
-	.4byte gUnk_08BB5CA4 + 0x1
-	.4byte gUnk_08BB5CF8 + 0x1
-	.4byte gUnk_08BB5D64 + 0x1
-	.4byte gUnk_08BB5DE8 + 0x1
-	.4byte gUnk_08BB5EF0 + 0x1
-	.4byte gUnk_08BB5F74 + 0x1
-	.4byte gUnk_08BB5FF8 + 0x1
-	.4byte gUnk_08BB607C + 0x1
-	.4byte gUnk_08BB6100 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5548 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB556C + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB556C + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB55A8 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB55FC + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5668 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB56EC + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5770 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB57F4 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5878 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB58FC + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5980 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5A04 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5A88 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5B0C + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5B78 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5BCC + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5C08 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5C2C + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5C44 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5C68 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5CA4 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5CF8 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5D64 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5DE8 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5EF0 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5F74 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB5FF8 + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB607C + 0x1
+	.4byte AnimSprite_EfxElfireObjLeft_08BB6100 + 0x1
 	.incbin "baserom.gba", 0xbb6364, 0x4
 
-	.global gUnk_08BB6368
-gUnk_08BB6368:
+	.global AnimSprite_EfxClasschgOBJ_08BB6368
+AnimSprite_EfxClasschgOBJ_08BB6368:
 	.incbin "baserom.gba", 0xbb6368, 0x18
 
-	.global gUnk_08BB6380
-gUnk_08BB6380:
+	.global AnimSprite_EfxClasschgOBJ_08BB6380
+AnimSprite_EfxClasschgOBJ_08BB6380:
 	.incbin "baserom.gba", 0xbb6380, 0x18
 
-	.global gUnk_08BB6398
-gUnk_08BB6398:
+	.global AnimSprite_EfxClasschgOBJ_08BB6398
+AnimSprite_EfxClasschgOBJ_08BB6398:
 	.incbin "baserom.gba", 0xbb6398, 0x54
 
-	.global gUnk_08BB63EC
-gUnk_08BB63EC:
+	.global AnimSprite_EfxClasschgOBJ_08BB63EC
+AnimSprite_EfxClasschgOBJ_08BB63EC:
 	.incbin "baserom.gba", 0xbb63ec, 0x54
 
-	.global gUnk_08BB6440
-gUnk_08BB6440:
+	.global AnimSprite_EfxClasschgOBJ_08BB6440
+AnimSprite_EfxClasschgOBJ_08BB6440:
 	.incbin "baserom.gba", 0xbb6440, 0x6c
 
-	.global gUnk_08BB64AC
-gUnk_08BB64AC:
+	.global AnimSprite_EfxClasschgOBJ_08BB64AC
+AnimSprite_EfxClasschgOBJ_08BB64AC:
 	.incbin "baserom.gba", 0xbb64ac, 0x6c
 
-	.global gUnk_08BB6518
-gUnk_08BB6518:
+	.global AnimSprite_EfxClasschgOBJ_08BB6518
+AnimSprite_EfxClasschgOBJ_08BB6518:
 	.incbin "baserom.gba", 0xbb6518, 0x78
 
-	.global gUnk_08BB6590
-gUnk_08BB6590:
+	.global AnimSprite_EfxClasschgOBJ_08BB6590
+AnimSprite_EfxClasschgOBJ_08BB6590:
 	.incbin "baserom.gba", 0xbb6590, 0x78
 
-	.global gUnk_08BB6608
-gUnk_08BB6608:
+	.global AnimSprite_EfxClasschgOBJ_08BB6608
+AnimSprite_EfxClasschgOBJ_08BB6608:
 	.incbin "baserom.gba", 0xbb6608, 0x78
 
-	.global gUnk_08BB6680
-gUnk_08BB6680:
+	.global AnimSprite_EfxClasschgOBJ_08BB6680
+AnimSprite_EfxClasschgOBJ_08BB6680:
 	.incbin "baserom.gba", 0xbb6680, 0x78
 
-	.global gUnk_08BB66F8
-gUnk_08BB66F8:
+	.global AnimSprite_EfxClasschgOBJ_08BB66F8
+AnimSprite_EfxClasschgOBJ_08BB66F8:
 	.incbin "baserom.gba", 0xbb66f8, 0x78
 
-	.global gUnk_08BB6770
-gUnk_08BB6770:
+	.global AnimSprite_EfxClasschgOBJ_08BB6770
+AnimSprite_EfxClasschgOBJ_08BB6770:
 	.incbin "baserom.gba", 0xbb6770, 0x78
 
-	.global gUnk_08BB67E8
-gUnk_08BB67E8:
+	.global AnimSprite_EfxClasschgOBJ_08BB67E8
+AnimSprite_EfxClasschgOBJ_08BB67E8:
 	.incbin "baserom.gba", 0xbb67e8, 0x78
 
-	.global gUnk_08BB6860
-gUnk_08BB6860:
+	.global AnimSprite_EfxClasschgOBJ_08BB6860
+AnimSprite_EfxClasschgOBJ_08BB6860:
 	.incbin "baserom.gba", 0xbb6860, 0x78
 
-	.global gUnk_08BB68D8
-gUnk_08BB68D8:
+	.global AnimSprite_EfxClasschgOBJ_08BB68D8
+AnimSprite_EfxClasschgOBJ_08BB68D8:
 	.incbin "baserom.gba", 0xbb68d8, 0x78
 
-	.global gUnk_08BB6950
-gUnk_08BB6950:
+	.global AnimSprite_EfxClasschgOBJ_08BB6950
+AnimSprite_EfxClasschgOBJ_08BB6950:
 	.incbin "baserom.gba", 0xbb6950, 0x78
 
-	.global gUnk_08BB69C8
-gUnk_08BB69C8:
+	.global AnimSprite_EfxClasschgOBJ_08BB69C8
+AnimSprite_EfxClasschgOBJ_08BB69C8:
 	.incbin "baserom.gba", 0xbb69c8, 0x78
 
-	.global gUnk_08BB6A40
-gUnk_08BB6A40:
+	.global AnimSprite_EfxClasschgOBJ_08BB6A40
+AnimSprite_EfxClasschgOBJ_08BB6A40:
 	.incbin "baserom.gba", 0xbb6a40, 0x78
 
-	.global gUnk_08BB6AB8
-gUnk_08BB6AB8:
+	.global AnimSprite_EfxClasschgOBJ_08BB6AB8
+AnimSprite_EfxClasschgOBJ_08BB6AB8:
 	.incbin "baserom.gba", 0xbb6ab8, 0x18
 
-	.global gUnk_08BB6AD0
-gUnk_08BB6AD0:
+	.global AnimSprite_EfxClasschgOBJ_08BB6AD0
+AnimSprite_EfxClasschgOBJ_08BB6AD0:
 	.incbin "baserom.gba", 0xbb6ad0, 0x78
 
-	.global gUnk_08BB6B48
-gUnk_08BB6B48:
+	.global AnimSprite_EfxClasschgOBJ_08BB6B48
+AnimSprite_EfxClasschgOBJ_08BB6B48:
 	.incbin "baserom.gba", 0xbb6b48, 0x78
 
-	.global gUnk_08BB6BC0
-gUnk_08BB6BC0:
+	.global AnimSprite_EfxClasschgOBJ_08BB6BC0
+AnimSprite_EfxClasschgOBJ_08BB6BC0:
 	.incbin "baserom.gba", 0xbb6bc0, 0x78
 
-	.global gUnk_08BB6C38
-gUnk_08BB6C38:
+	.global AnimSprite_EfxClasschgOBJ_08BB6C38
+AnimSprite_EfxClasschgOBJ_08BB6C38:
 	.incbin "baserom.gba", 0xbb6c38, 0x78
 
-	.global gUnk_08BB6CB0
-gUnk_08BB6CB0:
+	.global AnimSprite_EfxClasschgOBJ_08BB6CB0
+AnimSprite_EfxClasschgOBJ_08BB6CB0:
 	.incbin "baserom.gba", 0xbb6cb0, 0x78
 
-	.global gUnk_08BB6D28
-gUnk_08BB6D28:
+	.global AnimSprite_EfxClasschgOBJ_08BB6D28
+AnimSprite_EfxClasschgOBJ_08BB6D28:
 	.incbin "baserom.gba", 0xbb6d28, 0x90
 
-	.global gUnk_08BB6DB8
-gUnk_08BB6DB8:
+	.global AnimSprite_EfxClasschgOBJ_08BB6DB8
+AnimSprite_EfxClasschgOBJ_08BB6DB8:
 	.incbin "baserom.gba", 0xbb6db8, 0x90
 
-	.global gUnk_08BB6E48
-gUnk_08BB6E48:
+	.global AnimSprite_EfxClasschgOBJ_08BB6E48
+AnimSprite_EfxClasschgOBJ_08BB6E48:
 	.incbin "baserom.gba", 0xbb6e48, 0xb4
 
-	.global gUnk_08BB6EFC
-gUnk_08BB6EFC:
+	.global AnimSprite_EfxClasschgOBJ_08BB6EFC
+AnimSprite_EfxClasschgOBJ_08BB6EFC:
 	.incbin "baserom.gba", 0xbb6efc, 0xb4
 
-	.global gUnk_08BB6FB0
-gUnk_08BB6FB0:
+	.global AnimSprite_EfxClasschgOBJ_08BB6FB0
+AnimSprite_EfxClasschgOBJ_08BB6FB0:
 	.incbin "baserom.gba", 0xbb6fb0, 0xb4
 
-	.global gUnk_08BB7064
-gUnk_08BB7064:
+	.global AnimSprite_EfxClasschgOBJ_08BB7064
+AnimSprite_EfxClasschgOBJ_08BB7064:
 	.incbin "baserom.gba", 0xbb7064, 0xb4
 
-	.global gUnk_08BB7118
-gUnk_08BB7118:
+	.global AnimSprite_EfxClasschgOBJ_08BB7118
+AnimSprite_EfxClasschgOBJ_08BB7118:
 	.incbin "baserom.gba", 0xbb7118, 0xb4
 
-	.global gUnk_08BB71CC
-gUnk_08BB71CC:
+	.global AnimSprite_EfxClasschgOBJ_08BB71CC
+AnimSprite_EfxClasschgOBJ_08BB71CC:
 	.incbin "baserom.gba", 0xbb71cc, 0xb4
 
 	.global AnimScr_EfxThunderstormOBJ
 	.global AnimScr_EfxClasschgOBJ
 AnimScr_EfxThunderstormOBJ:
 AnimScr_EfxClasschgOBJ:
-	.4byte gUnk_08BB6368 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6380 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6398 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB63EC + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6440 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB64AC + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6398 + 0x1
-	.4byte gUnk_08BB6518 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB63EC + 0x1
-	.4byte gUnk_08BB6590 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6440 + 0x1
-	.4byte gUnk_08BB6608 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB64AC + 0x1
-	.4byte gUnk_08BB6680 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6518 + 0x1
-	.4byte gUnk_08BB66F8 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6518 + 0x1
-	.4byte gUnk_08BB6770 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6590 + 0x1
-	.4byte gUnk_08BB67E8 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6608 + 0x1
-	.4byte gUnk_08BB6860 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6680 + 0x1
-	.4byte gUnk_08BB68D8 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB66F8 + 0x1
-	.4byte gUnk_08BB6950 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6770 + 0x1
-	.4byte gUnk_08BB69C8 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB67E8 + 0x1
-	.4byte gUnk_08BB6A40 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6860 + 0x1
-	.4byte gUnk_08BB6AD0 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB68D8 + 0x1
-	.4byte gUnk_08BB6B48 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6950 + 0x1
-	.4byte gUnk_08BB6BC0 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB69C8 + 0x1
-	.4byte gUnk_08BB6C38 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6A40 + 0x1
-	.4byte gUnk_08BB6CB0 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6D28 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6AD0 + 0x1
-	.4byte gUnk_08BB6DB8 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6B48 + 0x1
-	.4byte gUnk_08BB6E48 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6BC0 + 0x1
-	.4byte gUnk_08BB6EFC + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6C38 + 0x1
-	.4byte gUnk_08BB6FB0 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6CB0 + 0x1
-	.4byte gUnk_08BB7064 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6D28 + 0x1
-	.4byte gUnk_08BB7118 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6DB8 + 0x1
-	.4byte gUnk_08BB71CC + 0x1
-	.4byte gUnk_08BB6AB8 + 0x1
-	.4byte gUnk_08BB6E48 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x2
-	.4byte gUnk_08BB6EFC + 0x1
-	.4byte gUnk_08BB6AB8 + 0x2
-	.4byte gUnk_08BB6FB0 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x2
-	.4byte gUnk_08BB7064 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x2
-	.4byte gUnk_08BB7118 + 0x1
-	.4byte gUnk_08BB6AB8 + 0x2
-	.4byte gUnk_08BB71CC + 0x1
-	.4byte gUnk_08BB6AB8 + 0x2
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6368 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6380 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6398 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB63EC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6440 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB64AC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6398 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6518 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB63EC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6590 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6440 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6608 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB64AC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6680 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6518 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB66F8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6518 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6770 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6590 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB67E8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6608 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6860 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6680 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB68D8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB66F8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6950 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6770 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB69C8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB67E8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6A40 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6860 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AD0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB68D8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6B48 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6950 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6BC0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB69C8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6C38 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6A40 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6CB0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6D28 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AD0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6DB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6B48 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6E48 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6BC0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6EFC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6C38 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6FB0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6CB0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB7064 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6D28 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB7118 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6DB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB71CC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6E48 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x2
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6EFC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x2
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6FB0 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x2
+	.4byte AnimSprite_EfxClasschgOBJ_08BB7064 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x2
+	.4byte AnimSprite_EfxClasschgOBJ_08BB7118 + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x2
+	.4byte AnimSprite_EfxClasschgOBJ_08BB71CC + 0x1
+	.4byte AnimSprite_EfxClasschgOBJ_08BB6AB8 + 0x2
 	.incbin "baserom.gba", 0xbb740c, 0x4
 
-	.global gUnk_08BB7410
-gUnk_08BB7410:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7410
+AnimSprite_FimbulvetrOBJ1_08BB7410:
 	.incbin "baserom.gba", 0xbb7410, 0x78
 
-	.global gUnk_08BB7488
-gUnk_08BB7488:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7488
+AnimSprite_FimbulvetrOBJ1_08BB7488:
 	.incbin "baserom.gba", 0xbb7488, 0xfc
 
-	.global gUnk_08BB7584
-gUnk_08BB7584:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7584
+AnimSprite_FimbulvetrOBJ1_08BB7584:
 	.incbin "baserom.gba", 0xbb7584, 0x114
 
-	.global gUnk_08BB7698
-gUnk_08BB7698:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7698
+AnimSprite_FimbulvetrOBJ1_08BB7698:
 	.incbin "baserom.gba", 0xbb7698, 0x12c
 
-	.global gUnk_08BB77C4
-gUnk_08BB77C4:
+	.global AnimSprite_FimbulvetrOBJ1_08BB77C4
+AnimSprite_FimbulvetrOBJ1_08BB77C4:
 	.incbin "baserom.gba", 0xbb77c4, 0x144
 
-	.global gUnk_08BB7908
-gUnk_08BB7908:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7908
+AnimSprite_FimbulvetrOBJ1_08BB7908:
 	.incbin "baserom.gba", 0xbb7908, 0x12c
 
-	.global gUnk_08BB7A34
-gUnk_08BB7A34:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7A34
+AnimSprite_FimbulvetrOBJ1_08BB7A34:
 	.incbin "baserom.gba", 0xbb7a34, 0x12c
 
-	.global gUnk_08BB7B60
-gUnk_08BB7B60:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7B60
+AnimSprite_FimbulvetrOBJ1_08BB7B60:
 	.incbin "baserom.gba", 0xbb7b60, 0x12c
 
-	.global gUnk_08BB7C8C
-gUnk_08BB7C8C:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7C8C
+AnimSprite_FimbulvetrOBJ1_08BB7C8C:
 	.incbin "baserom.gba", 0xbb7c8c, 0x12c
 
-	.global gUnk_08BB7DB8
-gUnk_08BB7DB8:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7DB8
+AnimSprite_FimbulvetrOBJ1_08BB7DB8:
 	.incbin "baserom.gba", 0xbb7db8, 0x120
 
-	.global gUnk_08BB7ED8
-gUnk_08BB7ED8:
+	.global AnimSprite_FimbulvetrOBJ1_08BB7ED8
+AnimSprite_FimbulvetrOBJ1_08BB7ED8:
 	.incbin "baserom.gba", 0xbb7ed8, 0x12c
 
-	.global gUnk_08BB8004
-gUnk_08BB8004:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8004
+AnimSprite_FimbulvetrOBJ1_08BB8004:
 	.incbin "baserom.gba", 0xbb8004, 0x12c
 
-	.global gUnk_08BB8130
-gUnk_08BB8130:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8130
+AnimSprite_FimbulvetrOBJ1_08BB8130:
 	.incbin "baserom.gba", 0xbb8130, 0x120
 
-	.global gUnk_08BB8250
-gUnk_08BB8250:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8250
+AnimSprite_FimbulvetrOBJ1_08BB8250:
 	.incbin "baserom.gba", 0xbb8250, 0x12c
 
-	.global gUnk_08BB837C
-gUnk_08BB837C:
+	.global AnimSprite_FimbulvetrOBJ1_08BB837C
+AnimSprite_FimbulvetrOBJ1_08BB837C:
 	.incbin "baserom.gba", 0xbb837c, 0x12c
 
-	.global gUnk_08BB84A8
-gUnk_08BB84A8:
+	.global AnimSprite_FimbulvetrOBJ1_08BB84A8
+AnimSprite_FimbulvetrOBJ1_08BB84A8:
 	.incbin "baserom.gba", 0xbb84a8, 0x12c
 
-	.global gUnk_08BB85D4
-gUnk_08BB85D4:
+	.global AnimSprite_FimbulvetrOBJ1_08BB85D4
+AnimSprite_FimbulvetrOBJ1_08BB85D4:
 	.incbin "baserom.gba", 0xbb85d4, 0x12c
 
-	.global gUnk_08BB8700
-gUnk_08BB8700:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8700
+AnimSprite_FimbulvetrOBJ1_08BB8700:
 	.incbin "baserom.gba", 0xbb8700, 0x12c
 
-	.global gUnk_08BB882C
-gUnk_08BB882C:
+	.global AnimSprite_FimbulvetrOBJ1_08BB882C
+AnimSprite_FimbulvetrOBJ1_08BB882C:
 	.incbin "baserom.gba", 0xbb882c, 0x12c
 
-	.global gUnk_08BB8958
-gUnk_08BB8958:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8958
+AnimSprite_FimbulvetrOBJ1_08BB8958:
 	.incbin "baserom.gba", 0xbb8958, 0x120
 
-	.global gUnk_08BB8A78
-gUnk_08BB8A78:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8A78
+AnimSprite_FimbulvetrOBJ1_08BB8A78:
 	.incbin "baserom.gba", 0xbb8a78, 0x120
 
-	.global gUnk_08BB8B98
-gUnk_08BB8B98:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8B98
+AnimSprite_FimbulvetrOBJ1_08BB8B98:
 	.incbin "baserom.gba", 0xbb8b98, 0x120
 
-	.global gUnk_08BB8CB8
-gUnk_08BB8CB8:
+	.global AnimSprite_FimbulvetrOBJ2_08BB8CB8
+AnimSprite_FimbulvetrOBJ2_08BB8CB8:
 	.incbin "baserom.gba", 0xbb8cb8, 0x18
 
-	.global gUnk_08BB8CD0
-gUnk_08BB8CD0:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8CD0
+AnimSprite_FimbulvetrOBJ1_08BB8CD0:
 	.incbin "baserom.gba", 0xbb8cd0, 0x120
 
-	.global gUnk_08BB8DF0
-gUnk_08BB8DF0:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8DF0
+AnimSprite_FimbulvetrOBJ1_08BB8DF0:
 	.incbin "baserom.gba", 0xbb8df0, 0x120
 
-	.global gUnk_08BB8F10
-gUnk_08BB8F10:
+	.global AnimSprite_FimbulvetrOBJ1_08BB8F10
+AnimSprite_FimbulvetrOBJ1_08BB8F10:
 	.incbin "baserom.gba", 0xbb8f10, 0x120
 
-	.global gUnk_08BB9030
-gUnk_08BB9030:
+	.global AnimSprite_FimbulvetrOBJ1_08BB9030
+AnimSprite_FimbulvetrOBJ1_08BB9030:
 	.incbin "baserom.gba", 0xbb9030, 0x12c
 
-	.global gUnk_08BB915C
-gUnk_08BB915C:
+	.global AnimSprite_FimbulvetrOBJ2_08BB915C
+AnimSprite_FimbulvetrOBJ2_08BB915C:
 	.incbin "baserom.gba", 0xbb915c, 0x18
 
-	.global gUnk_08BB9174
-gUnk_08BB9174:
+	.global AnimSprite_FimbulvetrOBJ2_08BB9174
+AnimSprite_FimbulvetrOBJ2_08BB9174:
 	.incbin "baserom.gba", 0xbb9174, 0x18
 
-	.global gUnk_08BB918C
-gUnk_08BB918C:
+	.global AnimSprite_FimbulvetrOBJ2_08BB918C
+AnimSprite_FimbulvetrOBJ2_08BB918C:
 	.incbin "baserom.gba", 0xbb918c, 0x18
 
-	.global gUnk_08BB91A4
-gUnk_08BB91A4:
+	.global AnimSprite_FimbulvetrOBJ2_08BB91A4
+AnimSprite_FimbulvetrOBJ2_08BB91A4:
 	.incbin "baserom.gba", 0xbb91a4, 0x18
 
 	.global AnimScr_FimbulvetrOBJ1
 AnimScr_FimbulvetrOBJ1:
-	.4byte gUnk_08BB7410 + 0x2
-	.4byte gUnk_08BB7488 + 0x2
-	.4byte gUnk_08BB7584 + 0x2
-	.4byte gUnk_08BB7698 + 0x2
-	.4byte gUnk_08BB77C4 + 0x2
-	.4byte gUnk_08BB7908 + 0x2
-	.4byte gUnk_08BB7A34 + 0x2
-	.4byte gUnk_08BB7B60 + 0x2
-	.4byte gUnk_08BB7C8C + 0x2
-	.4byte gUnk_08BB7DB8 + 0x2
-	.4byte gUnk_08BB7ED8 + 0x2
-	.4byte gUnk_08BB8004 + 0x2
-	.4byte gUnk_08BB8130 + 0x2
-	.4byte gUnk_08BB8250 + 0x2
-	.4byte gUnk_08BB837C + 0x2
-	.4byte gUnk_08BB84A8 + 0x2
-	.4byte gUnk_08BB85D4 + 0x2
-	.4byte gUnk_08BB8700 + 0x2
-	.4byte gUnk_08BB882C + 0x2
-	.4byte gUnk_08BB8958 + 0x2
-	.4byte gUnk_08BB8A78 + 0x2
-	.4byte gUnk_08BB8B98 + 0x2
-	.4byte gUnk_08BB8CD0 + 0x2
-	.4byte gUnk_08BB8DF0 + 0x2
-	.4byte gUnk_08BB8F10 + 0x2
-	.4byte gUnk_08BB9030 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7410 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7488 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7584 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7698 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB77C4 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7908 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7A34 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7B60 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7C8C + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7DB8 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB7ED8 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8004 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8130 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8250 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB837C + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB84A8 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB85D4 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8700 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB882C + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8958 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8A78 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8B98 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8CD0 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8DF0 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB8F10 + 0x2
+	.4byte AnimSprite_FimbulvetrOBJ1_08BB9030 + 0x2
 	.incbin "baserom.gba", 0xbb9224, 0x4
 
 	.global AnimScr_FimbulvetrOBJ2
 AnimScr_FimbulvetrOBJ2:
-	.4byte gUnk_08BB915C + 0x1
-	.4byte gUnk_08BB8CB8 + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB915C + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB8CB8 + 0x1
 	.incbin "baserom.gba", 0xbb9230, 0x4
-	.4byte gUnk_08BB9174 + 0x1
-	.4byte gUnk_08BB8CB8 + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB9174 + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB8CB8 + 0x1
 	.incbin "baserom.gba", 0xbb923c, 0x4
-	.4byte gUnk_08BB8CB8 + 0x1
-	.4byte gUnk_08BB918C + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB8CB8 + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB918C + 0x1
 	.incbin "baserom.gba", 0xbb9248, 0x4
-	.4byte gUnk_08BB8CB8 + 0x1
-	.4byte gUnk_08BB91A4 + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB8CB8 + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2_08BB91A4 + 0x1
 	.incbin "baserom.gba", 0xbb9254, 0x4
 
-	.global gUnk_08BB9258
-gUnk_08BB9258:
+	.global AnimSprite_FimbulvetrOBJ2Fall_TypeA_08BB9258
+AnimSprite_FimbulvetrOBJ2Fall_TypeA_08BB9258:
 	.incbin "baserom.gba", 0xbb9258, 0x18
 
-	.global gUnk_08BB9270
-gUnk_08BB9270:
+	.global AnimSprite_FimbulvetrOBJ2Fall_TypeB_08BB9270
+AnimSprite_FimbulvetrOBJ2Fall_TypeB_08BB9270:
 	.incbin "baserom.gba", 0xbb9270, 0x18
 
 	.global AnimScr_FimbulvetrOBJ2Fall_TypeA
 AnimScr_FimbulvetrOBJ2Fall_TypeA:
-	.4byte gUnk_08BB9258 + 0x1
+	.4byte AnimSprite_FimbulvetrOBJ2Fall_TypeA_08BB9258 + 0x1
 	.incbin "baserom.gba", 0xbb928c, 0x4
 
 	.global AnimScr_FimbulvetrOBJ2Fall_TypeB
 AnimScr_FimbulvetrOBJ2Fall_TypeB:
-	.4byte gUnk_08BB9270 + 0x10000000
+	.4byte AnimSprite_FimbulvetrOBJ2Fall_TypeB_08BB9270 + 0x10000000
 	.incbin "baserom.gba", 0xbb9294, 0x4
 
-	.global gUnk_08BB9298
-gUnk_08BB9298:
+	.global AnimSprite_EfxMistyRainObj1_08BB9298
+AnimSprite_EfxMistyRainObj1_08BB9298:
 	.incbin "baserom.gba", 0xbb9298, 0x24
 
-	.global gUnk_08BB92BC
-gUnk_08BB92BC:
+	.global AnimSprite_EfxMistyRainObj1_08BB92BC
+AnimSprite_EfxMistyRainObj1_08BB92BC:
 	.incbin "baserom.gba", 0xbb92bc, 0x24
 
-	.global gUnk_08BB92E0
-gUnk_08BB92E0:
+	.global AnimSprite_EfxMistyRainObj1_08BB92E0
+AnimSprite_EfxMistyRainObj1_08BB92E0:
 	.incbin "baserom.gba", 0xbb92e0, 0x24
 
-	.global gUnk_08BB9304
-gUnk_08BB9304:
+	.global AnimSprite_EfxMistyRainObj1_08BB9304
+AnimSprite_EfxMistyRainObj1_08BB9304:
 	.incbin "baserom.gba", 0xbb9304, 0x24
 
-	.global gUnk_08BB9328
-gUnk_08BB9328:
+	.global AnimSprite_EfxMistyRainObj1_08BB9328
+AnimSprite_EfxMistyRainObj1_08BB9328:
 	.incbin "baserom.gba", 0xbb9328, 0x3c
 
-	.global gUnk_08BB9364
-gUnk_08BB9364:
+	.global AnimSprite_EfxMistyRainObj1_08BB9364
+AnimSprite_EfxMistyRainObj1_08BB9364:
 	.incbin "baserom.gba", 0xbb9364, 0x3c
 
-	.global gUnk_08BB93A0
-gUnk_08BB93A0:
+	.global AnimSprite_EfxMistyRainObj1_08BB93A0
+AnimSprite_EfxMistyRainObj1_08BB93A0:
 	.incbin "baserom.gba", 0xbb93a0, 0x6c
 
-	.global gUnk_08BB940C
-gUnk_08BB940C:
+	.global AnimSprite_EfxMistyRainObj1_08BB940C
+AnimSprite_EfxMistyRainObj1_08BB940C:
 	.incbin "baserom.gba", 0xbb940c, 0x24
 
-	.global gUnk_08BB9430
-gUnk_08BB9430:
+	.global AnimSprite_EfxMistyRainObj1_08BB9430
+AnimSprite_EfxMistyRainObj1_08BB9430:
 	.incbin "baserom.gba", 0xbb9430, 0x24
 
-	.global gUnk_08BB9454
-gUnk_08BB9454:
+	.global AnimSprite_EfxMistyRainObj1_08BB9454
+AnimSprite_EfxMistyRainObj1_08BB9454:
 	.incbin "baserom.gba", 0xbb9454, 0x24
 
-	.global gUnk_08BB9478
-gUnk_08BB9478:
+	.global AnimSprite_EfxMistyRainObj1_08BB9478
+AnimSprite_EfxMistyRainObj1_08BB9478:
 	.incbin "baserom.gba", 0xbb9478, 0x24
 
-	.global gUnk_08BB949C
-gUnk_08BB949C:
+	.global AnimSprite_EfxMistyRainObj1_08BB949C
+AnimSprite_EfxMistyRainObj1_08BB949C:
 	.incbin "baserom.gba", 0xbb949c, 0x24
 
-	.global gUnk_08BB94C0
-gUnk_08BB94C0:
+	.global AnimSprite_EfxMistyRainObj1_08BB94C0
+AnimSprite_EfxMistyRainObj1_08BB94C0:
 	.incbin "baserom.gba", 0xbb94c0, 0x24
 
-	.global gUnk_08BB94E4
-gUnk_08BB94E4:
+	.global AnimSprite_EfxHazymoonOBJ3RND_08BB94E4
+AnimSprite_EfxHazymoonOBJ3RND_08BB94E4:
 	.incbin "baserom.gba", 0xbb94e4, 0x18
 
 	.global AnimScr_EfxMistyRainObj1
 AnimScr_EfxMistyRainObj1:
-	.4byte gUnk_08BB940C + 0x2
-	.4byte gUnk_08BB9430 + 0x2
-	.4byte gUnk_08BB9454 + 0x2
-	.4byte gUnk_08BB9478 + 0x2
-	.4byte gUnk_08BB949C + 0x2
-	.4byte gUnk_08BB94C0 + 0x2
-	.4byte gUnk_08BB9298 + 0x3
-	.4byte gUnk_08BB92BC + 0x3
-	.4byte gUnk_08BB92E0 + 0x3
-	.4byte gUnk_08BB9304 + 0x3
-	.4byte gUnk_08BB9328 + 0x3
-	.4byte gUnk_08BB9364 + 0x3
-	.4byte gUnk_08BB93A0 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB940C + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9430 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9454 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9478 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB949C + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB94C0 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9298 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB92BC + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB92E0 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9304 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9328 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9364 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB93A0 + 0x3
 	.incbin "baserom.gba", 0xbb9530, 0x4
 
 	.global AnimScr_EfxHazymoonOBJ3RND
 AnimScr_EfxHazymoonOBJ3RND:
-	.4byte gUnk_08BB940C + 0x2
-	.4byte gUnk_08BB9430 + 0x2
-	.4byte gUnk_08BB9454 + 0x2
-	.4byte gUnk_08BB9478 + 0x2
-	.4byte gUnk_08BB949C + 0x2
-	.4byte gUnk_08BB94C0 + 0x2
-	.4byte gUnk_08BB9298 + 0x3
-	.4byte gUnk_08BB92BC + 0x3
-	.4byte gUnk_08BB92E0 + 0x3
-	.4byte gUnk_08BB9298 + 0x3
-	.4byte gUnk_08BB92BC + 0x3
-	.4byte gUnk_08BB92E0 + 0x3
-	.4byte gUnk_08BB94C0 + 0x2
-	.4byte gUnk_08BB949C + 0x2
-	.4byte gUnk_08BB9478 + 0x2
-	.4byte gUnk_08BB9454 + 0x2
-	.4byte gUnk_08BB9430 + 0x2
-	.4byte gUnk_08BB940C + 0x2
-	.4byte gUnk_08BB94E4 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB940C + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9430 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9454 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9478 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB949C + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB94C0 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9298 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB92BC + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB92E0 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9298 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB92BC + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB92E0 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj1_08BB94C0 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB949C + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9478 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9454 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB9430 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj1_08BB940C + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ3RND_08BB94E4 + 0x2
 	.incbin "baserom.gba", 0xbb9580, 0x4
 
-	.global gUnk_08BB9584
-gUnk_08BB9584:
+	.global AnimSprite_EfxMistyRainObj2_08BB9584
+AnimSprite_EfxMistyRainObj2_08BB9584:
 	.incbin "baserom.gba", 0xbb9584, 0x30
 
-	.global gUnk_08BB95B4
-gUnk_08BB95B4:
+	.global AnimSprite_EfxMistyRainObj2_08BB95B4
+AnimSprite_EfxMistyRainObj2_08BB95B4:
 	.incbin "baserom.gba", 0xbb95b4, 0x48
 
-	.global gUnk_08BB95FC
-gUnk_08BB95FC:
+	.global AnimSprite_EfxMistyRainObj2_08BB95FC
+AnimSprite_EfxMistyRainObj2_08BB95FC:
 	.incbin "baserom.gba", 0xbb95fc, 0x48
 
-	.global gUnk_08BB9644
-gUnk_08BB9644:
+	.global AnimSprite_EfxMistyRainObj2_08BB9644
+AnimSprite_EfxMistyRainObj2_08BB9644:
 	.incbin "baserom.gba", 0xbb9644, 0x3c
 
 	.global AnimScr_EfxMistyRainObj2
 AnimScr_EfxMistyRainObj2:
-	.4byte gUnk_08BB9584 + 0x3
-	.4byte gUnk_08BB95B4 + 0x3
-	.4byte gUnk_08BB95FC + 0x3
-	.4byte gUnk_08BB9644 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj2_08BB9584 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj2_08BB95B4 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj2_08BB95FC + 0x3
+	.4byte AnimSprite_EfxMistyRainObj2_08BB9644 + 0x3
 	.incbin "baserom.gba", 0xbb9690, 0x4
 
-	.global gUnk_08BB9694
-gUnk_08BB9694:
+	.global AnimSprite_EfxMistyRainObj4_08BB9694
+AnimSprite_EfxMistyRainObj4_08BB9694:
 	.incbin "baserom.gba", 0xbb9694, 0x3c
 
-	.global gUnk_08BB96D0
-gUnk_08BB96D0:
+	.global AnimSprite_EfxMistyRainObj4_08BB96D0
+AnimSprite_EfxMistyRainObj4_08BB96D0:
 	.incbin "baserom.gba", 0xbb96d0, 0x3c
 
-	.global gUnk_08BB970C
-gUnk_08BB970C:
+	.global AnimSprite_EfxMistyRainObj4_08BB970C
+AnimSprite_EfxMistyRainObj4_08BB970C:
 	.incbin "baserom.gba", 0xbb970c, 0x3c
 
-	.global gUnk_08BB9748
-gUnk_08BB9748:
+	.global AnimSprite_EfxMistyRainObj4_08BB9748
+AnimSprite_EfxMistyRainObj4_08BB9748:
 	.incbin "baserom.gba", 0xbb9748, 0x3c
 
-	.global gUnk_08BB9784
-gUnk_08BB9784:
+	.global AnimSprite_EfxMistyRainObj4_08BB9784
+AnimSprite_EfxMistyRainObj4_08BB9784:
 	.incbin "baserom.gba", 0xbb9784, 0x3c
 
-	.global gUnk_08BB97C0
-gUnk_08BB97C0:
+	.global AnimSprite_EfxMistyRainObj4_08BB97C0
+AnimSprite_EfxMistyRainObj4_08BB97C0:
 	.incbin "baserom.gba", 0xbb97c0, 0x3c
 
-	.global gUnk_08BB97FC
-gUnk_08BB97FC:
+	.global AnimSprite_EfxMistyRainObj4_08BB97FC
+AnimSprite_EfxMistyRainObj4_08BB97FC:
 	.incbin "baserom.gba", 0xbb97fc, 0x3c
 
-	.global gUnk_08BB9838
-gUnk_08BB9838:
+	.global AnimSprite_EfxMistyRainObj4_08BB9838
+AnimSprite_EfxMistyRainObj4_08BB9838:
 	.incbin "baserom.gba", 0xbb9838, 0x3c
 
-	.global gUnk_08BB9874
-gUnk_08BB9874:
+	.global AnimSprite_EfxMistyRainObj4_08BB9874
+AnimSprite_EfxMistyRainObj4_08BB9874:
 	.incbin "baserom.gba", 0xbb9874, 0x3c
 
-	.global gUnk_08BB98B0
-gUnk_08BB98B0:
+	.global AnimSprite_EfxMistyRainObj4_08BB98B0
+AnimSprite_EfxMistyRainObj4_08BB98B0:
 	.incbin "baserom.gba", 0xbb98b0, 0x3c
 
-	.global gUnk_08BB98EC
-gUnk_08BB98EC:
+	.global AnimSprite_EfxMistyRainObj4_08BB98EC
+AnimSprite_EfxMistyRainObj4_08BB98EC:
 	.incbin "baserom.gba", 0xbb98ec, 0x24
 
-	.global gUnk_08BB9910
-gUnk_08BB9910:
+	.global AnimSprite_EfxMistyRainObj5_08BB9910
+AnimSprite_EfxMistyRainObj5_08BB9910:
 	.incbin "baserom.gba", 0xbb9910, 0x18
 
-	.global gUnk_08BB9928
-gUnk_08BB9928:
+	.global AnimSprite_EfxMistyRainObj3_08BB9928
+AnimSprite_EfxMistyRainObj3_08BB9928:
 	.incbin "baserom.gba", 0xbb9928, 0x18
 
-	.global gUnk_08BB9940
-gUnk_08BB9940:
+	.global AnimSprite_EfxMistyRainObj3_08BB9940
+AnimSprite_EfxMistyRainObj3_08BB9940:
 	.incbin "baserom.gba", 0xbb9940, 0x24
 
-	.global gUnk_08BB9964
-gUnk_08BB9964:
+	.global AnimSprite_EfxMistyRainObj3_08BB9964
+AnimSprite_EfxMistyRainObj3_08BB9964:
 	.incbin "baserom.gba", 0xbb9964, 0x18
 
-	.global gUnk_08BB997C
-gUnk_08BB997C:
+	.global AnimSprite_EfxMistyRainObj3_08BB997C
+AnimSprite_EfxMistyRainObj3_08BB997C:
 	.incbin "baserom.gba", 0xbb997c, 0x24
 
-	.global gUnk_08BB99A0
-gUnk_08BB99A0:
+	.global AnimSprite_EfxMistyRainObj3_08BB99A0
+AnimSprite_EfxMistyRainObj3_08BB99A0:
 	.incbin "baserom.gba", 0xbb99a0, 0x24
 
-	.global gUnk_08BB99C4
-gUnk_08BB99C4:
+	.global AnimSprite_EfxMistyRainObj3_08BB99C4
+AnimSprite_EfxMistyRainObj3_08BB99C4:
 	.incbin "baserom.gba", 0xbb99c4, 0x24
 
-	.global gUnk_08BB99E8
-gUnk_08BB99E8:
+	.global AnimSprite_EfxMistyRainObj3_08BB99E8
+AnimSprite_EfxMistyRainObj3_08BB99E8:
 	.incbin "baserom.gba", 0xbb99e8, 0x24
 
-	.global gUnk_08BB9A0C
-gUnk_08BB9A0C:
+	.global AnimSprite_EfxMistyRainObj3_08BB9A0C
+AnimSprite_EfxMistyRainObj3_08BB9A0C:
 	.incbin "baserom.gba", 0xbb9a0c, 0x24
 
-	.global gUnk_08BB9A30
-gUnk_08BB9A30:
+	.global AnimSprite_EfxMistyRainObj3_08BB9A30
+AnimSprite_EfxMistyRainObj3_08BB9A30:
 	.incbin "baserom.gba", 0xbb9a30, 0x24
 
-	.global gUnk_08BB9A54
-gUnk_08BB9A54:
+	.global AnimSprite_EfxMistyRainObj3_08BB9A54
+AnimSprite_EfxMistyRainObj3_08BB9A54:
 	.incbin "baserom.gba", 0xbb9a54, 0x24
 
 	.global AnimScr_EfxMistyRainObj4
 AnimScr_EfxMistyRainObj4:
-	.4byte gUnk_08BB9694 + 0x1
-	.4byte gUnk_08BB96D0 + 0x1
-	.4byte gUnk_08BB970C + 0x1
-	.4byte gUnk_08BB9748 + 0x1
-	.4byte gUnk_08BB9784 + 0x1
-	.4byte gUnk_08BB97C0 + 0x1
-	.4byte gUnk_08BB97FC + 0x1
-	.4byte gUnk_08BB9838 + 0x1
-	.4byte gUnk_08BB9874 + 0x1
-	.4byte gUnk_08BB98B0 + 0x1
-	.4byte gUnk_08BB98EC + 0x70000003
+	.4byte AnimSprite_EfxMistyRainObj4_08BB9694 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB96D0 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB970C + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB9748 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB9784 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB97C0 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB97FC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB9838 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB9874 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98B0 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x70000003
 	.incbin "baserom.gba", 0xbb9aa4, 0x8
 
 	.global AnimScr_EfxMistyRainObj5
 AnimScr_EfxMistyRainObj5:
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x1
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x2
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x3
-	.4byte gUnk_08BB98EC + 0x1
-	.4byte gUnk_08BB9910 + 0x10000000
-	.4byte gUnk_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x1
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
+	.4byte AnimSprite_EfxMistyRainObj5_08BB9910 + 0x10000000
+	.4byte AnimSprite_EfxMistyRainObj4_08BB98EC + 0x1
 	.incbin "baserom.gba", 0xbb9b30, 0x4
 
 	.global AnimScr_EfxMistyRainObj3
 AnimScr_EfxMistyRainObj3:
-	.4byte gUnk_08BB9928 + 0x3
-	.4byte gUnk_08BB9940 + 0x3
-	.4byte gUnk_08BB9964 + 0x3
-	.4byte gUnk_08BB997C + 0x2
-	.4byte gUnk_08BB99A0 + 0x2
-	.4byte gUnk_08BB99C4 + 0x2
-	.4byte gUnk_08BB99E8 + 0x2
-	.4byte gUnk_08BB9A0C + 0x2
-	.4byte gUnk_08BB9A30 + 0x2
-	.4byte gUnk_08BB9A54 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj3_08BB9928 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj3_08BB9940 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj3_08BB9964 + 0x3
+	.4byte AnimSprite_EfxMistyRainObj3_08BB997C + 0x2
+	.4byte AnimSprite_EfxMistyRainObj3_08BB99A0 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj3_08BB99C4 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj3_08BB99E8 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj3_08BB9A0C + 0x2
+	.4byte AnimSprite_EfxMistyRainObj3_08BB9A30 + 0x2
+	.4byte AnimSprite_EfxMistyRainObj3_08BB9A54 + 0x2
 	.incbin "baserom.gba", 0xbb9b5c, 0x4
 
-	.global gUnk_08BB9B60
-gUnk_08BB9B60:
+	.global AnimSprite_EfxDevineOBJ_08BB9B60
+AnimSprite_EfxDevineOBJ_08BB9B60:
 	.incbin "baserom.gba", 0xbb9b60, 0x84
 
-	.global gUnk_08BB9BE4
-gUnk_08BB9BE4:
+	.global AnimSprite_EfxDevineOBJ_08BB9BE4
+AnimSprite_EfxDevineOBJ_08BB9BE4:
 	.incbin "baserom.gba", 0xbb9be4, 0x84
 
-	.global gUnk_08BB9C68
-gUnk_08BB9C68:
+	.global AnimSprite_EfxDevineOBJ_08BB9C68
+AnimSprite_EfxDevineOBJ_08BB9C68:
 	.incbin "baserom.gba", 0xbb9c68, 0x6c
 
-	.global gUnk_08BB9CD4
-gUnk_08BB9CD4:
+	.global AnimSprite_EfxDevineOBJ_08BB9CD4
+AnimSprite_EfxDevineOBJ_08BB9CD4:
 	.incbin "baserom.gba", 0xbb9cd4, 0x6c
 
-	.global gUnk_08BB9D40
-gUnk_08BB9D40:
+	.global AnimSprite_EfxDevineOBJ_08BB9D40
+AnimSprite_EfxDevineOBJ_08BB9D40:
 	.incbin "baserom.gba", 0xbb9d40, 0x6c
 
-	.global gUnk_08BB9DAC
-gUnk_08BB9DAC:
+	.global AnimSprite_EfxDevineOBJ_08BB9DAC
+AnimSprite_EfxDevineOBJ_08BB9DAC:
 	.incbin "baserom.gba", 0xbb9dac, 0x54
 
-	.global gUnk_08BB9E00
-gUnk_08BB9E00:
+	.global AnimSprite_EfxDevineOBJ_08BB9E00
+AnimSprite_EfxDevineOBJ_08BB9E00:
 	.incbin "baserom.gba", 0xbb9e00, 0x6c
 
-	.global gUnk_08BB9E6C
-gUnk_08BB9E6C:
+	.global AnimSprite_EfxDevineOBJ_08BB9E6C
+AnimSprite_EfxDevineOBJ_08BB9E6C:
 	.incbin "baserom.gba", 0xbb9e6c, 0x6c
 
-	.global gUnk_08BB9ED8
-gUnk_08BB9ED8:
+	.global AnimSprite_EfxDevineOBJ_08BB9ED8
+AnimSprite_EfxDevineOBJ_08BB9ED8:
 	.incbin "baserom.gba", 0xbb9ed8, 0x3c
 
-	.global gUnk_08BB9F14
-gUnk_08BB9F14:
+	.global AnimSprite_EfxDevineOBJ_08BB9F14
+AnimSprite_EfxDevineOBJ_08BB9F14:
 	.incbin "baserom.gba", 0xbb9f14, 0x84
 
-	.global gUnk_08BB9F98
-gUnk_08BB9F98:
+	.global AnimSprite_EfxDevineOBJ_08BB9F98
+AnimSprite_EfxDevineOBJ_08BB9F98:
 	.incbin "baserom.gba", 0xbb9f98, 0x90
 
-	.global gUnk_08BBA028
-gUnk_08BBA028:
+	.global AnimSprite_EfxDevineOBJ_08BBA028
+AnimSprite_EfxDevineOBJ_08BBA028:
 	.incbin "baserom.gba", 0xbba028, 0x6c
 
-	.global gUnk_08BBA094
-gUnk_08BBA094:
+	.global AnimSprite_EfxDevineOBJ_08BBA094
+AnimSprite_EfxDevineOBJ_08BBA094:
 	.incbin "baserom.gba", 0xbba094, 0x3c
 
-	.global gUnk_08BBA0D0
-gUnk_08BBA0D0:
+	.global AnimSprite_EfxDevineOBJ_08BBA0D0
+AnimSprite_EfxDevineOBJ_08BBA0D0:
 	.incbin "baserom.gba", 0xbba0d0, 0x24
 
-	.global gUnk_08BBA0F4
-gUnk_08BBA0F4:
+	.global AnimSprite_EfxDevineOBJ_08BBA0F4
+AnimSprite_EfxDevineOBJ_08BBA0F4:
 	.incbin "baserom.gba", 0xbba0f4, 0x18
 
 	.global AnimScr_EfxDevineOBJ
 AnimScr_EfxDevineOBJ:
-	.4byte gUnk_08BBA0F4 + 0x70000001
-	.4byte gUnk_08BB9B60 + 0x1
-	.4byte gUnk_08BB9BE4 + 0x1
-	.4byte gUnk_08BB9C68 + 0x1
-	.4byte gUnk_08BB9CD4 + 0x1
-	.4byte gUnk_08BB9D40 + 0x1
-	.4byte gUnk_08BB9DAC + 0x1
-	.4byte gUnk_08BB9E00 + 0x1
-	.4byte gUnk_08BB9E6C + 0x1
-	.4byte gUnk_08BB9ED8 + 0x1
-	.4byte gUnk_08BB9F14 + 0x1
-	.4byte gUnk_08BB9F98 + 0x1
-	.4byte gUnk_08BBA028 + 0x1
-	.4byte gUnk_08BBA094 + 0x1
-	.4byte gUnk_08BBA0D0 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BBA0F4 + 0x70000001
+	.4byte AnimSprite_EfxDevineOBJ_08BB9B60 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9BE4 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9C68 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9CD4 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9D40 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9DAC + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9E00 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9E6C + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9ED8 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9F14 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BB9F98 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BBA028 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BBA094 + 0x1
+	.4byte AnimSprite_EfxDevineOBJ_08BBA0D0 + 0x1
 	.incbin "baserom.gba", 0xbba148, 0x4
 
-	.global gUnk_08BBA14C
-gUnk_08BBA14C:
+	.global AnimSprite_EfxHazymoonOBJ2_1_08BBA14C
+AnimSprite_EfxHazymoonOBJ2_1_08BBA14C:
 	.incbin "baserom.gba", 0xbba14c, 0x60
 
-	.global gUnk_08BBA1AC
-gUnk_08BBA1AC:
+	.global AnimSprite_EfxHazymoonOBJ2_1_08BBA1AC
+AnimSprite_EfxHazymoonOBJ2_1_08BBA1AC:
 	.incbin "baserom.gba", 0xbba1ac, 0x60
 
-	.global gUnk_08BBA20C
-gUnk_08BBA20C:
+	.global AnimSprite_EfxHazymoonOBJ2_1_08BBA20C
+AnimSprite_EfxHazymoonOBJ2_1_08BBA20C:
 	.incbin "baserom.gba", 0xbba20c, 0x60
 
-	.global gUnk_08BBA26C
-gUnk_08BBA26C:
+	.global AnimSprite_EfxHazymoonOBJ2_1_08BBA26C
+AnimSprite_EfxHazymoonOBJ2_1_08BBA26C:
 	.incbin "baserom.gba", 0xbba26c, 0x60
 
 	.global AnimScr_EfxHazymoonOBJ2_1
 AnimScr_EfxHazymoonOBJ2_1:
-	.4byte gUnk_08BBA14C + 0x2
-	.4byte gUnk_08BBA1AC + 0x2
-	.4byte gUnk_08BBA20C + 0x2
-	.4byte gUnk_08BBA26C + 0x10000000
+	.4byte AnimSprite_EfxHazymoonOBJ2_1_08BBA14C + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_1_08BBA1AC + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_1_08BBA20C + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_1_08BBA26C + 0x10000000
 	.incbin "baserom.gba", 0xbba2dc, 0x4
 
-	.global gUnk_08BBA2E0
-gUnk_08BBA2E0:
+	.global AnimSprite_EfxHazymoonOBJ2_2_08BBA2E0
+AnimSprite_EfxHazymoonOBJ2_2_08BBA2E0:
 	.incbin "baserom.gba", 0xbba2e0, 0xc0
 
-	.global gUnk_08BBA3A0
-gUnk_08BBA3A0:
+	.global AnimSprite_EfxHazymoonOBJ2_2_08BBA3A0
+AnimSprite_EfxHazymoonOBJ2_2_08BBA3A0:
 	.incbin "baserom.gba", 0xbba3a0, 0xc0
 
-	.global gUnk_08BBA460
-gUnk_08BBA460:
+	.global AnimSprite_EfxHazymoonOBJ2_2_08BBA460
+AnimSprite_EfxHazymoonOBJ2_2_08BBA460:
 	.incbin "baserom.gba", 0xbba460, 0xc0
 
-	.global gUnk_08BBA520
-gUnk_08BBA520:
+	.global AnimSprite_EfxHazymoonOBJ2_2_08BBA520
+AnimSprite_EfxHazymoonOBJ2_2_08BBA520:
 	.incbin "baserom.gba", 0xbba520, 0xb4
 
 	.global AnimScr_EfxHazymoonOBJ2_2
 AnimScr_EfxHazymoonOBJ2_2:
-	.4byte gUnk_08BBA2E0 + 0x2
-	.4byte gUnk_08BBA3A0 + 0x2
-	.4byte gUnk_08BBA460 + 0x2
-	.4byte gUnk_08BBA520 + 0x10000000
+	.4byte AnimSprite_EfxHazymoonOBJ2_2_08BBA2E0 + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_2_08BBA3A0 + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_2_08BBA460 + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_2_08BBA520 + 0x10000000
 	.incbin "baserom.gba", 0xbba5e4, 0x4
 
-	.global gUnk_08BBA5E8
-gUnk_08BBA5E8:
+	.global AnimSprite_EfxHazymoonOBJ2_3_08BBA5E8
+AnimSprite_EfxHazymoonOBJ2_3_08BBA5E8:
 	.incbin "baserom.gba", 0xbba5e8, 0xc0
 
-	.global gUnk_08BBA6A8
-gUnk_08BBA6A8:
+	.global AnimSprite_EfxHazymoonOBJ2_3_08BBA6A8
+AnimSprite_EfxHazymoonOBJ2_3_08BBA6A8:
 	.incbin "baserom.gba", 0xbba6a8, 0xb4
 
-	.global gUnk_08BBA75C
-gUnk_08BBA75C:
+	.global AnimSprite_EfxHazymoonOBJ2_3_08BBA75C
+AnimSprite_EfxHazymoonOBJ2_3_08BBA75C:
 	.incbin "baserom.gba", 0xbba75c, 0xc0
 
-	.global gUnk_08BBA81C
-gUnk_08BBA81C:
+	.global AnimSprite_EfxHazymoonOBJ2_3_08BBA81C
+AnimSprite_EfxHazymoonOBJ2_3_08BBA81C:
 	.incbin "baserom.gba", 0xbba81c, 0xb4
 
 	.global AnimScr_EfxHazymoonOBJ2_3
 AnimScr_EfxHazymoonOBJ2_3:
-	.4byte gUnk_08BBA5E8 + 0x2
-	.4byte gUnk_08BBA6A8 + 0x2
-	.4byte gUnk_08BBA75C + 0x2
-	.4byte gUnk_08BBA81C + 0x10000000
+	.4byte AnimSprite_EfxHazymoonOBJ2_3_08BBA5E8 + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_3_08BBA6A8 + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_3_08BBA75C + 0x2
+	.4byte AnimSprite_EfxHazymoonOBJ2_3_08BBA81C + 0x10000000
 	.incbin "baserom.gba", 0xbba8e0, 0x4
 
-	.global gUnk_08BBA8E4
-gUnk_08BBA8E4:
+	.global AnimSprite_EfxFenrir1_08BBA8E4
+AnimSprite_EfxFenrir1_08BBA8E4:
 	.incbin "baserom.gba", 0xbba8e4, 0x24
 
-	.global gUnk_08BBA908
-gUnk_08BBA908:
+	.global AnimSprite_EfxFenrir1_08BBA908
+AnimSprite_EfxFenrir1_08BBA908:
 	.incbin "baserom.gba", 0xbba908, 0x30
 
-	.global gUnk_08BBA938
-gUnk_08BBA938:
+	.global AnimSprite_EfxFenrir1_08BBA938
+AnimSprite_EfxFenrir1_08BBA938:
 	.incbin "baserom.gba", 0xbba938, 0x30
 
-	.global gUnk_08BBA968
-gUnk_08BBA968:
+	.global AnimSprite_EfxFenrir2_08BBA968
+AnimSprite_EfxFenrir2_08BBA968:
 	.incbin "baserom.gba", 0xbba968, 0x18
 
-	.global gUnk_08BBA980
-gUnk_08BBA980:
+	.global AnimSprite_EfxFenrir2_08BBA980
+AnimSprite_EfxFenrir2_08BBA980:
 	.incbin "baserom.gba", 0xbba980, 0x24
 
-	.global gUnk_08BBA9A4
-gUnk_08BBA9A4:
+	.global AnimSprite_EfxFenrir2_08BBA9A4
+AnimSprite_EfxFenrir2_08BBA9A4:
 	.incbin "baserom.gba", 0xbba9a4, 0x24
 
-	.global gUnk_08BBA9C8
-gUnk_08BBA9C8:
+	.global AnimSprite_EfxFenrir3_08BBA9C8
+AnimSprite_EfxFenrir3_08BBA9C8:
 	.incbin "baserom.gba", 0xbba9c8, 0x18
 
-	.global gUnk_08BBA9E0
-gUnk_08BBA9E0:
+	.global AnimSprite_EfxFenrir3_08BBA9E0
+AnimSprite_EfxFenrir3_08BBA9E0:
 	.incbin "baserom.gba", 0xbba9e0, 0x9c
 
-	.global gUnk_08BBAA7C
-gUnk_08BBAA7C:
+	.global AnimSprite_EfxFenrir3_08BBAA7C
+AnimSprite_EfxFenrir3_08BBAA7C:
 	.incbin "baserom.gba", 0xbbaa7c, 0x9c
 
-	.global gUnk_08BBAB18
-gUnk_08BBAB18:
+	.global AnimSprite_EfxFenrir3_08BBAB18
+AnimSprite_EfxFenrir3_08BBAB18:
 	.incbin "baserom.gba", 0xbbab18, 0x9c
 
-	.global gUnk_08BBABB4
-gUnk_08BBABB4:
+	.global AnimSprite_EfxFenrir3_08BBABB4
+AnimSprite_EfxFenrir3_08BBABB4:
 	.incbin "baserom.gba", 0xbbabb4, 0x9c
 
-	.global gUnk_08BBAC50
-gUnk_08BBAC50:
+	.global AnimSprite_EfxFenrir3_08BBAC50
+AnimSprite_EfxFenrir3_08BBAC50:
 	.incbin "baserom.gba", 0xbbac50, 0x9c
 
-	.global gUnk_08BBACEC
-gUnk_08BBACEC:
+	.global AnimSprite_EfxFenrir3_08BBACEC
+AnimSprite_EfxFenrir3_08BBACEC:
 	.incbin "baserom.gba", 0xbbacec, 0x9c
 
-	.global gUnk_08BBAD88
-gUnk_08BBAD88:
+	.global AnimSprite_EfxFenrir3_08BBAD88
+AnimSprite_EfxFenrir3_08BBAD88:
 	.incbin "baserom.gba", 0xbbad88, 0x9c
 
-	.global gUnk_08BBAE24
-gUnk_08BBAE24:
+	.global AnimSprite_EfxFenrir3_08BBAE24
+AnimSprite_EfxFenrir3_08BBAE24:
 	.incbin "baserom.gba", 0xbbae24, 0x9c
 
-	.global gUnk_08BBAEC0
-gUnk_08BBAEC0:
+	.global AnimSprite_EfxFenrir3_08BBAEC0
+AnimSprite_EfxFenrir3_08BBAEC0:
 	.incbin "baserom.gba", 0xbbaec0, 0x6c
 
-	.global gUnk_08BBAF2C
-gUnk_08BBAF2C:
+	.global AnimSprite_EfxFenrir3_08BBAF2C
+AnimSprite_EfxFenrir3_08BBAF2C:
 	.incbin "baserom.gba", 0xbbaf2c, 0x9c
 
-	.global gUnk_08BBAFC8
-gUnk_08BBAFC8:
+	.global AnimSprite_EfxFenrir1_08BBAFC8
+AnimSprite_EfxFenrir1_08BBAFC8:
 	.incbin "baserom.gba", 0xbbafc8, 0x30
 
-	.global gUnk_08BBAFF8
-gUnk_08BBAFF8:
+	.global AnimSprite_EfxFenrir1_08BBAFF8
+AnimSprite_EfxFenrir1_08BBAFF8:
 	.incbin "baserom.gba", 0xbbaff8, 0x30
 
-	.global gUnk_08BBB028
-gUnk_08BBB028:
+	.global AnimSprite_EfxFenrir2_08BBB028
+AnimSprite_EfxFenrir2_08BBB028:
 	.incbin "baserom.gba", 0xbbb028, 0x24
 
-	.global gUnk_08BBB04C
-gUnk_08BBB04C:
+	.global AnimSprite_EfxFenrir2_08BBB04C
+AnimSprite_EfxFenrir2_08BBB04C:
 	.incbin "baserom.gba", 0xbbb04c, 0x24
 
-	.global gUnk_08BBB070
-gUnk_08BBB070:
+	.global AnimSprite_EfxFenrir3_08BBB070
+AnimSprite_EfxFenrir3_08BBB070:
 	.incbin "baserom.gba", 0xbbb070, 0x9c
 
-	.global gUnk_08BBB10C
-gUnk_08BBB10C:
+	.global AnimSprite_EfxFenrir3_08BBB10C
+AnimSprite_EfxFenrir3_08BBB10C:
 	.incbin "baserom.gba", 0xbbb10c, 0x9c
 
-	.global gUnk_08BBB1A8
-gUnk_08BBB1A8:
+	.global AnimSprite_EfxFenrir3_08BBB1A8
+AnimSprite_EfxFenrir3_08BBB1A8:
 	.incbin "baserom.gba", 0xbbb1a8, 0x9c
 
-	.global gUnk_08BBB244
-gUnk_08BBB244:
+	.global AnimSprite_EfxFenrir3_08BBB244
+AnimSprite_EfxFenrir3_08BBB244:
 	.incbin "baserom.gba", 0xbbb244, 0x9c
 
-	.global gUnk_08BBB2E0
-gUnk_08BBB2E0:
+	.global AnimSprite_EfxFenrir3_08BBB2E0
+AnimSprite_EfxFenrir3_08BBB2E0:
 	.incbin "baserom.gba", 0xbbb2e0, 0x9c
 
-	.global gUnk_08BBB37C
-gUnk_08BBB37C:
+	.global AnimSprite_EfxFenrir3_08BBB37C
+AnimSprite_EfxFenrir3_08BBB37C:
 	.incbin "baserom.gba", 0xbbb37c, 0x9c
 
-	.global gUnk_08BBB418
-gUnk_08BBB418:
+	.global AnimSprite_EfxFenrir3_08BBB418
+AnimSprite_EfxFenrir3_08BBB418:
 	.incbin "baserom.gba", 0xbbb418, 0x9c
 
-	.global gUnk_08BBB4B4
-gUnk_08BBB4B4:
+	.global AnimSprite_EfxFenrir3_08BBB4B4
+AnimSprite_EfxFenrir3_08BBB4B4:
 	.incbin "baserom.gba", 0xbbb4b4, 0x9c
 
-	.global gUnk_08BBB550
-gUnk_08BBB550:
+	.global AnimSprite_EfxFenrir1_08BBB550
+AnimSprite_EfxFenrir1_08BBB550:
 	.incbin "baserom.gba", 0xbbb550, 0x18
 
 	.global AnimScr_EfxFenrir1
 AnimScr_EfxFenrir1:
-	.4byte gUnk_08BBAFF8 + 0x2
-	.4byte gUnk_08BBAFC8 + 0x2
-	.4byte gUnk_08BBA938 + 0x2
-	.4byte gUnk_08BBA908 + 0x2
-	.4byte gUnk_08BBA8E4 + 0x2
-	.4byte gUnk_08BBA908 + 0x2
-	.4byte gUnk_08BBA938 + 0x2
-	.4byte gUnk_08BBAFC8 + 0x2
-	.4byte gUnk_08BBAFF8 + 0x2
-	.4byte gUnk_08BBB550 + 0x20000002
+	.4byte AnimSprite_EfxFenrir1_08BBAFF8 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBAFC8 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBA938 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBA908 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBA8E4 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBA908 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBA938 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBAFC8 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBAFF8 + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBB550 + 0x20000002
 	.incbin "baserom.gba", 0xbbb590, 0x4
 
 	.global AnimScr_EfxFenrir2
 AnimScr_EfxFenrir2:
-	.4byte gUnk_08BBB04C + 0x2
-	.4byte gUnk_08BBB028 + 0x2
-	.4byte gUnk_08BBA9A4 + 0x2
-	.4byte gUnk_08BBA980 + 0x2
-	.4byte gUnk_08BBA968 + 0x2
-	.4byte gUnk_08BBA980 + 0x2
-	.4byte gUnk_08BBA9A4 + 0x2
-	.4byte gUnk_08BBB028 + 0x2
-	.4byte gUnk_08BBB04C + 0x2
-	.4byte gUnk_08BBB550 + 0x20000002
+	.4byte AnimSprite_EfxFenrir2_08BBB04C + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBB028 + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBA9A4 + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBA980 + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBA968 + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBA980 + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBA9A4 + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBB028 + 0x2
+	.4byte AnimSprite_EfxFenrir2_08BBB04C + 0x2
+	.4byte AnimSprite_EfxFenrir1_08BBB550 + 0x20000002
 	.incbin "baserom.gba", 0xbbb5bc, 0x4
 
 	.global AnimScr_EfxFenrir3
 AnimScr_EfxFenrir3:
-	.4byte gUnk_08BBAF2C + 0x2
-	.4byte gUnk_08BBA9E0 + 0x2
-	.4byte gUnk_08BBAA7C + 0x2
-	.4byte gUnk_08BBAB18 + 0x2
-	.4byte gUnk_08BBABB4 + 0x2
-	.4byte gUnk_08BBAC50 + 0x2
-	.4byte gUnk_08BBACEC + 0x2
-	.4byte gUnk_08BBAD88 + 0x2
-	.4byte gUnk_08BBAE24 + 0x2
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBA9C8 + 0x1
-	.4byte gUnk_08BBAEC0 + 0x1
-	.4byte gUnk_08BBB070 + 0x2
-	.4byte gUnk_08BBB10C + 0x2
-	.4byte gUnk_08BBB1A8 + 0x2
-	.4byte gUnk_08BBB244 + 0x2
-	.4byte gUnk_08BBB2E0 + 0x2
-	.4byte gUnk_08BBB37C + 0x2
-	.4byte gUnk_08BBB418 + 0x2
-	.4byte gUnk_08BBB4B4 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBAF2C + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBA9E0 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBAA7C + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBAB18 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBABB4 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBAC50 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBACEC + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBAD88 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBAE24 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBA9C8 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBAEC0 + 0x1
+	.4byte AnimSprite_EfxFenrir3_08BBB070 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBB10C + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBB1A8 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBB244 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBB2E0 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBB37C + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBB418 + 0x2
+	.4byte AnimSprite_EfxFenrir3_08BBB4B4 + 0x2
 	.incbin "baserom.gba", 0xbbb6a8, 0x4
 
-	.global gUnk_08BBB6AC
-gUnk_08BBB6AC:
+	.global AnimSprite_EfxPurge_08BBB6AC
+AnimSprite_EfxPurge_08BBB6AC:
 	.incbin "baserom.gba", 0xbbb6ac, 0x24
 
-	.global gUnk_08BBB6D0
-gUnk_08BBB6D0:
+	.global AnimSprite_EfxPurge_08BBB6D0
+AnimSprite_EfxPurge_08BBB6D0:
 	.incbin "baserom.gba", 0xbbb6d0, 0x24
 
-	.global gUnk_08BBB6F4
-gUnk_08BBB6F4:
+	.global AnimSprite_EfxPurge_08BBB6F4
+AnimSprite_EfxPurge_08BBB6F4:
 	.incbin "baserom.gba", 0xbbb6f4, 0x24
 
-	.global gUnk_08BBB718
-gUnk_08BBB718:
+	.global AnimSprite_EfxPurge_08BBB718
+AnimSprite_EfxPurge_08BBB718:
 	.incbin "baserom.gba", 0xbbb718, 0x24
 
-	.global gUnk_08BBB73C
-gUnk_08BBB73C:
+	.global AnimSprite_EfxPurge_08BBB73C
+AnimSprite_EfxPurge_08BBB73C:
 	.incbin "baserom.gba", 0xbbb73c, 0x24
 
-	.global gUnk_08BBB760
-gUnk_08BBB760:
+	.global AnimSprite_EfxPurge_08BBB760
+AnimSprite_EfxPurge_08BBB760:
 	.incbin "baserom.gba", 0xbbb760, 0x24
 
-	.global gUnk_08BBB784
-gUnk_08BBB784:
+	.global AnimSprite_EfxPurge_08BBB784
+AnimSprite_EfxPurge_08BBB784:
 	.incbin "baserom.gba", 0xbbb784, 0x24
 
-	.global gUnk_08BBB7A8
-gUnk_08BBB7A8:
+	.global AnimSprite_EfxPurge_08BBB7A8
+AnimSprite_EfxPurge_08BBB7A8:
 	.incbin "baserom.gba", 0xbbb7a8, 0x24
 
-	.global gUnk_08BBB7CC
-gUnk_08BBB7CC:
+	.global AnimSprite_EfxPurge_08BBB7CC
+AnimSprite_EfxPurge_08BBB7CC:
 	.incbin "baserom.gba", 0xbbb7cc, 0x24
 
-	.global gUnk_08BBB7F0
-gUnk_08BBB7F0:
+	.global AnimSprite_EfxPurge_08BBB7F0
+AnimSprite_EfxPurge_08BBB7F0:
 	.incbin "baserom.gba", 0xbbb7f0, 0x18
 
-	.global gUnk_08BBB808
-gUnk_08BBB808:
+	.global AnimSprite_EfxPurge_08BBB808
+AnimSprite_EfxPurge_08BBB808:
 	.incbin "baserom.gba", 0xbbb808, 0x24
 
-	.global gUnk_08BBB82C
-gUnk_08BBB82C:
+	.global AnimSprite_EfxPurge_08BBB82C
+AnimSprite_EfxPurge_08BBB82C:
 	.incbin "baserom.gba", 0xbbb82c, 0x24
 
-	.global gUnk_08BBB850
-gUnk_08BBB850:
+	.global AnimSprite_EfxPurge_08BBB850
+AnimSprite_EfxPurge_08BBB850:
 	.incbin "baserom.gba", 0xbbb850, 0x24
 
-	.global gUnk_08BBB874
-gUnk_08BBB874:
+	.global AnimSprite_EfxPurge_08BBB874
+AnimSprite_EfxPurge_08BBB874:
 	.incbin "baserom.gba", 0xbbb874, 0x24
 
-	.global gUnk_08BBB898
-gUnk_08BBB898:
+	.global AnimSprite_EfxPurge_08BBB898
+AnimSprite_EfxPurge_08BBB898:
 	.incbin "baserom.gba", 0xbbb898, 0x24
 
-	.global gUnk_08BBB8BC
-gUnk_08BBB8BC:
+	.global AnimSprite_EfxPurge_08BBB8BC
+AnimSprite_EfxPurge_08BBB8BC:
 	.incbin "baserom.gba", 0xbbb8bc, 0x24
 
-	.global gUnk_08BBB8E0
-gUnk_08BBB8E0:
+	.global AnimSprite_EfxPurge_08BBB8E0
+AnimSprite_EfxPurge_08BBB8E0:
 	.incbin "baserom.gba", 0xbbb8e0, 0x24
 
-	.global gUnk_08BBB904
-gUnk_08BBB904:
+	.global AnimSprite_EfxPurge_08BBB904
+AnimSprite_EfxPurge_08BBB904:
 	.incbin "baserom.gba", 0xbbb904, 0x24
 
-	.global gUnk_08BBB928
-gUnk_08BBB928:
+	.global AnimSprite_EfxPurge_08BBB928
+AnimSprite_EfxPurge_08BBB928:
 	.incbin "baserom.gba", 0xbbb928, 0x24
 
-	.global gUnk_08BBB94C
-gUnk_08BBB94C:
+	.global AnimSprite_EfxPurge_08BBB94C
+AnimSprite_EfxPurge_08BBB94C:
 	.incbin "baserom.gba", 0xbbb94c, 0x18
 
 	.global AnimScr_EfxPurge
 AnimScr_EfxPurge:
-	.4byte gUnk_08BBB6AC + 0x1
-	.4byte gUnk_08BBB6D0 + 0x1
-	.4byte gUnk_08BBB6F4 + 0x1
-	.4byte gUnk_08BBB718 + 0x1
-	.4byte gUnk_08BBB73C + 0x1
-	.4byte gUnk_08BBB760 + 0x1
-	.4byte gUnk_08BBB784 + 0x1
-	.4byte gUnk_08BBB7A8 + 0x1
-	.4byte gUnk_08BBB7CC + 0x1
-	.4byte gUnk_08BBB7F0 + 0x1
-	.4byte gUnk_08BBB808 + 0x1
-	.4byte gUnk_08BBB82C + 0x1
-	.4byte gUnk_08BBB850 + 0x1
-	.4byte gUnk_08BBB874 + 0x1
-	.4byte gUnk_08BBB898 + 0x1
-	.4byte gUnk_08BBB8BC + 0x1
-	.4byte gUnk_08BBB8E0 + 0x1
-	.4byte gUnk_08BBB904 + 0x1
-	.4byte gUnk_08BBB928 + 0x1
-	.4byte gUnk_08BBB94C + 0x70000003
+	.4byte AnimSprite_EfxPurge_08BBB6AC + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB6D0 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB6F4 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB718 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB73C + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB760 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB784 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB7A8 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB7CC + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB7F0 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB808 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB82C + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB850 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB874 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB898 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB8BC + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB8E0 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB904 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB928 + 0x1
+	.4byte AnimSprite_EfxPurge_08BBB94C + 0x70000003
 	.incbin "baserom.gba", 0xbbb9b4, 0x8
 
-	.global gUnk_08BBB9BC
-gUnk_08BBB9BC:
+	.global AnimSprite_EfxLiveOBJ1_08BBB9BC
+AnimSprite_EfxLiveOBJ1_08BBB9BC:
 	.incbin "baserom.gba", 0xbbb9bc, 0x24
 
-	.global gUnk_08BBB9E0
-gUnk_08BBB9E0:
+	.global AnimSprite_EfxLiveOBJ1_08BBB9E0
+AnimSprite_EfxLiveOBJ1_08BBB9E0:
 	.incbin "baserom.gba", 0xbbb9e0, 0x30
 
-	.global gUnk_08BBBA10
-gUnk_08BBBA10:
+	.global AnimSprite_EfxLiveOBJ1_08BBBA10
+AnimSprite_EfxLiveOBJ1_08BBBA10:
 	.incbin "baserom.gba", 0xbbba10, 0x30
 
-	.global gUnk_08BBBA40
-gUnk_08BBBA40:
+	.global AnimSprite_EfxLiveOBJ1_08BBBA40
+AnimSprite_EfxLiveOBJ1_08BBBA40:
 	.incbin "baserom.gba", 0xbbba40, 0x30
 
-	.global gUnk_08BBBA70
-gUnk_08BBBA70:
+	.global AnimSprite_EfxLiveOBJ1_08BBBA70
+AnimSprite_EfxLiveOBJ1_08BBBA70:
 	.incbin "baserom.gba", 0xbbba70, 0x48
 
-	.global gUnk_08BBBAB8
-gUnk_08BBBAB8:
+	.global AnimSprite_EfxLiveOBJ1_08BBBAB8
+AnimSprite_EfxLiveOBJ1_08BBBAB8:
 	.incbin "baserom.gba", 0xbbbab8, 0x48
 
-	.global gUnk_08BBBB00
-gUnk_08BBBB00:
+	.global AnimSprite_EfxLiveOBJ1_08BBBB00
+AnimSprite_EfxLiveOBJ1_08BBBB00:
 	.incbin "baserom.gba", 0xbbbb00, 0x48
 
-	.global gUnk_08BBBB48
-gUnk_08BBBB48:
+	.global AnimSprite_EfxLiveOBJ1_08BBBB48
+AnimSprite_EfxLiveOBJ1_08BBBB48:
 	.incbin "baserom.gba", 0xbbbb48, 0x48
 
-	.global gUnk_08BBBB90
-gUnk_08BBBB90:
+	.global AnimSprite_EfxLiveOBJ1_08BBBB90
+AnimSprite_EfxLiveOBJ1_08BBBB90:
 	.incbin "baserom.gba", 0xbbbb90, 0x48
 
-	.global gUnk_08BBBBD8
-gUnk_08BBBBD8:
+	.global AnimSprite_EfxLiveOBJ1_08BBBBD8
+AnimSprite_EfxLiveOBJ1_08BBBBD8:
 	.incbin "baserom.gba", 0xbbbbd8, 0x60
 
-	.global gUnk_08BBBC38
-gUnk_08BBBC38:
+	.global AnimSprite_EfxLiveOBJ1_08BBBC38
+AnimSprite_EfxLiveOBJ1_08BBBC38:
 	.incbin "baserom.gba", 0xbbbc38, 0x78
 
-	.global gUnk_08BBBCB0
-gUnk_08BBBCB0:
+	.global AnimSprite_EfxLiveOBJ1_08BBBCB0
+AnimSprite_EfxLiveOBJ1_08BBBCB0:
 	.incbin "baserom.gba", 0xbbbcb0, 0x78
 
-	.global gUnk_08BBBD28
-gUnk_08BBBD28:
+	.global AnimSprite_EfxLiveOBJ1_08BBBD28
+AnimSprite_EfxLiveOBJ1_08BBBD28:
 	.incbin "baserom.gba", 0xbbbd28, 0x78
 
-	.global gUnk_08BBBDA0
-gUnk_08BBBDA0:
+	.global AnimSprite_EfxLiveOBJ1_08BBBDA0
+AnimSprite_EfxLiveOBJ1_08BBBDA0:
 	.incbin "baserom.gba", 0xbbbda0, 0x84
 
-	.global gUnk_08BBBE24
-gUnk_08BBBE24:
+	.global AnimSprite_EfxLiveOBJ1_08BBBE24
+AnimSprite_EfxLiveOBJ1_08BBBE24:
 	.incbin "baserom.gba", 0xbbbe24, 0x84
 
-	.global gUnk_08BBBEA8
-gUnk_08BBBEA8:
+	.global AnimSprite_EfxLiveOBJ1_08BBBEA8
+AnimSprite_EfxLiveOBJ1_08BBBEA8:
 	.incbin "baserom.gba", 0xbbbea8, 0x84
 
-	.global gUnk_08BBBF2C
-gUnk_08BBBF2C:
+	.global AnimSprite_EfxLiveOBJ1_08BBBF2C
+AnimSprite_EfxLiveOBJ1_08BBBF2C:
 	.incbin "baserom.gba", 0xbbbf2c, 0x84
 
-	.global gUnk_08BBBFB0
-gUnk_08BBBFB0:
+	.global AnimSprite_EfxLiveOBJ1_08BBBFB0
+AnimSprite_EfxLiveOBJ1_08BBBFB0:
 	.incbin "baserom.gba", 0xbbbfb0, 0x78
 
-	.global gUnk_08BBC028
-gUnk_08BBC028:
+	.global AnimSprite_EfxLiveOBJ1_08BBC028
+AnimSprite_EfxLiveOBJ1_08BBC028:
 	.incbin "baserom.gba", 0xbbc028, 0x78
 
-	.global gUnk_08BBC0A0
-gUnk_08BBC0A0:
+	.global AnimSprite_EfxLiveOBJ1_08BBC0A0
+AnimSprite_EfxLiveOBJ1_08BBC0A0:
 	.incbin "baserom.gba", 0xbbc0a0, 0x78
 
-	.global gUnk_08BBC118
-gUnk_08BBC118:
+	.global AnimSprite_EfxLiveOBJ1_08BBC118
+AnimSprite_EfxLiveOBJ1_08BBC118:
 	.incbin "baserom.gba", 0xbbc118, 0x78
 
-	.global gUnk_08BBC190
-gUnk_08BBC190:
+	.global AnimSprite_EfxLiveOBJ1_08BBC190
+AnimSprite_EfxLiveOBJ1_08BBC190:
 	.incbin "baserom.gba", 0xbbc190, 0x78
 
-	.global gUnk_08BBC208
-gUnk_08BBC208:
+	.global AnimSprite_EfxLiveOBJ1_08BBC208
+AnimSprite_EfxLiveOBJ1_08BBC208:
 	.incbin "baserom.gba", 0xbbc208, 0x84
 
-	.global gUnk_08BBC28C
-gUnk_08BBC28C:
+	.global AnimSprite_EfxLiveOBJ1_08BBC28C
+AnimSprite_EfxLiveOBJ1_08BBC28C:
 	.incbin "baserom.gba", 0xbbc28c, 0x84
 
-	.global gUnk_08BBC310
-gUnk_08BBC310:
+	.global AnimSprite_EfxLiveOBJ1_08BBC310
+AnimSprite_EfxLiveOBJ1_08BBC310:
 	.incbin "baserom.gba", 0xbbc310, 0x84
 
-	.global gUnk_08BBC394
-gUnk_08BBC394:
+	.global AnimSprite_EfxLiveOBJ1_08BBC394
+AnimSprite_EfxLiveOBJ1_08BBC394:
 	.incbin "baserom.gba", 0xbbc394, 0x84
 
-	.global gUnk_08BBC418
-gUnk_08BBC418:
+	.global AnimSprite_EfxLiveOBJ1_08BBC418
+AnimSprite_EfxLiveOBJ1_08BBC418:
 	.incbin "baserom.gba", 0xbbc418, 0x84
 
-	.global gUnk_08BBC49C
-gUnk_08BBC49C:
+	.global AnimSprite_EfxLiveOBJ1_08BBC49C
+AnimSprite_EfxLiveOBJ1_08BBC49C:
 	.incbin "baserom.gba", 0xbbc49c, 0x84
 
-	.global gUnk_08BBC520
-gUnk_08BBC520:
+	.global AnimSprite_EfxLiveOBJ1_08BBC520
+AnimSprite_EfxLiveOBJ1_08BBC520:
 	.incbin "baserom.gba", 0xbbc520, 0x78
 
-	.global gUnk_08BBC598
-gUnk_08BBC598:
+	.global AnimSprite_EfxLiveOBJ1_08BBC598
+AnimSprite_EfxLiveOBJ1_08BBC598:
 	.incbin "baserom.gba", 0xbbc598, 0x48
 
-	.global gUnk_08BBC5E0
-gUnk_08BBC5E0:
+	.global AnimSprite_EfxLiveOBJ1_08BBC5E0
+AnimSprite_EfxLiveOBJ1_08BBC5E0:
 	.incbin "baserom.gba", 0xbbc5e0, 0x48
 
-	.global gUnk_08BBC628
-gUnk_08BBC628:
+	.global AnimSprite_EfxLiveOBJ1_08BBC628
+AnimSprite_EfxLiveOBJ1_08BBC628:
 	.incbin "baserom.gba", 0xbbc628, 0x48
 
-	.global gUnk_08BBC670
-gUnk_08BBC670:
+	.global AnimSprite_EfxLiveOBJ1_08BBC670
+AnimSprite_EfxLiveOBJ1_08BBC670:
 	.incbin "baserom.gba", 0xbbc670, 0x48
 
-	.global gUnk_08BBC6B8
-gUnk_08BBC6B8:
+	.global AnimSprite_EfxLiveOBJ1_08BBC6B8
+AnimSprite_EfxLiveOBJ1_08BBC6B8:
 	.incbin "baserom.gba", 0xbbc6b8, 0x24
 
-	.global gUnk_08BBC6DC
-gUnk_08BBC6DC:
+	.global AnimSprite_EfxLiveOBJ1_08BBC6DC
+AnimSprite_EfxLiveOBJ1_08BBC6DC:
 	.incbin "baserom.gba", 0xbbc6dc, 0xee8
 
-	.global gUnk_08BBD5C4
-gUnk_08BBD5C4:
+	.global AnimSprite_EfxLiveOBJ2_08BBD5C4
+AnimSprite_EfxLiveOBJ2_08BBD5C4:
 	.incbin "baserom.gba", 0xbbd5c4, 0x24
 
-	.global gUnk_08BBD5E8
-gUnk_08BBD5E8:
+	.global AnimSprite_EfxLiveOBJ2_08BBD5E8
+AnimSprite_EfxLiveOBJ2_08BBD5E8:
 	.incbin "baserom.gba", 0xbbd5e8, 0x30
 
-	.global gUnk_08BBD618
-gUnk_08BBD618:
+	.global AnimSprite_EfxLiveOBJ2_08BBD618
+AnimSprite_EfxLiveOBJ2_08BBD618:
 	.incbin "baserom.gba", 0xbbd618, 0x48
 
-	.global gUnk_08BBD660
-gUnk_08BBD660:
+	.global AnimSprite_EfxLiveOBJ2_08BBD660
+AnimSprite_EfxLiveOBJ2_08BBD660:
 	.incbin "baserom.gba", 0xbbd660, 0x3c
 
-	.global gUnk_08BBD69C
-gUnk_08BBD69C:
+	.global AnimSprite_EfxLiveOBJ2_08BBD69C
+AnimSprite_EfxLiveOBJ2_08BBD69C:
 	.incbin "baserom.gba", 0xbbd69c, 0x54
 
-	.global gUnk_08BBD6F0
-gUnk_08BBD6F0:
+	.global AnimSprite_EfxLiveOBJ2_08BBD6F0
+AnimSprite_EfxLiveOBJ2_08BBD6F0:
 	.incbin "baserom.gba", 0xbbd6f0, 0x54
 
-	.global gUnk_08BBD744
-gUnk_08BBD744:
+	.global AnimSprite_EfxLiveOBJ2_08BBD744
+AnimSprite_EfxLiveOBJ2_08BBD744:
 	.incbin "baserom.gba", 0xbbd744, 0x54
 
-	.global gUnk_08BBD798
-gUnk_08BBD798:
+	.global AnimSprite_EfxLiveOBJ2_08BBD798
+AnimSprite_EfxLiveOBJ2_08BBD798:
 	.incbin "baserom.gba", 0xbbd798, 0x54
 
-	.global gUnk_08BBD7EC
-gUnk_08BBD7EC:
+	.global AnimSprite_EfxLiveOBJ2_08BBD7EC
+AnimSprite_EfxLiveOBJ2_08BBD7EC:
 	.incbin "baserom.gba", 0xbbd7ec, 0x54
 
-	.global gUnk_08BBD840
-gUnk_08BBD840:
+	.global AnimSprite_EfxLiveOBJ2_08BBD840
+AnimSprite_EfxLiveOBJ2_08BBD840:
 	.incbin "baserom.gba", 0xbbd840, 0x54
 
-	.global gUnk_08BBD894
-gUnk_08BBD894:
+	.global AnimSprite_EfxLiveOBJ2_08BBD894
+AnimSprite_EfxLiveOBJ2_08BBD894:
 	.incbin "baserom.gba", 0xbbd894, 0x54
 
-	.global gUnk_08BBD8E8
-gUnk_08BBD8E8:
+	.global AnimSprite_EfxLiveOBJ2_08BBD8E8
+AnimSprite_EfxLiveOBJ2_08BBD8E8:
 	.incbin "baserom.gba", 0xbbd8e8, 0x54
 
-	.global gUnk_08BBD93C
-gUnk_08BBD93C:
+	.global AnimSprite_EfxLiveOBJ2_08BBD93C
+AnimSprite_EfxLiveOBJ2_08BBD93C:
 	.incbin "baserom.gba", 0xbbd93c, 0x54
 
-	.global gUnk_08BBD990
-gUnk_08BBD990:
+	.global AnimSprite_EfxLiveOBJ2_08BBD990
+AnimSprite_EfxLiveOBJ2_08BBD990:
 	.incbin "baserom.gba", 0xbbd990, 0x54
 
-	.global gUnk_08BBD9E4
-gUnk_08BBD9E4:
+	.global AnimSprite_EfxLiveOBJ2_08BBD9E4
+AnimSprite_EfxLiveOBJ2_08BBD9E4:
 	.incbin "baserom.gba", 0xbbd9e4, 0x54
 
-	.global gUnk_08BBDA38
-gUnk_08BBDA38:
+	.global AnimSprite_EfxLiveOBJ2_08BBDA38
+AnimSprite_EfxLiveOBJ2_08BBDA38:
 	.incbin "baserom.gba", 0xbbda38, 0x54
 
-	.global gUnk_08BBDA8C
-gUnk_08BBDA8C:
+	.global AnimSprite_EfxLiveOBJ2_08BBDA8C
+AnimSprite_EfxLiveOBJ2_08BBDA8C:
 	.incbin "baserom.gba", 0xbbda8c, 0x54
 
-	.global gUnk_08BBDAE0
-gUnk_08BBDAE0:
+	.global AnimSprite_EfxLiveOBJ2_08BBDAE0
+AnimSprite_EfxLiveOBJ2_08BBDAE0:
 	.incbin "baserom.gba", 0xbbdae0, 0x54
 
-	.global gUnk_08BBDB34
-gUnk_08BBDB34:
+	.global AnimSprite_EfxLiveOBJ2_08BBDB34
+AnimSprite_EfxLiveOBJ2_08BBDB34:
 	.incbin "baserom.gba", 0xbbdb34, 0x54
 
-	.global gUnk_08BBDB88
-gUnk_08BBDB88:
+	.global AnimSprite_EfxLiveOBJ2_08BBDB88
+AnimSprite_EfxLiveOBJ2_08BBDB88:
 	.incbin "baserom.gba", 0xbbdb88, 0x54
 
-	.global gUnk_08BBDBDC
-gUnk_08BBDBDC:
+	.global AnimSprite_EfxLiveOBJ2_08BBDBDC
+AnimSprite_EfxLiveOBJ2_08BBDBDC:
 	.incbin "baserom.gba", 0xbbdbdc, 0x54
 
-	.global gUnk_08BBDC30
-gUnk_08BBDC30:
+	.global AnimSprite_EfxLiveOBJ2_08BBDC30
+AnimSprite_EfxLiveOBJ2_08BBDC30:
 	.incbin "baserom.gba", 0xbbdc30, 0x54
 
-	.global gUnk_08BBDC84
-gUnk_08BBDC84:
+	.global AnimSprite_EfxLiveOBJ2_08BBDC84
+AnimSprite_EfxLiveOBJ2_08BBDC84:
 	.incbin "baserom.gba", 0xbbdc84, 0x54
 
-	.global gUnk_08BBDCD8
-gUnk_08BBDCD8:
+	.global AnimSprite_EfxLiveOBJ2_08BBDCD8
+AnimSprite_EfxLiveOBJ2_08BBDCD8:
 	.incbin "baserom.gba", 0xbbdcd8, 0x54
 
-	.global gUnk_08BBDD2C
-gUnk_08BBDD2C:
+	.global AnimSprite_EfxLiveOBJ2_08BBDD2C
+AnimSprite_EfxLiveOBJ2_08BBDD2C:
 	.incbin "baserom.gba", 0xbbdd2c, 0x54
 
-	.global gUnk_08BBDD80
-gUnk_08BBDD80:
+	.global AnimSprite_EfxLiveOBJ2_08BBDD80
+AnimSprite_EfxLiveOBJ2_08BBDD80:
 	.incbin "baserom.gba", 0xbbdd80, 0x54
 
-	.global gUnk_08BBDDD4
-gUnk_08BBDDD4:
+	.global AnimSprite_EfxLiveOBJ2_08BBDDD4
+AnimSprite_EfxLiveOBJ2_08BBDDD4:
 	.incbin "baserom.gba", 0xbbddd4, 0x54
 
-	.global gUnk_08BBDE28
-gUnk_08BBDE28:
+	.global AnimSprite_EfxLiveOBJ2_08BBDE28
+AnimSprite_EfxLiveOBJ2_08BBDE28:
 	.incbin "baserom.gba", 0xbbde28, 0x54
 
-	.global gUnk_08BBDE7C
-gUnk_08BBDE7C:
+	.global AnimSprite_EfxLiveOBJ2_08BBDE7C
+AnimSprite_EfxLiveOBJ2_08BBDE7C:
 	.incbin "baserom.gba", 0xbbde7c, 0x54
 
-	.global gUnk_08BBDED0
-gUnk_08BBDED0:
+	.global AnimSprite_EfxLiveOBJ2_08BBDED0
+AnimSprite_EfxLiveOBJ2_08BBDED0:
 	.incbin "baserom.gba", 0xbbded0, 0x54
 
-	.global gUnk_08BBDF24
-gUnk_08BBDF24:
+	.global AnimSprite_EfxLiveOBJ2_08BBDF24
+AnimSprite_EfxLiveOBJ2_08BBDF24:
 	.incbin "baserom.gba", 0xbbdf24, 0x54
 
-	.global gUnk_08BBDF78
-gUnk_08BBDF78:
+	.global AnimSprite_EfxLiveOBJ2_08BBDF78
+AnimSprite_EfxLiveOBJ2_08BBDF78:
 	.incbin "baserom.gba", 0xbbdf78, 0x54
 
-	.global gUnk_08BBDFCC
-gUnk_08BBDFCC:
+	.global AnimSprite_EfxLiveOBJ2_08BBDFCC
+AnimSprite_EfxLiveOBJ2_08BBDFCC:
 	.incbin "baserom.gba", 0xbbdfcc, 0x54
 
-	.global gUnk_08BBE020
-gUnk_08BBE020:
+	.global AnimSprite_EfxLiveOBJ2_08BBE020
+AnimSprite_EfxLiveOBJ2_08BBE020:
 	.incbin "baserom.gba", 0xbbe020, 0x54
 
-	.global gUnk_08BBE074
-gUnk_08BBE074:
+	.global AnimSprite_EfxLiveOBJ2_08BBE074
+AnimSprite_EfxLiveOBJ2_08BBE074:
 	.incbin "baserom.gba", 0xbbe074, 0x54
 
-	.global gUnk_08BBE0C8
-gUnk_08BBE0C8:
+	.global AnimSprite_EfxLiveOBJ2_08BBE0C8
+AnimSprite_EfxLiveOBJ2_08BBE0C8:
 	.incbin "baserom.gba", 0xbbe0c8, 0x54
 
-	.global gUnk_08BBE11C
-gUnk_08BBE11C:
+	.global AnimSprite_EfxLiveOBJ2_08BBE11C
+AnimSprite_EfxLiveOBJ2_08BBE11C:
 	.incbin "baserom.gba", 0xbbe11c, 0x54
 
-	.global gUnk_08BBE170
-gUnk_08BBE170:
+	.global AnimSprite_EfxLiveOBJ2_08BBE170
+AnimSprite_EfxLiveOBJ2_08BBE170:
 	.incbin "baserom.gba", 0xbbe170, 0x54
 
-	.global gUnk_08BBE1C4
-gUnk_08BBE1C4:
+	.global AnimSprite_EfxLiveOBJ2_08BBE1C4
+AnimSprite_EfxLiveOBJ2_08BBE1C4:
 	.incbin "baserom.gba", 0xbbe1c4, 0x54
 
-	.global gUnk_08BBE218
-gUnk_08BBE218:
+	.global AnimSprite_EfxLiveOBJ2_08BBE218
+AnimSprite_EfxLiveOBJ2_08BBE218:
 	.incbin "baserom.gba", 0xbbe218, 0x6c
 
-	.global gUnk_08BBE284
-gUnk_08BBE284:
+	.global AnimSprite_EfxLiveOBJ2_08BBE284
+AnimSprite_EfxLiveOBJ2_08BBE284:
 	.incbin "baserom.gba", 0xbbe284, 0x54
 
-	.global gUnk_08BBE2D8
-gUnk_08BBE2D8:
+	.global AnimSprite_EfxLiveOBJ2_08BBE2D8
+AnimSprite_EfxLiveOBJ2_08BBE2D8:
 	.incbin "baserom.gba", 0xbbe2d8, 0x6c
 
-	.global gUnk_08BBE344
-gUnk_08BBE344:
+	.global AnimSprite_EfxLiveOBJ2_08BBE344
+AnimSprite_EfxLiveOBJ2_08BBE344:
 	.incbin "baserom.gba", 0xbbe344, 0x54
 
-	.global gUnk_08BBE398
-gUnk_08BBE398:
+	.global AnimSprite_EfxLiveOBJ2_08BBE398
+AnimSprite_EfxLiveOBJ2_08BBE398:
 	.incbin "baserom.gba", 0xbbe398, 0x54
 
-	.global gUnk_08BBE3EC
-gUnk_08BBE3EC:
+	.global AnimSprite_EfxLiveOBJ2_08BBE3EC
+AnimSprite_EfxLiveOBJ2_08BBE3EC:
 	.incbin "baserom.gba", 0xbbe3ec, 0x54
 
-	.global gUnk_08BBE440
-gUnk_08BBE440:
+	.global AnimSprite_EfxLiveOBJ2_08BBE440
+AnimSprite_EfxLiveOBJ2_08BBE440:
 	.incbin "baserom.gba", 0xbbe440, 0x60
 
-	.global gUnk_08BBE4A0
-gUnk_08BBE4A0:
+	.global AnimSprite_EfxLiveOBJ2_08BBE4A0
+AnimSprite_EfxLiveOBJ2_08BBE4A0:
 	.incbin "baserom.gba", 0xbbe4a0, 0x60
 
-	.global gUnk_08BBE500
-gUnk_08BBE500:
+	.global AnimSprite_EfxLiveOBJ2_08BBE500
+AnimSprite_EfxLiveOBJ2_08BBE500:
 	.incbin "baserom.gba", 0xbbe500, 0x54
 
-	.global gUnk_08BBE554
-gUnk_08BBE554:
+	.global AnimSprite_EfxLiveOBJ2_08BBE554
+AnimSprite_EfxLiveOBJ2_08BBE554:
 	.incbin "baserom.gba", 0xbbe554, 0x54
 
-	.global gUnk_08BBE5A8
-gUnk_08BBE5A8:
+	.global AnimSprite_EfxLiveOBJ2_08BBE5A8
+AnimSprite_EfxLiveOBJ2_08BBE5A8:
 	.incbin "baserom.gba", 0xbbe5a8, 0x3c
 
-	.global gUnk_08BBE5E4
-gUnk_08BBE5E4:
+	.global AnimSprite_EfxLiveOBJ2_08BBE5E4
+AnimSprite_EfxLiveOBJ2_08BBE5E4:
 	.incbin "baserom.gba", 0xbbe5e4, 0x54
 
-	.global gUnk_08BBE638
-gUnk_08BBE638:
+	.global AnimSprite_EfxLiveOBJ2_08BBE638
+AnimSprite_EfxLiveOBJ2_08BBE638:
 	.incbin "baserom.gba", 0xbbe638, 0x78
 
 	.global AnimScr_EfxLiveOBJ1
 AnimScr_EfxLiveOBJ1:
-	.4byte gUnk_08BBB9BC + 0x1
-	.4byte gUnk_08BBB9E0 + 0x1
-	.4byte gUnk_08BBBA10 + 0x1
-	.4byte gUnk_08BBBA40 + 0x1
-	.4byte gUnk_08BBBA70 + 0x1
-	.4byte gUnk_08BBBAB8 + 0x1
-	.4byte gUnk_08BBBB00 + 0x1
-	.4byte gUnk_08BBBB48 + 0x2
-	.4byte gUnk_08BBBB90 + 0x2
-	.4byte gUnk_08BBBBD8 + 0x2
-	.4byte gUnk_08BBBC38 + 0x2
-	.4byte gUnk_08BBBCB0 + 0x2
-	.4byte gUnk_08BBBD28 + 0x2
-	.4byte gUnk_08BBBDA0 + 0x2
-	.4byte gUnk_08BBBE24 + 0x1
-	.4byte gUnk_08BBBEA8 + 0x1
-	.4byte gUnk_08BBBF2C + 0x1
-	.4byte gUnk_08BBBFB0 + 0x1
-	.4byte gUnk_08BBC028 + 0x1
-	.4byte gUnk_08BBC0A0 + 0x1
-	.4byte gUnk_08BBC118 + 0x1
-	.4byte gUnk_08BBC190 + 0x1
-	.4byte gUnk_08BBC208 + 0x1
-	.4byte gUnk_08BBC28C + 0x1
-	.4byte gUnk_08BBC310 + 0x1
-	.4byte gUnk_08BBC394 + 0x2
-	.4byte gUnk_08BBC418 + 0x2
-	.4byte gUnk_08BBC49C + 0x2
-	.4byte gUnk_08BBC520 + 0x2
-	.4byte gUnk_08BBC598 + 0x2
-	.4byte gUnk_08BBC5E0 + 0x2
-	.4byte gUnk_08BBC628 + 0x2
-	.4byte gUnk_08BBC670 + 0x2
-	.4byte gUnk_08BBC6B8 + 0x2
-	.4byte gUnk_08BBC6DC + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBB9BC + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBB9E0 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBA10 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBA40 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBA70 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBAB8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBB00 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBB48 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBB90 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBBD8 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBC38 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBCB0 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBD28 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBDA0 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBE24 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBEA8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBF2C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBBFB0 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC028 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC0A0 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC118 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC190 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC208 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC28C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC310 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC394 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC418 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC49C + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC520 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC598 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC5E0 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC628 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC670 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC6B8 + 0x2
+	.4byte AnimSprite_EfxLiveOBJ1_08BBC6DC + 0x2
 	.incbin "baserom.gba", 0xbbe73c, 0x4
 
 	.global AnimScr_EfxLiveOBJ2
 AnimScr_EfxLiveOBJ2:
-	.4byte gUnk_08BBD5C4 + 0x1
-	.4byte gUnk_08BBD5E8 + 0x1
-	.4byte gUnk_08BBD618 + 0x1
-	.4byte gUnk_08BBD660 + 0x1
-	.4byte gUnk_08BBD69C + 0x1
-	.4byte gUnk_08BBD6F0 + 0x1
-	.4byte gUnk_08BBD744 + 0x1
-	.4byte gUnk_08BBD798 + 0x1
-	.4byte gUnk_08BBD7EC + 0x1
-	.4byte gUnk_08BBD840 + 0x1
-	.4byte gUnk_08BBD894 + 0x1
-	.4byte gUnk_08BBD8E8 + 0x1
-	.4byte gUnk_08BBD93C + 0x1
-	.4byte gUnk_08BBD990 + 0x1
-	.4byte gUnk_08BBD9E4 + 0x1
-	.4byte gUnk_08BBDA38 + 0x1
-	.4byte gUnk_08BBDA8C + 0x1
-	.4byte gUnk_08BBDAE0 + 0x1
-	.4byte gUnk_08BBDB34 + 0x1
-	.4byte gUnk_08BBDB88 + 0x1
-	.4byte gUnk_08BBDBDC + 0x1
-	.4byte gUnk_08BBDC30 + 0x1
-	.4byte gUnk_08BBDC84 + 0x1
-	.4byte gUnk_08BBDCD8 + 0x1
-	.4byte gUnk_08BBDD2C + 0x1
-	.4byte gUnk_08BBDD80 + 0x1
-	.4byte gUnk_08BBDDD4 + 0x1
-	.4byte gUnk_08BBDE28 + 0x1
-	.4byte gUnk_08BBDE7C + 0x1
-	.4byte gUnk_08BBDED0 + 0x1
-	.4byte gUnk_08BBDF24 + 0x1
-	.4byte gUnk_08BBDF78 + 0x1
-	.4byte gUnk_08BBDFCC + 0x1
-	.4byte gUnk_08BBE020 + 0x1
-	.4byte gUnk_08BBE074 + 0x1
-	.4byte gUnk_08BBE0C8 + 0x1
-	.4byte gUnk_08BBE11C + 0x1
-	.4byte gUnk_08BBE170 + 0x1
-	.4byte gUnk_08BBE1C4 + 0x1
-	.4byte gUnk_08BBE218 + 0x1
-	.4byte gUnk_08BBE284 + 0x1
-	.4byte gUnk_08BBE2D8 + 0x1
-	.4byte gUnk_08BBE344 + 0x1
-	.4byte gUnk_08BBE398 + 0x1
-	.4byte gUnk_08BBE3EC + 0x1
-	.4byte gUnk_08BBE440 + 0x1
-	.4byte gUnk_08BBE4A0 + 0x1
-	.4byte gUnk_08BBE500 + 0x1
-	.4byte gUnk_08BBE554 + 0x1
-	.4byte gUnk_08BBE5A8 + 0x1
-	.4byte gUnk_08BBE5E4 + 0x1
-	.4byte gUnk_08BBE638 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD5C4 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD5E8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD618 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD660 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD69C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD6F0 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD744 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD798 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD7EC + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD840 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD894 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD8E8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD93C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD990 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBD9E4 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDA38 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDA8C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDAE0 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDB34 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDB88 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDBDC + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDC30 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDC84 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDCD8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDD2C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDD80 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDDD4 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDE28 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDE7C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDED0 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDF24 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDF78 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBDFCC + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE020 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE074 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE0C8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE11C + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE170 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE1C4 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE218 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE284 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE2D8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE344 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE398 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE3EC + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE440 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE4A0 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE500 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE554 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE5A8 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE5E4 + 0x1
+	.4byte AnimSprite_EfxLiveOBJ2_08BBE638 + 0x1
 	.incbin "baserom.gba", 0xbbe810, 0xc
 
-	.global gUnk_08BBE81C
-gUnk_08BBE81C:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE81C
+AnimSprite_EfxReblowOBJ_Right1_08BBE81C:
 	.incbin "baserom.gba", 0xbbe81c, 0x24
 
-	.global gUnk_08BBE840
-gUnk_08BBE840:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE840
+AnimSprite_EfxReblowOBJ_Right1_08BBE840:
 	.incbin "baserom.gba", 0xbbe840, 0x30
 
-	.global gUnk_08BBE870
-gUnk_08BBE870:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE870
+AnimSprite_EfxReblowOBJ_Right1_08BBE870:
 	.incbin "baserom.gba", 0xbbe870, 0x30
 
-	.global gUnk_08BBE8A0
-gUnk_08BBE8A0:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE8A0
+AnimSprite_EfxReblowOBJ_Right1_08BBE8A0:
 	.incbin "baserom.gba", 0xbbe8a0, 0x48
 
-	.global gUnk_08BBE8E8
-gUnk_08BBE8E8:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE8E8
+AnimSprite_EfxReblowOBJ_Right1_08BBE8E8:
 	.incbin "baserom.gba", 0xbbe8e8, 0x48
 
-	.global gUnk_08BBE930
-gUnk_08BBE930:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE930
+AnimSprite_EfxReblowOBJ_Right1_08BBE930:
 	.incbin "baserom.gba", 0xbbe930, 0x48
 
-	.global gUnk_08BBE978
-gUnk_08BBE978:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE978
+AnimSprite_EfxReblowOBJ_Right1_08BBE978:
 	.incbin "baserom.gba", 0xbbe978, 0x60
 
-	.global gUnk_08BBE9D8
-gUnk_08BBE9D8:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBE9D8
+AnimSprite_EfxReblowOBJ_Right1_08BBE9D8:
 	.incbin "baserom.gba", 0xbbe9d8, 0x60
 
-	.global gUnk_08BBEA38
-gUnk_08BBEA38:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEA38
+AnimSprite_EfxReblowOBJ_Right1_08BBEA38:
 	.incbin "baserom.gba", 0xbbea38, 0x60
 
-	.global gUnk_08BBEA98
-gUnk_08BBEA98:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEA98
+AnimSprite_EfxReblowOBJ_Right1_08BBEA98:
 	.incbin "baserom.gba", 0xbbea98, 0x60
 
-	.global gUnk_08BBEAF8
-gUnk_08BBEAF8:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEAF8
+AnimSprite_EfxReblowOBJ_Right1_08BBEAF8:
 	.incbin "baserom.gba", 0xbbeaf8, 0x78
 
-	.global gUnk_08BBEB70
-gUnk_08BBEB70:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEB70
+AnimSprite_EfxReblowOBJ_Right1_08BBEB70:
 	.incbin "baserom.gba", 0xbbeb70, 0x78
 
-	.global gUnk_08BBEBE8
-gUnk_08BBEBE8:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEBE8
+AnimSprite_EfxReblowOBJ_Right1_08BBEBE8:
 	.incbin "baserom.gba", 0xbbebe8, 0x60
 
-	.global gUnk_08BBEC48
-gUnk_08BBEC48:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEC48
+AnimSprite_EfxReblowOBJ_Right1_08BBEC48:
 	.incbin "baserom.gba", 0xbbec48, 0x78
 
-	.global gUnk_08BBECC0
-gUnk_08BBECC0:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBECC0
+AnimSprite_EfxReblowOBJ_Right2_08BBECC0:
 	.incbin "baserom.gba", 0xbbecc0, 0x78
 
-	.global gUnk_08BBED38
-gUnk_08BBED38:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBED38
+AnimSprite_EfxReblowOBJ_Right2_08BBED38:
 	.incbin "baserom.gba", 0xbbed38, 0x54
 
-	.global gUnk_08BBED8C
-gUnk_08BBED8C:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBED8C
+AnimSprite_EfxReblowOBJ_Right2_08BBED8C:
 	.incbin "baserom.gba", 0xbbed8c, 0x48
 
-	.global gUnk_08BBEDD4
-gUnk_08BBEDD4:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEDD4
+AnimSprite_EfxReblowOBJ_Right2_08BBEDD4:
 	.incbin "baserom.gba", 0xbbedd4, 0x3c
 
-	.global gUnk_08BBEE10
-gUnk_08BBEE10:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEE10
+AnimSprite_EfxReblowOBJ_Right2_08BBEE10:
 	.incbin "baserom.gba", 0xbbee10, 0x30
 
-	.global gUnk_08BBEE40
-gUnk_08BBEE40:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEE40
+AnimSprite_EfxReblowOBJ_Right2_08BBEE40:
 	.incbin "baserom.gba", 0xbbee40, 0x30
 
-	.global gUnk_08BBEE70
-gUnk_08BBEE70:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEE70
+AnimSprite_EfxReblowOBJ_Right2_08BBEE70:
 	.incbin "baserom.gba", 0xbbee70, 0x30
 
-	.global gUnk_08BBEEA0
-gUnk_08BBEEA0:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEEA0
+AnimSprite_EfxReblowOBJ_Right2_08BBEEA0:
 	.incbin "baserom.gba", 0xbbeea0, 0x30
 
-	.global gUnk_08BBEED0
-gUnk_08BBEED0:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEED0
+AnimSprite_EfxReblowOBJ_Right2_08BBEED0:
 	.incbin "baserom.gba", 0xbbeed0, 0x30
 
-	.global gUnk_08BBEF00
-gUnk_08BBEF00:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEF00
+AnimSprite_EfxReblowOBJ_Right2_08BBEF00:
 	.incbin "baserom.gba", 0xbbef00, 0x30
 
-	.global gUnk_08BBEF30
-gUnk_08BBEF30:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEF30
+AnimSprite_EfxReblowOBJ_Right2_08BBEF30:
 	.incbin "baserom.gba", 0xbbef30, 0x30
 
-	.global gUnk_08BBEF60
-gUnk_08BBEF60:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBEF60
+AnimSprite_EfxReblowOBJ_Right2_08BBEF60:
 	.incbin "baserom.gba", 0xbbef60, 0x30
 
-	.global gUnk_08BBEF90
-gUnk_08BBEF90:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEF90
+AnimSprite_EfxReblowOBJ_Right1_08BBEF90:
 	.incbin "baserom.gba", 0xbbef90, 0xc
 
-	.global gUnk_08BBEF9C
-gUnk_08BBEF9C:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBEF9C
+AnimSprite_EfxReblowOBJ_Right1_08BBEF9C:
 	.incbin "baserom.gba", 0xbbef9c, 0x78
 
-	.global gUnk_08BBF014
-gUnk_08BBF014:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF014
+AnimSprite_EfxReblowOBJ_Right1_08BBF014:
 	.incbin "baserom.gba", 0xbbf014, 0x54
 
-	.global gUnk_08BBF068
-gUnk_08BBF068:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF068
+AnimSprite_EfxReblowOBJ_Right1_08BBF068:
 	.incbin "baserom.gba", 0xbbf068, 0x54
 
-	.global gUnk_08BBF0BC
-gUnk_08BBF0BC:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF0BC
+AnimSprite_EfxReblowOBJ_Right1_08BBF0BC:
 	.incbin "baserom.gba", 0xbbf0bc, 0x54
 
-	.global gUnk_08BBF110
-gUnk_08BBF110:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF110
+AnimSprite_EfxReblowOBJ_Right1_08BBF110:
 	.incbin "baserom.gba", 0xbbf110, 0x48
 
-	.global gUnk_08BBF158
-gUnk_08BBF158:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF158
+AnimSprite_EfxReblowOBJ_Right1_08BBF158:
 	.incbin "baserom.gba", 0xbbf158, 0x48
 
-	.global gUnk_08BBF1A0
-gUnk_08BBF1A0:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF1A0
+AnimSprite_EfxReblowOBJ_Right1_08BBF1A0:
 	.incbin "baserom.gba", 0xbbf1a0, 0x24
 
-	.global gUnk_08BBF1C4
-gUnk_08BBF1C4:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF1C4
+AnimSprite_EfxReblowOBJ_Right1_08BBF1C4:
 	.incbin "baserom.gba", 0xbbf1c4, 0x24
 
-	.global gUnk_08BBF1E8
-gUnk_08BBF1E8:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF1E8
+AnimSprite_EfxReblowOBJ_Right1_08BBF1E8:
 	.incbin "baserom.gba", 0xbbf1e8, 0x24
 
-	.global gUnk_08BBF20C
-gUnk_08BBF20C:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF20C
+AnimSprite_EfxReblowOBJ_Right1_08BBF20C:
 	.incbin "baserom.gba", 0xbbf20c, 0x18
 
-	.global gUnk_08BBF224
-gUnk_08BBF224:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF224
+AnimSprite_EfxReblowOBJ_Right1_08BBF224:
 	.incbin "baserom.gba", 0xbbf224, 0x18
 
-	.global gUnk_08BBF23C
-gUnk_08BBF23C:
+	.global AnimSprite_EfxReblowOBJ_Right1_08BBF23C
+AnimSprite_EfxReblowOBJ_Right1_08BBF23C:
 	.incbin "baserom.gba", 0xbbf23c, 0x24
 
-	.global gUnk_08BBF260
-gUnk_08BBF260:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF260
+AnimSprite_EfxReblowOBJ_Right2_08BBF260:
 	.incbin "baserom.gba", 0xbbf260, 0x18
 
-	.global gUnk_08BBF278
-gUnk_08BBF278:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF278
+AnimSprite_EfxReblowOBJ_Right2_08BBF278:
 	.incbin "baserom.gba", 0xbbf278, 0x24
 
-	.global gUnk_08BBF29C
-gUnk_08BBF29C:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF29C
+AnimSprite_EfxReblowOBJ_Right2_08BBF29C:
 	.incbin "baserom.gba", 0xbbf29c, 0x30
 
-	.global gUnk_08BBF2CC
-gUnk_08BBF2CC:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF2CC
+AnimSprite_EfxReblowOBJ_Right2_08BBF2CC:
 	.incbin "baserom.gba", 0xbbf2cc, 0x30
 
-	.global gUnk_08BBF2FC
-gUnk_08BBF2FC:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF2FC
+AnimSprite_EfxReblowOBJ_Right2_08BBF2FC:
 	.incbin "baserom.gba", 0xbbf2fc, 0x3c
 
-	.global gUnk_08BBF338
-gUnk_08BBF338:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF338
+AnimSprite_EfxReblowOBJ_Right2_08BBF338:
 	.incbin "baserom.gba", 0xbbf338, 0x3c
 
-	.global gUnk_08BBF374
-gUnk_08BBF374:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF374
+AnimSprite_EfxReblowOBJ_Right2_08BBF374:
 	.incbin "baserom.gba", 0xbbf374, 0x3c
 
-	.global gUnk_08BBF3B0
-gUnk_08BBF3B0:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF3B0
+AnimSprite_EfxReblowOBJ_Right2_08BBF3B0:
 	.incbin "baserom.gba", 0xbbf3b0, 0x3c
 
-	.global gUnk_08BBF3EC
-gUnk_08BBF3EC:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF3EC
+AnimSprite_EfxReblowOBJ_Right2_08BBF3EC:
 	.incbin "baserom.gba", 0xbbf3ec, 0x3c
 
-	.global gUnk_08BBF428
-gUnk_08BBF428:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF428
+AnimSprite_EfxReblowOBJ_Right2_08BBF428:
 	.incbin "baserom.gba", 0xbbf428, 0x3c
 
-	.global gUnk_08BBF464
-gUnk_08BBF464:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF464
+AnimSprite_EfxReblowOBJ_Right2_08BBF464:
 	.incbin "baserom.gba", 0xbbf464, 0x48
 
-	.global gUnk_08BBF4AC
-gUnk_08BBF4AC:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF4AC
+AnimSprite_EfxReblowOBJ_Right2_08BBF4AC:
 	.incbin "baserom.gba", 0xbbf4ac, 0x48
 
-	.global gUnk_08BBF4F4
-gUnk_08BBF4F4:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF4F4
+AnimSprite_EfxReblowOBJ_Right2_08BBF4F4:
 	.incbin "baserom.gba", 0xbbf4f4, 0x54
 
-	.global gUnk_08BBF548
-gUnk_08BBF548:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF548
+AnimSprite_EfxReblowOBJ_Right2_08BBF548:
 	.incbin "baserom.gba", 0xbbf548, 0x54
 
-	.global gUnk_08BBF59C
-gUnk_08BBF59C:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF59C
+AnimSprite_EfxReblowOBJ_Right2_08BBF59C:
 	.incbin "baserom.gba", 0xbbf59c, 0x54
 
-	.global gUnk_08BBF5F0
-gUnk_08BBF5F0:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF5F0
+AnimSprite_EfxReblowOBJ_Right2_08BBF5F0:
 	.incbin "baserom.gba", 0xbbf5f0, 0x54
 
-	.global gUnk_08BBF644
-gUnk_08BBF644:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF644
+AnimSprite_EfxReblowOBJ_Right2_08BBF644:
 	.incbin "baserom.gba", 0xbbf644, 0x54
 
-	.global gUnk_08BBF698
-gUnk_08BBF698:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF698
+AnimSprite_EfxReblowOBJ_Right2_08BBF698:
 	.incbin "baserom.gba", 0xbbf698, 0x48
 
-	.global gUnk_08BBF6E0
-gUnk_08BBF6E0:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF6E0
+AnimSprite_EfxReblowOBJ_Right2_08BBF6E0:
 	.incbin "baserom.gba", 0xbbf6e0, 0x30
 
-	.global gUnk_08BBF710
-gUnk_08BBF710:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF710
+AnimSprite_EfxReblowOBJ_Right2_08BBF710:
 	.incbin "baserom.gba", 0xbbf710, 0x18
 
-	.global gUnk_08BBF728
-gUnk_08BBF728:
+	.global AnimSprite_EfxReblowOBJ_Right2_08BBF728
+AnimSprite_EfxReblowOBJ_Right2_08BBF728:
 	.incbin "baserom.gba", 0xbbf728, 0x534
 
 	.global AnimScr_EfxReblowOBJ_Right1
 AnimScr_EfxReblowOBJ_Right1:
-	.4byte gUnk_08BBEF90 + 0x30000003
-	.4byte gUnk_08BBE81C + 0x2
-	.4byte gUnk_08BBE840 + 0x2
-	.4byte gUnk_08BBE870 + 0x2
-	.4byte gUnk_08BBE8A0 + 0x2
-	.4byte gUnk_08BBE8E8 + 0x2
-	.4byte gUnk_08BBE930 + 0x2
-	.4byte gUnk_08BBE978 + 0x2
-	.4byte gUnk_08BBE9D8 + 0x2
-	.4byte gUnk_08BBEA38 + 0x2
-	.4byte gUnk_08BBEA98 + 0x2
-	.4byte gUnk_08BBEAF8 + 0x2
-	.4byte gUnk_08BBEB70 + 0x2
-	.4byte gUnk_08BBEBE8 + 0x2
-	.4byte gUnk_08BBEC48 + 0x2
-	.4byte gUnk_08BBEF9C + 0x2
-	.4byte gUnk_08BBF014 + 0x2
-	.4byte gUnk_08BBF068 + 0x2
-	.4byte gUnk_08BBF0BC + 0x2
-	.4byte gUnk_08BBF110 + 0x2
-	.4byte gUnk_08BBF158 + 0x2
-	.4byte gUnk_08BBF1A0 + 0x2
-	.4byte gUnk_08BBF1C4 + 0x2
-	.4byte gUnk_08BBF1E8 + 0x2
-	.4byte gUnk_08BBF20C + 0x2
-	.4byte gUnk_08BBF224 + 0x2
-	.4byte gUnk_08BBF23C + 0x2
-	.4byte gUnk_08BBEF90 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEF90 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE81C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE840 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE870 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE8A0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE8E8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE930 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE978 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE9D8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEA38 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEA98 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEAF8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEB70 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEBE8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEC48 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEF9C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF014 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF068 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF0BC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF110 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF158 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF1A0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF1C4 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF1E8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF20C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF224 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF23C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEF90 + 0x1
 	.incbin "baserom.gba", 0xbbfccc, 0x4
 
 	.global AnimScr_EfxReblowOBJ_Right2
 AnimScr_EfxReblowOBJ_Right2:
-	.4byte gUnk_08BBF260 + 0x2
-	.4byte gUnk_08BBF278 + 0x2
-	.4byte gUnk_08BBF29C + 0x2
-	.4byte gUnk_08BBF2CC + 0x2
-	.4byte gUnk_08BBF2FC + 0x2
-	.4byte gUnk_08BBF338 + 0x2
-	.4byte gUnk_08BBF374 + 0x2
-	.4byte gUnk_08BBF3B0 + 0x2
-	.4byte gUnk_08BBF3EC + 0x2
-	.4byte gUnk_08BBF428 + 0x2
-	.4byte gUnk_08BBF464 + 0x2
-	.4byte gUnk_08BBF4AC + 0x2
-	.4byte gUnk_08BBF4F4 + 0x2
-	.4byte gUnk_08BBF548 + 0x2
-	.4byte gUnk_08BBF59C + 0x2
-	.4byte gUnk_08BBF5F0 + 0x2
-	.4byte gUnk_08BBF644 + 0x2
-	.4byte gUnk_08BBF698 + 0x2
-	.4byte gUnk_08BBF6E0 + 0x2
-	.4byte gUnk_08BBF710 + 0x2
-	.4byte gUnk_08BBF728 + 0x50000000
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF260 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF278 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF29C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF2CC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF2FC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF338 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF374 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF3B0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF3EC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF428 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF464 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF4AC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF4F4 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF548 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF59C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF5F0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF644 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF698 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF6E0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF710 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBF728 + 0x50000000
 	.incbin "baserom.gba", 0xbbfd24, 0xc
-	.4byte gUnk_08BBE81C + 0x2
-	.4byte gUnk_08BBE840 + 0x2
-	.4byte gUnk_08BBE870 + 0x2
-	.4byte gUnk_08BBE8A0 + 0x2
-	.4byte gUnk_08BBE8E8 + 0x2
-	.4byte gUnk_08BBE930 + 0x2
-	.4byte gUnk_08BBE978 + 0x2
-	.4byte gUnk_08BBE9D8 + 0x2
-	.4byte gUnk_08BBEA38 + 0x2
-	.4byte gUnk_08BBEA98 + 0x2
-	.4byte gUnk_08BBEAF8 + 0x2
-	.4byte gUnk_08BBEB70 + 0x1
-	.4byte gUnk_08BBEBE8 + 0x1
-	.4byte gUnk_08BBEC48 + 0x1
-	.4byte gUnk_08BBECC0 + 0x2
-	.4byte gUnk_08BBED38 + 0x2
-	.4byte gUnk_08BBED8C + 0x2
-	.4byte gUnk_08BBEDD4 + 0x2
-	.4byte gUnk_08BBEE10 + 0x2
-	.4byte gUnk_08BBEE40 + 0x2
-	.4byte gUnk_08BBEE70 + 0x2
-	.4byte gUnk_08BBEEA0 + 0x2
-	.4byte gUnk_08BBEED0 + 0x2
-	.4byte gUnk_08BBEF00 + 0x2
-	.4byte gUnk_08BBEF30 + 0x2
-	.4byte gUnk_08BBEF60 + 0x2
-	.4byte gUnk_08BBEF90 + 0x30000003
-	.4byte gUnk_08BBE81C + 0x30000003
-	.4byte gUnk_08BBE840 + 0x30000003
-	.4byte gUnk_08BBE870 + 0x30000003
-	.4byte gUnk_08BBE8A0 + 0x30000003
-	.4byte gUnk_08BBE8E8 + 0x30000003
-	.4byte gUnk_08BBE930 + 0x30000003
-	.4byte gUnk_08BBE978 + 0x30000003
-	.4byte gUnk_08BBE9D8 + 0x30000003
-	.4byte gUnk_08BBEA38 + 0x30000003
-	.4byte gUnk_08BBEA98 + 0x30000003
-	.4byte gUnk_08BBEAF8 + 0x30000003
-	.4byte gUnk_08BBEB70 + 0x30000003
-	.4byte gUnk_08BBEBE8 + 0x30000003
-	.4byte gUnk_08BBEC48 + 0x30000003
-	.4byte gUnk_08BBEF9C + 0x30000003
-	.4byte gUnk_08BBF014 + 0x30000003
-	.4byte gUnk_08BBF068 + 0x30000003
-	.4byte gUnk_08BBF0BC + 0x30000003
-	.4byte gUnk_08BBF110 + 0x30000003
-	.4byte gUnk_08BBF158 + 0x30000003
-	.4byte gUnk_08BBF1A0 + 0x30000003
-	.4byte gUnk_08BBF1C4 + 0x30000003
-	.4byte gUnk_08BBF1E8 + 0x30000003
-	.4byte gUnk_08BBF20C + 0x30000003
-	.4byte gUnk_08BBF224 + 0x30000003
-	.4byte gUnk_08BBF23C + 0x1
-	.4byte gUnk_08BBEF90 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE81C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE840 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE870 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE8A0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE8E8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE930 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE978 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE9D8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEA38 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEA98 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEAF8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEB70 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEBE8 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEC48 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBECC0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBED38 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBED8C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEDD4 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEE10 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEE40 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEE70 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEEA0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEED0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEF00 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEF30 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right2_08BBEF60 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEF90 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE81C + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE840 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE870 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE8A0 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE8E8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE930 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE978 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBE9D8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEA38 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEA98 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEAF8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEB70 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEBE8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEC48 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEF9C + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF014 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF068 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF0BC + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF110 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF158 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF1A0 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF1C4 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF1E8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF20C + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF224 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBF23C + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Right1_08BBEF90 + 0x30000003
 	.incbin "baserom.gba", 0xbbfe08, 0x14
 
-	.global gUnk_08BBFE1C
-gUnk_08BBFE1C:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFE1C
+AnimSprite_EfxReblowOBJ_Left1_08BBFE1C:
 	.incbin "baserom.gba", 0xbbfe1c, 0x24
 
-	.global gUnk_08BBFE40
-gUnk_08BBFE40:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFE40
+AnimSprite_EfxReblowOBJ_Left1_08BBFE40:
 	.incbin "baserom.gba", 0xbbfe40, 0x30
 
-	.global gUnk_08BBFE70
-gUnk_08BBFE70:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFE70
+AnimSprite_EfxReblowOBJ_Left1_08BBFE70:
 	.incbin "baserom.gba", 0xbbfe70, 0x30
 
-	.global gUnk_08BBFEA0
-gUnk_08BBFEA0:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFEA0
+AnimSprite_EfxReblowOBJ_Left1_08BBFEA0:
 	.incbin "baserom.gba", 0xbbfea0, 0x48
 
-	.global gUnk_08BBFEE8
-gUnk_08BBFEE8:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFEE8
+AnimSprite_EfxReblowOBJ_Left1_08BBFEE8:
 	.incbin "baserom.gba", 0xbbfee8, 0x48
 
-	.global gUnk_08BBFF30
-gUnk_08BBFF30:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFF30
+AnimSprite_EfxReblowOBJ_Left1_08BBFF30:
 	.incbin "baserom.gba", 0xbbff30, 0x48
 
-	.global gUnk_08BBFF78
-gUnk_08BBFF78:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFF78
+AnimSprite_EfxReblowOBJ_Left1_08BBFF78:
 	.incbin "baserom.gba", 0xbbff78, 0x60
 
-	.global gUnk_08BBFFD8
-gUnk_08BBFFD8:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BBFFD8
+AnimSprite_EfxReblowOBJ_Left1_08BBFFD8:
 	.incbin "baserom.gba", 0xbbffd8, 0x60
 
-	.global gUnk_08BC0038
-gUnk_08BC0038:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0038
+AnimSprite_EfxReblowOBJ_Left1_08BC0038:
 	.incbin "baserom.gba", 0xbc0038, 0x60
 
-	.global gUnk_08BC0098
-gUnk_08BC0098:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0098
+AnimSprite_EfxReblowOBJ_Left1_08BC0098:
 	.incbin "baserom.gba", 0xbc0098, 0x60
 
-	.global gUnk_08BC00F8
-gUnk_08BC00F8:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC00F8
+AnimSprite_EfxReblowOBJ_Left1_08BC00F8:
 	.incbin "baserom.gba", 0xbc00f8, 0x78
 
-	.global gUnk_08BC0170
-gUnk_08BC0170:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0170
+AnimSprite_EfxReblowOBJ_Left1_08BC0170:
 	.incbin "baserom.gba", 0xbc0170, 0x78
 
-	.global gUnk_08BC01E8
-gUnk_08BC01E8:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC01E8
+AnimSprite_EfxReblowOBJ_Left1_08BC01E8:
 	.incbin "baserom.gba", 0xbc01e8, 0x60
 
-	.global gUnk_08BC0248
-gUnk_08BC0248:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0248
+AnimSprite_EfxReblowOBJ_Left1_08BC0248:
 	.incbin "baserom.gba", 0xbc0248, 0x78
 
-	.global gUnk_08BC02C0
-gUnk_08BC02C0:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC02C0
+AnimSprite_EfxReblowOBJ_Left2_08BC02C0:
 	.incbin "baserom.gba", 0xbc02c0, 0x78
 
-	.global gUnk_08BC0338
-gUnk_08BC0338:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0338
+AnimSprite_EfxReblowOBJ_Left2_08BC0338:
 	.incbin "baserom.gba", 0xbc0338, 0x54
 
-	.global gUnk_08BC038C
-gUnk_08BC038C:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC038C
+AnimSprite_EfxReblowOBJ_Left2_08BC038C:
 	.incbin "baserom.gba", 0xbc038c, 0x48
 
-	.global gUnk_08BC03D4
-gUnk_08BC03D4:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC03D4
+AnimSprite_EfxReblowOBJ_Left2_08BC03D4:
 	.incbin "baserom.gba", 0xbc03d4, 0x3c
 
-	.global gUnk_08BC0410
-gUnk_08BC0410:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0410
+AnimSprite_EfxReblowOBJ_Left2_08BC0410:
 	.incbin "baserom.gba", 0xbc0410, 0x30
 
-	.global gUnk_08BC0440
-gUnk_08BC0440:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0440
+AnimSprite_EfxReblowOBJ_Left2_08BC0440:
 	.incbin "baserom.gba", 0xbc0440, 0x30
 
-	.global gUnk_08BC0470
-gUnk_08BC0470:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0470
+AnimSprite_EfxReblowOBJ_Left2_08BC0470:
 	.incbin "baserom.gba", 0xbc0470, 0x30
 
-	.global gUnk_08BC04A0
-gUnk_08BC04A0:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC04A0
+AnimSprite_EfxReblowOBJ_Left2_08BC04A0:
 	.incbin "baserom.gba", 0xbc04a0, 0x30
 
-	.global gUnk_08BC04D0
-gUnk_08BC04D0:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC04D0
+AnimSprite_EfxReblowOBJ_Left2_08BC04D0:
 	.incbin "baserom.gba", 0xbc04d0, 0x30
 
-	.global gUnk_08BC0500
-gUnk_08BC0500:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0500
+AnimSprite_EfxReblowOBJ_Left2_08BC0500:
 	.incbin "baserom.gba", 0xbc0500, 0x30
 
-	.global gUnk_08BC0530
-gUnk_08BC0530:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0530
+AnimSprite_EfxReblowOBJ_Left2_08BC0530:
 	.incbin "baserom.gba", 0xbc0530, 0x30
 
-	.global gUnk_08BC0560
-gUnk_08BC0560:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0560
+AnimSprite_EfxReblowOBJ_Left2_08BC0560:
 	.incbin "baserom.gba", 0xbc0560, 0x30
 
-	.global gUnk_08BC0590
-gUnk_08BC0590:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0590
+AnimSprite_EfxReblowOBJ_Left1_08BC0590:
 	.incbin "baserom.gba", 0xbc0590, 0xc
 
-	.global gUnk_08BC059C
-gUnk_08BC059C:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC059C
+AnimSprite_EfxReblowOBJ_Left1_08BC059C:
 	.incbin "baserom.gba", 0xbc059c, 0x78
 
-	.global gUnk_08BC0614
-gUnk_08BC0614:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0614
+AnimSprite_EfxReblowOBJ_Left1_08BC0614:
 	.incbin "baserom.gba", 0xbc0614, 0x54
 
-	.global gUnk_08BC0668
-gUnk_08BC0668:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0668
+AnimSprite_EfxReblowOBJ_Left1_08BC0668:
 	.incbin "baserom.gba", 0xbc0668, 0x54
 
-	.global gUnk_08BC06BC
-gUnk_08BC06BC:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC06BC
+AnimSprite_EfxReblowOBJ_Left1_08BC06BC:
 	.incbin "baserom.gba", 0xbc06bc, 0x54
 
-	.global gUnk_08BC0710
-gUnk_08BC0710:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0710
+AnimSprite_EfxReblowOBJ_Left1_08BC0710:
 	.incbin "baserom.gba", 0xbc0710, 0x48
 
-	.global gUnk_08BC0758
-gUnk_08BC0758:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0758
+AnimSprite_EfxReblowOBJ_Left1_08BC0758:
 	.incbin "baserom.gba", 0xbc0758, 0x48
 
-	.global gUnk_08BC07A0
-gUnk_08BC07A0:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC07A0
+AnimSprite_EfxReblowOBJ_Left1_08BC07A0:
 	.incbin "baserom.gba", 0xbc07a0, 0x24
 
-	.global gUnk_08BC07C4
-gUnk_08BC07C4:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC07C4
+AnimSprite_EfxReblowOBJ_Left1_08BC07C4:
 	.incbin "baserom.gba", 0xbc07c4, 0x24
 
-	.global gUnk_08BC07E8
-gUnk_08BC07E8:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC07E8
+AnimSprite_EfxReblowOBJ_Left1_08BC07E8:
 	.incbin "baserom.gba", 0xbc07e8, 0x24
 
-	.global gUnk_08BC080C
-gUnk_08BC080C:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC080C
+AnimSprite_EfxReblowOBJ_Left1_08BC080C:
 	.incbin "baserom.gba", 0xbc080c, 0x18
 
-	.global gUnk_08BC0824
-gUnk_08BC0824:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC0824
+AnimSprite_EfxReblowOBJ_Left1_08BC0824:
 	.incbin "baserom.gba", 0xbc0824, 0x18
 
-	.global gUnk_08BC083C
-gUnk_08BC083C:
+	.global AnimSprite_EfxReblowOBJ_Left1_08BC083C
+AnimSprite_EfxReblowOBJ_Left1_08BC083C:
 	.incbin "baserom.gba", 0xbc083c, 0x24
 
-	.global gUnk_08BC0860
-gUnk_08BC0860:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0860
+AnimSprite_EfxReblowOBJ_Left2_08BC0860:
 	.incbin "baserom.gba", 0xbc0860, 0x18
 
-	.global gUnk_08BC0878
-gUnk_08BC0878:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0878
+AnimSprite_EfxReblowOBJ_Left2_08BC0878:
 	.incbin "baserom.gba", 0xbc0878, 0x24
 
-	.global gUnk_08BC089C
-gUnk_08BC089C:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC089C
+AnimSprite_EfxReblowOBJ_Left2_08BC089C:
 	.incbin "baserom.gba", 0xbc089c, 0x30
 
-	.global gUnk_08BC08CC
-gUnk_08BC08CC:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC08CC
+AnimSprite_EfxReblowOBJ_Left2_08BC08CC:
 	.incbin "baserom.gba", 0xbc08cc, 0x30
 
-	.global gUnk_08BC08FC
-gUnk_08BC08FC:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC08FC
+AnimSprite_EfxReblowOBJ_Left2_08BC08FC:
 	.incbin "baserom.gba", 0xbc08fc, 0x3c
 
-	.global gUnk_08BC0938
-gUnk_08BC0938:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0938
+AnimSprite_EfxReblowOBJ_Left2_08BC0938:
 	.incbin "baserom.gba", 0xbc0938, 0x3c
 
-	.global gUnk_08BC0974
-gUnk_08BC0974:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0974
+AnimSprite_EfxReblowOBJ_Left2_08BC0974:
 	.incbin "baserom.gba", 0xbc0974, 0x3c
 
-	.global gUnk_08BC09B0
-gUnk_08BC09B0:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC09B0
+AnimSprite_EfxReblowOBJ_Left2_08BC09B0:
 	.incbin "baserom.gba", 0xbc09b0, 0x3c
 
-	.global gUnk_08BC09EC
-gUnk_08BC09EC:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC09EC
+AnimSprite_EfxReblowOBJ_Left2_08BC09EC:
 	.incbin "baserom.gba", 0xbc09ec, 0x3c
 
-	.global gUnk_08BC0A28
-gUnk_08BC0A28:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0A28
+AnimSprite_EfxReblowOBJ_Left2_08BC0A28:
 	.incbin "baserom.gba", 0xbc0a28, 0x3c
 
-	.global gUnk_08BC0A64
-gUnk_08BC0A64:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0A64
+AnimSprite_EfxReblowOBJ_Left2_08BC0A64:
 	.incbin "baserom.gba", 0xbc0a64, 0x48
 
-	.global gUnk_08BC0AAC
-gUnk_08BC0AAC:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0AAC
+AnimSprite_EfxReblowOBJ_Left2_08BC0AAC:
 	.incbin "baserom.gba", 0xbc0aac, 0x48
 
-	.global gUnk_08BC0AF4
-gUnk_08BC0AF4:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0AF4
+AnimSprite_EfxReblowOBJ_Left2_08BC0AF4:
 	.incbin "baserom.gba", 0xbc0af4, 0x54
 
-	.global gUnk_08BC0B48
-gUnk_08BC0B48:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0B48
+AnimSprite_EfxReblowOBJ_Left2_08BC0B48:
 	.incbin "baserom.gba", 0xbc0b48, 0x54
 
-	.global gUnk_08BC0B9C
-gUnk_08BC0B9C:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0B9C
+AnimSprite_EfxReblowOBJ_Left2_08BC0B9C:
 	.incbin "baserom.gba", 0xbc0b9c, 0x54
 
-	.global gUnk_08BC0BF0
-gUnk_08BC0BF0:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0BF0
+AnimSprite_EfxReblowOBJ_Left2_08BC0BF0:
 	.incbin "baserom.gba", 0xbc0bf0, 0x54
 
-	.global gUnk_08BC0C44
-gUnk_08BC0C44:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0C44
+AnimSprite_EfxReblowOBJ_Left2_08BC0C44:
 	.incbin "baserom.gba", 0xbc0c44, 0x54
 
-	.global gUnk_08BC0C98
-gUnk_08BC0C98:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0C98
+AnimSprite_EfxReblowOBJ_Left2_08BC0C98:
 	.incbin "baserom.gba", 0xbc0c98, 0x48
 
-	.global gUnk_08BC0CE0
-gUnk_08BC0CE0:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0CE0
+AnimSprite_EfxReblowOBJ_Left2_08BC0CE0:
 	.incbin "baserom.gba", 0xbc0ce0, 0x30
 
-	.global gUnk_08BC0D10
-gUnk_08BC0D10:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0D10
+AnimSprite_EfxReblowOBJ_Left2_08BC0D10:
 	.incbin "baserom.gba", 0xbc0d10, 0x18
 
-	.global gUnk_08BC0D28
-gUnk_08BC0D28:
+	.global AnimSprite_EfxReblowOBJ_Left2_08BC0D28
+AnimSprite_EfxReblowOBJ_Left2_08BC0D28:
 	.incbin "baserom.gba", 0xbc0d28, 0x534
 
 	.global AnimScr_EfxReblowOBJ_Left1
 AnimScr_EfxReblowOBJ_Left1:
-	.4byte gUnk_08BC0590 + 0x30000003
-	.4byte gUnk_08BBFE1C + 0x2
-	.4byte gUnk_08BBFE40 + 0x2
-	.4byte gUnk_08BBFE70 + 0x2
-	.4byte gUnk_08BBFEA0 + 0x2
-	.4byte gUnk_08BBFEE8 + 0x2
-	.4byte gUnk_08BBFF30 + 0x2
-	.4byte gUnk_08BBFF78 + 0x2
-	.4byte gUnk_08BBFFD8 + 0x2
-	.4byte gUnk_08BC0038 + 0x2
-	.4byte gUnk_08BC0098 + 0x2
-	.4byte gUnk_08BC00F8 + 0x2
-	.4byte gUnk_08BC0170 + 0x2
-	.4byte gUnk_08BC01E8 + 0x2
-	.4byte gUnk_08BC0248 + 0x2
-	.4byte gUnk_08BC059C + 0x2
-	.4byte gUnk_08BC0614 + 0x2
-	.4byte gUnk_08BC0668 + 0x2
-	.4byte gUnk_08BC06BC + 0x2
-	.4byte gUnk_08BC0710 + 0x2
-	.4byte gUnk_08BC0758 + 0x2
-	.4byte gUnk_08BC07A0 + 0x2
-	.4byte gUnk_08BC07C4 + 0x2
-	.4byte gUnk_08BC07E8 + 0x2
-	.4byte gUnk_08BC080C + 0x2
-	.4byte gUnk_08BC0824 + 0x2
-	.4byte gUnk_08BC083C + 0x2
-	.4byte gUnk_08BC0590 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0590 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE1C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE40 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE70 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFEA0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFEE8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFF30 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFF78 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFFD8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0038 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0098 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC00F8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0170 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC01E8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0248 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC059C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0614 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0668 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC06BC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0710 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0758 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC07A0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC07C4 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC07E8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC080C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0824 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC083C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0590 + 0x1
 	.incbin "baserom.gba", 0xbc12cc, 0x4
 
 	.global AnimScr_EfxReblowOBJ_Left2
 AnimScr_EfxReblowOBJ_Left2:
-	.4byte gUnk_08BC0860 + 0x2
-	.4byte gUnk_08BC0878 + 0x2
-	.4byte gUnk_08BC089C + 0x2
-	.4byte gUnk_08BC08CC + 0x2
-	.4byte gUnk_08BC08FC + 0x2
-	.4byte gUnk_08BC0938 + 0x2
-	.4byte gUnk_08BC0974 + 0x2
-	.4byte gUnk_08BC09B0 + 0x2
-	.4byte gUnk_08BC09EC + 0x2
-	.4byte gUnk_08BC0A28 + 0x2
-	.4byte gUnk_08BC0A64 + 0x2
-	.4byte gUnk_08BC0AAC + 0x2
-	.4byte gUnk_08BC0AF4 + 0x2
-	.4byte gUnk_08BC0B48 + 0x2
-	.4byte gUnk_08BC0B9C + 0x2
-	.4byte gUnk_08BC0BF0 + 0x2
-	.4byte gUnk_08BC0C44 + 0x2
-	.4byte gUnk_08BC0C98 + 0x2
-	.4byte gUnk_08BC0CE0 + 0x2
-	.4byte gUnk_08BC0D10 + 0x2
-	.4byte gUnk_08BC0D28 + 0x50000000
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0860 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0878 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC089C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC08CC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC08FC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0938 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0974 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC09B0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC09EC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0A28 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0A64 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0AAC + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0AF4 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0B48 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0B9C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0BF0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0C44 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0C98 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0CE0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0D10 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0D28 + 0x50000000
 	.incbin "baserom.gba", 0xbc1324, 0xc
-	.4byte gUnk_08BBFE1C + 0x2
-	.4byte gUnk_08BBFE40 + 0x2
-	.4byte gUnk_08BBFE70 + 0x2
-	.4byte gUnk_08BBFEA0 + 0x2
-	.4byte gUnk_08BBFEE8 + 0x2
-	.4byte gUnk_08BBFF30 + 0x2
-	.4byte gUnk_08BBFF78 + 0x2
-	.4byte gUnk_08BBFFD8 + 0x2
-	.4byte gUnk_08BC0038 + 0x2
-	.4byte gUnk_08BC0098 + 0x2
-	.4byte gUnk_08BC00F8 + 0x2
-	.4byte gUnk_08BC0170 + 0x1
-	.4byte gUnk_08BC01E8 + 0x1
-	.4byte gUnk_08BC0248 + 0x1
-	.4byte gUnk_08BC02C0 + 0x2
-	.4byte gUnk_08BC0338 + 0x2
-	.4byte gUnk_08BC038C + 0x2
-	.4byte gUnk_08BC03D4 + 0x2
-	.4byte gUnk_08BC0410 + 0x2
-	.4byte gUnk_08BC0440 + 0x2
-	.4byte gUnk_08BC0470 + 0x2
-	.4byte gUnk_08BC04A0 + 0x2
-	.4byte gUnk_08BC04D0 + 0x2
-	.4byte gUnk_08BC0500 + 0x2
-	.4byte gUnk_08BC0530 + 0x2
-	.4byte gUnk_08BC0560 + 0x2
-	.4byte gUnk_08BC0590 + 0x30000003
-	.4byte gUnk_08BBFE1C + 0x30000003
-	.4byte gUnk_08BBFE40 + 0x30000003
-	.4byte gUnk_08BBFE70 + 0x30000003
-	.4byte gUnk_08BBFEA0 + 0x30000003
-	.4byte gUnk_08BBFEE8 + 0x30000003
-	.4byte gUnk_08BBFF30 + 0x30000003
-	.4byte gUnk_08BBFF78 + 0x30000003
-	.4byte gUnk_08BBFFD8 + 0x30000003
-	.4byte gUnk_08BC0038 + 0x30000003
-	.4byte gUnk_08BC0098 + 0x30000003
-	.4byte gUnk_08BC00F8 + 0x30000003
-	.4byte gUnk_08BC0170 + 0x30000003
-	.4byte gUnk_08BC01E8 + 0x30000003
-	.4byte gUnk_08BC0248 + 0x30000003
-	.4byte gUnk_08BC059C + 0x30000003
-	.4byte gUnk_08BC0614 + 0x30000003
-	.4byte gUnk_08BC0668 + 0x30000003
-	.4byte gUnk_08BC06BC + 0x30000003
-	.4byte gUnk_08BC0710 + 0x30000003
-	.4byte gUnk_08BC0758 + 0x30000003
-	.4byte gUnk_08BC07A0 + 0x30000003
-	.4byte gUnk_08BC07C4 + 0x30000003
-	.4byte gUnk_08BC07E8 + 0x30000003
-	.4byte gUnk_08BC080C + 0x30000003
-	.4byte gUnk_08BC0824 + 0x30000003
-	.4byte gUnk_08BC083C + 0x1
-	.4byte gUnk_08BC0590 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE1C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE40 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE70 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFEA0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFEE8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFF30 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFF78 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFFD8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0038 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0098 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC00F8 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0170 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC01E8 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0248 + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC02C0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0338 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC038C + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC03D4 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0410 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0440 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0470 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC04A0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC04D0 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0500 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0530 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left2_08BC0560 + 0x2
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0590 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE1C + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE40 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFE70 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFEA0 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFEE8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFF30 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFF78 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BBFFD8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0038 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0098 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC00F8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0170 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC01E8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0248 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC059C + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0614 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0668 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC06BC + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0710 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0758 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC07A0 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC07C4 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC07E8 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC080C + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0824 + 0x30000003
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC083C + 0x1
+	.4byte AnimSprite_EfxReblowOBJ_Left1_08BC0590 + 0x30000003
 	.incbin "baserom.gba", 0xbc1408, 0x14
 
-	.global gUnk_08BC141C
-gUnk_08BC141C:
+	.global AnimSprite_EfxRestOBJ_08BC141C
+AnimSprite_EfxRestOBJ_08BC141C:
 	.incbin "baserom.gba", 0xbc141c, 0x18
 
-	.global gUnk_08BC1434
-gUnk_08BC1434:
+	.global AnimSprite_EfxRestOBJ_08BC1434
+AnimSprite_EfxRestOBJ_08BC1434:
 	.incbin "baserom.gba", 0xbc1434, 0x24
 
-	.global gUnk_08BC1458
-gUnk_08BC1458:
+	.global AnimSprite_EfxRestOBJ_08BC1458
+AnimSprite_EfxRestOBJ_08BC1458:
 	.incbin "baserom.gba", 0xbc1458, 0x3c
 
-	.global gUnk_08BC1494
-gUnk_08BC1494:
+	.global AnimSprite_EfxRestOBJ_08BC1494
+AnimSprite_EfxRestOBJ_08BC1494:
 	.incbin "baserom.gba", 0xbc1494, 0x54
 
-	.global gUnk_08BC14E8
-gUnk_08BC14E8:
+	.global AnimSprite_EfxRestOBJ_08BC14E8
+AnimSprite_EfxRestOBJ_08BC14E8:
 	.incbin "baserom.gba", 0xbc14e8, 0x6c
 
-	.global gUnk_08BC1554
-gUnk_08BC1554:
+	.global AnimSprite_EfxRestOBJ_08BC1554
+AnimSprite_EfxRestOBJ_08BC1554:
 	.incbin "baserom.gba", 0xbc1554, 0x84
 
-	.global gUnk_08BC15D8
-gUnk_08BC15D8:
+	.global AnimSprite_EfxRestOBJ_08BC15D8
+AnimSprite_EfxRestOBJ_08BC15D8:
 	.incbin "baserom.gba", 0xbc15d8, 0x9c
 
-	.global gUnk_08BC1674
-gUnk_08BC1674:
+	.global AnimSprite_EfxRestOBJ_08BC1674
+AnimSprite_EfxRestOBJ_08BC1674:
 	.incbin "baserom.gba", 0xbc1674, 0xc0
 
-	.global gUnk_08BC1734
-gUnk_08BC1734:
+	.global AnimSprite_EfxRestOBJ_08BC1734
+AnimSprite_EfxRestOBJ_08BC1734:
 	.incbin "baserom.gba", 0xbc1734, 0xe4
 
-	.global gUnk_08BC1818
-gUnk_08BC1818:
+	.global AnimSprite_EfxRestOBJ_08BC1818
+AnimSprite_EfxRestOBJ_08BC1818:
 	.incbin "baserom.gba", 0xbc1818, 0x108
 
-	.global gUnk_08BC1920
-gUnk_08BC1920:
+	.global AnimSprite_EfxRestOBJ_08BC1920
+AnimSprite_EfxRestOBJ_08BC1920:
 	.incbin "baserom.gba", 0xbc1920, 0x12c
 
-	.global gUnk_08BC1A4C
-gUnk_08BC1A4C:
+	.global AnimSprite_EfxRestOBJ_08BC1A4C
+AnimSprite_EfxRestOBJ_08BC1A4C:
 	.incbin "baserom.gba", 0xbc1a4c, 0x150
 
-	.global gUnk_08BC1B9C
-gUnk_08BC1B9C:
+	.global AnimSprite_EfxRestOBJ_08BC1B9C
+AnimSprite_EfxRestOBJ_08BC1B9C:
 	.incbin "baserom.gba", 0xbc1b9c, 0x168
 
-	.global gUnk_08BC1D04
-gUnk_08BC1D04:
+	.global AnimSprite_EfxRestOBJ_08BC1D04
+AnimSprite_EfxRestOBJ_08BC1D04:
 	.incbin "baserom.gba", 0xbc1d04, 0x180
 
-	.global gUnk_08BC1E84
-gUnk_08BC1E84:
+	.global AnimSprite_EfxRestOBJ_08BC1E84
+AnimSprite_EfxRestOBJ_08BC1E84:
 	.incbin "baserom.gba", 0xbc1e84, 0x1a4
 
-	.global gUnk_08BC2028
-gUnk_08BC2028:
+	.global AnimSprite_EfxRestOBJ_08BC2028
+AnimSprite_EfxRestOBJ_08BC2028:
 	.incbin "baserom.gba", 0xbc2028, 0x1bc
 
-	.global gUnk_08BC21E4
-gUnk_08BC21E4:
+	.global AnimSprite_EfxRestOBJ_08BC21E4
+AnimSprite_EfxRestOBJ_08BC21E4:
 	.incbin "baserom.gba", 0xbc21e4, 0x1d4
 
-	.global gUnk_08BC23B8
-gUnk_08BC23B8:
+	.global AnimSprite_EfxRestOBJ_08BC23B8
+AnimSprite_EfxRestOBJ_08BC23B8:
 	.incbin "baserom.gba", 0xbc23b8, 0x1e0
 
-	.global gUnk_08BC2598
-gUnk_08BC2598:
+	.global AnimSprite_EfxRestOBJ_08BC2598
+AnimSprite_EfxRestOBJ_08BC2598:
 	.incbin "baserom.gba", 0xbc2598, 0x1ec
 
-	.global gUnk_08BC2784
-gUnk_08BC2784:
+	.global AnimSprite_EfxRestOBJ_08BC2784
+AnimSprite_EfxRestOBJ_08BC2784:
 	.incbin "baserom.gba", 0xbc2784, 0x1ec
 
-	.global gUnk_08BC2970
-gUnk_08BC2970:
+	.global AnimSprite_EfxRestOBJ_08BC2970
+AnimSprite_EfxRestOBJ_08BC2970:
 	.incbin "baserom.gba", 0xbc2970, 0x1e0
 
-	.global gUnk_08BC2B50
-gUnk_08BC2B50:
+	.global AnimSprite_EfxRestOBJ_08BC2B50
+AnimSprite_EfxRestOBJ_08BC2B50:
 	.incbin "baserom.gba", 0xbc2b50, 0x1d4
 
-	.global gUnk_08BC2D24
-gUnk_08BC2D24:
+	.global AnimSprite_EfxRestOBJ_08BC2D24
+AnimSprite_EfxRestOBJ_08BC2D24:
 	.incbin "baserom.gba", 0xbc2d24, 0x1c8
 
-	.global gUnk_08BC2EEC
-gUnk_08BC2EEC:
+	.global AnimSprite_EfxRestOBJ_08BC2EEC
+AnimSprite_EfxRestOBJ_08BC2EEC:
 	.incbin "baserom.gba", 0xbc2eec, 0x1a4
 
-	.global gUnk_08BC3090
-gUnk_08BC3090:
+	.global AnimSprite_EfxRestOBJ_08BC3090
+AnimSprite_EfxRestOBJ_08BC3090:
 	.incbin "baserom.gba", 0xbc3090, 0x180
 
-	.global gUnk_08BC3210
-gUnk_08BC3210:
+	.global AnimSprite_EfxRestOBJ_08BC3210
+AnimSprite_EfxRestOBJ_08BC3210:
 	.incbin "baserom.gba", 0xbc3210, 0x168
 
-	.global gUnk_08BC3378
-gUnk_08BC3378:
+	.global AnimSprite_EfxRestOBJ_08BC3378
+AnimSprite_EfxRestOBJ_08BC3378:
 	.incbin "baserom.gba", 0xbc3378, 0x150
 
-	.global gUnk_08BC34C8
-gUnk_08BC34C8:
+	.global AnimSprite_EfxRestOBJ_08BC34C8
+AnimSprite_EfxRestOBJ_08BC34C8:
 	.incbin "baserom.gba", 0xbc34c8, 0x12c
 
-	.global gUnk_08BC35F4
-gUnk_08BC35F4:
+	.global AnimSprite_EfxRestOBJ_08BC35F4
+AnimSprite_EfxRestOBJ_08BC35F4:
 	.incbin "baserom.gba", 0xbc35f4, 0x108
 
-	.global gUnk_08BC36FC
-gUnk_08BC36FC:
+	.global AnimSprite_EfxRestOBJ_08BC36FC
+AnimSprite_EfxRestOBJ_08BC36FC:
 	.incbin "baserom.gba", 0xbc36fc, 0xf0
 
-	.global gUnk_08BC37EC
-gUnk_08BC37EC:
+	.global AnimSprite_EfxRestOBJ_08BC37EC
+AnimSprite_EfxRestOBJ_08BC37EC:
 	.incbin "baserom.gba", 0xbc37ec, 0xd8
 
-	.global gUnk_08BC38C4
-gUnk_08BC38C4:
+	.global AnimSprite_EfxRestOBJ_08BC38C4
+AnimSprite_EfxRestOBJ_08BC38C4:
 	.incbin "baserom.gba", 0xbc38c4, 0xc0
 
-	.global gUnk_08BC3984
-gUnk_08BC3984:
+	.global AnimSprite_EfxRestOBJ_08BC3984
+AnimSprite_EfxRestOBJ_08BC3984:
 	.incbin "baserom.gba", 0xbc3984, 0x9c
 
-	.global gUnk_08BC3A20
-gUnk_08BC3A20:
+	.global AnimSprite_EfxRestOBJ_08BC3A20
+AnimSprite_EfxRestOBJ_08BC3A20:
 	.incbin "baserom.gba", 0xbc3a20, 0x90
 
-	.global gUnk_08BC3AB0
-gUnk_08BC3AB0:
+	.global AnimSprite_EfxRestOBJ_08BC3AB0
+AnimSprite_EfxRestOBJ_08BC3AB0:
 	.incbin "baserom.gba", 0xbc3ab0, 0x78
 
-	.global gUnk_08BC3B28
-gUnk_08BC3B28:
+	.global AnimSprite_EfxRestOBJ_08BC3B28
+AnimSprite_EfxRestOBJ_08BC3B28:
 	.incbin "baserom.gba", 0xbc3b28, 0x60
 
-	.global gUnk_08BC3B88
-gUnk_08BC3B88:
+	.global AnimSprite_EfxRestOBJ_08BC3B88
+AnimSprite_EfxRestOBJ_08BC3B88:
 	.incbin "baserom.gba", 0xbc3b88, 0x48
 
-	.global gUnk_08BC3BD0
-gUnk_08BC3BD0:
+	.global AnimSprite_EfxRestOBJ_08BC3BD0
+AnimSprite_EfxRestOBJ_08BC3BD0:
 	.incbin "baserom.gba", 0xbc3bd0, 0x3c
 
-	.global gUnk_08BC3C0C
-gUnk_08BC3C0C:
+	.global AnimSprite_EfxRestOBJ_08BC3C0C
+AnimSprite_EfxRestOBJ_08BC3C0C:
 	.incbin "baserom.gba", 0xbc3c0c, 0x30
 
-	.global gUnk_08BC3C3C
-gUnk_08BC3C3C:
+	.global AnimSprite_EfxRestOBJ_08BC3C3C
+AnimSprite_EfxRestOBJ_08BC3C3C:
 	.incbin "baserom.gba", 0xbc3c3c, 0x24
 
-	.global gUnk_08BC3C60
-gUnk_08BC3C60:
+	.global AnimSprite_EfxRestOBJ_08BC3C60
+AnimSprite_EfxRestOBJ_08BC3C60:
 	.incbin "baserom.gba", 0xbc3c60, 0x18
 
-	.global gUnk_08BC3C78
-gUnk_08BC3C78:
+	.global AnimSprite_EfxRestOBJ_08BC3C78
+AnimSprite_EfxRestOBJ_08BC3C78:
 	.incbin "baserom.gba", 0xbc3c78, 0x3cc
 
 	.global AnimScr_EfxRestOBJ
 AnimScr_EfxRestOBJ:
-	.4byte gUnk_08BC141C + 0x2
-	.4byte gUnk_08BC1434 + 0x2
-	.4byte gUnk_08BC1458 + 0x2
-	.4byte gUnk_08BC1494 + 0x2
-	.4byte gUnk_08BC14E8 + 0x2
-	.4byte gUnk_08BC1554 + 0x2
-	.4byte gUnk_08BC15D8 + 0x2
-	.4byte gUnk_08BC1674 + 0x2
-	.4byte gUnk_08BC1734 + 0x2
-	.4byte gUnk_08BC1818 + 0x2
-	.4byte gUnk_08BC1920 + 0x2
-	.4byte gUnk_08BC1A4C + 0x2
-	.4byte gUnk_08BC1B9C + 0x2
-	.4byte gUnk_08BC1D04 + 0x2
-	.4byte gUnk_08BC1E84 + 0x2
-	.4byte gUnk_08BC2028 + 0x2
-	.4byte gUnk_08BC21E4 + 0x2
-	.4byte gUnk_08BC23B8 + 0x2
-	.4byte gUnk_08BC2598 + 0x2
-	.4byte gUnk_08BC2784 + 0x2
-	.4byte gUnk_08BC2970 + 0x2
-	.4byte gUnk_08BC2B50 + 0x2
-	.4byte gUnk_08BC2D24 + 0x2
-	.4byte gUnk_08BC2EEC + 0x2
-	.4byte gUnk_08BC3090 + 0x2
-	.4byte gUnk_08BC3210 + 0x2
-	.4byte gUnk_08BC3378 + 0x2
-	.4byte gUnk_08BC34C8 + 0x2
-	.4byte gUnk_08BC35F4 + 0x2
-	.4byte gUnk_08BC36FC + 0x2
-	.4byte gUnk_08BC37EC + 0x2
-	.4byte gUnk_08BC38C4 + 0x2
-	.4byte gUnk_08BC3984 + 0x2
-	.4byte gUnk_08BC3A20 + 0x2
-	.4byte gUnk_08BC3AB0 + 0x2
-	.4byte gUnk_08BC3B28 + 0x2
-	.4byte gUnk_08BC3B88 + 0x2
-	.4byte gUnk_08BC3BD0 + 0x2
-	.4byte gUnk_08BC3C0C + 0x2
-	.4byte gUnk_08BC3C3C + 0x2
-	.4byte gUnk_08BC3C60 + 0x2
-	.4byte gUnk_08BC3C78 + 0x70000003
+	.4byte AnimSprite_EfxRestOBJ_08BC141C + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1434 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1458 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1494 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC14E8 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1554 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC15D8 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1674 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1734 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1818 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1920 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1A4C + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1B9C + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1D04 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC1E84 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC2028 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC21E4 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC23B8 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC2598 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC2784 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC2970 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC2B50 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC2D24 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC2EEC + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3090 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3210 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3378 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC34C8 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC35F4 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC36FC + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC37EC + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC38C4 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3984 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3A20 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3AB0 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3B28 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3B88 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3BD0 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3C0C + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3C3C + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3C60 + 0x2
+	.4byte AnimSprite_EfxRestOBJ_08BC3C78 + 0x70000003
 	.incbin "baserom.gba", 0xbc40ec, 0x8
 
-	.global gUnk_08BC40F4
-gUnk_08BC40F4:
+	.global AnimSprite_EfxSilenceOBJ_08BC40F4
+AnimSprite_EfxSilenceOBJ_08BC40F4:
 	.incbin "baserom.gba", 0xbc40f4, 0x18
 
-	.global gUnk_08BC410C
-gUnk_08BC410C:
+	.global AnimSprite_EfxSilenceOBJ_08BC410C
+AnimSprite_EfxSilenceOBJ_08BC410C:
 	.incbin "baserom.gba", 0xbc410c, 0x18
 
-	.global gUnk_08BC4124
-gUnk_08BC4124:
+	.global AnimSprite_EfxSilenceOBJ_08BC4124
+AnimSprite_EfxSilenceOBJ_08BC4124:
 	.incbin "baserom.gba", 0xbc4124, 0x18
 
-	.global gUnk_08BC413C
-gUnk_08BC413C:
+	.global AnimSprite_EfxSilenceOBJ_08BC413C
+AnimSprite_EfxSilenceOBJ_08BC413C:
 	.incbin "baserom.gba", 0xbc413c, 0x18
 
-	.global gUnk_08BC4154
-gUnk_08BC4154:
+	.global AnimSprite_EfxSilenceOBJ_08BC4154
+AnimSprite_EfxSilenceOBJ_08BC4154:
 	.incbin "baserom.gba", 0xbc4154, 0x18
 
-	.global gUnk_08BC416C
-gUnk_08BC416C:
+	.global AnimSprite_EfxSilenceOBJ_08BC416C
+AnimSprite_EfxSilenceOBJ_08BC416C:
 	.incbin "baserom.gba", 0xbc416c, 0x18
 
-	.global gUnk_08BC4184
-gUnk_08BC4184:
+	.global AnimSprite_EfxSilenceOBJ_08BC4184
+AnimSprite_EfxSilenceOBJ_08BC4184:
 	.incbin "baserom.gba", 0xbc4184, 0x18
 
-	.global gUnk_08BC419C
-gUnk_08BC419C:
+	.global AnimSprite_EfxSilenceOBJ_08BC419C
+AnimSprite_EfxSilenceOBJ_08BC419C:
 	.incbin "baserom.gba", 0xbc419c, 0x18
 
-	.global gUnk_08BC41B4
-gUnk_08BC41B4:
+	.global AnimSprite_EfxSilenceOBJ_08BC41B4
+AnimSprite_EfxSilenceOBJ_08BC41B4:
 	.incbin "baserom.gba", 0xbc41b4, 0x3c
 
-	.global gUnk_08BC41F0
-gUnk_08BC41F0:
+	.global AnimSprite_EfxSilenceOBJ_08BC41F0
+AnimSprite_EfxSilenceOBJ_08BC41F0:
 	.incbin "baserom.gba", 0xbc41f0, 0x18
 
-	.global gUnk_08BC4208
-gUnk_08BC4208:
+	.global AnimSprite_EfxSilenceOBJ_08BC4208
+AnimSprite_EfxSilenceOBJ_08BC4208:
 	.incbin "baserom.gba", 0xbc4208, 0x48
 
-	.global gUnk_08BC4250
-gUnk_08BC4250:
+	.global AnimSprite_EfxSilenceOBJ_08BC4250
+AnimSprite_EfxSilenceOBJ_08BC4250:
 	.incbin "baserom.gba", 0xbc4250, 0x18
 
-	.global gUnk_08BC4268
-gUnk_08BC4268:
+	.global AnimSprite_EfxSilenceOBJ_08BC4268
+AnimSprite_EfxSilenceOBJ_08BC4268:
 	.incbin "baserom.gba", 0xbc4268, 0x18
 
-	.global gUnk_08BC4280
-gUnk_08BC4280:
+	.global AnimSprite_EfxSilenceOBJ_08BC4280
+AnimSprite_EfxSilenceOBJ_08BC4280:
 	.incbin "baserom.gba", 0xbc4280, 0x18
 
-	.global gUnk_08BC4298
-gUnk_08BC4298:
+	.global AnimSprite_EfxSilenceOBJ_08BC4298
+AnimSprite_EfxSilenceOBJ_08BC4298:
 	.incbin "baserom.gba", 0xbc4298, 0x18
 
-	.global gUnk_08BC42B0
-gUnk_08BC42B0:
+	.global AnimSprite_EfxSilenceOBJ_08BC42B0
+AnimSprite_EfxSilenceOBJ_08BC42B0:
 	.incbin "baserom.gba", 0xbc42b0, 0x60
 
 	.global AnimScr_EfxSilenceOBJ
 AnimScr_EfxSilenceOBJ:
-	.4byte gUnk_08BC40F4 + 0x10000002
-	.4byte gUnk_08BC410C + 0x1
-	.4byte gUnk_08BC40F4 + 0x10000002
-	.4byte gUnk_08BC410C + 0x1
-	.4byte gUnk_08BC4124 + 0x10000002
-	.4byte gUnk_08BC40F4 + 0x10000002
-	.4byte gUnk_08BC413C + 0x3
-	.4byte gUnk_08BC4154 + 0x10000000
-	.4byte gUnk_08BC416C + 0x2
-	.4byte gUnk_08BC4184 + 0x10000000
-	.4byte gUnk_08BC419C + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC40F4 + 0x10000002
+	.4byte AnimSprite_EfxSilenceOBJ_08BC410C + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC40F4 + 0x10000002
+	.4byte AnimSprite_EfxSilenceOBJ_08BC410C + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4124 + 0x10000002
+	.4byte AnimSprite_EfxSilenceOBJ_08BC40F4 + 0x10000002
+	.4byte AnimSprite_EfxSilenceOBJ_08BC413C + 0x3
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4154 + 0x10000000
+	.4byte AnimSprite_EfxSilenceOBJ_08BC416C + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4184 + 0x10000000
+	.4byte AnimSprite_EfxSilenceOBJ_08BC419C + 0x1
 	.incbin "baserom.gba", 0xbc433c, 0x4
-	.4byte gUnk_08BC41B4 + 0x10000000
-	.4byte gUnk_08BC41F0 + 0x2
-	.4byte gUnk_08BC4208 + 0x2
-	.4byte gUnk_08BC4250 + 0x1
-	.4byte gUnk_08BC4268 + 0x1
-	.4byte gUnk_08BC4280 + 0x1
-	.4byte gUnk_08BC4298 + 0x1
-	.4byte gUnk_08BC41F0 + 0x1
-	.4byte gUnk_08BC4268 + 0x1
-	.4byte gUnk_08BC4280 + 0x1
-	.4byte gUnk_08BC4298 + 0x1
-	.4byte gUnk_08BC41F0 + 0x1
-	.4byte gUnk_08BC4268 + 0x1
-	.4byte gUnk_08BC4208 + 0x1
-	.4byte gUnk_08BC42B0 + 0x10000000
-	.4byte gUnk_08BC4250 + 0x1
-	.4byte gUnk_08BC42B0 + 0x10000001
-	.4byte gUnk_08BC4250 + 0x2
-	.4byte gUnk_08BC41F0 + 0x2
-	.4byte gUnk_08BC42B0 + 0x2
-	.4byte gUnk_08BC4250 + 0x2
-	.4byte gUnk_08BC42B0 + 0x2
-	.4byte gUnk_08BC40F4 + 0x2
-	.4byte gUnk_08BC42B0 + 0x2
-	.4byte gUnk_08BC41F0 + 0x1
-	.4byte gUnk_08BC42B0 + 0x1
-	.4byte gUnk_08BC4250 + 0x1
-	.4byte gUnk_08BC41F0 + 0x1
-	.4byte gUnk_08BC4250 + 0x1
-	.4byte gUnk_08BC41F0 + 0x1
-	.4byte gUnk_08BC4250 + 0x1
-	.4byte gUnk_08BC40F4 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41B4 + 0x10000000
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41F0 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4208 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4250 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4268 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4280 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4298 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41F0 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4268 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4280 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4298 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41F0 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4268 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4208 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC42B0 + 0x10000000
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4250 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC42B0 + 0x10000001
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4250 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41F0 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC42B0 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4250 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC42B0 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC40F4 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC42B0 + 0x2
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41F0 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC42B0 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4250 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41F0 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4250 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC41F0 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC4250 + 0x1
+	.4byte AnimSprite_EfxSilenceOBJ_08BC40F4 + 0x1
 	.incbin "baserom.gba", 0xbc43c0, 0xc
 
-	.global gUnk_08BC43CC
-gUnk_08BC43CC:
+	.global AnimSprite_EfxHammarneOBJ_08BC43CC
+AnimSprite_EfxHammarneOBJ_08BC43CC:
 	.incbin "baserom.gba", 0xbc43cc, 0x18
 
-	.global gUnk_08BC43E4
-gUnk_08BC43E4:
+	.global AnimSprite_EfxHammarneOBJ_08BC43E4
+AnimSprite_EfxHammarneOBJ_08BC43E4:
 	.incbin "baserom.gba", 0xbc43e4, 0x24
 
-	.global gUnk_08BC4408
-gUnk_08BC4408:
+	.global AnimSprite_EfxHammarneOBJ_08BC4408
+AnimSprite_EfxHammarneOBJ_08BC4408:
 	.incbin "baserom.gba", 0xbc4408, 0x3c
 
-	.global gUnk_08BC4444
-gUnk_08BC4444:
+	.global AnimSprite_EfxHammarneOBJ_08BC4444
+AnimSprite_EfxHammarneOBJ_08BC4444:
 	.incbin "baserom.gba", 0xbc4444, 0x54
 
-	.global gUnk_08BC4498
-gUnk_08BC4498:
+	.global AnimSprite_EfxHammarneOBJ_08BC4498
+AnimSprite_EfxHammarneOBJ_08BC4498:
 	.incbin "baserom.gba", 0xbc4498, 0x6c
 
-	.global gUnk_08BC4504
-gUnk_08BC4504:
+	.global AnimSprite_EfxHammarneOBJ_08BC4504
+AnimSprite_EfxHammarneOBJ_08BC4504:
 	.incbin "baserom.gba", 0xbc4504, 0x84
 
-	.global gUnk_08BC4588
-gUnk_08BC4588:
+	.global AnimSprite_EfxHammarneOBJ_08BC4588
+AnimSprite_EfxHammarneOBJ_08BC4588:
 	.incbin "baserom.gba", 0xbc4588, 0x9c
 
-	.global gUnk_08BC4624
-gUnk_08BC4624:
+	.global AnimSprite_EfxHammarneOBJ_08BC4624
+AnimSprite_EfxHammarneOBJ_08BC4624:
 	.incbin "baserom.gba", 0xbc4624, 0xc0
 
-	.global gUnk_08BC46E4
-gUnk_08BC46E4:
+	.global AnimSprite_EfxHammarneOBJ_08BC46E4
+AnimSprite_EfxHammarneOBJ_08BC46E4:
 	.incbin "baserom.gba", 0xbc46e4, 0xe4
 
-	.global gUnk_08BC47C8
-gUnk_08BC47C8:
+	.global AnimSprite_EfxHammarneOBJ_08BC47C8
+AnimSprite_EfxHammarneOBJ_08BC47C8:
 	.incbin "baserom.gba", 0xbc47c8, 0x108
 
-	.global gUnk_08BC48D0
-gUnk_08BC48D0:
+	.global AnimSprite_EfxHammarneOBJ_08BC48D0
+AnimSprite_EfxHammarneOBJ_08BC48D0:
 	.incbin "baserom.gba", 0xbc48d0, 0x12c
 
-	.global gUnk_08BC49FC
-gUnk_08BC49FC:
+	.global AnimSprite_EfxHammarneOBJ_08BC49FC
+AnimSprite_EfxHammarneOBJ_08BC49FC:
 	.incbin "baserom.gba", 0xbc49fc, 0x150
 
-	.global gUnk_08BC4B4C
-gUnk_08BC4B4C:
+	.global AnimSprite_EfxHammarneOBJ_08BC4B4C
+AnimSprite_EfxHammarneOBJ_08BC4B4C:
 	.incbin "baserom.gba", 0xbc4b4c, 0x168
 
-	.global gUnk_08BC4CB4
-gUnk_08BC4CB4:
+	.global AnimSprite_EfxHammarneOBJ_08BC4CB4
+AnimSprite_EfxHammarneOBJ_08BC4CB4:
 	.incbin "baserom.gba", 0xbc4cb4, 0x180
 
-	.global gUnk_08BC4E34
-gUnk_08BC4E34:
+	.global AnimSprite_EfxHammarneOBJ_08BC4E34
+AnimSprite_EfxHammarneOBJ_08BC4E34:
 	.incbin "baserom.gba", 0xbc4e34, 0x1a4
 
-	.global gUnk_08BC4FD8
-gUnk_08BC4FD8:
+	.global AnimSprite_EfxHammarneOBJ_08BC4FD8
+AnimSprite_EfxHammarneOBJ_08BC4FD8:
 	.incbin "baserom.gba", 0xbc4fd8, 0x1bc
 
-	.global gUnk_08BC5194
-gUnk_08BC5194:
+	.global AnimSprite_EfxHammarneOBJ_08BC5194
+AnimSprite_EfxHammarneOBJ_08BC5194:
 	.incbin "baserom.gba", 0xbc5194, 0x1d4
 
-	.global gUnk_08BC5368
-gUnk_08BC5368:
+	.global AnimSprite_EfxHammarneOBJ_08BC5368
+AnimSprite_EfxHammarneOBJ_08BC5368:
 	.incbin "baserom.gba", 0xbc5368, 0x1e0
 
-	.global gUnk_08BC5548
-gUnk_08BC5548:
+	.global AnimSprite_EfxHammarneOBJ_08BC5548
+AnimSprite_EfxHammarneOBJ_08BC5548:
 	.incbin "baserom.gba", 0xbc5548, 0x1ec
 
-	.global gUnk_08BC5734
-gUnk_08BC5734:
+	.global AnimSprite_EfxHammarneOBJ_08BC5734
+AnimSprite_EfxHammarneOBJ_08BC5734:
 	.incbin "baserom.gba", 0xbc5734, 0x1ec
 
-	.global gUnk_08BC5920
-gUnk_08BC5920:
+	.global AnimSprite_EfxHammarneOBJ_08BC5920
+AnimSprite_EfxHammarneOBJ_08BC5920:
 	.incbin "baserom.gba", 0xbc5920, 0x1e0
 
-	.global gUnk_08BC5B00
-gUnk_08BC5B00:
+	.global AnimSprite_EfxHammarneOBJ_08BC5B00
+AnimSprite_EfxHammarneOBJ_08BC5B00:
 	.incbin "baserom.gba", 0xbc5b00, 0x1d4
 
-	.global gUnk_08BC5CD4
-gUnk_08BC5CD4:
+	.global AnimSprite_EfxHammarneOBJ_08BC5CD4
+AnimSprite_EfxHammarneOBJ_08BC5CD4:
 	.incbin "baserom.gba", 0xbc5cd4, 0x1c8
 
-	.global gUnk_08BC5E9C
-gUnk_08BC5E9C:
+	.global AnimSprite_EfxHammarneOBJ_08BC5E9C
+AnimSprite_EfxHammarneOBJ_08BC5E9C:
 	.incbin "baserom.gba", 0xbc5e9c, 0x1a4
 
-	.global gUnk_08BC6040
-gUnk_08BC6040:
+	.global AnimSprite_EfxHammarneOBJ_08BC6040
+AnimSprite_EfxHammarneOBJ_08BC6040:
 	.incbin "baserom.gba", 0xbc6040, 0x180
 
-	.global gUnk_08BC61C0
-gUnk_08BC61C0:
+	.global AnimSprite_EfxHammarneOBJ_08BC61C0
+AnimSprite_EfxHammarneOBJ_08BC61C0:
 	.incbin "baserom.gba", 0xbc61c0, 0x168
 
-	.global gUnk_08BC6328
-gUnk_08BC6328:
+	.global AnimSprite_EfxHammarneOBJ_08BC6328
+AnimSprite_EfxHammarneOBJ_08BC6328:
 	.incbin "baserom.gba", 0xbc6328, 0x150
 
-	.global gUnk_08BC6478
-gUnk_08BC6478:
+	.global AnimSprite_EfxHammarneOBJ_08BC6478
+AnimSprite_EfxHammarneOBJ_08BC6478:
 	.incbin "baserom.gba", 0xbc6478, 0x12c
 
-	.global gUnk_08BC65A4
-gUnk_08BC65A4:
+	.global AnimSprite_EfxHammarneOBJ_08BC65A4
+AnimSprite_EfxHammarneOBJ_08BC65A4:
 	.incbin "baserom.gba", 0xbc65a4, 0x108
 
-	.global gUnk_08BC66AC
-gUnk_08BC66AC:
+	.global AnimSprite_EfxHammarneOBJ_08BC66AC
+AnimSprite_EfxHammarneOBJ_08BC66AC:
 	.incbin "baserom.gba", 0xbc66ac, 0xf0
 
-	.global gUnk_08BC679C
-gUnk_08BC679C:
+	.global AnimSprite_EfxHammarneOBJ_08BC679C
+AnimSprite_EfxHammarneOBJ_08BC679C:
 	.incbin "baserom.gba", 0xbc679c, 0xd8
 
-	.global gUnk_08BC6874
-gUnk_08BC6874:
+	.global AnimSprite_EfxHammarneOBJ_08BC6874
+AnimSprite_EfxHammarneOBJ_08BC6874:
 	.incbin "baserom.gba", 0xbc6874, 0xc0
 
-	.global gUnk_08BC6934
-gUnk_08BC6934:
+	.global AnimSprite_EfxHammarneOBJ_08BC6934
+AnimSprite_EfxHammarneOBJ_08BC6934:
 	.incbin "baserom.gba", 0xbc6934, 0x9c
 
-	.global gUnk_08BC69D0
-gUnk_08BC69D0:
+	.global AnimSprite_EfxHammarneOBJ_08BC69D0
+AnimSprite_EfxHammarneOBJ_08BC69D0:
 	.incbin "baserom.gba", 0xbc69d0, 0x90
 
-	.global gUnk_08BC6A60
-gUnk_08BC6A60:
+	.global AnimSprite_EfxHammarneOBJ_08BC6A60
+AnimSprite_EfxHammarneOBJ_08BC6A60:
 	.incbin "baserom.gba", 0xbc6a60, 0x78
 
-	.global gUnk_08BC6AD8
-gUnk_08BC6AD8:
+	.global AnimSprite_EfxHammarneOBJ_08BC6AD8
+AnimSprite_EfxHammarneOBJ_08BC6AD8:
 	.incbin "baserom.gba", 0xbc6ad8, 0x60
 
-	.global gUnk_08BC6B38
-gUnk_08BC6B38:
+	.global AnimSprite_EfxHammarneOBJ_08BC6B38
+AnimSprite_EfxHammarneOBJ_08BC6B38:
 	.incbin "baserom.gba", 0xbc6b38, 0x48
 
-	.global gUnk_08BC6B80
-gUnk_08BC6B80:
+	.global AnimSprite_EfxHammarneOBJ_08BC6B80
+AnimSprite_EfxHammarneOBJ_08BC6B80:
 	.incbin "baserom.gba", 0xbc6b80, 0x3c
 
-	.global gUnk_08BC6BBC
-gUnk_08BC6BBC:
+	.global AnimSprite_EfxHammarneOBJ_08BC6BBC
+AnimSprite_EfxHammarneOBJ_08BC6BBC:
 	.incbin "baserom.gba", 0xbc6bbc, 0x30
 
-	.global gUnk_08BC6BEC
-gUnk_08BC6BEC:
+	.global AnimSprite_EfxHammarneOBJ_08BC6BEC
+AnimSprite_EfxHammarneOBJ_08BC6BEC:
 	.incbin "baserom.gba", 0xbc6bec, 0x24
 
-	.global gUnk_08BC6C10
-gUnk_08BC6C10:
+	.global AnimSprite_EfxHammarneOBJ_08BC6C10
+AnimSprite_EfxHammarneOBJ_08BC6C10:
 	.incbin "baserom.gba", 0xbc6c10, 0x18
 
-	.global gUnk_08BC6C28
-gUnk_08BC6C28:
+	.global AnimSprite_EfxHammarneOBJ_08BC6C28
+AnimSprite_EfxHammarneOBJ_08BC6C28:
 	.incbin "baserom.gba", 0xbc6c28, 0x3cc
 
 	.global AnimScr_EfxHammarneOBJ
 AnimScr_EfxHammarneOBJ:
-	.4byte gUnk_08BC43CC + 0x2
-	.4byte gUnk_08BC43E4 + 0x2
-	.4byte gUnk_08BC4408 + 0x2
-	.4byte gUnk_08BC4444 + 0x2
-	.4byte gUnk_08BC4498 + 0x2
-	.4byte gUnk_08BC4504 + 0x2
-	.4byte gUnk_08BC4588 + 0x2
-	.4byte gUnk_08BC4624 + 0x2
-	.4byte gUnk_08BC46E4 + 0x2
-	.4byte gUnk_08BC47C8 + 0x2
-	.4byte gUnk_08BC48D0 + 0x2
-	.4byte gUnk_08BC49FC + 0x2
-	.4byte gUnk_08BC4B4C + 0x2
-	.4byte gUnk_08BC4CB4 + 0x2
-	.4byte gUnk_08BC4E34 + 0x2
-	.4byte gUnk_08BC4FD8 + 0x2
-	.4byte gUnk_08BC5194 + 0x2
-	.4byte gUnk_08BC5368 + 0x2
-	.4byte gUnk_08BC5548 + 0x2
-	.4byte gUnk_08BC5734 + 0x2
-	.4byte gUnk_08BC5920 + 0x2
-	.4byte gUnk_08BC5B00 + 0x2
-	.4byte gUnk_08BC5CD4 + 0x2
-	.4byte gUnk_08BC5E9C + 0x2
-	.4byte gUnk_08BC6040 + 0x2
-	.4byte gUnk_08BC61C0 + 0x2
-	.4byte gUnk_08BC6328 + 0x2
-	.4byte gUnk_08BC6478 + 0x2
-	.4byte gUnk_08BC65A4 + 0x2
-	.4byte gUnk_08BC66AC + 0x2
-	.4byte gUnk_08BC679C + 0x2
-	.4byte gUnk_08BC6874 + 0x2
-	.4byte gUnk_08BC6934 + 0x2
-	.4byte gUnk_08BC69D0 + 0x2
-	.4byte gUnk_08BC6A60 + 0x2
-	.4byte gUnk_08BC6AD8 + 0x2
-	.4byte gUnk_08BC6B38 + 0x2
-	.4byte gUnk_08BC6B80 + 0x2
-	.4byte gUnk_08BC6BBC + 0x2
-	.4byte gUnk_08BC6BEC + 0x2
-	.4byte gUnk_08BC6C10 + 0x2
-	.4byte gUnk_08BC6C28 + 0x70000003
+	.4byte AnimSprite_EfxHammarneOBJ_08BC43CC + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC43E4 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4408 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4444 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4498 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4504 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4588 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4624 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC46E4 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC47C8 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC48D0 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC49FC + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4B4C + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4CB4 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4E34 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC4FD8 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5194 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5368 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5548 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5734 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5920 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5B00 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5CD4 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC5E9C + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6040 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC61C0 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6328 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6478 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC65A4 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC66AC + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC679C + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6874 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6934 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC69D0 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6A60 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6AD8 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6B38 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6B80 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6BBC + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6BEC + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6C10 + 0x2
+	.4byte AnimSprite_EfxHammarneOBJ_08BC6C28 + 0x70000003
 	.incbin "baserom.gba", 0xbc709c, 0x8
 
-	.global gUnk_08BC70A4
-gUnk_08BC70A4:
+	.global AnimSprite_EfxSleepOBJ2_08BC70A4
+AnimSprite_EfxSleepOBJ2_08BC70A4:
 	.incbin "baserom.gba", 0xbc70a4, 0x24
 
-	.global gUnk_08BC70C8
-gUnk_08BC70C8:
+	.global AnimSprite_EfxSleepOBJ2_08BC70C8
+AnimSprite_EfxSleepOBJ2_08BC70C8:
 	.incbin "baserom.gba", 0xbc70c8, 0x3c
 
-	.global gUnk_08BC7104
-gUnk_08BC7104:
+	.global AnimSprite_EfxSleepOBJ2_08BC7104
+AnimSprite_EfxSleepOBJ2_08BC7104:
 	.incbin "baserom.gba", 0xbc7104, 0x6c
 
-	.global gUnk_08BC7170
-gUnk_08BC7170:
+	.global AnimSprite_EfxSleepOBJ2_08BC7170
+AnimSprite_EfxSleepOBJ2_08BC7170:
 	.incbin "baserom.gba", 0xbc7170, 0x90
 
-	.global gUnk_08BC7200
-gUnk_08BC7200:
+	.global AnimSprite_EfxSleepOBJ2_08BC7200
+AnimSprite_EfxSleepOBJ2_08BC7200:
 	.incbin "baserom.gba", 0xbc7200, 0xb4
 
-	.global gUnk_08BC72B4
-gUnk_08BC72B4:
+	.global AnimSprite_EfxSleepOBJ2_08BC72B4
+AnimSprite_EfxSleepOBJ2_08BC72B4:
 	.incbin "baserom.gba", 0xbc72b4, 0xc0
 
-	.global gUnk_08BC7374
-gUnk_08BC7374:
+	.global AnimSprite_EfxSleepOBJ2_08BC7374
+AnimSprite_EfxSleepOBJ2_08BC7374:
 	.incbin "baserom.gba", 0xbc7374, 0xd8
 
-	.global gUnk_08BC744C
-gUnk_08BC744C:
+	.global AnimSprite_EfxSleepOBJ2_08BC744C
+AnimSprite_EfxSleepOBJ2_08BC744C:
 	.incbin "baserom.gba", 0xbc744c, 0xf0
 
-	.global gUnk_08BC753C
-gUnk_08BC753C:
+	.global AnimSprite_EfxSleepOBJ2_08BC753C
+AnimSprite_EfxSleepOBJ2_08BC753C:
 	.incbin "baserom.gba", 0xbc753c, 0x108
 
-	.global gUnk_08BC7644
-gUnk_08BC7644:
+	.global AnimSprite_EfxSleepOBJ2_08BC7644
+AnimSprite_EfxSleepOBJ2_08BC7644:
 	.incbin "baserom.gba", 0xbc7644, 0x114
 
-	.global gUnk_08BC7758
-gUnk_08BC7758:
+	.global AnimSprite_EfxSleepOBJ2_08BC7758
+AnimSprite_EfxSleepOBJ2_08BC7758:
 	.incbin "baserom.gba", 0xbc7758, 0x120
 
-	.global gUnk_08BC7878
-gUnk_08BC7878:
+	.global AnimSprite_EfxSleepOBJ2_08BC7878
+AnimSprite_EfxSleepOBJ2_08BC7878:
 	.incbin "baserom.gba", 0xbc7878, 0x12c
 
-	.global gUnk_08BC79A4
-gUnk_08BC79A4:
+	.global AnimSprite_EfxSleepOBJ2_08BC79A4
+AnimSprite_EfxSleepOBJ2_08BC79A4:
 	.incbin "baserom.gba", 0xbc79a4, 0x120
 
-	.global gUnk_08BC7AC4
-gUnk_08BC7AC4:
+	.global AnimSprite_EfxSleepOBJ2_08BC7AC4
+AnimSprite_EfxSleepOBJ2_08BC7AC4:
 	.incbin "baserom.gba", 0xbc7ac4, 0x120
 
-	.global gUnk_08BC7BE4
-gUnk_08BC7BE4:
+	.global AnimSprite_EfxSleepOBJ2_08BC7BE4
+AnimSprite_EfxSleepOBJ2_08BC7BE4:
 	.incbin "baserom.gba", 0xbc7be4, 0xd8
 
-	.global gUnk_08BC7CBC
-gUnk_08BC7CBC:
+	.global AnimSprite_EfxSleepOBJ2_08BC7CBC
+AnimSprite_EfxSleepOBJ2_08BC7CBC:
 	.incbin "baserom.gba", 0xbc7cbc, 0xb4
 
-	.global gUnk_08BC7D70
-gUnk_08BC7D70:
+	.global AnimSprite_EfxSleepOBJ2_08BC7D70
+AnimSprite_EfxSleepOBJ2_08BC7D70:
 	.incbin "baserom.gba", 0xbc7d70, 0xb4
 
-	.global gUnk_08BC7E24
-gUnk_08BC7E24:
+	.global AnimSprite_EfxSleepOBJ2_08BC7E24
+AnimSprite_EfxSleepOBJ2_08BC7E24:
 	.incbin "baserom.gba", 0xbc7e24, 0x9c
 
-	.global gUnk_08BC7EC0
-gUnk_08BC7EC0:
+	.global AnimSprite_EfxSleepOBJ2_08BC7EC0
+AnimSprite_EfxSleepOBJ2_08BC7EC0:
 	.incbin "baserom.gba", 0xbc7ec0, 0x9c
 
-	.global gUnk_08BC7F5C
-gUnk_08BC7F5C:
+	.global AnimSprite_EfxSleepOBJ2_08BC7F5C
+AnimSprite_EfxSleepOBJ2_08BC7F5C:
 	.incbin "baserom.gba", 0xbc7f5c, 0x9c
 
-	.global gUnk_08BC7FF8
-gUnk_08BC7FF8:
+	.global AnimSprite_EfxSleepOBJ2_08BC7FF8
+AnimSprite_EfxSleepOBJ2_08BC7FF8:
 	.incbin "baserom.gba", 0xbc7ff8, 0x90
 
-	.global gUnk_08BC8088
-gUnk_08BC8088:
+	.global AnimSprite_EfxSleepOBJ2_08BC8088
+AnimSprite_EfxSleepOBJ2_08BC8088:
 	.incbin "baserom.gba", 0xbc8088, 0x90
 
-	.global gUnk_08BC8118
-gUnk_08BC8118:
+	.global AnimSprite_EfxSleepOBJ2_08BC8118
+AnimSprite_EfxSleepOBJ2_08BC8118:
 	.incbin "baserom.gba", 0xbc8118, 0x24
 
-	.global gUnk_08BC813C
-gUnk_08BC813C:
+	.global AnimSprite_EfxSleepOBJ2_08BC813C
+AnimSprite_EfxSleepOBJ2_08BC813C:
 	.incbin "baserom.gba", 0xbc813c, 0x3c
 
-	.global gUnk_08BC8178
-gUnk_08BC8178:
+	.global AnimSprite_EfxSleepOBJ2_08BC8178
+AnimSprite_EfxSleepOBJ2_08BC8178:
 	.incbin "baserom.gba", 0xbc8178, 0x6c
 
-	.global gUnk_08BC81E4
-gUnk_08BC81E4:
+	.global AnimSprite_EfxSleepOBJ2_08BC81E4
+AnimSprite_EfxSleepOBJ2_08BC81E4:
 	.incbin "baserom.gba", 0xbc81e4, 0x90
 
-	.global gUnk_08BC8274
-gUnk_08BC8274:
+	.global AnimSprite_EfxSleepOBJ2_08BC8274
+AnimSprite_EfxSleepOBJ2_08BC8274:
 	.incbin "baserom.gba", 0xbc8274, 0xb4
 
-	.global gUnk_08BC8328
-gUnk_08BC8328:
+	.global AnimSprite_EfxSleepOBJ2_08BC8328
+AnimSprite_EfxSleepOBJ2_08BC8328:
 	.incbin "baserom.gba", 0xbc8328, 0xc0
 
-	.global gUnk_08BC83E8
-gUnk_08BC83E8:
+	.global AnimSprite_EfxSleepOBJ2_08BC83E8
+AnimSprite_EfxSleepOBJ2_08BC83E8:
 	.incbin "baserom.gba", 0xbc83e8, 0xd8
 
-	.global gUnk_08BC84C0
-gUnk_08BC84C0:
+	.global AnimSprite_EfxSleepOBJ2_08BC84C0
+AnimSprite_EfxSleepOBJ2_08BC84C0:
 	.incbin "baserom.gba", 0xbc84c0, 0xe4
 
-	.global gUnk_08BC85A4
-gUnk_08BC85A4:
+	.global AnimSprite_EfxSleepOBJ2_08BC85A4
+AnimSprite_EfxSleepOBJ2_08BC85A4:
 	.incbin "baserom.gba", 0xbc85a4, 0xfc
 
-	.global gUnk_08BC86A0
-gUnk_08BC86A0:
+	.global AnimSprite_EfxSleepOBJ2_08BC86A0
+AnimSprite_EfxSleepOBJ2_08BC86A0:
 	.incbin "baserom.gba", 0xbc86a0, 0x108
 
-	.global gUnk_08BC87A8
-gUnk_08BC87A8:
+	.global AnimSprite_EfxSleepOBJ2_08BC87A8
+AnimSprite_EfxSleepOBJ2_08BC87A8:
 	.incbin "baserom.gba", 0xbc87a8, 0x114
 
-	.global gUnk_08BC88BC
-gUnk_08BC88BC:
+	.global AnimSprite_EfxSleepOBJ2_08BC88BC
+AnimSprite_EfxSleepOBJ2_08BC88BC:
 	.incbin "baserom.gba", 0xbc88bc, 0x114
 
-	.global gUnk_08BC89D0
-gUnk_08BC89D0:
+	.global AnimSprite_EfxSleepOBJ2_08BC89D0
+AnimSprite_EfxSleepOBJ2_08BC89D0:
 	.incbin "baserom.gba", 0xbc89d0, 0x114
 
-	.global gUnk_08BC8AE4
-gUnk_08BC8AE4:
+	.global AnimSprite_EfxSleepOBJ2_08BC8AE4
+AnimSprite_EfxSleepOBJ2_08BC8AE4:
 	.incbin "baserom.gba", 0xbc8ae4, 0x114
 
-	.global gUnk_08BC8BF8
-gUnk_08BC8BF8:
+	.global AnimSprite_EfxSleepOBJ2_08BC8BF8
+AnimSprite_EfxSleepOBJ2_08BC8BF8:
 	.incbin "baserom.gba", 0xbc8bf8, 0xd8
 
-	.global gUnk_08BC8CD0
-gUnk_08BC8CD0:
+	.global AnimSprite_EfxSleepOBJ2_08BC8CD0
+AnimSprite_EfxSleepOBJ2_08BC8CD0:
 	.incbin "baserom.gba", 0xbc8cd0, 0xc0
 
-	.global gUnk_08BC8D90
-gUnk_08BC8D90:
+	.global AnimSprite_EfxSleepOBJ2_08BC8D90
+AnimSprite_EfxSleepOBJ2_08BC8D90:
 	.incbin "baserom.gba", 0xbc8d90, 0x9c
 
-	.global gUnk_08BC8E2C
-gUnk_08BC8E2C:
+	.global AnimSprite_EfxSleepOBJ2_08BC8E2C
+AnimSprite_EfxSleepOBJ2_08BC8E2C:
 	.incbin "baserom.gba", 0xbc8e2c, 0x9c
 
-	.global gUnk_08BC8EC8
-gUnk_08BC8EC8:
+	.global AnimSprite_EfxSleepOBJ2_08BC8EC8
+AnimSprite_EfxSleepOBJ2_08BC8EC8:
 	.incbin "baserom.gba", 0xbc8ec8, 0x9c
 
-	.global gUnk_08BC8F64
-gUnk_08BC8F64:
+	.global AnimSprite_EfxSleepOBJ2_08BC8F64
+AnimSprite_EfxSleepOBJ2_08BC8F64:
 	.incbin "baserom.gba", 0xbc8f64, 0x90
 
-	.global gUnk_08BC8FF4
-gUnk_08BC8FF4:
+	.global AnimSprite_EfxSleepOBJ2_08BC8FF4
+AnimSprite_EfxSleepOBJ2_08BC8FF4:
 	.incbin "baserom.gba", 0xbc8ff4, 0x90
 
-	.global gUnk_08BC9084
-gUnk_08BC9084:
+	.global AnimSprite_EfxSleepOBJ2_08BC9084
+AnimSprite_EfxSleepOBJ2_08BC9084:
 	.incbin "baserom.gba", 0xbc9084, 0x30
 
-	.global gUnk_08BC90B4
-gUnk_08BC90B4:
+	.global AnimSprite_EfxSleepOBJ2_08BC90B4
+AnimSprite_EfxSleepOBJ2_08BC90B4:
 	.incbin "baserom.gba", 0xbc90b4, 0x48
 
-	.global gUnk_08BC90FC
-gUnk_08BC90FC:
+	.global AnimSprite_EfxSleepOBJ2_08BC90FC
+AnimSprite_EfxSleepOBJ2_08BC90FC:
 	.incbin "baserom.gba", 0xbc90fc, 0x60
 
-	.global gUnk_08BC915C
-gUnk_08BC915C:
+	.global AnimSprite_EfxSleepOBJ2_08BC915C
+AnimSprite_EfxSleepOBJ2_08BC915C:
 	.incbin "baserom.gba", 0xbc915c, 0x78
 
-	.global gUnk_08BC91D4
-gUnk_08BC91D4:
+	.global AnimSprite_EfxSleepOBJ2_08BC91D4
+AnimSprite_EfxSleepOBJ2_08BC91D4:
 	.incbin "baserom.gba", 0xbc91d4, 0x90
 
-	.global gUnk_08BC9264
-gUnk_08BC9264:
+	.global AnimSprite_EfxSleepOBJ2_08BC9264
+AnimSprite_EfxSleepOBJ2_08BC9264:
 	.incbin "baserom.gba", 0xbc9264, 0x9c
 
-	.global gUnk_08BC9300
-gUnk_08BC9300:
+	.global AnimSprite_EfxSleepOBJ2_08BC9300
+AnimSprite_EfxSleepOBJ2_08BC9300:
 	.incbin "baserom.gba", 0xbc9300, 0xb4
 
-	.global gUnk_08BC93B4
-gUnk_08BC93B4:
+	.global AnimSprite_EfxSleepOBJ2_08BC93B4
+AnimSprite_EfxSleepOBJ2_08BC93B4:
 	.incbin "baserom.gba", 0xbc93b4, 0xc0
 
-	.global gUnk_08BC9474
-gUnk_08BC9474:
+	.global AnimSprite_EfxSleepOBJ2_08BC9474
+AnimSprite_EfxSleepOBJ2_08BC9474:
 	.incbin "baserom.gba", 0xbc9474, 0xcc
 
-	.global gUnk_08BC9540
-gUnk_08BC9540:
+	.global AnimSprite_EfxSleepOBJ2_08BC9540
+AnimSprite_EfxSleepOBJ2_08BC9540:
 	.incbin "baserom.gba", 0xbc9540, 0xd8
 
-	.global gUnk_08BC9618
-gUnk_08BC9618:
+	.global AnimSprite_EfxSleepOBJ2_08BC9618
+AnimSprite_EfxSleepOBJ2_08BC9618:
 	.incbin "baserom.gba", 0xbc9618, 0xe4
 
-	.global gUnk_08BC96FC
-gUnk_08BC96FC:
+	.global AnimSprite_EfxSleepOBJ2_08BC96FC
+AnimSprite_EfxSleepOBJ2_08BC96FC:
 	.incbin "baserom.gba", 0xbc96fc, 0xf0
 
-	.global gUnk_08BC97EC
-gUnk_08BC97EC:
+	.global AnimSprite_EfxSleepOBJ2_08BC97EC
+AnimSprite_EfxSleepOBJ2_08BC97EC:
 	.incbin "baserom.gba", 0xbc97ec, 0xfc
 
-	.global gUnk_08BC98E8
-gUnk_08BC98E8:
+	.global AnimSprite_EfxSleepOBJ2_08BC98E8
+AnimSprite_EfxSleepOBJ2_08BC98E8:
 	.incbin "baserom.gba", 0xbc98e8, 0x108
 
-	.global gUnk_08BC99F0
-gUnk_08BC99F0:
+	.global AnimSprite_EfxSleepOBJ2_08BC99F0
+AnimSprite_EfxSleepOBJ2_08BC99F0:
 	.incbin "baserom.gba", 0xbc99f0, 0x114
 
-	.global gUnk_08BC9B04
-gUnk_08BC9B04:
+	.global AnimSprite_EfxSleepOBJ2_08BC9B04
+AnimSprite_EfxSleepOBJ2_08BC9B04:
 	.incbin "baserom.gba", 0xbc9b04, 0x120
 
-	.global gUnk_08BC9C24
-gUnk_08BC9C24:
+	.global AnimSprite_EfxSleepOBJ2_08BC9C24
+AnimSprite_EfxSleepOBJ2_08BC9C24:
 	.incbin "baserom.gba", 0xbc9c24, 0x12c
 
-	.global gUnk_08BC9D50
-gUnk_08BC9D50:
+	.global AnimSprite_EfxSleepOBJ2_08BC9D50
+AnimSprite_EfxSleepOBJ2_08BC9D50:
 	.incbin "baserom.gba", 0xbc9d50, 0x138
 
-	.global gUnk_08BC9E88
-gUnk_08BC9E88:
+	.global AnimSprite_EfxSleepOBJ2_08BC9E88
+AnimSprite_EfxSleepOBJ2_08BC9E88:
 	.incbin "baserom.gba", 0xbc9e88, 0x138
 
-	.global gUnk_08BC9FC0
-gUnk_08BC9FC0:
+	.global AnimSprite_EfxSleepOBJ2_08BC9FC0
+AnimSprite_EfxSleepOBJ2_08BC9FC0:
 	.incbin "baserom.gba", 0xbc9fc0, 0x144
 
-	.global gUnk_08BCA104
-gUnk_08BCA104:
+	.global AnimSprite_EfxSleepOBJ2_08BCA104
+AnimSprite_EfxSleepOBJ2_08BCA104:
 	.incbin "baserom.gba", 0xbca104, 0x144
 
-	.global gUnk_08BCA248
-gUnk_08BCA248:
+	.global AnimSprite_EfxSleepOBJ2_08BCA248
+AnimSprite_EfxSleepOBJ2_08BCA248:
 	.incbin "baserom.gba", 0xbca248, 0x150
 
-	.global gUnk_08BCA398
-gUnk_08BCA398:
+	.global AnimSprite_EfxSleepOBJ2_08BCA398
+AnimSprite_EfxSleepOBJ2_08BCA398:
 	.incbin "baserom.gba", 0xbca398, 0x150
 
-	.global gUnk_08BCA4E8
-gUnk_08BCA4E8:
+	.global AnimSprite_EfxSleepOBJ2_08BCA4E8
+AnimSprite_EfxSleepOBJ2_08BCA4E8:
 	.incbin "baserom.gba", 0xbca4e8, 0x144
 
-	.global gUnk_08BCA62C
-gUnk_08BCA62C:
+	.global AnimSprite_EfxSleepOBJ2_08BCA62C
+AnimSprite_EfxSleepOBJ2_08BCA62C:
 	.incbin "baserom.gba", 0xbca62c, 0x12c
 
-	.global gUnk_08BCA758
-gUnk_08BCA758:
+	.global AnimSprite_EfxSleepOBJ2_08BCA758
+AnimSprite_EfxSleepOBJ2_08BCA758:
 	.incbin "baserom.gba", 0xbca758, 0x120
 
-	.global gUnk_08BCA878
-gUnk_08BCA878:
+	.global AnimSprite_EfxSleepOBJ2_08BCA878
+AnimSprite_EfxSleepOBJ2_08BCA878:
 	.incbin "baserom.gba", 0xbca878, 0x114
 
-	.global gUnk_08BCA98C
-gUnk_08BCA98C:
+	.global AnimSprite_EfxSleepOBJ2_08BCA98C
+AnimSprite_EfxSleepOBJ2_08BCA98C:
 	.incbin "baserom.gba", 0xbca98c, 0xfc
 
-	.global gUnk_08BCAA88
-gUnk_08BCAA88:
+	.global AnimSprite_EfxSleepOBJ2_08BCAA88
+AnimSprite_EfxSleepOBJ2_08BCAA88:
 	.incbin "baserom.gba", 0xbcaa88, 0xe4
 
-	.global gUnk_08BCAB6C
-gUnk_08BCAB6C:
+	.global AnimSprite_EfxSleepOBJ2_08BCAB6C
+AnimSprite_EfxSleepOBJ2_08BCAB6C:
 	.incbin "baserom.gba", 0xbcab6c, 0xcc
 
-	.global gUnk_08BCAC38
-gUnk_08BCAC38:
+	.global AnimSprite_EfxSleepOBJ2_08BCAC38
+AnimSprite_EfxSleepOBJ2_08BCAC38:
 	.incbin "baserom.gba", 0xbcac38, 0xb4
 
-	.global gUnk_08BCACEC
-gUnk_08BCACEC:
+	.global AnimSprite_EfxSleepOBJ2_08BCACEC
+AnimSprite_EfxSleepOBJ2_08BCACEC:
 	.incbin "baserom.gba", 0xbcacec, 0xa8
 
-	.global gUnk_08BCAD94
-gUnk_08BCAD94:
+	.global AnimSprite_EfxSleepOBJ2_08BCAD94
+AnimSprite_EfxSleepOBJ2_08BCAD94:
 	.incbin "baserom.gba", 0xbcad94, 0x90
 
-	.global gUnk_08BCAE24
-gUnk_08BCAE24:
+	.global AnimSprite_EfxSleepOBJ2_08BCAE24
+AnimSprite_EfxSleepOBJ2_08BCAE24:
 	.incbin "baserom.gba", 0xbcae24, 0x84
 
-	.global gUnk_08BCAEA8
-gUnk_08BCAEA8:
+	.global AnimSprite_EfxSleepOBJ2_08BCAEA8
+AnimSprite_EfxSleepOBJ2_08BCAEA8:
 	.incbin "baserom.gba", 0xbcaea8, 0x78
 
-	.global gUnk_08BCAF20
-gUnk_08BCAF20:
+	.global AnimSprite_EfxSleepOBJ2_08BCAF20
+AnimSprite_EfxSleepOBJ2_08BCAF20:
 	.incbin "baserom.gba", 0xbcaf20, 0x6c
 
-	.global gUnk_08BCAF8C
-gUnk_08BCAF8C:
+	.global AnimSprite_EfxSleepOBJ2_08BCAF8C
+AnimSprite_EfxSleepOBJ2_08BCAF8C:
 	.incbin "baserom.gba", 0xbcaf8c, 0x60
 
-	.global gUnk_08BCAFEC
-gUnk_08BCAFEC:
+	.global AnimSprite_EfxSleepOBJ2_08BCAFEC
+AnimSprite_EfxSleepOBJ2_08BCAFEC:
 	.incbin "baserom.gba", 0xbcafec, 0x54
 
-	.global gUnk_08BCB040
-gUnk_08BCB040:
+	.global AnimSprite_EfxSleepOBJ2_08BCB040
+AnimSprite_EfxSleepOBJ2_08BCB040:
 	.incbin "baserom.gba", 0xbcb040, 0x48
 
-	.global gUnk_08BCB088
-gUnk_08BCB088:
+	.global AnimSprite_EfxSleepOBJ2_08BCB088
+AnimSprite_EfxSleepOBJ2_08BCB088:
 	.incbin "baserom.gba", 0xbcb088, 0x3c
 
-	.global gUnk_08BCB0C4
-gUnk_08BCB0C4:
+	.global AnimSprite_EfxSleepOBJ2_08BCB0C4
+AnimSprite_EfxSleepOBJ2_08BCB0C4:
 	.incbin "baserom.gba", 0xbcb0c4, 0x30
 
-	.global gUnk_08BCB0F4
-gUnk_08BCB0F4:
+	.global AnimSprite_EfxSleepOBJ2_08BCB0F4
+AnimSprite_EfxSleepOBJ2_08BCB0F4:
 	.incbin "baserom.gba", 0xbcb0f4, 0x24
 
-	.global gUnk_08BCB118
-gUnk_08BCB118:
+	.global AnimSprite_EfxSleepOBJ2_08BCB118
+AnimSprite_EfxSleepOBJ2_08BCB118:
 	.incbin "baserom.gba", 0xbcb118, 0x18
 
-	.global gUnk_08BCB130
-gUnk_08BCB130:
+	.global AnimSprite_EfxSleepOBJ1_08BCB130
+AnimSprite_EfxSleepOBJ1_08BCB130:
 	.incbin "baserom.gba", 0xbcb130, 0x9b4
 
-	.global gUnk_08BCBAE4
-gUnk_08BCBAE4:
+	.global AnimSprite_EfxSleepOBJ1_08BCBAE4
+AnimSprite_EfxSleepOBJ1_08BCBAE4:
 	.incbin "baserom.gba", 0xbcbae4, 0x30
 
-	.global gUnk_08BCBB14
-gUnk_08BCBB14:
+	.global AnimSprite_EfxSleepOBJ1_08BCBB14
+AnimSprite_EfxSleepOBJ1_08BCBB14:
 	.incbin "baserom.gba", 0xbcbb14, 0x3c
 
-	.global gUnk_08BCBB50
-gUnk_08BCBB50:
+	.global AnimSprite_EfxSleepOBJ1_08BCBB50
+AnimSprite_EfxSleepOBJ1_08BCBB50:
 	.incbin "baserom.gba", 0xbcbb50, 0x48
 
-	.global gUnk_08BCBB98
-gUnk_08BCBB98:
+	.global AnimSprite_EfxSleepOBJ1_08BCBB98
+AnimSprite_EfxSleepOBJ1_08BCBB98:
 	.incbin "baserom.gba", 0xbcbb98, 0x54
 
-	.global gUnk_08BCBBEC
-gUnk_08BCBBEC:
+	.global AnimSprite_EfxSleepOBJ1_08BCBBEC
+AnimSprite_EfxSleepOBJ1_08BCBBEC:
 	.incbin "baserom.gba", 0xbcbbec, 0x60
 
-	.global gUnk_08BCBC4C
-gUnk_08BCBC4C:
+	.global AnimSprite_EfxSleepOBJ1_08BCBC4C
+AnimSprite_EfxSleepOBJ1_08BCBC4C:
 	.incbin "baserom.gba", 0xbcbc4c, 0x6c
 
-	.global gUnk_08BCBCB8
-gUnk_08BCBCB8:
+	.global AnimSprite_EfxSleepOBJ1_08BCBCB8
+AnimSprite_EfxSleepOBJ1_08BCBCB8:
 	.incbin "baserom.gba", 0xbcbcb8, 0x78
 
-	.global gUnk_08BCBD30
-gUnk_08BCBD30:
+	.global AnimSprite_EfxSleepOBJ1_08BCBD30
+AnimSprite_EfxSleepOBJ1_08BCBD30:
 	.incbin "baserom.gba", 0xbcbd30, 0x84
 
-	.global gUnk_08BCBDB4
-gUnk_08BCBDB4:
+	.global AnimSprite_EfxSleepOBJ1_08BCBDB4
+AnimSprite_EfxSleepOBJ1_08BCBDB4:
 	.incbin "baserom.gba", 0xbcbdb4, 0x84
 
-	.global gUnk_08BCBE38
-gUnk_08BCBE38:
+	.global AnimSprite_EfxSleepOBJ1_08BCBE38
+AnimSprite_EfxSleepOBJ1_08BCBE38:
 	.incbin "baserom.gba", 0xbcbe38, 0x6c
 
-	.global gUnk_08BCBEA4
-gUnk_08BCBEA4:
+	.global AnimSprite_EfxSleepOBJ1_08BCBEA4
+AnimSprite_EfxSleepOBJ1_08BCBEA4:
 	.incbin "baserom.gba", 0xbcbea4, 0x60
 
-	.global gUnk_08BCBF04
-gUnk_08BCBF04:
+	.global AnimSprite_EfxSleepOBJ1_08BCBF04
+AnimSprite_EfxSleepOBJ1_08BCBF04:
 	.incbin "baserom.gba", 0xbcbf04, 0x6c
 
-	.global gUnk_08BCBF70
-gUnk_08BCBF70:
+	.global AnimSprite_EfxSleepOBJ1_08BCBF70
+AnimSprite_EfxSleepOBJ1_08BCBF70:
 	.incbin "baserom.gba", 0xbcbf70, 0x48
 
-	.global gUnk_08BCBFB8
-gUnk_08BCBFB8:
+	.global AnimSprite_EfxSleepOBJ1_08BCBFB8
+AnimSprite_EfxSleepOBJ1_08BCBFB8:
 	.incbin "baserom.gba", 0xbcbfb8, 0x3c
 
-	.global gUnk_08BCBFF4
-gUnk_08BCBFF4:
+	.global AnimSprite_EfxSleepOBJ1_08BCBFF4
+AnimSprite_EfxSleepOBJ1_08BCBFF4:
 	.incbin "baserom.gba", 0xbcbff4, 0x30
 
-	.global gUnk_08BCC024
-gUnk_08BCC024:
+	.global AnimSprite_EfxSleepOBJ1_08BCC024
+AnimSprite_EfxSleepOBJ1_08BCC024:
 	.incbin "baserom.gba", 0xbcc024, 0x24
 
-	.global gUnk_08BCC048
-gUnk_08BCC048:
+	.global AnimSprite_EfxSleepOBJ1_08BCC048
+AnimSprite_EfxSleepOBJ1_08BCC048:
 	.incbin "baserom.gba", 0xbcc048, 0x18
 
 	.global AnimScr_EfxSleepOBJ2
 AnimScr_EfxSleepOBJ2:
-	.4byte gUnk_08BC70A4 + 0x3
-	.4byte gUnk_08BC70C8 + 0x3
-	.4byte gUnk_08BC7104 + 0x3
-	.4byte gUnk_08BC7170 + 0x3
-	.4byte gUnk_08BC7200 + 0x3
-	.4byte gUnk_08BC72B4 + 0x3
-	.4byte gUnk_08BC7374 + 0x3
-	.4byte gUnk_08BC744C + 0x3
-	.4byte gUnk_08BC753C + 0x3
-	.4byte gUnk_08BC7644 + 0x3
-	.4byte gUnk_08BC7758 + 0x3
-	.4byte gUnk_08BC7878 + 0x3
-	.4byte gUnk_08BC79A4 + 0x3
-	.4byte gUnk_08BC7AC4 + 0x3
-	.4byte gUnk_08BC7BE4 + 0x3
-	.4byte gUnk_08BC7CBC + 0x3
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC7E24 + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC7EC0 + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC7F5C + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC7FF8 + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC8088 + 0x2
-	.4byte gUnk_08BC8118 + 0x3
-	.4byte gUnk_08BC813C + 0x3
-	.4byte gUnk_08BC8178 + 0x3
-	.4byte gUnk_08BC81E4 + 0x3
-	.4byte gUnk_08BC8274 + 0x3
-	.4byte gUnk_08BC8328 + 0x3
-	.4byte gUnk_08BC83E8 + 0x3
-	.4byte gUnk_08BC84C0 + 0x3
-	.4byte gUnk_08BC85A4 + 0x3
-	.4byte gUnk_08BC86A0 + 0x3
-	.4byte gUnk_08BC87A8 + 0x3
-	.4byte gUnk_08BC88BC + 0x3
-	.4byte gUnk_08BC89D0 + 0x3
-	.4byte gUnk_08BC8AE4 + 0x3
-	.4byte gUnk_08BC8BF8 + 0x3
-	.4byte gUnk_08BC8CD0 + 0x3
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC8D90 + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC8E2C + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC8EC8 + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC8F64 + 0x2
-	.4byte gUnk_08BC7D70 + 0x1
-	.4byte gUnk_08BC8FF4 + 0x2
-	.4byte gUnk_08BC9084 + 0x2
-	.4byte gUnk_08BC90B4 + 0x2
-	.4byte gUnk_08BC90FC + 0x2
-	.4byte gUnk_08BC915C + 0x2
-	.4byte gUnk_08BC91D4 + 0x2
-	.4byte gUnk_08BC9264 + 0x2
-	.4byte gUnk_08BC9300 + 0x2
-	.4byte gUnk_08BC93B4 + 0x2
-	.4byte gUnk_08BC9474 + 0x2
-	.4byte gUnk_08BC9540 + 0x2
-	.4byte gUnk_08BC9618 + 0x2
-	.4byte gUnk_08BC96FC + 0x2
-	.4byte gUnk_08BC97EC + 0x2
-	.4byte gUnk_08BC98E8 + 0x2
-	.4byte gUnk_08BC99F0 + 0x2
-	.4byte gUnk_08BC9B04 + 0x2
-	.4byte gUnk_08BC9C24 + 0x2
-	.4byte gUnk_08BC9D50 + 0x2
-	.4byte gUnk_08BC9E88 + 0x2
-	.4byte gUnk_08BC9FC0 + 0x2
-	.4byte gUnk_08BCA104 + 0x2
-	.4byte gUnk_08BCA248 + 0x2
-	.4byte gUnk_08BCA398 + 0x2
-	.4byte gUnk_08BCA4E8 + 0x2
-	.4byte gUnk_08BCA62C + 0x2
-	.4byte gUnk_08BCA758 + 0x2
-	.4byte gUnk_08BCA878 + 0x2
-	.4byte gUnk_08BCA98C + 0x2
-	.4byte gUnk_08BCAA88 + 0x2
-	.4byte gUnk_08BCAB6C + 0x2
-	.4byte gUnk_08BCAC38 + 0x2
-	.4byte gUnk_08BCACEC + 0x2
-	.4byte gUnk_08BCAD94 + 0x2
-	.4byte gUnk_08BCAE24 + 0x2
-	.4byte gUnk_08BCAEA8 + 0x2
-	.4byte gUnk_08BCAF20 + 0x2
-	.4byte gUnk_08BCAF8C + 0x2
-	.4byte gUnk_08BCAFEC + 0x2
-	.4byte gUnk_08BCB040 + 0x2
-	.4byte gUnk_08BCB088 + 0x2
-	.4byte gUnk_08BCB0C4 + 0x2
-	.4byte gUnk_08BCB0F4 + 0x2
-	.4byte gUnk_08BCB118 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC70A4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC70C8 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7104 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7170 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7200 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC72B4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7374 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC744C + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC753C + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7644 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7758 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7878 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC79A4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7AC4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7BE4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7CBC + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7E24 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7EC0 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7F5C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7FF8 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8088 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8118 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC813C + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8178 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC81E4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8274 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8328 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC83E8 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC84C0 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC85A4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC86A0 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC87A8 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC88BC + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC89D0 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8AE4 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8BF8 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8CD0 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8D90 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8E2C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8EC8 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8F64 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC7D70 + 0x1
+	.4byte AnimSprite_EfxSleepOBJ2_08BC8FF4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9084 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC90B4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC90FC + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC915C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC91D4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9264 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9300 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC93B4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9474 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9540 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9618 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC96FC + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC97EC + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC98E8 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC99F0 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9B04 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9C24 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9D50 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9E88 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BC9FC0 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA104 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA248 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA398 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA4E8 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA62C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA758 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA878 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCA98C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAA88 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAB6C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAC38 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCACEC + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAD94 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAE24 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAEA8 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAF20 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAF8C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCAFEC + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCB040 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCB088 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCB0C4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCB0F4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ2_08BCB118 + 0x2
 	.incbin "baserom.gba", 0xbcc1dc, 0x4
 
 	.global AnimScr_EfxSleepOBJ1
 AnimScr_EfxSleepOBJ1:
-	.4byte gUnk_08BCB130 + 0x3
-	.4byte gUnk_08BCBAE4 + 0x2
-	.4byte gUnk_08BCBB14 + 0x2
-	.4byte gUnk_08BCBB50 + 0x2
-	.4byte gUnk_08BCBB98 + 0x2
-	.4byte gUnk_08BCBBEC + 0x2
-	.4byte gUnk_08BCBC4C + 0x2
-	.4byte gUnk_08BCBCB8 + 0x2
-	.4byte gUnk_08BCBD30 + 0x2
-	.4byte gUnk_08BCBDB4 + 0x2
-	.4byte gUnk_08BCBE38 + 0x2
-	.4byte gUnk_08BCBEA4 + 0x2
-	.4byte gUnk_08BCBF04 + 0x2
-	.4byte gUnk_08BCBF70 + 0x2
-	.4byte gUnk_08BCBFB8 + 0x2
-	.4byte gUnk_08BCBFF4 + 0x2
-	.4byte gUnk_08BCC024 + 0x2
-	.4byte gUnk_08BCC048 + 0x70000003
+	.4byte AnimSprite_EfxSleepOBJ1_08BCB130 + 0x3
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBAE4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBB14 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBB50 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBB98 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBBEC + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBC4C + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBCB8 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBD30 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBDB4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBE38 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBEA4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBF04 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBF70 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBFB8 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCBFF4 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCC024 + 0x2
+	.4byte AnimSprite_EfxSleepOBJ1_08BCC048 + 0x70000003
 	.incbin "baserom.gba", 0xbcc228, 0x8
 
-	.global gUnk_08BCC230
-gUnk_08BCC230:
+	.global AnimSprite_EfxBerserk1_08BCC230
+AnimSprite_EfxBerserk1_08BCC230:
 	.incbin "baserom.gba", 0xbcc230, 0x30
 
-	.global gUnk_08BCC260
-gUnk_08BCC260:
+	.global AnimSprite_EfxBerserk1_08BCC260
+AnimSprite_EfxBerserk1_08BCC260:
 	.incbin "baserom.gba", 0xbcc260, 0x30
 
-	.global gUnk_08BCC290
-gUnk_08BCC290:
+	.global AnimSprite_EfxBerserk1_08BCC290
+AnimSprite_EfxBerserk1_08BCC290:
 	.incbin "baserom.gba", 0xbcc290, 0x54
 
-	.global gUnk_08BCC2E4
-gUnk_08BCC2E4:
+	.global AnimSprite_EfxBerserk1_08BCC2E4
+AnimSprite_EfxBerserk1_08BCC2E4:
 	.incbin "baserom.gba", 0xbcc2e4, 0x60
 
-	.global gUnk_08BCC344
-gUnk_08BCC344:
+	.global AnimSprite_EfxBerserk2_08BCC344
+AnimSprite_EfxBerserk2_08BCC344:
 	.incbin "baserom.gba", 0xbcc344, 0x30
 
-	.global gUnk_08BCC374
-gUnk_08BCC374:
+	.global AnimSprite_EfxBerserk2_08BCC374
+AnimSprite_EfxBerserk2_08BCC374:
 	.incbin "baserom.gba", 0xbcc374, 0x30
 
-	.global gUnk_08BCC3A4
-gUnk_08BCC3A4:
+	.global AnimSprite_EfxBerserk2_08BCC3A4
+AnimSprite_EfxBerserk2_08BCC3A4:
 	.incbin "baserom.gba", 0xbcc3a4, 0x54
 
-	.global gUnk_08BCC3F8
-gUnk_08BCC3F8:
+	.global AnimSprite_EfxBerserk2_08BCC3F8
+AnimSprite_EfxBerserk2_08BCC3F8:
 	.incbin "baserom.gba", 0xbcc3f8, 0x60
 
-	.global gUnk_08BCC458
-gUnk_08BCC458:
+	.global AnimSprite_EfxBerserk3_08BCC458
+AnimSprite_EfxBerserk3_08BCC458:
 	.incbin "baserom.gba", 0xbcc458, 0x30
 
-	.global gUnk_08BCC488
-gUnk_08BCC488:
+	.global AnimSprite_EfxBerserk3_08BCC488
+AnimSprite_EfxBerserk3_08BCC488:
 	.incbin "baserom.gba", 0xbcc488, 0x30
 
-	.global gUnk_08BCC4B8
-gUnk_08BCC4B8:
+	.global AnimSprite_EfxBerserk3_08BCC4B8
+AnimSprite_EfxBerserk3_08BCC4B8:
 	.incbin "baserom.gba", 0xbcc4b8, 0x54
 
-	.global gUnk_08BCC50C
-gUnk_08BCC50C:
+	.global AnimSprite_EfxBerserk3_08BCC50C
+AnimSprite_EfxBerserk3_08BCC50C:
 	.incbin "baserom.gba", 0xbcc50c, 0x60
 
-	.global gUnk_08BCC56C
-gUnk_08BCC56C:
+	.global AnimSprite_EfxBerserk4_08BCC56C
+AnimSprite_EfxBerserk4_08BCC56C:
 	.incbin "baserom.gba", 0xbcc56c, 0x30
 
-	.global gUnk_08BCC59C
-gUnk_08BCC59C:
+	.global AnimSprite_EfxBerserk4_08BCC59C
+AnimSprite_EfxBerserk4_08BCC59C:
 	.incbin "baserom.gba", 0xbcc59c, 0x30
 
-	.global gUnk_08BCC5CC
-gUnk_08BCC5CC:
+	.global AnimSprite_EfxBerserk4_08BCC5CC
+AnimSprite_EfxBerserk4_08BCC5CC:
 	.incbin "baserom.gba", 0xbcc5cc, 0x54
 
-	.global gUnk_08BCC620
-gUnk_08BCC620:
+	.global AnimSprite_EfxBerserk4_08BCC620
+AnimSprite_EfxBerserk4_08BCC620:
 	.incbin "baserom.gba", 0xbcc620, 0x60
 
-	.global gUnk_08BCC680
-gUnk_08BCC680:
+	.global AnimSprite_EfxBerserk5_08BCC680
+AnimSprite_EfxBerserk5_08BCC680:
 	.incbin "baserom.gba", 0xbcc680, 0x30
 
-	.global gUnk_08BCC6B0
-gUnk_08BCC6B0:
+	.global AnimSprite_EfxBerserk5_08BCC6B0
+AnimSprite_EfxBerserk5_08BCC6B0:
 	.incbin "baserom.gba", 0xbcc6b0, 0x30
 
-	.global gUnk_08BCC6E0
-gUnk_08BCC6E0:
+	.global AnimSprite_EfxBerserk5_08BCC6E0
+AnimSprite_EfxBerserk5_08BCC6E0:
 	.incbin "baserom.gba", 0xbcc6e0, 0x54
 
-	.global gUnk_08BCC734
-gUnk_08BCC734:
+	.global AnimSprite_EfxBerserk5_08BCC734
+AnimSprite_EfxBerserk5_08BCC734:
 	.incbin "baserom.gba", 0xbcc734, 0x60
 
 	.global AnimScr_EfxBerserk1
 AnimScr_EfxBerserk1:
-	.4byte gUnk_08BCC230 + 0x2
-	.4byte gUnk_08BCC260 + 0x2
-	.4byte gUnk_08BCC290 + 0x2
-	.4byte gUnk_08BCC2E4 + 0x2
+	.4byte AnimSprite_EfxBerserk1_08BCC230 + 0x2
+	.4byte AnimSprite_EfxBerserk1_08BCC260 + 0x2
+	.4byte AnimSprite_EfxBerserk1_08BCC290 + 0x2
+	.4byte AnimSprite_EfxBerserk1_08BCC2E4 + 0x2
 	.incbin "baserom.gba", 0xbcc7a4, 0x4
 
 	.global AnimScr_EfxBerserk2
 AnimScr_EfxBerserk2:
-	.4byte gUnk_08BCC344 + 0x2
-	.4byte gUnk_08BCC374 + 0x2
-	.4byte gUnk_08BCC3A4 + 0x2
-	.4byte gUnk_08BCC3F8 + 0x2
+	.4byte AnimSprite_EfxBerserk2_08BCC344 + 0x2
+	.4byte AnimSprite_EfxBerserk2_08BCC374 + 0x2
+	.4byte AnimSprite_EfxBerserk2_08BCC3A4 + 0x2
+	.4byte AnimSprite_EfxBerserk2_08BCC3F8 + 0x2
 	.incbin "baserom.gba", 0xbcc7b8, 0x4
 
 	.global AnimScr_EfxBerserk3
 AnimScr_EfxBerserk3:
-	.4byte gUnk_08BCC458 + 0x2
-	.4byte gUnk_08BCC488 + 0x2
-	.4byte gUnk_08BCC4B8 + 0x2
-	.4byte gUnk_08BCC50C + 0x2
+	.4byte AnimSprite_EfxBerserk3_08BCC458 + 0x2
+	.4byte AnimSprite_EfxBerserk3_08BCC488 + 0x2
+	.4byte AnimSprite_EfxBerserk3_08BCC4B8 + 0x2
+	.4byte AnimSprite_EfxBerserk3_08BCC50C + 0x2
 	.incbin "baserom.gba", 0xbcc7cc, 0x4
 
 	.global AnimScr_EfxBerserk4
 AnimScr_EfxBerserk4:
-	.4byte gUnk_08BCC56C + 0x2
-	.4byte gUnk_08BCC59C + 0x2
-	.4byte gUnk_08BCC5CC + 0x2
-	.4byte gUnk_08BCC620 + 0x2
+	.4byte AnimSprite_EfxBerserk4_08BCC56C + 0x2
+	.4byte AnimSprite_EfxBerserk4_08BCC59C + 0x2
+	.4byte AnimSprite_EfxBerserk4_08BCC5CC + 0x2
+	.4byte AnimSprite_EfxBerserk4_08BCC620 + 0x2
 	.incbin "baserom.gba", 0xbcc7e0, 0x4
 
 	.global AnimScr_EfxBerserk5
 AnimScr_EfxBerserk5:
-	.4byte gUnk_08BCC680 + 0x2
-	.4byte gUnk_08BCC6B0 + 0x2
-	.4byte gUnk_08BCC6E0 + 0x2
-	.4byte gUnk_08BCC734 + 0x2
+	.4byte AnimSprite_EfxBerserk5_08BCC680 + 0x2
+	.4byte AnimSprite_EfxBerserk5_08BCC6B0 + 0x2
+	.4byte AnimSprite_EfxBerserk5_08BCC6E0 + 0x2
+	.4byte AnimSprite_EfxBerserk5_08BCC734 + 0x2
 	.incbin "baserom.gba", 0xbcc7f4, 0x4
 
-	.global gUnk_08BCC7F8
-gUnk_08BCC7F8:
+	.global AnimSprite_EfxBerserk6_08BCC7F8
+AnimSprite_EfxBerserk6_08BCC7F8:
 	.incbin "baserom.gba", 0xbcc7f8, 0x54
 
-	.global gUnk_08BCC84C
-gUnk_08BCC84C:
+	.global AnimSprite_EfxBerserk6_08BCC84C
+AnimSprite_EfxBerserk6_08BCC84C:
 	.incbin "baserom.gba", 0xbcc84c, 0x24
 
-	.global gUnk_08BCC870
-gUnk_08BCC870:
+	.global AnimSprite_EfxBerserk7_08BCC870
+AnimSprite_EfxBerserk7_08BCC870:
 	.incbin "baserom.gba", 0xbcc870, 0x54
 
-	.global gUnk_08BCC8C4
-gUnk_08BCC8C4:
+	.global AnimSprite_EfxBerserk7_08BCC8C4
+AnimSprite_EfxBerserk7_08BCC8C4:
 	.incbin "baserom.gba", 0xbcc8c4, 0x24
 
-	.global gUnk_08BCC8E8
-gUnk_08BCC8E8:
+	.global AnimSprite_EfxBerserk8_08BCC8E8
+AnimSprite_EfxBerserk8_08BCC8E8:
 	.incbin "baserom.gba", 0xbcc8e8, 0x54
 
-	.global gUnk_08BCC93C
-gUnk_08BCC93C:
+	.global AnimSprite_EfxBerserk8_08BCC93C
+AnimSprite_EfxBerserk8_08BCC93C:
 	.incbin "baserom.gba", 0xbcc93c, 0x24
 
-	.global gUnk_08BCC960
-gUnk_08BCC960:
+	.global AnimSprite_EfxBerserk9_08BCC960
+AnimSprite_EfxBerserk9_08BCC960:
 	.incbin "baserom.gba", 0xbcc960, 0x54
 
-	.global gUnk_08BCC9B4
-gUnk_08BCC9B4:
+	.global AnimSprite_EfxBerserk9_08BCC9B4
+AnimSprite_EfxBerserk9_08BCC9B4:
 	.incbin "baserom.gba", 0xbcc9b4, 0x24
 
-	.global gUnk_08BCC9D8
-gUnk_08BCC9D8:
+	.global AnimSprite_EfxBerserk10_08BCC9D8
+AnimSprite_EfxBerserk10_08BCC9D8:
 	.incbin "baserom.gba", 0xbcc9d8, 0x54
 
-	.global gUnk_08BCCA2C
-gUnk_08BCCA2C:
+	.global AnimSprite_EfxBerserk10_08BCCA2C
+AnimSprite_EfxBerserk10_08BCCA2C:
 	.incbin "baserom.gba", 0xbcca2c, 0x24
 
-	.global gUnk_08BCCA50
-gUnk_08BCCA50:
+	.global AnimSprite_EfxBerserk10_08BCCA50
+AnimSprite_EfxBerserk10_08BCCA50:
 	.incbin "baserom.gba", 0xbcca50, 0x3c
 
-	.global gUnk_08BCCA8C
-gUnk_08BCCA8C:
+	.global AnimSprite_EfxBerserk10_08BCCA8C
+AnimSprite_EfxBerserk10_08BCCA8C:
 	.incbin "baserom.gba", 0xbcca8c, 0x24
 
-	.global gUnk_08BCCAB0
-gUnk_08BCCAB0:
+	.global AnimSprite_EfxBerserk10_08BCCAB0
+AnimSprite_EfxBerserk10_08BCCAB0:
 	.incbin "baserom.gba", 0xbccab0, 0x24
 
-	.global gUnk_08BCCAD4
-gUnk_08BCCAD4:
+	.global AnimSprite_EfxBerserk10_08BCCAD4
+AnimSprite_EfxBerserk10_08BCCAD4:
 	.incbin "baserom.gba", 0xbccad4, 0x18
 
-	.global gUnk_08BCCAEC
-gUnk_08BCCAEC:
+	.global AnimSprite_EfxBerserk10_08BCCAEC
+AnimSprite_EfxBerserk10_08BCCAEC:
 	.incbin "baserom.gba", 0xbccaec, 0x18
 
-	.global gUnk_08BCCB04
-gUnk_08BCCB04:
+	.global AnimSprite_EfxBerserk10_08BCCB04
+AnimSprite_EfxBerserk10_08BCCB04:
 	.incbin "baserom.gba", 0xbccb04, 0x18
 
-	.global gUnk_08BCCB1C
-gUnk_08BCCB1C:
+	.global AnimSprite_EfxBerserk10_08BCCB1C
+AnimSprite_EfxBerserk10_08BCCB1C:
 	.incbin "baserom.gba", 0xbccb1c, 0x3c
 
 	.global AnimScr_EfxBerserk6
 AnimScr_EfxBerserk6:
-	.4byte gUnk_08BCC7F8 + 0x2
-	.4byte gUnk_08BCC84C + 0x2
+	.4byte AnimSprite_EfxBerserk6_08BCC7F8 + 0x2
+	.4byte AnimSprite_EfxBerserk6_08BCC84C + 0x2
 	.incbin "baserom.gba", 0xbccb60, 0x4
 
 	.global AnimScr_EfxBerserk7
 AnimScr_EfxBerserk7:
-	.4byte gUnk_08BCC870 + 0x2
-	.4byte gUnk_08BCC8C4 + 0x2
+	.4byte AnimSprite_EfxBerserk7_08BCC870 + 0x2
+	.4byte AnimSprite_EfxBerserk7_08BCC8C4 + 0x2
 	.incbin "baserom.gba", 0xbccb6c, 0x4
 
 	.global AnimScr_EfxBerserk8
 AnimScr_EfxBerserk8:
-	.4byte gUnk_08BCC8E8 + 0x2
-	.4byte gUnk_08BCC93C + 0x2
+	.4byte AnimSprite_EfxBerserk8_08BCC8E8 + 0x2
+	.4byte AnimSprite_EfxBerserk8_08BCC93C + 0x2
 	.incbin "baserom.gba", 0xbccb78, 0x4
 
 	.global AnimScr_EfxBerserk9
 AnimScr_EfxBerserk9:
-	.4byte gUnk_08BCC960 + 0x2
-	.4byte gUnk_08BCC9B4 + 0x2
+	.4byte AnimSprite_EfxBerserk9_08BCC960 + 0x2
+	.4byte AnimSprite_EfxBerserk9_08BCC9B4 + 0x2
 	.incbin "baserom.gba", 0xbccb84, 0x4
 
 	.global AnimScr_EfxBerserk10
 AnimScr_EfxBerserk10:
-	.4byte gUnk_08BCC9D8 + 0x2
-	.4byte gUnk_08BCCA2C + 0x2
-	.4byte gUnk_08BCCA50 + 0x2
-	.4byte gUnk_08BCCA8C + 0x2
-	.4byte gUnk_08BCCAB0 + 0x2
-	.4byte gUnk_08BCCAD4 + 0x2
-	.4byte gUnk_08BCCAEC + 0x2
-	.4byte gUnk_08BCCB04 + 0x2
-	.4byte gUnk_08BCCB1C + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCC9D8 + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCA2C + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCA50 + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCA8C + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCAB0 + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCAD4 + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCAEC + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCB04 + 0x2
+	.4byte AnimSprite_EfxBerserk10_08BCCB1C + 0x2
 	.incbin "baserom.gba", 0xbccbac, 0x4
 
-	.global gUnk_08BCCBB0
-gUnk_08BCCBB0:
+	.global AnimSprite_EfxMshield1_08BCCBB0
+AnimSprite_EfxMshield1_08BCCBB0:
 	.incbin "baserom.gba", 0xbccbb0, 0x18
 
-	.global gUnk_08BCCBC8
-gUnk_08BCCBC8:
+	.global AnimSprite_EfxMshield1_08BCCBC8
+AnimSprite_EfxMshield1_08BCCBC8:
 	.incbin "baserom.gba", 0xbccbc8, 0x24
 
-	.global gUnk_08BCCBEC
-gUnk_08BCCBEC:
+	.global AnimSprite_EfxMshield1_08BCCBEC
+AnimSprite_EfxMshield1_08BCCBEC:
 	.incbin "baserom.gba", 0xbccbec, 0x30
 
-	.global gUnk_08BCCC1C
-gUnk_08BCCC1C:
+	.global AnimSprite_EfxMshield1_08BCCC1C
+AnimSprite_EfxMshield1_08BCCC1C:
 	.incbin "baserom.gba", 0xbccc1c, 0x3c
 
-	.global gUnk_08BCCC58
-gUnk_08BCCC58:
+	.global AnimSprite_EfxMshield1_08BCCC58
+AnimSprite_EfxMshield1_08BCCC58:
 	.incbin "baserom.gba", 0xbccc58, 0x48
 
-	.global gUnk_08BCCCA0
-gUnk_08BCCCA0:
+	.global AnimSprite_EfxMshield1_08BCCCA0
+AnimSprite_EfxMshield1_08BCCCA0:
 	.incbin "baserom.gba", 0xbccca0, 0x54
 
-	.global gUnk_08BCCCF4
-gUnk_08BCCCF4:
+	.global AnimSprite_EfxMshield1_08BCCCF4
+AnimSprite_EfxMshield1_08BCCCF4:
 	.incbin "baserom.gba", 0xbcccf4, 0x60
 
-	.global gUnk_08BCCD54
-gUnk_08BCCD54:
+	.global AnimSprite_EfxMshield1_08BCCD54
+AnimSprite_EfxMshield1_08BCCD54:
 	.incbin "baserom.gba", 0xbccd54, 0x6c
 
-	.global gUnk_08BCCDC0
-gUnk_08BCCDC0:
+	.global AnimSprite_EfxMshield1_08BCCDC0
+AnimSprite_EfxMshield1_08BCCDC0:
 	.incbin "baserom.gba", 0xbccdc0, 0x78
 
-	.global gUnk_08BCCE38
-gUnk_08BCCE38:
+	.global AnimSprite_EfxMshield1_08BCCE38
+AnimSprite_EfxMshield1_08BCCE38:
 	.incbin "baserom.gba", 0xbcce38, 0x84
 
-	.global gUnk_08BCCEBC
-gUnk_08BCCEBC:
+	.global AnimSprite_EfxMshield1_08BCCEBC
+AnimSprite_EfxMshield1_08BCCEBC:
 	.incbin "baserom.gba", 0xbccebc, 0x90
 
-	.global gUnk_08BCCF4C
-gUnk_08BCCF4C:
+	.global AnimSprite_EfxMshield1_08BCCF4C
+AnimSprite_EfxMshield1_08BCCF4C:
 	.incbin "baserom.gba", 0xbccf4c, 0x9c
 
-	.global gUnk_08BCCFE8
-gUnk_08BCCFE8:
+	.global AnimSprite_EfxMshield1_08BCCFE8
+AnimSprite_EfxMshield1_08BCCFE8:
 	.incbin "baserom.gba", 0xbccfe8, 0xa8
 
-	.global gUnk_08BCD090
-gUnk_08BCD090:
+	.global AnimSprite_EfxMshield1_08BCD090
+AnimSprite_EfxMshield1_08BCD090:
 	.incbin "baserom.gba", 0xbcd090, 0xb4
 
-	.global gUnk_08BCD144
-gUnk_08BCD144:
+	.global AnimSprite_EfxMshield1_08BCD144
+AnimSprite_EfxMshield1_08BCD144:
 	.incbin "baserom.gba", 0xbcd144, 0xb4
 
-	.global gUnk_08BCD1F8
-gUnk_08BCD1F8:
+	.global AnimSprite_EfxMshield1_08BCD1F8
+AnimSprite_EfxMshield1_08BCD1F8:
 	.incbin "baserom.gba", 0xbcd1f8, 0xb4
 
-	.global gUnk_08BCD2AC
-gUnk_08BCD2AC:
+	.global AnimSprite_EfxMshield1_08BCD2AC
+AnimSprite_EfxMshield1_08BCD2AC:
 	.incbin "baserom.gba", 0xbcd2ac, 0xb4
 
-	.global gUnk_08BCD360
-gUnk_08BCD360:
+	.global AnimSprite_EfxMshield1_08BCD360
+AnimSprite_EfxMshield1_08BCD360:
 	.incbin "baserom.gba", 0xbcd360, 0xb4
 
-	.global gUnk_08BCD414
-gUnk_08BCD414:
+	.global AnimSprite_EfxMshield1_08BCD414
+AnimSprite_EfxMshield1_08BCD414:
 	.incbin "baserom.gba", 0xbcd414, 0xb4
 
-	.global gUnk_08BCD4C8
-gUnk_08BCD4C8:
+	.global AnimSprite_EfxMshield1_08BCD4C8
+AnimSprite_EfxMshield1_08BCD4C8:
 	.incbin "baserom.gba", 0xbcd4c8, 0xb4
 
-	.global gUnk_08BCD57C
-gUnk_08BCD57C:
+	.global AnimSprite_EfxMshield1_08BCD57C
+AnimSprite_EfxMshield1_08BCD57C:
 	.incbin "baserom.gba", 0xbcd57c, 0xb4
 
-	.global gUnk_08BCD630
-gUnk_08BCD630:
+	.global AnimSprite_EfxMshield1_08BCD630
+AnimSprite_EfxMshield1_08BCD630:
 	.incbin "baserom.gba", 0xbcd630, 0xb4
 
-	.global gUnk_08BCD6E4
-gUnk_08BCD6E4:
+	.global AnimSprite_EfxMshield1_08BCD6E4
+AnimSprite_EfxMshield1_08BCD6E4:
 	.incbin "baserom.gba", 0xbcd6e4, 0xb4
 
-	.global gUnk_08BCD798
-gUnk_08BCD798:
+	.global AnimSprite_EfxMshield1_08BCD798
+AnimSprite_EfxMshield1_08BCD798:
 	.incbin "baserom.gba", 0xbcd798, 0xb4
 
-	.global gUnk_08BCD84C
-gUnk_08BCD84C:
+	.global AnimSprite_EfxMshield1_08BCD84C
+AnimSprite_EfxMshield1_08BCD84C:
 	.incbin "baserom.gba", 0xbcd84c, 0xb4
 
-	.global gUnk_08BCD900
-gUnk_08BCD900:
+	.global AnimSprite_EfxMshield1_08BCD900
+AnimSprite_EfxMshield1_08BCD900:
 	.incbin "baserom.gba", 0xbcd900, 0xb4
 
-	.global gUnk_08BCD9B4
-gUnk_08BCD9B4:
+	.global AnimSprite_EfxMshield1_08BCD9B4
+AnimSprite_EfxMshield1_08BCD9B4:
 	.incbin "baserom.gba", 0xbcd9b4, 0xb4
 
-	.global gUnk_08BCDA68
-gUnk_08BCDA68:
+	.global AnimSprite_EfxMshield1_08BCDA68
+AnimSprite_EfxMshield1_08BCDA68:
 	.incbin "baserom.gba", 0xbcda68, 0xb4
 
-	.global gUnk_08BCDB1C
-gUnk_08BCDB1C:
+	.global AnimSprite_EfxMshield1_08BCDB1C
+AnimSprite_EfxMshield1_08BCDB1C:
 	.incbin "baserom.gba", 0xbcdb1c, 0xb4
 
-	.global gUnk_08BCDBD0
-gUnk_08BCDBD0:
+	.global AnimSprite_EfxMshield1_08BCDBD0
+AnimSprite_EfxMshield1_08BCDBD0:
 	.incbin "baserom.gba", 0xbcdbd0, 0xb4
 
-	.global gUnk_08BCDC84
-gUnk_08BCDC84:
+	.global AnimSprite_EfxMshield1_08BCDC84
+AnimSprite_EfxMshield1_08BCDC84:
 	.incbin "baserom.gba", 0xbcdc84, 0xb4
 
-	.global gUnk_08BCDD38
-gUnk_08BCDD38:
+	.global AnimSprite_EfxMshield1_08BCDD38
+AnimSprite_EfxMshield1_08BCDD38:
 	.incbin "baserom.gba", 0xbcdd38, 0xa8
 
-	.global gUnk_08BCDDE0
-gUnk_08BCDDE0:
+	.global AnimSprite_EfxMshield1_08BCDDE0
+AnimSprite_EfxMshield1_08BCDDE0:
 	.incbin "baserom.gba", 0xbcdde0, 0x9c
 
-	.global gUnk_08BCDE7C
-gUnk_08BCDE7C:
+	.global AnimSprite_EfxMshield1_08BCDE7C
+AnimSprite_EfxMshield1_08BCDE7C:
 	.incbin "baserom.gba", 0xbcde7c, 0x90
 
-	.global gUnk_08BCDF0C
-gUnk_08BCDF0C:
+	.global AnimSprite_EfxMshield1_08BCDF0C
+AnimSprite_EfxMshield1_08BCDF0C:
 	.incbin "baserom.gba", 0xbcdf0c, 0x84
 
-	.global gUnk_08BCDF90
-gUnk_08BCDF90:
+	.global AnimSprite_EfxMshield1_08BCDF90
+AnimSprite_EfxMshield1_08BCDF90:
 	.incbin "baserom.gba", 0xbcdf90, 0x78
 
-	.global gUnk_08BCE008
-gUnk_08BCE008:
+	.global AnimSprite_EfxMshield1_08BCE008
+AnimSprite_EfxMshield1_08BCE008:
 	.incbin "baserom.gba", 0xbce008, 0x6c
 
-	.global gUnk_08BCE074
-gUnk_08BCE074:
+	.global AnimSprite_EfxMshield1_08BCE074
+AnimSprite_EfxMshield1_08BCE074:
 	.incbin "baserom.gba", 0xbce074, 0x6c
 
-	.global gUnk_08BCE0E0
-gUnk_08BCE0E0:
+	.global AnimSprite_EfxMshield1_08BCE0E0
+AnimSprite_EfxMshield1_08BCE0E0:
 	.incbin "baserom.gba", 0xbce0e0, 0x78
 
-	.global gUnk_08BCE158
-gUnk_08BCE158:
+	.global AnimSprite_EfxMshield1_08BCE158
+AnimSprite_EfxMshield1_08BCE158:
 	.incbin "baserom.gba", 0xbce158, 0x84
 
-	.global gUnk_08BCE1DC
-gUnk_08BCE1DC:
+	.global AnimSprite_EfxMshield1_08BCE1DC
+AnimSprite_EfxMshield1_08BCE1DC:
 	.incbin "baserom.gba", 0xbce1dc, 0x90
 
-	.global gUnk_08BCE26C
-gUnk_08BCE26C:
+	.global AnimSprite_EfxMshield1_08BCE26C
+AnimSprite_EfxMshield1_08BCE26C:
 	.incbin "baserom.gba", 0xbce26c, 0x9c
 
-	.global gUnk_08BCE308
-gUnk_08BCE308:
+	.global AnimSprite_EfxMshield1_08BCE308
+AnimSprite_EfxMshield1_08BCE308:
 	.incbin "baserom.gba", 0xbce308, 0xa8
 
-	.global gUnk_08BCE3B0
-gUnk_08BCE3B0:
+	.global AnimSprite_EfxMshield1_08BCE3B0
+AnimSprite_EfxMshield1_08BCE3B0:
 	.incbin "baserom.gba", 0xbce3b0, 0x228
 
-	.global gUnk_08BCE5D8
-gUnk_08BCE5D8:
+	.global AnimSprite_EfxMshield1_08BCE5D8
+AnimSprite_EfxMshield1_08BCE5D8:
 	.incbin "baserom.gba", 0xbce5d8, 0xb4
 
-	.global gUnk_08BCE68C
-gUnk_08BCE68C:
+	.global AnimSprite_EfxMshield1_08BCE68C
+AnimSprite_EfxMshield1_08BCE68C:
 	.incbin "baserom.gba", 0xbce68c, 0xcc
 
-	.global gUnk_08BCE758
-gUnk_08BCE758:
+	.global AnimSprite_EfxMshield1_08BCE758
+AnimSprite_EfxMshield1_08BCE758:
 	.incbin "baserom.gba", 0xbce758, 0xcc
 
-	.global gUnk_08BCE824
-gUnk_08BCE824:
+	.global AnimSprite_EfxMshield1_08BCE824
+AnimSprite_EfxMshield1_08BCE824:
 	.incbin "baserom.gba", 0xbce824, 0x18
 
-	.global gUnk_08BCE83C
-gUnk_08BCE83C:
+	.global AnimSprite_EfxMshield1_08BCE83C
+AnimSprite_EfxMshield1_08BCE83C:
 	.incbin "baserom.gba", 0xbce83c, 0xd8
 
-	.global gUnk_08BCE914
-gUnk_08BCE914:
+	.global AnimSprite_EfxMshield1_08BCE914
+AnimSprite_EfxMshield1_08BCE914:
 	.incbin "baserom.gba", 0xbce914, 0xe4
 
-	.global gUnk_08BCE9F8
-gUnk_08BCE9F8:
+	.global AnimSprite_EfxMshield1_08BCE9F8
+AnimSprite_EfxMshield1_08BCE9F8:
 	.incbin "baserom.gba", 0xbce9f8, 0xf0
 
-	.global gUnk_08BCEAE8
-gUnk_08BCEAE8:
+	.global AnimSprite_EfxMshield1_08BCEAE8
+AnimSprite_EfxMshield1_08BCEAE8:
 	.incbin "baserom.gba", 0xbceae8, 0xfc
 
-	.global gUnk_08BCEBE4
-gUnk_08BCEBE4:
+	.global AnimSprite_EfxMshield1_08BCEBE4
+AnimSprite_EfxMshield1_08BCEBE4:
 	.incbin "baserom.gba", 0xbcebe4, 0x108
 
-	.global gUnk_08BCECEC
-gUnk_08BCECEC:
+	.global AnimSprite_EfxMshield1_08BCECEC
+AnimSprite_EfxMshield1_08BCECEC:
 	.incbin "baserom.gba", 0xbcecec, 0x114
 
-	.global gUnk_08BCEE00
-gUnk_08BCEE00:
+	.global AnimSprite_EfxMshield1_08BCEE00
+AnimSprite_EfxMshield1_08BCEE00:
 	.incbin "baserom.gba", 0xbcee00, 0x120
 
-	.global gUnk_08BCEF20
-gUnk_08BCEF20:
+	.global AnimSprite_EfxMshield1_08BCEF20
+AnimSprite_EfxMshield1_08BCEF20:
 	.incbin "baserom.gba", 0xbcef20, 0x12c
 
-	.global gUnk_08BCF04C
-gUnk_08BCF04C:
+	.global AnimSprite_EfxMshield1_08BCF04C
+AnimSprite_EfxMshield1_08BCF04C:
 	.incbin "baserom.gba", 0xbcf04c, 0x138
 
-	.global gUnk_08BCF184
-gUnk_08BCF184:
+	.global AnimSprite_EfxMshield1_08BCF184
+AnimSprite_EfxMshield1_08BCF184:
 	.incbin "baserom.gba", 0xbcf184, 0x138
 
-	.global gUnk_08BCF2BC
-gUnk_08BCF2BC:
+	.global AnimSprite_EfxMshield1_08BCF2BC
+AnimSprite_EfxMshield1_08BCF2BC:
 	.incbin "baserom.gba", 0xbcf2bc, 0x144
 
-	.global gUnk_08BCF400
-gUnk_08BCF400:
+	.global AnimSprite_EfxMshield1_08BCF400
+AnimSprite_EfxMshield1_08BCF400:
 	.incbin "baserom.gba", 0xbcf400, 0x144
 
-	.global gUnk_08BCF544
-gUnk_08BCF544:
+	.global AnimSprite_EfxMshield1_08BCF544
+AnimSprite_EfxMshield1_08BCF544:
 	.incbin "baserom.gba", 0xbcf544, 0x150
 
-	.global gUnk_08BCF694
-gUnk_08BCF694:
+	.global AnimSprite_EfxMshield1_08BCF694
+AnimSprite_EfxMshield1_08BCF694:
 	.incbin "baserom.gba", 0xbcf694, 0x150
 
-	.global gUnk_08BCF7E4
-gUnk_08BCF7E4:
+	.global AnimSprite_EfxMshield1_08BCF7E4
+AnimSprite_EfxMshield1_08BCF7E4:
 	.incbin "baserom.gba", 0xbcf7e4, 0x144
 
-	.global gUnk_08BCF928
-gUnk_08BCF928:
+	.global AnimSprite_EfxMshield1_08BCF928
+AnimSprite_EfxMshield1_08BCF928:
 	.incbin "baserom.gba", 0xbcf928, 0x12c
 
-	.global gUnk_08BCFA54
-gUnk_08BCFA54:
+	.global AnimSprite_EfxMshield1_08BCFA54
+AnimSprite_EfxMshield1_08BCFA54:
 	.incbin "baserom.gba", 0xbcfa54, 0x120
 
-	.global gUnk_08BCFB74
-gUnk_08BCFB74:
+	.global AnimSprite_EfxMshield1_08BCFB74
+AnimSprite_EfxMshield1_08BCFB74:
 	.incbin "baserom.gba", 0xbcfb74, 0x114
 
-	.global gUnk_08BCFC88
-gUnk_08BCFC88:
+	.global AnimSprite_EfxMshield1_08BCFC88
+AnimSprite_EfxMshield1_08BCFC88:
 	.incbin "baserom.gba", 0xbcfc88, 0xfc
 
-	.global gUnk_08BCFD84
-gUnk_08BCFD84:
+	.global AnimSprite_EfxMshield1_08BCFD84
+AnimSprite_EfxMshield1_08BCFD84:
 	.incbin "baserom.gba", 0xbcfd84, 0xe4
 
-	.global gUnk_08BCFE68
-gUnk_08BCFE68:
+	.global AnimSprite_EfxMshield1_08BCFE68
+AnimSprite_EfxMshield1_08BCFE68:
 	.incbin "baserom.gba", 0xbcfe68, 0xcc
 
-	.global gUnk_08BCFF34
-gUnk_08BCFF34:
+	.global AnimSprite_EfxMshield1_08BCFF34
+AnimSprite_EfxMshield1_08BCFF34:
 	.incbin "baserom.gba", 0xbcff34, 0xb4
 
-	.global gUnk_08BCFFE8
-gUnk_08BCFFE8:
+	.global AnimSprite_EfxMshield1_08BCFFE8
+AnimSprite_EfxMshield1_08BCFFE8:
 	.incbin "baserom.gba", 0xbcffe8, 0xa8
 
-	.global gUnk_08BD0090
-gUnk_08BD0090:
+	.global AnimSprite_EfxMshield1_08BD0090
+AnimSprite_EfxMshield1_08BD0090:
 	.incbin "baserom.gba", 0xbd0090, 0x90
 
-	.global gUnk_08BD0120
-gUnk_08BD0120:
+	.global AnimSprite_EfxMshield1_08BD0120
+AnimSprite_EfxMshield1_08BD0120:
 	.incbin "baserom.gba", 0xbd0120, 0x84
 
-	.global gUnk_08BD01A4
-gUnk_08BD01A4:
+	.global AnimSprite_EfxMshield1_08BD01A4
+AnimSprite_EfxMshield1_08BD01A4:
 	.incbin "baserom.gba", 0xbd01a4, 0x78
 
-	.global gUnk_08BD021C
-gUnk_08BD021C:
+	.global AnimSprite_EfxMshield1_08BD021C
+AnimSprite_EfxMshield1_08BD021C:
 	.incbin "baserom.gba", 0xbd021c, 0x6c
 
-	.global gUnk_08BD0288
-gUnk_08BD0288:
+	.global AnimSprite_EfxMshield1_08BD0288
+AnimSprite_EfxMshield1_08BD0288:
 	.incbin "baserom.gba", 0xbd0288, 0x60
 
-	.global gUnk_08BD02E8
-gUnk_08BD02E8:
+	.global AnimSprite_EfxMshield1_08BD02E8
+AnimSprite_EfxMshield1_08BD02E8:
 	.incbin "baserom.gba", 0xbd02e8, 0x54
 
-	.global gUnk_08BD033C
-gUnk_08BD033C:
+	.global AnimSprite_EfxMshield1_08BD033C
+AnimSprite_EfxMshield1_08BD033C:
 	.incbin "baserom.gba", 0xbd033c, 0x48
 
-	.global gUnk_08BD0384
-gUnk_08BD0384:
+	.global AnimSprite_EfxMshield1_08BD0384
+AnimSprite_EfxMshield1_08BD0384:
 	.incbin "baserom.gba", 0xbd0384, 0x3c
 
-	.global gUnk_08BD03C0
-gUnk_08BD03C0:
+	.global AnimSprite_EfxMshield1_08BD03C0
+AnimSprite_EfxMshield1_08BD03C0:
 	.incbin "baserom.gba", 0xbd03c0, 0x30
 
-	.global gUnk_08BD03F0
-gUnk_08BD03F0:
+	.global AnimSprite_EfxMshield1_08BD03F0
+AnimSprite_EfxMshield1_08BD03F0:
 	.incbin "baserom.gba", 0xbd03f0, 0x24
 
-	.global gUnk_08BD0414
-gUnk_08BD0414:
+	.global AnimSprite_EfxMshield1_08BD0414
+AnimSprite_EfxMshield1_08BD0414:
 	.incbin "baserom.gba", 0xbd0414, 0x18
 
-	.global gUnk_08BD042C
-gUnk_08BD042C:
+	.global AnimSprite_EfxMshield2_08BD042C
+AnimSprite_EfxMshield2_08BD042C:
 	.incbin "baserom.gba", 0xbd042c, 0x54
 
-	.global gUnk_08BD0480
-gUnk_08BD0480:
+	.global AnimSprite_EfxMshield2_08BD0480
+AnimSprite_EfxMshield2_08BD0480:
 	.incbin "baserom.gba", 0xbd0480, 0x54
 
-	.global gUnk_08BD04D4
-gUnk_08BD04D4:
+	.global AnimSprite_EfxMshield2_08BD04D4
+AnimSprite_EfxMshield2_08BD04D4:
 	.incbin "baserom.gba", 0xbd04d4, 0x54
 
-	.global gUnk_08BD0528
-gUnk_08BD0528:
+	.global AnimSprite_EfxMshield2_08BD0528
+AnimSprite_EfxMshield2_08BD0528:
 	.incbin "baserom.gba", 0xbd0528, 0x54
 
-	.global gUnk_08BD057C
-gUnk_08BD057C:
+	.global AnimSprite_EfxMshield2_08BD057C
+AnimSprite_EfxMshield2_08BD057C:
 	.incbin "baserom.gba", 0xbd057c, 0x54
 
-	.global gUnk_08BD05D0
-gUnk_08BD05D0:
+	.global AnimSprite_EfxMshield2_08BD05D0
+AnimSprite_EfxMshield2_08BD05D0:
 	.incbin "baserom.gba", 0xbd05d0, 0x54
 
-	.global gUnk_08BD0624
-gUnk_08BD0624:
+	.global AnimSprite_EfxMshield2_08BD0624
+AnimSprite_EfxMshield2_08BD0624:
 	.incbin "baserom.gba", 0xbd0624, 0x54
 
-	.global gUnk_08BD0678
-gUnk_08BD0678:
+	.global AnimSprite_EfxMshield2_08BD0678
+AnimSprite_EfxMshield2_08BD0678:
 	.incbin "baserom.gba", 0xbd0678, 0x6c
 
-	.global gUnk_08BD06E4
-gUnk_08BD06E4:
+	.global AnimSprite_EfxMshield2_08BD06E4
+AnimSprite_EfxMshield2_08BD06E4:
 	.incbin "baserom.gba", 0xbd06e4, 0x6c
 
-	.global gUnk_08BD0750
-gUnk_08BD0750:
+	.global AnimSprite_EfxMshield2_08BD0750
+AnimSprite_EfxMshield2_08BD0750:
 	.incbin "baserom.gba", 0xbd0750, 0x6c
 
-	.global gUnk_08BD07BC
-gUnk_08BD07BC:
+	.global AnimSprite_EfxMshield2_08BD07BC
+AnimSprite_EfxMshield2_08BD07BC:
 	.incbin "baserom.gba", 0xbd07bc, 0x6c
 
-	.global gUnk_08BD0828
-gUnk_08BD0828:
+	.global AnimSprite_EfxMshield2_08BD0828
+AnimSprite_EfxMshield2_08BD0828:
 	.incbin "baserom.gba", 0xbd0828, 0x6c
 
-	.global gUnk_08BD0894
-gUnk_08BD0894:
+	.global AnimSprite_EfxMshield2_08BD0894
+AnimSprite_EfxMshield2_08BD0894:
 	.incbin "baserom.gba", 0xbd0894, 0x6c
 
-	.global gUnk_08BD0900
-gUnk_08BD0900:
+	.global AnimSprite_EfxMshield2_08BD0900
+AnimSprite_EfxMshield2_08BD0900:
 	.incbin "baserom.gba", 0xbd0900, 0x6c
 
-	.global gUnk_08BD096C
-gUnk_08BD096C:
+	.global AnimSprite_EfxMshield2_08BD096C
+AnimSprite_EfxMshield2_08BD096C:
 	.incbin "baserom.gba", 0xbd096c, 0x6c
 
-	.global gUnk_08BD09D8
-gUnk_08BD09D8:
+	.global AnimSprite_EfxMshield2_08BD09D8
+AnimSprite_EfxMshield2_08BD09D8:
 	.incbin "baserom.gba", 0xbd09d8, 0x6c
 
-	.global gUnk_08BD0A44
-gUnk_08BD0A44:
+	.global AnimSprite_EfxMshield2_08BD0A44
+AnimSprite_EfxMshield2_08BD0A44:
 	.incbin "baserom.gba", 0xbd0a44, 0x60
 
-	.global gUnk_08BD0AA4
-gUnk_08BD0AA4:
+	.global AnimSprite_EfxMshield2_08BD0AA4
+AnimSprite_EfxMshield2_08BD0AA4:
 	.incbin "baserom.gba", 0xbd0aa4, 0x54
 
-	.global gUnk_08BD0AF8
-gUnk_08BD0AF8:
+	.global AnimSprite_EfxMshield2_08BD0AF8
+AnimSprite_EfxMshield2_08BD0AF8:
 	.incbin "baserom.gba", 0xbd0af8, 0x54
 
-	.global gUnk_08BD0B4C
-gUnk_08BD0B4C:
+	.global AnimSprite_EfxMshield2_08BD0B4C
+AnimSprite_EfxMshield2_08BD0B4C:
 	.incbin "baserom.gba", 0xbd0b4c, 0x48
 
-	.global gUnk_08BD0B94
-gUnk_08BD0B94:
+	.global AnimSprite_EfxMshield2_08BD0B94
+AnimSprite_EfxMshield2_08BD0B94:
 	.incbin "baserom.gba", 0xbd0b94, 0x3c
 
-	.global gUnk_08BD0BD0
-gUnk_08BD0BD0:
+	.global AnimSprite_EfxMshield2_08BD0BD0
+AnimSprite_EfxMshield2_08BD0BD0:
 	.incbin "baserom.gba", 0xbd0bd0, 0x3c
 
-	.global gUnk_08BD0C0C
-gUnk_08BD0C0C:
+	.global AnimSprite_EfxMshield2_08BD0C0C
+AnimSprite_EfxMshield2_08BD0C0C:
 	.incbin "baserom.gba", 0xbd0c0c, 0x24
 
-	.global gUnk_08BD0C30
-gUnk_08BD0C30:
+	.global AnimSprite_EfxMshield2_08BD0C30
+AnimSprite_EfxMshield2_08BD0C30:
 	.incbin "baserom.gba", 0xbd0c30, 0x18
 
 	.global AnimScr_EfxMshield1
 AnimScr_EfxMshield1:
-	.4byte gUnk_08BCCBB0 + 0x3
-	.4byte gUnk_08BCCBC8 + 0x3
-	.4byte gUnk_08BCCBEC + 0x3
-	.4byte gUnk_08BCCC1C + 0x3
-	.4byte gUnk_08BCCC58 + 0x3
-	.4byte gUnk_08BCCCA0 + 0x3
-	.4byte gUnk_08BCCCF4 + 0x3
-	.4byte gUnk_08BCCD54 + 0x3
-	.4byte gUnk_08BCCDC0 + 0x3
-	.4byte gUnk_08BCCE38 + 0x3
-	.4byte gUnk_08BCCEBC + 0x3
-	.4byte gUnk_08BCCF4C + 0x3
-	.4byte gUnk_08BCCFE8 + 0x3
-	.4byte gUnk_08BCD090 + 0x3
-	.4byte gUnk_08BCD144 + 0x3
-	.4byte gUnk_08BCD1F8 + 0x3
-	.4byte gUnk_08BCD2AC + 0x3
-	.4byte gUnk_08BCD360 + 0x3
-	.4byte gUnk_08BCD414 + 0x3
-	.4byte gUnk_08BCD4C8 + 0x3
-	.4byte gUnk_08BCD57C + 0x3
-	.4byte gUnk_08BCD630 + 0x3
-	.4byte gUnk_08BCD6E4 + 0x3
-	.4byte gUnk_08BCD798 + 0x3
-	.4byte gUnk_08BCD84C + 0x3
-	.4byte gUnk_08BCD900 + 0x3
-	.4byte gUnk_08BCD9B4 + 0x3
-	.4byte gUnk_08BCDA68 + 0x3
-	.4byte gUnk_08BCDB1C + 0x3
-	.4byte gUnk_08BCDBD0 + 0x3
-	.4byte gUnk_08BCDC84 + 0x3
-	.4byte gUnk_08BCDD38 + 0x3
-	.4byte gUnk_08BCDDE0 + 0x3
-	.4byte gUnk_08BCDE7C + 0x3
-	.4byte gUnk_08BCDF0C + 0x3
-	.4byte gUnk_08BCDF90 + 0x3
-	.4byte gUnk_08BCE008 + 0x3
-	.4byte gUnk_08BCE074 + 0x3
-	.4byte gUnk_08BCE0E0 + 0x3
-	.4byte gUnk_08BCE158 + 0x3
-	.4byte gUnk_08BCE1DC + 0x3
-	.4byte gUnk_08BCE26C + 0x3
-	.4byte gUnk_08BCE308 + 0x3
-	.4byte gUnk_08BCE3B0 + 0x3
-	.4byte gUnk_08BCE5D8 + 0x3
-	.4byte gUnk_08BCE68C + 0x3
-	.4byte gUnk_08BCE758 + 0x3
-	.4byte gUnk_08BCE83C + 0x3
-	.4byte gUnk_08BCE914 + 0x3
-	.4byte gUnk_08BCE9F8 + 0x3
-	.4byte gUnk_08BCEAE8 + 0x3
-	.4byte gUnk_08BCEBE4 + 0x3
-	.4byte gUnk_08BCECEC + 0x3
-	.4byte gUnk_08BCEE00 + 0x3
-	.4byte gUnk_08BCEF20 + 0x3
-	.4byte gUnk_08BCF04C + 0x3
-	.4byte gUnk_08BCF184 + 0x3
-	.4byte gUnk_08BCF2BC + 0x3
-	.4byte gUnk_08BCF400 + 0x3
-	.4byte gUnk_08BCF544 + 0x3
-	.4byte gUnk_08BCF694 + 0x3
-	.4byte gUnk_08BCF7E4 + 0x3
-	.4byte gUnk_08BCF928 + 0x3
-	.4byte gUnk_08BCFA54 + 0x3
-	.4byte gUnk_08BCFB74 + 0x3
-	.4byte gUnk_08BCFC88 + 0x3
-	.4byte gUnk_08BCFD84 + 0x3
-	.4byte gUnk_08BCFE68 + 0x3
-	.4byte gUnk_08BCFF34 + 0x3
-	.4byte gUnk_08BCFFE8 + 0x3
-	.4byte gUnk_08BD0090 + 0x3
-	.4byte gUnk_08BD0120 + 0x3
-	.4byte gUnk_08BD01A4 + 0x3
-	.4byte gUnk_08BD021C + 0x3
-	.4byte gUnk_08BD0288 + 0x3
-	.4byte gUnk_08BD02E8 + 0x3
-	.4byte gUnk_08BD033C + 0x3
-	.4byte gUnk_08BD0384 + 0x3
-	.4byte gUnk_08BD03C0 + 0x3
-	.4byte gUnk_08BD03F0 + 0x3
-	.4byte gUnk_08BD0414 + 0x3
-	.4byte gUnk_08BCE824 + 0x70000003
+	.4byte AnimSprite_EfxMshield1_08BCCBB0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCBC8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCBEC + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCC1C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCC58 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCCA0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCCF4 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCD54 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCDC0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCE38 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCEBC + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCF4C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCCFE8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD090 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD144 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD1F8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD2AC + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD360 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD414 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD4C8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD57C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD630 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD6E4 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD798 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD84C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD900 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCD9B4 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDA68 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDB1C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDBD0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDC84 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDD38 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDDE0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDE7C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDF0C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCDF90 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE008 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE074 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE0E0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE158 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE1DC + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE26C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE308 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE3B0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE5D8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE68C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE758 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE83C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE914 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE9F8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCEAE8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCEBE4 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCECEC + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCEE00 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCEF20 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF04C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF184 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF2BC + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF400 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF544 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF694 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF7E4 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCF928 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCFA54 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCFB74 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCFC88 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCFD84 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCFE68 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCFF34 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCFFE8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD0090 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD0120 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD01A4 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD021C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD0288 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD02E8 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD033C + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD0384 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD03C0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD03F0 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BD0414 + 0x3
+	.4byte AnimSprite_EfxMshield1_08BCE824 + 0x70000003
 	.incbin "baserom.gba", 0xbd0d90, 0x8
 
 	.global AnimScr_EfxMshield2
 AnimScr_EfxMshield2:
-	.4byte gUnk_08BD042C + 0x2
-	.4byte gUnk_08BD0480 + 0x2
-	.4byte gUnk_08BD04D4 + 0x2
-	.4byte gUnk_08BD0528 + 0x2
-	.4byte gUnk_08BD057C + 0x2
-	.4byte gUnk_08BD05D0 + 0x2
-	.4byte gUnk_08BD0624 + 0x2
-	.4byte gUnk_08BD0678 + 0x2
-	.4byte gUnk_08BD06E4 + 0x2
-	.4byte gUnk_08BD0750 + 0x2
-	.4byte gUnk_08BD07BC + 0x2
-	.4byte gUnk_08BD0828 + 0x2
-	.4byte gUnk_08BD0894 + 0x2
-	.4byte gUnk_08BD0900 + 0x2
-	.4byte gUnk_08BD096C + 0x2
-	.4byte gUnk_08BD09D8 + 0x2
-	.4byte gUnk_08BD0A44 + 0x2
-	.4byte gUnk_08BD0AA4 + 0x2
-	.4byte gUnk_08BD0AF8 + 0x2
-	.4byte gUnk_08BD0B4C + 0x2
-	.4byte gUnk_08BD0B94 + 0x2
-	.4byte gUnk_08BD0BD0 + 0x2
-	.4byte gUnk_08BD0C0C + 0x2
-	.4byte gUnk_08BD0C30 + 0x2
-	.4byte gUnk_08BCE824 + 0x70000003
+	.4byte AnimSprite_EfxMshield2_08BD042C + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0480 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD04D4 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0528 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD057C + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD05D0 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0624 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0678 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD06E4 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0750 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD07BC + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0828 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0894 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0900 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD096C + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD09D8 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0A44 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0AA4 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0AF8 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0B4C + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0B94 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0BD0 + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0C0C + 0x2
+	.4byte AnimSprite_EfxMshield2_08BD0C30 + 0x2
+	.4byte AnimSprite_EfxMshield1_08BCE824 + 0x70000003
 	.incbin "baserom.gba", 0xbd0dfc, 0x8
 
-	.global gUnk_08BD0E04
-gUnk_08BD0E04:
+	.global AnimSprite_Spell21OBJChild_A_08BD0E04
+AnimSprite_Spell21OBJChild_A_08BD0E04:
 	.incbin "baserom.gba", 0xbd0e04, 0x18
 
-	.global gUnk_08BD0E1C
-gUnk_08BD0E1C:
+	.global AnimSprite_Spell21OBJChild_B_08BD0E1C
+AnimSprite_Spell21OBJChild_B_08BD0E1C:
 	.incbin "baserom.gba", 0xbd0e1c, 0x18
 
-	.global gUnk_08BD0E34
-gUnk_08BD0E34:
+	.global AnimSprite_Spell21OBJChild_C_08BD0E34
+AnimSprite_Spell21OBJChild_C_08BD0E34:
 	.incbin "baserom.gba", 0xbd0e34, 0x18
 
-	.global gUnk_08BD0E4C
-gUnk_08BD0E4C:
+	.global AnimSprite_Spell21OBJ2_A_08BD0E4C
+AnimSprite_Spell21OBJ2_A_08BD0E4C:
 	.incbin "baserom.gba", 0xbd0e4c, 0x24
 
-	.global gUnk_08BD0E70
-gUnk_08BD0E70:
+	.global AnimSprite_Spell21OBJ2_A_08BD0E70
+AnimSprite_Spell21OBJ2_A_08BD0E70:
 	.incbin "baserom.gba", 0xbd0e70, 0x3c
 
-	.global gUnk_08BD0EAC
-gUnk_08BD0EAC:
+	.global AnimSprite_Spell21OBJ2_A_08BD0EAC
+AnimSprite_Spell21OBJ2_A_08BD0EAC:
 	.incbin "baserom.gba", 0xbd0eac, 0x3c
 
-	.global gUnk_08BD0EE8
-gUnk_08BD0EE8:
+	.global AnimSprite_Spell21OBJ2_A_08BD0EE8
+AnimSprite_Spell21OBJ2_A_08BD0EE8:
 	.incbin "baserom.gba", 0xbd0ee8, 0x3c
 
-	.global gUnk_08BD0F24
-gUnk_08BD0F24:
+	.global AnimSprite_Spell21OBJ2_A_08BD0F24
+AnimSprite_Spell21OBJ2_A_08BD0F24:
 	.incbin "baserom.gba", 0xbd0f24, 0x3c
 
-	.global gUnk_08BD0F60
-gUnk_08BD0F60:
+	.global AnimSprite_Spell21OBJ2_A_08BD0F60
+AnimSprite_Spell21OBJ2_A_08BD0F60:
 	.incbin "baserom.gba", 0xbd0f60, 0x3c
 
-	.global gUnk_08BD0F9C
-gUnk_08BD0F9C:
+	.global AnimSprite_Spell21OBJ2_A_08BD0F9C
+AnimSprite_Spell21OBJ2_A_08BD0F9C:
 	.incbin "baserom.gba", 0xbd0f9c, 0x3c
 
-	.global gUnk_08BD0FD8
-gUnk_08BD0FD8:
+	.global AnimSprite_Spell21OBJ2_A_08BD0FD8
+AnimSprite_Spell21OBJ2_A_08BD0FD8:
 	.incbin "baserom.gba", 0xbd0fd8, 0x3c
 
-	.global gUnk_08BD1014
-gUnk_08BD1014:
+	.global AnimSprite_Spell21OBJ2_B_08BD1014
+AnimSprite_Spell21OBJ2_B_08BD1014:
 	.incbin "baserom.gba", 0xbd1014, 0x30
 
-	.global gUnk_08BD1044
-gUnk_08BD1044:
+	.global AnimSprite_Spell21OBJ2_B_08BD1044
+AnimSprite_Spell21OBJ2_B_08BD1044:
 	.incbin "baserom.gba", 0xbd1044, 0x48
 
-	.global gUnk_08BD108C
-gUnk_08BD108C:
+	.global AnimSprite_Spell21OBJ2_B_08BD108C
+AnimSprite_Spell21OBJ2_B_08BD108C:
 	.incbin "baserom.gba", 0xbd108c, 0x48
 
-	.global gUnk_08BD10D4
-gUnk_08BD10D4:
+	.global AnimSprite_Spell21OBJ2_B_08BD10D4
+AnimSprite_Spell21OBJ2_B_08BD10D4:
 	.incbin "baserom.gba", 0xbd10d4, 0x48
 
-	.global gUnk_08BD111C
-gUnk_08BD111C:
+	.global AnimSprite_Spell21OBJ2_B_08BD111C
+AnimSprite_Spell21OBJ2_B_08BD111C:
 	.incbin "baserom.gba", 0xbd111c, 0x48
 
-	.global gUnk_08BD1164
-gUnk_08BD1164:
+	.global AnimSprite_Spell21OBJ2_B_08BD1164
+AnimSprite_Spell21OBJ2_B_08BD1164:
 	.incbin "baserom.gba", 0xbd1164, 0x48
 
-	.global gUnk_08BD11AC
-gUnk_08BD11AC:
+	.global AnimSprite_Spell21OBJ2_B_08BD11AC
+AnimSprite_Spell21OBJ2_B_08BD11AC:
 	.incbin "baserom.gba", 0xbd11ac, 0x48
 
-	.global gUnk_08BD11F4
-gUnk_08BD11F4:
+	.global AnimSprite_Spell21OBJ2_B_08BD11F4
+AnimSprite_Spell21OBJ2_B_08BD11F4:
 	.incbin "baserom.gba", 0xbd11f4, 0x48
 
-	.global gUnk_08BD123C
-gUnk_08BD123C:
+	.global AnimSprite_Spell21OBJ2_B_08BD123C
+AnimSprite_Spell21OBJ2_B_08BD123C:
 	.incbin "baserom.gba", 0xbd123c, 0x48
 
-	.global gUnk_08BD1284
-gUnk_08BD1284:
+	.global AnimSprite_Spell21OBJ2_B_08BD1284
+AnimSprite_Spell21OBJ2_B_08BD1284:
 	.incbin "baserom.gba", 0xbd1284, 0x48
 
-	.global gUnk_08BD12CC
-gUnk_08BD12CC:
+	.global AnimSprite_Spell21OBJ2_B_08BD12CC
+AnimSprite_Spell21OBJ2_B_08BD12CC:
 	.incbin "baserom.gba", 0xbd12cc, 0x48
 
-	.global gUnk_08BD1314
-gUnk_08BD1314:
+	.global AnimSprite_Spell21OBJ2_B_08BD1314
+AnimSprite_Spell21OBJ2_B_08BD1314:
 	.incbin "baserom.gba", 0xbd1314, 0x48
 
-	.global gUnk_08BD135C
-gUnk_08BD135C:
+	.global AnimSprite_Spell21OBJ2_B_08BD135C
+AnimSprite_Spell21OBJ2_B_08BD135C:
 	.incbin "baserom.gba", 0xbd135c, 0x48
 
-	.global gUnk_08BD13A4
-gUnk_08BD13A4:
+	.global AnimSprite_Spell21OBJ2_B_08BD13A4
+AnimSprite_Spell21OBJ2_B_08BD13A4:
 	.incbin "baserom.gba", 0xbd13a4, 0x48
 
-	.global gUnk_08BD13EC
-gUnk_08BD13EC:
+	.global AnimSprite_Spell21OBJ2_B_08BD13EC
+AnimSprite_Spell21OBJ2_B_08BD13EC:
 	.incbin "baserom.gba", 0xbd13ec, 0x48
 
-	.global gUnk_08BD1434
-gUnk_08BD1434:
+	.global AnimSprite_Spell21OBJ2_B_08BD1434
+AnimSprite_Spell21OBJ2_B_08BD1434:
 	.incbin "baserom.gba", 0xbd1434, 0x48
 
-	.global gUnk_08BD147C
-gUnk_08BD147C:
+	.global AnimSprite_Spell21OBJ2_B_08BD147C
+AnimSprite_Spell21OBJ2_B_08BD147C:
 	.incbin "baserom.gba", 0xbd147c, 0x48
 
-	.global gUnk_08BD14C4
-gUnk_08BD14C4:
+	.global AnimSprite_Spell21OBJ2_B_08BD14C4
+AnimSprite_Spell21OBJ2_B_08BD14C4:
 	.incbin "baserom.gba", 0xbd14c4, 0x48
 
-	.global gUnk_08BD150C
-gUnk_08BD150C:
+	.global AnimSprite_Spell21OBJ3_A_08BD150C
+AnimSprite_Spell21OBJ3_A_08BD150C:
 	.incbin "baserom.gba", 0xbd150c, 0x18
 
-	.global gUnk_08BD1524
-gUnk_08BD1524:
+	.global AnimSprite_Spell21OBJ3_A_08BD1524
+AnimSprite_Spell21OBJ3_A_08BD1524:
 	.incbin "baserom.gba", 0xbd1524, 0x18
 
-	.global gUnk_08BD153C
-gUnk_08BD153C:
+	.global AnimSprite_Spell21OBJ3_A_08BD153C
+AnimSprite_Spell21OBJ3_A_08BD153C:
 	.incbin "baserom.gba", 0xbd153c, 0x18
 
-	.global gUnk_08BD1554
-gUnk_08BD1554:
+	.global AnimSprite_Spell21OBJ3_A_08BD1554
+AnimSprite_Spell21OBJ3_A_08BD1554:
 	.incbin "baserom.gba", 0xbd1554, 0x24
 
-	.global gUnk_08BD1578
-gUnk_08BD1578:
+	.global AnimSprite_Spell21OBJ3_A_08BD1578
+AnimSprite_Spell21OBJ3_A_08BD1578:
 	.incbin "baserom.gba", 0xbd1578, 0x18
 
-	.global gUnk_08BD1590
-gUnk_08BD1590:
+	.global AnimSprite_Spell21OBJ3_B_08BD1590
+AnimSprite_Spell21OBJ3_B_08BD1590:
 	.incbin "baserom.gba", 0xbd1590, 0x18
 
-	.global gUnk_08BD15A8
-gUnk_08BD15A8:
+	.global AnimSprite_Spell21OBJ3_B_08BD15A8
+AnimSprite_Spell21OBJ3_B_08BD15A8:
 	.incbin "baserom.gba", 0xbd15a8, 0x24
 
-	.global gUnk_08BD15CC
-gUnk_08BD15CC:
+	.global AnimSprite_Spell21OBJ3_B_08BD15CC
+AnimSprite_Spell21OBJ3_B_08BD15CC:
 	.incbin "baserom.gba", 0xbd15cc, 0x18
 
-	.global gUnk_08BD15E4
-gUnk_08BD15E4:
+	.global AnimSprite_Spell21OBJ3_B_08BD15E4
+AnimSprite_Spell21OBJ3_B_08BD15E4:
 	.incbin "baserom.gba", 0xbd15e4, 0x18
 
-	.global gUnk_08BD15FC
-gUnk_08BD15FC:
+	.global AnimSprite_Spell21OBJ3_B_08BD15FC
+AnimSprite_Spell21OBJ3_B_08BD15FC:
 	.incbin "baserom.gba", 0xbd15fc, 0x18
 
-	.global gUnk_08BD1614
-gUnk_08BD1614:
+	.global AnimSprite_Spell21OBJ3_B_08BD1614
+AnimSprite_Spell21OBJ3_B_08BD1614:
 	.incbin "baserom.gba", 0xbd1614, 0x24
 
-	.global gUnk_08BD1638
-gUnk_08BD1638:
+	.global AnimSprite_Spell21OBJ3_B_08BD1638
+AnimSprite_Spell21OBJ3_B_08BD1638:
 	.incbin "baserom.gba", 0xbd1638, 0x30
 
-	.global gUnk_08BD1668
-gUnk_08BD1668:
+	.global AnimSprite_Spell21OBJ3_B_08BD1668
+AnimSprite_Spell21OBJ3_B_08BD1668:
 	.incbin "baserom.gba", 0xbd1668, 0x3c
 
-	.global gUnk_08BD16A4
-gUnk_08BD16A4:
+	.global AnimSprite_Spell21OBJ3_B_08BD16A4
+AnimSprite_Spell21OBJ3_B_08BD16A4:
 	.incbin "baserom.gba", 0xbd16a4, 0x48
 
-	.global gUnk_08BD16EC
-gUnk_08BD16EC:
+	.global AnimSprite_Spell21OBJ3_B_08BD16EC
+AnimSprite_Spell21OBJ3_B_08BD16EC:
 	.incbin "baserom.gba", 0xbd16ec, 0x54
 
-	.global gUnk_08BD1740
-gUnk_08BD1740:
+	.global AnimSprite_Spell21OBJ3_B_08BD1740
+AnimSprite_Spell21OBJ3_B_08BD1740:
 	.incbin "baserom.gba", 0xbd1740, 0x60
 
-	.global gUnk_08BD17A0
-gUnk_08BD17A0:
+	.global AnimSprite_Spell21OBJ3_A_08BD17A0
+AnimSprite_Spell21OBJ3_A_08BD17A0:
 	.incbin "baserom.gba", 0xbd17a0, 0x18
 
 	.global AnimScr_Spell21OBJChild_A
 AnimScr_Spell21OBJChild_A:
-	.4byte gUnk_08BD0E04 + 0x1
+	.4byte AnimSprite_Spell21OBJChild_A_08BD0E04 + 0x1
 	.incbin "baserom.gba", 0xbd17bc, 0x4
 
 	.global AnimScr_Spell21OBJChild_B
 AnimScr_Spell21OBJChild_B:
-	.4byte gUnk_08BD0E1C + 0x1
+	.4byte AnimSprite_Spell21OBJChild_B_08BD0E1C + 0x1
 	.incbin "baserom.gba", 0xbd17c4, 0x4
 
 	.global AnimScr_Spell21OBJChild_C
 AnimScr_Spell21OBJChild_C:
-	.4byte gUnk_08BD0E34 + 0x1
+	.4byte AnimSprite_Spell21OBJChild_C_08BD0E34 + 0x1
 	.incbin "baserom.gba", 0xbd17cc, 0x4
 
 	.global AnimScr_Spell21OBJ2_A
 AnimScr_Spell21OBJ2_A:
-	.4byte gUnk_08BD0E70 + 0x1
-	.4byte gUnk_08BD0EAC + 0x1
-	.4byte gUnk_08BD0EE8 + 0x1
-	.4byte gUnk_08BD0F24 + 0x1
-	.4byte gUnk_08BD0F60 + 0x1
-	.4byte gUnk_08BD0F9C + 0x1
-	.4byte gUnk_08BD0FD8 + 0x1
-	.4byte gUnk_08BD0E4C + 0x3
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0E70 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0EAC + 0x1
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0EE8 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0F24 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0F60 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0F9C + 0x1
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0FD8 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_A_08BD0E4C + 0x3
 	.incbin "baserom.gba", 0xbd17f0, 0x4
 
 	.global AnimScr_Spell21OBJ2_B
 AnimScr_Spell21OBJ2_B:
-	.4byte gUnk_08BD1014 + 0x1
-	.4byte gUnk_08BD1284 + 0x1
-	.4byte gUnk_08BD1044 + 0x1
-	.4byte gUnk_08BD12CC + 0x1
-	.4byte gUnk_08BD108C + 0x1
-	.4byte gUnk_08BD1314 + 0x1
-	.4byte gUnk_08BD10D4 + 0x1
-	.4byte gUnk_08BD135C + 0x1
-	.4byte gUnk_08BD111C + 0x1
-	.4byte gUnk_08BD13A4 + 0x1
-	.4byte gUnk_08BD1164 + 0x1
-	.4byte gUnk_08BD13EC + 0x1
-	.4byte gUnk_08BD11AC + 0x1
-	.4byte gUnk_08BD1434 + 0x1
-	.4byte gUnk_08BD11F4 + 0x1
-	.4byte gUnk_08BD147C + 0x1
-	.4byte gUnk_08BD123C + 0x1
-	.4byte gUnk_08BD14C4 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD1014 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD1284 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD1044 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD12CC + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD108C + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD1314 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD10D4 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD135C + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD111C + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD13A4 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD1164 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD13EC + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD11AC + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD1434 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD11F4 + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD147C + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD123C + 0x1
+	.4byte AnimSprite_Spell21OBJ2_B_08BD14C4 + 0x1
 	.incbin "baserom.gba", 0xbd183c, 0x4
 
 	.global AnimScr_Spell21OBJ3_A
 AnimScr_Spell21OBJ3_A:
-	.4byte gUnk_08BD150C + 0x10000002
-	.4byte gUnk_08BD1524 + 0x10000001
-	.4byte gUnk_08BD153C + 0x2
-	.4byte gUnk_08BD1554 + 0x2
-	.4byte gUnk_08BD1578 + 0x3
-	.4byte gUnk_08BD17A0 + 0x3
+	.4byte AnimSprite_Spell21OBJ3_A_08BD150C + 0x10000002
+	.4byte AnimSprite_Spell21OBJ3_A_08BD1524 + 0x10000001
+	.4byte AnimSprite_Spell21OBJ3_A_08BD153C + 0x2
+	.4byte AnimSprite_Spell21OBJ3_A_08BD1554 + 0x2
+	.4byte AnimSprite_Spell21OBJ3_A_08BD1578 + 0x3
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x3
 	.incbin "baserom.gba", 0xbd1858, 0x4
 
 	.global AnimScr_Spell21OBJ3_B
 AnimScr_Spell21OBJ3_B:
-	.4byte gUnk_08BD1590 + 0x10000002
-	.4byte gUnk_08BD15A8 + 0x10000001
-	.4byte gUnk_08BD15CC + 0x3
-	.4byte gUnk_08BD15E4 + 0x3
-	.4byte gUnk_08BD17A0 + 0x3
+	.4byte AnimSprite_Spell21OBJ3_B_08BD1590 + 0x10000002
+	.4byte AnimSprite_Spell21OBJ3_B_08BD15A8 + 0x10000001
+	.4byte AnimSprite_Spell21OBJ3_B_08BD15CC + 0x3
+	.4byte AnimSprite_Spell21OBJ3_B_08BD15E4 + 0x3
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x3
 	.incbin "baserom.gba", 0xbd1870, 0x4
-	.4byte gUnk_08BD15FC + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
-	.4byte gUnk_08BD1614 + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
-	.4byte gUnk_08BD1638 + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
-	.4byte gUnk_08BD1668 + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
-	.4byte gUnk_08BD16A4 + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
-	.4byte gUnk_08BD16EC + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
-	.4byte gUnk_08BD1740 + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD15FC + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD1614 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD1638 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD1668 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD16A4 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD16EC + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD1740 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
 	.incbin "baserom.gba", 0xbd18ac, 0x4
-	.4byte gUnk_08BD1740 + 0x1
-	.4byte gUnk_08BD17A0 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_B_08BD1740 + 0x1
+	.4byte AnimSprite_Spell21OBJ3_A_08BD17A0 + 0x1
 	.incbin "baserom.gba", 0xbd18b8, 0x4
 
 	.global gUnk_08BD18BC
@@ -12155,280 +12155,280 @@ gUnk_08BD2258:
 	.4byte gUnk_08BD2258 + 0x1
 	.incbin "baserom.gba", 0xbd2370, 0x4
 
-	.global gUnk_08BD2374
-gUnk_08BD2374:
+	.global AnimSprite_BolganoneOBJChild_5_08BD2374
+AnimSprite_BolganoneOBJChild_5_08BD2374:
 	.incbin "baserom.gba", 0xbd2374, 0x48
 
-	.global gUnk_08BD23BC
-gUnk_08BD23BC:
+	.global AnimSprite_BolganoneOBJChild_3_08BD23BC
+AnimSprite_BolganoneOBJChild_3_08BD23BC:
 	.incbin "baserom.gba", 0xbd23bc, 0x24
 
-	.global gUnk_08BD23E0
-gUnk_08BD23E0:
+	.global AnimSprite_BolganoneOBJChild_2_08BD23E0
+AnimSprite_BolganoneOBJChild_2_08BD23E0:
 	.incbin "baserom.gba", 0xbd23e0, 0x24
 
-	.global gUnk_08BD2404
-gUnk_08BD2404:
+	.global AnimSprite_BolganoneOBJChild_1_08BD2404
+AnimSprite_BolganoneOBJChild_1_08BD2404:
 	.incbin "baserom.gba", 0xbd2404, 0x18
 
-	.global gUnk_08BD241C
-gUnk_08BD241C:
+	.global AnimSprite_BolganoneOBJChild_0_08BD241C
+AnimSprite_BolganoneOBJChild_0_08BD241C:
 	.incbin "baserom.gba", 0xbd241c, 0x18
 
-	.global gUnk_08BD2434
-gUnk_08BD2434:
+	.global AnimSprite_BolganoneOBJChild_4_08BD2434
+AnimSprite_BolganoneOBJChild_4_08BD2434:
 	.incbin "baserom.gba", 0xbd2434, 0x24
 
 	.global AnimScr_BolganoneOBJChild_5
 AnimScr_BolganoneOBJChild_5:
-	.4byte gUnk_08BD2374 + 0x10000000
+	.4byte AnimSprite_BolganoneOBJChild_5_08BD2374 + 0x10000000
 	.incbin "baserom.gba", 0xbd245c, 0x4
 
 	.global AnimScr_BolganoneOBJChild_3
 AnimScr_BolganoneOBJChild_3:
-	.4byte gUnk_08BD23BC + 0x10000000
+	.4byte AnimSprite_BolganoneOBJChild_3_08BD23BC + 0x10000000
 	.incbin "baserom.gba", 0xbd2464, 0x4
 
 	.global AnimScr_BolganoneOBJChild_2
 AnimScr_BolganoneOBJChild_2:
-	.4byte gUnk_08BD23E0 + 0x10000000
+	.4byte AnimSprite_BolganoneOBJChild_2_08BD23E0 + 0x10000000
 	.incbin "baserom.gba", 0xbd246c, 0x4
 
 	.global AnimScr_BolganoneOBJChild_1
 AnimScr_BolganoneOBJChild_1:
-	.4byte gUnk_08BD2404 + 0x10000000
+	.4byte AnimSprite_BolganoneOBJChild_1_08BD2404 + 0x10000000
 	.incbin "baserom.gba", 0xbd2474, 0x4
 
 	.global AnimScr_BolganoneOBJChild_0
 AnimScr_BolganoneOBJChild_0:
-	.4byte gUnk_08BD241C + 0x10000000
+	.4byte AnimSprite_BolganoneOBJChild_0_08BD241C + 0x10000000
 	.incbin "baserom.gba", 0xbd247c, 0x4
 
 	.global AnimScr_BolganoneOBJChild_4
 AnimScr_BolganoneOBJChild_4:
-	.4byte gUnk_08BD2434 + 0x10000000
+	.4byte AnimSprite_BolganoneOBJChild_4_08BD2434 + 0x10000000
 	.incbin "baserom.gba", 0xbd2484, 0x4
 
-	.global gUnk_08BD2488
-gUnk_08BD2488:
+	.global AnimSprite_BolganoneOBJ2Child_1_08BD2488
+AnimSprite_BolganoneOBJ2Child_1_08BD2488:
 	.incbin "baserom.gba", 0xbd2488, 0x18
 
-	.global gUnk_08BD24A0
-gUnk_08BD24A0:
+	.global AnimSprite_BolganoneOBJ2Child_1_08BD24A0
+AnimSprite_BolganoneOBJ2Child_1_08BD24A0:
 	.incbin "baserom.gba", 0xbd24a0, 0x18
 
-	.global gUnk_08BD24B8
-gUnk_08BD24B8:
+	.global AnimSprite_BolganoneOBJ2Child_0_08BD24B8
+AnimSprite_BolganoneOBJ2Child_0_08BD24B8:
 	.incbin "baserom.gba", 0xbd24b8, 0x18
 
 	.global AnimScr_BolganoneOBJ2Child_1
 AnimScr_BolganoneOBJ2Child_1:
-	.4byte gUnk_08BD2488 + 0x1
-	.4byte gUnk_08BD24A0 + 0x1
+	.4byte AnimSprite_BolganoneOBJ2Child_1_08BD2488 + 0x1
+	.4byte AnimSprite_BolganoneOBJ2Child_1_08BD24A0 + 0x1
 	.incbin "baserom.gba", 0xbd24d8, 0x4
 
 	.global AnimScr_BolganoneOBJ2Child_0
 AnimScr_BolganoneOBJ2Child_0:
-	.4byte gUnk_08BD24B8 + 0x1
-	.4byte gUnk_08BD24A0 + 0x1
+	.4byte AnimSprite_BolganoneOBJ2Child_0_08BD24B8 + 0x1
+	.4byte AnimSprite_BolganoneOBJ2Child_1_08BD24A0 + 0x1
 	.incbin "baserom.gba", 0xbd24e4, 0x4
 
-	.global gUnk_08BD24E8
-gUnk_08BD24E8:
+	.global AnimSprite_EfxShine_08BD24E8
+AnimSprite_EfxShine_08BD24E8:
 	.incbin "baserom.gba", 0xbd24e8, 0x24
 
-	.global gUnk_08BD250C
-gUnk_08BD250C:
+	.global AnimSprite_EfxShine_08BD250C
+AnimSprite_EfxShine_08BD250C:
 	.incbin "baserom.gba", 0xbd250c, 0x24
 
-	.global gUnk_08BD2530
-gUnk_08BD2530:
+	.global AnimSprite_EfxShine_08BD2530
+AnimSprite_EfxShine_08BD2530:
 	.incbin "baserom.gba", 0xbd2530, 0x24
 
-	.global gUnk_08BD2554
-gUnk_08BD2554:
+	.global AnimSprite_EfxShine_08BD2554
+AnimSprite_EfxShine_08BD2554:
 	.incbin "baserom.gba", 0xbd2554, 0x24
 
-	.global gUnk_08BD2578
-gUnk_08BD2578:
+	.global AnimSprite_EfxShine_08BD2578
+AnimSprite_EfxShine_08BD2578:
 	.incbin "baserom.gba", 0xbd2578, 0x24
 
-	.global gUnk_08BD259C
-gUnk_08BD259C:
+	.global AnimSprite_EfxShine_08BD259C
+AnimSprite_EfxShine_08BD259C:
 	.incbin "baserom.gba", 0xbd259c, 0x24
 
-	.global gUnk_08BD25C0
-gUnk_08BD25C0:
+	.global AnimSprite_EfxShine_08BD25C0
+AnimSprite_EfxShine_08BD25C0:
 	.incbin "baserom.gba", 0xbd25c0, 0x24
 
-	.global gUnk_08BD25E4
-gUnk_08BD25E4:
+	.global AnimSprite_EfxShine_08BD25E4
+AnimSprite_EfxShine_08BD25E4:
 	.incbin "baserom.gba", 0xbd25e4, 0x24
 
-	.global gUnk_08BD2608
-gUnk_08BD2608:
+	.global AnimSprite_EfxShine_08BD2608
+AnimSprite_EfxShine_08BD2608:
 	.incbin "baserom.gba", 0xbd2608, 0x24
 
-	.global gUnk_08BD262C
-gUnk_08BD262C:
+	.global AnimSprite_EfxShine_08BD262C
+AnimSprite_EfxShine_08BD262C:
 	.incbin "baserom.gba", 0xbd262c, 0x24
 
-	.global gUnk_08BD2650
-gUnk_08BD2650:
+	.global AnimSprite_EfxShine_08BD2650
+AnimSprite_EfxShine_08BD2650:
 	.incbin "baserom.gba", 0xbd2650, 0x24
 
-	.global gUnk_08BD2674
-gUnk_08BD2674:
+	.global AnimSprite_EfxShine_08BD2674
+AnimSprite_EfxShine_08BD2674:
 	.incbin "baserom.gba", 0xbd2674, 0x24
 
-	.global gUnk_08BD2698
-gUnk_08BD2698:
+	.global AnimSprite_EfxShine_08BD2698
+AnimSprite_EfxShine_08BD2698:
 	.incbin "baserom.gba", 0xbd2698, 0x24
 
-	.global gUnk_08BD26BC
-gUnk_08BD26BC:
+	.global AnimSprite_EfxShine_08BD26BC
+AnimSprite_EfxShine_08BD26BC:
 	.incbin "baserom.gba", 0xbd26bc, 0x24
 
-	.global gUnk_08BD26E0
-gUnk_08BD26E0:
+	.global AnimSprite_EfxShine_08BD26E0
+AnimSprite_EfxShine_08BD26E0:
 	.incbin "baserom.gba", 0xbd26e0, 0x24
 
-	.global gUnk_08BD2704
-gUnk_08BD2704:
+	.global AnimSprite_EfxShine_08BD2704
+AnimSprite_EfxShine_08BD2704:
 	.incbin "baserom.gba", 0xbd2704, 0x24
 
-	.global gUnk_08BD2728
-gUnk_08BD2728:
+	.global AnimSprite_EfxShine_08BD2728
+AnimSprite_EfxShine_08BD2728:
 	.incbin "baserom.gba", 0xbd2728, 0x24
 
-	.global gUnk_08BD274C
-gUnk_08BD274C:
+	.global AnimSprite_EfxShine_08BD274C
+AnimSprite_EfxShine_08BD274C:
 	.incbin "baserom.gba", 0xbd274c, 0x24
 
-	.global gUnk_08BD2770
-gUnk_08BD2770:
+	.global AnimSprite_EfxShine_08BD2770
+AnimSprite_EfxShine_08BD2770:
 	.incbin "baserom.gba", 0xbd2770, 0x24
 
-	.global gUnk_08BD2794
-gUnk_08BD2794:
+	.global AnimSprite_EfxShine_08BD2794
+AnimSprite_EfxShine_08BD2794:
 	.incbin "baserom.gba", 0xbd2794, 0x18
 
 	.global AnimScr_EfxShine
 AnimScr_EfxShine:
-	.4byte gUnk_08BD24E8 + 0x1
-	.4byte gUnk_08BD250C + 0x1
-	.4byte gUnk_08BD2530 + 0x1
-	.4byte gUnk_08BD2554 + 0x1
-	.4byte gUnk_08BD2578 + 0x1
-	.4byte gUnk_08BD259C + 0x1
-	.4byte gUnk_08BD25C0 + 0x1
-	.4byte gUnk_08BD25E4 + 0x1
-	.4byte gUnk_08BD2608 + 0x1
-	.4byte gUnk_08BD262C + 0x1
-	.4byte gUnk_08BD2650 + 0x1
-	.4byte gUnk_08BD2674 + 0x1
-	.4byte gUnk_08BD2698 + 0x1
-	.4byte gUnk_08BD26BC + 0x1
-	.4byte gUnk_08BD26E0 + 0x1
-	.4byte gUnk_08BD2704 + 0x1
-	.4byte gUnk_08BD2728 + 0x1
-	.4byte gUnk_08BD274C + 0x1
-	.4byte gUnk_08BD2770 + 0x1
-	.4byte gUnk_08BD2794 + 0x70000003
+	.4byte AnimSprite_EfxShine_08BD24E8 + 0x1
+	.4byte AnimSprite_EfxShine_08BD250C + 0x1
+	.4byte AnimSprite_EfxShine_08BD2530 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2554 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2578 + 0x1
+	.4byte AnimSprite_EfxShine_08BD259C + 0x1
+	.4byte AnimSprite_EfxShine_08BD25C0 + 0x1
+	.4byte AnimSprite_EfxShine_08BD25E4 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2608 + 0x1
+	.4byte AnimSprite_EfxShine_08BD262C + 0x1
+	.4byte AnimSprite_EfxShine_08BD2650 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2674 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2698 + 0x1
+	.4byte AnimSprite_EfxShine_08BD26BC + 0x1
+	.4byte AnimSprite_EfxShine_08BD26E0 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2704 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2728 + 0x1
+	.4byte AnimSprite_EfxShine_08BD274C + 0x1
+	.4byte AnimSprite_EfxShine_08BD2770 + 0x1
+	.4byte AnimSprite_EfxShine_08BD2794 + 0x70000003
 	.incbin "baserom.gba", 0xbd27fc, 0x8
 
-	.global gUnk_08BD2804
-gUnk_08BD2804:
+	.global AnimSprite_EfxLuna1_08BD2804
+AnimSprite_EfxLuna1_08BD2804:
 	.incbin "baserom.gba", 0xbd2804, 0x24
 
-	.global gUnk_08BD2828
-gUnk_08BD2828:
+	.global AnimSprite_EfxLuna1_08BD2828
+AnimSprite_EfxLuna1_08BD2828:
 	.incbin "baserom.gba", 0xbd2828, 0x24
 
-	.global gUnk_08BD284C
-gUnk_08BD284C:
+	.global AnimSprite_EfxLuna1_08BD284C
+AnimSprite_EfxLuna1_08BD284C:
 	.incbin "baserom.gba", 0xbd284c, 0x24
 
-	.global gUnk_08BD2870
-gUnk_08BD2870:
+	.global AnimSprite_EfxLuna1_08BD2870
+AnimSprite_EfxLuna1_08BD2870:
 	.incbin "baserom.gba", 0xbd2870, 0x24
 
-	.global gUnk_08BD2894
-gUnk_08BD2894:
+	.global AnimSprite_EfxLuna1_08BD2894
+AnimSprite_EfxLuna1_08BD2894:
 	.incbin "baserom.gba", 0xbd2894, 0x24
 
-	.global gUnk_08BD28B8
-gUnk_08BD28B8:
+	.global AnimSprite_EfxLuna1_08BD28B8
+AnimSprite_EfxLuna1_08BD28B8:
 	.incbin "baserom.gba", 0xbd28b8, 0x24
 
-	.global gUnk_08BD28DC
-gUnk_08BD28DC:
+	.global AnimSprite_EfxLuna1_08BD28DC
+AnimSprite_EfxLuna1_08BD28DC:
 	.incbin "baserom.gba", 0xbd28dc, 0x24
 
-	.global gUnk_08BD2900
-gUnk_08BD2900:
+	.global AnimSprite_EfxLuna1_08BD2900
+AnimSprite_EfxLuna1_08BD2900:
 	.incbin "baserom.gba", 0xbd2900, 0x24
 
-	.global gUnk_08BD2924
-gUnk_08BD2924:
+	.global AnimSprite_EfxLuna1_08BD2924
+AnimSprite_EfxLuna1_08BD2924:
 	.incbin "baserom.gba", 0xbd2924, 0x24
 
-	.global gUnk_08BD2948
-gUnk_08BD2948:
+	.global AnimSprite_EfxLuna1_08BD2948
+AnimSprite_EfxLuna1_08BD2948:
 	.incbin "baserom.gba", 0xbd2948, 0x24
 
-	.global gUnk_08BD296C
-gUnk_08BD296C:
+	.global AnimSprite_EfxLuna1_08BD296C
+AnimSprite_EfxLuna1_08BD296C:
 	.incbin "baserom.gba", 0xbd296c, 0x24
 
-	.global gUnk_08BD2990
-gUnk_08BD2990:
+	.global AnimSprite_EfxLuna1_08BD2990
+AnimSprite_EfxLuna1_08BD2990:
 	.incbin "baserom.gba", 0xbd2990, 0x3c
 
 	.global AnimScr_EfxLuna1
 AnimScr_EfxLuna1:
-	.4byte gUnk_08BD2870 + 0x1
-	.4byte gUnk_08BD2894 + 0x1
-	.4byte gUnk_08BD28B8 + 0x1
-	.4byte gUnk_08BD28DC + 0x1
-	.4byte gUnk_08BD2900 + 0x1
-	.4byte gUnk_08BD2924 + 0x1
-	.4byte gUnk_08BD2948 + 0x1
-	.4byte gUnk_08BD296C + 0x1
-	.4byte gUnk_08BD2990 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2870 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2894 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD28B8 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD28DC + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2900 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2924 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2948 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD296C + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2990 + 0x1
 	.incbin "baserom.gba", 0xbd29f0, 0x4
-	.4byte gUnk_08BD2804 + 0x3
-	.4byte gUnk_08BD2828 + 0x3
-	.4byte gUnk_08BD284C + 0x3
+	.4byte AnimSprite_EfxLuna1_08BD2804 + 0x3
+	.4byte AnimSprite_EfxLuna1_08BD2828 + 0x3
+	.4byte AnimSprite_EfxLuna1_08BD284C + 0x3
 	.incbin "baserom.gba", 0xbd2a00, 0x4
 
 	.global AnimScr_EfxLuna2
 AnimScr_EfxLuna2:
-	.4byte gUnk_08BD2990 + 0x1
-	.4byte gUnk_08BD296C + 0x1
-	.4byte gUnk_08BD2948 + 0x1
-	.4byte gUnk_08BD2924 + 0x1
-	.4byte gUnk_08BD2900 + 0x1
-	.4byte gUnk_08BD28DC + 0x1
-	.4byte gUnk_08BD28B8 + 0x1
-	.4byte gUnk_08BD2894 + 0x1
-	.4byte gUnk_08BD2870 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2990 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD296C + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2948 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2924 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2900 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD28DC + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD28B8 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2894 + 0x1
+	.4byte AnimSprite_EfxLuna1_08BD2870 + 0x1
 	.incbin "baserom.gba", 0xbd2a28, 0x4
-	.4byte gUnk_08BD284C + 0x3
-	.4byte gUnk_08BD2828 + 0x3
-	.4byte gUnk_08BD2804 + 0x3
+	.4byte AnimSprite_EfxLuna1_08BD284C + 0x3
+	.4byte AnimSprite_EfxLuna1_08BD2828 + 0x3
+	.4byte AnimSprite_EfxLuna1_08BD2804 + 0x3
 	.incbin "baserom.gba", 0xbd2a38, 0x4
 
-	.global gUnk_08BD2A3C
-gUnk_08BD2A3C:
+	.global AnimSprite_EfxLuna4_08BD2A3C
+AnimSprite_EfxLuna4_08BD2A3C:
 	.incbin "baserom.gba", 0xbd2a3c, 0x24
 
-	.global gUnk_08BD2A60
-gUnk_08BD2A60:
+	.global AnimSprite_EfxLuna4_08BD2A60
+AnimSprite_EfxLuna4_08BD2A60:
 	.incbin "baserom.gba", 0xbd2a60, 0x24
 
-	.global gUnk_08BD2A84
-gUnk_08BD2A84:
+	.global AnimSprite_EfxLuna4_08BD2A84
+AnimSprite_EfxLuna4_08BD2A84:
 	.incbin "baserom.gba", 0xbd2a84, 0x24
 
 	.global gUnk_08BD2AA8
@@ -12479,735 +12479,735 @@ gUnk_08BD2BC8:
 
 	.global AnimScr_EfxLuna4
 AnimScr_EfxLuna4:
-	.4byte gUnk_08BD2A3C + 0x3
-	.4byte gUnk_08BD2A60 + 0x3
-	.4byte gUnk_08BD2A84 + 0x3
+	.4byte AnimSprite_EfxLuna4_08BD2A3C + 0x3
+	.4byte AnimSprite_EfxLuna4_08BD2A60 + 0x3
+	.4byte AnimSprite_EfxLuna4_08BD2A84 + 0x3
 	.incbin "baserom.gba", 0xbd2c38, 0x4
 
-	.global gUnk_08BD2C3C
-gUnk_08BD2C3C:
+	.global AnimSprite_EfxExcalibur_08BD2C3C
+AnimSprite_EfxExcalibur_08BD2C3C:
 	.incbin "baserom.gba", 0xbd2c3c, 0x54
 
-	.global gUnk_08BD2C90
-gUnk_08BD2C90:
+	.global AnimSprite_EfxExcalibur_08BD2C90
+AnimSprite_EfxExcalibur_08BD2C90:
 	.incbin "baserom.gba", 0xbd2c90, 0x54
 
-	.global gUnk_08BD2CE4
-gUnk_08BD2CE4:
+	.global AnimSprite_EfxExcalibur_08BD2CE4
+AnimSprite_EfxExcalibur_08BD2CE4:
 	.incbin "baserom.gba", 0xbd2ce4, 0x54
 
-	.global gUnk_08BD2D38
-gUnk_08BD2D38:
+	.global AnimSprite_EfxExcalibur_08BD2D38
+AnimSprite_EfxExcalibur_08BD2D38:
 	.incbin "baserom.gba", 0xbd2d38, 0x54
 
-	.global gUnk_08BD2D8C
-gUnk_08BD2D8C:
+	.global AnimSprite_EfxExcalibur_08BD2D8C
+AnimSprite_EfxExcalibur_08BD2D8C:
 	.incbin "baserom.gba", 0xbd2d8c, 0x54
 
-	.global gUnk_08BD2DE0
-gUnk_08BD2DE0:
+	.global AnimSprite_EfxExcalibur_08BD2DE0
+AnimSprite_EfxExcalibur_08BD2DE0:
 	.incbin "baserom.gba", 0xbd2de0, 0x54
 
-	.global gUnk_08BD2E34
-gUnk_08BD2E34:
+	.global AnimSprite_EfxExcalibur_08BD2E34
+AnimSprite_EfxExcalibur_08BD2E34:
 	.incbin "baserom.gba", 0xbd2e34, 0x54
 
-	.global gUnk_08BD2E88
-gUnk_08BD2E88:
+	.global AnimSprite_EfxExcalibur_08BD2E88
+AnimSprite_EfxExcalibur_08BD2E88:
 	.incbin "baserom.gba", 0xbd2e88, 0x54
 
-	.global gUnk_08BD2EDC
-gUnk_08BD2EDC:
+	.global AnimSprite_EfxExcalibur_08BD2EDC
+AnimSprite_EfxExcalibur_08BD2EDC:
 	.incbin "baserom.gba", 0xbd2edc, 0x54
 
-	.global gUnk_08BD2F30
-gUnk_08BD2F30:
+	.global AnimSprite_EfxExcalibur_08BD2F30
+AnimSprite_EfxExcalibur_08BD2F30:
 	.incbin "baserom.gba", 0xbd2f30, 0x54
 
-	.global gUnk_08BD2F84
-gUnk_08BD2F84:
+	.global AnimSprite_EfxExcalibur_08BD2F84
+AnimSprite_EfxExcalibur_08BD2F84:
 	.incbin "baserom.gba", 0xbd2f84, 0x54
 
-	.global gUnk_08BD2FD8
-gUnk_08BD2FD8:
+	.global AnimSprite_EfxExcalibur_08BD2FD8
+AnimSprite_EfxExcalibur_08BD2FD8:
 	.incbin "baserom.gba", 0xbd2fd8, 0x54
 
-	.global gUnk_08BD302C
-gUnk_08BD302C:
+	.global AnimSprite_EfxExcalibur_08BD302C
+AnimSprite_EfxExcalibur_08BD302C:
 	.incbin "baserom.gba", 0xbd302c, 0x54
 
-	.global gUnk_08BD3080
-gUnk_08BD3080:
+	.global AnimSprite_EfxExcalibur_08BD3080
+AnimSprite_EfxExcalibur_08BD3080:
 	.incbin "baserom.gba", 0xbd3080, 0x54
 
-	.global gUnk_08BD30D4
-gUnk_08BD30D4:
+	.global AnimSprite_EfxExcalibur_08BD30D4
+AnimSprite_EfxExcalibur_08BD30D4:
 	.incbin "baserom.gba", 0xbd30d4, 0x54
 
-	.global gUnk_08BD3128
-gUnk_08BD3128:
+	.global AnimSprite_EfxExcalibur_08BD3128
+AnimSprite_EfxExcalibur_08BD3128:
 	.incbin "baserom.gba", 0xbd3128, 0x54
 
-	.global gUnk_08BD317C
-gUnk_08BD317C:
+	.global AnimSprite_EfxExcalibur_08BD317C
+AnimSprite_EfxExcalibur_08BD317C:
 	.incbin "baserom.gba", 0xbd317c, 0x54
 
-	.global gUnk_08BD31D0
-gUnk_08BD31D0:
+	.global AnimSprite_EfxExcalibur_08BD31D0
+AnimSprite_EfxExcalibur_08BD31D0:
 	.incbin "baserom.gba", 0xbd31d0, 0x54
 
-	.global gUnk_08BD3224
-gUnk_08BD3224:
+	.global AnimSprite_EfxExcalibur_08BD3224
+AnimSprite_EfxExcalibur_08BD3224:
 	.incbin "baserom.gba", 0xbd3224, 0x54
 
-	.global gUnk_08BD3278
-gUnk_08BD3278:
+	.global AnimSprite_EfxExcalibur_08BD3278
+AnimSprite_EfxExcalibur_08BD3278:
 	.incbin "baserom.gba", 0xbd3278, 0x54
 
-	.global gUnk_08BD32CC
-gUnk_08BD32CC:
+	.global AnimSprite_EfxExcalibur_08BD32CC
+AnimSprite_EfxExcalibur_08BD32CC:
 	.incbin "baserom.gba", 0xbd32cc, 0x54
 
-	.global gUnk_08BD3320
-gUnk_08BD3320:
+	.global AnimSprite_EfxExcalibur_08BD3320
+AnimSprite_EfxExcalibur_08BD3320:
 	.incbin "baserom.gba", 0xbd3320, 0x54
 
-	.global gUnk_08BD3374
-gUnk_08BD3374:
+	.global AnimSprite_EfxExcalibur_08BD3374
+AnimSprite_EfxExcalibur_08BD3374:
 	.incbin "baserom.gba", 0xbd3374, 0x54
 
-	.global gUnk_08BD33C8
-gUnk_08BD33C8:
+	.global AnimSprite_EfxExcalibur_08BD33C8
+AnimSprite_EfxExcalibur_08BD33C8:
 	.incbin "baserom.gba", 0xbd33c8, 0x54
 
-	.global gUnk_08BD341C
-gUnk_08BD341C:
+	.global AnimSprite_EfxExcalibur_08BD341C
+AnimSprite_EfxExcalibur_08BD341C:
 	.incbin "baserom.gba", 0xbd341c, 0x54
 
-	.global gUnk_08BD3470
-gUnk_08BD3470:
+	.global AnimSprite_EfxExcalibur_08BD3470
+AnimSprite_EfxExcalibur_08BD3470:
 	.incbin "baserom.gba", 0xbd3470, 0x48
 
-	.global gUnk_08BD34B8
-gUnk_08BD34B8:
+	.global AnimSprite_EfxExcalibur_08BD34B8
+AnimSprite_EfxExcalibur_08BD34B8:
 	.incbin "baserom.gba", 0xbd34b8, 0x54
 
-	.global gUnk_08BD350C
-gUnk_08BD350C:
+	.global AnimSprite_EfxExcalibur_08BD350C
+AnimSprite_EfxExcalibur_08BD350C:
 	.incbin "baserom.gba", 0xbd350c, 0x54
 
-	.global gUnk_08BD3560
-gUnk_08BD3560:
+	.global AnimSprite_EfxExcalibur_08BD3560
+AnimSprite_EfxExcalibur_08BD3560:
 	.incbin "baserom.gba", 0xbd3560, 0x54
 
-	.global gUnk_08BD35B4
-gUnk_08BD35B4:
+	.global AnimSprite_EfxExcalibur_08BD35B4
+AnimSprite_EfxExcalibur_08BD35B4:
 	.incbin "baserom.gba", 0xbd35b4, 0x54
 
-	.global gUnk_08BD3608
-gUnk_08BD3608:
+	.global AnimSprite_EfxExcalibur_08BD3608
+AnimSprite_EfxExcalibur_08BD3608:
 	.incbin "baserom.gba", 0xbd3608, 0x54
 
-	.global gUnk_08BD365C
-gUnk_08BD365C:
+	.global AnimSprite_EfxExcalibur_08BD365C
+AnimSprite_EfxExcalibur_08BD365C:
 	.incbin "baserom.gba", 0xbd365c, 0x54
 
-	.global gUnk_08BD36B0
-gUnk_08BD36B0:
+	.global AnimSprite_EfxExcalibur_08BD36B0
+AnimSprite_EfxExcalibur_08BD36B0:
 	.incbin "baserom.gba", 0xbd36b0, 0x54
 
-	.global gUnk_08BD3704
-gUnk_08BD3704:
+	.global AnimSprite_EfxExcalibur_08BD3704
+AnimSprite_EfxExcalibur_08BD3704:
 	.incbin "baserom.gba", 0xbd3704, 0x54
 
 	.global AnimScr_EfxExcalibur
 AnimScr_EfxExcalibur:
-	.4byte gUnk_08BD3470 + 0x1
-	.4byte gUnk_08BD2C3C + 0x1
-	.4byte gUnk_08BD2C90 + 0x1
-	.4byte gUnk_08BD2CE4 + 0x1
-	.4byte gUnk_08BD2D38 + 0x1
-	.4byte gUnk_08BD2D8C + 0x1
-	.4byte gUnk_08BD2DE0 + 0x1
-	.4byte gUnk_08BD2E34 + 0x1
-	.4byte gUnk_08BD2E88 + 0x1
-	.4byte gUnk_08BD2EDC + 0x1
-	.4byte gUnk_08BD2F30 + 0x1
-	.4byte gUnk_08BD2F84 + 0x1
-	.4byte gUnk_08BD2FD8 + 0x1
-	.4byte gUnk_08BD302C + 0x1
-	.4byte gUnk_08BD3080 + 0x1
-	.4byte gUnk_08BD30D4 + 0x1
-	.4byte gUnk_08BD3128 + 0x1
-	.4byte gUnk_08BD317C + 0x1
-	.4byte gUnk_08BD31D0 + 0x1
-	.4byte gUnk_08BD3224 + 0x1
-	.4byte gUnk_08BD3278 + 0x1
-	.4byte gUnk_08BD32CC + 0x1
-	.4byte gUnk_08BD3320 + 0x1
-	.4byte gUnk_08BD3374 + 0x1
-	.4byte gUnk_08BD33C8 + 0x1
-	.4byte gUnk_08BD341C + 0x1
-	.4byte gUnk_08BD34B8 + 0x1
-	.4byte gUnk_08BD350C + 0x1
-	.4byte gUnk_08BD3560 + 0x1
-	.4byte gUnk_08BD35B4 + 0x1
-	.4byte gUnk_08BD3608 + 0x1
-	.4byte gUnk_08BD365C + 0x1
-	.4byte gUnk_08BD36B0 + 0x1
-	.4byte gUnk_08BD3704 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3470 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2C3C + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2C90 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2CE4 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2D38 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2D8C + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2DE0 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2E34 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2E88 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2EDC + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2F30 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2F84 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD2FD8 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD302C + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3080 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD30D4 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3128 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD317C + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD31D0 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3224 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3278 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD32CC + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3320 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3374 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD33C8 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD341C + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD34B8 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD350C + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3560 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD35B4 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3608 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD365C + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD36B0 + 0x1
+	.4byte AnimSprite_EfxExcalibur_08BD3704 + 0x1
 	.incbin "baserom.gba", 0xbd37e0, 0x4
 
-	.global gUnk_08BD37E4
-gUnk_08BD37E4:
+	.global AnimSprite_GespenstOBJ_08BD37E4
+AnimSprite_GespenstOBJ_08BD37E4:
 	.incbin "baserom.gba", 0xbd37e4, 0x198
 
-	.global gUnk_08BD397C
-gUnk_08BD397C:
+	.global AnimSprite_GespenstOBJ_08BD397C
+AnimSprite_GespenstOBJ_08BD397C:
 	.incbin "baserom.gba", 0xbd397c, 0x108
 
-	.global gUnk_08BD3A84
-gUnk_08BD3A84:
+	.global AnimSprite_GespenstOBJ_08BD3A84
+AnimSprite_GespenstOBJ_08BD3A84:
 	.incbin "baserom.gba", 0xbd3a84, 0x18
 
-	.global gUnk_08BD3A9C
-gUnk_08BD3A9C:
+	.global AnimSprite_GespenstOBJ_08BD3A9C
+AnimSprite_GespenstOBJ_08BD3A9C:
 	.incbin "baserom.gba", 0xbd3a9c, 0x60
 
-	.global gUnk_08BD3AFC
-gUnk_08BD3AFC:
+	.global AnimSprite_GespenstOBJ_08BD3AFC
+AnimSprite_GespenstOBJ_08BD3AFC:
 	.incbin "baserom.gba", 0xbd3afc, 0x144
 
-	.global gUnk_08BD3C40
-gUnk_08BD3C40:
+	.global AnimSprite_GespenstOBJ_08BD3C40
+AnimSprite_GespenstOBJ_08BD3C40:
 	.incbin "baserom.gba", 0xbd3c40, 0x12c
 
-	.global gUnk_08BD3D6C
-gUnk_08BD3D6C:
+	.global AnimSprite_GespenstOBJ_08BD3D6C
+AnimSprite_GespenstOBJ_08BD3D6C:
 	.incbin "baserom.gba", 0xbd3d6c, 0x78
 
-	.global gUnk_08BD3DE4
-gUnk_08BD3DE4:
+	.global AnimSprite_GespenstOBJ_08BD3DE4
+AnimSprite_GespenstOBJ_08BD3DE4:
 	.incbin "baserom.gba", 0xbd3de4, 0x60
 
 	.global AnimScr_GespenstOBJ
 AnimScr_GespenstOBJ:
-	.4byte gUnk_08BD3AFC + 0x3
-	.4byte gUnk_08BD3C40 + 0x2
-	.4byte gUnk_08BD3A84 + 0x20000002
-	.4byte gUnk_08BD3D6C + 0x3
-	.4byte gUnk_08BD3DE4 + 0x2
-	.4byte gUnk_08BD3A84 + 0x20000002
-	.4byte gUnk_08BD37E4 + 0x10000000
-	.4byte gUnk_08BD397C + 0x2
-	.4byte gUnk_08BD3A9C + 0x2
-	.4byte gUnk_08BD3A84 + 0x2
-	.4byte gUnk_08BD3D6C + 0x3
-	.4byte gUnk_08BD3DE4 + 0x2
-	.4byte gUnk_08BD3A84 + 0x70000003
+	.4byte AnimSprite_GespenstOBJ_08BD3AFC + 0x3
+	.4byte AnimSprite_GespenstOBJ_08BD3C40 + 0x2
+	.4byte AnimSprite_GespenstOBJ_08BD3A84 + 0x20000002
+	.4byte AnimSprite_GespenstOBJ_08BD3D6C + 0x3
+	.4byte AnimSprite_GespenstOBJ_08BD3DE4 + 0x2
+	.4byte AnimSprite_GespenstOBJ_08BD3A84 + 0x20000002
+	.4byte AnimSprite_GespenstOBJ_08BD37E4 + 0x10000000
+	.4byte AnimSprite_GespenstOBJ_08BD397C + 0x2
+	.4byte AnimSprite_GespenstOBJ_08BD3A9C + 0x2
+	.4byte AnimSprite_GespenstOBJ_08BD3A84 + 0x2
+	.4byte AnimSprite_GespenstOBJ_08BD3D6C + 0x3
+	.4byte AnimSprite_GespenstOBJ_08BD3DE4 + 0x2
+	.4byte AnimSprite_GespenstOBJ_08BD3A84 + 0x70000003
 	.incbin "baserom.gba", 0xbd3e78, 0x8
 
-	.global gUnk_08BD3E80
-gUnk_08BD3E80:
+	.global AnimSprite_GespenstOBJ2_A_08BD3E80
+AnimSprite_GespenstOBJ2_A_08BD3E80:
 	.incbin "baserom.gba", 0xbd3e80, 0x6c
 
-	.global gUnk_08BD3EEC
-gUnk_08BD3EEC:
+	.global AnimSprite_GespenstOBJ2_A_08BD3EEC
+AnimSprite_GespenstOBJ2_A_08BD3EEC:
 	.incbin "baserom.gba", 0xbd3eec, 0x6c
 
-	.global gUnk_08BD3F58
-gUnk_08BD3F58:
+	.global AnimSprite_GespenstOBJ2_A_08BD3F58
+AnimSprite_GespenstOBJ2_A_08BD3F58:
 	.incbin "baserom.gba", 0xbd3f58, 0x6c
 
-	.global gUnk_08BD3FC4
-gUnk_08BD3FC4:
+	.global AnimSprite_GespenstOBJ2_A_08BD3FC4
+AnimSprite_GespenstOBJ2_A_08BD3FC4:
 	.incbin "baserom.gba", 0xbd3fc4, 0x6c
 
-	.global gUnk_08BD4030
-gUnk_08BD4030:
+	.global AnimSprite_GespenstOBJ2_A_08BD4030
+AnimSprite_GespenstOBJ2_A_08BD4030:
 	.incbin "baserom.gba", 0xbd4030, 0x6c
 
-	.global gUnk_08BD409C
-gUnk_08BD409C:
+	.global AnimSprite_GespenstOBJ2_A_08BD409C
+AnimSprite_GespenstOBJ2_A_08BD409C:
 	.incbin "baserom.gba", 0xbd409c, 0x6c
 
-	.global gUnk_08BD4108
-gUnk_08BD4108:
+	.global AnimSprite_GespenstOBJ2_A_08BD4108
+AnimSprite_GespenstOBJ2_A_08BD4108:
 	.incbin "baserom.gba", 0xbd4108, 0x6c
 
-	.global gUnk_08BD4174
-gUnk_08BD4174:
+	.global AnimSprite_GespenstOBJ2_A_08BD4174
+AnimSprite_GespenstOBJ2_A_08BD4174:
 	.incbin "baserom.gba", 0xbd4174, 0x6c
 
-	.global gUnk_08BD41E0
-gUnk_08BD41E0:
+	.global AnimSprite_GespenstOBJ2_A_08BD41E0
+AnimSprite_GespenstOBJ2_A_08BD41E0:
 	.incbin "baserom.gba", 0xbd41e0, 0x6c
 
-	.global gUnk_08BD424C
-gUnk_08BD424C:
+	.global AnimSprite_GespenstOBJ2_A_08BD424C
+AnimSprite_GespenstOBJ2_A_08BD424C:
 	.incbin "baserom.gba", 0xbd424c, 0x3c
 
-	.global gUnk_08BD4288
-gUnk_08BD4288:
+	.global AnimSprite_GespenstOBJ2_A_08BD4288
+AnimSprite_GespenstOBJ2_A_08BD4288:
 	.incbin "baserom.gba", 0xbd4288, 0x18
 
 	.global AnimScr_GespenstOBJ2_A
 AnimScr_GespenstOBJ2_A:
-	.4byte gUnk_08BD3E80 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD3EEC + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD3F58 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD3FC4 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD4030 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD409C + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD4108 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD4174 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD41E0 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD424C + 0x1
-	.4byte gUnk_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3E80 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3EEC + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3F58 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3FC4 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4030 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD409C + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4108 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4174 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD41E0 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD424C + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
 	.incbin "baserom.gba", 0xbd42f0, 0x4
 
 	.global AnimScr_GespenstOBJ2_B
 AnimScr_GespenstOBJ2_B:
-	.4byte gUnk_08BD424C + 0x1
-	.4byte gUnk_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD424C + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
 	.incbin "baserom.gba", 0xbd42fc, 0x4
 
 	.global AnimScr_GespenstOBJ2_C
 AnimScr_GespenstOBJ2_C:
-	.4byte gUnk_08BD424C + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD41E0 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD4174 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD4108 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD409C + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD4030 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD3FC4 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD3F58 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD3EEC + 0x1
-	.4byte gUnk_08BD4288 + 0x1
-	.4byte gUnk_08BD3E80 + 0x1
-	.4byte gUnk_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD424C + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD41E0 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4174 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4108 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD409C + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4030 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3FC4 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3F58 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3EEC + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD3E80 + 0x1
+	.4byte AnimSprite_GespenstOBJ2_A_08BD4288 + 0x1
 	.incbin "baserom.gba", 0xbd4350, 0x4
 
-	.global gUnk_08BD4354
-gUnk_08BD4354:
+	.global AnimSprite_LuceOBJ_B_08BD4354
+AnimSprite_LuceOBJ_B_08BD4354:
 	.incbin "baserom.gba", 0xbd4354, 0x48
 
-	.global gUnk_08BD439C
-gUnk_08BD439C:
+	.global AnimSprite_LuceOBJ_B_08BD439C
+AnimSprite_LuceOBJ_B_08BD439C:
 	.incbin "baserom.gba", 0xbd439c, 0x78
 
-	.global gUnk_08BD4414
-gUnk_08BD4414:
+	.global AnimSprite_LuceOBJ_B_08BD4414
+AnimSprite_LuceOBJ_B_08BD4414:
 	.incbin "baserom.gba", 0xbd4414, 0xb4
 
-	.global gUnk_08BD44C8
-gUnk_08BD44C8:
+	.global AnimSprite_LuceOBJ_B_08BD44C8
+AnimSprite_LuceOBJ_B_08BD44C8:
 	.incbin "baserom.gba", 0xbd44c8, 0x12c
 
-	.global gUnk_08BD45F4
-gUnk_08BD45F4:
+	.global AnimSprite_LuceOBJ_B_08BD45F4
+AnimSprite_LuceOBJ_B_08BD45F4:
 	.incbin "baserom.gba", 0xbd45f4, 0x180
 
-	.global gUnk_08BD4774
-gUnk_08BD4774:
+	.global AnimSprite_LuceOBJ_B_08BD4774
+AnimSprite_LuceOBJ_B_08BD4774:
 	.incbin "baserom.gba", 0xbd4774, 0x1d4
 
-	.global gUnk_08BD4948
-gUnk_08BD4948:
+	.global AnimSprite_LuceOBJ_B_08BD4948
+AnimSprite_LuceOBJ_B_08BD4948:
 	.incbin "baserom.gba", 0xbd4948, 0x234
 
-	.global gUnk_08BD4B7C
-gUnk_08BD4B7C:
+	.global AnimSprite_LuceOBJ_A_08BD4B7C
+AnimSprite_LuceOBJ_A_08BD4B7C:
 	.incbin "baserom.gba", 0xbd4b7c, 0x6c
 
-	.global gUnk_08BD4BE8
-gUnk_08BD4BE8:
+	.global AnimSprite_LuceOBJ_A_08BD4BE8
+AnimSprite_LuceOBJ_A_08BD4BE8:
 	.incbin "baserom.gba", 0xbd4be8, 0x6c
 
-	.global gUnk_08BD4C54
-gUnk_08BD4C54:
+	.global AnimSprite_LuceOBJ_A_08BD4C54
+AnimSprite_LuceOBJ_A_08BD4C54:
 	.incbin "baserom.gba", 0xbd4c54, 0x6c
 
-	.global gUnk_08BD4CC0
-gUnk_08BD4CC0:
+	.global AnimSprite_LuceOBJ_A_08BD4CC0
+AnimSprite_LuceOBJ_A_08BD4CC0:
 	.incbin "baserom.gba", 0xbd4cc0, 0x6c
 
-	.global gUnk_08BD4D2C
-gUnk_08BD4D2C:
+	.global AnimSprite_LuceOBJ_A_08BD4D2C
+AnimSprite_LuceOBJ_A_08BD4D2C:
 	.incbin "baserom.gba", 0xbd4d2c, 0x6c
 
-	.global gUnk_08BD4D98
-gUnk_08BD4D98:
+	.global AnimSprite_LuceOBJ_A_08BD4D98
+AnimSprite_LuceOBJ_A_08BD4D98:
 	.incbin "baserom.gba", 0xbd4d98, 0x6c
 
-	.global gUnk_08BD4E04
-gUnk_08BD4E04:
+	.global AnimSprite_LuceOBJ_A_08BD4E04
+AnimSprite_LuceOBJ_A_08BD4E04:
 	.incbin "baserom.gba", 0xbd4e04, 0x6c
 
-	.global gUnk_08BD4E70
-gUnk_08BD4E70:
+	.global AnimSprite_LuceOBJ_A_08BD4E70
+AnimSprite_LuceOBJ_A_08BD4E70:
 	.incbin "baserom.gba", 0xbd4e70, 0x6c
 
-	.global gUnk_08BD4EDC
-gUnk_08BD4EDC:
+	.global AnimSprite_LuceOBJ_A_08BD4EDC
+AnimSprite_LuceOBJ_A_08BD4EDC:
 	.incbin "baserom.gba", 0xbd4edc, 0x6c
 
-	.global gUnk_08BD4F48
-gUnk_08BD4F48:
+	.global AnimSprite_LuceOBJ_A_08BD4F48
+AnimSprite_LuceOBJ_A_08BD4F48:
 	.incbin "baserom.gba", 0xbd4f48, 0x3c
 
-	.global gUnk_08BD4F84
-gUnk_08BD4F84:
+	.global AnimSprite_LuceOBJ_A_08BD4F84
+AnimSprite_LuceOBJ_A_08BD4F84:
 	.incbin "baserom.gba", 0xbd4f84, 0x6c
 
-	.global gUnk_08BD4FF0
-gUnk_08BD4FF0:
+	.global AnimSprite_LuceOBJ_A_08BD4FF0
+AnimSprite_LuceOBJ_A_08BD4FF0:
 	.incbin "baserom.gba", 0xbd4ff0, 0x6c
 
-	.global gUnk_08BD505C
-gUnk_08BD505C:
+	.global AnimSprite_LuceOBJ_A_08BD505C
+AnimSprite_LuceOBJ_A_08BD505C:
 	.incbin "baserom.gba", 0xbd505c, 0x6c
 
-	.global gUnk_08BD50C8
-gUnk_08BD50C8:
+	.global AnimSprite_LuceOBJ_A_08BD50C8
+AnimSprite_LuceOBJ_A_08BD50C8:
 	.incbin "baserom.gba", 0xbd50c8, 0x6c
 
-	.global gUnk_08BD5134
-gUnk_08BD5134:
+	.global AnimSprite_LuceOBJ_A_08BD5134
+AnimSprite_LuceOBJ_A_08BD5134:
 	.incbin "baserom.gba", 0xbd5134, 0x6c
 
-	.global gUnk_08BD51A0
-gUnk_08BD51A0:
+	.global AnimSprite_LuceOBJ_A_08BD51A0
+AnimSprite_LuceOBJ_A_08BD51A0:
 	.incbin "baserom.gba", 0xbd51a0, 0x18
 
-	.global gUnk_08BD51B8
-gUnk_08BD51B8:
+	.global AnimSprite_LuceOBJ_A_08BD51B8
+AnimSprite_LuceOBJ_A_08BD51B8:
 	.incbin "baserom.gba", 0xbd51b8, 0x6c
 
-	.global gUnk_08BD5224
-gUnk_08BD5224:
+	.global AnimSprite_LuceOBJ_A_08BD5224
+AnimSprite_LuceOBJ_A_08BD5224:
 	.incbin "baserom.gba", 0xbd5224, 0x6c
 
-	.global gUnk_08BD5290
-gUnk_08BD5290:
+	.global AnimSprite_LuceOBJ_A_08BD5290
+AnimSprite_LuceOBJ_A_08BD5290:
 	.incbin "baserom.gba", 0xbd5290, 0x6c
 
-	.global gUnk_08BD52FC
-gUnk_08BD52FC:
+	.global AnimSprite_LuceOBJ_A_08BD52FC
+AnimSprite_LuceOBJ_A_08BD52FC:
 	.incbin "baserom.gba", 0xbd52fc, 0x6c
 
-	.global gUnk_08BD5368
-gUnk_08BD5368:
+	.global AnimSprite_LuceOBJ_A_08BD5368
+AnimSprite_LuceOBJ_A_08BD5368:
 	.incbin "baserom.gba", 0xbd5368, 0x6c
 
 	.global AnimScr_LuceOBJ_A
 AnimScr_LuceOBJ_A:
-	.4byte gUnk_08BD4B7C + 0x2
-	.4byte gUnk_08BD4BE8 + 0x2
-	.4byte gUnk_08BD4C54 + 0x2
-	.4byte gUnk_08BD4CC0 + 0x2
-	.4byte gUnk_08BD4D2C + 0x2
-	.4byte gUnk_08BD4D98 + 0x2
-	.4byte gUnk_08BD4E04 + 0x2
-	.4byte gUnk_08BD4E70 + 0x2
-	.4byte gUnk_08BD4EDC + 0x2
-	.4byte gUnk_08BD4F48 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD4F84 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD4FF0 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD505C + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD50C8 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD5134 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD51B8 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD5224 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD5290 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD52FC + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD5368 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD5368 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD5368 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
-	.4byte gUnk_08BD5368 + 0x2
-	.4byte gUnk_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4B7C + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4BE8 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4C54 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4CC0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4D2C + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4D98 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4E04 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4E70 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4EDC + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4F48 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4F84 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD4FF0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD505C + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD50C8 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD5134 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51B8 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD5224 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD5290 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD52FC + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD5368 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD5368 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD5368 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD5368 + 0x2
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x2
 	.incbin "baserom.gba", 0xbd5468, 0x4
 
 	.global AnimScr_LuceOBJ_B
 AnimScr_LuceOBJ_B:
-	.4byte gUnk_08BD51A0 + 0x10000000
-	.4byte gUnk_08BD4354 + 0x2
-	.4byte gUnk_08BD439C + 0x2
-	.4byte gUnk_08BD4414 + 0x2
-	.4byte gUnk_08BD44C8 + 0x2
-	.4byte gUnk_08BD45F4 + 0x2
-	.4byte gUnk_08BD4774 + 0x2
-	.4byte gUnk_08BD4948 + 0x70000003
+	.4byte AnimSprite_LuceOBJ_A_08BD51A0 + 0x10000000
+	.4byte AnimSprite_LuceOBJ_B_08BD4354 + 0x2
+	.4byte AnimSprite_LuceOBJ_B_08BD439C + 0x2
+	.4byte AnimSprite_LuceOBJ_B_08BD4414 + 0x2
+	.4byte AnimSprite_LuceOBJ_B_08BD44C8 + 0x2
+	.4byte AnimSprite_LuceOBJ_B_08BD45F4 + 0x2
+	.4byte AnimSprite_LuceOBJ_B_08BD4774 + 0x2
+	.4byte AnimSprite_LuceOBJ_B_08BD4948 + 0x70000003
 	.incbin "baserom.gba", 0xbd548c, 0x8
 
-	.global gUnk_08BD5494
-gUnk_08BD5494:
+	.global AnimSprite_EfxChill1_R_08BD5494
+AnimSprite_EfxChill1_R_08BD5494:
 	.incbin "baserom.gba", 0xbd5494, 0x30
 
-	.global gUnk_08BD54C4
-gUnk_08BD54C4:
+	.global AnimSprite_EfxChill1_R_08BD54C4
+AnimSprite_EfxChill1_R_08BD54C4:
 	.incbin "baserom.gba", 0xbd54c4, 0x30
 
-	.global gUnk_08BD54F4
-gUnk_08BD54F4:
+	.global AnimSprite_EfxChill1_R_08BD54F4
+AnimSprite_EfxChill1_R_08BD54F4:
 	.incbin "baserom.gba", 0xbd54f4, 0x30
 
-	.global gUnk_08BD5524
-gUnk_08BD5524:
+	.global AnimSprite_EfxChill1_R_08BD5524
+AnimSprite_EfxChill1_R_08BD5524:
 	.incbin "baserom.gba", 0xbd5524, 0x30
 
-	.global gUnk_08BD5554
-gUnk_08BD5554:
+	.global AnimSprite_EfxChill1_R_08BD5554
+AnimSprite_EfxChill1_R_08BD5554:
 	.incbin "baserom.gba", 0xbd5554, 0x30
 
-	.global gUnk_08BD5584
-gUnk_08BD5584:
+	.global AnimSprite_EfxChill1_R_08BD5584
+AnimSprite_EfxChill1_R_08BD5584:
 	.incbin "baserom.gba", 0xbd5584, 0x30
 
-	.global gUnk_08BD55B4
-gUnk_08BD55B4:
+	.global AnimSprite_EfxChill1_R_08BD55B4
+AnimSprite_EfxChill1_R_08BD55B4:
 	.incbin "baserom.gba", 0xbd55b4, 0x30
 
-	.global gUnk_08BD55E4
-gUnk_08BD55E4:
+	.global AnimSprite_EfxChill1_R_08BD55E4
+AnimSprite_EfxChill1_R_08BD55E4:
 	.incbin "baserom.gba", 0xbd55e4, 0x30
 
-	.global gUnk_08BD5614
-gUnk_08BD5614:
+	.global AnimSprite_EfxChill1_R_08BD5614
+AnimSprite_EfxChill1_R_08BD5614:
 	.incbin "baserom.gba", 0xbd5614, 0x30
 
 	.global AnimScr_EfxChill1_R
 AnimScr_EfxChill1_R:
-	.4byte gUnk_08BD5494 + 0x1
-	.4byte gUnk_08BD54C4 + 0x1
-	.4byte gUnk_08BD5494 + 0x1
-	.4byte gUnk_08BD54F4 + 0x1
-	.4byte gUnk_08BD5494 + 0x1
-	.4byte gUnk_08BD5524 + 0x1
-	.4byte gUnk_08BD5494 + 0x1
-	.4byte gUnk_08BD5554 + 0x1
-	.4byte gUnk_08BD55E4 + 0x1
-	.4byte gUnk_08BD5584 + 0x1
-	.4byte gUnk_08BD5614 + 0x1
-	.4byte gUnk_08BD55B4 + 0x1
-	.4byte gUnk_08BD55E4 + 0x1
-	.4byte gUnk_08BD5524 + 0x1
-	.4byte gUnk_08BD5494 + 0x1
-	.4byte gUnk_08BD5554 + 0x1
-	.4byte gUnk_08BD5494 + 0x1
-	.4byte gUnk_08BD54C4 + 0x1
-	.4byte gUnk_08BD5494 + 0x1
-	.4byte gUnk_08BD54F4 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5494 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD54C4 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5494 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD54F4 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5494 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5524 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5494 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5554 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD55E4 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5584 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5614 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD55B4 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD55E4 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5524 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5494 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5554 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5494 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD54C4 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD5494 + 0x1
+	.4byte AnimSprite_EfxChill1_R_08BD54F4 + 0x1
 	.incbin "baserom.gba", 0xbd5694, 0x4
 
-	.global gUnk_08BD5698
-gUnk_08BD5698:
+	.global AnimSprite_EfxChill1_L_08BD5698
+AnimSprite_EfxChill1_L_08BD5698:
 	.incbin "baserom.gba", 0xbd5698, 0x30
 
-	.global gUnk_08BD56C8
-gUnk_08BD56C8:
+	.global AnimSprite_EfxChill1_L_08BD56C8
+AnimSprite_EfxChill1_L_08BD56C8:
 	.incbin "baserom.gba", 0xbd56c8, 0x30
 
-	.global gUnk_08BD56F8
-gUnk_08BD56F8:
+	.global AnimSprite_EfxChill1_L_08BD56F8
+AnimSprite_EfxChill1_L_08BD56F8:
 	.incbin "baserom.gba", 0xbd56f8, 0x30
 
-	.global gUnk_08BD5728
-gUnk_08BD5728:
+	.global AnimSprite_EfxChill1_L_08BD5728
+AnimSprite_EfxChill1_L_08BD5728:
 	.incbin "baserom.gba", 0xbd5728, 0x30
 
-	.global gUnk_08BD5758
-gUnk_08BD5758:
+	.global AnimSprite_EfxChill1_L_08BD5758
+AnimSprite_EfxChill1_L_08BD5758:
 	.incbin "baserom.gba", 0xbd5758, 0x30
 
-	.global gUnk_08BD5788
-gUnk_08BD5788:
+	.global AnimSprite_EfxChill1_L_08BD5788
+AnimSprite_EfxChill1_L_08BD5788:
 	.incbin "baserom.gba", 0xbd5788, 0x30
 
-	.global gUnk_08BD57B8
-gUnk_08BD57B8:
+	.global AnimSprite_EfxChill1_L_08BD57B8
+AnimSprite_EfxChill1_L_08BD57B8:
 	.incbin "baserom.gba", 0xbd57b8, 0x30
 
-	.global gUnk_08BD57E8
-gUnk_08BD57E8:
+	.global AnimSprite_EfxChill1_L_08BD57E8
+AnimSprite_EfxChill1_L_08BD57E8:
 	.incbin "baserom.gba", 0xbd57e8, 0x30
 
-	.global gUnk_08BD5818
-gUnk_08BD5818:
+	.global AnimSprite_EfxChill1_L_08BD5818
+AnimSprite_EfxChill1_L_08BD5818:
 	.incbin "baserom.gba", 0xbd5818, 0x30
 
 	.global AnimScr_EfxChill1_L
 AnimScr_EfxChill1_L:
-	.4byte gUnk_08BD5698 + 0x1
-	.4byte gUnk_08BD56C8 + 0x1
-	.4byte gUnk_08BD5698 + 0x1
-	.4byte gUnk_08BD56F8 + 0x1
-	.4byte gUnk_08BD5698 + 0x1
-	.4byte gUnk_08BD5728 + 0x1
-	.4byte gUnk_08BD5698 + 0x1
-	.4byte gUnk_08BD5758 + 0x1
-	.4byte gUnk_08BD57E8 + 0x1
-	.4byte gUnk_08BD5788 + 0x1
-	.4byte gUnk_08BD5818 + 0x1
-	.4byte gUnk_08BD57B8 + 0x1
-	.4byte gUnk_08BD57E8 + 0x1
-	.4byte gUnk_08BD5728 + 0x1
-	.4byte gUnk_08BD5698 + 0x1
-	.4byte gUnk_08BD5758 + 0x1
-	.4byte gUnk_08BD5698 + 0x1
-	.4byte gUnk_08BD56C8 + 0x1
-	.4byte gUnk_08BD5698 + 0x1
-	.4byte gUnk_08BD56F8 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5698 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD56C8 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5698 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD56F8 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5698 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5728 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5698 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5758 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD57E8 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5788 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5818 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD57B8 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD57E8 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5728 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5698 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5758 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5698 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD56C8 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD5698 + 0x1
+	.4byte AnimSprite_EfxChill1_L_08BD56F8 + 0x1
 	.incbin "baserom.gba", 0xbd5898, 0x4
 
-	.global gUnk_08BD589C
-gUnk_08BD589C:
+	.global AnimSprite_EfxChill2_R_08BD589C
+AnimSprite_EfxChill2_R_08BD589C:
 	.incbin "baserom.gba", 0xbd589c, 0x60
 
-	.global gUnk_08BD58FC
-gUnk_08BD58FC:
+	.global AnimSprite_EfxChill2_R_08BD58FC
+AnimSprite_EfxChill2_R_08BD58FC:
 	.incbin "baserom.gba", 0xbd58fc, 0x60
 
-	.global gUnk_08BD595C
-gUnk_08BD595C:
+	.global AnimSprite_EfxChill2_R_08BD595C
+AnimSprite_EfxChill2_R_08BD595C:
 	.incbin "baserom.gba", 0xbd595c, 0x60
 
-	.global gUnk_08BD59BC
-gUnk_08BD59BC:
+	.global AnimSprite_EfxChill2_R_08BD59BC
+AnimSprite_EfxChill2_R_08BD59BC:
 	.incbin "baserom.gba", 0xbd59bc, 0x60
 
-	.global gUnk_08BD5A1C
-gUnk_08BD5A1C:
+	.global AnimSprite_EfxChill2_R_08BD5A1C
+AnimSprite_EfxChill2_R_08BD5A1C:
 	.incbin "baserom.gba", 0xbd5a1c, 0x60
 
-	.global gUnk_08BD5A7C
-gUnk_08BD5A7C:
+	.global AnimSprite_EfxChill2_R_08BD5A7C
+AnimSprite_EfxChill2_R_08BD5A7C:
 	.incbin "baserom.gba", 0xbd5a7c, 0x60
 
-	.global gUnk_08BD5ADC
-gUnk_08BD5ADC:
+	.global AnimSprite_EfxChill2_R_08BD5ADC
+AnimSprite_EfxChill2_R_08BD5ADC:
 	.incbin "baserom.gba", 0xbd5adc, 0x60
 
-	.global gUnk_08BD5B3C
-gUnk_08BD5B3C:
+	.global AnimSprite_EfxChill2_R_08BD5B3C
+AnimSprite_EfxChill2_R_08BD5B3C:
 	.incbin "baserom.gba", 0xbd5b3c, 0x60
 
-	.global gUnk_08BD5B9C
-gUnk_08BD5B9C:
+	.global AnimSprite_EfxChill2_R_08BD5B9C
+AnimSprite_EfxChill2_R_08BD5B9C:
 	.incbin "baserom.gba", 0xbd5b9c, 0x60
 
 	.global AnimScr_EfxChill2_R
 AnimScr_EfxChill2_R:
-	.4byte gUnk_08BD589C + 0x1
-	.4byte gUnk_08BD58FC + 0x1
-	.4byte gUnk_08BD589C + 0x1
-	.4byte gUnk_08BD595C + 0x1
-	.4byte gUnk_08BD589C + 0x1
-	.4byte gUnk_08BD59BC + 0x1
-	.4byte gUnk_08BD589C + 0x1
-	.4byte gUnk_08BD5A1C + 0x1
-	.4byte gUnk_08BD5B3C + 0x1
-	.4byte gUnk_08BD5A7C + 0x1
-	.4byte gUnk_08BD5B9C + 0x1
-	.4byte gUnk_08BD5ADC + 0x1
-	.4byte gUnk_08BD5B3C + 0x1
-	.4byte gUnk_08BD59BC + 0x1
-	.4byte gUnk_08BD589C + 0x1
-	.4byte gUnk_08BD5A1C + 0x1
-	.4byte gUnk_08BD589C + 0x1
-	.4byte gUnk_08BD58FC + 0x1
-	.4byte gUnk_08BD589C + 0x1
-	.4byte gUnk_08BD595C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD589C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD58FC + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD589C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD595C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD589C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD59BC + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD589C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD5A1C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD5B3C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD5A7C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD5B9C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD5ADC + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD5B3C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD59BC + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD589C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD5A1C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD589C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD58FC + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD589C + 0x1
+	.4byte AnimSprite_EfxChill2_R_08BD595C + 0x1
 	.incbin "baserom.gba", 0xbd5c4c, 0x4
 
-	.global gUnk_08BD5C50
-gUnk_08BD5C50:
+	.global AnimSprite_EfxChill2_L_08BD5C50
+AnimSprite_EfxChill2_L_08BD5C50:
 	.incbin "baserom.gba", 0xbd5c50, 0x60
 
-	.global gUnk_08BD5CB0
-gUnk_08BD5CB0:
+	.global AnimSprite_EfxChill2_L_08BD5CB0
+AnimSprite_EfxChill2_L_08BD5CB0:
 	.incbin "baserom.gba", 0xbd5cb0, 0x60
 
-	.global gUnk_08BD5D10
-gUnk_08BD5D10:
+	.global AnimSprite_EfxChill2_L_08BD5D10
+AnimSprite_EfxChill2_L_08BD5D10:
 	.incbin "baserom.gba", 0xbd5d10, 0x60
 
-	.global gUnk_08BD5D70
-gUnk_08BD5D70:
+	.global AnimSprite_EfxChill2_L_08BD5D70
+AnimSprite_EfxChill2_L_08BD5D70:
 	.incbin "baserom.gba", 0xbd5d70, 0x60
 
-	.global gUnk_08BD5DD0
-gUnk_08BD5DD0:
+	.global AnimSprite_EfxChill2_L_08BD5DD0
+AnimSprite_EfxChill2_L_08BD5DD0:
 	.incbin "baserom.gba", 0xbd5dd0, 0x60
 
-	.global gUnk_08BD5E30
-gUnk_08BD5E30:
+	.global AnimSprite_EfxChill2_L_08BD5E30
+AnimSprite_EfxChill2_L_08BD5E30:
 	.incbin "baserom.gba", 0xbd5e30, 0x60
 
-	.global gUnk_08BD5E90
-gUnk_08BD5E90:
+	.global AnimSprite_EfxChill2_L_08BD5E90
+AnimSprite_EfxChill2_L_08BD5E90:
 	.incbin "baserom.gba", 0xbd5e90, 0x60
 
-	.global gUnk_08BD5EF0
-gUnk_08BD5EF0:
+	.global AnimSprite_EfxChill2_L_08BD5EF0
+AnimSprite_EfxChill2_L_08BD5EF0:
 	.incbin "baserom.gba", 0xbd5ef0, 0x60
 
-	.global gUnk_08BD5F50
-gUnk_08BD5F50:
+	.global AnimSprite_EfxChill2_L_08BD5F50
+AnimSprite_EfxChill2_L_08BD5F50:
 	.incbin "baserom.gba", 0xbd5f50, 0x60
 
 	.global AnimScr_EfxChill2_L
 AnimScr_EfxChill2_L:
-	.4byte gUnk_08BD5C50 + 0x1
-	.4byte gUnk_08BD5CB0 + 0x1
-	.4byte gUnk_08BD5C50 + 0x1
-	.4byte gUnk_08BD5D10 + 0x1
-	.4byte gUnk_08BD5C50 + 0x1
-	.4byte gUnk_08BD5D70 + 0x1
-	.4byte gUnk_08BD5C50 + 0x1
-	.4byte gUnk_08BD5DD0 + 0x1
-	.4byte gUnk_08BD5EF0 + 0x1
-	.4byte gUnk_08BD5E30 + 0x1
-	.4byte gUnk_08BD5F50 + 0x1
-	.4byte gUnk_08BD5E90 + 0x1
-	.4byte gUnk_08BD5EF0 + 0x1
-	.4byte gUnk_08BD5D70 + 0x1
-	.4byte gUnk_08BD5C50 + 0x1
-	.4byte gUnk_08BD5DD0 + 0x1
-	.4byte gUnk_08BD5C50 + 0x1
-	.4byte gUnk_08BD5CB0 + 0x1
-	.4byte gUnk_08BD5C50 + 0x1
-	.4byte gUnk_08BD5D10 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5C50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5CB0 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5C50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5D10 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5C50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5D70 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5C50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5DD0 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5EF0 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5E30 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5F50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5E90 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5EF0 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5D70 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5C50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5DD0 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5C50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5CB0 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5C50 + 0x1
+	.4byte AnimSprite_EfxChill2_L_08BD5D10 + 0x1
 	.incbin "baserom.gba", 0xbd6000, 0x4
 
 	.global gUnk_08BD6004
@@ -13466,44 +13466,44 @@ gUnk_08BD6880:
 gUnk_08BD68A4:
 	.incbin "baserom.gba", 0xbd68a4, 0x24
 
-	.global gUnk_08BD68C8
-gUnk_08BD68C8:
+	.global AnimSprite_EreshkigalOBJ2_A_08BD68C8
+AnimSprite_EreshkigalOBJ2_A_08BD68C8:
 	.incbin "baserom.gba", 0xbd68c8, 0x24
 
-	.global gUnk_08BD68EC
-gUnk_08BD68EC:
+	.global AnimSprite_EreshkigalOBJ2_A_08BD68EC
+AnimSprite_EreshkigalOBJ2_A_08BD68EC:
 	.incbin "baserom.gba", 0xbd68ec, 0x24
 
-	.global gUnk_08BD6910
-gUnk_08BD6910:
+	.global AnimSprite_EreshkigalOBJ2_A_08BD6910
+AnimSprite_EreshkigalOBJ2_A_08BD6910:
 	.incbin "baserom.gba", 0xbd6910, 0x24
 
-	.global gUnk_08BD6934
-gUnk_08BD6934:
+	.global AnimSprite_EreshkigalOBJ2_A_08BD6934
+AnimSprite_EreshkigalOBJ2_A_08BD6934:
 	.incbin "baserom.gba", 0xbd6934, 0x24
 
-	.global gUnk_08BD6958
-gUnk_08BD6958:
+	.global AnimSprite_EreshkigalOBJ2_A_08BD6958
+AnimSprite_EreshkigalOBJ2_A_08BD6958:
 	.incbin "baserom.gba", 0xbd6958, 0x18
 
-	.global gUnk_08BD6970
-gUnk_08BD6970:
+	.global AnimSprite_EreshkigalOBJ2_A_08BD6970
+AnimSprite_EreshkigalOBJ2_A_08BD6970:
 	.incbin "baserom.gba", 0xbd6970, 0x6c
 
-	.global gUnk_08BD69DC
-gUnk_08BD69DC:
+	.global AnimSprite_EreshkigalOBJ2_A_08BD69DC
+AnimSprite_EreshkigalOBJ2_A_08BD69DC:
 	.incbin "baserom.gba", 0xbd69dc, 0x6c
 
-	.global gUnk_08BD6A48
-gUnk_08BD6A48:
+	.global AnimSprite_EreshkigalOBJ2_B_08BD6A48
+AnimSprite_EreshkigalOBJ2_B_08BD6A48:
 	.incbin "baserom.gba", 0xbd6a48, 0x3c
 
-	.global gUnk_08BD6A84
-gUnk_08BD6A84:
+	.global AnimSprite_EreshkigalOBJ2_B_08BD6A84
+AnimSprite_EreshkigalOBJ2_B_08BD6A84:
 	.incbin "baserom.gba", 0xbd6a84, 0x3c
 
-	.global gUnk_08BD6AC0
-gUnk_08BD6AC0:
+	.global AnimSprite_EreshkigalOBJ2_B_08BD6AC0
+AnimSprite_EreshkigalOBJ2_B_08BD6AC0:
 	.incbin "baserom.gba", 0xbd6ac0, 0x3c
 
 	.global gUnk_08BD6AFC
@@ -13643,20 +13643,20 @@ gUnk_08BD6C6C:
 
 	.global AnimScr_EreshkigalOBJ2_A
 AnimScr_EreshkigalOBJ2_A:
-	.4byte gUnk_08BD68C8 + 0x2
-	.4byte gUnk_08BD68EC + 0x2
-	.4byte gUnk_08BD6910 + 0x2
-	.4byte gUnk_08BD6934 + 0x2
-	.4byte gUnk_08BD6958 + 0x2
-	.4byte gUnk_08BD6970 + 0x2
-	.4byte gUnk_08BD69DC + 0x2
+	.4byte AnimSprite_EreshkigalOBJ2_A_08BD68C8 + 0x2
+	.4byte AnimSprite_EreshkigalOBJ2_A_08BD68EC + 0x2
+	.4byte AnimSprite_EreshkigalOBJ2_A_08BD6910 + 0x2
+	.4byte AnimSprite_EreshkigalOBJ2_A_08BD6934 + 0x2
+	.4byte AnimSprite_EreshkigalOBJ2_A_08BD6958 + 0x2
+	.4byte AnimSprite_EreshkigalOBJ2_A_08BD6970 + 0x2
+	.4byte AnimSprite_EreshkigalOBJ2_A_08BD69DC + 0x2
 	.incbin "baserom.gba", 0xbd6d10, 0x4
 
 	.global AnimScr_EreshkigalOBJ2_B
 AnimScr_EreshkigalOBJ2_B:
-	.4byte gUnk_08BD6A48 + 0x3
-	.4byte gUnk_08BD6A84 + 0x3
-	.4byte gUnk_08BD6AC0 + 0x3
+	.4byte AnimSprite_EreshkigalOBJ2_B_08BD6A48 + 0x3
+	.4byte AnimSprite_EreshkigalOBJ2_B_08BD6A84 + 0x3
+	.4byte AnimSprite_EreshkigalOBJ2_B_08BD6AC0 + 0x3
 	.incbin "baserom.gba", 0xbd6d20, 0x4
 
 	.global gUnk_08BD6D24
@@ -13750,12 +13750,12 @@ gUnk_08BD6F70:
 gUnk_08BD6FB8:
 	.incbin "baserom.gba", 0xbd6fb8, 0x18
 
-	.global gUnk_08BD6FD0
-gUnk_08BD6FD0:
+	.global AnimSprite_EreshkigalOBJ3_08BD6FD0
+AnimSprite_EreshkigalOBJ3_08BD6FD0:
 	.incbin "baserom.gba", 0xbd6fd0, 0x3c
 
-	.global gUnk_08BD700C
-gUnk_08BD700C:
+	.global AnimSprite_EreshkigalOBJ3_08BD700C
+AnimSprite_EreshkigalOBJ3_08BD700C:
 	.incbin "baserom.gba", 0xbd700c, 0x6c
 
 	.global AnimScr_08BD7078
@@ -13769,556 +13769,556 @@ AnimScr_08BD7078:
 
 	.global AnimScr_EreshkigalOBJ3
 AnimScr_EreshkigalOBJ3:
-	.4byte gUnk_08BD6FD0 + 0x3
-	.4byte gUnk_08BD700C + 0x2
+	.4byte AnimSprite_EreshkigalOBJ3_08BD6FD0 + 0x3
+	.4byte AnimSprite_EreshkigalOBJ3_08BD700C + 0x2
 	.incbin "baserom.gba", 0xbd7098, 0x4
 
-	.global gUnk_08BD709C
-gUnk_08BD709C:
+	.global AnimSprite_EfxSong_08BD709C
+AnimSprite_EfxSong_08BD709C:
 	.incbin "baserom.gba", 0xbd709c, 0x18
 
-	.global gUnk_08BD70B4
-gUnk_08BD70B4:
+	.global AnimSprite_EfxSong_08BD70B4
+AnimSprite_EfxSong_08BD70B4:
 	.incbin "baserom.gba", 0xbd70b4, 0x24
 
-	.global gUnk_08BD70D8
-gUnk_08BD70D8:
+	.global AnimSprite_EfxSong_08BD70D8
+AnimSprite_EfxSong_08BD70D8:
 	.incbin "baserom.gba", 0xbd70d8, 0x24
 
-	.global gUnk_08BD70FC
-gUnk_08BD70FC:
+	.global AnimSprite_EfxSong_08BD70FC
+AnimSprite_EfxSong_08BD70FC:
 	.incbin "baserom.gba", 0xbd70fc, 0x30
 
-	.global gUnk_08BD712C
-gUnk_08BD712C:
+	.global AnimSprite_EfxSong_08BD712C
+AnimSprite_EfxSong_08BD712C:
 	.incbin "baserom.gba", 0xbd712c, 0x3c
 
-	.global gUnk_08BD7168
-gUnk_08BD7168:
+	.global AnimSprite_EfxSong_08BD7168
+AnimSprite_EfxSong_08BD7168:
 	.incbin "baserom.gba", 0xbd7168, 0x3c
 
-	.global gUnk_08BD71A4
-gUnk_08BD71A4:
+	.global AnimSprite_EfxSong_08BD71A4
+AnimSprite_EfxSong_08BD71A4:
 	.incbin "baserom.gba", 0xbd71a4, 0x48
 
-	.global gUnk_08BD71EC
-gUnk_08BD71EC:
+	.global AnimSprite_EfxSong_08BD71EC
+AnimSprite_EfxSong_08BD71EC:
 	.incbin "baserom.gba", 0xbd71ec, 0x48
 
-	.global gUnk_08BD7234
-gUnk_08BD7234:
+	.global AnimSprite_EfxSong_08BD7234
+AnimSprite_EfxSong_08BD7234:
 	.incbin "baserom.gba", 0xbd7234, 0x54
 
-	.global gUnk_08BD7288
-gUnk_08BD7288:
+	.global AnimSprite_EfxSong_08BD7288
+AnimSprite_EfxSong_08BD7288:
 	.incbin "baserom.gba", 0xbd7288, 0x60
 
-	.global gUnk_08BD72E8
-gUnk_08BD72E8:
+	.global AnimSprite_EfxSong_08BD72E8
+AnimSprite_EfxSong_08BD72E8:
 	.incbin "baserom.gba", 0xbd72e8, 0x6c
 
-	.global gUnk_08BD7354
-gUnk_08BD7354:
+	.global AnimSprite_EfxSong_08BD7354
+AnimSprite_EfxSong_08BD7354:
 	.incbin "baserom.gba", 0xbd7354, 0x6c
 
-	.global gUnk_08BD73C0
-gUnk_08BD73C0:
+	.global AnimSprite_EfxSong_08BD73C0
+AnimSprite_EfxSong_08BD73C0:
 	.incbin "baserom.gba", 0xbd73c0, 0x78
 
-	.global gUnk_08BD7438
-gUnk_08BD7438:
+	.global AnimSprite_EfxSong_08BD7438
+AnimSprite_EfxSong_08BD7438:
 	.incbin "baserom.gba", 0xbd7438, 0x78
 
-	.global gUnk_08BD74B0
-gUnk_08BD74B0:
+	.global AnimSprite_EfxSong_08BD74B0
+AnimSprite_EfxSong_08BD74B0:
 	.incbin "baserom.gba", 0xbd74b0, 0x78
 
-	.global gUnk_08BD7528
-gUnk_08BD7528:
+	.global AnimSprite_EfxSong_08BD7528
+AnimSprite_EfxSong_08BD7528:
 	.incbin "baserom.gba", 0xbd7528, 0x84
 
-	.global gUnk_08BD75AC
-gUnk_08BD75AC:
+	.global AnimSprite_EfxSong_08BD75AC
+AnimSprite_EfxSong_08BD75AC:
 	.incbin "baserom.gba", 0xbd75ac, 0x84
 
-	.global gUnk_08BD7630
-gUnk_08BD7630:
+	.global AnimSprite_EfxSong_08BD7630
+AnimSprite_EfxSong_08BD7630:
 	.incbin "baserom.gba", 0xbd7630, 0x9c
 
-	.global gUnk_08BD76CC
-gUnk_08BD76CC:
+	.global AnimSprite_EfxSong_08BD76CC
+AnimSprite_EfxSong_08BD76CC:
 	.incbin "baserom.gba", 0xbd76cc, 0x9c
 
-	.global gUnk_08BD7768
-gUnk_08BD7768:
+	.global AnimSprite_EfxSong_08BD7768
+AnimSprite_EfxSong_08BD7768:
 	.incbin "baserom.gba", 0xbd7768, 0x9c
 
-	.global gUnk_08BD7804
-gUnk_08BD7804:
+	.global AnimSprite_EfxSong_08BD7804
+AnimSprite_EfxSong_08BD7804:
 	.incbin "baserom.gba", 0xbd7804, 0x9c
 
-	.global gUnk_08BD78A0
-gUnk_08BD78A0:
+	.global AnimSprite_EfxSong_08BD78A0
+AnimSprite_EfxSong_08BD78A0:
 	.incbin "baserom.gba", 0xbd78a0, 0xa8
 
-	.global gUnk_08BD7948
-gUnk_08BD7948:
+	.global AnimSprite_EfxSong_08BD7948
+AnimSprite_EfxSong_08BD7948:
 	.incbin "baserom.gba", 0xbd7948, 0xa8
 
-	.global gUnk_08BD79F0
-gUnk_08BD79F0:
+	.global AnimSprite_EfxSong_08BD79F0
+AnimSprite_EfxSong_08BD79F0:
 	.incbin "baserom.gba", 0xbd79f0, 0xa8
 
-	.global gUnk_08BD7A98
-gUnk_08BD7A98:
+	.global AnimSprite_EfxSong_08BD7A98
+AnimSprite_EfxSong_08BD7A98:
 	.incbin "baserom.gba", 0xbd7a98, 0xb4
 
-	.global gUnk_08BD7B4C
-gUnk_08BD7B4C:
+	.global AnimSprite_EfxSong_08BD7B4C
+AnimSprite_EfxSong_08BD7B4C:
 	.incbin "baserom.gba", 0xbd7b4c, 0xb4
 
-	.global gUnk_08BD7C00
-gUnk_08BD7C00:
+	.global AnimSprite_EfxSong_08BD7C00
+AnimSprite_EfxSong_08BD7C00:
 	.incbin "baserom.gba", 0xbd7c00, 0xc0
 
-	.global gUnk_08BD7CC0
-gUnk_08BD7CC0:
+	.global AnimSprite_EfxSong_08BD7CC0
+AnimSprite_EfxSong_08BD7CC0:
 	.incbin "baserom.gba", 0xbd7cc0, 0xc0
 
-	.global gUnk_08BD7D80
-gUnk_08BD7D80:
+	.global AnimSprite_EfxSong_08BD7D80
+AnimSprite_EfxSong_08BD7D80:
 	.incbin "baserom.gba", 0xbd7d80, 0xc0
 
-	.global gUnk_08BD7E40
-gUnk_08BD7E40:
+	.global AnimSprite_EfxSong_08BD7E40
+AnimSprite_EfxSong_08BD7E40:
 	.incbin "baserom.gba", 0xbd7e40, 0xcc
 
-	.global gUnk_08BD7F0C
-gUnk_08BD7F0C:
+	.global AnimSprite_EfxSong_08BD7F0C
+AnimSprite_EfxSong_08BD7F0C:
 	.incbin "baserom.gba", 0xbd7f0c, 0xcc
 
-	.global gUnk_08BD7FD8
-gUnk_08BD7FD8:
+	.global AnimSprite_EfxSong_08BD7FD8
+AnimSprite_EfxSong_08BD7FD8:
 	.incbin "baserom.gba", 0xbd7fd8, 0xcc
 
-	.global gUnk_08BD80A4
-gUnk_08BD80A4:
+	.global AnimSprite_EfxSong_08BD80A4
+AnimSprite_EfxSong_08BD80A4:
 	.incbin "baserom.gba", 0xbd80a4, 0xcc
 
-	.global gUnk_08BD8170
-gUnk_08BD8170:
+	.global AnimSprite_EfxSong_08BD8170
+AnimSprite_EfxSong_08BD8170:
 	.incbin "baserom.gba", 0xbd8170, 0xcc
 
-	.global gUnk_08BD823C
-gUnk_08BD823C:
+	.global AnimSprite_EfxSong_08BD823C
+AnimSprite_EfxSong_08BD823C:
 	.incbin "baserom.gba", 0xbd823c, 0xcc
 
-	.global gUnk_08BD8308
-gUnk_08BD8308:
+	.global AnimSprite_EfxSong_08BD8308
+AnimSprite_EfxSong_08BD8308:
 	.incbin "baserom.gba", 0xbd8308, 0xd8
 
-	.global gUnk_08BD83E0
-gUnk_08BD83E0:
+	.global AnimSprite_EfxSong_08BD83E0
+AnimSprite_EfxSong_08BD83E0:
 	.incbin "baserom.gba", 0xbd83e0, 0xd8
 
-	.global gUnk_08BD84B8
-gUnk_08BD84B8:
+	.global AnimSprite_EfxSong_08BD84B8
+AnimSprite_EfxSong_08BD84B8:
 	.incbin "baserom.gba", 0xbd84b8, 0xd8
 
-	.global gUnk_08BD8590
-gUnk_08BD8590:
+	.global AnimSprite_EfxSong_08BD8590
+AnimSprite_EfxSong_08BD8590:
 	.incbin "baserom.gba", 0xbd8590, 0xd8
 
-	.global gUnk_08BD8668
-gUnk_08BD8668:
+	.global AnimSprite_EfxSong_08BD8668
+AnimSprite_EfxSong_08BD8668:
 	.incbin "baserom.gba", 0xbd8668, 0xe4
 
-	.global gUnk_08BD874C
-gUnk_08BD874C:
+	.global AnimSprite_EfxSong_08BD874C
+AnimSprite_EfxSong_08BD874C:
 	.incbin "baserom.gba", 0xbd874c, 0xe4
 
-	.global gUnk_08BD8830
-gUnk_08BD8830:
+	.global AnimSprite_EfxSong_08BD8830
+AnimSprite_EfxSong_08BD8830:
 	.incbin "baserom.gba", 0xbd8830, 0xe4
 
-	.global gUnk_08BD8914
-gUnk_08BD8914:
+	.global AnimSprite_EfxSong_08BD8914
+AnimSprite_EfxSong_08BD8914:
 	.incbin "baserom.gba", 0xbd8914, 0xe4
 
-	.global gUnk_08BD89F8
-gUnk_08BD89F8:
+	.global AnimSprite_EfxSong_08BD89F8
+AnimSprite_EfxSong_08BD89F8:
 	.incbin "baserom.gba", 0xbd89f8, 0xd8
 
-	.global gUnk_08BD8AD0
-gUnk_08BD8AD0:
+	.global AnimSprite_EfxSong_08BD8AD0
+AnimSprite_EfxSong_08BD8AD0:
 	.incbin "baserom.gba", 0xbd8ad0, 0xc0
 
-	.global gUnk_08BD8B90
-gUnk_08BD8B90:
+	.global AnimSprite_EfxSong_08BD8B90
+AnimSprite_EfxSong_08BD8B90:
 	.incbin "baserom.gba", 0xbd8b90, 0xb4
 
-	.global gUnk_08BD8C44
-gUnk_08BD8C44:
+	.global AnimSprite_EfxSong_08BD8C44
+AnimSprite_EfxSong_08BD8C44:
 	.incbin "baserom.gba", 0xbd8c44, 0xa8
 
-	.global gUnk_08BD8CEC
-gUnk_08BD8CEC:
+	.global AnimSprite_EfxSong_08BD8CEC
+AnimSprite_EfxSong_08BD8CEC:
 	.incbin "baserom.gba", 0xbd8cec, 0x90
 
-	.global gUnk_08BD8D7C
-gUnk_08BD8D7C:
+	.global AnimSprite_EfxSong_08BD8D7C
+AnimSprite_EfxSong_08BD8D7C:
 	.incbin "baserom.gba", 0xbd8d7c, 0x84
 
-	.global gUnk_08BD8E00
-gUnk_08BD8E00:
+	.global AnimSprite_EfxSong_08BD8E00
+AnimSprite_EfxSong_08BD8E00:
 	.incbin "baserom.gba", 0xbd8e00, 0x78
 
-	.global gUnk_08BD8E78
-gUnk_08BD8E78:
+	.global AnimSprite_EfxSong_08BD8E78
+AnimSprite_EfxSong_08BD8E78:
 	.incbin "baserom.gba", 0xbd8e78, 0x6c
 
-	.global gUnk_08BD8EE4
-gUnk_08BD8EE4:
+	.global AnimSprite_EfxSong_08BD8EE4
+AnimSprite_EfxSong_08BD8EE4:
 	.incbin "baserom.gba", 0xbd8ee4, 0x54
 
-	.global gUnk_08BD8F38
-gUnk_08BD8F38:
+	.global AnimSprite_EfxSong_08BD8F38
+AnimSprite_EfxSong_08BD8F38:
 	.incbin "baserom.gba", 0xbd8f38, 0x48
 
-	.global gUnk_08BD8F80
-gUnk_08BD8F80:
+	.global AnimSprite_EfxSong_08BD8F80
+AnimSprite_EfxSong_08BD8F80:
 	.incbin "baserom.gba", 0xbd8f80, 0x30
 
-	.global gUnk_08BD8FB0
-gUnk_08BD8FB0:
+	.global AnimSprite_EfxSong_08BD8FB0
+AnimSprite_EfxSong_08BD8FB0:
 	.incbin "baserom.gba", 0xbd8fb0, 0x24
 
-	.global gUnk_08BD8FD4
-gUnk_08BD8FD4:
+	.global AnimSprite_EfxSong_08BD8FD4
+AnimSprite_EfxSong_08BD8FD4:
 	.incbin "baserom.gba", 0xbd8fd4, 0x18
 
 	.global AnimScr_EfxSong
 AnimScr_EfxSong:
-	.4byte gUnk_08BD709C + 0x1
-	.4byte gUnk_08BD70B4 + 0x1
-	.4byte gUnk_08BD70D8 + 0x1
-	.4byte gUnk_08BD70FC + 0x1
-	.4byte gUnk_08BD712C + 0x1
-	.4byte gUnk_08BD7168 + 0x1
-	.4byte gUnk_08BD71A4 + 0x1
-	.4byte gUnk_08BD71EC + 0x1
-	.4byte gUnk_08BD7234 + 0x1
-	.4byte gUnk_08BD7288 + 0x1
-	.4byte gUnk_08BD72E8 + 0x1
-	.4byte gUnk_08BD7354 + 0x1
-	.4byte gUnk_08BD73C0 + 0x1
-	.4byte gUnk_08BD7438 + 0x1
-	.4byte gUnk_08BD74B0 + 0x1
-	.4byte gUnk_08BD7528 + 0x1
-	.4byte gUnk_08BD75AC + 0x1
-	.4byte gUnk_08BD7630 + 0x1
-	.4byte gUnk_08BD76CC + 0x1
-	.4byte gUnk_08BD7768 + 0x1
-	.4byte gUnk_08BD7804 + 0x1
-	.4byte gUnk_08BD78A0 + 0x1
-	.4byte gUnk_08BD7948 + 0x1
-	.4byte gUnk_08BD79F0 + 0x1
-	.4byte gUnk_08BD7A98 + 0x1
-	.4byte gUnk_08BD7B4C + 0x1
-	.4byte gUnk_08BD7C00 + 0x1
-	.4byte gUnk_08BD7CC0 + 0x1
-	.4byte gUnk_08BD7D80 + 0x1
-	.4byte gUnk_08BD7E40 + 0x1
-	.4byte gUnk_08BD7F0C + 0x1
-	.4byte gUnk_08BD7FD8 + 0x1
-	.4byte gUnk_08BD80A4 + 0x1
-	.4byte gUnk_08BD8170 + 0x1
-	.4byte gUnk_08BD823C + 0x1
-	.4byte gUnk_08BD8308 + 0x1
-	.4byte gUnk_08BD83E0 + 0x1
-	.4byte gUnk_08BD84B8 + 0x1
-	.4byte gUnk_08BD8590 + 0x1
-	.4byte gUnk_08BD8668 + 0x1
-	.4byte gUnk_08BD874C + 0x1
-	.4byte gUnk_08BD8830 + 0x1
-	.4byte gUnk_08BD8914 + 0x1
-	.4byte gUnk_08BD89F8 + 0x1
-	.4byte gUnk_08BD8AD0 + 0x1
-	.4byte gUnk_08BD8B90 + 0x1
-	.4byte gUnk_08BD8C44 + 0x1
-	.4byte gUnk_08BD8CEC + 0x1
-	.4byte gUnk_08BD8D7C + 0x1
-	.4byte gUnk_08BD8E00 + 0x1
-	.4byte gUnk_08BD8E78 + 0x1
-	.4byte gUnk_08BD8EE4 + 0x1
-	.4byte gUnk_08BD8F38 + 0x1
-	.4byte gUnk_08BD8F80 + 0x1
-	.4byte gUnk_08BD8FB0 + 0x1
-	.4byte gUnk_08BD8FD4 + 0x1
+	.4byte AnimSprite_EfxSong_08BD709C + 0x1
+	.4byte AnimSprite_EfxSong_08BD70B4 + 0x1
+	.4byte AnimSprite_EfxSong_08BD70D8 + 0x1
+	.4byte AnimSprite_EfxSong_08BD70FC + 0x1
+	.4byte AnimSprite_EfxSong_08BD712C + 0x1
+	.4byte AnimSprite_EfxSong_08BD7168 + 0x1
+	.4byte AnimSprite_EfxSong_08BD71A4 + 0x1
+	.4byte AnimSprite_EfxSong_08BD71EC + 0x1
+	.4byte AnimSprite_EfxSong_08BD7234 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7288 + 0x1
+	.4byte AnimSprite_EfxSong_08BD72E8 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7354 + 0x1
+	.4byte AnimSprite_EfxSong_08BD73C0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7438 + 0x1
+	.4byte AnimSprite_EfxSong_08BD74B0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7528 + 0x1
+	.4byte AnimSprite_EfxSong_08BD75AC + 0x1
+	.4byte AnimSprite_EfxSong_08BD7630 + 0x1
+	.4byte AnimSprite_EfxSong_08BD76CC + 0x1
+	.4byte AnimSprite_EfxSong_08BD7768 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7804 + 0x1
+	.4byte AnimSprite_EfxSong_08BD78A0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7948 + 0x1
+	.4byte AnimSprite_EfxSong_08BD79F0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7A98 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7B4C + 0x1
+	.4byte AnimSprite_EfxSong_08BD7C00 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7CC0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7D80 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7E40 + 0x1
+	.4byte AnimSprite_EfxSong_08BD7F0C + 0x1
+	.4byte AnimSprite_EfxSong_08BD7FD8 + 0x1
+	.4byte AnimSprite_EfxSong_08BD80A4 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8170 + 0x1
+	.4byte AnimSprite_EfxSong_08BD823C + 0x1
+	.4byte AnimSprite_EfxSong_08BD8308 + 0x1
+	.4byte AnimSprite_EfxSong_08BD83E0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD84B8 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8590 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8668 + 0x1
+	.4byte AnimSprite_EfxSong_08BD874C + 0x1
+	.4byte AnimSprite_EfxSong_08BD8830 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8914 + 0x1
+	.4byte AnimSprite_EfxSong_08BD89F8 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8AD0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8B90 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8C44 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8CEC + 0x1
+	.4byte AnimSprite_EfxSong_08BD8D7C + 0x1
+	.4byte AnimSprite_EfxSong_08BD8E00 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8E78 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8EE4 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8F38 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8F80 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8FB0 + 0x1
+	.4byte AnimSprite_EfxSong_08BD8FD4 + 0x1
 	.incbin "baserom.gba", 0xbd90cc, 0x4
 
-	.global gUnk_08BD90D0
-gUnk_08BD90D0:
+	.global AnimSprite_EfxLokmsunaObjLeft_08BD90D0
+AnimSprite_EfxLokmsunaObjLeft_08BD90D0:
 	.incbin "baserom.gba", 0xbd90d0, 0x30
 
-	.global gUnk_08BD9100
-gUnk_08BD9100:
+	.global AnimSprite_EfxLokmsunaObjLeft_08BD9100
+AnimSprite_EfxLokmsunaObjLeft_08BD9100:
 	.incbin "baserom.gba", 0xbd9100, 0x48
 
-	.global gUnk_08BD9148
-gUnk_08BD9148:
+	.global AnimSprite_EfxLokmsunaObjLeft_08BD9148
+AnimSprite_EfxLokmsunaObjLeft_08BD9148:
 	.incbin "baserom.gba", 0xbd9148, 0x3c
 
-	.global gUnk_08BD9184
-gUnk_08BD9184:
+	.global AnimSprite_EfxLokmsunaObjLeft_08BD9184
+AnimSprite_EfxLokmsunaObjLeft_08BD9184:
 	.incbin "baserom.gba", 0xbd9184, 0x24
 
-	.global gUnk_08BD91A8
-gUnk_08BD91A8:
+	.global AnimSprite_EfxLokmsunaObjLeft_08BD91A8
+AnimSprite_EfxLokmsunaObjLeft_08BD91A8:
 	.incbin "baserom.gba", 0xbd91a8, 0x18
 
-	.global gUnk_08BD91C0
-gUnk_08BD91C0:
+	.global AnimSprite_EfxLokmsunaObjLeft_08BD91C0
+AnimSprite_EfxLokmsunaObjLeft_08BD91C0:
 	.incbin "baserom.gba", 0xbd91c0, 0x18
 
 	.global AnimScr_EfxLokmsunaObjLeft
 AnimScr_EfxLokmsunaObjLeft:
-	.4byte gUnk_08BD90D0 + 0x2
-	.4byte gUnk_08BD9100 + 0x2
-	.4byte gUnk_08BD9148 + 0x2
-	.4byte gUnk_08BD9184 + 0x3
-	.4byte gUnk_08BD91A8 + 0x3
-	.4byte gUnk_08BD91C0 + 0x3
+	.4byte AnimSprite_EfxLokmsunaObjLeft_08BD90D0 + 0x2
+	.4byte AnimSprite_EfxLokmsunaObjLeft_08BD9100 + 0x2
+	.4byte AnimSprite_EfxLokmsunaObjLeft_08BD9148 + 0x2
+	.4byte AnimSprite_EfxLokmsunaObjLeft_08BD9184 + 0x3
+	.4byte AnimSprite_EfxLokmsunaObjLeft_08BD91A8 + 0x3
+	.4byte AnimSprite_EfxLokmsunaObjLeft_08BD91C0 + 0x3
 	.incbin "baserom.gba", 0xbd91f0, 0x4
 
-	.global gUnk_08BD91F4
-gUnk_08BD91F4:
+	.global AnimSprite_EfxLokmsunaObjRight_08BD91F4
+AnimSprite_EfxLokmsunaObjRight_08BD91F4:
 	.incbin "baserom.gba", 0xbd91f4, 0x30
 
-	.global gUnk_08BD9224
-gUnk_08BD9224:
+	.global AnimSprite_EfxLokmsunaObjRight_08BD9224
+AnimSprite_EfxLokmsunaObjRight_08BD9224:
 	.incbin "baserom.gba", 0xbd9224, 0x48
 
-	.global gUnk_08BD926C
-gUnk_08BD926C:
+	.global AnimSprite_EfxLokmsunaObjRight_08BD926C
+AnimSprite_EfxLokmsunaObjRight_08BD926C:
 	.incbin "baserom.gba", 0xbd926c, 0x3c
 
-	.global gUnk_08BD92A8
-gUnk_08BD92A8:
+	.global AnimSprite_EfxLokmsunaObjRight_08BD92A8
+AnimSprite_EfxLokmsunaObjRight_08BD92A8:
 	.incbin "baserom.gba", 0xbd92a8, 0x24
 
-	.global gUnk_08BD92CC
-gUnk_08BD92CC:
+	.global AnimSprite_EfxLokmsunaObjRight_08BD92CC
+AnimSprite_EfxLokmsunaObjRight_08BD92CC:
 	.incbin "baserom.gba", 0xbd92cc, 0x18
 
-	.global gUnk_08BD92E4
-gUnk_08BD92E4:
+	.global AnimSprite_EfxLokmsunaObjRight_08BD92E4
+AnimSprite_EfxLokmsunaObjRight_08BD92E4:
 	.incbin "baserom.gba", 0xbd92e4, 0x18
 
 	.global AnimScr_EfxLokmsunaObjRight
 AnimScr_EfxLokmsunaObjRight:
-	.4byte gUnk_08BD91F4 + 0x2
-	.4byte gUnk_08BD9224 + 0x2
-	.4byte gUnk_08BD926C + 0x2
-	.4byte gUnk_08BD92A8 + 0x3
-	.4byte gUnk_08BD92CC + 0x3
-	.4byte gUnk_08BD92E4 + 0x3
+	.4byte AnimSprite_EfxLokmsunaObjRight_08BD91F4 + 0x2
+	.4byte AnimSprite_EfxLokmsunaObjRight_08BD9224 + 0x2
+	.4byte AnimSprite_EfxLokmsunaObjRight_08BD926C + 0x2
+	.4byte AnimSprite_EfxLokmsunaObjRight_08BD92A8 + 0x3
+	.4byte AnimSprite_EfxLokmsunaObjRight_08BD92CC + 0x3
+	.4byte AnimSprite_EfxLokmsunaObjRight_08BD92E4 + 0x3
 	.incbin "baserom.gba", 0xbd9314, 0x4
 
 	.section .rodata.08BD95E0, "a"
 
-	.global gUnk_08BD95E0
-gUnk_08BD95E0:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD95E0
+AnimSprite_EfxDragonDeadFallBody_08BD95E0:
 	.incbin "baserom.gba", 0xbd95e0, 0x78
 
-	.global gUnk_08BD9658
-gUnk_08BD9658:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9658
+AnimSprite_EfxDragonDeadFallBody_08BD9658:
 	.incbin "baserom.gba", 0xbd9658, 0x84
 
-	.global gUnk_08BD96DC
-gUnk_08BD96DC:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD96DC
+AnimSprite_EfxDragonDeadFallBody_08BD96DC:
 	.incbin "baserom.gba", 0xbd96dc, 0x84
 
-	.global gUnk_08BD9760
-gUnk_08BD9760:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9760
+AnimSprite_EfxDragonDeadFallBody_08BD9760:
 	.incbin "baserom.gba", 0xbd9760, 0x84
 
-	.global gUnk_08BD97E4
-gUnk_08BD97E4:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD97E4
+AnimSprite_EfxDragonDeadFallBody_08BD97E4:
 	.incbin "baserom.gba", 0xbd97e4, 0x84
 
-	.global gUnk_08BD9868
-gUnk_08BD9868:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9868
+AnimSprite_EfxDragonDeadFallBody_08BD9868:
 	.incbin "baserom.gba", 0xbd9868, 0x84
 
-	.global gUnk_08BD98EC
-gUnk_08BD98EC:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD98EC
+AnimSprite_EfxDragonDeadFallBody_08BD98EC:
 	.incbin "baserom.gba", 0xbd98ec, 0x90
 
-	.global gUnk_08BD997C
-gUnk_08BD997C:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD997C
+AnimSprite_EfxDragonDeadFallBody_08BD997C:
 	.incbin "baserom.gba", 0xbd997c, 0xb4
 
-	.global gUnk_08BD9A30
-gUnk_08BD9A30:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9A30
+AnimSprite_EfxDragonDeadFallBody_08BD9A30:
 	.incbin "baserom.gba", 0xbd9a30, 0xd8
 
-	.global gUnk_08BD9B08
-gUnk_08BD9B08:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9B08
+AnimSprite_EfxDragonDeadFallBody_08BD9B08:
 	.incbin "baserom.gba", 0xbd9b08, 0xfc
 
-	.global gUnk_08BD9C04
-gUnk_08BD9C04:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9C04
+AnimSprite_EfxDragonDeadFallBody_08BD9C04:
 	.incbin "baserom.gba", 0xbd9c04, 0x114
 
-	.global gUnk_08BD9D18
-gUnk_08BD9D18:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9D18
+AnimSprite_EfxDragonDeadFallBody_08BD9D18:
 	.incbin "baserom.gba", 0xbd9d18, 0x138
 
-	.global gUnk_08BD9E50
-gUnk_08BD9E50:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9E50
+AnimSprite_EfxDragonDeadFallBody_08BD9E50:
 	.incbin "baserom.gba", 0xbd9e50, 0x150
 
-	.global gUnk_08BD9FA0
-gUnk_08BD9FA0:
+	.global AnimSprite_EfxDragonDeadFallBody_08BD9FA0
+AnimSprite_EfxDragonDeadFallBody_08BD9FA0:
 	.incbin "baserom.gba", 0xbd9fa0, 0x144
 
-	.global gUnk_08BDA0E4
-gUnk_08BDA0E4:
+	.global AnimSprite_EfxDragonDeadFallBody_08BDA0E4
+AnimSprite_EfxDragonDeadFallBody_08BDA0E4:
 	.incbin "baserom.gba", 0xbda0e4, 0x168
 
-	.global gUnk_08BDA24C
-gUnk_08BDA24C:
+	.global AnimSprite_EfxDragonDeadFallBody_08BDA24C
+AnimSprite_EfxDragonDeadFallBody_08BDA24C:
 	.incbin "baserom.gba", 0xbda24c, 0x168
 
-	.global gUnk_08BDA3B4
-gUnk_08BDA3B4:
+	.global AnimSprite_EfxDragonDeadFallBody_08BDA3B4
+AnimSprite_EfxDragonDeadFallBody_08BDA3B4:
 	.incbin "baserom.gba", 0xbda3b4, 0x144
 
-	.global gUnk_08BDA4F8
-gUnk_08BDA4F8:
+	.global AnimSprite_EfxDragonDeadFallBody_08BDA4F8
+AnimSprite_EfxDragonDeadFallBody_08BDA4F8:
 	.incbin "baserom.gba", 0xbda4f8, 0x120
 
-	.global gUnk_08BDA618
-gUnk_08BDA618:
+	.global AnimSprite_EfxDragonDeadFallBody_08BDA618
+AnimSprite_EfxDragonDeadFallBody_08BDA618:
 	.incbin "baserom.gba", 0xbda618, 0xf0
 
-	.global gUnk_08BDA708
-gUnk_08BDA708:
+	.global AnimSprite_EfxDragonDeadFallBody_08BDA708
+AnimSprite_EfxDragonDeadFallBody_08BDA708:
 	.incbin "baserom.gba", 0xbda708, 0xcc
 
-	.global gUnk_08BDA7D4
-gUnk_08BDA7D4:
+	.global AnimSprite_EfxDragonDeadFallBody_08BDA7D4
+AnimSprite_EfxDragonDeadFallBody_08BDA7D4:
 	.incbin "baserom.gba", 0xbda7d4, 0xa8
 
-	.global gUnk_08BDA87C
-gUnk_08BDA87C:
+	.global AnimSprite_EfxDragonDeadFallBody2_08BDA87C
+AnimSprite_EfxDragonDeadFallBody2_08BDA87C:
 	.incbin "baserom.gba", 0xbda87c, 0x9c
 
-	.global gUnk_08BDA918
-gUnk_08BDA918:
+	.global AnimSprite_EfxDragonDeadFallBody2_08BDA918
+AnimSprite_EfxDragonDeadFallBody2_08BDA918:
 	.incbin "baserom.gba", 0xbda918, 0x6c
 
-	.global gUnk_08BDA984
-gUnk_08BDA984:
+	.global AnimSprite_EkrDragonHead_08BDA984
+AnimSprite_EkrDragonHead_08BDA984:
 	.incbin "baserom.gba", 0xbda984, 0xa8
 
-	.global gUnk_08BDAA2C
-gUnk_08BDAA2C:
+	.global AnimSprite_EfxDragonDeadFallBody2_08BDAA2C
+AnimSprite_EfxDragonDeadFallBody2_08BDAA2C:
 	.incbin "baserom.gba", 0xbdaa2c, 0x6c
 
-	.global gUnk_08BDAA98
-gUnk_08BDAA98:
+	.global AnimSprite_EfxDragonDeadFallBody2_08BDAA98
+AnimSprite_EfxDragonDeadFallBody2_08BDAA98:
 	.incbin "baserom.gba", 0xbdaa98, 0x78
 
-	.global gUnk_08BDAB10
-gUnk_08BDAB10:
+	.global AnimSprite_EfxDragonDeadFallHeadFx_08BDAB10
+AnimSprite_EfxDragonDeadFallHeadFx_08BDAB10:
 	.incbin "baserom.gba", 0xbdab10, 0x48
 
-	.global gUnk_08BDAB58
-gUnk_08BDAB58:
+	.global AnimSprite_EfxDragonDeadFallHeadFx_08BDAB58
+AnimSprite_EfxDragonDeadFallHeadFx_08BDAB58:
 	.incbin "baserom.gba", 0xbdab58, 0x48
 
 	.global AnimScr_EfxDragonDeadFallBody
 AnimScr_EfxDragonDeadFallBody:
-	.4byte gUnk_08BD95E0 + 0x70000003
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x70000003
 	.incbin "baserom.gba", 0xbdaba4, 0x4
-	.4byte gUnk_08BD9658 + 0x10000000
-	.4byte gUnk_08BD96DC + 0x10000002
-	.4byte gUnk_08BD9658 + 0x10000000
-	.4byte gUnk_08BD95E0 + 0x70000003
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9658 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD96DC + 0x10000002
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9658 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x70000003
 	.incbin "baserom.gba", 0xbdabb8, 0x4
-	.4byte gUnk_08BD9658 + 0x10000000
-	.4byte gUnk_08BD96DC + 0x10000002
-	.4byte gUnk_08BD9658 + 0x10000000
-	.4byte gUnk_08BD95E0 + 0x20000002
-	.4byte gUnk_08BD9658 + 0x10000000
-	.4byte gUnk_08BD96DC + 0x10000002
-	.4byte gUnk_08BD9658 + 0x10000000
-	.4byte gUnk_08BD95E0 + 0x70000003
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9658 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD96DC + 0x10000002
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9658 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x20000002
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9658 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD96DC + 0x10000002
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9658 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x70000003
 	.incbin "baserom.gba", 0xbdabdc, 0x4
-	.4byte gUnk_08BD9760 + 0x20000002
-	.4byte gUnk_08BD95E0 + 0x10000000
-	.4byte gUnk_08BD97E4 + 0x10000000
-	.4byte gUnk_08BD9868 + 0x50000000
-	.4byte gUnk_08BD97E4 + 0x10000000
-	.4byte gUnk_08BD95E0 + 0x10000000
-	.4byte gUnk_08BD9760 + 0x20000002
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9760 + 0x20000002
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD97E4 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9868 + 0x50000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD97E4 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9760 + 0x20000002
 	.incbin "baserom.gba", 0xbdabfc, 0x4
-	.4byte gUnk_08BD98EC + 0x3
-	.4byte gUnk_08BD997C + 0x3
-	.4byte gUnk_08BD9A30 + 0x3
-	.4byte gUnk_08BD9B08 + 0x3
-	.4byte gUnk_08BD9C04 + 0x3
-	.4byte gUnk_08BD9D18 + 0x3
-	.4byte gUnk_08BD9E50 + 0x3
-	.4byte gUnk_08BD9FA0 + 0x3
-	.4byte gUnk_08BDA0E4 + 0x3
-	.4byte gUnk_08BD9D18 + 0x3
-	.4byte gUnk_08BD9E50 + 0x3
-	.4byte gUnk_08BD9FA0 + 0x3
-	.4byte gUnk_08BDA0E4 + 0x3
-	.4byte gUnk_08BDA24C + 0x3
-	.4byte gUnk_08BDA3B4 + 0x3
-	.4byte gUnk_08BDA4F8 + 0x3
-	.4byte gUnk_08BDA618 + 0x3
-	.4byte gUnk_08BDA708 + 0x3
-	.4byte gUnk_08BDA7D4 + 0x3
-	.4byte gUnk_08BD95E0 + 0x70000003
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD98EC + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD997C + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9A30 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9B08 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9C04 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9D18 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9E50 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9FA0 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA0E4 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9D18 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9E50 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD9FA0 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA0E4 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA24C + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA3B4 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA4F8 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA618 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA708 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BDA7D4 + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x70000003
 	.incbin "baserom.gba", 0xbdac50, 0x8
 
 	.global AnimScr_EkrDragonHead
 AnimScr_EkrDragonHead:
-	.4byte gUnk_08BDA984 + 0x1
+	.4byte AnimSprite_EkrDragonHead_08BDA984 + 0x1
 	.incbin "baserom.gba", 0xbdac5c, 0x4
 
 	.global AnimScr_EfxDragonDeadFallBody2
 AnimScr_EfxDragonDeadFallBody2:
-	.4byte gUnk_08BDA87C + 0x2
-	.4byte gUnk_08BDA918 + 0x2
-	.4byte gUnk_08BDA87C + 0x2
-	.4byte gUnk_08BDA918 + 0x2
-	.4byte gUnk_08BDA87C + 0x2
-	.4byte gUnk_08BDA918 + 0x2
-	.4byte gUnk_08BDA87C + 0x2
-	.4byte gUnk_08BDA918 + 0x2
-	.4byte gUnk_08BDA87C + 0x2
-	.4byte gUnk_08BDA918 + 0x2
-	.4byte gUnk_08BDA87C + 0x2
-	.4byte gUnk_08BDA918 + 0x2
-	.4byte gUnk_08BDA87C + 0x3
-	.4byte gUnk_08BDA918 + 0x10000000
-	.4byte gUnk_08BDA87C + 0x10000001
-	.4byte gUnk_08BDA918 + 0x10000002
-	.4byte gUnk_08BDAA2C + 0x2
-	.4byte gUnk_08BDAA98 + 0x2
-	.4byte gUnk_08BD95E0 + 0x70000002
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x3
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x10000000
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA87C + 0x10000001
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDA918 + 0x10000002
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDAA2C + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody2_08BDAA98 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallBody_08BD95E0 + 0x70000002
 	.incbin "baserom.gba", 0xbdacac, 0x4
 
 	.global AnimScr_EfxDragonDeadFallHeadFx
 AnimScr_EfxDragonDeadFallHeadFx:
-	.4byte gUnk_08BDAB10 + 0x2
-	.4byte gUnk_08BDAB58 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallHeadFx_08BDAB10 + 0x2
+	.4byte AnimSprite_EfxDragonDeadFallHeadFx_08BDAB58 + 0x2
 	.incbin "baserom.gba", 0xbdacb8, 0x4
 
 	.global EkrBg3HfScrollingConf
@@ -14563,290 +14563,290 @@ ProcScr_EfxTriangleQUAKE:
 	.4byte EfxTriangleQUAKEMain
 	.incbin "baserom.gba", 0xbdb94c, 0x8
 
-	.global gUnk_08BDB954
-gUnk_08BDB954:
+	.global AnimSprite_TriAtkLeft_08BDB954
+AnimSprite_TriAtkLeft_08BDB954:
 	.incbin "baserom.gba", 0xbdb954, 0xd8
 
-	.global gUnk_08BDBA2C
-gUnk_08BDBA2C:
+	.global AnimSprite_TriAtkLeft_08BDBA2C
+AnimSprite_TriAtkLeft_08BDBA2C:
 	.incbin "baserom.gba", 0xbdba2c, 0xc0
 
-	.global gUnk_08BDBAEC
-gUnk_08BDBAEC:
+	.global AnimSprite_TriAtkLeft_08BDBAEC
+AnimSprite_TriAtkLeft_08BDBAEC:
 	.incbin "baserom.gba", 0xbdbaec, 0xc0
 
-	.global gUnk_08BDBBAC
-gUnk_08BDBBAC:
+	.global AnimSprite_TriAtkLeft_08BDBBAC
+AnimSprite_TriAtkLeft_08BDBBAC:
 	.incbin "baserom.gba", 0xbdbbac, 0xc0
 
-	.global gUnk_08BDBC6C
-gUnk_08BDBC6C:
+	.global AnimSprite_TriAtkLeft_08BDBC6C
+AnimSprite_TriAtkLeft_08BDBC6C:
 	.incbin "baserom.gba", 0xbdbc6c, 0xc0
 
-	.global gUnk_08BDBD2C
-gUnk_08BDBD2C:
+	.global AnimSprite_TriAtkLeft_08BDBD2C
+AnimSprite_TriAtkLeft_08BDBD2C:
 	.incbin "baserom.gba", 0xbdbd2c, 0xd8
 
 	.global AnimScr_TriAtkLeft
 AnimScr_TriAtkLeft:
-	.4byte gUnk_08BDB954 + 0x1
-	.4byte gUnk_08BDBA2C + 0x2
-	.4byte gUnk_08BDBAEC + 0x1
-	.4byte gUnk_08BDBBAC + 0x1
-	.4byte gUnk_08BDBC6C + 0x3
-	.4byte gUnk_08BDBD2C + 0x20000002
+	.4byte AnimSprite_TriAtkLeft_08BDB954 + 0x1
+	.4byte AnimSprite_TriAtkLeft_08BDBA2C + 0x2
+	.4byte AnimSprite_TriAtkLeft_08BDBAEC + 0x1
+	.4byte AnimSprite_TriAtkLeft_08BDBBAC + 0x1
+	.4byte AnimSprite_TriAtkLeft_08BDBC6C + 0x3
+	.4byte AnimSprite_TriAtkLeft_08BDBD2C + 0x20000002
 	.incbin "baserom.gba", 0xbdbe1c, 0x4
 
-	.global gUnk_08BDBE20
-gUnk_08BDBE20:
+	.global AnimSprite_TriAtkRight_08BDBE20
+AnimSprite_TriAtkRight_08BDBE20:
 	.incbin "baserom.gba", 0xbdbe20, 0xc0
 
-	.global gUnk_08BDBEE0
-gUnk_08BDBEE0:
+	.global AnimSprite_TriAtkRight_08BDBEE0
+AnimSprite_TriAtkRight_08BDBEE0:
 	.incbin "baserom.gba", 0xbdbee0, 0xc0
 
-	.global gUnk_08BDBFA0
-gUnk_08BDBFA0:
+	.global AnimSprite_TriAtkRight_08BDBFA0
+AnimSprite_TriAtkRight_08BDBFA0:
 	.incbin "baserom.gba", 0xbdbfa0, 0xc0
 
-	.global gUnk_08BDC060
-gUnk_08BDC060:
+	.global AnimSprite_TriAtkRight_08BDC060
+AnimSprite_TriAtkRight_08BDC060:
 	.incbin "baserom.gba", 0xbdc060, 0xd8
 
 	.global AnimScr_TriAtkRight
 AnimScr_TriAtkRight:
-	.4byte gUnk_08BDBE20 + 0x2
-	.4byte gUnk_08BDBEE0 + 0x1
-	.4byte gUnk_08BDBFA0 + 0x2
-	.4byte gUnk_08BDC060 + 0x30000000
+	.4byte AnimSprite_TriAtkRight_08BDBE20 + 0x2
+	.4byte AnimSprite_TriAtkRight_08BDBEE0 + 0x1
+	.4byte AnimSprite_TriAtkRight_08BDBFA0 + 0x2
+	.4byte AnimSprite_TriAtkRight_08BDC060 + 0x30000000
 	.incbin "baserom.gba", 0xbdc148, 0x4
 
-	.global gUnk_08BDC14C
-gUnk_08BDC14C:
+	.global AnimSprite_TriKnightOBJ_08BDC14C
+AnimSprite_TriKnightOBJ_08BDC14C:
 	.incbin "baserom.gba", 0xbdc14c, 0x6c
 
-	.global gUnk_08BDC1B8
-gUnk_08BDC1B8:
+	.global AnimSprite_TriKnightOBJ_08BDC1B8
+AnimSprite_TriKnightOBJ_08BDC1B8:
 	.incbin "baserom.gba", 0xbdc1b8, 0x18
 
 	.global AnimScr_TriKnightOBJ
 AnimScr_TriKnightOBJ:
-	.4byte gUnk_08BDC14C + 0x1
-	.4byte gUnk_08BDC1B8 + 0x1
+	.4byte AnimSprite_TriKnightOBJ_08BDC14C + 0x1
+	.4byte AnimSprite_TriKnightOBJ_08BDC1B8 + 0x1
 	.incbin "baserom.gba", 0xbdc1d8, 0x4
 
-	.global gUnk_08BDC1DC
-gUnk_08BDC1DC:
+	.global AnimSprite_TriGenerialLanceOBJ_08BDC1DC
+AnimSprite_TriGenerialLanceOBJ_08BDC1DC:
 	.incbin "baserom.gba", 0xbdc1dc, 0x6c
 
-	.global gUnk_08BDC248
-gUnk_08BDC248:
+	.global AnimSprite_TriGenerialLanceOBJ_08BDC248
+AnimSprite_TriGenerialLanceOBJ_08BDC248:
 	.incbin "baserom.gba", 0xbdc248, 0x18
 
 	.global AnimScr_TriGenerialLanceOBJ
 AnimScr_TriGenerialLanceOBJ:
-	.4byte gUnk_08BDC1DC + 0x1
-	.4byte gUnk_08BDC248 + 0x1
+	.4byte AnimSprite_TriGenerialLanceOBJ_08BDC1DC + 0x1
+	.4byte AnimSprite_TriGenerialLanceOBJ_08BDC248 + 0x1
 	.incbin "baserom.gba", 0xbdc268, 0x4
 
-	.global gUnk_08BDC26C
-gUnk_08BDC26C:
+	.global AnimSprite_TriGenerialAxeOBJ_08BDC26C
+AnimSprite_TriGenerialAxeOBJ_08BDC26C:
 	.incbin "baserom.gba", 0xbdc26c, 0x6c
 
-	.global gUnk_08BDC2D8
-gUnk_08BDC2D8:
+	.global AnimSprite_TriGenerialAxeOBJ_08BDC2D8
+AnimSprite_TriGenerialAxeOBJ_08BDC2D8:
 	.incbin "baserom.gba", 0xbdc2d8, 0x18
 
 	.global AnimScr_TriGenerialAxeOBJ
 AnimScr_TriGenerialAxeOBJ:
-	.4byte gUnk_08BDC26C + 0x1
-	.4byte gUnk_08BDC2D8 + 0x1
+	.4byte AnimSprite_TriGenerialAxeOBJ_08BDC26C + 0x1
+	.4byte AnimSprite_TriGenerialAxeOBJ_08BDC2D8 + 0x1
 	.incbin "baserom.gba", 0xbdc2f8, 0xc
 
-	.global gUnk_08BDC304
-gUnk_08BDC304:
+	.global AnimSprite_TriGenerialHandAxeOBJ_08BDC304
+AnimSprite_TriGenerialHandAxeOBJ_08BDC304:
 	.incbin "baserom.gba", 0xbdc304, 0x60
 
-	.global gUnk_08BDC364
-gUnk_08BDC364:
+	.global AnimSprite_TriGenerialHandAxeOBJ_08BDC364
+AnimSprite_TriGenerialHandAxeOBJ_08BDC364:
 	.incbin "baserom.gba", 0xbdc364, 0x18
 
 	.global AnimScr_TriGenerialHandAxeOBJ
 AnimScr_TriGenerialHandAxeOBJ:
-	.4byte gUnk_08BDC304 + 0x1
-	.4byte gUnk_08BDC364 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeOBJ_08BDC304 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeOBJ_08BDC364 + 0x1
 	.incbin "baserom.gba", 0xbdc384, 0x4
 
-	.global gUnk_08BDC388
-gUnk_08BDC388:
+	.global AnimSprite_TriKnightAtkOBJ_08BDC388
+AnimSprite_TriKnightAtkOBJ_08BDC388:
 	.incbin "baserom.gba", 0xbdc388, 0x60
 
-	.global gUnk_08BDC3E8
-gUnk_08BDC3E8:
+	.global AnimSprite_TriKnightAtkOBJ_08BDC3E8
+AnimSprite_TriKnightAtkOBJ_08BDC3E8:
 	.incbin "baserom.gba", 0xbdc3e8, 0x6c
 
-	.global gUnk_08BDC454
-gUnk_08BDC454:
+	.global AnimSprite_TriKnightAtkOBJ_08BDC454
+AnimSprite_TriKnightAtkOBJ_08BDC454:
 	.incbin "baserom.gba", 0xbdc454, 0x18
 
 	.global AnimScr_TriKnightAtkOBJ
 AnimScr_TriKnightAtkOBJ:
-	.4byte gUnk_08BDC388 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC388 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC388 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC388 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC388 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC388 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC3E8 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC3E8 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC3E8 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC3E8 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC3E8 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
-	.4byte gUnk_08BDC3E8 + 0x1
-	.4byte gUnk_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC388 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC388 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC388 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC388 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC388 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC388 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC3E8 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC3E8 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC3E8 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC3E8 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC3E8 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC3E8 + 0x1
+	.4byte AnimSprite_TriKnightAtkOBJ_08BDC454 + 0x1
 	.incbin "baserom.gba", 0xbdc4cc, 0x4
 
-	.global gUnk_08BDC4D0
-gUnk_08BDC4D0:
+	.global AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0
+AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0:
 	.incbin "baserom.gba", 0xbdc4d0, 0x78
 
-	.global gUnk_08BDC548
-gUnk_08BDC548:
+	.global AnimSprite_TriGenerialLanceAtkOBJ_08BDC548
+AnimSprite_TriGenerialLanceAtkOBJ_08BDC548:
 	.incbin "baserom.gba", 0xbdc548, 0x84
 
-	.global gUnk_08BDC5CC
-gUnk_08BDC5CC:
+	.global AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC
+AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC:
 	.incbin "baserom.gba", 0xbdc5cc, 0x18
 
 	.global AnimScr_TriGenerialLanceAtkOBJ
 AnimScr_TriGenerialLanceAtkOBJ:
-	.4byte gUnk_08BDC4D0 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC4D0 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC4D0 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC4D0 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC4D0 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC4D0 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC548 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC548 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC548 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC548 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC548 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
-	.4byte gUnk_08BDC548 + 0x1
-	.4byte gUnk_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC4D0 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC548 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC548 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC548 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC548 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC548 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC548 + 0x1
+	.4byte AnimSprite_TriGenerialLanceAtkOBJ_08BDC5CC + 0x1
 	.incbin "baserom.gba", 0xbdc644, 0x4
 
-	.global gUnk_08BDC648
-gUnk_08BDC648:
+	.global AnimSprite_TriGenerialAxeAtkOBJ_08BDC648
+AnimSprite_TriGenerialAxeAtkOBJ_08BDC648:
 	.incbin "baserom.gba", 0xbdc648, 0x54
 
-	.global gUnk_08BDC69C
-gUnk_08BDC69C:
+	.global AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C
+AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C:
 	.incbin "baserom.gba", 0xbdc69c, 0x84
 
-	.global gUnk_08BDC720
-gUnk_08BDC720:
+	.global AnimSprite_TriGenerialAxeAtkOBJ_08BDC720
+AnimSprite_TriGenerialAxeAtkOBJ_08BDC720:
 	.incbin "baserom.gba", 0xbdc720, 0x18
 
 	.global AnimScr_TriGenerialAxeAtkOBJ
 AnimScr_TriGenerialAxeAtkOBJ:
-	.4byte gUnk_08BDC648 + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC648 + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC648 + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC648 + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC648 + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC648 + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC69C + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC69C + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC69C + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC69C + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC69C + 0x1
-	.4byte gUnk_08BDC720 + 0x1
-	.4byte gUnk_08BDC69C + 0x1
-	.4byte gUnk_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC648 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC648 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC648 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC648 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC648 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC648 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC69C + 0x1
+	.4byte AnimSprite_TriGenerialAxeAtkOBJ_08BDC720 + 0x1
 	.incbin "baserom.gba", 0xbdc798, 0x4
 
-	.global gUnk_08BDC79C
-gUnk_08BDC79C:
+	.global AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C
+AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C:
 	.incbin "baserom.gba", 0xbdc79c, 0x3c
 
-	.global gUnk_08BDC7D8
-gUnk_08BDC7D8:
+	.global AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC7D8
+AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC7D8:
 	.incbin "baserom.gba", 0xbdc7d8, 0x90
 
-	.global gUnk_08BDC868
-gUnk_08BDC868:
+	.global AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868
+AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868:
 	.incbin "baserom.gba", 0xbdc868, 0x18
 
-	.global gUnk_08BDC880
-gUnk_08BDC880:
+	.global AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC880
+AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC880:
 	.incbin "baserom.gba", 0xbdc880, 0x90
 
-	.global gUnk_08BDC910
-gUnk_08BDC910:
+	.global AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC910
+AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC910:
 	.incbin "baserom.gba", 0xbdc910, 0x84
 
-	.global gUnk_08BDC994
-gUnk_08BDC994:
+	.global AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994
+AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994:
 	.incbin "baserom.gba", 0xbdc994, 0x6c
 
 	.global AnimScr_TriGenerialHandAxeAtkOBJ
 AnimScr_TriGenerialHandAxeAtkOBJ:
-	.4byte gUnk_08BDC79C + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC79C + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC79C + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC79C + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC79C + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC79C + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC7D8 + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC880 + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC910 + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC994 + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC994 + 0x1
-	.4byte gUnk_08BDC868 + 0x1
-	.4byte gUnk_08BDC994 + 0x1
-	.4byte gUnk_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC79C + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC7D8 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC880 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC910 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC994 + 0x1
+	.4byte AnimSprite_TriGenerialHandAxeAtkOBJ_08BDC868 + 0x1
 	.incbin "baserom.gba", 0xbdca60, 0x4
 
 	.global gBattleBGDataTable

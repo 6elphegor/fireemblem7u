@@ -65,7 +65,7 @@ so the data follows its targets if anything moves (edits, a PC port).
 `tools/dataptrs.py` decides which words are pointers from structure, not
 from the value alone: exact hits on labels/functions/symbols in structured
 surroundings, sub-object pointers next to those, AnimScr sprite words
-(`sprite + delay bits`, e.g. `.4byte gUnk_08B9D5B8 + 0x1`) and RAM address
+(`sprite + delay bits`, e.g. `.4byte AnimSprite_Miss_08B9D5B8 + 0x1`) and RAM address
 tables; graphics, tile maps and tables left over from another build stay
 raw.  A word is also taken when the same field of the records before and
 after it (8 to 64 bytes away) are pointers (R6: e.g. the class reel's

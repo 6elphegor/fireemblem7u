@@ -9,8 +9,8 @@
 Img_Bg_59:  @ LZ77
 	.incbin "build/graphics/bg/bg_59.lz"
 
-	.global gUnk_08186500
-gUnk_08186500:
+	.global Tsa_Bg_59
+Tsa_Bg_59:
 	.incbin "baserom.gba", 0x186500, 0x4b4
 
 	.global Pal_Bg_59
@@ -22,8 +22,8 @@ Pal_Bg_59:
 Img_Bg_5A:  @ LZ77
 	.incbin "build/graphics/bg/bg_5A.lz"
 
-	.global gUnk_0818AB1C
-gUnk_0818AB1C:
+	.global Tsa_Bg_5A
+Tsa_Bg_5A:
 	.incbin "baserom.gba", 0x18ab1c, 0x4b4
 
 	.global Pal_Bg_5A
@@ -35,8 +35,8 @@ Pal_Bg_5A:
 Img_Bg_5B:  @ LZ77
 	.incbin "build/graphics/bg/bg_5B.lz"
 
-	.global gUnk_0818BA50
-gUnk_0818BA50:
+	.global Tsa_Bg_5B
+Tsa_Bg_5B:
 	.incbin "baserom.gba", 0x18ba50, 0x4b4
 
 	.global Pal_Bg_5B
@@ -73,8 +73,8 @@ Pal_NilsInDragonsGate:
 Img_Bg_5D:  @ LZ77
 	.incbin "build/graphics/bg/bg_5D.lz"
 
-	.global gUnk_081937D8
-gUnk_081937D8:
+	.global Tsa_Bg_5D
+Tsa_Bg_5D:
 	.incbin "baserom.gba", 0x1937d8, 0x4b4
 
 	.global Pal_Bg_5D

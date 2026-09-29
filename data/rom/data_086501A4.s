@@ -486,2263 +486,2263 @@ gUnk_08B87768:
 gUnk_08B87968:
 	.incbin "baserom.gba", 0xb87968, 0x200
 
-	.global gUnk_08B87B68
-gUnk_08B87B68:
+	.global Glyph_System_1F
+Glyph_System_1F:
 	.incbin "baserom.gba", 0xb87b68, 0x48
 
-	.global gUnk_08B87BB0
-gUnk_08B87BB0:
+	.global Glyph_System_20
+Glyph_System_20:
 	.incbin "baserom.gba", 0xb87bb0, 0x48
 
-	.global gUnk_08B87BF8
-gUnk_08B87BF8:
+	.global Glyph_System_21
+Glyph_System_21:
 	.incbin "baserom.gba", 0xb87bf8, 0x48
 
-	.global gUnk_08B87C40
-gUnk_08B87C40:
+	.global Glyph_System_22
+Glyph_System_22:
 	.incbin "baserom.gba", 0xb87c40, 0x48
 
-	.global gUnk_08B87C88
-gUnk_08B87C88:
+	.global Glyph_System_23
+Glyph_System_23:
 	.incbin "baserom.gba", 0xb87c88, 0x48
 
-	.global gUnk_08B87CD0
-gUnk_08B87CD0:
+	.global Glyph_System_24
+Glyph_System_24:
 	.incbin "baserom.gba", 0xb87cd0, 0x48
 
-	.global gUnk_08B87D18
-gUnk_08B87D18:
+	.global Glyph_System_25
+Glyph_System_25:
 	.incbin "baserom.gba", 0xb87d18, 0x48
 
-	.global gUnk_08B87D60
-gUnk_08B87D60:
+	.global Glyph_System_26
+Glyph_System_26:
 	.incbin "baserom.gba", 0xb87d60, 0x48
 
-	.global gUnk_08B87DA8
-gUnk_08B87DA8:
+	.global Glyph_System_27
+Glyph_System_27:
 	.incbin "baserom.gba", 0xb87da8, 0x48
 
-	.global gUnk_08B87DF0
-gUnk_08B87DF0:
+	.global Glyph_System_28
+Glyph_System_28:
 	.incbin "baserom.gba", 0xb87df0, 0x48
 
-	.global gUnk_08B87E38
-gUnk_08B87E38:
+	.global Glyph_System_29
+Glyph_System_29:
 	.incbin "baserom.gba", 0xb87e38, 0x48
 
-	.global gUnk_08B87E80
-gUnk_08B87E80:
+	.global Glyph_System_2A
+Glyph_System_2A:
 	.incbin "baserom.gba", 0xb87e80, 0x48
 
-	.global gUnk_08B87EC8
-gUnk_08B87EC8:
+	.global Glyph_System_2B
+Glyph_System_2B:
 	.incbin "baserom.gba", 0xb87ec8, 0x48
 
-	.global gUnk_08B87F10
-gUnk_08B87F10:
+	.global Glyph_System_2C
+Glyph_System_2C:
 	.incbin "baserom.gba", 0xb87f10, 0x48
 
-	.global gUnk_08B87F58
-gUnk_08B87F58:
+	.global Glyph_System_2D
+Glyph_System_2D:
 	.incbin "baserom.gba", 0xb87f58, 0x48
 
-	.global gUnk_08B87FA0
-gUnk_08B87FA0:
+	.global Glyph_System_2E
+Glyph_System_2E:
 	.incbin "baserom.gba", 0xb87fa0, 0x48
 
-	.global gUnk_08B87FE8
-gUnk_08B87FE8:
+	.global Glyph_System_2F
+Glyph_System_2F:
 	.incbin "baserom.gba", 0xb87fe8, 0x48
 
-	.global gUnk_08B88030
-gUnk_08B88030:
+	.global Glyph_System_30
+Glyph_System_30:
 	.incbin "baserom.gba", 0xb88030, 0x48
 
-	.global gUnk_08B88078
-gUnk_08B88078:
+	.global Glyph_System_31
+Glyph_System_31:
 	.incbin "baserom.gba", 0xb88078, 0x48
 
-	.global gUnk_08B880C0
-gUnk_08B880C0:
+	.global Glyph_System_32
+Glyph_System_32:
 	.incbin "baserom.gba", 0xb880c0, 0x48
 
-	.global gUnk_08B88108
-gUnk_08B88108:
+	.global Glyph_System_33
+Glyph_System_33:
 	.incbin "baserom.gba", 0xb88108, 0x48
 
-	.global gUnk_08B88150
-gUnk_08B88150:
+	.global Glyph_System_34
+Glyph_System_34:
 	.incbin "baserom.gba", 0xb88150, 0x48
 
-	.global gUnk_08B88198
-gUnk_08B88198:
+	.global Glyph_System_35
+Glyph_System_35:
 	.incbin "baserom.gba", 0xb88198, 0x48
 
-	.global gUnk_08B881E0
-gUnk_08B881E0:
+	.global Glyph_System_36
+Glyph_System_36:
 	.incbin "baserom.gba", 0xb881e0, 0x48
 
-	.global gUnk_08B88228
-gUnk_08B88228:
+	.global Glyph_System_37
+Glyph_System_37:
 	.incbin "baserom.gba", 0xb88228, 0x48
 
-	.global gUnk_08B88270
-gUnk_08B88270:
+	.global Glyph_System_38
+Glyph_System_38:
 	.incbin "baserom.gba", 0xb88270, 0x48
 
-	.global gUnk_08B882B8
-gUnk_08B882B8:
+	.global Glyph_System_39
+Glyph_System_39:
 	.incbin "baserom.gba", 0xb882b8, 0x48
 
-	.global gUnk_08B88300
-gUnk_08B88300:
+	.global Glyph_System_3A
+Glyph_System_3A:
 	.incbin "baserom.gba", 0xb88300, 0x48
 
-	.global gUnk_08B88348
-gUnk_08B88348:
+	.global Glyph_System_3B
+Glyph_System_3B:
 	.incbin "baserom.gba", 0xb88348, 0x48
 
-	.global gUnk_08B88390
-gUnk_08B88390:
+	.global Glyph_System_3C
+Glyph_System_3C:
 	.incbin "baserom.gba", 0xb88390, 0x48
 
-	.global gUnk_08B883D8
-gUnk_08B883D8:
+	.global Glyph_System_3D
+Glyph_System_3D:
 	.incbin "baserom.gba", 0xb883d8, 0x48
 
-	.global gUnk_08B88420
-gUnk_08B88420:
+	.global Glyph_System_3E
+Glyph_System_3E:
 	.incbin "baserom.gba", 0xb88420, 0x48
 
-	.global gUnk_08B88468
-gUnk_08B88468:
+	.global Glyph_System_3F
+Glyph_System_3F:
 	.incbin "baserom.gba", 0xb88468, 0x48
 
-	.global gUnk_08B884B0
-gUnk_08B884B0:
+	.global Glyph_System_40
+Glyph_System_40:
 	.incbin "baserom.gba", 0xb884b0, 0x48
 
-	.global gUnk_08B884F8
-gUnk_08B884F8:
+	.global Glyph_System_41
+Glyph_System_41:
 	.incbin "baserom.gba", 0xb884f8, 0x48
 
-	.global gUnk_08B88540
-gUnk_08B88540:
+	.global Glyph_System_42
+Glyph_System_42:
 	.incbin "baserom.gba", 0xb88540, 0x48
 
-	.global gUnk_08B88588
-gUnk_08B88588:
+	.global Glyph_System_43
+Glyph_System_43:
 	.incbin "baserom.gba", 0xb88588, 0x48
 
-	.global gUnk_08B885D0
-gUnk_08B885D0:
+	.global Glyph_System_44
+Glyph_System_44:
 	.incbin "baserom.gba", 0xb885d0, 0x48
 
-	.global gUnk_08B88618
-gUnk_08B88618:
+	.global Glyph_System_45
+Glyph_System_45:
 	.incbin "baserom.gba", 0xb88618, 0x48
 
-	.global gUnk_08B88660
-gUnk_08B88660:
+	.global Glyph_System_46
+Glyph_System_46:
 	.incbin "baserom.gba", 0xb88660, 0x48
 
-	.global gUnk_08B886A8
-gUnk_08B886A8:
+	.global Glyph_System_47
+Glyph_System_47:
 	.incbin "baserom.gba", 0xb886a8, 0x48
 
-	.global gUnk_08B886F0
-gUnk_08B886F0:
+	.global Glyph_System_48
+Glyph_System_48:
 	.incbin "baserom.gba", 0xb886f0, 0x48
 
-	.global gUnk_08B88738
-gUnk_08B88738:
+	.global Glyph_System_49
+Glyph_System_49:
 	.incbin "baserom.gba", 0xb88738, 0x48
 
-	.global gUnk_08B88780
-gUnk_08B88780:
+	.global Glyph_System_4A
+Glyph_System_4A:
 	.incbin "baserom.gba", 0xb88780, 0x48
 
-	.global gUnk_08B887C8
-gUnk_08B887C8:
+	.global Glyph_System_4B
+Glyph_System_4B:
 	.incbin "baserom.gba", 0xb887c8, 0x48
 
-	.global gUnk_08B88810
-gUnk_08B88810:
+	.global Glyph_System_4C
+Glyph_System_4C:
 	.incbin "baserom.gba", 0xb88810, 0x48
 
-	.global gUnk_08B88858
-gUnk_08B88858:
+	.global Glyph_System_4D
+Glyph_System_4D:
 	.incbin "baserom.gba", 0xb88858, 0x48
 
-	.global gUnk_08B888A0
-gUnk_08B888A0:
+	.global Glyph_System_4E
+Glyph_System_4E:
 	.incbin "baserom.gba", 0xb888a0, 0x48
 
-	.global gUnk_08B888E8
-gUnk_08B888E8:
+	.global Glyph_System_4F
+Glyph_System_4F:
 	.incbin "baserom.gba", 0xb888e8, 0x48
 
-	.global gUnk_08B88930
-gUnk_08B88930:
+	.global Glyph_System_50
+Glyph_System_50:
 	.incbin "baserom.gba", 0xb88930, 0x48
 
-	.global gUnk_08B88978
-gUnk_08B88978:
+	.global Glyph_System_51
+Glyph_System_51:
 	.incbin "baserom.gba", 0xb88978, 0x48
 
-	.global gUnk_08B889C0
-gUnk_08B889C0:
+	.global Glyph_System_52
+Glyph_System_52:
 	.incbin "baserom.gba", 0xb889c0, 0x48
 
-	.global gUnk_08B88A08
-gUnk_08B88A08:
+	.global Glyph_System_53
+Glyph_System_53:
 	.incbin "baserom.gba", 0xb88a08, 0x48
 
-	.global gUnk_08B88A50
-gUnk_08B88A50:
+	.global Glyph_System_54
+Glyph_System_54:
 	.incbin "baserom.gba", 0xb88a50, 0x48
 
-	.global gUnk_08B88A98
-gUnk_08B88A98:
+	.global Glyph_System_55
+Glyph_System_55:
 	.incbin "baserom.gba", 0xb88a98, 0x48
 
-	.global gUnk_08B88AE0
-gUnk_08B88AE0:
+	.global Glyph_System_56
+Glyph_System_56:
 	.incbin "baserom.gba", 0xb88ae0, 0x48
 
-	.global gUnk_08B88B28
-gUnk_08B88B28:
+	.global Glyph_System_57
+Glyph_System_57:
 	.incbin "baserom.gba", 0xb88b28, 0x48
 
-	.global gUnk_08B88B70
-gUnk_08B88B70:
+	.global Glyph_System_58
+Glyph_System_58:
 	.incbin "baserom.gba", 0xb88b70, 0x48
 
-	.global gUnk_08B88BB8
-gUnk_08B88BB8:
+	.global Glyph_System_59
+Glyph_System_59:
 	.incbin "baserom.gba", 0xb88bb8, 0x48
 
-	.global gUnk_08B88C00
-gUnk_08B88C00:
+	.global Glyph_System_5A
+Glyph_System_5A:
 	.incbin "baserom.gba", 0xb88c00, 0x48
 
-	.global gUnk_08B88C48
-gUnk_08B88C48:
+	.global Glyph_System_5B
+Glyph_System_5B:
 	.incbin "baserom.gba", 0xb88c48, 0x48
 
-	.global gUnk_08B88C90
-gUnk_08B88C90:
+	.global Glyph_System_5C
+Glyph_System_5C:
 	.incbin "baserom.gba", 0xb88c90, 0x48
 
-	.global gUnk_08B88CD8
-gUnk_08B88CD8:
+	.global Glyph_System_5D
+Glyph_System_5D:
 	.incbin "baserom.gba", 0xb88cd8, 0x48
 
-	.global gUnk_08B88D20
-gUnk_08B88D20:
+	.global Glyph_System_5E
+Glyph_System_5E:
 	.incbin "baserom.gba", 0xb88d20, 0x48
 
-	.global gUnk_08B88D68
-gUnk_08B88D68:
+	.global Glyph_System_5F
+Glyph_System_5F:
 	.incbin "baserom.gba", 0xb88d68, 0x48
 
-	.global gUnk_08B88DB0
-gUnk_08B88DB0:
+	.global Glyph_System_60
+Glyph_System_60:
 	.incbin "baserom.gba", 0xb88db0, 0x48
 
-	.global gUnk_08B88DF8
-gUnk_08B88DF8:
+	.global Glyph_System_61
+Glyph_System_61:
 	.incbin "baserom.gba", 0xb88df8, 0x48
 
-	.global gUnk_08B88E40
-gUnk_08B88E40:
+	.global Glyph_System_62
+Glyph_System_62:
 	.incbin "baserom.gba", 0xb88e40, 0x48
 
-	.global gUnk_08B88E88
-gUnk_08B88E88:
+	.global Glyph_System_63
+Glyph_System_63:
 	.incbin "baserom.gba", 0xb88e88, 0x48
 
-	.global gUnk_08B88ED0
-gUnk_08B88ED0:
+	.global Glyph_System_64
+Glyph_System_64:
 	.incbin "baserom.gba", 0xb88ed0, 0x48
 
-	.global gUnk_08B88F18
-gUnk_08B88F18:
+	.global Glyph_System_65
+Glyph_System_65:
 	.incbin "baserom.gba", 0xb88f18, 0x48
 
-	.global gUnk_08B88F60
-gUnk_08B88F60:
+	.global Glyph_System_66
+Glyph_System_66:
 	.incbin "baserom.gba", 0xb88f60, 0x48
 
-	.global gUnk_08B88FA8
-gUnk_08B88FA8:
+	.global Glyph_System_67
+Glyph_System_67:
 	.incbin "baserom.gba", 0xb88fa8, 0x48
 
-	.global gUnk_08B88FF0
-gUnk_08B88FF0:
+	.global Glyph_System_68
+Glyph_System_68:
 	.incbin "baserom.gba", 0xb88ff0, 0x48
 
-	.global gUnk_08B89038
-gUnk_08B89038:
+	.global Glyph_System_69
+Glyph_System_69:
 	.incbin "baserom.gba", 0xb89038, 0x48
 
-	.global gUnk_08B89080
-gUnk_08B89080:
+	.global Glyph_System_6A
+Glyph_System_6A:
 	.incbin "baserom.gba", 0xb89080, 0x48
 
-	.global gUnk_08B890C8
-gUnk_08B890C8:
+	.global Glyph_System_6B
+Glyph_System_6B:
 	.incbin "baserom.gba", 0xb890c8, 0x48
 
-	.global gUnk_08B89110
-gUnk_08B89110:
+	.global Glyph_System_6C
+Glyph_System_6C:
 	.incbin "baserom.gba", 0xb89110, 0x48
 
-	.global gUnk_08B89158
-gUnk_08B89158:
+	.global Glyph_System_6D
+Glyph_System_6D:
 	.incbin "baserom.gba", 0xb89158, 0x48
 
-	.global gUnk_08B891A0
-gUnk_08B891A0:
+	.global Glyph_System_6E
+Glyph_System_6E:
 	.incbin "baserom.gba", 0xb891a0, 0x48
 
-	.global gUnk_08B891E8
-gUnk_08B891E8:
+	.global Glyph_System_6F
+Glyph_System_6F:
 	.incbin "baserom.gba", 0xb891e8, 0x48
 
-	.global gUnk_08B89230
-gUnk_08B89230:
+	.global Glyph_System_70
+Glyph_System_70:
 	.incbin "baserom.gba", 0xb89230, 0x48
 
-	.global gUnk_08B89278
-gUnk_08B89278:
+	.global Glyph_System_71
+Glyph_System_71:
 	.incbin "baserom.gba", 0xb89278, 0x48
 
-	.global gUnk_08B892C0
-gUnk_08B892C0:
+	.global Glyph_System_72
+Glyph_System_72:
 	.incbin "baserom.gba", 0xb892c0, 0x48
 
-	.global gUnk_08B89308
-gUnk_08B89308:
+	.global Glyph_System_73
+Glyph_System_73:
 	.incbin "baserom.gba", 0xb89308, 0x48
 
-	.global gUnk_08B89350
-gUnk_08B89350:
+	.global Glyph_System_74
+Glyph_System_74:
 	.incbin "baserom.gba", 0xb89350, 0x48
 
-	.global gUnk_08B89398
-gUnk_08B89398:
+	.global Glyph_System_75
+Glyph_System_75:
 	.incbin "baserom.gba", 0xb89398, 0x48
 
-	.global gUnk_08B893E0
-gUnk_08B893E0:
+	.global Glyph_System_76
+Glyph_System_76:
 	.incbin "baserom.gba", 0xb893e0, 0x48
 
-	.global gUnk_08B89428
-gUnk_08B89428:
+	.global Glyph_System_77
+Glyph_System_77:
 	.incbin "baserom.gba", 0xb89428, 0x48
 
-	.global gUnk_08B89470
-gUnk_08B89470:
+	.global Glyph_System_78
+Glyph_System_78:
 	.incbin "baserom.gba", 0xb89470, 0x48
 
-	.global gUnk_08B894B8
-gUnk_08B894B8:
+	.global Glyph_System_79
+Glyph_System_79:
 	.incbin "baserom.gba", 0xb894b8, 0x48
 
-	.global gUnk_08B89500
-gUnk_08B89500:
+	.global Glyph_System_7A
+Glyph_System_7A:
 	.incbin "baserom.gba", 0xb89500, 0x48
 
-	.global gUnk_08B89548
-gUnk_08B89548:
+	.global Glyph_System_7B
+Glyph_System_7B:
 	.incbin "baserom.gba", 0xb89548, 0x48
 
-	.global gUnk_08B89590
-gUnk_08B89590:
+	.global Glyph_System_7C
+Glyph_System_7C:
 	.incbin "baserom.gba", 0xb89590, 0x48
 
-	.global gUnk_08B895D8
-gUnk_08B895D8:
+	.global Glyph_System_7D
+Glyph_System_7D:
 	.incbin "baserom.gba", 0xb895d8, 0x48
 
-	.global gUnk_08B89620
-gUnk_08B89620:
+	.global Glyph_System_7E
+Glyph_System_7E:
 	.incbin "baserom.gba", 0xb89620, 0x48
 
-	.global gUnk_08B89668
-gUnk_08B89668:
+	.global Glyph_System_7F
+Glyph_System_7F:
 	.incbin "baserom.gba", 0xb89668, 0x48
 
 	.global TextGlyphs_System
 TextGlyphs_System:
 	.incbin "baserom.gba", 0xb896b0, 0x7c
-	.4byte gUnk_08B87B68
-	.4byte gUnk_08B87BB0
-	.4byte gUnk_08B87BF8
-	.4byte gUnk_08B87C40
-	.4byte gUnk_08B87C88
-	.4byte gUnk_08B87CD0
-	.4byte gUnk_08B87D18
-	.4byte gUnk_08B87D60
-	.4byte gUnk_08B87DA8
-	.4byte gUnk_08B87DF0
-	.4byte gUnk_08B87E38
-	.4byte gUnk_08B87E80
-	.4byte gUnk_08B87EC8
-	.4byte gUnk_08B87F10
-	.4byte gUnk_08B87F58
-	.4byte gUnk_08B87FA0
-	.4byte gUnk_08B87FE8
-	.4byte gUnk_08B88030
-	.4byte gUnk_08B88078
-	.4byte gUnk_08B880C0
-	.4byte gUnk_08B88108
-	.4byte gUnk_08B88150
-	.4byte gUnk_08B88198
-	.4byte gUnk_08B881E0
-	.4byte gUnk_08B88228
-	.4byte gUnk_08B88270
-	.4byte gUnk_08B882B8
-	.4byte gUnk_08B88300
-	.4byte gUnk_08B88348
-	.4byte gUnk_08B88390
-	.4byte gUnk_08B883D8
-	.4byte gUnk_08B88420
-	.4byte gUnk_08B88468
-	.4byte gUnk_08B884B0
-	.4byte gUnk_08B884F8
-	.4byte gUnk_08B88540
-	.4byte gUnk_08B88588
-	.4byte gUnk_08B885D0
-	.4byte gUnk_08B88618
-	.4byte gUnk_08B88660
-	.4byte gUnk_08B886A8
-	.4byte gUnk_08B886F0
-	.4byte gUnk_08B88738
-	.4byte gUnk_08B88780
-	.4byte gUnk_08B887C8
-	.4byte gUnk_08B88810
-	.4byte gUnk_08B88858
-	.4byte gUnk_08B888A0
-	.4byte gUnk_08B888E8
-	.4byte gUnk_08B88930
-	.4byte gUnk_08B88978
-	.4byte gUnk_08B889C0
-	.4byte gUnk_08B88A08
-	.4byte gUnk_08B88A50
-	.4byte gUnk_08B88A98
-	.4byte gUnk_08B88AE0
-	.4byte gUnk_08B88B28
-	.4byte gUnk_08B88B70
-	.4byte gUnk_08B88BB8
-	.4byte gUnk_08B88C00
-	.4byte gUnk_08B88C48
-	.4byte gUnk_08B88C90
-	.4byte gUnk_08B88CD8
-	.4byte gUnk_08B88D20
-	.4byte gUnk_08B88D68
-	.4byte gUnk_08B88DB0
-	.4byte gUnk_08B88DF8
-	.4byte gUnk_08B88E40
-	.4byte gUnk_08B88E88
-	.4byte gUnk_08B88ED0
-	.4byte gUnk_08B88F18
-	.4byte gUnk_08B88F60
-	.4byte gUnk_08B88FA8
-	.4byte gUnk_08B88FF0
-	.4byte gUnk_08B89038
-	.4byte gUnk_08B89080
-	.4byte gUnk_08B890C8
-	.4byte gUnk_08B89110
-	.4byte gUnk_08B89158
-	.4byte gUnk_08B891A0
-	.4byte gUnk_08B891E8
-	.4byte gUnk_08B89230
-	.4byte gUnk_08B89278
-	.4byte gUnk_08B892C0
-	.4byte gUnk_08B89308
-	.4byte gUnk_08B89350
-	.4byte gUnk_08B89398
-	.4byte gUnk_08B893E0
-	.4byte gUnk_08B89428
-	.4byte gUnk_08B89470
-	.4byte gUnk_08B894B8
-	.4byte gUnk_08B89500
-	.4byte gUnk_08B89548
-	.4byte gUnk_08B89590
-	.4byte gUnk_08B895D8
-	.4byte gUnk_08B89620
-	.4byte gUnk_08B89668
+	.4byte Glyph_System_1F
+	.4byte Glyph_System_20
+	.4byte Glyph_System_21
+	.4byte Glyph_System_22
+	.4byte Glyph_System_23
+	.4byte Glyph_System_24
+	.4byte Glyph_System_25
+	.4byte Glyph_System_26
+	.4byte Glyph_System_27
+	.4byte Glyph_System_28
+	.4byte Glyph_System_29
+	.4byte Glyph_System_2A
+	.4byte Glyph_System_2B
+	.4byte Glyph_System_2C
+	.4byte Glyph_System_2D
+	.4byte Glyph_System_2E
+	.4byte Glyph_System_2F
+	.4byte Glyph_System_30
+	.4byte Glyph_System_31
+	.4byte Glyph_System_32
+	.4byte Glyph_System_33
+	.4byte Glyph_System_34
+	.4byte Glyph_System_35
+	.4byte Glyph_System_36
+	.4byte Glyph_System_37
+	.4byte Glyph_System_38
+	.4byte Glyph_System_39
+	.4byte Glyph_System_3A
+	.4byte Glyph_System_3B
+	.4byte Glyph_System_3C
+	.4byte Glyph_System_3D
+	.4byte Glyph_System_3E
+	.4byte Glyph_System_3F
+	.4byte Glyph_System_40
+	.4byte Glyph_System_41
+	.4byte Glyph_System_42
+	.4byte Glyph_System_43
+	.4byte Glyph_System_44
+	.4byte Glyph_System_45
+	.4byte Glyph_System_46
+	.4byte Glyph_System_47
+	.4byte Glyph_System_48
+	.4byte Glyph_System_49
+	.4byte Glyph_System_4A
+	.4byte Glyph_System_4B
+	.4byte Glyph_System_4C
+	.4byte Glyph_System_4D
+	.4byte Glyph_System_4E
+	.4byte Glyph_System_4F
+	.4byte Glyph_System_50
+	.4byte Glyph_System_51
+	.4byte Glyph_System_52
+	.4byte Glyph_System_53
+	.4byte Glyph_System_54
+	.4byte Glyph_System_55
+	.4byte Glyph_System_56
+	.4byte Glyph_System_57
+	.4byte Glyph_System_58
+	.4byte Glyph_System_59
+	.4byte Glyph_System_5A
+	.4byte Glyph_System_5B
+	.4byte Glyph_System_5C
+	.4byte Glyph_System_5D
+	.4byte Glyph_System_5E
+	.4byte Glyph_System_5F
+	.4byte Glyph_System_60
+	.4byte Glyph_System_61
+	.4byte Glyph_System_62
+	.4byte Glyph_System_63
+	.4byte Glyph_System_64
+	.4byte Glyph_System_65
+	.4byte Glyph_System_66
+	.4byte Glyph_System_67
+	.4byte Glyph_System_68
+	.4byte Glyph_System_69
+	.4byte Glyph_System_6A
+	.4byte Glyph_System_6B
+	.4byte Glyph_System_6C
+	.4byte Glyph_System_6D
+	.4byte Glyph_System_6E
+	.4byte Glyph_System_6F
+	.4byte Glyph_System_70
+	.4byte Glyph_System_71
+	.4byte Glyph_System_72
+	.4byte Glyph_System_73
+	.4byte Glyph_System_74
+	.4byte Glyph_System_75
+	.4byte Glyph_System_76
+	.4byte Glyph_System_77
+	.4byte Glyph_System_78
+	.4byte Glyph_System_79
+	.4byte Glyph_System_7A
+	.4byte Glyph_System_7B
+	.4byte Glyph_System_7C
+	.4byte Glyph_System_7D
+	.4byte Glyph_System_7E
+	.4byte Glyph_System_7F
 	.incbin "baserom.gba", 0xb898b0, 0x200
 
-	.global gUnk_08B89AB0
-gUnk_08B89AB0:
+	.global Glyph_Talk_1F
+Glyph_Talk_1F:
 	.incbin "baserom.gba", 0xb89ab0, 0x48
 
-	.global gUnk_08B89AF8
-gUnk_08B89AF8:
+	.global Glyph_Talk_20
+Glyph_Talk_20:
 	.incbin "baserom.gba", 0xb89af8, 0x48
 
-	.global gUnk_08B89B40
-gUnk_08B89B40:
+	.global Glyph_Talk_21
+Glyph_Talk_21:
 	.incbin "baserom.gba", 0xb89b40, 0x48
 
-	.global gUnk_08B89B88
-gUnk_08B89B88:
+	.global Glyph_Talk_22
+Glyph_Talk_22:
 	.incbin "baserom.gba", 0xb89b88, 0x48
 
-	.global gUnk_08B89BD0
-gUnk_08B89BD0:
+	.global Glyph_Talk_23
+Glyph_Talk_23:
 	.incbin "baserom.gba", 0xb89bd0, 0x48
 
-	.global gUnk_08B89C18
-gUnk_08B89C18:
+	.global Glyph_Talk_24
+Glyph_Talk_24:
 	.incbin "baserom.gba", 0xb89c18, 0x48
 
-	.global gUnk_08B89C60
-gUnk_08B89C60:
+	.global Glyph_Talk_25
+Glyph_Talk_25:
 	.incbin "baserom.gba", 0xb89c60, 0x48
 
-	.global gUnk_08B89CA8
-gUnk_08B89CA8:
+	.global Glyph_Talk_26
+Glyph_Talk_26:
 	.incbin "baserom.gba", 0xb89ca8, 0x48
 
-	.global gUnk_08B89CF0
-gUnk_08B89CF0:
+	.global Glyph_Talk_27
+Glyph_Talk_27:
 	.incbin "baserom.gba", 0xb89cf0, 0x48
 
-	.global gUnk_08B89D38
-gUnk_08B89D38:
+	.global Glyph_Talk_28
+Glyph_Talk_28:
 	.incbin "baserom.gba", 0xb89d38, 0x48
 
-	.global gUnk_08B89D80
-gUnk_08B89D80:
+	.global Glyph_Talk_29
+Glyph_Talk_29:
 	.incbin "baserom.gba", 0xb89d80, 0x48
 
-	.global gUnk_08B89DC8
-gUnk_08B89DC8:
+	.global Glyph_Talk_2A
+Glyph_Talk_2A:
 	.incbin "baserom.gba", 0xb89dc8, 0x48
 
-	.global gUnk_08B89E10
-gUnk_08B89E10:
+	.global Glyph_Talk_2B
+Glyph_Talk_2B:
 	.incbin "baserom.gba", 0xb89e10, 0x48
 
-	.global gUnk_08B89E58
-gUnk_08B89E58:
+	.global Glyph_Talk_2C
+Glyph_Talk_2C:
 	.incbin "baserom.gba", 0xb89e58, 0x48
 
-	.global gUnk_08B89EA0
-gUnk_08B89EA0:
+	.global Glyph_Talk_2D
+Glyph_Talk_2D:
 	.incbin "baserom.gba", 0xb89ea0, 0x48
 
-	.global gUnk_08B89EE8
-gUnk_08B89EE8:
+	.global Glyph_Talk_2E
+Glyph_Talk_2E:
 	.incbin "baserom.gba", 0xb89ee8, 0x48
 
-	.global gUnk_08B89F30
-gUnk_08B89F30:
+	.global Glyph_Talk_2F
+Glyph_Talk_2F:
 	.incbin "baserom.gba", 0xb89f30, 0x48
 
-	.global gUnk_08B89F78
-gUnk_08B89F78:
+	.global Glyph_Talk_30
+Glyph_Talk_30:
 	.incbin "baserom.gba", 0xb89f78, 0x48
 
-	.global gUnk_08B89FC0
-gUnk_08B89FC0:
+	.global Glyph_Talk_31
+Glyph_Talk_31:
 	.incbin "baserom.gba", 0xb89fc0, 0x48
 
-	.global gUnk_08B8A008
-gUnk_08B8A008:
+	.global Glyph_Talk_32
+Glyph_Talk_32:
 	.incbin "baserom.gba", 0xb8a008, 0x48
 
-	.global gUnk_08B8A050
-gUnk_08B8A050:
+	.global Glyph_Talk_33
+Glyph_Talk_33:
 	.incbin "baserom.gba", 0xb8a050, 0x48
 
-	.global gUnk_08B8A098
-gUnk_08B8A098:
+	.global Glyph_Talk_34
+Glyph_Talk_34:
 	.incbin "baserom.gba", 0xb8a098, 0x48
 
-	.global gUnk_08B8A0E0
-gUnk_08B8A0E0:
+	.global Glyph_Talk_35
+Glyph_Talk_35:
 	.incbin "baserom.gba", 0xb8a0e0, 0x48
 
-	.global gUnk_08B8A128
-gUnk_08B8A128:
+	.global Glyph_Talk_36
+Glyph_Talk_36:
 	.incbin "baserom.gba", 0xb8a128, 0x48
 
-	.global gUnk_08B8A170
-gUnk_08B8A170:
+	.global Glyph_Talk_37
+Glyph_Talk_37:
 	.incbin "baserom.gba", 0xb8a170, 0x48
 
-	.global gUnk_08B8A1B8
-gUnk_08B8A1B8:
+	.global Glyph_Talk_38
+Glyph_Talk_38:
 	.incbin "baserom.gba", 0xb8a1b8, 0x48
 
-	.global gUnk_08B8A200
-gUnk_08B8A200:
+	.global Glyph_Talk_39
+Glyph_Talk_39:
 	.incbin "baserom.gba", 0xb8a200, 0x48
 
-	.global gUnk_08B8A248
-gUnk_08B8A248:
+	.global Glyph_Talk_3A
+Glyph_Talk_3A:
 	.incbin "baserom.gba", 0xb8a248, 0x48
 
-	.global gUnk_08B8A290
-gUnk_08B8A290:
+	.global Glyph_Talk_3B
+Glyph_Talk_3B:
 	.incbin "baserom.gba", 0xb8a290, 0x48
 
-	.global gUnk_08B8A2D8
-gUnk_08B8A2D8:
+	.global Glyph_Talk_3C
+Glyph_Talk_3C:
 	.incbin "baserom.gba", 0xb8a2d8, 0x48
 
-	.global gUnk_08B8A320
-gUnk_08B8A320:
+	.global Glyph_Talk_3D
+Glyph_Talk_3D:
 	.incbin "baserom.gba", 0xb8a320, 0x48
 
-	.global gUnk_08B8A368
-gUnk_08B8A368:
+	.global Glyph_Talk_3E
+Glyph_Talk_3E:
 	.incbin "baserom.gba", 0xb8a368, 0x48
 
-	.global gUnk_08B8A3B0
-gUnk_08B8A3B0:
+	.global Glyph_Talk_3F
+Glyph_Talk_3F:
 	.incbin "baserom.gba", 0xb8a3b0, 0x48
 
-	.global gUnk_08B8A3F8
-gUnk_08B8A3F8:
+	.global Glyph_Talk_40
+Glyph_Talk_40:
 	.incbin "baserom.gba", 0xb8a3f8, 0x48
 
-	.global gUnk_08B8A440
-gUnk_08B8A440:
+	.global Glyph_Talk_41
+Glyph_Talk_41:
 	.incbin "baserom.gba", 0xb8a440, 0x48
 
-	.global gUnk_08B8A488
-gUnk_08B8A488:
+	.global Glyph_Talk_42
+Glyph_Talk_42:
 	.incbin "baserom.gba", 0xb8a488, 0x48
 
-	.global gUnk_08B8A4D0
-gUnk_08B8A4D0:
+	.global Glyph_Talk_43
+Glyph_Talk_43:
 	.incbin "baserom.gba", 0xb8a4d0, 0x48
 
-	.global gUnk_08B8A518
-gUnk_08B8A518:
+	.global Glyph_Talk_44
+Glyph_Talk_44:
 	.incbin "baserom.gba", 0xb8a518, 0x48
 
-	.global gUnk_08B8A560
-gUnk_08B8A560:
+	.global Glyph_Talk_45
+Glyph_Talk_45:
 	.incbin "baserom.gba", 0xb8a560, 0x48
 
-	.global gUnk_08B8A5A8
-gUnk_08B8A5A8:
+	.global Glyph_Talk_46
+Glyph_Talk_46:
 	.incbin "baserom.gba", 0xb8a5a8, 0x48
 
-	.global gUnk_08B8A5F0
-gUnk_08B8A5F0:
+	.global Glyph_Talk_47
+Glyph_Talk_47:
 	.incbin "baserom.gba", 0xb8a5f0, 0x48
 
-	.global gUnk_08B8A638
-gUnk_08B8A638:
+	.global Glyph_Talk_48
+Glyph_Talk_48:
 	.incbin "baserom.gba", 0xb8a638, 0x48
 
-	.global gUnk_08B8A680
-gUnk_08B8A680:
+	.global Glyph_Talk_49
+Glyph_Talk_49:
 	.incbin "baserom.gba", 0xb8a680, 0x48
 
-	.global gUnk_08B8A6C8
-gUnk_08B8A6C8:
+	.global Glyph_Talk_4A
+Glyph_Talk_4A:
 	.incbin "baserom.gba", 0xb8a6c8, 0x48
 
-	.global gUnk_08B8A710
-gUnk_08B8A710:
+	.global Glyph_Talk_4B
+Glyph_Talk_4B:
 	.incbin "baserom.gba", 0xb8a710, 0x48
 
-	.global gUnk_08B8A758
-gUnk_08B8A758:
+	.global Glyph_Talk_4C
+Glyph_Talk_4C:
 	.incbin "baserom.gba", 0xb8a758, 0x48
 
-	.global gUnk_08B8A7A0
-gUnk_08B8A7A0:
+	.global Glyph_Talk_4D
+Glyph_Talk_4D:
 	.incbin "baserom.gba", 0xb8a7a0, 0x48
 
-	.global gUnk_08B8A7E8
-gUnk_08B8A7E8:
+	.global Glyph_Talk_4E
+Glyph_Talk_4E:
 	.incbin "baserom.gba", 0xb8a7e8, 0x48
 
-	.global gUnk_08B8A830
-gUnk_08B8A830:
+	.global Glyph_Talk_4F
+Glyph_Talk_4F:
 	.incbin "baserom.gba", 0xb8a830, 0x48
 
-	.global gUnk_08B8A878
-gUnk_08B8A878:
+	.global Glyph_Talk_50
+Glyph_Talk_50:
 	.incbin "baserom.gba", 0xb8a878, 0x48
 
-	.global gUnk_08B8A8C0
-gUnk_08B8A8C0:
+	.global Glyph_Talk_51
+Glyph_Talk_51:
 	.incbin "baserom.gba", 0xb8a8c0, 0x48
 
-	.global gUnk_08B8A908
-gUnk_08B8A908:
+	.global Glyph_Talk_52
+Glyph_Talk_52:
 	.incbin "baserom.gba", 0xb8a908, 0x48
 
-	.global gUnk_08B8A950
-gUnk_08B8A950:
+	.global Glyph_Talk_53
+Glyph_Talk_53:
 	.incbin "baserom.gba", 0xb8a950, 0x48
 
-	.global gUnk_08B8A998
-gUnk_08B8A998:
+	.global Glyph_Talk_54
+Glyph_Talk_54:
 	.incbin "baserom.gba", 0xb8a998, 0x48
 
-	.global gUnk_08B8A9E0
-gUnk_08B8A9E0:
+	.global Glyph_Talk_55
+Glyph_Talk_55:
 	.incbin "baserom.gba", 0xb8a9e0, 0x48
 
-	.global gUnk_08B8AA28
-gUnk_08B8AA28:
+	.global Glyph_Talk_56
+Glyph_Talk_56:
 	.incbin "baserom.gba", 0xb8aa28, 0x48
 
-	.global gUnk_08B8AA70
-gUnk_08B8AA70:
+	.global Glyph_Talk_57
+Glyph_Talk_57:
 	.incbin "baserom.gba", 0xb8aa70, 0x48
 
-	.global gUnk_08B8AAB8
-gUnk_08B8AAB8:
+	.global Glyph_Talk_58
+Glyph_Talk_58:
 	.incbin "baserom.gba", 0xb8aab8, 0x48
 
-	.global gUnk_08B8AB00
-gUnk_08B8AB00:
+	.global Glyph_Talk_59
+Glyph_Talk_59:
 	.incbin "baserom.gba", 0xb8ab00, 0x48
 
-	.global gUnk_08B8AB48
-gUnk_08B8AB48:
+	.global Glyph_Talk_5A
+Glyph_Talk_5A:
 	.incbin "baserom.gba", 0xb8ab48, 0x48
 
-	.global gUnk_08B8AB90
-gUnk_08B8AB90:
+	.global Glyph_Talk_5B
+Glyph_Talk_5B:
 	.incbin "baserom.gba", 0xb8ab90, 0x48
 
-	.global gUnk_08B8ABD8
-gUnk_08B8ABD8:
+	.global Glyph_Talk_5C
+Glyph_Talk_5C:
 	.incbin "baserom.gba", 0xb8abd8, 0x48
 
-	.global gUnk_08B8AC20
-gUnk_08B8AC20:
+	.global Glyph_Talk_5D
+Glyph_Talk_5D:
 	.incbin "baserom.gba", 0xb8ac20, 0x48
 
-	.global gUnk_08B8AC68
-gUnk_08B8AC68:
+	.global Glyph_Talk_5E
+Glyph_Talk_5E:
 	.incbin "baserom.gba", 0xb8ac68, 0x48
 
-	.global gUnk_08B8ACB0
-gUnk_08B8ACB0:
+	.global Glyph_Talk_5F
+Glyph_Talk_5F:
 	.incbin "baserom.gba", 0xb8acb0, 0x48
 
-	.global gUnk_08B8ACF8
-gUnk_08B8ACF8:
+	.global Glyph_Talk_60
+Glyph_Talk_60:
 	.incbin "baserom.gba", 0xb8acf8, 0x48
 
-	.global gUnk_08B8AD40
-gUnk_08B8AD40:
+	.global Glyph_Talk_61
+Glyph_Talk_61:
 	.incbin "baserom.gba", 0xb8ad40, 0x48
 
-	.global gUnk_08B8AD88
-gUnk_08B8AD88:
+	.global Glyph_Talk_62
+Glyph_Talk_62:
 	.incbin "baserom.gba", 0xb8ad88, 0x48
 
-	.global gUnk_08B8ADD0
-gUnk_08B8ADD0:
+	.global Glyph_Talk_63
+Glyph_Talk_63:
 	.incbin "baserom.gba", 0xb8add0, 0x48
 
-	.global gUnk_08B8AE18
-gUnk_08B8AE18:
+	.global Glyph_Talk_64
+Glyph_Talk_64:
 	.incbin "baserom.gba", 0xb8ae18, 0x48
 
-	.global gUnk_08B8AE60
-gUnk_08B8AE60:
+	.global Glyph_Talk_65
+Glyph_Talk_65:
 	.incbin "baserom.gba", 0xb8ae60, 0x48
 
-	.global gUnk_08B8AEA8
-gUnk_08B8AEA8:
+	.global Glyph_Talk_66
+Glyph_Talk_66:
 	.incbin "baserom.gba", 0xb8aea8, 0x48
 
-	.global gUnk_08B8AEF0
-gUnk_08B8AEF0:
+	.global Glyph_Talk_67
+Glyph_Talk_67:
 	.incbin "baserom.gba", 0xb8aef0, 0x48
 
-	.global gUnk_08B8AF38
-gUnk_08B8AF38:
+	.global Glyph_Talk_68
+Glyph_Talk_68:
 	.incbin "baserom.gba", 0xb8af38, 0x48
 
-	.global gUnk_08B8AF80
-gUnk_08B8AF80:
+	.global Glyph_Talk_69
+Glyph_Talk_69:
 	.incbin "baserom.gba", 0xb8af80, 0x48
 
-	.global gUnk_08B8AFC8
-gUnk_08B8AFC8:
+	.global Glyph_Talk_6A
+Glyph_Talk_6A:
 	.incbin "baserom.gba", 0xb8afc8, 0x48
 
-	.global gUnk_08B8B010
-gUnk_08B8B010:
+	.global Glyph_Talk_6B
+Glyph_Talk_6B:
 	.incbin "baserom.gba", 0xb8b010, 0x48
 
-	.global gUnk_08B8B058
-gUnk_08B8B058:
+	.global Glyph_Talk_6C
+Glyph_Talk_6C:
 	.incbin "baserom.gba", 0xb8b058, 0x48
 
-	.global gUnk_08B8B0A0
-gUnk_08B8B0A0:
+	.global Glyph_Talk_6D
+Glyph_Talk_6D:
 	.incbin "baserom.gba", 0xb8b0a0, 0x48
 
-	.global gUnk_08B8B0E8
-gUnk_08B8B0E8:
+	.global Glyph_Talk_6E
+Glyph_Talk_6E:
 	.incbin "baserom.gba", 0xb8b0e8, 0x48
 
-	.global gUnk_08B8B130
-gUnk_08B8B130:
+	.global Glyph_Talk_6F
+Glyph_Talk_6F:
 	.incbin "baserom.gba", 0xb8b130, 0x48
 
-	.global gUnk_08B8B178
-gUnk_08B8B178:
+	.global Glyph_Talk_70
+Glyph_Talk_70:
 	.incbin "baserom.gba", 0xb8b178, 0x48
 
-	.global gUnk_08B8B1C0
-gUnk_08B8B1C0:
+	.global Glyph_Talk_71
+Glyph_Talk_71:
 	.incbin "baserom.gba", 0xb8b1c0, 0x48
 
-	.global gUnk_08B8B208
-gUnk_08B8B208:
+	.global Glyph_Talk_72
+Glyph_Talk_72:
 	.incbin "baserom.gba", 0xb8b208, 0x48
 
-	.global gUnk_08B8B250
-gUnk_08B8B250:
+	.global Glyph_Talk_73
+Glyph_Talk_73:
 	.incbin "baserom.gba", 0xb8b250, 0x48
 
-	.global gUnk_08B8B298
-gUnk_08B8B298:
+	.global Glyph_Talk_74
+Glyph_Talk_74:
 	.incbin "baserom.gba", 0xb8b298, 0x48
 
-	.global gUnk_08B8B2E0
-gUnk_08B8B2E0:
+	.global Glyph_Talk_75
+Glyph_Talk_75:
 	.incbin "baserom.gba", 0xb8b2e0, 0x48
 
-	.global gUnk_08B8B328
-gUnk_08B8B328:
+	.global Glyph_Talk_76
+Glyph_Talk_76:
 	.incbin "baserom.gba", 0xb8b328, 0x48
 
-	.global gUnk_08B8B370
-gUnk_08B8B370:
+	.global Glyph_Talk_77
+Glyph_Talk_77:
 	.incbin "baserom.gba", 0xb8b370, 0x48
 
-	.global gUnk_08B8B3B8
-gUnk_08B8B3B8:
+	.global Glyph_Talk_78
+Glyph_Talk_78:
 	.incbin "baserom.gba", 0xb8b3b8, 0x48
 
-	.global gUnk_08B8B400
-gUnk_08B8B400:
+	.global Glyph_Talk_79
+Glyph_Talk_79:
 	.incbin "baserom.gba", 0xb8b400, 0x48
 
-	.global gUnk_08B8B448
-gUnk_08B8B448:
+	.global Glyph_Talk_7A
+Glyph_Talk_7A:
 	.incbin "baserom.gba", 0xb8b448, 0x48
 
-	.global gUnk_08B8B490
-gUnk_08B8B490:
+	.global Glyph_Talk_7B
+Glyph_Talk_7B:
 	.incbin "baserom.gba", 0xb8b490, 0x48
 
-	.global gUnk_08B8B4D8
-gUnk_08B8B4D8:
+	.global Glyph_Talk_7C
+Glyph_Talk_7C:
 	.incbin "baserom.gba", 0xb8b4d8, 0x48
 
-	.global gUnk_08B8B520
-gUnk_08B8B520:
+	.global Glyph_Talk_7D
+Glyph_Talk_7D:
 	.incbin "baserom.gba", 0xb8b520, 0x48
 
-	.global gUnk_08B8B568
-gUnk_08B8B568:
+	.global Glyph_Talk_7E
+Glyph_Talk_7E:
 	.incbin "baserom.gba", 0xb8b568, 0x48
 
 	.global TextGlyphs_Talk
 TextGlyphs_Talk:
 	.incbin "baserom.gba", 0xb8b5b0, 0x7c
-	.4byte gUnk_08B89AB0
-	.4byte gUnk_08B89AF8
-	.4byte gUnk_08B89B40
-	.4byte gUnk_08B89B88
-	.4byte gUnk_08B89BD0
-	.4byte gUnk_08B89C18
-	.4byte gUnk_08B89C60
-	.4byte gUnk_08B89CA8
-	.4byte gUnk_08B89CF0
-	.4byte gUnk_08B89D38
-	.4byte gUnk_08B89D80
-	.4byte gUnk_08B89DC8
-	.4byte gUnk_08B89E10
-	.4byte gUnk_08B89E58
-	.4byte gUnk_08B89EA0
-	.4byte gUnk_08B89EE8
-	.4byte gUnk_08B89F30
-	.4byte gUnk_08B89F78
-	.4byte gUnk_08B89FC0
-	.4byte gUnk_08B8A008
-	.4byte gUnk_08B8A050
-	.4byte gUnk_08B8A098
-	.4byte gUnk_08B8A0E0
-	.4byte gUnk_08B8A128
-	.4byte gUnk_08B8A170
-	.4byte gUnk_08B8A1B8
-	.4byte gUnk_08B8A200
-	.4byte gUnk_08B8A248
-	.4byte gUnk_08B8A290
-	.4byte gUnk_08B8A2D8
-	.4byte gUnk_08B8A320
-	.4byte gUnk_08B8A368
-	.4byte gUnk_08B8A3B0
-	.4byte gUnk_08B8A3F8
-	.4byte gUnk_08B8A440
-	.4byte gUnk_08B8A488
-	.4byte gUnk_08B8A4D0
-	.4byte gUnk_08B8A518
-	.4byte gUnk_08B8A560
-	.4byte gUnk_08B8A5A8
-	.4byte gUnk_08B8A5F0
-	.4byte gUnk_08B8A638
-	.4byte gUnk_08B8A680
-	.4byte gUnk_08B8A6C8
-	.4byte gUnk_08B8A710
-	.4byte gUnk_08B8A758
-	.4byte gUnk_08B8A7A0
-	.4byte gUnk_08B8A7E8
-	.4byte gUnk_08B8A830
-	.4byte gUnk_08B8A878
-	.4byte gUnk_08B8A8C0
-	.4byte gUnk_08B8A908
-	.4byte gUnk_08B8A950
-	.4byte gUnk_08B8A998
-	.4byte gUnk_08B8A9E0
-	.4byte gUnk_08B8AA28
-	.4byte gUnk_08B8AA70
-	.4byte gUnk_08B8AAB8
-	.4byte gUnk_08B8AB00
-	.4byte gUnk_08B8AB48
-	.4byte gUnk_08B8AB90
-	.4byte gUnk_08B8ABD8
-	.4byte gUnk_08B8AC20
-	.4byte gUnk_08B8AC68
-	.4byte gUnk_08B8ACB0
-	.4byte gUnk_08B8ACF8
-	.4byte gUnk_08B8AD40
-	.4byte gUnk_08B8AD88
-	.4byte gUnk_08B8ADD0
-	.4byte gUnk_08B8AE18
-	.4byte gUnk_08B8AE60
-	.4byte gUnk_08B8AEA8
-	.4byte gUnk_08B8AEF0
-	.4byte gUnk_08B8AF38
-	.4byte gUnk_08B8AF80
-	.4byte gUnk_08B8AFC8
-	.4byte gUnk_08B8B010
-	.4byte gUnk_08B8B058
-	.4byte gUnk_08B8B0A0
-	.4byte gUnk_08B8B0E8
-	.4byte gUnk_08B8B130
-	.4byte gUnk_08B8B178
-	.4byte gUnk_08B8B1C0
-	.4byte gUnk_08B8B208
-	.4byte gUnk_08B8B250
-	.4byte gUnk_08B8B298
-	.4byte gUnk_08B8B2E0
-	.4byte gUnk_08B8B328
-	.4byte gUnk_08B8B370
-	.4byte gUnk_08B8B3B8
-	.4byte gUnk_08B8B400
-	.4byte gUnk_08B8B448
-	.4byte gUnk_08B8B490
-	.4byte gUnk_08B8B4D8
-	.4byte gUnk_08B8B520
-	.4byte gUnk_08B8B568
+	.4byte Glyph_Talk_1F
+	.4byte Glyph_Talk_20
+	.4byte Glyph_Talk_21
+	.4byte Glyph_Talk_22
+	.4byte Glyph_Talk_23
+	.4byte Glyph_Talk_24
+	.4byte Glyph_Talk_25
+	.4byte Glyph_Talk_26
+	.4byte Glyph_Talk_27
+	.4byte Glyph_Talk_28
+	.4byte Glyph_Talk_29
+	.4byte Glyph_Talk_2A
+	.4byte Glyph_Talk_2B
+	.4byte Glyph_Talk_2C
+	.4byte Glyph_Talk_2D
+	.4byte Glyph_Talk_2E
+	.4byte Glyph_Talk_2F
+	.4byte Glyph_Talk_30
+	.4byte Glyph_Talk_31
+	.4byte Glyph_Talk_32
+	.4byte Glyph_Talk_33
+	.4byte Glyph_Talk_34
+	.4byte Glyph_Talk_35
+	.4byte Glyph_Talk_36
+	.4byte Glyph_Talk_37
+	.4byte Glyph_Talk_38
+	.4byte Glyph_Talk_39
+	.4byte Glyph_Talk_3A
+	.4byte Glyph_Talk_3B
+	.4byte Glyph_Talk_3C
+	.4byte Glyph_Talk_3D
+	.4byte Glyph_Talk_3E
+	.4byte Glyph_Talk_3F
+	.4byte Glyph_Talk_40
+	.4byte Glyph_Talk_41
+	.4byte Glyph_Talk_42
+	.4byte Glyph_Talk_43
+	.4byte Glyph_Talk_44
+	.4byte Glyph_Talk_45
+	.4byte Glyph_Talk_46
+	.4byte Glyph_Talk_47
+	.4byte Glyph_Talk_48
+	.4byte Glyph_Talk_49
+	.4byte Glyph_Talk_4A
+	.4byte Glyph_Talk_4B
+	.4byte Glyph_Talk_4C
+	.4byte Glyph_Talk_4D
+	.4byte Glyph_Talk_4E
+	.4byte Glyph_Talk_4F
+	.4byte Glyph_Talk_50
+	.4byte Glyph_Talk_51
+	.4byte Glyph_Talk_52
+	.4byte Glyph_Talk_53
+	.4byte Glyph_Talk_54
+	.4byte Glyph_Talk_55
+	.4byte Glyph_Talk_56
+	.4byte Glyph_Talk_57
+	.4byte Glyph_Talk_58
+	.4byte Glyph_Talk_59
+	.4byte Glyph_Talk_5A
+	.4byte Glyph_Talk_5B
+	.4byte Glyph_Talk_5C
+	.4byte Glyph_Talk_5D
+	.4byte Glyph_Talk_5E
+	.4byte Glyph_Talk_5F
+	.4byte Glyph_Talk_60
+	.4byte Glyph_Talk_61
+	.4byte Glyph_Talk_62
+	.4byte Glyph_Talk_63
+	.4byte Glyph_Talk_64
+	.4byte Glyph_Talk_65
+	.4byte Glyph_Talk_66
+	.4byte Glyph_Talk_67
+	.4byte Glyph_Talk_68
+	.4byte Glyph_Talk_69
+	.4byte Glyph_Talk_6A
+	.4byte Glyph_Talk_6B
+	.4byte Glyph_Talk_6C
+	.4byte Glyph_Talk_6D
+	.4byte Glyph_Talk_6E
+	.4byte Glyph_Talk_6F
+	.4byte Glyph_Talk_70
+	.4byte Glyph_Talk_71
+	.4byte Glyph_Talk_72
+	.4byte Glyph_Talk_73
+	.4byte Glyph_Talk_74
+	.4byte Glyph_Talk_75
+	.4byte Glyph_Talk_76
+	.4byte Glyph_Talk_77
+	.4byte Glyph_Talk_78
+	.4byte Glyph_Talk_79
+	.4byte Glyph_Talk_7A
+	.4byte Glyph_Talk_7B
+	.4byte Glyph_Talk_7C
+	.4byte Glyph_Talk_7D
+	.4byte Glyph_Talk_7E
 	.incbin "baserom.gba", 0xb8b7ac, 0x204
 
-	.global gUnk_08B8B9B0
-gUnk_08B8B9B0:
+	.global Glyph_Special_00
+Glyph_Special_00:
 	.incbin "baserom.gba", 0xb8b9b0, 0x48
 
-	.global gUnk_08B8B9F8
-gUnk_08B8B9F8:
+	.global Glyph_Special_01
+Glyph_Special_01:
 	.incbin "baserom.gba", 0xb8b9f8, 0x48
 
-	.global gUnk_08B8BA40
-gUnk_08B8BA40:
+	.global Glyph_Special_02
+Glyph_Special_02:
 	.incbin "baserom.gba", 0xb8ba40, 0x48
 
-	.global gUnk_08B8BA88
-gUnk_08B8BA88:
+	.global Glyph_Special_03
+Glyph_Special_03:
 	.incbin "baserom.gba", 0xb8ba88, 0x48
 
-	.global gUnk_08B8BAD0
-gUnk_08B8BAD0:
+	.global Glyph_Special_04
+Glyph_Special_04:
 	.incbin "baserom.gba", 0xb8bad0, 0x48
 
-	.global gUnk_08B8BB18
-gUnk_08B8BB18:
+	.global Glyph_Special_05
+Glyph_Special_05:
 	.incbin "baserom.gba", 0xb8bb18, 0x48
 
-	.global gUnk_08B8BB60
-gUnk_08B8BB60:
+	.global Glyph_Special_06
+Glyph_Special_06:
 	.incbin "baserom.gba", 0xb8bb60, 0x48
 
-	.global gUnk_08B8BBA8
-gUnk_08B8BBA8:
+	.global Glyph_Special_07
+Glyph_Special_07:
 	.incbin "baserom.gba", 0xb8bba8, 0x48
 
-	.global gUnk_08B8BBF0
-gUnk_08B8BBF0:
+	.global Glyph_Special_08
+Glyph_Special_08:
 	.incbin "baserom.gba", 0xb8bbf0, 0x48
 
-	.global gUnk_08B8BC38
-gUnk_08B8BC38:
+	.global Glyph_Special_09
+Glyph_Special_09:
 	.incbin "baserom.gba", 0xb8bc38, 0x48
 
-	.global gUnk_08B8BC80
-gUnk_08B8BC80:
+	.global Glyph_Special_0A
+Glyph_Special_0A:
 	.incbin "baserom.gba", 0xb8bc80, 0x48
 
-	.global gUnk_08B8BCC8
-gUnk_08B8BCC8:
+	.global Glyph_Special_0B
+Glyph_Special_0B:
 	.incbin "baserom.gba", 0xb8bcc8, 0x48
 
-	.global gUnk_08B8BD10
-gUnk_08B8BD10:
+	.global Glyph_Special_0C
+Glyph_Special_0C:
 	.incbin "baserom.gba", 0xb8bd10, 0x48
 
-	.global gUnk_08B8BD58
-gUnk_08B8BD58:
+	.global Glyph_Special_0D
+Glyph_Special_0D:
 	.incbin "baserom.gba", 0xb8bd58, 0x48
 
-	.global gUnk_08B8BDA0
-gUnk_08B8BDA0:
+	.global Glyph_Special_0E
+Glyph_Special_0E:
 	.incbin "baserom.gba", 0xb8bda0, 0x48
 
-	.global gUnk_08B8BDE8
-gUnk_08B8BDE8:
+	.global Glyph_Special_0F
+Glyph_Special_0F:
 	.incbin "baserom.gba", 0xb8bde8, 0x48
 
-	.global gUnk_08B8BE30
-gUnk_08B8BE30:
+	.global Glyph_Special_10
+Glyph_Special_10:
 	.incbin "baserom.gba", 0xb8be30, 0x48
 
-	.global gUnk_08B8BE78
-gUnk_08B8BE78:
+	.global Glyph_Special_11
+Glyph_Special_11:
 	.incbin "baserom.gba", 0xb8be78, 0x48
 
-	.global gUnk_08B8BEC0
-gUnk_08B8BEC0:
+	.global Glyph_Special_12
+Glyph_Special_12:
 	.incbin "baserom.gba", 0xb8bec0, 0x48
 
-	.global gUnk_08B8BF08
-gUnk_08B8BF08:
+	.global Glyph_Special_13
+Glyph_Special_13:
 	.incbin "baserom.gba", 0xb8bf08, 0x48
 
-	.global gUnk_08B8BF50
-gUnk_08B8BF50:
+	.global Glyph_Special_14
+Glyph_Special_14:
 	.incbin "baserom.gba", 0xb8bf50, 0x48
 
-	.global gUnk_08B8BF98
-gUnk_08B8BF98:
+	.global Glyph_Special_15
+Glyph_Special_15:
 	.incbin "baserom.gba", 0xb8bf98, 0x48
 
-	.global gUnk_08B8BFE0
-gUnk_08B8BFE0:
+	.global Glyph_Special_16
+Glyph_Special_16:
 	.incbin "baserom.gba", 0xb8bfe0, 0x48
 
-	.global gUnk_08B8C028
-gUnk_08B8C028:
+	.global Glyph_Special_17
+Glyph_Special_17:
 	.incbin "baserom.gba", 0xb8c028, 0x48
 
-	.global gUnk_08B8C070
-gUnk_08B8C070:
+	.global Glyph_Special_18
+Glyph_Special_18:
 	.incbin "baserom.gba", 0xb8c070, 0x48
 
-	.global gUnk_08B8C0B8
-gUnk_08B8C0B8:
+	.global Glyph_Special_19
+Glyph_Special_19:
 	.incbin "baserom.gba", 0xb8c0b8, 0x48
 
-	.global gUnk_08B8C100
-gUnk_08B8C100:
+	.global Glyph_Special_1A
+Glyph_Special_1A:
 	.incbin "baserom.gba", 0xb8c100, 0x48
 
-	.global gUnk_08B8C148
-gUnk_08B8C148:
+	.global Glyph_Special_1B
+Glyph_Special_1B:
 	.incbin "baserom.gba", 0xb8c148, 0x48
 
-	.global gUnk_08B8C190
-gUnk_08B8C190:
+	.global Glyph_Special_1C
+Glyph_Special_1C:
 	.incbin "baserom.gba", 0xb8c190, 0x48
 
-	.global gUnk_08B8C1D8
-gUnk_08B8C1D8:
+	.global Glyph_Special_1D
+Glyph_Special_1D:
 	.incbin "baserom.gba", 0xb8c1d8, 0x48
 
-	.global gUnk_08B8C220
-gUnk_08B8C220:
+	.global Glyph_Special_1E
+Glyph_Special_1E:
 	.incbin "baserom.gba", 0xb8c220, 0x48
 
-	.global gUnk_08B8C268
-gUnk_08B8C268:
+	.global Glyph_Special_1F
+Glyph_Special_1F:
 	.incbin "baserom.gba", 0xb8c268, 0x48
 
-	.global gUnk_08B8C2B0
-gUnk_08B8C2B0:
+	.global Glyph_Special_20
+Glyph_Special_20:
 	.incbin "baserom.gba", 0xb8c2b0, 0x48
 
-	.global gUnk_08B8C2F8
-gUnk_08B8C2F8:
+	.global Glyph_Special_21
+Glyph_Special_21:
 	.incbin "baserom.gba", 0xb8c2f8, 0x48
 
-	.global gUnk_08B8C340
-gUnk_08B8C340:
+	.global Glyph_Special_22
+Glyph_Special_22:
 	.incbin "baserom.gba", 0xb8c340, 0x48
 
-	.global gUnk_08B8C388
-gUnk_08B8C388:
+	.global Glyph_Special_23
+Glyph_Special_23:
 	.incbin "baserom.gba", 0xb8c388, 0x48
 
-	.global gUnk_08B8C3D0
-gUnk_08B8C3D0:
+	.global Glyph_Special_24
+Glyph_Special_24:
 	.incbin "baserom.gba", 0xb8c3d0, 0x48
 
-	.global gUnk_08B8C418
-gUnk_08B8C418:
+	.global Glyph_Special_25
+Glyph_Special_25:
 	.incbin "baserom.gba", 0xb8c418, 0x48
 
-	.global gUnk_08B8C460
-gUnk_08B8C460:
+	.global Glyph_Special_26
+Glyph_Special_26:
 	.incbin "baserom.gba", 0xb8c460, 0x48
 
-	.global gUnk_08B8C4A8
-gUnk_08B8C4A8:
+	.global Glyph_Special_27
+Glyph_Special_27:
 	.incbin "baserom.gba", 0xb8c4a8, 0x48
 
-	.global gUnk_08B8C4F0
-gUnk_08B8C4F0:
+	.global Glyph_Special_28
+Glyph_Special_28:
 	.incbin "baserom.gba", 0xb8c4f0, 0x48
 
-	.global gUnk_08B8C538
-gUnk_08B8C538:
+	.global Glyph_Special_29
+Glyph_Special_29:
 	.incbin "baserom.gba", 0xb8c538, 0x48
 
-	.global gUnk_08B8C580
-gUnk_08B8C580:
+	.global Glyph_Special_2A
+Glyph_Special_2A:
 	.incbin "baserom.gba", 0xb8c580, 0x48
 
-	.global gUnk_08B8C5C8
-gUnk_08B8C5C8:
+	.global Glyph_Special_2B
+Glyph_Special_2B:
 	.incbin "baserom.gba", 0xb8c5c8, 0x48
 
-	.global gUnk_08B8C610
-gUnk_08B8C610:
+	.global Glyph_Special_2C
+Glyph_Special_2C:
 	.incbin "baserom.gba", 0xb8c610, 0x48
 
-	.global gUnk_08B8C658
-gUnk_08B8C658:
+	.global Glyph_Special_2D
+Glyph_Special_2D:
 	.incbin "baserom.gba", 0xb8c658, 0x48
 
-	.global gUnk_08B8C6A0
-gUnk_08B8C6A0:
+	.global Glyph_Special_2E
+Glyph_Special_2E:
 	.incbin "baserom.gba", 0xb8c6a0, 0x48
 
-	.global gUnk_08B8C6E8
-gUnk_08B8C6E8:
+	.global Glyph_Special_2F
+Glyph_Special_2F:
 	.incbin "baserom.gba", 0xb8c6e8, 0x48
 
-	.global gUnk_08B8C730
-gUnk_08B8C730:
+	.global Glyph_Special_30
+Glyph_Special_30:
 	.incbin "baserom.gba", 0xb8c730, 0x48
 
-	.global gUnk_08B8C778
-gUnk_08B8C778:
+	.global Glyph_Special_31
+Glyph_Special_31:
 	.incbin "baserom.gba", 0xb8c778, 0x48
 
-	.global gUnk_08B8C7C0
-gUnk_08B8C7C0:
+	.global Glyph_Special_32
+Glyph_Special_32:
 	.incbin "baserom.gba", 0xb8c7c0, 0x48
 
-	.global gUnk_08B8C808
-gUnk_08B8C808:
+	.global Glyph_Special_33
+Glyph_Special_33:
 	.incbin "baserom.gba", 0xb8c808, 0x48
 
-	.global gUnk_08B8C850
-gUnk_08B8C850:
+	.global Glyph_Special_34
+Glyph_Special_34:
 	.incbin "baserom.gba", 0xb8c850, 0x48
 
-	.global gUnk_08B8C898
-gUnk_08B8C898:
+	.global Glyph_Special_35
+Glyph_Special_35:
 	.incbin "baserom.gba", 0xb8c898, 0x48
 
-	.global gUnk_08B8C8E0
-gUnk_08B8C8E0:
+	.global Glyph_Special_36
+Glyph_Special_36:
 	.incbin "baserom.gba", 0xb8c8e0, 0x48
 
-	.global gUnk_08B8C928
-gUnk_08B8C928:
+	.global Glyph_Special_37
+Glyph_Special_37:
 	.incbin "baserom.gba", 0xb8c928, 0x48
 
-	.global gUnk_08B8C970
-gUnk_08B8C970:
+	.global Glyph_Special_38
+Glyph_Special_38:
 	.incbin "baserom.gba", 0xb8c970, 0x48
 
-	.global gUnk_08B8C9B8
-gUnk_08B8C9B8:
+	.global Glyph_Special_39
+Glyph_Special_39:
 	.incbin "baserom.gba", 0xb8c9b8, 0x48
 
-	.global gUnk_08B8CA00
-gUnk_08B8CA00:
+	.global Glyph_Special_3A
+Glyph_Special_3A:
 	.incbin "baserom.gba", 0xb8ca00, 0x48
 
-	.global gUnk_08B8CA48
-gUnk_08B8CA48:
+	.global Glyph_Special_3B
+Glyph_Special_3B:
 	.incbin "baserom.gba", 0xb8ca48, 0x48
 
-	.global gUnk_08B8CA90
-gUnk_08B8CA90:
+	.global Glyph_Special_3C
+Glyph_Special_3C:
 	.incbin "baserom.gba", 0xb8ca90, 0x48
 
-	.global gUnk_08B8CAD8
-gUnk_08B8CAD8:
+	.global Glyph_Special_3D
+Glyph_Special_3D:
 	.incbin "baserom.gba", 0xb8cad8, 0x48
 
-	.global gUnk_08B8CB20
-gUnk_08B8CB20:
+	.global Glyph_Special_3E
+Glyph_Special_3E:
 	.incbin "baserom.gba", 0xb8cb20, 0x48
 
-	.global gUnk_08B8CB68
-gUnk_08B8CB68:
+	.global Glyph_Special_3F
+Glyph_Special_3F:
 	.incbin "baserom.gba", 0xb8cb68, 0x48
 
-	.global gUnk_08B8CBB0
-gUnk_08B8CBB0:
+	.global Glyph_Special_40
+Glyph_Special_40:
 	.incbin "baserom.gba", 0xb8cbb0, 0x48
 
-	.global gUnk_08B8CBF8
-gUnk_08B8CBF8:
+	.global Glyph_Special_41
+Glyph_Special_41:
 	.incbin "baserom.gba", 0xb8cbf8, 0x48
 
-	.global gUnk_08B8CC40
-gUnk_08B8CC40:
+	.global Glyph_Special_42
+Glyph_Special_42:
 	.incbin "baserom.gba", 0xb8cc40, 0x48
 
-	.global gUnk_08B8CC88
-gUnk_08B8CC88:
+	.global Glyph_Special_43
+Glyph_Special_43:
 	.incbin "baserom.gba", 0xb8cc88, 0x48
 
-	.global gUnk_08B8CCD0
-gUnk_08B8CCD0:
+	.global Glyph_Special_44
+Glyph_Special_44:
 	.incbin "baserom.gba", 0xb8ccd0, 0x48
 
-	.global gUnk_08B8CD18
-gUnk_08B8CD18:
+	.global Glyph_Special_45
+Glyph_Special_45:
 	.incbin "baserom.gba", 0xb8cd18, 0x48
 
-	.global gUnk_08B8CD60
-gUnk_08B8CD60:
+	.global Glyph_Special_46
+Glyph_Special_46:
 	.incbin "baserom.gba", 0xb8cd60, 0x48
 
-	.global gUnk_08B8CDA8
-gUnk_08B8CDA8:
+	.global Glyph_Special_47
+Glyph_Special_47:
 	.incbin "baserom.gba", 0xb8cda8, 0x48
 
-	.global gUnk_08B8CDF0
-gUnk_08B8CDF0:
+	.global Glyph_Special_48
+Glyph_Special_48:
 	.incbin "baserom.gba", 0xb8cdf0, 0x48
 
-	.global gUnk_08B8CE38
-gUnk_08B8CE38:
+	.global Glyph_Special_49
+Glyph_Special_49:
 	.incbin "baserom.gba", 0xb8ce38, 0x48
 
-	.global gUnk_08B8CE80
-gUnk_08B8CE80:
+	.global Glyph_Special_4A
+Glyph_Special_4A:
 	.incbin "baserom.gba", 0xb8ce80, 0x48
 
-	.global gUnk_08B8CEC8
-gUnk_08B8CEC8:
+	.global Glyph_Special_4B
+Glyph_Special_4B:
 	.incbin "baserom.gba", 0xb8cec8, 0x48
 
-	.global gUnk_08B8CF10
-gUnk_08B8CF10:
+	.global Glyph_Special_4C
+Glyph_Special_4C:
 	.incbin "baserom.gba", 0xb8cf10, 0x48
 
-	.global gUnk_08B8CF58
-gUnk_08B8CF58:
+	.global Glyph_Special_4D
+Glyph_Special_4D:
 	.incbin "baserom.gba", 0xb8cf58, 0x48
 
-	.global gUnk_08B8CFA0
-gUnk_08B8CFA0:
+	.global Glyph_Special_4E
+Glyph_Special_4E:
 	.incbin "baserom.gba", 0xb8cfa0, 0x48
 
-	.global gUnk_08B8CFE8
-gUnk_08B8CFE8:
+	.global Glyph_Special_4F
+Glyph_Special_4F:
 	.incbin "baserom.gba", 0xb8cfe8, 0x48
 
-	.global gUnk_08B8D030
-gUnk_08B8D030:
+	.global Glyph_Special_50
+Glyph_Special_50:
 	.incbin "baserom.gba", 0xb8d030, 0x48
 
-	.global gUnk_08B8D078
-gUnk_08B8D078:
+	.global Glyph_Special_51
+Glyph_Special_51:
 	.incbin "baserom.gba", 0xb8d078, 0x48
 
-	.global gUnk_08B8D0C0
-gUnk_08B8D0C0:
+	.global Glyph_Special_52
+Glyph_Special_52:
 	.incbin "baserom.gba", 0xb8d0c0, 0x48
 
-	.global gUnk_08B8D108
-gUnk_08B8D108:
+	.global Glyph_Special_53
+Glyph_Special_53:
 	.incbin "baserom.gba", 0xb8d108, 0x48
 
-	.global gUnk_08B8D150
-gUnk_08B8D150:
+	.global Glyph_Special_54
+Glyph_Special_54:
 	.incbin "baserom.gba", 0xb8d150, 0x48
 
-	.global gUnk_08B8D198
-gUnk_08B8D198:
+	.global Glyph_Special_55
+Glyph_Special_55:
 	.incbin "baserom.gba", 0xb8d198, 0x48
 
-	.global gUnk_08B8D1E0
-gUnk_08B8D1E0:
+	.global Glyph_Special_56
+Glyph_Special_56:
 	.incbin "baserom.gba", 0xb8d1e0, 0x48
 
-	.global gUnk_08B8D228
-gUnk_08B8D228:
+	.global Glyph_Special_57
+Glyph_Special_57:
 	.incbin "baserom.gba", 0xb8d228, 0x48
 
-	.global gUnk_08B8D270
-gUnk_08B8D270:
+	.global Glyph_Special_58
+Glyph_Special_58:
 	.incbin "baserom.gba", 0xb8d270, 0x48
 
-	.global gUnk_08B8D2B8
-gUnk_08B8D2B8:
+	.global Glyph_Special_59
+Glyph_Special_59:
 	.incbin "baserom.gba", 0xb8d2b8, 0x48
 
-	.global gUnk_08B8D300
-gUnk_08B8D300:
+	.global Glyph_Special_5A
+Glyph_Special_5A:
 	.incbin "baserom.gba", 0xb8d300, 0x48
 
-	.global gUnk_08B8D348
-gUnk_08B8D348:
+	.global Glyph_Special_5B
+Glyph_Special_5B:
 	.incbin "baserom.gba", 0xb8d348, 0x48
 
-	.global gUnk_08B8D390
-gUnk_08B8D390:
+	.global Glyph_Special_5C
+Glyph_Special_5C:
 	.incbin "baserom.gba", 0xb8d390, 0x48
 
-	.global gUnk_08B8D3D8
-gUnk_08B8D3D8:
+	.global Glyph_Special_5D
+Glyph_Special_5D:
 	.incbin "baserom.gba", 0xb8d3d8, 0x48
 
-	.global gUnk_08B8D420
-gUnk_08B8D420:
+	.global Glyph_Special_5E
+Glyph_Special_5E:
 	.incbin "baserom.gba", 0xb8d420, 0x48
 
-	.global gUnk_08B8D468
-gUnk_08B8D468:
+	.global Glyph_Special_5F
+Glyph_Special_5F:
 	.incbin "baserom.gba", 0xb8d468, 0x48
 
-	.global gUnk_08B8D4B0
-gUnk_08B8D4B0:
+	.global Glyph_Special_60
+Glyph_Special_60:
 	.incbin "baserom.gba", 0xb8d4b0, 0x48
 
-	.global gUnk_08B8D4F8
-gUnk_08B8D4F8:
+	.global Glyph_Special_61
+Glyph_Special_61:
 	.incbin "baserom.gba", 0xb8d4f8, 0x48
 
-	.global gUnk_08B8D540
-gUnk_08B8D540:
+	.global Glyph_Special_62
+Glyph_Special_62:
 	.incbin "baserom.gba", 0xb8d540, 0x48
 
-	.global gUnk_08B8D588
-gUnk_08B8D588:
+	.global Glyph_Special_63
+Glyph_Special_63:
 	.incbin "baserom.gba", 0xb8d588, 0x48
 
-	.global gUnk_08B8D5D0
-gUnk_08B8D5D0:
+	.global Glyph_Special_64
+Glyph_Special_64:
 	.incbin "baserom.gba", 0xb8d5d0, 0x48
 
-	.global gUnk_08B8D618
-gUnk_08B8D618:
+	.global Glyph_Special_65
+Glyph_Special_65:
 	.incbin "baserom.gba", 0xb8d618, 0x48
 
-	.global gUnk_08B8D660
-gUnk_08B8D660:
+	.global Glyph_Special_66
+Glyph_Special_66:
 	.incbin "baserom.gba", 0xb8d660, 0x48
 
-	.global gUnk_08B8D6A8
-gUnk_08B8D6A8:
+	.global Glyph_Special_67
+Glyph_Special_67:
 	.incbin "baserom.gba", 0xb8d6a8, 0x48
 
-	.global gUnk_08B8D6F0
-gUnk_08B8D6F0:
+	.global Glyph_Special_68
+Glyph_Special_68:
 	.incbin "baserom.gba", 0xb8d6f0, 0x48
 
-	.global gUnk_08B8D738
-gUnk_08B8D738:
+	.global Glyph_Special_69
+Glyph_Special_69:
 	.incbin "baserom.gba", 0xb8d738, 0x48
 
-	.global gUnk_08B8D780
-gUnk_08B8D780:
+	.global Glyph_Special_6A
+Glyph_Special_6A:
 	.incbin "baserom.gba", 0xb8d780, 0x48
 
-	.global gUnk_08B8D7C8
-gUnk_08B8D7C8:
+	.global Glyph_Special_6B
+Glyph_Special_6B:
 	.incbin "baserom.gba", 0xb8d7c8, 0x48
 
-	.global gUnk_08B8D810
-gUnk_08B8D810:
+	.global Glyph_Special_6C
+Glyph_Special_6C:
 	.incbin "baserom.gba", 0xb8d810, 0x48
 
-	.global gUnk_08B8D858
-gUnk_08B8D858:
+	.global Glyph_Special_6D
+Glyph_Special_6D:
 	.incbin "baserom.gba", 0xb8d858, 0x48
 
-	.global gUnk_08B8D8A0
-gUnk_08B8D8A0:
+	.global Glyph_Special_6E
+Glyph_Special_6E:
 	.incbin "baserom.gba", 0xb8d8a0, 0x48
 
-	.global gUnk_08B8D8E8
-gUnk_08B8D8E8:
+	.global Glyph_Special_6F
+Glyph_Special_6F:
 	.incbin "baserom.gba", 0xb8d8e8, 0x48
 
-	.global gUnk_08B8D930
-gUnk_08B8D930:
+	.global Glyph_Special_70
+Glyph_Special_70:
 	.incbin "baserom.gba", 0xb8d930, 0x48
 
-	.global gUnk_08B8D978
-gUnk_08B8D978:
+	.global Glyph_Special_71
+Glyph_Special_71:
 	.incbin "baserom.gba", 0xb8d978, 0x48
 
-	.global gUnk_08B8D9C0
-gUnk_08B8D9C0:
+	.global Glyph_Special_72
+Glyph_Special_72:
 	.incbin "baserom.gba", 0xb8d9c0, 0x48
 
-	.global gUnk_08B8DA08
-gUnk_08B8DA08:
+	.global Glyph_Special_73
+Glyph_Special_73:
 	.incbin "baserom.gba", 0xb8da08, 0x48
 
-	.global gUnk_08B8DA50
-gUnk_08B8DA50:
+	.global Glyph_Special_74
+Glyph_Special_74:
 	.incbin "baserom.gba", 0xb8da50, 0x48
 
-	.global gUnk_08B8DA98
-gUnk_08B8DA98:
+	.global Glyph_Special_75
+Glyph_Special_75:
 	.incbin "baserom.gba", 0xb8da98, 0x48
 
-	.global gUnk_08B8DAE0
-gUnk_08B8DAE0:
+	.global Glyph_Special_76
+Glyph_Special_76:
 	.incbin "baserom.gba", 0xb8dae0, 0x48
 
-	.global gUnk_08B8DB28
-gUnk_08B8DB28:
+	.global Glyph_Special_77
+Glyph_Special_77:
 	.incbin "baserom.gba", 0xb8db28, 0x48
 
-	.global gUnk_08B8DB70
-gUnk_08B8DB70:
+	.global Glyph_Special_78
+Glyph_Special_78:
 	.incbin "baserom.gba", 0xb8db70, 0x48
 
-	.global gUnk_08B8DBB8
-gUnk_08B8DBB8:
+	.global Glyph_Special_79
+Glyph_Special_79:
 	.incbin "baserom.gba", 0xb8dbb8, 0x48
 
-	.global gUnk_08B8DC00
-gUnk_08B8DC00:
+	.global Glyph_Special_7A
+Glyph_Special_7A:
 	.incbin "baserom.gba", 0xb8dc00, 0x48
 
-	.global gUnk_08B8DC48
-gUnk_08B8DC48:
+	.global Glyph_Special_7B
+Glyph_Special_7B:
 	.incbin "baserom.gba", 0xb8dc48, 0x48
 
-	.global gUnk_08B8DC90
-gUnk_08B8DC90:
+	.global Glyph_Special_7C
+Glyph_Special_7C:
 	.incbin "baserom.gba", 0xb8dc90, 0x48
 
-	.global gUnk_08B8DCD8
-gUnk_08B8DCD8:
+	.global Glyph_Special_7D
+Glyph_Special_7D:
 	.incbin "baserom.gba", 0xb8dcd8, 0x48
 
-	.global gUnk_08B8DD20
-gUnk_08B8DD20:
+	.global Glyph_Special_7E
+Glyph_Special_7E:
 	.incbin "baserom.gba", 0xb8dd20, 0x48
 
-	.global gUnk_08B8DD68
-gUnk_08B8DD68:
+	.global Glyph_Special_7F
+Glyph_Special_7F:
 	.incbin "baserom.gba", 0xb8dd68, 0x48
 
-	.global gUnk_08B8DDB0
-gUnk_08B8DDB0:
+	.global Glyph_Special_80
+Glyph_Special_80:
 	.incbin "baserom.gba", 0xb8ddb0, 0x48
 
-	.global gUnk_08B8DDF8
-gUnk_08B8DDF8:
+	.global Glyph_Special_81
+Glyph_Special_81:
 	.incbin "baserom.gba", 0xb8ddf8, 0x48
 
-	.global gUnk_08B8DE40
-gUnk_08B8DE40:
+	.global Glyph_Special_82
+Glyph_Special_82:
 	.incbin "baserom.gba", 0xb8de40, 0x48
 
-	.global gUnk_08B8DE88
-gUnk_08B8DE88:
+	.global Glyph_Special_83
+Glyph_Special_83:
 	.incbin "baserom.gba", 0xb8de88, 0x48
 
-	.global gUnk_08B8DED0
-gUnk_08B8DED0:
+	.global Glyph_Special_84
+Glyph_Special_84:
 	.incbin "baserom.gba", 0xb8ded0, 0x48
 
-	.global gUnk_08B8DF18
-gUnk_08B8DF18:
+	.global Glyph_Special_85
+Glyph_Special_85:
 	.incbin "baserom.gba", 0xb8df18, 0x48
 
-	.global gUnk_08B8DF60
-gUnk_08B8DF60:
+	.global Glyph_Special_86
+Glyph_Special_86:
 	.incbin "baserom.gba", 0xb8df60, 0x48
 
-	.global gUnk_08B8DFA8
-gUnk_08B8DFA8:
+	.global Glyph_Special_87
+Glyph_Special_87:
 	.incbin "baserom.gba", 0xb8dfa8, 0x48
 
-	.global gUnk_08B8DFF0
-gUnk_08B8DFF0:
+	.global Glyph_Special_88
+Glyph_Special_88:
 	.incbin "baserom.gba", 0xb8dff0, 0x48
 
-	.global gUnk_08B8E038
-gUnk_08B8E038:
+	.global Glyph_Special_89
+Glyph_Special_89:
 	.incbin "baserom.gba", 0xb8e038, 0x48
 
-	.global gUnk_08B8E080
-gUnk_08B8E080:
+	.global Glyph_Special_8A
+Glyph_Special_8A:
 	.incbin "baserom.gba", 0xb8e080, 0x48
 
-	.global gUnk_08B8E0C8
-gUnk_08B8E0C8:
+	.global Glyph_Special_8B
+Glyph_Special_8B:
 	.incbin "baserom.gba", 0xb8e0c8, 0x48
 
-	.global gUnk_08B8E110
-gUnk_08B8E110:
+	.global Glyph_Special_8C
+Glyph_Special_8C:
 	.incbin "baserom.gba", 0xb8e110, 0x48
 
-	.global gUnk_08B8E158
-gUnk_08B8E158:
+	.global Glyph_Special_8D
+Glyph_Special_8D:
 	.incbin "baserom.gba", 0xb8e158, 0x48
 
-	.global gUnk_08B8E1A0
-gUnk_08B8E1A0:
+	.global Glyph_Special_8E
+Glyph_Special_8E:
 	.incbin "baserom.gba", 0xb8e1a0, 0x48
 
-	.global gUnk_08B8E1E8
-gUnk_08B8E1E8:
+	.global Glyph_Special_8F
+Glyph_Special_8F:
 	.incbin "baserom.gba", 0xb8e1e8, 0x48
 
-	.global gUnk_08B8E230
-gUnk_08B8E230:
+	.global Glyph_Special_90
+Glyph_Special_90:
 	.incbin "baserom.gba", 0xb8e230, 0x48
 
-	.global gUnk_08B8E278
-gUnk_08B8E278:
+	.global Glyph_Special_91
+Glyph_Special_91:
 	.incbin "baserom.gba", 0xb8e278, 0x48
 
-	.global gUnk_08B8E2C0
-gUnk_08B8E2C0:
+	.global Glyph_Special_92
+Glyph_Special_92:
 	.incbin "baserom.gba", 0xb8e2c0, 0x48
 
-	.global gUnk_08B8E308
-gUnk_08B8E308:
+	.global Glyph_Special_93
+Glyph_Special_93:
 	.incbin "baserom.gba", 0xb8e308, 0x48
 
-	.global gUnk_08B8E350
-gUnk_08B8E350:
+	.global Glyph_Special_94
+Glyph_Special_94:
 	.incbin "baserom.gba", 0xb8e350, 0x48
 
-	.global gUnk_08B8E398
-gUnk_08B8E398:
+	.global Glyph_Special_95
+Glyph_Special_95:
 	.incbin "baserom.gba", 0xb8e398, 0x48
 
-	.global gUnk_08B8E3E0
-gUnk_08B8E3E0:
+	.global Glyph_Special_96
+Glyph_Special_96:
 	.incbin "baserom.gba", 0xb8e3e0, 0x48
 
-	.global gUnk_08B8E428
-gUnk_08B8E428:
+	.global Glyph_Special_97
+Glyph_Special_97:
 	.incbin "baserom.gba", 0xb8e428, 0x48
 
-	.global gUnk_08B8E470
-gUnk_08B8E470:
+	.global Glyph_Special_98
+Glyph_Special_98:
 	.incbin "baserom.gba", 0xb8e470, 0x48
 
-	.global gUnk_08B8E4B8
-gUnk_08B8E4B8:
+	.global Glyph_Special_99
+Glyph_Special_99:
 	.incbin "baserom.gba", 0xb8e4b8, 0x48
 
-	.global gUnk_08B8E500
-gUnk_08B8E500:
+	.global Glyph_Special_9A
+Glyph_Special_9A:
 	.incbin "baserom.gba", 0xb8e500, 0x48
 
-	.global gUnk_08B8E548
-gUnk_08B8E548:
+	.global Glyph_Special_9B
+Glyph_Special_9B:
 	.incbin "baserom.gba", 0xb8e548, 0x48
 
-	.global gUnk_08B8E590
-gUnk_08B8E590:
+	.global Glyph_Special_9C
+Glyph_Special_9C:
 	.incbin "baserom.gba", 0xb8e590, 0x48
 
-	.global gUnk_08B8E5D8
-gUnk_08B8E5D8:
+	.global Glyph_Special_9D
+Glyph_Special_9D:
 	.incbin "baserom.gba", 0xb8e5d8, 0x48
 
-	.global gUnk_08B8E620
-gUnk_08B8E620:
+	.global Glyph_Special_9E
+Glyph_Special_9E:
 	.incbin "baserom.gba", 0xb8e620, 0x48
 
-	.global gUnk_08B8E668
-gUnk_08B8E668:
+	.global Glyph_Special_9F
+Glyph_Special_9F:
 	.incbin "baserom.gba", 0xb8e668, 0x48
 
-	.global gUnk_08B8E6B0
-gUnk_08B8E6B0:
+	.global Glyph_Special_A0
+Glyph_Special_A0:
 	.incbin "baserom.gba", 0xb8e6b0, 0x48
 
-	.global gUnk_08B8E6F8
-gUnk_08B8E6F8:
+	.global Glyph_Special_A1
+Glyph_Special_A1:
 	.incbin "baserom.gba", 0xb8e6f8, 0x48
 
-	.global gUnk_08B8E740
-gUnk_08B8E740:
+	.global Glyph_Special_A2
+Glyph_Special_A2:
 	.incbin "baserom.gba", 0xb8e740, 0x48
 
-	.global gUnk_08B8E788
-gUnk_08B8E788:
+	.global Glyph_Special_A3
+Glyph_Special_A3:
 	.incbin "baserom.gba", 0xb8e788, 0x48
 
-	.global gUnk_08B8E7D0
-gUnk_08B8E7D0:
+	.global Glyph_Special_A4
+Glyph_Special_A4:
 	.incbin "baserom.gba", 0xb8e7d0, 0x48
 
-	.global gUnk_08B8E818
-gUnk_08B8E818:
+	.global Glyph_Special_A5
+Glyph_Special_A5:
 	.incbin "baserom.gba", 0xb8e818, 0x48
 
-	.global gUnk_08B8E860
-gUnk_08B8E860:
+	.global Glyph_Special_A6
+Glyph_Special_A6:
 	.incbin "baserom.gba", 0xb8e860, 0x48
 
-	.global gUnk_08B8E8A8
-gUnk_08B8E8A8:
+	.global Glyph_Special_A7
+Glyph_Special_A7:
 	.incbin "baserom.gba", 0xb8e8a8, 0x48
 
-	.global gUnk_08B8E8F0
-gUnk_08B8E8F0:
+	.global Glyph_Special_A8
+Glyph_Special_A8:
 	.incbin "baserom.gba", 0xb8e8f0, 0x48
 
-	.global gUnk_08B8E938
-gUnk_08B8E938:
+	.global Glyph_Special_A9
+Glyph_Special_A9:
 	.incbin "baserom.gba", 0xb8e938, 0x48
 
-	.global gUnk_08B8E980
-gUnk_08B8E980:
+	.global Glyph_Special_AA
+Glyph_Special_AA:
 	.incbin "baserom.gba", 0xb8e980, 0x48
 
-	.global gUnk_08B8E9C8
-gUnk_08B8E9C8:
+	.global Glyph_Special_AB
+Glyph_Special_AB:
 	.incbin "baserom.gba", 0xb8e9c8, 0x48
 
-	.global gUnk_08B8EA10
-gUnk_08B8EA10:
+	.global Glyph_Special_AC
+Glyph_Special_AC:
 	.incbin "baserom.gba", 0xb8ea10, 0x48
 
-	.global gUnk_08B8EA58
-gUnk_08B8EA58:
+	.global Glyph_Special_AD
+Glyph_Special_AD:
 	.incbin "baserom.gba", 0xb8ea58, 0x48
 
-	.global gUnk_08B8EAA0
-gUnk_08B8EAA0:
+	.global Glyph_Special_AE
+Glyph_Special_AE:
 	.incbin "baserom.gba", 0xb8eaa0, 0x48
 
-	.global gUnk_08B8EAE8
-gUnk_08B8EAE8:
+	.global Glyph_Special_AF
+Glyph_Special_AF:
 	.incbin "baserom.gba", 0xb8eae8, 0x48
 
-	.global gUnk_08B8EB30
-gUnk_08B8EB30:
+	.global Glyph_Special_B0
+Glyph_Special_B0:
 	.incbin "baserom.gba", 0xb8eb30, 0x48
 
-	.global gUnk_08B8EB78
-gUnk_08B8EB78:
+	.global Glyph_Special_B1
+Glyph_Special_B1:
 	.incbin "baserom.gba", 0xb8eb78, 0x48
 
-	.global gUnk_08B8EBC0
-gUnk_08B8EBC0:
+	.global Glyph_Special_B2
+Glyph_Special_B2:
 	.incbin "baserom.gba", 0xb8ebc0, 0x48
 
-	.global gUnk_08B8EC08
-gUnk_08B8EC08:
+	.global Glyph_Special_B3
+Glyph_Special_B3:
 	.incbin "baserom.gba", 0xb8ec08, 0x48
 
-	.global gUnk_08B8EC50
-gUnk_08B8EC50:
+	.global Glyph_Special_B4
+Glyph_Special_B4:
 	.incbin "baserom.gba", 0xb8ec50, 0x48
 
-	.global gUnk_08B8EC98
-gUnk_08B8EC98:
+	.global Glyph_Special_B5
+Glyph_Special_B5:
 	.incbin "baserom.gba", 0xb8ec98, 0x48
 
-	.global gUnk_08B8ECE0
-gUnk_08B8ECE0:
+	.global Glyph_Special_B6
+Glyph_Special_B6:
 	.incbin "baserom.gba", 0xb8ece0, 0x48
 
-	.global gUnk_08B8ED28
-gUnk_08B8ED28:
+	.global Glyph_Special_B7
+Glyph_Special_B7:
 	.incbin "baserom.gba", 0xb8ed28, 0x48
 
-	.global gUnk_08B8ED70
-gUnk_08B8ED70:
+	.global Glyph_Special_B8
+Glyph_Special_B8:
 	.incbin "baserom.gba", 0xb8ed70, 0x48
 
-	.global gUnk_08B8EDB8
-gUnk_08B8EDB8:
+	.global Glyph_Special_B9
+Glyph_Special_B9:
 	.incbin "baserom.gba", 0xb8edb8, 0x48
 
-	.global gUnk_08B8EE00
-gUnk_08B8EE00:
+	.global Glyph_Special_BA
+Glyph_Special_BA:
 	.incbin "baserom.gba", 0xb8ee00, 0x48
 
-	.global gUnk_08B8EE48
-gUnk_08B8EE48:
+	.global Glyph_Special_BB
+Glyph_Special_BB:
 	.incbin "baserom.gba", 0xb8ee48, 0x48
 
-	.global gUnk_08B8EE90
-gUnk_08B8EE90:
+	.global Glyph_Special_BC
+Glyph_Special_BC:
 	.incbin "baserom.gba", 0xb8ee90, 0x48
 
-	.global gUnk_08B8EED8
-gUnk_08B8EED8:
+	.global Glyph_Special_BD
+Glyph_Special_BD:
 	.incbin "baserom.gba", 0xb8eed8, 0x48
 
-	.global gUnk_08B8EF20
-gUnk_08B8EF20:
+	.global Glyph_Special_BE
+Glyph_Special_BE:
 	.incbin "baserom.gba", 0xb8ef20, 0x48
 
-	.global gUnk_08B8EF68
-gUnk_08B8EF68:
+	.global Glyph_Special_BF
+Glyph_Special_BF:
 	.incbin "baserom.gba", 0xb8ef68, 0x48
 
-	.global gUnk_08B8EFB0
-gUnk_08B8EFB0:
+	.global Glyph_Special_C0
+Glyph_Special_C0:
 	.incbin "baserom.gba", 0xb8efb0, 0x48
 
-	.global gUnk_08B8EFF8
-gUnk_08B8EFF8:
+	.global Glyph_Special_C1
+Glyph_Special_C1:
 	.incbin "baserom.gba", 0xb8eff8, 0x48
 
-	.global gUnk_08B8F040
-gUnk_08B8F040:
+	.global Glyph_Special_C2
+Glyph_Special_C2:
 	.incbin "baserom.gba", 0xb8f040, 0x48
 
-	.global gUnk_08B8F088
-gUnk_08B8F088:
+	.global Glyph_Special_C3
+Glyph_Special_C3:
 	.incbin "baserom.gba", 0xb8f088, 0x48
 
-	.global gUnk_08B8F0D0
-gUnk_08B8F0D0:
+	.global Glyph_Special_C4
+Glyph_Special_C4:
 	.incbin "baserom.gba", 0xb8f0d0, 0x48
 
-	.global gUnk_08B8F118
-gUnk_08B8F118:
+	.global Glyph_Special_C5
+Glyph_Special_C5:
 	.incbin "baserom.gba", 0xb8f118, 0x48
 
-	.global gUnk_08B8F160
-gUnk_08B8F160:
+	.global Glyph_Special_C6
+Glyph_Special_C6:
 	.incbin "baserom.gba", 0xb8f160, 0x48
 
-	.global gUnk_08B8F1A8
-gUnk_08B8F1A8:
+	.global Glyph_Special_C7
+Glyph_Special_C7:
 	.incbin "baserom.gba", 0xb8f1a8, 0x48
 
-	.global gUnk_08B8F1F0
-gUnk_08B8F1F0:
+	.global Glyph_Special_C8
+Glyph_Special_C8:
 	.incbin "baserom.gba", 0xb8f1f0, 0x48
 
-	.global gUnk_08B8F238
-gUnk_08B8F238:
+	.global Glyph_Special_C9
+Glyph_Special_C9:
 	.incbin "baserom.gba", 0xb8f238, 0x48
 
-	.global gUnk_08B8F280
-gUnk_08B8F280:
+	.global Glyph_Special_CA
+Glyph_Special_CA:
 	.incbin "baserom.gba", 0xb8f280, 0x48
 
-	.global gUnk_08B8F2C8
-gUnk_08B8F2C8:
+	.global Glyph_Special_CB
+Glyph_Special_CB:
 	.incbin "baserom.gba", 0xb8f2c8, 0x48
 
-	.global gUnk_08B8F310
-gUnk_08B8F310:
+	.global Glyph_Special_CC
+Glyph_Special_CC:
 	.incbin "baserom.gba", 0xb8f310, 0x48
 
-	.global gUnk_08B8F358
-gUnk_08B8F358:
+	.global Glyph_Special_CD
+Glyph_Special_CD:
 	.incbin "baserom.gba", 0xb8f358, 0x48
 
-	.global gUnk_08B8F3A0
-gUnk_08B8F3A0:
+	.global Glyph_Special_CE
+Glyph_Special_CE:
 	.incbin "baserom.gba", 0xb8f3a0, 0x48
 
-	.global gUnk_08B8F3E8
-gUnk_08B8F3E8:
+	.global Glyph_Special_CF
+Glyph_Special_CF:
 	.incbin "baserom.gba", 0xb8f3e8, 0x48
 
-	.global gUnk_08B8F430
-gUnk_08B8F430:
+	.global Glyph_Special_D0
+Glyph_Special_D0:
 	.incbin "baserom.gba", 0xb8f430, 0x48
 
-	.global gUnk_08B8F478
-gUnk_08B8F478:
+	.global Glyph_Special_D1
+Glyph_Special_D1:
 	.incbin "baserom.gba", 0xb8f478, 0x48
 
-	.global gUnk_08B8F4C0
-gUnk_08B8F4C0:
+	.global Glyph_Special_D2
+Glyph_Special_D2:
 	.incbin "baserom.gba", 0xb8f4c0, 0x48
 
-	.global gUnk_08B8F508
-gUnk_08B8F508:
+	.global Glyph_Special_D3
+Glyph_Special_D3:
 	.incbin "baserom.gba", 0xb8f508, 0x48
 
-	.global gUnk_08B8F550
-gUnk_08B8F550:
+	.global Glyph_Special_D4
+Glyph_Special_D4:
 	.incbin "baserom.gba", 0xb8f550, 0x48
 
-	.global gUnk_08B8F598
-gUnk_08B8F598:
+	.global Glyph_Special_D5
+Glyph_Special_D5:
 	.incbin "baserom.gba", 0xb8f598, 0x48
 
-	.global gUnk_08B8F5E0
-gUnk_08B8F5E0:
+	.global Glyph_Special_D6
+Glyph_Special_D6:
 	.incbin "baserom.gba", 0xb8f5e0, 0x48
 
-	.global gUnk_08B8F628
-gUnk_08B8F628:
+	.global Glyph_Special_D7
+Glyph_Special_D7:
 	.incbin "baserom.gba", 0xb8f628, 0x48
 
-	.global gUnk_08B8F670
-gUnk_08B8F670:
+	.global Glyph_Special_D8
+Glyph_Special_D8:
 	.incbin "baserom.gba", 0xb8f670, 0x48
 
-	.global gUnk_08B8F6B8
-gUnk_08B8F6B8:
+	.global Glyph_Special_D9
+Glyph_Special_D9:
 	.incbin "baserom.gba", 0xb8f6b8, 0x48
 
-	.global gUnk_08B8F700
-gUnk_08B8F700:
+	.global Glyph_Special_DA
+Glyph_Special_DA:
 	.incbin "baserom.gba", 0xb8f700, 0x48
 
-	.global gUnk_08B8F748
-gUnk_08B8F748:
+	.global Glyph_Special_DB
+Glyph_Special_DB:
 	.incbin "baserom.gba", 0xb8f748, 0x48
 
-	.global gUnk_08B8F790
-gUnk_08B8F790:
+	.global Glyph_Special_DC
+Glyph_Special_DC:
 	.incbin "baserom.gba", 0xb8f790, 0x48
 
-	.global gUnk_08B8F7D8
-gUnk_08B8F7D8:
+	.global Glyph_Special_DD
+Glyph_Special_DD:
 	.incbin "baserom.gba", 0xb8f7d8, 0x48
 
-	.global gUnk_08B8F820
-gUnk_08B8F820:
+	.global Glyph_Special_DE
+Glyph_Special_DE:
 	.incbin "baserom.gba", 0xb8f820, 0x48
 
-	.global gUnk_08B8F868
-gUnk_08B8F868:
+	.global Glyph_Special_DF
+Glyph_Special_DF:
 	.incbin "baserom.gba", 0xb8f868, 0x48
 
-	.global gUnk_08B8F8B0
-gUnk_08B8F8B0:
+	.global Glyph_Special_E0
+Glyph_Special_E0:
 	.incbin "baserom.gba", 0xb8f8b0, 0x48
 
-	.global gUnk_08B8F8F8
-gUnk_08B8F8F8:
+	.global Glyph_Special_E1
+Glyph_Special_E1:
 	.incbin "baserom.gba", 0xb8f8f8, 0x48
 
-	.global gUnk_08B8F940
-gUnk_08B8F940:
+	.global Glyph_Special_E2
+Glyph_Special_E2:
 	.incbin "baserom.gba", 0xb8f940, 0x48
 
-	.global gUnk_08B8F988
-gUnk_08B8F988:
+	.global Glyph_Special_E3
+Glyph_Special_E3:
 	.incbin "baserom.gba", 0xb8f988, 0x48
 
-	.global gUnk_08B8F9D0
-gUnk_08B8F9D0:
+	.global Glyph_Special_E4
+Glyph_Special_E4:
 	.incbin "baserom.gba", 0xb8f9d0, 0x48
 
-	.global gUnk_08B8FA18
-gUnk_08B8FA18:
+	.global Glyph_Special_E5
+Glyph_Special_E5:
 	.incbin "baserom.gba", 0xb8fa18, 0x48
 
-	.global gUnk_08B8FA60
-gUnk_08B8FA60:
+	.global Glyph_Special_E6
+Glyph_Special_E6:
 	.incbin "baserom.gba", 0xb8fa60, 0x48
 
-	.global gUnk_08B8FAA8
-gUnk_08B8FAA8:
+	.global Glyph_Special_E7
+Glyph_Special_E7:
 	.incbin "baserom.gba", 0xb8faa8, 0x48
 
-	.global gUnk_08B8FAF0
-gUnk_08B8FAF0:
+	.global Glyph_Special_E8
+Glyph_Special_E8:
 	.incbin "baserom.gba", 0xb8faf0, 0x48
 
-	.global gUnk_08B8FB38
-gUnk_08B8FB38:
+	.global Glyph_Special_E9
+Glyph_Special_E9:
 	.incbin "baserom.gba", 0xb8fb38, 0x48
 
-	.global gUnk_08B8FB80
-gUnk_08B8FB80:
+	.global Glyph_Special_EA
+Glyph_Special_EA:
 	.incbin "baserom.gba", 0xb8fb80, 0x48
 
-	.global gUnk_08B8FBC8
-gUnk_08B8FBC8:
+	.global Glyph_Special_EB
+Glyph_Special_EB:
 	.incbin "baserom.gba", 0xb8fbc8, 0x48
 
-	.global gUnk_08B8FC10
-gUnk_08B8FC10:
+	.global Glyph_Special_EC
+Glyph_Special_EC:
 	.incbin "baserom.gba", 0xb8fc10, 0x48
 
-	.global gUnk_08B8FC58
-gUnk_08B8FC58:
+	.global Glyph_Special_ED
+Glyph_Special_ED:
 	.incbin "baserom.gba", 0xb8fc58, 0x48
 
-	.global gUnk_08B8FCA0
-gUnk_08B8FCA0:
+	.global Glyph_Special_EE
+Glyph_Special_EE:
 	.incbin "baserom.gba", 0xb8fca0, 0x48
 
-	.global gUnk_08B8FCE8
-gUnk_08B8FCE8:
+	.global Glyph_Special_EF
+Glyph_Special_EF:
 	.incbin "baserom.gba", 0xb8fce8, 0x48
 
-	.global gUnk_08B8FD30
-gUnk_08B8FD30:
+	.global Glyph_Special_F0
+Glyph_Special_F0:
 	.incbin "baserom.gba", 0xb8fd30, 0x48
 
-	.global gUnk_08B8FD78
-gUnk_08B8FD78:
+	.global Glyph_Special_F1
+Glyph_Special_F1:
 	.incbin "baserom.gba", 0xb8fd78, 0x48
 
-	.global gUnk_08B8FDC0
-gUnk_08B8FDC0:
+	.global Glyph_Special_F2
+Glyph_Special_F2:
 	.incbin "baserom.gba", 0xb8fdc0, 0x48
 
-	.global gUnk_08B8FE08
-gUnk_08B8FE08:
+	.global Glyph_Special_F3
+Glyph_Special_F3:
 	.incbin "baserom.gba", 0xb8fe08, 0x48
 
-	.global gUnk_08B8FE50
-gUnk_08B8FE50:
+	.global Glyph_Special_F4
+Glyph_Special_F4:
 	.incbin "baserom.gba", 0xb8fe50, 0x48
 
-	.global gUnk_08B8FE98
-gUnk_08B8FE98:
+	.global Glyph_Special_F5
+Glyph_Special_F5:
 	.incbin "baserom.gba", 0xb8fe98, 0x48
 
-	.global gUnk_08B8FEE0
-gUnk_08B8FEE0:
+	.global Glyph_Special_F6
+Glyph_Special_F6:
 	.incbin "baserom.gba", 0xb8fee0, 0x48
 
-	.global gUnk_08B8FF28
-gUnk_08B8FF28:
+	.global Glyph_Special_F7
+Glyph_Special_F7:
 	.incbin "baserom.gba", 0xb8ff28, 0x48
 
-	.global gUnk_08B8FF70
-gUnk_08B8FF70:
+	.global Glyph_Special_F8
+Glyph_Special_F8:
 	.incbin "baserom.gba", 0xb8ff70, 0x48
 
-	.global gUnk_08B8FFB8
-gUnk_08B8FFB8:
+	.global Glyph_Special_F9
+Glyph_Special_F9:
 	.incbin "baserom.gba", 0xb8ffb8, 0x48
 
-	.global gUnk_08B90000
-gUnk_08B90000:
+	.global Glyph_Special_FA
+Glyph_Special_FA:
 	.incbin "baserom.gba", 0xb90000, 0x48
 
-	.global gUnk_08B90048
-gUnk_08B90048:
+	.global Glyph_Special_FB
+Glyph_Special_FB:
 	.incbin "baserom.gba", 0xb90048, 0x48
 
-	.global gUnk_08B90090
-gUnk_08B90090:
+	.global Glyph_Special_FC
+Glyph_Special_FC:
 	.incbin "baserom.gba", 0xb90090, 0x48
 
-	.global gUnk_08B900D8
-gUnk_08B900D8:
+	.global Glyph_Special_FD
+Glyph_Special_FD:
 	.incbin "baserom.gba", 0xb900d8, 0x48
 
-	.global gUnk_08B90120
-gUnk_08B90120:
+	.global Glyph_Special_FE
+Glyph_Special_FE:
 	.incbin "baserom.gba", 0xb90120, 0x48
 
-	.global gUnk_08B90168
-gUnk_08B90168:
+	.global Glyph_Special_FF
+Glyph_Special_FF:
 	.incbin "baserom.gba", 0xb90168, 0x48
 
 	.global TextGlyphs_Special
 TextGlyphs_Special:
-	.4byte gUnk_08B8B9B0
-	.4byte gUnk_08B8B9F8
-	.4byte gUnk_08B8BA40
-	.4byte gUnk_08B8BA88
-	.4byte gUnk_08B8BAD0
-	.4byte gUnk_08B8BB18
-	.4byte gUnk_08B8BB60
-	.4byte gUnk_08B8BBA8
-	.4byte gUnk_08B8BBF0
-	.4byte gUnk_08B8BC38
-	.4byte gUnk_08B8BC80
-	.4byte gUnk_08B8BCC8
-	.4byte gUnk_08B8BD10
-	.4byte gUnk_08B8BD58
-	.4byte gUnk_08B8BDA0
-	.4byte gUnk_08B8BDE8
-	.4byte gUnk_08B8BE30
-	.4byte gUnk_08B8BE78
-	.4byte gUnk_08B8BEC0
-	.4byte gUnk_08B8BF08
-	.4byte gUnk_08B8BF50
-	.4byte gUnk_08B8BF98
-	.4byte gUnk_08B8BFE0
-	.4byte gUnk_08B8C028
-	.4byte gUnk_08B8C070
-	.4byte gUnk_08B8C0B8
-	.4byte gUnk_08B8C100
-	.4byte gUnk_08B8C148
-	.4byte gUnk_08B8C190
-	.4byte gUnk_08B8C1D8
-	.4byte gUnk_08B8C220
-	.4byte gUnk_08B8C268
-	.4byte gUnk_08B8C2B0
-	.4byte gUnk_08B8C2F8
-	.4byte gUnk_08B8C340
-	.4byte gUnk_08B8C388
-	.4byte gUnk_08B8C3D0
-	.4byte gUnk_08B8C418
-	.4byte gUnk_08B8C460
-	.4byte gUnk_08B8C4A8
-	.4byte gUnk_08B8C4F0
-	.4byte gUnk_08B8C538
-	.4byte gUnk_08B8C580
-	.4byte gUnk_08B8C5C8
-	.4byte gUnk_08B8C610
-	.4byte gUnk_08B8C658
-	.4byte gUnk_08B8C6A0
-	.4byte gUnk_08B8C6E8
-	.4byte gUnk_08B8C730
-	.4byte gUnk_08B8C778
-	.4byte gUnk_08B8C7C0
-	.4byte gUnk_08B8C808
-	.4byte gUnk_08B8C850
-	.4byte gUnk_08B8C898
-	.4byte gUnk_08B8C8E0
-	.4byte gUnk_08B8C928
-	.4byte gUnk_08B8C970
-	.4byte gUnk_08B8C9B8
-	.4byte gUnk_08B8CA00
-	.4byte gUnk_08B8CA48
-	.4byte gUnk_08B8CA90
-	.4byte gUnk_08B8CAD8
-	.4byte gUnk_08B8CB20
-	.4byte gUnk_08B8CB68
-	.4byte gUnk_08B8CBB0
-	.4byte gUnk_08B8CBF8
-	.4byte gUnk_08B8CC40
-	.4byte gUnk_08B8CC88
-	.4byte gUnk_08B8CCD0
-	.4byte gUnk_08B8CD18
-	.4byte gUnk_08B8CD60
-	.4byte gUnk_08B8CDA8
-	.4byte gUnk_08B8CDF0
-	.4byte gUnk_08B8CE38
-	.4byte gUnk_08B8CE80
-	.4byte gUnk_08B8CEC8
-	.4byte gUnk_08B8CF10
-	.4byte gUnk_08B8CF58
-	.4byte gUnk_08B8CFA0
-	.4byte gUnk_08B8CFE8
-	.4byte gUnk_08B8D030
-	.4byte gUnk_08B8D078
-	.4byte gUnk_08B8D0C0
-	.4byte gUnk_08B8D108
-	.4byte gUnk_08B8D150
-	.4byte gUnk_08B8D198
-	.4byte gUnk_08B8D1E0
-	.4byte gUnk_08B8D228
-	.4byte gUnk_08B8D270
-	.4byte gUnk_08B8D2B8
-	.4byte gUnk_08B8D300
-	.4byte gUnk_08B8D348
-	.4byte gUnk_08B8D390
-	.4byte gUnk_08B8D3D8
-	.4byte gUnk_08B8D420
-	.4byte gUnk_08B8D468
-	.4byte gUnk_08B8D4B0
-	.4byte gUnk_08B8D4F8
-	.4byte gUnk_08B8D540
-	.4byte gUnk_08B8D588
-	.4byte gUnk_08B8D5D0
-	.4byte gUnk_08B8D618
-	.4byte gUnk_08B8D660
-	.4byte gUnk_08B8D6A8
-	.4byte gUnk_08B8D6F0
-	.4byte gUnk_08B8D738
-	.4byte gUnk_08B8D780
-	.4byte gUnk_08B8D7C8
-	.4byte gUnk_08B8D810
-	.4byte gUnk_08B8D858
-	.4byte gUnk_08B8D8A0
-	.4byte gUnk_08B8D8E8
-	.4byte gUnk_08B8D930
-	.4byte gUnk_08B8D978
-	.4byte gUnk_08B8D9C0
-	.4byte gUnk_08B8DA08
-	.4byte gUnk_08B8DA50
-	.4byte gUnk_08B8DA98
-	.4byte gUnk_08B8DAE0
-	.4byte gUnk_08B8DB28
-	.4byte gUnk_08B8DB70
-	.4byte gUnk_08B8DBB8
-	.4byte gUnk_08B8DC00
-	.4byte gUnk_08B8DC48
-	.4byte gUnk_08B8DC90
-	.4byte gUnk_08B8DCD8
-	.4byte gUnk_08B8DD20
-	.4byte gUnk_08B8DD68
-	.4byte gUnk_08B8DDB0
-	.4byte gUnk_08B8DDF8
-	.4byte gUnk_08B8DE40
-	.4byte gUnk_08B8DE88
-	.4byte gUnk_08B8DED0
-	.4byte gUnk_08B8DF18
-	.4byte gUnk_08B8DF60
-	.4byte gUnk_08B8DFA8
-	.4byte gUnk_08B8DFF0
-	.4byte gUnk_08B8E038
-	.4byte gUnk_08B8E080
-	.4byte gUnk_08B8E0C8
-	.4byte gUnk_08B8E110
-	.4byte gUnk_08B8E158
-	.4byte gUnk_08B8E1A0
-	.4byte gUnk_08B8E1E8
-	.4byte gUnk_08B8E230
-	.4byte gUnk_08B8E278
-	.4byte gUnk_08B8E2C0
-	.4byte gUnk_08B8E308
-	.4byte gUnk_08B8E350
-	.4byte gUnk_08B8E398
-	.4byte gUnk_08B8E3E0
-	.4byte gUnk_08B8E428
-	.4byte gUnk_08B8E470
-	.4byte gUnk_08B8E4B8
-	.4byte gUnk_08B8E500
-	.4byte gUnk_08B8E548
-	.4byte gUnk_08B8E590
-	.4byte gUnk_08B8E5D8
-	.4byte gUnk_08B8E620
-	.4byte gUnk_08B8E668
-	.4byte gUnk_08B8E6B0
-	.4byte gUnk_08B8E6F8
-	.4byte gUnk_08B8E740
-	.4byte gUnk_08B8E788
-	.4byte gUnk_08B8E7D0
-	.4byte gUnk_08B8E818
-	.4byte gUnk_08B8E860
-	.4byte gUnk_08B8E8A8
-	.4byte gUnk_08B8E8F0
-	.4byte gUnk_08B8E938
-	.4byte gUnk_08B8E980
-	.4byte gUnk_08B8E9C8
-	.4byte gUnk_08B8EA10
-	.4byte gUnk_08B8EA58
-	.4byte gUnk_08B8EAA0
-	.4byte gUnk_08B8EAE8
-	.4byte gUnk_08B8EB30
-	.4byte gUnk_08B8EB78
-	.4byte gUnk_08B8EBC0
-	.4byte gUnk_08B8EC08
-	.4byte gUnk_08B8EC50
-	.4byte gUnk_08B8EC98
-	.4byte gUnk_08B8ECE0
-	.4byte gUnk_08B8ED28
-	.4byte gUnk_08B8ED70
-	.4byte gUnk_08B8EDB8
-	.4byte gUnk_08B8EE00
-	.4byte gUnk_08B8EE48
-	.4byte gUnk_08B8EE90
-	.4byte gUnk_08B8EED8
-	.4byte gUnk_08B8EF20
-	.4byte gUnk_08B8EF68
-	.4byte gUnk_08B8EFB0
-	.4byte gUnk_08B8EFF8
-	.4byte gUnk_08B8F040
-	.4byte gUnk_08B8F088
-	.4byte gUnk_08B8F0D0
-	.4byte gUnk_08B8F118
-	.4byte gUnk_08B8F160
-	.4byte gUnk_08B8F1A8
-	.4byte gUnk_08B8F1F0
-	.4byte gUnk_08B8F238
-	.4byte gUnk_08B8F280
-	.4byte gUnk_08B8F2C8
-	.4byte gUnk_08B8F310
-	.4byte gUnk_08B8F358
-	.4byte gUnk_08B8F3A0
-	.4byte gUnk_08B8F3E8
-	.4byte gUnk_08B8F430
-	.4byte gUnk_08B8F478
-	.4byte gUnk_08B8F4C0
-	.4byte gUnk_08B8F508
-	.4byte gUnk_08B8F550
-	.4byte gUnk_08B8F598
-	.4byte gUnk_08B8F5E0
-	.4byte gUnk_08B8F628
-	.4byte gUnk_08B8F670
-	.4byte gUnk_08B8F6B8
-	.4byte gUnk_08B8F700
-	.4byte gUnk_08B8F748
-	.4byte gUnk_08B8F790
-	.4byte gUnk_08B8F7D8
-	.4byte gUnk_08B8F820
-	.4byte gUnk_08B8F868
-	.4byte gUnk_08B8F8B0
-	.4byte gUnk_08B8F8F8
-	.4byte gUnk_08B8F940
-	.4byte gUnk_08B8F988
-	.4byte gUnk_08B8F9D0
-	.4byte gUnk_08B8FA18
-	.4byte gUnk_08B8FA60
-	.4byte gUnk_08B8FAA8
-	.4byte gUnk_08B8FAF0
-	.4byte gUnk_08B8FB38
-	.4byte gUnk_08B8FB80
-	.4byte gUnk_08B8FBC8
-	.4byte gUnk_08B8FC10
-	.4byte gUnk_08B8FC58
-	.4byte gUnk_08B8FCA0
-	.4byte gUnk_08B8FCE8
-	.4byte gUnk_08B8FD30
-	.4byte gUnk_08B8FD78
-	.4byte gUnk_08B8FDC0
-	.4byte gUnk_08B8FE08
-	.4byte gUnk_08B8FE50
-	.4byte gUnk_08B8FE98
-	.4byte gUnk_08B8FEE0
-	.4byte gUnk_08B8FF28
-	.4byte gUnk_08B8FF70
-	.4byte gUnk_08B8FFB8
-	.4byte gUnk_08B90000
-	.4byte gUnk_08B90048
-	.4byte gUnk_08B90090
-	.4byte gUnk_08B900D8
-	.4byte gUnk_08B90120
-	.4byte gUnk_08B90168
+	.4byte Glyph_Special_00
+	.4byte Glyph_Special_01
+	.4byte Glyph_Special_02
+	.4byte Glyph_Special_03
+	.4byte Glyph_Special_04
+	.4byte Glyph_Special_05
+	.4byte Glyph_Special_06
+	.4byte Glyph_Special_07
+	.4byte Glyph_Special_08
+	.4byte Glyph_Special_09
+	.4byte Glyph_Special_0A
+	.4byte Glyph_Special_0B
+	.4byte Glyph_Special_0C
+	.4byte Glyph_Special_0D
+	.4byte Glyph_Special_0E
+	.4byte Glyph_Special_0F
+	.4byte Glyph_Special_10
+	.4byte Glyph_Special_11
+	.4byte Glyph_Special_12
+	.4byte Glyph_Special_13
+	.4byte Glyph_Special_14
+	.4byte Glyph_Special_15
+	.4byte Glyph_Special_16
+	.4byte Glyph_Special_17
+	.4byte Glyph_Special_18
+	.4byte Glyph_Special_19
+	.4byte Glyph_Special_1A
+	.4byte Glyph_Special_1B
+	.4byte Glyph_Special_1C
+	.4byte Glyph_Special_1D
+	.4byte Glyph_Special_1E
+	.4byte Glyph_Special_1F
+	.4byte Glyph_Special_20
+	.4byte Glyph_Special_21
+	.4byte Glyph_Special_22
+	.4byte Glyph_Special_23
+	.4byte Glyph_Special_24
+	.4byte Glyph_Special_25
+	.4byte Glyph_Special_26
+	.4byte Glyph_Special_27
+	.4byte Glyph_Special_28
+	.4byte Glyph_Special_29
+	.4byte Glyph_Special_2A
+	.4byte Glyph_Special_2B
+	.4byte Glyph_Special_2C
+	.4byte Glyph_Special_2D
+	.4byte Glyph_Special_2E
+	.4byte Glyph_Special_2F
+	.4byte Glyph_Special_30
+	.4byte Glyph_Special_31
+	.4byte Glyph_Special_32
+	.4byte Glyph_Special_33
+	.4byte Glyph_Special_34
+	.4byte Glyph_Special_35
+	.4byte Glyph_Special_36
+	.4byte Glyph_Special_37
+	.4byte Glyph_Special_38
+	.4byte Glyph_Special_39
+	.4byte Glyph_Special_3A
+	.4byte Glyph_Special_3B
+	.4byte Glyph_Special_3C
+	.4byte Glyph_Special_3D
+	.4byte Glyph_Special_3E
+	.4byte Glyph_Special_3F
+	.4byte Glyph_Special_40
+	.4byte Glyph_Special_41
+	.4byte Glyph_Special_42
+	.4byte Glyph_Special_43
+	.4byte Glyph_Special_44
+	.4byte Glyph_Special_45
+	.4byte Glyph_Special_46
+	.4byte Glyph_Special_47
+	.4byte Glyph_Special_48
+	.4byte Glyph_Special_49
+	.4byte Glyph_Special_4A
+	.4byte Glyph_Special_4B
+	.4byte Glyph_Special_4C
+	.4byte Glyph_Special_4D
+	.4byte Glyph_Special_4E
+	.4byte Glyph_Special_4F
+	.4byte Glyph_Special_50
+	.4byte Glyph_Special_51
+	.4byte Glyph_Special_52
+	.4byte Glyph_Special_53
+	.4byte Glyph_Special_54
+	.4byte Glyph_Special_55
+	.4byte Glyph_Special_56
+	.4byte Glyph_Special_57
+	.4byte Glyph_Special_58
+	.4byte Glyph_Special_59
+	.4byte Glyph_Special_5A
+	.4byte Glyph_Special_5B
+	.4byte Glyph_Special_5C
+	.4byte Glyph_Special_5D
+	.4byte Glyph_Special_5E
+	.4byte Glyph_Special_5F
+	.4byte Glyph_Special_60
+	.4byte Glyph_Special_61
+	.4byte Glyph_Special_62
+	.4byte Glyph_Special_63
+	.4byte Glyph_Special_64
+	.4byte Glyph_Special_65
+	.4byte Glyph_Special_66
+	.4byte Glyph_Special_67
+	.4byte Glyph_Special_68
+	.4byte Glyph_Special_69
+	.4byte Glyph_Special_6A
+	.4byte Glyph_Special_6B
+	.4byte Glyph_Special_6C
+	.4byte Glyph_Special_6D
+	.4byte Glyph_Special_6E
+	.4byte Glyph_Special_6F
+	.4byte Glyph_Special_70
+	.4byte Glyph_Special_71
+	.4byte Glyph_Special_72
+	.4byte Glyph_Special_73
+	.4byte Glyph_Special_74
+	.4byte Glyph_Special_75
+	.4byte Glyph_Special_76
+	.4byte Glyph_Special_77
+	.4byte Glyph_Special_78
+	.4byte Glyph_Special_79
+	.4byte Glyph_Special_7A
+	.4byte Glyph_Special_7B
+	.4byte Glyph_Special_7C
+	.4byte Glyph_Special_7D
+	.4byte Glyph_Special_7E
+	.4byte Glyph_Special_7F
+	.4byte Glyph_Special_80
+	.4byte Glyph_Special_81
+	.4byte Glyph_Special_82
+	.4byte Glyph_Special_83
+	.4byte Glyph_Special_84
+	.4byte Glyph_Special_85
+	.4byte Glyph_Special_86
+	.4byte Glyph_Special_87
+	.4byte Glyph_Special_88
+	.4byte Glyph_Special_89
+	.4byte Glyph_Special_8A
+	.4byte Glyph_Special_8B
+	.4byte Glyph_Special_8C
+	.4byte Glyph_Special_8D
+	.4byte Glyph_Special_8E
+	.4byte Glyph_Special_8F
+	.4byte Glyph_Special_90
+	.4byte Glyph_Special_91
+	.4byte Glyph_Special_92
+	.4byte Glyph_Special_93
+	.4byte Glyph_Special_94
+	.4byte Glyph_Special_95
+	.4byte Glyph_Special_96
+	.4byte Glyph_Special_97
+	.4byte Glyph_Special_98
+	.4byte Glyph_Special_99
+	.4byte Glyph_Special_9A
+	.4byte Glyph_Special_9B
+	.4byte Glyph_Special_9C
+	.4byte Glyph_Special_9D
+	.4byte Glyph_Special_9E
+	.4byte Glyph_Special_9F
+	.4byte Glyph_Special_A0
+	.4byte Glyph_Special_A1
+	.4byte Glyph_Special_A2
+	.4byte Glyph_Special_A3
+	.4byte Glyph_Special_A4
+	.4byte Glyph_Special_A5
+	.4byte Glyph_Special_A6
+	.4byte Glyph_Special_A7
+	.4byte Glyph_Special_A8
+	.4byte Glyph_Special_A9
+	.4byte Glyph_Special_AA
+	.4byte Glyph_Special_AB
+	.4byte Glyph_Special_AC
+	.4byte Glyph_Special_AD
+	.4byte Glyph_Special_AE
+	.4byte Glyph_Special_AF
+	.4byte Glyph_Special_B0
+	.4byte Glyph_Special_B1
+	.4byte Glyph_Special_B2
+	.4byte Glyph_Special_B3
+	.4byte Glyph_Special_B4
+	.4byte Glyph_Special_B5
+	.4byte Glyph_Special_B6
+	.4byte Glyph_Special_B7
+	.4byte Glyph_Special_B8
+	.4byte Glyph_Special_B9
+	.4byte Glyph_Special_BA
+	.4byte Glyph_Special_BB
+	.4byte Glyph_Special_BC
+	.4byte Glyph_Special_BD
+	.4byte Glyph_Special_BE
+	.4byte Glyph_Special_BF
+	.4byte Glyph_Special_C0
+	.4byte Glyph_Special_C1
+	.4byte Glyph_Special_C2
+	.4byte Glyph_Special_C3
+	.4byte Glyph_Special_C4
+	.4byte Glyph_Special_C5
+	.4byte Glyph_Special_C6
+	.4byte Glyph_Special_C7
+	.4byte Glyph_Special_C8
+	.4byte Glyph_Special_C9
+	.4byte Glyph_Special_CA
+	.4byte Glyph_Special_CB
+	.4byte Glyph_Special_CC
+	.4byte Glyph_Special_CD
+	.4byte Glyph_Special_CE
+	.4byte Glyph_Special_CF
+	.4byte Glyph_Special_D0
+	.4byte Glyph_Special_D1
+	.4byte Glyph_Special_D2
+	.4byte Glyph_Special_D3
+	.4byte Glyph_Special_D4
+	.4byte Glyph_Special_D5
+	.4byte Glyph_Special_D6
+	.4byte Glyph_Special_D7
+	.4byte Glyph_Special_D8
+	.4byte Glyph_Special_D9
+	.4byte Glyph_Special_DA
+	.4byte Glyph_Special_DB
+	.4byte Glyph_Special_DC
+	.4byte Glyph_Special_DD
+	.4byte Glyph_Special_DE
+	.4byte Glyph_Special_DF
+	.4byte Glyph_Special_E0
+	.4byte Glyph_Special_E1
+	.4byte Glyph_Special_E2
+	.4byte Glyph_Special_E3
+	.4byte Glyph_Special_E4
+	.4byte Glyph_Special_E5
+	.4byte Glyph_Special_E6
+	.4byte Glyph_Special_E7
+	.4byte Glyph_Special_E8
+	.4byte Glyph_Special_E9
+	.4byte Glyph_Special_EA
+	.4byte Glyph_Special_EB
+	.4byte Glyph_Special_EC
+	.4byte Glyph_Special_ED
+	.4byte Glyph_Special_EE
+	.4byte Glyph_Special_EF
+	.4byte Glyph_Special_F0
+	.4byte Glyph_Special_F1
+	.4byte Glyph_Special_F2
+	.4byte Glyph_Special_F3
+	.4byte Glyph_Special_F4
+	.4byte Glyph_Special_F5
+	.4byte Glyph_Special_F6
+	.4byte Glyph_Special_F7
+	.4byte Glyph_Special_F8
+	.4byte Glyph_Special_F9
+	.4byte Glyph_Special_FA
+	.4byte Glyph_Special_FB
+	.4byte Glyph_Special_FC
+	.4byte Glyph_Special_FD
+	.4byte Glyph_Special_FE
+	.4byte Glyph_Special_FF
 
 	.section .rodata.08B909B8, "a"
 
@@ -2907,292 +2907,292 @@ gSprite_TalkTextBack:
 	.global gBackgroundTable
 gBackgroundTable:
 	.4byte Img_Bg_00
-	.4byte gUnk_080D07F8
+	.4byte Tsa_Bg_00
 	.4byte Pal_Bg_00
 	.4byte Img_Bg_01
-	.4byte gUnk_080D4820
+	.4byte Tsa_Bg_01
 	.4byte Pal_Bg_01
 	.4byte Img_Bg_02
-	.4byte gUnk_080D82AC
+	.4byte Tsa_Bg_02
 	.4byte Pal_Bg_02
 	.4byte Img_Bg_02
-	.4byte gUnk_080D82AC
+	.4byte Tsa_Bg_02
 	.4byte Pal_Bg_03
 	.4byte Img_Bg_04
-	.4byte gUnk_080DBC38
+	.4byte Tsa_Bg_04
 	.4byte Pal_Bg_04
 	.4byte Img_Bg_04
-	.4byte gUnk_080DBC38
+	.4byte Tsa_Bg_04
 	.4byte Pal_Bg_05
 	.4byte Img_Bg_04
-	.4byte gUnk_080DBC38
+	.4byte Tsa_Bg_04
 	.4byte Pal_Bg_06
 	.4byte Img_Bg_04
-	.4byte gUnk_080DBC38
+	.4byte Tsa_Bg_04
 	.4byte Pal_Bg_07
 	.4byte Img_Bg_04
-	.4byte gUnk_080DBC38
+	.4byte Tsa_Bg_04
 	.4byte Pal_Bg_08
 	.4byte Img_Bg_09
-	.4byte gUnk_080DFB64
+	.4byte Tsa_Bg_09
 	.4byte Pal_Bg_09
 	.4byte Img_Bg_0A
-	.4byte gUnk_080E2B58
+	.4byte Tsa_Bg_0A
 	.4byte Pal_Bg_0A
 	.4byte Img_Bg_0B
-	.4byte gUnk_080E6374
+	.4byte Tsa_Bg_0B
 	.4byte Pal_Bg_0B
 	.4byte Img_Bg_0C
-	.4byte gUnk_080E969C
+	.4byte Tsa_Bg_0C
 	.4byte Pal_Bg_0C
 	.4byte Img_Bg_0D
-	.4byte gUnk_080ECD28
+	.4byte Tsa_Bg_0D
 	.4byte Pal_Bg_0D
 	.4byte Img_Bg_0E
-	.4byte gUnk_080F0548
+	.4byte Tsa_Bg_0E
 	.4byte Pal_Bg_0E
 	.4byte Img_Bg_0F
-	.4byte gUnk_080F2A60
+	.4byte Tsa_Bg_0F
 	.4byte Pal_Bg_0F
 	.4byte Img_Bg_10
-	.4byte gUnk_080F5F34
+	.4byte Tsa_Bg_10
 	.4byte Pal_Bg_10
 	.4byte Img_Bg_10
-	.4byte gUnk_080F5F34
+	.4byte Tsa_Bg_10
 	.4byte Pal_Bg_11
 	.4byte Img_Bg_12
-	.4byte gUnk_080F97CC
+	.4byte Tsa_Bg_12
 	.4byte Pal_Bg_12
 	.4byte Img_Bg_12
-	.4byte gUnk_080F97CC
+	.4byte Tsa_Bg_12
 	.4byte Pal_Bg_13
 	.4byte Img_Bg_14
-	.4byte gUnk_080FD980
+	.4byte Tsa_Bg_14
 	.4byte Pal_Bg_14
 	.4byte Img_Bg_15
-	.4byte gUnk_08100C60
+	.4byte Tsa_Bg_15
 	.4byte Pal_Bg_15
 	.4byte Img_Bg_15
-	.4byte gUnk_08100C60
+	.4byte Tsa_Bg_15
 	.4byte Pal_Bg_16
 	.4byte Img_Bg_17
-	.4byte gUnk_08105008
+	.4byte Tsa_Bg_17
 	.4byte Pal_Bg_17
 	.4byte Img_Bg_18
-	.4byte gUnk_08107850
+	.4byte Tsa_Bg_18
 	.4byte Pal_Bg_18
 	.4byte Img_Bg_19
-	.4byte gUnk_0810AC3C
+	.4byte Tsa_Bg_19
 	.4byte Pal_Bg_19
 	.4byte Img_Bg_19
-	.4byte gUnk_0810AC3C
+	.4byte Tsa_Bg_19
 	.4byte Pal_Bg_1A
 	.4byte Img_Bg_1B
-	.4byte gUnk_0810DC34
+	.4byte Tsa_Bg_1B
 	.4byte Pal_Bg_1B
 	.4byte Img_Bg_1C
-	.4byte gUnk_081103F0
+	.4byte Tsa_Bg_1C
 	.4byte Pal_Bg_1C
 	.4byte Img_Bg_1D
-	.4byte gUnk_08113080
+	.4byte Tsa_Bg_1D
 	.4byte Pal_Bg_1D
 	.4byte Img_Bg_1C
-	.4byte gUnk_081103F0
+	.4byte Tsa_Bg_1C
 	.4byte Pal_Bg_1E
 	.4byte Img_Bg_1C
-	.4byte gUnk_081103F0
+	.4byte Tsa_Bg_1C
 	.4byte Pal_Bg_1F
 	.4byte Img_Bg_1C
-	.4byte gUnk_081103F0
+	.4byte Tsa_Bg_1C
 	.4byte Pal_Bg_20
 	.4byte Img_Bg_1C
-	.4byte gUnk_081103F0
+	.4byte Tsa_Bg_1C
 	.4byte Pal_Bg_21
 	.4byte Img_Bg_22
-	.4byte gUnk_0811576C
+	.4byte Tsa_Bg_22
 	.4byte Pal_Bg_22
 	.4byte Img_Bg_23
-	.4byte gUnk_081192C4
+	.4byte Tsa_Bg_23
 	.4byte Pal_Bg_23
 	.4byte Img_Bg_23
-	.4byte gUnk_081192C4
+	.4byte Tsa_Bg_23
 	.4byte Pal_Bg_24
 	.4byte Img_Bg_23
-	.4byte gUnk_081192C4
+	.4byte Tsa_Bg_23
 	.4byte Pal_Bg_25
 	.4byte Img_Bg_23
-	.4byte gUnk_081192C4
+	.4byte Tsa_Bg_23
 	.4byte Pal_Bg_26
 	.4byte Img_Bg_23
-	.4byte gUnk_081192C4
+	.4byte Tsa_Bg_23
 	.4byte Pal_Bg_27
 	.4byte Img_Bg_28
-	.4byte gUnk_0811CD40
+	.4byte Tsa_Bg_28
 	.4byte Pal_Bg_28
 	.4byte Img_Bg_28
-	.4byte gUnk_0811CD40
+	.4byte Tsa_Bg_28
 	.4byte Pal_Bg_29
 	.4byte Img_Bg_2A
-	.4byte gUnk_0812186C
+	.4byte Tsa_Bg_2A
 	.4byte Pal_Bg_2A
 	.4byte Img_Bg_2B
-	.4byte gUnk_08126D40
+	.4byte Tsa_Bg_2B
 	.4byte Pal_Bg_2B
 	.4byte Img_Bg_2C
-	.4byte gUnk_0812B720
+	.4byte Tsa_Bg_2C
 	.4byte Pal_Bg_2C
 	.4byte Img_Bg_2D
-	.4byte gUnk_08130140
+	.4byte Tsa_Bg_2D
 	.4byte Pal_Bg_2D
 	.4byte Img_Bg_2C
-	.4byte gUnk_0812B720
+	.4byte Tsa_Bg_2C
 	.4byte Pal_Bg_2E
 	.4byte Img_Bg_2F
-	.4byte gUnk_08133F90
+	.4byte Tsa_Bg_2F
 	.4byte Pal_Bg_2F
 	.4byte Img_Bg_2F
-	.4byte gUnk_08133F90
+	.4byte Tsa_Bg_2F
 	.4byte Pal_Bg_30
 	.4byte Img_Bg_31
-	.4byte gUnk_081383A8
+	.4byte Tsa_Bg_31
 	.4byte Pal_Bg_31
 	.4byte Img_Bg_31
-	.4byte gUnk_081383A8
+	.4byte Tsa_Bg_31
 	.4byte Pal_Bg_32
 	.4byte Img_Bg_31
-	.4byte gUnk_081383A8
+	.4byte Tsa_Bg_31
 	.4byte Pal_Bg_33
 	.4byte Img_Bg_31
-	.4byte gUnk_081383A8
+	.4byte Tsa_Bg_31
 	.4byte Pal_Bg_34
 	.4byte Img_Bg_35
-	.4byte gUnk_0813B560
+	.4byte Tsa_Bg_35
 	.4byte Pal_Bg_35
 	.4byte Img_Bg_36
-	.4byte gUnk_0813F1E4
+	.4byte Tsa_Bg_36
 	.4byte Pal_Bg_36
 	.4byte Img_Bg_37
-	.4byte gUnk_08142E6C
+	.4byte Tsa_Bg_37
 	.4byte Pal_Bg_37
 	.4byte Img_Bg_37
-	.4byte gUnk_08142E6C
+	.4byte Tsa_Bg_37
 	.4byte Pal_Bg_38
 	.4byte Img_Bg_39
-	.4byte gUnk_081463E8
+	.4byte Tsa_Bg_39
 	.4byte Pal_Bg_39
 	.4byte Img_Bg_39
-	.4byte gUnk_081463E8
+	.4byte Tsa_Bg_39
 	.4byte Pal_Bg_3A
 	.4byte Img_Bg_39
-	.4byte gUnk_081463E8
+	.4byte Tsa_Bg_39
 	.4byte Pal_Bg_3B
 	.4byte Img_Bg_3C
-	.4byte gUnk_08149C08
+	.4byte Tsa_Bg_3C
 	.4byte Pal_Bg_3C
 	.4byte Img_Bg_3C
-	.4byte gUnk_08149C08
+	.4byte Tsa_Bg_3C
 	.4byte Pal_Bg_3D
 	.4byte Img_Bg_3C
-	.4byte gUnk_08149C08
+	.4byte Tsa_Bg_3C
 	.4byte Pal_Bg_3E
 	.4byte Img_Bg_3F
-	.4byte gUnk_0814DBB8
+	.4byte Tsa_Bg_3F
 	.4byte Pal_Bg_3F
 	.4byte Img_Bg_3F
-	.4byte gUnk_0814DBB8
+	.4byte Tsa_Bg_3F
 	.4byte Pal_Bg_40
 	.4byte Img_Bg_3F
-	.4byte gUnk_0814DBB8
+	.4byte Tsa_Bg_3F
 	.4byte Pal_Bg_41
 	.4byte Img_Bg_42
-	.4byte gUnk_08152168
+	.4byte Tsa_Bg_42
 	.4byte Pal_Bg_42
 	.4byte Img_Bg_42
-	.4byte gUnk_08152168
+	.4byte Tsa_Bg_42
 	.4byte Pal_Bg_43
 	.4byte Img_Bg_44
-	.4byte gUnk_08154CE0
+	.4byte Tsa_Bg_44
 	.4byte Pal_Bg_44
 	.4byte Img_Bg_44
-	.4byte gUnk_08154CE0
+	.4byte Tsa_Bg_44
 	.4byte Pal_Bg_45
 	.4byte Img_Bg_46
-	.4byte gUnk_08159D60
+	.4byte Tsa_Bg_46
 	.4byte Pal_Bg_46
 	.4byte Img_Bg_46
-	.4byte gUnk_08159D60
+	.4byte Tsa_Bg_46
 	.4byte Pal_Bg_47
 	.4byte Img_Bg_46
-	.4byte gUnk_08159D60
+	.4byte Tsa_Bg_46
 	.4byte Pal_Bg_48
 	.4byte Img_Bg_49
-	.4byte gUnk_0815F480
+	.4byte Tsa_Bg_49
 	.4byte Pal_Bg_49
 	.4byte Img_Bg_4A
-	.4byte gUnk_08163DFC
+	.4byte Tsa_Bg_4A
 	.4byte Pal_Bg_4A
 	.4byte Img_Bg_4A
-	.4byte gUnk_08163DFC
+	.4byte Tsa_Bg_4A
 	.4byte Pal_Bg_4B
 	.4byte Img_Bg_4C
-	.4byte gUnk_081688D4
+	.4byte Tsa_Bg_4C
 	.4byte Pal_Bg_4C
 	.4byte Img_Bg_4C
-	.4byte gUnk_081688D4
+	.4byte Tsa_Bg_4C
 	.4byte Pal_Bg_4D
 	.4byte Img_Bg_4C
-	.4byte gUnk_081688D4
+	.4byte Tsa_Bg_4C
 	.4byte Pal_Bg_4E
 	.4byte Img_Bg_4F
-	.4byte gUnk_0816D658
+	.4byte Tsa_Bg_4F
 	.4byte Pal_Bg_4F
 	.4byte Img_Bg_4F
-	.4byte gUnk_0816D658
+	.4byte Tsa_Bg_4F
 	.4byte Pal_Bg_50
 	.4byte Img_Bg_51
-	.4byte gUnk_08170498
+	.4byte Tsa_Bg_51
 	.4byte Pal_Bg_51
 	.4byte Img_Bg_51
-	.4byte gUnk_08170498
+	.4byte Tsa_Bg_51
 	.4byte Pal_Bg_52
 	.4byte Img_Bg_53
-	.4byte gUnk_08174310
+	.4byte Tsa_Bg_53
 	.4byte Pal_Bg_53
 	.4byte Img_Bg_53
-	.4byte gUnk_08174310
+	.4byte Tsa_Bg_53
 	.4byte Pal_Bg_54
 	.4byte Img_Bg_55
-	.4byte gUnk_08179538
+	.4byte Tsa_Bg_55
 	.4byte Pal_Bg_55
 	.4byte Img_Bg_56
-	.4byte gUnk_0817BE48
+	.4byte Tsa_Bg_56
 	.4byte Pal_Bg_56
 	.4byte Img_Bg_57
-	.4byte gUnk_0818026C
+	.4byte Tsa_Bg_57
 	.4byte Pal_Bg_57
 	.4byte Img_Bg_58
-	.4byte gUnk_0818252C
+	.4byte Tsa_Bg_58
 	.4byte Pal_Bg_58
 	.4byte Img_Bg_59
-	.4byte gUnk_08186500
+	.4byte Tsa_Bg_59
 	.4byte Pal_Bg_59
 	.4byte Img_Bg_5A
-	.4byte gUnk_0818AB1C
+	.4byte Tsa_Bg_5A
 	.4byte Pal_Bg_5A
 	.4byte Img_Bg_5B
-	.4byte gUnk_0818BA50
+	.4byte Tsa_Bg_5B
 	.4byte Pal_Bg_5B
 	.4byte Img_DragonsGate
 	.4byte Tsa_DragonsGate
 	.4byte Pal_DragonsGate
 	.4byte Img_Bg_5D
-	.4byte gUnk_081937D8
+	.4byte Tsa_Bg_5D
 	.4byte Pal_Bg_5D
 	.4byte Img_Bg_5E
-	.4byte gUnk_083FAF7C
+	.4byte Tsa_Bg_5E
 	.4byte Pal_Bg_5E
 	.4byte Img_Bg_5F
-	.4byte gUnk_083FB860
+	.4byte Tsa_Bg_5F
 	.4byte Pal_Bg_5F
 
 	.section .rodata.08B91A18, "a"
@@ -7850,623 +7850,623 @@ gUnk_08B9C0FC:
 	.4byte gUnk_08B9C0FC + 0x20000000
 	.incbin "baserom.gba", 0xb9c210, 0x4
 
-	.global gUnk_08B9C214
-gUnk_08B9C214:
+	.global AnimSprite_EfxLvupOBJ2_08B9C214
+AnimSprite_EfxLvupOBJ2_08B9C214:
 	.incbin "baserom.gba", 0xb9c214, 0x3c
 
-	.global gUnk_08B9C250
-gUnk_08B9C250:
+	.global AnimSprite_EfxLvupOBJ2_08B9C250
+AnimSprite_EfxLvupOBJ2_08B9C250:
 	.incbin "baserom.gba", 0xb9c250, 0x54
 
-	.global gUnk_08B9C2A4
-gUnk_08B9C2A4:
+	.global AnimSprite_EfxLvupOBJ2_08B9C2A4
+AnimSprite_EfxLvupOBJ2_08B9C2A4:
 	.incbin "baserom.gba", 0xb9c2a4, 0x6c
 
-	.global gUnk_08B9C310
-gUnk_08B9C310:
+	.global AnimSprite_EfxLvupOBJ2_08B9C310
+AnimSprite_EfxLvupOBJ2_08B9C310:
 	.incbin "baserom.gba", 0xb9c310, 0x84
 
-	.global gUnk_08B9C394
-gUnk_08B9C394:
+	.global AnimSprite_EfxLvupOBJ2_08B9C394
+AnimSprite_EfxLvupOBJ2_08B9C394:
 	.incbin "baserom.gba", 0xb9c394, 0x84
 
-	.global gUnk_08B9C418
-gUnk_08B9C418:
+	.global AnimSprite_EfxLvupOBJ2_08B9C418
+AnimSprite_EfxLvupOBJ2_08B9C418:
 	.incbin "baserom.gba", 0xb9c418, 0x90
 
-	.global gUnk_08B9C4A8
-gUnk_08B9C4A8:
+	.global AnimSprite_EfxLvupOBJ2_08B9C4A8
+AnimSprite_EfxLvupOBJ2_08B9C4A8:
 	.incbin "baserom.gba", 0xb9c4a8, 0x90
 
-	.global gUnk_08B9C538
-gUnk_08B9C538:
+	.global AnimSprite_EfxLvupOBJ2_08B9C538
+AnimSprite_EfxLvupOBJ2_08B9C538:
 	.incbin "baserom.gba", 0xb9c538, 0x84
 
-	.global gUnk_08B9C5BC
-gUnk_08B9C5BC:
+	.global AnimSprite_EfxLvupOBJ2_08B9C5BC
+AnimSprite_EfxLvupOBJ2_08B9C5BC:
 	.incbin "baserom.gba", 0xb9c5bc, 0x84
 
-	.global gUnk_08B9C640
-gUnk_08B9C640:
+	.global AnimSprite_EfxLvupOBJ2_08B9C640
+AnimSprite_EfxLvupOBJ2_08B9C640:
 	.incbin "baserom.gba", 0xb9c640, 0x90
 
-	.global gUnk_08B9C6D0
-gUnk_08B9C6D0:
+	.global AnimSprite_EfxLvupOBJ2_08B9C6D0
+AnimSprite_EfxLvupOBJ2_08B9C6D0:
 	.incbin "baserom.gba", 0xb9c6d0, 0x90
 
-	.global gUnk_08B9C760
-gUnk_08B9C760:
+	.global AnimSprite_EfxLvupOBJ2_08B9C760
+AnimSprite_EfxLvupOBJ2_08B9C760:
 	.incbin "baserom.gba", 0xb9c760, 0x9c
 
-	.global gUnk_08B9C7FC
-gUnk_08B9C7FC:
+	.global AnimSprite_EfxLvupOBJ2_08B9C7FC
+AnimSprite_EfxLvupOBJ2_08B9C7FC:
 	.incbin "baserom.gba", 0xb9c7fc, 0x9c
 
-	.global gUnk_08B9C898
-gUnk_08B9C898:
+	.global AnimSprite_EfxLvupOBJ2_08B9C898
+AnimSprite_EfxLvupOBJ2_08B9C898:
 	.incbin "baserom.gba", 0xb9c898, 0x9c
 
-	.global gUnk_08B9C934
-gUnk_08B9C934:
+	.global AnimSprite_EfxLvupOBJ2_08B9C934
+AnimSprite_EfxLvupOBJ2_08B9C934:
 	.incbin "baserom.gba", 0xb9c934, 0x90
 
-	.global gUnk_08B9C9C4
-gUnk_08B9C9C4:
+	.global AnimSprite_EfxLvupOBJ2_08B9C9C4
+AnimSprite_EfxLvupOBJ2_08B9C9C4:
 	.incbin "baserom.gba", 0xb9c9c4, 0x6c
 
 	.global AnimScr_EfxLvupOBJ2
 AnimScr_EfxLvupOBJ2:
-	.4byte gUnk_08B9C214 + 0x1
-	.4byte gUnk_08B9C250 + 0x1
-	.4byte gUnk_08B9C2A4 + 0x1
-	.4byte gUnk_08B9C310 + 0x1
-	.4byte gUnk_08B9C394 + 0x1
-	.4byte gUnk_08B9C418 + 0x1
-	.4byte gUnk_08B9C4A8 + 0x1
-	.4byte gUnk_08B9C538 + 0x1
-	.4byte gUnk_08B9C5BC + 0x1
-	.4byte gUnk_08B9C640 + 0x1
-	.4byte gUnk_08B9C6D0 + 0x1
-	.4byte gUnk_08B9C760 + 0x1
-	.4byte gUnk_08B9C7FC + 0x1
-	.4byte gUnk_08B9C898 + 0x1
-	.4byte gUnk_08B9C934 + 0x1
-	.4byte gUnk_08B9C9C4 + 0x20000002
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C214 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C250 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C2A4 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C310 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C394 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C418 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C4A8 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C538 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C5BC + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C640 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C6D0 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C760 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C7FC + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C898 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C934 + 0x1
+	.4byte AnimSprite_EfxLvupOBJ2_08B9C9C4 + 0x20000002
 	.incbin "baserom.gba", 0xb9ca70, 0x4
 
-	.global gUnk_08B9CA74
-gUnk_08B9CA74:
+	.global AnimSprite_EkrMainMini_L_Far_08B9CA74
+AnimSprite_EkrMainMini_L_Far_08B9CA74:
 	.incbin "baserom.gba", 0xb9ca74, 0x84
 
 	.global AnimScr_EkrMainMini_L_Far
 AnimScr_EkrMainMini_L_Far:
-	.4byte gUnk_08B9CA74 + 0x10000000
+	.4byte AnimSprite_EkrMainMini_L_Far_08B9CA74 + 0x10000000
 	.incbin "baserom.gba", 0xb9cafc, 0x4
 
-	.global gUnk_08B9CB00
-gUnk_08B9CB00:
+	.global AnimSprite_EkrMainMini_R_Far_08B9CB00
+AnimSprite_EkrMainMini_R_Far_08B9CB00:
 	.incbin "baserom.gba", 0xb9cb00, 0x84
 
 	.global AnimScr_EkrMainMini_R_Far
 AnimScr_EkrMainMini_R_Far:
-	.4byte gUnk_08B9CB00 + 0x10000000
+	.4byte AnimSprite_EkrMainMini_R_Far_08B9CB00 + 0x10000000
 	.incbin "baserom.gba", 0xb9cb88, 0x4
 
-	.global gUnk_08B9CB8C
-gUnk_08B9CB8C:
+	.global AnimSprite_EkrMainMini_L_Close_08B9CB8C
+AnimSprite_EkrMainMini_L_Close_08B9CB8C:
 	.incbin "baserom.gba", 0xb9cb8c, 0x78
 
 	.global AnimScr_EkrMainMini_L_Close
 AnimScr_EkrMainMini_L_Close:
-	.4byte gUnk_08B9CB8C + 0x10000000
+	.4byte AnimSprite_EkrMainMini_L_Close_08B9CB8C + 0x10000000
 	.incbin "baserom.gba", 0xb9cc08, 0x4
 
-	.global gUnk_08B9CC0C
-gUnk_08B9CC0C:
+	.global AnimSprite_EkrMainMini_R_Close_08B9CC0C
+AnimSprite_EkrMainMini_R_Close_08B9CC0C:
 	.incbin "baserom.gba", 0xb9cc0c, 0x78
 
 	.global AnimScr_EkrMainMini_R_Close
 AnimScr_EkrMainMini_R_Close:
-	.4byte gUnk_08B9CC0C + 0x10000000
+	.4byte AnimSprite_EkrMainMini_R_Close_08B9CC0C + 0x10000000
 	.incbin "baserom.gba", 0xb9cc88, 0x78
 
-	.global gUnk_08B9CD00
-gUnk_08B9CD00:
+	.global AnimSprite_NoDamage_08B9CD00
+AnimSprite_NoDamage_08B9CD00:
 	.incbin "baserom.gba", 0xb9cd00, 0x24
 
-	.global gUnk_08B9CD24
-gUnk_08B9CD24:
+	.global AnimSprite_NoDamage_08B9CD24
+AnimSprite_NoDamage_08B9CD24:
 	.incbin "baserom.gba", 0xb9cd24, 0x24
 
-	.global gUnk_08B9CD48
-gUnk_08B9CD48:
+	.global AnimSprite_NoDamage_08B9CD48
+AnimSprite_NoDamage_08B9CD48:
 	.incbin "baserom.gba", 0xb9cd48, 0x24
 
-	.global gUnk_08B9CD6C
-gUnk_08B9CD6C:
+	.global AnimSprite_NoDamage_08B9CD6C
+AnimSprite_NoDamage_08B9CD6C:
 	.incbin "baserom.gba", 0xb9cd6c, 0x3c
 
-	.global gUnk_08B9CDA8
-gUnk_08B9CDA8:
+	.global AnimSprite_NoDamage_08B9CDA8
+AnimSprite_NoDamage_08B9CDA8:
 	.incbin "baserom.gba", 0xb9cda8, 0x3c
 
-	.global gUnk_08B9CDE4
-gUnk_08B9CDE4:
+	.global AnimSprite_NoDamage_08B9CDE4
+AnimSprite_NoDamage_08B9CDE4:
 	.incbin "baserom.gba", 0xb9cde4, 0x3c
 
-	.global gUnk_08B9CE20
-gUnk_08B9CE20:
+	.global AnimSprite_NoDamage_08B9CE20
+AnimSprite_NoDamage_08B9CE20:
 	.incbin "baserom.gba", 0xb9ce20, 0x48
 
-	.global gUnk_08B9CE68
-gUnk_08B9CE68:
+	.global AnimSprite_NoDamage_08B9CE68
+AnimSprite_NoDamage_08B9CE68:
 	.incbin "baserom.gba", 0xb9ce68, 0x48
 
-	.global gUnk_08B9CEB0
-gUnk_08B9CEB0:
+	.global AnimSprite_NoDamage_08B9CEB0
+AnimSprite_NoDamage_08B9CEB0:
 	.incbin "baserom.gba", 0xb9ceb0, 0x48
 
-	.global gUnk_08B9CEF8
-gUnk_08B9CEF8:
+	.global AnimSprite_NoDamage_08B9CEF8
+AnimSprite_NoDamage_08B9CEF8:
 	.incbin "baserom.gba", 0xb9cef8, 0x54
 
-	.global gUnk_08B9CF4C
-gUnk_08B9CF4C:
+	.global AnimSprite_NoDamage_08B9CF4C
+AnimSprite_NoDamage_08B9CF4C:
 	.incbin "baserom.gba", 0xb9cf4c, 0x54
 
-	.global gUnk_08B9CFA0
-gUnk_08B9CFA0:
+	.global AnimSprite_NoDamage_08B9CFA0
+AnimSprite_NoDamage_08B9CFA0:
 	.incbin "baserom.gba", 0xb9cfa0, 0x54
 
-	.global gUnk_08B9CFF4
-gUnk_08B9CFF4:
+	.global AnimSprite_NoDamage_08B9CFF4
+AnimSprite_NoDamage_08B9CFF4:
 	.incbin "baserom.gba", 0xb9cff4, 0x60
 
-	.global gUnk_08B9D054
-gUnk_08B9D054:
+	.global AnimSprite_NoDamage_08B9D054
+AnimSprite_NoDamage_08B9D054:
 	.incbin "baserom.gba", 0xb9d054, 0x60
 
-	.global gUnk_08B9D0B4
-gUnk_08B9D0B4:
+	.global AnimSprite_NoDamage_08B9D0B4
+AnimSprite_NoDamage_08B9D0B4:
 	.incbin "baserom.gba", 0xb9d0b4, 0x60
 
-	.global gUnk_08B9D114
-gUnk_08B9D114:
+	.global AnimSprite_NoDamage_08B9D114
+AnimSprite_NoDamage_08B9D114:
 	.incbin "baserom.gba", 0xb9d114, 0x6c
 
-	.global gUnk_08B9D180
-gUnk_08B9D180:
+	.global AnimSprite_NoDamage_08B9D180
+AnimSprite_NoDamage_08B9D180:
 	.incbin "baserom.gba", 0xb9d180, 0x6c
 
-	.global gUnk_08B9D1EC
-gUnk_08B9D1EC:
+	.global AnimSprite_NoDamage_08B9D1EC
+AnimSprite_NoDamage_08B9D1EC:
 	.incbin "baserom.gba", 0xb9d1ec, 0x6c
 
-	.global gUnk_08B9D258
-gUnk_08B9D258:
+	.global AnimSprite_NoDamage_08B9D258
+AnimSprite_NoDamage_08B9D258:
 	.incbin "baserom.gba", 0xb9d258, 0x78
 
-	.global gUnk_08B9D2D0
-gUnk_08B9D2D0:
+	.global AnimSprite_NoDamage_08B9D2D0
+AnimSprite_NoDamage_08B9D2D0:
 	.incbin "baserom.gba", 0xb9d2d0, 0x78
 
-	.global gUnk_08B9D348
-gUnk_08B9D348:
+	.global AnimSprite_NoDamage_08B9D348
+AnimSprite_NoDamage_08B9D348:
 	.incbin "baserom.gba", 0xb9d348, 0x78
 
-	.global gUnk_08B9D3C0
-gUnk_08B9D3C0:
+	.global AnimSprite_NoDamage_08B9D3C0
+AnimSprite_NoDamage_08B9D3C0:
 	.incbin "baserom.gba", 0xb9d3c0, 0x78
 
-	.global gUnk_08B9D438
-gUnk_08B9D438:
+	.global AnimSprite_NoDamage_08B9D438
+AnimSprite_NoDamage_08B9D438:
 	.incbin "baserom.gba", 0xb9d438, 0x78
 
-	.global gUnk_08B9D4B0
-gUnk_08B9D4B0:
+	.global AnimSprite_NoDamage_08B9D4B0
+AnimSprite_NoDamage_08B9D4B0:
 	.incbin "baserom.gba", 0xb9d4b0, 0x78
 
-	.global gUnk_08B9D528
-gUnk_08B9D528:
+	.global AnimSprite_NoDamage_08B9D528
+AnimSprite_NoDamage_08B9D528:
 	.incbin "baserom.gba", 0xb9d528, 0x78
 
-	.global gUnk_08B9D5A0
-gUnk_08B9D5A0:
+	.global AnimSprite_NoDamage_08B9D5A0
+AnimSprite_NoDamage_08B9D5A0:
 	.incbin "baserom.gba", 0xb9d5a0, 0x18
 
-	.global gUnk_08B9D5B8
-gUnk_08B9D5B8:
+	.global AnimSprite_Miss_08B9D5B8
+AnimSprite_Miss_08B9D5B8:
 	.incbin "baserom.gba", 0xb9d5b8, 0x18
 
-	.global gUnk_08B9D5D0
-gUnk_08B9D5D0:
+	.global AnimSprite_Miss_08B9D5D0
+AnimSprite_Miss_08B9D5D0:
 	.incbin "baserom.gba", 0xb9d5d0, 0x18
 
-	.global gUnk_08B9D5E8
-gUnk_08B9D5E8:
+	.global AnimSprite_Miss_08B9D5E8
+AnimSprite_Miss_08B9D5E8:
 	.incbin "baserom.gba", 0xb9d5e8, 0x18
 
-	.global gUnk_08B9D600
-gUnk_08B9D600:
+	.global AnimSprite_Miss_08B9D600
+AnimSprite_Miss_08B9D600:
 	.incbin "baserom.gba", 0xb9d600, 0x24
 
-	.global gUnk_08B9D624
-gUnk_08B9D624:
+	.global AnimSprite_Miss_08B9D624
+AnimSprite_Miss_08B9D624:
 	.incbin "baserom.gba", 0xb9d624, 0x24
 
-	.global gUnk_08B9D648
-gUnk_08B9D648:
+	.global AnimSprite_Miss_08B9D648
+AnimSprite_Miss_08B9D648:
 	.incbin "baserom.gba", 0xb9d648, 0x24
 
-	.global gUnk_08B9D66C
-gUnk_08B9D66C:
+	.global AnimSprite_Miss_08B9D66C
+AnimSprite_Miss_08B9D66C:
 	.incbin "baserom.gba", 0xb9d66c, 0x30
 
-	.global gUnk_08B9D69C
-gUnk_08B9D69C:
+	.global AnimSprite_Miss_08B9D69C
+AnimSprite_Miss_08B9D69C:
 	.incbin "baserom.gba", 0xb9d69c, 0x30
 
-	.global gUnk_08B9D6CC
-gUnk_08B9D6CC:
+	.global AnimSprite_Miss_08B9D6CC
+AnimSprite_Miss_08B9D6CC:
 	.incbin "baserom.gba", 0xb9d6cc, 0x30
 
-	.global gUnk_08B9D6FC
-gUnk_08B9D6FC:
+	.global AnimSprite_Miss_08B9D6FC
+AnimSprite_Miss_08B9D6FC:
 	.incbin "baserom.gba", 0xb9d6fc, 0x3c
 
-	.global gUnk_08B9D738
-gUnk_08B9D738:
+	.global AnimSprite_Miss_08B9D738
+AnimSprite_Miss_08B9D738:
 	.incbin "baserom.gba", 0xb9d738, 0x3c
 
-	.global gUnk_08B9D774
-gUnk_08B9D774:
+	.global AnimSprite_Miss_08B9D774
+AnimSprite_Miss_08B9D774:
 	.incbin "baserom.gba", 0xb9d774, 0x3c
 
-	.global gUnk_08B9D7B0
-gUnk_08B9D7B0:
+	.global AnimSprite_Miss_08B9D7B0
+AnimSprite_Miss_08B9D7B0:
 	.incbin "baserom.gba", 0xb9d7b0, 0x48
 
-	.global gUnk_08B9D7F8
-gUnk_08B9D7F8:
+	.global AnimSprite_Miss_08B9D7F8
+AnimSprite_Miss_08B9D7F8:
 	.incbin "baserom.gba", 0xb9d7f8, 0x48
 
-	.global gUnk_08B9D840
-gUnk_08B9D840:
+	.global AnimSprite_Miss_08B9D840
+AnimSprite_Miss_08B9D840:
 	.incbin "baserom.gba", 0xb9d840, 0x48
 
-	.global gUnk_08B9D888
-gUnk_08B9D888:
+	.global AnimSprite_Miss_08B9D888
+AnimSprite_Miss_08B9D888:
 	.incbin "baserom.gba", 0xb9d888, 0x48
 
-	.global gUnk_08B9D8D0
-gUnk_08B9D8D0:
+	.global AnimSprite_Miss_08B9D8D0
+AnimSprite_Miss_08B9D8D0:
 	.incbin "baserom.gba", 0xb9d8d0, 0x48
 
-	.global gUnk_08B9D918
-gUnk_08B9D918:
+	.global AnimSprite_Miss_08B9D918
+AnimSprite_Miss_08B9D918:
 	.incbin "baserom.gba", 0xb9d918, 0x48
 
-	.global gUnk_08B9D960
-gUnk_08B9D960:
+	.global AnimSprite_Miss_08B9D960
+AnimSprite_Miss_08B9D960:
 	.incbin "baserom.gba", 0xb9d960, 0x48
 
-	.global gUnk_08B9D9A8
-gUnk_08B9D9A8:
+	.global AnimSprite_Miss_08B9D9A8
+AnimSprite_Miss_08B9D9A8:
 	.incbin "baserom.gba", 0xb9d9a8, 0x48
 
 	.global AnimScr_NoDamage
 AnimScr_NoDamage:
-	.4byte gUnk_08B9CD00 + 0x1
-	.4byte gUnk_08B9CD24 + 0x1
-	.4byte gUnk_08B9CD48 + 0x1
-	.4byte gUnk_08B9CD6C + 0x1
-	.4byte gUnk_08B9CDA8 + 0x1
-	.4byte gUnk_08B9CDE4 + 0x1
-	.4byte gUnk_08B9CE20 + 0x1
-	.4byte gUnk_08B9CE68 + 0x1
-	.4byte gUnk_08B9CEB0 + 0x1
-	.4byte gUnk_08B9CEF8 + 0x1
-	.4byte gUnk_08B9CF4C + 0x1
-	.4byte gUnk_08B9CFA0 + 0x1
-	.4byte gUnk_08B9CFF4 + 0x1
-	.4byte gUnk_08B9D054 + 0x1
-	.4byte gUnk_08B9D0B4 + 0x1
-	.4byte gUnk_08B9D114 + 0x1
-	.4byte gUnk_08B9D180 + 0x1
-	.4byte gUnk_08B9D1EC + 0x1
-	.4byte gUnk_08B9D258 + 0x1
-	.4byte gUnk_08B9D2D0 + 0x1
-	.4byte gUnk_08B9D348 + 0x1
-	.4byte gUnk_08B9D3C0 + 0x1
-	.4byte gUnk_08B9D438 + 0x1
-	.4byte gUnk_08B9D4B0 + 0x1
-	.4byte gUnk_08B9D528 + 0x70000003
+	.4byte AnimSprite_NoDamage_08B9CD00 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CD24 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CD48 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CD6C + 0x1
+	.4byte AnimSprite_NoDamage_08B9CDA8 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CDE4 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CE20 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CE68 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CEB0 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CEF8 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CF4C + 0x1
+	.4byte AnimSprite_NoDamage_08B9CFA0 + 0x1
+	.4byte AnimSprite_NoDamage_08B9CFF4 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D054 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D0B4 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D114 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D180 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D1EC + 0x1
+	.4byte AnimSprite_NoDamage_08B9D258 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D2D0 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D348 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D3C0 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D438 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D4B0 + 0x1
+	.4byte AnimSprite_NoDamage_08B9D528 + 0x70000003
 	.incbin "baserom.gba", 0xb9da54, 0x4
-	.4byte gUnk_08B9D5A0 + 0x70000003
+	.4byte AnimSprite_NoDamage_08B9D5A0 + 0x70000003
 	.incbin "baserom.gba", 0xb9da5c, 0x8
 
 	.global AnimScr_Miss
 AnimScr_Miss:
-	.4byte gUnk_08B9D5B8 + 0x1
-	.4byte gUnk_08B9D5D0 + 0x1
-	.4byte gUnk_08B9D5E8 + 0x1
-	.4byte gUnk_08B9D600 + 0x1
-	.4byte gUnk_08B9D624 + 0x1
-	.4byte gUnk_08B9D648 + 0x1
-	.4byte gUnk_08B9D66C + 0x1
-	.4byte gUnk_08B9D69C + 0x1
-	.4byte gUnk_08B9D6CC + 0x1
-	.4byte gUnk_08B9D6FC + 0x1
-	.4byte gUnk_08B9D738 + 0x1
-	.4byte gUnk_08B9D774 + 0x1
-	.4byte gUnk_08B9D7B0 + 0x1
-	.4byte gUnk_08B9D7F8 + 0x1
-	.4byte gUnk_08B9D840 + 0x1
-	.4byte gUnk_08B9D888 + 0x1
-	.4byte gUnk_08B9D8D0 + 0x1
-	.4byte gUnk_08B9D918 + 0x1
-	.4byte gUnk_08B9D960 + 0x1
-	.4byte gUnk_08B9D9A8 + 0x70000003
+	.4byte AnimSprite_Miss_08B9D5B8 + 0x1
+	.4byte AnimSprite_Miss_08B9D5D0 + 0x1
+	.4byte AnimSprite_Miss_08B9D5E8 + 0x1
+	.4byte AnimSprite_Miss_08B9D600 + 0x1
+	.4byte AnimSprite_Miss_08B9D624 + 0x1
+	.4byte AnimSprite_Miss_08B9D648 + 0x1
+	.4byte AnimSprite_Miss_08B9D66C + 0x1
+	.4byte AnimSprite_Miss_08B9D69C + 0x1
+	.4byte AnimSprite_Miss_08B9D6CC + 0x1
+	.4byte AnimSprite_Miss_08B9D6FC + 0x1
+	.4byte AnimSprite_Miss_08B9D738 + 0x1
+	.4byte AnimSprite_Miss_08B9D774 + 0x1
+	.4byte AnimSprite_Miss_08B9D7B0 + 0x1
+	.4byte AnimSprite_Miss_08B9D7F8 + 0x1
+	.4byte AnimSprite_Miss_08B9D840 + 0x1
+	.4byte AnimSprite_Miss_08B9D888 + 0x1
+	.4byte AnimSprite_Miss_08B9D8D0 + 0x1
+	.4byte AnimSprite_Miss_08B9D918 + 0x1
+	.4byte AnimSprite_Miss_08B9D960 + 0x1
+	.4byte AnimSprite_Miss_08B9D9A8 + 0x70000003
 	.incbin "baserom.gba", 0xb9dab4, 0x4
-	.4byte gUnk_08B9D5A0 + 0x70000003
+	.4byte AnimSprite_NoDamage_08B9D5A0 + 0x70000003
 	.incbin "baserom.gba", 0xb9dabc, 0x8
 
-	.global gUnk_08B9DAC4
-gUnk_08B9DAC4:
+	.global AnimSprite_LvupStatupfx1_08B9DAC4
+AnimSprite_LvupStatupfx1_08B9DAC4:
 	.incbin "baserom.gba", 0xb9dac4, 0x30
 
-	.global gUnk_08B9DAF4
-gUnk_08B9DAF4:
+	.global AnimSprite_LvupStatupfx1_08B9DAF4
+AnimSprite_LvupStatupfx1_08B9DAF4:
 	.incbin "baserom.gba", 0xb9daf4, 0x48
 
-	.global gUnk_08B9DB3C
-gUnk_08B9DB3C:
+	.global AnimSprite_LvupStatupfx1_08B9DB3C
+AnimSprite_LvupStatupfx1_08B9DB3C:
 	.incbin "baserom.gba", 0xb9db3c, 0x54
 
-	.global gUnk_08B9DB90
-gUnk_08B9DB90:
+	.global AnimSprite_LvupStatupfx1_08B9DB90
+AnimSprite_LvupStatupfx1_08B9DB90:
 	.incbin "baserom.gba", 0xb9db90, 0x54
 
-	.global gUnk_08B9DBE4
-gUnk_08B9DBE4:
+	.global AnimSprite_LvupStatupfx1_08B9DBE4
+AnimSprite_LvupStatupfx1_08B9DBE4:
 	.incbin "baserom.gba", 0xb9dbe4, 0x54
 
-	.global gUnk_08B9DC38
-gUnk_08B9DC38:
+	.global AnimSprite_LvupStatupfx1_08B9DC38
+AnimSprite_LvupStatupfx1_08B9DC38:
 	.incbin "baserom.gba", 0xb9dc38, 0x54
 
-	.global gUnk_08B9DC8C
-gUnk_08B9DC8C:
+	.global AnimSprite_LvupStatupfx1_08B9DC8C
+AnimSprite_LvupStatupfx1_08B9DC8C:
 	.incbin "baserom.gba", 0xb9dc8c, 0x54
 
-	.global gUnk_08B9DCE0
-gUnk_08B9DCE0:
+	.global AnimSprite_LvupStatupfx1_08B9DCE0
+AnimSprite_LvupStatupfx1_08B9DCE0:
 	.incbin "baserom.gba", 0xb9dce0, 0x54
 
-	.global gUnk_08B9DD34
-gUnk_08B9DD34:
+	.global AnimSprite_LvupStatupfx1_08B9DD34
+AnimSprite_LvupStatupfx1_08B9DD34:
 	.incbin "baserom.gba", 0xb9dd34, 0x54
 
-	.global gUnk_08B9DD88
-gUnk_08B9DD88:
+	.global AnimSprite_LvupStatupfx1_08B9DD88
+AnimSprite_LvupStatupfx1_08B9DD88:
 	.incbin "baserom.gba", 0xb9dd88, 0x54
 
-	.global gUnk_08B9DDDC
-gUnk_08B9DDDC:
+	.global AnimSprite_LvupStatupfx1_08B9DDDC
+AnimSprite_LvupStatupfx1_08B9DDDC:
 	.incbin "baserom.gba", 0xb9dddc, 0x54
 
-	.global gUnk_08B9DE30
-gUnk_08B9DE30:
+	.global AnimSprite_LvupStatupfx2_08B9DE30
+AnimSprite_LvupStatupfx2_08B9DE30:
 	.incbin "baserom.gba", 0xb9de30, 0x24
 
-	.global gUnk_08B9DE54
-gUnk_08B9DE54:
+	.global AnimSprite_LvupStatupfx2_08B9DE54
+AnimSprite_LvupStatupfx2_08B9DE54:
 	.incbin "baserom.gba", 0xb9de54, 0x30
 
-	.global gUnk_08B9DE84
-gUnk_08B9DE84:
+	.global AnimSprite_LvupStatupfx2_08B9DE84
+AnimSprite_LvupStatupfx2_08B9DE84:
 	.incbin "baserom.gba", 0xb9de84, 0x30
 
-	.global gUnk_08B9DEB4
-gUnk_08B9DEB4:
+	.global AnimSprite_LvupStatupfx2_08B9DEB4
+AnimSprite_LvupStatupfx2_08B9DEB4:
 	.incbin "baserom.gba", 0xb9deb4, 0x30
 
-	.global gUnk_08B9DEE4
-gUnk_08B9DEE4:
+	.global AnimSprite_LvupStatupfx2_08B9DEE4
+AnimSprite_LvupStatupfx2_08B9DEE4:
 	.incbin "baserom.gba", 0xb9dee4, 0x30
 
-	.global gUnk_08B9DF14
-gUnk_08B9DF14:
+	.global AnimSprite_LvupStatupfx2_08B9DF14
+AnimSprite_LvupStatupfx2_08B9DF14:
 	.incbin "baserom.gba", 0xb9df14, 0x30
 
-	.global gUnk_08B9DF44
-gUnk_08B9DF44:
+	.global AnimSprite_LvupStatupfx2_08B9DF44
+AnimSprite_LvupStatupfx2_08B9DF44:
 	.incbin "baserom.gba", 0xb9df44, 0x30
 
-	.global gUnk_08B9DF74
-gUnk_08B9DF74:
+	.global AnimSprite_LvupStatupfx2_08B9DF74
+AnimSprite_LvupStatupfx2_08B9DF74:
 	.incbin "baserom.gba", 0xb9df74, 0x30
 
-	.global gUnk_08B9DFA4
-gUnk_08B9DFA4:
+	.global AnimSprite_LvupStatupfx2_08B9DFA4
+AnimSprite_LvupStatupfx2_08B9DFA4:
 	.incbin "baserom.gba", 0xb9dfa4, 0x30
 
-	.global gUnk_08B9DFD4
-gUnk_08B9DFD4:
+	.global AnimSprite_LvupStatupfx2_08B9DFD4
+AnimSprite_LvupStatupfx2_08B9DFD4:
 	.incbin "baserom.gba", 0xb9dfd4, 0x30
 
-	.global gUnk_08B9E004
-gUnk_08B9E004:
+	.global AnimSprite_LvupStatupfx3_08B9E004
+AnimSprite_LvupStatupfx3_08B9E004:
 	.incbin "baserom.gba", 0xb9e004, 0x18
 
-	.global gUnk_08B9E01C
-gUnk_08B9E01C:
+	.global AnimSprite_LvupStatupfx3_08B9E01C
+AnimSprite_LvupStatupfx3_08B9E01C:
 	.incbin "baserom.gba", 0xb9e01c, 0x18
 
-	.global gUnk_08B9E034
-gUnk_08B9E034:
+	.global AnimSprite_LvupStatupfx3_08B9E034
+AnimSprite_LvupStatupfx3_08B9E034:
 	.incbin "baserom.gba", 0xb9e034, 0x18
 
-	.global gUnk_08B9E04C
-gUnk_08B9E04C:
+	.global AnimSprite_LvupStatupfx3_08B9E04C
+AnimSprite_LvupStatupfx3_08B9E04C:
 	.incbin "baserom.gba", 0xb9e04c, 0x18
 
-	.global gUnk_08B9E064
-gUnk_08B9E064:
+	.global AnimSprite_LvupStatupfx5_08B9E064
+AnimSprite_LvupStatupfx5_08B9E064:
 	.incbin "baserom.gba", 0xb9e064, 0x18
 
-	.global gUnk_08B9E07C
-gUnk_08B9E07C:
+	.global AnimSprite_LvupStatupfx5_08B9E07C
+AnimSprite_LvupStatupfx5_08B9E07C:
 	.incbin "baserom.gba", 0xb9e07c, 0x18
 
-	.global gUnk_08B9E094
-gUnk_08B9E094:
+	.global AnimSprite_LvupStatupfx5_08B9E094
+AnimSprite_LvupStatupfx5_08B9E094:
 	.incbin "baserom.gba", 0xb9e094, 0x18
 
-	.global gUnk_08B9E0AC
-gUnk_08B9E0AC:
+	.global AnimSprite_LvupStatupfx5_08B9E0AC
+AnimSprite_LvupStatupfx5_08B9E0AC:
 	.incbin "baserom.gba", 0xb9e0ac, 0x18
 
-	.global gUnk_08B9E0C4
-gUnk_08B9E0C4:
+	.global AnimSprite_LvupStatupfx5_08B9E0C4
+AnimSprite_LvupStatupfx5_08B9E0C4:
 	.incbin "baserom.gba", 0xb9e0c4, 0x18
 
-	.global gUnk_08B9E0DC
-gUnk_08B9E0DC:
+	.global AnimSprite_LvupStatupfx5_08B9E0DC
+AnimSprite_LvupStatupfx5_08B9E0DC:
 	.incbin "baserom.gba", 0xb9e0dc, 0x18
 
-	.global gUnk_08B9E0F4
-gUnk_08B9E0F4:
+	.global AnimSprite_LvupStatupfx5_08B9E0F4
+AnimSprite_LvupStatupfx5_08B9E0F4:
 	.incbin "baserom.gba", 0xb9e0f4, 0x18
 
-	.global gUnk_08B9E10C
-gUnk_08B9E10C:
+	.global AnimSprite_LvupStatupfx5_08B9E10C
+AnimSprite_LvupStatupfx5_08B9E10C:
 	.incbin "baserom.gba", 0xb9e10c, 0x18
 
-	.global gUnk_08B9E124
-gUnk_08B9E124:
+	.global AnimSprite_LvupStatupfx5_08B9E124
+AnimSprite_LvupStatupfx5_08B9E124:
 	.incbin "baserom.gba", 0xb9e124, 0x18
 
-	.global gUnk_08B9E13C
-gUnk_08B9E13C:
+	.global AnimSprite_LvupStatupfx5_08B9E13C
+AnimSprite_LvupStatupfx5_08B9E13C:
 	.incbin "baserom.gba", 0xb9e13c, 0x18
 
-	.global gUnk_08B9E154
-gUnk_08B9E154:
+	.global AnimSprite_LvupStatupfx3_08B9E154
+AnimSprite_LvupStatupfx3_08B9E154:
 	.incbin "baserom.gba", 0xb9e154, 0xc
 
-	.global gUnk_08B9E160
-gUnk_08B9E160:
+	.global AnimSprite_LvupStatupObj_08B9E160
+AnimSprite_LvupStatupObj_08B9E160:
 	.incbin "baserom.gba", 0xb9e160, 0x24
 
-	.global gUnk_08B9E184
-gUnk_08B9E184:
+	.global AnimSprite_LvupStatupObj_08B9E184
+AnimSprite_LvupStatupObj_08B9E184:
 	.incbin "baserom.gba", 0xb9e184, 0x24
 
-	.global gUnk_08B9E1A8
-gUnk_08B9E1A8:
+	.global AnimSprite_LvupStatupObj_08B9E1A8
+AnimSprite_LvupStatupObj_08B9E1A8:
 	.incbin "baserom.gba", 0xb9e1a8, 0x24
 
-	.global gUnk_08B9E1CC
-gUnk_08B9E1CC:
+	.global AnimSprite_LvupStatupObj_08B9E1CC
+AnimSprite_LvupStatupObj_08B9E1CC:
 	.incbin "baserom.gba", 0xb9e1cc, 0x24
 
-	.global gUnk_08B9E1F0
-gUnk_08B9E1F0:
+	.global AnimSprite_LvupStatupObj_08B9E1F0
+AnimSprite_LvupStatupObj_08B9E1F0:
 	.incbin "baserom.gba", 0xb9e1f0, 0x24
 
-	.global gUnk_08B9E214
-gUnk_08B9E214:
+	.global AnimSprite_LvupStatupObj_08B9E214
+AnimSprite_LvupStatupObj_08B9E214:
 	.incbin "baserom.gba", 0xb9e214, 0x18
 
-	.global gUnk_08B9E22C
-gUnk_08B9E22C:
+	.global AnimSprite_LvupStatupObj_08B9E22C
+AnimSprite_LvupStatupObj_08B9E22C:
 	.incbin "baserom.gba", 0xb9e22c, 0x24
 
-	.global gUnk_08B9E250
-gUnk_08B9E250:
+	.global AnimSprite_LvupStatupObj_08B9E250
+AnimSprite_LvupStatupObj_08B9E250:
 	.incbin "baserom.gba", 0xb9e250, 0x24
 
-	.global gUnk_08B9E274
-gUnk_08B9E274:
+	.global AnimSprite_LvupStatupObj_08B9E274
+AnimSprite_LvupStatupObj_08B9E274:
 	.incbin "baserom.gba", 0xb9e274, 0x24
 
-	.global gUnk_08B9E298
-gUnk_08B9E298:
+	.global AnimSprite_LvupStatupObj_08B9E298
+AnimSprite_LvupStatupObj_08B9E298:
 	.incbin "baserom.gba", 0xb9e298, 0x24
 
 	.global AnimScr_LvupStatupfx1
 AnimScr_LvupStatupfx1:
-	.4byte gUnk_08B9DAC4 + 0x2
-	.4byte gUnk_08B9DAF4 + 0x2
-	.4byte gUnk_08B9DB3C + 0x2
-	.4byte gUnk_08B9DB90 + 0x2
-	.4byte gUnk_08B9DBE4 + 0x2
-	.4byte gUnk_08B9DC38 + 0x2
-	.4byte gUnk_08B9DC8C + 0x2
-	.4byte gUnk_08B9DCE0 + 0x2
-	.4byte gUnk_08B9DD34 + 0x2
-	.4byte gUnk_08B9DD88 + 0x2
-	.4byte gUnk_08B9DDDC + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DAC4 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DAF4 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DB3C + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DB90 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DBE4 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DC38 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DC8C + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DCE0 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DD34 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DD88 + 0x2
+	.4byte AnimSprite_LvupStatupfx1_08B9DDDC + 0x2
 	.incbin "baserom.gba", 0xb9e2e8, 0x4
 
 	.global AnimScr_LvupStatupfx2
 AnimScr_LvupStatupfx2:
-	.4byte gUnk_08B9DE30 + 0x1
-	.4byte gUnk_08B9DE54 + 0x1
-	.4byte gUnk_08B9DE84 + 0x1
-	.4byte gUnk_08B9DEB4 + 0x2
-	.4byte gUnk_08B9DEE4 + 0x2
-	.4byte gUnk_08B9DF14 + 0x3
-	.4byte gUnk_08B9DEE4 + 0x2
-	.4byte gUnk_08B9DF44 + 0x2
-	.4byte gUnk_08B9DF74 + 0x1
-	.4byte gUnk_08B9DFA4 + 0x60000000
-	.4byte gUnk_08B9DFD4 + 0x20000000
+	.4byte AnimSprite_LvupStatupfx2_08B9DE30 + 0x1
+	.4byte AnimSprite_LvupStatupfx2_08B9DE54 + 0x1
+	.4byte AnimSprite_LvupStatupfx2_08B9DE84 + 0x1
+	.4byte AnimSprite_LvupStatupfx2_08B9DEB4 + 0x2
+	.4byte AnimSprite_LvupStatupfx2_08B9DEE4 + 0x2
+	.4byte AnimSprite_LvupStatupfx2_08B9DF14 + 0x3
+	.4byte AnimSprite_LvupStatupfx2_08B9DEE4 + 0x2
+	.4byte AnimSprite_LvupStatupfx2_08B9DF44 + 0x2
+	.4byte AnimSprite_LvupStatupfx2_08B9DF74 + 0x1
+	.4byte AnimSprite_LvupStatupfx2_08B9DFA4 + 0x60000000
+	.4byte AnimSprite_LvupStatupfx2_08B9DFD4 + 0x20000000
 	.incbin "baserom.gba", 0xb9e318, 0x4
 
 	.global AnimScr_LvupStatupfx3
 AnimScr_LvupStatupfx3:
-	.4byte gUnk_08B9E004 + 0x1
-	.4byte gUnk_08B9E01C + 0x60000000
-	.4byte gUnk_08B9E034 + 0x20000000
+	.4byte AnimSprite_LvupStatupfx3_08B9E004 + 0x1
+	.4byte AnimSprite_LvupStatupfx3_08B9E01C + 0x60000000
+	.4byte AnimSprite_LvupStatupfx3_08B9E034 + 0x20000000
 	.incbin "baserom.gba", 0xb9e328, 0x4
-	.4byte gUnk_08B9E154 + 0x30000003
-	.4byte gUnk_08B9E04C + 0x1
+	.4byte AnimSprite_LvupStatupfx3_08B9E154 + 0x30000003
+	.4byte AnimSprite_LvupStatupfx3_08B9E04C + 0x1
 	.incbin "baserom.gba", 0xb9e334, 0x4
 
 	.global AnimScr_LvupStatupfx5
 AnimScr_LvupStatupfx5:
-	.4byte gUnk_08B9E154 + 0x1
-	.4byte gUnk_08B9E04C + 0x10000000
+	.4byte AnimSprite_LvupStatupfx3_08B9E154 + 0x1
+	.4byte AnimSprite_LvupStatupfx3_08B9E04C + 0x10000000
 	.incbin "baserom.gba", 0xb9e340, 0x4
-	.4byte gUnk_08B9E064 + 0x1
-	.4byte gUnk_08B9E07C + 0x1
-	.4byte gUnk_08B9E094 + 0x1
-	.4byte gUnk_08B9E0AC + 0x2
-	.4byte gUnk_08B9E0C4 + 0x2
-	.4byte gUnk_08B9E0DC + 0x3
-	.4byte gUnk_08B9E0C4 + 0x2
-	.4byte gUnk_08B9E0F4 + 0x2
-	.4byte gUnk_08B9E10C + 0x1
-	.4byte gUnk_08B9E124 + 0x60000000
-	.4byte gUnk_08B9E13C + 0x20000000
+	.4byte AnimSprite_LvupStatupfx5_08B9E064 + 0x1
+	.4byte AnimSprite_LvupStatupfx5_08B9E07C + 0x1
+	.4byte AnimSprite_LvupStatupfx5_08B9E094 + 0x1
+	.4byte AnimSprite_LvupStatupfx5_08B9E0AC + 0x2
+	.4byte AnimSprite_LvupStatupfx5_08B9E0C4 + 0x2
+	.4byte AnimSprite_LvupStatupfx5_08B9E0DC + 0x3
+	.4byte AnimSprite_LvupStatupfx5_08B9E0C4 + 0x2
+	.4byte AnimSprite_LvupStatupfx5_08B9E0F4 + 0x2
+	.4byte AnimSprite_LvupStatupfx5_08B9E10C + 0x1
+	.4byte AnimSprite_LvupStatupfx5_08B9E124 + 0x60000000
+	.4byte AnimSprite_LvupStatupfx5_08B9E13C + 0x20000000
 	.incbin "baserom.gba", 0xb9e370, 0x4
 
 	.global AnimScr_LvupStatupObj
 AnimScr_LvupStatupObj:
-	.4byte gUnk_08B9E160 + 0x10000000
-	.4byte gUnk_08B9E184 + 0x2
-	.4byte gUnk_08B9E1A8 + 0x1
-	.4byte gUnk_08B9E1CC + 0x1
-	.4byte gUnk_08B9E1F0 + 0x1
-	.4byte gUnk_08B9E214 + 0x1
-	.4byte gUnk_08B9E22C + 0x1
-	.4byte gUnk_08B9E250 + 0x1
-	.4byte gUnk_08B9E274 + 0x1
-	.4byte gUnk_08B9E298 + 0x1
-	.4byte gUnk_08B9E154 + 0x1
-	.4byte gUnk_08B9E04C + 0x10000000
+	.4byte AnimSprite_LvupStatupObj_08B9E160 + 0x10000000
+	.4byte AnimSprite_LvupStatupObj_08B9E184 + 0x2
+	.4byte AnimSprite_LvupStatupObj_08B9E1A8 + 0x1
+	.4byte AnimSprite_LvupStatupObj_08B9E1CC + 0x1
+	.4byte AnimSprite_LvupStatupObj_08B9E1F0 + 0x1
+	.4byte AnimSprite_LvupStatupObj_08B9E214 + 0x1
+	.4byte AnimSprite_LvupStatupObj_08B9E22C + 0x1
+	.4byte AnimSprite_LvupStatupObj_08B9E250 + 0x1
+	.4byte AnimSprite_LvupStatupObj_08B9E274 + 0x1
+	.4byte AnimSprite_LvupStatupObj_08B9E298 + 0x1
+	.4byte AnimSprite_LvupStatupfx3_08B9E154 + 0x1
+	.4byte AnimSprite_LvupStatupfx3_08B9E04C + 0x10000000
 	.incbin "baserom.gba", 0xb9e3a4, 0x4
 
 	.global gUnk_08B9E3A8

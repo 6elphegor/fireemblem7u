@@ -27,14 +27,14 @@ OAM offsets and mode offsets are relative.
 Source.  banim/NAME.s (not in git, like graphics/ and sound/) is the
 script as include/banim_script.inc macros, with the sheets by label:
 
-    banim_script gUnk_08E0981C
+    banim_script BanimScr_001_erlm_sw1
     banim_mode 1
     banim_cmd 0x3
     banim_frame 1, 0, gUnk_08E0A5B8, 0x0
     ...
     banim_end_mode
     ...
-    banim_modes gUnk_08E09D10
+    banim_modes BanimModes_001_erlm_sw1
 
 `extract` writes it from baserom.gba for every script placed in
 data/layout.txt (lines `rom ADDR SIZE build/banim/banim.o(.rodata.NAME)`;
