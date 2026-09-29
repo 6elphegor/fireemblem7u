@@ -57,7 +57,7 @@ int Get8(void);
 void StartBoxDialogueSimple(int x, int y, int msg, ProcPtr parent);
 bool IsTactFemale(void);
 void StartNoBoxTalk(ProcPtr parent);
-void StartTutorialCursors(int kind);
+void StartTutorialCursors(u8 const * list);
 void SetkeyStIgnoredMask(int mask);
 void StartEventWarpAnim(ProcPtr parent, int x, int y, s8 kind, s8 flag);
 void StartWarpEffect_08020A64(ProcPtr parent, int x, int y, s8 kind);
@@ -1310,16 +1310,16 @@ int sub_0800FD34(struct EventProc * proc)
 
 int EvtCmd_TutorialCursorsTargetMove(struct EventProc * proc)
 {
-    StartTutorialCursors(0);
+    StartTutorialCursors(NULL);
     return EVENT_CMDRET_CONTINUE;
 }
 
 int EvtCmd_TutorialCursors(struct EventProc * proc)
 {
     if (proc->script[1] == 0)
-        StartTutorialCursors(1);
+        StartTutorialCursors((u8 const *) 1);
     else
-        StartTutorialCursors(proc->script[1]);
+        StartTutorialCursors((u8 const *) proc->script[1]);
 
     return EVENT_CMDRET_CONTINUE;
 }

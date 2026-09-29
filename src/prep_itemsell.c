@@ -30,6 +30,9 @@ CONST_DATA struct ProcCmd gProcScr_PrepWMShopSell[] = {
     { 20, 0, FadeOutExists },
     { 2, 0, WmSell_OnEnd },
     { 0, 0, NULL },
+#if PLATFORM_GBA
+    // Not proc commands: the sprites of the item list's page numbers
+    // (gUnk_08CC4FA0 points at them), one object each (count, attr0-2).
     { 1, 0, (void *) 0x04064000 },
     { 1, 0, (void *) 0x04084000 },
     { 1, 0, (void *) 0x040A4000 },
@@ -39,7 +42,24 @@ CONST_DATA struct ProcCmd gProcScr_PrepWMShopSell[] = {
     { 1, 0, (void *) 0x04124000 },
     { 1, 0, (void *) 0x04144000 },
     { 1, 0, (void *) 0x04164000 },
+#endif
 };
+
+#if !PLATFORM_GBA
+// A host's proc commands are 16 bytes, not 8: the page number sprites that
+// follow the script on the GBA are their own halfword table here.
+const u16 gHostSprites_PrepPageNum[] = {
+    1, 0, 0x4000, 0x0406,
+    1, 0, 0x4000, 0x0408,
+    1, 0, 0x4000, 0x040A,
+    1, 0, 0x4000, 0x040C,
+    1, 0, 0x4000, 0x040E,
+    1, 0, 0x4000, 0x0410,
+    1, 0, 0x4000, 0x0412,
+    1, 0, 0x4000, 0x0414,
+    1, 0, 0x4000, 0x0416,
+};
+#endif
 
 void WmSell_DrawSupplyDialogueSpriteText(void)
 {

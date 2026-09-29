@@ -709,6 +709,11 @@ void StartPrepItemListScreenProc(struct Unit * unit, ProcPtr parent)
 }
 
 SECTION(".rodata.08CC4FA0")
+#if !PLATFORM_GBA
+// (the sprites after gProcScr_PrepWMShopSell on the GBA; see prep_itemsell.c)
+extern const u16 gHostSprites_PrepPageNum[];
+#define gProcScr_PrepWMShopSell (gHostSprites_PrepPageNum - 68)
+#endif
 const u16 * const gUnk_08CC4FA0[] = {
     &gProcScr_PrepWMShopSell[68],
     &gProcScr_PrepWMShopSell[72],

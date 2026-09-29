@@ -1,13 +1,5 @@
 #include "gbafe.h"
-
-struct SpellAssocEnt {
-    /* 00 */ u16 item;
-    /* 02 */ u16 unk02;
-    /* 04 */ s16 efx;
-    /* 06 */ u8 unk06[0x10 - 0x06];
-};
-
-extern struct SpellAssocEnt CONST_DATA gSpellAssocData[];
+#include "gbafe/spellassoc.h"
 
 extern s16 gEkrInitialHitSide;
 extern u16 gAnimRoundData[20];
@@ -173,7 +165,7 @@ s16 GetSpellAnimId(u16 jid, u16 weapon)
 {
     u16 ret;
     u16 item = GetItemIndex(weapon);
-    const struct SpellAssocEnt * it;
+    const struct SpellAssoc * it;
 
     for (it = gSpellAssocData; it->item != 0xFFFF; it++)
     {

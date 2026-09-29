@@ -16,6 +16,15 @@ int CONST_DATA sMaxExpLut[] =
 
 int GetUnitSupporterCount(struct Unit * unit)
 {
+#if !PLATFORM_GBA
+    // CanUnitSupportNow asks for the partner's total support level with
+    // GetUnitSupportUnit, which is NULL when the partner isn't in the army
+    // (the unit list asks for every unit).  The GBA then reads a character
+    // pointer from the BIOS region (open bus) and a count through it:
+    // garbage.  Count none.
+    if (unit == NULL)
+        return 0;
+#endif
     if (!UNIT_SUPPORT_DATA(unit))
         return 0;
 

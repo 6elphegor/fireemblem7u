@@ -957,6 +957,22 @@ void MoveActiveUnit(int x, int y)
     gActiveUnit->xPos = x;
     gActiveUnit->yPos = y;
 
+#if !PLATFORM_GBA
+    // An AI unit that died in its own battle is cleared before the AI's
+    // clean-up moves it here (CpPerform_Cleanup checks for that afterwards).
+    // The GBA reads its character number through NULL, from the BIOS region
+    // (open bus: the low byte of the last BIOS opcode fetched, not 0xCD), and
+    // adds the move to that number's stats.  Take it as not 0xCD, no stats.
+    if (gActiveUnit->pCharacterData == NULL)
+    {
+        gActiveUnit->state |= US_UNSELECTABLE;
+        if (GetUnitCurrentHp(gActiveUnit) != 0)
+            gActiveUnit->state &= ~US_HIDDEN;
+        UnitSyncMovement(gActiveUnit);
+        return;
+    }
+#endif
+
     if (UNIT_CHAR_ID(gActiveUnit) != 0xCD)
         gActiveUnit->state |= US_UNSELECTABLE;
     else
