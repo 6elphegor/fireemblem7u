@@ -57,9 +57,9 @@ extern struct GameOptionLayout CONST_DATA gGameOptionLayouts[];
 extern struct GameOption CONST_DATA gGameOptions[];
 extern u16 CONST_DATA gUnk_08CE58BE[];
 extern u16 CONST_DATA gSprite_ConfigurationUiHeader[];
-extern struct ProcCmd CONST_DATA gProcScr_RedrawConfigHelpText[];
+extern const struct ProcCmd gProcScr_RedrawConfigHelpText[];
 
-extern struct ProcCmd CONST_DATA gProcScr_DrawConfigUiSprites[];
+extern const struct ProcCmd gProcScr_DrawConfigUiSprites[];
 extern u16 const gUnk_0841E338[];
 extern u8 const gUnk_0841DA40[];
 extern u8 const gUnk_0841DCA4[];
@@ -699,3 +699,22 @@ void Config_SetSourceFromPrep(struct ConfigProc * proc)
 {
     proc->unk_37 = TRUE;
 }
+
+SECTION(".rodata.08CE5B98")
+const struct ProcCmd gProcScr_RedrawConfigHelpText[] = {
+    PROC_19,
+    PROC_SLEEP(1),
+    PROC_CALL(DrawGameOptionHelpText),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE5BB8")
+const struct ProcCmd gProcScr_DrawConfigUiSprites[] = {
+    PROC_19,
+    PROC_CALL(ConfigSprites_Init),
+    PROC_LABEL(0),
+    PROC_CALL(DrawConfigUiSprites),
+    PROC_SLEEP(0),
+    PROC_GOTO(0),
+    PROC_END,
+};

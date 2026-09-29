@@ -5,29 +5,29 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxFire[];
+extern const struct ProcCmd ProcScr_efxFire[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxFireBG[];
+extern const struct ProcCmd ProcScr_efxFireBG[];
 extern u16 Pal_FireSpellBg[];
 extern u16 Img_FireSpellBg[];
-extern struct ProcCmd ProcScr_efxFireOBJ[];
+extern const struct ProcCmd ProcScr_efxFireOBJ[];
 extern AnimScr AnimScr_EfxFireOBJ_R_Front[];
 extern AnimScr AnimScr_EfxFireOBJ_L_Front[];
 extern u32 AnimScr_EfxFireOBJ_R_Back[];
 extern u32 AnimScr_EfxFireOBJ_L_Back[];
 extern u16 Pal_FireSpellSprites[];
 extern u16 Img_FireSpellSprites[];
-extern struct ProcCmd ProcScr_efxFireHITBG[];
+extern const struct ProcCmd ProcScr_efxFireHITBG[];
 extern const u16 FrameConfig_AnimaHitBG[];
 extern u16 * TsaLut_AnimaHitBG[];
 extern u16 * ImgLut_AnimaHitBG[];
 extern u16 Pal_EfxFireHitBG[];
-extern struct ProcCmd ProcScr_efxElfireBG[];
+extern const struct ProcCmd ProcScr_efxElfireBG[];
 extern u16 Img_EkrElfireBG[];
 extern u16 Tsa_EkrElfireBG[];
-extern struct ProcCmd ProcScr_efxElfireBGCOL[];
+extern const struct ProcCmd ProcScr_efxElfireBGCOL[];
 extern u16 Pal_EkrElfireBG[];
-extern struct ProcCmd ProcScr_efxElfireOBJ[];
+extern const struct ProcCmd ProcScr_efxElfireOBJ[];
 extern u32 AnimScr_EfxElfireObjLeft[];
 extern u32 AnimScr_EfxElfireObjRight[];
 extern u16 Pal_EfxElfireOBJ[];
@@ -374,3 +374,53 @@ void EfxElfireObj_Loop(struct ProcEfxOBJ * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BA1A54")
+const struct ProcCmd ProcScr_efxFire[] = {
+    PROC_19,
+    PROC_REPEAT(Loop6C_efxFire),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1A6C")
+const struct ProcCmd ProcScr_efxFireBG[] = {
+    PROC_19,
+    PROC_REPEAT(Loop6C_efxFireBG),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1AE4")
+const struct ProcCmd ProcScr_efxFireOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxFireOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1AFC")
+const struct ProcCmd ProcScr_efxFireHITBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxFireHITBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1BBC")
+const struct ProcCmd ProcScr_efxElfireBG[] = {
+    PROC_19,
+    PROC_REPEAT(EfxElfireBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1BD4")
+const struct ProcCmd ProcScr_efxElfireBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxElfireBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1BF4")
+const struct ProcCmd ProcScr_efxElfireOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxElfireObj_Loop),
+    PROC_END,
+};

@@ -11,20 +11,20 @@ EWRAM_DATA ProcPtr gpActiveCRSpellBgColorProc = NULL;
 
 extern SpellAnimFunc gClassReelSpellAnimFuncLut[];
 
-extern struct ProcCmd ProcScr_efxopFire[];
-extern struct ProcCmd ProcScr_efxopFireBG[];
-extern struct ProcCmd ProcScr_efxopFireOBJ[];
-extern struct ProcCmd ProcScr_efxopThunder[];
-extern struct ProcCmd ProcScr_efxopThunderBG[];
-extern struct ProcCmd ProcScr_efxopThunderBGCOL[];
-extern struct ProcCmd ProcScr_efxopThunderOBJ[];
-extern struct ProcCmd ProcScr_efxopLive[];
-extern struct ProcCmd ProcScr_efxopLiveBG[];
-extern struct ProcCmd ProcScr_efxopLiveBGCOL[];
-extern struct ProcCmd ProcScr_efxopLiveALPHA[];
-extern struct ProcCmd ProcScr_efxopLiveOBJ[];
-extern struct ProcCmd ProcScr_efxopLightning[];
-extern struct ProcCmd ProcScr_efxopLightningBG[];
+extern const struct ProcCmd ProcScr_efxopFire[];
+extern const struct ProcCmd ProcScr_efxopFireBG[];
+extern const struct ProcCmd ProcScr_efxopFireOBJ[];
+extern const struct ProcCmd ProcScr_efxopThunder[];
+extern const struct ProcCmd ProcScr_efxopThunderBG[];
+extern const struct ProcCmd ProcScr_efxopThunderBGCOL[];
+extern const struct ProcCmd ProcScr_efxopThunderOBJ[];
+extern const struct ProcCmd ProcScr_efxopLive[];
+extern const struct ProcCmd ProcScr_efxopLiveBG[];
+extern const struct ProcCmd ProcScr_efxopLiveBGCOL[];
+extern const struct ProcCmd ProcScr_efxopLiveALPHA[];
+extern const struct ProcCmd ProcScr_efxopLiveOBJ[];
+extern const struct ProcCmd ProcScr_efxopLightning[];
+extern const struct ProcCmd ProcScr_efxopLightningBG[];
 
 extern u16 * TsaArray_Fire_ClassReel[];
 extern u16 * TsaArray_Thunder_ClassReel[];
@@ -673,3 +673,112 @@ void sub_08064A2C(void)
 {
     gEkrDragonStatusLeft.type |= 1;
 }
+
+SECTION(".rodata.08BA47F8")
+const struct ProcCmd ProcScr_efxopFire[] = {
+    PROC_19,
+    PROC_REPEAT(efxopFire_Loop_Main),
+    PROC_SLEEP(50),
+    PROC_CALL(EndActiveClassReelSpell),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4820")
+const struct ProcCmd ProcScr_efxopFireBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxopFireBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4868")
+const struct ProcCmd ProcScr_efxopFireOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxopFireOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4880")
+const struct ProcCmd ProcScr_efxopThunder[] = {
+    PROC_19,
+    PROC_REPEAT(efxopThunder_Loop_Main),
+    PROC_SLEEP(50),
+    PROC_CALL(EndActiveClassReelSpell),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA48A8")
+const struct ProcCmd ProcScr_efxopThunderBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxopThunderBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA48C8")
+const struct ProcCmd ProcScr_efxopThunderBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxopThunderBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA48E8")
+const struct ProcCmd ProcScr_efxopThunderOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxopThunderOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4900")
+const struct ProcCmd ProcScr_efxopLive[] = {
+    PROC_19,
+    PROC_REPEAT(efxopLive_Loop_Main),
+    PROC_SLEEP(70),
+    PROC_CALL(EndActiveClassReelSpell),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4928")
+const struct ProcCmd ProcScr_efxopLiveBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxopLiveBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4944")
+const struct ProcCmd ProcScr_efxopLiveBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxopLiveBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4964")
+const struct ProcCmd ProcScr_efxopLiveALPHA[] = {
+    PROC_19,
+    PROC_REPEAT(efxopLiveALPHA_Loop_A),
+    PROC_REPEAT(efxopLiveALPHA_Loop_B),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4984")
+const struct ProcCmd ProcScr_efxopLiveOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxopLiveOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA499C")
+const struct ProcCmd ProcScr_efxopLightning[] = {
+    PROC_19,
+    PROC_REPEAT(efxopLightning_Loop_Main),
+    PROC_SLEEP(50),
+    PROC_CALL(EndActiveClassReelSpell),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA49C4")
+const struct ProcCmd ProcScr_efxopLightningBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxopLightningBG_Loop),
+    PROC_END,
+};

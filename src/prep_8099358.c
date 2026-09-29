@@ -61,7 +61,7 @@ extern u16 Pal_081D72A4[];
 extern u16 Pal_081D7B20[];
 extern u8 Tsa_0840EA38[];
 extern u16 const * CONST_DATA gUnk_08CC5100[];
-extern struct ProcCmd CONST_DATA ProcScr_08CC5114[];
+extern const struct ProcCmd ProcScr_08CC5114[];
 extern int CONST_DATA gUnk_08CC50C0[];
 extern int CONST_DATA gUnk_08CC51C4[];
 extern int CONST_DATA gUnk_08CC51AC[];
@@ -95,7 +95,7 @@ struct PrepDivinationFlashProc {
     /* 2C */ u16 pal[15];
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_08CC5760[];
+extern const struct ProcCmd ProcScr_08CC5760[];
 
 int GetGold(void);
 
@@ -1173,3 +1173,22 @@ void sub_0809B02C(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_08CC5760, parent);
 }
+
+SECTION(".rodata.08CC5114")
+const struct ProcCmd ProcScr_08CC5114[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08099400),
+    PROC_REPEAT(sub_08099408),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC5760")
+const struct ProcCmd ProcScr_08CC5760[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0809AEBC),
+    PROC_REPEAT(sub_0809AEFC),
+    PROC_SLEEP(16),
+    PROC_REPEAT(sub_0809AF94),
+    PROC_SLEEP(30),
+    PROC_END,
+};

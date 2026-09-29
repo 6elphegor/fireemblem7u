@@ -36,11 +36,11 @@ struct SaveMenuHelpProc {
     /* 58 */ int msgId;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_08CE3C24[];
-extern struct ProcCmd CONST_DATA ProcScr_SaveMenu[];
-extern struct ProcCmd CONST_DATA ProcScr_08CE3F24[];
-extern struct ProcCmd CONST_DATA ProcScr_08CE4034[];
-extern struct ProcCmd CONST_DATA ProcScr_08CC51D0[];
+extern const struct ProcCmd ProcScr_08CE3C24[];
+extern const struct ProcCmd ProcScr_SaveMenu[];
+extern const struct ProcCmd ProcScr_08CE3F24[];
+extern const struct ProcCmd ProcScr_08CE4034[];
+extern const struct ProcCmd ProcScr_08CC51D0[];
 
 ProcPtr StartSoundRoomScreen(ProcPtr parent);
 void StartSupportScreen(ProcPtr parent);
@@ -1357,3 +1357,224 @@ void SaveMenu_SetDifficultyChoice(s32 a, s32 b)
         proc->unk_3D = b;
     }
 }
+
+void IsMusicProc2Running();
+void sub_080998B4();
+void sub_08099AC0();
+void sub_08099FA0();
+void sub_0809A024();
+void sub_0809A280();
+void sub_0809A378();
+void sub_0809A404();
+void sub_0809A560();
+void sub_0809A650();
+void sub_0809A6C0();
+void sub_0809A824();
+void sub_080A8664();
+
+SECTION(".rodata.08CC51D0")
+const struct ProcCmd ProcScr_08CC51D0[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08099AC0),
+    PROC_CALL(sub_08099FA0),
+    PROC_CALL(sub_0809A024),
+    PROC_CALL(StartMidFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_LABEL(4),
+    PROC_REPEAT(sub_0809A280),
+    PROC_LABEL(1),
+    PROC_CALL(sub_0809A378),
+    PROC_SLEEP(0),
+    PROC_WHILE(CgTextExists),
+    PROC_GOTO(4),
+    PROC_LABEL(2),
+    PROC_CALL(sub_0809A404),
+    PROC_REPEAT(sub_0809A560),
+    PROC_CALL(sub_0809A650),
+    PROC_CALL(sub_0809A024),
+    PROC_REPEAT(sub_0809A6C0),
+    PROC_GOTO(4),
+    PROC_LABEL(3),
+    PROC_CALL(StartMidFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(sub_080998B4),
+    PROC_CALL(sub_0809A824),
+    PROC_SLEEP(0),
+    PROC_GOTO(4),
+    PROC_LABEL(0),
+    PROC_CALL(StartMidFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(sub_080998B4),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE3C24")
+const struct ProcCmd ProcScr_08CE3C24[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080A47B4),
+    PROC_SLEEP(8),
+    PROC_REPEAT(sub_080A47EC),
+    PROC_SLEEP(8),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE3C54")
+const struct ProcCmd ProcScr_SaveMenu[] = {
+    PROC_19,
+    PROC_LABEL(0),
+    PROC_SLEEP(0),
+    PROC_CALL(SaveMenu_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(ProcSaveMenu_InitScreen),
+    PROC_CALL(SaveMenu_LoadExtraMenuGraphics),
+    PROC_SLEEP(0),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_SLEEP(0),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_CALL(SaveMenu_080A465C),
+    PROC_LABEL(2),
+    PROC_REPEAT(Loop6C_savemenu),
+    PROC_GOTO(15),
+    PROC_LABEL(1),
+    PROC_CALL(SaveMenu_ResetLcdFormDifficulty),
+    PROC_REPEAT(sub_080A4C34),
+    PROC_CALL(sub_080A8664),
+    PROC_SLEEP(0),
+    PROC_CALL(SaveMenu_ReloadScreenFormDifficulty),
+    PROC_CALL(SaveMenu_ResetLcdFormDifficulty),
+    PROC_REPEAT(sub_080A4BD8),
+    PROC_CALL(SaveMenu_PostDifficultHandler),
+    PROC_LABEL(5),
+    PROC_CALL(SaveMenuSlotSelDrawSprite),
+    PROC_SLEEP(0),
+    PROC_REPEAT(SaveMenu_SaveSlotSelectLoop),
+    PROC_GOTO(15),
+    PROC_LABEL(7),
+    PROC_SLEEP(5),
+    PROC_CALL(_ExecSaveMenuMiscOption),
+    PROC_GOTO(5),
+    PROC_LABEL(6),
+    PROC_SLEEP(1),
+    PROC_CALL(SaveMenuRegisterSlotSelected),
+    PROC_SLEEP(1),
+    PROC_REPEAT(SaveMenuWaitSlotBoxScrolling),
+    PROC_GOTO(5),
+    PROC_LABEL(3),
+    PROC_REPEAT(SaveMenuScrollSlot),
+    PROC_GOTO(5),
+    PROC_LABEL(4),
+    PROC_CALL(SaveMenu_EndHelpPromptSprite),
+    PROC_REPEAT(SaveMenuScrollBackToMain),
+    PROC_GOTO(2),
+    PROC_LABEL(8),
+    PROC_REPEAT(sub_080A4478),
+    PROC_LABEL(9),
+    PROC_REPEAT(sub_080A44C0),
+    PROC_LABEL(12),
+    PROC_REPEAT(sub_080A4504),
+    PROC_LABEL(13),
+    PROC_REPEAT(sub_080A4554),
+    PROC_LABEL(10),
+    PROC_REPEAT(sub_080A45A0),
+    PROC_LABEL(11),
+    PROC_CALL(SaveMenuStartBonusClaim),
+    PROC_SLEEP(0),
+    PROC_REPEAT(sub_080A4850),
+    PROC_LABEL(14),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_WHILE(IsMusicProc2Running),
+    PROC_CALL(SaveMenuStartExtraMiscScreen),
+    PROC_SLEEP(0),
+    PROC_CALL(SaveMenu_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(ProcSaveMenu_InitScreen),
+    PROC_CALL(SaveMenu_LoadExtraMenuGraphics),
+    PROC_SLEEP(0),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_WHILE(IsMusicProc2Running),
+    PROC_CALL(SaveMenuPostExtraMiscScreen),
+    PROC_LABEL(21),
+    PROC_BLOCK,
+    PROC_LABEL(18),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_GOTO(15),
+    PROC_LABEL(17),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(15),
+    PROC_SLEEP(0),
+    PROC_CALL(PostSaveMenuHandler),
+    PROC_SLEEP(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE3F24")
+const struct ProcCmd ProcScr_08CE3F24[] = {
+    PROC_19,
+    PROC_SLEEP(0),
+    PROC_CALL(SaveMenuInit),
+    PROC_CALL(SaveMenu_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(ProcSaveMenu_InitScreen),
+    PROC_SLEEP(0),
+    PROC_CALL(SaveMenuDirectlySelectSlotOnPrepScreen),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_GOTO(5),
+    PROC_LABEL(20),
+    PROC_CALL_ARG(NewFadeIn, 4),
+    PROC_WHILE(FadeInExists),
+    PROC_LABEL(5),
+    PROC_REPEAT(SaveMenu_SaveSlotSelectLoop),
+    PROC_GOTO(15),
+    PROC_LABEL(6),
+    PROC_SLEEP(1),
+    PROC_CALL(SaveMenuRegisterSlotSelected),
+    PROC_SLEEP(1),
+    PROC_REPEAT(SaveMenuWaitSlotBoxScrolling),
+    PROC_GOTO(5),
+    PROC_LABEL(18),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_GOTO(15),
+    PROC_LABEL(17),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(15),
+    PROC_SLEEP(0),
+    PROC_CALL(PostSaveMenuHandler),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE4034")
+const struct ProcCmd ProcScr_08CE4034[] = {
+    PROC_19,
+    PROC_SLEEP(0),
+    PROC_CALL(SaveMenuInitUnused),
+    PROC_CALL(SaveMenu_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(ProcSaveMenu_InitScreen),
+    PROC_SLEEP(0),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_SLEEP(0),
+    PROC_LABEL(5),
+    PROC_REPEAT(SaveMenu_SaveSlotSelectLoop),
+    PROC_GOTO(15),
+    PROC_LABEL(18),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_GOTO(15),
+    PROC_LABEL(17),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(15),
+    PROC_SLEEP(0),
+    PROC_CALL(PostSaveMenuHandler),
+    PROC_END,
+};

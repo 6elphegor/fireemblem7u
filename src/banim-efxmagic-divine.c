@@ -5,9 +5,9 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxDivine[];
+extern const struct ProcCmd ProcScr_efxDivine[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxDivineBG[];
+extern const struct ProcCmd ProcScr_efxDivineBG[];
 extern u16 * TsaArray_DivineBg[];
 extern u16 * ImgArray_DivineBg[];
 extern u16 Pal_DivineBg[];
@@ -16,7 +16,7 @@ extern u16 * ImgArray_DivineBg2[];
 extern u16 * TsaArray_DivineBg3[];
 extern u16 * ImgArray_DivineBg3[];
 extern u16 Pal_DivineBg3[];
-extern struct ProcCmd ProcScr_efxDivineOBJ[];
+extern const struct ProcCmd ProcScr_efxDivineOBJ[];
 extern u32 AnimScr_EfxDevineOBJ[];
 extern u16 Pal_DivineSprites[];
 extern u16 Img_DivineSprites[];
@@ -320,3 +320,24 @@ void efxDivineOBJ_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA29A8")
+const struct ProcCmd ProcScr_efxDivine[] = {
+    PROC_19,
+    PROC_REPEAT(efxDivine_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA29C0")
+const struct ProcCmd ProcScr_efxDivineBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxDivineBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2B38")
+const struct ProcCmd ProcScr_efxDivineOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxDivineOBJ_Loop),
+    PROC_END,
+};

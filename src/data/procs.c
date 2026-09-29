@@ -7,6 +7,7 @@
 #include "gbafe/bmtrap.h"
 #include "gbafe/sio_core.h"
 #include "gbafe/unitlistscreen.h"
+#include "gbafe/cgtext.h"
 
 void BackToUnitMenu_CamWatch();
 void BackToUnitMenu_RestartMenu();
@@ -24,6 +25,40 @@ void TalkOpen_PutTalkBubble();
 extern const struct ProcCmd gProcScr_ADJUSTSFROMXI[];
 void sub_0807CC38();
 void sub_0808A92C();
+
+void Arena_PlayArenaSong();
+void Arena_PlayResultSong();
+void LAUnitDeaths_EndMu();
+void LAUnitDeaths_FindNextAndStart();
+void LAUnitDeaths_Init();
+void LAUnitDeaths_OnEnd();
+extern const struct ProcCmd ProcScr_08CC5760[];
+void sub_08099684();
+void sub_08099728();
+void sub_08099858();
+void sub_080998B4();
+void sub_080998D8();
+void sub_08099928();
+void sub_0809A9A8();
+void sub_0809AB38();
+void sub_0809AB7C();
+void sub_0809ABC0();
+void sub_0809AC20();
+void sub_0809AC7C();
+void sub_0809AC9C();
+void sub_0809ACFC();
+void sub_0809AD20();
+void sub_0809AD64();
+void sub_0809ADC0();
+void sub_0809ADE4();
+void sub_0809AE40();
+void sub_0809AE84();
+void sub_0809AEA0();
+void sub_0809C12C();
+void sub_0809C154();
+void sub_0809C3F4();
+void sub_0809C41C();
+void sub_0809C44C();
 
 SECTION(".rodata.08B90B9C")
 const struct ProcCmd gProcScr_TalkOpen[] = {
@@ -360,5 +395,119 @@ const struct ProcCmd ProcScr_UnitListScreen_PrepMenu[] = {
 SECTION(".rodata.08CE7280")
 const struct ProcCmd gProcScr_GoldBox[] = {
     PROC_REPEAT(GoldBox_OnLoop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B99CD8")
+const struct ProcCmd gUnk_08B99CD8[] = {
+    PROC_CALL(LAUnitDeaths_Init),
+    PROC_LABEL(0),
+    PROC_CALL(LAUnitDeaths_FindNextAndStart),
+    PROC_SLEEP(32),
+    PROC_CALL(LAUnitDeaths_EndMu),
+    PROC_GOTO(0),
+    PROC_LABEL(1),
+    PROC_CALL(LAUnitDeaths_OnEnd),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC5134")
+const struct ProcCmd gUnk_08CC5134[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08099684),
+    PROC_CALL(sub_08099728),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_SLEEP(30),
+    PROC_CALL(sub_08099858),
+    PROC_CALL(sub_08099928),
+    PROC_SLEEP(0),
+    PROC_REPEAT(sub_080998D8),
+    PROC_LABEL(0),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(sub_080998B4),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC55A8")
+const struct ProcCmd gUnk_08CC55A8[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0809A9A8),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_CALL(sub_0809AB38),
+    PROC_WHILE(sub_808FFFC),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_CALL(sub_0809AD64),
+    PROC_LABEL(0),
+    PROC_CALL(sub_808F2A0),
+    PROC_CALL(sub_0809AE84),
+    PROC_WHILE(CgTextExists),
+    PROC_START_CHILD_BLOCKING(ProcScr_08CC5760),
+    PROC_SLEEP(16),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_CALL(sub_0809AB7C),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0809AD20),
+    PROC_WHILE(sub_808FFFC),
+    PROC_CALL(sub_0809ADC0),
+    PROC_LABEL(2),
+    PROC_CALL(sub_808F2A0),
+    PROC_WHILE(CgTextExists),
+    PROC_CALL(sub_0809AE40),
+    PROC_WHILE(sub_808FFFC),
+    PROC_GOTO(5),
+    PROC_LABEL(1),
+    PROC_CALL(sub_808F2A0),
+    PROC_WHILE(CgTextExists),
+    PROC_CALL(sub_0809ADE4),
+    PROC_WHILE(sub_808FFFC),
+    PROC_GOTO(5),
+    PROC_LABEL(3),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_CALL(sub_0809ABC0),
+    PROC_WHILE(CgTextExists),
+    PROC_GOTO(5),
+    PROC_LABEL(4),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_CALL(sub_0809AC20),
+    PROC_WHILE(CgTextExists),
+    PROC_SLEEP(30),
+    PROC_CALL(sub_0809AC7C),
+    PROC_SLEEP(8),
+    PROC_CALL(sub_0809AC9C),
+    PROC_WHILE(CgTextExists),
+    PROC_GOTO(5),
+    PROC_LABEL(5),
+    PROC_CALL(sub_0809AEA0),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(sub_0809ACFC),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC58E4")
+const struct ProcCmd gUnk_08CC58E4[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0809C12C),
+    PROC_CALL(sub_0809C154),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_CALL(sub_0809C41C),
+    PROC_REPEAT(sub_0809C44C),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(sub_0809C3F4),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE74EC")
+const struct ProcCmd gProcScr_ArenaUiResultBgm[] = {
+    PROC_CALL(Arena_PlayResultSong),
+    PROC_SLEEP(210),
+    PROC_CALL(Arena_PlayArenaSong),
     PROC_END,
 };

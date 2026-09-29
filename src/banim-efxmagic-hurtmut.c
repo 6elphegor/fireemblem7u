@@ -5,9 +5,9 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxHurtmut[];
+extern const struct ProcCmd ProcScr_efxHurtmut[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxHurtmutOBJ[];
+extern const struct ProcCmd ProcScr_efxHurtmutOBJ[];
 extern u32 AnimScr_EfxBindingBlade_Left[];
 extern u32 AnimScr_EfxBindingBlade_Right[];
 extern u16 Pal_FireBreathSprites[];
@@ -128,3 +128,17 @@ void efxHurtmutOBJ_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA1874")
+const struct ProcCmd ProcScr_efxHurtmut[] = {
+    PROC_19,
+    PROC_REPEAT(efxHurtmut_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA188C")
+const struct ProcCmd ProcScr_efxHurtmutOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxHurtmutOBJ_Loop),
+    PROC_END,
+};

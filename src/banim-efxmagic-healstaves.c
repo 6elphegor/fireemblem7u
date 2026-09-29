@@ -7,12 +7,12 @@ void RegisterEfxSpellCastEnd(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void sub_0805076C(void);
 void NewEfxFlashUnit(struct Anim * anim, u16 dura1, u16 dura2, int c);
-extern struct ProcCmd ProcScr_efxLive[];
-extern struct ProcCmd ProcScr_efxRelive[];
-extern struct ProcCmd ProcScr_efxRecover[];
-extern struct ProcCmd ProcScr_efxReblow[];
+extern const struct ProcCmd ProcScr_efxLive[];
+extern const struct ProcCmd ProcScr_efxRelive[];
+extern const struct ProcCmd ProcScr_efxRecover[];
+extern const struct ProcCmd ProcScr_efxReblow[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxLiveBG[];
+extern const struct ProcCmd ProcScr_efxLiveBG[];
 extern const u16 gUnknown_081E8CB0[];
 extern u16 * Tsa_HealSpellBg[];
 extern u16 Img_HealSpellBg[];
@@ -22,7 +22,7 @@ extern u16 * Tsa_EfxLiveBG_B_R[];
 extern u16 Img_EfxLiveBG_B[];
 extern const u16 gUnknown_081E8CB6[];
 extern const u16 gUnknown_081E8CC2[];
-extern struct ProcCmd ProcScr_efxLiveBGCOL[];
+extern const struct ProcCmd ProcScr_efxLiveBGCOL[];
 extern const u16 gUnknown_081E8CC8[];
 extern const u16 gUnknown_081E8D4C[];
 extern const u16 gUnknown_081E8D7E[];
@@ -30,35 +30,35 @@ extern u16 Pal_HealSpellBg[];
 extern u16 Pal_0826C934[];
 extern u16 Pal_0826C714[];
 extern const u16 gUnknown_081E8D0A[];
-extern struct ProcCmd ProcScr_efxLiveALPHA[];
-extern struct ProcCmd ProcScr_efxLiveOBJ[];
+extern const struct ProcCmd ProcScr_efxLiveALPHA[];
+extern const struct ProcCmd ProcScr_efxLiveOBJ[];
 extern AnimScr AnimScr_EfxLiveOBJ1[];
 extern u16 Pal_HealSprites_Sparkles[];
 extern u16 Img_HealSprites_Sparkles[];
-extern struct ProcCmd ProcScr_efxReserveOBJ[];
+extern const struct ProcCmd ProcScr_efxReserveOBJ[];
 extern u32 AnimScr_EfxLiveOBJ2[];
-extern struct ProcCmd ProcScr_efxReblowOBJ[];
+extern const struct ProcCmd ProcScr_efxReblowOBJ[];
 extern u32 AnimScr_EfxReblowOBJ_Right1[];
 extern u32 AnimScr_EfxReblowOBJ_Left1[];
 extern u32 AnimScr_EfxReblowOBJ_Right2[];
 extern u32 AnimScr_EfxReblowOBJ_Left2[];
-extern struct ProcCmd ProcScr_efxReserve[];
-extern struct ProcCmd ProcScr_efxReserveBG[];
+extern const struct ProcCmd ProcScr_efxReserve[];
+extern const struct ProcCmd ProcScr_efxReserveBG[];
 extern u16 * TsaArray_Fortify[];
-extern struct ProcCmd ProcScr_efxReserveBGCOL[];
+extern const struct ProcCmd ProcScr_efxReserveBGCOL[];
 extern u16 Pal_0826D3D4[];
 extern u16 Pal_0826D5D4[];
-extern struct ProcCmd ProcScr_efxReserveBG2[];
+extern const struct ProcCmd ProcScr_efxReserveBG2[];
 extern u16 * TsaArray_FortifyBg2[];
 extern struct Anim * gUnknown_02000010[2];
-extern struct ProcCmd ProcScr_efxReserveBGCOL2[];
+extern const struct ProcCmd ProcScr_efxReserveBGCOL2[];
 extern u16 Pal_0826D7D4[];
-extern struct ProcCmd ProcScr_efxRest[];
-extern struct ProcCmd ProcScr_efxRestBG[];
+extern const struct ProcCmd ProcScr_efxRest[];
+extern const struct ProcCmd ProcScr_efxRestBG[];
 extern u16 * TsaArray_RestoreBg[];
 extern u16 * ImgArray_RestoreBg[];
 extern u16 Pal_MapAnimRestore[];
-extern struct ProcCmd ProcScr_efxRestOBJ[];
+extern const struct ProcCmd ProcScr_efxRestOBJ[];
 extern u32 AnimScr_EfxRestOBJ[];
 extern u16 Pal_SleepSprites[];
 extern u16 Img_SleepSprites[];
@@ -1425,3 +1425,136 @@ void efxRestOBJ_Loop(void)
     gEfxBgSemaphore--;
     return;
 }
+
+SECTION(".rodata.08BA3070")
+const struct ProcCmd ProcScr_efxLive[] = {
+    PROC_19,
+    PROC_REPEAT(efxLive_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3088")
+const struct ProcCmd ProcScr_efxRelive[] = {
+    PROC_19,
+    PROC_REPEAT(efxRelive_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA30A0")
+const struct ProcCmd ProcScr_efxRecover[] = {
+    PROC_19,
+    PROC_REPEAT(efxRecover_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA30B8")
+const struct ProcCmd ProcScr_efxReblow[] = {
+    PROC_19,
+    PROC_REPEAT(efxReblow_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA30D0")
+const struct ProcCmd ProcScr_efxLiveBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxLiveBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA30E8")
+const struct ProcCmd ProcScr_efxLiveBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxLiveBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3108")
+const struct ProcCmd ProcScr_efxLiveALPHA[] = {
+    PROC_19,
+    PROC_REPEAT(efxLiveALPHA_Loop_A),
+    PROC_REPEAT(efxLiveALPHA_Loop_B),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3128")
+const struct ProcCmd ProcScr_efxLiveOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxLiveOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3140")
+const struct ProcCmd ProcScr_efxReserveOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxReserveOBJ_Loop_A),
+    PROC_REPEAT(efxReserveOBJ_Loop_B),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3160")
+const struct ProcCmd ProcScr_efxReblowOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxReblowOBJ_Loop_A),
+    PROC_REPEAT(efxReblowOBJ_Loop_B),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3180")
+const struct ProcCmd ProcScr_efxReserve[] = {
+    PROC_19,
+    PROC_REPEAT(efxReserve_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3198")
+const struct ProcCmd ProcScr_efxReserveBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxReserveBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA31C0")
+const struct ProcCmd ProcScr_efxReserveBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxReserveBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA31E0")
+const struct ProcCmd ProcScr_efxReserveBG2[] = {
+    PROC_19,
+    PROC_REPEAT(efxReserveBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA31FC")
+const struct ProcCmd ProcScr_efxReserveBGCOL2[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxReserveBGCOL2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA321C")
+const struct ProcCmd ProcScr_efxRest[] = {
+    PROC_19,
+    PROC_REPEAT(efxRest_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3234")
+const struct ProcCmd ProcScr_efxRestBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxRestBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA32B4")
+const struct ProcCmd ProcScr_efxRestOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxRestOBJ_Loop),
+    PROC_SLEEP(80),
+    PROC_END,
+};

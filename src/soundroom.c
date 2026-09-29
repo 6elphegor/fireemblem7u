@@ -76,10 +76,10 @@ extern struct Unknown_08A212DC * CONST_DATA gUnknown_08A212DC;
 extern s8 * CONST_DATA gSoundRoomShuffleBuffer;
 extern struct SoundInfo * CONST_DATA gpSoundInfo;
 
-extern struct ProcCmd CONST_DATA gProcScr_SoundRoomSongChange[];
-extern struct ProcCmd CONST_DATA gProcScr_VolumeGraphBuffer[];
-extern struct ProcCmd CONST_DATA ProcScr_SoundRoomUi[];
-extern struct ProcCmd CONST_DATA gProcScr_SoundRoomDrawSprites[];
+extern const struct ProcCmd gProcScr_SoundRoomSongChange[];
+extern const struct ProcCmd gProcScr_VolumeGraphBuffer[];
+extern const struct ProcCmd ProcScr_SoundRoomUi[];
+extern const struct ProcCmd gProcScr_SoundRoomDrawSprites[];
 
 extern u8 CONST_DATA Img_SoundRoomVolumeGraph[];
 extern u16 CONST_DATA Pal_SoundRoomVolumeGraph[];
@@ -1351,3 +1351,67 @@ void sub_080AC87C(int bg, ProcPtr parent)
         proc->bg = bg;
     }
 }
+
+SECTION(".rodata.08CE5490")
+const struct ProcCmd gProcScr_SoundRoomSongChange[] = {
+    PROC_CALL(SoundRoomSongChange_FadeOutPrevious),
+    PROC_SLEEP(0),
+    PROC_CALL(SoundRoomSongChange_StartNext),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE54B4")
+const struct ProcCmd gProcScr_VolumeGraphBuffer[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(VolumeGraphBuffer_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(VolumeGraphBuffer_Null),
+    PROC_REPEAT(VolumeGraphBuffer_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE54E4")
+const struct ProcCmd ProcScr_SoundRoomUi[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(SoundRoomUi_Init),
+    PROC_CALL_ARG(NewFadeIn, 4),
+    PROC_WHILE(FadeInExists),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_LABEL(0),
+    PROC_REPEAT(SoundRoomUi_Loop_MainKeyHandler),
+    PROC_LABEL(1),
+    PROC_CALL(SoundRoomUi_80AFBBC),
+    PROC_REPEAT(SoundRoomUi_Loop_MainUiSlideOut),
+    PROC_REPEAT(SoundRoomUi_80AFC98),
+    PROC_CALL(SoundRoomUi_80AFCE4),
+    PROC_REPEAT(SoundRoomUi_Loop_MainUiSlideIn),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(SoundRoomUi_80AFBBC),
+    PROC_REPEAT(SoundRoomUi_Loop_MainUiSlideOut),
+    PROC_CALL(SoundRoomUi_80AFD48),
+    PROC_REPEAT(SoundRoomUi_Loop_ShufflePlayUiSlideIn),
+    PROC_SLEEP(16),
+    PROC_REPEAT(SoundRoomUi_Loop_ShufflePlayKeyHandler),
+    PROC_REPEAT(SoundRoomUi_Loop_ShufflePlayUiSlideOut),
+    PROC_CALL(SoundRoomUi_80AFCE4),
+    PROC_REPEAT(SoundRoomUi_Loop_MainUiSlideIn),
+    PROC_SLEEP(16),
+    PROC_GOTO(0),
+    PROC_LABEL(3),
+    PROC_WHILE(sub_080AC860),
+    PROC_REPEAT(SoundRoomUi_RestartTitleMusic),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(SoundRoomUi_OnEnd),
+    PROC_SLEEP(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE56E4")
+const struct ProcCmd gProcScr_SoundRoomDrawSprites[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(SoundRoom_DrawSprites_Init),
+    PROC_REPEAT(SoundRoom_DrawSprites_Loop),
+    PROC_END,
+};

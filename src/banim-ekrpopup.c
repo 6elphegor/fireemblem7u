@@ -33,7 +33,7 @@ extern const u8 Tsa_EkrPopup[];
 extern const u16 Pal_EkrPopup[];
 extern const u8 Img_EkrPopupText[];
 extern CONST_DATA AnimScr AnimScr_EkrPopup[];
-extern CONST_DATA struct ProcCmd ProcScr_ekrPopup[];
+extern const struct ProcCmd ProcScr_ekrPopup[];
 extern CONST_DATA struct ProcCmd ProcScr_ekrPopup2[];
 
 extern struct Font gBanimFont;
@@ -534,3 +534,20 @@ void ekrPopup2_WaitWRankUp(struct ProcEkrPopup * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BDCD54")
+const struct ProcCmd ProcScr_ekrPopup[] = {
+    PROC_19,
+    PROC_REPEAT(EkrPopup_Delay),
+    PROC_REPEAT(EkrPopup_DrawWRankUp),
+    PROC_REPEAT(ekrPopup_WaitWRankUp),
+    PROC_REPEAT(ekrPopup_DrawWRankUp2),
+    PROC_REPEAT(ekrPopup_WaitWRankUp2),
+    PROC_REPEAT(ekrPopup_DrawWpnBroke),
+    PROC_REPEAT(ekrPopup_WaitWpnBroke),
+    PROC_REPEAT(ekrPopup_DrawWpnBroke2),
+    PROC_REPEAT(ekrPopup_WaitWpnBroke2),
+    PROC_REPEAT(ekrPopup_MarkEnd),
+    PROC_REPEAT(ekrPopup_Nop),
+    PROC_END,
+};

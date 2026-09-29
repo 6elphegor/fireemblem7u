@@ -5,21 +5,21 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxLightning[];
+extern const struct ProcCmd ProcScr_efxLightning[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxLightningBG[];
+extern const struct ProcCmd ProcScr_efxLightningBG[];
 extern u16 * TsaArray_LightningBg[];
 extern u16 * ImgArray_LightningBg[];
 extern u16 * PalArray_LightningBg[];
-extern struct ProcCmd ProcScr_efxPurge[];
+extern const struct ProcCmd ProcScr_efxPurge[];
 extern int gUnknown_02020038;
-extern struct ProcCmd ProcScr_efxPurgeBG[];
+extern const struct ProcCmd ProcScr_efxPurgeBG[];
 extern u16 * TsaArray_PurgeBg[];
 extern u16 * ImgArray_PurgeBg[];
 extern u16 * PalArray_PurgeBg[];
-extern struct ProcCmd ProcScr_efxPurgeOBJRND[];
+extern const struct ProcCmd ProcScr_efxPurgeOBJRND[];
 extern int gPurgeAnimSpriteCoordinates[];
-extern struct ProcCmd ProcScr_efxPurgeOBJ[];
+extern const struct ProcCmd ProcScr_efxPurgeOBJ[];
 extern u32 AnimScr_EfxPurge[];
 extern u16 Pal_PurgeSprites[];
 extern u16 Img_PurgeSprites[];
@@ -427,3 +427,47 @@ void efxPurgeOBJ_OnEnd(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA2234")
+const struct ProcCmd ProcScr_efxLightning[] = {
+    PROC_19,
+    PROC_REPEAT(efxLightning_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA224C")
+const struct ProcCmd ProcScr_efxLightningBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxLightningBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA23F0")
+const struct ProcCmd ProcScr_efxPurge[] = {
+    PROC_19,
+    PROC_REPEAT(efxPurge_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2408")
+const struct ProcCmd ProcScr_efxPurgeBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxPurgeBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA27C8")
+const struct ProcCmd ProcScr_efxPurgeOBJRND[] = {
+    PROC_19,
+    PROC_REPEAT(efxPurgeOBJRND_Loop),
+    PROC_SLEEP(69),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2820")
+const struct ProcCmd ProcScr_efxPurgeOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxPurgeOBJ_OnEnd),
+    PROC_SLEEP(69),
+    PROC_END,
+};

@@ -30,10 +30,10 @@ extern const s16 gBolganoneOBJTypes[];
 extern const s16 gBolganoneOBJ2Durations[];
 extern const s16 gBolganoneOBJ2XOffsets[];
 extern const s16 gBolganoneOBJ2XBase[];
-extern struct ProcCmd ProcScr_efxBolganoneOBJ2Child[];
+extern const struct ProcCmd ProcScr_efxBolganoneOBJ2Child[];
 extern AnimScr AnimScr_BolganoneOBJ2Child_0[];
 extern AnimScr AnimScr_BolganoneOBJ2Child_1[];
-extern struct ProcCmd ProcScr_efxBolganoneOBJChild[];
+extern const struct ProcCmd ProcScr_efxBolganoneOBJChild[];
 extern AnimScr AnimScr_BolganoneOBJChild_0[];
 extern AnimScr AnimScr_BolganoneOBJChild_1[];
 extern AnimScr AnimScr_BolganoneOBJChild_2[];
@@ -51,20 +51,20 @@ void EfxPlayHittedSFX(struct Anim * anim);
 void StartSubSpell_efxBolganoneOBJ(struct Anim * anim, int terminator);
 void StartSubSpell_efxBolganoneBG2(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxBolganoneWOUT[];
+extern const struct ProcCmd ProcScr_efxBolganoneWOUT[];
 int sub_08004CC4(void);
 void NewEfxSpellCast(void);
 void StartSubSpell_efxBolganoneOBJChild(struct Anim * anim, int idx);
 void StartSubSpell_efxBolganoneOBJ2Child(struct Anim * anim, int idx);
 extern int gEfxBgSemaphore;
 extern int gUnknown_0202003C;
-extern struct ProcCmd ProcScr_efxBolganone[];
-extern struct ProcCmd ProcScr_efxBolganoneBG[];
-extern struct ProcCmd ProcScr_efxBolganoneBGCOL[];
-extern struct ProcCmd ProcScr_efxBolganoneBG2[];
-extern struct ProcCmd ProcScr_efxBolganoneBG3[];
-extern struct ProcCmd ProcScr_efxBolganoneOBJ[];
-extern struct ProcCmd ProcScr_efxBolganoneOBJ2[];
+extern const struct ProcCmd ProcScr_efxBolganone[];
+extern const struct ProcCmd ProcScr_efxBolganoneBG[];
+extern const struct ProcCmd ProcScr_efxBolganoneBGCOL[];
+extern const struct ProcCmd ProcScr_efxBolganoneBG2[];
+extern const struct ProcCmd ProcScr_efxBolganoneBG3[];
+extern const struct ProcCmd ProcScr_efxBolganoneOBJ[];
+extern const struct ProcCmd ProcScr_efxBolganoneOBJ2[];
 extern const s16 FrameConfig_BolganoneBG[];
 extern const s16 FrameConfig_BolganoneBGCOL[];
 extern const s16 FrameConfig_BolganoneBG2[];
@@ -625,3 +625,74 @@ void efxBolganoneWOUT_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA2840")
+const struct ProcCmd ProcScr_efxBolganone[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganone_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2858")
+const struct ProcCmd ProcScr_efxBolganoneBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA28A0")
+const struct ProcCmd ProcScr_efxBolganoneBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxBolganoneBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA28C0")
+const struct ProcCmd ProcScr_efxBolganoneBG2[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2900")
+const struct ProcCmd ProcScr_efxBolganoneOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2918")
+const struct ProcCmd ProcScr_efxBolganoneOBJChild[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneOBJChild_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2930")
+const struct ProcCmd ProcScr_efxBolganoneBG3[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneBG3_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2960")
+const struct ProcCmd ProcScr_efxBolganoneOBJ2[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneOBJ2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2978")
+const struct ProcCmd ProcScr_efxBolganoneOBJ2Child[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneOBJ2Child_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2990")
+const struct ProcCmd ProcScr_efxBolganoneWOUT[] = {
+    PROC_19,
+    PROC_REPEAT(efxBolganoneWOUT_Loop),
+    PROC_END,
+};

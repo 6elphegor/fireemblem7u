@@ -8,12 +8,12 @@ void RegisterEfxSpellCastEnd(void);
 void sub_0805067C(const u16 * src, u16 * dst, u32 cur, u32 len_src, u32 len_dst);
 extern int gEfxBgSemaphore;
 extern struct Anim * gUnknown_02000010[2];
-extern struct ProcCmd ProcScr_efxLuce[];
-extern struct ProcCmd ProcScr_efxLuceBG[];
-extern struct ProcCmd ProcScr_efxLuceBG2[];
-extern struct ProcCmd ProcScr_efxLuceBGCOL[];
-extern struct ProcCmd ProcScr_efxLuceOBJ[];
-extern struct ProcCmd ProcScr_efxLuceWOUT[];
+extern const struct ProcCmd ProcScr_efxLuce[];
+extern const struct ProcCmd ProcScr_efxLuceBG[];
+extern const struct ProcCmd ProcScr_efxLuceBG2[];
+extern const struct ProcCmd ProcScr_efxLuceBGCOL[];
+extern const struct ProcCmd ProcScr_efxLuceOBJ[];
+extern const struct ProcCmd ProcScr_efxLuceWOUT[];
 extern const s16 FrameConfig_LuceBG[];
 extern const s16 FrameConfig_LuceBGCOL[];
 extern u16 * TsaArray_LuceBG[];
@@ -371,3 +371,46 @@ void efxLuceBGCOL_Loop(struct ProcEfxBGCOL * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BA3E5C")
+const struct ProcCmd ProcScr_efxLuce[] = {
+    PROC_19,
+    PROC_REPEAT(efxLuce_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3E74")
+const struct ProcCmd ProcScr_efxLuceBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxLuceBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3EBC")
+const struct ProcCmd ProcScr_efxLuceBG2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxLuceBG2_OnEnd),
+    PROC_REPEAT(efxLuceBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3EDC")
+const struct ProcCmd ProcScr_efxLuceOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxLuceOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3EF4")
+const struct ProcCmd ProcScr_efxLuceWOUT[] = {
+    PROC_19,
+    PROC_REPEAT(efxLuceWOUT_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3F0C")
+const struct ProcCmd ProcScr_efxLuceBGCOL[] = {
+    PROC_19,
+    PROC_REPEAT(efxLuceBGCOL_Loop),
+    PROC_END,
+};

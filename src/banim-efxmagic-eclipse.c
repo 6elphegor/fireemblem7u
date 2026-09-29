@@ -7,15 +7,15 @@ void StartSubSpell_efxResireRST(struct Anim * anim, ProcPtr efxproc, int c);
 ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int speed);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxHazymoon[];
+extern const struct ProcCmd ProcScr_efxHazymoon[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxHazymoonBG[];
+extern const struct ProcCmd ProcScr_efxHazymoonBG[];
 extern u16 * TsaArray_EclipseBg[];
 extern u16 * ImgArray_EclipseBg[];
 extern u16 Pal_NosferatuBg[];
 extern u16 Pal_EclipseBg_B[];
 extern u16 Pal_EclipseBg_C[];
-extern struct ProcCmd ProcScr_efxHazymoonOBJ2[];
+extern const struct ProcCmd ProcScr_efxHazymoonOBJ2[];
 extern AnimScr FramScr_Unk5D4F90[];
 extern u32 AnimScr_EfxHazymoonOBJ2_1[];
 extern u16 Pal_EclipseSprites[];
@@ -24,11 +24,11 @@ extern u32 AnimScr_EfxHazymoonOBJ2_2[];
 extern u16 Img_EclipseSprites_0824CD2C[];
 extern u32 AnimScr_EfxHazymoonOBJ2_3[];
 extern u16 Img_EclipseSprites_0824D1C4[];
-extern struct ProcCmd ProcScr_efxHazymoonOBJ3[];
+extern const struct ProcCmd ProcScr_efxHazymoonOBJ3[];
 extern u16 Pal_FluxAnimSprites[];
 extern u16 Img_FluxAnimSprites_Orb[];
 extern s16 gEclipseAnimSpriteCoordinates[];
-extern struct ProcCmd ProcScr_efxHazymoonOBJ3RND[];
+extern const struct ProcCmd ProcScr_efxHazymoonOBJ3RND[];
 extern u32 AnimScr_EfxHazymoonOBJ3RND[];
 
 struct ProcEfxEclipseBG
@@ -478,3 +478,45 @@ void efxHazymoonOBJ3RND_OnEnd(struct ProcEfxOBJ * proc)
     AnimDelete(proc->anim2);
     return;
 }
+
+SECTION(".rodata.08BA2C58")
+const struct ProcCmd ProcScr_efxHazymoon[] = {
+    PROC_19,
+    PROC_REPEAT(efxHazymoon_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2C70")
+const struct ProcCmd ProcScr_efxHazymoonBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxHazymoonBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2D60")
+const struct ProcCmd ProcScr_efxHazymoonOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxHazymoonOBJ2_OnEnd),
+    PROC_REPEAT(efxHazymoonOBJ2_Loop_A),
+    PROC_REPEAT(efxHazymoonOBJ2_Loop_B),
+    PROC_REPEAT(efxHazymoonOBJ2_Loop_C),
+    PROC_REPEAT(efxHazymoonOBJ2_Loop_A),
+    PROC_REPEAT(efxHazymoonOBJ2_Loop_B),
+    PROC_REPEAT(efxHazymoonOBJ2_Loop_C),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2DA8")
+const struct ProcCmd ProcScr_efxHazymoonOBJ3[] = {
+    PROC_19,
+    PROC_REPEAT(efxHazymoonOBJ3_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2DD8")
+const struct ProcCmd ProcScr_efxHazymoonOBJ3RND[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxHazymoonOBJ3RND_OnEnd),
+    PROC_SLEEP(44),
+    PROC_END,
+};

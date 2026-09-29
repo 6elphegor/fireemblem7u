@@ -120,11 +120,11 @@ extern u16 CONST_DATA Sprite_PlayerRank_08CEEAE4[];
 extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB54[];
 extern u16 const * CONST_DATA SpriteLut_PlayerRank_08CEEB6C[];
 
-extern struct ProcCmd CONST_DATA ProcScr_PlayerRankUnk_08CEEB84[];
-extern struct ProcCmd CONST_DATA ProcScr_PlayerRankFlash[];
-extern struct ProcCmd CONST_DATA ProcScr_PlayerRankScreen[];
-extern struct ProcCmd CONST_DATA ProcScr_EndingCgScroll[];
-extern struct ProcCmd CONST_DATA ProcScr_EndingCgScroll2[];
+extern const struct ProcCmd ProcScr_PlayerRankUnk_08CEEB84[];
+extern const struct ProcCmd ProcScr_PlayerRankFlash[];
+extern const struct ProcCmd ProcScr_PlayerRankScreen[];
+extern const struct ProcCmd ProcScr_EndingCgScroll[];
+extern const struct ProcCmd ProcScr_EndingCgScroll2[];
 extern u8 * CONST_DATA gpEndingCgScrollBlendTable;
 
 struct EndingCgScrollEnt {
@@ -153,7 +153,7 @@ void EndingCgScroll_HBlank(void);
 void SetFacePosition(int slot, int x, int y);
 void DrawFinImage(void);
 
-extern struct ProcCmd CONST_DATA gProcScr_FinScreen[];
+extern const struct ProcCmd gProcScr_FinScreen[];
 extern struct Text * CONST_DATA gpTurnRecordTexts;
 
 int HandleTurnRecordText(struct ChapterStats * chapterStats, int displayId);
@@ -164,9 +164,9 @@ int GetGameOverallRank(void);
 void sub_080B8160(int a, int b);
 
 extern u8 CONST_DATA gCharEndingSlideOffsetLut[];
-extern struct ProcCmd CONST_DATA gProcScr_EndingBattleDisplay_Solo[];
-extern struct ProcCmd CONST_DATA gProcScr_EndingBattleDisplay_Paired[];
-extern struct ProcCmd CONST_DATA gProcScr_EndingBattleDisplay_Text[];
+extern const struct ProcCmd gProcScr_EndingBattleDisplay_Solo[];
+extern const struct ProcCmd gProcScr_EndingBattleDisplay_Paired[];
+extern const struct ProcCmd gProcScr_EndingBattleDisplay_Text[];
 extern u8 Tsa_SoloEndingWindow[];
 extern u8 Tsa_SoloEndingNameplate[];
 extern u8 Tsa_PairedEndingWindow[];
@@ -181,7 +181,7 @@ extern struct EndingDefeatEnt CONST_DATA gCharacterEndingDefeatLut[];
 extern struct CharacterEndingEnt const * CONST_DATA gCharacterEndingsByRoute[];
 extern u16 * CONST_DATA gSoloEndingBattleDispConf[];
 extern struct Text * CONST_DATA gpCharacterEndingTexts;
-extern struct ProcCmd CONST_DATA gProcScr_CharacterEndings[];
+extern const struct ProcCmd gProcScr_CharacterEndings[];
 extern char const gStr_EndingQuote[];
 extern char const gStr_EndingPeriod[];
 
@@ -1639,3 +1639,185 @@ void EndingCgScroll_HBlank(void)
     REG_BLDALPHA = gpEndingCgScrollBlendTable[vcount];
 }
 
+
+SECTION(".rodata.08CEE86C")
+const struct ProcCmd gProcScr_CharacterEndings[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(CharacterEnding_Init),
+    PROC_CALL(LoadNextCharacterEnding),
+    PROC_LABEL(0),
+    PROC_CALL(CharacterEnding_80B69D4),
+    PROC_CALL_ARG(NewFadeIn, 4),
+    PROC_WHILE(FadeInExists),
+    PROC_CALL(CharacterEnding_StartBattleDisplay),
+    PROC_SLEEP(30),
+    PROC_CALL(CharacterEnding_StartBattleDisplayText),
+    PROC_SLEEP(114),
+    PROC_LABEL(99),
+    PROC_CALL(LoadNextCharacterEnding),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_GOTO(0),
+    PROC_LABEL(100),
+    PROC_CALL(CharacterEnding_FadeBgm),
+    PROC_CALL_ARG(NewFadeOut, 2),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(CharacterEnding_End),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEE930")
+const struct ProcCmd gProcScr_EndingBattleDisplay_Solo[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(SoloEndingBattleDisp_Init),
+    PROC_REPEAT(SoloEndingBattleDisp_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEE950")
+const struct ProcCmd gProcScr_EndingBattleDisplay_Paired[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(PairedEndingBattleDisp_Init),
+    PROC_REPEAT(PairedEndingBattleDisp_Loop_SlideIn),
+    PROC_SLEEP(16),
+    PROC_CALL(PairedEndingBattleDisp_InitBlend),
+    PROC_REPEAT(PairedEndingBattleDisp_Loop_Blend),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEE988")
+const struct ProcCmd gProcScr_EndingBattleDisplay_Text[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(EndingBattleInitText),
+    PROC_REPEAT(EndingBattleText_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEE9A8")
+const struct ProcCmd gProcScr_FinScreen[] = {
+    PROC_SLEEP(30),
+    PROC_CALL(Fin_Init),
+    PROC_CALL_ARG(NewFadeIn, 4),
+    PROC_WHILE(FadeInExists),
+    PROC_LABEL(0),
+    PROC_REPEAT(Fin_Loop_KeyListener),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_GOTO(100),
+    PROC_LABEL(1),
+    PROC_CALL_ARG(NewFadeIn, 4),
+    PROC_WHILE(FadeInExists),
+    PROC_SLEEP(60),
+    PROC_CALL(Fin_InitBlend),
+    PROC_REPEAT(Fin_LoopBlend),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(StartPlayerRankScreen),
+    PROC_SLEEP(0),
+    PROC_GOTO(100),
+    PROC_LABEL(100),
+    PROC_CALL(Fin_End),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEEB84")
+const struct ProcCmd ProcScr_PlayerRankUnk_08CEEB84[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(EndingFog_Init),
+    PROC_REPEAT(EndingFog_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEEBA8")
+const struct ProcCmd ProcScr_PlayerRankFlash[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(PlayerRankFlash_FadeIn),
+    PROC_WHILE(sub_08013A1C),
+    PROC_CALL(PlayerRankFlash_FadeOut),
+    PROC_WHILE(sub_08013A1C),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEEBD8")
+const struct ProcCmd ProcScr_PlayerRankScreen[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(TurnRecord_Init),
+    PROC_CALL(PlayerRank_Init),
+    PROC_CALL(PlayerRank_StartScreen),
+    PROC_CALL_ARG(NewFadeIn, 4),
+    PROC_WHILE(FadeInExists),
+    PROC_CALL(PlayerRank_CheckMode),
+    PROC_LABEL(0),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(16),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(16),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(16),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(16),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(32),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_GOTO(100),
+    PROC_LABEL(1),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(16),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(16),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_SLEEP(32),
+    PROC_REPEAT(PlayerRank_LoopLetters),
+    PROC_GOTO(100),
+    PROC_LABEL(100),
+    PROC_SLEEP(32),
+    PROC_REPEAT(PlayerRank_WaitForKey),
+    PROC_CALL(PlayerRank_FadeBgm),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_SLEEP(30),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEED00")
+const struct ProcCmd ProcScr_EndingCgScroll[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(TurnRecord_Init),
+    PROC_CALL(TurnRecord_SetupText),
+    PROC_CALL(PlayerRank_StartScreen),
+    PROC_CALL_ARG(NewFadeIn, 4),
+    PROC_WHILE(FadeInExists),
+    PROC_REPEAT(TurnRecord_Loop_Main),
+    PROC_SLEEP(120),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_SLEEP(60),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEEEC0")
+const struct ProcCmd ProcScr_EndingCgScroll2[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(EndingCgScroll_Init),
+    PROC_CALL(EnableAllGfx),
+    PROC_REPEAT(EndingCgScroll_Loop),
+    PROC_SLEEP(300),
+    PROC_GOTO(100),
+    PROC_LABEL(0),
+    PROC_CALL(DisableAllGfx),
+    PROC_SLEEP(0),
+    PROC_CALL(EndingCgScroll2_Init),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_SLEEP(300),
+    PROC_GOTO(100),
+    PROC_LABEL(100),
+    PROC_CALL_ARG(NewFadeOut, 4),
+    PROC_WHILE(FadeOutExists),
+    PROC_SLEEP(30),
+    PROC_CALL(EndingCgScroll_End),
+    PROC_SLEEP(60),
+    PROC_END,
+};

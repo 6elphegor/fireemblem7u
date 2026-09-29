@@ -125,11 +125,11 @@ extern const u8 Img_LinkArena_FogUnitPlaceholder[];
 
 extern u8 CONST_DATA gUnknown_085AA158[];
 extern u8 CONST_DATA gUnknown_085AA15C[];
-extern struct ProcCmd CONST_DATA gUnknown_085AA1AC[];
+extern const struct ProcCmd gUnknown_085AA1AC[];
 extern struct PopupInstruction CONST_DATA gUnknown_085AA1FC[];
 extern struct PopupInstruction CONST_DATA gUnknown_085AA21C[];
-extern struct ProcCmd CONST_DATA gUnknown_085AA2FC[];
-extern struct ProcCmd CONST_DATA gUnknown_085AA4CC[];
+extern const struct ProcCmd gUnknown_085AA2FC[];
+extern const struct ProcCmd gUnknown_085AA4CC[];
 extern struct ProcCmd CONST_DATA gUnknown_085AA5BC[];
 extern u8 CONST_DATA gLut_LinkArenaFogPlaceholder_YOffset[];
 extern struct ProcCmd CONST_DATA ProcScr_DrawLinkArenaFogPlaceholders[];
@@ -2719,3 +2719,114 @@ void sub_08047068(void)
 
     return;
 }
+
+extern const struct ProcCmd gUnk_08B99CD8[];
+
+void gProcScr_BKSEL();
+void sub_08044A8C(ProcPtr proc);
+
+SECTION(".rodata.08B99C18")
+const struct ProcCmd gUnknown_085AA1AC[] = {
+    PROC_LABEL(0),
+    PROC_WHILE_EXISTS(gProcScr_BKSEL),
+    PROC_SLEEP(1),
+    PROC_CALL(sub_08045960),
+    PROC_REPEAT(sub_080459B0),
+    PROC_CALL(sub_080459F0),
+    PROC_REPEAT(sub_08045AB8),
+    PROC_REPEAT(sub_08045BC8),
+    PROC_LABEL(1),
+    PROC_END,
+};
+
+SECTION(".rodata.08B99D58")
+const struct ProcCmd gUnknown_085AA2FC[] = {
+    PROC_LABEL(0),
+    PROC_REPEAT(sub_08045500),
+    PROC_CALL(sub_08045784),
+    PROC_LABEL(1),
+    PROC_REPEAT(sub_08045540),
+    PROC_REPEAT(sub_08045558),
+    PROC_LABEL(4),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08046B6C),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08044FD0),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08046B8C),
+    PROC_START_CHILD_BLOCKING(gUnk_08B99CD8),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08046C3C),
+    PROC_LABEL(3),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08046BC4),
+    PROC_CALL(sub_08046CD4),
+    PROC_LABEL(5),
+    PROC_REPEAT(sub_08045540),
+    PROC_REPEAT(sub_08045790),
+    PROC_LABEL(6),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08046B6C),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08044FD0),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(sub_08045784),
+    PROC_CALL(sub_08045124),
+    PROC_GOTO(5),
+    PROC_LABEL(7),
+    PROC_REPEAT(sub_08045C38),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_CALL(sub_08045C54),
+    PROC_CALL(sub_08045D24),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08045DA8),
+    PROC_REPEAT(sub_08045E18),
+    PROC_REPEAT(sub_08045EA8),
+    PROC_CALL(sub_08044A8C),
+    PROC_SLEEP(0),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_REPEAT(sub_08045FC4),
+    PROC_REPEAT(sub_080461A4),
+    PROC_CALL(sub_08046288),
+    PROC_LABEL(8),
+    PROC_END,
+};
+
+SECTION(".rodata.08B99F08")
+const struct ProcCmd gUnknown_085AA4CC[] = {
+    PROC_LABEL(0),
+    PROC_CALL(sub_08045784),
+    PROC_REPEAT(sub_080462F8),
+    PROC_LABEL(1),
+    PROC_REPEAT(sub_080463C8),
+    PROC_GOTO(2),
+    PROC_LABEL(3),
+    PROC_START_CHILD_BLOCKING(gUnk_08B99CD8),
+    PROC_SLEEP(0),
+    PROC_WHILE_EXISTS(ProcScr_Popup),
+    PROC_CALL(sub_08046D10),
+    PROC_LABEL(4),
+    PROC_WHILE_EXISTS(ProcScr_Popup),
+    PROC_CALL(sub_08046D9C),
+    PROC_LABEL(2),
+    PROC_REPEAT(sub_080464BC),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_CALL(sub_08045D24),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08045DA8),
+    PROC_REPEAT(sub_08045E18),
+    PROC_REPEAT(sub_08045EA8),
+    PROC_CALL(sub_08044A8C),
+    PROC_SLEEP(0),
+    PROC_CALL(EndLinkArenaPointsBox),
+    PROC_REPEAT(sub_08045FC4),
+    PROC_REPEAT(sub_080461A4),
+    PROC_CALL(sub_08046288),
+    PROC_LABEL(5),
+    PROC_END,
+};

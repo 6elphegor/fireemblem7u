@@ -57,7 +57,7 @@ struct SaveBonusHelpProc
     /* 5C */ int unk_5c;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_BonusClaimMenu[];
+extern const struct ProcCmd ProcScr_BonusClaimMenu[];
 
 void sub_080A4E58(void)
 {
@@ -543,3 +543,19 @@ ProcPtr StartSaveDraw(ProcPtr parent)
 {
     return Proc_Start(ProcScr_SaveDraw, parent);
 }
+
+SECTION(".rodata.08CE40F8")
+const struct ProcCmd ProcScr_BonusClaimMenu[] = {
+    PROC_CALL(BonusClaimMenu_Init_A),
+    PROC_CALL(BonusClaimMenu_Init_B),
+    PROC_REPEAT(sub_080A50CC),
+    PROC_SLEEP(16),
+    PROC_LABEL(0),
+    PROC_CALL(sub_080A5084),
+    PROC_REPEAT(sub_080A50CC),
+    PROC_SLEEP(16),
+    PROC_LABEL(1),
+    PROC_CALL(sub_080A5108),
+    PROC_LABEL(10),
+    PROC_END,
+};

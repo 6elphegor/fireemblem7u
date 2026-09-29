@@ -4,7 +4,7 @@ void StartCgText(int x, int y, int width, int height, int msg, void * vram, int 
 void SetCgTextFlags(int flags);
 void EndCgText(void);
 
-extern struct ProcCmd CONST_DATA gProcScr_FortuneSubMenu[];
+extern const struct ProcCmd gProcScr_FortuneSubMenu[];
 extern int CONST_DATA gUnk_08CC50C0[];
 
 void sub_08098F88(struct PrepProcA1962C * proc)
@@ -219,3 +219,36 @@ s8 sub_08099340(void)
 
     return 0;
 }
+
+void StartSupportScreenFromPrepScreen();
+extern const struct ProcCmd gUnk_08CC5134[];
+extern const struct ProcCmd gUnk_08CC55A8[];
+extern const struct ProcCmd gUnk_08CC58E4[];
+
+SECTION(".rodata.08CC4FE0")
+const struct ProcCmd gProcScr_FortuneSubMenu[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(FortuneSubMenu_Init_Null),
+    PROC_LABEL(0),
+    PROC_CALL(FortuneSubMenu_HandleOptionSwitch),
+    PROC_LABEL(1),
+    PROC_LABEL(2),
+    PROC_CALL(FortuneSubMenu_OnOptionSelected),
+    PROC_START_CHILD_BLOCKING(gUnk_08CC5134),
+    PROC_GOTO(6),
+    PROC_LABEL(3),
+    PROC_CALL(FortuneSubMenu_OnOptionSelected),
+    PROC_START_CHILD_BLOCKING(gUnk_08CC55A8),
+    PROC_GOTO(6),
+    PROC_LABEL(4),
+    PROC_CALL(FortuneSubMenu_OnOptionSelected),
+    PROC_CALL(StartSupportScreenFromPrepScreen),
+    PROC_SLEEP(0),
+    PROC_GOTO(6),
+    PROC_LABEL(5),
+    PROC_CALL(FortuneSubMenu_OnOptionSelected),
+    PROC_START_CHILD_BLOCKING(gUnk_08CC58E4),
+    PROC_GOTO(6),
+    PROC_LABEL(6),
+    PROC_END,
+};

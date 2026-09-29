@@ -16,7 +16,7 @@ struct EventCursorProc {
     /* 66 */ s16 y;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_EventFlashCursor[];
+extern const struct ProcCmd ProcScr_EventFlashCursor[];
 extern struct ProcCmd CONST_DATA ProcScr_EventCursor[];
 
 bool IsTutorialDisabled(void);
@@ -1331,3 +1331,10 @@ int EvtCmd_SetAiPosition(struct EventProc * proc)
     return EVENT_CMDRET_CONTINUE;
 }
 
+
+SECTION(".rodata.08B91A38")
+const struct ProcCmd ProcScr_EventFlashCursor[] = {
+    PROC_CALL(EventFlashCursor_OnInit),
+    PROC_REPEAT(EventFlashCursor_OnLoop),
+    PROC_END,
+};

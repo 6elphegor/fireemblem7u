@@ -41,23 +41,23 @@ extern u8 const Img_OpAnimCloud[];
 extern u8 const Tsa_OpAnimCloud[];
 extern u16 const gUnk_085ED1C4[];
 extern u8 const gUnk_085ED1E4[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF264[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF284[];
+extern const struct ProcCmd ProcScr_08CEF264[];
+extern const struct ProcCmd ProcScr_08CEF284[];
 extern u16 const gUnk_085EE02C[];
 extern struct OpAnimImgEntry const gUnk_08CEF594[];
 extern struct OpAnimImgEntry const gUnk_08CEF630[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF2D4[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF2F4[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF394[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF3EC[];
+extern const struct ProcCmd ProcScr_08CEF2D4[];
+extern const struct ProcCmd ProcScr_08CEF2F4[];
+extern const struct ProcCmd ProcScr_08CEF394[];
+extern const struct ProcCmd ProcScr_08CEF3EC[];
 extern u8 * gUnk_08CEF074;
 extern u16 const gUnk_08CEF314[];
 extern struct OpAnimTextEntry const gUnk_08CEF4BC[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF40C[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF424[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF444[];
+extern const struct ProcCmd ProcScr_08CEF40C[];
+extern const struct ProcCmd ProcScr_08CEF424[];
+extern const struct ProcCmd ProcScr_08CEF444[];
 extern struct ProcCmd CONST_DATA ProcScr_08CEF464[];
-extern struct ProcCmd CONST_DATA ProcScr_08CEF750[];
+extern const struct ProcCmd ProcScr_08CEF750[];
 extern u16 const gUnk_085E9AD4[];
 extern u8 const gUnk_085E9AF4[];
 
@@ -1617,3 +1617,95 @@ ProcPtr sub_080BD764(struct OpAnimBgConf const * conf, int bg, int pos, int spee
 
     return proc;
 }
+
+SECTION(".rodata.08CEF264")
+const struct ProcCmd ProcScr_08CEF264[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(sub_080BC570),
+    PROC_BLOCK,
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF284")
+const struct ProcCmd ProcScr_08CEF284[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BC5F4),
+    PROC_REPEAT(sub_080BC790),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BC7E4),
+    PROC_REPEAT(sub_080BC8C0),
+    PROC_REPEAT(sub_080BC8F8),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BC94C),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF2D4")
+const struct ProcCmd ProcScr_08CEF2D4[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BC9A8),
+    PROC_REPEAT(sub_080BC9B8),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF2F4")
+const struct ProcCmd ProcScr_08CEF2F4[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BCA84),
+    PROC_REPEAT(sub_080BCA94),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF394")
+const struct ProcCmd ProcScr_08CEF394[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BCCC4),
+    PROC_SLEEP(1),
+    PROC_LABEL(0),
+    PROC_REPEAT(sub_080BCCF0),
+    PROC_REPEAT(sub_080BCDB4),
+    PROC_REPEAT(sub_080BCDD8),
+    PROC_GOTO(0),
+    PROC_LABEL(99),
+    PROC_CALL(sub_080BCE14),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF3EC")
+const struct ProcCmd ProcScr_08CEF3EC[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BCE34),
+    PROC_REPEAT(sub_080BCE60),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF40C")
+const struct ProcCmd ProcScr_08CEF40C[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(Proc_08DB9398_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF424")
+const struct ProcCmd ProcScr_08CEF424[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(sub_080BD168),
+    PROC_REPEAT(sub_080BD1A4),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF444")
+const struct ProcCmd ProcScr_08CEF444[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080BD310),
+    PROC_REPEAT(sub_080BD364),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEF750")
+const struct ProcCmd ProcScr_08CEF750[] = {
+    PROC_CALL(sub_080BD68C),
+    PROC_SLEEP(0),
+    PROC_REPEAT(sub_080BD698),
+    PROC_END,
+};

@@ -34,9 +34,9 @@ struct SqMaskProc
     /* 2B */ u8 unk_2b;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_SaveDrawCursor[];
-extern struct ProcCmd CONST_DATA ProcScr_SqMask[];
-extern struct ProcCmd CONST_DATA ProcScr_SaveBgUp[];
+extern const struct ProcCmd ProcScr_SaveDrawCursor[];
+extern const struct ProcCmd ProcScr_SqMask[];
+extern const struct ProcCmd ProcScr_SaveBgUp[];
 extern int CONST_DATA SaveMenuSubSelBoxTexts[];
 extern struct Font gSaveMenuSubBoxFont;
 extern struct Text gSaveMenuSubBoxText;
@@ -426,3 +426,27 @@ ProcPtr StartSaveBgUp(ProcPtr parent)
 {
     return Proc_Start(ProcScr_SaveBgUp, parent);
 }
+
+SECTION(".rodata.08CE433C")
+const struct ProcCmd ProcScr_SaveDrawCursor[] = {
+    PROC_19,
+    PROC_CALL(SaveDrawCursor_Init),
+    PROC_REPEAT(SaveDrawCursor_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE4378")
+const struct ProcCmd ProcScr_SqMask[] = {
+    PROC_19,
+    PROC_SLEEP(1),
+    PROC_REPEAT(SqMask_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE4398")
+const struct ProcCmd ProcScr_SaveBgUp[] = {
+    PROC_19,
+    PROC_SLEEP(1),
+    PROC_REPEAT(SaveBgUp_Loop),
+    PROC_END,
+};

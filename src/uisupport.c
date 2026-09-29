@@ -77,7 +77,7 @@ void sub_0809BE80(struct SupportScreenProc * proc, int line);
 
 extern u8 Tsa_0840EBE8[];
 extern u8 Img_SysBlackBox[];
-extern struct ProcCmd CONST_DATA gProcScr_SupportScreen[];
+extern const struct ProcCmd gProcScr_SupportScreen[];
 extern u16 CONST_DATA Sprite_08CC58D4[];
 extern int TacticianBirthAffins[];
 extern u16 Pal_08194714[];
@@ -98,7 +98,7 @@ void StartSupportViewerTalk(u8 charA, u8 charB, int rank);
 void sub_0809BF78(int idx);
 int UiSupport_GetSupportTalkSong(int idx, int partner, int rank);
 
-extern struct ProcCmd CONST_DATA gProcScr_SupportUnitSubScreen[];
+extern const struct ProcCmd gProcScr_SupportUnitSubScreen[];
 void DrawSupportSubScreenUnitPartnerText(struct SubScreenProc * proc, int idx);
 extern u16 gUnk_02012BFC[];
 extern u16 Pal_TactInfoBg[];
@@ -1661,3 +1661,82 @@ void StartSupportUnitSubScreen(s8 fromPrepScreen, int unitIndex, ProcPtr parent)
     proc->fromPrepScreen = fromPrepScreen;
     proc->unitIdx = unitIndex;
 }
+
+void IsMusicProc2Running();
+
+SECTION(".rodata.08CC57F4")
+const struct ProcCmd gProcScr_SupportScreen[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(SupportScreen_SetupUnits),
+    PROC_CALL(SupportScreen_OnInit),
+    PROC_SLEEP(0),
+    PROC_LABEL(0),
+    PROC_CALL(SupportScreen_SetupGraphics),
+    PROC_CALL(sub_0809BA48),
+    PROC_WHILE(IsMusicProc2Running),
+    PROC_CALL(StartMidFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_LABEL(1),
+    PROC_REPEAT(SupportScreen_Loop_KeyHandler),
+    PROC_GOTO(1),
+    PROC_LABEL(2),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(SupportScreen_OnEnd),
+    PROC_CALL(SupportScreen_StartUnitSubMenu),
+    PROC_SLEEP(0),
+    PROC_GOTO(0),
+    PROC_LABEL(3),
+    PROC_CALL(SupportScreen_RestartSourceScreenMusic),
+    PROC_CALL(StartMidFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(SupportScreen_OnEnd),
+    PROC_WHILE(IsMusicProc2Running),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC5984")
+const struct ProcCmd gProcScr_SupportUnitSubScreen[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(SupportSubScreen_Init),
+    PROC_LABEL(0),
+    PROC_CALL(SupportSubScreen_SetupGraphics),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_LABEL(1),
+    PROC_REPEAT(SupportSubScreen_Loop_KeyHandler),
+    PROC_LABEL(2),
+    PROC_CALL(SupportSubScreen_PrepareSupportConvo),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(SupportSubScreen_OnEnd),
+    PROC_SLEEP(0),
+    PROC_WHILE(MusicProc4Exists),
+    PROC_CALL(sub_0809CFF8),
+    PROC_SLEEP(0),
+    PROC_WHILE(IsEventRunning),
+    PROC_CALL(sub_0809D71C),
+    PROC_SLEEP(8),
+    PROC_GOTO(0),
+    PROC_LABEL(4),
+    PROC_CALL(SupportSubScreen_StartSwapPage),
+    PROC_REPEAT(SupportSubScreen_SwapPageOut_ToLeft),
+    PROC_CALL(SupportSubScreen_ReinitAfterSwapPage),
+    PROC_REPEAT(SupportSubScreen_SwapPageIn_FromRight),
+    PROC_CALL(SupportSubScreen_EndSwapPage),
+    PROC_GOTO(1),
+    PROC_LABEL(5),
+    PROC_CALL(SupportSubScreen_StartSwapPage),
+    PROC_REPEAT(SupportSubScreen_SwapPageOut_ToRight),
+    PROC_CALL(SupportSubScreen_ReinitAfterSwapPage),
+    PROC_REPEAT(SupportSubScreen_SwapPageIn_FromLeft),
+    PROC_CALL(SupportSubScreen_EndSwapPage),
+    PROC_GOTO(1),
+    PROC_LABEL(3),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(SupportSubScreen_OnEnd),
+    PROC_END,
+};

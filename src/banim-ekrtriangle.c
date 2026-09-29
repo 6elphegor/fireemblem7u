@@ -101,14 +101,14 @@ extern int gEfxBgSemaphore;
 extern u8 gSpellAnimBgfx[];
 extern u8 gBuf_Banim[];
 
-extern CONST_DATA struct ProcCmd ProcScr_ekrTriangle[];
-extern CONST_DATA struct ProcCmd ProcScr_ekrTriPegasusKnight[];
-extern CONST_DATA struct ProcCmd ProcScr_ekrTriPegasusKnightBG[];
-extern CONST_DATA struct ProcCmd ProcScr_EkrTriPegasusKnightOBJ[];
-extern CONST_DATA struct ProcCmd ProcScr_EkrTriArmorKnight[];
-extern CONST_DATA struct ProcCmd ProcScr_EkrTriArmorKnightOBJ[];
-extern CONST_DATA struct ProcCmd ProcScr_EkrTriArmorKnightOBJ2[];
-extern CONST_DATA struct ProcCmd ProcScr_EfxTriangleQUAKE[];
+extern const struct ProcCmd ProcScr_ekrTriangle[];
+extern const struct ProcCmd ProcScr_ekrTriPegasusKnight[];
+extern const struct ProcCmd ProcScr_ekrTriPegasusKnightBG[];
+extern const struct ProcCmd ProcScr_EkrTriPegasusKnightOBJ[];
+extern const struct ProcCmd ProcScr_EkrTriArmorKnight[];
+extern const struct ProcCmd ProcScr_EkrTriArmorKnightOBJ[];
+extern const struct ProcCmd ProcScr_EkrTriArmorKnightOBJ2[];
+extern const struct ProcCmd ProcScr_EfxTriangleQUAKE[];
 
 extern const s16 FrameLut_EkrTriPegagusBGLeft[];
 extern const s16 FrameLut_EkrTriPegagusBGRight[];
@@ -803,3 +803,60 @@ void EfxTriangleQUAKEMain(struct ProcEfxTriagnleQUAKE * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BDB874")
+const struct ProcCmd ProcScr_ekrTriangle[] = {
+    PROC_19,
+    PROC_REPEAT(EkrTriangleMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB88C")
+const struct ProcCmd ProcScr_ekrTriPegasusKnight[] = {
+    PROC_19,
+    PROC_REPEAT(EkrTriPegasusKnightMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB8A4")
+const struct ProcCmd ProcScr_ekrTriPegasusKnightBG[] = {
+    PROC_19,
+    PROC_REPEAT(EkrTriPegasusKnightBgMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB8D4")
+const struct ProcCmd ProcScr_EkrTriPegasusKnightOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EkrTriPegasusKnightObjMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB8EC")
+const struct ProcCmd ProcScr_EkrTriArmorKnight[] = {
+    PROC_19,
+    PROC_REPEAT(EkrTriArmorKnightMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB904")
+const struct ProcCmd ProcScr_EkrTriArmorKnightOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EkrTriArmorKnightObjMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB91C")
+const struct ProcCmd ProcScr_EkrTriArmorKnightOBJ2[] = {
+    PROC_19,
+    PROC_REPEAT(EkrTriArmorKnightObj2Main1),
+    PROC_REPEAT(EkrTriArmorKnightObj2Main2),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB93C")
+const struct ProcCmd ProcScr_EfxTriangleQUAKE[] = {
+    PROC_19,
+    PROC_REPEAT(EfxTriangleQUAKEMain),
+    PROC_END,
+};

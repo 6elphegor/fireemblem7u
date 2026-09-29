@@ -4,21 +4,21 @@
 // MISSING func GetRoundFlagByAnim
 void NewEfxPierceCriticalEffect(struct Anim * anim);
 void NewEfxPierceNormalEffect(struct Anim * anim);
-extern struct ProcCmd ProcScr_efxDamageMojiEffect[];
+extern const struct ProcCmd ProcScr_efxDamageMojiEffect[];
 extern u16 Img_NODAMGEMIS[];
-extern struct ProcCmd ProcScr_efxDamageMojiEffectOBJ[];
+extern const struct ProcCmd ProcScr_efxDamageMojiEffectOBJ[];
 extern u32 AnimScr_NoDamage[];
 extern u32 AnimScr_Miss[];
-extern struct ProcCmd ProcScr_efxCriricalEffect[];
-extern struct ProcCmd ProcScr_efxCriricalEffectBG[];
+extern const struct ProcCmd ProcScr_efxCriricalEffect[];
+extern const struct ProcCmd ProcScr_efxCriricalEffectBG[];
 extern u16 Img_EfxCriricalEffectBG[];
 extern u16 Pal_EfxCriricalEffectBG[];
 extern u16 Tsa_EfxCriricalEffectBG_L[];
 extern u16 Tsa_EfxCriricalEffectBG_R[];
-extern struct ProcCmd ProcScr_efxCriricalEffectBGCOL[];
-extern struct ProcCmd ProcScr_efxNormalEffect[];
+extern const struct ProcCmd ProcScr_efxCriricalEffectBGCOL[];
+extern const struct ProcCmd ProcScr_efxNormalEffect[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxNormalEffectBG[];
+extern const struct ProcCmd ProcScr_efxNormalEffectBG[];
 extern u16 * TSAs_EfxNormalEffectBG[];
 extern u16 Pal_EfxNormalEffectBG[];
 extern u16 Img_EfxNormalEffectBG[];
@@ -274,3 +274,53 @@ void efxNormalEffectBGMain(struct ProcEfxBG * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BA41D4")
+const struct ProcCmd ProcScr_efxDamageMojiEffect[] = {
+    PROC_19,
+    PROC_REPEAT(efxDamageMojiEffectMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA41EC")
+const struct ProcCmd ProcScr_efxDamageMojiEffectOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxDamageMojiEffectOBJMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4204")
+const struct ProcCmd ProcScr_efxCriricalEffect[] = {
+    PROC_19,
+    PROC_REPEAT(efxCriricalEffectMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA421C")
+const struct ProcCmd ProcScr_efxCriricalEffectBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxCriricalEffectBGMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4234")
+const struct ProcCmd ProcScr_efxCriricalEffectBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxCriricalEffectBGCOLMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4254")
+const struct ProcCmd ProcScr_efxNormalEffect[] = {
+    PROC_19,
+    PROC_REPEAT(efxNormalEffectMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA426C")
+const struct ProcCmd ProcScr_efxNormalEffectBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxNormalEffectBGMain),
+    PROC_END,
+};

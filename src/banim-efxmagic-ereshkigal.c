@@ -21,11 +21,11 @@ struct ProcEfxEclipseBG
 
 /* auto-decls */
 void NewEfxTwobaiRST(struct Anim *anim, int unk44);
-extern struct ProcCmd ProcScr_efxSuperdruidBG3[];
+extern const struct ProcCmd ProcScr_efxSuperdruidBG3[];
 extern u16 * TsaArray_EreshkigalBg3[];
 extern u16 * ImgArray_EreshkigalBg3[];
 extern u16 Pal_EreshkigalBg3[];
-extern struct ProcCmd ProcScr_efxSuperdruidOBJ2[];
+extern const struct ProcCmd ProcScr_efxSuperdruidOBJ2[];
 extern u32 AnimScr_08BD7078[];
 extern u16 Img_082D9C94[];
 extern u16 Pal_082DA240[];
@@ -37,13 +37,13 @@ void EfxPlayHittedSFX(struct Anim * anim);
 void sub_0804FD54(void);
 void sub_0804FD6C(void);
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxEreshkigal[];
-extern struct ProcCmd ProcScr_efxEreshkigalOBJ[];
-extern struct ProcCmd ProcScr_efxEreshkigalOBJChild[];
-extern struct ProcCmd ProcScr_efxEreshkigalOBJ2[];
+extern const struct ProcCmd ProcScr_efxEreshkigal[];
+extern const struct ProcCmd ProcScr_efxEreshkigalOBJ[];
+extern const struct ProcCmd ProcScr_efxEreshkigalOBJChild[];
+extern const struct ProcCmd ProcScr_efxEreshkigalOBJ2[];
 extern struct ProcCmd ProcScr_efxEreshkigalOBJ3[];
-extern struct ProcCmd ProcScr_efxEreshkigalBG[];
-extern struct ProcCmd ProcScr_efxEreshkigalWhiteOut[];
+extern const struct ProcCmd ProcScr_efxEreshkigalBG[];
+extern const struct ProcCmd ProcScr_efxEreshkigalWhiteOut[];
 extern const int gEreshkigalOBJConfig[];
 extern AnimScr * AnimScrArray_EreshkigalOBJChild[];
 extern AnimScr AnimScr_EreshkigalOBJ2_A[];
@@ -499,3 +499,65 @@ void efxEreshkigalOBJ3_OnEnd(void)
     gEfxBgSemaphore--;
     return;
 }
+
+SECTION(".rodata.08BA3F24")
+const struct ProcCmd ProcScr_efxEreshkigal[] = {
+    PROC_19,
+    PROC_REPEAT(efxEreshkigal_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3F3C")
+const struct ProcCmd ProcScr_efxEreshkigalOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxEreshkigalOBJ_Loop),
+    PROC_SLEEP(69),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4044")
+const struct ProcCmd ProcScr_efxEreshkigalOBJChild[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxEreshkigalOBJChild_OnEnd),
+    PROC_SLEEP(59),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4064")
+const struct ProcCmd ProcScr_efxEreshkigalOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxEreshkigalOBJ2_OnEnd),
+    PROC_SLEEP(13),
+    PROC_REPEAT(efxEreshkigalOBJ2_Loop),
+    PROC_SLEEP(110),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4094")
+const struct ProcCmd ProcScr_efxEreshkigalBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxEreshkigalBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA40FC")
+const struct ProcCmd ProcScr_efxSuperdruidBG3[] = {
+    PROC_19,
+    PROC_REPEAT(efxSuperdruidBG3_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4164")
+const struct ProcCmd ProcScr_efxEreshkigalWhiteOut[] = {
+    PROC_19,
+    PROC_REPEAT(efxEreshkigalWhiteOut_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA417C")
+const struct ProcCmd ProcScr_efxSuperdruidOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxSuperdruidOBJ2_OnEnd),
+    PROC_SLEEP(13),
+    PROC_END,
+};

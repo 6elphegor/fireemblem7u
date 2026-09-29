@@ -45,14 +45,14 @@ extern u16 gEkrLvupScrollPos1;
 extern u16 gEkrLvupScrollPos2;
 extern int gEkrLvupApfxUnexist;
 
-extern struct ProcCmd ProcScr_EfxPartsofScroll2[];
-extern struct ProcCmd ProcScr_Efxleveluphb[];
-extern struct ProcCmd ProcScr_Efxlvupbg[];
-extern struct ProcCmd ProcScr_efxLvupBG2[];
-extern struct ProcCmd ProcScr_efxLvupOBJ2[];
-extern struct ProcCmd ProcScr_efxLvupBGCOL[];
-extern struct ProcCmd ProcScr_EkrLvupApfx[];
-extern struct ProcCmd ProcScr_eobjLvup[];
+extern const struct ProcCmd ProcScr_EfxPartsofScroll2[];
+extern const struct ProcCmd ProcScr_Efxleveluphb[];
+extern const struct ProcCmd ProcScr_Efxlvupbg[];
+extern const struct ProcCmd ProcScr_efxLvupBG2[];
+extern const struct ProcCmd ProcScr_efxLvupOBJ2[];
+extern const struct ProcCmd ProcScr_efxLvupBGCOL[];
+extern const struct ProcCmd ProcScr_EkrLvupApfx[];
+extern const struct ProcCmd ProcScr_eobjLvup[];
 
 extern const s16 gEfxPartsofScroll2Lut[];
 extern const u16 FrameConfig_EfxLvupBG[];
@@ -693,5 +693,68 @@ const struct ProcCmd ProcScr_EfxPartsofScroll[] = {
     PROC_19,
     PROC_SET_END_CB(EfxPartsofScrollCallBack),
     PROC_REPEAT(EfxPartsofScrollMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB6CC")
+const struct ProcCmd ProcScr_EfxPartsofScroll2[] = {
+    PROC_19,
+    PROC_SET_END_CB(EfxPartsofScroll2CallBack),
+    PROC_REPEAT(EfxPartsofScroll2Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB72C")
+const struct ProcCmd ProcScr_Efxleveluphb[] = {
+    PROC_19,
+    PROC_SET_END_CB(EfxleveluphbCallBack),
+    PROC_REPEAT(EfxleveluphbNop),
+    PROC_REPEAT(EfxleveluphbMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB754")
+const struct ProcCmd ProcScr_Efxlvupbg[] = {
+    PROC_19,
+    PROC_REPEAT(EfxlvupbgMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB7C4")
+const struct ProcCmd ProcScr_efxLvupBG2[] = {
+    PROC_19,
+    PROC_REPEAT(EfxLvupBg2Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB7F4")
+const struct ProcCmd ProcScr_efxLvupOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(EfxLvupOBJ2CallBack),
+    PROC_SLEEP(24),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB814")
+const struct ProcCmd ProcScr_efxLvupBGCOL[] = {
+    PROC_19,
+    PROC_REPEAT(Loop6C1_EfxLvupBGCOL),
+    PROC_REPEAT(Loop6C2_EfxLvupBGCOL),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB834")
+const struct ProcCmd ProcScr_EkrLvupApfx[] = {
+    PROC_CALL(EkrLvupApfxInit),
+    PROC_REPEAT(EkrLvupApfxMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BDB84C")
+const struct ProcCmd ProcScr_eobjLvup[] = {
+    PROC_19,
+    PROC_REPEAT(EobjLvup_DrawGain1),
+    PROC_REPEAT(EobjLvup_DrawGain2),
+    PROC_REPEAT(EobjLvup_WaitApfxEnd),
     PROC_END,
 };

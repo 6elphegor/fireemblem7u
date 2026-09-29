@@ -365,7 +365,7 @@ void NilsEpilogueIntro_ReloadCg(void)
     SetDispEnable(1, 1, 1, 1, 1);
 }
 
-extern struct ProcCmd ProcScr_NilsEpilogueIntro[];
+extern const struct ProcCmd ProcScr_NilsEpilogueIntro[];
 
 void StartNilsEpilogueIntro(ProcPtr proc)
 {
@@ -437,7 +437,7 @@ void NilsEpilogueOutro_FadeDragonsGateToBlack(ProcPtr proc)
     sub_080139D8(0x100, 0x100, 0x100, 0, 0, 0, 0x80, 2, proc);
 }
 
-extern struct ProcCmd ProcScr_NilsEpilogueOutro[];
+extern const struct ProcCmd ProcScr_NilsEpilogueOutro[];
 
 void StartNilsEpilogueOutro(ProcPtr proc)
 {
@@ -454,3 +454,40 @@ void sub_0807F6C8(ProcPtr proc)
     SetFlag(0x98);
     sub_080A4E0C(proc);
 }
+
+SECTION(".rodata.08CC1198")
+const struct ProcCmd ProcScr_NilsEpilogueIntro[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueIntro_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueIntro_CopyBg3ToBg1),
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueIntro_LoadCg),
+    PROC_SLEEP(0),
+    PROC_REPEAT(NilsEpilogueIntro_Loop_BlendCg),
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueIntro_ClearBg1Bg2),
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueIntro_ReloadCg),
+    PROC_SLEEP(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC1208")
+const struct ProcCmd ProcScr_NilsEpilogueOutro[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueOutro_Init),
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueOutro_LoadNilsInDragonsGate),
+    PROC_SLEEP(0),
+    PROC_REPEAT(NilsEpilogueOutro_Loop_BlendCgs),
+    PROC_SLEEP(0),
+    PROC_CALL(NilsEpilogueOutro_ClearBg0),
+    PROC_SLEEP(30),
+    PROC_CALL(NilsEpilogueOutro_FadeNilsToWhite),
+    PROC_WHILE(sub_08013A1C),
+    PROC_SLEEP(30),
+    PROC_CALL(NilsEpilogueOutro_FadeDragonsGateToBlack),
+    PROC_WHILE(sub_08013A1C),
+    PROC_END,
+};

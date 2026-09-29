@@ -19,14 +19,14 @@ extern u16 gEfxFrameTmap[0x2520 / 2];
 // MISSING var 0x8E
 extern u32 gEkrInitPosReal;
 void MainUpdate_8055C68(void);
-extern struct ProcCmd gProc_ekrTogiInit[];
+extern const struct ProcCmd gProc_ekrTogiInit[];
 extern s16 gEkrInitialHitSide;
 extern u16 Pal_ArenaBattleBg_A[];
 extern u8 Img_ArenaBattleBg[];
 extern u8 Tsa_ArenaBattleBg[];
-extern struct ProcCmd gProc_ekrTogiEnd[];
+extern const struct ProcCmd gProc_ekrTogiEnd[];
 extern struct ProcEfxBGCOL * gpProcEkrTogiColor;
-extern struct ProcCmd gProc_ekrTogiColor[];
+extern const struct ProcCmd gProc_ekrTogiColor[];
 extern u16 * PalArray_ArenaBattleBg[];
 
 int GetBattleAnimArenaFlag(void);
@@ -290,3 +290,29 @@ void ekrTogiColor_Loop(struct ProcEfxBGCOL * proc)
 
     return;
 }
+
+SECTION(".rodata.08B9B30C")
+const struct ProcCmd gProc_ekrTogiInit[] = {
+    PROC_19,
+    PROC_REPEAT(ekrTogiInit_Init),
+    PROC_REPEAT(ekrTogiInit_LoadGfx),
+    PROC_REPEAT(ekrTogiInit_Loop),
+    PROC_REPEAT(ekrTogiInit_End),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9B33C")
+const struct ProcCmd gProc_ekrTogiEnd[] = {
+    PROC_19,
+    PROC_REPEAT(ekrTogiEnd_Init),
+    PROC_REPEAT(ekrTogiEnd_Loop),
+    PROC_REPEAT(ekrTogiEnd_End),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9B364")
+const struct ProcCmd gProc_ekrTogiColor[] = {
+    PROC_19,
+    PROC_REPEAT(ekrTogiColor_Loop),
+    PROC_END,
+};

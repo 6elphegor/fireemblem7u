@@ -6,8 +6,8 @@ typedef void (*SpellAnimFunc)(struct Anim * anim);
 extern SpellAnimFunc gEkrSpellAnimLut[];
 extern int gEfxBgSemaphore;
 extern struct ProcCmd ProcScr_EfxRestWINH[];
-extern struct ProcCmd ProcScr_efxCircleWIN[];
-extern struct ProcCmd ProcScr_efxMagicQUAKE[];
+extern const struct ProcCmd ProcScr_efxCircleWIN[];
+extern const struct ProcCmd ProcScr_efxMagicQUAKE[];
 
 struct ProcEfxMagicQuake
 {
@@ -688,5 +688,19 @@ SECTION(".rodata.08BA1574")
 const struct ProcCmd ProcScr_efxALPHA[] = {
     PROC_19,
     PROC_REPEAT(EfxALPHAMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA158C")
+const struct ProcCmd ProcScr_efxCircleWIN[] = {
+    PROC_19,
+    PROC_REPEAT(EfxCircleWINMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA15A4")
+const struct ProcCmd ProcScr_efxMagicQUAKE[] = {
+    PROC_19,
+    PROC_REPEAT(Loop6C_efxMagicQUAKE),
     PROC_END,
 };

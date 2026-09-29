@@ -10,7 +10,7 @@ extern struct SioMessage gUnknown_03004E80;
 extern struct MultiArenaSaveTeam * CONST_DATA gUnknown_085A9884;
 extern const u16 gUnknown_085ADDA8[];
 extern struct FaceVramEnt CONST_DATA gUnknown_085A9864[];
-extern struct ProcCmd CONST_DATA gUnknown_085A93A0[];
+extern const struct ProcCmd gUnknown_085A93A0[];
 
 void EndLinkArenaButtonSpriteDraw(void);
 void EndLinkArenaVersusSpriteDraw(void);
@@ -947,6 +947,15 @@ void sub_080451FC();
 void sub_08045334();
 void sub_08046EB8();
 
+void LAPhaseIntro_End();
+void LAPhaseIntro_Init();
+void LAPhaseIntro_StartBgm();
+void PhaseIntro_InitDisp();
+void PhaseIntro_WaitForEnd();
+extern const struct ProcCmd gProcScr_PhaseIntroBlendBox[];
+extern const struct ProcCmd gProcScr_PhaseIntroSquares[];
+extern const struct ProcCmd gProcScr_PhaseIntroText[];
+
 SECTION(".rodata.08B9A0E8")
 const struct ProcCmd ProcScr_SIOMAIN2[] = {
     PROC_19,
@@ -968,5 +977,26 @@ const struct ProcCmd ProcScr_SIOMAIN2[] = {
     PROC_REPEAT(SIOMAIN2_Loop_B),
     PROC_LABEL(3),
     PROC_CALL(sub_08045334),
+    PROC_END,
+};
+
+SECTION(".rodata.08B98BAC")
+const struct ProcCmd gUnknown_085A93A0[] = {
+    PROC_CALL(sub_0803DA30),
+    PROC_REPEAT(sub_0803DA70),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A580")
+const struct ProcCmd gUnk_08B9A580[] = {
+    PROC_CALL(LAPhaseIntro_Init),
+    PROC_SLEEP(0),
+    PROC_START_CHILD(gProcScr_PhaseIntroText),
+    PROC_START_CHILD(gProcScr_PhaseIntroSquares),
+    PROC_START_CHILD(gProcScr_PhaseIntroBlendBox),
+    PROC_CALL(PhaseIntro_InitDisp),
+    PROC_REPEAT(PhaseIntro_WaitForEnd),
+    PROC_CALL(LAPhaseIntro_StartBgm),
+    PROC_CALL(LAPhaseIntro_End),
     PROC_END,
 };

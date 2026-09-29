@@ -31,7 +31,7 @@ struct WmFadeProc {
     /* 38 */ int y;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_WmFade[];
+extern const struct ProcCmd ProcScr_WmFade[];
 
 struct WmSpriteAnimsProc {
     /* 00 */ PROC_HEADER;
@@ -56,7 +56,7 @@ struct WmSpriteAnimEnt {
     /* 10 */ s16 y;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_WmSpriteAnims[];
+extern const struct ProcCmd ProcScr_WmSpriteAnims[];
 extern struct WmSpriteAnimEnt const gWmSpriteAnimTable[];
 
 void EndAllWmSpriteAnims(void);
@@ -119,8 +119,8 @@ struct WmUnitManagerProc {
     /* 48 */ u8 unk_48;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_WmMu[];
-extern struct ProcCmd CONST_DATA ProcScr_WmUnitManager[];
+extern const struct ProcCmd ProcScr_WmMu[];
+extern const struct ProcCmd ProcScr_WmUnitManager[];
 
 struct WorldMapProc {
     /* 00 */ PROC_HEADER;
@@ -161,9 +161,9 @@ struct WmCmdProc {
 };
 
 extern struct ProcCmd CONST_DATA ProcScr_BmFadeIN[];
-extern struct ProcCmd CONST_DATA ProcScr_WmCmd[];
-extern struct ProcCmd CONST_DATA ProcScr_WmPalFadeOut[];
-extern struct ProcCmd CONST_DATA ProcScr_WmPalFadeIn[];
+extern const struct ProcCmd ProcScr_WmCmd[];
+extern const struct ProcCmd ProcScr_WmPalFadeOut[];
+extern const struct ProcCmd ProcScr_WmPalFadeIn[];
 extern u16 Pal_WmMapSprite[];
 
 struct WmSpotlightProc {
@@ -182,7 +182,7 @@ struct CGDataEnt {
 
 struct CGDataEnt const * GetCG(int idx);
 
-extern struct ProcCmd CONST_DATA ProcScr_WmSpotlight[];
+extern const struct ProcCmd ProcScr_WmSpotlight[];
 extern struct ProcCmd CONST_DATA ProcScr_WorldFlush[];
 extern u16 const * CONST_DATA gWmMapTsaTable[][4];
 extern u8 const * CONST_DATA gWmMapImgTable[][4];
@@ -222,9 +222,9 @@ void EndWmIcon(int idx);
 void EndWmIcon2(int idx);
 
 extern u16 CONST_DATA Sprite_WmIcon[];
-extern struct ProcCmd CONST_DATA ProcScr_WmSlots[];
-extern struct ProcCmd CONST_DATA ProcScr_WmTextBox[];
-extern struct ProcCmd CONST_DATA ProcScr_WmMarker[];
+extern const struct ProcCmd ProcScr_WmSlots[];
+extern const struct ProcCmd ProcScr_WmTextBox[];
+extern const struct ProcCmd ProcScr_WmMarker[];
 extern u16 CONST_DATA Sprite_WmTextBoxA[];
 extern u16 CONST_DATA Sprite_WmTextBoxB[];
 extern u16 CONST_DATA Sprite_WmMarker[];
@@ -2488,3 +2488,90 @@ void StartWorldFlush(ProcPtr parent)
 {
     Proc_StartBlocking(ProcScr_WorldFlush, parent);
 }
+
+SECTION(".rodata.08CE7568")
+const struct ProcCmd ProcScr_WmFade[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(WmFade_Init),
+    PROC_SLEEP(0),
+    PROC_REPEAT(WmFade_SetCamera),
+    PROC_REPEAT(WmFade_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE7630")
+const struct ProcCmd ProcScr_WmSpriteAnims[] = {
+    PROC_SET_END_CB(EndAllWmSpriteAnims),
+    PROC_CALL(WmSpriteAnims_Init),
+    PROC_REPEAT(WmSpriteAnims_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE7650")
+const struct ProcCmd ProcScr_WmTextBox[] = {
+    PROC_CALL(WmTextBox_Init),
+    PROC_SLEEP(0),
+    PROC_REPEAT(WmTextBox_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE7670")
+const struct ProcCmd ProcScr_WmMarker[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(WmMarker_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE7688")
+const struct ProcCmd ProcScr_WmMu[] = {
+    PROC_SET_END_CB(WmMuMove_OnEnd),
+    PROC_CALL(WmMuMove_Init),
+    PROC_SLEEP(1),
+    PROC_REPEAT(WmMuMove_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE76B0")
+const struct ProcCmd ProcScr_WmSlots[] = {
+    PROC_CALL(WmSlots_Init),
+    PROC_BLOCK,
+    PROC_END,
+};
+
+SECTION(".rodata.08CE76C8")
+const struct ProcCmd ProcScr_WmUnitManager[] = {
+    PROC_SET_END_CB(WmUnitManager_EndAll),
+    PROC_CALL(WmUnitManager_Init),
+    PROC_REPEAT(WmUnitManager_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE77A8")
+const struct ProcCmd ProcScr_WmCmd[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(WmCmd_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE77C0")
+const struct ProcCmd ProcScr_WmPalFadeOut[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(WmPalFade_LoopOut),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE77D8")
+const struct ProcCmd ProcScr_WmPalFadeIn[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(WmPalFade_LoopIn),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE77F0")
+const struct ProcCmd ProcScr_WmSpotlight[] = {
+    PROC_SLEEP(0),
+    PROC_SET_END_CB(WmEndSpotlight),
+    PROC_CALL(WmSpotlight_Init),
+    PROC_REPEAT(WmSpotlight_Loop),
+    PROC_END,
+};

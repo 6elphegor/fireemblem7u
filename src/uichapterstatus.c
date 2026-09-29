@@ -40,10 +40,10 @@ extern u16 const Pal_StatusScreenLabelSprites[];
 extern u16 const Pal_ChapterStatusSelectorSprite[];
 extern u8 const Img_StatusScreenLabelSprites[];
 extern struct TextInitInfo const gTextInitInfo_ChapterStatus[];
-extern struct ProcCmd const gProcScr_ChapterStatusScreen[];
-extern struct ProcCmd const ProcScr_ChapterStatusScreen_FromPrep[];
+extern const struct ProcCmd gProcScr_ChapterStatusScreen[];
+extern const struct ProcCmd ProcScr_ChapterStatusScreen_FromPrep[];
 extern struct ProcCmd const ProcScr_StatusScreenSpriteDraw[];
-extern struct ProcCmd const gProcScr_ADJUSTSFROMXI[];
+extern const struct ProcCmd gProcScr_ADJUSTSFROMXI[];
 extern u16 const Sprite_ChapterStatus_08CC2DF8[];
 extern u16 const Sprite_ChapterStatus_PlayCountLabel[];
 extern u16 const Sprite_ChapterStatus_08CC2E0E[];
@@ -652,3 +652,60 @@ void StatusScreenSpriteDraw_Loop(struct ChapterStatusProc * proc)
 
     UpdateStatusFactionSelectorGlow();
 }
+
+void ADJUSTFROMXI_MoveCameraOnSomeUnit();
+
+SECTION(".rodata.08B9367C")
+const struct ProcCmd gProcScr_ADJUSTSFROMXI[] = {
+    PROC_19,
+    PROC_CALL(ADJUSTFROMXI_MoveCameraOnSomeUnit),
+    PROC_SLEEP(1),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC2EA0")
+const struct ProcCmd gProcScr_ChapterStatusScreen[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(LockBmDisplay),
+    PROC_CALL(ChapterStatus_Init),
+    PROC_CALL(ChapterStatus_DrawText),
+    PROC_CALL(ChapterStatus_ShowAllLayers),
+    PROC_LABEL(0),
+    PROC_REPEAT(ChapterStatus_LoopKeyHandler),
+    PROC_LABEL(1),
+    PROC_CALL(sub_08014188),
+    PROC_SLEEP(0),
+    PROC_CALL(EndSysBlackBoxs),
+    PROC_CALL(EndMuralBackground),
+    PROC_CALL(ChapterStatus_OnEnd),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(ChapterStatus_FocusLeaderUnit),
+    PROC_SLEEP(0),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
+
+SECTION(".rodata.08CC2F58")
+const struct ProcCmd ProcScr_ChapterStatusScreen_FromPrep[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(ChapterStatus_Init),
+    PROC_CALL(ChapterStatus_DrawText),
+    PROC_SLEEP(0),
+    PROC_CALL(ChapterStatus_ShowAllLayers),
+    PROC_CALL(FadeInBlackSpeed40),
+    PROC_SLEEP(0),
+    PROC_LABEL(0),
+    PROC_REPEAT(ChapterStatus_LoopKeyHandler),
+    PROC_LABEL(1),
+    PROC_CALL(sub_08014188),
+    PROC_SLEEP(0),
+    PROC_CALL(EndSysBlackBoxs),
+    PROC_CALL(EndMuralBackground),
+    PROC_CALL(ChapterStatus_OnEnd),
+    PROC_END,
+};

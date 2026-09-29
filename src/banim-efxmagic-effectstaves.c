@@ -7,42 +7,42 @@ void StopBGM1(void);
 void RegisterEfxSpellCastEnd(void);
 void NewEfxFlashUnit(struct Anim * anim, u16 dura1, u16 dura2, int c);
 ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int speed);
-extern struct ProcCmd ProcScr_efxSilence[];
+extern const struct ProcCmd ProcScr_efxSilence[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxSilenceBG[];
+extern const struct ProcCmd ProcScr_efxSilenceBG[];
 extern u16 * TsaArray_SilenceBg[];
 extern u16 Pal_Silence[];
 extern u16 Img_SilenceBg[];
-extern struct ProcCmd ProcScr_efxSilenceOBJ[];
+extern const struct ProcCmd ProcScr_efxSilenceOBJ[];
 extern u32 AnimScr_EfxSilenceOBJ[];
 extern u16 Img_SilenceSprites[];
-extern struct ProcCmd ProcScr_efxSleep[];
-extern struct ProcCmd ProcScr_efxSleepBG[];
+extern const struct ProcCmd ProcScr_efxSleep[];
+extern const struct ProcCmd ProcScr_efxSleepBG[];
 extern u16 * TsaArray_SleepBg[];
 extern u16 Pal_SleepBg[];
 extern u16 Img_SleepBg[];
-extern struct ProcCmd ProcScr_efxSleepOBJ[];
+extern const struct ProcCmd ProcScr_efxSleepOBJ[];
 extern u32 AnimScr_EfxSleepOBJ1[];
 extern u16 Pal_SleepSprites[];
 extern u16 Img_SleepSprites[];
-extern struct ProcCmd ProcScr_efxSleepOBJ2[];
+extern const struct ProcCmd ProcScr_efxSleepOBJ2[];
 extern u32 AnimScr_EfxSleepOBJ2[];
-extern struct ProcCmd ProcScr_efxSleepSE[];
-extern struct ProcCmd ProcScr_efxHammarne[];
-extern struct ProcCmd ProcScr_efxHammarneBG[];
+extern const struct ProcCmd ProcScr_efxSleepSE[];
+extern const struct ProcCmd ProcScr_efxHammarne[];
+extern const struct ProcCmd ProcScr_efxHammarneBG[];
 extern u16 * TsaArray_HammerneBg[];
 extern u16 * ImgArray_HammerneBg[];
 extern u16 Pal_HammerneBg[];
-extern struct ProcCmd ProcScr_efxHammarneOBJ[];
+extern const struct ProcCmd ProcScr_efxHammarneOBJ[];
 extern u32 AnimScr_EfxHammarneOBJ[];
 extern u16 Pal_HammerneSprites[];
-extern struct ProcCmd ProcScr_efxBerserk[];
-extern struct ProcCmd ProcScr_efxBerserkBG[];
+extern const struct ProcCmd ProcScr_efxBerserk[];
+extern const struct ProcCmd ProcScr_efxBerserkBG[];
 extern u16 Pal_BerserkBg[];
 extern u16 Img_082739E4[];
 extern u16 Tsa_08273AE4[];
-extern struct ProcCmd ProcScr_efxBerserkCLONE[];
-extern struct ProcCmd ProcScr_efxBerserkOBJ[];
+extern const struct ProcCmd ProcScr_efxBerserkCLONE[];
+extern const struct ProcCmd ProcScr_efxBerserkOBJ[];
 extern AnimScr FramScr_Unk5D4F90[];
 extern u32 AnimScr_EfxBerserk1[];
 extern u16 Pal_BerserkSprites[];
@@ -57,15 +57,15 @@ extern u32 AnimScr_EfxBerserk7[];
 extern u32 AnimScr_EfxBerserk8[];
 extern u32 AnimScr_EfxBerserk9[];
 extern u32 AnimScr_EfxBerserk10[];
-extern struct ProcCmd ProcScr_efxMshield[];
-extern struct ProcCmd ProcScr_efxMshieldBG[];
+extern const struct ProcCmd ProcScr_efxMshield[];
+extern const struct ProcCmd ProcScr_efxMshieldBG[];
 extern u16 * TsaArray_BarrierBg[];
 extern u16 Pal_BarrierBg[];
 extern u16 Img_BarrierBg[];
-extern struct ProcCmd ProcScr_efxMshieldBGOBJ[];
+extern const struct ProcCmd ProcScr_efxMshieldBGOBJ[];
 extern u32 AnimScr_EfxMshield1[];
 extern u16 Img_EfxMshield[];
-extern struct ProcCmd ProcScr_efxMshieldBGOBJ2[];
+extern const struct ProcCmd ProcScr_efxMshieldBGOBJ2[];
 extern u32 AnimScr_EfxMshield2[];
 
 void StartSpellAnimSilence(struct Anim * anim);
@@ -1182,3 +1182,169 @@ void efxMshieldBGOBJ_OnEnd(struct ProcEfxOBJ * proc)
     gEfxBgSemaphore--;
     return;
 }
+
+SECTION(".rodata.08BA32D4")
+const struct ProcCmd ProcScr_efxSilence[] = {
+    PROC_19,
+    PROC_REPEAT(efxSilence_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA32EC")
+const struct ProcCmd ProcScr_efxSilenceBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxSilenceBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA334C")
+const struct ProcCmd ProcScr_efxSilenceOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxSilenceOBJ_OnEnd),
+    PROC_SLEEP(40),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA336C")
+const struct ProcCmd ProcScr_efxSleep[] = {
+    PROC_19,
+    PROC_REPEAT(efxSleep_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3384")
+const struct ProcCmd ProcScr_efxSleepBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxSleepBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA33DC")
+const struct ProcCmd ProcScr_efxSleepOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxSleepOBJ_OnEnd),
+    PROC_SLEEP(80),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA33FC")
+const struct ProcCmd ProcScr_efxSleepOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxSleepOBJ_OnEnd),
+    PROC_SLEEP(200),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA341C")
+const struct ProcCmd ProcScr_efxSleepSE[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxSleepSE_OnEnd),
+    PROC_SLEEP(1),
+    PROC_CALL(efxSleepSE_PlaySE),
+    PROC_SLEEP(54),
+    PROC_CALL(efxSleepSE_PlaySE),
+    PROC_SLEEP(65),
+    PROC_CALL(efxSleepSE_PlaySE),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3464")
+const struct ProcCmd ProcScr_efxHammarne[] = {
+    PROC_19,
+    PROC_REPEAT(efxHammarne_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA347C")
+const struct ProcCmd ProcScr_efxHammarneBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxHammarneBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA34FC")
+const struct ProcCmd ProcScr_efxHammarneOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxHammarneOBJ_OnEnd),
+    PROC_SLEEP(80),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA351C")
+const struct ProcCmd ProcScr_efxBerserk[] = {
+    PROC_19,
+    PROC_REPEAT(efxBerserk_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3534")
+const struct ProcCmd ProcScr_efxBerserkBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxBerserkBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA354C")
+const struct ProcCmd ProcScr_efxBerserkCLONE[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxBerserkCLONE_OnEnd),
+    PROC_REPEAT(efxBerserkCLONE_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA356C")
+const struct ProcCmd ProcScr_efxBerserkOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxBerserkOBJ_OnEnd),
+    PROC_REPEAT(efxBerserkOBJ_Loop_A),
+    PROC_SLEEP(7),
+    PROC_REPEAT(efxBerserkOBJ_Loop_B),
+    PROC_SLEEP(3),
+    PROC_REPEAT(efxBerserkOBJ_Loop_C),
+    PROC_SLEEP(7),
+    PROC_REPEAT(efxBerserkOBJ_Loop_D),
+    PROC_SLEEP(3),
+    PROC_REPEAT(efxBerserkOBJ_Loop_E),
+    PROC_SLEEP(7),
+    PROC_REPEAT(efxBerserkOBJ_Loop_F),
+    PROC_SLEEP(3),
+    PROC_REPEAT(efxBerserkOBJ_Loop_G),
+    PROC_SLEEP(7),
+    PROC_REPEAT(efxBerserkOBJ_Loop_H),
+    PROC_SLEEP(3),
+    PROC_REPEAT(efxBerserkOBJ_Loop_I),
+    PROC_SLEEP(7),
+    PROC_REPEAT(efxBerserkOBJ_Loop_J),
+    PROC_SLEEP(17),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3624")
+const struct ProcCmd ProcScr_efxMshield[] = {
+    PROC_19,
+    PROC_REPEAT(efxMshield_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA363C")
+const struct ProcCmd ProcScr_efxMshieldBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxMshieldBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3668")
+const struct ProcCmd ProcScr_efxMshieldBGOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxMshieldBGOBJ_OnEnd),
+    PROC_SLEEP(220),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3688")
+const struct ProcCmd ProcScr_efxMshieldBGOBJ2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxMshieldBGOBJ_OnEnd),
+    PROC_SLEEP(110),
+    PROC_END,
+};

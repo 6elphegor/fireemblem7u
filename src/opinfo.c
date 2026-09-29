@@ -87,8 +87,8 @@ struct ClassDisplayFont const * GetClassDisplayFontInfo(u8 chr);
 extern struct AnimBuffer gOpInfoData;
 extern struct BanimUnkStructComm gOpInfoTerrainConf;
 extern struct ClassReelEnt * const * const * CONST_DATA gClassReelSetLut[];
-extern struct ProcCmd CONST_DATA ProcScr_ClassInfoDisplay[];
-extern struct ProcCmd CONST_DATA ProcScr_ClassStatsDisplay[];
+extern const struct ProcCmd ProcScr_ClassInfoDisplay[];
+extern const struct ProcCmd ProcScr_ClassStatsDisplay[];
 extern u8 Img_ClassDisplayFont[];
 extern u16 Pal_ClassDisplayFont[];
 extern int const gClassReelStatLabels[2][6];
@@ -121,9 +121,9 @@ static inline int DarknessCoeff(int darkness, u8 lsr)
 
 extern ProcPtr gClassIntroLetterProcs[];
 
-extern struct ProcCmd CONST_DATA ProcScr_ClassIntro[];
-extern struct ProcCmd CONST_DATA ProcScr_ClassIntroLetter[];
-extern struct ProcCmd CONST_DATA ProcScr_ClassIntroIcon[];
+extern const struct ProcCmd ProcScr_ClassIntro[];
+extern const struct ProcCmd ProcScr_ClassIntroLetter[];
+extern const struct ProcCmd ProcScr_ClassIntroIcon[];
 extern u8 CONST_DATA gClassIntroGlyphWidths[];
 extern u16 CONST_DATA Sprite_ClassIntroLetter[];
 
@@ -1077,3 +1077,74 @@ intptr_t GetClassReelEntry(int set, int index)
     return 0;
 }
 
+
+SECTION(".rodata.08CE5EC0")
+const struct ProcCmd ProcScr_ClassIntro[] = {
+    PROC_19,
+    PROC_CALL_ARG(NewFadeIn, 16),
+    PROC_WHILE(FadeInExists),
+    PROC_SLEEP(1),
+    PROC_CALL(ClassIntro_Init),
+    PROC_REPEAT(ClassIntro_LoopIn),
+    PROC_REPEAT(ClassIntro_LoopOut),
+    PROC_LABEL(4),
+    PROC_CALL(ClassIntro_OnEnd),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE5F10")
+const struct ProcCmd ProcScr_ClassIntroLetter[] = {
+    PROC_19,
+    PROC_SLEEP(1),
+    PROC_CALL(ClassIntroLetter_Init),
+    PROC_REPEAT(ClassIntroLetter_LoopFadeIn),
+    PROC_REPEAT(ClassIntroLetter_LoopDisplay),
+    PROC_REPEAT(ClassIntroLetter_LoopFadeOut),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE5F48")
+const struct ProcCmd ProcScr_ClassIntroIcon[] = {
+    PROC_19,
+    PROC_SLEEP(1),
+    PROC_CALL(ClassIntroIcon_Init),
+    PROC_REPEAT(ClassIntroIcon_LoopLine),
+    PROC_REPEAT(ClassIntroIcon_LoopFadeIn),
+    PROC_REPEAT(ClassIntroIcon_LoopDisplay),
+    PROC_LABEL(4),
+    PROC_REPEAT(ClassIntroIcon_LoopFadeOut),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE5F90")
+const struct ProcCmd ProcScr_ClassInfoDisplay[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(ClassInfoDisplay_Init),
+    PROC_SET_END_CB(ClassInfoDisplay_OnEnd),
+    PROC_SLEEP(2),
+    PROC_REPEAT(ClassInfoDisplay_LoopWindowIn),
+    PROC_LABEL(9),
+    PROC_CALL(ClassInfoDisplay_ExecScript),
+    PROC_REPEAT(ClassInfoDisplay_LoopScript),
+    PROC_GOTO(9),
+    PROC_LABEL(10),
+    PROC_BLOCK,
+    PROC_LABEL(4),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_GOTO(8),
+    PROC_LABEL(7),
+    PROC_CALL_ARG(NewFadeOut, 2),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(8),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE6030")
+const struct ProcCmd ProcScr_ClassStatsDisplay[] = {
+    PROC_19,
+    PROC_SLEEP(3),
+    PROC_CALL(ClassStatsDisplay_Init),
+    PROC_REPEAT(ClassStatsDisplay_Loop),
+    PROC_END,
+};

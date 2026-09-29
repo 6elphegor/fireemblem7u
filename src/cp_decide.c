@@ -1,5 +1,7 @@
 #include "gbafe.h"
 #include "gbafe/cp_common.h"
+#include "gbafe/bmtrap.h"
+#include "gbafe/playerphase.h"
 
 // AI decision (FE8U: cp_decide.c)
 
@@ -15,7 +17,7 @@ typedef void (* DecideFunc)(void);
 
 extern void (* AiDecideMainFunc)(void);
 extern DecideFunc CONST_DATA sDecideFuncList[];
-extern struct ProcCmd CONST_DATA gProcScr_CpPerform[];
+extern const struct ProcCmd gProcScr_CpPerform[];
 
 void CpDecide_Suspend(ProcPtr proc)
 {
@@ -224,3 +226,31 @@ void DecideScriptB(void)
 
     AiExecFallbackScriptB();
 }
+
+void CpPerform_BeginUnitMovement();
+void CpPerform_Cleanup();
+void CpPerform_EquipBest();
+void CpPerform_MoveCameraOntoTarget();
+void CpPerform_MoveCameraOntoUnit();
+void CpPerform_PerformAction();
+void CpPerform_WaitAction();
+
+SECTION(".rodata.08B96F9C")
+const struct ProcCmd gProcScr_CpPerform[] = {
+    PROC_19,
+    PROC_CALL(CpPerform_UpdateMapMusic),
+    PROC_CALL(CpPerform_MoveCameraOntoUnit),
+    PROC_SLEEP(0),
+    PROC_CALL(CpPerform_BeginUnitMovement),
+    PROC_WHILE(MuExistsActive),
+    PROC_CALL(CpPerform_MoveCameraOntoTarget),
+    PROC_SLEEP(0),
+    PROC_CALL(CpPerform_PerformAction),
+    PROC_REPEAT(CpPerform_WaitAction),
+    PROC_CALL_2(HandlePostActionTraps),
+    PROC_CALL_2(RunPotentialWaitEvents),
+    PROC_CALL(CpPerform_Cleanup),
+    PROC_CALL(CpPerform_EquipBest),
+    PROC_LABEL(1),
+    PROC_END,
+};

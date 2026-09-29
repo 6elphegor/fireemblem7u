@@ -7,8 +7,8 @@ extern struct ProcCmd CONST_DATA ProcScr_DebugMonitor[];
 void sub_08044ED8(void);
 void sub_08044FFC(void);
 extern struct ProcCmd CONST_DATA ProcScr_SIOTERM[];
-extern struct ProcCmd CONST_DATA ProcScr_SIOPRA[];
-extern struct ProcCmd CONST_DATA ProcScr_SIOBAT[];
+extern const struct ProcCmd ProcScr_SIOPRA[];
+extern const struct ProcCmd ProcScr_SIOBAT[];
 extern struct ProcCmd CONST_DATA ProcScr_SIORESULT[];
 extern struct ProcCmd CONST_DATA ProcScr_SIO_RuleSettings[];
 void sub_08047F50(int x, int y);
@@ -445,7 +445,7 @@ void SioMenu_End(struct SioMenuProc * proc)
 {
     int i;
 
-    struct ProcCmd * SioMenuProcLut[5] = {
+    const struct ProcCmd * SioMenuProcLut[5] = {
         ProcScr_SIOTERM, // Edit Teams
         ProcScr_SIOPRA, // Practice
         ProcScr_SIOBAT, // Linked Battle
@@ -509,3 +509,138 @@ void StartLinkArenaMainMenu(ProcPtr parent)
 
     return;
 }
+
+void EndLinkArenaVersusSpriteDraw();
+void FE6Link_Init();
+extern const struct ProcCmd ProcScr_LinkArenaPostBattle_DrawSprites[];
+void Set_0203DDDC();
+void sub_08047DA4();
+void sub_08047F1C();
+
+SECTION(".rodata.08B98F9C")
+const struct ProcCmd ProcScr_SIOPRA[] = {
+    PROC_19,
+    PROC_SLEEP(0),
+    PROC_CALL(StartLinkArenaTeamList),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080416D4),
+    PROC_CALL(sub_08040444),
+    PROC_CALL(sub_08047CA8),
+    PROC_CALL(sub_08047DA4),
+    PROC_CALL(sub_08047F1C),
+    PROC_SLEEP(0),
+    PROC_CALL(New6C_SIOMAIN2),
+    PROC_SLEEP(0),
+    PROC_REPEAT(SIOPRA_Loop),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_START_CHILD_BLOCKING(&ProcScr_LinkArenaPostBattle_DrawSprites[5]),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0803DDD0),
+    PROC_LABEL(4),
+    PROC_LABEL(1),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_END,
+};
+
+SECTION(".rodata.08B99088")
+const struct ProcCmd ProcScr_SIOBAT[] = {
+    PROC_19,
+    PROC_LABEL(0),
+    PROC_CALL(StartLinkArenaTeamList),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080416D4),
+    PROC_CALL(sub_08047CA8),
+    PROC_CALL(sub_08047DA4),
+    PROC_CALL(sub_08047F1C),
+    PROC_CALL(sub_08040714),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_CALL(sub_08040870),
+    PROC_LABEL(3),
+    PROC_REPEAT(sub_080408B8),
+    PROC_CALL(sub_080412C8),
+    PROC_REPEAT(sub_08040AE0),
+    PROC_CALL(sub_0803DB10),
+    PROC_REPEAT(sub_0803DB24),
+    PROC_CALL(sub_08040B80),
+    PROC_REPEAT(sub_08040C24),
+    PROC_CALL(sub_0803DB10),
+    PROC_REPEAT(sub_0803DB24),
+    PROC_REPEAT(sub_08040CFC),
+    PROC_SLEEP(10),
+    PROC_CALL(sub_08040DB0),
+    PROC_SLEEP(80),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(EndLinkArenaVersusSpriteDraw),
+    PROC_CALL(sub_0804116C),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_SLEEP(180),
+    PROC_CALL(sub_0803DB10),
+    PROC_REPEAT(sub_0803DB24),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08047CA8),
+    PROC_CALL(sub_08047DA4),
+    PROC_CALL(sub_08047F1C),
+    PROC_CALL(sub_08041104),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(FE6Link_Init),
+    PROC_CALL(sub_08040E08),
+    PROC_REPEAT(sub_08040ED8),
+    PROC_REPEAT(sub_0804105C),
+    PROC_CALL(sub_0803DB10),
+    PROC_REPEAT(sub_0803DB24),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(EndLinkArenaVersusSpriteDraw),
+    PROC_CALL(sub_08047CA8),
+    PROC_SLEEP(1),
+    PROC_CALL(New6C_SIOMAIN2),
+    PROC_SLEEP(0),
+    PROC_REPEAT(SIOPRA_Loop),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080412D4),
+    PROC_CALL(sub_08040610),
+    PROC_START_CHILD_BLOCKING(&ProcScr_LinkArenaPostBattle_DrawSprites[5]),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_08040634),
+    PROC_CALL(sub_080403B0),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_0803DDD0),
+    PROC_CALL(sub_08047CA8),
+    PROC_GOTO(1),
+    PROC_LABEL(2),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(InitFaces),
+    PROC_CALL(EndLinkArenaVersusSpriteDraw),
+    PROC_GOTO(0),
+    PROC_LABEL(4),
+    PROC_CALL(sub_0803DB10),
+    PROC_REPEAT(sub_0803DB24),
+    PROC_SLEEP(1),
+    PROC_CALL(Set_0203DDDC),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080412D4),
+    PROC_CALL(sub_08040610),
+    PROC_CALL(sub_08040634),
+    PROC_LABEL(1),
+    PROC_CALL(sub_0803C414),
+    PROC_END,
+};

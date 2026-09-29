@@ -1,11 +1,11 @@
 #include "gbafe.h"
 
 /* auto-decls */
-extern struct ProcCmd ProcScr_efxGespenstBG4[];
+extern const struct ProcCmd ProcScr_efxGespenstBG4[];
 extern u16 Img_GespenstBg4[];
 extern u16 Pal_GespenstBg4[];
 extern u16 Tsa_GespenstBg4[];
-extern struct ProcCmd ProcScr_efxGespenstBGCOL2[];
+extern const struct ProcCmd ProcScr_efxGespenstBGCOL2[];
 extern u16 Pal_0829B13C[];
 void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
@@ -13,10 +13,10 @@ void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
 extern int gEfxBgSemaphore;
 extern AnimScr FramScr_Unk5D4F90[];
-extern struct ProcCmd ProcScr_efxGespenst[];
-extern struct ProcCmd ProcScr_efxGespenstBG[];
-extern struct ProcCmd ProcScr_efxGespenstBG2[];
-extern struct ProcCmd ProcScr_efxGespenstOBJ[];
+extern const struct ProcCmd ProcScr_efxGespenst[];
+extern const struct ProcCmd ProcScr_efxGespenstBG[];
+extern const struct ProcCmd ProcScr_efxGespenstBG2[];
+extern const struct ProcCmd ProcScr_efxGespenstOBJ[];
 extern struct ProcCmd ProcScr_efxGespenstOBJ2[];
 extern const s16 FrameConfig_GespenstBG[];
 extern u16 * TsaArray_GespenstBG[];
@@ -415,3 +415,48 @@ void efxGespenstOBJ2_Loop_C(struct ProcEfxOBJ * proc)
     anim->timer = 0;
     Proc_Break(proc);
 }
+
+SECTION(".rodata.08BA3BE4")
+const struct ProcCmd ProcScr_efxGespenst[] = {
+    PROC_19,
+    PROC_REPEAT(efxGespenst_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3BFC")
+const struct ProcCmd ProcScr_efxGespenstBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxGespenstBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3C44")
+const struct ProcCmd ProcScr_efxGespenstBG2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxGespenstBG2_OnEnd),
+    PROC_REPEAT(efxGespenstBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3C64")
+const struct ProcCmd ProcScr_efxGespenstBG4[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxGespenstBG4_OnEnd),
+    PROC_REPEAT(efxGespenstBG4_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3C84")
+const struct ProcCmd ProcScr_efxGespenstBGCOL2[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxGespenstBGCOL2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3CA4")
+const struct ProcCmd ProcScr_efxGespenstOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxGespenstOBJ_Loop),
+    PROC_END,
+};

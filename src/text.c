@@ -32,8 +32,8 @@ extern struct Glyph const * const TextGlyphs_Talk[];
 extern u16 const * const TextColorLutTable[];
 extern struct Glyph const * const TextGlyphs_Special[];
 extern u16 const Pal_GreenTextColors[];
-extern struct ProcCmd CONST_DATA ProcScr_TextPrint[];
-extern struct ProcCmd CONST_DATA ProcScr_GreenTextColor[];
+extern const struct ProcCmd ProcScr_TextPrint[];
+extern const struct ProcCmd ProcScr_GreenTextColor[];
 
 struct TextPrintProc
 {
@@ -1246,3 +1246,16 @@ void PutTwoSpecialChar(u16 * tm, int color, int id_a, int id_b)
     PutSpecialChar(tm++, color, id_a);
     PutSpecialChar(tm, color, id_b);
 }
+
+SECTION(".rodata.08B86140")
+const struct ProcCmd ProcScr_TextPrint[] = {
+    PROC_REPEAT(TextPrint_OnLoop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B86150")
+const struct ProcCmd ProcScr_GreenTextColor[] = {
+    PROC_END_IF_DUPLICATE,
+    PROC_REPEAT(GreenText_OnLoop),
+    PROC_END,
+};

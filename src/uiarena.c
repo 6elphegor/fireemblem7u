@@ -9,8 +9,8 @@ int GetGold(void);
 void Proc_Mark(ProcPtr proc, u8 mark);
 
 extern struct ProcCmd CONST_DATA ProcScr_Mu[];
-extern struct ProcCmd CONST_DATA gProcScr_ArenaUiMain[];
-extern struct ProcCmd CONST_DATA gProcScr_ArenaUiResults[];
+extern const struct ProcCmd gProcScr_ArenaUiMain[];
+extern const struct ProcCmd gProcScr_ArenaUiResults[];
 extern EventScr CONST_DATA EventScr_SuspendPrompt[];
 extern int CONST_DATA gMid_Lv;
 
@@ -324,3 +324,87 @@ void sub_080B2F94(ProcPtr proc)
     EventEndBattleMap(proc);
 }
 
+
+extern const struct ProcCmd gProcScr_ArenaUiResultBgm[];
+
+SECTION(".rodata.08CE729C")
+const struct ProcCmd gProcScr_ArenaUiMain[] = {
+    PROC_CALL(LockGame),
+    PROC_SLEEP(1),
+    PROC_CALL_ARG(_FadeBgmOut, -1),
+    PROC_CALL(StartMidFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(LockBmDisplay),
+    PROC_CALL_ARG(_StartBgm, 71),
+    PROC_CALL(ArenaUi_Init),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_WelcomeDialogue),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_WagerGoldDialogue),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_CheckConfirmation),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_ConfirmWager),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_InstructionsDialogue),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_GoodLuckDialogue),
+    PROC_SLEEP(1),
+    PROC_LABEL(0),
+    PROC_CALL_ARG(_FadeBgmOut, 2),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_StartArenaBattle),
+    PROC_SLEEP(1),
+    PROC_CALL(UnlockGame),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_JUMP(gProcScr_ArenaUiResults),
+    PROC_LABEL(2),
+    PROC_SLEEP(1),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(1),
+    PROC_CALL(ArenaUi_OnEnd),
+    PROC_CALL(ClearTalk),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(StartMapSongBgm),
+    PROC_CALL(StartMidFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE73FC")
+const struct ProcCmd gProcScr_ArenaUiResults[] = {
+    PROC_LABEL(1),
+    PROC_CALL(ArenaUiResults_Init_A),
+    PROC_CALL(LockGame),
+    PROC_CALL(LockBmDisplay),
+    PROC_SLEEP(0),
+    PROC_START_CHILD(gProcScr_ArenaUiResultBgm),
+    PROC_CALL(ArenaUi_Init),
+    PROC_CALL(FadeInBlackSpeed20),
+    PROC_SLEEP(0),
+    PROC_CALL(ArenaUi_ResultsDialogue),
+    PROC_SLEEP(0),
+    PROC_CALL(ArenaUi_ShowGoldBoxOnVictoryOrDraw),
+    PROC_SLEEP(0),
+    PROC_LABEL(2),
+    PROC_SLEEP(1),
+    PROC_END_EACH(gProcScr_ArenaUiResultBgm),
+    PROC_SLEEP(0),
+    PROC_CALL_ARG(_FadeBgmOut, 2),
+    PROC_CALL(sub_08014170),
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080B2A50),
+    PROC_CALL(ArenaUi_OnEnd),
+    PROC_CALL(ClearTalk),
+    PROC_CALL(UnlockBmDisplay),
+    PROC_CALL(RefreshBMapGraphics),
+    PROC_CALL(StartMapSongBgm),
+    PROC_CALL(StartMidFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};

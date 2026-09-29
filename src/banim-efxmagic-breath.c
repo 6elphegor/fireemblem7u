@@ -5,28 +5,28 @@ void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void NewEfxSpellCast(void);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxFirebreath[];
+extern const struct ProcCmd ProcScr_efxFirebreath[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxFirebreathOBJ[];
+extern const struct ProcCmd ProcScr_efxFirebreathOBJ[];
 extern u32 AnimScr_FirebreathOBJ_Left[];
 extern u32 AnimScr_FirebreathOBJ_Right[];
 extern u16 Pal_FireBreathSprites[];
 extern u16 Img_BreathSprites[];
-extern struct ProcCmd ProcScr_efxFirebreathBG[];
+extern const struct ProcCmd ProcScr_efxFirebreathBG[];
 extern u16 Img_FireBreathBg[];
 extern u16 Tsa_FireBreathBg[];
-extern struct ProcCmd ProcScr_efxFirebreathBGCOL[];
+extern const struct ProcCmd ProcScr_efxFirebreathBGCOL[];
 extern u16 Pal_FireBreathBg[];
-extern struct ProcCmd ProcScr_efxIcebreath[];
-extern struct ProcCmd ProcScr_efxIcebreathOBJ[];
+extern const struct ProcCmd ProcScr_efxIcebreath[];
+extern const struct ProcCmd ProcScr_efxIcebreathOBJ[];
 extern u32 AnimScr_IcebreathOBJ_Right[];
 extern u32 AnimScr_IcebreathOBJ_Left[];
 extern u16 Pal_IceBreathSprites[];
-extern struct ProcCmd ProcScr_efxDarkbreath[];
-extern struct ProcCmd ProcScr_efxDarkbreathBG[];
+extern const struct ProcCmd ProcScr_efxDarkbreath[];
+extern const struct ProcCmd ProcScr_efxDarkbreathBG[];
 extern u16 * TsaArray_DarkBreathBg[];
 extern u16 Img_DarkBreathBg[];
-extern struct ProcCmd ProcScr_efxDarkbreathBGCOL[];
+extern const struct ProcCmd ProcScr_efxDarkbreathBGCOL[];
 extern u16 Pal_BoltingBg[];
 extern struct ProcCmd ProcScr_efxDarkbreathOBJ[];
 extern u32 AnimScr_DarkBreath[];
@@ -580,3 +580,69 @@ void efxDarkbreathOBJ_Loop(struct ProcEfxOBJ * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BA18A4")
+const struct ProcCmd ProcScr_efxFirebreath[] = {
+    PROC_19,
+    PROC_REPEAT(efxFirebreath_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA18BC")
+const struct ProcCmd ProcScr_efxFirebreathOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxFirebreathOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA18D4")
+const struct ProcCmd ProcScr_efxFirebreathBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxFirebreathBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA18EC")
+const struct ProcCmd ProcScr_efxFirebreathBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxFirebreathBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA190C")
+const struct ProcCmd ProcScr_efxIcebreath[] = {
+    PROC_19,
+    PROC_REPEAT(efxIcebreath_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1924")
+const struct ProcCmd ProcScr_efxIcebreathOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxIcebreathOBJ_OnEnd),
+    PROC_SLEEP(52),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1944")
+const struct ProcCmd ProcScr_efxDarkbreath[] = {
+    PROC_19,
+    PROC_REPEAT(efxDarkbreath_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA195C")
+const struct ProcCmd ProcScr_efxDarkbreathBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxDarkbreathBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA19A4")
+const struct ProcCmd ProcScr_efxDarkbreathBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxDarkbreathBGCOL_Loop),
+    PROC_END,
+};

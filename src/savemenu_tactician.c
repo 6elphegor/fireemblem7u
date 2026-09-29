@@ -1,7 +1,7 @@
 #include "gbafe.h"
 
-extern struct ProcCmd CONST_DATA ProcScr_TactNameSelect[];
-extern struct ProcCmd CONST_DATA ProcScr_TactBirthSelect[];
+extern const struct ProcCmd ProcScr_TactNameSelect[];
+extern const struct ProcCmd ProcScr_TactBirthSelect[];
 extern struct ProcCmd CONST_DATA ProcScr_TactGenderSelect[];
 extern u16 CONST_DATA gUnk_08B90600[];
 
@@ -709,3 +709,23 @@ void sub_080A73F8(int time)
 
     EnablePalSync();
 }
+
+SECTION(".rodata.08CE477C")
+const struct ProcCmd ProcScr_TactNameSelect[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(TactBlood_Init),
+    PROC_SLEEP(0),
+    PROC_REPEAT(TactNameSelect_Loop),
+    PROC_CALL(sub_080A6E2C),
+    PROC_END,
+};
+
+SECTION(".rodata.08CE47AC")
+const struct ProcCmd ProcScr_TactBirthSelect[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(sub_080A6E78),
+    PROC_SLEEP(0),
+    PROC_REPEAT(TactBirthSelect_Loop),
+    PROC_CALL(sub_080A715C),
+    PROC_END,
+};

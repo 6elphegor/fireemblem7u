@@ -2139,13 +2139,7 @@ ProcScr_EventWorldFlush:
 	.4byte EventWorldFlush_Loop_B
 	.incbin "baserom.gba", 0xca79f4, 0x8
 
-	.section .rodata.08CBB47C, "a"
-
-	.global ProcScr_08CBB47C
-ProcScr_08CBB47C:
-	.incbin "baserom.gba", 0xcbb47c, 0x4
-	.4byte sub_0807D60C
-	.incbin "baserom.gba", 0xcbb484, 0x8
+	.section .rodata.08CBB48C, "a"
 
 	.global ProcScr_08CBB48C
 ProcScr_08CBB48C:
@@ -2192,41 +2186,7 @@ gUnk_08CC0F54:
 	.4byte sub_0807F1A4
 	.incbin "baserom.gba", 0xcc117c, 0x1c
 
-	.global ProcScr_NilsEpilogueIntro
-ProcScr_NilsEpilogueIntro:
-	.incbin "baserom.gba", 0xcc1198, 0xc
-	.4byte NilsEpilogueIntro_Init
-	.incbin "baserom.gba", 0xcc11a8, 0xc
-	.4byte NilsEpilogueIntro_CopyBg3ToBg1
-	.incbin "baserom.gba", 0xcc11b8, 0xc
-	.4byte NilsEpilogueIntro_LoadCg
-	.incbin "baserom.gba", 0xcc11c8, 0xc
-	.4byte NilsEpilogueIntro_Loop_BlendCg
-	.incbin "baserom.gba", 0xcc11d8, 0xc
-	.4byte NilsEpilogueIntro_ClearBg1Bg2
-	.incbin "baserom.gba", 0xcc11e8, 0xc
-	.4byte NilsEpilogueIntro_ReloadCg
-	.incbin "baserom.gba", 0xcc11f8, 0x10
-
-	.global ProcScr_NilsEpilogueOutro
-ProcScr_NilsEpilogueOutro:
-	.incbin "baserom.gba", 0xcc1208, 0xc
-	.4byte NilsEpilogueOutro_Init
-	.incbin "baserom.gba", 0xcc1218, 0xc
-	.4byte NilsEpilogueOutro_LoadNilsInDragonsGate
-	.incbin "baserom.gba", 0xcc1228, 0xc
-	.4byte NilsEpilogueOutro_Loop_BlendCgs
-	.incbin "baserom.gba", 0xcc1238, 0xc
-	.4byte NilsEpilogueOutro_ClearBg0
-	.incbin "baserom.gba", 0xcc1248, 0xc
-	.4byte NilsEpilogueOutro_FadeNilsToWhite
-	.incbin "baserom.gba", 0xcc1258, 0x4
-	.4byte sub_08013A1C
-	.incbin "baserom.gba", 0xcc1260, 0xc
-	.4byte NilsEpilogueOutro_FadeDragonsGateToBlack
-	.incbin "baserom.gba", 0xcc1270, 0x4
-	.4byte sub_08013A1C
-	.incbin "baserom.gba", 0xcc1278, 0x8
+	.section .rodata.08CC1280, "a"
 
 	.global gUnk_08CC1280
 gUnk_08CC1280:
@@ -2993,67 +2953,7 @@ Sprite_ChapterStatus_FactionSelector:
 gTextInitInfo_ChapterStatus:
 	.incbin "baserom.gba", 0xcc2e88, 0x18
 
-	.global gProcScr_ChapterStatusScreen
-gProcScr_ChapterStatusScreen:
-	.incbin "baserom.gba", 0xcc2ea0, 0x4
-	.4byte LockGame
-	.incbin "baserom.gba", 0xcc2ea8, 0x4
-	.4byte StartFastFadeToBlack
-	.incbin "baserom.gba", 0xcc2eb0, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xcc2eb8, 0x4
-	.4byte LockBmDisplay
-	.incbin "baserom.gba", 0xcc2ec0, 0x4
-	.4byte ChapterStatus_Init
-	.incbin "baserom.gba", 0xcc2ec8, 0x4
-	.4byte ChapterStatus_DrawText
-	.incbin "baserom.gba", 0xcc2ed0, 0x4
-	.4byte ChapterStatus_ShowAllLayers
-	.incbin "baserom.gba", 0xcc2ed8, 0xc
-	.4byte ChapterStatus_LoopKeyHandler
-	.incbin "baserom.gba", 0xcc2ee8, 0xc
-	.4byte sub_08014188
-	.incbin "baserom.gba", 0xcc2ef8, 0xc
-	.4byte EndSysBlackBoxs
-	.incbin "baserom.gba", 0xcc2f08, 0x4
-	.4byte EndMuralBackground
-	.incbin "baserom.gba", 0xcc2f10, 0x4
-	.4byte ChapterStatus_OnEnd
-	.incbin "baserom.gba", 0xcc2f18, 0x4
-	.4byte UnlockBmDisplay
-	.incbin "baserom.gba", 0xcc2f20, 0x4
-	.4byte RefreshBMapGraphics
-	.incbin "baserom.gba", 0xcc2f28, 0x4
-	.4byte StartFastFadeFromBlack
-	.incbin "baserom.gba", 0xcc2f30, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xcc2f38, 0x4
-	.4byte ChapterStatus_FocusLeaderUnit
-	.incbin "baserom.gba", 0xcc2f40, 0xc
-	.4byte UnlockGame
-	.incbin "baserom.gba", 0xcc2f50, 0x8
-
-	.global ProcScr_ChapterStatusScreen_FromPrep
-ProcScr_ChapterStatusScreen_FromPrep:
-	.incbin "baserom.gba", 0xcc2f58, 0xc
-	.4byte ChapterStatus_Init
-	.incbin "baserom.gba", 0xcc2f68, 0x4
-	.4byte ChapterStatus_DrawText
-	.incbin "baserom.gba", 0xcc2f70, 0xc
-	.4byte ChapterStatus_ShowAllLayers
-	.incbin "baserom.gba", 0xcc2f80, 0x4
-	.4byte FadeInBlackSpeed40
-	.incbin "baserom.gba", 0xcc2f88, 0x14
-	.4byte ChapterStatus_LoopKeyHandler
-	.incbin "baserom.gba", 0xcc2fa0, 0xc
-	.4byte sub_08014188
-	.incbin "baserom.gba", 0xcc2fb0, 0xc
-	.4byte EndSysBlackBoxs
-	.incbin "baserom.gba", 0xcc2fc0, 0x4
-	.4byte EndMuralBackground
-	.incbin "baserom.gba", 0xcc2fc8, 0x4
-	.4byte ChapterStatus_OnEnd
-	.incbin "baserom.gba", 0xcc2fd0, 0x8
+	.section .rodata.08CC2FD8, "a"
 
 	.global Sprite_ChapterStatus_ChapterName
 Sprite_ChapterStatus_ChapterName:
@@ -3178,29 +3078,7 @@ gUnk_08CC4FA0:
 sSprite_BackButton:
 	.incbin "baserom.gba", 0xcc4fc4, 0x1c
 
-	.global gProcScr_FortuneSubMenu
-gProcScr_FortuneSubMenu:
-	.incbin "baserom.gba", 0xcc4fe0, 0xc
-	.4byte FortuneSubMenu_Init_Null
-	.incbin "baserom.gba", 0xcc4ff0, 0xc
-	.4byte FortuneSubMenu_HandleOptionSwitch
-	.incbin "baserom.gba", 0xcc5000, 0x14
-	.4byte FortuneSubMenu_OnOptionSelected
-	.incbin "baserom.gba", 0xcc5018, 0x4
-	.4byte gUnk_08CC5134
-	.incbin "baserom.gba", 0xcc5020, 0x14
-	.4byte FortuneSubMenu_OnOptionSelected
-	.incbin "baserom.gba", 0xcc5038, 0x4
-	.4byte gUnk_08CC55A8
-	.incbin "baserom.gba", 0xcc5040, 0x14
-	.4byte FortuneSubMenu_OnOptionSelected
-	.incbin "baserom.gba", 0xcc5058, 0x4
-	.4byte StartSupportScreenFromPrepScreen
-	.incbin "baserom.gba", 0xcc5060, 0x1c
-	.4byte FortuneSubMenu_OnOptionSelected
-	.incbin "baserom.gba", 0xcc5080, 0x4
-	.4byte gUnk_08CC58E4
-	.incbin "baserom.gba", 0xcc5088, 0x18
+	.section .rodata.08CC50A0, "a"
 
 	.global gAtSubMenuMsgs
 gAtSubMenuMsgs:
@@ -3222,37 +3100,7 @@ gUnk_08CC5100:
 	.4byte gUnk_08CC50F8
 	.4byte gUnk_08CC50F8
 
-	.global ProcScr_08CC5114
-ProcScr_08CC5114:
-	.incbin "baserom.gba", 0xcc5114, 0xc
-	.4byte sub_08099400
-	.incbin "baserom.gba", 0xcc5124, 0x4
-	.4byte sub_08099408
-	.incbin "baserom.gba", 0xcc512c, 0x8
-
-	.global gUnk_08CC5134
-gUnk_08CC5134:
-	.incbin "baserom.gba", 0xcc5134, 0xc
-	.4byte sub_08099684
-	.incbin "baserom.gba", 0xcc5144, 0x4
-	.4byte sub_08099728
-	.incbin "baserom.gba", 0xcc514c, 0x4
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xcc5154, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xcc515c, 0xc
-	.4byte sub_08099858
-	.incbin "baserom.gba", 0xcc516c, 0x4
-	.4byte sub_08099928
-	.incbin "baserom.gba", 0xcc5174, 0xc
-	.4byte sub_080998D8
-	.incbin "baserom.gba", 0xcc5184, 0xc
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xcc5194, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xcc519c, 0x4
-	.4byte sub_080998B4
-	.incbin "baserom.gba", 0xcc51a4, 0x8
+	.section .rodata.08CC51AC, "a"
 
 	.global gUnk_08CC51AC
 gUnk_08CC51AC:
@@ -3262,147 +3110,13 @@ gUnk_08CC51AC:
 gUnk_08CC51C4:
 	.incbin "baserom.gba", 0xcc51c4, 0xc
 
-	.global ProcScr_08CC51D0
-ProcScr_08CC51D0:
-	.incbin "baserom.gba", 0xcc51d0, 0xc
-	.4byte sub_08099AC0
-	.incbin "baserom.gba", 0xcc51e0, 0x4
-	.4byte sub_08099FA0
-	.incbin "baserom.gba", 0xcc51e8, 0x4
-	.4byte sub_0809A024
-	.incbin "baserom.gba", 0xcc51f0, 0x4
-	.4byte StartMidFadeFromBlack
-	.incbin "baserom.gba", 0xcc51f8, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xcc5200, 0x4
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xcc5208, 0xc
-	.4byte sub_0809A280
-	.incbin "baserom.gba", 0xcc5218, 0xc
-	.4byte sub_0809A378
-	.incbin "baserom.gba", 0xcc5228, 0xc
-	.4byte CgTextExists
-	.incbin "baserom.gba", 0xcc5238, 0x14
-	.4byte sub_0809A404
-	.incbin "baserom.gba", 0xcc5250, 0x4
-	.4byte sub_0809A560
-	.incbin "baserom.gba", 0xcc5258, 0x4
-	.4byte sub_0809A650
-	.incbin "baserom.gba", 0xcc5260, 0x4
-	.4byte sub_0809A024
-	.incbin "baserom.gba", 0xcc5268, 0x4
-	.4byte sub_0809A6C0
-	.incbin "baserom.gba", 0xcc5270, 0x14
-	.4byte StartMidFadeToBlack
-	.incbin "baserom.gba", 0xcc5288, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xcc5290, 0x4
-	.4byte sub_080998B4
-	.incbin "baserom.gba", 0xcc5298, 0x4
-	.4byte sub_0809A824
-	.incbin "baserom.gba", 0xcc52a0, 0x1c
-	.4byte StartMidFadeToBlack
-	.incbin "baserom.gba", 0xcc52c0, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xcc52c8, 0x4
-	.4byte sub_080998B4
-	.incbin "baserom.gba", 0xcc52d0, 0x8
+	.section .rodata.08CC52D8, "a"
 
 	.global gUnk_08CC52D8
 gUnk_08CC52D8:
 	.incbin "baserom.gba", 0xcc52d8, 0x2d0
 
-	.global gUnk_08CC55A8
-gUnk_08CC55A8:
-	.incbin "baserom.gba", 0xcc55a8, 0xc
-	.4byte sub_0809A9A8
-	.incbin "baserom.gba", 0xcc55b8, 0x4
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xcc55c0, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xcc55c8, 0x4
-	.4byte sub_0809AB38
-	.incbin "baserom.gba", 0xcc55d0, 0x4
-	.4byte sub_808FFFC
-	.incbin "baserom.gba", 0xcc55d8, 0x4
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xcc55e0, 0x4
-	.4byte sub_0809AD64
-	.incbin "baserom.gba", 0xcc55e8, 0xc
-	.4byte sub_808F2A0
-	.incbin "baserom.gba", 0xcc55f8, 0x4
-	.4byte sub_0809AE84
-	.incbin "baserom.gba", 0xcc5600, 0x4
-	.4byte CgTextExists
-	.incbin "baserom.gba", 0xcc5608, 0x4
-	.4byte ProcScr_08CC5760
-	.incbin "baserom.gba", 0xcc5610, 0xc
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xcc5620, 0x4
-	.4byte sub_0809AB7C
-	.incbin "baserom.gba", 0xcc5628, 0xc
-	.4byte sub_0809AD20
-	.incbin "baserom.gba", 0xcc5638, 0x4
-	.4byte sub_808FFFC
-	.incbin "baserom.gba", 0xcc5640, 0x4
-	.4byte sub_0809ADC0
-	.incbin "baserom.gba", 0xcc5648, 0xc
-	.4byte sub_808F2A0
-	.incbin "baserom.gba", 0xcc5658, 0x4
-	.4byte CgTextExists
-	.incbin "baserom.gba", 0xcc5660, 0x4
-	.4byte sub_0809AE40
-	.incbin "baserom.gba", 0xcc5668, 0x4
-	.4byte sub_808FFFC
-	.incbin "baserom.gba", 0xcc5670, 0x14
-	.4byte sub_808F2A0
-	.incbin "baserom.gba", 0xcc5688, 0x4
-	.4byte CgTextExists
-	.incbin "baserom.gba", 0xcc5690, 0x4
-	.4byte sub_0809ADE4
-	.incbin "baserom.gba", 0xcc5698, 0x4
-	.4byte sub_808FFFC
-	.incbin "baserom.gba", 0xcc56a0, 0x14
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xcc56b8, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xcc56c0, 0x4
-	.4byte sub_0809ABC0
-	.incbin "baserom.gba", 0xcc56c8, 0x4
-	.4byte CgTextExists
-	.incbin "baserom.gba", 0xcc56d0, 0x14
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xcc56e8, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xcc56f0, 0x4
-	.4byte sub_0809AC20
-	.incbin "baserom.gba", 0xcc56f8, 0x4
-	.4byte CgTextExists
-	.incbin "baserom.gba", 0xcc5700, 0xc
-	.4byte sub_0809AC7C
-	.incbin "baserom.gba", 0xcc5710, 0xc
-	.4byte sub_0809AC9C
-	.incbin "baserom.gba", 0xcc5720, 0x4
-	.4byte CgTextExists
-	.incbin "baserom.gba", 0xcc5728, 0x14
-	.4byte sub_0809AEA0
-	.incbin "baserom.gba", 0xcc5740, 0x4
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xcc5748, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xcc5750, 0x4
-	.4byte sub_0809ACFC
-	.incbin "baserom.gba", 0xcc5758, 0x8
-
-	.global ProcScr_08CC5760
-ProcScr_08CC5760:
-	.incbin "baserom.gba", 0xcc5760, 0xc
-	.4byte sub_0809AEBC
-	.incbin "baserom.gba", 0xcc5770, 0x4
-	.4byte sub_0809AEFC
-	.incbin "baserom.gba", 0xcc5778, 0xc
-	.4byte sub_0809AF94
-	.incbin "baserom.gba", 0xcc5788, 0x10
+	.section .rodata.08CC5798, "a"
 
 	.global sSupportScreenUnits
 sSupportScreenUnits:
@@ -3418,77 +3132,18 @@ gUnk_08CC57B4:
 
 	.global gUnk_08CC57C8
 gUnk_08CC57C8:
-	.incbin "baserom.gba", 0xcc57c8, 0x1c
-	.4byte gUnk_08CC579C
+	.incbin "baserom.gba", 0xcc57c8, 0x20
 	.4byte gUnk_08CC57B4 + 0x2
 	.4byte gUnk_08CC57B4 + 0x2
 	.4byte gUnk_08CC57C8 + 0x2
 
-	.global gProcScr_SupportScreen
-gProcScr_SupportScreen:
-	.incbin "baserom.gba", 0xcc57f4, 0xc
-	.4byte SupportScreen_SetupUnits
-	.incbin "baserom.gba", 0xcc5804, 0x4
-	.4byte SupportScreen_OnInit
-	.incbin "baserom.gba", 0xcc580c, 0x14
-	.4byte SupportScreen_SetupGraphics
-	.incbin "baserom.gba", 0xcc5824, 0x4
-	.4byte sub_0809BA48
-	.incbin "baserom.gba", 0xcc582c, 0x4
-	.4byte IsMusicProc2Running
-	.incbin "baserom.gba", 0xcc5834, 0x4
-	.4byte StartMidFadeFromBlack
-	.incbin "baserom.gba", 0xcc583c, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xcc5844, 0x4
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xcc584c, 0xc
-	.4byte SupportScreen_Loop_KeyHandler
-	.incbin "baserom.gba", 0xcc585c, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xcc5874, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xcc587c, 0x4
-	.4byte SupportScreen_OnEnd
-	.incbin "baserom.gba", 0xcc5884, 0x4
-	.4byte SupportScreen_StartUnitSubMenu
-	.incbin "baserom.gba", 0xcc588c, 0x1c
-	.4byte SupportScreen_RestartSourceScreenMusic
-	.incbin "baserom.gba", 0xcc58ac, 0x4
-	.4byte StartMidFadeToBlack
-	.incbin "baserom.gba", 0xcc58b4, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xcc58bc, 0x4
-	.4byte SupportScreen_OnEnd
-	.incbin "baserom.gba", 0xcc58c4, 0x4
-	.4byte IsMusicProc2Running
-	.incbin "baserom.gba", 0xcc58cc, 0x8
+	.section .rodata.08CC58D4, "a"
 
 	.global Sprite_08CC58D4
 Sprite_08CC58D4:
 	.incbin "baserom.gba", 0xcc58d4, 0x10
 
-	.global gUnk_08CC58E4
-gUnk_08CC58E4:
-	.incbin "baserom.gba", 0xcc58e4, 0xc
-	.4byte sub_0809C12C
-	.incbin "baserom.gba", 0xcc58f4, 0x4
-	.4byte sub_0809C154
-	.incbin "baserom.gba", 0xcc58fc, 0x4
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xcc5904, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xcc590c, 0x4
-	.4byte sub_0809C41C
-	.incbin "baserom.gba", 0xcc5914, 0x4
-	.4byte sub_0809C44C
-	.incbin "baserom.gba", 0xcc591c, 0x4
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xcc5924, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xcc592c, 0x4
-	.4byte sub_0809C3F4
-	.incbin "baserom.gba", 0xcc5934, 0x8
+	.section .rodata.08CC593C, "a"
 
 	.global sSprite_NameAffinLv
 sSprite_NameAffinLv:
@@ -3510,63 +3165,7 @@ gSprite_SupportScreenSuccessBox:
 Sprite_08CC596E:
 	.incbin "baserom.gba", 0xcc596e, 0x16
 
-	.global gProcScr_SupportUnitSubScreen
-gProcScr_SupportUnitSubScreen:
-	.incbin "baserom.gba", 0xcc5984, 0xc
-	.4byte SupportSubScreen_Init
-	.incbin "baserom.gba", 0xcc5994, 0xc
-	.4byte SupportSubScreen_SetupGraphics
-	.incbin "baserom.gba", 0xcc59a4, 0x4
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xcc59ac, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xcc59b4, 0x4
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xcc59bc, 0xc
-	.4byte SupportSubScreen_Loop_KeyHandler
-	.incbin "baserom.gba", 0xcc59cc, 0xc
-	.4byte SupportSubScreen_PrepareSupportConvo
-	.incbin "baserom.gba", 0xcc59dc, 0x4
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xcc59e4, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xcc59ec, 0x4
-	.4byte SupportSubScreen_OnEnd
-	.incbin "baserom.gba", 0xcc59f4, 0xc
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xcc5a04, 0x4
-	.4byte sub_0809CFF8
-	.incbin "baserom.gba", 0xcc5a0c, 0xc
-	.4byte IsEventRunning
-	.incbin "baserom.gba", 0xcc5a1c, 0x4
-	.4byte sub_0809D71C
-	.incbin "baserom.gba", 0xcc5a24, 0x1c
-	.4byte SupportSubScreen_StartSwapPage
-	.incbin "baserom.gba", 0xcc5a44, 0x4
-	.4byte SupportSubScreen_SwapPageOut_ToLeft
-	.incbin "baserom.gba", 0xcc5a4c, 0x4
-	.4byte SupportSubScreen_ReinitAfterSwapPage
-	.incbin "baserom.gba", 0xcc5a54, 0x4
-	.4byte SupportSubScreen_SwapPageIn_FromRight
-	.incbin "baserom.gba", 0xcc5a5c, 0x4
-	.4byte SupportSubScreen_EndSwapPage
-	.incbin "baserom.gba", 0xcc5a64, 0x14
-	.4byte SupportSubScreen_StartSwapPage
-	.incbin "baserom.gba", 0xcc5a7c, 0x4
-	.4byte SupportSubScreen_SwapPageOut_ToRight
-	.incbin "baserom.gba", 0xcc5a84, 0x4
-	.4byte SupportSubScreen_ReinitAfterSwapPage
-	.incbin "baserom.gba", 0xcc5a8c, 0x4
-	.4byte SupportSubScreen_SwapPageIn_FromLeft
-	.incbin "baserom.gba", 0xcc5a94, 0x4
-	.4byte SupportSubScreen_EndSwapPage
-	.incbin "baserom.gba", 0xcc5a9c, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xcc5ab4, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xcc5abc, 0x4
-	.4byte SupportSubScreen_OnEnd
-	.incbin "baserom.gba", 0xcc5ac4, 0x8
+	.section .rodata.08CC5ACC, "a"
 
 	.global gUnk_08CC5ACC
 gUnk_08CC5ACC:
@@ -5307,193 +4906,13 @@ gUnk_08CE3B40:
 	.4byte gUnk_08CE3A78
 	.incbin "baserom.gba", 0xce3b4c, 0xc
 
-	.section .rodata.08CE3C24, "a"
-
-	.global ProcScr_08CE3C24
-ProcScr_08CE3C24:
-	.incbin "baserom.gba", 0xce3c24, 0xc
-	.4byte sub_080A47B4
-	.incbin "baserom.gba", 0xce3c34, 0xc
-	.4byte sub_080A47EC
-	.incbin "baserom.gba", 0xce3c44, 0x10
-
-	.global ProcScr_SaveMenu
-ProcScr_SaveMenu:
-	.incbin "baserom.gba", 0xce3c54, 0x1c
-	.4byte SaveMenu_Init
-	.incbin "baserom.gba", 0xce3c74, 0xc
-	.4byte ProcSaveMenu_InitScreen
-	.incbin "baserom.gba", 0xce3c84, 0x4
-	.4byte SaveMenu_LoadExtraMenuGraphics
-	.incbin "baserom.gba", 0xce3c8c, 0xc
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce3c9c, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce3ca4, 0xc
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xce3cb4, 0x4
-	.4byte SaveMenu_080A465C
-	.incbin "baserom.gba", 0xce3cbc, 0xc
-	.4byte Loop6C_savemenu
-	.incbin "baserom.gba", 0xce3ccc, 0x14
-	.4byte SaveMenu_ResetLcdFormDifficulty
-	.incbin "baserom.gba", 0xce3ce4, 0x4
-	.4byte sub_080A4C34
-	.incbin "baserom.gba", 0xce3cec, 0x4
-	.4byte sub_080A8664
-	.incbin "baserom.gba", 0xce3cf4, 0xc
-	.4byte SaveMenu_ReloadScreenFormDifficulty
-	.incbin "baserom.gba", 0xce3d04, 0x4
-	.4byte SaveMenu_ResetLcdFormDifficulty
-	.incbin "baserom.gba", 0xce3d0c, 0x4
-	.4byte sub_080A4BD8
-	.incbin "baserom.gba", 0xce3d14, 0x4
-	.4byte SaveMenu_PostDifficultHandler
-	.incbin "baserom.gba", 0xce3d1c, 0xc
-	.4byte SaveMenuSlotSelDrawSprite
-	.incbin "baserom.gba", 0xce3d2c, 0xc
-	.4byte SaveMenu_SaveSlotSelectLoop
-	.incbin "baserom.gba", 0xce3d3c, 0x1c
-	.4byte _ExecSaveMenuMiscOption
-	.incbin "baserom.gba", 0xce3d5c, 0x1c
-	.4byte SaveMenuRegisterSlotSelected
-	.incbin "baserom.gba", 0xce3d7c, 0xc
-	.4byte SaveMenuWaitSlotBoxScrolling
-	.incbin "baserom.gba", 0xce3d8c, 0x14
-	.4byte SaveMenuScrollSlot
-	.incbin "baserom.gba", 0xce3da4, 0x14
-	.4byte SaveMenu_EndHelpPromptSprite
-	.incbin "baserom.gba", 0xce3dbc, 0x4
-	.4byte SaveMenuScrollBackToMain
-	.incbin "baserom.gba", 0xce3dc4, 0x14
-	.4byte sub_080A4478
-	.incbin "baserom.gba", 0xce3ddc, 0xc
-	.4byte sub_080A44C0
-	.incbin "baserom.gba", 0xce3dec, 0xc
-	.4byte sub_080A4504
-	.incbin "baserom.gba", 0xce3dfc, 0xc
-	.4byte sub_080A4554
-	.incbin "baserom.gba", 0xce3e0c, 0xc
-	.4byte sub_080A45A0
-	.incbin "baserom.gba", 0xce3e1c, 0xc
-	.4byte SaveMenuStartBonusClaim
-	.incbin "baserom.gba", 0xce3e2c, 0xc
-	.4byte sub_080A4850
-	.incbin "baserom.gba", 0xce3e3c, 0xc
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce3e4c, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce3e54, 0x4
-	.4byte IsMusicProc2Running
-	.incbin "baserom.gba", 0xce3e5c, 0x4
-	.4byte SaveMenuStartExtraMiscScreen
-	.incbin "baserom.gba", 0xce3e64, 0xc
-	.4byte SaveMenu_Init
-	.incbin "baserom.gba", 0xce3e74, 0xc
-	.4byte ProcSaveMenu_InitScreen
-	.incbin "baserom.gba", 0xce3e84, 0x4
-	.4byte SaveMenu_LoadExtraMenuGraphics
-	.incbin "baserom.gba", 0xce3e8c, 0xc
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce3e9c, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce3ea4, 0x4
-	.4byte IsMusicProc2Running
-	.incbin "baserom.gba", 0xce3eac, 0x4
-	.4byte SaveMenuPostExtraMiscScreen
-	.incbin "baserom.gba", 0xce3eb4, 0x1c
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce3ed4, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce3edc, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce3ef4, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce3efc, 0x14
-	.4byte PostSaveMenuHandler
-	.incbin "baserom.gba", 0xce3f14, 0x10
-
-	.global ProcScr_08CE3F24
-ProcScr_08CE3F24:
-	.incbin "baserom.gba", 0xce3f24, 0x14
-	.4byte SaveMenuInit
-	.incbin "baserom.gba", 0xce3f3c, 0x4
-	.4byte SaveMenu_Init
-	.incbin "baserom.gba", 0xce3f44, 0xc
-	.4byte ProcSaveMenu_InitScreen
-	.incbin "baserom.gba", 0xce3f54, 0xc
-	.4byte SaveMenuDirectlySelectSlotOnPrepScreen
-	.incbin "baserom.gba", 0xce3f64, 0x4
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce3f6c, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce3f74, 0x14
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce3f8c, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce3f94, 0xc
-	.4byte SaveMenu_SaveSlotSelectLoop
-	.incbin "baserom.gba", 0xce3fa4, 0x1c
-	.4byte SaveMenuRegisterSlotSelected
-	.incbin "baserom.gba", 0xce3fc4, 0xc
-	.4byte SaveMenuWaitSlotBoxScrolling
-	.incbin "baserom.gba", 0xce3fd4, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce3fec, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce3ff4, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce400c, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce4014, 0x14
-	.4byte PostSaveMenuHandler
-	.incbin "baserom.gba", 0xce402c, 0x8
-
-	.global ProcScr_08CE4034
-ProcScr_08CE4034:
-	.incbin "baserom.gba", 0xce4034, 0x14
-	.4byte SaveMenuInitUnused
-	.incbin "baserom.gba", 0xce404c, 0x4
-	.4byte SaveMenu_Init
-	.incbin "baserom.gba", 0xce4054, 0xc
-	.4byte ProcSaveMenu_InitScreen
-	.incbin "baserom.gba", 0xce4064, 0xc
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce4074, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce407c, 0x14
-	.4byte SaveMenu_SaveSlotSelectLoop
-	.incbin "baserom.gba", 0xce4094, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce40ac, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce40b4, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce40cc, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce40d4, 0x14
-	.4byte PostSaveMenuHandler
-	.incbin "baserom.gba", 0xce40ec, 0x8
+	.section .rodata.08CE40F4, "a"
 
 	.global gpSaveDrawBonusClaimData
 gpSaveDrawBonusClaimData:
 	.incbin "baserom.gba", 0xce40f4, 0x4
 
-	.global ProcScr_BonusClaimMenu
-ProcScr_BonusClaimMenu:
-	.incbin "baserom.gba", 0xce40f8, 0x4
-	.4byte BonusClaimMenu_Init_A
-	.incbin "baserom.gba", 0xce4100, 0x4
-	.4byte BonusClaimMenu_Init_B
-	.incbin "baserom.gba", 0xce4108, 0x4
-	.4byte sub_080A50CC
-	.incbin "baserom.gba", 0xce4110, 0x14
-	.4byte sub_080A5084
-	.incbin "baserom.gba", 0xce4128, 0x4
-	.4byte sub_080A50CC
-	.incbin "baserom.gba", 0xce4130, 0x14
-	.4byte sub_080A5108
-	.incbin "baserom.gba", 0xce4148, 0x10
+	.section .rodata.08CE4158, "a"
 
 	.global gUnk_08CE4158
 	.global Sprite_08A2051C
@@ -5645,31 +5064,13 @@ ProcScr_SaveDraw:
 	.4byte SaveDraw_Loop
 	.incbin "baserom.gba", 0xce430c, 0x8
 
-	.section .rodata.08CE433C, "a"
-
-	.global ProcScr_SaveDrawCursor
-ProcScr_SaveDrawCursor:
-	.incbin "baserom.gba", 0xce433c, 0xc
-	.4byte SaveDrawCursor_Init
-	.incbin "baserom.gba", 0xce434c, 0x4
-	.4byte SaveDrawCursor_Loop
-	.incbin "baserom.gba", 0xce4354, 0x8
+	.section .rodata.08CE435C, "a"
 
 	.global SaveMenuSubSelBoxTexts
 SaveMenuSubSelBoxTexts:
 	.incbin "baserom.gba", 0xce435c, 0x1c
 
-	.global ProcScr_SqMask
-ProcScr_SqMask:
-	.incbin "baserom.gba", 0xce4378, 0x14
-	.4byte SqMask_Loop
-	.incbin "baserom.gba", 0xce4390, 0x8
-
-	.global ProcScr_SaveBgUp
-ProcScr_SaveBgUp:
-	.incbin "baserom.gba", 0xce4398, 0x14
-	.4byte SaveBgUp_Loop
-	.incbin "baserom.gba", 0xce43b0, 0x8
+	.section .rodata.08CE43B8, "a"
 
 	.global gUnk_08CE43B8
 gUnk_08CE43B8:
@@ -5786,27 +5187,7 @@ SpriteArray_08CE45B4:
 	.4byte gUnk_08CE44C4 + 0x2
 	.4byte gUnk_08CE44E0
 
-	.section .rodata.08CE477C, "a"
-
-	.global ProcScr_TactNameSelect
-ProcScr_TactNameSelect:
-	.incbin "baserom.gba", 0xce477c, 0xc
-	.4byte TactBlood_Init
-	.incbin "baserom.gba", 0xce478c, 0xc
-	.4byte TactNameSelect_Loop
-	.incbin "baserom.gba", 0xce479c, 0x4
-	.4byte sub_080A6E2C
-	.incbin "baserom.gba", 0xce47a4, 0x8
-
-	.global ProcScr_TactBirthSelect
-ProcScr_TactBirthSelect:
-	.incbin "baserom.gba", 0xce47ac, 0xc
-	.4byte sub_080A6E78
-	.incbin "baserom.gba", 0xce47bc, 0xc
-	.4byte TactBirthSelect_Loop
-	.incbin "baserom.gba", 0xce47cc, 0x4
-	.4byte sub_080A715C
-	.incbin "baserom.gba", 0xce47d4, 0x8
+	.section .rodata.08CE47DC, "a"
 
 	.global ProcScr_TactGenderSelect
 ProcScr_TactGenderSelect:
@@ -5864,77 +5245,13 @@ gUnknown_08A212DC:
 gSoundRoomShuffleBuffer:
 	.4byte gBuf + 0x1200
 
-	.global gProcScr_SoundRoomSongChange
-gProcScr_SoundRoomSongChange:
-	.incbin "baserom.gba", 0xce5490, 0x4
-	.4byte SoundRoomSongChange_FadeOutPrevious
-	.incbin "baserom.gba", 0xce5498, 0xc
-	.4byte SoundRoomSongChange_StartNext
-	.incbin "baserom.gba", 0xce54a8, 0x8
+	.section .rodata.08CE54B0, "a"
 
 	.global gpSoundInfo
 gpSoundInfo:
-	.4byte gSoundInfo
+	.incbin "baserom.gba", 0xce54b0, 0x4
 
-	.global gProcScr_VolumeGraphBuffer
-gProcScr_VolumeGraphBuffer:
-	.incbin "baserom.gba", 0xce54b4, 0xc
-	.4byte VolumeGraphBuffer_Init
-	.incbin "baserom.gba", 0xce54c4, 0xc
-	.4byte VolumeGraphBuffer_Null
-	.incbin "baserom.gba", 0xce54d4, 0x4
-	.4byte VolumeGraphBuffer_Loop
-	.incbin "baserom.gba", 0xce54dc, 0x8
-
-	.global ProcScr_SoundRoomUi
-ProcScr_SoundRoomUi:
-	.incbin "baserom.gba", 0xce54e4, 0xc
-	.4byte SoundRoomUi_Init
-	.incbin "baserom.gba", 0xce54f4, 0x4
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce54fc, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce5504, 0x4
-	.4byte MusicProc4Exists
-	.incbin "baserom.gba", 0xce550c, 0xc
-	.4byte SoundRoomUi_Loop_MainKeyHandler
-	.incbin "baserom.gba", 0xce551c, 0xc
-	.4byte SoundRoomUi_80AFBBC
-	.incbin "baserom.gba", 0xce552c, 0x4
-	.4byte SoundRoomUi_Loop_MainUiSlideOut
-	.incbin "baserom.gba", 0xce5534, 0x4
-	.4byte SoundRoomUi_80AFC98
-	.incbin "baserom.gba", 0xce553c, 0x4
-	.4byte SoundRoomUi_80AFCE4
-	.incbin "baserom.gba", 0xce5544, 0x4
-	.4byte SoundRoomUi_Loop_MainUiSlideIn
-	.incbin "baserom.gba", 0xce554c, 0x14
-	.4byte SoundRoomUi_80AFBBC
-	.incbin "baserom.gba", 0xce5564, 0x4
-	.4byte SoundRoomUi_Loop_MainUiSlideOut
-	.incbin "baserom.gba", 0xce556c, 0x4
-	.4byte SoundRoomUi_80AFD48
-	.incbin "baserom.gba", 0xce5574, 0x4
-	.4byte SoundRoomUi_Loop_ShufflePlayUiSlideIn
-	.incbin "baserom.gba", 0xce557c, 0xc
-	.4byte SoundRoomUi_Loop_ShufflePlayKeyHandler
-	.incbin "baserom.gba", 0xce558c, 0x4
-	.4byte SoundRoomUi_Loop_ShufflePlayUiSlideOut
-	.incbin "baserom.gba", 0xce5594, 0x4
-	.4byte SoundRoomUi_80AFCE4
-	.incbin "baserom.gba", 0xce559c, 0x4
-	.4byte SoundRoomUi_Loop_MainUiSlideIn
-	.incbin "baserom.gba", 0xce55a4, 0x1c
-	.4byte sub_080AC860
-	.incbin "baserom.gba", 0xce55c4, 0x4
-	.4byte SoundRoomUi_RestartTitleMusic
-	.incbin "baserom.gba", 0xce55cc, 0x4
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce55d4, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce55dc, 0x4
-	.4byte SoundRoomUi_OnEnd
-	.incbin "baserom.gba", 0xce55e4, 0x10
+	.section .rodata.08CE55F4, "a"
 
 	.global gSprite_SoundRoom_AButtonPlay
 gSprite_SoundRoom_AButtonPlay:
@@ -6021,13 +5338,7 @@ gSpriteArray_MusicPlayer_TimeNumbers:
 	.4byte gUnk_08CE56A8 + 0x2
 	.4byte gUnk_08CE56B0 + 0x2
 
-	.global gProcScr_SoundRoomDrawSprites
-gProcScr_SoundRoomDrawSprites:
-	.incbin "baserom.gba", 0xce56e4, 0xc
-	.4byte SoundRoom_DrawSprites_Init
-	.incbin "baserom.gba", 0xce56f4, 0x4
-	.4byte SoundRoom_DrawSprites_Loop
-	.incbin "baserom.gba", 0xce56fc, 0x8
+	.section .rodata.08CE5704, "a"
 
 	.global ProcScr_08CE5704
 ProcScr_08CE5704:
@@ -6067,39 +5378,11 @@ gpBonusClaimText:
 gpBonusClaimConfig:
 	.incbin "baserom.gba", 0xce5788, 0x4
 
-	.global gProcScr_BonusClaim
-gProcScr_BonusClaim:
-	.incbin "baserom.gba", 0xce578c, 0xc
-	.4byte BonusClaim_Init
-	.incbin "baserom.gba", 0xce579c, 0x4
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce57a4, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce57ac, 0xc
-	.4byte BonusClaim_Loop_MainKeyHandler
-	.incbin "baserom.gba", 0xce57bc, 0x14
-	.4byte BonusClaim_StartSelectTargetSubMenu
-	.incbin "baserom.gba", 0xce57d4, 0x4
-	.4byte BonusClaim_Loop_SelectTargetKeyHandler
-	.incbin "baserom.gba", 0xce57dc, 0x4
-	.4byte BonusClaim_EndSelectTargetSubMenu
-	.incbin "baserom.gba", 0xce57e4, 0x14
-	.4byte BonusClaim_DrawItemSentPopup
-	.incbin "baserom.gba", 0xce57fc, 0x4
-	.4byte BonusClaim_Loop_PopupDisplayTimer
-	.incbin "baserom.gba", 0xce5804, 0x4
-	.4byte BonusClaim_ClearItemSentPopup
-	.incbin "baserom.gba", 0xce580c, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce5824, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce582c, 0x4
-	.4byte BonusClaim_OnEnd
-	.incbin "baserom.gba", 0xce5834, 0x8
+	.section .rodata.08CE583C, "a"
 
 	.global gConfigUiState
 gConfigUiState:
-	.4byte gBuf
+	.incbin "baserom.gba", 0xce583c, 0x4
 
 	.global gUnk_08CE5840
 gUnk_08CE5840:
@@ -6171,19 +5454,7 @@ gGameOptions:
 	.incbin "baserom.gba", 0xce5b6c, 0x28
 	.4byte GenericOptionChangeHandler
 
-	.global gProcScr_RedrawConfigHelpText
-gProcScr_RedrawConfigHelpText:
-	.incbin "baserom.gba", 0xce5b98, 0x14
-	.4byte DrawGameOptionHelpText
-	.incbin "baserom.gba", 0xce5bb0, 0x8
-
-	.global gProcScr_DrawConfigUiSprites
-gProcScr_DrawConfigUiSprites:
-	.incbin "baserom.gba", 0xce5bb8, 0xc
-	.4byte ConfigSprites_Init
-	.incbin "baserom.gba", 0xce5bc8, 0xc
-	.4byte DrawConfigUiSprites
-	.incbin "baserom.gba", 0xce5bd8, 0x18
+	.section .rodata.08CE5BF0, "a"
 
 	.global ProcScr_Config_Field
 ProcScr_Config_Field:
@@ -6290,77 +5561,7 @@ gClassIntroGlyphWidths:
 Sprite_ClassIntroLetter:
 	.incbin "baserom.gba", 0xce5eb6, 0xa
 
-	.global ProcScr_ClassIntro
-ProcScr_ClassIntro:
-	.incbin "baserom.gba", 0xce5ec0, 0xc
-	.4byte NewFadeIn
-	.incbin "baserom.gba", 0xce5ed0, 0x4
-	.4byte FadeInExists
-	.incbin "baserom.gba", 0xce5ed8, 0xc
-	.4byte ClassIntro_Init
-	.incbin "baserom.gba", 0xce5ee8, 0x4
-	.4byte ClassIntro_LoopIn
-	.incbin "baserom.gba", 0xce5ef0, 0x4
-	.4byte ClassIntro_LoopOut
-	.incbin "baserom.gba", 0xce5ef8, 0xc
-	.4byte ClassIntro_OnEnd
-	.incbin "baserom.gba", 0xce5f08, 0x8
-
-	.global ProcScr_ClassIntroLetter
-ProcScr_ClassIntroLetter:
-	.incbin "baserom.gba", 0xce5f10, 0x14
-	.4byte ClassIntroLetter_Init
-	.incbin "baserom.gba", 0xce5f28, 0x4
-	.4byte ClassIntroLetter_LoopFadeIn
-	.incbin "baserom.gba", 0xce5f30, 0x4
-	.4byte ClassIntroLetter_LoopDisplay
-	.incbin "baserom.gba", 0xce5f38, 0x4
-	.4byte ClassIntroLetter_LoopFadeOut
-	.incbin "baserom.gba", 0xce5f40, 0x8
-
-	.global ProcScr_ClassIntroIcon
-ProcScr_ClassIntroIcon:
-	.incbin "baserom.gba", 0xce5f48, 0x14
-	.4byte ClassIntroIcon_Init
-	.incbin "baserom.gba", 0xce5f60, 0x4
-	.4byte ClassIntroIcon_LoopLine
-	.incbin "baserom.gba", 0xce5f68, 0x4
-	.4byte ClassIntroIcon_LoopFadeIn
-	.incbin "baserom.gba", 0xce5f70, 0x4
-	.4byte ClassIntroIcon_LoopDisplay
-	.incbin "baserom.gba", 0xce5f78, 0xc
-	.4byte ClassIntroIcon_LoopFadeOut
-	.incbin "baserom.gba", 0xce5f88, 0x8
-
-	.global ProcScr_ClassInfoDisplay
-ProcScr_ClassInfoDisplay:
-	.incbin "baserom.gba", 0xce5f90, 0xc
-	.4byte ClassInfoDisplay_Init
-	.incbin "baserom.gba", 0xce5fa0, 0x4
-	.4byte ClassInfoDisplay_OnEnd
-	.incbin "baserom.gba", 0xce5fa8, 0xc
-	.4byte ClassInfoDisplay_LoopWindowIn
-	.incbin "baserom.gba", 0xce5fb8, 0xc
-	.4byte ClassInfoDisplay_ExecScript
-	.incbin "baserom.gba", 0xce5fc8, 0x4
-	.4byte ClassInfoDisplay_LoopScript
-	.incbin "baserom.gba", 0xce5fd0, 0x24
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce5ff8, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce6000, 0x14
-	.4byte NewFadeOut
-	.incbin "baserom.gba", 0xce6018, 0x4
-	.4byte FadeOutExists
-	.incbin "baserom.gba", 0xce6020, 0x10
-
-	.global ProcScr_ClassStatsDisplay
-ProcScr_ClassStatsDisplay:
-	.incbin "baserom.gba", 0xce6030, 0x14
-	.4byte ClassStatsDisplay_Init
-	.incbin "baserom.gba", 0xce6048, 0x4
-	.4byte ClassStatsDisplay_Loop
-	.incbin "baserom.gba", 0xce6050, 0x8
+	.section .rodata.08CE6058, "a"
 
 	.global gUnk_08CE6058
 gUnk_08CE6058:
@@ -7362,119 +6563,7 @@ ProcScr_ShopDrawHand:
 gShopState:
 	.4byte sShopState
 
-	.global gProcScr_ArenaUiMain
-gProcScr_ArenaUiMain:
-	.incbin "baserom.gba", 0xce729c, 0x4
-	.4byte LockGame
-	.incbin "baserom.gba", 0xce72a4, 0xc
-	.4byte _FadeBgmOut
-	.incbin "baserom.gba", 0xce72b4, 0x4
-	.4byte StartMidFadeToBlack
-	.incbin "baserom.gba", 0xce72bc, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xce72c4, 0x4
-	.4byte LockBmDisplay
-	.incbin "baserom.gba", 0xce72cc, 0x4
-	.4byte _StartBgm
-	.incbin "baserom.gba", 0xce72d4, 0x4
-	.4byte ArenaUi_Init
-	.incbin "baserom.gba", 0xce72dc, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xce72e4, 0xc
-	.4byte ArenaUi_WelcomeDialogue
-	.incbin "baserom.gba", 0xce72f4, 0xc
-	.4byte ArenaUi_WagerGoldDialogue
-	.incbin "baserom.gba", 0xce7304, 0xc
-	.4byte ArenaUi_CheckConfirmation
-	.incbin "baserom.gba", 0xce7314, 0xc
-	.4byte ArenaUi_ConfirmWager
-	.incbin "baserom.gba", 0xce7324, 0xc
-	.4byte ArenaUi_InstructionsDialogue
-	.incbin "baserom.gba", 0xce7334, 0xc
-	.4byte ArenaUi_GoodLuckDialogue
-	.incbin "baserom.gba", 0xce7344, 0x14
-	.4byte _FadeBgmOut
-	.incbin "baserom.gba", 0xce735c, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xce7364, 0xc
-	.4byte ArenaUi_StartArenaBattle
-	.incbin "baserom.gba", 0xce7374, 0xc
-	.4byte UnlockGame
-	.incbin "baserom.gba", 0xce7384, 0x4
-	.4byte UnlockBmDisplay
-	.incbin "baserom.gba", 0xce738c, 0x4
-	.4byte gProcScr_ArenaUiResults
-	.incbin "baserom.gba", 0xce7394, 0x14
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xce73ac, 0xc
-	.4byte ArenaUi_OnEnd
-	.incbin "baserom.gba", 0xce73bc, 0x4
-	.4byte ClearTalk
-	.incbin "baserom.gba", 0xce73c4, 0x4
-	.4byte UnlockBmDisplay
-	.incbin "baserom.gba", 0xce73cc, 0x4
-	.4byte RefreshBMapGraphics
-	.incbin "baserom.gba", 0xce73d4, 0x4
-	.4byte StartMapSongBgm
-	.incbin "baserom.gba", 0xce73dc, 0x4
-	.4byte StartMidFadeFromBlack
-	.incbin "baserom.gba", 0xce73e4, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xce73ec, 0x4
-	.4byte UnlockGame
-	.incbin "baserom.gba", 0xce73f4, 0x8
-
-	.global gProcScr_ArenaUiResults
-gProcScr_ArenaUiResults:
-	.incbin "baserom.gba", 0xce73fc, 0xc
-	.4byte ArenaUiResults_Init_A
-	.incbin "baserom.gba", 0xce740c, 0x4
-	.4byte LockGame
-	.incbin "baserom.gba", 0xce7414, 0x4
-	.4byte LockBmDisplay
-	.incbin "baserom.gba", 0xce741c, 0xc
-	.4byte gProcScr_ArenaUiResultBgm
-	.incbin "baserom.gba", 0xce742c, 0x4
-	.4byte ArenaUi_Init
-	.incbin "baserom.gba", 0xce7434, 0x4
-	.4byte FadeInBlackSpeed20
-	.incbin "baserom.gba", 0xce743c, 0xc
-	.4byte ArenaUi_ResultsDialogue
-	.incbin "baserom.gba", 0xce744c, 0xc
-	.4byte ArenaUi_ShowGoldBoxOnVictoryOrDraw
-	.incbin "baserom.gba", 0xce745c, 0x1c
-	.4byte gProcScr_ArenaUiResultBgm
-	.incbin "baserom.gba", 0xce747c, 0xc
-	.4byte _FadeBgmOut
-	.incbin "baserom.gba", 0xce748c, 0x4
-	.4byte sub_08014170
-	.incbin "baserom.gba", 0xce7494, 0xc
-	.4byte sub_080B2A50
-	.incbin "baserom.gba", 0xce74a4, 0x4
-	.4byte ArenaUi_OnEnd
-	.incbin "baserom.gba", 0xce74ac, 0x4
-	.4byte ClearTalk
-	.incbin "baserom.gba", 0xce74b4, 0x4
-	.4byte UnlockBmDisplay
-	.incbin "baserom.gba", 0xce74bc, 0x4
-	.4byte RefreshBMapGraphics
-	.incbin "baserom.gba", 0xce74c4, 0x4
-	.4byte StartMapSongBgm
-	.incbin "baserom.gba", 0xce74cc, 0x4
-	.4byte StartMidFadeFromBlack
-	.incbin "baserom.gba", 0xce74d4, 0x4
-	.4byte WaitForFade
-	.incbin "baserom.gba", 0xce74dc, 0x4
-	.4byte UnlockGame
-	.incbin "baserom.gba", 0xce74e4, 0x8
-
-	.global gProcScr_ArenaUiResultBgm
-gProcScr_ArenaUiResultBgm:
-	.incbin "baserom.gba", 0xce74ec, 0x4
-	.4byte Arena_PlayResultSong
-	.incbin "baserom.gba", 0xce74f4, 0xc
-	.4byte Arena_PlayArenaSong
-	.incbin "baserom.gba", 0xce7504, 0x8
+	.section .rodata.08CE750C, "a"
 
 	.global EventScr_SuspendPrompt
 EventScr_SuspendPrompt:
@@ -7486,15 +6575,7 @@ EventScr_SuspendPrompt:
 	.4byte sub_080B2F94
 	.incbin "baserom.gba", 0xce7558, 0x10
 
-	.global ProcScr_WmFade
-ProcScr_WmFade:
-	.incbin "baserom.gba", 0xce7568, 0xc
-	.4byte WmFade_Init
-	.incbin "baserom.gba", 0xce7578, 0xc
-	.4byte WmFade_SetCamera
-	.incbin "baserom.gba", 0xce7588, 0x4
-	.4byte WmFade_Loop
-	.incbin "baserom.gba", 0xce7590, 0x8
+	.section .rodata.08CE7598, "a"
 
 	.global Sprite_WmMarker
 Sprite_WmMarker:
@@ -7508,55 +6589,7 @@ Sprite_WmTextBoxA:
 Sprite_WmTextBoxB:
 	.incbin "baserom.gba", 0xce760e, 0x22
 
-	.global ProcScr_WmSpriteAnims
-ProcScr_WmSpriteAnims:
-	.incbin "baserom.gba", 0xce7630, 0x4
-	.4byte EndAllWmSpriteAnims
-	.incbin "baserom.gba", 0xce7638, 0x4
-	.4byte WmSpriteAnims_Init
-	.incbin "baserom.gba", 0xce7640, 0x4
-	.4byte WmSpriteAnims_Loop
-	.incbin "baserom.gba", 0xce7648, 0x8
-
-	.global ProcScr_WmTextBox
-ProcScr_WmTextBox:
-	.incbin "baserom.gba", 0xce7650, 0x4
-	.4byte WmTextBox_Init
-	.incbin "baserom.gba", 0xce7658, 0xc
-	.4byte WmTextBox_Loop
-	.incbin "baserom.gba", 0xce7668, 0x8
-
-	.global ProcScr_WmMarker
-ProcScr_WmMarker:
-	.incbin "baserom.gba", 0xce7670, 0xc
-	.4byte WmMarker_Loop
-	.incbin "baserom.gba", 0xce7680, 0x8
-
-	.global ProcScr_WmMu
-ProcScr_WmMu:
-	.incbin "baserom.gba", 0xce7688, 0x4
-	.4byte WmMuMove_OnEnd
-	.incbin "baserom.gba", 0xce7690, 0x4
-	.4byte WmMuMove_Init
-	.incbin "baserom.gba", 0xce7698, 0xc
-	.4byte WmMuMove_Loop
-	.incbin "baserom.gba", 0xce76a8, 0x8
-
-	.global ProcScr_WmSlots
-ProcScr_WmSlots:
-	.incbin "baserom.gba", 0xce76b0, 0x4
-	.4byte WmSlots_Init
-	.incbin "baserom.gba", 0xce76b8, 0x10
-
-	.global ProcScr_WmUnitManager
-ProcScr_WmUnitManager:
-	.incbin "baserom.gba", 0xce76c8, 0x4
-	.4byte WmUnitManager_EndAll
-	.incbin "baserom.gba", 0xce76d0, 0x4
-	.4byte WmUnitManager_Init
-	.incbin "baserom.gba", 0xce76d8, 0x4
-	.4byte WmUnitManager_Loop
-	.incbin "baserom.gba", 0xce76e0, 0x8
+	.section .rodata.08CE76E8, "a"
 
 	.global ProcScr_WorldMap
 ProcScr_WorldMap:

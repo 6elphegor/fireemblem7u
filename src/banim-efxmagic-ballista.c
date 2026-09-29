@@ -3,7 +3,7 @@
 /* auto-decls */
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
-extern struct ProcCmd ProcScr_efxShooter[];
+extern const struct ProcCmd ProcScr_efxShooter[];
 extern int gEfxBgSemaphore;
 extern struct ProcCmd ProcScr_efxShooterOBJ[];
 extern u32 AnimScr_08BA5D9C[];
@@ -145,3 +145,10 @@ void efxShooterOBJ_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA17DC")
+const struct ProcCmd ProcScr_efxShooter[] = {
+    PROC_19,
+    PROC_REPEAT(efxShooter_Loop_Main),
+    PROC_END,
+};

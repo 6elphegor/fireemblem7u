@@ -43,15 +43,15 @@ void sub_08050150(struct Anim * anim, int type);
 void SpellFx_WriteBgMapExt(struct Anim * anim, const u16 * src, int width, int height);
 
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxSpell21[];
-extern struct ProcCmd ProcScr_efxSpell21BG[];
-extern struct ProcCmd ProcScr_efxSpell21BG2[];
-extern struct ProcCmd ProcScr_efxSpell21BGCOL[];
-extern struct ProcCmd ProcScr_efxSpell21OBJ[];
-extern struct ProcCmd ProcScr_efxSpell21OBJChild[];
-extern struct ProcCmd ProcScr_efxSpell21OBJ2[];
-extern struct ProcCmd ProcScr_efxSpell21OBJ3[];
-extern struct ProcCmd ProcScr_efxSpell21OBJ3Child[];
+extern const struct ProcCmd ProcScr_efxSpell21[];
+extern const struct ProcCmd ProcScr_efxSpell21BG[];
+extern const struct ProcCmd ProcScr_efxSpell21BG2[];
+extern const struct ProcCmd ProcScr_efxSpell21BGCOL[];
+extern const struct ProcCmd ProcScr_efxSpell21OBJ[];
+extern const struct ProcCmd ProcScr_efxSpell21OBJChild[];
+extern const struct ProcCmd ProcScr_efxSpell21OBJ2[];
+extern const struct ProcCmd ProcScr_efxSpell21OBJ3[];
+extern const struct ProcCmd ProcScr_efxSpell21OBJ3Child[];
 extern const s16 FrameConfig_Spell21BG[];
 extern const s16 FrameConfig_Spell21BGCOL[];
 extern u16 * TsaArray_Spell21BG[];
@@ -565,3 +565,67 @@ void efxSpell21OBJ3Child_Loop(struct ProcEfxSpell21OBJ * proc)
 void sub_0805BBEC(struct Anim * anim)
 {
 }
+
+SECTION(".rodata.08BA2B50")
+const struct ProcCmd ProcScr_efxSpell21[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2B68")
+const struct ProcCmd ProcScr_efxSpell21BG[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21BG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2BA8")
+const struct ProcCmd ProcScr_efxSpell21BG2[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21BG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2BC0")
+const struct ProcCmd ProcScr_efxSpell21BGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxSpell21BGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2BE0")
+const struct ProcCmd ProcScr_efxSpell21OBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21OBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2BF8")
+const struct ProcCmd ProcScr_efxSpell21OBJChild[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21OBJChild_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2C10")
+const struct ProcCmd ProcScr_efxSpell21OBJ2[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21OBJ2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2C28")
+const struct ProcCmd ProcScr_efxSpell21OBJ3[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21OBJ3_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2C40")
+const struct ProcCmd ProcScr_efxSpell21OBJ3Child[] = {
+    PROC_19,
+    PROC_REPEAT(efxSpell21OBJ3Child_Loop),
+    PROC_END,
+};

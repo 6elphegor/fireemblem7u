@@ -6,18 +6,18 @@ void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int speed);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxFenrir[];
+extern const struct ProcCmd ProcScr_efxFenrir[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxFenrirBG[];
+extern const struct ProcCmd ProcScr_efxFenrirBG[];
 extern u16 Img_FenrirBg_Sigils[];
 extern u16 Tsa_FenrirBg_Sigils[];
-extern struct ProcCmd ProcScr_efxFenrirBGCOL[];
+extern const struct ProcCmd ProcScr_efxFenrirBGCOL[];
 extern u16 Pal_EfxFenrirBGCOL[];
-extern struct ProcCmd ProcScr_efxFenrirOBJ[];
+extern const struct ProcCmd ProcScr_efxFenrirOBJ[];
 extern u32 AnimScr_EfxFenrir3[];
 extern u16 Pal_FenrirSprites_A[];
 extern u16 Img_FenrirSprites[];
-extern struct ProcCmd ProcScr_efxFenrirBG2[];
+extern const struct ProcCmd ProcScr_efxFenrirBG2[];
 extern u16 * TsaArray_FenrirBg[];
 extern u16 * ImgArray_FenrirBg[];
 extern u16 Pal_FenrirBg[];
@@ -25,9 +25,9 @@ extern const u16 FrameConfig_AnimaHitBG[];
 extern u16 * TsaLut_AnimaHitBG[];
 extern u16 * ImgLut_AnimaHitBG[];
 extern u16 Pal_EfxFenrirBG2_B[];
-extern struct ProcCmd ProcScr_efxFenrirOBJ2[];
+extern const struct ProcCmd ProcScr_efxFenrirOBJ2[];
 extern u16 Pal_FenrirSprites_B[];
-extern struct ProcCmd ProcScr_efxFenrirOBJ2Chiri[];
+extern const struct ProcCmd ProcScr_efxFenrirOBJ2Chiri[];
 extern int gFenrirSpriteAngles[];
 extern u32 AnimScr_EfxFenrir1[];
 extern u32 AnimScr_EfxFenrir2[];
@@ -570,3 +570,55 @@ void efxFenrirOBJ2Chiri_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA2DF8")
+const struct ProcCmd ProcScr_efxFenrir[] = {
+    PROC_19,
+    PROC_REPEAT(efxFenrir_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2E10")
+const struct ProcCmd ProcScr_efxFenrirBG[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxFenrirBG_OnEnd),
+    PROC_REPEAT(efxFenrirBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2E30")
+const struct ProcCmd ProcScr_efxFenrirBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_SET_END_CB(efxFenrirBGCOL_OnEnd),
+    PROC_REPEAT(efxFenrirBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2E58")
+const struct ProcCmd ProcScr_efxFenrirOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxFenrirOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA2E70")
+const struct ProcCmd ProcScr_efxFenrirBG2[] = {
+    PROC_19,
+    PROC_REPEAT(efxFenrirBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3020")
+const struct ProcCmd ProcScr_efxFenrirOBJ2[] = {
+    PROC_19,
+    PROC_REPEAT(efxFenrirOBJ2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3038")
+const struct ProcCmd ProcScr_efxFenrirOBJ2Chiri[] = {
+    PROC_19,
+    PROC_REPEAT(efxFenrirOBJ2Chiri_Loop),
+    PROC_END,
+};

@@ -14,7 +14,7 @@ extern u16 CONST_DATA gUnk_08CB8984[];
 extern u16 CONST_DATA gUnk_08CB898E[];
 extern struct UnitDefinition CONST_DATA gUnk_08CDB3C8[];
 extern struct UnitDefinition CONST_DATA gUnk_08CDB3E8[];
-extern struct ProcCmd CONST_DATA ProcScr_08CBB47C[];
+extern const struct ProcCmd ProcScr_08CBB47C[];
 extern struct ProcCmd CONST_DATA ProcScr_08CBB48C[];
 
 void StartCircularFadeAnim(ProcPtr proc, int x, int y);
@@ -627,3 +627,9 @@ void sub_0807D8D4(struct EventProc * proc)
     if (!(proc->flags & EVENT_FLAG_SKIPPED))
         ClearEmitedStars();
 }
+
+SECTION(".rodata.08CBB47C")
+const struct ProcCmd ProcScr_08CBB47C[] = {
+    PROC_REPEAT(sub_0807D60C),
+    PROC_END,
+};

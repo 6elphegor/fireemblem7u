@@ -25,8 +25,8 @@ struct ProcEkrUnitMainMini
     /* 5C */ void * unk_5C;
 };
 extern ProcPtr gpProcEfxAnimeDrv;
-extern struct ProcCmd gProc_efxAnimeDrvProc[];
-extern struct ProcCmd ProcScr_ekrUnitMainMini[];
+extern const struct ProcCmd gProc_efxAnimeDrvProc[];
+extern const struct ProcCmd ProcScr_ekrUnitMainMini[];
 extern u32 AnimScr_EkrMainMini_L_Close[];
 extern u32 AnimScr_EkrMainMini_L_Far[];
 extern u32 AnimScr_EkrMainMini_R_Close[];
@@ -902,3 +902,17 @@ void sub_08055468(s16 distance, s16 position)
 
     return;
 }
+
+SECTION(".rodata.08B9B2DC")
+const struct ProcCmd gProc_efxAnimeDrvProc[] = {
+    PROC_19,
+    PROC_REPEAT(ExecAllAIS),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9B2F4")
+const struct ProcCmd ProcScr_ekrUnitMainMini[] = {
+    PROC_19,
+    PROC_REPEAT(EkrUnitMainMiniMain),
+    PROC_END,
+};

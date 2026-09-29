@@ -19,8 +19,8 @@ void StartLightRuneAnim3(ProcPtr proc, int x, int y);
 
 extern s8 TerrainTable_MovCost_FlyNormal[];
 
-extern struct ProcCmd CONST_DATA ProcScr_PostWarpStaffAction[];
-extern struct ProcCmd CONST_DATA ProcScr_SetTargetStatus[];
+extern const struct ProcCmd ProcScr_PostWarpStaffAction[];
+extern const struct ProcCmd ProcScr_SetTargetStatus[];
 
 void DoItemHealStaffAction(ProcPtr proc)
 {
@@ -772,3 +772,18 @@ void ApplyStatusChange(void)
     SetUnitStatus(GetUnit(gActionSt.target), gBattleTarget.statusOut);
     gBattleTarget.statusOut = -1;
 }
+
+SECTION(".rodata.08B945C8")
+const struct ProcCmd ProcScr_PostWarpStaffAction[] = {
+    PROC_SLEEP(0),
+    PROC_CALL_2(PostWarpStaff_ExecTrap),
+    PROC_CALL(PostWarpStaff_RefreshMap),
+    PROC_END,
+};
+
+SECTION(".rodata.08B945E8")
+const struct ProcCmd ProcScr_SetTargetStatus[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(ApplyStatusChange),
+    PROC_END,
+};

@@ -141,7 +141,7 @@ extern u8 gUnknown_0200118C[];
 extern u16 CONST_DATA Sprite_08B9A3C8[];
 extern u16 CONST_DATA Sprite_08B9A436[];
 extern const u16 Sprite_081D5618[];
-extern struct ProcCmd CONST_DATA ProcScr_08B9A3D0[];
+extern const struct ProcCmd ProcScr_08B9A3D0[];
 extern const u8 Img_08B9A3D0_Font[];
 extern const u16 Pal_08B9A3D0[];
 extern s8 gUnk_Sio_0203DDDC;
@@ -159,41 +159,41 @@ extern const u16 Pal_LAPhaseIntro_P3[];
 extern const u16 Pal_LAPhaseIntro_P4[];
 
 extern u16 CONST_DATA Sprite_LinkArena_MenuTitle[];
-extern struct ProcCmd CONST_DATA ProcScr_LinkArenaTitleBanner[];
+extern const struct ProcCmd ProcScr_LinkArenaTitleBanner[];
 extern const u16 * CONST_DATA SpriteArray_SioMenuItems[];
 extern const u16 gUnknown_080DA09C[];
 extern const u16 * CONST_DATA SpriteArray_SioMenuTeamCount[];
-extern struct ProcCmd CONST_DATA ProcScr_SioMenuItem[];
+extern const struct ProcCmd ProcScr_SioMenuItem[];
 extern const u16 Sprite_LinkArena_PressStart[];
 extern u16 CONST_DATA Sprite_LinkArena_TeamName[];
 extern u16 CONST_DATA gUnknown_085AAA0E[];
 extern u16 * CONST_DATA gUnknown_085AAA48[];
 extern u16 CONST_DATA Sprite_LinkArena_NameBanner[];
 extern u16 CONST_DATA gUnknown_085AAA5E[];
-extern struct ProcCmd CONST_DATA ProcScr_085AAA78[];
-extern struct ProcCmd CONST_DATA ProcScr_LinkArenaTeamSpriteDraw[];
+extern const struct ProcCmd ProcScr_085AAA78[];
+extern const struct ProcCmd ProcScr_LinkArenaTeamSpriteDraw[];
 extern const u16 * CONST_DATA SpriteArray_NameEntryCursor[];
 extern const u16 Sprite_NameEntry_PositionIndicator[];
 extern const u16 * CONST_DATA SpriteArray_NameEntryIcons[];
-extern struct ProcCmd CONST_DATA ProcScr_NameEntrySpriteDraw[];
+extern const struct ProcCmd ProcScr_NameEntrySpriteDraw[];
 extern const u16 * CONST_DATA SpriteArray_RuleSettingIcons[];
-extern struct ProcCmd CONST_DATA ProcScr_RuleSettingSpriteDraw_Interactive[];
+extern const struct ProcCmd ProcScr_RuleSettingSpriteDraw_Interactive[];
 extern const u16 Sprite_SioMenuBurst_TopLeft[];
 extern const u16 Sprite_SioMenuBurst_TopRight[];
 extern const u16 Sprite_SioMenuBurst_BottomLeft[];
 extern const u16 Sprite_SioMenuBurst_BottomRight[];
 extern const s16 gUnknown_080DA1CA[];
-extern struct ProcCmd CONST_DATA ProcScr_SioMenuBurstFx[];
+extern const struct ProcCmd ProcScr_SioMenuBurstFx[];
 extern u16 CONST_DATA Sprite_LAMenuScrollBar_UpArrow[];
 extern u16 CONST_DATA Sprite_LAMenuScrollBar_DownArrow[];
 extern u16 CONST_DATA Sprite_LinkArenaMenuScrollBar[];
-extern struct ProcCmd CONST_DATA ProcScr_LinkArenaMenuScrollBar[];
+extern const struct ProcCmd ProcScr_LinkArenaMenuScrollBar[];
 extern const u16 * CONST_DATA SpriteArray_LAVersusPlayerNumbers[];
 extern const u16 Sprite_080DA25C[];
 extern const u16 Sprite_080DA26A[];
-extern struct ProcCmd CONST_DATA ProcScr_LAVersusSpriteDraw[];
+extern const struct ProcCmd ProcScr_LAVersusSpriteDraw[];
 extern const u16 Sprite_080DA27E[];
-extern struct ProcCmd CONST_DATA ProcScr_085AABD8[];
+extern const struct ProcCmd ProcScr_085AABD8[];
 extern const u16 Sprite_LinkArena_ChoiceBanner[];
 
 extern u16 gUnknown_085ADDE8[];
@@ -1388,3 +1388,82 @@ void PutLinkArenaChoiceBannerSprite(int x, int y)
     PutSprite(1, x, y, Sprite_LinkArena_ChoiceBanner, 0);
     return;
 }
+
+SECTION(".rodata.08B9A3A8")
+const struct ProcCmd ProcScr_LinkArenaTitleBanner[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(LATitleBanner_Init),
+    PROC_REPEAT(LATitleBanner_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A3D0")
+const struct ProcCmd ProcScr_08B9A3D0[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(sub_08047DB4),
+    PROC_REPEAT(sub_08047E00),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A410")
+const struct ProcCmd ProcScr_SioMenuItem[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(SioMenuItem_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A4A8")
+const struct ProcCmd ProcScr_085AAA78[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(sub_08048298),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A4C0")
+const struct ProcCmd ProcScr_LinkArenaTeamSpriteDraw[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(LATeamSpriteDraw_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A4F4")
+const struct ProcCmd ProcScr_NameEntrySpriteDraw[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(NameEntrySpriteDraw_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A518")
+const struct ProcCmd ProcScr_RuleSettingSpriteDraw_Interactive[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(RuleSettingSprites_Interactive_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A530")
+const struct ProcCmd ProcScr_SioMenuBurstFx[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(SioMenuBurstFx_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A560")
+const struct ProcCmd ProcScr_LinkArenaMenuScrollBar[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(LinkArenaMenuScroll_Init),
+    PROC_REPEAT(LinkArenaMenuScroll_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A5E0")
+const struct ProcCmd ProcScr_LAVersusSpriteDraw[] = {
+    PROC_REPEAT(LAVersusSpriteDraw_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A5F0")
+const struct ProcCmd ProcScr_085AABD8[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(sub_080491C4),
+    PROC_END,
+};

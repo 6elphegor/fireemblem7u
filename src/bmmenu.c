@@ -4,7 +4,7 @@
 
 extern struct ProcCmd CONST_DATA ProcScr_Config_Field[];
 extern const struct ProcCmd gProcScr_BKSEL[];
-extern struct ProcCmd CONST_DATA gProcScr_0859B630[];
+extern const struct ProcCmd gProcScr_0859B630[];
 extern u16 CONST_DATA EventScr_CompleteTraining[];
 extern u8 CONST_DATA Tsa_StealMenuFrame[];
 
@@ -1965,3 +1965,14 @@ u8 ItemMenuHelpBox(struct MenuProc * menu, struct MenuItemProc * menuItem)
     StartItemHelpBox(menuItem->xTile << 3, menuItem->yTile << 3, item);
 }
 
+
+SECTION(".rodata.08B93E0C")
+const struct ProcCmd gProcScr_0859B630[] = {
+    PROC_CALL(LockGame),
+    PROC_CALL(sub_08021D28),
+    PROC_WHILE_EXISTS(gProcScr_BKSEL),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_CALL(GoToFightItemReview),
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};

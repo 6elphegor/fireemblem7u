@@ -226,12 +226,15 @@ class Ctx:
                 break
         return cmds, problems
 
-    def ptr_expr(self, a, val, problems):
+    def ptr_expr(self, a, val, problems, script=False):
         if a in self.ptrs:
             sym, add = self.ptrs[a]
             if add == 0:
                 return sym
-            return f"&{sym}[{add}]  /* FIXME: {sym} + {add:#x} */"
+            if script and add % 8 == 0:
+                return f"&{sym}[{add // 8}]"
+            problems.append(f"addend {sym} + {add:#x} at {a:#010x}")
+            return f"(void *) &{sym}  /* FIXME: + {add:#x} */"
         if val == 0:
             return "0"
         e = self.elf().get(val & ~1)
@@ -263,7 +266,7 @@ class Ctx:
                     return f"{name}({self.string_expr(val, a + 4, problems)})"
                 if not hasptr:
                     return raw()
-                return f"{name}({self.ptr_expr(a + 4, val, problems)})"
+                return f"{name}({self.ptr_expr(a + 4, val, problems, op in (5, 6, 7, 8, 9, 10, 13))})"
             return raw()
         if kind == "imm":
             if hasptr:

@@ -1190,3 +1190,20 @@ const struct ProcCmd ProcScr_08B96EA8[] = {
     PROC_CALL(AiPhaseCleanup),
     PROC_END,
 };
+
+SECTION(".rodata.08B96CCC")
+const struct ProcCmd gUnk_08B96CCC[] = {
+    PROC_CALL(TrapDamageDisplay_Init),
+    PROC_LABEL(0),
+    PROC_SLEEP(0),
+    PROC_CALL(TrapDamageDisplay_Check),
+    PROC_CALL(TrapDamageDisplay_Watch),
+    PROC_SLEEP(0),
+    PROC_CALL(TrapDamageDisplay_Display),
+    PROC_SLEEP(0),
+    PROC_CALL(FinishDamageDisplay),
+    PROC_LABEL(1),
+    PROC_CALL(TrapDamageDisplay_Next),
+    PROC_GOTO(0),
+    PROC_END,
+};

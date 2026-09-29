@@ -2,16 +2,16 @@
 
 /* auto-decls */
 void NewEfxTwobaiRST(struct Anim *anim, int unk44);
-extern struct ProcCmd ProcScr_efxSong[];
+extern const struct ProcCmd ProcScr_efxSong[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxSongBG[];
+extern const struct ProcCmd ProcScr_efxSongBG[];
 extern u16 * TsaArray_SongBg[];
 extern u16 * ImgArray_SongBg[];
 extern u16 Pal_SongSprites[];
-extern struct ProcCmd ProcScr_efxSongOBJ[];
+extern const struct ProcCmd ProcScr_efxSongOBJ[];
 extern u32 AnimScr_EfxSong[];
 extern u16 Img_SongSprites[];
-extern struct ProcCmd ProcScr_efxDance[];
+extern const struct ProcCmd ProcScr_efxDance[];
 
 struct ProcEfxEclipseBG
 {
@@ -273,3 +273,31 @@ void efxDance_Loop_Main(struct ProcEfx * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA16A4")
+const struct ProcCmd ProcScr_efxSong[] = {
+    PROC_19,
+    PROC_REPEAT(efxSong_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA16BC")
+const struct ProcCmd ProcScr_efxSongBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxSongBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA17AC")
+const struct ProcCmd ProcScr_efxSongOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxSongOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA17C4")
+const struct ProcCmd ProcScr_efxDance[] = {
+    PROC_19,
+    PROC_REPEAT(efxDance_Loop_Main),
+    PROC_END,
+};

@@ -19,7 +19,7 @@ extern void (* AiDecideMainFunc)(void);
 extern u32 * sUnitPriorityArray;
 extern ProcFunc CONST_DATA sCpOrderFuncList[];
 extern const int sFactionUnitCountLut[3];
-extern struct ProcCmd CONST_DATA gProcScr_CpDecide[];
+extern const struct ProcCmd gProcScr_CpDecide[];
 
 void CpOrderMain(ProcPtr proc)
 {
@@ -206,3 +206,17 @@ void CpOrderFunc_End(ProcPtr proc)
 {
     Proc_Break(proc);
 }
+
+void CpDecide_Main();
+void CpDecide_Suspend();
+
+SECTION(".rodata.08B96F44")
+const struct ProcCmd gProcScr_CpDecide[] = {
+    PROC_19,
+    PROC_LABEL(0),
+    PROC_CALL(CpDecide_Main),
+    PROC_SLEEP(0),
+    PROC_CALL(CpDecide_Suspend),
+    PROC_GOTO(0),
+    PROC_END,
+};

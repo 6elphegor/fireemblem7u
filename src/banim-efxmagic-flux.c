@@ -5,14 +5,14 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd gProcScr_efxMistyrain[];
+extern const struct ProcCmd gProcScr_efxMistyrain[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd gProcScr_efxMistyrainBG[];
+extern const struct ProcCmd gProcScr_efxMistyrainBG[];
 extern u16 * gUnknown_08BA1E64[];
 extern u16 * gUnknown_08BA1F08[];
 extern u16 Pal_08227108[];
 extern u16 Pal_08227128[];
-extern struct ProcCmd ProcScr_efxMistyrainOBJ[];
+extern const struct ProcCmd ProcScr_efxMistyrainOBJ[];
 extern AnimScr FramScr_Unk5D4F90[];
 extern struct ProcCmd gProcScr_efxMistyrainOBJ2[];
 extern u32 AnimScr_EfxMistyRainObj1[];
@@ -355,3 +355,30 @@ void efxMistyRainObj2_08059884(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA1E34")
+const struct ProcCmd gProcScr_efxMistyrain[] = {
+    PROC_19,
+    PROC_REPEAT(efxMistyRain_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1E4C")
+const struct ProcCmd gProcScr_efxMistyrainBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxMistyRainBg_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1FAC")
+const struct ProcCmd ProcScr_efxMistyrainOBJ[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxMistyRainObj_OnEnd),
+    PROC_REPEAT(efxMistyRainObj_080597A4),
+    PROC_SLEEP(32),
+    PROC_REPEAT(efxMistyRainObj_080597E0),
+    PROC_SLEEP(11),
+    PROC_REPEAT(efxMistyRainObj_0805981C),
+    PROC_SLEEP(22),
+    PROC_END,
+};

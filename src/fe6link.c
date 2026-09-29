@@ -47,8 +47,8 @@ extern const u16 gUnknown_081D3598[];
 
 void sub_08043828(struct Text * th, int num, u8 center, int color);
 
-extern struct ProcCmd CONST_DATA ProcScr_08B9998C[];
-extern struct ProcCmd CONST_DATA ProcScr_08B99870[];
+extern const struct ProcCmd ProcScr_08B9998C[];
+extern const struct ProcCmd ProcScr_08B99870[];
 extern struct ProcCmd CONST_DATA ProcScr_FE6Link[];
 
 void sub_080ACA90(ProcPtr proc);
@@ -746,3 +746,19 @@ void GC_ConnectToFE6(ProcPtr parent)
     InitTextFont(&Font_0203DB64, (void *)0x06001800, 0xc0, 0);
     Proc_StartBlocking(ProcScr_FE6Link, parent);
 }
+
+SECTION(".rodata.08B99870")
+const struct ProcCmd ProcScr_08B99870[] = {
+    PROC_REPEAT(sub_080431C0),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9998C")
+const struct ProcCmd ProcScr_08B9998C[] = {
+    PROC_CALL(sub_08043A14),
+    PROC_LABEL(0),
+    PROC_REPEAT(sub_08043C0C),
+    PROC_REPEAT(sub_08043CC8),
+    PROC_REPEAT(sub_08043DB8),
+    PROC_END,
+};

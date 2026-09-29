@@ -36,8 +36,8 @@ struct EpilogueProc {
     /* 51 */ s8 unk_51;
 };
 
-extern struct ProcCmd CONST_DATA ProcScr_EpilogueCg[];
-extern struct ProcCmd CONST_DATA ProcScr_EpilogueScroll[];
+extern const struct ProcCmd ProcScr_EpilogueCg[];
+extern const struct ProcCmd ProcScr_EpilogueScroll[];
 extern struct ProcCmd CONST_DATA ProcScr_EpilogueText[];
 extern u16 Pal_EpilogueText[];
 extern void const * const gEpilogueEndScroll[];
@@ -1027,3 +1027,31 @@ void PostEpilogue_StartTalk9F4(struct EpilogueProc * proc)
     SetDialogueBoxConfig(0x110);
 }
 
+
+SECTION(".rodata.08CEDE04")
+const struct ProcCmd ProcScr_EpilogueCg[] = {
+    PROC_SLEEP(0),
+    PROC_CALL_ARG(NewFadeOut2, 2),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(0),
+    PROC_CALL(EpilogueCg_Init),
+    PROC_SLEEP(0),
+    PROC_REPEAT(EpilogueCg_Loop),
+    PROC_SLEEP(0),
+    PROC_CALL_ARG(NewFadeIn2, 2),
+    PROC_WHILE(FadeInExists),
+    PROC_END,
+};
+
+SECTION(".rodata.08CEDE5C")
+const struct ProcCmd ProcScr_EpilogueScroll[] = {
+    PROC_SLEEP(0),
+    PROC_CALL_ARG(NewFadeOut2, 2),
+    PROC_WHILE(FadeOutExists),
+    PROC_LABEL(0),
+    PROC_CALL(EpilogueScroll_Init),
+    PROC_CALL_ARG(NewFadeIn2, 2),
+    PROC_WHILE(FadeInExists),
+    PROC_REPEAT(EpilogueScroll_Loop),
+    PROC_END,
+};

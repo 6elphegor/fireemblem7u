@@ -5,23 +5,23 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxShine[];
+extern const struct ProcCmd ProcScr_efxShine[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxShineBG[];
+extern const struct ProcCmd ProcScr_efxShineBG[];
 extern u16 * TsaArray_ShineBg_Left[];
 extern u16 * TsaArray_ShineBg_Right[];
 extern u16 * ImgArray_ShineBg[];
-extern struct ProcCmd ProcScr_efxShineBG2[];
+extern const struct ProcCmd ProcScr_efxShineBG2[];
 extern u16 * TsaArray_ShineBg2[];
 extern u16 Pal_ShineBg2[];
 extern u16 Img_ShineBg2[];
-extern struct ProcCmd ProcScr_efxShineBGCOL[];
+extern const struct ProcCmd ProcScr_efxShineBGCOL[];
 extern u16 Pal_ShineBg_0828FD00[];
-extern struct ProcCmd ProcScr_efxShineOBJRND[];
+extern const struct ProcCmd ProcScr_efxShineOBJRND[];
 extern u16 Pal_ShineSprites[];
 extern u16 Img_ShineSprites[];
 extern s16 gShineSpriteCoords[];
-extern struct ProcCmd ProcScr_efxShineOBJ[];
+extern const struct ProcCmd ProcScr_efxShineOBJ[];
 extern u32 AnimScr_EfxShine[];
 #define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
 #define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
@@ -377,3 +377,46 @@ void efxShineOBJ_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA36A8")
+const struct ProcCmd ProcScr_efxShine[] = {
+    PROC_19,
+    PROC_REPEAT(efxShine_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA36C0")
+const struct ProcCmd ProcScr_efxShineBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxShineBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA36E4")
+const struct ProcCmd ProcScr_efxShineBG2[] = {
+    PROC_19,
+    PROC_REPEAT(efxShineBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3720")
+const struct ProcCmd ProcScr_efxShineBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxShineBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3740")
+const struct ProcCmd ProcScr_efxShineOBJRND[] = {
+    PROC_19,
+    PROC_REPEAT(efxShineOBJRND_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3768")
+const struct ProcCmd ProcScr_efxShineOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxShineOBJ_Loop),
+    PROC_END,
+};

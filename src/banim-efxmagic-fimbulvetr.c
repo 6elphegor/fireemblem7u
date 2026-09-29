@@ -5,21 +5,21 @@ void NewEfxSpellCast(void);
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxFimbulvetr[];
+extern const struct ProcCmd ProcScr_efxFimbulvetr[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxFimbulvetrBGTR[];
+extern const struct ProcCmd ProcScr_efxFimbulvetrBGTR[];
 extern u16 * TsaArray_FimbulvetrBg_Tornado[];
 extern u16 * ImgArray_FimbulvetrBg_Tornado[];
 extern u16 Pal_FimbulvetrBg_Tornado[];
-extern struct ProcCmd ProcScr_efxFimbulvetrBG[];
+extern const struct ProcCmd ProcScr_efxFimbulvetrBG[];
 extern u16 * TsaArray_FimbulvetrBg[];
 extern u16 * ImgArray_FimbulvetrBg[];
 extern u16 Pal_FimbulvetrBg[];
-extern struct ProcCmd ProcScr_efxFimbulvetrOBJ[];
+extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ[];
 extern u32 AnimScr_FimbulvetrOBJ1[];
 extern u16 Pal_HealSprites_Sparkles[];
 extern u16 Img_FimbulvetrSprites_Snow[];
-extern struct ProcCmd ProcScr_efxFimbulvetrOBJ2[];
+extern const struct ProcCmd ProcScr_efxFimbulvetrOBJ2[];
 extern struct ProcCmd ProcScr_efxFimbulvetrOBJ2Fall[];
 extern u8 AnimScr_FimbulvetrOBJ2[];
 extern u32 AnimScr_FimbulvetrOBJ2Fall_TypeA[];
@@ -422,3 +422,38 @@ void efxFimbulvetrOBJ2Fall_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA1C0C")
+const struct ProcCmd ProcScr_efxFimbulvetr[] = {
+    PROC_19,
+    PROC_REPEAT(efxFimbulvetr_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1C24")
+const struct ProcCmd ProcScr_efxFimbulvetrBGTR[] = {
+    PROC_19,
+    PROC_REPEAT(efxFimbulvetrBGTR_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1C6C")
+const struct ProcCmd ProcScr_efxFimbulvetrBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxFimbulvetrBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1CDC")
+const struct ProcCmd ProcScr_efxFimbulvetrOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxFimbulvetrOBJ_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1CF4")
+const struct ProcCmd ProcScr_efxFimbulvetrOBJ2[] = {
+    PROC_19,
+    PROC_REPEAT(efxFimbulvetrOBJ2_Loop),
+    PROC_END,
+};

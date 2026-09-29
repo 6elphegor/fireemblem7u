@@ -30,7 +30,7 @@ void MU_SetDefaultFacing_Auto(void);
 void SetAutoMuMoveScript(const u8 * commands);
 s8 MuExistsActive(void);
 
-extern struct ProcCmd CONST_DATA ProcScr_AiTargetCursor[];
+extern const struct ProcCmd ProcScr_AiTargetCursor[];
 extern struct ProcCmd CONST_DATA gMusicProc3Script[];
 extern struct PopupInstruction CONST_DATA PopupScr_AiPillage[];
 
@@ -520,3 +520,11 @@ void CpPerform_EquipBest(struct CpPerformProc * proc)
         AiEquipBestConsideringDanger(rangeDanger, meleeDanger, combinedDanger, equipFlags);
     }
 }
+
+SECTION(".rodata.08B96F7C")
+const struct ProcCmd ProcScr_AiTargetCursor[] = {
+    PROC_SLEEP(0),
+    PROC_WHILE_EXISTS(ProcScr_CamMove),
+    PROC_REPEAT(AiTargetCursor_Main),
+    PROC_END,
+};

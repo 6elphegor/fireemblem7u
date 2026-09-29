@@ -83,7 +83,7 @@ struct DebugPrintProc {
     /* 54 */ const char * text;
 };
 
-extern struct ProcCmd CONST_DATA gProc_DebugPrintWithProc[];
+extern const struct ProcCmd gProc_DebugPrintWithProc[];
 extern const struct MenuDef gDebugMenuDef;
 
 void NewKeyStSetter(int keys);
@@ -858,3 +858,10 @@ u8 sub_0801C168(struct MenuProc * menuProc, struct MenuItemProc * menuItemProc)
     Proc_Start(gProcScr_Debug_08B9335C, PROC_TREE_3);
     return (MENU_ACT_SKIPCURSOR | MENU_ACT_END | MENU_ACT_SND6A | MENU_ACT_CLEAR);
 }
+
+SECTION(".rodata.08B93344")
+const struct ProcCmd gProc_DebugPrintWithProc[] = {
+    PROC_SLEEP(1),
+    PROC_CALL(DebugPrintWithProc),
+    PROC_END,
+};

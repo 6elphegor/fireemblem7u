@@ -3,7 +3,7 @@
 extern u16 const * const SpriteArray_08CE45A8[];
 extern u16 const * const SpriteArray_08CE45B4[];
 
-extern struct ProcCmd CONST_DATA gProcScr_BonusClaim[];
+extern const struct ProcCmd gProcScr_BonusClaim[];
 
 u32 GetGold(void);
 
@@ -763,3 +763,29 @@ void StartBonusClaimScreen(ProcPtr parent)
 {
     Proc_StartBlocking(gProcScr_BonusClaim, parent);
 }
+
+SECTION(".rodata.08CE578C")
+const struct ProcCmd gProcScr_BonusClaim[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(BonusClaim_Init),
+    PROC_CALL_ARG(NewFadeIn, 8),
+    PROC_WHILE(FadeInExists),
+    PROC_LABEL(0),
+    PROC_REPEAT(BonusClaim_Loop_MainKeyHandler),
+    PROC_GOTO(100),
+    PROC_LABEL(1),
+    PROC_CALL(BonusClaim_StartSelectTargetSubMenu),
+    PROC_REPEAT(BonusClaim_Loop_SelectTargetKeyHandler),
+    PROC_CALL(BonusClaim_EndSelectTargetSubMenu),
+    PROC_GOTO(0),
+    PROC_LABEL(2),
+    PROC_CALL(BonusClaim_DrawItemSentPopup),
+    PROC_REPEAT(BonusClaim_Loop_PopupDisplayTimer),
+    PROC_CALL(BonusClaim_ClearItemSentPopup),
+    PROC_GOTO(0),
+    PROC_LABEL(100),
+    PROC_CALL_ARG(NewFadeOut, 8),
+    PROC_WHILE(FadeOutExists),
+    PROC_CALL(BonusClaim_OnEnd),
+    PROC_END,
+};

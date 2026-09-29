@@ -35,10 +35,10 @@ extern u16 CONST_DATA Pal_LinkArenaWarpFx[];
 extern u16 CONST_DATA Img_ManimWarpFlashyFrames[];
 extern u8 CONST_DATA gUnknown_085AA854[];
 
-extern struct ProcCmd CONST_DATA ProcScr_SIOWARP[];
-extern struct ProcCmd CONST_DATA ProcScr_SIOWARPFX[];
-extern struct ProcCmd CONST_DATA ProcScr_SioWarpFxPartial[];
-extern struct ProcCmd CONST_DATA ProcScr_LAButtonSpriteDraw[];
+extern const struct ProcCmd ProcScr_SIOWARP[];
+extern const struct ProcCmd ProcScr_SIOWARPFX[];
+extern const struct ProcCmd ProcScr_SioWarpFxPartial[];
+extern const struct ProcCmd ProcScr_LAButtonSpriteDraw[];
 
 extern u16 const Sprite_LinkArenaBButton[];
 
@@ -257,3 +257,51 @@ void EndLinkArenaButtonSpriteDraw(void)
     if (Proc_Find(ProcScr_LAButtonSpriteDraw) != NULL)
         Proc_EndEach(ProcScr_LAButtonSpriteDraw);
 }
+
+SECTION(".rodata.08B9A298")
+const struct ProcCmd ProcScr_SIOWARP[] = {
+    PROC_19,
+    PROC_SLEEP(0),
+    PROC_CALL(SioWarp_Init),
+    PROC_REPEAT(SioWarp_Loop),
+    PROC_CALL(SioWarp_End),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A2C8")
+const struct ProcCmd ProcScr_SIOWARPFX[] = {
+    PROC_19,
+    PROC_SLEEP(0),
+    PROC_CALL(SioWarpFx_StartSioWarp),
+    PROC_SLEEP(5),
+    PROC_CALL(SioWarpFx_804C178),
+    PROC_SLEEP(15),
+    PROC_CALL(SioWarpFx_HideMoveUnit),
+    PROC_SLEEP(1),
+    PROC_CALL(SioWarpFx_SetMUPosition),
+    PROC_CALL(SioWarpFx_StartSioWarp),
+    PROC_SLEEP(5),
+    PROC_CALL(SioWarpFx_ShowMoveUnit),
+    PROC_CALL(SioWarpFx_804C1D8),
+    PROC_REPEAT(SioWarpFx_AwaitSioWarp),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A340")
+const struct ProcCmd ProcScr_SioWarpFxPartial[] = {
+    PROC_SLEEP(0),
+    PROC_CALL(SioWarpFx_HideMoveUnit),
+    PROC_SLEEP(1),
+    PROC_CALL(SioWarpFx_SetMUPosition),
+    PROC_CALL(SioWarpFx_StartSioWarp),
+    PROC_SLEEP(5),
+    PROC_CALL(SioWarpFx_ShowMoveUnit),
+    PROC_END,
+};
+
+SECTION(".rodata.08B9A380")
+const struct ProcCmd ProcScr_LAButtonSpriteDraw[] = {
+    PROC_SLEEP(0),
+    PROC_REPEAT(LAButtonSprites_Loop),
+    PROC_END,
+};

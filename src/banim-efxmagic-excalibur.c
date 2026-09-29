@@ -6,29 +6,29 @@ void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void StartSubSpell_efxExcaliburBG0(struct Anim * anim);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxExcalibur[];
+extern const struct ProcCmd ProcScr_efxExcalibur[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxExcaliburBG[];
+extern const struct ProcCmd ProcScr_efxExcaliburBG[];
 extern u16 Img_ExcaliburBg1[];
 extern u16 Tsa_ExcaliburBg1[];
-extern struct ProcCmd ProcScr_efxExcaliburBGCOL[];
+extern const struct ProcCmd ProcScr_efxExcaliburBGCOL[];
 extern u16 Pal_ExcaliburBg1[];
-extern struct ProcCmd ProcScr_efxExcaliburSCR[];
+extern const struct ProcCmd ProcScr_efxExcaliburSCR[];
 extern s16 gExcaliburBgScrollOffsets[];
-extern struct ProcCmd ProcScr_efxExcaliburSCR2[];
-extern struct ProcCmd ProcScr_efxExcaliburBG2[];
+extern const struct ProcCmd ProcScr_efxExcaliburSCR2[];
+extern const struct ProcCmd ProcScr_efxExcaliburBG2[];
 extern const u8 Img_ExcaliburBg2[];
 extern u16 Tsa_ExcaliburBg2_Left[];
 extern u16 Tsa_ExcaliburBg2_Right[];
-extern struct ProcCmd ProcScr_efxExcaliburBGCOL2[];
+extern const struct ProcCmd ProcScr_efxExcaliburBGCOL2[];
 extern u16 Pal_ExcaliburBg2[];
-extern struct ProcCmd ProcScr_efxExcaliburBG3[];
+extern const struct ProcCmd ProcScr_efxExcaliburBG3[];
 extern u16 Img_ShineBg1[];
 extern u16 Tsa_ShineBg1_Left[];
 extern u16 Tsa_ShineBg1_Right[];
-extern struct ProcCmd ProcScr_efxExcaliburBGCOL3[];
+extern const struct ProcCmd ProcScr_efxExcaliburBGCOL3[];
 extern u16 Pal_ExcaliburBg3[];
-extern struct ProcCmd ProcScr_efxExcaliburOBJ[];
+extern const struct ProcCmd ProcScr_efxExcaliburOBJ[];
 extern u32 AnimScr_EfxExcalibur[];
 extern u16 Pal_ExcaliburSprites[];
 extern u16 Img_ExcaliburSprites[];
@@ -654,3 +654,82 @@ void efxExcaliburOBJ_Loop(struct ProcEfxOBJ * proc)
 
     return;
 }
+
+SECTION(".rodata.08BA39AC")
+const struct ProcCmd ProcScr_efxExcalibur[] = {
+    PROC_19,
+    PROC_REPEAT(efxExcalibur_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA39C4")
+const struct ProcCmd ProcScr_efxExcaliburBG[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxExcaliburBG_OnEnd),
+    PROC_REPEAT(efxExcaliburBG_Loop_A),
+    PROC_REPEAT(efxExcaliburBG_Loop_B),
+    PROC_REPEAT(efxExcaliburBG_Loop_C),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA39F4")
+const struct ProcCmd ProcScr_efxExcaliburBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_SET_END_CB(efxExcaliburBGCOL_OnEnd),
+    PROC_REPEAT(efxExcaliburBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3A1C")
+const struct ProcCmd ProcScr_efxExcaliburSCR[] = {
+    PROC_19,
+    PROC_REPEAT(efxExcaliburSCR_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3A34")
+const struct ProcCmd ProcScr_efxExcaliburSCR2[] = {
+    PROC_19,
+    PROC_REPEAT(efxExcaliburSCR2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3B4C")
+const struct ProcCmd ProcScr_efxExcaliburBG2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxExcaliburBG2_OnEnd),
+    PROC_REPEAT(efxExcaliburBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3B6C")
+const struct ProcCmd ProcScr_efxExcaliburBGCOL2[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxExcaliburBGCOL2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3B8C")
+const struct ProcCmd ProcScr_efxExcaliburBG3[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxExcaliburBG3_OnEnd),
+    PROC_REPEAT(efxExcaliburBG3_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3BAC")
+const struct ProcCmd ProcScr_efxExcaliburBGCOL3[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(efxExcaliburBGCOL3_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3BCC")
+const struct ProcCmd ProcScr_efxExcaliburOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxExcaliburOBJ_Loop),
+    PROC_END,
+};

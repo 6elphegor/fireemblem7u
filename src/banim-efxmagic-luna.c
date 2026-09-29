@@ -7,31 +7,31 @@ ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int sp
 void NewEfxRestWINH(struct Anim *anim, int a, s16 b, u32 c);
 void EfxPlayHittedSFX(struct Anim * anim);
 void RegisterEfxSpellCastEnd(void);
-extern struct ProcCmd ProcScr_efxLuna[];
+extern const struct ProcCmd ProcScr_efxLuna[];
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxLunaBG[];
+extern const struct ProcCmd ProcScr_efxLunaBG[];
 extern u16 * TsaArray_LunaBg1[];
 extern u16 Pal_LunaBg1[];
 extern u16 Img_LunaBg1[];
-extern struct ProcCmd ProcScr_efxLunaSCR[];
+extern const struct ProcCmd ProcScr_efxLunaSCR[];
 extern s16 gLunaBgScrollOffsets[];
-extern struct ProcCmd ProcScr_efxLunaSCR2[];
-extern struct ProcCmd ProcScr_efxLunaBG2[];
+extern const struct ProcCmd ProcScr_efxLunaSCR2[];
+extern const struct ProcCmd ProcScr_efxLunaBG2[];
 extern u16 Img_LunaBg2[];
 extern u16 Pal_LunaBg2[];
 extern u16 Tsa_LunaBg2[];
-extern struct ProcCmd ProcScr_efxLunaBGCOL[];
-extern struct ProcCmd ProcScr_efxLunaBG3[];
+extern const struct ProcCmd ProcScr_efxLunaBGCOL[];
+extern const struct ProcCmd ProcScr_efxLunaBG3[];
 extern u16 * TsaArray_LunaBg3[];
 extern u16 * ImgArray_LunaBg3[];
 extern u16 Pal_LunaBg3[];
-extern struct ProcCmd ProcScr_efxLunaOBJ[];
+extern const struct ProcCmd ProcScr_efxLunaOBJ[];
 extern u16 Pal_LunaSprites[];
 extern u16 Img_LunaSprites[];
 extern u32 AnimScr_EfxLuna1[];
 extern u32 AnimScr_EfxLuna4[];
 extern u32 AnimScr_EfxLuna2[];
-extern struct ProcCmd ProcScr_efxLunaRST[];
+extern const struct ProcCmd ProcScr_efxLunaRST[];
 
 void StartSpellAnimLuna(struct Anim * anim);
 void efxLuna_Loop_Main(struct ProcEfx * proc);
@@ -720,3 +720,72 @@ void efxLunaRST_Loop(struct ProcEfxRST * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BA3780")
+const struct ProcCmd ProcScr_efxLuna[] = {
+    PROC_19,
+    PROC_REPEAT(efxLuna_Loop_Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3798")
+const struct ProcCmd ProcScr_efxLunaBG[] = {
+    PROC_19,
+    PROC_REPEAT(efxLunaBG_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA37B4")
+const struct ProcCmd ProcScr_efxLunaSCR[] = {
+    PROC_19,
+    PROC_REPEAT(efxLunaSCR_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA37CC")
+const struct ProcCmd ProcScr_efxLunaSCR2[] = {
+    PROC_19,
+    PROC_REPEAT(efxLunaSCR2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA38A4")
+const struct ProcCmd ProcScr_efxLunaBG2[] = {
+    PROC_19,
+    PROC_SET_END_CB(efxLunaBG2_OnEnd),
+    PROC_REPEAT(efxLunaBG2_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA38C4")
+const struct ProcCmd ProcScr_efxLunaBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_SET_END_CB(efxLunaBGCOL_OnEnd),
+    PROC_REPEAT(efxLunaBGCOL_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA38EC")
+const struct ProcCmd ProcScr_efxLunaBG3[] = {
+    PROC_19,
+    PROC_REPEAT(efxLunaBG3_Loop),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3964")
+const struct ProcCmd ProcScr_efxLunaOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxLunaOBJ_Loop_A),
+    PROC_REPEAT(efxLunaOBJ_Loop_B),
+    PROC_REPEAT(efxLunaOBJ_Loop_C),
+    PROC_REPEAT(efxLunaOBJ_Loop_D),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA3994")
+const struct ProcCmd ProcScr_efxLunaRST[] = {
+    PROC_19,
+    PROC_REPEAT(efxLunaRST_Loop),
+    PROC_END,
+};

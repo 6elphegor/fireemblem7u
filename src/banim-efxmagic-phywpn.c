@@ -26,11 +26,11 @@ extern u16 Pal_SpellJavelin_08056CD0[];
 void NewEfxFarAttackWithDistance(struct Anim * anim, s16 arg);
 void EfxPlayHittedSFX(struct Anim * anim);
 int GetProperAnimSoundLocation(struct Anim * anim);
-extern struct ProcCmd ProcScr_efxDummymagic[];
-extern struct ProcCmd ProcScr_efxTeono[];
+extern const struct ProcCmd ProcScr_efxDummymagic[];
+extern const struct ProcCmd ProcScr_efxTeono[];
 // MISSING var (2)
 extern int gEfxBgSemaphore;
-extern struct ProcCmd ProcScr_efxTeonoOBJ[];
+extern const struct ProcCmd ProcScr_efxTeonoOBJ[];
 extern u32 AnimScr_TeonoObjCloseLeft[];
 extern u32 AnimScr_TeonoObjCloseRight[];
 extern u32 AnimScr_TeonoObjFarLeft[];
@@ -38,19 +38,19 @@ extern u32 AnimScr_TeonoObjFarRight[];
 extern u16 Pal_TeonoOBJ[];
 extern u16 Img_TeonoOBJ[];
 extern u32 gUnknown_02017754;
-extern struct ProcCmd ProcScr_efxTeonoOBJ2[];
+extern const struct ProcCmd ProcScr_efxTeonoOBJ2[];
 extern u32 AnimScr_TeonoObj2Left[];
 extern u32 AnimScr_TeonoObj2Right[];
-extern struct ProcCmd ProcScr_efxTeonoSE[];
-extern struct ProcCmd ProcScr_efxArrow[];
-extern struct ProcCmd ProcScr_efxArrowOBJ[];
+extern const struct ProcCmd ProcScr_efxTeonoSE[];
+extern const struct ProcCmd ProcScr_efxArrow[];
+extern const struct ProcCmd ProcScr_efxArrowOBJ[];
 extern u32 AnimScr_ArrowCloseLeft[];
 extern u32 AnimScr_ArrowCloseRight[];
 extern u32 AnimScr_ArrowFarLeft[];
 extern u32 AnimScr_ArrowFarRight[];
 extern u16 Img_EfxArrowOBJ[];
-extern struct ProcCmd ProcScr_efxTeyari[];
-extern struct ProcCmd ProcScr_efxTeyariOBJ[];
+extern const struct ProcCmd ProcScr_efxTeyari[];
+extern const struct ProcCmd ProcScr_efxTeyariOBJ[];
 extern u32 AnimScr_EfxTeyariObjType0Right[];
 extern u32 AnimScr_EfxTeyariObjType0Left[];
 extern u32 AnimScr_EfxTeyariObjType1Right[];
@@ -696,3 +696,68 @@ void EfxTeyariObjMain(struct ProcEfxMagicOBJ * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BA15BC")
+const struct ProcCmd ProcScr_efxDummymagic[] = {
+    PROC_19,
+    PROC_REPEAT(EfxDummymagicMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA15D4")
+const struct ProcCmd ProcScr_efxTeono[] = {
+    PROC_19,
+    PROC_REPEAT(EfxTeonoMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA15EC")
+const struct ProcCmd ProcScr_efxTeonoOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxTeonoObjMain),
+    PROC_REPEAT(EfxTeonoObjEnd),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA160C")
+const struct ProcCmd ProcScr_efxTeonoOBJ2[] = {
+    PROC_19,
+    PROC_REPEAT(EfxTeonoObj2Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1624")
+const struct ProcCmd ProcScr_efxTeonoSE[] = {
+    PROC_19,
+    PROC_SET_END_CB(EfxTeonoSeCallBack),
+    PROC_REPEAT(EfxTeonoSeMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1644")
+const struct ProcCmd ProcScr_efxArrow[] = {
+    PROC_19,
+    PROC_REPEAT(EfxArrowMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA165C")
+const struct ProcCmd ProcScr_efxArrowOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxArrowObjMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA1674")
+const struct ProcCmd ProcScr_efxTeyari[] = {
+    PROC_19,
+    PROC_REPEAT(EfxTeyariMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA168C")
+const struct ProcCmd ProcScr_efxTeyariOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxTeyariObjMain),
+    PROC_END,
+};

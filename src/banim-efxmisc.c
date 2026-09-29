@@ -60,8 +60,8 @@ void NewEfxChillEffectBGCOL(struct Anim * anim);
 void EfxChillEffectBGCOL_Loop(struct ProcEfxBGCOL * proc);
 void EfxChillAnime_Loop(struct ProcEfxOBJ * proc);
 
-extern struct ProcCmd ProcScr_efxYushaSpinShield[];
-extern struct ProcCmd ProcScr_efxYushaSpinShieldOBJ[];
+extern const struct ProcCmd ProcScr_efxYushaSpinShield[];
+extern const struct ProcCmd ProcScr_efxYushaSpinShieldOBJ[];
 extern const AnimScr AnimScr_YushaSpinShieldOBJ_LeftTypeA[];
 extern const AnimScr AnimScr_YushaSpinShieldOBJ_RightTypeA[];
 extern const AnimScr AnimScr_YushaSpinShieldOBJ_LeftTypeB[];
@@ -75,9 +75,9 @@ extern const AnimScr AnimScr_YushaSpinShieldOBJ3_RightTypeA[];
 extern const AnimScr AnimScr_YushaSpinShieldOBJ3_LeftTypeB[];
 extern const AnimScr AnimScr_YushaSpinShieldOBJ3_RightTypeB[];
 
-extern struct ProcCmd ProcScr_efxHurtmutEff00[];
-extern struct ProcCmd ProcScr_efxHurtmutEff00OBJ[];
-extern struct ProcCmd ProcScr_efxHurtmutEff01OBJ[];
+extern const struct ProcCmd ProcScr_efxHurtmutEff00[];
+extern const struct ProcCmd ProcScr_efxHurtmutEff00OBJ[];
+extern const struct ProcCmd ProcScr_efxHurtmutEff01OBJ[];
 extern const AnimScr FramScr_Unk5D4F90[];
 extern const AnimScr AnimScr_HurtmutEff00OBJ1_Right[];
 extern const AnimScr AnimScr_HurtmutEff00OBJ1_Left[];
@@ -397,8 +397,8 @@ void efxHurtmutEff01OBJ_806D05C(struct ProcEfxOBJ * proc)
  * C2E: banim_code_effect_magic_rune_normal
  * C2F: banim_code_effect_magic_rune_critical
  */
-extern struct ProcCmd ProcScr_efxMagfcast[];
-extern struct ProcCmd ProcScr_efxMagfcastBG[];
+extern const struct ProcCmd ProcScr_efxMagfcast[];
+extern const struct ProcCmd ProcScr_efxMagfcastBG[];
 extern const u16 FrameConfig_EfxMagFcastBg1[];
 extern const u16 FrameConfig_EfxMagFcastBg2[];
 extern const u16 FrameConfig_EfxMagFcastBg3[];
@@ -524,8 +524,8 @@ void EfxMagfcastBGMain(struct ProcEfxBG * proc)
  * C31: banim_code_effect_dirt_wave_small
  * C32: banim_code_effect_dirt_wave_medium
  */
-extern struct ProcCmd ProcScr_efxSunakemuri[];
-extern struct ProcCmd ProcScr_efxSunakemuriOBJ[];
+extern const struct ProcCmd ProcScr_efxSunakemuri[];
+extern const struct ProcCmd ProcScr_efxSunakemuriOBJ[];
 extern const AnimScr AnimScr_EfxSunakemuriOBJ1_R[];
 extern const AnimScr AnimScr_EfxSunakemuriOBJ2_R[];
 extern const AnimScr AnimScr_EfxSunakemuriOBJ3_R[];
@@ -647,8 +647,8 @@ void EfxSunakemuriOBJMain(struct ProcEfxOBJ * proc)
 /**
  * C4E: banim_code_effect_dirt_wave
  */
-extern struct ProcCmd ProcScr_efxLokmsuna[];
-extern struct ProcCmd ProcScr_efxLokmsunaOBJ[];
+extern const struct ProcCmd ProcScr_efxLokmsuna[];
+extern const struct ProcCmd ProcScr_efxLokmsunaOBJ[];
 extern const AnimScr AnimScr_EfxLokmsunaObjLeft[];
 extern const AnimScr AnimScr_EfxLokmsunaObjRight[];
 extern const u8 Img_EfxLokmsunaObj[];
@@ -711,8 +711,8 @@ void EfxLokmsunaIOBJMain(struct ProcEfxOBJ * proc)
 /**
  * C39: banim_code_hit_fake
  */
-extern struct ProcCmd ProcScr_efxKingPika[];
-extern struct ProcCmd ProcScr_efxFlashFX[];
+extern const struct ProcCmd ProcScr_efxKingPika[];
+extern const struct ProcCmd ProcScr_efxFlashFX[];
 
 void NewEfxFlashUnit(struct Anim * anim, u16 a, u16 b, int c);
 
@@ -788,8 +788,8 @@ void EfxFlashFXMain(struct ProcEfx * proc)
 /**
  * Maybe unused banim commands?
  */
-extern struct ProcCmd ProcScr_efxSongOBJ2[];
-extern struct ProcCmd ProcScr_efxDanceOBJ[];
+extern const struct ProcCmd ProcScr_efxSongOBJ2[];
+extern const struct ProcCmd ProcScr_efxDanceOBJ[];
 extern const AnimScr AnimScr_EfxSongObj2[];
 extern const AnimScr AnimScr_EfxDanceObj[];
 extern const u16 Pal_EfxDanceObj[];
@@ -851,11 +851,11 @@ void EfxDanceOBJMain(struct ProcEfxOBJ * proc)
 /**
  * Shinning effect for legend weapon
  */
-extern struct ProcCmd ProcScr_efxSpecalEffect[];
-extern struct ProcCmd ProcScr_efxSRankWeaponEffect[];
-extern struct ProcCmd ProcScr_efxSRankWeaponEffectBG[];
-extern struct ProcCmd ProcScr_efxSRankWeaponEffectSCR[];
-extern struct ProcCmd ProcScr_efxSRankWeaponEffectSCR2[];
+extern const struct ProcCmd ProcScr_efxSpecalEffect[];
+extern const struct ProcCmd ProcScr_efxSRankWeaponEffect[];
+extern const struct ProcCmd ProcScr_efxSRankWeaponEffectBG[];
+extern const struct ProcCmd ProcScr_efxSRankWeaponEffectSCR[];
+extern const struct ProcCmd ProcScr_efxSRankWeaponEffectSCR2[];
 extern const u8 Img_EfxSRankWeaponEffectBG[];
 extern const u16 Pal_EfxSRankWeaponEffectBG[];
 extern const u16 Tsa_EfxSRankWeaponEffectBG[];
@@ -1057,8 +1057,8 @@ void EfxSRankWeaponEffectSCR2Main(struct ProcEfxSRankSCR2 * proc)
     }
 }
 
-extern struct ProcCmd ProcScr_efxMagdhisEffect[];
-extern struct ProcCmd ProcScr_efxMagdhisEffectBG[];
+extern const struct ProcCmd ProcScr_efxMagdhisEffect[];
+extern const struct ProcCmd ProcScr_efxMagdhisEffectBG[];
 extern u16 * TsaLut_EfxMagdhisEffectBG[];
 extern const u16 FrameConf_EfxMagdhisEffectBG[];
 extern const u16 Pal_EfxMagdhisEffectBG[];
@@ -1143,7 +1143,7 @@ void EfxMagdhisEffectBGMain(struct ProcEfxBG * proc)
 /**
  * C47: banim_code_cape_flowing
  */
-extern struct ProcCmd ProcScr_efxMantBatabata[];
+extern const struct ProcCmd ProcScr_efxMantBatabata[];
 extern const AnimScr AnimScr_EfxMantBatabata1_R[];
 extern const AnimScr AnimScr_EfxMantBatabata1_L[];
 extern const AnimScr AnimScr_EfxMantBatabata2_R[];
@@ -1252,9 +1252,9 @@ void EfxMantBatabata_Loop2(struct ProcEfxOBJ * proc)
 /**
  * Some critical atk effect?
  */
-extern struct ProcCmd ProcScr_efxChillEffect[];
-extern struct ProcCmd ProcScr_efxChillEffectBG[];
-extern struct ProcCmd ProcScr_efxChillEffectBGCOL[];
+extern const struct ProcCmd ProcScr_efxChillEffect[];
+extern const struct ProcCmd ProcScr_efxChillEffectBG[];
+extern const struct ProcCmd ProcScr_efxChillEffectBGCOL[];
 extern struct ProcCmd ProcScr_efxChillAnime[];
 extern const u16 FrameConf_EfxChillEffectBG[];
 extern u16 * TsaLut_EfxChillEffectBG[];
@@ -1433,3 +1433,198 @@ void EfxChillAnime_Loop(struct ProcEfxOBJ * proc)
         Proc_Break(proc);
     }
 }
+
+SECTION(".rodata.08BA42AC")
+const struct ProcCmd ProcScr_efxYushaSpinShield[] = {
+    PROC_19,
+    PROC_REPEAT(EfxYushaSpinShieldMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA42C4")
+const struct ProcCmd ProcScr_efxYushaSpinShieldOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxYushaSpinShieldOBJ_806CD14),
+    PROC_REPEAT(efxYushaSpinShieldOBJ_806CD7C),
+    PROC_REPEAT(efxYushaSpinShieldOBJ_806CDA4),
+    PROC_REPEAT(efxYushaSpinShieldOBJ_806CE08),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA42F4")
+const struct ProcCmd ProcScr_efxHurtmutEff00[] = {
+    PROC_19,
+    PROC_REPEAT(EfxHurtmutEff00Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA430C")
+const struct ProcCmd ProcScr_efxHurtmutEff00OBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxHurtmutEff00OBJ_806CEC4),
+    PROC_SLEEP(26),
+    PROC_REPEAT(efxHurtmutEff00OBJ_806CF10),
+    PROC_SLEEP(8),
+    PROC_REPEAT(efxHurtmutEff00OBJ_806CF5C),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4344")
+const struct ProcCmd ProcScr_efxHurtmutEff01OBJ[] = {
+    PROC_19,
+    PROC_REPEAT(efxHurtmutEff01OBJ_806CFC4),
+    PROC_SLEEP(58),
+    PROC_REPEAT(efxHurtmutEff01OBJ_806D010),
+    PROC_SLEEP(21),
+    PROC_REPEAT(efxHurtmutEff01OBJ_806D05C),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA437C")
+const struct ProcCmd ProcScr_efxMagfcast[] = {
+    PROC_19,
+    PROC_REPEAT(EfxMagfcastMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4394")
+const struct ProcCmd ProcScr_efxMagfcastBG[] = {
+    PROC_19,
+    PROC_REPEAT(EfxMagfcastBGMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4404")
+const struct ProcCmd ProcScr_efxSunakemuri[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSunakemuriMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA441C")
+const struct ProcCmd ProcScr_efxSunakemuriOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSunakemuriOBJMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4434")
+const struct ProcCmd ProcScr_efxLokmsuna[] = {
+    PROC_19,
+    PROC_REPEAT(EfxLokmsunaMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA444C")
+const struct ProcCmd ProcScr_efxLokmsunaOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxLokmsunaIOBJMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4464")
+const struct ProcCmd ProcScr_efxKingPika[] = {
+    PROC_19,
+    PROC_REPEAT(EfxKingPikaMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA447C")
+const struct ProcCmd ProcScr_efxFlashFX[] = {
+    PROC_19,
+    PROC_REPEAT(EfxFlashFXMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4494")
+const struct ProcCmd ProcScr_efxSongOBJ2[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSongOBJ2Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA44AC")
+const struct ProcCmd ProcScr_efxDanceOBJ[] = {
+    PROC_19,
+    PROC_REPEAT(EfxDanceOBJMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA44C4")
+const struct ProcCmd ProcScr_efxSpecalEffect[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSpecalEffectMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA44DC")
+const struct ProcCmd ProcScr_efxSRankWeaponEffect[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSRankWeaponEffectMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA44F4")
+const struct ProcCmd ProcScr_efxSRankWeaponEffectBG[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSRankWeaponEffectBGMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA450C")
+const struct ProcCmd ProcScr_efxSRankWeaponEffectSCR[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSRankWeaponEffectSCRMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4524")
+const struct ProcCmd ProcScr_efxSRankWeaponEffectSCR2[] = {
+    PROC_19,
+    PROC_REPEAT(EfxSRankWeaponEffectSCR2Main),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA462C")
+const struct ProcCmd ProcScr_efxMagdhisEffect[] = {
+    PROC_19,
+    PROC_REPEAT(EfxMagdhisEffectMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA4644")
+const struct ProcCmd ProcScr_efxMagdhisEffectBG[] = {
+    PROC_19,
+    PROC_REPEAT(EfxMagdhisEffectBGMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA466C")
+const struct ProcCmd ProcScr_efxMantBatabata[] = {
+    PROC_19,
+    PROC_REPEAT(EfxMantBatabata_Loop1),
+    PROC_REPEAT(EfxMantBatabata_Loop2),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA468C")
+const struct ProcCmd ProcScr_efxChillEffect[] = {
+    PROC_19,
+    PROC_REPEAT(EfxChillEffectMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA46A4")
+const struct ProcCmd ProcScr_efxChillEffectBG[] = {
+    PROC_19,
+    PROC_REPEAT(EfxChillEffectBGMain),
+    PROC_END,
+};
+
+SECTION(".rodata.08BA46C8")
+const struct ProcCmd ProcScr_efxChillEffectBGCOL[] = {
+    PROC_19,
+    PROC_MARK(10),
+    PROC_REPEAT(EfxChillEffectBGCOL_Loop),
+    PROC_END,
+};

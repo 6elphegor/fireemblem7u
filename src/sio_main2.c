@@ -3,7 +3,7 @@
 
 // Link arena misc (FE8U: sio_main2.c)
 
-extern struct ProcCmd CONST_DATA ProcScr_HOLD[];
+extern const struct ProcCmd ProcScr_HOLD[];
 extern struct Text gSioTexts[];
 extern struct Text gUnk_Sio_0203DA88[];
 extern struct SioSaveConf gSioSaveConfig;
@@ -178,3 +178,10 @@ bool sub_0803DE80(void)
     return IsKeyInputSequenceComplete(gSioList_085A93F0);
 }
 
+
+SECTION(".rodata.08B98BC4")
+const struct ProcCmd ProcScr_HOLD[] = {
+    PROC_19,
+    PROC_REPEAT(SioHold_Loop),
+    PROC_END,
+};
