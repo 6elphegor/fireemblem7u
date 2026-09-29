@@ -90,6 +90,24 @@ program for the other GBA (a stub that decompresses an LZ77 payload to
 (0x080000AC, 0x080000B2), nothing in this ROM.  The music data and the battle animation scripts (whose
 pointers are inside LZ77-compressed data) have their own tools (below).
 
+### Data objects converted to C
+
+An object that holds pointers moves from `data/rom` to the C module that
+uses it (`src/data/procs.c` when it has none or several).  Each gets its own
+section and a `data/layout.txt` line, then `tools/datasplit.py` (after
+`make`) shrinks the assembly around it:
+
+    SECTION(".rodata.08B909D4")
+    const struct ProcCmd ProcScr_Talk[] = { ... };
+    rom 0x08B909D4 0x30 build/src/talk.o(.rodata.08B909D4)
+
+The object must be `const` (with a non-const one agbcc writes
+`.section .rodata.X,"aw"` and `as` warns about the flags), so its
+declaration in the header is `extern const ...`.  `tools/procdis.py`
+decodes proc scripts (see its docstring; `emit 0xADDR` works on any
+address).  Two labels on one script are merged into one name
+(`tools/renames/2026-09-29-procs.txt`).
+
 ### Graphics and compressed data
 
 Every LZ77 blob `tools/datasplit.py` finds (the ones marked `@ LZ77`), and

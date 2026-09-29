@@ -3,25 +3,31 @@
 
 Usage:
   tools/procdis.py list [--declared|--undeclared]
-        objects in data/rom/*.s that are (or look like) proc scripts
+        objects labeled in data/rom/*.s that are proc scripts (declared
+        `struct ProcCmd` in include/, or decoding cleanly with every pointer
+        resolved to a symbol), with problems noted
   tools/procdis.py emit NAME...
-        C definitions with PROC_* macros (include/gbafe/proc.h), each with
-        SECTION(".rodata.<ADDR>") and its data/layout.txt line as a comment
-        on stderr
-  tools/procdis.py layout NAME...
-        the data/layout.txt lines (needs --module for the object name)
+        C definitions with the PROC_* macros of include/gbafe/proc.h, each
+        under SECTION(".rodata.<ADDR>"); problems go to stderr
+  tools/procdis.py layout MODULE NAME...
+        the matching data/layout.txt lines for build/src/MODULE.o
 
 Each command is 8 bytes: s16 opcode, s16 dataImm, pointer.  Bytes come from
-baserom.gba; pointer words come from the `.4byte SYMBOL [+ ADDEND]` lines in
-data/rom/*.s (the tool that wrote them, dataptrs.py, decided they are
-pointers), and for words the assembly left raw, from an exact address match
-in fe7u.elf (`nm`) or in the labels of data/rom.  A pointer to a function
-loses its Thumb bit: C function pointers carry it.
+baserom.gba.  Pointer words come from the `.4byte SYMBOL [+ ADDEND]` lines of
+data/rom/*.s (dataptrs.py decided they are pointers); for words the assembly
+left raw, from an exact address match in fe7u.elf (`nm`, so `make` first) or
+in the labels of data/rom.  A function pointer loses its Thumb bit (C function
+pointers carry it).  A `+ ADDEND` on a script pointer (START_CHILD, JUMP...)
+becomes `&SYMBOL[ADDEND / 8]`; any other addend is reported.
 
-An object is a run of commands from a label up to the first PROC_END.  Scripts
-whose label is followed by other labels before the END, raw pointer words that
-match no symbol and unknown opcodes are reported on stderr and emitted with a
-`/* FIXME */` marker.
+An object is a run of commands from a label up to the first PROC_END (or, for
+a script that has none, is reported).  Objects with other labels inside,
+raw pointer words that match no symbol, unknown opcodes and addends are
+reported as problems and emitted with a `/* FIXME */` marker.
+
+The definitions are `const struct ProcCmd`: agbcc puts a const object with
+SECTION(".rodata.<ADDR>") into a section assembled with the read-only flag,
+whereas a non-const one gets "aw", which `as` warns about for a .rodata.* name.
 """
 import re
 import struct
@@ -62,76 +68,6 @@ OPS = {
     0x18: ("PROC_CALL_ARG", "imm_ptr"),
     0x19: ("PROC_19", "none"),
 }
-
-
-class Rom:
-    def __init__(self):
-        self.data = (ROOT / "baserom.gba").read_bytes()
-        self.labels = {}      # name -> addr
-        self.by_addr = {}     # addr -> [names]
-        self.ptrs = {}        # addr -> (symbol, addend)
-        self.chunk_end = {}   # label addr -> end of its contiguous chunk
-        self.decl = {}        # name -> True for ProcCmd declarations
-        self._scan_rom_asm()
-        self._scan_headers()
-        self.elf = None
-
-    def _scan_rom_asm(self):
-        for path in sorted((ROOT / "data/rom").glob("*.s")):
-            pos = None
-            chunk_labels = []
-            for line in path.read_text().splitlines():
-                s = line.strip()
-                if s.startswith(".section"):
-                    self._close(chunk_labels, pos)
-                    chunk_labels, pos = [], None
-                elif s.startswith(".incbin"):
-                    m = re.match(r'\.incbin "baserom.gba", (0x[0-9a-f]+|\d+), (0x[0-9a-f]+|\d+)', s)
-                    if m:
-                        pos = BASE + int(m[1], 0) + int(m[2], 0)
-                    else:
-                        pos = None
-                elif s.startswith(".4byte"):
-                    m = re.match(r"\.4byte (\w+)(?: \+ (0x[0-9a-f]+|\d+))?$", s)
-                    if m and pos is not None:
-                        self.ptrs[pos] = (m[1], int(m[2], 0) if m[2] else 0)
-                    if pos is not None:
-                        pos += 4
-                elif re.match(r"^\w+:$", s):
-                    name = s[:-1]
-                    if pos is not None:
-                        self.labels[name] = pos
-                        self.by_addr.setdefault(pos, []).append(name)
-                        chunk_labels.append(pos)
-                    else:
-                        # label at the start of a chunk: its address is set by
-                        # the incbin that follows
-                        chunk_labels.append(name)
-                        self._pending = name
-            self._close(chunk_labels, pos)
-
-    def _close(self, labels, pos):
-        pass
-
-    def _scan_headers(self):
-        for path in (ROOT / "include").rglob("*.h"):
-            for m in re.finditer(r"extern\s+(?:const\s+)?struct\s+ProcCmd\s+(?:const\s+|CONST_DATA\s+)?(\w+)\s*\[", path.read_text(errors="replace")):
-                self.decl[m[1]] = path
-
-    def symbols(self):
-        if self.elf is None:
-            self.elf = {}
-            out = subprocess.run(["nm", str(ROOT / "fe7u.elf")], capture_output=True, text=True).stdout
-            for line in out.splitlines():
-                p = line.split()
-                if len(p) == 3 and p[1] in "tTdDrRbB":
-                    self.elf.setdefault(int(p[0], 16) & ~1, p[2])
-        return self.elf
-
-
-def rom_labels(rom):
-    """addr -> name for every label in data/rom (first label wins)."""
-    return {a: n[0] for a, n in rom.by_addr.items()}
 
 
 def build_rom_index():
@@ -287,6 +223,9 @@ class Ctx:
         return self.ptr_expr(a, val, problems)
 
     def object(self, name):
+        if name.startswith("0x"):  # an address: works on unlabeled or converted data too
+            self.labels[name] = int(name, 16)
+            self.addr_names.setdefault(int(name, 16), name)
         addr = self.labels[name]
         cmds, problems = self.decode(addr)
         end = addr + 8 * len(cmds)
@@ -358,7 +297,7 @@ def main():
             addr, size, lines, problems, _ = ctx.object(name)
             for p in problems:
                 print(f"{name}: {p}", file=sys.stderr)
-            print(c_def(name, addr, lines))
+            print(c_def(f"ProcScr_{addr - BASE + BASE:08X}" if name.startswith("0x") else name, addr, lines))
     elif cmd == "layout":
         module = args[0]
         for name in args[1:]:
