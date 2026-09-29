@@ -365,22 +365,16 @@ extern struct MusicPlayerTrack gPokemonCryTracks[];
 // The C mixer: src/m4a_1.c, and its inner loops in src/m4a_mixer.c.
 void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 pcmDmaCounter, u32 lineLimit);
 
-// One channel being mixed into the buffer, a word (4 samples) at a time.
-struct M4aMixState
-{
-    s8 *buf; // the next word (right; left at + PCM_DMA_BUF_SIZE)
-    u32 rightVol; // volume (0-255) << 16
-    u32 leftVol;
-    u32 fw; // resampled: position between cp[0] and cp[1], 23 bits
-    u32 step; // resampled: fw per output sample
-    u32 ct; // samples left, counting cp[0]
-    s8 *cp; // current sample
-    s8 *loopStart;
-    u32 loopLen; // 0: no loop
-};
+// SoundChannel.status: any of SOUND_CHANNEL_SF_ON, the channel is playing.
+#define SOUND_CHANNEL_SF_START 0x80
+#define SOUND_CHANNEL_SF_STOP 0x40
+#define SOUND_CHANNEL_SF_LOOP 0x10
+#define SOUND_CHANNEL_SF_ECHO 0x04 // the echo after the release
+#define SOUND_CHANNEL_SF_ENV 0x03 // 3 attack, 2 decay, 1 sustain
+#define SOUND_CHANNEL_SF_ON (SOUND_CHANNEL_SF_START | SOUND_CHANNEL_SF_STOP | SOUND_CHANNEL_SF_ECHO | SOUND_CHANNEL_SF_ENV)
 
-bool32 M4aMixFixed(struct M4aMixState *st, s32 n);
-bool32 M4aMixResample(struct M4aMixState *st, s32 n);
+bool32 M4aMixFixed(struct SoundChannel *chan, s8 *buf, s32 n);
+bool32 M4aMixResample(struct SoundChannel *chan, s8 *buf, s32 n, u32 step);
 void M4aMixClear(s8 *buf, s32 words);
 void M4aMixReverb(s8 *dst, s8 *src, s32 n, u32 reverb);
 void M4aMixEnd(void);
@@ -400,7 +394,7 @@ void M4aMixEnd(void);
     ((p)[0] = (v), (p)[1] = (v) >> 8, (p)[2] = (v) >> 16, (p)[3] = (v) >> 24)
 #endif
 #define M4A_ROR(x, n) (((x) >> (n)) | ((x) << (32 - (n))))
-#define M4A_MIX(acc, vol, sample) \
+#define M4A_MIX(acc, sample, vol) \
     ((acc) = M4A_ROR(acc, 8) + (((u32)(sample) * (vol)) & 0xFF000000))
 #else
 extern char SoundMainRAM[];

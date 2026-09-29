@@ -50,13 +50,6 @@ M4A_ASSERT(pcm_buffer, offsetof(struct SoundInfo, pcmBuffer) == 0x350);
 
 typedef void (*MPlayCmdFunc)(struct MusicPlayerInfo *, struct MusicPlayerTrack *);
 
-#define STATUS_ON  0xC7 // any of these: the channel is playing
-#define STATUS_START 0x80
-#define STATUS_STOP  0x40 // released
-#define STATUS_LOOP  0x10
-#define STATUS_ECHO  0x04
-#define STATUS_ENV   0x03 // 3 attack, 2 decay, 1 sustain
-
 // chk_adr_r2: the engine refuses to read from the BIOS ROM.  A read from
 // below 0x02000000 gives 0, unless it is from the jump table template and
 // below 0x4000 (the template in the BIOS).  A host has no BIOS in its
@@ -197,8 +190,6 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
         u32 status;
         u32 env;
         u32 vol;
-        s8 *loopStart;
-        u32 loopLen;
 
         if (lineLimit != 0)
         {
@@ -211,13 +202,13 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
         }
 
         status = chan->status;
-        if (!(status & STATUS_ON))
+        if (!(status & SOUND_CHANNEL_SF_ON))
             goto next;
 
         // Envelope
-        if (status & STATUS_START)
+        if (status & SOUND_CHANNEL_SF_START)
         {
-            if (status & STATUS_STOP)
+            if (status & SOUND_CHANNEL_SF_STOP)
                 goto stop;
 
             status = 3;
@@ -229,7 +220,7 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
             chan->fw = 0;
             if ((wav->status >> 8) & 0xC0)
             {
-                status |= STATUS_LOOP;
+                status |= SOUND_CHANNEL_SF_LOOP;
                 chan->status = status;
             }
             goto attack;
@@ -237,7 +228,7 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
 
         env = chan->ev;
 
-        if (status & STATUS_ECHO)
+        if (status & SOUND_CHANNEL_SF_ECHO)
         {
             u32 length = chan->echoLength;
 
@@ -247,7 +238,7 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
             goto stop;
         }
 
-        if (status & STATUS_STOP)
+        if (status & SOUND_CHANNEL_SF_STOP)
         {
             env = (env * chan->release) >> 8;
             if (env > chan->echoVolume)
@@ -256,12 +247,12 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
             env = chan->echoVolume;
             if (env == 0)
                 goto stop;
-            status |= STATUS_ECHO;
+            status |= SOUND_CHANNEL_SF_ECHO;
             chan->status = status;
             goto envelope_done;
         }
 
-        if ((status & STATUS_ENV) == 2)
+        if ((status & SOUND_CHANNEL_SF_ENV) == 2)
         {
             env = (env * chan->decay) >> 8;
             if (env > chan->sustain)
@@ -274,7 +265,7 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
             goto envelope_done;
         }
 
-        if ((status & STATUS_ENV) != 3)
+        if ((status & SOUND_CHANNEL_SF_ENV) != 3)
             goto envelope_done;
 
     attack:
@@ -292,43 +283,17 @@ void SoundMainRAM(struct SoundInfo *soundInfo, s8 *pcmBuffer, u32 dmaCounter, u3
         chan->er = (chan->rightVolume * vol) >> 8;
         chan->el = (chan->leftVolume * vol) >> 8;
 
-        loopLen = status & STATUS_LOOP;
-        loopStart = NULL;
-        if (loopLen != 0)
-        {
-            loopStart = wav->data + wav->loopStart;
-            loopLen = wav->size - wav->loopStart;
-        }
-
         // Mixing.  A channel that doesn't loop stops at the end of its
         // sample.
+        if (chan->type & TONEDATA_TYPE_FIX)
         {
-            struct M4aMixState st;
-
-            st.buf = pcmBuffer;
-            st.rightVol = chan->er << 16;
-            st.leftVol = chan->el << 16;
-            st.fw = chan->fw;
-            st.step = divFreq * chan->freq;
-            st.ct = chan->ct;
-            st.cp = chan->cp;
-            st.loopStart = loopStart;
-            st.loopLen = loopLen;
-
-            if (chan->type & TONEDATA_TYPE_FIX)
-            {
-                if (!MIXER(M4aMixFixed)(&st, samplesPerFrame))
-                    goto stop;
-            }
-            else
-            {
-                if (!MIXER(M4aMixResample)(&st, samplesPerFrame))
-                    goto stop;
-                chan->fw = st.fw;
-            }
-
-            chan->ct = st.ct;
-            chan->cp = st.cp;
+            if (!MIXER(M4aMixFixed)(chan, pcmBuffer, samplesPerFrame))
+                goto stop;
+        }
+        else
+        {
+            if (!MIXER(M4aMixResample)(chan, pcmBuffer, samplesPerFrame, divFreq * chan->freq))
+                goto stop;
         }
         goto next;
 
@@ -436,8 +401,8 @@ void ply_fine(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *track)
 
     while (chan != NULL)
     {
-        if (chan->status & STATUS_ON)
-            chan->status |= STATUS_STOP;
+        if (chan->status & SOUND_CHANNEL_SF_ON)
+            chan->status |= SOUND_CHANNEL_SF_STOP;
         RealClearChain(chan);
         chan = chan->np;
     }
@@ -638,9 +603,9 @@ void ply_endtie(struct MusicPlayerInfo *mplayInfo, struct MusicPlayerTrack *trac
     {
         u32 status = chan->status;
 
-        if ((status & (STATUS_START | STATUS_ENV)) && !(status & STATUS_STOP) && chan->mk == key)
+        if ((status & (SOUND_CHANNEL_SF_START | SOUND_CHANNEL_SF_ENV)) && !(status & SOUND_CHANNEL_SF_STOP) && chan->mk == key)
         {
-            chan->status = status | STATUS_STOP;
+            chan->status = status | SOUND_CHANNEL_SF_STOP;
             return;
         }
     }
@@ -746,10 +711,10 @@ void MPlayMain(struct MusicPlayerInfo *mplayInfo)
             // gate times
             for (chan = track->chan; chan != NULL; chan = chan->np)
             {
-                if (chan->status & STATUS_ON)
+                if (chan->status & SOUND_CHANNEL_SF_ON)
                 {
                     if (chan->gt != 0 && --chan->gt == 0)
-                        chan->status |= STATUS_STOP;
+                        chan->status |= SOUND_CHANNEL_SF_STOP;
                 }
                 else
                 {
@@ -869,7 +834,7 @@ void MPlayMain(struct MusicPlayerInfo *mplayInfo)
         {
             u32 cgbType;
 
-            if (!(chan->status & STATUS_ON))
+            if (!(chan->status & SOUND_CHANNEL_SF_ON))
             {
                 ClearChain(chan);
                 continue;
@@ -984,7 +949,7 @@ void ply_note(u32 note_cmd, struct MusicPlayerInfo *mplayInfo, struct MusicPlaye
 
         chan = (struct SoundChannel *)&soundInfo->cgbChans[cgbType - 1];
 
-        if ((chan->status & STATUS_ON) && !(chan->status & STATUS_STOP))
+        if ((chan->status & SOUND_CHANNEL_SF_ON) && !(chan->status & SOUND_CHANNEL_SF_STOP))
         {
             if (chan->pr > priority)
                 return;
@@ -1006,10 +971,10 @@ void ply_note(u32 note_cmd, struct MusicPlayerInfo *mplayInfo, struct MusicPlaye
 
         do
         {
-            if (!(chan->status & STATUS_ON))
+            if (!(chan->status & SOUND_CHANNEL_SF_ON))
                 goto found;
 
-            if (chan->status & STATUS_STOP)
+            if (chan->status & SOUND_CHANNEL_SF_STOP)
             {
                 if (!foundReleased)
                 {
@@ -1115,7 +1080,7 @@ found:
         }
     }
 
-    chan->status = STATUS_START;
+    chan->status = SOUND_CHANNEL_SF_START;
     track->flags &= 0xF0;
 }
 

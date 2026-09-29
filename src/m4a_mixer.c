@@ -25,13 +25,13 @@
 
 #if NONMATCHING
 
-// A channel that ends in the middle of a word, after `lanes` more samples
-// would have filled it: its bytes back in place, the rest of the word
-// unchanged, and the channel stopped (FALSE).
-#define STOP_IN_WORD(buf, right, left, lanes)            \
+// A channel that ends in the middle of a word, after the sample of its
+// lane (lanesLeft more lanes in the word): the word's bytes back in place,
+// the rest of the word unchanged, and the channel stopped (FALSE).
+#define STOP_IN_WORD(buf, right, left, lanesLeft)        \
     do                                                   \
     {                                                    \
-        while (--(lanes) > 0)                            \
+        while (--(lanesLeft) >= 0)                       \
         {                                                \
             (right) = M4A_ROR(right, 8);                 \
             (left) = M4A_ROR(left, 8);                   \
@@ -42,119 +42,180 @@
     }                                                    \
     while (0)
 
-// At the sample's own rate (TONEDATA_TYPE_FIX), n samples (a multiple of
-// 4).  A sample that loops starts over at its loop; one that doesn't stops
-// the channel when it ends (FALSE; st is then as it was).
-bool32 M4aMixFixed(struct M4aMixState *st, s32 n)
+// The length of the channel's loop: 0 if it doesn't loop.
+#define LOOP_LENGTH(chan) \
+    (((chan)->status & SOUND_CHANNEL_SF_LOOP) ? (chan)->wav->size - (chan)->wav->loopStart : 0)
+
+// At the sample's own rate (TONEDATA_TYPE_FIX), n samples (a multiple of 4)
+// into buf.  A sample that loops starts over at its loop; one that doesn't
+// stops the channel when it ends (FALSE: ct and cp are then as they were).
+bool32 M4aMixFixed(struct SoundChannel *chan, s8 *buf, s32 n)
 {
-    s8 *buf = st->buf;
-    s8 *cp = st->cp;
-    u32 ct = st->ct;
-    u32 rightVol = st->rightVol;
-    u32 leftVol = st->leftVol;
+    s8 *cp = chan->cp;
+    u32 ct = chan->ct;
+    u32 rightVol = chan->er << 16;
+    u32 leftVol = chan->el << 16;
+    u32 right = M4A_LOAD_WORD(buf);
+    u32 left = M4A_LOAD_WORD(buf + PCM_DMA_BUF_SIZE);
 
-    do
+    for (;;)
     {
-        u32 right = M4A_LOAD_WORD(buf);
-        u32 left = M4A_LOAD_WORD(buf + PCM_DMA_BUF_SIZE);
-        s32 lanes = 4;
+        s32 sample = *cp++;
 
-        do
+        M4A_MIX(right, sample, rightVol);
+        M4A_MIX(left, sample, leftVol);
+        if (--ct == 0)
         {
-            s32 sample = *cp++;
+            struct WaveData *wav = chan->wav;
 
-            M4A_MIX(right, rightVol, sample);
-            M4A_MIX(left, leftVol, sample);
-            if (--ct == 0)
+            ct = LOOP_LENGTH(chan);
+            if (ct == 0)
             {
-                if (st->loopLen == 0)
-                    STOP_IN_WORD(buf, right, left, lanes);
-                cp = st->loopStart;
-                ct = st->loopLen;
+                // The channel stops: the rest of the word stays, its bytes
+                // back in place.
+                while ((--n & 3) != 0)
+                {
+                    right = M4A_ROR(right, 8);
+                    left = M4A_ROR(left, 8);
+                }
+                M4A_STORE_WORD(buf, right);
+                M4A_STORE_WORD(buf + PCM_DMA_BUF_SIZE, left);
+                return FALSE;
             }
+            cp = wav->data + wav->loopStart;
         }
-        while (--lanes > 0);
-
-        M4A_STORE_WORD(buf, right);
-        M4A_STORE_WORD(buf + PCM_DMA_BUF_SIZE, left);
-        buf += 4;
+        // The word is full after every 4th sample.
+        if ((--n & 3) == 0)
+        {
+            M4A_STORE_WORD(buf, right);
+            M4A_STORE_WORD(buf + PCM_DMA_BUF_SIZE, left);
+            buf += 4;
+            if (n == 0)
+                break;
+            right = M4A_LOAD_WORD(buf);
+            left = M4A_LOAD_WORD(buf + PCM_DMA_BUF_SIZE);
+        }
     }
-    while ((n -= 4) > 0);
 
-    st->buf = buf;
-    st->ct = ct;
-    st->cp = cp;
+    chan->ct = ct;
+    chan->cp = cp;
     return TRUE;
 }
 
-// Resampled, n samples (a multiple of 4): fw is the position between cp[0]
-// and cp[1] (23 bits), interpolated linearly, and advances by step per
-// output sample.  Returns like M4aMixFixed (and keeps fw too).
-bool32 M4aMixResample(struct M4aMixState *st, s32 n)
+// Resampled, n samples (a multiple of 4) into buf: fw is the position
+// between cp[0] and cp[1] (23 bits), interpolated linearly, and advances by
+// step per output sample.  Returns like M4aMixFixed (and keeps fw too).
+//
+// This loop is most of the time the game spends on sound, and the game
+// notices that time (see the top), so it is written for agbcc_arm: the 4
+// samples of a word are 4 copies of RESAMPLE_ONE (no counter: agbcc_arm
+// leaves the loop 13 registers, and each one is taken); what the loop
+// doesn't need stays on the stack (the volatile locals); the rare case, a
+// sample's end, is out of the way at the bottom (agbcc lays code out in
+// source order).  `next` is cp + 1, which saves a load when the position
+// advances by one sample.
+#define RESAMPLE_ONE(lane)                                              \
+    do                                                                  \
+    {                                                                   \
+        s32 sample = cur + ((s32)(delta * fw) >> 23);                   \
+        u32 advance;                                                    \
+                                                                        \
+        M4A_MIX(right, sample, rightVol);                               \
+        M4A_MIX(left, sample, leftVol);                                 \
+        fw += step;                                                     \
+        advance = fw >> 23;                                             \
+        if (advance != 0)                                               \
+        {                                                               \
+            /* Only bits 23-29: bits 30 and 31 stay (a step that large  \
+               never happens). */                                       \
+            fw &= ~0x3F800000;                                          \
+            ct -= advance;                                              \
+            if (ct <= 0)                                                \
+            {                                                           \
+                lanesLeft = 3 - (lane);                                 \
+                goto past_end;                                          \
+            }                                                           \
+            /* The next sample is cur + delta already. */               \
+            if (--advance == 0)                                         \
+                cur += delta;                                           \
+            else                                                        \
+                cur = *(next += advance);                               \
+            delta = *++next - cur;                                      \
+        }                                                               \
+    }                                                                   \
+    while (0)
+
+bool32 M4aMixResample(struct SoundChannel *chan_, s8 *buf, s32 n, u32 step)
 {
-    s8 *buf = st->buf;
-    s8 *cp = st->cp;
-    u32 fw = st->fw;
-    u32 rightVol = st->rightVol;
-    u32 leftVol = st->leftVol;
-    s32 cur = cp[0];
-    s32 delta = cp[1] - cur;
+    struct SoundChannel *volatile chan = chan_;
+    s8 *volatile end = buf + n;
+    volatile s32 lanesLeft;
+    s8 *next = chan_->cp + 1;
+    u32 fw = chan_->fw;
+    s32 ct = chan_->ct;
+    u32 rightVol = chan_->er << 16;
+    u32 leftVol = chan_->el << 16;
+    s32 cur = next[-1];
+    s32 delta = next[0] - cur;
+    u32 right;
+    u32 left;
+    u32 loopLen;
 
-    do
+    for (;;)
     {
-        u32 right = M4A_LOAD_WORD(buf);
-        u32 left = M4A_LOAD_WORD(buf + PCM_DMA_BUF_SIZE);
-        s32 lanes = 4;
-
-        do
-        {
-            s32 sample = cur + ((s32)(fw * delta) >> 23);
-            u32 advance;
-
-            M4A_MIX(right, rightVol, sample);
-            M4A_MIX(left, leftVol, sample);
-            fw += st->step;
-            advance = fw >> 23;
-            if (advance != 0)
-            {
-                u32 ct = st->ct - advance;
-
-                // Only bits 23-29: bits 30 and 31 stay (a step that large
-                // never happens).
-                fw &= ~0x3F800000;
-                if ((s32)ct <= 0)
-                {
-                    // Past the end, as many positions as ct is below 0: the
-                    // loop is wound back as often as needed, and cp is as
-                    // far before its end as ct says.
-                    if (st->loopLen == 0)
-                        STOP_IN_WORD(buf, right, left, lanes);
-                    do
-                        ct += st->loopLen;
-                    while ((s32)ct <= 0);
-                    cp = st->loopStart + st->loopLen - ct;
-                }
-                else
-                {
-                    cp += advance;
-                }
-                st->ct = ct;
-                cur = cp[0];
-                delta = cp[1] - cur;
-            }
-        }
-        while (--lanes > 0);
-
+        right = M4A_LOAD_WORD(buf);
+        left = M4A_LOAD_WORD(buf + PCM_DMA_BUF_SIZE);
+        RESAMPLE_ONE(0);
+    lane1:
+        RESAMPLE_ONE(1);
+    lane2:
+        RESAMPLE_ONE(2);
+    lane3:
+        RESAMPLE_ONE(3);
+    word_done:
         M4A_STORE_WORD(buf, right);
         M4A_STORE_WORD(buf + PCM_DMA_BUF_SIZE, left);
         buf += 4;
+        if (buf == end)
+            break;
     }
-    while ((n -= 4) > 0);
 
-    st->buf = buf;
-    st->fw = fw;
-    st->cp = cp;
+    chan_ = chan;
+    chan_->fw = fw;
+    chan_->ct = ct;
+    chan_->cp = next - 1;
     return TRUE;
+
+past_end:
+    // Past the end, as many positions as ct is below 0: the loop is wound
+    // back as often as needed, and cp is as far before the end as ct says
+    // (the loop ends where the sample does).
+    chan_ = chan;
+    loopLen = LOOP_LENGTH(chan_);
+    if (loopLen != 0)
+    {
+        struct WaveData *wav = chan_->wav;
+
+        do
+            ct += loopLen;
+        while (ct <= 0);
+        next = wav->data + wav->size - ct;
+        delta = next[1] - next[0];
+        cur = *next++;
+        // Back to the next lane.
+        if (lanesLeft == 3)
+            goto lane1;
+        if (lanesLeft == 2)
+            goto lane2;
+        if (lanesLeft == 1)
+            goto lane3;
+        goto word_done;
+    }
+    {
+        s32 lanes = lanesLeft;
+
+        STOP_IN_WORD(buf, right, left, lanes);
+    }
 }
 
 // Without reverb: clears `words` words of both halves of the buffer.
@@ -166,7 +227,7 @@ void M4aMixClear(s8 *buf, s32 words)
         M4A_STORE_WORD(buf + PCM_DMA_BUF_SIZE, 0);
         buf += 4;
     }
-    while (--words > 0);
+    while (--words != 0);
 }
 
 // With reverb: each new sample starts as the average of the two channels'
@@ -186,7 +247,7 @@ void M4aMixReverb(s8 *dst, s8 *src, s32 n, u32 reverb)
         src++;
         dst++;
     }
-    while (--n > 0);
+    while (--n != 0);
 }
 
 // The end of the code copied to IWRAM.
