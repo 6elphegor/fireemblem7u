@@ -375,8 +375,11 @@ static void usage(const char *prog)
             "  --mix FILE          the m4a mixer's output per frame (emutest -P's .mix)\n"
             "  --scale N           window scale (default 3)\n"
             "  --hardware-color    the GBA's 5-bit color math (default: mGBA's)\n"
-            "keys: arrows, Z/X = A/B, A/S = L/R, Enter = Start, Backspace = Select,\n"
-            "      hold Tab = fast forward, Esc = quit\n",
+            "  --keys FILE         key bindings (default ~/.config/fe7u/keys.txt,\n"
+            "                      written with the defaults on the first windowed run)\n"
+            "keys (defaults): arrows, Z/X = A/B, A/S = L/R, Enter = Start,\n"
+            "      Backspace = Select, hold Tab = fast forward, F11 = fullscreen,\n"
+            "      Cmd+Q / Ctrl+Q = quit; game controllers work too\n",
             prog);
 }
 
@@ -418,6 +421,8 @@ static int parse_args(int argc, char **argv)
             o->mix = v;
         else if (ARG("--wav"))
             o->wav = v;
+        else if (ARG("--keys"))
+            o->keys = v;
         else if (ARG("--scale"))
             o->scale = atoi(v);
         else {

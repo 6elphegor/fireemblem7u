@@ -36,7 +36,7 @@ runtime without the game.  Status as of 2026-09-29.
 ```sh
 make                       # the matching build first (test_lz77 reads build/graphics/)
 make platform-test         # test_bios, test_ppu, test_lz77, test_input, the demo headless: no mGBA needed
-make platform-demo         # the demo in a window (SDL2; Esc quits)
+make platform-demo         # the demo in a window (SDL2; Cmd+Q / Ctrl+Q quits)
 make platform-biosref      # BIOS calls vs mGBA's HLE BIOS (libmgba)
 make platform-ppucompare   # renderer vs mGBA, every frame of tests/inputs/*.txt (~15 min)
 python3 platform/tools/ppucompare.py tests/inputs/opening.txt --every 10   # one script, sampled
@@ -281,9 +281,11 @@ what the game leaves in memory (below, "Sound output").
   more are pending (nesting allowed; the game pak interrupt aborts).  The
   game's `IrqInit` copies 0x800 bytes from `IrqMain` to `IntrMainRam`:
   irq.c defines `IrqMain` as 0x800 zero bytes for that, and nothing runs it.
-* **Input.**  Keyboard (arrows; Z/X = A/B; A/S = L/R; Enter = Start;
-  Backspace = Select; Tab held = fast forward; Esc = quit), or an input
-  script.  Frame numbers are tools/emutest.c's: frame N's keys are in
+* **Input.**  Keyboard and game controllers through key bindings
+  (platform/frontend_sdl.c: defaults arrows; Z/X = A/B; A/S = L/R; Enter =
+  Start; Backspace = Select; Tab held = fast forward; F11 = fullscreen;
+  Cmd+Q / Ctrl+Q = quit; rebind in `~/.config/fe7u/keys.txt`, written on the
+  first windowed run, or `--keys FILE`), or an input script.  Frame numbers are tools/emutest.c's: frame N's keys are in
   `KEYINPUT` from the return of wait N-1 until the return of wait N, and
   picture N is the one drawn in wait N, so `--log` and shots line up with
   emutest's for the same script.
