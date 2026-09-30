@@ -75,6 +75,7 @@ struct WmFadeProc {
     /* 34 */ int x;
     /* 38 */ int y;
 };
+PROC_SIZE_CHECK(struct WmFadeProc);
 
 extern const struct ProcCmd ProcScr_WmFade[];
 
@@ -91,6 +92,7 @@ struct WmSpriteAnimsProc {
         u16 chr;
     } slots[4];
 };
+PROC_SIZE_CHECK(struct WmSpriteAnimsProc);
 
 struct WmSpriteAnimEnt {
     /* 00 */ void const * img;
@@ -112,6 +114,7 @@ struct WmTextBoxProc {
     /* 29 */ u8 kind;
     /* 2A */ u8 active;
 };
+PROC_SIZE_CHECK(struct WmTextBoxProc);
 
 struct WmMarkerProc {
     /* 00 */ PROC_HEADER;
@@ -119,6 +122,7 @@ struct WmMarkerProc {
     /* 2A */ s16 x;
     /* 2C */ s16 y;
 };
+PROC_SIZE_CHECK(struct WmMarkerProc);
 
 struct WmMuMoveProc {
     /* 00 */ PROC_HEADER;
@@ -139,6 +143,7 @@ struct WmMuMoveProc {
     /* 61 */ u8 lastIdx;
     /* 62 */ u8 first;
 };
+PROC_SIZE_CHECK(struct WmMuMoveProc);
 
 struct WmSlotEnt {
     /* 00 */ s16 x;
@@ -165,6 +170,7 @@ struct WmUnitManagerProc {
     /* 47 */ u8 unk_47;
     /* 48 */ u8 unk_48;
 };
+PROC_SIZE_CHECK(struct WmUnitManagerProc);
 
 extern const struct ProcCmd ProcScr_WmMu[];
 extern const struct ProcCmd ProcScr_WmUnitManager[];
@@ -187,6 +193,7 @@ struct WorldMapProc {
     /* 52 */ s16 targetY;
     /* 54 */ u8 unk_54;
 };
+PROC_SIZE_CHECK(struct WorldMapProc);
 
 struct WmFaceConfig {
     struct FaceVramEnt ent[4];
@@ -207,6 +214,7 @@ struct WmCmdProc {
     /* 30 */ u8 cmd;
     /* 34 */ int args[5];
 };
+PROC_SIZE_CHECK(struct WmCmdProc);
 
 extern struct ProcCmd CONST_DATA ProcScr_BmFadeIN[];
 extern const struct ProcCmd ProcScr_WmCmd[];
@@ -220,6 +228,7 @@ struct WmSpotlightProc {
     /* 30 */ int x;
     /* 34 */ int y;
 };
+PROC_SIZE_CHECK(struct WmSpotlightProc);
 
 struct CGDataEnt {
     /* 00 */ u8 isSplit;
@@ -253,6 +262,7 @@ struct WmPalFadeProc {
     /* 30 */ int pal;
     /* 34 */ u16 colors[15];
 };
+PROC_SIZE_CHECK(struct WmPalFadeProc);
 extern EventScr const * CONST_DATA gWmEventScripts[];
 
 void sub_08077680(int y);

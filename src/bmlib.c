@@ -877,6 +877,7 @@ struct PalFadeProc
     /* 00 */ PROC_HEADER;
     /* 2C */ struct PalFadeSt * st;
 };
+PROC_SIZE_CHECK(struct PalFadeProc);
 
 struct PalFadeSt * StartPalFade(u16 const * colors, int pal, int duration, ProcPtr parent)
 {

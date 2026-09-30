@@ -155,6 +155,7 @@ struct FadeCoreProc {
     /* 58 */ int looper;
     /* 5C */ int counter;
 };
+PROC_SIZE_CHECK(struct FadeCoreProc);
 
 void StartFadeCore(int kind, int speed, ProcPtr parent, void * end_callback);
 void FadeCoreEndEach(void);
@@ -182,6 +183,7 @@ struct ProcPaletteAnimator {
     /* 38 */ u16 counter;
     /* 3A */ u16 reverseOrder;
 };
+PROC_SIZE_CHECK(struct ProcPaletteAnimator);
 
 void DeleteAllPaletteAnimator(void);
 ProcPtr StartPaletteAnimatorExt(u16 const * colors, int pal_offset, int pal_size, int interval, ProcPtr parent);
@@ -200,6 +202,7 @@ struct CallDelayedProc {
     /* 30 */ intptr_t arg; // an int or a pointer
     /* 34 */ int clock;
 };
+PROC_SIZE_CHECK(struct CallDelayedProc);
 
 void CallDelayed_OnLoop(struct CallDelayedProc * proc);
 void CallDelayedArg_OnLoop(struct CallDelayedProc * proc);

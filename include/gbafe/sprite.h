@@ -53,6 +53,7 @@ struct SpriteProc {
     /* 52 */ u16 tileref;
     /* 54 */ u16 const * object;
 };
+PROC_SIZE_CHECK(struct SpriteProc);
 
 void SpriteRefresher_OnIdle(struct SpriteProc * proc);
 struct SpriteProc * StartSpriteRefresher(ProcPtr parent, int layer, int x, int y, u16 const * object, int tileref);

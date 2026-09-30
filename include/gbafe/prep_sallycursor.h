@@ -30,6 +30,7 @@ struct ProcPrepSallyCursor
 
     /* 58 */ u32 lastCmd;
 };
+PROC_SIZE_CHECK(struct ProcPrepSallyCursor);
 
 enum
 {

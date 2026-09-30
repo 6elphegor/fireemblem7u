@@ -15,6 +15,7 @@ struct WarpSelectProc {
     /* 4C */ u8 pad_4C[0x54 - 0x4C];
     /* 54 */ struct SpriteAnim * ap;
 };
+PROC_SIZE_CHECK(struct WarpSelectProc);
 
 extern struct Unit gStatGainSimUnit;
 

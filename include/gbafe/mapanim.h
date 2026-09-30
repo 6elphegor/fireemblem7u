@@ -50,6 +50,7 @@ struct ManimExpBarProc {
     /* 68 */ s16 actor;
     /* 6A */ s16 timer;
 };
+PROC_SIZE_CHECK(struct ManimExpBarProc);
 
 struct ManimInfoWindowProc {
     /* 00 */ PROC_HEADER;
@@ -60,6 +61,7 @@ struct ManimInfoWindowProc {
     /* 2F */ u8 y;
     /* 30 */ ProcPtr parent;
 };
+PROC_SIZE_CHECK(struct ManimInfoWindowProc);
 
 struct ManimDebugProc {
     /* 00 */ PROC_HEADER;
@@ -67,6 +69,7 @@ struct ManimDebugProc {
     /* 64 */ s16 actor;
     /* 66 */ s16 field;
 };
+PROC_SIZE_CHECK(struct ManimDebugProc);
 
 struct ManimDebugInfoEntry {
     /* 00 */ s16 data[10];
@@ -98,6 +101,7 @@ struct ManimShineProc {
     /* 5C */ STRUCT_PAD(0x5C, 0x64);
     /* 64 */ s16 timer2;
 };
+PROC_SIZE_CHECK(struct ManimShineProc);
 
 struct ManimAnimatorProc {
     /* 00 */ PROC_HEADER;
@@ -110,6 +114,7 @@ struct ManimAnimatorProc {
     /* 54 */ void const * pal;
     /* 58 */ u16 song;
 };
+PROC_SIZE_CHECK(struct ManimAnimatorProc);
 
 struct ManimBgScrollProc {
     /* 00 */ PROC_HEADER;
@@ -121,6 +126,7 @@ struct ManimBgScrollProc {
     /* 68 */ u16 y;
     /* 6A */ u16 y_inc;
 };
+PROC_SIZE_CHECK(struct ManimBgScrollProc);
 
 struct ManimLevelUpLabelInfo {
     /* 00 */ u8 x;
@@ -140,6 +146,7 @@ struct ManimLevelUpStatGainLabelProc {
     /* 2C */ u16 pal;
     /* 2E */ u16 sprite_layer;
 };
+PROC_SIZE_CHECK(struct ManimLevelUpStatGainLabelProc);
 
 struct ManimLevelUpLabelColorProc {
     /* 00 */ PROC_HEADER;
@@ -148,6 +155,7 @@ struct ManimLevelUpLabelColorProc {
     /* 58 */ STRUCT_PAD(0x58, 0x64);
     /* 64 */ s16 pal;
 };
+PROC_SIZE_CHECK(struct ManimLevelUpLabelColorProc);
 
 struct ManimLevelUpProc {
     /* 00 */ PROC_HEADER;
@@ -157,12 +165,14 @@ struct ManimLevelUpProc {
     /* 31 */ u8 clock;
     /* 32 */ s16 y_scroll_offset;
 };
+PROC_SIZE_CHECK(struct ManimLevelUpProc);
 
 struct ManimShakeProc {
     /* 00 */ PROC_HEADER;
     /* 29 */ STRUCT_PAD(0x29, 0x64);
     /* 64 */ s16 timer;
 };
+PROC_SIZE_CHECK(struct ManimShakeProc);
 
 struct ManimStarProc {
     /* 00 */ PROC_HEADER;
@@ -179,6 +189,7 @@ struct ManimStarProc {
     /* 3E */ u16 end;
     /* 40 */ u16 terminator;
 };
+PROC_SIZE_CHECK(struct ManimStarProc);
 
 struct ManimStarfxConf {
     /* 00 */ u16 distance;
@@ -206,6 +217,7 @@ struct ManimEffectProc {
     /* 5A */ STRUCT_PAD(0x5A, 0x64);
     /* 64 */ s16 unk_64;
 };
+PROC_SIZE_CHECK(struct ManimEffectProc);
 
 void Manim_StoleItemPopup(ProcPtr proc);
 void Manim_WeaponBrokePopup(ProcPtr proc);

@@ -352,6 +352,7 @@ struct PrepItemScreenProc {
     /* 3C */ u16 faceDispBySlot[2];
     /* 40 */ struct Unit * pUnits[2];
 };
+PROC_SIZE_CHECK(struct PrepItemScreenProc);
 
 extern struct Text gPrepItemTexts[31];
 
@@ -415,6 +416,7 @@ struct ProcPrepUnit {
     /* 38 */ u8 pad_38[0x3C - 0x38];
     /* 3C */ u16 unk_3C;
 };
+PROC_SIZE_CHECK(struct ProcPrepUnit);
 
 extern struct Text gPrepUnitTexts[0x16];
 
@@ -464,6 +466,7 @@ struct PrepMenuTradeProc {
     /* 3C */ int helpBoxItemSlot;
     /* 40 */ int unk_40;
 };
+PROC_SIZE_CHECK(struct PrepMenuTradeProc);
 
 void PrepItemTrade_ApplyItemSwap(struct Unit * unitA, int itemSlotA, struct Unit * unitB, int itemSlotB);
 s8 PrepItemTrade_DpadKeyHandler(struct PrepMenuTradeProc * proc);
@@ -484,6 +487,7 @@ struct ProcPrepItemUse {
     /* 3C */ int pos_subbox;
     /* 40 */ int game_lock;
 };
+PROC_SIZE_CHECK(struct ProcPrepItemUse);
 
 bool PrepItemUseTryMoveHand(struct ProcPrepItemUse * proc);
 void DrawPrepScreenItemUseStatLabels(struct Unit * unit);
@@ -514,6 +518,7 @@ struct ProcPrepItemUseBooster {
     /* 38 */ u8 status_pst[8];
     /* 40 */ int xpos, ypos, width, height;
 };
+PROC_SIZE_CHECK(struct ProcPrepItemUseBooster);
 
 void PrepItemUseBooster_OnDraw(struct ProcPrepItemUseBooster * proc, int x, int y, int msg, int item);
 void PrepItemUseBooster_OnInit(struct ProcPrepItemUseBooster * proc);
@@ -534,6 +539,7 @@ struct PrepItemSupplyProc {
     /* 3A */ u16 idxPerPage[9];
     /* 4C */ u16 yOffsetPerPage[9];
 };
+PROC_SIZE_CHECK(struct PrepItemSupplyProc);
 
 struct PrepItemSuppyText {
     /* 00 */ struct Font font;
@@ -592,6 +598,7 @@ struct PrepItemListProc {
     /* 38 */ u16 idxPerPage[9];
     /* 4A */ u16 yOffsetPerPage[9];
 };
+PROC_SIZE_CHECK(struct PrepItemListProc);
 
 void PrepItemList_Init(struct PrepItemListProc * proc);
 void sub_08097554(void);
@@ -622,6 +629,7 @@ struct WmSellProc {
     /* 32 */ u16 unk_32;
     /* 34 */ u16 unk_34;
 };
+PROC_SIZE_CHECK(struct WmSellProc);
 
 void WmSell_DrawSupplyDialogueSpriteText(void);
 void sub_080985D4(int index, ProcPtr parent);
@@ -649,6 +657,7 @@ struct PrepProcA1962C {
     /* 2C */ int unk_2c;
     /* 30 */ s8 unk_30[4];
 };
+PROC_SIZE_CHECK(struct PrepProcA1962C);
 
 void sub_08098F88(struct PrepProcA1962C * proc);
 // FortuneSubMenu_Init_Null

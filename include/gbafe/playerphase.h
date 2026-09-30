@@ -26,6 +26,7 @@ struct MoveLimitViewProc {
     /* 4A */ u16 flags;
     /* 4C */ s16 unk_4C;
 };
+PROC_SIZE_CHECK(struct MoveLimitViewProc);
 
 extern const struct ProcCmd ProcScr_PlayerPhase[];
 extern const struct ProcCmd ProcScr_SALLYCURSOR[];

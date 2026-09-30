@@ -17,6 +17,7 @@ struct MinimapProc
     /* 4A */ s16 cameraMoved;
     /* 4C */ s16 animClock;
 };
+PROC_SIZE_CHECK(struct MinimapProc);
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
 extern u8 gGfx_MinimapTiles[];

@@ -39,6 +39,7 @@ struct UnitListScreenProc
     /* 40 */ ProcPtr pSpriteProc;
     /* 44 */ ProcPtr pMuralProc;
 };
+PROC_SIZE_CHECK(struct UnitListScreenProc);
 
 struct UnitListScreenSpritesProc
 {
@@ -51,6 +52,7 @@ struct UnitListScreenSpritesProc
     /* 3B */ u8 unk_3b;
     /* 3C */ u8 unk_3c;
 };
+PROC_SIZE_CHECK(struct UnitListScreenSpritesProc);
 
 struct UnitListScreenField
 {

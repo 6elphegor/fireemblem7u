@@ -77,6 +77,7 @@ struct EventProc {
 
     /* 68 */ s8 text_speed;
 };
+PROC_SIZE_CHECK(struct EventProc);
 
 enum event_func_ret_idx {
     EVENT_CMDRET_CONTINUE,
@@ -783,6 +784,7 @@ struct PopupProc {
     /* 46 */ u16 x_gfx_size;
     /* 48 */ u16 song;
 };
+PROC_SIZE_CHECK(struct PopupProc);
 
 struct PopupIconUpdateProc {
     /* 00 */ PROC_HEADER;
@@ -792,6 +794,7 @@ struct PopupIconUpdateProc {
     /* 34 */ STRUCT_PAD(0x34, 0x4A);
     /* 4A */ u16 oam2;
 };
+PROC_SIZE_CHECK(struct PopupIconUpdateProc);
 
 extern struct Unit * gPopupUnit;
 extern u16 gPopupItem;
@@ -895,6 +898,7 @@ struct EventWeatherChangeProc {
     STRUCT_PAD(0x29, 0x64);
     /* 64 */ s16 weather;
 };
+PROC_SIZE_CHECK(struct EventWeatherChangeProc);
 
 int EvtCmd_SetFlag(struct EventProc * proc);
 int EvtCmd_ClearFlag(struct EventProc * proc);

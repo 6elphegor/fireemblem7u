@@ -188,6 +188,7 @@ struct CamMoveProc
     /* 3C */ int frame;
     /* 40 */ bool8 xCalibrated;
 };
+PROC_SIZE_CHECK(struct CamMoveProc);
 
 struct UnkMapCursorProc
 {
@@ -198,6 +199,7 @@ struct UnkMapCursorProc
     /* 34 */ int clock;
     /* 38 */ int duration;
 };
+PROC_SIZE_CHECK(struct UnkMapCursorProc);
 
 enum
 {

@@ -36,6 +36,7 @@ struct BonusClaimProc {
     /* 30 */ int timer;
     /* 34 */ ProcPtr unk_34;
 };
+PROC_SIZE_CHECK(struct BonusClaimProc);
 
 struct BonusClaimConfig {
     /* 00 */ s8 hasInventorySpace;

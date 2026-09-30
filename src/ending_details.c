@@ -103,6 +103,7 @@ struct CharacterEndingProc {
     /* 3C */ struct Unit * unitB;
     /* 40 */ u32 pidShownFlags[8];
 };
+PROC_SIZE_CHECK(struct CharacterEndingProc);
 
 struct EndingBattleDisplayProc {
     /* 00 */ PROC_HEADER;
@@ -113,6 +114,7 @@ struct EndingBattleDisplayProc {
     /* 40 */ u16 winAmounts[2];
     /* 44 */ u16 lossAmounts[2];
 };
+PROC_SIZE_CHECK(struct EndingBattleDisplayProc);
 
 struct EndingBattleTextProc {
     /* 00 */ PROC_HEADER;
@@ -125,6 +127,7 @@ struct EndingBattleTextProc {
     /* 44 */ char const * str;
     /* 48 */ struct Text * text;
 };
+PROC_SIZE_CHECK(struct EndingBattleTextProc);
 
 struct FinScreenProc {
     /* 00 */ PROC_HEADER;
@@ -133,6 +136,7 @@ struct FinScreenProc {
     /* 4E */ STRUCT_PAD(0x4E, 0x58);
     /* 58 */ int timer;
 };
+PROC_SIZE_CHECK(struct FinScreenProc);
 
 struct EndingTurnRecordProc {
     /* 00 */ PROC_HEADER;
@@ -144,12 +148,14 @@ struct EndingTurnRecordProc {
     /* 3A */ STRUCT_PAD(0x3A, 0x4C);
     /* 4C */ s16 unk_4c;
 };
+PROC_SIZE_CHECK(struct EndingTurnRecordProc);
 
 struct PlayerRankFlashProc {
     /* 00 */ PROC_HEADER;
     /* 2C */ STRUCT_PAD(0x2A, 0x58);
     /* 58 */ int pal;
 };
+PROC_SIZE_CHECK(struct PlayerRankFlashProc);
 
 struct PlayerRankProc {
     /* 00 */ PROC_HEADER;
@@ -161,6 +167,7 @@ struct PlayerRankProc {
     /* 46 */ u8 unk_46[6];
     /* 4C */ u16 scales[6];
 };
+PROC_SIZE_CHECK(struct PlayerRankProc);
 
 void StartPlayerRankFlash(int pal, ProcPtr parent);
 void PlayerRank_PutSprites(struct PlayerRankProc * proc);
@@ -217,6 +224,7 @@ struct EndingCgScrollProc {
     /* 38 */ u16 lastY;
     /* 3C */ int speed;
 };
+PROC_SIZE_CHECK(struct EndingCgScrollProc);
 
 extern const struct EndingCgScrollEnt gEndingCgScrollLut[];
 extern const struct EndingCgScrollEnt gEndingCgScroll2Lut[];

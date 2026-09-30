@@ -108,6 +108,7 @@ struct MuProc
     /* 4C */ s16 x_q4, y_q4;
     /* 50 */ s16 x_offset_q4, y_offset_q4;
 };
+PROC_SIZE_CHECK(struct MuProc);
 
 struct MuConfig
 {
@@ -130,6 +131,7 @@ struct MuStepSoundProc
     /* 64 */ s16 x1;
     /* 66 */ s16 x2;
 };
+PROC_SIZE_CHECK(struct MuStepSoundProc);
 
 struct MuFogBumpProc
 {
@@ -140,6 +142,7 @@ struct MuFogBumpProc
     STRUCT_PAD(0x54, 0x64);
     /* 64 */ s16 timer;
 };
+PROC_SIZE_CHECK(struct MuFogBumpProc);
 
 struct MuEffectProc
 {
@@ -150,6 +153,7 @@ struct MuEffectProc
     /* 64 */ s16 time_left;
     /* 66 */ s16 frame;
 };
+PROC_SIZE_CHECK(struct MuEffectProc);
 
 struct MuFlashEffectProc
 {
@@ -157,6 +161,7 @@ struct MuFlashEffectProc
     /* 2C */ struct MuProc * mu;
     /* 30 */ u8 timer;
 };
+PROC_SIZE_CHECK(struct MuFlashEffectProc);
 
 void MU_Init(void);
 struct MuProc * StartMuExt(struct Unit * unit, unsigned jid, unsigned pal);

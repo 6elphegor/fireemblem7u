@@ -14,6 +14,7 @@ struct ColFadeProc
     /* 60 */ int amount;
     /* 64 */ u16 speed;
 };
+PROC_SIZE_CHECK(struct ColFadeProc);
 
 extern u16 gUnk_020144F8[];
 

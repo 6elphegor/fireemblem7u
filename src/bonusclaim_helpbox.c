@@ -9,6 +9,7 @@ struct BonusClaimHelpBoxProc
     /* 34 */ STRUCT_PAD(0x34, 0x58);
     /* 58 */ int msgId;
 };
+PROC_SIZE_CHECK(struct BonusClaimHelpBoxProc);
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
 

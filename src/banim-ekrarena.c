@@ -9,6 +9,7 @@ struct ProcEkrTogi
     /* 2C */ s16 unk_2c;
     /* 2E */ s16 unk_2e;
 };
+PROC_SIZE_CHECK(struct ProcEkrTogi);
 
 /* auto-decls */
 extern const u16 NewEkrTogiColor_frames[];

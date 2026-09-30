@@ -14,6 +14,7 @@ struct HelpBoxScrollProc {
     /* 62 */ s16 chars_per_step;
     /* 64 */ s16 unk_64;
 };
+PROC_SIZE_CHECK(struct HelpBoxScrollProc);
 
 struct ProcHelpBoxIntro {
     /* 00 */ PROC_HEADER;
@@ -25,6 +26,7 @@ struct ProcHelpBoxIntro {
     /* 60 */ int unk_60;
     /* 64 */ s16 pretext_lines;
 };
+PROC_SIZE_CHECK(struct ProcHelpBoxIntro);
 
 struct ProcBoxDialogue {
     /* 00 */ PROC_HEADER;
@@ -37,6 +39,7 @@ struct ProcBoxDialogue {
     /* 3C */ u16 * unk_3c;
     /* 40 */ u8 pad_idx;
 };
+PROC_SIZE_CHECK(struct ProcBoxDialogue);
 
 struct ProcBoxDialogueDrawTextExt {
     /* 00 */ PROC_HEADER;
@@ -60,6 +63,7 @@ struct ProcBoxDialogueDrawTextExt {
     /* 58 */ u8 timer;
     /* 59 */ u8 unk_59;
 };
+PROC_SIZE_CHECK(struct ProcBoxDialogueDrawTextExt);
 
 struct HelpBox8A01800Proc {
     /* 00 */ PROC_HEADER;
@@ -71,6 +75,7 @@ struct HelpBox8A01800Proc {
 
     /* 5C */ int unk_5c;
 };
+PROC_SIZE_CHECK(struct HelpBox8A01800Proc);
 
 struct HelpBoxSt {
     /* 00 */ struct Font font;

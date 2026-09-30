@@ -52,6 +52,7 @@ struct PasswordProc {
     /* 30 */ int unk_30;
     /* 34 */ int unk_34;
 };
+PROC_SIZE_CHECK(struct PasswordProc);
 
 extern const struct ProcCmd ProcScr_08CC5AF0[];
 extern u8 gUnk_0203E790;

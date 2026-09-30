@@ -13,6 +13,7 @@ struct BrownTextBoxProc {
     /* 4A */ STRUCT_PAD(0x4A, 0x4C);
     /* 4C */ s16 blendVal;
 };
+PROC_SIZE_CHECK(struct BrownTextBoxProc);
 
 extern u16 CONST_DATA Sprite_8x8[];
 extern u16 CONST_DATA Sprite_16x8[];

@@ -30,6 +30,7 @@ struct ProcSpriteAnim {
     /* 50 */ struct SpriteAnim * anim;
     /* 54 */ int x, y;
 };
+PROC_SIZE_CHECK(struct ProcSpriteAnim);
 
 #define RESOLVE_REFTABLE(table, id) ((table) + ((table)[id] >> 1))
 

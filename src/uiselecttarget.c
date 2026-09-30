@@ -25,6 +25,7 @@ struct SelectTargetProc
     /* 34 */ u8 flags;
     /* 38 */ u8 (* onAPress)(ProcPtr, struct SelectTarget *);
 };
+PROC_SIZE_CHECK(struct SelectTargetProc);
 
 struct NearTargetLinkOffset
 {

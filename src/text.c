@@ -153,6 +153,7 @@ struct TextPrintProc
     /* 35 */ s8 clock;
     /* 36 */ s8 char_per_tick;
 };
+PROC_SIZE_CHECK(struct TextPrintProc);
 
 u8 * GetTextDrawDest(struct Text * text);
 u16 const * GetColorLut(int color);

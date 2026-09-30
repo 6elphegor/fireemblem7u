@@ -12,6 +12,7 @@ struct ProcEkrBattleEnding {
     /* 3A */ s16 y1;
     /* 3C */ s16 y2;
 };
+PROC_SIZE_CHECK(struct ProcEkrBattleEnding);
 
 extern s16 gBanimBackgroundIndex;
 extern s16 gEkrBmLocation[4];

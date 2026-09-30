@@ -24,6 +24,7 @@ struct EpilogueCgProc {
     /* 3E */ s16 part;
     /* 40 */ s16 cg;
 };
+PROC_SIZE_CHECK(struct EpilogueCgProc);
 
 extern struct EpilogueFontSt gEpilogueFontSt;
 
@@ -46,6 +47,7 @@ struct EpilogueProc {
     /* 50 */ s8 skippable;
     /* 51 */ s8 unk_51;
 };
+PROC_SIZE_CHECK(struct EpilogueProc);
 
 extern const struct ProcCmd ProcScr_EpilogueCg[];
 extern const struct ProcCmd ProcScr_EpilogueScroll[];

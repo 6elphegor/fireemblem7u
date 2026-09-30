@@ -76,12 +76,14 @@ struct SioBattleMapProc {
     /* 58 */ int unk_58;
     /* 5C */ int unk_5c;
 };
+PROC_SIZE_CHECK(struct SioBattleMapProc);
 
 struct SioProc85AA1AC {
     /* 00 */ PROC_HEADER;
     /* 29 */ u8 pad_29[0x64 - 0x29];
     /* 64 */ s16 unk_64;
 };
+PROC_SIZE_CHECK(struct SioProc85AA1AC);
 
 struct SioProc85AA4CC {
     /* 00 */ PROC_HEADER;
@@ -90,6 +92,7 @@ struct SioProc85AA4CC {
     /* 34 */ int unk_34;
     /* 38 */ int unk_38;
 };
+PROC_SIZE_CHECK(struct SioProc85AA4CC);
 
 struct AiCombatSimulationSt {
     /* 00 */ u8 xMove;

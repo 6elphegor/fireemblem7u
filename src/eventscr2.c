@@ -15,6 +15,7 @@ struct EventCursorProc {
     /* 64 */ s16 x;
     /* 66 */ s16 y;
 };
+PROC_SIZE_CHECK(struct EventCursorProc);
 
 extern const struct ProcCmd ProcScr_EventFlashCursor[];
 extern const struct ProcCmd ProcScr_EventCursor[];

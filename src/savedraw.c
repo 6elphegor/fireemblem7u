@@ -33,6 +33,7 @@ struct SaveDrawProc
     /* 3B */ u8 unk_3b;
     /* 3C */ u8 unk_3c;
 };
+PROC_SIZE_CHECK(struct SaveDrawProc);
 
 #define SAVE_MENU_PARENT(proc) ((struct SaveMenuProc *) (proc)->proc_parent)
 
@@ -68,6 +69,7 @@ struct SaveBonusHelpProc
     /* 58 */ int unk_58;
     /* 5C */ int unk_5c;
 };
+PROC_SIZE_CHECK(struct SaveBonusHelpProc);
 
 extern const struct ProcCmd ProcScr_BonusClaimMenu[];
 

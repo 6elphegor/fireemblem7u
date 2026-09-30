@@ -65,12 +65,14 @@ struct CgTextMainProc {
     /* 60 */ u8 unk_60;
     /* 61 */ u8 unk_61; // extra name box width (FE7)
 };
+PROC_SIZE_CHECK(struct CgTextMainProc);
 
 struct CgTextInterpreterProc {
     /* 00 */ PROC_HEADER;
     /* 29 */ STRUCT_PAD(0x29, 0x4C);
     /* 4C */ s16 unk_4c;
 };
+PROC_SIZE_CHECK(struct CgTextInterpreterProc);
 
 struct YesNoChoiceProc {
     /* 00 */ PROC_HEADER;
@@ -78,6 +80,7 @@ struct YesNoChoiceProc {
     /* 2C */ s16 x;
     /* 2E */ s16 y;
 };
+PROC_SIZE_CHECK(struct YesNoChoiceProc);
 
 void SetCgTextFlags(int flags);
 void SetCgTextFlag(int flag);

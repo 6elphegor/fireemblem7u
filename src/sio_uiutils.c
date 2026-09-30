@@ -70,6 +70,7 @@ struct LinkArenaTitleBannerProc {
     /* 58 */ int unk_58;
     /* 5C */ u32 chr;
 };
+PROC_SIZE_CHECK(struct LinkArenaTitleBannerProc);
 
 struct LATeamSpriteDrawProc {
     /* 00 */ PROC_HEADER;
@@ -79,6 +80,7 @@ struct LATeamSpriteDrawProc {
     /* 38 */ int yMax;
     /* 3C */ int numTeams;
 };
+PROC_SIZE_CHECK(struct LATeamSpriteDrawProc);
 
 struct NameEntrySpriteDrawProc {
     /* 00 */ PROC_HEADER;
@@ -90,6 +92,7 @@ struct NameEntrySpriteDrawProc {
     /* 40 */ int xPointer;
     /* 44 */ int unk_44;
 };
+PROC_SIZE_CHECK(struct NameEntrySpriteDrawProc);
 
 struct RuleSettingSpriteDrawProc {
     /* 00 */ PROC_HEADER;
@@ -98,6 +101,7 @@ struct RuleSettingSpriteDrawProc {
     /* 2E */ s16 xOption;
     /* 30 */ s16 yOption;
 };
+PROC_SIZE_CHECK(struct RuleSettingSpriteDrawProc);
 
 struct SioMenuBurstFxProc {
     /* 00 */ PROC_HEADER;
@@ -106,6 +110,7 @@ struct SioMenuBurstFxProc {
     /* 34 */ u8 pad_34[0x4C - 0x34];
     /* 4C */ s16 glowPalIdx;
 };
+PROC_SIZE_CHECK(struct SioMenuBurstFxProc);
 
 struct LAMenuScrollBarProc {
     /* 00 */ PROC_HEADER;
@@ -120,6 +125,7 @@ struct LAMenuScrollBarProc {
     /* 42 */ u16 unk_42;
     /* 44 */ u8 oam2Arrows[2];
 };
+PROC_SIZE_CHECK(struct LAMenuScrollBarProc);
 
 struct LAVersusSpriteDrawProc {
     /* 00 */ PROC_HEADER;
@@ -129,12 +135,14 @@ struct LAVersusSpriteDrawProc {
     /* 38 */ int unk_38;
     /* 3C */ u16 unk_3c[4];
 };
+PROC_SIZE_CHECK(struct LAVersusSpriteDrawProc);
 
 struct SioProc85AABD8 {
     /* 00 */ PROC_HEADER;
     /* 2C */ int x;
     /* 30 */ int y;
 };
+PROC_SIZE_CHECK(struct SioProc85AABD8);
 
 struct SioScrollTextProc {
     /* 00 */ PROC_HEADER;
@@ -145,6 +153,7 @@ struct SioScrollTextProc {
     /* 3C */ int len;
     /* 40 */ int clock;
 };
+PROC_SIZE_CHECK(struct SioScrollTextProc);
 
 extern struct LinkArenaStMaybe gLinkArenaSt;
 extern u8 gUnknown_0200118C[];

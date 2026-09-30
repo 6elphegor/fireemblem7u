@@ -26,6 +26,7 @@ struct SupportScreenProc {
     /* 42 */ s8 fromPrepScreen;
     /* 43 */ s8 helpTextActive;
 };
+PROC_SIZE_CHECK(struct SupportScreenProc);
 
 struct SupportTactProc {
     /* 00 */ PROC_HEADER;
@@ -34,6 +35,7 @@ struct SupportTactProc {
     /* 30 */ int unk_30;
     /* 34 */ int count;
 };
+PROC_SIZE_CHECK(struct SupportTactProc);
 
 struct SubScreenProc {
     /* 00 */ PROC_HEADER;
@@ -53,6 +55,7 @@ struct SubScreenProc {
     /* 47 */ u8 supportLevel[7];
     /* 4E */ u8 partnerClassId[7];
 };
+PROC_SIZE_CHECK(struct SubScreenProc);
 
 extern struct SupportScreenUnit * CONST_DATA sSupportScreenUnits;
 extern int sSupportScreenUnitCount;

@@ -1198,6 +1198,7 @@ struct EventDarkenThenFuncProc {
     /* 64 */ u16 speed;
     /* 66 */ s16 counter;
 };
+PROC_SIZE_CHECK(struct EventDarkenThenFuncProc);
 
 void EventDarkenThenFunc_StartDarken(struct EventDarkenThenFuncProc * proc);
 void EventDarkenThenFunc_StepDarken(struct EventDarkenThenFuncProc * proc);

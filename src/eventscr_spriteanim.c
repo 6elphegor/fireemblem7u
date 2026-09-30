@@ -161,6 +161,7 @@ struct ProcEventWarpLoad
 
     /* 64 */ s16 skip;
 };
+PROC_SIZE_CHECK(struct ProcEventWarpLoad);
 
 extern s8 CONST_DATA gUnk_08BE3888[];
 extern struct UnitDefinition sEventLoadUnitBuf;

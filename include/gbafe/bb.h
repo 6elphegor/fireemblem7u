@@ -17,6 +17,7 @@ struct SubtitleHelpProc {
     /* 5C */ s16 textNum;
     /* 5E */ s16 textCount;
 };
+PROC_SIZE_CHECK(struct SubtitleHelpProc);
 
 void PutSubtitleHelpText(struct SubtitleHelpProc * proc, int y);
 void InitSubtitleHelpText(struct SubtitleHelpProc * proc);

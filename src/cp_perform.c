@@ -11,6 +11,7 @@ struct AiTargetCursorProc {
     /* 5C */ u8 _pad2[0x64 - 0x5C];
     /* 64 */ s16 clock;
 };
+PROC_SIZE_CHECK(struct AiTargetCursorProc);
 
 struct CpPerformProc {
     /* 00 */ PROC_HEADER;
@@ -19,6 +20,7 @@ struct CpPerformProc {
     /* 30 */ u8 clock;
     /* 31 */ u8 isUnitVisible;
 };
+PROC_SIZE_CHECK(struct CpPerformProc);
 
 // Declarations of other modules' functions not yet in any header
 void UnitBeginAction(struct Unit * unit);

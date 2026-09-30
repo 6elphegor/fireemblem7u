@@ -31,6 +31,7 @@ struct SoundRoomProc
     /* 40 */ u32 flags[4];
     /* 50 */ u32 bgFlags[4];
 };
+PROC_SIZE_CHECK(struct SoundRoomProc);
 
 struct SoundRoomEnt
 {
@@ -47,6 +48,7 @@ struct VolumeGraphBufferProc
 
     /* 2C */ int unk_2c;
 };
+PROC_SIZE_CHECK(struct VolumeGraphBufferProc);
 
 struct SoundRoomSpriteDrawProc
 {
@@ -54,6 +56,7 @@ struct SoundRoomSpriteDrawProc
 
     /* 2C */ int unk_2c;
 };
+PROC_SIZE_CHECK(struct SoundRoomSpriteDrawProc);
 
 struct Unknown_08A212DC
 {
@@ -1308,6 +1311,7 @@ struct SoundRoomBgProc
     /* 4E */ STRUCT_PAD(0x4E, 0x58);
     /* 58 */ int bg;
 };
+PROC_SIZE_CHECK(struct SoundRoomBgProc);
 
 extern const struct ProcCmd ProcScr_08CE5704[];
 

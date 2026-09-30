@@ -20,6 +20,7 @@ struct ProcDragonGateFx
     /* 5C */ STRUCT_PAD(0x5C, 0x64);
     /* 64 */ s16 unk_64;
 };
+PROC_SIZE_CHECK(struct ProcDragonGateFx);
 
 void DragonGatefx_DistortionHandler(struct ProcDragonGateFx * proc)
 {
@@ -186,6 +187,7 @@ struct DragonSpriteBlinkingProc
     /* 29 */ STRUCT_PAD(0x29, 0x4C);
     /* 4C */ s16 timer;
 };
+PROC_SIZE_CHECK(struct DragonSpriteBlinkingProc);
 
 void DragonSpriteBlinking_Init(struct DragonSpriteBlinkingProc * proc)
 {

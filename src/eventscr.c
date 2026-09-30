@@ -301,6 +301,7 @@ struct EventMuWaitProc {
     STRUCT_PAD(0x34, 0x54);
     /* 54 */ struct MuProc * mu;
 };
+PROC_SIZE_CHECK(struct EventMuWaitProc);
 
 
 void EventStartTalk(struct EventProc * proc, int msg, bool init)

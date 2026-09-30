@@ -50,6 +50,7 @@ struct FaceProc {
     /* 44 */ struct FaceMouthProc * mouth_proc;
     /* 48 */ struct FaceEyeProc   * eye_proc;
 };
+PROC_SIZE_CHECK(struct FaceProc);
 
 extern struct FaceProc * gFaces[FACE_SLOT_COUNT];
 
@@ -131,6 +132,7 @@ struct FaceEyeProc {
     /* 42 */ u16 palId;
     /* 44 */ u16 faceId;
 };
+PROC_SIZE_CHECK(struct FaceEyeProc);
 
 enum face_eye_proc_state_idx {
     FACE_EYE_INIT = 0,
@@ -161,6 +163,7 @@ struct FaceMouthProc {
     /* 30 */ s16 frame;
     /* 32 */ s16 timer;
 };
+PROC_SIZE_CHECK(struct FaceMouthProc);
 
 void FaceMouth_Init(struct FaceMouthProc * proc);
 void FaceMouth_Loop(struct FaceMouthProc * proc);
@@ -199,6 +202,7 @@ struct UnkFaceProc
     /* 30 */ const struct FaceInfo * face_info;
     /* 34 */ int fid;
 };
+PROC_SIZE_CHECK(struct UnkFaceProc);
 
 // sub_08007D04
 // sub_08007D28

@@ -12,6 +12,7 @@ struct SpinningArrowProc
     /* 4C */ int unk_4c[2];
     /* 54 */ u16 oam2;
 };
+PROC_SIZE_CHECK(struct SpinningArrowProc);
 
 // Data (not yet in C; FE7U addresses in symbols.ld)
 extern u16 const Pal_MapBattleInfoNum[];

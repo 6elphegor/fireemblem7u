@@ -22,6 +22,7 @@ struct ProcAtUnkMenu {
     /* 60 */ STRUCT_PAD(0x60, 0x64);
     /* 64 */ u16 unk64;
 };
+PROC_SIZE_CHECK(struct ProcAtUnkMenu);
 
 
 struct ProcPrepPromote {
@@ -29,6 +30,7 @@ struct ProcPrepPromote {
     /* 29 */ STRUCT_PAD(0x29, 0x4C);
     /* 4C */ s16 game_lock;
 };
+PROC_SIZE_CHECK(struct ProcPrepPromote);
 
 void GenerateItemPromotionBattle(struct Unit * unit, int itemIdx, s8 unk);
 void BeginBattleAnimations(void);

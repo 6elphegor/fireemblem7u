@@ -8,6 +8,7 @@ struct SioProc85AA83C {
     /* 29 */ STRUCT_PAD(0x29, 0x2C);
     /* 2C */ struct MuProc * muProc;
 };
+PROC_SIZE_CHECK(struct SioProc85AA83C);
 
 struct SioWarpProc {
     /* 00 */ PROC_HEADER;
@@ -20,6 +21,7 @@ struct SioWarpProc {
     /* 40 */ u8 unk_40;
     /* 41 */ s8 playStepSe;
 };
+PROC_SIZE_CHECK(struct SioWarpProc);
 
 struct SioProc85AA954 {
     /* 00 */ PROC_HEADER;
@@ -27,6 +29,7 @@ struct SioProc85AA954 {
     /* 2C */ int x;
     /* 30 */ int y;
 };
+PROC_SIZE_CHECK(struct SioProc85AA954);
 
 extern u16 * const PalArray_SolidColors[];
 extern const struct ProcCmd ProcScr_085AA83C[];

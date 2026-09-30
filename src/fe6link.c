@@ -67,6 +67,7 @@ struct Fe6LinkMenuProc
     /* 50 */ int unk_50;
     /* 54 */ int unk_54;
 };
+PROC_SIZE_CHECK(struct Fe6LinkMenuProc);
 
 struct Fe6LinkProc
 {
@@ -80,6 +81,7 @@ struct Fe6LinkProc
     /* 66 */ s16 unk_66;
     /* 68 */ s16 unk_68;
 };
+PROC_SIZE_CHECK(struct Fe6LinkProc);
 
 struct Fe6LinkRecvData
 {

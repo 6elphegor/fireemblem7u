@@ -57,6 +57,7 @@ struct ConfigProc
     /* 36 */ u8 loadSoloAnimScreen;
     /* 37 */ u8 unk_37;
 };
+PROC_SIZE_CHECK(struct ConfigProc);
 
 extern struct ConfigScreen * CONST_DATA gConfigUiState;
 extern const struct GameOptionLayout gGameOptionLayouts[];

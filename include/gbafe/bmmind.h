@@ -13,6 +13,7 @@ struct AfterDropActionProc
     /* 29 */ u8 unk_29[0x54 - 0x29];
     /* 54 */ struct Unit * unit;
 };
+PROC_SIZE_CHECK(struct AfterDropActionProc);
 
 struct CombatActionProc
 {
@@ -23,6 +24,7 @@ struct CombatActionProc
     /* 64 */ s16 unitIdA;
     /* 66 */ s16 unitIdB;
 };
+PROC_SIZE_CHECK(struct CombatActionProc);
 
 struct DeathDropAnimProc
 {
@@ -37,6 +39,7 @@ struct DeathDropAnimProc
     /* 46 */ short clock;
     /* 48 */ short clockEnd;
 };
+PROC_SIZE_CHECK(struct DeathDropAnimProc);
 
 void StoreRNStateToActionStruct(void);
 void LoadRNStateFromActionStruct(void);

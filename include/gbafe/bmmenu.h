@@ -71,6 +71,7 @@ struct MenuItemProc {
     /* 3C */ s8 itemNumber;
     /* 3D */ u8 availability;
 };
+PROC_SIZE_CHECK(struct MenuItemProc);
 
 enum {
     MENU_ENABLED  = 1,

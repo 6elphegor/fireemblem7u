@@ -51,12 +51,14 @@ struct ProcShop {
     /* 66 */ s16 goldbox_y;
     /* 68 */ s16 goldbox_oam2;
 };
+PROC_SIZE_CHECK(struct ProcShop);
 
 struct ProcShopInit {
     /* 00 */ PROC_HEADER;
     /* 29 */ u8 _pad[0x54 - 0x29];
     /* 54 */ struct ProcShop * shopproc;
 };
+PROC_SIZE_CHECK(struct ProcShopInit);
 
 typedef void (* ShopFunc)(ProcPtr, int);
 

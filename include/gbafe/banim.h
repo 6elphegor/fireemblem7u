@@ -256,6 +256,7 @@ struct ProcEfxSCR {
     /* 48 */ STRUCT_PAD(0x48, 0x5C);
     /* 5C */ struct ProcEfx * unk5C;
 };
+PROC_SIZE_CHECK(struct ProcEfxSCR);
 
 struct ProcEkrSubAnimeEmulator {
     PROC_HEADER;

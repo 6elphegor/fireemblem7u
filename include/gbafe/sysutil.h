@@ -12,6 +12,7 @@ struct ParallelFiniteLoopProc {
     /* 30 */ int count;
     /* 34 */ ParallelWorkerFunc * func;
 };
+PROC_SIZE_CHECK(struct ParallelFiniteLoopProc);
 
 extern struct ProcCmd ProcScr_ParallelFiniteLoop[];
 void ParallelFiniteLoop_Init(struct ParallelFiniteLoopProc * proc);
@@ -29,6 +30,7 @@ struct SysBlackBoxProc {
     /* 4A */ u8 valid[4];
     /* 4E */ u16 chr;
 };
+PROC_SIZE_CHECK(struct SysBlackBoxProc);
 
 extern struct ProcCmd ProcScr_SysBlackBox[];
 
@@ -47,6 +49,7 @@ struct ParallelWorkerProc
     /* 00 */ PROC_HEADER;
     /* 2C */ ParallelWorkerFunc * func;
 };
+PROC_SIZE_CHECK(struct ParallelWorkerProc);
 
 void ParallelWorker_OnLoop(struct ParallelWorkerProc * proc);
 ProcPtr StartParallelWorker(void *, ProcPtr);
@@ -251,6 +254,7 @@ struct ProcBmBgfx {
     /* 54 */ int counter_functioncall;
     /* 58 */ bool (* callback)(ProcPtr);
 };
+PROC_SIZE_CHECK(struct ProcBmBgfx);
 
 void BmBgfx_Init(struct ProcBmBgfx * proc);
 void BmBgfx_Loop(struct ProcBmBgfx * proc);
@@ -273,6 +277,7 @@ struct ProcMixPalette {
     /* 3C */ u16 * srcA;
     /* 40 */ u16 * srcB;
 };
+PROC_SIZE_CHECK(struct ProcMixPalette);
 
 extern struct ProcCmd CONST_DATA ProcScr_MixPalette[];
 

@@ -17,6 +17,7 @@ struct OpAnimProc {
     /* 45 */ STRUCT_PAD(0x45, 0x4C);
     /* 4C */ s16 unk_4C;
 };
+PROC_SIZE_CHECK(struct OpAnimProc);
 
 struct OpAnimImgEntry {
     /* 00 */ void const * img0;
@@ -34,6 +35,7 @@ struct OpAnimSubProc {
     /* 38 */ int unk_38;
     /* 3C */ struct OpAnimImgEntry const * unk_3C;
 };
+PROC_SIZE_CHECK(struct OpAnimSubProc);
 
 struct OpAnimTextEntry {
     /* 00 */ void const * img[2];
@@ -50,6 +52,7 @@ struct OpAnimTextProc {
     /* 38 */ int unk_38;
     /* 3C */ int unk_3C;
 };
+PROC_SIZE_CHECK(struct OpAnimTextProc);
 
 struct OpAnimCloudProc {
     /* 00 */ PROC_HEADER;
@@ -61,6 +64,7 @@ struct OpAnimCloudProc {
     /* 32 */ u16 unk_32[4];
     /* 3A */ u16 unk_3A[4];
 };
+PROC_SIZE_CHECK(struct OpAnimCloudProc);
 
 struct OpAnimBirdProc {
     /* 00 */ PROC_HEADER;
@@ -71,6 +75,7 @@ struct OpAnimBirdProc {
     /* 44 */ int vx[2];
     /* 4C */ int vy[2];
 };
+PROC_SIZE_CHECK(struct OpAnimBirdProc);
 
 struct OpAnimBgHeader {
     /* 00 */ u16 const * pal;
@@ -103,6 +108,7 @@ struct OpAnimBgProc {
     /* 38 */ int pos;
     /* 3C */ int speed;
 };
+PROC_SIZE_CHECK(struct OpAnimBgProc);
 
 void sub_080BB070(void);
 void InitOpScanlineBuf(void);

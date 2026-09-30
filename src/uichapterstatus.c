@@ -22,6 +22,7 @@ struct ChapterStatusProc {
 
     /* 64 */ u16 unk_64;
 };
+PROC_SIZE_CHECK(struct ChapterStatusProc);
 
 struct StatusScreenSt {
     /* 00 */ struct Text th;

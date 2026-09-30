@@ -12,6 +12,7 @@ struct EvtBgTransitionProc {
     /* 40 */ ProcPtr evproc;
     /* 44 */ int pal_count;
 };
+PROC_SIZE_CHECK(struct EvtBgTransitionProc);
 
 #define BGTRANS_FLAG_KEEP_LAYERS 0x100
 #define BGTRANS_FLAG_UNK_200     0x200

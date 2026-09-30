@@ -36,6 +36,7 @@ struct PlayerInterfaceProc
     /* 57 */ s8 windowQuadrant;
     /* 58 */ int showHideClock;
 };
+PROC_SIZE_CHECK(struct PlayerInterfaceProc);
 
 struct PlayerInterfaceConfigEntry
 {

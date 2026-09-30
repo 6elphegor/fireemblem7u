@@ -6,6 +6,7 @@ struct ExtraMenuUnkProc {
     /* 54 */ ProcPtr spin_proc;
     /* 58 */ int unk_58;
 };
+PROC_SIZE_CHECK(struct ExtraMenuUnkProc);
 
 extern u16 const gUnk_08CE4158[];
 extern u16 const * const SpriteArray_08A2099C[];

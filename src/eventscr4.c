@@ -76,6 +76,7 @@ struct GiveItemProc {
     /* 54 */ struct Unit * unit;
     /* 58 */ int item;
 };
+PROC_SIZE_CHECK(struct GiveItemProc);
 
 #define EVT_ARG_U16(proc, n) EVT_HALF((proc)->script, n)
 
@@ -859,6 +860,7 @@ struct EventFaceDeamonProc {
     STRUCT_PAD(0x29, 0x2A);
     /* 2A */ s16 face_slot;
 };
+PROC_SIZE_CHECK(struct EventFaceDeamonProc);
 
 void EventFaceDeamonDelete(struct EventFaceDeamonProc * proc)
 {

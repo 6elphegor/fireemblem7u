@@ -30,6 +30,7 @@ struct PrepRankProc {
     /* 5C */ u16 unk_5c;
     /* 5E */ u16 unk_5e;
 };
+PROC_SIZE_CHECK(struct PrepRankProc);
 
 struct PrepRankPalAnimProc {
     /* 00 */ PROC_HEADER;
@@ -38,6 +39,7 @@ struct PrepRankPalAnimProc {
     /* 4E */ u8 pad_4e[0x58 - 0x4E];
     /* 58 */ int pal;
 };
+PROC_SIZE_CHECK(struct PrepRankPalAnimProc);
 
 int GetGameTacticsRank(void);
 int GetGameSurvivalRank(void);
@@ -90,12 +92,14 @@ struct PrepDivinationProc {
     /* 2C */ int unk_2c;
     /* 30 */ int unk_30;
 };
+PROC_SIZE_CHECK(struct PrepDivinationProc);
 
 struct PrepDivinationFlashProc {
     /* 00 */ PROC_HEADER;
     /* 2A */ u16 timer;
     /* 2C */ u16 pal[15];
 };
+PROC_SIZE_CHECK(struct PrepDivinationFlashProc);
 
 extern const struct ProcCmd ProcScr_08CC5760[];
 

@@ -7,6 +7,7 @@ struct ViewCounterProc
     /* 2A */ u16 targetFrameCount;
     /* 2C */ u16 counter;
 };
+PROC_SIZE_CHECK(struct ViewCounterProc);
 
 extern struct ProcCmd CONST_DATA ProcScr_ViewCounter[];
 extern struct ProcCmd CONST_DATA ProcScr_PrepHelpboxListener[];

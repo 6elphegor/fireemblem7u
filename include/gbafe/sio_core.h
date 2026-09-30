@@ -39,6 +39,7 @@ struct SioBigSendProc
     /* 3B */ u8 completionPercent;
     /* 3C */ u8 unk_3C;
 };
+PROC_SIZE_CHECK(struct SioBigSendProc);
 
 struct SioBigReceiveProc
 {
@@ -52,6 +53,7 @@ struct SioBigReceiveProc
     /* 3B */ u8 completionPercent;
     /* 3C */ u8 unk_3C;
 };
+PROC_SIZE_CHECK(struct SioBigReceiveProc);
 
 enum
 {
@@ -305,6 +307,7 @@ struct Proc_Sio_085A93A0
     /* 2C */ u8 pad_2C[0x58 - 0x2C];
     /* 58 */ int timer;
 };
+PROC_SIZE_CHECK(struct Proc_Sio_085A93A0);
 
 void sub_0803DA30(struct Proc_Sio_085A93A0 * proc);
 void sub_0803DA70(struct Proc_Sio_085A93A0 * proc);
@@ -348,6 +351,7 @@ struct SioProc85AAA78
     /* 45 */ STRUCT_PAD(0x45, 0x48);
     /* 48 */ int unk_48;
 };
+PROC_SIZE_CHECK(struct SioProc85AAA78);
 
 struct SioTeamListProc
 {
@@ -372,6 +376,7 @@ struct SioTeamListProc
     /* 58 */ int unk_58;
     /* 5C */ s8 unk_5c;
 };
+PROC_SIZE_CHECK(struct SioTeamListProc);
 
 int sub_0803E358(u8, struct SioTeamListProc *);;
 bool CanBuildNewLinkArenaTeam(void);;
@@ -436,6 +441,7 @@ struct SioPostBattleProc
     /* 44 */ struct SioProc85A971C_Unk44 unk_44[4];
     /* 64 */ int unk_64;
 };
+PROC_SIZE_CHECK(struct SioPostBattleProc);
 
 struct SioPostBattleSpritesProc
 {
@@ -449,6 +455,7 @@ struct SioPostBattleSpritesProc
     /* 42 */ u8 oam2;
     /* 43 */ u8 ranking;
 };
+PROC_SIZE_CHECK(struct SioPostBattleSpritesProc);
 
 struct SioPostBattleMusicProc
 {
@@ -456,6 +463,7 @@ struct SioPostBattleMusicProc
     /* 29 */ STRUCT_PAD(0x29, 0x58);
     /* 58 */ int isPlayerWinner;
 };
+PROC_SIZE_CHECK(struct SioPostBattleMusicProc);
 
 void SioPostBattleSprites_Init(struct SioPostBattleSpritesProc * proc);
 void SioPostBattleSprites_Loop_DrawSlideIn(struct SioPostBattleSpritesProc * proc);
@@ -477,6 +485,7 @@ struct SioBatProc_Unk2C
     /* 34 */ int unk_34;
     /* 38 */ int unk_38;
 };
+PROC_SIZE_CHECK(struct SioBatProc_Unk2C);
 
 struct SioBatProc
 {
@@ -495,6 +504,7 @@ struct SioBatProc
     /* 5C */ STRUCT_PAD(0x5C, 0x64);
     /* 64 */ s16 unk_64;
 };
+PROC_SIZE_CHECK(struct SioBatProc);
 
 int sub_08040280(u8 ranking, u32 playerCount, u32 mode, u32 points);
 void sub_080403B0(struct SioBatProc * proc);
@@ -532,6 +542,7 @@ struct SioTermProc
     /* 4C */ int unk_4c;
     /* 50 */ int unk_50;
 };
+PROC_SIZE_CHECK(struct SioTermProc);
 
 void sub_080412E0(struct SioTermProc * proc);
 void sub_08041584(int * cur, u8 bottom, u8 top, int * buf, u8 total);
@@ -549,6 +560,7 @@ struct SioResultProcUnk2C
     /* 29 */ STRUCT_PAD(0x29, 0x30);
     /* 30 */ int unk_30;
 };
+PROC_SIZE_CHECK(struct SioResultProcUnk2C);
 
 struct SioResultProc
 {
@@ -564,6 +576,7 @@ struct SioResultProc
     /* 3C */ int unk_3c;
     /* 40 */ int unk_40;
 };
+PROC_SIZE_CHECK(struct SioResultProc);
 
 void DrawLinkArenaRankIcon(u16 * tm, int base);
 void DrawLinkArenaModeIcon(u16 * tm, u32 base);
@@ -585,6 +598,7 @@ struct ProcSioRuleSettings
     /* 2C */ ProcPtr unk_2c;
     /* 30 */ int unk_30;
 };
+PROC_SIZE_CHECK(struct ProcSioRuleSettings);
 
 struct LinkArenaRuleInfo
 {
@@ -619,6 +633,7 @@ struct SioMenuItemProc
     /* 3C */ s16 rightArrowSpeed;
     /* 3E */ u8 unk_3e;
 };
+PROC_SIZE_CHECK(struct SioMenuItemProc);
 
 struct SioMenuProc
 {
@@ -633,6 +648,7 @@ struct SioMenuProc
     /* 58 */ s8 unk_58;
     /* 59 */ s8 unk_59;
 };
+PROC_SIZE_CHECK(struct SioMenuProc);
 
 int SioMenu_GetItemHelpText(struct SioMenuProc * proc, int lineNum);
 bool CheckSomethingSaveRelated(void);
@@ -669,6 +685,7 @@ struct LAPointsBoxProc
     /* 00 */ PROC_HEADER;
     /* 2C */ struct Text text[4];
 };
+PROC_SIZE_CHECK(struct LAPointsBoxProc);
 
 struct PointsNumberMoverProc
 {
@@ -687,6 +704,7 @@ struct PointsNumberMoverProc
     /* 44 */ int unk_44; // used for showing the "rolling" number while accumulating points
     /* 48 */ struct Text text;
 };
+PROC_SIZE_CHECK(struct PointsNumberMoverProc);
 
 struct PointsSpriteTextProc
 {
@@ -698,6 +716,7 @@ struct PointsSpriteTextProc
     /* 4E */ STRUCT_PAD(0x4E, 0x54);
     /* 54 */ const char * str;
 };
+PROC_SIZE_CHECK(struct PointsSpriteTextProc);
 
 void sub_080431C0(void);
 void sub_080440E8(struct SioProc85A971C_Unk44 * buf);

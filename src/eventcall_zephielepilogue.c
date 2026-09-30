@@ -34,6 +34,7 @@ struct ProcZephielEpilogue
     /* 4E */ STRUCT_PAD(0x4E, 0x58);
     /* 58 */ int unk_58;
 };
+PROC_SIZE_CHECK(struct ProcZephielEpilogue);
 
 void CandleFlameFx_ScanlineEffect(struct ProcZephielEpilogue * proc)
 {

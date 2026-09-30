@@ -29,6 +29,7 @@ struct ProcEkrUnitMainMini
     /* 29 */ STRUCT_PAD(0x29, 0x5C);
     /* 5C */ void * unk_5C;
 };
+PROC_SIZE_CHECK(struct ProcEkrUnitMainMini);
 extern ProcPtr gpProcEfxAnimeDrv;
 extern const struct ProcCmd gProc_efxAnimeDrvProc[];
 extern const struct ProcCmd ProcScr_ekrUnitMainMini[];

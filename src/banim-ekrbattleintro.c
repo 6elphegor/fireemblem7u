@@ -82,6 +82,7 @@ struct ProcEkrBaseKaiten {
     /* 5C */ struct Anim * anim;
     /* 60 */ const u16 * unk60;
 };
+PROC_SIZE_CHECK(struct ProcEkrBaseKaiten);
 
 struct ProcUnitKakudai {
     /* 00 */ PROC_HEADER;
@@ -103,6 +104,7 @@ struct ProcUnitKakudai {
     /* 54 */ void * pOaml;
     /* 58 */ void * pOamr;
 };
+PROC_SIZE_CHECK(struct ProcUnitKakudai);
 
 struct ProcEkrIntroWindow {
     /* 00 */ PROC_HEADER;
@@ -114,6 +116,7 @@ struct ProcEkrIntroWindow {
     /* 44 */ int type;
     /* 48 */ int ymax_name;
 };
+PROC_SIZE_CHECK(struct ProcEkrIntroWindow);
 
 extern struct Vec2 gEkrBg0QuakeVec;
 extern int gEkrWindowAppearExist;

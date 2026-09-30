@@ -15,6 +15,7 @@ struct MenuScrollBarProc
     /* 3A */ u8 topArrowFrameIdx;
     /* 3B */ u8 bottomArrowFrameIdx;
 };
+PROC_SIZE_CHECK(struct MenuScrollBarProc);
 
 extern struct ProcCmd CONST_DATA ProcScr_menu_scroll[];
 extern u8 Img_MenuScrollBar[];

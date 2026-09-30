@@ -89,6 +89,7 @@ struct MuralBackgroundProc {
     /* 29 */ u8 pad_29[0x4C - 0x29];
     /* 4C */ s16 offset;
 };
+PROC_SIZE_CHECK(struct MuralBackgroundProc);
 
 void BackgroundSlide_Init(struct MuralBackgroundProc * proc);
 void BackgroundSlide_Loop(struct MuralBackgroundProc * proc);
@@ -154,6 +155,7 @@ struct StatScreenPageSlideProc {
 
     /* 52 */ u16 key_bit;
 };
+PROC_SIZE_CHECK(struct StatScreenPageSlideProc);
 
 void StatScreenPageSlide_Loop(struct StatScreenPageSlideProc * proc);
 void StatScreenPageSlide_End(struct StatScreenPageSlideProc * proc);
@@ -171,6 +173,7 @@ struct StatScreenUnitSlideProc
     /* 4A */ s16 new_unit_id;
     /* 4C */ s16 clock;
 };
+PROC_SIZE_CHECK(struct StatScreenUnitSlideProc);
 
 void StatScreenUnitSlide_FadeOutInit(struct StatScreenUnitSlideProc * proc);
 void StatScreenUnitSlide_FadeOutLoop(struct StatScreenUnitSlideProc * proc);
@@ -198,6 +201,7 @@ struct StatScreenSpritesProc
     /* 36 */ u8 page_id;
     /* 38 */ s16 vertical_scale; // int 6 == 1:1 (1.0) scale
 };
+PROC_SIZE_CHECK(struct StatScreenSpritesProc);
 
 void PutUpdateStatScreenPageName(int page_id);
 void StatScreenPageName_Init(struct StatScreenSpritesProc * proc);
@@ -260,6 +264,7 @@ struct HelpBoxProc {
 
     // NOTE: there's likely more, need to decompile more files
 };
+PROC_SIZE_CHECK(struct HelpBoxProc);
 
 void StartStatScreenHelp(int page_id, ProcPtr proc);
 void HelpBoxPopulateStatScreenItem(struct HelpBoxProc * proc);

@@ -12,6 +12,7 @@ struct ProcEkrBattleStarting {
     /* 3A */ s16 y1;
     /* 3C */ s16 y2;
 };
+PROC_SIZE_CHECK(struct ProcEkrBattleStarting);
 
 extern s16 gEkrDebugModeMaybe;
 extern s16 gBanimBackgroundIndex;

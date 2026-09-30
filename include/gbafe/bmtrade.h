@@ -51,6 +51,7 @@ struct TradeMenuProc {
     /* 49 */ u8 pad[0x4C - 0x49];
     /* 4C */ short timer;
 };
+PROC_SIZE_CHECK(struct TradeMenuProc);
 
 enum trade_menu_tutorial_status_idx {
     TRADE_TUT_NONE = 0,

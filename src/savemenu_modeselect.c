@@ -20,6 +20,7 @@ struct ModeSelectProc
     /* 4C */ u8 activeLordCount;
     /* 50 */ s32 unk_50;
 };
+PROC_SIZE_CHECK(struct ModeSelectProc);
 
 struct ModeSelectSpriteDrawProc
 {
@@ -37,6 +38,7 @@ struct ModeSelectSpriteDrawProc
     /* 4D */ u8 unk_4d;
     /* 4E */ u8 unk_4e;
 };
+PROC_SIZE_CHECK(struct ModeSelectSpriteDrawProc);
 
 struct UnkProc
 {
@@ -45,6 +47,7 @@ struct UnkProc
     /* 34 */ s16 unk_34;
     /* 36 */ s16 unk_36;
 };
+PROC_SIZE_CHECK(struct UnkProc);
 
 extern struct AnimBuffer gUnk_0201E8D4[];
 extern struct AnimMagicFxBuffer gUnk_0201E97C[];

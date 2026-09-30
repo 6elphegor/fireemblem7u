@@ -82,6 +82,7 @@ struct OpInfoEnterProc {
     /* 40 */ ProcPtr parentProc;
     /* 44 */ struct ClassReelEnt * ent;
 };
+PROC_SIZE_CHECK(struct OpInfoEnterProc);
 
 struct OpInfoViewProc {
     /* 00 */ PROC_HEADER;
@@ -90,6 +91,7 @@ struct OpInfoViewProc {
     /* 2E */ u8 index;
     /* 30 */ s16 x;
 };
+PROC_SIZE_CHECK(struct OpInfoViewProc);
 
 struct OpInfoIconProc {
     /* 00 */ PROC_HEADER;
@@ -98,6 +100,7 @@ struct OpInfoIconProc {
     /* 2D */ u8 numIcons;
     /* 2E */ u8 bits;
 };
+PROC_SIZE_CHECK(struct OpInfoIconProc);
 
 void SetLordSelectState(int stat);
 bool sub_080AEE74(void);
@@ -114,6 +117,7 @@ struct OpInfoClassDisplayProc {
     /* 40 */ u8 stats[6];
     /* 46 */ u8 x;
 };
+PROC_SIZE_CHECK(struct OpInfoClassDisplayProc);
 
 struct OpInfoGaugeDrawProc {
     /* 00 */ PROC_HEADER;
@@ -123,6 +127,7 @@ struct OpInfoGaugeDrawProc {
     /* 34 */ u8 width;
     /* 35 */ u8 x;
 };
+PROC_SIZE_CHECK(struct OpInfoGaugeDrawProc);
 
 struct ClassDisplayFont {
     u16 const * sprite;

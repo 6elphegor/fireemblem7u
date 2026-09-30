@@ -9,6 +9,7 @@ struct SioProc85AA7B4 {
     /* 4E */ STRUCT_PAD(0x4E, 0x64);
     /* 64 */ s16 unk_64;
 };
+PROC_SIZE_CHECK(struct SioProc85AA7B4);
 
 extern s8 gUnk_Sio_0203DDDC;
 

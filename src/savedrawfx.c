@@ -18,6 +18,7 @@ struct SaveDrawCursorProc
     /* 34 */ u8 unk_34;
     /* 35 */ u8 unk_35;
 };
+PROC_SIZE_CHECK(struct SaveDrawCursorProc);
 
 struct SaveDrawProcFx
 {
@@ -25,6 +26,7 @@ struct SaveDrawProcFx
     /* 29 */ STRUCT_PAD(0x29, 0x34);
     /* 34 */ struct SaveDrawCursorProc * unk_34;
 };
+PROC_SIZE_CHECK(struct SaveDrawProcFx);
 
 struct SqMaskProc
 {
@@ -33,6 +35,7 @@ struct SqMaskProc
     /* 2A */ s8 unk_2a;
     /* 2B */ u8 unk_2b;
 };
+PROC_SIZE_CHECK(struct SqMaskProc);
 
 extern const struct ProcCmd ProcScr_SaveDrawCursor[];
 extern const struct ProcCmd ProcScr_SqMask[];

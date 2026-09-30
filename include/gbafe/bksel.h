@@ -29,6 +29,7 @@ struct BattleForecastProc {
     /* 52 */ s8 isEffectiveA;
     /* 53 */ s8 isEffectiveB;
 };
+PROC_SIZE_CHECK(struct BattleForecastProc);
 
 int GetBattleForecastPanelSide(void);
 void InitBattleForecastIconPaletteBuffer(void);

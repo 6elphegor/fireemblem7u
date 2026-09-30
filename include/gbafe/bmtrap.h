@@ -24,6 +24,7 @@ struct ProcBmTrap {
 
     /* 54 */ struct Unit * unit;
 };
+PROC_SIZE_CHECK(struct ProcBmTrap);
 
 void RegisterTrapDeathBWL(struct ProcBmTrap * proc);
 void ExecFireTileTrapAnim1(struct ProcBmTrap * proc);

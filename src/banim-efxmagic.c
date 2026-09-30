@@ -37,6 +37,7 @@ struct ProcEfxMagicQuake
     /* 5C */ struct Anim * anim;
     /* 60 */ ProcPtr pQuakePureProc;
 };
+PROC_SIZE_CHECK(struct ProcEfxMagicQuake);
 
 struct ProcEfxCircleWIN
 {
@@ -55,6 +56,7 @@ struct ProcEfxCircleWIN
     /* 58 */ int unk_58;
     /* 5C */ struct Anim * anim;
 };
+PROC_SIZE_CHECK(struct ProcEfxCircleWIN);
 
 ProcPtr NewefxRestRST(struct Anim *anim, int unk44, int unk48, int frame, int speed);
 void efxRestRSTMain(struct ProcEfx *proc);

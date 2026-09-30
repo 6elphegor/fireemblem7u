@@ -12,6 +12,7 @@ struct ManimSineWaveProc {
     /* 29 */ STRUCT_PAD(0x29, 0x64);
     /* 64 */ s16 phase;
 };
+PROC_SIZE_CHECK(struct ManimSineWaveProc);
 
 void InitScanlineEffect(void);
 void sub_0807689C(void);

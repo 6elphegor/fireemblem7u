@@ -35,6 +35,7 @@ struct SaveMenuHelpProc {
     /* 34 */ STRUCT_PAD(0x34, 0x58);
     /* 58 */ int msgId;
 };
+PROC_SIZE_CHECK(struct SaveMenuHelpProc);
 
 extern const struct ProcCmd ProcScr_08CE3C24[];
 extern const struct ProcCmd ProcScr_SaveMenu[];

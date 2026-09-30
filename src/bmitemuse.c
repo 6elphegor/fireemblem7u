@@ -13,6 +13,7 @@ struct ItemUseMenuItemProc {
     /* 3C */ s8 itemNumber;
     /* 3D */ u8 availability;
 };
+PROC_SIZE_CHECK(struct ItemUseMenuItemProc);
 
 s8 CanUnitUseItem(struct Unit * unit, int item)
 {

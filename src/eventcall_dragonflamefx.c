@@ -298,6 +298,7 @@ struct ProcDeadDragonFlame
     /* 50 */ int unk_50;
     /* 54 */ int unk_54;
 };
+PROC_SIZE_CHECK(struct ProcDeadDragonFlame);
 
 bool sub_0807B7B4(struct ProcDeadDragonFlame * proc)
 {
