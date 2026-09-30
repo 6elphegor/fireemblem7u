@@ -98,6 +98,19 @@ is identical to the original ROM.  `make modern-check` compares it with the
 original object by object; see CONTRIBUTING, "Modern build", for what is
 guaranteed.
 
+## Modding
+
+The modern build can also take brand-new content: code and data a mod adds
+are appended after the original ROM (`mod/layout.txt`, `src/mod/`,
+`mod/banim/`, `mod/*/texts.txt`; CONTRIBUTING, "Adding new content").  The
+[`mod/claude-flower`](https://github.com/6elphegor/fireemblem7u/tree/mod/claude-flower)
+branch adds a playable character to Lyn's Chapter 5, a flower with its
+own portrait, map sprites, battle animation and class, and a new tome,
+Petal, whose spell effect is new C code.  Character design by thebes
+(Theia Vogel).
+
+![The flower casting Petal at a bandit, on the native build](docs/images/flower_mod.gif)
+
 ## Layout
 
 | Path | Contents |

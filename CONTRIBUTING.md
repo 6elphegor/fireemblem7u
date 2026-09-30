@@ -625,6 +625,35 @@ What is and isn't guaranteed:
 * Only the data region moves; code edits were always free (the code is C
   and assembly), as long as `fe7u.gba: OK` is not the goal.
 
+### Adding new content (mods)
+
+The original ROM has no free space, and every data object of the layout is
+pinned to its original address, so brand-new code and data (a character,
+a class, graphics, a spell) have nowhere to go in the layout.  In the
+modern build they are appended after the whole original ROM:
+
+* `mod/layout.txt` lists the objects to append, in order, as
+  `rom APPEND 0 OBJECT(SECTIONS)`; `tools/modern.py` adds its lines to
+  the modern layout and `tools/gen_layout.py` places them after
+  everything, 4-aligned (the matching build refuses them).  For C files,
+  `src/mod/*.c`, compiled like the rest of `src/` (for the ROM and the
+  host), list `.text .rodata .data`: C data is `CONST_DATA` (`.data`,
+  which stays in ROM here), so mod files hold no mutable globals.
+* Battle animation scripts a mod adds are `mod/banim/NAME.s` (the same
+  format as `banim/`), placed with
+  `rom APPEND 0 build/banim/banim.o(.rodata.NAME)`; `tools/banim.py`
+  resolves their sheet pointers like any other (sheets may be C arrays).
+* Texts: `mod/*/texts.txt` follow the game's texts (`tools/textencode.py`
+  numbers them on from the last message).  Their headers may be names,
+  `## MSG_MY_TEXT`; `make msgheader` defines the name beside the number
+  in `include/constants/msg.h`.
+
+Tables that grow (a new character, class, item or portrait entry) grow in
+place: their sections are not pinned in the modern build.  The
+`mod/claude-flower` branch is a complete example: a new playable
+character with its portrait, map sprites, battle animation, class, a
+tome with a new spell effect written in C, and a scene that recruits it.
+
 ## Portable (NONMATCHING) build
 
 Matching the original bytes takes C that no one would write otherwise:
