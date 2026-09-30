@@ -12,6 +12,13 @@
  * righttrigger...).  A line replaces that action's defaults; an action with
  * no line keeps them.
  *
+ * The window has a menu bar above the picture (drawn here, so it is the
+ * same everywhere SDL runs): Controls lists every action with its
+ * bindings; choose one and press a key or a controller button to rebind it
+ * (Esc cancels; a key replaces the action's keys, a controller input its
+ * controller bindings); the file is saved at once.  Esc opens and closes
+ * the menu.  Text: font8x8 (platform/font8x8.h, public domain).
+ *
  * Headless runs initialize nothing of SDL (no window, no audio device).
  */
 #define _POSIX_C_SOURCE 200809L
@@ -27,6 +34,7 @@
 #include <SDL.h>
 
 #include "platform.h"
+#include "font8x8.h"
 
 static SDL_Window *sWindow;
 static SDL_Renderer *sRenderer;
@@ -255,17 +263,21 @@ static int default_keys_path(char *out, size_t size)
     return 1;
 }
 
+static char sKeysPath[1100];
+
 static void load_keys(void)
 {
-    char path[1100];
+    char *path = sKeysPath;
     const char *file = gHostOptions.keys;
     char *text;
 
     parse_keys(DEFAULT_KEYS, "defaults");
     if (!file) {
-        if (!default_keys_path(path, sizeof path))
+        if (!default_keys_path(path, sizeof sKeysPath))
             return;
         file = path;
+    } else {
+        snprintf(sKeysPath, sizeof sKeysPath, "%s", file);
     }
     text = read_file(file);
     if (text) {
@@ -361,6 +373,370 @@ static void close_pad(SDL_JoystickID id)
     }
 }
 
+
+/* --- the menu bar -------------------------------------------------------- */
+
+#define BAR_H 24        /* window pixels */
+#define TEXT_SCALE 2    /* font8x8 glyphs at 16x16 */
+#define ROW_H 22
+#define NAME_COL (12 * 8 * TEXT_SCALE)   /* action names: the longest is 11 */
+
+static SDL_Texture *sFont;      /* 128 glyphs of 8x8, white on transparent */
+
+enum { MENU_CLOSED, MENU_OPEN, MENU_CAPTURE };
+static int sMenu = MENU_CLOSED;
+static int sHover = -1;         /* row under the mouse */
+static int sCaptureAct = -1;
+static int sInputHold;          /* frames of no game input after a rebind */
+
+/* rows of the drop-down: every action, then these */
+enum { ROW_RESET = ACT_COUNT, ROW_OPENFILE, ROW_COUNT };
+
+static const SDL_Color COL_BAR = { 0x24, 0x1E, 0x2A, 0xFF };
+static const SDL_Color COL_MENU = { 0x2E, 0x27, 0x36, 0xF4 };
+static const SDL_Color COL_TEXT = { 0xF4, 0xEC, 0xE0, 0xFF };
+static const SDL_Color COL_DIM = { 0xA8, 0x9C, 0xB0, 0xFF };
+static const SDL_Color COL_ACCENT = { 0xD9, 0x77, 0x57, 0xFF };
+
+static void make_font(void)
+{
+    Uint32 *px = calloc(128 * 8 * 8, 4);
+    int c, x, y;
+
+    for (c = 0; c < 128; c++)
+        for (y = 0; y < 8; y++)
+            for (x = 0; x < 8; x++)
+                if (font8x8_basic[c][y] & (1 << x))
+                    px[y * 128 * 8 + c * 8 + x] = 0xFFFFFFFFu;
+    sFont = SDL_CreateTexture(sRenderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, 128 * 8, 8);
+    if (sFont) {
+        SDL_UpdateTexture(sFont, NULL, px, 128 * 8 * 4);
+        SDL_SetTextureBlendMode(sFont, SDL_BLENDMODE_BLEND);
+    }
+    free(px);
+}
+
+static int text_width(const char *t)
+{
+    return (int)strlen(t) * 8 * TEXT_SCALE;
+}
+
+/* Draw at most maxw pixels of text (an ellipsis-free cut). */
+static void draw_text(int x, int y, const char *t, SDL_Color c, int maxw)
+{
+    SDL_Rect src = { 0, 0, 8, 8 }, dst = { x, y, 8 * TEXT_SCALE, 8 * TEXT_SCALE };
+
+    if (!sFont)
+        return;
+    SDL_SetTextureColorMod(sFont, c.r, c.g, c.b);
+    SDL_SetTextureAlphaMod(sFont, c.a);
+    for (; *t; t++) {
+        if (maxw >= 0 && dst.x + dst.w > x + maxw)
+            break;
+        src.x = ((unsigned char)*t & 0x7F) * 8;
+        SDL_RenderCopy(sRenderer, sFont, &src, &dst);
+        dst.x += dst.w;
+    }
+}
+
+static void fill(int x, int y, int w, int h, SDL_Color c)
+{
+    SDL_Rect r = { x, y, w, h };
+    SDL_SetRenderDrawBlendMode(sRenderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(sRenderer, c.r, c.g, c.b, c.a);
+    SDL_RenderFillRect(sRenderer, &r);
+}
+
+/* A binding as the keys file writes it (file) or as the menu shows it. */
+static void binding_text(const struct Binding *b, char *out, size_t size, int file)
+{
+    static const struct { const char *sdl, *shown; } pads[] = {
+        { "a", "Pad A" }, { "b", "Pad B" }, { "x", "Pad X" }, { "y", "Pad Y" },
+        { "back", "Pad Back" }, { "start", "Pad Start" }, { "guide", "Pad Home" },
+        { "leftshoulder", "Pad LB" }, { "rightshoulder", "Pad RB" },
+        { "leftstick", "Pad L3" }, { "rightstick", "Pad R3" },
+        { "dpup", "Pad Up" }, { "dpdown", "Pad Down" }, { "dpleft", "Pad Left" }, { "dpright", "Pad Right" },
+    };
+    const char *name;
+    size_t i;
+
+    switch (b->kind) {
+    case BIND_KEY:
+        snprintf(out, size, "%s%s%s%s%s",
+                 b->mods & KMOD_GUI ? "Cmd+" : "", b->mods & KMOD_CTRL ? "Ctrl+" : "",
+                 b->mods & KMOD_ALT ? "Alt+" : "", b->mods & KMOD_SHIFT ? "Shift+" : "",
+                 SDL_GetScancodeName((SDL_Scancode)b->code));
+        return;
+    case BIND_PADBUTTON:
+        name = SDL_GameControllerGetStringForButton((SDL_GameControllerButton)b->code);
+        if (file) {
+            snprintf(out, size, "pad:%s", name ? name : "?");
+            return;
+        }
+        for (i = 0; i < sizeof pads / sizeof pads[0]; i++)
+            if (name && strcmp(name, pads[i].sdl) == 0) {
+                snprintf(out, size, "%s", pads[i].shown);
+                return;
+            }
+        snprintf(out, size, "Pad %s", name ? name : "?");
+        return;
+    case BIND_PADAXIS:
+        name = SDL_GameControllerGetStringForAxis((SDL_GameControllerAxis)b->code);
+        if (file)
+            snprintf(out, size, "pad:%s%c", name ? name : "?", b->sign > 0 ? '+' : '-');
+        else if (b->code == SDL_CONTROLLER_AXIS_LEFTX)
+            snprintf(out, size, "Stick %s", b->sign > 0 ? "Right" : "Left");
+        else if (b->code == SDL_CONTROLLER_AXIS_LEFTY)
+            snprintf(out, size, "Stick %s", b->sign > 0 ? "Down" : "Up");
+        else if (b->code == SDL_CONTROLLER_AXIS_TRIGGERLEFT)
+            snprintf(out, size, "Pad LT");
+        else if (b->code == SDL_CONTROLLER_AXIS_TRIGGERRIGHT)
+            snprintf(out, size, "Pad RT");
+        else
+            snprintf(out, size, "Pad %s%c", name ? name : "?", b->sign > 0 ? '+' : '-');
+        return;
+    }
+    out[0] = 0;
+}
+
+static void action_text(int act, char *out, size_t size, int file)
+{
+    int i;
+    size_t n = 0;
+
+    out[0] = 0;
+    for (i = 0; i < sBindCount[act] && n + 2 < size; i++) {
+        char one[64];
+        binding_text(&sBind[act][i], one, sizeof one, file);
+        n += snprintf(out + n, size - n, "%s%s", i ? ", " : "", one);
+    }
+    if (!file && sBindCount[act] == 0)
+        snprintf(out, size, "(none)");
+}
+
+static void save_keys(void)
+{
+    FILE *f;
+    int act;
+    const char *end;
+
+    if (!sKeysPath[0])
+        return;
+    f = fopen(sKeysPath, "w");
+    if (!f) {
+        fprintf(stderr, "platform: can't write %s\n", sKeysPath);
+        return;
+    }
+    /* the defaults' comment header, then the actions */
+    end = strstr(DEFAULT_KEYS, "\n\n");
+    fwrite(DEFAULT_KEYS, 1, end ? (size_t)(end - DEFAULT_KEYS) + 2 : 0, f);
+    for (act = 0; act < ACT_COUNT; act++) {
+        char text[512];
+        action_text(act, text, sizeof text, 1);
+        fprintf(f, "%-11s = %s\n", sActionNames[act], text);
+    }
+    fclose(f);
+}
+
+/* Set a new binding: a key replaces the action's keys, a controller input
+ * its controller bindings. */
+static void rebind(int act, const struct Binding *nb)
+{
+    struct Binding keep[MAX_BINDINGS];
+    int i, n = 0, pad = nb->kind != BIND_KEY;
+
+    for (i = 0; i < sBindCount[act]; i++)
+        if ((sBind[act][i].kind != BIND_KEY) != pad && n < MAX_BINDINGS - 1)
+            keep[n++] = sBind[act][i];
+    keep[n++] = *nb;
+    memcpy(sBind[act], keep, n * sizeof keep[0]);
+    sBindCount[act] = n;
+    save_keys();
+}
+
+static void reset_keys(void)
+{
+    memset(sBindCount, 0, sizeof sBindCount);
+    parse_keys(DEFAULT_KEYS, "defaults");
+    save_keys();
+}
+
+/* the drop-down's rows: x, y of row r */
+static int menu_width(void)
+{
+    int w, h;
+    SDL_GetRendererOutputSize(sRenderer, &w, &h);
+    return w - 8;
+}
+
+static SDL_Rect menu_row(int r)
+{
+    SDL_Rect rect = { 4, BAR_H + 4 + r * ROW_H + (r >= ROW_RESET ? 8 : 0), menu_width(), ROW_H };
+    return rect;
+}
+
+static SDL_Rect controls_label(void)
+{
+    SDL_Rect r = { 4, 0, text_width("Controls") + 20, BAR_H };
+    return r;
+}
+
+static int row_at(int x, int y)
+{
+    int r;
+    for (r = 0; r < ROW_COUNT; r++) {
+        SDL_Rect rr = menu_row(r);
+        if (x >= rr.x && x < rr.x + rr.w && y >= rr.y && y < rr.y + rr.h)
+            return r;
+    }
+    return -1;
+}
+
+static void draw_menu(void)
+{
+    SDL_Rect cl = controls_label();
+    int w, h, r;
+
+    SDL_GetRendererOutputSize(sRenderer, &w, &h);
+    fill(0, 0, w, BAR_H, COL_BAR);
+    if (sMenu != MENU_CLOSED)
+        fill(cl.x, cl.y, cl.w, cl.h, COL_MENU);
+    draw_text(cl.x + 10, (BAR_H - 16) / 2, "Controls", sMenu != MENU_CLOSED ? COL_ACCENT : COL_TEXT, -1);
+    {
+        const char *hint = sMenu == MENU_CLOSED ? "Esc: controls"
+                         : sMenu == MENU_CAPTURE ? "Esc: cancel" : "click to rebind";
+        draw_text(w - text_width(hint) - 10, (BAR_H - 16) / 2, hint, COL_DIM, -1);
+    }
+    if (sMenu == MENU_CLOSED)
+        return;
+
+    {
+        SDL_Rect last = menu_row(ROW_COUNT - 1);
+        fill(0, BAR_H, menu_width() + 8, last.y + last.h + 4 - BAR_H, COL_MENU);
+        fill(4, menu_row(ROW_RESET).y - 5, menu_width(), 1, COL_DIM);
+    }
+    for (r = 0; r < ROW_COUNT; r++) {
+        SDL_Rect rr = menu_row(r);
+        int ty = rr.y + (ROW_H - 16) / 2;
+        int hot = r == sHover || (sMenu == MENU_CAPTURE && r == sCaptureAct);
+
+        if (hot)
+            fill(rr.x, rr.y, rr.w, rr.h, sMenu == MENU_CAPTURE ? COL_ACCENT : COL_BAR);
+        if (r < ACT_COUNT) {
+            char text[256];
+            SDL_Color name = hot && sMenu == MENU_CAPTURE ? COL_BAR : COL_TEXT;
+            if (sMenu == MENU_CAPTURE && r == sCaptureAct)
+                snprintf(text, sizeof text, "press a key or button");
+            else
+                action_text(r, text, sizeof text, 0);
+            draw_text(rr.x + 8, ty, sActionNames[r], name, -1);
+            draw_text(rr.x + 8 + NAME_COL, ty, text, hot && sMenu == MENU_CAPTURE ? COL_BAR : COL_DIM,
+                      rr.w - 16 - NAME_COL);
+        } else if (r == ROW_RESET) {
+            draw_text(rr.x + 8, ty, "Reset to defaults", COL_TEXT, -1);
+        } else {
+            draw_text(rr.x + 8, ty, "Open keys file", COL_TEXT, -1);
+        }
+    }
+}
+
+static void open_keys_file(void)
+{
+    char url[1200];
+    if (!sKeysPath[0])
+        return;
+    save_keys();
+    snprintf(url, sizeof url, "file://%s", sKeysPath);
+#if SDL_VERSION_ATLEAST(2, 0, 14)
+    if (SDL_OpenURL(url) != 0)
+        fprintf(stderr, "platform: can't open %s: %s\n", sKeysPath, SDL_GetError());
+#else
+    fprintf(stderr, "platform: key bindings are in %s\n", sKeysPath);
+#endif
+}
+
+static int is_modifier(SDL_Scancode sc)
+{
+    return sc == SDL_SCANCODE_LCTRL || sc == SDL_SCANCODE_RCTRL || sc == SDL_SCANCODE_LSHIFT
+        || sc == SDL_SCANCODE_RSHIFT || sc == SDL_SCANCODE_LALT || sc == SDL_SCANCODE_RALT
+        || sc == SDL_SCANCODE_LGUI || sc == SDL_SCANCODE_RGUI;
+}
+
+/* The menu's share of an event; 1 if it took it. */
+static int menu_event(const SDL_Event *e)
+{
+    struct Binding b;
+
+    if (sMenu == MENU_CAPTURE) {
+        memset(&b, 0, sizeof b);
+        if (e->type == SDL_KEYDOWN && !e->key.repeat) {
+            SDL_Scancode sc = e->key.keysym.scancode;
+            if (sc == SDL_SCANCODE_ESCAPE) {
+                sMenu = MENU_OPEN;
+                return 1;
+            }
+            if (is_modifier(sc))
+                return 1;
+            b.kind = BIND_KEY;
+            b.code = sc;
+            b.mods = e->key.keysym.mod & (KMOD_CTRL | KMOD_SHIFT | KMOD_ALT | KMOD_GUI);
+        } else if (e->type == SDL_CONTROLLERBUTTONDOWN) {
+            b.kind = BIND_PADBUTTON;
+            b.code = e->cbutton.button;
+        } else if (e->type == SDL_CONTROLLERAXISMOTION && abs(e->caxis.value) > 24000) {
+            b.kind = BIND_PADAXIS;
+            b.code = e->caxis.axis;
+            b.sign = e->caxis.value > 0 ? 1 : -1;
+        } else if (e->type == SDL_MOUSEBUTTONDOWN) {
+            sMenu = MENU_OPEN;
+            return 1;
+        } else {
+            return e->type == SDL_KEYUP || e->type == SDL_CONTROLLERBUTTONUP;
+        }
+        rebind(sCaptureAct, &b);
+        sMenu = MENU_OPEN;
+        sInputHold = 20;
+        return 1;
+    }
+
+    switch (e->type) {
+    case SDL_KEYDOWN:
+        if (e->key.keysym.scancode == SDL_SCANCODE_ESCAPE && !e->key.repeat) {
+            sMenu = sMenu == MENU_CLOSED ? MENU_OPEN : MENU_CLOSED;
+            sHover = -1;
+            sInputHold = 10;
+            return 1;
+        }
+        return sMenu != MENU_CLOSED;
+    case SDL_MOUSEMOTION:
+        sHover = sMenu == MENU_OPEN ? row_at(e->motion.x, e->motion.y) : -1;
+        return sMenu != MENU_CLOSED;
+    case SDL_MOUSEBUTTONDOWN: {
+        SDL_Rect cl = controls_label();
+        int x = e->button.x, y = e->button.y, r;
+        if (y < BAR_H && x >= cl.x && x < cl.x + cl.w) {
+            sMenu = sMenu == MENU_CLOSED ? MENU_OPEN : MENU_CLOSED;
+            return 1;
+        }
+        if (sMenu == MENU_CLOSED)
+            return 0;
+        r = row_at(x, y);
+        if (r < 0) {
+            sMenu = MENU_CLOSED;
+        } else if (r < ACT_COUNT) {
+            sMenu = MENU_CAPTURE;
+            sCaptureAct = r;
+        } else if (r == ROW_RESET) {
+            reset_keys();
+        } else if (r == ROW_OPENFILE) {
+            open_keys_file();
+        }
+        return 1;
+    }
+    }
+    return 0;
+}
+
 int FrontendInit(int headless, int scale)
 {
     sHeadless = headless;
@@ -372,7 +748,7 @@ int FrontendInit(int headless, int scale)
         return -1;
     }
     sWindow = SDL_CreateWindow("Fire Emblem", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                               PPU_WIDTH * scale, PPU_HEIGHT * scale, SDL_WINDOW_RESIZABLE);
+                               PPU_WIDTH * scale, PPU_HEIGHT * scale + BAR_H, SDL_WINDOW_RESIZABLE);
     if (!sWindow) {
         fprintf(stderr, "platform: SDL_CreateWindow: %s\n", SDL_GetError());
         return -1;
@@ -384,8 +760,8 @@ int FrontendInit(int headless, int scale)
         fprintf(stderr, "platform: SDL_CreateRenderer: %s\n", SDL_GetError());
         return -1;
     }
-    SDL_RenderSetLogicalSize(sRenderer, PPU_WIDTH, PPU_HEIGHT);
     load_keys();
+    make_font();
     /* 0x00BBGGRR words: red in the lowest byte, ABGR8888 on little-endian */
     sTexture = SDL_CreateTexture(sRenderer, SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING,
                                  PPU_WIDTH, PPU_HEIGHT);
@@ -452,12 +828,20 @@ int FrontendPoll(u16 *keys, int *fast)
             open_pad(e.cdevice.which);
         if (e.type == SDL_CONTROLLERDEVICEREMOVED)
             close_pad(e.cdevice.which);
+        if (menu_event(&e))
+            continue;
         if (action_pressed(ACT_QUIT, &e))
             return 0;
         if (action_pressed(ACT_FULLSCREEN, &e)) {
             int full = SDL_GetWindowFlags(sWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP;
             SDL_SetWindowFullscreen(sWindow, full ? 0 : SDL_WINDOW_FULLSCREEN_DESKTOP);
         }
+    }
+    /* no game input while the menu is open or just after a rebind */
+    if (sMenu != MENU_CLOSED || sInputHold > 0) {
+        if (sInputHold > 0)
+            sInputHold--;
+        return 1;
     }
     k = SDL_GetKeyboardState(NULL);
     mods = SDL_GetModState();
@@ -477,8 +861,26 @@ void FrontendPresent(const uint32_t *fb)
     if (sHeadless || !sTexture)
         return;
     SDL_UpdateTexture(sTexture, NULL, fb, PPU_WIDTH * 4);
+    SDL_SetRenderDrawColor(sRenderer, 0, 0, 0, 0xFF);
     SDL_RenderClear(sRenderer);
-    SDL_RenderCopy(sRenderer, sTexture, NULL, NULL);
+    {
+        /* the picture below the menu bar, as large as fits at 3:2 */
+        int w, h;
+        SDL_Rect dst;
+        SDL_GetRendererOutputSize(sRenderer, &w, &h);
+        h -= BAR_H;
+        if (w * PPU_HEIGHT > h * PPU_WIDTH) {
+            dst.h = h;
+            dst.w = h * PPU_WIDTH / PPU_HEIGHT;
+        } else {
+            dst.w = w;
+            dst.h = w * PPU_HEIGHT / PPU_WIDTH;
+        }
+        dst.x = (w - dst.w) / 2;
+        dst.y = BAR_H + (h - dst.h) / 2;
+        SDL_RenderCopy(sRenderer, sTexture, NULL, &dst);
+    }
+    draw_menu();
     SDL_RenderPresent(sRenderer);
 }
 
@@ -497,6 +899,10 @@ void FrontendQuit(void)
     }
     if (sTexture)
         SDL_DestroyTexture(sTexture);
+    if (sFont)
+        SDL_DestroyTexture(sFont);
+    sFont = NULL;
+    sMenu = MENU_CLOSED;
     if (sRenderer)
         SDL_DestroyRenderer(sRenderer);
     if (sWindow)
