@@ -520,8 +520,14 @@ struct ChapterMerchantPos {
     /* 88 */ u8 y[2];
 };
 
+#if PLATFORM_GBA
 #define MERCHANT_X(info) (((struct ChapterMerchantPos const *) (info))->x[gPlaySt.chapterModeIndex == 3 ? 1 : 0])
 #define MERCHANT_Y(info) (((struct ChapterMerchantPos const *) (info))->y[gPlaySt.chapterModeIndex == 3 ? 1 : 0])
+#else
+// (struct ChapterInfo holds pointers, so 0x86 is not merchantPosX on a host)
+#define MERCHANT_X(info) ((&(info)->merchantPosX)[gPlaySt.chapterModeIndex == 3 ? 1 : 0])
+#define MERCHANT_Y(info) ((&(info)->merchantPosY)[gPlaySt.chapterModeIndex == 3 ? 1 : 0])
+#endif
 
 int GetChapterAllyUnitCount(void)
 {

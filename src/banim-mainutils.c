@@ -535,7 +535,14 @@ void SwitchAISFrameDataFromBARoundType(struct Anim * anim, int type)
     anim->state2 &= ANIM_BIT2_FRONT_FRAME | ANIM_BIT2_POS_RIGHT | ANIM_BIT2_0400;
     anim->currentRoundType = type;
     anim->commandQueueSize = 0;
+#if PLATFORM_GBA
+    // gBanimOamr2 is the 0x5800 bytes after gBanimOaml
     anim->pSpriteDataPool = gBanimOaml + GetAnimPosition(anim) * 0x5800 / 4;
+#else
+    // (not on a host: an overlay inside gBanimOaml, gOpInfoFrameBuf, is
+    // bigger there and moves gBanimOamr2 up; tools/hostram.py)
+    anim->pSpriteDataPool = GetAnimPosition(anim) == EKR_POS_L ? gBanimOaml : gBanimOamr2;
+#endif
     AnimSort();
 }
 

@@ -21,8 +21,13 @@ struct ProcEkrGauge {
 };
 PROC_SIZE_CHECK(struct ProcEkrGauge);
 
+// A view of a struct Anim: unk3C is its pSpriteData
 struct EkrGaugeStruct1 {
+#if PLATFORM_GBA
     STRUCT_PAD(0x00, 0x3C);
+#else
+    u8 pad[__builtin_offsetof(struct Anim, pSpriteData)];
+#endif
     /* 3C */ const void * unk3C;
 };
 
