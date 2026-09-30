@@ -67,13 +67,18 @@ script has an `sram` line):
 | prologue | 7,447 / 12,850 | a crash later in the tutorial |
 | hector, ch13, actions, shops, final | 6,000-12,700 | crashes in battle animations (spell scripts calling into data, `gOamAffinePutIt`) and other host-only faults not looked at yet |
 
-The pictures are not right yet: most BG layers come out black or garbled
-(world map, chapter maps, window frames) while sprites, text and portraits
-are drawn.  Part of it is gHostVram's alignment (see "Requests to the
-platform layer" below); with gHostVram 0x20000-aligned the sprites are
-right, the BGs still not.  No sound reaches the platform: the m4a engine
-runs (the C port) but nothing hands `gSoundInfo.pcmBuffer` to
-`HostAudioSubmit`.
+Pictures and sound (`make hosttest`, docs/port-platform.md, "Test against
+mGBA"): on the opening and lyn, the checkpoints are mGBA's pictures pixel
+for pixel (15 of 16 and 18 of 32; the rest differ by animation phase,
+except the sprites of a ranged battle while its screen pans), found some
+frames earlier on the host, which never lags.  The backgrounds that came
+out black or garbled had two causes: gHostVram was not 0x20000-aligned
+(the platform now aligns the video memories), and `ArchiveCurrentPalettes`
+(bmlib.c) stepped through `struct PalFadeSt` by 24 halfwords, the GBA's
+size, so every fade from the archive (`WriteFadedPaletteFromArchive`: the
+save menu, the world map...) took palette N from 8·N bytes too far.  The
+sound is the platform's (platform/audio.c): m4a's mixed buffer and the CGB
+registers played as the GBA's hardware would.
 
 **What is linked.**  Every `src/*.c` but `agb-sram.c` (platform/sram.c
 replaces it), `src/data`, `src/events`, the generated `sound/*.c` and
@@ -156,7 +161,9 @@ the GBA builds are unchanged):
   that agbcc rounds to 4 bytes (`AiEscapePt`, `AiHealThreshold`,
   `EndingDefeatEnt`) get the padding on a host; `ProcEventMapLock` puts its
   two bytes at `EventProc`'s offsets (an ASMC's view of the event proc);
-  the chapter goal is read by field, not at `+ 0x8E`; the heal-staff
+  the chapter goal is read by field, not at `+ 0x8E`;
+  `ArchiveCurrentPalettes` steps by `sizeof(struct PalFadeSt)`, not 24
+  halfwords; the heal-staff
   background TSA is strided in bytes, not in 4-byte pointers;
   `ANIMSCR_WIDE` is now defined on a host (it was only defined for the GBA,
   so a host compiled one-cell scripts with 8-byte cells);
@@ -181,18 +188,17 @@ the GBA builds are unchanged):
   `gTextInitInfo_ChapterStatus`: pointer-width fields holding numbers, or
   RAM pointers, left as `.incbin` because no `.4byte SYMBOL` marked them.
 
-**Requests to the platform layer** (not changed here):
+**Requests to the platform layer**, done (docs/port-platform.md):
 
-* Align `gHostVram` to 0x20000 and `gHostPltt`/`gHostOam` to 0x400 (and
-  `gHostSram` to 0x10000).  The game turns VRAM pointers into tile numbers
-  with the low bits of the address (`((u32) vram << 0x11) >> 0x16`,
-  `& 0x1FFFF`, `VRAM | offset`, `(VRAM + x) & 0xFFFF`): with the arrays
-  only 16-aligned every such tile number is wrong.  Tried locally (as
-  `= { 0 }` definitions with `aligned(0x20000)`: clang rejects that
-  alignment for a common symbol): sprites come out right.
-* Audio: something must take the part of `gSoundInfo.pcmBuffer` that
-  `SoundMain` mixed each frame to `HostAudioSubmit` (see "m4a sound driver"
-  above).
+* The memories' alignment: VRAM on 0x20000, palette and OAM on 0x400, as
+  pointers into one aligned mapping (a static array can't be aligned past
+  16 KB on macOS: `aligned(0x20000)` on an array gave an address 0x4000
+  past a boundary, which moved every screen block the game computed).
+  `gHostSram` stays a 16-aligned array: `gSramMain = CART_SRAM` needs a
+  link-time address, and the save block offsets are differences
+  (`SramAddrToOffset`), so no SRAM address bits are used.
+* Audio: the platform reads the part of `gSoundInfo.pcmBuffer` the DMA
+  plays each frame (through `SOUND_INFO_PTR`) and the CGB registers.
 
 ## Compiler and ABI requirements
 
@@ -325,14 +331,11 @@ and `void-pointer-to-int-cast` categories for the current list):
   MPlayJumpTable/plynote/ExtVolPit`, `CgbChannel.wp/cp/tp/pp/np`,
   `SoundChannel.cp/pp/np` are pointers now) and no byte offsets; the
   matching build still assembles `asm/m4a_1.s`.  Stored addresses in track
-  data go through `M4aReadAddr` (port-data.md, "Music and text").  What
-  a host still needs, from the platform layer: the DirectSound FIFO/DMA
-  (the mixer writes 8-bit samples into `gSoundInfo.pcmBuffer`, right half
-  then left half, `pcmSamplesPerVBlank` per frame at `pcmFreq`; a host can
-  read the part SoundMain just mixed, as `tools/emutest.c` does, instead of
-  emulating timer 0 and DMA 1/2), the CGB sound registers (`CgbSound` in
-  `src/m4a.c` writes `REG_NRxx` and wave RAM), `m4aSoundVSync`'s DMA
-  restart, and `M4aHostRomAddr`.  On the GBA the loops run from IWRAM
+  data go through `M4aReadAddr` (port-data.md, "Music and text").  On a
+  host, platform/audio.c plays the DirectSound buffer (the part the DMA
+  plays each frame, from `pcmDmaCounter`, instead of emulating timer 0 and
+  DMA 1/2) and the CGB registers `CgbSound` leaves; `M4aHostRomAddr` is
+  src/host/hostglue.c's.  On the GBA the loops run from IWRAM
   (`SoundMainRAM_Buffer`, 0x400 bytes, which they almost fill); a host
   calls them in place (`MIXER()` in `src/m4a_1.c`).
 * **SRAM access** (agb-sram.c:32,45,47,53,57,59,65): copies its own Thumb
