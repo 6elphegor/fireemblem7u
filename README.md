@@ -4,6 +4,12 @@ A matching decompilation of *Fire Emblem* (GBA, `AE7E`). It builds:
 
 * `fe7u.gba` — `sha1: c735fdbb9e8abe19e0c6a44708df19acc962e204`
 
+![Uhai against Heath in the Final Chapter, running natively on macOS](docs/images/final_battle.gif)
+
+*The Final Chapter on the native macOS build (`make host`): the decompiled C
+compiled for arm64 and run without an emulator. The frames were dumped with
+`build/host-game/fe7u --input tests/inputs/final.txt --dump-frames`.*
+
 ## Status
 
 Every game function is decompiled to C and matches the original bytes. Some
