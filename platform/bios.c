@@ -629,13 +629,28 @@ void HuffUnComp(const void *srcp, void *dest)
 
 /* ---- the rest ---- */
 
+/* SOUNDBIAS's level (bits 0-9) ramps to 0 or to 0x200 (the BIOS steps it
+ * gradually; here it is set at once).  Needs gBiosMemory.io. */
+static void set_sound_bias(u16 level)
+{
+    u8 *io = gBiosMemory.io;
+    u16 v;
+    if (!io)
+        return;
+    v = (u16)(io[0x88] | io[0x89] << 8);
+    v = (u16)((v & ~0x3FF) | level);
+    io[0x88] = (u8)v;
+    io[0x89] = (u8)(v >> 8);
+}
+
 void SoundBiasReset(void)
 {
-    /* SOUNDBIAS ramps to 0: nothing to do without the GBA's sound output */
+    set_sound_bias(0);
 }
 
 void SoundBiasSet(void)
 {
+    set_sound_bias(0x200);
 }
 
 /* No link cable: the transfer always fails. */

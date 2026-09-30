@@ -26,14 +26,14 @@ void HostSramLoad(const char *path, const char *initImage)
     const char *from = initImage ? initImage : path;
     FILE *f;
 
-    memset(gHostSram, 0xFF, sizeof(gHostSram));
+    memset(gHostSram, 0xFF, HOST_SRAM_BANK);
     sPath = path;
 
     if (from && (f = fopen(from, "rb")) != NULL) {
-        size_t n = fread(gHostSram, 1, sizeof(gHostSram), f);
+        size_t n = fread(gHostSram, 1, HOST_SRAM_BANK, f);
         fclose(f);
         if (n == 0)
-            memset(gHostSram, 0xFF, sizeof(gHostSram));
+            memset(gHostSram, 0xFF, HOST_SRAM_BANK);
     } else if (initImage) {
         fprintf(stderr, "platform: can't read the SRAM image %s\n", initImage);
     }

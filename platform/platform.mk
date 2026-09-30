@@ -24,7 +24,7 @@ HDRS := platform/bios.h platform/ppu.h platform/tests/test.h
 # (compiled with PLATFORM_RUNTIME_CFLAGS) and platform/armfunc.c (compiled
 # like the game's C: it includes gbafe.h) with PLATFORM_LIBS.
 PLATFORM_RUNTIME_SRC := platform/bios.c platform/ppu.c platform/memory.c platform/irq.c \
-                        platform/host.c platform/input.c platform/sram.c platform/png.c
+                        platform/host.c platform/input.c platform/sram.c platform/png.c platform/audio.c
 PLATFORM_RUNTIME_HDRS := platform/platform.h platform/bios.h platform/ppu.h include/gba/host.h
 SDL2_CONFIG ?= $(shell command -v sdl2-config 2>/dev/null)
 ifneq ($(SDL2_CONFIG),)

@@ -110,15 +110,17 @@ static void set_io16(u32 off, u16 v)
     gHostIo[off + 1] = (u8)(v >> 8);
 }
 
+/* tools/emutest.c's hashVideo: FNV-1a over each pixel's 0x00BBGGRR as 4
+ * little-endian bytes, so a --log line compares with emutest's frames.log
+ * and its shot lines. */
 uint64_t HostFrameHash(const uint32_t *fb)
 {
     uint64_t h = 0xcbf29ce484222325ULL;
-    int i;
+    int i, k;
     for (i = 0; i < PPU_WIDTH * PPU_HEIGHT; i++) {
         uint32_t p = fb[i] & 0xFFFFFF;
-        h = (h ^ (p & 0xFF)) * 0x100000001b3ULL;
-        h = (h ^ ((p >> 8) & 0xFF)) * 0x100000001b3ULL;
-        h = (h ^ (p >> 16)) * 0x100000001b3ULL;
+        for (k = 0; k < 4; k++)
+            h = (h ^ ((p >> (8 * k)) & 0xFF)) * 0x100000001b3ULL;
     }
     return h;
 }
@@ -184,6 +186,18 @@ static void finish(int status)
     longjmp(sExitJmp, 1);
 }
 
+static void write_bin(const char *name, const char *what, const void *p, size_t size)
+{
+    char path[1024];
+    FILE *f;
+    snprintf(path, sizeof path, "%s/%s.%s.bin", gHostOptions.dumpDir, name, what);
+    f = fopen(path, "wb");
+    if (!f || fwrite(p, 1, size, f) != size)
+        fprintf(stderr, "platform: can't write %s\n", path);
+    if (f)
+        fclose(f);
+}
+
 static void write_shot(const char *name)
 {
     char path[1024];
@@ -192,6 +206,13 @@ static void write_shot(const char *name)
     snprintf(path, sizeof path, "%s/%s.png", gHostOptions.dumpDir, name);
     if (HostWritePng(path, gHostFrame, PPU_WIDTH, PPU_HEIGHT) != 0)
         fprintf(stderr, "platform: can't write %s\n", path);
+    if (gHostOptions.dumpMem) {
+        /* as tools/emutest.c's dumps (record --dump), plus the registers */
+        write_bin(name, "pal", gHostPltt, HOST_PLTT_SIZE);
+        write_bin(name, "vram", gHostVram, HOST_VRAM_SIZE);
+        write_bin(name, "oam", gHostOam, HOST_OAM_SIZE);
+        write_bin(name, "io", gHostIo, HOST_IO_SIZE);
+    }
 }
 
 static u16 sKeys; /* the keys of the frame running (1 = pressed) */
@@ -236,9 +257,11 @@ void HostRunFrame(void)
 
     /* VBlank */
     line_start(160);
+    HostAudioFrame();
     HostDmaRun(HOST_DMA_VBLANK);
     if (io16(REG_OFFSET_DISPSTAT) & DISPSTAT_VBLANK_INTR)
         HostRaiseIrq(INTR_FLAG_VBLANK);
+    HostAudioFrameEnd();
 
     /* frame n is done */
     if (sLog)
@@ -249,7 +272,7 @@ void HostRunFrame(void)
         while ((shot = HostScriptShot(sScript, n, &idx)) != NULL)
             write_shot(shot);
     }
-    if (gHostOptions.dumpEvery > 0 && n % gHostOptions.dumpEvery == 0) {
+    if (gHostOptions.dumpEvery > 0 && n >= gHostOptions.dumpStart && n % gHostOptions.dumpEvery == 0) {
         char name[64];
         snprintf(name, sizeof name, "frame%06ld", n);
         write_shot(name);
@@ -306,10 +329,12 @@ static void hook_soft_reset(void)
 
 void HostPowerOn(void)
 {
-    memset(gHostIo, 0, sizeof gHostIo);
+    memset(gHostIo, 0, HOST_IO_SIZE);
     HostDmaReset();
+    HostAudioReset();
     set_io16(REG_OFFSET_KEYINPUT, 0x3FF);
     set_io16(REG_OFFSET_DISPCNT, DISPCNT_FORCED_BLANK);
+    set_io16(REG_OFFSET_SOUNDBIAS, 0x200); /* as the BIOS leaves it at boot */
 
     gBiosMemory.ewram = gHostEwram;
     gBiosMemory.iwram = gHostIwram;
@@ -340,10 +365,14 @@ static void usage(const char *prog)
             "  --input FILE        emutest input script (tests/inputs/*.txt) or plan\n"
             "  --dump-frames DIR   PNGs of the script's shots\n"
             "  --dump-every N      also a PNG every N frames (into the dump dir)\n"
+            "  --dump-start N      ... from frame N on\n"
+            "  --dump-mem          with each shot, NAME.{pal,vram,oam,io}.bin\n"
             "  --log FILE          per frame: number, keys, picture hash\n"
             "  --save FILE         SRAM file (default fe7u.sav; none headless)\n"
             "  --no-save           no SRAM file\n"
-            "  --wav FILE          write the audio to a WAV file\n"
+            "  --wav FILE          write the audio to a WAV file (32768 Hz)\n"
+            "  --channels MASK     channels heard, hex: bits 0-3 CGB, 4-5 DirectSound A, B (3F)\n"
+            "  --mix FILE          the m4a mixer's output per frame (emutest -P's .mix)\n"
             "  --scale N           window scale (default 3)\n"
             "  --hardware-color    the GBA's 5-bit color math (default: mGBA's)\n"
             "keys: arrows, Z/X = A/B, A/S = L/R, Enter = Start, Backspace = Select,\n"
@@ -365,6 +394,8 @@ static int parse_args(int argc, char **argv)
             o->headless = 1;
         else if (strcmp(a, "--hardware-color") == 0)
             o->hardwareColor = 1;
+        else if (strcmp(a, "--dump-mem") == 0)
+            o->dumpMem = 1;
         else if (strcmp(a, "--no-save") == 0)
             noSave = 1;
         else if (ARG("--frames"))
@@ -375,10 +406,16 @@ static int parse_args(int argc, char **argv)
             o->dumpDir = v;
         else if (ARG("--dump-every"))
             o->dumpEvery = atol(v);
+        else if (ARG("--dump-start"))
+            o->dumpStart = atol(v);
         else if (ARG("--log"))
             o->log = v;
         else if (ARG("--save"))
             o->save = v;
+        else if (ARG("--channels"))
+            HostAudioSetChannels((int)strtol(v, NULL, 16));
+        else if (ARG("--mix"))
+            o->mix = v;
         else if (ARG("--wav"))
             o->wav = v;
         else if (ARG("--scale"))
@@ -405,6 +442,7 @@ static void cleanup(void)
         fclose(sLog);
         sLog = NULL;
     }
+    HostAudioCloseMixDump();
     if (sWav) {
         wav_header(sWav, sWavFrames, sAudioRate);
         fclose(sWav);
@@ -461,6 +499,7 @@ int HostMain(int argc, char **argv)
         }
         wav_header(sWav, 0, sAudioRate);
     }
+    HostAudioSetMixDump(gHostOptions.mix);
 
     if (FrontendInit(gHostOptions.headless, gHostOptions.scale) != 0)
         return 1;

@@ -46,12 +46,15 @@ struct HostOptions {
     const char *input;    /* emutest input script or plan (tools/emutest.py) */
     const char *dumpDir;  /* PNGs of the script's shots (and --dump-every) */
     long dumpEvery;       /* also every Nth frame (0: none) */
+    long dumpStart;       /* ... from this frame on */
     const char *log;      /* per-frame log: frame, keys, picture hash */
     const char *save;     /* SRAM file, read at start and written back */
     const char *sramInit; /* SRAM image read at start, not written back */
     const char *wav;      /* audio written to a WAV file */
     int scale;            /* window scale */
     int hardwareColor;    /* PPU color math of the GBA instead of mGBA's */
+    int dumpMem;          /* with the shots, the video memories and I/O (NAME.pal.bin...) */
+    const char *mix;      /* the m4a mixer's output per frame (emutest's .mix) */
 };
 extern struct HostOptions gHostOptions;
 
@@ -101,6 +104,23 @@ int HostScriptSramIsDesc(const struct HostScript *s);
 void HostSramLoad(const char *path, const char *initImage);
 void HostSramFrame(void); /* write the file if SRAM changed (checked once a frame) */
 void HostSramFlush(void); /* write the file now if SRAM changed */
+
+/* ---- sound output (audio.c) ---- */
+
+/* At the start of VBlank, before the VBlank interrupt: mix what the
+ * DirectSound DMA and the CGB channels played during the frame (32768 Hz)
+ * and HostAudioSubmit it.  Nothing without a sound engine (no
+ * SOUND_INFO_PTR, master enable off). */
+void HostAudioFrame(void);
+/* After the VBlank interrupt: append the part SoundMain just mixed to the
+ * --mix file (tools/emutest.c -P's .mix format). */
+void HostAudioFrameEnd(void);
+void HostAudioSetMixDump(const char *path);
+void HostAudioCloseMixDump(void);
+void HostAudioReset(void);
+/* Channels heard: bits 0-3 the CGB channels, 4-5 DirectSound A and B
+ * (tools/emutest.c -c; default 0x3F). */
+void HostAudioSetChannels(int mask);
 
 /* ---- front end (frontend_sdl.c) ---- */
 

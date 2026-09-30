@@ -15,19 +15,63 @@
  * The sound FIFO transfers (special timing on DMA 1 and 2) are left to the
  * sound engine's port and do nothing here.
  */
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/mman.h>
 
 #include "platform.h"
 
-#define ALIGN16 __attribute__((aligned(16)))
+/*
+ * The memories are aligned as on the GBA, relative to their size: the game
+ * turns pointers into tile, palette and OAM numbers and screen block
+ * offsets with their low bits (`((u32) vram << 0x11) >> 0x16`,
+ * `& 0x1FFFF`, `VRAM | offset`, `(VRAM + x) & 0xFFFF`), so VRAM must start
+ * on a 0x20000 boundary, palette and OAM on 0x400.  A static array can't
+ * promise that: Mach-O caps a section's alignment and the loader slides
+ * the program by 16 KB pages.  So they are carved out of one mapping at
+ * start-up (before main, a constructor), at these offsets from a
+ * 0x40000-aligned base.
+ *
+ * SRAM stays a static array: the game's `gSramMain = CART_SRAM` needs a
+ * link-time address, and nothing takes bits of SRAM addresses (the save
+ * block offsets are differences from gSramMain, SramAddrToOffset).
+ */
+#define OFS_VRAM  0x00000 /* 0x18000, aligned 0x20000 */
+#define OFS_PLTT  0x20000 /* 0x400 */
+#define OFS_OAM   0x20400 /* 0x400 */
+#define OFS_IO    0x20800 /* 0x400 */
+#define OFS_IWRAM 0x40000 /* 0x8000 */
+#define OFS_EWRAM 0x80000 /* 0x40000, aligned 0x40000 */
+#define MEM_SIZE  0xC0000
+#define MEM_ALIGN 0x40000
 
-u8 gHostIo[0x400] ALIGN16;
-u8 gHostPltt[0x400] ALIGN16;
-u8 gHostVram[0x18000] ALIGN16;
-u8 gHostOam[0x400] ALIGN16;
-u8 gHostEwram[0x40000] ALIGN16;
-u8 gHostIwram[0x8000] ALIGN16;
-u8 gHostSram[0x10000] ALIGN16;
+u8 *gHostIo;
+u8 *gHostPltt;
+u8 *gHostVram;
+u8 *gHostOam;
+u8 *gHostEwram;
+u8 *gHostIwram;
+u8 gHostSram[HOST_SRAM_BANK] __attribute__((aligned(16)));
+
+__attribute__((constructor)) static void host_memory_init(void)
+{
+    size_t size = MEM_SIZE + MEM_ALIGN;
+    void *m = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
+    u8 *base;
+
+    if (m == MAP_FAILED) {
+        perror("platform: mmap");
+        abort();
+    }
+    base = (u8 *)(((uintptr_t)m + MEM_ALIGN - 1) & ~(uintptr_t)(MEM_ALIGN - 1));
+    gHostVram = base + OFS_VRAM;
+    gHostPltt = base + OFS_PLTT;
+    gHostOam = base + OFS_OAM;
+    gHostIo = base + OFS_IO;
+    gHostIwram = base + OFS_IWRAM;
+    gHostEwram = base + OFS_EWRAM;
+}
 
 void *gHostIntrVector;
 u16 gHostIntrCheck;

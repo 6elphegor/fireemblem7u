@@ -780,6 +780,39 @@ Both targets must stay at 0 errors.  For new and changed code:
   that holds a pointer uses `sizeof`, not the GBA byte count.
 * The warnings in `docs/port-notes.md` are known; a change shouldn't add
   new ones in the pointer/integer cast categories.
+* Don't step through an array of structs with a GBA byte or halfword count
+  (`dst += 24` for a 0x30-byte struct): use `sizeof` or index the array.
+
+### Host test
+
+`make hosttest` (tools/hosttest.py; needs libmgba like `make emutest`)
+builds the host game (`make host`) and plays `tests/inputs/opening.txt`
+and `lyn.txt` in it and in mGBA (fe7u.gba; mGBA's run is cached in
+`build/hosttest/NAME/ref/` until the ROM or the script changes), then
+compares, per script:
+
+* the checkpoints (`shot`): mGBA's picture must be exactly one of the
+  host's within 400 frames (the host never lags, so it runs ahead of the
+  GBA: 17 frames at the opening's start, 176 at its end).  The ones listed
+  in `EXPECTED` in the tool must match; the rest are listed with the
+  share of differing pixels at the same frame;
+* the m4a mixer's output per frame (host `--mix`, emutest `-P`): the share
+  of the host's non-silent frames found bit for bit in mGBA's;
+* the sound (32768 Hz WAVs): the loudness envelope's correlation per block
+  of 300 frames.
+
+It fails if an expected checkpoint doesn't match or the mixer or sound
+figures fall below the script's minimum (`MINIMA`).  About 100 s (the first
+run adds mGBA's, about a minute per script).  `make hosttest
+HOSTTEST_SCRIPTS=tests/inputs/extras.txt` runs other scripts (reported,
+with low minima).  Everything goes to `build/hosttest/` and is
+ROM-derived: don't commit it.  When a change makes more checkpoints match,
+add them to `EXPECTED`.
+
+To look at one frame: `build/host-game/fe7u --headless --input SCRIPT
+--dump-frames DIR --dump-mem` writes each shot's PNG and palette, VRAM,
+OAM and I/O, to compare with `tools/emutest.py record SCRIPT --dump`
+(`--dump-every 1 --dump-start N --frames M` for a range of frames).
 
 ## Decompiling a function
 
