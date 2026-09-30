@@ -56,16 +56,21 @@ ELF).  It needs the matching build first.  The program is the runtime's
 (docs/port-platform.md): `build/host-game/fe7u --headless --input
 tests/inputs/NAME.txt --dump-frames DIR --log FILE`, or a window.
 
-**How far it runs** (headless, as of 2026-09-29, no save file unless the
-script has an `sram` line):
+**How far it runs** (`make hostrun`, tools/hostrun.py: every script
+headless, no save file unless the script has an `sram` line; a crash prints
+`fe7u: signal N in frame F`).  Every script runs to its last frame:
 
-| script | frames run / script length | stops at |
+| script | frames | before the fixes below (frame of the crash) |
 |---|---|---|
-| opening | 19,600 / 19,600 | (whole attract loop, class reels included) |
-| extras | 10,368 / 10,368 | |
-| lyn | 8,418 / 8,418 | (world map, a chapter, a battle, enemy phase) |
-| prologue | 7,447 / 12,850 | a crash later in the tutorial |
-| hector, ch13, actions, shops, final | 6,000-12,700 | crashes in battle animations (spell scripts calling into data, `gOamAffinePutIt`) and other host-only faults not looked at yet |
+| opening | 19,600 | 19,600 |
+| prologue | 12,850 | 7,450 |
+| lyn | 8,418 | 8,418 |
+| ch13 | 18,740 | 8,391 |
+| actions | 18,250 | 12,702 |
+| shops | 34,114 | 10,343 |
+| hector | 15,266 | 9,973 |
+| final | 13,298 | 10,385 |
+| extras | 10,368 | 10,368 |
 
 Pictures and sound (`make hosttest`, docs/port-platform.md, "Test against
 mGBA"): on the opening and lyn, the checkpoints are mGBA's pictures pixel
@@ -155,8 +160,9 @@ the GBA builds are unchanged):
   addresses held in `int`/`u32` are `uintptr_t`.
 * `InitRamFuncs` points the `gRamFunc_*` at armfunc.c's C routines.
 * Layouts: `struct Proc`'s host padding makes a slot 0xC8 bytes (MenuProc
-  and WmSlotsProc are 0xC8 on a host and overran their slots; about 200
-  proc structs still have no `PROC_SIZE_CHECK`); new proc slots are zeroed
+  and WmSlotsProc are 0xC8 on a host and overran their slots; every struct
+  that starts with `PROC_HEADER` now has its `PROC_SIZE_CHECK`, and all
+  fit); new proc slots are zeroed
   (the GBA's leftovers are mostly zero, the host's are not); three structs
   that agbcc rounds to 4 bytes (`AiEscapePt`, `AiHealThreshold`,
   `EndingDefeatEnt`) get the padding on a host; `ProcEventMapLock` puts its
@@ -169,6 +175,37 @@ the GBA builds are unchanged):
   so a host compiled one-cell scripts with 8-byte cells);
   `NUM_MUSIC_PLAYERS`/`MAX_LINES` are constants (absolute symbols can't be
   addressed from position-independent code).
+* Local views of a structure that holds pointers (the same size on the GBA,
+  not on a host): the merchant position (`MERCHANT_X`, eventscr4.c, read at
+  `ChapterInfo + 0x86`) is read by field, so Merlinus is no longer placed
+  at row 59 of a 10-row map; the battle gauge's `EkrGaugeStruct1` (a view of
+  `struct Anim` with `pSpriteData` at 0x3C) pads to the host's offset;
+  banim-battleparse.c read `gSpellAssocData` through its own 16-byte
+  `struct SpellAssocEnt` (the table is `struct SpellAssoc`, 24 bytes on a
+  host, so the spell of every item after the first was wrong and a spell
+  animation called into data): it uses `struct SpellAssoc` (same bytes on
+  the GBA).
+* Data after the end of a proc script: `gUnk_08CC4FA0`'s page number
+  sprites are 9 objects stored after `gProcScr_PrepWMShopSell`'s `PROC_END`
+  and addressed as halfwords 68-100 of it; with 16-byte proc commands on a
+  host they are their own table, `gHostSprites_PrepPageNum`.
+* RAM objects that follow each other on the GBA: the right side's battle
+  animation sprite data, `gBanimOamr2`, is the 0x5800 bytes after
+  `gBanimOaml` there, and `SwitchAISFrameDataFromBARoundType` computes it
+  as `gBanimOaml + 0x5800`; on a host `gOpInfoFrameBuf`, an overlay inside
+  `gBanimOaml`, is twice as big (`WIDENED`) and moves gBanimOamr2 up, so the
+  right side drew sprites from the wrong buffer (garbage at the left edge,
+  then a crash on an affine count read from it).  The host names the buffer.
+* Prototypes that don't match the definition: eventscr4.c declared
+  `StartTutorialCursors(int)`, but it takes the tutorial's cursor list (a
+  pointer); on a host the upper half was lost.  (A plain C change; the
+  GBA's code is the same.)  `tools/hostsigs.py` (`make hostsigs`) looks for
+  more of this kind and for the struct views above: it compiles every C file
+  to LLVM IR and reports calls whose argument or result is a pointer or
+  64-bit value on one side and narrower on the other (implicit
+  declarations, old-style prototypes, local prototypes), and `extern`
+  declarations of a C object whose (element) size differs from the
+  definition's where either holds a pointer.  Both lists are empty now.
 * Timing: `SampleFreqSet` does not wait for VCOUNT 159 (the host's VCOUNT
   moves only between frames).
 * Reads and writes through NULL that the GBA sends to the BIOS region
@@ -179,8 +216,22 @@ the GBA builds are unchanged):
   exist, `AnimDelete` of the last anim, the triangle attack palettes,
   `UnitMapUiUpdate` without a unit, `IsItemEffectiveAgainst` without a
   class, the packed unit / met-character writes of empty unit slots, and
-  the save menu's read of a "PlaySt" at the slot number (always true).
+  the save menu's read of a "PlaySt" at the slot number (always true),
+  the support partner that isn't in the army (`GetUnitSupportUnit` gives
+  NULL, and the unit list asks `CanUnitSupportNow` for every unit: count no
+  supports), and an AI unit that died in its own battle (`MoveActiveUnit`
+  reads its character number through NULL, and adds the move to that
+  number's stats: skipped).
   More will turn up: each crash so far was a first use of such a path.
+* Found with UBSan (`HOSTGAME_FLAGS=-fsanitize=undefined
+  HOSTGAME_OUT=build/host-ubsan`, every script): only out-of-bounds indexes
+  that read or write the neighbouring field or object, the same one on both
+  (pathCosts[-1], a unit's ranks[255] of no weapon type, the unit list's
+  20 entries in a u32[8], the cursor hand's 8 flags in u8[4], the shop's 21
+  items in u16[20]), and divisions by zero (the line drawing in bmlib.c,
+  the win percentage with no battles), which give 0 on both.  AddressSanitizer
+  doesn't start on this Mac (Apple clang 15 on macOS 26: a CHECK in the
+  runtime's malloc hook, even for an empty program).
 * Data converted to C because the C type is wider on a host
   (tools/datac.py, data/layout.txt): `gUnk_08CE5378`, `ProcScr_DebugMonitor`
   (bmdebug.c), `PopupScr_AiPillage`, `gUnknown_085AA21C`, `gUnk_08BFFC9C`,

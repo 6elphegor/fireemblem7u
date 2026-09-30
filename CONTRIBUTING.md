@@ -814,6 +814,28 @@ To look at one frame: `build/host-game/fe7u --headless --input SCRIPT
 OAM and I/O, to compare with `tools/emutest.py record SCRIPT --dump`
 (`--dump-every 1 --dump-start N --frames M` for a range of frames).
 
+### Host run
+
+`make hostrun` builds the native game (`make host`) and runs every
+`tests/inputs` script on it headless, one at a time, and prints the frames
+each reached (tools/hostrun.py; `--time N` stops a run after N seconds,
+scripts can be named).  A crash prints `fe7u: signal N in frame F` on
+stderr (src/host/hostglue.c).  To debug one:
+
+```sh
+lldb --batch -o run -k "bt 25" -k quit -- build/host-game/fe7u --headless --no-save --input tests/inputs/NAME.txt
+```
+
+`HOSTGAME_FLAGS` adds flags to the game's C and to the link, and
+`HOSTGAME_OUT` builds into another directory, e.g. UBSan:
+`HOSTGAME_FLAGS="-fsanitize=undefined -fno-sanitize=alignment,function"
+HOSTGAME_OUT=build/host-ubsan python3 tools/hostgame.py`, then
+`python3 tools/hostrun.py --exe build/host-ubsan/fe7u`.  `make hostsigs`
+(tools/hostsigs.py) lists calls and `extern` objects whose width differs
+from the definition on a 64-bit host (docs/port-notes.md, "Host link").
+Before a commit that touches game code, no script may reach fewer frames
+than before.
+
 ## Decompiling a function
 
 1. Find it: `asm/nonmatching/code_<ADDR>.s` (inside a C module) or

@@ -72,7 +72,7 @@ NM_DEFS += -DBANIM_SHEET_INDEX=1
 BANIM_LINK_FLAGS := --sheet-index
 endif
 
-.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck hostevents host hostrun hosttest
+.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck hostevents host hostrun hostsigs hosttest
 .DELETE_ON_ERROR:
 
 # `make MODERN=1` (or `make modern`): the free data layout, see below.
@@ -467,6 +467,11 @@ host: compare
 # the frames each reaches before it ends or crashes (tools/hostrun.py).
 hostrun: host
 	python3 tools/hostrun.py
+
+# Calls and extern objects whose width differs from the definition on a
+# 64-bit host (tools/hostsigs.py).
+hostsigs: compare
+	python3 tools/hostsigs.py
 
 # The host build against mGBA (tools/hosttest.py; CONTRIBUTING, "Host
 # test"): checkpoint pictures, the m4a mixer's output and the sound, on
