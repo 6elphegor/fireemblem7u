@@ -12,4 +12,6 @@
 #define FID_FLOWER 0xE5        // after the last portrait
 #define SMS_FLOWER 0x4F        // CLASS_5B's standing sprite slot
 #define BANIM_FLOWER 0xA3      // banim_data entry, 1-based
+#define ITEM_PETAL 0x9F        // after ITEM_PLAY
+#define SPELLANIM_PETAL 0x40   // gEkrSpellAnimLut entry
 #endif

@@ -4938,9 +4938,13 @@
 #define MSG_FLOWER_DESC 0x1340
 #define MSG_1341 0x1341 /* Blossoming spellcasters who turn kindness into m */
 #define MSG_FLOWER_CLASS_DESC 0x1341
-#define MSG_1342 0x1342 /* Oh! Hello there! I followed the petals on the wi */
-#define MSG_FLOWER_JOIN 0x1342
+#define MSG_1342 0x1342 /* Petal */
+#define MSG_PETAL_NAME 0x1342
+#define MSG_1343 0x1343 /* Petals ride a gentle wind. */
+#define MSG_PETAL_DESC 0x1343
+#define MSG_1344 0x1344 /* Oh! Hello there! I followed the petals on the wi */
+#define MSG_FLOWER_JOIN 0x1344
 
-#define MSG_COUNT 0x1343
+#define MSG_COUNT 0x1345
 
 #endif // CONSTANTS_MSG_H

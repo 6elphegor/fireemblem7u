@@ -12,6 +12,12 @@ away. Curious and kind.[.][X]
 Blossoming spellcasters who[LF]
 turn kindness into magic.[.][X]
 
+## MSG_PETAL_NAME
+Petal[X]
+
+## MSG_PETAL_DESC
+Petals ride a gentle wind.[X]
+
 ## MSG_FLOWER_JOIN
 [OpenMidLeft][LoadFace][FID_Lyn][OpenMidRight][LoadFace][FID_Flower][LF]
 [OpenMidRight][LF]

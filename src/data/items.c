@@ -2561,4 +2561,26 @@ CONST_DATA struct ItemData gItemData[] = {
         .encodedRange = 0x11,
         .iconId = 0x0,
     },
+#if MOD_CLAUDE
+    // the flower character's tome (mod/claude): its spell is
+    // StartSpellAnimPetal (src/mod/claude_petal.c)
+    [ITEM_PETAL] = {
+        .nameTextId = MSG_PETAL_NAME,
+        .descTextId = MSG_PETAL_DESC,
+        .number = ITEM_PETAL,
+        .weaponType = ITYPE_ANIMA,
+        .attributes = IA_WEAPON | IA_MAGIC,
+        .maxUses = 40,
+        .might = 5,
+        .hit = 95,
+        .weight = 3,
+        .crit = 5,
+        .encodedRange = 0x12,
+        .costPerUse = 16,
+        .weaponRank = WPN_EXP_E,
+        .iconId = 0x36,
+        .weaponExp = 1,
+        .unk21 = 1,
+    },
+#endif
 };

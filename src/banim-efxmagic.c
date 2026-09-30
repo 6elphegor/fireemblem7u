@@ -733,6 +733,10 @@ const struct ProcCmd ProcScr_EfxRestWINH[] = {
     PROC_END,
 };
 
+#if MOD_CLAUDE
+void StartSpellAnimPetal(struct Anim * anim);
+#endif
+
 SECTION(".rodata.08BA13D0")
 const SpellAnimFunc gEkrSpellAnimLut[] = {
     StartSpellAnimDummy,
@@ -799,4 +803,7 @@ const SpellAnimFunc gEkrSpellAnimLut[] = {
     StartSpellAnimSetsLitany,
     NULL,
     NULL,
+#if MOD_CLAUDE
+    StartSpellAnimPetal, // SPELLANIM_PETAL (src/mod/claude_petal.c)
+#endif
 };
