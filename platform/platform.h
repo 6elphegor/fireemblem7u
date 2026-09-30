@@ -55,6 +55,7 @@ struct HostOptions {
     int hardwareColor;    /* PPU color math of the GBA instead of mGBA's */
     int dumpMem;          /* with the shots, the video memories and I/O (NAME.pal.bin...) */
     const char *mix;      /* the m4a mixer's output per frame (emutest's .mix) */
+    const char *keys;     /* key bindings file (SDL front end; default ~/.config/fe7u/keys.txt) */
 };
 extern struct HostOptions gHostOptions;
 
