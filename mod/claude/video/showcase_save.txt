@@ -1,0 +1,15 @@
+# The showcase run (mod/claude/video/showcase.txt): Lyn mode Ch. 5 on
+# Hard, so no tutorial steps; the flower joins in the opening.
+chapter CHAPTER_05
+mode lyn
+gold 3000
+textspeed 3
+unit CHARACTER_LYN_TUTORIAL items=ITEM_SWORD_SLIM,ITEM_VULNERARY
+unit CHARACTER_SAIN_TUTORIAL items=ITEM_LANCE_IRON
+unit CHARACTER_KENT_TUTORIAL items=ITEM_SWORD_IRON
+unit CHARACTER_FLORINA_TUTORIAL items=ITEM_LANCE_SLIM
+unit CHARACTER_WIL_TUTORIAL items=ITEM_BOW_IRON
+unit CHARACTER_DORCAS items=ITEM_AXE_IRON
+unit CHARACTER_SERRA items=ITEM_STAFF_HEAL
+unit CHARACTER_ERK items=ITEM_ANIMA_FIRE
+hard

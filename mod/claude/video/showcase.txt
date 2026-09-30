@@ -1,0 +1,64 @@
+# The showcase run of the flower mod (mod/claude): Lyn's Chapter 5 on Hard
+# (no tutorial steps).  The flower walks in and joins; the next scene is
+# skipped; the flower moves up and casts Petal at a bandit archer; its
+# stat screen.
+sram mod/claude/video/showcase_save.txt
+wait 300
+press Start
+wait 120
+press Start
+wait 120
+shot main_menu
+press A
+wait 120
+shot file_select
+press A
+wait 60
+repeat 10
+repeat 5
+press A
+wait 40
+end
+shot l
+end
+repeat 8
+repeat 5
+press A
+wait 40
+end
+shot l2
+end
+wait 300
+shot arrival_done
+press Start
+wait 240
+shot player_phase
+press Left
+press Up 2
+wait 30
+press A
+wait 60
+press Right 3
+wait 30
+press A
+wait 90
+shot action_menu
+press A
+wait 60
+shot weapon_menu
+press A
+wait 60
+press A
+wait 90
+shot forecast
+press A
+wait 1000
+shot after_battle
+press R
+wait 240
+shot stat_screen
+press Right
+wait 180
+shot stat_screen2
+press B
+wait 120
