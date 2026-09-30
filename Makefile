@@ -14,6 +14,9 @@ OBJCOPY := $(PREFIX)objcopy
 AR      := $(PREFIX)ar
 
 AGBCC := tools/agbcc
+# bash, for `set -o pipefail` in the compile pipelines (a preprocessor
+# error must fail the build, not leave an empty object)
+SHELL := /bin/bash
 CC1   := $(AGBCC)/bin/old_agbcc
 
 # PLATFORM_GBA: code for the GBA itself (link sections; include/gbafe/global.h).
@@ -24,7 +27,7 @@ ASFLAGS  := -mcpu=arm7tdmi -I asm -I include
 SHASUM := $(shell command -v sha1sum || echo shasum)
 HOSTCC ?= cc
 
-C_SRCS   := $(wildcard src/*.c) $(wildcard src/data/*.c) $(wildcard src/events/*.c)
+C_SRCS   := $(wildcard src/*.c) $(wildcard src/data/*.c) $(wildcard src/events/*.c) $(wildcard src/mod/*.c)
 ASM_SRCS := $(wildcard asm/*.s) $(wildcard src/*.s)
 C_OBJS   := $(patsubst %.c,build/%.o,$(C_SRCS))
 ASM_OBJS := $(patsubst %.s,build/%.o,$(ASM_SRCS))
@@ -137,7 +140,7 @@ $(C_OBJS): $(wildcard asm/nonmatching/*.s)
 
 build/src/%.o: src/%.c
 	@mkdir -p $(@D)
-	$(CPP) $(CPPFLAGS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o build/src/$*.s
+	set -o pipefail; $(CPP) $(CPPFLAGS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o build/src/$*.s
 	@printf '\t.text\n\t.align 2, 0\n' >> build/src/$*.s
 	$(AS) $(ASFLAGS) -o $@ build/src/$*.s
 
@@ -229,7 +232,7 @@ build/msg_bits.o: build/msg_bits.s
 # Compile a generated C file (the same steps as src/*.c).
 define COMPILE_GEN
 	@mkdir -p $(@D)
-	$(CPP) $(CPPFLAGS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(@:.o=.s)
+	set -o pipefail; $(CPP) $(CPPFLAGS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(@:.o=.s)
 	$(AS) $(ASFLAGS) -o $@ $(@:.o=.s)
 endef
 
@@ -342,7 +345,7 @@ $(MODERN_ROM): $(MODERN_ELF)
 
 # data/rom/*.s split after every extracted asset, and the layout; the cut-short
 # streams depend on the built graphics.
-$(MODERN_DIR)/rom.stamp: $(ROMDATA_SRCS) $(LAYOUTS) data/graphics.txt tools/modern.py tools/gfx.py $(GFX_BUILT) | baserom.gba
+$(MODERN_DIR)/rom.stamp: $(ROMDATA_SRCS) $(LAYOUTS) $(wildcard mod/layout.txt) data/graphics.txt tools/modern.py tools/gfx.py $(GFX_BUILT) | baserom.gba
 	@mkdir -p $(@D)
 	python3 tools/modern.py $(MODERN_DIR)
 
@@ -360,6 +363,7 @@ $(MODERN_DIR)/data.o: $(MODERN_DIR)/data.s baserom.gba
 	$(AS) $(ASFLAGS) -o $@ $<
 
 $(MODERN_DIR)/fe7u.ld: build/fe7u.ld
+	@mkdir -p $(@D)
 	sed -e 's#INCLUDE build/layout.ld#INCLUDE $(MODERN_DIR)/layout.ld#' -e 's#INCLUDE build/ram.ld#INCLUDE $(MODERN_DIR)/ram.ld#' $< > $@
 
 $(MODERN_ELF): $(C_OBJS) build/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(MODERN_DIR)/fe7u.ld $(MODERN_LAYOUT) symbols.ld
@@ -409,7 +413,7 @@ $(NM_DIR)/src/m4a_mixer.o: CFLAGS = -quiet -mthumb-interwork -Wimplicit -Wparent
 
 $(NM_DIR)/src/%.o: src/%.c
 	@mkdir -p $(@D)
-	$(CPP) $(CPPFLAGS) -DNONMATCHING=1 $(NM_DEFS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(NM_DIR)/src/$*.s
+	set -o pipefail; $(CPP) $(CPPFLAGS) -DNONMATCHING=1 $(NM_DEFS) $< | iconv -f UTF-8 -t CP932 | $(CC1) $(CFLAGS) -o $(NM_DIR)/src/$*.s
 	@printf '\t.text\n\t.align 2, 0\n' >> $(NM_DIR)/src/$*.s
 	$(AS) $(ASFLAGS) -o $@ $(NM_DIR)/src/$*.s
 

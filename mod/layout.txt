@@ -1,0 +1,4 @@
+# Objects appended after the original ROM (tools/gen_layout.py: APPEND lines,
+# modern build only), in this order.  C data goes in .data (CONST_DATA): it
+# stays in ROM here, so mod files hold no mutable globals.
+rom APPEND 0 build/src/mod/claude.o(.text .rodata .data)

@@ -4,7 +4,9 @@
 Usage: tools/gen_layout.py [--modern] LAYOUT.txt... OUT_DIR
 
 Layout lines: "rom|ram ADDR SIZE OBJECT(SECTION)" (data/layout.txt, plus
-data/rom/layout.txt from tools/datasplit.py).  ROM entries are placed at
+data/rom/layout.txt from tools/datasplit.py).  ADDR APPEND (mod/layout.txt,
+modern build only): new data or code with no place in the original ROM,
+placed after all of it, 4-aligned, in the order of the lines.  ROM entries are placed at
 ADDR inside .rodata with baserom.gba incbin'd around any gaps left; RAM
 entries get NOLOAD sections at ADDR.  Writes OUT_DIR/data.s,
 OUT_DIR/layout.ld (inside .rodata) and OUT_DIR/ram.ld (top level).
@@ -30,13 +32,18 @@ def main():
     modern = args[0] == "--modern"
     if modern:
         args = args[1:]
-    rom, ram = [], []
+    rom, ram, appended = [], [], []
     for path in args[:-1]:
         for line in Path(path).read_text().splitlines():
             if not line.strip() or line.startswith("#"):
                 continue
-            kind, addr, size, obj = line.split()
+            kind, addr, size, obj = line.split(None, 3)
+            if kind == "rom" and addr == "APPEND":
+                appended.append(obj)
+                continue
             (rom if kind == "rom" else ram).append((int(addr, 16), int(size, 16), obj))
+    if appended and not modern:
+        sys.exit(f"{appended[0]}: APPEND lines (mod/layout.txt) need the modern build (make MODERN=1)")
     rom.sort()
 
     out = Path(args[-1])
@@ -61,6 +68,8 @@ def main():
             ld.append(f'ASSERT(ABSOLUTE(.) == {addr + size:#x}, "{name}: wrong size");\n')
         pos = addr + size
 
+    for obj in appended:
+        ld.append(f". = ALIGN(4);\n{obj};\n")
     if modern:
         ld.append('ASSERT(ABSOLUTE(.) <= 0x0A000000, "the ROM is larger than 32 MiB");\n')
 

@@ -91,7 +91,8 @@ def build_banim_c():
 
 def c_sources():
     srcs = (sorted(glob.glob('src/*.c')) + sorted(glob.glob('src/data/*.c')) +
-            sorted(glob.glob('src/events/*.c')) + sorted(glob.glob('sound/*.c')) +
+            sorted(glob.glob('src/events/*.c')) + sorted(glob.glob('src/mod/*.c')) +
+            sorted(glob.glob('sound/*.c')) +
             ['build/msg_table.c', 'platform/armfunc.c', BANIM_C] + sorted(glob.glob('src/host/*.c')))
     return [s for s in srcs if s not in HOST_EXCLUDE]
 
