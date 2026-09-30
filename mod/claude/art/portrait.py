@@ -66,7 +66,9 @@ FRONT = [
     (90, 28.2, 5.6, 0.06), (121, 27.4, 5.0, -0.10), (149, 28.3, 5.3, 0.08),
     (180, 28.8, 5.1, -0.04), (211, 27.3, 5.4, 0.09), (239, 27.1, 4.9, -0.11),
 ]
-BACK = [(a + 15, l - 7.0, r * 0.62, -b) for (a, l, r, b) in FRONT]
+# fit the portrait's window: above y=48 only the 64-wide main area shows
+FRONT = [(a, l * 0.9, r * 0.92, b) for (a, l, r, b) in FRONT]
+BACK = [(a + 15, l - 6.0, r * 0.62, -b) for (a, l, r, b) in FRONT]
 PETAL_BASE = 1.9
 FACE_R = 15.0
 
@@ -140,7 +142,7 @@ def draw_base():
 
     # tail: behind the body, curling up past the right shoulder
     ts = np.linspace(0, 1, 48)
-    P = [np.array(p, dtype=float) for p in [(76, 84), (97, 72), (95, 50), (85, 47)]]
+    P = [np.array(p, dtype=float) for p in [(76, 84), (97, 74), (95, 53), (84, 52)]]
     curve = [((1 - t) ** 3) * P[0] + 3 * ((1 - t) ** 2) * t * P[1]
              + 3 * (1 - t) * t * t * P[2] + t ** 3 * P[3] for t in ts]
     tail = np.zeros(X.shape, dtype=bool)
@@ -487,6 +489,25 @@ def build_chibi():
     return color
 
 
+def check_fits(img):
+    """Nothing may be cut by the portrait's window: the 64x80 main area,
+    plus the 16x32 shoulder strips at the bottom.  A drawn pixel on the
+    window's edge means the art runs past it."""
+    bad = []
+    for y in range(H):
+        for x in range(W):
+            if not img[y, x]:
+                continue
+            main = MX <= x < MX + 64
+            strip = y >= 48
+            if not (main or strip):
+                bad.append((x, y))
+            elif (x in (MX, MX + 63) and y < 48) or y == 0:
+                bad.append((x, y))
+    if bad:
+        sys.exit('portrait: art cut by the window at %s' % bad[:8])
+
+
 def write_gbapal(path):
     with open(path, 'wb') as f:
         for r, g, b in PAL:
@@ -510,6 +531,7 @@ def main():
     out = sys.argv[1]
     os.makedirs(out, exist_ok=True)
     base = draw_base()
+    check_fits(base)
     save_indexed(os.path.join(out, 'claude_face.png'), build_sheet(base), PAL)
     save_indexed(os.path.join(out, 'claude_mouth.png'), build_mouths(base), PAL)
     chibi = build_chibi()
