@@ -27,7 +27,7 @@ ASFLAGS  := -mcpu=arm7tdmi -I asm -I include
 SHASUM := $(shell command -v sha1sum || echo shasum)
 HOSTCC ?= cc
 
-C_SRCS   := $(wildcard src/*.c) $(wildcard src/data/*.c) $(wildcard src/events/*.c)
+C_SRCS   := $(wildcard src/*.c) $(wildcard src/data/*.c) $(wildcard src/events/*.c) $(wildcard src/mod/*.c)
 ASM_SRCS := $(wildcard asm/*.s) $(wildcard src/*.s)
 C_OBJS   := $(patsubst %.c,build/%.o,$(C_SRCS))
 ASM_OBJS := $(patsubst %.s,build/%.o,$(ASM_SRCS))
@@ -51,6 +51,9 @@ BANIM_NAMES := $(shell sed -n 's/^rom .* build\/banim\/banim\.o(\.rodata\.\(.*\)
 BANIM_SRCS := $(BANIM_NAMES:%=banim/%.s)
 BANIM_OBJS := $(BANIM_NAMES:%=build/banim/%.script.o)
 BANIM_OBJ := build/banim/banim.o
+# Scripts a mod appends (mod/layout.txt, modern build): source in mod/banim/.
+MOD_BANIM_NAMES := $(shell sed -n 's/^rom APPEND .* build\/banim\/banim\.o(\.rodata\.\(.*\))$$/\1/p' mod/layout.txt 2>/dev/null)
+MOD_BANIM_OBJS := $(MOD_BANIM_NAMES:%=build/banim/%.script.o)
 OBJS := $(C_OBJS) $(ASM_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJ) build/data.o build/msg_data.o
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
@@ -210,7 +213,8 @@ build/data.o: build/data.s baserom.gba
 	$(AS) $(ASFLAGS) -o $@ $<
 
 # Game text: texts/*.txt -> Huffman-compressed messages, tree and gMsgTable.
-TEXTS := texts/texts.txt texts/textdefs.txt
+# texts a mod adds (mod/*/texts.txt, tools/textencode.py) follow the game's
+TEXTS := texts/texts.txt $(wildcard mod/*/texts.txt) texts/textdefs.txt
 
 # texts.txt is the game's script, so it isn't in git: extract it from the ROM
 # the first time. After that it is the source of truth and is never overwritten.
@@ -290,6 +294,10 @@ build/banim/%.script.o: banim/%.s include/banim_script.inc
 	@mkdir -p $(@D)
 	$(AS) $(ASFLAGS) -o $@ $<
 
+build/banim/%.script.o: mod/banim/%.s include/banim_script.inc
+	@mkdir -p $(@D)
+	$(AS) $(ASFLAGS) -o $@ $<
+
 # Relink with padding before the data region and check every pointer moved.
 shifttest: $(ROM)
 	python3 tools/shifttest.py
@@ -345,7 +353,7 @@ $(MODERN_ROM): $(MODERN_ELF)
 
 # data/rom/*.s split after every extracted asset, and the layout; the cut-short
 # streams depend on the built graphics.
-$(MODERN_DIR)/rom.stamp: $(ROMDATA_SRCS) $(LAYOUTS) data/graphics.txt tools/modern.py tools/gfx.py $(GFX_BUILT) | baserom.gba
+$(MODERN_DIR)/rom.stamp: $(ROMDATA_SRCS) $(LAYOUTS) $(wildcard mod/layout.txt) data/graphics.txt tools/modern.py tools/gfx.py $(GFX_BUILT) | baserom.gba
 	@mkdir -p $(@D)
 	python3 tools/modern.py $(MODERN_DIR)
 
@@ -366,7 +374,7 @@ $(MODERN_DIR)/fe7u.ld: build/fe7u.ld
 	@mkdir -p $(@D)
 	sed -e 's#INCLUDE build/layout.ld#INCLUDE $(MODERN_DIR)/layout.ld#' -e 's#INCLUDE build/ram.ld#INCLUDE $(MODERN_DIR)/ram.ld#' $< > $@
 
-$(MODERN_ELF): $(C_OBJS) build/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(MODERN_DIR)/fe7u.ld $(MODERN_LAYOUT) symbols.ld
+$(MODERN_ELF): $(C_OBJS) build/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(MOD_BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(MODERN_DIR)/fe7u.ld $(MODERN_LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
 	python3 tools/banim.py link $(MODERN_DIR)/banim -- $(LD) -T $(MODERN_DIR)/fe7u.ld -Map fe7u_modern.map --emit-relocs --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(MODERN_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 

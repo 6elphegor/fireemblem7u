@@ -84,14 +84,16 @@ BANIM_C = os.path.join(OUT, 'banim', 'banim_host.c')
 
 
 def build_banim_c():
-    deps = sorted(glob.glob('banim/*.s')) + ['tools/banim.py', 'data/layout.txt']
+    deps = (sorted(glob.glob('banim/*.s')) + sorted(glob.glob('mod/banim/*.s')) +
+            ['tools/banim.py', 'data/layout.txt'] + glob.glob('mod/layout.txt'))
     if newer(BANIM_C, deps):
         run([sys.executable, 'tools/banim.py', 'host', os.path.dirname(BANIM_C)])
 
 
 def c_sources():
     srcs = (sorted(glob.glob('src/*.c')) + sorted(glob.glob('src/data/*.c')) +
-            sorted(glob.glob('src/events/*.c')) + sorted(glob.glob('sound/*.c')) +
+            sorted(glob.glob('src/events/*.c')) + sorted(glob.glob('src/mod/*.c')) +
+            sorted(glob.glob('sound/*.c')) +
             ['build/msg_table.c', 'platform/armfunc.c', BANIM_C] + sorted(glob.glob('src/host/*.c')))
     return [s for s in srcs if s not in HOST_EXCLUDE]
 

@@ -95,12 +95,15 @@ import elf32  # noqa: E402
 
 ROM_BASE = 0x08000000
 SRC_DIR = Path("banim")
+MOD_SRC_DIR = Path("mod/banim")  # scripts appended by mod/layout.txt
 BANIM_TABLES = Path("src/data/banimtables.c")
 OBJ_DIR = Path("build/banim")
 LAYOUT = Path("data/layout.txt")
+MOD_LAYOUT = Path("mod/layout.txt")  # objects appended after the ROM (MODERN)
 LZ77 = Path("build/tools/lz77")
 AS = "arm-none-eabi-as"
-PLACED = re.compile(r"^rom\s+(0x[0-9A-Fa-f]+)\s+(0x[0-9A-Fa-f]+)\s+build/banim/banim\.o\(\.rodata\.(\w+)\)\s*$")
+PLACED = re.compile(r"^rom\s+(0x[0-9A-Fa-f]+|APPEND)\s+(0x[0-9A-Fa-f]+|0)\s+build/banim/banim\.o\(\.rodata\.(\w+)\)\s*$")
+APPENDED = 0x0A000000  # sort key base for APPEND lines (after the ROM)
 MODE_NAMES = [
     "NORMAL_ATK", "NORMAL_ATK_PRIORITY_L", "CRIT_ATK", "CRIT_ATK_PRIORITY_L",
     "RANGED_ATK", "RANGED_CRIT_ATK", "CLOSE_DODGE", "RANGED_DODGE",
@@ -108,11 +111,17 @@ MODE_NAMES = [
 
 
 def scripts():
-    """[(addr, size, name)] of the scripts placed by data/layout.txt."""
+    """[(addr, size, name)] of the scripts placed by data/layout.txt, then
+    those appended by mod/layout.txt (addr APPENDED + n: they have no ROM
+    original, their banim/NAME.s is the source)."""
     out = []
-    for line in LAYOUT.read_text().splitlines():
+    lines = LAYOUT.read_text().splitlines()
+    if MOD_LAYOUT.exists():
+        lines += MOD_LAYOUT.read_text().splitlines()
+    for line in lines:
         if m := PLACED.match(line):
-            out.append((int(m.group(1), 16), int(m.group(2), 16), m.group(3)))
+            addr = APPENDED + len(out) if m.group(1) == "APPEND" else int(m.group(1), 16)
+            out.append((addr, int(m.group(2), 16), m.group(3)))
     return sorted(out)
 
 
@@ -140,7 +149,11 @@ def extract():
     import datasplit
     import gfx
     rom = Path("baserom.gba").read_bytes()
-    todo = [s for s in scripts() if not (SRC_DIR / f"{s[2]}.s").exists()]
+    todo = [s for s in scripts() if not (SRC_DIR / f"{s[2]}.s").exists()
+            and not (MOD_SRC_DIR / f"{s[2]}.s").exists()]
+    for addr, _, name in todo:
+        if addr >= APPENDED:
+            sys.exit(f"{name}: appended by {MOD_LAYOUT} but {MOD_SRC_DIR / name}.s is missing")
     if todo:
         # sheet names: labels in data/rom/*.s
         labels = {}
