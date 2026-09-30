@@ -7672,4 +7672,36 @@ CONST_DATA struct CharacterData gCharacterData[] = {
         .growthRes = 0,
         .growthLck = 0,
     },
+#if MOD_CLAUDE
+    // The flower character (mod/claude; design by thebes (Theia Vogel))
+    [CHARACTER_FLOWER - 1] = {
+        .nameTextId = MSG_FLOWER_NAME,
+        .descTextId = MSG_FLOWER_DESC,
+        .number = CHARACTER_FLOWER,
+        .defaultClass = CLASS_FLOWER,
+        .portraitId = FID_FLOWER,
+        .miniPortrait = 0x0,
+        .affinity = UNIT_AFFIN_WIND,
+        .sort_order = 19,
+
+        .baseLevel = 3,
+        .baseHP = 2,
+        .basePow = 3,
+        .baseSkl = 3,
+        .baseSpd = 2,
+        .baseDef = 1,
+        .baseRes = 2,
+        .baseLck = 7,
+        .baseCon = 0,
+
+        .baseRanks = { [ITYPE_ANIMA] = WPN_EXP_C },
+        .growthHP = 70,
+        .growthPow = 50,
+        .growthSkl = 55,
+        .growthSpd = 50,
+        .growthDef = 25,
+        .growthRes = 50,
+        .growthLck = 60,
+    },
+#endif
 };

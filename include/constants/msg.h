@@ -4930,7 +4930,17 @@
 #define MSG_133B 0x133B /* Fire Emblem Theme */
 #define MSG_133C 0x133C /* Fire Emblem Theme Loop */
 #define MSG_133D 0x133D /* Final Battle (Sans Intro) */
+#define MSG_133E 0x133E /* Claude */
+#define MSG_FLOWER_NAME 0x133E
+#define MSG_133F 0x133F /* Bloom Sage */
+#define MSG_FLOWER_CLASS 0x133F
+#define MSG_1340 0x1340 /* A cheerful flower from far away. Curious and kin */
+#define MSG_FLOWER_DESC 0x1340
+#define MSG_1341 0x1341 /* Blossoming spellcasters who turn kindness into m */
+#define MSG_FLOWER_CLASS_DESC 0x1341
+#define MSG_1342 0x1342 /* Oh! Hello there! I followed the petals on the wi */
+#define MSG_FLOWER_JOIN 0x1342
 
-#define MSG_COUNT 0x133E
+#define MSG_COUNT 0x1343
 
 #endif // CONSTANTS_MSG_H

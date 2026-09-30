@@ -1561,6 +1561,11 @@ void sub_08007DB8(struct FaceProc * parent, int face_id)
 }
 
 
+#if MOD_CLAUDE
+extern const u8 Img_Portrait_Flower_Face[], Img_Portrait_Flower_Chibi[], Img_Portrait_Flower_Mouth[];
+extern const u16 Pal_Portrait_Flower[];
+#endif
+
 SECTION(".rodata.08C965A0")
 const struct FaceInfo gFaceInfoTable[] = {
     {
@@ -3731,4 +3736,18 @@ const struct FaceInfo gFaceInfoTable[] = {
         .x_eyes = 2,
         .blink_type = 1,
     },
+#if MOD_CLAUDE
+    // FID_FLOWER: the flower character (mod/claude, src/mod/claude_gfx.c)
+    {
+        .img = Img_Portrait_Flower_Face,
+        .img_chibi = Img_Portrait_Flower_Chibi,
+        .pal = Pal_Portrait_Flower,
+        .img_mouth = Img_Portrait_Flower_Mouth,
+        .x_mouth = 4,
+        .y_mouth = 4,
+        .x_eyes = 4,
+        .y_eyes = 2,
+        .blink_type = 1,
+    },
+#endif
 };

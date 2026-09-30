@@ -234,6 +234,18 @@ CONST_DATA struct BattleAnimDef BanimConf_BishopF[] = {
     { 0, 0 },
 };
 
+#if MOD_CLAUDE
+// The flower character's class (mod/claude): its own animation for tomes
+// and when unarmed
+CONST_DATA struct BattleAnimDef BanimConf_Flower[] = {
+    { 0x100 + ITYPE_ANIMA, BANIM_FLOWER },
+    { 0x100 + ITYPE_LIGHT, BANIM_FLOWER },
+    { 0x100 + ITYPE_DARK, BANIM_FLOWER },
+    { 0x100 + ITYPE_ITEM, BANIM_FLOWER },
+    { 0, 0 },
+};
+
+#endif
 CONST_DATA struct BattleAnimDef BanimConf_Mage[] = {
     { 0x100 + ITYPE_ANIMA, 0x58 },
     { 0x100 + ITYPE_LIGHT, 0x58 },

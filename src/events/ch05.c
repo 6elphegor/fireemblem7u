@@ -31,6 +31,9 @@ extern const struct UnitDefinition Units_08CC6400[];
 extern const struct UnitDefinition Units_08CC6430[];
 extern const struct UnitDefinition Units_Ch05_Initial[];
 extern const struct UnitDefinition Units_Ch05_Player[];
+#if MOD_CLAUDE
+extern const struct UnitDefinition Units_Ch05_Flower[];
+#endif
 extern const EventScr gEvent_GameOver[];
 
 // code
@@ -295,6 +298,13 @@ const EventScr EventScr_Ch05_Beginning[] = {
     LOU1(Units_08CC6370),
     ENUN,
     LABEL(0x12),
+#if MOD_CLAUDE
+    // the flower character joins (mod/claude)
+    LOU1(Units_Ch05_Flower),
+    ENUN,
+    TEX1(MSG_FLOWER_JOIN),
+    CLEAN,
+#endif
     REMA,
     ENDA,
 };

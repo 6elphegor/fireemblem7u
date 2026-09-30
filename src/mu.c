@@ -160,6 +160,9 @@ extern const u8 gUnk_083E716C[];
 extern const u8 Img_Mu_TransporterWagon[];
 extern const u8 gUnk_083E7CEC[];
 extern const u8 Img_Mu_5B[];
+#if MOD_CLAUDE
+extern const u8 Img_Mu_Flower[];
+#endif
 extern const u8 gUnk_083E84CC[];
 extern const u8 Img_Mu_5C[];
 extern const u8 gUnk_083E8CAC[];
@@ -451,7 +454,12 @@ CONST_DATA struct MuInfo gMuInfoTable[] = {
     [CLASS_CHILD_58 - 1] = { (u8 const *) Img_Mu_Child58, (u16 const *) gUnk_083E716C },
     [CLASS_TRANSPORTER_WAGON - 1] = { (u8 const *) Img_Mu_TransporterWagon, (u16 const *) gUnk_083E7CEC },
     [CLASS_SAGE_5A - 1] = { (u8 const *) Img_Mu_SageF, (u16 const *) gUnk_083CB718 },
+#if MOD_CLAUDE
+    // the flower character: its own frames, the Mage's walk animation
+    [CLASS_5B - 1] = { (u8 const *) Img_Mu_Flower, (u16 const *) gUnk_083C96EC },
+#else
     [CLASS_5B - 1] = { (u8 const *) Img_Mu_5B, (u16 const *) gUnk_083E84CC },
+#endif
     [CLASS_5C - 1] = { (u8 const *) Img_Mu_5C, (u16 const *) gUnk_083E8CAC },
     [CLASS_5D - 1] = { (u8 const *) Img_Mu_5D, (u16 const *) gUnk_083E948C },
     [CLASS_5E - 1] = { (u8 const *) Img_Mu_5E, (u16 const *) gUnk_083E9B38 },

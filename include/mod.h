@@ -5,3 +5,11 @@
 
 // The flower character (mod/claude; character design by thebes (Theia Vogel))
 #define MOD_CLAUDE 1
+
+#if MOD_CLAUDE
+#define CHARACTER_FLOWER 0xFE  // after CHARACTER_SNAG
+#define CLASS_FLOWER 0x5B      // the unused class slot CLASS_5B
+#define FID_FLOWER 0xE5        // after the last portrait
+#define SMS_FLOWER 0x4F        // CLASS_5B's standing sprite slot
+#define BANIM_FLOWER 0xA3      // banim_data entry, 1-based
+#endif

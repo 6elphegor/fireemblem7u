@@ -92,6 +92,10 @@ extern u8 const unit_icon_wait_WyvernLord_sheet[];
 extern u8 const unit_icon_wait_WyvernRider_sheet[];
 
 // Standing map sprites, indexed by ClassData::SMSId
+#if MOD_CLAUDE
+extern u8 const Img_UnitIcon_Flower[];
+#endif
+
 CONST_DATA struct UnitIconWait unit_icon_wait_table[] = {
     [0x00] = { 2, UNIT_ICON_SIZE_16x32, unit_icon_wait_LordEliwood_sheet },
     [0x01] = { 2, UNIT_ICON_SIZE_16x16, unit_icon_wait_LordLyn_sheet },
@@ -172,7 +176,11 @@ CONST_DATA struct UnitIconWait unit_icon_wait_table[] = {
     [0x4C] = { 2, UNIT_ICON_SIZE_16x16, unit_icon_wait_Child57_sheet },
     [0x4D] = { 2, UNIT_ICON_SIZE_16x16, unit_icon_wait_Child58_sheet },
     [0x4E] = { 2, UNIT_ICON_SIZE_16x32, unit_icon_wait_TransporterWagon_sheet },
+#if MOD_CLAUDE
+    [SMS_FLOWER] = { 2, UNIT_ICON_SIZE_16x32, Img_UnitIcon_Flower },
+#else
     [0x4F] = { 2, UNIT_ICON_SIZE_16x32, unit_icon_wait_Class5B_sheet },
+#endif
     [0x50] = { 2, UNIT_ICON_SIZE_16x32, unit_icon_wait_Class5C_sheet },
     [0x51] = { 2, UNIT_ICON_SIZE_16x32, unit_icon_wait_Class5D_sheet },
     [0x52] = { 2, UNIT_ICON_SIZE_16x32, unit_icon_wait_Class5E_sheet },

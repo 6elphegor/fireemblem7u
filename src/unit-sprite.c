@@ -30,6 +30,9 @@ extern u16 CONST_DATA Pal_MapSprite[];
 extern u16 CONST_DATA Pal_MapSpriteArena[];
 extern u16 CONST_DATA Pal_MapSpritePurple[];
 extern u16 CONST_DATA Pal_MapSpriteSepia[];
+#if MOD_CLAUDE
+extern const u16 Pal_MapSprite_Flower[];
+#endif
 
 #define GetInfo(id) (unit_icon_wait_table[(id) & ((1 << UNITSPRITE_ID_BITS) - 1)])
 
@@ -87,8 +90,15 @@ void ApplyUnitSpritePalettes(void)
 
     if (gBmSt.flags & BM_FLAG_LINKARENA)
         ApplyPalette(Pal_MapSpriteArena, 0x1B);
+#if MOD_CLAUDE
+    // the flower character's map palette: Pal_MapSpritePurple's colors 0-5,
+    // then its coral, lavender and white (mod/claude/art/mapsprite.py)
+    else
+        ApplyPalette(Pal_MapSprite_Flower, 0x1B);
+#else
     else
         ApplyPalette(Pal_MapSpritePurple, 0x1B);
+#endif
 }
 
 void ApplyUnitSpriteSepiaPalette(void)
@@ -466,6 +476,13 @@ int GetUnitDisplayedSpritePalette(struct Unit const * unit)
 
 int GetUnitSpritePalette(struct Unit const * unit)
 {
+#if MOD_CLAUDE
+    // the flower character keeps its colors on the player's side (OBJ
+    // palette 11, ApplyUnitSpritePalettes); elsewhere it takes the faction's
+    if (UNIT_FACTION(unit) == FACTION_BLUE && unit->pCharacterData->number == CHARACTER_FLOWER
+        && !(gBmSt.flags & BM_FLAG_LINKARENA))
+        return 0xB;
+#endif
     switch (UNIT_FACTION(unit))
     {
     case FACTION_BLUE:

@@ -213,7 +213,8 @@ build/data.o: build/data.s baserom.gba
 	$(AS) $(ASFLAGS) -o $@ $<
 
 # Game text: texts/*.txt -> Huffman-compressed messages, tree and gMsgTable.
-TEXTS := texts/texts.txt texts/textdefs.txt
+# texts a mod adds (mod/*/texts.txt, tools/textencode.py) follow the game's
+TEXTS := texts/texts.txt $(wildcard mod/*/texts.txt) texts/textdefs.txt
 
 # texts.txt is the game's script, so it isn't in git: extract it from the ROM
 # the first time. After that it is the source of truth and is never overwritten.

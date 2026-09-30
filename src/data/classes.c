@@ -132,6 +132,9 @@ extern CONST_DATA struct BattleAnimDef BanimConf_LordHector[];
 extern CONST_DATA struct BattleAnimDef BanimConf_LordLyn[];
 extern CONST_DATA struct BattleAnimDef BanimConf_MageF[];
 extern CONST_DATA struct BattleAnimDef BanimConf_Mage[];
+#if MOD_CLAUDE
+extern CONST_DATA struct BattleAnimDef BanimConf_Flower[];
+#endif
 extern CONST_DATA struct BattleAnimDef BanimConf_Mercenary[];
 extern CONST_DATA struct BattleAnimDef BanimConf_Monk[];
 extern CONST_DATA struct BattleAnimDef BanimConf_MyrmidonF[];
@@ -4802,6 +4805,53 @@ CONST_DATA struct ClassData gClassData[] = {
         .pTerrainDefenseLookup = TerrainTable_Def_Common,
         .pTerrainResistanceLookup = TerrainTable_Res_Common,
     },
+#if MOD_CLAUDE
+    // The flower character's class (mod/claude): a sturdier Mage
+    [CLASS_5B - 1] = {
+        .nameTextId = MSG_FLOWER_CLASS,
+        .descTextId = MSG_FLOWER_CLASS_DESC,
+        .number = CLASS_5B,
+        .promotion = CLASS_NONE,
+        .SMSId = SMS_FLOWER,
+        .slowWalking = 0,
+        .defaultPortraitId = FID_FLOWER,
+        .sort_order = 24,
+
+        .baseHP = 18,
+        .basePow = 2,
+        .baseSkl = 3,
+        .baseSpd = 3,
+        .baseDef = 3,
+        .baseRes = 5,
+        .baseCon = 5,
+        .baseMov = 5,
+
+        .maxHP = 60,
+        .maxPow = 20,
+        .maxSkl = 20,
+        .maxSpd = 20,
+        .maxDef = 20,
+        .maxRes = 25,
+        .maxCon = 20,
+
+        .classRelativePower = 3,
+
+        .growthHP = 55,
+        .growthPow = 50,
+        .growthSkl = 45,
+        .growthSpd = 40,
+        .growthDef = 10,
+        .growthRes = 40,
+        .growthLck = 30,
+
+        .baseRanks = { [ITYPE_ANIMA] = WPN_EXP_D },
+        .pBattleAnimDef = BanimConf_Flower,
+        .pMovCostTable = { TerrainTable_MovCost_MagicNormal, TerrainTable_MovCost_MagicRain, TerrainTable_MovCost_MagicSnow },
+        .pTerrainAvoidLookup = TerrainTable_Avo_Common,
+        .pTerrainDefenseLookup = TerrainTable_Def_Common,
+        .pTerrainResistanceLookup = TerrainTable_Res_Common,
+    },
+#else
     [CLASS_5B - 1] = {
         .nameTextId = 0x0,
         .descTextId = 0x0,
@@ -4850,6 +4900,7 @@ CONST_DATA struct ClassData gClassData[] = {
         .pTerrainDefenseLookup = TerrainTable_Def_Common,
         .pTerrainResistanceLookup = TerrainTable_Res_Common,
     },
+#endif
     [CLASS_5C - 1] = {
         .nameTextId = 0x0,
         .descTextId = 0x0,

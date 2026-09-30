@@ -1,0 +1,32 @@
+## MSG_FLOWER_NAME
+Claude[X]
+
+## MSG_FLOWER_CLASS
+Bloom Sage[X]
+
+## MSG_FLOWER_DESC
+A cheerful flower from far[.][LF]
+away. Curious and kind.[.][X]
+
+## MSG_FLOWER_CLASS_DESC
+Blossoming spellcasters who[LF]
+turn kindness into magic.[.][X]
+
+## MSG_FLOWER_JOIN
+[OpenMidLeft][LoadFace][FID_Lyn][OpenMidRight][LoadFace][FID_Flower][LF]
+[OpenMidRight][LF]
+Oh! Hello there![A][LF]
+I followed the petals on the[.][LF]
+wind, and here I am.[A][LF]
+[OpenMidLeft][LF]
+A...[.] talking flower?[A][LF]
+[OpenMidRight][LF]
+I'm Claude! I love helping[.][LF]
+people think things through.[A][LF]
+And I know a little magic.[A][LF]
+[OpenMidLeft][LF]
+Bandits wait at the border.[.][LF]
+We could use the help.[A][LF]
+[OpenMidRight][LF]
+Then let's go together![.][LF]
+I'll do my very best![A][X]
