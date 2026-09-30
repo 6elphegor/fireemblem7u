@@ -17,7 +17,10 @@
  * bindings; choose one and press a key or a controller button to rebind it
  * (Esc cancels; a key replaces the action's keys, a controller input its
  * controller bindings); the file is saved at once.  Esc opens and closes
- * the menu.  Text: font8x8 (platform/font8x8.h, public domain).
+ * the menu.  The bar can be hidden (Hide menu bar, ToggleMenuBar: F10 /
+ * Cmd+B; ShowMenuBar = no in the keys file) for the picture alone, and
+ * is hidden in fullscreen; Esc still opens the menu over the picture.
+ * Text: font8x8 (platform/font8x8.h, public domain).
  *
  * Headless runs initialize nothing of SDL (no window, no audio device).
  */
@@ -48,13 +51,13 @@ static int sHeadless = 1;
 enum {
     ACT_A, ACT_B, ACT_SELECT, ACT_START, ACT_RIGHT, ACT_LEFT, ACT_UP, ACT_DOWN,
     ACT_R, ACT_L,               /* the GBA's keys, in KEYINPUT bit order */
-    ACT_FAST, ACT_FULLSCREEN, ACT_QUIT,
+    ACT_FAST, ACT_FULLSCREEN, ACT_MENUBAR, ACT_QUIT,
     ACT_COUNT
 };
 
 static const char *const sActionNames[ACT_COUNT] = {
     "A", "B", "Select", "Start", "Right", "Left", "Up", "Down", "R", "L",
-    "FastForward", "Fullscreen", "Quit",
+    "FastForward", "Fullscreen", "ToggleMenuBar", "Quit",
 };
 
 static const char DEFAULT_KEYS[] =
@@ -79,7 +82,11 @@ static const char DEFAULT_KEYS[] =
     "FastForward = Tab, pad:righttrigger+\n"
     "# pressed\n"
     "Fullscreen  = F11, Alt+Return\n"
-    "Quit        = Cmd+Q, Ctrl+Q\n";
+    "ToggleMenuBar = F10, Cmd+B\n"
+    "Quit        = Cmd+Q, Ctrl+Q\n"
+    "\n"
+    "# the menu bar above the picture (Esc opens Controls either way)\n"
+    "ShowMenuBar = yes\n";
 
 enum { BIND_KEY, BIND_PADBUTTON, BIND_PADAXIS };
 
@@ -93,6 +100,7 @@ struct Binding {
 #define MAX_BINDINGS 8
 static struct Binding sBind[ACT_COUNT][MAX_BINDINGS];
 static int sBindCount[ACT_COUNT];
+static int sShowBar = 1;        /* ShowMenuBar */
 
 #define MAX_PADS 4
 static SDL_GameController *sPads[MAX_PADS];
@@ -185,6 +193,16 @@ static void parse_keys(const char *text, const char *from)
         *eq = 0;
         name = trim(line);
         list = eq + 1;
+        if (strcasecmp(name, "ShowMenuBar") == 0) {
+            char *v = trim(list);
+            if (!strcasecmp(v, "yes") || !strcasecmp(v, "on") || !strcasecmp(v, "true") || !strcmp(v, "1"))
+                sShowBar = 1;
+            else if (!strcasecmp(v, "no") || !strcasecmp(v, "off") || !strcasecmp(v, "false") || !strcmp(v, "0"))
+                sShowBar = 0;
+            else
+                fprintf(stderr, "platform: %s:%d: ShowMenuBar is yes or no\n", from, n);
+            continue;
+        }
         for (act = 0; act < ACT_COUNT; act++)
             if (strcasecmp(name, sActionNames[act]) == 0)
                 break;
@@ -379,7 +397,7 @@ static void close_pad(SDL_JoystickID id)
 #define BAR_H 24        /* window pixels */
 #define TEXT_SCALE 2    /* font8x8 glyphs at 16x16 */
 #define ROW_H 22
-#define NAME_COL (12 * 8 * TEXT_SCALE)   /* action names: the longest is 11 */
+#define NAME_COL (14 * 8 * TEXT_SCALE)   /* action names: the longest is 13 */
 
 static SDL_Texture *sFont;      /* 128 glyphs of 8x8, white on transparent */
 
@@ -390,7 +408,7 @@ static int sCaptureAct = -1;
 static int sInputHold;          /* frames of no game input after a rebind */
 
 /* rows of the drop-down: every action, then these */
-enum { ROW_RESET = ACT_COUNT, ROW_OPENFILE, ROW_COUNT };
+enum { ROW_BAR = ACT_COUNT, ROW_RESET, ROW_OPENFILE, ROW_COUNT };
 
 static const SDL_Color COL_BAR = { 0x24, 0x1E, 0x2A, 0xFF };
 static const SDL_Color COL_MENU = { 0x2E, 0x27, 0x36, 0xF4 };
@@ -533,8 +551,10 @@ static void save_keys(void)
     for (act = 0; act < ACT_COUNT; act++) {
         char text[512];
         action_text(act, text, sizeof text, 1);
-        fprintf(f, "%-11s = %s\n", sActionNames[act], text);
+        fprintf(f, "%-13s = %s\n", sActionNames[act], text);
     }
+    fprintf(f, "\n# the menu bar above the picture (Esc opens Controls either way)\n"
+               "ShowMenuBar = %s\n", sShowBar ? "yes" : "no");
     fclose(f);
 }
 
@@ -562,6 +582,32 @@ static void reset_keys(void)
 }
 
 /* the drop-down's rows: x, y of row r */
+static int is_fullscreen(void)
+{
+    return (SDL_GetWindowFlags(sWindow) & (SDL_WINDOW_FULLSCREEN | SDL_WINDOW_FULLSCREEN_DESKTOP)) != 0;
+}
+
+/* the height the menu bar takes above the picture (0: hidden) */
+static int bar_space(void)
+{
+    return sShowBar && !is_fullscreen() ? BAR_H : 0;
+}
+
+/* Show or hide the menu bar; the window grows or shrinks by its height,
+ * so the picture keeps its size. */
+static void set_bar(int show)
+{
+    int w, h;
+    if (show == sShowBar)
+        return;
+    if (!is_fullscreen() && !(SDL_GetWindowFlags(sWindow) & SDL_WINDOW_MAXIMIZED)) {
+        SDL_GetWindowSize(sWindow, &w, &h);
+        SDL_SetWindowSize(sWindow, w, h + (show ? BAR_H : -BAR_H));
+    }
+    sShowBar = show;
+    save_keys();
+}
+
 static int menu_width(void)
 {
     int w, h;
@@ -571,7 +617,7 @@ static int menu_width(void)
 
 static SDL_Rect menu_row(int r)
 {
-    SDL_Rect rect = { 4, BAR_H + 4 + r * ROW_H + (r >= ROW_RESET ? 8 : 0), menu_width(), ROW_H };
+    SDL_Rect rect = { 4, BAR_H + 4 + r * ROW_H + (r >= ROW_BAR ? 8 : 0), menu_width(), ROW_H };
     return rect;
 }
 
@@ -598,6 +644,8 @@ static void draw_menu(void)
     int w, h, r;
 
     SDL_GetRendererOutputSize(sRenderer, &w, &h);
+    if (!bar_space() && sMenu == MENU_CLOSED)
+        return;
     fill(0, 0, w, BAR_H, COL_BAR);
     if (sMenu != MENU_CLOSED)
         fill(cl.x, cl.y, cl.w, cl.h, COL_MENU);
@@ -613,7 +661,7 @@ static void draw_menu(void)
     {
         SDL_Rect last = menu_row(ROW_COUNT - 1);
         fill(0, BAR_H, menu_width() + 8, last.y + last.h + 4 - BAR_H, COL_MENU);
-        fill(4, menu_row(ROW_RESET).y - 5, menu_width(), 1, COL_DIM);
+        fill(4, menu_row(ROW_BAR).y - 5, menu_width(), 1, COL_DIM);
     }
     for (r = 0; r < ROW_COUNT; r++) {
         SDL_Rect rr = menu_row(r);
@@ -632,6 +680,8 @@ static void draw_menu(void)
             draw_text(rr.x + 8, ty, sActionNames[r], name, -1);
             draw_text(rr.x + 8 + NAME_COL, ty, text, hot && sMenu == MENU_CAPTURE ? COL_BAR : COL_DIM,
                       rr.w - 16 - NAME_COL);
+        } else if (r == ROW_BAR) {
+            draw_text(rr.x + 8, ty, sShowBar ? "Hide menu bar" : "Show menu bar", COL_TEXT, -1);
         } else if (r == ROW_RESET) {
             draw_text(rr.x + 8, ty, "Reset to defaults", COL_TEXT, -1);
         } else {
@@ -714,7 +764,7 @@ static int menu_event(const SDL_Event *e)
     case SDL_MOUSEBUTTONDOWN: {
         SDL_Rect cl = controls_label();
         int x = e->button.x, y = e->button.y, r;
-        if (y < BAR_H && x >= cl.x && x < cl.x + cl.w) {
+        if ((bar_space() || sMenu != MENU_CLOSED) && y < BAR_H && x >= cl.x && x < cl.x + cl.w) {
             sMenu = sMenu == MENU_CLOSED ? MENU_OPEN : MENU_CLOSED;
             return 1;
         }
@@ -726,8 +776,14 @@ static int menu_event(const SDL_Event *e)
         } else if (r < ACT_COUNT) {
             sMenu = MENU_CAPTURE;
             sCaptureAct = r;
+        } else if (r == ROW_BAR) {
+            set_bar(!sShowBar);
+            sMenu = MENU_CLOSED;
         } else if (r == ROW_RESET) {
+            int show = sShowBar;
             reset_keys();
+            sShowBar = show;    /* the bar stays as it is */
+            save_keys();
         } else if (r == ROW_OPENFILE) {
             open_keys_file();
         }
@@ -747,8 +803,10 @@ int FrontendInit(int headless, int scale)
         fprintf(stderr, "platform: SDL_Init: %s\n", SDL_GetError());
         return -1;
     }
+    load_keys();
     sWindow = SDL_CreateWindow("Fire Emblem", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                               PPU_WIDTH * scale, PPU_HEIGHT * scale + BAR_H, SDL_WINDOW_RESIZABLE);
+                               PPU_WIDTH * scale, PPU_HEIGHT * scale + (sShowBar ? BAR_H : 0),
+                               SDL_WINDOW_RESIZABLE);
     if (!sWindow) {
         fprintf(stderr, "platform: SDL_CreateWindow: %s\n", SDL_GetError());
         return -1;
@@ -760,7 +818,6 @@ int FrontendInit(int headless, int scale)
         fprintf(stderr, "platform: SDL_CreateRenderer: %s\n", SDL_GetError());
         return -1;
     }
-    load_keys();
     make_font();
     /* 0x00BBGGRR words: red in the lowest byte, ABGR8888 on little-endian */
     sTexture = SDL_CreateTexture(sRenderer, SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING,
@@ -832,6 +889,8 @@ int FrontendPoll(u16 *keys, int *fast)
             continue;
         if (action_pressed(ACT_QUIT, &e))
             return 0;
+        if (action_pressed(ACT_MENUBAR, &e))
+            set_bar(!sShowBar);
         if (action_pressed(ACT_FULLSCREEN, &e)) {
             int full = SDL_GetWindowFlags(sWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP;
             SDL_SetWindowFullscreen(sWindow, full ? 0 : SDL_WINDOW_FULLSCREEN_DESKTOP);
@@ -868,7 +927,7 @@ void FrontendPresent(const uint32_t *fb)
         int w, h;
         SDL_Rect dst;
         SDL_GetRendererOutputSize(sRenderer, &w, &h);
-        h -= BAR_H;
+        h -= bar_space();
         if (w * PPU_HEIGHT > h * PPU_WIDTH) {
             dst.h = h;
             dst.w = h * PPU_WIDTH / PPU_HEIGHT;
@@ -877,7 +936,7 @@ void FrontendPresent(const uint32_t *fb)
             dst.h = w * PPU_HEIGHT / PPU_WIDTH;
         }
         dst.x = (w - dst.w) / 2;
-        dst.y = BAR_H + (h - dst.h) / 2;
+        dst.y = bar_space() + (h - dst.h) / 2;
         SDL_RenderCopy(sRenderer, sTexture, NULL, &dst);
     }
     draw_menu();

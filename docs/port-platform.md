@@ -285,7 +285,7 @@ what the game leaves in memory (below, "Sound output").
   (platform/frontend_sdl.c: defaults arrows; Z/X = A/B; A/S = L/R; Enter =
   Start; Backspace = Select; Tab held = fast forward; F11 = fullscreen;
   Cmd+Q / Ctrl+Q = quit; rebind them from the window's Controls menu (Esc
-  opens it), or in `~/.config/fe7u/keys.txt`, written on the first windowed
+  opens it; the menu bar can be hidden: F10 / Cmd+B), or in `~/.config/fe7u/keys.txt`, written on the first windowed
   run, or `--keys FILE`), or an input script.  Frame numbers are tools/emutest.c's: frame N's keys are in
   `KEYINPUT` from the return of wait N-1 until the return of wait N, and
   picture N is the one drawn in wait N, so `--log` and shots line up with
