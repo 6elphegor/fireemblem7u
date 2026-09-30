@@ -74,8 +74,9 @@ headless, no save file unless the script has an `sram` line; a crash prints
 
 Pictures and sound (`make hosttest`, docs/port-platform.md, "Test against
 mGBA"): on the opening and lyn, the checkpoints are mGBA's pictures pixel
-for pixel (15 of 16 and 18 of 32; the rest differ by animation phase,
-except the sprites of a ranged battle while its screen pans), found some
+for pixel (15 of 16 and 18 of 32; the rest differ by animation phase;
+the sprites of a ranged battle that went missing while its screen panned
+came from the wrong buffer, fixed: see gBanimOamr2 below), found some
 frames earlier on the host, which never lags.  The backgrounds that came
 out black or garbled had two causes: gHostVram was not 0x20000-aligned
 (the platform now aligns the video memories), and `ArchiveCurrentPalettes`
