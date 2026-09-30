@@ -257,9 +257,11 @@ void HostRunFrame(void)
 
     /* VBlank */
     line_start(160);
+    HostAudioFrame();
     HostDmaRun(HOST_DMA_VBLANK);
     if (io16(REG_OFFSET_DISPSTAT) & DISPSTAT_VBLANK_INTR)
         HostRaiseIrq(INTR_FLAG_VBLANK);
+    HostAudioFrameEnd();
 
     /* frame n is done */
     if (sLog)
@@ -270,7 +272,7 @@ void HostRunFrame(void)
         while ((shot = HostScriptShot(sScript, n, &idx)) != NULL)
             write_shot(shot);
     }
-    if (gHostOptions.dumpEvery > 0 && n % gHostOptions.dumpEvery == 0) {
+    if (gHostOptions.dumpEvery > 0 && n >= gHostOptions.dumpStart && n % gHostOptions.dumpEvery == 0) {
         char name[64];
         snprintf(name, sizeof name, "frame%06ld", n);
         write_shot(name);
@@ -329,8 +331,10 @@ void HostPowerOn(void)
 {
     memset(gHostIo, 0, HOST_IO_SIZE);
     HostDmaReset();
+    HostAudioReset();
     set_io16(REG_OFFSET_KEYINPUT, 0x3FF);
     set_io16(REG_OFFSET_DISPCNT, DISPCNT_FORCED_BLANK);
+    set_io16(REG_OFFSET_SOUNDBIAS, 0x200); /* as the BIOS leaves it at boot */
 
     gBiosMemory.ewram = gHostEwram;
     gBiosMemory.iwram = gHostIwram;
@@ -361,11 +365,14 @@ static void usage(const char *prog)
             "  --input FILE        emutest input script (tests/inputs/*.txt) or plan\n"
             "  --dump-frames DIR   PNGs of the script's shots\n"
             "  --dump-every N      also a PNG every N frames (into the dump dir)\n"
+            "  --dump-start N      ... from frame N on\n"
             "  --dump-mem          with each shot, NAME.{pal,vram,oam,io}.bin\n"
             "  --log FILE          per frame: number, keys, picture hash\n"
             "  --save FILE         SRAM file (default fe7u.sav; none headless)\n"
             "  --no-save           no SRAM file\n"
-            "  --wav FILE          write the audio to a WAV file\n"
+            "  --wav FILE          write the audio to a WAV file (32768 Hz)\n"
+            "  --channels MASK     channels heard, hex: bits 0-3 CGB, 4-5 DirectSound A, B (3F)\n"
+            "  --mix FILE          the m4a mixer's output per frame (emutest -P's .mix)\n"
             "  --scale N           window scale (default 3)\n"
             "  --hardware-color    the GBA's 5-bit color math (default: mGBA's)\n"
             "keys: arrows, Z/X = A/B, A/S = L/R, Enter = Start, Backspace = Select,\n"
@@ -399,10 +406,16 @@ static int parse_args(int argc, char **argv)
             o->dumpDir = v;
         else if (ARG("--dump-every"))
             o->dumpEvery = atol(v);
+        else if (ARG("--dump-start"))
+            o->dumpStart = atol(v);
         else if (ARG("--log"))
             o->log = v;
         else if (ARG("--save"))
             o->save = v;
+        else if (ARG("--channels"))
+            HostAudioSetChannels((int)strtol(v, NULL, 16));
+        else if (ARG("--mix"))
+            o->mix = v;
         else if (ARG("--wav"))
             o->wav = v;
         else if (ARG("--scale"))
@@ -429,6 +442,7 @@ static void cleanup(void)
         fclose(sLog);
         sLog = NULL;
     }
+    HostAudioCloseMixDump();
     if (sWav) {
         wav_header(sWav, sWavFrames, sAudioRate);
         fclose(sWav);
@@ -485,6 +499,7 @@ int HostMain(int argc, char **argv)
         }
         wav_header(sWav, 0, sAudioRate);
     }
+    HostAudioSetMixDump(gHostOptions.mix);
 
     if (FrontendInit(gHostOptions.headless, gHostOptions.scale) != 0)
         return 1;

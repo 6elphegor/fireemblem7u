@@ -72,7 +72,7 @@ NM_DEFS += -DBANIM_SHEET_INDEX=1
 BANIM_LINK_FLAGS := --sheet-index
 endif
 
-.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck hostevents host
+.PHONY: all compare clean msgheader shifttest emutest emuaudio modern modern-check modern-resizetest nonmatching hostcheck hostevents host hosttest
 .DELETE_ON_ERROR:
 
 # `make MODERN=1` (or `make modern`): the free data layout, see below.
@@ -462,6 +462,12 @@ hostevents: compare
 #   build/host-game/fe7u --headless --input tests/inputs/opening.txt --dump-frames DIR
 host: compare
 	python3 tools/hostgame.py -j $(or $(HOSTGAME_JOBS),4)
+
+# The host build against mGBA (tools/hosttest.py; CONTRIBUTING, "Host
+# test"): checkpoint pictures, the m4a mixer's output and the sound, on
+# the opening and lyn scripts (or HOSTTEST_SCRIPTS).  Needs libmgba.
+hosttest: host build/tools/emutest
+	python3 tools/hosttest.py $(HOSTTEST_SCRIPTS)
 
 clean:
 	rm -rf build $(ROM) $(ELF) $(MAP) fe7u_modern*.gba fe7u_modern*.elf fe7u_modern*.map fe7u_nonmatching*.gba fe7u_nonmatching*.elf fe7u_nonmatching*.map
