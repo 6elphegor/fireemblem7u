@@ -174,9 +174,15 @@ def asm_sources():
 
 
 def asm_deps(src):
-    """The file and what it includes (the songs of sound/sound.s)."""
+    """The file, what it includes (the songs of sound/sound.s) and the files
+    it incbins other than baserom.gba (graphics built from edited PNGs)."""
     deps = [src, 'tools/hostasm.py']
     for line in open(src, encoding='utf-8'):
+        m = re.match(r'^\s*\.incbin\s+"([^"]+)"', line)
+        if m:
+            if m.group(1) != 'baserom.gba' and os.path.exists(m.group(1)):
+                deps.append(m.group(1))
+            continue
         m = re.match(r'^\s*\.include\s+"([^"]+)"', line)
         if m:
             for d in (os.path.dirname(src), 'include', 'asm', '.'):
