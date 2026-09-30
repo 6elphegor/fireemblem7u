@@ -814,6 +814,12 @@ extern u16 Pal_Banim_001_erlm_sw1[], Pal_Banim_002_erlm_sw1[], Pal_Banim_003_lok
     Pal_Banim_09D_brsm_ax1[], Pal_Banim_09E_brsm_ax1[], Pal_Banim_09F_brsm_ax1[],
     Pal_Banim_0A0_silm_no1[], Pal_Banim_0A1_yuso_no1[], Pal_Banim_0A2_yuso_no1[];
 
+#if MOD_CLAUDE
+extern int BanimModes_Flower[];
+extern char BanimScr_Flower[], BanimOam_Flower_R[], BanimOam_Flower_L[];
+extern u16 Pal_Banim_Flower[];
+#endif
+
 SECTION(".rodata.08E00008")
 const struct BattleAnim banim_data[] = {
     {
@@ -2112,6 +2118,17 @@ const struct BattleAnim banim_data[] = {
         .oam_l = BanimOam_0A2_yuso_no1_L,
         .pal = Pal_Banim_0A2_yuso_no1,
     },
+#if MOD_CLAUDE
+    // 0xA3: the flower character (mod/claude, src/mod/claude_banim.c)
+    {
+        .abbr = "flower",
+        .modes = BanimModes_Flower,
+        .script = BanimScr_Flower,
+        .oam_r = BanimOam_Flower_R,
+        .oam_l = BanimOam_Flower_L,
+        .pal = Pal_Banim_Flower,
+    },
+#endif
 };
 
 SECTION(".rodata.08FC0008")

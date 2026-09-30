@@ -84,7 +84,8 @@ BANIM_C = os.path.join(OUT, 'banim', 'banim_host.c')
 
 
 def build_banim_c():
-    deps = sorted(glob.glob('banim/*.s')) + ['tools/banim.py', 'data/layout.txt']
+    deps = (sorted(glob.glob('banim/*.s')) + sorted(glob.glob('mod/banim/*.s')) +
+            ['tools/banim.py', 'data/layout.txt'] + glob.glob('mod/layout.txt'))
     if newer(BANIM_C, deps):
         run([sys.executable, 'tools/banim.py', 'host', os.path.dirname(BANIM_C)])
 

@@ -95,6 +95,7 @@ import elf32  # noqa: E402
 
 ROM_BASE = 0x08000000
 SRC_DIR = Path("banim")
+MOD_SRC_DIR = Path("mod/banim")  # scripts appended by mod/layout.txt
 BANIM_TABLES = Path("src/data/banimtables.c")
 OBJ_DIR = Path("build/banim")
 LAYOUT = Path("data/layout.txt")
@@ -148,10 +149,11 @@ def extract():
     import datasplit
     import gfx
     rom = Path("baserom.gba").read_bytes()
-    todo = [s for s in scripts() if not (SRC_DIR / f"{s[2]}.s").exists()]
+    todo = [s for s in scripts() if not (SRC_DIR / f"{s[2]}.s").exists()
+            and not (MOD_SRC_DIR / f"{s[2]}.s").exists()]
     for addr, _, name in todo:
         if addr >= APPENDED:
-            sys.exit(f"{name}: appended by {MOD_LAYOUT} but {SRC_DIR / name}.s is missing")
+            sys.exit(f"{name}: appended by {MOD_LAYOUT} but {MOD_SRC_DIR / name}.s is missing")
     if todo:
         # sheet names: labels in data/rom/*.s
         labels = {}

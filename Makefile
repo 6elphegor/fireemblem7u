@@ -51,6 +51,9 @@ BANIM_NAMES := $(shell sed -n 's/^rom .* build\/banim\/banim\.o(\.rodata\.\(.*\)
 BANIM_SRCS := $(BANIM_NAMES:%=banim/%.s)
 BANIM_OBJS := $(BANIM_NAMES:%=build/banim/%.script.o)
 BANIM_OBJ := build/banim/banim.o
+# Scripts a mod appends (mod/layout.txt, modern build): source in mod/banim/.
+MOD_BANIM_NAMES := $(shell sed -n 's/^rom APPEND .* build\/banim\/banim\.o(\.rodata\.\(.*\))$$/\1/p' mod/layout.txt 2>/dev/null)
+MOD_BANIM_OBJS := $(MOD_BANIM_NAMES:%=build/banim/%.script.o)
 OBJS := $(C_OBJS) $(ASM_OBJS) $(ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJ) build/data.o build/msg_data.o
 LAYOUTS := data/layout.txt data/rom/layout.txt
 LAYOUT := build/data.s build/layout.ld build/ram.ld
@@ -290,6 +293,10 @@ build/banim/%.script.o: banim/%.s include/banim_script.inc
 	@mkdir -p $(@D)
 	$(AS) $(ASFLAGS) -o $@ $<
 
+build/banim/%.script.o: mod/banim/%.s include/banim_script.inc
+	@mkdir -p $(@D)
+	$(AS) $(ASFLAGS) -o $@ $<
+
 # Relink with padding before the data region and check every pointer moved.
 shifttest: $(ROM)
 	python3 tools/shifttest.py
@@ -366,7 +373,7 @@ $(MODERN_DIR)/fe7u.ld: build/fe7u.ld
 	@mkdir -p $(@D)
 	sed -e 's#INCLUDE build/layout.ld#INCLUDE $(MODERN_DIR)/layout.ld#' -e 's#INCLUDE build/ram.ld#INCLUDE $(MODERN_DIR)/ram.ld#' $< > $@
 
-$(MODERN_ELF): $(C_OBJS) build/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(MODERN_DIR)/fe7u.ld $(MODERN_LAYOUT) symbols.ld
+$(MODERN_ELF): $(C_OBJS) build/asm.a $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(BANIM_OBJS) $(MOD_BANIM_OBJS) $(LZ77) tools/banim.py $(MODERN_DIR)/data.o build/msg_data.o $(MODERN_DIR)/fe7u.ld $(MODERN_LAYOUT) symbols.ld
 	@python3 tools/check_symbols.py
 	python3 tools/banim.py link $(MODERN_DIR)/banim -- $(LD) -T $(MODERN_DIR)/fe7u.ld -Map fe7u_modern.map --emit-relocs --no-warn-rwx-segments -o $@ $(C_OBJS) --whole-archive build/asm.a --no-whole-archive $(MODERN_ROMDATA_OBJS) $(SOUND_OBJ) $(MODERN_DIR)/banim/banim.o $(MODERN_DIR)/data.o build/msg_data.o -L $(AGBCC)/lib -lc -lgcc
 
