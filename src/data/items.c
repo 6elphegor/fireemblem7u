@@ -2563,7 +2563,7 @@ CONST_DATA struct ItemData gItemData[] = {
     },
 #if MOD_CLAUDE
     // the flower character's tome (mod/claude): its spell is
-    // StartSpellAnimPetal (src/mod/claude_petal.c)
+    // StartSpellAnimDandelion (src/mod/claude_petal.c)
     [ITEM_PETAL] = {
         .nameTextId = MSG_PETAL_NAME,
         .descTextId = MSG_PETAL_DESC,

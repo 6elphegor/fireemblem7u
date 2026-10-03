@@ -44,12 +44,12 @@ PAL = [gba(c) for c in [
     (0xF8, 0xF8, 0xF0),  # 7  face
     (0xD8, 0xD0, 0xD0),  # 8  face shade
     (0xA0, 0x90, 0xA0),  # 9  face deep shade
-    (0xF0, 0x70, 0x78),  # 10 blush, mouth inside
-    (0x40, 0x28, 0x68),  # 11 shirt deep
-    (0x68, 0x50, 0x98),  # 12 shirt shadow
-    (0x90, 0x78, 0xC0),  # 13 shirt
-    (0xB8, 0xA0, 0xE0),  # 14 shirt light
-    (0xE8, 0xB8, 0x40),  # 15 gold (trim, brooch)
+    (0xE8, 0x68, 0x68),  # 10 blush, mouth inside, red embroidery
+    (0x10, 0x0C, 0x14),  # 11 robe deep (the schema's black)
+    (0x20, 0x1A, 0x28),  # 12 robe shadow
+    (0x32, 0x2A, 0x3C),  # 13 robe
+    (0x4C, 0x44, 0x5C),  # 14 robe light (folds catching the light)
+    (0xE0, 0xB0, 0x40),  # 15 gold
 ]]
 OUTLINE, FACE, FACE_SHADE, FACE_DEEP, BLUSH = 1, 7, 8, 9, 10
 PETAL = [2, 3, 4, 5, 6]
@@ -59,12 +59,14 @@ GOLD = 15
 L3 = np.array([-0.55, -0.65, 0.52])
 L3 /= np.linalg.norm(L3)
 
-# (angle deg, length, tip radius, bend): the front ring, a little irregular
+# (angle deg, length, tip radius, bend): the front ring of an old flower,
+# no two petals alike: uneven spacing and length, some bent hard, one
+# curled short
 FRONT = [
-    (-90, 27.0, 5.5, 0.12), (-61, 27.8, 4.8, -0.10), (-29, 28.2, 5.4, 0.05),
-    (1, 28.6, 5.0, -0.08), (31, 27.2, 5.3, 0.10), (59, 27.9, 4.9, -0.04),
-    (90, 28.2, 5.6, 0.06), (121, 27.4, 5.0, -0.10), (149, 28.3, 5.3, 0.08),
-    (180, 28.8, 5.1, -0.04), (211, 27.3, 5.4, 0.09), (239, 27.1, 4.9, -0.11),
+    (-88, 26.5, 5.4, 0.18), (-57, 28.6, 4.6, -0.24), (-34, 25.0, 5.6, 0.06),
+    (-3, 28.8, 4.9, -0.16), (26, 27.0, 5.5, 0.27), (64, 22.5, 4.3, -0.55),
+    (88, 28.4, 5.1, 0.10), (122, 26.2, 5.6, -0.22), (147, 29.0, 4.7, 0.17),
+    (184, 25.6, 5.3, -0.12), (213, 28.2, 4.5, 0.30), (238, 26.6, 5.2, -0.20),
 ]
 # fit the portrait's window: above y=48 only the 64-wide main area shows
 FRONT = [(a, l * 0.9, r * 0.92, b) for (a, l, r, b) in FRONT]
@@ -73,7 +75,7 @@ PETAL_BASE = 1.9
 FACE_R = 15.0
 
 # labels (a higher label is in front)
-BG, L_TAIL, L_SHIRT, L_BACK0, L_FRONT0, L_FACE = 0, 1, 2, 20, 40, 90
+BG, L_TAIL, L_SHIRT, L_BACK0, L_FRONT0, L_FACE, L_CAP = 0, 1, 2, 20, 40, 90, 95
 
 
 def px_center(a):
@@ -90,8 +92,9 @@ def band(v, cuts, tones):
     return out
 
 
-def petal(X, Y, ang, length, rt, bend, cx=CX, cy=CY, base=PETAL_BASE, r0=8.0):
-    """A petal as two capsule segments (a slight bend), with lighting.
+def petal(X, Y, ang, length, rt, bend, cx=CX, cy=CY, base=PETAL_BASE, r0=8.0, wobble=0.09):
+    """A petal as two capsule segments (a bend), its outline wavering like
+    a worn petal's (wobble), with lighting.
     Returns (inside, lit, t along 0..1, s across -1..1)."""
     a = math.radians(ang)
     dx, dy = math.cos(a), math.sin(a)
@@ -102,13 +105,20 @@ def petal(X, Y, ang, length, rt, bend, cx=CX, cy=CY, base=PETAL_BASE, r0=8.0):
     tx = mx + math.cos(a2) * (length - mid)
     ty = my + math.sin(a2) * (length - mid)
     rm = base + (rt - base) * 0.62
-    in1, t1, s1 = capsule(X, Y, ax, ay, mx, my, base, rm)
-    in2, t2, s2 = capsule(X, Y, mx, my, tx, ty, rm, rt)
-    inside = in1 | in2
+    grow = 1 + wobble
+    in1, t1, s1 = capsule(X, Y, ax, ay, mx, my, base * grow, rm * grow)
+    in2, t2, s2 = capsule(X, Y, mx, my, tx, ty, rm * grow, rt * grow)
     use2 = in2 & ~(in1 & (t1 < 0.999))
     t = np.where(use2, 0.55 + 0.45 * t2, 0.55 * t1)
     side = np.where(use2, s2, s1)
     r = np.where(use2, rm + (rt - rm) * t2, base + (rm - base) * t1)
+    # the edge wavers along the petal, differently on its two sides
+    phase = ang * 0.37
+    r_eff = r * (1 + wobble * np.sin(t * 9.0 + phase + np.sign(side) * 1.7))
+    d1 = np.hypot(X - (ax + (mx - ax) * t1), Y - (ay + (my - ay) * t1))
+    d2 = np.hypot(X - (mx + (tx - mx) * t2), Y - (my + (ty - my) * t2))
+    dist = np.where(use2, d2, d1)
+    inside = (in1 | in2) & (dist <= r_eff)
     s = np.clip(side / np.maximum(r, 1e-3), -1, 1)
     # surface normal: half cylinder across the petal, tilted back at the base
     # a flat petal, cupped a little at the edges and tilted back at the base
@@ -160,9 +170,10 @@ def draw_base():
     put(tail, L_TAIL, band(px_center(tail_lit), [-0.1, 0.3, 0.72], PETAL[1:5]))
 
     # shirt: rounded shoulders, a collar, sleeves set off by seams
-    sh = capsule(X, Y, 27.0, 67.0, 69.0, 67.0, 13.0, 13.0)[0]
-    chest = (Y >= 70) & (np.abs(X - CX) <= 33.6)
-    neck = (Y >= 50) & (Y < 68) & (np.abs(X - CX) <= np.minimum(17 + (Y - 50) * 1.2, 26))
+    # the mantle: rounded shoulders falling away into a wide cloak
+    sh = capsule(X, Y, 30.0, 62.0, 66.0, 62.0, 11.0, 11.0)[0]
+    chest = (Y >= 62) & (np.abs(X - CX) <= 29 + (Y - 62) * 1.1)
+    neck = (Y >= 50) & (Y < 64) & (np.abs(X - CX) <= np.minimum(17 + (Y - 50) * 1.2, 26))
     lit, _ = ellipsoid_lit(X, Y, CX, 86, 42, 32)
     tone = band(px_center(lit), [-0.05, 0.35, 0.72], SHIRT)
     # occlusion under the head: a collar shadow
@@ -199,12 +210,23 @@ def draw_base():
         # the base in the face's shadow
         tl = np.where(tp < 0.18, PETAL[1], tl)
         tl = np.where(tp < 0.09, PETAL[0], tl)
+        # age: the tips browning, a few spots, the highlights gone dull
+        tl = np.where(tl == PETAL[4], PETAL[3], tl)
+        tl = np.where((tp > 0.86) & (sp < 0.4), drop, tl)
+        spot = (((Xp * 7 + Yp * 13 + k * 5).astype(int) % 37) == 0) & (tp > 0.35) & (tp < 0.9)
+        tl = np.where(spot, drop, tl)
         put(inside, L_FRONT0 + k, tl)
 
     # face: a lit disc, shaded toward the lower right
     lit, _ = ellipsoid_lit(X, Y, CX, CY, FACE_R, FACE_R, flat=0.6)
     put(disc(X, Y, CX, CY, FACE_R), L_FACE,
         band(px_center(lit), [0.12, 0.42], [FACE_DEEP, FACE_SHADE, FACE]))
+
+    # the cap (after the schema-monk's koukoulion): a black dome on the
+    # head, its rim an embroidered band
+    lit, _ = ellipsoid_lit(X, Y, CX, CY - 10, 13.0, 10, flat=0.2)
+    dome = (((X - CX) / 13.0) ** 2 + ((Y - (CY - 10)) / 10.0) ** 2 <= 1) & (Y <= CY - 7)
+    put(dome, L_CAP, band(px_center(lit), [-0.1, 0.35, 0.7], SHIRT))
 
     # outlines: each boundary is drawn on its front side; near-black on the
     # silhouette, around the face and between rings, a dark tone of the
@@ -234,8 +256,132 @@ def draw_base():
             m = (labels == L_FRONT0 + k) & (color != OUTLINE) & (np.hypot(Xp - tx, Yp - ty) < 0.9)
             color[m] = PETAL[4]
     color = clean(color, labels)
-    ornaments(color, labels, Xp, Yp)
+    schema(color, labels, Xp, Yp)
     return color
+
+
+GOLGOTHA = [            # the three-bar cross on Golgotha's steps
+    "....#....",
+    "..#####..",
+    "....#....",
+    "#########",
+    "....#....",
+    "....#....",
+    "....#....",
+    "..###....",
+    "....###..",
+    "....#....",
+    "...###...",
+    "..#####..",
+    ".#######.",
+]
+SERAPH = [              # six-winged: a head between gold wings
+    "gg.....gg",
+    ".gg.w.gg.",
+    "..gwwwg..",
+    ".gg.g.gg.",
+]
+
+
+def schema(color, labels, Xp, Yp):
+    """The robes after the schema-monk's habit: a black mantle with folds;
+    the analav down the chest, bordered by white bands of lettering
+    (pattern standing in for the Slavonic inscriptions), with a seraph and
+    the Golgotha cross; lettering bands over both shoulders; the cap's
+    embroidered rim, its crosses and a gold cross on top."""
+    robe = (labels == L_SHIRT) & (color != OUTLINE)
+    cap = labels == L_CAP
+
+    def put(mask, c):
+        color[mask] = c
+
+    def lettering(mask, along, w=FACE, gap=OUTLINE):
+        """A band of white with dark letter strokes along it."""
+        put(mask, w)
+        k = np.floor(along).astype(int)
+        stroke = ((k * 7 + (k // 3) * 5) % 4 == 0) | ((k % 5) == 2)
+        put(mask & stroke & (np.abs(np.modf(along)[0] - 0.5) < 0.5), gap)
+
+    # mantle folds: long light creases falling from the shoulders
+    for x0, x1 in ((24, 18), (31, 27), (66, 70), (73, 79)):
+        tt = np.clip((Yp - 62) / 18.0, 0, 1)
+        fold = (np.abs(Xp - (x0 + (x1 - x0) * tt)) < 0.55) & (Yp > 62)
+        put(robe & fold, SHIRT[3])
+        put(robe & (np.abs(Xp - (x0 + (x1 - x0) * tt) - 1) < 0.55) & (Yp > 62), SHIRT[0])
+
+    # the hood's lappets over the shoulders: dark, lettered edges, a cross
+    for sgn in (-1, 1):
+        ax, ay, bx, by = CX + sgn * 14, 50.0, CX + sgn * 27, 80.0
+        L = math.hypot(bx - ax, by - ay)
+        ux, uy = (bx - ax) / L, (by - ay) / L
+        d = (Xp - ax) * -uy + (Yp - ay) * ux
+        u = (Xp - ax) * ux + (Yp - ay) * uy
+        lap = robe & (np.abs(d) < 5.0) & (u > 0)
+        put(lap, SHIRT[1])
+        edge = lap & (np.abs(np.abs(d) - 4.0) < 0.9)
+        lettering(edge, u * 1.0)
+        cx, cy = int(round(ax + ux * 20)), int(round(ay + uy * 20))
+        for (x, y) in ((0, -2), (0, -1), (0, 0), (0, 1), (0, 2), (-1, -1), (1, -1), (-2, 0), (2, 0)):
+            if labels[cy + y, cx + x] == L_SHIRT:
+                color[cy + y, cx + x] = FACE if (x, y) != (0, 0) else GOLD
+    # small white crosses scattered over the mantle
+    for (cx, cy) in ((12, 74), (84, 74), (20, 66), (76, 66)):
+        for (x, y) in ((0, -1), (0, 0), (0, 1), (-1, 0), (1, 0)):
+            if 0 <= cy + y < H and labels[cy + y, cx + x] == L_SHIRT:
+                color[cy + y, cx + x] = FACE_SHADE
+
+    # analav: a black panel down the chest, white lettered borders
+    hx = 11.5
+    panel = robe & (np.abs(Xp - CX) < hx) & (Yp > 54)
+    put(panel, SHIRT[0])
+    side = panel & (np.abs(np.abs(Xp - CX) - (hx - 1.5)) < 1.0)
+    lettering(side, Yp * 1.0)
+    put(panel & (np.abs(np.abs(Xp - CX) - (hx - 3.0)) < 0.5), GOLD)
+    # bands over the shoulders, from the panel's top corners outward
+    for sgn in (-1, 1):
+        ax, ay = CX + sgn * (hx - 1.5), 57.0
+        bx, by = CX + sgn * 30.0, 50.0
+        L = math.hypot(bx - ax, by - ay)
+        ux, uy = (bx - ax) / L, (by - ay) / L
+        d = (Xp - ax) * -uy + (Yp - ay) * ux
+        u = (Xp - ax) * ux + (Yp - ay) * uy
+        b = robe & (np.abs(d) < 1.6) & (u > 0) & (u < L)
+        lettering(b, u * 1.0)
+        put(robe & (np.abs(d - 2.2 * sgn) < 0.5) & (u > 1) & (u < L), GOLD)
+
+    def stamp(pat, x0, y0, colors):
+        for j, row in enumerate(pat):
+            for i, ch in enumerate(row):
+                if ch in colors:
+                    y, x = y0 + j, x0 + i
+                    if 0 <= y < H and 0 <= x < W and labels[y, x] == L_SHIRT:
+                        color[y, x] = colors[ch]
+
+    # the seraph high on the panel, the cross beneath it
+    stamp(SERAPH, int(CX) - 4, 59, {"g": GOLD, "w": FACE})
+    stamp(GOLGOTHA, int(CX) - 4, 64, {"#": FACE})
+    # the spear and the reed, faint, crossing behind the cross
+    for i in range(9):
+        for x, y in ((int(CX) - 5 + i, 75 - i), (int(CX) + 5 - i, 75 - i)):
+            if labels[y, x] == L_SHIRT and color[y, x] == SHIRT[0]:
+                color[y, x] = FACE_DEEP
+
+    # the cap: an embroidered rim with small crosses, crosses on the dome,
+    # a gold cross on top
+    rim = cap & (Yp > CY - 10.5)
+    put(rim, FACE)
+    for cx in range(int(CX) - 12, int(CX) + 13, 4):
+        put(cap & (np.abs(Xp - cx - 0.5) < 0.6) & (Yp > CY - 10.5), OUTLINE)
+        put(cap & (np.abs(Xp - cx - 0.5) < 1.6) & (np.abs(Yp - (CY - 8.5)) < 0.6), OUTLINE)
+    put(cap & (np.abs(Yp - (CY - 11.5)) < 0.5), GOLD)
+    for cx, cy in ((CX - 6, CY - 15), (CX + 6, CY - 15), (CX, CY - 17)):
+        put(cap & (np.abs(Xp - cx) < 0.6) & (np.abs(Yp - cy) < 1.6), FACE)
+        put(cap & (np.abs(Yp - cy + 0.5) < 0.6) & (np.abs(Xp - cx) < 1.6), FACE)
+    fy = int(CY - 21)
+    for (x, y) in ((0, 0), (0, 1), (-1, 1), (1, 1), (0, 2), (0, 3)):
+        yy, xx = fy + y, int(CX) + x
+        color[yy, xx] = GOLD
+    color[fy + 4, int(CX)] = OUTLINE
 
 
 def ornaments(color, labels, Xp, Yp):

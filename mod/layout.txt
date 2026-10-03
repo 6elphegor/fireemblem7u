@@ -4,5 +4,5 @@
 rom APPEND 0 build/src/mod/claude.o(.text .rodata .data)
 rom APPEND 0 build/src/mod/claude_banim.o(.text .rodata .data)
 rom APPEND 0 build/src/mod/claude_gfx.o(.text .rodata .data)
-rom APPEND 0 build/src/mod/claude_petal.o(.text .rodata .data)
+rom APPEND 0 build/src/mod/claude_dandelion.o(.text .rodata .data)
 rom APPEND 0 build/banim/banim.o(.rodata.BanimScr_Flower)
