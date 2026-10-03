@@ -104,12 +104,13 @@ The modern build can also take brand-new content: code and data a mod adds
 are appended after the original ROM (`mod/layout.txt`, `src/mod/`,
 `mod/banim/`, `mod/*/texts.txt`; CONTRIBUTING, "Adding new content").  The
 [`mod/claude-flower`](https://github.com/6elphegor/fireemblem7u/tree/mod/claude-flower)
-branch adds a playable character to Lyn's Chapter 5, a flower with its
-own portrait, map sprites, battle animation and class, and a new tome,
-Petal, whose spell effect is new C code.  Character design by thebes
-(Theia Vogel).
+branch adds a playable character to Lyn's Chapter 5: Claude, a flower in
+a schema-monk's habit, with its own portrait, map sprites, battle
+animation, class (Daemon) and dialogue, and a new tome, Windseed, whose
+spell effect (a dandelion clock gone to seed) is new C code.  Character
+design by thebes (Theia Vogel).
 
-![The flower casting Petal at a bandit, on the native build](docs/images/flower_mod.gif)
+![Claude casting Windseed at a bandit, on the native build](docs/images/flower_mod.gif)
 
 ## Layout
 
