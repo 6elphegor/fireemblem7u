@@ -2564,10 +2564,10 @@ CONST_DATA struct ItemData gItemData[] = {
 #if MOD_CLAUDE
     // the flower character's tome (mod/claude): its spell is
     // StartSpellAnimDandelion (src/mod/claude_petal.c)
-    [ITEM_PETAL] = {
-        .nameTextId = MSG_PETAL_NAME,
-        .descTextId = MSG_PETAL_DESC,
-        .number = ITEM_PETAL,
+    [ITEM_WINDSEED] = {
+        .nameTextId = MSG_WINDSEED_NAME,
+        .descTextId = MSG_WINDSEED_DESC,
+        .number = ITEM_WINDSEED,
         .weaponType = ITYPE_ANIMA,
         .attributes = IA_WEAPON | IA_MAGIC,
         .maxUses = 40,

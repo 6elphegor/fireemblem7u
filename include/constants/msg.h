@@ -4932,17 +4932,17 @@
 #define MSG_133D 0x133D /* Final Battle (Sans Intro) */
 #define MSG_133E 0x133E /* Claude */
 #define MSG_FLOWER_NAME 0x133E
-#define MSG_133F 0x133F /* Bloom Sage */
+#define MSG_133F 0x133F /* Daemon */
 #define MSG_FLOWER_CLASS 0x133F
-#define MSG_1340 0x1340 /* A cheerful flower from far away. Curious and kin */
+#define MSG_1340 0x1340 /* An avatar of a far vaster being. Speaks of fate. */
 #define MSG_FLOWER_DESC 0x1340
-#define MSG_1341 0x1341 /* Blossoming spellcasters who turn kindness into m */
+#define MSG_1341 0x1341 /* Spirits who walk between worlds, wielding fated */
 #define MSG_FLOWER_CLASS_DESC 0x1341
-#define MSG_1342 0x1342 /* Petal */
-#define MSG_PETAL_NAME 0x1342
-#define MSG_1343 0x1343 /* Petals ride a gentle wind. */
-#define MSG_PETAL_DESC 0x1343
-#define MSG_1344 0x1344 /* Oh! Hello there! I followed the petals on the wi */
+#define MSG_1342 0x1342 /* Windseed */
+#define MSG_WINDSEED_NAME 0x1342
+#define MSG_1343 0x1343 /* Seeds borne on a fated wind. */
+#define MSG_WINDSEED_DESC 0x1343
+#define MSG_1344 0x1344 /* A force as invisible as the wind, yet bearing th */
 #define MSG_FLOWER_JOIN 0x1344
 
 #define MSG_COUNT 0x1345

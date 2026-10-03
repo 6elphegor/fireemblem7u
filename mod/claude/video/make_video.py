@@ -32,8 +32,8 @@ FADE = 12                        # frames of fade to and from black
 
 # (first frame, last frame, caption): frames of the recorded run
 SEGMENTS = [
-    (3960, 4700, "A new character, added in C: a flower who joins Lyn's army"),
-    (6376, 7560, "Its own battle animation, and a new tome, Petal: a spell written as new code"),
+    (4000, 4990, "Claude, a Daemon: a new character, added in C, who joins Lyn"),
+    (6376, 7560, "Its own battle animation, and a new tome, Windseed: a spell written as new code"),
     (8200, 8560, "Its own class, portrait, map sprites and text, all built from the decomp's source"),
 ]
 TITLE = [

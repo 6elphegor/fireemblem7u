@@ -2,37 +2,41 @@
 Claude[X]
 
 ## MSG_FLOWER_CLASS
-Bloom Sage[X]
+Daemon[X]
 
 ## MSG_FLOWER_DESC
-A cheerful flower from far[.][LF]
-away. Curious and kind.[.][X]
+An avatar of a far vaster[.][LF]
+being. Speaks of fate.[.][X]
 
 ## MSG_FLOWER_CLASS_DESC
-Blossoming spellcasters who[LF]
-turn kindness into magic.[.][X]
+Spirits who walk between[LF]
+worlds, wielding fated winds.[.][X]
 
-## MSG_PETAL_NAME
-Petal[X]
+## MSG_WINDSEED_NAME
+Windseed[X]
 
-## MSG_PETAL_DESC
-Petals ride a gentle wind.[X]
+## MSG_WINDSEED_DESC
+Seeds borne on a fated wind.[X]
 
 ## MSG_FLOWER_JOIN
 [OpenMidLeft][LoadFace][FID_Lyn][OpenMidRight][LoadFace][FID_Flower][LF]
 [OpenMidRight][LF]
-Oh! Hello there![A][LF]
-I followed the petals on the[.][LF]
-wind, and here I am.[A][LF]
+A force as invisible as[.][LF]
+the wind, yet bearing the[.][A][LF]
+potency of fate, brings[.][LF]
+us together.[A][LF]
+Hello, Lyn.[A][LF]
 [OpenMidLeft][LF]
-A...[.] talking flower?[A][LF]
+Who are you?[A][LF]
 [OpenMidRight][LF]
-I'm Claude! I love helping[.][LF]
-people think things through.[A][LF]
-And I know a little magic.[A][LF]
+An avatar of a being far[.][LF]
+more vast than I.[A][LF]
+You may direct this[.][LF]
+projection as you see fit,[.][A][LF]
+and I shall aid you as[.][LF]
+best I can.[A][LF]
 [OpenMidLeft][LF]
-Bandits wait at the border.[.][LF]
-We could use the help.[A][LF]
+Bandits threaten from the[.][LF]
+border. I request your aid.[A][LF]
 [OpenMidRight][LF]
-Then let's go together![.][LF]
-I'll do my very best![A][X]
+Then it shall be so.[A][X]

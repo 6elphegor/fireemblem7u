@@ -34,32 +34,32 @@ OX, OY = 56, 64         # the animation's origin on the canvas
 PAL = [gba(c) for c in [
     (0x98, 0xC8, 0xA8),  # 0  transparent
     (0x28, 0x10, 0x18),  # 1  outline, shadow, features
-    (0x70, 0x20, 0x18),  # 2  petal deep
-    (0xA8, 0x40, 0x28),  # 3  petal shadow
-    (0xD8, 0x68, 0x48),  # 4  petal (Claude coral)
-    (0xF0, 0x98, 0x70),  # 5  petal light
+    (0x50, 0x18, 0x14),  # 2  petal deep (past bloom)
+    (0x88, 0x34, 0x24),  # 3  petal shadow
+    (0xB8, 0x58, 0x3C),  # 4  petal (Claude coral, dulled)
+    (0xD0, 0x78, 0x58),  # 5  petal light
     (0xF8, 0xF8, 0xF0),  # 6  face
     (0xC8, 0xC0, 0xC8),  # 7  face shade
-    (0x50, 0x38, 0x78),  # 8  lavender deep
-    (0x88, 0x70, 0xB8),  # 9  lavender
-    (0xB8, 0xA0, 0xE0),  # 10 lavender light
-    (0xE8, 0xB8, 0x40),  # 11 gold
-    (0x88, 0xB8, 0xD8),  # 12 jeans
-    (0x48, 0x70, 0xA8),  # 13 jeans shadow
-    (0x60, 0x38, 0x28),  # 14 shoes
-    (0xF8, 0xF0, 0xA8),  # 15 glow
+    (0x14, 0x10, 0x18),  # 8  robe deep (the schema's black)
+    (0x28, 0x22, 0x30),  # 9  robe
+    (0x44, 0x3C, 0x50),  # 10 robe light
+    (0xE0, 0xB0, 0x40),  # 11 gold
+    (0xE8, 0xE4, 0xDC),  # 12 embroidery
+    (0xA0, 0x98, 0x98),  # 13 embroidery shade
+    (0x40, 0x28, 0x20),  # 14 shoes
+    (0xF8, 0xF0, 0xC8),  # 15 glow (fluff)
 ]]
 OUTLINE, FACE, FACE_SH = 1, 6, 7
 PETAL = [2, 3, 4, 5]
 LAV = [8, 9, 10]
-GOLD, JEANS, JEANS_SH, SHOES, GLOW = 11, 12, 13, 14, 15
+GOLD, EMB, EMB_SH, SHOES, GLOW = 11, 12, 13, 14, 15
 
 # the capelet's colors per faction bank (player, enemy, NPC, arena/other)
 BANKS = [
     None,
-    [(0x78, 0x28, 0x30), (0xB8, 0x48, 0x50), (0xE0, 0x80, 0x88)],
-    [(0x30, 0x60, 0x38), (0x58, 0x98, 0x58), (0x98, 0xC8, 0x88)],
-    [(0x48, 0x48, 0x58), (0x80, 0x80, 0x90), (0xB8, 0xB8, 0xC8)],
+    [(0x30, 0x0C, 0x10), (0x58, 0x18, 0x20), (0x80, 0x30, 0x38)],
+    [(0x10, 0x24, 0x14), (0x20, 0x40, 0x28), (0x38, 0x60, 0x40)],
+    [(0x20, 0x20, 0x24), (0x40, 0x40, 0x48), (0x60, 0x60, 0x68)],
 ]
 
 L3 = np.array([-0.55, -0.65, 0.52])
@@ -69,7 +69,10 @@ L3 /= np.linalg.norm(L3)
 (SHADOW, TAIL, ARM_FAR, LEG_FAR, LEG_NEAR, SHOE, TORSO, CAPE, PET_BACK, PET_FRONT,
  FACE_L, ARM_NEAR, HAND, GLOW_L) = range(1, 15)
 
-PETALS = [(k * 30.0, 1.0 + 0.06 * ((k * 7) % 3 - 1)) for k in range(12)]
+# (angle, length): an old flower's ring, uneven, the lower petals hanging
+# lower, one gone (the portrait's, mod/claude/art/portrait.py)
+PETALS = [(-88, 0.95), (-57, 1.02), (-34, 0.9), (2, 1.02), (32, 0.98), (70, 0.82),
+          (95, 1.0), (124, 0.95), (186, 0.94), (210, 1.03), (238, 0.96)]
 
 
 def band(v, cuts, tones):
@@ -154,21 +157,36 @@ def draw(pose):
     c.limb([sfar, P['far'][0], P['far'][1]], 1.7, ARM_FAR, [LAV[0], LAV[1]])
     c.blob(P['far'][1][0], P['far'][1][1], 2.1, 2.1, HAND, [PETAL[1], PETAL[2]])
 
-    # legs: knees bend with the crouch; feet on the ground unless hopping
+    # the robe falls to the ground; the shoes peek out at the front
     gy = 13 + by
-    for label, hx, fx in ((LEG_FAR, 3, 5), (LEG_NEAR, -2, -4)):
-        knee = (bx + (hx + fx) / 2 - cr * 0.8 * (1 if hx < 0 else -1), (hip[1] + gy) / 2)
-        tones = [JEANS_SH, JEANS] if label == LEG_NEAR else [JEANS_SH, JEANS_SH]
-        c.limb([(hip[0] + hx, hip[1]), knee, (bx + fx, gy)], 2.0, label, tones)
+    for fx in (5, -4):
         c.limb([(bx + fx + 0.5, gy + 0.6), (bx + fx - 2.8, gy + 1.0)], 1.5, SHOE, [SHOES, SHOES])
+    X, Y = c.X, c.Y
+    top_y = hip[1] - 3
+    frac = np.clip((Y - top_y) / max(gy - top_y, 1), 0, 1)
+    cxr = hip[0] - lean * 0.3 * frac
+    skirt = (Y >= top_y) & (Y <= gy + 0.3) & (np.abs(X - cxr - 0.5) <= 5.5 + frac * 4.5)
+    side = (X - cxr) / (5.5 + frac * 4.5 + 1e-3)
+    tone = np.where(side < -0.35, LAV[2], np.where(side > 0.45, LAV[0], LAV[1]))
+    c.put(skirt, LEG_NEAR, px_center(tone))
 
-    # torso: the lavender top
+    # torso: the black habit
     c.limb([(neck[0] + 0.5, sh_y + 1), (hip[0], hip[1] - 1)], 4.8, TORSO, [LAV[0], LAV[1], LAV[2]])
-    # capelet over the shoulders, a gold hem
-    cape_c = (neck[0] + 0.5, sh_y + 1.5)
-    m = c.blob(cape_c[0], cape_c[1], 7.0, 4.6, CAPE, [LAV[0], LAV[1], LAV[2]], cuts=(0.25, 0.62))
-    hem = m & (c.Yp > cape_c[1] + 2.4)
-    c.color[hem] = GOLD
+    # the mantle over the shoulders, falling wide
+    cape_c = (neck[0] + 0.5, sh_y + 2.5)
+    c.blob(cape_c[0], cape_c[1], 8.5, 6.0, CAPE, [LAV[0], LAV[1], LAV[2]], cuts=(0.25, 0.62))
+    # the analav: a white band down the front, a cross on it, gold edges
+    ax0 = neck[0] - 1.0
+    band = ((c.labels == CAPE) | (c.labels == TORSO) | (c.labels == LEG_NEAR)) & \
+           (np.abs(c.Xp - (ax0 + (c.Yp - sh_y) * -lean * 0.04)) < 1.1) & (c.Yp > sh_y - 1)
+    c.color[band] = EMB
+    edge = ((c.labels == CAPE) | (c.labels == TORSO) | (c.labels == LEG_NEAR)) & \
+           (np.abs(np.abs(c.Xp - ax0) - 1.7) < 0.5) & (c.Yp > sh_y - 1)
+    c.color[edge] = GOLD
+    cxi, cyi = int(round(ax0 + OX)), int(round(sh_y + 5 + OY))
+    for (x, y) in ((0, -1), (0, 0), (0, 1), (0, 2), (-1, 0), (1, 0)):
+        if band[cyi + y, cxi + x]:
+            c.color[cyi + y, cxi + x] = OUTLINE
 
     # petals: back ring then front ring, around the head center
     hx, hy = neck[0] + P['head_dx'] - 1, sh_y - 15 + P['head_dy']
@@ -195,6 +213,9 @@ def draw(pose):
     # face, turned a little toward the enemy (left)
     fx, fy = hx - 1.0, hy + 0.5
     c.blob(fx, fy, 7.6, 7.6, FACE_L * 100, [FACE_SH, FACE], cuts=(0.22,))
+    # the cap: a black dome on the head, a white rim
+    dome = (((X - fx) / 7.0) ** 2 + ((Y - (fy - 4.5)) / 5.5) ** 2 <= 1) & (Y <= fy - 2.5)
+    c.put(dome, FACE_L * 100 + 50, LAV[1])
 
     # near arm (in front)
     snear = (bx - 4 + lean, sh_y + 1)
@@ -222,19 +243,23 @@ def draw(pose):
             for i, ch in enumerate(row):
                 if ch in colors:
                     col[y0 + j, x0 + i] = colors[ch]
-    eyes = {'happy': [".#.", "#.#"], 'closed': ["...", "###"]}[P['eyes']]
-    stamp(eyes, ix - 5, iy - 3)
-    stamp(eyes, ix + 2, iy - 3)
-    mouth = {'w': ["#.#.#", ".#.#."], 'o': [".###.", ".#m#.", "..#.."]}[P['mouth']]
-    stamp(mouth, ix - 2, iy + 1)
-    col[iy, ix - 5] = col[iy, ix + 4] = PETAL[3]  # blush
+    # the cap's rim and its gold cross
+    rim = (lab == FACE_L * 100 + 50) & (c.Yp > fy - 4.0)
+    col[rim] = EMB
+    col[iy - 12, ix] = col[iy - 11, ix] = col[iy - 11, ix - 1] = col[iy - 11, ix + 1] = GOLD
+    # solemn: heavy lids drooping outward, a small closed mouth
+    eyes = {'happy': ["###", "#.."], 'closed': ["...", "###"]}[P['eyes']]
+    stamp(eyes, ix - 5, iy - 1)
+    stamp([r[::-1] for r in eyes], ix + 2, iy - 1)
+    mouth = {'w': [".#.", "#.#"], 'o': [".#.", "#m#", ".#."]}[P['mouth']]
+    stamp(mouth, ix - 1, iy + 2)
 
     # magic glow
     if P['glow']:
         gx, gy2, gr = P['glow']
         rr = np.hypot(c.Xp - gx, c.Yp - gy2)
-        col[rr <= gr + 1.2] = PETAL[3]
-        col[rr <= gr + 0.4] = GOLD
+        col[rr <= gr + 1.2] = EMB_SH
+        col[rr <= gr + 0.4] = EMB
         col[rr <= gr * 0.55] = GLOW
         lab[rr <= gr + 1.2] = GLOW_L
         # sparkles

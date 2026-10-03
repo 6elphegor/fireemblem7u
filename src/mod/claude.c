@@ -10,6 +10,6 @@ const char gModClaudeSignature[] CONST_DATA = "Flower mod: character design by t
 // (src/events/ch05.c, EventScr_Ch05_Beginning)
 CONST_DATA struct UnitDefinition Units_Ch05_Flower[] = {
     UNIT(CHARACTER_FLOWER, CLASS_FLOWER, CHARACTER_LYN_TUTORIAL, 3, FACTION_ID_BLUE, 0, 0, 5, 2, 5,
-         ITEM_PETAL, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0, 0, 0, 0),
+         ITEM_WINDSEED, ITEM_VULNERARY, ITEM_NONE, ITEM_NONE, 0, 0, 0, 0),
     UNIT_END,
 };

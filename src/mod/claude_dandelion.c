@@ -108,7 +108,7 @@ static struct AnimSpriteData * PutSeed(struct AnimSpriteData * it, int x, int y,
     return it + 1;
 }
 
-// The clock's head: above the caster's raised hand.  The target: its
+// The clock's head: over the caster's raised hand.  The target: its
 // middle.  Anim positions are the units' feet, in screen coordinates (they
 // move with the camera when it pans to a distant target).
 static void DandelionFx_Ends(struct ProcDandelionFx * proc, int * sx, int * sy, int * tx, int * ty)
@@ -116,8 +116,8 @@ static void DandelionFx_Ends(struct ProcDandelionFx * proc, int * sx, int * sy, 
     struct Anim * target = GetAnimAnotherSide(proc->anim);
     int dir = GetAnimPosition(proc->anim) == EKR_POS_L ? 1 : -1;
 
-    *sx = proc->anim->xPosition + dir * 14;
-    *sy = proc->anim->yPosition - 34;
+    *sx = proc->anim->xPosition + dir * 15;
+    *sy = proc->anim->yPosition - 28;
     *tx = target->xPosition;
     *ty = target->yPosition - 18;
 }

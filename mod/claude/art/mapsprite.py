@@ -35,12 +35,12 @@ LAV_M = LAV_L = LAV_D = LAV
 PAL = [gba(c) for c in [
     (0xA8, 0xD0, 0xA0), (0xF8, 0xF8, 0xF8), (0x98, 0xD0, 0xF8), (0x60, 0xA0, 0xF8),
     (0x20, 0x78, 0xC8), (0x10, 0x48, 0xA0),
-    (0x88, 0xB8, 0xD8),  # 6  jeans
-    (0xA8, 0x40, 0x28),  # 7  petal dark
-    (0x90, 0x78, 0xC0),  # 8  lavender
-    (0xD8, 0x68, 0x48),  # 9  petal (Claude coral)
-    (0xF0, 0x98, 0x70),  # 10 petal light
-    (0xE0, 0x78, 0x58),  # 11 mitten hands
+    (0xD8, 0xD0, 0xC8),  # 6  embroidery (the analav)
+    (0x80, 0x30, 0x22),  # 7  petal dark (past bloom)
+    (0x2C, 0x26, 0x34),  # 8  the black habit
+    (0xB8, 0x5C, 0x40),  # 9  petal (Claude coral, dulled)
+    (0xD8, 0x84, 0x60),  # 10 petal light
+    (0xC0, 0x60, 0x48),  # 11 mitten hands
     (0xE8, 0xB8, 0x40),  # 12 gold
     (0x80, 0x88, 0x70),  # 13 shadow (as the faction palettes)
     (0xF8, 0xF8, 0xF8),  # 14 face
@@ -74,26 +74,27 @@ def draw(w, h, P):
     bob = P.get('bob', 0)
     # shadow
     put(((X - cx) / 5.5) ** 2 + ((Y - feet - 0.5) / 1.3) ** 2 <= 1, 1, SHADOW)
-    # legs
+    # the robe falls to the feet; it sways with the step
     hip_y = feet - 5 + bob
-    if face == 'left':
-        for k, off in ((2, -step), (3, step)):
-            put(capsule(X, Y, cx + 0.5, hip_y, cx + 0.5 + off * 1.8, feet - 0.5, 1.1, 1.1)[0], k, JEANS)
-    else:
-        for k, (dx, off) in ((2, (-1.3, -step)), (3, (1.3, step))):
-            put(capsule(X, Y, cx + dx, hip_y, cx + dx, feet - 0.5 - abs(off) * 0.8 * (off > 0), 1.1, 1.1)[0], k, JEANS)
+    sway = step * 0.6
+    skirt = (Y >= hip_y - 2) & (Y <= feet) & \
+            (np.abs(X - cx - sway * (Y - hip_y) / 5.0) <= 2.4 + (Y - hip_y + 2) * 0.35)
+    put(skirt, 2, LAV)
     # tail (behind; to the right when facing left or down)
     if face in ('left', 'down'):
         tx = cx + 3.5
         put(capsule(X, Y, tx - 1, hip_y - 1, tx + 2, hip_y - 4, 0.7, 0.7)[0] |
             capsule(X, Y, tx + 2, hip_y - 4, tx + 1.5, hip_y - 7 + bob, 0.7, 0.7)[0], 4, PET_M)
-    # body: lavender top and capelet
+    # body: the black habit, the analav a white line down the front
     top = hip_y - 6
-    body = capsule(X, Y, cx, top + 1, cx, hip_y, 2.6, 2.6)[0]
-    m = put(body, 5, LAV_M)
+    body = capsule(X, Y, cx, top + 1, cx, hip_y, 2.8, 2.8)[0]
+    m = put(body, 5, LAV)
     Yp = np.arange(h)[:, None] + 0.5
     Xp = np.arange(w)[None, :] + 0.5
-    col[m & (Yp > hip_y - 0.5)] = GOLD  # the capelet's hem
+    if face != 'up':
+        ax = cx - (0.8 if face == 'left' else 0)
+        front = ((lab == 5) | (lab == 2)) & (np.abs(Xp - ax) < 0.6) & (Yp > top + 1)
+        col[front] = JEANS            # (index 6: the embroidery white)
     # arms (mitten hands, coral)
     if face == 'left':
         put(capsule(X, Y, cx - 1, top + 2, cx - 3 - step * 0.8, top + 4.5, 0.9, 0.9)[0], 6, LAV_D)
@@ -106,10 +107,12 @@ def draw(w, h, P):
     # head: petals and face
     hx, hy = cx + (-0.6 if face == 'left' else 0), top - 5.5 + bob * 0.5
     rot = P.get('rot', 0)
-    for k in range(12):
-        a = math.radians(k * 30 + rot)
+    for k, (a0, lk) in enumerate(((-88, 1.0), (-57, 1.05), (-34, 0.9), (2, 1.05), (32, 1.0), (70, 0.82),
+                                  (95, 1.0), (124, 0.95), (186, 0.95), (210, 1.05), (238, 0.95))):
+        a = math.radians(a0 + rot)
         dx, dy = math.cos(a), math.sin(a)
-        inside, t, s = capsule(X, Y, hx + dx * 2, hy + dy * 2, hx + dx * 6.4, hy + dy * 6.4, 0.7, 1.5)
+        L = 7.2 * lk
+        inside, t, s = capsule(X, Y, hx + dx * 2, hy + dy * 2, hx + dx * L, hy + dy * L, 0.9, 1.8)
         facing = (-dy * L2[0] + dx * L2[1])
         tone = PET_L if (dx * L2[0] + dy * L2[1]) > 0.4 else (PET_D if (dx * L2[0] + dy * L2[1]) < -0.5 else PET_M)
         put(inside, 20 + k, tone)
@@ -118,6 +121,8 @@ def draw(w, h, P):
         put(((X - fx) ** 2 + (Y - hy) ** 2) <= 3.1 ** 2, 40, FACE)
     else:
         put(((X - hx) ** 2 + (Y - hy) ** 2) <= 2.6 ** 2, 40, PET_D)
+    # the cap: a black dome on the head
+    put((((X - hx) / 2.8) ** 2 + ((Y - (hy - 2.6)) / 1.9) ** 2 <= 1) & (Y <= hy - 1.9), 41, LAV)
 
     # outline on the silhouette; dark petal edges between petals
     pad = np.pad(lab, 1)
@@ -127,16 +132,18 @@ def draw(w, h, P):
         between = edge & (lab >= 20) & (lab < 40) & (n >= 20) & (n < 40)
         col[edge & ~between] = OUTLINE
         col[between] = PET_D
-    # the face: ^ ^ and a w, as far as 6 pixels allow
+    # the face, as far as a few pixels allow: lowered lids, a small mouth
     if face != 'up':
         fx = hx - (0.8 if face == 'left' else 0)
         ix, iy = int(fx), int(hy)
         if face == 'left':
-            col[iy - 1, ix - 2] = col[iy - 1, ix] = OUTLINE
-            col[iy + 1, ix - 1] = OUTLINE
+            col[iy, ix - 2] = col[iy, ix] = OUTLINE
+            col[iy + 2, ix - 1] = OUTLINE
         else:
-            col[iy - 1, ix - 2] = col[iy - 1, ix + 1] = OUTLINE
-            col[iy + 1, ix - 1] = col[iy + 1, ix] = OUTLINE
+            col[iy, ix - 1] = col[iy, ix + 1] = OUTLINE
+            col[iy + 2, ix] = OUTLINE
+    # the cap's gold cross
+    col[int(hy - 5), int(hx)] = GOLD
     return col
 
 
