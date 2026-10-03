@@ -21,13 +21,34 @@ wait 40
 end
 shot l
 end
-repeat 8
-repeat 5
+# the rest of the original opening, quickly (cut from the video)
+repeat 12
 press A
 wait 40
 end
-shot l2
-end
+# Claude's scene: time to read each box (1 s + 3.5 frames a character)
+wait 60
+shot scene_start
+wait 231
+press A
+wait 186
+press A
+wait 98
+press A
+wait 102
+press A
+wait 207
+press A
+wait 221
+press A
+wait 179
+press A
+wait 245
+press A
+wait 130
+press A
+wait 30
+shot scene_end
 wait 300
 shot arrival_done
 press Start
