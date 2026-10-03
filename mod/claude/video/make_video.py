@@ -32,9 +32,9 @@ FADE = 12                        # frames of fade to and from black
 
 # (first frame, last frame, caption): frames of the recorded run
 SEGMENTS = [
-    (4080, 5634, "Claude, a Daemon: a new character, added in C, who joins Lyn"),
-    (6184, 7371, "Its own battle animation, and a new tome, Windseed: a spell written as new code"),
-    (8011, 8256, "Its own class, portrait, map sprites and text, all built from the decomp's source"),
+    (4080, 5369, "Claude, a Daemon: a new character, added in C, who joins Lyn"),
+    (5923, 7110, "Its own battle animation, and a new tome, Windseed: a spell written as new code"),
+    (7744, 7995, "Its own class, portrait, map sprites and text, all built from the decomp's source"),
 ]
 TITLE = [
     ("Fire Emblem: The Blazing Sword", 64),

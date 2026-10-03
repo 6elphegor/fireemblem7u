@@ -26,26 +26,26 @@ repeat 12
 press A
 wait 40
 end
-# Claude's scene: time to read each box ((1 s + 3.5 frames a character) / 1.4)
+# Claude's scene: time to read each box ((1 s + 3.5 frames a character) / 1.82)
 wait 60
 shot scene_start
-wait 165
+wait 127
 press A
-wait 133
+wait 102
 press A
-wait 70
+wait 54
 press A
-wait 73
+wait 56
 press A
-wait 148
+wait 114
 press A
-wait 158
+wait 121
 press A
-wait 128
+wait 98
 press A
-wait 175
+wait 135
 press A
-wait 93
+wait 71
 press A
 wait 30
 shot scene_end
