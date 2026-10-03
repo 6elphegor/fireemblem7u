@@ -34,10 +34,10 @@ OX, OY = 56, 64         # the animation's origin on the canvas
 PAL = [gba(c) for c in [
     (0x98, 0xC8, 0xA8),  # 0  transparent
     (0x28, 0x10, 0x18),  # 1  outline, shadow, features
-    (0x50, 0x18, 0x14),  # 2  petal deep (past bloom)
-    (0x88, 0x34, 0x24),  # 3  petal shadow
-    (0xB8, 0x58, 0x3C),  # 4  petal (Claude coral, dulled)
-    (0xD0, 0x78, 0x58),  # 5  petal light
+    (0x70, 0x20, 0x18),  # 2  petal deep
+    (0xA8, 0x40, 0x28),  # 3  petal shadow
+    (0xD8, 0x68, 0x48),  # 4  petal (Claude coral)
+    (0xF0, 0x90, 0x68),  # 5  petal light
     (0xF8, 0xF8, 0xF0),  # 6  face
     (0xC8, 0xC0, 0xC8),  # 7  face shade
     (0x14, 0x10, 0x18),  # 8  robe deep (the schema's black)
@@ -69,10 +69,9 @@ L3 /= np.linalg.norm(L3)
 (SHADOW, TAIL, ARM_FAR, LEG_FAR, LEG_NEAR, SHOE, TORSO, CAPE, PET_BACK, PET_FRONT,
  FACE_L, ARM_NEAR, HAND, GLOW_L) = range(1, 15)
 
-# (angle, length): an old flower's ring, uneven, the lower petals hanging
-# lower, one gone (the portrait's, mod/claude/art/portrait.py)
-PETALS = [(-88, 0.95), (-57, 1.02), (-34, 0.9), (2, 1.02), (32, 0.98), (70, 0.82),
-          (95, 1.0), (124, 0.95), (186, 0.94), (210, 1.03), (238, 0.96)]
+# (angle, length): the portrait's ring (mod/claude/art/portrait.py), uneven
+PETALS = [(-88, 0.95), (-57, 1.02), (-34, 0.9), (-3, 1.03), (26, 0.97), (64, 0.82),
+          (88, 1.02), (122, 0.95), (147, 1.04), (184, 0.93), (213, 1.02), (238, 0.96)]
 
 
 def band(v, cuts, tones):
@@ -247,12 +246,13 @@ def draw(pose):
     rim = (lab == FACE_L * 100 + 50) & (c.Yp > fy - 4.0)
     col[rim] = EMB
     col[iy - 12, ix] = col[iy - 11, ix] = col[iy - 11, ix - 1] = col[iy - 11, ix + 1] = GOLD
-    # solemn: heavy lids drooping outward, a small closed mouth
-    eyes = {'happy': ["###", "#.."], 'closed': ["...", "###"]}[P['eyes']]
-    stamp(eyes, ix - 5, iy - 1)
-    stamp([r[::-1] for r in eyes], ix + 2, iy - 1)
-    mouth = {'w': [".#.", "#.#"], 'o': [".#.", "#m#", ".#."]}[P['mouth']]
-    stamp(mouth, ix - 1, iy + 2)
+    # ^ ^ and w, or closed eyes for effort; a blush
+    eyes = {'happy': [".#.", "#.#"], 'closed': ["...", "###"]}[P['eyes']]
+    stamp(eyes, ix - 5, iy - 2)
+    stamp(eyes, ix + 2, iy - 2)
+    mouth = {'w': ["#.#.#", ".#.#."], 'o': [".###.", ".#m#.", "..#.."]}[P['mouth']]
+    stamp(mouth, ix - 2, iy + 1)
+    col[iy, ix - 5] = col[iy, ix + 4] = PETAL[3]
 
     # magic glow
     if P['glow']:

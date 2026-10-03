@@ -36,11 +36,11 @@ X_MOUTH, Y_MOUTH = 4, 4
 PAL = [gba(c) for c in [
     (0x98, 0xC8, 0xA8),  # 0  transparent (backdrop in previews)
     (0x28, 0x10, 0x18),  # 1  outline, features
-    (0x50, 0x18, 0x14),  # 2  petal deep (past bloom: darker, browner)
-    (0x88, 0x34, 0x24),  # 3  petal shadow
-    (0xB8, 0x58, 0x3C),  # 4  petal (Claude coral, dulled)
-    (0xD0, 0x78, 0x58),  # 5  petal light
-    (0xE0, 0xA0, 0x78),  # 6  petal highlight
+    (0x70, 0x20, 0x18),  # 2  petal deep
+    (0xA8, 0x40, 0x28),  # 3  petal shadow
+    (0xD8, 0x68, 0x48),  # 4  petal (Claude coral)
+    (0xF0, 0x90, 0x68),  # 5  petal light
+    (0xF8, 0xC8, 0x88),  # 6  petal highlight (warm, toward yellow)
     (0xF8, 0xF8, 0xF0),  # 7  face
     (0xD8, 0xD0, 0xD0),  # 8  face shade
     (0xA0, 0x90, 0xA0),  # 9  face deep shade
@@ -64,10 +64,10 @@ L3 /= np.linalg.norm(L3)
 # curled short
 FRONT = [
     (-88, 26.5, 5.4, 0.18), (-57, 28.6, 4.6, -0.24), (-34, 25.0, 5.6, 0.06),
-    (-3, 28.8, 4.9, 0.22), (26, 27.0, 5.5, 0.40), (64, 22.5, 4.3, 0.55),
-    (88, 28.4, 5.1, 0.10), (122, 26.2, 5.6, -0.38),
-    (184, 25.6, 5.3, -0.30), (213, 28.2, 4.5, -0.34), (238, 26.6, 5.2, -0.20),
-]                       # (the petal at 147 has fallen)
+    (-3, 28.8, 4.9, -0.16), (26, 27.0, 5.5, 0.27), (64, 22.5, 4.3, -0.55),
+    (88, 28.4, 5.1, 0.10), (122, 26.2, 5.6, -0.22), (147, 29.0, 4.7, 0.17),
+    (184, 25.6, 5.3, -0.12), (213, 28.2, 4.5, 0.30), (238, 26.6, 5.2, -0.20),
+]
 # fit the portrait's window: above y=48 only the 64-wide main area shows
 FRONT = [(a, l * 0.9, r * 0.92, b) for (a, l, r, b) in FRONT]
 BACK = [(a + 15, l - 6.0, r * 0.62, -b) for (a, l, r, b) in FRONT]
@@ -283,26 +283,6 @@ SERAPH = [              # six-winged: a head between gold wings
 ]
 
 
-def beard(color, labels, Xp, Yp):
-    """A long white beard from under the mouth over the robes, tapering to
-    a point, combed into strands; it lies over the analav's top."""
-    top, bottom = MOUTH_C[1] + 3, 66.0
-    yy = np.clip((Yp - top) / (bottom - top), 0, 1)
-    half = 11.5 * np.sqrt(np.clip(1 - yy ** 1.6, 0, 1)) * (0.75 + 0.25 * np.clip((Yp - top) / 4, 0, 1))
-    m = (Yp >= top) & (Yp <= bottom) & (np.abs(Xp - CX - 0.5 * np.sin(Yp * 0.3)) <= half)
-    m &= labels != L_CAP
-    # strands: waving lines, lit from the upper left
-    strand = np.sin((Xp - CX) * 1.6 + np.sin(Yp * 0.35) * 1.5)
-    tone = np.where(strand > 0.55, FACE, np.where(strand > -0.35, FACE_SHADE, FACE_DEEP))
-    tone = np.where((Xp > CX + 4) & (tone == FACE), FACE_SHADE, tone)
-    color[m] = tone[m]
-    # outline where it lies on the robes (it melts into the face)
-    pad = np.pad(m, 1)
-    edge = m & ~(pad[:-2, 1:-1] & pad[2:, 1:-1] & pad[1:-1, :-2] & pad[1:-1, 2:])
-    on_face = labels == L_FACE
-    color[edge & ~on_face] = OUTLINE
-
-
 def schema(color, labels, Xp, Yp):
     """The robes after the schema-monk's habit: a black mantle with folds;
     the analav down the chest, bordered by white bands of lettering
@@ -385,9 +365,6 @@ def schema(color, labels, Xp, Yp):
         for x, y in ((int(CX) - 5 + i, 75 - i), (int(CX) + 5 - i, 75 - i)):
             if labels[y, x] == L_SHIRT and color[y, x] == SHIRT[0]:
                 color[y, x] = FACE_DEEP
-
-    if BEARD:
-        beard(color, labels, Xp, Yp)
 
     # the cap: an embroidered rim with small crosses, crosses on the dome,
     # a gold cross on top
@@ -512,66 +489,64 @@ def clean(color, labels):
     return c
 
 
-# Features: '#' outline, 'm' mouth inside, 'w' an age line, '.' unchanged.
-# A solemn elder: heavy lids drooping at the outer corners, the eyes
-# lowered; a small closed mouth; for the "smiling" frames a faint smile.
-EYE_OPEN = [            # the left eye; the right is its mirror
-    "......",
-    ".#####",
-    "#..##.",
-    ".ww...",
+# Features: '#' outline, 'm' blush / mouth inside, '.' unchanged
+EYE_OPEN = [
+    "..##..",
+    ".####.",
+    "##..##",
+    "#....#",
 ]
 EYE_HALF = [
     "......",
     "......",
-    ".#####",
-    "#.ww..",
+    ".####.",
+    "##..##",
 ]
 EYE_CLOSED = [
     "......",
     "......",
-    ".####.",
-    "#.....",
+    "......",
+    "######",
 ]
-MOUTH_W = [             # at rest
-    ".###.",
-    "#...#",
+MOUTH_W = [
+    "#..#..#",
+    "#..#..#",
+    ".##.##.",
 ]
 MOUTH_W_HALF = [
-    ".###.",
-    "#mmm#",
-    ".###.",
+    "#..#..#",
+    "#mm#mm#",
+    ".##.##.",
 ]
 MOUTH_W_OPEN = [
-    ".###.",
-    "#mmm#",
-    "#mmm#",
-    ".###.",
+    "#.....#",
+    "#mmmmm#",
+    "#mmmmm#",
+    ".#####.",
 ]
-MOUTH_SMILE = [         # a faint smile
-    "#...#",
-    ".###.",
+MOUTH_SMILE = [
+    "#...#...#",
+    "#...#...#",
+    ".###.###.",
 ]
 MOUTH_SMILE_HALF = [
-    "#...#",
-    "#mmm#",
-    ".###.",
+    "#...#...#",
+    "#mmm#mmm#",
+    ".###.###.",
 ]
 MOUTH_SMILE_OPEN = [
-    "#...#",
-    "#mmm#",
-    "#mmm#",
-    ".###.",
+    "#.......#",
+    "#mmmmmmm#",
+    "#mmmmmmm#",
+    ".#######.",
 ]
-WRINKLES = [            # beside the mouth, faint
-    "w.........w",
-    "w.........w",
-]
+BLUSH_PAT = ["mm.mm"]
 
 EYE_L = (38, 24)    # top-left of each eye (portrait coordinates)
 EYE_R = (52, 24)
 MOUTH_C = (48, 33)  # top center of the mouth
-BEARD = os.environ.get("BEARD", "0") == "1"
+BLUSH_L = (35, 31)
+BLUSH_R = (56, 31)
 
 
 def stamp(img, pat, x0, y0):
@@ -581,13 +556,12 @@ def stamp(img, pat, x0, y0):
                 img[y0 + j, x0 + i] = OUTLINE
             elif ch == 'm':
                 img[y0 + j, x0 + i] = BLUSH
-            elif ch == 'w':
-                img[y0 + j, x0 + i] = FACE_DEEP
 
 
 def with_features(base, eyes=EYE_OPEN, mouth=MOUTH_W):
     img = base.copy()
-    stamp(img, WRINKLES, MOUTH_C[0] - 5, MOUTH_C[1])
+    stamp(img, BLUSH_PAT, *BLUSH_L)
+    stamp(img, BLUSH_PAT, *BLUSH_R)
     stamp(img, eyes, *EYE_L)
     stamp(img, [r[::-1] for r in eyes], *EYE_R)
     stamp(img, mouth, MOUTH_C[0] - len(mouth[0]) // 2, MOUTH_C[1])
@@ -653,21 +627,18 @@ def build_chibi():
         dark = e & ((nb == 0) | (labels == L_FACE) | ((labels >= L_FRONT0) & (nb < L_FRONT0)))
         color[dark] = OUTLINE
         color[e & ~dark] = PETAL[0]
+    for (x, y) in [(12, 14), (18, 14)]:
+        color[y + 1, x] = color[y, x + 1] = color[y + 1, x + 2] = OUTLINE
+    for x, y in [(13, 18), (14, 19), (15, 18), (16, 19), (17, 18)]:
+        color[y, x] = OUTLINE
+    color[17, 11] = color[17, 20] = BLUSH
     # the cap: a black dome on the head, a white rim, a gold cross
     for y in range(n):
         for x in range(n):
-            dx, dy = (x + 0.5 - cx) / 6.8, (y + 0.5 - (cy - 4.0)) / 4.6
-            if dx * dx + dy * dy <= 1 and y + 0.5 <= cy - 2.2:
-                color[y, x] = SHIRT[1] if y + 0.5 < cy - 3.2 else FACE
-    color[int(cy) - 9, int(cx)] = color[int(cy) - 8, int(cx)] = GOLD
-    # solemn: lowered lids, a small closed mouth
-    for x in (11, 12, 13):
-        color[15, x] = OUTLINE
-    color[16, 11] = OUTLINE
-    for x in (18, 19, 20):
-        color[15, x] = OUTLINE
-    color[16, 20] = OUTLINE
-    color[19, 15] = color[19, 16] = OUTLINE
+            dx, dy = (x + 0.5 - cx) / 6.8, (y + 0.5 - (cy - 4.6)) / 4.4
+            if dx * dx + dy * dy <= 1 and y + 0.5 <= cy - 3.0:
+                color[y, x] = SHIRT[1] if y + 0.5 < cy - 4.0 else FACE
+    color[int(cy) - 10, int(cx)] = color[int(cy) - 9, int(cx)] = GOLD
     return color
 
 

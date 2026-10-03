@@ -36,10 +36,10 @@ PAL = [gba(c) for c in [
     (0xA8, 0xD0, 0xA0), (0xF8, 0xF8, 0xF8), (0x98, 0xD0, 0xF8), (0x60, 0xA0, 0xF8),
     (0x20, 0x78, 0xC8), (0x10, 0x48, 0xA0),
     (0xD8, 0xD0, 0xC8),  # 6  embroidery (the analav)
-    (0x80, 0x30, 0x22),  # 7  petal dark (past bloom)
+    (0xA8, 0x40, 0x28),  # 7  petal dark
     (0x2C, 0x26, 0x34),  # 8  the black habit
-    (0xB8, 0x5C, 0x40),  # 9  petal (Claude coral, dulled)
-    (0xD8, 0x84, 0x60),  # 10 petal light
+    (0xD8, 0x68, 0x48),  # 9  petal (Claude coral)
+    (0xF0, 0x98, 0x70),  # 10 petal light
     (0xC0, 0x60, 0x48),  # 11 mitten hands
     (0xE8, 0xB8, 0x40),  # 12 gold
     (0x80, 0x88, 0x70),  # 13 shadow (as the faction palettes)
@@ -107,8 +107,8 @@ def draw(w, h, P):
     # head: petals and face
     hx, hy = cx + (-0.6 if face == 'left' else 0), top - 5.5 + bob * 0.5
     rot = P.get('rot', 0)
-    for k, (a0, lk) in enumerate(((-88, 1.0), (-57, 1.05), (-34, 0.9), (2, 1.05), (32, 1.0), (70, 0.82),
-                                  (95, 1.0), (124, 0.95), (186, 0.95), (210, 1.05), (238, 0.95))):
+    for k, (a0, lk) in enumerate(((-88, 1.0), (-57, 1.05), (-34, 0.9), (-3, 1.05), (26, 1.0), (64, 0.85),
+                                  (88, 1.03), (122, 0.95), (147, 1.05), (184, 0.95), (213, 1.05), (238, 0.95))):
         a = math.radians(a0 + rot)
         dx, dy = math.cos(a), math.sin(a)
         L = 7.2 * lk
@@ -132,16 +132,16 @@ def draw(w, h, P):
         between = edge & (lab >= 20) & (lab < 40) & (n >= 20) & (n < 40)
         col[edge & ~between] = OUTLINE
         col[between] = PET_D
-    # the face, as far as a few pixels allow: lowered lids, a small mouth
+    # the face, as far as a few pixels allow: ^ ^ and a w
     if face != 'up':
         fx = hx - (0.8 if face == 'left' else 0)
         ix, iy = int(fx), int(hy)
         if face == 'left':
-            col[iy, ix - 2] = col[iy, ix] = OUTLINE
-            col[iy + 2, ix - 1] = OUTLINE
+            col[iy - 1, ix - 2] = col[iy - 1, ix] = OUTLINE
+            col[iy + 1, ix - 1] = OUTLINE
         else:
-            col[iy, ix - 1] = col[iy, ix + 1] = OUTLINE
-            col[iy + 2, ix] = OUTLINE
+            col[iy - 1, ix - 2] = col[iy - 1, ix + 1] = OUTLINE
+            col[iy + 1, ix - 1] = col[iy + 1, ix] = OUTLINE
     # the cap's gold cross
     col[int(hy - 5), int(hx)] = GOLD
     return col
